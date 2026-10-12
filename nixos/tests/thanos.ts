@@ -78,17 +78,17 @@ export default nix.lambda((args) => (() => {
   const pushgwPort = 9091n;
   const frontPort = 9092n;
   const s3 = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     accessKey: "GKaaaaaaaaaaaaaaaaaaaaaaaa",
     secretKey: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   }));
   const objstore = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       type: "S3",
       config: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         bucket: "thanos-bucket",
         endpoint: nix.thunk(() => nix.str`garage:${nix.builtins.toString(garagePort)}`),
         region: "garage",
@@ -97,62 +97,62 @@ export default nix.lambda((args) => (() => {
         insecure: true,
         signature_version2: false,
         put_user_metadata: nix.thunk(() => ({})),
-        http_config: nix.thunk(() => ({ __proto__: pos$2, idle_conn_timeout: "0s", insecure_skip_verify: false })),
-        trace: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+        http_config: nix.thunk(() => ({ [nix.POS]: pos$2, idle_conn_timeout: "0s", insecure_skip_verify: false })),
+        trace: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
       })),
     })),
   }));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     name: "thanos",
     nodes: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       prometheus: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             diskSize: nix.thunk(() => nix.mul(2n, 1024n)),
             memorySize: 2048n,
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "grpc-health-probe")),
               nix.thunk(() => nix.sel(pkgs, "jq")),
             ]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
-            firewall: nix.thunk(() => ({ __proto__: pos$9, allowedTCPPorts: nix.thunk(() => [grpcPort]) })),
+            [nix.POS]: pos$10,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [grpcPort]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: true,
               enableReload: true,
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   job_name: "prometheus",
                   static_configs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       targets: nix.thunk(() => [nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(queryPort)}`)]),
-                      labels: nix.thunk(() => ({ __proto__: pos$11, instance: "localhost" })),
+                      labels: nix.thunk(() => ({ [nix.POS]: pos$11, instance: "localhost" })),
                     })),
                   ]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   job_name: "pushgateway",
                   scrape_interval: "1s",
                   static_configs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       targets: nix.thunk(() => [nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(pushgwPort)}`)]),
                     })),
                   ]),
@@ -162,29 +162,29 @@ export default nix.lambda((args) => (() => {
                 "groups:\n  - name: test\n    rules:\n      - record: testrule\n        expr: count(up{job=\"prometheus\"})\n",
               ]),
               globalConfig: nix.thunk(() => ({
-                __proto__: pos$17,
-                external_labels: nix.thunk(() => ({ __proto__: pos$16, some_label: "required by thanos" })),
+                [nix.POS]: pos$17,
+                external_labels: nix.thunk(() => ({ [nix.POS]: pos$16, some_label: "required by thanos" })),
               })),
               extraFlags: nix.thunk(() => [
                 "--storage.tsdb.min-block-duration=5s",
                 "--storage.tsdb.max-block-duration=5s",
               ]),
               pushgateway: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: true,
                 web: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   "listen-address": nix.thunk(() => nix.str`:${nix.builtins.toString(pushgwPort)}`),
                 })),
                 persistMetrics: true,
-                persistence: nix.thunk(() => ({ __proto__: pos$19, interval: "1s" })),
+                persistence: nix.thunk(() => ({ [nix.POS]: pos$19, interval: "1s" })),
                 stateDir: "prometheus-pushgateway",
               })),
             })),
             thanos: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               sidecar: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 enable: true,
                 "grpc-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(grpcPort)}`),
                 objstore: objstore,
@@ -192,25 +192,25 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "prometheus-config-change": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               configuration: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yq"))]),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   prometheus: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     scrapeConfigs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         job_name: "garage-node_exporter",
                         static_configs: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$26, targets: nix.thunk(() => ["garage:9100"]) })),
+                          nix.thunk(() => ({ [nix.POS]: pos$26, targets: nix.thunk(() => ["garage:9100"]) })),
                         ]),
                       })),
                     ]),
@@ -225,27 +225,27 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           environment: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             thanos: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               query: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 enable: true,
                 "http-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(queryPort)}`),
                 endpoints: nix.thunk(() => [nix.thunk(() => nix.str`prometheus:${nix.builtins.toString(grpcPort)}`)]),
               })),
               "query-frontend": nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 enable: true,
                 "http-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(frontPort)}`),
                 "query-frontend": nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   "downstream-url": nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(queryPort)}`),
                 })),
               })),
@@ -257,14 +257,14 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             diskSize: nix.thunk(() => nix.mul(2n, 1024n)),
             memorySize: 2048n,
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -275,11 +275,11 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             thanos: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               store: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 enable: true,
                 "http-address": "0.0.0.0:10902",
                 "grpc-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(grpcPort)}`),
@@ -287,14 +287,14 @@ export default nix.lambda((args) => (() => {
                 "sync-block-duration": "1s",
               })),
               compact: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 enable: true,
                 "http-address": "0.0.0.0:10903",
                 objstore: objstore,
                 "consistency-delay": "5s",
               })),
               query: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 enable: true,
                 "http-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(queryPort)}`),
                 endpoints: nix.thunk(() => [nix.thunk(() => nix.str`localhost:${nix.builtins.toString(grpcPort)}`)]),
@@ -307,36 +307,36 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$59,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$49, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          [nix.POS]: pos$59,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$49, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$51,
-            firewall: nix.thunk(() => ({ __proto__: pos$50, allowedTCPPorts: nix.thunk(() => [garagePort]) })),
+            [nix.POS]: pos$51,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$50, allowedTCPPorts: nix.thunk(() => [garagePort]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             garage: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
               settings: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 rpc_bind_addr: "127.0.0.1:3901",
                 rpc_public_addr: "127.0.0.1:3901",
                 rpc_secret: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 replication_factor: 1n,
                 s3_api: nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   s3_region: "garage",
                   api_bind_addr: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(garagePort)}`),
                 })),
               })),
             })),
             prometheus: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               exporters: nix.thunk(() => ({
-                __proto__: pos$56,
-                node: nix.thunk(() => ({ __proto__: pos$55, enable: true, openFirewall: true })),
+                [nix.POS]: pos$56,
+                node: nix.thunk(() => ({ [nix.POS]: pos$55, enable: true, openFirewall: true })),
               })),
             })),
           })),

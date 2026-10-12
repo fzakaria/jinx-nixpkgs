@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Brainicism",
           repo: "bgutil-ytdlp-pot-provider",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "cp README.md plugin/README.md\n";
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${pname}-${version}-npm-deps`),
           src: nix.thunk(() => nix.add(src, "/server")),
           npmDepsFetcherVersion: 3n,
@@ -59,7 +59,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/bgutil-ytdlp-pot
 cd plugin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proof-of-origin token provider plugin for yt-dlp",
         homepage: "https://github.com/Brainicism/bgutil-ytdlp-pot-provider",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -67,7 +67,7 @@ cd plugin
         mainProgram: "bgutil-ytdlp-pot-provider",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

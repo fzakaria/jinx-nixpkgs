@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
-      examples: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "attrs")) })))),
-      assertion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
+      [nix.POS]: pos$3,
+      examples: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "attrs")) })))),
+      assertion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       examples: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "gvariant")), null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           bool: true,
           float: 3.14,
           int32: nix.thunk(() => nix.app(nix.lookup(w, "mkInt32"), nix.thunk(() => nix.neg(42n)))),

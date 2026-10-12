@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libconfuse = nix.arg($, "libconfuse");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "watchdogd",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "troglobit",
           repo: "watchdogd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [libite, libuev, libconfuse]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           watchdogd: nix.thunk(() => nix.attr(nixosTests, "watchdogd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced system & process supervisor for Linux",
         homepage: "https://troglobit.com/watchdogd.html",
         changelog: nix.thunk(() => nix.str`https://github.com/troglobit/watchdogd/releases/tag/${nix.sel(finalAttrs, "version")}`),

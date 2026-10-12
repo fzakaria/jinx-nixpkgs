@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const markdownpl_path = nix.thunk(() => nix.str`${nix.sel(perlPackages, "TextMarkdown")}/bin/Markdown.pl`);
   const pandoc_path = nix.thunk(() => nix.str`${pandoc}/bin/pandoc`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bashblog",
       version: "0-unstable-2022-03-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cfenollosa",
           repo: "bashblog",
           rev: "c3d4cc1d905560ecfefce911c319469f7a7ff8a8",
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([TextMarkdown], nix.app(nix.sel(lib, "optionals"), usePandoc, nix.thunk(() => [pandoc])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Setting-markdown_bin.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             markdown_path: nix.thunk(() => (nix.asBool(usePandoc) ? nix.force(pandoc_path) : nix.force(markdownpl_path))),
           })))),
       ]),
       postPatch: "patchShebangs bb.sh\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 bb.sh $out/bin/bashblog\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Single Bash script to create blogs",
         mainProgram: "bashblog",
         homepage: "https://github.com/cfenollosa/bashblog",

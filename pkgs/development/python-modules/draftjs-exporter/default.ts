@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "draftjs_exporter",
           owner: "springload",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-AR8CK75UdtEThE68WSE6DFSqryI509GTW1fBl1SL29w=",
         }))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lxml: nix.thunk(() => [lxml]),
         html5lib: nix.thunk(() => [beautifulsoup4, html5lib]),
       }));
@@ -42,7 +42,7 @@ ${nix.sel(python, "interpreter")} -m unittest discover
 `);
       const pythonImportsCheck = nix.thunk(() => ["draftjs_exporter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to convert Draft.js ContentState to HTML",
         homepage: "https://github.com/springload/draftjs_exporter",
         changelog: nix.thunk(() => nix.str`https://github.com/springload/draftjs_exporter/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -53,7 +53,7 @@ ${nix.sel(python, "interpreter")} -m unittest discover
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

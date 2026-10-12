@@ -9,16 +9,16 @@ const pos$3 = nix.positions(here + "/snakeoil-certs.nix", [["domain", 5, 11], ["
 export default nix.thunk(() => (() => {
   const domain = "acme.test";
   return nix.attrsDyn({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     domain: domain,
     ca: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cert: nix.path(here, "./ca.cert.pem"),
       key: nix.path(here, "./ca.key.pem"),
     })),
   }, [
     [nix.str`${domain}`, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cert: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${domain}.cert.pem`)),
       key: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${domain}.key.pem`)),
     }))],

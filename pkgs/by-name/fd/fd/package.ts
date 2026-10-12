@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fd = nix.arg($, "fd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fd",
       version: "10.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sharkdp",
           repo: "fd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.add("installManPage doc/fd.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd fd \\\n  --bash <($out/bin/fd --gen-completions bash) \\\n  --fish <($out/bin/fd --gen-completions fish)\ninstallShellCompletion --zsh contrib/completion/_fd\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: fd })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: fd })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple, fast and user-friendly alternative to find",
         longDescription: "`fd` is a simple, fast and user-friendly alternative to `find`.\n\nWhile it does not seek to mirror all of `find`'s powerful functionality,\nit provides sensible (opinionated) defaults for 80% of the use cases.\n",
         homepage: "https://github.com/sharkdp/fd",

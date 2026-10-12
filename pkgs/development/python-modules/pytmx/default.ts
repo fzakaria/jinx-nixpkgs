@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pysdl2 = nix.arg($, "pysdl2");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytmx",
       version: "3.32",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bitcraft",
           repo: "PyTMX",
           rev: "7af805bc916e666fdf7165d5d6ba4c0eddfcde18",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_contains_reserved_property_name"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bitcraft/PyTMX",
         description: "Python library to read Tiled Map Editor's TMX maps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

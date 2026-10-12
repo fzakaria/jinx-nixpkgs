@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const toolz = nix.arg($, "toolz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "strategies",
       version: "0.2.3",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "strategies",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "02i4ydrs9k61p8iv2vl2akks8p9gc88rw8031wlwb1zqsyjmb328",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [multipledispatch, toolz]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for control flow programming",
         homepage: "https://github.com/logpy/strategies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

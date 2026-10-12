@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rec",
           repo: "xmod",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_partial_function"]);
       const pythonImportsCheck = nix.thunk(() => ["xmod"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn any object into a module",
         homepage: "https://github.com/rec/xmod",
         changelog: nix.thunk(() => nix.str`https://github.com/rec/xmod/blob/${nix.sel(src, "rev")}/CHANGELOG`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

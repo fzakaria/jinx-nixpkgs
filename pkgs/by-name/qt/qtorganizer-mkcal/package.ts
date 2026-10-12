@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qtorganizer-mkcal",
       version: "0-unstable-2026-06-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dcaliste",
           repo: "qtorganizer-mkcal",
           rev: "6efa089553ccc3c44ada8fd2fe1349a004d4f619",
@@ -69,11 +69,11 @@ export QT_PLUGIN_PATH=$TMP/fake-install:$QT_PLUGIN_PATH
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "QtOrganizer plugin using sqlite via mKCal",
         homepage: "https://github.com/dcaliste/qtorganizer-mkcal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

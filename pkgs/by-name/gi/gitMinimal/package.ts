@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const curlMinimal = nix.arg($, "curlMinimal");
   return nix.app(nix.sel(git, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withManual: false,
       osxkeychainSupport: false,
       pythonSupport: false,

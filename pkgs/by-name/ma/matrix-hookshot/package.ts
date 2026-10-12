@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "matrix-hookshot",
       version: "7.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matrix-org",
           repo: "matrix-hookshot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-X6A1+AuJyBQJGs8NteGuhUVRt6MISlb4ZtNGcAvPLdk=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-XQfSMtV4ERo0chry9qPnc3jeOiRDUuV1QfOFUVbNlF8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -119,11 +119,11 @@ runHook postInstall
   --add-flags "$out/lib/node_modules/.pnpm/matrix-hookshot/App/BridgeApp.js"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/matrix-org/matrix-hookshot/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Bridge between Matrix and multiple project management services, such as GitHub, GitLab and JIRA",
         homepage: "https://matrix-org.github.io/matrix-hookshot/",

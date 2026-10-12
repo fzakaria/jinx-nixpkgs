@@ -35,7 +35,7 @@ export default (lib) => (() => {
     })();
     const paramsToOptions = (ps) => nix.app(mapParamsRecursive, (_path) => (name) => (param) => nix.attrsDyn({}, [[nix.force(name), nix.thunk(() => nix.sel(param, "option"))]]), ps);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       paramsToConf,
       mkConf,
       replicate,

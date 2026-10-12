@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const zip = nix.arg($, "zip");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://stabyourself.net/images/screenshots/orthorobot-5.png",
       sha256: "13fa4divdqz4vpdij1lcs5kf6w2c4jm3cc9q6bz5h7lkng31jzi6",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "orthorobot",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Stabyourself",
           repo: "orthorobot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "orthorobot",
             exec: "orthorobot",
             icon: icon,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper, strip_nondeterminism, zip]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "Stabyourself-orthorobot-pull-3.patch",
             url: "https://github.com/Stabyourself/orthorobot/compare/48f07423950b29a94b04aefe268f2f951f55b62e...05856ba7dbf1bb86d0f16a5f511d8ee9f2176015.patch",
             sha256: "sha256-WHHP6QM7R5eEkVF+J2pGNnds/OKRIRXyon85wjd3GXI=",
@@ -69,7 +69,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/orthorobot \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Recharge the robot",
         homepage: "https://github.com/Stabyourself/orthorobot",
         mainProgram: "orthorobot",

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const version = "6.14.2";
         const shortRev = "591ed6e";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "sensu",
             repo: "sensu-go",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mainProgram: mainProgram,
           homepage: "https://sensu.io",
           description: "Open source monitoring tool for ephemeral infrastructure & distributed applications",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname_1,
           version,
           shortRev,
@@ -72,22 +72,22 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "sensu-go-cli": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "sensu-go-cli",
         subPackages: nix.thunk(() => ["cmd/sensuctl"]),
         postInstall: "mkdir -p \\\n  \"${!outputBin}/share/bash-completion/completions\" \\\n  \"${!outputBin}/share/zsh/site-functions\"\n\n${!outputBin}/bin/sensuctl completion bash > ${!outputBin}/share/bash-completion/completions/sensuctl\n\n# https://github.com/sensu/sensu-go/issues/3132\n(\n  echo \"#compdef sensuctl\"\n  ${!outputBin}/bin/sensuctl completion zsh\n  echo '_complete sensuctl 2>/dev/null'\n) > ${!outputBin}/share/zsh/site-functions/_sensuctl\n\n",
         mainProgram: "sensuctl",
       })))),
     "sensu-go-backend": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "sensu-go-backend",
         subPackages: nix.thunk(() => ["cmd/sensu-backend"]),
         mainProgram: "sensu-backend",
       })))),
     "sensu-go-agent": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "sensu-go-agent",
         subPackages: nix.thunk(() => ["cmd/sensu-agent"]),
         mainProgram: "sensu-agent",

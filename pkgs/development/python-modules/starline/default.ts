@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-F1P1/NKml2rtd1r7A/g5IVnwQMZzkXzAxjRRDZXBPLk=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Anonym-tsk/starline/commit/4e6cdf8e05c5fb8509ee384e77b39a2495587160.patch",
             hash: "sha256-y9b6ePH3IEgmt3ALHQGwH102rlm4KfmH4oIoIC93cWU=",
           })))),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["starline"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unofficial python library for StarLine API",
         homepage: "https://github.com/Anonym-tsk/starline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

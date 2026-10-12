@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const minDarwinVersion = "10.12";
   const effectiveDarwinVersion = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), minDarwinVersion)))) ? minDarwinVersion : nix.sel(stdenv, "hostPlatform", "darwinMinVersion")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flang-rt",
       version: version,
       src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -50,7 +50,7 @@ cp -r ${monorepoSrc}/runtimes "$out"
       buildInputs: nix.thunk(() => [libllvm]),
       strictDeps: true,
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           MACOSX_DEPLOYMENT_TARGET: effectiveDarwinVersion,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-mmacosx-version-min=${effectiveDarwinVersion}`),
         })))),
@@ -66,7 +66,7 @@ cp -r ${monorepoSrc}/runtimes "$out"
         ])))),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://flang.llvm.org",
         description: "LLVM Fortran Runtime",
       })),

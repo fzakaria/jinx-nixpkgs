@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "midea_dehumidifier_lan";
       const version = "0.9.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "homeassistant-midea-air-appliances-lan",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [midea_beautiful_air]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant custom component adding support for controlling Midea air conditioners and dehumidifiers on local network",
         homepage: "https://github.com/nbogojevic/homeassistant-midea-air-appliances-lan",
         changelog: nix.thunk(() => nix.str`https://github.com/nbogojevic/homeassistant-midea-air-appliances-lan/releases/tag/v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

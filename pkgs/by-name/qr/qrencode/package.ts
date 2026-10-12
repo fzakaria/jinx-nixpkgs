@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qrencode",
       version: "4.1.1",
       outputs: nix.thunk(() => ["bin", "out", "man", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fukuchi",
           repo: "libqrencode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: "runHook preCheck\n\npushd tests\n./test_basic.sh\npopd\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             configureFlags: nix.thunk(() => ["--with-tests"]),
             doCheck: true,
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://fukuchi.org/works/qrencode/",
         description: "C library and command line tool for encoding data in a QR Code symbol",
         longDescription: "Libqrencode is a C library for encoding data in a QR Code symbol,\na kind of 2D symbology that can be scanned by handy terminals\nsuch as a smartphone.\n\nThe library also contains qrencode, a command-line utility to output\nQR Code images in various formats.\n",

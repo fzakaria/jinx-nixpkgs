@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const dune_private_libs = nix.arg($, "dune-private-libs");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dune-glob",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dune, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Glob string matching language supported by dune",
         maintainers: [],

@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const findlib = nix.arg($, "findlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "0.16.1" : "0.14.3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocamlbuild`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ocaml",
           repo: "ocamlbuild",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.14.3": "sha256-dfcNu4ugOYu/M0rRQla7lXum/g1UzncdLGmpPYo0QUM=",
             "0.16.1": "sha256-RpHVX0o4QduN73j+omlZlycRJaGZWfwHO5kq/WsEGZE=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Build system with builtin rules to easily build most OCaml projects",
         homepage: "https://github.com/ocaml/ocamlbuild/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

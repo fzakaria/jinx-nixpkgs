@@ -93,9 +93,9 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const features = nix.argOr($, "features", () => ({}));
   const featuresInfo = nix.thunk(() => ({
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     basic: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       native: nix.thunk(() => [cmake, pkg_config, orc]),
       runtime: nix.thunk(() => [volk, boost, spdlog, mpir]),
       pythonNative: nix.thunk(() => (() => {
@@ -104,29 +104,29 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     doxygen: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       native: nix.thunk(() => [doxygen]),
       cmakeEnableFlag: "DOXYGEN",
     })),
-    "man-pages": nix.thunk(() => ({ __proto__: pos$3, cmakeEnableFlag: "MANPAGES" })),
+    "man-pages": nix.thunk(() => ({ [nix.POS]: pos$3, cmakeEnableFlag: "MANPAGES" })),
     "python-support": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       native: nix.thunk(() => [python]),
       cmakeEnableFlag: "PYTHON",
     })),
     "testing-support": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       native: nix.thunk(() => [cppunit]),
       cmakeEnableFlag: "TESTING",
     })),
-    "post-install": nix.thunk(() => ({ __proto__: pos$6, cmakeEnableFlag: "POSTINSTALL" })),
+    "post-install": nix.thunk(() => ({ [nix.POS]: pos$6, cmakeEnableFlag: "POSTINSTALL" })),
     "gnuradio-runtime": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       cmakeEnableFlag: "GNURADIO_RUNTIME",
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "pybind11"))]),
     })),
     "gr-ctrlport": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       runtime: nix.thunk(() => [libunwind, thrift]),
       pythonRuntime: nix.thunk(() => [
         nix.thunk(() => nix.sel(python, "pkgs", "thrift")),
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
       cmakeEnableFlag: "GR_CTRLPORT",
     })),
     "gnuradio-companion": nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pythonRuntime: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return [
@@ -151,23 +151,23 @@ export default nix.lambda((args) => (() => {
       cmakeEnableFlag: "GRC",
     })),
     jsonyaml_blocks: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "jsonschema"))]),
       cmakeEnableFlag: "JSONYAML_BLOCKS",
     })),
     "gr-blocks": nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       cmakeEnableFlag: "GR_BLOCKS",
       runtime: nix.thunk(() => [libsndfile]),
     })),
-    "gr-fec": nix.thunk(() => ({ __proto__: pos$12, cmakeEnableFlag: "GR_FEC" })),
+    "gr-fec": nix.thunk(() => ({ [nix.POS]: pos$12, cmakeEnableFlag: "GR_FEC" })),
     "gr-fft": nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       runtime: nix.thunk(() => [fftwFloat]),
       cmakeEnableFlag: "GR_FFT",
     })),
     "gr-filter": nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       runtime: nix.thunk(() => [fftwFloat]),
       cmakeEnableFlag: "GR_FILTER",
       pythonRuntime: nix.thunk(() => (() => {
@@ -179,24 +179,24 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     })),
-    "gr-analog": nix.thunk(() => ({ __proto__: pos$15, cmakeEnableFlag: "GR_ANALOG" })),
-    "gr-digital": nix.thunk(() => ({ __proto__: pos$16, cmakeEnableFlag: "GR_DIGITAL" })),
-    "gr-dtv": nix.thunk(() => ({ __proto__: pos$17, cmakeEnableFlag: "GR_DTV" })),
+    "gr-analog": nix.thunk(() => ({ [nix.POS]: pos$15, cmakeEnableFlag: "GR_ANALOG" })),
+    "gr-digital": nix.thunk(() => ({ [nix.POS]: pos$16, cmakeEnableFlag: "GR_DIGITAL" })),
+    "gr-dtv": nix.thunk(() => ({ [nix.POS]: pos$17, cmakeEnableFlag: "GR_DTV" })),
     "gr-audio": nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       runtime: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libjack2]))),
       cmakeEnableFlag: "GR_AUDIO",
     })),
-    "gr-channels": nix.thunk(() => ({ __proto__: pos$19, cmakeEnableFlag: "GR_CHANNELS" })),
-    "gr-pdu": nix.thunk(() => ({ __proto__: pos$20, cmakeEnableFlag: "GR_PDU" })),
+    "gr-channels": nix.thunk(() => ({ [nix.POS]: pos$19, cmakeEnableFlag: "GR_CHANNELS" })),
+    "gr-pdu": nix.thunk(() => ({ [nix.POS]: pos$20, cmakeEnableFlag: "GR_PDU" })),
     "gr-iio": nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       cmakeEnableFlag: "GR_IIO",
       runtime: nix.thunk(() => [libiio, libad9361]),
     })),
-    "common-precompiled-headers": nix.thunk(() => ({ __proto__: pos$22, cmakeEnableFlag: "COMMON_PCH" })),
+    "common-precompiled-headers": nix.thunk(() => ({ [nix.POS]: pos$22, cmakeEnableFlag: "COMMON_PCH" })),
     "gr-qtgui": nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       runtime: nix.thunk(() => [
         nix.thunk(() => nix.sel(qt5, "qtbase")),
         nix.thunk(() => nix.sel(libsForQt5, "qwt")),
@@ -204,19 +204,19 @@ export default nix.lambda((args) => (() => {
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "pyqt5"))]),
       cmakeEnableFlag: "GR_QTGUI",
     })),
-    "gr-trellis": nix.thunk(() => ({ __proto__: pos$24, cmakeEnableFlag: "GR_TRELLIS" })),
+    "gr-trellis": nix.thunk(() => ({ [nix.POS]: pos$24, cmakeEnableFlag: "GR_TRELLIS" })),
     "gr-uhd": nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       runtime: nix.thunk(() => [uhd]),
       cmakeEnableFlag: "GR_UHD",
     })),
     "gr-uhd-rfnoc": nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       runtime: nix.thunk(() => [uhd]),
       cmakeEnableFlag: "UHD_RFNOC",
     })),
     "gr-utils": nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       cmakeEnableFlag: "GR_UTILS",
       pythonRuntime: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
@@ -224,7 +224,7 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     "gr-modtool": nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       pythonRuntime: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return [
@@ -234,31 +234,31 @@ export default nix.lambda((args) => (() => {
       })()),
       cmakeEnableFlag: "GR_MODTOOL",
     })),
-    "gr-blocktool": nix.thunk(() => ({ __proto__: pos$29, cmakeEnableFlag: "GR_BLOCKTOOL" })),
+    "gr-blocktool": nix.thunk(() => ({ [nix.POS]: pos$29, cmakeEnableFlag: "GR_BLOCKTOOL" })),
     "gr-video-sdl": nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       runtime: nix.thunk(() => [SDL]),
       cmakeEnableFlag: "GR_VIDEO_SDL",
     })),
     "gr-vocoder": nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       runtime: nix.thunk(() => [codec2, gsm]),
       cmakeEnableFlag: "GR_VOCODER",
     })),
     "gr-wavelet": nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       cmakeEnableFlag: "GR_WAVELET",
       runtime: nix.thunk(() => [gsl]),
     })),
     "gr-zeromq": nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       runtime: nix.thunk(() => [cppzmq]),
       cmakeEnableFlag: "GR_ZEROMQ",
       pythonRuntime: nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "pyzmq"))]),
     })),
-    "gr-network": nix.thunk(() => ({ __proto__: pos$34, cmakeEnableFlag: "GR_NETWORK" })),
+    "gr-network": nix.thunk(() => ({ [nix.POS]: pos$34, cmakeEnableFlag: "GR_NETWORK" })),
     "gr-soapy": nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       cmakeEnableFlag: "GR_SOAPY",
       runtime: nix.thunk(() => [soapysdr]),
     })),
@@ -268,11 +268,11 @@ export default nix.lambda((args) => (() => {
   const cross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   const libgnuradioRuntime = nix.thunk(() => nix.str`$(readlink -f $out/lib/libgnuradio-runtime${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")})`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       pname: "gnuradio",
       version: "3.10.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           owner: "gnuradio",
           repo: "gnuradio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -281,17 +281,17 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./modtool-newmod-permissions.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             url: "https://github.com/gnuradio/gnuradio/commit/d8814e0c3ef68372e5a1093603ef602e2119cd8a.patch",
             hash: "sha256-TQxqsce1AhSjdwaG2IP11QTeOgdJHN6cAAnznBl8eM8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             url: "https://github.com/gnuradio/gnuradio/commit/56d230fd33fa2e8d6dc3685c9545589f21a6a1fd.patch",
             hash: "sha256-N6Y7B1EJKQxWlpu3E7sjNgivva8+x0V2DlBQMXYLXbA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             url: "https://github.com/gnuradio/gnuradio/commit/aee9fd3f79389c4282a98e8d62c8405c73fd91df.patch",
             hash: "sha256-UtYAJqqmydGs2EP4JOTGrQ6OgvL/jwGVwlhG4xxj8SU=",
           })))),
@@ -323,7 +323,7 @@ remove-references-to -t ${nix.sel(python, "pkgs", "pybind11")} $out/lib/cmake/gn
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         uhd: uhd,
         boost: boost,
         volk: volk,
@@ -335,16 +335,16 @@ remove-references-to -t ${nix.sel(python, "pkgs", "pybind11")} $out/lib/cmake/gn
         hasFeature: hasFeature,
         featuresInfo: featuresInfo,
         versionAttr: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           major: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
           minor: nix.thunk(() => nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
           patch: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))), 3n)),
         })),
         gnuradioOlder: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "versionAttr", "major")))),
         gnuradioAtLeast: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "versionAttr", "major")))),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gr-qtgui")), nix.thunk(() => ({ __proto__: pos$43, qt: qt5 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gnuradio-companion")), nix.thunk(() => ({ __proto__: pos$44, gtk: gtk3 })))))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gr-qtgui")), nix.thunk(() => ({ [nix.POS]: pos$43, qt: qt5 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(hasFeature, "gnuradio-companion")), nix.thunk(() => ({ [nix.POS]: pos$44, gtk: gtk3 })))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         description: "Software Defined Radio (SDR) software",
         mainProgram: "gnuradio-config-info",
         longDescription: "GNU Radio is a free & open-source software development toolkit that\nprovides signal processing blocks to implement software radios. It can be\nused with readily-available low-cost external RF hardware to create\nsoftware-defined radios, or without hardware in a simulation-like\nenvironment. It is widely used in hobbyist, academic and commercial\nenvironments to support both wireless communications research and\nreal-world radio systems.\n",

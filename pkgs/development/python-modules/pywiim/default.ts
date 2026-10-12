@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const mcp = nix.arg($, "mcp");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pywiim",
       version: "2.3.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mjcumming",
           repo: "pywiim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiohttp, async_upnp_client, m3u8, mutagen, pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mcp: nix.thunk(() => nix.concat([mcp], nix.sel(mcp, "optional-dependencies", "cli"))),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_asyncio, pytest_cov_stub, pytest_xdist, pyyaml], nix.sel(finalAttrs, "passthru", "optional-dependencies", "mcp"))),
       pythonImportsCheck: nix.thunk(() => ["pywiim"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/mjcumming/pywiim/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Python library for WiiM/LinkPlay device communication",
         homepage: "https://github.com/mjcumming/pywiim",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "varunastra",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redhuntlabs",
           repo: "Varunastra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-gt33THFCJWTqnhX1+O0WZJH2sbskM/NEZru7QUDFgQs=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to enhance the security of Docker environments",
         homepage: "https://github.com/redhuntlabs/Varunastra",
         changelog: nix.thunk(() => nix.str`https://github.com/redhuntlabs/Varunastra/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

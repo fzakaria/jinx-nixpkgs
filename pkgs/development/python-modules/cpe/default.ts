@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nilp0inter",
           repo: "cpe",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cpe"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/nilp0inter/cpe/releases/tag/v${version}`),
         description: "Common platform enumeration for python",
         homepage: "https://github.com/nilp0inter/cpe",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

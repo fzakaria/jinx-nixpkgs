@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1",
       pname: "gen",
       minimalOCamlVersion: "4.03",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c-cube",
           repo: "gen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [qcheck, ounit2]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/c-cube/gen",
         description: "Simple, efficient iterators for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

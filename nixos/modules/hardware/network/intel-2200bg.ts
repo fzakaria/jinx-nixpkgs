@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       networking: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enableIntel2200BGFirmware: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Turn on this option if you want firmware for the Intel\nPRO/Wireless 2200BG to be loaded automatically.  This is\nrequired if you want to use this device.\n",
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "networking", "enableIntel2200BGFirmware")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hardware: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           firmware: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ipw2200-firmware"))]),
         })),
       })))),

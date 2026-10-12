@@ -275,19 +275,19 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "grafana"));
   const opt = nix.thunk(() => nix.sel(options, "services", "grafana"));
   const provisioningSettingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
-  const declarativePlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "grafana-plugins", nix.thunk(() => nix.app(nix.builtins.map, (pkg) => ({ __proto__: pos$1, name: nix.thunk(() => nix.sel(pkg, "pname")), path: pkg }), nix.thunk(() => nix.sel(cfg, "declarativePlugins"))))));
+  const declarativePlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "grafana-plugins", nix.thunk(() => nix.app(nix.builtins.map, (pkg) => ({ [nix.POS]: pos$1, name: nix.thunk(() => nix.sel(pkg, "pname")), path: pkg }), nix.thunk(() => nix.sel(cfg, "declarativePlugins"))))));
   const useMysql = nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "type"), "mysql"));
   const usePostgresql = nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "type"), "postgres"));
   const settingsFormatIni = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       listToValue: nix.thunk(() => nix.app(nix.lookup(w, "concatMapStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "mkValueStringDefault"), nix.thunk(() => ({})))))),
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "mkKeyValueDefault"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mkValueString: (v) => (nix.asBool(nix.eq(v, null)) ? "" : nix.app(nix.sel(nix.lookup(w, "generators"), "mkValueStringDefault"), nix.thunk(() => ({})), v)),
         })), "=")),
     }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormatIni, "generate"), "config.ini", nix.thunk(() => nix.sel(cfg, "settings"))));
-  const mkProvisionCfg = (name) => (attr) => (provisionCfg) => (nix.asBool(!nix.eq(nix.sel(provisionCfg, "path"), null)) ? nix.sel(provisionCfg, "path") : nix.app(nix.sel(provisioningSettingsFormat, "generate"), nix.thunk(() => nix.str`${name}.yaml`), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(provisionCfg, "settings"), null)) ? nix.sel(provisionCfg, "settings") : nix.attrsDyn({ __proto__: pos$4, apiVersion: 1n }, [[nix.force(attr), []]])))));
+  const mkProvisionCfg = (name) => (attr) => (provisionCfg) => (nix.asBool(!nix.eq(nix.sel(provisionCfg, "path"), null)) ? nix.sel(provisionCfg, "path") : nix.app(nix.sel(provisioningSettingsFormat, "generate"), nix.thunk(() => nix.str`${name}.yaml`), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(provisionCfg, "settings"), null)) ? nix.sel(provisionCfg, "settings") : nix.attrsDyn({ [nix.POS]: pos$4, apiVersion: 1n }, [[nix.force(attr), []]])))));
   const datasourceFileOrDir = nix.thunk(() => nix.app(mkProvisionCfg, "datasource", "datasources", nix.thunk(() => nix.sel(cfg, "provision", "datasources"))));
   const dashboardFileOrDir = nix.thunk(() => nix.app(mkProvisionCfg, "dashboard", "providers", nix.thunk(() => nix.sel(cfg, "provision", "dashboards"))));
   const generateAlertingProvisioningYaml = (x) => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", nix.key(nix.str`${x}`), "path"), null)) ? nix.app(nix.sel(provisioningSettingsFormat, "generate"), nix.thunk(() => nix.str`${x}.yaml`), nix.thunk(() => nix.sel(cfg, "provision", "alerting", nix.key(nix.str`${x}`), "settings"))) : nix.sel(cfg, "provision", "alerting", nix.key(nix.str`${x}`), "path"));
@@ -311,42 +311,42 @@ fi
 `;
   })(), formals$2);
   const provisionConfDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "grafana-provisioning", nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lndir"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out/{alerting,datasources,dashboards,plugins}
 ${nix.app(ln, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         src: datasourceFileOrDir,
         dir: "datasources",
         filename: "datasource",
       })))}
 ${nix.app(ln, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         src: dashboardFileOrDir,
         dir: "dashboards",
         filename: "dashboard",
       })))}
-${nix.app(ln, nix.thunk(() => ({ __proto__: pos$8, src: rulesFileOrDir, dir: "alerting", filename: "rules" })))}
+${nix.app(ln, nix.thunk(() => ({ [nix.POS]: pos$8, src: rulesFileOrDir, dir: "alerting", filename: "rules" })))}
 ${nix.app(ln, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         src: contactPointsFileOrDir,
         dir: "alerting",
         filename: "contactPoints",
       })))}
 ${nix.app(ln, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         src: policiesFileOrDir,
         dir: "alerting",
         filename: "policies",
       })))}
 ${nix.app(ln, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         src: templatesFileOrDir,
         dir: "alerting",
         filename: "templates",
       })))}
 ${nix.app(ln, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         src: muteTimingsFileOrDir,
         dir: "alerting",
         filename: "muteTimings",
@@ -354,54 +354,54 @@ ${nix.app(ln, nix.thunk(() => ({
 `)));
   const _filter = (x) => nix.app(nix.builtins.removeAttrs, x, nix.thunk(() => ["_module"]));
   const grafanaTypes = nix.thunk(() => ({
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     datasourceConfig: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         freeformType: nix.thunk(() => nix.sel(provisioningSettingsFormat, "type")),
         options: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Name of the datasource. Required.",
             })))),
           type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Datasource type. Required.",
             })))),
           access: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["proxy", "direct"]))),
               default: "proxy",
               description: "Access mode. proxy or direct (Server or Browser in the UI). Required.",
             })))),
           uid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "Custom UID which can be used to reference this datasource in other parts of the configuration, if not specified will be generated automatically.",
             })))),
           url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "Url of the datasource.",
             })))),
           editable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Allow users to edit datasources from the UI.",
             })))),
           jsonData: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               default: null,
               description: "Extra data for datasource plugins.",
             })))),
           secureJsonData: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               default: null,
               description: "Datasource specific secure configuration. Please note that the contents of this option\nwill end up in a world-readable Nix store. Use the file provider\npointing at a reasonably secured file in the local filesystem\nto work around that. Look at the documentation for details:\n<https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#file-provider>\n",
@@ -409,26 +409,26 @@ ${nix.app(ln, nix.thunk(() => ({
         })),
       })))),
     dashboardConfig: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         freeformType: nix.thunk(() => nix.sel(provisioningSettingsFormat, "type")),
         options: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "default",
               description: "A unique provider name.",
             })))),
           type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "file",
               description: "Dashboard provider type.",
             })))),
           options: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 description: "Path grafana will watch for dashboards. Required when using the 'file' type.",
               })))),
@@ -437,7 +437,7 @@ ${nix.app(ln, nix.thunk(() => ({
       })))),
   }));
   return {
-    __proto__: pos$258,
+    [nix.POS]: pos$258,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "grafana", "provision", "notifiers"]), "Notifiers (services.grafana.provision.notifiers) were removed in Grafana 11.\n")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "grafana", "protocol"]), nix.thunk(() => ["services", "grafana", "settings", "server", "protocol"]))),
@@ -491,14 +491,14 @@ ${nix.app(ln, nix.thunk(() => ({
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "grafana", "auth", "azuread", "tenantId"]), "This option has been deprecated upstream.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$235,
+      [nix.POS]: pos$235,
       services: nix.thunk(() => ({
-        __proto__: pos$234,
+        [nix.POS]: pos$234,
         grafana: nix.thunk(() => ({
-          __proto__: pos$233,
+          [nix.POS]: pos$233,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "grafana")),
           declarativePlugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")))));
@@ -510,37 +510,37 @@ ${nix.app(ln, nix.thunk(() => ({
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "grafana", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Data directory.",
               default: "/var/lib/grafana",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open the ports in the firewall for the server.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$134,
+              [nix.POS]: pos$134,
               description: "Grafana settings. See <https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/>\nfor available options. INI format is used.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$133,
+                  [nix.POS]: pos$133,
                   freeformType: nix.thunk(() => nix.sel(settingsFormatIni, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$132,
+                    [nix.POS]: pos$132,
                     paths: nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           description: "Directory where grafana will automatically scan and look for plugins",
                           default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "declarativePlugins"), null)) ? nix.str`${nix.sel(cfg, "dataDir")}/plugins` : nix.force(declarativePlugins))),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if (cfg.declarativePlugins == null) then \"${cfg.dataDir}/plugins\" else declarativePlugins")),
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                         })))),
                       provisioning: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           description: "Folder that contains provisioning config files that grafana will apply on startup and while running.\nDon't change the value of this option if you are planning to use `services.grafana.provision` options.\n",
                           default: provisionConfDir,
                           defaultText: "directory with links to files generated from services.grafana.provision",
@@ -548,281 +548,281 @@ ${nix.app(ln, nix.thunk(() => ({
                         })))),
                     })),
                     server: nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       protocol: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           description: "Which protocol to listen.",
                           default: "http",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["http", "https", "h2", "socket"]))),
                         })))),
                       http_addr: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: "127.0.0.1",
                           description: "Listening address.\n\n::: {.note}\nThis setting intentionally varies from upstream's default to be a bit more secure by default.\n:::\n",
                         })))),
                       http_port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           description: "Listening port.",
                           default: 3000n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                         })))),
                       domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           description: "The public facing domain name used to access grafana from a browser.\n\nThis setting is only used in the default value of the `root_url` setting.\nIf you set the latter manually, this option does not have to be specified.\n",
                           default: "localhost",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       enforce_domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           description: "Redirect to correct domain if the host header does not match the domain.\nPrevents DNS rebinding attacks.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       root_url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           description: "This is the full URL used to access Grafana from a web browser.\nThis is important if you use Google or GitHub OAuth authentication (for the callback URL to be correct).\n\nThis setting is also important if you have a reverse proxy in front of Grafana that exposes it through a subpath.\nIn that case add the subpath to the end of this URL setting.\n",
                           default: "%(protocol)s://%(domain)s:%(http_port)s/",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       serve_from_sub_path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           description: "Serve Grafana from subpath specified in the `root_url` setting.\nBy default it is set to `false` for compatibility reasons.\n\nBy enabling this setting and using a subpath in `root_url` above,\ne.g. `root_url = \"http://localhost:3000/grafana\"`,\nGrafana is accessible on `http://localhost:3000/grafana`.\nIf accessed without subpath, Grafana will redirect to an URL with the subpath.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       router_logging: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           description: "Set to `true` for Grafana to log all HTTP requests (not just errors).\nThese are logged as Info level events to the Grafana log.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       static_root_path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           description: "Root path for static assets.",
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/grafana/public`),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${package}/share/grafana/public\"")),
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       enable_gzip: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           description: "Set this option to `true` to enable HTTP compression, this can improve transfer speed and bandwidth utilization.\nIt is recommended that most users set it to `true`. By default it is set to `false` for compatibility reasons.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       cert_file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$46,
+                          [nix.POS]: pos$46,
                           description: "Path to the certificate file (if `protocol` is set to `https` or `h2`).\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       cert_key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           description: "Path to the certificate key file (if `protocol` is set to `https` or `h2`).\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       socket_gid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$48,
+                          [nix.POS]: pos$48,
                           description: "GID where the socket should be set when `protocol=socket`.\nMake sure that the target group is in the group of Grafana process and that Grafana process is the file owner before you change this setting.\nIt is recommended to set the gid as http server user gid.\nNot set when the value is -1.\n",
                           default: nix.thunk(() => nix.neg(1n)),
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       socket_mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           description: "Mode where the socket should be set when `protocol=socket`.\nMake sure that Grafana process is the file owner before you change this setting.\n",
                           default: "0660",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$50,
+                          [nix.POS]: pos$50,
                           description: "Path where the socket should be created when `protocol=socket`.\nMake sure that Grafana has appropriate permissions before you change this setting.\n",
                           default: "/run/grafana/grafana.sock",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       cdn_url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$51,
+                          [nix.POS]: pos$51,
                           description: "Specify a full HTTP URL address to the root of your Grafana CDN assets.\nGrafana will add edition and version paths.\n\nFor example, given a cdn url like `https://cdn.myserver.com`\ngrafana will try to load a javascript file from `http://cdn.myserver.com/grafana-oss/7.4.0/public/build/app.<hash>.js`.\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       read_timeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           description: "Sets the maximum time using a duration format (5s/5m/5ms)\nbefore timing out read of an incoming request and closing idle connections.\n0 means there is no timeout for reading the request.\n",
                           default: "0",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                     })),
                     database: nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           description: "Database type.",
                           default: "sqlite3",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["mysql", "sqlite3", "postgres"]))),
                         })))),
                       host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           description: "Only applicable to MySQL or Postgres.\nIncludes IP or hostname and port or in case of Unix sockets the path to it.\nFor example, for MySQL running on the same host as Grafana: `host = \"127.0.0.1:3306\"`\nor with Unix sockets: `host = \"/var/run/mysqld/mysqld.sock\"`\n",
                           default: "127.0.0.1:3306",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           description: "The name of the Grafana database.",
                           default: "grafana",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$57,
+                          [nix.POS]: pos$57,
                           description: "The database user (not applicable for `sqlite3`).",
                           default: "root",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$58,
+                          [nix.POS]: pos$58,
                           description: "The database user's password (not applicable for `sqlite3`).\n\nPlease note that the contents of this option\nwill end up in a world-readable Nix store. Use the file provider\npointing at a reasonably secured file in the local filesystem\nto work around that. Look at the documentation for details:\n<https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#file-provider>\n",
                           default: "",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       max_idle_conn: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$59,
+                          [nix.POS]: pos$59,
                           description: "The maximum number of connections in the idle connection pool.",
                           default: 2n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       max_open_conn: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$60,
+                          [nix.POS]: pos$60,
                           description: "The maximum number of open connections to the database.",
                           default: 0n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       conn_max_lifetime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$61,
+                          [nix.POS]: pos$61,
                           description: "Sets the maximum amount of time a connection may be reused.\nThe default is 14400 (which means 14400 seconds or 4 hours).\nFor MySQL, this setting should be shorter than the `wait_timeout` variable.\n",
                           default: 14400n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       locking_attempt_timeout_sec: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$62,
+                          [nix.POS]: pos$62,
                           description: "For `mysql`, if the `migrationLocking` feature toggle is set,\nspecify the time (in seconds) to wait before failing to lock the database for the migrations.\n",
                           default: 0n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       log_queries: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$63,
+                          [nix.POS]: pos$63,
                           description: "Set to `true` to log the sql calls and execution times",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       ssl_mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           description: "For Postgres, use either `disable`, `require` or `verify-full`.\nFor MySQL, use either `true`, `false`, or `skip-verify`.\n",
                           default: "disable",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["disable", "require", "verify-full", "true", "false", "skip-verify"]))),
                         })))),
                       isolation_level: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$65,
+                          [nix.POS]: pos$65,
                           description: "Only the MySQL driver supports isolation levels in Grafana.\nIn case the value is empty, the driver's default isolation level is applied.\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["READ-UNCOMMITTED", "READ-COMMITTED", "REPEATABLE-READ", "SERIALIZABLE"]))))),
                         })))),
                       ca_cert_path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$66,
+                          [nix.POS]: pos$66,
                           description: "The path to the CA certificate to use.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       client_key_path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$67,
+                          [nix.POS]: pos$67,
                           description: "The path to the client key. Only if server requires client authentication.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       client_cert_path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$68,
+                          [nix.POS]: pos$68,
                           description: "The path to the client cert. Only if server requires client authentication.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       server_cert_name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$69,
+                          [nix.POS]: pos$69,
                           description: "The common name field of the certificate used by the `mysql` or `postgres` server.\nNot necessary if `ssl_mode` is set to `skip-verify`.\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$70,
+                          [nix.POS]: pos$70,
                           description: "Only applicable to `sqlite3` database. The file path where the database will be stored.",
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/data/grafana.db`),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "dataDir")}}/data/grafana.db"`))),
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                         })))),
                       cache_mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$71,
+                          [nix.POS]: pos$71,
                           description: "For `sqlite3` only.\n[Shared cache](https://www.sqlite.org/sharedcache.html) setting used for connecting to the database.\n",
                           default: "private",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["private", "shared"]))),
                         })))),
                       wal: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$72,
+                          [nix.POS]: pos$72,
                           description: "For `sqlite3` only.\nSetting to enable/disable [Write-Ahead Logging](https://sqlite.org/wal.html).\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       query_retries: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$73,
+                          [nix.POS]: pos$73,
                           description: "This setting applies to `sqlite3` only and controls the number of times the system retries a query when the database is locked.\n",
                           default: 0n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       transaction_retries: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$74,
+                          [nix.POS]: pos$74,
                           description: "This setting applies to `sqlite3` only and controls the number of times the system retries a transaction when the database is locked.\n",
                           default: 5n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                     })),
                     security: nix.thunk(() => ({
-                      __proto__: pos$97,
+                      [nix.POS]: pos$97,
                       disable_initial_admin_creation: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$76,
+                          [nix.POS]: pos$76,
                           description: "Disable creation of admin user on first start of Grafana.",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       admin_user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$77,
+                          [nix.POS]: pos$77,
                           description: "Default admin username.",
                           default: "admin",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       admin_password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$78,
+                          [nix.POS]: pos$78,
                           description: "Default admin password. Please note that the contents of this option\nwill end up in a world-readable Nix store. Use the file provider\npointing at a reasonably secured file in the local filesystem\nto work around that. Look at the documentation for details:\n<https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#file-provider>\n",
                           default: "admin",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       admin_email: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$79,
+                          [nix.POS]: pos$79,
                           description: "The email of the default Grafana Admin, created on startup.",
                           default: "admin@localhost",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       secret_key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$80,
+                          [nix.POS]: pos$80,
                           description: "Secret key used for signing data source settings like secrets and passwords.\nSet this to a unique, random string in production, generated for example by running `openssl rand -hex 32`.\n\nIf you change this later you will need to update data source settings to re-encode them.\n\n<https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#secret_key>\n\nPlease note that the contents of this option\nwill end up in a world-readable Nix store. Use the file provider\npointing at a reasonably secured file in the local filesystem\nto work around that. Look at the documentation for details:\n<https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#file-provider>\n",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                           default: null,
                         })))),
                       disable_gravatar: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$81,
+                          [nix.POS]: pos$81,
                           description: "Set to `true` to disable the use of Gravatar for user profile images.",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       data_source_proxy_whitelist: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$82,
+                          [nix.POS]: pos$82,
                           description: "Define a whitelist of allowed IP addresses or domains, with ports,\nto be used in data source URLs with the Grafana data source proxy.\nFormat: `ip_or_domain:port` separated by spaces.\nPostgreSQL, MySQL, and MSSQL data sources do not use the proxy and are therefore unaffected by this setting.\n",
                           default: [],
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "oneOf"), nix.thunk(() => [
@@ -831,79 +831,79 @@ ${nix.app(ln, nix.thunk(() => ({
                             ]))),
                         })))),
                       disable_brute_force_login_protection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$83,
+                          [nix.POS]: pos$83,
                           description: "Set to `true` to disable [brute force login protection](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#account-lockout).",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       cookie_secure: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$84,
+                          [nix.POS]: pos$84,
                           description: "Set to `true` if you host Grafana behind HTTPS.",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       cookie_samesite: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$85,
+                          [nix.POS]: pos$85,
                           description: "Sets the `SameSite` cookie attribute and prevents the browser from sending this cookie along with cross-site requests.\nThe main goal is to mitigate the risk of cross-origin information leakage.\nThis setting also provides some protection against cross-site request forgery attacks (CSRF),\n[read more about SameSite here](https://owasp.org/www-community/SameSite).\nUsing value `disabled` does not add any `SameSite` attribute to cookies.\n",
                           default: "lax",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["lax", "strict", "none", "disabled"]))),
                         })))),
                       allow_embedding: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$86,
+                          [nix.POS]: pos$86,
                           description: "When `false`, the HTTP header `X-Frame-Options: deny` will be set in Grafana HTTP responses\nwhich will instruct browsers to not allow rendering Grafana in a `<frame>`, `<iframe>`, `<embed>` or `<object>`.\nThe main goal is to mitigate the risk of [Clickjacking](https://owasp.org/www-community/attacks/Clickjacking).\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       strict_transport_security: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           description: "Set to `true` if you want to enable HTTP `Strict-Transport-Security` (HSTS) response header.\nOnly use this when HTTPS is enabled in your configuration,\nor when there is another upstream system that ensures your application does HTTPS (like a frontend load balancer).\nHSTS tells browsers that the site should only be accessed using HTTPS.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       strict_transport_security_max_age_seconds: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$88,
+                          [nix.POS]: pos$88,
                           description: "Sets how long a browser should cache HSTS in seconds.\nOnly applied if `strict_transport_security` is enabled.\n",
                           default: 86400n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       strict_transport_security_preload: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$89,
+                          [nix.POS]: pos$89,
                           description: "Set to `true` to enable HSTS `preloading` option.\nOnly applied if `strict_transport_security` is enabled.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       strict_transport_security_subdomains: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$90,
+                          [nix.POS]: pos$90,
                           description: "Set to `true` to enable HSTS `includeSubDomains` option.\nOnly applied if `strict_transport_security` is enabled.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       x_content_type_options: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$91,
+                          [nix.POS]: pos$91,
                           description: "Set to `false` to disable the `X-Content-Type-Options` response header.\nThe `X-Content-Type-Options` response HTTP header is a marker used by the server\nto indicate that the MIME types advertised in the `Content-Type` headers should not be changed and be followed.\n",
                           default: true,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       x_xss_protection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$92,
+                          [nix.POS]: pos$92,
                           description: "Set to `true` to enable the `X-XSS-Protection` header,\nwhich tells browsers to stop pages from loading when they detect reflected cross-site scripting (XSS) attacks.\n\n__Note:__ this is the default in Grafana, it's turned off here\nsince it's [recommended to not use this header anymore](https://owasp.org/www-project-secure-headers/#x-xss-protection).\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       content_security_policy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$93,
+                          [nix.POS]: pos$93,
                           description: "Set to `true` to add the `Content-Security-Policy` header to your requests.\nCSP allows to control resources that the user agent can load and helps prevent XSS attacks.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       content_security_policy_report_only: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$94,
+                          [nix.POS]: pos$94,
                           description: "Set to `true` to add the `Content-Security-Policy-Report-Only` header to your requests.\nCSP in Report Only mode enables you to experiment with policies by monitoring their effects without enforcing them.\nYou can enable both policies simultaneously.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       csrf_trusted_origins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$95,
+                          [nix.POS]: pos$95,
                           description: "List of additional allowed URLs to pass by the CSRF check.\nSuggested when authentication comes from an IdP.\n",
                           default: [],
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "oneOf"), nix.thunk(() => [
@@ -912,7 +912,7 @@ ${nix.app(ln, nix.thunk(() => ({
                             ]))),
                         })))),
                       csrf_additional_headers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$96,
+                          [nix.POS]: pos$96,
                           description: "List of allowed headers to be set by the user.\nSuggested to use for if authentication lives behind reverse proxies.\n",
                           default: [],
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "oneOf"), nix.thunk(() => [
@@ -922,193 +922,193 @@ ${nix.app(ln, nix.thunk(() => ({
                         })))),
                     })),
                     smtp: nix.thunk(() => ({
-                      __proto__: pos$109,
+                      [nix.POS]: pos$109,
                       enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$98,
+                          [nix.POS]: pos$98,
                           description: "Whether to enable SMTP.",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$99,
+                          [nix.POS]: pos$99,
                           description: "Host to connect to.",
                           default: "localhost:25",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$100,
+                          [nix.POS]: pos$100,
                           description: "User used for authentication.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$101,
+                          [nix.POS]: pos$101,
                           description: "Password used for authentication. Please note that the contents of this option\nwill end up in a world-readable Nix store. Use the file provider\npointing at a reasonably secured file in the local filesystem\nto work around that. Look at the documentation for details:\n<https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#file-provider>\n",
                           default: "",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       cert_file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$102,
+                          [nix.POS]: pos$102,
                           description: "File path to a cert file.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       key_file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$103,
+                          [nix.POS]: pos$103,
                           description: "File path to a key file.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       skip_verify: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$104,
+                          [nix.POS]: pos$104,
                           description: "Verify SSL for SMTP server.",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       from_address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$105,
+                          [nix.POS]: pos$105,
                           description: "Address used when sending out emails.",
                           default: "admin@grafana.localhost",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       from_name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$106,
+                          [nix.POS]: pos$106,
                           description: "Name to be used as client identity for EHLO in SMTP dialog.",
                           default: "Grafana",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       ehlo_identity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$107,
+                          [nix.POS]: pos$107,
                           description: "Name to be used as client identity for EHLO in SMTP dialog.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         })))),
                       startTLS_policy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$108,
+                          [nix.POS]: pos$108,
                           description: "StartTLS policy when connecting to server.",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["OpportunisticStartTLS", "MandatoryStartTLS", "NoStartTLS"]))))),
                         })))),
                     })),
                     users: nix.thunk(() => ({
-                      __proto__: pos$124,
+                      [nix.POS]: pos$124,
                       allow_sign_up: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$110,
+                          [nix.POS]: pos$110,
                           description: "Set to false to prohibit users from being able to sign up / create user accounts.\nThe admin user can still create users.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       allow_org_create: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$111,
+                          [nix.POS]: pos$111,
                           description: "Set to `false` to prohibit users from creating new organizations.",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       auto_assign_org: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$112,
+                          [nix.POS]: pos$112,
                           description: "Set to `true` to automatically add new users to the main organization (id 1).\nWhen set to `false,` new users automatically cause a new organization to be created for that new user.\nThe organization will be created even if the `allow_org_create` setting is set to `false`.\n",
                           default: true,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       auto_assign_org_id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$113,
+                          [nix.POS]: pos$113,
                           description: "Set this value to automatically add new users to the provided org.\nThis requires `auto_assign_org` to be set to `true`.\nPlease make sure that this organization already exists.\n",
                           default: 1n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         })))),
                       auto_assign_org_role: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$114,
+                          [nix.POS]: pos$114,
                           description: "The role new users will be assigned for the main organization (if the `auto_assign_org` setting is set to `true`).\n",
                           default: "Viewer",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["Viewer", "Editor", "Admin"]))),
                         })))),
                       verify_email_enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$115,
+                          [nix.POS]: pos$115,
                           description: "Require email validation before sign up completes.",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       login_hint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$116,
+                          [nix.POS]: pos$116,
                           description: "Text used as placeholder text on login page for login/username input.",
                           default: "email or username",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       password_hint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$117,
+                          [nix.POS]: pos$117,
                           description: "Text used as placeholder text on login page for password input.",
                           default: "password",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       default_theme: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$118,
+                          [nix.POS]: pos$118,
                           description: "Sets the default UI theme. `system` matches the user's system theme.",
                           default: "dark",
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["dark", "light", "system"]))),
                         })))),
                       default_language: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$119,
+                          [nix.POS]: pos$119,
                           description: "This setting configures the default UI language, which must be a supported IETF language tag, such as `en-US`.",
                           default: "en-US",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       home_page: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$120,
+                          [nix.POS]: pos$120,
                           description: "Path to a custom home page.\nUsers are only redirected to this if the default home dashboard is used.\nIt should match a frontend route and contain a leading slash.\n",
                           default: "",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       viewers_can_edit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$121,
+                          [nix.POS]: pos$121,
                           description: "Viewers can access and use Explore and perform temporary edits on panels in dashboards they have access to.\nThey cannot save their changes.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       user_invite_max_lifetime_duration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$122,
+                          [nix.POS]: pos$122,
                           description: "The duration in time a user invitation remains valid before expiring.\nThis setting should be expressed as a duration.\nExamples: `6h` (hours), `2d` (days), `1w` (week).\nThe minimum supported duration is `15m` (15 minutes).\n",
                           default: "24h",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                       hidden_users: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$123,
+                          [nix.POS]: pos$123,
                           description: "This is a comma-separated list of usernames.\nUsers specified here are hidden in the Grafana UI.\nThey are still visible to Grafana administrators and to themselves.\n",
                           default: "",
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         })))),
                     })),
                     analytics: nix.thunk(() => ({
-                      __proto__: pos$129,
+                      [nix.POS]: pos$129,
                       reporting_enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$125,
+                          [nix.POS]: pos$125,
                           description: "When enabled Grafana will send anonymous usage statistics to `stats.grafana.org`.\nNo IP addresses are being tracked, only simple counters to track running instances, versions, dashboard and error counts.\nCounters are sent every 24 hours.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       check_for_updates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$126,
+                          [nix.POS]: pos$126,
                           description: "When set to `false`, disables checking for new versions of Grafana from Grafana's GitHub repository.\nWhen enabled, the check for a new version runs every 10 minutes.\nIt will notify, via the UI, when a new version is available.\nThe check itself will not prompt any auto-updates of the Grafana software, nor will it send any sensitive information.\n",
                           default: false,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       check_for_plugin_updates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$127,
+                          [nix.POS]: pos$127,
                           description: "When set to `false`, disables checking for new versions of installed plugins from https://grafana.com.\nWhen enabled, the check for a new plugin runs every 10 minutes.\nIt will notify, via the UI, when a new plugin update exists.\nThe check itself will not prompt any auto-updates of the plugin, nor will it send any sensitive information.\n",
                           default: nix.thunk(() => nix.eq(nix.sel(cfg, "declarativePlugins"), null)),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "cfg.declarativePlugins == null")),
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                       feedback_links_enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$128,
+                          [nix.POS]: pos$128,
                           description: "Set to `false` to remove all feedback links from the UI.",
                           default: true,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         })))),
                     })),
                     plugins: nix.thunk(() => ({
-                      __proto__: pos$131,
+                      [nix.POS]: pos$131,
                       preinstall_disabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$130,
+                          [nix.POS]: pos$130,
                           description: "When set to `true`, disables the Background Plugin Installer, which runs before Grafana starts.\nThis component causes issues with `declarativePlugins` and is disabled by default if those are used.\n",
                           default: nix.thunk(() => !nix.eq(nix.sel(cfg, "declarativePlugins"), null)),
                           defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "cfg.declarativePlugins != null")),
@@ -1119,57 +1119,57 @@ ${nix.app(ln, nix.thunk(() => ({
                 })))),
             })))),
           provision: nix.thunk(() => ({
-            __proto__: pos$232,
+            [nix.POS]: pos$232,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "provision")),
             datasources: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$149,
+                [nix.POS]: pos$149,
                 description: "Declaratively provision Grafana's datasources.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$148,
+                    [nix.POS]: pos$148,
                     options: nix.thunk(() => ({
-                      __proto__: pos$147,
+                      [nix.POS]: pos$147,
                       settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$145,
+                          [nix.POS]: pos$145,
                           description: "Grafana datasource configuration in Nix. Can't be used with\n[](#opt-services.grafana.provision.datasources.path) simultaneously. See\n<https://grafana.com/docs/grafana/latest/administration/provisioning/#data-sources>\nfor supported options.\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                __proto__: pos$144,
+                                [nix.POS]: pos$144,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$143,
+                                  [nix.POS]: pos$143,
                                   apiVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$135,
+                                      [nix.POS]: pos$135,
                                       description: "Config file version.",
                                       default: 1n,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                     })))),
                                   prune: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$136,
+                                      [nix.POS]: pos$136,
                                       default: false,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                                       description: "When `true`, provisioned datasources from this file will be deleted\nautomatically when removed from\n{option}`services.grafana.provision.datasources.settings.datasources`.\n",
                                     })))),
                                   datasources: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$137,
+                                      [nix.POS]: pos$137,
                                       description: "List of datasources to insert/update.",
                                       default: [],
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(grafanaTypes, "datasourceConfig")))),
                                     })))),
                                   deleteDatasources: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$142,
+                                      [nix.POS]: pos$142,
                                       description: "List of datasources that should be deleted from the database.",
                                       default: [],
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                            __proto__: pos$141,
+                                            [nix.POS]: pos$141,
                                             options: nix.thunk(() => ({
-                                              __proto__: pos$140,
+                                              [nix.POS]: pos$140,
                                               name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                                  __proto__: pos$138,
+                                                  [nix.POS]: pos$138,
                                                   description: "Name of the datasource to delete.",
                                                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                                 })))),
                                               orgId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                                  __proto__: pos$139,
+                                                  [nix.POS]: pos$139,
                                                   description: "Organization ID of the datasource to delete.",
                                                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                                 })))),
@@ -1181,7 +1181,7 @@ ${nix.app(ln, nix.thunk(() => ({
                           example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  apiVersion = 1;\n\n  datasources = [{\n    name = \"Graphite\";\n    type = \"graphite\";\n  }];\n\n  deleteDatasources = [{\n    name = \"Graphite\";\n    orgId = 1;\n  }];\n}\n")),
                         })))),
                       path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$146,
+                          [nix.POS]: pos$146,
                           description: "Path to YAML datasource configuration. Can't be used with\n[](#opt-services.grafana.provision.datasources.settings) simultaneously.\nCan be either a directory or a single YAML file. Will end up in the store.\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
@@ -1190,29 +1190,29 @@ ${nix.app(ln, nix.thunk(() => ({
                   })))),
               })))),
             dashboards: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$158,
+                [nix.POS]: pos$158,
                 description: "Declaratively provision Grafana's dashboards.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                    __proto__: pos$157,
+                    [nix.POS]: pos$157,
                     options: nix.thunk(() => ({
-                      __proto__: pos$156,
+                      [nix.POS]: pos$156,
                       settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$154,
+                          [nix.POS]: pos$154,
                           description: "Grafana dashboard configuration in Nix. Can't be used with\n[](#opt-services.grafana.provision.dashboards.path) simultaneously. See\n<https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards>\nfor supported options.\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                __proto__: pos$153,
+                                [nix.POS]: pos$153,
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$152,
+                                  [nix.POS]: pos$152,
                                   apiVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$150,
+                                      [nix.POS]: pos$150,
                                       description: "Config file version.",
                                       default: 1n,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                     })))),
                                   providers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$151,
+                                      [nix.POS]: pos$151,
                                       description: "List of dashboards to insert/update.",
                                       default: [],
                                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(grafanaTypes, "dashboardConfig")))),
@@ -1222,7 +1222,7 @@ ${nix.app(ln, nix.thunk(() => ({
                           example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  apiVersion = 1;\n\n  providers = [{\n      name = \"default\";\n      options.path = \"/var/lib/grafana/dashboards\";\n  }];\n}\n")),
                         })))),
                       path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$155,
+                          [nix.POS]: pos$155,
                           description: "Path to YAML dashboard configuration. Can't be used with\n[](#opt-services.grafana.provision.dashboards.settings) simultaneously.\nCan be either a directory or a single YAML file. Will end up in the store.\n",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
@@ -1231,50 +1231,50 @@ ${nix.app(ln, nix.thunk(() => ({
                   })))),
               })))),
             alerting: nix.thunk(() => ({
-              __proto__: pos$231,
+              [nix.POS]: pos$231,
               rules: nix.thunk(() => ({
-                __proto__: pos$175,
+                [nix.POS]: pos$175,
                 path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$159,
+                    [nix.POS]: pos$159,
                     description: "Path to YAML rules configuration. Can't be used with\n[](#opt-services.grafana.provision.alerting.rules.settings) simultaneously.\nCan be either a directory or a single YAML file. Will end up in the store.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   })))),
                 settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$174,
+                    [nix.POS]: pos$174,
                     description: "Grafana rules configuration in Nix. Can't be used with\n[](#opt-services.grafana.provision.alerting.rules.path) simultaneously. See\n<https://grafana.com/docs/grafana/latest/administration/provisioning/#rules>\nfor supported options.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                          __proto__: pos$173,
+                          [nix.POS]: pos$173,
                           options: nix.thunk(() => ({
-                            __proto__: pos$172,
+                            [nix.POS]: pos$172,
                             apiVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$160,
+                                [nix.POS]: pos$160,
                                 description: "Config file version.",
                                 default: 1n,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               })))),
                             groups: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$166,
+                                [nix.POS]: pos$166,
                                 description: "List of rule groups to import or update.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$165,
+                                      [nix.POS]: pos$165,
                                       freeformType: nix.thunk(() => nix.sel(provisioningSettingsFormat, "type")),
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$164,
+                                        [nix.POS]: pos$164,
                                         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$161,
+                                            [nix.POS]: pos$161,
                                             description: "Name of the rule group. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
                                         folder: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$162,
+                                            [nix.POS]: pos$162,
                                             description: "Name of the folder the rule group will be stored in. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
                                         interval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$163,
+                                            [nix.POS]: pos$163,
                                             description: "Interval that the rule group should be evaluated at. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1282,21 +1282,21 @@ ${nix.app(ln, nix.thunk(() => ({
                                     })))))),
                               })))),
                             deleteRules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$171,
+                                [nix.POS]: pos$171,
                                 description: "List of alert rule UIDs that should be deleted.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$170,
+                                      [nix.POS]: pos$170,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$169,
+                                        [nix.POS]: pos$169,
                                         orgId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$167,
+                                            [nix.POS]: pos$167,
                                             description: "Organization ID, default = 1",
                                             default: 1n,
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                           })))),
                                         uid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$168,
+                                            [nix.POS]: pos$168,
                                             description: "Unique identifier for the rule. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1309,38 +1309,38 @@ ${nix.app(ln, nix.thunk(() => ({
                   })))),
               })),
               contactPoints: nix.thunk(() => ({
-                __proto__: pos$190,
+                [nix.POS]: pos$190,
                 path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$176,
+                    [nix.POS]: pos$176,
                     description: "Path to YAML contact points configuration. Can't be used with\n[](#opt-services.grafana.provision.alerting.contactPoints.settings) simultaneously.\nCan be either a directory or a single YAML file. Will end up in the store.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   })))),
                 settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$189,
+                    [nix.POS]: pos$189,
                     description: "Grafana contact points configuration in Nix. Can't be used with\n[](#opt-services.grafana.provision.alerting.contactPoints.path) simultaneously. See\n<https://grafana.com/docs/grafana/latest/administration/provisioning/#contact-points>\nfor supported options.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                          __proto__: pos$188,
+                          [nix.POS]: pos$188,
                           options: nix.thunk(() => ({
-                            __proto__: pos$187,
+                            [nix.POS]: pos$187,
                             apiVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$177,
+                                [nix.POS]: pos$177,
                                 description: "Config file version.",
                                 default: 1n,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               })))),
                             contactPoints: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$181,
+                                [nix.POS]: pos$181,
                                 description: "List of contact points to import or update.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$180,
+                                      [nix.POS]: pos$180,
                                       freeformType: nix.thunk(() => nix.sel(provisioningSettingsFormat, "type")),
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$179,
+                                        [nix.POS]: pos$179,
                                         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$178,
+                                            [nix.POS]: pos$178,
                                             description: "Name of the contact point. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1348,21 +1348,21 @@ ${nix.app(ln, nix.thunk(() => ({
                                     })))))),
                               })))),
                             deleteContactPoints: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$186,
+                                [nix.POS]: pos$186,
                                 description: "List of receivers that should be deleted.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$185,
+                                      [nix.POS]: pos$185,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$184,
+                                        [nix.POS]: pos$184,
                                         orgId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$182,
+                                            [nix.POS]: pos$182,
                                             description: "Organization ID, default = 1.",
                                             default: 1n,
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                           })))),
                                         uid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$183,
+                                            [nix.POS]: pos$183,
                                             description: "Unique identifier for the receiver. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1375,38 +1375,38 @@ ${nix.app(ln, nix.thunk(() => ({
                   })))),
               })),
               policies: nix.thunk(() => ({
-                __proto__: pos$199,
+                [nix.POS]: pos$199,
                 path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$191,
+                    [nix.POS]: pos$191,
                     description: "Path to YAML notification policies configuration. Can't be used with\n[](#opt-services.grafana.provision.alerting.policies.settings) simultaneously.\nCan be either a directory or a single YAML file. Will end up in the store.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   })))),
                 settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$198,
+                    [nix.POS]: pos$198,
                     description: "Grafana notification policies configuration in Nix. Can't be used with\n[](#opt-services.grafana.provision.alerting.policies.path) simultaneously. See\n<https://grafana.com/docs/grafana/latest/administration/provisioning/#notification-policies>\nfor supported options.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                          __proto__: pos$197,
+                          [nix.POS]: pos$197,
                           options: nix.thunk(() => ({
-                            __proto__: pos$196,
+                            [nix.POS]: pos$196,
                             apiVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$192,
+                                [nix.POS]: pos$192,
                                 description: "Config file version.",
                                 default: 1n,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               })))),
                             policies: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$194,
+                                [nix.POS]: pos$194,
                                 description: "List of contact points to import or update.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$193,
+                                      [nix.POS]: pos$193,
                                       freeformType: nix.thunk(() => nix.sel(provisioningSettingsFormat, "type")),
                                     })))))),
                               })))),
                             resetPolicies: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$195,
+                                [nix.POS]: pos$195,
                                 description: "List of orgIds that should be reset to the default policy.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
@@ -1417,43 +1417,43 @@ ${nix.app(ln, nix.thunk(() => ({
                   })))),
               })),
               templates: nix.thunk(() => ({
-                __proto__: pos$215,
+                [nix.POS]: pos$215,
                 path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$200,
+                    [nix.POS]: pos$200,
                     description: "Path to YAML templates configuration. Can't be used with\n[](#opt-services.grafana.provision.alerting.templates.settings) simultaneously.\nCan be either a directory or a single YAML file. Will end up in the store.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   })))),
                 settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$214,
+                    [nix.POS]: pos$214,
                     description: "Grafana templates configuration in Nix. Can't be used with\n[](#opt-services.grafana.provision.alerting.templates.path) simultaneously. See\n<https://grafana.com/docs/grafana/latest/administration/provisioning/#templates>\nfor supported options.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                          __proto__: pos$213,
+                          [nix.POS]: pos$213,
                           options: nix.thunk(() => ({
-                            __proto__: pos$212,
+                            [nix.POS]: pos$212,
                             apiVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$201,
+                                [nix.POS]: pos$201,
                                 description: "Config file version.",
                                 default: 1n,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               })))),
                             templates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$206,
+                                [nix.POS]: pos$206,
                                 description: "List of templates to import or update.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$205,
+                                      [nix.POS]: pos$205,
                                       freeformType: nix.thunk(() => nix.sel(provisioningSettingsFormat, "type")),
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$204,
+                                        [nix.POS]: pos$204,
                                         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$202,
+                                            [nix.POS]: pos$202,
                                             description: "Name of the template, must be unique. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
                                         template: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$203,
+                                            [nix.POS]: pos$203,
                                             description: "Alerting with a custom text template",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1461,21 +1461,21 @@ ${nix.app(ln, nix.thunk(() => ({
                                     })))))),
                               })))),
                             deleteTemplates: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$211,
+                                [nix.POS]: pos$211,
                                 description: "List of alert rule UIDs that should be deleted.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$210,
+                                      [nix.POS]: pos$210,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$209,
+                                        [nix.POS]: pos$209,
                                         orgId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$207,
+                                            [nix.POS]: pos$207,
                                             description: "Organization ID, default = 1.",
                                             default: 1n,
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                           })))),
                                         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$208,
+                                            [nix.POS]: pos$208,
                                             description: "Name of the template, must be unique. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1488,38 +1488,38 @@ ${nix.app(ln, nix.thunk(() => ({
                   })))),
               })),
               muteTimings: nix.thunk(() => ({
-                __proto__: pos$230,
+                [nix.POS]: pos$230,
                 path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$216,
+                    [nix.POS]: pos$216,
                     description: "Path to YAML mute timings configuration. Can't be used with\n[](#opt-services.grafana.provision.alerting.muteTimings.settings) simultaneously.\nCan be either a directory or a single YAML file. Will end up in the store.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   })))),
                 settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$229,
+                    [nix.POS]: pos$229,
                     description: "Grafana mute timings configuration in Nix. Can't be used with\n[](#opt-services.grafana.provision.alerting.muteTimings.path) simultaneously. See\n<https://grafana.com/docs/grafana/latest/administration/provisioning/#mute-timings>\nfor supported options.\n",
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                          __proto__: pos$228,
+                          [nix.POS]: pos$228,
                           options: nix.thunk(() => ({
-                            __proto__: pos$227,
+                            [nix.POS]: pos$227,
                             apiVersion: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$217,
+                                [nix.POS]: pos$217,
                                 description: "Config file version.",
                                 default: 1n,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               })))),
                             muteTimes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$221,
+                                [nix.POS]: pos$221,
                                 description: "List of mute time intervals to import or update.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$220,
+                                      [nix.POS]: pos$220,
                                       freeformType: nix.thunk(() => nix.sel(provisioningSettingsFormat, "type")),
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$219,
+                                        [nix.POS]: pos$219,
                                         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$218,
+                                            [nix.POS]: pos$218,
                                             description: "Name of the mute time interval, must be unique. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1527,21 +1527,21 @@ ${nix.app(ln, nix.thunk(() => ({
                                     })))))),
                               })))),
                             deleteMuteTimes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$226,
+                                [nix.POS]: pos$226,
                                 description: "List of mute time intervals that should be deleted.",
                                 default: [],
                                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$225,
+                                      [nix.POS]: pos$225,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$224,
+                                        [nix.POS]: pos$224,
                                         orgId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$222,
+                                            [nix.POS]: pos$222,
                                             description: "Organization ID, default = 1.",
                                             default: 1n,
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                                           })))),
                                         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$223,
+                                            [nix.POS]: pos$223,
                                             description: "Name of the mute time interval, must be unique. Required.",
                                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                           })))),
@@ -1559,7 +1559,7 @@ ${nix.app(ln, nix.thunk(() => ({
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$257,
+        [nix.POS]: pos$257,
         warnings: nix.thunk(() => (() => {
           const doesntUseFileProvider = (opt_1) => (defaultValue) => (() => {
             const regex = nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(defaultValue, null)), nix.thunk(() => nix.str`^${defaultValue}$|`))}^\\$__(file|env)\\{.*}$|^\\$[^_\\$][^ ]+$`);
@@ -1578,22 +1578,22 @@ ${nix.app(ln, nix.thunk(() => ({
           return nix.concat(passwordWithoutFileProvider, secureJsonDataWithoutFileProvider);
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$236,
+          [nix.POS]: pos$236,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$237,
+            [nix.POS]: pos$237,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings", "users"), "editors_can_admin"))),
             message: "Option `services.grafana.settings.users.editors_can_admin` has been removed in Grafana 12.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$238,
+            [nix.POS]: pos$238,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "datasources", "settings"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "provision", "datasources", "path"), null)))),
             message: "Cannot set both datasources settings and datasources path",
           })),
           nix.thunk(() => ({
-            __proto__: pos$239,
+            [nix.POS]: pos$239,
             assertion: nix.thunk(() => (() => {
               const prometheusIsNotDirect = (opt_1) => nix.app(nix.lookup(w, "all"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$4);
@@ -1606,53 +1606,53 @@ ${nix.app(ln, nix.thunk(() => ({
             message: "For datasources of type `prometheus`, the `direct` access mode is not supported anymore (since Grafana 9.2.0)",
           })),
           nix.thunk(() => ({
-            __proto__: pos$240,
+            [nix.POS]: pos$240,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "dashboards", "settings"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "provision", "dashboards", "path"), null)))),
             message: "Cannot set both dashboards settings and dashboards path",
           })),
           nix.thunk(() => ({
-            __proto__: pos$241,
+            [nix.POS]: pos$241,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "rules", "settings"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "rules", "path"), null)))),
             message: "Cannot set both rules settings and rules path",
           })),
           nix.thunk(() => ({
-            __proto__: pos$242,
+            [nix.POS]: pos$242,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "contactPoints", "settings"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "contactPoints", "path"), null)))),
             message: "Cannot set both contact points settings and contact points path",
           })),
           nix.thunk(() => ({
-            __proto__: pos$243,
+            [nix.POS]: pos$243,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "policies", "settings"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "policies", "path"), null)))),
             message: "Cannot set both policies settings and policies path",
           })),
           nix.thunk(() => ({
-            __proto__: pos$244,
+            [nix.POS]: pos$244,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "templates", "settings"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "templates", "path"), null)))),
             message: "Cannot set both templates settings and templates path",
           })),
           nix.thunk(() => ({
-            __proto__: pos$245,
+            [nix.POS]: pos$245,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "muteTimings", "settings"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "provision", "alerting", "muteTimings", "path"), null)))),
             message: "Cannot set both mute timings settings and mute timings path",
           })),
           nix.thunk(() => ({
-            __proto__: pos$246,
+            [nix.POS]: pos$246,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "security", "secret_key"), null)),
             message: "Grafana's secret key (services.grafana.settings.security.secret_key) doesn't have a default\nvalue anymore. Please generate your own and use a file-provider on this option! See also\nhttps://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#secret_key\nfor more information.\n\nSee https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-database-encryption/#re-encrypt-secrets on how to re-encrypt.\n\nAs stated in the NixOS changelog for 26.05, there's no official way to rotate.\nEither hard-code the old key (\"SW2YcwTIb9zpOOhoPsMm\") if your setup doesn't have any secrets in the DB that need\nspecial protection or perform a rotation with a 3rd-party tool\n(https://github.com/erooke/grafana-secretkey-rotation-tool/tree/d9dc788902fa5185e15cb15ce6129f7237ab6138).\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$250,
+          [nix.POS]: pos$250,
           services: nix.thunk(() => ({
-            __proto__: pos$249,
+            [nix.POS]: pos$249,
             grafana: nix.thunk(() => ({
-              __proto__: pos$248,
+              [nix.POS]: pos$248,
               description: "Grafana Service Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.concat(nix.app(nix.sel(lib, "optional"), usePostgresql, "postgresql.target"), nix.app(nix.sel(lib, "optional"), useMysql, "mysql.service")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$247,
+                [nix.POS]: pos$247,
                 ExecStartPre: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "ln")} -fs ${nix.sel(cfg, "package")}/share/grafana/conf ${nix.sel(cfg, "dataDir")}`),
                 ]),
@@ -1691,18 +1691,18 @@ ${nix.app(ln, nix.thunk(() => ({
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$252,
+          [nix.POS]: pos$252,
           firewall: nix.thunk(() => ({
-            __proto__: pos$251,
+            [nix.POS]: pos$251,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "http_port"))]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$256,
+          [nix.POS]: pos$256,
           users: nix.thunk(() => ({
-            __proto__: pos$254,
+            [nix.POS]: pos$254,
             grafana: nix.thunk(() => ({
-              __proto__: pos$253,
+              [nix.POS]: pos$253,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "grafana")),
               description: "Grafana user",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -1710,7 +1710,7 @@ ${nix.app(ln, nix.thunk(() => ({
               group: "grafana",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$255, grafana: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$255, grafana: nix.thunk(() => ({})) })),
         })),
       })))),
   };

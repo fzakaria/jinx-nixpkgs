@@ -32,37 +32,37 @@ export default nix.lambda((args) => (() => {
   const removeSuffix = nix.thunk(() => nix.attr(from, "removeSuffix"));
   const splitString = nix.thunk(() => nix.attr(from, "splitString"));
   const tests = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     default: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       calibreConfig: nix.thunk(() => ({})),
       calibreScript: "wait_for_unit(\"calibre-server.service\")\n",
     })),
     customLibrary: nix.thunk(() => ({
-      __proto__: pos$3,
-      calibreConfig: nix.thunk(() => ({ __proto__: pos$2, libraries: nix.thunk(() => ["/var/lib/calibre-data"]) })),
+      [nix.POS]: pos$3,
+      calibreConfig: nix.thunk(() => ({ [nix.POS]: pos$2, libraries: nix.thunk(() => ["/var/lib/calibre-data"]) })),
       calibreScript: "succeed(\"ls -la /var/lib/calibre-data\")\nwait_for_unit(\"calibre-server.service\")\n",
     })),
     multipleLibraries: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       calibreConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         libraries: nix.thunk(() => ["/var/lib/calibre-data", "/var/lib/calibre-server"]),
       })),
       calibreScript: "succeed(\"ls -la /var/lib/calibre-data\")\nsucceed(\"ls -la /var/lib/calibre-server\")\nwait_for_unit(\"calibre-server.service\")\n",
     })),
     hostAndPort: nix.thunk(() => ({
-      __proto__: pos$7,
-      calibreConfig: nix.thunk(() => ({ __proto__: pos$6, host: "127.0.0.1", port: 8888n })),
+      [nix.POS]: pos$7,
+      calibreConfig: nix.thunk(() => ({ [nix.POS]: pos$6, host: "127.0.0.1", port: 8888n })),
       calibreScript: "wait_for_unit(\"calibre-server.service\")\nwait_for_open_port(8888)\nsucceed(\"curl --fail http://127.0.0.1:8888\")\n",
     })),
     basicAuth: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       calibreConfig: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         host: "127.0.0.1",
         port: 8888n,
-        auth: nix.thunk(() => ({ __proto__: pos$8, enable: true, mode: "basic" })),
+        auth: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, mode: "basic" })),
       })),
       calibreScript: "wait_for_unit(\"calibre-server.service\")\nwait_for_open_port(8888)\nfail(\"curl --fail http://127.0.0.1:8888\")\n",
     })),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(mapAttrs, (test) => (testConfig) => nix.app(runTest, nix.thunk(() => (() => {
         const nodeName = nix.thunk(() => nix.selOr(testConfig, () => nix.force(test), "nodeName"));
         const calibreConfig = nix.thunk(() => nix.update({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: true,
           libraries: nix.thunk(() => ["/var/lib/calibre-server"]),
         }, nix.selOr(testConfig, () => ({}), "calibreConfig")));
@@ -80,17 +80,17 @@ ${nodeName}.execute("mkdir -p ${path}")
 ${nodeName}.execute("calibredb add -d --with-library ${path} /tmp/test.zip")
 `;
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: nix.thunk(() => nix.str`calibre-server-${test}`),
           nodes: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(nodeName), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   environment: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zip"))]),
                   })),
-                  services: nix.thunk(() => ({ __proto__: pos$14, "calibre-server": calibreConfig })),
+                  services: nix.thunk(() => ({ [nix.POS]: pos$14, "calibre-server": calibreConfig })),
                 })),
                 nix.thunk(() => nix.selOr(testConfig, () => ({}), "calibreProvider")),
               ])))],
@@ -100,7 +100,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map(librariesInit
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((line) => (nix.asBool((nix.asBool(nix.eq(nix.builtins.substring(0n, 1n, line), " ")) || nix.asBool(nix.eq(nix.builtins.substring(0n, 1n, line), ")")))) ? nix.force(line) : nix.str`${nodeName}.${line}`), nix.thunk(() => nix.app(splitString, "\n", nix.thunk(() => nix.app(removeSuffix, "\n", nix.thunk(() => nix.sel(testConfig, "calibreScript")))))))))}
 ${nodeName}.shutdown()
 `),
-          meta: nix.thunk(() => ({ __proto__: pos$16, maintainers: [] })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$16, maintainers: [] })),
         };
       })())), tests);
 })(), formals$1);

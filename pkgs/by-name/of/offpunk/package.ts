@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "offpunk",
       version: "3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~lioploum",
           repo: "offpunk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~lioploum/offpunk/tree/v${nix.sel(finalAttrs, "version")}/item/CHANGELOG`),
         description: "CLI and offline-first smolnet browser/feed reader",
         longDescription: "Offpunk allows you to browse the Web, Gemini, Gopher and\nsubscribe to RSS feeds without leaving your terminal and while\nbeing offline.\n\nThe goal of Offpunk is to be able to synchronise your content\nonce (a day, a week, a month) and then browse/organise it while\nstaying disconnected.\n",

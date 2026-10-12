@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const xdg_utils = nix.arg($, "xdg-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sourcegit",
       version: "2026.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sourcegit-scm",
           repo: "sourcegit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "SourceGit",
             exec: "SourceGit",
             icon: "SourceGit",
@@ -74,11 +74,11 @@ mkdir -p $out/Applications/SourceGit.app/Contents/MacOS
 ln -s $out/bin/SourceGit $out/Applications/SourceGit.app/Contents/MacOS/SourceGit
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/sourcegit-scm/sourcegit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Free & OpenSource GUI client for GIT users",
         homepage: "https://github.com/sourcegit-scm/sourcegit",

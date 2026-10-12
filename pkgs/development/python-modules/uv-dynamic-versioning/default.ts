@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ninoseki",
           repo: "uv-dynamic-versioning",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [gitpython, pytestCheckHook, writableTmpDirAsHomeHook]);
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic versioning based on VCS tags for uv/hatch project",
         homepage: "https://github.com/ninoseki/uv-dynamic-versioning",
         changelog: nix.thunk(() => nix.str`https://github.com/ninoseki/uv-dynamic-versioning/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

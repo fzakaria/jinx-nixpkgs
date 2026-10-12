@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const nss = nix.arg($, "nss");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcacard",
       version: "2.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.spice-space.org/download/libcacard/libcacard-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-Rfwopv88ejWdREgTLKGQ8KnHYFQMRF26RZeltx3kD2g=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib, nss]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smart card emulation library",
         homepage: "https://gitlab.freedesktop.org/spice/libcacard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

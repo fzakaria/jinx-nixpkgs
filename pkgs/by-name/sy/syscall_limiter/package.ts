@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "syscall_limiter",
       version: "2017-01-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vi",
           repo: "syscall_limiter",
           rev: "481c8c883f2e1260ebc83b352b63bf61a930a341",
@@ -35,7 +35,7 @@ substituteInPlace $out/bin/limit_syscalls_monitor.sh \\
   --replace which ${which}/bin/which
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Start Linux programs with only selected syscalls enabled",
         homepage: "https://github.com/vi/syscall_limiter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

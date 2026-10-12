@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "typeddjango",
           repo: "pytest-mypy-plugins",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["pytest_mypy_plugins/tests/test_explicit_configs.py"]);
       const disabledTests = nix.thunk(() => ["test_no_silence_site_packages"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin for testing mypy types, stubs, and plugins",
         homepage: "https://github.com/TypedDjango/pytest-mypy-plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/typeddjango/pytest-mypy-plugins/releases/tag/${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

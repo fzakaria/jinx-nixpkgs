@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const pname = "nrfconnect";
   const version = "5.3.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://eu.files.nordicsemi.com/ui/api/v1/download?repoKey=web-assets-com_nordicsemi&path=external%2fswtools%2fncd%2flauncher%2fv${version}%2fnrfconnect-${version}-x86_64.AppImage`),
       hash: "sha256-IRpY8D9jigQjWvBVEfFshqTV4h9/6OaJf9T178B2m/c=",
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -37,7 +37,7 @@ substituteInPlace $out/share/applications/nrfconnect.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=nrfconnect'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nordic Semiconductor nRF Connect for Desktop",
         homepage: "https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-for-desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

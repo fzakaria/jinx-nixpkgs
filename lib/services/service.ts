@@ -40,25 +40,25 @@ export default nix.lambda((args) => (() => {
     const pathOrStr = nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "path")), (x) => nix.str`${x}`, nix.thunk(() => nix.sel(types, "str"))));
     const unadornedFlagPriority = 1250n;
     const atFlagPriority = (def) => (nix.asBool((nix.asBool(nix.eq(nix.selOr(def, () => null, "value", "_type"), "order")) && nix.asBool(nix.eq(nix.sel(def, "value", "priority"), nix.sel(lib, "modules", "defaultOrderPriority"))))) ? nix.update(def, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       value: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), unadornedFlagPriority, nix.thunk(() => nix.sel(def, "value", "content")))),
     }) : nix.force(def));
     return {
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       _class: "service",
       imports: nix.thunk(() => [
         nix.path(here, "../modules/generic/meta-maintainers.nix"),
         nix.path(here, "../modules/generic/assertions.nix"),
-        nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./config-data.nix"), nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./config-data.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs })))),
       ]),
       options: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submoduleWith"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   modules: nix.thunk(() => [
-                    nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ __proto__: pos$3, pkgs: pkgs })))),
+                    nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs })))),
                   ]),
                 })))))),
             description: "A collection of [modular services](https://nixos.org/manual/nixos/unstable/#modular-services) that are configured in one go.\n\nYou could consider the sub-service relationship to be an ownership relation.\nIt **does not** automatically create any other relationship between services (e.g. systemd slices), unless perhaps such a behavior is explicitly defined and enabled in another option.\n",
@@ -66,24 +66,24 @@ export default nix.lambda((args) => (() => {
             visible: "shallow",
           })))),
         process: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           argv: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), pathOrStr)),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ (lib.getExe config.package) \"--nobackground\" ]")),
               description: "Command filename and arguments for starting this service.\nThis is a raw command-line that should not contain any shell escaping.\nIf expansion of environmental variables is required then use\na shell script or `importas` from `pkgs.execline`.\n\nWhen `flags` are set, the arguments rendered from them are merged into\n`argv`. See `flags` for how the two are ordered against each other.\n",
             })))),
           flagFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "anything")))))),
-              default: (name) => ({ __proto__: pos$7, option: name, sep: null, explicitBool: false }),
+              default: (name) => ({ [nix.POS]: pos$7, option: name, sep: null, explicitBool: false }),
               description: "Function mapping flag names to option format specs\nfor `lib.cli.toCommandLine`.\n\nReceives the flag name and returns `{ option, sep, explicitBool, formatArg? }`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "name: {\n  option = name;\n  sep = \"=\";\n  explicitBool = false;\n}\n")),
             })))),
           flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrListWith"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   elemType: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(types, "bool")),
                         nix.thunk(() => nix.sel(types, "int")),
@@ -96,14 +96,14 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"--port\" = \"8080\";\n  \"--verbose\" = true;\n  # ordered ahead of the unadorned flags above\n  \"--config\" = lib.mkOrder 1100 \"/etc/foo.conf\";\n}\n# or, for repeated flags:\n[\n  { \"--host\" = \"localhost\"; }\n  { \"--host\" = \"0.0.0.0\"; }\n]\n")),
             })))),
           reloadSignal: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "HUP",
               description: "Configures the reload signal to send to the service manager.\n",
             })))),
           reloadCommand: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.coreutils}/bin/kill -HUP $MAINPID\"")),
@@ -111,11 +111,11 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         notificationProtocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 options: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   systemd: nix.thunk(() => nix.app(mkEnableOption, "Whether the service supports systemd-notify.")),
                   s6: nix.thunk(() => nix.app(mkEnableOption, "Whether the service supports s6-notify.")),
                 })),
@@ -124,16 +124,16 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(config, "process", "reloadSignal"), null)) && nix.asBool(nix.le(nix.sel(options, "process", "reloadCommand", "highestPrio"), nix.sel(lib, "modules", "defaultOverridePriority")))))),
             message: "reloadSignal conflicts with reloadCommand. Please either use reloadSignal or reloadCommand.",
           })),
         ]),
         process: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           reloadCommand: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "process", "reloadSignal"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -${nix.sel(config, "process", "reloadSignal")} $MAINPID`))))),
           argv: nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapDefinitionValue"), (attr) => nix.app(nix.sel(lib, "cli", "toCommandLine"), nix.thunk(() => nix.sel(config, "process", "flagFormat")), attr), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.builtins.map(atFlagPriority, nix.thunk(() => nix.sel(options, "process", "flags", "valueMeta", "definitions")))))))),
         })),

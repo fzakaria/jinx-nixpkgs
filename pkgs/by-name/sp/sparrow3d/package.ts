@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const SDL_net = nix.arg($, "SDL_net");
   const SDL_ttf = nix.arg($, "SDL_ttf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sparrow3d",
       version: "unstable-2020-10-06",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theZiz",
           repo: "sparrow3d",
           rev: "2033349d7adeba34bda2c442e1fec22377471134",
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
               const exec_prefix = "@out@";
               const includedir = nix.thunk(() => nix.str`${prefix}/include`);
               const libdir = nix.thunk(() => nix.str`${exec_prefix}/lib`);
-              return { __proto__: pos$2, prefix, exec_prefix, includedir, libdir };
+              return { [nix.POS]: pos$2, prefix, exec_prefix, includedir, libdir };
             })());
-            return { __proto__: pos$3, name, version, description, cflags, libs, variables };
+            return { [nix.POS]: pos$3, name, version, description, cflags, libs, variables };
           })()))),
       ]),
       nativeBuildInputs: nix.thunk(() => [copyPkgconfigItems, pkg_config]),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\nmake all_no_static\n./testfile.sh\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/theZiz/sparrow3d",
         description: "Software renderer for different open handhelds like the gp2x, wiz, caanoo and pandora",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

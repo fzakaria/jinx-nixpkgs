@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./build.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "a4da4dfac44d1bbc6986c5c76fea45a60ebdd8e5",
       sha256: "0gcjpw2q263hh8w2sjvq3f3k2d28qpkkv0jnl8hw1l7v604i8zxg",
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`echo 'echo ${runtimeShell}' > scripts/find_shell
 `)),
     }));

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "renode-dts2repl",
       version: "0-unstable-2026-09-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antmicro",
           repo: "dts2repl",
           rev: "f1f55ba06e4d3e1cb44944eb8823949ec2374a2b",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["dts2repl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for converting device tree sources into Renode's .repl files",
         homepage: "https://github.com/antmicro/dts2repl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

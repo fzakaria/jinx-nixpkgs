@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pathspec = nix.arg($, "pathspec");
   const highs = nix.arg($, "highs");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "highspy",
       version: nix.thunk(() => nix.sel(highs, "version")),
       pyproject: true,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["highspy"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Linear optimization software",
         homepage: "https://github.com/ERGO-Code/HiGHS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

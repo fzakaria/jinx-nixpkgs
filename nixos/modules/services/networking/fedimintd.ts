@@ -86,140 +86,140 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       options: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         enable: nix.thunk(() => nix.app(mkEnableOption, "fedimintd")),
         package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "fedimint", nix.thunk(() => ({})))),
         environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
             description: "Extra Environment variables to pass to the fedimintd.",
-            default: nix.thunk(() => ({ __proto__: pos$1, RUST_BACKTRACE: "1" })),
-            example: nix.thunk(() => ({ __proto__: pos$2, RUST_LOG: "info,fm=debug", RUST_BACKTRACE: "1" })),
+            default: nix.thunk(() => ({ [nix.POS]: pos$1, RUST_BACKTRACE: "1" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$2, RUST_LOG: "info,fm=debug", RUST_BACKTRACE: "1" })),
           })))),
         p2p: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Opens port in firewall for fedimintd's p2p port (both TCP and UDP)",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8173n,
               description: "Port to bind on for p2p connections from peers (both TCP and UDP)",
             })))),
           bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "0.0.0.0",
               description: "Address to bind on for p2p connections from peers (both TCP and UDP)",
             })))),
           url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               example: "fedimint://p2p.myfedimint.com:8173",
               description: "Public address for p2p connections from peers (if TCP is used)\n",
             })))),
         })),
         api_ws: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Opens TCP port in firewall for fedimintd's Websocket API",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8174n,
               description: "TCP Port to bind on for API connections relayed by the reverse proxy/tls terminator.",
             })))),
           bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "Address to bind on for API connections relied by the reverse proxy/tls terminator.",
             })))),
           url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               description: "Public URL of the API address of the reverse proxy/tls terminator. Usually starting with `wss://`.\n",
             })))),
         })),
         api_iroh: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Opens UDP port in firewall for fedimintd's API Iroh endpoint",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8174n,
               description: "UDP Port to bind Iroh endpoint for API connections",
             })))),
           bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "0.0.0.0",
               description: "Address to bind on for Iroh endpoint for API connections",
             })))),
         })),
         ui: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Opens TCP port in firewall for built-in UI",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8175n,
               description: "TCP Port to bind on for UI connections",
             })))),
           bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "Address to bind on for UI connections",
             })))),
         })),
         bitcoin: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           network: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "signet",
               example: "bitcoin",
               description: "Bitcoin network to participate in.",
             })))),
           rpc: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "http://127.0.0.1:38332",
                 example: "signet",
                 description: "Bitcoin node (bitcoind/electrum/esplora) address to connect to",
               })))),
             kind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "bitcoind",
                 example: "electrum",
                 description: "Kind of a bitcoin node.",
               })))),
             secretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: "If set the URL specified in `bitcoin.rpc.url` will get the content of this file added\nas an URL password, so `http://user@example.com` will turn into `http://user:SOMESECRET@example.com`.\n\nExample:\n\n`/etc/nix-bitcoin-secrets/bitcoin-rpcpassword-public` (for nix-bitcoin default)\n",
@@ -227,52 +227,52 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         consensus: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           finalityDelay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
               default: 10n,
               description: "Consensus peg-in finality delay.",
             })))),
         })),
         dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`/var/lib/fedimintd-${name}/`),
             readOnly: true,
             description: "Path to the data dir fedimintd will use to store its data.\nNote that due to using the DynamicUser feature of systemd, this value should not be changed\nand is set to be read only.\n",
           })))),
         nginx: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to configure nginx for fedimintd\n",
             })))),
           fqdn: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "api.myfedimint.com",
               description: "Public domain of the API address of the reverse proxy/tls terminator.",
             })))),
           path_ui: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "/",
               default: "/",
               description: "Path to host the built-in UI on and forward to the daemon's api port",
             })))),
           path_ws: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "/",
               default: "/ws/",
               description: "Path to host the API on and forward to the daemon's api port",
             })))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$35, config: config_1, lib: lib_1 })))), nix.thunk(() => ({})))))),
+              [nix.POS]: pos$36,
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$35, config: config_1, lib: lib_1 })))), nix.thunk(() => ({})))))),
               default: nix.thunk(() => ({})),
               description: "Overrides to the nginx vhost section for api",
             })))),
@@ -281,13 +281,13 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$59,
+    [nix.POS]: pos$59,
     options: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       services: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         fedimintd: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), fedimintdOpts)))),
             default: nix.thunk(() => ({})),
             description: "Specification of one or more fedimintd instances.",
@@ -298,17 +298,17 @@ export default nix.lambda((args) => (() => {
       const eachFedimintd = nix.thunk(() => nix.app(filterAttrs, (fedimintdName) => (cfg) => nix.sel(cfg, "enable"), nix.thunk(() => nix.sel(config, "services", "fedimintd"))));
       const eachFedimintdNginx = nix.thunk(() => nix.app(filterAttrs, (fedimintdName) => (cfg) => nix.sel(cfg, "nginx", "enable"), eachFedimintd));
       return nix.app(mkIf, nix.thunk(() => !nix.eq(eachFedimintd, {})), nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           networking: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             firewall: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               allowedTCPPorts: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (fedimintdName) => (cfg) => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "api_ws", "openFirewall")), nix.thunk(() => nix.sel(cfg, "api_ws", "port"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "p2p", "openFirewall")), nix.thunk(() => nix.sel(cfg, "p2p", "port"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "ui", "openFirewall")), nix.thunk(() => nix.sel(cfg, "ui", "port"))))), eachFedimintd)))),
               allowedUDPPorts: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (fedimintdName) => (cfg) => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "api_iroh", "openFirewall")), nix.thunk(() => nix.sel(cfg, "api_iroh", "port"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "p2p", "openFirewall")), nix.thunk(() => nix.sel(cfg, "p2p", "port")))), eachFedimintd)))),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             services: nix.thunk(() => nix.app(mapAttrs$, (fedimintdName) => (cfg) => nix.app(nameValuePair, nix.thunk(() => nix.str`fedimintd-${fedimintdName}`), nix.thunk(() => (() => {
                   const startScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "fedimintd", nix.thunk(() => nix.add((nix.asBool(!nix.eq(nix.sel(cfg, "bitcoin", "rpc", "secretFile"), null)) ? nix.str`>&2 echo "Setting FM_FORCE_BITCOIN_RPC_URL using password from ${nix.sel(cfg, "bitcoin", "rpc", "secretFile")}"
 secret=$(${nix.sel(pkgs, "coreutils")}/bin/head -n 1 "${nix.sel(cfg, "bitcoin", "rpc", "secretFile")}" || exit 1)
@@ -316,13 +316,13 @@ export FM_FORCE_BITCOIN_RPC_URL=$(echo "$FM_BITCOIN_RPC_URL" | sed "s|^\\(\\w\\+
 ` : ""), nix.str`exec ${nix.sel(cfg, "package")}/bin/fedimintd
 `))));
                   return {
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     description: "Fedimint Server",
                     documentation: nix.thunk(() => ["https://github.com/fedimint/fedimint/"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           FM_BIND_P2P: nix.thunk(() => nix.str`${nix.sel(cfg, "p2p", "bind")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "p2p", "port")))}`),
                           FM_BIND_API_WS: nix.thunk(() => nix.str`${nix.sel(cfg, "api_ws", "bind")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "api_ws", "port")))}`),
                           FM_BIND_API_IROH: nix.thunk(() => nix.str`${nix.sel(cfg, "api_iroh", "bind")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "api_iroh", "port")))}`),
@@ -332,15 +332,15 @@ export FM_FORCE_BITCOIN_RPC_URL=$(echo "$FM_BITCOIN_RPC_URL" | sed "s|^\\(\\w\\+
                           FM_BITCOIN_RPC_URL: nix.thunk(() => nix.sel(cfg, "bitcoin", "rpc", "url")),
                           FM_BITCOIN_RPC_KIND: nix.thunk(() => nix.sel(cfg, "bitcoin", "rpc", "kind")),
                         })),
-                        nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "p2p", "url"), null)), nix.thunk(() => ({ __proto__: pos$46, FM_P2P_URL: nix.thunk(() => nix.sel(cfg, "p2p", "url")) })))),
+                        nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "p2p", "url"), null)), nix.thunk(() => ({ [nix.POS]: pos$46, FM_P2P_URL: nix.thunk(() => nix.sel(cfg, "p2p", "url")) })))),
                         nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "api_ws", "url"), null)), nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             FM_API_URL: nix.thunk(() => nix.sel(cfg, "api_ws", "url")),
                           })))),
                         nix.thunk(() => nix.sel(cfg, "environment")),
                       ]))),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       DynamicUser: true,
                       StateDirectory: nix.thunk(() => nix.str`fedimintd-${fedimintdName}`),
                       StateDirectoryMode: "0700",
@@ -369,29 +369,29 @@ export FM_FORCE_BITCOIN_RPC_URL=$(echo "$FM_BITCOIN_RPC_URL" | sed "s|^\\(\\w\\+
                       SystemCallArchitectures: "native",
                       SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged"]),
                     })),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$49, StartLimitBurst: 5n })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$49, StartLimitBurst: 5n })),
                   };
                 })())), eachFedimintd)),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             nginx: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               virtualHosts: nix.thunk(() => nix.app(mapAttrs$, (fedimintdName) => (cfg) => nix.app(nameValuePair, nix.thunk(() => nix.sel(cfg, "nginx", "fqdn")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "nginx", "config")))),
                       nix.thunk(() => ({
-                        __proto__: pos$54,
+                        [nix.POS]: pos$54,
                         enableACME: true,
                         forceSSL: true,
                         locations: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.sel(cfg, "nginx", "path_ws"), nix.thunk(() => ({
-                            __proto__: pos$52,
+                            [nix.POS]: pos$52,
                             proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "api_ws", "port")))}/`),
                             proxyWebsockets: true,
                             extraConfig: "proxy_pass_header Authorization;\n",
                           }))],
                           [nix.sel(cfg, "nginx", "path_ui"), nix.thunk(() => ({
-                            __proto__: pos$53,
+                            [nix.POS]: pos$53,
                             proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "ui", "port")))}/`),
                             extraConfig: "proxy_pass_header Authorization;\n",
                           }))],
@@ -403,7 +403,7 @@ export FM_FORCE_BITCOIN_RPC_URL=$(echo "$FM_BITCOIN_RPC_URL" | sed "s|^\\(\\w\\+
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dpc"))];

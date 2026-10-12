@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steamloop",
       version: "1.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hvaclibs",
           repo: "steamloop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["steamloop"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Local control for choochoo based thermostats",
         homepage: "https://github.com/hvaclibs/steamloop",
         changelog: nix.thunk(() => nix.str`https://github.com/hvaclibs/steamloop/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

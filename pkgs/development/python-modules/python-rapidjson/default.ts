@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "python-rapidjson";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-rapidjson",
           repo: "python-rapidjson",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./rapidjson-include-dir.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rapidjson: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), rapidjson)),
           })))),
       ]);
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytz]);
       const disabledTestPaths = nix.thunk(() => ["benchmarks"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-rapidjson/python-rapidjson/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         homepage: "https://github.com/python-rapidjson/python-rapidjson",
         description: "Python wrapper around rapidjson",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         pyproject,

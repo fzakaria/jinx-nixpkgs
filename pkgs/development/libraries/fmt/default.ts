@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "fmt",
         version: version,
         outputs: nix.thunk(() => ["out", "dev"]),
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ __proto__: pos$1, owner: "fmtlib", repo: "fmt", rev: version, hash: hash })))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$1, owner: "fmtlib", repo: "fmt", rev: version, hash: hash })))),
         patches: patches,
         nativeBuildInputs: nix.thunk(() => [cmake]),
         cmakeFlags: nix.thunk(() => [
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
         ]),
         doCheck: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tests: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             mpd: mpd,
             openimageio: openimageio,
             fcitx5: fcitx5,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "11")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),
           description: "Small, safe and fast formatting library",
           longDescription: "fmt (formerly cppformat) is an open-source formatting library. It can be\nused as a fast and safe alternative to printf and IOStreams.\n",
@@ -75,43 +75,43 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     fmt_9: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "9.1.0",
         hash: "sha256-rP6ymyRc7LnKxUXwPpzhHOQvpJkpnRFOt2ctvUNlYI0=",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://github.com/fmtlib/fmt/commit/c4283ec471bd3efdb114bc1ab30c7c7c5e5e0ee0.patch",
               hash: "sha256-YyB5GY/ZqJQIhhGy0ICMPzfP/OUuyLnciiyv8Nscsec=",
             })))),
         ]),
       })))),
     fmt_10: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "10.2.1",
         hash: "sha256-pEltGLAHLZ3xypD/Ur4dWPWJ9BGVXwqQyKcDWVmC3co=",
       })))),
     fmt_11: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         version: "11.2.0",
         hash: "sha256-sAlU5L/olxQUYcv8euVYWTTB8TrVeQgXLHtXy8IMEnU=",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               url: "https://github.com/fmtlib/fmt/commit/3cabf3757b6bc00330b55975317b2c145e4c689d.patch",
               hash: "sha256-SJFzNNC0Bt2aEQJlHGc0nv9KOpPQ+TgDX5iuFMUs9tk=",
             })))),
         ]),
       })))),
     fmt_12: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         version: "12.2.0",
         hash: "sha256-Tc7PmNxUv7ajw6GaHPGEEtrD/fl6is7RB8TPestJa1o=",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: "https://github.com/fmtlib/fmt/commit/588b3a0f8f6a8bcf2a959cae882d5b2703e86737.patch",
               hash: "sha256-DiE3nwYrtNDJ6cqYreU499Y0auH6dsAW21TRPe16Tx8=",
             })))),

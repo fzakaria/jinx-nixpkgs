@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     elemAt: nix.thunk(() => nix.attr(lib, "elemAt")),
     getExe: nix.thunk(() => nix.attr(lib, "getExe")),
     "getExe'": nix.thunk(() => nix.attr(lib, "getExe'")),
@@ -108,43 +108,43 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "pihole.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$76,
+    [nix.POS]: pos$76,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         "pihole-ftl": nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Pi-hole FTL")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pihole-ftl", nix.thunk(() => ({})))),
           piholePackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pihole", nix.thunk(() => ({})))),
           privacyLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "numbers", "between"), 0n, 3n)),
               description: "Level of detail in generated statistics. 0 enables full statistics, 3\nshows only anonymous statistics.\n\nSee [the documentation](https://docs.pi-hole.net/ftldns/privacylevels).\n\nAlso see services.dnsmasq.settings.log-queries to completely disable\nquery logging.\n",
               default: 0n,
               example: 3n,
             })))),
           openFirewallDNS: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for pihole-FTL's DNS server.",
             })))),
           openFirewallDHCP: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for pihole-FTL's DHCP server.",
             })))),
           openFirewallWebserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports in the firewall for pihole-FTL's webserver, as configured in `settings.webserver.port`.\n",
             })))),
           configDirectory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/etc/pihole",
               internal: true,
@@ -152,36 +152,36 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
               description: "Path for pihole configuration.\npihole does not currently support any path other than /etc/pihole.\n",
             })))),
           stateDirectory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/pihole",
               description: "Path for pihole state files.\n",
             })))),
           logDirectory: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/log/pihole",
               description: "Path for Pi-hole log files",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               description: "Configuration options for pihole.toml.\nSee the upstream [documentation](https://docs.pi-hole.net/ftldns/configfile).\n",
             })))),
           useDnsmasqConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Import options defined in [](#opt-services.dnsmasq.settings) via\nmisc.dnsmasq_lines in Pi-hole's config.\n",
             })))),
           macvendorURL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "https://ftl.pi-hole.net/macvendor.db",
               description: "URL from which to download the macvendor.db file.\n",
             })))),
           pihole: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               default: piholeScript,
               internal: true,
@@ -189,28 +189,28 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
             })))),
           lists: nix.thunk(() => (() => {
             const adlistType = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 options: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       description: "URL of the domain list",
                     })))),
                   type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["allow", "block"]))),
                       default: "block",
                       description: "Whether domains on this list should be explicitly allowed, or blocked",
                     })))),
                   enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                       default: true,
                       description: "Whether this list is enabled",
                     })))),
                   description: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                       description: "Description of the list",
                       default: "",
@@ -218,7 +218,7 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
                 })),
               }))));
             return nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), adlistType);
@@ -227,42 +227,42 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
                 default: [],
                 example: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     url: "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
                   })),
                 ]),
               })));
           })()),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "pihole",
               description: "User to run the service as.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "pihole",
               description: "Group to run the service as.",
             })))),
           queryLogDeleter: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Pi-hole FTL DNS query log deleter")),
             age: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                 default: 90n,
                 description: "Delete DNS query logs older than this many days, if\n[](#opt-services.pihole-ftl.queryLogDeleter.enable) is on.\n",
               })))),
             interval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "weekly",
                 description: "How often the query log deleter is run. See systemd.time(7) for more\ninformation about the format.\n",
               })))),
           })),
           webserverEnabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "hasAttrByPath"), nix.thunk(() => ["webserver", "port"]), nix.thunk(() => nix.sel(cfg, "settings")))) && nix.asBool(!nix.asBool(nix.app(nix.sel(nix.builtins, "elem"), nix.thunk(() => nix.sel(cfg, "settings", "webserver", "port")), nix.thunk(() => ["", null])))))),
               internal: true,
@@ -272,65 +272,65 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$74,
+        [nix.POS]: pos$74,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "dnsmasq", "enable"))),
             message: "pihole-ftl conflicts with dnsmasq. Please disable one of them.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(nix.builtins, "length"), nix.thunk(() => nix.sel(cfg, "lists"))), 0n)) || nix.asBool(nix.sel(cfg, "webserverEnabled")))),
             message: "The Pi-hole webserver must be enabled for lists set in services.pihole-ftl.lists to be automatically loaded on startup via the web API.\nservices.pihole-ftl.settings.port must be defined, e.g. by enabling services.pihole-web.enable and defining services.pihole-web.port.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.app(nix.sel(nix.builtins, "length"), nix.thunk(() => nix.sel(cfg, "lists"))), 0n)) || nix.asBool(!nix.asBool(nix.app(nix.lookup(w, "hasAttrByPath"), nix.thunk(() => ["webserver", "api", "cli_pw"]), nix.thunk(() => nix.sel(cfg, "settings"))))))) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "webserver", "api", "cli_pw"), true)))),
             message: "services.pihole-ftl.settings.webserver.api.cli_pw must be true for lists set in services.pihole-ftl.lists to be automatically loaded on startup.\nThis enables an ephemeral password used by the pihole command.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           "pihole-ftl": nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(mkDefaults, nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     misc: nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       readOnly: true,
                       privacylevel: nix.thunk(() => nix.sel(cfg, "privacyLevel")),
                     })),
-                    webserver: nix.thunk(() => ({ __proto__: pos$34, port: "" })),
+                    webserver: nix.thunk(() => ({ [nix.POS]: pos$34, port: "" })),
                   })))),
                 nix.thunk(() => ({
-                  __proto__: pos$41,
-                  misc: nix.thunk(() => ({ __proto__: pos$36, dnsmasq_lines: [] })),
+                  [nix.POS]: pos$41,
+                  misc: nix.thunk(() => ({ [nix.POS]: pos$36, dnsmasq_lines: [] })),
                   files: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     database: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDirectory")}/pihole-FTL.db`),
                     gravity: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDirectory")}/gravity.db`),
                     macvendor: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDirectory")}/macvendor.db`),
                     log: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       ftl: nix.thunk(() => nix.str`${nix.sel(cfg, "logDirectory")}/FTL.log`),
                       dnsmasq: nix.thunk(() => nix.str`${nix.sel(cfg, "logDirectory")}/pihole.log`),
                       webserver: nix.thunk(() => nix.str`${nix.sel(cfg, "logDirectory")}/webserver.log`),
                     })),
                   })),
                   webserver: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     tls: nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       cert: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDirectory")}/tls.pem`),
                     })),
                   })),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "useDnsmasqConfig")), nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     misc: nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       dnsmasq_lines: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(config, "services", "dnsmasq", "configFile")), nix.thunk(() => [
                           nix.thunk(() => nix.sel(nix.builtins, "readFile")),
                           nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "\n")),
@@ -341,11 +341,11 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
               ]))),
           })),
           logrotate: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             settings: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               "pihole-dnsmasq": nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 files: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(cfg, "logDirectory")}/pihole.log`)]),
                 frequency: "daily",
                 create: nix.thunk(() => nix.str`640 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
@@ -356,7 +356,7 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
 `),
               })),
               "pihole-ftl": nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 files: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "logDirectory")}/FTL.log`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "logDirectory")}/webserver.log`),
@@ -371,9 +371,9 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "configDirectory")} 0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "stateDirectory")} 0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -381,23 +381,23 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             "pihole-ftl": nix.thunk(() => (() => {
               const setupService = nix.thunk(() => nix.sel(config, "systemd", "services", "pihole-ftl-setup", "name"));
               return {
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 description: "Pi-hole FTL",
                 after: nix.thunk(() => ["network.target"]),
                 before: nix.thunk(() => [setupService]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => [setupService]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   PIHOLE_CONFIG: settingsFile,
                   PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "piholePackage"))]))))),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   Type: "simple",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -437,13 +437,13 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
               };
             })()),
             "pihole-ftl-setup": nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               description: "Pi-hole FTL setup",
               enable: nix.thunk(() => nix.gt(nix.app(nix.sel(nix.builtins, "length"), nix.thunk(() => nix.sel(cfg, "lists"))), 0n)),
               after: nix.thunk(() => ["network-online.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 Type: "oneshot",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -468,13 +468,13 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
                 MemoryDenyWriteExecute: true,
                 LockPersonality: true,
               })),
-              script: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./pihole-ftl-setup-script.nix"), nix.thunk(() => ({ __proto__: pos$55, cfg: cfg, config: config, lib: lib, pkgs: pkgs })))),
+              script: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./pihole-ftl-setup-script.nix"), nix.thunk(() => ({ [nix.POS]: pos$55, cfg: cfg, config: config, lib: lib, pkgs: pkgs })))),
             })),
             "pihole-ftl-log-deleter": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "queryLogDeleter", "enable")), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 description: "Pi-hole FTL DNS query log deleter",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -507,9 +507,9 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             "pihole-ftl-log-deleter": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "queryLogDeleter", "enable")), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 description: "Pi-hole FTL DNS query log deleter",
                 before: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "systemd", "services", "pihole-ftl", "name")),
@@ -517,7 +517,7 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
                 ]),
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "queryLogDeleter", "interval")),
                   Unit: "pihole-ftl-log-deleter.service",
                 })),
@@ -525,16 +525,16 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewallDNS")), nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   allowedUDPPorts: nix.thunk(() => [53n]),
                   allowedTCPPorts: nix.thunk(() => [53n]),
                 })))),
-              nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewallDHCP")), nix.thunk(() => ({ __proto__: pos$65, allowedUDPPorts: nix.thunk(() => [67n]) })))),
+              nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewallDHCP")), nix.thunk(() => ({ [nix.POS]: pos$65, allowedUDPPorts: nix.thunk(() => [67n]) })))),
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewallWebserver")), nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(cfg, "settings", "webserver", "port")), nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ",")),
                       nix.thunk(() => nix.app(nix.builtins.map, (port) => nix.app(nix.sel(lib, "pipe"), port, nix.thunk(() => [
@@ -547,10 +547,10 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
             ]))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               group: nix.thunk(() => nix.sel(cfg, "group")),
               isSystemUser: true,
             }))],
@@ -558,18 +558,18 @@ $sudo ${nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(cfg, "piholePac
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           etc: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             "pihole/pihole.toml": nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               source: settingsFile,
               user: nix.thunk(() => nix.sel(cfg, "user")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
               mode: "400",
             })),
             "pihole/versions": nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               text: nix.thunk(() => nix.str`CORE_VERSION=${nix.sel(cfg, "piholePackage", "src", "src", "tag")}
 FTL_VERSION=${nix.sel(cfg, "package", "src", "tag")}
 `),
@@ -579,7 +579,7 @@ FTL_VERSION=${nix.sel(cfg, "package", "src", "tag")}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$75,
+      [nix.POS]: pos$75,
       doc: nix.path(here, "./pihole-ftl.md"),
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);

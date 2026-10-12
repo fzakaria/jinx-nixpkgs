@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgmpy",
       version: "1.1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgmpy",
           repo: "pgmpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [jsonschema, pytestCheckHook, pytest_cov_stub, mock, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["pgmpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Library for learning (Structure and Parameter), inference (Probabilistic and Causal), and simulations in Bayesian Networks",
         homepage: "https://github.com/pgmpy/pgmpy",
         changelog: nix.thunk(() => nix.str`https://github.com/pgmpy/pgmpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

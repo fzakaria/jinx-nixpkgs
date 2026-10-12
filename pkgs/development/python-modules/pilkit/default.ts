@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthewwithanm",
           repo: "pilkit",
           tag: version,
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pilkit/processors/resize.py \\\n  --replace \"Image.ANTIALIAS\" \"Image.Resampling.LANCZOS\"\n";
       const pythonImportsCheck = nix.thunk(() => ["pilkit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of utilities and processors for the Python Imaging Library",
         homepage: "https://github.com/matthewwithanm/pilkit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

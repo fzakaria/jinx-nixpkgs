@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "remod",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samuela",
           repo: "remod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7tLxvh/pLlt3Y+PkNF0s5f/wh/wGdeDtt0dc4eQqWlw=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-94i1wduLWCGHZNoohhBfjt3i2qsWr6UznKLHXH4im+c=",
         })))),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/samuela/remod/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "chmod for human beings",
         homepage: "https://github.com/samuela/remod",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tbls",
       version: "1.96.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "k1LoW",
           repo: "tbls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, versionCheckHook]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-format-security"]))),
       })),
       preCheck: "# Remove tests that require additional services.\nrm -f \\\n   datasource/*_test.go \\\n   drivers/*/*_test.go\n",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to generate documentation based on a database structure",
         homepage: "https://github.com/k1LoW/tbls",
         changelog: nix.thunk(() => nix.str`https://github.com/k1LoW/tbls/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

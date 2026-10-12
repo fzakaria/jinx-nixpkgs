@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const vte_gtk4 = nix.arg($, "vte-gtk4");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seabird",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getseabird",
           repo: "seabird",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 internal/icon/seabird.svg $out/share/icons/hicolor/scalable/dev.skynomads.Seabird.svg\n",
       desktopItems: nix.thunk(() => ["dev.skynomads.Seabird.desktop"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Kubernetes desktop client",
         homepage: "https://getseabird.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

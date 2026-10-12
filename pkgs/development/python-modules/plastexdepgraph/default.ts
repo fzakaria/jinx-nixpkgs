@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pygraphviz = nix.arg($, "pygraphviz");
   const plasTeX = nix.arg($, "plasTeX");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plastexdepgraph",
       version: "0.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "plastexdepgraph",
           owner: "PatrickMassot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pygraphviz, plasTeX]),
       pythonImportsCheck: nix.thunk(() => ["plastexdepgraph"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PlasTeX plugin allowing to build dependency graphs",
         homepage: "https://github.com/PatrickMassot/plastexdepgraph",
         changelog: nix.thunk(() => nix.str`https://github.com/PatrickMassot/plastexdepgraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

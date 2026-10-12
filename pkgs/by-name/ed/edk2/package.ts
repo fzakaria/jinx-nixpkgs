@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const targetArch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "IA32" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "X64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")) ? "ARM" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "AARCH64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) ? "RISCV64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")) ? "LOONGARCH64" : nix.builtins.throw("Unsupported architecture"))))))));
   const targetPrefixes = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["GCC_BIN", nix.thunk(() => nix.str`GCC_${targetArch}_PREFIX`)]), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.sel(stdenv, "cc", "targetPrefix"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "edk2",
       version: "202608",
       srcWithVendoring: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tianocore",
           repo: "edk2",
           tag: nix.thunk(() => nix.str`edk2-stable${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-LRq5SGAcqMl9PlSaV/Q2qE1HLMXHghozwgZP4A3FCts=",
         })))),
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`edk2-${nix.sel(finalAttrs, "version")}-unvendored-src`),
           src: nix.thunk(() => nix.sel(finalAttrs, "srcWithVendoring")),
           patches: nix.thunk(() => [nix.path(here, "./fix-cross-compilation-antlr-dlg.patch")]),
@@ -81,7 +81,7 @@ substituteInPlace BaseTools/Conf/tools_def.template --replace-fail \\
       strictDeps: true,
       makeFlags: nix.thunk(() => ["--directory=BaseTools"]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.add("-Wno-return-type", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), " -Wno-error=stringop-truncation")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Wno-error=macro-redefined"))),
         PYTHON_COMMAND: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pythonEnv)),
       }, targetPrefixes)),
@@ -89,7 +89,7 @@ substituteInPlace BaseTools/Conf/tools_def.template --replace-fail \\
       installPhase: "runHook preInstall\n\nmkdir -vp $out\nmv -v BaseTools $out\nmv -v edksetup.sh $out\n# patchShebangs fails to see these when cross compiling\nfor i in $out/BaseTools/BinWrappers/PosixLike/*; do\n  chmod +x \"$i\"\n  patchShebangs --build \"$i\"\ndone\n\nrunHook postInstall\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Intel EFI development kit",
         homepage: "https://github.com/tianocore/tianocore.github.io/wiki/EDK-II/",
         changelog: nix.thunk(() => nix.str`https://github.com/tianocore/edk2/releases/tag/edk2-stable${nix.sel(finalAttrs, "version")}`),
@@ -101,9 +101,9 @@ substituteInPlace BaseTools/Conf/tools_def.template --replace-fail \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mjoerg"))]),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemdBootExtraEntries: nix.thunk(() => nix.sel(nixosTests, "systemd-boot", "extraEntries")),
           uefiUsb: nix.thunk(() => nix.sel(nixosTests, "boot", "uefiCdrom")),
         })),
@@ -123,7 +123,7 @@ fi
             const attrs = nix.thunk(() => nix.app(nix.sel(lib, "toFunction"), attrsOrFun, finalAttrsInner));
             const buildType = nix.thunk(() => nix.selOr(attrs, () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "CLANGPDB" : "GCC"), "buildType"));
             return nix.update({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               depsBuildBuild: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))], nix.selOr(attrs, () => [], "depsBuildBuild"))),
               nativeBuildInputs: nix.thunk(() => nix.concat([bc, pythonEnv], nix.selOr(attrs, () => [], "nativeBuildInputs"))),
@@ -142,7 +142,7 @@ runHook postBuild
 `),
               installPhase: "runHook preInstall\nmv -v Build/*/* $out\nrunHook postInstall\n",
             }, nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["nativeBuildInputs", "depsBuildBuild", "env"])), {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               env: nix.thunk(() => nix.update(targetPrefixes, nix.selOr(attrs, () => ({}), "env"))),
             }));
           })()),

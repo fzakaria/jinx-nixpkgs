@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-On69+StZPgDowcU4qpogvKXZLYQjESRxWsyWTVHZPGs=",
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pybtex_docutils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Docutils backend for pybtex",
         homepage: "https://github.com/mcmtroffaes/pybtex-docutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

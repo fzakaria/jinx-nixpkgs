@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pyquaternion = nix.arg($, "pyquaternion");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bbox",
       version: "0.9.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "varunagrawal",
           repo: "bbox",
           rev: "d3f07ed0e38b6015cf4181e3b3edae6a263f8565",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["numpy"]),
       pythonImportsCheck: nix.thunk(() => ["bbox"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for 2D/3D bounding boxes",
         homepage: "https://github.com/varunagrawal/bbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

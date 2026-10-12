@@ -23,37 +23,37 @@ export default nix.lambda((args) => (() => {
   const forwardedPort = 8484n;
   const internalPort = 8484n;
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "grist smoke test",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$3,
-                host: nix.thunk(() => ({ __proto__: pos$1, port: forwardedPort })),
-                guest: nix.thunk(() => ({ __proto__: pos$2, port: internalPort })),
+                [nix.POS]: pos$3,
+                host: nix.thunk(() => ({ [nix.POS]: pos$1, port: forwardedPort })),
+                guest: nix.thunk(() => ({ [nix.POS]: pos$2, port: internalPort })),
               })),
             ]),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [8484n]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [8484n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             grist: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               enableRedis: true,
               environment: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 APP_HOME_URL: "http://127.0.0.1:8484",
                 GRIST_IN_SERVICE: "true",
                 GRIST_BOOT_KEY: "dummy",

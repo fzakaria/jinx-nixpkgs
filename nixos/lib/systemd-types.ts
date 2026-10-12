@@ -79,27 +79,27 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$7,
-        enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "copying of this file and symlinking it"), { __proto__: pos$1, default: true })),
+        [nix.POS]: pos$7,
+        enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "copying of this file and symlinking it"), { [nix.POS]: pos$1, default: true })),
         target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nullOr, path)),
             description: "Path of the symlink.\n",
             default: null,
           })))),
-        source: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$3, type: path, description: "Path of the source file." })))),
+        source: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$3, type: path, description: "Path of the source file." })))),
         dlopen: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           usePriority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["required", "recommended", "suggested"]))),
               default: "recommended",
               description: "Priority of dlopen ELF notes to include. \"required\" is\nminimal, \"recommended\" includes \"required\", and\n\"suggested\" includes \"recommended\".\n\nSee: <https://systemd.io/ELF_DLOPEN_METADATA/>\n",
             })))),
           features: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(listOf, singleLineStr)),
               default: [],
               description: "Features to enable via dlopen ELF notes. These will be in\naddition to anything included via 'usePriority',\nregardless of their priority.\n",
@@ -109,16 +109,16 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     units: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const name = nix.arg($_1, "name");
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             options: concreteUnitOptions,
             config: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: nix.thunk(() => nix.app(mkDefault, name)),
               unit: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.app(makeUnit, name, config)))),
             })),
@@ -140,26 +140,26 @@ export default nix.lambda((args) => (() => {
     initrdMounts: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => [stage1MountOptions, unitConfig, mountConfig]))))),
     automounts: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => [stage2AutomountOptions, unitConfig, automountConfig]))))),
     initrdAutomounts: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => [stage1AutomountOptions, unitConfig, automountConfig]))))),
-    initrdStorePath: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(coercedTo, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [singleLineStr, package$]))), (source) => ({ __proto__: pos$11, source: source }), nix.thunk(() => nix.app(submodule, initrdStorePathModule)))))),
+    initrdStorePath: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(coercedTo, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [singleLineStr, package$]))), (source) => ({ [nix.POS]: pos$11, source: source }), nix.thunk(() => nix.app(submodule, initrdStorePathModule)))))),
     initrdContents: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           const options = nix.arg($_1, "options");
           const name = nix.arg($_1, "name");
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             imports: nix.thunk(() => [initrdStorePathModule]),
             options: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               text: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   default: null,
                   type: nix.thunk(() => nix.app(nullOr, lines)),
                   description: "Text of the file.",
                 })))),
             })),
             config: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               target: nix.thunk(() => nix.app(mkDefault, name)),
               source: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config, "text"), null)), nix.thunk(() => (() => {
                   const name$ = nix.thunk(() => nix.add("initrd-", nix.builtins.baseNameOf(name)));

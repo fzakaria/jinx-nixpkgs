@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
     return nix.sel(stdenv, "cc", "libc");
   })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "shadow",
       version: "4.20.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shadow-maint",
           repo: "shadow",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,7 +89,7 @@ export shadow_cv_logdir=/var/log
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.sel(stdenv, "shellPackage")))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/shadow-maint/shadow",
         description: "Suite containing authentication-related tools such as passwd and su",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -100,16 +100,16 @@ export shadow_cv_logdir=/var/log
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "shadow_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         shellPath: "/bin/nologin",
-        tests: nix.thunk(() => ({ __proto__: pos$4, shadow: nix.thunk(() => nix.attr(nixosTests, "shadow")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, shadow: nix.thunk(() => nix.attr(nixosTests, "shadow")) })),
         testFramework: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "shadow-test-framework",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/tests/system`),

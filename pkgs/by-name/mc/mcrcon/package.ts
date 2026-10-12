@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcrcon",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tiiffi",
           repo: "mcrcon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC mcrcon.c -o mcrcon\n",
       installPhase: "install -Dm 755 mcrcon $out/bin/mcrcon\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bukkit.org/threads/admin-rcon-mcrcon-remote-connection-client-for-minecraft-servers.70910/",
         description: "Minecraft console client with Bukkit coloring support",
         longDescription: "Mcrcon is a powerful Minecraft RCON terminal client with Bukkit coloring support.\nIt is well suited for remote administration and to be used as part of automated server maintenance scripts.\nIt does not trigger \"IO: Broken pipe\" or \"IO: Connection reset\" spam bugs on the server side.\n",

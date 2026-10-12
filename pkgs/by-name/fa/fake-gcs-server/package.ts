@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fake-gcs-server",
       version: "1.56.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsouza",
           repo: "fake-gcs-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-huKQv51wDVhagX86j3qbe9c3NHwAJX/izMIkFqXP41Y=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Google Cloud Storage emulator & testing library",
         homepage: "https://github.com/fsouza/fake-gcs-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

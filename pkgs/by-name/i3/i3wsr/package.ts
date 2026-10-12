@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3wsr",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roosta",
           repo: "i3wsr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "i3wsr",
         description: "Automatically change i3 workspace names based on their contents",
         longDescription: "Automatically sets the workspace names to match the windows on the workspace.\nThe chosen name for a workspace is a user-defined composite of the WM_CLASS X11\nwindow property for each window in a workspace.\n",

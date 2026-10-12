@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zeromq = nix.arg($, "zeromq");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "habitat",
       version: "2.1.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "habitat-sh",
           repo: "habitat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "hab"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: true,
         SODIUM_USE_PKG_CONFIG: true,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Application automation framework",
         homepage: "https://www.habitat.sh",
         changelog: nix.thunk(() => nix.str`https://github.com/habitat-sh/habitat/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libsecp256k1_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libsecp256k1.so.0" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libsecp256k1.0.dylib" : nix.str`libsecp256k1${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   const libzbar_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libzbar.so.0" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libzbar.0.dylib" : nix.str`libzbar${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   const tests = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pooler",
       repo: "electrum-ltc",
       rev: version,
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       postFetch: "mv $out ./all\nmv ./all/electrum_ltc/tests $out\n",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "electrum-ltc",
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://electrum-ltc.org/download/Electrum-LTC-${version}.tar.gz`),
           hash: "sha256-7F28cve+HD5JDK5igfkGD/NvTCfA33g+DmQJ5mwPM9Q=",
         })))),
@@ -113,7 +113,7 @@ substituteInPlace $out/share/applications/electrum-ltc.desktop \\
       ]),
       postCheck: "$out/bin/electrum-ltc help >/dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight Litecoin Client",
         mainProgram: "electrum-ltc",
         longDescription: "Electrum-LTC is a simple, but powerful Litecoin wallet. A unique secret\nphrase (or “seed”) leaves intruders stranded and your peace of mind\nintact. Keep it on paper, or in your head... and never worry about losing\nyour litecoins to theft or hardware failure.\n",

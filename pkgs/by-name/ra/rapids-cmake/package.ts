@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const cpm_cmake = nix.arg($, "cpm-cmake");
   const rapids_logger = nix.arg($, "rapids-logger");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rapids-cmake",
       version: "26.08.00",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rapidsai",
           repo: "rapids-cmake",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm644 -t $out/share/rapids-cmake \\\n  CMakeLists.txt \\\n  RAPIDS.cmake \\\n  init.cmake \\\n  RAPIDS_BRANCH \\\n  VERSION\ncp -r rapids-cmake $out/share/rapids-cmake/rapids-cmake\n\ninstall -Dm644 -t $out/share/doc/rapids-cmake README.md CHANGELOG.md\n\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
-      env: nix.thunk(() => ({ __proto__: pos$2, cpm: cpm_cmake })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, cpm: cpm_cmake })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(rapids_logger, "tests"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "cmake-config": nix.thunk(() => nix.attr(from, "cmake-config")),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CMake modules shared across RAPIDS projects",
         homepage: "https://github.com/rapidsai/rapids-cmake",
         changelog: nix.thunk(() => nix.str`https://github.com/rapidsai/rapids-cmake/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

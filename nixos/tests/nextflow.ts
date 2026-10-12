@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const bash = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "pullImage"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       imageName: "quay.io/nextflow/bash",
       imageDigest: "sha256:bea0e244b7c5367b2b0de687e7d28f692013aa18970941c7dd184450125163ac",
       sha256: "161s9f24njjx87qrwq0c9nmnwvyc6iblcxka7hirw78lm7i9x4w5",
       finalImageName: "quay.io/nextflow/bash",
     }))));
   const hello = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "nextflow-hello",
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nextflow-io",
           repo: "hello",
           rev: "afff16a9b45c8e8a4f5a3743780ac13a541762f8",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r $src $out\n",
     }))));
   const run_nextflow_pipeline = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "run-nextflow-pipeline",
       text: nix.thunk(() => nix.str`export NXF_OFFLINE=true
 for d in true false; do
@@ -55,21 +55,21 @@ done
 `),
     }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "nextflow",
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => [run_nextflow_pipeline, nix.thunk(() => nix.sel(pkgs, "nextflow"))]),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$7,
-            docker: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            [nix.POS]: pos$7,
+            docker: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
           })),
         };
       })(), formals$2),

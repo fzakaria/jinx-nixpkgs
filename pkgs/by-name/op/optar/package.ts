@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "optar",
       version: "20150210",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://ronja.twibright.com/optar.tgz",
           sha256: "10lr31k3xfcpa6vxkbl3abph7j3gks2210489khnnzmhmfdnm1a4",
         })))),
@@ -33,12 +33,12 @@ substituteInPlace pgm2ps \\
   --replace 'convert ' "${nix.app(nix.sel(lib, "getBin"), imagemagick)}/bin/convert "
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int"]))),
       })),
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OPTical ARchiver - it's a codec for encoding data on paper",
         homepage: "http://ronja.twibright.com/optar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "4.1.3",
       pname: "kpcli",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/kpcli/kpcli-${nix.sel(finalAttrs, "version")}.pl`),
           hash: "sha256-yRNj5OB/NSGoZ/aNtgLJW1PcFn5DZu5/8lQlK0F2xi8=",
         })))),
@@ -61,7 +61,7 @@ makeWrapper $out/share/kpcli.pl $out/bin/kpcli --set PERL5LIB \\
       })()}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KeePass Command Line Interface",
         mainProgram: "kpcli",
         longDescription: "KeePass Command Line Interface (CLI) / interactive shell.\nUse this program to access and manage your KeePass 1.x or 2.x databases from a Unix-like command line.\n",

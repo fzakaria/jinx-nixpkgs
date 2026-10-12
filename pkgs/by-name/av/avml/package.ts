@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const avml = nix.arg($, "avml");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "avml",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "avml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-72c2914higGji0vDUwjtQoil/LdEaECv+HqANTcSRdE=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: avml })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: avml })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Portable volatile memory acquisition tool for Linux",
         homepage: "https://github.com/microsoft/avml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

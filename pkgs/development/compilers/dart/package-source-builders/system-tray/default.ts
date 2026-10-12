@@ -29,7 +29,7 @@ substituteInPlace "$out/linux/tray.cc" \\
 runHook postInstall
 `);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname,
           version: version_1,
           src: src_1,

@@ -35,20 +35,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "dwl"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         dwl: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Dwl is a compact, hackable compositor for Wayland based on wlroots.\nYou can manually launch Dwl by executing \"exec dwl\" on a TTY.\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dwl", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "# Lets apply bar patch from:\n# https://codeberg.org/dwl/dwl-patches/src/branch/main/patches/bar\n(pkgs.dwl.override {\n  configH = ./dwl-config.h;\n}).overrideAttrs (oldAttrs: {\n  buildInputs =\n    oldAttrs.buildInputs or []\n    ++ [\n      pkgs.libdrm\n      pkgs.fcft\n    ];\n  patches = oldAttrs.patches or [] ++ [\n    ./bar-0.7.patch\n  ];\n});\n",
             })))),
           extraSessionCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Shell commands executed just before dwl is started.\n",
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "xdg/dwl-session": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               text: nix.thunk(() => nix.str`#!${nix.sel(pkgs, "runtimeShell")}
 # Import environment variables
 ${nix.sel(cfg, "extraSessionCommands")}
@@ -78,13 +78,13 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           user: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             targets: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "dwl-session": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "dwl compositor session",
                 documentation: nix.thunk(() => ["man:systemd.special(7)"]),
                 bindsTo: nix.thunk(() => ["graphical-session.target"]),
@@ -95,34 +95,34 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             sessionPackages: nix.thunk(() => (() => {
               const dwlDesktopFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   name: "dwl-desktop-entry",
                   destination: "/share/wayland-sessions/dwl.desktop",
                   text: "[Desktop Entry]\nName=dwl\nComment=Dynamic window manager for Wayland\nExec=/etc/xdg/dwl-session\nType=Application\n",
                 }))));
               const dwlSession = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   name: "dwl-session",
                   paths: nix.thunk(() => [dwlDesktopFile]),
-                  passthru: nix.thunk(() => ({ __proto__: pos$14, providedSessions: nix.thunk(() => ["dwl"]) })),
+                  passthru: nix.thunk(() => ({ [nix.POS]: pos$14, providedSessions: nix.thunk(() => ["dwl"]) })),
                 }))));
               return [dwlSession];
             })()),
           })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           portal: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             config: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               dwl: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 default: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["wlr", "gtk"]))),
               })),
             })),
@@ -130,7 +130,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gurjaka"))];

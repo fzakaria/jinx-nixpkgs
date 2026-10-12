@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_prefetch_github = nix.arg($, "nix-prefetch-github");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return (engine) => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "openra-updater",
         runtimeInputs: nix.thunk(() => [curl, jq, gnused, nix$, nix_prefetch_github, common_updater_scripts]),
         runtimeEnv: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           build: nix.thunk(() => nix.sel(engine, "build")),
           currentVersion: nix.thunk(() => nix.sel(engine, "version")),
           currentRev: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "rev", engine)), nix.thunk(() => nix.sel(engine, "rev")))),

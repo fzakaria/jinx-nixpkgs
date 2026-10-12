@@ -134,47 +134,47 @@ export default nix.lambda((args) => (() => {
   const fetchNupkg = nix.arg($, "fetchNupkg");
   const commonPackages = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "Microsoft.AspNetCore.App.Ref",
         version: "11.0.0-rc.1.26425.128",
         hash: "sha512-uPsCerTJyOiCI7tfVUTSxOFmnp+VeAW/69+Fv42qACSpp9rhur9cvWquPvPx0Zn3OEzUvdPtRYAyRBdVY3ZYXw==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "Microsoft.AspNetCore.App.Internal.Assets",
         version: "11.0.0-rc.1.26425.128",
         hash: "sha512-8Jahn0cZslR6IJGAG8TfNuytUDfuvFLaVmySbrIaK5jV6aHA9ZF7TE7OenuJ7HI+tOz1kVSZFWeHhSz5svV9wQ==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "Microsoft.NETCore.DotNetAppHost",
         version: "11.0.0-rc.1.26425.128",
         hash: "sha512-dZ/pOWV+VA1F8U1wUQJAvTcA7yyNPd4r3Xbr61qy1T97n5lX1AXr9Zexz6zyb91axZAhF2+UFoTUmKRSYJsP6g==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "Microsoft.NETCore.App.Ref",
         version: "11.0.0-rc.1.26425.128",
         hash: "sha512-50X/bSzzuI83Nihc+As8dP+9LpYxnx/z77eXs7giPmvPAoqY73uJuUOJUvyuUKP7cejnDjK1yIfuu5idGSuM7w==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "Microsoft.DotNet.ILCompiler",
         version: "11.0.0-rc.1.26425.128",
         hash: "sha512-h4Lb45Xvx/satTfgQDWqnRTPvXYUDoAbhECi7P3UvEQJ+6/ds+Q0wZuFNeKdaGkJSDGQBFYXEQQhpYvcjIxYDg==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "Microsoft.NET.ILLink.Tasks",
         version: "11.0.0-rc.1.26425.128",
         hash: "sha512-IhkhoUu9QFuaPvj+xouXXOInU1bazgYuwjYRHOdvvgvS7FpHT12G2BU8XhhaiUPqEZ1FdGI/D40mJyK1CvaNOQ==",
       })))),
   ]);
   const hostPackages = nix.thunk(() => ({
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     "linux-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: "Microsoft.NETCore.App.Crossgen2.linux-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-MXamavgxPIuX9MCsQJKfaSOO0cWDJMJQNoxazjM5oSpMGDDmVH9PNBnQqhsKV3sKNPC6Kc+kzYht0BVXZrLAvw==",
@@ -182,13 +182,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname: "Microsoft.NETCore.App.Crossgen2.linux-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-b1vOv5csjimGfY/RYcG3//FM1jaInyL+A65U1/p3qfG5L1LxNOj31Q6EmHEO/9HRCUqa2SCwoC+ZuMckqvv73Q==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname: "runtime.linux-arm64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-emPGSJ71cJopLbkc956vyI19qDikp6Rob3WVJSBz/JBoYnDBd4KFFwKFw7yOCzQdgJ52bz5apYpOrdf0ZupTcA==",
@@ -196,13 +196,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pname: "Microsoft.NETCore.App.Crossgen2.linux-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ad0TOIiCRRK/9ZIphF8G3XgkjOVOgvLfLLWjDzYC9QSstZ3q5mxf3ihU8mpZ5gqYFGesDhdJNBxaAkbV/2MnbA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           pname: "runtime.linux-x64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-Ri6KqeDkRtfS1eMTwsBhX0DsZwxsCKZqoNTU+LOvcnytQAy6MIq38KdPqry0HMOt3DWZs3FkU1eM2QB709snYg==",
@@ -210,7 +210,7 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname: "Microsoft.NETCore.App.Crossgen2.linux-musl-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-j1FDgPY3JgC9Qo46f7HqH5h85yuRqimXw/jinQIckh+xMN+Bqbx1DPV8a1LX9zXr24pb64hLyAjO3LUec4AMfQ==",
@@ -218,13 +218,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pname: "Microsoft.NETCore.App.Crossgen2.linux-musl-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-laCtx7zVetfzdQJRQ3xR3SEUdubWMGhVDWMDnoOMJD5fCHkAg/kpvnHuKCeZL3NpFY57PieSD1oMne3jpQhRZQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pname: "runtime.linux-musl-arm64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ZqZ++ABE3+UOBkpTcWiP2G/uTPJ+HeyS47j7B4v/Xu6ebmLTGtexEJOQ1w5gsGxUKmrdBtbipIaE+0J87rWXSg==",
@@ -232,13 +232,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           pname: "Microsoft.NETCore.App.Crossgen2.linux-musl-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-uzR+ncX45PQrthDF9esNyNLe6qZH50HuK6MarUmmM6QBGdKDndUv0e2lFDR0pbeSrK3USRB5O1rPOywk8vPA9w==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           pname: "runtime.linux-musl-x64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-DgIFZua40Vqv8Vq63eFjvmTGHm9QW4sWLguFiP2I+n5/7cHSl6e6d/BvqUWafz8Sq9gd0IJtM9bHRmVhZeWF+Q==",
@@ -246,13 +246,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           pname: "Microsoft.NETCore.App.Crossgen2.osx-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-2TvIoFSDGvqsiZjCUxchJxjeFrqaEPSCCEamG0d2rM8BhttKs0XM4bWfrEVh9SA5eD+WZICtu0cN93FdRDZj/A==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           pname: "runtime.osx-arm64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ZmwA1ignNmB4a0uG2wL6W02iFkAtaI6lNQDtC3q1m08gFJA2ddDWeHk/ARg6BQ8I89V8Ih+TEZabZKNb/VGNLQ==",
@@ -260,13 +260,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           pname: "Microsoft.NETCore.App.Crossgen2.osx-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-wpZmNTHCde6fK4SCNzKfC178z8a4lCbZbg0eA+nFcCSy0zjwBhCog9K/QNDcJfkn/yLiQG4A8YoAtvlGyRGk8g==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           pname: "runtime.osx-x64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-xySNWQKhoB8O/2qMtE727wTqkYVzNNUpHhPRNsmqYhCT8GWPalM+aczF7EzstrlFynkYImIiv0+JsSH1LKyFZQ==",
@@ -274,13 +274,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           pname: "Microsoft.NETCore.App.Crossgen2.win-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-qo9YUKZBynvvTq55mtILsrP6KFpopAp8lR1l6pQ3IJcDxFN6stK+jhxM9MYn2ZCTCP0efkynL2P7h4uqAetPIg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           pname: "runtime.win-arm64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ld62RDxw+aCEEwTAf08+65u7SUbYeJUy6xj5+KOoEiy82kOwY8981iX9arpzCvWsD0a5H4cNaQjJHpxKIT6NSQ==",
@@ -288,13 +288,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           pname: "Microsoft.NETCore.App.Crossgen2.win-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-SY2zwiqC9rS1u0eWcCcV7lxm7G/WH66KbeFyPxuDpL8pW3L6n7dUkF8sVo7utreirybeTjdVcFvgbLQGjnvO2g==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           pname: "runtime.win-x64.Microsoft.DotNet.ILCompiler",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-CnexmN/RVZL0XJgOARL/IhqomdwqsfmWUCgUg4cc5Kb6QQiH+GNlhJkt4sZPvO24F8JOUFtHMbq0JQGEB+A/gg==",
@@ -302,7 +302,7 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x86": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           pname: "Microsoft.NETCore.App.Crossgen2.win-x86",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-EHTWXUr/MqYfbC43D/D5XfQ7Y03exPV5/r1Iyd+iK5nsBc8VUEE5hY+55gyWOtdbSOdXMqbP8QxSJU620aTBEw==",
@@ -310,34 +310,34 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const targetPackages = nix.thunk(() => ({
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     "linux-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           pname: "Microsoft.AspNetCore.App.Runtime.linux-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-aPJdF1IY1yDdJdms12o7dJANg2LJQ1fX8rEjCY/ep1FM2nGJ6ceM2awAFlk4kktolPxJUQZnNyCfW9pt+7XDVQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           pname: "Microsoft.NETCore.App.Host.linux-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-D1+3g8nilMgtZlA7geri/ItvN1f94I/NVDfx1NHlq6DxReOXGcqzgAU1v0+7+TdNc7XYwaOsUOARNfQxuUjD6w==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           pname: "Microsoft.NETCore.App.Runtime.linux-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-mQfR4VezBRo8Vy/xBbdho4VE2Cmb7jRvOJ+CFf/9d4JD7+pEBuYtr3sWhczxzq9QaqhqcvWIuoH3dYclaMNrgg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           pname: "runtime.linux-arm.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ofw6h8xgdoXruGCDb6xB9Voj5sXt144HAlXDUMmyUQITfFln5y9pU22zMLuAIyHVOAwM/8sIx/U/IxCIwPD0vw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.linux-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-XS8wJtKF9rUJ7iVJep1QRWmLEJA3VAqcDjNKclLmGj5/J5KdPP0nI0iG90gHm0jIsVJv/m47PUowrSFqw1ar5Q==",
@@ -345,31 +345,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           pname: "Microsoft.AspNetCore.App.Runtime.linux-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-yBOMiAOwHclMXFUJVru9XZoRstBoPsm6D+Dza+xAGJYbv2aAdbwVVOdYn3ivESCf8ZtoxDTRpBo9rM1LMKQsGw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           pname: "Microsoft.NETCore.App.Host.linux-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-W8L8MxW/CWG+IiookQbjpf4nasZ+LDtcOPaGvva4RwfmDwPpTJeEDLvOu2V1PGYYg2Yu9NeT5SoX3OWU7++Ehw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           pname: "Microsoft.NETCore.App.Runtime.linux-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ioxs7p+Y00LNYHh7cR003eLfqbnMcUCccor5IeaJ6d7oNBrJu5pcQZRakvOVwis1MuX3FqXu+cMdLEMNj6EIPg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           pname: "runtime.linux-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ABuveKbA9DkoQZr0XKDAaokcg2ua4FcuO5s58HYwTgCD2USGG/rSu6+FvX9NeCQIMURjIOFJ0d8pw0GZtDVizQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.linux-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-3DLRjy+lcOkWnoZslWANjc1q3+32ABhuJtn4gX4xk0lW3XpS8RvzF46DIMqtDmjvLYNjGW4YnSu38ZijERygoA==",
@@ -377,31 +377,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           pname: "Microsoft.AspNetCore.App.Runtime.linux-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-iN0um3Ns8MhhTuOjNA3nhuTK76lsn48p2WZ32n+uxpclxudbqNv6Lnv8FPUw4p0AW/3dAYFiFKTbJuJ9ge206g==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           pname: "Microsoft.NETCore.App.Host.linux-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-qljfPxAtH7TAgF8H92IIJWhLNg2tak27+ap8B7Vrvnhi58xhFHPPw2t5rGI9/chSPCE3/c1iA34EPAACZDiXOA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           pname: "Microsoft.NETCore.App.Runtime.linux-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-HgncrwcE32D5qvru5zbNMhHaVeQXIF6AvNEheh5BAV54htAPyXu2BPvQFm7GcX3BEi1JgXl9vEZTkie9sMixfg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           pname: "runtime.linux-x64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-IvljUhLpkRuz4ZfxU1hp2Lx2a6V2PqZXi9m24+odkz0ezG5Vkd2Jnn5pNbpwGoCFBTb/bq2A2eWciW9hDqDLGw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.linux-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-R8yFdZ85WMPXakViHaJtYbob9hUL75mQOs+BM8fPdam8YvglBsTA1xPlRZUXXCrXDfy7cfAAjphmMj77OFk8Lw==",
@@ -409,31 +409,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           pname: "Microsoft.AspNetCore.App.Runtime.linux-musl-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-AEHYyd8k10BdoQZzeswN2dWL47xtoQIm2UvtX6SesGL0+7J4dQFPFM13cBL8g9tDfZBBxcE713LP33HTYgxKGw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           pname: "Microsoft.NETCore.App.Host.linux-musl-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-Zq/poOKedESQ2T6ZgcUkAQyjJisG4z6xQ/Cy2nGbSLx7D4gb0Aoi2zQJ3P69aNuynuoeGp0VDQM3NJOM4Cet/g==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           pname: "Microsoft.NETCore.App.Runtime.linux-musl-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-J4gLUPvq/iW80jeGfiSnob/u5QPY0oZOvcmMw5NZ02LG0jfpLxUFmg9FeriVpjkOSPi/t+4xJ2euOud+EzO3wA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           pname: "runtime.linux-musl-arm.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-/SabDCicwjMqkHnPwLhSGxIIwYlfy0NmVSakM8p/GCw99nYKeQlRjY7SxetyoMXb4rhAiVQjlIzit1L9nc1VFg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.linux-musl-arm",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-j3T36gvzqVEbovEEqpYk78fj1acMjoMIfdVuj9ebLVMYxyHvEWy5RvXzMsKDDqct5U0EyRy2MfiWJ5KBXMRJXg==",
@@ -441,31 +441,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           pname: "Microsoft.AspNetCore.App.Runtime.linux-musl-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-7Au7xcFf2soxy4A/GTGXc9I1bLsPqHbyy1dgqrjJvmqitUUYQJZd002ylQZiMF1t88vTsj0XblC2TiNlVCYEAQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           pname: "Microsoft.NETCore.App.Host.linux-musl-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-Ya9Ur4wk8Sg6kWHzUOp6zhKoYQ3DjhKmacJU1YwtpHMXocWzO1HZg+1zMwyqGivApQ+fPrpd10exoO+M0EcgCw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           pname: "Microsoft.NETCore.App.Runtime.linux-musl-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-arhqz8omlmqroUuCDapl0k/FQxPdIjJiR7IzN0ZZ4b7YYibTpV1s/4dBZJYJonMvpJ+NQdrd7OppJaMRZFx0jQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           pname: "runtime.linux-musl-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-JLPMDFAnfA49S5aPi/LToXuIPVWnh3NrvLyEOD9EEfNoO/jnm+H9HcBQ4U1RLYSrpwmQ4GLatF93E1JavTSqlA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.linux-musl-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-VoptYXc/K2TkjaBjhWhIclvi23gUhDS3l2BN3q8dGby1ptN2K25UhN8xTewNBjJGURolmQMiApznQ3DqhE8ANg==",
@@ -473,31 +473,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           pname: "Microsoft.AspNetCore.App.Runtime.linux-musl-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-mWPJy/+0gGGYbCmkZttaz5iWjqNyx+1pPWowckBkmePPPYoWtO7TJhaHyoYQ6nncJ7oSzekbj8W3Hz30pJGiXw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           pname: "Microsoft.NETCore.App.Host.linux-musl-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-K8l9hbErzL/WQHOpihiHKlfMRnyLGmSwu1bFT/3d8r+b1bG7rbpuQj3PPd5YvzRal7vdAKIZyvpZndQBivvVkw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           pname: "Microsoft.NETCore.App.Runtime.linux-musl-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-PPp/wFOVZH6iC4Dv+vLtzz55hUo5qcqudvRbrOEV/VWyCCdkUesjpH33atJV1vbVkXzLixI2FKWfnrapcUeqOQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           pname: "runtime.linux-musl-x64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-4e5QgalnYn2/E0UTvfOIY4bqxX9xgXT3CdggU9iTdkUFCvsxMQcX6VtEA5TuYB8zVRFUjJZb0qd1gWHBYERlFQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.linux-musl-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-TyLljZYlOLZFktCJGLT+topp12ab4Y46o+uqQ4a5xS0uUm1nta7ScatfQRGGa/G6YcaHFZEDtxEbXvOkY3JuSw==",
@@ -505,31 +505,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           pname: "Microsoft.AspNetCore.App.Runtime.osx-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ihFD6fFZ28k7RaklvQWOAsIlSuuxUhY4d70MITdh+adQ6jAlBbhTYD1huLmn6Tbg+zum/tlVi2+MRFsIUPBIyQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           pname: "Microsoft.NETCore.App.Host.osx-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-RpkI5jtZFnGYR2dCD3wCUtzAsUNl4RjYyRh/s8ZPDnW4bMU0ndSl+i9gsDbBjoFYemNgzTzpH/L3peu/7oi+tw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           pname: "Microsoft.NETCore.App.Runtime.osx-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-8YDlh3uvkz2aBjFZAqTJeCkBERaDOpy5If2IOIMp+CGPaxQj616ysbEDupCaU6RhaIpQqszZ605G7EeETDtCCw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           pname: "runtime.osx-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-OGibzmVR9AcwKXNoDHd/x5RAg81nWmOyTpsKjpMkqfIdO2BWGRAJTs2R94BBiyVPbPM9RUaq0UEA0Jq6qK/n2Q==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.osx-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-z3FHmUYVCIByKipp55JT7apT/3HL3LQJgpTtAYL7VBIJc7x4I2DUSBEsln53MtvNHJZPtsg4PKUkLSqku7Epvw==",
@@ -537,31 +537,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           pname: "Microsoft.AspNetCore.App.Runtime.osx-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-1nnTZrfQAhgywbzr5ASt05TAic1s4rgyMhp5mpjPhnCUTVf0yPKzMVNgb/VyT6+vghPkBio2vdhFc7iZCUopWQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           pname: "Microsoft.NETCore.App.Host.osx-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-wmLLvEJuHeUs2f4w5YyfS1ywcygeUNFZakp5+mzxjWLX2on4XC1gbw0NtJrs8GDjBbqhpaAnsLxJxhexGxpzuA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           pname: "Microsoft.NETCore.App.Runtime.osx-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-pOSkrwaTm7uHHSPF8qJliCLg11xUQItxTTZTsk8GXMD4BLLqmtiV+uBMDTqyDAYXJfTv2HJeE3ssunr5mFfg5A==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           pname: "runtime.osx-x64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-iYEe5GSO4w9Z9ZHoC9kh9rI8oaKFbvXDAXLift+aZ4O3Qo70AXPv0zkej/Qtw/xFzpkiNAegbDu53pOM9+KdSA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.osx-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-owUbkgkUpb0wvy9mBH+k8hNRh4qh0kA1XURjAnIt3OjycTpS67NmK1fwsUff194NssoTKVeJtPbu2v0h6un43g==",
@@ -569,31 +569,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           pname: "Microsoft.AspNetCore.App.Runtime.win-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-YIcCrCWf1MpI+0/C2c3AqqVCZAkCnRKRJPfPkDunFnEcYRyjGFdSRC5Ul3iDH3Uc1MNffh1H5x6X5FQcsXWlrw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           pname: "Microsoft.NETCore.App.Host.win-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-ZABWRbdtnijJbZlyfZ4h4GsHS4AHU8vfeBnVlmKzQusO+Uyu8td70eMLk35Pt2VZxWVG/Ls9t7v7IiO1jRvRnQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           pname: "Microsoft.NETCore.App.Runtime.win-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-WfdKjInxiZhPlwUdZkGhdfaG6h4pmnwYc64R/beIit1DmcI/erzoWSK2/raYf9+usFpDoGa6OaWl7nbEPPGCyA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           pname: "runtime.win-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-OtfpAxwkmLQZeN/UA5KKJpGZ+PMY9fsucSJ4RMiD/t8nyGCHtj3raTfx9pQvIbPaouU8NnFBrQzuoXXzOANoyA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.win-arm64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-u6Za5XLGPDF+eqyXef6C9nFZ3ZlXCJFuhH4vI2hlsVM4FiMhtUTmG+NWxY2u1ytnWPfwkzfWa5jaTIYbGzOgBQ==",
@@ -601,31 +601,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           pname: "Microsoft.AspNetCore.App.Runtime.win-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-EFhvvHZQQHiDYOdizRDc6D0slh0Az6jw5Mvd+NG9N6saOUMdwiHE05Skz3Hv/dPjB2/KfgXbwWJyN0IODEFddg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           pname: "Microsoft.NETCore.App.Host.win-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-6Kzs4gSYg+8BpRj0a62WsuFtLhOIj10at4eCwtY0qPyUS23fw235Me+bvtYhe0/+5H85jfaKhuIcYWzyaWhAxQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           pname: "Microsoft.NETCore.App.Runtime.win-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-UZv+9bh5FPMBKb1LoAV7JSd9jdttpinC8cuUSIQslzP5EQLLdoLdjV5rwdWacghzsg0S/8DEsC8ltDCY50gpHQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           pname: "runtime.win-x64.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-9NO3rgdT8K04teJayyMzp2/lSy8+aklP3umPzVXyuibhde38RoNeUMojkjaWkWaGCl4MsDQXxp4BBEbaDal3Vg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.win-x64",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-mrTd9gaLPBBsu2Uj9Yb+V+QIynBZE1QPUqo9noi1nGjSwgEeVlWt2K3feLx54EpR2Wr3M8dD3ocbgP1nHqS+dA==",
@@ -633,31 +633,31 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x86": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           pname: "Microsoft.AspNetCore.App.Runtime.win-x86",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-LfqoGmVLvGdV7Oh2g1Zuz5peBTi1yEv7uPYMNDZM4UhXrWETypn+liPM2EMx0Vg3RZ5omdAe5+zSgsZ88Nkc4Q==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           pname: "Microsoft.NETCore.App.Host.win-x86",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-TMdAseJSOeJ7SG9KT4BbheJ5D6M3neKjVnkQ348ShP00Dz50Z8TJ4UnO/D3OOUpjCqJCzvLbOlRw+ftk9zm6OA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           pname: "Microsoft.NETCore.App.Runtime.win-x86",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-I8ZKRRVIL+WPpHDcq+qe3/4UN5G8XKr3q23Q89WK/SpkTdsXZ1xPfAY67I3rfMBbijeRzzLoWCRnl1D71ZuGtw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$80,
+          [nix.POS]: pos$80,
           pname: "runtime.win-x86.Microsoft.NETCore.DotNetAppHost",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-F/1JORP0sh3lNvMDTSr+w7l3psGspjUzVwqlhgkBIcuXaYIWPqjX1qwch0ajdl5vAtJhIXgyRsO9bEbT1IwtJQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           pname: "Microsoft.NETCore.App.Runtime.NativeAOT.win-x86",
           version: "11.0.0-rc.1.26425.128",
           hash: "sha512-VV7mhPTeTP7yT7XfIwVe52OAw8W3wiE/MnhLLUg6GQyJgGwuQfPe388c5V2MbR3M4WF2QmMehDnRM+pky7tDlw==",
@@ -667,186 +667,186 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const release_11_0 = "11.0.0-rc.1";
     const aspnetcore_11_0 = nix.thunk(() => nix.app(buildAspNetCore, nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         version: "11.0.0-rc.1.26425.128",
         srcs: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           "linux-arm": nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-linux-arm.tar.gz",
             hash: "sha512-3T/Cz/eZ+nVMBhDAx/VEv6aMhDMjDx1+7Z+VIXHfZzNgR9xrWvjOKg1N0+R0uPa1gt5QJUj8ijZ2feaCQVkHuA==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-linux-arm64.tar.gz",
             hash: "sha512-C7Ui3Z0p6vtRuDFQzUFzLsM4Y8iZFobWOO73FDO9lOlvtE7UPsyX5f2Goj0HA/q2f/8RImqpwLYSayDlf9mwBA==",
           })),
           "linux-x64": nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-linux-x64.tar.gz",
             hash: "sha512-L4sjKj4F18RLEVruWBXKhbKZKhrHMvVwTtRzOAITYppeddIHmRxYIvTxGGXJS2NY0drDZTb09BIq35MXUhYDag==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-linux-musl-arm.tar.gz",
             hash: "sha512-VFPW2DT78BSIXjSuuisEOIpvkX9+0UipVKQZv9+7klMFbifHoY6tZLR64sYhBmeLtwccUjC7iMSKZ+joKwjQZA==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-linux-musl-arm64.tar.gz",
             hash: "sha512-LzIuQXl/VoZnnk5x1Av7eTfvtGwDaLukp8JjVle1RM/hjEm3VybT0vsQ9uv0XNx5SAhGj+fTmbNEPzYR+E+cTA==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-linux-musl-x64.tar.gz",
             hash: "sha512-uu0Jzt90jQkR0UxTCZynsyPLe0o549ShGD3MoR5wmrfp+O7p+AnIAfaE0JrIn3aGA1jpy8P7jnUWiq8WhsciEA==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-osx-arm64.tar.gz",
             hash: "sha512-3r5JdumFia1N4xv9GKde9lkieIPEvXqh86+6eSnPnZNsmwRT5ze1R/lQefk3L2dEzhXHY7P+DjcgevqUhpFv5Q==",
           })),
           "osx-x64": nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-osx-x64.tar.gz",
             hash: "sha512-MonPxwAQzl9uOfWDnfvFyTejNPirufY5Xs9fSXaTPTw3F2traZqEhm6Zs9Ne3iLRNYOU9dDpYX1+BpFoiY4tnA==",
           })),
           "win-arm64": nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-win-arm64.tar.gz",
             hash: "sha512-5duFHnLf9ycC/6i2fUylAUXXRY5iRCCTML2udijuzhSkrAmqXBhFbbsYmebxzjSusdZ7I8OnaDVpXEAVZrom5g==",
           })),
           "win-x64": nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-win-x64.tar.gz",
             hash: "sha512-mITHJtmep/lid8nGPlNTiW7TovQZyBhrJuI+2ztGoQCDt1ZvyNEWdUuKHXBJMhrY0Yja68jc8vGXETNzQD7GJA==",
           })),
           "win-x86": nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-rc.1.26425.128/aspnetcore-runtime-11.0.0-rc.1.26425.128-win-x86.tar.gz",
             hash: "sha512-TdVPPdoWD+ZPFkcU4trRct89rnRUNndziuuubD/IIXxept6Cq+PUGVXUwiORH5cTXPZdAP9MVUORkMtiwg4FdA==",
           })),
         })),
       }))));
     const runtime_11_0 = nix.thunk(() => nix.app(buildNetRuntime, nix.thunk(() => ({
-        __proto__: pos$108,
+        [nix.POS]: pos$108,
         version: "11.0.0-rc.1.26425.128",
         srcs: nix.thunk(() => ({
-          __proto__: pos$107,
+          [nix.POS]: pos$107,
           "linux-arm": nix.thunk(() => ({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-linux-arm.tar.gz",
             hash: "sha512-e8CYPk+r+g44RKZ4dcQlp5ZPkFC8o95rmy36J3F9efdDQPBbLpbY3tuuXuRejcVxPR0XZE7SgDSO8qsTuZaxaQ==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-linux-arm64.tar.gz",
             hash: "sha512-8eYqlLO5qRGDPjXMyOJGADLi3xyTbSJ5ljDjL2EynBsbuQt87d59N/7z1cLR5ZxWI7Kx9u4cEbFcS2jgoFnGpw==",
           })),
           "linux-x64": nix.thunk(() => ({
-            __proto__: pos$98,
+            [nix.POS]: pos$98,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-linux-x64.tar.gz",
             hash: "sha512-z9N+dT2RWDyoumWHjyeJTPTijDkPS9DBe+9msAO2fvB31O0hIsX75ut9L57wajj3pjwtoxHzWRlEbRZj1x/h7A==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            __proto__: pos$99,
+            [nix.POS]: pos$99,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-linux-musl-arm.tar.gz",
             hash: "sha512-vwN1aZPLUgaEpZcQUjX45BFcju6NONVQnlBSkIO1KwMa7FwYE81B7ruZkeZe8zsO48ilGkMFcCcENADZONu7Nw==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-linux-musl-arm64.tar.gz",
             hash: "sha512-8hMJABdSSEyZWIp2t+KTkUfw0YP7EXPDIv+UBcLLZLzYE0pabqxTYfOZqq2EHt82YFTlevJVjaEVauUyheVNoA==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-linux-musl-x64.tar.gz",
             hash: "sha512-dvY4mlKCFVoLLobl3ZRF28gQewkCkfEthb5NnUwUfVraN/aH9PjvZ/WkBDLDrf7Y8Y9TcjqAciTTHIyJY+QCZA==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-osx-arm64.tar.gz",
             hash: "sha512-Zf+rCX1uNigC/h07NAoiFXAzuGNaadp1wqpl+g/KngI8sRfgjUPS+2oP2g9wr+eHQSSb53eP80xPuuW8fJYL4w==",
           })),
           "osx-x64": nix.thunk(() => ({
-            __proto__: pos$103,
+            [nix.POS]: pos$103,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-osx-x64.tar.gz",
             hash: "sha512-IFg9dzZGQs1xsldeoIcxqlivzztZeaan1uQ0vh3daVZSFEj7JZs1cBVu9vrnksyTX269NdYjmsLjEPsDDqWqWQ==",
           })),
           "win-arm64": nix.thunk(() => ({
-            __proto__: pos$104,
+            [nix.POS]: pos$104,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-win-arm64.tar.gz",
             hash: "sha512-4de7+NX51dqwqpVUSpTqKODSsF2DM0gUWu1Zjso8r6yzw8MX+0rLVbomKCsSsbkTE0xKoEaK6stfPE+/nvDN3A==",
           })),
           "win-x64": nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-win-x64.tar.gz",
             hash: "sha512-cU/47cGw8P+YMUOeOBiBgswMvCENURkwE5Xr+Atj9JAGLN1MR8LDEahUHvO3d0pzWFXndkm1ezTGaN7tl5FMZg==",
           })),
           "win-x86": nix.thunk(() => ({
-            __proto__: pos$106,
+            [nix.POS]: pos$106,
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/11.0.0-rc.1.26425.128/dotnet-runtime-11.0.0-rc.1.26425.128-win-x86.tar.gz",
             hash: "sha512-WBx3wSgEusxCbUB6hhgHTQNYRRIPmP6NhS4SxKF+FbQZOZ9vR+nEGsexg+T8Y5vI/dXSfCrH+TMY5I9WmFlAbA==",
           })),
         })),
       }))));
     const sdk_11_0_1xx = nix.thunk(() => nix.app(buildNetSdk, nix.thunk(() => ({
-        __proto__: pos$121,
+        [nix.POS]: pos$121,
         version: "11.0.100-rc.1.26425.128",
         srcs: nix.thunk(() => ({
-          __proto__: pos$120,
+          [nix.POS]: pos$120,
           "linux-arm": nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-linux-arm.tar.gz",
             hash: "sha512-8H7PbX/3CgmkEPZ2+VKL/T3e8bb/96f4od1IgxUOymsnsoJQv9JNTGHZCdU3/Td3drS80W6WWJDxD6GXilqBnQ==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            __proto__: pos$110,
+            [nix.POS]: pos$110,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-linux-arm64.tar.gz",
             hash: "sha512-WePIwZN/EiGfQ3oF/65v661+iBVerIPCvJe9tZCnCSnf3QtYWJjgI804g/9Ehlv7jN6enSZdPk8bpJ23cgyV5w==",
           })),
           "linux-x64": nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-linux-x64.tar.gz",
             hash: "sha512-YIUYV3qrnbM9uS69dPD8m/vMez1HNhn0cxrKLtuoCvbFcaONW+aZSGL8Rnn289E9t2dxL8tvcKdoOXShiCSgzA==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            __proto__: pos$112,
+            [nix.POS]: pos$112,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-linux-musl-arm.tar.gz",
             hash: "sha512-nd6vaHmUWF+33ksDf3nR0LyYqDEzIkyBmj4V+1cxQIX3K+vmXCtnx0o6bSxoW9fJitnKmcUNOTfQRyfwJ29wFA==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            __proto__: pos$113,
+            [nix.POS]: pos$113,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-linux-musl-arm64.tar.gz",
             hash: "sha512-DesEJvCm5OhG6z+Uy8Iuvm+tzuLMTwK9NVrOGMOYs6Uo1EDjqLzzRWyLqGwEmZPx3OsgHQcg2y9utBaY1JrccQ==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-linux-musl-x64.tar.gz",
             hash: "sha512-UHqA6CBrG4nmL1nbnAP4IZLVtGfycuWW9TvTMr84rt/MeyVn540VNZY9dpAuX5jX/VdZr2augIMVT6c6QV4jaQ==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            __proto__: pos$115,
+            [nix.POS]: pos$115,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-osx-arm64.tar.gz",
             hash: "sha512-lptvOKDr6FPdYy3J7wfdBpDMlr/lHWN50J16QF9HFgKrXl4JxQX5N4Nvqe6XF6CAeoyChZnIeGVSj9lSyMaViw==",
           })),
           "osx-x64": nix.thunk(() => ({
-            __proto__: pos$116,
+            [nix.POS]: pos$116,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-osx-x64.tar.gz",
             hash: "sha512-nah3CxK9t4ww5w/p4wqHR6Br6zqO+bTbRSlXcW7v0HRtb8CE5lBrvX6ioeiJ9mYtuFeNt+yrslQodHYC4NB0Gw==",
           })),
           "win-arm64": nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-win-arm64.tar.gz",
             hash: "sha512-/FeY9EpfmF2v9omfD7QMj59tCvCqfp0AlNTJPJGcdg29gpcVNqiiCM3PesHUOGji97ZBaY2xeElX7+idoSH6ww==",
           })),
           "win-x64": nix.thunk(() => ({
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-win-x64.tar.gz",
             hash: "sha512-ZJovp5sliKOgxZqeoFToAPzbd6/kfmqbYLIsUisR5L7xmSQj6lmtDVSZtQn0pXUqpp35ZMNrmn47z/0qB0g2HQ==",
           })),
           "win-x86": nix.thunk(() => ({
-            __proto__: pos$119,
+            [nix.POS]: pos$119,
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-rc.1.26425.128/dotnet-sdk-11.0.100-rc.1.26425.128-win-x86.tar.gz",
             hash: "sha512-tCfMf3qEKCYu8J7sOHpHJmVOAQ0lQ/PIbr0X4zDO/376jQtdhuXTdEfBDbARB5hRDZwMK5K3sGwpvrVjBYtkAg==",
           })),
@@ -859,7 +859,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const sdk_11_0 = sdk_11_0_1xx;
     return {
-      __proto__: pos$122,
+      [nix.POS]: pos$122,
       release_11_0,
       aspnetcore_11_0,
       runtime_11_0,

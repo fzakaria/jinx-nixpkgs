@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "file_picker",
         version: version,
         src: src,

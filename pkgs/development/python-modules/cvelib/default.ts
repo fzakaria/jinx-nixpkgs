@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RedHatProductSecurity",
           repo: "cvelib",
           tag: version,
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cvelib"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: cve })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cve })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library and a command line interface for the CVE Services API",
         homepage: "https://github.com/RedHatProductSecurity/cvelib",
         changelog: nix.thunk(() => nix.str`https://github.com/RedHatProductSecurity/cvelib/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cve",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

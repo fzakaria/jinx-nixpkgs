@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kijewski",
           repo: "pyjson5",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyjson5"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON5 serializer and parser library",
         homepage: "https://github.com/Kijewski/pyjson5",
         changelog: nix.thunk(() => nix.str`https://github.com/Kijewski/pyjson5/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

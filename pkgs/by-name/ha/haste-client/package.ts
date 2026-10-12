@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const bundlerApp = nix.arg($, "bundlerApp");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "haste",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["haste"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Command line interface to the AnyStyle Parser and Finder",
         homepage: "https://rubygems.org/gems/haste",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

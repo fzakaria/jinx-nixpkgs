@@ -24,34 +24,34 @@ export default nix.lambda((args) => (() => {
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "systemd-lock-handler": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "systemd-lock-handler")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "systemd-lock-handler", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
-              "systemd-lock-handler": nix.thunk(() => ({ __proto__: pos$4, wantedBy: nix.thunk(() => ["default.target"]) })),
+              [nix.POS]: pos$5,
+              "systemd-lock-handler": nix.thunk(() => ({ [nix.POS]: pos$4, wantedBy: nix.thunk(() => ["default.target"]) })),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "liff"))];

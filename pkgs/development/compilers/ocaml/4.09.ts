@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/4.09.nix", [["url", 17, 7], ["sha256", 18, 
 const pos$2 = nix.positions(here + "/4.09.nix", [["major_version", 2, 3], ["minor_version", 3, 3], ["patch_version", 4, 3], ["sha256", 5, 3], ["hardeningDisable", 8, 3], ["doCheck", 11, 3], ["patches", 13, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     major_version: "4",
     minor_version: "09",
     patch_version: "1",
@@ -16,7 +16,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gen
     patches: nix.thunk(() => [
       nix.path(here, "./4.09.1-Werror.patch"),
       nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://github.com/ocaml/ocaml/commit/8eed2e441222588dc385a98ae8bd6f5820eb0223.patch",
         sha256: "sha256:1b3jc6sj2k23yvfwrv6nc1f4x2n2biqbhbbp74aqb6iyqyjsq35n",
       })),

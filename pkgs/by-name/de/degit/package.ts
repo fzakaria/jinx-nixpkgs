@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "degit",
       version: "3.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rich-Harris",
           repo: "degit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,9 +62,9 @@ makeWrapper ${nodejs}/bin/node $out/bin/degit \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -82,7 +82,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/Rich-Harris/degit/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/CHANGELOG.md`),
         description: "Make copies of git repositories",
         homepage: "https://github.com/Rich-Harris/degit",

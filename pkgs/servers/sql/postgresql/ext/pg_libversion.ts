@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pg_libversion",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "repology",
           repo: "postgresql-libversion",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libversion]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PostgreSQL extension with support for version string comparison",
         homepage: "https://github.com/repology/postgresql-libversion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-7dIVD+4MiYtsjAM5j67MlbiUN2Q5DpK6bUU0ZuHN2rk=",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dwdwfsapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client to retrieve data provided by DWD via their geoserver WFS API",
         homepage: "https://github.com/stephan192/dwdwfsapi",
         changelog: nix.thunk(() => nix.str`https://github.com/stephan192/dwdwfsapi/blob/v${version}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

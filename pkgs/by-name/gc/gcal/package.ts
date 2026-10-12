@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gcal",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.alteholz.dev/gnu/gcal-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2L0tdBHnglHWcGSqDxymClI7+FbuPm2J0H2FoSM0eNw=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-gnulib-link.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-implicit-function-declaration")),
         NIX_LDFLAGS: "-lm",
       })),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Program for calculating and printing calendars",
         longDescription: "Gcal is the GNU version of the trusty old cal(1). Gcal is a\nprogram for calculating and printing calendars. Gcal displays\nhybrid and proleptic Julian and Gregorian calendar sheets.  It\nalso displays holiday lists for many countries around the globe.\n",
         homepage: "https://www.gnu.org/software/gcal/",

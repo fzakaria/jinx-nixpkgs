@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "coc-stylelint",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neoclide",
           repo: "coc-stylelint",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace yarn.lock \\\n  --replace-fail \"http://registry.npmjs.org\" \"https://registry.yarnpkg.com\"\n",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           postPatch: nix.thunk(() => nix.attr(finalAttrs, "postPatch")),
           hash: "sha256-rcHjbiMDrgCHweRMDlfcMvAJT4VULks44fbpctPpZps=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_OPTIONS: "--openssl-legacy-provider" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Stylelint extension for coc.nvim",
         homepage: "https://github.com/neoclide/coc-stylelint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

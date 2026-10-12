@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ctf-ynetd",
       version: "2024.12.31",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://hxp.io/assets/data/code/ctf-ynetd-2024.12.31.tar.xz",
           hash: "sha256-hUEZZEulmaV3KfKOqE1wl7y4SRUn2/HoOjVDabk5+YA=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["ynetd", "pow-solver"]),
       installPhase: "runHook preInstall\ninstall -Dm755 ynetd $out/bin/ynetd\ninstall -Dm755 pow-solver $out/bin/pow-solver\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of ynetd hardened for CTFs with isolation using PID namespaces, minimal overhead proof-of-work checking, and strict resource limits via cgroups",
         homepage: "https://hxp.io/code/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

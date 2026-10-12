@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-pomodoro-watcher",
       version: "0-unstable-2023-12-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sei40kr",
           repo: "gnome-pomodoro-watcher",
           rev: "7c1443d470c9a6bfc07fd9d26a138f136de96515",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-eqkdiNww0CBZ0ZfoirZSvpL7i/4b1XjN3NZFPOGkPko=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper tool to watch GNOME Pomodoro timer",
         homepage: "https://github.com/sei40kr/gnome-pomodoro-watcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const srt = nix.arg($, "srt");
   const ctypes_foreign = nix.arg($, "ctypes-foreign");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srt",
       version: "0.3.4",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-srt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ctypes_foreign, posix_socket, srt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings for the libsrt library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/savonet/ocaml-srt",

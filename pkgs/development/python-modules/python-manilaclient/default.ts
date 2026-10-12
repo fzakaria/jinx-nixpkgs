@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_manilaclient",
           version: version,
           hash: "sha256-ktc2Z6GsIKsINYjokStZdpvgcG8g+26YRewG09cnI9Q=",
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["manilaclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Client library for OpenStack Manila API",
         mainProgram: "manila",
         homepage: "https://github.com/openstack/python-manilaclient",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

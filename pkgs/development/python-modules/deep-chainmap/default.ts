@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "deep_chainmap",
           version: version,
           hash: "sha256-lrCg6GGxjq/Y3t1c1HpJuaP+XVvVrOcB5aVaem5E/I8=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["deep_chainmap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Recursive subclass of ChainMap",
         homepage: "https://github.com/neutrinoceros/deep_chainmap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

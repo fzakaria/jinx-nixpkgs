@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pymilvus",
       version: "2.6.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "milvus-io",
           repo: "pymilvus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["milvus-lite"]),
       dependencies: nix.thunk(() => [cachetools, grpcio, orjson, pandas, protobuf, python_dotenv, setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bulk_writer: nix.thunk(() => [azure_storage_blob, minio, pyarrow, requests, urllib3]),
       })),
       pythonImportsCheck: nix.thunk(() => ["pymilvus"]),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["examples/", "tests/test_bulk_writer_stage.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SDK for Milvus",
         homepage: "https://github.com/milvus-io/pymilvus",
         changelog: nix.thunk(() => nix.str`https://github.com/milvus-io/pymilvus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

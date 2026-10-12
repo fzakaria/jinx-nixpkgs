@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const extraTools = nix.argOr($, "extraTools", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "waf",
       version: "2.1.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ita1024",
           repo: "waf",
           rev: nix.thunk(() => nix.str`waf-${nix.sel(finalAttrs, "version")}`),
@@ -56,15 +56,15 @@ cp -r waflib "$out"/${nix.sel(python3, "sitePackages")}/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         python3: python3,
         extraTools: extraTools,
-        hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({ __proto__: pos$2, waf: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, waf: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://waf.io",
         description: "Meta build system",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ita1024/waf/blob/waf-${nix.sel(finalAttrs, "version")}/ChangeLog`),

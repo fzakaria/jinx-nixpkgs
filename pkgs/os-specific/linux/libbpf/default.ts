@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const tracee = nix.arg($, "tracee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libbpf",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libbpf",
           repo: "libbpf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,19 +40,19 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "--directory=src"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "knot-dns": knot_dns,
           tracee: tracee,
           bpf: nix.thunk(() => nix.sel(nixosTests, "bpf")),
-          systemd: nix.thunk(() => nix.app(nix.sel(systemd, "override"), nix.thunk(() => ({ __proto__: pos$2, withLibBPF: true })))),
+          systemd: nix.thunk(() => nix.app(nix.sel(systemd, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withLibBPF: true })))),
         })),
       })),
       postInstall: "# install linux's libbpf-compatible linux/btf.h\ninstall -Dm444 include/uapi/linux/*.h -t $out/include/linux\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library for loading eBPF programs and reading and manipulating eBPF objects from user-space",
         homepage: "https://github.com/libbpf/libbpf",
         license: nix.thunk(() => (() => {
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "libbpf_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

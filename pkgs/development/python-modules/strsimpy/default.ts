@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "strsimpy",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-CELrV/evhsiCpZobyHIewlgKJn5WP9BQPO0pcgQDcsk=",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["testSIFT4"]),
       pythonImportsCheck: nix.thunk(() => ["strsimpy"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "String similarity and distance measures library",
         homepage: "https://github.com/luozhouyang/python-string-similarity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

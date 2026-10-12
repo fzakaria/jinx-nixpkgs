@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const stubs = nix.arg($, "stubs");
   const should = nix.arg($, "should");
   const bundlerEnv = nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "./default.nix"), stubs), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     basicEnv: nix.thunk(() => nix.app(callPackage, nix.path(here, "../bundled-common"), stubs)),
   }));
   const justName = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "test-0.1.2",
       gemset: nix.path(here, "./test/gemset.nix"),
     }))));
   const pnamed = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "test",
       gemdir: nix.path(here, "./test"),
       gemset: nix.path(here, "./test/gemset.nix"),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
     }))));
   return nix.builtins.concatLists(nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(test, "run"), "bundlerEnv { name }", justName, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.app(nix.sel(should, "equal"), "test-0.1.2")),
         })))),
       nix.thunk(() => nix.app(nix.sel(test, "run"), "bundlerEnv { pname }", pnamed, nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(should, "haveKeys"), nix.thunk(() => ["name", "env", "postBuild"]))),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: nix.thunk(() => nix.app(nix.sel(should, "equal"), "test-0.1.2")),
             env: nix.thunk(() => nix.sel(should, "beASet")),
             postBuild: nix.thunk(() => nix.app(nix.sel(should, "havePrefix"), "/nix/store")),

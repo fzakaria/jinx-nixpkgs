@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgedit-tepl",
       version: "6.14.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icu, libhandy]),
       propagatedBuildInputs: nix.thunk(() => [gtk3, libgedit_amtk, libgedit_gfls, libgedit_gtksourceview]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/World/gedit/libgedit-tepl",
         description: "Text editor product line",
         maintainers: nix.thunk(() => (() => {

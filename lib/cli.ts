@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const explicitBool = nix.argOr($_1, "explicitBool", () => false);
       const formatArg = nix.argOr($_1, "formatArg", () => nix.force(mkValueString));
       const optionFormat = (optionName) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         option: nix.thunk(() => (nix.asBool(nix.app(isLong, optionName)) ? nix.str`--${optionName}` : nix.str`-${optionName}`)),
         sep: nix.thunk(() => (nix.asBool(nix.app(isLong, optionName)) ? "=" : "")),
         explicitBool: explicitBool,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       return (attrs) => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, handlePair, attrs)));
     })();
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       toGNUCommandLineShell,
       toGNUCommandLine,
       toCommandLineShellGNU,

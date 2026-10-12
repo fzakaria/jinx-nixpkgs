@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const lxml = nix.arg($, "lxml");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xml-marshaller",
       version: "1.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "xml_marshaller",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-xbi9HAURxUD/7gHVhwR/ibejHGCqdbv/TE76mCPemU4=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [lxml, six]),
       pythonImportsCheck: nix.thunk(() => ["xml_marshaller"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This module allows one to marshal simple Python data types into a custom XML format",
         homepage: "https://www.python.org/community/sigs/current/xml-sig/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),

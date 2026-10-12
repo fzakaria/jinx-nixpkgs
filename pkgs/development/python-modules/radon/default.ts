@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rubik",
           repo: "radon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rubik/radon/commit/ce5d2daa0a9e0e843059d6f57a8124c64a87a6dc.patch",
             hash: "sha256-WwcfR2ZEWeRiMKdMZAwtZRBcWOqoqpaVTmVo0k+Tn74=",
           })))),
@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_mock]);
       const propagatedBuildInputs = nix.thunk(() => [mando, colorama]);
       const pythonRelaxDeps = nix.thunk(() => ["mando"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, toml: nix.thunk(() => [tomli]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, toml: nix.thunk(() => [tomli]) }));
       const pythonImportsCheck = nix.thunk(() => ["radon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Various code metrics for Python code",
         homepage: "https://radon.readthedocs.org",
         changelog: nix.thunk(() => nix.str`https://github.com/rubik/radon/blob/v${version}/CHANGELOG`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "radon",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

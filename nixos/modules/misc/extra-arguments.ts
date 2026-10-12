@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     _module: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       args: nix.thunk(() => ({
-        __proto__: pos$2,
-        utils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/utils.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, config: config, pkgs: pkgs })))),
+        [nix.POS]: pos$2,
+        utils: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/utils.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, config: config, pkgs: pkgs })))),
       })),
     })),
   };

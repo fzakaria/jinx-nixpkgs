@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const bpp_phyl = nix.arg($, "bpp-phyl");
   const bpp_popgen = nix.arg($, "bpp-popgen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bppsuite",
       version: nix.thunk(() => nix.attr(bpp_core, "version")),
       postPatch: nix.thunk(() => nix.attr(bpp_core, "postPatch")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BioPP",
           repo: "bppsuite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, texinfo]),
       buildInputs: nix.thunk(() => [bpp_core, bpp_seq, bpp_phyl, bpp_popgen]),
       meta: nix.thunk(() => nix.update(nix.sel(bpp_core, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BioPP/bppsuite",
         changelog: "https://github.com/BioPP/bppsuite/blob/master/ChangeLog",
       })),

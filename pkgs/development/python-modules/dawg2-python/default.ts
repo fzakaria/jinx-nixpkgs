@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pymorphy2-fork",
           repo: "DAWG-Python",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["dawg_python"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-python reader for DAWGs created by dawgdic C++ library or DAWG Python extension. Fork of  https://github.com/pytries/DAWG-Python",
         homepage: "https://github.com/pymorphy2-fork/DAWG-Python",
         changelog: nix.thunk(() => nix.str`https://github.com/pymorphy2-fork/DAWG-Python/blob/${nix.sel(src, "tag")}/CHANGES.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "metrics",
       version: "0.5.0",
       minimalOCamlVersion: "4.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/metrics/releases/download/v${nix.sel(finalAttrs, "version")}/metrics-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-3zVjgJCdBkYbzQl+9gY8qfPFE2X0dqeXwDZktTwFcV0=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Metrics infrastructure for OCaml",
         homepage: "https://github.com/mirage/metrics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

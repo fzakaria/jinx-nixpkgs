@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool((nix.asBool(nix.sel(res, "success")) && nix.asBool(!nix.eq(nix.sel(res, "value"), null)))) ? nix.sel(res, "value") : "null");
     })();
     return nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: nix.thunk(() => nix.str`hostname-${fqdn}`),
         meta: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w);
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "blitz"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib_1 = nix.arg($_1, "lib");
             return {
-              __proto__: pos$4,
-              networking: nix.thunk(() => ({ __proto__: pos$2, hostName: hostName, domain: domain })),
+              [nix.POS]: pos$4,
+              networking: nix.thunk(() => ({ [nix.POS]: pos$2, hostName: hostName, domain: domain })),
               environment: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 systemPackages: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(pkgs, w);
                   return [nix.thunk(() => nix.lookup(w_2, "inetutils"))];
@@ -93,7 +93,7 @@ assert "${fqdn}" == machine.succeed("getent hosts ${hostName} | awk '{print $2}'
       })));
   })();
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     noExplicitDomain: nix.thunk(() => nix.app(makeHostNameTest, "ahost", null, null)),
     explicitDomain: nix.thunk(() => nix.app(makeHostNameTest, "ahost", "adomain", "ahost.adomain")),
   };

@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const deno = nix.arg($, "deno");
   const rustToolchain = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "rusty-v8-rust-toolchain",
       paths: nix.thunk(() => [
         rustc,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const clangBasePath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "rusty-v8-llvm-toolchain",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped", "lib")),
@@ -65,11 +65,11 @@ ln -s ${nix.sel(llvmPackages, "compiler-rt")}/lib/linux/libclang_rt.builtins-* "
 `)),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "rusty-v8",
       version: "150.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "denoland",
           repo: "rusty_v8",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +95,7 @@ ln -s ${nix.sel(llvmPackages, "compiler-rt")}/lib/linux/libclang_rt.builtins-* "
       postPatch: nix.thunk(() => nix.str`ln -sv ${rustToolchain} third_party/rust-toolchain
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         V8_FROM_SOURCE: 1n,
         PYTHON: "python3",
         NINJA: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ninja)),
@@ -126,15 +126,15 @@ cp target/*/release/gn_out/src_binding.rs $binding
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          "build-with-unit-tests": nix.thunk(() => nix.app(nix.sel(deno, "passthru", "librusty_v8", "overrideAttrs"), (fa) => ({ __proto__: pos$5, doCheck: true }))),
+          [nix.POS]: pos$6,
+          "build-with-unit-tests": nix.thunk(() => nix.app(nix.sel(deno, "passthru", "librusty_v8", "overrideAttrs"), (fa) => ({ [nix.POS]: pos$5, doCheck: true }))),
         })),
       })),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Rust bindings for the V8 JavaScript engine",
         homepage: "https://github.com/denoland/rusty_v8",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

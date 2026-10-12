@@ -48,31 +48,31 @@ export default nix.lambda((args) => (() => {
   const defaults = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(config, "networking", "networkmanager")), null);
     return nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(nix.lookup(w, "enable")) && nix.asBool(nix.eq(nix.sel(nix.lookup(w, "wifi"), "backend"), "iwd")))), nix.thunk(() => ({
-        __proto__: pos$2,
-        DriverQuirks: nix.thunk(() => ({ __proto__: pos$1, DefaultInterface: "?*" })),
+        [nix.POS]: pos$2,
+        DriverQuirks: nix.thunk(() => ({ [nix.POS]: pos$1, DefaultInterface: "?*" })),
       })));
   })());
   const configFile = nix.thunk(() => nix.app(nix.sel(ini, "generate"), "main.conf", nix.thunk(() => nix.app(recursiveUpdate, defaults, nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       networking: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         wireless: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           iwd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(mkEnableOption, "iwd")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "iwd", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(ini, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  Settings: nix.thunk(() => ({ __proto__: pos$3, AutoConnect: true })),
-                  Network: nix.thunk(() => ({ __proto__: pos$4, EnableIPv6: true, RoutePriorityOffset: 300n })),
+                  [nix.POS]: pos$5,
+                  Settings: nix.thunk(() => ({ [nix.POS]: pos$3, AutoConnect: true })),
+                  Network: nix.thunk(() => ({ [nix.POS]: pos$4, EnableIPv6: true, RoutePriorityOffset: 300n })),
                 })),
                 description: "Options passed to iwd.\nSee {manpage}`iwd.config(5)` for supported options.\n",
               })))),
@@ -81,60 +81,60 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "wireless", "enable"))),
             message: "Only one wireless daemon is allowed at the time: networking.wireless.enable and networking.wireless.iwd.enable are mutually exclusive.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "settings"), "General")) && nix.asBool(nix.has(nix.sel(cfg, "settings", "General"), "UseDefaultInterface"))))),
             message: "`networking.wireless.iwd.settings.General.UseDefaultInterface` has been deprecated. Use `networking.wireless.iwd.settings.DriverQuirks.DefaultInterface` instead.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => nix.attrsDyn({}, [
-            [nix.str`iwd/${nix.sel(configFile, "name")}`, nix.thunk(() => ({ __proto__: pos$13, source: configFile }))],
+            [nix.str`iwd/${nix.sel(configFile, "name")}`, nix.thunk(() => ({ [nix.POS]: pos$13, source: configFile }))],
           ])),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           dbus: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           network: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             links: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "80-iwd": nix.thunk(() => ({
-                __proto__: pos$19,
-                matchConfig: nix.thunk(() => ({ __proto__: pos$17, Type: "wlan" })),
-                linkConfig: nix.thunk(() => ({ __proto__: pos$18, NamePolicy: "keep kernel" })),
+                [nix.POS]: pos$19,
+                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Type: "wlan" })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$18, NamePolicy: "keep kernel" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             iwd: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "networking", "resolvconf", "package"))]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [configFile]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$22, ReadWritePaths: "-/etc/resolv.conf" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$22, ReadWritePaths: "-/etc/resolv.conf" })),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$27, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$27, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=iwd.ts.map

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intel-npu-driver";
       const version = "1.38.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "linux-npu-driver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [udev, openssl, boost, level_zero]);
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=missing-field-initializers",
       }));
       const outputs = nix.thunk(() => ["out", "validation", "firmware"]);
       const postPatch = "rm third_party/cmake/level-zero.cmake\n\nsubstituteInPlace third_party/yaml-cpp/CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required\" \\\n  \"# cmake_minimum_required\"\n\nsubstituteInPlace third_party/CMakeLists.txt --replace-fail \\\n  \"include(cmake/level-zero.cmake)\" \\\n  \"include(cmake/FindLevelZero.cmake)\"\n\nsubstituteInPlace third_party/level-zero-npu-extensions/ze_graph_ext.h --replace-fail \\\n\"#include \\\"ze_api.h\\\"\" \\\n\"#include <level_zero/ze_api.h>\"\n\nsubstituteInPlace validation/{kmd-test,umd-test}/CMakeLists.txt --replace-fail \\\n  \"COMPONENT validation-npu\" \\\n  \"DESTINATION $validation/bin COMPONENT validation-npu\"\n\nsubstituteInPlace firmware/CMakeLists.txt --replace-fail \\\n  \"DESTINATION /lib/firmware/updates/intel/vpu/\" \\\n  \"DESTINATION $firmware/lib/firmware/intel/vpu/\"\n";
       const installPhase = "cmake --install . --component level-zero-npu\ncmake --install . --component validation-npu\ncmake --install . --component fw-npu\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/intel/linux-npu-driver",
         description: "Intel NPU (Neural Processing Unit) Standalone Driver",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faust-physicalmodeling",
       version: "2.88.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grame-cncm",
           repo: "faust",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\ncd examples/physicalModeling\n\nfor f in *MIDI.dsp; do\n  faust2jaqt -time -vec -double -midi -nvoices 16 -t 99999 $f\n  faust2lv2  -time -vec -double -gui -nvoices 16 -t 99999 $f\ndone\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/lv2 $out/bin\nmv *.lv2/ $out/lib/lv2\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\npatchShebangs --host $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Physical models included with faust compiled as jack standalone and lv2 instruments",
         homepage: "https://github.com/grame-cncm/faust/tree/master-dev/examples/physicalModeling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

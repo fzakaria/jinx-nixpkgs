@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "newsboat",
       version: "2.44",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "newsboat",
           repo: "newsboat",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-OV7WpM0NBfqOtFv9Co728UwHut4HhT2u5qgvamy/FAg=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [makeWrapper, ncurses])))),
       buildInputs: nix.thunk(() => nix.concat([stfl, sqlite, curl, libxml2, json_c, ncurses], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv, gettext])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         GETTEXT_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gettext)}/lib`),
         GETTEXT_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gettext)}/include`),
         GETTEXT_BIN_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), gettext)}/bin`),
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
 done
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://newsboat.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/newsboat/newsboat/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Fork of Newsbeuter, an RSS/Atom feed reader for the text console",

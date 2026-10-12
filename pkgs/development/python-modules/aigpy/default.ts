@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pydub = nix.arg($, "pydub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aigpy",
       version: "2022.7.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1kQced6YdC/wvegqFVhZfej4+4aemGXvKysKjejP13w=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [mutagen, requests, colorama, prettytable, pycrypto, pydub]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/AIGMix/AIGPY",
         description: "Python library with miscellaneous tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

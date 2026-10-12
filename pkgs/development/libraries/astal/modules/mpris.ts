@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const quarrel = nix.arg($, "quarrel");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "mpris",
       buildInputs: nix.thunk(() => [gvfs, json_glib, libsoup_3, quarrel]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for mpris players" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for mpris players" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=mpris.ts.map

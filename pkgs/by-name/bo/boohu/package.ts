@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "boohu",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.tuxfamily.org/boohu/downloads/boohu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-IB59C5/uuHP6LtKLypjpgHOo0MR9bFdCbudaRa+h7lI=",
         })))),
       vendorHash: "sha256-AVK4zE/Hs9SN8Qj2WYj/am2B0R74QKYoMNf3sRRjnU4=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "New coffee-break roguelike game",
         mainProgram: "boohu",
         longDescription: "Break Out Of Hareka's Underground (Boohu) is a roguelike game mainly\ninspired from DCSS and its tavern, with some ideas from Brogue, but\naiming for very short games, almost no character building, and a\nsimplified inventory.\n",

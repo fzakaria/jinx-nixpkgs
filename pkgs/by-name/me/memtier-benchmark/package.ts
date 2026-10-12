@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "memtier-benchmark",
       version: "2.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redis",
           repo: "memtier_benchmark",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libevent, zlib, openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/redis/memtier_benchmark/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Redis and Memcached traffic generation and benchmarking tool",
         homepage: "https://github.com/redis/memtier_benchmark",

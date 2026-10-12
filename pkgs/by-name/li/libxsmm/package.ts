@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libxsmm",
       version: "1.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libxsmm",
           repo: "libxsmm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
         const static$ = nix.thunk(() => (nix.asBool(enableStatic) ? "1" : "0"));
         return ["OMP=1", "PREFIX=$(out)", nix.thunk(() => nix.str`STATIC=${static$}`)];
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int -std=gnu17" })),
       postInstall: "mkdir -p $dev/lib/pkgconfig\nmv $out/lib/*.pc $dev/lib/pkgconfig\n\nmoveToOutput \"share/libxsmm\" ${!outputDoc}\n",
       prePatch: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives",
         mainProgram: "libxsmm_gemm_generator",

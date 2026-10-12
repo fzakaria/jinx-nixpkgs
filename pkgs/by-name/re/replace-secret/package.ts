@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "replace-secret",
       buildInputs: nix.thunk(() => [python3]),
       dontUnpack: true,
@@ -32,7 +32,7 @@ $out/bin/replace-secret "and this" <(echo "b") short_test
 diff ${nix.path(here, "./test/expected_short_output")} short_test
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-about",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EmbarkStudios",
           repo: "cargo-about",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => ["cli"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [zstd]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cargo plugin to generate list of all licenses for a crate",
         homepage: "https://github.com/EmbarkStudios/cargo-about",
         changelog: nix.thunk(() => nix.str`https://github.com/EmbarkStudios/cargo-about/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

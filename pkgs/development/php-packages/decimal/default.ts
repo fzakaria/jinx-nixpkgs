@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const version = "1.5.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "decimal",
       version: version,
       hash: "sha256-it8w8hOLYwtCZoDYhaP5k5TD/pQLtj37K2lSESF80ok=",
       buildInputs: nix.thunk(() => [mpdecimal]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-libmpdec-path=${mpdecimal}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Arbitrary-precision decimal arithmetic for PHP",
         homepage: "https://php-decimal.github.io",
         changelog: nix.thunk(() => nix.str`https://pecl.php.net/package-changelog.php?package=decimal&release=${version}`),

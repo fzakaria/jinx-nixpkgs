@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libExt = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
   const grammarToAttrSet = (drv) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     name: nix.thunk(() => nix.str`lib/lib${nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "-grammar", nix.thunk(() => nix.app(nix.sel(lib, "strings", "getName"), drv)))))}${libExt}`),
     path: nix.thunk(() => nix.str`${drv}/parser`),
   });
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const with_grammars = (fn) => nix.app(grammarPackage, nix.thunk(() => nix.app(fn, nix.thunk(() => nix.sel(pkgs, "tree-sitter-grammars", "derivations")))));
   const with_all_grammars = nix.thunk(() => nix.app(grammarPackage, nix.thunk(() => nix.sel(pkgs, "tree-sitter-grammars", "allGrammars"))));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "with-grammars": with_grammars,
     "with-all-grammars": with_all_grammars,
   };

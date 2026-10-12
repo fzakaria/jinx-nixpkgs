@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gephi";
       const version = "0.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gephi",
           repo: "gephi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ cp ${jogl}/share/java/glue*.jar $out/gephi/modules/ext/org.gephi.visualization/o
 printf "\\n\\njdkhome=${jdk11}\\n" >> $out/etc/gephi.conf
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Platform for visualizing and manipulating large graphs",
         mainProgram: "gephi",
         homepage: "https://gephi.org",
@@ -56,7 +56,7 @@ printf "\\n\\njdkhome=${jdk11}\\n" >> $out/etc/gephi.conf
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "taeer"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdaemon",
       version: "0.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://0pointer.de/lennart/projects/libdaemon/libdaemon-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0d5qlq5ab95wh1xc87rqrh1vx6i8lddka1w3f1zcqvcqdxgyn8zx",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`ac_cv_func_setpgrp_void=${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD"))))}`),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight C library that eases the writing of UNIX daemons",
         homepage: "http://0pointer.de/lennart/projects/libdaemon/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

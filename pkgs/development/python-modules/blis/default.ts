@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "cython-blis",
           tag: nix.thunk(() => nix.str`release-v${version}`),
@@ -38,24 +38,24 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/explosion/cython-blis/commit/1498af063ea924e2e2334a3f5ab49ae1a66a8648.patch?full_index=1",
             hash: "sha256-zl+xIoYVjf13La53ocrL0ztx48sdJfWN1Y6px6Hgf9Q=",
           })))),
       ]);
       const build_system = nix.thunk(() => [setuptools, cython, numpy]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) && nix.asBool(nix.sel(stdenv, "cc", "isGNU")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "15")))))), nix.thunk(() => ({ __proto__: pos$3, BLIS_ARCH: "generic" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) && nix.asBool(nix.sel(stdenv, "cc", "isGNU")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "15")))))), nix.thunk(() => ({ [nix.POS]: pos$3, BLIS_ARCH: "generic" }))));
       const dependencies = nix.thunk(() => [numpy]);
       const pythonImportsCheck = nix.thunk(() => ["blis"]);
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const preCheck = "rm -rf ./blis\n";
       const disabledTestPaths = nix.thunk(() => ["tests/test_dotv.py"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "release-v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "release-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/cython-blis/releases/tag/release-v${version}`),
         description: "BLAS-like linear algebra library",
         homepage: "https://github.com/explosion/cython-blis",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

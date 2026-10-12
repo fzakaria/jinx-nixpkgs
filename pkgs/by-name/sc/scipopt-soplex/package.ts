@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scipopt-soplex",
       version: "8.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipopt",
           repo: "soplex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://soplex.zib.de/",
         description: "Sequential object-oriented simPlex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

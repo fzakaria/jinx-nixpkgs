@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ebuild-mode",
       version: "1.86",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitweb.gentoo.org/proj/ebuild-mode.git/snapshot/ebuild-mode-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-wuUZce+9VE5pthm6QPrPJFUGML6Tuv2mnY9cqkSFZo8=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitweb.gentoo.org/proj/ebuild-mode.git/",
         description: "Major modes for Gentoo package files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

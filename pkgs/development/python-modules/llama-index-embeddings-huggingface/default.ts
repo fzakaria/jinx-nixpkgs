@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_embeddings_huggingface",
           version: version,
           hash: "sha256-AvNN8T47g+kWn8/fYktvvpBvznW3RIzfaYALq8KBqaY=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["llama_index.embeddings.huggingface"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Embeddings Integration for Huggingface",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-huggingface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

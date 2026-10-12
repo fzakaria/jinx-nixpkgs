@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const libva = nix.arg($, "libva");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kpipewire",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtquick3d, pipewire, ffmpeg, libgbm, libva]),

@@ -41,31 +41,31 @@ export default nix.lambda((args) => (() => {
   const confFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "smartdns.conf", nix.thunk(() => (() => {
       const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "generators")), w);
       return nix.app(nix.lookup(w_1, "toKeyValue"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mkKeyValue: nix.thunk(() => nix.app(nix.lookup(w_1, "mkKeyValueDefault"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               mkValueString: (v) => (nix.asBool(nix.app(nix.lookup(w_1, "isBool"), v)) ? nix.app(nix.lookup(w_1, "boolToYesNo"), v) : nix.app(nix.lookup(w_1, "mkValueStringDefault"), nix.thunk(() => ({})), v)),
             })), " ")),
           listsAsDuplicateKeys: true,
         })), nix.thunk(() => nix.sel(cfg, "settings")));
     })())));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         smartdns: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "SmartDNS DNS server")),
           bindPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 53n,
               description: "DNS listening port number.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const atom = nix.thunk(() => nix.app(oneOf, nix.thunk(() => [str, int, bool])));
                 return nix.app(attrsOf, nix.thunk(() => nix.app(coercedTo, atom, nix.thunk(() => nix.lookup(w, "toList")), nix.thunk(() => nix.app(listOf, atom)))));
@@ -77,36 +77,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           smartdns: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               bind: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.str`:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "bindPort")))}`))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "smartdns"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             smartdns: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [confFile]),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
-            "smartdns/smartdns.conf": nix.thunk(() => ({ __proto__: pos$14, source: confFile })),
+            [nix.POS]: pos$16,
+            "smartdns/smartdns.conf": nix.thunk(() => ({ [nix.POS]: pos$14, source: confFile })),
             "default/smartdns": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "smartdns")}/etc/default/smartdns`),
             })),
           })),

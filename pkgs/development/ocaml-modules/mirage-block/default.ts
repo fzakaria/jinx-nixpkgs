@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-block",
       version: "3.0.2",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-block/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-block-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-UALUfeL0G1mfSsLgAb/HpQ6OV12YtY+GUOYG6yhUwAI=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct, lwt, fmt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Block signatures and implementations for MirageOS",
         homepage: "https://github.com/mirage/mirage-block",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libsignon-glib",
       version: "2.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "py"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.com/accounts-sso/libsignon-glib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "0gnx9gqsh0hcfm1lk7w60g64mkn1iicga5f5xcy1j9a9byacsfd0",
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "chmod +x build-aux/gen-error-map.py\npatchShebangs build-aux/gen-error-map.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for managing single signon credentials which can be used from GLib applications",
         homepage: "https://gitlab.com/accounts-sso/libsignon-glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

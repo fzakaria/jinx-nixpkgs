@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const pname = "delfin";
       const version = "0.4.8";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avery42",
           repo: "delfin",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-2ussvPXMX4wGE9N+Zh8KYIjbbqEKkPaNymN1Oqj8w8U=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -67,15 +67,15 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk4, libadwaita, libglvnd, libepoxy, mpv, openssl]);
       const mesonFlags = nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "profile", "release"))]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Stream movies and TV shows from Jellyfin",
         homepage: "https://www.delfin.avery.cafe/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

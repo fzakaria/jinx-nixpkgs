@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pcmanfm-qt";
       const version = "2.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "pcmanfm-qt",
           rev: version,
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
         qtsvg,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const postPatch = "substituteInPlace config/pcmanfm-qt/lxqt/settings.conf.in --replace-fail @LXQT_SHARE_DIR@ /run/current-system/sw/share/lxqt\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lxqt/pcmanfm-qt",
         description: "File manager and desktop icon manager (Qt port of PCManFM and libfm)",
         mainProgram: "pcmanfm-qt",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

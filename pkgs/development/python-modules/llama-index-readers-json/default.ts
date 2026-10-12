@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_core = nix.arg($, "llama-index-core");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-readers-json",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_readers_json",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RMyp4abnR3nRGd+35/zpTh3h8EjnzGKs0zOrwHjBeTE=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["llama_index.readers.json"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Readers Integration for Json",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-json",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

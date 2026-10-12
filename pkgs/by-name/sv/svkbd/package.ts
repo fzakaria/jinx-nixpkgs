@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const conf = nix.argOr($, "conf", () => null);
   const patches = nix.argOr($, "patches", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "svkbd",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/svkbd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-bZQyGeMzMUdYY0ZmdKB2CFhZygDc6UDlTU4kdx+UZoA=",
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LAYOUT=${layout}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple virtual keyboard",
         homepage: "https://tools.suckless.org/x/svkbd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

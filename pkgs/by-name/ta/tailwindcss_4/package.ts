@@ -23,23 +23,23 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`tailwindcss has not been packaged for ${system} yet.`)));
   const plat = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "macos-arm64",
     "aarch64-linux": "linux-arm64",
     "x86_64-linux": "linux-x64",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "aarch64-darwin": "sha256-zfZGcCmHp0NGTf9NnGD9RIDRwec92Bmppn8QeIFdzp0=",
     "aarch64-linux": "sha256-Vf0LJBIU7/PeHo7k8ieWZi8tLnpJvPynR3z9C6w5gZU=",
     "x86_64-linux": "sha256-3GGzrGuMnKh0wMxMV7JAl5GmTFVAQEyl9TZzYLq8MTo=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       pname: "tailwindcss_4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.add(nix.str`https://github.com/tailwindlabs/tailwindcss/releases/download/v${version}/tailwindcss-`, plat)),
           hash: hash,
         })))),
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/tailwindcss`),
       versionCheckProgramArg: "--help",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line tool for the CSS framework with composable CSS classes, standalone v4 CLI",
         homepage: "https://tailwindcss.com/blog/tailwindcss-v4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

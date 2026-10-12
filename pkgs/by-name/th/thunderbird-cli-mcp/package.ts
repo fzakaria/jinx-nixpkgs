@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "thunderbird-cli-mcp",
       version: "1.1.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vitalio-sh",
           repo: "thunderbird-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-1+VkzCrLZvL7XUxoK/AazwSR3yLqgZ4CGJwDAJ2e+5U=",
       postInstall: "rm -rf $out/lib/node_modules/thunderbird-cli/node_modules/thunderbird-cli-bridge\nrm -rf $out/lib/node_modules/thunderbird-cli/node_modules/.bin/tb\nrm -rf $out/lib/node_modules/thunderbird-cli/node_modules/.bin/tb-bridge\nrm -rf $out/lib/node_modules/thunderbird-cli/node_modules/.bin/tb-mcp\nrm -rf $out/lib/node_modules/thunderbird-cli/node_modules/thunderbird-cli\nrm -rf $out/lib/node_modules/thunderbird-cli/node_modules/thunderbird-cli-mcp\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MCP server that gives full access to your email through Mozilla Thunderbird",
         homepage: "https://github.com/vitalio-sh/thunderbird-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/vitalio-sh/thunderbird-cli/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

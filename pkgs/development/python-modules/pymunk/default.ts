@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8wRYlyYTJbs+iShEAt1DuQjQpYcdwgEFl+NrQwnwIps=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["pymunk/tests"]);
       const pythonImportsCheck = nix.thunk(() => ["pymunk"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "2d physics library",
         homepage: "https://www.pymunk.org",
         changelog: nix.thunk(() => nix.str`https://github.com/viblo/pymunk/releases/tag/${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

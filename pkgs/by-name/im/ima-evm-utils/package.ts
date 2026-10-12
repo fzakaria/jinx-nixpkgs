@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ima-evm-utils",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-integrity",
           repo: "ima-evm-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, asciidoc, libxslt]),
       buildInputs: nix.thunk(() => [keyutils, openssl, tpm2_tss]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MANPAGE_DOCBOOK_XSL: nix.thunk(() => nix.str`${docbook_xsl}/xml/xsl/docbook/manpages/docbook.xsl`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility to manage digital signatures of the Linux kernel integrity subsystem (IMA/EVM)",
         mainProgram: "evmctl",
         homepage: "https://github.com/linux-integrity/ima-evm-utils",

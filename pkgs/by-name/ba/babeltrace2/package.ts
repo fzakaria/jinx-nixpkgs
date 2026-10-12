@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "babeltrace2";
       const version = "2.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "efficios",
           repo: "babeltrace",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["CFLAGS=-Wno-error=stringop-truncation -Wno-error=null-dereference"]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Babeltrace /ˈbæbəltreɪs/ is an open-source trace manipulation toolkit",
         homepage: "https://babeltrace.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

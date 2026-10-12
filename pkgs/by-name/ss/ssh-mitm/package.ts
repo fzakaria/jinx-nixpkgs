@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssh-mitm",
       version: "6.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ssh-mitm",
           repo: "ssh-mitm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installManPage man1/*\n",
       pythonImportsCheck: nix.thunk(() => ["sshmitm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for SSH security audits",
         homepage: "https://github.com/ssh-mitm/ssh-mitm",
         changelog: nix.thunk(() => nix.str`https://github.com/ssh-mitm/ssh-mitm/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

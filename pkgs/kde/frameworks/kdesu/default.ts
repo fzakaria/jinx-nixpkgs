@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kdesu",
       patches: nix.thunk(() => [nix.path(here, "./kdesu-search-for-wrapped-daemon-first.patch")]),
     })));

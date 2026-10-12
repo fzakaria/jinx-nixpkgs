@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colors",
       version: "0.0.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leostera/colors/releases/download/${nix.sel(finalAttrs, "version")}/colors-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-fY1j9FODVnifwsI8qkKm0QSmssgWqYFXJ7y8o7/KmEY=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [mdx]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure OCaml library for manipulating colors across color spaces",
         homepage: "https://github.com/leostera/colors",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/colors/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return (self) => (super$) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     preBuild: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "preBuild"), "platformPath=$out/Platforms/MacOSX.platform\nsdkpath=$platformPath/Developer/SDKs\n")),
     preInstall: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "preInstall"), "platformPath=$out/Platforms/MacOSX.platform\nsdkpath=$platformPath/Developer/SDKs\n")),
   });

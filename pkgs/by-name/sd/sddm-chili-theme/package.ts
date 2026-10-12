@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const configureTheme = nix.thunk(() => nix.add("cp theme.conf theme.conf.orig \n", nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (configLine) => nix.add(nix.str`grep -q '^${nix.sel(configLine, "name")}=' theme.conf || echo '${nix.sel(configLine, "name")}=' >> "$1"
 `, nix.str`sed -i -e 's/^${nix.sel(configLine, "name")}=.*$/${nix.sel(configLine, "name")}=${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["/", "&", "\\"]), nix.thunk(() => nix.app(customToString, nix.thunk(() => nix.sel(configLine, "value")))))}/' theme.conf`), configLines)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sddm-chili-theme",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MarianArlt",
           repo: "sddm-chili",
           rev: "6516d50176c3b34df29003726ef9708813d06271",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preInstall: configureTheme,
       postInstall: "mkdir -p $out/share/sddm/themes/chili\n\nmv * $out/share/sddm/themes/chili/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

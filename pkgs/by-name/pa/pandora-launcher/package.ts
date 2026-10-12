@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(controllerSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "controllerSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pandora-launcher/package.nix:53:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(textToSpeechSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "textToSpeechSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pandora-launcher/package.nix:57:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(sandboxSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "sandboxSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pandora-launcher/package.nix:61:1");
-  const pandora_launcher$ = nix.thunk(() => nix.app(nix.sel(pandora_launcher_unwrapped, "override"), nix.thunk(() => ({ __proto__: pos$1, msaClientID: msaClientID }))));
+  const pandora_launcher$ = nix.thunk(() => nix.app(nix.sel(pandora_launcher_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, msaClientID: msaClientID }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pandora-launcher",
       version: nix.thunk(() => nix.attr(pandora_launcher$, "version")),
       strictDeps: true,
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pandora_launcher$, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kubexit",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karlkfi",
           repo: "kubexit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-RA3+S5Pad+4mNUgcZ2Z0K0FKA3Za5o1ko049GM4yQQ8=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command supervisor for coordinated Kubernetes pod container termination",
         mainProgram: "kubexit",
         homepage: "https://github.com/karlkfi/kubexit/",

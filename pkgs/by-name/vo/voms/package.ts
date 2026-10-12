@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const externalEtc = nix.argOr($, "externalEtc", () => "/etc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "voms",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "italiangrid",
           repo: "voms",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-odwaIGaiJEnxNeysScYknOTimpvvx1vhuHf82VGPoVg=",
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, externalEtc: externalEtc })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, externalEtc: externalEtc })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex, pkg_config]),
       buildInputs: nix.thunk(() => [expat, gsoap, openssl, zlib]),
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev", "man"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(externalEtc, null)), "etc"))),
@@ -55,7 +55,7 @@ export GSOAP_SSL_PP_LIBS="$(pkg-config --libs gsoapssl++ zlib)"
 ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), externalEtc)} "$out/etc"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C/C++ VOMS server, client and APIs v2.x",
         homepage: "https://italiangrid.github.io/voms/",
         changelog: "https://github.com/italiangrid/voms/blob/master/ChangeLog",

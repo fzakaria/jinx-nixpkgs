@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const cmocka = nix.arg($, "cmocka");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tpm2-abrmd",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tpm2-software",
           repo: "tpm2-abrmd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   --suffix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [tpm2_tss]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TPM2 resource manager, accessible via D-Bus",
         mainProgram: "tpm2-abrmd",
         homepage: "https://github.com/tpm2-software/tpm2-tools",

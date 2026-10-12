@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://grammalecte.net/grammalecte/zip/Grammalecte-fr-v${version}.zip`),
           sha256: "076jv3ywdgqqzg92bfbagc7ypy08xjq5zn4vgna6j9350fkfqhzn",
         }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = ".";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source grammar and typographic corrector for the French language",
         homepage: "https://grammalecte.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

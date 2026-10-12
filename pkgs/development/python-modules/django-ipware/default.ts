@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "un33k",
           repo: "django-ipware",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, python_ipware]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "ipware.tests.testsettings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "ipware.tests.testsettings" }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_django]);
       const enabledTestPaths = nix.thunk(() => ["ipware/tests/tests*.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django application to retrieve user's IP address",
         homepage: "https://github.com/un33k/django-ipware",
         changelog: nix.thunk(() => nix.str`https://github.com/un33k/django-ipware/blob/v${version}/CHANGELOG.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

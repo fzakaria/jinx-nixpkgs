@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.36.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-AN2Y/6d/HKMLMLNVXru04vccVdMt2LJKCDioE1k/J94=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [boto3, botocore, fsspec, tenacity, python_dateutil]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pandas: nix.thunk(() => [pandas]),
         sqlalchemy: nix.thunk(() => [sqlalchemy]),
         arrow: nix.thunk(() => [pyarrow]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyathena"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python DB API 2.0 (PEP 249) client for Amazon Athena",
         homepage: "https://github.com/laughingman7743/PyAthena/",
         changelog: nix.thunk(() => nix.str`https://github.com/laughingman7743/PyAthena/releases/tag/v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

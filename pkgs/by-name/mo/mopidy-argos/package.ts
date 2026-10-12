@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.19.1";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orontee",
           repo: "argos",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapGApps = true;
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/orontee/argos",
         description: "Gtk front-end to control a Mopidy server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "argos",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

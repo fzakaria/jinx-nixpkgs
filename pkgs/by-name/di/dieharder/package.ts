@@ -19,29 +19,29 @@ export default nix.lambda((args) => (() => {
   const gsl = nix.arg($, "gsl");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dieharder",
       version: "3.31.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://webhome.phy.duke.edu/~rgb/General/dieharder/dieharder-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-bP8P+DlMVTVJrHQzNZzPyVX7JnlCYDFGIN+l5M1Lcn8=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./stdint.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       buildInputs: nix.thunk(() => [gsl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Random Number Generator test suite",
         mainProgram: "dieharder",
         homepage: "https://webhome.phy.duke.edu/~rgb/General/dieharder.php",

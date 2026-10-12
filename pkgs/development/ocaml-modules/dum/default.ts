@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dum",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mjambon/dum/releases/download/${nix.sel(finalAttrs, "version")}/dum-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ZFojUD/IoxVTDfGyh2wveFsSz4D19pKkHrNuU+LFJlE=",
         })))),
       postPatch: "substituteInPlace \"dum.ml\" \\\n--replace-fail \"Lazy.lazy_is_val\" \"Lazy.is_val\" \\\n--replace-fail \"Obj.final_tag\" \"Obj.custom_tag\"\n",
       propagatedBuildInputs: nix.thunk(() => [easy_format]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mjambon/dum",
         description: "Inspect the runtime representation of arbitrary OCaml values",
         longDescription: "Dum is a library for inspecting the runtime representation of\narbitrary OCaml values. Shared or cyclic data are detected\nand labelled. This guarantees that printing would always\nterminate. This makes it possible to print values such as closures,\nobjects or exceptions in depth and without risk.\n",

@@ -27,24 +27,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "turbovnc-headless-server",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nh2"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -56,33 +56,33 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$4,
-            turbovnc: nix.thunk(() => ({ __proto__: pos$3, ensureHeadlessSoftwareOpenGL: true })),
+            [nix.POS]: pos$4,
+            turbovnc: nix.thunk(() => ({ [nix.POS]: pos$3, ensureHeadlessSoftwareOpenGL: true })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             firewall: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               rejectPackets: true,
               allowedTCPPorts: nix.thunk(() => [5900n]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             openssh: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$7, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$7, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
             })),
           })),
-          users: nix.thunk(() => ({ __proto__: pos$10, mutableUsers: false })),
+          users: nix.thunk(() => ({ [nix.POS]: pos$10, mutableUsers: false })),
           security: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             pam: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               services: nix.thunk(() => ({
-                __proto__: pos$12,
-                sshd: nix.thunk(() => ({ __proto__: pos$11, allowNullPassword: true })),
+                [nix.POS]: pos$12,
+                sshd: nix.thunk(() => ({ [nix.POS]: pos$11, allowNullPassword: true })),
               })),
             })),
           })),

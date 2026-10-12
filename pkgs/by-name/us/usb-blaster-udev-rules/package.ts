@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -Dm 644 "${udevRules}" "$out/lib/udev/rules.d/51-usbblaster.rules"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "udev rules that give NixOS permission to communicate with usb blasters",
         longDescription: "udev rules that give NixOS permission to communicate with usb blasters.\nTo use it under NixOS, add\n\n  services.udev.packages = [ pkgs.usb-blaster-udev-rules ];\n\nto the system configuration.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name,
         udevRules,
         dontUnpack,

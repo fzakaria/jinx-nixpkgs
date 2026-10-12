@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const version = "0.3.1";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/carrotIndustries/usbkvm/releases/download/v${version}/usbkvm-v${version}.tar.gz`),
       hash: "sha256-xTBrUI6U6W//Sb1UrIGAWHEeT7LToz7znBW0B4Rs520=",
     }))));
   const ms_tools_lib = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usbkvm-ms-tools-lib",
       version: version,
       src: src,
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [hidapi]),
       buildPhase: "runHook preBuild\n\nmkdir -p $out/\ngo build -C lib/ -o $out/ -buildmode=c-archive mslib.go\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/carrotIndustries/ms-tools",
         description: "Program, library and reference designs to develop for MacroSilicon MS2106/MS2109/MS2130 chips",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "usbkvm",
       version: version,
       src: src,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => (() => {
         const GST_PLUGIN_PATH = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib/gstreamer-1.0", nix.thunk(() => [
             nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-            nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$4, gtkSupport: true })))),
+            nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, gtkSupport: true })))),
           ])));
         return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/usbkvm \\
   --prefix GST_PLUGIN_PATH : "${GST_PLUGIN_PATH}"
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/carrotIndustries/usbkvm",
         description: "Open-source USB KVM (Keyboard, Video and Mouse) adapter",
         changelog: nix.thunk(() => nix.str`https://github.com/carrotIndustries/usbkvm/releases/tag/v${version}`),

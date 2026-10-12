@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const pname = "mangayomi";
   const version = "0.9.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kodjodevf",
       repo: "mangayomi",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-5ZjyG3NRati8IWGI2QpV0Ywu9sAI4vrFGRJorH5MbQk=",
     }))));
   const metaCommon = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     changelog: nix.thunk(() => nix.str`https://github.com/kodjodevf/mangayomi/releases/tag/v${version}`),
     description: "Reading manga, novels, and watching animes",
     homepage: "https://github.com/kodjodevf/mangayomi",
@@ -54,29 +54,29 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rust`),
       cargoHash: "sha256-q/jlamNxHrBe4z+MIpNr4T4HJgPsJMh0x18bXr4HKtU=",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, libraryPath: "lib/librust_lib_mangayomi.so" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, libraryPath: "lib/librust_lib_mangayomi.so" })),
       meta: metaCommon,
     }))));
   return nix.app(nix.sel(flutter347, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: pname,
       version: version,
       src: src,
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       customSourceBuilders: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         rust_lib_mangayomi: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: "rust_lib_mangayomi",
               version: version_1,
               src: src_1,
@@ -97,16 +97,16 @@ endfunction()
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           const flutter_discord_rpc_fork_rs = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               pname: "flutter_discord_rpc_fork-rs",
               version: version_1,
               src: src_1,
               buildAndTestSubdir: "rust",
               cargoHash: "sha256-mS8XJNw6qn6AVdUtZmSe2xfuraHz8m8t7tQhnSlof2M=",
-              passthru: nix.thunk(() => ({ __proto__: pos$6, libraryPath: "lib/libflutter_discord_rpc_fork.so" })),
+              passthru: nix.thunk(() => ({ [nix.POS]: pos$6, libraryPath: "lib/libflutter_discord_rpc_fork.so" })),
             }))));
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pname: "flutter_discord_rpc_fork",
               version: version_1,
               src: src_1,
@@ -128,7 +128,7 @@ endfunction()
       buildInputs: nix.thunk(() => [alsa_lib, mpv_unwrapped, webkitgtk_4_1]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "mangayomi",
             exec: "mangayomi",
             icon: "mangayomi",
@@ -142,11 +142,11 @@ endfunction()
       postPatch: "substituteInPlace lib/ffi/image_decoder.cpp \\\n  --replace-fail 'fread(magic, 1, 2, f);' '(void)fread(magic, 1, 2, f);'\n",
       extraWrapProgramArgs: "--prefix LD_LIBRARY_PATH : $out/app/mangayomi/lib\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         rustDep: rustDep,
         updateScript: nix.path(here, "./update.sh"),
       })),
-      meta: nix.thunk(() => nix.update(metaCommon, { __proto__: pos$12, mainProgram: "mangayomi" })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$12, mainProgram: "mangayomi" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qradiolink";
       const version = "0.10.2-1";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qradiolink",
           repo: "qradiolink",
           tag: version,
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gnuradio, "qt", "wrapQtAppsHook")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDR transceiver application for analog and digital modes",
         mainProgram: "qradiolink",
         homepage: "http://qradiolink.org/",
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

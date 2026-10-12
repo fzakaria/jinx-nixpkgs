@@ -44,85 +44,85 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         cocoon: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "cocoon")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "cocoon", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "path")))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     COCOON_ADDR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: ":8080",
                         example: ":3000",
                         description: "Address to bind the Cocoon instance to",
                       })))),
                     COCOON_DID: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         example: "did:web:cocoon.example.com",
                         description: "DID web address for the Cocoon instance",
                       })))),
                     COCOON_HOSTNAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         example: "cocoon.example.com",
                         description: "Hostname for the Cocoon instance",
                       })))),
                     COCOON_ROTATION_KEY_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "path")), nix.thunk(() => nix.sel(types, "str")))),
                         default: "/var/lib/cocoon/rotation.key",
                         description: "Path to the rotation key file.\n\nGenerate it with:\n```\ncocoon create-rotation-key --out /var/lib/cocoon/rotation.key\n```\n",
                       })))),
                     COCOON_JWK_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "path")), nix.thunk(() => nix.sel(types, "str")))),
                         default: "/var/lib/cocoon/jwk.key",
                         description: "Path to the JWK key file\n\nGenerate it with:\n```\ncocoon create-private-jwk --out /var/lib/cocoon/jwk.key\n```\n",
                       })))),
                     COCOON_CONTACT_EMAIL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         example: "me@example.com",
                         description: "Contact email for the Cocoon instance",
                       })))),
                     COCOON_RELAYS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "https://bsky.network",
                         description: "Comma-separated list of Nostr relays to connect to",
                       })))),
                     COCOON_SESSION_COOKIE_KEY: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "session",
                         description: "Name of the session cookie",
                       })))),
                     COCOON_DB_TYPE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "sqlite",
                         description: "Type of database to use (sqlite or postgres)",
                       })))),
                     COCOON_DB_NAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "/var/lib/cocoon/cocoon.db",
                         description: "Name of the SQLite database file (if using sqlite)",
                       })))),
                     COCOON_DATABASE_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         example: "postgres://cocoon:password@localhost:5432/cocoon?sslmode=disable",
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables to set for the service. Secrets should be\nspecified using {option}`environmentFile`.\n\nRefer to <https://github.com/haileyok/cocoon/blob/main/.env.example>\nand <https://github.com/haileyok/cocoon/blob/main/README.md> for\navailable environment variables.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "File to load environment variables from. Loaded variables override\nvalues set in {option}`environment`.\n\nUse it to set values of `COCOON_ADMIN_PASSWORD` and `COCOON_SESSION_SECRE`.\n\nGenerate `COCOON_ADMIN_PASSWORD` with\n```\nopenssl rand -hex 16\n```\n\nGenerate `COCOON_SESSION_SECRET` with\n```\nopenssl rand -hex 32\n```\n",
@@ -142,23 +142,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             cocoon: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "cocoon",
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "COCOON_DB_TYPE"), "postgres")), "postgresql.service"))),
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "COCOON_DB_TYPE"), "postgres")), "postgresql.service"))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} run`),
                 Environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k}=${(nix.asBool(nix.builtins.isInt(v)) ? nix.builtins.toString(v) : nix.force(v))}`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings")))))),
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "isabelroses"))];

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dadadodo",
       version: "1.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jwz.org/dadadodo/dadadodo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1pzwp3mim58afjrc92yx65mmgr1c834s1v6z4f4gyihwjn8bn3if",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin\ncp dadadodo $out/bin\n",
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Markov chain-based text generator",
         mainProgram: "dadadodo",
         homepage: "http://www.jwz.org/dadadodo",

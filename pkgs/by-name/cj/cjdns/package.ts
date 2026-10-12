@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cjdns",
       version: "22.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cjdelisle",
           repo: "cjdns",
           tag: nix.thunk(() => nix.str`cjdns-v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./system-libsodium.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libsodium_include_dir: nix.thunk(() => nix.str`${nix.sel(libsodium, "dev")}/include`),
           })))),
       ]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([which, nodejs, pkg_config], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), util_linux))),
       buildInputs: nix.thunk(() => [libsodium]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SODIUM_USE_PKG_CONFIG: 1n,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-O2",
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
         "--skip=crypto::crypto_auth::tests::test_wireguard_iface_encrypt_decrypt_with_auth",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, basic: nix.thunk(() => nix.sel(nixosTests, "cjdns")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, basic: nix.thunk(() => nix.sel(nixosTests, "cjdns")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Encrypted networking for regular people",
         homepage: "https://github.com/cjdelisle/cjdns",
         changelog: nix.thunk(() => nix.str`https://github.com/cjdelisle/cjdns/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

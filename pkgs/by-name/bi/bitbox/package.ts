@@ -30,7 +30,7 @@ cp ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(qt5, "qtbase", "de
       const pname = "bitbox";
       const version = "4.52.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BitBoxSwiss",
           repo: "bitbox-wallet-app",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,9 +47,9 @@ rm vendor/github.com/breez/breez-sdk-spark-go/breez_sdk_spark/lib/linux-amd64/li
 `);
       const dontConfigure = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         web: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "bitbox-web",
             version: version,
             src: src,
@@ -94,7 +94,7 @@ runHook postInstall
       ]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Companion app for the BitBox02 hardware wallet",
         homepage: "https://bitbox.swiss/app/",
         downloadPage: "https://github.com/BitBoxSwiss/bitbox-wallet-app",
@@ -106,7 +106,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

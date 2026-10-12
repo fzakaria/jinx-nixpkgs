@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "soupault",
       version: "5.3.0",
       minimalOCamlVersion: "5.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/PataphysicalSociety/soupault/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://codeberg.org/PataphysicalSociety/soupault/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`find "$out" -type f -exec remove-references-to -t ${ocaml} '{}' +
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: soupault, command: "soupault --version-number" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: soupault, command: "soupault --version-number" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool that helps you create and manage static websites",
         homepage: "https://soupault.app/",
         changelog: "https://codeberg.org/PataphysicalSociety/soupault/src/branch/main/CHANGELOG.md",

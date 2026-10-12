@@ -52,31 +52,31 @@ export default nix.lambda((args) => (() => {
   const pname = "nextcloud-talk-desktop";
   const version = "2.3.2";
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     linux: "sha256-F1PIsiMd+Ve9SX31PRB9D+cbsPZzJof6Yvq70CeqCm4=",
     darwin: "sha256-0/Q6ybJFMxIguwppAwXVylyevdRqcK1xrI/dpwrFhmA=",
   }));
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     linux: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/nextcloud-releases/talk-desktop/releases/download/v${version}/Nextcloud.Talk-linux-x64.zip`),
         hash: nix.thunk(() => nix.sel(hashes, "linux")),
         stripRoot: false,
       })))),
     darwin: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/nextcloud-releases/talk-desktop/releases/download/v${version}/Nextcloud.Talk-macos-universal.dmg`),
         hash: nix.thunk(() => nix.sel(hashes, "darwin")),
       })))),
   }));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     hashes: hashes,
     updateScript: nix.path(here, "./update.py"),
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     description: "Nextcloud Talk Desktop Client",
     homepage: "https://github.com/nextcloud/talk-desktop",
     changelog: nix.thunk(() => nix.str`https://github.com/nextcloud/talk-desktop/blob/v${version}/CHANGELOG.md`),
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
     mainProgram: "nextcloud-talk-desktop",
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       version: version,
       passthru: passthru,
       src: nix.thunk(() => nix.sel(sources, "linux")),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/nextcloud/talk-desktop/refs/tags/v${version}/img/icons/icon.png`),
           hash: "sha256-DteSSuxIs0ukIJrvUO/3Mrh5F2GG5UAVvGRZUuZonkg=",
         })))),
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [systemd, libpulseaudio, pipewire]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: "Application",
             name: "nextcloud-talk-desktop",
             desktopName: "Nextcloud Talk",
@@ -140,12 +140,12 @@ export default nix.lambda((args) => (() => {
   "$out/opt/Nextcloud Talk-linux-x64/Nextcloud Talk"
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.sel(lib, "platforms", "linux")), nix.thunk(() => nix.sel(lib, "platforms", "x86_64")))),
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: pname,
       version: version,
       passthru: passthru,
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{Applications,bin}\nmv Nextcloud\\ Talk.app/Contents $out/Applications/\n\nmakeWrapper $out/Applications/Contents/MacOS/Nextcloud\\ Talk $out/bin/nextcloud-talk-desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     })));

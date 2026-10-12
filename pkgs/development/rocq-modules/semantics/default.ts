@@ -26,38 +26,38 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "semantics",
       owner: "coq-community",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "8.14.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-TB12C3hX9XucbsXr+UL+8jM19NOFXASW/lcytwy6uVE=",
         })),
         "8.13.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-8bDr/Ovl6s8BFaRcHeS5H33/K/pYdeKfSN+krVuKulQ=",
         })),
         "8.11.1": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-jTPgcXSNn1G2mMDC7ocFcmqs8svB7Yo1emXP15iuxiU=",
         })),
         "8.9.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-UBsvzlDEZsZsVkbUI0GbFEhpxnnLCiaqlqDyWVC5I6s=",
         })),
         "8.8.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-k2nQyNw9KT3wY7bGy8KGILF44sLxkBYqdFpzFE9fgyw=",
         })),
         "8.7.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-k2nQyNw9KT3wY7bGy8KGILF44sLxkBYqdFpzFE9fgyw=",
         })),
         "8.6.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-GltkGQ3tJqUPAbdDkqqvKLLhMOap50XvGaCkjshiNdY=",
         })),
       })),
@@ -66,14 +66,14 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.18")),
               out: "8.14.0",
             })),
-            nix.thunk(() => ({ __proto__: pos$10, case: "8.9", out: "8.9.0" })),
-            nix.thunk(() => ({ __proto__: pos$11, case: "8.8", out: "8.8.0" })),
-            nix.thunk(() => ({ __proto__: pos$12, case: "8.7", out: "8.7.0" })),
-            nix.thunk(() => ({ __proto__: pos$13, case: "8.6", out: "8.6.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$10, case: "8.9", out: "8.9.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$11, case: "8.8", out: "8.8.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$12, case: "8.7", out: "8.7.0" })),
+            nix.thunk(() => ({ [nix.POS]: pos$13, case: "8.6", out: "8.6.0" })),
           ]), null);
       })()),
       mlPlugin: true,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "for p in Make Makefile.coq.local\ndo\n  substituteInPlace $p --replace \"-libs nums\" \"-use-ocamlfind -package num\" || true\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Survey of programming language semantics styles in Coq",
         longDescription: "A survey of semantics styles in Coq, from natural semantics through\nstructural operational, axiomatic, and denotational semantics, to\nabstract interpretation\n",
         maintainers: nix.thunk(() => (() => {

@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
   const cmake_args = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withGtk3, nix.thunk(() => ["-DENABLE_GTK3=ON"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGtk4, nix.thunk(() => ["-DENABLE_GTK4=ON"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withQt5, nix.thunk(() => ["-DENABLE_QT5=ON"])), nix.app(nix.sel(lib, "optionals"), withQt6, nix.thunk(() => ["-DENABLE_QT6=ON"]))))));
   const optFlag = (w) => (nix.asBool(w) ? "1" : "0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kime",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Riey",
           repo: "kime",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-apQkxAUve7+2h9XACZZgroqBK1sCUYMNfsX/4nEnCPA=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -104,12 +104,12 @@ runHook postInstallCheck
         cargo,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         RUST_BACKTRACE: 1n,
         RUSTFLAGS: "-Clink-args=-L./target/release",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Riey/kime",
         description: "Korean IME",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "venth",
           repo: "aws-adfs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$(mktemp -d);\n";
       const pythonImportsCheck = nix.thunk(() => ["aws_adfs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool to ease AWS CLI authentication against ADFS",
         homepage: "https://github.com/venth/aws-adfs",
         changelog: nix.thunk(() => nix.str`https://github.com/venth/aws-adfs/releases/tag/${nix.sel(src, "tag")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "aws-adfs",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lasuite-drive-frontend",
       src: src,
       version: version,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src/frontend`),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/frontend/yarn.lock`),
           hash: "sha256-W0Sp8G7Lt9UMND8+ZLD8oxrNCgGpQph23AvQpynYWYI=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -r apps/drive/out/ $out\n\nrunHook postInstall\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A collaborative file sharing and document management platform that scales. Built with Django and React. Opensource alternative to Sharepoint or Google Drive",
       })),
     }));

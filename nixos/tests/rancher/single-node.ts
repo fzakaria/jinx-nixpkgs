@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   const imageEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${rancherDistro}-pause-image-env`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -43,33 +43,33 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const pauseImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildLayeredImage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "test.local/pause",
       tag: "local",
       contents: imageEnv,
       config: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         Entrypoint: nix.thunk(() => ["/bin/tini", "--", "/bin/sleep", "inf"]),
       })),
     }))));
   const testPodYaml = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test.yaml", "apiVersion: v1\nkind: Pod\nmetadata:\n  name: test\nspec:\n  containers:\n  - name: test\n    image: test.local/pause:local\n    imagePullPolicy: Never\n    command: [\"sh\", \"-c\", \"sleep inf\"]\n"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-single-node`),
     interactive: nix.thunk(() => ({
-      __proto__: pos$5,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+      [nix.POS]: pos$5,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -78,14 +78,14 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               role: "server",
               package: rancherPackage,
@@ -95,11 +95,11 @@ export default nix.lambda((args) => (() => {
             }))],
           ])),
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             users: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               noprivs: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 isNormalUser: true,
                 description: nix.thunk(() => nix.str`Can't access ${rancherDistro} by default`),
                 password: "*",
@@ -137,7 +137,7 @@ with subtest("Run ${rancherDistro}-killall"):
     machine.fail("ip netns show | grep cni-")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

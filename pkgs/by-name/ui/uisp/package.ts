@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uisp",
       version: "20050207",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://savannah.nongnu.org/download/uisp/uisp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1bncxp5yxh9r1yrp04vvhfiva8livi1pwic7v8xj99q09zrwahvw",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for AVR microcontrollers which can interface to many hardware in-system programmers",
         mainProgram: "uisp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

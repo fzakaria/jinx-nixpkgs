@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "The name of the test.\n\nThis is used in the derivation names of the [{option}`driver`](#test-opt-driver) and [{option}`test`](#test-opt-test) runner.\n",
           type: nix.thunk(() => nix.sel(types, "str")),
         })))),

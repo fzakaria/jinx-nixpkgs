@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchsvn = nix.arg($, "fetchsvn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "acme",
       version: "0.97-unstable-2021-11-05",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "svn://svn.code.sf.net/p/acme-crossass/code-0/trunk",
           rev: "323",
           sha256: "1dzvip90yf1wg0fhfghn96dwrhg289d06b624px9a2wwy3vp5ryg",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => ["BINDIR=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-platform cross assembler for 6502/6510/65816 CPUs",
         mainProgram: "acme",
         homepage: "https://sourceforge.net/projects/acme-crossass/",

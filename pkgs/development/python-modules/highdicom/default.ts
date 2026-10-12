@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.27.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MGHComputationalPathology",
           repo: "highdicom",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ImagingDataCommons/highdicom/commit/e9e3f2514a74b0d4be736cff222c934ef66d67ff.patch?full_index=1",
             hash: "sha256-1h9xmcezxuvHw54t4kLahDB62d0XHzEyrmHmPf6NW7M=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, pillow, pydicom, pyjpegls, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         libjpeg: nix.thunk(() => [pylibjpeg, pylibjpeg_libjpeg, pylibjpeg_openjpeg]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "libjpeg")));
@@ -66,7 +66,7 @@ ln -s ${nix.sel(pydicom, "passthru", "pydicom-data")}/data_store/data $HOME/.pyd
         "highdicom.sc",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-level DICOM abstractions for Python",
         homepage: "https://highdicom.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/ImagingDataCommons/highdicom/releases/tag/v${version}`),
@@ -77,7 +77,7 @@ ln -s ${nix.sel(pydicom, "passthru", "pydicom-data")}/data_store/data $HOME/.pyd
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

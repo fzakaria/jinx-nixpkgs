@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "friture",
       version: "0.54",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tlecomte",
           repo: "friture",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       postInstall: "substituteInPlace $out/share/applications/friture.desktop --replace-fail usr/bin/friture friture\n\nfor size in 16 32 128 256 512\ndo\n  mkdir -p $out/share/icons/hicolor/$size\\x$size\n  cp $src/resources/images/friture.iconset/icon_$size\\x$size.png $out/share/icons/hicolor/$size\\x$size/friture.png\ndone\nmkdir -p $out/share/icons/hicolor/scalable/apps/\ncp $src/resources/images-src/window-icon.svg $out/share/icons/hicolor/scalable/apps/friture.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time audio analyzer",
         mainProgram: "friture",
         homepage: "https://friture.org/",

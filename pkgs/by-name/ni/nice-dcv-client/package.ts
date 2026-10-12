@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const pname = "nice-dcv-client";
   const version = "2025.0.8846-1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: pname,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://d1uj6qtbmh3dt5.cloudfront.net/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/Clients/nice-dcv-viewer-${version}.el9.x86_64.rpm`),
           sha256: "sha256-JYvOxwSQQKjTLvpfpAQe1tqHS4QsshYJyzC5kIFEZLc=",
         })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
             ];
           })())));
         const fixPathsPatch = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             basedir: null,
             gio_extra_modules: nix.thunk(() => nix.str`${glib_networking}/lib/gio/modules`),
             gst_plugin_scanner: nix.thunk(() => nix.str`${nix.sel(gst_all_1, "gstreamer", "out")}/libexec/gstreamer-1.0/gst-plugin-scanner`),
@@ -112,7 +112,7 @@ ${nix.sel(glib, "dev")}/bin/glib-compile-schemas $out/share/glib-2.0/schemas
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "High-performance remote display protocol",
           homepage: "https://aws.amazon.com/hpc/dcv/",
           sourceProvenance: nix.thunk(() => (() => {

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   const mkBsdMachine = nix.thunk(() => nix.attr(freebsd_lib, "mkBsdMachine"));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "compat",
       path: "tools/build",
       extraPaths: nix.thunk(() => nix.concat(["lib/libc/db", "lib/libc/stdlib", "lib/libc/gen", "lib/libc/locale"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["lib/libc/string", "lib/libutil"])), nix.concat([
@@ -147,7 +147,7 @@ cp ../../sys/${nix.app(mkBsdMachine, stdenv)}/include/elf.h ../../sys/sys/${nix.
       ]),
       preIncludes: nix.thunk(() => nix.add(nix.add("mkdir -p $out/{0,1}-include\ncp --no-preserve=mode -r cross-build/include/common/* $out/0-include\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "cp --no-preserve=mode -r cross-build/include/linux/* $out/1-include\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cp --no-preserve=mode -r cross-build/include/darwin/* $out/1-include\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
       alwaysKeepStatic: true,

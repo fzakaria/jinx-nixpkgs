@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const guile_srfi_145 = nix.arg($, "guile-srfi-145");
   const guile_srfi_180 = nix.arg($, "guile-srfi-180");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "guile-json-rpc",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rgherdt",
           repo: "scheme-json-rpc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [guile_srfi_145, guile_srfi_180]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, guile]),
       buildInputs: nix.thunk(() => [guile]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GUILE_AUTO_COMPILE: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GUILE_AUTO_COMPILE: "0" })),
       preConfigure: "cd guile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JSON-RPC implementation for Scheme",
         homepage: "https://codeberg.org/rgherdt/scheme-json-rpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

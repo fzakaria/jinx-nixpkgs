@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libpsl-with-scripts",
       src: nix.thunk(() => nix.attr(libpsl, "src")),
       version: nix.thunk(() => nix.attr(libpsl, "version")),

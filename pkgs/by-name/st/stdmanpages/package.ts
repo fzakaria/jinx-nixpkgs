@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "std-man-pages",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gcc/libstdc++/doxygen/libstdc++-man.${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0153py77ll759jacq41dp2z2ksr08pdcfic0rwjd6pr84dk89y9v",
         })))),
       outputDevdoc: "out",
       installPhase: "mkdir -p $out/share/man\ncp -R * $out/share/man\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GCC C++ STD manual pages",
         homepage: "https://gcc.gnu.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "fdl13Plus")),

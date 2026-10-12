@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "linux-enable-ir-emitter"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "linux-enable-ir-emitter": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to enable IR emitter hardware. Designed to be used with the\nHowdy facial authentication. After enabling the service, configure\nthe emitter with `sudo linux-enable-ir-emitter configure`.\n",
           })),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "linux-enable-ir-emitter", nix.thunk(() => ({}))), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Package to use for the Linux Enable IR Emitter service.\n",
           })),
           device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "video2",
               description: "IR camera device to depend on. For example, for `/dev/video2`\nthe value would be `video2`. Find this with the command\n{command}`realpath /dev/v4l/by-path/<generated-driver-name>`.\n",
@@ -49,15 +49,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "linux-enable-ir-emitter": nix.thunk(() => (() => {
               const targets = nix.thunk(() => [
                 "suspend.target",
@@ -67,14 +67,14 @@ export default nix.lambda((args) => (() => {
                 "suspend-then-hibernate.target",
               ]);
               return {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "Enable the infrared emitter",
                 preStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod")}/bin/modprobe uvcvideo
 sleep 1
 `),
                 script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --verbose run`),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   StateDirectory: "linux-enable-ir-emitter",
                   LogsDirectory: "linux-enable-ir-emitter",
                 })),

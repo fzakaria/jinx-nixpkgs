@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "killer0071234",
           repo: "python-zamg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["zamg"]);
       const disabledTests = nix.thunk(() => ["test_update_fail_3", "test_properties_fail_2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to read weather data from ZAMG Austria",
         homepage: "https://github.com/killer0071234/python-zamg",
         changelog: nix.thunk(() => nix.str`https://github.com/killer0071234/python-zamg/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const version = "2.0.7";
   const date = "2024-05-19";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tellerops",
           repo: "teller",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: nix.thunk(() => nix.str`$out/bin/teller --version 2>&1 | grep ${version};
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/tellerops/teller/",
         description: "Cloud native secrets management for developers",
         mainProgram: "teller",

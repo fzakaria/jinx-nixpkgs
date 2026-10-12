@@ -31,47 +31,47 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   const useNvidia = nix.thunk(() => nix.eq(nix.sel(cfg, "driver"), "nvidia"));
   const bumblebee = nix.thunk(() => nix.app(nix.sel(pkgs, "bumblebee", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       useNvidia: useNvidia,
       useDisplayDevice: nix.thunk(() => nix.sel(cfg, "connectDisplay")),
     }))));
   const useBbswitch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "pmMethod"), "bbswitch")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "pmMethod"), "auto")) && nix.asBool(useNvidia)))));
-  const primus = nix.thunk(() => nix.app(nix.sel(pkgs, "primus", "override"), nix.thunk(() => ({ __proto__: pos$2, useNvidia: useNvidia }))));
+  const primus = nix.thunk(() => nix.app(nix.sel(pkgs, "primus", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useNvidia: useNvidia }))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       hardware: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         bumblebee: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable the bumblebee daemon to manage Optimus hybrid video cards.\nThis should power off secondary GPU until its use is requested\nby running an application with optirun.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "wheel",
               example: "video",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Group for bumblebee socket",
             })))),
           connectDisplay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Set to true if you intend to connect your discrete card to a\nmonitor. This option will set up your Nvidia card for EDID\ndiscovery and to turn on the monitor signal.\n\nOnly nvidia driver is supported so far.\n",
             })))),
           driver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "nvidia",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["nvidia", "nouveau"]))),
               description: "Set driver used by bumblebeed. Supported are nouveau and nvidia.\n",
             })))),
           pmMethod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "auto",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "bbswitch", "switcheroo", "none"]))),
               description: "Set preferred power management method for unused card.\n",
@@ -80,25 +80,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           blacklistedKernelModules: nix.thunk(() => ["nvidia-drm", "nvidia", "nouveau"]),
           kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), useBbswitch, "bbswitch")),
           extraModulePackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), useBbswitch, nix.thunk(() => nix.sel(kernel, "bbswitch"))), nix.app(nix.sel(lib, "optional"), useNvidia, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "hardware", "nvidia", "open"), true)) ? nix.sel(kernel, "nvidia_x11", "open") : nix.sel(kernel, "nvidia_x11", "mod")))))),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$12, systemPackages: nix.thunk(() => [bumblebee, primus]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$12, systemPackages: nix.thunk(() => [bumblebee, primus]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             bumblebeed: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Bumblebee Hybrid Graphics Switcher",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["display-manager.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${bumblebee}/bin/bumblebeed --use-syslog -g ${nix.sel(cfg, "group")} --driver ${nix.sel(cfg, "driver")} --pm-method ${nix.sel(cfg, "pmMethod")}`),
               })),
             })),

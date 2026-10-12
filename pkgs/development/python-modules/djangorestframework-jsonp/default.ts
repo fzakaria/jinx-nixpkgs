@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpadilla",
           repo: "django-rest-framework-jsonp",
           tag: version,
@@ -40,14 +40,14 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["rest_framework_jsonp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSONP support for Django REST Framework",
         homepage: "https://jpadilla.github.io/django-rest-framework-jsonp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

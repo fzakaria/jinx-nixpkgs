@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gmobile",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "dont-set-libexecdir.patch",
             url: "https://gitlab.gnome.org/World/Phosh/gmobile/-/commit/b085e13898edddf31b6da8c8fc4119bb2cb59c38.patch",
             hash: "sha256-S3S1FORPC8czFx0ivLVOUhamStaJsKd6oXnh1jbdr3Y=",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Functions useful in mobile related, glib based projects",
         homepage: "https://gitlab.gnome.org/World/Phosh/gmobile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

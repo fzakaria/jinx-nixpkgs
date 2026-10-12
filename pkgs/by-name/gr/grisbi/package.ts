@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "grisbi",
       version: "3.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grisbi",
           repo: "grisbi",
           tag: nix.thunk(() => nix.str`upstream_version_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3, intltool, autoreconfHook]),
       buildInputs: nix.thunk(() => [gtk3, libgsf, libofx, adwaita_icon_theme]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Personal accounting application",
         mainProgram: "grisbi",
         longDescription: "Grisbi is an application written by French developers, so it perfectly\nrespects French accounting rules. Grisbi can manage multiple accounts,\ncurrencies and users. It manages third party, expenditure and receipt\ncategories, budgetary lines, financial years, budget estimates, bankcard\nmanagement and other information that make Grisbi adapted for\nassociations.\n",

@@ -43,17 +43,17 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(unihan_database, "src")} $out/share/unicode/Unihan.zip
 `)));
   const ucd = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ucd+unihan",
       paths: nix.thunk(() => [unihanZip, unicode_character_database]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gucharmap",
       version: "17.0.2",
       outputs: nix.thunk(() => ["out", "lib", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gucharmap",
@@ -83,11 +83,11 @@ ln -s ${nix.sel(unihan_database, "src")} $out/share/unicode/Unihan.zip
       doCheck: true,
       postPatch: "patchShebangs \\\n  data/meson_desktopfile.py \\\n  gucharmap/gen-guch-unicode-tables.pl\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNOME Character Map, based on the Unicode Character Database",
         mainProgram: "gucharmap",
         homepage: "https://gitlab.gnome.org/GNOME/gucharmap",

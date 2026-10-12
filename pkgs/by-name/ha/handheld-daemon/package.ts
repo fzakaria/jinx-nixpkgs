@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const btrfs_progs = nix.arg($, "btrfs-progs");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "handheld-daemon",
       version: "4.1.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hhd-dev",
           repo: "hhd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +98,7 @@ substituteInPlace src/adjustor/core/acpi.py \\
       pythonImportsCheck: nix.thunk(() => ["hhd", "adjustor"]),
       postInstall: "install -Dm644 usr/lib/udev/rules.d/83-hhd.rules -t $out/lib/udev/rules.d/\ninstall -Dm644 usr/lib/udev/hwdb.d/83-hhd.hwdb -t $out/lib/udev/hwdb.d/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hhd-dev/hhd/",
         description: "Linux support for handheld gaming devices like the Legion Go, ROG Ally, and GPD Win",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

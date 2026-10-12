@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const m4 = nix.arg($, "m4");
   const version = "0.7.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gforth-boot",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/gforth/gforth-${version}.tar.gz`),
           sha256: "1c1bahc9ypmca8rv2dijiqbangm1d9av286904yw48ph7ciz4qig",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [m4]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--build=x86_64-apple-darwin"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Forth implementation of the GNU project (outdated version used to bootstrap)",
         homepage: "https://www.gnu.org/software/gforth/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opkg",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.yoctoproject.org/opkg/snapshot/opkg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3vDW6VtBBr4HTA/OWgyqDo1zfyH+Mfvu8ViFl7rTlmY=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, gpgme, libarchive, bzip2, xz, attr, acl, libxml2]),
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc", "--localstatedir=/var"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight package management system based upon ipkg",
         homepage: "https://git.yoctoproject.org/cgit/cgit.cgi/opkg/",
         changelog: "https://git.yoctoproject.org/opkg/tree/CHANGELOG.md",

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const engine = nix.arg($, "engine");
   const version = nix.thunk(() => nix.str`${nix.sel(engine, "name")}-${nix.sel(engine, "version")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "openra_2019",
       version: version,
       src: nix.thunk(() => nix.sel(engine, "src")),

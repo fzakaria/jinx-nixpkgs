@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "requests",
       version: "2.34.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psf",
           repo: "requests",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [certifi, charset_normalizer, idna, urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         security: [],
         socks: nix.thunk(() => [pysocks]),
         use_chardet_on_py3: nix.thunk(() => [chardet]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["requests"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP library for Python",
         homepage: "http://docs.python-requests.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/psf/requests/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),

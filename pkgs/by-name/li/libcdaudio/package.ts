@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcdaudio",
       version: "0.99.12p2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libcdaudio/libcdaudio-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1fsy6dlzxrx177qc877qhajm9l4g28mvh06h2l15rxy4bapzknjz",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable library for controlling audio CDs",
         mainProgram: "libcdaudio-config",
         homepage: "https://libcdaudio.sourceforge.net",

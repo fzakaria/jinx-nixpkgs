@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dotbot",
       version: "1.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anishathalye",
           repo: "dotbot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that bootstraps your dotfiles",
         mainProgram: "dotbot",
         longDescription: "Dotbot is designed to be lightweight and self-contained, with no external\ndependencies and no installation required. Dotbot can also be a drop-in\nreplacement for any other tool you were using to manage your dotfiles, and\nDotbot is VCS-agnostic -- it doesn't make any attempt to manage your\ndotfiles.\n",

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "statistics";
       const version = "1.8.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnu-octave",
           repo: "statistics",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const requiredOctavePackages = nix.thunk(() => [io, datatypes]);
       const nativeOctavePkgTestInputs = nix.thunk(() => [gnuplot, writableTmpDirAsHomeHook]);
       const octavePkgTestEnv = nix.thunk(() => ({
-        __proto__: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))),
+        [nix.POS]: pos$3,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
       }));
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://packages.octave.org/statistics",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         description: "Statistics package for GNU Octave",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

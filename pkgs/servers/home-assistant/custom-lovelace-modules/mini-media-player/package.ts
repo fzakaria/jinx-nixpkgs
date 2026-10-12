@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mini-media-player";
       const version = "1.16.12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kalkih",
           repo: "mini-media-player",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-gGOvBSHzBSl7eUpjuoddzZATL4GBluvbfxc8vjiZZgo=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -v ./dist/mini-media-player-bundle.js $out/\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "mini-media-player-bundle.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "mini-media-player-bundle.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/kalkih/mini-media-player/releases/tag/v${version}`),
         description: "Minimalistic media card for Home Assistant Lovelace UI",
         homepage: "https://github.com/kalkih/mini-media-player",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

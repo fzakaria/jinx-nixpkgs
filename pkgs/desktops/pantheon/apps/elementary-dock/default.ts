@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "elementary-dock",
       version: "8.3.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "dock",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
       depsBuildBuild: nix.thunk(() => [pkg_config]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, vala, wayland_scanner, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [glib, granite7, gtk4, libadwaita, wayland]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Elegant, simple, clean dock",
         homepage: "https://github.com/elementary/dock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexmojaki",
           repo: "stack_data",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["stack_data"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract data from stack frames and tracebacks",
         homepage: "https://github.com/alexmojaki/stack_data/",
         changelog: nix.thunk(() => nix.str`https://github.com/alexmojaki/stack_data/releases/tag/v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "stack-data",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

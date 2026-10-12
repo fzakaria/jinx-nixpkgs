@@ -38,23 +38,23 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "plotly",
       version: "6.8.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plotly",
           repo: "plotly.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bXMFCRieoWNQZZA9eDTcZqO1vu71CMIk4+TlL0R9+5A=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, SKIP_NPM: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SKIP_NPM: true })),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [narwhals, packaging]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         express: nix.thunk(() => [numpy]),
         kaleido: nix.thunk(() => [kaleido]),
       })),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["plotly"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python plotting library for collaborative, interactive, publication-quality graphs",
         homepage: "https://plot.ly/python/",
         downloadPage: "https://github.com/plotly/plotly.py",

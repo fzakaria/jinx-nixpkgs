@@ -20,31 +20,31 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgjwt",
       version: "0-unstable-2023-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "michelp",
           repo: "pgjwt",
           rev: "f3d82fd30151e754e19ce5d6a06c71c20689ce3d",
           hash: "sha256-nDZEDf5+sFc1HDcG2eBNQj+kGcdAYRXJseKi9oww+JU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pgjwt: nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "pgjwt", "passthru", "override"), postgresql)),
             extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
                 sql: "CREATE EXTENSION pgjwt CASCADE;\nSELECT sign('{\"sub\":\"1234567890\",\"name\":\"John Doe\",\"admin\":true}', 'secret');\n",
               })))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PostgreSQL implementation of JSON Web Tokens",
         longDescription: "sign() and verify() functions to create and verify JSON Web Tokens.\n",
         homepage: "https://github.com/michelp/pgjwt",

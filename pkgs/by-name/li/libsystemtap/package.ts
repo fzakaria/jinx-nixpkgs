@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const elfutils = nix.arg($, "elfutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsystemtap",
       version: "5.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sourceware.org/git/systemtap.git",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-olN98hjIYZmQvI7Fn1v5ZwRl7yaCAPRGr2g33oMq7VQ=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [elfutils]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/include\ncp -r includes/* $out/include/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Statically defined probes development files",
         homepage: "https://sourceware.org/systemtap/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

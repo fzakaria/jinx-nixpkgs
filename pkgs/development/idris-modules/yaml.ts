@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yaml",
       version: "2018-01-25",
       ipkgName: "Yaml",
       idrisDeps: nix.thunk(() => [contrib, lightyear]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Heather",
           repo: "Idris.Yaml",
           rev: "5afa51ffc839844862b8316faba3bafa15656db4",
           sha256: "1g4pi0swmg214kndj85hj50ccmckni7piprsxfdzdfhg87s0avw7",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris YAML lib",
         homepage: "https://github.com/Heather/Idris.Yaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

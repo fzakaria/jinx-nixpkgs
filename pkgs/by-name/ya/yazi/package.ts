@@ -62,13 +62,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(flavors, {})),
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(initLua, null)), nix.thunk(() => nix.str`ln -s "${initLua}" "$out/init.lua"`))}
 `))));
   return nix.app(runCommand, nix.thunk(() => nix.sel(yazi_unwrapped, "name")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(yazi_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(yazi_unwrapped, "version")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(yazi_unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

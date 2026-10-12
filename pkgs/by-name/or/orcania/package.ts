@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const subunit = nix.arg($, "subunit");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "orcania",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "babelouest",
           repo: "orcania",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/babelouest/orcania/commit/ee2f45b5da8b7fb2c747419c17880ccdca14521d.patch",
             hash: "sha256-BNGL2Q5STrrAO8/OKMS4S5GqlikGnvg4hgBwKTMulgU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/babelouest/orcania/commit/f261393b4dd1b4f50aca389916407e0dfa5f2e55.patch",
             hash: "sha256-KyRedPj5gBFPZmefmjLL49OY8eJNmMyd5jsFsQByTUE=",
           })))),
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [check, subunit]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_ORCANIA_TESTING=on"]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=constant-conversion"]))))),
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Potluck with different functions for different purposes that can be shared among C programs",
         mainProgram: "base64url",
         homepage: "https://github.com/babelouest/orcania",

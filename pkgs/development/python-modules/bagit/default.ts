@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibraryOfCongress",
           repo: "bagit-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["bagit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library and command line utility for working with BagIt style packages",
         mainProgram: "bagit.py",
         homepage: "https://libraryofcongress.github.io/bagit-python/",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

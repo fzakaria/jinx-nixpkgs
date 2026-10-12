@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cursorsConf = nix.argOr($, "cursorsConf", () => null);
   const newCursorsConf = nix.thunk(() => nix.app(writeText, "oreo-cursors-plus.conf", cursorsConf));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oreo-cursors-plus",
       version: "0-unstable-2023-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Souravgoswami",
           repo: "oreo-cursors",
           rev: "9133204d60ca2c54be0df03b836968a1deac6b20",
@@ -45,7 +45,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\nmv ./dist $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Colored Material cursors with cute animations",
         homepage: "https://github.com/Souravgoswami/oreo-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -28,26 +28,26 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.argOr($, "cudaPackages", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mxnet",
       version: "1.9.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`apache-mxnet-src-${nix.sel(finalAttrs, "version")}-incubating.tar.gz`),
           url: nix.thunk(() => nix.str`mirror://apache/incubator/mxnet/${nix.sel(finalAttrs, "version")}/apache-mxnet-src-${nix.sel(finalAttrs, "version")}-incubating.tar.gz`),
           hash: "sha256-EephMoF02MKblvNBl34D3rC/Sww3rOZY+T442euMkyI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "1-auto-disable-sse-for-non-x86.patch",
             url: "https://github.com/apache/incubator-mxnet/commit/55e69871d4cadec51a8bbb6700131065388cb0b9.patch",
             hash: "sha256-uaMpM0F9HRtEBXz2ewB/dlbuKaY5/RineCPUE2T6CHU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "2-auto-disable-sse-for-non-x86.patch",
             url: "https://github.com/apache/incubator-mxnet/commit/c1b96f562f55dfa024ac941d7b104f00e239ee0f.patch",
             excludes: nix.thunk(() => ["ci/docker/runtime_functions.sh"]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "-DUSE_CUDNN=OFF",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=uninitialized"]))),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace 3rdparty/mkldnn/tests/CMakeLists.txt \\
@@ -75,7 +75,7 @@ rm -rf 3rdparty/openmp
 `),
       postInstall: "rm \"$out\"/lib/*.a\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lightweight, Portable, Flexible Distributed/Mobile Deep Learning with Dynamic, Mutation-aware Dataflow Dep Scheduler",
         homepage: "https://mxnet.incubator.apache.org/",
         maintainers: [],

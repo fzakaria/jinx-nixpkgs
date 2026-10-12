@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "earthbuild",
       version: "0.8.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EarthBuild",
           repo: "earthbuild",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-w5JnfSJ5yNtrc6IM2kCWXAJGbszpvA49rQQJ2+ynlg0=",
       __structuredAttrs: true,
       subPackages: nix.thunk(() => ["cmd/earthly", "cmd/debugger"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => nix.concat([
         "-s",
         "-w",
@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["dfrunmount", "dfrunnetwork", "dfrunsecurity", "dfsecrets", "dfssh"]),
       postInstall: "mv $out/bin/debugger $out/bin/earthly-debugger\nln -s $out/bin/earthly-debugger $out/bin/earth-debugger\nln -s $out/bin/earthly $out/bin/earth\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Build automation for the container era",
         mainProgram: "earth",
         homepage: "https://earthbuild.dev/",

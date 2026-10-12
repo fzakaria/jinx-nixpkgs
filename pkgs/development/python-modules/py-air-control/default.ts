@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rgerganov",
           repo: "py-air-control",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyairctrl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command Line App for Controlling Philips Air Purifiers",
         homepage: "https://github.com/rgerganov/py-air-control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

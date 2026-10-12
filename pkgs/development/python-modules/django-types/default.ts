@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "django_types",
           version: version,
           hash: "sha256-TOzJ7uhG5/8qOYvsnf5lQ+du+5IqeljF1gZLyw5qPcU=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [types_psycopg2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type stubs for Django",
         homepage: "https://github.com/sbdchd/django-types",
         changelog: "https://github.com/sbdchd/django-types/blob/main/CHANGELOG.md",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "soundsource",
       version: "6.1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260815122132/https://cdn.rogueamoeba.com/soundsource/download/SoundSource.zip",
           hash: "sha256-yzZF/MAkj9hFYVsde5br51Of5y0ZE90ryc881BGTyz8=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/SoundSource.app\"\ncp -R $src/. \"$out/Applications/SoundSource.app/\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://rogueamoeba.com/support/releasenotes/?product=SoundSource",
         description: "Sound controller for macOS",
         homepage: "https://rogueamoeba.com/soundsource",

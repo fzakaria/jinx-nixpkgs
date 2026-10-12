@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gamepad-mirror",
       version: "0.3-unstable-2025-10-18",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vendillah",
           repo: "GamepadMirror",
           rev: "aa86d55f21b4d206eab61d0bf7cd9ccafc8aa607",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gjs, glib, gtk4]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         giTypelibInputs: nix.thunk(() => [
           glib,
           gtk4,
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small Adwaita application to show game pad inputs using libmanette",
         homepage: "https://codeberg.org/vendillah/GamepadMirror",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

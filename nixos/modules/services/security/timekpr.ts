@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const daemonUser = "root";
   const daemonGroup = "root";
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         timekpr: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "timekpr", nix.thunk(() => ({})))),
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Timekpr-nExT, a screen time managing application that helps optimizing time spent at computer for your subordinates, children or even for yourself")),
           adminUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["alice", "bob"]),
@@ -55,50 +55,50 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         users: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           groups: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             timekpr: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               gid: 2000n,
               members: nix.thunk(() => nix.sel(cfg, "adminUsers")),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             timekpr: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/timekpr`),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           dbus: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: true,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             timekpr: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${targetBaseDir} 0755 ${daemonUser} ${daemonGroup} -`),
               nix.thunk(() => nix.str`d ${targetBaseDir}/config 0755 ${daemonUser} ${daemonGroup} -`),
@@ -107,12 +107,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$18,
-          polkit: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+          [nix.POS]: pos$18,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "atry"))]),
     })),
   };

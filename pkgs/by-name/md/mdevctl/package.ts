@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdevctl",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Zh+Dj3X87tTpqT/weZMpf7f3obqikjPy9pi50ifp6wQ=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "ln -s mdevctl $out/bin/lsmdev\n\ninstall -Dm444 60-mdevctl.rules -t $out/lib/udev/rules.d\n\ninstallManPage $releaseDir/build/mdevctl-*/out/mdevctl.8\nln -s mdevctl.8 $out/share/man/man8/lsmdev.8\n\ninstallShellCompletion $releaseDir/build/mdevctl-*/out/{lsmdev,mdevctl}.bash\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mdevctl/mdevctl",
         description: "Mediated device management utility for linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

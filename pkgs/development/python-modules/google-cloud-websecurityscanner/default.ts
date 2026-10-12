@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-cloud-websecurityscanner",
       version: "1.22.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_websecurityscanner",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ibD8vmyXBQgGoRB3stczbrR2vY1m4OwIsFf42AgJPOk=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.websecurityscanner_v1beta",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Cloud Web Security Scanner API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-websecurityscanner",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/tree/google-cloud-websecurityscanner-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-websecurityscanner`),

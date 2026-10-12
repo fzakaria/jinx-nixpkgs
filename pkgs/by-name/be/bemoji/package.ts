@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bemoji",
       version: "0.4.0-unstable-2024-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marty-oehme",
           repo: "bemoji",
           rev: "1b5e9c1284ede59d771bfd43780cc8f6f7446f38",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       postInstall: "install -Dm555 bemoji -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/marty-oehme/bemoji/",
         description: "Emoji picker with support for bemenu/wofi/rofi/dmenu and wayland/X11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

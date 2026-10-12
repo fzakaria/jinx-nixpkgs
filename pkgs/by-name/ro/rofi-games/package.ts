@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rofi-games",
       version: "1.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rolv-Apneseth",
           repo: "rofi-games",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+2I4WR5SOLYSWnPUrJFlRwhnebu4RNy3Dd4/gKW8xXU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-dPm9+rxEtx32HVaXLrbxZiVyUrYwFPvuk/gRQR4Fo+s=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-justfile.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$3, PKGDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PKGDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, cairo, pango, sqlite]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/Rolv-Apneseth/rofi-games/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Rofi plugin which adds a mode that will list available games for launch along with their box art",
         homepage: "https://github.com/Rolv-Apneseth/rofi-games",

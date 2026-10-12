@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fonttosfnt = nix.arg($, "fonttosfnt");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "envypn-font",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ywstd.fr/files/p/envypn-font/envypn-font-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "bda67b6bc6d5d871a4d46565d4126729dfb8a0de9611dae6c68132a7b7db1270",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n# convert pcf fonts to otb\nfor i in *e.pcf.gz; do\n  faketime -f \"1970-01-01 00:00:01\" \\\n  fonttosfnt -v -o \"$(basename \"$i\" .pcf.gz)\".otb \"$i\"\ndone\n\nrunHook postBuild\n",
       postInstall: "mkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Readable bitmap font inspired by Envy Code R\n",
         homepage: "http://ywstd.fr/p/pj/#envypn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "miros")),

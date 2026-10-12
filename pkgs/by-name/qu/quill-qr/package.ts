@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "quill-qr";
       const version = "0.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colonelpanic8",
           repo: "quill-qr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ patchShebangs $out/bin
 wrapProgram $out/bin/quill-qr.sh --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [qrencode, coreutils, jq, gzip]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Print QR codes for use with https://p5deo-6aaaa-aaaab-aaaxq-cai.raw.ic0.app",
         mainProgram: "quill-qr.sh",
         homepage: "https://github.com/colonelpanic8/quill-qr",
@@ -51,7 +51,7 @@ wrapProgram $out/bin/quill-qr.sh --prefix PATH : "${nix.app(nix.sel(lib, "makeBi
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

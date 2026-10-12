@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const pytest_rerunfailures = nix.arg($, "pytest-rerunfailures");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gilknocker",
       version: "0.4.2-post3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "milesgranger",
           repo: "gilknocker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
     'version = "${nix.sel(finalAttrs, "version")}"'
 `),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_knockknock_busy", "test_knockknock_some_gil"]))),
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Knock on the Python GIL, determine how busy it is",
         homepage: "https://github.com/milesgranger/gilknocker",
         changelog: nix.thunk(() => nix.str`https://github.com/milesgranger/gilknocker/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

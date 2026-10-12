@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`WinBox-${nix.sel(finalAttrs, "version")}.dmg`),
           url: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(finalAttrs, "version")}/WinBox.dmg`),
           hash: hash,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,Applications}\ncp -R \"WinBox.app\" \"$out/Applications/WinBox.app\"\nln -s \"$out/Applications/WinBox.app/Contents/MacOS/WinBox\" \"$out/bin/WinBox\"\n\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(metaCommon, { __proto__: pos$2, platforms: nix.thunk(() => ["aarch64-darwin"]) })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$2, platforms: nix.thunk(() => ["aarch64-darwin"]) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=build-from-dmg.ts.map

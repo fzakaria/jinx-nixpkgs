@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.8";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8nkfzr5RLqLx0VOih0d4UjqAZIYLWRzZCvwhqL7UMuM=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy to use retry decorator",
         homepage: "https://github.com/leshchenko1979/reretry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "renatoGarcia"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

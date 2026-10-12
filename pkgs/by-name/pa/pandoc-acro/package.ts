@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pname = "pandoc-acro";
   const version = "0.10.1";
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       hash: "sha256-JMfSQXX+BCGdFQYPFB+r08WRnhT3aXfnBNINROxCUA0=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       format: "setuptools",
       pname: pname,
       version: version,
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "example-doc": nix.thunk(() => (() => {
             const env = nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [
                 pandoc,
                 pandoc_acro,
@@ -77,7 +77,7 @@ pandoc -F pandoc-acro  "$exampleFile" "--metadata-file=$metadataFile" \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pypi.org/project/pandoc-acro/",
         description: "Pandoc filter which manages acronyms in Pandoc flavored Markdown sources",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

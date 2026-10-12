@@ -55,21 +55,21 @@ export default nix.lambda((args) => (() => {
     const runCommand = nix.arg($_1, "runCommand");
     const gradle = nix.thunk(() => nix.app(nix.sel(gradle_unwrapped, "override"), args_2));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "gradle",
         version: nix.thunk(() => nix.attr(gradle, "version")),
         paths: nix.thunk(() => [
           nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "gradle-setup-hook",
-              meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
             })), nix.thunk(() => nix.app(concatTextFile, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: "setup-hook.sh",
                 files: nix.thunk(() => [
                   nix.thunk(() => nix.sel(mitm_cache, "setupHook")),
                   nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       jdk: nix.thunk(() => nix.attr(gradle, "jdk")),
                       init_script: nix.thunk(() => nix.str`${nix.path(here, "./init-build.gradle")}`),
                     })))),
@@ -79,19 +79,19 @@ export default nix.lambda((args) => (() => {
           mitm_cache,
         ]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
-          fetchDeps: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "./fetch-deps.nix"), nix.thunk(() => ({ __proto__: pos$5, "mitm-cache": mitm_cache })))),
+          [nix.POS]: pos$9,
+          fetchDeps: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "./fetch-deps.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, "mitm-cache": mitm_cache })))),
           jdk: nix.thunk(() => nix.attr(gradle, "jdk")),
           unwrapped: gradle,
           tests: nix.thunk(() => nix.update({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             toolchains: nix.thunk(() => (() => {
               const javaVersion = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), jdk11));
               const javaMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), javaVersion));
               return nix.app(runCommand, "detects-toolchains-from-nix-env", nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   nativeBuildInputs: nix.thunk(() => [
-                    nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ __proto__: pos$6, javaToolchains: nix.thunk(() => [jdk11]) })))),
+                    nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, javaToolchains: nix.thunk(() => [jdk11]) })))),
                   ]),
                   src: nix.path(here, "./tests/toolchains"),
                 })), nix.thunk(() => nix.str`cp -a $src/* .
@@ -108,7 +108,7 @@ fi
           }, nix.sel(gradle, "tests"))),
         })),
         meta: nix.thunk(() => nix.update(nix.sel(gradle, "meta"), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           priority: nix.thunk(() => nix.add(nix.selOr(gradle, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         })),
       })));
@@ -152,11 +152,11 @@ fi
       const java = nix.argOr($_2, "java", () => nix.force(defaultJava));
       const javaToolchains = nix.argOr($_2, "javaToolchains", () => []);
       return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           pname: "gradle",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               hash: hash,
               url: nix.thunk(() => nix.str`https://services.gradle.org/distributions/gradle-${version}-bin.zip`),
             })))),
@@ -234,20 +234,20 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv_1, "hos
 `;
           })()),
           passthru: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             tests: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   command: "env GRADLE_USER_HOME=$TMPDIR/gradle GRADLE_OPTS=-Dorg.gradle.native.dir=$TMPDIR/native \\\n  gradle --version\n",
                 })))),
               "java-application": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   assertion: "can build and run a trivial Java application",
                   expected: nix.thunk(() => nix.app(writeText, "expected", "hello\n")),
                   actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                       src: nix.path(here, "./tests/java-application"),
                     })), "cp -a $src/* .\n\n# Make sure GRADLE_OPTS works.\nenv \\\n  GRADLE_USER_HOME=$TMPDIR/gradle \\\n  GRADLE_OPTS=\"-Dorg.gradle.native.dir=$TMPDIR/native -Dnix.test.mainClass=Main\" \\\n  gradle run --no-daemon --quiet --console plain > $out\n")),
@@ -255,11 +255,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv_1, "hos
             })),
             jdk: java,
             wrapped: nix.thunk(() => nix.app(callPackage_1, wrapGradle, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "gradle-unwrapped": nix.thunk(() => nix.app(mkGradle, genArgs)),
               })))),
             updateScript: nix.thunk(() => (nix.asBool(!nix.eq(updateScriptMajorVersion, null)) ? nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 extraArgs: nix.thunk(() => [
                   "--url=https://github.com/gradle/gradle",
                   "--use-github-releases",
@@ -268,7 +268,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv_1, "hos
               }))) : null)),
           })),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             platforms: platforms,
             description: "Enterprise-grade build system",
             longDescription: "Gradle is a build system which offers you ease, power and freedom.\nYou can choose the balance for yourself. It has powerful multi-project\nbuild support. It has a layer on top of Ivy that provides a\nbuild-by-convention integration for Ivy. It gives you always the choice\nbetween the flexibility of Ant and the convenience of a\nbuild-by-convention behavior.\n",
@@ -302,14 +302,14 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv_1, "hos
     const mkGradle_1 = mkGradle;
     const wrapGradle_1 = wrapGradle;
     const gradle_9 = nix.thunk(() => nix.app(mkGradle_1, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         version: "9.8.0",
         hash: "sha256-uv1c6c+uoPvM/chDmhrEL71M2cidyamIIo2KJjmljmw=",
         defaultJava: jdk25,
         updateScriptMajorVersion: "9",
       }))));
     const gradle_8 = nix.thunk(() => nix.app(mkGradle_1, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         version: "8.14.4",
         hash: "sha256-8XcSmKcPbbWina9iN4xOGKF/wzybprFDYuDN9AYQOA0=",
         defaultJava: jdk21,
@@ -318,7 +318,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv_1, "hos
       }))));
     const gradle = gradle_8;
     return {
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       mkGradle: mkGradle_1,
       wrapGradle: wrapGradle_1,
       gradle_9,

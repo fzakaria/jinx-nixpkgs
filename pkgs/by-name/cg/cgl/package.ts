@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const coin_utils = nix.arg($, "coin-utils");
   const osi = nix.arg($, "osi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cgl",
       version: "0.60.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coin-or",
           repo: "Cgl",
           rev: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [clp, coin_utils, osi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cut Generator Library",
         homepage: "https://github.com/coin-or/Cgl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl20")),

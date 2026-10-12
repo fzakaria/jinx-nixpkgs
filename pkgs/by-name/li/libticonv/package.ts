@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libticonv",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tilp/libticonv-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0y080v12bm81wgjm6fnw7q0yg7scphm8hhrls9njcszj7fkscv9i",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib]),
       configureFlags: nix.thunk(() => nix.concat(["--enable-iconv"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "LDFLAGS=-liconv"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "http://lpg.ticalc.org/prj_tilp/news.html",
         description: "This library is part of the TiLP framework",
         homepage: "http://lpg.ticalc.org/prj_tilp/",

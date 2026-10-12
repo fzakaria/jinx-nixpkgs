@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const fontfeatures = nix.arg($, "fontfeatures");
   const ufolib2 = nix.arg($, "ufolib2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ufomerge",
       version: "1.9.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "ufomerge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, fontfeatures]),
       pythonImportsCheck: nix.thunk(() => ["ufomerge"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line utility and Python library that merges two UFO source format fonts into a single file",
         homepage: "https://github.com/googlefonts/ufomerge",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/ufomerge/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

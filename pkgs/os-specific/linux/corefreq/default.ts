@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "corefreq";
       const version = "2.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cyring",
           repo: "CoreFreq",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies"));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${src}/${nix.sel(stdenv, "hostPlatform", "qemuArch")}`),
       }));
       const makeFlags = nix.thunk(() => nix.concat([
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "mkdir -p $out/bin\n";
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CPU monitoring and tuning software designed for 64-bit processors",
         homepage: "https://github.com/cyring/CoreFreq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

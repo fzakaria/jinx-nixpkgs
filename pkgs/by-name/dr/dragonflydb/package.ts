@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
   const pname = "dragonflydb";
   const version = "1.39.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "dragonflydb",
       repo: "dragonfly",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,14 +72,14 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const abseil_cpp_20250512 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "abseil",
       repo: "abseil-cpp",
       tag: "20250512.1",
       hash: "sha256-eB7OqTO9Vwts9nYQ/Mdq0Ds4T1KgmmpYdzU09VPWOhk=",
     }))));
   const aws_sdk_cpp_1_11_717 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "aws",
       repo: "aws-sdk-cpp",
       tag: "1.11.717",
@@ -87,42 +87,42 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const glog_absl = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "romange",
       repo: "glog",
       rev: "Absl",
       hash: "sha256-68Hx3kIPgyMSdHCUpYr68Cw8V4Umtyd+4VLZc3zUb1s=",
     }))));
   const jsoncons_dragonfly = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "dragonflydb",
       repo: "jsoncons",
       rev: "Dragonfly1.5.0",
       hash: "sha256-9W9GJpzKuqolXoz5iYiE1EbVWr7HiFqpMgZO1BQdi0s=",
     }))));
   const hnswlib_dragonfly = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       owner: "dragonflydb",
       repo: "hnswlib",
       rev: "d07dd1da2bf48b85d2f03b8396193ad7120f75c2",
       hash: "sha256-GFBjKzDauznGGfkXZqSFgbvBKxDXbx2rETqY5BnCIiw=",
     }))));
   const lua_dragonfly = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       owner: "dragonflydb",
       repo: "lua",
       rev: "Dragonfly-5.4.6a",
       hash: "sha256-uLNe+hLihu4wMW/wstGnYdPa2bGPC5UiNE+VyNIYY2c=",
     }))));
   const mimalloc224 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       owner: "microsoft",
       repo: "mimalloc",
       tag: "v2.2.4",
       hash: "sha256-+8xZT+mVEqlqabQc+1buVH/X6FZxvCd0rWMyjPu9i4o=",
     }))));
   const snowball_stemmer = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       owner: "snowballstem",
       repo: "snowball",
       tag: "v3.0.1",
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const withUnwind = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: pname,
       version: version,
       src: src,
@@ -214,7 +214,7 @@ fi
       dontUseNinjaInstall: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 ./dragonfly $out/bin/dragonfly\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Modern replacement for Redis and Memcached",
         homepage: "https://dragonflydb.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),

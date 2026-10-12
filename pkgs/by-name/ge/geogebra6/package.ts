@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const srcIcon = nix.thunk(() => nix.sel(geogebra, "srcIcon"));
   const desktopItem = nix.thunk(() => nix.sel(geogebra, "desktopItem"));
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Dynamic mathematics software with graphics, algebra and spreadsheets",
     longDescription: "Dynamic mathematics software for all levels of education that brings\ntogether geometry, algebra, spreadsheets, graphing, statistics and\ncalculus in one easy-to-use package.\n",
     homepage: "https://www.geogebra.org/",
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
     hydraPlatforms: [],
   }));
   const linuxPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/6.0/GeoGebra-Linux64-Portable-${version}.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230824011801/https://download.geogebra.org/installers/6.0/GeoGebra-Linux64-Portable-${version}.zip`),
@@ -79,11 +79,11 @@ install -Dm644 "${srcIcon}" \\
 `),
     }))));
   const darwinPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/6.0/GeoGebra-Classic-6-MacOS-Portable-${version}.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230824012900/https://download.geogebra.org/installers/6.0/GeoGebra-Classic-6-MacOS-Portable-${version}.zip`),
@@ -94,7 +94,7 @@ install -Dm644 "${srcIcon}" \\
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "install -dm755 $out/Applications\nunzip $src -d $out/Applications\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

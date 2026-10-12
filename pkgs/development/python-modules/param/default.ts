@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "holoviz",
           repo: "param",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const pythonImportsCheck = nix.thunk(() => ["param"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative Python programming using Parameters",
         homepage: "https://param.holoviz.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/holoviz/param/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

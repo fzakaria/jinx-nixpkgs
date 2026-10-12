@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "beangulp",
       version: "0.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beancount",
           repo: "beangulp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/beancount/beangulp/commit/254bfb38ffed049ef8f3041bfaf01b3f5a8aa771.patch?full_index=1",
             hash: "sha256-ojysT23K0xmFafzTnRZiHkLS2ioDR/tVK02mfF7N9so=",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [petl, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["beangulp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/beancount/beangulp",
         description: "Importers framework for Beancount",
         longDescription: "Beangulp provides a framework for importing transactions into a Beancoount\nledger from account statements and other documents and for managing documents.\n",

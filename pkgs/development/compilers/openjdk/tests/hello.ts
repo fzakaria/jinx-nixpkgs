@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const source = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "src/Hello.java", "class Hello {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, world!\");\n  }\n}\n"));
   return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "hello",
       version: "1.0.0",
       src: source,

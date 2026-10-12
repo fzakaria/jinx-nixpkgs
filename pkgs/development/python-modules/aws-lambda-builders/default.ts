@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.61.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awslabs",
           repo: "aws-lambda-builders",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/integration/workflows/dotnet_clipackage/test_dotnet.py"]);
       const pythonImportsCheck = nix.thunk(() => ["aws_lambda_builders"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to compile, build and package AWS Lambda functions",
         mainProgram: "lambda-builders",
         homepage: "https://github.com/awslabs/aws-lambda-builders",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

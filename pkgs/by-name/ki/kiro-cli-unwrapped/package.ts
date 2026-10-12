@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kiro-cli-unwrapped",
       version: "2.27.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.selOr({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://desktop-release.q.us-east-1.amazonaws.com/${nix.sel(finalAttrs, "version")}/kirocli-x86_64-linux.tar.gz`),
             hash: "sha256-PA1yaKS/tz+OgngiBJl4+leOAgsnGvwQIcdTJgLUXZk=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://desktop-release.q.us-east-1.amazonaws.com/${nix.sel(finalAttrs, "version")}/kirocli-aarch64-linux.tar.gz`),
             hash: "sha256-M61UYsMRG6TvUn8dWL2gip0Zl+Cuc4QafCynNOvLotA=",
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://desktop-release.q.us-east-1.amazonaws.com/${nix.sel(finalAttrs, "version")}/Kiro%20CLI.dmg`),
             hash: "sha256-hQ2hPgZn9bxO9kVSa1ugilDchELNkrrR/8dUanzoGVw=",
           })))),
@@ -53,9 +53,9 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm755 bin/kiro-cli      -t $out/bin\ninstall -Dm755 bin/kiro-cli-chat -t $out/bin\ninstall -Dm755 bin/kiro-cli-term -t $out/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin $out/Applications\ncp -r \"../Kiro CLI.app\" \"$out/Applications/\"\nln -s \"$out/Applications/Kiro CLI.app/Contents/MacOS/kiro-cli\" $out/bin/kiro-cli\nfor bin in kiro-cli-chat kiro-cli-term; do\n  if [[ -e \"$out/Applications/Kiro CLI.app/Contents/MacOS/$bin\" ]]; then\n    ln -s \"$out/Applications/Kiro CLI.app/Contents/MacOS/$bin\" \"$out/bin/$bin\"\n  fi\ndone\n")), "runHook postInstall\n")),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command-line interface for Kiro, an agentic IDE",
         homepage: "https://kiro.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

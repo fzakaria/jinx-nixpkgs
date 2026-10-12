@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "10.3.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JuanBindez",
           repo: "pytubefix",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-XfcFpJRMcXGcGeo36QhBEi7iT6Lsf1yq2F1iz/jq7oQ=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./replace-nodejs-wheel-binaries.patch"), nix.thunk(() => ({ __proto__: pos$2, nodejs: nodejs })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./replace-nodejs-wheel-binaries.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [aiohttp]);
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pytubefix"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pytube fork with additional features and fixes",
         homepage: "https://github.com/JuanBindez/pytubefix",
         changelog: nix.thunk(() => nix.str`https://github.com/JuanBindez/pytubefix/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

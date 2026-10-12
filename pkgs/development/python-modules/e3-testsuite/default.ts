@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "27.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AdaCore",
           repo: "e3-testsuite",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [e3_core]);
       const pythonImportsCheck = nix.thunk(() => ["e3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic testsuite framework in Python",
         changelog: nix.thunk(() => nix.str`https://github.com/AdaCore/e3-testsuite/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/AdaCore/e3-testsuite/",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

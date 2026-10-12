@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cc = nix.argOr($, "cc", () => nix.sel(targetPackages, "stdenv", "cc"));
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "c99sh",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RhysU",
           repo: "c99sh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +50,11 @@ substituteInPlace c99sh \\
       checkPhase: "runHook preCheck\n\n./tests\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\nmkdir --parents $out/bin\ncp --no-dereference c*sh $out/bin # c11sh and cxxsh\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Shebang-friendly script for \"interpreting\" C files",
         longDescription: "Shebang-friendly script for \\\"interpreting\\\" single C99, C11,\nand C++ files, including rcfile support\n",
         homepage: "https://github.com/RhysU/c99sh",

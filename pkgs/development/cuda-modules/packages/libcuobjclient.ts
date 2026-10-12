@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const numactl = nix.arg($, "numactl");
   const rdma_core = nix.arg($, "rdma-core");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libcuobjclient",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       buildInputs: nix.thunk(() => [libcufile, numactl, rdma_core]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CUDA cuObject Client",
         longDescription: "High-performance suite of libraries designed to enable direct data transfers between GPU\nmemory or system memory and object storage (S3-compatible) solution via RDMA.\n",
         homepage: "https://docs.nvidia.com/gpudirect-storage/cuobject/",

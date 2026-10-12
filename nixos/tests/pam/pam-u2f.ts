@@ -26,44 +26,44 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "pam-u2f",
     qemu: nix.thunk(() => ({
-      __proto__: pos$2,
-      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ __proto__: pos$1, u2fEmuSupport: true })))),
+      [nix.POS]: pos$2,
+      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, u2fEmuSupport: true })))),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$4,
-            qemu: nix.thunk(() => ({ __proto__: pos$3, options: nix.thunk(() => ["-usb", "-device u2f-emulated"]) })),
+            [nix.POS]: pos$4,
+            qemu: nix.thunk(() => ({ [nix.POS]: pos$3, options: nix.thunk(() => ["-usb", "-device u2f-emulated"]) })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             pam: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               u2f: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enable: true,
                 control: "sufficient",
-                settings: nix.thunk(() => ({ __proto__: pos$5, debug: true, origin: "pam://nixos-test" })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$5, debug: true, origin: "pam://nixos-test" })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             users: nix.thunk(() => ({
-              __proto__: pos$10,
-              alice: nix.thunk(() => ({ __proto__: pos$9, isNormalUser: true, uid: 1000n })),
+              [nix.POS]: pos$10,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$9, isNormalUser: true, uid: 1000n })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -73,9 +73,9 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             udev: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               extraRules: "KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", MODE=\"0666\"\n",
             })),
           })),

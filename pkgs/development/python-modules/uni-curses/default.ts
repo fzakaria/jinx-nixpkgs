@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const x256 = nix.arg($, "x256");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uni-curses",
       version: "3.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Uni-Curses",
           hash: "sha256-M4mjdmy2NSf5KiTVYznPy86bVgZB5u1vDi6GIH1Frc4=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["unicurses"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified Curses Wrapper for Python",
         homepage: "https://github.com/unicurses/unicurses",
         changelog: nix.thunk(() => nix.str`https://github.com/unicurses/unicurses/blob/v.${nix.sel(finalAttrs, "version")}/changelog.md`),

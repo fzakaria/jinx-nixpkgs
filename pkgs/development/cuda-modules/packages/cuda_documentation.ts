@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_documentation",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://docs.nvidia.com/cuda",
         changelog: "https://docs.nvidia.com/cuda/cuda-toolkit-release-notes",
       })),

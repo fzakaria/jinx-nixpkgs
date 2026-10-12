@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.builtins.map, (n) => nix.str`--add-flags -m --add-flags ${pluginPath}/${nix.sel(n, "plugin")}${libExt}`, plugins)));
     })());
     return nix.app(nix.sel(lib, "appendToName"), "with-plugins", nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.attr(yosys, "name")),
           paths: nix.thunk(() => nix.concat(paths, [yosys])),
           nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -56,10 +56,10 @@ export default nix.lambda((args) => (() => {
   --set YOSYS_PLUGIN_PATH ${pluginPath} \\
   ${module_flags}
 `),
-          meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "yosys" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "yosys" })),
         })))));
   })();
-  const allPlugins = nix.thunk(() => nix.update({ __proto__: pos$3, bluespec: yosys_bluespec, ghdl: yosys_ghdl }, yosys_symbiflow));
+  const allPlugins = nix.thunk(() => nix.update({ [nix.POS]: pos$3, bluespec: yosys_bluespec, ghdl: yosys_ghdl }, yosys_symbiflow));
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pp) => (() => {
       const w = nix.withScope(pp, null);
       return nix.concat([nix.thunk(() => nix.lookup(w, "click"))], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
         ])));
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "yosys",
       version: "0.69",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "YosysHQ",
           repo: "yosys",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -101,13 +101,13 @@ substituteInPlace tests/aiger/generate_mk.py \\
       nativeCheckInputs: nix.thunk(() => [gtkwave, iverilog]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         withPlugins: withPlugins,
         allPlugins: allPlugins,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open RTL synthesis framework and tools",
         homepage: "https://yosyshq.net/yosys/",
         changelog: nix.thunk(() => nix.str`https://github.com/YosysHQ/yosys/releases/tag/v${nix.sel(finalAttrs, "version")}`),

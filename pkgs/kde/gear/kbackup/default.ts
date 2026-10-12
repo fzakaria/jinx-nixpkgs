@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kbackup",
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qt5compat, libarchive]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kbackup" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kbackup" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

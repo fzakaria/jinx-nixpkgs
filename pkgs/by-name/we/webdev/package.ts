@@ -23,32 +23,32 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const yq_go = nix.arg($, "yq-go");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "webdev",
       version: "3.8.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dart-lang",
           repo: "webdev",
           tag: nix.thunk(() => nix.str`webdev-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IwH0+J0iCSPxP/FbKPtmhpWjE16SGyYK88xa8ioBC2w=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/webdev`),
-      dartEntryPoints: nix.thunk(() => ({ __proto__: pos$2, "bin/webdev": "bin/webdev.dart" })),
+      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: pos$2, "bin/webdev": "bin/webdev.dart" })),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       nativeBuildInputs: nix.thunk(() => [yq_go]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       preBuild: "yq -i 'del(.dev_dependencies)' pubspec.yaml\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           usage: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "webdev-usage-test",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "export HOME=$TMPDIR\nwebdev --help > output.txt\nif grep -q \"Usage: webdev\" output.txt; then\n  echo \"Usage check passed ✅\"\n  touch $out\nelse\n  echo \"Usage check failed ❌\"\n  exit 1\nfi\n",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mainProgram: "webdev",
         homepage: "https://dart.dev/tools/webdev",
         description: "Command-line tool for developing and deploying web applications with Dart",
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpeParts: nix.thunk(() => (() => {
             const versionSplit = nix.thunk(() => nix.app(nix.sel(lib, "split"), "\\+", nix.thunk(() => nix.sel(finalAttrs, "version"))));
             const versionPart = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionSplit, 0n));
             const updatePart = nix.thunk(() => (nix.asBool(nix.gt(nix.app(nix.sel(lib, "count"), (x) => nix.app(nix.sel(lib, "isList"), x), versionSplit), 0n)) ? nix.app(nix.sel(lib, "elemAt"), versionSplit, 2n) : "*"));
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               vendor: "dart-lang",
               product: "webdev",
               version: versionPart,

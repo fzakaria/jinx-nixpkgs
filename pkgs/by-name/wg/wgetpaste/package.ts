@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wgetpaste",
       version: "2.34",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/zlin/wgetpaste/releases/download/${nix.sel(finalAttrs, "version")}/wgetpaste-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-vW0G7ZAaPWPJyMVxJghP8JlPCZAb+xY4uHlT6sHpQz8=",
         })))),
@@ -28,7 +28,7 @@ substituteInPlace wgetpaste --replace "LC_ALL=C wget" "LC_ALL=C ${wget}/bin/wget
 `),
       installPhase: "mkdir -p $out/bin;\ncp wgetpaste $out/bin;\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line interface to various pastebins",
         mainProgram: "wgetpaste",
         homepage: "https://github.com/zlin/wgetpaste",

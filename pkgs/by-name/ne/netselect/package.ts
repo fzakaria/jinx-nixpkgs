@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netselect";
       const version = "0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apenwarr",
           repo: "netselect",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const installPhase = "runHook preInstall\ninstall -Dm555 -t $out/bin netselect netselect-apt\ninstall -Dm444 -t $out/share/man/man1 *.1\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/apenwarr/netselect",
         description: "Ultrafast intelligent parallelizing binary-search implementation of \"ping\"",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pywavefront",
           repo: "PyWavefront",
           rev: version,
           hash: "sha256-ci40L2opJ+NYYtaAeX1Y5pzkdK+loFspTriX/xv4KR8=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, visualization: nix.thunk(() => [pyglet]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, visualization: nix.thunk(() => [pyglet]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mock]);
       const pythonImportsCheck = nix.thunk(() => ["pywavefront"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for importing Wavefront .obj files",
         homepage: "https://github.com/pywavefront/PyWavefront",
         changelog: nix.thunk(() => nix.str`https://github.com/pywavefront/PyWavefront/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

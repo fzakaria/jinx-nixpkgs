@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_14 = nix.arg($, "apple-sdk_14");
   const darwinMinVersionHook = nix.arg($, "darwinMinVersionHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gws",
       version: "0.22.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleworkspace",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [dbus])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_14, nix.thunk(() => nix.app(darwinMinVersionHook, "10.15"))])))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "One CLI for all of Google Workspace",
         homepage: "https://github.com/googleworkspace/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/googleworkspace/cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

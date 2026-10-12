@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mov-cli",
           repo: "mov-cli-test",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pytubefix, requests, devgoldyutils]);
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mov-cli plugin that let's you test mov-cli's capabilities by watching free films and animations in the creative commons",
         homepage: "https://github.com/mov-cli/mov-cli-test",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

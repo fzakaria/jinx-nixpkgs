@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lieer",
       version: "1.6",
       pyproject: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gauteh",
           repo: "lieer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lieer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast email-fetching and two-way tag synchronization between notmuch and GMail",
         longDescription: "This program can pull email and labels (and changes to labels)\nfrom your GMail account and store them locally in a maildir with\nthe labels synchronized with a notmuch database. The changes to\ntags in the notmuch database may be pushed back remotely to your\nGMail account.\n",
         homepage: "https://lieer.gaute.vetsj.com/",

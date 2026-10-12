@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxan",
           repo: "djangorestframework-dataclasses",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [djangorestframework]);
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytestCheckHook]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.django_settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.django_settings" }));
       const pythonImportsCheck = nix.thunk(() => ["rest_framework_dataclasses"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/oxan/djangorestframework-dataclasses/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Dataclasses serializer for Django REST framework",
         homepage: "https://github.com/oxan/djangorestframework-dataclasses",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

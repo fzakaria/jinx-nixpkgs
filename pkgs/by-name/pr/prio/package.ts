@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prio",
       version: "0-unstable-2018-09-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letoram",
           repo: "prio",
           rev: "c3f97491339d15f063d6937d5f89bcfaea774dd1",
@@ -33,7 +33,7 @@ cp -a ./* ${nix.builtins.placeholder("out")}/share/arcan/appl/prio
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/letoram/prio",
         description: "Plan9- Rio like Window Manager for Arcan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

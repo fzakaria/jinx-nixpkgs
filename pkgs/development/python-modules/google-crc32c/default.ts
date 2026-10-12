@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "python-crc32c",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [crc32c]);
       const dependencies = nix.thunk(() => [cffi]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LDFLAGS: nix.thunk(() => nix.str`-L${crc32c}/lib`),
         CFLAGS: nix.thunk(() => nix.str`-I${crc32c}/include`),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, crc32c]);
       const pythonImportsCheck = nix.thunk(() => ["google_crc32c"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wrapper the google/crc32c hardware-based implementation of the CRC32C hashing algorithm",
         homepage: "https://github.com/googleapis/python-crc32c",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-crc32c/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

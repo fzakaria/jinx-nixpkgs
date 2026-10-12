@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbt-labs",
           repo: "dbt-bigquery",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const pythonImportsCheck = nix.thunk(() => ["dbt.adapters.bigquery"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin enabling dbt to operate on a BigQuery database",
         homepage: "https://github.com/dbt-labs/dbt-bigquery",
         changelog: nix.thunk(() => nix.str`https://github.com/dbt-labs/dbt-bigquery/blob/v${version}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libsmbios",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dell",
           repo: "libsmbios",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "musl.patch",
             url: "https://git.alpinelinux.org/aports/plain/community/libsmbios/fixes.patch?id=bdc4f67889c958c1266fa5d0cab71c3cd639122f",
             sha256: "aVVc52OovDYvqWRyKcRAi62daa9AalkKvnVOGvrTmRk=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/include\ncp -a src/include/smbios_c $out/include/\ncp -a out/public-include/smbios_c $out/include/\n",
       preFixup: "patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$out/sbin/smbios-sys-info-lite\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/dell/libsmbios",
         description: "Library to obtain BIOS information",
         license: nix.thunk(() => (() => {

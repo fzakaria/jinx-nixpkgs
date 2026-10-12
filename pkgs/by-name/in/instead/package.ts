@@ -28,42 +28,42 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const games = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "http://instead-games.googlecode.com/files/instead-apple-day-1.2.zip",
         sha256: "0d4m554hiqmgl4xl0jp0b3bqjl35879768hqznh9y57y04sygd2a",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "http://instead-games.googlecode.com/files/instead-cat_en-1.2.zip",
         sha256: "0jlm3ssqlka16dm0rg6qfjh6xdh3pv7lj2s4ib4mqwj2vfy0v6sg",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "http://instead-games.googlecode.com/files/instead-vinny-0.1.zip",
         sha256: "15qdbg82zp3a8vz4qxminr0xbzbdpnsciliy2wm3raz4hnadawg1",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "http://instead-games.googlecode.com/files/instead-toilet3in1-1.2.zip",
         sha256: "0wz4bljbg67m84qwpaqpzs934a5pcbhpgh39fvbbbfvnnlm4lirl",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: "http://instead-games.googlecode.com/files/instead-kayleth-0.4.1.zip",
         sha256: "0xmn9inys0kbcdd02qaqp8gazqs67xq3fq7hvcy2qb9jbq85j8b2",
       })))),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "instead",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/instead/instead/${nix.sel(finalAttrs, "version")}/instead_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-d5BvzZCZ3P5CLptuCuJ4KxfEp4CDbtmIZDIbGDcyV3o=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-llua", "-lgcc_s"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, unzip]),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "pushd $out/share/instead/games\nfor a in $games; do\n  unzip $a\ndone\npopd\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Simple text adventure interpreter for Unix and Windows",
         homepage: "https://instead.syscall.ru/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

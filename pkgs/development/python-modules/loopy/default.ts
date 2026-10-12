@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const fparser = nix.arg($, "fparser");
   const ply = nix.arg($, "ply");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "loopy",
       version: "2025.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inducer",
           repo: "loopy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pyopencl: nix.thunk(() => [pyopencl]),
         fortran: nix.thunk(() => [fparser, ply]),
       })),
       pythonImportsCheck: nix.thunk(() => ["loopy"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Code generator for array-based code on CPUs and GPUs",
         homepage: "https://github.com/inducer/loopy",
         changelog: nix.thunk(() => nix.str`https://github.com/inducer/loopy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

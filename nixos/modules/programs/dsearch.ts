@@ -30,20 +30,20 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "dsearch"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         dsearch: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(mkEnableOption, "dsearch, a fast filesystem search service with fuzzy matching")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "dsearch", nix.thunk(() => ({})))),
           systemd: nix.thunk(() => ({
-            __proto__: pos$3,
-            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "systemd user service for dsearch"), { __proto__: pos$1, default: true })),
+            [nix.POS]: pos$3,
+            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "systemd user service for dsearch"), { [nix.POS]: pos$1, default: true })),
             target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "default.target",
                 description: "The systemd target that will automatically start the dsearch service.\n\nBy default, dsearch starts with the user session (`default.target`).\nYou can change this to `graphical-session.target` if you only want\nit to run in graphical sessions.\n",
@@ -53,20 +53,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               dsearch: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 wantedBy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "systemd", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "systemd", "target"))]))),
               })),
             })),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "danklinux"))]),
     })),
   };

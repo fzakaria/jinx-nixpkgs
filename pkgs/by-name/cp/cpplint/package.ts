@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cpplint",
       version: "2.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cpplint",
           repo: "cpplint",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "drop-codecs-open.patch",
             url: "https://github.com/cpplint/cpplint/commit/89bff410afed72e58d23ae084de4103986ea8630.patch?full_index=1",
             hash: "sha256-Jdeewj3GM7GMoRF7+Qz/9n1hc8PYPcXLgtSGwSUpT1E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "use-universal-newlines.patch",
             url: "https://github.com/cpplint/cpplint/commit/d15a8715a6e848f784fda700758c4ac2d252fd31.patch?full_index=1",
             hash: "sha256-Oo2doknEGnuxDJA0y17n1DCaKwadtMW/14a5wnIgfkw=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/cpplint/cpplint",
         description: "Static code checker for C++",
         changelog: nix.thunk(() => nix.str`https://github.com/cpplint/cpplint/releases/tag/${nix.sel(finalAttrs, "version")}`),

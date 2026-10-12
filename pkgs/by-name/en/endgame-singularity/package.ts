@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const pname = "endgame-singularity";
   const version = "1.1";
   const main_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "singularity",
       repo: "singularity",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-wYXuhlGp7gisgN2iRXKTpe0Om2AA8u0eBwKHHIYuqbk=",
     }))));
   const music_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "http://www.emhsoft.com/singularity/endgame-singularity-music-007.zip",
       sha256: "0vf2qaf66jh56728pq1zbnw50yckjz6pf6c6qw6dl7vk60kkqnpb",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pyproject: true,
       pname: pname,
       version: version,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableDefaultMusicPack, "cp -R \"../endgame-singularity-music-007\" \\\n      \"$(echo $out/lib/python*/site-packages/singularity)/music\"\n      # ↑ we cannot glob on [...]/music, it doesn't exist yet\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.emhsoft.com/singularity/",
         description: "Simulation game about strong AI",
         longDescription: "A simulation of a true AI. Go from computer to computer, pursued by the\nentire world. Keep hidden, and you might have a chance\n",

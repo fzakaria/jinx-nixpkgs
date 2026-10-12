@@ -34,38 +34,38 @@ export default nix.lambda((args) => (() => {
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "stash-clipboard": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "stash, a Wayland clipboard manager")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["stash-clipboard"]), nix.thunk(() => ({})))),
           arguments: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--max-items 10"]),
               description: "A list of arguments which are passed to `stash`. For a list of available arguments, run `stash --help`.\n",
             })))),
           serviceArguments: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--persist"]),
               description: "A list of arguments which are passed to `stash watch`. For a list of available arguments, run `stash watch --help`.\n",
             })))),
           filterFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               example: "/etc/stash/clipboard_filter",
               description: "Stash can be configured to avoid storing clipboard entries that match a sensitive pattern, using a regular expression.\nThe file set here should contain your regex pattern (no quotes).\n\nExample regex to block common password patterns:\n- (password|secret|api[_-]?key|token)[=: ]+[^\\s]+\n",
             })))),
           excludedApps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["Bitwarden"]),
@@ -75,29 +75,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "stash-clipboard": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "Stash clipboard manager daemon",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 after: nix.thunk(() => ["graphical-session.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(cfg, "arguments")))} watch ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(cfg, "serviceArguments")))}`),
                   LoadCredential: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "filterFile"), "")), nix.thunk(() => nix.str`clipboard_filter:${nix.sel(cfg, "filterFile")}`))),
                 })),
                 environment: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "excludedApps"), [])), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     STASH_EXCLUDED_APPS: nix.thunk(() => nix.app(concatStringsSep, ",", nix.thunk(() => nix.sel(cfg, "excludedApps")))),
                   })))),
               })),

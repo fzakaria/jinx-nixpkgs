@@ -51,35 +51,35 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "opensnitch"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const predefinedRules = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), nix.thunk(() => nix.sel(cfg, "rules")), (name) => (cfg_1) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rule", nix.thunk(() => nix.builtins.toJSON(cfg_1)))),
     })));
   const stateDir = nix.thunk(() => nix.app(nix.sel(lib, "strings", "match"), "/var/lib/([^/]+)/.+", nix.thunk(() => nix.sel(cfg, "settings", "Rules", "Path"))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         opensnitch: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Opensnitch application firewall")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "opensnitch", nix.thunk(() => ({})))),
           rules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"tor\" = {\n    \"name\" = \"tor\";\n    \"enabled\" = true;\n    \"action\" = \"allow\";\n    \"duration\" = \"always\";\n    \"operator\" = {\n      \"type\" =\"simple\";\n      \"sensitive\" = false;\n      \"operand\" = \"process.path\";\n      \"data\" = \"${lib.getBin pkgs.tor}/bin/tor\";\n    };\n  };\n};\n")),
               description: "Declarative configuration of firewall rules.\nAll rules will be stored in `/var/lib/opensnitch/rules` by default.\nRules path can be configured with `settings.Rules.Path`.\nSee [upstream documentation](https://github.com/evilsocket/opensnitch/wiki/Rules)\nfor available options.\n",
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$2, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
             })))),
           upstreamDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Whether to base the config declared in {option}`services.opensnitch.settings` on the upstream example config (<https://github.com/evilsocket/opensnitch/blob/master/daemon/data/default-config.json>)\n\nDisable this if you want to declare your opensnitch config from scratch.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Path to JSON config file. See: <https://github.com/evilsocket/opensnitch/blob/master/daemon/data/default-config.json>\nIf this option is set, it will override any configuration done in options.services.opensnitch.settings.\n",
               example: "/etc/opensnitchd/default-config.json",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
@@ -91,28 +91,28 @@ export default nix.lambda((args) => (() => {
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "JSON file generated from {option}`services.opensnitch.settings`")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     ProcMonitorMethod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["ebpf", "proc", "ftrace", "audit"]))),
                         default: "ebpf",
                         description: "Which process monitoring method to use.\n",
                       })))),
                     Firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["iptables", "nftables"]))),
                         default: "nftables",
                         description: "Which firewall backend to use. `nftables` ruleset can be used for `iptables` firewall too, if `iptables` is built with nftables compatibility.\n",
                       })))),
                     Ebpf: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       ModulesPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "ProcMonitorMethod"), "ebpf")) ? nix.str`${nix.sel(config, "boot", "kernelPackages", "opensnitch-ebpf")}/etc/opensnitchd` : null)),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if cfg.settings.ProcMonitorMethod == \"ebpf\" then\n  \"${config.boot.kernelPackages.opensnitch-ebpf}/etc/opensnitchd\"\nelse null;\n")),
@@ -120,19 +120,19 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     Audit: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       AudispSocketPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: "/run/audit/audispd_events",
                           description: "Configure audit socket path. Used when\n`settings.ProcMonitorMethod` is set to `audit`.\n",
                         })))),
                     })),
                     Rules: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       Path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
-                          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "pathWith"), nix.thunk(() => ({ __proto__: pos$12, inStore: false, absolute: true })))),
+                          [nix.POS]: pos$13,
+                          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$12, inStore: false, absolute: true })))),
                           default: "/var/lib/opensnitch/rules",
                           description: "Path to the directory where firewall rules can be found and will\nget stored by the NixOS module.\n",
                         })))),
@@ -145,36 +145,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.eq(stateDir, null)),
             message: nix.thunk(() => nix.str`\`config.services.opensnitch.settings.Rules.Path\` must be a sub-directory of /var/lib/, currently is ${nix.sel(cfg, "settings", "Rules", "Path")}`),
           })),
         ]),
         security: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           auditd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "ProcMonitorMethod"), "audit")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: true,
               plugins: nix.thunk(() => ({
-                __proto__: pos$23,
-                af_unix: nix.thunk(() => ({ __proto__: pos$22, active: true })),
+                [nix.POS]: pos$23,
+                af_unix: nix.thunk(() => ({ [nix.POS]: pos$22, active: true })),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             opensnitchd: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "ProcMonitorMethod"), "audit")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "audit"))]))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "opensnitchd")} --config-file ${nix.sel(cfg, "configFile")}`),
@@ -186,7 +186,7 @@ export default nix.lambda((args) => (() => {
 mkdir -p ${nix.sel(cfg, "settings", "Rules", "Path")}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "rules"), {})), nix.thunk(() => (() => {
                   const rules = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), predefinedRules, (file) => (content) => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       file: nix.thunk(() => nix.attr(content, "file")),
                       local: nix.thunk(() => nix.str`${nix.sel(cfg, "settings", "Rules", "Path")}/${file}.json`),
                     })));
@@ -213,22 +213,22 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), nix.lambda((args_1) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           etc: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             "opensnitchd/network_aliases.json": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/opensnitchd/network_aliases.json`),
             })),
             "opensnitchd/system-fw.json": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/opensnitchd/system-fw.json`),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

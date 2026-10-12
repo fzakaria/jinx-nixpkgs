@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dec-decode",
       version: "0-unstable-2022-12-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sammiq",
           repo: "dec-decode",
           rev: "6ee103cfaa9365f930da65b13f2e296c4e1ef8c3",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-zGWRzw1KUmifIsTudlgoKCR3+K0FLehHRSB3lNX+OWY=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nintendo Wii iso.dec decoder",
         mainProgram: "dec-decode",
         homepage: "https://github.com/sammiq/dec-decode",

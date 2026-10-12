@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lldpd",
       version: "1.0.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://media.luffy.cx/files/lldpd/lldpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lYeUDtIxSoZ3TFSZ89+xOo64YjKmLSQ6g6HwmIaEjgM=",
         })))),
@@ -48,7 +48,7 @@ export PATH=$PATH:${nix.sel(net_snmp, "dev")}/bin
       preFixup: nix.thunk(() => nix.str`find $out -type f -exec remove-references-to -t ${nix.sel(stdenv, "cc")} '{}' +
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "802.1ab implementation (LLDP) to help you locate neighbors of all your equipment",
         homepage: "https://lldpd.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

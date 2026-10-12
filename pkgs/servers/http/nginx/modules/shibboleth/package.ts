@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shibboleth",
       version: "2.0.1-unstable-2020-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nginx-shib",
           repo: "nginx-http-shibboleth",
           rev: "3f5ff4212fa12de23cb1acae8bf3a5a432b3f43b",
           hash: "sha256-xsPzEhT6gEma8W2u779JSfkBcw27cfzYmzGer26U34w=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shibboleth auth request",
         homepage: "https://github.com/nginx-shib/nginx-http-shibboleth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

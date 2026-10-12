@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-nix-shell",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chisui",
           repo: "zsh-nix-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash]),
       installPhase: "install -D nix-shell.plugin.zsh --target-directory=$out/share/zsh/plugins/zsh-nix-shell\ninstall -D scripts/* --target-directory=$out/share/zsh/plugins/zsh-nix-shell/scripts\nln -s $out/share/zsh/plugins/zsh-nix-shell $out/share/zsh-nix-shell\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zsh plugin that lets you use zsh in nix-shell shell",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

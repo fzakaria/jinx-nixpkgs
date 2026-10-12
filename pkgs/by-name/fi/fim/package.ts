@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
   const pngSupport = nix.argOr($, "pngSupport", () => true);
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fim",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/fbi-improved/fim-${nix.sel(finalAttrs, "version")}-trunk.tar.gz`),
           sha256: "sha256-/p7bjeZM46DJOQ9sgtebhkNpBPj2RJYY3dMXhzHnNmg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./native-tools.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             cc_for_build: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")))),
             FIM_WANT_CUSTOM_HARDCODED_CONSOLEFONT_TRUE: null,
             HAVE_RUNNABLE_TESTS_TRUE: null,
@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([flex, readline, libexif, bash], nix.concat(nix.app(nix.sel(lib, "optional"), x11Support, SDL), nix.concat(nix.app(nix.sel(lib, "optional"), svgSupport, inkscape), nix.concat(nix.app(nix.sel(lib, "optional"), asciiArtSupport, aalib), nix.concat(nix.app(nix.sel(lib, "optional"), gifSupport, giflib), nix.concat(nix.app(nix.sel(lib, "optional"), tiffSupport, libtiff), nix.concat(nix.app(nix.sel(lib, "optional"), jpegSupport, libjpeg), nix.app(nix.sel(lib, "optional"), pngSupport, libpng))))))))),
       configureFlags: nix.thunk(() => ["ac_cv_func_mmap_fixed_mapped=yes", "fim_cv_regex_broken=no"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LIBAA_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), aalib)), "aalib-config")),
         LIBPNG_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libpng)), "libpng-config")),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), x11Support, "-lSDL")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight, highly customizable and scriptable image viewer",
         longDescription: "FIM (Fbi IMproved) is a lightweight, console based image viewer that aims\nto be a highly customizable and scriptable for users who are comfortable\nwith software like the VIM text editor or the Mutt mail user agent.\n",
         homepage: "https://www.nongnu.org/fbi-improved/",

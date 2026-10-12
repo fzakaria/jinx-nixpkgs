@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gogh",
       version: "1247",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gogh-Co",
           repo: "Gogh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,11 +72,11 @@ runHook postInstall
   --prefix PYTHONPATH : "${pythonEnv}/${nix.sel(pythonEnv, "sitePackages")}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of color schemes for terminal emulators",
         longDescription: "Gogh is a collection of color schemes for various terminal\nemulators, including Gnome Terminal, Pantheon Terminal, Tilix\nand XFCE4 Terminal. These schemes are designed to make your\nterminal more visually appealing and improve your productivity\nby providing a better contrast and color differentiation. (This\nfork of Gogh includes a color scheme named \"Vaombe\".)\n\nThe inspiration for Gogh came from the clean and minimalistic\ndesign of Elementary OS, but the project has since grown to\ninclude a variety of unique and beautiful options. Not only does\nGogh work on Linux systems, but it's also compatible with iTerm\non macOS, providing a consistent and visually appealing\nexperience across platforms.\n",
         homepage: "https://github.com/Gogh-Co/Gogh",

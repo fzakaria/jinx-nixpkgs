@@ -28,56 +28,56 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     networking: nix.thunk(() => ({
-      __proto__: pos$6,
-      firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [80n]) })),
+      [nix.POS]: pos$6,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [80n]) })),
       interfaces: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lo: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             addresses: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$2, address: "169.254.169.254", prefixLength: 32n })),
+              nix.thunk(() => ({ [nix.POS]: pos$2, address: "169.254.169.254", prefixLength: 32n })),
             ]),
           })),
         })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "mock-google-metadata": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           description: "Mock Google metadata service",
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             Type: "simple",
             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "python3")}/bin/python ${nix.path(here, "./server.py")}`),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$8, SNAKEOIL_PUBLIC_KEY: snakeOilPublicKey })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$8, SNAKEOIL_PUBLIC_KEY: snakeOilPublicKey })),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           after: nix.thunk(() => ["network.target"]),
         })),
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       openssh: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         enable: true,
         settings: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           KbdInteractiveAuthentication: false,
           PasswordAuthentication: false,
         })),
       })),
     })),
     security: nix.thunk(() => ({
-      __proto__: pos$16,
-      googleOsLogin: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+      [nix.POS]: pos$16,
+      googleOsLogin: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
     })),
   };
 })(), formals$1);

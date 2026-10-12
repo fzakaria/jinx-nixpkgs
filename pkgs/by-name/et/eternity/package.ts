@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eternity-engine",
       version: "4.05.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "team-eternity",
           repo: "eternity",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper]),
       buildInputs: nix.thunk(() => [libGL, SDL2, SDL2_mixer, SDL2_net, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://doomworld.com/eternity",
         description: "New school Doom port by James Haley",
         mainProgram: "eternity",

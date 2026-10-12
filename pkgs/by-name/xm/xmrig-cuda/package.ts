@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(cudaPackages, "backendStdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xmrig-cuda",
       version: "6.22.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xmrig",
           repo: "xmrig-cuda",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/xmrig/xmrig-cuda/commit/5947ae05f87eb7966fbe0ad2db149a496f908e87.patch",
             hash: "sha256-5fxlc09DnJ2uNZAdhYdLv67RHCha7+SfMg9XzwwrN9o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/xmrig/xmrig-cuda/commit/d0065c315779b28f12944a74694f81e13fb01ece.patch",
             hash: "sha256-8lU3s2b1eh7fvcMze/FIiaURFrkypVGJisrE7w0aDM4=",
           })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -vD libxmrig-cuda.so $out/lib/libxmrig-cuda.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Monero (XMR) CPU miner, CUDA plugin",
         homepage: "https://github.com/xmrig/xmrig-cuda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

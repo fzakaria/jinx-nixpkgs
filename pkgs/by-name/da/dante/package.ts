@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const remove_getaddrinfo_checks = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMips64")) || nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dante",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.inet.no/dante/files/dante-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-GXPHcy8fnwpMDM8sHORix8JQYLJWQ+qQ+bmPU6gT+uw=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       dontAddDisableDepTrack: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./clang-osint-m4.patch")], nix.app(nix.sel(lib, "optionals"), remove_getaddrinfo_checks, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "0002-osdep-m4-Remove-getaddrinfo-too-low-checks.patch",
               url: "https://raw.githubusercontent.com/buildroot/buildroot/master/package/dante/0002-osdep-m4-Remove-getaddrinfo-too-low-checks.patch",
               sha256: "sha256-e+qF8lB5tkiA7RlJ+tX5O6KxQrQp33RSPdP1TxU961Y=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       postPatch: "substituteInPlace include/redefgen.sh --replace 'PATH=/bin:/usr/bin:/sbin:/usr/sbin' \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Circuit-level SOCKS client/server that can be used to provide convenient and secure network connectivity",
         homepage: "https://www.inet.no/dante/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "arobyn"))]),

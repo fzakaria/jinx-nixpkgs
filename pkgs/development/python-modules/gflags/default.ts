@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "python-gflags";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "40ae131e899ef68e9e14aa53ca063839c34f6a168afe622217b5b875492a1ee2",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six]);
       const checkPhase = "# clashes with our pythhon wrapper (which is in argv0)\n# AssertionError: 'gflags._helpers_test' != 'nix_run_setup.py'\npy.test -k 'not testGetCallingModule'\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/google/python-gflags",
         description: "Module for command line handling, similar to Google's gflags for C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

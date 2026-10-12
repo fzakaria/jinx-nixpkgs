@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.24.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-QGTFkOWc4ujYKi9m018xINdlgotN9ePb+we0qMJGhsk=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cryptography, nettle, typing_extensions]);
       const buildInputs = nix.thunk(() => [libsodium]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bcrypt: nix.thunk(() => [bcrypt]),
         fido2: nix.thunk(() => [fido2]),
         ifaddr: nix.thunk(() => [ifaddr]),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_canonicalize_failure"]))));
       const pythonImportsCheck = nix.thunk(() => ["asyncssh"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asynchronous SSHv2 Python client and server library",
         homepage: "https://asyncssh.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/ronf/asyncssh/blob/v${version}/docs/changes.rst`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

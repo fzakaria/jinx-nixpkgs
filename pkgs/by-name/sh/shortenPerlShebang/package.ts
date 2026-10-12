@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const dieHook = nix.arg($, "dieHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "shorten-perl-shebang-hook",
       propagatedBuildInputs: nix.thunk(() => [dieHook]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./shorten-perl-shebang.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

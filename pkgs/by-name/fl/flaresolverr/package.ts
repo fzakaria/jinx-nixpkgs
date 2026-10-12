@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flaresolverr",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FlareSolverr",
           repo: "FlareSolverr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,16 +63,16 @@ makeWrapper ${python}/bin/python $out/bin/flaresolverr \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xvfb]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "flaresolverr")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(undetected_chromedriver, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Proxy server to bypass Cloudflare protection",
         homepage: "https://github.com/FlareSolverr/FlareSolverr",
         changelog: nix.thunk(() => nix.str`https://github.com/FlareSolverr/FlareSolverr/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

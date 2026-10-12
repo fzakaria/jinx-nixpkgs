@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "mise",
       version: "2026.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jdx",
           repo: "mise",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,7 +89,7 @@ substituteInPlace ./crates/mise-util/src/agecrypt/fixtures/age-plugin-se.py \\
         nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error",
         TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`),
         NEXTEST_PROFILE: "ci-shared",
@@ -137,28 +137,28 @@ substituteInPlace ./crates/mise-util/src/agecrypt/fixtures/age-plugin-se.py \\
       __darwinAllowLocalNetworking: true,
       postInstall: "installManPage ./man/man1/mise.1\n\ninstallShellCompletion \\\n  --bash ./completions/mise.bash \\\n  --fish ./completions/mise.fish \\\n  --zsh ./completions/_mise\n\nmkdir -p $out/lib/mise\ntouch $out/lib/mise/.disable-self-update\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           version: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             }))), "overrideAttrs"), (old) => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [cacert])),
             }))),
           usageCompat: nix.thunk(() => nix.app(runCommand, "mise-usage-compatibility", nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), usage, jq]),
             })), "export HOME=$(mktemp -d)\n\nfor shl in bash fish zsh; do\n  echo \"testing $shl\"\n  usage complete-word --shell $shl --file <(mise usage)\ndone\n\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://mise.jdx.dev",
         description: "Front-end to your dev env",
         changelog: nix.thunk(() => nix.str`https://github.com/jdx/mise/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

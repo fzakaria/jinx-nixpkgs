@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "4.5.0",
       pname: "hal-hardware-analyzer",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emsec",
           repo: "hal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,14 +87,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       cmakeBuildType: "MinSizeRel",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-flax-vector-conversions" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-flax-vector-conversions" })))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "find $out/lib/hal_plugins -name '*.so*' | while read -r f ; do\n  patchelf --set-rpath \"$(patchelf --print-rpath \"$f\"):$out/lib/hal_plugins\" \"$f\"\ndone\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/emsec/hal/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Comprehensive reverse engineering and manipulation framework for gate-level netlists",
         mainProgram: "hal",

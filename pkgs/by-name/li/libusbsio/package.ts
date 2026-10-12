@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const systemdMinimal = nix.arg($, "systemdMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libusbsio",
       version: "2.1.11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nxp.com/downloads/en/libraries/libusbsio-${nix.sel(finalAttrs, "version")}-src.zip`),
           sha256: "sha256-qgoeaGWTWdTk5XpJwoauckEQlqB9lp5x2+TN09vQttI=",
         })))),
@@ -37,7 +37,7 @@ install -D bin/libusbsio${nix.sel(stdenv, "hostPlatform", "extensions", "sharedL
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nxp.com/design/software/development-software/library-for-windows-macos-and-ubuntu-linux:LIBUSBSIO",
         description: "Library for communicating with devices connected via the USB bridge on LPC-Link2 and MCU-Link debug probes on supported NXP microcontroller evaluation boards",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "woob",
       version: "3.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woob",
           repo: "woob",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_ciphers", "test_verify"]),
       pythonImportsCheck: nix.thunk(() => ["woob"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/woob/woob/-/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "Collection of applications and APIs to interact with websites",
         mainProgram: "woob",

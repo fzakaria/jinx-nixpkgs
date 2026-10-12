@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pegasus-frontend",
       version: "0-unstable-2026-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mmatyas",
           repo: "pegasus-frontend",
           rev: "5d58223e58f84afb31d5d14a67438841b981a6fa",
@@ -47,13 +47,13 @@ export default nix.lambda((args) => (() => {
         ];
       })(), [sqlite, SDL2])),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross platform, customizable graphical frontend for launching emulators and managing your game collection",
         mainProgram: "pegasus-fe",
         homepage: "https://pegasus-frontend.org/",

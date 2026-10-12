@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/run/wrappers/bin/sendmail");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "petidomo",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/petidomo/petidomo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ddNw0fq2MQLJd6YCmIkf9lvq9/Xscl94Ds8xR1hfjXQ=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [flex, bison]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-mta=${sendmailPath}`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       enableParallelBuilding: true,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://petidomo.sourceforge.net/",
         description: "Simple and easy to administer mailing list server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

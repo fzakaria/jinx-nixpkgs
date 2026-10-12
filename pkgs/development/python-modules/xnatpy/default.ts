@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "xnat",
           version: version,
           hash: "sha256-2hU+fUu058G+z/ecncQJd1D1b3e+9KpbnCxEb+VPWa0=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["xnat"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://xnat.readthedocs.io",
         description: "New XNAT client (distinct from pyxnat) that exposes XNAT objects/functions as Python objects/functions",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/radiology/infrastructure/xnatpy/-/blob/${version}/CHANGELOG?ref_type=tags`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xnat",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

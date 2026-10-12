@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const heimdal = nix.arg($, "heimdal");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "python-kadmin-rs",
       version: "0.7.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "authentik-community",
           repo: "kadmin-rs",
           tag: nix.thunk(() => nix.str`kadmin/version/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IEQ7j3GoSMUD1ySaGTLmznN+5BttOzm0+VwYHuwdayQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "krb5"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         KADMIN_MIT_CLIENT_INCLUDES: nix.thunk(() => nix.str`${nix.sel(pkgs, "krb5", "dev")}/include`),
         KADMIN_MIT_SERVER_INCLUDES: nix.thunk(() => nix.str`${nix.sel(pkgs, "krb5", "dev")}/include`),
         KADMIN_HEIMDAL_CLIENT_INCLUDES: nix.thunk(() => nix.str`${nix.sel(heimdal, "dev")}/include`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["kadmin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rust and Python interfaces to the Kerberos administration interface (kadm5)",
         homepage: "https://github.com/authentik-community/kadmin-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/authentik-community/kadmin-rs/releases/tag/kadmin%2Fversion%2F${nix.sel(finalAttrs, "version")}`),

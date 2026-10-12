@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "atlauncher",
       version: "3.4.41.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ATLauncher",
           repo: "ATLauncher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-launch4j.patch")]),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -77,7 +77,7 @@ install -D -m444 ${packagingDir}/atlauncher.svg -t $out/share/icons/hicolor/scal
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://github.com/ATLauncher/ATLauncher/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Simple and easy to use Minecraft launcher which contains many different modpacks for you to choose from and play",

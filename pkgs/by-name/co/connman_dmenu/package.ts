@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const connman = nix.arg($, "connman");
   const dmenu = nix.arg($, "dmenu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "connman_dmenu",
       version: "0-unstable-2015-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "march-linux",
           repo: "connman_dmenu",
           rev: "cc89fec40b574b0d234afeb70ea3c94626ca3f5c",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '89,92d' connman_dmenu\n",
       installPhase: "mkdir -p $out/bin\ncp connman_dmenu $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dmenu wrapper for connmann",
         mainProgram: "connman_dmenu",
         homepage: "https://github.com/march-linux/connman_dmenu",

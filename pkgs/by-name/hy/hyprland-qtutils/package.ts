@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "strings"));
   const makeBinPath = nix.thunk(() => nix.attr(from, "makeBinPath"));
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyprland-qtutils",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprland-qtutils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Fix build with Qt 6.10",
             url: "https://github.com/hyprwm/hyprland-qtutils/commit/5ffdfc13ed03df1dae5084468d935f0a3f2c9a4c.patch",
             hash: "sha256-5nVj4AFJpmazX9o9tQD6mzBW9KtRYov4yRbGpUwFcgc=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       cmakeBuildType: "RelWithDebInfo",
       separateDebugInfo: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hyprland QT/qml utility apps",
         homepage: "https://github.com/hyprwm/hyprland-qtutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (self) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "odoc",
       version: nix.thunk(() => nix.attr(odoc_parser, "version")),
       src: nix.thunk(() => nix.attr(odoc_parser, "src")),
@@ -56,7 +56,7 @@ remove-references-to -t ${ocaml} $bin/bin/odoc
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Documentation generator for OCaml",
         mainProgram: "odoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

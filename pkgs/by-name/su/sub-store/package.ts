@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const pnpm = pnpm_10;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sub-store",
       version: "2.22.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sub-store-org",
           repo: "Sub-Store",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, pnpm]),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,11 +57,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/sub-store \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced Subscription Manager for QX, Loon, Surge, Stash, Egern and Shadowrocket",
         homepage: "https://github.com/sub-store-org/Sub-Store",
         changelog: nix.thunk(() => nix.str`https://github.com/sub-store-org/Sub-Store/releases/tag/${nix.sel(finalAttrs, "version")}`),

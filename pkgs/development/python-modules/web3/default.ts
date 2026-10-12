@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "web3.py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ethereum/web3.py/commit/9923ee46cab6a49af4d7bdb3f922c4f8d9670633.patch",
             includes: nix.thunk(() => ["web3/_utils/module_testing/utils.py"]),
             hash: "sha256-N6v3QVDN0fCEWqs34uZ+B18+WXOPoY+Lyk9rIM+btjk=",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         types_requests,
         websockets,
       ])));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, ipfs: nix.thunk(() => [ipfshttpclient]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, ipfs: nix.thunk(() => [ipfshttpclient]) }));
       const nativeCheckInputs = nix.thunk(() => [
         eth_tester,
         flaky,
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/integration/go_ethereum", "tests/beacon"]);
       const pythonImportsCheck = nix.thunk(() => ["web3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python interface for interacting with the Ethereum blockchain and ecosystem",
         homepage: "https://web3py.readthedocs.io/",
         changelog: "https://web3py.readthedocs.io/en/stable/release_notes.html",
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

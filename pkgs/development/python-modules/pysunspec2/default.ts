@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pyserial = nix.arg($, "pyserial");
   const openpyxl = nix.arg($, "openpyxl");
   return nix.app(buildPythonPackage, (finalAtrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysunspec2",
       version: "1.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sunspec",
           repo: "pysunspec2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAtrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--ignore=sunspec2/tests/test_tls_client.py"]),
       pythonImportsCheck: nix.thunk(() => ["sunspec2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for interfacing with SunSpec devices",
         homepage: "https://github.com/sunspec/pysunspec2",
         changelog: nix.thunk(() => nix.str`https://github.com/sunspec/pysunspec2/releases/tag/${nix.sel(finalAtrs, "src", "tag")}`),

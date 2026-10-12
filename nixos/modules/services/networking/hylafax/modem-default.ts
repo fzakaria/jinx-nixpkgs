@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     TagLineFont: "etc/LiberationSans-25.pcf",
     TagLineLocale: "en_US.UTF-8",
     AdminGroup: "root",

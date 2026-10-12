@@ -19,31 +19,31 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "nafees",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesNastaleeq/Nafees_Nastaleeq_v1.02.zip",
             sha256: "1h1k5d74pg2gs782910v7i9rz2633wdacy34ds7ybxbpjiz6pqix",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesRiqa/Nafees_Riqa_v1.0.zip",
             sha256: "1liismsyaj69y40vs9a9db4l95n25n8vnjnx7sbk70nxppwngd8i",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesNaskh/Nafees_Naskh_v2.01.zip",
             sha256: "1qbbj6w6bvrlymv7z6ld609yhp0l2f27z14180w5n8kzzl720vly",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesTahreerNaskh/Nafees_Tahreer_Naskh_v1.0.zip",
             sha256: "006l87drbi4zh52kpvn8wl9wbwm9srfn406rzsnf4gv0spzhqrxl",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesPakistaniNaskh/Nafees_Pakistani_Naskh_v2.01.zip",
             sha256: "1i5ip60gq1cgc9fc96kvlahdpia8dxdgcisglvbm2d212bz0s5nb",
           })))),
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "1wa0j65iz20ij37dazd1rjg8x625m6q1y8g5h7ia48pbc88sr01q",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "OpenType Urdu font from the Center for Research in Urdu Language Processing",
         longDescription: "The Nafees font family is developed according\nto calligraphic rules, following the style of Syed Nafees\nAl-Hussaini (Nafees Raqam) one of the finest calligraphers of\nPakistan\n",
         homepage: "http://www.cle.org.pk/software/localization.htm",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             shortName: "nafees",
             fullName: "Nafees License Agreement",
             url: "https://www.cle.org.pk/software/license/Nafees_Pakistani_Naskh_License.html",

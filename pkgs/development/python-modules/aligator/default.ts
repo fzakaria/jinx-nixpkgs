@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const buildStandalone = nix.argOr($, "buildStandalone", () => true);
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(aligator, "overrideAttrs"), (super$) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: nix.thunk(() => nix.str`py-${nix.sel(super$, "pname")}`),
         cmakeFlags: nix.thunk(() => nix.concat(nix.sel(super$, "cmakeFlags"), [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_PYTHON_INTERFACE", true)),

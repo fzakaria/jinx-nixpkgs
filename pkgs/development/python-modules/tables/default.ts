@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tables",
       version: "3.11.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyTables",
           repo: "PyTables",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ substituteInPlace tables/__init__.py \\
   "ctypes.CDLL('"${nix.app(nix.sel(lib, "getLib"), c_blosc)}/lib/libblosc${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}"')"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         HDF5_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), hdf5)),
         LZO_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), lzo)),
         BZIP2_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), bzip2)),
@@ -89,7 +89,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["tables"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hierarchical datasets for Python",
         homepage: "https://www.pytables.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/PyTables/PyTables/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

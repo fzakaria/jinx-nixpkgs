@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const jre_headless = nix.arg($, "jre_headless");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bundletool",
       version: "1.18.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/google/bundletool/releases/download/${nix.sel(finalAttrs, "version")}/bundletool-all-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-oJnPoVQ/VVk7wu0Wpwp8Z/5UsXR7tzAfN/39bZECjik=",
         })))),
@@ -30,7 +30,7 @@ makeWrapper ${jre_headless}/bin/java $out/bin/bundletool --add-flags "-jar $src"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line tool to manipulate Android App Bundles",
         mainProgram: "bundletool",
         homepage: "https://developer.android.com/studio/command-line/bundletool",

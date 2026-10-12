@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "repath-studio",
       version: "0.4.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "repath-studio",
           repo: "repath-studio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libicns])))),
       buildInputs: nix.thunk(() => [vips]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: true,
         PUPPETEER_SKIP_DOWNLOAD: true,
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         }))))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace shadow-cljs.edn \\
@@ -120,7 +120,7 @@ runHook postCheck
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "Repath Studio",
             desktopName: "Repath Studio",
             exec: "repath-studio %U",
@@ -132,9 +132,9 @@ runHook postCheck
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         clojureHome: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: nix.thunk(() => nix.str`repath-studio-${nix.sel(finalAttrs, "version")}-clojure-home`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -152,12 +152,12 @@ exec ${nix.app(nix.sel(lib, "getExe'"), clojure, "clojure")} "$@"
 `))),
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "repath-studio": nix.thunk(() => nix.attr(nixosTests, "repath-studio")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/repath-studio/repath-studio/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Cross-platform vector graphics editor, that combines procedural tooling with traditional design workflows",
         homepage: "https://repath.studio",

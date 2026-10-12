@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: "musescore-evolution",
       version: "3.7.0-unstable-2026-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jojo-Schmitz",
           repo: "MuseScore",
           rev: "f2a80b9f59dd396698b3b507a19a56bfb8791af2",
@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# 1) Rename the binaries\nmv \"$out/bin/mscore\" \"$out/bin/mscore-evo\"\nrm \"$out/bin/musescore\"\nln -s \"$out/bin/mscore-evo\" \"$out/bin/musescore-evolution\"\n\n# 2) Fix desktop entry to point to mscore-evo and avoid ID clash\ndesktop=\"$out/share/applications/mscore.desktop\"\nsubstitute \"$desktop\" \"$out/share/applications/mscore-evo.desktop\" \\\n  --replace-fail \"Exec=mscore\" \"Exec=mscore-evo\" \\\n  --replace-fail \"Name=MuseScore 3.7\" \"Name=MuseScore 3.7 (Evolution)\" \\\n  --replace-fail \"Icon=mscore\" \"Icon=mscore-evo\" \\\n  --replace-fail \"StartupWMClass=mscore\" \"StartupWMClass=MuseScore3\"\nrm $desktop\n\n# 3) Rename app icons (apps/)\nfor sizeDir in \"$out\"/share/icons/hicolor/*/apps/; do\n  for ext in png svg xpm; do\n    if [ -f \"$sizeDir/mscore.$ext\" ]; then\n      mv \"$sizeDir/mscore.$ext\" \"$sizeDir/mscore-evo.$ext\"\n    fi\n  done\ndone\n\n# 3b) Rename mimetype icons (mimetypes/) to unique names\nfor icon in \"$out\"/share/icons/hicolor/*/mimetypes/application-x-musescore.* \\\n            \"$out\"/share/icons/hicolor/*/mimetypes/application-x-musescore+xml.*; do\n  dir=\"${icon%/*}\"; base=\"${icon##*/}\"; ext=\"${base##*.}\"\n  case \"$base\" in\n    application-x-musescore.*) mv \"$icon\" \"$dir/application-x-musescore-evolution.$ext\" ;;\n    application-x-musescore+xml.*) mv \"$icon\" \"$dir/application-x-musescore-evolution+xml.$ext\" ;;\n  esac\ndone\n\n# 4) Rename MIME XML and point icons to the new names\nmv \"$out/share/mime/packages/musescore.xml\" \"$out/share/mime/packages/musescore-evolution.xml\"\nsed -i \\\n  -e 's|<icon>application-x-musescore\\(\\+xml\\)\\?</icon>|<icon>application-x-musescore-evolution\\1</icon>|g' \\\n  -e 's|<icon>musescore</icon>|<icon>mscore-evo</icon>|g' \\\n  \"$out/share/mime/packages/musescore-evolution.xml\"\n\n# 5) Rename man pages to match mscore-evo and remove legacy symlinks\nmanDir=\"$out/share/man/man1\"\n\n# Fix existing dangling aliases\nif [ -f \"$manDir/mscore.1.gz\" ]; then\n  mv \"$manDir/mscore.1.gz\" \"$manDir/mscore-evo.1.gz\"\nfi\n\n# Replace old musescore.1.gz alias\nrm -f \"$manDir/musescore.1.gz\"\nln -s \"$manDir/mscore-evo.1.gz\" \"$manDir/musescore-evolution.1.gz\"\n\n# 6) Rename AppStream metadata and its IDs\nmeta=\"$out/share/metainfo/org.musescore.MuseScore.appdata.xml\"\nnew=\"$out/share/metainfo/org.musescore.MuseScoreEvolution.appdata.xml\"\nmv \"$meta\" \"$new\"\nsed -i \\\n  -e 's|<id>org\\.musescore\\.MuseScore</id>|<id>org.musescore.MuseScoreEvolution</id>|' \\\n  -e 's|mscore\\.desktop|mscore-evo.desktop|' \\\n  \"$new\"\n")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => ({ __proto__: pos$2, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => ({ [nix.POS]: pos$2, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Music notation and composition software",
         homepage: "https://github.com/Jojo-Schmitz/MuseScore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dockerCliPlugins = nix.thunk(() => [docker_buildx]);
   const dockerCliPluginsDirs = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/libexec/docker/cli-plugins`, dockerCliPlugins))));
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ddev",
       version: "1.25.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ddev",
           repo: "ddev",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ wrapProgram $out/bin/ddev \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Docker-based local PHP+Node.js web development environments",
         homepage: "https://ddev.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

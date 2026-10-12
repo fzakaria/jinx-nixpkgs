@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const toml = nix.arg($, "toml");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "langchain-classic",
       version: "1.0.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain-classic==${nix.sel(finalAttrs, "version")}`),
@@ -92,17 +92,17 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/unit_tests"]),
       disabledTests: nix.thunk(() => ["test_socket_disabled", "test_configurable"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "rev-prefix": "langchain-classic==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       pythonImportsCheck: nix.thunk(() => ["langchain_classic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Classic (0.x) compatibility layer for LangChain",
         homepage: "https://github.com/langchain-ai/langchain/tree/master/libs/langchain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

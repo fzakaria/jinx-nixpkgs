@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libre-baskerville",
       version: "1.000",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "impallari",
           repo: "Libre-Baskerville",
           rev: "2fba7c8e0a8f53f86efd3d81bc4c63674b0c613f",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -m444 -Dt $out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")} README.md FONTLOG.txt
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Webfont family optimized for body text",
         longDescription: "Libre Baskerville is a webfont family optimized for body text. It's Based\non 1941 ATF Baskerville Specimens but it has a taller x-height, wider\ncounters and less contrast that allow it to work on small sizes in any\nscreen.\n",
         homepage: "https://github.com/impallari/Libre-Baskerville",

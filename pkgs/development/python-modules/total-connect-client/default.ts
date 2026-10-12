@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "craigjmidwinter",
           repo: "total-connect-client",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, requests_mock]);
       const pythonImportsCheck = nix.thunk(() => ["total_connect_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interact with Total Connect 2 alarm systems",
         homepage: "https://github.com/craigjmidwinter/total-connect-client",
         changelog: nix.thunk(() => nix.str`https://github.com/craigjmidwinter/total-connect-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

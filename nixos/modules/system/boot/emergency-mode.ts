@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       systemd: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enableEmergencyMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: nix.thunk(() => nix.str`Whether to enable emergency mode, which is an
@@ -38,9 +38,9 @@ For initrd emergency access, use ${nix.sel(options, "boot", "initrd", "systemd",
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       systemd: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         additionalUpstreamSystemUnits: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "systemd", "enableEmergencyMode")), nix.thunk(() => ["emergency.target", "emergency.service"]))),
       })),
     })),

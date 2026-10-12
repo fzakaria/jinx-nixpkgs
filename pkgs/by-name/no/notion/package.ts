@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const xmessage = nix.arg($, "xmessage");
   const xterm = nix.arg($, "xterm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "notion",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raboof",
           repo: "notion",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/raboof/notion/commit/89c92f49abfeae1168ad343d4f529a52d0edd78c.patch?full_index=1",
             hash: "sha256-+4GGeY2j7B54Ffw5gFNpG4704Egc7rA6w5z0sZG8210=",
           })))),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xmessage, xterm]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiling tabbed window manager",
         homepage: "https://notionwm.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-retro-effects";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FiniteSingularity",
           repo: "obs-retro-effects",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -33,7 +33,7 @@ rm -rf $out/data
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of OBS filters to give your stream that retro feel",
         homepage: "https://github.com/FiniteSingularity/obs-retro-effects",
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ rm -rf $out/data
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

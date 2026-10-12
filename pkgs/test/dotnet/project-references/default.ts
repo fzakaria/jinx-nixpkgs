@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const nugetDeps = nix.path(here, "./nuget-deps.json");
   const TargetFramework = nix.thunk(() => nix.str`net${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_sdk)))}`);
   const library = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "project-references-test-library",
       src: nix.path(here, "./library"),
       nugetDeps: nugetDeps,
-      env: nix.thunk(() => ({ __proto__: pos$1, TargetFramework: TargetFramework })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, TargetFramework: TargetFramework })),
       packNupkg: true,
     }))));
   const application = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "project-references-test-application",
       src: nix.path(here, "./application"),
       nugetDeps: nugetDeps,
-      env: nix.thunk(() => ({ __proto__: pos$3, TargetFramework: TargetFramework })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, TargetFramework: TargetFramework })),
       projectReferences: nix.thunk(() => [library]),
     }))));
   return nix.app(runCommand, "project-references-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${application}/bin/Application

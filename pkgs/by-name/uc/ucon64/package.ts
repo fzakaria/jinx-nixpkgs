@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ucon64",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/ucon64/files/ucon64/ucon64-${nix.sel(finalAttrs, "version")}/ucon64-${nix.sel(finalAttrs, "version")}-src.tar.gz/download`),
           name: nix.thunk(() => nix.str`ucon64-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-4QCtSjD2wZq96Y42HGoOysTkBHf1TPt1SYxczSH7Ohg=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to backup video game cartridges and perform various ROM operations",
         homepage: "https://ucon64.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

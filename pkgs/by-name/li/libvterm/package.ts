@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libvterm",
       version: "0.99.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libvterm/libvterm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "10gaqygmmwp0cwk3j8qflri5caf8vl3f7pwfl2svw5whv8wkn0k2",
         })))),
@@ -37,7 +37,7 @@ makeFlagsArray+=("PKG_CFG=\`${nix.sel(stdenv, "cc", "targetPrefix")}pkg-config -
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://libvterm.sourceforge.net/",
         description: "Terminal emulator library to mimic both vt100 and rxvt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

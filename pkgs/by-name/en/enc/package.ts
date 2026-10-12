@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "enc",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "life4",
           repo: "enc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd enc \\\n  --bash <($out/bin/enc completion bash) \\\n  --fish <($out/bin/enc completion fish) \\\n  --zsh <($out/bin/enc completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/life4/enc",
         changelog: nix.thunk(() => nix.str`https://github.com/life4/enc/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Modern and friendly alternative to GnuPG",

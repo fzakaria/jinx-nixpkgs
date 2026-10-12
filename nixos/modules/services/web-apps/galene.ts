@@ -45,73 +45,73 @@ export default nix.lambda((args) => (() => {
   const defaultgroupsDir = nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/groups`);
   const defaultdataDir = nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/data`);
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         galene: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Galene Service")),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: defaultstateDir,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               description: "The directory where Galene stores its internal state. If left as the default\nvalue this directory will automatically be created before the Galene server\nstarts, otherwise the sysadmin is responsible for ensuring the directory\nexists with appropriate ownership and permissions.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "galene",
               description: "User account under which galene runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "galene",
               description: "Group under which galene runs.",
             })))),
           insecure: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether Galene should listen in http or in https. If left as the default\nvalue (false), Galene needs to be fed a private key and a certificate.\n",
             })))),
           certFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/path/to/your/cert.pem",
               description: "Path to the server's certificate. The file is copied at runtime to\nGalene's data directory where it needs to reside.\n",
             })))),
           keyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/path/to/your/key.pem",
               description: "Path to the server's private key. The file is copied at runtime to\nGalene's data directory where it needs to reside.\n",
             })))),
           httpAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "HTTP listen address for galene.",
             })))),
           httpPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 8443n,
               description: "HTTP listen port.",
             })))),
           turnAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "auto",
               example: "127.0.0.1:1194",
               description: "Built-in TURN server listen address and port. Set to \"\" to disable.",
             })))),
           staticDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "static")}/static`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${package.static}/static\"")),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
               description: "Web server directory.",
             })))),
           recordingsDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: defaultrecordingsDir,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/recordings"`))),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
               description: "Recordings directory.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: defaultdataDir,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/data"`))),
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
               description: "Data directory.",
             })))),
           groupsDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: defaultgroupsDir,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/groups"`))),
@@ -147,19 +147,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             galene: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "galene",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     Type: "simple",
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -212,21 +212,21 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "insecur
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "galene")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               galene: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "galene Service",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "galene")), nix.thunk(() => ({ __proto__: pos$23, galene: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "galene")), nix.thunk(() => ({ [nix.POS]: pos$23, galene: nix.thunk(() => ({})) })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "rgrunbla"))];

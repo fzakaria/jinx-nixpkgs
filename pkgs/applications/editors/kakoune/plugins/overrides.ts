@@ -48,25 +48,25 @@ export default nix.lambda((args) => (() => {
   const plan9port = nix.arg($, "plan9port");
   const rustPlatform = nix.arg($, "rustPlatform");
   return (self) => (super$) => ({
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     "kakoune-lsp": kakoune_lsp,
     "parinfer-rust": parinfer_rust,
     rep: rep,
     "case-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "case-kak",
         version: "2020-04-06",
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "FlyingWombat",
             repo: "case.kak",
             rev: "6f1511820aa3abfa118e0f856118adc8113e2185",
             sha256: "002njrlwgakqgp74wivbppr9qyn57dn4n5bxkr6k6nglk9qndwdp",
           })))),
-        meta: nix.thunk(() => ({ __proto__: pos$2, homepage: "https://gitlab.com/FlyingWombat/case.kak" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$2, homepage: "https://gitlab.com/FlyingWombat/case.kak" })),
       })))),
     "fzf-kak": nix.thunk(() => nix.app(nix.sel(super$, "fzf-kak", "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         preFixup: nix.thunk(() => nix.str`if [[ -x "${fzf}/bin/fzf" ]]; then
   fzfImpl='${fzf}/bin/fzf'
 else
@@ -78,11 +78,11 @@ substituteInPlace $out/share/kak/autoload/plugins/fzf-kak/rc/fzf.kak \\
 `),
       }))),
     "kak-ansi": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "kak-ansi",
         version: "0.3.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "eraserhd",
             repo: "kak-ansi",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +90,7 @@ substituteInPlace $out/share/kak/autoload/plugins/fzf-kak/rc/fzf.kak \\
           })))),
         installPhase: "      mkdir -p $out/bin $out/share/kak/autoload/plugins/\n      cp kak-ansi-filter $out/bin/\n      # Hard-code path of filter and don't try to build when Kakoune boots\n      sed '\n        /^declare-option.* ansi_filter /i\\\ndeclare-option -hidden str ansi_filter %{'\"$out\"'/bin/kak-ansi-filter}\n        /^declare-option.* ansi_filter /,/^}/d\n      ' rc/ansi.kak >$out/share/kak/autoload/plugins/ansi.kak\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Kakoune support for rendering ANSI code",
           homepage: "https://github.com/eraserhd/kak-ansi",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -105,11 +105,11 @@ substituteInPlace $out/share/kak/autoload/plugins/fzf-kak/rc/fzf.kak \\
         })),
       }))),
     "kak-plumb": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: "kak-plumb",
         version: "0.1.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "eraserhd",
             repo: "kak-plumb",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -124,7 +124,7 @@ substitute edit-client $out/bin/edit-client \\
 chmod +x $out/bin/edit-client
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           description: "Kakoune integration with the Plan 9 plumber",
           homepage: "https://github.com/eraserhd/kak-plumb",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -139,7 +139,7 @@ chmod +x $out/bin/edit-client
         })),
       }))),
     "kakoune-rainbow": nix.thunk(() => nix.app(nix.sel(super$, "kakoune-rainbow", "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         preFixup: nix.thunk(() => nix.str`mkdir -p $out/bin
 mv $out/share/kak/autoload/plugins/kakoune-rainbow/bin/kak-rainbow.scm $out/bin
 substituteInPlace $out/bin/kak-rainbow.scm \\
@@ -149,18 +149,18 @@ substituteInPlace $out/share/kak/autoload/plugins/kakoune-rainbow/rainbow.kak \\
 `),
       }))),
     "kakoune-state-save": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname: "kakoune-state-save",
         version: "2020-02-09",
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             owner: "Screwtapello",
             repo: "kakoune-state-save",
             rev: "ab7c0c765326a4a80af78857469ee8c80814c52a",
             sha256: "AAOCG0TY3G188NnkkwMCSbkkNe487F4gwiFWwG9Yo+A=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           description: "Help Kakoune save and restore state between sessions",
           homepage: "https://gitlab.com/Screwtapello/kakoune-state-save",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -175,17 +175,17 @@ substituteInPlace $out/share/kak/autoload/plugins/kakoune-rainbow/rainbow.kak \\
         })),
       })))),
     "powerline-kak": nix.thunk(() => nix.app(nix.sel(super$, "powerline-kak", "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         preFixup: nix.thunk(() => nix.str`substituteInPlace $out/share/kak/autoload/plugins/powerline-kak/rc/modules/git.kak \\
   --replace ' git ' ' ${git}/bin/git '
 `),
       }))),
     "hop-kak": nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         pname: "hop-kak",
         version: "0.2.0",
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             url: "https://git.sr.ht/~hadronized/hop.kak",
             rev: "7314ec64809a69e0044ba7ec57a18b43e3b5f005",
             sha256: "stmGZQU0tp+5xxrexKMzwSwHj5F/F4HzDO9BorNWC3w=",
@@ -195,7 +195,7 @@ substituteInPlace $out/share/kak/autoload/plugins/kakoune-rainbow/rainbow.kak \\
         cargoHash: "sha256-cgUBa0rgfJFnosCgD20G1rlOl/nyXJ9bA9SSf4BuqAs=",
         postInstall: "mkdir -p $out/share/kak/bin\nmv $out/bin/hop-kak $out/share/kak/bin/\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           description: "Hinting brought to Kakoune selections",
           homepage: "https://git.sr.ht/~hadronized/hop.kak/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -210,7 +210,7 @@ substituteInPlace $out/share/kak/autoload/plugins/kakoune-rainbow/rainbow.kak \\
         const pname = "quickscope-kak";
         const version = "1.0.0";
         const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             url: "https://git.sr.ht/~voroskoi/quickscope.kak",
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: "0y1g3zpa2ql8l9rl5i2w84bka8a09kig9nq9zdchaff5pw660mcx",
@@ -219,7 +219,7 @@ substituteInPlace $out/share/kak/autoload/plugins/kakoune-rainbow/rainbow.kak \\
   --replace-fail '|lua ' '|${nix.app(nix.sel(lib, "getExe"), lua5_5)} '
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           description: "Highlight f and t jump positions",
           homepage: "https://sr.ht/~voroskoi/quickscope.kak/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -229,21 +229,21 @@ substituteInPlace $out/share/kak/autoload/plugins/kakoune-rainbow/rainbow.kak \\
           })()),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { __proto__: pos$21, pname, version, src, postInstall, meta };
+        return { [nix.POS]: pos$21, pname, version, src, postInstall, meta };
       })()))),
     "kakoune-catppuccin": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         pname: "kakoune-catppuccin",
         version: "0-unstable-2024-03-29",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             owner: "catppuccin",
             repo: "kakoune",
             rev: "7f187d9da2867a7fda568b2135d29b9c00cfbb94",
             hash: "sha256-acBOQuJ8MgsMKdvFV5B2CxuxvXIYsg11n1mHEGqd120=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           description: "Soothing pastel theme for Kakoune",
           homepage: "https://github.com/catppuccin/kakoune/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

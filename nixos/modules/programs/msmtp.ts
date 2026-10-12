@@ -30,46 +30,46 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "msmtp"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "euxane"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       programs: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         msmtp: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "msmtp - an SMTP client")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "msmtp", nix.thunk(() => ({})))),
           setSendmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to set the system sendmail to msmtp's.\n",
             })))),
           defaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$3, aliases: "/etc/aliases", port: 587n, tls: true })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$3, aliases: "/etc/aliases", port: 587n, tls: true })),
               description: "Default values applied to all accounts.\nSee {manpage}`msmtp(1)` for the available options.\n",
             })))),
           accounts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "attrs")));
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   host: "smtp.example",
                   auth: true,
                   user: "someone",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
               description: "Named accounts and their respective configurations.\nThe special name \"default\" allows a default account to be defined.\nSee {manpage}`msmtp(1)` for the available options.\n\nUse `programs.msmtp.extraConfig` instead of this attribute set-based\noption if ordered account inheritance is needed.\n\nIt is advised to use the `passwordeval` setting to read the password\nfrom a secret file to avoid having it written in the world-readable\nnix store. The password file must end with a newline (`\\n`).\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra lines to add to the msmtp configuration verbatim.\nSee {manpage}`msmtp(1)` for the syntax and available options.\n",
@@ -88,14 +88,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             msmtprc: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               text: nix.thunk(() => (() => {
                 const mkValueString = (v) => (nix.asBool(nix.eq(v, true)) ? "on" : (nix.asBool(nix.eq(v, false)) ? "off" : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v)));
                 const mkKeyValueString = (k) => (v) => nix.str`${k} ${nix.app(mkValueString, v)}`;
@@ -115,11 +115,11 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           mail: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             sendmailSetuidWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setSendmail")), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 program: "sendmail",
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/sendmail`),
                 setuid: false,

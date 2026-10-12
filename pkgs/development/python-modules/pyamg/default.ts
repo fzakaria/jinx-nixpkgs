@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-UyPQ8aTNmZviRqkNWAyeHptYS5iIf2KY05dhEIfvhgs=",
@@ -43,7 +43,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["pyamg", "pyamg.amg_core.evolution_strength"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Algebraic Multigrid Solvers in Python",
         homepage: "https://github.com/pyamg/pyamg",
         changelog: nix.thunk(() => nix.str`https://github.com/pyamg/pyamg/blob/v${version}/changelog.md`),
@@ -55,7 +55,7 @@ runHook postCheck
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

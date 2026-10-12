@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensearch-cli",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "opensearch-cli",
           owner: "opensearch-project",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export HOME=\"$(mktemp -d)\"\ninstallShellCompletion --cmd opensearch-cli \\\n  --bash <($out/bin/opensearch-cli completion bash) \\\n  --zsh <($out/bin/opensearch-cli completion zsh) \\\n  --fish <($out/bin/opensearch-cli completion fish)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Full-featured command line interface (CLI) for OpenSearch",
         homepage: "https://github.com/opensearch-project/opensearch-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

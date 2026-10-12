@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtk = nix.argOr($, "gtk", () => nix.force(gtk3));
   const enableGuis = nix.argOr($, "enableGuis", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     xlib: enableX11,
     fb: false,
     quartz: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const wayland = nix.arg($, "wayland");
   const SDL2 = nix.arg($, "SDL2");
-  const enableTypeEngines = nix.argOr($, "enableTypeEngines", () => ({ __proto__: pos$2, xcore: false, xft: enableX11, cairo: true }));
+  const enableTypeEngines = nix.argOr($, "enableTypeEngines", () => ({ [nix.POS]: pos$2, xcore: false, xft: enableX11, cairo: true }));
   const libx11 = nix.arg($, "libx11");
   const libxft = nix.arg($, "libxft");
   const cairo = nix.arg($, "cairo");
   const enableTools = nix.argOr($, "enableTools", () => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     mlclient: true,
     mlconfig: true,
     mlcc: true,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
   }));
   const enableX11 = nix.argOr($, "enableX11", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const enableFeatures = nix.argOr($, "enableFeatures", () => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     uim: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
     ibus: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
     fcitx: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "withFeatureAs"), nix.thunk(() => !nix.eq(commaSepList, "")), featureName, commaSepList);
   })();
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "mlterm",
       version: "3.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "arakiken",
           repo: "mlterm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/arakiken/mlterm/commit/819366f9c3c015d1be501d626ca954ce3ce38a60.patch",
             hash: "sha256-xI0CzXN3gfXZXrL1/tFgQDtpY5hnzGLPruidOuMrbPQ=",
             excludes: nix.thunk(() => ["ChangeLog"]),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, autoconf], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTools, "mlconfig")), nix.thunk(() => [wrapGAppsHook3])))),
       buildInputs: nix.thunk(() => nix.concat([gtk, vte, gdk_pixbuf], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTypeEngines, "xcore")), nix.thunk(() => [libx11])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTypeEngines, "xft")), nix.thunk(() => [libxft])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableTypeEngines, "cairo")), nix.thunk(() => [cairo])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableGuis, "wayland")), nix.thunk(() => [libxkbcommon, wayland])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableGuis, "sdl2")), nix.thunk(() => [SDL2])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "otl")), nix.thunk(() => [harfbuzz])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "bidi")), nix.thunk(() => [fribidi])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "ssh2")), nix.thunk(() => [libssh2])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "m17n")), nix.thunk(() => [m17n_lib])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "fcitx")), nix.thunk(() => [fcitx5, fcitx5_gtk])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "ibus")), nix.thunk(() => [ibus])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(enableFeatures, "uim")), nix.thunk(() => [uim]))))))))))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), " -std=c17 ")),
       })),
       configureFlags: nix.thunk(() => nix.concat([
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: nix.thunk(() => nix.add("install -D contrib/icon/mlterm-icon.svg \"$out/share/icons/hicolor/scalable/apps/mlterm.svg\"\ninstall -D contrib/icon/mlterm-icon-gnome2.png \"$out/share/icons/hicolor/48x48/apps/mlterm.png\"\ninstall -D -t $out/share/applications $desktopItem/share/applications/*\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/\ncp -a cocoa/mlterm.app $out/Applications/\ninstall $out/bin/mlterm -Dt $out/Applications/mlterm.app/Contents/MacOS/\n"))),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "mlterm",
           exec: nix.thunk(() => nix.str`${desktopBinary} %U`),
           icon: "mlterm",
@@ -128,9 +128,9 @@ export default nix.lambda((args) => (() => {
           startupNotify: false,
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "mlterm")),
         })),
         enableTypeEngines: enableTypeEngines,
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
         enableFeatures: enableFeatures,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Multi Lingual TERMinal emulator",
         homepage: "https://mlterm.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

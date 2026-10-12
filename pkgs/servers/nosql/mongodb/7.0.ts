@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const avxSupport = nix.argOr($, "avxSupport", () => nix.sel(stdenv, "hostPlatform", "avxSupport"));
   const nixosTests = nix.arg($, "nixosTests");
   const lib = nix.arg($, "lib");
-  const buildMongoDB = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mongodb.nix"), nix.thunk(() => ({ __proto__: pos$1, sasl: sasl, boost: boost, cctools: cctools, stdenv: stdenv }))));
+  const buildMongoDB = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mongodb.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, sasl: sasl, boost: boost, cctools: cctools, stdenv: stdenv }))));
   return nix.app(buildMongoDB, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       avxSupport: avxSupport,
       version: "7.0.43",
       hash: "sha256-NPFMX3FpuQjEyQgSvP3YF/UvmXGe34eMAuXAAUj9pso=",
@@ -29,8 +29,8 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./mongodb-python312.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(avxSupport)), nix.thunk(() => [nix.path(here, "./mozjs-noavx.patch")])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, mongodb: nix.thunk(() => nix.attr(nixosTests, "mongodb")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mongodb: nix.thunk(() => nix.attr(nixosTests, "mongodb")) })),
       })),
     })));
 })(), formals$1);

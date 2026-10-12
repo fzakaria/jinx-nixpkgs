@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.22";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "colbert_ai",
           hash: "sha256-AK/P711xXw06cGvpDStbdKK7fEAgc4B861UVwAJqiIY=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["colbert"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and accurate retrieval model, enabling scalable BERT-based search over large text collections in tens of milliseconds",
         homepage: "https://github.com/stanford-futuredata/ColBERT",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

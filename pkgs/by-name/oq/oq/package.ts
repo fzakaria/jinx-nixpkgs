@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oq";
       const version = "1.3.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blacksmoke16",
           repo: "oq",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Blacksmoke16/oq/commit/151b5b1d60ed1cafa9fc2a1ec175dcd1732a3961.diff",
             hash: "sha256-xWZ1U2A1ClwviSdGMvBeBgA16qKLuUzdBRmJblM7DAc=",
           })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jq]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Performant, and portable jq wrapper",
         mainProgram: "oq",
         homepage: "https://blacksmoke16.github.io/oq/",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

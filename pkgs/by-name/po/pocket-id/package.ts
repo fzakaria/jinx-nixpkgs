@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "pocket-id",
       version: "2.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pocket-id",
           repo: "pocket-id",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/backend`),
       vendorHash: "sha256-nwvgYWUMlt51dH+uYQd8KeTo0E55kSAyMkBGjObbkb8=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/pocket-id/pocket-id/backend/internal/common.Version=${nix.sel(finalAttrs, "version")}`),
         nix.thunk(() => nix.str`-buildid=${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "version",
       frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: "pocket-id-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpmBuildHook, pnpm_10]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -72,20 +72,20 @@ export default nix.lambda((args) => (() => {
               fetcherVersion: 4n,
               hash: "sha256-zCwpCnxYVEVQUjC64W3ZZlloNNtQXD8SVlpV+0JgDzQ=",
             })))),
-          env: nix.thunk(() => ({ __proto__: pos$4, BUILD_OUTPUT_PATH: "dist" })),
+          env: nix.thunk(() => ({ [nix.POS]: pos$4, BUILD_OUTPUT_PATH: "dist" })),
           pnpmWorkspaces: nix.thunk(() => ["pocket-id-frontend"]),
           installPhase: "runHook preInstall\n\nmkdir -p $out/lib/pocket-id-frontend\ncp -r frontend/dist $out/lib/pocket-id-frontend/dist\n\nrunHook postInstall\n",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "pocket-id": nix.thunk(() => nix.attr(nixosTests, "pocket-id")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$7, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "OIDC provider with passkeys support",
         homepage: "https://pocket-id.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pocket-id/pocket-id/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -103,8 +103,8 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$10,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "pocket-id", nix.thunk(() => nix.sel(finalAttrs, "version"))), { __proto__: pos$9, product: "pocket_id" })),
+          [nix.POS]: pos$10,
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "pocket-id", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$9, product: "pocket_id" })),
         })),
       })),
     }));

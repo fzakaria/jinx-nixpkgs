@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xf86-video-omap",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, util_macros, xorg_server]),
       buildInputs: nix.thunk(() => [xorg_server, xorgproto, libdrm]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=format-overflow"]))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=xf86-video-omap-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source X.org graphics driver for TI OMAP graphics",
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-video-omap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

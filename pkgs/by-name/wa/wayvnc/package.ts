@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pixman = nix.arg($, "pixman");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wayvnc",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "any1",
           repo: "wayvnc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VNC server for wlroots based Wayland compositors",
         longDescription: "This is a VNC server for wlroots based Wayland compositors. It attaches\nto a running Wayland session, creates virtual input devices and exposes a\nsingle display via the RFB protocol. The Wayland session may be a\nheadless one, so it is also possible to run wayvnc without a physical\ndisplay attached.\n",
         homepage: "https://github.com/any1/wayvnc",

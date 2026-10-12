@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pixman = nix.arg($, "pixman");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qaseprite",
       version: "1.0.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mapeditor/qaseprite/releases/download/${nix.sel(finalAttrs, "version")}/qaseprite-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           hash: "sha256-plRmszRdGISL0Iu59Dh8JlmfTIwcJt/TjoBy8wfPLPA=",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt image format plugin for reading Aseprite images",
         homepage: "https://github.com/mapeditor/qaseprite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

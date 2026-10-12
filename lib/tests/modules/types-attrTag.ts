@@ -67,59 +67,59 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mergedSubOption = nix.thunk(() => nix.sel(nix.app(nix.sel(options, "merged", "type", "getSubOptions"), nix.thunk(() => nix.sel(options, "merged", "loc"))), "extensible"));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       intStrings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                __proto__: pos$3,
-                left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
-                right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
+                [nix.POS]: pos$3,
+                left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
+                right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
               })))))),
         })))),
       nested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-              __proto__: pos$10,
-              left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$5, type: nix.thunk(() => nix.sel(types, "int")) })))),
+              [nix.POS]: pos$10,
+              left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "int")) })))),
               right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                      __proto__: pos$8,
-                      left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$6, type: nix.thunk(() => nix.sel(types, "int")) })))),
-                      right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$7, type: nix.thunk(() => nix.sel(types, "str")) })))),
+                      [nix.POS]: pos$8,
+                      left: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$6, type: nix.thunk(() => nix.sel(types, "int")) })))),
+                      right: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.sel(types, "str")) })))),
                     })))),
                 })))),
             })))),
         })))),
       merged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                __proto__: pos$14,
-                yay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$12, type: nix.thunk(() => nix.sel(types, "int")) })))),
+                [nix.POS]: pos$14,
+                yay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$12, type: nix.thunk(() => nix.sel(types, "int")) })))),
                 extensible: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["foo"]))),
                   })))),
               })))))),
         })))),
       submodules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 foo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         options: nix.thunk(() => ({
-                          __proto__: pos$17,
-                          bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$16, type: nix.thunk(() => nix.sel(types, "int")) })))),
+                          [nix.POS]: pos$17,
+                          bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$16, type: nix.thunk(() => nix.sel(types, "int")) })))),
                         })),
                       })))),
                   })))),
                 qux: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     type: nix.thunk(() => nix.sel(types, "str")),
                     description: "A qux for when you don't want a foo",
                   })))),
@@ -130,16 +130,16 @@ export default nix.lambda((args) => (() => {
     imports: nix.thunk(() => [
       nix.path(here, "./docs.nix"),
       nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         options: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           merged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({
-                    __proto__: pos$26,
-                    nay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$24, type: nix.thunk(() => nix.sel(types, "bool")) })))),
+                    [nix.POS]: pos$26,
+                    nay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$24, type: nix.thunk(() => nix.sel(types, "bool")) })))),
                     extensible: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["bar"]))),
                       })))),
                   })))))),
@@ -148,46 +148,46 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       intStrings: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         syntaxError: 1n,
         syntaxError2: nix.thunk(() => ({})),
-        syntaxError3: nix.thunk(() => ({ __proto__: pos$30, a: true, b: true })),
+        syntaxError3: nix.thunk(() => ({ [nix.POS]: pos$30, a: true, b: true })),
         syntaxError4: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$31, a: true })),
-            nix.thunk(() => ({ __proto__: pos$32, b: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$31, a: true })),
+            nix.thunk(() => ({ [nix.POS]: pos$32, b: true })),
           ]))),
         mergeError: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$33, int: nix.thunk(() => nix.builtins.throw("do not eval")) })),
+            nix.thunk(() => ({ [nix.POS]: pos$33, int: nix.thunk(() => nix.builtins.throw("do not eval")) })),
             nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               string: nix.thunk(() => nix.builtins.throw("do not eval")),
             })),
           ]))),
-        badTagError: nix.thunk(() => ({ __proto__: pos$35, rite: nix.thunk(() => nix.builtins.throw("do not eval")) })),
-        badTagTypeError: nix.thunk(() => ({ __proto__: pos$36, left: "bad" })),
-        numberOne: nix.thunk(() => ({ __proto__: pos$37, left: 1n })),
-        hello: nix.thunk(() => ({ __proto__: pos$38, right: "hello world" })),
+        badTagError: nix.thunk(() => ({ [nix.POS]: pos$35, rite: nix.thunk(() => nix.builtins.throw("do not eval")) })),
+        badTagTypeError: nix.thunk(() => ({ [nix.POS]: pos$36, left: "bad" })),
+        numberOne: nix.thunk(() => ({ [nix.POS]: pos$37, left: 1n })),
+        hello: nix.thunk(() => ({ [nix.POS]: pos$38, right: "hello world" })),
       })),
       nested: nix.thunk(() => ({
-        __proto__: pos$41,
-        right: nix.thunk(() => ({ __proto__: pos$40, left: "not a number" })),
+        [nix.POS]: pos$41,
+        right: nix.thunk(() => ({ [nix.POS]: pos$40, left: "not a number" })),
       })),
       merged: nix.thunk(() => ({
-        __proto__: pos$46,
-        negative: nix.thunk(() => ({ __proto__: pos$42, nay: false })),
-        positive: nix.thunk(() => ({ __proto__: pos$43, yay: 100n })),
-        "extensi-foo": nix.thunk(() => ({ __proto__: pos$44, extensible: "foo" })),
-        "extensi-bar": nix.thunk(() => ({ __proto__: pos$45, extensible: "bar" })),
+        [nix.POS]: pos$46,
+        negative: nix.thunk(() => ({ [nix.POS]: pos$42, nay: false })),
+        positive: nix.thunk(() => ({ [nix.POS]: pos$43, yay: 100n })),
+        "extensi-foo": nix.thunk(() => ({ [nix.POS]: pos$44, extensible: "foo" })),
+        "extensi-bar": nix.thunk(() => ({ [nix.POS]: pos$45, extensible: "bar" })),
       })),
       okChecks: nix.thunk(() => nix.builtins.addErrorContext("while evaluating the assertions", nix.thunk(() => (() => {
-          nix.assert_(nix.eq(nix.sel(config, "intStrings", "hello"), { __proto__: pos$47, right: "hello world" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:117:7");
-          nix.assert_(nix.eq(nix.sel(config, "intStrings", "numberOne"), { __proto__: pos$48, left: 1n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:118:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "negative"), { __proto__: pos$49, nay: false }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:119:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "positive"), { __proto__: pos$50, yay: 100n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:120:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-foo"), { __proto__: pos$51, extensible: "foo" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:121:7");
-          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-bar"), { __proto__: pos$52, extensible: "bar" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:122:7");
+          nix.assert_(nix.eq(nix.sel(config, "intStrings", "hello"), { [nix.POS]: pos$47, right: "hello world" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:117:7");
+          nix.assert_(nix.eq(nix.sel(config, "intStrings", "numberOne"), { [nix.POS]: pos$48, left: 1n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:118:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "negative"), { [nix.POS]: pos$49, nay: false }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:119:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "positive"), { [nix.POS]: pos$50, yay: 100n }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:120:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-foo"), { [nix.POS]: pos$51, extensible: "foo" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:121:7");
+          nix.assert_(nix.eq(nix.sel(config, "merged", "extensi-bar"), { [nix.POS]: pos$52, extensible: "bar" }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:122:7");
           nix.assert_(nix.eq(nix.sel(config, "docs", "submodules.<name>.foo.bar", "declarations"), [
             nix.thunk(() => nix.sel({ file: nix.add(here, "/types-attrTag.nix"), line: 123n, column: 72n }, "file")),
           ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/types-attrTag.nix:123:7");

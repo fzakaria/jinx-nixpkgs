@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const SDL2_net = nix.arg($, "SDL2_net");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "maelstrom",
       version: "3.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.libsdl.org/projects/Maelstrom/src/Maelstrom-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0dm0m5wd7amrsa8wnrblkv34sq4v4lglc2wfx8klfkdhyhi06s4k",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/bin\nln -s $out/games/Maelstrom/Maelstrom $out/bin/maelstrom\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "maelstrom",
             exec: "maelstrom",
             desktopName: "Maelstrom",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Arcade-style game resembling Asteroids",
         mainProgram: "maelstrom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

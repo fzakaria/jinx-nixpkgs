@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pname = nix.argOr($, "pname", () => "cinny");
   const configOverrides = nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${pname}-config-overrides.json`), nix.thunk(() => nix.builtins.toJSON(conf))));
   return (nix.asBool(nix.eq(conf, {})) ? nix.force(cinny_unwrapped) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: nix.thunk(() => nix.attr(cinny_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(cinny_unwrapped, "meta")),

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const mdx = nix.arg($, "mdx");
   const thread_table = nix.arg($, "thread-table");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "domain-local-await",
       version: "1.0.1",
       minimalOCamlVersion: "5.0",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")), nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/domain-local-await/releases/download/${nix.sel(finalAttrs, "version")}/domain-local-await-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-KVIRPFPLB+KwVLLchs5yk5Ex2rggfI8xOa2yPmTN+m8=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, domain_shims, mdx]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ocaml-multicore/ocaml-domain-local-await",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/ocaml-domain-local-await/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Scheduler independent blocking mechanism",

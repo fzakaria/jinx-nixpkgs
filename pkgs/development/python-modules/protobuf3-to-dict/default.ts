@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0nibblvj3n20zvq6d73zalbjqjby0w8ji5mim7inhn7vb9dw4hhy",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["protobuf_to_dict"]);
       const propagatedBuildInputs = nix.thunk(() => [protobuf, six]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Teeny Python library for creating Python dicts from protocol buffers and the reverse",
         homepage: "https://github.com/kaporzhu/protobuf-to-dict",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

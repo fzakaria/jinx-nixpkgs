@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(optionalString, nix.thunk(() => !nix.eq(outputName, "out")), nix.thunk(() => nix.str`-${outputName}`));
       })()) : nix.builtins.throw(nix.thunk(() => nix.str`cannot reconstruct the derivation name from ${drv}`)))));
       return nix.app(runCommandLocal, drvName, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(nix$, "out"))]),
         })), nix.thunk(() => nix.str`createRewriteScript() {
     while [ $# -ne 0 ]; do

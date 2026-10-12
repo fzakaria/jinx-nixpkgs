@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webtunnel",
       version: "0.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "anti-censorship/pluggable-transports",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-3AAPySLAoMimXUOiy8Ctl+ghG5q+3dWRNGXHpl9nfG0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pluggable Transport based on HTTP Upgrade(HTTPT)",
         homepage: "https://community.torproject.org/relay/setup/webtunnel/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gbtb"))]),

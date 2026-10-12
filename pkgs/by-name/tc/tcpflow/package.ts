@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const useCairo = nix.argOr($, "useCairo", () => false);
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcpflow",
       version: "1.6.1-unstable-2026-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simsong",
           repo: "tcpflow",
           rev: "8d47b53a54da58e9c9b78efed8b379d98c6113e4",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TCP stream extractor",
         longDescription: "tcpflow is a program that captures data transmitted as part of TCP\nconnections (flows), and stores the data in a way that is convenient for\nprotocol analysis and debugging.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

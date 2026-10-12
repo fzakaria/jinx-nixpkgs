@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const copyPkgconfigItems = nix.arg($, "copyPkgconfigItems");
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "symfpu",
       version: "1.2.0-unstable-2026-05-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "martin-cs",
           repo: "symfpu",
           rev: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.2.0-unstable-2026-05-13": "40bdec00e99f8ea1b96c3dac0a05eed11c541639",
             "0-unstable-2019-05-17": "8fbe139bf0071cbe0758d2f6690a546c69ff0053",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "1.2.0-unstable-2026-05-13": "sha256-ho0tLWFlPozq5hD+qX6AQiCPxUuRPwnXe9dEfzXwSY0=",
             "0-unstable-2019-05-17": "sha256-ONGfvJMo/HXlbxHmkFs9O5nhs6aDM+XuNSPgY+ykxck=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -43,23 +43,23 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(makePkgconfigItem, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "symfpu",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cflags: nix.thunk(() => ["-I${includedir}"]),
-            variables: nix.thunk(() => ({ __proto__: pos$4, includedir: "@includedir@" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$4, includedir: "@includedir@" })),
             description: nix.thunk(() => nix.attr(from, "description")),
           };
           })()))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/include`),
       })),
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/include/symfpu\ncp -r * $out/include/symfpu/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Implementation of SMT-LIB / IEEE-754 operations in terms of bit-vector operations",
         homepage: "https://github.com/martin-cs/symfpu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

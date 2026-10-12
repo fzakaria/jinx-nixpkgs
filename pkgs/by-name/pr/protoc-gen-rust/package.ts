@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "protoc-gen-rust";
       const version = "3.5.0";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "protobuf-codegen",
           hash: "sha256-yGZ4auZHGtcsN6n4/FEzabsSXproyhNTJHIwujt7ijg=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const cargoBuildFlags = nix.thunk(() => ["--bin", pname]);
       const nativeBuildInputs = nix.thunk(() => [protobuf]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protobuf plugin for generating Rust code",
         mainProgram: "protoc-gen-rust",
         homepage: "https://github.com/stepancheg/rust-protobuf",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

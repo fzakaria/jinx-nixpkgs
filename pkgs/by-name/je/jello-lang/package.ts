@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const jellyfish = nix.arg($, "jellyfish");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "jello-lang",
       version: "0-unstable-2025-01-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codereport",
           repo: "jello",
           rev: "462c48d0613d3ef5e2c2c9771b3db64f0747ac89",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/codereport/jello/commit/16ea477b302a810d161303539c4145130b90544c.patch",
             hash: "sha256-6ZbytV6jUPAoPbV4IAbP5YsgPcjZZ+chGo3Z1h3hg1E=",
           })))),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jellyfish]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wrapper for Jellyfish (a fork of the Jelly programming language)",
         homepage: "https://github.com/codereport/jello",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

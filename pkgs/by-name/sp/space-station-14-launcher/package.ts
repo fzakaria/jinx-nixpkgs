@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.40.2";
   const buildType = "Release";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       buildType: buildType,
       pname: "SS14.Launcher",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "space-wizards",
           repo: "SS14.Launcher",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nugetDeps: nix.path(here, "./deps.json"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       projectFile: nix.thunk(() => ["SS14.Loader/SS14.Loader.csproj", "SS14.Launcher/SS14.Launcher.csproj"]),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [iconConvTools, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "SS14.Launcher",
             exec: "SS14.Launcher",
             icon: "SS14",
@@ -112,7 +112,7 @@ cp -r SS14.Loader/bin/${buildType}/*/*/* $out/lib/SS14.Launcher/loader/
 icoFileToHiColorTheme SS14.Launcher/Assets/icon.ico SS14 $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Launcher for Space Station 14, a multiplayer game about paranoia and disaster",
         homepage: "https://spacestation14.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

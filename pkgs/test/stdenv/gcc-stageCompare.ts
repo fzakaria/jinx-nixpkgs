@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(pkgs, null);
   const gcc_stageCompare = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nix.lookup(w, "gcc-unwrapped"), "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       reproducibleBuild: true,
       profiledCompiler: false,
-      stdenv: nix.thunk(() => nix.app(nix.lookup(w, "overrideCC"), stdenv, nix.thunk(() => nix.app(nix.lookup(w, "wrapCCWith"), nix.thunk(() => ({ __proto__: pos$1, cc: nix.thunk(() => nix.sel(stdenv, "cc")) })))))),
+      stdenv: nix.thunk(() => nix.app(nix.lookup(w, "overrideCC"), stdenv, nix.thunk(() => nix.app(nix.lookup(w, "wrapCCWith"), nix.thunk(() => ({ [nix.POS]: pos$1, cc: nix.thunk(() => nix.sel(stdenv, "cc")) })))))),
     }))), "overrideAttrs"), (_) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       NIX_OUTPATH_USED_AS_RANDOM_SEED: nix.thunk(() => nix.sel(stdenv, "cc", "cc", "out")),
     })));
   return nix.app(nix.sel(nix.app(nix.lookup(w, "runCommand"), "gcc-stageCompare", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       checksumCompare: nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.has(gcc_stageCompare, "checksum")), "tests-stdenv-gcc-stageCompare: No `checksum` output in `gcc-stageCompare` see conditional in `gcc/common/checksum.nix`"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/stdenv/gcc-stageCompare.nix:36:7");
         return nix.sel(gcc_stageCompare, "checksum");
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
         return nix.sel(pkgs, "gcc-unwrapped", "checksum");
       })()),
     })), "diff -sr \"$checksumUnwrapped\"/checksums \"$checksumCompare\"/checksums && touch $out\n"), "overrideAttrs"), (a) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       meta: nix.thunk(() => nix.update(nix.selOr(a, () => ({}), "meta"), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }));

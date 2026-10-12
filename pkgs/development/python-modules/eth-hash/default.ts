@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "eth-hash",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest, pytest_xdist], nix.concat(nix.sel(optional_dependencies, "pycryptodome"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => nix.sel(optional_dependencies, "pysha3"))))));
       const checkPhase = nix.thunk(() => nix.add(nix.add("runHook preCheck\npytest tests/core tests/backends/pycryptodome\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(isPyPy)), "pytest tests/backends/pysha3\n")), "runHook postCheck\n"));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pycryptodome: nix.thunk(() => [pycryptodome]),
         pysha3: nix.thunk(() => [safe_pysha3]),
       }));
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ethereum hashing function keccak256",
         homepage: "https://github.com/ethereum/eth-hash",
         changelog: nix.thunk(() => nix.str`https://github.com/ethereum/eth-hash/blob/v${version}/docs/release_notes.rst`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

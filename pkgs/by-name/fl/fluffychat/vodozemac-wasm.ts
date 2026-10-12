@@ -35,18 +35,18 @@ pushd $out/hosted/pub.dev
 popd
 `)));
   const sysroot = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "rustc_unwrapped_with_libsrc",
       paths: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "rustc", "unwrapped"))]),
       postBuild: nix.thunk(() => nix.str`mkdir -p $out/lib/rustlib/src/rust
 ln -s ${nix.sel(rustPlatform, "rustLibSrc")} $out/lib/rustlib/src/rust/library
 `),
     }))));
-  const rustcWithLibSrc = nix.thunk(() => nix.app(nix.sel(buildPackages, "rustc", "override"), nix.thunk(() => ({ __proto__: pos$2, sysroot: sysroot }))));
+  const rustcWithLibSrc = nix.thunk(() => nix.app(nix.sel(buildPackages, "rustc", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, sysroot: sysroot }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pubSources, "vodozemac"));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vodozemac-wasm",
       version: nix.thunk(() => nix.attr(from, "version")),
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
@@ -60,7 +60,7 @@ runHook postUnpack
       postPatch: "sed -i '/^dev_dependencies:/,/^$/d' dart/pubspec.yaml\n",
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "vodozemac-wasm-cargodeps",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.sel(pubSources, "flutter_vodozemac", "passthru", "cargoDeps")),
@@ -99,7 +99,7 @@ runHook postBuild
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dart/web/pkg/vodozemac_bindings_dart* $out/\n\nrunHook postInstall\n",
       preFixup: nix.thunk(() => nix.str`find $out -name "*.wasm" -exec remove-references-to -t ${sysroot} {} +
 `),
-      env: nix.thunk(() => ({ __proto__: pos$4, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, RUSTC_BOOTSTRAP: 1n })),
       meta: nix.thunk(() => nix.attr(fluffychat_web, "meta")),
     };
     })()));

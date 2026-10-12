@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kube_router = nix.arg($, "kube-router");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kube-router",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudnativelabs",
           repo: "kube-router",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lTc3uo30byCu+Bm/Yy9OTgx1KLGncIEiQ9iweLIFC0k=",
         })))),
       vendorHash: "sha256-XdCqwOfOUAjiNeNNto/x2KqjfdW/mjzSIiHNAdLfFiw=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
         "-X github.com/cloudnativelabs/kube-router/v2/pkg/version.BuildDate=Nix",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: kube_router })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: kube_router })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.kube-router.io/",
         description: "All-in-one router, firewall and service proxy for Kubernetes",
         mainProgram: "kube-router",

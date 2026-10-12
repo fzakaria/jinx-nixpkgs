@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "Fluid",
       version: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://ftp.osuosl.org/pub/musescore/soundfont/fluid-soundfont.tar.gz",
           sha256: "1f96bi0y6rms255yr8dfk436azvwk66c99j6p43iavyq8jg7c5f8",
         })))),
       sourceRoot: ".",
       installPhase: "install -Dm644 \"FluidR3 GM2-2.SF2\" $out/share/soundfonts/FluidR3_GM2-2.sf2\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Frank Wen's pro-quality GM/GS soundfont",
         homepage: "https://www.ibiblio.org/thammer/HammerSound/hs_frontpage.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

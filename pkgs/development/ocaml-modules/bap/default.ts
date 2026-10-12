@@ -52,18 +52,18 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const z3 = nix.arg($, "z3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-bap`),
       version: "2.5.0+pr1621",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BinaryAnalysisPlatform",
           repo: "bap",
           rev: "65c282d94e8b7028e8a986c637db3a2378a753f6",
           hash: "sha256-LUZZOgG1T8xa5jLA/fDft8ofYb/Yf6QjTrl6AlLY7H0=",
         })))),
       sigs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/BinaryAnalysisPlatform/bap/releases/download/v${nix.sel(finalAttrs, "version")}/sigs.zip`),
           sha256: "0d69jd28z4g64mglq94kj5imhmk5f6sgcsh9q2nij3b0arpcliwk",
         })))),
@@ -117,7 +117,7 @@ runHook postInstall
         nix.thunk(() => nix.str`--with-llvm-config=${nix.sel(llvm, "dev")}/bin/llvm-config`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Platform for binary analysis. It is written in OCaml, but can be used from other languages",
         homepage: "https://github.com/BinaryAnalysisPlatform/bap/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

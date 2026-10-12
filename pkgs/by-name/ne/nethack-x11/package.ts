@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["x11Mode", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nethack = nix.arg($, "nethack");
-  return nix.app(nix.sel(nethack, "override"), nix.thunk(() => ({ __proto__: pos$1, x11Mode: true })));
+  return nix.app(nix.sel(nethack, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, x11Mode: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

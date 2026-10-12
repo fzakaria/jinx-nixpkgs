@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "v2rayn",
       version: "7.25.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "2dust",
           repo: "v2rayN",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +78,7 @@ substituteInPlace v2rayN/ServiceLib/Manager/CoreManager.cs \\
       runtimeDeps: nix.thunk(() => [libx11, libxrandr, libxi, libice, libsm, libxcursor, libxext]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "v2rayn",
             exec: "v2rayN",
             icon: "v2rayn",
@@ -91,11 +91,11 @@ substituteInPlace v2rayN/ServiceLib/Manager/CoreManager.cs \\
       ]),
       postInstall: "install -D --mode 0644 v2rayN/v2rayN.Desktop/v2rayN.png $out/share/icons/hicolor/256x256/apps/v2rayn.png\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GUI client support Xray core and sing-box-core and others",
         homepage: "https://github.com/2dust/v2rayN",
         mainProgram: "v2rayN",

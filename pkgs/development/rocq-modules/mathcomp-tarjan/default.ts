@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       namePrefix: nix.thunk(() => ["coq", "mathcomp"]),
       pname: "tarjan",
       owner: "math-comp",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -45,35 +45,35 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "1.0.5": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-Ti9gwd9rV+a0MJCAOjrpuZH+F9JI1l6dNAQYmIdGreU=",
         })),
         "1.0.4": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-fvE53jJe7/kQUI+lhO6lKdWfsFfRjOk2YGOcHUoJ6BU=",
         })),
         "1.0.3": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-5lpOCDyH6NFzGLvnXHHAnR7Qv5oXsUyC8TLBFrIiBag=",
         })),
         "1.0.2": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-U20xgA+e9KTRdvILD1cxN6ia+dlA8uBTIbc4QlKz9ss=",
         })),
         "1.0.1": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-utNjFCAqC5xOuhdyKhfMZkRYJD0xv9Gt6U3ZdQ56mek=",
         })),
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256:0r459r0makshzwlygw6kd4lpvdjc43b3x5y9aa8x77f2z5gymjq1",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [mathcomp_ssreflect, mathcomp_fingroup]),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Proofs of Tarjan and Kosaraju connected components algorithms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),
       })),

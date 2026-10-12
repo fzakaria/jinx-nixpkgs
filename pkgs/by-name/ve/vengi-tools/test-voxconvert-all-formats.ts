@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const vengi_tools = nix.arg($, "vengi-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "vengi-tools-test-voxconvert-all-formats",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
       buildCommand: nix.thunk(() => nix.str`mkdir $out
 for format in vox qef qbt qb vxm vxr binvox gox cub vxl csv; do
   echo Testing $format export

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rat-king-adventure";
       const version = "2.3.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TrashboxBobylev",
           repo: "Rat-King-Adventure",
           rev: version,
@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
       const patches = [];
       const desktopName = "Rat King Adventure";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/TrashboxBobylev/Rat-King-Adventure",
         downloadPage: "https://github.com/TrashboxBobylev/Rat-King-Adventure/releases",
         description: "Expansive fork of RKPD2, itself a fork of the Shattered Pixel Dungeon roguelike",
       }));
-      return { __proto__: pos$3, pname, version, src, patches, desktopName, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patches, desktopName, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

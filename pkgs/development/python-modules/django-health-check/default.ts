@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const fakeredis = nix.arg($, "fakeredis");
   const testcontainers = nix.arg($, "testcontainers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-health-check",
       version: "4.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codingjoe",
           repo: "django-health-check",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core, flit_scm]),
       dependencies: nix.thunk(() => [dnspython]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         psutil: nix.thunk(() => [psutil]),
         celery: nix.thunk(() => [celery]),
         kafka: nix.thunk(() => [confluent_kafka]),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "echo \"nameserver 127.0.0.1\" > resolv.conf\nexport NIX_REDIRECTS=/etc/resolv.conf=$(realpath resolv.conf)\n",
       preInstallCheck: "export PYTHONPATH=$PWD:$PYTHONPATH\nexport DJANGO_SETTINGS_MODULE=tests.testapp.settings\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pluggable app that runs a full check on the deployment",
         homepage: "https://github.com/codingjoe/django-health-check",
         changelog: nix.thunk(() => nix.str`https://github.com/codingjoe/django-health-check/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

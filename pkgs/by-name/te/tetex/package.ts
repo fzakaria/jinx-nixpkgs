@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const ed = nix.arg($, "ed");
   const automake = nix.arg($, "automake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tetex",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirrors.ctan.org/obsolete/systems/unix/teTeX/${nix.sel(finalAttrs, "version")}/distrib/tetex-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "16v44465ipd9yyqri9rgxp6rbgs194k4sh1kckvccvdsnnp7w3ww",
         })))),
       texmf: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://mirrors.ctan.org/obsolete/systems/unix/teTeX/${nix.sel(finalAttrs, "version")}/distrib/tetex-texmf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1hj06qvm02a2hx1a67igp45kxlbkczjlg20gr8lbp73l36k8yfvc",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./extramembot.patch"),
       ]),
       setupHook: nix.path(here, "./setup-hook.sh"),
-      env: nix.thunk(() => ({ __proto__: pos$3, CFLAGS: "-std=gnu89", CXXFLAGS: "-std=c++03" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CFLAGS: "-std=gnu89", CXXFLAGS: "-std=c++03" })),
       configureFlags: nix.thunk(() => nix.concat([
         "--disable-multiplatform",
         "--without-x11",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--without-gsftopk"))),
       postUnpack: "mkdir -p $out/share/texmf\nmkdir -p $out/share/texmf-dist\ngunzip < $texmf | (cd $out/share/texmf-dist && tar xvf -)\n\nsubstituteInPlace ./tetex-src-3.0/configure --replace /usr/bin/install $(type -P install)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Full-featured (La)TeX distribution",
         homepage: "http://www.tug.org/tetex/",
         maintainers: [],

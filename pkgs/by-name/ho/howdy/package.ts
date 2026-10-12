@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "howdy",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boltgolt",
           repo: "howdy",
           rev: "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -53,24 +53,24 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/boltgolt/howdy/commit/1f3b83e2db5a8dfd9c7c88706ecce033e154060a.patch",
             hash: "sha256-OIN8A4q0zjtMOMzZgBqrKy2qOD8BDPB+euG6zerFbCE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/boltgolt/howdy/commit/b056724f84361dc6150554e7a806152af032c54b.patch",
             hash: "sha256-ZOb+QmWagKWtyXI0Xg00tnw8UP8uDWw7wb4Fwjy3VeE=",
           })))),
       ]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonOption")), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               config_dir: "/etc/howdy",
               python_path: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "pythonEnv")}/bin/python`),
               user_models_dir: "/var/lib/howdy/models",
             })))),
-          nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ __proto__: pos$5, install_config: false, with_polkit: true })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ [nix.POS]: pos$5, install_config: false, with_polkit: true })))),
         ]))),
       nativeBuildInputs: nix.thunk(() => [
         bzip2,
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fmt, gettext, gtk3, inih, libevdev, pam]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "howdy",
             exec: "howdy-gtk",
             icon: "howdy",
@@ -109,12 +109,12 @@ done
 chmod +x $out/lib/howdy-gtk/init.py
 `),
       pythonEnv: nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           extraLibs: nix.thunk(() => nix.app(nix.sel(lib, "attrVals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "pythonDeps")), nix.thunk(() => nix.sel(python3, "pkgs")))),
           makeWrapperArgs: nix.thunk(() => ["--set", "OMP_NUM_THREADS", "1"]),
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pythonDeps: nix.thunk(() => [
           "dlib",
           "elevate",
@@ -125,20 +125,20 @@ chmod +x $out/lib/howdy-gtk/init.py
           "pygobject3",
         ]),
         dlibModels: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: nix.thunk(() => nix.str`howdy-${name}.dat`),
               url: nix.thunk(() => nix.str`https://github.com/davisking/dlib-models/raw/daf943f7819a3dda8aec4276754ef918dc26491f/${name}.dat.bz2`),
               hash: hash,
             }))), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "dlibModelsHashes")))),
         dlibModelsHashes: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           dlib_face_recognition_resnet_model_v1: "sha256-q7H2EEHkNEZYVc6Bwr1UboMNKLy+2NJ/++W7QIsRVTo=",
           mmod_human_face_detector: "sha256-256eQPCSwRjV6z5kOTWyFoOBcHk1WVFVQcVqK1DZ/IQ=",
           shape_predictor_5_face_landmarks: "sha256-bnh7vr9cnv23k/bNHwIyMMRBMwZgXyTymfEoaflapHI=",
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Windows Hello™ style facial authentication for Linux",
         homepage: "https://github.com/boltgolt/howdy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

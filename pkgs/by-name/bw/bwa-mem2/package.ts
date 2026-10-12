@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bwa-mem2",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bwa-mem2",
           repo: "bwa-mem2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
     "fmi_test smem2_test bwt_seed_strategy_test sa2ref_test"
 `)),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-error=register", "-Wno-error=implicit-function-declaration"]))))),
       })),
       nativeBuildInputs: nix.thunk(() => [safestringlib]),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Next version of the bwa-mem algorithm in bwa, a software package for mapping low-divergent sequences against a large reference genome",
         mainProgram: "bwa-mem2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

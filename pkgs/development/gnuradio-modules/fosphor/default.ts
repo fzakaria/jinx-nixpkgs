@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const gnuradioOlder = nix.arg($, "gnuradioOlder");
   const gnuradioAtLeast = nix.arg($, "gnuradioAtLeast");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gr-fosphor",
       version: "0-unstable-2024-03-23",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.osmocom.org",
           owner: "sdr",
           repo: "gr-fosphor",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_PNG", enablePNG)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU Radio block for RTSA-like spectrum visualization using OpenCL and OpenGL acceleration",
         longDescription: "You'll need to install an OpenCL ICD for it to work.\nSee https://nixos.org/manual/nixos/stable/#sec-gpu-accel-opencl\n",
         homepage: "https://projects.osmocom.org/projects/sdr/wiki/Fosphor",

@@ -33,48 +33,48 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "komodo-periphery",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "channinghe"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       periphery: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
-            docker: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "komodo-periphery": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               inbound: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 bindIp: "127.0.0.1",
                 port: 8120n,
-                ssl: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+                ssl: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
                 serverEnabled: true,
               })),
               disableTerminals: true,
               disableContainerTerminals: true,
               statsPollingRate: "10-sec",
               containerStatsPollingRate: "1-min",
-              logging: nix.thunk(() => ({ __proto__: pos$6, level: "debug" })),
+              logging: nix.thunk(() => ({ [nix.POS]: pos$6, level: "debug" })),
               extraSettings: nix.thunk(() => ({
-                __proto__: pos$8,
-                secrets: nix.thunk(() => ({ __proto__: pos$7, TEST_SECRET: "test-value" })),
+                [nix.POS]: pos$8,
+                secrets: nix.thunk(() => ({ [nix.POS]: pos$7, TEST_SECRET: "test-value" })),
               })),
               auth: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 privateKey: "file:/var/lib/komodo-periphery/keys/test.key",
                 corePublicKeys: nix.thunk(() => ["MCowBQYDK2VuAyEATZgrjGHeF0KJUe0+n77+qAWOg3YzEzXOmQWaRgO3OGQ="]),
               })),
@@ -85,22 +85,22 @@ export default nix.lambda((args) => (() => {
       peripheryOutbound: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$14,
-            docker: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+            [nix.POS]: pos$14,
+            docker: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "komodo-periphery": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               inbound: nix.thunk(() => ({
-                __proto__: pos$16,
-                ssl: nix.thunk(() => ({ __proto__: pos$15, enable: false })),
+                [nix.POS]: pos$16,
+                ssl: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
               })),
-              logging: nix.thunk(() => ({ __proto__: pos$17, level: "debug" })),
-              outbound: nix.thunk(() => ({ __proto__: pos$18, coreAddress: "core.invalid", connectAs: "test-server" })),
+              logging: nix.thunk(() => ({ [nix.POS]: pos$17, level: "debug" })),
+              outbound: nix.thunk(() => ({ [nix.POS]: pos$18, coreAddress: "core.invalid", connectAs: "test-server" })),
             })),
           })),
         };

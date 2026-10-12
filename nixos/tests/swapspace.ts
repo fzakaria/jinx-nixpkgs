@@ -20,12 +20,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       name: "swapspace",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "Luflosi")),
             nix.thunk(() => nix.lookup(w, "phanirithvij")),
@@ -33,27 +33,27 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         machine: nix.thunk(() => ({
-          __proto__: pos$10,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 512n })),
+          [nix.POS]: pos$10,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 512n })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             swapspace: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               extraArgs: nix.thunk(() => ["-v"]),
-              settings: nix.thunk(() => ({ __proto__: pos$3, swappath: "/swamp", cooldown: 1n })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$3, swappath: "/swamp", cooldown: 1n })),
             })),
           })),
           swapDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$6, size: 127n, device: "/root/swapfile" })),
+              nix.thunk(() => ({ [nix.POS]: pos$6, size: 127n, device: "/root/swapfile" })),
             ]))),
           boot: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             kernel: nix.thunk(() => ({
-              __proto__: pos$8,
-              sysctl: nix.thunk(() => ({ __proto__: pos$7, "vm.swappiness": 60n })),
+              [nix.POS]: pos$8,
+              sysctl: nix.thunk(() => ({ [nix.POS]: pos$7, "vm.swappiness": 60n })),
             })),
           })),
         })),

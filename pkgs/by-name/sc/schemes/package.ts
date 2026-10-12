@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "schemes",
       version: "46.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "chergert",
           repo: "schemes",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook4, appstream_glib, desktop_file_utils]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita, gtksourceview5, libpanel]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Edit GtkSourceView style-schemes for an application or platform",
         mainProgram: "schemes",
         homepage: "https://gitlab.gnome.org/chergert/schemes",

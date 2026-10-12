@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "plasma-wayland-protocols";
       const version = "1.21.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/plasma-wayland-protocols/plasma-wayland-protocols-${version}.tar.xz`),
           hash: "sha256-aYp7KLcRJwMU45biSK6GCHz+rtATcgCQY5lb5uHchbo=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

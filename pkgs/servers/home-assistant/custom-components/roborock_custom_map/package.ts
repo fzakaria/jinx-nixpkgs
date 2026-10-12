@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "roborock_custom_map";
       const version = "0.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lash-L",
           repo: "RoborockCustomMap",
           tag: version,
           hash: "sha256-zAKGlhil6UE9Wlz3KhUg2XFIGblj/2jGtxVXP/+ryvw=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This allows you to use the core Roborock integration with the Xiaomi Map Card",
         homepage: "https://github.com/Lash-L/RoborockCustomMap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "kranzes"))];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

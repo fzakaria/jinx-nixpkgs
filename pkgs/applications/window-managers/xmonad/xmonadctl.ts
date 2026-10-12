@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "xmonad-contrib"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "xmonadctl",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
@@ -30,7 +30,7 @@ ${xmonadctlEnv}/bin/ghc -o $out/bin/xmonadctl \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         description: "Send commands to a running instance of xmonad",
         mainProgram: "xmonadctl",

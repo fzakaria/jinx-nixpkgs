@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/${scriptName} --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), commonDeps)}
 `;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(linuxHeaders, "version")),
       pname: "linux-scripts",
       src: nix.thunk(() => nix.sel(linuxHeaders, "src")),
@@ -37,7 +37,7 @@ wrapProgram $out/bin/${scriptName} --prefix PATH : ${nix.app(nix.sel(lib, "makeB
 ${nix.app(toWrapScriptLines, "extract-vmlinux")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Standalone scripts from <linux>/scripts",
         homepage: "https://www.kernel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

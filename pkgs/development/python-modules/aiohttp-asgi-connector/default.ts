@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const python_multipart = nix.arg($, "python-multipart");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiohttp-asgi-connector",
       version: "1.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thearchitector",
           repo: "aiohttp-asgi-connector",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [fastapi, pytest_asyncio, pytestCheckHook, python_multipart]),
       pythonImportsCheck: nix.thunk(() => ["aiohttp_asgi_connector"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "An AIOHTTP ClientSession connector for directly interacting with ASGI applications",
         homepage: "https://github.com/thearchitector/aiohttp-asgi-connector",
         changelog: nix.thunk(() => nix.str`https://github.com/thearchitector/aiohttp-asgi-connector/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

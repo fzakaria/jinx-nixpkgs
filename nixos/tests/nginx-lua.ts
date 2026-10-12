@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "nginx-lua",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kranzes"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           nginx: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             lua: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               extraPackages: (p) => [
                 nix.thunk(() => nix.sel(p, "lua-resty-lrucache")),
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
               ],
             })),
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               localhost: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     extraConfig: "default_type text/plain;\ncontent_by_lua_block {\n  local cache = require(\"resty.lrucache\").new(8)\n  cache:set(\"greeting\", require(\"cjson\").decode('\"Hello world!\"'))\n  ngx.say((cache:get(\"greeting\")))\n}\n",
                   })),
                 })),

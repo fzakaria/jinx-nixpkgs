@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "46.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-F/K0X4wHZOR4dvicGwQ9JOeh25iyqfKkgjiIZc6qWLY=",
@@ -93,7 +93,7 @@ stestr --test-path tempest/tests run -e <(echo "
 `);
       const pythonImportsCheck = nix.thunk(() => ["tempest"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenStack integration test suite that runs against live OpenStack cluster and validates an OpenStack deployment",
         homepage: "https://github.com/openstack/tempest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -101,7 +101,7 @@ stestr --test-path tempest/tests run -e <(echo "
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

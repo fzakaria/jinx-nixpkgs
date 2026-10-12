@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "slicer",
       version: "0.0.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "interpretml",
           repo: "slicer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["slicer"]),
       nativeCheckInputs: nix.thunk(() => [pandas, pytestCheckHook, scipy, torch]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wraps tensor-like objects and provides a uniform slicing interface via __getitem__",
         homepage: "https://github.com/interpretml/slicer",
         changelog: nix.thunk(() => nix.str`https://github.com/interpretml/slicer/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

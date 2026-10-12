@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_412 = nix.arg($, "docbook_xml_dtd_412");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "opensc",
       version: "0.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenSC",
           repo: "OpenSC",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-10275.patch",
             url: "https://github.com/OpenSC/OpenSC/commit/814f745b3b6d100295f65f1935edd33d520d33ab.patch",
             hash: "sha256-S8PeXCRAUlkKUPYOl/n5+4QIqWOZtHX3yEDnpFhJO8k=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, libxslt]),
       buildInputs: nix.thunk(() => nix.concat([zlib, readline, openssl, libassuan, libxt, libiconv, docbook_xml_dtd_412], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), pcsclite))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       configureFlags: nix.thunk(() => nix.concat([
         "--enable-zlib",
         "--enable-readline",
@@ -66,14 +66,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`--with-pcsc-provider=${nix.app(nix.sel(lib, "getLib"), pcsclite)}/lib/libpcsclite${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)))),
       installFlags: nix.thunk(() => ["sysconfdir=$(out)/etc", "completiondir=$(out)/etc"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9\\.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Set of libraries and utilities to access smart cards",
         homepage: "https://github.com/OpenSC/OpenSC/wiki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

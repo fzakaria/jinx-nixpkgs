@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdns",
       version: "1.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mjansson",
           repo: "mdns",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.10")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Public domain mDNS/DNS-SD library in C",
         homepage: "https://github.com/mjansson/mdns",
         changelog: nix.thunk(() => nix.str`https://github.com/mjansson/mdns/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

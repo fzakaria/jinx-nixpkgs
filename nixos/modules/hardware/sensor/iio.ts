@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sensor: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           iio: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Enable this option to support IIO sensors with iio-sensor-proxy.\n\nIIO sensors are used for orientation and ambient light\nsensors on some mobile devices.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
@@ -45,31 +45,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "sensor", "iio", "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         boot: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           initrd: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             availableKernelModules: nix.thunk(() => ["hid-sensor-hub"]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "hardware", "sensor", "iio", "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           dbus: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "hardware", "sensor", "iio", "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "hardware", "sensor", "iio", "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "hardware", "sensor", "iio", "package"))]),
         })),
       })))),

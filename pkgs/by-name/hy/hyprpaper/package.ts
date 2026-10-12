@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprpaper",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprpaper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         const from_1 = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Blazing fast wayland wallpaper utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

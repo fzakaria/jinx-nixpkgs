@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "defaultbrowser",
       version: "1.1-unstable-2024-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kerma",
           repo: "defaultbrowser",
           rev: "ad812c4e678a1e1f04cc44b8ab6d1ed5b8733359",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["CC=cc", "PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "defaultbrowser",
         description: "Command line tool for getting and setting a default browser (HTTP handler) in Mac OS X",
         homepage: "https://github.com/kerma/defaultbrowser",

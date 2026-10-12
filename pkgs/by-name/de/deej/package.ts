@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libappindicator = nix.arg($, "libappindicator");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deej",
       version: "0.9.10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omriharel",
           repo: "deej",
           rev: "v0.9.10",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Open-source hardware volume mixer for Windows and Linux",
           longDescription: "deej is an open-source hardware volume mixer for Windows and Linux.\nIt lets you use real-world sliders (potentiometers) to control the\nvolume of individual apps (like Discord, Spotify and Games) independently.\n",
           homepage: "https://github.com/omriharel/deej",

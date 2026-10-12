@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const runtimeShellPackage = nix.arg($, "runtimeShellPackage");
   const osOption = (platform) => (nix.asBool(nix.sel(platform, "isDarwin")) ? "Darwin" : (nix.asBool(nix.sel(platform, "isCygwin")) ? "CYGWIN" : (nix.asBool(nix.sel(platform, "isWindows")) ? "MSYS" : "Linux")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "opentxl",
       version: "11.3.7",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/CordyJ/OpenTxl/releases/download/v${nix.sel(finalAttrs, "version")}/OpenTxl-${nix.sel(finalAttrs, "version")}-csrc.tar.gz`),
           hash: "sha256-qIvxQqo1yCVJImjUvNNinzhoywVgaq9s0E+Ab+QStc0=",
         })))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), runtimeShellPackage)), runtimeShellPackage)),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89 -Wno-int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89 -Wno-int-conversion" })),
       patches: nix.thunk(() => [nix.path(here, "./fix-cross.patch")]),
       postPatch: "# Replace hardcoded FHS paths in various files\nfind . -type f -exec sed -i \\\n  -e 's#/bin/mv#mv#g' \\\n  -e 's#/bin/rm#rm#g' \\\n  -e \"s#/usr/local/bin#$out/bin#g\" \\\n  -e \"s#/usr/local/lib/txl#$out/lib#g\" \\\n  {} +\n",
       makeFlags: nix.thunk(() => [
@@ -44,19 +44,19 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-C test"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\ncp bin/* $out/bin/\ncp lib/* $out/lib/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         osOption: osOption,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           factorial: nix.thunk(() => nix.app(callPackage, nix.path(here, "./factorial-test.nix"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               opentxl: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open-source compiler for the Txl language",
         mainProgram: "txl",
         homepage: "https://github.com/CordyJ/OpenTxl",

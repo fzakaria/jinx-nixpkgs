@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtsvg",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       buildInputs: nix.thunk(() => nix.concat([libwebp], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => [jasper])), [libmng, zlib]))),

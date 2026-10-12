@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
   const tdlib = nix.arg($, "tdlib");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const tdlib_1811 = nix.thunk(() => nix.app(nix.sel(tdlib, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "1.8.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tdlib",
           repo: "td",
           rev: "3179d35694a28267a0b6273fc9b5bdce3b6b1235",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)' 'cmake_minimum_required(VERSION 3.10 FATAL_ERROR)'\n\nsubstituteInPlace td/generate/tl-parser/CMakeLists.txt \\\n  --replace-fail 'cmake_minimum_required(VERSION 3.0 FATAL_ERROR)' 'cmake_minimum_required(VERSION 3.10 FATAL_ERROR)'\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "teleports",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ubports",
           repo: "development/apps/teleports",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "0001-teleports-Call-i18n.bindtextdomain.patch",
             url: "https://gitlab.com/ubports/development/apps/teleports/-/commit/dd537c08453be9bfcdb2ee1eb692514c7e867e41.patch",
             hash: "sha256-zxxFvoj6jluGPCA9GQsxuYYweaSOVrkD01hZwCtq52U=",
@@ -106,13 +106,13 @@ substituteInPlace teleports.desktop.in \\
       ]),
       postInstall: "mkdir -p $out/share/{applications,lomiri-content-hub/peers,icons/hicolor/scalable/apps,lomiri-app-launch/splash,lomiri-url-dispatcher/urls}\n\nln -s $out/share/teleports/teleports.desktop $out/share/applications/teleports.desktop\nln -s $out/share/teleports/teleports.content-hub $out/share/lomiri-content-hub/peers/teleports\nln -s $out/share/teleports/assets/icon.svg $out/share/icons/hicolor/scalable/apps/teleports.svg\nln -s $out/share/teleports/assets/splash.svg $out/share/lomiri-app-launch/splash/teleports.svg\nln -s $out/share/teleports/teleports.url-dispatcher $out/share/lomiri-url-dispatcher/urls/teleports.url-dispatcher\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tdlib: tdlib_1811,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v" })))),
-        tests: nix.thunk(() => ({ __proto__: pos$6, vm: nix.thunk(() => nix.sel(nixosTests, "teleports")) })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, vm: nix.thunk(() => nix.sel(nixosTests, "teleports")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Ubuntu Touch Telegram client",
         homepage: "https://gitlab.com/ubports/development/apps/teleports",
         license: nix.thunk(() => (() => {

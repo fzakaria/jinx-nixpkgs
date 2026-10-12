@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     name: "systemd-resolved",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "elvishjerricco"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
@@ -87,39 +87,39 @@ export default nix.lambda((args) => (() => {
 @       AAAA    ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(config, "networking", "interfaces", "eth1", "ipv6", "addresses"))), "address")}
 `)));
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+            [nix.POS]: pos$7,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               eth1: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$3, address: "fd00::1", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$3, address: "fd00::1", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             knot: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$13,
-                server: nix.thunk(() => ({ __proto__: pos$8, listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
+                [nix.POS]: pos$13,
+                server: nix.thunk(() => ({ [nix.POS]: pos$8, listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
                 template: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  default: nix.thunk(() => ({ __proto__: pos$9, storage: exampleZone })),
+                  [nix.POS]: pos$10,
+                  default: nix.thunk(() => ({ [nix.POS]: pos$9, storage: exampleZone })),
                 })),
                 zone: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  "example.com": nix.thunk(() => ({ __proto__: pos$11, file: "example.com.zone" })),
+                  [nix.POS]: pos$12,
+                  "example.com": nix.thunk(() => ({ [nix.POS]: pos$11, file: "example.com.zone" })),
                 })),
               })),
             })),
@@ -135,39 +135,39 @@ test A ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(config,
 test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(config, "networking", "interfaces", "eth1", "ipv6", "addresses"))), "address")}
 `)));
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           networking: nix.thunk(() => ({
-            __proto__: pos$22,
-            firewall: nix.thunk(() => ({ __proto__: pos$17, enable: false })),
+            [nix.POS]: pos$22,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$17, enable: false })),
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               eth1: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$18, address: "fd00::3", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$18, address: "fd00::3", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             knot: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$28,
-                server: nix.thunk(() => ({ __proto__: pos$23, listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
+                [nix.POS]: pos$28,
+                server: nix.thunk(() => ({ [nix.POS]: pos$23, listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
                 template: nix.thunk(() => ({
-                  __proto__: pos$25,
-                  default: nix.thunk(() => ({ __proto__: pos$24, storage: delegateZone })),
+                  [nix.POS]: pos$25,
+                  default: nix.thunk(() => ({ [nix.POS]: pos$24, storage: delegateZone })),
                 })),
                 zone: nix.thunk(() => ({
-                  __proto__: pos$27,
-                  "delegated.example.org": nix.thunk(() => ({ __proto__: pos$26, file: "delegated.example.org.zone" })),
+                  [nix.POS]: pos$27,
+                  "delegated.example.org": nix.thunk(() => ({ [nix.POS]: pos$26, file: "delegated.example.org.zone" })),
                 })),
               })),
             })),
@@ -180,18 +180,18 @@ test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(conf
         const serverAddress = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(nodes, "server", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address"));
         const delegateAddress = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(nodes, "delegate_server", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address"));
         return {
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           networking: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             nameservers: nix.thunk(() => [serverAddress]),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               eth1: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$32, address: "fd00::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$32, address: "fd00::2", prefixLength: 64n })),
                     ]))),
                 })),
               })),
@@ -200,20 +200,20 @@ test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(conf
             useDHCP: false,
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             resolved: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$38,
-                Resolve: nix.thunk(() => ({ __proto__: pos$37, FallbackDNS: [] })),
+                [nix.POS]: pos$38,
+                Resolve: nix.thunk(() => ({ [nix.POS]: pos$37, FallbackDNS: [] })),
               })),
               dnsDelegates: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 "example-org": nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   Delegate: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     DNS: delegateAddress,
                     Domains: nix.thunk(() => ["delegated.example.org"]),
                   })),
@@ -222,29 +222,29 @@ test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(conf
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             network: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               networks: nix.thunk(() => ({
-                __proto__: pos$45,
-                "40-eth0": nix.thunk(() => ({ __proto__: pos$44, enable: false })),
+                [nix.POS]: pos$45,
+                "40-eth0": nix.thunk(() => ({ [nix.POS]: pos$44, enable: false })),
               })),
             })),
           })),
-          testing: nix.thunk(() => ({ __proto__: pos$48, initrdBackdoor: true })),
+          testing: nix.thunk(() => ({ [nix.POS]: pos$48, initrdBackdoor: true })),
           boot: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             initrd: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               systemd: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 enable: true,
                 initrdBin: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iputils"))]),
               })),
-              network: nix.thunk(() => ({ __proto__: pos$50, enable: true })),
+              network: nix.thunk(() => ({ [nix.POS]: pos$50, enable: true })),
               services: nix.thunk(() => ({
-                __proto__: pos$52,
-                resolved: nix.thunk(() => ({ __proto__: pos$51, enable: true })),
+                [nix.POS]: pos$52,
+                resolved: nix.thunk(() => ({ [nix.POS]: pos$51, enable: true })),
               })),
             })),
           })),

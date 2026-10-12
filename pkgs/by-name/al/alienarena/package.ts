@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "alienarena";
       const version = "7.72.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alienarena",
           repo: "alienarena",
           rev: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   --replace libGL.so.1 ${libGL}/lib/libGL.so.1
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/alienarena/alienarena/releases/tag/${version}`),
         description: "Free, stand-alone first-person shooter computer game",
         longDescription: "Do you like old school deathmatch with modern features? How\nabout rich, colorful, arcade-like atmospheres? How about retro\nSci-Fi? Then you're going to love what Alien Arena has in store\nfor you! This game combines some of the very best aspects of\nsuch games as Quake III and Unreal Tournament and wraps them up\nwith a retro alien theme, while adding tons of original ideas to\nmake the game quite unique.\n",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         hydraPlatforms: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "formula-dotnet",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VUISIS",
           repo: "formula-dotnet",
           rev: "8ee2e6abfd4ce038e1d9cb9c8602dec1ed6c0163",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
   --prefix DYLD_LIBRARY_PATH : $out/lib/formula-dotnet/runtimes/macos/native
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.sel(finalAttrs, "meta", "homepage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Formal Specifications for Verification and Synthesis",
         homepage: "https://github.com/VUISIS/formula-dotnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mspl")),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-mobile2",
       version: "0.22.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tauri-apps",
           repo: "cargo-mobile2",
           rev: nix.thunk(() => nix.str`cargo-mobile2-v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "mkdir -p $out/share/\n# during the install process tauri-mobile puts templates and commit information in CARGO_HOME\nexport CARGO_HOME=$out/share/\n",
       preFixup: "for bin in $out/bin/cargo-*; do\n  wrapProgram $bin \\\n    --set CARGO_HOME \"$out/share\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust on mobile made easy",
         homepage: "https://tauri.app/",
         license: nix.thunk(() => (() => {

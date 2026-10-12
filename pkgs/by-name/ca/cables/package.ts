@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "cables";
   const version = "0.10.6";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/cables-gl/cables_electron/releases/download/v${version}/cables-${version}-linux-x64.AppImage`),
       sha256: "sha256-Pk6rtWzIWzAlp5WwI7cKAjAlhjqLZJUO+39v44ZD93k=",
     }))));
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 install -m 444 -D ${appimageContents}/cables-${version}.png $out/share/icons/hicolor/512x512/apps/cables.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standalone version of cables, a tool for creating beautiful interactive content",
         homepage: "https://cables.gl",
         changelog: "https://cables.gl/changelog",

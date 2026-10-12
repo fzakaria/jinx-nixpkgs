@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "playonlinux",
       version: "4.4-unstable-2025-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PlayOnLinux",
           repo: "POL-POM-4",
           rev: "a91f598837b3d77ead6f418ec300fd4d284fdfa4",
@@ -120,7 +120,7 @@ makeWrapper ${steam_run}/bin/steam-run $out/bin/playonlinux \\
   --add-flags $out/share/playonlinux/playonlinux-wrapped
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI for managing Windows programs under linux",
         homepage: "https://www.playonlinux.com/",
         sourceProvenance: nix.thunk(() => (() => {

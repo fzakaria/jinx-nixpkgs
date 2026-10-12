@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rofi-systemd";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colonelpanic8",
           repo: "rofi-systemd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/rofi-systemd --prefix PATH : "${wrapperPath}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control your systemd units using rofi",
         homepage: "https://github.com/colonelpanic8/rofi-systemd",
         maintainers: nix.thunk(() => (() => {
@@ -53,7 +53,7 @@ wrapProgram $out/bin/rofi-systemd --prefix PATH : "${wrapperPath}"
         mainProgram: "rofi-systemd",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

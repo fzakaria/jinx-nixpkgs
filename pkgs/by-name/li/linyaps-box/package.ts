@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libseccomp = nix.arg($, "libseccomp");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linyaps-box",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenAtom-Linyaps",
           repo: "linyaps-box",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "linyaps-box_ENABLE_SECCOMP", true)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple OCI runtime mainly used by linyaps",
         homepage: "https://github.com/OpenAtom-Linyaps/linyaps-box",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

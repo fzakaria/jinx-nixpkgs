@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const regclient = nix.arg($, "regclient");
   const bins = nix.thunk(() => ["regbot", "regctl", "regsync"]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "regclient",
       version: "0.11.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "regclient",
           repo: "regclient",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X github.com/regclient/regclient/internal/version.vcsTag=${nix.sel(finalAttrs, "src", "tag")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, lndir]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (bin) => nix.add(nix.add(nix.str`local bin=$${bin}
 local outputBin=bin
@@ -56,10 +56,10 @@ mv $out/bin/${bin} $bin/bin
         return [nix.thunk(() => nix.str`-skip=${nix.builtins.concatStringsSep("|", skip)}`)];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => nix.builtins.map((bin) => nix.attrsDyn({}, [
               [nix.str`${bin}Version`, nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   package: regclient,
                   command: nix.thunk(() => nix.str`${bin} version`),
                   version: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
@@ -68,7 +68,7 @@ mv $out/bin/${bin} $bin/bin
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Docker and OCI Registry Client in Go and tooling using those libraries",
         homepage: "https://github.com/regclient/regclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

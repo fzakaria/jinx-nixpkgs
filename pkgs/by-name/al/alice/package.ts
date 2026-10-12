@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alice",
       version: "2.003",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/cyrealtype/Alice/releases/download/v${nix.sel(finalAttrs, "version")}/Alice-v${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-p+tE3DECfJyBIPyafGZ8jDYQ1lPb+iAnEwLyaUy7DW0=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       dontBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source font by Ksenia Erulevich",
         homepage: "https://github.com/cyrealtype/Alice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

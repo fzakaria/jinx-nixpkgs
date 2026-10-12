@@ -28,59 +28,59 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const customSettings = nix.thunk(() => ({
-    __proto__: pos$4,
-    pageInfo: nix.thunk(() => ({ __proto__: pos$1, title: "My Custom Dashy Title" })),
+    [nix.POS]: pos$4,
+    pageInfo: nix.thunk(() => ({ [nix.POS]: pos$1, title: "My Custom Dashy Title" })),
     sections: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "My Section",
         items: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$2, name: "NixOS", url: "https://nixos.org" })),
+          nix.thunk(() => ({ [nix.POS]: pos$2, name: "NixOS", url: "https://nixos.org" })),
         ]),
       })),
     ]),
   }));
   const customSettingsYaml = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml_1_2"), nix.thunk(() => ({}))), "generate"), "custom-conf.yaml", customSettings));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "dashy",
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "therealgramdalf"))]),
     })),
     defaults: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           dashy: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
-            virtualHost: nix.thunk(() => ({ __proto__: pos$6, enableNginx: true, domain: "dashy.local" })),
+            virtualHost: nix.thunk(() => ({ [nix.POS]: pos$6, enableNginx: true, domain: "dashy.local" })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(config, "services", "dashy", "virtualHost", "domain")}`, nix.thunk(() => ({
-                __proto__: pos$9,
-                listen: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$8, addr: "127.0.0.1", port: 80n }))]),
+                [nix.POS]: pos$9,
+                listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$8, addr: "127.0.0.1", port: 80n }))]),
               }))],
             ])),
           })),
         })),
-        networking: nix.thunk(() => ({ __proto__: pos$12, extraHosts: "127.0.0.1 dashy.local" })),
+        networking: nix.thunk(() => ({ [nix.POS]: pos$12, extraHosts: "127.0.0.1 dashy.local" })),
       };
     })(), formals$2),
     containers: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       container: nix.thunk(() => ({})),
       custom: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
-          dashy: nix.thunk(() => ({ __proto__: pos$14, settings: customSettings })),
+          [nix.POS]: pos$15,
+          dashy: nix.thunk(() => ({ [nix.POS]: pos$14, settings: customSettings })),
         })),
       })),
     })),

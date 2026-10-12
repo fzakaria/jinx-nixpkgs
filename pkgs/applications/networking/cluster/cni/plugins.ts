@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cni-plugins";
       const version = "1.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containernetworking",
           repo: "plugins",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         "plugins/meta/vrf",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/containernetworking/plugins/releases/tag/${nix.sel(src, "rev")}`),
         description: "Some standard networking plugins, maintained by the CNI team",
         homepage: "https://www.cni.dev/plugins/",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "podman"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

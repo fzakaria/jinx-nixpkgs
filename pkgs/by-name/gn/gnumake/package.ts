@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const guileEnabled = nix.thunk(() => (nix.asBool(guileSupport) && nix.asBool(!nix.asBool(inBootstrap))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnumake",
       version: "4.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/make/make-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3Rb7HWe/q3mnL16DkHNcSePo5wtJRaFasfgd23hlj7M=",
         })))),
@@ -47,15 +47,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          gnumakeWithGuile: nix.thunk(() => nix.app(nix.sel(gnumake, "override"), nix.thunk(() => ({ __proto__: pos$2, guileSupport: true })))),
+          [nix.POS]: pos$3,
+          gnumakeWithGuile: nix.thunk(() => nix.app(nix.sel(gnumake, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, guileSupport: true })))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool to control the generation of non-source files from sources",
         longDescription: "Make is a tool which controls the generation of executables and\nother non-source files of a program from the program's source\nfiles.\n\nMake gets its knowledge of how to build your program from a file\ncalled the makefile, which lists each of the non-source files\nand how to compute it from other files.  When you write a\nprogram, you should write a makefile for it, so that it is\npossible to use Make to build and install the program.\n",
         homepage: "https://www.gnu.org/software/make/",

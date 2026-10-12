@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const xtrans = nix.arg($, "xtrans");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xscope",
       version: "1.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "xorg",
           repo: "app/xscope",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, util_macros]),
       buildInputs: nix.thunk(() => [libxt, xtrans]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program to monitor X11/Client conversations",
         homepage: "https://cgit.freedesktop.org/xorg/app/xscope/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

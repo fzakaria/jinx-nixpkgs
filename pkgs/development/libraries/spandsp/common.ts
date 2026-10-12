@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "spandsp",
         version: version,
         src: src,
         patches: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: "https://github.com/freeswitch/spandsp/commit/1f810894804d3fa61ab3fc2f3feb0599145a3436.patch",
               hash: "sha256-Cf8aaoriAvchh5cMb75yP2gsZbZaOLha/j5mq3xlkVA=",
             })))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`CC_FOR_BUILD=${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc`),
         ]),
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
         })),
         hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "3.0.0")), nix.thunk(() => ["format"]))),
@@ -135,7 +135,7 @@ popd
 runHook postCheck
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Portable and modular SIP User-Agent with audio and video support",
           homepage: "https://github.com/freeswitch/spandsp",
           platforms: nix.thunk(() => (() => {

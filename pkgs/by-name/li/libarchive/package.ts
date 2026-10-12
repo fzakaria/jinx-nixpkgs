@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const binlore = nix.arg($, "binlore");
   nix.assert_((!nix.asBool(xarSupport) || nix.asBool(!nix.eq(libxml2, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libarchive/package.nix:32:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "libarchive",
       version: "3.8.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libarchive",
           repo: "libarchive",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.m
       strictDeps: true,
       hardeningDisable: nix.thunk(() => nix.concat(["strictflexarrays3"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "fortify"))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(xarSupport)), "--without-xml2")),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, am_cv_func_iconv_works: "yes" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, am_cv_func_iconv_works: "yes" })))),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       preCheck: "# Need an UTF-8 locale for test_I test.\nexport LANG=en_US.UTF-8\n",
       preFixup: nix.thunk(() => nix.str`sed -i $lib/lib/libarchive.la \\
@@ -86,7 +86,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.m
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(acl, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://libarchive.org",
         description: "Multi-format archive and compression library",
         longDescription: "The libarchive project develops a portable, efficient C library that can\nread and write streaming archives in a variety of formats. It also\nincludes implementations of the common tar, cpio, and zcat command-line\ntools that use the libarchive library.\n",
@@ -100,25 +100,25 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.m
         badPlatforms: nix.thunk(() => nix.attr(from, "badPlatforms")),
         pkgConfigModules: nix.thunk(() => ["libarchive"]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "libarchive", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       };
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cmake: cmake,
           nix: nix$,
           samba: samba,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         binlore: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), "execer can bin/bsdtar\n")),
         })),
       })),

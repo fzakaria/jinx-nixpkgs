@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trurl";
       const version = "0.16.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "curl",
           repo: "trurl",
           rev: nix.thunk(() => nix.str`trurl-${version}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./0001-build-constify-strchr-memchr-results.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/curl/trurl/commit/b3c2faf7ee519e4686248957ee079a2452741d61.patch",
             hash: "sha256-khA77XHPVF+2Vn492UuPrhVAEUijRBA2P8lvPlKYSQM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/curl/trurl/commit/f22a2c45956f35702e437fb83ac05376f1956ec5.patch",
             hash: "sha256-7CkUs5tMk77WKc7SlgE2NslHtU5cViKSGhHj3IBlpWo=",
           })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line tool for URL parsing and manipulation",
         homepage: "https://curl.se/trurl",
         changelog: nix.thunk(() => nix.str`https://github.com/curl/trurl/releases/tag/trurl-${version}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "trurl",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

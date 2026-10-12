@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "buttercup-desktop";
   const version = "2.28.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/buttercup/buttercup-desktop/releases/download/v${version}/Buttercup-linux-x86_64.AppImage`),
       sha256: "sha256-iCuvs+FisYPvCmPVg1dhYMX+Lw3WmrMSRytdy6TLrxg=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       src: src,
       version: version,
@@ -33,7 +33,7 @@ substituteInPlace $out/share/applications/buttercup.desktop \\
 cp -r ${appimageContents}/usr/share/icons $out/share
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-Platform Passwords & Secrets Vault",
         mainProgram: "buttercup-desktop",
         homepage: "https://github.com/buttercup/buttercup-desktop",

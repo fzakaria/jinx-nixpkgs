@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const findlib = nix.thunk(() => nix.attr(ocamlPackages, "findlib"));
   const sawja = nix.thunk(() => nix.attr(ocamlPackages, "sawja"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sawjap",
       src: nix.thunk(() => nix.attr(sawja, "src")),
       version: nix.thunk(() => nix.attr(sawja, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmkdir -p $out/bin\nocamlfind opt -o $out/bin/sawjap -package sawja -linkpkg sawjap.ml\nrunHook postBuild\n",
       dontInstall: true,
       meta: nix.thunk(() => nix.update(nix.sel(sawja, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Pretty-print .class files",
         mainProgram: "sawjap",
       })),

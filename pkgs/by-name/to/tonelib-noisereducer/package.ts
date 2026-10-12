@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tonelib-noisereducer";
       const version = "2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tonelib.vip/download/24-12-01/ToneLib-NoiseReducer-amd64.deb",
           hash: "sha256-R+JXoc6waKGPMaghlJ8BkLumDcjC7Oq0jx8tFjAKegE=",
         }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ], runtimeDependencies));
       const installPhase = "runHook preInstall\n\ncp -r usr $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ToneLib NoiseReducer – two-unit noise reduction rack effect plugin",
         homepage: "https://tonelib.net/tl-noisereducer.html",
         sourceProvenance: nix.thunk(() => (() => {
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ToneLib-NoiseReducer",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

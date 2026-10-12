@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const withDistOutput = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProtonVPN",
           repo: "local-agent-rs",
           rev: version,
           hash: "sha256-y2FEfICwWa/GgaKkq8CR+lVDYIsk0HsuKuGUsUQZAFo=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -60,7 +60,7 @@ cp ./target/*.whl ./dist
 `);
       const pythonImportsCheck = nix.thunk(() => ["proton.vpn.local_agent"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Proton VPN local agent written in Rust with Python bindings",
         homepage: "https://github.com/ProtonVPN/local-agent-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -74,7 +74,7 @@ cp ./target/*.whl ./dist
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const pytest_mypy_plugins = nix.arg($, "pytest-mypy-plugins");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "obstore",
       version: "0.9.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "developmentseed",
           repo: "obstore",
           tag: nix.thunk(() => nix.str`py-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-u2o0ymusn/pWrEn8kK/kiE95VcmMln6StkDPBam+6u0=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         "test_pickle",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, high-throughput Python interface to S3, GCS & Azure Storage, powered by Rust",
         homepage: "https://github.com/developmentseed/obstore",
         changelog: nix.thunk(() => nix.str`https://github.com/developmentseed/obstore/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

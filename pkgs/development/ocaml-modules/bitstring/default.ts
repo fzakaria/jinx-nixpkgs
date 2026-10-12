@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const stdlib_shims = nix.arg($, "stdlib-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bitstring",
       version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.3")) ? "5.0.2" : "4.1.1")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "xguerin",
           repo: "bitstring",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "5.0.2": "sha256-MN16b37EM5NIZcvd59Y9Bd+YgcM62RdhrgCskd21tSg=",
             "4.1.1": "sha256-eO7/S9PoMybZPnQQ+q9qbqKpYO4Foc9OjW4uiwwNds8=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [stdlib_shims]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "This library adds Erlang-style bitstrings and matching over bitstrings as a syntax extension and library for OCaml",
         homepage: "https://github.com/xguerin/bitstring",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.0.4";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: "kubectl-validate",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "kubectl-validate",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       preBuild: "mv cmd/download-builtin-schemas/main.go cmd/download-builtin-schemas/_main.go\nmv pkg/openapiclient/github_builtins_test.go pkg/openapiclient/_github_builtins_test.go\n\n# https://github.com/kubernetes-sigs/kubectl-validate/issues/134\nmv pkg/openapiclient/hardcoded_builtins_test.go pkg/openapiclient/_hardcoded_builtins_test.go\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "kubectl-validate",
         description: "Tool for local validation of resources for native Kubernetes types and CRDs",

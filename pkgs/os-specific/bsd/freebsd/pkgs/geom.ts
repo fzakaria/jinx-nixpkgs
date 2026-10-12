@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libufs = nix.arg($, "libufs");
   const openssl = nix.arg($, "openssl");
   const libs = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "geom-class-libs",
       path: "lib/geom",
       extraPaths: nix.thunk(() => [
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export NIX_CFLAGS_COMPILE=\"-I$BSDSRCDIR/sys $NIX_CFLAGS_COMPILE\";\n",
     }))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "sbin/geom",
       extraPaths: nix.thunk(() => ["lib/Makefile.inc", "lib/geom"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),

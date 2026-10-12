@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const enableAvx = nix.argOr($, "enableAvx", () => nix.sel(stdenv, "hostPlatform", "avxSupport"));
   const enableAvx2 = nix.argOr($, "enableAvx2", () => nix.sel(stdenv, "hostPlatform", "avx2Support"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kalign",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TimoLassmann",
           repo: "kalign",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableSse4_1)), "-DENABLE_SSE=OFF"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableAvx)), "-DENABLE_AVX=OFF"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableAvx2)), "-DENABLE_AVX2=OFF")))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast multiple sequence alignment program",
         mainProgram: "kalign",
         homepage: "https://github.com/TimoLassmann/kalign",

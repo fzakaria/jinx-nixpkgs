@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const hidapi = nix.arg($, "hidapi");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnitrokey",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nitrokey",
           repo: "libnitrokey",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [hidapi]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Communicate with Nitrokey devices in a clean and easy manner",
         homepage: "https://github.com/Nitrokey/libnitrokey",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mame",
       version: "0.289",
       srcVersion: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mamedev",
           repo: "mame",
           rev: nix.thunk(() => nix.str`mame${nix.sel(finalAttrs, "srcVersion")}`),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("for file in src/emu/emuopts.cpp src/osd/modules/lib/osdobj_common.cpp; do\n  substituteInPlace \"$file\" \\\n    --subst-var-by mamePath \"$out/opt/mame\"\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace scripts/src/osd/sdl3.lua --replace-fail \\\n  'backtick(\"sw_vers -productVersion\")' \\\n  \"os.getenv('MACOSX_DEPLOYMENT_TARGET') or '$darwinMinVersion'\"\n"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "MAME",
             desktopName: "MAME",
             exec: "mame",
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => (() => {
         const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/4256be4cf56870aa1fbd85c48cafeafa187160e0/Papirus/32x32/apps/mame.svg",
             hash: "sha256-s44Xl9UGizmddd/ugwABovM8w35P0lW9ByB69MIpG+E=",
           }))));
@@ -150,11 +150,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-h",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, "mame-update-script", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl common-updater-scripts jq\n\nset -eu -o pipefail\n\nlatest_version=$(curl -s https://api.github.com/repos/mamedev/mame/releases/latest | jq --raw-output .tag_name)\nupdate-source-version mame \"${latest_version/mame0/0.}\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.mamedev.org/",
         description: "Multi-purpose emulation framework",
         longDescription: "MAME's purpose is to preserve decades of software history. As electronic\ntechnology continues to rush forward, MAME prevents this important\n\"vintage\" software from being lost and forgotten. This is achieved by\ndocumenting the hardware and how it functions. The source code to MAME\nserves as this documentation. The fact that the software is usable serves\nprimarily to validate the accuracy of the documentation (how else can you\nprove that you have recreated the hardware faithfully?). Over time, MAME\n(originally stood for Multiple Arcade Machine Emulator) absorbed the\nsister-project MESS (Multi Emulator Super System), so MAME now documents a\nwide variety of (mostly vintage) computers, video game consoles and\ncalculators, in addition to the arcade video games that were its initial\nfocus.\n",

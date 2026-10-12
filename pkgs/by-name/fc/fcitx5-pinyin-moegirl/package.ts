@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fcitx5-pinyin-moegirl",
       version: "20260911",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/outloudvi/mw2fcitx/releases/download/${nix.sel(finalAttrs, "version")}/moegirl.dict`),
           hash: "sha256-FZGi1+t6RLQ7B068IFLsSkkvyyfrYy8hXBmP7MuYFtA=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -Dm644 $src $out/share/fcitx5/pinyin/dictionaries/moegirl.dict\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fcitx 5 pinyin dictionary from zh.moegirl.org.cn",
         homepage: "https://github.com/outloudvi/mw2fcitx",
         license: nix.thunk(() => (() => {

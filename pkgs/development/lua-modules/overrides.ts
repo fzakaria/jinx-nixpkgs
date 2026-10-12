@@ -244,26 +244,26 @@ export default nix.lambda((args) => (() => {
     const lua = nix.thunk(() => nix.attr(prev, "lua"));
     const isLuaJIT = nix.thunk(() => nix.attr(prev, "isLuaJIT"));
     return nix.update({
-      __proto__: pos$168,
+      [nix.POS]: pos$168,
       argparse: nix.thunk(() => nix.app(nix.sel(prev, "argparse", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           doCheck: true,
           nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(final, "bustedCheckHook"))]),
           preCheck: "LUA_PATH=\"src/?.lua;$LUA_PATH\"",
           bustedFlags: nix.thunk(() => ["spec/"]),
         })))),
       busted: nix.thunk(() => nix.app(nix.sel(prev, "busted", "overrideAttrs"), (old) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [installShellFiles])),
           postInstall: "installShellCompletion --cmd busted \\\n  --zsh completions/zsh/_busted \\\n  --bash completions/bash/busted.bash\n",
         }))),
       cjson: nix.thunk(() => nix.sel(prev, "lua-cjson")),
       cosmo: nix.thunk(() => nix.app(nix.sel(prev, "cosmo", "overrideAttrs"), (old) => ({
-          __proto__: pos$4,
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$3, homepage: "https://github.com/mascarenhas/cosmo" })),
+          [nix.POS]: pos$4,
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$3, homepage: "https://github.com/mascarenhas/cosmo" })),
         }))),
       cqueues: nix.thunk(() => nix.app(nix.sel(prev, "cqueues", "overrideAttrs"), (old) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           version: nix.thunk(() => (() => {
             const version$ = nix.thunk(() => nix.sel(prev, "cqueues", "version"));
             const rel = nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), version$));
@@ -272,13 +272,13 @@ export default nix.lambda((args) => (() => {
             return nix.str`${date}-${rev}`;
           })()),
           __intentionallyOverridingVersion: true,
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$5, broken: nix.thunk(() => nix.app(luaOlder, "5.1")) })),
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$5, broken: nix.thunk(() => nix.app(luaOlder, "5.1")) })),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [gnum4])),
           externalDeps: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$6, name: "CRYPTO", dep: openssl })),
-            nix.thunk(() => ({ __proto__: pos$7, name: "OPENSSL", dep: openssl })),
+            nix.thunk(() => ({ [nix.POS]: pos$6, name: "CRYPTO", dep: openssl })),
+            nix.thunk(() => ({ [nix.POS]: pos$7, name: "OPENSSL", dep: openssl })),
           ]),
-          env: nix.thunk(() => nix.update(nix.sel(old, "env"), { __proto__: pos$8, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+          env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$8, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
           postConfigure: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(final, "cqueues"));
             const pname = nix.thunk(() => nix.attr(from, "pname"));
@@ -296,12 +296,12 @@ rockspecFilename="$specDir/${pname}-${version}.rockspec"
           })()),
         }))),
       enet: nix.thunk(() => nix.app(nix.sel(prev, "enet", "overrideAttrs"), (old) => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           postPatch: "# luaL_checkint is removed in Lua 5.3, and luaL_register is removed in Lua 5.4\nsed -i '/#include \"lauxlib.h\"/a\\\n#if LUA_VERSION_NUM >= 502\\\n  #define luaL_checkint(L,n) ((int)luaL_checkinteger(L, (n)))\\\n  #define luaL_register(L,n,f) ((n) ? luaL_newlib(L,f) : luaL_setfuncs(L,f,0))\\\n#endif\n' enet.c\n",
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [enet])),
         }))),
       etlua: nix.thunk(() => nix.app(nix.sel(prev, "etlua", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           postPatch: "# unpack was deleted in Lua 5.2\nsed -i '1i unpack = unpack or table.unpack' spec/etlua_spec.moon\n",
           doCheck: nix.thunk(() => nix.app(luaOlder, "5.5")),
           preCheck: "moonc spec/etlua_spec.moon",
@@ -311,7 +311,7 @@ rockspecFilename="$specDir/${pname}-${version}.rockspec"
           ]),
         })))),
       "fzf-lua": nix.thunk(() => nix.app(nix.sel(prev, "fzf-lua", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           doCheck: false,
           checkInputs: nix.thunk(() => [fd, fzf, getopt, ripgrep]),
           nativeCheckInputs: nix.thunk(() => [neovim_unwrapped, writableTmpDirAsHomeHook]),
@@ -341,12 +341,12 @@ runHook postCheck
 `),
         })))),
       fzy: nix.thunk(() => nix.app(nix.sel(prev, "fzy", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           doCheck: true,
           nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(final, "bustedCheckHook"))]),
         })))),
       "grug-far-nvim": nix.thunk(() => nix.app(nix.sel(prev, "grug-far-nvim", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           doCheck: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(lua, "luaversion"), "5.1")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "busted")),
@@ -382,7 +382,7 @@ runHook postCheck
 `),
         })))),
       "haskell-tools-nvim": nix.thunk(() => nix.app(nix.sel(prev, "haskell-tools-nvim", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           doCheck: nix.thunk(() => nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -393,11 +393,11 @@ runHook postCheck
 `),
         })))),
       ldbus: nix.thunk(() => nix.app(nix.sel(prev, "ldbus", "overrideAttrs"), (old) => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           luarocksConfig: nix.thunk(() => nix.update(nix.sel(old, "luarocksConfig"), {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             variables: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               DBUS_DIR: nix.thunk(() => nix.str`${nix.sel(dbus, "lib")}`),
               DBUS_ARCH_INCDIR: nix.thunk(() => nix.str`${nix.sel(dbus, "lib")}/lib/dbus-1.0/include`),
               DBUS_INCDIR: nix.thunk(() => nix.str`${nix.sel(dbus, "dev")}/include/dbus-1.0`),
@@ -406,25 +406,25 @@ runHook postCheck
           buildInputs: nix.thunk(() => [dbus]),
         }))),
       lgi: nix.thunk(() => nix.app(nix.sel(prev, "lgi", "overrideAttrs"), (old) => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [pkg_config])),
           buildInputs: nix.thunk(() => [glib, gobject_introspection]),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 name: "lgi-find-cairo-through-typelib.patch",
                 url: "https://github.com/psychon/lgi/commit/46a163d9925e7877faf8a4f73996a20d7cf9202a.patch",
                 sha256: "0gfvvbri9kyzhvq3bvdbj2l6mwvlz040dk4mrd5m9gz79f7w109c",
               })))),
             nix.path(here, "./lgi/glib-2.88.patch"),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 name: "lgi-lua-5.4-lua_resume.patch",
                 url: "https://github.com/lgi-devs/lgi/commit/5cfd42c386d3adae6d211fbb4011179c3c141b04.patch",
                 hash: "sha256-lpCkRzLy5V540COJkQatjCVR2Y/ThcgswgwxWpmLcyM=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 name: "lgi-lua-5.5-loop-variable.patch",
                 url: "https://github.com/lgi-devs/lgi/commit/1953ef7f9178671c4ef878ecf2482da6eb493251.patch",
                 hash: "sha256-gwcf4sb6mugohcWq2C3sc8L3BDS3QCGmNhLHUkz8+/k=",
@@ -436,7 +436,7 @@ runHook postCheck
       ljsyscall: nix.thunk(() => nix.app(nix.sel(prev, "ljsyscall", "overrideAttrs"), (old) => (() => {
           const version = "unstable-20180515";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               owner: "justincormack",
               repo: "ljsyscall",
               rev: "e587f8c55aad3955dddab3a4fa6c1968037b5c6e",
@@ -446,13 +446,13 @@ runHook postCheck
           const preConfigure = nix.thunk(() => nix.str`sed -i 's/lua == 5.1/lua >= 5.1, < 5.3/' ${knownRockspec}
 `);
           const meta = nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             broken: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.3")))),
             homepage: "https://github.com/justincormack/ljsyscall",
           }));
           const propagatedBuildInputs = nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(isLuaJIT)), nix.thunk(() => nix.sel(final, "luaffi")))));
           return {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             version,
             src,
             knownRockspec,
@@ -462,73 +462,73 @@ runHook postCheck
           };
         })())),
       llscheck: nix.thunk(() => nix.app(nix.sel(prev, "llscheck", "overrideAttrs"), (old) => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), [lua_language_server])),
         }))),
       lmathx: nix.thunk(() => nix.app(nix.sel(prev, "luaLib", "overrideLuarocks"), nix.thunk(() => nix.sel(prev, "lmathx")), (_drv) => (nix.asBool((nix.asBool(nix.app(luaAtLeast, "5.1")) && nix.asBool(nix.app(luaOlder, "5.2")))) ? {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           version: "20120430.51-1",
           knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               url: "mirror://luarocks/lmathx-20120430.51-1.rockspec",
               sha256: "148vbv2g3z5si2db7rqg5bdily7m4sjyh9w6r3jnx3csvfaxyhp0",
             }))), "outPath")),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               url: "https://web.tecgraf.puc-rio.br/~lhf/ftp/lua/5.1/lmathx.tar.gz",
               sha256: "0sa553d0zlxhvpsmr4r7d841f16yq4wr3fg7i07ibxkz6yzxax51",
             })))),
         } : (nix.asBool((nix.asBool(nix.app(luaAtLeast, "5.2")) && nix.asBool(nix.app(luaOlder, "5.3")))) ? {
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           version: "20120430.52-1",
           knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               url: "mirror://luarocks/lmathx-20120430.52-1.rockspec",
               sha256: "14rd625sipakm72wg6xqsbbglaxyjba9nsajsfyvhg0sz8qjgdya",
             }))), "outPath")),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               url: "http://www.tecgraf.puc-rio.br/~lhf/ftp/lua/5.2/lmathx.tar.gz",
               sha256: "19dwa4z266l2njgi6fbq9rak4rmx2fsx1s0p9sl166ar3mnrdwz5",
             })))),
         } : {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           disabled: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
           postConfigure: "substituteInPlace ${rockspecFilename} \\\n  --replace 'lua ~> 5.3' 'lua >= 5.3, < 5.5'\n",
         })))),
       lmpfrlib: nix.thunk(() => nix.app(nix.sel(prev, "lmpfrlib", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           externalDeps: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$34, name: "GMP", dep: gmp })),
-            nix.thunk(() => ({ __proto__: pos$35, name: "MPFR", dep: mpfr })),
+            nix.thunk(() => ({ [nix.POS]: pos$34, name: "GMP", dep: gmp })),
+            nix.thunk(() => ({ [nix.POS]: pos$35, name: "MPFR", dep: mpfr })),
           ]),
           unpackPhase: "cp $src $(stripHash $src)\n",
         })))),
       "lrexlib-gnu": nix.thunk(() => nix.app(nix.sel(prev, "lrexlib-gnu", "overrideAttrs"), (old) => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           strictDeps: false,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [gnulib])),
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$37, broken: isLuaJIT })),
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$37, broken: isLuaJIT })),
         }))),
       "lrexlib-oniguruma": nix.thunk(() => nix.app(nix.sel(prev, "lrexlib-oniguruma", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$40,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$39, name: "ONIG", dep: oniguruma }))]),
+          [nix.POS]: pos$40,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$39, name: "ONIG", dep: oniguruma }))]),
         })))),
       "lrexlib-pcre2": nix.thunk(() => nix.app(nix.sel(prev, "lrexlib-pcre2", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$42,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$41, name: "PCRE2", dep: pcre2 }))]),
+          [nix.POS]: pos$42,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$41, name: "PCRE2", dep: pcre2 }))]),
         })))),
       "lrexlib-posix": nix.thunk(() => nix.app(nix.sel(prev, "lrexlib-posix", "overrideAttrs"), (old) => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libc))])),
         }))),
       lsqlite3: nix.thunk(() => nix.app(nix.sel(prev, "lsqlite3", "overrideAttrs"), (old) => ({
-          __proto__: pos$45,
-          src: nix.thunk(() => nix.app(nix.sel(old, "src", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$44, extension: "zip" })))),
+          [nix.POS]: pos$45,
+          src: nix.thunk(() => nix.app(nix.sel(old, "src", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$44, extension: "zip" })))),
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(sqlite, "dev"))])),
         }))),
       ltreesitter: nix.thunk(() => nix.app(nix.sel(prev, "ltreesitter", "overrideAttrs"), (old) => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [tree_sitter])),
           postConfigure: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postConfigure"), nix.str`substituteInPlace \${rockspecFilename} \\
   --replace-fail '"tree-sitter/lib/src/lib.c",' "" \\
@@ -536,15 +536,15 @@ runHook postCheck
   --replace-fail '"tree-sitter/lib/src"' ""
 `)),
           env: nix.thunk(() => nix.update(nix.sel(old, "env"), {
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${tree_sitter}/include`),
             NIX_LDFLAGS: nix.thunk(() => nix.str`-L${tree_sitter}/lib -ltree-sitter`),
           })),
         }))),
       "ltreesitter-ts": nix.thunk(() => nix.app(nix.sel(prev, "ltreesitter-ts", "overrideAttrs"), (old) => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               owner: "FourierTransformer",
               repo: "ltreesitter-ts",
               rev: "0.0.1",
@@ -553,32 +553,32 @@ runHook postCheck
             })))),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [icu])),
           env: nix.thunk(() => nix.update(nix.sel(old, "env"), {
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), icu)}/include`),
             NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), icu)}/lib -licuuc -licui18n -licudata`),
           })),
         }))),
       "lua-cmsgpack": nix.thunk(() => nix.app(nix.sel(prev, "lua-cmsgpack", "overrideAttrs"), (old) => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           strictDeps: false,
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$51, broken: isLuaJIT })),
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$51, broken: isLuaJIT })),
         }))),
       "lua-curl": nix.thunk(() => nix.app(nix.sel(prev, "lua-curl", "overrideAttrs"), (old) => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(curl, "dev"))])),
         }))),
       "lua-iconv": nix.thunk(() => nix.app(nix.sel(prev, "lua-iconv", "overrideAttrs"), (old) => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [libiconv])),
         }))),
       "lua-lsp": nix.thunk(() => nix.app(nix.sel(prev, "lua-lsp", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           postConfigure: "substituteInPlace ${rockspecFilename} \\\n  --replace '\"dkjson ~> 2.5\",' '\"dkjson >= 2.5\",'\n",
         })))),
       "lua-resty-jwt": nix.thunk(() => nix.app(nix.sel(prev, "lua-resty-jwt", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               owner: "cdbattags",
               repo: "lua-resty-jwt",
               rev: "v0.3.2",
@@ -587,46 +587,46 @@ runHook postCheck
             })))),
         })))),
       "lua-rtoml": nix.thunk(() => nix.app(nix.sel(prev, "lua-rtoml", "overrideAttrs"), (old) => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           strictDeps: false,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               src: nix.thunk(() => nix.attr(old, "src")),
               hash: "sha256-nkWQOjqShgDcLfQDOGsB9CMHZxI/Lrx/+tC4ZeUl/Ak=",
             })))),
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))])),
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.app(luaAtLeast, "5.5")))),
           })),
         }))),
       "lua-subprocess": nix.thunk(() => nix.app(nix.sel(prev, "lua-subprocess", "overrideAttrs"), (old) => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             broken: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
           })),
         }))),
       "lua-yajl": nix.thunk(() => nix.app(nix.sel(prev, "lua-yajl", "overrideAttrs"), (old) => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [yajl])),
           luarocksConfig: nix.thunk(() => nix.update(nix.sel(old, "luarocksConfig"), {
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             variables: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               YAJL_INCDIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), yajl)}/include`),
             })),
           })),
         }))),
       "lua-zlib": nix.thunk(() => nix.app(nix.sel(prev, "lua-zlib", "overrideAttrs"), (old) => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(zlib, "dev"))])),
         }))),
       luacheck: nix.thunk(() => nix.app(nix.sel(prev, "luacheck", "overrideAttrs"), (old) => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 name: "luacheck-lua-5.5-loop-variable.patch",
                 url: "https://github.com/lunarmodules/luacheck/commit/eea104d82fa66f27df2a7d900b3c271a6ca122ac.patch",
                 hash: "sha256-0dVg3su1gvx8bnxFrpWknP38OGCUjoCiKdwAfhFB7hI=",
@@ -636,20 +636,20 @@ runHook postCheck
           doInstallCheck: true,
           versionCheckProgramArg: "--version",
           preVersionCheck: "version=\"Luacheck: ${version%-*}\"\n",
-          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$68, mainProgram: "luacheck" })),
+          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$68, mainProgram: "luacheck" })),
         }))),
       luacov: nix.thunk(() => nix.app(nix.sel(prev, "luacov", "overrideAttrs"), (old) => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/lua/${nix.sel(lua, "luaversion")}/luacov/reporter/src/luacov/reporter/html
 mv src/luacov/reporter/html/static $out/share/lua/${nix.sel(lua, "luaversion")}/luacov/reporter/src/luacov/reporter/html/static
 `),
         }))),
       "luadbi-mysql": nix.thunk(() => nix.app(nix.sel(prev, "luadbi-mysql", "overrideAttrs"), (old) => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           luarocksConfig: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(old, "luarocksConfig")), nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               variables: nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 MYSQL_INCDIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), libmysqlclient)}/include/mysql`),
                 MYSQL_LIBDIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libmysqlclient)}/lib/mysql`),
               })),
@@ -657,30 +657,30 @@ mv src/luacov/reporter/html/static $out/share/lua/${nix.sel(lua, "luaversion")}/
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(mariadb, "client")), libmysqlclient])),
         }))),
       "luadbi-postgresql": nix.thunk(() => nix.app(nix.sel(prev, "luadbi-postgresql", "overrideAttrs"), (old) => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libpq))])),
         }))),
       "luadbi-sqlite3": nix.thunk(() => nix.app(nix.sel(prev, "luadbi-sqlite3", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$76,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$75, name: "SQLITE", dep: sqlite }))]),
+          [nix.POS]: pos$76,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$75, name: "SQLITE", dep: sqlite }))]),
         })))),
       luaevent: nix.thunk(() => nix.app(nix.sel(prev, "luaevent", "overrideAttrs"), (old) => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(final, "luasocket"))])),
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$77, name: "EVENT", dep: libevent }))]),
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$77, name: "EVENT", dep: libevent }))]),
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             broken: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
           })),
         }))),
       luaexpat: nix.thunk(() => nix.app(nix.sel(prev, "luaexpat", "overrideAttrs"), (_) => ({
-          __proto__: pos$81,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$80, name: "EXPAT", dep: expat }))]),
+          [nix.POS]: pos$81,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$80, name: "EXPAT", dep: expat }))]),
         }))),
       luaffi: nix.thunk(() => nix.app(nix.sel(prev, "luaffi", "overrideAttrs"), (old) => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               owner: "facebook",
               repo: "luaffifb",
               rev: "532c757e51c86f546a85730b71c9fef15ffa633d",
@@ -691,15 +691,15 @@ mv src/luacov/reporter/html/static $out/share/lua/${nix.sel(lua, "luaversion")}/
             return nix.str`${nix.lookup(w, "pname")}-${nix.lookup(w, "version")}.rockspec`;
           })()),
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             broken: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.5")) || nix.asBool(isLuaJIT))),
             badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "aarch64")),
           })),
         }))),
       "luaffi-tkl": nix.thunk(() => nix.app(nix.sel(prev, "luaffi-tkl", "overrideAttrs"), (old) => ({
-          __proto__: pos$86,
+          [nix.POS]: pos$86,
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             broken: isLuaJIT,
             license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "AND"), nix.thunk(() => [
                 nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -708,11 +708,11 @@ mv src/luacov/reporter/html/static $out/share/lua/${nix.sel(lua, "luaversion")}/
           })),
         }))),
       lualdap: nix.thunk(() => nix.app(nix.sel(prev, "lualdap", "overrideAttrs"), (_) => ({
-          __proto__: pos$88,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$87, name: "LDAP", dep: openldap }))]),
+          [nix.POS]: pos$88,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$87, name: "LDAP", dep: openldap }))]),
         }))),
       "lualine-nvim": nix.thunk(() => nix.app(nix.sel(prev, "lualine-nvim", "overrideAttrs"), (_) => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           doCheck: nix.thunk(() => nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nvim-web-devicons")),
@@ -725,80 +725,80 @@ mv src/luacov/reporter/html/static $out/share/lua/${nix.sel(lua, "luaversion")}/
           preCheck: "LUA_PATH=\"lua/?.lua;lua/?/init.lua;$LUA_PATH\"\n",
         }))),
       luaossl: nix.thunk(() => nix.app(nix.sel(prev, "luaossl", "overrideAttrs"), (old) => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           externalDeps: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$90, name: "CRYPTO", dep: openssl })),
-            nix.thunk(() => ({ __proto__: pos$91, name: "OPENSSL", dep: openssl })),
+            nix.thunk(() => ({ [nix.POS]: pos$90, name: "CRYPTO", dep: openssl })),
+            nix.thunk(() => ({ [nix.POS]: pos$91, name: "OPENSSL", dep: openssl })),
           ]),
           env: nix.thunk(() => nix.update(nix.sel(old, "env"), {
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
           })),
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$93, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$93, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
         }))),
       luaposix: nix.thunk(() => nix.app(nix.sel(prev, "luaposix", "overrideAttrs"), (old) => ({
-          __proto__: pos$96,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$95, name: "CRYPT", dep: libxcrypt }))]),
+          [nix.POS]: pos$96,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$95, name: "CRYPT", dep: libxcrypt }))]),
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "propagatedBuildInputs"), [nix.thunk(() => nix.sel(final, "bit32"))])),
         }))),
       luaprompt: nix.thunk(() => nix.app(nix.sel(prev, "luaprompt", "overrideAttrs"), (old) => ({
-          __proto__: pos$99,
+          [nix.POS]: pos$99,
           externalDeps: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$97, name: "READLINE", dep: readline })),
-            nix.thunk(() => ({ __proto__: pos$98, name: "HISTORY", dep: readline })),
+            nix.thunk(() => ({ [nix.POS]: pos$97, name: "READLINE", dep: readline })),
+            nix.thunk(() => ({ [nix.POS]: pos$98, name: "HISTORY", dep: readline })),
           ]),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [installShellFiles])),
           postInstall: "installManPage luap.1\n",
         }))),
       luarocks: nix.thunk(() => nix.app(nix.sel(prev, "luarocks", "overrideAttrs"), (old) => ({
-          __proto__: pos$101,
+          [nix.POS]: pos$101,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [installShellFiles, lua, unzip, versionCheckHook])),
           dontUseCmakeConfigure: true,
           doInstallCheck: true,
           propagatedBuildInputs: nix.thunk(() => [zip, unzip, cmake]),
           postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd luarocks \\\n  --bash <($out/bin/luarocks completion bash) \\\n  --fish <($out/bin/luarocks completion fish) \\\n  --zsh <($out/bin/luarocks completion zsh)\n\ninstallShellCompletion --cmd luarocks-admin \\\n  --bash <($out/bin/luarocks-admin completion bash) \\\n  --fish <($out/bin/luarocks-admin completion fish) \\\n  --zsh <($out/bin/luarocks-admin completion zsh)\n")),
-          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$100, mainProgram: "luarocks" })),
+          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$100, mainProgram: "luarocks" })),
         }))),
       luasec: nix.thunk(() => nix.app(nix.sel(prev, "luasec", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$103,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$102, name: "OPENSSL", dep: openssl }))]),
+          [nix.POS]: pos$103,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$102, name: "OPENSSL", dep: openssl }))]),
         })))),
       "luasql-sqlite3": nix.thunk(() => nix.app(nix.sel(prev, "luasql-sqlite3", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$105,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$104, name: "SQLITE", dep: sqlite }))]),
+          [nix.POS]: pos$105,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$104, name: "SQLITE", dep: sqlite }))]),
         })))),
       luasystem: nix.thunk(() => nix.app(nix.sel(prev, "luasystem", "overrideAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$106,
+            [nix.POS]: pos$106,
             buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libc, "out"))]),
           })))))),
       luaunbound: nix.thunk(() => nix.app(nix.sel(prev, "luaunbound", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$108,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$107, name: "libunbound", dep: unbound }))]),
+          [nix.POS]: pos$108,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$107, name: "libunbound", dep: unbound }))]),
         })))),
       luazip: nix.thunk(() => nix.app(nix.sel(prev, "luazip", "overrideAttrs"), (old) => ({
-          __proto__: pos$109,
+          [nix.POS]: pos$109,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [zziplib])),
         }))),
       "lush-nvim": nix.thunk(() => nix.app(nix.sel(prev, "lush-nvim", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           postInstall: "find -L $out -type l -name \"README.md\" -print -delete\n",
         })))),
       luuid: nix.thunk(() => nix.app(nix.sel(prev, "luuid", "overrideAttrs"), (old) => ({
-          __proto__: pos$113,
-          externalDeps: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$111, name: "LIBUUID", dep: libuuid }))]),
+          [nix.POS]: pos$113,
+          externalDeps: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$111, name: "LIBUUID", dep: libuuid }))]),
           patchFlags: nix.thunk(() => ["-p2"]),
           patches: nix.thunk(() => [nix.path(here, "./luuid.patch")]),
           postConfigure: "sed -Ei ${rockspecFilename} -e 's|lua >= 5.2|lua >= 5.1,|'\n",
           meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-            __proto__: pos$112,
+            [nix.POS]: pos$112,
             broken: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           })),
         }))),
-      "lux-lua": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./lux-lua.nix"), nix.thunk(() => ({ __proto__: pos$114, lua: lua })))),
-      lyaml: nix.thunk(() => nix.app(nix.sel(prev, "lyaml", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$115, buildInputs: nix.thunk(() => [libyaml]) })))),
+      "lux-lua": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./lux-lua.nix"), nix.thunk(() => ({ [nix.POS]: pos$114, lua: lua })))),
+      lyaml: nix.thunk(() => nix.app(nix.sel(prev, "lyaml", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$115, buildInputs: nix.thunk(() => [libyaml]) })))),
       "lz-n": nix.thunk(() => nix.app(nix.sel(prev, "lz-n", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$116,
+          [nix.POS]: pos$116,
           doCheck: nix.thunk(() => nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -807,21 +807,21 @@ mv src/luacov/reporter/html/static $out/share/lua/${nix.sel(lua, "luaversion")}/
           ]),
         })))),
       magick: nix.thunk(() => nix.app(nix.sel(prev, "magick", "overrideAttrs"), (old) => ({
-          __proto__: pos$118,
+          [nix.POS]: pos$118,
           buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [imagemagick])),
           patches: nix.thunk(() => [nix.path(here, "./magick.patch")]),
           postPatch: nix.thunk(() => nix.str`substituteInPlace magick/wand/lib.lua \\
   --replace @nix_wand@ ${imagemagick}/lib/libMagickWand-7.Q16HDRI${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 `),
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$117, broken: nix.thunk(() => !nix.asBool(isLuaJIT)) })),
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$117, broken: nix.thunk(() => !nix.asBool(isLuaJIT)) })),
         }))),
       mpack: nix.thunk(() => nix.app(nix.sel(prev, "mpack", "overrideAttrs"), (drv) => ({
-          __proto__: pos$120,
+          [nix.POS]: pos$120,
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildInputs"), [libmpack])),
-          env: nix.thunk(() => ({ __proto__: pos$119, USE_SYSTEM_LUA: "yes", USE_SYSTEM_MPACK: "yes" })),
+          env: nix.thunk(() => ({ [nix.POS]: pos$119, USE_SYSTEM_LUA: "yes", USE_SYSTEM_MPACK: "yes" })),
         }))),
       neorg: nix.thunk(() => nix.app(nix.sel(prev, "neorg", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$121,
+          [nix.POS]: pos$121,
           doCheck: true,
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -836,7 +836,7 @@ mv src/luacov/reporter/html/static $out/share/lua/${nix.sel(lua, "luaversion")}/
           postConfigure: "substituteInPlace ${rockspecFilename} \\\n  --replace-fail \"'nvim-nio ~> 1.7',\" \"'nvim-nio >= 1.7',\" \\\n  --replace-fail \"'nui.nvim == 0.3.0',\" \"'nui.nvim',\"\n",
         })))),
       neotest: nix.thunk(() => nix.app(nix.sel(prev, "neotest", "overrideAttrs"), (old) => ({
-          __proto__: pos$122,
+          [nix.POS]: pos$122,
           doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
           nativeCheckInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeCheckInputs"), [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -859,7 +859,7 @@ runHook postCheck
 `),
         }))),
       nlua: nix.thunk(() => nix.app(nix.sel(prev, "nlua", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$123,
+          [nix.POS]: pos$123,
           postFixup: nix.thunk(() => nix.str`substituteInPlace "$out/bin/nlua" \\
   --replace-fail \\
   "#!/usr/bin/env -S nvim" \\
@@ -868,7 +868,7 @@ runHook postCheck
           dontPatchShebangs: true,
         })))),
       "nvim-nio": nix.thunk(() => nix.app(nix.sel(prev, "nvim-nio", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$124,
+          [nix.POS]: pos$124,
           doCheck: nix.thunk(() => nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -879,7 +879,7 @@ runHook postCheck
           bustedFlags: nix.thunk(() => ["tests/"]),
         })))),
       orgmode: nix.thunk(() => nix.app(nix.sel(prev, "orgmode", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$125,
+          [nix.POS]: pos$125,
           doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
           nativeCheckInputs: nix.thunk(() => [neovim_unwrapped, glibcLocalesUtf8, writableTmpDirAsHomeHook, util_linux]),
           postPatch: nix.thunk(() => nix.str`substituteInPlace lua/orgmode/config/init.lua \\
@@ -922,7 +922,7 @@ runHook postCheck
 `),
         })))),
       "plenary-nvim": nix.thunk(() => nix.app(nix.sel(prev, "plenary-nvim", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$126,
+          [nix.POS]: pos$126,
           postPatch: nix.thunk(() => nix.str`sed -Ei lua/plenary/curl.lua \\
     -e 's@(command\\s*=\\s*")curl(")@\\1${curl}/bin/curl\\2@'
 `),
@@ -931,28 +931,28 @@ runHook postCheck
           checkPhase: "runHook preCheck\n# remove failing tests, need internet access for instance\nrm tests/plenary/job_spec.lua tests/plenary/scandir_spec.lua tests/plenary/curl_spec.lua\nmake test\nrunHook postCheck\n",
         })))),
       psl: nix.thunk(() => nix.app(nix.sel(prev, "psl", "overrideAttrs"), (drv) => ({
-          __proto__: pos$129,
+          [nix.POS]: pos$129,
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildInputs"), [libpsl])),
           luarocksConfig: nix.thunk(() => ({
-            __proto__: pos$128,
+            [nix.POS]: pos$128,
             variables: nix.thunk(() => nix.update(nix.sel(drv, "luarocksConfig", "variables"), {
-              __proto__: pos$127,
+              [nix.POS]: pos$127,
               PSL_INCDIR: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getDev"), libpsl), "/include")),
               PSL_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libpsl)),
             })),
           })),
         }))),
       rapidjson: nix.thunk(() => nix.app(nix.sel(prev, "rapidjson", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$130,
+          [nix.POS]: pos$130,
           preBuild: "sed -i '/set(CMAKE_CXX_FLAGS/d' CMakeLists.txt\nsed -i '/set(CMAKE_C_FLAGS/d' CMakeLists.txt\n",
         })))),
       "rest-nvim": nix.thunk(() => nix.app(nix.sel(prev, "rest-nvim", "overrideAttrs"), (old) => ({
-          __proto__: pos$132,
+          [nix.POS]: pos$132,
           strictDeps: false,
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$131, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$131, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
         }))),
       "rocks-dev-nvim": nix.thunk(() => nix.app(nix.sel(prev, "rocks-dev-nvim", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$133,
+          [nix.POS]: pos$133,
           doCheck: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.2")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -961,7 +961,7 @@ runHook postCheck
           bustedFlags: nix.thunk(() => ["spec"]),
         })))),
       "rocks-nvim": nix.thunk(() => nix.app(nix.sel(prev, "rocks-nvim", "overrideAttrs"), (oa) => ({
-          __proto__: pos$134,
+          [nix.POS]: pos$134,
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
             nix.thunk(() => nix.sel(final, "busted")),
@@ -971,7 +971,7 @@ runHook postCheck
           bustedFlags: nix.thunk(() => ["--run=offline"]),
         }))),
       "rtp-nvim": nix.thunk(() => nix.app(nix.sel(prev, "rtp-nvim", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$135,
+          [nix.POS]: pos$135,
           doCheck: nix.thunk(() => nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -980,7 +980,7 @@ runHook postCheck
           ]),
         })))),
       rustaceanvim: nix.thunk(() => nix.app(nix.sel(prev, "rustaceanvim", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$136,
+          [nix.POS]: pos$136,
           doCheck: nix.thunk(() => nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "nlua")),
@@ -989,12 +989,12 @@ runHook postCheck
           ]),
         })))),
       sofa: nix.thunk(() => nix.app(nix.sel(prev, "sofa", "overrideAttrs"), (old) => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [installShellFiles])),
           postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sofa \\\n  --bash <($out/bin/sofa --completion bash) \\\n  --fish <($out/bin/sofa --completion fish) \\\n  --zsh <($out/bin/sofa --completion zsh)\n")),
         }))),
       sqlite: nix.thunk(() => nix.app(nix.sel(prev, "sqlite", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$138,
+          [nix.POS]: pos$138,
           doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
           nativeCheckInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(final, "plenary-nvim")),
@@ -1011,37 +1011,37 @@ nvim --headless -i NONE \\
 runHook postCheck
 `),
         })))),
-      "std-_debug": nix.thunk(() => nix.app(nix.sel(prev, "std-_debug", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$139, preConfigure: "make all\n" })))),
-      "std-normalize": nix.thunk(() => nix.app(nix.sel(prev, "std-normalize", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$140, preConfigure: "make all\n" })))),
+      "std-_debug": nix.thunk(() => nix.app(nix.sel(prev, "std-_debug", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$139, preConfigure: "make all\n" })))),
+      "std-normalize": nix.thunk(() => nix.app(nix.sel(prev, "std-normalize", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$140, preConfigure: "make all\n" })))),
       "teal-language-server": nix.thunk(() => nix.app(nix.sel(prev, "teal-language-server", "overrideAttrs"), (old) => ({
-          __proto__: pos$141,
+          [nix.POS]: pos$141,
           preConfigure: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preConfigure"), "rm -f luarocks.lock\n")),
           postConfigure: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postConfigure"), "substituteInPlace ${rockspecFilename} \\\n  --replace-fail '\"ltreesitter == 0.3.0\",' '\"ltreesitter >= 0.3.0\",' \\\n  --replace-fail '\"luv == 1.52.1\",' '\"luv >= 1.52.1\",' \\\n  --replace-fail '\"tl == 0.24.8\",' '\"tl >= 0.24.8\",'\n")),
         }))),
       tiktoken_core: nix.thunk(() => nix.app(nix.sel(prev, "tiktoken_core", "overrideAttrs"), (old) => ({
-          __proto__: pos$144,
+          [nix.POS]: pos$144,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$142,
+              [nix.POS]: pos$142,
               src: nix.thunk(() => nix.attr(old, "src")),
               hash: "sha256-egmb4BTbORpTpVO50IcqbZU1Y0hioXLMkxxUAo05TIA=",
             })))),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))])),
-          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$143, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
+          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$143, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
         }))),
       tl: nix.thunk(() => nix.app(nix.sel(prev, "tl", "overrideAttrs"), (old) => ({
-          __proto__: pos$146,
+          [nix.POS]: pos$146,
           preConfigure: "rm luarocks.lock\n",
-          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$145, mainProgram: "tl" })),
+          meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$145, mainProgram: "tl" })),
         }))),
       "toml-edit": nix.thunk(() => nix.app(nix.sel(prev, "toml-edit", "overrideAttrs"), (old) => ({
-          __proto__: pos$149,
+          [nix.POS]: pos$149,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$147,
+              [nix.POS]: pos$147,
               src: nix.thunk(() => nix.attr(old, "src")),
               hash: "sha256-8lYvdraKEd1nf8dkZuSDQRVJvX56gHCcTZVtyoy/0IM=",
             })))),
           env: nix.thunk(() => nix.update(nix.sel(old, "env"), {
-            __proto__: pos$148,
+            [nix.POS]: pos$148,
             NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => (nix.asBool(nix.sel(lua, "pkgs", "isLuaJIT")) ? nix.str`-lluajit-${nix.sel(lua, "luaversion")}` : "-llua")))),
           })),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [
@@ -1051,13 +1051,13 @@ runHook postCheck
           ])),
         }))),
       tomlua: nix.thunk(() => nix.app(nix.sel(prev, "tomlua", "overrideAttrs"), (old) => ({
-          __proto__: pos$150,
+          [nix.POS]: pos$150,
           postConfigure: "chmod +w \"$rockspecFilename\"\necho \"deploy = { wrap_bin_scripts = false, }\" >> \"$rockspecFilename\"\n",
           checkPhase: "runHook preCheck\nrunHook postCheck\n",
           installCheckPhase: "runHook preInstallCheck\nmake test\nrunHook postInstallCheck\n",
         }))),
       "tree-sitter-cli": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-cli", "overrideAttrs"), (_) => ({
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/bin
 ln -s ${nix.app(nix.sel(lib, "getExe"), tree_sitter)} $out/bin/tree-sitter
@@ -1065,44 +1065,44 @@ runHook postInstall
 `),
         }))),
       "tree-sitter-http": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-http", "overrideAttrs"), (old) => ({
-          __proto__: pos$152,
+          [nix.POS]: pos$152,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [tree_sitter, writableTmpDirAsHomeHook])),
         }))),
       "tree-sitter-kulala_http": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-kulala_http", "overrideAttrs"), (old) => ({
-          __proto__: pos$153,
+          [nix.POS]: pos$153,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [tree_sitter, writableTmpDirAsHomeHook])),
         }))),
       "tree-sitter-norg": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-norg", "overrideAttrs"), (old) => ({
-          __proto__: pos$155,
+          [nix.POS]: pos$155,
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$154,
+            [nix.POS]: pos$154,
             broken: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           })),
         }))),
       "tree-sitter-norg-meta": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-norg-meta", "overrideAttrs"), (old) => ({
-          __proto__: pos$156,
+          [nix.POS]: pos$156,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [writableTmpDirAsHomeHook, tree_sitter])),
         }))),
       "tree-sitter-orgmode": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-orgmode", "overrideAttrs"), (old) => ({
-          __proto__: pos$158,
+          [nix.POS]: pos$158,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [writableTmpDirAsHomeHook, tree_sitter])),
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$157,
+            [nix.POS]: pos$157,
             broken: nix.thunk(() => !nix.eq(nix.sel(lua, "luaversion"), "5.1")),
           })),
         }))),
       "tree-sitter-teal": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-teal", "overrideAttrs"), (old) => ({
-          __proto__: pos$159,
+          [nix.POS]: pos$159,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [tree_sitter, writableTmpDirAsHomeHook])),
         }))),
       utf8: nix.thunk(() => nix.app(nix.sel(prev, "utf8", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$160,
+          [nix.POS]: pos$160,
           postPatch: "sed -i '/#include <assert.h>/a\\\n#ifndef lua_assert\\\n  #define lua_assert(x) assert(x)\\\n#endif\n' lutf8lib.c\n",
         })))),
       vicious: nix.thunk(() => nix.app(nix.sel(prev, "vicious", "overrideAttrs"), (old) => ({
-          __proto__: pos$162,
+          [nix.POS]: pos$162,
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$161,
+            [nix.POS]: pos$161,
             homepage: "https://vicious.readthedocs.io/",
             changelog: nix.thunk(() => nix.str`https://github.com/vicious-widgets/vicious/blob/v${nix.sel(old, "version")}/CHANGELOG.rst`),
             maintainers: nix.thunk(() => (() => {
@@ -1118,19 +1118,19 @@ runHook postInstall
           })),
         }))),
       vstruct: nix.thunk(() => nix.app(nix.sel(prev, "vstruct", "overrideAttrs"), (old) => ({
-          __proto__: pos$164,
+          [nix.POS]: pos$164,
           meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-            __proto__: pos$163,
+            [nix.POS]: pos$163,
             broken: nix.thunk(() => (nix.asBool(nix.app(luaOlder, "5.1")) || nix.asBool(nix.app(luaAtLeast, "5.4")))),
           })),
         }))),
-      vusted: nix.thunk(() => nix.app(nix.sel(prev, "vusted", "overrideAttrs"), (_) => ({ __proto__: pos$165, postInstall: "chmod -x $out/bin/vusted_entry.vim\n" }))),
+      vusted: nix.thunk(() => nix.app(nix.sel(prev, "vusted", "overrideAttrs"), (_) => ({ [nix.POS]: pos$165, postInstall: "chmod -x $out/bin/vusted_entry.vim\n" }))),
       xml2lua: nix.thunk(() => nix.app(nix.sel(prev, "xml2lua", "overrideAttrs"), (old) => ({
-          __proto__: pos$167,
-          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$166, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
+          [nix.POS]: pos$167,
+          meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$166, broken: nix.thunk(() => nix.app(luaAtLeast, "5.5")) })),
         }))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$169,
+        [nix.POS]: pos$169,
         "lrexlib-pcre": nix.thunk(() => nix.builtins.throw("lrexlib-pcre was removed as the PCRE library is end-of-life")),
       }))));
   })();

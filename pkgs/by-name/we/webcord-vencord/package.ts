@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const lib = nix.arg($, "lib");
   const vencord_web_extension = nix.arg($, "vencord-web-extension");
-  return nix.app(nix.sel(nix.app(nix.sel(webcord, "override"), nix.thunk(() => ({ __proto__: pos$1, electron_43: electron_43 }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+  return nix.app(nix.sel(nix.app(nix.sel(webcord, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, electron_43: electron_43 }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: pos$4,
       pname: "webcord-vencord",
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-extension.patch"), nix.thunk(() => ({ __proto__: pos$2, vencord: vencord_web_extension })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-extension.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, vencord: vencord_web_extension })))),
       ])),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.attr(from, "license")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

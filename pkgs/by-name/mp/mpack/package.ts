@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mpack = nix.arg($, "mpack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "mpack",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://ftp.andrew.cmu.edu/pub/mpack/mpack-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-J0EIuzo5mCpO/BT7OmUpjmbI5xNnw9q/STOBYtIHqUw=",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: name,
               hash: hash,
               url: nix.thunk(() => nix.str`https://salsa.debian.org/debian/mpack/-/raw/7d6514b314a7341614ec8275b03acfcb6a854a6f/debian/patches/${name}`),
@@ -53,58 +53,58 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return nix.concat([nix.path(here, "./sendmail-via-execvp.diff")], nix.builtins.map(fetchDebPatch, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "01_legacy.patch",
               hash: "sha256-v2pZUXecgxJqoHadBhpAAoferQNSeYE+m7qzEiggeO4=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "02_fix-permissions.patch",
               hash: "sha256-sltnIqgv7+pwwSFQRCDeCwnjoo2OrvmGFm+SM9U/HB4=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "03_specify-filename-replacement-character.patch",
               hash: "sha256-vmLIGFSqKK/qSsltzhdLQGoekew3r25EwAu56umeXlU=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "04_fix-return-error-code.patch",
               hash: "sha256-l23D6xhkgtkEsErzUy/q6U3aPf5N7YUw2PEToU1YXKI=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "06_fix-makefile.patch",
               hash: "sha256-69plDqy2sLzO1O4mqjJIlTRCw5ZeVySiqwo93ZkX3Ho=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "07_fix-decode-base64-attachment.patch",
               hash: "sha256-hzSCrEg0j6dJNLbfwRNn+rWGRnyUBLjJUlORJS9aDD4=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "08_fix-mime-version.patch",
               hash: "sha256-l2rBqbyKmnz5tEPeuX6HCqw7rSV8pDb7ijpCHsdh57g=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "09_remove-debugging-message.patch",
               hash: "sha256-dtq6BHgH4ciho0+TNW/rU3KWoeKs/1jwJafnHTr9ebI=",
             })),
           ])));
       })()),
       postPatch: "substituteInPlace *.{c,man,pl,unix} --replace-quiet /usr/tmp /tmp\n\n# silence a buffer overflow warning\nsubstituteInPlace uudecode.c \\\n  --replace-fail \"char buf[1024], buf2[1024];\" \"char buf[1024], buf2[1066];\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$11, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$11, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       postInstall: "install -Dm644 -t $out/share/doc/mpack INSTALL README.*\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         tests: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               command: "mpack 2>&1 || echo \"mpack exited with error code $?\"\n",
               package: mpack,
               version: nix.thunk(() => nix.str`mpack version ${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Utilities for encoding and decoding binary files in MIME",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         maintainers: nix.thunk(() => (() => {

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "convertall";
       const version = "1.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doug-101",
           repo: "ConvertAll",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$4,
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$2, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "convertall.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$3, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "convertall.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$3, supportedFeatures: [] })),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://convertall.bellz.org",
         description: "Graphical unit converter",
         mainProgram: "convertall",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$6, pname, version, src, pubspecLock, passthru, meta };
+      return { [nix.POS]: pos$6, pname, version, src, pubspecLock, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

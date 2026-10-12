@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const tlsSupport = nix.argOr($, "tlsSupport", () => true);
   const useSystemJemalloc = nix.argOr($, "useSystemJemalloc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "redis",
       version: "8.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redis",
           repo: "redis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/redis/redis/commit/c027c8effe13564bcbc903741305acd929cc23da.patch",
             hash: "sha256-MynmKLQ04JjyHMVbfeSIEnKaj4jvjS1FjQNpfvQz3Pw=",
           })))),
       ], nix.app(nix.sel(lib, "optional"), useSystemJemalloc, nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/redis/-/raw/102cc861713c796756abd541bf341a4512eb06e6/redis-5.0-use-system-jemalloc.patch",
             hash: "sha256-A9qp+PWQRuNy/xmv9KLM7/XAyL7Tzkyn0scpVCGngcc=",
           }))))))),
@@ -72,7 +72,7 @@ substituteInPlace src/modules/Makefile modules/vector-sets/Makefile tests/module
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["USE_SYSTEMD=yes"])), nix.app(nix.sel(lib, "optionals"), tlsSupport, nix.thunk(() => ["BUILD_TLS=yes"])))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "-lexecinfo")),
       })),
       doCheck: false,
@@ -82,17 +82,17 @@ substituteInPlace src/modules/Makefile modules/vector-sets/Makefile tests/module
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/redis-server`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           redis: nix.thunk(() => nix.sel(nixosTests, "redis")),
-          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$5, doCheck: true })))),
+          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, doCheck: true })))),
         })),
         serverBin: "redis-server",
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://redis.io",
         description: "Open source, advanced key-value store",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

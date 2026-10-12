@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   const rootHints = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       urls: nix.thunk(() => nix.builtins.map((prefix) => nix.add(prefix, "d9c96ae96f066a85d7/etc/root.hints"), nix.thunk(() => [
           "https://gitlab.nic.cz/knot/knot-resolver/raw/",
           "https://raw.githubusercontent.com/CZ-NIC/knot-resolver/",
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-4lG/uPnNHBNIZ/XIeDM1w3iukrpeW0JIjTnGSwkJ8U4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dns-root-data",
       version: "2025-04-14",
       buildCommand: nix.thunk(() => nix.str`mkdir $out
@@ -32,7 +32,7 @@ cp ${nix.path(here, "./root.ds")} $out/root.ds
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.iana.org/domains/root/files",
         description: "DNS root data including root hints and DNSSEC root trust anchor + key",
         maintainers: nix.thunk(() => (() => {

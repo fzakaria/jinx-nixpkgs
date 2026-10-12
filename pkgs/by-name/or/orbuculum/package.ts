@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const libelf = nix.arg($, "libelf");
   const libdwarf = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.prevanders.net/libdwarf-0.7.0.tar.xz",
       hash: "sha256-YTTbBJkDu2BSAVpvucqtg7/hFxXrxLnNAlvAL7rmkdE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "orbuculum",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "orbcode",
           repo: "orbuculum",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ patch -p1 < ../packagefiles/libdwarf/0003-Fixed-calloc-arguments-order.patch
 popd
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers -Wno-error=unused-but-set-variable",
       })),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
@@ -56,7 +56,7 @@ popd
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)/"]),
       postInstall: "mkdir -p $out/etc/udev/rules.d/\ncp $src/Support/60-orbcode.rules $out/etc/udev/rules.d/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cortex M SWO SWV Demux and Postprocess for the ORBTrace",
         homepage: "https://orbcode.org",
         changelog: nix.thunk(() => nix.str`https://github.com/orbcode/orbuculum/blob/V${nix.sel(finalAttrs, "version")}/CHANGES.md`),

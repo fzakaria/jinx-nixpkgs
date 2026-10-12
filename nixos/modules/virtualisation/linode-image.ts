@@ -27,26 +27,26 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "linodeImage"));
   const defaultConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", "_: {\n  imports = [\n    <nixpkgs/nixos/modules/virtualisation/linode-image.nix>\n  ];\n}\n"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.path(here, "./linode-config.nix"),
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualisation", "linodeImage", "diskSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         linodeImage: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
               description: "A path to a configuration file which will be placed at `/etc/nixos/configuration.nix`\nand be used when switching to a new configuration.\nIf set to `null`, a default configuration is used, where the only import is\n`<nixpkgs/nixos/modules/virtualisation/linode-image.nix>`\n",
             })))),
           compressionLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 1n, 9n)),
               default: 6n,
               description: "GZIP compression level of the resulting disk image (1-9).\n",
@@ -64,17 +64,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       system: nix.thunk(() => ({
-        __proto__: pos$10,
-        nixos: nix.thunk(() => ({ __proto__: pos$7, tags: nix.thunk(() => ["linode"]) })),
+        [nix.POS]: pos$10,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$7, tags: nix.thunk(() => ["linode"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           image: nix.thunk(() => nix.sel(config, "system", "build", "linodeImage")),
           linodeImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "linode-image",
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               postVM: nix.thunk(() => nix.str`${nix.sel(pkgs, "gzip")}/bin/gzip -${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "compressionLevel")))} -c -- $diskImage > \\
@@ -92,10 +92,10 @@ rm $diskImage
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ __proto__: pos$11, extension: "img.gz" })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$11, extension: "img.gz" })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "cyntheticfox"))];

@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
         const pname = "smollm2-135m";
         const version = "9e6855bc4be717fca1ef21360a1db4b29d5c559a";
         const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://huggingface.co/unsloth/SmolLM2-135M-Instruct-GGUF/resolve/${version}/SmolLM2-135M-Instruct-Q4_K_M.gguf`),
             hash: "sha256-7V+jDEh7KC7BVsKQYvEiLlwgh1qUSsmCidvSQulH90c=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [
@@ -57,15 +57,15 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
         }));
-        return { __proto__: pos$3, pname, version, src, meta };
+        return { [nix.POS]: pos$3, pname, version, src, meta };
       })())));
     const allowUnfreePredicate = nix.thunk(() => (nix.asBool(nix.builtins.hasAttr("allowUnfreePredicate", nix.thunk(() => nix.sel(pkgs, "config")))) ? nix.sel(pkgs, "config", "allowUnfreePredicate") : (_) => false));
     const useSmollm2_135m = nix.thunk(() => (nix.asBool((nix.asBool(withLLM) || nix.asBool(nix.sel(pkgs, "config", "allowUnfree")))) || nix.asBool(nix.app(allowUnfreePredicate, smollm2_135m))));
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       name: nix.thunk(() => nix.str`llama-swap-${name}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -75,55 +75,55 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         machine: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           const pkgs_1 = nix.arg($_2, "pkgs");
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "llama-swap": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 enable: true,
                 settings: nix.thunk(() => (nix.asBool(!nix.asBool(useSmollm2_135m)) ? {} : (() => {
                   const llama_cpp = nix.thunk(() => nix.sel(pkgs_1, "llama-cpp"));
                   const llama_server = nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), llama_cpp, "llama-server"));
                   return {
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     logLevel: "debug",
                     logToStdout: "both",
                     hooks: nix.thunk(() => ({
-                      __proto__: pos$6,
-                      on_startup: nix.thunk(() => ({ __proto__: pos$5, preload: nix.thunk(() => ["smollm2"]) })),
+                      [nix.POS]: pos$6,
+                      on_startup: nix.thunk(() => ({ [nix.POS]: pos$5, preload: nix.thunk(() => ["smollm2"]) })),
                     })),
                     models: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       smollm2: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         ttl: 10n,
                         cmd: nix.thunk(() => nix.str`${llama_server} --port \${PORT} -m ${smollm2_135m} --alias smollm2 --no-webui --temp 0.2 --top-k 9`),
                       })),
                       "smollm2-group-1": nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         cmd: nix.thunk(() => nix.str`${llama_server} --port \${PORT} -m ${smollm2_135m} --alias smollm2-group-1 --no-webui --temp 0.2 --top-k 9 -c 1024`),
                       })),
                       "smollm2-group-2": nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         proxy: "http://127.0.0.1:5802",
                         cmd: nix.thunk(() => nix.str`${llama_server} --port 5802 -m ${smollm2_135m} --alias smollm2-group-2 --no-webui --temp 0.2 --top-k 9 -c 1024`),
                       })),
                     })),
                     groups: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       standalone: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         swap: true,
                         exclusive: true,
                         members: nix.thunk(() => ["smollm2"]),
                       })),
                       group: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         swap: false,
                         exclusive: true,
                         members: nix.thunk(() => ["smollm2-group-1", "smollm2-group-2"]),
@@ -144,10 +144,10 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.builtins.mapAttrs((k) => (v) => nix.app(runTest, nix.thunk(() => nix.app(makeLlamaSwapTest, k, v))), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         full: nix.thunk(() => ({})),
-        minimal: nix.thunk(() => ({ __proto__: pos$20, withUI: false })),
-        "full-with-llm": nix.thunk(() => ({ __proto__: pos$21, withLLM: true })),
+        minimal: nix.thunk(() => ({ [nix.POS]: pos$20, withUI: false })),
+        "full-with-llm": nix.thunk(() => ({ [nix.POS]: pos$21, withLLM: true })),
       })))));
 })(), formals$1);
 //# sourceMappingURL=llama-swap.ts.map

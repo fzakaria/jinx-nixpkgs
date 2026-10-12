@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const autostartExecPath = nix.argOr($, "autostartExecPath", () => "syncthingtray");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.1.7",
       pname: "syncthingtray",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Martchus",
           repo: "syncthingtray",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Martchus/syncthingtray/commit/cf2aa323f935041a55a8852a19a63968c832f517.patch",
             hash: "sha256-nE7+RB0Wk6NirljqaCSNPXBxmAvPLMBOzyT+Rl7OkBw=",
           })))),
@@ -86,7 +86,7 @@ export QT_PLUGIN_PATH="${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils]))}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Martchus/syncthingtray",
         description: "Tray application and Dolphin/Plasma integration for Syncthing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

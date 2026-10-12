@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const grpcio = nix.arg($, "grpcio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grpcio-gcp",
       version: "0.2.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "grpcio-gcp",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-4pJgXv/H2jm3qHNMcZr7EuxLU2Kt01KNivrTqjqpBXw=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [grpcio]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "gRPC extensions for Google Cloud Platform",
         homepage: "https://grpc.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

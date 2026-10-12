@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leikoilja",
           repo: "glocaltokens",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, faker]);
       const pythonImportsCheck = nix.thunk(() => ["glocaltokens", "glocaltokens.client", "glocaltokens.scanner"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to extract google home devices local authentication tokens from google servers",
         homepage: "https://github.com/leikoilja/glocaltokens",
         changelog: nix.thunk(() => nix.str`https://github.com/leikoilja/glocaltokens/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

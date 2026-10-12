@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
       const pname = "clock-weather-card";
       const version = "2.9.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pkissling",
           repo: "clock-weather-card",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-aNX2vbLVvL9TO8PWERyy7z0SWY4JJ5khCrNPqa01DWA=",
         }))));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(src, "/yarn.lock")),
           hash: "sha256-1ZmsuAKYa0iSjI+vYbonWZglx8/QNnRTJv4K+LmVfq4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [nodejs, yarnConfigHook, yarnBuildHook]);
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp ./dist/clock-weather-card.js $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Home Assistant Card indicating today's date/time, along with an iOS inspired weather forecast for the next days with animated icons",
         homepage: "https://github.com/pkissling/clock-weather-card",
         changelog: nix.thunk(() => nix.str`https://github.com/pkissling/clock-weather-card/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

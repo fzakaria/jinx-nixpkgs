@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const python = nix.thunk(() => (() => {
     const packageOverrides = (self) => (super$) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       typeddep: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./typeddep"), nix.thunk(() => ({})))),
     });
-    return nix.app(nix.sel(interpreter, "override"), nix.thunk(() => ({ __proto__: pos$2, packageOverrides: packageOverrides, self: python })));
+    return nix.app(nix.sel(interpreter, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, packageOverrides: packageOverrides, self: python })));
   })());
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => [
       nix.thunk(() => nix.sel(ps, "typeddep")),

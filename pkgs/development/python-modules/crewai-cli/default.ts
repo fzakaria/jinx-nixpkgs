@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const vcrpy = nix.arg($, "vcrpy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "crewai-cli",
       version: "1.15.18",
       pyproject: true,
@@ -97,9 +97,9 @@ export default nix.lambda((args) => (() => {
         "test_create_success",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             nativeInstallCheckInputs: nix.thunk(() => [
               aiohttp,
               crewai,
@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for CrewAI: scaffold, run, deploy and manage AI agent crews",
         homepage: "https://github.com/crewAIInc/crewAI/tree/main/lib/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/crewAIInc/crewAI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

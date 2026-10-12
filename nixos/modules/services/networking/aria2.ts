@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
   const defaultDir = nix.thunk(() => nix.str`${homeDir}/Downloads`);
   const portRangesToString = (ranges) => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.builtins.map((x) => (nix.asBool(nix.eq(nix.sel(x, "from"), nix.sel(x, "to"))) ? nix.builtins.toString(nix.thunk(() => nix.sel(x, "from"))) : nix.add(nix.add(nix.builtins.toString(nix.thunk(() => nix.sel(x, "from"))), "-"), nix.builtins.toString(nix.thunk(() => nix.sel(x, "to"))))), ranges)));
   const customToKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkValueString: (v) => (nix.asBool(nix.builtins.isList(v)) ? nix.app(portRangesToString, v) : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v)),
         })), "=")),
     }))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "aria2", "rpcSecret"]), "Use services.aria2.rpcSecretFile instead")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "aria2", "extraArguments"]), "Use services.aria2.settings instead")),
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "aria2", "rpcListenPort"]), nix.thunk(() => ["services", "aria2", "settings", "rpc-listen-port"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         aria2: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: nix.thunk(() => nix.str`Whether or not to enable the headless Aria2 daemon service.
@@ -87,36 +87,36 @@ accessible to users in the \`aria2\` group.
 `),
             })))),
           openPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open listen and RPC ports found in `settings.listen-port` and\n`settings.rpc-listen-port` options in the firewall.\n",
             })))),
           rpcSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/run/secrets/aria2-rpc-token.txt",
               description: "A file containing the RPC secret authorization token.\nRead <https://aria2.github.io/manual/en/html/aria2c.html#rpc-auth> to know how this option value is used.\n",
             })))),
           downloadDirPermission: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0770",
               description: "The permission for `settings.dir`.\n\nThe default is 0770, which denies access for users not in the `aria2`\ngroup.\n\nYou may want to adjust `serviceUMask` as well, which further restricts\nthe file permission for newly created files (i.e. the downloads).\n",
             })))),
           serviceUMask: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0022",
               example: "0002",
               description: "The file mode creation mask for Aria2 service.\n\nThe default is 0022 for compatibility reason, as this is the default\nused by systemd. However, this results in file permission 0644 for new\nfiles, and denies `aria2` group member from modifying the file.\n\nYou may want to set this value to `0002` so you can manage the file\nmore easily.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Generates the {file}`aria2.conf` file. Refer to [the documentation][0] for\nall possible settings.\n\n[0]: <https://aria2.github.io/manual/en/html/aria2c.html#synopsis>\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -127,42 +127,42 @@ accessible to users in the \`aria2\` group.
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     "save-session": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                         default: nix.thunk(() => nix.str`${homeDir}/aria2.session`),
                         description: "Save error/unfinished downloads to FILE on exit.",
                       })))),
                     dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                         default: defaultDir,
                         description: "Directory to store downloaded files.",
                       })))),
                     "conf-path": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
                         default: nix.thunk(() => nix.str`${homeDir}/aria2.conf`),
                         description: "Configuration file path.",
                       })))),
                     "enable-rpc": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Enable JSON-RPC/XML-RPC server.",
                       })))),
                     "listen-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "port")))));
                         })()),
-                        default: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$12, from: 6881n, to: 6999n }))]),
+                        default: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, from: 6881n, to: 6999n }))]),
                         description: "Set UDP listening port range used by DHT(IPv4, IPv6) and UDP tracker.",
                       })))),
                     "rpc-listen-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: defaultRpcListenPort,
                         description: "Specify a port number for JSON-RPC/XML-RPC server to listen to. Possible Values: 1024-65535",
@@ -174,23 +174,23 @@ accessible to users in the \`aria2\` group.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => nix.sel(cfg, "settings", "enable-rpc")),
             message: "RPC has to be enabled, the default module option takes care of that.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "rpc-secret"))),
             message: "Set the RPC secret through services.aria2.rpcSecretFile so it will not end up in the world-readable nix store.",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openPorts")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               allowedUDPPortRanges: nix.thunk(() => nix.sel(config, "services", "aria2", "settings", "listen-port")),
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "aria2", "settings", "rpc-listen-port")),
@@ -198,11 +198,11 @@ accessible to users in the \`aria2\` group.
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           users: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             aria2: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               group: "aria2",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "aria2")),
               description: "aria2 user",
@@ -211,26 +211,26 @@ accessible to users in the \`aria2\` group.
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             aria2: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "aria2")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${homeDir}' 0770 aria2 aria2 - -`),
               nix.thunk(() => nix.str`d '${nix.sel(config, "services", "aria2", "settings", "dir")}' ${nix.sel(config, "services", "aria2", "downloadDirPermission")} aria2 aria2 - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             aria2: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "aria2 Service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -243,7 +243,7 @@ chmod +w "${nix.sel(cfg, "settings", "conf-path")}"
 echo "rpc-secret=$(cat "$CREDENTIALS_DIRECTORY/rpcSecretFile")" >> "${nix.sel(cfg, "settings", "conf-path")}"
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 Restart: "on-abort",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "aria2")}/bin/aria2c --conf-path=${nix.sel(cfg, "settings", "conf-path")}`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
@@ -257,7 +257,7 @@ echo "rpc-secret=$(cat "$CREDENTIALS_DIRECTORY/rpcSecretFile")" >> "${nix.sel(cf
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "timhae"))]),
     })),
   };

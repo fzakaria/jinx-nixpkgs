@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-phonenumber-field",
       version: "8.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-phonenumber-field",
           repo: "django-phonenumber-field",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools_scm]),
       dependencies: nix.thunk(() => nix.concat([django], nix.sel(finalAttrs, "passthru", "optional-dependencies", "phonenumbers"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         babel: nix.thunk(() => [babel]),
         phonenumbers: nix.thunk(() => [phonenumbers]),
         phonenumberslite: nix.thunk(() => [phonenumberslite]),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export DJANGO_SETTINGS_MODULE=tests.settings\n",
       pythonImportsCheck: nix.thunk(() => ["phonenumber_field"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django model and form field for normalised phone numbers using python-phonenumbers",
         homepage: "https://github.com/django-phonenumber-field/django-phonenumber-field",
         changelog: nix.thunk(() => nix.str`https://github.com/django-phonenumber-field/django-phonenumber-field/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

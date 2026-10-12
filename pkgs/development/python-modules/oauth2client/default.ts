@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "d486741e451287f69568a4d26d70d9acd73a2bbfa275746c535b4209891cccc6",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six, httplib2, pyasn1_modules, rsa]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library for OAuth 2.0",
         homepage: "https://github.com/google/oauth2client/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

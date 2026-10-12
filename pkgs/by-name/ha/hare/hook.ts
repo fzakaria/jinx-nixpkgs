@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const arch = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "uname", "processor"));
   const harePropagationInputs = nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       harec: nix.thunk(() => nix.attr(hare, "harec")),
       qbe: nix.thunk(() => nix.attr(hare, "qbe")),
     }))));
   const hareWrappedScript = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "hare",
       runtimeInputs: nix.thunk(() => [hare]),
       excludeShellChecks: nix.thunk(() => ["SC2086"]),
       text: "readonly cmd=\"$1\"\nshift\ncase \"$cmd\" in\n  \"test\"|\"run\"|\"build\") exec hare \"$cmd\" $NIX_HAREFLAGS \"$@\" ;;\n  *) exec hare ${cmd:+\"$cmd\"} \"$@\"\nesac\n",
     }))));
-  const hareWrapper = nix.thunk(() => nix.app(runCommand, "hare-wrapper", nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+  const hareWrapper = nix.thunk(() => nix.app(runCommand, "hare-wrapper", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 install ${nix.app(nix.sel(lib, "getExe"), hareWrappedScript)} $out/bin/hare
 makeWrapper ${nix.app(nix.sel(lib, "getExe"), hare)} $out/bin/hare-native \\
   --inherit-argv0 \\
@@ -41,18 +41,18 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), hare)} $out/bin/hare-native \\
   --unset CC
 `)));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "hare-hook",
       propagatedBuildInputs: nix.thunk(() => nix.concat([hareWrapper], harePropagationInputs)),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         hare_unconditional_flags: nix.thunk(() => nix.str`-q -a${arch}`),
         hare_stdlib: nix.thunk(() => nix.str`${hare}/src/hare/stdlib`),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hare, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Setup hook for the Hare compiler",
         badPlatforms: nix.thunk(() => nix.attr(from, "badPlatforms")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

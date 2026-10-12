@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "safepass",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darioteixeira",
           repo: "ocaml-safepass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uOhP6MMN5yitNOHu0OVlq8Vd/UySMgaro+ScsBqnmrM=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/darioteixeira/ocaml-safepass",
         description: "OCaml library offering facilities for the safe storage of user passwords",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const extraPatches = nix.argOr($, "extraPatches", () => []);
   const extraPostInstall = nix.argOr($, "extraPostInstall", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "percona-xtrabackup",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "percona",
           repo: "percona-xtrabackup",
           rev: nix.thunk(() => nix.str`percona-xtrabackup-${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [bison, boost, cmake, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$2, openssl: openssl })))),
+        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: openssl })))),
         cyrus_sasl,
         libaio,
         libedit,
@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.add("wrapProgram \"$out\"/bin/xtrabackup --prefix PERL5LIB : $PERL5LIB\nrm -r \"$out\"/lib/plugin/debug\n", extraPostInstall)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mysqlVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Non-blocking backup tool for MySQL",
         homepage: "http://www.percona.com/software/percona-xtrabackup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

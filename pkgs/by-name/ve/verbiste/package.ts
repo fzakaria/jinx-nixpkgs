@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "verbiste",
       version: "0.1.49",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://sarrazip.com/dev/verbiste-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SnVhM8DronsajiNtrlOuFzJWBbpIb+bLLrK+mWZoP6U=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--without-gtk-app"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://sarrazip.com/dev/verbiste.html",
         description: "French and Italian verb conjugator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

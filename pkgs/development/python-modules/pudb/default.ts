@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-5t7bgfw8jNzWbPYuhjN8uRNXDrssmUyatSAS0Fnghq0=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$TMPDIR\n";
       const pythonImportsCheck = nix.thunk(() => ["pudb"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Full-screen, console-based Python debugger",
         mainProgram: "pudb",
         homepage: "https://github.com/inducer/pudb",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

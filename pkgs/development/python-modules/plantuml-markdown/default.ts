@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikitex70",
           repo: "plantuml-markdown",
           tag: version,
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["plantuml_markdown"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "example-doc": nix.thunk(() => (() => {
             const exampleDoc = nix.thunk(() => nix.app(writeText, "plantuml-markdown-example-doc.md", "```plantuml\n  Bob -> Alice: Hello\n```\n"));
-            return nix.app(runCommand, "plantuml-markdown-example-doc", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [plantuml_markdown]) })), nix.thunk(() => nix.str`markdown_py -x plantuml_markdown ${exampleDoc} > $out
+            return nix.app(runCommand, "plantuml-markdown-example-doc", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [plantuml_markdown]) })), nix.thunk(() => nix.str`markdown_py -x plantuml_markdown ${exampleDoc} > $out
 
 ! grep -q "Error" $out
 `));
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PlantUML plugin for Python-Markdown",
         longDescription: "This plugin implements a block extension which can be used to specify a PlantUML\ndiagram which will be converted into an image and inserted in the document.\n",
         homepage: "https://github.com/mikitex70/plantuml-markdown",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         format,

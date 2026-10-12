@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qctools";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mediaarea.net/download/source/${pname}/${version}/${pname}_${version}.tar.xz`),
           hash: "sha256-4HuNBCvN1BDjIsEyo8Lo/H1rNgCFygkXqo6yD3oDf18=",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\ninstall -Dt $out/bin qctools-cli/qcli qctools-gui/QCTools\ncd ../GNU/GUI\ninstall -Dm644 qctools.desktop $out/share/applications/qctools.desktop\ninstall -Dm644 qctools.metainfo.xml $out/share/metainfo/qctools.metainfo.xml\ncd ../../../Source/Resource\ninstall -Dm 0644 Logo.png $out/share/icons/hicolor/256x256/apps/qctools.png\ninstall -Dm 0644 Logo.png $out/share/pixmaps/qctools.png\ncd ../../Project/QtCreator\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audiovisual analytics and filtering of video files",
         homepage: "https://mediaarea.net/QCTools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

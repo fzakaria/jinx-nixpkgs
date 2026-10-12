@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const guvcview = nix.arg($, "guvcview");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qstopmotion",
       version: "2.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/qstopmotion/Version_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/qstopmotion-${nix.sel(finalAttrs, "version")}-Source.tar.gz`),
           hash: "sha256-jyBUyadkSuQKXOrr5XZ1jy6of1Qw8S2HPxuOrPc7RnE=",
         })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         pkg_config,
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(guvcview, "override"), nix.thunk(() => ({ __proto__: pos$2, useQt: true, useGtk: false })))),
+        nix.thunk(() => nix.app(nix.sel(guvcview, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useQt: true, useGtk: false })))),
         nix.thunk(() => nix.sel(libsForQt5, "qtbase")),
         nix.thunk(() => nix.sel(libsForQt5, "qtimageformats")),
         nix.thunk(() => nix.sel(libsForQt5, "qtmultimedia")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.qstopmotion.org",
         description: "Create stopmotion animation with a (web)camera",
         longDescription: "Qstopmotion is a tool to create stopmotion\nanimation. Its users are able to create stop-motions from pictures\nimported from a camera or from the harddrive and export the\nanimation to different video formats such as mpeg or avi.\n",

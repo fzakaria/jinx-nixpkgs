@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const vte_gtk4 = nix.arg($, "vte-gtk4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "neovim-gtk",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lyude",
           repo: "neovim-gtk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./collect-box.patch")]),
       postInstall: "make PREFIX=$out install-resources\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gtk ui for neovim",
         homepage: "https://github.com/Lyude/neovim-gtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

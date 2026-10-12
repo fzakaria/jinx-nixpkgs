@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "umka-lang",
       version: "1.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vtereshkov",
           repo: "umka-lang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("substituteInPlace Makefile \\\n  --replace-fail \"RANLIB                = libtool -static -o\" \"RANLIB = ar -cru\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), "substituteInPlace Makefile \\\n  --replace-fail \"-malign-double\" \"\"\n"))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Statically typed embeddable scripting language",
         homepage: "https://github.com/vtereshkov/umka-lang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

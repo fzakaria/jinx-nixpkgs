@@ -116,127 +116,127 @@ export default nix.lambda((args) => (() => {
 `);
   const encodingXmlFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "encoding.xml", encodingXmlText));
   const codecListToType = (desc) => (list) => nix.app(submodule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       options: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((name) => nix.app(nameValuePair, name, nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: bool,
                 default: false,
                 description: nix.thunk(() => nix.str`Enable ${desc} for ${name} codec.`),
               }))))), list)))),
     })));
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         jellyfin: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Jellyfin Media Server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "jellyfin", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: str,
               default: "jellyfin",
               description: "User account under which Jellyfin runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: str,
               default: "jellyfin",
               description: "Group under which jellyfin runs.",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: path,
               default: "/var/lib/jellyfin",
               description: "Base data directory,\npassed with `--datadir` see [#data-directory](https://jellyfin.org/docs/general/administration/configuration/#data-directory)\n",
             })))),
           configDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: path,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/config`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"${cfg.dataDir}/config\"")),
               description: "Directory containing the server configuration files,\npassed with `--configdir` see [configuration-directory](https://jellyfin.org/docs/general/administration/configuration/#configuration-directory)\n",
             })))),
           cacheDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: path,
               default: "/var/cache/jellyfin",
               description: "Directory containing the jellyfin server cache,\npassed with `--cachedir` see [#cache-directory](https://jellyfin.org/docs/general/administration/configuration/#cache-directory)\n",
             })))),
           logDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: path,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/log`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"${cfg.dataDir}/log\"")),
               description: "Directory where the Jellyfin logs will be stored,\npassed with `--logdir` see [#log-directory](https://jellyfin.org/docs/general/administration/configuration/#log-directory)\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: bool,
               default: false,
               description: "Open the default ports in the firewall for the media server. The\nHTTP/HTTPS ports can be changed in the Web UI, so this option should\nonly be used if they are unchanged, see [Port Bindings](https://jellyfin.org/docs/general/networking/#port-bindings).\n",
             })))),
           hardwareAcceleration: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(mkEnableOption, "hardware acceleration for video transcoding")),
             device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nullOr, path)),
                 default: null,
                 example: "/dev/dri/renderD128",
                 description: "Path to the hardware acceleration device that Jellyfin should use.\nFor obscure configurations, additional devices can be added via\n{option}`systemd.services.jellyfin.serviceConfig.DeviceAllow`.\n",
               })))),
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["none", "amf", "qsv", "nvenc", "v4l2m2m", "vaapi", "rkmpp"]))),
                 default: "none",
                 description: "The method of hardware acceleration. See [Hardware Acceleration](https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration) for more details.\n",
               })))),
           })),
           forceEncodingConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: bool,
               default: false,
               description: "Whether to overwrite Jellyfin's `encoding.xml` configuration file on each service start.\n\nWhen enabled, the encoding configuration specified in {option}`services.jellyfin.transcoding`\nand {option}`services.jellyfin.hardwareAcceleration` will be applied on every service restart.\nA backup of the existing `encoding.xml` will be created at `encoding.xml.backup-$timestamp`.\n\n::: {.warning}\nEnabling this option means that any changes made to transcoding settings through\nJellyfin's web dashboard will be lost on the next service restart. The NixOS configuration\nbecomes the single source of truth for encoding settings.\n:::\n\nWhen disabled (the default), the encoding configuration is only written if no `encoding.xml`\nexists yet. This allows settings to be changed through Jellyfin's web dashboard and persist\nacross restarts, but means the NixOS configuration options will be ignored after the initial setup.\n",
             })))),
           transcoding: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             maxConcurrentStreams: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.sel(ints, "positive")))),
                 default: null,
                 example: 2n,
                 description: "Maximum number of concurrent transcoding streams.\nSet to null for unlimited (limited by hardware capabilities).\n",
               })))),
             enableToneMapping: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: bool,
                 default: true,
                 description: "Enable tone mapping when transcoding HDR content.\n",
               })))),
             enableSubtitleExtraction: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: bool,
                 default: true,
                 description: "Embedded subtitles can be extracted from videos and delivered to clients in plain text, in order to help prevent video transcoding. On some systems this can take a long time and cause video playback to stall during the extraction process. Disable this to have embedded subtitles burned in with video transcoding when they are not natively supported by the client device.\n",
               })))),
             throttleTranscoding: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: bool,
                 default: false,
                 description: "When a transcode or remux gets far enough ahead from the current playback position, pause the process so it will consume fewer resources. This is most useful when watching without seeking often. Turn this off if you experience playback issues.\n",
               })))),
             threadCount: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.sel(ints, "positive")))),
                 default: null,
                 example: 4n,
                 description: "Number of threads to use when transcoding.\nSet to null to use automatic detection.\n",
               })))),
             hardwareDecodingCodecs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(codecListToType, "hardware decoding", nix.thunk(() => [
                     "h264",
                     "hevc",
@@ -250,18 +250,18 @@ export default nix.lambda((args) => (() => {
                     "hevcRExt12bit",
                   ]))),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$19, vp9: true, h264: true })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$19, vp9: true, h264: true })),
                 description: "Which codecs to enable for hardware decoding.\n",
               })))),
             hardwareEncodingCodecs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(codecListToType, "hardware encoding", nix.thunk(() => ["hevc", "av1"]))),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$21, av1: true })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$21, av1: true })),
                 description: "Which codecs to enable for hardware encoding. h264 is always enabled.\n",
               })))),
             encodingPreset: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(enum$, nix.thunk(() => [
                     "auto",
                     "veryslow",
@@ -278,31 +278,31 @@ export default nix.lambda((args) => (() => {
                 description: "Encoder preset for transcoding.\nLower presets sacrifice quality for speed, higher presets optimize quality.\n",
               })))),
             deleteSegments: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: bool,
                 default: true,
                 description: "Delete transcoding segments when finished.\n",
               })))),
             h264Crf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(ints, "between"), 0n, 51n)),
                 default: 23n,
                 description: "Constant Rate Factor (CRF) for H.264 encoding. Lower values result in better quality. Range: 0-51.\n",
               })))),
             h265Crf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.app(nix.sel(ints, "between"), 0n, 51n)),
                 default: 28n,
                 description: "Constant Rate Factor (CRF) for H.265 encoding. Lower values result in better quality. Range: 0-51.\n",
               })))),
             enableHardwareEncoding: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: bool,
                 default: false,
                 description: "Enable hardware encoding for video transcoding.\n",
               })))),
             enableIntelLowPowerEncoding: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: bool,
                 default: false,
                 description: "Enable low-power encoding mode for Intel Quick Sync Video.\nRequires i915 HuC firmware to be configured.\n",
@@ -312,52 +312,52 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "hardwareAcceleration", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "hardwareAcceleration", "device"), null)))),
             message: "services.jellyfin.hardwareAcceleration.device cannot be null when hardware acceleration is enabled.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             settings: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               jellyfinDirs: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   d: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     mode: "700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "configDir")}`, nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   d: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     mode: "700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "logDir")}`, nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   d: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     mode: "700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "cacheDir")}`, nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   d: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     mode: "700",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -367,9 +367,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             jellyfin: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "Jellyfin Media Server",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -404,7 +404,7 @@ else
 fi
 `))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -442,7 +442,7 @@ fi
                 SystemCallErrorNumber: "EPERM",
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 RequiresMountsFor: nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "configDir")),
                   nix.thunk(() => nix.sel(cfg, "logDir")),
@@ -453,28 +453,28 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "jellyfin")), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               jellyfin: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "jellyfin")), nix.thunk(() => ({ __proto__: pos$51, jellyfin: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "jellyfin")), nix.thunk(() => ({ [nix.POS]: pos$51, jellyfin: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               allowedTCPPorts: nix.thunk(() => [8096n, 8920n]),
               allowedUDPPorts: nix.thunk(() => [1900n, 7359n]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

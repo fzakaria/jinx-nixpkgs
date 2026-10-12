@@ -41,61 +41,61 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "atuin"));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         atuin: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Atuin server for shell history sync")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "atuin", nix.thunk(() => ({})))),
           openRegistration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Allow new user registrations with the atuin server.",
             })))),
           path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               description: "A path to prepend to all the routes of the server.",
             })))),
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "The host address the atuin server should listen on.",
             })))),
           maxHistoryLength: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "int")),
               default: 8192n,
               description: "The max length of each history item the atuin server should store.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8888n,
               description: "The port the atuin server should listen on.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the atuin server.",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
             uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: "postgresql:///atuin?host=/run/postgresql",
                 example: "postgresql://atuin@localhost:5432/atuin",
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "externalPath")))),
               default: null,
               description: "Environment file, used to set any secret ATUIN_* environment variables, such as ATUIN_DB_URI containing a password.\nSee <https://docs.atuin.sh/latest/self-hosting/server-setup/#configuration> for available environment variables.\n",
@@ -112,38 +112,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.sel(config, "services", "postgresql", "enable")))),
             message: "Postgresql must be enabled to create a local database",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$15, name: "atuin", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$15, name: "atuin", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["atuin"]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             atuin: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "atuin server",
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"]))),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])))),
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "atuin-server")} start`),
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
                 RuntimeDirectory: "atuin",
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
                 UMask: "0077",
               })),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ATUIN_HOST: nix.thunk(() => nix.sel(cfg, "host")),
                 ATUIN_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 ATUIN_MAX_HISTORY_LENGTH: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "maxHistoryLength")))),
@@ -185,16 +185,16 @@ export default nix.lambda((args) => (() => {
                 ATUIN_PATH: nix.thunk(() => nix.sel(cfg, "path")),
                 ATUIN_CONFIG_DIR: "/run/atuin",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "uri"), null)), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   ATUIN_DB_URI: nix.thunk(() => nix.sel(cfg, "database", "uri")),
                 }))))),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           firewall: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),

@@ -57,50 +57,50 @@ export default nix.lambda((args) => (() => {
   const excludedFile = "secret.txt";
   const excludedFileData = "Should not be backed up!";
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     name: "duplicity",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       client: nix.thunk(() => (() => {
         const dataDir = "/data";
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "10-duplicity-test": nix.thunk(() => nix.attrsDyn({}, [
-                  [dataDir, nix.thunk(() => ({ __proto__: pos$3, d: nix.thunk(() => ({ __proto__: pos$2, mode: "0600" })) }))],
+                  [dataDir, nix.thunk(() => ({ [nix.POS]: pos$3, d: nix.thunk(() => ({ [nix.POS]: pos$2, mode: "0600" })) }))],
                   [nix.str`${dataDir}/${keepFile}`, nix.thunk(() => ({
-                    __proto__: pos$5,
-                    f: nix.thunk(() => ({ __proto__: pos$4, mode: "0644", argument: keepFileData })),
+                    [nix.POS]: pos$5,
+                    f: nix.thunk(() => ({ [nix.POS]: pos$4, mode: "0644", argument: keepFileData })),
                   }))],
                   [nix.str`${dataDir}/${excludedFile}`, nix.thunk(() => ({
-                    __proto__: pos$7,
-                    f: nix.thunk(() => ({ __proto__: pos$6, mode: "0644", argument: excludedFileData })),
+                    [nix.POS]: pos$7,
+                    f: nix.thunk(() => ({ [nix.POS]: pos$6, mode: "0644", argument: excludedFileData })),
                   }))],
                 ])),
               })),
             })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             ssh: nix.thunk(() => ({
-              __proto__: pos$14,
-              "systemd-ssh-proxy": nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+              [nix.POS]: pos$14,
+              "systemd-ssh-proxy": nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
               knownHosts: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 server: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   hostNames: nix.thunk(() => ["server"]),
                   publicKey: snakeOilPublicKey,
                 })),
@@ -111,9 +111,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             duplicity: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               root: dataDir,
               exclude: nix.thunk(() => [nix.thunk(() => nix.str`${dataDir}/${excludedFile}`)]),
@@ -129,33 +129,33 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           environment: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "duplicity"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               settings: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 "10-duplicity-test": nix.thunk(() => ({
-                  __proto__: pos$24,
-                  "/root/backup": nix.thunk(() => ({ __proto__: pos$21, d: nix.thunk(() => ({ __proto__: pos$20, mode: "0700" })) })),
-                  "/root/restore": nix.thunk(() => ({ __proto__: pos$23, d: nix.thunk(() => ({ __proto__: pos$22, mode: "0700" })) })),
+                  [nix.POS]: pos$24,
+                  "/root/backup": nix.thunk(() => ({ [nix.POS]: pos$21, d: nix.thunk(() => ({ [nix.POS]: pos$20, mode: "0700" })) })),
+                  "/root/restore": nix.thunk(() => ({ [nix.POS]: pos$23, d: nix.thunk(() => ({ [nix.POS]: pos$22, mode: "0700" })) })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             openssh: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: true,
               hostKeys: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: "ecdsa",
                   path: nix.thunk(() => nix.str`${snakeOilPrivateKey}`),
                 })),
@@ -163,14 +163,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             users: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               root: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$32,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$31, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: pos$32,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$31, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               })),
             })),

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sslstrip",
       version: "2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "L1ghtn1ng",
           repo: "sslstrip",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sslstrip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for exploiting SSL stripping attacks",
         homepage: "https://github.com/L1ghtn1ng/sslstrip",
         changelog: nix.thunk(() => nix.str`https://github.com/L1ghtn1ng/sslstrip/releases/tag/${nix.sel(finalAttrs, "version")}`),

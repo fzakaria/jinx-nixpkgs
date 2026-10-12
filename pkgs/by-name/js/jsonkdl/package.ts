@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsonkdl",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-2oDHEq2VSMmlhyfxp01R1sSyHf7Q5MvFV1Iz8rsF9Hc=",
         })))),
       cargoHash: "sha256-s0SGqkTAbuAr/SJAHKsR1oowcqYh8RdAHryfIdEzRgU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON to KDL converter",
         homepage: "https://github.com/joshprk/jsonkdl",
         changelog: nix.thunk(() => nix.str`https://github.com/joshprk/jsonkdl/releases/tag/v${nix.sel(finalAttrs, "version")}`),

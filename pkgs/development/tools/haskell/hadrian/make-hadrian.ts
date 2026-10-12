@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
     const ghcSrc = nix.arg($_1, "ghcSrc");
     const ghcVersion = nix.arg($_1, "ghcVersion");
     const userSettings = nix.argOr($_1, "userSettings", () => null);
-    const callPackage$ = (f) => (args_2) => nix.app(nix.sel(bootPkgs, "callPackage"), f, nix.thunk(() => nix.update({ __proto__: pos$1, ghcSrc: ghcSrc, ghcVersion: ghcVersion }, args_2)));
+    const callPackage$ = (f) => (args_2) => nix.app(nix.sel(bootPkgs, "callPackage"), f, nix.thunk(() => nix.update({ [nix.POS]: pos$1, ghcSrc: ghcSrc, ghcVersion: ghcVersion }, args_2)));
     const ghc_platform = nix.thunk(() => nix.app(callPackage$, nix.path(here, "./ghc-platform.nix"), nix.thunk(() => ({}))));
-    const ghc_toolchain = nix.thunk(() => nix.app(callPackage$, nix.path(here, "./ghc-toolchain.nix"), nix.thunk(() => ({ __proto__: pos$2, "ghc-platform": ghc_platform }))));
+    const ghc_toolchain = nix.thunk(() => nix.app(callPackage$, nix.path(here, "./ghc-toolchain.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "ghc-platform": ghc_platform }))));
     return nix.app(callPackage$, nix.path(here, "./hadrian.nix"), nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         userSettings: userSettings,
         bootGhcVersion: nix.thunk(() => nix.sel(bootPkgs, "ghc", "version")),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), ghcVersion, "9.9")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "ghc-platform": ghc_platform,
           "ghc-toolchain": ghc_toolchain,
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), ghcVersion, "9.11")), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           Cabal: nix.thunk(() => nix.sel(bootPkgs, "Cabal_3_14_2_0")),
         })))))));
   })(), formals$2);

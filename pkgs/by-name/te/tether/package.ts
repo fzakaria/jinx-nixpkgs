@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tether",
       version: "0.2.35",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zackb",
           repo: "tether",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux + iPhone Continuity / iMessage / SMS",
         homepage: "https://github.com/zackb/tether",
         changelog: nix.thunk(() => nix.str`https://github.com/zackb/tether/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caudec",
       version: "1.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://caudec.cocatre.net/downloads/caudec-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "5d1f5ab3286bb748bd29cbf45df2ad2faf5ed86070f90deccf71c60be832f3d5",
         })))),
@@ -38,7 +38,7 @@ wrapProgram $out/bin/$executable \\
   done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://caudec.cocatre.net/",
         description: "Multiprocess audio converter that supports many formats (FLAC, MP3, Ogg Vorbis, Windows codecs and many more)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

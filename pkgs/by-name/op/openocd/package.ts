@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const jimtcl_0_82 = nix.thunk(() => nix.app(nix.sel(jimtcl, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "0.82";
       const src = nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: version,
           sha256: "sha256-CDjjrxpoTbLESAbCiCjQ8+E/oJP87gDv9SedQOzH3QY=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "openocd",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/openocd/openocd/${nix.sel(finalAttrs, "version")}/openocd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-ryVHiL6Yhh8r2RA/5uYKd07Jaow3R0Tu+Rl/YEMHWvo=",
         })))),
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=cpp", "-Wno-error=strict-prototypes"]))))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p \"$out/etc/udev/rules.d\"\nrules=\"$out/share/openocd/contrib/60-openocd.rules\"\nif [ ! -f \"$rules\" ]; then\n    echo \"$rules is missing, must update the Nix file.\"\n    exit 1\nfi\nln -s \"$rules\" \"$out/etc/udev/rules.d/\"\n")),
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Free and Open On-Chip Debugging, In-System Programming and Boundary-Scan Testing",
         mainProgram: "openocd",
         longDescription: "OpenOCD provides on-chip programming and debugging support with a layered\narchitecture of JTAG interface and TAP support, debug target support\n(e.g. ARM, MIPS), and flash chip drivers (e.g. CFI, NAND, etc.).  Several\nnetwork interfaces are available for interactiving with OpenOCD: HTTP,\ntelnet, TCL, and GDB.  The GDB server enables OpenOCD to function as a\n\"remote target\" for source-level debugging of embedded systems using the\nGNU GDB program.\n",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-crI+X3YMRzPPmpGNsI2U+9bZgwcR0qTowJuPNFY/Ooo=",
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
 `)));
       const buildInputs = nix.thunk(() => [boost, exiv2]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/include/c++/v1`))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["pyexiv2"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python binding to the library exiv2",
         homepage: "https://launchpad.net/py3exiv2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

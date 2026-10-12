@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const betamax = nix.arg($, "betamax");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "betamax-serializers",
       version: "0.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NFxBmxtzFx8pUcYqw8cBd1rEt24T6GRk6/D/KpeOSUk=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [betamax, pyyaml]),
       pythonImportsCheck: nix.thunk(() => ["betamax_serializers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/betamax/serializers",
         description: "Set of third-party serializers for Betamax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -33,31 +33,31 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "reaction-core-plugins",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       server: (args_1) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           reaction: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             enable: true,
             stopForFirewall: false,
             runAsRoot: false,
             settings: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), args_1)),
           })),
-          openssh: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             reaction: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_RAW", "CAP_DAC_READ_SEARCH"]),
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_RAW", "CAP_DAC_READ_SEARCH"]),
               })),
@@ -65,17 +65,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           users: nix.thunk(() => ({
-            __proto__: pos$9,
-            nixos: nix.thunk(() => ({ __proto__: pos$8, isNormalUser: true })),
+            [nix.POS]: pos$9,
+            nixos: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true })),
           })),
         })),
       }),
       client: (_) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "sshpass")),
             nix.thunk(() => nix.sel(pkgs, "libressl", "nc")),
@@ -127,18 +127,18 @@ client.succeed(f"nc -w3 -z {server_addr} 22")
 `;
     })(), formals$2),
     interactive: nix.thunk(() => ({
-      __proto__: pos$20,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+      [nix.POS]: pos$20,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$18,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$16, memorySize: 4096n, graphics: false })),
+            [nix.POS]: pos$18,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, memorySize: 4096n, graphics: false })),
             environment: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [
@@ -154,7 +154,7 @@ client.succeed(f"nc -w3 -z {server_addr} 22")
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return nix.concat([nix.thunk(() => nix.lookup(w, "ppom"))], nix.sel(lib, "teams", "ngi", "members"));

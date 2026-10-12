@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ropr",
       version: "0.2.26-unstable-2025-07-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ben-Lichtman",
           repo: "ropr",
           rev: "ec3eb2d91d9b4a940a8013a079ead47d7eab6dac",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       preVersionCheck: nix.thunk(() => nix.str`version=${nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "version")))))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multithreaded ROP gadget finder for x86(_64)",
         homepage: "https://github.com/Ben-Lichtman/ropr",
         license: nix.thunk(() => (() => {

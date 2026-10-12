@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rpl",
       version: "1.18.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Fr0BMv+QMhVaHMg+Xd7pPe4/swH0dBADABKgbSIjUCo=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "regex")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Replace strings in files",
         mainProgram: "rpl",
         homepage: "https://github.com/rrthomas/rpl",

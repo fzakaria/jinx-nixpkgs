@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
     ]));
   const version = "0.86.1";
   const aider_chat = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "aider-chat",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aider-AI",
           repo: "aider",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -164,17 +164,17 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-tree-sitter.patch"),
         nix.path(here, "./replace-importlib_resources.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-flake8-invoke.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             flake8: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python3Packages, "flake8")))),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "add-new-exceptions-to-LiteLLMExceptions.patch",
             url: "https://github.com/Aider-AI/aider/commit/7201abc56539ae8ee2bf4ea0926f584c9ec5558c.patch",
             hash: "sha256-bjL9nbEQGGNkFczm1hDOMP3b48eRJk17zcivXjOdVnw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "add-permission-denied-error-to-litellm-exceptions.patch",
             url: "https://github.com/Aider-AI/aider/commit/38716cc5a2621499c50454aa77ee379aa2b0c590.patch",
             hash: "sha256-uDIUHbauAmzCfaqx6aswnkUHcmgJi4X2OdMPyn4NeYU=",
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           playwright: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "greenlet")),
             nix.thunk(() => nix.lookup(w_2, "playwright")),
@@ -224,7 +224,7 @@ export default nix.lambda((args) => (() => {
         };
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         withOptional: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const withAll = nix.argOr($_1, "withAll", () => false);
@@ -239,7 +239,7 @@ export default nix.lambda((args) => (() => {
               const makeWrapperArgs = nix.arg($_2, "makeWrapperArgs");
               const propagatedBuildInputs = nix.argOr($_2, "propagatedBuildInputs", () => []);
               return {
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 pname: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(pname, nix.app(nix.sel(lib, "optionalString"), withPlaywright, "-playwright")), nix.app(nix.sel(lib, "optionalString"), withBrowser, "-browser")), nix.app(nix.sel(lib, "optionalString"), withHelp, "-help")), nix.app(nix.sel(lib, "optionalString"), withBedrock, "-bedrock"))),
                 dependencies: nix.thunk(() => nix.concat(dependencies, nix.concat(nix.app(nix.sel(lib, "optionals"), withPlaywright, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "playwright"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withBrowser, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "browser"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withHelp, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "help"))), nix.app(nix.sel(lib, "optionals"), withBedrock, nix.thunk(() => nix.sel(aider_chat, "optional-dependencies", "bedrock")))))))),
                 propagatedBuildInputs: nix.thunk(() => nix.concat(propagatedBuildInputs, nix.app(nix.sel(lib, "optionals"), withPlaywright, nix.thunk(() => [nix.thunk(() => nix.sel(playwright_driver, "browsers"))])))),
@@ -255,12 +255,12 @@ export default nix.lambda((args) => (() => {
             })(), formals$3));
         })(), formals$2),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "AI pair programming in your terminal",
         homepage: "https://github.com/Aider-AI/aider",
         changelog: nix.thunk(() => nix.str`https://github.com/Aider-AI/aider/blob/v${version}/HISTORY.md`),

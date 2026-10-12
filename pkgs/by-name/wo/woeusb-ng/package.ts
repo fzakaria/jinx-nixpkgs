@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const grub2 = nix.arg($, "grub2");
   const ntfs3g = nix.arg($, "ntfs3g");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "woeusb-ng",
       version: "0.2.12-unstable-2026-01-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WoeUSB",
           repo: "WoeUSB-ng",
           rev: "cc52ffc6aedad12540c2315c9101e4a4b919d4be",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "mkdir -p $out/bin $out/share/applications $out/share/polkit-1/actions\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to create a Windows USB stick installer from a real Windows DVD or image",
         homepage: "https://github.com/WoeUSB/WoeUSB-ng",
         mainProgram: "woeusb",

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const herculesBits = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")) ? "32" : "64"));
   const herculesLibDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "lib" : nix.str`lib/${herculesCpu}`));
   const mkExtPkg = (depName) => (attrFn) => nix.app(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`hercules-${depName}`),
       postPatch: nix.thunk(() => nix.str`patchShebangs build
 sed -i build \\
@@ -53,7 +53,7 @@ cd ../build
       nativeBuildInputs: nix.thunk(() => [cmake]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`Hercules ${depName} library`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         maintainers: nix.thunk(() => (() => {
@@ -66,10 +66,10 @@ cd ../build
       })),
     }))), "overrideAttrs"), (default$) => nix.app(attrFn, default$));
   const crypto = nix.thunk(() => nix.app(mkExtPkg, "crypto", (default$) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "SDL-Hercules-390",
           repo: "crypto",
           rev: "9ac58405c2b91fb7cd230aed474dc7059f0fcad9",
@@ -77,10 +77,10 @@ cd ../build
         })))),
     })));
   const decNumber = nix.thunk(() => nix.app(mkExtPkg, "decNumber", (default$) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "3.68.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "SDL-Hercules-390",
           repo: "decNumber",
           rev: "995184583107625015bb450228a5f3fb781d9502",
@@ -88,10 +88,10 @@ cd ../build
         })))),
     })));
   const softFloat = nix.thunk(() => nix.app(mkExtPkg, "SoftFloat", (default$) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "SDL-Hercules-390",
           repo: "SoftFloat",
           rev: "e053494d988ec0648c92f683abce52597bfae745",
@@ -99,10 +99,10 @@ cd ../build
         })))),
     })));
   const telnet = nix.thunk(() => nix.app(mkExtPkg, "telnet", (default$) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "SDL-Hercules-390",
           repo: "telnet",
           rev: "384b2542dfc9af67ca078e2bc13487a8fc234a3f",
@@ -118,11 +118,11 @@ for dep in "${crypto}" "${decNumber}" "${softFloat}" "${telnet}"; do
 done
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "hercules",
       version: "4.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           owner: "SDL-Hercules-390",
           repo: "hyperion",
           rev: nix.thunk(() => nix.str`Release_${nix.sel(finalAttrs, "version")}`),
@@ -144,7 +144,7 @@ done
         "--enable-het-bzip2",
       ], nix.app(nix.sel(lib, "optionals"), enableRexx, nix.thunk(() => ["--enable-regina-rexx"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://sdl-hercules-390.github.io/html/",
         description: "IBM mainframe emulator",
         longDescription: "Hercules is an open source software implementation of the mainframe\nSystem/370 and ESA/390 architectures, in addition to the latest 64-bit\nz/Architecture. Hercules runs under Linux, Windows, Solaris, FreeBSD, and\nMac OS X.\n",

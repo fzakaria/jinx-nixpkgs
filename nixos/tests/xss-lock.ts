@@ -20,26 +20,26 @@ const pos$14 = nix.positions(here + "/xss-lock.nix", [["simple", 6, 5], ["custom
 const pos$15 = nix.positions(here + "/xss-lock.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 35, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$15,
+  [nix.POS]: pos$15,
   name: "xss-lock",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   nodes: nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     simple: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       imports: nix.thunk(() => [
         nix.path(here, "./common/x11.nix"),
         nix.path(here, "./common/user-account.nix"),
       ]),
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
-        "xss-lock": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+        [nix.POS]: pos$3,
+        "xss-lock": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
       })),
       "test-support": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$5,
-          auto: nix.thunk(() => ({ __proto__: pos$4, user: "alice" })),
+          [nix.POS]: pos$5,
+          auto: nix.thunk(() => ({ [nix.POS]: pos$4, user: "alice" })),
         })),
       })),
     })),
@@ -47,22 +47,22 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         imports: nix.thunk(() => [
           nix.path(here, "./common/x11.nix"),
           nix.path(here, "./common/user-account.nix"),
         ]),
         "test-support": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$9,
-            auto: nix.thunk(() => ({ __proto__: pos$8, user: "alice" })),
+            [nix.POS]: pos$9,
+            auto: nix.thunk(() => ({ [nix.POS]: pos$8, user: "alice" })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "xss-lock": nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: true,
             extraOptions: nix.thunk(() => [
               "-n",

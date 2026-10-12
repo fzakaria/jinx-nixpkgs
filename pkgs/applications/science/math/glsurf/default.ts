@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glsurf";
       const version = "3.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://raffalli.eu/~christophe/glsurf/glsurf-${version}.tar.gz`),
           sha256: "0w8xxfnw2snflz8wdr2ca9f5g91w5vbyp1hwlx1v7vg83d4bwqs7",
         }))));
@@ -65,7 +65,7 @@ cp -r ./examples $out/share/doc/glsurf
 wrapProgram "$out/bin/glsurf" --set CC "${cc}/bin/${nix.sel(cc, "targetPrefix")}cc"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://raffalli.eu/~christophe/glsurf/",
         description: "Program to draw implicit surfaces and curves",
         mainProgram: "glsurf",
@@ -73,7 +73,7 @@ wrapProgram "$out/bin/glsurf" --set CC "${cc}/bin/${nix.sel(cc, "targetPrefix")}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

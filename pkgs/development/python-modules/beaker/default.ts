@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bbangert",
           repo: "beaker",
           tag: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_memcached.py", "tests/test_managers/test_ext_*"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Session and Caching library with WSGI Middleware",
         homepage: "https://github.com/bbangert/beaker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         knownVulnerabilities: nix.thunk(() => ["CVE-2013-7489"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

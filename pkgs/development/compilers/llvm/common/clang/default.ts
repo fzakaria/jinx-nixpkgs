@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const libclang = nix.arg($, "libclang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "clang",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`clang-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -71,11 +71,11 @@ cp -r ${monorepoSrc}/mlir/utils "$out/mlir/utils"
         nix.thunk(() => nix.app(getVersionFile, "clang/gnu-install-dirs.patch")),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "20")), nix.thunk(() => [nix.path(here, "./clang-unsupported-option.patch")])), nix.concat([
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./clang-at-least-16-LLVMgold-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libllvmLibdir: nix.thunk(() => nix.str`${nix.sel(libllvm, "lib")}/lib`),
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "18")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "tweak-tryCaptureVariable-for-unevaluated-lambdas.patch",
             url: "https://github.com/llvm/llvm-project/commit/3d361b225fe89ce1d8c93639f27d689082bd8dad.patch",
             excludes: nix.thunk(() => ["docs/ReleaseNotes.rst", "lib/Sema/TreeTransform.h"]),
@@ -115,37 +115,37 @@ substituteInPlace lib/Driver/ToolChains/Darwin.cpp \\
       outputs: nix.thunk(() => ["out", "lib", "dev", "python"]),
       separateDebugInfo: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "is64bit")),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add("ln -sv $out/bin/clang $out/bin/cpp\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "19")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "21"))))), "mv $out/lib/clang $lib/lib/clang\n")), "\n# Move libclang to 'lib' output\nmoveToOutput \"lib/libclang.*\" \"$lib\"\nmoveToOutput \"lib/libclang-cpp.*\" \"$lib\"\nmkdir -p $python/bin $python/share/clang/\n"), "mv $out/bin/{git-clang-format,scan-view} $python/bin\nif [ -e $out/bin/set-xcode-analyzer ]; then\n  mv $out/bin/set-xcode-analyzer $python/bin\nfi\nmv $out/share/clang/*.py $python/share/clang\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "22")), "rm $out/bin/c-index-test\n")), "patchShebangs $python/bin\npatchShebangs $python/share/clang/\n\nmkdir -p $dev/bin\ncp bin/clang-tblgen $dev/bin\n"), nix.app(nix.sel(lib, "optionalString"), enableClangToolsExtra, "cp bin/clang-tidy-confusable-chars-gen $dev/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(enableClangToolsExtra) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), release_version, "20")))), "cp bin/clang-pseudo-gen $dev/bin\n"))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "useLLVM"))))), nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-Wno-maybe-uninitialized" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "useLLVM"))))), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-Wno-maybe-uninitialized" })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         libllvm: libllvm,
         isClang: true,
         langC: true,
         langCC: true,
         hardeningUnsupportedFlagsByTargetPlatform: (targetPlatform) => nix.concat(["fortify3"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(targetPlatform, "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(targetPlatform, "isx86_64"))))), "shadowstack"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(targetPlatform, "isAarch64"))) || nix.asBool(!nix.asBool(nix.sel(targetPlatform, "isLinux"))))), "pacret"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(nix.sel(targetPlatform, "isLinux")) || nix.asBool(nix.sel(targetPlatform, "isFreeBSD"))))) || nix.asBool(!nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(targetPlatform, "isx86")) || nix.asBool(nix.sel(targetPlatform, "isPower64")))) || nix.asBool(nix.sel(targetPlatform, "isS390x")))) || nix.asBool(nix.sel(targetPlatform, "isAarch64"))))))), "stackclashprotection"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(targetPlatform, "isx86_64")) || nix.asBool(nix.sel(targetPlatform, "isAarch64"))))), "zerocallusedregs"), nix.selOr(finalAttrs, () => [], "passthru", "hardeningUnsupportedFlags")))))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          withoutOptionalFeatures: nix.thunk(() => nix.app(nix.sel(libclang, "override"), nix.thunk(() => ({ __proto__: pos$5, enableClangToolsExtra: false })))),
+          [nix.POS]: pos$6,
+          withoutOptionalFeatures: nix.thunk(() => nix.app(nix.sel(libclang, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableClangToolsExtra: false })))),
         })),
       })),
       __structuredAttrs: true,
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://clang.llvm.org/",
         description: "C language family frontend for LLVM",
         longDescription: "The Clang project provides a language front-end and tooling\ninfrastructure for languages in the C language family (C, C++, Objective\nC/C++, OpenCL, CUDA, and RenderScript) for the LLVM project.\nIt aims to deliver amazingly fast compiles, extremely useful error and\nwarning messages and to provide a platform for building great source\nlevel tools. The Clang Static Analyzer and clang-tidy are tools that\nautomatically find bugs in your code, and are great examples of the sort\nof tools that can be built using the Clang frontend as a library to\nparse C/C++ code.\n",
         mainProgram: "clang",
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), enableManpages, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "clang-manpages",
         ninjaFlags: nix.thunk(() => ["docs-clang-man"]),
         installPhase: "mkdir -p $out/share/man/man1\n# Manually install clang manpage\ncp docs/man/*.1 $out/share/man/man1/\n",
         outputs: nix.thunk(() => ["out"]),
         doCheck: false,
         meta: nix.thunk(() => nix.update(llvm_meta, {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: nix.thunk(() => nix.str`man page for Clang ${version}`),
           homepage: "https://github.com/llvm/llvm-project",
         })),

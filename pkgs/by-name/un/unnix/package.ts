@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const bubblewrap = nix.arg($, "bubblewrap");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unnix",
       version: "0.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "figsoda",
           repo: "unnix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xz, zstd]),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GENERATE_ARTIFACTS: "artifacts",
         ZSTD_SYS_USE_PKG_CONFIG: true,
       })),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bubblewrap]))}
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reproducible Nix environments without installing Nix",
         homepage: "https://github.com/figsoda/unnix",
         changelog: nix.thunk(() => nix.str`https://github.com/figsoda/unnix/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

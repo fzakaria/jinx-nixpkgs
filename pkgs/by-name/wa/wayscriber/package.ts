@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wayscriber",
       version: "0.9.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "devmobasa",
           repo: "wayscriber",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pango, libxkbcommon]),
       cargoHash: "sha256-QNzUjY3k8OLsOLzMuEKFy1xcAHVsUOQMipL0c3T7tsY=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ZoomIt-like screen annotation tool for Wayland compositors, written in Rust",
         homepage: "https://wayscriber.com",
         changelog: nix.thunk(() => nix.str`https://github.com/devmobasa/wayscriber/releases/tag/${nix.sel(finalAttrs, "version")}`),

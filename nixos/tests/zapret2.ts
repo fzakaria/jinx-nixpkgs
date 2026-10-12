@@ -58,57 +58,57 @@ export default nix.lambda((args) => (() => {
   const serverIP = "203.0.113.1";
   const clientIP = "203.0.113.2";
   const mkInterface = (address) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     ipv4: nix.thunk(() => ({
-      __proto__: pos$2,
-      addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ __proto__: pos$1, address: address, prefixLength: 24n })))),
+      [nix.POS]: pos$2,
+      addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$1, address: address, prefixLength: 24n })))),
     })),
   });
   const suricataRules = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "suricata.rules", "drop tcp-pkt any any -> any any (msg:\"Block acme.test\"; flow:established,to_server; content:\"acme.test\"; nocase; sid:1000001; rev:1;)\n"));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     name: "zapret2",
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "andre4ik3"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       router: nix.thunk(() => ({
-        __proto__: pos$23,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$5, vlans: nix.thunk(() => [1n, 2n]) })),
+        [nix.POS]: pos$23,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, vlans: nix.thunk(() => [1n, 2n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             eth1: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
             eth2: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
-            "suricata-update": nix.thunk(() => ({ __proto__: pos$12, enable: false })),
+            [nix.POS]: pos$13,
+            "suricata-update": nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`C /var/lib/suricata/rules/suricata.rules - - - - ${suricataRules}`),
               "z /var/lib/suricata/rules/suricata.rules 644 suricata suricata -",
@@ -116,19 +116,19 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           suricata: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               outputs: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$17,
-                  fast: nix.thunk(() => ({ __proto__: pos$16, enabled: true })),
+                  [nix.POS]: pos$17,
+                  fast: nix.thunk(() => ({ [nix.POS]: pos$16, enabled: true })),
                 })))),
               "af-packet": nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   interface: "eth1",
                   threads: 1n,
                   defrag: false,
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
                   "buffer-size": 64535n,
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   interface: "eth2",
                   threads: 1n,
                   "cluster-id": 97n,
@@ -156,30 +156,30 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       server: nix.thunk(() => ({
-        __proto__: pos$34,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$24, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: pos$34,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$24, vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           useDHCP: false,
-          interfaces: nix.thunk(() => ({ __proto__: pos$25, eth1: nix.thunk(() => nix.app(mkInterface, serverIP)) })),
-          firewall: nix.thunk(() => ({ __proto__: pos$26, allowedTCPPorts: nix.thunk(() => [443n]) })),
+          interfaces: nix.thunk(() => ({ [nix.POS]: pos$25, eth1: nix.thunk(() => nix.app(mkInterface, serverIP)) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$26, allowedTCPPorts: nix.thunk(() => [443n]) })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           pki: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             certificates: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           nginx: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               "acme.test": nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 onlySSL: true,
                 reuseport: true,
                 sslCertificate: nix.path(here, "./common/acme/server/acme.test.cert.pem"),
@@ -191,32 +191,32 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        __proto__: pos$45,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$35, vlans: nix.thunk(() => [2n]) })),
+        [nix.POS]: pos$45,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$35, vlans: nix.thunk(() => [2n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           useDHCP: false,
-          interfaces: nix.thunk(() => ({ __proto__: pos$36, eth1: nix.thunk(() => nix.app(mkInterface, clientIP)) })),
+          interfaces: nix.thunk(() => ({ [nix.POS]: pos$36, eth1: nix.thunk(() => nix.app(mkInterface, clientIP)) })),
           extraHosts: nix.thunk(() => nix.str`${serverIP} acme.test
 `),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           pki: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             certificates: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           zapret2: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             enable: true,
-            firewall: nix.thunk(() => ({ __proto__: pos$40, interfaces: nix.thunk(() => ["eth1"]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$40, interfaces: nix.thunk(() => ["eth1"]) })),
             profiles: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               default: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 parameters: nix.thunk(() => [
                   "--filter-tcp=443",
                   "--payload=tls_client_hello",

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.16.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.pyicu.org",
           owner: "main",
           repo: "pyicu",
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["icu"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.pyicu.org/main/pyicu",
         description: "Python extension wrapping the ICU C++ API",
         changelog: nix.thunk(() => nix.str`https://gitlab.pyicu.org/main/pyicu/-/raw/v${version}/CHANGES`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

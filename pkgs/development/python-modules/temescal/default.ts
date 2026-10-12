@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pycryptodome = nix.arg($, "pycryptodome");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "temescal",
       version: "0.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "temescal",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MfTftheNj8zI3iXIIJU+jy9xikvX9eO58LA0NCMJBnY=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["temescal"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for interacting with LG speaker systems",
         homepage: "https://github.com/google/python-temescal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

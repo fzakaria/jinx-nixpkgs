@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kache",
       version: "1.0.0",
       __structuredAttrs: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isUnix")), "shims"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kunobi-ninja",
           repo: "kache",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isUnix")), "mkdir -p \"$shims/bin\"\nfor name in cc c++ gcc g++ clang clang++; do\n  ln -s \"$out/bin/kache\" \"$shims/bin/$name\"\ndone\n# Let another kache on PATH recognize and skip this shim directory.\ntouch \"$shims/bin/.kache-shims\"\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zero-copy, content-addressed build cache for Rust, C/C++ and more",
         homepage: "https://github.com/kunobi-ninja/kache",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

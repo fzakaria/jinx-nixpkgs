@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.2";
       const minimalOCamlVersion = "4.03.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/xapi-project/ocaml-unix-errno/releases/download/${version}/unix-errno-${version}.tbz`),
           sha256: "sha256-LWqbyGcxs6f/FcOPo3JYR3U+AL0JHeWCiGjuYhxxrWU=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [ctypes, integers, result]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xapi-project/ocaml-unix-errno",
         description: "Unix errno types, maps, and support for OCaml",
         license: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

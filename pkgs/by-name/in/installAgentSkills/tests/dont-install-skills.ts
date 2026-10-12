@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installAgentSkills = nix.arg($, "installAgentSkills");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "test",
       name: "install-agent-skills--dont-install-skills",
       strictDeps: true,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\nif test -f $out/share/skills/$pname/test-skill/SKILL.md; then\n  exit 1\nfi\n\ntouch $out\n\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

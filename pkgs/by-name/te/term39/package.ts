@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "term39",
       version: "1.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alejandroqh",
           repo: "term39",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           "--skip=lockscreen::auth::macos_auth::tests::test_macos_available",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern, retro-styled terminal multiplexer with a classic MS-DOS aesthetic",
         homepage: "https://github.com/alejandroqh/term39",
         changelog: nix.thunk(() => nix.str`https://github.com/alejandroqh/term39/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -36,34 +36,34 @@ export default nix.lambda((args) => (() => {
   const configOpts = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`-o ${name}=${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(toStr, value)))}`, nix.thunk(() => nix.sel(cfg, "settings"))))));
   const toStr = (v) => (nix.asBool(nix.eq(v, true)) ? "yes" : (nix.asBool(nix.eq(v, false)) ? "no" : (nix.asBool(nix.app(nix.sel(lib, "isInt"), v)) ? nix.builtins.toString(v) : nix.force(v))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "misc", "nzbget", "configFile"]), "The configuration of nzbget is now managed by users through the web interface.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "misc", "nzbget", "dataDir"]), "The data directory for nzbget is now /var/lib/nzbget.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "misc", "nzbget", "openFirewall"]), "The port used by nzbget is managed through the web interface so you should adjust your firewall rules accordingly.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         nzbget: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "NZBGet, for downloading files from news servers")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nzbget", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nzbget",
               description: "User account under which NZBGet runs",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nzbget",
               description: "Group under which NZBGet runs",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -74,19 +74,19 @@ export default nix.lambda((args) => (() => {
               })()),
               default: nix.thunk(() => ({})),
               description: "NZBGet configuration, passed via command line using switch -o. Refer to\n<https://github.com/nzbgetcom/nzbget/blob/develop/nzbget.conf>\nfor details on supported values.\n",
-              example: nix.thunk(() => ({ __proto__: pos$3, MainDir: "/data" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$3, MainDir: "/data" })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           nzbget: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               OutputMode: "loggable",
               WriteLog: "none",
               ErrorTarget: "screen",
@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             nzbget: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "NZBGet Daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
 fi
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 StateDirectory: "nzbget",
                 StateDirectoryMode: "0750",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -134,20 +134,20 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "nzbget")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               nzbget: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 home: stateDir,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "nzbget")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nzbget")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               nzbget: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "nzbget")),
               })),
             })))),

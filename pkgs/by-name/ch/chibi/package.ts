@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.12",
       pname: "chibi-scheme",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ashinn",
           repo: "chibi-scheme",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ for f in chibi-doc chibi-ffi snow-chibi; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ashinn/chibi-scheme",
         description: "Small Footprint Scheme for use as a C Extension Language",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

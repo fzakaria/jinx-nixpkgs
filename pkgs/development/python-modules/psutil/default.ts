@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "giampaolo",
           repo: "psutil",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf psutil\n";
       const pythonImportsCheck = nix.thunk(() => ["psutil"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "release-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "release-" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Process and system utilization information interface",
         homepage: "https://github.com/giampaolo/psutil",
         changelog: nix.thunk(() => nix.str`https://github.com/giampaolo/psutil/blob/${nix.sel(src, "tag")}/HISTORY.rst`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

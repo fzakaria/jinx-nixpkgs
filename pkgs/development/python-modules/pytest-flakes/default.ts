@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pyflakes = nix.arg($, "pyflakes");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-flakes",
       version: "4.0.5",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "953134e97215ae31f6879fbd7368c18d43f709dc2fab5b7777db2bb2bac3a924",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pytest_flakes"]),
       checkPhase: "py.test test_flakes.py -k 'not test_syntax_error'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://pypi.org/project/pytest-flakes/",
         description: "Pytest plugin to check source code with pyflakes",

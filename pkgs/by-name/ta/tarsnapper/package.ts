@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miracle2k",
           repo: "tarsnapper",
           rev: version,
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/miracle2k/tarsnapper/commit/2ee33ce748b9bb42d559cc2c0104115732cb4150.patch",
             hash: "sha256-fEXGhzlfB+J5lw1pcsC5Ne7I8UMnDzwyyCx/zm15+fU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/miracle2k/tarsnapper/commit/eace01f3085fba8a6421d4f19110b814511e5170.patch?full_index=1",
             hash: "sha256-2YPb7iaAusT1DkISfOWs72jr/GBY/qG5qFyRlnVt0IY=",
           })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["tarsnapper"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Wrapper which expires backups using a gfs-scheme",
         homepage: "https://github.com/miracle2k/tarsnapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tarsnapper",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

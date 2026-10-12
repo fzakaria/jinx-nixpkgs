@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "meli";
       const version = "0.8.13";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://git.meli-email.org/meli/meli/archive/v${version}.tar.gz`),
             nix.thunk(() => nix.str`https://codeberg.org/meli/meli/archive/v${version}.tar.gz`),
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-uyhxNEKoRKrqvU76SuTKl1wlwOdHIxMFLXB5LwsdvQE=",
         }))));
       const cargoHash = "sha256-wDj4g5Cjm6zedjCmpc/A40peHO951lLuEQGsn+i3eT0=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n }));
       const nativeBuildInputs = nix.thunk(() => [
         pkg_config,
         installShellFiles,
         makeWrapper,
         mandoc,
-        nix.thunk(() => nix.app(nix.sel(rustfmt, "override"), nix.thunk(() => ({ __proto__: pos$3, asNightly: true })))),
+        nix.thunk(() => nix.app(nix.sel(rustfmt, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, asNightly: true })))),
       ]);
       const buildInputs = nix.thunk(() => [openssl, dbus, sqlite]);
       const nativeCheckInputs = nix.thunk(() => [file, gnum4, writableTmpDirAsHomeHook]);
@@ -60,7 +60,7 @@ wrapProgram $out/bin/meli \\
 `);
       const checkFlags = nix.thunk(() => ["--skip=test_cli_subcommands"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal e-mail client and e-mail client library",
         mainProgram: "meli",
         homepage: "https://meli-email.org/",
@@ -75,7 +75,7 @@ wrapProgram $out/bin/meli \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

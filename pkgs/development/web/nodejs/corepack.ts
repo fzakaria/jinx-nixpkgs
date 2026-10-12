@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "corepack-nodejs",
       version: nix.thunk(() => nix.attr(nodejs, "version")),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(nodejs, "corepack"))]),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "mkdir -p $out/bin\ncorepack enable --install-directory $out/bin\n# Enabling npm caused some crashes - leaving out for now\n# corepack enable --install-directory $out/bin npm\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Wrappers for npm, pnpm and Yarn via Node.js Corepack",
         homepage: "https://nodejs.org/api/corepack.html",
         changelog: nix.thunk(() => nix.str`https://github.com/nodejs/node/releases/tag/v${nix.sel(nodejs, "version")}`),

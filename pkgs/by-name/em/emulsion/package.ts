@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const rpathLibs = nix.thunk(() => nix.concat([libGL, libx11, libxcursor, libxi, libxrandr, libxxf86vm, libxcb], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxkbcommon, wayland]))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emulsion",
       version: "12.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArturKovacs",
           repo: "emulsion",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --set-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $out/bin/emulsion
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and minimalistic image viewer",
         homepage: "https://arturkovacs.github.io/emulsion-website/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "magnetophon"))]),

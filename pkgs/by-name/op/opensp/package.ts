@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "opensp",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/openjade/OpenSP-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1khpasr6l0a8nfz6kcf3s81vgdab8fm2dj291n5r2s53k228kx2p",
         })))),
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
 `),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-text/opensp/files/opensp-1.5.2-c11-using.patch?id=688d9675782dfc162d4e6cff04c668f7516118d0",
             sha256: "04q14s8qsad0bkjmj067dn831i0r6v7742rafdlnbfm5y249m2q6",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "opensp-1.5.2-gcc15-musl.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-text/opensp/files/opensp-1.5.2-gcc15-musl.patch?id=7143f4a01836f8991d6c90b61fa919e88bf9a0fd",
             hash: "sha256-6pNsVh3BErAN4lyykhFJqCydplh4cVvxgwc5MuWFd+A=",
@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "autoreconf -fi\n")),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([xmlto, docbook_xml_dtd_412, docbook_xsl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [autoconf269, autoreconfHook])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), nix.thunk(() => [autoconf, automake, libtool]))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-fpermissive" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fpermissive" })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Suite of SGML/XML processing tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://openjade.sourceforge.net/",

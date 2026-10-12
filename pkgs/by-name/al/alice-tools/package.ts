@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const qt = nix.thunk(() => (nix.asBool(withQt5) ? nix.force(qt5) : nix.force(qt6)));
   const withGUI = nix.thunk(() => (nix.asBool(withQt5) || nix.asBool(withQt6)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.add("alice-tools", nix.app(nix.sel(lib, "optionalString"), withGUI, nix.thunk(() => nix.str`-qt${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qt, "qtbase", "version")))}`)))),
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nunuhara",
           repo: "alice-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,19 +59,19 @@ export PATH=${nix.sel(qt, "qtbase", "dev")}/libexec:$PATH
       dontWrapQtApps: true,
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -Dm755 src/alice $out/bin/alice\n", nix.app(nix.sel(lib, "optionalString"), withGUI, "install -Dm755 src/galice $out/bin/galice\nwrapQtApp $out/bin/galice\n")), "\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), withGUI, "env QT_QPA_PLATFORM=minimal "), nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`)),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tools for extracting/editing files from AliceSoft games",
         homepage: "https://github.com/nunuhara/alice-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

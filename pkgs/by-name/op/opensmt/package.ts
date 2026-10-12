@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "opensmt",
       version: "2.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usi-verification-and-security",
           repo: "opensmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libedit, gmpxx, gtest], nix.app(nix.sel(lib, "optional"), enableReadline, readline))),
       preConfigure: "substituteInPlace test/CMakeLists.txt --replace-fail \\\n  'FetchContent_MakeAvailable' '#FetchContent_MakeAvailable'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
           return (nix.asBool(nix.lookup(w, "isLinux")) && nix.asBool(nix.lookup(w, "isAarch64")));

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const osi = nix.arg($, "osi");
   const cplex = nix.arg($, "cplex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fast-downward",
       version: "24.06.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aibasel",
           repo: "downward",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ substituteInPlace $out/${nix.sel(python3, "sitePackages")}/driver/arguments.py \
   --replace 'args.build = "release"' "args.build = \\"$out/libexec/fast-downward\\""
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Domain-independent planning system",
         mainProgram: "fast-downward",
         homepage: "https://www.fast-downward.org/",

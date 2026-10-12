@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       machine: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           internal: true,
           type: nix.thunk(() => nix.sel(types, "raw")),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$4,
-      nodes: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(options, "machine", "isDefined")), nix.thunk(() => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`In test \`${nix.sel(config, "name")}': The \`machine' attribute in NixOS tests (pkgs.nixosTest / make-test-python.nix / testing-python.nix / makeTest) is deprecated. Please set the equivalent \`nodes.machine'.`), nix.thunk(() => ({ __proto__: pos$3, machine: nix.thunk(() => nix.attr(config, "machine")) })))))),
+      [nix.POS]: pos$4,
+      nodes: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(options, "machine", "isDefined")), nix.thunk(() => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`In test \`${nix.sel(config, "name")}': The \`machine' attribute in NixOS tests (pkgs.nixosTest / make-test-python.nix / testing-python.nix / makeTest) is deprecated. Please set the equivalent \`nodes.machine'.`), nix.thunk(() => ({ [nix.POS]: pos$3, machine: nix.thunk(() => nix.attr(config, "machine")) })))))),
     })),
   };
 })(), formals$1);

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const digestif = nix.arg($, "digestif");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.3+20241009",
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-erm_xmpp`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hannesm",
           repo: "xmpp",
           rev: "54418f77abf47b175e9c1b68a4f745a12b640d6a",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hannesm/xmpp",
         description: "OCaml based XMPP implementation (fork)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const nvidia_cutlass_dsl_libs_base = nix.arg($, "nvidia-cutlass-dsl-libs-base");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvidia-cutlass-dsl",
       version: nix.thunk(() => nix.attr(nvidia_cutlass_dsl_libs_base, "version")),
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "nvidia_cutlass_dsl",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cutlass"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NVIDIA CUTLASS Python DSL",
         homepage: "https://github.com/NVIDIA/cutlass",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/cutlass/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

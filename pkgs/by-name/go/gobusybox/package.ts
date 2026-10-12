@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const applyPatches = nix.arg($, "applyPatches");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gobusybox",
       version: "0.2.0-unstable-2024-03-05",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "u-root",
               repo: "gobusybox",
               rev: "d8fbaca23e26beab648c86c8a67335ad65d0d15c",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
             })))),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://github.com/u-root/gobusybox/commit/4204bda4af46406562e377e23ec6f9c87bfbda84.patch",
                 hash: "sha256-3AOl/sxBZVLhLnSnqY3H8V6BBEjh+3gW3aPS5Wqob4s=",
               })))),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
         "cmd/makebbmain",
         "cmd/rewritepkg",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: "0" })),
       vendorHash: "sha256-xezqzOPTCIdoT2t0rFqYa/1uO1YIIEeXSUV62YLUeOQ=",
       ldflags: nix.thunk(() => ["-s"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tools for compiling many Go commands into one binary to save space",
         longDescription: "Builds are supported for vendor-based Go and module-based Go",
         homepage: "https://github.com/u-root/gobusybox",

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "decluttering-card";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "custom-cards",
           repo: "decluttering-card",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-9tmEfKo8n2LR+r40hEqOfn7w6/P29XQ+KZSHL97wUuY=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/decluttering-card.js $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declutter your lovelace configuration with the help of this card",
         homepage: "https://github.com/custom-cards/decluttering-card",
         changelog: nix.thunk(() => nix.str`https://github.com/custom-cards/decluttering-card/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

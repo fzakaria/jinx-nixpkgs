@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shocco",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rtomayko",
           repo: "shocco",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3, "pkgs", "pygments")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quick-and-dirty, literate-programming-style documentation generator for / in POSIX shell",
         mainProgram: "shocco",
         homepage: "https://rtomayko.github.io/shocco/",

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const outputs = nix.thunk(() => ["out", "lib", "dev", "man"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kristaps.bsd.lv/lowdown/snapshots/lowdown-${version}.tar.gz`),
           sha512: "fe68e1b7ff23f3992398356d7aa9a330dfd7b72e22bea9a91eeef74182b209ecea0c9f3e2b2216e1a07b2358da2b746238ec9cbbdeebdd3551cef14dd2d79f46",
         }))));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool(enableDarwinSandbox)))), "echo 'HAVE_SANDBOX_INIT=0' > configure.local\n"));
       const configurePhase = "runHook preConfigure\n./configure PREFIX=${!outputDev} \\\n            BINDIR=${!outputBin}/bin \\\n            LIBDIR=${!outputLib}/lib \\\n            MANDIR=${!outputMan}/share/man\nrunHook postConfigure\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "-D_GNU_SOURCE")),
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       }));
@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) || nix.asBool(!nix.asBool(enableDarwinSandbox))));
       const checkTarget = "regress";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nix: nix$,
           lix: lix,
           "lowdown-unsandboxed": lowdown_unsandboxed,
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://kristaps.bsd.lv/lowdown/",
         description: "Simple markdown translator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

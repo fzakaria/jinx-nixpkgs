@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "example-unfree-package",
       version: "1.0",
       dontUnpack: true,
@@ -24,7 +24,7 @@ EOF
 chmod +x $out/bin/hello-unfree
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Example package with unfree license (for testing)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oxij"))]),

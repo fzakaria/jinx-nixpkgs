@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/hp/hpl/package.nix:10:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hpl",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.netlib.org/benchmark/hpl/hpl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0c18c7fzlqxifz1bf3izil0bczv3a7nsv0dn6winy3ik49yw3i9j",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# only contains the static lib\nrm -r $out/lib\n\ninstall -D testing/ptest/HPL.dat $out/share/hpl/HPL.dat\n",
       buildInputs: nix.thunk(() => [blas, lapack, mpi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable Implementation of the Linpack Benchmark for Distributed-Memory Computers",
         homepage: "http://www.netlib.org/benchmark/hpl/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qgrid",
       version: "1.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/or1tQgzCE3AtqJlzRrHuDfAPA+FIRUBY1YNzneNcRw=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["qgrid"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive grid for sorting, filtering, and editing DataFrames in Jupyter notebooks",
         homepage: "https://github.com/quantopian/qgrid",
         changelog: nix.thunk(() => nix.str`https://github.com/quantopian/qgrid/releases/tag/v${nix.sel(finalAttrs, "version")}`),

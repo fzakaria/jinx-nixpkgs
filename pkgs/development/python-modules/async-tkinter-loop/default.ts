@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "async_tkinter_loop",
           hash: "sha256-y4gDOXXk4z1gAQVeB+/gOzia4SfICJiXV47pdaEQRp4=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["asyncio"]);
       const pythonImportsCheck = nix.thunk(() => ["async_tkinter_loop"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of asynchronous mainloop for tkinter, the use of which allows using async handler functions",
         homepage: "https://github.com/insolor/async-tkinter-loop",
         changelog: nix.thunk(() => nix.str`https://github.com/insolor/async-tkinter-loop/releases/tag/${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dos2unix",
       version: "7.5.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://waterlan.home.xs4all.nl/dos2unix/dos2unix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-dfaSuEhMjCRXmi/9h98WuclCjtlUl+M5OiHRugaXrDM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [perl, gettext]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert text files with DOS or Mac line breaks to Unix line breaks and vice versa",
         homepage: "https://waterlan.home.xs4all.nl/dos2unix.html",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/dos2unix/dos2unix/ci/dos2unix-${nix.sel(finalAttrs, "version")}/tree/dos2unix/NEWS.txt?format=raw`),

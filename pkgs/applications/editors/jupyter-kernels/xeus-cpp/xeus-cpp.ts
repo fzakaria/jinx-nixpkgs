@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const backend = nix.argOr($, "backend", () => "clang-repl");
   const stdenv = clangStdenv;
   const useCling = nix.thunk(() => nix.eq(backend, "cling"));
-  const cppInterop = nix.thunk(() => nix.app(nix.sel(cpp_interop, "override"), nix.thunk(() => ({ __proto__: pos$1, backend: backend }))));
+  const cppInterop = nix.thunk(() => nix.app(nix.sel(cpp_interop, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, backend: backend }))));
   const xeus_6 = nix.thunk(() => nix.app(nix.sel(xeus, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "6.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jupyter-xeus",
           repo: "xeus",
           tag: "6.0.5",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
     })));
-  const xeus_zmq_4 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(xeus_zmq, "override"), nix.thunk(() => ({ __proto__: pos$4, xeus: xeus_6 }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$6,
+  const xeus_zmq_4 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(xeus_zmq, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, xeus: xeus_6 }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: pos$6,
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "jupyter-xeus",
           repo: "xeus-zmq",
           tag: "4.0.0",
@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
   const resourceDir = nix.thunk(() => (nix.asBool(useCling) ? nix.str`${nix.sel(cling, "unwrapped")}/lib/clang/20` : nix.sel(cppInterop, "resourceDir")));
   const interpreterArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => (nix.asBool(useCling) ? nix.sel(cling, "flags") : nix.sel(cppInterop, "interpreterArgs")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "xeus-cpp",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "compiler-research",
           repo: "xeus-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -141,9 +141,9 @@ ${jq}/bin/jq -e '[.. | .text? // empty | tostring] | add | contains("Hello world
 
 runHook postInstallCheck
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$8, backend: backend, flags: interpreterArgs })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, backend: backend, flags: interpreterArgs })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: nix.thunk(() => nix.str`Jupyter kernel for C++ based on CppInterOp (${backend} backend)`),
         mainProgram: "xcpp",
         homepage: "https://github.com/compiler-research/xeus-cpp",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pynintendoauth = nix.arg($, "pynintendoauth");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pynintendoparental",
       version: "2.6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pantherale0",
           repo: "pynintendoparental",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pynintendoparental"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pantherale0/pynintendoparental/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python module to interact with Nintendo Parental Controls",
         homepage: "https://github.com/pantherale0/pynintendoparental",

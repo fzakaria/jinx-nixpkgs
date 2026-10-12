@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
     "cameraview",
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(withGtk, null)), nix.thunk(() => [mainExecutable]))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cameractrls",
       version: "0.6.10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "soyersoyer",
           repo: "cameractrls",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,15 +88,15 @@ patchPythonScript ${modulePath}/${mainExecutable}.py
 wrapProgram $out/bin/${mainExecutable} \${makeWrapperArgs[@]} \${gappsWrapperArgs[@]}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cameractrls-gtk3": cameractrls_gtk3,
           "cameractrls-gtk4": cameractrls_gtk4,
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Camera controls for Linux",
         longDescription: "It's a standalone Python CLI and GUI (GTK3, GTK4) and\ncamera Viewer (SDL) to set the camera controls in Linux.\nIt can set the V4L2 controls and it is extendable with\nthe non standard controls. Currently it has a Logitech\nextension (LED mode, LED frequency, BRIO FoV, Relative\nPan/Tilt, PTZ presets), Kiyo Pro extension (HDR, HDR\nmode, FoV, AF mode, Save), Preset extension (Save and\nrestore controls), Control Restore Daemon (to restore\npresets at device connection).\n",
         homepage: "https://github.com/soyersoyer/cameractrls",

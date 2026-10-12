@@ -23,29 +23,29 @@ export default nix.lambda((args) => (() => {
   const llvmPackages_22 = nix.arg($, "llvmPackages_22");
   const zigVersions = nix.argOr($, "zigVersions", () => ({}));
   const versions = nix.thunk(() => nix.update({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "0.13.0": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       llvmPackages: llvmPackages_18,
       hash: "sha256-5qSiTq+UWGOwjDVZMIrAt2cDKHkyNPBSAEjpRQUByFM=",
     })),
     "0.14.1": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       llvmPackages: llvmPackages_19,
       hash: "sha256-DhVJIY/z12PJZdb5j4dnCRb7k1CmeQVOnayYRP8azDI=",
     })),
     "0.15.2": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       llvmPackages: llvmPackages_20,
       hash: "sha256-u3pEMcYN71d83MJh14vtzU4DJXnMHu/Jw86d9XvwKE8=",
     })),
     "0.16.0": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       llvmPackages: llvmPackages_21,
       hash: "sha256-2sTMhaasyrKoBnyH/hQrNCbi0Vh6HekIrpE4XkyQulQ=",
     })),
     "0.17.0": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       llvmPackages: llvmPackages_22,
       hash: "sha256-dXy3DrGQHDpXCnr+Wi/1tPEktPm9bBDJQiQ/0VyiMaM=",
     })),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
     const llvmPackages = nix.arg($_1, "llvmPackages");
     return nix.app(callPackage, nix.path(here, "./generic.nix"), args_2);
   })(), formals$2);
-  const zigPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)), nix.thunk(() => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { __proto__: pos$7, version: version }))))), versions));
+  const zigPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (args_1) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)), nix.thunk(() => nix.app(mkPackage, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$7, version: version }))))), versions));
   return nix.force(zigPackages);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

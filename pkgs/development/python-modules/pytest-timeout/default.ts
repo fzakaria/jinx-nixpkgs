@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-timeout",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pexpect]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_timeout"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin to abort hanging tests",
         homepage: "https://github.com/pytest-dev/pytest-timeout/",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-timeout/tree/${nix.sel(src, "tag")}#changelog`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

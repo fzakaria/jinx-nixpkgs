@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "elvish",
       version: "0.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elves",
           repo: "elvish",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         shellPath: "/bin/elvish",
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           expectVersion: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/expect-version.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://elv.sh/",
         description: "Friendly and expressive command shell",
         mainProgram: "elvish",

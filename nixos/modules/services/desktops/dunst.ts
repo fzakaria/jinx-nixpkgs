@@ -29,37 +29,37 @@ export default nix.lambda((args) => (() => {
   const gitIni = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "gitIni"), nix.thunk(() => ({}))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "dunst"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         dunst: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Dunst notification daemon")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dunst", nix.thunk(() => ({}))), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             apply: (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 withX11: nix.thunk(() => nix.sel(cfg, "enableX11")),
                 withWayland: nix.thunk(() => nix.sel(cfg, "enableWayland")),
               }))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(gitIni, "type")),
               default: nix.thunk(() => ({})),
               description: "Dunst configuration, see dunst(5)",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  global = {\n    width = 300;\n    height = 300;\n    offset = \"30x50\";\n    origin = \"top-right\";\n    transparency = 10;\n    frame_color = \"#eceff1\";\n    font = \"Droid Sans 9\";\n  };\n\n  urgency_normal = {\n    background = \"#37474f\";\n    foreground = \"#eceff1\";\n    timeout = 10;\n  };\n};\n")),
             })))),
           enableX11: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable X11 support.",
             })))),
           enableWayland: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable Wayland support.",
@@ -68,35 +68,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableX11")) || nix.asBool(nix.sel(cfg, "enableWayland")))),
             message: "Dunst must be built with at least either X11 support or Wayland support",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "xdg/dunst/dunstrc": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               source: nix.thunk(() => nix.app(nix.sel(gitIni, "generate"), "dunstrc", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           dbus: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nyukuru"))];

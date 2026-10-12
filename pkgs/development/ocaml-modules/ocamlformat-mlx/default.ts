@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ocamlformat_mlx_lib = nix.arg($, "ocamlformat-mlx-lib");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ocamlformat-mlx",
       version: nix.thunk(() => nix.attr(ocamlformat_mlx_lib, "version")),
       src: nix.thunk(() => nix.attr(ocamlformat_mlx_lib, "src")),

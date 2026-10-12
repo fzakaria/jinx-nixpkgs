@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const guile = nix.arg($, "guile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xbindkeys",
       version: "1.8.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nongnu.org/xbindkeys/xbindkeys-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1wl2vc5alisiwyk8m07y1ryq8w3ll9ym83j27g4apm4ixjl8d6x2",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libx11, guile]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/xbindkeys/xbindkeys.html",
         description: "Launch shell commands with your keyboard or your mouse under X Window",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

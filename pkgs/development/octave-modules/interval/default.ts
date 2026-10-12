@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "interval";
       const version = "3.2.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-wBMbet0UveqpB8Fo68yYe2RA9ny1YGmEmyS8rSwK0XY=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [mpfr]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/interval/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         description: "Interval arithmetic to evaluate functions over subsets of their domain",
         longDescription: "The interval package for real-valued interval arithmetic allows one to\nevaluate functions over subsets of their domain. All results are verified,\nbecause interval computations automatically keep track of any errors.\n\nThese concepts can be used to handle uncertainties, estimate arithmetic\nerrors and produce reliable results. Also it can be applied to\ncomputer-assisted proofs, constraint programming, and verified computing.\n\nThe implementation is based on interval boundaries represented by\nbinary64 numbers and is conforming to IEEE Std 1788-2015, IEEE standard\nfor interval arithmetic.\n",
       }));
-      return { __proto__: pos$3, pname, version, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.26";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cbornet",
           repo: "blockbuster",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["blockbuster"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to detect blocking calls in the async event loop",
         homepage: "https://github.com/cbornet/blockbuster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

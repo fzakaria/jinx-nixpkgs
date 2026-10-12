@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "brgenml1lpr";
       const version = "3.1.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101123/brgenml1lpr-${version}.i386.deb`),
           sha256: "0zdvjnrjrz9sba0k525linxp55lr4cyivfhqbkq1c11br2nvy09f",
         }))));
@@ -65,7 +65,7 @@ wrapProgram $out/$LPDDIR/filter_BrGenML1 \\
 `);
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother BrGenML1 LPR driver",
         homepage: "http://www.brother.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -80,7 +80,7 @@ wrapProgram $out/$LPDDIR/filter_BrGenML1 \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

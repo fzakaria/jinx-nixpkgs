@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stockfish = nix.arg($, "stockfish");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uchess",
       version: "0.2.1",
       subPackages: nix.thunk(() => ["cmd/uchess"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tmountain",
           repo: "uchess",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/uchess --suffix PATH : ${stockfish}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Play chess against UCI engines in your terminal",
         mainProgram: "uchess",
         homepage: "https://tmountain.github.io/uchess/",

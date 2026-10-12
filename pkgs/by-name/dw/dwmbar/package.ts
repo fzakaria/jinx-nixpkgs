@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dwmbar",
       version: "0-unstable-2021-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thytom",
           repo: "dwmbar",
           rev: "574f5703c558a56bc9c354471543511255423dc7",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace dwmbar \\\n  --replace 'DEFAULT_CONFIG_DIR=\"/usr/share/dwmbar\"' \"DEFAULT_CONFIG_DIR=\\\"$out/share/dwmbar\\\"\"\n",
       installPhase: "install -d $out/share/dwmbar\ncp -r modules $out/share/dwmbar/\ninstall -D -t $out/share/dwmbar/ config\ninstall -D -t $out/share/dwmbar/ bar.sh\ninstall -Dm755 -t $out/bin/ dwmbar\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/thytom/dwmbar",
         description: "Modular Status Bar for dwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

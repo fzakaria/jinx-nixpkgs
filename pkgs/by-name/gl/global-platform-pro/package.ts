@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "global-platform-pro";
       const version = "25.10.20";
-      const env = nix.thunk(() => ({ __proto__: pos$1, GPPRO_VERSION: "v25.10.20-0-g72f85b9" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$1, GPPRO_VERSION: "v25.10.20-0-g72f85b9" }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "martinpaljak",
           repo: "GlobalPlatformPro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const mvnHash = "sha256-tHqA408mUa5l53zdWmFmREI6Ds+vqexwMoYnJMflMCc=";
       const nativeBuildInputs = nix.thunk(() => [jdk11, makeWrapper]);
       const mvnParameters = "-Dmaven.gitcommitid.skip=true";
-      const mvnFetchExtraArgs = nix.thunk(() => ({ __proto__: pos$3, preConfigure: defineMvnWrapper }));
+      const mvnFetchExtraArgs = nix.thunk(() => ({ [nix.POS]: pos$3, preConfigure: defineMvnWrapper }));
       const postPatch = "git_properties_file=\"./library/target/classes/pro/javacard/gp/git.properties\"\nmkdir -p \"$(dirname \"$git_properties_file\")\"\n# Suffix to differentiate from upstream builds.\ndistro_suffix=-nixpkgs\necho \"git.commit.id.describe=${GPPRO_VERSION}${distro_suffix}\" > \"$git_properties_file\"\n";
       const preConfigure = defineMvnWrapper;
       const installPhase = nix.thunk(() => nix.str`mkdir -p "$out/lib/java" "$out/share/java"
@@ -58,7 +58,7 @@ makeWrapper "${jre_headless}/bin/java" "$out/bin/gp" \\
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command-line utility for managing applets and keys on Java Cards",
         longDescription: "This command-line utility can be used to manage applets and keys\non Java Cards. It is made available as the `gp` executable.\n\nThe executable requires the PC/SC daemon running for correct execution.\nIf you run NixOS, it can be enabled with `services.pcscd.enable = true;`.\n",
         homepage: "https://github.com/martinpaljak/GlobalPlatformPro",
@@ -73,7 +73,7 @@ makeWrapper "${jre_headless}/bin/java" "$out/bin/gp" \\
         mainProgram: "gp",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         env,

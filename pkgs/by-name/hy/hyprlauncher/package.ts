@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const pixman = nix.arg($, "pixman");
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprlauncher",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprlauncher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "A multipurpose and versatile launcher / picker for Hyprland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

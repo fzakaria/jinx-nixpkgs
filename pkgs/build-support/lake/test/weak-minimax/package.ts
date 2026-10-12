@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildLakePackage = nix.thunk(() => nix.attr(leanPackages, "buildLakePackage"));
   const mathlib = nix.thunk(() => nix.attr(leanPackages, "mathlib"));
   const testPackage = nix.thunk(() => nix.app(buildLakePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "weak-minimax",
       version: "0",
       src: nix.path(here, "./."),

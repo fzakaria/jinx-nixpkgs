@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xwininfo = nix.arg($, "xwininfo");
   const yad = nix.arg($, "yad");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "steamtinkerlaunch",
       version: "12.12-unstable-2025-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sonic2kk",
           repo: "steamtinkerlaunch",
           rev: "8550ab26a712b7f5f6d0947070181446b9de61fd",
@@ -48,25 +48,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "yad-15-compat.patch",
             url: "https://github.com/sonic2kk/steamtinkerlaunch/commit/7b5d45e64e2d98e6cbc09cac95140a411f48de53.patch?full_index=1",
             hash: "sha256-BRtdcjZ1+NLe2aKRyd/VSQrHEg6x4qe63OFUShjT5go=",
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
       })),
       outputs: nix.thunk(() => ["out", "steamcompattool"]),
       installFlags: nix.thunk(() => ["PREFIX=${out}"]),
       nativeBuildInputs: nix.thunk(() => (() => {
-        const fakeSteam = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({ __proto__: pos$5, name: "steam", text: "exit 0" }))));
+        const fakeSteam = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({ [nix.POS]: pos$5, name: "steam", text: "exit 0" }))));
         return [fakeSteam];
       })()),
       postInstall: nix.thunk(() => (() => {
         const header = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             runtimeInputs: nix.thunk(() => [
               bash,
               gawk,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
             bashOptions: [],
           }))));
         const fakeYad = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "yad",
             text: nix.thunk(() => nix.str`echo ${nix.sel(yad, "version")} FAKE`),
           }))));
@@ -114,7 +114,7 @@ ln -sfn $out/bin/steamtinkerlaunch $steamcompattool/
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Linux wrapper tool for use with the Steam client for custom launch options and 3rd party programs",
         mainProgram: "steamtinkerlaunch",
         homepage: "https://github.com/sonic2kk/steamtinkerlaunch",

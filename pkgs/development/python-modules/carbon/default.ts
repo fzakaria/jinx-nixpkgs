@@ -27,27 +27,27 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-wTtbqRHMWBcM2iFN95yzwCf/BQ+EK0vp5MXT4mKX3lw=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./replace-imp.patch")]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, GRAPHITE_NO_PREFIX: "True" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, GRAPHITE_NO_PREFIX: "True" }));
       const postPatch = "substituteInPlace setup.py \\\n  --replace-fail \"cf.readfp(f, 'setup.cfg')\" \"cf.read(f, 'setup.cfg')\"\n";
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [cachetools, twisted, txamqp, urllib3, whisper]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           graphite: nix.thunk(() => nix.attr(nixosTests, "graphite")),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["carbon", "carbon.routers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Backend data caching and persistence daemon for Graphite",
         homepage: "https://github.com/graphite-project/carbon",
         changelog: nix.thunk(() => nix.str`https://github.com/graphite-project/carbon/releases/tag/${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

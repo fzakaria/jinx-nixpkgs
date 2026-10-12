@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1fc9vc5nyzf1kzmnrs18dmns7nn8wjfrg7br1w4c5sgs35mg2ywh",
         }))));
       const buildInputs = nix.thunk(() => [requests]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper for the pocket API",
         homepage: "https://github.com/tapanpandita/pocket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

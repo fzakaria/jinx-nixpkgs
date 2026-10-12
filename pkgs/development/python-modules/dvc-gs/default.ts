@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const gcsfs = nix.arg($, "gcsfs");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dvc-gs",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dvc_gs",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-QhhWD/HVGW/Qx5FiZVzXnFE0+mHr40o6UH+vB0kibu4=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [gcsfs, dvc_objects]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "gs plugin for dvc",
         homepage: "https://pypi.org/project/dvc-gs/version",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-gs/releases/tag/${nix.sel(finalAttrs, "version")}`),

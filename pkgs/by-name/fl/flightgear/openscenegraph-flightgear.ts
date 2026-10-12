@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openscenegraph",
       version: "2024-build",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightgear",
           repo: "openscenegraph",
           rev: "b5895abe0d94a57839929d38b5681dc8e796a8a0",
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libx11, libxinerama, libxrandr, libGLU, libGL])), [glib, libxml2, zlib, libjpeg, giflib, libtiff, libpng, curl, freetype, boost])),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "opencascade-api-patch",
             url: "https://github.com/openscenegraph/OpenSceneGraph/commit/bc2daf9b3239c42d7e51ecd7947d31a92a7dc82b.patch",
             hash: "sha256-VR8YKOV/YihB5eEGZOGaIfJNrig1EPS/PJmpKsK284c=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/openscenegraph/OpenSceneGraph/commit/9da8d428f6666427c167b951b03edd21708e1f43.patch",
             hash: "sha256-YGG/DIHU1f6StbeerZoZrNDm348wYB3ydmVIIGTM7fU=",
           })))),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_OSG_APPLICATIONS", false)),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "OSG_WINDOWING_SYSTEM", "Cocoa"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "3D graphics toolkit (FlightGear fork)",
         homepage: "https://gitlab.com/flightgear/openscenegraph",
         changelog: "https://gitlab.com/flightgear/openscenegraph/-/commits/release/2024-build",

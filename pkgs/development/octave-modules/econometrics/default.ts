@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "econometrics";
       const version = "1.1.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "1srx78k90ycla7yisa9h593n9l8br31lsdxlspra8sxiyq0sbk72",
         }))));
       const requiredOctavePackages = nix.thunk(() => [optim]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/econometrics/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         description: "Econometrics functions including MLE and GMM based techniques",
         broken: true,
       }));
-      return { __proto__: pos$3, pname, version, src, requiredOctavePackages, meta };
+      return { [nix.POS]: pos$3, pname, version, src, requiredOctavePackages, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

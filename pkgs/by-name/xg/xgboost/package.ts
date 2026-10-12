@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(rLibrary) || nix.asBool(!nix.asBool(doCheck))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xg/xgboost/package.nix:25:1");
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pnameBase: "xgboost",
       pname: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), rLibrary, "r-"), "xgboost")),
       version: "3.0.5",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmlc",
           repo: "xgboost",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.str`ctest --force-new-ctest-process ${nix.app(nix.sel(lib, "optionalString"), cudaSupport, "-E TestXGBoostLib")}
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rLibrary, nix.thunk(() => nix.str`-L${R}/lib/R/lib`))),
         GTEST_FILTER: nix.thunk(() => (() => {
           const xsimdTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["ThreadGroup.TimerThread", "ThreadGroup.TimerThreadSimple"])));
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), rLibrary, "mkdir -p $out/library\nexport R_LIBS_SITE=\"$out/library:$R_LIBS_SITE${R_LIBS_SITE:+:}\"\n")), "cmake --install .\nrunHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rLibrary, "if test -e $out/nix-support/propagated-build-inputs; then\n    ln -s $out/nix-support/propagated-build-inputs $out/nix-support/propagated-user-env-packages\nfi\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scalable, Portable and Distributed Gradient Boosting (GBDT, GBRT or GBM) Library",
         homepage: "https://github.com/dmlc/xgboost",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

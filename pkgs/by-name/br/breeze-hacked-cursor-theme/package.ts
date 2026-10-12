@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const borderColor = nix.argOr($, "borderColor", () => null);
   const logoColor = nix.argOr($, "logoColor", () => null);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "breeze-hacked-cursor-theme",
       version: "0-unstable-2024-01-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clayrisser",
           repo: "breeze-hacked-cursor-theme",
           rev: "79dcc8925136ebe12612c6f124036c1aa816ebbe",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `)))),
       nativeBuildInputs: nix.thunk(() => [inkscape, xcursorgen]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/clayrisser/breeze-hacked-cursor-theme",
         description: "Breeze Hacked cursor theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

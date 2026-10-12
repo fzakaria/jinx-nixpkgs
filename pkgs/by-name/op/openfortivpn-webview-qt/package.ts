@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openfortivpn-webview-qt",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gm-vm",
           repo: "openfortivpn-webview",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-qt`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6Packages, "qtwebengine"))]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp openfortivpn-webview $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perform the SAML single sign-on and easily retrieve the SVPNCOOKIE needed by openfortivpn",
         homepage: "https://github.com/gm-vm/openfortivpn-webview/tree/main",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

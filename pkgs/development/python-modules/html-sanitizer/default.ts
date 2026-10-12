@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthiask",
           repo: "html-sanitizer",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_billion_laughs", "test_10_broken_html"]);
       const pythonImportsCheck = nix.thunk(() => ["html_sanitizer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allowlist-based and very opinionated HTML sanitizer",
         homepage: "https://github.com/matthiask/html-sanitizer",
         changelog: nix.thunk(() => nix.str`https://github.com/matthiask/html-sanitizer/blob/${version}/CHANGELOG.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

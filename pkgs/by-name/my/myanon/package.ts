@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "myanon",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ppomes",
           repo: "myanon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, flex, bison, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "mysqldump anonymizer, reading a dump from stdin, and producing on the fly an anonymized version to stdout",
         homepage: "https://ppomes.github.io/myanon/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

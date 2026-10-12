@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const version = "8.4.3";
   const nodejs = nodejs_24;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tribler",
       repo: "Tribler",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-5ykIQBvYKzGn9toXb2248ulvh22fJlE0mNQkilkWRYo=",
     }))));
   const tribler_webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nodejs: nodejs,
       version: version,
       pname: "tribler-webui",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -pv $out\ncp -prvd ./* $out/\ncd $out\nnpm install\nnpm run build\n",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       src: src,
       pname: "tribler",
@@ -125,11 +125,11 @@ runHook postBuild
         "test_get_set_explicit",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Decentralized P2P filesharing client based on the Bittorrent protocol",
         homepage: "https://www.tribler.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Tribler/tribler/releases/tag/v${version}`),

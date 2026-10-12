@@ -41,39 +41,39 @@ export default nix.lambda((args) => (() => {
     [nix.str`${dashboard_host}`, "192.168.0.1"],
   ]));
   const hostsEntries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: v,
       value: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), k)),
     }), hosts));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: "nezha",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       agent: (_) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hostName: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", agent_host)), 0n)),
           domain: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", agent_host)), 1n)),
-          firewall: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
           hosts: hostsEntries,
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             eth1: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     address: nix.thunk(() => nix.sel(hosts, nix.key(nix.str`${agent_host}`))),
                     prefixLength: 24n,
                   })))),
@@ -82,14 +82,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "nezha-agent": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             debug: true,
             genUuid: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               server: nix.thunk(() => nix.add(nix.sel(hosts, nix.key(nix.str`${dashboard_host}`)), ":80")),
             })),
             clientSecretFile: agentSecret,
@@ -100,20 +100,20 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           networking: nix.thunk(() => ({
-            __proto__: pos$18,
-            firewall: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+            [nix.POS]: pos$18,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               eth1: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       address: nix.thunk(() => nix.sel(hosts, nix.key(nix.str`${dashboard_host}`))),
                       prefixLength: 24n,
                     })))),
@@ -122,12 +122,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             nezha: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               debug: true,
-              settings: nix.thunk(() => ({ __proto__: pos$19, listenhost: "0.0.0.0", listenport: 80n })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$19, listenhost: "0.0.0.0", listenport: 80n })),
               mutableConfig: true,
               jwtSecretFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "fakejwt", "fakejwt")),
               agentSecretFile: agentSecret,

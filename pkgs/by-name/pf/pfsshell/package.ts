@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1.1-unstable-2025-07-13",
       pname: "pfsshell",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ps2homebrew",
           repo: "pfsshell",
           rev: "8192de3907a05bb1844afcb1ae490179a38d4ed6",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "PFS (PlayStation File System) shell for POSIX-based systems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

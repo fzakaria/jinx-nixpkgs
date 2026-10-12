@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "haruna",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "multimedia",
           repo: "haruna",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "finalPackage", "version")}`),
@@ -64,9 +64,9 @@ export default nix.lambda((args) => (() => {
         pkg_config,
         nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://invent.kde.org/multimedia/haruna",
         description: "Open source video player built with Qt/QML and libmpv",
         license: nix.thunk(() => (() => {

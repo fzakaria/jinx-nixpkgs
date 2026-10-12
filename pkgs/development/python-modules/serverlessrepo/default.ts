@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.10";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "671f48038123f121437b717ed51f253a55775590f00fbab6fbc6a01f8d05c017",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const pythonImportsCheck = nix.thunk(() => ["serverlessrepo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/awslabs/aws-serverlessrepo-python",
         description: "Helpers for working with the AWS Serverless Application Repository",
         longDescription: "A Python library with convenience helpers for working with the\nAWS Serverless Application Repository.\n",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

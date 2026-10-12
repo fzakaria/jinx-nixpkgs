@@ -17,32 +17,32 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       image: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         baseName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`nixos-image-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "nixos-image-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}")),
             description: "Basename of the image filename without any extension (e.g. `image_1`).\n",
           })))),
         extension: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Extension of the image filename (e.g. `raw`).\n",
           })))),
         fileName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`${nix.sel(config, "image", "baseName")}.${nix.sel(config, "image", "extension")}`),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${config.image.baseName}.${config.image.extension}")),
             description: "Filename of the image including all extensions (e.g `image_1.raw` or\n`image_1.raw.zst`).\n",
           })))),
         filePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.sel(config, "image", "fileName")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.image.fileName")),

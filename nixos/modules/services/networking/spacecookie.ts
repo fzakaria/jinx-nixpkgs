@@ -44,79 +44,79 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "spacecookie"));
   const spacecookieConfig = nix.thunk(() => nix.update({
-    __proto__: pos$2,
-    listen: nix.thunk(() => ({ __proto__: pos$1, port: nix.thunk(() => nix.attr(cfg, "port")) })),
+    [nix.POS]: pos$2,
+    listen: nix.thunk(() => ({ [nix.POS]: pos$1, port: nix.thunk(() => nix.attr(cfg, "port")) })),
   }, nix.sel(cfg, "settings")));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "spacecookie.json", spacecookieConfig));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "spacecookie", "root"]), nix.thunk(() => ["services", "spacecookie", "settings", "root"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "spacecookie", "hostname"]), nix.thunk(() => ["services", "spacecookie", "settings", "hostname"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         spacecookie: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "spacecookie")),
-          package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "spacecookie", nix.thunk(() => ({ __proto__: pos$3, example: "haskellPackages.spacecookie" })))),
+          package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "spacecookie", nix.thunk(() => ({ [nix.POS]: pos$3, example: "haskellPackages.spacecookie" })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to open the necessary port in the firewall for spacecookie.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 70n,
               description: "Port the gopher service should be exposed on.\n",
             })))),
           address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "[::]",
               description: "Address to listen on. Must be in the\n`ListenStream=` syntax of\n{manpage}`systemd.socket(5)`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "localhost",
                         description: "The hostname the service is reachable via. Clients\nwill use this hostname for further requests after\nloading the initial gopher menu.\n",
                       })))),
                     root: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                         default: "/srv/gopher",
                         description: "The directory spacecookie should serve via gopher.\nFiles in there need to be world-readable since\nthe spacecookie service file sets\n`DynamicUser=true`.\n",
                       })))),
                     log: nix.thunk(() => ({
-                      __proto__: pos$13,
-                      enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "logging for spacecookie"), { __proto__: pos$9, default: true, example: false })),
+                      [nix.POS]: pos$13,
+                      enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "logging for spacecookie"), { [nix.POS]: pos$9, default: true, example: false })),
                       "hide-ips": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: true,
                           description: "If enabled, spacecookie will hide personal\ninformation of users like IP addresses from\nlog output.\n",
                         })))),
                       "hide-time": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: true,
                           description: "If enabled, spacecookie will not print timestamps\nat the beginning of every log line.\n",
                         })))),
                       level: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["info", "warn", "error"]))),
                           default: "info",
                           description: "Log level for the spacecookie service.\n",
@@ -130,42 +130,42 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "user"))),
             message: "spacecookie is started as a normal user, so the setuid\nfeature doesn't work. If you want to run spacecookie as\na specific user, set:\nsystemd.services.spacecookie.serviceConfig = {\n  DynamicUser = false;\n  User = \"youruser\";\n  Group = \"yourgroup\";\n}\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "settings"), "listen")) || nix.asBool(nix.has(nix.sel(cfg, "settings"), "port"))))),
             message: "The NixOS spacecookie module uses socket activation,\nso the listen options have no effect. Use the port\nand address options in services.spacecookie instead.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           sockets: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             spacecookie: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Socket for the Spacecookie Gopher Server",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))}`),
               ]),
-              socketConfig: nix.thunk(() => ({ __proto__: pos$22, BindIPv6Only: "both" })),
+              socketConfig: nix.thunk(() => ({ [nix.POS]: pos$22, BindIPv6Only: "both" })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             spacecookie: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Spacecookie Gopher Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["spacecookie.socket"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/bin/spacecookie ${configFile}`),
                 FileDescriptorStoreMax: 1n,
@@ -189,9 +189,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

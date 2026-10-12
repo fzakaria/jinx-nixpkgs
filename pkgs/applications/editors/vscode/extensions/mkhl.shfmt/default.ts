@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const shfmt = nix.arg($, "shfmt");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "shfmt",
         publisher: "mkhl",
         version: "1.5.2",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."shfmt.executablePath".default = "${nix.app(nix.sel(lib, "getExe"), shfmt)}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension uses shfmt to provide a formatter for shell script documents",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=mkhl.shfmt",
         homepage: "https://codeberg.org/mkhl/vscode-shfmt",

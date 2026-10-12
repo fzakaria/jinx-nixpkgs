@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-icon-theme";
       const version = "9.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "icons",
           tag: version,
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Upstream removed the non-fd.o office-calendar icons but left these\n# alias symlinks dangling (elementary/icons#1435).\nrm -f apps/16/calendar.svg \\\n  mimes/symbolic/text-calendar-symbolic.svg \\\n  mimes/symbolic/vcalendar-symbolic.svg\n";
       const postFixup = "gtk-update-icon-cache $out/share/icons/elementary";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Named, vector icons for elementary OS",
         longDescription: "An original set of vector icons designed specifically for elementary OS and its desktop environment: Pantheon.\n",
         homepage: "https://github.com/elementary/icons",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

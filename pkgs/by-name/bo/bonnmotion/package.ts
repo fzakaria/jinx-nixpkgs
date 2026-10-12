@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bonnmotion",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bonnmotion.sys.cs.uos.de/src/bonnmotion-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "16bjgr0hy6an892m5r3x9yq6rqrl11n91f9rambq5ik1cxjqarxw",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./install.patch"), nix.thunk(() => ({ __proto__: pos$2, bash: bash, jre: jre })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./install.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, bash: bash, jre: jre })))),
       ]),
       installPhase: "runHook preInstall\n\n./install\n\nmkdir -p $out/bin $out/share/bonnmotion\ncp -r ./classes ./lib $out/share/bonnmotion/\ncp ./bin/bm $out/bin/\n\nsubstituteInPlace $out/bin/bm \\\n  --replace-fail \"$PWD\" $out/share/bonnmotion\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mobility scenario generation and analysis tool",
         mainProgram: "bm",
         longDescription: "BonnMotion is a Java software which creates and analyzes mobility\nscenarios and is most commonly used as a tool for the investigation of\nmobile ad hoc network characteristics. The scenarios can also be exported\nfor several network simulators, such as ns-2, ns-3, GloMoSim/QualNet,\nCOOJA, MiXiM, and ONE.\n",

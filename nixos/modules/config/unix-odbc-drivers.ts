@@ -21,13 +21,13 @@ Description = ${nix.sel(pkg, "meta", "description")}
 Driver = ${pkg}/${nix.sel(pkg, "driver")}
 `;
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       environment: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         unixODBCDrivers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs.unixodbcDrivers; [ sqlite psql ]")),
@@ -36,13 +36,13 @@ Driver = ${pkg}/${nix.sel(pkg, "driver")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "environment", "unixODBCDrivers"), [])), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           etc: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "odbcinst.ini": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               text: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", iniDescription, nix.thunk(() => nix.sel(config, "environment", "unixODBCDrivers")))),
             })),
           })),

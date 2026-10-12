@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-gone",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swsnr",
           repo: "git-gone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-93nZhZOtti28FetuOYtvh6LOtQJV+cEHbOkrJ+3m1m4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cleanup stale Git branches of merge requests",
         homepage: "https://codeberg.org/swsnr/git-gone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

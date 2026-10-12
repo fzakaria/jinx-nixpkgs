@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/default.nix", [["example-config", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   "example-config": nix.thunk(() => nix.builtins.import(nix.path(here, "./example-config.nix"))),
 }));
 //# sourceMappingURL=default.ts.map

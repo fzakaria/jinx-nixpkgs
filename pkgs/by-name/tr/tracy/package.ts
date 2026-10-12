@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const nativefiledialog_extended = nix.arg($, "nativefiledialog-extended");
   const html_tidy = nix.arg($, "html-tidy");
   return nix.sel(nix.app(nix.builtins.import(nix.path(here, "./package-versions.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       stdenv: stdenv,
       fetchFromGitHub: fetchFromGitHub,

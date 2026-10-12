@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-fastapi",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [httpx, opentelemetry_test_utils, pytestCheckHook, requests]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.fastapi"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OpenTelemetry Instrumentation for fastapi",
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi",
       })),

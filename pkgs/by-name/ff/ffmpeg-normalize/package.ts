@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.42.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "ffmpeg_normalize",
           hash: "sha256-cCqqpunF7zn4QHoS3QTAtyeTX/+AKIxFVMl6FOWYjWw=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["colorlog"]);
       const checkPhase = "runHook preCheck\n\n$out/bin/ffmpeg-normalize --help > /dev/null\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Normalize audio via ffmpeg",
         homepage: "https://github.com/slhck/ffmpeg-normalize",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ffmpeg-normalize",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

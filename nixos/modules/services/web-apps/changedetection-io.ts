@@ -49,79 +49,79 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "changedetection-io"));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "changedetection-io": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "changedetection-io")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "changedetection-io", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "changedetection-io",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "User account under which changedetection-io runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "changedetection-io",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Group account under which changedetection-io runs.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "Address the server will listen on.",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 5000n,
               description: "Port the server will listen on.",
             })))),
           datastorePath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/lib/changedetection-io",
               description: "The directory used to store all data for changedetection-io.\n",
             })))),
           baseURL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "https://changedetection-io.example",
               description: "The base url used in notifications and `{base_url}` token.\n",
             })))),
           behindProxy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable this option when changedetection-io runs behind a reverse proxy, so that it trusts X-* headers.\nIt is recommend to run changedetection-io behind a TLS reverse proxy.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/secrets/changedetection-io.env",
               description: "Securely pass environment variables to changedetection-io.\n\nThis can be used to set for example a frontend password reproducible via `SALTED_PASS`\nwhich convinetly also deactivates nags about the hosted version.\n`SALTED_PASS` should be 64 characters long while the first 32 are the salt and the second the frontend password.\nIt can easily be retrieved from the settings file when first set via the frontend with the following command:\n``jq -r .settings.application.password /var/lib/changedetection-io/url-watches.json``\n",
             })))),
           webDriverSupport: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable support for fetching web pages using WebDriver and Chromium.\nThis starts a headless chromium controlled by puppeteer in an oci container.\n\n::: {.note}\nPlaywright can currently leak memory.\nSee <https://github.com/dgtlmoon/changedetection.io/wiki/Playwright-content-fetcher#playwright-memory-leak>\n:::\n",
             })))),
           playwrightSupport: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable support for fetching web pages using playwright and Chromium.\nThis starts a headless Chromium controlled by puppeteer in an oci container.\n\n::: {.note}\nPlaywright can currently leak memory.\nSee <https://github.com/dgtlmoon/changedetection.io/wiki/Playwright-content-fetcher#playwright-memory-leak>\n:::\n",
             })))),
           chromePort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 4444n,
               description: "A free port on which webDriverSupport or playwrightSupport listen on localhost.\n",
@@ -130,10 +130,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "webDriverSupport"), true)) && nix.asBool(nix.eq(nix.sel(cfg, "playwrightSupport"), true))))),
             message: "'services.changedetection-io.webDriverSupport' and 'services.changedetection-io.playwrightSupport' cannot be used together.",
           })),
@@ -141,15 +141,15 @@ export default nix.lambda((args) => (() => {
         systemd: nix.thunk(() => (() => {
           const defaultStateDir = nix.thunk(() => nix.eq(nix.sel(cfg, "datastorePath"), "/var/lib/changedetection-io"));
           return {
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               "changedetection-io": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   StateDirectory: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), defaultStateDir, "changedetection-io")),
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               rules: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(defaultStateDir)), nix.thunk(() => [
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "datastorePath")} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
                 ]))),
@@ -175,25 +175,25 @@ export default nix.lambda((args) => (() => {
           };
         })()),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "changedetection-io")), nix.thunk(() => ({
-              __proto__: pos$22,
-              "changedetection-io": nix.thunk(() => ({ __proto__: pos$21, isSystemUser: true, group: "changedetection-io" })),
+              [nix.POS]: pos$22,
+              "changedetection-io": nix.thunk(() => ({ [nix.POS]: pos$21, isSystemUser: true, group: "changedetection-io" })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "changedetection-io")), nix.thunk(() => ({ __proto__: pos$23, "changedetection-io": nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "changedetection-io")), nix.thunk(() => ({ [nix.POS]: pos$23, "changedetection-io": nix.thunk(() => ({})) })))),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           "oci-containers": nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             containers: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "webDriverSupport")), nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     "changedetection-io-webdriver": nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       image: "selenium/standalone-chrome",
                       environment: nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         VNC_NO_PASSWORD: "1",
                         SCREEN_WIDTH: "1920",
                         SCREEN_HEIGHT: "1080",
@@ -207,12 +207,12 @@ export default nix.lambda((args) => (() => {
                     })),
                   })))),
                 nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "playwrightSupport")), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     "changedetection-io-playwright": nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       image: "docker.io/browserless/chrome",
                       environment: nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         SCREEN_WIDTH: "1920",
                         SCREEN_HEIGHT: "1024",
                         SCREEN_DEPTH: "16",
@@ -233,10 +233,10 @@ export default nix.lambda((args) => (() => {
               ]))),
           })),
           podman: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             defaultNetwork: nix.thunk(() => ({
-              __proto__: pos$33,
-              settings: nix.thunk(() => ({ __proto__: pos$32, dns_enabled: true })),
+              [nix.POS]: pos$33,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$32, dns_enabled: true })),
             })),
           })),
         })),

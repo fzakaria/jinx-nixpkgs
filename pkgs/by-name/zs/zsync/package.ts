@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zsync",
       version: "0.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cph6",
           repo: "zsync",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "bintools", "targetPrefix")}ar`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-implicit-function-declaration"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=incompatible-pointer-types"])))))),
       })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "File distribution system using the rsync algorithm",
         homepage: "https://github.com/cph6/zsync",
         changelog: nix.thunk(() => nix.str`https://github.com/cph6/zsync/raw/refs/tags/${nix.sel(finalAttrs, "src", "tag")}/c/NEWS`),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bison",
       version: "3.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/bison/bison-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-BsnhO99+sk1M62tZIFpPZ8LH5yExGWREMP6C+9FKCrs=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/bison/",
         description: "Yacc-compatible parser generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

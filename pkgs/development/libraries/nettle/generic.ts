@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nettle",
       version: version,
       src: src,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-cygwin")), nix.path(here, "./cygwin.patch"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cryptographic library",
         longDescription: "Nettle is a cryptographic library that is designed to fit\neasily in more or less any context: In crypto toolkits for\nobject-oriented languages (C++, Python, Pike, ...), in\napplications like LSH or GNUPG, or even in kernel space.  In\nmost contexts, you need more than the basic cryptographic\nalgorithms, you also need some way to keep track of available\nalgorithms, their properties and variants.  You often have\nsome algorithm selection process, often dictated by a protocol\nyou want to implement.\n\nAnd as the requirements of applications differ in subtle and\nnot so subtle ways, an API that fits one application well can\nbe a pain to use in a different context.  And that is why\nthere are so many different cryptographic libraries around.\n\nNettle tries to avoid this problem by doing one thing, the\nlow-level crypto stuff, and providing a simple but general\ninterface to it.  In particular, Nettle doesn't do algorithm\nselection.  It doesn't do memory allocation. It doesn't do any\nI/O.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vcunat"))]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "nettle_project", version)),
         })),
       })),

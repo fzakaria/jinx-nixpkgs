@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_mikmatch",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`ppx_mikmatch-${nix.sel(finalAttrs, "version")}.tar.gz`),
           url: nix.thunk(() => nix.str`https://codeload.github.com/ahrefs/ppx_mikmatch/tar.gz/refs/tags/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tDp4iYJLzfVKB6VBWrHtT2jrHDtJCEPVplSNrXX5wek=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit2]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Matching Regular Expressions with OCaml Patterns using Mikmatch's syntax",
         homepage: "https://github.com/ahrefs/ppx_mikmatch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

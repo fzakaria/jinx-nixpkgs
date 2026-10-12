@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boto",
           repo: "s3transfer",
           tag: version,
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/integration"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/unit/test_compat.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["s3transfer"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         crt: nix.thunk(() => nix.sel(botocore, "optional-dependencies", "crt")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for managing Amazon S3 transfers",
         homepage: "https://github.com/boto/s3transfer",
         changelog: nix.thunk(() => nix.str`https://github.com/boto/s3transfer/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

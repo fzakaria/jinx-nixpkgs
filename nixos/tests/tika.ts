@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "tika-server",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            tika: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            [nix.POS]: pos$2,
+            tika: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "machine.start()\nmachine.wait_for_unit(\"tika.service\")\nmachine.wait_for_open_port(9998)\n",
-    meta: nix.thunk(() => ({ __proto__: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=tika.ts.map

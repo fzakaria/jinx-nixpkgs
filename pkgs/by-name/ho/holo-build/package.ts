@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const file = nix.arg($, "file");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "holo-build",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "holocm",
           repo: "holo-build",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ bash test/interface/run_tests.sh
 `),
       postInstall: "installManPage build/man/*\ninstallShellCompletion --bash --name holo-build util/autocomplete.bash\ninstallShellCompletion --zsh --name _holo-build util/autocomplete.zsh\n\n# install wrapper script\nmkdir -p $out/lib/holo\nmv $out/bin/holo-build $out/lib/holo/holo-build\ncp src/holo-build.sh $out/bin/holo-build\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-distribution system package compiler",
         homepage: "https://holocm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

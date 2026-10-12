@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "capitaine-cursors-themed";
       const version = "5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/sainnhe/capitaine-cursors/releases/download/r${version}/Linux.zip`),
           stripRoot: false,
           hash: "sha256-ipPpmZKU/xLA45fdOvxVbtFDCUsCYIvzeps/DjhFkNg=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/icons\ncp -r ./ $out/share/icons\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of the capitaine cursor theme, with some additional variants (Gruvbox, Nord, Palenight) and support for HiDPI",
         homepage: "https://github.com/sainnhe/capitaine-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

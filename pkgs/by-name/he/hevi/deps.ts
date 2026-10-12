@@ -18,40 +18,40 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "known_folders-0.0.0-Fy-PJk7KAAC41mQXzmFyGa0Q7tvmQjatENkREa6Gc4zu",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/ziglibs/known-folders",
             rev: "175f5596b3d2ee3c658282bb07885580895a0e73",
             hash: "sha256-gTnTyqkAAT5AYXxbG80ybiiRk+pOkm7dvqThcNWGmpo=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "lsp_kit-0.1.0-bi_PL_kyDACVTEhLaMq2-PJx0MocqRyjXDAN0ybMUyQQ",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/zigtools/lsp-kit",
             rev: "ec325a3c33d1da7708cf513355208f74d9560580",
             hash: "sha256-60F2BOCrl3CreQFmpH3HAz6zzxd3VgJ3iSEkP39gtgQ=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "pennant-0.1.0-MwI8MKRGAABMDdwYvJNkdeWgU4iQ9JHqA9fTxk1zsFFq",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/Arnau478/pennant",
             rev: "8441e0ca7ad9e140293d6692c82e59bcabe82205",
             hash: "sha256-zZqXO9tI44xkbq4yVU9OEadAVRFn0YtF/vuvUQXcEfE=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "ziggy-0.1.0-kTg8v1ZWBgDLi7Y-AtdRRzqEvmYJiOq4I9r4mB2wLaKQ",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/kristoff-it/ziggy",
             rev: "6760f0f4c4fc1ae01428bc6d87109e32124eeeb7",
             hash: "sha256-uhC4Wg/yAZPdivQ49nwekKwLqwFYxikO/8j8+U2EK5Q=",

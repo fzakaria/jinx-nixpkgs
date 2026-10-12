@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const version = nix.argOr($, "version", () => "1.1.1");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "h1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/ocaml-h1/releases/download/v${version}/h1-${version}.tbz`),
           hash: "sha256-K3hsBXZmlZqeBm8O58uEmvjknJX1UIRf+fG0gLzI4Zo=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance, memory-efficient, and scalable web server for OCaml",
         homepage: "https://github.com/robur-coop/ocaml-h1",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

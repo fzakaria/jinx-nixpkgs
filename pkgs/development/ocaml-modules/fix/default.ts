@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fix",
       version: "20250919",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "fpottier",
           repo: "fix",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       minimalOCamlVersion: "4.03",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.inria.fr/fpottier/fix/",
         description: "Simple OCaml module for computing the least solution of a system of monotone equations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

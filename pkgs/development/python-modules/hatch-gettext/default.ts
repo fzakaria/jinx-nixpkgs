@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hatch-gettext",
       version: "1.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "damonlynch",
           repo: "hatch-gettext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [rich]),
       pythonImportsCheck: nix.thunk(() => ["hatch_gettext"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hatch build hook plugin for GNU gettext",
         homepage: "https://github.com/damonlynch/hatch-gettext",
         changelog: nix.thunk(() => nix.str`https://github.com/damonlynch/hatch-gettext/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

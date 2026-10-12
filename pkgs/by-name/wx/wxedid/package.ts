@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const wxwidgets_3_3 = nix.arg($, "wxwidgets_3_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wxedid",
       version: "0.0.33",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.sourceforge.net/project/wxedid/wxedid-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ShO2e5rQCVBdgyg4iiFzFEywl2m9A+jILMGI+MT8qgo=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wxwidgets_3_3]),
       prePatch: "patchShebangs src/rcode/rcd_autogen\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "wxWidgets-based EDID (Extended Display Identification Data) editor",
         homepage: "https://sourceforge.net/projects/wxedid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

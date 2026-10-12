@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const openstackdocstheme = nix.arg($, "openstackdocstheme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aodhclient",
       version: "3.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-aodhclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-vyrs7QewZknxB1fovZQRhOJe3G9J5YEN4cIHeLrnvrU=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [pbr, setuptools]),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         "aodhclient.tests.unit",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client library for OpenStack AOodh API",
         homepage: "https://docs.openstack.org/python-aodhclient/latest/",
         downloadPage: nix.thunk(() => nix.str`https://github.com/openstack/python-aodhclient/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

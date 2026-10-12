@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "click-contrib",
           repo: "click-didyoumean",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [click]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enable git-like did-you-mean feature in click",
         homepage: "https://github.com/click-contrib/click-didyoumean",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

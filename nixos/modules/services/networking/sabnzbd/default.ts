@@ -93,53 +93,53 @@ export default nix.lambda((args) => (() => {
   const enumFromAttrs = (enum_values) => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), enum_values)))), (name) => nix.sel(enum_values, nix.key(nix.force(name))), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), enum_values)))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "sabnzbd"));
   const fixupSettings = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (value) => (nix.asBool(nix.eq(value, true)) ? 1n : (nix.asBool(nix.eq(value, false)) ? 0n : nix.force(value)))));
-  const mandatoryGlobalSettings = nix.thunk(() => ({ __proto__: pos$1, __version__: 19n, __encoding__: "utf-8" }));
+  const mandatoryGlobalSettings = nix.thunk(() => ({ [nix.POS]: pos$1, __version__: 19n, __encoding__: "utf-8" }));
   const allSettings = nix.thunk(() => nix.app(fixupSettings, nix.thunk(() => nix.update(mandatoryGlobalSettings, nix.sel(cfg, "settings")))));
   const configObjIni = nix.thunk(() => nix.sel(pkgs, "formats", "configobj"));
   const publicSettingsIni = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.app(nix.sel(nix.app(configObjIni, nix.thunk(() => ({}))), "generate"), "public-settings.ini", allSettings)));
   const sabnzbdIniPath = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.str`/var/lib/${nix.sel(cfg, "stateDir")}/sabnzbd.ini`));
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     options: nix.thunk(() => ({
-      __proto__: pos$57,
+      [nix.POS]: pos$57,
       services: nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         sabnzbd: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the sabnzbd server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "sabnzbd", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.05")) ? "/var/lib/sabnzbd/sabnzbd.ini" : null)),
               description: "Path to config file (deprecated, use `settings` instead and set this value to null)",
             })))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "sabnzbd",
               description: "State directory of the service under /var/lib/",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "sabnzbd",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "User to run the service as",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "sabnzbd",
               description: "Group to run the service as",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the sabnzbd web interface\n",
             })))),
           secretFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
               default: [],
             })))),
           secretValues: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -158,22 +158,22 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"@my_server_password@\" = \"/run/secrets/my_server_password\";\n  \"@my_server_username@\" = \"/run/secrets/my_server_username\";\n  \"@sabnzbd_api_key@\" = \"/run/secrets/sabnzbd_api_key\";\n  \"@sabnzbd_nzb_key@\" = \"/run/secrets/sabnzbd_nzb_key\";\n}\n")),
             })))),
           allowConfigWrite: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "By default we create the sabnzbd configuration read-only,\nwhich keeps the nixos configuration as the single source\nof truth. If you want to enable configuration of\nsabnzbd via the web interface or use options that require\na writeable configuration, such as quota tracking, enable\nthis option.\n",
               default: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.05")),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               description: "The sabnzbd configuration (see also\n[sabnzbd's wiki](https://sabnzbd.org/wiki/configuration/4.5/configure)\nfor extra documentation)\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   freeformType: nix.thunk(() => nix.sel(nix.app(configObjIni, nix.thunk(() => ({}))), "type")),
                   config: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     misc: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       config_conversion_version: nix.thunk(() => nix.app(mkOptionDefault, 4n)),
                       config_lock: nix.thunk(() => nix.app(mkOptionDefault, false)),
                       notified_new_skin: nix.thunk(() => nix.app(mkOptionDefault, true)),
@@ -182,53 +182,53 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   options: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     misc: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       bandwidth_max: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Maximum bandwidth in bytes(!)/sec (supports prefixes). Use\nin conjunction with `bandwidth_perc` to set a bandwidth\nlimit. Empty string disables limit.\n",
                           default: "",
                           example: "50MB/s",
                         })))),
                       bandwidth_perc: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           description: "Percentage of `bandwidth_max` that sabnzbd is allowed to use.\n0 means no limit.\n",
                           default: 0n,
                           example: 50n,
                         })))),
                       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Address for the Web UI to listen on for incoming connections.\n",
                           default: "127.0.0.1",
                           example: "0.0.0.0",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           description: "Port for the Web UI to listen on for incoming connections.\n",
                           default: 8080n,
                           example: 12345n,
                         })))),
                       https_cert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           description: "Path to the TLS certificate for the web UI. If not set\nand https is enabled, a self-signed certificate will\nbe generated.\n",
                           default: null,
                           example: nix.thunk(() => nix.app(literalExpression, "${config.acme.certs.${domain}.directory}/fullchain.pem")),
                         })))),
                       https_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                           description: "Path to the TLS key for the web UI. If not set and\nhttps is enabled, a self-signed certificate will be\ngenerated\n",
                           default: null,
                           example: nix.thunk(() => nix.app(literalExpression, "${config.acme.certs.${domain}.directory}/key.pem")),
                         })))),
                       enable_https: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           description: "Whether to enable HTTPS for the web UI",
                           default: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "misc", "https_cert"), null)),
@@ -236,22 +236,22 @@ export default nix.lambda((args) => (() => {
                           example: true,
                         })))),
                       cache_limit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Size of the RAM cache, in bytes (prefixes supported).\nSabnzbd recommends 25% of available RAM. Empty means\nno cache.\n",
                           default: "",
                           example: "500M",
                         })))),
                       html_login: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           description: "Prompt for login with an html login mask if enabled,\notherwise prompt for basic auth (useful for SSO)\n",
                           default: true,
                         })))),
                       inet_exposure: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.app(enumFromAttrs, nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               none: 0n,
                               "api (add nzbs)": 1n,
                               "api (no config)": 2n,
@@ -263,55 +263,55 @@ export default nix.lambda((args) => (() => {
                           default: "none",
                         })))),
                       email_endjob: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$24,
-                          type: nix.thunk(() => nix.app(enumFromAttrs, nix.thunk(() => ({ __proto__: pos$23, never: 0n, always: 1n, "on error": 2n })))),
+                          [nix.POS]: pos$24,
+                          type: nix.thunk(() => nix.app(enumFromAttrs, nix.thunk(() => ({ [nix.POS]: pos$23, never: 0n, always: 1n, "on error": 2n })))),
                           description: "Whether to send emails on job completion. Values are:\n0, 'never'    -- Never\n1, 'always'   -- Always\n2, 'on error' -- On error\n",
                           default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "misc", "email_server"), "")) ? "on error" : "never")),
                           defaultText: "if cfg.settings.misc.email_server != \"\" then \"on error\" else \"never\"",
                         })))),
                       email_full: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           description: "Whether to send alerts for full disks",
                           default: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "misc", "email_server"), "")),
                           defaultText: "cfg.settings.misc.email_server != \"\"",
                         })))),
                       email_rss: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           description: "Whether to send alerts for jobs added by RSS feeds",
                           default: false,
                         })))),
                       email_server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "SMTP server for email alerts (server:host)",
                           default: "",
                         })))),
                       email_to: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Receiving address for email alerts",
                           default: "",
                         })))),
                       email_from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "'From:' field for emails (needs to be an address)",
                           default: "",
                         })))),
                     })),
                     ntfosd: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         default: nix.thunk(() => ({})),
                         description: "NotifyOSD settings",
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             freeformType: nix.thunk(() => nix.sel(nix.app(configObjIni, nix.thunk(() => ({}))), "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$32,
+                              [nix.POS]: pos$32,
                               ntfosd_enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$31,
+                                  [nix.POS]: pos$31,
                                   type: nix.thunk(() => nix.sel(types, "bool")),
                                   description: "Whether to enable NotifyOSD alerts. Does not really make sense\nin a server environment, hence we default to false despite\nupstream's default true.\n",
                                   default: false,
@@ -320,93 +320,93 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })))),
                     servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$51,
+                        [nix.POS]: pos$51,
                         default: nix.thunk(() => ({})),
                         description: "Usenet provider specification",
                         type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$50,
+                              [nix.POS]: pos$50,
                               freeformType: nix.thunk(() => nix.sel(nix.app(configObjIni, nix.thunk(() => ({}))), "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$49,
+                                [nix.POS]: pos$49,
                                 enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$35,
+                                    [nix.POS]: pos$35,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     description: "Enable this server by default",
                                     default: true,
                                     example: false,
                                   })))),
                                 required: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$36,
+                                    [nix.POS]: pos$36,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     description: "In case of connection failures, wait for the\nserver to come back online instead of skipping\nit.\n",
                                     default: false,
                                     example: true,
                                   })))),
                                 optional: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$37,
+                                    [nix.POS]: pos$37,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     description: "In case of connection failures, temporarily\ndisable this server. (See sabnzbd's documentation\nfor usage guides).\n",
                                     default: false,
                                     example: true,
                                   })))),
                                 priority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$38,
+                                    [nix.POS]: pos$38,
                                     type: nix.thunk(() => nix.sel(types, "int")),
                                     description: "Priority of this servers. Servers are queried in\norder of priority, from highest (0) to lowest (100).\n",
                                     default: 0n,
                                   })))),
                                 name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$39,
+                                    [nix.POS]: pos$39,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "The name of the server\n",
                                     example: "Example News Provider",
                                   })))),
                                 displayname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$40,
+                                    [nix.POS]: pos$40,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "Human-friendly description of the server\n",
                                     example: "Example News Provider",
                                   })))),
                                 host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$41,
+                                    [nix.POS]: pos$41,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "Hostname of the server\n",
                                     example: "news.example.com",
                                   })))),
                                 port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$42,
+                                    [nix.POS]: pos$42,
                                     type: nix.thunk(() => nix.sel(types, "port")),
                                     description: "Port of the server",
                                     example: 443n,
                                     default: 563n,
                                   })))),
                                 connections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$43,
+                                    [nix.POS]: pos$43,
                                     type: nix.thunk(() => nix.sel(types, "int")),
                                     description: "Number of parallel connections permitted by\nthe server.\n",
                                     example: 50n,
                                     default: 8n,
                                   })))),
                                 timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$44,
+                                    [nix.POS]: pos$44,
                                     type: nix.thunk(() => nix.sel(types, "int")),
                                     description: "Time, in seconds, to wait for a response before\nattempting error recovery.\n",
                                     default: 60n,
                                   })))),
                                 ssl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$45,
+                                    [nix.POS]: pos$45,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     description: "Whether the server supports TLS\n",
                                     default: true,
                                   })))),
                                 ssl_verify: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$47,
-                                    type: nix.thunk(() => nix.app(enumFromAttrs, nix.thunk(() => ({ __proto__: pos$46, strict: 3n, "allow injection": 2n, none: 0n })))),
+                                    [nix.POS]: pos$47,
+                                    type: nix.thunk(() => nix.app(enumFromAttrs, nix.thunk(() => ({ [nix.POS]: pos$46, strict: 3n, "allow injection": 2n, none: 0n })))),
                                     description: "Level of TLS verification. Supported values:\n3, 'strict'          -- strict (normal) verification\n2, 'allow injection' -- allow locally injected certificates\n0, 'none'            -- no verification\n",
                                     default: "strict",
                                   })))),
                                 expire_date: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$48,
+                                    [nix.POS]: pos$48,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                     description: "If Notifications are enabled and an expiry date is\nset, warn 5 days before expiry. This setting\ndoes not automatically disable the server.\nExpected format: yyyy-mm-dd\n",
                                     default: null,
@@ -421,35 +421,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), "`sabnzbd.configFile` is deprecated, consider using `sabnzbd.settings` instead.\nIf you have values set in `sabnzbd.settings` set, they will be ignored.\n")),
         users: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "sabnzbd")), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               sabnzbd: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "sabnzbd user",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "sabnzbd")), nix.thunk(() => ({ __proto__: pos$60, sabnzbd: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "sabnzbd")), nix.thunk(() => ({ [nix.POS]: pos$60, sabnzbd: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           services: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             sabnzbd: nix.thunk(() => (() => {
               const files = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "allowConfigWrite")), sabnzbdIniPath), nix.concat([publicSettingsIni], nix.sel(cfg, "secretFiles"))));
               const iniPathQuoted = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArg"), sabnzbdIniPath));
               return nix.update({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 description: "sabnzbd server",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   Type: "forking",
                   GuessMainPID: "no",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -458,7 +458,7 @@ export default nix.lambda((args) => (() => {
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -d -f ${iniPathQuoted}`),
                 })),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   preStart: nix.thunk(() => nix.str`set -euo pipefail
 
 ${nix.app(nix.sel(lib, "toShellVar"), "files", files)}
@@ -491,9 +491,9 @@ rm "$tmpfile"
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "misc", "port"))]),
             })))),
         })),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gash = nix.arg($, "gash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gash-utils",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/gash/gash-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-5qrlpvQP34xfhzD2bD+MMEe94A+M2XWV9arSRElZ1KM=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Core POSIX utilities written in Guile Scheme",
         homepage: "https://savannah.nongnu.org/projects/gash/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const lwd = nix.arg($, "lwd");
   const tyxml = nix.arg($, "tyxml");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tyxml-lwd",
       version: nix.thunk(() => nix.attr(lwd, "version")),
       src: nix.thunk(() => nix.attr(lwd, "src")),
       buildInputs: nix.thunk(() => [js_of_ocaml_ppx]),
       propagatedBuildInputs: nix.thunk(() => [js_of_ocaml, lwd, tyxml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Make reactive webpages in Js_of_ocaml using Tyxml and Lwd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "alizter"))]),

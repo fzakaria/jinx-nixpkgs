@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libgcrypt = nix.arg($, "libgcrypt");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libspectrum",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fuse-emulator/libspectrum-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-+kpeaMGrWGDc35n1SG7mMTmV2+MOhBYOn2mdD423fXY=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fuse-emulator.sourceforge.net/libspectrum.php",
         description: "ZX Spectrum input and output support library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

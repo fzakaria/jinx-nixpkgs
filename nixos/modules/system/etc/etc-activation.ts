@@ -41,57 +41,57 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [nix.path(here, "./etc.nix")]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           system: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             activationScripts: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               etc: nix.thunk(() => nix.app(nix.sel(lib, "stringAfter"), nix.thunk(() => ["users", "groups", "specialfs"]), nix.thunk(() => nix.sel(config, "system", "build", "etcActivationCommands")))),
             })),
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "etc", "overlay", "enable")), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
                 message: "`system.etc.overlay.enable` requires `boot.initrd.systemd.enable`",
               })),
               nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.sel(config, "system", "etc", "overlay", "mutable"))) || nix.asBool((nix.asBool(nix.sel(config, "systemd", "sysusers", "enable")) || nix.asBool(nix.sel(config, "services", "userborn", "enable")))))),
                 message: "`!system.etc.overlay.mutable` requires `systemd.sysusers.enable` or `services.userborn.enable`",
               })),
               nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "system", "switch", "enable")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.6")))),
                 message: "switchable systems with `system.etc.overlay.enable` require a newer kernel, at least version 6.6",
               })),
             ]),
             boot: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               initrd: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 availableKernelModules: nix.thunk(() => ["loop", "erofs", "overlay"]),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   storePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "etc", "overlay", "mutable")), nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos-init", "package")}/bin/clear-etc-opaque`),
                     ]))),
                   mounts: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       where: "/run/nixos-etc-metadata",
                       what: "/etc-metadata-image",
                       type: "erofs",
                       options: "loop,ro,nodev,nosuid",
                       unitConfig: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         DefaultDependencies: false,
                         RequiresMountsFor: nix.thunk(() => ["/sysroot/nix/store"]),
                         ConditionPathExists: "/etc-metadata-image",
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
                       before: nix.thunk(() => ["initrd-fs.target"]),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       where: "/sysroot/etc",
                       what: "overlay",
                       type: "overlay",
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
                           nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "services", "rw-etc", "name")),
                         ])))),
                       unitConfig: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         RequiresMountsFor: nix.thunk(() => ["/sysroot/nix/store", "/run/nixos-etc-metadata"]),
                         DefaultDependencies: false,
                         ConditionPathExists: "/etc-basedir",
@@ -140,19 +140,19 @@ export default nix.lambda((args) => (() => {
                   ]),
                   services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "system", "etc", "overlay", "mutable")), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           "rw-etc": nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             requiredBy: nix.thunk(() => ["initrd-fs.target"]),
                             before: nix.thunk(() => ["initrd-fs.target"]),
                             unitConfig: nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               DefaultDependencies: false,
                               RequiresMountsFor: nix.thunk(() => ["/sysroot", "/run/nixos-etc-metadata"]),
                               ConditionPathExists: "/etc-metadata-image",
                             })),
                             serviceConfig: nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               Type: "oneshot",
                               ExecStart: nix.thunk(() => [
                                 "/bin/mkdir -p -m 0755 /sysroot/.rw-etc/upper /sysroot/.rw-etc/work",
@@ -162,21 +162,21 @@ export default nix.lambda((args) => (() => {
                           })),
                         })))),
                       nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         "initrd-find-etc": nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           description: "Find the path to the etc metadata image and based dir",
                           before: nix.thunk(() => ["shutdown.target"]),
                           conflicts: nix.thunk(() => ["shutdown.target"]),
                           requiredBy: nix.thunk(() => ["initrd.target"]),
                           path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "nixos-init", "package"))]),
                           unitConfig: nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             DefaultDependencies: false,
                             RequiresMountsFor: "/sysroot/nix/store",
                           })),
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             Type: "oneshot",
                             RemainAfterExit: true,
                             ExecStart: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos-init", "package")}/bin/find-etc`),
@@ -188,7 +188,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               requiredKernelConfig: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(config, "lib", "kernelConfig")), null);
                 return [nix.thunk(() => nix.app(nix.lookup(w, "isEnabled"), "EROFS_FS"))];
@@ -196,22 +196,22 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "system", "etc", "overlay", "enable")) && nix.asBool(!nix.asBool(nix.sel(config, "system", "etc", "overlay", "mutable"))))), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             environment: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               etc: nix.thunk(() => ({
-                __proto__: pos$25,
-                "machine-id": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$24, text: "", mode: "0444" })))),
+                [nix.POS]: pos$25,
+                "machine-id": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$24, text: "", mode: "0444" })))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               services: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 "systemd-machine-id-commit": nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     ConditionFirstBoot: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["", "true"]))),
                     ConditionPathIsMountPoint: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/etc/machine-id")),
                   })),

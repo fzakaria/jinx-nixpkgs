@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add("glucose", nix.app(nix.sel(lib, "optionalString"), enableUnfree, "-syrup")));
       const version = "4.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.labri.fr/perso/lsimon/downloads/softwares/glucose-${version}.zip`),
           hash: "sha256-J0J9EKC/4cCiZr/y4lz+Hm7OcmJmMIIWzQ+4c+KhqXg=",
         }))));
@@ -37,7 +37,7 @@ install -Dm0755 ../{LICEN?E,README*,Changelog*} "$out/share/doc/${pname}-${versi
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`Modern, parallel SAT solver (${(nix.asBool(enableUnfree) ? "parallel" : "sequential")} version)`),
         mainProgram: "glucose",
         homepage: "https://www.labri.fr/perso/lsimon/research/glucose/",
@@ -46,7 +46,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

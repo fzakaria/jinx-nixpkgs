@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mint-l-icons",
       version: "1.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "mint-l-icons",
           rev: "dbf96f024f7d06905d35edb40a7f127b8e54af65",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out\nmv usr/share $out\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/mint-l-icons",
         description: "Mint-L icon theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const anki_utils = nix.arg($, "anki-utils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "recolor",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AnKing-VIP",
           repo: "AnkiRecolor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src/addon`),
       patches: nix.thunk(() => [nix.path(here, "./only-update-config-version-when-migration-happens.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ReColor your Anki desktop to whatever aesthetic you like",
         longDescription: "This add-on must be configured with a theme to use. You can find some pre-made\nthemes at <https://github.com/AnKing-VIP/AnkiRecolor/wiki/Themes>.\n\nExample:\n\n```nix\npkgs.ankiAddons.recolor.withConfig {\n  config = {\n    colors = {\n      ACCENT_CARD = [\n        \"Card mode\"\n        \"#cba6f7\"\n        \"#cba6f7\"\n        \"--accent-card\"\n      ];\n      # ...\n    };\n    version = {\n      major = 3;\n      minor = 1;\n    };\n  };\n}\n```\n",
         homepage: "https://github.com/AnKing-VIP/AnkiRecolor",

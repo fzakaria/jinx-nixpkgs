@@ -13,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libcMinimal = nix.arg($, "libcMinimal");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       path: "lib/librthread",
       libcMinimal: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       makeFlags: nix.thunk(() => ["LIBCSRCDIR=../libc"]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       extraPaths: nix.thunk(() => ["lib/libpthread", nix.thunk(() => nix.sel(libcMinimal, "path"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
     })));

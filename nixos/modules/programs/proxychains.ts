@@ -51,85 +51,85 @@ localnet ${nix.sel(cfg, "localnet")}
 ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${nix.sel(v, "type")} ${nix.sel(v, "host")} ${nix.builtins.toString(nix.thunk(() => nix.sel(v, "port")))}`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "proxies")))))))}
 `);
   const proxyOptions = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "this proxy")),
       type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["http", "socks4", "socks5"]))),
           description: "Proxy type.",
         })))),
       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           description: "Proxy host or IP address.",
         })))),
       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "port")),
           description: "Proxy port",
         })))),
     })),
   }));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       programs: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         proxychains: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "proxychains configuration")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "proxychains", nix.thunk(() => ({ __proto__: pos$6, example: "proxychains-ng" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "proxychains", nix.thunk(() => ({ [nix.POS]: pos$6, example: "proxychains-ng" })))),
           chain: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["dynamic", "strict", "random"]))),
                 default: "strict",
                 description: "`dynamic` - Each connection will be done via chained proxies\nall proxies chained in the order as they appear in the list\nat least one proxy must be online to play in chain\n(dead proxies are skipped)\notherwise `EINTR` is returned to the app.\n\n`strict` - Each connection will be done via chained proxies\nall proxies chained in the order as they appear in the list\nall proxies must be online to play in chain\notherwise `EINTR` is returned to the app.\n\n`random` - Each connection will be done via random proxy\n(or proxy chain, see {option}`programs.proxychains.chain.length`) from the list.\n",
               })))),
             length: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 default: null,
                 description: "Chain length for random chain.\n",
               })))),
           })),
           proxyDNS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Proxy DNS requests - no leak for DNS data.",
             })))),
           quietMode: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Quiet mode (no output from the library)")),
           remoteDNSSubnet: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [10n, 127n, 224n]))),
               default: 224n,
               description: "Set the class A subnet number to use for the internal remote DNS mapping, uses the reserved 224.x.x.x range by default.\n",
             })))),
           tcpReadTimeOut: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 15000n,
               description: "Connection read time-out in milliseconds.",
             })))),
           tcpConnectTimeOut: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 8000n,
               description: "Connection time-out in milliseconds.",
             })))),
           localnet: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.0/255.0.0.0",
               description: "By default enable localnet for loopback address ranges.",
             })))),
           proxies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), proxyOptions)))),
               description: "Proxies to be used by proxychains.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ myproxy =\n  { type = \"socks4\";\n    host = \"127.0.0.1\";\n    port = 1337;\n  };\n}\n")),
@@ -138,27 +138,27 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapA
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sorki"))];
       })()),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "chain", "type"), "random")) && nix.asBool(nix.eq(nix.sel(cfg, "chain", "length"), null)))),
             message: "Option `programs.proxychains.chain.length`\nonly makes sense with `programs.proxychains.chain.type` = \"random\".\n",
           })))),
         programs: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           proxychains: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             proxies: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "tor", "client", "enable")), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 torproxy: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     enable: true,
                     type: "socks4",
                     host: "127.0.0.1",
@@ -168,10 +168,10 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapA
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           etc: nix.thunk(() => ({
-            __proto__: pos$26,
-            "proxychains.conf": nix.thunk(() => ({ __proto__: pos$25, text: configFile })),
+            [nix.POS]: pos$26,
+            "proxychains.conf": nix.thunk(() => ({ [nix.POS]: pos$25, text: configFile })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),

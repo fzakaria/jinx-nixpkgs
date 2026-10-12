@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "korean_lunar_calendar",
           hash: "sha256-6yxIUSSgYQFpJr3qbYnv35uf2/FttViVts8eW+wXuFc=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["korean_lunar_calendar"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to convert Korean lunar-calendar to Gregorian calendar",
         homepage: "https://github.com/usingsky/korean_lunar_calendar_py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ris"))]),
       }));
-      return { __proto__: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

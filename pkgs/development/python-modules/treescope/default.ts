@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "treescope",
       version: "0.1.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google-deepmind",
           repo: "treescope",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "torch-without-named-tensors.patch",
             url: "https://github.com/google-deepmind/treescope/commit/20a94822d0c4c0a55c10eaa8fed96a77757f4068.patch",
             hash: "sha256-amv4AG2G7TXnzGYBE14mARQh8IYuH3RswtbywTmi4b4=",
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]),
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [numpy]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, notebook: nix.thunk(() => [ipython, jax, palettable]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, notebook: nix.thunk(() => [ipython, jax, palettable]) })),
       pythonImportsCheck: nix.thunk(() => ["treescope"]),
       nativeCheckInputs: nix.thunk(() => [absl_py, jax, jaxlib, omegaconf, pydantic, pytestCheckHook, torch]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interactive HTML pretty-printer for machine learning research in IPython notebooks",
         homepage: "https://github.com/google-deepmind/treescope",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/treescope/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -16,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const packageOverrides = nix.argOr($, "packageOverrides", () => (self) => (super$) => ({}));
   const unwrappedFeaturesOverride = nix.argOr($, "unwrappedFeaturesOverride", () => ({}));
   return nix.app(nix.sel(gnuradio, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       doWrap: false,
       packageOverrides: packageOverrides,
       unwrapped: nix.thunk(() => nix.app(nix.sel(gnuradio, "unwrapped", "override"), nix.thunk(() => ({
-          __proto__: pos$3,
-          volk: nix.thunk(() => nix.app(nix.sel(volk, "override"), nix.thunk(() => ({ __proto__: pos$1, enableModTool: false })))),
+          [nix.POS]: pos$3,
+          volk: nix.thunk(() => nix.app(nix.sel(volk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableModTool: false })))),
           uhd: uhdMinimal,
           features: nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "gnuradio-companion": false,
             "python-support": false,
             examples: false,

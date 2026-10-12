@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "happyleavesaoc",
           repo: "python-snapcast",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["snapcast"]);
       const disabledTests = nix.thunk(() => ["test_stream_setmeta", "est_stream_setproperty"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control Snapcast, a multi-room synchronous audio solution",
         homepage: "https://github.com/happyleavesaoc/python-snapcast/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

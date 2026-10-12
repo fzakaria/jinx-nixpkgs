@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.sel(systemd, "withNetworkd")), "systemd for clatd must be built with networkd support"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cl/clatd/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "clatd",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toreanderson",
           repo: "clatd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ wrapProgram $out/bin/clatd \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tayga, iproute2, nftables, systemd]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, clatd: nix.thunk(() => nix.sel(nixosTests, "clatd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, clatd: nix.thunk(() => nix.sel(nixosTests, "clatd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "464XLAT CLAT implementation for Linux",
         homepage: "https://github.com/toreanderson/clatd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

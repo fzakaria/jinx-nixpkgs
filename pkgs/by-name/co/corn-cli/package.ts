@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "corn-cli",
       version: "0.10.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corn-config",
           repo: "corn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export CORN_TEST=bar\n",
       checkFlags: nix.thunk(() => ["--skip=toml_complex"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI for Cornlang, a simple and pain-free configuration language",
         homepage: "https://cornlang.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/corn-config/corn/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

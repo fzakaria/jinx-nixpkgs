@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   const unwrapped = nix.thunk(() => nix.sel(itgmaniaPackages, "itgmania-unwrapped"));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
       paths: nix.thunk(() => nix.concat([unwrapped], extraPackages)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "makeWrapper $out/itgmania/itgmania $out/bin/itgmania \\\n  --chdir $out/itgmania\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pyinstaller = nix.arg($, "pyinstaller");
   const busybox = nix.arg($, "busybox");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "isocodes",
       version: "2026.9.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Atem18",
           repo: "isocodes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pyinstaller, pytestCheckHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [busybox])))),
       pythonImportsCheck: nix.thunk(() => ["isocodes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This project provides lists of various ISO standards (e.g. country, language, language scripts, and currency names) in one place",
         homepage: "https://github.com/Atem18/isocodes",
         changelog: nix.thunk(() => nix.str`https://github.com/Atem18/isocodes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

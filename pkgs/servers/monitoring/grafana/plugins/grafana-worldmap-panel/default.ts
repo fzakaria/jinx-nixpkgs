@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "grafana-worldmap-panel",
       version: "1.0.6",
       zipHash: "sha256-/lgsdBEL9HdJX1X1Qy0THBlYdUUI8SRtgF1Wig1Ktpk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "World Map panel for Grafana",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

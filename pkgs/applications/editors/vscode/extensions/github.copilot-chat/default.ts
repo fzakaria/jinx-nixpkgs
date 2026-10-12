@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "github",
         name: "copilot-chat",
         version: "0.48.1",
         hash: "sha256-eFLfYMFxvgtZtmwLsxfneMjD4jOg8/Uk0Eu/6+A6odY=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GitHub Copilot Chat is a companion extension to GitHub Copilot that houses experimental chat features",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat",
         homepage: "https://github.com/features/copilot",

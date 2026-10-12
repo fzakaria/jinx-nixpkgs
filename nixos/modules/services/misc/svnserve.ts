@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "svnserve"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         svnserve: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable svnserve to serve Subversion repositories through the SVN protocol.",
             })))),
           svnBaseDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/repos",
               description: "Base directory from which Subversion repositories are accessed.",
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             svnserve: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.str`mkdir -p ${nix.sel(cfg, "svnBaseDir")}`),

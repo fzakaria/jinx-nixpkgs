@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const dmalloc = nix.arg($, "dmalloc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dmalloc",
       version: "5.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "j256",
           repo: "dmalloc",
           rev: nix.thunk(() => nix.str`dmalloc_release_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       configureFlags: nix.thunk(() => ["--enable-cxx", "--enable-shlib", "--enable-threads"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: dmalloc })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: dmalloc })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Debug Malloc memory allocation debugging C library",
         longDescription: "The debug memory allocation or \"dmalloc\" library has been designed as a\ndrop in replacement for the system's malloc, realloc, calloc, free and\nother memory management routines while providing powerful debugging\nfacilities configurable at runtime. These facilities include such things\nas memory-leak tracking, fence-post write detection, file/line number\nreporting, and general logging of statistics.\n",
         homepage: "https://dmalloc.com",

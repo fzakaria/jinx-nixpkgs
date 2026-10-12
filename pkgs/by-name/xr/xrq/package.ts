@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xrq",
       version: "0-unstable-2016-01-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arianon",
           repo: "xrq",
           rev: "d5dc19c63881ebdd1287a02968e3a1447dde14a9",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       buildInputs: nix.thunk(() => [libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X utility for querying xrdb",
         homepage: "https://github.com/arianon/xrq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

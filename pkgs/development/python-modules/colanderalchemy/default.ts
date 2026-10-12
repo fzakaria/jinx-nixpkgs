@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const colander = nix.arg($, "colander");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colanderalchemy",
       version: "0.3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ColanderAlchemy",
           hash: "sha256-dA1DXmqXxIPjzgGWo24C41vpmwF04JVU3XxqAZlj3AA=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["colanderalchemy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Autogenerate Colander schemas based on SQLAlchemy models",
         homepage: "https://github.com/stefanofontanelli/ColanderAlchemy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

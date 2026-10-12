@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zehkira",
           repo: "mprisify",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pydbus, pygobject3, strenum]);
       const pythonImportsCheck = nix.thunk(() => ["mprisify"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python MPRIS server library for Linux media player apps",
         homepage: "https://gitlab.com/zehkira/mprisify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

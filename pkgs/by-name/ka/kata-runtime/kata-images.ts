@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const zstd = nix.arg($, "zstd");
   const images = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       suffix: "amd64",
       hash: "sha256-ea4/6xjuoiqFebGF+NegGa4B+3Imf/4uULfQbJxqKtc=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       suffix: "arm64",
       hash: "sha256-cPx6uHXyMZ0x56dLUKx91FjhgkJaYW0nUtLrnfHz0as=",
     })),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
     const suffix = nix.arg($_1, "suffix");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: nix.thunk(() => nix.str`kata-images-${version}`),
         url: nix.thunk(() => nix.str`https://github.com/kata-containers/kata-containers/releases/download/${version}/kata-static-${version}-${suffix}.tar.zst`),
         hash: hash,
         nativeBuildInputs: nix.thunk(() => [zstd]),
         postFetch: "mv $out/kata/share/kata-containers kata-containers\nrm -r $out\nmkdir -p $out/share\nmv kata-containers $out/share/kata-containers\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Lightweight Virtual Machines like containers that provide the workload isolation and security of VMs",
           homepage: "https://github.com/kata-containers/kata-containers",
           changelog: nix.thunk(() => nix.str`https://github.com/kata-containers/kata-containers/releases/tag/${version}`),

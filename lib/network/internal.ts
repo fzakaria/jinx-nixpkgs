@@ -50,19 +50,19 @@ export default nix.lambda((args) => (() => {
   })();
   const parseIpv6FromString = (addr) => nix.app(parseExpandedIpv6, nix.thunk(() => nix.app(expandIpv6, addr)));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     _ipv6: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       toStringFromExpandedIp: (pieces) => nix.app(nix.sel(strings, "concatMapStringsSep"), ":", (piece) => nix.app(nix.sel(strings, "toLower"), nix.thunk(() => nix.app(nix.sel(trivial, "toHexString"), piece))), pieces),
       split: (addr) => (() => {
         const splitted = nix.thunk(() => nix.app(nix.sel(strings, "splitString"), "/", addr));
         const splittedLength = nix.thunk(() => nix.app(length, splitted));
         return (nix.asBool(nix.eq(splittedLength, 1n)) ? {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           address: nix.thunk(() => nix.app(parseIpv6FromString, addr)),
           prefixLength: ipv6Bits,
         } : (nix.asBool(nix.eq(splittedLength, 2n)) ? {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           address: nix.thunk(() => nix.app(parseIpv6FromString, nix.thunk(() => nix.app(head, splitted)))),
           prefixLength: nix.thunk(() => (() => {
             const n = nix.thunk(() => nix.app(nix.sel(strings, "toInt"), nix.thunk(() => nix.app(last, splitted))));

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unstrctrd";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/unstrctrd/releases/download/v${version}/unstrctrd-${version}.tbz`),
           hash: "sha256-WmjFDxgFTkOmHwcy+9aXBz688DvBBqSeevl2K3/Sv9Y=",
         }))));
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, bigstringaf, crowbar, fmt, hxd, ke, rresult]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for parsing email headers",
         homepage: "https://github.com/dinosaure/unstrctrd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

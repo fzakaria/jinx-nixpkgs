@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fluvio-cli",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fluvio-community",
           repo: "fluvio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -C k8-util/helm package\n",
       postInstall: "installShellCompletion --cmd fluvio \\\n  --bash <($out/bin/fluvio completions bash) \\\n  --fish <($out/bin/fluvio completions fish) \\\n  --zsh <($out/bin/fluvio completions zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Event stream processing for developers",
         homepage: "https://fluvio.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hydrogram",
           repo: "hydrogram",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-async-in-test.patch",
             excludes: nix.thunk(() => [".github/workflows/code-style.yml"]),
             url: "https://github.com/hydrogram/hydrogram/commit/7431319a1d990aa838012bd566a9746da7df2a6e.patch",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio]);
       const pythonImportsCheck = nix.thunk(() => ["hydrogram", "hydrogram.errors", "hydrogram.types"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asynchronous Telegram MTProto API framework for fluid user and bot interactions",
         homepage: "https://github.com/hydrogram/hydrogram",
         changelog: nix.thunk(() => nix.str`https://github.com/hydrogram/hydrogram/releases/tag/${nix.sel(src, "tag")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

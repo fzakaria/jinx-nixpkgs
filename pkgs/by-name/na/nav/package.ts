@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nav = nix.arg($, "nav");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nav",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/Jojo4GH/nav/releases/download/v${nix.sel(finalAttrs, "version")}/nav-${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}-unknown-linux-gnu.tar.gz`),
           sha256: nix.thunk(() => nix.selOr({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "sha256-/A6IZRX8v8yKfcxYxo0gxbsZri2dgTs8YH7H2LauaBE=",
             "aarch64-linux": "sha256-YNS/P6TU7qLPn39X6GyUtjBw7GXOi2btd3AV+etpUhQ=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib")), libxcrypt_legacy, zlib]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp nav $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: nav })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: nav })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Interactive and stylish replacement for ls & cd",
         longDescription: "To make use of nav, add the following lines to your configuration:\n`programs.bash.shellInit = \"eval \\\"$(nav --init bash)\\\"\";` and\n`programs.zsh.shellInit = \"eval \\\"$(nav --init zsh)\\\"\";`\n",
         homepage: "https://github.com/Jojo4GH/nav",

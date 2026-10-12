@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const python312 = nix.arg($, "python312");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const python = nix.thunk(() => nix.app(nix.sel(python312, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         impacket: nix.thunk(() => nix.app(nix.sel(super$, "impacket", "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: "0.14.0-unstable-2025-12-03",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "fortra",
                 repo: "impacket",
                 rev: "caba5facdd3a01b5d0decc6daf5871839f22f792",
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "netexec",
       version: "1.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "Pennyw0rth",
           repo: "NetExec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat([nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))], [writableTmpDirAsHomeHook]);
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Network service exploitation tool (maintained fork of CrackMapExec)",
         homepage: "https://github.com/Pennyw0rth/NetExec",
         changelog: nix.thunk(() => nix.str`https://github.com/Pennyw0rth/NetExec/releases/tag/v${nix.sel(finalAttrs, "version")}`),

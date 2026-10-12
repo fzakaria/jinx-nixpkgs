@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "evdev-proto",
       version: nix.thunk(() => nix.attr(linuxHeaders, "version")),
       src: nix.thunk(() => nix.sel(freebsd, "ports")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       useTempPrefix: true,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(freebsd, "makeMinimal"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ARCH: nix.thunk(() => nix.sel(freebsd, "makeMinimal", "MACHINE_ARCH")),
         OPSYS: "FreeBSD",
         _OSRELEASE: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(freebsd, "makeMinimal", "version")))}-RELEASE`),
@@ -61,7 +61,7 @@ tar -C "$DISTDIR/evdev-proto" \\
       makeFlags: nix.thunk(() => ["DIST_SUBDIR=evdev-proto"]),
       postInstall: "mv $prefix $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Input event device header files for FreeBSD",
         homepage: "https://cgit.freebsd.org/ports",
         maintainers: nix.thunk(() => (() => {

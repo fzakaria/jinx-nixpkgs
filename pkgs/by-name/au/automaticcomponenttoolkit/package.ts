@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "AutomaticComponentToolkit",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Autodesk",
           repo: "AutomaticComponentToolkit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cd Source\ngo build -o act *.go\n",
       installPhase: "install -Dm0755 act $out/bin/act\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolkit to automatically generate software components: abstract API, implementation stubs and language bindings",
         mainProgram: "act",
         homepage: "https://github.com/Autodesk/AutomaticComponentToolkit",

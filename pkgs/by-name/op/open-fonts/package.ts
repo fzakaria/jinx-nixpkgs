@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "open-fonts";
       const version = "0.7.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kiwi0fruit/open-fonts/releases/download/${version}/open-fonts.tar.xz`),
           hash: "sha256-NJKbdrvgZz9G7mjAJYzN7rU/fo2xRFZA2BbQ+A56iPw=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of beautiful free and open source fonts",
         homepage: "https://github.com/kiwi0fruit/open-fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "moni"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

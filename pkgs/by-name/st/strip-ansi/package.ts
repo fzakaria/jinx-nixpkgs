@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const canRunStripAnsi = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   const stripAnsiCompletions = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/strip-ansi-completions`);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "strip-ansi",
       version: "0.1.0-unstable-2024-09-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KSXGitHub",
           repo: "strip-ansi-cli",
           rev: "60dbdbc22b41f743c237cb75b11e72cf7884b792",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   --zsh <(${stripAnsiCompletions} zsh)
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/KSXGitHub/strip-ansi-cli",
         description: "Strip ANSI escape sequences from text",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

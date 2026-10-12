@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const oaknut = nix.arg($, "oaknut");
   const mcl_cpp_utility_lib = nix.arg($, "mcl-cpp-utility-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dynarmic",
       version: "6.7.0-unstable-2026-05-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "azahar-emu",
           repo: "dynarmic",
           rev: "c5f5b0d7fca772b7d2d4d8ba0975ce8653f4b055",
@@ -52,15 +52,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DYNARMIC_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overread" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overread" })))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
-        tests: nix.thunk(() => ({ __proto__: pos$4, azahar: azahar })),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, azahar: azahar })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Dynamic recompiler for ARM",
         homepage: "https://github.com/azahar-emu/dynarmic",
         maintainers: nix.thunk(() => (() => {

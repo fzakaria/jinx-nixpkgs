@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "tideways-cli",
       version: "1.3.2",
       strictDeps: true,
@@ -36,27 +36,27 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/cli/${nix.sel(finalAttrs, "version")}/tideways-cli_linux_amd64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-6arHj82OD5zKY0uEzimioeuD4lRoQ99YrT/aK+S1W38=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/cli/${nix.sel(finalAttrs, "version")}/tideways-cli_linux_arm64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-qOyRCbopaiWE0YtQgF6ocIdbCUDhid3w3X7AeA3kOlI=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/cli/${nix.sel(finalAttrs, "version")}/tideways-cli_macos_arm64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-90qhY1TKhOen6+ararnVVu+cIod1luEHyC3U/z9EtJY=",
             })))),
         })),
         updateScript: nix.thunk(() => nix.str`${nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "update-tideways-cli",
             runtimeInputs: nix.thunk(() => [curl, gnugrep, common_updater_scripts]),
             text: nix.thunk(() => nix.str`NEW_VERSION=$(curl --fail -L -s https://tideways.com/profiler/downloads | grep -E 'https://tideways.s3.amazonaws.com/cli/([0-9]+\\.[0-9]+\\.[0-9]+)/tideways-cli_linux_amd64-\\1.tar.gz' | grep -oP 'cli/\\K[0-9]+\\.[0-9]+\\.[0-9]+')
@@ -73,7 +73,7 @@ done
           })))}/bin/update-tideways-cli`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tideways Profiler CLI",
         homepage: "https://tideways.com/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const iptables = nix.arg($, "iptables");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([runc, conntrack_tools, crun, conmon, util_linux, iptables], extraPackages))));
   return nix.app(runCommand, nix.thunk(() => nix.sel(cri_o_unwrapped, "name")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.sel(cri_o_unwrapped, "pname")}-wrapper-${nix.sel(cri_o_unwrapped, "version")}`),
       pname: nix.thunk(() => nix.attr(cri_o_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(cri_o_unwrapped, "version")),

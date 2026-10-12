@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const versionAtLeast = nix.thunk(() => nix.attr(lib, "versionAtLeast"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   return {
-    __proto__: pos$8,
-    option: (x) => nix.update(x, { __proto__: pos$1, optional: true }),
-    yes: nix.thunk(() => ({ __proto__: pos$2, tristate: "y", optional: false })),
-    no: nix.thunk(() => ({ __proto__: pos$3, tristate: "n", optional: false })),
-    module: nix.thunk(() => ({ __proto__: pos$4, tristate: "m", optional: false })),
-    unset: nix.thunk(() => ({ __proto__: pos$5, tristate: null, optional: false })),
-    freeform: (x) => ({ __proto__: pos$6, freeform: x, optional: false }),
+    [nix.POS]: pos$8,
+    option: (x) => nix.update(x, { [nix.POS]: pos$1, optional: true }),
+    yes: nix.thunk(() => ({ [nix.POS]: pos$2, tristate: "y", optional: false })),
+    no: nix.thunk(() => ({ [nix.POS]: pos$3, tristate: "n", optional: false })),
+    module: nix.thunk(() => ({ [nix.POS]: pos$4, tristate: "m", optional: false })),
+    unset: nix.thunk(() => ({ [nix.POS]: pos$5, tristate: null, optional: false })),
+    freeform: (x) => ({ [nix.POS]: pos$6, freeform: x, optional: false }),
     whenHelpers: (version) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       whenAtLeast: (ver) => nix.app(mkIf, nix.thunk(() => nix.app(versionAtLeast, version, ver))),
       whenOlder: (ver) => nix.app(mkIf, nix.thunk(() => nix.app(versionOlder, version, ver))),
       whenBetween: (verLow) => (verHigh) => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.app(versionAtLeast, version, verLow)) && nix.asBool(nix.app(versionOlder, version, verHigh))))),

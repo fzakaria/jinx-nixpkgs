@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const texlive = nix.arg($, "texlive");
   const biberSource = nix.thunk(() => nix.sel(texlive, "pkgs", "biber-ms", "texsource"));
   const multiscriptBltxml = nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "plk",
       repo: "biber",
       rev: "e8d056433063add7800f24589de76f89c4b64c20",
       hash: "sha256-QnN6Iyw6iOjfTX7DLVptsfAO/QNn9vOIk5IZlI15EvQ=",
     }))), "/t/tdata/multiscript.bltxml"));
   return nix.app(nix.sel(perlPackages, "buildPerlModule"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(biberSource, "pname")),
       version: nix.thunk(() => nix.attr(biberSource, "version")),
       src: nix.thunk(() => nix.str`${biberSource}/source/bibtex/biber-ms/biblatex-biber-ms.tar.gz`),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "mv \"$out\"/bin/biber{,-ms}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backend for BibLaTeX (multiscript version)",
         license: nix.thunk(() => nix.sel(biberSource, "meta", "license")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

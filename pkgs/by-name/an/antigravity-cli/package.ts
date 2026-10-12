@@ -23,25 +23,25 @@ export default nix.lambda((args) => (() => {
   const wholeVersion = nix.thunk(() => nix.str`${version}-${buildId}`);
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const sourceData = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-cli/${wholeVersion}/linux-x64/cli_linux_x64.tar.gz`),
         hash: "sha256-1CR0MOBM69vhypPZzLSDzS89rrTNsKzlpxzRMOC9q4Q=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-cli/${wholeVersion}/linux-arm/cli_linux_arm64.tar.gz`),
         hash: "sha256-ptJp0nZOVjarK82nO3jFh/6dAOrXZ6o5dFdCKVhe4NM=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://storage.googleapis.com/antigravity-public/antigravity-cli/${wholeVersion}/darwin-arm/cli_mac_arm64.tar.gz`),
         hash: "sha256-l7A+o+kJFuDIpJ7ephVAb47GkEfd4XIopHjBhURF0yo=",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "antigravity-cli",
       version: version,
       strictDeps: true,
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         wholeVersion: wholeVersion,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Google's Go-based terminal user interface (TUI) agent client",
         homepage: "https://antigravity.google",
         changelog: "https://antigravity.google/changelog",

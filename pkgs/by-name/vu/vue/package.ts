@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vue",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://releases.atech.tufts.edu/jenkins/job/VUE/116/deployedArtifacts/download/artifact.1",
           sha256: "0yfzr80pw632lkayg4qfmwzrqk02y30yz8br7isyhmgkswyp5rnx",
         })))),
@@ -31,7 +31,7 @@ echo '${jre}/bin/java -jar "'"$out/share/vue/vue.jar"'" "$@"' >> "$out/bin/vue"
 chmod a+x "$out/bin/vue"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual Understanding Environment - mind mapping software",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

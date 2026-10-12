@@ -23,25 +23,25 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "wg-netmanager"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "wg-netmanager": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Wireguard network manager")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "wg-netmanager": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Wireguard network manager",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 Type: "simple",
                 Restart: "on-failure",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "wg-netmanager")}/bin/wg_netmanager`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
                 ReadWritePaths: nix.thunk(() => ["/tmp"]),
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 ConditionPathExists: nix.thunk(() => ["/etc/wg_netmanager/network.yaml", "/etc/wg_netmanager/peer.yaml"]),
               })),
             })),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "gin66"))];

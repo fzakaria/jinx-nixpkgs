@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zscaler-cacert",
       version: "0-unstable-2025-02-02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://keyserver.dhl.com/pki/X3/ZscalerRootCertificate-2048-SHA256.crt",
           hash: "sha256-HrQ7am1IteSP1O3mz3weay1NQG8aj3EUt1ZjYRbOEQA=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm644 $src $out/etc/ssl/certs/zscaler-ca.crt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZScaler Root CA certificate",
         homepage: "https://keyserver.dhl.com/certificates",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

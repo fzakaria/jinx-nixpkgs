@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-sas20181203",
       version: "10.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_sas20181203",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-zPn1w2gzabeCZbeSv3SD8MswaJhJRcMmUjhasHZ6VoU=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_sas20181203"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alibaba Cloud Threat Detection (20181203) SDK Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-sas20181203/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

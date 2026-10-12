@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const cairomm_1_0 = nix.arg($, "cairomm_1_0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adaptagrams",
       version: "0-unstable-2025-10-28",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mjwybrow",
           repo: "adaptagrams",
           rev: "840ebcff20dbba36ad03a2160edf7cbaf9859984",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [cairomm_1_0]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libraries for constraint-based layout and connector routing for diagrams.",
         homepage: "https://github.com/mjwybrow/adaptagrams",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

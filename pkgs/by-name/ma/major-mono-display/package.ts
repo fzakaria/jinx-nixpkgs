@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "major-mono-display",
       version: "2.000",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "majormono",
           rev: "fae0bb9c728fe082097baedaf23604e290ddac16",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospaced geometric sans serif all-uppercase typeface",
         longDescription: "Majör is a monospaced geometric sans serif all-uppercase typeface\nwhich also has a complete set of constructivist display characters\nwith a playful attitude. It has many Opentype features but the basic\nvariation between serious/playful faces can be implemented on web use\nwhere Opentype features can be hard to apply, thanks to the fact that\nthe sans serif and the display versions of the letterforms can be\nreached via lowercase and uppercase options. This makes Majör a great\nchoice for web typography, especially at large point-sizes.\n",
         homepage: "https://github.com/googlefonts/majormono",

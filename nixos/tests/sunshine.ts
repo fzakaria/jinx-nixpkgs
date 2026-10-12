@@ -23,35 +23,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "sunshine",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "devusb"))]),
       timeout: 600n,
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       sunshine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 4096n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             sunshine: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               openFirewall: true,
-              settings: nix.thunk(() => ({ __proto__: pos$3, capture: "x11", encoder: "software", output_name: 0n })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$3, capture: "x11", encoder: "software", output_name: 0n })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           programs: nix.thunk(() => ({
-            __proto__: pos$9,
-            "moonlight-qt": nix.thunk(() => ({ __proto__: pos$8, enable: true, capSysNice: true })),
+            [nix.POS]: pos$9,
+            "moonlight-qt": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, capSysNice: true })),
           })),
         };
       })(), formals$3),

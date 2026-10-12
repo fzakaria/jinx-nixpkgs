@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
   const credAttrType = "_secret";
   const credPlaceholderAttrType = "_secretPlaceholder";
   const credType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.sel(types, "attrs")), (attrs) => nix.has(attrs, nix.key(credAttrType))), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     merge: (loc) => (defs) => nix.attrsDyn({}, [
       [credAttrType, nix.thunk(() => (() => {
         const def = nix.thunk(() => nix.app(nix.sel(lib, "mergeEqualOption"), loc, defs));
@@ -85,18 +85,18 @@ export default nix.lambda((args) => (() => {
         const path = nix.thunk(() => (nix.asBool(nix.app(nix.sel(types, "path", "check"), val)) ? nix.force(val) : nix.builtins.throw(nix.thunk(() => nix.str`Provided \`{ ${credAttrType} = ...; }\` is not of type \`lib.types.path\``))));
         const id = nix.thunk(() => nix.builtins.hashString("sha256", path));
         const placeholder = nix.thunk(() => (nix.asBool(nix.has(def, nix.key(credPlaceholderAttrType))) ? nix.sel(def, nix.key(credPlaceholderAttrType)) : nix.force(id)));
-        return { __proto__: pos$1, path: path, id: id, placeholder: placeholder };
+        return { [nix.POS]: pos$1, path: path, id: id, placeholder: placeholder };
       })())],
     ]),
   }));
   const credSubstituteRec = (attr) => (x) => (nix.asBool(nix.app(nix.sel(credType, "check"), x)) ? nix.sel(x, nix.key(credAttrType), nix.key(nix.force(attr))) : (nix.asBool(nix.app(nix.sel(lib, "isList"), x)) ? nix.builtins.map(nix.thunk(() => nix.app(credSubstituteRec, attr)), x) : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), x)) ? nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(credSubstituteRec, attr, v), x) : nix.force(x))));
   const credCollectRec = (x) => (nix.asBool(nix.app(nix.sel(credType, "check"), x)) ? [nix.thunk(() => nix.sel(x, nix.key(credAttrType)))] : (nix.asBool(nix.app(nix.sel(lib, "isList"), x)) ? nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "map"), credCollectRec, x))) : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), x)) ? nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (v) => nix.app(credCollectRec, v), x))) : [])));
   return {
-    __proto__: pos$63,
+    [nix.POS]: pos$63,
     options: nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       services: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         i2pd: nix.thunk(() => (() => {
           const freeformType = nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
@@ -110,12 +110,12 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), base)))),
                     freeformType,
                   ]))))))), {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "nested (bool, int, string or list of bool, int or string)",
             });
           })());
           const intOrCoerceMap = (mapping) => (description) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(types, null);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(coerceMap, mapping, nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -124,12 +124,12 @@ export default nix.lambda((args) => (() => {
               description: description,
             })));
           const templates = nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             i2cp: nix.thunk(() => ({
-              __proto__: pos$8,
-              leaseSetType: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({ __proto__: pos$5, standard: 3n, encrypted: 5n })), "Type of LeaseSet to be sent")),
+              [nix.POS]: pos$8,
+              leaseSetType: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({ [nix.POS]: pos$5, standard: 3n, encrypted: 5n })), "Type of LeaseSet to be sent")),
               leaseSetEncType: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   ELGAMAL: 0n,
                   ECIES_P256_SHA256_AES256CBC: 1n,
                   ECIES_X25519_AEAD: 4n,
@@ -137,17 +137,17 @@ export default nix.lambda((args) => (() => {
                   ECIES_MLKEM768_X25519_AEAD: 6n,
                   ECIES_MLKEM1024_X25519_AEAD: 7n,
                 })), "List of LeaseSet encryption types")),
-              leaseSetAuthType: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({ __proto__: pos$7, none: 0n, DH: 1n, PSK: 2n })), "Authentication type for encrypted LeaseSet")),
+              leaseSetAuthType: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({ [nix.POS]: pos$7, none: 0n, DH: 1n, PSK: 2n })), "Authentication type for encrypted LeaseSet")),
             })),
             i2p: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               streaming: nix.thunk(() => ({
-                __proto__: pos$10,
-                profile: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({ __proto__: pos$9, bulk: 1n, interactive: 2n })), "Bandwidth usage profile")),
+                [nix.POS]: pos$10,
+                profile: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({ [nix.POS]: pos$9, bulk: 1n, interactive: 2n })), "Bandwidth usage profile")),
               })),
             })),
             signaturetype: nix.thunk(() => nix.app(intOrCoerceMap, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "ECDSA-P256": 1n,
                 "ECDSA-P384": 2n,
                 "ECDSA-P521": 3n,
@@ -159,20 +159,20 @@ export default nix.lambda((args) => (() => {
               })), "Signature type for new keys.\n`ED25519-SHA512` is default.\n`RED25519-SHA512` is recommended for encrypted leaseset.\n")),
           }));
           return {
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "`i2pd` (I2P network router)")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "i2pd", nix.thunk(() => ({})))),
             gracefulShutdown: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "If true, i2pd will wait for transit connections to close.\nEnabling this option **may delay system shutdown/reboot/rebuild-switch up to 10 minutes!**\n",
             })),
             autoRestart: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               default: true,
               description: "If true, i2pd will be restarted on failure (does not affect clean exit)",
             })),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 description: nix.thunk(() => nix.str`Free-form main i2pd configuration. Options are passed to \`i2pd.conf\`.
 See <https://i2pd.readthedocs.io/en/latest/user-guide/configuration/>
 
@@ -182,22 +182,22 @@ file is read **at runtime** before i2pd service starts, file
 permissions are ignored.
 `),
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     freeformType: freeformType,
                     options: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       loglevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warn", "error", "critical", "none"]))),
                           default: "error",
                           description: "The log level",
                         })))),
                       bandwidth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(coerceMap, nix.thunk(() => ({
-                                  __proto__: pos$17,
+                                  [nix.POS]: pos$17,
                                   "32KBps": "L",
                                   "256KBps": "O",
                                   "2048KBps": "P",
@@ -212,37 +212,37 @@ permissions are ignored.
                         })))),
                     })),
                     config: nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       http: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       })),
                       httpproxy: nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       })),
                       socksproxy: nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       })),
                       sam: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                       })),
                       bob: nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                       })),
                       i2cp: nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                       })),
                       i2pcontrol: nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                       })),
                       precomputation: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         elgamal: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                       })),
                       conf: null,
@@ -267,26 +267,26 @@ permissions are ignored.
 `))),
               })))),
             serverTunnels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 description: "Free-form \"server\" tunnels. Options are passed to `tunnels.conf`.\nMnemonic: we serving some service to others.\nSee <https://i2pd.readthedocs.io/en/latest/user-guide/tunnels/#servergeneric-tunnels>\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       freeformType: freeformType,
                       options: nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$31,
+                            [nix.POS]: pos$31,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "server",
                             description: "Type of server tunnel.\nSee <https://docs.i2pd.website/en/latest/user-guide/tunnels/#tunnel-types>.\n",
                           })))),
                         host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), credType)),
                             description: "IP address of server (on this address i2pd will send data from I2P)",
                           })))),
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             type: nix.thunk(() => nix.sel(types, "port")),
                             description: "Port of server tunnel (on this port i2pd will send data from I2P)",
                           })))),
@@ -298,26 +298,26 @@ permissions are ignored.
                 default: nix.thunk(() => ({})),
               })))),
             clientTunnels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 description: "Free-form \"client\" tunnels. Options are passed to `tunnels.conf`.\nMnemonic: we connect to someone as a client.\nSee <https://i2pd.readthedocs.io/en/latest/user-guide/tunnels/#client-tunnels>\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       freeformType: freeformType,
                       options: nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "client",
                             description: "Type of client tunnel.\nSee <https://docs.i2pd.website/en/latest/user-guide/tunnels/#tunnel-types>.\n",
                           })))),
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             type: nix.thunk(() => nix.sel(types, "port")),
                             description: "Port of client tunnel (on this port i2pd will receive data)",
                           })))),
                         destination: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$39,
+                            [nix.POS]: pos$39,
                             type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), credType)),
                             description: "Remote endpoint, I2P hostname or b32.i2p address",
                           })))),
@@ -330,7 +330,7 @@ permissions are ignored.
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"irc-ilita\" = {\n    address = \"127.0.0.1\";\n    port = 6668;\n    destination = \"irc.ilita.i2p\";\n    destinationport = 6667;\n    keys = \"irc-keys.dat\";\n    i2p.streaming.profile = \"interactive\";\n  };\n}\n")),
               })))),
             mkSecret: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.sel(types, "anything")),
                 readOnly: true,
                 default: (path) => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`\`mkSecret\` function is deprecated. Replace it with \`{ ${credAttrType} = <path>; }\``), nix.thunk(() => nix.attrsDyn({}, [[credAttrType, path]]))),
@@ -352,34 +352,34 @@ permissions are ignored.
       const cfg = nix.thunk(() => nix.sel(config, "services", "i2pd"));
       const unwrapPrefixes = (attrset) => (() => {
         const unwrap = (prefix) => (attrset_1) => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)) ? nix.app(unwrap, nix.thunk(() => nix.add(nix.add(prefix, k), ".")), v) : [
-              nix.thunk(() => ({ __proto__: pos$47, name: nix.thunk(() => nix.add(prefix, k)), value: v })),
+              nix.thunk(() => ({ [nix.POS]: pos$47, name: nix.thunk(() => nix.add(prefix, k)), value: v })),
             ]), attrset_1)));
         return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(unwrap, "", attrset)));
       })();
       const removeNulls = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.asBool(nix.builtins.isNull(v))));
       const ini = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "iniWithGlobalSection"), nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ",", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
           mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " = ")),
         }))));
       const genConfig = (name) => (attrs) => nix.app(nix.sel(ini, "generate"), name, nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           globalSection: nix.thunk(() => nix.app(removeNulls, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)), attrs)))),
           sections: nix.thunk(() => nix.app(removeNulls, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(unwrapPrefixes, v), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.app(nix.sel(lib, "isAttrs"), v), attrs)))))),
         })));
       const genTunnels = (name) => (attrs) => nix.app(nix.sel(ini, "generate"), name, nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           sections: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => unwrapPrefixes, nix.thunk(() => nix.app(removeNulls, attrs)))),
         })));
       const gen = (attr) => (settings) => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         conf: nix.thunk(() => nix.app(genConfig, "i2pd.conf", nix.thunk(() => nix.app(credSubstituteRec, attr, settings)))),
         tunconf: nix.thunk(() => nix.app(genTunnels, "i2pd-tunnels.conf", nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`client-${k}`), v), nix.thunk(() => nix.app(credSubstituteRec, attr, nix.thunk(() => nix.sel(cfg, "clientTunnels"))))), nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`server-${k}`), v), nix.thunk(() => nix.app(credSubstituteRec, attr, nix.thunk(() => nix.sel(cfg, "serverTunnels"))))))))),
       });
       const i2pdConfig = nix.thunk(() => nix.app(gen, "id", nix.thunk(() => nix.sel(cfg, "settings"))));
-      const i2pdCheckedConfig = nix.thunk(() => nix.app(gen, "placeholder", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => nix.update({ __proto__: pos$52, ipv4: false, ipv6: false }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(cfg, () => false, "settings", "meshnets", "yggdrasil")), nix.thunk(() => ({
-              __proto__: pos$54,
-              ntcp2: nix.thunk(() => ({ __proto__: pos$53, enabled: true })),
+      const i2pdCheckedConfig = nix.thunk(() => nix.app(gen, "placeholder", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => nix.update({ [nix.POS]: pos$52, ipv4: false, ipv6: false }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(cfg, () => false, "settings", "meshnets", "yggdrasil")), nix.thunk(() => ({
+              [nix.POS]: pos$54,
+              ntcp2: nix.thunk(() => ({ [nix.POS]: pos$53, enabled: true })),
             })))))))));
       const credentials = nix.thunk(() => nix.app(credCollectRec, nix.thunk(() => [
           nix.thunk(() => nix.sel(cfg, "settings")),
@@ -409,9 +409,9 @@ for arg in "$@"; do
 done
 `)));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           system: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             checks: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "stdenv")), null);
                 return nix.eq(nix.sel(nix.lookup(w, "buildPlatform"), "system"), nix.sel(nix.lookup(w, "hostPlatform"), "system"));
@@ -447,20 +447,20 @@ touch $out
 `))))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             services: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               i2pd: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 description: "Minimal I2P router",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   RequiresMountsFor: nix.thunk(() => nix.builtins.map((cred) => nix.sel(cred, "path"), credentials)),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   User: "i2pd",
                   Group: "i2pd",
                   DynamicUser: true,
@@ -511,7 +511,7 @@ touch $out
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$62,
+      [nix.POS]: pos$62,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

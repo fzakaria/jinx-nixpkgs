@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const serialx = nix.arg($, "serialx");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "samsung-exlink",
       version: "1.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "samsung-exlink",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["samsung_exlink"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async library to control Samsung consumer TVs over RS232",
         homepage: "https://github.com/home-assistant-libs/samsung-exlink",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/samsung-exlink/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

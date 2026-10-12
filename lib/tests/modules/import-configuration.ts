@@ -9,7 +9,7 @@ const pos$2 = nix.positions(here + "/import-configuration.nix", [["imports", 6, 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ __proto__: pos$1, modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
-  return { __proto__: pos$2, imports: nix.thunk(() => [myconf]) };
+  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
+  return { [nix.POS]: pos$2, imports: nix.thunk(() => [myconf]) };
 })(), formals$1);
 //# sourceMappingURL=import-configuration.ts.map

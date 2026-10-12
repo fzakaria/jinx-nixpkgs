@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vaultwarden-webvault";
       const version = "2026.7.0+0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vaultwarden",
           repo: "vw_web_builds",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [python3, dart_sass]);
       const makeCacheWritable = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         npm_config_build_from_source: "true",
       }));
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       const npmBuildFlags = nix.thunk(() => ["--workspace", "apps/web"]);
       const npmFlags = nix.thunk(() => ["--legacy-peer-deps"]);
       const installPhase = "runHook preInstall\nmkdir -p $out/share/vaultwarden\nmv apps/web/build $out/share/vaultwarden/vault\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "vaultwarden")) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "vaultwarden")) }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vaultwarden, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Integrates the web vault into vaultwarden",
         homepage: "https://github.com/vaultwarden/vw_web_builds",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

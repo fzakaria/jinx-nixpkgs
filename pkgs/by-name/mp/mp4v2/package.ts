@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mp4v2",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TechSmith",
           repo: "mp4v2",
           rev: nix.thunk(() => nix.str`Release-ThirdParty-MP4v2-${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-OP+oVTH9pqYfHtYL1Kjrs1qey/J40ijLi5Gu8GJnvSY=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=narrowing" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=narrowing" })),
       postInstall: "ln -s mp4v2/mp4v2.h $out/include/mp4.h",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides functions to read, create, and modify mp4 files",
         longDescription: "MP4v2 library provides an API to work with mp4 files\nas defined by ISO-IEC:14496-1:2001 MPEG-4 Systems.\nThis container format is derived from Apple's QuickTime format.\n",
         homepage: "https://github.com/TechSmith/mp4v2",

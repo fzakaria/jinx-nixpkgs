@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   const filenameMapping = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "OoklaServer-linux-x86_64-static-musl.zip",
     "aarch64-linux": "OoklaServer-linux-aarch64-static-musl.zip",
     "aarch64-darwin": "OoklaServer-macosx.zip",
@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
     "i686-windows": "OoklaServer-windows32.zip",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.11.1.2",
       pname: "ooklaserver",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://web.archive.org/web/20240703022648/https://install.speedtest.net/ooklaserver/stable/OoklaServer.tgz",
           hash: "sha256-tctLtTGmrVHs+4pI1PRHrqY+a4ISs6TKvLRKlFdWw88=",
         })))),
@@ -42,7 +42,7 @@ install -Dm444 OoklaServer.properties.default "$out/etc/OoklaServer.properties.d
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ookla TCP based server daemon that provides standalone testing",
         homepage: "https://www.speedtest.net",
         changelog: "https://support.ookla.com/hc/en-us/articles/234578608-Speedtest-Server-Release-Notes",

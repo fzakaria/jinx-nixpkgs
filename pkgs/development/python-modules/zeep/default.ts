@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mvantellingen",
           repo: "python-zeep",
           tag: version,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         requests_toolbelt,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => [httpx]),
         xmlsec: nix.thunk(() => [xmlsec]),
       }));
@@ -85,14 +85,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const preCheck = "export HOME=$TMPDIR\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/mvantellingen/python-zeep/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python SOAP client",
         homepage: "http://docs.python-zeep.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

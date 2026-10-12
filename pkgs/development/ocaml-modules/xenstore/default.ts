@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xenstore";
       const version = "2.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mirage",
           repo: "ocaml-xenstore",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [ounit2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Xenstore protocol in pure OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/mirage/ocaml-xenstore",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

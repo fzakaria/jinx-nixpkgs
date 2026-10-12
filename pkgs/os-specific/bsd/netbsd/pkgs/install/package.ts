@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const binstall = nix.thunk(() => nix.app(writeShellScript, "binstall", nix.thunk(() => nix.add(nix.builtins.readFile(nix.path(here, "../../../lib/install-wrapper.sh")), "@out@/bin/xinstall \"${args[@]}\"\n"))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.bin/xinstall",
       extraPaths: nix.thunk(() => [
         nix.thunk(() => nix.sel(mtree, "path")),

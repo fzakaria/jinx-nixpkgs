@@ -120,14 +120,14 @@ export default nix.lambda((args) => (() => {
   const pythonVars = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "pythonVars"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(pythonVars, "generate"), "netbox-settings.py", nix.thunk(() => nix.sel(cfg, "settings"))));
   const extraConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "netbox-extraConfig.py",
       text: nix.thunk(() => nix.sel(cfg, "extraConfig")),
     }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "concatText"), "configuration.py", nix.thunk(() => [nixosOptionsConfig, settingsFile, extraConfigFile])));
   const secretKeyFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "secretKeyFile"), null)) ? nix.sel(cfg, "secretKeyFile") : nix.str`${nix.sel(cfg, "dataDir")}/secret.key`));
   const nixosOptionsConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "netbox-nixos-options.py",
       text: nix.thunk(() => nix.str`with open("${secretKeyFile}", "r") as file:
     SECRET_KEY = file.readline()
@@ -140,11 +140,11 @@ API_TOKEN_PEPPERS = {
     }))));
   const enableLDAP = nix.thunk(() => !nix.eq(nix.sel(cfg, "ldapConfigFile"), null));
   const finalPackage = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cfg, "package", "overrideAttrs"), (prev) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       installPhase: nix.thunk(() => nix.add(nix.add(nix.sel(prev, "installPhase"), nix.str`ln -s ${configFile} $out/opt/netbox/netbox/netbox/configuration.py
 `), nix.app(nix.sel(lib, "optionalString"), enableLDAP, nix.thunk(() => nix.str`ln -s ${nix.sel(cfg, "ldapConfigFile")} $out/opt/netbox/netbox/netbox/ldap_config.py
 `)))),
-    })), "override"), nix.thunk(() => ({ __proto__: pos$4, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) }))));
+    })), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) }))));
   const netboxManageScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "netbox-manage", nix.thunk(() => nix.str`set -a
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (envFile) => nix.str`. "${envFile}"
 `, nix.thunk(() => nix.sel(cfg, "environmentFiles")))}
@@ -153,7 +153,7 @@ export PYTHONPATH=${nix.sel(finalPackage, "pythonPath")}
 case "$(whoami)" in
   "root")
     ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linux")), "runuser")} ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "preserve-environment": true,
         user: "netbox",
         "supp-group": nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? nix.sel(config, "services", "redis", "servers", "netbox", "group") : null)),
@@ -166,10 +166,10 @@ case "$(whoami)" in
 esac
 `)));
   return {
-    __proto__: pos$98,
+    [nix.POS]: pos$98,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkChangedOptionModule, nix.thunk(() => ["services", "netbox", "apiTokenPeppersFile"]), nix.thunk(() => ["services", "netbox", "apiTokenPepperFiles"]), (config_1) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "1": nix.thunk(() => nix.sel(config_1, "services", "netbox", "apiTokenPeppersFile")),
         }))),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "netbox", "listenAddress"]), "Use `services.netbox.bind` with <ip>:<port> format instead.\n")),
@@ -181,19 +181,19 @@ esac
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "netbox", "gunicornArgs"]), "Removed in favor of `services.netbox.gunicorn.extraArgs`, an attribute set passed to `lib.cli.toCommandLineGNU`.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       services: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         netbox: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable Netbox, a DCIM and IPAM source of truth.\n\nThis module requires setting up a reverse proxy and has native support\nfor nginx. Additionally, the NetBox project has example configurations\nfor [nginx] and the [Apache httpd] server.\n\nThe important change to make is to serve `/static` from\n`${config.services.netbox.settings.STATIC_ROOT}`.\n\n[nginx]: https://github.com/netbox-community/netbox/blob/main/contrib/nginx.conf\n[Apache httpd]: https://github.com/netbox-community/netbox/blob/main/contrib/apache.conf\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -202,16 +202,16 @@ esac
               description: "Environment files loaded into all NetBox services and consumable in\n{option}`services.netbox.extraConfig`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "The main {file}`configuration.py` to set up NetBox.\n\nCan be used to define flat and nested key-value pairs. Check the \\\n[NetBox documentation] for possible options.\n\n::: {.tip}\nUse {option}`services.netbox.extraConfig` to extend this file with Python code.\n:::\n\n[NetBox documentation]: https://netboxlabs.com/docs/netbox/configuration/#configuration-file\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   freeformType: nix.thunk(() => nix.sel(pythonVars, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     ALLOWED_HOSTS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -220,7 +220,7 @@ esac
                         description: "A list of valid fully-qualified domain names (FQDNs) and/or IP\naddresses that can be used to reach the NetBox service.\n",
                       })))),
                     STATIC_ROOT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         readOnly: true,
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/static/`),
@@ -228,7 +228,7 @@ esac
                         description: "Path to the collected static assets, served below `/static/`.\n",
                       })))),
                     MEDIA_ROOT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         readOnly: true,
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/media/`),
@@ -236,7 +236,7 @@ esac
                         description: "Path where uploaded media is stored.\n",
                       })))),
                     REPORTS_ROOT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         readOnly: true,
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/reports/`),
@@ -244,7 +244,7 @@ esac
                         description: "Path where generated reports are stored.\n",
                       })))),
                     SCRIPTS_ROOT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         readOnly: true,
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/scripts/`),
@@ -252,23 +252,23 @@ esac
                         description: "Path where scripts are stored.\n",
                       })))),
                     DATABASES: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))));
                         })()),
                         default: nix.thunk(() => ({
-                          __proto__: pos$15,
-                          default: nix.thunk(() => ({ __proto__: pos$14, NAME: "netbox", USER: "netbox", HOST: "/run/postgresql" })),
+                          [nix.POS]: pos$15,
+                          default: nix.thunk(() => ({ [nix.POS]: pos$14, NAME: "netbox", USER: "netbox", HOST: "/run/postgresql" })),
                         })),
                         description: "Configuration for one or multiple [database] backends.\n\nAt least one database named `default` must be defined.\n\n[database]: https://netbox.readthedocs.io/en/stable/configuration/required-parameters/#database\n",
                       })))),
                     REDIS: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       tasks: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: nix.thunk(() => nix.str`unix://${nix.sel(config, "services", "redis", "servers", "netbox", "unixSocket")}?db=0`),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "unix://$${config.services.redis.servers.netbox.unixSocket}?db=0")),
@@ -276,9 +276,9 @@ esac
                           })))),
                       })),
                       caching: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: nix.thunk(() => nix.str`unix://${nix.sel(config, "services", "redis", "servers", "netbox", "unixSocket")}?db=1`),
                             defaultText: "unix://$${config.services.redis.servers.netbox.unixSocket}?db=0",
@@ -287,7 +287,7 @@ esac
                       })),
                     })),
                     REMOTE_AUTH_BACKEND: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -300,20 +300,20 @@ esac
                         description: "One or multiple [backends] used for authenticating external users.\n\nWhen multiple backends are specified, they are tried in order.\n\n[backends]: https://netbox.readthedocs.io/en/stable/configuration/remote-authentication/#remote_auth_backend\n",
                       })))),
                     LOGGING: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         type: nix.thunk(() => nix.sel(pythonVars, "type")),
                         default: nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           version: 1n,
                           formatters: nix.thunk(() => ({
-                            __proto__: pos$24,
-                            precise: nix.thunk(() => ({ __proto__: pos$23, format: "[%(levelname)s@%(name)s] %(message)s" })),
+                            [nix.POS]: pos$24,
+                            precise: nix.thunk(() => ({ [nix.POS]: pos$23, format: "[%(levelname)s@%(name)s] %(message)s" })),
                           })),
                           handlers: nix.thunk(() => ({
-                            __proto__: pos$26,
-                            console: nix.thunk(() => ({ __proto__: pos$25, class: "logging.StreamHandler", formatter: "precise" })),
+                            [nix.POS]: pos$26,
+                            console: nix.thunk(() => ({ [nix.POS]: pos$25, class: "logging.StreamHandler", formatter: "precise" })),
                           })),
-                          root: nix.thunk(() => ({ __proto__: pos$27, level: "INFO", handlers: nix.thunk(() => ["console"]) })),
+                          root: nix.thunk(() => ({ [nix.POS]: pos$27, level: "INFO", handlers: nix.thunk(() => ["console"]) })),
                         })),
                         description: "[Logging configuration] based on the Python [`logging.config`] module.\n\n[`logging.config`]: https://docs.python.org/3/library/logging.config.html\n[Logging configuration]: https://netboxlabs.com/docs/netbox/configuration/system/#logging\n",
                       })))),
@@ -321,23 +321,23 @@ esac
                 })))),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               example: "from os import environ\n\n# https://python-social-auth.readthedocs.io/en/latest/backends/oidc.html\n# From the environment:\nSOCIAL_AUTH_OIDC_SECRET = environ.get(\"OIDC_CLIENT_SECRET\")\n\n# From a file:\nwith open(\"/run/keys/oidc-client-secret\") as fd:\n  SOCIAL_AUTH_OIDC_SECRET = fd.read().strip()\n",
               description: "Additional lines that are appended to {file}`configuration.py`.\n\nThis option supports native Python code and can be used for reading\nsecrets from files or the environment into configuration variables:\n\nPossible options can be found in the [NetBox documentation] or, for\nauthentication purposes, in the [Python Social Auth] documentation.\n\n[NetBox documentation]: https://netboxlabs.com/docs/netbox/configuration/\n[Python Social Auth]: https://python-social-auth.readthedocs.io/en/latest/backends/index.html#\n",
             })))),
           bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "unix:/run/netbox/netbox.sock",
               example: "[::1]:8001",
               description: "IP and port or Unix domain socket path to bind the HTTP socket to.\n\n::: {.tip}\nThis setting will be passed to gunicorn's [--bind] flag.\n:::\n\n[--bind]: https://gunicorn.org/reference/settings/#bind\n",
             })))),
           gunicorn: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: nix.thunk(() => ({})),
                 description: "Extra arguments passed the Gunicorn process that runs NetBox.\n\nSee <https://gunicorn.org/reference/settings/> for possible flags.\n",
@@ -345,42 +345,42 @@ esac
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             enable: nix.thunk(() => nix.app(mkEnableOption, "nginx and configure a virtual host")),
             hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 example: "netbox.example.com",
                 description: "The hostname for which an nginx virtual host should be created.\n\n::: {.tip}\nCustomize the virtual host through\n`services.nginx.virtualHosts.${config.services.netbox.nginx.hostname}`.\n:::\n",
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to enable and set up a Redis database for NetBox locally.\n",
               })))),
           })),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to enable and set up PostgreSQL locally.\n\nThis will automatically created a database and a local user, that can\nauthenticate over Unix domain sockets with `SO_PEERCRED`.\n",
               })))),
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               type: nix.thunk(() => nix.sel(types, "package")),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.11")) ? nix.sel(pkgs, "netbox_4_7") : nix.sel(pkgs, "netbox_4_5"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if lib.versionAtLeast config.system.stateVersion \"26.11\" then\n  pkgs.netbox_4_7\nelse\n  pkgs.netbox_4_5;\n")),
               description: "NetBox package to use.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "functionTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")))));
@@ -390,40 +390,40 @@ esac
               description: "List of plugin packages to install.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/netbox",
               description: "Storage path of netbox.\n",
             })))),
           secretKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
-                return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ __proto__: pos$46, inStore: false })))));
+                return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$46, inStore: false })))));
               })()),
               default: null,
               description: "Path to a file containing the [secret key].\n\nThe secret key is used for hashing passwords and signing HTTP cookies.\nIt can be rotated without data loss; however all existing user sessions\nwill be invalidated.\n\n::: {.note}\nIf unset, a random secret will be created automatically at\n`/var/lib/netbox/secret.key`.\n:::\n\n[secret key]: https://netboxlabs.com/docs/netbox/configuration/required-parameters/#secret_key\n",
             })))),
           apiTokenPepperFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
-                return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ __proto__: pos$48, inStore: false })))));
+                return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$48, inStore: false })))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 "1": nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/pepper.1`),
               })),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"1\" = \"${config.services.netbox.dataDir}/pepper.1\";\n}\n")),
               example: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 "1": "/run/keys/netbox-pepper-old",
                 "2": "/run/keys/netbox-pepper-current",
               })),
               description: "Mapping of cryptographic pepper IDs to files containing the pepper values.\n\nPeppers provide an additional secret input in hashing operations. They\nare required for v2 API tokens (NetBox 4.5+).\n\n::: {.note}\nBy default a random pepper will be created automatically at\n`/var/lib/netbox/pepper.1` and configured with pepper ID 1.\n:::\n\n[cryptographic peppers]: https://netboxlabs.com/docs/netbox/configuration/required-parameters/#api_token_peppers\n",
             })))),
           ldapConfigFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -437,50 +437,50 @@ esac
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "postgresql", "createLocally")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "services", "postgresql", "finalPackage", "version")), "15")))),
                 message: "NetBox requires PostgreSQL >= 15. Please read the NixOS manual to upgrade your PostgreSQL version.",
               })),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               netbox: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableLDAP, (ps) => [nix.thunk(() => nix.sel(ps, "django-auth-ldap"))])),
               })),
               redis: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 servers: nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   netbox: nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     enable: nix.thunk(() => nix.sel(cfg, "redis", "createLocally")),
                   })),
                 })),
               })),
               postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "postgresql", "createLocally")), nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   enable: true,
                   ensureDatabases: nix.thunk(() => ["netbox"]),
                   ensureUsers: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$61, name: "netbox", ensureDBOwnership: true })),
+                    nix.thunk(() => ({ [nix.POS]: pos$61, name: "netbox", ensureDBOwnership: true })),
                   ]),
                 })))),
             })),
-            environment: nix.thunk(() => ({ __proto__: pos$64, systemPackages: nix.thunk(() => [netboxManageScript]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$64, systemPackages: nix.thunk(() => [netboxManageScript]) })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               slices: nix.thunk(() => ({
-                __proto__: pos$66,
-                "system-netbox": nix.thunk(() => ({ __proto__: pos$65, description: "Netbox DCIM/IPAM" })),
+                [nix.POS]: pos$66,
+                "system-netbox": nix.thunk(() => ({ [nix.POS]: pos$65, description: "Netbox DCIM/IPAM" })),
               })),
               targets: nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 netbox: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   description: "Target for all NetBox services",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
@@ -489,15 +489,15 @@ esac
               })),
               services: nix.thunk(() => (() => {
                 const defaultUnitConfig = nix.thunk(() => ({
-                  __proto__: pos$70,
+                  [nix.POS]: pos$70,
                   documentation: nix.thunk(() => ["https://netboxlabs.com/docs/netbox/"]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     PYTHONPATH: nix.thunk(() => nix.sel(finalPackage, "pythonPath")),
                   })),
                 }));
                 const defaultServiceConfig = nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
                   User: "netbox",
                   Group: "netbox",
@@ -539,9 +539,9 @@ esac
                   UMask: "0027",
                 }));
                 return {
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   netbox: nix.thunk(() => nix.update(defaultUnitConfig, {
-                    __proto__: pos$74,
+                    [nix.POS]: pos$74,
                     description: "NetBox WSGI Service",
                     wantedBy: nix.thunk(() => ["netbox.target"]),
                     after: nix.thunk(() => ["network-online.target"]),
@@ -574,12 +574,12 @@ ${nix.app(nix.sel(lib, "getExe"), finalPackage)} clearsessions
 ln -sfn "${nix.sel(cfg, "package")}" "$versionFile"
 `),
                     serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                      __proto__: pos$73,
+                      [nix.POS]: pos$73,
                       ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
                           nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalPackage, "gunicorn")))),
                           "netbox.wsgi",
                         ], nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.update({
-                            __proto__: pos$72,
+                            [nix.POS]: pos$72,
                             bind: nix.thunk(() => nix.attr(cfg, "bind")),
                             pythonpath: nix.thunk(() => nix.str`${finalPackage}/opt/netbox/netbox`),
                           }, nix.sel(cfg, "gunicorn", "extraArgs")))))))),
@@ -590,12 +590,12 @@ ln -sfn "${nix.sel(cfg, "package")}" "$versionFile"
                     })),
                   })),
                   "netbox-rq": nix.thunk(() => nix.update(defaultUnitConfig, {
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     description: "NetBox Request Queue Worker",
                     wantedBy: nix.thunk(() => ["netbox.target"]),
                     after: nix.thunk(() => ["netbox.service"]),
                     serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                           nix.thunk(() => nix.app(nix.sel(lib, "getExe"), finalPackage)),
                           "rqworker",
@@ -609,61 +609,61 @@ ln -sfn "${nix.sel(cfg, "package")}" "$versionFile"
                 };
               })()),
               timers: nix.thunk(() => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 "netbox-housekeeping": nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   description: "Run NetBox housekeeping job",
                   documentation: nix.thunk(() => ["https://netboxlabs.com/docs/netbox/"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network-online.target", "netbox.service"]),
                   wants: nix.thunk(() => ["network-online.target"]),
-                  timerConfig: nix.thunk(() => ({ __proto__: pos$78, OnCalendar: "daily", AccuracySec: "1h", Persistent: true })),
+                  timerConfig: nix.thunk(() => ({ [nix.POS]: pos$78, OnCalendar: "daily", AccuracySec: "1h", Persistent: true })),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$85,
+              [nix.POS]: pos$85,
               users: nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 netbox: nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   home: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
                   isSystemUser: true,
                   group: "netbox",
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$84, netbox: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$84, netbox: nix.thunk(() => ({})) })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               systemd: nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 services: nix.thunk(() => ({
-                  __proto__: pos$89,
+                  [nix.POS]: pos$89,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$88,
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$87, SupplementaryGroups: nix.thunk(() => ["netbox"]) })),
+                    [nix.POS]: pos$88,
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$87, SupplementaryGroups: nix.thunk(() => ["netbox"]) })),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$96,
+                [nix.POS]: pos$96,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$95,
+                  [nix.POS]: pos$95,
                   enable: true,
                   recommendedProxySettings: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.sel(cfg, "nginx", "hostname"), nix.thunk(() => ({
-                      __proto__: pos$94,
+                      [nix.POS]: pos$94,
                       locations: nix.thunk(() => ({
-                        __proto__: pos$93,
+                        [nix.POS]: pos$93,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$91,
+                          [nix.POS]: pos$91,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "netbox", "bind")))}`),
                         })),
                         "/static/": nix.thunk(() => ({
-                          __proto__: pos$92,
+                          [nix.POS]: pos$92,
                           alias: nix.thunk(() => nix.sel(cfg, "settings", "STATIC_ROOT")),
                         })),
                       })),

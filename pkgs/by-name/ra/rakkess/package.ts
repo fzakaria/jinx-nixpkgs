@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rakkess",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corneliusweig",
           repo: "rakkess",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/corneliusweig/rakkess/internal/version.version=v${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/corneliusweig/rakkess",
         changelog: nix.thunk(() => nix.str`https://github.com/corneliusweig/rakkess/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Review Access - kubectl plugin to show an access matrix for k8s server resources",

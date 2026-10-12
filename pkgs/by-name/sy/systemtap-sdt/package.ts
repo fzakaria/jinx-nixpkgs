@@ -10,10 +10,10 @@ const pos$3 = nix.positions(here + "/package.nix", [["meta", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const linuxPackages = nix.arg($, "linuxPackages");
-  return nix.update(nix.app(nix.sel(linuxPackages, "systemtap", "override"), nix.thunk(() => ({ __proto__: pos$1, withStap: false }))), {
-    __proto__: pos$3,
+  return nix.update(nix.app(nix.sel(linuxPackages, "systemtap", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withStap: false }))), {
+    [nix.POS]: pos$3,
     meta: nix.thunk(() => nix.update(nix.sel(linuxPackages, "systemtap", "meta"), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Build USDT tracepoints with the 'dtrace' executable on Linux",
       mainProgram: "dtrace",
     })),

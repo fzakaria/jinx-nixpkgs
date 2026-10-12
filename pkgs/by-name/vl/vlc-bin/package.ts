@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const variant = nix.argOr($, "variant", () => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? "arm64" : (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) ? "intel64" : "universal")));
   nix.assert_(nix.builtins.elem(variant, nix.thunk(() => ["arm64", "intel64", "universal"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vl/vlc-bin/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`vlc-bin-${variant}`),
       version: "3.0.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://get.videolan.org/vlc/${nix.sel(finalAttrs, "version")}/macosx/vlc-${nix.sel(finalAttrs, "version")}-${variant}.dmg`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             arm64: "sha256-/G+sCNh/U4UX1ErKDF56JEtnyMTLWJv0eDY6cxX9Xg0=",
             intel64: "sha256-7AFTDOadhJ3QV/uoh25orDm/J53CjeTpwE5K7BH8mNs=",
             universal: "sha256-Vu5lfDqvXHG0q31uT0p39uylRjPgv0KpO4EW6x0fbsk=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications $out/bin\ncp -r \"VLC.app\" $out/Applications\nmakeWrapper \"$out/Applications/VLC.app/Contents/MacOS/VLC\" \"$out/bin/vlc\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform media player and streaming server; precompiled binary for MacOS, repacked from official website",
         homepage: "https://www.videolan.org/vlc/",
         downloadPage: "https://www.videolan.org/vlc/download-macosx.html",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pcasaretto"))];
         })()),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "systems", "inspect", "patternLogicalAnd"), nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin")), nix.thunk(() => nix.sel({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             arm64: nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isAarch64")),
             intel64: nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isx86_64")),
             universal: nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vex-tui",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CodeOne45",
           repo: "vex-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/{vex-tui,vex}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Beautiful, fast, and feature-rich terminal-based Excel and CSV viewer built with Go",
         homepage: "https://github.com/CodeOne45/vex-tui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

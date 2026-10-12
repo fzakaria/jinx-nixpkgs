@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apksigcopier",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "obfusk",
           repo: "apksigcopier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Copy/extract/patch android apk signatures & compare APKs",
         mainProgram: "apksigcopier",
         longDescription: "apksigcopier is a tool for copying android APK signatures from a signed\nAPK to an unsigned one (in order to verify reproducible builds).\nIt can also be used to compare two APKs with different signatures.\nIts command-line tool offers four operations:\n\n* copy signatures directly from a signed to an unsigned APK\n* extract signatures from a signed APK to a directory\n* patch previously extracted signatures onto an unsigned APK\n* compare two APKs with different signatures (requires apksigner)\n",

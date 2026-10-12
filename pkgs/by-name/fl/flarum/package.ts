@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flarum",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flarum",
           repo: "flarum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       composerStrictValidation: false,
       vendorHash: "sha256-EHl+Mr6y5A51EpLPAWUGtiPkLOky6KvsSY4JWHeyO28=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, module: nix.thunk(() => nix.sel(nixosTests, "flarum")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, module: nix.thunk(() => nix.sel(nixosTests, "flarum")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: "https://github.com/flarum/framework/blob/main/CHANGELOG.md",
         description: "Delightfully simple discussion platform for your website",
         homepage: "https://github.com/flarum/flarum",

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sound_theme_freedesktop = nix.arg($, "sound-theme-freedesktop");
   const xprop = nix.arg($, "xprop");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "undistract-me",
       version: "0-unstable-2020-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jml",
           repo: "undistract-me",
           rev: "2f8ac25c6ad8efcf160d2b480825b1cbb6772aab",
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/jml/undistract-me/commit/2356ebbe8bf2bcb4b95af1ae2bcdc786ce7cc6e8.patch",
             sha256: "sha256-Ij3OXTOnIQsYhKVmqjChhN1q4ASZ7waOkfQTTp5XfPo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/jml/undistract-me/commit/3f4ceaf5a4eba8e3cb02236c48247f87e3d1124f.patch",
             sha256: "sha256-9AK9Jp3TXJ75Y+jwZXlwQ6j54FW1rOBddoktrm0VX68=",
           })))),
@@ -61,7 +61,7 @@ done
 `),
       installPhase: "mkdir -p \"$out/share/undistract-me\" \"$out/etc/profile.d\" \"$out/share/licenses/undistract-me\"\ncp long-running.bash \"$out/share/undistract-me\"\ncp preexec.bash \"$out/share/undistract-me\"\ncp undistract-me.sh \"$out/etc/profile.d\"\ncp LICENSE \"$out/share/licenses/undistract-me\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Notifies you when long-running terminal commands complete",
         homepage: "https://github.com/jml/undistract-me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

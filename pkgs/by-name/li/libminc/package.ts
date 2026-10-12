@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nifticlib = nix.arg($, "nifticlib");
   const hdf5 = nix.arg($, "hdf5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libminc",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "libminc",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkPhase: "ctest -j1 --output-on-failure\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BIC-MNI/libminc",
         description: "Medical imaging library based on HDF5",
         maintainers: nix.thunk(() => (() => {

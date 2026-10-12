@@ -19,31 +19,31 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gdomap: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GNUstep Distributed Objects name server")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "gdomap", "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             gdomap: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "gdomap server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnustep-base"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnustep-base")}/bin/gdomap -f`),
               })),
             })),

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "enthought",
           repo: "okonomiyaki",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [attrs, distro, jsonschema, zipfile2]),
         platforms: nix.thunk(() => [attrs, distro]),
         formats: nix.thunk(() => [attrs, distro, jsonschema, zipfile2]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "substituteInPlace okonomiyaki/runtimes/tests/test_runtime.py \\\n  --replace-fail 'runtime_info = PythonRuntime.from_running_python()' 'raise unittest.SkipTest() #'\nsubstituteInPlace okonomiyaki/platforms/_platform.py \\\n  --replace-fail 'name.split()[0]' '(name.split() or [\"\"])[0]'\n";
       const pythonImportsCheck = nix.thunk(() => ["okonomiyaki"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Experimental library aimed at consolidating a lot of low-level code used for Enthought's eggs",
         homepage: "https://github.com/enthought/okonomiyaki",
         changelog: nix.thunk(() => nix.str`https://github.com/enthought/okonomiyaki/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "firewalld"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "xml"), nix.thunk(() => ({}))));
-  const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const lib$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const filterNullAttrs = nix.thunk(() => nix.attr(lib$, "filterNullAttrs"));
   const mkXmlAttr = nix.thunk(() => nix.attr(lib$, "mkXmlAttr"));
   const portProtocolOptions = nix.thunk(() => nix.attr(lib$, "portProtocolOptions"));
@@ -52,71 +52,71 @@ export default nix.lambda((args) => (() => {
   const strMatching = nix.thunk(() => nix.attr(from, "strMatching"));
   const submodule = nix.thunk(() => nix.attr(from, "submodule"));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         firewalld: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "firewalld service configuration files. See {manpage}`firewalld.service(5)`.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     options: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                           description: "Version of the service.",
                           default: null,
                         })))),
                       short: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                           description: "Short description for the service.",
                           default: null,
                         })))),
                       description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nullOr, nonEmptyStr)),
                           description: "Description for the service.",
                           default: null,
                         })))),
                       ports: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, portProtocolOptions)))),
                           description: "Ports of the service.",
                           default: [],
                         })))),
                       protocols: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(listOf, nonEmptyStr)),
                           description: "Protocols for the service.",
                           default: [],
                         })))),
                       sourcePorts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, portProtocolOptions)))),
                           description: "Source ports for the service.",
                           default: [],
                         })))),
                       destination: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               options: nix.thunk(() => ({
-                                __proto__: pos$10,
+                                [nix.POS]: pos$10,
                                 ipv4: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$8,
+                                    [nix.POS]: pos$8,
                                     type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(strMatching, "([0-9]{1,3}\\.){3}[0-9]{1,3}(/[0-9]{1,2})?")))),
                                     description: "IPv4 destination.",
                                     default: null,
                                   })))),
                                 ipv6: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$9,
+                                    [nix.POS]: pos$9,
                                     type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(strMatching, "[0-9A-Fa-f:]{3,39}(/[0-9]{1,3})?")))),
                                     description: "IPv6 destination.",
                                     default: null,
@@ -127,13 +127,13 @@ export default nix.lambda((args) => (() => {
                           default: nix.thunk(() => ({})),
                         })))),
                       includes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(listOf, nonEmptyStr)),
                           description: "Services to include for the service.",
                           default: [],
                         })))),
                       helpers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(listOf, nonEmptyStr)),
                           description: "Helpers for the service.",
                           default: [],
@@ -145,17 +145,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`firewalld/services/${name}.xml`), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 source: nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`firewalld-service-${name}.xml`), nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     service: nix.thunk(() => nix.app(filterNullAttrs, nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => [
-                          nix.thunk(() => nix.app(toXmlAttrs, nix.thunk(() => ({ __proto__: pos$21, version: nix.thunk(() => nix.attr(value, "version")) })))),
+                          nix.thunk(() => nix.app(toXmlAttrs, nix.thunk(() => ({ [nix.POS]: pos$21, version: nix.thunk(() => nix.attr(value, "version")) })))),
                           nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             short: nix.thunk(() => nix.attr(value, "short")),
                             description: nix.thunk(() => nix.attr(value, "description")),
                             port: nix.thunk(() => nix.builtins.map(toXmlAttrs, nix.thunk(() => nix.sel(value, "ports")))),

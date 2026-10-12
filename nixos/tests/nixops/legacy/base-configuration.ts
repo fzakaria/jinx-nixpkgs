@@ -35,56 +35,56 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.add(modulesPath, "/virtualisation/qemu-vm.nix")),
       nix.thunk(() => nix.add(modulesPath, "/virtualisation/guest-networking-options.nix")),
       nix.thunk(() => nix.add(modulesPath, "/testing/test-instrumentation.nix")),
     ]),
-    virtualisation: nix.thunk(() => ({ __proto__: pos$1, writableStore: true, graphics: false })),
+    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, writableStore: true, graphics: false })),
     nix: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       settings: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
       })),
     })),
-    documentation: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+    documentation: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
-      qemuGuest: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
-      openssh: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+      [nix.POS]: pos$7,
+      qemuGuest: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+      openssh: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       loader: nix.thunk(() => ({
-        __proto__: pos$9,
-        grub: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+        [nix.POS]: pos$9,
+        grub: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
       })),
     })),
     users: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       users: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         root: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           openssh: nix.thunk(() => ({
-            __proto__: pos$12,
-            authorizedKeys: nix.thunk(() => ({ __proto__: pos$11, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+            [nix.POS]: pos$12,
+            authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$11, keys: nix.thunk(() => [snakeOilPublicKey]) })),
           })),
         })),
       })),
     })),
     security: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       pam: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           sshd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             limits: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$16, domain: "*", item: "memlock", type: "-", value: 1024n })),
+              nix.thunk(() => ({ [nix.POS]: pos$16, domain: "*", item: "memlock", type: "-", value: 1024n })),
             ]),
           })),
         })),

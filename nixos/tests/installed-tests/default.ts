@@ -20,10 +20,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
-  const callInstalledTest = nix.thunk(() => nix.app(nix.sel(pkgs, "newScope"), nix.thunk(() => ({ __proto__: pos$3, makeInstalledTest: makeInstalledTest }))));
+  const callInstalledTest = nix.thunk(() => nix.app(nix.sel(pkgs, "newScope"), nix.thunk(() => ({ [nix.POS]: pos$3, makeInstalledTest: makeInstalledTest }))));
   const makeInstalledTest = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const args_2 = args_1;
@@ -33,27 +33,27 @@ export default nix.lambda((args) => (() => {
     const withX11 = nix.argOr($_1, "withX11", () => false);
     const testRunnerFlags = nix.argOr($_1, "testRunnerFlags", () => []);
     return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => nix.app(nix.lookup(w_1, "recursiveUpdate"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: nix.thunk(() => nix.sel(tested, "name")),
           meta: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             maintainers: nix.thunk(() => nix.selOr(tested, () => [], "meta", "maintainers")),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             machine: nix.lambda((args_3) => (() => {
               const $_2 = nix.formals(args_3, formals$3);
               return {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 imports: nix.thunk(() => nix.concat([testConfig], nix.app(nix.lookup(w_1, "optional"), withX11, nix.path(here, "../common/x11.nix")))),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   systemPackages: nix.thunk(() => (() => {
                     const w_2 = nix.withScope(pkgs, w_1);
                     return [nix.thunk(() => nix.lookup(w_2, "gnome-desktop-testing"))];
                   })()),
                   variables: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     TESTED_PACKAGE_INSTALLED_TESTS: nix.thunk(() => nix.str`${nix.sel(tested, "installedTests")}/share`),
                   })),
                 })),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })), nix.thunk(() => nix.app(nix.builtins.removeAttrs, args_2, nix.thunk(() => ["tested", "testConfig", "preTestScript", "withX11", "testRunnerFlags"]))))));
   })(), formals$2);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     appstream: nix.thunk(() => nix.app(callInstalledTest, nix.path(here, "./appstream.nix"), nix.thunk(() => ({})))),
     "appstream-qt": nix.thunk(() => nix.app(callInstalledTest, nix.path(here, "./appstream-qt.nix"), nix.thunk(() => ({})))),
     colord: nix.thunk(() => nix.app(callInstalledTest, nix.path(here, "./colord.nix"), nix.thunk(() => ({})))),

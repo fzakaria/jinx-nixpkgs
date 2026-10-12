@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lla",
       version: "0.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chaqchase",
           repo: "lla",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [oniguruma]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       cargoHash: "sha256-g241vUK6rO53yoEKnOt3UpqtOZfvp6ajb9JzWJfd+Qw=",
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       postInstall: "installShellCompletion completions/{_lla,lla{.bash,.fish}}\n",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Blazing-fast `ls` replacement with superpowers",
         longDescription: "`lla` is a modern `ls` replacement that transforms how developers interact with their filesystem.\nBuilt with Rust's performance capabilities and designed with user experience in mind,\n`lla` combines the familiarity of ls with powerful features like specialized views,\nGit integration, and a robust plugin system with an extensible list of plugins to add more functionality.\n",
         homepage: "https://lla.chaqchase.com",

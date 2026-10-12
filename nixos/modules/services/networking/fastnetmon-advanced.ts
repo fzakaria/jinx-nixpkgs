@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "fastnetmon-advanced"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const default_configs = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "default-configs", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "ferretdb")),
         nix.thunk(() => nix.sel(pkgs, "fastnetmon-advanced")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
 FERRETDB_TELEMETRY="disable" FERRETDB_HANDLER="sqlite" FERRETDB_STATE_DIR="$PWD/ferretdb" FERRETDB_SQLITE_URL="file:$PWD/ferretdb/" ferretdb &
 
 cat << EOF > fastnetmon/fastnetmon.conf
-${nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$2, mongodb_username: "" })))}
+${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, mongodb_username: "" })))}
 EOF
 proot -b fastnetmon:/etc/fastnetmon -0 fcli create_configuration
 proot -b fastnetmon:/etc/fastnetmon -0 fcli set bgp default
@@ -84,7 +84,7 @@ proot -b fastnetmon:/etc/fastnetmon -0 fcli export_configuration backup.tar
 tar -C $out --no-same-owner -xvf backup.tar
 `)));
   const config_tar = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "fastnetmon-config.tar", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "jq"))];
@@ -98,48 +98,48 @@ ${nix.app(nix.sel(lib, "concatImapStringsSep"), "\n", (pos) => (bgp) => nix.str`
 `, bgpPeers)}
 tar -cf $out main.json ${nix.app(nix.sel(lib, "concatImapStringsSep"), " ", (pos) => (_) => nix.str`hostgroup/${nix.builtins.toString(nix.thunk(() => nix.sub(pos, 1n)))}.json`, hostgroups)} ${nix.app(nix.sel(lib, "concatImapStringsSep"), " ", (pos) => (_) => nix.str`bgp/${nix.builtins.toString(nix.thunk(() => nix.sub(pos, 1n)))}.json`, bgpPeers)}
 `)));
-  const hostgroups = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (hostgroup) => nix.update({ __proto__: pos$4, name: name }, hostgroup), nix.thunk(() => nix.sel(cfg, "hostgroups"))));
-  const bgpPeers = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (bgpPeer) => nix.update({ __proto__: pos$5, name: name }, bgpPeer), nix.thunk(() => nix.sel(cfg, "bgpPeers"))));
+  const hostgroups = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (hostgroup) => nix.update({ [nix.POS]: pos$4, name: name }, hostgroup), nix.thunk(() => nix.sel(cfg, "hostgroups"))));
+  const bgpPeers = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (bgpPeer) => nix.update({ [nix.POS]: pos$5, name: name }, bgpPeer), nix.thunk(() => nix.sel(cfg, "bgpPeers"))));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "fastnetmon-advanced": nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the fastnetmon-advanced DDoS Protection daemon")),
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Extra configuration options to declaratively load into FastNetMon Advanced.\n\nSee the [FastNetMon Advanced Configuration options reference](https://fastnetmon.com/docs-fnm-advanced/fastnetmon-advanced-configuration-options/) for more details.\n",
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  networks_list = [ \"192.0.2.0/24\" ];\n  gobgp = true;\n  gobgp_flow_spec_announces = true;\n}\n")),
               })))),
             hostgroups: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Hostgroups to declaratively load into FastNetMon Advanced",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
                 default: nix.thunk(() => ({})),
               })))),
             bgpPeers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "BGP Peers to declaratively load into FastNetMon Advanced",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "type")))),
                 default: nix.thunk(() => ({})),
               })))),
             enableAdvancedTrafficPersistence: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 description: "Store historical flow data in clickhouse",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
               })))),
             traffic_db: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   description: "Additional settings for /etc/fastnetmon/traffic_db.conf",
                 })))),
@@ -150,38 +150,38 @@ tar -cf $out main.json ${nix.app(nix.sel(lib, "concatImapStringsSep"), " ", (pos
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             environment: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "fastnetmon-advanced"))];
               })()),
               etc: nix.thunk(() => ({
-                __proto__: pos$19,
-                "fastnetmon/license.lic": nix.thunk(() => ({ __proto__: pos$15, source: "/var/lib/fastnetmon/license.lic" })),
-                "fastnetmon/gobgpd.conf": nix.thunk(() => ({ __proto__: pos$16, source: "/run/fastnetmon/gobgpd.conf" })),
+                [nix.POS]: pos$19,
+                "fastnetmon/license.lic": nix.thunk(() => ({ [nix.POS]: pos$15, source: "/var/lib/fastnetmon/license.lic" })),
+                "fastnetmon/gobgpd.conf": nix.thunk(() => ({ [nix.POS]: pos$16, source: "/run/fastnetmon/gobgpd.conf" })),
                 "fastnetmon/fastnetmon.conf": nix.thunk(() => ({
-                  __proto__: pos$18,
-                  source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fastnetmon.conf", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$17, mongodb_username: "" })))))),
+                  [nix.POS]: pos$18,
+                  source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fastnetmon.conf", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$17, mongodb_username: "" })))))),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$25,
-              ferretdb: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
-              dbus: nix.thunk(() => ({ __proto__: pos$22, implementation: "broker" })),
+              [nix.POS]: pos$25,
+              ferretdb: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+              dbus: nix.thunk(() => ({ [nix.POS]: pos$22, implementation: "broker" })),
               "fastnetmon-advanced": nix.thunk(() => ({
-                __proto__: pos$24,
-                hostgroups: nix.thunk(() => ({ __proto__: pos$23, global: nix.thunk(() => ({})) })),
+                [nix.POS]: pos$24,
+                hostgroups: nix.thunk(() => ({ [nix.POS]: pos$23, global: nix.thunk(() => ({})) })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               services: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 "fastnetmon-setup": nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["ferretdb.service"]),
                   path: nix.thunk(() => (() => {
@@ -196,19 +196,19 @@ fcli delete hostgroup global
 fcli import_configuration ${config_tar}
 systemctl --no-block try-restart fastnetmon
 `),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$26, Type: "oneshot" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$26, Type: "oneshot" })),
                 })),
                 fastnetmon: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["ferretdb.service", "fastnetmon-setup.service", "polkit.service"]),
                   path: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return [nix.thunk(() => nix.lookup(w, "iproute2"))];
                   })()),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$28, StartLimitInterval: 0n })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$28, StartLimitInterval: 0n })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "fastnetmon-advanced")}/bin/fastnetmon --log_to_console`),
                     LimitNOFILE: 65535n,
                     Restart: "on-failure",
@@ -220,13 +220,13 @@ systemctl --no-block try-restart fastnetmon
                   })),
                 })),
                 gobgp: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   description: "GoBGP Routing Daemon",
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$31, ConditionPathExists: "/run/fastnetmon/gobgpd.conf" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$31, ConditionPathExists: "/run/fastnetmon/gobgpd.conf" })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     Type: "notify",
                     ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "fastnetmon-advanced")}/bin/fnm-gobgpd -f /run/fastnetmon/gobgpd.conf -d`),
                     SupplementaryGroups: nix.thunk(() => ["fastnetmon"]),
@@ -239,26 +239,26 @@ systemctl --no-block try-restart fastnetmon
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               polkit: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 enable: true,
                 extraConfig: "polkit.addRule(function(action, subject) {\n  if (action.id == \"org.freedesktop.systemd1.manage-units\" &&\n    subject.isInGroup(\"fastnetmon\")) {\n    if (action.lookup(\"unit\") == \"gobgp.service\") {\n      var verb = action.lookup(\"verb\");\n      if (verb == \"start\" || verb == \"stop\" || verb == \"restart\") {\n        return polkit.Result.YES;\n      }\n    }\n  }\n});\n",
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "enableAdvancedTrafficPersistence")))), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             services: nix.thunk(() => ({
-              __proto__: pos$44,
-              clickhouse: nix.thunk(() => ({ __proto__: pos$39, enable: true })),
+              [nix.POS]: pos$44,
+              clickhouse: nix.thunk(() => ({ [nix.POS]: pos$39, enable: true })),
               "fastnetmon-advanced": nix.thunk(() => ({
-                __proto__: pos$43,
-                settings: nix.thunk(() => ({ __proto__: pos$40, traffic_db: true })),
+                [nix.POS]: pos$43,
+                settings: nix.thunk(() => ({ [nix.POS]: pos$40, traffic_db: true })),
                 traffic_db: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     clickhouse_batch_size: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1000n)),
                     clickhouse_batch_delay: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
                     traffic_db_host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
@@ -272,25 +272,25 @@ systemctl --no-block try-restart fastnetmon
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               etc: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 "fastnetmon/traffic_db.conf": nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "traffic_db", "settings")))),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               services: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 traffic_db: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "fastnetmon-advanced")}/bin/traffic_db`),
                     Restart: "on-failure",
                     RestartSec: "5s",
@@ -302,7 +302,7 @@ systemctl --no-block try-restart fastnetmon
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yureka-wdz"))];

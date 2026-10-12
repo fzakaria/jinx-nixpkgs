@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ggz-base-libs",
       version: "0.99.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirrors.ibiblio.org/pub/mirrors/ggzgamingzone/ggz/snapshots/ggz-base-libs-snapshot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-sy2uhOpH2237jbriT7IPzHG5WOotfvue/2bI5cDbgbM=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [intltool]),
       buildInputs: nix.thunk(() => [openssl, expat, libgcrypt]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             "-Wno-error=implicit-function-declaration",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })),
       configureFlags: nix.thunk(() => ["--with-tls"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GGZ Gaming zone libraries",
         mainProgram: "ggz-config",
         maintainers: nix.thunk(() => (() => {

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     gtk3,
     mutter,
   ], extraGSettingsOverridePackages));
-  return nix.app(runCommand, "elementary-gsettings-desktop-schemas", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
+  return nix.app(runCommand, "elementary-gsettings-desktop-schemas", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
 schema_dir="$data_dir/glib-2.0/schemas"
 
 mkdir -p "$schema_dir"

@@ -36,61 +36,61 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(lib, "concatLists")),
     ])));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "flap-alerted": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "FlapAlerted")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "flap-alerted", nix.thunk(() => ({})))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/secrets/flap-alerted.env"]),
               description: "Files to load environment variables from.\nThis is useful to avoid putting secrets into the nix store.\nSee <https://github.com/Kioubit/FlapAlerted> for a list of options.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra command line arguments to pass to FlapAlerted.\nSee <https://github.com/Kioubit/FlapAlerted> for a list of options.\n",
               default: [],
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Configuration of FlapAlerted.\nSee <https://github.com/Kioubit/FlapAlerted> for a list of options.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(lib, "types", "str")),
                           nix.thunk(() => nix.sel(lib, "types", "int")),
                           nix.thunk(() => nix.sel(lib, "types", "bool")),
                         ]))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     asn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "u32")),
                         description: "Your ASN number",
                       })))),
                     bgpListenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "Address to listen on for incoming BGP connections",
                         default: ":1790",
                       })))),
                     debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Enable debug mode (produces a lot of output)",
                         default: false,
@@ -102,18 +102,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "flap-alerted": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 User: "flap-alerted",
                 Group: "flap-alerted",
                 DynamicUser: true,

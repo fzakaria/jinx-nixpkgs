@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "volvo_cars";
       const version = "1.5.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomasddn",
           repo: "ha-volvo-cars",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-2wRqEa7jVumbRNCGrFa0gYEzgGwUrMnW2A8JhPTTMCc=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/thomasddn/ha-volvo-cars/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/thomasddn/ha-volvo-cars",
         description: "Volvo Cars Home Assistant integration",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

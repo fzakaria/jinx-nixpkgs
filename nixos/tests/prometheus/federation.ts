@@ -68,46 +68,46 @@ const pos$57 = nix.positions(here + "/federation.nix", [["global1", 5, 5], ["glo
 const pos$58 = nix.positions(here + "/federation.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 172, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$58,
+  [nix.POS]: pos$58,
   name: "prometheus-federation",
   nodes: nix.thunk(() => ({
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     global1: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           firewall: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
-            globalConfig: nix.thunk(() => ({ __proto__: pos$4, scrape_interval: "2s" })),
+            globalConfig: nix.thunk(() => ({ [nix.POS]: pos$4, scrape_interval: "2s" })),
             scrapeConfigs: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 job_name: "federate",
                 honor_labels: true,
                 metrics_path: "/federate",
                 params: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   "match[]": nix.thunk(() => ["{job=\"node\"}", "{job=\"prometheus\"}"]),
                 })),
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`prometheus1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                       nix.thunk(() => nix.str`prometheus2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
@@ -116,11 +116,11 @@ export default nix.thunk(() => ({
                 ]),
               })),
               nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 job_name: "prometheus",
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`global1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                       nix.thunk(() => nix.str`global2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
@@ -138,37 +138,37 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           firewall: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: true,
-            globalConfig: nix.thunk(() => ({ __proto__: pos$16, scrape_interval: "2s" })),
+            globalConfig: nix.thunk(() => ({ [nix.POS]: pos$16, scrape_interval: "2s" })),
             scrapeConfigs: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 job_name: "federate",
                 honor_labels: true,
                 metrics_path: "/federate",
                 params: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   "match[]": nix.thunk(() => ["{job=\"node\"}", "{job=\"prometheus\"}"]),
                 })),
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`prometheus1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                       nix.thunk(() => nix.str`prometheus2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
@@ -177,11 +177,11 @@ export default nix.thunk(() => ({
                 ]),
               })),
               nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 job_name: "prometheus",
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`global1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                       nix.thunk(() => nix.str`global2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
@@ -199,31 +199,31 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           firewall: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             enable: true,
-            globalConfig: nix.thunk(() => ({ __proto__: pos$28, scrape_interval: "2s" })),
+            globalConfig: nix.thunk(() => ({ [nix.POS]: pos$28, scrape_interval: "2s" })),
             scrapeConfigs: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 job_name: "node",
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`node1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "node", "port")))}`),
                     ]),
@@ -231,11 +231,11 @@ export default nix.thunk(() => ({
                 ]),
               })),
               nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 job_name: "prometheus",
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`prometheus1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                     ]),
@@ -252,31 +252,31 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         environment: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           firewall: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             enable: true,
-            globalConfig: nix.thunk(() => ({ __proto__: pos$39, scrape_interval: "2s" })),
+            globalConfig: nix.thunk(() => ({ [nix.POS]: pos$39, scrape_interval: "2s" })),
             scrapeConfigs: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 job_name: "node",
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`node2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "node", "port")))}`),
                     ]),
@@ -284,11 +284,11 @@ export default nix.thunk(() => ({
                 ]),
               })),
               nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 job_name: "prometheus",
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`prometheus2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                     ]),
@@ -305,14 +305,14 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         services: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             exporters: nix.thunk(() => ({
-              __proto__: pos$48,
-              node: nix.thunk(() => ({ __proto__: pos$47, enable: true, openFirewall: true })),
+              [nix.POS]: pos$48,
+              node: nix.thunk(() => ({ [nix.POS]: pos$47, enable: true, openFirewall: true })),
             })),
           })),
         })),
@@ -323,14 +323,14 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         services: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           prometheus: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             exporters: nix.thunk(() => ({
-              __proto__: pos$53,
-              node: nix.thunk(() => ({ __proto__: pos$52, enable: true, openFirewall: true })),
+              [nix.POS]: pos$53,
+              node: nix.thunk(() => ({ [nix.POS]: pos$52, enable: true, openFirewall: true })),
             })),
           })),
         })),

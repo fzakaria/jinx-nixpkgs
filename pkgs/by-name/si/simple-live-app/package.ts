@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simple-live-app";
       const version = "1.8.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xiaoyaocz",
           repo: "dart_simple_live",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/simple_live_app`);
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ns_danmaku: "sha256-Hzp5QsdgBStaPVSHdHul7ZqOhZHQS9dbO+RpC4wMYqo=",
       }));
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, copyDesktopItems]);
       const buildInputs = nix.thunk(() => [mpv]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "simple-live-app",
             exec: "simple_live_app",
             icon: "simple-live-app",
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -Dm644 assets/logo.png $out/share/icons/simple-live-app.png\n";
       const extraWrapProgramArgs = "--prefix LD_LIBRARY_PATH : $out/app/simple-live-app/lib\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simply Watch Live",
         homepage: "https://github.com/xiaoyaocz/dart_simple_live",
         mainProgram: "simple_live_app",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(efiBootable) || nix.asBool(!nix.eq(efiBootImage, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/make-iso9660-image.nix:65:1");
   nix.assert_((!nix.asBool(usbBootable) || nix.asBool(!nix.eq(isohybridMbrImage, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/make-iso9660-image.nix:66:1");
   const needSquashfs = nix.thunk(() => !nix.eq(squashfsContents, []));
-  const makeSquashfsDrv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-squashfs.nix"), nix.thunk(() => ({ __proto__: pos$1, storeContents: squashfsContents, comp: squashfsCompression }))));
+  const makeSquashfsDrv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-squashfs.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, storeContents: squashfsContents, comp: squashfsCompression }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: isoName,
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$2, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$2, out: true })),
       buildCommandPath: nix.path(here, "./make-iso9660-image.sh"),
       nativeBuildInputs: nix.thunk(() => nix.concat([xorriso, syslinux, zstd, libossp_uuid], nix.app(nix.sel(lib, "optionals"), needSquashfs, nix.thunk(() => nix.sel(makeSquashfsDrv, "nativeBuildInputs"))))),
       isoName: isoName,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       symlinks: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "symlink"), storeContents)),
       squashfsCommand: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), needSquashfs, nix.thunk(() => nix.sel(makeSquashfsDrv, "buildCommand")))),
       closureInfo: nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rootPaths: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "object"), storeContents)),
         })))),
     })));

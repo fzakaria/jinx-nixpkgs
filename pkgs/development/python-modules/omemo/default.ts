@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const omemo = nix.arg($, "omemo");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "omemo",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Syndace",
           repo: "python-omemo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, oldmemo, twomemo, pytest_asyncio, pytest_cov_stub], nix.sel(oldmemo, "optional-dependencies", "xml"))),
       pythonImportsCheck: nix.thunk(() => ["omemo"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(omemo, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(omemo, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open python implementation of the OMEMO Multi-End Message and Object Encryption protocol",
         longDescription: "A complete implementation of XEP-0384 on protocol-level, i.e. more than just the cryptography.\npython-omemo supports different versions of the specification through so-called backends.\n\nA backend for OMEMO in the urn:xmpp:omemo:2 namespace (the most recent version of the specification) is available\nin the python-twomemo Python package.\nA backend for (legacy) OMEMO in the eu.siacs.conversations.axolotl namespace is available in the python-oldmemo\npackage.\nMultiple backends can be loaded and used at the same time, the library manages their coexistence transparently.\n",
         homepage: "https://github.com/Syndace/python-omemo",

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lexy",
       version: "0.6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antoniorodr",
           repo: "lexy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_1 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           docs: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_1, "mkdocs")),
             nix.thunk(() => nix.lookup(w_1, "mkdocs-awesome-nav")),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight CLI tool that fetches programming tutorials from \"Learn X in Y Minutes\" directly into your terminal",
         homepage: "https://github.com/antoniorodr/lexy.git",
         changelog: nix.thunk(() => nix.str`https://github.com/antoniorodr/lexy/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

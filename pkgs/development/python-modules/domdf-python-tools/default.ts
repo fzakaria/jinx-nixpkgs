@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "domdf_python_tools",
           hash: "sha256-KuMI0vTx6RRfX0ulf4QPv9HCmD7ibkgkNHeJZJ064pg=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_requirements_txt]);
       const dependencies = nix.thunk(() => [natsort, typing_extensions]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helpful functions for Python",
         homepage: "https://github.com/domdfcoding/domdf_python_tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

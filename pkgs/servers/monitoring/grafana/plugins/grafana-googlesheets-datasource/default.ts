@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grafana-googlesheets-datasource",
       version: "2.7.0",
       zipHash: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "sha256-HN3ybfgZ06TQxPD6bdEV383qiE+eF4NLaR5sZJKiqPQ=",
         "aarch64-linux": "sha256-BK2Pkx3a2s+TDWD6C5jfTx5S2ZiYsggQ7CHFukSgt3c=",
         "aarch64-darwin": "sha256-UjNigxryZtCNVusSw1P05LAsqD6Njw0q7JvZWnAhzAU=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Integrate JSON data into Grafana",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

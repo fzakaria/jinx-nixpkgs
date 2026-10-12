@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
   const extraConfigFiles = nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (_) => nix.str`\${CREDENTIALS_DIRECTORY}/config-${nix.builtins.toString(i)}`, nix.thunk(() => nix.sel(cfg, "extraConfigFiles"))));
   const runtimeConfig = "/run/matrix-authentication-service/config.yaml";
   return {
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -121,64 +121,64 @@ export default nix.lambda((args) => (() => {
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "matrix"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       services: nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         "matrix-authentication-service": nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Matrix Authentication Service")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "matrix-authentication-service", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               default: nix.thunk(() => ({})),
               description: "The primary mas configuration. See the\n[configuration reference](https://element-hq.github.io/matrix-authentication-service/usage/configuration.html)\nfor possible values.\n\nSecrets should be passed in by using the `extraConfigFiles` option.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     http: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       public_base: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "http://[::]:8080/",
                           description: "Public URL base used when building absolute public URLs.\n",
                         })))),
                       trusted_proxies: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           default: nix.thunk(() => ["127.0.0.1/8", "::1/128"]),
                           description: "MAS can infer the client IP address from the X-Forwarded-For header. It will trust the value for this header only if the request comes from a trusted reverse proxy listed here.\n",
                         })))),
                       listeners: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$16,
+                                [nix.POS]: pos$16,
                                 freeformType: nix.thunk(() => nix.sel(format, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$15,
+                                  [nix.POS]: pos$15,
                                   name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$4,
+                                      [nix.POS]: pos$4,
                                       type: nix.thunk(() => nix.sel(types, "str")),
                                       example: "web",
                                       description: "The name of the listener, used in logs and metrics.\n",
                                     })))),
                                   proxy_protocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$5,
+                                      [nix.POS]: pos$5,
                                       type: nix.thunk(() => nix.sel(types, "bool")),
                                       default: false,
                                       description: "Whether to enable the PROXY protocol on the listener.\n",
                                     })))),
                                   resources: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$9,
+                                      [nix.POS]: pos$9,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                            __proto__: pos$8,
+                                            [nix.POS]: pos$8,
                                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                                             options: nix.thunk(() => ({
-                                              __proto__: pos$7,
+                                              [nix.POS]: pos$7,
                                               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                  __proto__: pos$6,
+                                                  [nix.POS]: pos$6,
                                                   type: nix.thunk(() => nix.sel(types, "str")),
                                                   description: "Serve the given resource.\n",
                                                 })))),
@@ -187,19 +187,19 @@ export default nix.lambda((args) => (() => {
                                       description: "List of resources to serve.\n",
                                     })))),
                                   binds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$14,
+                                      [nix.POS]: pos$14,
                                       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                            __proto__: pos$13,
+                                            [nix.POS]: pos$13,
                                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                                             options: nix.thunk(() => ({
-                                              __proto__: pos$12,
+                                              [nix.POS]: pos$12,
                                               host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                  __proto__: pos$10,
+                                                  [nix.POS]: pos$10,
                                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                                   description: "Listen on the given host.\n",
                                                 })))),
                                               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                  __proto__: pos$11,
+                                                  [nix.POS]: pos$11,
                                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "port")))),
                                                   description: "Listen on the given port.\n",
                                                 })))),
@@ -211,24 +211,24 @@ export default nix.lambda((args) => (() => {
                               })))))),
                           default: nix.thunk(() => [
                             nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               name: "web",
                               resources: nix.thunk(() => [
-                                nix.thunk(() => ({ __proto__: pos$17, name: "discovery" })),
-                                nix.thunk(() => ({ __proto__: pos$18, name: "human" })),
-                                nix.thunk(() => ({ __proto__: pos$19, name: "oauth" })),
-                                nix.thunk(() => ({ __proto__: pos$20, name: "compat" })),
-                                nix.thunk(() => ({ __proto__: pos$21, name: "graphql" })),
-                                nix.thunk(() => ({ __proto__: pos$22, name: "assets" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$17, name: "discovery" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$18, name: "human" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$19, name: "oauth" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$20, name: "compat" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$21, name: "graphql" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$22, name: "assets" })),
                               ]),
-                              binds: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$23, host: "0.0.0.0", port: 8080n }))]),
+                              binds: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$23, host: "0.0.0.0", port: 8080n }))]),
                               proxy_protocol: false,
                             })),
                             nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               name: "internal",
-                              resources: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$25, name: "health" }))]),
-                              binds: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$26, host: "0.0.0.0", port: 8081n }))]),
+                              resources: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$25, name: "health" }))]),
+                              binds: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$26, host: "0.0.0.0", port: 8081n }))]),
                               proxy_protocol: false,
                             })),
                           ]),
@@ -236,108 +236,108 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     database: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "postgresql:///matrix-authentication-service?host=/run/postgresql",
                           description: "The postgres connection string.\nRefer to <https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING>.\nIf you need to put secrets in the uri, please use the `extraConfigFiles` option.\n",
                         })))),
                       max_connections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           default: 10n,
                           description: "Maximum number of connections for the connection pool.\n",
                         })))),
                       min_connections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           default: 0n,
                           description: "Minimum number of connections for the connection pool.\n",
                         })))),
                       connect_timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           default: 30n,
                           description: "Connection timeout for the connection pool.\n",
                         })))),
                       idle_timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           default: 600n,
                           description: "Idle timeout for the connection pool.\n",
                         })))),
                       max_lifetime: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           default: 1800n,
                           description: "Maximum lifetime for the connection pool.\n",
                         })))),
                     })),
                     passwords: nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: true,
                           description: "Whether to enable the password database. If disabled, users will only be able to log in using upstream OIDC providers.\n",
                         })))),
                       schemes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$41,
+                                [nix.POS]: pos$41,
                                 freeformType: nix.thunk(() => nix.sel(format, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$40,
+                                  [nix.POS]: pos$40,
                                   version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$38,
+                                      [nix.POS]: pos$38,
                                       type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                                       description: "Password scheme version.\n",
                                     })))),
                                   algorithm: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                      __proto__: pos$39,
+                                      [nix.POS]: pos$39,
                                       type: nix.thunk(() => nix.sel(types, "str")),
                                       description: "Password scheme algorithm.\n",
                                     })))),
                                 })),
                               })))))),
-                          default: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$42, version: 1n, algorithm: "argon2id" }))]),
+                          default: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$42, version: 1n, algorithm: "argon2id" }))]),
                           description: "List of password hashing schemes being used. Only change this if you know what you're doing.\n",
                         })))),
                       minimum_complexity: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [0n, 1n, 2n, 3n, 4n]))),
                           default: 3n,
                           description: "Minimum complexity required for passwords, estimated by the zxcvbn algorithm.\nMust be between 0 and 4, default is 3. See <https://github.com/dropbox/zxcvbn#usage> for more information.\n",
                         })))),
                     })),
                     matrix: nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       homeserver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$46,
+                          [nix.POS]: pos$46,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "",
                           description: "Corresponds to the server_name in the Synapse configuration file.\n",
                         })))),
                       endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "",
                           description: "The URL to which the homeserver is accessible from the service.\n",
                         })))),
                     })),
                     upstream_oauth2: nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       providers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$51,
+                                  [nix.POS]: pos$51,
                                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$50,
+                                    [nix.POS]: pos$50,
                                     id: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$49,
+                                        [nix.POS]: pos$49,
                                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                         example: "01H8PKNWKKRPCBW4YGH1RWV279",
                                         default: null,
@@ -352,26 +352,26 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           createDatabase: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable and configure `services.postgresql` to ensure that the database user `matrix-authentication-service`\nand the database `matrix-authentication-service` exist.\n",
             })))),
           extraConfigFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Extra config files to include.\n\nThe configuration files will be included based on the command line\nargument --config. This allows to configure secrets without\nhaving to go through the Nix store, e.g. based on deployment keys if\nNixOps is in use.\n",
             })))),
           serviceDependencies: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "enable")), nix.thunk(() => nix.sel(config, "services", "matrix-synapse", "serviceUnit")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.optional config.services.matrix-synapse.enable config.services.matrix-synapse.serviceUnit\n")),
               description: "List of Systemd services to require and wait for when starting the application service,\nsuch as the Matrix homeserver if it's running on the same host.\n",
             })))),
           credentials: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               description: "Mapping of credential name to  source file-path. Exposed to the unit via LoadCredential and\nreadable inside the service at `${CREDENTIALS_DIRECTORY}/<name>`.\n\nFor example:\n\n```\nservices.matrix-authentication-service.credentials.\"synapse-secret\" = \"/run/agenix/synapse-shared\";\nservices.matrix-authentication-service.settings.matrix.secret_file =\n  \"\\${CREDENTIALS_DIRECTORY}/synapse-secret\";\n```\n",
@@ -380,16 +380,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         services: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "createDatabase")), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               enable: true,
               ensureDatabases: nix.thunk(() => ["matrix-authentication-service"]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   name: "matrix-authentication-service",
                   ensureDBOwnership: true,
                 })),
@@ -397,15 +397,15 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           services: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             "matrix-authentication-service": nix.thunk(() => (() => {
               const after = nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "createDatabase")), "postgresql.service"), nix.sel(cfg, "serviceDependencies")));
               const wants = after;
               const wantedBy = nix.thunk(() => ["multi-user.target"]);
               const serviceConfig = nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 DynamicUser: true,
                 LoadCredential: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "imap0"), (i) => (path) => nix.str`config-${nix.builtins.toString(i)}:${path}`, nix.thunk(() => nix.sel(cfg, "extraConfigFiles"))), nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => nix.str`${name}:${path}`, nix.thunk(() => nix.sel(cfg, "credentials"))))),
                 ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "mas-prepare", nix.thunk(() => nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "gettext")), "envsubst")} \\
@@ -451,7 +451,7 @@ ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} config check --conf
                 RuntimeDirectory: "matrix-authentication-service",
                 WorkingDirectory: "/var/lib/matrix-authentication-service",
               }));
-              return { __proto__: pos$68, after, wants, wantedBy, serviceConfig };
+              return { [nix.POS]: pos$68, after, wants, wantedBy, serviceConfig };
             })()),
           })),
         })),

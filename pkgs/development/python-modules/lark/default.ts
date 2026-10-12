@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lark-parser",
           repo: "lark",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["lark", "lark.parsers", "lark.tools", "lark.grammars"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern parsing library for Python, implementing Earley & LALR(1) and an easy interface",
         homepage: "https://lark-parser.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/lark-parser/lark/releases/tag/${nix.sel(src, "tag")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

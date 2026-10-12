@@ -34,27 +34,27 @@ export default nix.lambda((args) => (() => {
   const snakeOilEd25519PublicKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PublicKey"));
   const username = "nix-remote-builder";
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "rush",
     meta: nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.sel(pkgs, "rush", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from_1, "maintainers")),
       platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
     };
     })()),
-    defaults: nix.thunk(() => ({ __proto__: pos$3, nix: nix.thunk(() => ({ __proto__: pos$2, enable: true })) })),
+    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           nix: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "extra-experimental-features": nix.thunk(() => ["nix-command"]),
             })),
           })),
@@ -64,22 +64,22 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           nix: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             settings: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "trusted-users": nix.thunk(() => [nix.thunk(() => nix.str`${username}`)]),
             })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             rush: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               global: "debug 1",
               rules: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 daemon: nix.thunk(() => nix.str`match $# == 2
 match $0 == "nix-daemon"
 match $1 == "--stdio"
@@ -95,9 +95,9 @@ chdir "${nix.builtins.dirOf(nix.thunk(() => nix.sel(config, "environment", "usrb
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             openssh: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               extraConfig: nix.thunk(() => nix.str`Match User ${username}
   AllowAgentForwarding no
@@ -110,19 +110,19 @@ Match All
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${username}`, nix.thunk(() => ({}))]])),
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${username}`, nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(config, "programs", "rush"));
                 return {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 shell: nix.thunk(() => nix.attr(from_1, "shell")),
                 group: nix.thunk(() => nix.str`${username}`),
                 isSystemUser: true,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$15,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$14, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: pos$15,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$14, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               };
               })())],

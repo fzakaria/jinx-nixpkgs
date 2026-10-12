@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const attrs = nix.arg($, "attrs");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "attrs-tests",
       version: nix.thunk(() => nix.attr(attrs, "version")),
       pyproject: false,

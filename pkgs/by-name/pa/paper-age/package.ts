@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paper-age",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matiaskorhonen",
           repo: "paper-age",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Ba0Hp3g3aKr7f6RidxFcES2DExuq/jHH5Gg3bcIoH8k=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy and secure paper backups of secrets",
         homepage: "https://github.com/matiaskorhonen/paper-age",
         changelog: nix.thunk(() => nix.str`https://github.com/matiaskorhonen/paper-age/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

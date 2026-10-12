@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const xorg_server = nix.arg($, "xorg-server");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xf86-video-nested",
       version: "0-unstable-2024-10-26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, util_macros]),
       buildInputs: nix.thunk(() => [xorg_server, xorgproto, libx11, libxext]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-video-nested",
         description: "Video ddriver to run Xorg on top of another X server",
         maintainers: [],

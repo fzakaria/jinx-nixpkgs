@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "tauri",
       version: "2.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tauri-apps",
           repo: "tauri",
           tag: nix.thunk(() => nix.str`tauri-cli-v${nix.sel(finalAttrs, "version")}`),
@@ -45,32 +45,32 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./skip-icon-macos.patch")]),
       cargoBuildFlags: nix.thunk(() => ["--package", "tauri-cli"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "cargo-tauri": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         "gst-plugin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./gst-plugin.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-app.nix"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "cargo-tauri": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "tauri-cli-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Build smaller, faster, and more secure desktop applications with a web frontend",
         homepage: "https://tauri.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/tauri-apps/tauri/releases/tag/tauri-cli-v${nix.sel(finalAttrs, "version")}`),

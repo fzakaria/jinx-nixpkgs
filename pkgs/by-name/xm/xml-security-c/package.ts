@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xml-security-c",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Shibboleth",
           repo: "cpp-xml-security",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,15 +33,15 @@ export default nix.lambda((args) => (() => {
         })))),
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => ["--with-openssl", "--with-xerces", "--with-xalan"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=gnu++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++17" })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [xalanc, xercesc, openssl]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://shibboleth.atlassian.net/wiki/spaces/DEV/pages/3726671873/Santuario",
         description: "C++ Implementation of W3C security standards for XML",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

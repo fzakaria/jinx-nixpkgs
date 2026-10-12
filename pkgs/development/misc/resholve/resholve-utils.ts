@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
     const phraseBinloreArgs = (value) => (() => {
       const hasUnresholved = nix.thunk(() => nix.builtins.hasAttr("unresholved", value));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         drvs: nix.thunk(() => nix.concat(nix.sel(value, "inputs"), nix.app(nix.sel(lib, "optionals"), hasUnresholved, nix.thunk(() => [nix.thunk(() => nix.sel(value, "unresholved"))])))),
         strip: nix.thunk(() => (nix.asBool(hasUnresholved) ? [nix.thunk(() => nix.sel(value, "unresholved"))] : [])),
       };
     })();
     const phraseInvocation = (solution) => (value) => (nix.asBool(nix.app(validateSolution, value)) ? nix.str`RESHOLVE_LORE=${nix.app(nix.sel(binlore, "collect"), nix.thunk(() => nix.app(phraseBinloreArgs, value)))} ${nix.app(phraseEnvs, solution, value)} ${resholve}/bin/resholve --overwrite ${nix.app(phraseArgs, value)}` : nix.builtins.throw("invalid solution"));
-    const injectUnresholved = (solutions) => (unresholved) => nix.builtins.mapAttrs((name) => (value) => nix.update(value, { __proto__: pos$2, unresholved: unresholved }), solutions);
+    const injectUnresholved = (solutions) => (unresholved) => nix.builtins.mapAttrs((name) => (value) => nix.update(value, { [nix.POS]: pos$2, unresholved: unresholved }), solutions);
     const phraseCommands = (solutions) => (unresholved) => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), phraseInvocation, nix.thunk(() => nix.app(injectUnresholved, solutions, unresholved)))));
     const phraseContext = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$4);
@@ -79,17 +79,17 @@ export default nix.lambda((args) => (() => {
 )
 `;
     })(), formals$4);
-    const phraseContextForPWD = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ __proto__: pos$3, invokable: invokable, prep: "" })));
-    const phraseContextForOut = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ __proto__: pos$4, invokable: invokable })));
+    const phraseContextForPWD = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ [nix.POS]: pos$3, invokable: invokable, prep: "" })));
+    const phraseContextForOut = (invokable) => nix.app(phraseContext, nix.thunk(() => ({ [nix.POS]: pos$4, invokable: invokable })));
     const phraseSolution = (name) => (solution) => nix.app(phraseContextForOut, nix.thunk(() => nix.app(phraseInvocation, name, solution)));
     const phraseSolutions = (solutions) => (unresholved) => nix.app(phraseContextForOut, nix.thunk(() => nix.app(phraseCommands, solutions, unresholved)));
     const writeScript = (name) => (partialSolution) => (text) => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: name,
         text: text,
         executable: true,
         checkPhase: nix.thunk(() => nix.str`${nix.app(phraseContextForPWD, nix.thunk(() => nix.app(phraseInvocation, name, nix.thunk(() => nix.update(partialSolution, {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               scripts: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`)]),
             })))))}
 `),
@@ -100,12 +100,12 @@ export default nix.lambda((args) => (() => {
         const executable = true;
         const destination = nix.thunk(() => nix.str`/bin/${name_1}`);
         const checkPhase = nix.thunk(() => nix.str`${nix.app(phraseContextForOut, nix.thunk(() => nix.app(phraseInvocation, name_1, nix.thunk(() => nix.update(partialSolution, {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               scripts: nix.thunk(() => [nix.thunk(() => nix.str`bin/${name_1}`)]),
             })))))}
 `);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: name_1,
           text: text_1,
           executable,
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
         };
       })()));
     const mkDerivation = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["postResholve", "solutions"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -127,20 +127,20 @@ export default nix.lambda((args) => (() => {
           const solutions = nix.arg($_1, "solutions");
           const postResholve = nix.argOr($_1, "postResholve", () => "");
           return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             pname: nix.thunk(() => nix.str`${pname}-unresholved`),
-            passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$9, postResholve: postResholve, solutions: solutions })),
+            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$9, postResholve: postResholve, solutions: solutions })),
           };
         })(), formals$5),
         transformDrv: (unresholved) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             src: unresholved,
             pname: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "-unresholved", nix.thunk(() => nix.sel(unresholved, "pname")))),
             version: nix.thunk(() => nix.attr(unresholved, "version")),
             buildInputs: nix.thunk(() => [resholve]),
             disallowedReferences: nix.thunk(() => [resholve]),
             passthru: nix.thunk(() => nix.update(nix.sel(unresholved, "passthru"), {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               unresholved: unresholved,
               originalSrc: nix.thunk(() => nix.sel(unresholved, "src")),
             })),
@@ -155,7 +155,7 @@ export default nix.lambda((args) => (() => {
           }))),
       }))));
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       spaces,
       colons,
       semicolons,

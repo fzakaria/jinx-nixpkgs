@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "HoTT",
       repo: "Coq-HoTT",
       owner: "HoTT",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.0")),
               out: nix.thunk(() => nix.sel(coq, "coq-version")),
             })),
@@ -40,37 +40,37 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`V${v}`,
       release: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "8.14": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-7kXk2pmYsTNodHA+Qts3BoMsewvzmCbYvxw9Sgwyvq0=",
         })),
         "8.15": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-JfeiRZVnrjn3SQ87y6dj9DWNwCzrkK3HBogeZARUn9g=",
         })),
         "8.16": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-xcEbz4ZQ+U7mb0SEJopaczfoRc2GSgF2BGzUSWI0/HY=",
         })),
         "8.17": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-GjTUpzL9UzJm4C2ilCaYEufLG3hcj7rJPc5Op+OMal8=",
         })),
         "8.18": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-URoUoQOsG0432wg9i6pTRomWQZ+ewutq2+V29TBrVzc=",
         })),
         "8.19": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-igG3mhR6uPXV+SCtPH9PBw/eAtTFFry6HPT5ypWj3tQ=",
         })),
         "8.20": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-XHAvomi0of11j4x5gpTgD5Mw53eF1FpnCyBvdbV3g6I=",
         })),
         "9.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-etdLH1qDyDc+ZM7K/65iib0MRlLhsnVmzWBCULUDD50=",
         })),
       })),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       useDune: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "8.17", nix.thunk(() => nix.sel(coq, "coq-version")))),
       patchPhase: "patchShebangs etc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://homotopytypetheory.org/",
         description: "Homotopy Type Theory library",
         longDescription: "Homotopy Type Theory is an interpretation of Martin-Löf’s intensional\ntype theory into abstract homotopy theory. Propositional equality is\ninterpreted as homotopy and type isomorphism as homotopy equivalence.\nLogical constructions in type theory then correspond to\nhomotopy-invariant constructions on spaces, while theorems and even\nproofs in the logical system inherit a homotopical meaning. As the\nnatural logic of homotopy, type theory is also related to higher\ncategory theory as it is used e.g. in the notion of a higher topos.\n\nThe HoTT library is a development of homotopy-theoretic ideas in the Coq\nproof assistant. It draws many ideas from Vladimir Voevodsky's\nFoundations library (which has since been incorporated into the Unimath\nlibrary) and also cross-pollinates with the HoTT-Agda library.\n",

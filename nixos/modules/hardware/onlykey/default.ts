@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         onlykey: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable OnlyKey device (https://crp.to/p/) support.\n",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "onlykey", "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           udev: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraRules: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./onlykey.udev"))),
           })),
         })),

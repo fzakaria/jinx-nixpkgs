@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const acpica_tools = nix.arg($, "acpica-tools");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(edk2, "mkDerivation"), "OvmfPkg/IntelTdx/IntelTdxX64.dsc", (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "OVMF-inteltdx",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), edk2)),
       __structuredAttrs: true,
@@ -34,12 +34,12 @@ substitute ${nix.path(here, "./61-edk2-ovmf-x64-inteltdx.json")} \\
 `),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         firmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "fd")}/FV/OVMF.inteltdx.fd`),
         mergedFirmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "fd")}/FV/OVMF.inteltdx.fd`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UEFI firmware with Intel TDX support",
         homepage: "https://github.com/tianocore/tianocore.github.io/wiki/OVMF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

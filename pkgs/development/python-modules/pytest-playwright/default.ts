@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "playwright-pytest",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export PLAYWRIGHT_BROWSERS_PATH=${nix.sel(playwright_driver, "browsers")}
 `);
       const pythonImportsCheck = nix.thunk(() => ["pytest_playwright"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin to write end-to-end browser tests with Playwright",
         homepage: "https://github.com/microsoft/playwright-pytest",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/playwright-pytest/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +51,7 @@ export PLAYWRIGHT_BROWSERS_PATH=${nix.sel(playwright_driver, "browsers")}
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

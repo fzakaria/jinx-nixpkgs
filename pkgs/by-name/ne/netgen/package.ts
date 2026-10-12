@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const archFlags = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), avxSupport, "-mavx"), nix.concat(nix.app(nix.sel(lib, "optional"), avx2Support, "-mavx2"), nix.app(nix.sel(lib, "optional"), avx512Support, "-mavx512"))))));
   const patchSource = "https://salsa.debian.org/science-team/netgen/-/raw/debian/6.2.2404+dfsg1-5/debian/patches";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "netgen",
       version: "6.2.2605",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ngsolve",
           repo: "netgen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,22 +56,22 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`${patchSource}/use-local-catch2.patch`),
             hash: "sha256-h4ob8tl6mvGt5B0qXRFNcl9MxPXxRhYw+PrGr5iRGGk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`${patchSource}/ffmpeg_link_libraries.patch`),
             hash: "sha256-S02OPH9hbJjOnBm6JMh6uM5XptcubV24vdyEF0FusoM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`${patchSource}/fix_nggui_tcl.patch`),
             hash: "sha256-ODDT67+RWBzPhhq/equWsu78x9L/Yrs3U8VQ1Uu0zZw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`${patchSource}/include_stdlib.patch`),
             hash: "sha256-W+NgGBuy/UmzVbPTSqR8FRUlyN/9dl9l9e9rxKklmIc=",
           })))),
@@ -128,13 +128,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_UNIT_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doInstallCheck")))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "-flax-vector-conversions")),
       })),
       __darwinAllowLocalNetworking: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "netgen",
             exec: "netgen",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -158,13 +158,13 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["netgen"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         avxSupport: avxSupport,
         avx2Support: avx2Support,
         avx512Support: avx512Support,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://ngsolve.org",
         downloadPage: "https://github.com/NGSolve/netgen",
         description: "Atomatic 3d tetrahedral mesh generator",

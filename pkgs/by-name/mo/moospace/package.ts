@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moospace",
       version: "0-unstable-2020-06-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "modularev",
           repo: "mooSpace",
           rev: "e5440407ea6ef9f7fcca838383b2b9a388c22874",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "faust2jaqt -time -vec -t 0 mooSpace.dsp\nfaust2lv2  -time -vec -t 0 -gui mooSpace.dsp\n",
       installPhase: "mkdir -p $out/bin\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\nmkdir -p $out/lib/lv2\ncp -r mooSpace.lv2 $out/lib/lv2\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Variable reverb audio effect, jack and lv2",
         homepage: "https://github.com/modularev/mooSpace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

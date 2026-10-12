@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const resourcesDir = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "$out/Applications/Folia.app/Contents/Resources" : "$out/share/folia-major/resources"));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "folia-major",
       version: "0.7.15",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chthollyphile",
           repo: "folia-major",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-7SXUneDyMmqMzyEI/oXTGVD4FOq1pQf/aSS995fz9oU=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         ELECTRON_DEV: "false",
         ELECTRON: "true",
@@ -97,7 +97,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "folia-major",
             desktopName: "Folia",
             exec: "folia-major",
@@ -110,11 +110,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lyrics Reimagine desktop app",
         homepage: "https://folia-site.cielaniska.top/",
         downloadPage: "https://github.com/chthollyphile/folia-major/releases",

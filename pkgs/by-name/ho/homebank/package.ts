@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "homebank",
       version: "5.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gethomebank.org/public/sources/homebank-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8L6v4H6iIVXI+OJneY1usF1uAV1WYLlvs0/eylprxMc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3, intltool]),
       buildInputs: nix.thunk(() => [gtk3, libofx, libsoup_3, adwaita_icon_theme]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, easy, personal accounting for everyone",
         mainProgram: "homebank",
         homepage: "https://www.gethomebank.org",

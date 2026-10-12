@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libftdi1 = nix.arg($, "libftdi1");
   const popt = nix.arg($, "popt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sd-mux-ctrl-unstable",
       version: "2020-02-17",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.tizen.org/tools/testlab/sd-mux",
           rev: "9dd189d973da64e033a0c5c2adb3d94b23153d94",
           hash: "sha256-b0uoxVPfSrqNt0wJoQho9jlpQQUjofgFm93P+UNFtDs=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libftdi1, popt]),
       postInstall: "install -D -m 644 ../doc/man/sd-mux-ctrl.1 $out/share/man/man1/sd-mux-ctrl.1\ninstallShellCompletion --cmd sd-mux-ctrl \\\n  --bash ../etc/bash_completion.d/sd-mux-ctrl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for controlling multiple sd-mux devices",
         homepage: "https://git.tizen.org/cgit/tools/testlab/sd-mux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

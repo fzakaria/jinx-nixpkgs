@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asyncio-rlock",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "asyncio_rlock",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fimCQzFhmHPhDV2Z3MRte48ZbEoRsgP07szAwJEDnUM=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["asyncio_rlock"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rlock like in threading module but for asyncio",
         homepage: "https://gitlab.com/heckad/asyncio_rlock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

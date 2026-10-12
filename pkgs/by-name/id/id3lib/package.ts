@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "id3lib",
       version: "3.8.3",
       patches: nix.thunk(() => [
@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libiconv, zlib]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/id3lib/id3lib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0yfhqwk0w8q2hyv1jib1008jvzmwlpsxvc8qjllhna6p1hycqj97",
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for reading, writing, and manipulating ID3v1 and ID3v2 tags",
         homepage: "https://id3lib.sourceforge.net",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

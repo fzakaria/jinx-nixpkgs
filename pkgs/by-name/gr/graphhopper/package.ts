@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const maven = nix.arg($, "maven");
   const version = nix.thunk(() => nix.builtins.fromTOML(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./version.toml")))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "graphhopper",
       repo: "graphhopper",
       tag: nix.thunk(() => nix.sel(version, "patch")),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./remove-npm-dependency.patch")]);
   const mapsBundle = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`@graphhopper/graphhopper-maps-bundle-${nix.sel(version, "mapsBundle")}`),
       url: nix.thunk(() => nix.str`https://registry.npmjs.org/@graphhopper/graphhopper-maps-bundle/-/graphhopper-maps-bundle-${nix.sel(version, "mapsBundle")}.tgz`),
       hash: nix.thunk(() => nix.sel(version, "hash", "mapsBundle")),
     }))));
   const mvnDeps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "graphhopper-dependencies",
       src: src,
       patches: patches,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       outputHash: nix.thunk(() => nix.sel(version, "hash", "mvnDeps")),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "graphhopper",
       src: src,
       patches: patches,
@@ -89,7 +89,7 @@ runHook postInstall
 `),
       fixupPhase: "runHook preFixup\n\n# keep only *.{pom,jar,sha1,nbm} and delete all ephemeral files with lastModified timestamps inside\nfind $out -type f \\( \\\n  -name \\*.lastUpdated \\\n  -o -name resolver-status.properties \\\n  -o -name _remote.repositories \\) \\\n  -delete\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast and memory-efficient routing engine for OpenStreetMap",
         homepage: "https://www.graphhopper.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/graphhopper/graphhopper/releases/tag/${nix.sel(version, "patch")}`),
@@ -110,12 +110,12 @@ runHook postInstall
         })()),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.path(here, "./update.nu"),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "graphhopper --help",
               version: nix.thunk(() => nix.str`graphhopper-web-${nix.sel(version, "major")}-SNAPSHOT.jar`),

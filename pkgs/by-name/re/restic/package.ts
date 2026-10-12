@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const rclone = nix.arg($, "rclone");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "restic",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "restic",
           repo: "restic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$2, restic: nix.thunk(() => nix.sel(nixosTests, "restic")) })))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, restic: nix.thunk(() => nix.sel(nixosTests, "restic")) })))),
       })),
       postPatch: "rm cmd/restic/cmd_mount_integration_test.go\n",
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/restic \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh, rclone]))}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "$out/bin/restic generate \\\n  --bash-completion restic.bash \\\n  --fish-completion restic.fish \\\n  --zsh-completion restic.zsh \\\n  --man .\ninstallShellCompletion restic.{bash,fish,zsh}\ninstallManPage *.1\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://restic.net",
         changelog: nix.thunk(() => nix.str`https://github.com/restic/restic/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Backup program that is fast, efficient and secure",

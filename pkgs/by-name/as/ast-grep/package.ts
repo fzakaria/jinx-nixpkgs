@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableLegacySg = nix.argOr($, "enableLegacySg", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ast-grep",
       version: "0.45.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ast-grep",
           repo: "ast-grep",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +43,11 @@ ${nix.app(nix.sel(lib, "optionalString"), enableLegacySg, "installShellCompletio
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "ast-grep",
         description: "Fast and polyglot tool for code searching, linting, rewriting at large scale",
         homepage: "https://ast-grep.github.io/",

@@ -96,9 +96,9 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const isPostgresUnixSocket = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "database", "host"))));
   const isRedisUnixSocket = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "redis", "host"))));
-  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ __proto__: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), "/run/immich/config.json"));
+  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ [nix.POS]: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), "/run/immich/config.json"));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     Type: "simple",
     Restart: "on-failure",
     RestartSec: 3n,
@@ -127,40 +127,40 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "immich", "secretSettings"]), "`secretSettings` has been deprecated as secrets can now be specified\ndirectly in `settings`. To do so, set `_secret` of the desired\nattribute to a file path, for example:\n  `services.immich.settings.oauth.clientSecret._secret = \"/path/to/secret/file\";`\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "immich", "database", "enableVectorChord"]), "`database.enableVectorChord` has been deprecated as the pgvecto.rs alternative\nis no longer available. From now on, vectorchord is always enabled.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "immich", "database", "enableVectors"]), "`database.enableVectors` has been deprecated as pgvecto.rs is no longer available.\nFrom now on, vectorchord is used instead.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         immich: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Immich")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "immich", nix.thunk(() => ({})))),
           mediaLocation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/immich",
               description: "Directory used to store media files. If it is not the default, the directory has to be created manually such that the immich user is able to read and write to it.",
             })))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$5, IMMICH_LOG_LEVEL: "verbose" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, IMMICH_LOG_LEVEL: "verbose" })),
               description: "Extra configuration environment variables. Refer to the [documentation](https://immich.app/docs/install/environment-variables) for options tagged with 'server', 'api' or 'microservices'.\n",
             })))),
           secretsFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.update(nix.sel(types, "str"), {
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   check: (it) => (nix.asBool(nix.app(nix.sel(lib, "isString"), it)) && nix.asBool(nix.app(nix.sel(lib, "types", "path", "check"), it))),
                 })))),
               default: null,
@@ -168,58 +168,58 @@ export default nix.lambda((args) => (() => {
               description: "Path of a file with extra environment variables to be loaded from disk. This file is not added to the nix store, so it can be used to pass secrets to immich. Refer to the [documentation](https://immich.app/docs/install/environment-variables) for options.\n\nTo set a database password set this to a file containing:\n```\nDB_PASSWORD=<pass>\n```\n",
             })))),
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               example: "",
               description: "The host that immich will listen on.\nSet to an empty string (`\"\"`) to listen on all interfaces.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 2283n,
               description: "The port that immich will listen on.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the immich port in the firewall",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "immich",
               description: "The user immich should run as.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "immich",
               description: "The group immich should run as.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: null,
               description: "Configuration for Immich.\nSee <https://immich.app/docs/install/config-file/> or navigate to\n<https://my.immich.app/admin/system-settings> for\noptions and defaults.\nSetting it to `null` allows configuring Immich in the web interface.\nYou can load secret values from a file in this configuration by setting `somevalue._secret = \"/path/to/file\"` instead of setting `somevalue` directly.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       newVersionCheck: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: false,
                             description: "Check for new versions.\nThis feature relies on periodic communication with github.com.\n",
                           })))),
                       })),
                       server: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         externalDomain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "",
                             description: "Domain for publicly shared links, including `http(s)://`.",
@@ -229,57 +229,57 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           "machine-learning": nix.thunk(() => ({
-            __proto__: pos$25,
-            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "immich's machine-learning functionality to detect faces and search for objects"), { __proto__: pos$21, default: true })),
+            [nix.POS]: pos$25,
+            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "immich's machine-learning functionality to detect faces and search for objects"), { [nix.POS]: pos$21, default: true })),
             environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                   })))),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$23, MACHINE_LEARNING_MODEL_TTL: "600" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$23, MACHINE_LEARNING_MODEL_TTL: "600" })),
                 description: "Extra configuration environment variables. Refer to the [documentation](https://immich.app/docs/install/environment-variables) for options tagged with 'machine-learning'.\n",
               })))),
           })),
           accelerationDevices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
               default: [],
               example: nix.thunk(() => ["/dev/dri/renderD128"]),
               description: "A list of device paths to hardware acceleration devices that immich should\nhave access to. This is useful when transcoding media files.\nThe special value `[ ]` will disallow all devices using `PrivateDevices`. `null` will give access to all devices.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$34,
-            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the postgresql database for use with immich. See {option}`services.postgresql`"), { __proto__: pos$27, default: true })),
-            createDB: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the automatic creation of the database for immich"), { __proto__: pos$28, default: true })),
+            [nix.POS]: pos$34,
+            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the postgresql database for use with immich. See {option}`services.postgresql`"), { [nix.POS]: pos$27, default: true })),
+            createDB: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the automatic creation of the database for immich"), { [nix.POS]: pos$28, default: true })),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "immich",
                 description: "The name of the immich database.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "/run/postgresql",
                 example: "127.0.0.1",
                 description: "Hostname or address of the postgresql server. If an absolute path is given here, it will be interpreted as a unix socket path.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 5432n,
                 description: "Port of the postgresql server.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "immich",
                 description: "The database user for immich.",
               })))),
             package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.sel(types, "package")),
                 default: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "postgresql", "enable")) ? nix.sel(config, "services", "postgresql", "package") : nix.sel(pkgs, "postgresql"))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.postgresql.enable then\n  config.services.postgresql.package\nelse\n  pkgs.postgresql\n")),
@@ -288,17 +288,17 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$38,
-            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "a redis cache for use with immich"), { __proto__: pos$35, default: true })),
+            [nix.POS]: pos$38,
+            enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "a redis cache for use with immich"), { [nix.POS]: pos$35, default: true })),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "immich", "unixSocket")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.redis.servers.immich.unixSocket")),
                 description: "The host that redis will listen on.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 0n,
                 description: "The port that redis will listen on. Set to zero to disable TCP.",
@@ -308,26 +308,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$80,
+        [nix.POS]: pos$80,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(isPostgresUnixSocket)) || nix.asBool(!nix.eq(nix.sel(cfg, "secretsFile"), null)))),
             message: "A secrets file containing at least the database password must be provided when unix sockets are not used.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "enable")), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               enable: true,
               ensureDatabases: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createDB")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]))),
               ensureUsers: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "createDB")), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                     ensureDBOwnership: true,
-                    ensureClauses: nix.thunk(() => ({ __proto__: pos$43, login: true })),
+                    ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$43, login: true })),
                   })),
                 ]))),
               extensions: (ps) => [
@@ -335,17 +335,17 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(ps, "vectorchord")),
               ],
               settings: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 shared_preload_libraries: nix.thunk(() => ["vchord.so"]),
                 search_path: "\"$user\", public, vectors",
               })),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             servers: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "redis", "enable")), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 immich: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   enable: true,
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                   bind: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(isRedisUnixSocket)), nix.thunk(() => nix.sel(cfg, "redis", "host")))),
@@ -353,38 +353,38 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           immich: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             environment: nix.thunk(() => (() => {
               const postgresEnv = nix.thunk(() => (nix.asBool(isPostgresUnixSocket) ? {
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 DB_URL: nix.thunk(() => nix.str`postgresql:///${nix.sel(cfg, "database", "name")}?host=${nix.sel(cfg, "database", "host")}&port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))}`),
               } : {
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 DB_HOSTNAME: nix.thunk(() => nix.sel(cfg, "database", "host")),
                 DB_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))),
                 DB_DATABASE_NAME: nix.thunk(() => nix.sel(cfg, "database", "name")),
                 DB_USERNAME: nix.thunk(() => nix.sel(cfg, "database", "user")),
               }));
               const redisEnv = nix.thunk(() => (nix.asBool(isRedisUnixSocket) ? {
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 REDIS_SOCKET: nix.thunk(() => nix.sel(cfg, "redis", "host")),
               } : {
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 REDIS_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))),
                 REDIS_HOSTNAME: nix.thunk(() => nix.sel(cfg, "redis", "host")),
               }));
               return nix.update(postgresEnv, nix.update(redisEnv, nix.update({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 IMMICH_HOST: nix.thunk(() => nix.sel(cfg, "host")),
                 IMMICH_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 IMMICH_MEDIA_LOCATION: nix.thunk(() => nix.sel(cfg, "mediaLocation")),
                 IMMICH_MACHINE_LEARNING_URL: "http://localhost:3003",
-              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), null)), nix.thunk(() => ({ __proto__: pos$55, IMMICH_CONFIG_FILE: "/run/immich/config.json" }))))));
+              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), null)), nix.thunk(() => ({ [nix.POS]: pos$55, IMMICH_CONFIG_FILE: "/run/immich/config.json" }))))));
             })()),
             "machine-learning": nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               environment: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 MACHINE_LEARNING_WORKERS: "1",
                 MACHINE_LEARNING_WORKER_TIMEOUT: "120",
                 MACHINE_LEARNING_CACHE_FOLDER: "/var/cache/immich",
@@ -396,13 +396,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           services: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             "postgresql-setup": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "database", "enable")), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   ExecStartPost: nix.thunk(() => (() => {
                     const extensions = nix.thunk(() => [
                       "unaccent",
@@ -438,7 +438,7 @@ SELECT (:'vchord_version_before' != '' AND :'vchord_version_before' != :'vchord_
                 })),
               })))),
             "immich-server": nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               description: "Immich backend server (Self-hosted photo and video backup solution)",
               requires: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "enable")), nix.thunk(() => ["postgresql.target"]))),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "enable")), nix.thunk(() => ["postgresql.target"])))),
@@ -450,7 +450,7 @@ SELECT (:'vchord_version_before' != '' AND :'vchord_version_before' != :'vchord_
               ]),
               preStart: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), null)), nix.thunk(() => nix.sel(secretsReplacement, "script")))),
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 LoadCredential: nix.thunk(() => nix.sel(secretsReplacement, "credentials")),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "secretsFile"), null)), nix.thunk(() => nix.sel(cfg, "secretsFile")))),
@@ -468,14 +468,14 @@ SELECT (:'vchord_version_before' != '' AND :'vchord_version_before' != :'vchord_
             "immich-machine-learning": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "machine-learning", "enable")), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(cfg, "machine-learning"));
                 return {
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 description: "immich machine learning",
                 requires: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "enable")), nix.thunk(() => ["postgresql.target"]))),
                 after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "enable")), nix.thunk(() => ["postgresql.target"])))),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => nix.attr(from, "environment")),
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package", "machine-learning")))),
                   Slice: "system-immich.slice",
                   CacheDirectory: "immich",
@@ -486,22 +486,22 @@ SELECT (:'vchord_version_before' != '' AND :'vchord_version_before' != :'vchord_
               })()))),
           })),
           slices: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             "system-immich": nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               description: "Immich (self-hosted photo and video backup solution) slice",
               documentation: nix.thunk(() => ["https://immich.app/docs"]),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             settings: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               immich: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "mediaLocation")}`, nix.thunk(() => ({
-                  __proto__: pos$70,
+                  [nix.POS]: pos$70,
                   e: nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                     mode: "0700",
@@ -512,28 +512,28 @@ SELECT (:'vchord_version_before' != '' AND :'vchord_version_before' != :'vchord_
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           firewall: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "immich")), nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               immich: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 name: "immich",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "immich")), nix.thunk(() => ({ __proto__: pos$78, immich: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "immich")), nix.thunk(() => ({ [nix.POS]: pos$78, immich: nix.thunk(() => ({})) })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$81,
+      [nix.POS]: pos$81,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jvanbruegge"))];

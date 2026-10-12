@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.1.0",
       pname: "pencil",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pencil.evolus.vn/dl/V${nix.sel(finalAttrs, "version")}.ga/pencil_${nix.sel(finalAttrs, "version")}.ga_amd64.deb`),
           sha256: "01ae54b1a1351b909eb2366c6ec00816e1deba370e58f35601cf7368f10aaba3",
         })))),
@@ -112,7 +112,7 @@ wrapProgram $out/opt/pencil/pencil \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI prototyping/mockup tool",
         mainProgram: "pencil",
         homepage: "https://pencil.evolus.vn/",

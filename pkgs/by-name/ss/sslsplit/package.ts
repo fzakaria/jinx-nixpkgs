@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libnet = nix.arg($, "libnet");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sslsplit",
       version: "0.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "droe",
           repo: "sslsplit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-openssl-3-build.patch",
             url: "https://github.com/droe/sslsplit/commit/e17de8454a65d2b9ba432856971405dfcf1e7522.patch",
             hash: "sha256-sEwP7f2PSqXdMqLub9zrfQgH8I4oe9klVPzNpJjrPJ8=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LIBNET_BASE=${nix.app(nix.sel(lib, "getDev"), libnet)}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Transparent SSL/TLS interception",
         homepage: "https://www.roe.ch/SSLsplit",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

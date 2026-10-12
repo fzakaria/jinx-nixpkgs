@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "lomiri",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,33 +89,33 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "2012-lomiri-dont-suspend-apps.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/1d6e83446f69299d1206927c2adbf78470ba27ec/debian/patches/2012_no-app-suspension-on-Debian+Ubuntu-proper.patch",
             hash: "sha256-9mvkILrkig18fAw5KyA2+5vXup6Le7X0blgY0PJ2Trc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "1013-lomiri-fix-convergence-on-high-resolution-tablets.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/4d4904b728a3e66706c756f911ddc79b01f863a2/debian/patches/1013_fix-convergence-on-high-resolution-tablets.patch",
             hash: "sha256-pQYIa8U0gEFdwZBuWMp8nL5j2HPSivMrsuKUC9scKg0=",
           })))),
         nix.path(here, "./2014_lomiri-greeter-wrapper-on-wayland.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "2015-lomiri-greeter-use-wayland.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/2f5acfa085c901359bf6f6cccbce36d7e2981555/debian/patches/2015_lomiri-greeter-use-wayland.patch",
             hash: "sha256-fnTEVQnOBQVd95ucs+iDMcQFOevfQ8dckQg0PrtL/A0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "1005-lomiri-cursor-always-follow-cursor-position-from-mir.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/84cde8264050d7c7995dc317a3f3d6688e80c839/debian/patches/1005_cursor-always-follow-cursor-position-from-mir.patch",
             hash: "sha256-BDu3/XWG5GLXWleEJ1yXfuAKxzhojtyiTl2Iae01AI0=",
           })))),
         nix.path(here, "./9901-lomiri-Disable-Wizard.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./9902-Layout-fallback-file.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             nixosLayoutFile: nix.thunk(() => nix.add("/etc/", nix.sel(finalAttrs, "finalPackage", "passthru", "etcLayoutsFile"))),
           })))),
       ]),
@@ -204,20 +204,20 @@ wrapProgram $out/libexec/lomiri-systemd-wrapper \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dbus]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         etcLayoutsFile: "lomiri/keymaps",
         tests: nix.thunk(() => nix.sel(nixosTests, "lomiri")),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         greeter: nix.thunk(() => nix.app(linkFarm, "lomiri-greeter", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               path: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/lightdm/greeters/lomiri-greeter.desktop`),
               name: "lomiri-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Shell of the Lomiri Operating environment",
         longDescription: "Shell of the Lomiri Operating environment optimized for touch based human-machine interaction, but also supporting\nconvergence (i.e. switching between tablet/phone and desktop mode).\n\nLomiri is the user shell driving Ubuntu Touch based mobile devices.\n",
         homepage: "https://lomiri.com/",

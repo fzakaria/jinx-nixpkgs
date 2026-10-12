@@ -50,17 +50,17 @@ export default nix.lambda((args) => (() => {
   const withPantheon = nix.argOr($, "withPantheon", () => false);
   const pantheon = nix.arg($, "pantheon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "epiphany",
       version: "50.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/epiphany/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/epiphany-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Hib5kB8PCL/pQ6pwFjyVMzTH7D1K78jTVOipwUCzNKc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-ipv6-address-prettification.patch",
             url: "https://gitlab.gnome.org/GNOME/epiphany/-/commit/e63bfdc7f117c9b60ea54b5760363ab256b9ff2b.patch",
             hash: "sha256-9m8R5GUOBCm3xDXVHBDrV/HbjfIDL+D3wUGkkqc4RmA==",
@@ -109,11 +109,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withPantheon, nix.thunk(() => [nix.thunk(() => nix.sel(pantheon, "granite7"))])))),
       mesonFlags: nix.thunk(() => nix.concat(["-Dunit_tests=disabled"], nix.app(nix.sel(lib, "optionals"), withPantheon, nix.thunk(() => ["-Dgranite=enabled"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "epiphany" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "epiphany" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://apps.gnome.org/Epiphany/",
         description: "WebKit based web browser for GNOME",
         mainProgram: "epiphany",

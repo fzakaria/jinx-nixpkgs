@@ -147,14 +147,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(cfg, "defaultGateway")),
         nix.thunk(() => nix.sel(cfg, "defaultGateway6")),
       ]), (gateway) => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(gateway, null)) && nix.asBool(!nix.eq(nix.sel(gateway, "interface"), null)))), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           networks: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`40-${nix.sel(gateway, "interface")}`, nix.thunk(() => ({
-              __proto__: pos$5,
-              matchConfig: nix.thunk(() => ({ __proto__: pos$1, Name: nix.thunk(() => nix.sel(gateway, "interface")) })),
+              [nix.POS]: pos$5,
+              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$1, Name: nix.thunk(() => nix.sel(gateway, "interface")) })),
               routes: nix.thunk(() => [
-                nix.thunk(() => nix.update({ __proto__: pos$2, Gateway: nix.thunk(() => nix.sel(gateway, "address")) }, nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gateway, "metric"), null)), nix.thunk(() => ({ __proto__: pos$3, Metric: nix.thunk(() => nix.sel(gateway, "metric")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gateway, "source"), null)), nix.thunk(() => ({
-                    __proto__: pos$4,
+                nix.thunk(() => nix.update({ [nix.POS]: pos$2, Gateway: nix.thunk(() => nix.sel(gateway, "address")) }, nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gateway, "metric"), null)), nix.thunk(() => ({ [nix.POS]: pos$3, Metric: nix.thunk(() => nix.sel(gateway, "metric")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gateway, "source"), null)), nix.thunk(() => ({
+                    [nix.POS]: pos$4,
                     PreferredSource: nix.thunk(() => nix.sel(gateway, "source")),
                   })))))),
               ]),
@@ -162,167 +162,167 @@ export default nix.lambda((args) => (() => {
           ])),
         })))))));
   const genericDhcpNetworks = nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.sel(cfg, "useDHCP")), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       networks: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "99-ethernet-default-dhcp": nix.thunk(() => ({
-          __proto__: pos$9,
-          matchConfig: nix.thunk(() => ({ __proto__: pos$7, Type: "ether", Kind: "!*" })),
+          [nix.POS]: pos$9,
+          matchConfig: nix.thunk(() => ({ [nix.POS]: pos$7, Type: "ether", Kind: "!*" })),
           DHCP: "yes",
-          networkConfig: nix.thunk(() => ({ __proto__: pos$8, IPv6PrivacyExtensions: "kernel" })),
+          networkConfig: nix.thunk(() => ({ [nix.POS]: pos$8, IPv6PrivacyExtensions: "kernel" })),
         })),
         "99-wireless-client-dhcp": nix.thunk(() => ({
-          __proto__: pos$14,
-          matchConfig: nix.thunk(() => ({ __proto__: pos$10, WLANInterfaceType: "station" })),
+          [nix.POS]: pos$14,
+          matchConfig: nix.thunk(() => ({ [nix.POS]: pos$10, WLANInterfaceType: "station" })),
           DHCP: "yes",
-          networkConfig: nix.thunk(() => ({ __proto__: pos$11, IPv6PrivacyExtensions: "kernel" })),
-          dhcpV4Config: nix.thunk(() => ({ __proto__: pos$12, RouteMetric: 1025n })),
-          ipv6AcceptRAConfig: nix.thunk(() => ({ __proto__: pos$13, RouteMetric: 1025n })),
+          networkConfig: nix.thunk(() => ({ [nix.POS]: pos$11, IPv6PrivacyExtensions: "kernel" })),
+          dhcpV4Config: nix.thunk(() => ({ [nix.POS]: pos$12, RouteMetric: 1025n })),
+          ipv6AcceptRAConfig: nix.thunk(() => ({ [nix.POS]: pos$13, RouteMetric: 1025n })),
         })),
       })),
     }))));
   const interfaceNetworks = nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "forEach"), interfaces, (i) => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         links: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.sel(i, "wakeOnLan", "enable")), nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`40-${nix.sel(i, "name")}`, nix.thunk(() => ({
-              __proto__: pos$19,
-              matchConfig: nix.thunk(() => ({ __proto__: pos$17, name: nix.thunk(() => nix.sel(i, "name")) })),
+              [nix.POS]: pos$19,
+              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$17, name: nix.thunk(() => nix.sel(i, "name")) })),
               linkConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 WakeOnLan: nix.thunk(() => nix.app(nix.lookup(w_1, "concatStringsSep"), " ", nix.thunk(() => nix.sel(i, "wakeOnLan", "policy")))),
               })),
             }))],
           ])))),
         netdevs: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.sel(i, "virtual")), nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`40-${nix.sel(i, "name")}`, nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               netdevConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 Name: nix.thunk(() => nix.sel(i, "name")),
                 Kind: nix.thunk(() => nix.sel(i, "virtualType")),
               })),
             }, [
-              [nix.str`${nix.sel(i, "virtualType")}Config`, nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "virtualOwner"), null)), nix.thunk(() => ({ __proto__: pos$21, User: nix.thunk(() => nix.sel(i, "virtualOwner")) }))))],
+              [nix.str`${nix.sel(i, "virtualType")}Config`, nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "virtualOwner"), null)), nix.thunk(() => ({ [nix.POS]: pos$21, User: nix.thunk(() => nix.sel(i, "virtualOwner")) }))))],
             ]))],
           ])))),
         networks: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`40-${nix.sel(i, "name")}`, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), nix.thunk(() => nix.sel(i, "name")))),
             DHCP: nix.thunk(() => nix.app(nix.lookup(w_1, "mkForce"), nix.thunk(() => nix.app(dhcpStr, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(i, "useDHCP"), null)) ? nix.sel(i, "useDHCP") : (nix.asBool(nix.sel(config, "networking", "useDHCP")) && nix.asBool(nix.eq(nix.sel(i, "ipv4", "addresses"), []))))))))),
             address: nix.thunk(() => nix.app(nix.lookup(w_1, "forEach"), nix.thunk(() => nix.app(interfaceIps, i)), (ip) => nix.str`${nix.sel(ip, "address")}/${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(ip, "prefixLength")))}`)),
             routes: nix.thunk(() => nix.app(nix.lookup(w_1, "forEach"), nix.thunk(() => nix.app(interfaceRoutes, i)), (route) => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(route, "address"), null)) && nix.asBool(!nix.eq(nix.sel(route, "prefixLength"), null)))), nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       Destination: nix.thunk(() => nix.str`${nix.sel(route, "address")}/${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(route, "prefixLength")))}`),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "fastopen_no_cookie")), nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       FastOpenNoCookie: nix.thunk(() => nix.sel(route, "options", "fastopen_no_cookie")),
                     })))),
-                  nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(route, "via"), null)), nix.thunk(() => ({ __proto__: pos$25, Gateway: nix.thunk(() => nix.sel(route, "via")) })))),
-                  nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(route, "type"), null)), nix.thunk(() => ({ __proto__: pos$26, Type: nix.thunk(() => nix.sel(route, "type")) })))),
-                  nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "onlink")), nix.thunk(() => ({ __proto__: pos$27, GatewayOnLink: true })))),
+                  nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(route, "via"), null)), nix.thunk(() => ({ [nix.POS]: pos$25, Gateway: nix.thunk(() => nix.sel(route, "via")) })))),
+                  nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(route, "type"), null)), nix.thunk(() => ({ [nix.POS]: pos$26, Type: nix.thunk(() => nix.sel(route, "type")) })))),
+                  nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "onlink")), nix.thunk(() => ({ [nix.POS]: pos$27, GatewayOnLink: true })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "initrwnd")), nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       InitialAdvertisedReceiveWindow: nix.thunk(() => nix.sel(route, "options", "initrwnd")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "initcwnd")), nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       InitialCongestionWindow: nix.thunk(() => nix.sel(route, "options", "initcwnd")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "pref")), nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       IPv6Preference: nix.thunk(() => nix.sel(route, "options", "pref")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "mtu")), nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       MTUBytes: nix.thunk(() => nix.sel(route, "options", "mtu")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "metric")), nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       Metric: nix.thunk(() => nix.sel(route, "options", "metric")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "src")), nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       PreferredSource: nix.thunk(() => nix.sel(route, "options", "src")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "protocol")), nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       Protocol: nix.thunk(() => nix.sel(route, "options", "protocol")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "quickack")), nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       QuickAck: nix.thunk(() => nix.sel(route, "options", "quickack")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "scope")), nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       Scope: nix.thunk(() => nix.sel(route, "options", "scope")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "from")), nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       Source: nix.thunk(() => nix.sel(route, "options", "from")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "table")), nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       Table: nix.thunk(() => nix.sel(route, "options", "table")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "advmss")), nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       TCPAdvertisedMaximumSegmentSize: nix.thunk(() => nix.sel(route, "options", "advmss")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.has(nix.sel(route, "options"), "ttl-propagate")), nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       TTLPropagate: nix.thunk(() => nix.eq(nix.sel(route, "options", "ttl-propagate"), "enabled")),
                     })))),
                 ])))),
-            networkConfig: nix.thunk(() => ({ __proto__: pos$41, IPv6PrivacyExtensions: "kernel" })),
-            linkConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "macAddress"), null)), nix.thunk(() => ({ __proto__: pos$42, MACAddress: nix.thunk(() => nix.sel(i, "macAddress")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "mtu"), null)), nix.thunk(() => ({
-                __proto__: pos$43,
+            networkConfig: nix.thunk(() => ({ [nix.POS]: pos$41, IPv6PrivacyExtensions: "kernel" })),
+            linkConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "macAddress"), null)), nix.thunk(() => ({ [nix.POS]: pos$42, MACAddress: nix.thunk(() => nix.sel(i, "macAddress")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(i, "mtu"), null)), nix.thunk(() => ({
+                [nix.POS]: pos$43,
                 MTUBytes: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(i, "mtu")))),
               }))))),
-            bridgeConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => nix.sel(i, "proxyARP")), nix.thunk(() => ({ __proto__: pos$44, ProxyARP: nix.thunk(() => nix.sel(i, "proxyARP")) })))),
+            bridgeConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => nix.sel(i, "proxyARP")), nix.thunk(() => ({ [nix.POS]: pos$44, ProxyARP: nix.thunk(() => nix.sel(i, "proxyARP")) })))),
           }))],
         ])),
       })))));
   const bridgeNetworks = nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "bridges")), (name) => (bridge) => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         netdevs: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`40-${name}`, nix.thunk(() => ({
-            __proto__: pos$48,
-            netdevConfig: nix.thunk(() => ({ __proto__: pos$47, Name: name, Kind: "bridge" })),
+            [nix.POS]: pos$48,
+            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$47, Name: name, Kind: "bridge" })),
           }))],
         ])),
         networks: nix.thunk(() => nix.app(nix.lookup(w_1, "listToAttrs"), nix.thunk(() => nix.app(nix.lookup(w_1, "forEach"), nix.thunk(() => nix.sel(bridge, "interfaces")), (bi) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`40-${bi}`), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 DHCP: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => nix.app(dhcpStr, false)))),
-                networkConfig: nix.thunk(() => ({ __proto__: pos$49, Bridge: name })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$49, Bridge: name })),
               }))))))),
       })))));
   const vlanNetworks = nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "vlans")), (name) => (vlan) => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         netdevs: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`40-${name}`, nix.thunk(() => ({
-            __proto__: pos$54,
-            netdevConfig: nix.thunk(() => ({ __proto__: pos$52, Name: name, Kind: "vlan" })),
-            vlanConfig: nix.thunk(() => ({ __proto__: pos$53, Id: nix.thunk(() => nix.sel(vlan, "id")) })),
+            [nix.POS]: pos$54,
+            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$52, Name: name, Kind: "vlan" })),
+            vlanConfig: nix.thunk(() => ({ [nix.POS]: pos$53, Id: nix.thunk(() => nix.sel(vlan, "id")) })),
           }))],
         ])),
         networks: nix.thunk(() => nix.attrsDyn({}, [
-          [nix.str`40-${nix.sel(vlan, "interface")}`, nix.thunk(() => ({ __proto__: pos$55, vlan: nix.thunk(() => [name]) }))],
+          [nix.str`40-${nix.sel(vlan, "interface")}`, nix.thunk(() => ({ [nix.POS]: pos$55, vlan: nix.thunk(() => [name]) }))],
         ])),
       })))));
   return {
-    __proto__: pos$123,
+    [nix.POS]: pos$123,
     config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "network", "enable")), nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             boot: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               initrd: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   network: nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => [
                       defaultGateways,
                       genericDhcpNetworks,
@@ -336,20 +336,20 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.sel(cfg, "useNetworkd")), nix.thunk(() => ({
-            __proto__: pos$122,
+            [nix.POS]: pos$122,
             assertions: nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "defaultGatewayWindowSize"), null)),
                 message: "networking.defaultGatewayWindowSize is not supported by networkd.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "defaultGateway"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "defaultGateway", "interface"), null)))),
                 message: "networking.defaultGateway.interface is not optional when using networkd.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "defaultGateway6"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "defaultGateway6", "interface"), null)))),
                 message: "networking.defaultGateway6.interface is not optional when using networkd.",
               })),
@@ -357,7 +357,7 @@ export default nix.lambda((args) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
                 const rstp = nix.arg($_1, "rstp");
                 return {
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   assertion: nix.thunk(() => !nix.asBool(rstp)),
                   message: nix.thunk(() => nix.str`networking.bridges.${n}.rstp is not supported by networkd.`),
                 };
@@ -365,40 +365,40 @@ export default nix.lambda((args) => (() => {
                 const $_1 = nix.formals(args_1, formals$3);
                 const local = nix.arg($_1, "local");
                 return {
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   assertion: nix.thunk(() => nix.eq(local, null)),
                   message: nix.thunk(() => nix.str`networking.fooOverUDP.${n}.local is not supported by networkd.`),
                 };
               })(), formals$3))))),
             networking: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               dhcpcd: nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkDefault"), false)),
               })),
               interfaces: nix.thunk(() => nix.app(nix.lookup(w_1, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (i) => nix.app(nix.lookup(w_1, "nameValuePair"), i, nix.thunk(() => ({}))), slaves)))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$121,
+              [nix.POS]: pos$121,
               network: nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$68, enable: true })),
+                  nix.thunk(() => ({ [nix.POS]: pos$68, enable: true })),
                   defaultGateways,
                   genericDhcpNetworks,
                   interfaceNetworks,
                   bridgeNetworks,
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "bonds")), (name) => (bond) => ({
-                        __proto__: pos$76,
+                        [nix.POS]: pos$76,
                         netdevs: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`40-${name}`, nix.thunk(() => ({
-                            __proto__: pos$73,
-                            netdevConfig: nix.thunk(() => ({ __proto__: pos$69, Name: name, Kind: "bond" })),
+                            [nix.POS]: pos$73,
+                            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$69, Name: name, Kind: "bond" })),
                             bondConfig: nix.thunk(() => (() => {
                               const driverOptionMapping = nix.thunk(() => (() => {
-                                const trans = (f) => (optName) => ({ __proto__: pos$70, valTransform: f, optNames: nix.thunk(() => [optName]) });
+                                const trans = (f) => (optName) => ({ [nix.POS]: pos$70, valTransform: f, optNames: nix.thunk(() => [optName]) });
                                 const simp = nix.thunk(() => nix.app(trans, nix.thunk(() => nix.lookup(w_1, "id"))));
                                 const ms = nix.thunk(() => nix.app(trans, (v) => nix.add(v, "ms")));
                                 return {
-                                  __proto__: pos$72,
+                                  [nix.POS]: pos$72,
                                   Mode: nix.thunk(() => nix.app(simp, "mode")),
                                   TransmitHashPolicy: nix.thunk(() => nix.app(simp, "xmit_hash_policy")),
                                   LACPTransmitRate: nix.thunk(() => nix.app(simp, "lacp_rate")),
@@ -416,7 +416,7 @@ export default nix.lambda((args) => (() => {
                                   ResendIGMP: nix.thunk(() => nix.app(simp, "resend_igmp")),
                                   PacketsPerSlave: nix.thunk(() => nix.app(simp, "packets_per_slave")),
                                   GratuitousARP: nix.thunk(() => ({
-                                    __proto__: pos$71,
+                                    [nix.POS]: pos$71,
                                     valTransform: nix.thunk(() => nix.lookup(w_1, "id")),
                                     optNames: nix.thunk(() => ["num_grat_arp", "num_unsol_na"]),
                                   })),
@@ -442,107 +442,107 @@ export default nix.lambda((args) => (() => {
                           }))],
                         ])),
                         networks: nix.thunk(() => nix.app(nix.lookup(w_1, "listToAttrs"), nix.thunk(() => nix.app(nix.lookup(w_1, "forEach"), nix.thunk(() => nix.sel(bond, "interfaces")), (bi) => nix.app(nix.lookup(w_1, "nameValuePair"), nix.thunk(() => nix.str`40-${bi}`), nix.thunk(() => ({
-                                __proto__: pos$75,
+                                [nix.POS]: pos$75,
                                 DHCP: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => nix.app(dhcpStr, false)))),
-                                networkConfig: nix.thunk(() => ({ __proto__: pos$74, Bond: name })),
+                                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$74, Bond: name })),
                               }))))))),
                       }))))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "macvlans")), (name) => (macvlan) => ({
-                        __proto__: pos$81,
+                        [nix.POS]: pos$81,
                         netdevs: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`40-${name}`, nix.thunk(() => ({
-                            __proto__: pos$79,
-                            netdevConfig: nix.thunk(() => ({ __proto__: pos$77, Name: name, Kind: "macvlan" })),
-                            macvlanConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(macvlan, "mode"), null)), nix.thunk(() => ({ __proto__: pos$78, Mode: nix.thunk(() => nix.sel(macvlan, "mode")) })))),
+                            [nix.POS]: pos$79,
+                            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$77, Name: name, Kind: "macvlan" })),
+                            macvlanConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(macvlan, "mode"), null)), nix.thunk(() => ({ [nix.POS]: pos$78, Mode: nix.thunk(() => nix.sel(macvlan, "mode")) })))),
                           }))],
                         ])),
                         networks: nix.thunk(() => nix.attrsDyn({}, [
-                          [nix.str`40-${nix.sel(macvlan, "interface")}`, nix.thunk(() => ({ __proto__: pos$80, macvlan: nix.thunk(() => [name]) }))],
+                          [nix.str`40-${nix.sel(macvlan, "interface")}`, nix.thunk(() => ({ [nix.POS]: pos$80, macvlan: nix.thunk(() => [name]) }))],
                         ])),
                       }))))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "ipvlans")), (name) => (ipvlan) => ({
-                        __proto__: pos$87,
+                        [nix.POS]: pos$87,
                         netdevs: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`40-${name}`, nix.thunk(() => ({
-                            __proto__: pos$85,
-                            netdevConfig: nix.thunk(() => ({ __proto__: pos$82, Name: name, Kind: "ipvlan" })),
+                            [nix.POS]: pos$85,
+                            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$82, Name: name, Kind: "ipvlan" })),
                             ipvlanConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipvlan, "mode"), null)), nix.thunk(() => ({
-                                __proto__: pos$83,
+                                [nix.POS]: pos$83,
                                 Mode: nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.sel(ipvlan, "mode")))),
-                              }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipvlan, "flags"), null)), nix.thunk(() => ({ __proto__: pos$84, Flags: nix.thunk(() => nix.sel(ipvlan, "flags")) }))))),
+                              }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipvlan, "flags"), null)), nix.thunk(() => ({ [nix.POS]: pos$84, Flags: nix.thunk(() => nix.sel(ipvlan, "flags")) }))))),
                           }))],
                         ])),
                         networks: nix.thunk(() => nix.attrsDyn({}, [
-                          [nix.str`40-${nix.sel(ipvlan, "interface")}`, nix.thunk(() => ({ __proto__: pos$86, ipvlan: nix.thunk(() => [name]) }))],
+                          [nix.str`40-${nix.sel(ipvlan, "interface")}`, nix.thunk(() => ({ [nix.POS]: pos$86, ipvlan: nix.thunk(() => [name]) }))],
                         ])),
                       }))))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "fooOverUDP")), (name) => (fou) => ({
-                        __proto__: pos$92,
+                        [nix.POS]: pos$92,
                         netdevs: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`40-${name}`, nix.thunk(() => ({
-                            __proto__: pos$91,
-                            netdevConfig: nix.thunk(() => ({ __proto__: pos$88, Name: name, Kind: "fou" })),
+                            [nix.POS]: pos$91,
+                            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$88, Name: name, Kind: "fou" })),
                             fooOverUDPConfig: nix.thunk(() => nix.update({
-                              __proto__: pos$89,
+                              [nix.POS]: pos$89,
                               Port: nix.thunk(() => nix.sel(fou, "port")),
                               Encapsulation: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(fou, "protocol"), null)) ? "FooOverUDP" : "GenericUDPEncapsulation")),
-                            }, nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(fou, "protocol"), null)), nix.thunk(() => ({ __proto__: pos$90, Protocol: nix.thunk(() => nix.sel(fou, "protocol")) }))))),
+                            }, nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(fou, "protocol"), null)), nix.thunk(() => ({ [nix.POS]: pos$90, Protocol: nix.thunk(() => nix.sel(fou, "protocol")) }))))),
                           }))],
                         ])),
                       }))))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "sits")), (name) => (sit) => ({
-                        __proto__: pos$101,
+                        [nix.POS]: pos$101,
                         netdevs: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`40-${name}`, nix.thunk(() => ({
-                            __proto__: pos$99,
-                            netdevConfig: nix.thunk(() => ({ __proto__: pos$93, Name: name, Kind: "sit" })),
-                            tunnelConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "remote"), null)), nix.thunk(() => ({ __proto__: pos$94, Remote: nix.thunk(() => nix.sel(sit, "remote")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "local"), null)), nix.thunk(() => ({ __proto__: pos$95, Local: nix.thunk(() => nix.sel(sit, "local")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "ttl"), null)), nix.thunk(() => ({ __proto__: pos$96, TTL: nix.thunk(() => nix.sel(sit, "ttl")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "encapsulation", "type"), "6in4")), nix.thunk(() => nix.update({
-                                __proto__: pos$97,
+                            [nix.POS]: pos$99,
+                            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$93, Name: name, Kind: "sit" })),
+                            tunnelConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "remote"), null)), nix.thunk(() => ({ [nix.POS]: pos$94, Remote: nix.thunk(() => nix.sel(sit, "remote")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "local"), null)), nix.thunk(() => ({ [nix.POS]: pos$95, Local: nix.thunk(() => nix.sel(sit, "local")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "ttl"), null)), nix.thunk(() => ({ [nix.POS]: pos$96, TTL: nix.thunk(() => nix.sel(sit, "ttl")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "encapsulation", "type"), "6in4")), nix.thunk(() => nix.update({
+                                [nix.POS]: pos$97,
                                 FooOverUDP: true,
                                 Encapsulation: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(sit, "encapsulation", "type"), "fou")) ? "FooOverUDP" : "GenericUDPEncapsulation")),
                                 FOUDestinationPort: nix.thunk(() => nix.sel(sit, "encapsulation", "port")),
                               }, nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(sit, "encapsulation", "sourcePort"), null)), nix.thunk(() => ({
-                                  __proto__: pos$98,
+                                  [nix.POS]: pos$98,
                                   FOUSourcePort: nix.thunk(() => nix.sel(sit, "encapsulation", "sourcePort")),
                                 })))))))))),
                           }))],
                         ])),
                         networks: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(sit, "dev"), null)), nix.thunk(() => nix.attrsDyn({}, [
-                            [nix.str`40-${nix.sel(sit, "dev")}`, nix.thunk(() => ({ __proto__: pos$100, tunnel: nix.thunk(() => [name]) }))],
+                            [nix.str`40-${nix.sel(sit, "dev")}`, nix.thunk(() => ({ [nix.POS]: pos$100, tunnel: nix.thunk(() => [name]) }))],
                           ])))),
                       }))))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "ipips")), (name) => (ipip) => ({
-                        __proto__: pos$109,
+                        [nix.POS]: pos$109,
                         netdevs: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`40-${name}`, nix.thunk(() => ({
-                            __proto__: pos$107,
+                            [nix.POS]: pos$107,
                             netdevConfig: nix.thunk(() => ({
-                              __proto__: pos$102,
+                              [nix.POS]: pos$102,
                               Name: name,
                               Kind: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(ipip, "encapsulation", "type"), "ipip")) ? "ipip" : "ip6tnl")),
                             })),
-                            tunnelConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "remote"), null)), nix.thunk(() => ({ __proto__: pos$103, Remote: nix.thunk(() => nix.sel(ipip, "remote")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "local"), null)), nix.thunk(() => ({ __proto__: pos$104, Local: nix.thunk(() => nix.sel(ipip, "local")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "ttl"), null)), nix.thunk(() => ({ __proto__: pos$105, TTL: nix.thunk(() => nix.sel(ipip, "ttl")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "encapsulation", "type"), "ipip")), nix.thunk(() => ({
-                                __proto__: pos$106,
+                            tunnelConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "remote"), null)), nix.thunk(() => ({ [nix.POS]: pos$103, Remote: nix.thunk(() => nix.sel(ipip, "remote")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "local"), null)), nix.thunk(() => ({ [nix.POS]: pos$104, Local: nix.thunk(() => nix.sel(ipip, "local")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "ttl"), null)), nix.thunk(() => ({ [nix.POS]: pos$105, TTL: nix.thunk(() => nix.sel(ipip, "ttl")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(ipip, "encapsulation", "type"), "ipip")), nix.thunk(() => ({
+                                [nix.POS]: pos$106,
                                 Mode: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(ipip, "encapsulation", "type"), "4in6")) ? "ipip6" : "ip6ip6")),
                                 EncapsulationLimit: nix.thunk(() => nix.sel(ipip, "encapsulation", "type")),
                               }))))))),
                           }))],
                         ])),
                         networks: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(ipip, "dev"), null)), nix.thunk(() => nix.attrsDyn({}, [
-                            [nix.str`40-${nix.sel(ipip, "dev")}`, nix.thunk(() => ({ __proto__: pos$108, tunnel: nix.thunk(() => [name]) }))],
+                            [nix.str`40-${nix.sel(ipip, "dev")}`, nix.thunk(() => ({ [nix.POS]: pos$108, tunnel: nix.thunk(() => [name]) }))],
                           ])))),
                       }))))),
                   nix.thunk(() => nix.app(nix.lookup(w_1, "mkMerge"), nix.thunk(() => nix.app(nix.lookup(w_1, "flip"), nix.thunk(() => nix.lookup(w_1, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "greTunnels")), (name) => (gre) => ({
-                        __proto__: pos$116,
+                        [nix.POS]: pos$116,
                         netdevs: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`40-${name}`, nix.thunk(() => ({
-                            __proto__: pos$114,
-                            netdevConfig: nix.thunk(() => ({ __proto__: pos$110, Name: name, Kind: nix.thunk(() => nix.sel(gre, "type")) })),
-                            tunnelConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gre, "remote"), null)), nix.thunk(() => ({ __proto__: pos$111, Remote: nix.thunk(() => nix.sel(gre, "remote")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gre, "local"), null)), nix.thunk(() => ({ __proto__: pos$112, Local: nix.thunk(() => nix.sel(gre, "local")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gre, "ttl"), null)), nix.thunk(() => ({ __proto__: pos$113, TTL: nix.thunk(() => nix.sel(gre, "ttl")) })))))),
+                            [nix.POS]: pos$114,
+                            netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$110, Name: name, Kind: nix.thunk(() => nix.sel(gre, "type")) })),
+                            tunnelConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gre, "remote"), null)), nix.thunk(() => ({ [nix.POS]: pos$111, Remote: nix.thunk(() => nix.sel(gre, "remote")) }))), nix.update(nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gre, "local"), null)), nix.thunk(() => ({ [nix.POS]: pos$112, Local: nix.thunk(() => nix.sel(gre, "local")) }))), nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(gre, "ttl"), null)), nix.thunk(() => ({ [nix.POS]: pos$113, TTL: nix.thunk(() => nix.sel(gre, "ttl")) })))))),
                           }))],
                         ])),
                         networks: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(gre, "dev"), null)), nix.thunk(() => nix.attrsDyn({}, [
-                            [nix.str`40-${nix.sel(gre, "dev")}`, nix.thunk(() => ({ __proto__: pos$115, tunnel: nix.thunk(() => [name]) }))],
+                            [nix.str`40-${nix.sel(gre, "dev")}`, nix.thunk(() => ({ [nix.POS]: pos$115, tunnel: nix.thunk(() => [name]) }))],
                           ])))),
                       }))))),
                   vlanNetworks,
@@ -553,7 +553,7 @@ export default nix.lambda((args) => (() => {
                     const deps = nix.thunk(() => nix.app(nix.builtins.map, subsystemDevice, nix.thunk(() => nix.app(nix.lookup(w_1, "attrNames"), nix.thunk(() => nix.app(nix.lookup(w_1, "filterAttrs"), (_) => (config_1) => !nix.eq(nix.sel(config_1, "type"), "internal"), nix.thunk(() => nix.sel(v, "interfaces"))))))));
                     const ofRules = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`vswitch-${n}-openFlowRules`), nix.thunk(() => nix.sel(v, "openFlowRules"))));
                     return {
-                      __proto__: pos$118,
+                      [nix.POS]: pos$118,
                       description: nix.thunk(() => nix.str`Open vSwitch Interface ${n}`),
                       wantedBy: nix.thunk(() => ["network.target", nix.thunk(() => nix.app(subsystemDevice, n))]),
                       before: nix.thunk(() => ["systemd-networkd.service"]),
@@ -561,7 +561,7 @@ export default nix.lambda((args) => (() => {
                       bindsTo: nix.thunk(() => ["ovs-vswitchd.service"]),
                       after: nix.thunk(() => nix.concat(["network-pre.target", "ovs-vswitchd.service"], deps)),
                       wants: deps,
-                      serviceConfig: nix.thunk(() => ({ __proto__: pos$117, Type: "oneshot", RemainAfterExit: true })),
+                      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$117, Type: "oneshot", RemainAfterExit: true })),
                       path: nix.thunk(() => [
                         nix.thunk(() => nix.sel(pkgs, "iproute2")),
                         nix.thunk(() => nix.sel(config, "virtualisation", "vswitch", "package")),
@@ -591,9 +591,9 @@ ovs-vsctl --if-exists del-br ${n} || true
                     };
                   })()));
                 return nix.update(nix.app(nix.lookup(w_1, "mapAttrs'"), createVswitchDevice, nix.thunk(() => nix.sel(cfg, "vswitches"))), {
-                  __proto__: pos$120,
+                  [nix.POS]: pos$120,
                   "network-local-commands": nix.thunk(() => ({
-                    __proto__: pos$119,
+                    [nix.POS]: pos$119,
                     after: nix.thunk(() => ["systemd-networkd.service"]),
                     bindsTo: nix.thunk(() => ["systemd-networkd.service"]),
                   })),

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gexiv2/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gexiv2-${version}.tar.xz`),
           sha256: "YGwoqq57Hz71yOq+Xn3/18WhyGbSW3Zx+4R/4oenK4s=",
         }))));
@@ -64,9 +64,9 @@ ln -s $PWD/gexiv2/libgexiv2.${libSuffix} $out/lib/libgexiv2.${libSuffix}
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             attrPath: "gexiv2_0_10",
             packageName: pname,
             versionPolicy: "odd-unstable",
@@ -74,7 +74,7 @@ ln -s $PWD/gexiv2/libgexiv2.${libSuffix} $out/lib/libgexiv2.${libSuffix}
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/gexiv2",
         description: "GObject wrapper around the Exiv2 photo metadata library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -82,7 +82,7 @@ ln -s $PWD/gexiv2/libgexiv2.${libSuffix} $out/lib/libgexiv2.${libSuffix}
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         __structuredAttrs,

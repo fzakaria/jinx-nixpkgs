@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const racket = nix.arg($, "racket");
-  return nix.app(runCommandLocal, "racket-test-get-version-and-variant", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
+  return nix.app(runCommandLocal, "racket-test-get-version-and-variant", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const expectation = nix.arg($_1, "expectation");
           const output = nix.arg($_1, "output");
@@ -29,17 +29,17 @@ fi
 `;
         })(), formals$2), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             expectation: nix.thunk(() => nix.sel(racket, "version")),
             output: "$(racket -e '(display (version))')",
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             expectation: "cs",
             output: "$(racket -e '(require launcher/launcher) (display (current-launcher-variant))')",
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             expectation: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), racket)}`),
             output: "$(racket -e '(require compiler/find-exe) (display (find-exe))')",
           })),

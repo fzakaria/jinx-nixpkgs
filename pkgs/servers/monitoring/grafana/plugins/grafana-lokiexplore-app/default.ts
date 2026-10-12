@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "grafana-lokiexplore-app",
       version: "2.6.0",
       zipHash: "sha256-G05EoSVBC/w3c6q3CKT23y3I3bQuogTHbAtgCBGcr8M=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Browse Loki logs without the need for writing complex queries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {

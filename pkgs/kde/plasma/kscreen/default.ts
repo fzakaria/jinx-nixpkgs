@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const dbus = nix.arg($, "dbus");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kscreen",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsensors, qtwayland, wayland_protocols]),
       postFixup: nix.thunk(() => nix.str`substituteInPlace $out/share/kglobalaccel/org.kde.kscreen.desktop \\
   --replace-fail dbus-send ${dbus}/bin/dbus-send
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kscreen-console" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kscreen-console" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

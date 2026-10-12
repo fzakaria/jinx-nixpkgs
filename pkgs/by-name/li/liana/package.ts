@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liana";
       const version = "15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wizardsardine",
           repo: "liana",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +66,7 @@ wrapProgram $out/bin/liana-gui --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Liana",
             exec: "liana-gui",
             icon: "liana",
@@ -76,7 +76,7 @@ wrapProgram $out/bin/liana-gui --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib
       ]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "liana-gui",
         description: "Bitcoin wallet leveraging on-chain timelocks for safety and recovery",
         homepage: "https://wizardsardine.com/liana",
@@ -90,7 +90,7 @@ wrapProgram $out/bin/liana-gui --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

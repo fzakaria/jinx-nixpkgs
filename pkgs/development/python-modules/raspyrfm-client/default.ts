@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markusressel",
           repo: "raspyrfm-client",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["raspyrfm_client"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, xeger]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Send rc signals with the RaspyRFM module",
         homepage: "https://github.com/markusressel/raspyrfm-client",
         changelog: nix.thunk(() => nix.str`https://github.com/markusressel/raspyrfm-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

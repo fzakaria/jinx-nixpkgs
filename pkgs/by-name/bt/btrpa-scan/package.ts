@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "btrpa-scan",
       version: "0.6.0-unstable-2026-02-18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HackingDave",
           repo: "btrpa-scan",
           rev: "aa286d8d7a5ff11926f1b9f064ec9e00eeeeb5a6",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["btrpa_scan"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bluetooth Low Energy (BLE) scanner",
         homepage: "https://github.com/HackingDave/btrpa-scan",
         changelog: nix.thunk(() => nix.str`https://github.com/HackingDave/btrpa-scan/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

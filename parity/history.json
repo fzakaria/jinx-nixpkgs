@@ -2,7 +2,7 @@
   {
     "date": "2026-10-12",
     "nixpkgs": "6510408d147d8c5e6d76043e899e9251756f6a75",
-    "jinx": "8b926a9891a396120601acc04460c897ba90495b",
+    "jinx": "805d8eeee888ef295934b41f630abfdcee8ca786",
     "systems": [
       "aarch64-darwin",
       "aarch64-linux",

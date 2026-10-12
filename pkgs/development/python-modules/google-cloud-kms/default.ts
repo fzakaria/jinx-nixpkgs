@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-kms-v${version}`),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_list_global_key_rings", "test_list_ekm_connections"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.kms", "google.cloud.kms_v1"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "google-cloud-kms-v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "google-cloud-kms-v" })))),
         skipBulkUpdate: true,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cloud Key Management Service (KMS) API API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-kms",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/google-cloud-kms/CHANGELOG.md`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

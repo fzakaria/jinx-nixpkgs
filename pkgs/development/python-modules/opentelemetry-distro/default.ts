@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["opentelemetry.distro"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.sel(opentelemetry_api, "updateScript")),
       }));
       const meta = nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenTelemetry Python Distro",
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-distro",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         src,
         version,

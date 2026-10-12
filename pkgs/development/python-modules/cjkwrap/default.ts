@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fgallaire",
           repo: "cjkwrap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["cjkwrap"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for wrapping and filling CJK text",
         homepage: "https://f.gallai.re/cjkwrap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kaction"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

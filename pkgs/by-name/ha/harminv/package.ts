@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.asBool(nix.sel(blas, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ha/harminv/package.nix:11:1");
   nix.assert_(!nix.asBool(nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ha/harminv/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "harminv",
       version: "1.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NanoComp",
           repo: "harminv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [blas, lapack]),
       configureFlags: nix.thunk(() => ["--enable-shared", "--enable-maintainer-mode"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Harmonic inversion algorithm of Mandelshtam: decompose signal into sum of decaying sinusoids",
         homepage: "https://github.com/NanoComp/harminv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

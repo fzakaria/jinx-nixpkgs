@@ -60,11 +60,11 @@ done
     openssl,
   ]);
   const svp_dist = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "svp-dist",
       version: "4.7.305",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.svp-team.com/files/svp4-linux.${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-PWAcm/hIA4JH2QtJPP+gSJdJLRdfdbZXIVdWELazbxQ=",
         })))),
@@ -76,7 +76,7 @@ done
       installPhase: "mkdir -p $out/opt\nfor f in \"installer/\"*.7z; do\n  7z -bd -bb0 -y x -o\"$out/opt/\" \"$f\" || true\ndone\n\nfor SIZE in 32 48 64 128; do\n  mkdir -p \"$out/share/icons/hicolor/${SIZE}x${SIZE}/apps\"\n  mv \"$out/opt/svp-manager4-${SIZE}.png\" \"$out/share/icons/hicolor/${SIZE}x${SIZE}/apps/svp-manager4.png\"\ndone\nrm -f $out/opt/{add,remove}-menuitem.sh\n",
     })));
   const fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "SVPManager",
       version: nix.thunk(() => nix.attr(svp_dist, "version")),
       targetPkgs: (pkgs) => nix.force(libraries),
@@ -89,7 +89,7 @@ done
       unshareCgroup: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "svp",
       version: nix.thunk(() => nix.attr(svp_dist, "version")),
       dontUnpack: true,
@@ -98,10 +98,10 @@ done
 ln -s ${fhs}/bin/SVPManager $out/bin/SVPManager
 ln -s ${svp_dist}/share/icons $out/share/icons
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, mpv: mpvForSVP })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, mpv: mpvForSVP })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "svp-manager4",
             exec: nix.thunk(() => nix.str`${fhs}/bin/SVPManager %f`),
             desktopName: "SVP 4 Linux",
@@ -120,7 +120,7 @@ ln -s ${svp_dist}/share/icons $out/share/icons
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: "SVPManager",
         description: "SmoothVideo Project 4 (SVP4) converts any video to 60 fps (and even higher) and performs this in real time right in your favorite video player",
         homepage: "https://www.svp-team.com/wiki/SVP:Linux",

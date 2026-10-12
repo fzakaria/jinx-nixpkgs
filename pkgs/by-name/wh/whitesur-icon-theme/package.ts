@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2026-09-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "WhiteSur-icon-theme",
           tag: version,
@@ -60,7 +60,7 @@ runHook postInstall
 `);
       const postFixup = "find $out/share/icons -xtype l -delete\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MacOS Big Sur style icon theme for Linux desktops",
         homepage: "https://github.com/vinceliuice/WhiteSur-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +71,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version,
         src,

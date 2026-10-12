@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nltk",
       version: "3.10.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nltk",
           repo: "nltk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,13 +91,13 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_chartparser_app_uses_pickle_load_not_pickle_load_standard"]))),
       pythonImportsCheck: nix.thunk(() => ["nltk"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         data: nix.thunk(() => nix.sel(pkgs, "nltk-data")),
         dataDir: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./data-dir.nix"), nix.thunk(() => ({})))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/nltk/nltk/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),
         description: "Natural Language Processing ToolKit",
         mainProgram: "nltk",

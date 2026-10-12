@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gfxreconstruct",
       version: "1.0.4-unstable-2026-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LunarG",
           repo: "gfxreconstruct",
           rev: "41c7f2d964544813df5988d9689189f8520b1e2e",
@@ -53,7 +53,7 @@ wrapProgram $out/bin/gfxrecon-replay \\
 rm -r $out/lib/{cmake,pkgconfig}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphics API Capture and Replay Tools",
         homepage: "https://github.com/LunarG/gfxreconstruct/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

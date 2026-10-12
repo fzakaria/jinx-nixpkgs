@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.1";
   const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`tree-from-tags-${version}-gems`),
       ruby: ruby,
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tree-from-tags",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dbrock",
           repo: "bongo",
           rev: version,
@@ -45,7 +45,7 @@ EOF
 chmod +x $bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create file hierarchies from media tags",
         homepage: "https://www.emacswiki.org/emacs/Bongo",
         platforms: nix.thunk(() => nix.sel(ruby, "meta", "platforms")),

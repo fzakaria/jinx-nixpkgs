@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pygments = nix.arg($, "pygments");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pygments-better-html",
       version: "0.1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kwpolska",
           repo: "pygments_better_html",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["pygments_better_html"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Kwpolska/pygments_better_html/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         homepage: "https://github.com/Kwpolska/pygments_better_html",
         description: "Improved line numbering for Pygments’ HTML formatter",

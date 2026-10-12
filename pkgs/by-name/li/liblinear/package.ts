@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const soVersion = "5";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liblinear",
       version: "2.47",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cjlin1",
           repo: "liblinear",
           rev: nix.thunk(() => nix.str`v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,7 +40,7 @@ install -D predict $bin/bin/liblinear-predict
 install -Dm444 -t $dev/include linear.h
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for large linear classification",
         homepage: "https://www.csie.ntu.edu.tw/~cjlin/liblinear/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

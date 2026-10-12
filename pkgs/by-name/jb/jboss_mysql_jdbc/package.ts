@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const mysql_jdbc = nix.arg($, "mysql_jdbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "jboss-mysql-jdbc",
       version: nix.thunk(() => nix.attr(mysql_jdbc, "version")),
       dontUnpack: true,
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mysql_jdbc, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.19.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Styria-Digital",
           repo: "django-rest-framework-jwt",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["rest_framework_jwt", "rest_framework_jwt.blacklist"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON Web Token based authentication for Django REST framework",
         homepage: "https://github.com/Styria-Digital/django-rest-framework-jwt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

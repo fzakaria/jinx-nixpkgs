@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-history-search-multi-word";
       const version = "0-unstable-2021-11-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zdharma-continuum",
           repo: "history-search-multi-word",
           rev: "5b44d8cea12351d91fbdc3697916556f59f14b8c",
@@ -31,7 +31,7 @@ mkdir -p "$plugindir"
 cp -r -- history-* hsmw-* "$plugindir"/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-word, syntax highlighted history searching for Zsh",
         homepage: "https://github.com/zdharma-continuum/history-search-multi-word",
         license: nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ cp -r -- history-* hsmw-* "$plugindir"/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -43,89 +43,89 @@ export default nix.lambda((args) => (() => {
   const toString = nix.thunk(() => nix.attr(nix.builtins, "toString"));
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         wyoming: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           piper: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wyoming-piper", nix.thunk(() => ({})))),
               servers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   default: nix.thunk(() => ({})),
                   description: "Attribute set of wyoming-piper instances to spawn.\n",
                   type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                         const $_1 = nix.formals(args_1, formals$2);
                         const name = nix.arg($_1, "name");
                         return {
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           options: nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             enable: nix.thunk(() => nix.app(mkEnableOption, "Wyoming Piper server")),
                             zeroconf: nix.thunk(() => ({
-                              __proto__: pos$3,
-                              enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "zeroconf discovery"), { __proto__: pos$1, default: true })),
+                              [nix.POS]: pos$3,
+                              enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "zeroconf discovery"), { [nix.POS]: pos$1, default: true })),
                               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$2,
+                                  [nix.POS]: pos$2,
                                   type: nix.thunk(() => nix.lookup(w, "str")),
                                   default: nix.thunk(() => nix.str`piper-${name}`),
                                   description: "The advertised name for zeroconf discovery.\n",
                                 })))),
                             })),
                             voice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$4,
+                                [nix.POS]: pos$4,
                                 type: nix.thunk(() => nix.lookup(w, "str")),
                                 example: "en-us-ryan-medium",
                                 description: "Name of the voice model to use. See the following website for samples:\nhttps://rhasspy.github.io/piper-samples/\n",
                               })))),
                             uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "^(tcp|unix)://.*$")),
                                 example: "tcp://0.0.0.0:10200",
                                 description: "URI to bind the wyoming server to.\n",
                               })))),
                             speaker: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$6,
+                                [nix.POS]: pos$6,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "unsigned")),
                                 default: 0n,
                                 description: "ID of a specific speaker in a multi-speaker model.\n",
                                 apply: toString,
                               })))),
                             noiseScale: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$7,
+                                [nix.POS]: pos$7,
                                 type: nix.thunk(() => nix.lookup(w, "float")),
                                 default: 0.667,
                                 description: "Generator noise value.\n",
                                 apply: toString,
                               })))),
                             noiseWidth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$8,
+                                [nix.POS]: pos$8,
                                 type: nix.thunk(() => nix.lookup(w, "float")),
                                 default: 0.333,
                                 description: "Phoneme width noise value.\n",
                                 apply: toString,
                               })))),
                             lengthScale: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$9,
+                                [nix.POS]: pos$9,
                                 type: nix.thunk(() => nix.lookup(w, "float")),
                                 default: 1.0,
                                 description: "Phoneme length value.\n",
                                 apply: toString,
                               })))),
                             useCUDA: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$10,
+                                [nix.POS]: pos$10,
                                 type: nix.thunk(() => nix.lookup(w, "bool")),
                                 default: nix.thunk(() => nix.sel(pkgs, "config", "cudaSupport")),
                                 defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.config.cudaSupport")),
                                 description: "Whether to accelerate the underlying onnxruntime library with CUDA.\n",
                               })))),
                             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                                 default: [],
                                 description: "Extra arguments to pass to the server commandline.\n",
@@ -144,18 +144,18 @@ export default nix.lambda((args) => (() => {
       const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
       const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
       return nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "servers"), {})), nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => nix.app(mapAttrs$, (server) => (options) => nix.app(nameValuePair, nix.thunk(() => nix.str`wyoming-piper-${server}`), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   enable: nix.thunk(() => nix.attr(options, "enable")),
                   description: nix.thunk(() => nix.str`Wyoming Piper server instance ${server}`),
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => ["network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     DynamicUser: true,
                     User: "wyoming-piper",
                     StateDirectory: nix.thunk(() => ["wyoming/piper"]),

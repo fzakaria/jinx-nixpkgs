@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "as31",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/a/as31/as31_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-zSEyWHFon5nyq717Mpmdv1XZ5Hz0e8ZABqsP8M83c1U=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0000-getline-break.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/as31/-/raw/76735fbf1fb00ce70ffd98385137908b7bd9bd5c/debian/patches/update_sizebuf_types.patch",
             hash: "sha256-ERrPdY0afKwXmdSLoWmWR55nKfvmieGlz+nhwFWRnrM=",
           })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "chmod +x configure\n",
       nativeBuildInputs: nix.thunk(() => [bison]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.pjrc.com/tech/8051/tools/as31-doc.html",
         description: "8031/8051 assembler",
         mainProgram: "as31",

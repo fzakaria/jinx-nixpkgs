@@ -18,31 +18,31 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     imports: nix.thunk(() => [nix.path(here, "../common/openxr.nix")]),
     services: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       monado: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       user: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "stardust-xr-server": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               Type: "notify",
               NotifyAccess: "all",
               ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-server")))} -e ${nix.app(nix.sel(pkgs, "writeShellScript"), "notifyReady", "systemd-notify --ready")}`),
             })),
-            environment: nix.thunk(() => ({ __proto__: pos$4, RUST_BACKTRACE: "full" })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$4, RUST_BACKTRACE: "full" })),
           })),
         })),
       })),

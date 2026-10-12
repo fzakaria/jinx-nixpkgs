@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const enableUnfree = nix.argOr($, "enableUnfree", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ouch",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ouch-org",
           repo: "ouch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => nix.concat(["use_zlib", "use_zstd_thin", "bzip3", "zstd/pkg-config"], nix.app(nix.sel(lib, "optionals"), enableUnfree, nix.thunk(() => ["unrar"])))),
       postInstall: "installManPage artifacts/*.1\ninstallShellCompletion artifacts/ouch.{bash,fish} --zsh artifacts/_ouch --nushell artifacts/ouch.nu\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, OUCH_ARTIFACTS_FOLDER: "artifacts" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OUCH_ARTIFACTS_FOLDER: "artifacts" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line utility for easily compressing and decompressing files and directories",
         homepage: "https://github.com/ouch-org/ouch",
         changelog: nix.thunk(() => nix.str`https://github.com/ouch-org/ouch/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

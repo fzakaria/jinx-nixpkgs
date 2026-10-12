@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cppo = nix.arg($, "cppo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "merlin-extend",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/let-def/merlin-extend/releases/download/v${nix.sel(finalAttrs, "version")}/merlin-extend-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-R1WOfzC2RGLyucgvt/eHEzrPoNUTJFK2rXhI4LD013k=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/let-def/merlin-extend",
         description: "SDK to extend Merlin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

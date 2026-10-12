@@ -60,10 +60,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "rarfile")),
         nix.thunk(() => nix.lookup(w, "rebulk")),
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "sabctools"), "overridePythonAttrs"), (old) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: sabctoolsVersion,
             src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pname: "sabctools",
                 version: sabctoolsVersion,
                 hash: sabctoolsHash,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.3";
       const pname = "sabnzbd";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "sabnzbd",
           repo: "sabnzbd",
           rev: version,
@@ -101,15 +101,15 @@ wrapProgram $out/bin/sabnzbd --set PATH ${path}
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "sabnzbd")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Usenet NZB downloader, par2 repairer and auto extracting server",
         homepage: "https://sabnzbd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -121,7 +121,7 @@ runHook postInstall
         mainProgram: "sabnzbd",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version,
         pname,
         src,

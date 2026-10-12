@@ -26,20 +26,20 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "llguidance",
       version: "1.8.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guidance-ai",
           repo: "llguidance",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/rHTefKTq5ch38NqbcLYTXBJwkW+WzG5OFvignDIie4=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         rustc,
       ]),
       buildInputs: nix.thunk(() => [oniguruma, openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$3, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTONIG_SYSTEM_LIBONIG: true })),
       pythonImportsCheck: nix.thunk(() => ["llguidance", "llguidance._lib"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, torch, transformers]),
       preCheck: "rm -r python/llguidance\n",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "scripts/tokenizer_test.py",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["python/torch_tests/test_bitmask.py"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Super-fast Structured Outputs",
         homepage: "https://github.com/guidance-ai/llguidance",
         changelog: nix.thunk(() => nix.str`https://github.com/guidance-ai/llguidance/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

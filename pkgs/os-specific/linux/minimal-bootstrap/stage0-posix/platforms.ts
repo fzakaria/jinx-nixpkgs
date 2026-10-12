@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const platforms = nix.thunk(() => ["aarch64-linux", "i686-linux", "x86_64-linux"]);
     const stage0Arch = nix.thunk(() => nix.selOr({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "aarch64-linux": "AArch64",
       "i686-linux": "x86",
       "x86_64-linux": "AMD64",
@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
     const m2libcArch = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), stage0Arch));
     const m2libcOS = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? "Linux" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(hostPlatform, "system")}`))));
     const baseAddress = nix.thunk(() => nix.selOr({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "aarch64-linux": "0x00600000",
       "i686-linux": "0x08048000",
       "x86_64-linux": "0x00600000",
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(hostPlatform, "system")}`)), nix.key(nix.sel(hostPlatform, "system"))));
-    return { __proto__: pos$3, platforms, stage0Arch, m2libcArch, m2libcOS, baseAddress };
+    return { [nix.POS]: pos$3, platforms, stage0Arch, m2libcArch, m2libcOS, baseAddress };
   })();
 })(), formals$1);
 //# sourceMappingURL=platforms.ts.map

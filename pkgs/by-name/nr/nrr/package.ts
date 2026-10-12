@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const enableLTO = nix.argOr($, "enableLTO", () => true);
   const nrxAlias = nix.argOr($, "nrxAlias", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nrr",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ryanccn",
           repo: "nrr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-uOPkTAypThZPof2DaBS/uGJThlV179jNj0SkSJ0X6r8=",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enableLTO, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CARGO_PROFILE_RELEASE_LTO: "fat",
           CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
         })))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nrxAlias, "ln -s $out/bin/nr{r,x}")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal, blazing fast npm scripts runner",
         homepage: "https://github.com/ryanccn/nrr",
         maintainers: nix.thunk(() => (() => {

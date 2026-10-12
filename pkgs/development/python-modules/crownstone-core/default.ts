@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pyaes = nix.arg($, "pyaes");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crownstone-core",
       version: "3.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crownstone",
           repo: "crownstone-lib-python-core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["crownstone_core"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module with shared classes, util functions and definition of Crownstone",
         homepage: "https://github.com/crownstone/crownstone-lib-python-core",
         changelog: nix.thunk(() => nix.str`https://github.com/crownstone/crownstone-lib-python-core/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

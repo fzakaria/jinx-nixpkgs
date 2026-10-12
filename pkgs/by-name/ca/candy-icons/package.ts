@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "candy-icons",
       version: "0-unstable-2026-03-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EliverLara",
           repo: "candy-icons",
           rev: "83512fbcadcb7e1015ebbe1729a1894946b021be",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons/candy-icons\ncp -r . $out/share/icons/candy-icons\ngtk-update-icon-cache $out/share/icons/candy-icons\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/EliverLara/candy-icons",
         description: "Icon theme colored with sweet gradients",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

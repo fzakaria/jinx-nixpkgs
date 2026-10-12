@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cachet",
       version: "0.0.2",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/cachet/releases/download/v${nix.sel(finalAttrs, "version")}/cachet-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256:7cf3d609523592516ee5570c106756168d9dca264412a0ef4085d9864c53cbad",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A simple cache system for mmap",
         homepage: "https://git.robur.coop/robur/cachet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

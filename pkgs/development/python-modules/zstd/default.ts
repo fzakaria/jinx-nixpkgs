@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.7.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-QD5SBfSsBLkuawzaZUvi9R3iaCKKDbAGe8CH+qzy9JU=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--library-dirs=${zstd}/lib`),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ZSTD_EXTERNAL: 1n,
         VERSION: nix.thunk(() => nix.sel(zstd, "version")),
         PKG_VERSION: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "pytest\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple python bindings to Yann Collet ZSTD compression library",
         homepage: "https://github.com/sergey-dryabzhinsky/python-zstd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

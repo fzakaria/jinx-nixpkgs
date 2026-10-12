@@ -30,25 +30,25 @@ export default nix.lambda((args) => (() => {
   const unions = nix.thunk(() => nix.attr(from, "unions"));
   const toList = nix.thunk(() => nix.attr(from, "toList"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       fileset: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "fileset")));
           })()),
         })))),
       filesetCardinal: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: nix.thunk(() => nix.app(mapAttrs, (_) => (fs) => nix.app(length, nix.thunk(() => nix.app(toList, fs))), nix.thunk(() => nix.sel(config, "fileset")))),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       fileset: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ok1: empty,
         ok2: nix.path(here, "./fileset"),
         ok3: nix.thunk(() => nix.app(unions, nix.thunk(() => [empty, nix.path(here, "./fileset")]))),
@@ -61,16 +61,16 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$7,
-        fileset: nix.thunk(() => ({ __proto__: pos$6, ok4: nix.path(here, "./fileset") })),
+        [nix.POS]: pos$7,
+        fileset: nix.thunk(() => ({ [nix.POS]: pos$6, ok4: nix.path(here, "./fileset") })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
-        fileset: nix.thunk(() => ({ __proto__: pos$8, ok4: empty })),
+        [nix.POS]: pos$9,
+        fileset: nix.thunk(() => ({ [nix.POS]: pos$8, ok4: empty })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$11,
-        fileset: nix.thunk(() => ({ __proto__: pos$10, ok4: nix.path(here, "./fileset") })),
+        [nix.POS]: pos$11,
+        fileset: nix.thunk(() => ({ [nix.POS]: pos$10, ok4: nix.path(here, "./fileset") })),
       })),
     ]),
   };

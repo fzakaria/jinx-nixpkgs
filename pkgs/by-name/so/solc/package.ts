@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
   const doInstallCheck = true;
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Compiler for Ethereum smart contract language Solidity",
     homepage: "https://github.com/ethereum/solidity",
     changelog: nix.thunk(() => nix.str`https://github.com/ethereum/solidity/releases/tag/v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck_1 = doInstallCheck;
       const meta_1 = meta;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ethereum/solidity/releases/download/v${version_1}/solidity_${version_1}.tar.gz`),
           hash: linuxHash,
         }))));
@@ -100,14 +100,14 @@ popd
 `);
       const installCheckPhase = "runHook preInstallCheck\n\n$out/bin/solc --version > /dev/null\n\nrunHook postInstallCheck\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          solcWithTests: nix.thunk(() => nix.app(nix.sel(solc, "overrideAttrs"), (attrs) => ({ __proto__: pos$3, doCheck: true }))),
+          [nix.POS]: pos$4,
+          solcWithTests: nix.thunk(() => nix.app(nix.sel(solc, "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$3, doCheck: true }))),
         })),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: pname_1,
         version: version_1,
         nativeInstallCheckInputs: nativeInstallCheckInputs_1,
@@ -131,7 +131,7 @@ popd
       const doInstallCheck_1 = doInstallCheck;
       const meta_1 = meta;
       const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`https://github.com/ethereum/solidity/releases/download/v${version_1}/solc-macos`),
           hash: darwinHash,
         }))));
@@ -145,7 +145,7 @@ chmod +x $out/bin/solc
 runHook postInstall
 `);
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname_1,
         version: version_1,
         nativeInstallCheckInputs: nativeInstallCheckInputs_1,

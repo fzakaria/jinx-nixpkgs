@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const xar = nix.arg($, "xar");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "arq",
       version: "7.38.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.arqbackup.com/download/arqbackup/Arq${nix.sel(finalAttrs, "version")}.pkg`),
           hash: "sha256-RzG1eQybZxXbgWVkeCdIkEE6qaxzDIZ0kaR35sYUv0o=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl coreutils common-updater-scripts
 set -eu -o pipefail
@@ -47,7 +47,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version" "$hash" --print
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://www.arqbackup.com/download/arqbackup/arq7_release_notes.html",
         description: "Multi-cloud backup software for your Macs",
         homepage: "https://www.arqbackup.com/",

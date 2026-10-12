@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wmfocus",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svenstaro",
           repo: "wmfocus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, expat, libxkbcommon, libxcb_keysyms]),
       buildFeatures: nix.thunk(() => ["i3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visually focus windows by label",
         mainProgram: "wmfocus",
         homepage: "https://github.com/svenstaro/wmfocus",

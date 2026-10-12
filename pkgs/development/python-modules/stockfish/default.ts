@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const stockfish = nix.arg($, "stockfish");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stockfish",
       version: "5.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "py-stockfish",
           repo: "stockfish",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["stockfish"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Integrates the Stockfish chess engine with Python",
         homepage: "https://github.com/py-stockfish/stockfish",
         changelog: nix.thunk(() => nix.str`https://github.com/py-stockfish/stockfish/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(runCommand, "dotnetbuildhelpers", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       preferLocalBuild: true,
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.thunk(() => nix.str`target="$out/bin"
 mkdir -p "$target"
 

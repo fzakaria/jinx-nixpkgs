@@ -26,32 +26,32 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       name: "stub-ld",
       nodes: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
-              "stub-ld": nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+              [nix.POS]: pos$2,
+              "stub-ld": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
             })),
             specialisation: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               nostub: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 inheritParentConfig: true,
                 configuration: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   return {
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     environment: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       "stub-ld": nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), false)),
                       })),
                     })),
@@ -66,22 +66,22 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         const libDir = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "libDir"));
         const ldsoBasename = nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", nix.thunk(() => nix.sel(pkgs, "stdenv", "cc", "bintools", "dynamicLinker"))))));
         const test_exec = nix.thunk(() => nix.builtins.mapAttrs((n) => (v) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`test-exec-${n}`), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), v)),
             })), "mkdir -p $out;cd $out;tar -xzf $src"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "x86_64-linux": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: "https://github.com/rustic-rs/rustic/releases/download/v0.6.1/rustic-v0.6.1-x86_64-unknown-linux-gnu.tar.gz",
               hash: "sha256-3zySzx8MKFprMOi++yr2ZGASE0aRfXHQuG3SN+kWUCI=",
             })),
             "i686-linux": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               url: "https://github.com/rustic-rs/rustic/releases/download/v0.6.1/rustic-v0.6.1-i686-unknown-linux-gnu.tar.gz",
               hash: "sha256-fWNiATFeg0B2pfB5zndlnzGn7Ztl8diVS1rFLEDnSLU=",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               url: "https://github.com/rustic-rs/rustic/releases/download/v0.6.1/rustic-v0.6.1-aarch64-unknown-linux-gnu.tar.gz",
               hash: "sha256-hnldbd2cctQIAhIKoEZLIWY8H3jiFBClkNy2UlyyvAs=",
             })),

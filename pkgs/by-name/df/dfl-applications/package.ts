@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const dfl_ipc = nix.arg($, "dfl-ipc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dfl-applications",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desktop-frameworks",
           repo: "applications",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Thin wrapper around QApplication, QGuiApplication and QCoreApplication",
         homepage: "https://gitlab.com/desktop-frameworks/applications",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/desktop-frameworks/applications/-/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

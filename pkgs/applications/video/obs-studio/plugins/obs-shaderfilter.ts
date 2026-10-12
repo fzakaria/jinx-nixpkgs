@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-shaderfilter";
       const version = "2.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exeldro",
           repo: "obs-shaderfilter",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OBS Studio filter for applying an arbitrary shader to a source",
         homepage: "https://github.com/exeldro/obs-shaderfilter",
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

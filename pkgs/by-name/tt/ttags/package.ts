@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ttags = nix.arg($, "ttags");
   const version = "0.4.2";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ttags",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "npezza93",
           repo: "ttags",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-XgtBcEVfeR0yYKJkpFfA8pXk1S1fg+2QS8o7n9G1CXU=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: ttags,
               command: "ttags --version",
               version: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Generate tags using tree-sitter",
         mainProgram: "ttags",
         longDescription: "ttags generates tags (similar to ctags) for various\nlanguages, using tree-sitter.\n\nCan be run as a language server that updates the tags\nfor a file when it is saved.\n\nSupported languages:\n- Haskell\n- JavaScript\n- Nix\n- Ruby\n- Rust\n- Swift\n",

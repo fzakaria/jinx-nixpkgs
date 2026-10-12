@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const virtualboxVersion = nix.arg($, "virtualboxVersion");
   return nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`http://download.virtualbox.org/virtualbox/${virtualboxVersion}/VBoxGuestAdditions_${virtualboxVersion}.iso`),
       sha256: "4c6ba898e37b307cf9088be8ff480d9aec13bb0e395aaf31c78d564bb35916e7",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Guest additions ISO for VirtualBox",
         longDescription: "ISO containing various add-ons which improves guests inside VirtualBox.\n",
         sourceProvenance: nix.thunk(() => (() => {

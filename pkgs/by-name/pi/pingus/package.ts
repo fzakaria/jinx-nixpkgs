@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const wstsound = nix.arg($, "wstsound");
   const xdgcpp = nix.arg($, "xdgcpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pingus",
       version: "0.7.6-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pingus",
           repo: "pingus",
           rev: "b0ceeeeb95428c73b1b81208211535c61acfc5d0",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DWARNINGS=ON", "-DWERROR=ON", "-DBUILD_EXTRA=OFF", "-DBUILD_TESTS=OFF"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Puzzle game with mechanics similar to Lemmings",
         homepage: "https://pingus.seul.org/",
         mainProgram: "pingus",

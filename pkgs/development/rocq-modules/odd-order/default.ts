@@ -23,44 +23,44 @@ export default nix.lambda((args) => (() => {
   const mathcomp_group_representation = nix.arg($, "mathcomp-group-representation");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "odd-order",
       owner: "math-comp",
       release: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "2.4.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-8U3xFKe/gBSapwNRix3i2+jbyTja5xXGnQwtiTiF+9w=",
         })),
         "2.3.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-53FG8I9O+tsIlmaa9qy6VYyJNwWfGmhavKhbZ0VqAGc=",
         })),
         "2.2.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-z0C7+wtY8NpoT8wYqHiy8mB2HPYAeJndzDmf7Bb0mg8=",
         })),
         "2.1.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-TPlaQbO0yXEpUgy3rlCx/w1MSLECJk5tdU26fAGe48Q=",
         })),
         "1.14.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256:0iln70npkvixqyz469l6nry545a15jlaix532i1l7pzfkqqn6v68",
         })),
         "1.13.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-EzNKR/JzM8T17sMhPhgZNs14e50X4dY3OwFi133IsT0=",
         })),
         "1.12.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-omsfdc294CxKAHNMMeqJCcVimvyRCHgxcQ4NJOWSfNM=",
         })),
       })),
       releaseRev: (v) => nix.str`mathcomp-odd-order.${v}`,
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$9, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$9, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.4.0", v))),
       propagatedBuildInputs: nix.thunk(() => [mathcomp_group_representation]),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Formal proof of the Odd Order Theorem",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

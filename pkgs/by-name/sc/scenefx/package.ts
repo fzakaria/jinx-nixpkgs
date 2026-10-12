@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: "scenefx",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wlrfx",
           repo: "scenefx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
         lcms2,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Drop-in replacement for the wlroots scene API that allows wayland compositors to render surfaces with eye-candy effects",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.0.1",
       pname: "pratter",
       minimalOCamlVersion: "4.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "forge.tedomum.net",
           owner: "koizel",
           repo: "pratter",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, qcheck, qcheck_alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extended Pratt parser",
         homepage: "https://github.com/gabrielhdt/pratter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["networking", "enableRT73Firmware"]), nix.thunk(() => ["hardware", "enableRedistributableFirmware"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["networking", "enableIntel3945ABGFirmware"]), nix.thunk(() => ["hardware", "enableRedistributableFirmware"]))),
@@ -32,23 +32,23 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["networking", "enableRTL8192cFirmware"]), nix.thunk(() => ["hardware", "enableRedistributableFirmware"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enableAllFirmware: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: false,
             example: true,
             description: "Whether to enable all firmware, including [unfree packages that must be explictly allowed](https://nixos.org/manual/nixpkgs/unstable/#sec-allow-unfree).\n\nAlternatively, use the {option}`hardware.enableRedistributableFirmware` option.\n",
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           })))),
         enableRedistributableFirmware: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "firmware with a license allowing redistribution"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           default: nix.thunk(() => nix.sel(config, "hardware", "enableAllFirmware")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.hardware.enableAllFirmware")),
         })),
         wirelessRegulatoryDatabase: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "loading the wireless regulatory database at boot"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableRedistributableFirmware")) || nix.asBool(nix.sel(cfg, "enableAllFirmware")))),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "Enabled if proprietary firmware is allowed via {option}`enableRedistributableFirmware` or {option}`enableAllFirmware`.")),
         })),
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableAllFirmware")) || nix.asBool(nix.sel(cfg, "enableRedistributableFirmware")))), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             hardware: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               firmware: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return nix.concat([
@@ -76,9 +76,9 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableAllFirmware")), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             hardware: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               firmware: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return nix.concat([
@@ -94,9 +94,9 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "wirelessRegulatoryDatabase")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             hardware: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               firmware: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wireless-regdb"))]),
             })),
           })))),

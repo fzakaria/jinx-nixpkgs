@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pip-api",
       version: "0.0.34",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "di",
           repo: "pip-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         "test_parse_requirements_editable",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Importable pip API",
         homepage: "https://github.com/di/pip-api/",
         changelog: nix.thunk(() => nix.str`https://github.com/di/pip-api/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG`),

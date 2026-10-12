@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tcmetzger",
           repo: "sphinx-favicon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_list_of_three_icons_automated_values"]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_favicon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx extension to add custom favicons",
         homepage: "https://github.com/tcmetzger/sphinx-favicon",
         changelog: nix.thunk(() => nix.str`https://github.com/tcmetzger/sphinx-favicon/blob/v${version}/CHANGELOG`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "newam"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

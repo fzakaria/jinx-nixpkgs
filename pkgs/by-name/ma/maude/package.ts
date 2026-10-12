@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const yices = nix.arg($, "yices");
   const tamarin_prover = nix.arg($, "tamarin-prover");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "maude",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maude-lang",
           repo: "Maude",
           tag: nix.thunk(() => nix.str`Maude${nix.sel(finalAttrs, "version")}`),
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "for n in \"$out/bin/\"*; do wrapProgram \"$n\" --suffix MAUDE_LIB ':' \"$out/share/maude\"; done\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "tamarin-prover": tamarin_prover })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tamarin-prover": tamarin_prover })),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://maude.cs.illinois.edu/",
         description: "High-level specification language",
         mainProgram: "maude",

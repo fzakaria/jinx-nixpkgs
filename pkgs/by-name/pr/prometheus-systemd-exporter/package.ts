@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const vendorHash = "sha256-4hsQ1417jLNOAqGkfCkzrmEtYR4YLLW2j0CiJtPg6GI=";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus-community",
           repo: "systemd_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.BuildDate=unknown",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, systemd: nix.thunk(() => nix.attr(from, "systemd")) };
+          return { [nix.POS]: pos$2, systemd: nix.thunk(() => nix.attr(from, "systemd")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Exporter for systemd unit metrics",
         mainProgram: "systemd_exporter",
         homepage: "https://github.com/prometheus-community/systemd_exporter",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "chkno"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, vendorHash, src, ldflags, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, vendorHash, src, ldflags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

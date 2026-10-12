@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const modDestDir = nix.thunk(() => nix.str`$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/net/wireless/realtek/rtw88`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rtw88",
       version: "0-unstable-2026-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lwfinger",
           repo: "rtw88",
           rev: "4e777cb6088f95c16ab3da9458ef78db43010d04",
@@ -43,11 +43,11 @@ find ${modDestDir} -name '*.ko' -exec xz -f {} \\;
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Backport of the latest Realtek RTW88 driver from wireless-next for older kernels",
         homepage: "https://github.com/lwfinger/rtw88",
         license: nix.thunk(() => (() => {

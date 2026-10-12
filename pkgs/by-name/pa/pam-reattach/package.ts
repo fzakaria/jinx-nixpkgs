@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pam_reattach";
       const version = "1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabianishere",
           repo: "pam_reattach",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openpam]);
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/fabianishere/pam_reattach",
         description: "Reattach to the user's GUI session on macOS during authentication (for Touch ID support in tmux)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

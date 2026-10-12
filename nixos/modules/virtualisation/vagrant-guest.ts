@@ -29,13 +29,13 @@ if [ ! -e ~/.ssh/authorized_keys ]; then
 fi
 `)));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     services: nix.thunk(() => ({
-      __proto__: pos$2,
-      openssh: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+      [nix.POS]: pos$2,
+      openssh: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       systemPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -49,11 +49,11 @@ fi
       })()),
     })),
     users: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       extraUsers: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         vagrant: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           isNormalUser: true,
           createHome: true,
           description: "Vagrant user account",
@@ -66,17 +66,17 @@ fi
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "install-vagrant-ssh-key": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Vagrant SSH key install (if needed)",
           after: nix.thunk(() => ["fs.target"]),
           wants: nix.thunk(() => ["fs.target"]),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             ExecStart: nix.thunk(() => nix.str`${install_vagrant_ssh_key}/bin/install-vagrant-ssh-key`),
             User: "vagrant",
             RemainAfterExit: true,
@@ -85,9 +85,9 @@ fi
       })),
     })),
     security: nix.thunk(() => ({
-      __proto__: pos$13,
-      sudo: nix.thunk(() => ({ __proto__: pos$11, wheelNeedsPassword: false })),
-      "sudo-rs": nix.thunk(() => ({ __proto__: pos$12, wheelNeedsPassword: false })),
+      [nix.POS]: pos$13,
+      sudo: nix.thunk(() => ({ [nix.POS]: pos$11, wheelNeedsPassword: false })),
+      "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$12, wheelNeedsPassword: false })),
     })),
   };
 })(), formals$1);

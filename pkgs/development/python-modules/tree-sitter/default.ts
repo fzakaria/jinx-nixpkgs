@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tree-sitter",
           repo: "py-tree-sitter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# https://github.com/NixOS/nixpkgs/issues/255262#issuecomment-1721265871\nrm -r tree_sitter\n";
       const disabledTests = nix.thunk(() => ["test_dot_graphs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings to the Tree-sitter parsing library",
         homepage: "https://github.com/tree-sitter/py-tree-sitter",
         changelog: nix.thunk(() => nix.str`https://github.com/tree-sitter/py-tree-sitter/releases/tag/${nix.sel(src, "tag")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polygraph",
       version: "4.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.web-polygraph.org/downloads/srcs/polygraph-${nix.sel(finalAttrs, "version")}-src.tgz`),
           sha256: "1rwzci3n7q33hw3spd79adnclzwgwlxcisc9szzjmcjqhbkcpj1a",
         })))),
       buildInputs: nix.thunk(() => [openssl, zlib, ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.web-polygraph.org",
         description: "Performance testing tool for caching proxies, origin server accelerators, L4/7 switches, content filters, and other Web intermediaries",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

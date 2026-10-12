@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(kernel, "version")),
       src: nix.thunk(() => nix.attr(kernel, "src")),
       pname: "freefall",
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kernel, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Free-fall protection for spinning HP/Dell laptop hard drives",

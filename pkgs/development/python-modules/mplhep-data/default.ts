@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "mplhep_data",
           version: version,
           hash: "sha256-v5zcxlw6nOfY8OMHj/ZZ7z/P3hGeYloPcfIbBu2rxMk=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm]);
       const pythonImportsCheck = nix.thunk(() => ["mplhep_data"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sub-package to hold data (fonts) for mplhep",
         homepage: "https://github.com/scikit-hep/mplhep_data",
         license: nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

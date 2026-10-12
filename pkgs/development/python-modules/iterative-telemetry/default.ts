@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iterative",
           repo: "telemetry-python",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_mock]);
       const pythonImportsCheck = nix.thunk(() => ["iterative_telemetry"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Common library to send usage telemetry",
         homepage: "https://github.com/iterative/iterative-telemetry",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/iterative-telemetry/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

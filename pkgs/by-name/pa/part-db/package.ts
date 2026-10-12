@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const pname = "part-db";
   const version = "2.13.1";
   const srcWithVendor = nix.thunk(() => nix.app(nix.sel(php, "buildComposerProject2"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Part-DB",
           repo: "Part-DB-server",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-j7Kj03RxbrRoHJ4kFeZo1VmeHT3YucY4Zxog93+5Q38=",
         })))),
       php: nix.thunk(() => nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extensions: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const enabled = nix.arg($_1, "enabled");
@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "chmod -R u+w $out/share\ncd \"$out\"/share/php/part-db\necho \"Running composer dump-autoload to generate autoload_runtime.php...\"\ncomposer dump-autoload --no-interaction\nexport APP_ENV=prod\nexport APP_SECRET=dummy\nexport DATABASE_URL=sqlite:///%kernel.project_dir%/data/app.db\nphp -d memory_limit=256M bin/console cache:warmup\ncd /build\nmv \"$out\"/share/php/part-db/* $out/\nmv \"$out\"/share/php/part-db/.* $out/\nrm -rf \"$out/share\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: srcWithVendor,
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-xdRMAOmGQFPuej/8A88edH23jL/3K8igx0BB7Z78sjM=",
         })))),
@@ -82,14 +82,14 @@ ln -s ${mediaPath} $out/public/media
 ln -s ${uploadsPath} $out/uploads
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "part-db": nix.thunk(() => nix.attr(nixosTests, "part-db")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open source inventory management system for your electronic components",
         homepage: "https://docs.part-db.de/",
         changelog: nix.thunk(() => nix.str`https://github.com/Part-DB/Part-DB-server/releases/tag/v${version}`),

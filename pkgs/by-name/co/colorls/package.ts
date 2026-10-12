@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const ruby_3_4 = nix.arg($, "ruby_3_4");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
-  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ __proto__: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
-      __proto__: pos$4,
+  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
+      [nix.POS]: pos$4,
       pname: "colorls",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["colorls"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "colorls")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Prettified LS",
         homepage: "https://github.com/athityakumar/colorls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

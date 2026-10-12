@@ -27,23 +27,23 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "borgmatic",
       version: "2.1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-qsB8564wCWBemsxn7vIBmntdabzK1j7agP8ZK2nzdc8=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: borgmatic })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: borgmatic })))),
           borgmatic: nix.thunk(() => nix.attr(nixosTests, "borgmatic")),
         })),
       })),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         apprise: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "apprise"))]),
         browse: nix.thunk(() => (() => {
           const w_2 = nix.withScope(python3Packages, null);
@@ -97,7 +97,7 @@ substitute sample/systemd/borgmatic.service \\
 `)))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple, configuration-driven backup software for servers and workstations",
         homepage: "https://torsion.org/borgmatic/",
         changelog: nix.thunk(() => nix.str`https://projects.torsion.org/borgmatic-collective/borgmatic/src/tag/${nix.sel(finalAttrs, "version")}/NEWS`),

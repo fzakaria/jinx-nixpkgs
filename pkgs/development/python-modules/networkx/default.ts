@@ -33,22 +33,22 @@ export default nix.lambda((args) => (() => {
       const version = "3.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-JrfDV6zMDIzeVYrUhig3KLZbapXYXuHNZrr6tMgWhQk=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         default: nix.thunk(() => [numpy, scipy, matplotlib, pandas]),
         extra: nix.thunk(() => [lxml, pygraphviz, pydot, sympy]),
       }));
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, tests: nix.thunk(() => ({ __proto__: pos$3, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => ({ [nix.POS]: pos$3, sage: sage })) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_xdist, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_connected_raise"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/networkx/networkx/blob/networkx-${version}/doc/release/release_${version}.rst`),
         homepage: "https://networkx.github.io/",
         downloadPage: "https://github.com/networkx/networkx",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

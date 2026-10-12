@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "oslo_i18n",
           version: version,
           hash: "sha256-V0vPIYc7GFBovOyVHeHsCTFY/9/wWoBV/Rjdy2n2nmU=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nstestr run\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["oslo_i18n"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Oslo i18n library",
         homepage: "https://github.com/openstack/oslo.i18n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

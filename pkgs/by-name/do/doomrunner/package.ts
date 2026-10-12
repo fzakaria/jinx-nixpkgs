@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "doomrunner",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Youda008",
           repo: "DoomRunner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`INSTALL_ROOT=${nix.builtins.placeholder("out")}`)]),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/usr/bin/DoomRunner.app $out/Applications/\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "mkdir -p $out/{bin,share/applications,share/icons/hicolor/128x128/apps}\ninstall -Dm444 $src/Install/XDG/DoomRunner.128x128.png $out/share/icons/hicolor/128x128/apps/DoomRunner.png\ninstall -Dm444 $src/Install/XDG/DoomRunner.desktop $out/share/applications/DoomRunner.desktop\ninstall -Dm755 $out/usr/bin/DoomRunner $out/bin/DoomRunner\n")), "rm -rf $out/usr\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/Youda008/DoomRunner/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.txt`),
         description: "Preset-oriented graphical launcher of various ported Doom engines",
         homepage: "https://github.com/Youda008/DoomRunner",

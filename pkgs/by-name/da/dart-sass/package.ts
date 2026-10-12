@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const embedded_protocol_version = "3.3.0";
   const embedded_protocol = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "sass",
       repo: "sass",
       tag: nix.thunk(() => nix.str`embedded-protocol-${embedded_protocol_version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dart-sass";
       const version = "1.105.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sass",
           repo: "dart-sass",
           tag: version,
@@ -52,19 +52,19 @@ buf generate
       const dartCompileFlags = nix.thunk(() => [nix.thunk(() => nix.str`--define=version=${version}`)]);
       const postInstall = "# dedupe identiall binaries\nln -rsf $out/bin/{,dart-}sass\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "embedded-protocol-version": embedded_protocol_version,
         "embedded-protocol": embedded_protocol,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: dart_sass, command: "dart-sass --version" })))),
+          [nix.POS]: pos$6,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: dart_sass, command: "dart-sass --version" })))),
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               assertion: "dart-sass compiles a basic scss file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "body h1{color:#123}\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   nativeBuildInputs: nix.thunk(() => [dart_sass]),
                   base: nix.thunk(() => nix.app(writeText, "base", "body {\n  $color: #123;\n  h1 {\n    color: $color;\n  }\n}\n")),
                 })), "dart-sass --style=compressed $base > $out\n")),
@@ -72,7 +72,7 @@ buf generate
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/sass/dart-sass",
         description: "Reference implementation of Sass, written in Dart",
         mainProgram: "sass",
@@ -83,7 +83,7 @@ buf generate
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

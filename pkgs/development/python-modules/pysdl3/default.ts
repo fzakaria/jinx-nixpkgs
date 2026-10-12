@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const pythonImportsCheck = nix.thunk(() => ["sdl3"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aermoss",
           repo: "PySDL3",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-CI/WQ6JxcyUVYZh0AJQMkdh1YGXZAO/xf3sZcjbqkIY=",
         }))));
       const docfile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/Aermoss/PySDL3/releases/download/v${version}/${nix.sel(stdenv, "hostPlatform", "uname", "system")}-Docs.py`),
           hash: dochash,
         }))));
@@ -55,7 +55,7 @@ ln -s ${sdl3_image}/lib/libSDL3_image${lib_ext} -t $out/${nix.sel(python, "siteP
       const dependencies = nix.thunk(() => [packaging, aiohttp, requests]);
       const setupHook = nix.path(here, "./setup-hook.sh");
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SDL_VIDEODRIVER: "dummy",
         SDL_AUDIODRIVER: "dummy",
         SDL_RENDER_DRIVER: "software",
@@ -65,7 +65,7 @@ ln -s ${sdl3_image}/lib/libSDL3_image${lib_ext} -t $out/${nix.sel(python, "siteP
         SDL_DOC_GENERATOR: 0n,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pure Python wrapper for SDL3",
         homepage: "https://github.com/Aermoss/PySDL3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -85,7 +85,7 @@ ln -s ${sdl3_image}/lib/libSDL3_image${lib_ext} -t $out/${nix.sel(python, "siteP
         ]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "error-helper",
       version: "1.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "error_helper",
           hash: "sha256-7kbzGmidsZzhoE5p9Ddjn6oDc+HUzkN02ykS0e0JodY=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["error_helper"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalistic python module to print colorful messages",
         homepage: "https://github.com/30350n/error_helper",
         changelog: nix.thunk(() => nix.str`https://github.com/30350n/error_helper/releases/tag/${nix.sel(finalAttrs, "version")}`),

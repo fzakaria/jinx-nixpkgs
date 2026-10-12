@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graspologic-org",
           repo: "graspologic",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["gridplot_outputs"]);
       const disabledTestPaths = nix.thunk(() => nix.concat(["docs"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_plot.py", "tests/test_plot_matrix.py", "tests/pipeline/embed/"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package for graph statistical algorithms",
         homepage: "https://graspologic-org.github.io/graspologic",
         changelog: nix.thunk(() => nix.str`https://github.com/graspologic-org/graspologic/releases/tag/${nix.sel(src, "tag")}`),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

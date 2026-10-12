@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Opus10",
           repo: "django-pghistory",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django, django_pgtrigger]);
       const pythonImportsCheck = nix.thunk(() => ["pghistory"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Opus10/django-pghistory/releases/tag/${nix.sel(src, "tag")}`),
         description: "History tracking for Django and Postgres",
         homepage: "https://django-pghistory.readthedocs.io",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

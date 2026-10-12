@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "luabridge";
       const version = "2.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinniefalco",
           repo: "LuaBridge",
           rev: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\nmkdir -p $out/include\ncp -r Source/LuaBridge $out/include\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight, dependency-free library for binding Lua to C++",
         homepage: "https://github.com/vinniefalco/LuaBridge",
         changelog: nix.thunk(() => nix.str`https://github.com/vinniefalco/LuaBridge/blob/${version}/CHANGES.md`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

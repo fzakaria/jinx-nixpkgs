@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const ollama = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))));
   const staticUser = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "user"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "group"), null))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "ollama", "listenAddress"]), "Use `services.ollama.host` and `services.ollama.port` instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "ollama", "sandbox"]), "Set `services.ollama.user` and `services.ollama.group` instead.")),
@@ -58,19 +58,19 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "ollama", "models"]), nix.thunk(() => ["services", "ollama", "modelsDir"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         ollama: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ollama server for local large language models")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ollama", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "pkgs.ollama-rocm",
               extraDescription: "Different packages use different hardware acceleration.\n\n- `ollama`: default behavior; usually equivalent to `ollama-cpu`\n  - if `nixpkgs.config.rocmSupport` is enabled, is equivalent to `ollama-rocm`\n  - if `nixpkgs.config.cudaSupport` is enabled, is equivalent to `ollama-cuda`\n  - otherwise defaults to `ollama-cpu`\n- `ollama-cpu`: disable GPU; only use CPU\n- `ollama-rocm`: supported by most modern AMD GPUs\n  - may require overriding gpu type with `services.ollama.rocmOverrideGfx`\n    if rocm doesn't detect your AMD gpu\n- `ollama-cuda`: supported by most modern NVIDIA GPUs\n- `ollama-vulkan`: supported by most GPUs\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
               description: "User account under which to run ollama. Defaults to [`DynamicUser`](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#DynamicUser=)\nwhen set to `null`.\n\nThe user will automatically be created, if this option is set to a non-null value.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -91,14 +91,14 @@ export default nix.lambda((args) => (() => {
               description: "Group under which to run ollama. Only used when `services.ollama.user` is set.\n\nThe group will automatically be created, if this option is set to a non-null value.\n",
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/ollama",
               example: "/home/foo",
               description: "The home directory that the ollama service is started in.\n",
             })))),
           modelsDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/models`),
               defaultText: "${config.services.ollama.home}/models",
@@ -106,35 +106,35 @@ export default nix.lambda((args) => (() => {
               description: "The directory that the ollama service will read models from and download new models to.\n",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               example: "[::]",
               description: "The host address which the ollama server HTTP interface listens to.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 11434n,
               example: 11111n,
               description: "Which port the ollama server listens to.\n",
             })))),
           rocmOverrideGfx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "10.3.0",
               description: "Override what rocm will detect your gpu model as.\nFor example, if you have an RX 5700 XT, try setting this to `\"10.1.0\"` (gfx 1010).\n\nThis sets the value of `HSA_OVERRIDE_GFX_VERSION`. See [ollama's docs](\nhttps://github.com/ollama/ollama/blob/main/docs/gpu.md#amd-radeon\n) for details.\n",
             })))),
           environmentVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$9, OLLAMA_LLM_LIBRARY: "cpu", HIP_VISIBLE_DEVICES: "0,1" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$9, OLLAMA_LLM_LIBRARY: "cpu", HIP_VISIBLE_DEVICES: "0,1" })),
               description: "Set arbitrary environment variables for the ollama service.\n\nBe aware that these are only seen by the ollama server (systemd service),\nnot normal invocations like `ollama run`.\nSince `ollama run` is mostly a shell around the ollama server, this is usually sufficient.\n",
             })))),
           loadModels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               apply: nix.thunk(() => nix.app(nix.builtins.filter, (model) => !nix.eq(model, ""))),
               default: [],
@@ -142,13 +142,13 @@ export default nix.lambda((args) => (() => {
               description: "Download these models using `ollama pull` as soon as `ollama.service` has started.\n\nThis creates a systemd unit `ollama-model-loader.service`.\nUse `services.ollama.syncModels` to automatically remove any models not currently declared here.\n\nSearch for models of your choice from: <https://ollama.com/library>\n",
             })))),
           syncModels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Synchronize all currently installed models with those declared in `services.ollama.loadModels`,\nremoving any models that are installed but not currently declared there.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for ollama.\n\nThis adds `services.ollama.port` to `networking.firewall.allowedTCPPorts`.\n",
@@ -157,12 +157,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), staticUser, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 home: nix.thunk(() => nix.attr(cfg, "home")),
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -171,29 +171,29 @@ export default nix.lambda((args) => (() => {
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           })))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             ollama: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Server for local large language models",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "environmentVariables"), nix.update({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 HOME: nix.thunk(() => nix.sel(cfg, "home")),
                 OLLAMA_MODELS: nix.thunk(() => nix.sel(cfg, "modelsDir")),
                 OLLAMA_HOST: nix.thunk(() => nix.str`${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "rocmOverrideGfx"), null)), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   HSA_OVERRIDE_GFX_VERSION: nix.thunk(() => nix.sel(cfg, "rocmOverrideGfx")),
                 })))))),
               serviceConfig: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), staticUser, nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                 }))), {
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Type: "exec",
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${ollama} serve`),
@@ -243,7 +243,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "ollama-model-loader": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "loadModels"), [])) || nix.asBool(nix.sel(cfg, "syncModels")))), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 description: "Download ollama models in the background",
                 wantedBy: nix.thunk(() => ["multi-user.target", "ollama.service"]),
                 wants: nix.thunk(() => ["network-online.target"]),
@@ -251,7 +251,7 @@ export default nix.lambda((args) => (() => {
                 bindsTo: nix.thunk(() => ["ollama.service"]),
                 environment: nix.thunk(() => nix.sel(config, "systemd", "services", "ollama", "environment")),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   Type: "exec",
                   DynamicUser: true,
                   Restart: "on-failure",
@@ -261,7 +261,7 @@ export default nix.lambda((args) => (() => {
                 })),
                 script: nix.thunk(() => (() => {
                   const binaryInputs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "getExe"), nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       awk: nix.thunk(() => nix.sel(pkgs, "gawk")),
                       sed: nix.thunk(() => nix.sel(pkgs, "gnused")),
                     }))));
@@ -292,19 +292,19 @@ printf "%s\\0" ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.se
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];

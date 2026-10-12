@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cjson",
       version: "1.7.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DaveGamble",
           repo: "cJSON",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_CUSTOM_COMPILER_FLAGS", false)))),
       postPatch: nix.thunk(() => nix.add("substituteInPlace CMakeLists.txt --replace -std=c89 -std=c99\n", "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required(VERSION 3.0)' \\\n    'cmake_minimum_required(VERSION 3.10)'\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/DaveGamble/cJSON",
         description: "Ultralightweight JSON parser in ANSI C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

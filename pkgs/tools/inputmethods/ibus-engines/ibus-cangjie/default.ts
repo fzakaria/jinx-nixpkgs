@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   })());
   const pythonPath = nix.thunk(() => nix.add(nix.add(nix.str`$out/${nix.sel(python3, "sitePackages")}`, ":"), nix.app(nix.sel(python3, "pkgs", "makePythonPath"), pythonModules)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ibus-cangjie",
       version: "2.4-unstable-2023-07-24",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "Cangjie",
           repo: "ibus-cangjie",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "wrapGApp $out/lib/ibus-cangjie/ibus-engine-cangjie\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         isIbusEngine: true,
         description: "IBus engine for users of the Cangjie and Quick input methods",
         mainProgram: "ibus-setup-cangjie",

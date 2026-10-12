@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["serverOnly", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const zandronum = nix.arg($, "zandronum");
-  return nix.app(nix.sel(zandronum, "override"), nix.thunk(() => ({ __proto__: pos$1, serverOnly: true })));
+  return nix.app(nix.sel(zandronum, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, serverOnly: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

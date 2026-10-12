@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lsof";
       const version = "4.99.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lsof-org",
           repo: "lsof",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [nukeReferences, perl, which, ed]);
       const buildInputs = nix.thunk(() => [ncurses]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LSOF_INCLUDE: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/include`),
       }));
       const configurePhase = nix.thunk(() => (() => {
@@ -62,7 +62,7 @@ cp Lsof.8 $out/man/man8/lsof.8
 cp lsof $out/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lsof-org/lsof",
         changelog: nix.thunk(() => nix.str`https://github.com/lsof-org/lsof/releases/tag/${nix.sel(src, "tag")}`),
         description: "Tool to list open files",
@@ -73,7 +73,7 @@ cp lsof $out/bin
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openboardview",
       version: "10.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenBoardView",
           repo: "OpenBoardView",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [gtk3]))}
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: ".*\\.90\\..*" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: ".*\\.90\\..*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux SDL/ImGui edition software for viewing .brd files",
         mainProgram: "openboardview",
         homepage: "https://github.com/OpenBoardView/OpenBoardView",

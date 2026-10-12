@@ -51,19 +51,19 @@ export default nix.lambda((args) => (() => {
   const nixComponents = nix.thunk(() => nix.sel(nixVersions, "nixComponents_2_35"));
   const version = "0-unstable-2026-10-04";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "NixOS",
       repo: "hydra",
       rev: "588f42497842e9c0172067c8156f8d1b1ea691ff",
       hash: "sha256-GifY4tTG00WPp8RZCFqv/quwuG9rxwuGmTyAUbAgEJ0=",
     }))));
   const nix_perl = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nix-perl.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       "nix-store": nix.thunk(() => nix.attr(nixComponents, "nix-store")),
     }))));
   const perlDeps = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "hydra-perl-deps",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), nix.thunk(() => nix.concat([gitMinimal, nix_perl], (() => {
           const w = nix.withScope(perlPackages, null);
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
         })())))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "hydra",
       version: version,
       src: src,
@@ -194,15 +194,15 @@ for i in $out/bin/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "nix-perl": nix_perl,
         perlDeps: perlDeps,
         nix: nix.thunk(() => nix.sel(nixComponents, "nix-cli")),
-        tests: nix.thunk(() => ({ __proto__: pos$4, hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Nix-based continuous build system",
         homepage: "https://nixos.org/hydra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

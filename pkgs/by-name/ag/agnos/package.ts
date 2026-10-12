@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "agnos",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "krtab",
           repo: "agnos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Obtains certificates from Let's Encrypt using DNS-01 without the need for API access to the DNS provider",
         homepage: "https://github.com/krtab/agnos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "justinas"))];
         })()),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "agnos")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "agnos")) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

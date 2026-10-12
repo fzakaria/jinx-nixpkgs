@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.mediathekview";
       const version = "1.0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: pname,
           repo: namespace,
           rev: nix.thunk(() => nix.str`release-${version}`),
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [myconnpy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mediathekview/plugin.video.mediathekview",
         description: "Access media libraries of German speaking broadcasting stations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

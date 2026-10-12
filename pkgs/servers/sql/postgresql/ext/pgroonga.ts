@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgroonga",
       version: "4.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgroonga",
           repo: "pgroonga",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonInstallFlags: nix.thunk(() => [nix.thunk(() => nix.str`--destdir=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           regression: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-regression`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -79,7 +79,7 @@ runHook postBuild
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PostgreSQL extension to use Groonga as the index",
         longDescription: "PGroonga is a PostgreSQL extension to use Groonga as the index.\nPostgreSQL supports full text search against languages that use only alphabet and digit.\nIt means that PostgreSQL doesn't support full text search against Japanese, Chinese and so on.\nYou can use super fast full text search feature against all languages by installing PGroonga into your PostgreSQL.\n",
         homepage: "https://pgroonga.github.io/",

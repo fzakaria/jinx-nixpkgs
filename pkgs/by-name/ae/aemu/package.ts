@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitiles = nix.arg($, "fetchFromGitiles");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aemu",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://android.googlesource.com/platform/hardware/google/aemu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-aemu-release`),
           hash: "sha256-8UMm2dXdvmX6rUn4wQWuqI8bamwgf0x/5BQT+7atzjY=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeFlags: nix.thunk(() => ["-DAEMU_COMMON_GEN_PKGCONFIG=ON", "-DAEMU_COMMON_BUILD_CONFIG=gfxstream"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://android.googlesource.com/platform/hardware/google/aemu",
         description: "Android emulation utilities library",
         maintainers: nix.thunk(() => (() => {

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sphinx-contrib",
           repo: "jquery",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-tests-with-sphinx7.1.patch",
             url: "https://github.com/sphinx-contrib/jquery/commit/ac97ce5202b05ddb6bf4e5b77151a8964b6bf632.patch",
             hash: "sha256-dc9bhr/af3NmrIfoVabM1lNpXbGVsJoj7jq0E1BAtHw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-tests-with-sphinx7.2-and-python312.patch",
             url: "https://github.com/sphinx-contrib/jquery/commit/3318a82854fccec528cd73e12ab2ab96d8e71064.patch",
             hash: "sha256-pNeKE50sm4b/KhNDAEQ3oJYGV4I8CVHnbR76z0obT3E=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [defusedxml, pytestCheckHook]);
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extension to include jQuery on newer Sphinx releases",
         longDescription: "A sphinx extension that ensures that jQuery is installed for use\nin Sphinx themes or extensions\n",
         homepage: "https://github.com/sphinx-contrib/jquery",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

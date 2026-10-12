@@ -47,32 +47,32 @@ export default nix.lambda((args) => (() => {
   const jobsConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mtr-exporter.conf", nix.thunk(() => nix.app(concatMapStrings, (job) => nix.str`${nix.sel(job, "name")} -- ${nix.sel(job, "schedule")} -- ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(job, "flags")))} ${nix.sel(job, "address")}
 `, nix.thunk(() => nix.sel(cfg, "jobs"))))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "mtr-exporter", "target"]), "Use services.mtr-exporter.jobs instead.")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "mtr-exporter", "mtrFlags"]), "Use services.mtr-exporter.jobs.<job>.flags instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "mtr-exporter": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "a Prometheus exporter for MTR")),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "Listen address for MTR exporter.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "Listen port for MTR exporter.",
             })))),
           extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["-flag.deprecatedMetrics"]),
@@ -81,32 +81,32 @@ export default nix.lambda((args) => (() => {
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mtr-exporter", nix.thunk(() => ({})))),
           mtrPackage: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mtr", nix.thunk(() => ({})))),
           jobs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "List of MTR jobs. Will be added to /etc/mtr-exporter.conf",
               type: nix.thunk(() => nix.app(nix.sel(types, "nonEmptyListOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Name of ICMP pinging job.",
                         })))),
                       address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "host.example.org:1234",
                           description: "Target address for MTR client.",
                         })))),
                       schedule: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "@every 60s",
                           example: "@hourly",
                           description: "Schedule of MTR checks. Also accepts Cron format.",
                         })))),
                       flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -122,25 +122,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           etc: nix.thunk(() => ({
-            __proto__: pos$15,
-            "mtr-exporter.conf": nix.thunk(() => ({ __proto__: pos$14, source: jobsConfig })),
+            [nix.POS]: pos$15,
+            "mtr-exporter.conf": nix.thunk(() => ({ [nix.POS]: pos$14, source: jobsConfig })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "mtr-exporter": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/mtr-exporter \\
   -mtr '${nix.sel(cfg, "mtrPackage")}/bin/mtr' \\
   -bind ${nix.app(escapeShellArg, nix.thunk(() => nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`))} \\
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "jakubgs"))];

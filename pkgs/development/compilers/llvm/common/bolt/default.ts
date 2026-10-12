@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const devExtraCmakeFlags = nix.argOr($, "devExtraCmakeFlags", () => []);
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bolt",
       version: version,
       src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`bolt-src-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -49,12 +49,12 @@ chmod -R +w $out/llvm
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/bolt`),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), release_version), "19")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/llvm/llvm-project/commit/abc2eae68290c453e1899a94eccc4ed5ea3b69c1.patch",
               hash: "sha256-oxCxOjhi5BhNBEraWalEwa1rS3Mx9CuQgRVZ2hrbd7M=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/llvm/llvm-project/commit/5909979869edca359bcbca74042c2939d900680e.patch",
               hash: "sha256-l4rQHYbblEADBXaZIdqTG0sZzH4fEQvYiqhLYNZDMa8=",
             })))),
@@ -72,7 +72,7 @@ chmod -R +w $out/llvm
       outputs: nix.thunk(() => ["out", "dev"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/llvm/llvm-project/tree/main/bolt",
         description: "LLVM post-link optimizer",
       })),

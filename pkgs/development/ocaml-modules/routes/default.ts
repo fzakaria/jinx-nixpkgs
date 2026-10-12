@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "routes",
       version: "2.0.0",
       duneVersion: "3",
       minimalOCamlVersion: "4.05",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anuragsoni/routes/releases/download/${nix.sel(finalAttrs, "version")}/routes-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-O2KdaYwrAOUEwTtM14NUgGNxnc8BWAycP1EEuB6w1og=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typed routing for OCaml applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://anuragsoni.github.io/routes",

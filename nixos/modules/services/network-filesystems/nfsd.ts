@@ -43,33 +43,33 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nfs", "server"));
   const exports = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "exports", nix.thunk(() => nix.sel(cfg, "exports"))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "nfs", "lockdPort"]), nix.thunk(() => ["services", "nfs", "server", "lockdPort"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "nfs", "statdPort"]), nix.thunk(() => ["services", "nfs", "server", "statdPort"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         nfs: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           server: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable the kernel's NFS server.\n",
               })))),
             extraNfsdConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Extra configuration options for the [nfsd] section of /etc/nfs.conf.\n",
               })))),
             exports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))))))), attrsToExports, nix.thunk(() => nix.lookup(w, "lines")));
@@ -77,52 +77,52 @@ export default nix.lambda((args) => (() => {
                 default: "",
                 description: "Contents of the /etc/exports file.  See\n{manpage}`exports(5)` for the format.\n",
                 example: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   "/usr": nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     "*.local.domain": nix.thunk(() => ["ro"]),
                     "@trusted": nix.thunk(() => ["rw"]),
                   })),
                   "/home/joe": nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     pc001: nix.thunk(() => ["rw", "all_squash", "anonuid=150", "anongid=100"]),
                   })),
                 })),
               })))),
             hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Hostname or address on which NFS requests will be accepted.\nDefault is all.  See the {option}`-H` option in\n{manpage}`nfsd(8)`.\n",
               })))),
             nproc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 8n,
                 description: "Number of NFS server threads.  Defaults to the recommended value of 8.\n",
               })))),
             createMountPoints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to create the mount points in the exports file at startup time.",
               })))),
             mountdPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: null,
                 example: 4002n,
                 description: "Use fixed port for rpc.mountd, useful if server is behind firewall.\n",
               })))),
             lockdPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: null,
                 example: 4001n,
                 description: "Use a fixed port for the NFS lock manager kernel module\n(`lockd/nlockmgr`).  This is useful if the\nNFS server is behind a firewall.\n",
               })))),
             statdPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: null,
                 example: 4000n,
@@ -133,34 +133,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
-          rpcbind: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+          [nix.POS]: pos$18,
+          rpcbind: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$19, supportedFilesystems: nix.thunk(() => ["nfs"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$19, supportedFilesystems: nix.thunk(() => ["nfs"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           etc: nix.thunk(() => ({
-            __proto__: pos$21,
-            exports: nix.thunk(() => ({ __proto__: pos$20, source: exports })),
+            [nix.POS]: pos$21,
+            exports: nix.thunk(() => ({ [nix.POS]: pos$20, source: exports })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "nfs-server": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: true,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$23, StateDirectory: nix.thunk(() => ["nfs/v4recovery"]) })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, StateDirectory: nix.thunk(() => ["nfs/v4recovery"]) })),
             })),
             "nfs-mountd": nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               enable: true,
               restartTriggers: nix.thunk(() => [exports]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$25, StateDirectory: nix.thunk(() => ["nfs"]) })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$25, StateDirectory: nix.thunk(() => ["nfs"]) })),
               preStart: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "createMountPoints")), nix.thunk(() => nix.str`# create export directories:
 # skip comments, take first col which may either be a quoted
 # "foo bar" or just foo (-> man export)

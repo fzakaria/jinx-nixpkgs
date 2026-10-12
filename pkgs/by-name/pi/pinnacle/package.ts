@@ -45,15 +45,15 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "0.2.4";
   const pinnacle_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pinnacle-comp",
       repo: "pinnacle",
       tag: nix.thunk(() => nix.str`v${version}`),
       sha256: "sha256-T8wZjgOTzYKfYUV1ShLBIi2xoCdVn9I7sux/pDH+8ic=",
     }))));
-  const buildRustConfig = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pinnacle-config.nix"), nix.thunk(() => ({ __proto__: pos$2, "pinnacle-src": pinnacle_src }))));
+  const buildRustConfig = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pinnacle-config.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "pinnacle-src": pinnacle_src }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "A WIP Smithay-based Wayland compositor, inspired by AwesomeWM and configured in Lua or Rust",
     homepage: "https://pinnacle-comp.github.io/pinnacle/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postInstall = "mkdir -p $out/share/pinnacle/protobuf/pinnacle\ncp -rL --no-preserve ownership,mode ../../api/protobuf/pinnacle $out/share/pinnacle/protobuf\nmkdir -p $out/share/pinnacle/snowcap/protobuf/snowcap\ncp -rL --no-preserve ownership,mode ../../snowcap/api/protobuf/snowcap $out/share/pinnacle/snowcap/protobuf\nmkdir -p $out/share/pinnacle/protobuf/google\ncp -rL --no-preserve ownership,mode ../../api/protobuf/google $out/share/pinnacle/protobuf\nmkdir -p $out/share/pinnacle/snowcap/protobuf/google\ncp -rL --no-preserve ownership,mode ../../snowcap/api/protobuf/google $out/share/pinnacle/snowcap/protobuf\n";
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         meta: meta_1,
         version: version_1,
         pname,
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       meta: meta,
       version: version,
       pname: "pinnacle-server",
@@ -155,7 +155,7 @@ install -m644 ./resources/pinnacle-portals.conf $out/share/xdg-desktop-portal/pi
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")))), "installShellCompletion --cmd pinnacle \\\n  --bash <($out/bin/pinnacle gen-completions --shell bash) \\\n  --fish <($out/bin/pinnacle gen-completions --shell fish) \\\n  --zsh <($out/bin/pinnacle gen-completions --shell zsh)\n"))),
       runtimeDependencies: nix.thunk(() => [wayland, mesa, libglvnd]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         luaEnv: nix.thunk(() => nix.app(nix.sel(lua5_4, "withPackages"), (ps) => nix.concat([
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "lua-client-api")),
             nix.thunk(() => nix.sel(ps, "cjson")),

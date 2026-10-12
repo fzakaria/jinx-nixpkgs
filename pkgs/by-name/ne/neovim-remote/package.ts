@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const neovim = nix.arg($, "neovim");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "neovim-remote",
       version: "2.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mhinz",
           repo: "neovim-remote",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/mhinz/neovim-remote/commit/56d2a4097f4b639a16902390d9bdd8d1350f948c.patch",
             hash: "sha256-/PjE+9yfHtOUEp3xBaobzRM8Eo2wqOhnF1Es7SIdxvM=",
           })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=\"$(mktemp -d)\"\n",
       pythonImportsCheck: nix.thunk(() => ["nvr"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool that helps controlling nvim processes from a terminal",
         homepage: "https://github.com/mhinz/neovim-remote/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

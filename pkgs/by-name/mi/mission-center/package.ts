@@ -53,18 +53,18 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const nvtop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Syllo",
       repo: "nvtop",
       rev: "3d4a953da02bc18886734613bb9f60ff80669de7",
       hash: "sha256-yBCJZt23NIjXYXLQAY9Go3bcwzxyUnL+3TP9kyFthr0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mission-center",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mission-center-devs",
           repo: "mission-center",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,14 +94,14 @@ mkdir -p include/libdrm
 `)),
       cargoDeps: nix.thunk(() => (() => {
         const missionCenterCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-G48wiOa82hCX/xl6DQeWxLNZ6PAfzqfxzl/Srra004E=",
           }))));
         const magpieCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-magpie`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -109,7 +109,7 @@ mkdir -p include/libdrm
             hash: "sha256-WwUyPgP47O5i8+1XZciH/FCLAWz9/LRmJtgkhSPJwiY=",
           }))));
         return nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "cargo-vendor-dir",
             paths: nix.thunk(() => [missionCenterCargoDeps, magpieCargoDeps]),
             postBuild: nix.thunk(() => nix.str`rm -f $out/.cargo/config.toml
@@ -170,7 +170,7 @@ wrapProgram $out/bin/missioncenter-magpie \\
         ]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Monitor your CPU, Memory, Disk, Network and GPU usage",
         homepage: "https://gitlab.com/mission-center-devs/mission-center",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/mission-center-devs/mission-center/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),

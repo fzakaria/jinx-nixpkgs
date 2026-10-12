@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const configure = nix.argOr($, "configure", () => ({}));
   const requestedPlugins = nix.thunk(() => nix.concat(plugins, nix.selOr(configure, () => [], "plugins")));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`kakoune-${nix.sel(kakoune, "version")}`),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => nix.concat([kakoune], requestedPlugins)),
@@ -40,7 +40,7 @@ cp -r --dereference "$out/DELETE_ME/doc" "$out/share/kak"
 rm -Rf "$out/DELETE_ME"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(kakoune, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         priority: nix.thunk(() => nix.sub(nix.selOr(kakoune, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),
     })));

@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "firezone", "gateway"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         firezone: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           gateway: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: false,
                 example: true,
                 description: "Whether to enable the firezone gateway.\n\nYou have to manually masquerade and forward traffic from the\ntun-firezone interface to your resource! Refer to the\n[upstream setup script](https://github.com/firezone/firezone/blob/8c7c0a9e8e33ae790aeb75fdb5a15432c2870b79/scripts/gateway-systemd-install.sh#L154-L168)\nfor a list of iptable commands.\n\nSee the firezone nixos test in this repository for an nftables based example.\n",
@@ -53,24 +53,24 @@ export default nix.lambda((args) => (() => {
               })))),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "firezone-gateway", nix.thunk(() => ({})))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The name of this gateway as shown in firezone",
               })))),
             apiUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^wss://.+/$")),
                 example: "wss://firezone.example.com/api/",
                 description: "The URL of your firezone server's API. This should be the same\nas your server's setting for {option}`services.firezone.server.settings.api.externalUrl`,\nbut with `wss://` instead of `https://`.\n",
               })))),
             tokenFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 example: "/run/secrets/firezone-gateway-token",
                 description: "A file containing the firezone gateway token. Do not use a nix-store path here\nas it will make the token publicly readable!\n\nThis file will be passed via systemd credentials, it should only be accessible\nby the root user.\n",
               })))),
             logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "info",
                 description: "The log level for the firezone application. See\n[RUST_LOG](https://docs.rs/env_logger/latest/env_logger/#enabling-logging)\nfor the format.\n",
@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "firezone-gateway": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Gateway service for the Firezone zero-trust access platform",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -104,14 +104,14 @@ export FIREZONE_TOKEN=$(< "$CREDENTIALS_DIRECTORY/firezone-token")
 exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 FIREZONE_API_URL: nix.thunk(() => nix.sel(cfg, "apiUrl")),
                 FIREZONE_NAME: nix.thunk(() => nix.sel(cfg, "name")),
                 FIREZONE_NO_TELEMETRY: nix.thunk(() => nix.app(boolToString, nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableTelemetry"))))),
                 RUST_LOG: nix.thunk(() => nix.sel(cfg, "logLevel")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "exec",
                 DynamicUser: true,
                 User: "firezone-gateway",
@@ -152,7 +152,7 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

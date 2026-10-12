@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tclPackages = nix.arg($, "tclPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emacspeak",
       version: "59.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tvraman",
           repo: "emacspeak",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), emacs)} $out/bin/emacspeak \\
     --add-flags '-l "${nix.builtins.placeholder("out")}/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.elc"'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tvraman/emacspeak/",
         description: "Emacs extension that provides spoken output",
         changelog: nix.thunk(() => nix.str`https://github.com/tvraman/emacspeak/blob/${nix.sel(finalAttrs, "src", "rev")}/etc/NEWS`),

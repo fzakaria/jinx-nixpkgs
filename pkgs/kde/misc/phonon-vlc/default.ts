@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "phonon-vlc";
       const version = "0.12.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/phonon/phonon-backend-vlc/${version}/phonon-backend-vlc-${version}.tar.xz`),
           hash: "sha256-M4R53EUeS5SzyltXje90Hc+C9cYmooB9NiNb4tznyaU=",
         }))));
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [libvlc]);
       const cmakeFlags = nix.thunk(() => ["-DPHONON_BUILD_QT5=0", "-DPHONON_BUILD_QT6=1"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

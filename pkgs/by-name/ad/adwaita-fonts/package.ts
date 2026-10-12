@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "adwaita-fonts",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/adwaita-fonts/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/adwaita-fonts-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-TJJ/v+7BxQOAG6UQwslOAFTILFIs97oNO+XU1B/PXIY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "adwaita-fonts" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "adwaita-fonts" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Adwaita Sans, a variation of Inter, and Adwaita Mono, Iosevka customized to match Inter",
         homepage: "https://gitlab.gnome.org/GNOME/adwaita-fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

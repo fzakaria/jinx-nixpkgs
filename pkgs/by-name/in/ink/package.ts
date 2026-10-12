@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   const libinklevel = nix.arg($, "libinklevel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ink",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ink/ink-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1fk0b8vic04a3i3vmq73hbk7mzbi57s8ks6ighn3mvr6m2v8yc9d",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "ink",
             version: "0.5.3",
             debianRevision: "7",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libinklevel]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tool for checking the ink level of your locally connected printer",
         longDescription: "Ink is a command line tool for checking the ink level of your locally connected printer on a system which runs Linux or FreeBSD. Canon BJNP network printers are supported too.\n",
         homepage: "https://ink.sourceforge.net/",

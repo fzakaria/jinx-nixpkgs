@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swift-docc",
       version: swift_release,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-docc"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swiftlang",
           repo: "swift-docc",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-docc", "swiftpmDeps"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +55,7 @@ ln -s "${swift_docc_render}/dist" "$out/share/docc/render"
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Documentation compiler for Swift",
         mainProgram: "docc",
         homepage: "https://github.com/swiftlang/swift-docc",

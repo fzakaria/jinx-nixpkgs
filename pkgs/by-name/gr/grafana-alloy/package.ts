@@ -31,25 +31,25 @@ export default nix.lambda((args) => (() => {
   const lld = nix.arg($, "lld");
   const useLLD = nix.argOr($, "useLLD", () => nix.sel(stdenv, "hostPlatform", "isArmv7"));
   const beylaVersion = "v3.9.8";
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ __proto__: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "grafana-alloy",
       version: "1.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "grafana",
           repo: "alloy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4HjOerOe+v8GkKgID/oBm5Rt7nQiHjucAQkSYGY5zZs=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/internal/web/ui`),
           hash: "sha256-eGyKXsZzyDovsMY2U1uAOn22nyRTYGJT+kEh61857Ls=",
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "alloy-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,8 +80,8 @@ fi
         nix.thunk(() => nix.str`-X github.com/grafana/beyla/pkg/buildinfo=${beylaVersion}`),
       ]),
       tags: nix.thunk(() => nix.concat(["embedalloyui", "gore2regex", "netgo"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["promtail_journal_enabled"])))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useLLD, nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$6,
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useLLD, nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
+          [nix.POS]: pos$6,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), systemdLibs$)}/include`),
         }))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), useLLD, nix.thunk(() => [lld])))),
@@ -94,13 +94,13 @@ fi
   $out/bin/alloy
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        tests: nix.thunk(() => ({ __proto__: pos$7, alloy: nix.thunk(() => nix.attr(nixosTests, "alloy")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$8, extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
+        [nix.POS]: pos$9,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$7, alloy: nix.thunk(() => nix.attr(nixosTests, "alloy")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
         npmDeps: nix.thunk(() => nix.attr(finalAttrs, "npmDeps")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "OpenTelemetry Collector distribution with programmable pipelines",
         longDescription: "Grafana Alloy is an open source OpenTelemetry Collector distribution with\nbuilt-in Prometheus pipelines and support for metrics, logs, traces, and\nprofiles.\n",
         homepage: "https://grafana.com/oss/alloy",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.7.1",
       pname: "git-latexdiff",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "git-latexdiff",
           owner: "git-latexdiff",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ make git-latexdiff.1
 installManPage git-latexdiff.1
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "View diff on LaTeX source files on the generated PDF files",
         homepage: "https://gitlab.com/git-latexdiff/git-latexdiff",
         maintainers: nix.thunk(() => (() => {

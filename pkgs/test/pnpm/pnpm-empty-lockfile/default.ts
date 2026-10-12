@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pnpm_10 = nix.arg($, "pnpm_10");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "pnpm-empty-lockfile",
       src: nix.path(here, "./."),
       nativeBuildInputs: nix.thunk(() => [pnpm_10, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pnpm-empty-lockfile",
           fetcherVersion: 3n,
           pnpm: pnpm_10,

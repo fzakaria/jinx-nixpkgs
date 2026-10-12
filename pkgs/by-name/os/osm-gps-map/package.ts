@@ -25,22 +25,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "osm-gps-map",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/nzjrs/osm-gps-map/releases/download/${nix.sel(finalAttrs, "version")}/osm-gps-map-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ciw28YXhR+GC6B2VPC+ZxjyhadOk3zYGuOssSgqjwH0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian-gis-team/osm-gps-map/-/raw/debian/1.2.0-4/debian/patches/0001-Drop-support-for-libsoup-older-than-2.42.patch",
             hash: "sha256-9KSqXV1ZO21nERlhp0/nZkMuGuMpsr1RfszKkTjyvSo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/debian-gis-team/osm-gps-map/-/raw/debian/1.2.0-4/debian/patches/0001-Port-to-libsoup3.patch",
             hash: "sha256-/Ss/rGm08UXmSpDMNGlS79eQ35sOyU8vAMC9eEBOgKg=",
             excludes: nix.thunk(() => [".github/*"]),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, glib, libsoup_3]),
       propagatedBuildInputs: nix.thunk(() => [gtk3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GTK widget for displaying OpenStreetMap tiles",
         homepage: "https://nzjrs.github.io/osm-gps-map",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -28,23 +28,23 @@ export default nix.lambda((args) => (() => {
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, "openbsd"));
   const buildOpenbsd = nix.thunk(() => nix.sel(otherSplices, "selfBuildHost"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       otherSplices: otherSplices,
       f: (self) => nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           callPackage: nix.thunk(() => nix.sel(self, "callPackage")),
           directory: nix.path(here, "./pkgs"),
         }))), {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         version: "7.9",
         stdenvLibcMinimal: nix.thunk(() => nix.app(nix.sel(stdenvNoLibc, "override"), (old) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             cc: nix.thunk(() => nix.app(nix.sel(old, "cc", "override"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 libc: nix.thunk(() => nix.sel(self, "libcMinimal")),
                 noLibc: false,
                 bintools: nix.thunk(() => nix.app(nix.sel(old, "cc", "bintools", "override"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     libc: nix.thunk(() => nix.sel(self, "libcMinimal")),
                     noLibc: false,
                     sharedLibraryLoader: null,
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
               })))),
           }))),
         makeMinimal: nix.thunk(() => nix.app(nix.sel(buildPackages, "netbsd", "makeMinimal", "override"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "make-rules": nix.thunk(() => nix.attr(self, "make-rules")),
           })))),
         include: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/include/package.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
             install: nix.thunk(() => nix.attr(from, "install")),
             rpcgen: nix.thunk(() => nix.attr(from, "rpcgen")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         csu: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/csu.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             include: nix.thunk(() => nix.attr(self, "include")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
             install: nix.thunk(() => nix.attr(from, "install")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         libcMinimal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libcMinimal/package.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             csu: nix.thunk(() => nix.attr(self, "csu")),
             include: nix.thunk(() => nix.attr(self, "include")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         librpcsvc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/librpcsvc.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             openbsdSetupHook: nix.thunk(() => nix.attr(buildOpenbsd, "openbsdSetupHook")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
             lorder: nix.thunk(() => nix.attr(buildOpenbsd, "lorder")),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         libutil: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libutil.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             libcMinimal: nix.thunk(() => nix.attr(self, "libcMinimal")),
             openbsdSetupHook: nix.thunk(() => nix.attr(buildOpenbsd, "openbsdSetupHook")),
             makeMinimal: nix.thunk(() => nix.attr(buildOpenbsd, "makeMinimal")),
@@ -115,14 +115,14 @@ export default nix.lambda((args) => (() => {
           })()))),
         lorder: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/lorder.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
-            return { __proto__: pos$11, install: nix.thunk(() => nix.attr(from, "install")) };
+            return { [nix.POS]: pos$11, install: nix.thunk(() => nix.attr(from, "install")) };
           })()))),
         "make-rules": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/make-rules/package.nix"), nix.thunk(() => ({})))),
         mkDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/mkDerivation.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(buildPackages, "netbsd"));
             const from_1 = nix.thunk(() => nix.sel(buildPackages, "buildPackages"));
             return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             install: nix.thunk(() => nix.attr(from, "install")),
             tsort: nix.thunk(() => nix.attr(from, "tsort")),
             rsync: nix.thunk(() => nix.attr(from_1, "rsync")),

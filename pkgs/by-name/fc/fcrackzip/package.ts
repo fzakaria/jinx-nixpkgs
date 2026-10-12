@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fcrackzip",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://oldhome.schmorp.de/marc/data/fcrackzip-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0l1qsk949vnz18k4vjf3ppq8p497966x4c7f2yx18x8pk35whn2a",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu89" })),
       patches: nix.thunk(() => [nix.path(here, "./fcrackzip_forkexec.patch")]),
       postInstall: "mv $out/bin/zipinfo $out/bin/fcrackzip-zipinfo",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Zip password cracker, similar to fzc, zipcrack and others",
         homepage: "http://oldhome.schmorp.de/marc/fcrackzip.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

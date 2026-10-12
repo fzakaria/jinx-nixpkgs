@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.8.4",
       pname: "extremetuxracer",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/extremetuxracer/etr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-+jKFzAx1Wlr/Up8/LOo1FkgRFMa0uOHsB2n+7/BHc+U=",
         })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-tcl=${tcl}/lib`)]),
       preConfigure: "export NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High speed arctic racing game based on Tux Racer",
         longDescription: "ExtremeTuxRacer - Tux lies on his belly and accelerates down ice slopes.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

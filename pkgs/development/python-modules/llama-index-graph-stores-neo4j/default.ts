@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_core = nix.arg($, "llama-index-core");
   const neo4j = nix.arg($, "neo4j");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-graph-stores-neo4j",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_graph_stores_neo4j",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-QEazL/0J/mzJw4XvEZOqm6Qaujadw1iruDW1o6Ph58A=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["llama_index.graph_stores.neo4j"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Graph Store Integration for Neo4j",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/graph_stores/llama-index-graph-stores-neo4j",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   return nix.app(mkTclDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wapp",
       version: "0-unstable-2024-11-22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://wapp.tcl-lang.org/home/raw/3b1ce7c0234b4b2750deadc80f524ed28e835aa5e741bf3fe63b416a16a55699?at=wapp.tcl",
           hash: "sha256-0e9yTVFYj1tYGU7EiXRPw35qfDzckzz4i3RV/8TttGw=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/wapp\ncp $src $out/lib/wapp/wapp.tcl\ncat <<EOF > $out/lib/wapp/pkgIndex.tcl\npackage ifneeded wapp 1.0 [list source [file join \\$dir wapp.tcl]]\nEOF\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wapp.tcl-lang.org/home/doc/trunk/README.md",
         description: "Framework for writing web applications in Tcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

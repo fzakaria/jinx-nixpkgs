@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const jdk25_headless = nix.arg($, "jdk25_headless");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "unifi-controller",
       version: "10.6.106",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.ui.com/unifi/${nix.sel(finalAttrs, "version")}/unifi_sysvinit_all.deb`),
           hash: "sha256-6Ttw5zuZg8Xk0KjMwtXRm4bbBeePmowYUMr4msBpskA=",
         })))),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [systemd]),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -ar usr/lib/unifi/{dl,lib,webapps} $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         jrePackage: jdk25_headless,
-        tests: nix.thunk(() => ({ __proto__: pos$2, unifi: nix.thunk(() => nix.attr(nixosTests, "unifi")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, unifi: nix.thunk(() => nix.attr(nixosTests, "unifi")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.ui.com",
         description: "Controller for Ubiquiti UniFi access points",
         sourceProvenance: nix.thunk(() => (() => {

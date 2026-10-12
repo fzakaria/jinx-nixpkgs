@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxfs = nix.arg($, "libxfs");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xfsdump",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/utils/fs/xfs/xfsdump/xfsdump-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-nKPpEFWUX4pwvU1GXVRk9jFjDGVGKJbtpHnXNx/WHbc=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [attr, libuuid, libxfs, ncurses]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://lore.kernel.org/linux-xfs/20260625222337.54449-1-celeste@collar.sh/raw",
             sha256: "sha256-iOxnd9lgdeNQThinzEjMRKN90YLRcGdTuczUFU61Cm8=",
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace \"cp include/install-sh .\" \"cp -f include/install-sh .\"\n",
       preConfigure: "export MAKE=$(type -P make)\nexport MSGFMT=$(type -P msgfmt)\nexport MSGMERGE=$(type -P msgmerge)\nexport XGETTEXT=$(type -P xgettext)\n\nmake configure\npatchShebangs ./install-sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "XFS filesystem incremental dump utility",
         homepage: "https://git.kernel.org/pub/scm/fs/xfs/xfsdump-dev.git/tree/doc/CHANGES",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

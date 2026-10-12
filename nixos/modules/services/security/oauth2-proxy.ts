@@ -93,29 +93,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "oauth2-proxy"));
   const providerSpecificOptions = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     azure: (cfg_1) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "azure-tenant": nix.thunk(() => nix.sel(cfg_1, "azure", "tenant")),
       resource: nix.thunk(() => nix.sel(cfg_1, "azure", "resource")),
     }),
     github: (cfg_1) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       github: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfg_1, "github"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         org: nix.thunk(() => nix.attr(from, "org")),
         team: nix.thunk(() => nix.attr(from, "team")),
       };
       })()),
     }),
     google: (cfg_1) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       google: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(cfg_1, "google")), null);
         return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.lookup(w, "groups"), [])), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "admin-email": nix.thunk(() => nix.lookup(w, "adminEmail")),
             "service-account": nix.thunk(() => nix.lookup(w, "serviceAccountJSON")),
             group: nix.thunk(() => nix.lookup(w, "groups")),
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
   const allConfig = nix.thunk(() => (() => {
     const w = nix.withScope(cfg, null);
     return nix.update({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       provider: nix.thunk(() => nix.attr(cfg, "provider")),
       scope: nix.thunk(() => nix.attr(cfg, "scope")),
       upstream: nix.thunk(() => nix.attr(cfg, "upstream")),
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
       "validate-url": nix.thunk(() => nix.lookup(w, "validateURL")),
       "htpasswd-file": nix.thunk(() => nix.sel(nix.lookup(w, "htpasswd"), "file")),
       cookie: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         domain: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "cookie")), "domain")),
         secure: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "cookie")), "secure")),
         expire: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "cookie")), "expire")),
@@ -166,14 +166,14 @@ export default nix.lambda((args) => (() => {
         httponly: nix.thunk(() => nix.sel(nix.lookup(w, "cookie"), "httpOnly")),
       })),
       "set-xauthrequest": nix.thunk(() => nix.lookup(w, "setXauthrequest")),
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "email", "addresses"), null)), nix.thunk(() => ({ __proto__: pos$9, "authenticated-emails-file": authenticatedEmailsFile }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "passBasicAuth")), nix.thunk(() => ({
-        __proto__: pos$10,
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "email", "addresses"), null)), nix.thunk(() => ({ [nix.POS]: pos$9, "authenticated-emails-file": authenticatedEmailsFile }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "passBasicAuth")), nix.thunk(() => ({
+        [nix.POS]: pos$10,
         "basic-auth-password": nix.thunk(() => nix.sel(cfg, "basicAuthPassword")),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "htpasswd", "file"), null)), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "display-htpasswd-form": nix.thunk(() => nix.sel(cfg, "htpasswd", "displayForm")),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(nix.lookup(w, "tls"), "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "tls-cert-file": nix.thunk(() => nix.sel(nix.lookup(w, "tls"), "certificate")),
         "tls-key-file": nix.thunk(() => nix.sel(nix.lookup(w, "tls"), "key")),
         "https-address": nix.thunk(() => nix.sel(nix.lookup(w, "tls"), "httpsAddress")),
@@ -182,17 +182,17 @@ export default nix.lambda((args) => (() => {
   const mapConfig = (key) => (attr) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(attr, null)) && nix.asBool(!nix.eq(attr, [])))), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), attr)) ? nix.app(mapConfig, key, nix.thunk(() => nix.builtins.toString(attr))) : (nix.asBool(nix.eq(nix.builtins.typeOf(attr), "set")) ? nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(mapConfig, nix.thunk(() => nix.add(nix.add(key, "-"), name)), value), attr))) : (nix.asBool(nix.eq(nix.builtins.typeOf(attr), "list")) ? nix.app(nix.sel(lib, "concatMapStringsSep"), " ", nix.thunk(() => nix.app(mapConfig, key)), attr) : (nix.asBool(nix.eq(nix.builtins.typeOf(attr), "bool")) ? nix.str`--${key}=${nix.app(nix.sel(lib, "boolToString"), attr)}` : (nix.asBool(nix.eq(nix.builtins.typeOf(attr), "string")) ? nix.str`--${key}='${attr}'` : nix.str`--${key}=${nix.builtins.toString(attr)}`)))))));
   const configString = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), mapConfig, allConfig))));
   return {
-    __proto__: pos$82,
+    [nix.POS]: pos$82,
     options: nix.thunk(() => ({
-      __proto__: pos$71,
+      [nix.POS]: pos$71,
       services: nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         "oauth2-proxy": nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "oauth2-proxy")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "oauth2-proxy", nix.thunk(() => ({})))),
           provider: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [
                   "adfs",
                   "azure",
@@ -213,131 +213,131 @@ export default nix.lambda((args) => (() => {
               description: "OAuth provider.\n",
             })))),
           approvalPrompt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["force", "auto"]))),
               default: "force",
               description: "OAuth approval_prompt.\n",
             })))),
           clientID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The OAuth Client ID.\n",
               example: "123456.apps.googleusercontent.com",
             })))),
           oidcIssuerUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The OAuth issuer URL.\n",
               example: "https://login.microsoftonline.com/{TENANT_ID}/v2.0",
             })))),
           clientSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The path to a file containing the OAuth Client Secret.\n",
               example: "/run/keys/oauth2-client-secret",
             })))),
           skipAuthRegexes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Skip authentication for requests matching any of these regular\nexpressions.\n",
             })))),
           email: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Authenticate emails with the specified domains. Use\n`*` to authenticate any email.\n",
               })))),
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
                 default: null,
                 description: "Line-separated email addresses that are allowed to authenticate.\n",
               })))),
           })),
           loginURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Authentication endpoint.\n\nYou only need to set this if you are using a self-hosted provider (e.g.\nGithub Enterprise). If you're using a publicly hosted provider\n(e.g github.com), then the default works.\n",
               example: "https://provider.example.com/oauth/authorize",
             })))),
           redeemURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Token redemption endpoint.\n\nYou only need to set this if you are using a self-hosted provider (e.g.\nGithub Enterprise). If you're using a publicly hosted provider\n(e.g github.com), then the default works.\n",
               example: "https://provider.example.com/oauth/token",
             })))),
           validateURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Access token validation endpoint.\n\nYou only need to set this if you are using a self-hosted provider (e.g.\nGithub Enterprise). If you're using a publicly hosted provider\n(e.g github.com), then the default works.\n",
               example: "https://provider.example.com/user/emails",
             })))),
           redirectURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The OAuth2 redirect URL.\n",
               example: "https://internalapp.yourcompany.com/oauth2/callback",
             })))),
           azure: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             tenant: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "common",
                 description: "Go to a tenant-specific or common (tenant-independent) endpoint.\n",
               })))),
             resource: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The resource that is protected.\n",
               })))),
           })),
           google: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             adminEmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The Google Admin to impersonate for API calls.\n\nOnly users with access to the Admin APIs can access the Admin SDK\nDirectory API, thus the service account needs to impersonate one of\nthose users to access the Admin SDK Directory API.\n\nSee <https://developers.google.com/admin-sdk/directory/v1/guides/delegation#delegate_domain-wide_authority_to_your_service_account>.\n",
               })))),
             groups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Restrict logins to members of these Google groups.\n",
               })))),
             serviceAccountJSON: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "The path to the service account JSON credentials.\n",
               })))),
           })),
           github: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             org: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Restrict logins to members of this organisation.\n",
               })))),
             team: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Restrict logins to members of this team.\n",
               })))),
           })),
           upstream: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "str")), (x) => [x], nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -346,119 +346,119 @@ export default nix.lambda((args) => (() => {
               description: "The http url(s) of the upstream endpoint or `file://`\npaths for static files. Routing is based on the path.\n",
             })))),
           passAccessToken: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Pass OAuth access_token to upstream via X-Forwarded-Access-Token header.\n",
             })))),
           passBasicAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Pass HTTP Basic Auth, X-Forwarded-User and X-Forwarded-Email information to upstream.\n",
             })))),
           basicAuthPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The password to set when passing the HTTP Basic Auth header.\n",
             })))),
           passHostHeader: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Pass the request Host Header to upstream.\n",
             })))),
           signatureKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "GAP-Signature request signature key.\n",
               example: "sha1:secret0",
             })))),
           cookie: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Optional cookie domains to force cookies to (ie: `.yourcompany.com`).\nThe longest domain matching the request's host will be used (or the shortest\ncookie domain if there is no match).\n",
                 example: ".yourcompany.com",
               })))),
             expire: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "168h0m0s",
                 description: "Expire timeframe for cookie.\n",
               })))),
             httpOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Set HttpOnly cookie flag.\n",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "_oauth2_proxy",
                 description: "The name of the cookie that the oauth_proxy creates.\n",
               })))),
             refresh: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Refresh the cookie after this duration; 0 to disable.\n",
                 example: "168h0m0s",
               })))),
             secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The path to a file containing the seed string for secure cookies.\n",
                 example: "/run/keys/oauth2-cookie-secret",
               })))),
             secure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Set secure (HTTPS) cookie flag.\n",
               })))),
           })),
           httpAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "http://127.0.0.1:4180",
               description: "HTTPS listening address.  This module does not expose the port by\ndefault. If you want this URL to be accessible to other machines, please\nadd the port to `networking.firewall.allowedTCPPorts`.\n",
             })))),
           htpasswd: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Additionally authenticate against a htpasswd file. Entries must be\ncreated with `htpasswd -s` for SHA encryption.\n",
               })))),
             displayForm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Display username / password login form if an htpasswd file is provided.\n",
               })))),
           })),
           customTemplatesDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to custom HTML templates.\n",
             })))),
           reverseProxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "In case when running behind a reverse proxy, controls whether headers\nlike `X-Real-Ip` are accepted. Usage behind a reverse\nproxy will require this flag to be set to avoid logging the reverse\nproxy IP address.\n",
             })))),
           trustedProxyIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -467,68 +467,68 @@ export default nix.lambda((args) => (() => {
               description: "List of IPs or CIDR ranges allowed to supply X-Forwarded-* headers when reverseProxy is enabled.\nIf not set, OAuth2 Proxy preserves backwards compatibility by trusting all source IPs (0.0.0.0/0, ::/0) and logs a warning at startup.\nConfigure this to your reverse proxy addresses to prevent forwarded header spoofing.\n",
             })))),
           proxyPrefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/oauth2",
               description: "The url root path that this proxy should be nested under.\n",
             })))),
           tls: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to serve over TLS.\n",
               })))),
             certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "Path to certificate file.\n",
               })))),
             key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "Path to private key file.\n",
               })))),
             httpsAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: ":443",
                 description: "`addr:port` to listen on for HTTPS clients.\n\nRemember to add `port` to\n`allowedTCPPorts` if you want other machines to be\nable to connect to it.\n",
               })))),
           })),
           requestLogging: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Log requests to stdout.\n",
             })))),
           scope: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "OAuth scope specification.\n",
             })))),
           profileURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Profile access endpoint.\n",
             })))),
           setXauthrequest: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
               default: false,
               description: "Set X-Auth-Request-User and X-Auth-Request-Email response headers (useful in Nginx auth_request mode). Setting this to 'null' means using the upstream default (false).\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               description: "Extra config to pass to oauth2-proxy.\n",
             })))),
           keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "oauth2-proxy allows passing sensitive configuration via environment variables.\nMake a file that contains lines like\nOAUTH2_PROXY_CLIENT_SECRET=asdfasdfasdf.apps.googleuserscontent.com\nand specify the path here.\n",
@@ -543,10 +543,10 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "oauth2-proxy", "cookie", "secret"]), "This option has been removed as it made the cookie secret world-readable.\nUse services.oauth2-proxy.cookie.secretFile instead.\n")),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "clientID"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "keyFile"), null)))),
             message: "Either services.oauth2-proxy.clientID or services.oauth2-proxy.keyFile must be specified.",
           })),
@@ -555,26 +555,26 @@ export default nix.lambda((args) => (() => {
             "When config.services.oauth2-proxy.reverseProxy is enabled, configure config.services.oauth2-proxy.trustedProxyIP to the IPs or CIDR range(s) of the reverse proxies that are allowed to send X-Forwarded-* headers.\nIf you leave it unset, OAuth2 Proxy currently trusts all source IPs for backwards compatibility, which means a client that can reach OAuth2 Proxy directly may be able to spoof forwarded headers.\n",
           ]))),
         users: nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           users: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             "oauth2-proxy": nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               description: "OAuth2 Proxy",
               isSystemUser: true,
               group: "oauth2-proxy",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$75, "oauth2-proxy": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$75, "oauth2-proxy": nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$80,
+          [nix.POS]: pos$80,
           services: nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             "oauth2-proxy": nix.thunk(() => (() => {
               const needsKeycloak = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "provider")), nix.thunk(() => ["keycloak", "keycloak-oidc"]))) && nix.asBool(nix.sel(config, "services", "keycloak", "enable"))));
               return {
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 description: "OAuth2 Proxy",
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -582,7 +582,7 @@ export default nix.lambda((args) => (() => {
                 after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), needsKeycloak, nix.thunk(() => ["keycloak.service"])))),
                 restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "keyFile"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   User: "oauth2-proxy",
                   Restart: "always",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${configString}`),

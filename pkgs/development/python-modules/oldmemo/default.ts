@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Syndace",
           repo: "python-oldmemo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
         cryptography,
         protobuf,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, xml: nix.thunk(() => [xmlschema]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, xml: nix.thunk(() => [xmlschema]) }));
       const pythonImportsCheck = nix.thunk(() => ["oldmemo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backend implementation of the `eu.siacs.conversations.axolotl` namespace for python-omemo",
         homepage: "https://github.com/Syndace/python-oldmemo",
         changelog: nix.thunk(() => nix.str`https://github.com/Syndace/python-oldmemo/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

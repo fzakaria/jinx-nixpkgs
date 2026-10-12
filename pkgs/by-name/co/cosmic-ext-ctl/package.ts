@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cosmic_comp = nix.arg($, "cosmic-comp");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cosmic-ext-ctl",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cosmic-utils",
           repo: "cosmic-ctl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/cosmic-ctl`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cosmic_comp, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for COSMIC Desktop configuration management",
         changelog: nix.thunk(() => nix.str`https://github.com/cosmic-utils/cosmic-ctl/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/cosmic-utils/cosmic-ctl",

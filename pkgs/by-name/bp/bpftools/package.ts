@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "bpftools",
       version: nix.thunk(() => nix.attr(linuxHeaders, "version")),
       src: nix.thunk(() => nix.attr(linuxHeaders, "src")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "make -C bpftool install\ninstall -Dm755 -t $out/bin bpf_asm\ninstall -Dm755 -t $out/bin bpf_dbg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/libbpf/bpftool",
         description: "Debugging/program analysis tools for the eBPF subsystem",
         license: nix.thunk(() => [

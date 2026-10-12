@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const install = nix.arg($, "install");
   const include = nix.arg($, "include");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       noLibc: true,
       path: "lib/csu",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "nolibstatic-support.patch",
             url: "https://marc.info/?l=openbsd-tech&m=171972639411562&q=raw",
             hash: "sha256-ZMegMq/A/SeFp8fofIyF0AA0IUo/11ZgKxg/UNT4z3E=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, openbsdSetupHook, makeMinimal, install]),
       buildInputs: nix.thunk(() => [include]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
       extraPaths: nix.thunk(() => ["libexec/ld.so"]),

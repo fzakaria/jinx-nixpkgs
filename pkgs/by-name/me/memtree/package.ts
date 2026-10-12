@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "memtree",
       version: "0-unstable-2025-06-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicoonoclaste",
           repo: "memtree",
           rev: "ad1a7d1e4fa5f195c2aa1012101d01ab580a05e8",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-v"]),
       pythonImportsCheck: nix.thunk(() => ["memtree"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Render cgroups tree annotated by memory usage",
         homepage: "https://github.com/nbraud/memtree",
         maintainers: nix.thunk(() => (() => {

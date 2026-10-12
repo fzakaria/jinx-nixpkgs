@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), sysfsValue, nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), sysfsAttrs)))));
   })());
   const sysfsValue = nix.thunk(() => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "sysfs value",
       description: "sysfs attribute value",
       descriptionClass: "noun",
@@ -91,19 +91,19 @@ export default nix.lambda((args) => (() => {
 `);
         })(), cfg)))))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         kernel: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           sysfs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   freeformType: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "attrsOf"), sysfsAttrs), {
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     description: "nested attribute set of null or sysfs attribute values",
                   })),
                 })))),
@@ -115,36 +115,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(cfg, {})), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           paths: nix.thunk(() => nix.update({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "nixos-sysfs@": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "/%I attribute watcher",
-              pathConfig: nix.thunk(() => ({ __proto__: pos$8, PathExistsGlob: "/%I" })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$9, DefaultDependencies: false })),
+              pathConfig: nix.thunk(() => ({ [nix.POS]: pos$8, PathExistsGlob: "/%I" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$9, DefaultDependencies: false })),
             })),
           }, nix.app(listToAttrs, nix.thunk(() => nix.app(mapAttrsToListRecursive, (p) => (v) => (nix.asBool(nix.eq(v, null)) ? [] : nix.app(nameValuePair, nix.thunk(() => nix.str`nixos-sysfs@${nix.app(escapeSystemdPath, nix.thunk(() => nix.app(mkPath, p)))}`), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   overrideStrategy: "asDropin",
                   wantedBy: nix.thunk(() => ["sysinit.target"]),
                   before: nix.thunk(() => ["sysinit.target"]),
                 })))), cfg))))),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "nixos-sysfs@": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "/%I attribute setter",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 DefaultDependencies: false,
                 AssertPathIsMountPoint: "/sys",
                 AssertPathExistsGlob: "/%I",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "systemd-tmpfiles")} --prefix=/sys --create ${tmpfiles}/%i.conf`),
@@ -154,12 +154,12 @@ export default nix.lambda((args) => (() => {
         })),
         warnings: nix.thunk(() => nix.app(mapAttrsToListRecursive, (p) => (v) => (nix.asBool(nix.app(hasGlob, p)) ? nix.str`Attribute path "${nix.app(concatStringsSep, ".", p)}" contains glob patterns. Please ensure that it does not overlap with other paths.` : []), cfg)),
         assertions: nix.thunk(() => nix.app(mapAttrsToListRecursive, (p) => (v) => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => nix.app(all, (n) => nix.eq(nix.app(match, "(\\.\\.?|.*/.*)", n), null), p)),
             message: nix.thunk(() => nix.str`Attribute path "${nix.app(concatStringsSep, ".", p)}" has invalid components.`),
           }), cfg)),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$20, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$20, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=sysfs.ts.map

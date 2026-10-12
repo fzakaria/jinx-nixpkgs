@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keep-preferences.yazi",
       version: "0-unstable-2026-09-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XYenon",
           repo: "keep-preferences.yazi",
           rev: "1e1fa5849a48690ff1398263c9595c31b618fe6f",
           hash: "sha256-1pYrW7TzdkDTyh8uEGYyWROpPK3HxweJJbPxbreaE/w=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keep Yazi manager preferences per tab and per directory",
         homepage: "https://github.com/XYenon/keep-preferences.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

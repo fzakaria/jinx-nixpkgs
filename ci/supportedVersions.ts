@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.thunk(() => nix.builtins.fetchTarball(nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pinned, "nixpkgs"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.attr(from, "url")),
       sha256: nix.thunk(() => nix.sel(pinned, "nixpkgs", "hash")),
     };
     })())));
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$3,
-      config: nix.thunk(() => ({ __proto__: pos$2, allowAliases: false })),
+      [nix.POS]: pos$3,
+      config: nix.thunk(() => ({ [nix.POS]: pos$2, allowAliases: false })),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const lix = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(pkgs, "lixPackageSets")), nix.thunk(() => [

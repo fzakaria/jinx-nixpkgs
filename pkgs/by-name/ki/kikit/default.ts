@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const solidpython = nix.thunk(() => nix.app(callPackage, nix.path(here, "./solidpython"), nix.thunk(() => ({}))));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kikit",
       version: "1.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yaqwsx",
           repo: "KiKit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,11 +77,11 @@ EOF
 `),
       preCheck: "export PATH=$PATH:$out/bin\n\nmake test-system\n\n# pytest needs to run in a subdir. See https://github.com/yaqwsx/KiKit/blob/v1.3.0/Makefile#L43\ncd test/units\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/yaqwsx/KiKit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Automation for KiCAD boards",
         homepage: "https://github.com/yaqwsx/KiKit/",

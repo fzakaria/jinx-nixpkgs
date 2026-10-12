@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rar2hashcat",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashstation",
           repo: "rar2hashcat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./darwin-support.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=implicit-function-declaration -Wno-error=int-conversion")),
       })),
       makeFlags: nix.thunk(() => [
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -D rar2hashcat $out/bin/rar2hashcat\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/hashstation/rar2hashcat/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Processes input RAR files into a format suitable for use with hashcat",
         homepage: "https://github.com/hashstation/rar2hashcat",

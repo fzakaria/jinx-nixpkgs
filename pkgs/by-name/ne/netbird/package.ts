@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
   const netbird_upload = nix.arg($, "netbird-upload");
   const componentName = nix.argOr($, "componentName", () => "client");
   const availableComponents = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     client: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       module: "client",
       binaryName: "netbird",
       license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -55,19 +55,19 @@ export default nix.lambda((args) => (() => {
       hasCompletion: true,
     })),
     ui: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       module: "client/ui",
       binaryName: "netbird-ui",
       license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
     })),
     upload: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       module: "upload-server",
       binaryName: "netbird-upload",
       license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
     })),
     management: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       module: "management",
       binaryName: "netbird-mgmt",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -75,26 +75,26 @@ export default nix.lambda((args) => (() => {
       hasCompletion: true,
     })),
     signal: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       module: "signal",
       binaryName: "netbird-signal",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
       hasCompletion: true,
     })),
     relay: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       module: "relay",
       binaryName: "netbird-relay",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
     })),
     proxy: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       module: "proxy/cmd/proxy",
       binaryName: "netbird-proxy",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
     })),
     combined: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       module: "combined",
       binaryName: "netbird-server",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -102,19 +102,19 @@ export default nix.lambda((args) => (() => {
   }));
   const component = nix.thunk(() => nix.sel(availableComponents, nix.key(nix.force(componentName))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: nix.thunk(() => nix.str`netbird-${componentName}`),
       version: "0.80.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "netbirdio",
           repo: "netbird",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-oZgDYmNzf8UESUEbwn0Br0CaPTNLaEpuiKR2wW5zeGw=",
         })))),
       overrideModAttrs: (final) => (prev) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: nix.thunk(() => nix.str`netbird-${nix.sel(finalAttrs, "version")}-go-modules`),
         dontPnpmConfigure: true,
         preBuild: null,
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(componentName, "ui")), nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11, wails3, imagemagick])))),
       pnpmRoot: "client/ui/frontend",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname: "netbird",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -167,9 +167,9 @@ substituteInPlace $out/share/applications/netbird.desktop \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(component, "binaryName")}`),
       versionCheckProgramArg: nix.thunk(() => nix.selOr(component, () => "version", "versionCheckProgramArg")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), nix.thunk(() => nix.eq(componentName, "client")), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             nixos: nix.thunk(() => nix.sel(nixosTests, "netbird")),
             "netbird-management": netbird_management,
             "netbird-relay": netbird_relay,
@@ -178,13 +178,13 @@ substituteInPlace $out/share/applications/netbird.desktop \\
             "netbird-upload": netbird_upload,
             "netbird-proxy": netbird_proxy,
           }))), nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), nix.thunk(() => nix.eq(componentName, "relay")), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             nixos: nix.thunk(() => nix.sel(nixosTests, "netbird-relay")),
           }))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         homepage: "https://netbird.io",
         changelog: nix.thunk(() => nix.str`https://github.com/netbirdio/netbird/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Connect your devices into a single secure private WireGuard®-based mesh network with SSO/MFA and simple access controls",

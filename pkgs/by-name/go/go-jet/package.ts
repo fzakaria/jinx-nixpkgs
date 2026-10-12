@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "go-jet";
       const version = "2.16.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "go-jet",
           repo: "jet",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "# removing the tests which depend on external data\nrm -rf tests/{sqlite,postgres,mysql}\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/go-jet/jet",
         description: "Type safe SQL builder with code generation and automatic query result data mapping",
         maintainers: nix.thunk(() => (() => {
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jet",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

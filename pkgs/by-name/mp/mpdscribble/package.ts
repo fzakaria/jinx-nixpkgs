@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libmpdclient = nix.arg($, "libmpdclient");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpdscribble",
       version: "0.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.musicpd.org/download/mpdscribble/${nix.sel(finalAttrs, "version")}/mpdscribble-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-IPidlFv1F8TWi/d6d6NZ/bE4QqsSlejSHtp5vitbNc4=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => nix.concat([libmpdclient, curl, boost, libgcrypt], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), systemdLibs))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MPD client which submits info about tracks being played to a scrobbler",
         homepage: "https://www.musicpd.org/clients/mpdscribble/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

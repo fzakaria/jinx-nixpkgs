@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "smug-gerbil",
     version: "unstable-2020-12-12",
     "git-version": "0.4.20",
     softwareName: "Smug-Gerbil",
     "gerbil-package": "drewc/smug",
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "drewc",
       repo: "smug-gerbil",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       sha256: "13fdijd71m3fzp9fw9xp6ddgr38q1ly6wnr53salp725w6i4wqid",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Super Monadic Über Go-into : Parsers and Gerbil Scheme",
       homepage: "https://github.com/drewc/smug-gerbil",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

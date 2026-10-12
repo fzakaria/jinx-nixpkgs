@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const clang_unwrapped = nix.thunk(() => nix.attr(llvmPackages, "clang-unwrapped"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "intercept-build",
       version: nix.thunk(() => nix.attr(clang_unwrapped, "version")),
       pyproject: false,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p \"$out/bin\"\ninstall \"$src/intercept-build\" \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "intercepts the build process to generate a compilation database",
         homepage: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/tree/llvmorg-${nix.sel(finalAttrs, "version")}/clang/tools/scan-build-py/`),
         mainProgram: "intercept-build",

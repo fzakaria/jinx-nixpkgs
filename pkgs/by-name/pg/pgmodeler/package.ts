@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pgmodeler",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nullptrlabs",
           repo: "pgmodeler",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cups, libxml2]))))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pgModeler",
             exec: "pgmodeler",
             icon: "pgmodeler",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("install -Dm444 apps/pgmodeler/res/windows_ico.ico $out/share/icons/hicolor/256x256/apps/pgmodeler.ico\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nfor item in pgmodeler pgmodeler-{cli,se,ch}\ndo\n  ln -s $out/Applications/pgModeler.app/Contents/MacOS/$item $out/bin\ndone\n"))),
       dontWrapQtApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Database modeling tool for PostgreSQL",
         homepage: "https://pgmodeler.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

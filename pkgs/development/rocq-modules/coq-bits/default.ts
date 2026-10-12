@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "coq-bits",
       repo: "bits",
       version: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(mathcomp, "version")),
           ]), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.16")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isLt"), "2.0")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
               out: "1.1.0",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.15")),
                 nix.thunk(() => nix.app(nix.lookup(w, "isLt"), "2.0")),
@@ -50,13 +50,13 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "1.1.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-TCw1kSXeW0ysIdLeNr+EGmpGumEE9i8tinEMp57UXaE=",
         })),
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256:0nv5mdgrd075dpd8bc7h0xc5i95v0pkm0bfyq5rj6ii1s54dwcjl",
         })),
       })),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         stdlib,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Formalization of bitset operations in Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

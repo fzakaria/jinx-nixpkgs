@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "napalm-ros",
       version: "1.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "napalm-automation-community",
           repo: "napalm-ros",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_method_signatures"]),
       pythonImportsCheck: nix.thunk(() => ["napalm_ros"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MikroTik RouterOS NAPALM driver",
         homepage: "https://github.com/napalm-automation-community/napalm-ros",
         changelog: nix.thunk(() => nix.str`https://github.com/napalm-automation-community/napalm-ros/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

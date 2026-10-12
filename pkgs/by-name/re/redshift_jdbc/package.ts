@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchMavenArtifact = nix.arg($, "fetchMavenArtifact");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redshift-jdbc",
       version: "2.1.0.3",
       src: nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           artifactId: "redshift-jdbc42",
           groupId: "com.amazon.redshift",
           sha256: "sha256-TO/JXh/pZ7tUZGfHqkzgZx18gLnISvnPVyGavzFv6vo=",
@@ -28,7 +28,7 @@ install -m444 -D $src/share/java/redshift-jdbc42-${nix.sel(finalAttrs, "version"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/aws/amazon-redshift-jdbc-driver/",
         description: "JDBC 4.2 driver for Amazon Redshift allowing Java programs to connect to a Redshift database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

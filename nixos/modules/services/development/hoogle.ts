@@ -27,29 +27,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hoogle"));
   const hoogleEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "hoogle",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(cfg, "haskellPackages", "ghcWithHoogle"), nix.thunk(() => nix.sel(cfg, "packages")))),
       ]),
     }))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         hoogle: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Haskell documentation server")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "Port number Hoogle will be listening to.\n",
             })))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "functionTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
               default: (hp) => [],
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "hp: []")),
@@ -57,26 +57,26 @@ export default nix.lambda((args) => (() => {
               description: "The Haskell packages to generate documentation for.\n\nThe option value is a function that takes the package set specified in\nthe {var}`haskellPackages` option as its sole parameter and\nreturns a list of packages.\n",
             })))),
           haskellPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Which haskell package set to use.",
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => nix.sel(pkgs, "haskellPackages")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.haskellPackages")),
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Url for hoogle logo",
               default: "https://hoogle.haskell.org",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Set the host to bind on.",
               default: "127.0.0.1",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--no-security-headers"]),
@@ -86,17 +86,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             hoogle: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Haskell documentation server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.str`${hoogleEnv}/bin/hoogle server --local --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} --home ${nix.sel(cfg, "home")} --host ${nix.sel(cfg, "host")} \\
   ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraOptions")))}

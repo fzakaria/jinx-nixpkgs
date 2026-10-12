@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const fp = nix.arg($, "fp");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "dir",
       version: "0.0.1-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [fp]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library that provides a consistent API for common system, user and application directories consistently on all platforms",
         homepage: "https://github.com/reasonml/reason-native",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/dir",

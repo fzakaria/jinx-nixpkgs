@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atkinson-monolegible",
       version: "0-unstable-2023-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hylian",
           repo: "atkinson-monolegible",
           rev: "4d0e404118dece699ca926c310588316bfcd5ac2",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -Dm644 AtkinsonMonolegible.ttf -t $out/share/fonts/truetype\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Hylian/atkinson-monolegible",
         description: "Mono variant of the Atkinson Hyperlegible typeface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

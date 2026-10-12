@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const gtksourceview3 = nix.arg($, "gtksourceview3");
   const launchScript = nix.thunk(() => nix.app(writeScript, "launch.sh", "cd $(dirname $0)\n./__main__.py $*\n"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "textext",
       version: "1.13.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textext",
           repo: "textext",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-fEPSpI9uO+r3d5p+gV1XcorYvUPw0sLgG9nHUPeTtYs=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, pdflatex: pdflatex, lualatex: lualatex })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, pdflatex: pdflatex, lualatex: lualatex })))),
         nix.path(here, "./interpreter.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3, gobject_introspection]),
@@ -91,7 +91,7 @@ wrapPythonProgramsIn "$out/share/inkscape/extensions/textext" "$out \${pythonPat
 cp ${launchScript} $out/share/inkscape/extensions/textext/launch.sh
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Re-editable LaTeX graphics for Inkscape",
         homepage: "https://textext.github.io/textext/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Tirex";
       const version = "0.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstreetmap",
           repo: "tirex",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([GD, IPCShareLite, JSON, LWP, mapnik, boost], nix.sel(mapnik, "buildInputs")));
       const installPhase = "install -m 755 -d $out/usr/libexec\nmake install DESTDIR=$out INSTALLOPTS=\"\"\nmv $out/$out/lib $out/$out/share $out\nrmdir $out/$out $out/nix/store $out/nix\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for running a map tile server",
         homepage: "https://wiki.openstreetmap.org/wiki/Tirex",
         maintainers: nix.thunk(() => (() => {
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`PREFECT_SERVER_DATABASE_USER=${nix.sel(cfg, "databaseUser")}`),
   ]);
   const hardening = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     DynamicUser: true,
     ProtectSystem: "strict",
     ProtectHome: true,
@@ -75,84 +75,84 @@ export default nix.lambda((args) => (() => {
     MemoryAccounting: true,
   }));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         prefect: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: bool,
               default: false,
               description: "enable prefect server and worker services",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prefect", nix.thunk(() => ({})))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: str,
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "Prefect server host",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: port,
               default: 4200n,
               description: "Prefect server port",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: path,
               default: "/var/lib/prefect-server",
               description: "Working directory for the server. Note that Prefect's own state -\nincluding the SQLite database - lives in the unit's `StateDirectory`\nrather than here, since the service runs as a `DynamicUser`.\n",
             })))),
           database: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["sqlite", "postgres"]))),
               default: "sqlite",
               description: "which database to use for prefect server: sqlite or postgres",
             })))),
           databaseHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: str,
               default: "localhost",
               description: "database host for postgres only",
             })))),
           databasePort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: str,
               default: "5432",
               description: "database port for postgres only",
             })))),
           databaseName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: str,
               default: "prefect",
               description: "database name for postgres only",
             })))),
           databaseUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: str,
               default: "postgres",
               description: "database user for postgres only",
             })))),
           databasePasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nullOr, str)),
               default: null,
               example: "/run/secrets/prefect-database-password",
               description: "Path to a file containing the postgres password as an environment\nvariable assignment:\n\n```\nPREFECT_SERVER_DATABASE_PASSWORD=supersecret\n```\n\nStored outside the nix store, read by systemd as an `EnvironmentFile`.\n\nLeave `null` when postgres authenticates the server some other way,\nsuch as peer authentication over a unix socket.\n",
             })))),
           workerPools: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       installPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["always", "if-not-present", "never", "prompt"]))),
                           default: "always",
                           description: "install policy for the worker (always, if-not-present, never, prompt)",
@@ -163,7 +163,7 @@ export default nix.lambda((args) => (() => {
               description: "define a set of worker pools with submodule config. example:\nworkerPools.my-pool = {\n  installPolicy = \"never\";\n};\n",
             })))),
           baseUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: str,
               default: nix.thunk(() => nix.str`http://${localHost}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"http://${host}:${toString port}\"")),
@@ -174,18 +174,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => nix.update({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "prefect-server": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "prefect server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => nix.update(hardening, {
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 StateDirectory: "prefect-server",
                 Environment: nix.thunk(() => nix.concat([
                   "PREFECT_HOME=%S/prefect-server",
@@ -202,13 +202,13 @@ export default nix.lambda((args) => (() => {
             })),
           }, nix.app(nix.sel(lib, "concatMapAttrs"), (poolName) => (poolCfg) => nix.attrsDyn({}, [
               [nix.str`prefect-worker-${poolName}`, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: nix.thunk(() => nix.str`prefect worker for pool '${poolName}'`),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target", "prefect-server.service"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 serviceConfig: nix.thunk(() => nix.update(hardening, {
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   StateDirectory: nix.thunk(() => nix.str`prefect-worker-${poolName}`),
                   Environment: nix.thunk(() => [
                     nix.thunk(() => nix.str`PREFECT_HOME=%S/prefect-worker-${poolName}`),
@@ -226,7 +226,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];

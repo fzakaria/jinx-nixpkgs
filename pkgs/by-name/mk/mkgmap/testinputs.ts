@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const res = nix.arg($_1, "res");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         hash: hash,
         url: nix.thunk(() => nix.str`https://www.mkgmap.org.uk/testinput/${res}`),
         name: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["/"]), nix.thunk(() => ["__"]), res)),
@@ -36,72 +36,72 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return [
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         res: "osm/lon1.osm.gz",
         hash: "sha256-Oze0loYeIZQ3w1cB2HeXFPDgzuU4s+T78k96BY+hGuU=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         res: "osm/uk-test-1.osm.gz",
         hash: "sha256-0zVSP5yTmJUxYbXxFqBAn0pb08L3Z3gwilsKYeV8tkk=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         res: "osm/uk-test-2.osm.gz",
         hash: "sha256-ROMgljyxYD7bwH1nXqoUZ1H8gM9e9dpoKCHO1xgGvBY=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         res: "osm/is-in-samples.osm",
         hash: "sha256-Ay7o1w2TpOpIqPGrLuIcMYtK8MDN0GbkSkX7IvByeKM=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         res: "mp/test1.mp",
         hash: "sha256-Ql5tdz3TMcRl/8k20Jek6g3W92/itpnqw24wgj7I07c=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         res: "img/63240001.img",
         hash: "sha256-mBxOZyJlHZJ/hEmqqO4eVfoORGzoF8S/2jpgQJJ/uPI=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         res: "img/63240002.img",
         hash: "sha256-Lijc6+JKaYq1xL64wcAnEnPhXOmWMjA9fZkaHif3O4o=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         res: "img/63240003.img",
         hash: "sha256-4Wu1svN474O145ONM45pMR3GjtQpII00VGjiaTbur6Y=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         res: "hgt/N00W090.hgt.zip",
         hash: "sha256-9nU9oczkWS1Cqc8SyQmo1QaYK+6jr+Wq+PoQ95YBC5o=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         res: "hgt/N00W091.hgt.zip",
         hash: "sha256-PeT2PcbuPr+E4dzAme0TJqufbjNZn2wDkhiccCQncpQ=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         res: "hgt/S01W090.hgt.zip",
         hash: "sha256-UqPnJmY51YamU/EGbCQVFdoh890HpFN//XadC3PS7zM=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         res: "hgt/S01W091.hgt.zip",
         hash: "sha256-dvHxDgjKhmkQSmPPW8CtbsQWYtoYYuk6dTUlEtXAqHw=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         res: "hgt/S02W090.hgt.zip",
         hash: "sha256-tjjYMxW6lWvWONoWFwTjHn+EhJ7OmcjGwVvM3t4J6GA=",
       })))),
     nix.thunk(() => nix.app(fetchTestInput, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         res: "hgt/S02W091.hgt.zip",
         hash: "sha256-uVUKhM5eIS/STGxwgzDcXITRTqvILtHrS8mmXVB7l9c=",
       })))),

@@ -19,38 +19,38 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "moralerspace",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/moralerspace/releases/download/v${nix.sel(finalAttrs, "version")}/Moralerspace_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-RWpJt59Yvt/nhu6xeyR3eJKRaw+477ZXAPztt7Clt7Q=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/moralerspace\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 attrPath: "moralerspace-hw",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 attrPath: "moralerspace-hwjpdoc",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 attrPath: "moralerspace-jpdoc",
                 extraArgs: nix.thunk(() => ["--version=skip"]),
               })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Composite font of Monaspace and IBM Plex Sans JP",
         homepage: "https://github.com/yuru7/moralerspace",
         changelog: nix.thunk(() => nix.str`https://github.com/yuru7/moralerspace/releases/tag/v${nix.sel(finalAttrs, "version")}`),

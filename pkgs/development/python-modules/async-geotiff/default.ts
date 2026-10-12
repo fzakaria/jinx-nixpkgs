@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const jsonschema = nix.arg($, "jsonschema");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "async-geotiff",
       version: "0.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "developmentseed",
           repo: "async-geotiff",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       checkInputs: nix.thunk(() => [jsonschema, morecantile, rasterio, pydantic, pytest_asyncio]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, async GeoTIFF and COG reader for Python",
         homepage: "https://developmentseed.org/async-geotiff/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

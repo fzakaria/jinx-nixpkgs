@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
-  const hwloc_1 = nix.thunk(() => nix.app(nix.sel(args_1, "hwloc", "override"), nix.thunk(() => ({ __proto__: pos$1, enableCuda: false }))));
+  const hwloc_1 = nix.thunk(() => nix.app(nix.sel(args_1, "hwloc", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableCuda: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "onetbb",
       version: "2022.3.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "uxlfoundation",
           repo: "oneTBB",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_NAME_DIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`))),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), "--undefined-version")),
         HWLOC_SYNTHETIC: "node:1 core:1 pu:1",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "oneAPI Threading Building Blocks",
         homepage: "https://uxlfoundation.github.io/oneTBB/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

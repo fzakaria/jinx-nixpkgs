@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-linkcheck",
       version: "unstable-2021-08-24",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "byrnereese",
           repo: "linkchecker-mkdocs",
           rev: "a75d765b0ec564e5ed0218880ed0b5ab4b973917",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [aiohttp, requests]),
       pythonImportsCheck: nix.thunk(() => ["mkdocs_linkcheck"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Validate links in Markdown files for static site generators like MkDocs, Hugo or Jekyll",
         mainProgram: "mkdocs-linkcheck",
         longDescription: "This is not a MkDocs plugin, but a companion tool that is useful to validate links in Markdown files for\nstatic site generators like MkDocs, Hugo or Jekyll. It can be used with any text files containing links.\n",

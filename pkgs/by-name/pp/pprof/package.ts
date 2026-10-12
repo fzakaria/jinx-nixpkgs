@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libllvm = nix.arg($, "libllvm");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pprof",
       version: "0-unstable-2026-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "pprof",
           rev: "d6c3cb2f37ec22719bbaf5eb031d9a46635cb5b2",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "rm -rf browsertests   # somewhat independent module to ignore.\n",
       vendorHash: "sha256-nGBPg0OV6sOSpKEY+EPt9v5eIm/3OrxNYLJDOcdDwio=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for visualization and analysis of profiling data",
         homepage: "https://github.com/google/pprof",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

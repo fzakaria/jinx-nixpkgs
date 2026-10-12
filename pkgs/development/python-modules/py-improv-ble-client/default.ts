@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "py-improv-ble-client",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["improv_ble_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to provision devices which implement Improv via BLE",
         homepage: "https://github.com/home-assistant-libs/py-improv-ble-client",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/py-improv-ble-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "torchbox",
           repo: "django-libsass",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ ${nix.sel(python, "interpreter")} ./runtests.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django-compressor filter to compile SASS files using libsass",
         homepage: "https://github.com/torchbox/django-libsass",
         changelog: nix.thunk(() => nix.str`https://github.com/torchbox/django-libsass/blob/${nix.sel(src, "rev")}/CHANGELOG.txt`),
@@ -45,7 +45,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

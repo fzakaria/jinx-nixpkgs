@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const python3Packages = nix.thunk(() => nix.attr(home_assistant, "python3Packages"));
   const manifestRequirementsCheckHook = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./manifest-requirements-check-hook.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       makeSetupHook: makeSetupHook,
       python3Packages: python3Packages,
     }))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(python3Packages, "buildPythonPackage")),
       excludeDrvArgNames: nix.thunk(() => ["meta", "nativeBuildInputs", "passthru"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         const domain = nix.arg($_1, "domain");
         const version = nix.arg($_1, "version");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.str`${owner}/${domain}`),
           version: version,
           pyproject: false,
@@ -58,10 +58,10 @@ runHook postInstall
             const w = nix.withScope(nix.thunk(() => nix.sel(home_assistant, "python3Packages")), null);
             return nix.concat([manifestRequirementsCheckHook, nix.thunk(() => nix.lookup(w, "packaging"))], nix.selOr(args_2, () => [], "nativeBuildInputs"));
           })()),
-          passthru: nix.thunk(() => nix.update({ __proto__: pos$2, isHomeAssistantComponent: true }, nix.selOr(args_2, () => ({}), "passthru"))),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, isHomeAssistantComponent: true }, nix.selOr(args_2, () => ({}), "passthru"))),
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(home_assistant, "meta"));
-            return { __proto__: pos$3, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+            return { [nix.POS]: pos$3, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
           })(), nix.selOr(args_2, () => ({}), "meta"))),
         };
       })(), formals$2),

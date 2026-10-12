@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simh";
       const version = "3.11-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simh",
           repo: "simh",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [SDL2, SDL2_ttf, libpcap, vde2, pcre2]);
       const dontConfigure = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon"]))),
       }));
       const makeFlags = nix.thunk(() => [
@@ -53,7 +53,7 @@ runHook postInstall
 `);
       const postInstall = "(cd $out/bin; for i in *; do ln -s $i simh-$i; done)\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://simh.trailing-edge.com/",
         description: "Collection of simulators of historic hardware",
         longDescription: "SimH (History Simulator) is a collection of simulators for historically\nsignificant or just plain interesting computer hardware and software from\nthe past. The goal of the project is to create highly portable system\nsimulators and to publish them as freeware on the Internet, with freely\navailable copies of significant or representative software.\n",
@@ -68,7 +68,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

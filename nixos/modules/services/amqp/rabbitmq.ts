@@ -47,78 +47,78 @@ export default nix.lambda((args) => (() => {
   const config_file = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rabbitmq.conf", config_file_content));
   const advanced_config_file = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "advanced.config", nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "rabbitmq", "cookie"]), "This option wrote the Erlang cookie to the store, while it should be kept secret.\nPlease remove it from your NixOS configuration and deploy a cookie securely instead.\nThe renamed `unsafeCookie` must ONLY be used in isolated non-production environments such as NixOS VM tests.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         rabbitmq: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the RabbitMQ server, an Advanced Message\nQueuing Protocol (AMQP) broker.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rabbitmq-server", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "127.0.0.1",
               example: "",
               description: "IP address on which RabbitMQ will listen for AMQP\nconnections.  Set to the empty string to listen on all\ninterfaces.  Note that RabbitMQ creates a user named\n`guest` with password\n`guest` by default, so you should delete\nthis user if you intend to allow external access.\n\nTogether with 'port' setting it's mostly an alias for\nconfigItems.\"listeners.tcp.1\" and it's left for backwards\ncompatibility with previous version of this module.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: 5672n,
               description: "Port on which RabbitMQ will listen for AMQP connections.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/rabbitmq",
               description: "Data directory for rabbitmq.\n",
             })))),
           unsafeCookie: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Erlang cookie is a string of arbitrary length which must\nbe the same for several nodes to be allowed to communicate.\nLeave empty to generate automatically.\n\nSetting the cookie via this option exposes the cookie to the store, which\nis not recommended for security reasons.\nOnly use this option in an isolated non-production environment such as\nNixOS VM tests.\n",
             })))),
           configItems: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"auth_backends.1.authn\" = \"rabbit_auth_backend_ldap\";\n  \"auth_backends.1.authz\" = \"rabbit_auth_backend_internal\";\n}\n")),
               description: "Configuration options in RabbitMQ's new config file format,\nwhich is a simple key-value format that can not express nested\ndata structures. This is known as the {file}`rabbitmq.conf` file,\nalthough outside NixOS that filename may have Erlang syntax, particularly\nprior to RabbitMQ 3.7.0.\n\nIf you do need to express nested data structures, you can use\n`config` option. Configuration from `config`\nwill be merged into these options by RabbitMQ at runtime to\nform the final configuration.\n\nSee <https://www.rabbitmq.com/configure.html#config-items>\nFor the distinct formats, see <https://www.rabbitmq.com/configure.html#config-file-formats>\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Verbatim advanced configuration file contents using the Erlang syntax.\nThis is also known as the {file}`advanced.config` file or the old config format.\n\n`configItems` is preferred whenever possible. However, nested\ndata structures can only be expressed properly using the `config` option.\n\nThe contents of this option will be merged into the `configItems`\nby RabbitMQ at runtime to form the final configuration.\n\nSee the second table on <https://www.rabbitmq.com/configure.html#config-items>\nFor the distinct formats, see <https://www.rabbitmq.com/configure.html#config-file-formats>\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "The names of plugins to enable",
             })))),
           pluginDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "The list of directories containing external plugins",
             })))),
           managementPlugin: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the management plugin")),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: 15672n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "On which port to run the management plugin\n",
@@ -128,21 +128,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
-          epmd: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+          [nix.POS]: pos$20,
+          epmd: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
           rabbitmq: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             configItems: nix.thunk(() => nix.update({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "listeners.tcp.1": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`))),
             }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "managementPlugin", "enable")), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 "management.tcp.port": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "managementPlugin", "port")))),
                 "management.tcp.ip": nix.thunk(() => nix.sel(cfg, "listenAddress")),
               }))))),
@@ -150,11 +150,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rabbitmq: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "RabbitMQ server user",
               home: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
               createHome: true,
@@ -163,19 +163,19 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rabbitmq: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "rabbitmq")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             rabbitmq: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "RabbitMQ Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "epmd.socket"]),
@@ -185,7 +185,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "coreutils")),
               ]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 RABBITMQ_MNESIA_BASE: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/mnesia`),
                 RABBITMQ_LOGS: "-",
                 SYS_PREFIX: "",
@@ -193,9 +193,9 @@ export default nix.lambda((args) => (() => {
                 RABBITMQ_PLUGINS_DIR: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.sel(cfg, "pluginDirs")))),
                 RABBITMQ_ENABLED_PLUGINS_FILE: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "enabled_plugins", nix.thunk(() => nix.str`[ ${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "plugins")))} ].
 `))),
-              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), "")), nix.thunk(() => ({ __proto__: pos$27, RABBITMQ_ADVANCED_CONFIG_FILE: advanced_config_file }))))),
+              }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), "")), nix.thunk(() => ({ [nix.POS]: pos$27, RABBITMQ_ADVANCED_CONFIG_FILE: advanced_config_file }))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/rabbitmq-server`),
                 ExecStop: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/rabbitmqctl shutdown`),
                 User: "rabbitmq",

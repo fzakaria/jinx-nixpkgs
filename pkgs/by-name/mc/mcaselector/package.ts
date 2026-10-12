@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const jre = nix.arg($, "jre");
   const version = "2.9";
-  const jre$ = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jre$ = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/Querz/mcaselector/raw/${version}/installer/linux/icon.png`),
       hash: "sha256-nUHTxFHKhp//AL3/B43iXPmp/gcCQPgrEqGAV23U/Vs=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mcaselector",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/Querz/mcaselector/releases/download/${nix.sel(finalAttrs, "version")}/mcaselector-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-jjXqpqURnOcRtTUwwiqqxTEzLo/f/aI1fRbrb1Iycmc=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [jre$, makeWrapper, wrapGAppsHook3, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "mcaselector",
             desktopName: "MCA Selector",
             comment: "Select, edit, and export chunks of your Minecraft world",
@@ -65,7 +65,7 @@ runHook postInstall
   \${gappsWrapperArgs[@]}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/Querz/mcaselector",
         description: "Tool to select chunks from Minecraft worlds for deletion or export",
         mainProgram: "mcaselector",

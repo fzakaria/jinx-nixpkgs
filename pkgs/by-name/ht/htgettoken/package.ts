@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const scitokens_cpp = nix.arg($, "scitokens-cpp");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "htgettoken",
       version: "2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fermitools",
           repo: "htgettoken",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ wrapProgram $out/bin/httokensh \\
     --prefix PATH : $out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnused, jq]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gets OIDC authentication tokens for High Throughput Computing via a Hashicorp vault server ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/fermitools/htgettoken",

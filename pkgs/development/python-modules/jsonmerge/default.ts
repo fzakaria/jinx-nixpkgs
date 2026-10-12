@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jsonmerge",
       version: "1.9.2",
       __structuredAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-xDdX4BgLDhm3rkwTCtQqB8xYDDGRL2H0gj6Ory+jlKM=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [jsonschema]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Merge a series of JSON documents",
         homepage: "https://github.com/avian2/jsonmerge",
         changelog: nix.thunk(() => nix.str`https://github.com/avian2/jsonmerge/blob/jsonmerge-${nix.sel(finalAttrs, "version")}/ChangeLog`),

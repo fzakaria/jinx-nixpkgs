@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const rofi = nix.arg($, "rofi");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plasma-hud",
       version: "22.01.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zren",
           repo: "plasma-hud",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i \"s:/usr/lib/plasma-hud:$out/bin:\" etc/xdg/autostart/plasma-hud.desktop\n",
       installPhase: "runHook preInstall\n\ninstall -Dm555 usr/lib/plasma-hud/plasma-hud -t $out/bin\ncp -r etc -t $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/Zren/plasma-hud",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

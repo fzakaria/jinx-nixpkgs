@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "nvidia-system-monitor-qt",
       desktopName: "NVIDIA System Monitor",
       icon: "qnvsm",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvidia-system-monitor-qt";
       const version = "1.6-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "congard",
           repo: "nvidia-system-monitor-qt",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         const mainProgram = "qnvsm";
         const platforms = nix.thunk(() => nix.sel(lib, "platforms", "linux"));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description,
           homepage,
           downloadPage,
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

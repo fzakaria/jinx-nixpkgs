@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libnfnetlink = nix.arg($, "libnfnetlink");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnetfilter_conntrack",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://netfilter.org/projects/libnetfilter_conntrack/files/libnetfilter_conntrack-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-dp0+r1f6T72wXdEoc7bLmlvnhE2JN+Iitkc4HUQoSCA=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace library providing an API to the in-kernel connection tracking state table",
         longDescription: "libnetfilter_conntrack is a userspace library providing a programming interface (API) to the\nin-kernel connection tracking state table. The library libnetfilter_conntrack has been\npreviously known as libnfnetlink_conntrack and libctnetlink. This library is currently used\nby conntrack-tools among many other applications\n",
         homepage: "https://netfilter.org/projects/libnetfilter_conntrack/",

@@ -22,25 +22,25 @@ export default nix.lambda((args) => (() => {
   const pypy3 = nix.arg($, "pypy3");
   const usePyPy = nix.argOr($, "usePyPy", () => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "icestorm",
       version: "0-unstable-2025-06-03",
       passthru: nix.thunk(() => (() => {
         const pythonPkg = nix.thunk(() => (nix.asBool((nix.asBool(false) && nix.asBool(usePyPy))) ? nix.force(pypy3) : nix.force(python3)));
         const pythonInterp = nix.thunk(() => nix.sel(pythonPkg, "interpreter"));
         const tests = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           examples: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               icestorm: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         }));
-        return { __proto__: pos$3, pythonPkg, pythonInterp, tests };
+        return { [nix.POS]: pos$3, pythonPkg, pythonInterp, tests };
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "YosysHQ",
           repo: "icestorm",
           rev: "f31c39cc2eadd0ab7f29f34becba1348ae9f8721",
@@ -63,7 +63,7 @@ done
 substituteInPlace icebox/Makefile --replace-fail "sed -i ''" "sed -i"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Documentation and tools for Lattice iCE40 FPGAs",
         longDescription: "Project IceStorm aims at reverse engineering and\ndocumenting the bitstream format of Lattice iCE40\nFPGAs and providing simple tools for analyzing and\ncreating bitstream files.\n",
         homepage: "https://github.com/YosysHQ/icestorm/",

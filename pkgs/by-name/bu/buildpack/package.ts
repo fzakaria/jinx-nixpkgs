@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pack",
       version: "0.40.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buildpacks",
           repo: "pack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd pack \\\n  --zsh $(PACK_HOME=$PWD $out/bin/pack completion --shell zsh) \\\n  --bash $(PACK_HOME=$PWD $out/bin/pack completion --shell bash) \\\n  --fish $(PACK_HOME=$PWD $out/bin/pack completion --shell fish)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://buildpacks.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/buildpacks/pack/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "CLI for building apps using Cloud Native Buildpacks",

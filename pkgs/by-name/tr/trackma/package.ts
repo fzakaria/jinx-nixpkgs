@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const withGTK = nix.argOr($, "withGTK", () => false);
   const withQT = nix.argOr($, "withQT", () => false);
   const mkDesktopItem = (name) => (desktopName) => (comment) => (terminal) => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       desktopName: desktopName,
       comment: comment,
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Network"]),
     })));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "trackma",
       version: "0.10.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "z411",
           repo: "trackma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,9 +74,9 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["trackma"]),
       postDist: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withQT)), "rm $out/bin/trackma-qt"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGTK)), "rm $out/bin/trackma-gtk"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withCurses)), "rm $out/bin/trackma-curses")))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/z411/trackma",
         description: "Open multi-site list manager for Unix-like systems (ex-wMAL)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

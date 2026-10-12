@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cry",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-cry",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/dune --replace-warn bytes \"\"\n",
       minimalOCamlVersion: "4.12",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/savonet/ocaml-cry",
         description: "OCaml client for the various icecast & shoutcast source protocols",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

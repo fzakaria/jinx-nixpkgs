@@ -36,27 +36,27 @@ export default nix.lambda((args) => (() => {
   const splitCamelCase = nix.thunk(() => nix.app(splitStringBy, (_prev) => (curr) => !nix.eq(nix.app(match, "[A-Z]", curr), null), true));
   const toKebabCase = (camelCase) => nix.app(concatMapStringsSep, "-", toLower, nix.thunk(() => nix.app(splitCamelCase, camelCase)));
   const optionFormat = (optionName) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     option: nix.thunk(() => nix.str`--${nix.app(toKebabCase, optionName)}`),
     sep: "=",
     explicitBool: false,
   });
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     mkCliDerivationBuilder: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const package$ = nix.arg($_1, "package");
       const exe = nix.arg($_1, "exe");
       const attrPrefix = nix.arg($_1, "attrPrefix");
       return nix.app(extendMkDerivation, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
           extendDrvArgs: (finalAttrs) => nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const args_3 = args_2;
             const nativeBuildInputs = nix.argOr($_2, "nativeBuildInputs", () => []);
             return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => nix.concat([package$], nativeBuildInputs)),
               buildCommand: "runHook \"pre$hookName\"\n\nechoCmd \"$exeName flags\" \"${exeFlags[@]}\"\n\"$exe\" \"${exeFlags[@]}\"\n\nrunHook \"post$hookName\"\n",
               exe: exe,
@@ -71,11 +71,11 @@ export default nix.lambda((args) => (() => {
           })(), formals$3),
         })));
     })(), formals$2),
-    mkAutopenDerivation: nix.thunk(() => nix.app(mkCliDerivationBuilder, nix.thunk(() => ({ __proto__: pos$4, package: autopen, exe: "autopen", attrPrefix: "autopen" })))),
+    mkAutopenDerivation: nix.thunk(() => nix.app(mkCliDerivationBuilder, nix.thunk(() => ({ [nix.POS]: pos$4, package: autopen, exe: "autopen", attrPrefix: "autopen" })))),
     hideDerivation: (drv) => (() => {
       nix.assert_((nix.asBool(nix.app(isDerivation, drv)) && nix.asBool(nix.eq(nix.sel(drv, "outputs"), ["out"]))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/au/autopen/internal.nix:125:5");
       const hiddenDrv = nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.attr(drv, "type")),
         name: nix.thunk(() => nix.attr(drv, "name")),
         system: nix.thunk(() => nix.attr(drv, "system")),

@@ -14,27 +14,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
-  const arch_table = nix.thunk(() => ({ __proto__: pos$1, "x86_64-linux": "linux-x86_64", "i686-linux": "linux-i686" }));
+  const arch_table = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "linux-x86_64", "i686-linux": "linux-i686" }));
   const sha_table = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "d9902aadac4f442992877945da2a6fe8d6ea6b0de314ca8ac0c28dc5f253f7d8",
     "i686-linux": "46deb0a053b4910c4e68737a7b6556ff5360260c8f86652f91a0130445f5c949",
   }));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)));
   const arch = nix.thunk(() => nix.selOr(arch_table, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "essentia-extractor",
       version: "2.1_beta2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://ftp.acousticbrainz.org/pub/acousticbrainz/essentia-extractor-v${nix.sel(finalAttrs, "version")}-${arch}.tar.gz`),
           sha256: nix.thunk(() => nix.selOr(sha_table, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "system")))),
         })))),
       unpackPhase: "unpackFile $src ; export sourceRoot=.",
       installPhase: "mkdir -p $out/bin\ncp streaming_extractor_music $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://acousticbrainz.org/download",
         description: "AcousticBrainz audio feature extractor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

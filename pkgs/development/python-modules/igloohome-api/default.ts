@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pyjwt = nix.arg($, "pyjwt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "igloohome-api",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keithle888",
           repo: "igloohome-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["igloohome_api"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/keithle888/igloohome-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python package for using igloohome's API",
         homepage: "https://github.com/keithle888/igloohome-api",

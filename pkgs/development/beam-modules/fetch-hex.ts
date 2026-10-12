@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
     const sha256 = nix.arg($_1, "sha256");
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pkg,
         version: version,
         dontBuild: true,
         dontConfigure: true,
         dontFixup: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://repo.hex.pm/tarballs/${pkg}-${version}.tar`),
             sha256: sha256,
           })))),

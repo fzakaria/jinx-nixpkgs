@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const canExecuteHost = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "argc",
       version: "1.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sigoden",
           repo: "argc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ installShellCompletion --cmd argc \\
 `),
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(canExecuteHost)), nix.thunk(() => nix.sel(buildPackages, "argc")))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LANG: "C.UTF-8",
         LOCALE_ARCHIVE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(finalAttrs, "finalPackage", "doInstallCheck")) && nix.asBool(!nix.eq(glibcLocales, null)))), nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`))),
       })),
@@ -53,15 +53,15 @@ installShellCompletion --cmd argc \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--argc-version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cross: nix.thunk(() => nix.sel((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? nix.sel(pkgsCross, "gnu64") : nix.sel(pkgsCross, "aarch64-multiplatform")), "argc")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line options, arguments and sub-commands parser for bash",
         mainProgram: "argc",
         homepage: "https://github.com/sigoden/argc",

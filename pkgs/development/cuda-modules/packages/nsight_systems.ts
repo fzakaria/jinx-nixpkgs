@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const libxdamage = nix.arg($, "libxdamage");
   const libxcursor = nix.arg($, "libxcursor");
   const hostDir = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-linux": "host-linux-armv8",
     "x86_64-linux": "host-linux-x64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(backendStdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(backendStdenv, "hostPlatform", "system"))));
   const targetDir = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "aarch64-linux": "target-linux-sbsa-armv8",
     "x86_64-linux": "target-linux-x64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(backendStdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(backendStdenv, "hostPlatform", "system"))));
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
       const qtwebengine = nix.thunk(() => nix.attr(qt, "qtwebengine"));
       const boost = nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13.4")) ? nix.force(boost186) : nix.force(boost178)));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         redistName: "cuda",
         pname: "nsight_systems",
         allowFHSReferences: true,
         outputs: nix.thunk(() => ["out"]),
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rmPatterns: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`${hostDir}/lib{arrow,jpeg}*`),
               nix.thunk(() => nix.str`${hostDir}/lib{ssl,ssh,crypto}*`),
@@ -109,23 +109,23 @@ wrapQtApp "\${!outputBin}/${hostDir}/nsys-ui.bin"
         autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libcuda.so.1", "libnvidia-ml.so.1"]),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             message: "Boost 1.70 is required and available",
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2022.4.2.1")),
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             message: "Qt 5 is required and available",
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2022.4.2.1")) || nix.asBool(!nix.eq(qt5, null)))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             message: "Qt 6 is required and available",
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2022.4.2.1")) || nix.asBool(!nix.eq(qt6, null)))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "System-wide performance analysis and visualization tool",
           longDescription: "NVIDIA Nsight Systems is a system-wide performance analysis tool designed to visualize an application's\nalgorithms, identify the largest opportunities to optimize, and tune to scale efficiently across any quantity or\nsize of CPUs and GPUs, from large servers to our smallest systems-on-a-chip (SoCs).\n",
           homepage: "https://developer.nvidia.com/nsight-systems",

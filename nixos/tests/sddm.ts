@@ -31,28 +31,28 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     default: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "sddm",
         nodes: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           machine: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
             services: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               xserver: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: true,
                 windowManager: nix.thunk(() => ({
-                  __proto__: pos$2,
-                  icewm: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+                  [nix.POS]: pos$2,
+                  icewm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
                 })),
               })),
               displayManager: nix.thunk(() => ({
-                __proto__: pos$5,
-                sddm: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+                [nix.POS]: pos$5,
+                sddm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
                 defaultSession: "none+icewm",
               })),
             })),
@@ -78,28 +78,28 @@ machine.wait_for_window("^IceWM ")
         const $_1 = nix.formals(args_1, formals$3);
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           name: "sddm-autologin",
-          meta: nix.thunk(() => ({ __proto__: pos$10, maintainers: [] })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$10, maintainers: [] })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             machine: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
               services: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 xserver: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   enable: true,
                   windowManager: nix.thunk(() => ({
-                    __proto__: pos$12,
-                    icewm: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+                    [nix.POS]: pos$12,
+                    icewm: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
                   })),
                 })),
                 displayManager: nix.thunk(() => ({
-                  __proto__: pos$16,
-                  sddm: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
-                  autoLogin: nix.thunk(() => ({ __proto__: pos$15, enable: true, user: "alice" })),
+                  [nix.POS]: pos$16,
+                  sddm: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+                  autoLogin: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, user: "alice" })),
                   defaultSession: "none+icewm",
                 })),
               })),

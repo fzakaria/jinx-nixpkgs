@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const libgeneral = nix.arg($, "libgeneral");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usbmuxd2",
       version: "unstable-2023-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tihmstar",
           repo: "usbmuxd2",
           rev: "2ce399ddbacb110bd5a83a6b8232d42c9a9b6e84",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`sbindir=${nix.builtins.placeholder("out")}/bin`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tihmstar/usbmuxd2",
         description: "Socket daemon to multiplex connections from and to iOS devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

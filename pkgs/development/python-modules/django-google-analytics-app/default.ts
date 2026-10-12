@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "praekeltfoundation",
           repo: "django-google-analytics",
           tag: version,
@@ -40,7 +40,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["google_analytics"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django Google Analytics brings the power of server side/non-js Google Analytics to your Django projects",
         homepage: "https://github.com/praekeltfoundation/django-google-analytics/",
         changelog: nix.thunk(() => nix.str`https://github.com/praekeltfoundation/django-google-analytics/releases/tag/${version}`),
@@ -51,7 +51,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

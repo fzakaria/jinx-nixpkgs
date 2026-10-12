@@ -8,7 +8,7 @@ const pos$2 = nix.positions(here + "/macports-patches.nix", [["url", 13, 5], ["h
 export default nix.thunk(() => (() => {
   const url = "https://github.com/macports/macports-ports/raw/abae7e550897dc13b7a48763a7a022b709d8793f/editors/nvi/files";
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "dynamic_lookup-11.patch": "sha256-eXLSMUtslSXLYd1HZRD6pfqcYMIA3EtixWL1yvx4ook=",
     "patch-common_key.h.diff": "sha256-AAO/2lHpmFJMYb9fyQrWnGPaJYLdwhrp87tbHu5hr/k=",
     "patch-dist_port.h.in.diff": "sha256-GPKgIm9pDGtN6CNqbX3+hANkZbYFql5K5JyjCr5TIKI=",
@@ -16,7 +16,7 @@ export default nix.thunk(() => (() => {
     "patch-includes.diff": "sha256-j3V4LmcJEFqnTlTHFZFd8NtycEa+GKM+ZIUwZHjq15w=",
   }));
   return nix.builtins.attrValues(nix.thunk(() => nix.builtins.mapAttrs((n) => (v) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`${url}/${n}`),
         hash: v,
         extraPrefix: "",

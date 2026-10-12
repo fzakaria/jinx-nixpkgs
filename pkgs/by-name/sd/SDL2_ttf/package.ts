@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "SDL2_ttf",
       version: "2.24.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Cyvx57ZWitvbybuSRkP3nZ3tr+Bh+h7Wh9HZrE5FO/0=",
         })))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/libsdl-org/SDL_ttf",
         description: "Support for TrueType (.ttf) font files with Simple Directmedia Layer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

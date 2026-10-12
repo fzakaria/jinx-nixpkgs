@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
 cp -r ${tilt_assets}/* pkg/assets/build/
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "tilt-assets": tilt_assets,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-tilt", nix.thunk(() => nix.str`set -euo pipefail
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} "$@" --override-filename pkgs/by-name/ti/tilt/package.nix tilt
@@ -39,7 +39,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip --no-src tilt.tilt
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Local development tool to manage your developer instance when your team deploys to Kubernetes in production",
         mainProgram: "tilt",
         homepage: "https://tilt.dev/",
@@ -53,7 +53,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip --no-src tilt.tilt
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         src: src_1,
         version: version_1,

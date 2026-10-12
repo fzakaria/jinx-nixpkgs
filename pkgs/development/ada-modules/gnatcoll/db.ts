@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const libpq = nix.arg($, "libpq");
   const libsFor = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     gnatcoll_db2ada: nix.thunk(() => [gnatcoll_sql]),
     gnatinspect: nix.thunk(() => [gnatcoll_sqlite, gnatcoll_readline, gnatcoll_xref]),
     postgres: nix.thunk(() => [gnatcoll_sql, libpq]),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   }));
   const onlyExecutable = nix.thunk(() => nix.builtins.elem(component, nix.thunk(() => ["gnatcoll_db2ada", "gnatinspect"])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.attrsDyn({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "25.0.0",
       pname: nix.thunk(() => (nix.asBool(onlyExecutable) ? nix.builtins.replaceStrings(nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), component) : nix.str`gnatcoll-${component}`)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AdaCore",
           repo: "gnatcoll-db",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(component, "sqlite")), nix.thunk(() => ["GNATCOLL_SQLITE=external"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GNAT Components Collection - Database packages",
         homepage: "https://github.com/AdaCore/gnatcoll-db",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

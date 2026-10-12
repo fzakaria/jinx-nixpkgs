@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libosmoabis = nix.arg($, "libosmoabis");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osmo-hlr",
       version: "1.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "osmo-hlr",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libosmocore, libosmoabis, sqlite]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Osmocom implementation of 3GPP Home Location Register (HLR)",
         homepage: "https://osmocom.org/projects/osmo-hlr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

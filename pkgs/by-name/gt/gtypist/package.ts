@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fortune = nix.arg($, "fortune");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gtypist",
       version: "2.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gtypist/gtypist-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ymGAVOkfHtXvBD/MQ1ALutcByVnDGETUaI/yKEmsJS0=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=gnu99" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu99" })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([ncurses, perl, fortune], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       preFixup: nix.thunk(() => nix.str`wrapProgram "$out/bin/typefortune" \\
   --prefix PATH : "${fortune}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/gtypist",
         description: "Universal typing tutor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

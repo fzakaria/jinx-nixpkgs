@@ -22,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gtk3 = nix.arg($, "gtk3");
   const jdkWithJFX = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(jdk21, "pname"), "openjdk")) ? nix.app(nix.sel(jdk21, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       enableJavaFX: true,
-      openjfx21: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ __proto__: pos$1, withWebKit: true })))),
+      openjfx21: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true })))),
     }))) : nix.builtins.throw("bad jdk variant")));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "sportstracker";
       const version = "8.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ssaring",
           repo: "sportstracker",
           rev: nix.thunk(() => nix.str`SportsTracker-${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\ninstall -Dm644 sportstracker/target/sportstracker-*.jar $out/share/sportstracker/sportstracker.jar\ninstall -Dm644 sportstracker/target/lib/*.jar -t $out/share/sportstracker/lib\ninstall -Dm644 sportstracker/docs/* -t $out/share/doc/sportstracker\ninstall -Dm644 st-packager/icons/linux/SportsTracker.png -t $out/share/icons/hicolor/128x128/apps\n\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "sportstracker",
             exec: "SportsTracker",
             icon: "SportsTracker",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
     "\${gappsWrapperArgs[@]}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: "https://www.saring.de/sportstracker/CHANGES.txt",
         description: "Desktop application for people who want to record and analyze their sporting activities",
         homepage: "https://www.saring.de/sportstracker",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(jdkWithJFX, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

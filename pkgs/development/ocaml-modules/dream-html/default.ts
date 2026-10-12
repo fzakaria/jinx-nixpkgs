@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pure_html = nix.arg($, "pure-html");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "dream-html",
       src: nix.thunk(() => nix.attr(pure_html, "src")),
       version: nix.thunk(() => nix.attr(pure_html, "version")),

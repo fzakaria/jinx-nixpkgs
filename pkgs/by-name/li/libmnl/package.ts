@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmnl",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://netfilter.org/projects/libmnl/files/libmnl-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-J0ubkZ7zFSv7PaOhPJUN1g1uK81UIw/+yimNA7QNBSU=",
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalistic user-space library oriented to Netlink developers",
         longDescription: "libmnl is a minimalistic user-space library oriented to Netlink developers.\nThere are a lot of common tasks in parsing, validating, constructing of both the Netlink\nheader and TLVs that are repetitive and easy to get wrong.\nThis library aims to provide simple helpers that allow you to re-use code and avoid\nre-inventing the wheel.\n",
         homepage: "https://netfilter.org/projects/libmnl/index.html",

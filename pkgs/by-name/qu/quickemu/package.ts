@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     pciutils,
     procps,
     python3,
-    nix.thunk(() => nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ __proto__: pos$1, smbdSupport: true })))),
+    nix.thunk(() => nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, smbdSupport: true })))),
     socat,
     swtpm,
     util_linux,
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
     zsync,
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [mesa_demos, usbutils, xdg_user_dirs]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "quickemu",
       version: "4.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "quickemu-project",
           repo: "quickemu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -100,15 +100,15 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Quickly create and run optimised Windows, macOS and Linux virtual machines",
         homepage: "https://github.com/quickemu-project/quickemu",
         changelog: nix.thunk(() => nix.str`https://github.com/quickemu-project/quickemu/releases/tag/${nix.sel(finalAttrs, "version")}`),

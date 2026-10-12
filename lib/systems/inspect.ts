@@ -186,239 +186,239 @@ export default nix.lambda((args) => (() => {
   const abis = nix.thunk(() => nix.app(mapAttrs, (_) => (abi) => (nix.asBool(nix.has(abi, "assertions")) ? nix.app(removeAssertions, abi) : nix.force(abi)), nix.thunk(() => nix.sel(lib, "systems", "parse", "abis"))));
   return (() => {
     const patterns = nix.thunk(() => (() => {
-      const isi686 = nix.thunk(() => ({ __proto__: pos$1, cpu: nix.thunk(() => nix.sel(cpuTypes, "i686")) }));
+      const isi686 = nix.thunk(() => ({ [nix.POS]: pos$1, cpu: nix.thunk(() => nix.sel(cpuTypes, "i686")) }));
       const isx86_32 = nix.thunk(() => ({
-        __proto__: pos$3,
-        cpu: nix.thunk(() => ({ __proto__: pos$2, family: "x86", bits: 32n })),
+        [nix.POS]: pos$3,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$2, family: "x86", bits: 32n })),
       }));
       const isx86_64 = nix.thunk(() => ({
-        __proto__: pos$5,
-        cpu: nix.thunk(() => ({ __proto__: pos$4, family: "x86", bits: 64n })),
+        [nix.POS]: pos$5,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$4, family: "x86", bits: 64n })),
       }));
       const isPower = nix.thunk(() => ({
-        __proto__: pos$7,
-        cpu: nix.thunk(() => ({ __proto__: pos$6, family: "power" })),
+        [nix.POS]: pos$7,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$6, family: "power" })),
       }));
       const isPower64 = nix.thunk(() => ({
-        __proto__: pos$9,
-        cpu: nix.thunk(() => ({ __proto__: pos$8, family: "power", bits: 64n })),
+        [nix.POS]: pos$9,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$8, family: "power", bits: 64n })),
       }));
       const isAbiElfv1 = nix.thunk(() => ({
-        __proto__: pos$11,
-        abi: nix.thunk(() => ({ __proto__: pos$10, abi: "elfv1" })),
+        [nix.POS]: pos$11,
+        abi: nix.thunk(() => ({ [nix.POS]: pos$10, abi: "elfv1" })),
       }));
       const isAbiElfv2 = nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$13,
-          abi: nix.thunk(() => ({ __proto__: pos$12, abi: "elfv2" })),
+          [nix.POS]: pos$13,
+          abi: nix.thunk(() => ({ [nix.POS]: pos$12, abi: "elfv2" })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$16,
-          abi: nix.thunk(() => ({ __proto__: pos$14, name: "musl" })),
-          cpu: nix.thunk(() => ({ __proto__: pos$15, family: "power", bits: 64n })),
+          [nix.POS]: pos$16,
+          abi: nix.thunk(() => ({ [nix.POS]: pos$14, name: "musl" })),
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$15, family: "power", bits: 64n })),
         })),
       ]);
       const isx86 = nix.thunk(() => ({
-        __proto__: pos$18,
-        cpu: nix.thunk(() => ({ __proto__: pos$17, family: "x86" })),
+        [nix.POS]: pos$18,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$17, family: "x86" })),
       }));
       const isAarch32 = nix.thunk(() => ({
-        __proto__: pos$20,
-        cpu: nix.thunk(() => ({ __proto__: pos$19, family: "arm", bits: 32n })),
+        [nix.POS]: pos$20,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$19, family: "arm", bits: 32n })),
       }));
       const isArmv7 = nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const arch = nix.arg($_1, "arch");
-          return { __proto__: pos$22, cpu: nix.thunk(() => ({ __proto__: pos$21, arch: arch })) };
+          return { [nix.POS]: pos$22, cpu: nix.thunk(() => ({ [nix.POS]: pos$21, arch: arch })) };
         })(), formals$2), nix.thunk(() => nix.app(filter, (cpu) => (nix.asBool(nix.has(cpu, "arch")) && nix.asBool(nix.app(hasArmv7Prefix, nix.thunk(() => nix.sel(cpu, "arch"))))), nix.thunk(() => nix.app(attrValues, cpuTypes))))));
       const isAarch64 = nix.thunk(() => ({
-        __proto__: pos$24,
-        cpu: nix.thunk(() => ({ __proto__: pos$23, family: "arm", bits: 64n })),
+        [nix.POS]: pos$24,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$23, family: "arm", bits: 64n })),
       }));
       const isAarch = nix.thunk(() => ({
-        __proto__: pos$26,
-        cpu: nix.thunk(() => ({ __proto__: pos$25, family: "arm" })),
+        [nix.POS]: pos$26,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$25, family: "arm" })),
       }));
       const isMicroBlaze = nix.thunk(() => ({
-        __proto__: pos$28,
-        cpu: nix.thunk(() => ({ __proto__: pos$27, family: "microblaze" })),
+        [nix.POS]: pos$28,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$27, family: "microblaze" })),
       }));
       const isMips = nix.thunk(() => ({
-        __proto__: pos$30,
-        cpu: nix.thunk(() => ({ __proto__: pos$29, family: "mips" })),
+        [nix.POS]: pos$30,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$29, family: "mips" })),
       }));
       const isMips32 = nix.thunk(() => ({
-        __proto__: pos$32,
-        cpu: nix.thunk(() => ({ __proto__: pos$31, family: "mips", bits: 32n })),
+        [nix.POS]: pos$32,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$31, family: "mips", bits: 32n })),
       }));
       const isMips64 = nix.thunk(() => ({
-        __proto__: pos$34,
-        cpu: nix.thunk(() => ({ __proto__: pos$33, family: "mips", bits: 64n })),
+        [nix.POS]: pos$34,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$33, family: "mips", bits: 64n })),
       }));
       const isMips64n32 = nix.thunk(() => ({
-        __proto__: pos$37,
-        cpu: nix.thunk(() => ({ __proto__: pos$35, family: "mips", bits: 64n })),
-        abi: nix.thunk(() => ({ __proto__: pos$36, abi: "n32" })),
+        [nix.POS]: pos$37,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$35, family: "mips", bits: 64n })),
+        abi: nix.thunk(() => ({ [nix.POS]: pos$36, abi: "n32" })),
       }));
       const isMips64n64 = nix.thunk(() => ({
-        __proto__: pos$40,
-        cpu: nix.thunk(() => ({ __proto__: pos$38, family: "mips", bits: 64n })),
-        abi: nix.thunk(() => ({ __proto__: pos$39, abi: "64" })),
+        [nix.POS]: pos$40,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$38, family: "mips", bits: 64n })),
+        abi: nix.thunk(() => ({ [nix.POS]: pos$39, abi: "64" })),
       }));
       const isMmix = nix.thunk(() => ({
-        __proto__: pos$42,
-        cpu: nix.thunk(() => ({ __proto__: pos$41, family: "mmix" })),
+        [nix.POS]: pos$42,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$41, family: "mmix" })),
       }));
       const isRiscV = nix.thunk(() => ({
-        __proto__: pos$44,
-        cpu: nix.thunk(() => ({ __proto__: pos$43, family: "riscv" })),
+        [nix.POS]: pos$44,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$43, family: "riscv" })),
       }));
       const isRiscV32 = nix.thunk(() => ({
-        __proto__: pos$46,
-        cpu: nix.thunk(() => ({ __proto__: pos$45, family: "riscv", bits: 32n })),
+        [nix.POS]: pos$46,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$45, family: "riscv", bits: 32n })),
       }));
       const isRiscV64 = nix.thunk(() => ({
-        __proto__: pos$48,
-        cpu: nix.thunk(() => ({ __proto__: pos$47, family: "riscv", bits: 64n })),
+        [nix.POS]: pos$48,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$47, family: "riscv", bits: 64n })),
       }));
       const isRx = nix.thunk(() => ({
-        __proto__: pos$50,
-        cpu: nix.thunk(() => ({ __proto__: pos$49, family: "rx" })),
+        [nix.POS]: pos$50,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$49, family: "rx" })),
       }));
       const isSparc = nix.thunk(() => ({
-        __proto__: pos$52,
-        cpu: nix.thunk(() => ({ __proto__: pos$51, family: "sparc" })),
+        [nix.POS]: pos$52,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$51, family: "sparc" })),
       }));
       const isSparc64 = nix.thunk(() => ({
-        __proto__: pos$54,
-        cpu: nix.thunk(() => ({ __proto__: pos$53, family: "sparc", bits: 64n })),
+        [nix.POS]: pos$54,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$53, family: "sparc", bits: 64n })),
       }));
       const isWasm = nix.thunk(() => ({
-        __proto__: pos$56,
-        cpu: nix.thunk(() => ({ __proto__: pos$55, family: "wasm" })),
+        [nix.POS]: pos$56,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$55, family: "wasm" })),
       }));
       const isMsp430 = nix.thunk(() => ({
-        __proto__: pos$58,
-        cpu: nix.thunk(() => ({ __proto__: pos$57, family: "msp430" })),
+        [nix.POS]: pos$58,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$57, family: "msp430" })),
       }));
       const isVc4 = nix.thunk(() => ({
-        __proto__: pos$60,
-        cpu: nix.thunk(() => ({ __proto__: pos$59, family: "vc4" })),
+        [nix.POS]: pos$60,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$59, family: "vc4" })),
       }));
       const isAvr = nix.thunk(() => ({
-        __proto__: pos$62,
-        cpu: nix.thunk(() => ({ __proto__: pos$61, family: "avr" })),
+        [nix.POS]: pos$62,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$61, family: "avr" })),
       }));
       const isAlpha = nix.thunk(() => ({
-        __proto__: pos$64,
-        cpu: nix.thunk(() => ({ __proto__: pos$63, family: "alpha" })),
+        [nix.POS]: pos$64,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$63, family: "alpha" })),
       }));
       const isOr1k = nix.thunk(() => ({
-        __proto__: pos$66,
-        cpu: nix.thunk(() => ({ __proto__: pos$65, family: "or1k" })),
+        [nix.POS]: pos$66,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$65, family: "or1k" })),
       }));
       const isM68k = nix.thunk(() => ({
-        __proto__: pos$68,
-        cpu: nix.thunk(() => ({ __proto__: pos$67, family: "m68k" })),
+        [nix.POS]: pos$68,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$67, family: "m68k" })),
       }));
       const isArc = nix.thunk(() => ({
-        __proto__: pos$70,
-        cpu: nix.thunk(() => ({ __proto__: pos$69, family: "arc" })),
+        [nix.POS]: pos$70,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$69, family: "arc" })),
       }));
       const isSh4 = nix.thunk(() => ({
-        __proto__: pos$72,
-        cpu: nix.thunk(() => ({ __proto__: pos$71, family: "sh" })),
+        [nix.POS]: pos$72,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$71, family: "sh" })),
       }));
       const isS390 = nix.thunk(() => ({
-        __proto__: pos$74,
-        cpu: nix.thunk(() => ({ __proto__: pos$73, family: "s390" })),
+        [nix.POS]: pos$74,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$73, family: "s390" })),
       }));
       const isS390x = nix.thunk(() => ({
-        __proto__: pos$76,
-        cpu: nix.thunk(() => ({ __proto__: pos$75, family: "s390", bits: 64n })),
+        [nix.POS]: pos$76,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$75, family: "s390", bits: 64n })),
       }));
       const isLoongArch64 = nix.thunk(() => ({
-        __proto__: pos$78,
-        cpu: nix.thunk(() => ({ __proto__: pos$77, family: "loongarch", bits: 64n })),
+        [nix.POS]: pos$78,
+        cpu: nix.thunk(() => ({ [nix.POS]: pos$77, family: "loongarch", bits: 64n })),
       }));
-      const isJavaScript = nix.thunk(() => ({ __proto__: pos$79, cpu: nix.thunk(() => nix.sel(cpuTypes, "javascript")) }));
-      const is32bit = nix.thunk(() => ({ __proto__: pos$81, cpu: nix.thunk(() => ({ __proto__: pos$80, bits: 32n })) }));
-      const is64bit = nix.thunk(() => ({ __proto__: pos$83, cpu: nix.thunk(() => ({ __proto__: pos$82, bits: 64n })) }));
+      const isJavaScript = nix.thunk(() => ({ [nix.POS]: pos$79, cpu: nix.thunk(() => nix.sel(cpuTypes, "javascript")) }));
+      const is32bit = nix.thunk(() => ({ [nix.POS]: pos$81, cpu: nix.thunk(() => ({ [nix.POS]: pos$80, bits: 32n })) }));
+      const is64bit = nix.thunk(() => ({ [nix.POS]: pos$83, cpu: nix.thunk(() => ({ [nix.POS]: pos$82, bits: 64n })) }));
       const isILP32 = nix.thunk(() => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$85,
-          cpu: nix.thunk(() => ({ __proto__: pos$84, family: "wasm", bits: 32n })),
+          [nix.POS]: pos$85,
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$84, family: "wasm", bits: 32n })),
         })),
-      ], nix.builtins.map((a) => ({ __proto__: pos$87, abi: nix.thunk(() => ({ __proto__: pos$86, abi: a })) }), nix.thunk(() => ["n32", "ilp32", "x32"]))));
+      ], nix.builtins.map((a) => ({ [nix.POS]: pos$87, abi: nix.thunk(() => ({ [nix.POS]: pos$86, abi: a })) }), nix.thunk(() => ["n32", "ilp32", "x32"]))));
       const isBigEndian = nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         cpu: nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           significantByte: nix.thunk(() => nix.sel(significantBytes, "bigEndian")),
         })),
       }));
       const isLittleEndian = nix.thunk(() => ({
-        __proto__: pos$91,
+        [nix.POS]: pos$91,
         cpu: nix.thunk(() => ({
-          __proto__: pos$90,
+          [nix.POS]: pos$90,
           significantByte: nix.thunk(() => nix.sel(significantBytes, "littleEndian")),
         })),
       }));
       const isBSD = nix.thunk(() => ({
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         kernel: nix.thunk(() => ({
-          __proto__: pos$93,
-          families: nix.thunk(() => ({ __proto__: pos$92, bsd: nix.thunk(() => nix.attr(kernelFamilies, "bsd")) })),
+          [nix.POS]: pos$93,
+          families: nix.thunk(() => ({ [nix.POS]: pos$92, bsd: nix.thunk(() => nix.attr(kernelFamilies, "bsd")) })),
         })),
       }));
       const isDarwin = nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         kernel: nix.thunk(() => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           families: nix.thunk(() => ({
-            __proto__: pos$95,
+            [nix.POS]: pos$95,
             darwin: nix.thunk(() => nix.attr(kernelFamilies, "darwin")),
           })),
         })),
       }));
       const isUnix = nix.thunk(() => [isBSD, isDarwin, isLinux, isSunOS, isCygwin, isRedox]);
-      const isMacOS = nix.thunk(() => ({ __proto__: pos$98, kernel: nix.thunk(() => nix.sel(kernels, "macos")) }));
-      const isiOS = nix.thunk(() => ({ __proto__: pos$99, kernel: nix.thunk(() => nix.sel(kernels, "ios")) }));
-      const isLinux = nix.thunk(() => ({ __proto__: pos$100, kernel: nix.thunk(() => nix.sel(kernels, "linux")) }));
-      const isSunOS = nix.thunk(() => ({ __proto__: pos$101, kernel: nix.thunk(() => nix.sel(kernels, "solaris")) }));
+      const isMacOS = nix.thunk(() => ({ [nix.POS]: pos$98, kernel: nix.thunk(() => nix.sel(kernels, "macos")) }));
+      const isiOS = nix.thunk(() => ({ [nix.POS]: pos$99, kernel: nix.thunk(() => nix.sel(kernels, "ios")) }));
+      const isLinux = nix.thunk(() => ({ [nix.POS]: pos$100, kernel: nix.thunk(() => nix.sel(kernels, "linux")) }));
+      const isSunOS = nix.thunk(() => ({ [nix.POS]: pos$101, kernel: nix.thunk(() => nix.sel(kernels, "solaris")) }));
       const isFreeBSD = nix.thunk(() => ({
-        __proto__: pos$103,
-        kernel: nix.thunk(() => ({ __proto__: pos$102, name: "freebsd" })),
+        [nix.POS]: pos$103,
+        kernel: nix.thunk(() => ({ [nix.POS]: pos$102, name: "freebsd" })),
       }));
-      const isNetBSD = nix.thunk(() => ({ __proto__: pos$104, kernel: nix.thunk(() => nix.sel(kernels, "netbsd")) }));
-      const isOpenBSD = nix.thunk(() => ({ __proto__: pos$105, kernel: nix.thunk(() => nix.sel(kernels, "openbsd")) }));
-      const isWindows = nix.thunk(() => ({ __proto__: pos$106, kernel: nix.thunk(() => nix.sel(kernels, "windows")) }));
-      const isCygwin = nix.thunk(() => ({ __proto__: pos$107, kernel: nix.thunk(() => nix.sel(kernels, "cygwin")) }));
+      const isNetBSD = nix.thunk(() => ({ [nix.POS]: pos$104, kernel: nix.thunk(() => nix.sel(kernels, "netbsd")) }));
+      const isOpenBSD = nix.thunk(() => ({ [nix.POS]: pos$105, kernel: nix.thunk(() => nix.sel(kernels, "openbsd")) }));
+      const isWindows = nix.thunk(() => ({ [nix.POS]: pos$106, kernel: nix.thunk(() => nix.sel(kernels, "windows")) }));
+      const isCygwin = nix.thunk(() => ({ [nix.POS]: pos$107, kernel: nix.thunk(() => nix.sel(kernels, "cygwin")) }));
       const isMinGW = nix.thunk(() => ({
-        __proto__: pos$108,
+        [nix.POS]: pos$108,
         kernel: nix.thunk(() => nix.sel(kernels, "windows")),
         abi: nix.thunk(() => nix.sel(abis, "gnu")),
       }));
       const isMsvc = nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         kernel: nix.thunk(() => nix.sel(kernels, "windows")),
         abi: nix.thunk(() => nix.sel(abis, "msvc")),
       }));
       const isWasi = nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$110, kernel: nix.thunk(() => nix.sel(kernels, "wasip1")) })),
+        nix.thunk(() => ({ [nix.POS]: pos$110, kernel: nix.thunk(() => nix.sel(kernels, "wasip1")) })),
       ]);
-      const isWasiP1 = nix.thunk(() => ({ __proto__: pos$111, kernel: nix.thunk(() => nix.sel(kernels, "wasip1")) }));
-      const isRedox = nix.thunk(() => ({ __proto__: pos$112, kernel: nix.thunk(() => nix.sel(kernels, "redox")) }));
-      const isGhcjs = nix.thunk(() => ({ __proto__: pos$113, kernel: nix.thunk(() => nix.sel(kernels, "ghcjs")) }));
-      const isGenode = nix.thunk(() => ({ __proto__: pos$114, kernel: nix.thunk(() => nix.sel(kernels, "genode")) }));
-      const isNone = nix.thunk(() => ({ __proto__: pos$115, kernel: nix.thunk(() => nix.sel(kernels, "none")) }));
+      const isWasiP1 = nix.thunk(() => ({ [nix.POS]: pos$111, kernel: nix.thunk(() => nix.sel(kernels, "wasip1")) }));
+      const isRedox = nix.thunk(() => ({ [nix.POS]: pos$112, kernel: nix.thunk(() => nix.sel(kernels, "redox")) }));
+      const isGhcjs = nix.thunk(() => ({ [nix.POS]: pos$113, kernel: nix.thunk(() => nix.sel(kernels, "ghcjs")) }));
+      const isGenode = nix.thunk(() => ({ [nix.POS]: pos$114, kernel: nix.thunk(() => nix.sel(kernels, "genode")) }));
+      const isNone = nix.thunk(() => ({ [nix.POS]: pos$115, kernel: nix.thunk(() => nix.sel(kernels, "none")) }));
       const isAndroid = nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$116, abi: nix.thunk(() => nix.sel(abis, "android")) })),
-        nix.thunk(() => ({ __proto__: pos$117, abi: nix.thunk(() => nix.sel(abis, "androideabi")) })),
+        nix.thunk(() => ({ [nix.POS]: pos$116, abi: nix.thunk(() => nix.sel(abis, "android")) })),
+        nix.thunk(() => ({ [nix.POS]: pos$117, abi: nix.thunk(() => nix.sel(abis, "androideabi")) })),
       ]);
       const isGnu = nix.thunk(() => (() => {
         const w = nix.withScope(abis, null);
-        return nix.app(nix.builtins.map, (a) => ({ __proto__: pos$118, abi: a }), nix.thunk(() => [
+        return nix.app(nix.builtins.map, (a) => ({ [nix.POS]: pos$118, abi: a }), nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "gnuabi64")),
             nix.thunk(() => nix.lookup(w, "gnuabin32")),
             nix.thunk(() => nix.lookup(w, "gnu")),
@@ -430,7 +430,7 @@ export default nix.lambda((args) => (() => {
       })());
       const isMusl = nix.thunk(() => (() => {
         const w_1 = nix.withScope(abis, null);
-        return nix.app(nix.builtins.map, (a) => ({ __proto__: pos$119, abi: a }), nix.thunk(() => [
+        return nix.app(nix.builtins.map, (a) => ({ [nix.POS]: pos$119, abi: a }), nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_1, "musl")),
             nix.thunk(() => nix.lookup(w_1, "musleabi")),
             nix.thunk(() => nix.lookup(w_1, "musleabihf")),
@@ -438,10 +438,10 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "muslabi64")),
           ]));
       })());
-      const isPicolibc = nix.thunk(() => ({ __proto__: pos$120, abi: nix.thunk(() => nix.sel(abis, "picolibc")) }));
+      const isPicolibc = nix.thunk(() => ({ [nix.POS]: pos$120, abi: nix.thunk(() => nix.sel(abis, "picolibc")) }));
       const isUClibc = nix.thunk(() => (() => {
         const w_2 = nix.withScope(abis, null);
-        return nix.app(nix.builtins.map, (a) => ({ __proto__: pos$121, abi: a }), nix.thunk(() => [
+        return nix.app(nix.builtins.map, (a) => ({ [nix.POS]: pos$121, abi: a }), nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "uclibc")),
             nix.thunk(() => nix.lookup(w_2, "uclibceabi")),
             nix.thunk(() => nix.lookup(w_2, "uclibceabihf")),
@@ -449,54 +449,54 @@ export default nix.lambda((args) => (() => {
       })());
       const isEfi = nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$123,
-          cpu: nix.thunk(() => ({ __proto__: pos$122, family: "arm", version: "6" })),
+          [nix.POS]: pos$123,
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$122, family: "arm", version: "6" })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$125,
-          cpu: nix.thunk(() => ({ __proto__: pos$124, family: "arm", version: "7" })),
+          [nix.POS]: pos$125,
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$124, family: "arm", version: "7" })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$127,
-          cpu: nix.thunk(() => ({ __proto__: pos$126, family: "arm", version: "8" })),
+          [nix.POS]: pos$127,
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$126, family: "arm", version: "8" })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$129,
-          cpu: nix.thunk(() => ({ __proto__: pos$128, family: "riscv" })),
+          [nix.POS]: pos$129,
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$128, family: "riscv" })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$131,
-          cpu: nix.thunk(() => ({ __proto__: pos$130, family: "x86" })),
+          [nix.POS]: pos$131,
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$130, family: "x86" })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$133,
-          cpu: nix.thunk(() => ({ __proto__: pos$132, family: "loongarch" })),
+          [nix.POS]: pos$133,
+          cpu: nix.thunk(() => ({ [nix.POS]: pos$132, family: "loongarch" })),
         })),
       ]);
       const isUefi = nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$134, kernel: nix.thunk(() => nix.sel(kernels, "uefi")) })),
+        nix.thunk(() => ({ [nix.POS]: pos$134, kernel: nix.thunk(() => nix.sel(kernels, "uefi")) })),
       ]);
       const isElf = nix.thunk(() => ({
-        __proto__: pos$136,
-        kernel: nix.thunk(() => ({ __proto__: pos$135, execFormat: nix.thunk(() => nix.sel(execFormats, "elf")) })),
+        [nix.POS]: pos$136,
+        kernel: nix.thunk(() => ({ [nix.POS]: pos$135, execFormat: nix.thunk(() => nix.sel(execFormats, "elf")) })),
       }));
       const isMacho = nix.thunk(() => ({
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         kernel: nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           execFormat: nix.thunk(() => nix.sel(execFormats, "macho")),
         })),
       }));
       const isPE = nix.thunk(() => ({
-        __proto__: pos$140,
-        kernel: nix.thunk(() => ({ __proto__: pos$139, execFormat: nix.thunk(() => nix.sel(execFormats, "pe")) })),
+        [nix.POS]: pos$140,
+        kernel: nix.thunk(() => ({ [nix.POS]: pos$139, execFormat: nix.thunk(() => nix.sel(execFormats, "pe")) })),
       }));
       const isEabi = nix.thunk(() => ({
-        __proto__: pos$142,
-        abi: nix.thunk(() => ({ __proto__: pos$141, eabi: true })),
+        [nix.POS]: pos$142,
+        abi: nix.thunk(() => ({ [nix.POS]: pos$141, eabi: true })),
       }));
       return {
-        __proto__: pos$143,
+        [nix.POS]: pos$143,
         isi686,
         isx86_32,
         isx86_64,
@@ -596,12 +596,12 @@ export default nix.lambda((args) => (() => {
       })() : nix.app(matchPattern, pattern));
     })());
     const predicates = nix.thunk(() => nix.app(mapAttrs, (_) => nix.force(matchAnyPattern), patterns));
-    const platformPatterns = nix.thunk(() => nix.app(mapAttrs, (_) => (p) => nix.update({ __proto__: pos$144, parsed: nix.thunk(() => ({})) }, p), nix.thunk(() => ({
-        __proto__: pos$146,
-        isStatic: nix.thunk(() => ({ __proto__: pos$145, isStatic: true })),
+    const platformPatterns = nix.thunk(() => nix.app(mapAttrs, (_) => (p) => nix.update({ [nix.POS]: pos$144, parsed: nix.thunk(() => ({})) }, p), nix.thunk(() => ({
+        [nix.POS]: pos$146,
+        isStatic: nix.thunk(() => ({ [nix.POS]: pos$145, isStatic: true })),
       }))));
     return {
-      __proto__: pos$147,
+      [nix.POS]: pos$147,
       patterns,
       patternLogicalAnd,
       matchAnyPattern,

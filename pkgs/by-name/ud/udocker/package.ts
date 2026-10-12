@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const udocker = nix.arg($, "udocker");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "udocker",
       version: "1.3.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "indigo-dc",
           repo: "udocker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/unit/test_curl.py", "tests/unit/test_dockerioapi.py"]),
       pythonImportsCheck: nix.thunk(() => ["udocker"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: udocker })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: udocker })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Basic user tool to execute simple docker containers in user space without root privileges",
         homepage: "https://indigo-dc.gitbooks.io/udocker",
         changelog: nix.thunk(() => nix.str`https://github.com/indigo-dc/udocker/releases/tag/${nix.sel(finalAttrs, "version")}`),

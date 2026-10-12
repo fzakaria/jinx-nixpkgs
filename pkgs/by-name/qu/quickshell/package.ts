@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const polkit = nix.arg($, "polkit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quickshell",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.outfoxxed.me",
           owner: "quickshell",
           repo: "quickshell",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       dontStrip: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://quickshell.org",
         description: "Flexible QtQuick based desktop shell toolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

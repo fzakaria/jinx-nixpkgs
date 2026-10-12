@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "weechat-grep",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/weechat/scripts/raw/5ee93d56f371c829d2798a5446a14292c180f70b/python/grep.py",
           sha256: "sha256-EVcoxjTTjXOYD8DppD+IULxpKerEdolmlgphrulFGC0=",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/share\ncp $src $out/share/grep.py\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["grep.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["grep.py"]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Search in Weechat buffers and logs (for Weechat 0.3.*)",
         homepage: "https://github.com/weechat/scripts/blob/master/python/grep.py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

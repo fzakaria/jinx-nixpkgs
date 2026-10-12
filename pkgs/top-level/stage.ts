@@ -41,7 +41,7 @@ export default nix.thunk(() => (() => {
     const adjacentPackages = nix.arg($, "adjacentPackages");
     const stdenv = nix.arg($, "stdenv");
     const stdenvNoCC = nix.argOr($, "stdenvNoCC", () => nix.app(nix.sel(stdenv, "override"), nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${nix.sel(stdenv, "name")}-no-cc`),
         cc: null,
         hasCC: false,
@@ -53,13 +53,13 @@ export default nix.thunk(() => (() => {
     const config = nix.arg($, "config");
     const overlays = nix.arg($, "overlays");
     const stdenvAdapters = (self) => (super$) => (() => {
-      const res = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/adapters.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib, config: config, pkgs: self }))));
-      return nix.update(res, { __proto__: pos$3, stdenvAdapters: res });
+      const res = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/adapters.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, config: config, pkgs: self }))));
+      return nix.update(res, { [nix.POS]: pos$3, stdenvAdapters: res });
     })();
     const trivialBuilders = (self) => (super$) => nix.app(nix.builtins.import(nix.path(here, "../build-support/trivial-builders")), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(self, "pkgsBuildHost"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         lib: lib,
         config: nix.thunk(() => nix.attr(self, "config")),
         runtimeShell: nix.thunk(() => nix.attr(self, "runtimeShell")),
@@ -71,14 +71,14 @@ export default nix.thunk(() => (() => {
       };
       })()));
     const stdenvBootstappingAndPlatforms = (self) => (super$) => (() => {
-      const withFallback = (thisPkgs) => nix.update((nix.asBool(nix.eq(adjacentPackages, null)) ? nix.force(self) : nix.force(thisPkgs)), { __proto__: pos$5, recurseForDerivations: false });
+      const withFallback = (thisPkgs) => nix.update((nix.asBool(nix.eq(adjacentPackages, null)) ? nix.force(self) : nix.force(thisPkgs)), { [nix.POS]: pos$5, recurseForDerivations: false });
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pkgsBuildBuild: nix.thunk(() => nix.app(withFallback, nix.thunk(() => nix.sel(adjacentPackages, "pkgsBuildBuild")))),
         pkgsBuildHost: nix.thunk(() => nix.app(withFallback, nix.thunk(() => nix.sel(adjacentPackages, "pkgsBuildHost")))),
         pkgsBuildTarget: nix.thunk(() => nix.app(withFallback, nix.thunk(() => nix.sel(adjacentPackages, "pkgsBuildTarget")))),
         pkgsHostHost: nix.thunk(() => nix.app(withFallback, nix.thunk(() => nix.sel(adjacentPackages, "pkgsHostHost")))),
-        pkgsHostTarget: nix.thunk(() => nix.update(self, { __proto__: pos$6, recurseForDerivations: false })),
+        pkgsHostTarget: nix.thunk(() => nix.update(self, { [nix.POS]: pos$6, recurseForDerivations: false })),
         pkgsTargetTarget: nix.thunk(() => nix.app(withFallback, nix.thunk(() => nix.sel(adjacentPackages, "pkgsTargetTarget")))),
         buildPackages: nix.thunk(() => nix.sel(self, "pkgsBuildHost")),
         pkgs: nix.thunk(() => nix.sel(self, "pkgsHostTarget")),
@@ -90,7 +90,7 @@ export default nix.thunk(() => (() => {
     const splice = (self) => (super$) => nix.app(nix.builtins.import(nix.path(here, "./splice.nix")), lib, self, nix.thunk(() => !nix.eq(adjacentPackages, null)));
     const allPackages = (self) => (super$) => (() => {
       const res = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./all-packages.nix")), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           lib: lib,
           noSysDirs: noSysDirs,
           config: config,
@@ -102,7 +102,7 @@ export default nix.thunk(() => (() => {
     })();
     const aliases = (self) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), lib, self, super$)));
     const variants = (self) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowVariants")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./variants.nix")), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           lib: lib,
           nixpkgsFun: nixpkgsFun,
           stdenv: stdenv,
@@ -111,52 +111,52 @@ export default nix.thunk(() => (() => {
     const stdenvOverrides = (self) => (super$) => nix.app(nix.selOr(super$, () => (_) => (__1) => ({}), "stdenv", "overrides"), self, super$);
     const configOverrides = (self) => (super$) => nix.app(nix.sel(lib, "optionalAttrs"), allowCustomOverrides, nix.thunk(() => nix.app(nix.selOr(config, () => (super$_1) => ({}), "packageOverrides"), super$)));
     const otherPackageSets = (self) => (super$) => ({
-      __proto__: pos$25,
-      pkgsCross: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (crossSystem) => nix.app(nixpkgsFun, nix.thunk(() => ({ __proto__: pos$10, crossSystem: crossSystem }))), nix.thunk(() => nix.sel(lib, "systems", "examples")))),
+      [nix.POS]: pos$25,
+      pkgsCross: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (crossSystem) => nix.app(nixpkgsFun, nix.thunk(() => ({ [nix.POS]: pos$10, crossSystem: crossSystem }))), nix.thunk(() => nix.sel(lib, "systems", "examples")))),
       pkgsi686Linux: nix.thunk(() => (() => {
         const isSupported = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))));
         return (nix.asBool((nix.asBool(!nix.asBool(nix.sel(config, "allowAliases"))) || nix.asBool(isSupported))) ? nix.app(nixpkgsFun, nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             overlays: nix.thunk(() => nix.concat([
-              (self$) => (super$_1) => nix.attrsDyn({ __proto__: pos$14, pkgsi686Linux: super$_1 }, [
+              (self$) => (super$_1) => nix.attrsDyn({ [nix.POS]: pos$14, pkgsi686Linux: super$_1 }, [
                 [(nix.asBool(!nix.asBool(isSupported)) ? "stdenv" : null), nix.thunk(() => nix.update(nix.sel(super$_1, "stdenv"), {
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   mkDerivation: (args_2) => nix.app(nix.sel(nix.app(nix.sel(super$_1, "stdenv", "mkDerivation"), args_2), "overrideAttrs"), (prevAttrs) => ({
-                      __proto__: pos$12,
-                      meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), { __proto__: pos$11, broken: true })),
+                      [nix.POS]: pos$12,
+                      meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), { [nix.POS]: pos$11, broken: true })),
                     })),
                 }))],
               ]),
             ], overlays)),
           }, [
             [(nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) ? "localSystem" : "crossSystem"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               config: nix.thunk(() => (nix.asBool(isSupported) ? nix.app(nix.sel(lib, "systems", "parse", "tripleFromSystem"), nix.thunk(() => nix.update(nix.sel(stdenv, "hostPlatform", "parsed"), {
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   cpu: nix.thunk(() => nix.sel(lib, "systems", "parse", "cpuTypes", "i686")),
                 }))) : "i686-unknown-linux-gnu")),
             }))],
           ]))) : nix.builtins.throw("i686 Linux package set can only be used with the x86 family."));
       })()),
       pkgsLinux: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(self) : nix.app(nixpkgsFun, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           localSystem: nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}-linux`))),
         }))))),
       appendOverlays: (extraOverlays) => (nix.asBool(nix.eq(extraOverlays, [])) ? nix.sel(self, "__splicedPackages") : nix.app(nixpkgsFun, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           overlays: nix.thunk(() => nix.concat(nix.sel(args_1, "overlays"), extraOverlays)),
         })))),
       extend: (f) => nix.app(nix.sel(self, "appendOverlays"), nix.thunk(() => [f])),
       pkgsStatic: nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           overlays: nix.thunk(() => nix.concat([
-            (self$) => (super$_1) => nix.update({ __proto__: pos$20, pkgsStatic: super$_1 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(super$_1, "stdenv", "hostPlatform", "isMusl")), nix.thunk(() => ({ __proto__: pos$21, pkgsMusl: super$_1 })))),
+            (self$) => (super$_1) => nix.update({ [nix.POS]: pos$20, pkgsStatic: super$_1 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(super$_1, "stdenv", "hostPlatform", "isMusl")), nix.thunk(() => ({ [nix.POS]: pos$21, pkgsMusl: super$_1 })))),
           ], overlays)),
           crossSystem: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             isStatic: true,
             config: nix.thunk(() => nix.app(nix.sel(lib, "systems", "parse", "tripleFromSystem"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(nix.sel(lib, "systems", "parse", "mkMuslSystem"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed"))) : nix.sel(stdenv, "hostPlatform", "parsed"))))),
-            gcc: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "powerpc64-linux")), nix.thunk(() => ({ __proto__: pos$22, abi: "elfv2" }))), nix.selOr(stdenv, () => ({}), "hostPlatform", "gcc"))),
+            gcc: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "powerpc64-linux")), nix.thunk(() => ({ [nix.POS]: pos$22, abi: "elfv2" }))), nix.selOr(stdenv, () => ({}), "hostPlatform", "gcc"))),
           })),
         })))),
     });
@@ -173,7 +173,7 @@ export default nix.thunk(() => (() => {
             const attrPath = nix.arg($_1, "attrPath");
             const reason = nix.arg($_1, "reason");
             return {
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               path: attrPath,
               update: nix.thunk(() => nix.app(abortOnInstantiate, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "showAttrPath"), attrPath)} is disallowed from being used within Nixpkgs${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(reason, null)), nix.thunk(() => nix.str`, because ${reason}`))}`))),
             };

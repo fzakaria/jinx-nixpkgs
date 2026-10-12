@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const lastfmKey = nix.argOr($, "lastfmKey", () => "b5027c5178ca2abfcc31bd04397c3c0e");
   const lastfmSecret = nix.argOr($, "lastfmSecret", () => "8d375bdee925a2a35f241c04272bc862");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "turntable",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeopJr",
           repo: "Turntable",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scrobbles your music to multiple services with playback controls for MPRIS players",
         longDescription: "Keep track of your listening habits by scrobbling them\nto last.fm, ListenBrainz, Libre.fm and Maloja at the\nsame time using your favorite music app's, favorite\nmusic app! Turntable comes with a highly customizable\nand sleek design that displays information about the\ncurrently playing song and allows you to control your\nmusic player, allowlist it for scrobbling and manage\nyour scrobbling accounts. All MPRIS-enabled apps are\nsupported.\n",
         homepage: "https://turntable.geopjr.dev",

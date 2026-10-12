@@ -16,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const tcsh = nix.arg($, "tcsh");
   const zsh = nix.arg($, "zsh");
   return nix.app(runCommand, "test-thisroot", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Test for root thisroot.* sourcing",
         maintainers: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat((() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

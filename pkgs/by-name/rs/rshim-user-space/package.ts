@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const withBfbInstall = nix.argOr($, "withBfbInstall", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rshim-user-space",
       version: "2.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mellanox",
           repo: "rshim-user-space",
           rev: nix.thunk(() => nix.str`rshim-${nix.sel(finalAttrs, "version")}`),
@@ -73,7 +73,7 @@ substituteInPlace scripts/bfb-install \\
           ]))}
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User-space rshim driver for the BlueField SoC",
         longDescription: "The rshim driver provides a way to access the rshim resources on the\nBlueField target from external host machine. The current version\nimplements device files for boot image push and virtual console access.\nIt also creates virtual network interface to connect to the BlueField\ntarget and provides a way to access the internal rshim registers.\n",
         homepage: "https://github.com/Mellanox/rshim-user-space",

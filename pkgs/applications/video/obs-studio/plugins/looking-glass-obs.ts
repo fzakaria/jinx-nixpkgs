@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const obs_studio = nix.arg($, "obs-studio");
   const looking_glass_client = nix.arg($, "looking-glass-client");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "looking-glass-obs",
       version: nix.thunk(() => nix.sel(looking_glass_client, "version")),
       src: nix.thunk(() => nix.sel(looking_glass_client, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(looking_glass_client, "src", "name")}/obs`),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [obs_studio, libbfd, SDL2, libGL]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-mavx" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-mavx" })),
       installPhase: "mkdir -p $out/lib/obs-plugins/\nmv liblooking-glass-obs.so $out/lib/obs-plugins/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for OBS Studio for efficient capturing of looking-glass",
         homepage: "https://looking-glass.io/docs/stable/obs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sleuthkit",
       version: "4.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sleuthkit",
           repo: "sleuthkit",
           rev: nix.thunk(() => nix.str`sleuthkit-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-11KK7O7V8bMp0YMt9ZPwAJ00n0VeXMooYTbu+By6b2Q=",
         })))),
       rdeps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`sleuthkit-${nix.sel(finalAttrs, "version")}-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [ant, jdk]),
@@ -63,7 +63,7 @@ chmod -R 755 $IVY_HOME
       buildInputs: nix.thunk(() => [afflib, libewf, openssl, zlib]),
       preFixup: "rm -rf */.libs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Forensic/data recovery tool",
         homepage: "https://www.sleuthkit.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/sleuthkit/sleuthkit/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS.txt`),

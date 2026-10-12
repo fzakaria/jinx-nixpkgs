@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const pname = "spot";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xou816",
           repo: "spot",
           tag: version,
           hash: "sha256-7zWK0wkh53ojnoznv4T/X//JeyKJVKOrfYF0IkvciIY=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -84,15 +84,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const mesonBuildType = "release";
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Native Spotify client for the GNOME desktop",
         homepage: "https://github.com/xou816/spot",
         changelog: nix.thunk(() => nix.str`https://github.com/xou816/spot/releases/tag/${nix.sel(src, "rev")}`),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

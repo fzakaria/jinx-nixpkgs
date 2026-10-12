@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "claude-usage-tracker",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hamed-elfayome/Claude-Usage-Tracker/releases/download/v${nix.sel(finalAttrs, "version")}/Claude-Usage.zip`),
           hash: "sha256-aej/qj8g9cm+ns8FbCdWB8bq488x2Hgs/AL8aBIYm5I=",
           stripRoot: false,
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native macOS menu bar app for tracking Claude AI usage limits in real-time. Built with Swift/SwiftUI.",
         homepage: "https://github.com/hamed-elfayome/Claude-Usage-Tracker",
         changelog: nix.thunk(() => nix.str`https://github.com/hamed-elfayome/Claude-Usage-Tracker/releases/tag/v${nix.sel(finalAttrs, "version")}`),

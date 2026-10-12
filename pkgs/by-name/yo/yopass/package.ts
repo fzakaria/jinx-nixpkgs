@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "14.9.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jhaals",
       repo: "yopass",
       tag: version,
       hash: "sha256-QGa6T0XNQaYIKyhGSnBNMjEaJk9JgEldxdv974lMtBU=",
     }))));
-  const website = nix.thunk(() => nix.app(callPackage, nix.path(here, "./website.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
+  const website = nix.thunk(() => nix.app(callPackage, nix.path(here, "./website.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       src: src,
       pname: "yopass",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   --add-flags "--asset-path ${website}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Secure sharing of secrets, passwords and files",
         homepage: "https://github.com/jhaals/yopass",
         changelog: nix.thunk(() => nix.str`https://github.com/jhaals/yopass/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

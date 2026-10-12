@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TakWolf",
           repo: "character-encoding-utils",
           tag: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["character_encoding_utils"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/TakWolf/character-encoding-utils",
         description: "Some character encoding utils",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuxbox",
       version: "3.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AndyCappDev",
           repo: "tuxbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "# Copy .desktop file to output\nmkdir -p $out/share/applications/\ncp ./tuxbox-gui.desktop $out/share/applications/\n\nsubstituteInPlace $out/share/applications/tuxbox-gui.desktop \\\n  --replace-fail \"/usr/local/bin/tuxbox-gui\" \"$out/bin/tuxbox-gui\"\n\n# Install uinput udev rules\nmkdir -p $out/lib/udev/rules.d/\necho 'KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"input\", OPTIONS+=\"static_node=uinput\"' > $out/lib/udev/rules.d/99-tuxbox-uinput.rules\nchmod 0744 $out/lib/udev/rules.d/99-tuxbox-uinput.rules\n\n# Keep ModemManager off the TourBox serial port\ncat > $out/lib/udev/rules.d/99-tuxbox-modemmanager.rules <<'EOF'\nSUBSYSTEM==\"tty\", ATTRS{idVendor}==\"c251\", ATTRS{idProduct}==\"2005\", ENV{ID_MM_DEVICE_IGNORE}=\"1\"\nSUBSYSTEM==\"tty\", ATTRS{idVendor}==\"2e3c\", ATTRS{idProduct}==\"5740\", ENV{ID_MM_DEVICE_IGNORE}=\"1\"\nEOF\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/AndyCappDev/tuxbox/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Linux driver for all TourBox models - Native feel with USB, Bluetooth, haptics and graphical configuration GUI",
         homepage: "https://github.com/AndyCappDev/tuxbox",

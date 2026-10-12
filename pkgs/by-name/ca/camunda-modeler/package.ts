@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "camunda-modeler";
       const version = "5.52.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/camunda/camunda-modeler/releases/download/v${version}/camunda-modeler-${version}-linux-x64.tar.gz`),
           hash: "sha256-I5xjqaYCJZbWQW23gxpubwmADbVZPK1UYx7w/q9+Iwg=",
         }))));
@@ -47,7 +47,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: pname,
             exec: pname,
             desktopName: "Camunda Modeler",
@@ -62,7 +62,7 @@ runHook postInstall
               "application/camunda-form",
             ]),
             extraConfig: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "X-Ayatana-Desktop-Shortcuts": "NewWindow;RepositoryBrowser",
             })),
           })))),
@@ -70,7 +70,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/camunda/camunda-modeler",
         description: "Integrated modeling solution for BPMN, DMN and Forms based on bpmn.io",
         maintainers: nix.thunk(() => (() => {
@@ -86,7 +86,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

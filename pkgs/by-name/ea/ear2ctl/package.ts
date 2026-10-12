@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ear2ctl",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bharadwaj-raju",
           repo: "ear2ctl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux controller for the Nothing Ear (2)",
         homepage: "https://gitlab.com/bharadwaj-raju/ear2ctl",
         maintainers: nix.thunk(() => (() => {

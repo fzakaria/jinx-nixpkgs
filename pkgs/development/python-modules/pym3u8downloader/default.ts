@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coldsofttech",
           repo: "pym3u8downloader",
           tag: version,
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pym3u8downloader"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(nix.sel(pym3u8downloader, "overridePythonAttrs"), (previousPythonAttrs) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               TEST_SERVER_PORT: "8000",
               postPatch: nix.thunk(() => nix.add(nix.selOr(previousPythonAttrs, () => "", "postPatch"), "# Patch test data location\nsubstituteInPlace tests/commonclass.py \\\n  --replace-fail \\\n    \"f'https://raw.githubusercontent.com/coldsofttech/pym3u8downloader/{branch_name}/tests/files'\" \\\n    \"'http://localhost:$TEST_SERVER_PORT/tests/files'\"\n# Patch the `is_internet_connected()` method\nsubstituteInPlace pym3u8downloader/__main__.py \\\n  --replace-fail \"'http://www.github.com'\" \"'http://localhost:$TEST_SERVER_PORT'\"\n")),
               doCheck: true,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python class to download and concatenate video files from M3U8 playlists",
         longDescription: "M3U8 Downloader is a Python class designed to\ndownload and concatenate video files from M3U8 playlists.\nThis class provides functionality to handle M3U8 playlist files,\ndownload video segments,\nconcatenate them into a single video file,\nand manage various error conditions.\n",
         homepage: "https://github.com/coldsofttech/pym3u8downloader",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

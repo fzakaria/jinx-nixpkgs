@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "riemann",
       version: "0.3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/riemann/riemann/releases/download/${nix.sel(finalAttrs, "version")}/riemann-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-gsJMfLo7zpaVfyVmHznGFiomK6dq7yTphuc9vyp5t6Y=",
         })))),
@@ -34,7 +34,7 @@ mv etc/riemann.config $out/etc/
 wrapProgram "$out/bin/riemann" --prefix PATH : "${jre}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://riemann.io/",
         description: "Network monitoring system",
         mainProgram: "riemann",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adslib",
       version: "113.0.34-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stlehmann",
           repo: "ADS",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       postInstall: "# Downstream consumers (e.g. pyads) load the shared library as\n# `adslib.so` rather than the meson default `libAdsLib.so`.\nln -s libAdsLib.so $out/lib/adslib.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Beckhoff protocol to communicate with TwinCAT devices",
         homepage: "https://github.com/stlehmann/ADS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

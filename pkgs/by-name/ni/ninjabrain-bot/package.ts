@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const linuxNativeLibraries = nix.thunk(() => [libxkbcommon, libx11, libxcb, libxinerama, libxt, libxtst]);
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ninjabrain-bot",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ninjabrain1",
           repo: "Ninjabrain-Bot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,8 +43,8 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, CI: "true" })),
-      mvnFetchExtraArgs: nix.thunk(() => ({ __proto__: pos$4, env: nix.thunk(() => ({ __proto__: pos$3, CI: "true" })) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CI: "true" })),
+      mvnFetchExtraArgs: nix.thunk(() => ({ [nix.POS]: pos$4, env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: "true" })) })),
       mvnParameters: "assembly:single",
       mvnHash: "sha256-k/bhq3TyiG+PvUogBeFGpgx+vBFdkEge6UnmnVPUjjg=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
@@ -74,7 +74,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "ninjabrain-bot",
             desktopName: "Ninjabrain Bot",
             comment: "Stronghold calculator for Minecraft speedrunning",
@@ -86,11 +86,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Stronghold calculator for Minecraft speedrunning",
         homepage: "https://github.com/Ninjabrain1/Ninjabrain-Bot",
         changelog: nix.thunk(() => nix.str`https://github.com/Ninjabrain1/Ninjabrain-Bot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

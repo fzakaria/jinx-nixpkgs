@@ -10,21 +10,21 @@ const pos$4 = nix.positions(here + "/default.nix", [["machine", 4, 9]]);
 const pos$5 = nix.positions(here + "/default.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 13, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   name: "lorri",
   nodes: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lorri"))]),
         })),
-        nix: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+        nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
       };
     })(), formals$1),
   })),

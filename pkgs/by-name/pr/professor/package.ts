@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "professor",
       version: "2.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hepcedar",
           repo: "professor",
           tag: nix.thunk(() => nix.str`professor-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: nix.thunk(() => nix.add("substituteInPlace configure \\\n  --replace-fail '$(which $PYTHON 2> /dev/null)' '$(command -v $PYTHON)' \\\n  --replace-fail '$(which $CYTHON 2> /dev/null)' '$(command -v $CYTHON)' \\\n  --replace-fail '$(which $ROOTCONFIG 2> /dev/null)' '$(command -v $ROOTCONFIG)'\nsubstituteInPlace Makefile \\\n  --replace-fail 'pip wheel' 'pip wheel --no-build-isolation'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Makefile \\\n  --replace-fail '-shared -o' '-shared -install_name \"$(out)/$@\" -o'\n"))),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-eigen=${eigen}`)]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PYTHON: "python3" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PYTHON: "python3" })),
       nativeBuildInputs: nix.thunk(() => [
         python3,
         nix.thunk(() => nix.sel(python3, "pkgs", "cython")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckTarget: "check",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tuning tool for Monte Carlo event generators",
         homepage: "https://professor.hepforge.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

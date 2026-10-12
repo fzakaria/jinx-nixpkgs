@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "npush",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/npush/npush/${nix.sel(finalAttrs, "version")}/npush-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-8hbSsyeehzd4T3fUhDyebyI/oTHOHr3a8ArYAquivNk=",
         })))),
@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       dontConfigure: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/npush/levels $doc/share/doc/npush\ncp npush $out/bin/\ncp levels/* $out/share/npush/levels\ncp CHANGES COPYING CREDITS index.html \\\n   readme.txt screenshot1.png screenshot2.png $doc/share/doc/npush/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://npush.sourceforge.net/",
         description: "Sokoban-like game",

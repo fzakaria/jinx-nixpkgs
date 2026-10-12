@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const sphinxHook = nix.arg($, "sphinxHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "poezio",
       version: "0.18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "poezio",
           repo: "poezio",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         plugins: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
           return [
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       sphinxBuilders: nix.thunk(() => ["man"]),
       pythonImportsCheck: nix.thunk(() => ["poezio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free console XMPP client",
         longDescription: "Its goal is to let you connect very easily (no account creation needed) to\nthe network and join various chatrooms, immediately. It tries to look like\nthe most famous IRC clients (weechat, irssi, etc). Many commands are\nidentical and you won't be lost if you already know these clients.\nConfiguration can be made in a configuration file or directly from\nthe client.\n\nYou'll find the light, fast, geeky and anonymous spirit of IRC while using\na powerful, standard and open protocol.\n",
         homepage: "https://poez.io",

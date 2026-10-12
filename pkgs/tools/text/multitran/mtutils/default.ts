@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mt-utils";
       const version = "0.0.1alpha3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/multitran/mt-utils-${version}.tar.bz2`),
           sha256: "e407702c90c5272882386914e1eeca5f6c5039393af9a44538536b94867b0a0e",
         }))));
@@ -38,7 +38,7 @@ sed -i -e 's@message.length()@message.length()*5@' \\
   src/converter.cc;
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran: simple command line utilities for dictionary maintenance",
         mainProgram: "mtquery",
@@ -49,7 +49,7 @@ sed -i -e 's@message.length()@message.length()*5@' \\
           return nix.force(nix.lookup(w, "linux"));
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, patchPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

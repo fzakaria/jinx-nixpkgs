@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fedora-python",
           repo: "lxml_html_clean",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["lxml_html_clean"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Separate project for HTML cleaning functionalities copied from lxml.html.clean",
         homepage: "https://github.com/fedora-python/lxml_html_clean/",
         changelog: nix.thunk(() => nix.str`https://github.com/fedora-python/lxml_html_clean/blob/${version}/CHANGES.rst`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

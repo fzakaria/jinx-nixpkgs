@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thinq-connect",
           repo: "pythinqconnect",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["thinqconnect"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interacting with the LG ThinQ Connect Open API",
         homepage: "https://github.com/thinq-connect/pythinqconnect",
         changelog: nix.thunk(() => nix.str`https://github.com/thinq-connect/pythinqconnect/blob/${nix.sel(src, "tag")}/RELEASE_NOTES.md`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

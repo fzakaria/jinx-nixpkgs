@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-appraise",
       version: "0.7-unstable-2022-04-13",
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "git-appraise",
           rev: "99aeb0e71544d3e1952e208c339b1aec70968cf3",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Lzq4qpDAUjKFA2T685eW9NCfzEhDsn5UR1A1cIaZadE=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed code review system for Git repos",
         homepage: "https://github.com/google/git-appraise",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

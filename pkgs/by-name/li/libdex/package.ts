@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libdex",
       version: "1.1.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libdex/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libdex-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qeBMir7gHJp88RSMW3qma6N37+avbYOAHU/RqlUhmqo=",
         })))),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace \"testsuite/meson.build\" --replace-fail \\\n  \"'test-dbus': {'extra-sources': dbus_foo, 'disable': not have_gdbus_codegen},\" \\\n  \"'test-dbus': {'extra-sources': dbus_foo, 'disable': true},\"\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "libdex", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libdex", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library supporting deferred execution for GNOME and GTK",
         homepage: "https://gitlab.gnome.org/GNOME/libdex",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const tensorflow = nix.arg($, "tensorflow");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pymanopt",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pymanopt",
           repo: "pymanopt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       disabledTests: nix.thunk(() => ["test_check_gradient", "test_check_hessian", "test_check_retraction"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python toolbox for optimization on Riemannian manifolds with support for automatic differentiation",
         homepage: "https://www.pymanopt.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pymanopt/pymanopt/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

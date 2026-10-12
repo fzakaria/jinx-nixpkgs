@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "tack"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tack: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "tack, flake-like toml nix pins")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tack", nix.thunk(() => ({})))),
           nixConfTokens: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "tack reading access tokens from nix.conf (significantly improves comparison speed)")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
-          sessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nixConfTokens")), nix.thunk(() => ({ __proto__: pos$4, TACK_NIX_CONF_TOKENS: "1" })))),
+          sessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nixConfTokens")), nix.thunk(() => ({ [nix.POS]: pos$4, TACK_NIX_CONF_TOKENS: "1" })))),
         })),
       })))),
   };

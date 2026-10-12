@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.0.71";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "exo",
       owner: "exo-explore",
       repo: "exo",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-k3jtrJCxLx8nq1R70CtZWFyNVXEa5Ltw0MgdA0qFVXA=",
     }))));
   const pyo3_bindings = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "exo-pyo3-bindings",
       version: "0.2.1",
       src: src,
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       buildAndTestSubdir: "rust/exo_pyo3_bindings",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gwOdA2sHz8n4GfNjK+OYmttXUTle4WYmAE2Y0KXYrwg=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
     })));
   const dashboard = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "exo-dashboard",
       src: src,
       version: version,
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/dashboard`),
       npmDepsFetcherVersion: 2n,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "exo",
       pyproject: true,
       __structuredAttrs: true,
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-dashboard-path.patch"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             dashboard: nix.thunk(() => nix.str`${dashboard}/lib/node_modules/${nix.sel(dashboard, "pname")}/build`),
           })))),
       ]),
@@ -167,13 +167,13 @@ export default nix.lambda((args) => (() => {
         ])))),
       disabledTestPaths: nix.thunk(() => ["src/exo/worker/tests/unittests/test_mlx/test_tokenizers.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         "exo-pyo3-bindings": pyo3_bindings,
         "exo-dashboard": dashboard,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Run your own AI cluster at home with everyday devices",
         homepage: "https://github.com/exo-explore/exo",
         changelog: nix.thunk(() => nix.str`https://github.com/exo-explore/exo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

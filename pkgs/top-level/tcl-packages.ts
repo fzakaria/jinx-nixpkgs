@@ -18,16 +18,16 @@ export default nix.thunk(() => (() => {
     const tk = nix.arg($, "tk");
     const pkgs = nix.arg($, "pkgs");
     return nix.app(nix.sel(lib, "makeScope"), newScope, nix.thunk(() => nix.app(nix.sel(lib, "extends"), autoCalledPackages, (self) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tcl: tcl,
           tk: tk,
           mkTclDerivation: nix.thunk(() => nix.attr(tcl, "mkTclDerivation")),
           tclPackageHook: nix.thunk(() => nix.attr(tcl, "tclPackageHook")),
           critcl: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/tcl-modules/critcl"), nix.thunk(() => ({
-              __proto__: pos$2,
-              tcllib: nix.thunk(() => nix.app(nix.sel(self, "tcllib", "override"), nix.thunk(() => ({ __proto__: pos$1, withCritcl: false })))),
+              [nix.POS]: pos$2,
+              tcllib: nix.thunk(() => nix.app(nix.sel(self, "tcllib", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCritcl: false })))),
             })))),
-          dbus: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/tcl-modules/dbus"), nix.thunk(() => ({ __proto__: pos$3, dbus: nix.thunk(() => nix.attr(pkgs, "dbus")) })))),
+          dbus: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/tcl-modules/dbus"), nix.thunk(() => ({ [nix.POS]: pos$3, dbus: nix.thunk(() => nix.attr(pkgs, "dbus")) })))),
         }))));
   })(), formals$1);
 })());

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const klibc = nix.arg($, "klibc");
   const pversion = "0.1.10";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "v86d",
       version: nix.thunk(() => nix.str`${pversion}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mjanusz",
           repo: "v86d",
           tag: nix.thunk(() => nix.str`v86d-${pversion}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "patchShebangs configure\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration -Wno-implicit-int",
       })),
       configureFlags: nix.thunk(() => ["--with-klibc", "--with-x86emu"]),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\n./configure $configureFlags\n\nrunHook postConfigure\n",
       buildInputs: nix.thunk(() => [klibc]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Daemon to run x86 code in an emulated environment",
         mainProgram: "v86d",
         homepage: "https://github.com/mjanusz/v86d",

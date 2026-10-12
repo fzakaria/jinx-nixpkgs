@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "objconv",
       version: "2.54.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.org/download/objconv/objconv-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-DFyo+8fvHEr+PMfMkBhxGliFr6y+i868SAKNHskMzHw=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "c++ -o objconv -O2 *.cpp",
       installPhase: "mkdir -p $out/bin $out/doc/objconv\nmv objconv $out/bin\nmv objconv-instructions.pdf $out/doc/objconv\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Object and executable file converter, modifier and disassembler",
         mainProgram: "objconv",
         homepage: "https://www.agner.org/optimize/",

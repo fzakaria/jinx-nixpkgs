@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const opencv = nix.arg($, "opencv");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ncnn",
       version: "20250503",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tencent",
           repo: "ncnn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [vulkan_headers, vulkan_loader, glslang, opencv, protobuf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Neural network inference framework",
         homepage: "https://github.com/Tencent/ncnn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

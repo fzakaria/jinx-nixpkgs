@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const makeGaugePlugin = nix.arg($, "makeGaugePlugin");
   return nix.app(makeGaugePlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "java",
       data: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json"))),
       repo: "getgauge/gauge-java",
       releasePrefix: "gauge-java-",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Gauge plugin that lets you write tests in Java",
         homepage: "https://github.com/getgauge/gauge-java/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

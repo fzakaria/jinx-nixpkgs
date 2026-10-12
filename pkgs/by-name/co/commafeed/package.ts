@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "7.3.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Athou",
       repo: "commafeed",
       tag: version,
       hash: "sha256-AmmXM6lLGa5t9tHe4Ae8LCkIR/nkY89/4D2KIQnVcNU=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       src: src,
       pname: "commafeed-frontend",
@@ -49,7 +49,7 @@ git.commit.id = none
 git.commit.id.abbrev = none
 `)));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       src: src,
       pname: "commafeed",
@@ -82,13 +82,13 @@ makeWrapper ${jdk25}/bin/java $out/bin/commafeed \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         frontend: frontend,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "commafeed")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Google Reader inspired self-hosted RSS reader",
         homepage: "https://github.com/Athou/commafeed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

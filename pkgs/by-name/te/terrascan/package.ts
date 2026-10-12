@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terrascan",
       version: "1.19.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenable",
           repo: "terrascan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-X google.golang.org/protobuf/reflect/protoregistry.conflictPolicy=ignore"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Detect compliance and security violations across Infrastructure",
         mainProgram: "terrascan",
         longDescription: "Detect compliance and security violations across Infrastructure as Code to\nmitigate risk before provisioning cloud native infrastructure. It contains\n500+ polices and support for Terraform and Kubernetes.\n",

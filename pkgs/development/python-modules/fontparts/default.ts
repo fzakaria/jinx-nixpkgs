@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const booleanoperations = nix.arg($, "booleanoperations");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fontparts",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robotools",
           repo: "fontParts",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ ${nix.sel(python, "interpreter")} Lib/fontParts/fontshell/test.py
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API for interacting with the parts of fonts during the font development process",
         homepage: "https://github.com/robotools/fontParts",
         changelog: nix.thunk(() => nix.str`https://github.com/robotools/fontParts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

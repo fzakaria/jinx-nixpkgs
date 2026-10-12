@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const source = nix.argOr($_1, "source", () => false);
     const dhallNoHTTP = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "appendConfigureFlag"), dhall, "-f-with-http"));
     const downloadedEncodedFile = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.builtins.baseNameOf(url)), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         outputHashAlgo: null,
         outputHash: hash,
         name: nix.thunk(() => nix.builtins.baseNameOf(url)),

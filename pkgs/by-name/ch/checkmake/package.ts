@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const go = nix.arg($, "go");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "checkmake",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "checkmake",
           repo: "checkmake",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=main.goversion=go${nix.sel(go, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postPatch: "substituteInPlace man/man1/checkmake.1.md \\\n  --replace REPLACE_DATE 1970-01-01T00:00:00Z\n",
       postBuild: "pandoc man/man1/checkmake.1.md -st man -o man/man1/checkmake.1\n",
       postInstall: "installManPage man/man1/checkmake.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linter and analyzer for Makefiles",
         mainProgram: "checkmake",
         homepage: "https://github.com/checkmake/checkmake",

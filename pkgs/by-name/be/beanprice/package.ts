@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "beanprice",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beancount",
           repo: "beanprice",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["beanprice/price_test.py", "beanprice/sources/yahoo_test.py"]),
       pythonImportsCheck: nix.thunk(() => ["beanprice"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(python3Packages, "beancount", "version")), "3")),
         homepage: "https://github.com/beancount/beanprice",
         description: "Price quotes fetcher for Beancount",

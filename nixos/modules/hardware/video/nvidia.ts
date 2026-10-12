@@ -143,15 +143,15 @@ export default nix.lambda((args) => (() => {
   const ibtSupport = nix.thunk(() => (nix.asBool(useOpenModules) || nix.asBool(nix.selOr(nvidia_x11, () => false, "ibtSupport"))));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$119,
+    [nix.POS]: pos$119,
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       hardware: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         nvidia: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               readOnly: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => (nix.asBool(nvidiaEnabled) || nix.asBool(nix.sel(cfg, "datacenter", "enable")))),
@@ -159,13 +159,13 @@ export default nix.lambda((args) => (() => {
               description: "True if NVIDIA support is enabled",
             })))),
           datacenter: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Data Center drivers for NVIDIA cards on a NVLink topology\n")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   LOG_LEVEL: 4n,
                   LOG_FILE_NAME: "/var/log/fabricmanager.log",
                   LOG_APPEND_TO_LOG: 1n,
@@ -190,61 +190,61 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           powerManagement: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "experimental power management through systemd. For more information, see\nthe NVIDIA docs, on Chapter 21. Configuring Power Management Support\n")),
             finegrained: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "experimental power management of PRIME offload. For more information, see\nthe NVIDIA docs, on Chapter 22. PCI-Express Runtime D3 (RTD3) Power Management\n")),
             kernelSuspendNotifier: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "NVIDIA driver support for kernel suspend notifiers, which allows the driver\nto be notified of suspend and resume events by the kernel, rather than\nrelying on systemd services.\nRequires NVIDIA driver version 595 or newer, and the open source kernel modules.\n"), {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => (nix.asBool(useOpenModules) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "595")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.hardware.nvidia.open == true && lib.versionAtLeast config.hardware.nvidia.package.version \"595\"\n")),
             })),
           })),
           dynamicBoost: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dynamic Boost balances power between the CPU and the GPU for improved\nperformance on supported laptops using the nvidia-powerd daemon. For more\ninformation, see the NVIDIA docs, on Chapter 23. Dynamic Boost on Linux\n")),
           })),
           modesetting: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "kernel modesetting when using the NVIDIA proprietary driver.\n\nEnabling this fixes screen tearing when using Optimus via PRIME (see\n{option}`hardware.nvidia.prime.sync.enable`. This is not enabled\nby default because it is not officially supported by NVIDIA and would not\nwork with SLI.\n\nEnabling this and using version 545 or newer of the proprietary NVIDIA\ndriver causes it to provide its own framebuffer device, which can cause\nWayland compositors to work when they otherwise wouldn't.\n"), {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "535")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.versionAtLeast cfg.package.version \"535\"")),
             })),
           })),
           prime: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             nvidiaBusId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: busIDType,
                 default: "",
                 example: "PCI:1@0:0:0",
                 description: "Bus ID of the NVIDIA GPU. You can find it using lspci; for example if lspci\nshows the NVIDIA GPU at \"0001:02:03.4\", set this option to \"PCI:2@1:3:4\".\n\nlspci might omit the PCI domain (0001 in above example) if it is zero.\nIn which case, use \"@0\" instead.\n\nPlease be aware that this option takes decimal address while lspci reports\nhexadecimal address. So for device at domain \"10000\", use \"@65536\".\n",
               })))),
             intelBusId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: busIDType,
                 default: "",
                 example: "PCI:0@0:2:0",
                 description: "Bus ID of the Intel GPU. You can find it using lspci; for example if lspci\nshows the Intel GPU at \"0001:02:03.4\", set this option to \"PCI:2@1:3:4\".\n\nlspci might omit the PCI domain (0001 in above example) if it is zero.\nIn which case, use \"@0\" instead.\n\nPlease be aware that this option takes decimal address while lspci reports\nhexadecimal address. So for device at domain \"10000\", use \"@65536\".\n",
               })))),
             amdgpuBusId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: busIDType,
                 default: "",
                 example: "PCI:4@0:0:0",
                 description: "Bus ID of the AMD APU. You can find it using lspci; for example if lspci\nshows the AMD APU at \"0001:02:03.4\", set this option to \"PCI:2@1:3:4\".\n\nlspci might omit the PCI domain (0001 in above example) if it is zero.\nIn which case, use \"@0\" instead.\n\nPlease be aware that this option takes decimal address while lspci reports\nhexadecimal address. So for device at domain \"10000\", use \"@65536\".\n",
               })))),
             sync: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "NVIDIA Optimus support using the NVIDIA proprietary driver via PRIME.\nIf enabled, the NVIDIA GPU will be always on and used for all rendering,\nwhile enabling output to displays attached only to the integrated Intel/AMD\nGPU without a multiplexer.\n\nNote that this option only has any effect if the \"nvidia\" driver is specified\nin {option}`services.xserver.videoDrivers`, and it should preferably\nbe the only driver there.\n\nIf this is enabled, then the bus IDs of the NVIDIA and Intel/AMD GPUs have to\nbe specified ({option}`hardware.nvidia.prime.nvidiaBusId` and\n{option}`hardware.nvidia.prime.intelBusId` or\n{option}`hardware.nvidia.prime.amdgpuBusId`).\n\nIf you enable this, you may want to also enable kernel modesetting for the\nNVIDIA driver ({option}`hardware.nvidia.modesetting.enable`) in order\nto prevent tearing.\n\nNote that this configuration will only be successful when a display manager\nfor which the {option}`services.xserver.displayManager.setupCommands`\noption is supported is used\n")),
             })),
             allowExternalGpu: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "configuring X to allow external NVIDIA GPUs when using Prime [Reverse] sync optimus\n")),
             offload: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "render offload support using the NVIDIA proprietary driver via PRIME.\n\nIf this is enabled, then the bus IDs of the NVIDIA and Intel/AMD GPUs have to\nbe specified ({option}`hardware.nvidia.prime.nvidiaBusId` and\n{option}`hardware.nvidia.prime.intelBusId` or\n{option}`hardware.nvidia.prime.amdgpuBusId`)\n")),
               enableOffloadCmd: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "adding a `nvidia-offload` convenience script to {option}`environment.systemPackages`\nfor offloading programs to an nvidia device. To work, you must also enable\n{option}`hardware.nvidia.prime.offload.enable` or {option}`hardware.nvidia.prime.reverseSync.enable`.\n\nExample usage: `nvidia-offload sauerbraten_client`\n\nThis script can be renamed with {option}`hardware.nvidia.prime.offload.offloadCmdMainProgram`.\n")),
               offloadCmdMainProgram: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   description: "Specifies the CLI name of the {option}`hardware.nvidia.prime.offload.enableOffloadCmd`\nconvenience script for offloading programs to an nvidia device.\n",
                   default: "nvidia-offload",
@@ -252,21 +252,21 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             reverseSync: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "NVIDIA Optimus support using the NVIDIA proprietary driver via reverse\nPRIME. If enabled, the Intel/AMD GPU will be used for all rendering, while\nenabling output to displays attached only to the NVIDIA GPU without a\nmultiplexer.\n\nWarning: This feature is relatively new, depending on your system this might\nwork poorly. AMD support, especially so.\nSee: <https://forums.developer.nvidia.com/t/the-all-new-outputsink-feature-aka-reverse-prime/129828>\n\nNote that this option only has any effect if the \"nvidia\" driver is specified\nin {option}`services.xserver.videoDrivers`, and it should preferably\nbe the only driver there.\n\nIf this is enabled, then the bus IDs of the NVIDIA and Intel/AMD GPUs have to\nbe specified ({option}`hardware.nvidia.prime.nvidiaBusId` and\n{option}`hardware.nvidia.prime.intelBusId` or\n{option}`hardware.nvidia.prime.amdgpuBusId`).\n\nIf you enable this, you may want to also enable kernel modesetting for the\nNVIDIA driver ({option}`hardware.nvidia.modesetting.enable`) in order\nto prevent tearing.\n\nNote that this configuration will only be successful when a display manager\nfor which the {option}`services.xserver.displayManager.setupCommands`\noption is supported is used\n")),
               setupCommands: nix.thunk(() => ({
-                __proto__: pos$17,
-                enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "configure the display manager to be able to use the outputs\nattached to the NVIDIA GPU.\nDisable in order to configure the NVIDIA GPU outputs manually using xrandr.\nNote that this configuration will only be successful when a display manager\nfor which the {option}`services.xserver.displayManager.setupCommands`\noption is supported is used\n"), { __proto__: pos$16, default: true })),
+                [nix.POS]: pos$17,
+                enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "configure the display manager to be able to use the outputs\nattached to the NVIDIA GPU.\nDisable in order to configure the NVIDIA GPU outputs manually using xrandr.\nNote that this configuration will only be successful when a display manager\nfor which the {option}`services.xserver.displayManager.setupCommands`\noption is supported is used\n"), { [nix.POS]: pos$16, default: true })),
               })),
             })),
           })),
-          nvidiaSettings: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "nvidia-settings, NVIDIA's GUI configuration tool\n"), { __proto__: pos$20, default: true })),
+          nvidiaSettings: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "nvidia-settings, NVIDIA's GUI configuration tool\n"), { [nix.POS]: pos$20, default: true })),
           nvidiaPersistenced: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nvidia-persistenced a update for NVIDIA GPU headless mode, i.e.\nIt ensures all GPUs stay awake even during headless mode\n")),
           forceFullCompositionPipeline: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "forcefully the full composition pipeline.\nThis sometimes fixes screen tearing issues.\nThis has been reported to reduce the performance of some OpenGL applications and may produce issues in WebGL.\nIt also drastically increases the time the driver needs to clock down after load\n")),
           branch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => nix.sel(lib, "isDerivation"), nvidiaPackages))))), {
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "one of the available driver branches in `pkgs/os-specific/linux/nvidia-x11/default.nix`",
               })),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "datacenter", "enable")) ? "dc" : "stable")),
@@ -275,7 +275,7 @@ export default nix.lambda((args) => (() => {
               description: "The branch of the NVIDIA driver to use.\n\nNote: if {option}`hardware.nvidia.package` is set, it overrides this option.\n\nCommonly interesting branches for end users:\n\n- production, new_feature, beta:\n  NVIDIA's official production / new feature / beta release branches.\n\n- stable:\n  The default; the highest stable version.\n\n- latest:\n  Whichever is newer of `production` and `new_feature`.\n\n- bleeding_edge:\n  Whichever is newer of `latest` and `beta`.\n\n- legacy_580:\n  The long-lived 580 series (LTSB), for GPUs that newer driver branches\n  no longer support (often Maxwell through Volta; roughly GeForce GTX 9xx\n  through 10xx, plus rare Volta cards like TITAN V).\n\n- vulkan_beta:\n  The Vulkan developer beta driver, for users interested in testing new\n  Vulkan features.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(nvidiaPackages, nix.key(nix.sel(cfg, "branch")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.kernelPackages.nvidiaPackages.${config.hardware.nvidia.branch}")),
@@ -283,7 +283,7 @@ export default nix.lambda((args) => (() => {
               description: "The NVIDIA driver package to use.\n\nPrefer using {option}`hardware.nvidia.branch` when possible.\n\nIf you set this option, it is recommended to pick a package from\n`config.boot.kernelPackages.nvidiaPackages` so the driver build matches\nyour configured kernel.\n\nFor custom versions, you can use `nvidiaPackages.mkDriver`; see\n`pkgs/os-specific/linux/nvidia-x11/default.nix` for examples.\n",
             })))),
           open: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               example: true,
               description: "Whether to enable the open source NVIDIA kernel module.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
@@ -291,22 +291,22 @@ export default nix.lambda((args) => (() => {
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if lib.versionOlder config.hardware.nvidia.package.version \"560\" then false else null\n")),
             })))),
           gsp: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the GPU System Processor (GSP) on the video card\n"), {
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: nix.thunk(() => (nix.asBool(useOpenModules) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "555")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.hardware.nvidia.open == true || lib.versionAtLeast config.hardware.nvidia.package.version \"555\"\n")),
             })),
           })),
-          videoAcceleration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "video acceleration (VA-API)"), { __proto__: pos$27, default: true })),
+          videoAcceleration: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "video acceleration (VA-API)"), { [nix.POS]: pos$27, default: true })),
           moduleParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "raw")))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 nvidia: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   NVreg_UsePageAttributeTable: 1n,
                   NVreg_RegistryDwords: "EnableBrightnessControl=1",
                 })),
@@ -321,43 +321,43 @@ export default nix.lambda((args) => (() => {
       const igpuBusId = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(pCfg, "intelBusId"), "")) ? nix.sel(pCfg, "intelBusId") : nix.sel(pCfg, "amdgpuBusId")));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enabled")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   assertion: nix.thunk(() => !nix.asBool((nix.asBool(nvidiaEnabled) && nix.asBool(nix.sel(cfg, "datacenter", "enable"))))),
                   message: "You cannot configure both X11 and Data Center drivers at the same time.",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "open"), null)) || nix.asBool(nix.sel(cfg, "datacenter", "enable")))),
                   message: "You must configure `hardware.nvidia.open` on NVIDIA driver versions >= 560.\nIt is suggested to use the open source kernel modules on Turing or later GPUs (RTX series, GTX 16xx), and the closed source modules otherwise.\n",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "open"))) || nix.asBool(!nix.eq(nix.sel(nvidia_x11, "open"), null)))),
                   message: "The selected NVIDIA package does not provide open kernel modules.\nSet hardware.nvidia.open = false or choose a package branch with open module support.\n",
                 })),
               ]),
               boot: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 blacklistedKernelModules: nix.thunk(() => ["nouveau", "nova_core", "nvidiafb"]),
                 extraModprobeConfig: "softdep nvidia post: nvidia-uvm\n",
                 kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), useOpenModules, nix.thunk(() => ["nvidia_uvm"]))),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 tmpfiles: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "virtualisation", "docker", "enableNvidia")), nix.thunk(() => [
                       nix.thunk(() => nix.str`L+ /run/nvidia-docker/bin - - - - ${nix.sel(nvidia_x11, "bin")}/origBin`),
                     ]))),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 udev: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   extraRules: nix.thunk(() => nix.str`# Create /dev/nvidia-uvm when the nvidia-uvm module is loaded.
 KERNEL=="nvidia", RUN+="${nix.sel(pkgs, "runtimeShell")} -c 'mknod -m 666 /dev/nvidiactl c 195 255'"
 KERNEL=="nvidia", RUN+="${nix.sel(pkgs, "runtimeShell")} -c 'for i in $$(cat /proc/driver/nvidia/gpus/*/information | grep Minor | cut -d \\  -f 4); do mknod -m 666 /dev/nvidia$\${i} c 195 $\${i}; done'"
@@ -368,17 +368,17 @@ KERNEL=="nvidia_uvm", RUN+="${nix.sel(pkgs, "runtimeShell")} -c 'mknod -m 666 /d
                 })),
               })),
               hardware: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 graphics: nix.thunk(() => (() => {
                   const icd = nix.thunk(() => nix.concat(["egl-wayland"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "495")), nix.thunk(() => ["egl-gbm"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "560")), nix.thunk(() => ["egl-wayland2", "egl-x11"])))));
                   const combineIcdPkgs = (icd_1) => (pkgs_1) => nix.app(nix.sel(pkgs_1, "symlinkJoin"), nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       name: nix.thunk(() => nix.str`nvidia-egl-external-platforms${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(pkgs_1, "stdenv", "hostPlatform", "is32bit")), "-x32")}`),
                       paths: nix.thunk(() => nix.app(nix.sel(lib, "attrVals"), icd_1, pkgs_1)),
                       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "595")), "pushd $out/share/egl/egl_external_platform.d\nfor f in [0-9][0-9]_*; do\n  num=${f:0:2}\n  rest=${f:2}\n  new=$(printf \"%02d\" $((99 - 10#$num)))\n  mv -- \"$f\" \"tmp-$new$rest\"\ndone\nfor f in tmp-*; do\n  mv -- \"$f\" \"${f#tmp-}\"\ndone\npopd\n")),
                     })));
                   return {
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     extraPackages: nix.thunk(() => [
                       nix.thunk(() => nix.sel(nvidia_x11, "out")),
                       nix.thunk(() => nix.app(combineIcdPkgs, icd, pkgs)),
@@ -391,144 +391,144 @@ KERNEL=="nvidia_uvm", RUN+="${nix.sel(pkgs, "runtimeShell")} -c 'mknod -m 666 /d
                 })()),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(nvidia_x11, "bin"))]),
               })),
             })),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nvidiaEnabled, nix.thunk(() => ({
-                __proto__: pos$105,
+                [nix.POS]: pos$105,
                 assertions: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     assertion: nix.thunk(() => (!nix.asBool(primeEnabled) || nix.asBool((nix.asBool(nix.eq(nix.sel(pCfg, "intelBusId"), "")) || nix.asBool(nix.eq(nix.sel(pCfg, "amdgpuBusId"), "")))))),
                     message: "You cannot configure both an Intel iGPU and an AMD APU. Pick the one corresponding to your processor.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(offloadCfg, "enableOffloadCmd")) || nix.asBool((nix.asBool(nix.sel(offloadCfg, "enable")) || nix.asBool(nix.sel(reverseSyncCfg, "enable")))))),
                     message: "Offload command requires offloading or reverse prime sync to be enabled.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     assertion: nix.thunk(() => (!nix.asBool(primeEnabled) || nix.asBool((nix.asBool(!nix.eq(nix.sel(pCfg, "nvidiaBusId"), "")) && nix.asBool((nix.asBool(!nix.eq(nix.sel(pCfg, "intelBusId"), "")) || nix.asBool(!nix.eq(nix.sel(pCfg, "amdgpuBusId"), "")))))))),
                     message: "When NVIDIA PRIME is enabled, the GPU bus IDs must be configured.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(offloadCfg, "enable")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "435.21")))),
                     message: "NVIDIA PRIME render offload is currently only supported on versions >= 435.21.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(reverseSyncCfg, "enable")) && nix.asBool(!nix.eq(nix.sel(pCfg, "amdgpuBusId"), "")))) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "470.0")))),
                     message: "NVIDIA PRIME render offload for AMD APUs is currently only supported on versions >= 470 beta.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(syncCfg, "enable")) && nix.asBool(nix.sel(offloadCfg, "enable"))))),
                     message: "PRIME Sync and Offload cannot be both enabled",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(syncCfg, "enable")) && nix.asBool(nix.sel(reverseSyncCfg, "enable"))))),
                     message: "PRIME Sync and PRIME Reverse Sync cannot be both enabled",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(syncCfg, "enable")) && nix.asBool(nix.sel(cfg, "powerManagement", "finegrained"))))),
                     message: "Sync precludes powering down the NVIDIA GPU.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "powerManagement", "finegrained")) || nix.asBool(nix.sel(offloadCfg, "enable")))),
                     message: "Fine-grained power management requires offload to be enabled.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "powerManagement", "enable")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "430.09")))),
                     message: "Required files for driver based power management only exist on versions >= 430.09.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "gsp", "enable")) || nix.asBool(nix.has(nix.sel(cfg, "package"), "firmware")))),
                     message: "This version of NVIDIA driver does not provide a GSP firmware.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     assertion: nix.thunk(() => (!nix.asBool(useOpenModules) || nix.asBool(nix.has(nix.sel(cfg, "package"), "open")))),
                     message: "This version of NVIDIA driver does not provide a corresponding opensource kernel driver.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     assertion: nix.thunk(() => (!nix.asBool(useOpenModules) || nix.asBool(nix.sel(cfg, "gsp", "enable")))),
                     message: "The GSP cannot be disabled when using the opensource kernel driver.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "dynamicBoost", "enable")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "510.39.01")))),
                     message: "NVIDIA's Dynamic Boost feature only exists on versions >= 510.39.01",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "powerManagement", "kernelSuspendNotifier")) || nix.asBool((nix.asBool(useOpenModules) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "595")))))),
                     message: "NVIDIA driver support for kernel suspend notifiers requires NVIDIA driver version 595 or newer, and the open source kernel modules.",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     assertion: nix.thunk(() => nix.eq(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "moduleParams")), nix.thunk(() => ["nvidia", "nvidia-drm", "nvidia-modeset", "nvidia-uvm"])), {})),
                     message: "You can only use `hardware.nvidia.moduleParams` to set parameters for the kernel modules of NVIDIA drivers.",
                   })),
                 ]),
                 hardware: nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   nvidia: nix.thunk(() => ({
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     prime: nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       offload: nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(reverseSyncCfg, "enable")))),
                       })),
                     })),
                     moduleParams: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(offloadCfg, "enable")) || nix.asBool(nix.sel(cfg, "modesetting", "enable")))), nix.thunk(() => ({
-                          __proto__: pos$66,
-                          "nvidia-drm": nix.thunk(() => ({ __proto__: pos$65, modeset: 1n })),
+                          [nix.POS]: pos$66,
+                          "nvidia-drm": nix.thunk(() => ({ [nix.POS]: pos$65, modeset: 1n })),
                         }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(offloadCfg, "enable")) || nix.asBool(nix.sel(cfg, "modesetting", "enable")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "545")))), nix.thunk(() => ({
-                          __proto__: pos$68,
-                          "nvidia-drm": nix.thunk(() => ({ __proto__: pos$67, fbdev: 1n })),
+                          [nix.POS]: pos$68,
+                          "nvidia-drm": nix.thunk(() => ({ [nix.POS]: pos$67, fbdev: 1n })),
                         }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "powerManagement", "enable")) && nix.asBool(nix.sel(cfg, "powerManagement", "kernelSuspendNotifier")))), nix.thunk(() => ({
-                          __proto__: pos$70,
-                          nvidia: nix.thunk(() => ({ __proto__: pos$69, NVreg_UseKernelSuspendNotifiers: 1n })),
+                          [nix.POS]: pos$70,
+                          nvidia: nix.thunk(() => ({ [nix.POS]: pos$69, NVreg_UseKernelSuspendNotifiers: 1n })),
                         }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "powerManagement", "enable")), nix.thunk(() => ({
-                          __proto__: pos$72,
-                          nvidia: nix.thunk(() => ({ __proto__: pos$71, NVreg_PreserveVideoMemoryAllocations: 1n })),
+                          [nix.POS]: pos$72,
+                          nvidia: nix.thunk(() => ({ [nix.POS]: pos$71, NVreg_PreserveVideoMemoryAllocations: 1n })),
                         }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(useOpenModules) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "515.43.04")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "version")), "545.23.06")))), nix.thunk(() => ({
-                          __proto__: pos$74,
-                          nvidia: nix.thunk(() => ({ __proto__: pos$73, NVreg_OpenRmEnableUnsupportedGpus: 1n })),
+                          [nix.POS]: pos$74,
+                          nvidia: nix.thunk(() => ({ [nix.POS]: pos$73, NVreg_OpenRmEnableUnsupportedGpus: 1n })),
                         }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "powerManagement", "finegrained")), nix.thunk(() => ({
-                          __proto__: pos$76,
-                          nvidia: nix.thunk(() => ({ __proto__: pos$75, NVreg_DynamicPowerManagement: "0x02" })),
+                          [nix.POS]: pos$76,
+                          nvidia: nix.thunk(() => ({ [nix.POS]: pos$75, NVreg_DynamicPowerManagement: "0x02" })),
                         }))))))))))),
                   })),
                   graphics: nix.thunk(() => ({
-                    __proto__: pos$78,
+                    [nix.POS]: pos$78,
                     extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "videoAcceleration")), nix.thunk(() => nix.sel(pkgs, "nvidia-vaapi-driver")))),
                   })),
                   firmware: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "gsp", "enable")), nix.thunk(() => nix.sel(nvidia_x11, "firmware")))),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$87,
+                  [nix.POS]: pos$87,
                   xserver: nix.thunk(() => ({
-                    __proto__: pos$83,
+                    [nix.POS]: pos$83,
                     drivers: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), primeEnabled, nix.thunk(() => ({
-                        __proto__: pos$80,
+                        [nix.POS]: pos$80,
                         name: igpuDriver,
                         display: nix.thunk(() => nix.sel(offloadCfg, "enable")),
                         modules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(igpuDriver, "amdgpu")), nix.thunk(() => nix.sel(pkgs, "xf86-video-amdgpu")))),
                         deviceSection: nix.thunk(() => nix.add(nix.str`BusID "${igpuBusId}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(syncCfg, "enable")) && nix.asBool(!nix.eq(igpuDriver, "amdgpu")))), "Option \"AccelMethod\" \"none\"\n"))),
                       }))), nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                        __proto__: pos$81,
+                        [nix.POS]: pos$81,
                         name: "nvidia",
                         modules: nix.thunk(() => [nix.thunk(() => nix.sel(nvidia_x11, "bin"))]),
                         display: nix.thunk(() => !nix.asBool(nix.sel(offloadCfg, "enable"))),
@@ -539,7 +539,7 @@ KERNEL=="nvidia_uvm", RUN+="${nix.sel(pkgs, "runtimeShell")} -c 'mknod -m 666 /d
                     serverLayoutSection: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(syncCfg, "enable")), nix.thunk(() => nix.str`Inactive "Device-${igpuDriver}[0]"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(reverseSyncCfg, "enable")), "Inactive \"Device-nvidia[0]\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(offloadCfg, "enable")), "Option \"AllowNVIDIAGPUScreens\"\n"))),
                     displayManager: nix.thunk(() => ({
-                      __proto__: pos$82,
+                      [nix.POS]: pos$82,
                       setupCommands: nix.thunk(() => (() => {
                         const gpuProviderName = nix.thunk(() => (nix.asBool(nix.eq(igpuDriver, "amdgpu")) ? nix.str`\`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --listproviders | ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gnugrep")))} -i AMD | ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gnused")))} -n 's/^.*name://p'\`` : nix.force(igpuDriver)));
                         const providerCmdParams = nix.thunk(() => (nix.asBool(nix.sel(syncCfg, "enable")) ? nix.str`"${gpuProviderName}" NVIDIA-0` : nix.str`NVIDIA-G0 "${gpuProviderName}"`));
@@ -550,41 +550,41 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --a
                       })()),
                     })),
                   })),
-                  acpid: nix.thunk(() => ({ __proto__: pos$84, enable: true })),
+                  acpid: nix.thunk(() => ({ [nix.POS]: pos$84, enable: true })),
                   dbus: nix.thunk(() => ({
-                    __proto__: pos$85,
+                    [nix.POS]: pos$85,
                     packages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "dynamicBoost", "enable")), nix.thunk(() => nix.sel(nvidia_x11, "bin")))),
                   })),
                   udev: nix.thunk(() => ({
-                    __proto__: pos$86,
+                    [nix.POS]: pos$86,
                     extraRules: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "powerManagement", "finegrained")), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "5.5")), "# Remove NVIDIA USB xHCI Host Controller devices, if present\nACTION==\"add\", SUBSYSTEM==\"pci\", ATTR{vendor}==\"0x10de\", ATTR{class}==\"0x0c0330\", ATTR{remove}=\"1\"\n\n# Remove NVIDIA USB Type-C UCSI devices, if present\nACTION==\"add\", SUBSYSTEM==\"pci\", ATTR{vendor}==\"0x10de\", ATTR{class}==\"0x0c8000\", ATTR{remove}=\"1\"\n\n# Remove NVIDIA Audio devices, if present\nACTION==\"add\", SUBSYSTEM==\"pci\", ATTR{vendor}==\"0x10de\", ATTR{class}==\"0x040300\", ATTR{remove}=\"1\"\n"), "# Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind\nACTION==\"bind\", SUBSYSTEM==\"pci\", ATTR{vendor}==\"0x10de\", ATTR{class}==\"0x030000\", TEST==\"power/control\", ATTR{power/control}=\"auto\"\nACTION==\"bind\", SUBSYSTEM==\"pci\", ATTR{vendor}==\"0x10de\", ATTR{class}==\"0x030200\", TEST==\"power/control\", ATTR{power/control}=\"auto\"\n\n# Disable runtime PM for NVIDIA VGA/3D controller devices on driver unbind\nACTION==\"unbind\", SUBSYSTEM==\"pci\", ATTR{vendor}==\"0x10de\", ATTR{class}==\"0x030000\", TEST==\"power/control\", ATTR{power/control}=\"on\"\nACTION==\"unbind\", SUBSYSTEM==\"pci\", ATTR{vendor}==\"0x10de\", ATTR{class}==\"0x030200\", TEST==\"power/control\", ATTR{power/control}=\"on\"\n")))),
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$91,
+                  [nix.POS]: pos$91,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$90,
+                    [nix.POS]: pos$90,
                     "nvidia/nvidia-application-profiles-rc": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(nvidia_x11, "useProfiles")), nix.thunk(() => ({
-                        __proto__: pos$88,
+                        [nix.POS]: pos$88,
                         source: nix.thunk(() => nix.str`${nix.sel(nvidia_x11, "bin")}/share/nvidia/nvidia-application-profiles-rc`),
                       })))),
                     "egl/egl_external_platform.d": nix.thunk(() => ({
-                      __proto__: pos$89,
+                      [nix.POS]: pos$89,
                       source: "/run/opengl-driver/share/egl/egl_external_platform.d/",
                     })),
                   })),
                   systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nvidiaSettings")), nix.thunk(() => nix.sel(nvidia_x11, "settings"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nvidiaPersistenced")), nix.thunk(() => nix.sel(nvidia_x11, "persistenced"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(offloadCfg, "enableOffloadCmd")), nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), nix.thunk(() => nix.sel(cfg, "prime", "offload", "offloadCmdMainProgram")), "export __NV_PRIME_RENDER_OFFLOAD=1\nexport __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0\nexport __GLX_VENDOR_LIBRARY_NAME=nvidia\nexport __VK_LAYER_NV_optimus=NVIDIA_only\nexec \"$@\"\n")))))),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$103,
+                  [nix.POS]: pos$103,
                   packages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "powerManagement", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "powerManagement", "kernelSuspendNotifier"))))), nix.thunk(() => nix.sel(nvidia_x11, "out")))),
                   services: nix.thunk(() => (() => {
                     const nvidiaService = (state) => ({
-                      __proto__: pos$93,
+                      [nix.POS]: pos$93,
                       description: nix.thunk(() => nix.str`NVIDIA system ${state} actions`),
                       path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kbd"))]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$92,
+                        [nix.POS]: pos$92,
                         Type: "oneshot",
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(nvidia_x11, "out")}/bin/nvidia-sleep.sh '${state}'`),
                       })),
@@ -593,24 +593,24 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --a
                     });
                     return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "powerManagement", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "powerManagement", "kernelSuspendNotifier"))))), nix.thunk(() => ({
-                            __proto__: pos$95,
+                            [nix.POS]: pos$95,
                             "nvidia-suspend": nix.thunk(() => nix.app(nvidiaService, "suspend")),
                             "nvidia-hibernate": nix.thunk(() => nix.app(nvidiaService, "hibernate")),
                             "nvidia-resume": nix.thunk(() => nix.update(nix.app(nvidiaService, "resume"), {
-                              __proto__: pos$94,
+                              [nix.POS]: pos$94,
                               before: [],
                               after: nix.thunk(() => ["systemd-suspend.service", "systemd-hibernate.service"]),
                               requiredBy: nix.thunk(() => ["systemd-suspend.service", "systemd-hibernate.service"]),
                             })),
                           })))),
                         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nvidiaPersistenced")), nix.thunk(() => ({
-                            __proto__: pos$98,
+                            [nix.POS]: pos$98,
                             "nvidia-persistenced": nix.thunk(() => ({
-                              __proto__: pos$97,
+                              [nix.POS]: pos$97,
                               description: "NVIDIA Persistence Daemon",
                               wantedBy: nix.thunk(() => ["multi-user.target"]),
                               serviceConfig: nix.thunk(() => ({
-                                __proto__: pos$96,
+                                [nix.POS]: pos$96,
                                 Type: "forking",
                                 Restart: "always",
                                 PIDFile: "/var/run/nvidia-persistenced/nvidia-persistenced.pid",
@@ -620,14 +620,14 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --a
                             })),
                           })))),
                         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dynamicBoost", "enable")), nix.thunk(() => ({
-                            __proto__: pos$101,
+                            [nix.POS]: pos$101,
                             "nvidia-powerd": nix.thunk(() => ({
-                              __proto__: pos$100,
+                              [nix.POS]: pos$100,
                               description: "nvidia-powerd service",
                               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "util-linux"))]),
                               wantedBy: nix.thunk(() => ["multi-user.target"]),
                               serviceConfig: nix.thunk(() => ({
-                                __proto__: pos$99,
+                                [nix.POS]: pos$99,
                                 Type: "dbus",
                                 BusName: "nvidia.powerd.server",
                                 ExecStart: nix.thunk(() => nix.str`${nix.sel(nvidia_x11, "bin")}/bin/nvidia-powerd`),
@@ -637,12 +637,12 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --a
                       ]));
                   })()),
                   tmpfiles: nix.thunk(() => ({
-                    __proto__: pos$102,
+                    [nix.POS]: pos$102,
                     rules: nix.thunk(() => nix.concat(["d /run/nvidia-xdriver 0770 root users"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(nvidia_x11, "persistenced"), null)) && nix.asBool(nix.sel(config, "virtualisation", "docker", "enableNvidia")))), nix.thunk(() => nix.str`L+ /run/nvidia-docker/extras/bin/nvidia-persistenced - - - - ${nix.sel(nvidia_x11, "persistenced")}/origBin/nvidia-persistenced`)))),
                   })),
                 })),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$104,
+                  [nix.POS]: pos$104,
                   extraModulePackages: nix.thunk(() => (nix.asBool(useOpenModules) ? [nix.thunk(() => nix.sel(nvidia_x11, "open"))] : [nix.thunk(() => nix.sel(nvidia_x11, "mod"))])),
                   kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "xserver", "enable")), nix.thunk(() => ["nvidia", "nvidia_modeset", "nvidia_drm"]))),
                   kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(config, "boot", "kernelPackages", "kernel", "kernelAtLeast"), "6.2")) && nix.asBool(!nix.asBool(ibtSupport)))), "ibt=off")),
@@ -654,37 +654,37 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --a
                 })),
               })))),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "datacenter", "enable")), nix.thunk(() => ({
-                __proto__: pos$118,
+                [nix.POS]: pos$118,
                 boot: nix.thunk(() => ({
-                  __proto__: pos$106,
+                  [nix.POS]: pos$106,
                   extraModulePackages: nix.thunk(() => (nix.asBool(useOpenModules) ? [nix.thunk(() => nix.sel(nvidia_x11, "open"))] : [nix.thunk(() => nix.sel(nvidia_x11, "mod"))])),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$116,
+                  [nix.POS]: pos$116,
                   tmpfiles: nix.thunk(() => ({
-                    __proto__: pos$107,
+                    [nix.POS]: pos$107,
                     rules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(nvidia_x11, "persistenced"), null)) && nix.asBool(nix.sel(config, "virtualisation", "docker", "enableNvidia")))), nix.thunk(() => nix.str`L+ /run/nvidia-docker/extras/bin/nvidia-persistenced - - - - ${nix.sel(nvidia_x11, "persistenced")}/origBin/nvidia-persistenced`))),
                   })),
                   services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$112,
+                        [nix.POS]: pos$112,
                         "nvidia-fabricmanager": nix.thunk(() => ({
-                          __proto__: pos$111,
+                          [nix.POS]: pos$111,
                           enable: true,
                           description: "Start NVIDIA NVLink Management",
                           wantedBy: nix.thunk(() => ["multi-user.target"]),
                           unitConfig: nix.thunk(() => ({
-                            __proto__: pos$108,
+                            [nix.POS]: pos$108,
                             After: nix.thunk(() => ["network-online.target"]),
                             Requires: nix.thunk(() => ["network-online.target"]),
                           })),
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$110,
+                            [nix.POS]: pos$110,
                             Type: "forking",
                             TimeoutStartSec: 240n,
                             ExecStart: nix.thunk(() => (() => {
                               const fabricManagerConfDefaults = nix.thunk(() => ({
-                                __proto__: pos$109,
+                                [nix.POS]: pos$109,
                                 TOPOLOGY_FILE_PATH: nix.thunk(() => nix.str`${nix.sel(nvidia_x11, "fabricmanager")}/share/nvidia-fabricmanager/nvidia/nvswitch`),
                                 DATABASE_PATH: nix.thunk(() => nix.str`${nix.sel(nvidia_x11, "fabricmanager")}/share/nvidia-fabricmanager/nvidia/nvswitch`),
                               }));
@@ -696,13 +696,13 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --a
                         })),
                       })),
                       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nvidiaPersistenced")), nix.thunk(() => ({
-                          __proto__: pos$115,
+                          [nix.POS]: pos$115,
                           "nvidia-persistenced": nix.thunk(() => ({
-                            __proto__: pos$114,
+                            [nix.POS]: pos$114,
                             description: "NVIDIA Persistence Daemon",
                             wantedBy: nix.thunk(() => ["multi-user.target"]),
                             serviceConfig: nix.thunk(() => ({
-                              __proto__: pos$113,
+                              [nix.POS]: pos$113,
                               Type: "forking",
                               Restart: "always",
                               PIDFile: "/var/run/nvidia-persistenced/nvidia-persistenced.pid",
@@ -714,7 +714,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrandr")))} --a
                     ]))),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$117,
+                  [nix.POS]: pos$117,
                   systemPackages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "datacenter", "enable")), nix.thunk(() => nix.sel(nvidia_x11, "fabricmanager"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nvidiaPersistenced")), nix.thunk(() => nix.sel(nvidia_x11, "persistenced"))))),
                 })),
               })))),

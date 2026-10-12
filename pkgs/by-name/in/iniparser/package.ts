@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const unity_test = nix.arg($, "unity-test");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "iniparser",
       version: "4.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iniparser",
           repo: "iniparser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-z10S9ODLprd7CbL5Ecgh7H4eOwTetYwFXiWBUm6fIr4=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-fetchcontent-usage.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "UNITY-GENERATE-TEST-RUNNER": nix.thunk(() => nix.str`${unity_test}/share/generate_test_runner.rb`),
           })))))),
       nativeBuildInputs: nix.thunk(() => [cmake, doxygen, validatePkgConfig]),
@@ -49,19 +49,19 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [ruby, ctestCheckHook]),
       checkInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(unity_test, "override"), nix.thunk(() => ({ __proto__: pos$3, supportDouble: true }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$4, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(unity_test, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, supportDouble: true }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, doCheck: false })))),
       ]),
       postFixup: "ln -sv $out/include/iniparser/*.h $out/include/\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://gitlab.com/iniparser/iniparser",
         description: "Free standalone ini file parsing library",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/iniparser/iniparser/-/releases/v${nix.sel(finalAttrs, "version")}`),

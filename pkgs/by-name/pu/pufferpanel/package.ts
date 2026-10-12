@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pufferpanel";
       const version = "2.6.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PufferPanel",
           repo: "PufferPanel",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/pufferpanel/pufferpanel/v2.Version=${version}-nixpkgs`),
       ]);
       const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "pufferpanel-frontend",
           version: version,
           src: nix.thunk(() => nix.str`${src}/client`),
@@ -59,19 +59,19 @@ export default nix.lambda((args) => (() => {
       const preBuild = "GOROOT=${GOROOT-$(go env GOROOT)} swag init --output web/swagger --generalInfo web/loader.go\n";
       const installPhase = "runHook preInstall\n\n# Set up directory structure similar to the official PufferPanel releases.\nmkdir -p $out/share/pufferpanel\ncp \"$GOPATH\"/bin/cmd $out/share/pufferpanel/pufferpanel\ncp -r $frontend $out/share/pufferpanel/www\ncp -r $src/assets/email $out/share/pufferpanel/email\ncp web/swagger/swagger.{json,yaml} $out/share/pufferpanel\n\n# Wrap the binary with the path to the external files, but allow setting\n# custom paths if needed.\nmakeWrapper $out/share/pufferpanel/pufferpanel $out/bin/pufferpanel \\\n  --set-default GIN_MODE release \\\n  --set-default PUFFER_PANEL_EMAIL_TEMPLATES $out/share/pufferpanel/email/emails.json \\\n  --set-default PUFFER_PANEL_WEB_FILES $out/share/pufferpanel/www\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pufferpanel: nix.thunk(() => nix.attr(nixosTests, "pufferpanel")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: pufferpanel,
               command: nix.thunk(() => nix.str`${pname} version`),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free, open source game management panel",
         homepage: "https://www.pufferpanel.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pufferpanel",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

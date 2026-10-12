@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const buildDocs = nix.argOr($, "buildDocs", () => false);
   const buildTests = nix.argOr($, "buildTests", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
-  const abseil_cpp$ = nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ __proto__: pos$1, cxxStandard: "17" }))));
+  const abseil_cpp$ = nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cxxStandard: "17" }))));
   const latex = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), buildDocs, nix.thunk(() => nix.app(nix.sel(texliveSmall, "withPackages"), (ps) => (() => {
         const w = nix.withScope(ps, null);
         return [
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "migraphx",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"])), nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ROCm",
           repo: "AMDMIGraphX",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "pybind11")),
         nix.thunk(() => nix.sel(python3Packages, "onnx")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, LDFLAGS: "-Wl,--allow-shlib-undefined" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LDFLAGS: "-Wl,--allow-shlib-undefined" })),
       cmakeFlags: nix.thunk(() => [
         "-DMIGRAPHX_ENABLE_GPU=ON",
         "-DMIGRAPHX_ENABLE_CPU=ON",
@@ -149,18 +149,18 @@ substituteInPlace src/targets/gpu/kernels/include/migraphx/kernels/bit.hpp \\
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDocs, "make -j$NIX_BUILD_CORES doc\ncd ../doc/pdf\nmake -j$NIX_BUILD_CORES\ncd -\n")),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), buildDocs, "mv ../doc/html $out/share/doc/migraphx\nmv ../doc/pdf/MIGraphX.pdf $out/share/doc/migraphx\n"), nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv bin/test_* $test/bin\npatchelf $test/bin/test_* --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         impureTests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "migraphx-driver": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-migraphx-driver.nix"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               migraphx: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$6, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$6, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "AMD's graph optimization engine",
         homepage: "https://github.com/ROCm/AMDMIGraphX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

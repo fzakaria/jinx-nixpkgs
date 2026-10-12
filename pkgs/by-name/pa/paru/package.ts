@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pacman = nix.arg($, "pacman");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paru",
       version: "2.1.0-unstable-2026-01-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Morganamilo",
           repo: "paru",
           rev: "9ac3578807a87858651e81a02586ceb947686e7c",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "sh ./scripts/mkmo locale/\n",
       postInstall: "installManPage man/paru.8 man/paru.conf.5\ninstallShellCompletion --name paru.bash --bash completions/bash\ninstallShellCompletion --name paru.fish --fish completions/fish\ninstallShellCompletion --name _paru --zsh completions/zsh\ncp -r locale \"$out/share/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Feature packed AUR helper",
         homepage: "https://github.com/Morganamilo/paru",
         changelog: nix.thunk(() => nix.str`https://github.com/Morganamilo/paru/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

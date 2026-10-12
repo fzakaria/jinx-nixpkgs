@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "kalshi_python",
           hash: "sha256-FsHRuqfmdF31l5E/L08/eVhWkN7JhgJkFSUzMrYNuOY=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["kalshi_python"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official python SDK for algorithmic trading on Kalshi",
         homepage: "https://github.com/Kalshi/kalshi-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

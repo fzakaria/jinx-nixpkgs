@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const reason = nix.arg($, "reason");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flex",
       version: "unstable-2020-09-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jordwalke",
           repo: "flex",
           rev: "6ff12fe4f96749ffd3c0ea3d9962742767937b4a",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [reason]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Reason implementation of CSS Flexbox layout. An Yoga project port",
         homepage: "https://github.com/jordwalke/flex",
         maintainers: [],

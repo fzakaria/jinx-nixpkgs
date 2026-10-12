@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const enableStatic = nix.argOr($, "enableStatic", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yara",
       version: "4.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VirusTotal",
           repo: "yara",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: enableStatic,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" $out/bin/yara\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to perform pattern matching for malware-related tasks",
         homepage: "http://Virustotal.github.io/yara/",
         changelog: nix.thunk(() => nix.str`https://github.com/VirusTotal/yara/releases/tag/v${nix.sel(finalAttrs, "version")}`),

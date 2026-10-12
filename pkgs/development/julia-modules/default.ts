@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   return (packageNames) => (() => {
     const util = nix.thunk(() => nix.app(callPackage, nix.path(here, "./util.nix"), nix.thunk(() => ({}))));
     const pythonToUse = nix.thunk(() => (() => {
-      const extraPythonPackages = nix.thunk(() => nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./extra-python-packages.nix"), nix.thunk(() => ({ __proto__: pos$1, python3: python3 }))), "getExtraPythonPackages"), packageNames));
+      const extraPythonPackages = nix.thunk(() => nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./extra-python-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python3 }))), "getExtraPythonPackages"), packageNames));
       return (nix.asBool(nix.eq(extraPythonPackages, [])) ? nix.force(python3) : nix.app(nix.sel(util, "addPackagesToPython"), python3, nix.thunk(() => nix.builtins.map((pkg) => nix.app(nix.sel(lib, "getAttr"), pkg, nix.thunk(() => nix.sel(python3, "pkgs"))), extraPythonPackages))));
     })());
     const juliaWrapped = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`julia-${nix.sel(julia, "version")}-wrapped`), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         makeWrapperArgs: makeWrapperArgs,
       })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -72,19 +72,19 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
   --set JULIA_CONDAPKG_BACKEND Null \\
   --set JULIA_PYTHONCALL_EXE "@PyCall"
 `)));
-    const packageImplications = nix.thunk(() => ({ __proto__: pos$3, PythonCall: nix.thunk(() => ["PyCall"]) }));
+    const packageImplications = nix.thunk(() => ({ [nix.POS]: pos$3, PythonCall: nix.thunk(() => ["PyCall"]) }));
     const packageOverridesRepoified = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.sel(util, "repoifySimple")), packageOverrides));
     const closureYaml = nix.thunk(() => nix.app(callPackage, nix.path(here, "./package-closure.nix"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         augmentedRegistry: augmentedRegistry,
         julia: julia,
         packageNames: packageNames,
         packageImplications: packageImplications,
         packageOverrides: packageOverridesRepoified,
       }))));
-    const stdlibInfos = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdlib-infos.nix"), nix.thunk(() => ({ __proto__: pos$5, julia: julia }))));
+    const stdlibInfos = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdlib-infos.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, julia: julia }))));
     const dependencies = nix.thunk(() => nix.app(runCommand, "julia-sources.nix", nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
               const w = nix.withScope(ps, null);
@@ -101,29 +101,29 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
   "${closureYaml}" \\
   "$out"
 `)));
-    const dependencyUuidToInfo = nix.thunk(() => nix.app(nix.builtins.import(dependencies), nix.thunk(() => ({ __proto__: pos$7, fetchgit: fetchgit }))));
+    const dependencyUuidToInfo = nix.thunk(() => nix.app(nix.builtins.import(dependencies), nix.thunk(() => ({ [nix.POS]: pos$7, fetchgit: fetchgit }))));
     const fillInOverrideSrc = (uuid) => (info) => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(info, "name")), packageOverrides)) ? nix.update(info, {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       src: nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(info, "name")), packageOverrides)),
     }) : nix.force(info));
     const dependencyUuidToRepo = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.sel(util, "repoifyInfo")), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), fillInOverrideSrc, dependencyUuidToInfo))));
     const dependencyUuidToRepoYaml = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "dependency-uuid-to-repo.yml",
         text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toYAML"), nix.thunk(() => ({})), dependencyUuidToRepo)),
       }))));
     const dependencyUuidToInfoYaml = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "dependency-uuid-to-info.yml",
         text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toYAML"), nix.thunk(() => ({})), dependencyUuidToInfo)),
       }))));
     const fillInOverrideSrc$ = (uuid) => (info) => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(info, "name")), packageOverridesRepoified)) ? nix.update(info, {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       src: nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(info, "name")), packageOverridesRepoified)),
     }) : nix.force(info));
     const overridesOnly = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), fillInOverrideSrc$, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (uuid) => (info) => nix.eq(nix.sel(info, "src"), null), dependencyUuidToInfo))));
     const minimalRegistry = nix.thunk(() => nix.app(runCommand, "minimal-julia-registry", nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
               const w = nix.withScope(ps, null);
@@ -142,7 +142,7 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
   "$out"
 `)));
     const project = nix.thunk(() => nix.app(runCommand, "julia-project", nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
               const w = nix.withScope(ps, null);
@@ -161,7 +161,7 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
   "$out"
 `)));
     const artifactsNix = nix.thunk(() => nix.app(runCommand, "julia-artifacts.nix", nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
               const w = nix.withScope(ps, null);
@@ -181,14 +181,14 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
   '${nix.app(nix.sel(lib, "generators", "toJSON"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")))}' \\
   "$out"
 `)));
-    const artifacts = nix.thunk(() => nix.app(nix.builtins.import(artifactsNix), nix.thunk(() => nix.update({ __proto__: pos$15, lib: lib, fetchurl: fetchurl, pkgs: pkgs, stdenv: stdenv }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin"))), nix.thunk(() => ({ __proto__: pos$16, gcc: gcc, glibc: glibc })))))));
+    const artifacts = nix.thunk(() => nix.app(nix.builtins.import(artifactsNix), nix.thunk(() => nix.update({ [nix.POS]: pos$15, lib: lib, fetchurl: fetchurl, pkgs: pkgs, stdenv: stdenv }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$16, gcc: gcc, glibc: glibc })))))));
     const overridesJson = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: "Overrides.json",
         text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toJSON"), nix.thunk(() => ({})), artifacts)),
       }))));
     const overridesToml = nix.thunk(() => nix.app(runCommand, "Overrides.toml", nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
               const w = nix.withScope(ps, null);
@@ -200,7 +200,7 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
   "$out"
 `)));
     const projectAndDepot = nix.thunk(() => nix.app(callPackage, nix.path(here, "./depot.nix"), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         closureYaml: closureYaml,
         extraLibs: extraLibs,
         juliaCpuTarget: juliaCpuTarget,
@@ -212,10 +212,10 @@ makeWrapper ${julia}/bin/julia $out/bin/julia \\
         registry: minimalRegistry,
       }))));
     return nix.app(runCommand, nix.thunk(() => nix.str`julia-${nix.sel(julia, "version")}-env`), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           julia: julia,
           juliaWrapped: juliaWrapped,
           pname: nix.thunk(() => nix.attr(julia, "pname")),

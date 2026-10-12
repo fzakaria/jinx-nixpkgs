@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const sqlite_utils = nix.arg($, "sqlite-utils");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "github-to-sqlite",
       version: "2.9",
       pyproject: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dogsheep",
           repo: "github-to-sqlite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, requests_mock]),
       disabledTests: nix.thunk(() => ["test_scrape_dependents"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Save data from GitHub to a SQLite database",
         mainProgram: "github-to-sqlite",
         homepage: "https://github.com/dogsheep/github-to-sqlite",

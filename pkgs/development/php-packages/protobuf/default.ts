@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "protobuf",
       version: "3.21.9",
       sha256: "05zlq9k6c45wj1286850nl31024ik158jnj1f5kskr1pchknnsf3",
       buildInputs: nix.thunk(() => [pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://developers.google.com/protocol-buffers/",

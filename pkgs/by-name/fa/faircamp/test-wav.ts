@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const faircamp = nix.arg($, "faircamp");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "faircamp-test-wav",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
       buildCommand: nix.thunk(() => nix.str`mkdir album
 ${ffmpeg}/bin/ffmpeg -f lavfi -i "sine=frequency=440:duration=1" album/track.wav
 ${faircamp}/bin/faircamp --build-dir $out

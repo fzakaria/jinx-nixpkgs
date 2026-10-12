@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skelsec",
           repo: "aardwolf",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./update-pyo3.patch")]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["aardwolf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Asynchronous RDP protocol implementation",
         mainProgram: "ardpscan",
         homepage: "https://github.com/skelsec/aardwolf",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const jupyter_kernel = nix.arg($, "jupyter-kernel");
   const definitions = nix.argOr($, "definitions", () => nix.sel(jupyter_kernel, "default"));
-  const jupyterPath = nix.thunk(() => nix.app(nix.sel(jupyter_kernel, "create"), nix.thunk(() => ({ __proto__: pos$1, definitions: definitions }))));
+  const jupyterPath = nix.thunk(() => nix.app(nix.sel(jupyter_kernel, "create"), nix.thunk(() => ({ [nix.POS]: pos$1, definitions: definitions }))));
   const jupyter_notebook = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraLibs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "notebook"))]),
       makeWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix JUPYTER_PATH : ${jupyterPath}`)]),
     }))), "overrideAttrs"), (oldAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(python3, "pkgs", "notebook"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(from, "version")),
       pname: "jupyter",
-      meta: nix.thunk(() => nix.update(nix.sel(python3, "pkgs", "notebook", "meta"), { __proto__: pos$3, mainProgram: "jupyter" })),
+      meta: nix.thunk(() => nix.update(nix.sel(python3, "pkgs", "notebook", "meta"), { [nix.POS]: pos$3, mainProgram: "jupyter" })),
     };
     })()));
   return nix.force(jupyter_notebook);

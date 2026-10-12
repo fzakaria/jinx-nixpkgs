@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.bin/uudecode",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-DNO_BASE64")),
       })),
       NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-lresolv")),

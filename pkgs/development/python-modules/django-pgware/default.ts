@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const psycopg = nix.arg($, "psycopg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "django-pgware",
       version: "1.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Xof",
           repo: "django-pgware",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,19 +49,19 @@ export default nix.lambda((args) => (() => {
         psycopg2,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         psycopg2: nix.thunk(() => [psycopg2]),
         psycopg3: nix.thunk(() => [psycopg]),
       })),
       pythonImportsCheck: nix.thunk(() => ["django_pg_utils"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, PGDATABASE: "django_pg_utils" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PGDATABASE: "django_pg_utils" })),
       preCheck: "# Else we get:\n#   django.core.exceptions.ImproperlyConfigured: Requested setting <SOMETHING>, but settings are not configured\nexport DJANGO_SETTINGS_MODULE=\"tests.django_settings\"\nexport POSTGRES_HOST=\"$PGHOST\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Useful PostgreSQL-specific Django utiites",
         homepage: "https://github.com/Xof/django-pgware",
         changelog: nix.thunk(() => nix.str`https://github.com/Xof/django-pgware/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

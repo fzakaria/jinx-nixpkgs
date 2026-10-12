@@ -27,55 +27,55 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const name = "conduit";
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "matrix-conduit",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       conduit: (args_1) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "matrix-conduit": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$2,
-              global: nix.thunk(() => ({ __proto__: pos$1, server_name: name, allow_registration: true })),
+              [nix.POS]: pos$2,
+              global: nix.thunk(() => ({ [nix.POS]: pos$1, server_name: name, allow_registration: true })),
             })),
-            extraEnvironment: nix.thunk(() => ({ __proto__: pos$3, RUST_BACKTRACE: "yes" })),
+            extraEnvironment: nix.thunk(() => ({ [nix.POS]: pos$3, RUST_BACKTRACE: "yes" })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [name, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enableACME: false,
                 forceSSL: false,
                 onlySSL: false,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  "/_matrix": nix.thunk(() => ({ __proto__: pos$5, proxyPass: "http://[::1]:6167" })),
+                  [nix.POS]: pos$6,
+                  "/_matrix": nix.thunk(() => ({ [nix.POS]: pos$5, proxyPass: "http://[::1]:6167" })),
                 })),
               }))],
             ])),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
-          firewall: nix.thunk(() => ({ __proto__: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: pos$11,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
       }),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           environment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                 })), "import asyncio\n\nfrom nio import AsyncClient\n\n\nasync def main() -> None:\n    # Connect to conduit\n    client = AsyncClient(\"http://conduit:80\", \"alice\")\n\n    # Register as user alice\n    response = await client.register(\"alice\", \"my-secret-password\")\n\n    # Log in as user alice\n    response = await client.login(\"my-secret-password\")\n\n    # Create a new room\n    response = await client.room_create(federate=False)\n    room_id = response.room_id\n\n    # Join the room\n    response = await client.join(room_id)\n\n    # Send a message to the room\n    response = await client.room_send(\n        room_id=room_id,\n        message_type=\"m.room.message\",\n        content={\n            \"msgtype\": \"m.text\",\n            \"body\": \"Hello conduit!\"\n        }\n    )\n\n    # Sync responses\n    response = await client.sync(timeout=30000)\n\n    # Check the message was received by conduit\n    last_message = response.rooms.join[room_id].timeline.events[-1].body\n    assert last_message == \"Hello conduit!\"\n\n    # Leave the room\n    response = await client.room_leave(room_id)\n\n    # Close the client\n    await client.close()\n\nasyncio.run(main())\n")),
             ]),

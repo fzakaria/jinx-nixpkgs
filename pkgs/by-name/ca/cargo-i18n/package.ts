@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-i18n",
       version: "0.2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kellpossible",
           repo: "cargo-i18n",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-7rqfJ3l4qdVcmfMZgZpL8qomnytiOSqWtFFZFeB047I=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GETTEXT_BIN_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), gettext)}/bin`),
         GETTEXT_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gettext)}/lib`),
         GETTEXT_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), gettext)}/include`),
       })),
       cargoTestFlags: nix.thunk(() => ["--lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rust Cargo sub-command and libraries to extract and build localization resources to embed in your application/library",
         homepage: "https://github.com/kellpossible/cargo-i18n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

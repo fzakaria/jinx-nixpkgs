@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
   const lmmath = nix.arg($, "lmmath");
   const which = nix.arg($, "which");
   const camlpdf = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "camlpdf", "overrideAttrs"), (o) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gfngfn",
           repo: "camlpdf",
           rev: "v2.3.1+satysfi",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const yojson_with_position = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(ocamlPackages, "yojson"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yojson-with-position",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "gfngfn",
           repo: "yojson-with-position",
           rev: "v1.4.2+satysfi",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   const version = "0.0.11";
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "satysfi",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "gfngfn",
           repo: "SATySFi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -99,7 +99,7 @@ cp ${junicode}/share/fonts/truetype/Junicode-Regular.ttf \\
   $out/share/satysfi/dist/fonts/Junicode.ttf
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/gfngfn/SATySFi",
         description: "Statically-typed, functional typesetting system",
         changelog: nix.thunk(() => nix.str`https://github.com/gfngfn/SATySFi/blob/v${version}/CHANGELOG.md`),

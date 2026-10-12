@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       noLibc: true,
       path: "include",
       nativeBuildInputs: nix.thunk(() => [
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       headersOnly: true,
       noCC: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
       makeFlags: nix.thunk(() => nix.concat(defaultMakeFlags, [nix.thunk(() => nix.str`RPCGEN_CPP=${nix.sel(stdenv, "cc", "cc")}/bin/cpp`)])),

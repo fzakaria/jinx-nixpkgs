@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_nsight",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Nsight Eclipse Plugins Edition",
         longDescription: "NVIDIA Nsight Eclipse Edition is a unified CPU plus GPU integrated development environment (IDE) for developing\nCUDA applications on Linux and Mac OS X for the x86, POWER and ARM platforms. It is designed to help developers\non all stages of the software development process.\n",
         homepage: "https://docs.nvidia.com/cuda/nsight-eclipse-plugins-guide",

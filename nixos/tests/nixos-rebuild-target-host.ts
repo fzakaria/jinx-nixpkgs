@@ -58,12 +58,12 @@ export default nix.lambda((args) => (() => {
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$46,
+    [nix.POS]: pos$46,
     name: "nixos-rebuild-target-host",
-    node: nix.thunk(() => ({ __proto__: pos$1, pkgsReadOnly: false })),
-    defaults: nix.thunk(() => ({ __proto__: pos$3, nix: nix.thunk(() => ({ __proto__: pos$2, enable: true })) })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgsReadOnly: false })),
+    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       deployer: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
@@ -72,33 +72,33 @@ export default nix.lambda((args) => (() => {
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/installation-device.nix")]),
           nix: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               substituters: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
               "hashed-mirrors": null,
               "connect-timeout": 1n,
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             includeBuildDependencies: true,
             extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "polkit-stdin-agent"))]),
             build: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               privateKey: snakeOilPrivateKey,
               publicKey: snakeOilPublicKey,
             })),
-            switch: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            switch: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$9, cores: 2n, memorySize: 3072n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, cores: 2n, memorySize: 3072n })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             getty: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               autologinUser: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "root")),
             })),
           })),
@@ -109,43 +109,43 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const lib_1 = nix.arg($_1, "lib");
         const targetConfig = nix.thunk(() => ({
-          __proto__: pos$38,
-          documentation: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+          [nix.POS]: pos$38,
+          documentation: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
-            openssh: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+            [nix.POS]: pos$15,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             users: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               root: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   authorizedKeys: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
               })),
               alice: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   authorizedKeys: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
                 extraGroups: nix.thunk(() => ["wheel"]),
               })),
               bob: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   authorizedKeys: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
@@ -154,50 +154,50 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             tools: nix.thunk(() => ({
-              __proto__: pos$28,
-              "nixos-rebuild": nix.thunk(() => ({ __proto__: pos$27, enableRun0Elevation: true })),
+              [nix.POS]: pos$28,
+              "nixos-rebuild": nix.thunk(() => ({ [nix.POS]: pos$27, enableRun0Elevation: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             sudo: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               extraRules: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     groups: nix.thunk(() => ["wheel"]),
-                    commands: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$30, command: "ALL" }))]),
+                    commands: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$30, command: "ALL" }))]),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     users: nix.thunk(() => ["alice"]),
                     commands: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$32, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$32, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
                     ]),
                   })),
                 ]))),
             })),
           })),
           nix: nix.thunk(() => ({
-            __proto__: pos$37,
-            settings: nix.thunk(() => ({ __proto__: pos$36, "trusted-users": nix.thunk(() => ["@wheel"]) })),
+            [nix.POS]: pos$37,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$36, "trusted-users": nix.thunk(() => ["@wheel"]) })),
           })),
         }));
         return {
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           config: nix.thunk(() => nix.app(nix.sel(lib_1, "mkMerge"), nix.thunk(() => [
               targetConfig,
               nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 system: nix.thunk(() => ({
-                  __proto__: pos$41,
-                  build: nix.thunk(() => ({ __proto__: pos$39, targetConfig: targetConfig })),
-                  switch: nix.thunk(() => ({ __proto__: pos$40, enable: true })),
+                  [nix.POS]: pos$41,
+                  build: nix.thunk(() => ({ [nix.POS]: pos$39, targetConfig: targetConfig })),
+                  switch: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true })),
                 })),
-                networking: nix.thunk(() => ({ __proto__: pos$42, hostName: "target" })),
+                networking: nix.thunk(() => ({ [nix.POS]: pos$42, hostName: "target" })),
               })),
             ]))),
         };

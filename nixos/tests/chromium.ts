@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const channelMap = nix.argOr($, "channelMap", () => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     stable: nix.thunk(() => nix.sel(pkgs, "chromium")),
     beta: nix.thunk(() => nix.sel(pkgs, "chromiumBeta")),
     dev: nix.thunk(() => nix.sel(pkgs, "chromiumDev")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
     "chrome-beta": nix.thunk(() => nix.sel(pkgs, "google-chrome-beta")),
     "chrome-dev": nix.thunk(() => nix.sel(pkgs, "google-chrome-dev")),
   }));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$3, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const user = "alice";
   const startupHTML = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "chromium-startup.html", nix.thunk(() => nix.str`<!DOCTYPE html>
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 </head>
 <body onload="javascript:document.title='startup done'">
   <img src="file://${nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "https://nixos.org/logo/nixos-hex.svg",
         sha256: "07ymq6nw8kc22m7kzxjxldhiq8gzmc7f45kq2bvhbdm0w5s112s4",
       })))}" />
@@ -54,38 +54,38 @@ export default nix.lambda((args) => (() => {
 </html>
 `)));
   return nix.app(nix.lookup(w_1, "mapAttrs"), (channel) => (chromiumPkg) => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: nix.thunk(() => nix.str`chromium-${channel}`),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "aszlig"))];
           })()),
         }, nix.app(nix.lookup(w_1, "optionalAttrs"), nix.thunk(() => nix.has(nix.sel(chromiumPkg, "meta"), "timeout")), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(chromiumPkg, "meta"));
-            return { __proto__: pos$6, timeout: nix.thunk(() => nix.attr(from, "timeout")) };
+            return { [nix.POS]: pos$6, timeout: nix.thunk(() => nix.attr(from, "timeout")) };
           })())))),
         enableOCR: true,
         nodes: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             return {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               imports: nix.thunk(() => [
                 nix.path(here, "./common/user-account.nix"),
                 nix.path(here, "./common/x11.nix"),
               ]),
-              virtualisation: nix.thunk(() => ({ __proto__: pos$7, memorySize: 2047n })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2047n })),
               "test-support": nix.thunk(() => ({
-                __proto__: pos$10,
-                displayManager: nix.thunk(() => ({ __proto__: pos$9, auto: nix.thunk(() => ({ __proto__: pos$8, user: user })) })),
+                [nix.POS]: pos$10,
+                displayManager: nix.thunk(() => ({ [nix.POS]: pos$9, auto: nix.thunk(() => ({ [nix.POS]: pos$8, user: user })) })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 systemPackages: nix.thunk(() => [chromiumPkg]),
-                variables: nix.thunk(() => ({ __proto__: pos$11, XAUTHORITY: "/home/alice/.Xauthority" })),
+                variables: nix.thunk(() => ({ [nix.POS]: pos$11, XAUTHORITY: "/home/alice/.Xauthority" })),
               })),
             };
           })(), formals$2),

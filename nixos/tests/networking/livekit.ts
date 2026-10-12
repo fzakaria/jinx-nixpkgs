@@ -25,38 +25,38 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "livekit",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quadradical"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           livekit: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
-            keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "keys.yaml", nix.thunk(() => ({ __proto__: pos$2, key: "f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE" })))),
-            settings: nix.thunk(() => ({ __proto__: pos$3, port: 8000n })),
+            keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "keys.yaml", nix.thunk(() => ({ [nix.POS]: pos$2, key: "f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE" })))),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$3, port: 8000n })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           ingress: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             inheritParentConfig: true,
             configuration: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               services: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 livekit: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  ingress: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
-                  redis: nix.thunk(() => ({ __proto__: pos$7, port: 6379n })),
+                  [nix.POS]: pos$8,
+                  ingress: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+                  redis: nix.thunk(() => ({ [nix.POS]: pos$7, port: 6379n })),
                 })),
               })),
             })),

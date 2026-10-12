@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "urbackup-client",
       version: "2.5.25",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hndl.urbackup.org/Client/${nix.sel(finalAttrs, "version")}/urbackup-client-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-+xm2mBcTLMvrstCq2sLgJiU3zbFCassKvln3SMmRH9s=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-embedded-cryptopp"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy to setup Open Source client/server backup system",
         longDescription: "An easy to setup Open Source client/server backup system, that through a combination of image and file backups accomplishes both data safety and a fast restoration time",
         homepage: "https://www.urbackup.org/index.html",

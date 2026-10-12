@@ -63,29 +63,29 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
       const pkgs_1 = nix.arg($_1, "pkgs");
       const ip = nix.thunk(() => nix.builtins.elemAt(nodesIps, index));
       return {
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             eth1: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$2,
-                addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, address: ip, prefixLength: 16n }))]))),
+                [nix.POS]: pos$2,
+                addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, address: ip, prefixLength: 16n }))]))),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [5432n, 8008n, 5010n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [5432n, 8008n, 5010n]) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           patroni: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: true,
             postgresqlPackage: nix.thunk(() => nix.app(nix.sel(pkgs_1, "postgresql_14", "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "pg_safeupdate"))])),
             scope: "cluster1",
@@ -94,30 +94,30 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
             otherNodesIps: nix.thunk(() => nix.builtins.filter((h) => !nix.eq(h, ip), nodesIps)),
             softwareWatchdog: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               bootstrap: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 dcs: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   ttl: 30n,
                   loop_wait: 10n,
                   retry_timeout: 10n,
                   maximum_lag_on_failover: 1048576n,
                 })),
-                initdb: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$9, encoding: "UTF8" })), "data-checksums"]),
+                initdb: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, encoding: "UTF8" })), "data-checksums"]),
               })),
               postgresql: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 use_pg_rewind: true,
                 use_slots: true,
                 authentication: nix.thunk(() => ({
-                  __proto__: pos$14,
-                  replication: nix.thunk(() => ({ __proto__: pos$11, username: "replicator" })),
-                  superuser: nix.thunk(() => ({ __proto__: pos$12, username: "postgres" })),
-                  rewind: nix.thunk(() => ({ __proto__: pos$13, username: "rewind" })),
+                  [nix.POS]: pos$14,
+                  replication: nix.thunk(() => ({ [nix.POS]: pos$11, username: "replicator" })),
+                  superuser: nix.thunk(() => ({ [nix.POS]: pos$12, username: "postgres" })),
+                  rewind: nix.thunk(() => ({ [nix.POS]: pos$13, username: "rewind" })),
                 })),
                 parameters: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   listen_addresses: nix.thunk(() => nix.str`${ip}`),
                   wal_level: "replica",
                   hot_standby_feedback: "on",
@@ -128,10 +128,10 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                   "host all all 0.0.0.0/0 trust",
                 ]),
               })),
-              etcd3: nix.thunk(() => ({ __proto__: pos$17, host: "192.168.1.4:2379" })),
+              etcd3: nix.thunk(() => ({ [nix.POS]: pos$17, host: "192.168.1.4:2379" })),
             })),
             environmentFiles: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               PATRONI_REPLICATION_PASSWORD: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "replication-password", "postgres")),
               PATRONI_SUPERUSER_PASSWORD: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "superuser-password", "postgres")),
               PATRONI_REWIND_PASSWORD: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "rewind-password", "postgres")),
@@ -139,22 +139,22 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             patroni: nix.thunk(() => ({
-              __proto__: pos$23,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$22, StartLimitIntervalSec: 0n })),
+              [nix.POS]: pos$23,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$22, StartLimitIntervalSec: 0n })),
             })),
           })),
         })),
       };
     })(), formals$2);
     return {
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       name: "patroni",
       nodes: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         node1: nix.thunk(() => nix.app(createNode, 0n)),
         node2: nix.thunk(() => nix.app(createNode, 1n)),
         node3: nix.thunk(() => nix.app(createNode, 2n)),
@@ -162,27 +162,27 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             networking: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$27, address: "192.168.1.4", prefixLength: 16n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$27, address: "192.168.1.4", prefixLength: 16n })),
                       ]))),
                   })),
                 })),
               })),
-              firewall: nix.thunk(() => ({ __proto__: pos$31, allowedTCPPorts: nix.thunk(() => [2379n]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedTCPPorts: nix.thunk(() => [2379n]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               etcd: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 enable: true,
                 listenClientUrls: nix.thunk(() => ["http://192.168.1.4:2379"]),
               })),
@@ -193,30 +193,30 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const $_1 = nix.formals(args_1, formals$4);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             environment: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "postgresql_14"))]),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$37, address: "192.168.2.1", prefixLength: 16n })),
+                        nix.thunk(() => ({ [nix.POS]: pos$37, address: "192.168.2.1", prefixLength: 16n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               haproxy: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 enable: true,
                 config: nix.thunk(() => nix.str`global
     maxconn 100

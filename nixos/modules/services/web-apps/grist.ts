@@ -54,88 +54,88 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "grist"));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         grist: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Grist")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "grist-core", nix.thunk(() => ({})))),
           enableEnterprise: nix.thunk(() => nix.app(mkEnableOption, "Grist enterprise code")),
           enableRedis: nix.thunk(() => nix.app(mkEnableOption, "Grist redis data store")),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     GRIST_DATA_DIR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/var/lib/grist-core/docs",
                         description: "Directory in which to store documents.\n",
                       })))),
                     GRIST_INST_DIR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/var/lib/grist-core",
                         description: "Path to Grist instance configuration files, for Grist server.\n",
                       })))),
                     GRIST_USER_ROOT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/var/lib/grist-core",
                         description: "An extra path to look for plugins in - Grist will scan for plugins in $GRIST_USER_ROOT/plugins.\n",
                       })))),
                     GRIST_HOST: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "127.0.0.1",
                         description: "Address to listen on\n",
                       })))),
                     GVISOR_FLAGS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: nix.thunk(() => ["-rootless"]),
                         apply: nix.thunk(() => nix.app(concatStringsSep, " ")),
                         description: "The flags that are passed on to gVisor when creating a sandbox.\n",
                       })))),
                     GRIST_SANDBOX_FLAVOR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: "gvisor",
                         description: "Sandbox to use for grist documents. Only \"gvisor\" is supported.\n",
                       })))),
                     GVISOR_AVAILABLE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "1",
                         readOnly: true,
                         description: "Whether gvisor is available for Grist.\n",
                       })))),
                     TYPEORM_DATABASE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "/var/lib/grist-core/db.sqlite",
                         description: "Database filename for sqlite or database name for other db types.\n",
                       })))),
                     TYPEORM_TYPE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlite", "postgres"]))),
                         default: "sqlite",
                         description: "Which database type to use for storage.\n",
                       })))),
                     GRIST_BOOT_KEY: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         description: "Grist password for first time configuration of your instance. You must remove it when your instance is configured.\n\nIf null, this will be unset.\n",
                       })))),
                     GRIST_DEFAULT_EMAIL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         description: "The user who logs in with the email defined by\nGRIST_DEFAULT_EMAIL is the administrator of this Grist\ninstallation. When Grist runs for the first time, it will create\nan account set to the value of GRIST_DEFAULT_EMAIL.\n\nIf null, this will be unset.\n",
@@ -143,11 +143,11 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$14, GRIST_DEFAULT_EMAIL: "example@example.com" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$14, GRIST_DEFAULT_EMAIL: "example@example.com" })),
               description: "Environment variables used for Grist.\n\nSee [](https://github.com/gristlabs/grist-core/#environment-variables)\nfor available environment variables.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "Environment files for secrets.\n\nYou must at least set GRIST_SESSION_KEY there.\n",
@@ -156,43 +156,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => nix.eq(nix.sel(cfg, "environment", "GRIST_SANDBOX_FLAVOR"), "gvisor")),
             message: "The current Grist module only supports gVisor sandboxing",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "environment", "GRIST_BOOT_KEY"), null)), "GRIST_BOOT_KEY is world-readable in the Nix Store, you should remove it when your instance is configured or set it in the environment file as a secret.")),
         services: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           grist: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.app(nix.sel(pkgs, "grist-core", "override"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   enterpriseEdition: nix.thunk(() => nix.sel(cfg, "enableEnterprise")),
                 })))))),
             environment: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               REDIS_URL: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableRedis")), nix.thunk(() => nix.str`redis://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "redis", "servers", "grist", "port")))}`))),
               NODE_PATH: nix.thunk(() => nix.app(concatMapStringsSep, ":", (v) => nix.str`${nix.sel(cfg, "package")}/grist-core/${v}`, nix.thunk(() => ["_build", "_build/ext", "_build/stubs", "ext/node_modules"]))),
             })),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             servers: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableRedis")), nix.thunk(() => ({
-                __proto__: pos$25,
-                grist: nix.thunk(() => ({ __proto__: pos$24, enable: true, port: 6380n })),
+                [nix.POS]: pos$25,
+                grist: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true, port: 6380n })),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             "grist-core": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "Grist Core",
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "environment", "TYPEORM_TYPE"), "postgres")), "postgresql.service"))),
               wants: nix.thunk(() => ["network.target"]),
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
               ]),
               environment: nix.thunk(() => nix.attr(cfg, "environment")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "nodejs")}/bin/node ${nix.sel(cfg, "package")}/grist-core/_build/stubs/app/server/server.js`),
                 DynamicUser: true,
                 Restart: "always",
@@ -236,7 +236,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sinavir"))];

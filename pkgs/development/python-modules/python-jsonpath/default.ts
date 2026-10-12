@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const regex = nix.arg($, "regex");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-jsonpath",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jg-rp",
           repo: "python-jsonpath",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-7kXDGm+pV0daeMEGW/hVb/U69svLFgZfZKklVgV+EJ4=",
         })))),
       "build-system": nix.thunk(() => [hatchling]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, strict: nix.thunk(() => [regex]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, strict: nix.thunk(() => [regex]) })),
       pythonImportsCheck: nix.thunk(() => ["jsonpath"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "strict"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jg-rp/python-jsonpath/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Flexible JSONPath engine for Python with JSON Pointer and JSON Patch",
         homepage: "https://github.com/jg-rp/python-jsonpath",

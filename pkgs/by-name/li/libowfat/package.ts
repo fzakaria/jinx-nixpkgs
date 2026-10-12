@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libowfat",
       version: "0.34",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.fefe.de/libowfat/libowfat-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-1DMNNzrJWBs5e8JKIq0ff11Yp/422dI5/jUs7/xdMEs=",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GPL reimplementation of libdjb",
         homepage: "https://www.fefe.de/libowfat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

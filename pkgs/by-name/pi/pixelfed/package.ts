@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       })());
     })(), formals$2)));
   return nix.app(nix.sel(php$, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pixelfed",
       version: "0.12.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pixelfed",
           repo: "pixelfed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,15 +53,15 @@ ln -s ${runtimeDir} $out/bootstrap
 chmod +x $out/artisan
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "pixelfed"));
-          return { __proto__: pos$2, standard: nix.thunk(() => nix.attr(from, "standard")) };
+          return { [nix.POS]: pos$2, standard: nix.thunk(() => nix.attr(from, "standard")) };
         })()),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Federated image sharing platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://pixelfed.org/",

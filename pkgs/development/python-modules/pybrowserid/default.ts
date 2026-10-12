@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyBrowserID",
           version: version,
           hash: "sha256-bCJ2aeh8wleWrnb2oO9lAlUoyK2C01Jnn6mj5WY6ceM=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["browserid"]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook, mock]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for the BrowserID Protocol",
         homepage: "https://github.com/mozilla/PyBrowserID",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

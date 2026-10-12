@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const recode = nix.arg($, "recode");
   const spidermonkey_140 = nix.arg($, "spidermonkey_140");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plowshare",
       version: "2.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mcrapet",
           repo: "plowshare",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ for fn in plow{del,down,list,mod,probe,up}; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line download/upload tool for popular file sharing websites",
         homepage: "https://github.com/mcrapet/plowshare",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

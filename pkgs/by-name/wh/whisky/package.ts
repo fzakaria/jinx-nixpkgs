@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "whisky",
       version: "2.3.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           extension: "zip",
           name: "Whisky.app",
           url: nix.thunk(() => nix.str`https://github.com/IsaacMarovitz/Whisky/releases/download/v${nix.sel(finalAttrs, "version")}/Whisky.zip`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wine wrapper built with SwiftUI",
         homepage: "https://getwhisky.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

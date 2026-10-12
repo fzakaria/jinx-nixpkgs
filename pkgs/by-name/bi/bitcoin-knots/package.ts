@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const libicns = nix.arg($, "libicns");
   const builderKeys = nix.argOr($, "builderKeys", () => ["1A3E761F19D2CC7785C5502EA291A2C45D0C504A"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => (nix.asBool(withGui) ? "bitcoin-knots" : "bitcoind-knots")),
       version: "29.4.2.knots20260508",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bitcoinknots.org/files/29.x/${nix.sel(finalAttrs, "version")}/bitcoin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-EcC5moK4scnCmrdtmwUHzhAXgTZldBYns/OIOkwven8=",
         })))),
@@ -59,19 +59,19 @@ export default nix.lambda((args) => (() => {
       preUnpack: nix.thunk(() => (() => {
         const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
         const publicKeys = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "bitcoinknots",
             repo: "guix.sigs",
             rev: "da0adcba7ebe5f9e207810c967e3a7b5e6fe6658",
             sha256: "sha256-IEk3w5ofPYgw6cmgqEw/Kb+q2xpzrptvNgfwH7h4zEM=",
           }))));
         const checksums = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://bitcoinknots.org/files/${majorVersion}.x/${nix.sel(finalAttrs, "version")}/SHA256SUMS`),
             hash: "sha256-kL0XUF03uSt6w8VabXEJuUFclnEdBLkEHjez/GdVf2c=",
           }))));
         const signatures = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://bitcoinknots.org/files/${majorVersion}.x/${nix.sel(finalAttrs, "version")}/SHA256SUMS.asc`),
             hash: "sha256-Fxtm+bQbXjCr9aSNcgSq32T1OSyh6Ly/NLXahKnJaE0=",
           }))));
@@ -109,7 +109,7 @@ popd
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_FUZZ_BINARY", false)),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_GUI_TESTS", false)),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withWallet)), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_WALLET", false))])), nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_GUI", true))])))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), nix.thunk(() => ({ __proto__: pos$5, NIX_LDFLAGS: "-levent_core" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), nix.thunk(() => ({ [nix.POS]: pos$5, NIX_LDFLAGS: "-levent_core" })))),
       nativeCheckInputs: nix.thunk(() => [python3]),
       doCheck: true,
       checkFlags: nix.thunk(() => nix.concat(["LC_ALL=en_US.UTF-8"], nix.app(nix.sel(lib, "optional"), withGui, nix.thunk(() => nix.str`QT_PLUGIN_PATH=${nix.sel(qt5, "qtbase")}/${nix.sel(qt5, "qtbase", "qtPluginPrefix")}`)))),
@@ -119,7 +119,7 @@ popd
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bitcoin-cli`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Derivative of Bitcoin Core",
         homepage: "https://bitcoinknots.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/bitcoinknots/bitcoin/blob/v${nix.sel(finalAttrs, "version")}/doc/release-notes.md`),

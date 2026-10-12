@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "octodns",
           repo: "octodns-hetzner",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "octodns-hetzner-pull-66.patch",
             url: "https://github.com/octodns/octodns-hetzner/commit/d8f7c6c31b13da4c507dd0d3761a1935bf0524e6.patch",
             hash: "sha256-SPfxVOQOM0I4cRX9WZNCOqM+om6PgosV3/LUOMSw8t4=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, requests_mock]);
       const pytestFlags = nix.thunk(() => ["-W", "ignore::DeprecationWarning"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hetzner DNS provider for octoDNS",
         homepage: "https://github.com/octodns/octodns-hetzner/",
         changelog: nix.thunk(() => nix.str`https://github.com/octodns/octodns-hetzner/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "octodns"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

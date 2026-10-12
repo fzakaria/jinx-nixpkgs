@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "infamousplugins",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ssj71",
           repo: "infamousPlugins",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 2.8)' \\\n  'cmake_minimum_required(VERSION 4.0)'\nfind src -name \"CMakeLists.txt\" -type f | while read -r file; do\n  substituteInPlace \"$file\" --replace-fail \\\n    'cmake_minimum_required(VERSION 2.8)' \\\n    'cmake_minimum_required(VERSION 4.0)'\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ssj71.github.io/infamousPlugins",
         description: "Collection of open-source LV2 plugins",
         longDescription: "These are audio plugins in the LV2 format, developed for linux. Most are suitable for live use.\nThis collection contains:\n  * Cellular Automaton Synth - additive synthesizer, where 16 harmonics are added according to rules of elementary cellular automata\n  * Envelope Follower - a fully featured envelope follower plugin\n  * Hip2B - a distortion/destroyer plugin\n  * cheap distortion - another distortion plugin, but this one I wanted to get it as light as possible\n  * stuck - a clone of the electro-harmonix freeze\n  * power cut - this effect is commonly called tape stop\n  * power up - the opposite of the power cut\n  * ewham - a whammy style pitchshifter\n  * lushlife - a simulated double tracking plugin capable of everything from a thin beatle effect to thick lush choruses to weird outlandish effects\n",

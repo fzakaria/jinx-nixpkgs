@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgrouting",
       version: "4.0.2",
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       buildInputs: nix.thunk(() => [boost]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgRouting",
           repo: "pgrouting",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bETj/tG9O0kymTeJM9YlXzMPcBeegxnYQH/tMQsuXtY=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PostgreSQL/PostGIS extension that provides geospatial routing functionality",
         homepage: "https://pgrouting.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pgRouting/pgrouting/releases/tag/v${nix.sel(finalAttrs, "version")}`),

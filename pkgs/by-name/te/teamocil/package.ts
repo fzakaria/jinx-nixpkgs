@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       ruby: ruby,
       pname: "teamocil",
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "teamocil")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool used to automatically create windows and panes in tmux with YAML files",
         homepage: "https://github.com/remiprev/teamocil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -43,43 +43,43 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "kanboard"));
   const toStringAttrs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.builtins.toString))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yzx9"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         kanboard: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kanboard")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kanboard", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/kanboard",
               description: "Default data folder for Kanboard.",
               example: "/mnt/kanboard",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kanboard",
               description: "User under which Kanboard runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kanboard",
               description: "Group under which Kanboard runs.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -92,23 +92,23 @@ export default nix.lambda((args) => (() => {
               description: "Customize the default settings, refer to <https://github.com/kanboard/kanboard/blob/main/config.default.php>\nfor details on supported values.\n",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kanboard",
               description: "FQDN for the Kanboard instance.",
               example: "kanboard.example.org",
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$7, config: config, lib: lib })))))))),
+              [nix.POS]: pos$8,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$7, config: config, lib: lib })))))))),
               default: nix.thunk(() => ({})),
               description: "With this option, you can customize an NGINX virtual host which already\nhas sensible defaults for Kanboard. Set to `{ }` if you do not need any\ncustomization for the virtual host. If enabled, then by default, the\n{option}`serverName` is `${domain}`. If this is set to null (the\ndefault), no NGINX virtual host will be configured.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  enableACME = true;\n  forceSSL = true;\n}\n")),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -125,34 +125,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "kanboard")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               kanboard: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 createHome: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "kanboard")), nix.thunk(() => ({ __proto__: pos$16, kanboard: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "kanboard")), nix.thunk(() => ({ [nix.POS]: pos$16, kanboard: nix.thunk(() => ({})) })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             pools: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               kanboard: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 user: nix.thunk(() => nix.sel(cfg, "user")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       pm: "dynamic",
                       "php_admin_value[error_log]": "stderr",
                       "php_admin_flag[log_errors]": true,
@@ -167,25 +167,25 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.sel(cfg, "phpfpm", "settings")),
                   ]))),
                 phpEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$19, DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$19, DATA_DIR: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
                     nix.thunk(() => nix.app(toStringAttrs, nix.thunk(() => nix.sel(cfg, "settings")))),
                   ]))),
               })),
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/kanboard`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$26,
-                        "/": nix.thunk(() => ({ __proto__: pos$23, extraConfig: "rewrite ^ /index.php;\n" })),
+                        [nix.POS]: pos$26,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$23, extraConfig: "rewrite ^ /index.php;\n" })),
                         "~ \\.php$": nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "kanboard", "socket")};
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
@@ -193,7 +193,7 @@ include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 `),
                         })),
                         "~ \\.(js|css|ttf|woff2?|png|jpe?g|svg)$": nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           extraConfig: "add_header Cache-Control \"public, max-age=15778463\";\nadd_header X-Content-Type-Options nosniff;\nadd_header X-Robots-Tag none;\nadd_header X-Download-Options noopen;\nadd_header X-Permitted-Cross-Domain-Policies none;\nadd_header Referrer-Policy no-referrer;\naccess_log off;\n",
                         })),
                       })),

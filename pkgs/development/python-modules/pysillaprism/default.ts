@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysillaprism",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ebaschiera",
           repo: "pysillaprism",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["pysillaprism"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transport-agnostic client library for the Silla Prism EV wallbox over MQTT",
         homepage: "https://github.com/ebaschiera/pysillaprism",
         changelog: nix.thunk(() => nix.str`https://github.com/ebaschiera/pysillaprism/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

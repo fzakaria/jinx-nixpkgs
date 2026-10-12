@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xss-lock",
       version: "0.3.0-unstable-2018-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xdbob",
           repo: "xss-lock",
           rev: "cd0b89df9bac1880ea6ea830251c6b4492d505a5",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, docutils]),
       buildInputs: nix.thunk(() => [glib, libpthread_stubs, libxau, libxdmcp, libxcb_util]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "xss-lock": nix.thunk(() => nix.attr(nixosTests, "xss-lock")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Use external locker (such as i3lock) as X screen saver",
         homepage: "https://github.com/xdbob/xss-lock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
       const pname = "elliptic_curves";
       const version = "0.8.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sageupstream/${pname}/${pname}-${version}.tar.bz2`),
           sha256: "0l7xh4abw5sb4d37r0ylr3vwb88fpx2zrvfm5ql0c7yrv5q59fjz",
         }))));
       const spkg_install = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/sagemath/sage/07d6c37d18811e2b377a9689790a7c5e24da16ba/build/pkgs/${pname}/spkg-install.py`),
           sha256: "116g684i6mvs11fvb6fzfsr4fn903axn31vigdyb8bgpf8l4hvc5",
         }))));
@@ -40,7 +40,7 @@ export PYTHONPATH=$PWD
 ${nix.sel(python3, "interpreter")} ${spkg_install}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Databases of elliptic curves",
         longDescription: "Includes two databases:\n\n * A small subset of the data in John Cremona's database of elliptic curves up\n   to conductor 10000. See http://www.warwick.ac.uk/~masgaj/ftp/data/ or\n   http://sage.math.washington.edu/cremona/INDEX.html\n * William Stein's database of interesting curves\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -48,7 +48,7 @@ ${nix.sel(python3, "interpreter")} ${spkg_install}
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -57,53 +57,53 @@ export default nix.lambda((args) => (() => {
   const legacyKeysPath = nix.thunk(() => nix.str`${stateDir}/keys.json`);
   const effectiveKeyPath = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "PrivateKeyPath"), null)) ? nix.sel(cfg, "settings", "PrivateKeyPath") : (nix.asBool(nix.sel(cfg, "persistentKeys")) ? nix.force(persistentKeyPath) : null)));
   const baseSettings = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(effectiveKeyPath, null)), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       PrivateKeyPath: "/run/credentials/yggdrasil.service/private-key",
     })))));
   const cleanSettings = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => !nix.eq(v, null), baseSettings));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeJSON"), "yggdrasil.conf", cleanSettings));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "yggdrasil", "config"]), nix.thunk(() => ["services", "yggdrasil", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         yggdrasil: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the yggdrasil system service")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     PrivateKeyPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.app(nullOr, path)),
                         default: null,
                         example: "/run/secrets/yggdrasil-private-key",
                         description: "Path to the private key file on the host system.\nWhen specified, the key will be loaded via systemd credentials\nfor secure access by the yggdrasil service.\n\nWarning: Do not put private keys directly in the Nix store\nas they would be world-readable!\n",
                       })))),
                     Peers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(listOf, str)),
                         default: [],
                         example: nix.thunk(() => ["tcp://aa.bb.cc.dd:eeeee", "tcp://[aaaa:bbbb:cccc:dddd::eeee]:fffff"]),
                         description: "List of outbound peer connection strings.\nConnection strings can contain options, see the yggdrasil documentation.\n",
                       })))),
                     Listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(listOf, str)),
                         default: [],
                         example: nix.thunk(() => ["tcp://0.0.0.0:xxxxx", "tls://[::]:yyyyy"]),
                         description: "Listen addresses for incoming connections.\nYou need listeners to accept incoming peerings from non-local nodes.\n",
                       })))),
                     AllowedPublicKeys: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(listOf, str)),
                         default: [],
                         description: "List of peer public keys to allow incoming peering connections from.\nIf left empty, all connections are allowed by default.\n",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Peers: nix.thunk(() => ["tcp://aa.bb.cc.dd:eeeee", "tcp://[aaaa:bbbb:cccc:dddd::eeee]:fffff"]),
                 Listen: nix.thunk(() => ["tcp://0.0.0.0:xxxxx"]),
                 PrivateKeyPath: "/run/secrets/yggdrasil-key",
@@ -122,20 +122,20 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for yggdrasil, as a structured Nix attribute set.\n\nIf you specify settings here, they will be used as persistent\nconfiguration and Yggdrasil will retain the same configuration\n(including IPv6 address if keys are provided) across restarts.\n\nIf no settings are specified, ephemeral keys are generated\nand the Yggdrasil interface will have a random IPv6 address\neach time the service is started.\n\nUse {option}`settings.PrivateKeyPath` to securely load private\nkeys from files owned by root via systemd credentials.\n\nThe most important options have dedicated NixOS options above.\nYou can also specify any other yggdrasil configuration option directly.\n\nFor a complete list of available options, see:\nhttps://yggdrasil-network.github.io/configurationref.html\n\nYou can use the command `nix-shell -p yggdrasil --run \"yggdrasil -genconf\"`\nto generate default configuration values with documentation.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nullOr, str)),
               default: null,
               example: "wheel",
               description: "Group to grant access to the Yggdrasil control socket. If `null`, only root can access the socket.",
             })))),
           openMulticastPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: bool,
               default: false,
               description: "Whether to open the UDP port used for multicast peer discovery. The\nNixOS firewall blocks link-local communication, so in order to make\nincoming local peering work you will also need to configure\n`MulticastInterfaces` in your Yggdrasil configuration\n({option}`settings`). You will then have to\nadd the ports that you configure there to your firewall configuration\n({option}`networking.firewall.allowedTCPPorts` or\n{option}`networking.firewall.interfaces.<name>.allowedTCPPorts`).\n",
             })))),
           denyDhcpcdInterfaces: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(listOf, str)),
               default: [],
               example: nix.thunk(() => ["tap*"]),
@@ -156,7 +156,7 @@ If you want to use externally managed keys, use {option}\`settings.PrivateKeyPat
 instead
 `))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(listOf, str)),
               default: [],
               example: nix.thunk(() => ["-loglevel", "info"]),
@@ -168,34 +168,34 @@ instead
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => (() => {
         const binYggdrasil = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/yggdrasil`);
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               assertion: nix.thunk(() => nix.sel(config, "networking", "enableIPv6")),
               message: "networking.enableIPv6 must be true for yggdrasil to work",
             })),
             nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "PrivateKey"))),
               message: "services.yggdrasil.settings.PrivateKey is not supported because it\nwould be stored in the world-readable Nix store.\nUse services.yggdrasil.settings.PrivateKeyPath instead to securely load the private key from a file.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "persistentKeys")) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "PrivateKeyPath"), null))))),
               message: "services.yggdrasil.persistentKeys and services.yggdrasil.settings.PrivateKeyPath\nare mutually exclusive. Use only one of them.\n",
             })),
           ]),
           systemd: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "yggdrasil-persistent-keys": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "persistentKeys")), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "Generate or migrate Yggdrasil persistent keys",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   before: nix.thunk(() => ["yggdrasil.service"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$20, Type: "oneshot", RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$20, Type: "oneshot", RemainAfterExit: true })),
                   path: nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "package")),
                     nix.thunk(() => nix.sel(pkgs, "jq")),
@@ -239,7 +239,7 @@ echo "Successfully generated new persistent key"
 `),
                 })))),
               yggdrasil: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "Yggdrasil Network Service",
                 after: nix.thunk(() => nix.concat(["network-pre.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "persistentKeys")), "yggdrasil-persistent-keys.service"))),
                 wants: nix.thunk(() => ["network.target"]),
@@ -247,7 +247,7 @@ echo "Successfully generated new persistent key"
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 script: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) || nix.asBool(nix.sel(cfg, "persistentKeys")))) ? nix.str`exec ${binYggdrasil} -useconffile ${configFile} ${nix.app(nix.sel(lib, "strings", "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}` : nix.str`exec ${binYggdrasil} -genconf | ${binYggdrasil} -useconf ${nix.app(nix.sel(lib, "strings", "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}`)),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                   Restart: "always",
                   DynamicUser: true,
@@ -267,29 +267,29 @@ echo "Successfully generated new persistent key"
                   RestrictRealtime: true,
                   SystemCallArchitectures: "native",
                   SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged @keyring"]),
-                }, (nix.asBool(!nix.eq(nix.sel(cfg, "group"), null)) ? { __proto__: pos$23, Group: nix.thunk(() => nix.sel(cfg, "group")) } : {}))),
+                }, (nix.asBool(!nix.eq(nix.sel(cfg, "group"), null)) ? { [nix.POS]: pos$23, Group: nix.thunk(() => nix.sel(cfg, "group")) } : {}))),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             dhcpcd: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               denyInterfaces: nix.thunk(() => nix.sel(cfg, "denyDhcpcdInterfaces")),
             })),
             firewall: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               allowedUDPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openMulticastPort")), nix.thunk(() => [9001n]))),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         };
       })()))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       doc: nix.path(here, "./yggdrasil.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

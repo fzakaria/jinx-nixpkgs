@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitjacker",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liamg",
           repo: "gitjacker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       preCheck: "export PATH=$TMPDIR/usr/bin:$PATH\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Leak git repositories from misconfigured websites",
         mainProgram: "gitjacker",
         longDescription: "Gitjacker downloads git repositories and extracts their contents\nfrom sites where the .git directory has been mistakenly uploaded.\nIt will still manage to recover a significant portion of a repository\neven where directory listings are disabled.\n",

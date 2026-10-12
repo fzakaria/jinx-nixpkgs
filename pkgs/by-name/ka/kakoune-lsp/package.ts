@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kakoune-lsp",
       version: "22.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kakoune-lsp",
           repo: "kakoune-lsp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-G4L9FOS097U7pLpYTnsUF0FK7UjQ9oQRTtH0ifsL5Ks=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./Hardcode-perl.patch"), nix.thunk(() => ({ __proto__: pos$2, perl: perl })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./Hardcode-perl.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, perl: perl })))),
       ]),
       cargoHash: "sha256-QL2uE0hZtrZFJm3KpnTDXACjPY4gNefP76QjD0ZOLMo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kakoune Language Server Protocol Client",
         homepage: "https://github.com/kakoune-lsp/kakoune-lsp",
         license: nix.thunk(() => (() => {

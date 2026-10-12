@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const targets = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isx86_64")), "X86"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isAarch64")), "AArch64")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "smlnj-llvm",
       version: version,
       src: nix.thunk(() => nix.str`${src}/runtime/llvm21`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LLVM_ENABLE_DUMP", true)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Custom LLVM for Standard ML of New Jersey",
         homepage: "https://smlnj.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

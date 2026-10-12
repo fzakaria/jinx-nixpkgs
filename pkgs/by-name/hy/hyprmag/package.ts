@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "hyprmag",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SIMULATAN",
           repo: "hyprmag",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, wayland_scanner]),
       buildInputs: nix.thunk(() => [cairo, libGL, libjpeg, libxkbcommon, pango, wayland, wayland_protocols]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "wlroots-compatible Wayland screen magnifier, based on hyprpicker",
         homepage: "https://github.com/SIMULATAN/hyprmag",
         changelog: nix.thunk(() => nix.str`https://github.com/SIMULATAN/hyprmag/releases/tag/${nix.sel(finalAttrs, "version")}`),

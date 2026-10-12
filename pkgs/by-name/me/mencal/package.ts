@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mencal",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kyberdigi.cz/projects/mencal/files/mencal-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "9328d0b2f3f57847e8753c5184531f4832be7123d1b6623afdff892074c03080",
         })))),
       installPhase: "mkdir -p $out/bin\ncp mencal $out/bin/\n",
       buildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Menstruation calendar",
         longDescription: "Mencal is a simple variation of the well-known unix command cal.\nThe main difference is that you can have some periodically repeating\ndays highlighted in color. This can be used to track\nmenstruation (or other) cycles conveniently.\n",
         homepage: "http://www.kyberdigi.cz/projects/mencal/english.html",

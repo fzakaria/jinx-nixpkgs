@@ -20,28 +20,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "uinput"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hardware: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         uinput: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "uinput support")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
-        boot: nix.thunk(() => ({ __proto__: pos$4, kernelModules: nix.thunk(() => ["uinput"]) })),
+        [nix.POS]: pos$9,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$4, kernelModules: nix.thunk(() => ["uinput"]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$6,
-          groups: nix.thunk(() => ({ __proto__: pos$5, uinput: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$6,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$5, uinput: nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           udev: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraRules: "SUBSYSTEM==\"misc\", KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"uinput\", OPTIONS+=\"static_node=uinput\"\n",
           })),
         })),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "urxvt-perls";
       const version = "2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "muennich",
           repo: "urxvt-perls",
           rev: version,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p $out/lib/urxvt/perl\ncp keyboard-select $out/lib/urxvt/perl\ncp deprecated/clipboard \\\n   deprecated/url-select \\\n$out/lib/urxvt/perl\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perl extensions for the rxvt-unicode terminal emulator",
         homepage: "https://github.com/muennich/urxvt-perls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return nix.force(nix.lookup(w, "unix"));
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

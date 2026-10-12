@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const withLatex = nix.argOr($, "withLatex", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "linuxdoc-tools",
       version: "0.9.86",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agmartin",
           repo: "linuxdoc-tools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.add("--enable-docs=txt info lyx html rtf", nix.app(nix.sel(lib, "optionalString"), withLatex, " pdf"))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LEX: "flex" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LEX: "flex" })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/linuxdoc \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [groff, opensp]))}:$out/bin" \\
   --prefix PERL5LIB : "$out/share/linuxdoc-tools/"
@@ -55,7 +55,7 @@ popd
       nativeBuildInputs: nix.thunk(() => [flex, which, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([opensp, groff, texinfo, perl, gnused, coreutils], nix.app(nix.sel(lib, "optionals"), withLatex, nix.thunk(() => [texliveMedium])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Toolset for processing LinuxDoc DTD SGML files",
         longDescription: "A collection of text formatters which understands a LinuxDoc DTD SGML\nsource file. Each formatter (or \"back-end\") renders the source file into\na variety of output formats, including HTML, TeX, DVI, PostScript, plain\ntext, and groff source in manual-page format. The linuxdoc suite is\nprovided for backward compatibility, because there are still many useful\ndocuments written in LinuxDoc DTD sgml source.\n",
         homepage: "https://gitlab.com/agmartin/linuxdoc-tools",

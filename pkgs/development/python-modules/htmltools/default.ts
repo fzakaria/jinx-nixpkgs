@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "htmltools",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "posit-dev",
           repo: "py-htmltools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["htmltools"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, syrupy]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for HTML generation and output",
         homepage: "https://github.com/posit-dev/py-htmltools",
         changelog: nix.thunk(() => nix.str`https://github.com/posit-dev/py-htmltools/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swego",
       version: "1.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nodauf",
           repo: "Swego",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin/src $out/bin/$pname\n",
       ldflags: nix.thunk(() => ["-w", "-s"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Webserver",
         longDescription: "Swiss army knife Webserver in Golang. Similar to the Python\nSimpleHTTPServer but with many features.\n",
         homepage: "https://github.com/nodauf/Swego",

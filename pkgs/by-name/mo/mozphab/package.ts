@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mercurial = nix.arg($, "mercurial");
   const patch = nix.arg($, "patch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mozphab",
       version: "1.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla-conduit",
           repo: "review",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_sentry.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Phabricator CLI from Mozilla to support submission of a series of commits",
         mainProgram: "moz-phab",
         longDescription: "moz-phab is a custom command-line tool, which communicates to\nPhabricator’s API, providing several conveniences, including support for\nsubmitting series of commits.\n",

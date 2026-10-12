@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "f3985888cc2788cdbd293a68a8b5702a9c955db6f7b8b551aeac91e7f32da397",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const dependencies = nix.thunk(() => [pika]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bninja/pika-pool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         description: "Pools for pikas",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

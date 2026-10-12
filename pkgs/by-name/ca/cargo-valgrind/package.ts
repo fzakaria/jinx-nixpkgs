@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const valgrind = nix.arg($, "valgrind");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-valgrind",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jfrimmel",
           repo: "cargo-valgrind",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-tH1RF3Uw9KkykgbPtXNY88uTvQ0f++aCP95Sd6Zexc8=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, valgrind]),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "--skip=empty_tests_not_leak_in_release_mode",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cargo subcommand \"valgrind\": runs valgrind and collects its output in a helpful manner",
         mainProgram: "cargo-valgrind",
         homepage: "https://github.com/jfrimmel/cargo-valgrind",

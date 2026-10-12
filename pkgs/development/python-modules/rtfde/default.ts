@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtfde",
       version: "0.1.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "seamustuohy",
           repo: "RTFDE",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["RTFDE"]),
       disabledTests: nix.thunk(() => ["test_encoded_bytes_stay_encoded_character"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/seamustuohy/RTFDE/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Library for extracting encapsulated HTML and plain text content from the RTF bodies",
         homepage: "https://github.com/seamustuohy/RTFDE",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gnutls = nix.arg($, "gnutls");
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libhttpserver",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etr",
           repo: "libhttpserver",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./bootstrap\n",
       configureFlags: nix.thunk(() => ["--enable-same-directory-build"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library for creating an embedded Rest HTTP server (and more)",
         homepage: "https://github.com/etr/libhttpserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

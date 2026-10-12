@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2023-09-03",
       pname: "pbrt-v3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: "13d871faae88233b327d04cda24022b8bb0093ee",
           owner: "mmp",
           repo: "pbrt-v3",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [flex, bison, cmake]),
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pbrt.org/",
         description: "Renderer described in the third edition of the book 'Physically Based Rendering: From Theory To Implementation'",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const jdupes = nix.arg($, "jdupes");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fcitx5-mellow-themes",
       version: "0-unstable-2026-09-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanweiya",
           repo: "fcitx5-mellow-themes",
           rev: "2c93b0ea3418a55c03f526d963c84a7ccde2c1e9",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [jdupes]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fcitx5/themes\ncp -r *mellow* $out/share/fcitx5/themes\njdupes --quiet --link-soft --recurse $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Aesthetic, modern fcitx5 theme featuring rounded rectangle design",
         homepage: "https://github.com/sanweiya/fcitx5-mellow-themes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AdnanHodzic",
           repo: "auto-cpufreq",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-yaA/YM0SVIDCWOZi12R6qryWmPCI6zIYEHoyK0QdOos=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-version-output.patch"), nix.thunk(() => ({ __proto__: pos$2, version: version })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-version-output.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version })))),
         nix.path(here, "./prevent-install-and-copy.patch"),
         nix.path(here, "./prevent-update.patch"),
       ]);
@@ -70,14 +70,14 @@ export default nix.lambda((args) => (() => {
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const pythonImportsCheck = nix.thunk(() => ["auto_cpufreq"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "auto-cpufreq": nix.thunk(() => nix.attr(nixosTests, "auto-cpufreq")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "auto-cpufreq",
         homepage: "https://github.com/AdnanHodzic/auto-cpufreq",
         description: "Automatic CPU speed & power optimizer for Linux",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

@@ -38,66 +38,66 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const hosts = "192.168.2.101 acme.test\n";
   return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((nginxPackage) => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         name: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "getName"), nginxPackage)),
         value: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             name: nix.thunk(() => nix.str`nginx-http3-${nix.app(nix.sel(pkgs, "lib", "getName"), nginxPackage)}`),
             meta: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
                 return [nix.thunk(() => nix.lookup(w, "izorkin"))];
               })()),
             })),
             nodes: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               server: nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
                 const lib = nix.arg($_1, "lib");
                 const pkgs_1 = nix.arg($_1, "pkgs");
                 return {
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   networking: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     interfaces: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       eth1: nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         ipv4: nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$2, address: "192.168.2.101", prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.2.101", prefixLength: 24n })),
                           ]),
                         })),
                       })),
                     })),
                     extraHosts: hosts,
                     firewall: nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       allowedTCPPorts: nix.thunk(() => [443n]),
                       allowedUDPPorts: nix.thunk(() => [443n]),
                     })),
                   })),
                   security: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     pki: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       certificates: nix.thunk(() => [
                         nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
                       ]),
                     })),
                   })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     nginx: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       enable: true,
                       package: nginxPackage,
                       virtualHosts: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         "acme.test": nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           onlySSL: true,
                           sslCertificate: nix.path(here, "./common/acme/server/acme.test.cert.pem"),
                           sslCertificateKey: nix.path(here, "./common/acme/server/acme.test.key.pem"),
@@ -117,21 +117,21 @@ export default nix.lambda((args) => (() => {
                 const $_1 = nix.formals(args_1, formals$3);
                 const pkgs_1 = nix.arg($_1, "pkgs");
                 return {
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   environment: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
                   })),
                   networking: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     interfaces: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       eth1: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         ipv4: nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$16, address: "192.168.2.201", prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: pos$16, address: "192.168.2.201", prefixLength: 24n })),
                           ]),
                         })),
                       })),
@@ -139,9 +139,9 @@ export default nix.lambda((args) => (() => {
                     extraHosts: hosts,
                   })),
                   security: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     pki: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       certificates: nix.thunk(() => [
                         nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/ca.cert.pem"))),
                       ]),

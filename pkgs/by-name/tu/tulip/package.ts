@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tulip";
       const version = "5.7.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/auber/tulip-${version}_src.tar.gz`),
           hash: "sha256-7z21WkPi1v2AGishDmXZPAedMjgXPRnpUiHTzEnc5LY=",
         }))));
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [python3]))}`),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-fpermissive ", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-I${python3}/include/${nix.sel(python3, "libPrefix")}`),
               "-Wno-format-security",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Visualization framework for the analysis and visualization of relational data",
         longDescription: "Tulip is an information visualization framework dedicated to the\nanalysis and visualization of relational data.  Tulip aims to\nprovide the developer with a complete library, supporting the design\nof interactive information visualization applications for relational\ndata that can be tailored to the problems he or she is addressing.\n",
         homepage: "http://tulip.labri.fr/",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

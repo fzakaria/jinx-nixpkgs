@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   const enabledPlugins = nix.argOr($, "enabledPlugins", () => null);
-  const plugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ __proto__: pos$1, enabledPlugins: enabledPlugins }))));
+  const plugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, enabledPlugins: enabledPlugins }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "collectd",
       version: "5.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "collectd",
           repo: "collectd",
           tag: nix.thunk(() => nix.str`collectd-${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-broken-dash-t-option.patch",
             url: "https://github.com/collectd/collectd/commit/3f575419e7ccb37a3b10ecc82adb2e83ff2826e1.patch",
             hash: "sha256-XkDxLITmG0FLpgf8Ut1bDqulM4DmPs8Xrec2QB1tkks=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "no_include_longintrepr.patch",
             url: "https://github.com/collectd/collectd/commit/623e95394e0e62e7f9ced2104b786d21e9c0bf53.patch",
             hash: "sha256-0eD7yNW3TWVyNMpLsADhYFDvy6COoCaI0kS1XJrwDgM=",
@@ -58,21 +58,21 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libtool], nix.sel(plugins, "buildInputs"))),
       configureFlags: nix.thunk(() => nix.concat(["--localstatedir=/var", "--disable-werror"], nix.concat(nix.sel(plugins, "configureFlags"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["--with-fp-layout=nothing"]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: "-DATTRIBUTE_UNUSED=__attribute__((unused))",
       })),
       postConfigure: "substituteInPlace Makefile --replace-fail '$(mkinstalldirs) $(DESTDIR)$(localstatedir)/' '#'\n",
       postInstall: "if [ -d $out/share/collectd/java ]; then\n  mv $out/share/collectd/java $out/share/\nfi\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           collectd: nix.thunk(() => nix.attr(nixosTests, "collectd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Daemon which collects system performance statistics periodically",
         homepage: "https://collectd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

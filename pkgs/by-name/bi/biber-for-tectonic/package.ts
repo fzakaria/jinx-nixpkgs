@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const biber = nix.arg($, "biber");
   const version = "2.17";
   return nix.app(nix.sel(nix.app(nix.sel(biber, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       texlive: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pkgs: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           biber: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             texsource: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               version: version,
               pname: nix.thunk(() => nix.attr(biber, "pname")),
               meta: nix.thunk(() => nix.attr(biber, "meta")),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
         })),
       })),
     }))), "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "plk",
           repo: "biber",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://patch-diff.githubusercontent.com/raw/plk/biber/pull/411.patch",
             hash: "sha256-osgldRVfe3jnMSOMnAMQSB0Ymc1s7J6KtM2ig3c93SE=",
           })))),
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(prevAttrs, "meta"), {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

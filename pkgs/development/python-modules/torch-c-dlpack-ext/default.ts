@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "torch-c-dlpack-ext",
       version: "0.1.5",
       src: nix.thunk(() => nix.attr(apache_tvm_ffi, "src")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["torch_c_dlpack_ext"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Ahead-Of-Time (AOT) compiled module to support faster DLPack conversion in DLPack",
         homepage: "https://github.com/apache/tvm-ffi/tree/main/addons/torch_c_dlpack_ext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

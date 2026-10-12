@@ -35,26 +35,26 @@ export default nix.lambda((args) => (() => {
     const cargo_auditable_1 = nix.argOr($_1, "cargo-auditable", () => nix.sel(prev, "cargo-auditable"));
     const stdenv_1 = nix.argOr($_1, "stdenv", () => nix.sel(prev, "stdenv"));
     return nix.update(nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "rustPlatform")),
         f: (self) => (() => {
           const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
           return (() => {
-            const from = nix.thunk(() => nix.app(callPackages, nix.path(here, "../../../build-support/rust/hooks"), nix.thunk(() => ({ __proto__: pos$7, stdenv: stdenv_1 }))));
+            const from = nix.thunk(() => nix.app(callPackages, nix.path(here, "../../../build-support/rust/hooks"), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: stdenv_1 }))));
             return {
-            __proto__: pos$9,
-            fetchCargoVendor: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "../../../build-support/rust/fetch-cargo-vendor.nix"), nix.thunk(() => ({ __proto__: pos$1, cargo: cargo })))),
+            [nix.POS]: pos$9,
+            fetchCargoVendor: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "../../../build-support/rust/fetch-cargo-vendor.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, cargo: cargo })))),
             buildRustPackage: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../build-support/rust/build-rust-package"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 stdenv: stdenv_1,
                 rustc: rustc,
                 cargo: cargo,
                 "cargo-auditable": cargo_auditable_1,
               })))),
-            importCargoLock: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "../../../build-support/rust/import-cargo-lock.nix"), nix.thunk(() => ({ __proto__: pos$3, cargo: cargo })))),
-            rustcSrc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust-src.nix"), nix.thunk(() => ({ __proto__: pos$4, runCommand: runCommand, rustc: rustc })))),
-            rustLibSrc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust-lib-src.nix"), nix.thunk(() => ({ __proto__: pos$5, runCommand: runCommand, rustc: rustc })))),
-            rustVendorSrc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust-vendor-src.nix"), nix.thunk(() => ({ __proto__: pos$6, runCommand: runCommand, rustc: rustc })))),
+            importCargoLock: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "../../../build-support/rust/import-cargo-lock.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, cargo: cargo })))),
+            rustcSrc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust-src.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, runCommand: runCommand, rustc: rustc })))),
+            rustLibSrc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust-lib-src.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, runCommand: runCommand, rustc: rustc })))),
+            rustVendorSrc: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust-vendor-src.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, runCommand: runCommand, rustc: rustc })))),
             cargoBuildHook: nix.thunk(() => nix.attr(from, "cargoBuildHook")),
             cargoCheckHook: nix.thunk(() => nix.attr(from, "cargoCheckHook")),
             cargoInstallHook: nix.thunk(() => nix.attr(from, "cargoInstallHook")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
             maturinBuildHook: nix.thunk(() => nix.attr(from, "maturinBuildHook")),
             bindgenHook: nix.thunk(() => nix.attr(from, "bindgenHook")),
             rust: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               rustc: nix.thunk(() => nix.selOr(rustc, () => nix.force(rustc), "__spliced", "hostTarget")),
               cargo: nix.thunk(() => nix.selOr(cargo, () => nix.force(cargo), "__spliced", "hostTarget")),
             })),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           })();
         })(),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         fetchCargoTarball: nix.thunk(() => nix.builtins.throw("`rustPlatform.fetchCargoTarball` has been removed in 25.05, use `rustPlatform.fetchCargoVendor` instead")),
       }))));
   })(), formals$2);

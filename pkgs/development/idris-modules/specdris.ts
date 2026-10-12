@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "specdris",
       version: "2018-01-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pheymann",
           repo: "specdris",
           rev: "625f88f5e118e53f30bcf5e5f3dcf48eb268ac21",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       idrisDeps: nix.thunk(() => [effects]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Testing library for Idris",
         homepage: "https://github.com/pheymann/specdris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

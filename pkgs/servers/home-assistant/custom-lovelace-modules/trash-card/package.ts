@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trash-card",
       version: "2.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idaho",
           repo: "hassio-trash-card",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-zvsJASztDfecn+FRvQPmT0vIblaCD11eBM9LLq+VFrg=",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp dist/trashcard.js $out/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, entrypoint: "trashcard.js" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "trashcard.js" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Custom Home Assistant card that displays your current and upcoming trash collection schedule.",
         homepage: "https://github.com/idaho/hassio-trash-card",
         changelog: nix.thunk(() => nix.str`https://github.com/idaho/hassio-trash-card/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mbrrg",
           repo: "pyspcwebgw",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/pyspcwebgw/pyspcwebgw/commit/22cacc8db53cf2a244c30c0e62a0dad90fbcb00b.patch",
             hash: "sha256-Og0imZts49jwjbz7Yp41UIzwU/lVjKVc/Tp4+vNz32U=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_asyncio, pytest8_3CheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyspcwebgw"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for the SPC Web Gateway REST API",
         homepage: "https://github.com/mbrrg/pyspcwebgw",
         changelog: nix.thunk(() => nix.str`https://github.com/pyspcwebgw/pyspcwebgw/releases/tag/v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

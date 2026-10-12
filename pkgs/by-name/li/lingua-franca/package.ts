@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const jdk17_headless = nix.arg($, "jdk17_headless");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lfc",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lf-lang/lingua-franca/releases/download/v${nix.sel(finalAttrs, "version")}/lf-cli-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-LrAm77iPUlqVfRdYy2bZ4mim7DHIr5JxPdbrgxokGvc=",
         })))),
       buildInputs: nix.thunk(() => [jdk17_headless]),
-      env: nix.thunk(() => ({ __proto__: pos$2, _JAVA_HOME: nix.thunk(() => nix.str`${jdk17_headless}/`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, _JAVA_HOME: nix.thunk(() => nix.str`${jdk17_headless}/`) })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace bin/lfc \\
   --replace 'base=\`dirname $(dirname \${abs_path})\`' "base='$out'" \\
   --replace "run_lfc_with_args" "${jdk17_headless}/bin/java -jar $out/lib/jars/org.lflang.lfc-${nix.sel(finalAttrs, "version")}-all.jar"
 `),
       installPhase: "cp -r ./ $out/\nchmod +x $out/bin/lfc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Polyglot coordination language",
         longDescription: "Lingua Franca (LF) is a polyglot coordination language for concurrent\nand possibly time-sensitive applications ranging from low-level\nembedded code to distributed cloud and edge applications.\n",
         homepage: "https://github.com/lf-lang/lingua-franca",

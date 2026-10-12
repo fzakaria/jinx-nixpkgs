@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(xapian, "version"));
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://oligarchy.co.uk/xapian/${version}/xapian-bindings-${version}.tar.xz`),
           hash: "sha256-o4zHukGIzAvSfcc2nwOQZ3IEcIehxU8bkzVdXpEDwwQ=",
         }))));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} python${pythonSuffix}/pythontest.py
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Bindings for Xapian",
         homepage: "https://xapian.org/",
         changelog: nix.thunk(() => nix.str`https://xapian.org/docs/xapian-bindings-${version}/NEWS`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

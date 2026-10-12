@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const withMan = nix.argOr($, "withMan", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libcdio",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libcdio",
           repo: "libcdio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-NZj6sMIhBORh2ZBs/WGI4BYri1REog4ovUug1t5p8Y8=",
         })))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-D_LARGEFILE64_SOURCE" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_LARGEFILE64_SOURCE" })))),
       postPatch: nix.thunk(() => nix.add(nix.str`patchShebangs .
 echo "
 @set UPDATED 1 January 1970
@@ -56,15 +56,15 @@ echo "
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "info"], nix.app(nix.sel(lib, "optionals"), withMan, nix.thunk(() => ["man"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library for OS-independent CD-ROM and CD image access",
         longDescription: "GNU libcdio is a library for OS-independent CD-ROM and\nCD image access.  It includes a library for working with\nISO-9660 filesystems (libiso9660), as well as utility\nprograms such as an audio CD player and an extractor.\n",
         homepage: "https://www.gnu.org/software/libcdio/",

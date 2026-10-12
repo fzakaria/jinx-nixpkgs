@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.2.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cs50",
           repo: "render50",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })());
       const nativeCheckInputs = nix.thunk(() => [versionCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate syntax-highlighted PDFs of source code",
         homepage: "https://cs50.readthedocs.io/render50/",
         downloadPage: "https://github.com/cs50/render50",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "render50",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

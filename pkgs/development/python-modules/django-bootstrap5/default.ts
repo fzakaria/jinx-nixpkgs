@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zostera",
           repo: "django-bootstrap5",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail \"uv_build>=0.9.6,<0.10.0\" uv_build\n";
       const build_system = nix.thunk(() => [uv_build]);
       const dependencies = nix.thunk(() => [django]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, jinja: nix.thunk(() => [jinja2]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, jinja: nix.thunk(() => [jinja2]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         beautifulsoup4,
-        nix.thunk(() => nix.app(nix.sel(django, "override"), nix.thunk(() => ({ __proto__: pos$3, withGdal: true })))),
+        nix.thunk(() => nix.app(nix.sel(django, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withGdal: true })))),
         pillow,
         pytest_django,
         pytestCheckHook,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_get_bootstrap_setting"]);
       const pythonImportsCheck = nix.thunk(() => ["django_bootstrap5"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bootstrap 5 integration with Django",
         homepage: "https://github.com/zostera/django-bootstrap5",
         changelog: nix.thunk(() => nix.str`https://github.com/zostera/django-bootstrap5/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

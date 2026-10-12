@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const unify = nix.arg($, "unify");
   const yapf = nix.arg($, "yapf");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinx-markdown-parser",
       version: "0.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clayrisser",
           repo: "sphinx-markdown-parser",
           rev: "2fd54373770882d1fb544dc6524c581c82eedc9e",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sphinx_markdown_parser"]),
       disabledTests: nix.thunk(() => ["test_heading", "test_headings", "test_integration"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Write markdown inside of docutils & sphinx projects",
         homepage: "https://github.com/clayrisser/sphinx-markdown-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

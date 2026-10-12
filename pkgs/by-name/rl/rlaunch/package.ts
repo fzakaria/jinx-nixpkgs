@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rlaunch",
       version: "1.3.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PonasKovas",
           repo: "rlaunch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`patchelf --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, libxft, libxinerama]))} $out/bin/rlaunch
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight application launcher for X11",
         homepage: "https://github.com/PonasKovas/rlaunch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

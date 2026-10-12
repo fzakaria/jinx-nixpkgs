@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const vala = nix.argOr($, "vala", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libosinfo",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/libosinfo%2Flibosinfo/packages/generic/release-assets/v${nix.sel(finalAttrs, "version")}/libosinfo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-rYVX7OJnk9pD0m3lZePWjOLua/uNARO3zH3+B/a/xrY=",
         })))),
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [check, curl, perl]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./osinfo-db-data-dir.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             osinfo_db_data_dir: nix.thunk(() => nix.str`${osinfo_db}/share`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.com/libosinfo/libosinfo/-/commit/0adf38535637ec668e658d43f04f60f11f51574f.patch",
             hash: "sha256-NZija5BwevRU7bAe2SPx9GnoGb1P+mXEbJ5EVAFT9Yw=",
           })))),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "patchShebangs ../osinfo/check-symfile.pl ../osinfo/check-symsorting.pl\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GObject based library API for managing information about operating systems, hypervisors and the (virtual) hardware devices they can support",
         homepage: "https://libosinfo.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libosinfo/libosinfo/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

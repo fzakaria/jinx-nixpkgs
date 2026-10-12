@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jenkinsapi",
       version: "0.3.23",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pycontribs",
           repo: "jenkinsapi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["systests"]),
       pythonImportsCheck: nix.thunk(() => ["jenkinsapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for accessing resources on a Jenkins continuous-integration server",
         homepage: "https://github.com/pycontribs/jenkinsapi",
         changelog: nix.thunk(() => nix.str`https://github.com/pycontribs/jenkinsapi/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "http-server";
       const version = "14.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "http-party",
           repo: "http-server",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "regenerate-package-lock.patch",
             url: "https://github.com/http-party/http-server/commit/0cbd85175f1a399c4d13c88a25c5483a9f1dea08.patch",
             hash: "sha256-hJyiUKZfuSaXTsjFi4ojdaE3rPHgo+N8k5Hqete+zqk=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-iUTDdcibnstbSxC7cD5WbwSxQbfiIL2iNyMWJ8izSu0=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple zero-configuration command-line http server",
         homepage: "https://github.com/http-party/http-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

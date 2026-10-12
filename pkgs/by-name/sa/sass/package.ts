@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sass",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["sass", "sass-convert", "scss"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "sass")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools and Ruby libraries for the CSS3 extension languages: Sass and SCSS",
         homepage: "https://sass-lang.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

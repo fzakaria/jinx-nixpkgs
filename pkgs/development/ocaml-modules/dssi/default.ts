@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ladspa = nix.arg($, "ladspa");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dssi",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-dssi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ladspa, alsa_lib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/savonet/ocaml-dssi",
         description: "Bindings for the DSSI API which provides audio synthesizers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

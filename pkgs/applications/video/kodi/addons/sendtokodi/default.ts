@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.sendtokodi";
       const version = "0.9.924";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firsttris",
           repo: "plugin.video.sendtokodi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ echo "${nix.app(nix.sel(lib, "strings", "getVersion"), nix.thunk(() => nix.sel(k
 ln -s ${nix.sel(kodi, "pythonPackages", "yt-dlp")}/${nix.sel(kodi, "pythonPackages", "python", "sitePackages")}/yt_dlp lib/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/firsttris/plugin.video.sendtokodi",
         description: "Plays various stream sites on Kodi using yt-dlp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +44,7 @@ ln -s ${nix.sel(kodi, "pythonPackages", "yt-dlp")}/${nix.sel(kodi, "pythonPackag
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

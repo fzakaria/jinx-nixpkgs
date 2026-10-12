@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const jackSupport = nix.argOr($, "jackSupport", () => true);
   const sndioSupport = nix.argOr($, "sndioSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "miniaudio",
       version: "0.11.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mackron",
           repo: "miniaudio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Single header audio playback and capture library written in C",
         homepage: "https://github.com/mackron/miniaudio",
         changelog: nix.thunk(() => nix.str`https://github.com/mackron/miniaudio/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

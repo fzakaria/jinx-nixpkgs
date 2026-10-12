@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: nix.thunk(() => nix.str`${nix.sel(antora, "pname")}${nix.app(nix.sel(lib, "optionalString"), antora_lunr_extension_test, nix.thunk(() => nix.str`-${nix.sel(antora_lunr_extension, "pname")}`))}-test`),
       src: nix.path(here, "./minimal_working_example"),
       postPatch: nix.thunk(() => (() => {
@@ -43,20 +43,20 @@ git init &&
       })()),
       buildPhase: nix.thunk(() => (() => {
         const playbook = nix.thunk(() => nix.builtins.toFile("antora-playbook.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               content: nix.thunk(() => ({
-                __proto__: pos$2,
-                sources: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, url: "~+" }))]),
+                [nix.POS]: pos$2,
+                sources: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, url: "~+" }))]),
               })),
               runtime: nix.thunk(() => ({
-                __proto__: pos$4,
-                log: nix.thunk(() => ({ __proto__: pos$3, failure_level: "warn" })),
+                [nix.POS]: pos$4,
+                log: nix.thunk(() => ({ [nix.POS]: pos$3, failure_level: "warn" })),
               })),
             }))))));
         return nix.str`# The --to-dir and --ui-bundle-url options are not included in the
 # playbook due to Antora and Nix limitations.
 antora ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "cache-dir": "$(mktemp --directory)",
             extension: nix.thunk(() => (nix.asBool(antora_lunr_extension_test) ? nix.force(antora_lunr_extension) : false)),
             "to-dir": nix.thunk(() => nix.builtins.placeholder("out")),
@@ -66,7 +66,7 @@ antora ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => (
       })()),
       nativeBuildInputs: nix.thunk(() => [antora, gitMinimal]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Reproducible Antora test framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "noahbiewesch"))]),

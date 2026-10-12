@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const npmHooks = nix.arg($, "npmHooks");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "isso",
       version: "0.14.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "isso-comments",
           repo: "isso",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8kXqqiMXxF0wCJ+AzYT8j0rjuhlXO3F6UJbump672b4=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-e3r5iZLmXlf5YBPGgeNBDkdgfbNcIZIXbRLyyoyJiTU=",
         })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         nodejs,
         nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NODE_PATH: "$npmDeps" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NODE_PATH: "$npmDeps" })),
       preBuild: nix.thunk(() => nix.str`ln -s ${nix.sel(finalAttrs, "npmDeps")}/node_modules ./node_modules
 export PATH="${nix.sel(finalAttrs, "npmDeps")}/bin:$PATH"
 
@@ -69,11 +69,11 @@ make js
         nix.thunk(() => nix.sel(python3Packages, "pytest-cov-stub")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, isso: nix.thunk(() => nix.attr(nixosTests, "isso")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, isso: nix.thunk(() => nix.attr(nixosTests, "isso")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Commenting server similar to Disqus",
         mainProgram: "isso",
         homepage: "https://posativ.org/isso/",

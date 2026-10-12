@@ -66,19 +66,19 @@ export default nix.lambda((args) => (() => {
   const pins = nix.arg($, "pins");
   const testBackends = nix.thunk(() => ["duckdb", "sqlite"]);
   const ibisTestingData = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ibis-project",
       repo: "testing-data",
       rev: "b26bd40cf29004372319df620c4bbe41420bb6f8",
       hash: "sha256-1fenQNQB+Q0pbb0cbK2S/UIwZDE4PXXG15MH3aVbyLU=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ibis-framework",
       version: "12.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ibis-project",
           repo: "ibis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -208,7 +208,7 @@ ln -s "${ibisTestingData}" "$IBIS_TEST_DATA_DIRECTORY"
       postCheck: "rm -r \"$IBIS_TEST_DATA_DIRECTORY\"\n",
       pythonImportsCheck: nix.thunk(() => nix.concat(["ibis"], nix.builtins.map((backend) => nix.str`ibis.backends.${backend}`, testBackends))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         athena: nix.thunk(() => [pyathena, pyarrow, pyarrow_hotfix, numpy, pandas, rich, packaging, fsspec]),
         bigquery: nix.thunk(() => [
           db_dtypes,
@@ -242,7 +242,7 @@ ln -s "${ibisTestingData}" "$IBIS_TEST_DATA_DIRECTORY"
         examples: nix.thunk(() => nix.concat([pins], nix.sel(pins, "optional-dependencies", "gcs"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Productivity-centric Python Big Data Framework",
         homepage: "https://github.com/ibis-project/ibis",
         changelog: nix.thunk(() => nix.str`https://github.com/ibis-project/ibis/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

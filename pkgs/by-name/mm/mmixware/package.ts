@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const texliveMedium = nix.arg($, "texliveMedium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mmixware",
       version: "1.0-unstable-2025-06-30",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.lrz.de",
           owner: "mmix",
           repo: "mmixware",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       postPatch: "substituteInPlace Makefile --replace 'rm abstime.h' \"\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-std=gnu17"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [texliveMedium]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["all", "doc", "CFLAGS=-O2"]),
       installPhase: "runHook preInstall\nmkdir -p $out/share/doc\ncp *.ps $out/share/doc\ninstall -Dm755 mmixal -t $out/bin\ninstall -Dm755 mmix -t $out/bin\ninstall -Dm755 mmotype -t $out/bin\ninstall -Dm755 mmmix -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MMIX simulator and assembler",
         homepage: "https://www-cs-faculty.stanford.edu/~knuth/mmix-news.html",
         maintainers: nix.thunk(() => (() => {

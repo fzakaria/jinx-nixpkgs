@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const openscad = nix.arg($, "openscad");
   const openscadOrig = openscad;
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildOpenSCADPackage: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../build-support/build-openscad-package"), nix.thunk(() => ({})))),
-        openscad: nix.thunk(() => nix.app(nix.sel(openscadOrig, "override"), nix.thunk(() => ({ __proto__: pos$1, openscadPackages: self })))),
+        openscad: nix.thunk(() => nix.app(nix.sel(openscadOrig, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, openscadPackages: self })))),
         bosl: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/openscad-packages/bosl"), nix.thunk(() => ({})))),
         bosl2: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/openscad-packages/bosl2"), nix.thunk(() => ({})))),
         dotscad: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/openscad-packages/dotscad"), nix.thunk(() => ({})))),

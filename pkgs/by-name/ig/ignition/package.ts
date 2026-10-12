@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ignition",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flattool",
           repo: "ignition",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gjs, gtk4, libadwaita]),
       mesonFlags: nix.thunk(() => ["-Dtests=false"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage startup apps and scripts",
         homepage: "https://github.com/flattool/ignition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

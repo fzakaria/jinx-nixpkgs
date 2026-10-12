@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const rev_prefix = "ena_linux_";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "2.17.2",
       pname: "ena",
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amzn",
           repo: "amzn-drivers",
           rev: nix.thunk(() => nix.str`${rev_prefix}${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["pic"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/amzn/amzn-drivers/commit/907a1686e35458b8e3bc5b406609473bee7da39a.patch",
             hash: "sha256-KG85r4m868mc6+QlBdoE06FQcSG2JiDPFHjfRgxfkHY=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       makeFlags: kernelModuleMakeFlags,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         KERNEL_BUILD_DIR: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       })),
       postPatch: "substituteInPlace kernel/linux/ena/configure.sh --replace-fail '^HOSTCC' '^CC'\n",
@@ -58,11 +58,11 @@ xz $dest/ena.ko
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": rev_prefix })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": rev_prefix })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Amazon Elastic Network Adapter (ENA) driver for Linux",
         homepage: "https://github.com/amzn/amzn-drivers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

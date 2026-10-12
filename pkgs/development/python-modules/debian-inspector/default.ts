@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "31.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "debian_inspector",
           version: version,
           hash: "sha256-uyFsYrb7D9cM1OQzkIERX0oV711uI/TEKF6t67z8egU=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [commoncode, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["debian_inspector"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities to parse Debian package, copyright and control files",
         homepage: "https://github.com/nexB/debian-inspector",
         changelog: nix.thunk(() => nix.str`https://github.com/aboutcode-org/debian-inspector/blob/v${version}/CHANGELOG.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

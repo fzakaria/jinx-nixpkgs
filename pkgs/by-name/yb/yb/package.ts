@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "yb",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "douzebis",
           repo: "yb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ cp ${nix.sel(finalAttrs, "src")}/rust/yb-core/tests/fixtures/with_key.yaml $out/
 cp ${nix.sel(finalAttrs, "src")}/rust/yb-core/tests/fixtures/default.yaml  $out/default.yaml
 `)));
         const ybPivHarnessTests = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "yb-piv-harness-tests",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,7 +62,7 @@ cp ${nix.sel(finalAttrs, "src")}/rust/yb-core/tests/fixtures/default.yaml  $out/
             nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(llvmPackages, "libclang"))]),
             buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pcsclite]))),
             env: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "libclang", "lib")}/lib`),
               BINDGEN_EXTRA_CLANG_ARGS: nix.thunk(() => nix.str`-I${nix.sel(llvmPackages, "libclang", "lib")}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "release_version")))}/include`),
             })),
@@ -71,15 +71,15 @@ cp ${nix.sel(finalAttrs, "src")}/rust/yb-core/tests/fixtures/default.yaml  $out/
             installPhase: "mkdir -p $out/bin\n(cd rust && for name in hardware_piv_tests yb_cli_tests; do\n  bin=$(find target/release/deps -maxdepth 1 -name \"$name-*\" ! -name \"*.d\" -type f)\n  if [ -z \"$bin\" ] || [ ! -f \"$bin\" ]; then\n    echo \"ERROR: could not find $name binary\" >&2\n    exit 1\n  fi\n  cp \"$bin\" $out/bin/$name\ndone)\n",
           }))));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           ybPivHarnessTests: ybPivHarnessTests,
           testFixtures: testFixtures,
-          tests: nix.thunk(() => ({ __proto__: pos$4, integration: nix.thunk(() => nix.sel(nixosTests, "yb")) })),
+          tests: nix.thunk(() => ({ [nix.POS]: pos$4, integration: nix.thunk(() => nix.sel(nixosTests, "yb")) })),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Secure blob storage on a YubiKey",
         longDescription: "Command-line tool for storing encrypted binary blobs on a YubiKey using\nthe PIV application. Uses hybrid encryption (ECDH + AES-256-GCM) with\nhardware-backed keys, supports PIN-protected management key setup\n(--protect), glob-pattern blob listing, and shell completions for bash,\nzsh, and fish.\n",
         homepage: "https://github.com/douzebis/yb",

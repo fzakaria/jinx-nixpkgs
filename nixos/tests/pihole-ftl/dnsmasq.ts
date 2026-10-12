@@ -13,21 +13,21 @@ const pos$7 = nix.positions(here + "/dnsmasq.nix", [["name", 5, 3], ["nodes", 7,
 export default nix.thunk(() => (() => {
   const port = "9077";
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "pihole-ftl-dnsmasq",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pihole-ftl": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             useDnsmasqConfig: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$2,
-              webserver: nix.thunk(() => ({ __proto__: pos$1, port: port })),
+              [nix.POS]: pos$2,
+              webserver: nix.thunk(() => ({ [nix.POS]: pos$1, port: port })),
             })),
           })),
         })),

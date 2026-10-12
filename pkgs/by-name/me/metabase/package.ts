@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const jre = jre_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "metabase",
       version: "0.63.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.metabase.com/v${nix.sel(finalAttrs, "version")}/metabase.jar`),
           hash: "sha256-dr9ezSvYgweyViXYAmf8VYN15mdWqcQ9EsdSIxHUrLQ=",
         })))),
@@ -34,7 +34,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/metabase --add-flag
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Business Intelligence and Embedded Analytics tool",
         homepage: "https://metabase.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -53,9 +53,9 @@ runHook postInstall
         mainProgram: "metabase",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           metabase: nix.thunk(() => nix.attr(nixosTests, "metabase")),
         })),
       })),

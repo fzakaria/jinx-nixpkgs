@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httpx-retries",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "will-ockmore",
           repo: "httpx-retries",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["httpx_retries"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Retry layer for HTTPX",
         homepage: "https://github.com/will-ockmore/httpx-retries",
         changelog: nix.thunk(() => nix.str`https://github.com/will-ockmore/httpx-retries/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

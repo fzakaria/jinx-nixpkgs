@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apery",
       version: "2.1.0-unstable-2024-06-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HiraokaTakuya",
           repo: "apery_rust",
           rev: "8e64bc427bff033a38f1b60b9013ad2d62f88db7",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nusi_command='isready\ngo byoyomi 1000\nwait'\nusi_output=\"$(\"$out/bin/apery\" <<< \"$usi_command\")\"\n[[ \"$usi_output\" == *'bestmove'* ]]\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v", branch: "master" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v", branch: "master" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "USI shogi engine",
         homepage: "https://github.com/HiraokaTakuya/apery_rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

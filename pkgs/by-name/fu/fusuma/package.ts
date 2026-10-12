@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnugrep, libinput]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multitouch gestures with libinput driver on X11, Linux",
         homepage: "https://github.com/iberianpig/fusuma",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         gemdir,
         exes,

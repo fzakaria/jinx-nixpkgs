@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const util_linuxMinimal = nix.arg($, "util-linuxMinimal");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "nixos-install",
       src: nix.path(here, "./nixos-install.sh"),
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         runtimeShell: runtimeShell,
         path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jq, nixos_enter, util_linuxMinimal]))),
       })),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`installManPage ${nix.path(here, "./nixos-install.8")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "installer-simpleUefiSystemdBoot": nix.thunk(() => nix.sel(nixosTests, "installer", "simpleUefiSystemdBoot")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Install bootloader and NixOS",
         homepage: "https://github.com/NixOS/nixpkgs/tree/master/pkgs/by-name/ni/nixos-install",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

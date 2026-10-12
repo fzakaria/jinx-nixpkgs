@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flent",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-qy+BvMpBDBtBqEEM9yEko/Gb2pusxF/LqiutSKlS2eE=",
@@ -62,11 +62,11 @@ export QT_PLUGIN_PATH="${nix.sel(qt6, "qtbase")}/${nix.sel(qt6, "qtbase", "qtPlu
 export QT_QPA_PLATFORM=offscreen
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "FLExible Network Tester",
         homepage: "https://flent.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

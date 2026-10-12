@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const extraLibraries = nix.argOr($, "extraLibraries", () => []);
   const version = "0.7.2";
   const urn_rt = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`urn-rt-${version}`),
       ignoreCollisions: true,
       paths: nix.thunk(() => (nix.asBool(useLuaJit) ? [luajit, readline] : [lua])),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const concatMapStringsSep = nix.thunk(() => nix.attr(lib, "concatMapStringsSep"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`urn${nix.app(optionalString, nix.thunk(() => !nix.eq(extraLibraries, [])), "-with-libraries")}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "urn",
           repo: "urn",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ wrapProgram $out/bin/urn \\
   --prefix LD_LIBRARY_PATH : ${urn_rt}/lib/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://urn-lang.com",
         description: "Yet another Lisp variant which compiles to Lua",
         mainProgram: "urn",
@@ -62,7 +62,7 @@ wrapProgram $out/bin/urn \\
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, "urn-rt": urn_rt })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "urn-rt": urn_rt })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

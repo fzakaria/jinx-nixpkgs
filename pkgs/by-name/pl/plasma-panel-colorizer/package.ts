@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "pygobject3")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "plasma-panel-colorizer",
       version: "8.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luisbocanegra",
           repo: "plasma-panel-colorizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       patches: nix.thunk(() => [nix.path(here, "./use-dbus-service-directly.patch")]),
@@ -64,7 +64,7 @@ wrapProgram $out/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/u
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "kwindowsystem", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default KDE Plasma panel",
         homepage: "https://github.com/luisbocanegra/plasma-panel-colorizer",
         changelog: "https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/CHANGELOG.md",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableJackAssWine64 = nix.argOr($, "enableJackAssWine64", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jackass",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "falkTX",
           repo: "JackAss",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["linux"], nix.app(nix.sel(lib, "optionals"), enableJackAssWine64, nix.thunk(() => ["wine64"])))),
       installPhase: "runHook preInstall\n\ninstall_dir=\"$out/lib/vst\"\nmkdir -p $install_dir\nfor file in JackAss.so JackAssWine64.dll; do\n  if test -f \"$file\"; then\n    cp $file $install_dir\n  fi\ndone\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "VST plugin that provides JACK-MIDI support for VST hosts",
         longDescription: "Simply load the plugin in your favourite host to get a JACK-MIDI port.\nOptionally includes a special Wine build for running in Wine\napplications. Set enableJackAssWine64 to true to enable this output.\n",
         homepage: "https://github.com/falkTX/JackAss",

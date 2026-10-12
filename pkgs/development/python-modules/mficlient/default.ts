@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uilibs",
           repo: "mficlient",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["mficlient"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytest_xdist, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/uilibs/mficlient/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Remote control client for Ubiquiti's UVC NVR",
         homepage: "https://github.com/uilibs/mficlient",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

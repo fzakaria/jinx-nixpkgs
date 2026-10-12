@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cerberus = nix.arg($, "cerberus");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cerberus",
       version: "0-unstable-2025-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rems-project",
           repo: "cerberus",
           rev: "50621977ba282ac527e9259f7e9334d2c5bef41c",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-runtime-lookup",
             url: "https://github.com/rems-project/cerberus/commit/262c13331d4809dd3742069dbcd1deedee8227f2.patch",
             hash: "sha256-yPhzswMDkpjvjYyobnqoF3900l4THe0kaGme1eZXLQc=",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         OPAM_SWITCH_PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
       buildPhase: "runHook preBuild\n\nmake DUNEFLAGS=\"--profile=release\" Q= -j$NIX_BUILD_CORES cerberus\n\nrunHook postBuild\n",
@@ -86,15 +86,15 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n# Bypass `dune exec` so its stderr warnings don't pollute test output.\nPATH=\"$out/bin\":$PATH\nexport WITH_CERB=cerberus\n\npatchShebangs --build tests\n\ntests/run-ci.sh\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, branch: "master" })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, branch: "master" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$5, package: cerberus })))),
+          [nix.POS]: pos$6,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: cerberus })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://www.cl.cam.ac.uk/~pes20/cerberus/",
         license: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

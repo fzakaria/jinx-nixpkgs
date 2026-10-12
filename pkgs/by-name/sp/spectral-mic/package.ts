@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const dlopenLibs = nix.thunk(() => [libxkbcommon, wayland, libx11, libxcursor, libxi, libxrandr]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spectral-mic",
       version: "0.8.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mmc",
           repo: "spectral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ wrapProgram $out/bin/spectral \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time audio noise suppression application",
         longDescription: "Spectral is a real-time audio noise suppression application powered by\nRNNoise, a hybrid DSP and neural-network-based noise suppression system.\nIt creates a virtual microphone that can be used with any application,\nfiltering out background noise in real-time.\n",
         homepage: "https://codeberg.org/mmc/spectral",

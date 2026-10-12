@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const smartdns = nix.arg($, "smartdns");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "smartdns",
       version: "48.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pymumu",
           repo: "smartdns",
           rev: nix.thunk(() => nix.str`Release${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`SYSCONFDIR=${nix.builtins.placeholder("out")}/etc`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: smartdns, command: "smartdns -v" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: smartdns, command: "smartdns -v" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Local DNS server to obtain the fastest website IP for the best Internet experience",
         longDescription: "SmartDNS is a local DNS server. SmartDNS accepts DNS query requests from local clients, obtains DNS query results from multiple upstream DNS servers, and returns the fastest access results to clients.\nAvoiding DNS pollution and improving network access speed, supports high-performance ad filtering.\nUnlike dnsmasq's all-servers, smartdns returns the fastest access resolution.\n",
         homepage: "https://github.com/pymumu/smartdns",

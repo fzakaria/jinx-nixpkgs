@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const withAudit = nix.argOr($, "withAudit", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), audit)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), linuxHeaders))));
   const debugMode = nix.argOr($, "debugMode", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "linux-pam",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-pam",
           repo: "linux-pam",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "secure-opendir-fix-error-handling.patch",
             url: "https://github.com/linux-pam/linux-pam/commit/dd62bac17221911106de165607c6925ea54b18d1.patch?full_index=1",
             hash: "sha256-ddgDYdVfdXfTaMFV1hO3RJX9w1NHmE7yi3PxsHOdpvY=",
@@ -100,16 +100,16 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput sbin/pam_namespace_helper $scripts\nmoveToOutput etc/security/namespace.init $scripts\n",
       doCheck: false,
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         out: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
         })),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pam-oath-login": nix.thunk(() => nix.attr(nixosTests, "pam-oath-login")),
           "pam-u2f": nix.thunk(() => nix.attr(nixosTests, "pam-u2f")),
           "pam-lastlog": nix.thunk(() => nix.attr(nixosTests, "pam-lastlog")),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/linux-pam/linux-pam/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/linux-pam/linux-pam",
         description: "Pluggable Authentication Modules, a flexible mechanism for authenticating user",
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(lib, "systems", "inspect", "platformPatterns", "isStatic")),
         ]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "linux-pam", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

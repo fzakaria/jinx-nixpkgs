@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const version = "1.1";
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "idris2-mode",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idris-community",
           repo: "idris2-mode",
           tag: version,
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [prop_menu]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/idris-community/idris2-mode",
         description: "Emacs mode for editing Idris 2 code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

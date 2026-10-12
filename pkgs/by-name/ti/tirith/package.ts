@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (final) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tirith",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sheeki03",
           repo: "tirith",
           tag: nix.thunk(() => nix.str`v${nix.sel(final, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tirith \\\n  --bash <(\"$out/bin/tirith\" completions bash) \\\n  --zsh <(\"$out/bin/tirith\" completions zsh) \\\n  --fish <(\"$out/bin/tirith\" completions fish)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shell security tool that guards against homograph URL attacks, pipe-to-shell exploits, and other command-line threats before they execute",
         homepage: "https://github.com/sheeki03/tirith",
         changelog: nix.thunk(() => nix.str`https://github.com/sheeki03/tirith/blob/${nix.sel(final, "src", "tag")}/CHANGELOG.md`),

@@ -22,36 +22,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "telegraf",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "telegraf", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     containers: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             telegraf: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secrets", "SECRET=example\n")),
               ]),
               extraConfig: nix.thunk(() => ({
-                __proto__: pos$8,
-                agent: nix.thunk(() => ({ __proto__: pos$2, interval: "1s", flush_interval: "1s" })),
+                [nix.POS]: pos$8,
+                agent: nix.thunk(() => ({ [nix.POS]: pos$2, interval: "1s", flush_interval: "1s" })),
                 inputs: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   exec: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     commands: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -c 'echo $SECRET,tag=a i=42i'`),
                     ]),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
                     data_format: "influx",
                   })),
                   ping: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     urls: nix.thunk(() => ["127.0.0.1"]),
                     count: 4n,
                     interval: "10s",
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 outputs: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   file: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     files: nix.thunk(() => ["/tmp/metrics.out"]),
                     data_format: "influx",
                   })),

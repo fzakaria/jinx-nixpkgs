@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const xkeyboard_config = nix.arg($, "xkeyboard-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "setxkbmap",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-xkb-config-root=${xkeyboard_config}/etc/X11/xkb`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=setxkbmap-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Set keymaps, layouts, and options via the X Keyboard Extension (XKB)",
         longDescription: "setxkbmap is an X11 client to change the keymaps in the X server for a specified keyboard to\nuse the layout determined by the options listed on the command line.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/setxkbmap",

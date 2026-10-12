@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const isCross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   const stdbuf = nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "stdbuf,"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: nix.thunk(() => nix.add("coreutils", nix.app(optionalString, nix.thunk(() => !nix.asBool(minimal)), "-full"))),
       version: "9.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/coreutils/coreutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-OUAk7aCllVIXztqc0SAeZdyPo6opwpURNaSVIdV8PMM=",
         })))),
@@ -81,38 +81,38 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(isCross)) && nix.asBool((nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")) || nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "musl")))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(optionalString, selinuxSupport, "-lsepol")),
         FORCE_UNSAFE_CONFIGURE: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isSunOS")), "1")),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([], nix.concat(nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "-Wno-error"), nix.concat(nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAndroid")), "-D__USE_FORTIFY_LEVEL=0"), nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))), "-Wno-error=format-security"))))))),
-      }, nix.app(optionalAttrs, isCross, nix.thunk(() => ({ __proto__: pos$3, PERL: "missing" }))))),
+      }, nix.app(optionalAttrs, isCross, nix.thunk(() => ({ [nix.POS]: pos$3, PERL: "missing" }))))),
       preInstall: nix.thunk(() => nix.app(optionalString, isCross, nix.thunk(() => nix.str`sed -i Makefile -e 's|^INSTALL =.*|INSTALL = ${nix.sel(buildPackages, "coreutils")}/bin/install -c|'
 `))),
       postInstall: nix.thunk(() => nix.add(nix.app(optionalString, nix.thunk(() => (nix.asBool(isCross) && nix.asBool(!nix.asBool(minimal)))), nix.thunk(() => nix.str`rm $out/share/man/man1/*
 cp ${nix.sel(buildPackages, "coreutils-full")}/share/man/man1/* $out/share/man/man1
 `)), nix.app(optionalString, minimal, "rm -r \"$out/share\"\n"))),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, static: nix.thunk(() => nix.sel(pkgsStatic, "coreutils")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, static: nix.thunk(() => nix.sel(pkgsStatic, "coreutils")) })),
       }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(singleBinary, false)), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           binlore: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), nix.thunk(() => nix.str`execer can bin/${(nix.asBool(withPrefix) ? "g" : "")}{chroot,env,install,nice,nohup,runcon,sort,split,${stdbuf}timeout}
 execer cannot bin/${(nix.asBool(withPrefix) ? "g" : "")}{[,arch,b2sum,base32,base64,basename,basenc,cat,chcon,chgrp,chmod,chown,cksum,comm,cp,csplit,cut,date,dd,df,dir,dircolors,dirname,du,echo,expand,expr,factor,false,fmt,fold,groups,head,hostid,id,join,kill,link,ln,logname,ls,md5sum,mkdir,mkfifo,mknod,mktemp,mv,nl,nproc,numfmt,od,paste,pathchk,pinky,pr,printenv,printf,ptx,pwd,readlink,realpath,rm,rmdir,seq,sha1sum,sha224sum,sha256sum,sha384sum,sha512sum,shred,shuf,sleep,stat,stty,sum,sync,tac,tail,tee,test,touch,tr,true,truncate,tsort,tty,uname,unexpand,uniq,unlink,uptime,users,vdir,wc,who,whoami,yes}
 `))),
           })),
         }))), nix.app(optionalAttrs, nix.thunk(() => nix.eq(singleBinary, false)), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           binlore: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), nix.thunk(() => nix.str`execer can bin/${(nix.asBool(withPrefix) ? "g" : "")}runcon
 `))),
           })),
         })))))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://www.gnu.org/software/coreutils/",
         description: "GNU Core Utilities",
         longDescription: "The GNU Core Utilities are the basic file, shell and text manipulation\nutilities of the GNU operating system. These are the core utilities which\nare expected to exist on every operating system.\n",
@@ -131,7 +131,7 @@ execer cannot bin/${(nix.asBool(withPrefix) ? "g" : "")}{[,arch,b2sum,base32,bas
         })()),
         priority: 10n,
         identifiers: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

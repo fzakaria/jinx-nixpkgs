@@ -35,32 +35,32 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "imaginary"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         imaginary: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "imaginary image processing microservice")),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               description: "Bind address. Corresponds to the `-a` flag.\nSet to `\"\"` to bind to all addresses.\n",
               example: "[::1]",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8088n,
               description: "Bind port. Corresponds to the `-p` flag.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Command line arguments passed to the imaginary executable, stripped of\nthe prefix `-`. See upstream's\n[README](https://github.com/h2non/imaginary#command-line-usage) for all\noptions.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -71,9 +71,9 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     "return-size": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Return the image size in the HTTP headers.",
@@ -85,31 +85,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "a", nix.thunk(() => nix.sel(cfg, "settings"))))),
             message: "Use services.imaginary.address to specify the -a flag.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "p", nix.thunk(() => nix.sel(cfg, "settings"))))),
             message: "Use services.imaginary.port to specify the -p flag.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             imaginary: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => (() => {
                 const ExecStart = nix.thunk(() => (() => {
                   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (key) => (val) => nix.add(nix.add(nix.add("-", key), "="), nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.builtins.map(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(lib, "toList"), val)))))), nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       a: nix.thunk(() => nix.sel(cfg, "address")),
                       p: nix.thunk(() => nix.sel(cfg, "port")),
                     }))));
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
                 const SystemCallFilter = nix.thunk(() => ["@system-service", "~@privileged"]);
                 const DevicePolicy = "closed";
                 return {
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   ExecStart,
                   Restart,
                   ProtectProc,
@@ -179,7 +179,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dotlambda"))];

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools, versioneer]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-vWsAdUDbWQuG3e0oAtLq8rA4Ys2wg38fD/h+E1ViQQg=",
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Remove vendorized versioneer.py\nrm versioneer.py\n";
       const dependencies = nix.thunk(() => nix.concat([six, twisted, pyopenssl], nix.sel(twisted, "optional-dependencies", "tls")));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         i2p: nix.thunk(() => [txi2p_tahoe]),
         tor: nix.thunk(() => [txtorcon]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["foolscap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "RPC protocol for Python that follows the distributed object-capability model",
         longDescription: "\"Foolscap\" is the name for the next-generation RPC protocol, intended to\nreplace Perspective Broker (part of Twisted). Foolscap is a protocol to\nimplement a distributed object-capabilities model in Python.\n",
         homepage: "https://github.com/warner/foolscap",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

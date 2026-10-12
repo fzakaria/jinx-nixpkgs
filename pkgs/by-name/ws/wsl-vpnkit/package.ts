@@ -28,15 +28,15 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const version = "0.4.1";
   const gvproxyWin = nix.thunk(() => nix.app(nix.sel(gvproxy, "overrideAttrs"), (_) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildPhase: "GOARCH=amd64 GOOS=windows go build -ldflags '-s -w' -o bin/gvproxy-windows.exe ./cmd/gvproxy\n",
     })));
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "wsl-vpnkit",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sakai135",
           repo: "wsl-vpnkit",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,26 +48,26 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ncp wsl-vpnkit $out/bin\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "wsl-vpnkit": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           scripts: nix.thunk(() => ["bin/wsl-vpnkit"]),
           interpreter: "none",
           inputs: nix.thunk(() => [coreutils, dnsutils, gawk, gnugrep, iproute2, iptables, iputils, wget]),
-          keep: nix.thunk(() => ({ __proto__: pos$3, $VMEXEC_PATH: true, $GVPROXY_PATH: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: pos$3, $VMEXEC_PATH: true, $GVPROXY_PATH: true })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${iproute2}/bin/ip`),
             nix.thunk(() => nix.str`cannot:${wget}/bin/wget`),
           ]),
           fix: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             aliases: true,
             ping: nix.thunk(() => nix.str`${iputils}/bin/ping`),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Provides network connectivity to Windows Subsystem for Linux (WSL) when blocked by VPN",
         homepage: "https://github.com/sakai135/wsl-vpnkit",
         changelog: nix.thunk(() => nix.str`https://github.com/sakai135/wsl-vpnkit/releases/tag/v${version}`),

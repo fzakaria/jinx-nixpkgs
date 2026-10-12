@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const git_backup_go = nix.arg($, "git-backup-go");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "git-backup-go",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ChappIO",
           repo: "git-backup",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-xP2bV3vD4CbMGVT+MK4wJgMbIBZLvyqiMOfgj8Rc38Y=",
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.Version=${nix.sel(finalAttrs, "version")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: git_backup_go, command: "git-backup -version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: git_backup_go, command: "git-backup -version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Backup all your GitHub & GitLab repositories",
         homepage: "https://github.com/ChappIO/git-backup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

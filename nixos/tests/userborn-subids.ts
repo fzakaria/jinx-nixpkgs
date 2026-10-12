@@ -38,78 +38,78 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "userborn-subids",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rvdp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            userborn: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            userborn: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             users: nix.thunk(() => ({
-              __proto__: pos$11,
-              alice: nix.thunk(() => ({ __proto__: pos$4, isNormalUser: true })),
+              [nix.POS]: pos$11,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$4, isNormalUser: true })),
               explicit: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 isNormalUser: true,
-                subUidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$5, startUid: 700000n, count: 65536n }))]),
-                subGidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, startGid: 700000n, count: 65536n }))]),
+                subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, startUid: 700000n, count: 65536n }))]),
+                subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, startGid: 700000n, count: 65536n }))]),
               })),
               root: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 subUidRanges: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$8, startUid: 1000000n, count: 1000000000n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$8, startUid: 1000000n, count: 1000000000n })),
                 ]),
                 subGidRanges: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$9, startGid: 1000000n, count: 1000000000n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$9, startGid: 1000000n, count: 1000000000n })),
                 ]),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "util-linux"))]),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "with-bob": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               configuration: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 users: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   users: nix.thunk(() => ({
-                    __proto__: pos$15,
-                    bob: nix.thunk(() => ({ __proto__: pos$14, isNormalUser: true })),
+                    [nix.POS]: pos$15,
+                    bob: nix.thunk(() => ({ [nix.POS]: pos$14, isNormalUser: true })),
                   })),
                 })),
               })),
             })),
             conflict: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               configuration: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 users: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   users: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     mallory: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       isNormalUser: true,
-                      subUidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$19, startUid: 100000n, count: 200000n }))]),
+                      subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$19, startUid: 100000n, count: 200000n }))]),
                     })),
                   })),
                 })),

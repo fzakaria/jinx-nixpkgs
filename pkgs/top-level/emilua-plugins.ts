@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return (emilua) => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       emilua: emilua,
       beast: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/beast"), nix.thunk(() => ({})))),
       bech32: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/bech32"), nix.thunk(() => ({})))),
-      botan: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/botan"), nix.thunk(() => ({ __proto__: pos$1, botan3: nix.thunk(() => nix.attr(pkgs, "botan3")) })))),
+      botan: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/botan"), nix.thunk(() => ({ [nix.POS]: pos$1, botan3: nix.thunk(() => nix.attr(pkgs, "botan3")) })))),
       qt5: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/qt5"), nix.thunk(() => ({})))),
       qt6: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/qt6"), nix.thunk(() => ({})))),
-      secp256k1: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/secp256k1"), nix.thunk(() => ({ __proto__: pos$2, secp256k1: nix.thunk(() => nix.attr(pkgs, "secp256k1")) })))),
+      secp256k1: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/secp256k1"), nix.thunk(() => ({ [nix.POS]: pos$2, secp256k1: nix.thunk(() => nix.attr(pkgs, "secp256k1")) })))),
       tdlib: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/tdlib"), nix.thunk(() => ({})))),
       "this-thread": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/this-thread"), nix.thunk(() => ({})))),
     }));

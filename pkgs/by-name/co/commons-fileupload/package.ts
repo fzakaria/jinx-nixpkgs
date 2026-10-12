@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.5",
       pname: "commons-fileupload",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/fileupload/binaries/commons-fileupload-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           sha256: "sha256-r7EGiih4qOCbjaL7Wg+plbe0m3CuFWXs/RmbfGLmj1g=",
         })))),
@@ -26,7 +26,7 @@ mkdir -p $out/share/java
 cp commons-fileupload-*-bin/*.jar $out/share/java/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://commons.apache.org/proper/commons-fileupload",
         description: "Makes it easy to add robust, high-performance, file upload capability to your servlets and web applications",
         maintainers: [],

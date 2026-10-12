@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const eio = nix.arg($, "eio");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lwt_eio",
       version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lwt, "version")), "6.0.0")) ? "0.6" : "0.5.1")),
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/lwt_eio/releases/download/v${nix.sel(finalAttrs, "version")}/lwt_eio-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.5.1": "sha256-dlJnhHh4VNO60NZJZqc1HS8wPR95WhdeBJTK37pPbCE=",
             "0.6": "sha256-6xyIQyMRUE5Q+FQCzAkvaXZqqo8LSFzG6U1A7GZwSLw=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [eio, lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ocaml-multicore/lwt_eio",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/lwt_eio/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Use Lwt libraries from within Eio",

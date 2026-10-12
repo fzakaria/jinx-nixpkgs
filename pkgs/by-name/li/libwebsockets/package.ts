@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libuv = nix.arg($, "libuv");
   const withExternalPoll = nix.argOr($, "withExternalPoll", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libwebsockets",
       version: "4.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "warmcat",
           repo: "libwebsockets",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Fix path that will be incorrect on move to \"dev\" output.\nsubstituteInPlace \"$out/lib/cmake/libwebsockets/LibwebsocketsTargets-release.cmake\" \\\n  --replace \"\\${_IMPORT_PREFIX}\" \"$out\"\n\n# The package builds a few test programs that are not usually necessary.\n# Move those to the dev output.\nmoveToOutput \"bin/libwebsockets-test-*\" \"$dev\"\nmoveToOutput \"share/libwebsockets-test-*\" \"$dev\"\n",
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Light, portable C library for websockets",
         longDescription: "Libwebsockets is a lightweight pure C library built to\nuse minimal CPU and memory resources, and provide fast\nthroughput in both directions.\n",
         homepage: "https://libwebsockets.org/",

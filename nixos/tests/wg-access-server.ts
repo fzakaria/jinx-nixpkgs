@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "wg-access-server",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "xanderio"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       server: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "wg-access-server": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$2, adminUsername: "admin" })),
-            secretsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "secrets.yaml", nix.thunk(() => ({ __proto__: pos$3, adminPassword: "hunter2" })))),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$2, adminUsername: "admin" })),
+            secretsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "secrets.yaml", nix.thunk(() => ({ [nix.POS]: pos$3, adminPassword: "hunter2" })))),
           })),
         })),
       })),

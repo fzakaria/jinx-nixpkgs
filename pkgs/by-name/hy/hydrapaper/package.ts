@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const xdg_user_dirs = nix.arg($, "xdg-user-dirs");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hydrapaper",
       version: "3.3.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gabmus",
           repo: "HydraPaper",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
 makeWrapperArgs+=("\${gappsWrapperArgs[@]}")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNOME utility for setting different wallpapers on individual monitors",
         homepage: "https://hydrapaper.gabmus.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

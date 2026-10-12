@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdftools",
           repo: "python-ghostscript",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ substituteInPlace ghostscript/_gsprint.py \\
       const disabledTests = nix.thunk(() => ["test_simple", "test_unicode_arguments", "test_run_string", "test_stdin"]);
       const pythonImportsCheck = nix.thunk(() => ["ghostscript"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface to the Ghostscript C-API using ctypes",
         homepage: "https://gitlab.com/pdftools/python-ghostscript",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/pdftools/python-ghostscript/-/blob/v${version}/CHANGES.txt`),
@@ -52,7 +52,7 @@ substituteInPlace ghostscript/_gsprint.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

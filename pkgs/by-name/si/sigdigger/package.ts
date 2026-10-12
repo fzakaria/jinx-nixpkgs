@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const volk = nix.arg($, "volk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sigdigger",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BatchDrake",
           repo: "SigDigger",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       qmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`SUWIDGETS_PREFIX=${suwidgets}`), "SigDigger.pro"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt-based digital signal analyzer, using Suscan core and Sigutils DSP library",
         mainProgram: "SigDigger",
         homepage: "https://github.com/BatchDrake/SigDigger",

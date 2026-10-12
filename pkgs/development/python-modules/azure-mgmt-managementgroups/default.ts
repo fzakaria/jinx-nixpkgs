@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azure-mgmt-managementgroups",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_managementgroups",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5hmbrxGIkLor2jXdqDqIhhwLG77xJjEbIOwS7tloGVE=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [azure_common, azure_mgmt_core, isodate, typing_extensions]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is the Microsoft Azure Management Groups Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/managementgroups/azure-mgmt-managementgroups",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

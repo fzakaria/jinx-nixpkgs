@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sarasa-gothic",
       version: "1.0.42",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/be5invis/Sarasa-Gothic/releases/download/v${nix.sel(finalAttrs, "version")}/Sarasa-TTC-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-I9jrDiXC0qhiioKVMHYyl7j3ltlOLoZt9AE5dwr8uug=",
         })))),
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [unzip, installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CJK programming font based on Iosevka and Source Han Sans",
         homepage: "https://github.com/be5invis/Sarasa-Gothic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

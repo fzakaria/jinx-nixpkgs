@@ -60,15 +60,15 @@ export default nix.lambda((args) => (() => {
   const poolName = "selfoss_pool";
   const dataDir = "/var/lib/selfoss";
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "iniWithGlobalSection"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkValueString: (v) => (nix.asBool(nix.eq(v, null)) ? "" : (nix.asBool(nix.eq(v, true)) ? "1" : (nix.asBool(nix.eq(v, false)) ? "0" : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v)))),
         })), "=")),
     }))));
-  const selfoss_config = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.ini", nix.thunk(() => ({ __proto__: pos$3, globalSection: nix.thunk(() => nix.sel(cfg, "settings")) }))));
+  const selfoss_config = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.ini", nix.thunk(() => ({ [nix.POS]: pos$3, globalSection: nix.thunk(() => nix.sel(cfg, "settings")) }))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "selfoss", "database", "type"]), nix.thunk(() => ["services", "selfoss", "settings", "db_type"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "selfoss", "database", "host"]), nix.thunk(() => ["services", "selfoss", "settings", "db_host"]))),
@@ -79,64 +79,64 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "selfoss", "extraConfig"]), "Use services.selfoss.settings instead.\n\nThis is part of the general move to use structured settings instead of raw\ntext for config as introduced by RFC0042:\nhttps://github.com/NixOS/rfcs/blob/master/rfcs/0042-config-option.md\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         selfoss: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(mkEnableOption, "selfoss")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.nginx.user")),
               description: "User account under which both the service and the web-application run.\n",
             })))),
           pool: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.str`${poolName}`),
               description: "Name of existing phpfpm pool that is used to run web-application.\nIf not specified a pool will be created automatically with\ndefault values.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(settingsFormat, "lib", "types", "atom")))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     db_type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["pgsql", "mysql", "sqlite"]))),
                         default: "sqlite",
                         description: "Database to store feeds. Supported are sqlite, pgsql and mysql.\n",
                       })))),
                     db_host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "localhost",
                         description: "Host of the database (has no effect if type is \"sqlite\").\n",
                       })))),
                     db_database: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "tt_rss",
                         description: "Name of the existing database (has no effect if type is \"sqlite\").\n",
                       })))),
                     db_user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "tt_rss",
                         description: "The database user. The user must exist and has access to\nthe specified database (has no effect if type is \"sqlite\").\n",
                       })))),
                     db_password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         description: "The database user's password (has no effect if type is \"sqlite\").\n",
                       })))),
                     db_port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "port")))),
                         default: null,
                         description: "The database's port. If not set, the default ports will be\nprovided (5432 and 3306 for pgsql and mysql respectively)\n(has no effect if type is \"sqlite\").\n",
@@ -147,15 +147,15 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for selfoss, see\n<https://selfoss.aditu.de/docs/administration/options/>\nfor supported values.\n",
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to configure a Nginx virtual host to serve selfoss.\n\nFurther nginx configuration can be done by adapting `services.nginx.virtualHosts.${config.services.selfoss.nginx.virtualHost}`.\nSee [](#opt-services.nginx.virtualHosts) for further information.\n",
               })))),
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "selfoss",
                 description: "Name of the nginx virtualhost to use and set up. Only relevant when\n{option}`services.selfoss.nginx.enable` is `true`.\n",
@@ -165,17 +165,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         services: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             pools: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "pool"), nix.str`${poolName}`)), nix.thunk(() => nix.attrsDyn({}, [
                 [poolName, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   user: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(config, "services", "nginx", "user")))),
                   settings: nix.thunk(() => nix.app(mapAttrs, (name) => nix.force(mkDefault), nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                       "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                       "listen.mode": "0600",
@@ -191,24 +191,24 @@ export default nix.lambda((args) => (() => {
               ])))),
           })),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "nginx", "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   root: dataDir,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$29,
-                    "~* \\ (gif|jpg|png)": nix.thunk(() => ({ __proto__: pos$24, extraConfig: "expires 30d;\n" })),
-                    "~ ^/(favicons|thumbnails)/.*$": nix.thunk(() => ({ __proto__: pos$25, tryFiles: "$uri /data/$uri" })),
-                    "~* ^/(data/logs|data/sqlite|config\\.ini)": nix.thunk(() => ({ __proto__: pos$26, extraConfig: "deny all;\n" })),
+                    [nix.POS]: pos$29,
+                    "~* \\ (gif|jpg|png)": nix.thunk(() => ({ [nix.POS]: pos$24, extraConfig: "expires 30d;\n" })),
+                    "~ ^/(favicons|thumbnails)/.*$": nix.thunk(() => ({ [nix.POS]: pos$25, tryFiles: "$uri /data/$uri" })),
+                    "~* ^/(data/logs|data/sqlite|config\\.ini)": nix.thunk(() => ({ [nix.POS]: pos$26, extraConfig: "deny all;\n" })),
                     "/": nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       index: "index.php",
                       tryFiles: "$uri /public/$uri /index.php$is_args$args",
                     })),
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.sel(cfg, "pool")), "socket")};
 fastcgi_index index.php;
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
@@ -220,13 +220,13 @@ include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "selfoss-config": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 Type: "oneshot",
                 StateDirectory: nix.thunk(() => [nix.thunk(() => nix.builtins.baseNameOf(dataDir))]),
                 StateDirectoryMode: "0755",
@@ -248,9 +248,9 @@ chmod -R 755 "${dataDir}"
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "selfoss-update": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "php83")}/bin/php ${dataDir}/cliupdate.php`),
                 StateDirectory: nix.thunk(() => [nix.thunk(() => nix.builtins.baseNameOf(dataDir))]),
@@ -262,7 +262,7 @@ chmod -R 755 "${dataDir}"
             })),
           }, [
             [nix.str`phpfpm-${nix.sel(cfg, "pool")}`, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               after: nix.thunk(() => ["selfoss-config.service"]),
               requires: nix.thunk(() => ["selfoss-config.service"]),
             }))],

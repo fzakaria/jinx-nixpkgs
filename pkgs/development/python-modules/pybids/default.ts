@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bids-standard",
           repo: "pybids",
           tag: version,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["src/bids/layout/tests/test_remote_bids.py"]);
       const disabledTests = nix.thunk(() => ["test_split"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python tools for querying and manipulating BIDS datasets",
         homepage: "https://github.com/bids-standard/pybids",
         changelog: nix.thunk(() => nix.str`https://github.com/bids-standard/pybids/blob/${version}/CHANGELOG.rst`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pybids",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

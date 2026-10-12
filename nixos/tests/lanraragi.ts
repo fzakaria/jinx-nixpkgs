@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "lanraragi",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tomasajt"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 4096n })),
+          [nix.POS]: pos$5,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            lanraragi: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            lanraragi: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
         };
       })(), formals$2),
@@ -50,17 +50,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$6, memorySize: 4096n })),
+          [nix.POS]: pos$10,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, memorySize: 4096n })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             lanraragi: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "lrr-test-pass", "Ultra-secure-p@ssword-\"with-spec1al\\chars\n")),
               port: 4000n,
               redis: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 port: 4001n,
                 passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "redis-lrr-test-pass", "123-redis-PASS\n")),
               })),

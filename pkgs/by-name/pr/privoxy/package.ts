@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const brotli = nix.arg($, "brotli");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "privoxy",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ijbswa/Sources/${nix.sel(finalAttrs, "version")}%20%28stable%29/privoxy-${nix.sel(finalAttrs, "version")}-stable-src.tar.gz`),
           hash: "sha256-b5Emf4H2JsQWmU24mrYvTQkkbuv0dUuBGG4ToY7pAo8=",
         })))),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "rm -r $out/var\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, privoxy: nix.thunk(() => nix.sel(nixosTests, "privoxy")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, privoxy: nix.thunk(() => nix.sel(nixosTests, "privoxy")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.privoxy.org/",
         description: "Non-caching web proxy with advanced filtering capabilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

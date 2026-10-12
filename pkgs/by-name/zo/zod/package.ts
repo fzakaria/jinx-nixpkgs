@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const pname = "zod-engine";
   const version = "2011-09-06";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://sourceforge/zod/linux_releases/zod_linux-${version}.tar.gz`),
       hash: "sha256-8HQdtr69IUxXcU5mJEShHWfkEK5pfiTRO2Bn6pRJ+wQ=",
     }))));
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const buildInputs = nix.thunk(() => [SDL, SDL_image, SDL_ttf, SDL_mixer, libmysqlclient, wxwidgets_3_2, coreutils]);
   const hardeningDisable = nix.thunk(() => ["format"]);
   const env = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     NIX_LDFLAGS: nix.thunk(() => nix.str`-L${libmysqlclient}/lib/mysql`),
   }));
   const zod_engine = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       src: src,
       postPatch: postPatch,
@@ -63,7 +63,7 @@ wrapProgram $out/bin/zod --chdir "${zod_assets}/usr/lib/commander-zod"
 `),
     }))));
   const zod_map_editor = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       src: src,
       postPatch: postPatch,
@@ -81,7 +81,7 @@ wrapProgram $out/bin/zod_map_editor --chdir "${zod_assets}/usr/lib/commander-zod
 `),
     }))));
   const zod_launcher = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       src: src,
       nativeBuildInputs: nativeBuildInputs,
@@ -90,7 +90,7 @@ wrapProgram $out/bin/zod_map_editor --chdir "${zod_assets}/usr/lib/commander-zod
       zod_map_editor: zod_map_editor,
       pname: "zod-engine-launcher",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-add-scaling-factor-to-source.patch"), nix.thunk(() => ({ __proto__: pos$5, scalingFactor: scalingFactor })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-add-scaling-factor-to-source.patch"), nix.thunk(() => ({ [nix.POS]: pos$5, scalingFactor: scalingFactor })))),
       ]),
       postPatch: "substituteInPlace zod_launcher_src/zod_launcherFrm.cpp \\\n  --replace 'message = wxT(\"./zod\");' 'message = wxT(\"zod\");' \\\n  --replace \"check.replace(i,1,1,'_');\" \"check.replace(i,1,1,(wxUniChar)'_');\"\n",
       preBuild: "cd zod_launcher_src",
@@ -106,12 +106,12 @@ for map in ${src}/blank_maps/*; do
 done
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       paths: nix.thunk(() => [zod_engine, zod_launcher, zod_map_editor, zod_assets]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Multiplayer remake of ZED",
         homepage: "https://zod.sourceforge.net/",
         maintainers: nix.thunk(() => (() => {

@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
     const pkgName = nix.thunk(() => nix.sel(nix.app(pkgFun, hostPkgs), "name"));
     const args$ = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", args_2));
     return nix.app(nix.sel(crossPkgs, "runCommand"), nix.thunk(() => nix.str`test-${pkgName}-${nix.sel(crossPkgs, "stdenv", "hostPlatform", "config")}`), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dos2unix"))]),
       })), nix.thunk(() => nix.str`# Just in case we are using wine, get rid of that annoying extra
 # stuff.
@@ -82,31 +82,31 @@ fi
   })(), formals$2);
   const mapMultiPlatformTest = (crossSystemFun) => (test) => nix.app(nix.sel(lib, "dontRecurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (system) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(test, nix.thunk(() => (() => {
             const crossPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(pkgs, "path"))), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 localSystem: nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform"));
-                  return { __proto__: pos$2, config: nix.thunk(() => nix.attr(from, "config")) };
+                  return { [nix.POS]: pos$2, config: nix.thunk(() => nix.attr(from, "config")) };
                 })()),
                 crossSystem: nix.thunk(() => nix.app(crossSystemFun, system)),
                 config: config,
               }))));
             const emulator = nix.thunk(() => nix.app(nix.sel(crossPkgs, "stdenv", "hostPlatform", "emulator"), pkgs));
             const platformFun = (pkg) => (nix.asBool(nix.sel(crossPkgs, "stdenv", "hostPlatform", "isWindows")) ? nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: nix.thunk(() => nix.str`${nix.sel(pkg, "name")}-winlinks`),
                 paths: nix.thunk(() => nix.concat([pkg], nix.sel(pkg, "buildInputs"))),
               }))) : nix.force(pkg));
-            return { __proto__: pos$5, crossPkgs, emulator, platformFun };
+            return { [nix.POS]: pos$5, crossPkgs, emulator, platformFun };
           })())))), testedSystems)));
   const tests = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     file: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const platformFun = nix.arg($_1, "platformFun");
       const crossPkgs = nix.arg($_1, "crossPkgs");
       const emulator = nix.arg($_1, "emulator");
       return nix.app(compareTest, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           emulator: emulator,
           crossPkgs: crossPkgs,
           hostPkgs: pkgs,
@@ -124,7 +124,7 @@ fi
       const crossPkgs = nix.arg($_1, "crossPkgs");
       const emulator = nix.arg($_1, "emulator");
       return nix.app(compareTest, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           emulator: emulator,
           crossPkgs: crossPkgs,
           hostPkgs: pkgs,
@@ -138,7 +138,7 @@ fi
       const crossPkgs = nix.arg($_1, "crossPkgs");
       const emulator = nix.arg($_1, "emulator");
       return nix.app(nix.sel(crossPkgs, "runCommand"), nix.thunk(() => nix.str`test-pkg-config-${nix.sel(crossPkgs, "stdenv", "hostPlatform", "config")}`), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(crossPkgs, "pkgsBuildBuild", "pkg-config"))]),
           nativeBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.sel(crossPkgs, "pkgsBuildHost", "pkg-config")),
@@ -192,9 +192,9 @@ touch $out
       nix.thunk(() => nix.sel(pkgs, "spike")),
     ]))));
   return {
-    __proto__: pos$12,
-    gcc: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(mapMultiPlatformTest, (system) => nix.update(system, { __proto__: pos$10, useLLVM: false })), tests)))),
-    llvm: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(mapMultiPlatformTest, (system) => nix.update(system, { __proto__: pos$11, useLLVM: true })), tests)))),
+    [nix.POS]: pos$12,
+    gcc: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(mapMultiPlatformTest, (system) => nix.update(system, { [nix.POS]: pos$10, useLLVM: false })), tests)))),
+    llvm: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(mapMultiPlatformTest, (system) => nix.update(system, { [nix.POS]: pos$11, useLLVM: true })), tests)))),
     mbuffer: mbuffer,
     sanity: sanity,
   };

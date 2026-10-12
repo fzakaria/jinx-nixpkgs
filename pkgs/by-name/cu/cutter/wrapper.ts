@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cutter = nix.arg($, "cutter");
   const unwrapped = nix.thunk(() => (nix.asBool(isCutter) ? nix.force(cutter) : nix.force(rizin)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(unwrapped, "pname")}-with-plugins-${nix.sel(unwrapped, "version")}`),
       paths: nix.thunk(() => nix.concat([unwrapped], nix.concat(nix.app(nix.sel(lib, "optional"), isCutter, rizin), plugins))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
       postBuild: nix.thunk(() => nix.str`rm $out/bin/*
 wrapperArgs=(--set NIX_RZ_PREFIX $out${nix.app(nix.sel(lib, "optionalString"), isCutter, " --prefix XDG_DATA_DIRS : $out/share")})
 for binary in $(ls ${unwrapped}/bin); do
@@ -30,7 +30,7 @@ for binary in $(ls ${unwrapped}/bin); do
 done
 `),
       meta: nix.thunk(() => nix.update(nix.sel(unwrapped, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         priority: nix.thunk(() => nix.sub(nix.selOr(unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),
     })));

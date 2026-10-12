@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "door-knocker",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tytan652",
           repo: "door-knocker",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to check the availability of portals",
         homepage: "https://codeberg.org/tytan652/door-knocker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

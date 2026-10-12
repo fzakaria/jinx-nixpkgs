@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roddhjav-apparmor-rules",
       version: "0-unstable-2025-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roddhjav",
           repo: "apparmor.d",
           rev: "6aaa6e79183d489c84f9baad821354e72b322c46",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/etc/apparmor.d\ncp -r apparmor.d/* $out/etc/apparmor.d\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/roddhjav/apparmor.d",
         description: "Over 1500 AppArmor profiles aiming to confine most linux processes",
         longDescription: "AppArmor.d is a set of over 1500 AppArmor profiles whose aim is to confine\nmost Linux based applications and processes. Confines all system services, user services\nand most desktop environments. Currently supported DEs are GNOME, KDE and XFCE (partial).\nIf your DE is not listed in https://github.com/roddhjav/apparmor.d\nDo not use this, else it may break your system.\n",

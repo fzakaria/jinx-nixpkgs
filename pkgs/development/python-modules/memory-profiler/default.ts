@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.61.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "memory_profiler",
           version: version,
           hash: "sha256-Tltz14ZKHRKS+3agPoKj5475NNBoKKaY2dradtogZ7A=",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for monitoring memory usage of a process",
         mainProgram: "mprof",
         longDescription: "This is a python module for monitoring memory consumption of a process as\nwell as line-by-line analysis of memory consumption for python programs.\n",
         homepage: "https://pypi.org/project/memory_profiler/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

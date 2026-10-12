@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "codebraid",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gpoore",
           repo: "codebraid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })()),
       checkPhase: "$out/bin/codebraid --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gpoore/codebraid",
         description: "Live code in Pandoc Markdown.\n\nCodebraid is a Python program that enables executable code in Pandoc\nMarkdown documents. Using Codebraid can be as simple as adding a class to\nyour code blocks' attributes, and then running codebraid rather than\npandoc to convert your document from Markdown to another format.\ncodebraid supports almost all of pandoc's options and passes them to\npandoc internally.\n\nCodebraid provides two options for executing code. It includes a built-in\ncode execution system that currently supports Python 3.5+, Julia, Rust,\nR, Bash, and JavaScript. Code can also be executed using Jupyter kernels,\nwith support for rich output like plots.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

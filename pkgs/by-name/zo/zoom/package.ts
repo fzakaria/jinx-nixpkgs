@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zoom",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.logicalshift.co.uk/unix/zoom/zoom-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8pZ/HAVV341K6QRDUC0UzzO2rGW2AvSZ++Pp445V27w=",
         })))),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-fgnu89-inline" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-fgnu89-inline" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.logicalshift.co.uk/unix/zoom/",
         description: "Player for Z-Code, TADS and HUGO stories or games",
         longDescription: "Zoom is a player for Z-Code, TADS and HUGO stories or games. These are\nusually text adventures ('interactive fiction'), and were first created\nby Infocom with the Zork series of games. Throughout the 80's, Infocom\nreleased many interactive fiction stories before their ambitions to enter\nthe database market finally brought them low.\n",

@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const weechat = nix.arg($, "weechat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "weechat-colorize_nicks",
       version: "27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/weechat/scripts/raw/bc8a9051800779a036ba11689a277cd5f03657b2/python/colorize_nicks.py",
           sha256: "0hiay88vvy171jiq6ahflm0ipb7sslfxwhmmm8psv6qk19rv2sxs",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/share\ncp $src $out/share/colorize_nicks.py\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["colorize_nicks.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["colorize_nicks.py"]) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Use the weechat nick colors in the chat area",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

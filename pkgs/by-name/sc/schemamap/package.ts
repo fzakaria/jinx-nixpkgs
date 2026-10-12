@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "schemamap";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schemamap",
           repo: "schemamap",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/schemamap/schemamap/releases/tag/v${version_1}`),
         description: "Instant batch data import for Postgres",
         homepage: "https://github.com/schemamap/schemamap",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

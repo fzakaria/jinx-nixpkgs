@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iterfzf",
       version: "1.9.0.67.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dahlia",
           repo: "iterfzf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ substituteInPlace iterfzf/test_iterfzf.py \\
       disabledTests: nix.thunk(() => ["test_no_query", "test_select_one_ambiguous", "test_supports_color_kwarg"]),
       pythonImportsCheck: nix.thunk(() => ["iterfzf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pythonic interface to fzf, a CLI fuzzy finder",
         homepage: "https://github.com/dahlia/iterfzf",
         changelog: nix.thunk(() => nix.str`https://github.com/dahlia/iterfzf/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

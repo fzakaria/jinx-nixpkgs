@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
     const patches = nix.argOr($_1, "patches", () => []);
     const extraBuildInputs = nix.argOr($_1, "extraBuildInputs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         patches: nix.thunk(() => nix.concat(patches, nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "0.14.0")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "tracy-add-missing-cstdint-include.patch",
               url: "https://github.com/wolfpld/tracy/commit/16af373a7ead507a6dfc541e784a8a8b57e5a6b8.patch",
               hash: "sha256-hk+o1lqYudhEDgmrdqSZCLZXkoMi5RwDpRFs/DaaIZ0=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         pname: "tracy",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "tracy",
             owner: "wolfpld",
             repo: "tracy",
@@ -88,7 +88,7 @@ appendToVar cmakeFlags -DCPM_${nix.sel(s, "name")}_SOURCE=$(pwd)/${nix.sel(s, "n
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_MODULE_PATH", nix.thunk(() => nix.str`${nix.path(here, "./cmake")}`))),
         ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(withGtkFileSelector))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GTK_FILESELECTOR", true))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(withWayland)))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LEGACY", true))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(withWayland))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CPM_wayland-protocols_SOURCE", nix.thunk(() => nix.str`${wayland_protocols}/share/wayland-protocols`)))))))),
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-ltbb")),
         })),
         dontUseCmakeBuildDir: true,
@@ -104,7 +104,7 @@ cmake -B update/build -S update $cmakeFlags
         postBuild: "ninja -C capture/build\nninja -C csvexport/build\nninja -C import/build\nninja -C profiler/build\nninja -C update/build\n",
         postInstall: nix.thunk(() => nix.add("install -D -m 0555 capture/build/tracy-capture -t $out/bin\ninstall -D -m 0555 csvexport/build/tracy-csvexport $out/bin\ninstall -D -m 0555 import/build/{tracy-import-chrome,tracy-import-fuchsia} -t $out/bin\ninstall -D -m 0555 profiler/build/tracy-profiler $out/bin/tracy\ninstall -D -m 0555 update/build/tracy-update -t $out/bin\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace extra/desktop/tracy.desktop \\\n  --replace-fail Exec=/usr/bin/tracy Exec=tracy\n\ninstall -D -m 0444 extra/desktop/application-tracy.xml $out/share/mime/packages/application-tracy.xml\ninstall -D -m 0444 extra/desktop/tracy.desktop $out/share/applications/tracy.desktop\ninstall -D -m 0444 icon/application-tracy.svg $out/share/icons/hicolor/scalable/apps/application-tracy.svg\ninstall -D -m 0444 icon/icon.png $out/share/icons/hicolor/256x256/apps/tracy.png\ninstall -D -m 0444 icon/icon.svg $out/share/icons/hicolor/scalable/apps/tracy.svg\n"))),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Real time, nanosecond resolution, remote telemetry frame profiler for games and other applications",
           homepage: "https://github.com/wolfpld/tracy",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -121,16 +121,16 @@ cmake -B update/build -S update $cmakeFlags
       })));
   })(), formals$2);
   return (() => {
-    const tracy_0_11 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.11.nix")), nix.thunk(() => ({ __proto__: pos$6, lib: lib, stdenv: stdenv, capstone: capstone }))))));
+    const tracy_0_11 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.11.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, lib: lib, stdenv: stdenv, capstone: capstone }))))));
     const tracy_0_12 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.12.nix")), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           fetchFromGitHub: fetchFromGitHub,
           fetchFromGitLab: fetchFromGitLab,
           zstd: zstd,
           "nativefiledialog-extended": nativefiledialog_extended,
         }))))));
     const tracy_0_13 = nix.thunk(() => nix.app(mkTracyPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tracy-0.13.nix")), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           fetchFromGitHub: fetchFromGitHub,
           md4c: md4c,
           pugixml: pugixml,
@@ -141,7 +141,7 @@ cmake -B update/build -S update $cmakeFlags
           "html-tidy": html_tidy,
         }))))));
     const tracy_latest = tracy_0_13;
-    return { __proto__: pos$9, tracy_0_11, tracy_0_12, tracy_0_13, tracy_latest };
+    return { [nix.POS]: pos$9, tracy_0_11, tracy_0_12, tracy_0_13, tracy_latest };
   })();
 })(), formals$1);
 //# sourceMappingURL=package-versions.ts.map

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libunwind = nix.arg($, "libunwind");
   const libdovi = nix.arg($, "libdovi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libplacebo",
       version: "5.264.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "libplacebo",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-compat.patch",
             url: "https://code.videolan.org/videolan/libplacebo/-/commit/12509c0f1ee8c22ae163017f0a5e7b8a9d983a17.patch",
             hash: "sha256-RrlFu0xgLB05IVrzL2EViTPuATYXraM1KZMxnZCvgrk=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "unwind", false))])))),
       postPatch: "substituteInPlace meson.build \\\n  --replace 'python_env.append' '#'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reusable library for GPU-accelerated video/image rendering primitives",
         longDescription: "Reusable library for GPU-accelerated image/view processing primitives and\nshaders, as well a batteries-included, extensible, high-quality rendering\npipeline (similar to mpv's vo_gpu). Supports Vulkan, OpenGL and Metal (via\nMoltenVK).\n",
         homepage: "https://code.videolan.org/videolan/libplacebo",

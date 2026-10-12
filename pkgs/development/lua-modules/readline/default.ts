@@ -20,31 +20,31 @@ export default nix.lambda((args) => (() => {
   const luaposix = nix.arg($, "luaposix");
   const readline = nix.arg($, "readline");
   return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "readline",
       version: "3.2-0",
       knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://luarocks/readline-3.2-0.rockspec",
           sha256: "1r0sgisxm4xd1r6i053iibxh30j7j3rcj4wwkd8rzkj8nln20z24",
         }))), "outPath")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://pjb.com.au/comp/lua/readline-3.2.tar.gz",
           sha256: "1mk9algpsvyqwhnq7jlw4cgmfzj30l7n2r6ak4qxgdxgc39f48k4",
         })))),
       luarocksConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         variables: nix.thunk(() => (() => {
           const READLINE_INCDIR = nix.thunk(() => nix.str`${nix.sel(readline, "dev")}/include`);
           const HISTORY_INCDIR = READLINE_INCDIR;
-          return { __proto__: pos$3, READLINE_INCDIR, HISTORY_INCDIR };
+          return { [nix.POS]: pos$3, READLINE_INCDIR, HISTORY_INCDIR };
         })()),
       })),
       unpackCmd: "unzip \"$curSrc\"\ntar xf *.tar.gz\n",
       propagatedBuildInputs: nix.thunk(() => [luaposix, nix.thunk(() => nix.sel(readline, "out"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pjb.com.au/comp/lua/readline.html",
         description: "Interface to the readline library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

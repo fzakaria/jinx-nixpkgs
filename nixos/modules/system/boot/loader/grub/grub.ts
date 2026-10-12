@@ -132,18 +132,18 @@ export default nix.lambda((args) => (() => {
   const efi = nix.thunk(() => nix.sel(config, "boot", "loader", "efi"));
   const grubPkgs = nix.thunk(() => (nix.asBool(nix.sel(cfg, "forcei686")) ? nix.sel(pkgs, "pkgsi686Linux") : nix.force(pkgs)));
   const realGrub = nix.thunk(() => (nix.asBool(nix.sel(cfg, "zfsSupport")) ? nix.app(nix.sel(grubPkgs, "grub2", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       zfsSupport: true,
       zfs: nix.thunk(() => nix.sel(cfg, "zfsPackage")),
     }))) : nix.sel(grubPkgs, "grub2")));
   const grub = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "devices"), ["nodev"])) ? null : nix.force(realGrub)));
-  const grubEfi = nix.thunk(() => (nix.asBool(nix.sel(cfg, "efiSupport")) ? nix.app(nix.sel(realGrub, "override"), nix.thunk(() => ({ __proto__: pos$2, efiSupport: nix.thunk(() => nix.sel(cfg, "efiSupport")) }))) : null));
+  const grubEfi = nix.thunk(() => (nix.asBool(nix.sel(cfg, "efiSupport")) ? nix.app(nix.sel(realGrub, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, efiSupport: nix.thunk(() => nix.sel(cfg, "efiSupport")) }))) : null));
   const f = (x) => nix.app(optionalString, nix.thunk(() => !nix.eq(x, null)), nix.thunk(() => nix.add("", x)));
   const grubConfig = (args_1) => (() => {
     const efiSysMountPoint = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(args_1, "efiSysMountPoint"), null)) ? nix.sel(args_1, "path") : nix.sel(args_1, "efiSysMountPoint")));
     const efiSysMountPoint$ = nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["/"]), nix.thunk(() => ["-"]), efiSysMountPoint));
     return nix.app(nix.sel(pkgs, "writeText"), "grub-config.xml", nix.thunk(() => nix.builtins.toXML(nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           splashImage: nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(cfg, "splashImage")))),
           splashMode: nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(cfg, "splashMode")))),
           backgroundColor: nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(cfg, "backgroundColor")))),
@@ -214,55 +214,55 @@ export default nix.lambda((args) => (() => {
       ], nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "fontSize"), null)), nix.thunk(() => nix.str`--size ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "fontSize")))}`))))))));
   const defaultSplash = nix.thunk(() => nix.sel(pkgs, "nixos-artwork", "wallpapers", "simple-dark-gray-bootloader", "gnomeFilePath"));
   return {
-    __proto__: pos$95,
+    [nix.POS]: pos$95,
     options: nix.thunk(() => ({
-      __proto__: pos$64,
+      [nix.POS]: pos$64,
       boot: nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         loader: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           grub: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "isContainer"))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "!config.boot.isContainer")),
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether to enable the GNU GRUB boot loader.\n",
               })))),
             version: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 visible: false,
                 type: nix.thunk(() => nix.sel(types, "int")),
               })))),
             device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: "",
                 example: "/dev/disk/by-id/wwn-0x500001234567890a",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The device on which the GRUB boot loader will be installed.\nThe special value `nodev` means that a GRUB\nboot menu will be generated, but GRUB itself will not\nactually be installed.  To install GRUB on multiple devices,\nuse `boot.loader.grub.devices`.\n",
               })))),
             devices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: [],
                 example: nix.thunk(() => ["/dev/disk/by-id/wwn-0x500001234567890a"]),
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 description: "The devices on which the boot loader, GRUB, will be\ninstalled. Can be used instead of `device` to\ninstall GRUB onto multiple devices.\n",
               })))),
             users: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$9,
-                  root: nix.thunk(() => ({ __proto__: pos$8, hashedPasswordFile: "/path/to/file" })),
+                  [nix.POS]: pos$9,
+                  root: nix.thunk(() => ({ [nix.POS]: pos$8, hashedPasswordFile: "/path/to/file" })),
                 })),
                 description: "User accounts for GRUB. When specified, the GRUB command line and\nall boot options except the default are password-protected.\nAll passwords and hashes provided will be stored in /boot/grub/grub.cfg,\nand will be visible to any local user who can read this file. Additionally,\nany passwords and hashes provided directly in a Nix configuration\n(as opposed to external files) will be copied into the Nix store, and\nwill be visible to all local users.\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       options: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         hashedPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             example: "/path/to/file",
                             default: null,
                             type: nix.thunk(() => (() => {
@@ -272,7 +272,7 @@ export default nix.lambda((args) => (() => {
                             description: "Specifies the path to a file containing the password hash\nfor the account, generated with grub-mkpasswd-pbkdf2.\nThis hash will be stored in /boot/grub/grub.cfg, and will\nbe visible to any local user who can read this file.\n",
                           })))),
                         hashedPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             example: "grub.pbkdf2.sha512.10000.674DFFDEF76E13EA...2CC972B102CF4355",
                             default: null,
                             type: nix.thunk(() => (() => {
@@ -282,7 +282,7 @@ export default nix.lambda((args) => (() => {
                             description: "Specifies the password hash for the account,\ngenerated with grub-mkpasswd-pbkdf2.\nThis hash will be copied to the Nix store, and will be visible to all local users.\n",
                           })))),
                         passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             example: "/path/to/file",
                             default: null,
                             type: nix.thunk(() => (() => {
@@ -292,7 +292,7 @@ export default nix.lambda((args) => (() => {
                             description: "Specifies the path to a file containing the\nclear text password for the account.\nThis password will be stored in /boot/grub/grub.cfg, and will\nbe visible to any local user who can read this file.\n",
                           })))),
                         password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             example: "Pa$$w0rd!",
                             default: null,
                             type: nix.thunk(() => (() => {
@@ -305,16 +305,16 @@ export default nix.lambda((args) => (() => {
                     })))))),
               })))),
             mirroredBoots: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 default: [],
                 example: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     path: "/boot1",
                     devices: nix.thunk(() => ["/dev/disk/by-id/wwn-0x500001234567890a"]),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     path: "/boot2",
                     devices: nix.thunk(() => ["/dev/disk/by-id/wwn-0x500009876543210a"]),
                   })),
@@ -323,31 +323,31 @@ export default nix.lambda((args) => (() => {
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         options: nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$19,
+                              [nix.POS]: pos$19,
                               example: "/boot1",
                               type: nix.thunk(() => nix.sel(types, "str")),
                               description: "The path to the boot directory where GRUB will be written. Generally\nthis boot path should double as an EFI path.\n",
                             })))),
                           efiSysMountPoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$20,
+                              [nix.POS]: pos$20,
                               default: null,
                               example: "/boot1/efi",
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                               description: "The path to the efi system mount point. Usually this is the same\npartition as the above path and can be left as null.\n",
                             })))),
                           efiBootloaderId: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               default: null,
                               example: "NixOS-fsid",
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                               description: "The id of the bootloader to store in efi nvram.\nThe default is to name it NixOS and append the path or efiSysMountPoint.\nThis is only used if `boot.loader.efi.canTouchEfiVariables` is true.\n",
                             })))),
                           devices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               default: [],
                               example: nix.thunk(() => [
                                 "/dev/disk/by-id/wwn-0x500001234567890a",
@@ -361,33 +361,33 @@ export default nix.lambda((args) => (() => {
                 })()),
               })))),
             configurationName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 default: "",
                 example: "Stable 2.6.21",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "GRUB entry name instead of default.\n",
               })))),
             storePath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 default: "/nix/store",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "Path to the Nix store when looking for kernels at boot.\nOnly makes sense when copyKernels is false.\n",
               })))),
             extraPrepareConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 default: "",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 description: "Additional bash commands to be run at the script that\nprepares the GRUB menu entries.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 default: "",
                 example: "serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1\nterminal_input --append serial\nterminal_output --append serial\n",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 description: "Additional GRUB commands inserted in the configuration file\njust before the menu entries.\n",
               })))),
             extraGrubInstallArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 default: [],
                 example: nix.thunk(() => [
                   "--modules=nativedisk ahci pata part_gpt part_msdos diskfilter mdraid1x lvm ext2",
@@ -396,165 +396,165 @@ export default nix.lambda((args) => (() => {
                 description: "Additional arguments passed to `grub-install`.\n\nA use case for this is to build specific GRUB2 modules\ndirectly into the GRUB2 kernel image, so that they are available\nand activated even in the `grub rescue` shell.\n\nThey are also necessary when the BIOS/UEFI is bugged and cannot\ncorrectly read large disks (e.g. above 2 TB), so GRUB2's own\n`nativedisk` and related modules can be used\nto use its own disk drivers. The example shows one such case.\nThis is also useful for booting from USB.\nSee the\n[\nGRUB source code\n](https://git.savannah.gnu.org/cgit/grub.git/tree/grub-core/commands/nativedisk.c?h=grub-2.04#n326)\nfor which disk modules are available.\n\nThe list elements are passed directly as `argv`\narguments to the `grub-install` program, in order.\n",
               })))),
             extraInstallCommands: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 default: "",
                 example: "# the example below generates detached signatures that GRUB can verify\n# https://www.gnu.org/software/grub/manual/grub/grub.html#Using-digital-signatures\n${pkgs.findutils}/bin/find /boot -not -path \"/boot/efi/*\" -type f -name '*.sig' -delete\nold_gpg_home=$GNUPGHOME\nexport GNUPGHOME=\"$(mktemp -d)\"\n${pkgs.gnupg}/bin/gpg --import ${priv_key} > /dev/null 2>&1\n${pkgs.findutils}/bin/find /boot -not -path \"/boot/efi/*\" -type f -exec ${pkgs.gnupg}/bin/gpg --detach-sign \"{}\" \\; > /dev/null 2>&1\nrm -rf $GNUPGHOME\nexport GNUPGHOME=$old_gpg_home\n",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 description: "Additional shell commands inserted in the bootloader installer\nscript after generating menu entries.\n",
               })))),
             extraPerEntryConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 default: "",
                 example: "root (hd0)",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 description: "Additional GRUB commands inserted in the configuration file\nat the start of each NixOS menu entry.\n",
               })))),
             extraEntries: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 default: "",
                 type: nix.thunk(() => nix.sel(types, "lines")),
                 example: "# GRUB 2 example\nmenuentry \"Windows 7\" {\n  chainloader (hd0,4)+1\n}\n\n# GRUB 2 with UEFI example, chainloading another distro\nmenuentry \"Fedora\" {\n  set root=(hd1,1)\n  chainloader /efi/fedora/grubx64.efi\n}\n",
                 description: "Any additional entries you want added to the GRUB boot menu.\n",
               })))),
             extraEntriesBeforeNixOS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether extraEntries are included before the default option.\n",
               })))),
             extraFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(literalExpression, "{ \"memtest.bin\" = pkgs.memtest86plus.efi; }\n")),
                 description: "A set of files to be copied to {file}`/boot`.\nEach attribute name denotes the destination file name in\n{file}`/boot`, while the corresponding\nattribute value specifies the source file.\n",
               })))),
             useOSProber: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "If set to true, append entries for other OSs detected by os-prober.\n",
               })))),
             splashImage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 example: nix.thunk(() => nix.app(literalExpression, "./my-background.png")),
                 description: "Background image used for GRUB.\nSet to `null` to run GRUB in text mode.\n\n::: {.note}\nFile must be one of .png, .tga, .jpg, or .jpeg. JPEG images must\nnot be progressive.\nThe image will be scaled if necessary to fit the screen.\n:::\n",
               })))),
             backgroundColor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 example: "#7EBAE4",
                 default: null,
                 description: "Background color to be used for GRUB to fill the areas the image isn't filling.\n",
               })))),
             timeoutStyle: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 default: "menu",
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["menu", "countdown", "hidden"]))),
                 description: " - `menu` shows the menu.\n - `countdown` uses a text-mode countdown.\n - `hidden` hides GRUB entirely.\n\nWhen using a theme, the default value (`menu`) is appropriate for the graphical countdown.\n\nWhen attempting to do flicker-free boot, `hidden` should be used.\n\nSee the [GRUB documentation section about `timeout_style`](https://www.gnu.org/software/grub/manual/grub/html_node/timeout.html).\n\n::: {.note}\nIf this option is set to ‘countdown’ or ‘hidden’ [...] and ESC or F4 are pressed, or SHIFT is held down during that time, it will display the menu and wait for input.\n:::\n\nFrom: [Simple configuration handling page, under GRUB_TIMEOUT_STYLE](https://www.gnu.org/software/grub/manual/grub/html_node/Simple-configuration.html).\n",
               })))),
             entryOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 default: "--class nixos --unrestricted",
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 description: "Options applied to the primary NixOS menu entry.\n",
               })))),
             subEntryOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 default: "--class nixos",
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 description: "Options applied to the secondary NixOS submenu entry.\n",
               })))),
             theme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 example: nix.thunk(() => nix.app(literalExpression, "\"${pkgs.kdePackages.breeze-grub}/grub/themes/breeze\"")),
                 default: null,
                 description: "Path to the grub theme to be used.\n",
               })))),
             splashMode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["normal", "stretch"]))),
                 default: "stretch",
                 description: "Whether to stretch the image or show the image in the top-left corner unstretched.\n",
               })))),
             font: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => nix.str`${realGrub}/share/grub/unicode.pf2`),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "\"${pkgs.grub2}/share/grub/unicode.pf2\"")),
                 description: "Path to a TrueType, OpenType, or pf2 font to be used by Grub.\n",
               })))),
             fontSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
                 example: 16n,
                 default: null,
                 description: "Font size for the grub menu. Ignored unless `font`\nis set to a ttf or otf font.\n",
               })))),
             gfxmodeEfi: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 default: "auto",
                 example: "1024x768",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The gfxmode to pass to GRUB when loading a graphical boot interface under EFI.\n",
               })))),
             gfxmodeBios: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 default: "1024x768",
                 example: "auto",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The gfxmode to pass to GRUB when loading a graphical boot interface under BIOS.\n",
               })))),
             gfxpayloadEfi: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 default: "keep",
                 example: "text",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The gfxpayload to pass to GRUB when loading a graphical boot interface under EFI.\n",
               })))),
             gfxpayloadBios: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 default: "text",
                 example: "keep",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The gfxpayload to pass to GRUB when loading a graphical boot interface under BIOS.\n",
               })))),
             configurationLimit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 default: 100n,
                 example: 120n,
                 type: nix.thunk(() => nix.sel(types, "int")),
                 description: "Maximum of configurations in boot menu. GRUB has problems when\nthere are too many entries.\n",
               })))),
             copyKernels: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether the GRUB menu builder should copy kernels and initial\nramdisks to /boot.  This is done automatically if /boot is\non a different partition than /.\n",
               })))),
             default: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 default: "0",
                 type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.sel(types, "str")))),
                 apply: nix.builtins.toString,
                 description: "Index of the default menu item to be booted.\nCan also be set to \"saved\", which will make GRUB select\nthe menu item that was used at the last boot.\n",
               })))),
             fsIdentifier: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 default: "uuid",
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["uuid", "label", "provided"]))),
                 description: "Determines how GRUB will identify devices when generating the\nconfiguration file. A value of uuid / label signifies that grub\nwill always resolve the uuid or label of the device before using\nit in the configuration. A value of provided means that GRUB will\nuse the device name as show in {command}`df` or\n{command}`mount`. Note, zfs zpools / datasets are ignored\nand will always be mounted using their labels.\n",
               })))),
             zfsSupport: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether GRUB should be built against libzfs.\n",
               })))),
             zfsPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 type: nix.thunk(() => nix.sel(types, "package")),
                 internal: true,
                 default: nix.thunk(() => nix.sel(pkgs, "zfs")),
@@ -562,31 +562,31 @@ export default nix.lambda((args) => (() => {
                 description: "Which ZFS package to use if `config.boot.loader.grub.zfsSupport` is true.\n",
               })))),
             efiSupport: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether GRUB should be built with EFI support.\n",
               })))),
             efiInstallAsRemovable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether to invoke `grub-install` with\n`--removable`.\n\nUnless you turn this on, GRUB will install itself somewhere in\n`boot.loader.efi.efiSysMountPoint` (exactly where\ndepends on other config variables). If you've set\n`boot.loader.efi.canTouchEfiVariables` *AND* you\nare currently booted in UEFI mode, then GRUB will use\n`efibootmgr` to modify the boot order in the\nEFI variables of your firmware to include this location. If you are\n*not* booted in UEFI mode at the time GRUB is being installed, the\nNVRAM will not be modified, and your system will not find GRUB at\nboot time. However, GRUB will still return success so you may miss\nthe warning that gets printed (\"`efibootmgr: EFI variables\nare not supported on this system.`\").\n\nIf you turn this feature on, GRUB will install itself in a\nspecial location within `efiSysMountPoint` (namely\n`EFI/boot/boot$arch.efi`) which the firmwares\nare hardcoded to try first, regardless of NVRAM EFI variables.\n\nTo summarize, turn this on if:\n- You are installing NixOS and want it to boot in UEFI mode,\n  but you are currently booted in legacy mode\n- You want to make a drive that will boot regardless of\n  the NVRAM state of the computer (like a USB \"removable\" drive)\n- You simply dislike the idea of depending on NVRAM\n  state to make your drive bootable\n",
               })))),
             enableCryptodisk: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Enable support for encrypted partitions. GRUB should automatically\nunlock the correct encrypted partition and look for filesystems.\n",
               })))),
             forceInstall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether to try and forcibly install GRUB even if problems are\ndetected. It is not recommended to enable this unless you know what\nyou are doing.\n",
               })))),
             forcei686: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Whether to force the use of a ia32 boot loader on x64 systems. Required\nto install and run NixOS on 64bit x86 systems with 32bit (U)EFI.\n",
@@ -597,26 +597,26 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           boot: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             loader: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               grub: nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 splashImage: nix.thunk(() => nix.app(mkDefault, defaultSplash)),
               })),
             })),
           })),
         })),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "splashImage"), defaultSplash)), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             boot: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               loader: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 grub: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   backgroundColor: nix.thunk(() => nix.app(mkDefault, "#2F302F")),
                   splashMode: nix.thunk(() => nix.app(mkDefault, "normal")),
                 })),
@@ -624,17 +624,17 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             boot: nix.thunk(() => ({
-              __proto__: pos$76,
+              [nix.POS]: pos$76,
               loader: nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 grub: nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   devices: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "device"), "")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "device"))]))),
                   mirroredBoots: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "devices"), [])), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$73,
+                        [nix.POS]: pos$73,
                         path: "/boot",
                         devices: nix.thunk(() => nix.attr(cfg, "devices")),
                         efiSysMountPoint: nix.thunk(() => nix.attr(efi, "efiSysMountPoint")),
@@ -650,19 +650,19 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               systemBuilderArgs: nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 configurationName: nix.thunk(() => nix.sel(cfg, "configurationName")),
               })),
               systemBuilderCommands: "echo -n \"$configurationName\" > $out/configuration-name\n",
               build: nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 installBootLoader: nix.thunk(() => (() => {
                   const install_grub_pl = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVars"), nix.path(here, "./install-grub.pl"), nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(config, "system", "nixos"));
                       return {
-                      __proto__: pos$78,
+                      [nix.POS]: pos$78,
                       utillinux: nix.thunk(() => nix.sel(pkgs, "util-linux")),
                       btrfsprogs: nix.thunk(() => nix.sel(pkgs, "btrfs-progs")),
                       distroName: nix.thunk(() => nix.attr(from, "distroName")),
@@ -691,64 +691,64 @@ ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "enableCryptodisk")), "ex
                 grub: grub,
               })),
               boot: nix.thunk(() => ({
-                __proto__: pos$81,
-                loader: nix.thunk(() => ({ __proto__: pos$80, id: "grub" })),
+                [nix.POS]: pos$81,
+                loader: nix.thunk(() => ({ [nix.POS]: pos$80, id: "grub" })),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               systemPackages: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(grub, null)), nix.thunk(() => [grub]))),
             })),
             assertions: nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$84,
+                [nix.POS]: pos$84,
                 assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "mirroredBoots"), [])),
                 message: nix.thunk(() => nix.add("You must set the option ‘boot.loader.grub.devices’ or ", "'boot.loader.grub.mirroredBoots' to make the system bootable.")),
               })),
               nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "efiSupport")) || nix.asBool(nix.app(all, (c) => nix.lt(c, 2n), nix.thunk(() => nix.app(mapAttrsToList, (n) => (c) => (nix.asBool(nix.eq(n, "nodev")) ? 0n : nix.force(c)), bootDeviceCounters)))))),
                 message: "You cannot have duplicated devices in mirroredBoots",
               })),
               nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "efiInstallAsRemovable")) || nix.asBool(nix.sel(cfg, "efiSupport")))),
                 message: "If you wish to to use boot.loader.grub.efiInstallAsRemovable, then turn on boot.loader.grub.efiSupport",
               })),
               nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "efiInstallAsRemovable")) || nix.asBool(!nix.asBool(nix.sel(config, "boot", "loader", "efi", "canTouchEfiVariables"))))),
                 message: "If you wish to to use boot.loader.grub.efiInstallAsRemovable, then turn off boot.loader.efi.canTouchEfiVariables",
               })),
               nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(options, "boot", "loader", "grub", "version", "isDefined")) && nix.asBool(nix.eq(nix.sel(cfg, "version"), 1n))))),
                 message: "Support for version 0.9x of GRUB was removed after being unsupported upstream for around a decade",
               })),
             ], nix.app(flip, concatMap, nix.thunk(() => nix.sel(cfg, "mirroredBoots")), (args_1) => nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$89,
+                  [nix.POS]: pos$89,
                   assertion: nix.thunk(() => !nix.eq(nix.sel(args_1, "devices"), [])),
                   message: nix.thunk(() => nix.str`A boot path cannot have an empty devices string in ${nix.sel(args_1, "path")}`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   assertion: nix.thunk(() => nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(args_1, "path")))),
                   message: nix.thunk(() => nix.str`Boot paths must be absolute, not ${nix.sel(args_1, "path")}`),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$91,
+                  [nix.POS]: pos$91,
                   assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(args_1, "efiSysMountPoint"), null)) ? true : nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(args_1, "efiSysMountPoint"))))),
                   message: nix.thunk(() => nix.str`EFI paths must be absolute, not ${nix.sel(args_1, "efiSysMountPoint")}`),
                 })),
               ], nix.app(forEach, nix.thunk(() => nix.sel(args_1, "devices")), (device) => ({
-                  __proto__: pos$92,
+                  [nix.POS]: pos$92,
                   assertion: nix.thunk(() => (nix.asBool(nix.eq(device, "nodev")) || nix.asBool(nix.app(hasPrefix, "/", device)))),
                   message: nix.thunk(() => nix.str`GRUB devices must be absolute paths, not ${device} in ${nix.sel(args_1, "path")}`),
                 })))))),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(options, "boot", "loader", "grub", "version", "isDefined")), nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             warnings: nix.thunk(() => [
               "The boot.loader.grub.version option does not have any effect anymore, please remove it from your configuration.\n",
             ]),

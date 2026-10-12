@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const openssl = nix.arg($, "openssl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ssh-tpm-agent",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Foxboron",
           repo: "ssh-tpm-agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm cmd/scripts_test.go\nsubstituteInPlace internal/keyring/keyring_test.go --replace-fail ENOKEY ENOENT\nsubstituteInPlace internal/keyring/threadkeyring_test.go --replace-fail ENOKEY ENOENT\n",
       postInstall: "make man\ninstallManPage man/*.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SSH agent with support for TPM sealed keys for public key authentication",
         homepage: "https://github.com/Foxboron/ssh-tpm-agent",
         changelog: nix.thunk(() => nix.str`https://github.com/Foxboron/ssh-tpm-agent/releases/tag/v${nix.sel(finalAttrs, "version")}`),

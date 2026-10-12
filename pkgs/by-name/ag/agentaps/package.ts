@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agentaps",
       version: "0.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "domenkozar",
           repo: "agentaps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
   --suffix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libxcb, libxkbcommon, vulkan_loader, wayland]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop client for Agent Client Protocol agents",
         homepage: "https://github.com/domenkozar/agentaps",
         changelog: nix.thunk(() => nix.str`https://github.com/domenkozar/agentaps/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

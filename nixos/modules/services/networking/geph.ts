@@ -26,36 +26,36 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "geph"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         geph: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "geph client daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "geph", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "pathWith"), nix.thunk(() => ({ __proto__: pos$1, inStore: false, absolute: true })))),
+              [nix.POS]: pos$2,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$1, inStore: false, absolute: true })))),
               description: "Path to the geph config file.\n\nThis file contain sensitive credentials, so it must not live in the Nix store.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
-        boot: nix.thunk(() => ({ __proto__: pos$6, kernelModules: nix.thunk(() => ["tun"]) })),
+        [nix.POS]: pos$13,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$6, kernelModules: nix.thunk(() => ["tun"]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
-          firewall: nix.thunk(() => ({ __proto__: pos$7, checkReversePath: "loose" })),
+          [nix.POS]: pos$8,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$7, checkReversePath: "loose" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             geph: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "geph client daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
               startLimitBurst: 5n,
               startLimitIntervalSec: 20n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 DynamicUser: true,
                 LoadCredential: nix.thunk(() => nix.str`geph-config:${nix.sel(cfg, "configFile")}`),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config %d/geph-config`),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "MCSeekeri"))];

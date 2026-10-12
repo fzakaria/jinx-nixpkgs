@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const bashInteractive = nix.arg($, "bashInteractive");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "enroot",
       version: "4.2.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "enroot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [flock]),
       buildInputs: nix.thunk(() => [bashInteractive]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple yet powerful tool to turn traditional container/OS images into unprivileged sandboxes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/NVIDIA/enroot",

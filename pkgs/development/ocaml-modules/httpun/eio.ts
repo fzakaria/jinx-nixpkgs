@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const httpun = nix.arg($, "httpun");
   const gluten_eio = nix.arg($, "gluten-eio");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "httpun-eio",
       src: nix.thunk(() => nix.attr(httpun, "src")),
       version: nix.thunk(() => nix.attr(httpun, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten_eio, httpun]),
-      meta: nix.thunk(() => nix.update(nix.sel(httpun, "meta"), { __proto__: pos$1, description: "EIO support for httpun" })),
+      meta: nix.thunk(() => nix.update(nix.sel(httpun, "meta"), { [nix.POS]: pos$1, description: "EIO support for httpun" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=eio.ts.map

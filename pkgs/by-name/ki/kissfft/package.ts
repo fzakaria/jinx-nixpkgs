@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const enableOpenmp = nix.argOr($, "enableOpenmp", () => false);
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`kissfft-${datatype}${nix.app(nix.sel(lib, "optionalString"), enableOpenmp, "-openmp")}`),
       version: "131.1.0",
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mborgerding",
           repo: "kissfft",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "KISSFFT_OPENMP", enableOpenmp)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D__MATH_LONG_DOUBLE_CONSTANTS=1")),
       })),
       doCheck: true,
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "10")))), "substituteInPlace CMakeLists.txt \\\n  --replace \"-ffast-math\" \"\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mixed-radix Fast Fourier Transform based up on the KISS principle",
         homepage: "https://github.com/mborgerding/kissfft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

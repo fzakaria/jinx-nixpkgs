@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tmux-sessionizer",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrmoulton",
           repo: "tmux-sessionizer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tms \\\n  --bash <(COMPLETE=bash $out/bin/tms) \\\n  --fish <(COMPLETE=fish $out/bin/tms) \\\n  --zsh <(COMPLETE=zsh $out/bin/tms)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fastest way to manage projects as tmux sessions",
         homepage: "https://github.com/jrmoulton/tmux-sessionizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

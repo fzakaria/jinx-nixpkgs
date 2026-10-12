@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     name: "pulseaudio-tcp",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.concat(nix.sel(pkgs, "pulseaudio", "meta", "maintainers"), (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -49,40 +49,40 @@ export default nix.lambda((args) => (() => {
       })())),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       server: nix.thunk(() => ({
-        __proto__: pos$15,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
-        networking: nix.thunk(() => ({ __proto__: pos$3, useNetworkd: true })),
+        [nix.POS]: pos$15,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+        networking: nix.thunk(() => ({ [nix.POS]: pos$3, useNetworkd: true })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           network: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             networks: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "01-eth1": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$4, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            pulseaudio: nix.thunk(() => ({ __proto__: pos$8, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            [nix.POS]: pos$9,
+            pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$8, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pulseaudio: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             tcp: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               port: 4713n,
               openFirewall: true,
-              anonymousClients: nix.thunk(() => ({ __proto__: pos$11, allowedIpRanges: nix.thunk(() => ["10.0.0.2"]) })),
+              anonymousClients: nix.thunk(() => ({ [nix.POS]: pos$11, allowedIpRanges: nix.thunk(() => ["10.0.0.2"]) })),
             })),
             systemWide: true,
             extraConfig: "load-module module-pipe-sink file=/tmp/audio_check sink_name=virtual_server_sink\nset-default-sink virtual_server_sink\n",
@@ -90,27 +90,27 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        __proto__: pos$25,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$16, vlans: nix.thunk(() => [1n]) })),
-        networking: nix.thunk(() => ({ __proto__: pos$17, useNetworkd: true })),
+        [nix.POS]: pos$25,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, vlans: nix.thunk(() => [1n]) })),
+        networking: nix.thunk(() => ({ [nix.POS]: pos$17, useNetworkd: true })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           network: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             networks: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "01-eth1": nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$18, Address: "10.0.0.2/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Address: "10.0.0.2/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           pulseaudio: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             enable: true,
             extraClientConf: "default-server = tcp:10.0.0.1:4713\n",
           })),

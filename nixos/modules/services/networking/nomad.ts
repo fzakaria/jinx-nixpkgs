@@ -43,60 +43,60 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nomad"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nomad: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Nomad, a distributed, highly available, datacenter-aware scheduler")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "nomad", nix.thunk(() => ({})))),
           extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               default: [],
               description: "Extra packages to add to {env}`PATH` for the Nomad agent process.\n",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with pkgs; [ cni-plugins ]\n")),
             })))),
           dropPrivileges: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether the nomad agent should be run as a non-root nomad user.\n",
             })))),
           enableDocker: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable Docker support. Needed for Nomad's docker driver.\n\nNote that the docker group membership is effectively equivalent\nto being root, see <https://github.com/moby/moby/issues/9976>.\n",
             })))),
           extraSettingsPaths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               description: "Additional settings paths used to configure nomad. These can be files or directories.\n",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"/etc/nomad-mutable.json\" \"/run/keys/nomad-with-secrets.json\" \"/etc/nomad/config.d\" ]\n")),
             })))),
           extraSettingsPlugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))))),
               default: [],
               description: "Additional plugins dir used to configure nomad.\n",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"<pluginDir>\" pkgs.nomad-driver-nix pkgs.nomad-driver-podman  ]\n")),
             })))),
           credentials: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Credentials envs used to configure nomad secrets.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 logs_remote_write_password: "/run/keys/nomad_write_password",
               })),
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Configuration for Nomad. See the [documentation](https://www.nomadproject.io/docs/configuration)\nfor supported values.\n\nNotes about `data_dir`:\n\nIf `data_dir` is set to a value other than the\ndefault value of `\"/var/lib/nomad\"` it is the Nomad\ncluster manager's responsibility to make sure that this directory\nexists and has the appropriate permissions.\n\nAdditionally, if `dropPrivileges` is\n`true` then `data_dir`\n*cannot* be customized. Setting\n`dropPrivileges` to `true` enables\nthe `DynamicUser` feature of systemd which directly\nmanages and operates on `StateDirectory`.\n",
@@ -106,34 +106,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           nomad: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               data_dir: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "/var/lib/nomad")),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "nomad.json": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "nomad.json", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             nomad: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Nomad",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -151,12 +151,12 @@ export default nix.lambda((args) => (() => {
               })())),
               serviceConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     DynamicUser: nix.thunk(() => nix.sel(cfg, "dropPrivileges")),
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                     ExecStart: nix.thunk(() => (() => {
                       const pluginsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           name: "nomad-plugins",
                           paths: nix.thunk(() => nix.sel(cfg, "extraSettingsPlugins")),
                         }))));
@@ -172,24 +172,24 @@ export default nix.lambda((args) => (() => {
                     TasksMax: "infinity",
                     LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (key) => (value) => nix.str`${key}:${value}`, nix.thunk(() => nix.sel(cfg, "credentials")))),
                   })),
-                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDocker")), nix.thunk(() => ({ __proto__: pos$20, SupplementaryGroups: "docker" })))),
-                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "data_dir"), "/var/lib/nomad")), nix.thunk(() => ({ __proto__: pos$21, StateDirectory: "nomad" })))),
+                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDocker")), nix.thunk(() => ({ [nix.POS]: pos$20, SupplementaryGroups: "docker" })))),
+                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "data_dir"), "/var/lib/nomad")), nix.thunk(() => ({ [nix.POS]: pos$21, StateDirectory: "nomad" })))),
                 ]))),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$22, StartLimitIntervalSec: 10n, StartLimitBurst: 3n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$22, StartLimitIntervalSec: 10n, StartLimitBurst: 3n })),
             })),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "dropPrivileges")) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "data_dir"), "/var/lib/nomad")))),
             message: "settings.data_dir must be equal to \"/var/lib/nomad\" if dropPrivileges is true",
           })),
         ]),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           docker: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableDocker")), true)),
           })),
         })),

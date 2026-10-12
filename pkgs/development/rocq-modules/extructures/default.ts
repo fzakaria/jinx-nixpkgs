@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const mathcomp_boot = nix.arg($, "mathcomp-boot");
   const deriving = nix.arg($, "deriving");
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "extructures",
       owner: "arthuraa",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -43,37 +43,37 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "0.5.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-Guu2+tmHym52DA6SB5Rq/rYWIQEl47Q7YvMaUkfOH2k=",
         })),
         "0.4.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-hItFO2XY2LTPSofPTKt3AfOEfiLliaYdzUXgDv4ea9Y=",
         })),
         "0.3.1": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-KcuG/11Yq5ACem4FyVnQqHKvy3tNK7hd0ir2SJzzMN0=",
         })),
         "0.3.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256:14rm0726f1732ldds495qavg26gsn30w6dfdn36xb12g5kzavp38",
         })),
         "0.2.2": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256:1clzza73gccy6p6l95n6gs0adkqd3h4wgl4qg5l0qm4q140grvm7",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [mathcomp_boot]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Finite data structures with extensional reasoning",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       })),
     }))), "overrideAttrs"), (o) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(o, "version")), "0.3.0")) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev")))), deriving))),
     }));
 })(), formals$1);

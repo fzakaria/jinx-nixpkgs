@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zeronet-conservancy",
       version: "0.7.10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zeronet-conservancy",
           repo: "zeronet-conservancy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,14 +59,14 @@ runHook postBuild
   --set PATH ${nix.sel(python3Packages, "python")}/bin
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nixos-test": nix.thunk(() => nix.sel(nixosTests, "zeronet-conservancy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fork/continuation of the ZeroNet project",
         mainProgram: "zeronet",
         longDescription: "zeronet-conservancy is a fork/continuation of ZeroNet project (that has\nbeen abandoned by its creator) that is dedicated to sustaining existing\np2p network and developing its values of decentralization and freedom,\nwhile gradually switching to a better designed network.\n",

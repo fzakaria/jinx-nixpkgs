@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "121";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boxine",
           repo: "bx_py_utils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         "bx_py_utils_tests/tests/test_processify.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Various Python utility functions",
         mainProgram: "bx_py_utils",
         homepage: "https://github.com/boxine/bx_py_utils",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

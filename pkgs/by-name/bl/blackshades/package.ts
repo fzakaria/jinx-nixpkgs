@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_14 = nix.arg($, "zig_0_14");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "blackshades",
       version: "2.5.2-unstable-2025-03-12",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~cnx",
           repo: "blackshades",
           rev: "a2fbe0e08bedbbbb1089dbb8f3e3cb4d76917bd0",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-W6ltmWCw7jfiTiNlh60YVF7mz//8s+bgu4F9gy5cDgw=",
         })))),
       postConfigure: nix.thunk(() => nix.str`ln -s ${nix.app(nix.sel(zig_0_14, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [zig_0_14]),
       buildInputs: nix.thunk(() => [glfw, libGLU, libGL, libsndfile, openal]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sr.ht/~cnx/blackshades",
         description: "Psychic bodyguard FPS",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~cnx/blackshades/refs/${nix.sel(finalAttrs, "version")}`),

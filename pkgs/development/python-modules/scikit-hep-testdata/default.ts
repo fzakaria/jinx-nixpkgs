@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-hep",
           repo: "scikit-hep-testdata",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [pyyaml, requests]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SKHEP_DATA: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SKHEP_DATA: 1n }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["skhep_testdata"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/scikit-hep/scikit-hep-testdata",
         description: "Common package to provide example files (e.g., ROOT) for testing and developing packages against",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-hep/scikit-hep-testdata/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

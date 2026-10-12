@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "svndumpsanitizer",
       version: "2.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dsuni",
           repo: "svndumpsanitizer",
           rev: "cbf917c000ee42fbb31a8667014a4357bbfdd6a6",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ncc svndumpsanitizer.c -o svndumpsanitizer\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm555 svndumpsanitizer -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative to svndumpfilter that discovers which nodes should actually be kept",
         homepage: "https://miria.homelinuxserver.org/svndumpsanitizer",
         downloadPage: "https://github.com/dsuni/svndumpsanitizer",

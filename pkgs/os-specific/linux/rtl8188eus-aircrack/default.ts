@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const bc = nix.arg($, "bc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rtl8188eus-aircrack",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2026-08-18`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gglluukk",
           repo: "rtl8188eus",
           rev: "f48878a7a66b1281e6eab0cf2b55e7149510daf2",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`mkdir -p "$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/net/wireless/"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RealTek RTL8188eus WiFi driver with monitor mode & frame injection support",
         homepage: "https://github.com/gglluukk/rtl8188eus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

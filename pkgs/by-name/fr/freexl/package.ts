@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freexl",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/freexl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-F2cF8d5Yq3we679cbeRqt2/Ni4VlCNvSj1ZI98bhp/A=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to extract valid data from within an Excel (.xls) spreadsheet",
         homepage: "https://www.gaia-gis.it/fossil/freexl",
         license: nix.thunk(() => (() => {

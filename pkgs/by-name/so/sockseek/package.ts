@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "3.0.5";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sockseek",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fiso64",
           repo: "sockseek",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       dotnetBuildFlags: nix.thunk(() => ["--property:OpenApiGenerateDocuments=false"]),
       executables: nix.thunk(() => ["sockseek"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced download tool for Soulseek, soon a client",
         homepage: "https://github.com/fiso64/sockseek",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

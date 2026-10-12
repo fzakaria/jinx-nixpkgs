@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tonelib-metal";
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tonelib.vip/download/24-10-24/ToneLib-Metal-amd64.deb",
           hash: "sha256-H19ZUOFI7prQJPo9NWWAHSOwpZ4RIbpRJHfQVjDp/VA=",
         }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ], runtimeDependencies));
       const installPhase = "runHook preInstall\n\ncp -r usr $out\nsubstituteInPlace $out/share/applications/ToneLib-Metal.desktop \\\n  --replace-fail \"/usr/\" \"$out/\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ToneLib Metal – Guitar amp simulator targeted at metal players",
         homepage: "https://tonelib.net",
         sourceProvenance: nix.thunk(() => (() => {
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ToneLib-Metal",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

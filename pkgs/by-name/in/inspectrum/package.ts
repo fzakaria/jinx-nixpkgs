@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inspectrum";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miek",
           repo: "inspectrum",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}install_name_tool -change libliquid.dylib ${nix.app(nix.sel(lib, "getLib"), liquid_dsp)}/lib/libliquid.dylib $out/bin/.inspectrum-wrapped
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for analysing captured signals from sdr receivers",
         mainProgram: "inspectrum",
         homepage: "https://github.com/miek/inspectrum",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

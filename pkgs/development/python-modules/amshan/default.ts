@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toreamun",
           repo: "amshan",
           rev: version,
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [construct, paho_mqtt, pyserial_asyncio]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["han"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Decode smart power meter data stream of Cosem HDLC frames used by MBUS",
         longDescription: "The package has special support of formats for Aidon, Kaifa and Kamstrup\nmeters used in Norway and Sweden (AMS HAN).\n",
         homepage: "https://github.com/toreamun/amshan",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

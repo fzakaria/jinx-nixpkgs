@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const transcrypt = nix.arg($, "transcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "transcrypt",
       version: "2.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elasticdog",
           repo: "transcrypt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ EOF
 chmod +x $out/bin/transcrypt-depspathprefix
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: transcrypt,
               command: "transcrypt --version",
               version: nix.thunk(() => nix.str`transcrypt ${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ chmod +x $out/bin/transcrypt-depspathprefix
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Transparently encrypt files within a Git repository",
         longDescription: "A script to configure transparent encryption of sensitive files stored in\na Git repository. Files that you choose will be automatically encrypted\nwhen you commit them, and automatically decrypted when you check them\nout. The process will degrade gracefully, so even people without your\nencryption password can safely commit changes to the repository's\nnon-encrypted files.\n",
         homepage: "https://github.com/elasticdog/transcrypt",

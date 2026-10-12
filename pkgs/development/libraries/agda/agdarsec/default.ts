@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const standard_library = nix.arg($, "standard-library");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agdarsec",
       version: "0.5.0-unstable-2025-08-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gallais",
           repo: "agdarsec",
           rev: "28c5233e905474f3b02cb97fe410beb60364ba80",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -Ei 's/standard-library-[0-9.]+/standard-library/' agdarsec.agda-lib\n",
       buildInputs: nix.thunk(() => [standard_library]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gallais.github.io/agdarsec/",
         description: "Total Parser Combinators in Agda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

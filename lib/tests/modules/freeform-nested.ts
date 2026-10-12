@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const deathtrapArgs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (_) => nix.builtins.throw(nix.thunk(() => nix.str`The module system is too strict, accessing an unused option's ${k} mkOption-attribute.`)), nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), nix.thunk(() => nix.sel(lib, "mkOption"))))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nest: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
           })))),
         unused: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), deathtrapArgs)),
       })),
     })),
-    config: nix.thunk(() => ({ __proto__: pos$5, nest: nix.thunk(() => ({ __proto__: pos$4, bar: "bar" })) })),
+    config: nix.thunk(() => ({ [nix.POS]: pos$5, nest: nix.thunk(() => ({ [nix.POS]: pos$4, bar: "bar" })) })),
   };
 })(), formals$1);
 //# sourceMappingURL=freeform-nested.ts.map

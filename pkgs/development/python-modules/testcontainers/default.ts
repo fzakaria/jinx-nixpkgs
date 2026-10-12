@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "testcontainers",
       version: "4.15.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "testcontainers",
           repo: "testcontainers-python",
           tag: nix.thunk(() => nix.str`testcontainers-v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["testcontainers", "testcontainers.core.container"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allows using docker containers for functional and integration testing",
         homepage: "https://github.com/testcontainers/testcontainers-python",
         changelog: nix.thunk(() => nix.str`https://github.com/testcontainers/testcontainers-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

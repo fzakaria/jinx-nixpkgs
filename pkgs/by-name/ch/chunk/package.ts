@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chunk",
       version: "2021-03-03",
       outputs: nix.thunk(() => ["out", "webfont"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "chunk",
           rev: "12a243f3fb7c7a68844901023f7d95d6eaf14104",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ultra-bold, ultra-awesome slab serif typeface",
         longDescription: "Chunk is an ultra-bold slab serif typeface that is reminiscent of old\nAmerican Western woodcuts, broadsides, and newspaper headlines. Used\nmainly for display, the fat block lettering is unreserved yet refined for\ncontemporary use.\n\nIn 2014, a new textured style was created by Tyler Finck called Chunk\nFive Print. It contains the same glyphs as the original.\n",
         homepage: "https://www.theleagueofmoveabletype.com/chunk",

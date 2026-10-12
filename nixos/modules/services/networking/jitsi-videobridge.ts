@@ -72,25 +72,25 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "hocon"), nix.thunk(() => ({}))));
   const toVarName = (s) => nix.add("XMPP_PASSWORD_", nix.app(nix.sel(lib, "stringAsChars"), (c) => (nix.asBool(!nix.eq(nix.builtins.match("[A-Za-z0-9]", c), null)) ? nix.force(c) : "_"), s));
   const defaultJvbConfig = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     videobridge: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       ice: nix.thunk(() => ({
-        __proto__: pos$3,
-        tcp: nix.thunk(() => ({ __proto__: pos$1, enabled: true, port: 4443n })),
-        udp: nix.thunk(() => ({ __proto__: pos$2, port: 10000n })),
+        [nix.POS]: pos$3,
+        tcp: nix.thunk(() => ({ [nix.POS]: pos$1, enabled: true, port: 4443n })),
+        udp: nix.thunk(() => ({ [nix.POS]: pos$2, port: 10000n })),
       })),
       stats: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enabled: true,
-        transports: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, type: "muc" }))]),
+        transports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, type: "muc" }))]),
       })),
       apis: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "xmpp-client": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           configs: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), nix.thunk(() => nix.sel(cfg, "xmppConfigs")), (name) => (xmppConfig) => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               hostname: nix.thunk(() => nix.sel(xmppConfig, "hostName")),
               domain: nix.thunk(() => nix.sel(xmppConfig, "domain")),
               username: nix.thunk(() => nix.sel(xmppConfig, "userName")),
@@ -100,34 +100,34 @@ export default nix.lambda((args) => (() => {
               disable_certificate_verification: nix.thunk(() => nix.sel(xmppConfig, "disableCertificateVerification")),
             }))),
         })),
-        rest: nix.thunk(() => ({ __proto__: pos$8, enabled: nix.thunk(() => nix.sel(cfg, "colibriRestApi")) })),
+        rest: nix.thunk(() => ({ [nix.POS]: pos$8, enabled: nix.thunk(() => nix.sel(cfg, "colibriRestApi")) })),
       })),
     })),
   }));
   const jvbConfig = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaultJvbConfig, nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "jitsi-videobridge", "apis"]), "services.jitsi-videobridge.apis was broken and has been migrated into the boolean option services.jitsi-videobridge.colibriRestApi. It is set to false by default, setting it to true will correctly enable the private /colibri rest API.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         "jitsi-videobridge": nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Jitsi Videobridge, a WebRTC compatible video router")),
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.lookup(w, "attrs")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  videobridge = {\n    ice.udp.port = 5000;\n    websockets = {\n      enabled = true;\n      server-id = \"jvb1\";\n    };\n  };\n}\n")),
                 description: "Videobridge configuration.\n\nSee <https://github.com/jitsi/jitsi-videobridge/blob/master/jvb/src/main/resources/reference.conf>\nfor default configuration with comments.\n",
               })))),
             xmppConfigs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 description: "XMPP servers to connect to.\n\nSee <https://github.com/jitsi/jitsi-videobridge/blob/master/doc/muc.md> for more information.\n",
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"localhost\" = {\n    hostName = \"localhost\";\n    userName = \"jvb\";\n    domain = \"auth.xmpp.example.org\";\n    passwordFile = \"/var/lib/jitsi-meet/videobridge-secret\";\n    mucJids = \"jvbbrewery@internal.xmpp.example.org\";\n  };\n}\n")),
@@ -135,54 +135,54 @@ export default nix.lambda((args) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         options: nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               type: nix.thunk(() => nix.lookup(w, "str")),
                               example: "xmpp.example.org",
                               description: "Hostname of the XMPP server to connect to. Name of the attribute set is used by default.\n",
                             })))),
                           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                               default: null,
                               example: "auth.xmpp.example.org",
                               description: "Domain part of JID of the XMPP user, if it is different from hostName.\n",
                             })))),
                           userName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               type: nix.thunk(() => nix.lookup(w, "str")),
                               default: "jvb",
                               description: "User part of the JID.\n",
                             })))),
                           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$16,
+                              [nix.POS]: pos$16,
                               type: nix.thunk(() => nix.lookup(w, "str")),
                               example: "/run/keys/jitsi-videobridge-xmpp1",
                               description: "File containing the password for the user.\n",
                             })))),
                           mucJids: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               type: nix.thunk(() => nix.lookup(w, "str")),
                               example: "jvbbrewery@internal.xmpp.example.org",
                               description: "JID of the MUC to join. JiCoFo needs to be configured to join the same MUC.\n",
                             })))),
                           mucNickname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               type: nix.thunk(() => nix.lookup(w, "str")),
                               description: "Videobridges use the same XMPP account and need to be distinguished by the\nnickname (aka resource part of the JID). By default, system hostname is used.\n",
                             })))),
                           disableCertificateVerification: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$19,
+                              [nix.POS]: pos$19,
                               type: nix.thunk(() => nix.lookup(w, "bool")),
                               default: false,
                               description: "Whether to skip validation of the server's certificate.\n",
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
                           mucNickname: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(config, "networking", "fqdnOrHostName")))))),
                         })),
@@ -190,23 +190,23 @@ export default nix.lambda((args) => (() => {
                     })(), formals$2))))),
               })))),
             nat: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               localAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: null,
                   example: "192.168.1.42",
                   description: "Local address to assume when running behind NAT.\n",
                 })))),
               publicAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: null,
                   example: "1.2.3.4",
                   description: "Public address to assume when running behind NAT.\n",
                 })))),
               harvesterAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: nix.thunk(() => [
                     "stunserver.stunprotocol.org:3478",
@@ -218,19 +218,19 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             extraProperties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
                 default: nix.thunk(() => ({})),
                 description: "Additional Java properties passed to jitsi-videobridge.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 default: false,
                 description: "Whether to open ports in the firewall for the videobridge.\n",
               })))),
             colibriRestApi: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Whether to enable the private rest API for the COLIBRI control interface.\nNeeded for monitoring jitsi, enabling scraping of the /colibri/stats endpoint.\n",
                 default: false,
@@ -240,32 +240,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         users: nix.thunk(() => ({
-          __proto__: pos$35,
-          groups: nix.thunk(() => ({ __proto__: pos$34, "jitsi-meet": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$35,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$34, "jitsi-meet": nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           "jitsi-videobridge": nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             extraProperties: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "nat", "localAddress"), null)) ? {
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               "org.ice4j.ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS": nix.thunk(() => nix.sel(cfg, "nat", "localAddress")),
               "org.ice4j.ice.harvest.NAT_HARVESTER_PUBLIC_ADDRESS": nix.thunk(() => nix.sel(cfg, "nat", "publicAddress")),
             } : {
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               "org.ice4j.ice.harvest.STUN_MAPPING_HARVESTER_ADDRESSES": nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "nat", "harvesterAddresses")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           services: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "jitsi-videobridge2": nix.thunk(() => (() => {
               const jvbProps = nix.thunk(() => nix.update({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 "-Dnet.java.sip.communicator.SC_HOME_DIR_LOCATION": "/etc/jitsi",
                 "-Dnet.java.sip.communicator.SC_HOME_DIR_NAME": "videobridge",
                 "-Djava.util.logging.config.file": "/etc/jitsi/videobridge/logging.properties",
@@ -273,20 +273,20 @@ export default nix.lambda((args) => (() => {
                 "-Dlog4j2.formatMsgNoLookups": true,
               }, nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`-D${k}`), v), nix.thunk(() => nix.sel(cfg, "extraProperties")))));
               return {
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 aliases: nix.thunk(() => ["jitsi-videobridge.service"]),
                 description: "Jitsi Videobridge",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   JAVA_SYS_PROPS: nix.thunk(() => nix.app(attrsToArgs, jvbProps)),
                 })),
                 script: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (xmppConfig) => nix.str`export ${nix.app(toVarName, name)}=$(cat ${nix.sel(xmppConfig, "passwordFile")})
 `, nix.thunk(() => nix.sel(cfg, "xmppConfigs"))))), nix.str`${nix.sel(pkgs, "jitsi-videobridge")}/bin/jitsi-videobridge
 `)),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   Type: "exec",
                   DynamicUser: true,
                   User: "jitsi-videobridge",
@@ -316,44 +316,44 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           etc: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             "jitsi/videobridge/logging.properties": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               source: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(pkgs, "jitsi-videobridge")}/etc/jitsi/videobridge/logging.properties-journal`))),
             })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           kernel: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             sysctl: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               "net.core.rmem_max": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 10485760n)),
               "net.core.netdev_max_backlog": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 100000n)),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           firewall: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(jvbConfig, "videobridge", "ice", "tcp", "port"))]))),
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(jvbConfig, "videobridge", "ice", "udp", "port"))]))),
           })),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             message: "publicAddress must be set if and only if localAddress is set",
             assertion: nix.thunk(() => nix.eq(nix.eq(nix.sel(cfg, "nat", "publicAddress"), null), nix.eq(nix.sel(cfg, "nat", "localAddress"), null))),
           })),
         ]),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jitsi"))]),
     })),
   };

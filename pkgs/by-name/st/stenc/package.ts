@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stenc",
       version: "2.0.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scsitape",
           repo: "stenc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "installShellCompletion --bash bash-completion/stenc\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SCSI Tape Encryption Manager",
         mainProgram: "stenc",
         homepage: "https://github.com/scsitape/stenc",

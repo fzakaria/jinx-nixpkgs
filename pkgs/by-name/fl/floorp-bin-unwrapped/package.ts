@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(from, "version"));
   const sources = nix.thunk(() => nix.attr(from, "sources"));
   const binaryName = "floorp";
-  const policies = nix.thunk(() => ({ __proto__: pos$1, DisableAppUpdate: true }));
-  const policiesJson = nix.thunk(() => nix.app(writeText, "floorp-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$2, policies: policies }))))));
+  const policies = nix.thunk(() => ({ [nix.POS]: pos$1, DisableAppUpdate: true }));
+  const policiesJson = nix.thunk(() => nix.app(writeText, "floorp-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, policies: policies }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "floorp-bin-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.attr(from_1, "url")),
           sha256: nix.thunk(() => nix.attr(from_1, "sha256")),
         };
@@ -66,7 +66,7 @@ mkdir -p "$out/lib/floorp-bin-${nix.sel(finalAttrs, "version")}/distribution";
 ln -s ${policiesJson} "$out/lib/floorp-bin-${nix.sel(finalAttrs, "version")}/distribution/policies.json";
 `)), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         binaryName: binaryName,
         applicationName: "Floorp",
         libName: nix.thunk(() => nix.str`floorp-bin-${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +76,7 @@ ln -s ${policiesJson} "$out/lib/floorp-bin-${nix.sel(finalAttrs, "version")}/dis
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://blog.floorp.app/en/release/${nix.sel(finalAttrs, "version")}/`),
         description: "Fork of Firefox that seeks balance between versatility, privacy and web openness",
         homepage: "https://floorp.app/",

@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "catimg",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "posva",
           repo: "catimg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TkUrDVg/EJQ3cAWosRDJ09pmOB0NANW7c/MFyH//Iok=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-D_DEFAULT_SOURCE" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-D_DEFAULT_SOURCE" })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/posva/catimg",
         description: "Insanely fast image printing in your terminal",

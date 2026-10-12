@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
     const dimensions = nix.arg($_1, "dimensions");
     const license = nix.argOr($_1, "license", () => nix.sel(lib, "licenses", "free"));
     const pkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         src: src,
@@ -150,12 +150,12 @@ _EOF
         runHook postInstall
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           gnomeFilePath: nix.thunk(() => nix.str`${pkg}/share/backgrounds/nixos/${nix.sel(src, "name")}`),
           kdeFilePath: nix.thunk(() => nix.str`${pkg}/share/wallpapers/${pname}/contents/images/${nix.sel(src, "name")}`),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: description,
           license: license,
           homepage: "https://github.com/NixOS/nixos-artwork",
@@ -166,12 +166,12 @@ _EOF
   })(), formals$2);
   return (() => {
     const binary_black = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "binary-black",
         version: "2024-02-15",
         description: "Black binary wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/8957e93c95867faafec7f9988cedddd6837859fa/wallpapers/nix-wallpaper-binary-black.png",
             hash: "sha256-mhSh0wz2ntH/kri3PF5ZrFykjjdQLhmlIlDDGFQIYWw=",
           })))),
@@ -179,12 +179,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const binary_blue = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "binary-blue",
         version: "2024-02-15",
         description: "Blue binary wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/8957e93c95867faafec7f9988cedddd6837859fa/wallpapers/nix-wallpaper-binary-blue.png",
             hash: "sha256-oVIRSgool/CsduGingDr0FuJJIkGtfQHXYn0JBI2eho=",
           })))),
@@ -192,12 +192,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const binary_red = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "binary-red",
         version: "2024-02-15",
         description: "Red binary wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/8957e93c95867faafec7f9988cedddd6837859fa/wallpapers/nix-wallpaper-binary-red.png",
             hash: "sha256-18UvtroyuAnluJ3EoLJWJAwN8T83s/ImPtsr5QTqvAA=",
           })))),
@@ -205,12 +205,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const binary_white = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "binary-white",
         version: "2024-02-15",
         description: "White binary wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/8957e93c95867faafec7f9988cedddd6837859fa/wallpapers/nix-wallpaper-binary-white.png",
             hash: "sha256-imj+OmuhTNxRtE54715wWQUA7pe1f32+q3qi2V37i8U=",
           })))),
@@ -218,12 +218,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const catppuccin_frappe = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "catppuccin-frappe",
         version: "2024-02-15",
         description: "Catppuccin Frappé colorscheme wallpaper for NixOS",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/97444e18b7fe97705e8caedd29ae05e62cb5d4b7/wallpapers/nixos-wallpaper-catppuccin-frappe.png",
             hash: "sha256-wtBffKK9rqSJo8+7Wo8OMruRlg091vdroyUZj5mDPfI=",
           })))),
@@ -231,12 +231,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const catppuccin_latte = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         pname: "catppuccin-latte",
         version: "2024-02-15",
         description: "Catppuccin Latte colorscheme wallpaper for NixOS",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/97444e18b7fe97705e8caedd29ae05e62cb5d4b7/wallpapers/nixos-wallpaper-catppuccin-latte.png",
             hash: "sha256-Y6WCwmHOLBStj1D9mcU2082y1fhAFHna01ajfUHxehk=",
           })))),
@@ -244,12 +244,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const catppuccin_macchiato = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname: "catppuccin-macchiato",
         version: "2024-02-15",
         description: "Catppuccin Macchiato colorscheme wallpaper for NixOS",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/97444e18b7fe97705e8caedd29ae05e62cb5d4b7/wallpapers/nixos-wallpaper-catppuccin-macchiato.png",
             hash: "sha256-SkXrLbHvBOItJ7+8vW+6iXV+2g0f8bUJf9KcCXYOZF0=",
           })))),
@@ -257,12 +257,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const catppuccin_mocha = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         pname: "catppuccin-mocha",
         version: "2024-02-15",
         description: "Catppuccin Mochacolorscheme wallpaper for NixOS",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/97444e18b7fe97705e8caedd29ae05e62cb5d4b7/wallpapers/nixos-wallpaper-catppuccin-mocha.png",
             hash: "sha256-fmKFYw2gYAYFjOv4lr8IkXPtZfE1+88yKQ4vjEcax1s=",
           })))),
@@ -270,12 +270,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const dracula = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         pname: "dracula",
         version: "2020-07-02",
         description: "Nix background based on the Dracula color palette",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/03c6c20be96c38827037d2238357f2c777ec4aa5/wallpapers/nix-wallpaper-dracula.png",
             hash: "sha256-SykeFJXCzkeaxw06np0QkJCK28e0k30PdY8ZDVcQnh4=",
           })))),
@@ -283,12 +283,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const gear = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         pname: "gear",
         version: "2022-04-19",
         description: "3D wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/bcdd2770f5f4839fddc9b503e68db2bc3a87ca4d/wallpapers/nix-wallpaper-gear.png",
             hash: "sha256-2sT6b49/iClTs9QuUvpmZ5gcIeXI9kebs5IqgQN1RL8=",
           })))),
@@ -296,12 +296,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const simple_dark_gray_bottom = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         pname: "simple-dark-gray-bottom",
         version: "2018-08-28",
         description: "Simple dark gray background for NixOS, specifically bootloaders and graphical login",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/783c38b22de09f6ee33aacc817470a4513392d83/wallpapers/nix-wallpaper-simple-dark-gray_bottom.png",
             hash: "sha256-JUyzf9dYRyLQmxJPKptDxXL7yRqAFt5uM0C9crkkEY4=",
           })))),
@@ -309,24 +309,24 @@ _EOF
       }))));
     const gnome_dark = simple_dark_gray_bottom;
     const gradient_grey = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         pname: "gradient-grey",
         version: "2018-10-20",
         description: "Simple grey gradient background for NixOS",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/3f7695afe75239720a32d6c38df7c9888b5ed581/wallpapers/NixOS-Gradient-grey.png",
             hash: "sha256-Tf4Xruf608hpl7YwL4Mq9l9egBOCN+W4KFKnqrgosLE=",
           })))),
         dimensions: "2560x1440",
       }))));
     const moonscape = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         pname: "moonscape",
         version: "2022-04-19",
         description: "3D wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/bcdd2770f5f4839fddc9b503e68db2bc3a87ca4d/wallpapers/nix-wallpaper-moonscape.png",
             hash: "sha256-AR3W8avHzQLxMNLfD/A1efyZH+vAdTLKllEhJwBl0xc=",
           })))),
@@ -334,12 +334,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const mosaic_blue = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         pname: "mosaic-blue",
         version: "2016-02-19",
         description: "Mosaic blue background for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/766f10e0c93cb1236a85925a089d861b52ed2905/wallpapers/nix-wallpaper-mosaic-blue.png",
             hash: "sha256-xZbNK8s3/ooRvyeHGxhcYnnifeGAiAnUjw9EjJTWbLE=",
           })))),
@@ -347,12 +347,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }))));
     const nineish = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         pname: "nineish",
         version: "2019-12-04",
         description: "Nix background inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/da01f68d21ddfdc9f1c6e520c2170871c81f1cf5/wallpapers/nix-wallpaper-nineish.png",
             hash: "sha256-EMSD1XQLaqHs0NbLY0lS1oZ4rKznO+h9XOGDS121m9c=",
           })))),
@@ -360,12 +360,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_dark_gray = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         pname: "nineish-dark-gray",
         version: "2020-07-02",
         description: "Dark gray Nix background inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/f07707cecfd89bc1459d5dad76a3a4c5315efba1/wallpapers/nix-wallpaper-nineish-dark-gray.png",
             hash: "sha256-nhIUtCy/Hb8UbuxXeL3l3FMausjQrnjTVi1B3GkL9B8=",
           })))),
@@ -373,12 +373,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_solarized_dark = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         pname: "nineish-solarized-dark",
         version: "2021-07-20",
         description: "Solarized dark Nix background inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/f99638d8d1a11d97a99ff7e0e1e7df58c28643ff/wallpapers/nix-wallpaper-nineish-solarized-dark.png",
             hash: "sha256-ZBrk9izKvsY4Hzsr7YovocCbkRVgUN9i/y1B5IzOOKo=",
           })))),
@@ -386,12 +386,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_solarized_light = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         pname: "nineish-dark-light",
         version: "2021-07-20",
         description: "Solarized light Nix background inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/f99638d8d1a11d97a99ff7e0e1e7df58c28643ff/wallpapers/nix-wallpaper-nineish-solarized-light.png",
             hash: "sha256-gb5s5ePdw7kuIL3SI8VVhOcLcHu0cHMJJ623vg1kz40=",
           })))),
@@ -399,12 +399,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_frappe_alt = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         pname: "nineish-catppuccin-frappe-alt",
         version: "2025-01-27",
         description: "Alternative Catppuccin Frappe wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-frappe-alt.png",
             hash: "sha256-ZbtgfBE09FhCTPPCzDlOrSoRUmv1lmhxiNTvHDldF/4=",
           })))),
@@ -412,12 +412,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_frappe = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         pname: "nineish-catppuccin-frappe",
         version: "2025-01-27",
         description: "Catppuccin Frappe wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-frappe.png",
             hash: "sha256-/HAtpGwLxjNfJvX5/4YZfM8jPNStaM3gisK8+ImRmQ4=",
           })))),
@@ -425,12 +425,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_latte_alt = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         pname: "nineish-catppuccin-latte-alt",
         version: "2025-01-27",
         description: "Alternative Catppuccin Latte wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-latte-alt.png",
             hash: "sha256-UyUQ4YQYlJrjoUX6qU6cGWjhA1AnIpQgniQermUtO2w=",
           })))),
@@ -438,12 +438,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_latte = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         pname: "nineish-catppuccin-latte",
         version: "2025-01-27",
         description: "Catppuccin Latte wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-latte.png",
             hash: "sha256-+DirQiQ1TUeB+e2AeJD8mWjt0OTWtrqkeqZrVr5v5iY=",
           })))),
@@ -451,12 +451,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_macchiato_alt = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         pname: "nineish-catppuccin-macchiato-alt",
         version: "2025-01-27",
         description: "Alternative Catppuccin Macchiato wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-macchiato-alt.png",
             hash: "sha256-OUT0SsToRH5Zdd+jOwhr9iVBoVNUKhUkJNBYFDKZGOU=",
           })))),
@@ -464,12 +464,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_macchiato = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         pname: "nineish-catppuccin-macchiato",
         version: "2025-01-27",
         description: "Catppuccin Macchiato wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-macchiato.png",
             hash: "sha256-1JWgytxOvI0hwkCk+1hdZqhLB0u5aHEyEcsmlo4kMuw=",
           })))),
@@ -477,12 +477,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_mocha_alt = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         pname: "nineish-catppuccin-mocha-alt",
         version: "2025-01-27",
         description: "Alternative Catppuccin Mocha wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-mocha-alt.png",
             hash: "sha256-ThDrZIJIyO2DdIW41sV6iYyCNhM89cwHr8l6DAfbXjI=",
           })))),
@@ -490,12 +490,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const nineish_catppuccin_mocha = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         pname: "nineish-catppuccin-mocha",
         version: "2025-01-27",
         description: "Catppuccin Mocha wallpaper for Nix inspired by simpler times",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/33856d7837cb8ba76c4fc9e26f91a659066ee31f/wallpapers/nix-wallpaper-nineish-catppuccin-mocha.png",
             hash: "sha256-zlYqSid5Q1L5sUrAcvR+7aN2jImiuoR9gygBRk8x9Wo=",
           })))),
@@ -503,12 +503,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const recursive = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         pname: "recursive",
         version: "2022-04-19",
         description: "3D wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/bcdd2770f5f4839fddc9b503e68db2bc3a87ca4d/wallpapers/nix-wallpaper-recursive.png",
             hash: "sha256-YvFrlysNGMwJ7eMFOoz0KI8AjoPN3ao+AVOgnVZzkFE=",
           })))),
@@ -516,12 +516,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const simple_blue = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         pname: "simple-blue",
         version: "2016-02-19",
         description: "Simple blue background for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/766f10e0c93cb1236a85925a089d861b52ed2905/wallpapers/nix-wallpaper-simple-blue.png",
             hash: "sha256-utrcjzfeJoFOpUbFY2eIUNCKy5rjLt57xIoUUssJmdI=",
           })))),
@@ -529,12 +529,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }))));
     const simple_dark_gray = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         pname: "simple-dark-gray",
         version: "2016-02-19",
         description: "Simple dark gray background for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/766f10e0c93cb1236a85925a089d861b52ed2905/wallpapers/nix-wallpaper-simple-dark-gray.png",
             hash: "sha256-JaLHdBxwrphKVherDVe5fgh+3zqUtpcwuNbjwrBlAok=",
           })))),
@@ -542,24 +542,24 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }))));
     const simple_dark_gray_bootloader = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         pname: "simple-dark-gray-bootloader",
         version: "2018-08-28",
         description: "Simple dark gray background for NixOS, specifically bootloaders",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/9d1f11f652ed5ffe460b6c602fbfe2e7e9a08dff/bootloader/nix-wallpaper-simple-dark-gray_bootloader.png",
             hash: "sha256-Sd52CEw/pHmk6Cs+yrM/8wscG9bvYuECylQd27ybRmw=",
           })))),
         dimensions: "628x535",
       }))));
     const simple_light_gray = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         pname: "simple-light-gray",
         version: "2016-02-19",
         description: "Simple light gray background for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/766f10e0c93cb1236a85925a089d861b52ed2905/wallpapers/nix-wallpaper-simple-light-gray.png",
             hash: "sha256-Ylo5H5OrU/t9vwLbfO0OyPIsB/0vS5iUPTt/G3YHzUQ=",
           })))),
@@ -567,12 +567,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }))));
     const simple_red = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         pname: "simple-red",
         version: "2016-02-19",
         description: "Simple red background for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/766f10e0c93cb1236a85925a089d861b52ed2905/wallpapers/nix-wallpaper-simple-red.png",
             hash: "sha256-WnKjgvnn5Rg4R3xaJQ2mhBHQqCfl9jV6Xx3hEXW+uZk=",
           })))),
@@ -580,12 +580,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }))));
     const stripes_logo = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         pname: "stripes-logo",
         version: "2016-02-19",
         description: "Stripes logo background for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/766f10e0c93cb1236a85925a089d861b52ed2905/wallpapers/nix-wallpaper-stripes-logo.png",
             hash: "sha256-1MoPwytw8kBiy+Sx70xmHnxMJgqEaOR9YEgQMO6bEjM=",
           })))),
@@ -593,12 +593,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }))));
     const stripes = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         pname: "stripes",
         version: "2016-02-19",
         description: "Stripes background for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/766f10e0c93cb1236a85925a089d861b52ed2905/wallpapers/nix-wallpaper-stripes.png",
             hash: "sha256-o3GqbFZ/18ScLOlAL6GRy54l8P/U6wUeeK4HtPkZw4Q=",
           })))),
@@ -606,12 +606,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
       }))));
     const waterfall = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         pname: "waterfall",
         version: "2022-04-19",
         description: "3D wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/bcdd2770f5f4839fddc9b503e68db2bc3a87ca4d/wallpapers/nix-wallpaper-waterfall.png",
             hash: "sha256-ULFNUZPU9khDG6rtkMskLe5sYpUcrJVvcFvEkpvXjMM=",
           })))),
@@ -619,12 +619,12 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     const watersplash = nix.thunk(() => nix.app(mkNixBackground, nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         pname: "watersplash",
         version: "2022-04-19",
         description: "3D wallpaper for Nix",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             url: "https://raw.githubusercontent.com/NixOS/nixos-artwork/bcdd2770f5f4839fddc9b503e68db2bc3a87ca4d/wallpapers/nix-wallpaper-watersplash.png",
             hash: "sha256-6Gdjzq3hTvUH7GeZmZnf+aOQruFxReUNEryAvJSgycQ=",
           })))),
@@ -632,7 +632,7 @@ _EOF
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
       }))));
     return {
-      __proto__: pos$76,
+      [nix.POS]: pos$76,
       "binary-black": binary_black,
       "binary-blue": binary_blue,
       "binary-red": binary_red,

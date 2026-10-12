@@ -20,33 +20,33 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     _file: "optionTypeFile.nix",
     options: nix.thunk(() => ({
-      __proto__: pos$3,
-      theType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "optionType")) })))),
+      [nix.POS]: pos$3,
+      theType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "optionType")) })))),
       theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(config, "theType")),
           default: nix.thunk(() => ({})),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       theType: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               options: nix.thunk(() => ({
-                __proto__: pos$5,
-                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+                [nix.POS]: pos$5,
+                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               _file: "other.nix",
               options: nix.thunk(() => ({
-                __proto__: pos$8,
-                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$7, type: nix.thunk(() => nix.sel(lib, "types", "str")) })))),
+                [nix.POS]: pos$8,
+                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.sel(lib, "types", "str")) })))),
               })),
             })))),
         ]))),

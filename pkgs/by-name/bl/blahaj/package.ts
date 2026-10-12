@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blahaj";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeopJr",
           repo: "BLAHAJ",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${(nix.asBool(static$) ? "static" : "build")}${(nix.asBool(multithreading) ? "_mt" : "")}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gay sharks at your local terminal - lolcat-like CLI tool",
         homepage: "https://blahaj.geopjr.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "blahaj",
       }));
-      return { __proto__: pos$3, pname, version, src, buildTargets, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildTargets, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const namespace = nix.arg($_1, "namespace");
     const sourceDir = nix.argOr($_1, "sourceDir", () => "");
     return nix.app(toKodiAddon, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.add("kodi-", name)),
           dontStrip: true,
           extraRuntimeDependencies: [],

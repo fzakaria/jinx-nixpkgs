@@ -18,37 +18,37 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "kmonad",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "linj"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           kmonad: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             extraArgs: nix.thunk(() => ["--log-level=debug"]),
             keyboards: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               defaultKbd: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 device: "/dev/input/by-id/vm-default-kbd",
-                defcfg: nix.thunk(() => ({ __proto__: pos$2, enable: true, fallthrough: true })),
+                defcfg: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, fallthrough: true })),
                 config: "(defsrc :name default-src\n  1)\n(deflayer default-layer :source default-src\n  @T2)\n(defalias\n  T2 2)\n",
               })),
             })),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraRules: "ACTION==\"add\", KERNEL==\"event*\", SUBSYSTEM==\"input\", ATTRS{name}==\"QEMU Virtio Keyboard\", ATTRS{id/product}==\"0001\", ATTRS{id/vendor}==\"0627\", SYMLINK+=\"input/by-id/vm-default-kbd\"\n",
           })),
         })),

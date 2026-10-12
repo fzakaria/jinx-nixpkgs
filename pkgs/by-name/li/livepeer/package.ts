@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const gnutls = nix.arg($, "gnutls");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "livepeer",
       version: "0.8.10",
       proxyVendor: true,
       vendorHash: "sha256-Cn7GHNrFjGgzKPjSVGnoRE9Q2gd3Ji/ZrdVGB9v+0A8=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "livepeer",
           repo: "go-livepeer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [ffmpeg_livepeer, gnutls]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lm"]))),
       })),
       __darwinAllowLocalNetworking: true,
       postPatch: "rm -rf test/e2e # Require docker\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official Go implementation of the Livepeer protocol",
         homepage: "https://livepeer.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

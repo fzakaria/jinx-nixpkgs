@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "system_stats",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EnterpriseDB",
           repo: "system_stats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildFlags: nix.thunk(() => ["PG_CFLAGS=-Wno-error=vla"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Postgres extension for exposing system metrics such as CPU, memory and disk information",
         homepage: "https://github.com/EnterpriseDB/system_stats",
         changelog: nix.thunk(() => nix.str`https://github.com/EnterpriseDB/system_stats/releases/tag/v${nix.sel(finalAttrs, "version")}`),

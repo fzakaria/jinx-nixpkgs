@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const electron = nix.arg($, "electron");
   const version = "1.2.3";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openfortivpn-webview",
       version: version,
       src: nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gm-vm",
           repo: "openfortivpn-webview",
           rev: nix.thunk(() => nix.str`v${version}-electron`),
@@ -33,9 +33,9 @@ runHook postInstall
 `),
       npmDepsHash: "sha256-NKGu9jZMc+gd4BV1PnF4ukCNkjdUpZIJlYJ7ZzO+5WI=",
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Application to perform the SAML single sing-on and easily retrieve the SVPNCOOKIE needed by openfortivpn",
         homepage: "https://github.com/gm-vm/openfortivpn-webview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

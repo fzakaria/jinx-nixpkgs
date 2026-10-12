@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "socat";
       const version = "1.8.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.dest-unreach.org/socat/download/socat-${version}.tar.bz2`),
           hash: "sha256-JbxkdikrLmFCIJicd7C2/Kh7slJdl0ezGmY5sftgJBg=",
         }))));
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [which, net_tools]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             musl: nix.thunk(() => nix.sel(buildPackages, "pkgsMusl", "socat")),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utility for bidirectional data transfer between two independent data channels",
         homepage: "http://www.dest-unreach.org/socat/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "socat",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

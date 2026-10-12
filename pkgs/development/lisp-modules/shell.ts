@@ -12,11 +12,11 @@ export default nix.thunk(() => (() => {
   const mkShellNoCC = nix.thunk(() => nix.attr(pkgs, "mkShellNoCC"));
   const sbcl = nix.thunk(() => nix.attr(pkgs, "sbcl"));
   return nix.app(mkShellNoCC, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       packages: nix.thunk(() => [
         nix.thunk(() => nix.sel(fmt, "pkg")),
         nix.thunk(() => nix.app(nix.sel(sbcl, "withPackages"), (ps) => nix.builtins.attrValues(nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               alexandria: nix.thunk(() => nix.attr(ps, "alexandria")),
               str: nix.thunk(() => nix.attr(ps, "str")),
               dexador: nix.thunk(() => nix.attr(ps, "dexador")),

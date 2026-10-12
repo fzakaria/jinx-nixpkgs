@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const hwloc = nix.arg($, "hwloc");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tt-umd",
       version: "0.9.12",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenstorrent",
           repo: "tt-umd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lhcNZuCV8n3ebbUU1MveZXR49qaybmOiSTLpitG96/s=",
         })))),
       cpm: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake",
           hash: "sha256-yM3DLAOBZTjOInge1ylk3IZLKjSjENO3EEgSpcotg10=",
         })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CPM_USE_LOCAL_PACKAGES_ONLY", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CPM_LOCAL_PACKAGES_ONLY", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "umd_asio_SOURCE_DIR", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 owner: "chriskohlhoff",
                 repo: "asio",
                 tag: "asio-1-30-2",
@@ -91,7 +91,7 @@ EOF
       nativeCheckInputs: nix.thunk(() => [gtest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "User-Mode Driver for Tenstorrent hardware",
         homepage: "https://github.com/tenstorrent/tt-umd",
         maintainers: nix.thunk(() => (() => {

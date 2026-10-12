@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gex",
       version: "0.6.7",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Piturnah",
           repo: "gex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       buildInputs: nix.thunk(() => nix.concat([libgit2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [zlib])))),
-      env: nix.thunk(() => ({ __proto__: pos$3, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LIBGIT2_NO_VENDOR: 1n })),
       cargoHash: "sha256-FdxBYDgDxpZqqYzjX+lWP+uP2jUD3Y5Rzyx+JasAgIY=",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Git Explorer: cross-platform git workflow improvement tool inspired by Magit",
         homepage: "https://codeberg.org/Piturnah/gex",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/Piturnah/gex/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

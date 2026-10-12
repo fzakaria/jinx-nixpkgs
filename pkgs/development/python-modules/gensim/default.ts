@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testfixtures = nix.arg($, "testfixtures");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gensim",
       version: "4.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "piskvorky",
           repo: "gensim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_parallel"]),
       preCheck: nix.thunk(() => nix.add("export GENSIM_DATA_DIR=\"$NIX_BUILD_TOP/gensim-data\"\nmkdir -p \"$GENSIM_DATA_DIR\"\nexport SKIP_NETWORK_TESTS=1\n", "rm gensim/__init__.py\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Topic-modelling library",
         homepage: "https://radimrehurek.com/gensim/",
         downloadPage: "https://github.com/piskvorky/gensim",

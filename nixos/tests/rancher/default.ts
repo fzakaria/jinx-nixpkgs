@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const allPackages = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (package$) => (nix.asBool(!nix.eq(nix.builtins.match(nix.thunk(() => nix.str`^${rancherDistro}(_[[:digit:]]+)+$`), name), null)) && nix.asBool(nix.sel(nix.builtins.tryEval(package$), "success"))), pkgs));
   const allTests = nix.thunk(() => (() => {
     const mkTestArgs = (rancherPackage) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       rancherDistro: rancherDistro,
       rancherPackage: rancherPackage,
-      serviceName: nix.thunk(() => nix.sel({ __proto__: pos$1, k3s: "k3s", rke2: "rke2-server" }, nix.key(nix.force(rancherDistro)))),
+      serviceName: nix.thunk(() => nix.sel({ [nix.POS]: pos$1, k3s: "k3s", rke2: "rke2-server" }, nix.key(nix.force(rancherDistro)))),
       disabledComponents: nix.thunk(() => nix.sel({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         k3s: nix.thunk(() => ["coredns", "local-storage", "metrics-server", "servicelb", "traefik"]),
         rke2: nix.thunk(() => [
           "rke2-coredns",
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
         ]),
       }, nix.key(nix.force(rancherDistro)))),
       coreImages: nix.thunk(() => nix.sel({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         k3s: [],
         rke2: nix.thunk(() => nix.selOr({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "aarch64-linux": nix.thunk(() => [
             nix.thunk(() => nix.sel(rancherPackage, "images-core-linux-arm64-tar-zst")),
             nix.thunk(() => nix.sel(rancherPackage, "images-canal-linux-arm64-tar-zst")),
@@ -57,18 +57,18 @@ export default nix.lambda((args) => (() => {
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`RKE2: Unsupported system: ${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`)), nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system")))),
       }, nix.key(nix.force(rancherDistro)))),
       vmResources: nix.thunk(() => nix.sel({
-        __proto__: pos$7,
-        k3s: nix.thunk(() => ({ __proto__: pos$5, memorySize: 1536n, diskSize: 4096n })),
-        rke2: nix.thunk(() => ({ __proto__: pos$6, cores: 4n, memorySize: 4096n, diskSize: 8092n })),
+        [nix.POS]: pos$7,
+        k3s: nix.thunk(() => ({ [nix.POS]: pos$5, memorySize: 1536n, diskSize: 4096n })),
+        rke2: nix.thunk(() => ({ [nix.POS]: pos$6, cores: 4n, memorySize: 4096n, diskSize: 8092n })),
       }, nix.key(nix.force(rancherDistro)))),
     });
     const mkTests = (path) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (package$) => nix.app(runTest, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [path]),
-          _module: nix.thunk(() => ({ __proto__: pos$9, args: nix.thunk(() => nix.app(mkTestArgs, package$)) })),
+          _module: nix.thunk(() => ({ [nix.POS]: pos$9, args: nix.thunk(() => nix.app(mkTestArgs, package$)) })),
         }))), allPackages);
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       "auto-deploy": nix.thunk(() => nix.app(mkTests, nix.path(here, "./auto-deploy.nix"))),
       configuration: nix.thunk(() => nix.app(mkTests, nix.path(here, "./configuration.nix"))),
       etcd: nix.thunk(() => nix.app(mkTests, nix.path(here, "./etcd.nix"))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return nix.update(allTests, {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     all: nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (testType) => nix.app(nix.sel(lib, "mapAttrs'"), (package$) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${testType}-${package$}`))), allTests)),
   });
 })(), formals$1);

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const vorbis_tools = nix.arg($, "vorbis-tools");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flac2all",
       version: "5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-UGrkCQcpNzWH2hIRd1oTDryUeDumgHKuuxsbC87xaUI=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["flac2all_pkg.vorbis", "flac2all_pkg.mp3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi process, clustered, FLAC to multi codec audio converter with tagging support",
         mainProgram: "flac2all",
         homepage: "https://github.com/ZivaVatra/flac2all",

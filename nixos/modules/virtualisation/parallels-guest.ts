@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const prl_tools = nix.thunk(() => nix.sel(config, "hardware", "parallels", "package"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["hardware", "parallels", "autoMountShares"]), "Shares are always automatically mounted since Parallels Desktop 20.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         parallels: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "This enables Parallels Tools for Linux guests.\n",
@@ -56,21 +56,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "parallels", "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
-          udev: nix.thunk(() => ({ __proto__: pos$5, packages: nix.thunk(() => [prl_tools]) })),
-          timesyncd: nix.thunk(() => ({ __proto__: pos$6, enable: false })),
+          [nix.POS]: pos$7,
+          udev: nix.thunk(() => ({ [nix.POS]: pos$5, packages: nix.thunk(() => [prl_tools]) })),
+          timesyncd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$8, systemPackages: nix.thunk(() => [prl_tools]) })),
-        boot: nix.thunk(() => ({ __proto__: pos$9, extraModulePackages: nix.thunk(() => [prl_tools]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$8, systemPackages: nix.thunk(() => [prl_tools]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$9, extraModulePackages: nix.thunk(() => [prl_tools]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
-          tmpfiles: nix.thunk(() => ({ __proto__: pos$10, rules: nix.thunk(() => ["d /mnt/psf 0755 root root - -"]) })),
+          [nix.POS]: pos$20,
+          tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$10, rules: nix.thunk(() => ["d /mnt/psf 0755 root root - -"]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             prltoolsd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Parallels Tools Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [
@@ -79,36 +79,36 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "gnused")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${prl_tools}/bin/prltoolsd -f`),
                 PIDFile: "/var/run/prltoolsd.pid",
                 WorkingDirectory: nix.thunk(() => nix.str`${prl_tools}/bin`),
               })),
             })),
             prlshprint: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Parallels Printing Tool",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               bindsTo: nix.thunk(() => ["cups.service"]),
               path: nix.thunk(() => [prl_tools]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${prl_tools}/bin/prlshprint`),
                 WorkingDirectory: nix.thunk(() => nix.str`${prl_tools}/bin`),
               })),
             })),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               prlcc: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Parallels Control Center",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 path: nix.thunk(() => [prl_tools]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   ExecStart: nix.thunk(() => nix.str`${prl_tools}/bin/prlcc`),
                   WorkingDirectory: nix.thunk(() => nix.str`${prl_tools}/bin`),
                 })),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "codgician"))];

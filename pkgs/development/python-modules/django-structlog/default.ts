@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const redisTestHook = nix.arg($, "redisTestHook");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-structlog",
       version: "10.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrobichaud",
           repo: "django-structlog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [asgiref, django, structlog, django_ipware]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         celery: nix.thunk(() => [celery]),
         commands: nix.thunk(() => [django_extensions]),
       })),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Structured Logging for Django",
         homepage: "https://github.com/jrobichaud/django-structlog",
         changelog: nix.thunk(() => nix.str`https://github.com/jrobichaud/django-structlog/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "laf",
           repo: "russound",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["russound"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for select Russound RNET commands to provide Russound support within home-assistant.io",
         homepage: "https://github.com/laf/russound",
         changelog: nix.thunk(() => nix.str`https://github.com/laf/russound/releases/tag/${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

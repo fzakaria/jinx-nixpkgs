@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1.3",
       pname: "plujain-ramp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Houston4444",
           repo: "plujain-ramp",
           rev: "1bc1fed211e140c7330d6035122234afe78e5257",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lv2]),
       installFlags: nix.thunk(() => ["INSTALL_PATH=$(out)/lib/lv2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mono rhythmic tremolo LV2 Audio Plugin",
         homepage: "https://github.com/Houston4444/plujain-ramp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

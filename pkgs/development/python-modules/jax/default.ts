@@ -45,27 +45,27 @@ export default nix.lambda((args) => (() => {
   const jaxlib_bin = nix.arg($, "jaxlib-bin");
   const usingMKL = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(blas, "implementation"), "mkl")) || nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "mkl"))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "jax",
       version: "0.11.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "jax",
           tag: nix.thunk(() => nix.str`jax-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lBfsbEa5Z6GmGVSgdDKoMF0R1TuU+e05QYP96qPNnxQ=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ __proto__: pos$2, JAX_RELEASE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, JAX_RELEASE: "1" })),
       dependencies: nix.thunk(() => nix.concat([jaxlib, ml_dtypes, numpy, opt_einsum, scipy], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "cuda"))))),
       "optional-dependencies": nix.thunk(() => (() => {
         const cudaMajorVersion = nix.thunk(() => nix.attr(cudaPackages, "cudaMajorVersion"));
         const cuda12 = nix.thunk(() => [jax_cuda12_plugin]);
         const cuda13 = nix.thunk(() => [jax_cuda13_plugin]);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cuda: nix.thunk(() => (nix.asBool(nix.eq(cudaMajorVersion, "12")) ? nix.force(cuda12) : (nix.asBool(nix.eq(cudaMajorVersion, "13")) ? nix.force(cuda13) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported cudaPackages version (${cudaMajorVersion}). Supported versions are 12 and 13.`))))),
           cuda12: cuda12,
           cuda12_local: cuda12,
@@ -95,18 +95,18 @@ export default nix.lambda((args) => (() => {
         ]))))),
       pythonImportsCheck: nix.thunk(() => ["jax"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           test_cuda_jaxlibBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cuda.nix"), nix.thunk(() => ({
-              __proto__: pos$5,
-              jax: nix.thunk(() => nix.app(nix.sel(jax, "override"), nix.thunk(() => ({ __proto__: pos$4, jaxlib: jaxlib_bin })))),
+              [nix.POS]: pos$5,
+              jax: nix.thunk(() => nix.app(nix.sel(jax, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, jaxlib: jaxlib_bin })))),
             })))),
           skipBulkUpdate: true,
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Source-built JAX frontend: differentiate, compile, and transform Numpy code",
         homepage: "https://github.com/jax-ml/jax",
         changelog: "https://docs.jax.dev/en/latest/changelog.html",

@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "qemu-vm-shared-directories",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fricklerhandwerk"))];
@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     })),
     nodes: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((policy) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: policy,
           value: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               sharedDirectories: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 test: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   source: nix.thunk(() => nix.str`/tmp/${policy}`),
                   target: "/mnt/test",
                   cache: policy,

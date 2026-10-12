@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["excludePackages"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         const postPatch = nix.argOr($_1, "postPatch", () => "");
         const excludePackages = nix.argOr($_1, "excludePackages", () => []);
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           strictDeps: true,
           __structuredAttrs: true,
           pname: nix.thunk(() => nix.str`${pname}-lake-deps`),

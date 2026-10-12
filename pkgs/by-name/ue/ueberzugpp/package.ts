@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ueberzugpp",
       version: "2.9.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jstkdng",
           repo: "ueberzugpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_X11", enableX11)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Drop in replacement for ueberzug written in C++",
         homepage: "https://github.com/jstkdng/ueberzugpp",
         changelog: nix.thunk(() => nix.str`https://github.com/jstkdng/ueberzugpp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

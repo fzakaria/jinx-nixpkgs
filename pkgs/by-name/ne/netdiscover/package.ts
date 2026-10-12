@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libnet = nix.arg($, "libnet");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "netdiscover",
       version: "0.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netdiscover-scanner",
           repo: "netdiscover",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libpcap, libnet]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network address discovering tool, developed mainly for those wireless networks without dhcp server, it also works on hub/switched networks",
         homepage: "https://github.com/netdiscover-scanner/netdiscover",
         changelog: nix.thunk(() => nix.str`https://github.com/netdiscover-scanner/netdiscover/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "14.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0g690bk789hsry34y4ahvly5c8w8imca90ss4njfqf7m2qicrlmy",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./0001-Add-rudimentary-support-for-modules-property.patch")]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible Python 2/3 Kconfig implementation and library",
         homepage: "https://github.com/ulfalizer/Kconfiglib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "teto"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, patches, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, patches, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

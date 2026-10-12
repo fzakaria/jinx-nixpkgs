@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "newtonwars",
       version: "0-unstable-2023-04-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Draradech",
           repo: "NewtonWars",
           rev: "a32ea49f8f1d2bdb8983c28d24735696ac987617",
@@ -41,7 +41,7 @@ wrapProgram $out/bin/nw \\
   --prefix LD_LIBRARY_PATH ":" ${libGL}/lib
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Space battle game with gravity as the main theme",
         homepage: "https://github.com/Draradech/NewtonWars",
         mainProgram: "nw",

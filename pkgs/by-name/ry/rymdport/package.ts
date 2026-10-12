@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rymdport",
       version: "3.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jacalz",
           repo: "rymdport",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for res in $(ls internal/assets/icons | sed -e 's/icon-//g' -e 's/.png//g'); do\n  install -Dm444 internal/assets/icons/icon-$res.png \\\n    $out/share/icons/hicolor/${res}x${res}/apps/io.github.jacalz.rymdport.png\ndone\ninstall -Dm444 internal/assets/svg/icon.svg $out/share/icons/hicolor/scalable/apps/io.github.jacalz.rymdport.svg\ninstall -Dm444 internal/assets/unix/io.github.jacalz.rymdport.desktop -t $out/share/applications\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy encrypted file, folder, and text sharing between devices",
         homepage: "https://github.com/Jacalz/rymdport",
         changelog: nix.thunk(() => nix.str`https://github.com/Jacalz/rymdport/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

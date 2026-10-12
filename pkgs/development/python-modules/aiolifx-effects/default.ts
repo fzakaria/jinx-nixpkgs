@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "aiolifx_effects",
           hash: "sha256-Mhxs5PNr2W9ych56WYUZTEGck4HVTQfkil3S3zHv6Qc=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["aiolifx_effects"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/amelchio/aiolifx_effects/releases/tag/v${version}`),
         description: "Light effects (pulse, colorloop ...) for LIFX lights running on aiolifx",
         homepage: "https://github.com/amelchio/aiolifx_effects",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

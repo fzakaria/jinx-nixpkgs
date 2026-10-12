@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const llama_swap = nix.arg($, "llama-swap");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${nix.sel(llama_swap, "pname")}-ui`),
       version: nix.thunk(() => nix.attr(llama_swap, "version")),
       src: nix.thunk(() => nix.attr(llama_swap, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ui-svelte`),
       postInstall: "rm -rf $out/lib\n",
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(llama_swap, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`${nix.sel(llama_swap, "meta", "description")} - UI`),
       })),
     }));

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rich = nix.arg($, "rich");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tensile",
       version: "7.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./tensile-solutionstructs-perf-fix.diff"),
         nix.path(here, "./tensile-create-library-dont-copy-twice.diff"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             hash: "sha256-ZHXNYSeLkhhNDaIfdqQm68Pxmh1shUL7mAVmh8/I6Xk=",
             url: "https://github.com/GZGavinZhao/rocm-libraries/commit/1f7135dfc0cdb175c8f0e5eb71b2d24699942873.patch",
             relative: "shared/tensile",
@@ -58,17 +58,17 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, filelock, clr]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         dontCheckPythonMetadata: true,
         ROCM_PATH: nix.thunk(() => nix.str`${clr}`),
       })),
       pythonImportsCheck: nix.thunk(() => ["Tensile"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$4, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$4, finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GEMMs and tensor contractions",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/shared/tensile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

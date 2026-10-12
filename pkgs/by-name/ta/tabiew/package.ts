@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tabiew",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shshemi",
           repo: "tabiew",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Hi36D/cmTLr2c4rMwggz/5bGhc7nI1I+YJPAj8XSOXE=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "installManPage target/manual/tabiew.1\n\ninstallShellCompletion \\\n  --bash target/completion/tw.bash \\\n  --zsh target/completion/_tw \\\n  --fish target/completion/tw.fish\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight, terminal-based application to view and query delimiter separated value formatted documents, such as CSV and TSV files",
         homepage: "https://github.com/shshemi/tabiew",
         changelog: nix.thunk(() => nix.str`https://github.com/shshemi/tabiew/releases/tag/v${nix.sel(finalAttrs, "version")}`),

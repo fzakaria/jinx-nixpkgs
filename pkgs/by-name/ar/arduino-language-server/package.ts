@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arduino-language-server",
       version: "0.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arduino",
           repo: "arduino-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/arduino/arduino-language-server/version.commit=unknown",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-extldflags '-static'"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Arduino Language Server based on Clangd to Arduino code autocompletion",
         mainProgram: "arduino-language-server",
         homepage: "https://github.com/arduino/arduino-language-server",

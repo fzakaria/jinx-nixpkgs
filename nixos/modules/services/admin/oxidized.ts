@@ -39,41 +39,41 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "oxidized"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         oxidized: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the oxidized configuration backup service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "oxidized", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "oxidized",
               description: "User under which the oxidized service runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "oxidized",
               description: "Group under which the oxidized service runs.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/oxidized",
               description: "State directory for the oxidized service.",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"oxidized-config.yml\" ''\n  ---\n  debug: true\n  use_syslog: true\n  input:\n    default: ssh\n    ssh:\n      secure: true\n  interval: 3600\n  model_map:\n    dell: powerconnect\n    hp: procurve\n  source:\n    default: csv\n    csv:\n      delimiter: !ruby/regexp /:/\n      file: \"/var/lib/oxidized/.config/oxidized/router.db\"\n      map:\n        name: 0\n        model: 1\n        username: 2\n        password: 3\n  pid: \"/var/lib/oxidized/.config/oxidized/pid\"\n  rest: 127.0.0.1:8888\n  retries: 3\n  # ... additional config\n'';\n")),
               description: "Path to the oxidized configuration file.\n",
             })))),
           routerDB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"oxidized-router.db\" ''\n  hostname-sw1:powerconnect:username1:password2\n  hostname-sw2:procurve:username2:password2\n  # ... additional hosts\n''\n")),
@@ -83,13 +83,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Oxidized service user",
               group: nix.thunk(() => nix.sel(cfg, "group")),
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -99,34 +99,34 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             settings: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "10-oxidized": nix.thunk(() => nix.update(nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   d: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/.config`, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   d: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "dataDir")}/.config/oxidized`, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   d: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -134,9 +134,9 @@ export default nix.lambda((args) => (() => {
                 }))],
               ]), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "dataDir")}/.config/oxidized/config`, nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     "L+": nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       argument: nix.thunk(() => nix.str`${nix.sel(cfg, "configFile")}`),
                       user: nix.thunk(() => nix.sel(cfg, "user")),
                       group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -144,9 +144,9 @@ export default nix.lambda((args) => (() => {
                   }))],
                 ]))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "routerDB"), null)), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "dataDir")}/.config/oxidized/router.db`, nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     "L+": nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       argument: nix.thunk(() => nix.str`${nix.sel(cfg, "routerDB")}`),
                       user: nix.thunk(() => nix.sel(cfg, "user")),
                       group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -156,13 +156,13 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             oxidized: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),

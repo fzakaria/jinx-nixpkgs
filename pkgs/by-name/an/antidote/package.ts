@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.3.0",
       pname: "antidote",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattmc3",
           repo: "antidote",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\ninstall -D antidote --target-directory=$out/share/antidote\ninstall -D antidote.zsh --target-directory=$out/share/antidote\ninstall -D functions/* --target-directory=$out/share/antidote/functions\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zsh plugin manager made from the ground up thinking about performance",
         homepage: "https://getantidote.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -34,32 +34,32 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "azureImage"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.path(here, "./azure-common.nix"),
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["virtualisation", "azureImage", "diskSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         azureImage: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           bootSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 256n,
               description: "ESP partition size. Unit is MB.\nOnly effective when vmGeneration is `v2`.\n",
             })))),
           contents: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "attrs")));
@@ -68,13 +68,13 @@ export default nix.lambda((args) => (() => {
               description: "Extra contents to add to the image.\n",
             })))),
           label: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nixos",
               description: "NixOS partition label.\n",
             })))),
           vmGeneration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["v1", "v2"]));
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
               description: "VM Generation to use.\nFor v2, secure boot needs to be turned off during creation.\n",
             })))),
           additionalSpace: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "512M",
               example: "2048M",
@@ -93,19 +93,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$21,
-      image: nix.thunk(() => ({ __proto__: pos$10, extension: "vhd" })),
+      [nix.POS]: pos$21,
+      image: nix.thunk(() => ({ [nix.POS]: pos$10, extension: "vhd" })),
       system: nix.thunk(() => ({
-        __proto__: pos$14,
-        nixos: nix.thunk(() => ({ __proto__: pos$11, tags: nix.thunk(() => ["azure"]) })),
+        [nix.POS]: pos$14,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$11, tags: nix.thunk(() => ["azure"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           image: nix.thunk(() => nix.sel(config, "system", "build", "azureImage")),
           azureImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../lib/make-disk-image.nix"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "image"));
               const from_1 = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               name: "azure-image",
               baseName: nix.thunk(() => nix.attr(from, "baseName")),
               format: "raw",
@@ -128,10 +128,10 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "cloud-utils"))
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         growPartition: true,
         loader: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           grub: nix.thunk(() => (() => {
             const efiSupport = nix.thunk(() => nix.eq(nix.sel(cfg, "vmGeneration"), "v2"));
             const device = nix.thunk(() => (nix.asBool(efiSupport) ? "nodev" : "/dev/sda"));
@@ -140,7 +140,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "cloud-utils"))
             const splashImage = null;
             const extraConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(efiSupport)), "serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1\nterminal_input --append serial\nterminal_output --append serial\n"));
             return {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               efiSupport,
               device,
               efiInstallAsRemovable,
@@ -152,15 +152,15 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "cloud-utils"))
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "/": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           device: nix.thunk(() => nix.str`/dev/disk/by-label/${nix.sel(cfg, "label")}`),
           label: nix.thunk(() => nix.attr(cfg, "label")),
           fsType: "ext4",
           autoResize: true,
         })),
-        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "vmGeneration"), "v2")), nix.thunk(() => ({ __proto__: pos$19, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "vmGeneration"), "v2")), nix.thunk(() => ({ [nix.POS]: pos$19, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
       })),
     })),
   };

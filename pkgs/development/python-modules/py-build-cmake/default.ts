@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-build-cmake",
       version: "0.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tttapa",
           repo: "py-build-cmake",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ substituteInPlace src/py_build_cmake/commands/try_run.py \\
       nativeCheckInputs: nix.thunk(() => [jinja2, nox, pytestCheckHook, versionCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["py_build_cmake"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PEP 517 build backend for Python packages with extensions built with CMake",
         homepage: "https://github.com/tttapa/py-build-cmake",
         mainProgram: "py-build-cmake",

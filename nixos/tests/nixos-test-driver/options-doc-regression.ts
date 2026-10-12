@@ -21,31 +21,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const evalConfig = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib/eval-config.nix")));
   const nixos = nix.thunk(() => nix.app(evalConfig, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       system: null,
       modules: nix.thunk(() => [
         nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib = nix.arg($_1, "lib");
           return {
-            __proto__: pos$9,
-            system: nix.thunk(() => ({ __proto__: pos$1, stateVersion: "25.05" })),
+            [nix.POS]: pos$9,
+            system: nix.thunk(() => ({ [nix.POS]: pos$1, stateVersion: "25.05" })),
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$3,
-              "/": nix.thunk(() => ({ __proto__: pos$2, device: "/dev/null", fsType: "none" })),
+              [nix.POS]: pos$3,
+              "/": nix.thunk(() => ({ [nix.POS]: pos$2, device: "/dev/null", fsType: "none" })),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               loader: nix.thunk(() => ({
-                __proto__: pos$5,
-                grub: nix.thunk(() => ({ __proto__: pos$4, device: "nodev" })),
+                [nix.POS]: pos$5,
+                grub: nix.thunk(() => ({ [nix.POS]: pos$4, device: "nodev" })),
               })),
             })),
             nixpkgs: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               hostPlatform: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
               config: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, (_) => ({}))),
               })),
             })),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(pkgs, "runCommand"), "nixos-test-driver-options-doc-regression", nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       toplevel: nix.thunk(() => nix.sel(nixos, "config", "system", "build", "toplevel", "drvPath")),
     })), "echo \"$toplevel\" > $out\n");
 })(), formals$1);

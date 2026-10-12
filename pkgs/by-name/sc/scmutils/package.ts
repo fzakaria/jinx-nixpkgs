@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mitschemeX11 = nix.arg($, "mitschemeX11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scmutils",
       version: "20230902",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://groups.csail.mit.edu/mac/users/gjs/6946/mechanics-system-installation/native-code/scmutils-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9/shOxoKwJ4uDTHmvXqhemgy3W+GUCmoqFm5e1t3W0M=",
         })))),
@@ -44,7 +44,7 @@ ln -r -s "$out/bin/edwin-scmutils" "$out/bin/mechanics"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scheme library for mathematical physics",
         longDescription: "Scmutils system is an integrated library of procedures,\nembedded in the programming language Scheme, and intended\nto support teaching and research in mathematical physics\nand electrical engineering.\n",
         homepage: "https://groups.csail.mit.edu/mac/users/gjs/6.5160/installation.html",

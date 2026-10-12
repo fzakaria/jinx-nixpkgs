@@ -41,7 +41,7 @@ fi
 sed -i 's/\\b${backend}\\b/# ${backend} disabled by nixos config/' $out/etc/sane.d/dll.conf
 `;
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "sane-config",
         dontUnpack: true,
         installPhase: nix.thunk(() => nix.add(nix.add("function symlink () {\n  local target=$1 linkname=$2\n  if [ -e \"$linkname\" ]; then\n    echo \"warning: conflict for $linkname. Overriding $(readlink $linkname) with $target.\"\n  fi\n  ln -sfn \"$target\" \"$linkname\"\n}\n\nmkdir -p $out/etc/sane.d $out/etc/sane.d/dll.d $out/lib/sane\n", nix.app(nix.sel(lib, "concatMapStrings"), installSanePath, paths)), nix.app(nix.sel(lib, "concatMapStrings"), disableBackend, disabledDefaultBackends))),

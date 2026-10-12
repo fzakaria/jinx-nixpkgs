@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   const ppx_sexp_value = nix.argOr($, "ppx_sexp_value", () => null);
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ppx_bap",
       version: "0.14",
       minimalOCamlVersion: "4.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BinaryAnalysisPlatform",
           repo: "ppx_bap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "1c6rcdp8bicdiwqc2mb59cl9l2vxlp3y8hmnr9x924fq7acly248",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/BinaryAnalysisPlatform/ppx_bap/commit/7f197648978758fbcbf553da50d7a9248d34f7e4.patch",
           hash: "sha256-oOdcA06mb0W5jDhF4nutEijy6yu/6kMjKOUcNxUSk6k=",
         })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of ppx rewriters for BAP",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "kmscon",
       version: "10.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kmscon",
           repo: "kmscon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,14 +90,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/kmscon/kmscon/commit/153db63d679df719a99dd36505f9c2f55d9c59f6.patch?full_index=1",
             hash: "sha256-aAH+drUZnj1wrKcdsphqacmqRRnZAKEwCNLwA2vSTmg=",
           })))),
       ]),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "libseat", true))]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
         DESTDIR: "/",
       })),
@@ -106,12 +106,12 @@ export default nix.lambda((args) => (() => {
   --replace-fail "inotifywait" "${nix.app(nix.sel(lib, "getExe'"), inotify_tools, "inotifywait")}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$4, kmscon: nix.thunk(() => nix.sel(nixosTests, "kmscon")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, kmscon: nix.thunk(() => nix.sel(nixosTests, "kmscon")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "KMS/DRM based System Console",
         mainProgram: "kmscon",
         homepage: "https://www.freedesktop.org/wiki/Software/kmscon/",

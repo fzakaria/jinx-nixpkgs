@@ -48,73 +48,73 @@ cp ${unvalidated_conf} $out
 `)) : nix.force(unvalidated_conf)));
   const package$ = nix.thunk(() => (nix.asBool(nix.sel(cfg, "buildMinimalPackage")) ? nix.force(minimalPackage) : nix.sel(cfg, "package")));
   const minimalPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enabledPlugins: nix.thunk(() => nix.concat(["syslog"], nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "plugins"))))),
     }))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         collectd: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "collectd agent")),
             validateConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: true,
                 description: "Validate the syntax of collectd configuration file at build time.\nDisable this if you use the Include directive on files unavailable in\nthe build sandbox, or when cross-compiling.\n",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               })))),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "collectd", nix.thunk(() => ({})))),
             finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 readOnly: true,
                 default: minimalPackage,
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.collectd.buildMinimalPackage then\n  cfg.package.override {\n    enabledPlugins = [ \"syslog\" ] ++ builtins.attrNames cfg.plugins;\n  }\nelse\n  cfg.package\n")),
                 description: "The final package being used after applying plugins and minimalPackage.",
               })))),
             buildMinimalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: false,
                 description: "Build a minimal collectd package with only the configured `services.collectd.plugins`\n",
                 type: nix.thunk(() => nix.lookup(w, "bool")),
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: "collectd",
                 description: "User under which to run collectd.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: "/var/lib/collectd",
                 description: "Data directory for collectd agent.\n",
                 type: nix.thunk(() => nix.lookup(w, "path")),
               })))),
             autoLoadPlugin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: false,
                 description: "Enable plugin autoloading.\n",
                 type: nix.thunk(() => nix.lookup(w, "bool")),
               })))),
             include: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: [],
                 description: "Additional paths to load config from.\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$9, cpu: "", memory: "", network: "Server 192.168.1.1 25826" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$9, cpu: "", memory: "", network: "Server 192.168.1.1 25826" })),
                 description: "Attribute set of plugin names to plugin config segments\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "lines")))),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: "",
                 description: "Extra configuration for collectd. Use mkBefore to add lines before the\ndefault config, and mkAfter to add them below.\n",
                 type: nix.thunk(() => nix.lookup(w, "lines")),
@@ -124,11 +124,11 @@ cp ${unvalidated_conf} $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           collectd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOrder"), 1200n, nix.thunk(() => nix.str`${baseDirLine}
 AutoLoadPlugin ${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "autoLoadPlugin")))}
 Hostname "${nix.sel(config, "networking", "hostName")}"
@@ -151,22 +151,22 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.str`Include "${f}"
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' - ${nix.sel(cfg, "user")} - - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             collectd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Collectd Monitoring Agent",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.str`${package$}/sbin/collectd -C ${conf} -f`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Restart: "on-failure",
@@ -176,12 +176,12 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.str`Include "${f}"
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "collectd")), nix.thunk(() => ({
-              __proto__: pos$23,
-              collectd: nix.thunk(() => ({ __proto__: pos$22, isSystemUser: true, group: "collectd" })),
+              [nix.POS]: pos$23,
+              collectd: nix.thunk(() => ({ [nix.POS]: pos$22, isSystemUser: true, group: "collectd" })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "collectd")), nix.thunk(() => ({ __proto__: pos$24, collectd: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "collectd")), nix.thunk(() => ({ [nix.POS]: pos$24, collectd: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

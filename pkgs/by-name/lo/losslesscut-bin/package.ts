@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const pname = "losslesscut";
   const version = "3.69.0";
   const metaCommon = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Swiss army knife of lossless video/audio editing",
     homepage: "https://mifi.no/losslesscut/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   const x86_64_appimage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-appimage.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       makeWrapper: nix.thunk(() => nix.attr(buildPackages, "makeWrapper")),
     }))));
   const x86_64_dmg = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-dmg.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       isAarch64: false,
     }))));
   const aarch64_dmg = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-dmg.nix"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
@@ -60,23 +60,23 @@ export default nix.lambda((args) => (() => {
       isAarch64: true,
     }))));
   const x86_64_windows = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-windows.nix"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       hash: "sha256-uvcQZXaZnhRg+RgFTjrUrjipVGmJLMahqXtBMfAoGOQ=",
     }))));
   return nix.app(nix.sel((nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? nix.force(aarch64_dmg) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(x86_64_dmg) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")) ? nix.force(x86_64_windows) : nix.force(x86_64_appimage)))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "x86_64-appimage": x86_64_appimage,
         "x86_64-dmg": x86_64_dmg,
         "aarch64-dmg": aarch64_dmg,
         "x86_64-windows": x86_64_windows,
       })),
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(x86_64_appimage, "meta", "platforms"), nix.concat(nix.sel(x86_64_dmg, "meta", "platforms"), nix.concat(nix.sel(aarch64_dmg, "meta", "platforms"), nix.sel(x86_64_windows, "meta", "platforms"))))))),
       })),
     }));

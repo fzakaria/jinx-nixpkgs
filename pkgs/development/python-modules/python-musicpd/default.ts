@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_musicpd",
           version: version,
           hash: "sha256-RFYIVDTy492sfp68sjO0MFKcHI9Gxt25Ixdu8iiOlTo=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MPD (Music Player Daemon) client library written in pure Python",
         homepage: "https://gitlab.com/kaliko/python-musicpd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

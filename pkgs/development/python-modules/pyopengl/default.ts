@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyopengl",
       version: "3.1.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mcfletch",
           repo: "pyopengl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "passthru", "runtimeLibs"), [])), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ld-preload-gl.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               GL_LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeLibs")))),
             })))),
         ]))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => nix.concat(["OpenGL", "OpenGL.GL", "OpenGL.GLE", "OpenGL.GLU"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["OpenGL.EGL", "OpenGL.GLES1", "OpenGL.GLES2", "OpenGL.GLES3", "OpenGL.GLX"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         runtimeLibs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
             "/run/opengl-driver/lib",
             nix.thunk(() => nix.sel(pkgs, "libglvnd")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://mcfletch.github.io/pyopengl/",
         description: "PyOpenGL, the Python OpenGL bindings",
         longDescription: "PyOpenGL is the cross platform Python binding to OpenGL and related APIs.\n",

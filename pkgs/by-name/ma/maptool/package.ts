@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const version = "1.18.6";
   const repoBase = "https://github.com/RPTools/maptool";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`${repoBase}/releases/download/${version}/maptool-${version}-x86_64.pkg.tar.zst`),
       hash: "sha256-QSJjXgzjoKIwTvIx6iWCHjleJTAAI7qnbcxZb8sygxY=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Virtual Tabletop for playing roleplaying games with remote players or face to face",
     mainProgram: "maptool",
     homepage: "https://www.rptools.net/toolbox/maptool/",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
   const binName = pname;
   const rdnsName = "net.rptools.maptool";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, libarchive, wrapGAppsHook3]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: rdnsName,
             desktopName: "MapTool",
             icon: rdnsName,
@@ -122,9 +122,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} "$dest"/${binName} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`${repoBase}.git`),
             ignoredVersions: "-",
           })))),

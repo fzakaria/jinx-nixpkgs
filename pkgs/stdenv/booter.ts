@@ -27,15 +27,15 @@ export default nix.lambda((args) => (() => {
       const cur = nix.thunk(() => nix.app(go, lapp, 0n));
       return nix.force(cur);
     })();
-    const withAllowCustomOverrides = nix.thunk(() => nix.app(nix.sel(lib, "lists", "imap1"), (index) => (stageFun) => (prevStage) => nix.update({ __proto__: pos$1, allowCustomOverrides: nix.thunk(() => nix.eq(index, 1n)) }, nix.app(stageFun, prevStage)), nix.thunk(() => nix.app(nix.sel(lib, "lists", "reverseList"), stageFuns))));
+    const withAllowCustomOverrides = nix.thunk(() => nix.app(nix.sel(lib, "lists", "imap1"), (index) => (stageFun) => (prevStage) => nix.update({ [nix.POS]: pos$1, allowCustomOverrides: nix.thunk(() => nix.eq(index, 1n)) }, nix.app(stageFun, prevStage)), nix.thunk(() => nix.app(nix.sel(lib, "lists", "reverseList"), stageFuns))));
     const folder = (nextStage) => (stageFun) => (prevStage) => (() => {
       const args_1 = nix.thunk(() => nix.app(stageFun, prevStage));
       const args$ = nix.thunk(() => nix.update(args_1, {
-        __proto__: pos$3,
-        stdenv: nix.thunk(() => nix.update(nix.sel(args_1, "stdenv"), { __proto__: pos$2, __bootPackages: prevStage, __hatPackages: nextStage })),
+        [nix.POS]: pos$3,
+        stdenv: nix.thunk(() => nix.update(nix.sel(args_1, "stdenv"), { [nix.POS]: pos$2, __bootPackages: prevStage, __hatPackages: nextStage })),
       }));
       const thisStage = nix.thunk(() => (nix.asBool(nix.selOr(args_1, () => false, "__raw")) ? nix.force(args$) : nix.app(allPackages, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args$, nix.thunk(() => ["selfBuild"])), {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           adjacentPackages: nix.thunk(() => (nix.asBool(nix.selOr(args_1, () => true, "selfBuild")) ? null : (() => {
             const pkgsBuildBuild = nix.thunk(() => nix.sel(prevStage, "buildPackages"));
             const pkgsBuildHost = prevStage;
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
             })()));
             const pkgsTargetTarget = nextStage;
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pkgsBuildBuild,
               pkgsBuildHost,
               pkgsBuildTarget,
@@ -61,10 +61,10 @@ export default nix.lambda((args) => (() => {
       return nix.force(thisStage);
     })();
     const postStage = (buildPackages) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       __raw: true,
       stdenv: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         cc: nix.thunk(() => (nix.asBool(nix.sel(buildPackages, "stdenv", "hasCC")) ? (nix.asBool(nix.selOr(buildPackages, () => false, "stdenv", "cc", "isClang")) ? nix.sel(buildPackages, "pkgsBuildTarget", "llvmPackages", "libcxxClang") : nix.sel(buildPackages, "gcc")) : nix.sel(buildPackages, "stdenv", "cc"))),
       })),
     });

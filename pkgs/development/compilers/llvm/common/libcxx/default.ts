@@ -78,12 +78,12 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "UNIX", true)),
     ])), nix.concat(cxxCMakeFlags, nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(cxxabi, null)), cxxabiCMakeFlags), devExtraCmakeFlags)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libcxx",
       version: version,
       cmakeFlags: cmakeFlags,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`libcxx-src-${version}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -107,10 +107,10 @@ cp -r ${monorepoSrc}/third-party "$out"
 lndir ${nix.app(nix.sel(lib, "getLib"), cxxabi)}/lib $out/lib
 libcxxabi=$out/lib/lib${nix.sel(cxxabi, "libName")}.a
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(cxxabi, null)), "libcxxabi=${libcxxabi-$out/lib/libc++abi.a}\nif [[ -f $out/lib/libc++.a && -e $libcxxabi ]]; then\n  $AR -M <<MRI\n    create $out/lib/libc++.a\n    addlib $out/lib/libc++.a\n    addlib $libcxxabi\n    save\n    end\nMRI\n  $AR -M <<MRI\n    create $out/lib/libc++.a\n    addlib $out/lib/libc++.a\n    save\n    end\nMRI\nfi\n"))),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, isLLVM: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, isLLVM: true })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://libcxx.llvm.org/",
         description: "C++ standard library",
         longDescription: "libc++ is an implementation of the C++ standard library, targeting C++11,\nC++14 and above.\n",

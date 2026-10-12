@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "exiv2",
       version: "0.28.9",
       outputs: nix.thunk(() => ["out", "lib", "dev", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exiv2",
           repo: "exiv2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-i686-lens-rounding.patch",
             url: "https://github.com/Exiv2/exiv2/commit/7d25da6045556c8b9a81632cffd1bd2e2a9d0977.patch",
             hash: "sha256-wA14qgkGIM7hvYRfv4+jPcMIbbr2oE9UvdaanVm4Sy0=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), "-D_FILE_OFFSET_BITS=64")),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, doxygen, gettext, graphviz, libxslt, removeReferencesTo]),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://exiv2.org",
         description: "Library and command-line utility to manage image metadata",
         mainProgram: "exiv2",

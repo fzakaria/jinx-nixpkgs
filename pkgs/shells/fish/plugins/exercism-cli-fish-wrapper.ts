@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "exercism-cli-fish-wrapper",
       version: "0-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glennj",
           repo: "exercism-cli-fish-wrapper",
           rev: "36cf30be3fa00a69382d00af514ff3222626394f",
           hash: "sha256-51mC2IOwSvH6QZpYNfpp2DofN69JRxDZjSXfzNM1Qm0=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fish wrapper for the Exercism CLI",
         homepage: "https://github.com/glennj/exercism-cli-fish-wrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

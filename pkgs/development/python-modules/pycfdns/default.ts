@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ludeeus",
           repo: "pycfdns",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pycfdns"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for updating Cloudflare DNS A records",
         homepage: "https://github.com/ludeeus/pycfdns",
         changelog: nix.thunk(() => nix.str`https://github.com/ludeeus/pycfdns/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

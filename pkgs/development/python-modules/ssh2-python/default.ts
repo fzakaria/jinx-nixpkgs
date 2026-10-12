@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0.post1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ParallelSSH",
           repo: "ssh2-python",
           tag: version,
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const nativeBuildInputs = nix.thunk(() => [cython]);
       const buildInputs = nix.thunk(() => [openssl, zlib, libssh2]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SYSTEM_LIBSSH2: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SYSTEM_LIBSSH2: true }));
       const pythonImportsCheck = nix.thunk(() => ["ssh2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for libssh2 C library",
         homepage: "https://github.com/ParallelSSH/ssh2-python",
         changelog: nix.thunk(() => nix.str`https://github.com/ParallelSSH/ssh2-python/blob/${nix.sel(src, "tag")}/Changelog.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

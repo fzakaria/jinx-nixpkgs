@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const iverilog = nix.arg($, "iverilog");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vhd2vl",
       version: "0-unstable-2026-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ldoolitt",
           repo: "vhd2vl",
           rev: "a6ed1b45ce88bf978f18e8f6fc419e853a6676b4",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "diff",
       installPhase: "runHook preInstall\ninstall -D -m755 src/vhd2vl $out/bin/vhd2vl\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VHDL to Verilog converter",
         mainProgram: "vhd2vl",
         homepage: "https://github.com/ldoolitt/vhd2vl",

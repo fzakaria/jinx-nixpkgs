@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const biosSupport$ = nix.thunk(() => (nix.asBool(biosSupport) && nix.asBool(hasX86)));
   const pxeSupport$ = nix.thunk(() => (nix.asBool(pxeSupport) && nix.asBool(hasX86)));
   const uefiFlags = (target) => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     aarch64: nix.thunk(() => ["--enable-uefi-aarch64"]),
     i686: nix.thunk(() => ["--enable-uefi-ia32"]),
     loongarch64: nix.thunk(() => ["--enable-uefi-loongarch64"]),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
     x86_64: nix.thunk(() => ["--enable-uefi-x86-64"]),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported target ${target}`)), nix.key(nix.force(target)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "limine",
       version: "12.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/Limine-Bootloader/Limine/releases/download/v${nix.sel(finalAttrs, "version")}/limine-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-soucn2FPQlLK55WA1su8CfTXZKVB7AHVhrXDheN3bJk=",
         })))),
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(enableAll) || nix.asBool(buildCDs))), nix.thunk(() => [mtools])), nix.app(nix.sel(lib, "optionals"), hasX86, nix.thunk(() => [nasm]))))),
       outputs: nix.thunk(() => ["out", "dev", "doc", "man"]),
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableAll, nix.thunk(() => ["--enable-all"])), nix.concat(nix.app(nix.sel(lib, "optionals"), biosSupport$, nix.thunk(() => ["--enable-bios"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(buildCDs) && nix.asBool(biosSupport$))), nix.thunk(() => ["--enable-bios-cd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildCDs, nix.thunk(() => ["--enable-uefi-cd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), pxeSupport$, nix.thunk(() => ["--enable-bios-pxe"])), nix.app(nix.sel(lib, "concatMap"), uefiFlags, nix.thunk(() => (nix.asBool(nix.eq(targets, [])) ? [nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))] : nix.force(targets)))))))))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "limine")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "limine")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://limine-bootloader.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Limine-Bootloader/Limine/raw/refs/tags/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "Limine Bootloader",

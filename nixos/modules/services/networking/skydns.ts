@@ -32,55 +32,55 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "skydns"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         skydns: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "skydns service")),
           etcd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             machines: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: nix.thunk(() => ["http://127.0.0.1:2379"]),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 description: "Skydns list of etcd endpoints to connect to.",
               })))),
             tlsKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 description: "Skydns path of TLS client certificate - private key.",
               })))),
             tlsPem: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 description: "Skydns path of TLS client certificate - public key.",
               })))),
             caCert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 description: "Skydns path of TLS certificate authority public key.",
               })))),
           })),
           address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "0.0.0.0:53",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Skydns address to bind to.",
             })))),
           domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "skydns.local.",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Skydns default domain if not specified by etcd config.",
             })))),
           nameservers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => nix.app(nix.builtins.map, (n) => nix.add(n, ":53"), nix.thunk(() => nix.sel(config, "networking", "nameservers")))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "map (n: n + \":53\") config.networking.nameservers")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "skydns", nix.thunk(() => ({})))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Skydns attribute set of extra config options passed as environment variables.",
@@ -98,18 +98,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             skydns: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "etcd.service"]),
               description: "Skydns Service",
               environment: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ETCD_MACHINES: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "etcd", "machines")))),
                 ETCD_TLSKEY: nix.thunk(() => nix.sel(cfg, "etcd", "tlsKey")),
                 ETCD_TLSPEM: nix.thunk(() => nix.sel(cfg, "etcd", "tlsPem")),
@@ -119,14 +119,14 @@ export default nix.lambda((args) => (() => {
                 SKYDNS_NAMESERVERS: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "nameservers")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/skydns`),
               })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

@@ -37,51 +37,51 @@ export default nix.lambda((args) => (() => {
   const toString = nix.thunk(() => nix.attr(nix.builtins, "toString"));
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "wymoing", "openwakeword", "preLoadModels"]), "Passing a list of models to preload was removed in wyoming-openwakeword 2.0")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         wyoming: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           openwakeword: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(mkEnableOption, "Wyoming protocol server for openWakeWord wake word detection system")),
               package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wyoming-openwakeword", nix.thunk(() => ({})))),
               uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "^(tcp|unix)://.*$")),
                   default: "tcp://0.0.0.0:10400",
                   example: "tcp://192.0.2.1:5000",
                   description: "URI to bind the wyoming server to.\n",
                 })))),
               customModelsDirectories: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
                   default: [],
                   description: "Paths to directories with custom wake word models (*.tflite model files).\n",
                 })))),
               threshold: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "numbers"), "between"), 0.0, 1.0)),
                   default: 0.5,
                   description: "Activation threshold (0.0-1.0), where higher means fewer activations.\n\nSee trigger level for the relationship between activations and\nwake word detections.\n",
                   apply: toString,
                 })))),
               triggerLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "unsigned")),
                   default: 1n,
                   description: "Number of activations before a detection is registered.\n\nA higher trigger level means fewer detections.\n",
                   apply: toString,
                 })))),
               refractorySeconds: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "int")), nix.thunk(() => nix.lookup(w, "float")))),
                   default: 2n,
                   example: 1.5,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
                   apply: toString,
                 })))),
               extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: [],
                   description: "Extra arguments to pass to the server commandline.\n",
@@ -100,19 +100,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "wyoming-openwakeword": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Wyoming openWakeWord server",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 DynamicUser: true,
                 User: "wyoming-openwakeword",
                 ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([

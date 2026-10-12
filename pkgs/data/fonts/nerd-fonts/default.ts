@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
     const patchedName = nix.arg($_1, "patchedName");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.add("nerd-fonts-", nix.app(nix.sel(lib, "strings", "toLower"), caskName))),
         version: nix.thunk(() => nix.add(releaseVersion, nix.app(convertVersion, version))),
         src: nix.thunk(() => (() => {
           const filename = nix.thunk(() => nix.add(folderName, ".tar.xz"));
           const url = nix.thunk(() => nix.str`https://github.com/ryanoasis/nerd-fonts/releases/download/${nix.sel(releaseInfo, "tag_name")}/${filename}`);
           const sha256 = nix.thunk(() => nix.sel(checksums, nix.key(nix.force(filename))));
-          return nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, sha256: sha256 })));
+          return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 })));
         })()),
         sourceRoot: ".",
         nativeBuildInputs: nix.thunk(() => [installFonts]),
@@ -58,16 +58,16 @@ runHook postInstall
 `;
         })()),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           releaseVersion: releaseVersion,
           updateScript: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             command: nix.path(here, "./update.py"),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: nix.thunk(() => nix.add("Nerd Fonts: ", description)),
           license: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat((() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

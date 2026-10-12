@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ocaml_migrate_parsetree = nix.arg($, "ocaml-migrate-parsetree");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_tools_versioned",
       version: "5.4.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml-ppx",
           repo: "ppx_tools_versioned",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [ocaml_migrate_parsetree]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/let-def/ppx_tools_versioned",
         description: "Tools for authors of syntactic tools (such as ppx rewriters)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

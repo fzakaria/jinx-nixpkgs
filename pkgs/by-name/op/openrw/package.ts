@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0-unstable-2025-06-18",
       pname: "openrw",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rwengine",
           repo: "openrw",
           rev: "5c5f266b71aa55aeec8cb4d823f19e7c4348f3bd",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       buildInputs: nix.thunk(() => [SDL2, boost, bullet, ffmpeg_6, glm, libGL, libGLU, libmad, libx11, openal]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unofficial open source recreation of the classic Grand Theft Auto III game executable",
         homepage: "https://github.com/rwengine/openrw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const version = "9.43.1";
       const revision = "268";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/WkTBXwoX81rBe3s3OTt3EiiLKBx2QhuS_${revision}.snap`),
           hash: "sha512-9XYNlynJqbBL1Vvf3nvNQiHUyCDV9zVcQamOkwjw5i5d/ILlkoirchfG2x7gnpbA0bkd76S6hgIyRMdbEbLD7Q==",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           categories: nix.thunk(() => ["Network"]),
           comment: "The SSH client that works on Desktop and Mobile",
           desktopName: "Termius",
@@ -65,11 +65,11 @@ runHook postInstall
       const runtimeDependencies = nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), udev))]);
       const postFixup = "makeWrapper $out/opt/termius/termius-app $out/bin/termius-app \\\n  \"${gappsWrapperArgs[@]}\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-termius", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl jq\n\nset -eu -o pipefail\n\ndata=$(curl -H 'X-Ubuntu-Series: 16' \\\n'https://api.snapcraft.io/api/v1/snaps/details/termius-app?fields=download_sha512,revision,version')\n\nversion=$(jq -r .version <<<\"$data\")\n\nif [[ \"x$UPDATE_NIX_OLD_VERSION\" != \"x$version\" ]]; then\n\n    revision=$(jq -r .revision <<<\"$data\")\n    hash=$(nix --extra-experimental-features nix-command hash to-sri \"sha512:$(jq -r .download_sha512 <<<\"$data\")\")\n\n    update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\" \"$hash\"\n    update-source-version --ignore-same-hash --version-key=revision \"$UPDATE_NIX_ATTR_PATH\" \"$revision\" \"$hash\"\n\nfi\n")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform SSH client with cloud data sync and more",
         homepage: "https://termius.com/",
         downloadPage: "https://termius.com/linux/",
@@ -89,7 +89,7 @@ runHook postInstall
         mainProgram: "termius-app",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         revision,

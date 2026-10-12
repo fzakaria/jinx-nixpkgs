@@ -33,41 +33,41 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "unit"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "unit.json", nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         unit: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Unit App Server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "unit", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "unit",
               description: "User account under which unit runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "unit",
               description: "Group account under which unit runs.",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/spool/unit",
               description: "Unit data directory.",
             })))),
           logDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/log/unit",
               description: "Unit log directory.",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "{\n  \"listeners\": {},\n  \"applications\": {}\n}\n",
               example: "{\n  \"listeners\": {\n    \"*:8300\": {\n      \"application\": \"example-php-72\"\n    }\n  },\n  \"applications\": {\n    \"example-php-72\": {\n      \"type\": \"php 7.2\",\n      \"processes\": 4,\n      \"user\": \"nginx\",\n      \"group\": \"nginx\",\n      \"root\": \"/var/www\",\n      \"index\": \"index.php\",\n      \"options\": {\n        \"file\": \"/etc/php.d/default.ini\",\n        \"admin\": {\n          \"max_execution_time\": \"30\",\n          \"max_input_time\": \"30\",\n          \"display_errors\": \"off\",\n          \"display_startup_errors\": \"off\",\n          \"open_basedir\": \"/dev/urandom:/proc/cpuinfo:/proc/meminfo:/etc/ssl/certs:/var/www\",\n          \"disable_functions\": \"exec,passthru,shell_exec,system\"\n        }\n      }\n    }\n  }\n}\n",
@@ -77,24 +77,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "logDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             unit: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Unit App Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
               postStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "curl")}/bin/curl -X PUT --data-binary '@${configFile}' --unix-socket '/run/unit/control.unit.sock' 'http://localhost/config'
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "forking",
                 PIDFile: "/run/unit/unit.pid",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/unitd --control 'unix:/run/unit/control.unit.sock' --pid '/run/unit/unit.pid' \\
@@ -142,16 +142,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "unit")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               unit: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "unit")), nix.thunk(() => ({ __proto__: pos$17, unit: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "unit")), nix.thunk(() => ({ [nix.POS]: pos$17, unit: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "developmentseed",
           repo: "morecantile",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mercantile, pytestCheckHook, rasterio, versionCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["morecantile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Construct and use map tile grids in different projection",
         homepage: "https://developmentseed.org/morecantile",
         downloadPage: "https://github.com/developmentseed/morecantile",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "morecantile",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

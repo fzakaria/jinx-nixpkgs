@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrisjsewell",
           repo: "sphinx-pytest",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [defusedxml, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_no_transforms"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/sphinx-extensions2/sphinx-pytest/releases/tag/${nix.sel(src, "tag")}`),
         description: "Helpful pytest fixtures for Sphinx extensions",
         homepage: "https://github.com/chrisjsewell/sphinx-pytest",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const ogg = nix.arg($, "ogg");
   const speex = nix.arg($, "speex");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "speex",
       version: nix.thunk(() => nix.attr(ogg, "version")),
       src: nix.thunk(() => nix.attr(ogg, "src")),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ogg, nix.thunk(() => nix.sel(speex, "dev"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/savonet/ocaml-speex",
         description: "Bindings to libspeex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

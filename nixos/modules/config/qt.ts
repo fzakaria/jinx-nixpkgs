@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const platformPackages = nix.thunk(() => (() => {
     const w = nix.withScope(pkgs, null);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       gnome: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "qgnomeplatform")),
         nix.thunk(() => nix.lookup(w, "qgnomeplatform-qt6")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const stylePackages = nix.thunk(() => (() => {
     const w_1 = nix.withScope(pkgs, null);
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       bb10bright: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w_1, "libsForQt5"), "qtstyleplugins"))]),
       bb10dark: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w_1, "libsForQt5"), "qtstyleplugins"))]),
       cde: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w_1, "libsForQt5"), "qtstyleplugins"))]),
@@ -84,9 +84,9 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_2, "romildo"))];
@@ -98,15 +98,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["qt5", "style"]), nix.thunk(() => ["qt", "style"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       qt: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Whether to enable Qt configuration, including theming.\n\nEnabling this option is necessary for Qt plugins to work in the\ninstalled profiles (e.g.: `nix-env -i` or `environment.systemPackages`).\n",
         })),
         platformTheme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), platformPackages)))));
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
             description: "Selects the platform theme to use for Qt applications.\n\nThe options are\n- `gnome`: Use GNOME theme with [qgnomeplatform](https://github.com/FedoraQt/QGnomePlatform)\n- `kde`: Use Qt settings from Plasma.\n- `lxqt`: Use LXQt style set using the [lxqt-config-appearance](https://github.com/lxqt/lxqt-config)\n   application.\n- `qt5ct`: Use Qt style set using the [qt5ct](https://sourceforge.net/projects/qt5ct/)\n   and [qt6ct](https://github.com/trialuser02/qt6ct) applications.\n",
           })))),
         style: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "enum"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), stylePackages)))));
@@ -146,7 +146,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         assertions: nix.thunk(() => (() => {
           const gnomeStyles = nix.thunk(() => [
             "adwaita",
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
           ]);
           return [
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "platformTheme"), "gnome")) || nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(cfg, "style")), gnomeStyles)))),
               message: nix.thunk(() => nix.str`\`qt.platformTheme\` "gnome" must have \`qt.style\` set to a theme that supports both Qt and Gtk,
 for example: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", gnomeStyles)}.
@@ -166,9 +166,9 @@ for example: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", gnomeStyles)}.
           ];
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           variables: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             QT_QPA_PLATFORMTHEME: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "platformTheme"), null)), nix.thunk(() => nix.sel(cfg, "platformTheme")))),
             QT_STYLE_OVERRIDE: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "style"), null)), nix.thunk(() => nix.sel(cfg, "style")))),
           })),
@@ -181,7 +181,7 @@ for example: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", gnomeStyles)}.
               ];
             })());
             return {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               QT_PLUGIN_PATH: nix.thunk(() => nix.builtins.map((qt) => nix.str`/${nix.sel(qt, "qtbase", "qtPluginPrefix")}`, qtVersions)),
               QML2_IMPORT_PATH: nix.thunk(() => nix.builtins.map((qt) => nix.str`/${nix.sel(qt, "qtbase", "qtQmlPrefix")}`, qtVersions)),
             };

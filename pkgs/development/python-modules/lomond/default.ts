@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wildfoundry",
           repo: nix.thunk(() => nix.str`dataplicity-${pname}`),
           rev: "b30dad3cc38d5ff210c5dd01f8c3c76aa6c616d1",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_proxy", "test_live"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_that_on_ping_responds_with_pong"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/test_integration.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Websocket Client Library",
         homepage: "https://github.com/wildfoundry/dataplicity-lomond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

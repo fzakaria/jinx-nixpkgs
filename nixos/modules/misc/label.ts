@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "system", "nixos"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nixos: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           label: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[a-zA-Z0-9:_\\.-]*")),
               description: "NixOS version name to be used in the names of generated\noutputs and boot labels.\n\nIf you ever wanted to influence the labels in your GRUB menu,\nthis is the option for you.\n\nIt can only contain letters, numbers and the following symbols:\n`:`, `_`, `.` and `-`.\n\nThe default is {option}`system.nixos.tags` separated by\n\"-\" + \"-\" + {env}`NIXOS_LABEL_VERSION` environment\nvariable (defaults to the value of\n{option}`system.nixos.version`).\n\nCan be overridden by setting {env}`NIXOS_LABEL`.\n\nUseful for not loosing track of configurations built from different\nnixos branches/revisions, e.g.:\n\n```\n#!/bin/sh\ntoday=`date +%Y%m%d`\nbranch=`(cd nixpkgs ; git branch 2>/dev/null | sed -n '/^\\* / { s|^\\* ||; p; }')`\nrevision=`(cd nixpkgs ; git rev-parse HEAD)`\nexport NIXOS_LABEL_VERSION=\"$today.$branch-${revision:0:7}\"\nnixos-rebuild switch\n```\n",
             })))),
           tags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["with-xen"]),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       system: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         nixos: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           label: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "maybeEnv"), "NIXOS_LABEL", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "-", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "sort"), (x) => (y) => nix.lt(x, y), nix.thunk(() => nix.sel(cfg, "tags"))), [
                   nix.thunk(() => nix.app(nix.sel(lib, "maybeEnv"), "NIXOS_LABEL_VERSION", nix.thunk(() => nix.sel(cfg, "version")))),
                 ])))))))),

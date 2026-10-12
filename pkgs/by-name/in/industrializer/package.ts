@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "industrializer",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/industrializer/psindustrializer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-28w23zAex41yUzeh9l+kPgGrTk2XHb9CGVXdy8VEyEw=",
         })))),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postPatch: "# Replace obsolete AM_PATH_XML2 with PKG_CHECK_MODULES\nsubstituteInPlace configure.ac \\\n  --replace-fail 'AM_PATH_XML2(2.6.0, [], AC_MSG_ERROR(Fatal error: Need libxml2 >= 2.6.0))' \\\n                 'PKG_CHECK_MODULES([XML], [libxml-2.0 >= 2.6.0])' \\\n  --replace-fail 'XML_CPPFLAGS' 'XML_CFLAGS'\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "This program generates synthesized percussion sounds using physical modelling",
         longDescription: "The range of sounds possible include but is not limited to cymbal sounds, metallic noises, bubbly sounds, and chimes.\nAfter a sound is rendered, it can be played and then saved to a .WAV file.\n",
         homepage: "https://sourceforge.net/projects/industrializer/",

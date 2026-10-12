@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flutter_rust_bridge_codegen";
       const version = "1.80.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fzyzcjy",
           repo: "flutter_rust_bridge",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const cargoBuildFlags = nix.thunk(() => ["--package", "flutter_rust_bridge_codegen"]);
       const doCheck = false;
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,
@@ -76,13 +76,13 @@ export default nix.lambda((args) => (() => {
         doCheck,
       };
     })())));
-  const ffigen = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ffigen"), nix.thunk(() => ({ __proto__: pos$3, flutter: flutter329 }))));
+  const ffigen = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ffigen"), nix.thunk(() => ({ [nix.POS]: pos$3, flutter: flutter329 }))));
   const sharedLibraryExt = nix.thunk(() => nix.sel(rustc, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(flutter329, "buildFlutterApplication"), nix.thunk(() => (() => {
       const pname = "rustdesk";
       const version = "1.4.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "rustdesk",
           repo: "rustdesk",
           tag: version,
@@ -90,13 +90,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-AnwdIO4TveC48uMioBCvH60xun24ckK420ONSEB9lQI=",
         }))));
       const strictDeps = true;
-      const env = nix.thunk(() => ({ __proto__: pos$5, VCPKG_ROOT: "/homeless-shelter", OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, VCPKG_ROOT: "/homeless-shelter", OPENSSL_NO_VENDOR: true }));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/flutter`);
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json")));
       const cargoRoot = "..";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: pname,
           version: version,
           src: src,
@@ -185,7 +185,7 @@ cd flutter
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "rustdesk",
             desktopName: "RustDesk",
             genericName: "Remote Desktop",
@@ -198,12 +198,12 @@ cd flutter
             categories: nix.thunk(() => ["Network", "RemoteAccess", "GTK"]),
             keywords: nix.thunk(() => ["internet"]),
             actions: nix.thunk(() => ({
-              __proto__: pos$8,
-              "new-window": nix.thunk(() => ({ __proto__: pos$7, name: "Open a New Window", exec: "rustdesk %u" })),
+              [nix.POS]: pos$8,
+              "new-window": nix.thunk(() => ({ [nix.POS]: pos$7, name: "Open a New Window", exec: "rustdesk %u" })),
             })),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "rustdesk-link",
             desktopName: "RustDeskURL Scheme Handler",
             noDisplay: true,
@@ -217,7 +217,7 @@ cd flutter
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Virtual / remote desktop infrastructure for everyone! Open source TeamViewer / Citrix alternative",
         homepage: "https://rustdesk.com",
         changelog: nix.thunk(() => nix.str`https://github.com/rustdesk/rustdesk/releases/${version}`),
@@ -233,7 +233,7 @@ cd flutter
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname,
         version,
         src,

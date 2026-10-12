@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const tomlkit = nix.arg($, "tomlkit");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "betterproto",
       version: "2.0.0b7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danielgtaylor",
           repo: "python-betterproto",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"poetry-core>=1.0.0,<2\" \"poetry-core\"\n",
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [grpclib, python_dateutil, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, compiler: nix.thunk(() => [black, jinja2, isort]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, compiler: nix.thunk(() => [black, jinja2, isort]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         addBinToPathHook,
         cachelib,
@@ -72,7 +72,7 @@ ${nix.sel(python, "interpreter")} -m tests.generate
           "tests/test_inputs.py::test_message_json[namespace_builtin_types]",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Code generator & library for Protobuf 3 and async gRPC",
         mainProgram: "protoc-gen-python_betterproto",
         longDescription: "This project aims to provide an improved experience when using Protobuf /\ngRPC in a modern Python environment by making use of modern language\nfeatures and generating readable, understandable, idiomatic Python code.\n",

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "coolercontrol"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         coolercontrol: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CoolerControl GUI & its background services")),
         })),
       })),
@@ -37,29 +37,29 @@ export default nix.lambda((args) => (() => {
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             environment: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "coolercontrol")), null);
                 return [nix.thunk(() => nix.lookup(w, "coolercontrol-gui"))];
               })()),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               packages: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "coolercontrol")), null);
                 return [nix.thunk(() => nix.lookup(w, "coolercontrold"))];
               })()),
               services: nix.thunk(() => ({
-                __proto__: pos$6,
-                coolercontrold: nix.thunk(() => ({ __proto__: pos$5, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                [nix.POS]: pos$6,
+                coolercontrold: nix.thunk(() => ({ [nix.POS]: pos$5, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
               })),
             })),
           })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

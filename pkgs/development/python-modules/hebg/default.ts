@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-11bz+FbnaEVLiXT1eujMw8lvABlzVOeROOsdVgsyfjQ=",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [networkx, matplotlib, numpy, tqdm, scipy]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_check, pytest_mock]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, MPLBACKEND: "Agg" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, MPLBACKEND: "Agg" }))));
       const disabledTests = nix.thunk(() => ["test_exec_codegen"]);
       const pythonImportsCheck = nix.thunk(() => ["hebg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hierarchical Explainable Behaviors using Graphs",
         homepage: "https://github.com/IRLL/HEB_graphs",
         changelog: nix.thunk(() => nix.str`https://github.com/IRLL/HEB_graphs/releases/tag/${version}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

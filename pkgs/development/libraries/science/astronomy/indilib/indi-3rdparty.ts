@@ -177,9 +177,9 @@ export default nix.lambda((args) => (() => {
   const zeromq = nix.arg($, "zeromq");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const thirdparty_version = "2.2.4";
-  const fxload = nix.thunk(() => nix.app(nix.sel(libusb1, "override"), nix.thunk(() => ({ __proto__: pos$1, withExamples: true }))));
+  const fxload = nix.thunk(() => nix.app(nix.sel(libusb1, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withExamples: true }))));
   const src_3rdparty = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "indilib",
       repo: "indi-3rdparty",
       rev: nix.thunk(() => nix.str`v${thirdparty_version}`),
@@ -198,7 +198,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.argOr($_1, "src", () => nix.force(src_3rdparty));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_2, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: nix.thunk(() => nix.str`indi-3rdparty-${pname}`),
         src: src,
         version: version,
@@ -224,7 +224,7 @@ ${postInstall}
 `),
         doInstallCheck: true,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://www.indilib.org/",
           description: "Third party drivers for the INDI astronomical software suite",
           changelog: nix.thunk(() => nix.str`https://github.com/indilib/indi-3rdparty/releases/tag/v${version}`),
@@ -241,11 +241,11 @@ ${postInstall}
       })));
   })(), formals$2);
   const libaltaircam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libaltaircam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -254,19 +254,19 @@ ${postInstall}
       })),
     }))));
   const libapogee = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libapogee",
       buildInputs: nix.thunk(() => [curl, indilib, libusb1]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       cmakeFlags: nix.thunk(() => ["-DCONF_DIR=etc/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }))));
   const libasi = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "libasi",
       postPatch: nix.thunk(() => nix.str`sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt
 substituteInPlace 99-asi.rules \\
@@ -280,7 +280,7 @@ substituteInPlace 99-asi.rules \\
       ]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => [
           "i686-linux",
@@ -292,7 +292,7 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libastroasis = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "libastroasis",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       buildInputs: nix.thunk(() => [
@@ -300,13 +300,13 @@ substituteInPlace 99-asi.rules \\
       ]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux", "armv6l-linux", "armv7l-linux"]),
       })),
     }))));
   const libatik = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "libatik",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       buildInputs: nix.thunk(() => [
@@ -317,7 +317,7 @@ substituteInPlace 99-asi.rules \\
       ]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -326,12 +326,12 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libbressercam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "libbressercam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -340,28 +340,28 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libfishcamp = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pname: "libfishcamp",
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \"/usr/lib/firmware\" \"lib/firmware\"\n",
       buildInputs: nix.thunk(() => [indilib, libusb1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }))));
   const libfli = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       pname: "libfli",
       buildInputs: nix.thunk(() => [indilib, libusb1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }))));
   const libinovasdk = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       pname: "libinovasdk",
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
@@ -369,7 +369,7 @@ substituteInPlace 99-asi.rules \\
       ]),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => [
           "i686-linux",
@@ -381,12 +381,12 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libmallincam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       pname: "libmallincam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -395,24 +395,24 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libmeadecam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       pname: "libmeadecam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       buildInputs: nix.thunk(() => [libusb1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }))));
   const libmicam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       pname: "libmicam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       buildInputs: nix.thunk(() => [libusb1]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -421,12 +421,12 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libnncam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       pname: "libnncam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -435,12 +435,12 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libogmacam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       pname: "libogmacam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -449,12 +449,12 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libomegonprocam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       pname: "libomegonprocam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -463,29 +463,29 @@ substituteInPlace 99-asi.rules \\
       })),
     }))));
   const libpigpiod = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       pname: "libpigpiod",
       buildInputs: nix.thunk(() => [indilib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         broken: true,
         platforms: [],
       })),
     }))));
   const libpktriggercord = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       pname: "libpktriggercord",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"set (PK_DATADIR /usr/share/pktriggercord)\" \"set (PK_DATADIR $out/share/pkgtriggercord)\"\n",
       buildInputs: nix.thunk(() => [indilib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }))));
   const libplayerone = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       pname: "libplayerone",
       postPatch: nix.thunk(() => nix.str`sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt
 substituteInPlace 99-player_one_astronomy.rules \\
@@ -499,7 +499,7 @@ substituteInPlace 99-player_one_astronomy.rules \\
       ]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -508,7 +508,7 @@ substituteInPlace 99-player_one_astronomy.rules \\
       })),
     }))));
   const libqhy = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       pname: "libqhy",
       postPatch: nix.thunk(() => nix.str`sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt
 substituteInPlace CMakeLists.txt \\
@@ -528,24 +528,24 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 85-qhyccd.rules
       ]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => ["x86_64-linux", "armv6l-linux", "armv7l-linux", "aarch64-linux"]),
       })),
     }))));
   const libqsi = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       pname: "libqsi",
       buildInputs: nix.thunk(() => [libftdi1, indilib]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }))));
   const libricohcamerasdk = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       pname: "libricohcamerasdk",
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
@@ -553,7 +553,7 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 85-qhyccd.rules
       ]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -562,7 +562,7 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 85-qhyccd.rules
       })),
     }))));
   const libsbig = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       pname: "libsbig",
       postPatch: nix.thunk(() => nix.str`sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt
 substituteInPlace CMakeLists.txt --replace-fail "/usr/lib/firmware" "lib/firmware"
@@ -575,7 +575,7 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       buildInputs: nix.thunk(() => [libusb1]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -584,12 +584,12 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       })),
     }))));
   const libstarshootg = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       pname: "libstarshootg",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -598,7 +598,7 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       })),
     }))));
   const libsvbony = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       pname: "libsvbony",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       buildInputs: nix.thunk(() => [
@@ -607,7 +607,7 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       ]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => [
           "i686-linux",
@@ -619,12 +619,12 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       })),
     }))));
   const libsvbonycam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       pname: "libsvbonycam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -633,12 +633,12 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       })),
     }))));
   const libtoupcam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       pname: "libtoupcam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -647,12 +647,12 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       })),
     }))));
   const libtscam = nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-      __proto__: pos$58,
+      [nix.POS]: pos$58,
       pname: "libtscam",
       postPatch: "sed -i '/FIX_MACOS_LIBRARIES/d' CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook)),
       meta: nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -661,107 +661,107 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 51-sbig-debian.rule
       })),
     }))));
   return {
-    __proto__: pos$130,
+    [nix.POS]: pos$130,
     "indi-aagcloudwatcher-ng": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         pname: "indi-aagcloudwatcher-ng",
         buildInputs: nix.thunk(() => [indilib]),
       })))),
     "indi-ahp-xc": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         pname: "indi-ahp-xc",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libnova, zlib]),
-        meta: nix.thunk(() => ({ __proto__: pos$60, platforms: [], broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$60, platforms: [], broken: true })),
       })))),
     "indi-aok": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         pname: "indi-aok",
         buildInputs: nix.thunk(() => [indilib, libnova]),
       })))),
     "indi-apogee": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         pname: "indi-apogee",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libapogee, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libapogee]),
         meta: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           platforms: nix.thunk(() => nix.sel(libapogee, "meta", "platforms")),
         })),
       })))),
     "indi-armadillo-platypus": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         pname: "indi-armadillo-platypus",
         buildInputs: nix.thunk(() => [indilib, libnova]),
         postPatch: "substituteInPlace CMakeLists.txt --replace-fail \"/usr/lib/udev/rules.d\" \"lib/udev/rules.d\"\n",
       })))),
     "indi-asi": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         pname: "indi-asi",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libasi, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libasi]),
         meta: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           platforms: nix.thunk(() => nix.sel(libasi, "meta", "platforms")),
         })),
       })))),
     "indi-asi-power": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         pname: "indi-asi-power",
         buildInputs: nix.thunk(() => [indilib]),
-        meta: nix.thunk(() => ({ __proto__: pos$68, platforms: [], broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$68, platforms: [], broken: true })),
       })))),
     "indi-astarbox": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         pname: "indi-astarbox",
         buildInputs: nix.thunk(() => [indilib]),
       })))),
     "indi-astroasis": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         pname: "indi-astroasis",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libastroasis, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libastroasis]),
         meta: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           platforms: nix.thunk(() => nix.sel(libastroasis, "meta", "platforms")),
         })),
       })))),
     "indi-atik": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$74,
+        [nix.POS]: pos$74,
         pname: "indi-atik",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libatik]),
         meta: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           platforms: nix.thunk(() => nix.sel(libatik, "meta", "platforms")),
         })),
       })))),
     "indi-avalon": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         pname: "indi-avalon",
         buildInputs: nix.thunk(() => [indilib, libnova]),
       })))),
     "indi-avalonud": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         pname: "indi-avalonud",
         buildInputs: nix.thunk(() => [indilib, libnova, zeromq]),
       })))),
     "indi-beefocus": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         pname: "indi-beefocus",
         buildInputs: nix.thunk(() => [gtest, indilib]),
       })))),
     "indi-bresserexos2": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$78,
+        [nix.POS]: pos$78,
         pname: "indi-bresserexos2",
         buildInputs: nix.thunk(() => [indilib, libnova]),
       })))),
     "indi-celestronaux": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         pname: "indi-celestronaux",
         buildInputs: nix.thunk(() => [indilib, gsl, libnova, zlib]),
       })))),
     "indi-dsi": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$80,
+        [nix.POS]: pos$80,
         pname: "indi-dsi",
         buildInputs: nix.thunk(() => [gtest, cfitsio, indilib, libusb1, zlib]),
         postPatch: nix.thunk(() => nix.str`substituteInPlace CMakeLists.txt \\
@@ -775,78 +775,78 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 99-meadedsi.rules
 `),
       })))),
     "indi-duino": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         pname: "indi-duino",
         buildInputs: nix.thunk(() => [curl, indilib]),
       })))),
     "indi-eqmod": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$82,
+        [nix.POS]: pos$82,
         pname: "indi-eqmod",
         buildInputs: nix.thunk(() => [indilib, gsl, gtest, libnova, zlib]),
       })))),
     "indi-ffmv": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         pname: "indi-ffmv",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libdc1394, zlib]),
       })))),
     "indi-fishcamp": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         pname: "indi-fishcamp",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libfishcamp]),
         meta: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           platforms: nix.thunk(() => nix.sel(libfishcamp, "meta", "platforms")),
         })),
       })))),
     "indi-fli": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         pname: "indi-fli",
         buildInputs: nix.thunk(() => [libusb1, cfitsio, indilib, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libfli]),
         meta: nix.thunk(() => ({
-          __proto__: pos$86,
+          [nix.POS]: pos$86,
           platforms: nix.thunk(() => nix.sel(libfli, "meta", "platforms")),
         })),
       })))),
     "indi-gige": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         pname: "indi-gige",
         buildInputs: nix.thunk(() => [aravis, cfitsio, indilib, glib, zlib]),
       })))),
     "indi-gphoto": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         pname: "indi-gphoto",
         buildInputs: nix.thunk(() => [cfitsio, libjpeg, libraw, libusb1, indilib, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libgphoto2]),
       })))),
     "indi-gpio": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         pname: "indi-gpio",
         buildInputs: nix.thunk(() => [indilib, libgpiod_1, libnova, zlib]),
       })))),
     "indi-gpsd": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$91,
+        [nix.POS]: pos$91,
         pname: "indi-gpsd",
         buildInputs: nix.thunk(() => [indilib, gpsd, libnova, zlib]),
       })))),
     "indi-gpsnmea": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$92,
+        [nix.POS]: pos$92,
         pname: "indi-gpsnmea",
         buildInputs: nix.thunk(() => [indilib, libnova, zlib]),
       })))),
     "indi-inovaplx": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         pname: "indi-inovaplx",
         buildInputs: nix.thunk(() => [cfitsio, indilib, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libinovasdk]),
         meta: nix.thunk(() => ({
-          __proto__: pos$93,
+          [nix.POS]: pos$93,
           platforms: nix.thunk(() => nix.sel(libinovasdk, "meta", "platforms")),
         })),
       })))),
     "indi-libcamera": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$96,
+        [nix.POS]: pos$96,
         pname: "indi-libcamera",
         buildInputs: nix.thunk(() => [
           boost,
@@ -860,158 +860,158 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 99-meadedsi.rules
           libraw,
           zlib,
         ]),
-        meta: nix.thunk(() => ({ __proto__: pos$95, platforms: [], broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$95, platforms: [], broken: true })),
       })))),
     "indi-limesdr": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         pname: "indi-limesdr",
         buildInputs: nix.thunk(() => [cfitsio, indilib, limesuite, zlib]),
       })))),
     "indi-maxdomeii": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$98,
+        [nix.POS]: pos$98,
         pname: "indi-maxdomeii",
         buildInputs: nix.thunk(() => [gtest, indilib, libnova, zlib]),
       })))),
     "indi-mgen": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         pname: "indi-mgen",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libftdi1, zlib]),
       })))),
     "indi-mi": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$100,
+        [nix.POS]: pos$100,
         pname: "indi-mi",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libmicam]),
       })))),
     "indi-nexdome": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$101,
+        [nix.POS]: pos$101,
         pname: "indi-nexdome",
         buildInputs: nix.thunk(() => [indilib, libnova, zlib]),
       })))),
     "indi-nightscape": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$102,
+        [nix.POS]: pos$102,
         pname: "indi-nightscape",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, libftdi1, zlib]),
       })))),
     "indi-nut": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         pname: "indi-nut",
         buildInputs: nix.thunk(() => [indilib, nut, zlib]),
       })))),
     "indi-ocs": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$104,
+        [nix.POS]: pos$104,
         pname: "indi-ocs",
         buildInputs: nix.thunk(() => [indilib, libnova]),
       })))),
     "indi-orion-ssg3": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$105,
+        [nix.POS]: pos$105,
         pname: "indi-orion-ssg3",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, zlib]),
         postPatch: "substituteInPlace CMakeLists.txt --replace-fail \"/usr/lib/udev/rules.d\" \"lib/udev/rules.d\"\n",
       })))),
     "indi-pentax": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         pname: "indi-pentax",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libraw, libjpeg, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libpktriggercord, libricohcamerasdk]),
         meta: nix.thunk(() => ({
-          __proto__: pos$106,
+          [nix.POS]: pos$106,
           platforms: nix.thunk(() => nix.sel(libricohcamerasdk, "meta", "platforms")),
         })),
       })))),
     "indi-playerone": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         pname: "indi-playerone",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libplayerone]),
         meta: nix.thunk(() => ({
-          __proto__: pos$108,
+          [nix.POS]: pos$108,
           platforms: nix.thunk(() => nix.sel(libplayerone, "meta", "platforms")),
         })),
       })))),
     "indi-qhy": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$111,
+        [nix.POS]: pos$111,
         pname: "indi-qhy",
         buildInputs: nix.thunk(() => [libqhy, cfitsio, indilib, libnova, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libqhy]),
         meta: nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           platforms: nix.thunk(() => nix.sel(libqhy, "meta", "platforms")),
         })),
       })))),
     "indi-qsi": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$113,
+        [nix.POS]: pos$113,
         pname: "indi-qsi",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libqsi, zlib]),
         postPatch: "substituteInPlace CMakeLists.txt --replace-fail \"/usr/lib/udev/rules.d\" \"lib/udev/rules.d\"\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$112,
+          [nix.POS]: pos$112,
           platforms: nix.thunk(() => nix.sel(libqsi, "meta", "platforms")),
         })),
       })))),
     "indi-rolloffino": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$114,
+        [nix.POS]: pos$114,
         pname: "indi-rolloffino",
         buildInputs: nix.thunk(() => [indilib, libnova, zlib]),
       })))),
     "indi-rpi-gpio": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$116,
+        [nix.POS]: pos$116,
         pname: "indi-rpi-gpio",
         buildInputs: nix.thunk(() => [indilib, libpigpiod]),
         meta: nix.thunk(() => ({
-          __proto__: pos$115,
+          [nix.POS]: pos$115,
           platforms: nix.thunk(() => nix.sel(libpigpiod, "meta", "platforms")),
         })),
       })))),
     "indi-rtklib": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$117,
+        [nix.POS]: pos$117,
         pname: "indi-rtklib",
         buildInputs: nix.thunk(() => [indilib, libnova, libpng, zlib]),
       })))),
     "indi-sbig": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$118,
+        [nix.POS]: pos$118,
         pname: "indi-sbig",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libsbig]),
       })))),
     "indi-shelyak": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         pname: "indi-shelyak",
         buildInputs: nix.thunk(() => [indilib]),
       })))),
     "indi-starbook": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         pname: "indi-starbook",
         buildInputs: nix.thunk(() => [curl, indilib, gtest, libnova]),
       })))),
     "indi-starbook-ten": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$121,
+        [nix.POS]: pos$121,
         pname: "indi-starbook-ten",
         buildInputs: nix.thunk(() => [indilib, libnova]),
       })))),
     "indi-svbony": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         pname: "indi-svbony",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1, zlib]),
         propagatedBuildInputs: nix.thunk(() => [libsvbony]),
         meta: nix.thunk(() => ({
-          __proto__: pos$122,
+          [nix.POS]: pos$122,
           platforms: nix.thunk(() => nix.sel(libsvbony, "meta", "platforms")),
         })),
       })))),
     "indi-sx": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$124,
+        [nix.POS]: pos$124,
         pname: "indi-sx",
         buildInputs: nix.thunk(() => [cfitsio, indilib, libusb1]),
         postPatch: "substituteInPlace CMakeLists.txt --replace-fail \"/usr/lib/udev/rules.d\" \"lib/udev/rules.d\"\n",
       })))),
     "indi-talon6": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$125,
+        [nix.POS]: pos$125,
         pname: "indi-talon6",
         buildInputs: nix.thunk(() => [indilib, libnova]),
       })))),
     "indi-toupbase": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$127,
+        [nix.POS]: pos$127,
         pname: "indi-toupbase",
         buildInputs: nix.thunk(() => [cfitsio, indilib, zlib]),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1028,7 +1028,7 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 99-meadedsi.rules
           libtscam,
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$126,
+          [nix.POS]: pos$126,
           platforms: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
             return nix.concat(nix.lookup(w, "aarch64"), nix.lookup(w, "x86_64"));
@@ -1036,12 +1036,12 @@ sed -e 's|-D $env{DEVNAME}|-p $env{BUSNUM},$env{DEVNUM}|' -i 99-meadedsi.rules
         })),
       })))),
     "indi-webcam": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$128,
+        [nix.POS]: pos$128,
         pname: "indi-webcam",
         buildInputs: nix.thunk(() => [cfitsio, indilib, ffmpeg_headless, zlib]),
       })))),
     "indi-weewx-json": nix.thunk(() => nix.app(buildIndi3rdParty, nix.thunk(() => ({
-        __proto__: pos$129,
+        [nix.POS]: pos$129,
         pname: "indi-weewx-json",
         buildInputs: nix.thunk(() => [curl, indilib]),
       })))),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "thc-secure-delete",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gordrs",
           repo: "thc-secure-delete",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/signal-handler-fix.patch?h=thc-secure-delete&id=ca83e2c6a548aaba56a0499180d15d61c75b6acd",
             hash: "sha256-MGCl5wXHuDr0Z4MlBGlSAUrv5VeQ8FjWCNsTOnS7Evw=",
             extraPrefix: "",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\n\ninstall -Dt $out/bin/ -m755 srm sdmem sswap sfill\ninstallManPage *.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "THC's Secure Delete tools",
         homepage: "https://github.com/gordrs/thc-secure-delete",
         changelog: nix.thunk(() => nix.str`https://github.com/gordrs/thc-secure-delete/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

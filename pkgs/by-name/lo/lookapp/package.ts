@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lookapp",
       version: "0.7.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kunkka19xx",
           repo: "look",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "lookapp",
             desktopName: "Look",
             comment: "Keyboard-first desktop launcher",
@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "for size in 32 128 256; do\n  icon=\"$src/apps/linows/src-tauri/icons/${size}x${size}.png\"\n  if [ -f \"$icon\" ]; then\n    mkdir -p $out/share/icons/hicolor/${size}x${size}/apps\n    cp \"$icon\" \\\n      \"$out/share/icons/hicolor/${size}x${size}/apps/look.png\"\n  fi\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Keyboard-first, local-first desktop launcher",
         homepage: "https://github.com/kunkka19xx/look",
         changelog: nix.thunk(() => nix.str`https://github.com/kunkka19xx/look/releases/tag/v${nix.sel(finalAttrs, "version")}`),

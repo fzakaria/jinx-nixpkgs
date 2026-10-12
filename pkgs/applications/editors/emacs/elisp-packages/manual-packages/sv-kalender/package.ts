@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sv-kalender",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://raw.githubusercontent.com/emacsmirror/emacswiki.org/ec4fa36bdba5d2c5c4f5e0400a70768c10e969e8/sv-kalender.el",
           hash: "sha256-VXz3pO6N94XM8FzLSAoYrj3NEh4wp0UiuG6ad8M7nVU=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.emacswiki.org/emacs/sv-kalender.el",
         description: "Swedish calendar for Emacs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

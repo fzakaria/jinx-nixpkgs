@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const hash = nix.argOr($, "hash", () => "sha256-2DV+glvSDw6ZY1gJ0BKs0SLpIwx1bgPlloc7RQWTVKs=");
   const pname = "hifile";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://www.hifile.app/files/HiFile-${version}.AppImage`),
       hash: hash,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -34,9 +34,9 @@ substituteInPlace $out/share/applications/HiFile.desktop \\
   --replace-fail 'Exec=HiFile' 'Exec=hifile'
 echo "StartupWMClass=app.hifile.www.HiFile" >> $out/share/applications/HiFile.desktop
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dual-pane graphical file manager for Windows, macOS and Linux",
         longDescription: "HiFile is the next evolution of file managers. Its mission is to increase your productivity whenever you work with files or folders. It aims to be better in every way - more convenient, more versatile, more efficient, more elegant, more customizable, and more fun.\n",
         homepage: "https://www.hifile.app/",

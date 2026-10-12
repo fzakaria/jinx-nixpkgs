@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tinc",
       version: "1.1pre18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gsliepen",
           repo: "tinc",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +43,11 @@ sed -i '/AC_INIT/s/m4_esyscmd_s.*/${nix.sel(finalAttrs, "version")})/' configure
 `),
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc", "--localstatedir=/var"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, tinc: nix.thunk(() => nix.attr(nixosTests, "tinc")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, tinc: nix.thunk(() => nix.attr(nixosTests, "tinc")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "VPN daemon with full mesh routing",
         longDescription: "tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and\nencryption to create a secure private network between hosts on the\nInternet.  It features full mesh routing, as well as encryption,\nauthentication, compression and ethernet bridging.\n",
         homepage: "http://www.tinc-vpn.org/",

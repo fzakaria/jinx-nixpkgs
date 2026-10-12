@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgjones",
           repo: "quart-trio",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["quart_trio"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytest_trio, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quart-Trio is an extension for Quart to support the Trio event loop",
         homepage: "https://github.com/pgjones/quart-trio",
         changelog: nix.thunk(() => nix.str`https://github.com/pgjones/quart-trio/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

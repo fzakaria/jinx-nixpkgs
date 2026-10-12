@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csound-manual",
       version: "6.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csound",
           repo: "manual",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/share/doc/csound\ncp -r ./html $out/share/doc/csound\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Csound Canonical Reference Manual",
         homepage: "https://github.com/csound/manual",
         license: nix.thunk(() => nix.sel(lib, "licenses", "fdl12Plus")),

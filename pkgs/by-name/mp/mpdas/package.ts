@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libmpdclient = nix.arg($, "libmpdclient");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpdas",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hrkfdn",
           repo: "mpdas",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libmpdclient, curl]),
       makeFlags: nix.thunk(() => ["CONFIG=/etc", "DESTDIR=", "PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Music Player Daemon AudioScrobbler",
         homepage: "https://50hz.ws/mpdas/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildLua, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "modernz",
       version: "0.3.3",
       scriptPath: "modernz.lua",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Samillion",
           repo: "ModernZ",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         fontDirectories: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/fonts`)]),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sleek and modern OSC for mpv designed to enhance functionality by adding more features, all while preserving the core standards of mpv's OSC",
         homepage: "https://github.com/Samillion/ModernZ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

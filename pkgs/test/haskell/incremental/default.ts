@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const temporary = nix.thunk(() => nix.sel(haskellPackages, "temporary"));
   const temporary_full_build_with_incremental_output = nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doInstallIntermediates: true,
       enableSeparateIntermediatesOutput: true,
     }), temporary));
   const temporary_incremental_build = nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       previousIntermediates: nix.thunk(() => nix.sel(temporary_full_build_with_incremental_output, "intermediates")),
     }), temporary));
   return nix.app(nix.sel(temporary_incremental_build, "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "meta", "maintainers"), [
           nix.thunk(() => nix.sel(lib, "maintainers", "_9999years")),
           nix.thunk(() => nix.sel(lib, "maintainers", "Gabriella439")),

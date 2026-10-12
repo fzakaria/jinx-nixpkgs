@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "timeslot",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ErikBjare",
           repo: "timeslot",
           rev: "af35445e96cbb2f3fb671a75aac6aa93e4e7e7a6",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--override-ini=addopts="]),
       pythonImportsCheck: nix.thunk(() => ["timeslot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data type for representing time slots with a start and end",
         homepage: "https://github.com/ErikBjare/timeslot",
         maintainers: nix.thunk(() => (() => {

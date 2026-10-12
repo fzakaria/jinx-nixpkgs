@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(lib, "mapAttrs"), (name) => (scheduler) => nix.app(callPackage, scheduler, nix.thunk(() => ({}))), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cscheds: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_cscheds.nix"))),
       rustscheds: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_rustscheds.nix"))),
       full: nix.thunk(() => nix.builtins.import(nix.path(here, "./scx_full.nix"))),

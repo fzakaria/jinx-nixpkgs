@@ -26,27 +26,27 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "plib",
       version: "1.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://plib.sourceforge.net/dist/plib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0cha71mflpa10vh2l7ipyqk67dq2y0k5xbafwdks03fwdyzj4ns8",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.net/data/main/p/plib/1.8.5-7/debian/patches/04_CVE-2011-4620.diff",
             sha256: "1b7y0vqqdzd48q68ldlzw0zzqy9mg4c10a754r4hi3ldjmcplf0j",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.net/data/main/p/plib/1.8.5-7/debian/patches/05_CVE-2012-4552.diff",
             sha256: "0b6cwdwii5b5vy78sbw5cw1s96l4jyzr4dk69v63pa0wwi2b5dki",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.org/data/main/p/plib/1.8.5-13/debian/patches/08_CVE-2021-38714.patch",
             sha256: "sha256-3f1wZn0QqK/hPWCg1KEzbB95IGoxBjLZoCOFlW98t5w=",
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--disable-sl", "--disable-pw"]))),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libGLU, libGL, libglut, SDL, libxi, libsm, libxmu, libxext, libx11]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Suite of portable game libraries",
         longDescription: "PLIB includes sound effects, music, a complete 3D engine, font\nrendering, a simple Windowing library, a game scripting\nlanguage, a GUI, networking, 3D math library and a collection of\nhandy utility functions.  All are 100% portable across nearly\nall modern computing platforms.  What's more, it's all available\non line - and completely free.  Each library component is fairly\nindependent of the others - so if you want to use SDL, GTK,\nGLUT, or FLTK instead of PLIB's 'PW' windowing library, you can.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

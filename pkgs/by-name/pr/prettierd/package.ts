@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "prettierd",
       version: "0.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fsouza",
           repo: "prettierd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-nPaf5p+/ryhEefkiHW9MUk2An/pIQ1UQqW9LeBojAmg=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-Z0IOyp70150zAB7CDvyw87rnzoxNdEuTMZTR6/9QP7U=",
         })))),
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             format: nix.thunk(() => nix.app(runCommand, "prettierd-format-file-test", nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })), nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 prettierd ${nix.sel(finalAttrs, "src")}/package.json < ${nix.sel(finalAttrs, "src")}/package.json > $out
@@ -58,7 +58,7 @@ prettierd ${nix.sel(finalAttrs, "src")}/package.json < ${nix.sel(finalAttrs, "sr
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: "prettierd",
         description: "Prettier, as a daemon, for improved formatting speed",
         homepage: "https://github.com/fsouza/prettierd",

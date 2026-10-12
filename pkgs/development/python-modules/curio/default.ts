@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6-unstable-2024-04-11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dabeaz",
           repo: "curio",
           rev: "148454621f9bd8dd843f591e87715415431f6979",
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_create_bad_connection"]))));
       const pythonImportsCheck = nix.thunk(() => ["curio"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for performing concurrent I/O with coroutines in Python",
         homepage: "https://github.com/dabeaz/curio",
         changelog: nix.thunk(() => nix.str`https://github.com/dabeaz/curio/raw/${nix.sel(src, "rev")}/CHANGES`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pbsds"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

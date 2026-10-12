@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sums",
       version: "0.16",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leesonwai",
           repo: "sums",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook4, desktop_file_utils]),
       buildInputs: nix.thunk(() => [libadwaita, mpfr]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple GTK postfix calculator for GNOME",
         homepage: "https://gitlab.com/leesonwai/sums",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

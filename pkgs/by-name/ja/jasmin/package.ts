@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = nix.thunk(() => nix.sel(jdk8, "jre"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jasmin",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/jasmin/jasmin-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-6qEMaM7Gggb9EC6exxE3OezNeQEIoblabow+k/IORJ0=",
         })))),
@@ -42,14 +42,14 @@ makeWrapper ${jre}/bin/java $out/bin/jasmin \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "minimal-module": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-assemble-hello-world"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Assembler for the Java Virtual Machine",
         downloadPage: "https://sourceforge.net/projects/jasmin/files/latest/download",
         homepage: "https://jasmin.sourceforge.net/",

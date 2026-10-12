@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const timedesc = nix.arg($, "timedesc");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "timedesc-tzlocal",
       version: nix.thunk(() => nix.attr(timedesc, "version")),
       src: nix.thunk(() => nix.attr(timedesc, "src")),
       sourceRoot: nix.thunk(() => nix.attr(timedesc, "sourceRoot")),
       meta: nix.thunk(() => nix.update(nix.sel(timedesc, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Virtual library for Timedesc local time zone detection backends",
       })),
     })));

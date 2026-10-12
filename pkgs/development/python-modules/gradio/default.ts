@@ -85,13 +85,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const pnpm = pnpm_10;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "gradio",
       version: "6.29.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gradio-app",
           repo: "gradio",
           tag: nix.thunk(() => nix.str`gradio@${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./dont-npm-install-http-proxy.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "gradio",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-JL0tYymcQt6hSeoCe8fHzTCMW461+sWa48elhPOm2Co=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, CI: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: "true" })),
       nativeBuildInputs: nix.thunk(() => [zip, nodejs_slim, pnpm, pnpmConfigHook, writableTmpDirAsHomeHook]),
       "build-system": nix.thunk(() => [hatchling, hatch_requirements_txt, hatch_fancy_pypi_readme]),
       dependencies: nix.thunk(() => nix.concat([
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
         urllib3,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => [audioop_lts])))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$4, oauth: nix.thunk(() => [authlib, itsdangerous]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$4, oauth: nix.thunk(() => [authlib, itsdangerous]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         altair,
         boto3,
@@ -315,17 +315,17 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gradio"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "sans-reverse-dependencies": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(gradio, "override"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "gradio-client": null,
             "gradio-pdf": null,
             "hf-gradio": nix.thunk(() => nix.app(nix.sel(hf_gradio, "override"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "gradio-client": nix.thunk(() => nix.sel(gradio_client, "sans-reverse-dependencies")),
               })))),
           }))), "overridePythonAttrs"), (old) => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-sans-reverse-dependencies")),
             pythonRemoveDeps: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "pythonRemoveDeps"), ["gradio-client"])),
             doInstallCheck: false,
@@ -345,7 +345,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(writeScript, "update-python3Packages.gradio", "#! /usr/bin/env nix-shell\n#! nix-shell -i bash -p common-updater-scripts coreutils gnugrep gnused nix-update jq curl\nset -euo pipefail\nset -x\n\ntag=$(list-git-tags \\\n      | grep \"^gradio@\" \\\n      | sed -e \"s,^gradio@,,\" \\\n      | grep -v -E -e \".*-(beta|dev).*\" \\\n      | sort --reverse --version-sort \\\n      | head -n 1 \\\n      | tr -d '\\n' \\\n     )\nnix-update python3Packages.gradio --version=\"$tag\"\n\ngradio_client_version=\"$(curl https://raw.githubusercontent.com/gradio-app/gradio/gradio@\"$tag\"/client/python/gradio_client/package.json | jq \".version\" -r)\"\nnix-update python3Packages.gradio-client --version=\"$gradio_client_version\" --no-src\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://www.gradio.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/gradio-app/gradio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python library for easily interacting with trained machine learning models",

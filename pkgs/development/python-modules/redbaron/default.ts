@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const baron = nix.arg($, "baron");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redbaron",
       version: "0.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "redbaron",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test_bounding_box.py"]),
       disabledTests: nix.thunk(() => ["test_highlight"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Abstraction on top of baron, a FST for python to make writing refactoring code a realistic task",
         homepage: "https://redbaron.readthedocs.io/en/latest",
         downloadPage: "https://github.com/PyCQA/redbaron",

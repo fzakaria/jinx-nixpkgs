@@ -58,33 +58,33 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "single-p
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     imports: nix.thunk(() => [nix.path(here, "./nghttpx-options.nix")]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         users: nix.thunk(() => ({
-          __proto__: pos$4,
-          groups: nix.thunk(() => ({ __proto__: pos$1, nghttpx: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$4,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$1, nghttpx: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nghttpx: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               group: nix.thunk(() => nix.sel(config, "users", "groups", "nghttpx", "name")),
               isSystemUser: true,
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             nghttpx: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               script: nix.thunk(() => nix.str`${nix.sel(pkgs, "nghttp2")}/bin/nghttpx --conf=${configurationFile}
 `),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$5, Restart: "on-failure", RestartSec: 60n })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Restart: "on-failure", RestartSec: 60n })),
             })),
           })),
         })),

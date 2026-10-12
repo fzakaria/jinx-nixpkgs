@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchfossil = nix.arg($, "fetchfossil");
   const tcl = nix.arg($, "tcl");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcludp",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchfossil, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://core.tcl-lang.org/tcludp",
           rev: nix.thunk(() => nix.add("ver_", nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version"))))),
           hash: "sha256-PckGwUqL2r5KJEet8sS4U504G63flX84EkQEkQdMifY=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UDP socket support for Tcl",
         homepage: "https://core.tcl-lang.org/tcludp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

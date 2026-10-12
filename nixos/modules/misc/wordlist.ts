@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const concatAndSort = (name) => (files) => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({})), nix.thunk(() => nix.str`awk 1 ${nix.app(nix.sel(lib, "escapeShellArgs"), files)} | sed '{ /^\\s*$/d; s/^\\s\\+//; s/\\s\\+$// }' | sort | uniq > $out
 `));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         wordlist: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "environment variables for lists of words")),
           lists: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nonEmptyListOf"), nix.thunk(() => nix.sel(lib, "types", "path")))))),
               default: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 WORDLIST: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "scowl")}/share/dict/words.txt`)]),
               })),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  WORDLIST = [ \"${pkgs.scowl}/share/dict/words.txt\" ];\n}\n")),
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "environment", "wordlist", "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           variables: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.str`${nix.app(concatAndSort, nix.thunk(() => nix.str`wordlist-${name}`), value)}`, nix.thunk(() => nix.sel(config, "environment", "wordlist", "lists")))),
         })),
       })))),

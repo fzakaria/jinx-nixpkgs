@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const beartype = nix.arg($, "beartype");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "optype",
       version: "0.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorenham",
           repo: "optype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace tests/numpy/test_any_array.py \\\n  --replace-fail \"np.timedelta64(0)\" \"np.timedelta64(0, \\\"s\\\")\"\n",
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, numpy: nix.thunk(() => [numpy, numpy_typing_compat]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, numpy: nix.thunk(() => [numpy, numpy_typing_compat]) })),
       pythonImportsCheck: nix.thunk(() => ["optype"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, numpy, numpy_typing_compat, beartype]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Opinionated typing package for precise type hints in Python",
         homepage: "https://github.com/jorenham/optype",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

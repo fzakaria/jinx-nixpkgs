@@ -14,26 +14,26 @@ const pos$9 = nix.positions(here + "/xautolock.nix", [["machine", 5, 9]]);
 const pos$10 = nix.positions(here + "/xautolock.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$10,
+  [nix.POS]: pos$10,
   name: "xautolock",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   nodes: nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     machine: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       imports: nix.thunk(() => [
         nix.path(here, "./common/x11.nix"),
         nix.path(here, "./common/user-account.nix"),
       ]),
       "test-support": nix.thunk(() => ({
-        __proto__: pos$4,
-        displayManager: nix.thunk(() => ({ __proto__: pos$3, auto: nix.thunk(() => ({ __proto__: pos$2, user: "bob" })) })),
+        [nix.POS]: pos$4,
+        displayManager: nix.thunk(() => ({ [nix.POS]: pos$3, auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "bob" })) })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xserver: nix.thunk(() => ({
-          __proto__: pos$6,
-          xautolock: nix.thunk(() => ({ __proto__: pos$5, enable: true, time: 1n })),
+          [nix.POS]: pos$6,
+          xautolock: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, time: 1n })),
         })),
       })),
     })),

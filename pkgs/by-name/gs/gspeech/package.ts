@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const picotts = nix.arg($, "picotts");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gSpeech",
       version: "0.13.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mothsart",
           repo: "gSpeech",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +64,7 @@ wrapProgram $out/bin/gspeech-cli --prefix PATH : ${nix.app(nix.sel(lib, "makeBin
 `),
       strictDeps: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal GUI for the Text To Speech 'Svox Pico'. Read clipboard or selected text in different languages and manage it : pause, stop, replay",
         homepage: "https://github.com/mothsART/gSpeech",
         maintainers: nix.thunk(() => (() => {

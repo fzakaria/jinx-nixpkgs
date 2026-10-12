@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Image-ExifTool";
       const version = "13.59";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exiftool",
           repo: "exiftool",
           tag: version,
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const versionCheckProgramArg = "-ver";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to read, write and edit EXIF meta information",
         longDescription: "ExifTool is a platform-independent Perl library plus a command-line\napplication for reading, writing and editing meta information in a wide\nvariety of files. ExifTool supports many different metadata formats\nincluding EXIF, GPS, IPTC, XMP, JFIF, GeoTIFF, ICC Profile, Photoshop\nIRB, FlashPix, AFCP and ID3, as well as the maker notes of many digital\ncameras by Canon, Casio, DJI, FLIR, FujiFilm, GE, GoPro, HP,\nJVC/Victor, Kodak, Leaf, Minolta/Konica-Minolta, Motorola, Nikon,\nNintendo, Olympus/Epson, Panasonic/Leica, Pentax/Asahi, Phase One,\nReconyx, Ricoh, Samsung, Sanyo, Sigma/Foveon and Sony.\n",
         homepage: "https://exiftool.org/",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "exiftool",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

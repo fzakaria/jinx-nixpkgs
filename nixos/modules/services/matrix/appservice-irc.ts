@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
   const bin = nix.thunk(() => nix.str`${pkg}/bin/matrix-appservice-irc`);
   const jsonType = nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "matrix-appservice-irc.yml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "jsonschema"))])),
         nix.thunk(() => nix.sel(pkgs, "remarshal")),
@@ -73,75 +73,75 @@ cp "$configPath" "$out"
 `)));
   const registrationFile = "/var/lib/matrix-appservice-irc/registration.yml";
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         "matrix-appservice-irc": nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Matrix/IRC bridge")),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.lookup(w, "port")),
                 description: "The port to listen on",
                 default: 8009n,
               })))),
             needBindingCap: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 description: "Whether the daemon needs to bind to ports below 1024 (e.g. for the ident service)",
                 default: false,
               })))),
             passwordEncryptionKeyLength: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "unsigned")),
                 description: "Length of the key to encrypt IRC passwords with",
                 default: 4096n,
                 example: 8192n,
               })))),
             registrationUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "The URL where the application service is listening for homeserver requests,\nfrom the Matrix homeserver perspective.\n",
                 example: "http://localhost:8009",
               })))),
             localpart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 description: "The user_id localpart to assign to the appservice",
                 default: "appservice-irc",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 description: nix.thunk(() => nix.str`Configuration for the appservice, see
 <https://github.com/matrix-org/matrix-appservice-irc/blob/${nix.sel(pkgs, "matrix-appservice-irc", "version")}/config.sample.yaml>
 for supported values
 `),
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     freeformType: jsonType,
                     options: nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       homeserver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           description: "Homeserver configuration",
                           default: nix.thunk(() => ({})),
                           type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               freeformType: jsonType,
                               options: nix.thunk(() => ({
-                                __proto__: pos$9,
+                                [nix.POS]: pos$9,
                                 url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$7,
+                                    [nix.POS]: pos$7,
                                     type: nix.thunk(() => nix.lookup(w, "str")),
                                     description: "The URL to the home server for client-server API calls",
                                   })))),
                                 domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$8,
+                                    [nix.POS]: pos$8,
                                     type: nix.thunk(() => nix.lookup(w, "str")),
                                     description: "The 'domain' part for user IDs on this home server. Usually\n(but not always) is the \"domain name\" part of the homeserver URL.\n",
                                   })))),
@@ -149,23 +149,23 @@ for supported values
                             })))),
                         })))),
                       database: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           default: nix.thunk(() => ({})),
                           description: "Configuration for the database",
                           type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               freeformType: jsonType,
                               options: nix.thunk(() => ({
-                                __proto__: pos$14,
+                                [nix.POS]: pos$14,
                                 engine: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$12,
+                                    [nix.POS]: pos$12,
                                     type: nix.thunk(() => nix.lookup(w, "str")),
                                     description: "Which database engine to use",
                                     default: "nedb",
                                     example: "postgres",
                                   })))),
                                 connectionString: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$13,
+                                    [nix.POS]: pos$13,
                                     type: nix.thunk(() => nix.lookup(w, "str")),
                                     description: "The database connection string",
                                     default: "nedb://var/lib/matrix-appservice-irc/data",
@@ -175,48 +175,48 @@ for supported values
                             })))),
                         })))),
                       ircService: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           default: nix.thunk(() => ({})),
                           description: "IRC bridge configuration",
                           type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               freeformType: jsonType,
                               options: nix.thunk(() => ({
-                                __proto__: pos$25,
+                                [nix.POS]: pos$25,
                                 passwordEncryptionKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$17,
+                                    [nix.POS]: pos$17,
                                     type: nix.thunk(() => nix.lookup(w, "str")),
                                     description: "Location of the key with which IRC passwords are encrypted\nfor storage. Will be generated on first run if not present.\n",
                                     default: "/var/lib/matrix-appservice-irc/passkey.pem",
                                   })))),
                                 servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$19,
-                                    type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({ __proto__: pos$18, freeformType: jsonType })))),
+                                    [nix.POS]: pos$19,
+                                    type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$18, freeformType: jsonType })))),
                                     description: "IRC servers to connect to",
                                   })))),
                                 mediaProxy: nix.thunk(() => ({
-                                  __proto__: pos$24,
+                                  [nix.POS]: pos$24,
                                   signingKeyPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$20,
+                                      [nix.POS]: pos$20,
                                       type: nix.thunk(() => nix.lookup(w, "path")),
                                       default: "/var/lib/matrix-appservice-irc/media-signingkey.jwk",
                                       description: "Path to the signing key file for authenticated media.\n",
                                     })))),
                                   ttlSeconds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$21,
+                                      [nix.POS]: pos$21,
                                       type: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "unsigned")),
                                       default: 3600n,
                                       example: 0n,
                                       description: "Lifetime in seconds, that generated URLs stay valid.\n\nSet the lifetime to 0 to prevent URLs from becoming invalid.\n",
                                     })))),
                                   bindPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$22,
+                                      [nix.POS]: pos$22,
                                       type: nix.thunk(() => nix.lookup(w, "port")),
                                       default: 11111n,
                                       description: "Port that the media proxy binds to.\n",
                                     })))),
                                   publicUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$23,
+                                      [nix.POS]: pos$23,
                                       type: nix.thunk(() => nix.lookup(w, "str")),
                                       example: "https://matrix.example.com/media",
                                       description: "URL under which the media proxy is publicly acccessible.\n",
@@ -233,13 +233,13 @@ for supported values
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             "matrix-appservice-irc": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "Matrix-IRC bridge",
               before: nix.thunk(() => ["matrix-synapse.service"]),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "database", "engine"), "postgres")), nix.thunk(() => ["postgresql.target"]))),
@@ -302,7 +302,7 @@ fi
                 const SystemCallArchitectures = "native";
                 const RestrictAddressFamilies = "AF_UNIX AF_INET AF_INET6";
                 return {
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   Type,
                   ExecStart,
                   ProtectHome,
@@ -329,12 +329,12 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$41,
-          groups: nix.thunk(() => ({ __proto__: pos$38, "matrix-appservice-irc": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$41,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$38, "matrix-appservice-irc": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             "matrix-appservice-irc": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               description: "Service user for the Matrix-IRC bridge",
               group: "matrix-appservice-irc",
               isSystemUser: true,
@@ -342,7 +342,7 @@ fi
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$43, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$43, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=appservice-irc.ts.map

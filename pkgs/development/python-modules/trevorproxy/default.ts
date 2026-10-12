@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ZUOqtJmLiZbe2LBkpTGELeKFkmzA0WCJ/TXPi9eyRXs=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [sh]);
       const pythonImportsCheck = nix.thunk(() => ["trevorproxy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to rotate the source IP address via SSH proxies and other methods",
         homepage: "https://github.com/blacklanternsecurity/TREVORproxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "trevorproxy",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

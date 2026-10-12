@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "misc-gitology",
       version: "0-unstable-2024-08-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "da-x",
           repo: "misc-gitology",
           rev: "8f6b200ed5f4d39f86026cf050f325d5f5713950",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3, perl]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nfind . \\\n  -type f \\\n  -executable \\\n  -maxdepth 1 \\\n  -exec install --target-directory=$out/bin/ {} +\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Assortment of scripts around Git",
         homepage: "https://github.com/da-x/misc-gitology",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_9999years"))]),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     })));

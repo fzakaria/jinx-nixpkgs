@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastmri",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookresearch",
           repo: "fastMRI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_modules.py"]),
       pythonImportsCheck: nix.thunk(() => ["fastmri"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytorch-based MRI reconstruction tooling",
         homepage: "https://github.com/facebookresearch/fastMRI",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/fastMRI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

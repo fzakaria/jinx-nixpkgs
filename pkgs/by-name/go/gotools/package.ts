@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const go = nix.arg($, "go");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gotools",
       version: "0.44.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "golang",
           repo: "tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ substitute ${nix.path(here, "./setup-hook.sh")} $out/nix-support/setup-hook \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [go]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Additional tools for Go development",
         longDescription: "This package contains tools like: godoc, goimports, callgraph, digraph, stringer or toolstash.\n",
         homepage: "https://go.googlesource.com/tools",

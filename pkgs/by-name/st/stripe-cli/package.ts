@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stripe-cli",
       version: "1.43.2",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stripe",
           repo: "stripe-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ installShellCompletion --cmd ${mainProgram} \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://stripe.com/docs/stripe-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/stripe/stripe-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Command-line tool for Stripe",

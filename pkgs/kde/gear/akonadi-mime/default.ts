@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "akonadi-mime",
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info, libxslt]),
     })));

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const qtx11extras = nix.arg($, "qtx11extras");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kwindowsystem",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [libpthread_stubs, libxdmcp, qttools, qtx11extras]),

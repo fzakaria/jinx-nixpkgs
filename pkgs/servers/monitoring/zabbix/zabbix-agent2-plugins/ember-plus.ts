@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const emberPlusHash = nix.arg($_1, "emberPlusHash");
       return nix.app(buildGoModule, (finalAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "zabbix-agent2-plugin-ember-plus",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix-agent2-plugins/sources/ember-plus/zabbix-agent2-plugin-ember-plus-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: emberPlusHash,
             })))),
           vendorHash: null,
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Zabbix agent2 plugin for monitoring Ember Plus",
             mainProgram: "ember-plus",
             homepage: "https://www.zabbix.com/documentation/current/en/manual/appendix/config/zabbix_agent2_plugins/ember_plus_plugin",

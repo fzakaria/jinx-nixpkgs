@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const spinners = nix.arg($, "spinners");
   const termcolor = nix.arg($, "termcolor");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "halo",
       version: "0.0.31",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "1mn97h370ggbc9vi6x8r6akd5q8i512y6kid2nvm67g93r9a6rvv",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["halo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Beautiful Spinners for Terminal, IPython and Jupyter",
         homepage: "https://github.com/manrajgrover/halo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

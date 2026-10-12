@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const python3Packages = nix.arg($, "python3Packages");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$2,
-      "pytest-randomly": nix.thunk(() => nix.app(nix.sel(super$, "pytest-randomly", "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$1, doCheck: false })))),
+      [nix.POS]: pos$2,
+      "pytest-randomly": nix.thunk(() => nix.app(nix.sel(super$, "pytest-randomly", "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, doCheck: false })))),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "quark-engine",
       version: "25.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ev-flow",
           repo: "quark-engine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["quark"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Android malware (analysis and scoring) system",
         homepage: "https://quark-engine.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/ev-flow/quark-engine/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

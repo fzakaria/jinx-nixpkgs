@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "soundalike";
       const version = "0.1.3";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "derat",
           repo: "soundalike",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const testDataVersion = "0.0.1";
       const testData = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "derat",
           repo: "soundalike-testdata",
           tag: nix.thunk(() => nix.str`v${testDataVersion}`),
@@ -51,7 +51,7 @@ ln -sfv ${testData} ./testdata
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [chromaprint]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Find duplicate audio files using acoustic fingerprints",
         homepage: "https://codeberg.org/derat/soundalike",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/derat/soundalike/releases/tag/v${version}`),
@@ -63,7 +63,7 @@ ln -sfv ${testData} ./testdata
         mainProgram: "soundalike",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

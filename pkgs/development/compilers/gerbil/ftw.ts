@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gerbilPackages = nix.arg($, "gerbilPackages");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     pname: "ftw",
     version: "unstable-2023-11-15",
     "git-version": "e5e2f56",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "gerbil-utils"))];
     })()),
     "pre-src": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fun: fetchFromGitHub,
       owner: "drewc",
       repo: "ftw",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       sha256: "04164190vv1fzfk014mgqqmy5cml5amh63df31q2yc2kzvfajfc3",
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Simple web handlers for Gerbil Scheme",
       homepage: "https://github.com/drewc/ftw",
       license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     boot: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       kernel: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sysctl: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "kernel.poweroff_cmd": nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/sbin/poweroff`),
         })),
       })),

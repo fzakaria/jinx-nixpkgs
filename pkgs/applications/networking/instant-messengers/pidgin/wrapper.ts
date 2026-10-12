@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.arg($, "plugins");
   const extraArgs = nix.thunk(() => nix.builtins.map((x) => nix.selOr(x, () => "", "wrapArgs"), plugins));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`pidgin-with-plugins-${nix.sel(pidgin, "version")}`),
       paths: nix.thunk(() => nix.concat([pidgin], plugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

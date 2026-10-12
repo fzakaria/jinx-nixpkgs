@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "levmar",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ics.forth.gr/~lourakis/levmar/levmar-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-O/TvHqRHXe1TFejY/Jkqcl8ueUCnTKOw+QKdnm6Uutc=",
         })))),
@@ -27,7 +27,7 @@ substituteInPlace Makefile --replace-fail "gcc" "${nix.sel(stdenv, "cc", "target
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "substituteInPlace compiler.h \\\n  --replace-fail \"#define LM_FINITE finite // ICC, GCC\" \\\n                 \"#define LM_FINITE isfinite // ICC, GCC\"\n"))),
       installPhase: "mkdir -p $out/include $out/lib\ncp levmar.h lm.h $out/include\ncp liblevmar.a $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ANSI C implementations of Levenberg-Marquardt, usable also from C++",
         homepage: "https://www.ics.forth.gr/~lourakis/levmar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

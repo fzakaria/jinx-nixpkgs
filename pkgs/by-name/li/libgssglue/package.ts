@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const krb5 = nix.arg($, "krb5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libgssglue",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gsasl",
           repo: "libgssglue",
           rev: nix.thunk(() => nix.str`tags/libgssglue-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ ${nix.app(nix.sel(lib, "getLib"), krb5)}/lib/libgssapi_krb5.so mechglue_internal
 EOF
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.citi.umich.edu/projects/nfsv4/linux/",
         description: "Exports a gssapi interface which calls other random gssapi libraries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

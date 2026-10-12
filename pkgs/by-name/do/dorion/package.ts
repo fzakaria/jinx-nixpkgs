@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const shelter = nix.arg($, "shelter");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const webkitgtk_4_1$ = nix.thunk(() => nix.app(nix.sel(webkitgtk_4_1, "override"), nix.thunk(() => ({ __proto__: pos$1, enableExperimental: true }))));
+  const webkitgtk_4_1$ = nix.thunk(() => nix.app(nix.sel(webkitgtk_4_1, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableExperimental: true }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dorion",
       version: "6.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "SpikeHD",
           repo: "Dorion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-V8FHnZLz4K9sShqJbYgiFwXYmTawosKulUGgTvu7Gqo=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -115,16 +115,16 @@ ln -s "$(pwd)/src" src-tauri/html
       postInstall: nix.thunk(() => nix.add(nix.add("mkdir -p \"$out/lib/Dorion\"\nln -s \"$out/lib/Dorion\" \"$out/lib/dorion\"\nrm -rf \"$out/lib/Dorion/injection\"\ncp -r src-tauri/injection \"$out/lib/Dorion\"\ncp -r src \"$out/lib/Dorion\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "desktop-file-edit \\\n  --set-comment \"Tiny alternative Discord client\" \\\n  --set-key=\"Exec\" --set-value=\"Dorion %U\" \\\n  --set-key=\"TryExec\" --set-value=\"Dorion\" \\\n  --set-key=\"StartupWMClass\" --set-value=\"Dorion\" \\\n  --set-key=\"StartupNotify\" --set-value=\"true\" \\\n  --set-key=\"Categories\" --set-value=\"Network;InstantMessaging;Chat;\" \\\n  --set-key=\"Keywords\" --set-value=\"dorion;discord;vencord;chat;im;vc;ds;dc;dsc;tauri;\" \\\n  --set-key=\"Terminal\" --set-value=\"false\" \\\n  --set-key=\"MimeType\" --set-value=\"x-scheme-handler/discord\" \\\n  \"$out/share/applications/Dorion.desktop\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeBinaryWrapper \"$out/Applications/Dorion.app/Contents/MacOS/Dorion\" \"$out/bin/Dorion\"\n"))),
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CI: "true",
         TAURI_RESOURCE_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://spikehd.github.io/projects/dorion/",
         description: "Tiny alternative Discord client",
         longDescription: "Dorion is an alternative Discord client aimed towards lower-spec or\nstorage-sensitive PCs that supports themes, plugins, and more!\n",

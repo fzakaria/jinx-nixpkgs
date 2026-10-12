@@ -30,28 +30,28 @@ export default nix.lambda((args) => (() => {
   const dioxus_cli = nix.arg($, "dioxus-cli");
   const withTelemetry = nix.argOr($, "withTelemetry", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "dioxus-cli",
       version: "0.7.10",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "dioxus-cli",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-kPzo5zRSVs46SjiDRKpKxca8kPcWUgqc/LMKQsk0sC8=",
         })))),
       cargoHash: "sha256-cvBVIkIqBjXFifYNpL2DqZpQcBaX/59Xw0ZJKUvUcIs=",
       buildFeatures: nix.thunk(() => nix.concat(["no-downloads"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withTelemetry)), "disable-telemetry"))),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n, LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, cacert, installShellFiles, makeWrapper]),
       buildInputs: nix.thunk(() => [libgit2, openssl]),
       nativeCheckInputs: nix.thunk(() => [rustfmt]),
       checkFlags: nix.thunk(() => ["--skip=serve::proxy::test", "--skip=test_harnesses::run_harness"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: dioxus_cli })))),
-          withTelemetry: nix.thunk(() => nix.app(nix.sel(dioxus_cli, "override"), nix.thunk(() => ({ __proto__: pos$4, withTelemetry: true })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: dioxus_cli })))),
+          withTelemetry: nix.thunk(() => nix.app(nix.sel(dioxus_cli, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withTelemetry: true })))),
         })),
       })),
       postInstall: "installShellCompletion --cmd dx \\\n  --bash <($out/bin/dx completions bash) \\\n  --fish <($out/bin/dx completions fish) \\\n  --zsh <($out/bin/dx completions zsh)\n",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [esbuild, wasm_bindgen_cli_0_2_127]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "CLI for building fullstack web, desktop, and mobile apps with a single codebase.",
         homepage: "https://dioxus.dev",
         changelog: "https://github.com/DioxusLabs/dioxus/releases",

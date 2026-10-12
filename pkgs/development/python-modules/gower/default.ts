@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const pandas = nix.arg($, "pandas");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gower",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wwwjk366",
           repo: "gower",
           rev: "d92f2145e65efe305143e9e30cc69b722d1c52e3",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gower"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gower's distance calculation in Python",
         homepage: "https://github.com/wwwjk366/gower",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

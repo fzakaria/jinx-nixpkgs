@@ -37,70 +37,70 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "distccd"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         distccd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "distccd, a distributed C/C++ compiler")),
           allowedClients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["127.0.0.1"]),
               example: nix.thunk(() => ["127.0.0.1", "192.168.0.0/24", "10.0.0.0/24"]),
               description: "Client IPs which are allowed to connect to distccd in CIDR notation.\n\nAnyone who can connect to the distccd server can run arbitrary\ncommands on that system as the distcc user, therefore you should use\nthis judiciously.\n",
             })))),
           jobTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "Maximum duration, in seconds, of a single compilation request.\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["critical", "error", "warning", "notice", "info", "debug"]))))),
               default: "warning",
               description: "Set the minimum severity of error that will be included in the log\nfile. Useful if you only want to see error messages rather than an\nentry for each connection.\n",
             })))),
           maxJobs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               description: "Maximum number of tasks distccd should execute at lib.any time.\n",
             })))),
           nice: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), nix.thunk(() => nix.neg(20n)), 19n)))),
               default: null,
               description: "Niceness of the compilation tasks.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Opens the specified TCP port for distcc.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "distcc", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3632n,
               description: "The TCP port which distccd will listen on.\n",
             })))),
           stats: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "statistics reporting via HTTP server")),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 3633n,
                 description: "The TCP port which the distccd statistics HTTP server will listen\non.\n",
               })))),
           })),
           zeroconf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to register via mDNS/DNS-SD\n",
@@ -109,26 +109,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         networking: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               allowedTCPPorts: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "port"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "stats", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "stats", "port"))])))),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             distccd: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Distributed C, C++ and Objective-C compiler",
               documentation: nix.thunk(() => ["man:distccd(1)"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 User: "distcc",
                 Group: "distcc",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "start-distccd", nix.thunk(() => nix.str`export PATH="${nix.sel(pkgs, "distccMasquerade")}/bin"
@@ -151,18 +151,18 @@ ${nix.sel(cfg, "package")}/bin/distccd \\
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           groups: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             distcc: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "distcc")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             distcc: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "distccd user",
               group: "distcc",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "distcc")),

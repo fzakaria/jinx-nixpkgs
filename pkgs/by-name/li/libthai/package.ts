@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libdatrie = nix.arg($, "libdatrie");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libthai",
       version: "0.1.30",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tlwg/libthai/releases/download/v${nix.sel(finalAttrs, "version")}/libthai-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-3bqLU9/lhMMlN2YDAhioiCVIilGn3u8EHQlucVr2S90=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libdatrie]),
       postInstall: "installManPage man/man3/*.3\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://linux.thai.net/projects/libthai/",
         description: "Set of Thai language support routines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

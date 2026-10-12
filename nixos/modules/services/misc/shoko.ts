@@ -35,29 +35,29 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "shoko"));
   const shokoPlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "shoko-plugins", nix.thunk(() => nix.builtins.map((pkg) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.attr(pkg, "name")),
         path: nix.thunk(() => nix.str`${pkg}/lib/${nix.sel(pkg, "pname")}`),
       }), nix.thunk(() => nix.sel(cfg, "plugins"))))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         shoko: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Shoko")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "shoko", nix.thunk(() => ({})))),
-          webui: nix.thunk(() => nix.app(mkPackageOption, pkgs, "shoko-webui", nix.thunk(() => ({ __proto__: pos$2, nullable: true })))),
+          webui: nix.thunk(() => nix.app(mkPackageOption, pkgs, "shoko-webui", nix.thunk(() => ({ [nix.POS]: pos$2, nullable: true })))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: [],
               description: "The plugins to install.\n\nNote that if there are plugins installed imperatively when this\noption is used, they will be deleted.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the ShokoAnime api and web interface.\n",
@@ -66,25 +66,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           firewall: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [8111n]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             shoko: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Shoko Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 SHOKO_HOME: nix.thunk(() => nix.str`/var/lib/${nix.sel(config, "systemd", "services", "shoko", "serviceConfig", "StateDirectory")}`),
               })),
               preStart: nix.thunk(() => nix.add(nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "webui"), null)), nix.thunk(() => nix.str`rm -rf "$STATE_DIRECTORY/webui"
@@ -93,7 +93,7 @@ ln -s '${nix.sel(cfg, "webui")}' "$STATE_DIRECTORY/webui"
 ln -s '${shokoPlugins}' "$STATE_DIRECTORY/plugins"
 `)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "simple",
                 DynamicUser: true,
                 StateDirectory: "shoko",
@@ -106,7 +106,7 @@ ln -s '${shokoPlugins}' "$STATE_DIRECTORY/plugins"
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nanoyaki"))];

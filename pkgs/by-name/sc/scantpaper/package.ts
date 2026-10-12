@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const runtimeExecDeps = nix.thunk(() => [unpaper, tesseract, djvulibre, libtiff, qpdf]);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scantpaper",
       version: "3.0.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carygravel",
           repo: "scantpaper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 \\\n  icons/hicolor/scalable/apps/scantpaper.svg \\\n  $out/share/icons/hicolor/scalable/apps/scantpaper.svg\n\ninstall -Dm444 \\\n  org.scantpaper.desktop \\\n  $out/share/applications/org.scantpaper.desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/carygravel/scantpaper/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),
         description: "GUI to produce PDFs or DjVus from scanned documents",
         homepage: "https://github.com/carygravel/scantpaper",

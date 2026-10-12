@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.5.4.27",
       pname: "xarchiver",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ib",
           repo: "xarchiver",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
 `),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK frontend to 7z,zip,rar,tar,bzip2, gzip,arj, lha, rpm and deb (open and extract only)",
         homepage: "https://github.com/ib/xarchiver",
         maintainers: [],

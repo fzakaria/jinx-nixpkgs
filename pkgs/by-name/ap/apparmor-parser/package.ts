@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const bashInteractive = nix.arg($, "bashInteractive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "apparmor-parser",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -52,7 +52,7 @@ substituteInPlace Makefile \\
       nativeCheckInputs: nix.thunk(() => [bashInteractive, perl, python3]),
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Mandatory access control system - core library",
         mainProgram: "apparmor_parser",
       })),

@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "awakened-poe-trade",
       version: "3.29.108",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/SnosMe/awakened-poe-trade/releases/download/v${nix.sel(finalAttrs, "version")}/Awakened-PoE-Trade-${nix.sel(finalAttrs, "version")}.AppImage`),
           hash: "sha256-DIksV61mC0E2ZPztWK+WnMqR9KXwLMWQpc7hajaymyE=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         appImageContents: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -60,7 +60,7 @@ runHook postInstall
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libxtst, libxt]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Path of Exile trading app for price checking",
         homepage: "https://github.com/SnosMe/awakened-poe-trade",
         changelog: nix.thunk(() => nix.str`https://github.com/SnosMe/awakened-poe-trade/releases/tag/v${nix.sel(finalAttrs, "version")}`),

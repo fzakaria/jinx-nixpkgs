@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libhydrogen",
       version: "0-unstable-2025-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jedisct1",
           repo: "libhydrogen",
           rev: "bbca575b62510bfdc6dd927a4bfa7df4a51cb846",
@@ -50,14 +50,14 @@ EOF
       doCheck: true,
       preCheck: "export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight, secure, easy-to-use crypto library suitable for constrained environments",
         homepage: "https://github.com/jedisct1/libhydrogen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

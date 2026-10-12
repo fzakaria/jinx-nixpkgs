@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Erotemic",
           repo: "ubelt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools, wheel]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         optional: nix.thunk(() => [numpy, python_dateutil, xxhash]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, requests, xdoctest]);
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ubelt"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python utility library with a stdlib like feel and extra batteries. Paths, Progress, Dicts, Downloads, Caching, Hashing: ubelt makes it easy",
         homepage: "https://github.com/Erotemic/ubelt",
         changelog: nix.thunk(() => nix.str`https://github.com/Erotemic/ubelt/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

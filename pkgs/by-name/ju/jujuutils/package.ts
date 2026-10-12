@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const linuxHeaders = nix.arg($, "linuxHeaders");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jujuutils",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/jujuutils/jujuutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1r74m7s7rs9d6y7cffi7mdap3jf96qwm1v6jcw53x5cikgmfxn4x",
         })))),
       buildInputs: nix.thunk(() => [linuxHeaders]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cladisch/linux-firewire-utils",
         description: "Utilities around FireWire devices connected to a Linux computer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

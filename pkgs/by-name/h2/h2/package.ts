@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const maven = nix.arg($, "maven");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "h2",
       version: "2.5.252",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h2database",
           repo: "h2database",
           tag: nix.thunk(() => nix.str`version-${nix.sel(finalAttrs, "version")}`),
@@ -43,14 +43,14 @@ mkdir -p $doc/share/doc/h2
 cp -r h2/src/docsrc/* $doc/share/doc/h2
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^version-([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Java SQL database",
         homepage: "https://h2database.com/html/main.html",
         changelog: "https://h2database.com/html/changelog.html",

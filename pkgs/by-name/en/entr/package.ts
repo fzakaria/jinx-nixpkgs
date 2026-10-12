@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "entr",
       version: "5.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://eradman.com/entrproject/code/entr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-DvLOfbcoFnhEqRkElEzQfHzMb9MEG4ScrYYSJNEGqEU=",
         })))),
@@ -31,11 +31,11 @@ substituteInPlace entr.1 --replace /bin/cat cat
       checkTarget: "test",
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TARGET_OS: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "uname", "system")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://eradman.com/entrproject/",
         description: "Run arbitrary commands when files change",
         changelog: nix.thunk(() => nix.str`https://github.com/eradman/entr/raw/${nix.sel(finalAttrs, "version")}/NEWS`),

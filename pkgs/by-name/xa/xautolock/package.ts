@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xautolock",
       version: "2.2-7-ga23dd5c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peti",
           repo: "xautolock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["BINDIR=$(out)/bin", "MANPATH=$(out)/share/man"]),
       installTargets: nix.thunk(() => ["install", "install.man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           xautolock: nix.thunk(() => nix.attr(nixosTests, "xautolock")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Launch a given program when your X session has been idle for a given time",
         homepage: "http://www.ibiblio.org/pub/linux/X11/screensavers",
         maintainers: nix.thunk(() => (() => {

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-UrACVglB422b+Ab8olI9x/uFYKKV1fGm4VrC3tenOEA=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["flake8_debugger"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ipdb/pdb statement checker plugin for flake8",
         homepage: "https://github.com/jbkahn/flake8-debugger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

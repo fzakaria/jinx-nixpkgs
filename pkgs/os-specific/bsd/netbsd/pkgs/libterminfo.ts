@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const tic = nix.arg($, "tic");
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libterminfo",
       nativeBuildInputs: nix.thunk(() => [
         bsdSetupHook,

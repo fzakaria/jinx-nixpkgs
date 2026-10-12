@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const lib = nix.arg($, "lib");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "session-management-for-emacs",
       ename: "session",
       version: "2.4b",
       melpaVersion: "2.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/emacs-session/session-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-xF/hyUyerZPXgklOn2DElJtbyPZqSG/6S2PPxh971F0=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small session management for emacs",
         homepage: "https://emacs-session.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

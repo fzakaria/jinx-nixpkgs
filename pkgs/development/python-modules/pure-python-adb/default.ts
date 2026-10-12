@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0.dev0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0kdr7w2fhgjpcf1k3l6an9im583iqkr6v8hb4q1zw30nh3bqkk0f",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiofiles]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiofiles]) }));
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "async")));
       const pythonImportsCheck = nix.thunk(() => nix.concat(["ppadb.client"], nix.app(nix.sel(lib, "optionals"), doCheck, nix.thunk(() => ["ppadb.client_async"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pure python implementation of the adb client",
         homepage: "https://github.com/Swind/pure-python-adb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

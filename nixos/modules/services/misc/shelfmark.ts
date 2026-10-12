@@ -32,51 +32,51 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "shelfmark"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         shelfmark: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Shelfmark, a self-hosted book and audiobook search and download interface")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "shelfmark", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open the appropriate ports in the firewall for Shelfmark.",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     FLASK_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         example: "0.0.0.0",
                         description: "The IP address to bind the Shelfmark server to.",
                       })))),
                     FLASK_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 8084n,
                         apply: nix.builtins.toString,
                         description: "TCP port for the Shelfmark web interface.",
                       })))),
                     ENABLE_LOGGING: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         apply: nix.builtins.toString,
                         default: false,
                         description: "Whether to enable file logging. Disabled by default since systemd captures console output via journald.",
                       })))),
                     CONFIG_DIR: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/shelfmark",
                         description: "Directory for Shelfmark configuration, database, and artwork cache.",
@@ -84,27 +84,27 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$8, SEARCH_MODE: "universal", LOG_LEVEL: "DEBUG" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$8, SEARCH_MODE: "universal", LOG_LEVEL: "DEBUG" })),
               description: "Environment variables to pass to the Shelfmark service.\nSee <https://github.com/calibrain/shelfmark/blob/main/docs/environment-variables.md>\nfor available options.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             shelfmark: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Shelfmark - book and audiobook search and download interface",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.attr(cfg, "environment")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -b ${nix.sel(cfg, "environment", "FLASK_HOST")}:${nix.sel(cfg, "environment", "FLASK_PORT")}`),
                 StateDirectory: "shelfmark",
@@ -139,9 +139,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.sel(cfg, "environment", "FLASK_PORT")))),
               ]),
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jamiemagee"))];

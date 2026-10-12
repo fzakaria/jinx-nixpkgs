@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const xapp = nix.arg($, "xapp");
   const xapp_symbolic_icons = nix.arg($, "xapp-symbolic-icons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pix",
       version: "3.4.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "pix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         glib,
         gsettings_desktop_schemas,
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-libav")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${nix.app(nix.sel(lib, "makeSearchPath"), "share", nix.thunk(() => [shared_mime_info, xapp_symbolic_icons]))}")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generic image viewer from Linux Mint",
         mainProgram: "pix",
         homepage: "https://github.com/linuxmint/pix",

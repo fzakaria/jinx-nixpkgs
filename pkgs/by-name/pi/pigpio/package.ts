@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.10")),
       ]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joan2937",
           repo: "pigpio",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Z+SwUlBbtWtnbjTe0IghR3gIKS43ZziN0amYtmXy7HE=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C library for the Raspberry which allows control of the General Purpose Input Outputs (GPIO)",
         homepage: "https://github.com/joan2937/pigpio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

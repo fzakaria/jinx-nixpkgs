@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const dbusSupport = nix.argOr($, "dbusSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.11.0",
       pname: "baresip",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baresip",
           repo: "baresip",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["PREFIX=$(out)", "CCACHE_DISABLE=1"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "cc"), null)), nix.thunk(() => nix.str`SYSROOT_ALT=${nix.sel(stdenv, "cc", "cc")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "libc"), null)), nix.thunk(() => nix.str`SYSROOT=${nix.sel(stdenv, "cc", "libc")}`))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${librem}/include/rem -I${gsm}/include/gsm
 -DHAVE_INTTYPES_H -D__GLIBC__
 -D__need_timeval -D__need_timespec -D__need_time_t
@@ -168,7 +168,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (m) => nix.str`test -x $out
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modular SIP User-Agent with audio and video support",
         homepage: "https://github.com/baresip/baresip",
         maintainers: nix.thunk(() => (() => {

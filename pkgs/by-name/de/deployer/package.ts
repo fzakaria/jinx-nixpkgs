@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deployer",
       version: "8.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deployphp",
           repo: "deployer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-X30D05d0PCmw2tHN7PC9PiAXVlnI6SkQg2l7G+tZ4Mo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/deployphp/deployer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "PHP deployment tool with support for popular frameworks out of the box",
         homepage: "https://deployer.org/",

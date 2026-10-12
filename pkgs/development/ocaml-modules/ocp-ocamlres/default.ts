@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocp-ocamlres`);
       const version = "0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "ocp-ocamlres",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool and library to embed files and directories inside OCaml executables",
         homepage: "https://www.typerex.org/ocp-ocamlres.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

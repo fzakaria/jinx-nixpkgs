@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnome-console",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-console/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-console-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5JUCB/BUfmpsDxjuv89uGhBGHqsPL64KrlErEETHrG4=",
         })))),
@@ -51,15 +51,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgtop, gtk4, libadwaita, pango, pcre2, vte_gtk4]),
       preFixup: "# FIXME: properly address https://github.com/NixOS/nixpkgs/pull/333911#issuecomment-2362710334\n# and https://gitlab.gnome.org/GNOME/console/-/commit/c81801c82f186f20\ngappsWrapperArgs+=(--set \"TERM\" \"xterm-256color\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-console" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-console" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "kgx")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple user-friendly terminal emulator for the GNOME desktop",
         homepage: "https://gitlab.gnome.org/GNOME/console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

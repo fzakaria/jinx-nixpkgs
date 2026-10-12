@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libprocstat",
       extraPaths: nix.thunk(() => nix.concat([
         "lib/libc/Versions.def",

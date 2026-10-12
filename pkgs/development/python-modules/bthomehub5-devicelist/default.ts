@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-bWMwLbFGdMRcZLIVbOptWMOOFzVBm2KxQ9jwqvAU6zA=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["bthomehub5_devicelist"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Returns a list of devices currently connected to a BT Home Hub 5",
         homepage: "https://github.com/ahobsonsayers/bthomehub5-devicelist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "c3-lsp",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pherrymason",
           repo: "c3-lsp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-eT+Qirl0R1+di3JvXxggGK/nK9+nqw+8QEur+ldJXSc=",
       postInstall: "mv $out/bin/lsp $out/bin/c3-lsp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language Server for C3 Language",
         homepage: "https://github.com/pherrymason/c3-lsp",
         changelog: nix.thunk(() => nix.str`https://github.com/pherrymason/c3-lsp/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.md`),

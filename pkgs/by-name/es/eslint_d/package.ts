@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "eslint_d";
       const version = "15.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mantoni",
           repo: "eslint_d.js",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-R1hv7sRZrDLDK05LvxyvuYCsugBM3c4pyZsqYlA7vd4=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: eslint_d,
               version: nix.thunk(() => nix.sel(src, "rev")),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Makes eslint the fastest linter on the planet",
         homepage: "https://github.com/mantoni/eslint_d.js",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "eslint_d",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

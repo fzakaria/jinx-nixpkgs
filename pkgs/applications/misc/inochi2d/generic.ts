@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const builderArgs = nix.arg($, "builderArgs");
   const cimgui_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Inochi2D",
       repo: "cimgui",
       rev: "49bb5ce65f7d5eeab7861d8ffd5aa2a58ca8f08c",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const dubLock = nix.thunk(() => nix.attr(builderArgs, "dubLock"));
   const meta = nix.thunk(() => nix.attr(builderArgs, "meta"));
   return nix.app(buildDubPackage, nix.thunk(() => nix.update(builderArgs, {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nativeBuildInputs: nix.thunk(() => [
         cmake,
         gettext,
@@ -56,16 +56,16 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus, freetype, SDL2, libGL, libx11]),
       dontUseCmakeConfigure: true,
       dubLock: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), dubLock)), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           dependencies: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             gitver: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: "1.6.1",
               sha256: "sha256-NCyFik4FbD7yMLd5zwf/w4cHwhzLhIRSVw1bWo/CZB4=",
             })),
             semver: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               version: "0.3.2",
               sha256: "sha256-l6c9hniUd5xNsJepq8x30e0JTjmXs4pYUmv4ws+Nrn4=",
             })),
@@ -104,7 +104,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: pname,
             desktopName: appname,
             exec: pname,
@@ -120,7 +120,7 @@ patchelf $out/share/${pname}/${pname} \\
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, luajit_2_1]))}
 `),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://inochi2d.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         mainProgram: pname,

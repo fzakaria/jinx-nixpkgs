@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buildout",
           repo: "buildout",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["zc.buildout"]);
       const pythonNamespaces = nix.thunk(() => ["zc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software build and configuration system",
         mainProgram: "buildout",
         downloadPage: "https://github.com/buildout/buildout",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const python_magic = nix.arg($, "python-magic");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iocx",
       version: "0.7.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iocx-dev",
           repo: "iocx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "test_scaling_behavior",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IOC extraction engine for PE binaries and text",
         homepage: "https://github.com/iocx-dev/iocx",
         changelog: nix.thunk(() => nix.str`https://github.com/iocx-dev/iocx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

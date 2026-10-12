@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spawn-fcgi",
       version: "1.6.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.lighttpd.net/spawn-fcgi/releases-1.6.x/spawn-fcgi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yWI0XuzwVT7dm/XPYe5F59EYN/NANwZ/vaFlz0rdzhg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-implicit-function-declaration")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://redmine.lighttpd.net/projects/spawn-fcgi",
         description: "Provides an interface to external programs that support the FastCGI interface",
         mainProgram: "spawn-fcgi",

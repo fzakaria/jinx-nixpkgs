@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const just = nix.arg($, "just");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cosmic-ext-applet-weather",
       version: "0-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cosmic-utils",
           repo: "cosmic-ext-applet-weather",
           rev: "ead399c257c31d31b691f128055a18639863c7e5",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version", "branch=HEAD"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch=HEAD"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple weather info applet for COSMIC",
         homepage: "https://github.com/cosmic-utils/cosmic-ext-applet-weather",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

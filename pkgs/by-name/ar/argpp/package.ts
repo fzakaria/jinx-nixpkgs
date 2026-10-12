@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const tinycmmc = nix.arg($, "tinycmmc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "argpp",
       version: "0-unstable-2022-08-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Grumbel",
           repo: "argpp",
           rev: "9e1d54f8ed20af0aa5857e6653ab605b2ab63d5c",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtest, tinycmmc]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Argument Parser for C++",
         homepage: "https://github.com/Grumbel/argpp",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

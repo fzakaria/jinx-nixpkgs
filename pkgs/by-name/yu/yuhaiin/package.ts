@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yuhaiin",
       version: "0.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yuhaiin",
           repo: "yuhaiin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Proxy kit for Linux/Windows/MacOS",
         homepage: "https://github.com/yuhaiin/yuhaiin",
         changelog: nix.thunk(() => nix.str`https://github.com/yuhaiin/yuhaiin/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtkeychain";
       const version = "0.17.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frankosterfeld",
           repo: "qtkeychain",
           rev: version,
@@ -42,14 +42,14 @@ grep --quiet -R 'set(PACKAGE_VERSION "${version}"' .
 runHook postInstallCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Platform-independent Qt API for storing passwords securely",
         homepage: "https://github.com/frankosterfeld/qtkeychain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

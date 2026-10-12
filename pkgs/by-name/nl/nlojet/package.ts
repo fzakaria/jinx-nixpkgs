@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nlojet++",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://desy.de/~znagy/hep-programs/nlojet++/nlojet++-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "18qfn5kjzvnyh29x40zm2maqzfmrnay9r58n8pfpq5lcphdhhv8p",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./nlojet_clang_fix.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: "-std=c++11",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "-Dfinite=isfinite")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.desy.de/~znagy/Site/NLOJet++.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         description: "Implementation of calculation of the hadron jet cross sections",

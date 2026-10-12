@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.51.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "encode",
           repo: "uvicorn",
           tag: version,
@@ -40,21 +40,21 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [click, h11]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         standard: nix.thunk(() => [httptools, python_dotenv, pyyaml, uvloop, watchfiles, websockets]),
       }));
       const postInstall = "mkdir $testsout\ncp -R tests $testsout/tests\n";
       const pythonImportsCheck = nix.thunk(() => ["uvicorn"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.uvicorn.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Kludex/uvicorn/blob/${nix.sel(src, "tag")}/docs/release-notes.md`),
         description: "Lightning-fast ASGI server",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

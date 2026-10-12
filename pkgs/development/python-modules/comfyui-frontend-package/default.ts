@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const comfyui = nix.arg($, "comfyui");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "comfyui-frontend-package",
       version: "1.52.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "comfyui_frontend_package",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XLKH2CthihdZjMrmQd1Wreh8paRN3IVKdyVtveKa2kM=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         COMFYUI_FRONTEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       doCheck: false,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Frontend assets for ComfyUI",
         homepage: "https://github.com/Comfy-Org/ComfyUI_frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

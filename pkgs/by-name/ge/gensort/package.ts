@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gensort",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ordinal.com/try.cgi/gensort-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-f3VzeD2CmM7z3Uqh24IlyRTeGgz+0oOWXqILaYOKZ60=",
         })))),
       buildInputs: nix.thunk(() => [zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
       installPhase: "runHook preInstall\ninstall -Dm755 gensort $out/bin/gensort\ninstall -Dm755 valsort $out/bin/valsort\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generate and validate records for the sorting benchmark",
         longDescription: "The gensort program can be used to generate input records for the sort\nbenchmarks presented on www.sortbenchmark.org.\n\nThe valsort program can be used to validate the sort output file is\ncorrect.\n",
         homepage: "https://www.ordinal.com/gensort.html",

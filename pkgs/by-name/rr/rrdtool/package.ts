@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const tcl = nix.arg($, "tcl");
   return nix.app(nix.sel(perl, "pkgs", "toPerlModule"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "rrdtool",
         version: "1.9.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "oetiker",
             repo: "rrdtool-1.x",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-CPbSu1mosNlfj2nqiNVH14a5C5njkfvJM8ix3X3aP8E=",
           })))),
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/oetiker/rrdtool-1.x/pull/1262.patch",
               hash: "sha256-aP0rmDlILn6VC8Tg7HpRXbxL9+KD/PRTbXnbQ7HgPEg=",
             })))))),
@@ -46,7 +46,7 @@ mkdir -p $out/${nix.sel(perl, "libPrefix")}
 mv $out/lib/perl/5* $out/${nix.sel(perl, "libPrefix")}
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://oss.oetiker.ch/rrdtool/",
           description: "High performance logging in Round Robin Databases",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

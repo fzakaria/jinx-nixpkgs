@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyworxcloud",
       version: "6.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MTrab",
           repo: "pyworxcloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyworxcloud"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for integrating with Worx Cloud devices",
         homepage: "https://github.com/MTrab/pyworxcloud",
         changelog: nix.thunk(() => nix.str`https://github.com/MTrab/pyworxcloud/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

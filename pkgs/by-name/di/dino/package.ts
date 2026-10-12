@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const webrtc_audio_processing = nix.arg($, "webrtc-audio-processing");
   const gstreamer = nix.thunk(() => nix.attr(gst_all_1, "gstreamer"));
   const gst_plugins_base = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base"));
-  const gst_plugins_good = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$1, gtkSupport: true }))));
+  const gst_plugins_good = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, gtkSupport: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dino",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "dino",
           repo: "dino",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,10 +91,10 @@ export default nix.lambda((args) => (() => {
         webrtc_audio_processing,
       ]),
       doCheck: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-lgpg-error" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lgpg-error" })))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cd \"$out/lib/dino/plugins/\"\nfor f in *.dylib; do\n  mv \"$f\" \"$(basename \"$f\" .dylib).so\"\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Modern Jabber/XMPP Client using GTK/Vala",
         mainProgram: "dino",

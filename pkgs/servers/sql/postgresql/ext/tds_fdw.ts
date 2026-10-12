@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tds_fdw",
       version: "2.0.5",
       buildInputs: nix.thunk(() => [freetds]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tds-fdw",
           repo: "tds_fdw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4ecdErksaZ7SyCKzvSY5sD7rrKljq7BMn+gI9Yz49r0=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PostgreSQL foreign data wrapper to connect to TDS databases (Sybase and Microsoft SQL Server)",
         homepage: "https://github.com/tds-fdw/tds_fdw",
         changelog: nix.thunk(() => nix.str`https://github.com/tds-fdw/tds_fdw/releases/tag/v${nix.sel(finalAttrs, "version")}`),

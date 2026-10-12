@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const traitlets = nix.arg($, "traitlets");
   const traittypes = nix.arg($, "traittypes");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bqscales",
       version: "0.3.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bqplot",
           repo: "bqscales",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-4Y5dRFwOyfHOzrdw2/epK3mN/+xrz+ccG86KP9axxjI=",
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
         jupyterlab,
       ]),
       dependencies: nix.thunk(() => [ipywidgets, numpy, traitlets, traittypes]),
-      env: nix.thunk(() => ({ __proto__: pos$3, SKIP_JUPYTER_BUILDER: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, SKIP_JUPYTER_BUILDER: 1n })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bqscales"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Grammar of Graphics scales for bqplot and other Jupyter widgets libraries",
         homepage: "https://github.com/bqplot/bqscales",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

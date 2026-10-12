@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libselinux = nix.arg($, "libselinux");
   nix.assert_((!nix.asBool(selinuxSupport) || nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libselinux))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/uu/uutils-coreutils/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "uutils-coreutils",
       version: "0.12.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uutils",
           repo: "coreutils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm .cargo/config.toml\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`SKIP_UTILS=${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "stdbuf")}`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(prefix, null)), nix.thunk(() => [nix.thunk(() => nix.str`PROG_PREFIX=${prefix}`)])), nix.app(nix.sel(lib, "optionals"), buildMulticallBinary, nix.thunk(() => ["MULTICALL=y"]))))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
         LN: "ln -sf",
       }, nix.app(nix.sel(lib, "optionalAttrs"), selinuxSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           SELINUX_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), libselinux)}/include`),
           SELINUX_LIB_DIR: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libselinux]))),
           SELINUX_STATIC: "0",
@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
       })()),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Cross-platform Rust rewrite of the GNU coreutils",
         longDescription: "uutils is an attempt at writing universal (as in cross-platform)\nCLI utils in Rust. This repo is to aggregate the GNU coreutils rewrites.\n",
         homepage: "https://github.com/uutils/coreutils",

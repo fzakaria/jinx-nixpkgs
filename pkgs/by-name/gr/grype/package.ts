@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const net_tools = nix.arg($, "net-tools");
   const zstd = nix.arg($, "zstd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grype",
       version: "0.120.0",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anchore",
           repo: "grype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd grype \\\n  --bash <($out/bin/grype completion bash) \\\n  --fish <($out/bin/grype completion fish) \\\n  --zsh <($out/bin/grype completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Vulnerability scanner for container images and filesystems",
         homepage: "https://github.com/anchore/grype",
         changelog: nix.thunk(() => nix.str`https://github.com/anchore/grype/releases/tag/v${nix.sel(finalAttrs, "version")}`),

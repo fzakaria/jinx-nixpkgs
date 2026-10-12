@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
 ${nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(tssUser, null)) || nix.asBool(!nix.eq(tssGroup, null)))), "KERNEL==\"tpmrm[0-9]*\", TAG+=\"systemd\", MODE=\"0660\""), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(tssUser, null)), nix.thunk(() => nix.str`, OWNER="${tssUser}"`))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(tssGroup, null)), nix.thunk(() => nix.str`, GROUP="${tssGroup}"`)))}
 `;
   const fapiConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "fapi-config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         profile_name: nix.thunk(() => nix.sel(cfg, "fapi", "profileName")),
         profile_dir: nix.thunk(() => nix.sel(cfg, "fapi", "profileDir")),
         user_dir: nix.thunk(() => nix.sel(cfg, "fapi", "userDir")),
@@ -86,50 +86,50 @@ ${nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.a
         firmware_log_file: nix.thunk(() => nix.sel(cfg, "fapi", "firmwareLogFile")),
         ima_log_file: nix.thunk(() => nix.sel(cfg, "fapi", "imaLogFile")),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "fapi", "ekCertLess"), null)), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ek_cert_less: nix.thunk(() => nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => nix.sel(cfg, "fapi", "ekCertLess")))),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "fapi", "ekFingerprint"), null)), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           ek_fingerprint: nix.thunk(() => nix.sel(cfg, "fapi", "ekFingerprint")),
         }))))))))));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       security: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         tpm2: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Trusted Platform Module 2 support")),
           tssUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Name of the tpm device-owner and service user, set if applyUdevRules is\nset.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "abrmd", "enable")) ? "tss" : "root")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.security.tpm2.abrmd.enable then \"tss\" else \"root\"")),
             })))),
           tssGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Group of the tpm kernel resource manager (tpmrm) device-group, set if\napplyUdevRules is set.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: "tss",
             })))),
           applyUdevRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Whether to make the /dev/tpm[0-9] devices accessible by the tssUser, or\nthe /dev/tpmrm[0-9] by tssGroup respectively\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
             })))),
           abrmd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Trusted Platform 2 userspace resource manager daemon\n")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tpm2-abrmd", nix.thunk(() => ({})))),
           })),
           pkcs11: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "TPM2 PKCS#11 tool and shared library in system path\n(`/run/current-system/sw/lib/libtpm2_pkcs11.so`)\n")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "tpm2-pkcs11 package to use",
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "abrmd", "enable")) ? nix.sel(pkgs, "tpm2-pkcs11", "abrmd") : nix.sel(pkgs, "tpm2-pkcs11"))),
@@ -137,98 +137,98 @@ ${nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.a
               })))),
           })),
           tctiEnvironment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "Set common TCTI environment variables to the specified value.\nThe variables are\n- `TPM2TOOLS_TCTI`\n- `TPM2_PKCS11_TCTI`\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
               })))),
             interface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "The name of the TPM command transmission interface (TCTI) library to\nuse.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["tabrmd", "device"]))),
                 default: "device",
               })))),
             deviceConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Configuration part of the device TCTI, e.g. the path to the TPM device.\nApplies if interface is set to \"device\".\nThe format is specified in the\n[\ntpm2-tools repository](https://github.com/tpm2-software/tpm2-tools/blob/master/man/common/tcti.md#tcti-options).\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/dev/tpmrm0",
               })))),
             tabrmdConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "Configuration part of the tabrmd TCTI, like the D-Bus bus name.\nApplies if interface is set to \"tabrmd\".\nThe format is specified in the\n[\ntpm2-tools repository](https://github.com/tpm2-software/tpm2-tools/blob/master/man/common/tcti.md#tcti-options).\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "bus_name=com.intel.tss2.Tabrmd",
               })))),
           })),
           fapi: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             profileName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Name of the default cryptographic profile chosen from the profile_dir directory.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "P_ECCP256SHA256",
               })))),
             profileDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Directory that contains all cryptographic profiles known to FAPI.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(pkgs, "tpm2-tss")}/etc/tpm2-tss/fapi-profiles/`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "${pkgs.tpm2-tss}/etc/fapi-profiles/")),
               })))),
             userDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "The directory where user objects are stored.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "~/.local/share/tpm2-tss/user/keystore/",
               })))),
             systemDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "The directory where system objects, policies, and imported objects are stored.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/var/lib/tpm2-tss/keystore",
               })))),
             tcti: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "The TCTI which will be used.\n\nAn empty string indicates no TCTI is specified by the FAPI config.\n\nIf not specified in the FAPI config it can be specified by environment\nvariable (TPM2TOOLS_TCTI, TPM2_PKCS11_TCTI, etc) or a TCTI will be chosen\nby the FAPI library by searching for tabrmd, device, and mssim TCTIs in\nthat order.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "device:/dev/tpmrm0",
               })))),
             systemPcrs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "The PCR registers which are used by the system.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 default: [],
               })))),
             logDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "The directory for the event log.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/var/log/tpm2-tss/eventlog/",
               })))),
             ekCertLess: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 description: "A switch to disable Endorsement Key (EK) certificate verification.\n\nA value of null indicates that the generated fapi config file does not\ncontain a ek_cert_less key. The effect of not having that key at all is\nthe same as setting its value to false.\n\nA value of false means that the tss2 cli will not work if there is no\nEK Cert installed, or if the installed EK Cert can't be validated.\n\nA value of true means that the tss2 cli will work even if there's no EK\ncert installed.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                 default: null,
               })))),
             ekFingerprint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 description: "The fingerprint of the endorsement key.\n\nA value of null means that you have chosen not to specify the expected\nfingerprint of the EK. You can still have an endorsement key, it just\nwon't get checked to see if it's fingerprint matches a particular value\nbefore being used.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
               })))),
             firmwareLogFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "The binary bios measurements.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/sys/kernel/security/tpm0/binary_bios_measurements",
               })))),
             imaLogFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 description: "The binary IMA measurements (Integrity Measurement Architecture).\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/sys/kernel/security/ima/binary_runtime_measurements",
@@ -239,17 +239,17 @@ ${nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.a
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             environment: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "pkcs11", "enable")), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cfg, "pkcs11", "package")))),
                   nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cfg, "pkcs11", "package")))),
                 ]))),
               etc: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 "pkcs11/modules/tpm2_pkcs11.module": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "pkcs11", "enable")), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     text: nix.thunk(() => nix.str`module: ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cfg, "pkcs11", "package")))}/lib/libtpm2_pkcs11.so
 `),
                   })))),
@@ -257,9 +257,9 @@ ${nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.a
               variables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "tctiEnvironment", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "genAttrs"), nix.thunk(() => ["TPM2TOOLS_TCTI", "TPM2_PKCS11_TCTI"]), (_) => nix.str`${nix.sel(cfg, "tctiEnvironment", "interface")}:${(nix.asBool(nix.eq(nix.sel(cfg, "tctiEnvironment", "interface"), "tabrmd")) ? nix.sel(cfg, "tctiEnvironment", "tabrmdConf") : nix.sel(cfg, "tctiEnvironment", "deviceConf"))}`)))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "pkcs11", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "tssGroup"), null)))), nix.thunk(() => [
                     nix.thunk(() => nix.str`d /etc/tpm2_pkcs11 2770 root ${nix.sel(cfg, "tssGroup")} -`),
                     nix.thunk(() => nix.str`Z /etc/tpm2_pkcs11 ~2770 - ${nix.sel(cfg, "tssGroup")} -`),
@@ -267,40 +267,40 @@ ${nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.a
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               udev: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "applyUdevRules")), nix.thunk(() => nix.app(udevRules, nix.thunk(() => nix.sel(cfg, "tssUser")), nix.thunk(() => nix.sel(cfg, "tssGroup")))))),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               users: nix.thunk(() => ({
-                __proto__: pos$38,
-                tss: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "tssUser"), "tss")) || nix.asBool(nix.eq(nix.sel(cfg, "tssGroup"), "tss")))), nix.thunk(() => ({ __proto__: pos$37, isSystemUser: true, group: "tss" })))),
+                [nix.POS]: pos$38,
+                tss: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "tssUser"), "tss")) || nix.asBool(nix.eq(nix.sel(cfg, "tssGroup"), "tss")))), nix.thunk(() => ({ [nix.POS]: pos$37, isSystemUser: true, group: "tss" })))),
               })),
               groups: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 tss: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "tssUser"), "tss")) || nix.asBool(nix.eq(nix.sel(cfg, "tssGroup"), "tss")))), nix.thunk(() => ({})))),
               })),
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             systemd: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               services: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 "tpm2-udev-trigger": nix.thunk(() => (() => {
                   const udevHash = nix.thunk(() => (nix.asBool(nix.sel(cfg, "applyUdevRules")) ? nix.builtins.hashString("md5", nix.thunk(() => nix.app(udevRules, nix.thunk(() => nix.sel(cfg, "tssUser")), nix.thunk(() => nix.sel(cfg, "tssGroup"))))) : ""));
                   return {
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     description: "Trigger udev change for TPM devices",
                     wants: nix.thunk(() => ["systemd-udevd.service"]),
                     after: nix.thunk(() => ["tpm2.target", "systemd-udevd.service"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       Type: "oneshot",
                       RemainAfterExit: true,
                       ExecStart: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "tpm2-udev-trigger.sh", nix.thunk(() => nix.str`stateDir=/var/lib/tpm2-udev-trigger
@@ -331,18 +331,18 @@ fi
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "abrmd", "enable")), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               systemd: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 services: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   "tpm2-abrmd": nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     wants: nix.thunk(() => ["tpm2-udev-trigger.service", "dev-tpm0.device"]),
                     after: nix.thunk(() => ["tpm2-udev-trigger.service", "dev-tpm0.device"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$47,
+                      [nix.POS]: pos$47,
                       Type: "dbus",
                       Restart: "always",
                       RestartSec: 30n,
@@ -355,26 +355,26 @@ fi
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 dbus: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   packages: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.sel(cfg, "abrmd", "package")))),
                 })),
               })),
             })))),
           nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             environment: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               etc: nix.thunk(() => ({
-                __proto__: pos$55,
-                "tpm2-tss/fapi-config.json": nix.thunk(() => ({ __proto__: pos$54, source: fapiConfig })),
+                [nix.POS]: pos$55,
+                "tpm2-tss/fapi-config.json": nix.thunk(() => ({ [nix.POS]: pos$54, source: fapiConfig })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "fapi", "logDir")} 2750 ${nix.sel(cfg, "tssUser")} ${nix.sel(cfg, "tssGroup")} -`),
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "fapi", "systemDir")} 2770 root ${nix.sel(cfg, "tssGroup")} -`),
@@ -384,7 +384,7 @@ fi
           })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       doc: nix.path(here, "./tpm2.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

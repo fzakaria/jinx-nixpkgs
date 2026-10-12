@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bibtool",
       version: "2.68",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.gerd-neugebauer.de/software/TeX/BibTool/BibTool-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1ymq901ckaysq2n1bplk1064rb2njq9n30pii15w157y0lxcwd3i",
         })))),
       buildInputs: nix.thunk(() => [perl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       installTargets: nix.thunk(() => ["install", "install.man"]),
       doCheck: true,
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for manipulating BibTeX bibliographies",
         homepage: "http://www.gerd-neugebauer.de/software/TeX/BibTool/index.en.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

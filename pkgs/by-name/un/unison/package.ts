@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const enableX11 = nix.argOr($, "enableX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unison",
       version: "2.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bcpierce00",
           repo: "unison",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableX11, "install -D $src/icons/U.svg $out/share/icons/hicolor/scalable/apps/unison.svg\n")),
       dontStrip: nix.thunk(() => !nix.asBool(nix.sel(ocamlPackages, "ocaml", "nativeCompilers"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableX11, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "Unison",
             comment: "Bidirectional file synchronizer",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
             startupWMClass: "Unison",
           })))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.cis.upenn.edu/~bcpierce/unison/",
         description: "Bidirectional file synchronizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

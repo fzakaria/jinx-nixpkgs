@@ -139,34 +139,34 @@ Comment=OpenGamepadUI Session
 Exec=${opengamepadui_gamescope}/bin/opengamepadui-gamescope
 Type=Application
 `)), "overrideAttrs"), (_) => ({
-      __proto__: pos$2,
-      passthru: nix.thunk(() => ({ __proto__: pos$1, providedSessions: nix.thunk(() => ["opengamepadui"]) })),
+      [nix.POS]: pos$2,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, providedSessions: nix.thunk(() => ["opengamepadui"]) })),
     })));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       programs: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         opengamepadui: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opengamepadui")),
           args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Arguments to be passed to OpenGamepadUI\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "OpenGamepadUI", nix.thunk(() => ({ __proto__: pos$4, default: nix.thunk(() => ["opengamepadui"]) })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "OpenGamepadUI", nix.thunk(() => ({ [nix.POS]: pos$4, default: nix.thunk(() => ["opengamepadui"]) })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [\n  gamescope\n]\n")),
               description: "Additional packages to add to the OpenGamepadUI environment.\n",
             })))),
           fontPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => nix.sel(config, "fonts", "packages")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "builtins.filter lib.types.package.check config.fonts.packages")),
@@ -174,16 +174,16 @@ Type=Application
               description: "Font packages to use in OpenGamepadUI.\n\nDefaults to system fonts, but could be overridden to use other fonts — useful for users who would like to customize CJK fonts used in opengamepadui. According to the [upstream issue](https://github.com/ValveSoftware/opengamepadui-for-linux/issues/10422#issuecomment-1944396010), opengamepadui only follows the per-user fontconfig configuration.\n",
             })))),
           gamescopeSession: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Run a GameScope driven OpenGamepadUI session from your display-manager",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GameScope Session")),
                     args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => [
                           "--prefer-output",
@@ -201,7 +201,7 @@ Type=Application
                         description: "Arguments to be passed to GameScope for the session.\n",
                       })))),
                     env: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ({})),
                         description: "Environmental variables to be passed to GameScope for the session.\n",
@@ -210,33 +210,33 @@ Type=Application
                 })))),
             })))),
           inputplumber: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Run InputPlumber service for input management and gamepad configuration.\n")),
           })),
           powerstation: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Run PowerStation service for TDP control and performance settings.\n")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         hardware: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           graphics: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
             enable32Bit: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")),
           })),
-          "steam-hardware": nix.thunk(() => ({ __proto__: pos$18, enable: true })),
+          "steam-hardware": nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "gamescopeSession", "enable")) && nix.asBool(nix.sel(gamescopeCfg, "capSysNice")))), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               bwrap: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 owner: "root",
                 group: "root",
                 source: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "bubblewrap")))),
@@ -245,14 +245,14 @@ Type=Application
             })))),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           opengamepadui: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             extraPackages: nix.thunk(() => nix.sel(cfg, "fontPackages")),
             gamescopeSession: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               env: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 INTEL_DEBUG: "norbc",
                 mesa_glthread: "true",
                 ENABLE_GAMESCOPE_WSI: "1",
@@ -266,42 +266,42 @@ Type=Application
               })),
             })),
           })),
-          gamescope: nix.thunk(() => ({ __proto__: pos$26, enable: true })),
+          gamescope: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             sessionPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gamescopeSession", "enable")), nix.thunk(() => [gamescopeSessionFile]))),
           })),
           pulseaudio: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             support32Bit: nix.thunk(() => nix.sel(config, "services", "pulseaudio", "enable")),
           })),
           pipewire: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             alsa: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               support32Bit: nix.thunk(() => nix.sel(config, "services", "pipewire", "alsa", "enable")),
             })),
           })),
           inputplumber: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "inputplumber", "enable")))),
           })),
           powerstation: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "powerstation", "enable")))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           pathsToLink: nix.thunk(() => ["/share"]),
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "gamescopeSession", "enable")), opengamepadui_gamescope))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "shadowapex"))];

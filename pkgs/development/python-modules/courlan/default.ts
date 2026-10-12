@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytest_httpserver = nix.arg($, "pytest-httpserver");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "courlan",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adbar",
           repo: "courlan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["courlan"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clean, filter and sample URLs to optimize data collection",
         homepage: "https://github.com/adbar/courlan",
         changelog: nix.thunk(() => nix.str`https://github.com/adbar/courlan/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),

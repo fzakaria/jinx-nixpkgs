@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "consul";
       const version = "2.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "consul",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         "-X github.com/hashicorp/consul/version.VersionPrerelease=",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, consul: nix.thunk(() => nix.attr(nixosTests, "consul")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, consul: nix.thunk(() => nix.attr(nixosTests, "consul")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for service discovery, monitoring and configuration",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/consul/releases/tag/v${version}`),
         homepage: "https://www.consul.io/",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "consul",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

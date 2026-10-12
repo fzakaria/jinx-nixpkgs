@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "btrfs-snap";
       const version = "1.7.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jf647",
           repo: "btrfs-snap",
           tag: version,
@@ -37,7 +37,7 @@ cp btrfs-snap $out/bin/
 wrapProgram $out/bin/btrfs-snap --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [btrfs_progs, coreutils, gnugrep, util_linuxMinimal]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create and maintain the history of snapshots of btrfs filesystems",
         mainProgram: "btrfs-snap",
         homepage: "https://github.com/jf647/btrfs-snap",
@@ -49,7 +49,7 @@ wrapProgram $out/bin/btrfs-snap --prefix PATH : ${nix.app(nix.sel(lib, "makeBinP
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GHDF9UQkA9d7WVPTRDgiZaUh60lIiFJgwMrAhKo97AI=",
@@ -59,21 +59,21 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["molecule"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: molecule,
               command: nix.thunk(() => nix.str`PY_COLORS=0 ${pname} --version`),
             }))), "overrideAttrs"), (old) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [writableTmpDirAsHomeHook])),
             }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Aids in the development and testing of Ansible roles",
         homepage: "https://github.com/ansible-community/molecule",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/molecule/releases/tag/v${version}`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "molecule",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

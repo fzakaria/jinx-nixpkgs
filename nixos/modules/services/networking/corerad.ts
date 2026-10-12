@@ -26,29 +26,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "corerad"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mdlayher"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         corerad: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CoreRAD IPv6 NDP RA daemon")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  interfaces = [\n    # eth0 is an upstream interface monitoring for IPv6 router advertisements.\n    {\n      name = \"eth0\";\n      monitor = true;\n    }\n    # eth1 is a downstream interface advertising IPv6 prefixes for SLAAC.\n    {\n      name = \"eth1\";\n      advertise = true;\n      prefix = [{ prefix = \"::/64\"; }];\n    }\n  ];\n  # Optionally enable Prometheus metrics.\n  debug = {\n    address = \"localhost:9430\";\n    prometheus = true;\n  };\n}\n")),
               description: "Configuration for CoreRAD, see <https://github.com/mdlayher/corerad/blob/main/internal/config/reference.toml>\nfor supported values. Ignored if configFile is set.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.corerad}/etc/corerad/corerad.toml\"")),
               description: "Path to CoreRAD TOML configuration file.",
@@ -58,25 +58,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           corerad: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "corerad.toml", nix.thunk(() => nix.sel(cfg, "settings")))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             corerad: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "CoreRAD IPv6 NDP RA daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 LimitNPROC: 512n,
                 LimitNOFILE: 1048576n,
                 CapabilityBoundingSet: "CAP_NET_ADMIN CAP_NET_RAW",

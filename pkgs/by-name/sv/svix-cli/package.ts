@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "svix-cli";
       const revision = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svix",
           repo: "svix-cli",
           rev: revision,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-qSzEpxktdAV+mHa+586mKvpclCpXR6sE7HNcPZywd4s=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "increase-minimum-go.patch",
             url: "https://github.com/svix/svix-cli/commit/3c6fc06f72bd7e43165c31019b206ebad175d758.patch",
             hash: "sha256-OwiyBZ3IZGkvo6zEZY1+XYFrqT+RseqTJ5xwCl3LtVg=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/svix/svix-cli/version.Version=v${version}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for interacting with the Svix API",
         homepage: "https://github.com/svix/svix-cli/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         pname,
         revision,

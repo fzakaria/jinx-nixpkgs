@@ -16,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.arg($, "nixpkgs");
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         problems: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           handlers: nix.thunk(() => ({
-            __proto__: pos$2,
-            a: nix.thunk(() => ({ __proto__: pos$1, broken: "ignore" })),
+            [nix.POS]: pos$2,
+            a: nix.thunk(() => ({ [nix.POS]: pos$1, broken: "ignore" })),
           })),
         })),
       })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maintainers: nix.thunk(() => ["hello"]),
         description: "Some package",
         broken: true,

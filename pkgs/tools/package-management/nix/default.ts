@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
   const pkgsStatic = nix.arg($, "pkgsStatic");
   const nixosTests = nix.arg($, "nixosTests");
   const addTestsShallowly = (tests) => (pkg) => nix.update(pkg, {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     tests: nix.thunk(() => nix.update(nix.sel(pkg, "tests"), tests)),
     passthru: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       tests: nix.thunk(() => nix.update(nix.sel(pkg, "tests"), tests)),
     })),
   });
   const addFallbackPathsCheck = (pkg) => nix.app(addTestsShallowly, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "nix-fallback-paths": nix.thunk(() => nix.app(runCommand, "test-nix-fallback-paths-version-equals-nix-stable", nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           paths: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.builtins.import(nix.path(here, "../../../../nixos/modules/installer/tools/nix-fallback-paths.nix"))))))),
         })), nix.thunk(() => nix.str`# NOTE: name may contain cross compilation details between the pname
 #       and version this is permitted thanks to ([^-]*-)*
@@ -73,7 +73,7 @@ fi
     })), pkg);
   const addTests = (selfAttributeName) => (pkg) => (() => {
     const tests = nix.thunk(() => nix.update(nix.selOr(pkg, () => ({}), "tests"), nix.app(nix.builtins.import(nix.path(here, "./tests.nix")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         runCommand: runCommand,
         lib: lib,
         stdenv: stdenv,
@@ -87,10 +87,10 @@ fi
         self_attribute_name: selfAttributeName,
       })))));
     return nix.update(pkg, {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       tests: nix.thunk(() => nix.update(nix.selOr(pkg, () => ({}), "tests"), tests)),
       passthru: nix.thunk(() => nix.update(nix.selOr(pkg, () => ({}), "passthru"), {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "warn"), "nix.passthru.tests is deprecated. Use nix.tests instead.", nix.thunk(() => nix.selOr(pkg, () => ({}), "passthru", "tests"))), tests)),
       })),
     });
@@ -100,7 +100,7 @@ fi
     nix.thunk(() => nix.sel(lib, "teams", "nix")),
     nix.thunk(() => nix.sel(lib, "teams", "security-review")),
   ]);
-  const removeFunctionalTests = (tests) => (src) => (nix.asBool(nix.eq(tests, [])) ? nix.force(src) : nix.app(runCommand, nix.thunk(() => nix.sel(src, "name")), nix.thunk(() => ({ __proto__: pos$8, src: src })), nix.thunk(() => nix.str`cp -r "$src" "$out"
+  const removeFunctionalTests = (tests) => (src) => (nix.asBool(nix.eq(tests, [])) ? nix.force(src) : nix.app(runCommand, nix.thunk(() => nix.sel(src, "name")), nix.thunk(() => ({ [nix.POS]: pos$8, src: src })), nix.thunk(() => nix.str`cp -r "$src" "$out"
 chmod -R u+w "$out"
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -110,37 +110,37 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
       })(), formals$2), tests)}
 `)));
   const commonDisabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")), nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$9, file: "tests/functional/meson.build", test: "nix-shell.sh" })),
+      nix.thunk(() => ({ [nix.POS]: pos$9, file: "tests/functional/meson.build", test: "nix-shell.sh" })),
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         file: "tests/functional/meson.build",
         test: "user-envs.sh",
       })),
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         file: "tests/functional/ca/meson.build",
         test: "nix-shell.sh",
       })),
       nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         file: "tests/functional/flakes/meson.build",
         test: "shebang.sh",
       })),
     ])));
   return nix.app(nix.sel(lib, "makeExtensible"), (self) => nix.update({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       nixComponents_2_31: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nixDependencies, "callPackage"), nix.path(here, "./modular/packages.nix"), nix.thunk(() => (() => {
           const version = "2.31.5";
           const teams_1 = teams;
           const otherSplices = nix.thunk(() => nix.app(generateSplicesForNixComponents, "nixComponents_2_31"));
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               owner: "NixOS",
               repo: "nix",
               tag: version,
               hash: "sha256-b7fhCXxl9qKTNPQvG8T/+nOxB95kalt9/aSY+ZSRctk=",
             }))));
-          return { __proto__: pos$14, version, teams: teams_1, otherSplices, src };
+          return { [nix.POS]: pos$14, version, teams: teams_1, otherSplices, src };
         })())), "appendPatches"), nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./detect-rosetta-via-runtime-file.patch")]))))),
       nix_2_31: nix.thunk(() => nix.app(addTests, "nix_2_31", nix.thunk(() => nix.sel(self, "nixComponents_2_31", "nix-everything")))),
       nixComponents_2_34: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nixDependencies, "callPackage"), nix.path(here, "./modular/packages.nix"), nix.thunk(() => (() => {
@@ -148,13 +148,13 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
           const teams_1 = teams;
           const otherSplices = nix.thunk(() => nix.app(generateSplicesForNixComponents, "nixComponents_2_34"));
           const src = nix.thunk(() => nix.app(removeFunctionalTests, commonDisabledTests, nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 owner: "NixOS",
                 repo: "nix",
                 tag: version,
                 hash: "sha256-Rvy1PmIUMGI0IS/kwDwmf/VrorU8v1iZYejssSVu1rY=",
               }))))));
-          return { __proto__: pos$16, version, teams: teams_1, otherSplices, src };
+          return { [nix.POS]: pos$16, version, teams: teams_1, otherSplices, src };
         })())), "appendPatches"), [])),
       nix_2_34: nix.thunk(() => nix.app(addTests, "nix_2_34", nix.thunk(() => nix.sel(self, "nixComponents_2_34", "nix-everything")))),
       nixComponents_2_35: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nixDependencies, "callPackage"), nix.path(here, "./modular/packages.nix"), nix.thunk(() => (() => {
@@ -162,25 +162,25 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
           const teams_1 = teams;
           const otherSplices = nix.thunk(() => nix.app(generateSplicesForNixComponents, "nixComponents_2_35"));
           const src = nix.thunk(() => nix.app(removeFunctionalTests, commonDisabledTests, nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 owner: "NixOS",
                 repo: "nix",
                 tag: version,
                 hash: "sha256-C/YEm/5IPiAMxQH5aHlkwgQMkLqK7NVsudEWdlzBZAA=",
               }))))));
-          return { __proto__: pos$18, version, teams: teams_1, otherSplices, src };
+          return { [nix.POS]: pos$18, version, teams: teams_1, otherSplices, src };
         })())), "appendPatches"), [])),
       nix_2_35: nix.thunk(() => nix.app(addTests, "nix_2_35", nix.thunk(() => nix.sel(self, "nixComponents_2_35", "nix-everything")))),
       nixComponents_git: nix.thunk(() => (() => {
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             owner: "NixOS",
             repo: "nix",
             rev: "203f85b2e851fc52e253e8e33eff5fb92936736a",
             hash: "sha256-ahm58Y+ASv19VGVzC2IwNsQpkVR8rgEwwHDYwnMadkI=",
           }))));
         return nix.app(nix.sel(nix.app(nix.sel(nixDependencies, "callPackage"), nix.path(here, "./modular/packages.nix"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             version: nix.thunk(() => nix.str`2.36pre20260912_${nix.app(nix.sel(lib, "substring"), 0n, 8n, nix.thunk(() => nix.sel(src, "rev")))}`),
             teams: teams,
             otherSplices: nix.thunk(() => nix.app(generateSplicesForNixComponents, "nixComponents_git")),
@@ -194,7 +194,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
             const attr = nix.thunk(() => nix.str`nix_2_${nix.builtins.toString(minor)}`);
             return nix.app(nix.sel(lib, "nameValuePair"), attr, nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`${attr} has been removed`))));
           })(), nix.thunk(() => nix.app(nix.sel(lib, "range"), 4n, 23n))))), {
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         nixComponents_2_27: nix.thunk(() => nix.builtins.throw("nixComponents_2_27 has been removed. use nixComponents_2_31.")),
         nixComponents_2_29: nix.thunk(() => nix.builtins.throw("nixComponents_2_29 has been removed. use nixComponents_2_31.")),
         nixComponents_2_30: nix.thunk(() => nix.builtins.throw("nixComponents_2_30 has been removed. use nixComponents_2_31.")),

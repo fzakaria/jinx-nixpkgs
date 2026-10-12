@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       tested: nix.thunk(() => nix.sel(pkgs, "fwupd")),
       testRunnerFlags: nix.thunk(() => ["--timeout=1200"]),
       testConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fwupd: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
-            daemonSettings: nix.thunk(() => ({ __proto__: pos$1, TestDevices: true })),
+            daemonSettings: nix.thunk(() => ({ [nix.POS]: pos$1, TestDevices: true })),
           })),
         })),
       })),

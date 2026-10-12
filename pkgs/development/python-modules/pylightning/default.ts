@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pyln_client = nix.arg($, "pyln-client");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pylightning",
       pyproject: true,
       src: nix.thunk(() => nix.attr(pyln_client, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["lightning"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Compatibility library for the Core Lightning Python client",
         homepage: "https://github.com/ElementsProject/lightning/tree/master/contrib/pylightning",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

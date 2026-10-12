@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "bash", "undistractMe"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         bash: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           undistractMe: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "notifications when long-running terminal commands complete")),
             playSound: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "notification sounds when long-running terminal commands complete")),
             timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: 10n,
                 description: "Number of seconds it would take for a command to be considered long-running.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         programs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           bash: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             promptPluginInit: nix.thunk(() => nix.str`export LONG_RUNNING_COMMAND_TIMEOUT=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "timeout")))}
 export UDM_PLAY_SOUND=${(nix.asBool(nix.sel(cfg, "playSound")) ? "1" : "0")}
 . "${nix.sel(pkgs, "undistract-me")}/etc/profile.d/undistract-me.sh"
@@ -56,7 +56,7 @@ export UDM_PLAY_SOUND=${(nix.asBool(nix.sel(cfg, "playSound")) ? "1" : "0")}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];

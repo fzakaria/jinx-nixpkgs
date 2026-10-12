@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ANSITerminal",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Chris00/ANSITerminal/releases/download/${nix.sel(finalAttrs, "version")}/ANSITerminal-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-q3OyGLajAmfSu8QzEtzzE5gbiwvsVV2SsGuHZkst0w4=",
         })))),
       postPatch: "substituteInPlace src/dune --replace 'libraries unix bytes' 'libraries unix'\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module allowing to use the colors and cursor movements on ANSI terminals",
         longDescription: "ANSITerminal is a module allowing to use the colors and cursor\nmovements on ANSI terminals. It also works on the windows shell (but\nthis part is currently work in progress).\n",
         homepage: "https://github.com/Chris00/ANSITerminal",

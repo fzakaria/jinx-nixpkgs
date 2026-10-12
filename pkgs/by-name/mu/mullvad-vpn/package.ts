@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mullvad-vpn",
       src: nix.thunk(() => nix.attr(mullvad, "src")),
       version: nix.thunk(() => nix.attr(mullvad, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-distribution-configuration.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "electron-dist": nix.thunk(() => nix.sel(electron, "dist")),
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, grpc_tools, librsvg, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => [electron]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ELECTRON_OVERRIDE_DIST_PATH: nix.thunk(() => nix.sel(electron, "dist")),
       })),
       postPatch: "cd desktop/\n",
@@ -77,7 +77,7 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "mullvad-vpn",
             categories: nix.thunk(() => ["Network"]),
             comment: "Mullvad VPN client",
@@ -87,11 +87,11 @@ runHook postInstall
             startupWMClass: "Mullvad VPN",
             terminal: false,
           })))))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, hasMullvadGUI: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, hasMullvadGUI: true })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://mullvad.net/",
         description: "Graphical user interface for Mullvad VPN",
         longDescription: "**NOTE:** This package does not contain the Mullvad VPN Daemon. The actual VPN service is available on `pkgs.mullvad`, and it must be used in conjunction with this package.",

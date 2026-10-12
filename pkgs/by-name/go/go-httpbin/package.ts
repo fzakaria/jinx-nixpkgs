@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "go-httpbin",
       version: "2.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mccutchen",
           repo: "go-httpbin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uYY0aylcGdaHm5d3S6U7KXJ0PtPiCNFlJVOyJJcuQ5Q=",
         })))),
       vendorHash: null,
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "go-httpbin": nix.thunk(() => nix.attr(nixosTests, "go-httpbin")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Reasonably complete and well-tested golang port of httpbin, with zero dependencies outside the go stdlib",
         homepage: "https://github.com/mccutchen/go-httpbin",
         changelog: nix.thunk(() => nix.str`https://github.com/mccutchen/go-httpbin/releases/tag/v${nix.sel(finalAttrs, "version")}`),

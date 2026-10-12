@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "google-cloud-sql-proxy",
       version: "2.25.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleCloudPlatform",
           repo: "cloud-sql-proxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-ec+6GZ+ET2fs6hE1wndzOHdLtmDcuRq7++S1Z+6MsL4=",
       checkFlags: nix.thunk(() => ["-short"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for ensuring secure connections to Google Cloud SQL instances",
         longDescription: "The Cloud SQL Auth Proxy is a utility for ensuring secure connections to your Cloud SQL instances.\nIt provides IAM authorization, allowing you to control who can connect to your instance through IAM permissions,\nand TLS 1.3 encryption, without having to manage certificates.\nSee the [Connecting Overview](https://cloud.google.com/sql/docs/mysql/connect-overview) page for more information\non connecting to a Cloud SQL instance, or the [About the Proxy](https://cloud.google.com/sql/docs/mysql/sql-proxy)\npage for details on how the Cloud SQL Proxy works.\n",
         homepage: "https://github.com/GoogleCloudPlatform/cloud-sql-proxy",

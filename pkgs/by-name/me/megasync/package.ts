@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "megasync",
       version: "6.6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
@@ -63,7 +63,7 @@ git submodule update --init src/MEGASync/mega
 rm -rf .git
 `);
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner,
             repo,
             tag,
@@ -75,19 +75,19 @@ rm -rf .git
         })()))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/archlinux/aur/raw/ff59780039697591e7e3a966db058b23bee0451c/020-megasync-sdk-fix-cmake-dependencies-detection.patch",
             hash: "sha256-hQY6tMwiV3B6M6WiFdOESdhahAtuWjdoj2eI2mst/K8=",
             extraPrefix: "src/MEGASync/mega/",
             stripLen: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/archlinux/aur/raw/ff59780039697591e7e3a966db058b23bee0451c/030-megasync-app-fix-cmake-dependencies-detection.patch",
             hash: "sha256-11XWctv1veUEguc9Xvz2hMYw26CaCwu6M4hyA+5r81U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/archlinux/aur/raw/c1f647871f5aad7e421971165b07e51b3e7900e9/040-megasync-app-add-missing-link-to-zlib.patch",
             hash: "sha256-HMsS5TlzkQZbfANSIrvH8Cp6mTxLJ04idcWUWeD2A0U=",
           })))),
@@ -149,14 +149,14 @@ done
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xrdb]))})
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=^v(.*)_Linux$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Easy automated syncing between your computers and your MEGA Cloud Drive",
         homepage: "https://mega.nz/",
         downloadPage: "https://github.com/meganz/MEGAsync",

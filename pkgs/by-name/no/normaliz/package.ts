@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const flint = nix.arg($, "flint");
   const nauty = nix.arg($, "nauty");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "normaliz",
       version: "3.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "normaliz",
           repo: "normaliz",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.normaliz.uni-osnabrueck.de/",
         description: "Open source tool for computations in affine monoids, vector configurations, lattice polytopes, and rational cones",
         maintainers: nix.thunk(() => (() => {

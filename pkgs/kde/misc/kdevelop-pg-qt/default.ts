@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kdevelop-pg-qt/${version}/src/kdevelop-pg-qt-${version}.tar.xz`),
           hash: "sha256-rL62HIL116ot3PoY477l4lWRBpcL1tFG1GyV+NAnu4Y=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [bison, flex]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, outputs, src, extraNativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, outputs, src, extraNativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mautrix-discord";
       const version = "0.7.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mautrix",
           repo: "discord",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [olm]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: mautrix_discord })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: mautrix_discord })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Matrix-Discord puppeting bridge",
         homepage: "https://github.com/mautrix/discord",
         changelog: nix.thunk(() => nix.str`https://github.com/mautrix/discord/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mautrix-discord",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

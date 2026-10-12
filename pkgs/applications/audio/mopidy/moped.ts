@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const mopidy = nix.arg($, "mopidy");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mopidy-moped",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Mopidy-Moped",
           sha256: "15461174037d87af93dd59a236d4275c5abf71cea0670ffff24a7d0399a8a2e4",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
       buildInputs: nix.thunk(() => [glibcLocales]),
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(pythonPackages, "setuptools"))]),
       dependencies: nix.thunk(() => [mopidy]),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mopidy_moped"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/martijnboland/moped",
         description: "Web client for Mopidy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

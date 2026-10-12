@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ppx_hash = nix.arg($, "ppx_hash");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "farith",
       version: "0.1",
       minimalOCamlVersion: "4.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.frama-c.com",
           owner: "pub",
           repo: "farith",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving, ppx_hash, zarith]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modelisation of base 2 floating points with arbitrary exponent and mantisse size.",
         homepage: "https://git.frama-c.com/pub/farith",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

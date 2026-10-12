@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linear-operator",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cornellius-gp",
           repo: "linear_operator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_matmul_matrix_broadcast", "test_solve_matrix_broadcast", "test_svd"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_half"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LinearOperator implementation to wrap the numerical nuts and bolts of GPyTorch",
         homepage: "https://github.com/cornellius-gp/linear_operator",
         changelog: nix.thunk(() => nix.str`https://github.com/cornellius-gp/linear_operator/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

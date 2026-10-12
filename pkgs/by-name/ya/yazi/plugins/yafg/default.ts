@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yafg.yazi",
       version: "0-unstable-2026-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XYenon",
           repo: "yafg.yazi",
           rev: "1202b2ca9ebb7bf537927ba07df1aa96ff532502",
           hash: "sha256-CsJuHn4L6rhsrTKFzIuQWtDp0uj+kUsCri1UogMA2n0=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fuzzy find and grep plugin for Yazi file manager with interactive ripgrep and fzf search",
         homepage: "https://github.com/XYenon/yafg.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

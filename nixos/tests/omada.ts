@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = 8088n;
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "omada",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pathob"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2048n })),
+        [nix.POS]: pos$5,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
         services: nix.thunk(() => ({
-          __proto__: pos$4,
-          omada: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          [nix.POS]: pos$4,
+          omada: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
         })),
       })),
     })),

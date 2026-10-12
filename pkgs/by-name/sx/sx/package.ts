@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xauth = nix.arg($, "xauth");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sx",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "earnestly",
           repo: "sx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`patsh -f $out/bin/sx -s ${nix.builtins.storeDir} --path "$HOST_PATH"
 
 install -Dm755 -t $out/share/xsessions ${nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "sx",
           desktopName: "sx",
           comment: "Start a xorg server",
@@ -46,12 +46,12 @@ install -Dm755 -t $out/share/xsessions ${nix.app(makeDesktopItem, nix.thunk(() =
         })))}/share/applications/sx.desktop
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         providedSessions: nix.thunk(() => ["sx"]),
-        tests: nix.thunk(() => ({ __proto__: pos$3, sx: nix.thunk(() => nix.attr(nixosTests, "sx")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, sx: nix.thunk(() => nix.attr(nixosTests, "sx")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple alternative to both xinit and startx for starting a Xorg server",
         homepage: "https://github.com/earnestly/sx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wl_clipboard = nix.arg($, "wl-clipboard");
   const xclip = nix.arg($, "xclip");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "license-cli",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~zethra",
           repo: "license",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,11 +50,11 @@ wrapProgram $out/bin/copy-header \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [wl_clipboard, xclip]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://git.sr.ht/~zethra/license",
         description: "Command-line tool to easily add license to your project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

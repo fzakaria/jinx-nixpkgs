@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "melodeon",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CDrummond",
           repo: "melodeon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "QWebEngine wrapper for MaterialSkin on Lyrion Music Server (formerly Logitech Media Server)",
         mainProgram: "melodeon",
         homepage: "https://github.com/CDrummond/melodeon",

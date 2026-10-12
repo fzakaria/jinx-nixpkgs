@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sudo-rs",
       version: "0.2.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trifectatechfoundation",
           repo: "sudo-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,12 +62,12 @@ export default nix.lambda((args) => (() => {
   ( echo "Error: Some manpages might be missing!"; exit 1 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.sel(nixosTests, "sudo-rs")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Memory safe implementation of sudo and su",
         homepage: "https://github.com/trifectatechfoundation/sudo-rs",
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "homepage")}/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

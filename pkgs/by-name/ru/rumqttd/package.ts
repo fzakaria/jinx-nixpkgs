@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rumqttd",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bytebeamio",
           repo: "rumqtt",
           tag: nix.thunk(() => nix.str`rumqttd-${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: nix.thunk(() => ["--version"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^rumqttd\\-(.+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High performance MQTT broker",
         homepage: "https://rumqtt.bytebeam.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/bytebeamio/rumqtt/releases/tag/rumqttd-${nix.sel(finalAttrs, "version")}`),

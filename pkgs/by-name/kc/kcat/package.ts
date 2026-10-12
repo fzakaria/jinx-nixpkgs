@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libserdes = nix.arg($, "libserdes");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kcat",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edenhill",
           repo: "kcat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, which]),
       buildInputs: nix.thunk(() => [zlib, rdkafka, yajl, avro_c, libserdes]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic non-JVM producer and consumer for Apache Kafka",
         mainProgram: "kcat",
         homepage: "https://github.com/edenhill/kcat",

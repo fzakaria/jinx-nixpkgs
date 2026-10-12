@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const sentencepiece = nix.arg($, "sentencepiece");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bpemb",
       version: "0.3.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bheinzerling",
           repo: "bpemb",
           rev: "ec85774945ca76dd93c1d9b4af2090e80c5779dc",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bpemb"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Byte-pair embeddings in 275 languages",
         homepage: "https://github.com/bheinzerling/bpemb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

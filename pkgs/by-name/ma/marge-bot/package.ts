@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "marge-bot",
       version: "1.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marge-org",
           repo: "marge-bot",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       })(), [git])),
       pythonImportsCheck: nix.thunk(() => ["marge"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Merge bot for GitLab",
         homepage: "https://gitlab.com/marge-org/marge-bot",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/marge-org/marge-bot/-/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

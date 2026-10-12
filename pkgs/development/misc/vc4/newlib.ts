@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoLibc = nix.arg($, "stdenvNoLibc");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vc4-newlib",
       version: "0-unstable-2017-01-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "itszor",
           repo: "newlib-vc4",
           rev: "89abe4a5263d216e923fbbc80495743ff269a510",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export CC=cc\n",
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         incdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/include`),
         libdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/lib`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, homepage: "https://github.com/itszor/newlib-vc4" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, homepage: "https://github.com/itszor/newlib-vc4" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=newlib.ts.map

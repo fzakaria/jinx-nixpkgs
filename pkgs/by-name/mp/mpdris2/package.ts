@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpDris2",
       version: "0.9.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eonpatapon",
           repo: "mpDris2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       patches: nix.thunk(() => [nix.path(here, "./fix-gettext-0.25.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MPRIS 2 support for mpd",
         homepage: "https://github.com/eonpatapon/mpDris2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

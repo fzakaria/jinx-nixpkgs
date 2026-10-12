@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libmng = nix.arg($, "libmng");
   const libtiff = nix.arg($, "libtiff");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtimageformats",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       buildInputs: nix.thunk(() => [libwebp, jasper, libmng, libtiff]),

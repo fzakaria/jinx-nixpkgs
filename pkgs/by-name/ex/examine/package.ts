@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "examine",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cosmic-utils",
           repo: "examine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,15 +47,15 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`libcosmicAppWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pciutils, usbutils, util_linux]))})
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/cosmic-utils/examine/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "System information viewer for the COSMIC Desktop",
         homepage: "https://github.com/cosmic-utils/examine",

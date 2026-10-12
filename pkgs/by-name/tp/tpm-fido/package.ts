@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const pinentry_tty = nix.arg($, "pinentry-tty");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tpm-fido",
       version: "0-unstable-2024-10-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psanford",
           repo: "tpm-fido",
           rev: "5f8828b82b58f9badeed65718fca72bc31358c5c",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pinentry_tty]),
       ldFlags: nix.thunk(() => ["-s ", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebAuthn/U2F token protected by a TPM",
         homepage: "https://github.com/psanford/tpm-fido",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

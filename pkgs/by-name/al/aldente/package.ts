@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aldente",
       version: "1.37",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/AppHouseKitchen/AlDente-Battery_Care_and_Monitoring/releases/download/${nix.sel(finalAttrs, "version")}/AlDente.dmg`),
           hash: "sha256-nkwJl4xMhbdodBRtwyG2IcmDlTJnErOvEycjcdAMP2o=",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "AlDente.app",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/AlDente.app\ncp -R . $out/Applications/AlDente.app\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "macOS tool to limit maximum charging percentage",
         homepage: "https://apphousekitchen.com",
         changelog: nix.thunk(() => nix.str`https://github.com/AppHouseKitchen/AlDente-Battery_Care_and_Monitoring/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-feeds",
       version: "2.2.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "gfeeds",
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-for-blueprint-0.8.patch",
             url: "https://gitlab.gnome.org/World/gfeeds/-/commit/cfe860f44f685be302e2ad9f30b55bab08e078ce.patch",
             hash: "sha256-exkq9KykB60/X8u3+T1/sShrhGP8BvNkaBWPzm2mchc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "upgrade-blueprint-0.8-syntax.patch",
             url: "https://gitlab.gnome.org/World/gfeeds/-/commit/d099fda0c62e338080061683a154f711cc487b30.patch",
             hash: "sha256-M6QLRTj+CItk3XPDeexf3/+B1YHJoHsTjwdE6iw1xjM=",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "RSS/Atom feed reader for GNOME",
         mainProgram: "gfeeds",
         homepage: "https://gitlab.gnome.org/World/gfeeds",

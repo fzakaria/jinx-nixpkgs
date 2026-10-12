@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "librseq";
       const version = nix.thunk(() => nix.str`0.1.0pre71_${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "compudj",
           repo: "librseq",
           rev: "170f840b498e1aff068b90188727a656111bfc2f",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "patchShebangs tests\n";
       const postInstall = "rm -rf $out/share\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace library for the Linux Restartable Sequence API",
         homepage: "https://github.com/compudj/librseq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

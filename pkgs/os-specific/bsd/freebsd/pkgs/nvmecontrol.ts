@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libnv = nix.arg($, "libnv");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "sbin/nvmecontrol",
       extraPaths: nix.thunk(() => ["sys/dev/nvme"]),
       outputs: nix.thunk(() => ["out", "debug"]),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "digital-dance",
       version: "1.1.5-unstable-2026-08-05",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JNero",
           repo: "Digital-Dance-ITGMania",
           rev: "dbcf7b36fa4d3915ac0de73074dbdea263dcd3dc",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mkdir -p \"$out/itgmania/Themes/Digital Dance\"\nmv * \"$out/itgmania/Themes/Digital Dance\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Theme for ITGMania to (hopefully) utilize all of it's features and more",
         homepage: "https://codeberg.org/JNero/Digital-Dance-ITGMania",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

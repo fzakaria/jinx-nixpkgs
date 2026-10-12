@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "clickhouse_cityhash",
           hash: "sha256-T5jvgbIfDU2tWCR76kC6/AmM9v+g7eaZiC1KQurD7Xk=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cython, setuptools]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/thevar1able/clickhouse-cityhash/commit/1109fc80e24cb44ec9ee2885e1e5cce7141c7ad8.patch",
             hash: "sha256-DcmASvDK160IokC5OuZoXpAHKbBOReGs96SU7yW9Ncc=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["clickhouse_cityhash"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python-bindings for CityHash, a fast non-cryptographic hash algorithm",
         homepage: "https://github.com/xzkostyan/python-cityhash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

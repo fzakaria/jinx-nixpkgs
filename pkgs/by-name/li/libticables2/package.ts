@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libticables2",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tilp/libticables2-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "08j5di0cgix9vcpdv7b8xhxdjkk9zz7fqfnv3l4apk3jdr8vcvqc",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-support-for-aarch64-macos-target-triple.patch",
             url: "https://github.com/debrouxl/tilibs/commit/ef41c51363b11521460f33e8c332db7b0a9ca085.patch",
             stripLen: 2n,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "mkdir -p $out/etc/udev/rules.d\ncat > $out/etc/udev/rules.d/69-libsane.rules << EOF\n  ACTION!=\"add\", GOTO=\"libticables_end\"\n\n  # serial device (assume TI calculator)\n  KERNEL==\"ttyS[0-3]\", ENV{ID_PDA}=\"1\"\n  # parallel device (assume TI calculator)\n  SUBSYSTEM==\"ppdev\", ENV{ID_PDA}=\"1\"\n  # SilverLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e001\", ENV{ID_PDA}=\"1\"\n  # TI-84+ DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e003\", ENV{ID_PDA}=\"1\"\n  # TI-89 Titanium DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e004\", ENV{ID_PDA}=\"1\"\n  # TI-84+ SE DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e008\", ENV{ID_PDA}=\"1\"\n  # TI-Nspire DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e012\", ENV{ID_PDA}=\"1\"\n\n  LABEL=\"libticables_end\"\nEOF\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "http://lpg.ticalc.org/prj_tilp/news.html",
         description: "This library is part of the TiLP framework",
         homepage: "http://lpg.ticalc.org/prj_tilp/",

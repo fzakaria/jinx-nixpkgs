@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const popt = nix.arg($, "popt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdv",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libdv/libdv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1fl96f2xh2slkv1i1ix7kqk576a0ak1d33cylm0mbhm96d0761d3",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [popt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software decoder for DV format video, as defined by the IEC 61834 and SMPTE 314M standards",
         homepage: "https://sourceforge.net/projects/libdv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

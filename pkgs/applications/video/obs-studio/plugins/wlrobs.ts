@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const obs_studio = nix.arg($, "obs-studio");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wlrobs",
       version: "unstable-2024-12-24",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           vc: "hg",
           owner: "~scoopta",
           repo: "wlrobs",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, ninja]),
       buildInputs: nix.thunk(() => [wayland, obs_studio, libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Obs-studio plugin that allows you to screen capture on wlroots based wayland compositors",
         homepage: "https://hg.sr.ht/~scoopta/wlrobs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

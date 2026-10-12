@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const wmctrl = nix.arg($, "wmctrl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "urxvt-perl",
       version: "unstable-2015-01-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "effigies",
           repo: "urxvt-perl",
           rev: "c3beb9ff09a7139591416c61f8e9458c8a23bea5",
@@ -32,7 +32,7 @@ cp fullscreen $out/lib/urxvt/perl
 cp newterm $out/lib/urxvt/perl
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perl extensions for the rxvt-unicode terminal emulator",
         homepage: "https://github.com/effigies/urxvt-perl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

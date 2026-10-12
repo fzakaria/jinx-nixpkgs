@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libvncserver = nix.arg($, "libvncserver");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blink-qt",
       version: "6.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "blink-qt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["blink"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blink SIP Client",
         homepage: "https://icanblink.com",
         downloadPage: "https://github.com/agprojects/blink-qt",

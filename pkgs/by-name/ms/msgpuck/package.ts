@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msgpuck",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rtsisyk",
           repo: "msgpuck",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.5)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace test/CMakeLists.txt \\\n  --replace-fail \"cmake_policy(SET CMP0037 OLD)\" \"cmake_policy(SET CMP0037 NEW)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and efficient MsgPack binary serialization library in a self-contained header file",
         homepage: "https://github.com/rtsisyk/msgpuck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

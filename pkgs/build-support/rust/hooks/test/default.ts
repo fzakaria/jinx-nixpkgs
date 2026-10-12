@@ -16,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const cargo = nix.arg($, "cargo");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     cargoSetupHook: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "test-cargoSetupHook",
         src: nix.path(here, "./example-rust-project"),
         cargoVendorDir: "hello",
@@ -30,7 +30,7 @@ mv target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release
 `),
       })))),
     cargoBuildHook: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "test-cargoBuildHook",
         src: nix.path(here, "./example-rust-project"),
         cargoBuildType: "release",
@@ -42,7 +42,7 @@ mv target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release
         [nix.str`CARGO_TARGET_${nix.sel(stdenv, "hostPlatform", "rust", "cargoEnvVarTarget")}_LINKER`, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/${nix.sel(stdenv, "cc", "targetPrefix")}cc`)],
       ])))),
     cargoInstallHook: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "test-cargoInstallHook",
         src: nix.path(here, "./example-rust-project"),
         cargoBuildType: "release",
@@ -54,7 +54,7 @@ runHook postBuild
         [nix.str`CARGO_TARGET_${nix.sel(stdenv, "hostPlatform", "rust", "cargoEnvVarTarget")}_LINKER`, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/${nix.sel(stdenv, "cc", "targetPrefix")}cc`)],
       ])))),
     cargoCheckHook: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "test-cargoCheckHook",
         src: nix.path(here, "./example-rust-project"),
         cargoBuildType: "release",
@@ -71,7 +71,7 @@ mv target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release
         [nix.str`CARGO_TARGET_${nix.sel(stdenv, "hostPlatform", "rust", "cargoEnvVarTarget")}_LINKER`, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/${nix.sel(stdenv, "cc", "targetPrefix")}cc`)],
       ])))),
     cargoNextestHook: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "test-cargoNextestHook",
         src: nix.path(here, "./example-rust-project"),
         cargoBuildType: "release",

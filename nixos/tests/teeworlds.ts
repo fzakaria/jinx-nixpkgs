@@ -20,31 +20,31 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
       environment: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "teeworlds"))]),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "teeworlds",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hax404"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       server: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
-          teeworlds: nix.thunk(() => ({ __proto__: pos$4, enable: true, openPorts: true })),
+          [nix.POS]: pos$5,
+          teeworlds: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, openPorts: true })),
         })),
       })),
       client1: client,

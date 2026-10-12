@@ -57,63 +57,63 @@ export default nix.lambda((args) => (() => {
   const jsonFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const cfg = nix.thunk(() => nix.sel(config, "tests", "incus"));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       tests: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         incus: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "name appended to test",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "incus", nix.thunk(() => ({})))),
           preseed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "configuration provided to incus preseed. https://linuxcontainers.org/incus/docs/main/howto/initialize/#non-interactive-configuration",
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$2, freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$2, freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")) })))),
             })))),
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     const config_1 = nix.arg($_1, "config");
                     return {
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       options: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: name,
                           })))),
                         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["container", "virtual-machine"]))),
                           })))),
                         imageAlias: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "name of image when imported",
                             default: nix.thunk(() => nix.str`nixos/${name}/${nix.sel(config_1, "type")}`),
                           })))),
                         nixosConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
                             default: nix.thunk(() => ({})),
                           })))),
                         incusConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
-                            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$8, freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")) })))),
+                            [nix.POS]: pos$9,
+                            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$8, freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")) })))),
                             description: "incus configuration provided at launch",
                             default: nix.thunk(() => ({})),
                           })))),
                         copyChannel: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "copy channel in test image. disabled by default as it forces image\nrebuilds excessively. enable to validate channel things.\n")),
                         testScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "final script provided to test runner",
                             readOnly: true,
@@ -121,24 +121,24 @@ export default nix.lambda((args) => (() => {
                       })),
                       config: nix.thunk(() => (() => {
                         const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../release.nix")), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             configuration: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(config_1, "nixosConfig")), nix.thunk(() => ({
-                                __proto__: pos$14,
+                                [nix.POS]: pos$14,
                                 virtualisation: nix.thunk(() => ({
-                                  __proto__: pos$13,
-                                  incus: nix.thunk(() => ({ __proto__: pos$12, package: nix.thunk(() => nix.attr(cfg, "package")) })),
+                                  [nix.POS]: pos$13,
+                                  incus: nix.thunk(() => ({ [nix.POS]: pos$12, package: nix.thunk(() => nix.attr(cfg, "package")) })),
                                 })),
                               })))),
                           }))));
                         const images = nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           container: nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             metadata: nix.thunk(() => nix.add(nix.sel(releases, "incusContainerMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`)),
                             root: nix.thunk(() => nix.add(nix.sel(releases, "incusContainerImage", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/nixos-lxc-image-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.squashfs`)),
                           })),
                           "virtual-machine": nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             metadata: nix.thunk(() => nix.add(nix.sel(releases, "incusVirtualMachineImageMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), "/*/*.tar.xz")),
                             root: nix.thunk(() => nix.add(nix.sel(releases, "incusVirtualMachineImage", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), "/nixos.qcow2")),
                           })),
@@ -147,46 +147,46 @@ export default nix.lambda((args) => (() => {
                         const metadata = nix.thunk(() => nix.sel(images, nix.key(nix.sel(config_1, "type")), "metadata"));
                         const image_id = nix.thunk(() => nix.str`${nix.sel(config_1, "type")}/${nix.sel(config_1, "name")}`);
                         return {
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           incusConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(config_1, "type"), "virtual-machine")), nix.thunk(() => ({
-                              __proto__: pos$20,
-                              config: nix.thunk(() => ({ __proto__: pos$19, "security.secureboot": false })),
+                              [nix.POS]: pos$20,
+                              config: nix.thunk(() => ({ [nix.POS]: pos$19, "security.secureboot": false })),
                             })))),
                           nixosConfig: nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             documentation: nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                               nixos: nix.thunk(() => ({
-                                __proto__: pos$21,
+                                [nix.POS]: pos$21,
                                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                               })),
                             })),
                             system: nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               installer: nix.thunk(() => ({
-                                __proto__: pos$24,
+                                [nix.POS]: pos$24,
                                 channel: nix.thunk(() => ({
-                                  __proto__: pos$23,
+                                  [nix.POS]: pos$23,
                                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(config_1, "copyChannel")))),
                                 })),
                               })),
                             })),
                             environment: nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               etc: nix.thunk(() => ({
-                                __proto__: pos$27,
+                                [nix.POS]: pos$27,
                                 "nix/registry.json": nix.thunk(() => ({
-                                  __proto__: pos$26,
+                                  [nix.POS]: pos$26,
                                   text: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "{}")),
                                 })),
                               })),
                             })),
                             boot: nix.thunk(() => ({
-                              __proto__: pos$31,
+                              [nix.POS]: pos$31,
                               kernel: nix.thunk(() => ({
-                                __proto__: pos$30,
-                                sysctl: nix.thunk(() => ({ __proto__: pos$29, "net.ipv4.ip_forward": "1" })),
+                                [nix.POS]: pos$30,
+                                sysctl: nix.thunk(() => ({ [nix.POS]: pos$29, "net.ipv4.ip_forward": "1" })),
                               })),
                             })),
                           })),
@@ -319,15 +319,15 @@ with subtest("[${image_id}] stop with incus-startup.service"):
             })))),
           appArmor: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "AppArmor during tests")),
           feature: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate incus user access feature")),
           })),
           network: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             ovs: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate OVS network integration")),
           })),
           storage: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             lvm: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate LVM storage integration")),
             zfs: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate ZFS storage integration")),
           })),
@@ -335,8 +335,8 @@ with subtest("[${image_id}] stop with incus-startup.service"):
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$43,
-      tests: nix.thunk(() => ({ __proto__: pos$42, incus: nix.thunk(() => ({})) })),
+      [nix.POS]: pos$43,
+      tests: nix.thunk(() => ({ [nix.POS]: pos$42, incus: nix.thunk(() => ({})) })),
     })),
   };
 })(), formals$1);

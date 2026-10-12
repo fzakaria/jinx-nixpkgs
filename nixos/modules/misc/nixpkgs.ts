@@ -51,21 +51,21 @@ export default nix.lambda((args) => (() => {
   const isConfig = (x) => (nix.asBool(nix.builtins.isAttrs(x)) || nix.asBool(nix.app(nix.sel(lib, "isFunction"), x)));
   const optCall = (f) => (x) => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), f)) ? nix.app(f, x) : nix.force(f));
   const mergeConfig = (lhs_) => (rhs_) => (() => {
-    const lhs = nix.thunk(() => nix.app(optCall, lhs_, nix.thunk(() => ({ __proto__: pos$1, lib: lib, pkgs: pkgs }))));
-    const rhs = nix.thunk(() => nix.app(optCall, rhs_, nix.thunk(() => ({ __proto__: pos$2, lib: lib, pkgs: pkgs }))));
+    const lhs = nix.thunk(() => nix.app(optCall, lhs_, nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, pkgs: pkgs }))));
+    const rhs = nix.thunk(() => nix.app(optCall, rhs_, nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, pkgs: pkgs }))));
     return nix.update(nix.app(nix.sel(lib, "recursiveUpdate"), lhs, rhs), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(lhs, "allowUnfreePackages")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         allowUnfreePackages: nix.thunk(() => nix.concat(nix.sel(lhs, "allowUnfreePackages"), nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["allowUnfreePackages"]), [], rhs))),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(lhs, "packageOverrides")), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         packageOverrides: (pkgs_1) => nix.update(nix.app(optCall, nix.thunk(() => nix.sel(lhs, "packageOverrides")), pkgs_1), nix.app(optCall, nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["packageOverrides"]), nix.thunk(() => ({})), rhs)), pkgs_1)),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(lhs, "perlPackageOverrides")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         perlPackageOverrides: (pkgs_1) => nix.update(nix.app(optCall, nix.thunk(() => nix.sel(lhs, "perlPackageOverrides")), pkgs_1), nix.app(optCall, nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["perlPackageOverrides"]), nix.thunk(() => ({})), rhs)), pkgs_1)),
       }))))));
   })();
   const configType = nix.thunk(() => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "nixpkgs-config",
       description: "nixpkgs config",
       check: (x) => (() => {
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
       merge: (args_1) => nix.app(nix.sel(lib, "foldr"), (def) => nix.app(mergeConfig, nix.thunk(() => nix.sel(def, "value"))), nix.thunk(() => ({}))),
     }))));
   const overlayType = nix.thunk(() => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "nixpkgs-overlay",
       description: "nixpkgs overlay",
       check: nix.thunk(() => nix.sel(lib, "isFunction")),
       merge: nix.thunk(() => nix.sel(lib, "mergeOneOption")),
     }))));
   const pkgsType = nix.thunk(() => nix.update(nix.sel(lib, "types", "pkgs"), {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     description: "An evaluation of Nixpkgs; the top level attribute set of packages",
   }));
   const hasBuildPlatform = nix.thunk(() => nix.lt(nix.sel(opt, "buildPlatform", "highestPrio"), nix.sel(nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => ({}))), "priority")));
@@ -94,20 +94,20 @@ export default nix.lambda((args) => (() => {
   const defaultPkgs = nix.thunk(() => (nix.asBool(nix.sel(opt, "hostPlatform", "isDefined")) ? (() => {
     const isCross = nix.thunk(() => !nix.eq(nix.sel(cfg, "buildPlatform"), nix.sel(cfg, "hostPlatform")));
     const systemArgs = nix.thunk(() => (nix.asBool(isCross) ? {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       localSystem: nix.thunk(() => nix.sel(cfg, "buildPlatform")),
       crossSystem: nix.thunk(() => nix.sel(cfg, "hostPlatform")),
     } : {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       localSystem: nix.thunk(() => nix.sel(cfg, "hostPlatform")),
     }));
     return nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => nix.update({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         config: nix.thunk(() => nix.attr(cfg, "config")),
         overlays: nix.thunk(() => nix.attr(cfg, "overlays")),
       }, systemArgs)));
   })() : nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       config: nix.thunk(() => nix.attr(cfg, "config")),
       overlays: nix.thunk(() => nix.attr(cfg, "overlays")),
       localSystem: nix.thunk(() => nix.attr(cfg, "localSystem")),
@@ -115,49 +115,49 @@ export default nix.lambda((args) => (() => {
     })))));
   const finalPkgs = nix.thunk(() => (nix.asBool(nix.sel(opt, "pkgs", "isDefined")) ? nix.app(nix.sel(cfg, "pkgs", "appendOverlays"), nix.thunk(() => nix.sel(cfg, "overlays"))) : nix.force(defaultPkgs)));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     imports: nix.thunk(() => [
       nix.path(here, "./assertions.nix"),
       nix.path(here, "./meta.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["nixpkgs", "initialSystem"]), "The NixOS options `nesting.clone` and `nesting.children` have been deleted, and replaced with named specialisation. Therefore `nixpgks.initialSystem` has no effect anymore.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       nixpkgs: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         pkgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "import \"${nixos}/..\" {\n  inherit (config.nixpkgs) config overlays localSystem crossSystem;\n}\n")),
             type: pkgsType,
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "import <nixpkgs> {}")),
             description: "If set, the pkgs argument to all NixOS modules is the value of\nthis option, extended with `nixpkgs.overlays`, if\nthat is also set. Either `nixpkgs.crossSystem` or\n`nixpkgs.localSystem` will be used in an assertion\nto check that the NixOS and Nixpkgs architectures match. Any\nother options in `nixpkgs.*`, notably `config`,\nwill be ignored.\n\nIf unset, the pkgs argument to all NixOS modules is determined\nas shown in the default value for this option.\n\nThe default value imports the Nixpkgs source files\nrelative to the location of this NixOS module, because\nNixOS and Nixpkgs are distributed together for consistency,\nso the `nixos` in the default value is in fact a\nrelative path. The `config`, `overlays`,\n`localSystem`, and `crossSystem` come\nfrom this option's siblings.\n\nThis option can be used by applications like NixOps to increase\nthe performance of evaluation, or to create packages that depend\non a container that should be built with the exact same evaluation\nof Nixpkgs, for example. Applications like this should set\ntheir default value using `lib.mkDefault`, so\nuser-provided configuration can override it without using\n`lib`.\n\nNote that using a distinct version of Nixpkgs with NixOS may\nbe an unexpected source of problems. Use this option with care.\n",
           })))),
         config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ allowBroken = true; allowUnfree = true; }\n")),
             type: configType,
             description: "Global configuration for Nixpkgs.\nThe complete list of [Nixpkgs configuration options](https://nixos.org/manual/nixpkgs/unstable/#sec-config-options-reference) is in the [Nixpkgs manual section on global configuration](https://nixos.org/manual/nixpkgs/unstable/#chap-packageconfig).\n\nIgnored when {option}`nixpkgs.pkgs` is set.\n",
           })))),
         overlays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (self: super: {\n    openssh = super.openssh.override {\n      hpnSupport = true;\n      kerberos = self.libkrb5;\n    };\n  })\n]\n")),
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), overlayType)),
             description: "List of overlays to apply to Nixpkgs.\nThis option allows modifying the Nixpkgs package set accessed through the `pkgs` module argument.\n\nFor details, see the [Overlays chapter in the Nixpkgs manual](https://nixos.org/manual/nixpkgs/stable/#chap-overlays).\n\nIf the {option}`nixpkgs.pkgs` option is set, overlays specified using `nixpkgs.overlays` will be applied after the overlays that were already included in `nixpkgs.pkgs`.\n",
           })))),
         hostPlatform: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
-            example: nix.thunk(() => ({ __proto__: pos$16, system: "aarch64-linux" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$16, system: "aarch64-linux" })),
             apply: nix.thunk(() => nix.sel(lib, "systems", "elaborate")),
             description: "Specifies the platform where the NixOS configuration will run.\n\nTo cross-compile, set also `nixpkgs.buildPlatform`.\n\nIgnored when `nixpkgs.pkgs` is set.\n",
           })))),
         buildPlatform: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
             default: nix.thunk(() => nix.sel(cfg, "hostPlatform")),
-            example: nix.thunk(() => ({ __proto__: pos$18, system: "x86_64-linux" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$18, system: "x86_64-linux" })),
             apply: (inputBuildPlatform) => (() => {
               const elaborated = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), inputBuildPlatform));
               return (nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), elaborated, nix.thunk(() => nix.sel(cfg, "hostPlatform")))) ? nix.sel(cfg, "hostPlatform") : nix.force(elaborated));
@@ -166,23 +166,23 @@ export default nix.lambda((args) => (() => {
             description: "Specifies the platform on which NixOS should be built.\nBy default, NixOS is built on the system where it runs, but you can\nchange where it's built. Setting this option will cause NixOS to be\ncross-compiled.\n\nFor instance, if you're doing distributed multi-platform deployment,\nor if you're building machines, you can set this to match your\ndevelopment system and/or build farm.\n\nIgnored when `nixpkgs.pkgs` is set.\n",
           })))),
         localSystem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
-            default: nix.thunk(() => ({ __proto__: pos$20, system: nix.thunk(() => nix.attr(cfg, "system")) })),
-            example: nix.thunk(() => ({ __proto__: pos$21, system: "aarch64-linux" })),
+            default: nix.thunk(() => ({ [nix.POS]: pos$20, system: nix.thunk(() => nix.attr(cfg, "system")) })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$21, system: "aarch64-linux" })),
             apply: nix.thunk(() => nix.sel(lib, "systems", "elaborate")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.nixpkgs.system")),
             description: "Systems with a recently generated `hardware-configuration.nix`\ndo not need to specify this option, unless cross-compiling, in which case\nyou should set *only* {option}`nixpkgs.buildPlatform`.\n\nIf this is somehow not feasible, you may fall back to removing the\n{option}`nixpkgs.hostPlatform` line from the generated config and\nuse the old options.\n\nSpecifies the platform on which NixOS should be built. When\n`nixpkgs.crossSystem` is unset, it also specifies\nthe platform *for* which NixOS should be\nbuilt.  If this option is unset, it defaults to the platform\ntype of the machine where evaluation happens. Specifying this\noption is useful when doing distributed multi-platform\ndeployment, or when building virtual machines. See its\ndescription in the Nixpkgs manual for more details.\n\nIgnored when `nixpkgs.pkgs` or `hostPlatform` is set.\n",
           })))),
         crossSystem: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
             default: null,
-            example: nix.thunk(() => ({ __proto__: pos$23, system: "aarch64-linux" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$23, system: "aarch64-linux" })),
             description: "Systems with a recently generated `hardware-configuration.nix`\nmay instead specify *only* {option}`nixpkgs.buildPlatform`,\nor fall back to removing the {option}`nixpkgs.hostPlatform` line from the generated config.\n\nSpecifies the platform for which NixOS should be\nbuilt. Specify this only if it is different from\n`nixpkgs.localSystem`, the platform\n*on* which NixOS should be built. In other\nwords, specify this to cross-compile NixOS. Otherwise it\nshould be set as null, the default. See its description in the\nNixpkgs manual for more details.\n\nIgnored when `nixpkgs.pkgs` or `hostPlatform` is set.\n",
           })))),
         system: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             example: "i686-linux",
             default: nix.thunk(() => (nix.asBool(nix.sel(opt, "hostPlatform", "isDefined")) ? nix.builtins.throw(nix.thunk(() => nix.str`Neither ${nix.sel(opt, "system")} nor any other option in nixpkgs.* is meant
@@ -200,11 +200,11 @@ but will be deprecated in the future, so we recommend to set ${nix.sel(opt, "hos
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       _module: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         args: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           pkgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), nix.thunk(() => nix.sel(lib, "modules", "defaultOverridePriority")), finalPkgs)),
         })),
       })),
@@ -216,13 +216,13 @@ but will be deprecated in the future, so we recommend to set ${nix.sel(opt, "hos
             const nixosOption = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "nixpkgs", "crossSystem"), null)) ? "nixpkgs.crossSystem" : "nixpkgs.localSystem"));
             const pkgsSystem = nix.thunk(() => nix.sel(finalPkgs, "stdenv", "targetPlatform", "system"));
             return {
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               assertion: nix.thunk(() => (!nix.asBool(constructedByMe) || nix.asBool((!nix.asBool(!nix.asBool(hasPlatform)) || nix.asBool(nix.eq(nixosExpectedSystem, pkgsSystem)))))),
               message: nix.thunk(() => nix.str`The NixOS nixpkgs.pkgs option was set to a Nixpkgs invocation that compiles to target system ${pkgsSystem} but NixOS was configured for system ${nixosExpectedSystem} via NixOS option ${nixosOption}. The NixOS system settings must match the Nixpkgs target system.`),
             };
           })()),
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => (!nix.asBool(constructedByMe) || nix.asBool((!nix.asBool(hasPlatform) || nix.asBool(nix.eq(legacyOptionsDefined, [])))))),
             message: nix.thunk(() => nix.str`Your system configures nixpkgs with the platform parameter${nix.app(nix.sel(lib, "optionalString"), hasBuildPlatform, "s")}:
 ${hostPlatformLine}${buildPlatformLine}
@@ -233,13 +233,13 @@ the legacy definitions.
 `),
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(opt, "pkgs", "isDefined")) || nix.asBool(nix.eq(nix.sel(cfg, "config"), {})))),
             message: nix.thunk(() => nix.str`Your system configures nixpkgs with an externally created instance.
 \`nixpkgs.config\` options should be passed when creating the instance instead.
 
 Current value:
-${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$32, multiline: true })), nix.thunk(() => nix.sel(cfg, "config")))}
+${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$32, multiline: true })), nix.thunk(() => nix.sel(cfg, "config")))}
 
 Defined in:
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (file) => nix.str`  - ${file}`, nix.thunk(() => nix.sel(opt, "config", "files")))}
@@ -248,7 +248,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (file) => nix.str`  - ${fil
         ];
       })()),
     })),
-    meta: nix.thunk(() => ({ __proto__: pos$35, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$35, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=nixpkgs.ts.map

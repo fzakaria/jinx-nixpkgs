@@ -27,23 +27,23 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "hardware", "pommed"));
   const defaultConf = nix.thunk(() => nix.str`${nix.sel(pkgs, "pommed_light")}/etc/pommed.conf.mactel`);
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hardware: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pommed: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to use the pommed tool to handle Apple laptop\nkeyboard hotkeys.\n",
               })))),
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The path to the {file}`pommed.conf` file. Leave\nto null to use the default config file\n({file}`/etc/pommed.conf.mactel`). See the\nfiles {file}`/etc/pommed.conf.mactel` and\n{file}`/etc/pommed.conf.pmac` for examples to\nbuild on.\n",
@@ -53,31 +53,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "polkit")),
             nix.thunk(() => nix.sel(pkgs, "pommed_light")),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "pommed.conf": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               source: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.force(defaultConf) : nix.sel(cfg, "configFile"))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pommed: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Pommed Apple Hotkeys Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "pommed_light")))} -f`),
               })),
             })),

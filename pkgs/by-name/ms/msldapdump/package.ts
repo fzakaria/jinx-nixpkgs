@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msldapdump",
       version: "0-unstable-2023-06-12",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dievus",
           repo: "msLDAPDump",
           rev: "bdffe66be20ff844f55f69fd6d842d7f75f66f2d",
@@ -44,7 +44,7 @@ runHook postInstall
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LDAP enumeration tool",
         homepage: "https://github.com/dievus/msLDAPDump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

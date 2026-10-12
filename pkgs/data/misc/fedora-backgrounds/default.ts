@@ -26,72 +26,72 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fedoraBackground = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     f32: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "32.2.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-1F75aae7Jj7M2IPn/vWKcUF+O5mZ0Yey7hWuFj/4Fhg=",
           }))));
-        return { __proto__: pos$2, version, src };
+        return { [nix.POS]: pos$2, version, src };
       })()))),
     f33: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "33.0.7";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-lAn5diEYebCo2ZJCOn9rD87rOasUU0qnSOr0EnZKW4o=",
           }))));
         const patches = nix.thunk(() => [nix.path(here, "./f33-fix-xfce-path.patch")]);
-        return { __proto__: pos$4, version, src, patches };
+        return { [nix.POS]: pos$4, version, src, patches };
       })()))),
     f34: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "34.0.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-0gotgQ4N0yE8WZbsu7B3jmUIZrycbqjEMxZl01JcJj4=",
           }))));
         const patches = nix.thunk(() => [nix.path(here, "./f34-fix-xfce-path.patch")]);
-        return { __proto__: pos$6, version, src, patches };
+        return { [nix.POS]: pos$6, version, src, patches };
       })()))),
     f35: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "35.0.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-7t78sQ0BIkzgJ+phO55Bomyz02d8Vx1LAtSkjX8ppgE=",
           }))));
         const patches = nix.thunk(() => [nix.path(here, "./f35-fix-xfce-path.patch")]);
-        return { __proto__: pos$8, version, src, patches };
+        return { [nix.POS]: pos$8, version, src, patches };
       })()))),
     f36: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "36.1.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-DZr1YHltojl02X/3sErqB/29JBDy/7lDZKnHD+KouHc=",
           }))));
-        return { __proto__: pos$10, version, src };
+        return { [nix.POS]: pos$10, version, src };
       })()))),
     f37: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "37.0.5";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-bkjxJDDU0dZURKIK1sd+EOnPt9vvJ5HqHkc6OhPBBn0=",
           }))));
-        return { __proto__: pos$12, version, src };
+        return { [nix.POS]: pos$12, version, src };
       })()))),
     f38: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "38.1.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-YSNP7GhS5i5mJDsa4UwsXJm8Tv43r9JxrcYIbkXQKm4=",
           }))));
-        return { __proto__: pos$14, version, src };
+        return { [nix.POS]: pos$14, version, src };
       })()))),
   };
 })(), formals$1);

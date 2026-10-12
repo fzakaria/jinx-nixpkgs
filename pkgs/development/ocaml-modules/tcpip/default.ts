@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tcpip";
       const version = "9.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-${pname}/releases/download/v${version}/${pname}-${version}.tbz`),
           hash: "sha256-+sB86YaBHPXj1xNz2StjHMMPvvVI1tohsJFyEtz5CwM=",
         }))));
@@ -71,14 +71,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, mirage_vnetif, pcap_format]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml TCP/IP networking stack, used in MirageOS",
         homepage: "https://github.com/mirage/mirage-tcpip",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
   const watchfiles = nix.arg($, "watchfiles");
   const werkzeug = nix.arg($, "werkzeug");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fava",
       version: "1.30.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beancount",
           repo: "fava",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TXsDfNZrqTfHZ1rH3JHPSS103ab6nxP3BOFrUQ8CQH4=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps-${nix.sel(finalAttrs, "version")}`),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/${nix.sel(finalAttrs, "npmRoot")}`),
           hash: "sha256-WjdFEZqfD2rJpKs5ad7/YUlgBBrO92DGkiTp9v5PJhE=",
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_core_watcher.py"]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SNAPSHOT_IGNORE: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(beancount, "version"))), "2")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web interface for beancount",
         mainProgram: "fava",
         homepage: "https://beancount.github.io/fava",

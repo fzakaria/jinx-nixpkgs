@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "your_spotify.env", nix.thunk(() => nix.app(concatStrings, nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => nix.str`${name}=${value}
 `, configEnv))))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         your_spotify: nix.thunk(() => (() => {
           const nullOr = nix.thunk(() => nix.attr(types, "nullOr"));
           const port = nix.thunk(() => nix.attr(types, "port"));
@@ -69,56 +69,56 @@ export default nix.lambda((args) => (() => {
           const path = nix.thunk(() => nix.attr(types, "path"));
           const package$ = nix.thunk(() => nix.attr(types, "package"));
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(mkEnableOption, "your_spotify")),
             enableLocalDB: nix.thunk(() => nix.app(mkEnableOption, "a local mongodb instance")),
             nginxVirtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nullOr, str)),
                 default: null,
                 description: "If set creates an nginx virtual host for the client.\nIn most cases this should be the CLIENT_ENDPOINT without\nprotocol prefix.\n",
               })))),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "your_spotify", nix.thunk(() => ({})))),
-            clientPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$2, type: package$, description: "Client package to use." })))),
+            clientPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: package$, description: "Client package to use." })))),
             spotifySecretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: path,
                 description: "A file containing the secret key of your Spotify application.\nRefer to: [Creating the Spotify Application](https://github.com/Yooooomi/your_spotify#creating-the-spotify-application).\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "Your Spotify Configuration. Refer to [Your Spotify](https://github.com/Yooooomi/your_spotify) for definitions and values.\n",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  CLIENT_ENDPOINT = \"https://example.com\";\n  API_ENDPOINT = \"https://api.example.com\";\n  SPOTIFY_PUBLIC = \"spotify_client_id\";\n}\n")),
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       CLIENT_ENDPOINT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: str,
                           description: "The endpoint of your web application.\nHas to include a protocol Prefix (e.g. `http://`)\n",
                           example: "https://your_spotify.example.org",
                         })))),
                       API_ENDPOINT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: str,
                           description: "The endpoint of your server\nThis api has to be reachable from the device you use the website from not from the server.\nThis means that for example you may need two nginx virtual hosts if you want to expose this on the\ninternet.\nHas to include a protocol Prefix (e.g. `http://`)\n",
                           example: "https://localhost:3000",
                         })))),
                       SPOTIFY_PUBLIC: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: str,
                           description: "The public client ID of your Spotify application.\nRefer to: [Creating the Spotify Application](https://github.com/Yooooomi/your_spotify#creating-the-spotify-application)\n",
                         })))),
                       MONGO_ENDPOINT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: str,
                           description: "The endpoint of the Mongo database.",
                           default: "mongodb://localhost:27017/your_spotify",
                         })))),
                       PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: port,
                           description: "The port of the api server",
                           default: 3000n,
@@ -131,48 +131,48 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           your_spotify: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             clientPackage: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.app(nix.sel(cfg, "package", "client", "override"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   apiEndpoint: nix.thunk(() => nix.sel(cfg, "settings", "API_ENDPOINT")),
                 })))))),
           })),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "nginxVirtualHost"), null)), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "nginxVirtualHost"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   root: nix.thunk(() => nix.sel(cfg, "clientPackage")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       extraConfig: "add_header Content-Security-Policy \"frame-ancestors 'none';\" ;\nadd_header X-Content-Type-Options \"nosniff\" ;\ntry_files = $uri $uri/ /index.html ;\n",
                     })),
                   })),
                 }))],
               ])),
             })))),
-          mongodb: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableLocalDB")), nix.thunk(() => ({ __proto__: pos$21, enable: true })))),
+          mongodb: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableLocalDB")), nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             your_spotify: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               after: nix.thunk(() => ["network.target"]),
               script: nix.thunk(() => nix.str`export SPOTIFY_SECRET=$(< "$CREDENTIALS_DIRECTORY/SPOTIFY_SECRET")
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "your_spotify_migrate")}
 exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 User: "your_spotify",
                 Group: "your_spotify",
                 DynamicUser: true,
@@ -212,7 +212,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "patrickdag"))];

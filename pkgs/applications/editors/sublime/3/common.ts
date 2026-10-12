@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
     const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, glib, gtk3, cairo, pango])));
     const redirects = nix.thunk(() => [nix.thunk(() => nix.str`/usr/bin/pkexec=${pkexecPath}`)]);
     const binaryPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.str`${pname}-bin`),
         version: buildVersion,
-        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: downloadUrl, sha256: archSha256 })))),
+        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: downloadUrl, sha256: archSha256 })))),
         dontStrip: true,
         dontPatchELF: true,
         buildInputs: nix.thunk(() => [glib, gtk3]),
@@ -97,7 +97,7 @@ wrapProgram $out/plugin_host --prefix LD_PRELOAD : ${nix.app(nix.sel(lib, "getLi
 `),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: buildVersion,
         dontUnpack: true,
@@ -114,7 +114,7 @@ for directory in $${primaryBinary}/Icon/*; do
 done
 `)),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Sophisticated text editor for code, markup and prose",
           homepage: "https://www.sublimetext.com/",
           maintainers: nix.thunk(() => (() => {

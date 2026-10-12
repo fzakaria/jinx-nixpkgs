@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mapscii";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rastapasta",
           repo: "mapscii",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const postInstall = "rm -r $out/lib/node_modules/mapscii/node_modules/.bin\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Braille & ASCII world map renderer for your console",
         homepage: "https://github.com/rastapasta/mapscii",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

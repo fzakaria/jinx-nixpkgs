@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rundeck",
       version: "6.2.1-20260909",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://packagecloud.io/pagerduty/rundeck/packages/java/org.rundeck/rundeck-${nix.sel(finalAttrs, "version")}.war/artifacts/rundeck-${nix.sel(finalAttrs, "version")}.war/download?distro_version_id=167`),
           hash: "sha256-x0+IRTV7EQUvQFli7C59zNprOthfteNZbuEHdBz0Z+c=",
         })))),
@@ -46,11 +46,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk17)} $out/bin/rundeck \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-rundeck", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl jq\nset -eu -o pipefail\n\nlatest_tag=$(curl -s \"https://api.github.com/repos/rundeck/rundeck/tags\" | jq -r '.[0].name')\nversion=$(echo \"$latest_tag\" | sed -E 's/^v//')\nfull_version=\"$version-$(date +\"%Y%m%d\")\"\n\nif [[ \"x$UPDATE_NIX_OLD_VERSION\" != \"x$full_version\" ]]; then\n  download_url=\"https://packagecloud.io/pagerduty/rundeck/packages/java/org.rundeck/rundeck-$full_version.war/artifacts/rundeck-$full_version.war/download?distro_version_id=167\"\n  hash=$(curl -L \"$download_url\" | nix-hash --flat --type sha256 --base32 - | nix --extra-experimental-features nix-command hash to-sri --type sha256)\n  update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$full_version\" \"$hash\"\nfi\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Job scheduler and runbook automation",
         longDescription: "Rundeck is an open source automation service with a web console,\ncommand line tools and a WebAPI. It lets you easily run automation tasks\nacross a set of nodes.\n",
         homepage: "https://www.rundeck.com/",

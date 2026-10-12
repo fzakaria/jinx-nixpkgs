@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const brotli = nix.arg($, "brotli");
   const orjson = nix.arg($, "orjson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "discord.py",
       version: "2.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rapptz",
           repo: "discord.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([aiohttp, audioop_lts], nix.app(nix.sel(lib, "optionals"), withVoice, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "voice"))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         speed: nix.thunk(() => [aiodns, brotli, orjson]),
         voice: nix.thunk(() => [pynacl]),
       })),
@@ -60,7 +60,7 @@ substituteInPlace "discord/player.py" \\
         "discord.ext.tasks",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for the Discord API",
         homepage: "https://discordpy.rtfd.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Rapptz/discord.py/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/whats_new.rst`),

@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pname = "tailor_gui";
   const version = "0.2.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       sourceRoot: sourceRoot,
       pname: pname,
       version: version,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           src: src,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cargo, rustc, meson, ninja, libadwaita, gtk4]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust GUI for interacting with hardware from TUXEDO Computers",
         mainProgram: "tailor_gui",
         longDescription: "An alternative to the TUXEDO Control Center (https://www.tuxedocomputers.com/en/TUXEDO-Control-Center.tuxedo),\nwritten in Rust.\n",

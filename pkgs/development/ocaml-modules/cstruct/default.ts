@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const crowbar = nix.arg($, "crowbar");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cstruct",
       version: "6.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-cstruct/releases/download/v${nix.sel(finalAttrs, "version")}/cstruct-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-lWsknd+1X9I1hMF2evKPZIcDPTZIiCF6FCddiY69d1Q=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [alcotest, crowbar]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Access C-like structures directly from OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         homepage: "https://github.com/mirage/ocaml-cstruct",

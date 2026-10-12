@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const qcheck_ounit = nix.arg($, "qcheck-ounit");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qcheck",
       version: nix.thunk(() => nix.attr(qcheck_ounit, "version")),
       src: nix.thunk(() => nix.attr(qcheck_ounit, "src")),
       patches: nix.thunk(() => nix.attr(qcheck_ounit, "patches")),
       propagatedBuildInputs: nix.thunk(() => [qcheck_ounit]),
-      meta: nix.thunk(() => nix.update(nix.sel(qcheck_ounit, "meta"), { __proto__: pos$1, description: "Compatibility package for qcheck" })),
+      meta: nix.thunk(() => nix.update(nix.sel(qcheck_ounit, "meta"), { [nix.POS]: pos$1, description: "Compatibility package for qcheck" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

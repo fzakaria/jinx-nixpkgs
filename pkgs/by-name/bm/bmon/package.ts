@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libconfuse = nix.arg($, "libconfuse");
   const libnl = nix.arg($, "libnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bmon",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jafaral",
           repo: "bmon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/macports/macports-ports/raw/6d1dd5e9c8fae608bd22f3ede21e576f29c6358c/net/bmon/files/patch-fix__unused.diff",
             extraPrefix: "",
             sha256: "sha256-UYIiJZzipsx9a0xabrKfyj8TWNW7IM77oXnVnSPkQkc=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([ncurses, libconfuse], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libnl))),
       preConfigure: "# Must be an absolute path\nexport PKG_CONFIG=\"$(command -v \"$PKG_CONFIG\")\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Network bandwidth monitor",
         homepage: "https://github.com/Jafaral/bmon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -62,7 +62,7 @@ exec ${nix.sel(cfg, "jvmPackage")}/bin/java \\
   -jar ${nix.sel(cfg, "package")}/webapps/${nix.sel(cfg, "package", "name")}.war \\
   "$@"
 `)));
-  const gerrit_plugins = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gerrit-plugins", nix.thunk(() => ({ __proto__: pos$1, buildInputs: nix.thunk(() => [gerrit_cli]) })), nix.thunk(() => nix.str`shopt -s nullglob
+  const gerrit_plugins = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gerrit-plugins", nix.thunk(() => ({ [nix.POS]: pos$1, buildInputs: nix.thunk(() => [gerrit_cli]) })), nix.thunk(() => nix.str`shopt -s nullglob
 mkdir $out
 
 for name in ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "builtinPlugins")))}; do
@@ -77,18 +77,18 @@ for file in ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "plugins")))}; 
 done
 `)));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         gerrit: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Gerrit service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gerrit", nix.thunk(() => ({})))),
           jvmPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jdk21_headless", nix.thunk(() => ({})))),
           jvmOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => [
                 "-Dflogger.backend_factory=com.google.common.flogger.backend.log4j.Log4jBackendFactory#getInstance",
@@ -97,43 +97,43 @@ done
               description: "A list of JVM options to start gerrit with.",
             })))),
           jvmHeapLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "1024m",
               description: "How much memory to allocate to the JVM heap\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "[::]:8080",
               description: "`hostname:port` to listen for HTTP traffic.\n\nThis is bound using the systemd socket activation.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: gitIniType,
               default: nix.thunk(() => ({})),
               description: "Gerrit configuration. This will be generated to the\n`etc/gerrit.config` file.\n",
             })))),
           replicationSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: gitIniType,
               default: nix.thunk(() => ({})),
               description: "Replication configuration. This will be generated to the\n`etc/replication.config` file.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "List of plugins to add to Gerrit. Each derivation is a jar file\nitself where the name of the derivation is the name of plugin.\n",
             })))),
           builtinPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.sel(cfg, "package", "passthru", "plugins")))))),
               default: [],
               description: "List of builtins plugins to install. Those are shipped in the\n`gerrit.war` file.\n",
             })))),
           serverId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Set a UUID that uniquely identifies the server.\n\nThis can be generated with\n`nix-shell -p util-linux --run uuidgen`.\n",
             })))),
@@ -141,55 +141,55 @@ done
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "replicationSettings"), {})) || nix.asBool(nix.app(nix.sel(lib, "elem"), "replication", nix.thunk(() => nix.sel(cfg, "builtinPlugins")))))),
             message: "Gerrit replicationSettings require enabling the replication plugin",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           gerrit: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => ({
-              __proto__: pos$19,
-              cache: nix.thunk(() => ({ __proto__: pos$14, directory: "/var/cache/gerrit" })),
-              container: nix.thunk(() => ({ __proto__: pos$15, heapLimit: nix.thunk(() => nix.sel(cfg, "jvmHeapLimit")) })),
+              [nix.POS]: pos$19,
+              cache: nix.thunk(() => ({ [nix.POS]: pos$14, directory: "/var/cache/gerrit" })),
+              container: nix.thunk(() => ({ [nix.POS]: pos$15, heapLimit: nix.thunk(() => nix.sel(cfg, "jvmHeapLimit")) })),
               gerrit: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 basePath: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "git")),
                 serverId: nix.thunk(() => nix.sel(cfg, "serverId")),
               })),
               httpd: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 inheritChannel: "true",
                 listenUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`http://${nix.sel(cfg, "listenAddress")}`))),
               })),
               index: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "lucene")),
               })),
             })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$22, systemPackages: nix.thunk(() => [gerrit_cli]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$22, systemPackages: nix.thunk(() => [gerrit_cli]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           sockets: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             gerrit: nix.thunk(() => ({
-              __proto__: pos$24,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$23, Description: "Gerrit HTTP socket" })),
+              [nix.POS]: pos$24,
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Description: "Gerrit HTTP socket" })),
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listenAddress"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             gerrit: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Gerrit",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["gerrit.socket"]),
@@ -202,7 +202,7 @@ done
                 nix.thunk(() => nix.sel(pkgs, "openssh")),
               ]),
               environment: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 GERRIT_HOME: "%S/gerrit",
                 GERRIT_TMP: "%T",
                 HOME: "%S/gerrit",
@@ -229,7 +229,7 @@ rm -rf plugins
 ln -sv ${gerrit_plugins} plugins
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${gerrit_cli}/bin/gerrit daemon --console-log`),
                 LimitNOFILE: 4096n,
@@ -270,7 +270,7 @@ ln -sv ${gerrit_plugins} plugins
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

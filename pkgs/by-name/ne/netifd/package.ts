@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udebug = nix.arg($, "udebug");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netifd",
       version: "0-unstable-2026-02-26",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.openwrt.org/project/netifd.git",
           rev: "69a5afc9713adf31edbf3228a7a372ada7bba449",
           hash: "sha256-R/ryiFiKNM7zrIgzlalAK0lNJF/vzWL56E9CbptJtmI=",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LIBNL_LIBS", "-lnl-tiny")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${libnl_tiny}/include/libnl-tiny`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OpenWrt Network interface configuration daemon",
         homepage: "https://git.openwrt.org/?p=project/netifd.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

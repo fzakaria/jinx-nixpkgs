@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libndtypes",
       version: "0.2.0dev3-unstable-2019-07-30",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xnd-project",
           repo: "libndtypes",
           rev: "3ce6607c96d8fe67b72cc0c97bf595620cdd274e",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`LD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic types for data description and in-memory computations",
         homepage: "https://xnd.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

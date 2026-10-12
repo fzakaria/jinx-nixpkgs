@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "evhz",
       version: "0-unstable-2025-10-09",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~iank",
           repo: "evhz",
           rev: "189e6c22a9acb01b6eea26659f6944e60f6cb3d8",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "gcc -o evhz evhz.c",
       installPhase: "mkdir -p $out/bin\nmv evhz $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Show mouse refresh rate under linux + evdev",
         homepage: "https://git.sr.ht/~iank/evhz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

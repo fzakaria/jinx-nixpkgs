@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const biscuit_cli = nix.arg($, "biscuit-cli");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "biscuit-cli",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eclipse-biscuit",
           repo: "biscuit-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-OG8/9CxOTCYXwyavdaXvak8GbCOMvelcsSJVkEgdMdI=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: biscuit_cli,
               command: "biscuit --version",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI to generate and inspect biscuit tokens",
         homepage: "https://www.biscuitsec.org/",
         maintainers: nix.thunk(() => (() => {

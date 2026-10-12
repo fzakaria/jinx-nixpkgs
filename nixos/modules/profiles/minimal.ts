@@ -28,39 +28,39 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkDefault = nix.thunk(() => nix.attr(lib, "mkDefault"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     documentation: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       enable: nix.thunk(() => nix.app(mkDefault, false)),
-      doc: nix.thunk(() => ({ __proto__: pos$1, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      info: nix.thunk(() => ({ __proto__: pos$2, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      man: nix.thunk(() => ({ __proto__: pos$3, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      nixos: nix.thunk(() => ({ __proto__: pos$4, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      doc: nix.thunk(() => ({ [nix.POS]: pos$1, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      info: nix.thunk(() => ({ [nix.POS]: pos$2, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      man: nix.thunk(() => ({ [nix.POS]: pos$3, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      nixos: nix.thunk(() => ({ [nix.POS]: pos$4, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       defaultPackages: nix.thunk(() => nix.app(mkDefault, [])),
-      "stub-ld": nix.thunk(() => ({ __proto__: pos$6, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      "stub-ld": nix.thunk(() => ({ [nix.POS]: pos$6, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$10,
-      "command-not-found": nix.thunk(() => ({ __proto__: pos$8, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      [nix.POS]: pos$10,
+      "command-not-found": nix.thunk(() => ({ [nix.POS]: pos$8, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
       fish: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         generateCompletions: nix.thunk(() => nix.app(mkDefault, false)),
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$13,
-      logrotate: nix.thunk(() => ({ __proto__: pos$11, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      udisks2: nix.thunk(() => ({ __proto__: pos$12, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      [nix.POS]: pos$13,
+      logrotate: nix.thunk(() => ({ [nix.POS]: pos$11, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      udisks2: nix.thunk(() => ({ [nix.POS]: pos$12, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
     xdg: nix.thunk(() => ({
-      __proto__: pos$18,
-      autostart: nix.thunk(() => ({ __proto__: pos$14, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      icons: nix.thunk(() => ({ __proto__: pos$15, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      mime: nix.thunk(() => ({ __proto__: pos$16, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
-      sounds: nix.thunk(() => ({ __proto__: pos$17, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      [nix.POS]: pos$18,
+      autostart: nix.thunk(() => ({ [nix.POS]: pos$14, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      icons: nix.thunk(() => ({ [nix.POS]: pos$15, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      mime: nix.thunk(() => ({ [nix.POS]: pos$16, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      sounds: nix.thunk(() => ({ [nix.POS]: pos$17, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
     })),
   };
 })(), formals$1);

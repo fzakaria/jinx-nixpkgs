@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   const finalPackage = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "aiIntegration"), true)) ? nix.app(nix.sel(pkgs, "runCommand"), "pay-respects-wrapper", nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cfg, "package"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeBinaryWrapper"))]),
       meta: nix.thunk(() => nix.attr(from, "meta")),
     };
@@ -75,58 +75,58 @@ makeWrapper ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} $out/bi
 ` : nix.str`${nix.app(getExe, finalPackage)} ${shell} --alias ${nix.sel(cfg, "alias")} | source
 `);
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       programs: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "pay-respects": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "pay-respects, an app which corrects your previous console command")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "pay-respects", nix.thunk(() => ({})))),
           alias: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "f",
               type: str,
               description: "`pay-respects` needs an alias to be configured.\nThe default value is `f`, but you can use anything else as well.\n",
             })))),
           runtimeRules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(listOf, type)),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[\n  {\n    command = \"xl\";\n    match_err = [\n      {\n        pattern = [\n          \"Permission denied\"\n        ];\n        suggest = [\n          ''\n            #[executable(sudo), !cmd_contains(sudo), err_contains(libxl: error:)]\n            sudo {{command}}\n          ''\n        ];\n      }\n    ];\n  }\n];\n")),
               description: "List of rules to be added to `/etc/xdg/pay-respects/rules`.\n`pay-respects` will read the contents of these generated rules to recommend command corrections.\nEach rule module should start with the `command` attribute that specifies the command name. See the [upstream documentation](https://codeberg.org/iff/pay-respects/src/branch/main/rules.md) for more information.\n",
             })))),
           aiIntegration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: false,
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 url: "http://127.0.0.1:11434/v1/chat/completions",
                 model: "llama3",
                 locale: "nl-be",
               })),
               description: "Whether to enable `pay-respects`' LLM integration. When there is no rule for a given error, `pay-respects` can query an OpenAI-compatible API endpoint for command corrections.\n\n- If this is set to `false`, all LLM-related features are disabled.\n- If this is set to `true`, the default OpenAI endpoint will be used, using upstream's API key. This default API key may be rate-limited.\n- You can also set a custom API endpoint, large language model and locale for command corrections. Simply access the `aiIntegration.url`, `aiIntegration.model` and `aiIntegration.locale` options, as described in the example.\n  - Take a look at the [services.ollama](#opt-services.ollama.enable) NixOS module if you wish to host a local large language model for `pay-respects`.\n\nFor all of these methods, you can set a custom secret API key by using the `_PR_AI_API_KEY` environment variable.\n",
               type: nix.thunk(() => nix.app(either, bool, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           default: "",
                           example: "https://api.openai.com/v1/chat/completions",
                           type: str,
                           description: "The OpenAI-compatible API endpoint that `pay-respects` will query for command corrections.",
                         })))),
                       model: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           default: "",
                           example: "llama3",
                           type: str,
                           description: "The model used by `pay-respects` to generate command corrections.",
                         })))),
                       locale: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           default: nix.thunk(() => nix.app(toLower, nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), nix.thunk(() => nix.app(substring, 0n, 5n, nix.thunk(() => nix.sel(config, "i18n", "defaultLocale")))))))),
                           example: "nl-be",
                           type: str,
@@ -139,43 +139,43 @@ makeWrapper ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} $out/bi
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => nix.builtins.map((attr) => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(nix.app(isBool, nix.thunk(() => nix.sel(cfg, "aiIntegration"))))) || nix.asBool(!nix.eq(nix.sel(cfg, "aiIntegration", nix.key(nix.force(attr))), "")))),
             message: nix.thunk(() => nix.str`programs.pay-respects.aiIntegration is configured as a submodule, but you have not configured a value for programs.pay-respects.aiIntegration.${attr}!
 `),
           }), nix.thunk(() => ["url", "model"]))),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((rule) => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 name: nix.thunk(() => nix.str`xdg/pay-respects/rules/${nix.sel(rule, "command")}.toml`),
                 value: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   source: nix.thunk(() => nix.app(generate, nix.thunk(() => nix.str`${nix.sel(rule, "command")}.toml`), rule)),
                 })),
               }), nix.thunk(() => nix.sel(cfg, "runtimeRules")))))),
           systemPackages: nix.thunk(() => [finalPackage]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           bash: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             interactiveShellInit: nix.thunk(() => nix.app(initScript, "bash")),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             interactiveShellInit: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(config, "programs", "fish", "enable")), nix.thunk(() => nix.app(initScript, "fish")))),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             interactiveShellInit: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(config, "programs", "zsh", "enable")), nix.thunk(() => nix.app(initScript, "zsh")))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "sigmasquadron"))];

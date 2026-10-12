@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.11";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crytic",
           repo: "crytic-compile",
           tag: version,
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [cbor2, pycryptodome, setuptools, solc_select, toml]);
       const doCheck = false;
-      const env = nix.thunk(() => ({ __proto__: pos$2, HOME: "/tmp" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, HOME: "/tmp" }));
       const pythonImportsCheck = nix.thunk(() => ["crytic_compile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Abstraction layer for smart contract build systems",
         mainProgram: "crytic-compile",
         homepage: "https://github.com/crytic/crytic-compile",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

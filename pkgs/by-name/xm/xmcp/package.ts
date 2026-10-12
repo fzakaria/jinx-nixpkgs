@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmcp",
       version: "0-unstable-2020-10-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glblapco",
           repo: "xmcp",
           rev: "ee56225f1665f9edc04fe5c165809f2fe160a420",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11]),
       installPhase: "runHook preInstall\ninstall -Dm0755 xmcp $out/bin/xmcp\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny color picker for X11",
         homepage: "https://github.com/glblapco/xmcp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

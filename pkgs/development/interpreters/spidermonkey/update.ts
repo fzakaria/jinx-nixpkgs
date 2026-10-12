@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const baseUrl = nix.argOr($, "baseUrl", () => "https://archive.mozilla.org/pub/firefox/releases/");
   const version = nix.argOr($, "version", () => "");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`update-spidermonkey_${version}`),
       runtimeInputs: nix.thunk(() => [common_updater_scripts, coreutils, curl, gnugrep, gnupg, gnused, xidel]),
       text: nix.thunk(() => nix.str`set -eux

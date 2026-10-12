@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libnfc = nix.arg($, "libnfc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ifdnfc",
       version: "2016-03-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nfc-tools",
           repo: "ifdnfc",
           rev: "0e48e8e107dc42f68fb472bb06d257503ad45b1d",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--prefix=$(out)"]),
       makeFlags: nix.thunk(() => ["DESTDIR=/", "usbdropdir=$(out)/pcsc/drivers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PC/SC IFD Handler based on libnfc",
         mainProgram: "ifdnfc-activate",
         longDescription: "libnfc Interface Plugin to be used in <code>services.pcscd.plugins</code>.\nIt provides support for all readers which are not supported by ccid but by libnfc.\n\nFor activating your reader you need to run\n<code>ifdnfc-activate yes<code> with this package in your\n<code>environment.systemPackages</code>\n\nTo use your reader you may need to blacklist your reader kernel modules:\n<code>boot.blacklistedKernelModules = [ \"pn533\" \"pn533_usb\" \"nfc\" ];</code>\n\nSupports the pn533 smart-card reader chip which is for example used in\nthe SCM SCL3711.\n",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const iproute2 = nix.arg($, "iproute2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ifupdown-ng",
       version: "unstable-2025-09-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ifupdown-ng",
           repo: "ifupdown-ng",
           rev: "fb07d0824b20d178e7acca9e85296822ac2539ac",
@@ -53,7 +53,7 @@ substituteInPlace executors/linux/wifi \\
       makeFlags: nix.thunk(() => ["SBINDIR=/bin", "EXECUTOR_PATH=/libexec/ifupdown-ng"]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next-generation network interface configuration tool",
         longDescription: "ifupdown-ng is a network device manager that is largely compatible\nwith Debian ifupdown, BusyBox ifupdown, and other implementations.\nIt is used by Alpine Linux as its network management solution.\n",
         homepage: "https://github.com/ifupdown-ng/ifupdown-ng",

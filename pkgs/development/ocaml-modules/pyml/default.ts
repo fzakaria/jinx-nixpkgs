@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdcompat = nix.arg($, "stdcompat");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyml",
       version: "20250807",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocamllibs",
           repo: "pyml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml bindings for Python",
         homepage: "https://github.com/ocamllibs/pyml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

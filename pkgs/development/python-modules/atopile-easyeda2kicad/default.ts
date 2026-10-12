@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const truststore = nix.arg($, "truststore");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atopile-easyeda2kicad",
       version: "0.9.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atopile",
           repo: "easyeda2kicad.py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["easyeda2kicad"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert any LCSC components (including EasyEDA) to KiCad library",
         homepage: "https://github.com/atopile/easyeda2kicad.py",
         changelog: nix.thunk(() => nix.str`https://github.com/atopile/easyeda2kicad.py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

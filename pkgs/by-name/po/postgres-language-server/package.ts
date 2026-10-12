@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "postgres-language-server",
       version: "0.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "supabase-community",
           repo: "postgres-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), tree_sitter, nodejs]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SQLX_OFFLINE: 1n,
         RUSTFLAGS: "-C strip=symbols -C codegen-units=1",
         PGLS_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools and language server for Postgres",
         homepage: "https://pg-language-server.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

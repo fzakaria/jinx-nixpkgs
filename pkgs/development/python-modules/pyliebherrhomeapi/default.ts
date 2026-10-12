@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytest_timeout = nix.arg($, "pytest-timeout");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyliebherrhomeapi",
       version: "0.5.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mettolen",
           repo: "pyliebherrhomeapi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio, pytest_timeout]),
       pythonImportsCheck: nix.thunk(() => ["pyliebherrhomeapi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for Liebherr Home API",
         homepage: "https://github.com/mettolen/pyliebherrhomeapi",
         changelog: nix.thunk(() => nix.str`https://github.com/mettolen/pyliebherrhomeapi/releases/tag/${nix.sel(finalAttrs, "version")}`),

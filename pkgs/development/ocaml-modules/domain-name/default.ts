@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "domain-name",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hannesm/domain-name/releases/download/v${nix.sel(finalAttrs, "version")}/domain-name-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-nseuLCJ3LBULhM+j8h2b8l+uFKeW8x4g31LYb0ZJnYk=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hannesm/domain-name",
         changelog: nix.thunk(() => nix.str`https://github.com/hannesm/domain-name/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "RFC 1035 Internet domain names",

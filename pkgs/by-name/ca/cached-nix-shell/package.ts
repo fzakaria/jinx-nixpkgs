@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const rustPlatform = nix.arg($, "rustPlatform");
   const blake3_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "BLAKE3-team",
       repo: "BLAKE3",
       tag: "1.5.1",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cached-nix-shell";
       const version = "0.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "xzfc",
           repo: "cached-nix-shell",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-Rl+PgNr29OAl6P/iUfkuFlQycyeYNmxUIIdigk7PgV4=";
       const nativeBuildInputs = nix.thunk(() => [nix$, ronn]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, BLAKE3_CSRC: nix.thunk(() => nix.str`${blake3_src}/c`) }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, BLAKE3_CSRC: nix.thunk(() => nix.str`${blake3_src}/c`) }));
       const postBuild = "make -f nix/Makefile post-build\n";
       const postInstall = "make -f nix/Makefile post-install\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Instant startup time for nix-shell",
         mainProgram: "cached-nix-shell",
         homepage: "https://github.com/xzfc/cached-nix-shell",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

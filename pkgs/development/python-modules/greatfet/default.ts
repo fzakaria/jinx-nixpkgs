@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "2026.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greatscottgadgets",
           repo: "greatfet",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-qXPNatakMVtvl26FG1bx+ngCeqRpg1So6qFamKK8WWk=",
         }))));
       const firmwareAssets = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           format: "wheel",
@@ -63,7 +63,7 @@ unzip -j -o ${firmwareAssets} \\
       const dependencies = nix.thunk(() => [cmsis_svd, ipython, prompt_toolkit, pyfwup, pygreat, pyusb, tabulate, tqdm]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hardware hacking with the greatfet",
         homepage: "https://greatscottgadgets.com/greatfet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -78,7 +78,7 @@ unzip -j -o ${firmwareAssets} \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

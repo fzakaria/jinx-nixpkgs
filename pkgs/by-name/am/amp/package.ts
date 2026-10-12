@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amp",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmacdonald",
           repo: "amp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(pkgsBuildBuild, "writeShellScriptBin"), "git", "echo 0000000")),
       ]),
       buildInputs: nix.thunk(() => nix.concat([oniguruma], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [zlib])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
       nativeCheckInputs: nix.thunk(() => [pkg_config, writableTmpDirAsHomeHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern text editor inspired by Vim",
         homepage: "https://amp.rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

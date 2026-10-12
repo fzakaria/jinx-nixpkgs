@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const xplanet = nix.arg($, "xplanet");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kstars",
       version: "3.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kstars/${nix.sel(finalAttrs, "version")}/kstars-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GPV4lEv7qAD3CRrvg1UNiY4MNr3f4pafe7h4B99g5bM=",
         })))),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual planetarium astronomy software",
         mainProgram: "kstars",
         homepage: "https://kde.org/applications/education/org.kde.kstars",

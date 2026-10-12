@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "temporal_capi",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boa-dev",
           repo: "temporal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,18 +64,18 @@ EOF
       nativeInstallCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc")), pkg_config]),
       installCheckPhase: "runHook preInstallCheck\n\nFLAGS=$(PKG_CONFIG_PATH=\"$dev/lib/pkgconfig\" pkg-config --cflags --libs temporal_capi)\ncc $FLAGS temporal_capi/tests/c/simple.c -o c_test\n./c_test\nc++ $FLAGS temporal_capi/tests/cpp/simple.cpp -o cpp_test\n./cpp_test\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "A Rust implementation of ECMAScript's Temporal API",
         homepage: "https://github.com/boa-dev/temporal",
         changelog: nix.thunk(() => nix.str`https://github.com/boa-dev/temporal/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wl-gammarelay-rs",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MaxVerevkin",
           repo: "wl-gammarelay-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-B7ot2qcs1rXcrBveXRdZlbiKCRvNAg+OfqYuZv6m8PM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple program that provides DBus interface to control display temperature and brightness under wayland without flickering",
         homepage: "https://github.com/MaxVerevkin/wl-gammarelay-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

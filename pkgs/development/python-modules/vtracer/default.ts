@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-9/OZQ9H8jp3IL1NgpA6UGq9MkWbY3zDD9qLajMId/FI=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["vtracer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Raster to vector graphics converter",
         homepage: "https://github.com/visioncortex/vtracer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

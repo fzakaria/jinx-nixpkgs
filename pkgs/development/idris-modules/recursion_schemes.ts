@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const hezarfen = nix.arg($, "hezarfen");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "recursion_schemes",
       version: "2018-01-19",
       idrisDeps: nix.thunk(() => [free, composition, comonad, bifunctors, hezarfen]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vmchale",
           repo: "recursion_schemes",
           rev: "6bcbe0da561f461e7a05e29965a18ec9f87f8d82",
           sha256: "0rbx0yqa0fb7h7qfsvqvirc5q85z51rcwbivn6351jgn3a0inmhf",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Recursion schemes for Idris",
         homepage: "https://github.com/vmchale/recursion_schemes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

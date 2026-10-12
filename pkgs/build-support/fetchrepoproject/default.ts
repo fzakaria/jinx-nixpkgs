@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(optional, createMirror, "--mirror"), nix.concat(nix.app(optional, useArchive, "--archive"), extraRepoInitFlags))));
       const local_manifests = nix.thunk(() => nix.app(copyPathsToStore, localManifests));
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: name,
           cacert: cacert,
           manifest: manifest,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           strictDeps: true,
           __structuredAttrs: true,
           env: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             GIT_SSL_CAINFO: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
           })),
           repoInitFlags: repoInitFlags,

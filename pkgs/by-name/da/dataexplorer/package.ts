@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const udevCheckHook = nix.arg($, "udevCheckHook");
-  const swt_jdk = nix.thunk(() => nix.app(nix.sel(swt, "override"), nix.thunk(() => ({ __proto__: pos$1, jdk: openjdk25 }))));
+  const swt_jdk = nix.thunk(() => nix.app(nix.sel(swt, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: openjdk25 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dataexplorer",
       version: "4.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://savannah/dataexplorer/dataexplorer-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-wVfnp1uirPoVdao4SEt7CCXCLKWAPstTIhB5lMk4Uoc=",
         })))),
@@ -63,7 +63,7 @@ runHook postInstall
 `),
       postFixup: "strip-nondeterminism --type jar $out/share/DataExplorer/{DataExplorer.jar,devices/*.jar}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical tool to analyze data, gathered from various hardware devices",
         homepage: "https://www.nongnu.org/dataexplorer/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

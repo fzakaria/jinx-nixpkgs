@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.51";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zalando-stups",
           repo: "pierone-cli",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, hypothesis]);
       const pythonImportsCheck = nix.thunk(() => ["pierone"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convenient command line client for STUPS' Pier One Docker registry",
         homepage: "https://github.com/zalando-stups/pierone-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

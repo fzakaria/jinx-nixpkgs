@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   return (() => {
     const dll = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "dll",
         src: nix.path(here, "./dll"),
         outputs: nix.thunk(() => ["out", "dev"]),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
         strictDeps: true,
       }))));
     const dll2 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "dll2",
         src: nix.path(here, "./dll2"),
         outputs: nix.thunk(() => ["out", "dev"]),
       }))));
     const exe = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "exe",
         src: nix.path(here, "./exe"),
         buildInputs: nix.thunk(() => [dll]),
@@ -52,27 +52,27 @@ export default nix.lambda((args) => (() => {
         postFixup: "[[ -e \"$out\"/bin/cyghello2.dll ]] || die missing indirect dependency",
       }))));
     const link_dll = nix.thunk(() => nix.app(nix.sel(exe, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "link-dll",
         preFixup: nix.thunk(() => nix.str`ln -s ${nix.app(nix.sel(lib, "getLib"), dll)}/bin/cyghello.dll "$out"/bin/
 `),
       }))));
     const user32 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "user32",
         src: nix.path(here, "./user32"),
         allowedImpureDLLs: nix.thunk(() => ["USER32.dll"]),
       }))));
-    const impure_dll = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(user32, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$6, name: "impure-dll", allowedImpureDLLs: [] }))))));
+    const impure_dll = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(user32, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$6, name: "impure-dll", allowedImpureDLLs: [] }))))));
     const user32_dll = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "user32-dll",
         src: nix.path(here, "./user32-dll"),
         outputs: nix.thunk(() => ["out", "dev"]),
         allowedImpureDLLs: nix.thunk(() => ["USER32.dll"]),
       }))));
     const user32_exe = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "user32-exe",
         src: nix.path(here, "./user32-exe"),
         buildInputs: nix.thunk(() => [user32_dll]),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         doCheck: true,
       }))));
     const link_dir_dll = nix.thunk(() => nix.app(nix.sel(exe, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "link-dir-dll",
         preFixup: nix.thunk(() => nix.str`mkdir "$out"/libexec
 ln -s ${nix.app(nix.sel(lib, "getLib"), user32_dll)}/bin/cygpeek.dll "$out"/libexec/
@@ -88,7 +88,7 @@ linkDLLsDir="$out"/bin linkDLLs "$out"/libexec/cygpeek.dll
 `),
       }))));
     const link_dir_exe = nix.thunk(() => nix.app(nix.sel(exe, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "link-dir-exe",
         preFixup: nix.thunk(() => nix.str`mkdir "$out"/libexec
 ln -s ${nix.app(nix.sel(lib, "getLib"), user32_exe)}/bin/{peek.exe,cygpeek.dll} "$out"/libexec/
@@ -96,29 +96,29 @@ linkDLLsDir="$out"/bin linkDLLs "$out"/libexec/peek.exe
 `),
       }))));
     const link_user32_dll = nix.thunk(() => nix.app(nix.sel(exe, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "link-user32-dll",
         preFixup: nix.thunk(() => nix.str`ln -s ${nix.app(nix.sel(lib, "getLib"), user32_dll)}/bin/cygpeek.dll "$out"/bin/
 `),
       }))));
     const copy_dll_impure = nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(user32_exe, "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "copy-dll-impure",
           preFixup: nix.thunk(() => nix.str`cp ${nix.app(nix.sel(lib, "getLib"), user32_dll)}/bin/cygpeek.dll "$out"/bin/
 `),
         }))))));
     const copy_dll = nix.thunk(() => nix.app(nix.sel(user32_exe, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "copy-dll",
         preFixup: nix.thunk(() => nix.str`cp ${nix.app(nix.sel(lib, "getLib"), user32_dll)}/bin/cygpeek.dll "$out"/bin/
 linkDLLs "$out"/bin/cygpeek.dll
 `),
         allowedImpureDLLs: nix.thunk(() => ["USER32.dll"]),
       }))));
-    const double_link = nix.thunk(() => nix.app(nix.sel(user32_exe, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$14, name: "double-link", preFixup: "linkDLLs \"$out\"" }))));
+    const double_link = nix.thunk(() => nix.app(nix.sel(user32_exe, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$14, name: "double-link", preFixup: "linkDLLs \"$out\"" }))));
     const utf8_glob = nix.thunk(() => nix.app(runCommand, "utf8-glob", nix.thunk(() => ({})), "touch NetLock_Arany_=Class_Gold=_Főtanstvny:49412ce40010.crt\nls -l NetLock* > \"$out\"\n"));
     return {
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       dll,
       dll2,
       exe,

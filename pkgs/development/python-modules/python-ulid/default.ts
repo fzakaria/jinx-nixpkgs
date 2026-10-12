@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdomke",
           repo: "python-ulid",
           tag: version,
           hash: "sha256-13yGd6vYnwzTi+KGJgoQ/z6Cy67FKVC4popaj2uPOlQ=",
         }))));
       const build_system = nix.thunk(() => [hatch_fancy_pypi_readme, hatch_vcs, hatchling]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, pydantic: nix.thunk(() => [pydantic]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pydantic: nix.thunk(() => [pydantic]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([freezegun, pytestCheckHook], nix.sel(optional_dependencies, "pydantic")));
       const pythonImportsCheck = nix.thunk(() => ["ulid"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ULID implementation for Python",
         mainProgram: "ulid",
         homepage: "https://github.com/mdomke/python-ulid",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const hostPkgs = nix.arg($, "hostPkgs");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const nodeConfigurationAttrs = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       internal: true,
       type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             options: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   internal: true,
                   type: nix.thunk(() => nix.sel(types, "str")),
                 })))),
               start_script: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   internal: true,
                   type: nix.thunk(() => nix.sel(types, "path")),
                 })))),
@@ -50,36 +50,36 @@ export default nix.lambda((args) => (() => {
           })))))),
     }))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       driverConfiguration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: "Configuration attribute set for test driver invocation",
           internal: true,
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               options: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 vms: nodeConfigurationAttrs,
                 containers: nodeConfigurationAttrs,
                 vlans: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     internal: true,
                     type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "ints", "unsigned")))),
                   })))),
                 global_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     internal: true,
                     type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                   })))),
                 enable_ssh_backdoor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     internal: true,
                     type: nix.thunk(() => nix.sel(types, "bool")),
                   })))),
                 test_script: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     internal: true,
                     type: nix.thunk(() => nix.sel(types, "path")),
                   })))),
@@ -87,22 +87,22 @@ export default nix.lambda((args) => (() => {
             })))),
         })))),
       driverConfigurationFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           internal: true,
           type: nix.thunk(() => nix.sel(types, "path")),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       driverConfiguration: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         vms: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             name: name,
             start_script: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(value, "system", "build", "vm")))),
           }), nix.thunk(() => nix.sel(config, "nodes")))),
         containers: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             name: name,
             start_script: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(value, "system", "build", "nspawn")))),
           }), nix.thunk(() => nix.sel(config, "containers")))),

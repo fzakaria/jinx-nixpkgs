@@ -32,14 +32,14 @@ faketime -f "$source_date" python ${convert} $DATA
 echo en_US.UTF-8 > locale
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Dictd-compatible version of WordNet",
         longDescription: "WordNet® is a large lexical database of English. This package makes\nthe wordnet data available to dictd and by extension for lookup with\nthe dict command.\n",
         homepage: "https://wordnet.princeton.edu/",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$2, version, pname, buildInputs, convert, builder, meta };
+      return { [nix.POS]: pos$2, version, pname, buildInputs, convert, builder, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=dictd-wordnet.ts.map

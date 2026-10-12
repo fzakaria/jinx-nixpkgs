@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gamemode",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FeralInteractive",
           repo: "gamemode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,11 +63,11 @@ wrapProgram "$out/bin/gamemodelist" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [findutils, gawk, procps]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Optimise Linux system performance on demand",
         homepage: "https://feralinteractive.github.io/gamemode",
         changelog: nix.thunk(() => nix.str`https://github.com/FeralInteractive/gamemode/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

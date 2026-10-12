@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const hmap = nix.arg($, "hmap");
   const qcheck = nix.arg($, "qcheck");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dolmen",
       version: "0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Gbury/dolmen/releases/download/v${nix.sel(finalAttrs, "version")}/dolmen-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-xchfd+OSTzeOjYLxZu7+QTG04EG/nN7KRnQQ8zxx+mE=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [qcheck]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml library providing clean and flexible parsers for input languages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

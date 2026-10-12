@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmschrei",
           repo: "apricot",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/jmschrei/apricot/commit/ffa5cce97292775c0d6890671a19cacd2294383f.patch?full_index=1",
             hash: "sha256-9A49m4587kAPK/kzZBqMRPwuA40S3HinLXaslYUcWdM=",
           })))),
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          check: nix.thunk(() => nix.app(nix.sel(apricot_select, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          check: nix.thunk(() => nix.app(nix.sel(apricot_select, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Module for submodular optimization for the purpose of selecting subsets of massive data sets",
         homepage: "https://github.com/jmschrei/apricot",
         changelog: nix.thunk(() => nix.str`https://github.com/jmschrei/apricot/releases/tag/${version}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

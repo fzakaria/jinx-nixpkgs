@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcello",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libcello.org/static/libCello-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0a1b2x5ni07vd9ridnl7zv7h2s32070wsphjy94qr066b99gdb29",
         })))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://libcello.org/",
         description: "Higher level programming in C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

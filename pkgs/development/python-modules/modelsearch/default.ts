@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_django = nix.arg($, "pytest-django");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "modelsearch",
       version: "1.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wagtail",
           repo: "django-modelsearch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "export DJANGO_SETTINGS_MODULE=modelsearch.test.settings\nexport SEARCH_BACKEND=db\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Index Django Models with Elasticsearch or OpenSearch and query them with the ORM",
         homepage: "https://github.com/wagtail/django-modelsearch",
         changelog: nix.thunk(() => nix.str`https://github.com/wagtail/django-modelsearch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

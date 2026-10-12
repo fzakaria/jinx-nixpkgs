@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xxdiff",
       version: "5.1-unstable-2025-03-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blais",
           repo: "xxdiff",
           rev: "a5593c1c675fb79d0ec2b6e353abba1fb0179aa7",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       dontUseQmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
@@ -52,7 +52,7 @@ install -Dm444 -t $out/share/doc/xxdiff ${nix.sel(finalAttrs, "src")}/README.rst
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical file and directories comparator and merge tool",
         mainProgram: "xxdiff",
         homepage: "http://furius.ca/xxdiff/",

@@ -23,40 +23,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "perses",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fooker"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       prometheus: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          prometheus: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          prometheus: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$5,
-          firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [9090n]) })),
+          [nix.POS]: pos$5,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [9090n]) })),
         })),
       })),
       machine: nix.thunk(() => ({
-        __proto__: pos$12,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$7, memorySize: 2048n })),
+        [nix.POS]: pos$12,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2048n })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           perses: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               provisioning: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 folders: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "perses-test-provision-project.yaml", "kind: \"Project\"\nmetadata:\n  name: \"my-project\"\n")),
                   nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "perses-test-provision-datasource.yaml", "kind: \"Datasource\"\nmetadata:\n  name: \"my-prometheus\"\n  project: \"my-project\"\nspec:\n  default: true\n  plugin:\n    kind: \"PrometheusDatasource\"\n    spec:\n      proxy:\n        kind: \"HTTPProxy\"\n        spec:\n          url: \"http://prometheus:9090/\"\n")),

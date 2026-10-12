@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "aiolifx_connection",
           version: version,
           hash: "sha256:09fydp5fqqh1s0vav39mw98i1la6qcgk17gch0m5ihyl9q50ks13",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["aiolifx_connection"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper for aiolifx to connect to a single LIFX device",
         homepage: "https://github.com/bdraco/aiolifx_connection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

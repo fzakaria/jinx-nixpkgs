@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-F9ayT+SEbGXV59jDYtywgZncY7MKI2rt1zh1zIPh9sA=",
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy]);
       const buildInputs = nix.thunk(() => [liberfa]);
       const preBuild = "export PYERFA_USE_SYSTEM_LIBERFA=1\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-O2" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-O2" }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_doctestplus]);
       const preCheck = "cd $out\n";
       const pythonImportsCheck = nix.thunk(() => ["erfa"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for ERFA routines",
         longDescription: "PyERFA is the Python wrapper for the ERFA library (Essential Routines\nfor Fundamental Astronomy), a C library containing key algorithms for\nastronomy, which is based on the SOFA library published by the\nInternational Astronomical Union (IAU). All C routines are wrapped as\nNumpy universal functions, so that they can be called with scalar or\narray inputs.\n",
         homepage: "https://github.com/liberfa/pyerfa",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rmcgibbo"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

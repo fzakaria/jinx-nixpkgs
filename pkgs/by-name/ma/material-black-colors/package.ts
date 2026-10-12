@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
     "Material-Black-Plum-Suru",
   ]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: color variants`), colorVariantList, colorVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: "0-unstable-2020-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rtlewis88",
           repo: "rtl88-Themes",
           rev: "3864d851aac7f4e76cf23717aee104de234aef74",
@@ -58,7 +58,7 @@ runHook postInstall
 `),
       dontFixup: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Material Black Colors icons",
         homepage: "https://github.com/rtlewis88/rtl88-Themes/tree/material-black-COLORS",
         maintainers: [],

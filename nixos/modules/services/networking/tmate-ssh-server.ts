@@ -38,41 +38,41 @@ export default nix.lambda((args) => (() => {
   const keysDir = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "keysDir"), null)) ? defaultKeysDir : nix.sel(cfg, "keysDir")));
   const domain = nix.thunk(() => nix.sel(config, "networking", "domain"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "tmate-ssh-server": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "tmate ssh server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "tmate-ssh-server", nix.thunk(() => ({})))),
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "External host name",
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.domain or config.networking.hostName")),
               default: nix.thunk(() => (nix.asBool(nix.eq(domain, null)) ? nix.sel(config, "networking", "hostName") : nix.force(domain))),
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "Listen port for the ssh server",
               default: 2222n,
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to automatically open the specified ports in the firewall.",
             })))),
           advertisedPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               description: "External port advertised to clients",
             })))),
           keysDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -84,23 +84,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         networking: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           firewall: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "tmate-ssh-server": nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             advertisedPort: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "port")))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => (() => {
             const tmate_config = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tmate.conf", nix.thunk(() => nix.str`set -g tmate-server-host "${nix.sel(cfg, "host")}"
 set -g tmate-server-port ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))}
@@ -109,7 +109,7 @@ set -g tmate-server-rsa-fingerprint "@rsa_fingerprint@"
 `)));
             return [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   name: "tmate-client-config",
                   runtimeInputs: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(pkgs, w);
@@ -128,16 +128,16 @@ sed "s|@ed25519_fingerprint@|$ED25519_SIG|g" ${tmate_config} | \\
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "tmate-ssh-server": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "tmate SSH Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/tmate-ssh-server -h ${nix.sel(cfg, "host")} -p ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))} -q ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "advertisedPort")))} -k ${keysDir}`),
               })),
               preStart: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "keysDir"), null)), nix.thunk(() => nix.str`if [[ ! -d ${defaultKeysDir} ]]
@@ -158,7 +158,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "jlesquembre"))];

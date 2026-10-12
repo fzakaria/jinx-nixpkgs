@@ -68,7 +68,7 @@ env "PDS_ENV_FILE=$DUMMY_PDS_ENV_FILE"                                          
 `));
   })());
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "pds", "enable"]), nix.thunk(() => ["services", "bluesky-pds", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "pds", "package"]), nix.thunk(() => ["services", "bluesky-pds", "package"]))),
@@ -77,103 +77,103 @@ env "PDS_ENV_FILE=$DUMMY_PDS_ENV_FILE"                                          
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "pds", "pdsadmin"]), nix.thunk(() => ["services", "bluesky-pds", "pdsadmin"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         "bluesky-pds": nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(mkEnableOption, "pds")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "bluesky-pds", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         nix.thunk(() => nix.sel(types, "port")),
                       ]))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     PDS_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 3000n,
                         description: "Port to listen on",
                       })))),
                     PDS_HOSTNAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         example: "pds.example.com",
                         description: "Instance hostname (base domain name)",
                       })))),
                     PDS_BLOB_UPLOAD_LIMIT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "314572800",
                         description: "Size limit of uploaded blobs in bytes",
                       })))),
                     PDS_DID_PLC_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "https://plc.directory",
                         description: "URL of DID PLC directory",
                       })))),
                     PDS_BSKY_APP_VIEW_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "https://api.bsky.app",
                         description: "URL of bsky frontend",
                       })))),
                     PDS_BSKY_APP_VIEW_DID: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "did:web:api.bsky.app",
                         description: "DID of bsky frontend",
                       })))),
                     PDS_REPORT_SERVICE_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "https://mod.bsky.app",
                         description: "URL of mod service",
                       })))),
                     PDS_REPORT_SERVICE_DID: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "did:plc:ar7c4by46qjdydhdevvrndac",
                         description: "DID of mod service",
                       })))),
                     PDS_CRAWLERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "https://bsky.network",
                         description: "URL of crawlers",
                       })))),
                     PDS_DATA_DIRECTORY: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "/var/lib/pds",
                         description: "Directory to store state",
                       })))),
                     PDS_BLOBSTORE_DISK_LOCATION: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: "/var/lib/pds/blocks",
                         description: "Store blobs at this location, set to null to use e.g. S3",
                       })))),
                     LOG_ENABLED: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: "true",
                         description: "Enable logging",
                       })))),
                     PDS_RATE_LIMITS_ENABLED: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: "true",
                         description: "Enable rate limiting",
                       })))),
                     PDS_INVITE_REQUIRED: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: "true",
                         description: "Require invite code for registration",
@@ -183,15 +183,15 @@ env "PDS_ENV_FILE=$DUMMY_PDS_ENV_FILE"                                          
               description: "Environment variables to set for the service. Secrets should be\nspecified using {option}`environmentFile`.\n\nRefer to <https://github.com/bluesky-social/atproto/blob/main/packages/pds/src/config/env.ts> for available environment variables.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "File to load environment variables from. Loaded variables override\nvalues set in {option}`environment`.\n\nUse it to set values of `PDS_JWT_SECRET`, `PDS_ADMIN_PASSWORD`,\nand `PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX` secrets.\n`PDS_JWT_SECRET` and `PDS_ADMIN_PASSWORD` can be generated with\n```\nopenssl rand --hex 16\n```\n`PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX` can be generated with\n```\nopenssl ecparam --name secp256k1 --genkey --noout --outform DER | tail --bytes=+8 | head --bytes=32 | xxd --plain --cols 32\n```\n",
             })))),
           pdsadmin: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 defaultText: false,
@@ -199,9 +199,9 @@ env "PDS_ENV_FILE=$DUMMY_PDS_ENV_FILE"                                          
               })))),
           })),
           goat: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: nix.thunk(() => nix.sel(cfg, "enable")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.bluesky-pds.enable")),
@@ -212,23 +212,23 @@ env "PDS_ENV_FILE=$DUMMY_PDS_ENV_FILE"                                          
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           systemPackages: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "pdsadmin", "enable")), pdsadminWrapper), nix.app(optional, nix.thunk(() => nix.sel(cfg, "goat", "enable")), nix.thunk(() => nix.sel(pkgs, "atproto-goat"))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "bluesky-pds": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "bluesky pds",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
                 Environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k}=${(nix.asBool(nix.builtins.isInt(v)) ? nix.builtins.toString(v) : nix.force(v))}`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings")))))),
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
@@ -268,16 +268,16 @@ env "PDS_ENV_FILE=$DUMMY_PDS_ENV_FILE"                                          
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           users: nix.thunk(() => ({
-            __proto__: pos$32,
-            pds: nix.thunk(() => ({ __proto__: pos$31, group: "pds", isSystemUser: true })),
+            [nix.POS]: pos$32,
+            pds: nix.thunk(() => ({ [nix.POS]: pos$31, group: "pds", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$33, pds: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$33, pds: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "t4ccer"))];

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openbsm",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openbsm",
           repo: "openbsm",
           rev: nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => [".", "-"]), nix.thunk(() => ["_", "_"]), nix.thunk(() => nix.str`openbsm-${nix.sel(finalAttrs, "version")}`))))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "11")), "MACOSX_DEPLOYMENT_TARGET=10.16\n")),
       configureFlags: nix.thunk(() => ["ac_cv_file__usr_include_mach_audit_triggers_defs=no"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Sun's Basic Security Module (BSM) security audit API and file format",
         homepage: "http://www.openbsm.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "universal-ctags",
       version: "6.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "universal-ctags",
           repo: "ctags",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ patchShebangs misc/*
       doCheck: true,
       checkFlags: nix.thunk(() => ["man-test", "tlib", "tmain", "tutil", "units"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://docs.ctags.io/en/latest/",
         description: "Maintained ctags implementation",
         longDescription: "Universal Ctags (abbreviated as u-ctags) is a maintained implementation of\nctags. ctags generates an index (or tag) file of language objects found in\nsource files for programming languages. This index makes it easy for text\neditors and other tools to locate the indexed items.\n",

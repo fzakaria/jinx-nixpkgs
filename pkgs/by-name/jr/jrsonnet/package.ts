@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jrsonnet",
       version: "0.5.0-pre98",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deltarocks",
           repo: "jrsonnet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.add("ln -s $out/bin/jrsonnet $out/bin/jsonnet\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash zsh fish; do\n  installShellCompletion --cmd jrsonnet \\\n    --$shell <($out/bin/jrsonnet generate $shell)\n  installShellCompletion --cmd jsonnet \\\n    --$shell <($out/bin/jrsonnet generate $shell | sed s/jrsonnet/jsonnet/g)\ndone\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Purely-functional configuration language that helps you define JSON data",
         homepage: "https://github.com/deltarocks/jrsonnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

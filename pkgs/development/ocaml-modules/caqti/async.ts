@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const caqti = nix.arg($, "caqti");
   const core_kernel = nix.arg($, "core_kernel");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "caqti-async",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       minimalOCamlVersion: "5.1",
       propagatedBuildInputs: nix.thunk(() => [async_kernel, async_unix, caqti, core_kernel]),
-      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { __proto__: pos$1, description: "Async support for Caqti" })),
+      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { [nix.POS]: pos$1, description: "Async support for Caqti" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=async.ts.map

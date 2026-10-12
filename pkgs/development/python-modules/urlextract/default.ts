@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-cFCOArqd83LiXPBkLbNnzs4nPocSzQzngXj8XdfqANs=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["urlextract"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collects and extracts URLs from given text",
         mainProgram: "urlextract",
         homepage: "https://github.com/lipoja/URLExtract",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const SDL_gfx = nix.arg($, "SDL_gfx");
   const withMinimal = nix.argOr($, "withMinimal", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mjpegtools",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mjpeg/mjpegtools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-sYBTbX2ZYLBeACOhl7ANyxAJKaSaq3HRnVX0obIQ9Jo=",
         })))),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libdv, libjpeg, libpng], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withMinimal)), nix.thunk(() => [libx11, SDL, SDL_gfx])))),
       configureFlags: nix.thunk(() => ["--without-gtk"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withMinimal)), nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL)}/include/SDL`))),
       })),
       postPatch: nix.thunk(() => nix.add("sed -i -e '/ARCHFLAGS=/s:=.*:=:' configure\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLittleEndian"))))), "substituteInPlace configure \\\n  --replace-fail 'have_altivec=true' 'have_altivec=false'\n"))),
       enableParallelBuilding: true,
       outputs: nix.thunk(() => ["out", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Suite of programs for processing MPEG or MJPEG video",
         homepage: "http://mjpeg.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/osip/libosip2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Fhhvb1VAk2tiw6rKboQJ4a8lzSKrw4grOTviFfSdOwA=",
         })))),
       pname: "libosip2",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         homepage: "https://www.gnu.org/software/osip/",
         description: "GNU oSIP library, an implementation of the Session Initiation Protocol (SIP)",

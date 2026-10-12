@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pitch-black",
       version: "0-unstable-2019-07-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "pitch-black",
           owner: "freefreeno",
           rev: "d8039341419aef1157c030bf3d9237bd926e0b95",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "rm LICENSE README.md\nmkdir -p $out/share\nmv GTK $out/share/themes\nmv * $out/share\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dark plasma theme built with usability in mind",
         homepage: "https://github.com/freefreeno/Pitch-Black",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

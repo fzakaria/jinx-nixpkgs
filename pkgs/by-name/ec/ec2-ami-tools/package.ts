@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.19";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, unzip]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://s3.amazonaws.com/ec2-downloads/${pname}-${version}.zip`),
           sha256: "sha256-vdpElL6n1V3/+ZVFndRwWpU/M2W7xp8DQwx5a1zB3X8=",
         }))));
@@ -39,13 +39,13 @@ done
 sed -i 's|/bin/bash|${nix.sel(stdenv, "shell")}|' $out/lib/ec2/platform/base/pipeline.rb
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://aws.amazon.com/developertools/Amazon-EC2/368",
         description: "Command-line tools to create and manage Amazon EC2 virtual machine images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "amazonsl")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         nativeBuildInputs,

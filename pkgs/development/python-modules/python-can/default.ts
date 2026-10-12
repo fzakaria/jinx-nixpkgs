@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hardbyte",
           repo: "python-can",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [msgpack, packaging, typing_extensions, wrapt]);
       const pythonRelaxDeps = nix.thunk(() => ["wrapt"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         serial: nix.thunk(() => [pyserial]),
         seeedstudio: nix.thunk(() => [pyserial]),
         pcan: nix.thunk(() => [uptime]),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PATH=\"$PATH:$out/bin\";\n# skips timing senstive tests\nexport CI=1\n";
       const pythonImportsCheck = nix.thunk(() => ["can"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CAN support for Python",
         homepage: "https://python-can.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/hardbyte/python-can/releases/tag/${nix.sel(src, "tag")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

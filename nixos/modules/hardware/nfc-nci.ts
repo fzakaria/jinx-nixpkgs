@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "nfc-nci"));
   const defaultSettings = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     nci: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       APPL_TRACE_LEVEL: "0x01",
       PROTOCOL_TRACE_LEVEL: "0x01",
       HOST_LISTEN_TECH_MASK: "0x07",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       P2P_LISTEN_TECH_MASK: "0xC5",
     })),
     init: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       NXPLOG_GLOBAL_LOGLEVEL: "0x01",
       NXPLOG_EXTNS_LOGLEVEL: "0x01",
       NXPLOG_NCIHAL_LOGLEVEL: "0x01",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       NXP_I2C_FRAGMENTATION_ENABLED: "0x01",
     })),
     pn54x: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       MIFARE_READER_ENABLE: "0x01",
       NXP_SYS_CLK_SRC_SEL: "0x01",
       NXP_SYS_CLK_FREQ_SEL: "0x00",
@@ -81,22 +81,22 @@ export default nix.lambda((args) => (() => {
     return nix.app(toKeyValueLines, nix.thunk(() => nix.update(nix.sel(defaultSettings, nix.key(nix.force(cfgName))), nix.selOr(cfg, () => ({}), "settings", nix.key(nix.force(cfgName))))));
   })();
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "nfc-nci": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "PN5xx kernel module with udev rules, libnfc-nci userland, and optional ifdnfc-nci PC/SC driver")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: defaultSettings,
               description: "Configuration to be written to the libncf-nci configuration files.\nTo understand the configuration format, refer to <https://github.com/NXPNFCLinux/linux_libnfc-nci/tree/master/conf>.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
             })))),
           enableIFD: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Register ifdnfc-nci as a serial reader with pcscd.\n",
@@ -105,26 +105,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "libnfc-nci"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableIFD")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ifdnfc-nci"))])))),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
-            "libnfc-nci.conf": nix.thunk(() => ({ __proto__: pos$10, text: nix.thunk(() => nix.app(generateSettings, "nci")) })),
-            "libnfc-nxp-init.conf": nix.thunk(() => ({ __proto__: pos$11, text: nix.thunk(() => nix.app(generateSettings, "init")) })),
-            "libnfc-nxp-pn547.conf": nix.thunk(() => ({ __proto__: pos$12, text: nix.thunk(() => nix.app(generateSettings, "pn54x")) })),
-            "libnfc-nxp-pn548.conf": nix.thunk(() => ({ __proto__: pos$13, text: nix.thunk(() => nix.app(generateSettings, "pn54x")) })),
+            [nix.POS]: pos$14,
+            "libnfc-nci.conf": nix.thunk(() => ({ [nix.POS]: pos$10, text: nix.thunk(() => nix.app(generateSettings, "nci")) })),
+            "libnfc-nxp-init.conf": nix.thunk(() => ({ [nix.POS]: pos$11, text: nix.thunk(() => nix.app(generateSettings, "init")) })),
+            "libnfc-nxp-pn547.conf": nix.thunk(() => ({ [nix.POS]: pos$12, text: nix.thunk(() => nix.app(generateSettings, "pn54x")) })),
+            "libnfc-nxp-pn548.conf": nix.thunk(() => ({ [nix.POS]: pos$13, text: nix.thunk(() => nix.app(generateSettings, "pn54x")) })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           udev: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "nxp-pn5xx"))]),
           })),
           pcscd: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             readerConfigs: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableIFD")), nix.thunk(() => [
                 nix.thunk(() => nix.str`FRIENDLYNAME "NFC NCI"
 LIBPATH      ${nix.sel(pkgs, "ifdnfc-nci")}/lib/libifdnfc-nci.so
@@ -134,30 +134,30 @@ CHANNELID    0
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           blacklistedKernelModules: nix.thunk(() => ["nxp_nci_i2c", "nxp_nci"]),
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "nxp-pn5xx"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             pcscd: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 SystemCallFilter: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableIFD")), nix.thunk(() => ["sched_setscheduler"]))),
               })),
             })),
           })),
         })),
         powerManagement: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           resumeCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableIFD")), "systemctl restart pcscd.service\n")),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stargate01"))];

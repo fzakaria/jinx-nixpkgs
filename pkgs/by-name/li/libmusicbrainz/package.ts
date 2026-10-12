@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmusicbrainz",
       version: "5.1.0-unstable-2025-07-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "metabrainz",
           repo: "libmusicbrainz",
           rev: "4efbed3afae11ef68281816088d7cf3d0f704dfe",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [neon, libdiscid, libxml2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://musicbrainz.org/doc/libmusicbrainz",
         description: "MusicBrainz Client Library",
         longDescription: "The libmusicbrainz (also known as mb_client or MusicBrainz Client\nLibrary) is a development library geared towards developers who wish to\nadd MusicBrainz lookup capabilities to their applications.\n",

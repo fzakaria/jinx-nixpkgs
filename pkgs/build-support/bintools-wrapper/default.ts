@@ -85,13 +85,13 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isAarch32")) && nix.asBool(nix.lookup(w, "isLinux")));
   })()) ? nix.str`${sharedLibraryLoader}/lib/ld-linux*.so.3` : (nix.asBool(nix.eq(nix.sel(targetPlatform, "system"), "aarch64-linux")) ? nix.str`${sharedLibraryLoader}/lib/ld-linux-aarch64.so.1` : (nix.asBool(nix.eq(nix.sel(targetPlatform, "system"), "powerpc-linux")) ? nix.str`${sharedLibraryLoader}/lib/ld.so.1` : (nix.asBool(nix.eq(nix.sel(targetPlatform, "system"), "s390-linux")) ? nix.str`${sharedLibraryLoader}/lib/ld.so.1` : (nix.asBool(nix.eq(nix.sel(targetPlatform, "system"), "s390x-linux")) ? nix.str`${sharedLibraryLoader}/lib/ld64.so.1` : (nix.asBool(nix.sel(targetPlatform, "isMips")) ? nix.str`${sharedLibraryLoader}/lib/ld.so.1` : (nix.asBool(nix.sel(targetPlatform, "isRiscV")) ? nix.str`${sharedLibraryLoader}/lib/ld-linux-riscv*.so.1` : (nix.asBool(nix.sel(targetPlatform, "isLoongArch64")) ? nix.str`${sharedLibraryLoader}/lib/ld-linux-loongarch*.so.1` : (nix.asBool(nix.sel(targetPlatform, "isDarwin")) ? "/usr/lib/dyld" : (nix.asBool(nix.sel(targetPlatform, "isFreeBSD")) ? nix.str`${sharedLibraryLoader}/libexec/ld-elf.so.1` : (nix.asBool(nix.sel(targetPlatform, "isOpenBSD")) ? nix.str`${sharedLibraryLoader}/libexec/ld.so` : (nix.asBool(nix.app(hasSuffix, "pc-gnu", nix.thunk(() => nix.sel(targetPlatform, "config")))) ? "ld.so.1" : "")))))))))))))))))))))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add(targetPrefix, (nix.asBool(!nix.eq(name, "")) ? nix.force(name) : nix.str`${bintoolsName}-wrapper`))),
       version: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(bintools, null)), bintoolsVersion)),
       preferLocalBuild: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(optionals, propagateDoc, nix.thunk(() => nix.concat(["man"], nix.app(optional, nix.thunk(() => nix.has(bintools, "info")), "info")))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         targetPrefix: targetPrefix,
         suffixSalt: suffixSalt,
         bintools: bintools,
@@ -217,7 +217,7 @@ wrap \\
   "${bintools_bin}/bin/${targetPrefix}ranlib"
 `))), extraBuildCommands)),
       env: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         expandResponseParams: nix.thunk(() => nix.str`${expand_response_params}/bin/expand-response-params`),
         shell: nix.thunk(() => nix.add(nix.app(getBin, runtimeShell), nix.selOr(runtimeShell, () => "", "shellPath"))),
         gnugrep_bin: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.asBool(nativeTools)), gnugrep)),
@@ -244,7 +244,7 @@ wrap \\
       meta: nix.thunk(() => (() => {
         const bintools_ = nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.eq(bintools, null)), bintools));
         return nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(bintools_, "meta")), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(bintools, "meta")), nix.thunk(() => ["priority"])))), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.add(nix.app(attrByPath, nix.thunk(() => ["meta", "description"]), "System binary utilities", bintools_), " (wrapper script)")),
           priority: 10n,
         });

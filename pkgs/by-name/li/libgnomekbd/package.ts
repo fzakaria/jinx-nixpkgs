@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.28.1";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgnomekbd/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgnomekbd-${version}.tar.xz`),
           sha256: "ItxZVm1zwAZTUPWpc0DmLsx7CMTfGRg4BLuL4kyP6HA=",
         }))));
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [gtk3, libxklavier, glib]);
       const postInstall = "# Missing post-install script.\nglib-compile-schemas \"$out/share/glib-2.0/schemas\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Keyboard management library",
         mainProgram: "gkbd-keyboard-display",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

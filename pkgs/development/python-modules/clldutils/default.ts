@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.24.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clld",
           repo: "clldutils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeCheckInputs = nix.thunk(() => [postgresql, pytest_cov_stub, pytest_mock, pytestCheckHook, git]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(bibtexparser, "version")), "2")),
         changelog: nix.thunk(() => nix.str`https://github.com/clld/clldutils/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Utilities for clld apps without the overhead of requiring pyramid, rdflib et al",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

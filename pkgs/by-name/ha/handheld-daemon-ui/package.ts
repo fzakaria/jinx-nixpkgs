@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "handheld-daemon-ui";
   const version = "3.4.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/hhd-dev/hhd-ui/releases/download/v${version}/hhd-ui.Appimage`),
       hash: "sha256-91Wa50dJAW6Re1MBperHFoftAPagihUP4fv5cMb+pxI=",
     }))));
-  const extractedFiles = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const extractedFiles = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -39,7 +39,7 @@ mkdir -p $iconDir
 cp ${extractedFiles}/hhd-ui.png $iconDir
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "UI for the Handheld Daemon",
         homepage: "https://github.com/hhd-dev/hhd-ui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

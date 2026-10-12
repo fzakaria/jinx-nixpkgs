@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tnt",
       version: "3.0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://math.nist.gov/tnt/tnt_3_0_12.zip",
           sha256: "1bzkfdb598584qlc058n8wqq9vbz714gr5r57401rsa9qaxhk5j7",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "mkdir -p $out/include\ncp *.h $out/include\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://math.nist.gov/tnt/",
         description: "Template Numerical Toolkit: C++ headers for array and matrices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

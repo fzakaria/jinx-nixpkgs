@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
     const libiconv = nix.argOr($_1, "libiconv", () => null);
     const ncurses = nix.arg($_1, "ncurses");
     const libffi = nix.argOr($_1, "libffi", () => null);
-    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, stdenv: stdenv, version: version })))));
+    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, version: version })))));
     const buildTargetLlvmPackages = nix.arg($_1, "buildTargetLlvmPackages");
     const llvmPackages = nix.arg($_1, "llvmPackages");
     const enableNativeBignum = nix.argOr($_1, "enableNativeBignum", () => (nix.asBool((nix.asBool(nix.sel(stdenv, "targetPlatform", "isGhcjs")) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gmp))))) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "targetPlatform")), gmp)))));
@@ -117,14 +117,14 @@ verboseCommand = do
     return $ verbosity >= Verbose
 `);
     const ghcSrc = nix.argOr($_1, "ghcSrc", () => nix.app(srcOnly, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         name: nix.thunk(() => nix.str`ghc-${version}`),
-        src: nix.thunk(() => nix.app((nix.asBool(!nix.eq(rev, null)) ? nix.force(fetchgit) : nix.force(fetchurl)), nix.thunk(() => nix.update({ __proto__: pos$2, url: url, sha256: sha256 }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(rev, null)), nix.thunk(() => ({ __proto__: pos$3, rev: rev }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(postFetch, null)), nix.thunk(() => ({ __proto__: pos$4, postFetch: postFetch })))))))),
+        src: nix.thunk(() => nix.app((nix.asBool(!nix.eq(rev, null)) ? nix.force(fetchgit) : nix.force(fetchurl)), nix.thunk(() => nix.update({ [nix.POS]: pos$2, url: url, sha256: sha256 }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(rev, null)), nix.thunk(() => ({ [nix.POS]: pos$3, rev: rev }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(postFetch, null)), nix.thunk(() => ({ [nix.POS]: pos$4, postFetch: postFetch })))))))),
         patches: nix.thunk(() => (() => {
           const enableHyperlinkedSource = nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))))) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "9.8")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.11"))))));
           return nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.8")), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   name: "ghc-9.6-fix-unlit-path.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/8fde4ac84ec7b1ead238cb158bbef48555d12af9.patch",
                   hash: "sha256-3+CyRBpebEZi8YpS22SsdGQHqi0drR7cCKPtKbR3zyE=",
@@ -135,7 +135,7 @@ verboseCommand = do
               nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.8")) ? nix.path(here, "../../tools/haskell/hadrian/disable-hyperlinked-source-pre-9.8.patch") : nix.path(here, "../../tools/haskell/hadrian/disable-hyperlinked-source-extra-args.patch"))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "9.8")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.12")))), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: "enable-ignore-build-platform-mismatch.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/4ee094d46effd06093090fcba70f0a80d2a57e6c.patch",
                   includes: nix.thunk(() => ["configure.ac"]),
@@ -143,7 +143,7 @@ verboseCommand = do
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.12")), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   name: "ghc-ppc-support-elf-v2-on-powerpc64-big-endian.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/ead75532c9dc915bfa9ebaef0ef5d148e793cc0a.patch",
                   postFetch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.10")), "substituteInPlace $out \\\n  --replace-fail 'libraries/ghc-platform/src/GHC' 'libraries/ghc-boot/GHC'\n")),
@@ -151,42 +151,42 @@ verboseCommand = do
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "9.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.12")))), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "ghc-llvm-fix-split-sections.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/b18b2c42c32488ad6d3480a56a1fcd753cad2023.patch",
                   hash: "sha256-kEgZARwcdnWcvjuTfyqnn8V1zAUczZN0qiy/1WbCy1s=",
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.12")), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   name: "ghc-rts-Fix-compile-on-powerpc64-elf-v1.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/05e5785a3157c71e327a8e9bdc80fa7082918739.patch",
                   hash: "sha256-xP5v3cKhXeTRSFvRiKEn9hPxGXgVgykjTILKjh/pdDU=",
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.10")), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   name: "ghc-hp2ps-c-gnu17.patch",
                   url: "https://src.fedoraproject.org/rpms/ghc/raw/9c26d7c3c3de73509a25806e5663b37bcf2e0b4e/f/hp2ps-C-gnu17.patch",
                   hash: "sha256-Vr5wkiSE1S5e+cJ8pWUvG9KFpxtmvQ8wAy08ElGNp5E=",
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(version, "9.12.3")), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   name: "ghc-9.12.3-fix-subword-division.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/65370007e2d9f1976fbcfbb514917fb111117148.patch",
                   hash: "sha256-GMnD0StBTRynl2Lels1L0u1bo7HscLGPUAv+rTJ98QQ=",
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "9.13")), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   name: "ghc-rts-adjustor-fix-i386-stack-overrun.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/39bb6e583d64738db51441a556d499aa93a4fc4a.patch",
                   sha256: "0w5fx413z924bi2irsy1l4xapxxhrq158b5gn6jzrbsmhvmpirs0",
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "9.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.15")))), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   name: "include-modern-utimbuf.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/7e75928ed0f1c4654de6ddd13d0b00bf4b5c6411.patch",
                   hash: "sha256-sb+AHdkGkCu8MW0xoQIpD5kEc0zYX8udAMDoC+TWc0Q=",
@@ -194,7 +194,7 @@ verboseCommand = do
               nix.path(here, "./export-heap-methods.patch"),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "9.10.3")), nix.thunk(() => [nix.path(here, "./ghc-define-undefined-elf-st-visibility.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.12.4")) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "9.14")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.15.20260129")))))), nix.thunk(() => [nix.path(here, "./ghc-9.6-or-later-docs-sphinx-9.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(version, "9.12.3")) || nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "9.14")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.15.20260127")))))), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   name: "ghc-9.12.3-ghcjs-install-rts-types.h.patch",
                   url: "https://gitlab.haskell.org/ghc/ghc/-/commit/5b1be555be4f0989d78c274991c5046d7ac6d25e.patch",
                   hash: "sha256-pv4NDyQ6FlZgmTYZ4Ghis4qggt7nCDMhqGaFxTxVPac=",
@@ -202,12 +202,12 @@ verboseCommand = do
                 })))),
             ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isLoongArch64")), nix.thunk(() => [
               nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.10")) ? nix.path(here, "./ghc-9.6-hadrian-Enable-GHCi-on-all-platforms.patch") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.12")) ? nix.path(here, "./ghc-9.10-hadrian-Enable-GHCi-on-all-platforms.patch") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "9.14")) ? nix.path(here, "./ghc-9.12-hadrian-Enable-GHCi-on-all-platforms.patch") : null)))),
-            ])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ __proto__: pos$15, lib: lib, version: version, fetchpatch: fetchpatch }))))))))))))))))));
+            ])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ [nix.POS]: pos$15, lib: lib, version: version, fetchpatch: fetchpatch }))))))))))))))))));
         })()),
         stdenv: stdenvNoCC,
       }))));
-    const hadrian = nix.argOr($_1, "hadrian", () => nix.app(nix.builtins.import(nix.path(here, "../../tools/haskell/hadrian/make-hadrian.nix")), nix.thunk(() => ({ __proto__: pos$17, bootPkgs: bootPkgs, lib: lib })), nix.thunk(() => ({
-        __proto__: pos$18,
+    const hadrian = nix.argOr($_1, "hadrian", () => nix.app(nix.builtins.import(nix.path(here, "../../tools/haskell/hadrian/make-hadrian.nix")), nix.thunk(() => ({ [nix.POS]: pos$17, bootPkgs: bootPkgs, lib: lib })), nix.thunk(() => ({
+        [nix.POS]: pos$18,
         ghcSrc: ghcSrc,
         ghcVersion: version,
         userSettings: hadrianUserSettings,
@@ -233,7 +233,7 @@ verboseCommand = do
     const installCC = nix.thunk(() => (nix.asBool(nix.sel(targetPlatform, "isGhcjs")) ? nix.sel(pkgsHostTarget, "emscripten") : nix.sel(pkgsHostTarget, "targetPackages", "stdenv", "cc")));
     const toolPath = (name) => (cc) => (() => {
       const tools = nix.thunk(() => nix.sel({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         cc: cc,
         "c++": cc,
         as: nix.thunk(() => nix.sel(cc, "bintools")),
@@ -261,7 +261,7 @@ verboseCommand = do
     const targetLibs = nix.thunk(() => (() => {
       const from = nix.thunk(() => (nix.asBool(!nix.eq(hostPlatform, targetPlatform)) ? nix.force(targetPackages) : nix.force(pkgsHostTarget)));
       return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       elfutils: nix.thunk(() => nix.attr(from, "elfutils")),
       gmp: nix.thunk(() => nix.attr(from, "gmp")),
       libffi: nix.thunk(() => nix.attr(from, "libffi")),
@@ -271,7 +271,7 @@ verboseCommand = do
     })());
     const haskellCompilerName = nix.thunk(() => nix.str`ghc-${version}`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.attrsDyn({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         pname: nix.thunk(() => nix.str`${targetPrefix}ghc${variantSuffix}`),
         version: version,
         __structuredAttrs: true,
@@ -420,7 +420,7 @@ ghc-settings-edit "$settingsFile" \\
 install -Dm 644 utils/completion/ghc.bash $out/share/bash-completion/completions/${targetPrefix}ghc
 `)),
         passthru: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           bootPkgs: bootPkgs,
           targetPrefix: targetPrefix,
           haskellCompilerName: haskellCompilerName,
@@ -434,7 +434,7 @@ install -Dm 644 utils/completion/ghc.bash $out/share/bash-completion/completions
         meta: nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(bootPkgs, "ghc", "meta"));
           return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           homepage: "http://haskell.org/ghc",
           description: "Glasgow Haskell Compiler",
           maintainers: nix.thunk(() => (() => {
@@ -447,14 +447,14 @@ install -Dm 644 utils/completion/ghc.bash $out/share/bash-completion/completions
           license: nix.thunk(() => nix.attr(from, "license")),
         };
         })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(rev, null)), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             changelog: nix.thunk(() => nix.str`https://downloads.haskell.org/~ghc/${version}/docs/users_guide/${version}-notes.html`),
           }))))),
         dontStrip: nix.thunk(() => (nix.asBool(nix.sel(targetPlatform, "useAndroidPrebuilt")) || nix.asBool(nix.sel(targetPlatform, "isWasm")))),
       }, [
         [(nix.asBool(nix.sel(targetPlatform, "isGhcjs")) ? "configureScript" : null), "emconfigure ./configure"],
         [(nix.asBool(nix.sel(targetPlatform, "isGhcjs")) ? "dontUpdateAutotoolsGnuConfigScripts" : null), true],
-      ]), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(targetPlatform, "useAndroidPrebuilt")), nix.thunk(() => ({ __proto__: pos$25, dontPatchELF: true, noAuditTmpdir: true }))))));
+      ]), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(targetPlatform, "useAndroidPrebuilt")), nix.thunk(() => ({ [nix.POS]: pos$25, dontPatchELF: true, noAuditTmpdir: true }))))));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=common-hadrian.ts.map

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const lapack = nix.arg($, "lapack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.14.0",
       pname: "vmmlib",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Eyescale",
           repo: "vmmlib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Vector and matrix math library implemented using C++ templates",
         longDescription: "vmmlib is a vector and matrix math library implemented\nusing C++ templates. Its basic functionality includes a vector\nand a matrix class, with additional functionality for the\noften-used 3d and 4d vectors and 3x3 and 4x4 matrices.\nMore advanced functionality include solvers, frustum\ncomputations and frustum culling classes, and spatial data structures\n",

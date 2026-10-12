@@ -36,38 +36,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "pleroma"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pleroma: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "pleroma")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "pleroma", nix.thunk(() => ({})))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "pleroma",
                 description: "User account under which pleroma runs.",
               })))),
             group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "pleroma",
                 description: "Group account under which pleroma runs.",
               })))),
             stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "/var/lib/pleroma",
                 readOnly: true,
                 description: "Directory where the pleroma service will save the uploads and static files.",
               })))),
             configs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
                 description: "Pleroma public configuration.\n\nThis list gets appended from left to\nright into /etc/pleroma/config.exs. Elixir evaluates its\nconfiguration imperatively, meaning you can override a\nsetting by appending a new str to this NixOS option list.\n\n*DO NOT STORE ANY PLEROMA SECRET\nHERE*, use\n[services.pleroma.secretConfigFile](#opt-services.pleroma.secretConfigFile)\ninstead.\n\nThis setting is going to be stored in a file part of\nthe Nix store. The Nix store being world-readable, it's not\nthe right place to store any secret\n\nHave a look to Pleroma section in the NixOS manual for more\ninformation.\n",
               })))),
             secretConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "/var/lib/pleroma/secrets.exs",
                 description: "Path to the file containing your secret pleroma configuration.\n\n*DO NOT POINT THIS OPTION TO THE NIX\nSTORE*, the store being world-readable, it'll\ncompromise all your secrets.\n",
@@ -85,12 +85,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Pleroma user",
               home: nix.thunk(() => nix.sel(cfg, "stateDir")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -100,12 +100,12 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "group")}`, nix.thunk(() => ({}))]])),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "/pleroma/config.exs": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatMapStrings"), (x) => nix.str`${x}`, nix.thunk(() => nix.sel(cfg, "configs")))}
 
 # The lau/tzdata library is trying to download the latest
@@ -120,10 +120,10 @@ import_config "${nix.sel(cfg, "secretConfigFile")}"
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => (() => {
             const commonSystemdServiceConfig = nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               User: nix.thunk(() => nix.sel(cfg, "user")),
               Group: nix.thunk(() => nix.sel(cfg, "group")),
               WorkingDirectory: "~",
@@ -137,16 +137,16 @@ import_config "${nix.sel(cfg, "secretConfigFile")}"
               CapabilityBoundingSet: "~CAP_SYS_ADMIN",
             }));
             return {
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "pleroma-migrations": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "Pleroma social network migrations",
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target", "postgresql.target"]),
                 wantedBy: nix.thunk(() => ["pleroma.service"]),
-                environment: nix.thunk(() => ({ __proto__: pos$15, RELEASE_COOKIE: "/var/lib/pleroma/.cookie" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$15, RELEASE_COOKIE: "/var/lib/pleroma/.cookie" })),
                 serviceConfig: nix.thunk(() => nix.update(commonSystemdServiceConfig, {
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => (() => {
                     const preScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeBashBin"), "pleroma-migrations", nix.thunk(() => nix.str`if [ ! -f /var/lib/pleroma/.cookie ]
@@ -162,7 +162,7 @@ ${nix.sel(cfg, "package")}/bin/pleroma_ctl migrate
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash"))]),
               })),
               pleroma: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "Pleroma social network",
                 wants: nix.thunk(() => ["pleroma-migrations.service"]),
                 after: nix.thunk(() => ["pleroma-migrations.service"]),
@@ -170,9 +170,9 @@ ${nix.sel(cfg, "package")}/bin/pleroma_ctl migrate
                 restartTriggers: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "environment", "etc", "/pleroma/config.exs", "source")),
                 ]),
-                environment: nix.thunk(() => ({ __proto__: pos$18, RELEASE_COOKIE: "/var/lib/pleroma/.cookie" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$18, RELEASE_COOKIE: "/var/lib/pleroma/.cookie" })),
                 serviceConfig: nix.thunk(() => nix.update(commonSystemdServiceConfig, {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   Type: "exec",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/pleroma start`),
                   ExecStop: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/pleroma stop`),
@@ -185,7 +185,7 @@ ${nix.sel(cfg, "package")}/bin/pleroma_ctl migrate
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "picnoir"))];

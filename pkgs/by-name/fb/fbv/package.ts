@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libpng12 = nix.arg($, "libpng12");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fbv",
       version: "1.0c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jstkdng",
           repo: "fbv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preInstall: "mkdir -p $out/{bin,man/man1}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "View pictures on a linux framebuffer device",
         homepage: "https://github.com/jstkdng/fbv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

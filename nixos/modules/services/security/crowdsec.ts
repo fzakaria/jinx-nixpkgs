@@ -162,70 +162,70 @@ export default nix.lambda((args) => (() => {
   const localParsersS02EnrichDir = nix.thunk(() => nix.str`${parsersDir}/s02-enrich/`);
   const localContextsDir = nix.thunk(() => nix.str`${confDir}/contexts/`);
   return {
-    __proto__: pos$137,
+    [nix.POS]: pos$137,
     options: nix.thunk(() => ({
-      __proto__: pos$77,
+      [nix.POS]: pos$77,
       services: nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         crowdsec: nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CrowdSec Security Engine")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "crowdsec", nix.thunk(() => ({})))),
           autoUpdateService: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "if `true` `cscli hub update` will be executed daily. See `https://docs.crowdsec.net/docs/cscli/cscli_hub_update/` for more information")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to automatically open firewall ports for `crowdsec`.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The user to run crowdsec as",
               default: "crowdsec",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The group to run crowdsec as",
               default: "crowdsec",
             })))),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Name of the machine when registering it at the central or local api.\n",
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.hostName")),
             })))),
           localConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   options: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     acquisitions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                         default: [],
                         description: "A list of acquisition specifications, which define the data sources you want to be parsed.\n\nSee <https://docs.crowdsec.net/docs/data_sources/intro> for details.\n",
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             source: "journalctl",
                             journalctl_filter: nix.thunk(() => ["_SYSTEMD_UNIT=sshd.service"]),
-                            labels: nix.thunk(() => ({ __proto__: pos$5, type: "syslog" })),
+                            labels: nix.thunk(() => ({ [nix.POS]: pos$5, type: "syslog" })),
                           })),
                         ]),
                       })))),
                     scenarios: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                         default: [],
                         description: "A list of scenarios specifications.\n\nSee <https://docs.crowdsec.net/docs/scenarios/intro> for details.\n",
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: "leaky",
                             name: "crowdsecurity/myservice-bf",
                             description: "Detect myservice bruteforce",
@@ -237,49 +237,49 @@ export default nix.lambda((args) => (() => {
                         ]),
                       })))),
                     parsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             options: nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               s00Raw: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                                   default: [],
                                   description: "A list of stage s00-raw specifications. Most of the time, those are already included in the hub, but are presented here anyway.\n\nSee <https://docs.crowdsec.net/docs/parsers/intro> for details.\n",
                                 })))),
                               s01Parse: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$14,
+                                  [nix.POS]: pos$14,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                                   default: [],
                                   description: "A list of stage s01-parse specifications.\n\nSee <https://docs.crowdsec.net/docs/parsers/intro> for details.\n",
                                   example: nix.thunk(() => [
                                     nix.thunk(() => ({
-                                      __proto__: pos$13,
+                                      [nix.POS]: pos$13,
                                       filter: "1=1",
                                       debug: true,
                                       onsuccess: "next_stage",
                                       name: "example/custom-service-logs",
                                       description: "Parsing custom service logs",
-                                      grok: nix.thunk(() => ({ __proto__: pos$11, pattern: "^%{DATA:some_data}$", apply_on: "message" })),
+                                      grok: nix.thunk(() => ({ [nix.POS]: pos$11, pattern: "^%{DATA:some_data}$", apply_on: "message" })),
                                       statics: nix.thunk(() => [
-                                        nix.thunk(() => ({ __proto__: pos$12, parsed: "is_my_custom_service", value: "yes" })),
+                                        nix.thunk(() => ({ [nix.POS]: pos$12, parsed: "is_my_custom_service", value: "yes" })),
                                       ]),
                                     })),
                                   ]),
                                 })))),
                               s02Enrich: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$17,
+                                  [nix.POS]: pos$17,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                                   default: [],
                                   description: "A list of stage s02-enrich specifications. Inside this list, you can specify Parser Whitelists.\n\nSee <https://docs.crowdsec.net/docs/whitelist/intro> for details.\n",
                                   example: nix.thunk(() => [
                                     nix.thunk(() => ({
-                                      __proto__: pos$16,
+                                      [nix.POS]: pos$16,
                                       name: "myips/whitelist",
                                       description: "Whitelist parse events from my IPs",
                                       whitelist: nix.thunk(() => ({
-                                        __proto__: pos$15,
+                                        [nix.POS]: pos$15,
                                         reason: "My IP ranges",
                                         ip: nix.thunk(() => ["1.2.3.4"]),
                                         cidr: nix.thunk(() => ["1.2.3.0/24"]),
@@ -293,23 +293,23 @@ export default nix.lambda((args) => (() => {
                         default: nix.thunk(() => ({})),
                       })))),
                     postOverflows: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             options: nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               s01Whitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$23,
+                                  [nix.POS]: pos$23,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                                   default: [],
                                   description: "A list of stage s01-whitelist specifications. Inside this list, you can specify Postoverflows Whitelists.\n\nSee <https://docs.crowdsec.net/docs/whitelist/intro> for details.\n",
                                   example: nix.thunk(() => [
                                     nix.thunk(() => ({
-                                      __proto__: pos$22,
+                                      [nix.POS]: pos$22,
                                       name: "postoverflows/whitelist_my_dns_domain",
                                       description: "Whitelist my reverse DNS",
                                       whitelist: nix.thunk(() => ({
-                                        __proto__: pos$21,
+                                        [nix.POS]: pos$21,
                                         reason: "Don't ban me",
                                         expression: nix.thunk(() => ["evt.Enriched.reverse_dns endsWith '.local.'"]),
                                       })),
@@ -322,14 +322,14 @@ export default nix.lambda((args) => (() => {
                         default: nix.thunk(() => ({})),
                       })))),
                     contexts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                         description: "A list of additional contexts to specify.\n\nSee <https://docs.crowdsec.net/docs/next/log_processor/alert_context/intro> for details.\n",
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             context: nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               target_uri: nix.thunk(() => ["evt.Meta.http_path"]),
                               user_agent: nix.thunk(() => ["evt.Meta.http_user_agent"]),
                               method: nix.thunk(() => ["evt.Meta.http_verb"]),
@@ -340,12 +340,12 @@ export default nix.lambda((args) => (() => {
                         default: [],
                       })))),
                     notifications: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                         description: "A list of notifications to enable and use in your profiles. Note that for now, only the plugins shipped by default with CrowdSec are supported.\n\nSee <https://docs.crowdsec.net/docs/notification_plugins/intro> for details.\n",
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             type: "http",
                             name: "default_http_notification",
                             log_level: "info",
@@ -357,44 +357,44 @@ export default nix.lambda((args) => (() => {
                         default: [],
                       })))),
                     profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(format, "type")))),
                         description: "A list of profiles to enable.\n\nSee <https://docs.crowdsec.net/docs/profiles/intro> for more details.\n",
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             name: "default_ip_remediation",
                             filters: nix.thunk(() => ["Alert.Remediation == true && Alert.GetScope() == 'Ip'"]),
-                            decisions: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$32, type: "ban", duration: "4h" }))]),
+                            decisions: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$32, type: "ban", duration: "4h" }))]),
                             on_success: "break",
                           })),
                           nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             name: "default_range_remediation",
                             filters: nix.thunk(() => ["Alert.Remediation == true && Alert.GetScope() == 'Range'"]),
-                            decisions: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$34, type: "ban", duration: "4h" }))]),
+                            decisions: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$34, type: "ban", duration: "4h" }))]),
                             on_success: "break",
                           })),
                         ]),
                         default: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$37,
+                            [nix.POS]: pos$37,
                             name: "default_ip_remediation",
                             filters: nix.thunk(() => ["Alert.Remediation == true && Alert.GetScope() == 'Ip'"]),
-                            decisions: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$36, type: "ban", duration: "4h" }))]),
+                            decisions: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$36, type: "ban", duration: "4h" }))]),
                             on_success: "break",
                           })),
                           nix.thunk(() => ({
-                            __proto__: pos$39,
+                            [nix.POS]: pos$39,
                             name: "default_range_remediation",
                             filters: nix.thunk(() => ["Alert.Remediation == true && Alert.GetScope() == 'Range'"]),
-                            decisions: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$38, type: "ban", duration: "4h" }))]),
+                            decisions: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$38, type: "ban", duration: "4h" }))]),
                             on_success: "break",
                           })),
                         ]),
                       })))),
                     patterns: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                         description: "A list of files containing custom grok patterns.\n",
                         default: [],
@@ -406,55 +406,55 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
             })))),
           hub: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   options: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     collections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "List of hub collections to install",
                         example: nix.thunk(() => ["crowdsecurity/linux"]),
                       })))),
                     scenarios: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "List of hub scenarios to install",
                         example: nix.thunk(() => ["crowdsecurity/ssh-bf"]),
                       })))),
                     parsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "List of hub parsers to install",
                         example: nix.thunk(() => ["crowdsecurity/sshd-logs"]),
                       })))),
                     postOverflows: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "List of hub postoverflows to install",
                         example: nix.thunk(() => ["crowdsecurity/auditd-nix-wrappers-whitelist-process"]),
                       })))),
                     appSecConfigs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "List of hub appsec configurations to install",
                         example: nix.thunk(() => ["crowdsecurity/appsec-default"]),
                       })))),
                     appSecRules: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "List of hub appsec rules to install",
                         example: nix.thunk(() => ["crowdsecurity/base-config"]),
                       })))),
                     branch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$51,
+                        [nix.POS]: pos$51,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "master",
                         description: "The git branch on which cscli is going to fetch configurations.\n\nSee `https://docs.crowdsec.net/docs/configuration/crowdsec_configuration/#hub_branch` for more information.\n",
@@ -466,31 +466,31 @@ export default nix.lambda((args) => (() => {
               description: "Hub collections, parsers, AppSec rules, etc.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$73,
+                  [nix.POS]: pos$73,
                   options: nix.thunk(() => ({
-                    __proto__: pos$72,
+                    [nix.POS]: pos$72,
                     general: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$55,
+                        [nix.POS]: pos$55,
                         description: "Settings for the main CrowdSec configuration file.\n\nRefer to the defaults at <https://github.com/crowdsecurity/crowdsec/blob/master/config/config.yaml>.\n",
                         type: nix.thunk(() => nix.sel(format, "type")),
                         default: nix.thunk(() => ({})),
                       })))),
                     simulation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$57,
+                        [nix.POS]: pos$57,
                         type: nix.thunk(() => nix.sel(format, "type")),
-                        default: nix.thunk(() => ({ __proto__: pos$56, simulation: false })),
+                        default: nix.thunk(() => ({ [nix.POS]: pos$56, simulation: false })),
                         description: "Attributes inside the simulation.yaml file.\n",
                       })))),
                     lapi: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$61,
+                        [nix.POS]: pos$61,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$60,
+                            [nix.POS]: pos$60,
                             options: nix.thunk(() => ({
-                              __proto__: pos$59,
+                              [nix.POS]: pos$59,
                               credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$58,
+                                  [nix.POS]: pos$58,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                                   example: "/run/crowdsec/lapi.yaml",
                                   description: "The LAPI credential file to use.\n",
@@ -502,13 +502,13 @@ export default nix.lambda((args) => (() => {
                         default: nix.thunk(() => ({})),
                       })))),
                     capi: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$64,
+                            [nix.POS]: pos$64,
                             options: nix.thunk(() => ({
-                              __proto__: pos$63,
+                              [nix.POS]: pos$63,
                               credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$62,
+                                  [nix.POS]: pos$62,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                                   example: "/run/crowdsec/capi.yaml",
                                   description: "The CAPI credential file to use.\n",
@@ -520,23 +520,23 @@ export default nix.lambda((args) => (() => {
                         default: nix.thunk(() => ({})),
                       })))),
                     console: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$71,
+                        [nix.POS]: pos$71,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                            __proto__: pos$70,
+                            [nix.POS]: pos$70,
                             options: nix.thunk(() => ({
-                              __proto__: pos$69,
+                              [nix.POS]: pos$69,
                               tokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$66,
+                                  [nix.POS]: pos$66,
                                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                                   example: "/run/crowdsec/console_token.yaml",
                                   description: "The Console Token file to use.\n",
                                   default: null,
                                 })))),
                               configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$68,
+                                  [nix.POS]: pos$68,
                                   type: nix.thunk(() => nix.sel(format, "type")),
                                   default: nix.thunk(() => ({
-                                    __proto__: pos$67,
+                                    [nix.POS]: pos$67,
                                     share_manual_decisions: false,
                                     share_custom: false,
                                     share_tainted: false,
@@ -562,7 +562,7 @@ export default nix.lambda((args) => (() => {
       const simulationFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "simulation.yaml", nix.thunk(() => nix.sel(cfg, "settings", "simulation"))));
       const consoleFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "console.yaml", nix.thunk(() => nix.sel(cfg, "settings", "console", "configuration"))));
       const patternsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "symlinkJoin"), nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           name: "crowdsec-patterns",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "localConfig", "patterns")),
@@ -627,23 +627,23 @@ fi
         ]))))))))))));
       const setupScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "crowdsec-setup", nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), "\n", scriptArray))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$135,
+          [nix.POS]: pos$135,
           warnings: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "localConfig", "profiles"), [])), nix.thunk(() => [
               "By not specifying profiles in services.crowdsec.localConfig.profiles, CrowdSec will not react to any alert by default.",
             ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(cfg, "localConfig", "acquisitions"), [])), nix.thunk(() => [
               "By not specifying acquisitions in services.crowdsec.localConfig.acquisitions, CrowdSec will not look for any data source.",
             ]))))),
           services: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             crowdsec: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               settings: nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 general: nix.thunk(() => ({
-                  __proto__: pos$90,
-                  common: nix.thunk(() => ({ __proto__: pos$79, log_media: "stdout" })),
+                  [nix.POS]: pos$90,
+                  common: nix.thunk(() => ({ [nix.POS]: pos$79, log_media: "stdout" })),
                   config_paths: nix.thunk(() => ({
-                    __proto__: pos$80,
+                    [nix.POS]: pos$80,
                     config_dir: confDir,
                     data_dir: stateDir,
                     simulation_path: simulationFile,
@@ -654,33 +654,33 @@ fi
                     pattern_dir: patternsDir,
                   })),
                   db_config: nix.thunk(() => ({
-                    __proto__: pos$81,
+                    [nix.POS]: pos$81,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "sqlite")),
                     db_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${stateDir}/crowdsec.db`))))),
                     use_wal: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   })),
                   crowdsec_service: nix.thunk(() => ({
-                    __proto__: pos$82,
+                    [nix.POS]: pos$82,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                     acquisition_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), localAcquisisionFile)),
                   })),
                   api: nix.thunk(() => ({
-                    __proto__: pos$87,
+                    [nix.POS]: pos$87,
                     client: nix.thunk(() => ({
-                      __proto__: pos$83,
+                      [nix.POS]: pos$83,
                       credentials_path: nix.thunk(() => nix.sel(cfg, "settings", "lapi", "credentialsFile")),
                     })),
                     server: nix.thunk(() => ({
-                      __proto__: pos$86,
+                      [nix.POS]: pos$86,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                       listen_uri: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1:8080")),
                       console_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), consoleFile)),
                       profiles_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), localProfilesFile)),
                       online_client: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                          __proto__: pos$85,
+                          [nix.POS]: pos$85,
                           sharing: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                           pull: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                              __proto__: pos$84,
+                              [nix.POS]: pos$84,
                               community: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                               blocklists: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                             })))),
@@ -689,32 +689,32 @@ fi
                     })),
                   })),
                   prometheus: nix.thunk(() => ({
-                    __proto__: pos$88,
+                    [nix.POS]: pos$88,
                     enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                     level: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "full")),
                     listen_addr: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
                     listen_port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 6060n)),
                   })),
                   cscli: nix.thunk(() => ({
-                    __proto__: pos$89,
+                    [nix.POS]: pos$89,
                     hub_branch: nix.thunk(() => nix.sel(cfg, "hub", "branch")),
                   })),
                 })),
               })),
             })),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$94, systemPackages: nix.thunk(() => [cscli]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$94, systemPackages: nix.thunk(() => [cscli]) })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$130,
+            [nix.POS]: pos$130,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             timers: nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               "crowdsec-update-hub": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoUpdateService")), nix.thunk(() => ({
-                  __proto__: pos$96,
+                  [nix.POS]: pos$96,
                   description: "Update the crowdsec hub index",
                   wantedBy: nix.thunk(() => ["timers.target"]),
                   timerConfig: nix.thunk(() => ({
-                    __proto__: pos$95,
+                    [nix.POS]: pos$95,
                     OnCalendar: "daily",
                     RandomizedDelaySec: 300n,
                     Persistent: "yes",
@@ -723,12 +723,12 @@ fi
                 })))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               "crowdsec-update-hub": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoUpdateService")), nix.thunk(() => ({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   description: "Update the crowdsec hub index",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$98,
+                    [nix.POS]: pos$98,
                     Type: "oneshot",
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -776,15 +776,15 @@ fi
                   })),
                 })))),
               crowdsec: nix.thunk(() => ({
-                __proto__: pos$102,
+                [nix.POS]: pos$102,
                 description: "CrowdSec agent",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 path: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
-                environment: nix.thunk(() => ({ __proto__: pos$100, LC_ALL: "C", LANG: "C" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$100, LC_ALL: "C", LANG: "C" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$101,
+                  [nix.POS]: pos$101,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   Type: "notify",
@@ -846,17 +846,17 @@ fi
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$129,
+              [nix.POS]: pos$129,
               settings: nix.thunk(() => ({
-                __proto__: pos$128,
+                [nix.POS]: pos$128,
                 "10-crowdsec": nix.thunk(() => nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((dirName) => ({
-                      __proto__: pos$106,
+                      [nix.POS]: pos$106,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), dirName)),
                       value: nix.thunk(() => ({
-                        __proto__: pos$105,
+                        [nix.POS]: pos$105,
                         d: nix.thunk(() => ({
-                          __proto__: pos$104,
+                          [nix.POS]: pos$104,
                           user: nix.thunk(() => nix.sel(cfg, "user")),
                           group: nix.thunk(() => nix.sel(cfg, "group")),
                           mode: "0750",
@@ -877,85 +877,85 @@ fi
                       notificationsDir,
                       pluginDir,
                     ])))), nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((scenarioFile) => ({
-                      __proto__: pos$109,
+                      [nix.POS]: pos$109,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${localScenariosDir}/${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(scenarioFile)))}`))),
                       value: nix.thunk(() => ({
-                        __proto__: pos$108,
+                        [nix.POS]: pos$108,
                         link: nix.thunk(() => ({
-                          __proto__: pos$107,
+                          [nix.POS]: pos$107,
                           type: "L+",
                           argument: nix.thunk(() => nix.str`${scenarioFile}`),
                         })),
                       })),
                     }), localScenariosMap))), nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((parser) => ({
-                      __proto__: pos$112,
+                      [nix.POS]: pos$112,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${localParsersS00RawDir}/${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(parser)))}`))),
                       value: nix.thunk(() => ({
-                        __proto__: pos$111,
+                        [nix.POS]: pos$111,
                         link: nix.thunk(() => ({
-                          __proto__: pos$110,
+                          [nix.POS]: pos$110,
                           type: "L+",
                           argument: nix.thunk(() => nix.str`${parser}`),
                         })),
                       })),
                     }), localParsersS00RawMap))), nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((parser) => ({
-                      __proto__: pos$115,
+                      [nix.POS]: pos$115,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${localParsersS01ParseDir}/${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(parser)))}`))),
                       value: nix.thunk(() => ({
-                        __proto__: pos$114,
+                        [nix.POS]: pos$114,
                         link: nix.thunk(() => ({
-                          __proto__: pos$113,
+                          [nix.POS]: pos$113,
                           type: "L+",
                           argument: nix.thunk(() => nix.str`${parser}`),
                         })),
                       })),
                     }), localParsersS01ParseMap))), nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((parser) => ({
-                      __proto__: pos$118,
+                      [nix.POS]: pos$118,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${localParsersS02EnrichDir}/${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(parser)))}`))),
                       value: nix.thunk(() => ({
-                        __proto__: pos$117,
+                        [nix.POS]: pos$117,
                         link: nix.thunk(() => ({
-                          __proto__: pos$116,
+                          [nix.POS]: pos$116,
                           type: "L+",
                           argument: nix.thunk(() => nix.str`${parser}`),
                         })),
                       })),
                     }), localParsersS02EnrichMap))), nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((postoverflow) => ({
-                      __proto__: pos$121,
+                      [nix.POS]: pos$121,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${localPostOverflowsS01WhitelistDir}/${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(postoverflow)))}`))),
                       value: nix.thunk(() => ({
-                        __proto__: pos$120,
+                        [nix.POS]: pos$120,
                         link: nix.thunk(() => ({
-                          __proto__: pos$119,
+                          [nix.POS]: pos$119,
                           type: "L+",
                           argument: nix.thunk(() => nix.str`${postoverflow}`),
                         })),
                       })),
                     }), localPostOverflowsS01WhitelistMap))), nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((context) => ({
-                      __proto__: pos$124,
+                      [nix.POS]: pos$124,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${localContextsDir}/${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(context)))}`))),
                       value: nix.thunk(() => ({
-                        __proto__: pos$123,
+                        [nix.POS]: pos$123,
                         link: nix.thunk(() => ({
-                          __proto__: pos$122,
+                          [nix.POS]: pos$122,
                           type: "L+",
                           argument: nix.thunk(() => nix.str`${context}`),
                         })),
                       })),
                     }), localContextsMap))), nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((notification) => ({
-                      __proto__: pos$127,
+                      [nix.POS]: pos$127,
                       cfg: cfg,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "normalizePath"), nix.thunk(() => nix.str`${notificationsDir}/${nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.builtins.baseNameOf(notification)))}`))),
                       value: nix.thunk(() => ({
-                        __proto__: pos$126,
+                        [nix.POS]: pos$126,
                         link: nix.thunk(() => ({
-                          __proto__: pos$125,
+                          [nix.POS]: pos$125,
                           type: "L+",
                           argument: nix.thunk(() => nix.str`${notification}`),
                         })),
@@ -965,10 +965,10 @@ fi
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$131,
+                [nix.POS]: pos$131,
                 name: nix.thunk(() => nix.sel(cfg, "user")),
                 description: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "CrowdSec service user")),
                 isSystemUser: true,
@@ -981,9 +981,9 @@ fi
             ])),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$134,
+            [nix.POS]: pos$134,
             firewall: nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               allowedTCPPorts: nix.thunk(() => (() => {
                 const parsePortFromURLOption = (url) => (option) => nix.builtins.addErrorContext(nix.thunk(() => nix.str`extracting a port from URL: \`${option}\` requires a port to be specified, but we failed to parse a port from '${url}'`), nix.thunk(() => nix.app(nix.sel(lib, "strings", "toInt"), nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ":", url)))))));
                 return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
@@ -996,7 +996,7 @@ fi
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$136,
+      [nix.POS]: pos$136,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

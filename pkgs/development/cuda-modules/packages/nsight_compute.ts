@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const rdma_core = nix.arg($, "rdma-core");
   const ucx = nix.arg($, "ucx");
   const archDir = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-linux": nix.thunk(() => nix.add(nix.add("linux-", (nix.asBool(nix.sel(flags, "isJetsonBuild")) ? "v4l_l4t" : "desktop")), "-t210-a64")),
     "x86_64-linux": "linux-desktop-glibc_2_11_3-x64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(backendStdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(backendStdenv, "hostPlatform", "system"))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const qtwebengine = nix.thunk(() => nix.attr(qt, "qtwebengine"));
       const qtwebview = nix.thunk(() => nix.attr(qt, "qtwebview"));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         redistName: "cuda",
         pname: "nsight_compute",
         outputs: nix.thunk(() => ["out"]),
@@ -77,18 +77,18 @@ wrapQtApp "\${!outputBin}/bin/host/${archDir}/ncu-ui.bin"
         autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libcuda.so.1", "libnvidia-ml.so.1"]),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: "Qt 5 is required and available",
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2022.2.0")) || nix.asBool(!nix.eq(qt5, null)))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             message: "Qt 6 is required and available",
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2022.2.0")) || nix.asBool(!nix.eq(qt6, null)))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Interactive profiler for CUDA and NVIDIA OptiX",
           longDescription: "NVIDIA Nsight Compute is an interactive profiler for CUDA and NVIDIA OptiX that provides detailed performance\nmetrics and API debugging via a user interface and command-line tool. Users can run guided analysis and compare\nresults with a customizable and data-driven user interface, as well as post-process and analyze results in their\nown workflows.\n",
           homepage: "https://developer.nvidia.com/nsight-compute",

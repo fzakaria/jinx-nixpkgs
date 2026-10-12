@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jabesq",
           repo: "pyatmo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_release_script.py"]);
       const pythonImportsCheck = nix.thunk(() => ["pyatmo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple API to access Netatmo weather station data",
         homepage: "https://github.com/jabesq/pyatmo",
         changelog: nix.thunk(() => nix.str`https://github.com/jabesq/pyatmo/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

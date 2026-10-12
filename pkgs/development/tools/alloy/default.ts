@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`alloy${nix.app(nix.sel(lib, "versions", "major"), version_1)}`);
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             sha256: sha256,
             url: nix.thunk(() => nix.str`https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v${version_1}/org.alloytools.alloy.dist.jar`),
           }))));
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
             const comment = nix.thunk(() => nix.sel(meta, "description"));
             const categories = nix.thunk(() => ["Development", "IDE", "Education"]);
             return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name,
               exec,
               icon,
@@ -63,7 +63,7 @@ install -Dm644 ${nix.path(here, "./icon.png")} $out/share/pixmaps/${pname}.png
 cp -r ${desktopItem}/share/applications $out/share
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Language & tool for relational models",
           longDescription: "Alloy is a language for describing structures and a tool for exploring\nthem. An Alloy model is a collection of constraints that describes a set\nof structures, e.g. all the possible security configurations of a web\napplication, or all the possible topologies of a switching network. The\nAlloy Analyzer is a solver that takes the constraints of a model and\nfinds structures that satisfy them. Structures are displayed graphically,\nand their appearance can be customized for the domain at hand.\n",
           homepage: "https://alloytools.org/",
@@ -80,7 +80,7 @@ cp -r ${desktopItem}/share/applications $out/share
           })()),
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version: version_1,
           src,
@@ -93,17 +93,17 @@ cp -r ${desktopItem}/share/applications $out/share
   })(), formals$2);
   return (() => {
     const alloy5 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "5.1.0",
         sha256: "sha256-o7Q+jsmWeUeuotUQG9lrPE6w2B6z3Ju6QcyWSTScaQo=",
       }))));
     const alloy6 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "6.2.0",
         sha256: "sha256-a4wctbyTvt/HxhQ1xOGrbmiKJC3HAqOUYo2amAHtt40=",
       }))));
     const alloy = alloy5;
-    return { __proto__: pos$7, alloy5, alloy6, alloy };
+    return { [nix.POS]: pos$7, alloy5, alloy6, alloy };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

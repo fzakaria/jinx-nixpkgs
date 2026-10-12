@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const full = nix.argOr($, "full", () => true);
   const osName = nix.argOr($, "osName", () => "nixos");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ufetch",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jschx",
           repo: "ufetch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ install -Dm644 LICENSE $out/share/licenses/ufetch/LICENSE
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiny system info for Unix-like operating systems",
         homepage: "https://gitlab.com/jschx/ufetch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

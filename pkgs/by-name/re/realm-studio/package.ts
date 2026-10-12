@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "realm-studio",
       version: "15.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://static.realm.io/downloads/realm-studio/Realm%20Studio-${nix.sel(finalAttrs, "version")}-mac.zip`),
           hash: "sha256-Vvc432P7VQxCVcS7i7JwOx7ByhX+Ea0Oz7ogvAH8Xoo=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\ncp -r \"Realm Studio.app\" $out/Applications/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual tool to view, edit, and model Realm databases",
         homepage: "https://www.mongodb.com/docs/atlas/device-sdks/studio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

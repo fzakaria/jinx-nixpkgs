@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const pipewire = nix.arg($, "pipewire");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ctune",
       version: "1.3.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "An7ar35",
           repo: "ctune",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_PREFIX=''"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nice terminal nCurses (tui) internet radio player for Linux, browse and search from api.radio-browser.info",
         homepage: "https://github.com/An7ar35/ctune",
         changelog: "https://github.com/An7ar35/ctune/blob/master/CHANGELOG.md",

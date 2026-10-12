@@ -47,28 +47,28 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sabnzbd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: true,
           secretFiles: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret-a.toml", "[servers]\n[[example.com]]\nrequired=1\npriority=2\n")),
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret-b.toml", "[servers]\n[[example.com]]\nenable=1\npriority=5\n")),
           ]),
           settings: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             misc: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               html_login: false,
               inet_exposure: "api (full)",
               api_key: "123456",
             })),
             servers: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "example.com": nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable: false,
                 required: false,
                 optional: true,
@@ -81,45 +81,45 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "jq")),
           nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "do_test", "set -euxo pipefail\n\nmisc_url=\"http://127.0.0.1:8080/api?mode=get_config&section=misc&output=json&apikey=123456\"\nservers_url=\"http://127.0.0.1:8080/api?mode=get_config&section=servers&output=json&apikey=123456\"\n\n[[ $(curl $misc_url | jq .config.misc.inet_exposure) == 3 ]]\n[[ $(curl $misc_url | jq .config.misc.html_login) == \"false\" ]]\n\n[[ $(curl $servers_url | jq .config.servers[0].enable) == 1 ]]\n[[ $(curl $servers_url | jq .config.servers[0].required) == 1 ]]\n[[ $(curl $servers_url | jq .config.servers[0].optional) == 1 ]]\n[[ $(curl $servers_url | jq .config.servers[0].priority) == 5 ]]\n")),
         ]),
       })),
       nixpkgs: nix.thunk(() => ({
-        __proto__: pos$9,
-        config: nix.thunk(() => ({ __proto__: pos$8, allowUnfreePackages: nix.thunk(() => ["unrar"]) })),
+        [nix.POS]: pos$9,
+        config: nix.thunk(() => ({ [nix.POS]: pos$8, allowUnfreePackages: nix.thunk(() => ["unrar"]) })),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "sabnzbd",
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jojosch"))];
       })()),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$12, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$12, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
-        return { __proto__: pos$13, imports: nix.thunk(() => [common_config]) };
+        return { [nix.POS]: pos$13, imports: nix.thunk(() => [common_config]) };
       })(), formals$3),
       with_writeable_config: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           imports: nix.thunk(() => [common_config]),
           config: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             services: nix.thunk(() => ({
-              __proto__: pos$15,
-              sabnzbd: nix.thunk(() => ({ __proto__: pos$14, allowConfigWrite: true })),
+              [nix.POS]: pos$15,
+              sabnzbd: nix.thunk(() => ({ [nix.POS]: pos$14, allowConfigWrite: true })),
             })),
           })),
         };
@@ -128,19 +128,19 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           imports: nix.thunk(() => [common_config]),
           config: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               sabnzbd: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 configFile: nix.thunk(() => nix.builtins.toFile("config.ini", "[misc]\ninet_exposure = 2\nhtml_login = 0\napi_key = abcdef\nlog_dir = /var/lib/sabnzbd\nadmin_dir = /var/lib/sabnzbd\n")),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "jq")),
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "do_test_2", "set -euxo pipefail\n\nmisc_url=\"http://127.0.0.1:8080/api?mode=get_config&section=misc&output=json&apikey=abcdef\"\n\n[[ $(curl $misc_url | jq .config.misc.inet_exposure) == 2 ]]\n[[ $(curl $misc_url | jq .config.misc.html_login) == \"false\" ]]\n")),
@@ -153,20 +153,20 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           config: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             services: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               sabnzbd: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$24,
-                  misc: nix.thunk(() => ({ __proto__: pos$23, api_key: "@api_key@", nzb_key: "@nzb_key@" })),
+                  [nix.POS]: pos$24,
+                  misc: nix.thunk(() => ({ [nix.POS]: pos$23, api_key: "@api_key@", nzb_key: "@nzb_key@" })),
                 })),
                 secretValues: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   "@api_key@": nix.thunk(() => nix.builtins.toFile("api_key", "dummyapikey")),
                   "@nzb_key@": nix.thunk(() => nix.builtins.toFile("nzb_key", "dummynzbkey")),
                 })),

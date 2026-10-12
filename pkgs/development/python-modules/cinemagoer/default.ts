@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const sqlalchemy = nix.arg($, "sqlalchemy");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cinemagoer",
       version: "2025.12.31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cinemagoer",
           repo: "cinemagoer",
           rev: "aca62692b6f0ca7ed9c70871bafd8b558c6ba6ec",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["imdb"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for retrieving and managing the data of the IMDb movie database about movies and people",
         downloadPage: "https://github.com/cinemagoer/cinemagoer/",
         homepage: "https://cinemagoer.github.io/",

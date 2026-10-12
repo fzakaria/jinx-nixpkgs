@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/localsend/localsend/releases/download/v${nix.sel(finalAttrs, "version")}/LocalSend-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-k6uITCcDoPq9cmEQl7JhbA3vhsQlbOoq3XoP823Xazo=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r LocalSend.app $out/Applications\n\nmakeWrapper $out/Applications/LocalSend.app/Contents/MacOS/LocalSend $out/bin/localsend\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         mainProgram: "localsend",
         platforms: nix.thunk(() => ["aarch64-darwin"]),

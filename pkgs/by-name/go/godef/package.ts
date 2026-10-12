@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-WjOPmkzOZC0cXOJKAU6iU/Y+NzBv6fHB8xwNMKDnhvY=";
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "rogpeppe",
           repo: "godef",
           sha256: "sha256-0qmKn0TIrRH3B54/7/XB1zjaVA4R3LbbsPzLByfEJuo=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Print where symbols are defined in Go source code",
         mainProgram: "godef",
         homepage: "https://github.com/rogpeppe/godef/",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

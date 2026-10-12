@@ -20,9 +20,9 @@ export default nix.lambda((args) => (() => {
     const srcHash = "sha256-ItGRNjp0ITe50ctef6pkIdefRlUPqgo27PcqfDx5I4A=";
     const pythonWheelTag = "cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314";
     const submodules = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "cli/src/semgrep/semgrep_interfaces": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "semgrep",
         repo: "semgrep-interfaces",
         rev: "73a6a4201803db5dbee3c29ed362805574f279cc",
@@ -30,25 +30,25 @@ export default nix.lambda((args) => (() => {
       })),
     }));
     const core = nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platform: "manylinux_2_34_x86_64",
         hash: "sha256-tSnE22Pyk5GJibhM5GQPEvGx5GgNnn/KtfNVT5ET38U=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platform: "manylinux_2_34_aarch64",
         hash: "sha256-wj15xIOVQDcqzDm1mq0WfBx/PcIbrKyyfxmqLt150nE=",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platform: "macosx_11_0_arm64",
         hash: "sha256-m1cCb1h6S8eDO8orbk1neAcqedzwufLl4B09XfOcd1k=",
       })),
     }));
     const meta = nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       homepage: "https://semgrep.dev/",
       downloadPage: "https://github.com/semgrep/semgrep/",
       changelog: nix.thunk(() => nix.str`https://github.com/semgrep/semgrep/blob/v${version}/CHANGELOG.md`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }));
-    return { __proto__: pos$8, version, srcHash, pythonWheelTag, submodules, core, meta };
+    return { [nix.POS]: pos$8, version, srcHash, pythonWheelTag, submodules, core, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

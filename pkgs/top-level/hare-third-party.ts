@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "hare-compress": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/hare-third-party/hare-compress"), nix.thunk(() => ({})))),
         "hare-ev": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/hare-third-party/hare-ev"), nix.thunk(() => ({})))),
         "hare-http": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/hare-third-party/hare-http"), nix.thunk(() => ({})))),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "WiseUnpacker",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mnadareski",
           repo: "WiseUnpacker",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nugetDeps: nix.path(here, "./deps.json"),
       projectFile: "Test/Test.csproj",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mnadareski/WiseUnpacker/",
         description: "C# Wise installer unpacker based on HWUN and E_WISE ",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gigahawk"))]),

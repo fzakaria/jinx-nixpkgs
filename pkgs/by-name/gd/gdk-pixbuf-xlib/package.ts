@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gdk-pixbuf-xlib",
       version: "2.40.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "Archive",
           repo: "gdk-pixbuf-xlib",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gdk_pixbuf, libx11]),
       mesonFlags: nix.thunk(() => ["-Dgtk_doc=true"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Deprecated API for integrating GdkPixbuf with Xlib data types",
         homepage: "https://gitlab.gnome.org/Archive/gdk-pixbuf-xlib",
         maintainers: [],

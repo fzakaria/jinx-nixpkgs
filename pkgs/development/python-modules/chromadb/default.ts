@@ -72,27 +72,27 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "chromadb",
       version: "1.5.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chroma-core",
           repo: "chroma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-qJixjywcmJwq1B8kYTIevBk6MMZ/YgOt92VBPag3kiw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-b7YwZGsqPT58b8aArZMwJs1r7CRttjvn2wF/+yL6Ytg=",
         })))),
       "swagger-ui": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.22.0.zip",
           hash: "sha256-H+kXxA/6rKzYA19v7Zlx2HbIg/DGicD5FDIs0noVGSk=",
         })))),
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         uvicorn,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$4, dev: nix.thunk(() => [chroma_hnswlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$4, dev: nix.thunk(() => [chroma_hnswlib]) })),
       nativeCheckInputs: nix.thunk(() => [
         chroma_hnswlib,
         hnswlib,
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
         return !nix.asBool((nix.asBool(nix.lookup(w, "isAarch")) && nix.asBool(nix.lookup(w, "isLinux"))));
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ZSTD_SYS_USE_PKG_CONFIG: true,
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => nix.str`file://${nix.sel(finalAttrs, "swagger-ui")}`),
       })),
@@ -202,18 +202,18 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           chromadb: nix.thunk(() => nix.attr(nixosTests, "chromadb")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9].+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "AI-native open-source embedding database",
         homepage: "https://github.com/chroma-core/chroma",
         changelog: nix.thunk(() => nix.str`https://github.com/chroma-core/chroma/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

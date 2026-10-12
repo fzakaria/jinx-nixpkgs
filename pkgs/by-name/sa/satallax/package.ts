@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   const ocaml = nix.thunk(() => nix.attr(from, "ocaml"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "satallax",
       version: "2.7",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, ocaml, which, eprover, coq]),
       buildInputs: nix.thunk(() => [zlib]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ps.uni-saarland.de/~cebrown/satallax/downloads/satallax-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1kvxn8mc35igk4vigi5cp7w3wpxk2z3bgwllfm4n3h2jfs0vkpib",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       preConfigure: "mkdir fake-tools\necho \"echo 'Nix-build-host.localdomain'\" > fake-tools/hostname\nchmod a+x fake-tools/hostname\nexport PATH=\"$PATH:$PWD/fake-tools\"\n\n(\n  cd picosat-*\n  ./configure\n  make\n)\nexport PATH=\"$PATH:$PWD/libexec/satallax\"\n\nmkdir -p \"$out/libexec/satallax\"\ncp picosat-*/picosat picosat-*/picomus \"$out/libexec/satallax\"\n\n(\n  cd minisat\n  export MROOT=$PWD\n  cd core\n  make\n  cd ../simp\n  make\n)\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-reserved-user-defined-literal")),
       })),
       installPhase: nix.thunk(() => nix.str`mkdir -p "$out/share/doc/satallax" "$out/bin" "$out/lib" "$out/lib/satallax"
@@ -58,7 +58,7 @@ cp -r coq* "$out/lib/satallax/"
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       checkPhase: "runHook preCheck\nif bash ./test | grep ERROR; then\n  echo \"Tests failed\"\n  exit 1\nfi\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automated theorem prover for higher-order logic",
         mainProgram: "satallax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

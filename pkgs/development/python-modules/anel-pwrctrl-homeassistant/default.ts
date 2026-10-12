@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.1.dev2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "anel_pwrctrl-homeassistant",
           hash: "sha256-AcsnYD9CeGAarm5QdweUF6CUFwUywhfmU46NG8+Cm4s=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["anel_pwrctrl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Discover and control ANEL NET-PwrCtrl devices",
         homepage: "https://github.com/mweinelt/anel-pwrctrl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

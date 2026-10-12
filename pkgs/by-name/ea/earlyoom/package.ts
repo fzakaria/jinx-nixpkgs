@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withManpage = nix.argOr($, "withManpage", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "earlyoom",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rfjakob",
           repo: "earlyoom",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`SYSTEMDUNITDIR=${nix.builtins.placeholder("out")}/etc/systemd/system`),
       ], nix.app(nix.sel(lib, "optional"), withManpage, nix.thunk(() => nix.str`MANDIR=${nix.builtins.placeholder("man")}/share/man`)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           earlyoom: nix.thunk(() => nix.attr(nixosTests, "earlyoom")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/rfjakob/earlyoom",
         description: "Early OOM Daemon for Linux",
         longDescription: "earlyoom checks the amount of available memory and free swap up to 10\ntimes a second (less often if there is a lot of free memory). By default\nif both are below 10%, it will kill the largest process (highest\noom_score). The percentage value is configurable via command line\narguments.\n",

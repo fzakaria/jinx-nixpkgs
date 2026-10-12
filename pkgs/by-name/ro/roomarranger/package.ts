@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "11.1.0";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: "Application",
       exec: "roomarranger",
       name: "roomarranger",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roomarranger",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://f000.backblazeb2.com/file/rooarr/rooarr${nix.app(nix.sel(lib, "versions", "major"), version)}${nix.app(nix.sel(lib, "versions", "minor"), version)}${nix.app(nix.sel(lib, "versions", "patch"), version)}-linux64.tar.gz`),
           hash: "sha256-ddNv4Tm5rHm+atwg7zPnqdyTN2ssBf+2tpzzUTbopws=",
         })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib $out/bin\ncp -r rooarr-bin/* $out/lib/\n\n# Remove Wayland plugins that require unavailable libraries\nrm -rf $out/lib/wayland-graphics-integration-client\nrm -f $out/lib/platforms/libqwayland-*.so\n\nln -s $out/lib/RoomArranger $out/bin/roomarranger\n\n# Install application icons\nicon_resolutions=\"16x16 32x32 48x48 64x64 128x128 256x256 512x512\"\nfor res in $icon_resolutions; do\n  mkdir -p $out/share/icons/hicolor/$res/apps\n  cp rooarr-bin/icons/icon_$res.png $out/share/icons/hicolor/$res/apps/roomarranger-icon.png\ndone\nmkdir -p $out/share/icons/hicolor/32x32/mimetypes\ncp rooarr-bin/icons/raFileIcon32.png $out/share/icons/hicolor/32x32/mimetypes/application-com.roomarranger.project.png\ncp rooarr-bin/icons/raFileObjectIcon32.png $out/share/icons/hicolor/32x32/mimetypes/application-com.roomarranger.object.png\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [desktopItem]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "3D room planning software",
         longDescription: "Room Arranger is a 3D room / apartment / floor planner with a simple user interface.\nFree for 30 days. Updates are free.\n\nNote: This package uses XCB (X11) for rendering. On Wayland compositors, it will run via XWayland.\n",
         homepage: "https://www.roomarranger.com/",

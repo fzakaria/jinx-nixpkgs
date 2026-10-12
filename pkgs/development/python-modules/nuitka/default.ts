@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nuitka",
           repo: "Nuitka",
           tag: version,
@@ -41,14 +41,14 @@ runHook postCheck
       const pythonImportsCheck = nix.thunk(() => ["nuitka"]);
       const disabled = isPyPy;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python compiler with full language support and CPython compatibility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://nuitka.net/",
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

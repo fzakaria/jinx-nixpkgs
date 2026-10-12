@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pybluez = nix.arg($, "pybluez");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bt-proximity",
       version: "0.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "bt_proximity",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+F2Ydjz/VxnYEuXfggnNUDFaLXLSh1GKAX/RtUNykXY=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bt_proximity"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bluetooth Proximity Detection using Python",
         homepage: "https://github.com/FrederikBolding/bluetooth-proximity",
         maintainers: nix.thunk(() => (() => {

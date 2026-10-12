@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const exiv2 = nix.arg($, "exiv2");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libkexiv2",
       extraBuildInputs: nix.thunk(() => [qt5compat, exiv2]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

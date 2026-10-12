@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.83.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "grpcio_tools",
           version: version,
           hash: "sha256-qBSO7OOW+KNJCXlYvADxSIIAMzHzt8KugHnBxjLRfW8=",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["grpc_tools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protobuf code generator for gRPC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://grpc.io/grpc/python/",
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

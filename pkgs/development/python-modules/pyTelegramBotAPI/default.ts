@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const watchdog = nix.arg($, "watchdog");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pytelegrambotapi",
       version: "4.37.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eternnoir",
           repo: "pyTelegramBotAPI",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         json: nix.thunk(() => [ujson]),
         PIL: nix.thunk(() => [pillow]),
         redis: nix.thunk(() => [redis]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, requests], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["telebot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python implementation for the Telegram Bot API",
         homepage: "https://github.com/eternnoir/pyTelegramBotAPI",
         changelog: nix.thunk(() => nix.str`https://github.com/eternnoir/pyTelegramBotAPI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "antonio",
       version: "0-unstable-2013-11-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vernnobile",
           repo: "antonioFont",
           rev: "4b3e07ab5647a613931153a09067a785f54b980a",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/share/fonts/truetype\ncp $src/{Bold,Light,Regular}/*.ttf $out/share/fonts/truetype\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/vernnobile/antonioFont",
         description: "Condensed, sans serif font for larger display, headline & banner use, based on Anton",
         longDescription: "Antonio is a ‘refined’ version of the Anton Font. Anton is a single\nweight web font, designed specifically for larger display, headline and\n‘banner’ use (see Google’s PR for the Chromebook notebooks that used\nAnton, big and bright).\n\nAntonio extends the Anton design to include more weights and introduces\nrefinements to the design that makes it also suitable for use in smaller\nheadings, menus and ‘buttons’ etc.\n",

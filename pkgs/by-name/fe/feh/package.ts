@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const enableAutoreload = nix.argOr($, "enableAutoreload", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "feh",
       version: "3.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "derf",
           repo: "feh",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "TestCommand"))])))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Light-weight image viewer",
         homepage: "https://feh.finalrewind.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit-feh")),

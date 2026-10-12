@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "buddy",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/buddy/buddy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0dl86l9xkl33wnkz684xa9axhcxx2zzi4q5lii0axnb9lsk81pyk",
         })))),
       buildInputs: nix.thunk(() => [bison]),
       patches: nix.thunk(() => [nix.path(here, "./gcc-4.3.3-fixes.patch")]),
       configureFlags: nix.thunk(() => ["CFLAGS=-O3", "CXXFLAGS=-O3"]),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, NIX_LDFLAGS: "-lm" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=register" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lm" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=register" }))))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://sourceforge.net/projects/buddy/",
         description: "Binary decision diagram package",
         license: nix.thunk(() => nix.sel(lib, "licenses", "buddy")),

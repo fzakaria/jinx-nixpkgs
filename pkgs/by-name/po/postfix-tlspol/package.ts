@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "postfix-tlspol",
       version: "1.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zuplu",
           repo: "postfix-tlspol",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.Version=${nix.sel(finalAttrs, "version")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "postfix-tlspol": nix.thunk(() => nix.attr(nixosTests, "postfix-tlspol")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/Zuplu/postfix-tlspol/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Lightweight MTA-STS + DANE/TLSA resolver and TLS policy server for Postfix, prioritizing DANE",
         homepage: "https://github.com/Zuplu/postfix-tlspol",

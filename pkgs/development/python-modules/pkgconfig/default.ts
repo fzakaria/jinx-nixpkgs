@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const targetPrefix = nix.thunk(() => nix.attr(pkg_config, "targetPrefix"));
       const baseBinName = nix.thunk(() => nix.attr(pkg_config, "baseBinName"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matze",
           repo: "pkgconfig",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ substituteInPlace data/fake-openssl.pc \\
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pkgconfig"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface Python with pkg-config",
         homepage: "https://github.com/matze/pkgconfig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ substituteInPlace data/fake-openssl.pc \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

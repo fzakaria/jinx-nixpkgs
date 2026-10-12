@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "photoprism"));
   const env = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     PHOTOPRISM_ORIGINALS_PATH: nix.thunk(() => nix.sel(cfg, "originalsPath")),
     PHOTOPRISM_STORAGE_PATH: nix.thunk(() => nix.sel(cfg, "storagePath")),
     PHOTOPRISM_IMPORT_PATH: nix.thunk(() => nix.sel(cfg, "importPath")),
@@ -48,84 +48,84 @@ exec ${nix.sel(pkgs, "util-linux")}/bin/nsenter \\
   ${nix.sel(cfg, "package")}/bin/photoprism "$@"
 `)));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         photoprism: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Photoprism web server")),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "externalPath")))),
               default: null,
               description: "Admin password file.\n",
             })))),
           databasePasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "externalPath")))),
               default: null,
               description: "Database password file.\n",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "Web interface address.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 2342n,
               description: "Web interface port.\n",
             })))),
           originalsPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: null,
               example: "/data/photos",
               description: "Storage path of your original media files (photos and videos).\n",
             })))),
           importPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "import",
               description: "Relative or absolute to the `originalsPath` from where the files should be imported.\n",
             })))),
           storagePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/photoprism",
               description: "Location for sidecar, cache, and database files.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "photoprism",
               description: "User under which photoprism runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "photoprism",
               description: "Group under which photoprism runs.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "photoprism", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               description: "See [the getting-started guide](https://docs.photoprism.app/getting-started/config-options/) for available options.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 PHOTOPRISM_DEFAULT_LOCALE: "de",
                 PHOTOPRISM_ADMIN_USER: "root",
               })),
@@ -134,16 +134,16 @@ exec ${nix.sel(pkgs, "util-linux")}/bin/nsenter \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             photoprism: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Photoprism server",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 Restart: "on-failure",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const discount = nix.arg($, "discount");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "okular",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ebook_tools,
         discount,
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "okular" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "okular" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

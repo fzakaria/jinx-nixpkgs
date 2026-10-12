@@ -22,32 +22,32 @@ export default nix.lambda((args) => (() => {
   const package$ = nix.thunk(() => nix.app(getPackage, nix.thunk(() => nix.sel(config, "node", "pkgs"))));
   const isV2 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(package$, "version"))), "2"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: nix.thunk(() => nix.str`whisparr_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(package$, "version")))}`),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "connor-grady"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             whisparr: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               package: nix.thunk(() => nix.app(getPackage, pkgs)),
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 auth: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   apikey: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isV2)), "0123456789abcdef0123456789abcdef")),
                 })),
               })),

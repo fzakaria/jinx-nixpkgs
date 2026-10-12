@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ams",
       version: "220",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/alsamodular/ams.git",
           hash: "sha256-6aO5Vs8lplcuEs7hGmT2stB90q8h9tDxcCSpS2n5vmE=",
           tag: nix.thunk(() => nix.str`Release-${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Realtime modular synthesizer for ALSA",
         mainProgram: "ams",
         homepage: "https://alsamodular.sourceforge.net",

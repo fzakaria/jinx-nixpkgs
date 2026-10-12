@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dune_build_info = nix.arg($, "dune-build-info");
   const bos = nix.arg($, "bos");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-print-intf",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "avsm",
           repo: "ocaml-print-intf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [dune_build_info, bos]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pretty print an OCaml cmi/cmt/cmti file in human-readable OCaml signature form",
         homepage: "https://github.com/avsm/ocaml-print-intf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

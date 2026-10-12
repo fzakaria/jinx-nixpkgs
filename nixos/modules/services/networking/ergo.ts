@@ -63,54 +63,54 @@ scorex {
 }
 `))), "}\n"))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         ergo: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Ergo service")),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/ergo",
               description: "The data directory for the Ergo node.",
             })))),
           listen: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "0.0.0.0",
                 description: "IP address on which the Ergo node should listen.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 9006n,
                 description: "Listen port for the Ergo node.",
               })))),
           })),
           api: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             keyHash: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 example: "324dcf027dd4a30a932c441f365a25e86b173defa4b8e58948253471b81b72cf",
                 description: "Hex-encoded Blake2b256 hash of an API key as a 64-chars long Base16 string.",
               })))),
             listen: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "0.0.0.0",
                   description: "IP address that the Ergo node API should listen on if {option}`api.keyHash` is defined.",
                 })))),
               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.sel(types, "port")),
                   default: 9052n,
                   description: "Listen port for the API endpoint if {option}`api.keyHash` is defined.",
@@ -118,26 +118,26 @@ scorex {
             })),
           })),
           testnet: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Connect to testnet network instead of the default mainnet.",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "ergo",
               description: "The user as which to run the Ergo node.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.sel(cfg, "user")),
               defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "user")}`))),
               description: "The group as which to run the Ergo node.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the Ergo node as well as the API.",
@@ -146,25 +146,25 @@ scorex {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0770 '${nix.sel(cfg, "user")}' '${nix.sel(cfg, "group")}' - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             ergo: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "ergo server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ergo")}/bin/ergo \\
@@ -175,17 +175,17 @@ scorex {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               allowedTCPPorts: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "listen", "port"))], [nix.thunk(() => nix.sel(cfg, "api", "listen", "port"))])),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               name: nix.thunk(() => nix.sel(cfg, "user")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
               description: "Ergo daemon user",

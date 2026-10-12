@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "papirus-maia-icon-theme",
       version: "2019-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ste74",
           repo: "papirus-maia-icon-theme",
           rev: "90d47c817cc0edeed8b5a90335e669948ff4a116",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt --replace /usr \"$out\"\n",
       postInstall: "for theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manjaro variation of Papirus icon theme",
         homepage: "https://github.com/Ste74/papirus-maia-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

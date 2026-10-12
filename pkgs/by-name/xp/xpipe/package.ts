@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
-  const arch = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-PRTudHtVhUdvDi0o1PF0rjZP8DW5J5eocCM77lsxd58=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const displayname = "XPipe";
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xpipe";
       const version = "23.9";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/xpipe-io/xpipe/releases/download/${version}/xpipe-portable-linux-${arch}.tar.gz`),
           hash: hash,
         }))));
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         socat,
       ]);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           categories: nix.thunk(() => ["Network"]),
           comment: "Your entire server infrastructure at your fingertips",
           desktopName: displayname,
@@ -116,7 +116,7 @@ makeShellWrapper "$out/opt/$pkg/scripts/xpiped_debug_raw.sh" "$out/opt/$pkg/scri
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform shell connection hub and remote file manager",
         homepage: nix.thunk(() => nix.str`https://github.com/xpipe-io/${pname}`),
         downloadPage: nix.thunk(() => nix.str`https://github.com/xpipe-io/${pname}/releases/latest`),
@@ -137,7 +137,7 @@ runHook postInstall
         mainProgram: "xpipe",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

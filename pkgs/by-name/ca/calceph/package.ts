@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gfortran = nix.arg($, "gfortran");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "calceph",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.obspm.fr",
           owner: "imcce_calceph",
           repo: "calceph",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.imcce.fr/inpop/calceph/",
         changelog: nix.thunk(() => nix.str`https://gitlab.obspm.fr/imcce_calceph/calceph/-/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),
         description: "C library for interacting with binary planetary ephemeris files, such INPOPxx, JPL DExxx and SPICE",

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const recoll = nix.arg($, "recoll");
   const xapian = nix.arg($, "xapian");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "recoll-kio",
       version: nix.thunk(() => nix.sel(recoll, "version")),
       src: nix.thunk(() => nix.sel(recoll, "src")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cmakeDir: "../kde/kioslave/kio_recoll",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.sel(recoll, "meta", "homepage")),
         description: "Plasma KIO worker for recoll",
         license: nix.thunk(() => nix.sel(recoll, "meta", "license")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const librevenge = nix.arg($, "librevenge");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libfreehand",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libfreehand/libfreehand-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZcvG00JP3BoFv1PIeAhZyr7t1zANhTVluBZQqEbWCvY=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, cppunit, doxygen, gperf, icu, lcms2, librevenge, zlib]),
       configureFlags: nix.thunk(() => ["--disable-werror"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adobe Freehand import library",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libfreehand",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

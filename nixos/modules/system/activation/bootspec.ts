@@ -29,24 +29,24 @@ export default nix.lambda((args) => (() => {
   const children = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (childName) => (childConfig) => nix.sel(childConfig, "configuration", "system", "build", "toplevel"), nix.thunk(() => nix.sel(config, "specialisation"))));
   const hasAtLeastOneInitrdSecret = nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(config, "boot", "initrd", "secrets"))))), 0n));
   const schemas = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     v1: nix.thunk(() => (() => {
       const filename = "boot.json";
       const json = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), filename, nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(nix.sel(cfg, "extensions"), {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "org.nixos.bootspec.v1": nix.thunk(() => nix.update({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               system: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "stdenv", "hostPlatform", "system")),
               label: nix.thunk(() => nix.str`${nix.sel(config, "system", "nixos", "distroName")} ${nix.sel(config, "system", "nixos", "codeName")} ${nix.sel(config, "system", "nixos", "label")} (Linux ${nix.sel(config, "boot", "kernelPackages", "kernel", "modDirVersion")})`),
             }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "boot", "kernel", "enable")), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 kernel: nix.thunk(() => nix.str`${nix.sel(config, "boot", "kernelPackages", "kernel")}/${nix.sel(config, "system", "boot", "loader", "kernelFile")}`),
                 kernelParams: nix.thunk(() => nix.sel(config, "boot", "kernelParams")),
               }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "boot", "initrd", "enable")), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 initrd: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "initialRamdisk")}/${nix.sel(config, "system", "boot", "loader", "initrdFile")}`),
               }))), nix.app(nix.sel(lib, "optionalAttrs"), hasAtLeastOneInitrdSecret, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 initrdSecrets: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "initialRamdiskSecretAppender")}/bin/append-initrd-secrets`),
               }))))))),
           }))))));
@@ -76,41 +76,41 @@ export default nix.lambda((args) => (() => {
         })());
         return nix.str`${toplevelInjector} | ${specialisationInjector} > $out/${filename}`;
       })());
-      const validator = nix.thunk(() => nix.app(nix.sel(pkgs, "writeCueValidator"), nix.path(here, "./bootspec.cue"), nix.thunk(() => ({ __proto__: pos$6, document: "Document" }))));
-      return { __proto__: pos$7, filename, json, generator, validator };
+      const validator = nix.thunk(() => nix.app(nix.sel(pkgs, "writeCueValidator"), nix.path(here, "./bootspec.cue"), nix.thunk(() => ({ [nix.POS]: pos$6, document: "Document" }))));
+      return { [nix.POS]: pos$7, filename, json, generator, validator };
     })()),
   }));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "bootspec", "enable"]), "Bootspec is now always generated and can no longer be disabled.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       boot: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         bootspec: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enableValidation: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the validation of bootspec documents for each build.\n      This will introduce Go in the build-time closure as we are relying on [Cuelang](https://cuelang.org/) for schema validation.\n      Enable this option if you want to ascertain that your documents are correct\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bootspec", nix.thunk(() => ({})))),
           extensions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               default: nix.thunk(() => ({})),
               description: "User-defined data that extends the bootspec document.\n\nTo reduce incompatibility and prevent names from clashing\nbetween applications, it is **highly recommended** to use a\nunique namespace for your extensions.\n",
             })))),
           writer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               internal: true,
               default: nix.thunk(() => nix.sel(schemas, "v1", "generator")),
             })))),
           validator: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               internal: true,
               default: nix.thunk(() => nix.sel(schemas, "v1", "validator")),
             })))),
           filename: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               internal: true,
               default: nix.thunk(() => nix.sel(schemas, "v1", "filename")),
             })))),

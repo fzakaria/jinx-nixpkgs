@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libudev-devd";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wulf7",
           repo: "libudev-devd",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(freebsd, "libdevinfo")), evdev_proto]);
       const mesonFlags = nix.thunk(() => ["-Denable-gpl=true"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "libudev-compatible interface for devd",
         homepage: "https://github.com/wulf7/libudev-devd",
         license: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "freebsd")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

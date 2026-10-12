@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "miniscript",
       version: "0-unstable-2023-03-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sipa",
           repo: "miniscript",
           rev: "6806dfb15a1fafabf7dd28aae3c9d2bc49db01f1",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Replace hardcoded g++ with c++ so clang can be used\n# on darwin\nsubstituteInPlace Makefile \\\n    --replace-fail 'g++' 'c++'\n")),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp miniscript $out/bin/miniscript\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler and inspector for the miniscript Bitcoin policy language",
         longDescription: "Miniscript is a language for writing (a subset of) Bitcoin Scripts in a structured way, enabling analysis, composition, generic signing and more.",
         homepage: "https://bitcoin.sipa.be/miniscript/",

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sc/scs/package.nix:13:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scs",
       version: "3.3.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cvxgrp",
           repo: "scs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       postCheck: "./out/demo_socp_indirect 42 0.42 0.42 42\n",
       installPhase: "runHook preInstall\nmkdir -p $out/lib\ncp -r include $out/\ncp out/*.a out/*.so out/*.dylib $out/lib/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "scs-python": nix.thunk(() => nix.sel(python3Packages, "scs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Splitting Conic Solver",
         longDescription: "Numerical optimization package for solving large-scale convex cone problems\n",
         homepage: "https://github.com/cvxgrp/scs",

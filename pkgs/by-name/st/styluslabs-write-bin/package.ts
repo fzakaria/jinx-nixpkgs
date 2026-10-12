@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "Write",
       exec: "Write",
       comment: "A word processor for handwriting",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "styluslabs-write-bin";
       const version = "300";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://www.styluslabs.com/write/write${version}.tar.gz`),
           sha256: "0h1wf3af7jzp3f3l8mlnshi83d7a4v4y8nfqfai4lmskyicqlz7c",
         }))));
@@ -65,7 +65,7 @@ ln -s $out/Write/Write144x144.png $out/share/icons/write_stylus.png
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.styluslabs.com/",
         description: "Write is a word processor for handwriting",
         sourceProvenance: nix.thunk(() => (() => {
@@ -84,7 +84,7 @@ ln -s $out/Write/Write144x144.png $out/share/icons/write_stylus.png
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-btm",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "nix-btm",
           hash: "sha256-f8XFWlx+gwhF/OD8+tPcLGV/v0QnsDWOcqpY3Js+FAo=",
         })))),
       cargoHash: "sha256-zMQw3Q9t6JSMDt7xHMGTgAu9LW6MhG+Rrjpp5IEs/qQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rust tool to monitor Nix processes",
         homepage: "https://github.com/DieracDelta/nix-btm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

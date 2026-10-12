@@ -25,19 +25,19 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`--smartctl.interval=${nix.sel(cfg, "maxInterval")}`),
     ], nix.concat(nix.builtins.map((device) => nix.str`--smartctl.device=${device}`, nix.thunk(() => nix.sel(cfg, "devices"))), nix.sel(cfg, "extraFlags"))))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9633n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       devices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => nix.app(literalExpression, "[ \"/dev/sda\", \"/dev/nvme0n1\" ];\n")),
           description: "Paths to the disks that will be monitored. Will autodiscover\nall disks if none given.\n",
         })))),
       maxInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "60s",
           example: "2m",
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         AmbientCapabilities: nix.thunk(() => ["CAP_SYS_RAWIO", "CAP_SYS_ADMIN"]),
         CapabilityBoundingSet: nix.thunk(() => ["CAP_SYS_RAWIO", "CAP_SYS_ADMIN"]),
         DevicePolicy: "closed",

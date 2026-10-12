@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fontforge = nix.arg($, "fontforge");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linux-libertine",
       version: "5.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/linuxlibertine/5.3.0/LinLibertineSRC_5.3.0_2012_07_02.tgz",
           hash: "sha256-G+xDYKJvHPMzwnktkg9cpNTv9E9d5QFgDjReuKH57HQ=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nfor i in *.sfd; do\n  fontforge -lang=ff -c \\\n    'Open($1);\n    ScaleToEm(1000);\n    Reencode(\"unicode\");\n    Generate($1:r + \".ttf\");\n    Generate($1:r + \".otf\");\n    Reencode(\"TeX-Base-Encoding\");\n    Generate($1:r + \".afm\");\n    Generate($1:r + \".pfm\");\n    Generate($1:r + \".pfb\");\n    Generate($1:r + \".map\");\n    Generate($1:r + \".enc\");\n    ' $i;\ndone\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -m444 -Dt $out/share/fonts/opentype/public *.otf\ninstall -m444 -Dt $out/share/fonts/truetype/public *.ttf\ninstall -m444 -Dt $out/share/fonts/type1/public    *.pfb\ninstall -m444 -Dt $out/share/texmf/fonts/enc       *.enc\ninstall -m444 -Dt $out/share/texmf/fonts/map       *.map\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux Libertine Fonts",
         homepage: "http://linuxlibertine.sf.net",
         maintainers: nix.thunk(() => (() => {

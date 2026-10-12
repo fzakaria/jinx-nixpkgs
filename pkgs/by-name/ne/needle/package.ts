@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "needle";
       const version = "0.24.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uber",
           repo: "needle",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const configurePhase = nix.thunk(() => nix.sel(generated, "configure"));
       const installPhase = "runHook preInstall\ninstall -Dm755 \"$(swiftpmBinPath)\"/needle $out/bin/needle\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compile-time safe Swift dependency injection framework",
         homepage: "https://github.com/uber/needle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

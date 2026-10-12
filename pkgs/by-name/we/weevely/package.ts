@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "weevely",
       version: "4.0.2-unstable-2024-04-29",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "epinna",
           repo: "weevely3",
           rev: "3fe896a67af8c0b44f39f50fb7234812a9da2118",
@@ -50,7 +50,7 @@ makeWrapper ${python3}/bin/python $out/bin/weevely \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Weaponized web shell",
         homepage: "https://github.com/epinna/weevely3",
         mainProgram: "weevely",

@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const gradle = gradle_8;
       const version = "21.0.9.11.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corretto",
           repo: "corretto-21",
           rev: version,
           hash: "sha256-d62rXVgVlOM3M18c8GioFtMi/GhmCEMLQwy/EWAJW7I=",
         }))));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lib: lib_1,
         stdenv: stdenv_1,
         rsync: rsync_1,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(corretto, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       patches: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [nix.path(here, "./corretto21-gradle8.patch")])),
     }));
 })(), formals$1);

@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
     const changedFiles = nix.arg($_1, "changedFiles");
     const affectedAttrPaths = nix.arg($_1, "affectedAttrPaths");
     const pkgs = nix.argOr($_1, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         system: "x86_64-linux",
-        config: nix.thunk(() => ({ __proto__: pos$1, allowAliases: false })),
+        config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false })),
         overlays: [],
       }))));
     const nixpkgsRoot = nix.thunk(() => nix.add(nix.builtins.toString(nix.path(here, "../../..")), "/"));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(nix.sel(lib, "unsafeGetAttrPos"), "version", drv)),
           ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(drv, "meta", "position")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               file: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(drv, "meta", "position")))))),
             })),
           ])))))));
@@ -62,18 +62,18 @@ export default nix.lambda((args) => (() => {
     const attrPathsToGetMaintainersFor = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(relevantAffectedAttrPaths, changedByNameAttrPaths))));
     const attrPathEntities = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (attrPath) => (() => {
         const package$ = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), attrPath, pkgs));
-        return nix.concat(nix.app(userPings, nix.thunk(() => ({ __proto__: pos$4, attrPath: attrPath })), nix.thunk(() => nix.selOr(package$, () => [], "meta", "nonTeamMaintainers"))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ __proto__: pos$5, attrPath: attrPath })))), nix.thunk(() => nix.selOr(package$, () => [], "meta", "teams"))));
+        return nix.concat(nix.app(userPings, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: attrPath })), nix.thunk(() => nix.selOr(package$, () => [], "meta", "nonTeamMaintainers"))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: attrPath })))), nix.thunk(() => nix.selOr(package$, () => [], "meta", "teams"))));
       })(), attrPathsToGetMaintainersFor));
-    const changedFileEntities = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (file) => nix.concat(nix.app(userPings, nix.thunk(() => ({ __proto__: pos$6, file: file })), nix.thunk(() => nix.selOr(fileUsers, () => [], nix.key(nix.force(file))))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ __proto__: pos$7, file: file })))), nix.thunk(() => nix.selOr(fileTeams, () => [], nix.key(nix.force(file)))))), changedFiles));
+    const changedFileEntities = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (file) => nix.concat(nix.app(userPings, nix.thunk(() => ({ [nix.POS]: pos$6, file: file })), nix.thunk(() => nix.selOr(fileUsers, () => [], nix.key(nix.force(file))))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ [nix.POS]: pos$7, file: file })))), nix.thunk(() => nix.selOr(fileTeams, () => [], nix.key(nix.force(file)))))), changedFiles));
     const userPings = (context) => nix.app(nix.builtins.map, (maintainer) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         type: "user",
         userId: nix.thunk(() => nix.sel(maintainer, "githubId")),
         context: context,
       }));
     const teamPings = (context) => (team) => (nix.asBool(nix.has(team, "githubId")) ? [
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         type: "team",
         teamId: nix.thunk(() => nix.sel(team, "githubId")),
         context: context,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_team) => nix.app(nix.sel(lib, "map"), (pkg) => nix.sel(pkg, "context")))),
       ])));
     return {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       users: byUser,
       teams: byTeam,
       packages: attrPathsToGetMaintainersFor,

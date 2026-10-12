@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const wl_mirror = nix.arg($, "wl-mirror");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nirimon",
       version: "2026.819.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stepbrobd",
           repo: "nirimon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "TUI monitor configuration tool for niri with visual layout, drag-and-drop, and profile management",
         homepage: "https://github.com/stepbrobd/nirimon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

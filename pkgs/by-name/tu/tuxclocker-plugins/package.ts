@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const tuxclocker = nix.arg($, "tuxclocker");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       src: nix.thunk(() => nix.attr(tuxclocker, "src")),
       version: nix.thunk(() => nix.attr(tuxclocker, "version")),
       meta: nix.thunk(() => nix.attr(tuxclocker, "meta")),

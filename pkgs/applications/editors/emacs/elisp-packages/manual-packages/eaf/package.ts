@@ -9,7 +9,7 @@ const pos$2 = nix.positions(here + "/package.nix", [["withApplications", 16, 11]
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const emacs_application_framework = nix.arg($, "emacs-application-framework");
-  const withApplications = (enabledApps) => nix.app(nix.sel(emacs_application_framework, "override"), nix.thunk(() => ({ __proto__: pos$1, enabledApps: enabledApps })));
-  return { __proto__: pos$2, withApplications: withApplications };
+  const withApplications = (enabledApps) => nix.app(nix.sel(emacs_application_framework, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enabledApps: enabledApps })));
+  return { [nix.POS]: pos$2, withApplications: withApplications };
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

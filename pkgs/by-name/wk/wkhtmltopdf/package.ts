@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const darwinAttrs = nix.thunk(() => (() => {
     const version = "0.12.6-2";
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/wkhtmltopdf/packaging/releases/download/${version}/wkhtmltox-${version}.macos-cocoa.pkg`),
         sha256: "sha256-gaZrd7UI/t6NvKpnEnIDdIN2Vos2c6F/ZhG21R6YlPg=",
       }))));
     const nativeBuildInputs = nix.thunk(() => [xar, cpio]);
     const unpackPhase = "xar -xf $src\nzcat Payload | cpio -i\ntar -xf usr/local/share/wkhtmltox-installer/wkhtmltox.tar.gz\n";
     const installPhase = "runHook preInstall\nmkdir -p $out\ncp -r bin include lib share $out/\nrunHook postInstall\n";
-    return { __proto__: pos$2, version, src, nativeBuildInputs, unpackPhase, installPhase };
+    return { [nix.POS]: pos$2, version, src, nativeBuildInputs, unpackPhase, installPhase };
   })());
   const _linuxAttrs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     nativeBuildInputs: nix.thunk(() => [dpkg, autoPatchelfHook]),
     buildInputs: nix.thunk(() => [
       libxext,
@@ -61,35 +61,35 @@ export default nix.lambda((args) => (() => {
     installPhase: "runHook preInstall\n\ncp -r usr/local $out\n\nrunHook postInstall\n",
   }));
   const linuxAttrs = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "aarch64-linux": nix.thunk(() => nix.update((() => {
       const version = "0.12.6.1-3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/wkhtmltopdf/packaging/releases/download/${version}/wkhtmltox_${version}.bookworm_arm64.deb`),
           hash: "sha256-tmBhV7J8E+BE0Ku+ZwMB+I3k4Xgq/KT5wGpYF/PgOpw=",
         }))));
-      return { __proto__: pos$5, version, src };
+      return { [nix.POS]: pos$5, version, src };
     })(), _linuxAttrs)),
     "x86_64-linux": nix.thunk(() => nix.update((() => {
       const version = "0.12.6.1-3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/wkhtmltopdf/packaging/releases/download/${version}/wkhtmltox_${version}.bookworm_amd64.deb`),
           hash: "sha256-mLoNFXtQ028jvQ3t9MCqKMewxQ/NzcVKpba7uoGjlB0=",
         }))));
-      return { __proto__: pos$7, version, src };
+      return { [nix.POS]: pos$7, version, src };
     })(), _linuxAttrs)),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "wkhtmltopdf",
       version: "none",
       dontStrip: true,
       doInstallCheck: true,
       installCheckPhase: "$out/bin/wkhtmltopdf --version\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://wkhtmltopdf.org/",
         description: "Tools for rendering web pages to PDF or images (binary package)",
         longDescription: "wkhtmltopdf and wkhtmltoimage are open source (LGPL) command line tools\nto render HTML into PDF and various image formats using the QT Webkit\nrendering engine. These run entirely \"headless\" and do not require a\ndisplay or display service.\n\nThere is also a C library, if you're into that kind of thing.\n",

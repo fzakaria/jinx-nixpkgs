@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dictd";
       const version = "1.13.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dict/dictd-${version}.tar.gz`),
           hash: "sha256-GSEp37OPpyP0ipWGx5xRmPxJBP7BdXF2kXMU3Qc/EXE=",
         }))));
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`install -Dm444 -t $out/share/doc/${pname} NEWS README
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "dictd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "dictd")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dict protocol server and client",
         homepage: "http://www.dict.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mlv-app",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ilia3101",
           repo: "MLV-App",
           rev: nix.thunk(() => nix.str`QTv${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ilia3101/MLV-App/commit/b7643b1031955f085ade30e27974ddd889a4641f.patch",
             hash: "sha256-DQkoB+fjshWDLzKouhEQXzpqn78WL+eqo5oTfE9ltEk=",
           })))),
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       preFixup: "wrapQtApp \"$out/bin/mlvapp\"\n",
       installPhase: "runHook preInstall\ninstall -Dm555 -t $out/bin                mlvapp\ninstall -Dm444 -t $out/share/applications mlvapp.desktop\ninstall -Dm444 -t $out/share/icons/hicolor/512x512/apps RetinaIMG/MLVAPP.png\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "All in one MLV processing app that is pretty great",
         homepage: "https://mlv.app",
         downloadPage: "https://github.com/ilia3101/MLV-App",

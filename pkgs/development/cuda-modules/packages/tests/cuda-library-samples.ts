@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
   const libcusparse = nix.arg($, "libcusparse");
   const setupCudaHook = nix.arg($, "setupCudaHook");
   const base = nix.thunk(() => nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "CUDALibrarySamples",
           rev: "e57b9c483c5384b7b97b7d129457e5a9bdcdb5e1",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cudatoolkit]),
       postFixup: "for exe in $out/bin/*; do\n  addDriverRunpath $exe\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "examples of using libraries using CUDA",
         longDescription: "CUDA Library Samples contains examples demonstrating the use of\nfeatures in the math and image processing libraries cuBLAS, cuTENSOR,\ncuSPARSE, cuSOLVER, cuFFT, cuRAND, NPP and nvJPEG.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -52,19 +52,19 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     cublas: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (_) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "cuda-library-samples-cublas",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuBLASLt`),
       }))),
     cusolver: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (_) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "cuda-library-samples-cusolver",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuSOLVER/gesv`),
       }))),
     cutensor: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "cuda-library-samples-cutensor",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuTENSOR`),
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "buildInputs"), [libcutensor])),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         CUTENSOR_ROOT: libcutensor,
       }))),
     cusparselt: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "cuda-library-samples-cusparselt",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuSPARSELt/matmul`),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [

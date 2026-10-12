@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rocket",
       version: "2018-06-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rocket",
           repo: "rocket",
           rev: "7bc1e9826cad5dbc63e56371c6aa1798b2a7b50b",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "mkdir -p $out/bin\ncp -r editor/editor $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for synchronizing music and visuals in demoscene productions",
         mainProgram: "editor",
         homepage: "https://github.com/rocket/rocket",

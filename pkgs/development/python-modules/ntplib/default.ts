@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "899d8fb5f8c2555213aea95efca02934c7343df6ace9d7628a5176b176906267",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python NTP library",
         homepage: "http://code.google.com/p/ntplib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

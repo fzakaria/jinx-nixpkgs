@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnss-share",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postmarketOS",
           repo: "gnss-share",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-dmE6hfKUqEr7BMNi/HMUOk4jDB0dPXEMkWQyWj6XpY4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Share GNSS data between multiple clients",
         longDescription: "gnss-share is an app that facilitates sharing GNSS location data with multiple\nclients, while providing a way to perform device-specific setup beforehand. For\nsome devices, it can also manage loading and storing A-GPS data.\n\nThis is meant to replace things like gpsd, and gps-share, and work together\nwith geoclue* or other clients that support fetching NMEA location data over\nsockets.\n",
         homepage: "https://gitlab.com/postmarketOS/gnss-share",

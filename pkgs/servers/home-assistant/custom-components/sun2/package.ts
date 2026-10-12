@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const domain = "sun2";
       const version = "3.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "ha-sun2",
           tag: version,
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "sephalon"))];
         })());
         const license = nix.thunk(() => nix.sel(lib, "licenses", "unlicense"));
-        return { __proto__: pos$2, description, homepage, changelog, maintainers, license };
+        return { [nix.POS]: pos$2, description, homepage, changelog, maintainers, license };
       })());
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

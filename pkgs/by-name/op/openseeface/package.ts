@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
       const w = nix.withScope(ps, null);
       return [
-        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "opencv4"), "override"), nix.thunk(() => ({ __proto__: pos$1, enableGtk3: enableVisualization })))),
+        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "opencv4"), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGtk3: enableVisualization })))),
         nix.thunk(() => nix.lookup(w, "onnxruntime")),
         nix.thunk(() => nix.lookup(w, "pillow")),
         nix.thunk(() => nix.lookup(w, "numpy")),
       ];
     })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openseeface",
       version: "1.20.4-unstable-2024-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "emilianavt",
           repo: "OpenSeeFace",
           rev: "e6e24efd2038ab778ac094bab21c2c18a7efbeb2",
@@ -48,7 +48,7 @@ makeWrapper ${nix.sel(python, "interpreter")} "$out/bin/facetracker" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Robust realtime face and facial landmark tracking on CPU with Unity integration",
         homepage: "https://github.com/emilianavt/OpenSeeFace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

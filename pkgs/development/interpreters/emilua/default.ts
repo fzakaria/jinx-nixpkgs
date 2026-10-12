@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const enableIoUring = nix.argOr($, "enableIoUring", () => false);
   const emilua = nix.arg($, "emilua");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "emilua",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emilua",
           repo: "emilua",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,17 +84,17 @@ substituteInPlace $out/nix-support/setup-hook \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         boost: boost,
         sitePackages: nix.thunk(() => nix.str`lib/emilua-${nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))))}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          "with-io-uring": nix.thunk(() => nix.app(nix.sel(emilua, "override"), nix.thunk(() => ({ __proto__: pos$3, enableIoUring: true })))),
+          [nix.POS]: pos$4,
+          "with-io-uring": nix.thunk(() => nix.app(nix.sel(emilua, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableIoUring: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lua execution engine",
         mainProgram: "emilua",
         homepage: "https://emilua.org/",

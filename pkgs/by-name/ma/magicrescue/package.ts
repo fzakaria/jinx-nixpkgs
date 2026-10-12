@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gdbm = nix.arg($, "gdbm");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "magicrescue",
       version: "1.1.10-unstable-2021-09-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jbj",
           repo: "magicrescue",
           rev: "d9a57931d437674009bfd2f98451b3d71058eade",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/pkg-security-team/magicrescue/-/raw/6331d088a159ae21ad4ab5f18b9bf892ebe18ce3/debian/patches/020_add-Perl-preprocessor.patch",
             hash: "sha256-XX3Rlv/qKB2y/csuaPiliv4cu9KKHNpG/E88VSVP0sg=",
           })))),
       ]),
       buildInputs: nix.thunk(() => [gdbm, perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Find and recover deleted files on block devices",
         mainProgram: "magicrescue",
         homepage: "https://github.com/jbj/magicrescue",

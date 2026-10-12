@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lukesmithxyz-bible-kjv",
       version: "0-unstable-2022-06-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lukesmithxyz",
           repo: "kjv",
           rev: "1b675c0396806a2a3d134c51fd11d9fed8ea3dc5",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gawk]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read the Word of God from your terminal + Apocrypha",
         mainProgram: "kjv",
         homepage: "https://lukesmith.xyz/articles/command-line-bibles",

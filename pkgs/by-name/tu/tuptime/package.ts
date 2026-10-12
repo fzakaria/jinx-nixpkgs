@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tuptime",
       version: "5.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rfmoz",
           repo: "tuptime",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`wrapProgram $out/share/tuptime/db-tuptime-migrate-4.0-to-5.0.sh \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [sqlite]))}"
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "tuptime")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "tuptime")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Total uptime & downtime statistics utility",
         homepage: "https://github.com/rfrail3/tuptime",
         changelog: "https://github.com/rfrail3/tuptime/blob/master/CHANGELOG",

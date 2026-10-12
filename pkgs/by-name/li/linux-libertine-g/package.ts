@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linux-libertine-g",
       version: "20120116",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.numbertext.org/linux/e7a384790b13c29113e22e596ade9687-LinLibertineG-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-UGTB7jsI6peivCtEt96RCSi5XHCrnjCSs0Ud5bF7uxk=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphite versions of Linux Libertine and Linux Biolinum font families for LibreOffice and OpenOffice.org",
         homepage: "https://numbertext.org/linux/",
         maintainers: nix.thunk(() => (() => {

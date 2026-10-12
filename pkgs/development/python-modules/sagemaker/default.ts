@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.256.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "sagemaker-python-sdk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -95,20 +95,20 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sagemaker", "sagemaker.lineage.visualizer"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         local: nix.thunk(() => [urllib3, docker, pyyaml]),
         scipy: nix.thunk(() => [scipy]),
         huggingface: nix.thunk(() => [accelerate]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for training and deploying machine learning models on Amazon SageMaker",
         homepage: "https://github.com/aws/sagemaker-python-sdk/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/sagemaker-python-sdk/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

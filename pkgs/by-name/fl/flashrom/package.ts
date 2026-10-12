@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const jlinkSupport = nix.argOr($, "jlinkSupport", () => false);
   const git = nix.arg($, "git");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flashrom",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.flashrom.org/releases/flashrom-v${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZUycYXRcJQzTtczQ5W/EPudpgPkqXgeEIEIGOdZpdaI=",
         })))),
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       doInstallCheck: true,
       postInstall: "install -Dm644 $NIX_BUILD_TOP/$sourceRoot/util/flashrom_udev.rules $out/lib/udev/rules.d/flashrom.rules\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-gnu-folding-constant" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-gnu-folding-constant" })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.flashrom.org",
         description: "Utility for reading, writing, erasing and verifying flash ROM chips",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

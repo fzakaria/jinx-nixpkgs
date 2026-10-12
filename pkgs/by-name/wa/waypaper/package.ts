@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const killall = nix.arg($, "killall");
   const socat = nix.arg($, "socat");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "waypaper",
       version: "2.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anufrievroman",
           repo: "waypaper",
           rev: "17f60be4c6abc5ab9c5d4837d930015661ccdd3d",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/anufrievroman/waypaper/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "GUI wallpaper setter for Wayland-based window managers",
         mainProgram: "waypaper",

@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
     const source = nix.argOr($_1, "source", () => "");
     const hash = nix.argOr($_1, "hash", () => "");
     const requestJson = nix.thunk(() => nix.app(nix.sel(lib, "strings", "toJSON"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         fileName: fileName,
         artifactId: artifactId,
         fileType: fileType,
         source: source,
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: fileName,
         url: nix.thunk(() => nix.add(nix.app(mkBaseUrl, toolId), "?p_p_id=SDK_AND_TOOL_DETAILS_INSTANCE_iwlk&p_p_lifecycle=2&p_p_resource_id=documentDownloadArtifact")),
         builder: nix.thunk(() => nix.app(writeShellScript, "builder.sh", nix.thunk(() => nix.str`curlVersion=$(${curl}/bin/curl -V | head -1 | cut -d' ' -f2)
@@ -92,30 +92,30 @@ fi
       })));
   })(), formals$2);
   const ovftoolSystems = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => (() => {
       const version = "5.1.0-25410048";
       const fileName = nix.thunk(() => nix.str`VMware-ovftool-${version}-lin.x86_64.zip`);
       const hash = "sha256-LIOXCiEswBJirbds47nFKvOW+tg0D/cay3SeM+hsjjM=";
-      return { __proto__: pos$3, version, fileName, hash };
+      return { [nix.POS]: pos$3, version, fileName, hash };
     })()),
   }));
   const ovftoolSystem = nix.thunk(() => nix.selOr(ovftoolSystems, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const ovftool_xercesc = nix.thunk(() => nix.app(nix.sel(xercesc, "overrideAttrs"), (prev) => (() => {
       const version = "3.2.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [nix.thunk(() => nix.sel(prev, "version"))]), nix.thunk(() => [version]), nix.thunk(() => nix.sel(prev, "src", "url")))),
           hash: "sha256-VFz8zmxOdVIHvR8n4xkkHlDjfAwnJQ8RzaEWAY8e8PU=",
         }))));
-      return { __proto__: pos$6, version, src };
+      return { [nix.POS]: pos$6, version, src };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ovftool",
       version: nix.thunk(() => nix.attr(ovftoolSystem, "version")),
       src: nix.thunk(() => (nix.asBool(acceptBroadcomEula) ? nix.app(fetchFromBroadcom, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           fileName: nix.thunk(() => nix.attr(ovftoolSystem, "fileName")),
           version: nix.thunk(() => nix.attr(ovftoolSystem, "version")),
           hash: nix.thunk(() => nix.attr(ovftoolSystem, "hash")),
@@ -220,7 +220,7 @@ $ovftool_with_args --schemaValidate nixos.ovf
 set +x
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "VMware tools for working with OVF, OVA, and VMX images",
         homepage: "https://developer.vmware.com/web/tool/ovf-tool/",
         sourceProvenance: nix.thunk(() => (() => {

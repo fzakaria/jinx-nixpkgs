@@ -7,17 +7,17 @@ const pos$2 = nix.positions(here + "/default.nix", [["root", 19, 5], ["fileset",
 const pos$3 = nix.positions(here + "/default.nix", [["name", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 27, 3], ["patchPhase", 32, 3], ["buildPhase", 36, 3], ["installPhase", 43, 3]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({ __proto__: pos$1, config: nix.thunk(() => ({})), overlays: [] }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, config: nix.thunk(() => ({})), overlays: [] }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const stdenvNoCC = nix.thunk(() => nix.attr(pkgs, "stdenvNoCC"));
   const gitMinimal = nix.thunk(() => nix.attr(pkgs, "gitMinimal"));
   const treefmt = nix.thunk(() => nix.attr(pkgs, "treefmt"));
   const nixfmt = nix.thunk(() => nix.attr(pkgs, "nixfmt"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "test",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           root: nix.path(here, "./.."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
               nix.path(here, "../run.sh"),

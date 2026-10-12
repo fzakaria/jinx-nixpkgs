@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jpegexiforient",
       version: "0-unstable-2002-02-17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://sylvana.net/jpegcrop/jpegexiforient.c",
           sha256: "1v0f42cvs0397g9v46p294ldgxwbp285npg6npgnlnvapk6nzh5s",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC -o jpegexiforient jpegexiforient.c\n",
       installPhase: "install -Dt $out/bin jpegexiforient\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility program to get and set the Exif Orientation Tag",
         homepage: "http://sylvana.net/jpegcrop/exif_orientation.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

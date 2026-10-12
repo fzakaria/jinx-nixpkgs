@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "marksparkza",
           repo: "jschon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_benchmarks.py"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Object-oriented JSON Schema implementation for Python",
         homepage: "https://github.com/marksparkza/jschon",
         changelog: nix.thunk(() => nix.str`https://github.com/marksparkza/jschon/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

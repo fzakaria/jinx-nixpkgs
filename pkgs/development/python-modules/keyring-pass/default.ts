@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nazarewk",
           repo: "keyring_pass",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,14 +62,14 @@ keyring del test-service test-username
 `);
       const pythonImportsCheck = nix.thunk(() => ["keyring_pass"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Password Store (pass) backend for python's keyring",
         homepage: "https://github.com/nazarewk/keyring_pass",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nazarewk"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

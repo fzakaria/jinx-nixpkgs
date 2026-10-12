@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-1VRnvOq96knX42JK9+M9WcN//1PtOjUOGslXvtcx3no=",
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const dontUsePythonImportsCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Installs all the Jupyter components in one go",
         homepage: "https://jupyter.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         priority: 100n,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

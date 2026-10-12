@@ -44,21 +44,21 @@ export default nix.lambda((args) => (() => {
   const report = nix.thunk(() => nix.attr(from, "report"));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "facter", "detected", "virtualisation"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       hardware: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         facter: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           detected: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               virtio_scsi: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Facter Virtualisation Virtio SCSI module"), {
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: nix.thunk(() => nix.app(nix.sel(lib, "any"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const vendor = nix.arg($_1, "vendor");
@@ -69,41 +69,41 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               oracle: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Facter Virtualisation Oracle module"), {
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   default: nix.thunk(() => nix.eq(nix.selOr(report, () => null, "virtualisation"), "oracle")),
                   defaultText: "environment dependent",
                 })),
               })),
               parallels: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Facter Virtualisation Parallels module"), {
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   default: nix.thunk(() => nix.eq(nix.selOr(report, () => null, "virtualisation"), "parallels")),
                   defaultText: "environment dependent",
                 })),
               })),
               qemu: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Facter Virtualisation Qemu module"), {
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   default: nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.selOr(report, () => null, "virtualisation")), nix.thunk(() => ["qemu", "kvm", "bochs"]))),
                   defaultText: "environment dependent",
                 })),
               })),
               hyperv: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Facter Virtualisation Hyper-V module"), {
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   default: nix.thunk(() => nix.eq(nix.selOr(report, () => null, "virtualisation"), "microsoft")),
                   defaultText: "environment dependent",
                 })),
               })),
               none: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Facter Virtualisation None module"), {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   default: nix.thunk(() => nix.eq(nix.selOr(report, () => null, "virtualisation"), "none")),
                   defaultText: "environment dependent",
                 })),
@@ -114,9 +114,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "facter", "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         boot: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           kernelModules: nix.thunk(() => (() => {
             const hasCPUFeature = (feature) => nix.app(nix.sel(lib, "any"), nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$3);
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
               ]));
           })()),
           initrd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             kernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "qemu", "enable")), nix.thunk(() => ["virtio_balloon", "virtio_console", "virtio_rng", "virtio_gpu"]))),
             availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "qemu", "enable")), nix.thunk(() => [
@@ -145,29 +145,29 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           virtualbox: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             guest: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "oracle", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
             })),
           })),
           hypervGuest: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hyperv", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           parallels: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "parallels", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)))),
           })),
         })),
         nixpkgs: nix.thunk(() => ({
-          __proto__: pos$27,
-          config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(options, "nixpkgs", "pkgs", "isDefined"))) && nix.asBool(nix.sel(cfg, "parallels", "enable")))), nix.thunk(() => ({ __proto__: pos$26, allowUnfreePackages: nix.thunk(() => ["prl-tools"]) })))),
+          [nix.POS]: pos$27,
+          config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(options, "nixpkgs", "pkgs", "isDefined"))) && nix.asBool(nix.sel(cfg, "parallels", "enable")))), nix.thunk(() => ({ [nix.POS]: pos$26, allowUnfreePackages: nix.thunk(() => ["prl-tools"]) })))),
         })),
       })))),
   };

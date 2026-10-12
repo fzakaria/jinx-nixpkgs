@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const isodate = nix.arg($, "isodate");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azure-mgmt-batchai",
       version: "7.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "azure_mgmt_batchai",
           hash: "sha256-XfAE/QyST8ZVlJR6nP9Pdgh97hfIhFM6G7sLINsn06M=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["azure.mgmt"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This is the Microsoft Azure Batch AI Management Client Library",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-batchai_${nix.sel(finalAttrs, "version")}/sdk/batchai/azure-mgmt-batchai/CHANGELOG.md`),

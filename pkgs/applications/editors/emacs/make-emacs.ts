@@ -125,13 +125,13 @@ export default nix.lambda((args) => (() => {
       ]))));
     const withWebkitgtk = nix.thunk(() => (nix.asBool(withXwidgets) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: nix.thunk(() => nix.add(pname, (nix.asBool(noGui) ? "-nox" : (nix.asBool(nix.eq(variant, "macport")) ? "-macport" : (nix.asBool(withPgtk) ? "-pgtk" : (nix.asBool(withGTK3) ? "-gtk3" : "")))))),
         version: version,
         src: src,
         patches: nix.thunk(() => nix.concat(nix.app(patches, fetchpatch), nix.concat([nix.path(here, "./load-the-early-default-library-after-early-init.el.patch")], nix.app(nix.sel(lib, "optionals"), withNativeCompilation, nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./native-comp-driver-options-30.patch"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 backendPath: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map((x) => nix.str`"-B${x}"`, nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libgccjit)}/lib`)], nix.concat(libGccJitLibraryPaths, nix.concat([
                       nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/bin`),
                       nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools")))}/bin`),
@@ -212,11 +212,11 @@ done
         ]))))),
         __structuredAttrs: true,
         env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), withNativeCompilation, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             NATIVE_FULL_AOT: "1",
             LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", libGccJitLibraryPaths)),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(variant, "macport")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-isystem ${nix.path(here, "./macport-noescape-noop")}`),
           }))))),
         enableParallelBuilding: true,
@@ -235,22 +235,22 @@ patchelf --add-needed "libXcursor.so.1" "$out/bin/emacs"
 `))),
         setupHook: nix.path(here, "./setup-hook.sh"),
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           withNativeCompilation: withNativeCompilation,
           withTreeSitter: withTreeSitter,
           withXwidgets: withXwidgets,
           pkgs: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(emacsPackagesFor, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))))),
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "emacs-daemon": nix.thunk(() => nix.attr(nixosTests, "emacs-daemon")),
             withPackages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/wrapper-test"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 emacs: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
         })),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           broken: nix.thunk(() => (nix.asBool(withNativeCompilation) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))),
         }, meta)),
       }));

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const foo = nix.thunk(() => nix.sel(tests, "stdenv-inputs", "foo"));
   const baz_bundle = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "baz-bundle",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/lib/libs
 cp ${nix.app(nix.sel(lib, "getDev"), foo)}/lib/libfoo.so $out/lib/libs/
@@ -29,7 +29,7 @@ $CC -shared -lfoo -L$out/lib/libs -o $out/lib/libbaz.so ${nix.path(here, "./lib-
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getDev"), foo))]),
     }))));
   const baz_bundle_relocatable = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "baz-bundle-relocatable",
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       autoPatchelfFlags: nix.thunk(() => ["--relativize-rpath"]),
@@ -40,7 +40,7 @@ cp -R ${baz_bundle}/lib $out/lib
       disallowedReferences: nix.thunk(() => [baz_bundle, "out"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "auto-patchelf-hook-relativize-rpath",
       nativeBuildInputs: nix.thunk(() => [patchelf, python3]),
       buildCommand: nix.thunk(() => nix.str`mkdir -p libs/baz-bundle
@@ -58,7 +58,7 @@ python main.py |& tee /dev/stderr | grep -q "foo returned 42"
 touch $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));

@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const version = "0.2.36";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fschat",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lm-sys",
           repo: "FastChat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         llm_judge: nix.thunk(() => [anthropic, openai, ray]),
         train: nix.thunk(() => [wandb, einops]),
         webui: nix.thunk(() => [gradio]),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["fastchat"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open platform for training, serving, and evaluating large language models. Release repo for Vicuna and Chatbot Arena",
         homepage: "https://github.com/lm-sys/FastChat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

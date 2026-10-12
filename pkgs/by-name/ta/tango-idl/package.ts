@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tango-idl",
       version: "6.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tango-controls",
           repo: "tango-idl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/tango-controls/tango-idl/-/commit/8fd75a4079bf96544697f7783c2de0027d030b8e.patch",
             hash: "sha256-2NMfHakoHzxnYqxVDvH2LnEtLe8S8K88prT9AAs95MA=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tango CORBA IDL file",
         homepage: "https://gitlab.com/tango-controls/tango-idl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

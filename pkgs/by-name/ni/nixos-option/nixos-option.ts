@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.thunk(() => nix.attr(from, "lib"));
   const path$ = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isString"), path)) ? (nix.asBool(nix.eq(path, "")) ? [] : nix.app(readOption, path)) : nix.force(path)));
   const flatMapSlices = (predStart) => (predEnd) => (f) => (list) => (() => {
-    const empty = nix.thunk(() => ({ __proto__: pos$1, result: [], active: [] }));
+    const empty = nix.thunk(() => ({ [nix.POS]: pos$1, result: [], active: [] }));
     const op = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const result = nix.arg($_1, "result");
       const active = nix.arg($_1, "active");
       return (x) => (nix.asBool((nix.asBool(nix.app(predStart, x)) && nix.asBool(nix.app(predEnd, x)))) ? {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         result: nix.thunk(() => nix.concat(result, nix.concat(active, nix.app(f, nix.thunk(() => [x]))))),
         active: [],
       } : (nix.asBool(nix.app(predStart, x)) ? {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         result: nix.thunk(() => nix.concat(result, active)),
         active: nix.thunk(() => [x]),
       } : (nix.asBool(nix.app(predEnd, x)) ? {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         result: nix.thunk(() => nix.concat(result, nix.app(f, nix.thunk(() => nix.concat(active, [x]))))),
         active: [],
       } : {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         result: result,
         active: nix.thunk(() => nix.concat(active, [x])),
       })));
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
     const into = (opt) => (part) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isOption"), opt)) && nix.asBool(nix.eq(nix.sel(opt, "type", "descriptionClass"), "composite")))) ? nix.app(nix.sel(opt, "type", "getSubOptions"), []) : (nix.asBool(nix.app(nix.sel(lib, "isOption"), opt)) ? nix.builtins.throw(nix.thunk(() => nix.str`Trying to access '${part}' inside ${nix.sel(opt, "type", "name")} option while traversing option path '${nix.app(nix.sel(lib, "showOption"), path_1)}'`)) : (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), opt)) && nix.asBool(nix.app(nix.sel(lib, "hasAttr"), part, opt)))) ? nix.sel(opt, nix.key(nix.force(part))) : nix.builtins.throw(nix.thunk(() => nix.str`Found neither an attrset nor supported option type near '${part}' while traversing option path '${nix.app(nix.sel(lib, "showOption"), path_1)}'`)))));
     return nix.app(nix.sel(lib, "foldl"), into, root, path_1);
   })();
-  const toPretty = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$6, multiline: true }))));
+  const toPretty = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$6, multiline: true }))));
   const safeToPretty = (x) => (() => {
     const e = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(toPretty, x))));
     return (nix.asBool(nix.sel(e, "success")) ? nix.sel(e, "value") : "\u001b[1;31m«error»\u001b[m");

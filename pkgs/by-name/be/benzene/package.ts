@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const db = nix.arg($, "db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "benzene",
       version: "0-unstable-2022-12-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cgao3",
           repo: "benzene-vanilla-cmake",
           rev: "95614769bafc9850a3cc54974660bb1795db6086",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fixes for boost v1.85.0+\n# https://github.com/cgao3/benzene-vanilla-cmake/issues/18\nsubstituteInPlace src/util/Misc.cpp \\\n  --replace-fail '.branch_path()' '.parent_path()' \\\n  --replace-fail '.normalize()' '.lexically_normal()'\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail '-DABS_TOP_SRCDIR=\"${top_srcdir}\"' '-DABS_TOP_SRCDIR=\"$ENV{out}\"' \\\n  --replace-fail '-DDATADIR=\"${pkgdatadir}\"' '-DDATADIR=\"$ENV{out}/share\"'\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp src/mohex/mohex $out/bin/mohex\ncp src/wolve/wolve $out/bin/wolve\ncp -r ../share $out/share/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software for playing and solving the game of Hex",
         homepage: "https://github.com/cgao3/benzene-vanilla-cmake",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const guile_json_rpc = nix.arg($, "guile-json-rpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-lsp-server",
       version: "0.4.8",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rgherdt",
           repo: "scheme-lsp-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --argv0 $out/bin/guile-lsp-server
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://codeberg.org/rgherdt/scheme-lsp-server",
         description: "LSP server for Guile",
         mainProgram: "guile-lsp-server",

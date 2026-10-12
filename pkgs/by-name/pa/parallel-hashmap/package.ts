@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "parallel-hashmap",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greg7mdp",
           repo: "parallel-hashmap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ substituteInPlace CMakeLists.txt \\
       nativeCheckInputs: nix.thunk(() => [gtest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Family of header-only, very fast and memory-friendly hashmap and btree containers",
         homepage: "https://github.com/greg7mdp/parallel-hashmap",
         changelog: nix.thunk(() => nix.str`https://github.com/greg7mdp/parallel-hashmap/releases/tag/v${nix.sel(finalAttrs, "version")}`),

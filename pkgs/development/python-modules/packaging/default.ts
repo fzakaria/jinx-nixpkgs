@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pretend = nix.arg($, "pretend");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "packaging",
       version: "26.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/0Uv9aPoKM4RAZD+/xF4ux8uoigfogdarbmHwvsiFmE=",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(packaging, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(nix.sel(packaging, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/packaging/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),
         description: "Core utilities for Python packages",
         downloadPage: "https://github.com/pypa/packaging",

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jellyflix";
       const version = "1.4.886";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jellyflix-app",
           repo: "jellyflix",
           tag: version,
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const buildInputs = nix.thunk(() => [alsa_lib, mpv_unwrapped]);
       const customSourceBuilders = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         volume_controller: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: "volume_controller",
               version: version_1,
               src: src_1,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const gitHashes = nix.thunk(() => (() => {
         const media_kit_hash = "sha256-8dIiEeeBQOGST9kGHSp15Cdg377AQeBynbvWPAnGbJc=";
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           filter_list: "sha256-cYnsujNMC6n9hZNHcbOevXWh54+jPeuHEUbdt1mDgP8=",
           tentacle: "sha256-30a4Vn8wL0TdboSYPm1W+hRqXSsuID0gNOVnNe3KmPE=",
           media_kit: media_kit_hash,
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "jellyflix",
             desktopName: "Jellyflix",
             genericName: "Media Player",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Easy-to-use Jellyfin client for movies and shows",
         homepage: "https://github.com/jellyflix-app/jellyflix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

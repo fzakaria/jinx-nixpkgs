@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pname = "PS2PatchElf";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CaptainSwag101",
           repo: "PS2PatchElf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nugetDeps = nix.path(here, "./deps.json");
       const projectFile = "PS2PatchElf/PS2PatchElf.csproj";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/CaptainSwag101/PS2PatchElf/",
         description: "Very basic tool for converting PCSX2 .pnach cheats to game executable patches",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gigahawk"))]),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

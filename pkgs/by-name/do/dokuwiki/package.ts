@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dokuwiki = nix.arg($, "dokuwiki");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "dokuwiki",
       version: "2026-07-14c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dokuwiki",
           repo: "dokuwiki",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ cp ${nix.sel(finalAttrs, "phpPluginsLocalConfig")} $out/share/dokuwiki/conf/plug
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         combine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const basePackage = nix.argOr($_1, "basePackage", () => nix.force(dokuwiki));
@@ -59,12 +59,12 @@ runHook postInstall
           const pname = nix.argOr($_1, "pname", () => (p) => nix.str`${nix.sel(p, "pname")}-combined`);
           const isNotEmpty = (x) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.builtins.elem(x, nix.thunk(() => [null, ""])))));
           const configs = nix.thunk(() => nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "local.php": localConfig,
             "plugins.local.php": pluginsConfig,
           }, extraConfigs));
           return nix.app(nix.sel(basePackage, "overrideAttrs"), (prev) => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: nix.thunk(() => (nix.asBool(nix.builtins.isFunction(pname)) ? nix.app(pname, prev) : nix.force(pname))),
               postInstall: nix.thunk(() => nix.add(nix.selOr(prev, () => "", "postInstall"), nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (tpl) => nix.str`cp -r ${nix.builtins.toString(tpl)} $out/share/dokuwiki/lib/tpl/${nix.sel(tpl, "name")}`, templates)}
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (plugin) => nix.str`cp -r ${nix.builtins.toString(plugin)} $out/share/dokuwiki/lib/plugins/${nix.sel(plugin, "name")}`, plugins)}
@@ -74,18 +74,18 @@ ${nix.app(isNotEmpty, aclConfig, nix.thunk(() => nix.str`ln -sf ${aclConfig} $ou
             }));
         })(), formals$2),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           dokuwiki: nix.thunk(() => nix.attr(nixosTests, "dokuwiki")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Simple to use and highly versatile Open Source wiki software that doesn't require a database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://www.dokuwiki.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "dokuwiki", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         maintainers: nix.thunk(() => (() => {

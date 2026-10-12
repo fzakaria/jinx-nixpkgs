@@ -19,30 +19,30 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "fedimintd",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "dpc"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             fedimintd: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               mainnet: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: true,
-                p2p: nix.thunk(() => ({ __proto__: pos$2, url: "fedimint://example.com" })),
-                api_ws: nix.thunk(() => ({ __proto__: pos$3, url: "wss://example.com" })),
+                p2p: nix.thunk(() => ({ [nix.POS]: pos$2, url: "fedimint://example.com" })),
+                api_ws: nix.thunk(() => ({ [nix.POS]: pos$3, url: "wss://example.com" })),
                 environment: nix.thunk(() => ({})),
               })),
             })),

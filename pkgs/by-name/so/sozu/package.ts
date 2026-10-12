@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sozu = nix.arg($, "sozu");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sozu",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sozu-proxy",
           repo: "sozu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-9ZmlUUdtVAvri9v+EJb6vRQ7Yc3FjRwU5I5Xe8je9/c=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sozu-proxy/sozu/commit/ec83fad967f2606d5d668679e138631a70ec7de5.patch?full_index=1",
             hash: "sha256-chXehutcI4+gDwY1uUPgE4t0fgGOsEHPP8gMsnXNB10=",
           })))),
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [protobuf]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: sozu,
               command: "sozu --version",
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open Source HTTP Reverse Proxy built in Rust for Immutable Infrastructures",
         homepage: "https://www.sozu.io",
         changelog: nix.thunk(() => nix.str`https://github.com/sozu-proxy/sozu/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

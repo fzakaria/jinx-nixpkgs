@@ -49,60 +49,60 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       options: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["mail", "web"]))),
             default: "web",
             example: "mail",
             description: "The type of log being collected.\n",
           })))),
         domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: name,
             description: "The domain name to collect stats for.",
             example: "example.com",
           })))),
         logFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             example: "/var/log/nginx/access.log",
             description: "The log file to be scanned.\n\nFor mail, set this to\n```\njournalctl $OLD_CURSOR -u postfix.service | ${pkgs.perl}/bin/perl ${pkgs.awstats.out}/share/awstats/tools/maillogconvert.pl standard |\n```\n",
           })))),
         logFormat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "1",
             description: "The log format being used.\n\nFor mail, set this to\n```\n%time2 %email %email_r %host %host_r %method %url %code %bytesd\n```\n",
           })))),
         hostAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             example: nix.thunk(() => ["www.example.org"]),
             description: "List of aliases the site has.\n",
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"ValidHTTPCodes\" = \"404\";\n}\n")),
             description: "Extra configuration to be appended to awstats.${name}.conf.",
           })))),
         webService: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "awstats web service")),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.sel(config_1, "domain")),
               description: "The hostname the web service appears under.",
             })))),
           urlPrefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/awstats",
               description: "The URL prefix under which the awstats pages appear.",
@@ -113,34 +113,34 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   const webServices = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.sel(value, "webService", "enable"), nix.thunk(() => nix.sel(cfg, "configs"))));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "awstats", "service", "enable"]), "Please enable per domain with `services.awstats.configs.<name>.webService.enable`")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "awstats", "service", "urlPrefix"]), "Please set per domain with `services.awstats.configs.<name>.webService.urlPrefix`")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "awstats", "vardir"]), nix.thunk(() => ["services", "awstats", "dataDir"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         awstats: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "awstats, a real-time logfile analyzer")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/awstats",
               description: "The directory where awstats data will be stored.",
             })))),
           configs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), configOpts)))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"mysite\" = {\n    domain = \"example.com\";\n    logFile = \"/var/log/nginx/access.log\";\n  };\n}\n")),
               description: "Attribute set of domains to collect stats for.",
             })))),
           updateAt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "hourly",
@@ -150,13 +150,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(package$, "bin"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`awstats/awstats.${name}.conf`), nix.thunk(() => ({
-                __proto__: pos$19,
-                source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`awstats.${name}.conf`), nix.thunk(() => ({ __proto__: pos$18, preferLocalBuild: true })), nix.thunk(() => nix.add(nix.add(nix.add(nix.add("sed \\\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(opts, "type"), "mail")), "-e 's|^\\(LogType\\)=.*$|\\1=M|' \\\n-e 's|^\\(LevelForBrowsersDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForOSDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForRefererAnalyze\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForRobotsDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForSearchEnginesDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForFileTypesDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForWormsDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowMenu\\)=.*$|\\1=1|' \\\n-e 's|^\\(ShowSummary\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowMonthStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowDaysOfMonthStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowDaysOfWeekStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowHoursStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowDomainsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowHostsStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowAuthenticatedUsers\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowRobotsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowEMailSenders\\)=.*$|\\1=HBML|' \\\n-e 's|^\\(ShowEMailReceivers\\)=.*$|\\1=HBML|' \\\n-e 's|^\\(ShowSessionsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowPagesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowFileTypesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowFileSizesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowBrowsersStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowOSStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowOriginStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowKeyphrasesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowKeywordsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowMiscStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowHTTPErrorsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowSMTPErrorsStats\\)=.*$|\\1=1|' \\\n")), nix.str`-e 's|^\\(DirData\\)=.*$|\\1="${nix.sel(cfg, "dataDir")}/${name}"|' \\
+                [nix.POS]: pos$19,
+                source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`awstats.${name}.conf`), nix.thunk(() => ({ [nix.POS]: pos$18, preferLocalBuild: true })), nix.thunk(() => nix.add(nix.add(nix.add(nix.add("sed \\\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(opts, "type"), "mail")), "-e 's|^\\(LogType\\)=.*$|\\1=M|' \\\n-e 's|^\\(LevelForBrowsersDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForOSDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForRefererAnalyze\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForRobotsDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForSearchEnginesDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForFileTypesDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(LevelForWormsDetection\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowMenu\\)=.*$|\\1=1|' \\\n-e 's|^\\(ShowSummary\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowMonthStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowDaysOfMonthStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowDaysOfWeekStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowHoursStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowDomainsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowHostsStats\\)=.*$|\\1=HB|' \\\n-e 's|^\\(ShowAuthenticatedUsers\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowRobotsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowEMailSenders\\)=.*$|\\1=HBML|' \\\n-e 's|^\\(ShowEMailReceivers\\)=.*$|\\1=HBML|' \\\n-e 's|^\\(ShowSessionsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowPagesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowFileTypesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowFileSizesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowBrowsersStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowOSStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowOriginStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowKeyphrasesStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowKeywordsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowMiscStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowHTTPErrorsStats\\)=.*$|\\1=0|' \\\n-e 's|^\\(ShowSMTPErrorsStats\\)=.*$|\\1=1|' \\\n")), nix.str`-e 's|^\\(DirData\\)=.*$|\\1="${nix.sel(cfg, "dataDir")}/${name}"|' \\
 -e 's|^\\(DirIcons\\)=.*$|\\1="icons"|' \\
 -e 's|^\\(CreateDirDataIfNotExists\\)=.*$|\\1=1|' \\
 -e 's|^\\(SiteDomain\\)=.*$|\\1="${name}"|' \\
@@ -168,13 +168,13 @@ export default nix.lambda((args) => (() => {
               }))), nix.thunk(() => nix.sel(cfg, "configs")))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             rules: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 755 root root - -`)], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (opts) => nix.str`d '${nix.sel(cfg, "dataDir")}/${name}' 755 root root - -`, nix.thunk(() => nix.sel(cfg, "configs"))), [nix.thunk(() => nix.str`Z '${nix.sel(cfg, "dataDir")}' 755 root root - -`)]))),
           })),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "updateAt"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`awstats-${name}-update`), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   description: nix.thunk(() => nix.str`update awstats for ${name}`),
                   script: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(opts, "type"), "mail")), nix.thunk(() => nix.str`if [[ -f "${nix.sel(cfg, "dataDir")}/${name}-cursor" ]]; then
   CURSOR="$(cat "${nix.sel(cfg, "dataDir")}/${name}-cursor" | tr -d '\\n')"
@@ -197,25 +197,25 @@ fi
                 }))), nix.thunk(() => nix.sel(cfg, "configs")))))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           nginx: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (opts) => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 name: nix.thunk(() => nix.sel(opts, "webService", "hostname")),
                 value: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   locations: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(opts, "webService", "urlPrefix")}/css/`, nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       alias: nix.thunk(() => nix.str`${nix.sel(package$, "out")}/wwwroot/css/`),
                     }))],
                     [nix.str`${nix.sel(opts, "webService", "urlPrefix")}/icons/`, nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       alias: nix.thunk(() => nix.str`${nix.sel(package$, "out")}/wwwroot/icon/`),
                     }))],
                     [nix.str`${nix.sel(opts, "webService", "urlPrefix")}/`, nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/${name}/`),
                       extraConfig: "autoindex on;\n",
                     }))],

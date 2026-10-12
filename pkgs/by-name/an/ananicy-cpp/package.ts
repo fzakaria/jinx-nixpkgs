@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withBpf = nix.argOr($, "withBpf", () => true);
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ananicy-cpp",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ananicy-cpp",
           repo: "ananicy-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./match-wrappers.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-cstring-include.patch",
             url: "https://gitlab.com/ananicy-cpp/ananicy-cpp/-/merge_requests/43.diff",
             hash: "sha256-drBUVh+N3KedJttzQIIA1s+38ngK9BgZFOdpxqBWV0E=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["stackprotector", "zerocallusedregs"]),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             USE_EXTERNAL_JSON: true,
             USE_EXTERNAL_SPDLOG: true,
             USE_EXTERNAL_FMTLIB: true,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "rm -rf \"$out\"/include\nrm -rf \"$out\"/lib/cmake\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.com/ananicy-cpp/ananicy-cpp",
         description: "Rewrite of ananicy in c++ for lower cpu and memory usage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => nix.update({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       buildGraalvm: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/buildGraalvm.nix"))),
       buildGraalvmProduct: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/buildGraalvmProduct.nix"))),
       "graalvm-ce": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/graalvm-ce"), nix.thunk(() => ({})))),
-      "graalvm-ce-musl": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/graalvm-ce"), nix.thunk(() => ({ __proto__: pos$1, useMusl: true })))),
+      "graalvm-ce-musl": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/graalvm-ce"), nix.thunk(() => ({ [nix.POS]: pos$1, useMusl: true })))),
       graaljs: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/graaljs"), nix.thunk(() => ({})))),
       graalnodejs: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/graalnodejs"), nix.thunk(() => ({})))),
       graalpy: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/graalpy"), nix.thunk(() => ({})))),
       truffleruby: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./community-edition/truffleruby"), nix.thunk(() => ({})))),
-      "graalvm-oracle_25": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(self, "callPackage"), nix.path(here, "./graalvm-oracle"), nix.thunk(() => ({ __proto__: pos$2, version: "25" }))), "overrideAttrs"), (prev) => ({
-          __proto__: pos$3,
+      "graalvm-oracle_25": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(self, "callPackage"), nix.path(here, "./graalvm-oracle"), nix.thunk(() => ({ [nix.POS]: pos$2, version: "25" }))), "overrideAttrs"), (prev) => ({
+          [nix.POS]: pos$3,
           autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libonnxruntime.so.1"]),
         }))),
-      "graalvm-oracle_17": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./graalvm-oracle"), nix.thunk(() => ({ __proto__: pos$4, version: "17" })))),
+      "graalvm-oracle_17": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./graalvm-oracle"), nix.thunk(() => ({ [nix.POS]: pos$4, version: "17" })))),
       "graalvm-oracle": nix.thunk(() => nix.sel(self, "graalvm-oracle_25")),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "graalvm-oracle_22": nix.thunk(() => nix.builtins.throw("GraalVM 22 is EOL, use a newer version instead")),
         "graalvm-oracle_23": nix.thunk(() => nix.builtins.throw("GraalVM 23 is EOL, use a newer version instead")),
         "graalvm-oracle_24": nix.thunk(() => nix.builtins.throw("GraalVM 24 is EOL, use a newer version instead")),

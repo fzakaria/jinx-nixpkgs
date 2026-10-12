@@ -57,96 +57,96 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "hcl1"), nix.thunk(() => ({}))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "spire", "server"));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "arianvp"))]),
     })),
     imports: nix.thunk(() => [nix.path(here, "./server-tpm.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         spire: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           server: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SPIRE Server")),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Whether to open firewall",
                 default: false,
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 description: "SPIRE Server configuration file options. See [the documentation](https://spiffe.io/docs/latest/deploying/spire_server/) for all available options.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       server: nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         trust_domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The trust domain that this server belongs to",
                             example: "example.com",
                           })))),
                         data_dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The directory where SPIRE server stores its data",
                             default: "$STATE_DIRECTORY",
                           })))),
                         socket_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "/run/spire/server/private/api.sock",
                             description: "Path to bind the SPIRE Server API Socket to",
                           })))),
                         bind_address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "[::]",
                             description: "The address on which the SPIRE server is listening",
                           })))),
                         bind_port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 8081n,
                             description: "The port on which the SPIRE server is listening",
                           })))),
                       })),
                       plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           description: "Built-in plugin types can be found at [the plugin types documentation](https://spiffe.io/docs/latest/deploying/spire_server/#plugin-types).\nSee [plugin configuration](https://spiffe.io/docs/latest/deploying/spire_server/#plugin-configuration) for options and how to configure external plugins.\n",
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               freeformType: nix.thunk(() => nix.sel(format, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$16,
+                                [nix.POS]: pos$16,
                                 NodeAttestor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$15,
+                                    [nix.POS]: pos$15,
                                     default: nix.thunk(() => ({})),
                                     description: "NodeAttestor plugins implement validation logic for nodes attempting to assert their identity.\nThey are generally paired with an agent plugin of the same type.\nSee [the documentation](https://spiffe.io/docs/latest/deploying/spire_server/#nodeattestor)\nfor the list of built-in NodeAttestor plugins.\n",
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                        __proto__: pos$14,
+                                        [nix.POS]: pos$14,
                                         freeformType: nix.thunk(() => nix.sel(format, "type")),
                                         options: nix.thunk(() => ({
-                                          __proto__: pos$13,
+                                          [nix.POS]: pos$13,
                                           join_token: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$12,
+                                              [nix.POS]: pos$12,
                                               default: null,
                                               description: "Join token based node attestation.",
                                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                                    __proto__: pos$11,
+                                                    [nix.POS]: pos$11,
                                                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                                                     options: nix.thunk(() => ({
-                                                      __proto__: pos$10,
+                                                      [nix.POS]: pos$10,
                                                       plugin_data: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                          __proto__: pos$9,
+                                                          [nix.POS]: pos$9,
                                                           type: nix.thunk(() => nix.sel(format, "type")),
                                                           default: nix.thunk(() => ({})),
                                                           description: "Plugin data for the join_token NodeAttestor.",
@@ -160,25 +160,25 @@ export default nix.lambda((args) => (() => {
                               })),
                             })))),
                           example: nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             KeyManager: nix.thunk(() => ({
-                              __proto__: pos$19,
-                              memory: nix.thunk(() => ({ __proto__: pos$18, plugin_data: nix.thunk(() => ({})) })),
+                              [nix.POS]: pos$19,
+                              memory: nix.thunk(() => ({ [nix.POS]: pos$18, plugin_data: nix.thunk(() => ({})) })),
                             })),
                             DataStore: nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               sql: nix.thunk(() => ({
-                                __proto__: pos$21,
+                                [nix.POS]: pos$21,
                                 plugin_data: nix.thunk(() => ({
-                                  __proto__: pos$20,
+                                  [nix.POS]: pos$20,
                                   database_type: "sqlite3",
                                   connection_string: "$STATE_DIRECTORY/datastore.sqlite3",
                                 })),
                               })),
                             })),
                             NodeAttestor: nix.thunk(() => ({
-                              __proto__: pos$24,
-                              join_token: nix.thunk(() => ({ __proto__: pos$23, plugin_data: nix.thunk(() => ({})) })),
+                              [nix.POS]: pos$24,
+                              join_token: nix.thunk(() => ({ [nix.POS]: pos$23, plugin_data: nix.thunk(() => ({})) })),
                             })),
                           })),
                         })))),
@@ -186,14 +186,14 @@ export default nix.lambda((args) => (() => {
                   })))),
               })))),
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: nix.thunk(() => nix.app(nix.sel(format, "generate"), "server.conf", nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings")))))),
                 defaultText: "Config file generated from services.spire.server.settings",
                 description: "Path to the SPIRE server configuration file. See [the documentation](https://spiffe.io/docs/latest/deploying/spire_server/) for more information.\n",
               })))),
             expandEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Expand environment variables in services.spire.server.settings and services.spire.server.configFile",
@@ -204,31 +204,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         networking: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           firewall: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "bind_port"))]))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "spire-server": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "SPIRE Server",
               documentation: nix.thunk(() => ["https://spiffe.io/docs/latest/deploying/spire_server/"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 ExecStart: nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "spire-server")} run `, nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     expandEnv: nix.thunk(() => nix.attr(cfg, "expandEnv")),
                     config: nix.thunk(() => nix.sel(cfg, "configFile")),
                   }))))),

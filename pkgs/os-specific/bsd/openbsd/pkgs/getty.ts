@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const login = nix.arg($, "login");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "libexec/getty",
       extraPaths: nix.thunk(() => ["etc/gettytab"]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace $BSDSRCDIR/libexec/getty/pathnames.h \\
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
     --replace-fail "/usr/bin/login" "${login}/bin/login"
 `),
       postInstall: "mkdir -p $out/etc\ncp $BSDSRCDIR/etc/gettytab $out/etc/gettytab\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "getty" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "getty" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=getty.ts.map

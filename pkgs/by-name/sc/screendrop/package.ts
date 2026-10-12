@@ -17,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const platform = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "platforms", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "screendrop",
       version: nix.thunk(() => nix.attr(sources, "version")),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/fayazara/Screendrop/releases/download/${nix.sel(sources, "tag")}/${nix.sel(platform, "filename")}`),
           hash: nix.thunk(() => nix.attr(platform, "hash")),
         })))),
       sourceRoot: "Screendrop.app",
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/Screendrop.app\"\ncp -R . \"$out/Applications/Screendrop.app\"\n\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/Screendrop.app/Contents/MacOS/Screendrop\" \"$out/bin/screendrop\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native macOS screenshot and screen recording tool",
         homepage: "https://github.com/fayazara/Screendrop",
         changelog: nix.thunk(() => nix.str`https://github.com/fayazara/Screendrop/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const cudf = nix.arg($, "cudf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mccs",
       version: "1.1+19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AltGr",
           repo: "ocaml-mccs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [cudf]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library providing a multi criteria CUDF solver, part of MANCOOSI project",
         downloadPage: "https://github.com/AltGr/ocaml-mccs",
         homepage: "https://www.i3s.unice.fr/~cpjm/misc/",

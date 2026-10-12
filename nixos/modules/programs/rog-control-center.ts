@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "rog-control-center"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "rog-control-center": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the rog-control-center application")),
           autoStart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether rog-control-center should be started automatically.",
@@ -40,25 +40,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "asusctl")),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoStart")), nix.thunk(() => nix.app(nix.sel(pkgs, "makeAutostartItem"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   name: "rog-control-center",
                   package: nix.thunk(() => nix.sel(pkgs, "asusctl")),
                 })))))),
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
-          asusd: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          [nix.POS]: pos$8,
+          asusd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => nix.sel(pkgs, "asusctl", "meta", "maintainers")),
     })),
   };

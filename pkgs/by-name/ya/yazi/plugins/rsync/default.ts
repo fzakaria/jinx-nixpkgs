@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rsync.yazi",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GianniBYoung",
           repo: "rsync.yazi",
           tag: "v1.0.1",
           hash: "sha256-dwxbtfDOXmlZzH9Tetb71pGteP7lbOE59E+Ajl/bd3c=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple rsync plugin for yazi file manager",
         homepage: "https://github.com/GianniBYoung/rsync.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

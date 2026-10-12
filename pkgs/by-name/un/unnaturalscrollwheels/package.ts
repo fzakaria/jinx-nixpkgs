@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unnaturalscrollwheels",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ther0n/UnnaturalScrollWheels/releases/download/${nix.sel(finalAttrs, "version")}/UnnaturalScrollWheels-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-t1w+XrsT+UBT5ZPTP04QGTJ9fLYDQiFL6uZaq3hD64g=",
         })))),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [_7zz]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Invert scroll direction for physical scroll wheels",
         homepage: "https://github.com/ther0n/UnnaturalScrollWheels",
         changelog: nix.thunk(() => nix.str`https://github.com/ther0n/UnnaturalScrollWheels/releases/tag/${nix.sel(finalAttrs, "version")}`),

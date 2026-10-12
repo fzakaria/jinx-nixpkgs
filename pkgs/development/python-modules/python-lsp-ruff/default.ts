@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python_lsp_server = nix.arg($, "python-lsp-server");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-lsp-ruff",
       version: "2.3.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-lsp",
           repo: "python-lsp-ruff",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ substituteInPlace tests/test_ruff_lint.py \\
       dependencies: nix.thunk(() => [cattrs, lsprotocol, python_lsp_server]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/python-lsp/python-lsp-ruff",
         description: "Ruff linting plugin for pylsp",
         changelog: nix.thunk(() => nix.str`https://github.com/python-lsp/python-lsp-ruff/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const buildToxAV = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libtoxcore",
       version: "0.2.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TokTok",
           repo: "c-toxcore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [check]),
       postInstall: "substituteInPlace $out/lib/pkgconfig/toxcore.pc \\\n  --replace '=${prefix}/' '=' \\\n\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "P2P FOSS instant messaging application aimed to replace Skype",
         homepage: "https://tox.chat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

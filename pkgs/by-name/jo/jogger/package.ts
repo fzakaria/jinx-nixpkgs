@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const glib_networking = nix.arg($, "glib-networking");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jogger",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baarkerlounger",
           repo: "jogger",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-bju9XXMT6HRHG9QViO+FQCYQ+llrC+GP/AlIha0mxkM=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libadwaita, libshumate, alsa_lib, espeak, sqlite, glib_networking]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "App for Gnome Mobile to Track running and other workouts",
         homepage: "https://codeberg.org/baarkerlounger/jogger",
         license: nix.thunk(() => (() => {

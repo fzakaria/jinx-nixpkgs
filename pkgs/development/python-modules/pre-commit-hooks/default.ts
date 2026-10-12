@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pre-commit",
           repo: "pre-commit-hooks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=\"$(mktemp -d)\"\n\ngit config --global user.name \"Nix Builder\"\ngit config --global user.email \"nix-builder@nixos.org\"\ngit init .\n";
       const pythonImportsCheck = nix.thunk(() => ["pre_commit_hooks"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Some out-of-the-box hooks for pre-commit",
         homepage: "https://github.com/pre-commit/pre-commit-hooks",
         changelog: nix.thunk(() => nix.str`https://github.com/pre-commit/pre-commit-hooks/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

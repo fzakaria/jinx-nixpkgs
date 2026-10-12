@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pname = "btrfs-auto-snapshot";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hunleyd",
           repo: "btrfs-auto-snapshot",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${wrapperPath}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BTRFS Automatic Snapshot Service for Linux",
         homepage: "https://github.com/hunleyd/btrfs-auto-snapshot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "btrfs-auto-snapshot is a Bash script designed to bring as much of the\nfunctionality of the wonderful ZFS snapshot tool zfs-auto-snapshot to\nBTRFS as possible. Designed to run from cron (using\n/etc/cron.{daily,hourly,weekly}) it automatically creates a snapshot of\nthe specified BTRFS filesystem (or, optionally, all of them) and then\nautomatically purges the oldest snapshots of that type (hourly, daily, et\nal) based on a user-defined retention policy.\n\nSnapshots are stored in a '.btrfs' directory at the root of the BTRFS\nfilesystem being snapped and are read-only by default.\n",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

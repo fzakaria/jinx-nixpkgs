@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kwakd",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fetchinson",
           repo: "kwakd",
           rev: "acdf0e1491204ae30622a60fde0bcae4769f78be",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "serviceDir=$out/share/dbus-1/system-services\nmkdir -p $serviceDir\ncp kwakd.service $serviceDir/\nsubstituteInPlace $serviceDir/kwakd.service \\\n  --replace \"kwakd -p 80\" \"$out/bin/kwakd -p 80\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Super small webserver that serves blank pages",
         homepage: "https://github.com/fetchinson/kwakd",
         mainProgram: "kwakd",

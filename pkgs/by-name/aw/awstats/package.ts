@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "awstats";
       const version = "8.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/awstats/awstats-${version}.tar.gz`),
           sha256: "sha256-Pvdv+WxTmEd92KERNOJm5TikhwZ/aQajrIo4v9EcEeA=",
         }))));
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const installPhase = "mkdir \"$out\"\nmv wwwroot \"$out/wwwroot\"\nrm -r \"$out/wwwroot/classes/src/\"\n\nmkdir -p \"$out/share/awstats\"\nmv tools \"$out/share/awstats/tools\"\n\nmkdir -p \"$bin/bin\"\nln -s \"$out/wwwroot/cgi-bin/awstats.pl\" \"$bin/bin/awstats\"\n\nmkdir -p \"$doc/share/doc\"\nmv README.md docs/\nmv docs \"$doc/share/doc/awstats\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://www.awstats.org/docs/awstats_changelog.txt",
         description: "Real-time logfile analyzer to get advanced statistics",
         homepage: "https://awstats.org",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "awstats",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

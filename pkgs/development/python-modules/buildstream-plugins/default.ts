@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const cython = nix.arg($, "cython");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "buildstream-plugins",
       version: "2.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "buildstream-plugins",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, setuptools]),
       pythonImportsCheck: nix.thunk(() => ["buildstream_plugins"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "dev" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "dev" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/apache/buildstream-plugins/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "BuildStream plugins",
         homepage: "https://github.com/apache/buildstream-plugins",

@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const qcheck_core = nix.arg($, "qcheck-core");
   const bantorra = nix.thunk(() => nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bantorra",
       version: "unstable-2022-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RedPRL",
           repo: "bantorra",
           rev: "d05c34295727dd06d0ac4416dc2e258732e8593d",
@@ -47,18 +47,18 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [bos, ezjsonm, findlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible Library Management and Path Resolution",
         homepage: "https://github.com/RedPRL/bantorra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     }))));
   const kado = nix.thunk(() => nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kado",
       version: "unstable-2023-10-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "RedPRL",
           repo: "kado",
           rev: "6b2e9ba2095e294e6e0fc6febc280d80c5799c2b",
@@ -68,19 +68,19 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [qcheck_core]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cofibrations in Cartecian Cubical Type Theory",
         homepage: "https://github.com/RedPRL/kado",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     }))));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cooltt",
       version: "unstable-2023-10-03",
       minimalOCamlVersion: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "RedPRL",
           repo: "cooltt",
           rev: "a5eaf4db195b5166a7102d47d42724f59cf3de19",
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkInputs: nix.thunk(() => [ounit2, qcheck]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/RedPRL/cooltt",
         description: "Cool implementation of normalization by evaluation (nbe) & elaboration for Cartesian cubical type theory",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

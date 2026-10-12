@@ -16,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "isearch-prop",
       version: "0-unstable-2024-10-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacsmirror",
           repo: "isearch-prop",
           rev: "7b32697c16541036abadbbb4d65dd67a4f1d2812",
           hash: "sha256-NmFkbxiRFAqi1TaOFfmAOgIs1QZMKXkJfMmXL9fsV14=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.emacswiki.org/emacs/IsearchPlus",
         description: "Search text- or overlay-property contexts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

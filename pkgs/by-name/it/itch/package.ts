@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const version = "26.13.0";
   const itch_setup = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://broth.itch.zone/itch-setup/linux-amd64/1.29.0/archive.zip",
       stripRoot: false,
       hash: "sha256-T4xvso3jJ9XsiG7QTpYdcvcClg2ejbGS4R/+goaHl18=",
     }))));
   const sparseCheckout = "/release/images/itch-icons";
   const icons = nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "itchio",
       repo: "itch",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       sparseCheckout: nix.thunk(() => [sparseCheckout]),
     }))), sparseCheckout));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "itch",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/itchio/itch/releases/download/v${nix.sel(finalAttrs, "version")}/itch-v${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           stripRoot: false,
           hash: "sha256-//QA4aW9uwZ/yhKf1xJRthj36YqfXuu/6yU1yGXQeFo=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "itch",
             exec: "itch %U",
             tryExec: "itch",
@@ -87,7 +87,7 @@ runHook postInstall
   --prefix PATH : ${butler}/bin/:${itch_setup}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Best way to play itch.io games",
         homepage: "https://github.com/itchio/itch",
         changelog: nix.thunk(() => nix.str`https://github.com/itchio/itch/releases/tag/v${version}`),

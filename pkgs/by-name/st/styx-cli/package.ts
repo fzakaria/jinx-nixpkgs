@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "styx-cli",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bearcove",
           repo: "styx",
           tag: nix.thunk(() => nix.str`styx-cli-v${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex", "styx-cli-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/bearcove/styx/releases/tag/styx-cli-v${nix.sel(finalAttrs, "version")}`),
         description: "Document language for mortals",
         downloadPage: "https://github.com/bearcove/styx",

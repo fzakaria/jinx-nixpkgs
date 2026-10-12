@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "burke-software",
           repo: "django-postgres-partition",
           tag: version,
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["psql_partition"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Partition support for django, based on django-postgres-extra",
         homepage: "https://gitlab.com/burke-software/django-postgres-partition",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/burke-software/django-postgres-partition/-/releases/${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "atuin",
       version: "18.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atuinsh",
           repo: "atuin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,16 +47,16 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           atuin: nix.thunk(() => nix.attr(nixosTests, "atuin")),
           "atuin-programs": nix.thunk(() => nix.attr(nixosTests, "atuin-programs")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Replacement for a shell history which records additional commands context with optional encrypted synchronization between machines",
         homepage: "https://github.com/atuinsh/atuin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "l18n",
       version: "2021.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-GVbokNZz0XE1zCCRMlPBVPa8HAAmbCK31QPMGlpC2Eg=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["l18n"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Locale internationalization package",
         homepage: "https://github.com/tkhyn/l18n",
         changelog: nix.thunk(() => nix.str`https://github.com/tkhyn/l18n/blob/v${nix.sel(finalAttrs, "version")}.0/CHANGES.rst`),

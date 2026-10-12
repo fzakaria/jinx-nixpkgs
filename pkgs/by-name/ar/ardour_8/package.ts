@@ -78,17 +78,17 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "ardour",
         version: "8.12",
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "git://git.ardour.org/ardour/ardour.git",
             rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-4IgBQ53cwPA35YwNQyo+qBqsMGv+TLn6w1zaDX97erE=",
           })))),
         bundledContent: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://web.archive.org/web/20221026200824/http://stuff.ardour.org/loops/ArdourBundledMedia.zip",
             hash: "sha256-IbPQWFeyMuvCoghFl1ZwZNNcSvLNsH84rGArXnw+t7A=",
             stripRoot: false,
@@ -183,9 +183,9 @@ cp -rp "${nix.sel(finalAttrs, "bundledContent")}"/* "$out/share/ardour${majorVer
 wrapProgram "$out/bin/ardour${majorVersion}" \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [harvid, xjadeo]))}"
 `)))),
-        env: nix.thunk(() => ({ __proto__: pos$3, LINKFLAGS: "-lpthread" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$3, LINKFLAGS: "-lpthread" })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Multi-track hard disk recording software",
           longDescription: "Ardour is a digital audio workstation (DAW), You can use it to\nrecord, edit and mix multi-track audio and midi. Produce your\nown CDs. Mix video soundtracks. Experiment with new ideas about\nmusic and sound.\n\nPlease consider supporting the ardour project financially:\nhttps://community.ardour.org/donate\n",
           homepage: "https://ardour.org/",

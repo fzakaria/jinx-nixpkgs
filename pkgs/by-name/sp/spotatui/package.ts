@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withAiDj = nix.argOr($, "withAiDj", () => false);
   const withMCPServer = nix.argOr($, "withMCPServer", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spotatui",
       version: "0.43.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LargeModGames",
           repo: "spotatui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withAiDj, "ai-dj"), nix.concat(nix.app(nix.sel(lib, "optional"), withPipewireVisualizer, "audio-viz"), nix.app(nix.sel(lib, "optional"), withMCPServer, "mcp-server"))))),
       doCheck: nix.thunk(() => !nix.asBool(withAiDj)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fully standalone Spotify client for the terminal",
         homepage: "https://github.com/LargeModGames/spotatui",
         changelog: nix.thunk(() => nix.str`https://github.com/LargeModGames/spotatui/releases/tag/v${nix.sel(finalAttrs, "version")}`),

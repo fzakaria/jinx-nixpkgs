@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "csxcad",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thliebig",
           repo: "CSXCAD",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./searchPath.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-cmake-minimum-required.patch",
             url: "https://github.com/thliebig/CSXCAD/commit/b8ea64e11320910109a49b6da5352e1a1a18a736.patch",
             hash: "sha256-mpQmpvrEDjOKgEAZ5laIIepG+PWqSr637tOY7FQst2s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "boost-1.89.patch",
             url: "https://github.com/thliebig/CSXCAD/commit/3ec8a3390eced48d919b5261fdaa140197fe40c4.patch",
             hash: "sha256-3T5m0GbDY8k1EcHWQWWXMA0S1RREpJykfgZRcPcgljQ=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cgal, boost, gmp, mpfr, vtk, fparser, tinyxml, hdf5]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ library to describe geometrical objects",
         homepage: "https://github.com/thliebig/CSXCAD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

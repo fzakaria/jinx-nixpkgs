@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const version = "1.50.2";
   const groupId = "io.aeron";
   const aeronAll = nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       groupId: groupId,
       version: version,
       artifactId: "aeron-all",
       hash: "sha256-+H43UbfLvDcjYS5VRYea8v5PA3/d8SPYivd/aasv4wQ=",
     }))));
   const aeronSamples = nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       groupId: groupId,
       version: version,
       artifactId: "aeron-samples",
       hash: "sha256-mn07b6P8HcNuwRUcbzfXkCpP/7cPChZJVx5VbyT5xrw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       buildInputs: nix.thunk(() => [aeronAll, aeronSamples]),
@@ -65,9 +65,9 @@ wrap "${pname}-logging-agent" io.aeron.agent.DynamicLoggingAgent
 wrap "${pname}-clustered-media-driver" io.aeron.cluster.ClusteredMediaDriver
 wrap "${pname}-cluster-tool" io.aeron.cluster.ClusterTool
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, jar: nix.thunk(() => nix.sel(aeronAll, "jar")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, jar: nix.thunk(() => nix.sel(aeronAll, "jar")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Low-latency messaging library",
         homepage: "https://aeron.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

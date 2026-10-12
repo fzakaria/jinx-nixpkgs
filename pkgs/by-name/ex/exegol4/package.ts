@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const xhost = nix.arg($, "xhost");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "exegol",
       version: "4.3.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+LnZSFRW7EvG+cPwMStgO6qD4AjOGkLzCarXBrW3Aak=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       pythonImportsCheck: nix.thunk(() => ["exegol"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fully featured and community-driven hacking environment",
         longDescription: "Exegol is a community-driven hacking environment, powerful and yet\nsimple enough to be used by anyone in day to day engagements. Exegol is\nthe best solution to deploy powerful hacking environments securely,\neasily, professionally. Exegol fits pentesters, CTF players, bug bounty\nhunters, researchers, beginners and advanced users, defenders, from\nstylish macOS users and corporate Windows pros to UNIX-like power users.\n",
         homepage: "https://github.com/ThePorgs/Exegol",

@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const clapperSupport = nix.argOr($, "clapperSupport", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tuba",
       version: "0.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeopJr",
           repo: "Tuba",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "gstreamer")),
           nix.thunk(() => nix.lookup(w, "gst-libav")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
           nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
         ];
       })(), nix.app(nix.sel(lib, "optionals"), clapperSupport, nix.thunk(() => [clapper_unwrapped]))))),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "clapper", clapperSupport)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=int-conversion")),
       })),
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(
@@ -106,16 +106,16 @@ export default nix.lambda((args) => (() => {
 )
 `),
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Browse the Fediverse",
         homepage: "https://tuba.geopjr.dev/",
         mainProgram: "dev.geopjr.Tuba",

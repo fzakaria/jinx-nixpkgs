@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sdgathman",
           repo: "pymilter",
           tag: nix.thunk(() => nix.str`pymilter-${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "sed -i '/testpolicy/d' test.py\nrm testpolicy.py\n";
       const pythonImportsCheck = nix.thunk(() => ["Milter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://bmsi.com/python/milter.html",
         description: "Python bindings for libmilter api",
         maintainers: nix.thunk(() => (() => {
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

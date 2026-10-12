@@ -23,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed"));
   const kernel = nix.thunk(() => nix.attr(from, "kernel"));
   const systemSpecific = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     darwin: nix.thunk(() => (() => {
       const systemTag = "nix-darwin";
       const capitalized = systemTag;
       const fontFile = "joypixels-sbix.ttf";
-      return { __proto__: pos$1, systemTag, capitalized, fontFile };
+      return { [nix.POS]: pos$1, systemTag, capitalized, fontFile };
     })()),
   }, () => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       systemTag: "nixos",
       capitalized: "NixOS",
       fontFile: "joypixels-android.ttf",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const joypixels_free_license = nix.thunk(() => (() => {
     const systemTag = nix.thunk(() => nix.attr(systemSpecific, "systemTag"));
     return nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         shortName: "JoyPixels-Free",
         fullName: "JoyPixels Free License Agreement",
         url: nix.thunk(() => nix.str`https://cdn.joypixels.com/distributions/${systemTag}/license/free-license.txt`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
     const capitalized = nix.thunk(() => nix.attr(systemSpecific, "capitalized"));
     const systemTag = nix.thunk(() => nix.attr(systemSpecific, "systemTag"));
     return nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         shortName: "JoyPixels-NixOS-Appendix",
         fullName: nix.thunk(() => nix.str`JoyPixels ${capitalized} License Appendix`),
         url: nix.thunk(() => nix.str`https://cdn.joypixels.com/distributions/${systemTag}/appendix/joypixels-license-appendix.txt`),
@@ -88,11 +88,11 @@ config.nix:
         nix.assert_((!nix.asBool(!nix.asBool(acceptLicense)) || nix.asBool(throwLicense)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/jo/joypixels/package.nix:84:5");
         const w = nix.withScope(systemSpecific, null);
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: nix.thunk(() => nix.lookup(w, "fontFile")),
             url: nix.thunk(() => nix.str`https://cdn.joypixels.com/distributions/${nix.lookup(w, "systemTag")}/font/${version}/${nix.lookup(w, "fontFile")}`),
             sha256: nix.thunk(() => nix.selOr({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               darwin: "sha256-NDxhHgnHDenHict39V4W8mLJIqpmBfmDYfsRx7Es06s=",
             }, () => "sha256-taHKy2rin1SE24BKnB8LZ662U8MO9HL5if3+mHQ38Io=", nix.key(nix.sel(kernel, "name")))),
           })));
@@ -108,7 +108,7 @@ runHook postInstall
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Finest emoji you can use legally (formerly EmojiOne)",
         longDescription: "Updated for 2026! 3,991 originally-crafted emoji, Unicode 17 compatible.\n",
         homepage: "https://www.joypixels.com/fonts",
@@ -123,7 +123,7 @@ runHook postInstall
         })()),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
-      return { __proto__: pos$9, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$9, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

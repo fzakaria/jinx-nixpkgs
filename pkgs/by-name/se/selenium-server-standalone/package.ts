@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "selenium-server-standalone";
       const version = nix.thunk(() => nix.str`${minorVersion}.${patchVersion}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://selenium-release.storage.googleapis.com/${minorVersion}/selenium-server-standalone-${version}.jar`),
           sha256: "1jzkx0ahsb27zzzfvjqv660x9fz2pbcddgmhdzdmasxns5vipxxc",
         }))));
@@ -38,7 +38,7 @@ makeWrapper ${jre}/bin/java $out/bin/selenium-server \\
   --add-flags "org.openqa.grid.selenium.GridLauncherV3"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.seleniumhq.org/",
         description: "Selenium Server for remote WebDriver",
         sourceProvenance: nix.thunk(() => (() => {
@@ -51,7 +51,7 @@ makeWrapper ${jre}/bin/java $out/bin/selenium-server \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sysguard",
       version: "0-unstable-2017-03-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vozlt",
           repo: "nginx-module-sysguard",
           rev: "e512897f5aba4f79ccaeeebb51138f1704a58608",
           sha256: "19c6w6wscbq9phnx7vzbdf4ay6p2ys0g7kp2rmc9d4fb53phrhfx",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nginx sysguard module",
         homepage: "https://github.com/vozlt/nginx-module-sysguard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

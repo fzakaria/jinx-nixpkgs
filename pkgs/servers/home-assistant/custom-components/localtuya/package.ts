@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "localtuya";
       const version = "2026.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xZetsubou",
           repo: "hass-localtuya",
           tag: version,
           hash: "sha256-gJk5AWNIk0d8Xdamk3VM7huxszN+QsQjo75bs2jZeM8=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/xZetsubou/hass-localtuya/releases/tag/${version}`),
         description: "Home Assistant custom Integration for local handling of Tuya-based devices, fork from local-tuya",
         homepage: "https://github.com/xZetsubou/hass-localtuya",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

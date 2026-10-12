@@ -148,9 +148,9 @@ export default nix.lambda((args) => (() => {
   const coreBigPackages = nix.thunk(() => nix.concat(["metafont", "mflua", "metapost", "luatex", "luahbtex", "upmendex", "xetex"], nix.app(nix.sel(lib, "optional"), withLuaJIT, "luajittex")));
   const binPackages = nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), nix.thunk(() => nix.concat(corePackages, coreBigPackages)), tlpdb));
   const common = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://github.com/TeX-Live/texlive-source/archive/refs/tags/svn74917.tar.gz",
         hash: "sha256-QgUN5LOFeD6Jt0ENF6Uwi516D8PH+TXZ+MCO8bCTHqE=",
       })))),
@@ -178,7 +178,7 @@ export default nix.lambda((args) => (() => {
         "zlib",
       ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => nix.str`BUILDCC=${nix.sel(buildPackages, "stdenv", "cc", "targetPrefix")}cc`))))),
     binToOutput: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (n) => nix.builtins.map((v) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: v,
             value: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), n)),
           }), nix.thunk(() => nix.selOr(binPackages, () => [], nix.key(nix.force(n)), "binfiles"))), nix.thunk(() => nix.builtins.attrNames(binPackages)))))),
@@ -241,9 +241,9 @@ cp texk/psutils/{extractres.pl,includeres.pl,psjoin.pl} "${nix.builtins.placehol
 `), nix.str`rm "$out"/bin/{eptex,ptex,uptex}
 rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
 `));
-        const passthru = nix.thunk(() => ({ __proto__: pos$4, version: version_1, buildInputs: buildInputs }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, version: version_1, buildInputs: buildInputs }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Basic binaries for TeX Live",
           homepage: "http://www.tug.org/texlive",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -259,7 +259,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname,
           version: version_1,
           __structuredAttrs,
@@ -291,7 +291,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const xetex = nix.thunk(() => nix.attr(core_big, "xetex"));
     const luajittex = nix.thunk(() => nix.selOr(core, () => null, "big", "luajittex"));
     const core_big = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "texlive-bin-big",
         version: version,
         __structuredAttrs: true,
@@ -300,7 +300,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
         prePatch: nix.thunk(() => nix.attr(common, "prePatch")),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "lua_fixed_hash.patch",
               url: "https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=1009196;filename=lua_fixed_hash.patch;msg=45",
               sha256: "sha256-FTu1eRd3AUU7IRs2/7e7uwHuvZsrzTBPypbcEZkU7y4=",
@@ -335,7 +335,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const chktex = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "chktex"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "chktex",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -350,7 +350,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
       const version_1 = "2.11.08";
       const level = "20260217";
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           pname: "luametatex",
           version: nix.thunk(() => nix.str`${version_1}-${level}`),
           src: nix.thunk(() => nix.add(nix.sel(texlive, "pkgs", "context", "texsource"), nix.str`/source/context/base/luametatex-${level}.src.zip`)),
@@ -358,7 +358,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
           enableParallelBuilding: true,
           nativeBuildInputs: nix.thunk(() => [cmake, ninja, unzip]),
           meta: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             description: "LUAMETATEX engine is a follow up on LUATEX and is again part of CONTEXT development",
             homepage: "https://www.pragma-ade.nl/luametatex-1.htm",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -378,7 +378,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
         const src = nix.thunk(() => (() => {
           nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(version_1, nix.sel(texlive, "pkgs", "dvisvgm", "version"))), nix.thunk(() => nix.str`dvisvgm: TeX Live version (${nix.sel(texlive, "pkgs", "dvisvgm", "version")}) different from source (${version_1}), please update dvisvgm`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/typesetting/tex/texlive/bin.nix:598:7");
           return nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               url: nix.thunk(() => nix.str`https://github.com/mgieseki/dvisvgm/releases/download/${version_1}/dvisvgm-${version_1}.tar.gz`),
               hash: "sha256-JkRrs7EHOf8JJcnkFrdtLSIgdcnV3Pr+biFGCdBy7Ro=",
             })));
@@ -400,7 +400,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
         ]);
         const enableParallelBuilding = true;
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pname,
           version: version_1,
           src,
@@ -414,7 +414,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const dvipng = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "dvipng"));
         return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname: "dvipng",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -429,13 +429,13 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const asymptote_1 = nix.thunk(() => (() => {
       const version_1 = "3.09";
       return nix.app(nix.sel(args_1, "asymptote", "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           version: nix.thunk(() => (() => {
             nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(version_1, nix.sel(texlive, "pkgs", "asymptote", "version"))), nix.thunk(() => nix.str`asymptote: TeX Live version (${nix.sel(texlive, "pkgs", "asymptote", "version")}) different from source in bin.nix (${version_1}), please update it`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/typesetting/tex/texlive/bin.nix:676:11");
             return version_1;
           })()),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               url: nix.thunk(() => nix.str`mirror://sourceforge/asymptote/${nix.sel(finalAttrs, "version")}/asymptote-${nix.sel(finalAttrs, "version")}.src.tgz`),
               hash: "sha256-unM6mfyq8MCajo8wtG/ksr4E6mQNK/A03gGIa9Fxeuc=",
             })))),
@@ -449,7 +449,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const bibtex8 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "bibtexu"));
         return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname: "bibtex-x",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -464,7 +464,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const xdvi = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "xdvi"));
         return {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         pname: "xdvi",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -491,7 +491,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const xpdfopen = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "xpdfopen"));
         return {
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         pname: "xpdfopen",
         version: nix.thunk(() => nix.attr(from, "version")),
         src: nix.thunk(() => nix.attr(common, "src")),
@@ -503,7 +503,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
     const tex4htJar = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texlive, "pkgs", "tex4ht"));
         return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         pname: "tex4ht-jar",
         meta: nix.thunk(() => nix.attr(from, "meta")),
         version: nix.thunk(() => nix.attr(from, "version")),
@@ -513,7 +513,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
           gnum4,
           jdk_headless,
           nix.thunk(() => nix.app(nix.sel(texlive, "schemes", "texliveBasic", "withPackages"), (ps) => [
-              nix.thunk(() => ({ __proto__: pos$20, pname: "tex4ht-jar" })),
+              nix.thunk(() => ({ [nix.POS]: pos$20, pname: "tex4ht-jar" })),
               nix.thunk(() => nix.sel(ps, "protex")),
               nix.thunk(() => nix.sel(ps, "tex4ht")),
             ])),
@@ -524,7 +524,7 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
       };
       })())));
     return {
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       texliveYear,
       core,
       metafont,
@@ -549,11 +549,11 @@ rm "${nix.builtins.placeholder("ptex")}"/bin/{pbibtex,pdvitype,ppltotf,ptftopl}
       tex4htJar,
     };
   })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(clisp, "meta", "broken"))), nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       xindy: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(texlive, "pkgs", "xindy"));
           return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           pname: "xindy",
           version: nix.thunk(() => nix.attr(from, "version")),
           src: nix.thunk(() => nix.attr(common, "src")),

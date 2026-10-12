@@ -22,42 +22,42 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "btrbk-no-timer",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oxalica"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "btrfs-progs"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             btrbk: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               instances: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 local: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   onCalendar: null,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     volume: nix.thunk(() => ({
-                      __proto__: pos$4,
-                      "/mnt": nix.thunk(() => ({ __proto__: pos$3, snapshot_dir: "btrbk/local", subvolume: "to_backup" })),
+                      [nix.POS]: pos$4,
+                      "/mnt": nix.thunk(() => ({ [nix.POS]: pos$3, snapshot_dir: "btrbk/local", subvolume: "to_backup" })),
                     })),
                   })),
                 })),

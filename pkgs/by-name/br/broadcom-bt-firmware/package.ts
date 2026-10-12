@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "broadcom-bt-firmware";
       const version = "12.0.1.1012";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/04/852bb503-de7b-4810-a7dd-cbab62742f09_7cf83a4c194116648d17707ae37d564f9c70bec2.cab",
           sha256: "1b1qjwxjk4y91l3iz157kms8601n0mmiik32cs6w9b1q4sl4pxx9",
         }))));
@@ -31,7 +31,7 @@ cabextract $src --directory ${pname}-${version}
       const outputHashAlgo = "sha256";
       const outputHash = "042frb2dmrqfj8q83h5p769q6hg2b3i8fgnyvs9r9a71z7pbsagq";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for Broadcom WIDCOMM® Bluetooth devices",
         homepage: "https://www.catalog.update.microsoft.com/Search.aspx?q=Broadcom+bluetooth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -46,7 +46,7 @@ cabextract $src --directory ${pname}-${version}
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

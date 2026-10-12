@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const w = nix.withScope(self, null);
       return nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ai: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./ai.nix"), nix.thunk(() => ({})))),
         "async-prompt": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./async-prompt.nix"), nix.thunk(() => ({})))),
         autopair: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./autopair.nix"), nix.thunk(() => ({})))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "wakatime-fish": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./wakatime-fish.nix"), nix.thunk(() => ({})))),
         z: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./z.nix"), nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "autopair-fish": nix.thunk(() => nix.sel(self, "autopair")),
         }))));
     })());

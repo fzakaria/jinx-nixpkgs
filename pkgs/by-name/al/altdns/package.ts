@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "altdns",
       version: "1.0.2-unstable-2021-09-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "infosec-au",
           repo: "altdns",
           rev: "8c1de0fa8365153832bb58d74475caa15d2d077a",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["altdns"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generates permutations, alterations and mutations of subdomains and then resolves them",
         homepage: "https://github.com/infosec-au/altdns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

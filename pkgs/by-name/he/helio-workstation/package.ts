@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "helio-workstation",
       version: "3.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "helio-fm",
           repo: "helio-sequencer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ substituteInPlace $out/share/applications/Helio.desktop \\
   --replace "/usr/bin/helio" "$out/bin/helio"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "One music sequencer for all major platforms, both desktop and mobile",
         mainProgram: "helio",
         homepage: "https://helio.fm/",

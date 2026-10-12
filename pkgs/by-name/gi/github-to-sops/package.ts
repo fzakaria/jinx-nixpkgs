@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "github-to-sops",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tarasglek",
           repo: "github-to-sops",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [sops]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-compliant-license-schema.patch",
             url: "https://github.com/tarasglek/github-to-sops/commit/798c864f1537f668fbaf7802651ec8beb998a7af.patch?full_index=1",
             hash: "sha256-udBO5dN8RCclXpkTj/gU6zcUcaoM+G9jPEw4dCZ+oT4=",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for managing infrastructure secrets in git repositories using SOPS and GitHub SSH keys",
         homepage: "https://github.com/tarasglek/github-to-sops",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

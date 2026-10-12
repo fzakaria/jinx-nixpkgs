@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const isString = nix.thunk(() => nix.attr(lib, "isString"));
   const mapAttrsToList = nix.thunk(() => nix.attr(lib, "mapAttrsToList"));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       nixos: nix.thunk(() => nix.sel(nixosTests, "docker-tools-nix-shell")),
       valueToString: nix.thunk(() => (() => {
         const valueToString = nix.thunk(() => nix.attr(devShellTools, "valueToString"));
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "devShellTools-valueToString-built-tests",
             emptyFile: emptyFile,
             hello: hello,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       unstructuredDerivationInputEnv: nix.thunk(() => (() => {
         const unstructuredDerivationInputEnv = nix.thunk(() => nix.attr(devShellTools, "unstructuredDerivationInputEnv"));
         const drvAttrs = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           one: 1n,
           boolTrue: true,
           boolFalse: false,
@@ -77,9 +77,9 @@ export default nix.lambda((args) => (() => {
 ${nix.app(writeText, "qux", "yea")}
 `),
         }));
-        const result = nix.thunk(() => nix.app(unstructuredDerivationInputEnv, nix.thunk(() => ({ __proto__: pos$3, drvAttrs: drvAttrs }))));
-        nix.assert_(nix.eq(nix.update(result, { __proto__: pos$4, barPath: "<check later>" }), {
-          __proto__: pos$5,
+        const result = nix.thunk(() => nix.app(unstructuredDerivationInputEnv, nix.thunk(() => ({ [nix.POS]: pos$3, drvAttrs: drvAttrs }))));
+        nix.assert_(nix.eq(nix.update(result, { [nix.POS]: pos$4, barPath: "<check later>" }), {
+          [nix.POS]: pos$5,
           one: "1",
           boolTrue: "1",
           boolFalse: "",
@@ -94,7 +94,7 @@ ${nix.app(writeText, "qux", "yea")}
           barPath: "<check later>",
         }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/dev-shell-tools/tests/default.nix:111:5");
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "devShellTools-unstructuredDerivationInputEnv-built-tests",
             exampleBarPathString: nix.thunk(() => (() => {
               nix.assert_(nix.app(isString, nix.thunk(() => nix.sel(result, "barPath"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/dev-shell-tools/tests/default.nix:134:11");

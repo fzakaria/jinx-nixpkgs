@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pname = "chatgpt-shell-cli";
   const version = "master";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0xacx",
           repo: "chatgpt-shell-cli",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jq, curl, glow]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/0xacx/chatGPT-shell-cli",
         description: "Simple shell script to use OpenAI's ChatGPT and DALL-E from the terminal. No Python or JS required",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

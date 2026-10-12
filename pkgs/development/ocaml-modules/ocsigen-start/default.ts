@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const ocsigen_ppx_rpc = nix.arg($, "ocsigen-ppx-rpc");
   const js_of_ocaml_ppx_deriving_json = nix.arg($, "js_of_ocaml-ppx_deriving_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocsigen-start`),
       version: "8.0.0",
       nativeBuildInputs: nix.thunk(() => [ocaml, findlib, eliom]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [nix.path(here, "./templates-dir.patch")]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "ocsigen-start",
           rev: "b64139e365ab1d244033133629431f7a73e3e054",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://ocsigen.org/ocsigen-start",
         description: "Eliom application skeleton",
         longDescription: "An Eliom application skeleton, ready to use to build your own application with users, (pre)registration, notifications, etc.\n",

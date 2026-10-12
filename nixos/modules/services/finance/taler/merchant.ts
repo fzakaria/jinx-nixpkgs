@@ -38,65 +38,65 @@ export default nix.lambda((args) => (() => {
   const servicesDB = nix.thunk(() => ["httpd", "webhook", "wirewatch", "depositcheck", "exchangekeyupdate"]);
   const configFile = nix.thunk(() => nix.sel(config, "environment", "etc", "taler/taler.conf", "source"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
-      nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, talerComponent: talerComponent, servicesDB: servicesDB })))),
+      nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, talerComponent: talerComponent, servicesDB: servicesDB })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         taler: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           merchant: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "Configuration options for the taler merchant config file.\n\nFor a list of all possible options, please see the man page [`taler-merchant.conf(5)`](https://docs.taler.net/manpages/taler-merchant.conf.5.html)\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(options, "services", "taler", "settings", "type", "nestedTypes"));
                     return {
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     freeformType: nix.thunk(() => nix.attr(from, "freeformType")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       merchant: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         DB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["postgres"]))),
                             default: "postgres",
                             description: "Plugin to use for the database.",
                           })))),
                         PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 8083n,
                             description: "Port on which the HTTP server listens.",
                           })))),
                         SERVE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["tcp", "unix"]))),
                             default: "tcp",
                             description: "Whether the HTTP server should listen on a UNIX domain socket (\"unix\") or on a TCP socket (\"tcp\").\n",
                           })))),
                         LEGAL_PRESERVATION: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "10 years",
                             description: "How long to keep data in the database for tax audits after the transaction has completed.",
                           })))),
                       })),
                       "merchantdb-postgres": nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             default: "postgres:///taler-merchant-httpd",
                             description: "Database connection URI.",
                           })))),
                         SQL_DIR: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             internal: true,
                             default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/taler/sql/merchant/`),
@@ -113,18 +113,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "taler-merchant-depositcheck": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
           }, [
             [nix.str`taler-${talerComponent}-dbinit`, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "taler-merchant-dbinit")} -c ${configFile}
 `),
             }))],

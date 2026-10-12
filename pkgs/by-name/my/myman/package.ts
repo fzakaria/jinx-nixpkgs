@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "myman",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/myman/files/myman/myman-${nix.sel(finalAttrs, "version")}/myman-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha512-elJo+pqSdcjUa1fPcU6InCIVgaXL4Zs4jmpgI2Z/mUH3ZK9r5H+/HxGkMPFJ+/anoLtb4t2SsWwHAg+d6PyYtg==",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       configureFlags: nix.thunk(() => ["--with-xterm", "--with-rxvt", "--with-kterm", "--with-ncurses"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pacman clone with an ncurses and a 'graphic' interface",
         homepage: "http://myman.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

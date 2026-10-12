@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const kubectl = nix.arg($, "kubectl");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "k9s",
       version: "0.51.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "derailed",
           repo: "k9s",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-PkYDJK2oGl+siCG9p4R8shC0e5BhGFdJsc+ksL9J5zw=",
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: k9s,
               command: "HOME=$(mktemp -d) k9s version -s",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -76,7 +76,7 @@ cp -r $src/skins/* $out/share/k9s/skins/
 `),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Kubernetes CLI To Manage Your Clusters In Style",
         homepage: "https://github.com/derailed/k9s",
         changelog: nix.thunk(() => nix.str`https://github.com/derailed/k9s/releases/tag/v${nix.sel(finalAttrs, "version")}`),

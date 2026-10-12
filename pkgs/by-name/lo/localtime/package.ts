@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const m4 = nix.arg($, "m4");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "localtime",
       version: "0-unstable-2022-02-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stebalien",
           repo: "localtime",
           rev: "c1e10aa4141ed2bb01986b48e0e942e618993c06",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       installPhase: "runHook preInstall\nmake PREFIX=\"$out\" install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daemon for keeping the system timezone up-to-date based on the current location",
         homepage: "https://github.com/Stebalien/localtime",
         maintainers: nix.thunk(() => (() => {

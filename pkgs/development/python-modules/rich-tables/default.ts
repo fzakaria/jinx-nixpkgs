@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const freezegun = nix.arg($, "freezegun");
   const rgbxy = nix.arg($, "rgbxy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rich-tables",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snejus",
           repo: "rich-tables",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       nativeBuildInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub, freezegun], nix.sel(finalAttrs, "finalPackage", "passthru", "optional-dependencies", "hue"))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, hue: nix.thunk(() => [rgbxy]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, hue: nix.thunk(() => [rgbxy]) })),
       pythonRelaxDeps: nix.thunk(() => ["multimethod"]),
       pythonImportsCheck: nix.thunk(() => ["rich_tables"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ready-made rich tables for various purposes",
         homepage: "https://pypi.org/project/rich-tables/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const updateScript = nix.path(here, "./update.sh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tidal",
       version: "2.41.3",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20260314112555/https://download.tidal.com/desktop/TIDAL.arm64.dmg",
           hash: "sha256-18RjsLHhpUSAyITfwu3efokUbezE1b3GpFiafWHW/qo=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://web.archive.org/web/20260314112436/https://download.tidal.com/desktop/TIDAL.x64.dmg",
           hash: "sha256-5nUU8TOSph1v1C0+/KR/F5Y7m5TitbYH/ujsiZ/n6LU=",
         }))))),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       dontStrip: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: updateScript })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Play music from the Tidal streaming service",
         homepage: "https://tidal.com/",
         sourceProvenance: nix.thunk(() => (() => {

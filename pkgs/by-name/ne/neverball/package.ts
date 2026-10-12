@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const iconv = nix.arg($, "iconv");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "neverball",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://neverball.org/neverball-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "184gm36c6p6vaa6gwrfzmfh86klhnb03pl40ahsjsvprlk667zkk",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/Neverball/neverball/commit/a42492b8db06934c7a794630db92e3ff6ebaadaa.patch",
             sha256: "0sqyxfwpl4xxra8iz87j5rxzwani16xra2xl4l5z61shvq30308h",
@@ -57,7 +57,7 @@ cp mapc $out/bin
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://neverball.org/",
         description: "Tilt the floor to roll a ball",
         license: nix.thunk(() => (() => {

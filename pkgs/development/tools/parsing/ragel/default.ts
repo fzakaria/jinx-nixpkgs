@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const pname = "ragel";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://www.colm.net/files/ragel/${pname}-${version_1}.tar.gz`),
             sha256: sha256,
           }))));
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
         const preConfigure = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), build_manual, "sed -i \"s/build_manual=no/build_manual=yes/g\" DIST\n"));
         const configureFlags = nix.thunk(() => [nix.thunk(() => nix.str`--with-colm=${colm}`)]);
         const env = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu++98")),
         }));
         const doCheck = true;
         const enableParallelBuilding = true;
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://www.colm.net/open-source/ragel/",
           description: "State machine compiler",
           mainProgram: "ragel",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version: version_1,
           src,
@@ -74,15 +74,15 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     ragelStable: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "6.10",
         sha256: "0gvcsl62gh6sg73nwaxav4a5ja23zcnyxncdcdnqa2yjcpdnw5az",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       })))),
     ragelDev: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "7.0.0.12",
         sha256: "0x3si355lv6q051lgpg8bpclpiq5brpri5lv3p8kk2qhzfbyz69r",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

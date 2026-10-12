@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "uv";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amphp",
           repo: "ext-uv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [libuv]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interface to libuv for php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://github.com/amphp/ext-uv",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

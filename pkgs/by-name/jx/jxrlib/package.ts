@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const quilt = nix.arg($, "quilt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jxrlib",
       version: "1.2~git20170615.f752187-5.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian-phototools-team",
           repo: "jxrlib",
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, quilt]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-Wno-error=implicit-function-declaration"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=incompatible-pointer-types"])))))),
       })),
       postPatch: "QUILT_PATCHES=debian/patches quilt push -a\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of the JPEG XR image codec standard",
         homepage: "https://jxrlib.codeplex.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

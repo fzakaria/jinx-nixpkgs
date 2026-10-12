@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const llm = nix.arg($, "llm");
   const llm_hacker_news = nix.arg($, "llm-hacker-news");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "llm-hacker-news",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "llm-hacker-news",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [llm]),
       pythonImportsCheck: nix.thunk(() => ["llm_hacker_news"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_hacker_news)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM plugin for pulling content from Hacker News",
         homepage: "https://github.com/simonw/llm-hacker-news",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm-hacker-news/releases/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

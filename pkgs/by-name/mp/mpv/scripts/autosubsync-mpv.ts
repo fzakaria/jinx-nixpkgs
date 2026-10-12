@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildLua = nix.arg($, "buildLua");
   const ffsubsync = nix.arg($, "ffsubsync");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "autosubsync-mpv",
       version: "0-unstable-2024-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joaquintorres",
           repo: "autosubsync-mpv",
           rev: "125ac13d1b84b3a64bb2e912225a8356c1c01364",
@@ -33,9 +33,9 @@ substituteInPlace autosubsync.lua                                            \\
 runHook postPatch
 `),
       scriptPath: "./",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, scriptName: "autosubsync-mpv" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scriptName: "autosubsync-mpv" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatically sync subtitles in mpv using the `n` button",
         homepage: "https://github.com/joaquintorres/autosubsync-mpv",
         maintainers: nix.thunk(() => (() => {

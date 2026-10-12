@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fschulze",
           repo: "setuptools-changelog-shortener",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["setuptools_changelog_shortener"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Setuptools-changelog-shortener: add only newest changelog entries to long_description",
         homepage: "https://github.com/fschulze/setuptools-changelog-shortener",
         changelog: nix.thunk(() => nix.str`https://github.com/fschulze/setuptools-changelog-shortener/blob/${nix.sel(src, "rev")}/README.rst#changelog`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

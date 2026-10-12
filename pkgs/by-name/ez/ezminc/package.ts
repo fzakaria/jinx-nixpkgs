@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const gsl = nix.arg($, "gsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "EZminc",
       version: "2.2.00-unstable-2023-10-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "EZminc",
           rev: "5fdf112e837000d155891e423041d7065ea13c3f",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/BIC-MNI/EZminc",
         description: "Collection of Perl and shell scripts for processing MINC files",
         maintainers: nix.thunk(() => (() => {

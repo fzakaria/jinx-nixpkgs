@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "diff-pdf";
       const version = "0.5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vslavik",
           repo: "diff-pdf",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [cairo, poppler, wxwidgets_3_2]);
       const preConfigure = "./bootstrap";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://vslavik.github.io/diff-pdf/",
         description: "Simple tool for visually comparing two PDF files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "diff-pdf",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

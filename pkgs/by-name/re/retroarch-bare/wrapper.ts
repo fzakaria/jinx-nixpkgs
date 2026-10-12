@@ -25,16 +25,16 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-L ${nix.add(nix.builtins.placeholder("out"), p)}`),
         ], coresPath))), ["--add-flags", nix.thunk(() => nix.str`--appendconfig=${settingsPath}`)]))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "retroarch-with-cores",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), retroarch_bare)),
       paths: nix.thunk(() => nix.concat([retroarch_bare], cores)),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cores: cores,
         unwrapped: retroarch_bare,
-        withCores: (coreFun) => nix.app(nix.sel(retroarch_bare, "wrapper"), nix.thunk(() => ({ __proto__: pos$1, cores: nix.thunk(() => nix.app(coreFun, libretro)) }))),
+        withCores: (coreFun) => nix.app(nix.sel(retroarch_bare, "wrapper"), nix.thunk(() => ({ [nix.POS]: pos$1, cores: nix.thunk(() => nix.app(coreFun, libretro)) }))),
       })),
       postBuild: nix.thunk(() => nix.str`# remove core specific binaries
 find $out/bin -name 'retroarch-*' -type l -delete
@@ -45,7 +45,7 @@ wrapProgram $out/bin/retroarch ${wrapperArgs}
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(retroarch_bare, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

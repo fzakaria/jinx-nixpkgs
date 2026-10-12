@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const kdeclarative = nix.arg($, "kdeclarative");
   const kpackage = nix.arg($, "kpackage");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kunifiedpush",
       extraBuildInputs: nix.thunk(() => [qtwebsockets, kdeclarative, kpackage]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kunifiedpush-distributor" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kunifiedpush-distributor" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

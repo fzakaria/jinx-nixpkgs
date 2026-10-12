@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const unsupported = nix.thunk(() => nix.builtins.throw("Unsupported system"));
   const version = "0.28.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "torchvision",
       version: version,
       format: "wheel",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`addAutoPatchelfSearchPath "${torch_bin}/${nix.sel(python, "sitePackages")}/torch"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "PyTorch vision library",
         homepage: "https://pytorch.org/vision",
         downloadPage: "https://github.com/pytorch/vision",

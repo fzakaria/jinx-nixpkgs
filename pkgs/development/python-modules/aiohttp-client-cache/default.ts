@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "aiohttp_client_cache",
           version: version,
           hash: "sha256-Mp9AOMao7QtBACOYC20aLEhK8z5meonOJFyJnWLB+6E=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [aiohttp, attrs, itsdangerous, url_normalize]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [aioboto3, aiobotocore, aiofiles, aiosqlite, motor, redis]),
         dynamodb: nix.thunk(() => [aioboto3, aiobotocore]),
         filesystem: nix.thunk(() => [aiofiles, aiosqlite]),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["aiohttp_client_cache"]);
       const disabledTestPaths = nix.thunk(() => ["test/integration/*"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Async persistent cache for aiohttp requests",
         homepage: "https://github.com/requests-cache/aiohttp-client-cache",
         changelog: nix.thunk(() => nix.str`https://github.com/requests-cache/aiohttp-client-cache/blob/v${version}/HISTORY.md`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

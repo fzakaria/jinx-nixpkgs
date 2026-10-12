@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "17mdhi2sq9017nq8rkjhhc87djpi5z99xiil0xz17dyplr7nmkqk",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [zope_testrunner]);
       const propagatedBuildInputs = nix.thunk(() => [six, chardet]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kilink/ghdiff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Generate Github-style HTML for unified diffs",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mic92"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

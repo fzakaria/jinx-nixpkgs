@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crawley",
       version: "1.7.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s0rg",
           repo: "crawley",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-w", "-s"]),
       postInstall: "installShellCompletion --cmd crawley \\\n  --bash <(echo \"complete -C $out/bin/crawley crawley\") \\\n  --zsh <(echo \"complete -o nospace -C $out/bin/crawley crawley\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unix-way web crawler",
         homepage: "https://github.com/s0rg/crawley",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

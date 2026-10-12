@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
     const validCpuTypes = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(lib, "systems", "parse", "cpuTypes"))));
     const providedCpuTypes = nix.thunk(() => nix.builtins.filter((arch) => nix.builtins.elem(arch, validCpuTypes), nix.thunk(() => nix.builtins.attrNames(sourcePerArch))));
     const result = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(sourcePerArch, "packageType"), "jdk")) ? nix.str`${name_prefix}-bin` : nix.str`${name_prefix}-${nix.sel(sourcePerArch, "packageType")}-bin`)),
         version: nix.thunk(() => nix.selOr(sourcePerArch, () => "unsupported", nix.key(nix.force(cpuName)), "version")),
         srcs: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(sourcePerArch, nix.key(nix.force(cpuName))));
               return {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.attr(from, "url")),
               sha256: nix.thunk(() => nix.attr(from, "sha256")),
             };
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(jmodsSourcePreArch, null)), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(jmodsSourcePreArch, nix.key(nix.force(cpuName))));
               return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.attr(from, "url")),
               sha256: nix.thunk(() => nix.attr(from, "sha256")),
             };
@@ -121,9 +121,9 @@ for bin in $( find "$out" -executable -type f -not -name jspawnhelper ); do
 done
 `),
         preFixup: "find \"$out\" -name libfontmanager.so -exec \\\n  patchelf --add-needed libfontconfig.so {} \\;\n",
-        passthru: nix.thunk(() => ({ __proto__: pos$3, jre: result, home: result })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, jre: result, home: result })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [

@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const version = "1.8.32";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "marlam",
       repo: "msmtp",
       rev: nix.thunk(() => nix.str`msmtp-${version}`),
       hash: "sha256-ofyDtP7KgTKX/O1O4g3OcDwgihDveAiJ5s5GQtSqf28=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Simple and easy to use SMTP client with excellent sendmail compatibility",
     homepage: "https://marlam.de/msmtp/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
     mainProgram: "msmtp",
   }));
   const binaries = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msmtp-binaries",
       version: version,
       src: src,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 -t $out/share/doc/msmtp doc/*.example\nln -s msmtp $out/bin/sendmail\n",
     }))));
   const scripts = nix.thunk(() => nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "msmtp-scripts",
       version: version,
       src: src,
@@ -99,9 +99,9 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin                     scripts/msmtpq/msmtp*\ninstall -Dm444 -t $out/share/doc/msmtp/scripts scripts/msmtpq/README*\ninstall -Dm444 -t $out/share/doc/msmtp/scripts scripts/{find_alias,msmtpqueue,set_sendmail}/*\n\nif grep --quiet -E '@.+@' $out/bin/*; then\n  echo \"Unsubstituted variables found. Aborting!\"\n  grep -E '@.+@' $out/bin/*\n  exit 1\nfi\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         msmtpq: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           scripts: nix.thunk(() => ["bin/msmtpq"]),
           interpreter: nix.thunk(() => nix.app(getExe, bash)),
           inputs: nix.thunk(() => nix.concat([binaries, coreutils, gnugrep, gnused, netcat_gnu, which], nix.concat(nix.app(optionals, withSystemd, nix.thunk(() => [systemd])), nix.app(optionals, withLibnotify, nix.thunk(() => [libnotify]))))),
@@ -111,15 +111,15 @@ export default nix.lambda((args) => (() => {
           ], nix.concat(nix.app(optionals, withSystemd, nix.thunk(() => [nix.thunk(() => nix.str`cannot:${nix.app(getBin, systemd)}/bin/systemd-cat`)])), nix.app(optionals, withLibnotify, nix.thunk(() => [
               nix.thunk(() => nix.str`cannot:${nix.app(getBin, libnotify)}/bin/notify-send`),
             ]))))),
-          fix: nix.thunk(() => ({ __proto__: pos$4, $MSMTP: nix.thunk(() => ["msmtp"]) })),
+          fix: nix.thunk(() => ({ [nix.POS]: pos$4, $MSMTP: nix.thunk(() => ["msmtp"]) })),
           fake: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             external: nix.thunk(() => nix.concat(["ping"], nix.concat(nix.app(optionals, nix.thunk(() => !nix.asBool(withSystemd)), nix.thunk(() => ["systemd-cat"])), nix.app(optionals, nix.thunk(() => !nix.asBool(withLibnotify)), nix.thunk(() => ["notify-send"]))))),
           })),
-          keep: nix.thunk(() => ({ __proto__: pos$6, source: nix.thunk(() => ["~/.msmtpqrc"]) })),
+          keep: nix.thunk(() => ({ [nix.POS]: pos$6, source: nix.thunk(() => ["~/.msmtpqrc"]) })),
         })),
         "msmtp-queue": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           scripts: nix.thunk(() => ["bin/msmtp-queue"]),
           interpreter: nix.thunk(() => nix.app(getExe, bash)),
           inputs: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin`)]),
@@ -130,21 +130,21 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return (nix.asBool(withScripts) ? nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "msmtp",
       version: version,
       meta: meta,
       paths: nix.thunk(() => [binaries, scripts]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         binaries: binaries,
         scripts: scripts,
         src: src,
         binlore: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), msmtp, "wrapper bin/msmtpq bin/msmtp\n")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$12, "rev-prefix": "msmtp-" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$12, "rev-prefix": "msmtp-" })))),
       })),
     }))) : nix.force(binaries));
 })(), formals$1);

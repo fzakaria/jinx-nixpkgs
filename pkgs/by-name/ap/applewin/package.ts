@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const enableSdl2 = nix.argOr($, "enableSdl2", () => true);
   const enableLibretro = nix.argOr($, "enableLibretro", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "applewin",
       version: "1.30.21.0.b",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "audetto",
           repo: "AppleWin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_LIBRETRO", enableLibretro)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Apple II emulator for Linux",
         longDescription: "AppleWin on Linux is a linux port of AppleWin that shares 100% of the code\nof the core emulator and video generation. Audio, UI, scheduling and other\nperipherals are reimplemented.\n",
         homepage: "https://github.com/audetto/AppleWin",

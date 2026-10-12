@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "arpa2cm",
       version: "1.0.7",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arpa2",
           repo: "arpa2cm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CMake Module library for the ARPA2 project",
         longDescription: "The CMake module library for the ARPA2 project, including the LillyDAP,\nTLSPool and IdentityHub software stacks. Like the KDE Extra CMake Modules (ECM)\nwhich is a large-ish collection of curated CMake modules of particular\ninterest to Qt-based and KDE Frameworks-based applications, the ARPA2\nCMake Modules (ARPA2CM) is a collection of modules for the software\nstack from the ARPA2 project. This is largely oriented towards\nTLS, SSL, X509, DER and LDAP technologies. The ARPA2 CMake Modules\nalso include modules used for product release and deployment of\nthe ARPA2 software stack.\n",
         homepage: "https://gitlab.com/arpa2/arpa2cm",

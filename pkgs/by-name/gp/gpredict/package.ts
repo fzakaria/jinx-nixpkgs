@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gpredict",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "csete",
           repo: "gpredict",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, intltool, wrapGAppsHook3, autoreconfHook]),
       buildInputs: nix.thunk(() => [curl, gtk3, gpsd]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Real time satellite tracking and orbit prediction",
         mainProgram: "gpredict",
         longDescription: "Gpredict is a real time satellite tracking and orbit prediction program\nwritten using the GTK widgets. Gpredict is targeted mainly towards ham radio\noperators but others interested in satellite tracking may find it useful as\nwell. Gpredict uses the SGP4/SDP4 algorithms, which are compatible with the\nNORAD Keplerian elements.\n",

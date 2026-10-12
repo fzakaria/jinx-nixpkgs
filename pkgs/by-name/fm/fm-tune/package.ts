@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const liquid_dsp = nix.arg($, "liquid-dsp");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fm-tune",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "viraptor",
           repo: "fm_tune",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [liquid_dsp, soapysdr]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find initial calibration offset for SDR devices",
         longDescription: "fm_tune finds the initial offset for calibrating an SDR device. This is\nbased a given FM radio station frequency. The offset given by this tool is\nnot precise, but can be useful as a starting point for other tools which\ncannot correct for very large errors.\n",
         homepage: "https://github.com/viraptor/fm_tune",

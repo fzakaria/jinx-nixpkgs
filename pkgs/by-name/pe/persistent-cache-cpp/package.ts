@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "persistent-cache-cpp",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lib-cpp/persistent-cache-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cache of key-value pairs with persistent storage for C++ 11",
         longDescription: "A persistent cache for arbitrary (possibly large amount of data, such as\nimage files) that is fast, scalable, and crash-proof.\n",
         homepage: "https://gitlab.com/ubports/development/core/lib-cpp/persistent-cache-cpp",

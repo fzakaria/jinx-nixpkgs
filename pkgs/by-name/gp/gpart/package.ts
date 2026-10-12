@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpart",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "1lsd9k876p944k9s6sxqk5yh9yr7m42nbw9vlsllin7pd4djl4ya",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "gpart",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Guess PC-type hard disk partitions",
         longDescription: "Gpart is a tool which tries to guess the primary partition table of a\nPC-type hard disk in case the primary partition table in sector 0 is\ndamaged, incorrect or deleted. The guessed table can be written to a file\nor device.\n",

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protoc-gen-rust-grpc",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "grpc-compiler",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gt+Qa68N5EkqhCAvU2ISvVPT9vYPXMySad4DCyTVHkQ=",
         })))),
       cargoHash: "sha256-7PTe7popLS0zYYKv+K4629GkNG1wR/fhGi14a/4pkS0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Protobuf plugin for generating Rust code for gRPC",
         homepage: "https://github.com/stepancheg/grpc-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

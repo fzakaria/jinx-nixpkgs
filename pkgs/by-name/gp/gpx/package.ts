@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpx",
       version: "2.6.8",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markwal",
           repo: "GPX",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "1izs8s5npkbfrsyk17429hyl1vyrbj9dp6vmdlbb2vh6mfgl54h8",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gcode to x3g conversion postprocessor",
         homepage: "https://github.com/markwal/GPX/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

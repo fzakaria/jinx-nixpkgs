@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const xmlto = nix.arg($, "xmlto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adcli",
       version: "0.9.3a",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "realmd",
           repo: "adcli",
@@ -58,7 +58,7 @@ patch_docbook doc/adcli-devel.xml
 patch_docbook doc/adcli-docs.xml
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.freedesktop.org/software/realmd/adcli/adcli.html",
         description: "Helper library and tools for Active Directory client operations",
         mainProgram: "adcli",

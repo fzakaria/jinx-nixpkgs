@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const steel = nix.arg($, "steel");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steel-language-server",
       version: nix.thunk(() => nix.attr(steel, "version")),
       src: nix.thunk(() => nix.attr(steel, "src")),
       cargoHash: nix.thunk(() => nix.attr(steel, "cargoHash")),
       postPatch: nix.thunk(() => nix.attr(steel, "postPatch")),
-      env: nix.thunk(() => ({ __proto__: pos$1, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [openssl]),
       cargoBuildFlags: nix.thunk(() => ["--package", "steel-language-server"]),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram "$out/bin/steel-language-server" --prefix STEEL_SEARCH_PATHS : "${steel}/lib/steel/cogs"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(steel, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Steel language server",
         maintainers: nix.thunk(() => nix.concat(nix.sel(steel, "meta", "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "higherorderlogic"))])),
         mainProgram: "steel-language-server",

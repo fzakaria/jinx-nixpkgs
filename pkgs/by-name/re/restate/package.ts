@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const restate = nix.arg($, "restate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "restate",
       version: "1.7.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "restatedev",
           repo: "restate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-bKGJZ5gmp+sG3BuMoT0i62fDJFC1mNu9iOEQFEf7rRA=",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), protobuf)),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
         VERGEN_GIT_SHA: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
         RUSTFLAGS: nix.thunk(() => (() => {
           const target = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config"));
           const targetFlags = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               build: nix.thunk(() => ["-C force-unwind-tables", "--cfg uuid_unstable", "--cfg tokio_unstable"]),
               "aarch64-unknown-linux-gnu": nix.thunk(() => nix.concat(nix.sel(self, "build"), ["-C force-frame-pointers=yes", "--cfg tokio_taskdump"])),
               "x86_64-unknown-linux-musl": nix.thunk(() => nix.concat(nix.sel(self, "build"), ["-C link-self-contained=yes", "--cfg tokio_taskdump"])),
@@ -90,17 +90,17 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
-          restateCliVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: restate, command: "restate --version" })))),
-          restateServerVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$5, package: restate, command: "restate-server --version" })))),
-          restateCtlVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$6, package: restate, command: "restatectl --version" })))),
+          [nix.POS]: pos$7,
+          restateCliVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: restate, command: "restate --version" })))),
+          restateServerVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: restate, command: "restate-server --version" })))),
+          restateCtlVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, package: restate, command: "restatectl --version" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Platform for developing distributed fault-tolerant applications",
         homepage: "https://restate.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/restatedev/restate/releases/tag/v${nix.sel(finalAttrs, "version")}`),

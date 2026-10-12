@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-panel",
       version: "4.20.8",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "xfce",
           repo: "xfce4-panel",
@@ -73,11 +73,11 @@ substituteInPlace plugins/clock/clock.c \\
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "xfce4-panel-", "odd-unstable": true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-panel-", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Panel for the Xfce desktop environment",
         homepage: "https://gitlab.xfce.org/xfce/xfce4-panel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

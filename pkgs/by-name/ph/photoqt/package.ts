@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const zxing_cpp = nix.arg($, "zxing-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "photoqt",
       version: "5.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://photoqt.org/downloads/source/photoqt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vCihM84yDfDbz77qigIFQH/LIarH6IHKS3QdFPLZ8Lc=",
         })))),
@@ -64,12 +64,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "VIDEO_MPV", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MAGICK_LOCATION: nix.thunk(() => nix.str`${graphicsmagick}/include/GraphicsMagick`),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/photoqt.app $out/Applications\nmakeWrapper $out/{Applications/photoqt.app/Contents/MacOS,bin}/photoqt\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, yet powerful and good looking image viewer",
         homepage: "https://photoqt.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

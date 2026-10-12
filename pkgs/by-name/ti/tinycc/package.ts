@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tcc",
       version: "0.9.27-unstable-2026-09-22",
       outputs: nix.thunk(() => ["dev", "doc", "info", "lib", "man", "out"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://repo.or.cz/tinycc.git",
           rev: "3dc99dbc82f8e07308c5d398136803e62f9676df",
           hash: "sha256-qYsGgihowp2C6WFzbQuXEWgJG6evtu/10p5IH/ozIKY=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       pkgconfigItems: nix.thunk(() => (() => {
         const libtcc_pcitem = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "libtcc",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           cflags: nix.thunk(() => [
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
             "-ltcc",
           ]),
           variables: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             prefix: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
             includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
             libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/lib`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "# TCC cannot cross-compile x86 long double constants from aarch64-darwin.\nmakeFlagsArray+=(\"TCC_X=i386-win32 x86_64-win32 arm arm64 arm-wince c67 riscv64 arm64-osx\")\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=int-conversion"]))),
       })),
       doInstallCheck: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
@@ -83,7 +83,7 @@ configureFlagsArray+=("--elfinterp=$(< $NIX_CC/nix-support/dynamic-linker)")
       })()),
       installCheckTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://repo.or.cz/tinycc.git",
         description: "Small, fast, and embeddable C compiler and interpreter",
         longDescription: "TinyCC (aka TCC) is a small but hyper fast C compiler.  Unlike other C\ncompilers, it is meant to be self-sufficient: you do not need an external\nassembler or linker because TCC does that for you.\n\nTCC compiles so fast that even for big projects Makefiles may not be\nnecessary.\n\nTCC not only supports ANSI C, but also most of the new ISO C99 standard\nand many GNU C extensions.\n\nTCC can also be used to make C scripts, i.e. pieces of C source that you\nrun as a Perl or Python script.  Compilation is so fast that your script\nwill be as fast as if it was an executable.\n\nTCC can also automatically generate memory and bound checks while allowing\nall C pointers operations.  TCC can do these checks even if non patched\nlibraries are used.\n\nWith libtcc, you can use TCC as a backend for dynamic code generation.\n",

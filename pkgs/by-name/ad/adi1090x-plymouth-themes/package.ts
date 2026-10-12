@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.eq(unknown, [])) ? nix.builtins.throw(nix.thunk(() => nix.str`Unknown theme(s): ${nix.app(nix.sel(lib, "concatStringsSep"), " ", unknown)}`)) : nix.force(selected_themes));
   })()));
   const srcs = nix.thunk(() => nix.app(nix.sel(lib, "lists", "forEach"), selectedThemes, (name) => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.sel(themeShas, nix.key(nix.force(name)), "url")),
         sha256: nix.thunk(() => nix.sel(themeShas, nix.key(nix.force(name)), "sha")),
       })))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adi1090x-plymouth-themes",
       version: version,
       srcs: srcs,
@@ -41,7 +41,7 @@ done
 find $out/share/plymouth/themes/ -name \\*.plymouth -exec sed -i "s@\\/usr\\/@$out\\/@" {} \\;
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plymouth boot themes from adi1090x",
         longDescription: "A variety of plymouth boot screens by adi1090x.  Using the default value\nof `selected_themes` will install all themes (~524M).  Consider overriding\nthis with a list of the string names of each theme to install.  Check\n./shas.nix for available themes.\n",
         homepage: "https://github.com/adi1090x/plymouth-themes",

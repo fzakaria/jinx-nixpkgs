@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pylessard",
           repo: "python-can-isotp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["isotp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package that provides support for ISO-TP (ISO-15765) protocol",
         homepage: "https://github.com/pylessard/python-can-isotp",
         changelog: nix.thunk(() => nix.str`https://github.com/pylessard/python-can-isotp/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "windtrap",
       version: "0.1.0",
       minimalOCamlVersion: "5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/invariant-hq/windtrap/releases/download/0.1.0/windtrap-0.1.0.tbz",
           hash: "sha256-IkGylLJO1dVuqLg00pbm+rxdvdkkqJ9RwUsA2mbFCiU=",
         })))),
       doCheck: true,
       preCheck: "unset HOME\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unit tests, property-based tests, snapshot tests, and expect tests in a single package with one API.",
         homepage: "https://ocaml.org/p/windtrap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

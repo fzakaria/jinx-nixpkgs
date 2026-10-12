@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zziplib = nix.arg($, "zziplib");
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ogre-next",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OGRECave",
           repo: "ogre-next",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/OGRECave/ogre-next/commit/c1dad50e8510dea9d75d97b0ace33a870993895c.patch?full_index=1",
             hash: "sha256-JYsksDxcLrkHqlgdP3KdHlFuvYxNazlchPGoTXE9LYQ=",
           })))),
@@ -68,18 +68,18 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OGRE_SIMD_SSE2", false)),
         ]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "3D Object-Oriented Graphics Rendering Engine",
         homepage: "https://www.ogre3d.org/",
         maintainers: nix.thunk(() => (() => {

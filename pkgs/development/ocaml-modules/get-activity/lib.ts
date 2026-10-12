@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "get-activity-lib",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tarides",
           repo: "get-activity",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect, alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tarides/get-activity",
         description: "Collect activity and format as markdown for a journal (lib)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

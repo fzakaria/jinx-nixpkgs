@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const osmo_ggsn = nix.arg($, "osmo-ggsn");
   const c_ares = nix.arg($, "c-ares");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osmo-sgsn",
       version: "1.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "osmo-sgsn",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libosmocore, libosmoabis, libosmo_netif, osmo_hlr, osmo_ggsn, c_ares]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Osmocom implementation of the 3GPP Serving GPRS Support Node (SGSN)",
         homepage: "https://osmocom.org/projects/osmosgsn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -19,47 +19,47 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const name = nix.arg($, "name");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       dataPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "path")),
           default: nix.thunk(() => nix.str`/var/lib/pantalaimon-${name}`),
           description: "The directory where `pantalaimon` should store its state such as the database file.\n",
         })))),
       logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["info", "warning", "error", "debug"]))),
           default: "warning",
           description: "Set the log level of the daemon.\n",
         })))),
       homeserver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           example: "https://matrix.org",
           description: "The URI of the homeserver that the `pantalaimon` proxy should\nforward requests to, without the matrix API path but including\nthe http(s) schema.\n",
         })))),
       ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: true,
           description: "Whether or not SSL verification should be enabled for outgoing\nconnections to the homeserver.\n",
         })))),
       listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "localhost",
           description: "The address where the daemon will listen to client connections\nfor this homeserver.\n",
         })))),
       listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(lib, "types", "port")),
           default: 8009n,
           description: "The port where the daemon will listen to client connections for\nthis homeserver. Note that the listen address/port combination\nneeds to be lib.unique between different homeservers.\n",
         })))),
       extraSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
           default: nix.thunk(() => ({})),
           description: "Extra configuration options. See\n[pantalaimon(5)](https://github.com/matrix-org/pantalaimon/blob/master/docs/man/pantalaimon.5.md)\nfor available options.\n",

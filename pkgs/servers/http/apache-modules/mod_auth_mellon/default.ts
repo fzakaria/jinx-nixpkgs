@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_auth_mellon";
       const version = "0.19.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latchset",
           repo: "mod_auth_mellon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "mkdir -p $out/bin\ncp ./mellon_create_metadata.sh $out/bin\nmkdir -p $out/modules\ncp ./.libs/mod_auth_mellon.so $out/modules\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/latchset/mod_auth_mellon",
         description: "Apache module with a simple SAML 2.0 service provider",
         mainProgram: "mellon_create_metadata.sh",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

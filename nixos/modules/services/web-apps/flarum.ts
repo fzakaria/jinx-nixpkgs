@@ -72,108 +72,108 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "flarum"));
-  const dbConfig = nix.thunk(() => nix.update((nix.asBool(nix.eq(nix.sel(cfg, "database", "driver"), "mysql")) ? nix.sel(cfg, "database") : nix.app(nix.builtins.removeAttrs, nix.thunk(() => nix.sel(cfg, "database")), nix.thunk(() => ["engine"]))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "databasePasswordFile"), null)), nix.thunk(() => ({ __proto__: pos$1, password: "@databasePassword@" })))));
+  const dbConfig = nix.thunk(() => nix.update((nix.asBool(nix.eq(nix.sel(cfg, "database", "driver"), "mysql")) ? nix.sel(cfg, "database") : nix.app(nix.builtins.removeAttrs, nix.thunk(() => nix.sel(cfg, "database")), nix.thunk(() => ["engine"]))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "databasePasswordFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$1, password: "@databasePassword@" })))));
   const flarumInstallConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         debug: false,
         offline: false,
         baseUrl: nix.thunk(() => nix.sel(cfg, "baseUrl")),
         databaseConfiguration: dbConfig,
         adminUser: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           username: nix.thunk(() => nix.sel(cfg, "adminUser")),
           password: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "initialAdminPasswordFile"), null)) ? "@adminPassword@" : nix.sel(cfg, "initialAdminPassword"))),
           email: nix.thunk(() => nix.sel(cfg, "adminEmail")),
         })),
-        settings: nix.thunk(() => ({ __proto__: pos$3, forum_title: nix.thunk(() => nix.sel(cfg, "forumTitle")) })),
+        settings: nix.thunk(() => ({ [nix.POS]: pos$3, forum_title: nix.thunk(() => nix.sel(cfg, "forumTitle")) })),
       }))))));
   const phpFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "php"), nix.thunk(() => ({}))));
   const configPhpFile = nix.thunk(() => nix.app(nix.sel(phpFormat, "generate"), "flarum-config.php", nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       debug: false,
       database: dbConfig,
       url: nix.thunk(() => nix.sel(cfg, "baseUrl")),
-      paths: nix.thunk(() => ({ __proto__: pos$5, api: "api", admin: "admin" })),
-      headers: nix.thunk(() => ({ __proto__: pos$6, poweredByHeader: true, referrerPolicy: "same-origin" })),
-      queue: nix.thunk(() => ({ __proto__: pos$7, driver: "sync" })),
+      paths: nix.thunk(() => ({ [nix.POS]: pos$5, api: "api", admin: "admin" })),
+      headers: nix.thunk(() => ({ [nix.POS]: pos$6, poweredByHeader: true, referrerPolicy: "same-origin" })),
+      queue: nix.thunk(() => ({ [nix.POS]: pos$7, driver: "sync" })),
     }))));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     options: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       services: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         flarum: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Flarum discussion platform")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "flarum", nix.thunk(() => ({})))),
           forumTitle: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "A Flarum Forum on NixOS",
               description: "Title of the forum.",
             })))),
           domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               example: "forum.example.com",
               description: "Domain to serve on.",
             })))),
           baseUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "http://localhost",
               example: "https://forum.example.com",
               description: "Change `domain` instead.",
             })))),
           adminUser: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "flarum",
               description: "Username for first web application administrator",
             })))),
           adminEmail: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "admin@example.com",
               description: "Email for first web application administrator",
             })))),
           initialAdminPassword: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "flarum",
               description: "Initial password for the adminUser.\n\nWARNING: This is stored world-readable in the Nix store.\nUse {option}`initialAdminPasswordFile` instead.\n",
             })))),
           initialAdminPasswordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/secrets/flarum-admin-password",
               description: "File containing the initial password for adminUser.\nMust be readable by the flarum user.\nTakes precedence over {option}`initialAdminPassword`.\n\nThe password must not contain `\"` or `\\` characters, as it is\nsubstituted into a JSON installation config verbatim.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "flarum",
               description: "System user to run Flarum",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "flarum",
               description: "System group to run Flarum",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/flarum",
               description: "Home directory for writable storage",
             })))),
           database: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   freeformType: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -183,75 +183,75 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     driver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "mysql",
                         description: "Database driver; i.e. MySQL, MariaDB...",
                       })))),
                     host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "localhost",
                         description: "Database server hostname.",
                       })))),
                     port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                         default: 3306n,
                         description: "Database connection port; defaults to 3306 with MySQL.",
                       })))),
                     database: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "flarum",
                         description: "Database name.",
                       })))),
                     username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "flarum",
                         description: "Username for database server access.",
                       })))),
                     password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "",
                         description: "Password for database server access.",
                       })))),
                     charset: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "utf8mb4",
                         description: "Character encoding for the database.",
                       })))),
                     collation: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "utf8mb4_unicode_ci",
                         description: "Character collation for database sorting and comparison.",
                       })))),
                     prefix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "",
                         description: "Table prefix; useful for sharing a database with other services.",
                       })))),
                     strict: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$28,
+                        [nix.POS]: pos$28,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Enable strict SQL mode.",
                       })))),
                     engine: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "InnoDB",
                         description: "Storage engine for new tables; MySQL-only.",
                       })))),
                     prefix_indexes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: true,
                         description: "Apply table prefix to database index names.",
@@ -262,20 +262,20 @@ export default nix.lambda((args) => (() => {
               description: "MySQL database parameters.\n\nWARNING: A `password` set here is stored world-readable in the\nNix store. Use {option}`databasePasswordFile` instead.\n",
             })))),
           databasePasswordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/secrets/flarum-db-password",
               description: "File containing the database password.\nMust be readable by the flarum user.\nTakes precedence over `database.password`.\n\nThe password must not contain `\"` or `\\` characters, as it is\nsubstituted into a JSON installation config verbatim.\n",
             })))),
           createDatabaseLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Create the database and database user locally, and run installation.\n\nWARNING: Due to <https://github.com/flarum/framework/issues/4018>, this option is set\nto false by default. The 'flarum install' command may delete existing database tables.\nOnly set this to true if you are certain you are working with a fresh, empty database.\n",
             })))),
           adoptConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to let this module manage a pre-existing config.php,\nsuch as a hand-maintained one (typically with\n{option}`createDatabaseLocally` = false).\n\nBy default, a config.php this module didn't create is left alone:\n{option}`baseUrl` and {option}`database` are not applied to it, so\nreal settings can't get silently overwritten by their defaults.\n\nBefore enabling this, make sure {option}`baseUrl` and\n{option}`database` already match the file's real values. Once\nenabled, config.php is regenerated from these options on every\nactivation, and anything in the file not covered by them is lost.\n",
@@ -284,12 +284,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         users: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               isSystemUser: true,
               home: nix.thunk(() => nix.sel(cfg, "stateDir")),
               createHome: true,
@@ -300,16 +300,16 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             pools: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               flarum: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 user: nix.thunk(() => nix.sel(cfg, "user")),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                   "listen.mode": "0600",
@@ -325,16 +325,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 root: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/public`),
                 locations: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   "~ \\.php$": nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "flarum", "socket")};
 fastcgi_index site.php;
 `),
@@ -347,13 +347,13 @@ include ${nix.sel(cfg, "package")}/share/php/flarum/.nginx.conf;
             ])),
           })),
           mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "database"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   name: nix.thunk(() => nix.sel(cfg, "database", "username")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "database")}.*`, "ALL PRIVILEGES"]])),
                 })),
@@ -362,21 +362,21 @@ include ${nix.sel(cfg, "package")}/share/php/flarum/.nginx.conf;
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "createDatabaseLocally"))) || nix.asBool(nix.eq(nix.sel(cfg, "database", "driver"), "mysql")))),
             message: "Flarum can only be automatically installed in MySQL/MariaDB.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           services: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             "phpfpm-flarum": nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             "flarum-install": nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               description: "Flarum installation",
               requiredBy: nix.thunk(() => ["phpfpm-flarum.service"]),
               before: nix.thunk(() => ["phpfpm-flarum.service"]),
@@ -384,7 +384,7 @@ include ${nix.sel(cfg, "package")}/share/php/flarum/.nginx.conf;
               after: nix.thunk(() => ["mysql.service"]),
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package")), configPhpFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -438,7 +438,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [

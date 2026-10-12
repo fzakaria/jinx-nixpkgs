@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const java = openjdk25;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "neo4j",
       version: "2026.09.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://neo4j.com/artifact.php?name=neo4j-community-${nix.sel(finalAttrs, "version")}-unix.tar.gz`),
           hash: "sha256-zaoJBdmlM7u8R00jnCaPaZeJgutcoxd2ZsBMl5LRw5k=",
         })))),
@@ -55,16 +55,16 @@ patchShebangs $out/share/neo4j/bin/neo4j-admin
 $out/bin/neo4j-admin dbms set-initial-password neo4jadmin
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "neo4j")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "neo4j")) })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/neo4j/neo4j.git",
             allowedVersions: "^[0-9]{4}\\.[0-9]{2}\\.[0-9]+$",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Highly scalable, robust (fully ACID) native graph database",
         homepage: "https://neo4j.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

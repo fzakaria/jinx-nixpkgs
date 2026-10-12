@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pwninit",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "io12",
           repo: "pwninit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       cargoHash: "sha256-m0Bdx2ayLCTCJXCl7YUKfxka1qUVSFm9LNLICEjEfY4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automate starting binary exploit challenges",
         mainProgram: "pwninit",
         homepage: "https://github.com/io12/pwninit",

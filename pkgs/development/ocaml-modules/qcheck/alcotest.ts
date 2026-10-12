@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const qcheck_core = nix.arg($, "qcheck-core");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qcheck-alcotest",
       version: nix.thunk(() => nix.attr(qcheck_core, "version")),
       src: nix.thunk(() => nix.attr(qcheck_core, "src")),
       propagatedBuildInputs: nix.thunk(() => [qcheck_core, alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(qcheck_core, "meta"), { __proto__: pos$1, description: "Alcotest backend for qcheck" })),
+      meta: nix.thunk(() => nix.update(nix.sel(qcheck_core, "meta"), { [nix.POS]: pos$1, description: "Alcotest backend for qcheck" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=alcotest.ts.map

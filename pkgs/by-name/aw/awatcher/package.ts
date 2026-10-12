@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "awatcher",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "2e3s",
           repo: "awatcher",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       cargoHash: "sha256-1QLXMqqEBAu6ZfdMNZKkynFkoqXEUgSG9QNICd9/6VY=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Activity and idle watchers",
         longDescription: "Awatcher is a window activity and idle watcher with an optional tray and UI for statistics. The goal is to compensate\nthe fragmentation of desktop environments on Linux by supporting all reportable environments, to add more\nflexibility to reports with filters, and to have better UX with the distribution by a single executable.\n",
         downloadPage: "https://github.com/2e3s/awatcher/releases",

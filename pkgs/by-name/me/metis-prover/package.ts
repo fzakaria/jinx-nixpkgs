@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const mlton = nix.arg($, "mlton");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "metis-prover",
       version: "2.4.20200713",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gilith",
           repo: "metis",
           rev: "d17c3a8cf6537212c5c4bfdadcf865bd25723132",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "make mlton",
       installPhase: "install -Dm0755 bin/mlton/metis $out/bin/metis\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic theorem prover for first-order logic with equality",
         mainProgram: "metis",
         homepage: "https://www.gilith.com/research/metis/",

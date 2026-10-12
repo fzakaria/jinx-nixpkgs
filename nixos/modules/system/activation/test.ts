@@ -36,29 +36,29 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         system: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           forbiddenDependenciesRegexes: nix.thunk(() => ["-dev$"]),
           stateVersion: nix.thunk(() => nix.sel(config, "system", "nixos", "release")),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           etc: nix.thunk(() => ({
-            __proto__: pos$3,
-            "dev-dependency": nix.thunk(() => ({ __proto__: pos$2, text: nix.thunk(() => nix.str`${nix.sel(expect, "dev")}`) })),
+            [nix.POS]: pos$3,
+            "dev-dependency": nix.thunk(() => ({ [nix.POS]: pos$2, text: nix.thunk(() => nix.str`${nix.sel(expect, "dev")}`) })),
           })),
         })),
-        documentation: nix.thunk(() => ({ __proto__: pos$5, enable: false })),
+        documentation: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$7,
-          "/": nix.thunk(() => ({ __proto__: pos$6, device: "ignore-root-device", fsType: "none" })),
+          [nix.POS]: pos$7,
+          "/": nix.thunk(() => ({ [nix.POS]: pos$6, device: "ignore-root-device", fsType: "none" })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           loader: nix.thunk(() => ({
-            __proto__: pos$9,
-            grub: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+            [nix.POS]: pos$9,
+            grub: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
           })),
         })),
       };
@@ -67,29 +67,29 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         system: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           forbiddenDependenciesRegexes: nix.thunk(() => ["-dev$"]),
           extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(expect, "dev"))]),
           stateVersion: nix.thunk(() => nix.sel(config, "system", "nixos", "release")),
         })),
-        documentation: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+        documentation: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$15,
-          "/": nix.thunk(() => ({ __proto__: pos$14, device: "ignore-root-device", fsType: "none" })),
+          [nix.POS]: pos$15,
+          "/": nix.thunk(() => ({ [nix.POS]: pos$14, device: "ignore-root-device", fsType: "none" })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           loader: nix.thunk(() => ({
-            __proto__: pos$17,
-            grub: nix.thunk(() => ({ __proto__: pos$16, enable: false })),
+            [nix.POS]: pos$17,
+            grub: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
           })),
         })),
       };
     })(), formals$3)));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       "test-forbiddenDependencies-fail": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.sel(node_forbiddenDependencies_fail, "config", "system", "build", "toplevel")))),
       "test-forbiddenDependencies-succeed": nix.thunk(() => nix.sel(node_forbiddenDependencies_succeed, "config", "system", "build", "toplevel")),
     })));

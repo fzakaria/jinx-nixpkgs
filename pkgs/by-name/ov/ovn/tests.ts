@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const ovn = nix.arg($, "ovn");
   const testers = nix.arg($, "testers");
   const systemTestData = nix.thunk(() => nix.app(nix.sel(ovn, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doCheck: false,
       outputs: nix.thunk(() => ["out"]),
       installPhase: "cp -a . $out",
@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
     const makeTarget = nix.arg($_1, "makeTarget");
     const testSuite = nix.arg($_1, "testSuite");
     return nix.app(nix.sel(testers, "runNixOSTest"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: nix.thunk(() => nix.str`ovn-system-tests-${mode}`),
         nodes: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               networking: nix.thunk(() => ({
-                __proto__: pos$3,
-                firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+                [nix.POS]: pos$3,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
                 useDHCP: false,
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 systemPackages: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs, null);
                   return [
@@ -96,15 +96,15 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     "system-userspace": nix.thunk(() => nix.app(mkSystemTest, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mode: "userspace",
         makeTarget: "check-system-userspace",
         testSuite: "system-userspace-testsuite",
       })))),
     "system-kernel": nix.thunk(() => nix.app(mkSystemTest, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mode: "kernel",
         makeTarget: "check-kernel",
         testSuite: "system-kmod-testsuite",

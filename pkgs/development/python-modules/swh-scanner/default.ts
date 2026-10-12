@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const types_pyyaml = nix.arg($, "types-pyyaml");
   const types_requests = nix.arg($, "types-requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swh-scanner",
       version: "0.8.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       disabledTestPaths: nix.thunk(() => ["swh/scanner/tests/test_policy.py", "swh/scanner/tests/test_cli.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-scanner/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Source code scanner to analyze code bases and compare them with source code artifacts archived by Software Heritage",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-scanner",

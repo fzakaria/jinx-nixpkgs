@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protego",
       version: "0.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scrapy",
           repo: "protego",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["protego"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to parse robots.txt files with support for modern conventions",
         homepage: "https://github.com/scrapy/protego",
         changelog: nix.thunk(() => nix.str`https://github.com/scrapy/protego/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

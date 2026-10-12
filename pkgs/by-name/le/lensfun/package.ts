@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const version = "0.3.4";
   const pname = "lensfun";
   const lensData = nix.thunk(() => (nix.asBool(!nix.eq(lensfunDatabases, null)) ? nix.force(lensfunDatabases) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "lensfun-databases",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lensfun",
           repo: "lensfun",
           rev: "201da1a7433626a2a1ecd67e1f21a42fb17aa4a5",
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "substituteInPlace tools/update_database/generate_db.py \\\n  --replace-fail '\"git\", \"log\", \"-1\", \"--format=%ad\", \"--date=raw\", \"--\", \"*.xml\"' '\"cat\", \"timestamp.txt\"'\npython3 tools/update_database/generate_db.py --input data/db --output $out\ncp timestamp.txt $out/timestamp.txt\n",
     })))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "lensfun",
           repo: "lensfun",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +64,7 @@ cp ${lensData}/timestamp.txt data/db/timestamp.txt
       buildInputs: nix.thunk(() => [glib, zlib, libpng]),
       cmakeFlags: nix.thunk(() => ["-DINSTALL_HELPER_SCRIPTS=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

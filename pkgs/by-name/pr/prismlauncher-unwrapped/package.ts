@@ -32,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const msaClientID = nix.argOr($, "msaClientID", () => null);
   const libnbtplusplus = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "PrismLauncher",
       repo: "libnbtplusplus",
       rev: "3538933614059f0f44388a2b16f3db25ce42285b",
       hash: "sha256-6/8clF2yNhfonV16cfIkxVIzuB9i9ThxoLMxAo/fDuY=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "prismlauncher-unwrapped",
       version: "11.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "PrismLauncher",
           repo: "PrismLauncher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -85,11 +85,11 @@ ln -s ${libnbtplusplus} source/libraries/libnbtplusplus
       doCheck: true,
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Free, open source launcher for Minecraft",
         longDescription: "Allows you to have multiple, separate instances of Minecraft (each with\ntheir own mods, texture packs, saves, etc) and helps you manage them and\ntheir associated options with a simple interface.\n",
         homepage: "https://prismlauncher.org/",
@@ -106,8 +106,8 @@ ln -s ${libnbtplusplus} source/libraries/libnbtplusplus
         mainProgram: "prismlauncher",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "prismlauncher", nix.thunk(() => nix.sel(finalAttrs, "version"))), { __proto__: pos$4, product: "prism_launcher" })),
+          [nix.POS]: pos$5,
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "prismlauncher", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$4, product: "prism_launcher" })),
         })),
       })),
     }));

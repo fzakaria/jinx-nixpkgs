@@ -76,173 +76,173 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     name: "scx_full",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "scx", "full", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       machine: nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         boot: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
         })),
-        services: nix.thunk(() => ({ __proto__: pos$4, scx: nix.thunk(() => ({ __proto__: pos$3, enable: true })) })),
+        services: nix.thunk(() => ({ [nix.POS]: pos$4, scx: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })) })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           beerland: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             configuration: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               services: nix.thunk(() => ({
-                __proto__: pos$6,
-                scx: nix.thunk(() => ({ __proto__: pos$5, scheduler: "scx_beerland" })),
+                [nix.POS]: pos$6,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$5, scheduler: "scx_beerland" })),
               })),
             })),
           })),
           bpfland: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             configuration: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               services: nix.thunk(() => ({
-                __proto__: pos$10,
-                scx: nix.thunk(() => ({ __proto__: pos$9, scheduler: "scx_bpfland" })),
+                [nix.POS]: pos$10,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$9, scheduler: "scx_bpfland" })),
               })),
             })),
           })),
           cake: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             configuration: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               services: nix.thunk(() => ({
-                __proto__: pos$14,
-                scx: nix.thunk(() => ({ __proto__: pos$13, scheduler: "scx_cake" })),
+                [nix.POS]: pos$14,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$13, scheduler: "scx_cake" })),
               })),
             })),
           })),
           chaos: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             configuration: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               services: nix.thunk(() => ({
-                __proto__: pos$18,
-                scx: nix.thunk(() => ({ __proto__: pos$17, scheduler: "scx_chaos" })),
+                [nix.POS]: pos$18,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$17, scheduler: "scx_chaos" })),
               })),
             })),
           })),
           cosmos: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             configuration: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
-                scx: nix.thunk(() => ({ __proto__: pos$21, scheduler: "scx_cosmos" })),
+                [nix.POS]: pos$22,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$21, scheduler: "scx_cosmos" })),
               })),
             })),
           })),
           flash: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             configuration: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               services: nix.thunk(() => ({
-                __proto__: pos$26,
-                scx: nix.thunk(() => ({ __proto__: pos$25, scheduler: "scx_flash" })),
+                [nix.POS]: pos$26,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$25, scheduler: "scx_flash" })),
               })),
             })),
           })),
           flow: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             configuration: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               services: nix.thunk(() => ({
-                __proto__: pos$30,
-                scx: nix.thunk(() => ({ __proto__: pos$29, scheduler: "scx_flow" })),
+                [nix.POS]: pos$30,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$29, scheduler: "scx_flow" })),
               })),
             })),
           })),
           forge: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             configuration: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               services: nix.thunk(() => ({
-                __proto__: pos$34,
-                scx: nix.thunk(() => ({ __proto__: pos$33, scheduler: "scx_forge" })),
+                [nix.POS]: pos$34,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$33, scheduler: "scx_forge" })),
               })),
             })),
           })),
           lavd: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             configuration: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               services: nix.thunk(() => ({
-                __proto__: pos$38,
-                scx: nix.thunk(() => ({ __proto__: pos$37, scheduler: "scx_lavd" })),
+                [nix.POS]: pos$38,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$37, scheduler: "scx_lavd" })),
               })),
             })),
           })),
           p2dq: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             configuration: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               services: nix.thunk(() => ({
-                __proto__: pos$42,
-                scx: nix.thunk(() => ({ __proto__: pos$41, scheduler: "scx_p2dq" })),
+                [nix.POS]: pos$42,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$41, scheduler: "scx_p2dq" })),
               })),
             })),
           })),
           pandemonium: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             configuration: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               services: nix.thunk(() => ({
-                __proto__: pos$46,
-                scx: nix.thunk(() => ({ __proto__: pos$45, scheduler: "scx_pandemonium" })),
+                [nix.POS]: pos$46,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$45, scheduler: "scx_pandemonium" })),
               })),
             })),
           })),
           rlfifo: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             configuration: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               services: nix.thunk(() => ({
-                __proto__: pos$50,
-                scx: nix.thunk(() => ({ __proto__: pos$49, scheduler: "scx_rlfifo" })),
+                [nix.POS]: pos$50,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$49, scheduler: "scx_rlfifo" })),
               })),
             })),
           })),
           rustland: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             configuration: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               services: nix.thunk(() => ({
-                __proto__: pos$54,
-                scx: nix.thunk(() => ({ __proto__: pos$53, scheduler: "scx_rustland" })),
+                [nix.POS]: pos$54,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$53, scheduler: "scx_rustland" })),
               })),
             })),
           })),
           rusty: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             configuration: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               services: nix.thunk(() => ({
-                __proto__: pos$58,
-                scx: nix.thunk(() => ({ __proto__: pos$57, scheduler: "scx_rusty" })),
+                [nix.POS]: pos$58,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$57, scheduler: "scx_rusty" })),
               })),
             })),
           })),
           tickless: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             configuration: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               services: nix.thunk(() => ({
-                __proto__: pos$62,
-                scx: nix.thunk(() => ({ __proto__: pos$61, scheduler: "scx_tickless" })),
+                [nix.POS]: pos$62,
+                scx: nix.thunk(() => ({ [nix.POS]: pos$61, scheduler: "scx_tickless" })),
               })),
             })),
           })),

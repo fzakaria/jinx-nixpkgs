@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const u_root = nix.arg($, "u-root");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(u_root, "overrideAttrs"), (prevAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       subPackages: nix.thunk(() => [
         "cmds/boot/boot",
         "cmds/boot/fitboot",
@@ -204,7 +204,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [which]),
       preCheck: "rm cmds/core/brctl/*_test.go # Error: open /sys/class/net: no such file or directory\nrm cmds/core/du/*_test.go # Error: expected 0 got 8\nrm cmds/core/mkdir/*_test.go # Error: Mode = 'drwxr-xr-x', want: 'dgrwxrwxrwx'\nrm cmds/core/netcat/*_test.go # Error: parseRemoteAddr(tcp, ::1) = [::1 localhost], want a subset of [::1 ip6-localhost]\nrm cmds/exp/bzimage/*_test.go # Error: compressed KernelCode too big: was 611116, now 611124\n",
       meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(prevAttrs, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         longDescription: "All u-root commands compiles as standalone binaries",
       })),
     }));

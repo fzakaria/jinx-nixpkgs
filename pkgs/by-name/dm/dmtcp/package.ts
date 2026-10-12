@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmtcp",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmtcp",
           repo: "dmtcp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dontDisableStatic: true,
       nativeCheckInputs: nix.thunk(() => [perl, python3]),
-      env: nix.thunk(() => ({ __proto__: pos$2, HAS_PYTHON3: "yes" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, HAS_PYTHON3: "yes" })),
       patches: nix.thunk(() => [nix.path(here, "./ld-linux-so-buffer-size.patch")]),
       postPatch: nix.thunk(() => nix.str`patchShebangs .
 
@@ -48,7 +48,7 @@ substituteInPlace test/autotest.py \\
   --replace-fail "os.getenv('USER')" "\\"nixbld1\\""
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distributed MultiThreaded Checkpointing",
         longDescription: "DMTCP (Distributed MultiThreaded Checkpointing) is a tool to\ntransparently checkpointing the state of an arbitrary group of\nprograms spread across many machines and connected by sockets. It does\nnot modify the user's program or the operating system.\n",
         homepage: "http://dmtcp.github.io/",

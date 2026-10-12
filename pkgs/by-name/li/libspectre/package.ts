@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ghostscript = nix.arg($, "ghostscript");
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libspectre",
       version: "0.2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://libspectre.freedesktop.org/releases/libspectre-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-VadRfNNXK9JWXfDPRQlEoE1Sc7J567NpqJU5GVfw+WA=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [cairo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://libspectre.freedesktop.org/",
         description: "PostScript rendering library",
         longDescription: "libspectre is a small library for rendering Postscript\ndocuments.  It provides a convenient easy to use API for\nhandling and rendering Postscript documents.\n",

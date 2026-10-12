@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elfx86exts",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pkgw",
           repo: "elfx86exts",
           tag: nix.thunk(() => nix.str`elfx86exts@${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-7FVcLvbZQK5M90ofoBpK2V/1+vWlBI/Z2x3ydbCwVbM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decode x86 binaries and print out which instruction set extensions they use",
         longDescription: "Disassemble a binary containing x86 instructions and print out which extensions it uses.\nDespite the utterly misleading name, this tool supports ELF and MachO binaries, and\nperhaps PE-format ones as well. (It used to be more limited.)\n",
         homepage: "https://github.com/pkgw/elfx86exts",

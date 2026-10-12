@@ -47,95 +47,95 @@ export default nix.lambda((args) => (() => {
     const types = nix.thunk(() => nix.attr(lib, "types"));
     const cfg = nix.thunk(() => nix.sel(config, "ghostunnel"));
     return {
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       _class: "service",
       options: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         ghostunnel: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Package to use for ghostunnel",
               defaultText: "The ghostunnel package that provided this module.",
               type: nix.thunk(() => nix.sel(types, "package")),
             })))),
           listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Address and port to listen on (can be HOST:PORT, unix:PATH).\n",
               type: nix.thunk(() => nix.sel(types, "str")),
             })))),
           target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Address to forward connections to (can be HOST:PORT or unix:PATH).\n",
               type: nix.thunk(() => nix.sel(types, "str")),
             })))),
           keystore: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Path to keystore (combined PEM with cert/key, or PKCS12 keystore).\n\nNB: storepass is not supported because it would expose credentials via `/proc/*/cmdline`.\n\nSpecify this or `cert` and `key`.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
             })))),
           cert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Path to certificate (PEM with certificate chain).\n\nNot required if `keystore` is set.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
             })))),
           key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Path to certificate private key (PEM with private key).\n\nNot required if `keystore` is set.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
             })))),
           cacert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Path to CA bundle file (PEM/X509). Uses system trust store if `null`.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             })))),
           disableAuthentication: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Disable client authentication, no client certificate will be required.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
             })))),
           allowAll: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "If true, allow all clients, do not check client cert subject.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
             })))),
           allowCN: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Allow client if common name appears in the list.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           allowOU: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Allow client if organizational unit name appears in the list.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           allowDNS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Allow client if DNS subject alternative name appears in the list.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           allowURI: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Allow client if URI subject alternative name appears in the list.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           extraArguments: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Extra arguments to pass to `ghostunnel server`",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           unsafeTarget: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "If set, does not limit target to localhost, 127.0.0.1, [::1], or UNIX sockets.\n\nThis is meant to protect against accidental unencrypted traffic on\nuntrusted networks.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
@@ -143,10 +143,10 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => nix.update({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             message: nix.thunk(() => nix.str`At least one access control flag is required.
 Set at least one of:
   - ${nix.sel(options, "ghostunnel", "disableAuthentication")}
@@ -160,11 +160,11 @@ Set at least one of:
           })),
         ]),
         ghostunnel: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           cacert: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "disableAuthentication")), nix.thunk(() => nix.app(mkDefault, null)))),
         })),
         process: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           argv: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
             "--disable-landlock",
@@ -178,17 +178,17 @@ Set at least one of:
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "systemd")), nix.thunk(() => (() => {
           const credentialFlags = nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "keystore"), null)), "--keystore=${CREDENTIALS_DIRECTORY}/keystore"), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "cert"), null)), "--cert=${CREDENTIALS_DIRECTORY}/cert"), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "key"), null)), "--key=${CREDENTIALS_DIRECTORY}/key"), nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "cacert"), null)), "--cacert=${CREDENTIALS_DIRECTORY}/cacert")))))));
           return {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             systemd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               mainExecStart: nix.thunk(() => nix.add(nix.app(nix.sel(config, "systemd", "lib", "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(config, "process", "argv"))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(credentialFlags, "")), nix.thunk(() => nix.str` ${credentialFlags}`)))),
               service: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 after: nix.thunk(() => ["network.target"]),
                 wants: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   Restart: "always",
                   AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
                   DynamicUser: true,

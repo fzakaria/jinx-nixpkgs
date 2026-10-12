@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "sphinx-automodapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [git]);
       const dependencies = nix.thunk(() => [sphinx]);
       const testInventory = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://web.archive.org/web/20221007193144/https://docs.python.org/3/objects.inv",
           hash: "sha256-1cbUmdJJSoifkiIYa70SxnLsaK3F2gvnTEWo9vo/6rY=",
         }))));
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, cython, gcc, graphviz]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_automodapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sphinx extension for generating API documentation",
         homepage: "https://github.com/astropy/sphinx-automodapi",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/sphinx-automodapi/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

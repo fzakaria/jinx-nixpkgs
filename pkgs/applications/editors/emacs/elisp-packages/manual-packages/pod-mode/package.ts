@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pname = "pod-mode";
   const version = "1.04";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://cpan/authors/id/F/FL/FLORA/pod-mode-${version}.tar.gz`),
       hash: "sha256-W4ejlTnBKOCQWysRzrXUQwV2gFHeFpbpKkapWT2cIPM=",
     }))));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       postInstall: "mkdir -p ${!outputDoc}/share/doc/pod-mode/\ninstall -Dm644 -t ${!outputDoc}/share/doc/pod-mode/ ChangeLog README\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://metacpan.org/dist/pod-mode",
         description: "Major mode for editing .pod-files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nkf",
       version: "2.1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://osdn/nkf/70406/nkf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0i5dbcb9aipwr8ym4mhvgf1in3frl6y8h8x96cprz9s7b11xz9yi",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "parallel-install.patch",
             url: "http://git.osdn.net/view?p=nkf/nkf.git;a=patch;h=9ccff5975bec7963e591e042e1ab1139252a4dc9",
             sha256: "00f0x414gfch650b20w0yj5x2bd67hchmadl7v54lk3vdgkc6jwj",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for converting encoding of Japanese text",
         mainProgram: "nkf",
         homepage: "https://nkf.osdn.jp/",

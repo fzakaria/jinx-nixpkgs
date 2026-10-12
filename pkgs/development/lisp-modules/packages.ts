@@ -90,10 +90,10 @@ export default nix.lambda((args) => (() => {
   const build_with_compile_into_pwd = (args_1) => (() => {
     const args$ = nix.thunk(() => (nix.asBool(nix.app(isDerivation, args_1)) ? nix.sel(args_1, "drvAttrs") : nix.force(args_1)));
     const build = nix.thunk(() => nix.app(nix.sel(nix.app(build_asdf_system, nix.thunk(() => nix.update(args$, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: nix.thunk(() => nix.add(nix.sel(args$, "version"), "-build")),
       }))), "overrideAttrs"), (o) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildPhase: nix.thunk(() => (() => {
           const w = nix.withScope(nix.builtins, null);
           return nix.str`runHook preBuild
@@ -108,15 +108,15 @@ runHook postBuild
         })()),
         installPhase: "runHook preInstall\n\nmkdir -pv $out\nrm -rf __fasls\ncp -r * $out\n\nrunHook postInstall\n",
       })));
-    return nix.app(build_asdf_system, nix.thunk(() => nix.update(args$, { __proto__: pos$3, patches: [], postPatch: "", src: build })));
+    return nix.app(build_asdf_system, nix.thunk(() => nix.update(args$, { [nix.POS]: pos$3, patches: [], postPatch: "", src: build })));
   })();
   const ql = nix.thunk(() => nix.app(quicklispPackagesFor, spec));
   const packages = nix.thunk(() => nix.app(nix.sel(ql, "overrideScope"), (self) => (super$) => nix.update({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       "cl-unicode": nix.thunk(() => nix.app(build_with_compile_into_pwd, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(super$, "cl-unicode"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -126,11 +126,11 @@ runHook postBuild
         })()))),
       jzon: nix.thunk(() => nix.sel(super$, "com_dot_inuoe_dot_jzon")),
       "_40ants-routes": nix.thunk(() => nix.app(nix.sel(super$, "_40ants-routes", "overrideLispAttrs"), (o) => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systems: nix.thunk(() => nix.concat(nix.sel(o, "systems"), ["40ants-routes/handler"])),
         }))),
       "reblocks-ui2": nix.thunk(() => nix.app(nix.sel(super$, "reblocks-ui2", "overrideLispAttrs"), (o) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systems: nix.thunk(() => nix.concat(nix.sel(o, "systems"), [
             "reblocks-ui2/themes/color",
             "reblocks-ui2/themes/tailwind",
@@ -141,15 +141,15 @@ runHook postBuild
           ])),
         }))),
       april: nix.thunk(() => nix.app(nix.sel(super$, "april", "overrideLispAttrs"), (o) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systems: nix.thunk(() => nix.concat(nix.sel(o, "systems"), ["cape"])),
         }))),
       "cl-notify": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname: "cl-notify",
           version: "20080904-138ca7038",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               url: "https://repo.or.cz/cl-notify.git/snapshot/138ca703861f4a1fbccbed557f92cf4d213668a1.tar.gz",
               sha256: "0k6ns6fzvjcbpsqgx85r4g5m25fvrdw9481i9vyabwym9q8bbqwx",
             })))),
@@ -158,35 +158,35 @@ runHook postBuild
         })))),
       "cl-liballegro-nuklear": nix.thunk(() => nix.app(build_with_compile_into_pwd, nix.thunk(() => nix.sel(super$, "cl-liballegro-nuklear")))),
       "cl-project": nix.thunk(() => nix.app(nix.sel(super$, "cl-project", "overrideLispAttrs"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           postInstall: "cp -v skeleton/skeleton.asd $out/skeleton\n",
         })))),
       lessp: nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname: "lessp",
           version: "0.2-f8a9e4664",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: "https://github.com/facts-db/cl-lessp/archive/632217602b85b679e8d420654a0aa39e798ca3b5.tar.gz",
               sha256: "0i3ia14dzqwjpygd0zn785ff5vqnnmkn75psfpyx0ni3jr71lkq9",
             })))),
         })))),
       rollback: nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pname: "rollback",
           version: "0.1-5d3f21fda",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               url: "https://github.com/facts-db/cl-rollback/archive/5d3f21fda8f04f35c5e9d20ee3b87db767915d15.tar.gz",
               sha256: "12dpxsbm2al633y87i8p784k2dn4bbskz6sl40v9f5ljjmjqjzxf",
             })))),
         })))),
       facts: nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           pname: "facts",
           version: "0.1-632217602",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               url: "https://beta.quicklisp.org/archive/cl-facts/2022-11-06/cl-facts-20221106-git.tgz",
               sha256: "sha256-PBpyyJYkq1NjKK9VikSAL4TmrGRwUJlEWRSeKj/f4Sc=",
             })))),
@@ -199,7 +199,7 @@ runHook postBuild
       "cl-fuse": nix.thunk(() => nix.app(build_with_compile_into_pwd, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(super$, "cl-fuse"));
           return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -211,7 +211,7 @@ runHook postBuild
       "cl-containers": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(super$, "cl-containers"));
           return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -225,7 +225,7 @@ runHook postBuild
           const lispLibs = nix.thunk(() => nix.attr(from_1, "lispLibs"));
           const version = "2.29.1";
           const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               owner: "slime",
               repo: "slime",
               rev: nix.thunk(() => nix.str`v${version}`),
@@ -235,7 +235,7 @@ runHook postBuild
           const patches = nix.thunk(() => [nix.path(here, "./patches/swank-pure-paths.patch")]);
           const postConfigure = "substituteAllInPlace swank-loader.lisp\n";
           return {
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             pname,
             lispLibs,
             version,
@@ -246,11 +246,11 @@ runHook postBuild
           };
         })()))),
       slynk: nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           pname: "slynk",
           version: "trunk",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               owner: "joaotavora",
               repo: "sly",
               rev: "ba40c8f054ec3b7040a6c36a1ef3e9596b936421",
@@ -268,12 +268,12 @@ runHook postBuild
             "slynk/indentation",
             "slynk/retro",
           ]),
-          meta: nix.thunk(() => ({ __proto__: pos$22, homepage: "https://github.com/joaotavora/sly" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$22, homepage: "https://github.com/joaotavora/sly" })),
         })))),
       cephes: nix.thunk(() => nix.app(build_with_compile_into_pwd, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(super$, "cephes"));
           return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -285,11 +285,11 @@ runHook postBuild
         };
         })()))),
       "clx-truetype": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           pname: "clx-truetype",
           version: "20160825-git",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               url: "https://beta.quicklisp.org/archive/clx-truetype/2016-08-25/clx-truetype-20160825-git.tgz",
               sha256: "079hyp92cjkdfn6bhkxsrwnibiqbz4y4af6nl31lzw6nm91j5j37",
             })))),
@@ -313,7 +313,7 @@ runHook postBuild
       mathkit: nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(super$, "mathkit"));
           return {
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -324,13 +324,13 @@ runHook postBuild
       stumpwm: nix.thunk(() => nix.app(nix.sel(super$, "stumpwm", "overrideLispAttrs"), nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(pkgs, "stumpwm"));
           return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           src: nix.thunk(() => nix.attr(from_1, "src")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           meta: nix.thunk(() => (() => {
             const from_2 = nix.thunk(() => nix.sel(pkgs, "stumpwm", "meta"));
             return {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             description: nix.thunk(() => nix.attr(from_2, "description")),
             license: nix.thunk(() => nix.attr(from_2, "license")),
             homepage: nix.thunk(() => nix.attr(from_2, "homepage")),
@@ -339,7 +339,7 @@ runHook postBuild
         };
         })()))),
       clfswm: nix.thunk(() => nix.app(nix.sel(super$, "clfswm", "overrideAttrs"), (o) => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           buildScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "build-clfswm.lisp", nix.thunk(() => nix.str`(load "${nix.sel(o, "asdfFasl")}/asdf.${nix.sel(o, "faslExt")}")
 (asdf:load-system 'clfswm)
 (sb-ext:save-lisp-and-die
@@ -354,7 +354,7 @@ runHook postBuild
       magicl: nix.thunk(() => nix.app(build_with_compile_into_pwd, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(super$, "magicl"));
           return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           src: nix.thunk(() => nix.attr(from_1, "src")),
@@ -364,11 +364,11 @@ runHook postBuild
         };
         })()))),
       "cl-gtk4": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           pname: "cl-gtk4",
           version: "1.0.0",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               owner: "bohonghuang",
               repo: "cl-gtk4",
               rev: "b3e69daf2f96e69881b053046bbe8544a54e087f",
@@ -388,10 +388,10 @@ runHook postBuild
             nix.thunk(() => nix.sel(pkgs, "gtk4")),
           ]),
           nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk4"))]),
-          meta: nix.thunk(() => ({ __proto__: pos$33, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$33, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
         })))),
       "cl-gtk4_dot_adw": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           pname: "cl-gtk4.adw",
           version: nix.thunk(() => nix.sel(self, "cl-gtk4", "version")),
           src: nix.thunk(() => nix.sel(self, "cl-gtk4", "src")),
@@ -404,10 +404,10 @@ runHook postBuild
           })()),
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libadwaita"))]),
           nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libadwaita"))]),
-          meta: nix.thunk(() => ({ __proto__: pos$35, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$35, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
         })))),
       "cl-gtk4_dot_webkit": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           pname: "cl-gtk4.webkit",
           version: nix.thunk(() => nix.sel(self, "cl-gtk4", "version")),
           src: nix.thunk(() => nix.sel(self, "cl-gtk4", "src")),
@@ -420,10 +420,10 @@ runHook postBuild
           })()),
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "webkitgtk_6_0"))]),
           nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "webkitgtk_6_0"))]),
-          meta: nix.thunk(() => ({ __proto__: pos$37, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$37, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
         })))),
       "cl-gtk4_dot_sourceview": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           pname: "cl-gtk4.sourceview",
           version: nix.thunk(() => nix.sel(self, "cl-gtk4", "version")),
           src: nix.thunk(() => nix.sel(self, "cl-gtk4", "src")),
@@ -436,10 +436,10 @@ runHook postBuild
           })()),
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtksourceview5"))]),
           nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtksourceview5"))]),
-          meta: nix.thunk(() => ({ __proto__: pos$39, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$39, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
         })))),
       "cl-gdk4": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           pname: "cl-gdk4",
           version: nix.thunk(() => nix.sel(self, "cl-gtk4", "version")),
           src: nix.thunk(() => nix.sel(self, "cl-gtk4", "src")),
@@ -452,14 +452,14 @@ runHook postBuild
             nix.thunk(() => nix.sel(pkgs, "gtk4")),
           ]),
           nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk4"))]),
-          meta: nix.thunk(() => ({ __proto__: pos$41, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$41, homepage: "https://github.com/bohonghuang/cl-gtk4" })),
         })))),
       "cl-avro": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           pname: "cl-avro",
           version: "trunk",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               owner: "SahilKang",
               repo: "cl-avro",
               rev: "b8fa26320fa0ae88390215140d57f9cca937f691",
@@ -483,10 +483,10 @@ runHook postBuild
               nix.thunk(() => nix.lookup(w, "trivial-extensible-sequences")),
             ];
           })()),
-          meta: nix.thunk(() => ({ __proto__: pos$44, homepage: "https://github.com/SahilKang/cl-avro" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$44, homepage: "https://github.com/SahilKang/cl-avro" })),
         })))),
       "frugal-uuid": nix.thunk(() => nix.app(nix.sel(super$, "frugal-uuid", "overrideLispAttrs"), (o) => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           systems: nix.thunk(() => ["frugal-uuid", "frugal-uuid/non-frugal", "frugal-uuid/test"]),
           lispLibs: nix.thunk(() => nix.concat(nix.sel(o, "lispLibs"), (() => {
             const w = nix.withScope(self, null);
@@ -500,15 +500,15 @@ runHook postBuild
           })())),
         }))),
       duckdb: nix.thunk(() => nix.app(nix.sel(super$, "duckdb", "overrideLispAttrs"), (o) => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           systems: nix.thunk(() => ["duckdb", "duckdb/test", "duckdb/benchmark"]),
         }))),
       polyclot: nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           pname: "polyclot",
           version: "trunk",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchfossil"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               url: "https://fossil.turtleware.eu/fossil.turtleware.eu/polyclot",
               rev: "18500c968b1fc1e2a915b5c70b8cddc4a2b54de51da4eedc5454e42bfea3b479",
               sha256: "sha256-KgBL1QQN4iG6d8E9GlKAuxSwkrY6Zy7e1ZzEDGKad+A=",
@@ -522,14 +522,14 @@ runHook postBuild
               nix.thunk(() => nix.lookup(w, "mcclim-layouts")),
             ];
           })()),
-          meta: nix.thunk(() => ({ __proto__: pos$49, homepage: "https://github.com/kaveh808/kons-9" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$49, homepage: "https://github.com/kaveh808/kons-9" })),
         })))),
       "kons-9": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           pname: "kons-9",
           version: "trunk",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               owner: "kaveh808",
               repo: "kons-9",
               rev: "08770e7fbb839b91fd035f1cd4a50ecc81b42d57",
@@ -556,17 +556,17 @@ runHook postBuild
               nix.thunk(() => nix.lookup(w, "org_dot_melusina_dot_confidence")),
             ];
           })()),
-          meta: nix.thunk(() => ({ __proto__: pos$52, homepage: "https://github.com/kaveh808/kons-9" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$52, homepage: "https://github.com/kaveh808/kons-9" })),
         })))),
       "nsb-cga": nix.thunk(() => nix.app(nix.sel(super$, "nsb-cga", "overrideLispAttrs"), (old) => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           lispLibs: nix.thunk(() => nix.concat(nix.sel(old, "lispLibs"), [nix.thunk(() => nix.sel(self, "sb-cga"))])),
         }))),
       "qlot-cli": nix.thunk(() => nix.app(build_asdf_system, nix.thunk(() => (() => {
           const pname = "qlot";
           const version = "1.5.2";
           const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               owner: "fukamachi",
               repo: "qlot",
               tag: version,
@@ -599,12 +599,12 @@ runHook postBuild
 `)));
           const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp qlot.asd $out\nrm *.asd\ncp -r * $out\n\nmv $out/qlot $out/bin\nwrapProgram $out/bin/qlot \\\n  --prefix LD_LIBRARY_PATH : $LD_LIBRARY_PATH\n\nrunHook postInstall\n";
           const meta = nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             mainProgram: "qlot",
             homepage: "https://github.com/fukamachi/qlot",
           }));
           return {
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             pname,
             version,
             src,
@@ -617,10 +617,10 @@ runHook postBuild
           };
         })()))),
       fset: nix.thunk(() => nix.app(nix.sel(super$, "fset", "overrideLispAttrs"), (old) => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           systems: nix.thunk(() => ["fset", "fset/test"]),
           meta: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             description: "Functional collections library",
             homepage: "https://gitlab.common-lisp.net/fset/fset/-/wikis/home",
             license: nix.thunk(() => (() => {
@@ -632,7 +632,7 @@ runHook postBuild
       "thih-coalton": nix.thunk(() => nix.sel(self, "coalton")),
       "quil-coalton": nix.thunk(() => nix.sel(self, "coalton")),
       coalton: nix.thunk(() => nix.app(nix.sel(super$, "coalton", "overrideLispAttrs"), (old) => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           systems: nix.thunk(() => [
             "coalton",
             "thih-coalton",
@@ -644,14 +644,14 @@ runHook postBuild
           lispLibs: nix.thunk(() => nix.concat(nix.sel(old, "lispLibs"), [nix.thunk(() => nix.sel(self, "fiasco"))])),
           nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mpfr"))]),
           meta: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             description: "Statically typed functional programming language that supercharges Common Lisp",
             homepage: "https://coalton-lang.github.io",
             license: nix.thunk(() => nix.sel(pkgs, "lib", "licenses", "mit")),
           })),
         }))),
       "cffi-c2ffi": nix.thunk(() => nix.app(nix.sel(self, "cffi", "overrideLispAttrs"), (old) => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           systems: nix.thunk(() => nix.concat(nix.sel(old, "systems"), ["cffi/c2ffi", "cffi/c2ffi-generator"])),
           lispLibs: nix.thunk(() => nix.concat(nix.sel(old, "lispLibs"), [
             nix.thunk(() => nix.sel(self, "cl-ppcre")),
@@ -663,7 +663,7 @@ runHook postBuild
 `)),
         }))),
     }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(pkgs, "config", "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         "cl-glib_dot_gio": nix.thunk(() => nix.builtins.throw("cl-glib_dot_gio was replaced by cl-gio")),
         "cl-gtk4_dot_webkit2": nix.thunk(() => nix.builtins.throw("cl-gtk4_dot_webkit2 was replaced by cl-gtk4_dot_webkit")),
         "stumpwm-unwrapped": nix.thunk(() => nix.builtins.throw("stumpwm-unwrapped is now just stumpwm")),

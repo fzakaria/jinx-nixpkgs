@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
     const pipeline = nix.argOr($_1, "pipeline", () => []);
     const debug = nix.argOr($_1, "debug", () => false);
     return (nix.asBool(nix.eq(closureRoots, [])) ? nix.builtins.toFile("docker-layers-empty", "[]") : nix.app(runCommand, "docker-layers", nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         __structuredAttrs: true,
-        exportReferencesGraph: nix.thunk(() => ({ __proto__: pos$1, graph: closureRoots })),
+        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, graph: closureRoots })),
         exclude_paths: excludePaths,
         pipeline: pipeline,
         nativeBuildInputs: nix.thunk(() => [coreutils, flatten_references_graph, jq]),

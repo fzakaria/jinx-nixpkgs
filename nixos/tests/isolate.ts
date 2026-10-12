@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "isolate",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "virchau13"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           security: nix.thunk(() => ({
-            __proto__: pos$3,
-            isolate: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            isolate: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         };
       })(), formals$2),

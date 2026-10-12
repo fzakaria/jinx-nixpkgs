@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const tmux = nix.arg($, "tmux");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wemux",
       version: "unstable-2021-04-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zolrath",
           repo: "wemux",
           rev: "01c6541f8deceff372711241db2a13f21c4b210c",
@@ -40,7 +40,7 @@ installManPage man/wemux.1
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/zolrath/wemux",
         description: "Multi-user tmux made easy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

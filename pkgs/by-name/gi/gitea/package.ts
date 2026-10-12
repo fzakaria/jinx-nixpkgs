@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gitea-frontend",
       src: nix.thunk(() => nix.attr(gitea, "src")),
       version: nix.thunk(() => nix.attr(gitea, "version")),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -R public $out/\n",
     })));
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gitea",
       version: "28.1.0",
       outputs: nix.thunk(() => ["out", "data"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "go-gitea",
           repo: "gitea",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,16 +86,16 @@ wrapProgram $out/bin/gitea \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, git, gzip, openssh]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "data-compressed": nix.thunk(() => nix.app(nix.sel(lib, "warn"), "gitea.passthru.data-compressed is deprecated. Use \"compressDrvWeb gitea.data\".", nix.thunk(() => nix.app(compressDrvWeb, nix.thunk(() => nix.sel(gitea, "data")), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           gitea: nix.thunk(() => nix.attr(nixosTests, "gitea")),
           "gitea-actions-runner": nix.thunk(() => nix.attr(nixosTests, "gitea-actions-runner")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Git with a cup of tea",
         homepage: "https://about.gitea.com",
         changelog: nix.thunk(() => nix.str`https://github.com/go-gitea/gitea/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

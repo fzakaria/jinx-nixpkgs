@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "macfuse-stubs";
       const version = "5.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/osxfuse/osxfuse/releases/download/macfuse-${version}/macfuse-${version}.dmg`),
           hash: "sha256-5fgP+MPfgm6Zf7eGs1EloMamcvS7oncLDe9rpjyk74E=",
         }))));
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = ".";
       const buildPhase = "pushd usr/local/lib\nfor f in *.dylib; do\n  tapi stubify --filetype=tbd-v2  \"$f\" -o \"${f%%.dylib}.tbd\"\ndone\nsed -i \"s|^prefix=.*|prefix=$out|\" pkgconfig/fuse{,3}.pc\npopd\n";
       const installPhase = nix.thunk(() => nix.add(nix.add("mkdir -p $out/include $out/lib/pkgconfig\n", nix.app(nix.sel(lib, "optionalString"), isFuse3, "cp usr/local/lib/libfuse3*.tbd $out/lib\ncp usr/local/lib/pkgconfig/fuse3.pc $out/lib/pkgconfig\ncp -R usr/local/include/fuse3 $out/include\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(isFuse3)), "cp usr/local/lib/libfuse{,.2}.tbd $out/lib\ncp usr/local/lib/pkgconfig/fuse.pc $out/lib/pkgconfig\ncp -R usr/local/include/fuse{,.h} $out/include\n")));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, warning: nix.thunk(() => nix.sel(meta, "description")) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, warning: nix.thunk(() => nix.sel(meta, "description")) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://osxfuse.github.io",
         description: "Build time stubs for FUSE on macOS",
         longDescription: "macFUSE is required for this package to work on macOS. To install macFUSE,\nuse the installer from the [project website](https://osxfuse.github.io/).\n",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

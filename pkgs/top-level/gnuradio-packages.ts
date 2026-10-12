@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const gnuradio = nix.arg($, "gnuradio");
   const packageOverrides = nix.arg($, "packageOverrides");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
-      const mkDerivationWith = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/gnuradio-modules/mkDerivation.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, unwrapped: gnuradio }))));
+      const mkDerivationWith = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/gnuradio-modules/mkDerivation.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, unwrapped: gnuradio }))));
       const mkDerivation = nix.thunk(() => nix.app(mkDerivationWith, nix.thunk(() => nix.sel(stdenv, "mkDerivation"))));
       const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           boost: nix.thunk(() => nix.attr(gnuradio, "boost")),
           volk: nix.thunk(() => nix.attr(gnuradio, "volk")),
           logLib: nix.thunk(() => nix.attr(gnuradio, "logLib")),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
           gnuradio: gnuradio,
           gnuradioOlder: nix.thunk(() => nix.attr(gnuradio, "gnuradioOlder")),
           gnuradioAtLeast: nix.thunk(() => nix.attr(gnuradio, "gnuradioAtLeast")),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "gr-uhd")), nix.thunk(() => ({ __proto__: pos$3, uhd: nix.thunk(() => nix.attr(gnuradio, "uhd")) })))))));
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "gr-uhd")), nix.thunk(() => ({ [nix.POS]: pos$3, uhd: nix.thunk(() => nix.attr(gnuradio, "uhd")) })))))));
       const basePackages = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         callPackage: callPackage,
         mkDerivation: mkDerivation,
         mkDerivationWith: mkDerivationWith,

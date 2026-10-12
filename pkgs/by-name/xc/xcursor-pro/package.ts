@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.eq(unknownVariants, [])) ? nix.builtins.throw(nix.thunk(() => nix.str`Unknown variant(s): ${nix.app(nix.sel(lib, "concatStringsSep"), unknownVariants)}`)) : nix.force(variants));
   })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xcursor-pro",
       version: "2.0.2",
       srcs: nix.thunk(() => nix.builtins.map((variant) => nix.app(fetchurl, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(sources, nix.key(nix.force(variant))));
             return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.attr(from, "url")),
             sha256: nix.thunk(() => nix.attr(from, "sha256")),
           };
@@ -43,9 +43,9 @@ done
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ful1e5/XCursor-pro",
         description: "Modern XCursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

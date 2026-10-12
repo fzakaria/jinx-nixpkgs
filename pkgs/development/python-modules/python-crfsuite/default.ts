@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.12";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "python_crfsuite",
           hash: "sha256-2zf8zDvY8MScKKdpfKecidZ7P9W/EZEihmFpJArExIA=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pycrfsuite"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python binding for CRFsuite",
         homepage: "https://github.com/scrapinghub/python-crfsuite",
         changelog: nix.thunk(() => nix.str`https://github.com/scrapinghub/python-crfsuite/blob/${version}/CHANGES.rst`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

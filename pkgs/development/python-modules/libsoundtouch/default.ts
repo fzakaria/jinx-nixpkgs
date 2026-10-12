@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CharlesBlonde",
           repo: "libsoundtouch",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_select_content_item", "test_snapshot_restore"]);
       const pythonImportsCheck = nix.thunk(() => ["libsoundtouch"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bose Soundtouch Python library",
         homepage: "https://github.com/CharlesBlonde/libsoundtouch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

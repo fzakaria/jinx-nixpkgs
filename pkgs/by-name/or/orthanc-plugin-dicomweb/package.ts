@@ -30,36 +30,36 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const zlib = nix.arg($, "zlib");
   const bootstrap = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/bootstrap-5.3.3.zip",
       hash: "sha256-VdfxznlQQK+4MR3wnSnQ00ZIQAweqrstCi7SIWs9sF0=",
     }))));
   const vuejs = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/vuejs-2.6.10.tar.gz",
       hash: "sha256-49kAzZJmtb7Zu21XX8mrZ4fnnnrSHAHuEne/9UUxIfI=",
     }))));
   const axios = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/axios-0.19.0.tar.gz",
       hash: "sha256-KVd8YIWwkLTkqZOS/N1YL7a7y0myqvLMe3+jh0Ups4A=",
     }))));
   const font_awesome = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/Font-Awesome-4.7.0.tar.gz",
       hash: "sha256-3lEroOHerTgrv843LN50s/GJcdh2//tjXukzPw2wXUM=",
     }))));
   const babel_polyfill = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/babel-polyfill-6.26.0.min.js.gz",
       hash: "sha256-CH09LWISr7QY9QSRhY9/BVy1Te+2NR1sXQCPZioqlcI=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "orthanc-plugin-dicomweb",
       version: "1.20",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "https://orthanc.uclouvain.be/hg/orthanc-dicomweb/",
           rev: nix.thunk(() => nix.str`OrthancDicomWeb-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-p1n4YAFC3W2B2YYsFm/1cJ/zqLsrycJgkMrcXFf/3Xk=",
@@ -87,7 +87,7 @@ substituteInPlace CMakeLists.txt \\
       ]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), gtest)}`),
             "-lgtest",
@@ -99,7 +99,7 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.str`-DORTHANC_FRAMEWORK_ROOT=${nix.sel(orthanc, "framework")}/include/orthanc-framework`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Plugin that extends Orthanc with support for the DICOMweb protocols",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {

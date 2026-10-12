@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const wrapFirefox = nix.arg($, "wrapFirefox");
   const firefox_unwrapped = nix.arg($, "firefox-unwrapped");
   const pkg = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.postmarketos.org",
       owner: "postmarketOS",
       repo: "mobile-config-firefox",
@@ -33,7 +33,7 @@ grep -v "general.config.obscure_value" | \\
 grep -v "general.config.sandbox_enabled" > $out
 `)));
   return nix.app(wrapFirefox, firefox_unwrapped, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraPrefsFiles: nix.thunk(() => [mobileConfigAutoconfig, mobileConfigPrefs]),
       extraPoliciesFiles: nix.thunk(() => [nix.thunk(() => nix.str`${pkg}/src/policies.json`)]),
     })));

@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru"));
       const ui = nix.thunk(() => nix.attr(from, "ui"));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "fmd-server",
         version: "0.17.0",
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "fmd-foss",
             repo: "fmd-server",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-drZQj5tp0cHvrc+T1ESBHNNt0VoHhS9O93LIwjw2eCc=",
           })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(ui, "pname")),
             src: nix.thunk(() => nix.attr(ui, "src")),
             pnpm: pnpm_11,
@@ -52,10 +52,10 @@ export default nix.lambda((args) => (() => {
         versionCheckProgramArg: "version",
         doInstallCheck: true,
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           ui: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               pnpmDeps: nix.thunk(() => nix.attr(finalAttrs, "pnpmDeps")),
@@ -74,7 +74,7 @@ runHook postInstall
             })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Server to communicate with the FindMyDevice app and save the latest (encrypted) location",
           homepage: "https://fmd-foss.org/",
           downloadPage: "https://gitlab.com/fmd-foss/fmd-server",

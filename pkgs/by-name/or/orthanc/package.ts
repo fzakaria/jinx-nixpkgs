@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const orthanc_framework = nix.arg($, "orthanc-framework");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "orthanc",
       version: "1.12.11",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://orthanc.uclouvain.be/hg/orthanc/",
           rev: nix.thunk(() => nix.str`Orthanc-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EoohVYrnGN3dJUlXAd+10glcKA0AdZSyQ3wy2luycMQ=",
@@ -92,18 +92,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_UUID", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_ZLIB", true)),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-builtin-macro-redefined" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-builtin-macro-redefined" })),
       postInstall: "mkdir -p $doc/share/doc/orthanc\ncp -r $src/OrthancServer/Resources/Samples $doc/share/doc/orthanc/Samples\ncp -r $src/OrthancServer/Plugins/Samples $doc/share/doc/orthanc/OrthancPluginSamples\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         framework: orthanc_framework,
-        tests: nix.thunk(() => ({ __proto__: pos$3, orthanc: nix.thunk(() => nix.attr(nixosTests, "orthanc")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, orthanc: nix.thunk(() => nix.attr(nixosTests, "orthanc")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lightweight, RESTful DICOM server for healthcare and medical research",
         homepage: "https://www.orthanc-server.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

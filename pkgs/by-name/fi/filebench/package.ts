@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "filebench",
       version: "1.5-alpha3-unstable-2020-02-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "filebench",
           repo: "filebench",
           rev: "22620e602cbbebad90c0bd041896ebccf70dbf5f",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-15.patch",
             url: "https://github.com/filebench/filebench/commit/82191902e44b7a136adb9285bcce3d4a52551b9e.patch?full_index=1",
             hash: "sha256-Uf4DrHZl94m502C7MynMtYpon1886RLbXGKW6lYq1SI=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "File system and storage benchmark that can generate both micro and macro workloads",
         homepage: "https://github.com/filebench/filebench",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")),

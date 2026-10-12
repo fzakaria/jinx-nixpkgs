@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bytecode-viewer";
       const version = "2.13.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Konloch",
           repo: "bytecode-viewer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "bytecode-viewer",
             desktopName: "Bytecode-Viewer",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -63,7 +63,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/${nix.sel(meta, "ma
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://bytecodeviewer.com",
         description: "Lightweight user-friendly Java/Android Bytecode Viewer, Decompiler & More",
         mainProgram: "bytecode-viewer",
@@ -82,7 +82,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

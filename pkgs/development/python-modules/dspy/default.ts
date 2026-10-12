@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dspy",
       version: "3.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stanfordnlp",
           repo: "dspy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         "test_text_lms_can_be_queried",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming — not prompting — language models",
         homepage: "https://github.com/stanfordnlp/dspy",
         changelog: nix.thunk(() => nix.str`https://github.com/stanfordnlp/dspy/releases/tag/${nix.sel(finalAttrs, "version")}`),

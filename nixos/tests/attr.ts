@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const attr = nix.arg($, "attr");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(attr, "overrideAttrs"), (oa) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeCheckInputs: nix.thunk(() => [perl]),
         preCheck: "patchShebangs test",
         doCheck: true,
         memSize: 4096n,
         meta: nix.thunk(() => nix.update(nix.sel(oa, "meta"), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => nix.concat(nix.selOr(oa, () => [], "meta", "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "balsoft"))])),
         })),
       }))));

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rtl88x2bu",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2026-08-18`),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RinCat",
           repo: "RTL88x2BU-Linux-Driver",
           rev: "ad889cc324baf2f13724e3d7b6e880804d3adae7",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Realtek rtl88x2bu driver",
         homepage: "https://github.com/RinCat/RTL88x2BU-Linux-Driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

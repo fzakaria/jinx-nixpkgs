@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nodemon";
       const version = "3.1.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "remy",
           repo: "nodemon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-XjbzoF83qhdvtKt22Onrm0hH+Bjh724Zm+qVoZsY/pM=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple monitor script for use during development of a Node.js app",
         mainProgram: "nodemon",
         homepage: "https://nodemon.io",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

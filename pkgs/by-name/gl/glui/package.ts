@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxmu = nix.arg($, "libxmu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glui",
       version: "2.37",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libglui",
           repo: "glui",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libglut, libGLU, libGL, libxmu, libxext, libx11, libxi]),
       installPhase: "mkdir -p \"$out\"/{bin,lib,share/glui/doc,include}\ncp -rT bin \"$out/bin\"\ncp -rT lib \"$out/lib\"\ncp -rT include \"$out/include\"\ncp -rT doc \"$out/share/glui/doc\"\ncp LICENSE.txt \"$out/share/glui/doc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User interface library using OpenGL",
         homepage: "https://github.com/libglui/glui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

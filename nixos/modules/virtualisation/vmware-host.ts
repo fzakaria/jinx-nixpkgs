@@ -57,24 +57,24 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => (() => {
       const w = nix.withScope(lib, null);
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           vmware: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             host: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "VMware"), {
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "This enables VMware host virtualisation for running VMs.\n\n::: {.important}\n`vmware-vmx` will cause kcompactd0 due to\n`Transparent Hugepages` feature in kernel.\nApply `[ \"transparent_hugepage=never\" ]` in\noption {option}`boot.kernelParams` to disable them.\n:::\n\n::: {.note}\nIf that didn't work disable `TRANSPARENT_HUGEPAGE`,\n`COMPACTION` configs and recompile kernel.\n:::\n",
               })),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "vmware-workstation", nix.thunk(() => ({})))),
               extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
                   example: "with pkgs; [ ntfs3g ]",
                 })))),
               extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                   default: "",
                   description: "Add extra config to /etc/vmware/config",
@@ -96,56 +96,56 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         boot: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "vmware"))]),
           extraModprobeConfig: "alias char-major-10-229 fuse",
           kernelModules: nix.thunk(() => ["vmw_pvscsi", "vmw_vmci", "vmmon", "vmnet", "fuse"]),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.sel(cfg, "extraPackages"))),
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "vmware/config": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               source: nix.thunk(() => (() => {
                 const packageConfig = nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/vmware/config`);
                 return (nix.asBool(nix.eq(nix.sel(cfg, "extraConfig"), "")) ? nix.force(packageConfig) : nix.app(nix.sel(pkgs, "runCommandLocal"), "etc-vmware-config", nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     packageConfig: packageConfig,
                     extraConfig: nix.thunk(() => nix.attr(cfg, "extraConfig")),
                   })), "(\n  cat \"$packageConfig\"\n  printf \"\\n\"\n  echo \"$extraConfig\"\n) >\"$out\"\n"));
               })()),
             })),
             "vmware/bootstrap": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/vmware/bootstrap`),
             })),
             "vmware/icu": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/vmware/icu`),
             })),
             "vmware-installer": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/vmware-installer`),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           printing: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             drivers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "vmware-vmx": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               setuid: true,
               owner: "root",
               group: "root",
@@ -154,11 +154,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "vmware-wrappers": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Create VMVare Wrappers",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => [
@@ -168,7 +168,7 @@ export default nix.lambda((args) => (() => {
                 "vmware-usbarbitrator.service",
               ]),
               after: nix.thunk(() => ["systemd-sysusers.service"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$21, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Type: "oneshot", RemainAfterExit: true })),
               script: nix.thunk(() => nix.str`mkdir -p "${parentWrapperDir}"
 chmod 755 "${parentWrapperDir}"
 # We want to place the tmpdirs for the wrappers to the parent dir.
@@ -192,10 +192,10 @@ fi
 `),
             })),
             "vmware-authdlauncher": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "VMware Authentication Daemon",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Type: "forking",
                 ExecStart: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vmware-authdlauncher`),
@@ -204,11 +204,11 @@ fi
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "vmware-networks-configuration": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "VMware Networks Configuration Generation",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$25, ConditionPathExists: "!/etc/vmware/networking" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$25, ConditionPathExists: "!/etc/vmware/networking" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 UMask: "0077",
                 ExecStart: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vmware-networks --postinstall vmware-player,0,1`),
@@ -219,12 +219,12 @@ fi
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "vmware-networks": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "VMware Networks",
               after: nix.thunk(() => ["vmware-networks-configuration.service"]),
               requires: nix.thunk(() => ["vmware-networks-configuration.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 Type: "forking",
                 ExecCondition: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "kmod")}/bin/modprobe vmnet`)]),
                 ExecStart: nix.thunk(() => [
@@ -237,10 +237,10 @@ fi
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "vmware-usbarbitrator": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "VMware USB Arbitrator",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 ExecStart: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vmware-usbarbitrator -f`),
                 ]),

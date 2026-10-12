@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const version = "0.10.0-1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "obreitwi",
       repo: "asfa",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ARdUlACxmbjmOTuNW2oiVUcfd5agR4rcp9aMQYUAYsw=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asfa",
       version: version,
       src: src,
@@ -50,7 +50,7 @@ done
 installManPage man/man1/*.1
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Avoid sending file attachments by uploading them via SSH to a remote site and sharing a publicly-accessible URL with non-guessable (hash-based) prefix instead",
         homepage: "https://github.com/obreitwi/asfa",
         changelog: nix.thunk(() => nix.str`https://github.com/obreitwi/asfa/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.13";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.torproject.org/pluggable-transports/obfsproxy.git",
           tag: nix.thunk(() => nix.str`${pname}-${version}`),
           sha256: "04ja1cl8xzqnwrd2gi6nlnxbmjri141bzwa5gybvr44d8h3k2nfa",
@@ -32,7 +32,7 @@ substituteInPlace setup.py --replace "argparse" ""
       const propagatedBuildInputs = nix.thunk(() => [pyptlib, twisted, pycrypto, pyyaml]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pluggable transport proxy",
         homepage: "https://www.torproject.org/projects/obfsproxy",
         maintainers: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ substituteInPlace setup.py --replace "argparse" ""
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

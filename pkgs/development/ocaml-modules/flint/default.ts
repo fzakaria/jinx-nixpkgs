@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const ctypes = nix.arg($, "ctypes");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flint",
       version: "0.4.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/bobot/ocaml-flint/releases/download/0.4.2/flint-0.4.2.tbz",
           hash: "sha256-dZiznSROdHrQdqgxu8wXtBiQE0gCnHQjbQ+QDzCdygo=",
         })))),
       dontConfigure: true,
       propagatedBuildInputs: nix.thunk(() => [flint_c, zarith, ctypes, dune_configurator]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml stubs for Flint2, Arb, Antic, Calcium",
         homepage: "https://github.com/bobot/ocaml-flint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

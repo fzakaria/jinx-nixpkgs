@@ -143,7 +143,7 @@ exec "$@"
   const greeterUsers = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [null, 1n, 2n, 3n, 4n]), (i) => (() => {
       const suffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(i, null)), nix.thunk(() => nix.str`-${nix.builtins.toString(nix.thunk(() => nix.add(i, 1n)))}`)));
       return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`gdm-greeter${suffix}`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           isSystemUser: true,
           uid: nix.thunk(() => nix.add(60578n, (nix.asBool(nix.eq(i, null)) ? 0n : nix.force(i)))),
           group: "gdm",
@@ -151,7 +151,7 @@ exec "$@"
         })));
     })()));
   return {
-    __proto__: pos$117,
+    [nix.POS]: pos$117,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "displayManager", "gdm", "autoLogin", "enable"]), nix.thunk(() => ["services", "displayManager", "autoLogin", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "displayManager", "gdm", "autoLogin", "user"]), nix.thunk(() => ["services", "displayManager", "autoLogin", "user"]))),
@@ -166,53 +166,53 @@ exec "$@"
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "displayManager", "gdm", "wayland"]), "Disabling this option is no longer supported with GNOME 50.")),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           gdm: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GDM, the GNOME Display Manager")),
             debug: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "debugging messages in GDM")),
             autoLogin: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               delay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(lib, "types", "int")),
                   default: 0n,
                   description: "Seconds of inactivity after which the autologin will be performed.\n",
                 })))),
             })),
             autoSuspend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: true,
                 description: "On the GNOME Display Manager login screen, suspend the machine after inactivity.\n(Does not affect automatic suspend while logged in, or at lock screen.)\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             banner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
                 default: null,
                 example: "foo\nbar\nbaz\n",
                 description: "Optional message to display on the login screen.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  debug: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+                  [nix.POS]: pos$8,
+                  debug: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
                 })),
                 description: "Options passed to the gdm daemon.\nSee [here](https://help.gnome.org/admin/gdm/stable/configuration.html.en#daemonconfig) for supported options.\n",
               })))),
             extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.gnome-themes-extra ]")),
@@ -223,26 +223,26 @@ exec "$@"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$116,
+        [nix.POS]: pos$116,
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           xserver: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$16,
-              lightdm: nix.thunk(() => ({ __proto__: pos$15, enable: false })),
+              [nix.POS]: pos$16,
+              lightdm: nix.thunk(() => ({ [nix.POS]: pos$15, enable: false })),
             })),
             display: null,
             verbose: null,
           })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: true,
             generic: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 GDM_X_SERVER_EXTRA_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "filter"), (arg) => !nix.eq(arg, "-terminate"), nix.thunk(() => nix.sel(xdmcfg, "xserverArgs")))))),
                 XDG_DATA_DIRS: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "share", nix.thunk(() => nix.concat([
                     gdm,
@@ -252,7 +252,7 @@ exec "$@"
                     nix.thunk(() => nix.sel(pkgs, "hicolor-icon-theme")),
                   ], nix.sel(cfg, "extraPackages"))))),
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(xSessionWrapper, null)), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   GDM_X_SESSION_WRAPPER: nix.thunk(() => nix.str`${xSessionWrapper}`),
                 }))))),
               execCmd: nix.thunk(() => nix.str`exec ${gdm}/bin/gdm`),
@@ -261,36 +261,36 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
 `))),
             })),
             gdm: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               settings: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 daemon: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "displayManager", "autoLogin", "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, "autoLogin", "delay"), 0n)))), nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         TimedLoginEnable: true,
                         TimedLogin: nix.thunk(() => nix.sel(config, "services", "displayManager", "autoLogin", "user")),
                         TimedLoginDelay: nix.thunk(() => nix.sel(cfg, "autoLogin", "delay")),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "displayManager", "autoLogin", "enable")) && nix.asBool(nix.eq(nix.sel(cfg, "autoLogin", "delay"), 0n)))), nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         AutomaticLoginEnable: true,
                         AutomaticLogin: nix.thunk(() => nix.sel(config, "services", "displayManager", "autoLogin", "user")),
                       })))),
                   ]))),
-                debug: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "debug")), nix.thunk(() => ({ __proto__: pos$23, Enable: true })))),
+                debug: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "debug")), nix.thunk(() => ({ [nix.POS]: pos$23, Enable: true })))),
               })),
             })),
           })),
-          "accounts-daemon": nix.thunk(() => ({ __proto__: pos$27, enable: true })),
-          dbus: nix.thunk(() => ({ __proto__: pos$28, packages: nix.thunk(() => [gdm]) })),
+          "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
+          dbus: nix.thunk(() => ({ [nix.POS]: pos$28, packages: nix.thunk(() => [gdm]) })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 gdm: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   name: "gdm",
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "gdm")),
                   group: "gdm",
@@ -300,17 +300,17 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
               greeterUsers,
             ]))),
           groups: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             gdm: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "gdm")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             rules: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "pulseaudio", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (user) => [
                     nix.thunk(() => nix.str`d ${nix.sel(user, "home")}/.config 0711 ${name} gdm`),
                     nix.thunk(() => nix.str`d ${nix.sel(user, "home")}/.config/pulse 0711 ${name} gdm`),
@@ -323,10 +323,10 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
             nix.thunk(() => nix.sel(pkgs, "gnome-shell")),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$40,
-            gdm: nix.thunk(() => ({ __proto__: pos$36, enable: false })),
+            [nix.POS]: pos$40,
+            gdm: nix.thunk(() => ({ [nix.POS]: pos$36, enable: false })),
             "display-manager": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               wants: nix.thunk(() => ["systemd-machined.service", "accounts-daemon.service"]),
               after: nix.thunk(() => [
                 "rc-local.service",
@@ -338,7 +338,7 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
               conflicts: nix.thunk(() => ["plymouth-quit.service"]),
               onFailure: nix.thunk(() => ["plymouth-quit.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 KillMode: "mixed",
                 IgnoreSIGPIPE: "no",
                 BusName: "org.gnome.DisplayManager",
@@ -350,48 +350,48 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-session"))]),
             })),
             "plymouth-quit": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "plymouth", "enable")), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })))),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             services: nix.thunk(() => ({
-              __proto__: pos$42,
-              dbus: nix.thunk(() => ({ __proto__: pos$41, wantedBy: nix.thunk(() => ["default.target"]) })),
+              [nix.POS]: pos$42,
+              dbus: nix.thunk(() => ({ [nix.POS]: pos$41, wantedBy: nix.thunk(() => ["default.target"]) })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "adwaita-icon-theme")),
             nix.thunk(() => nix.sel(pkgs, "gdm")),
           ]),
           etc: nix.thunk(() => ({
-            __proto__: pos$47,
-            "gdm/custom.conf": nix.thunk(() => ({ __proto__: pos$45, source: configFile })),
+            [nix.POS]: pos$47,
+            "gdm/custom.conf": nix.thunk(() => ({ [nix.POS]: pos$45, source: configFile })),
             "gdm/Xsession": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               source: nix.thunk(() => nix.sel(config, "services", "displayManager", "sessionData", "wrapper")),
             })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           dconf: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             profiles: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               gdm: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 databases: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "autoSuspend"))), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$51,
+                      [nix.POS]: pos$51,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         "org/gnome/settings-daemon/plugins/power": nix.thunk(() => ({
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           "sleep-inactive-ac-type": "nothing",
                           "sleep-inactive-battery-type": "nothing",
                           "sleep-inactive-ac-timeout": nix.thunk(() => nix.app(nix.sel(lib, "gvariant", "mkInt32"), 0n)),
@@ -401,11 +401,11 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
                     })),
                   ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "banner"), null)), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$53,
+                        [nix.POS]: pos$53,
                         "org/gnome/login-screen": nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           "banner-message-enable": true,
                           "banner-message-text": nix.thunk(() => nix.sel(cfg, "banner")),
                         })),
@@ -417,27 +417,27 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$115,
+          [nix.POS]: pos$115,
           pam: nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             services: nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               "gdm-launch-environment": nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$76,
+                  [nix.POS]: pos$76,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         name: "gdm-user",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_succeed_if.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$59, audit: true, quiet_success: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$59, audit: true, quiet_success: true })),
                         args: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["user", "ingroup", "gdm"]))),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$61,
+                        [nix.POS]: pos$61,
                         name: "permit",
                         control: "optional",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
@@ -445,15 +445,15 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         name: "gdm-user",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_succeed_if.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$62, audit: true, quiet_success: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$62, audit: true, quiet_success: true })),
                         args: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["user", "ingroup", "gdm"]))),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$64,
+                        [nix.POS]: pos$64,
                         name: "unix",
                         control: "sufficient",
                         modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
@@ -461,7 +461,7 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         name: "deny",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_deny.so`),
@@ -469,27 +469,27 @@ ${setSessionScript}/bin/set-session ${nix.sel(config, "services", "displayManage
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$67,
+                        [nix.POS]: pos$67,
                         name: "gdm-user",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_succeed_if.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$66, audit: true, quiet_success: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$66, audit: true, quiet_success: true })),
                         args: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["user", "ingroup", "gdm"]))),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         name: "env",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_env.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$68, conffile: "/etc/pam/environment", readenv: 0n })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$68, conffile: "/etc/pam/environment", readenv: 0n })),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$71,
+                        [nix.POS]: pos$71,
                         name: "env-greeter",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_env.so`),
                         settings: nix.thunk(() => ({
-                          __proto__: pos$70,
+                          [nix.POS]: pos$70,
                           conffile: nix.thunk(() => (() => {
                             const env = nix.thunk(() => nix.sel(config, "services", "displayManager", "generic", "environment"));
                             return nix.app(nix.sel(pkgs, "writeText"), "gdm-launch-environment-env-conf", nix.thunk(() => nix.str`PATH          DEFAULT="\${PATH}:${nix.sel(pkgs, "gnome-session")}/bin"
@@ -500,20 +500,20 @@ XDG_DATA_DIRS DEFAULT="\${XDG_DATA_DIRS}:${nix.sel(env, "XDG_DATA_DIRS")}"
                         })),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$72,
+                        [nix.POS]: pos$72,
                         name: "systemd",
                         control: "optional",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/security/pam_systemd.so`),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$74,
+                        [nix.POS]: pos$74,
                         name: "keyinit",
                         control: "optional",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_keyinit.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$73, force: true, revoke: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$73, force: true, revoke: true })),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$75,
+                        [nix.POS]: pos$75,
                         name: "permit",
                         control: "optional",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
@@ -522,60 +522,60 @@ XDG_DATA_DIRS DEFAULT="\${XDG_DATA_DIRS}:${nix.sel(env, "XDG_DATA_DIRS")}"
                 })),
               })),
               "gdm-password": nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$78, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$78, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$79, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$79, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$80, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$80, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$81, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$81, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                 })),
               })),
               "gdm-autologin": nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$96,
+                  [nix.POS]: pos$96,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$84,
+                        [nix.POS]: pos$84,
                         name: "nologin",
                         control: "requisite",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_nologin.so`),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$86,
+                        [nix.POS]: pos$86,
                         name: "gdm-normal-user",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_succeed_if.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$85, quiet: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$85, quiet: true })),
                         args: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => ["uid", ">=", "1000"]))),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$87,
+                        [nix.POS]: pos$87,
                         name: "gdm",
                         enable: nix.thunk(() => (nix.asBool(nix.sel(pamLogin, "enable")) && nix.asBool(nix.sel(pamLogin, "enableGnomeKeyring")))),
                         control: "[success=ok default=1]",
                         modulePath: nix.thunk(() => nix.str`${gdm}/lib/security/pam_gdm.so`),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$88,
+                        [nix.POS]: pos$88,
                         name: "gnome_keyring",
                         enable: nix.thunk(() => (nix.asBool(nix.sel(pamLogin, "enable")) && nix.asBool(nix.sel(pamLogin, "enableGnomeKeyring")))),
                         control: "optional",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-keyring")}/lib/security/pam_gnome_keyring.so`),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$89,
+                        [nix.POS]: pos$89,
                         name: "permit",
                         control: "required",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
@@ -583,7 +583,7 @@ XDG_DATA_DIRS DEFAULT="\${XDG_DATA_DIRS}:${nix.sel(env, "XDG_DATA_DIRS")}"
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$90,
+                        [nix.POS]: pos$90,
                         name: "unix",
                         control: "sufficient",
                         modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
@@ -591,76 +591,76 @@ XDG_DATA_DIRS DEFAULT="\${XDG_DATA_DIRS}:${nix.sel(env, "XDG_DATA_DIRS")}"
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$92,
+                        [nix.POS]: pos$92,
                         name: "unix",
                         control: "requisite",
                         modulePath: nix.thunk(() => nix.sel(config, "security", "pam", "pam_unixModulePath")),
-                        settings: nix.thunk(() => ({ __proto__: pos$91, nullok: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$91, nullok: true })),
                       })),
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$94,
+                        [nix.POS]: pos$94,
                         name: "keyinit",
                         control: "optional",
                         modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_keyinit.so`),
-                        settings: nix.thunk(() => ({ __proto__: pos$93, revoke: true })),
+                        settings: nix.thunk(() => ({ [nix.POS]: pos$93, revoke: true })),
                       })),
-                      nix.thunk(() => ({ __proto__: pos$95, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$95, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                 })),
               })),
               login: nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 fprintAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "fprintd", "enable")), false)),
               })),
               "gdm-fingerprint": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "fprintd", "enable")), nix.thunk(() => ({
-                  __proto__: pos$112,
+                  [nix.POS]: pos$112,
                   useDefaultRules: false,
                   rules: nix.thunk(() => ({
-                    __proto__: pos$111,
+                    [nix.POS]: pos$111,
                     auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$99,
+                          [nix.POS]: pos$99,
                           name: "shells",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_shells.so`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$100,
+                          [nix.POS]: pos$100,
                           name: "nologin",
                           control: "requisite",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_nologin.so`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$102,
+                          [nix.POS]: pos$102,
                           name: "faillock",
                           control: "requisite",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_faillock.so`),
-                          settings: nix.thunk(() => ({ __proto__: pos$101, preauth: true })),
+                          settings: nix.thunk(() => ({ [nix.POS]: pos$101, preauth: true })),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$103,
+                          [nix.POS]: pos$103,
                           name: "fprintd",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(pkgs, "fprintd")}/lib/security/pam_fprintd.so`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$105,
+                          [nix.POS]: pos$105,
                           name: "env",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_env.so`),
-                          settings: nix.thunk(() => ({ __proto__: pos$104, conffile: "/etc/pam/environment", readenv: 0n })),
+                          settings: nix.thunk(() => ({ [nix.POS]: pos$104, conffile: "/etc/pam/environment", readenv: 0n })),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$106,
+                          [nix.POS]: pos$106,
                           name: "gdm",
                           enable: nix.thunk(() => (nix.asBool(nix.sel(pamLogin, "enable")) && nix.asBool(nix.sel(pamLogin, "enableGnomeKeyring")))),
                           control: "[success=ok default=1]",
                           modulePath: nix.thunk(() => nix.str`${gdm}/lib/security/pam_gdm.so`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$107,
+                          [nix.POS]: pos$107,
                           name: "gnome_keyring",
                           enable: nix.thunk(() => (nix.asBool(nix.sel(pamLogin, "enable")) && nix.asBool(nix.sel(pamLogin, "enableGnomeKeyring")))),
                           control: "optional",
@@ -668,18 +668,18 @@ XDG_DATA_DIRS DEFAULT="\${XDG_DATA_DIRS}:${nix.sel(env, "XDG_DATA_DIRS")}"
                         })),
                       ]))),
                     account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$108, name: "login", control: "include", modulePath: "login" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$108, name: "login", control: "include", modulePath: "login" })),
                       ]))),
                     password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$109,
+                          [nix.POS]: pos$109,
                           name: "deny",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_deny.so`),
                         })),
                       ]))),
                     session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$110, name: "login", control: "include", modulePath: "login" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$110, name: "login", control: "include", modulePath: "login" })),
                       ]))),
                   })),
                 })))),

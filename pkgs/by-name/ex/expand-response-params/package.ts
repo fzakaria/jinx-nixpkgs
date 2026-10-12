@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "expand-response-params",
       src: nix.path(here, "./expand-response-params.c"),
       strictDeps: true,
@@ -23,7 +23,7 @@ mv expand-response-params${nix.sel(stdenv, "hostPlatform", "extensions", "execut
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Internal tool used by the nixpkgs wrapper scripts for processing response files",
         longDescription: "expand-response-params is a tool that allows for obtaining a full list of all\narguments passed in a given compiler command line including those passed via\nso-called response files. The nixpkgs wrapper scripts for bintools and C\ncompilers use it for processing compiler flags. As it is developed in\nconjunction with the nixpkgs wrapper scripts, it should be considered as\nunstable and subject to change.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

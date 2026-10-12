@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
 fi
 gitwatch ${remote} ${message} ${branch} ${nix.sel(cfg, "path")}
 `);
-        const serviceConfig = nix.thunk(() => ({ __proto__: pos$1, User: nix.thunk(() => nix.sel(cfg, "user")) }));
+        const serviceConfig = nix.thunk(() => ({ [nix.POS]: pos$1, User: nix.thunk(() => nix.sel(cfg, "user")) }));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable,
           after,
           wants,
@@ -74,19 +74,19 @@ gitwatch ${remote} ${message} ${branch} ${nix.sel(cfg, "path")}
       })();
     })()));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         gitwatch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             description: "A set of git repositories to watch for. See\n[gitwatch](https://github.com/gitwatch/gitwatch) for more.\n",
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "my-repo": nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: true,
                 user: "user",
                 path: "/home/user/watched-project",
@@ -94,7 +94,7 @@ gitwatch ${remote} ${message} ${branch} ${nix.sel(cfg, "path")}
                 message: "Auto-commit by gitwatch on %d",
               })),
               "disabled-repo": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: false,
                 user: "user",
                 path: "/home/user/disabled-project",
@@ -105,35 +105,35 @@ gitwatch ${remote} ${message} ${branch} ${nix.sel(cfg, "path")}
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     options: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       enable: nix.thunk(() => nix.app(mkEnableOption, "watching for repo")),
                       path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           description: "The path to repo in local machine",
                           type: nix.thunk(() => nix.lookup(w, "str")),
                         })))),
                       user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           description: "The name of services's user",
                           type: nix.thunk(() => nix.lookup(w, "str")),
                           default: "root",
                         })))),
                       remote: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           description: "Optional url of remote repository",
                           type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                           default: null,
                         })))),
                       message: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           description: "Optional text to use in as commit message; all occurrences of `%d` will be replaced by formatted date/time",
                           type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                           default: null,
                         })))),
                       branch: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           description: "Optional branch in remote repository",
                           type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                           default: null,
@@ -145,14 +145,14 @@ gitwatch ${remote} ${message} ${branch} ${nix.sel(cfg, "path")}
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       systemd: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => nix.app(mapAttrs$, mkSystemdService, nix.thunk(() => nix.sel(config, "services", "gitwatch")))),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

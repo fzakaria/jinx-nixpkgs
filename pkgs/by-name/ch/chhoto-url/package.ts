@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "chhoto-url",
       version: "7.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SinTan1729",
           repo: "chhoto-url",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,15 +39,15 @@ substituteInPlace Cargo.toml \\
 cp -r ${nix.sel(finalAttrs, "src")}/frontend $out/share/chhoto-url/frontend
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "chhoto-url": nix.thunk(() => nix.attr(nixosTests, "chhoto-url")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple, blazingly fast, selfhosted URL shortener with no unnecessary features",
         homepage: "https://github.com/SinTan1729/chhoto-url",
         changelog: nix.thunk(() => nix.str`https://github.com/SinTan1729/chhoto-url/releases/tag/${nix.sel(finalAttrs, "version")}`),

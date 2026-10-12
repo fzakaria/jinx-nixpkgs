@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pytest-mh",
       version: "1.0.29",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "next-actions",
           repo: "pytest-mh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ansible_pylibssh, colorama, pytest, pyyaml]),
       postInstall: "rm -f $out/lib/python*/site-packages/requirements.txt\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "pytest plugin that allows you to run shell commands and scripts over SSH on remote Linux or Windows hosts",
         homepage: "https://github.com/next-actions/pytest-mh",
         changelog: nix.thunk(() => nix.str`https://github.com/next-actions/pytest-mh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "regex",
       version: "2026.7.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrabarnett",
           repo: "mrab-regex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["regex"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative regular expression module, to replace re",
         homepage: "https://github.com/mrabarnett/mrab-regex",
         license: nix.thunk(() => [

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hexdiff",
       version: "0-unstable-2018-01-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ahroach",
           repo: "hexdiff",
           rev: "3e96f27e65167c619ede35ab04232163dc273e69",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC -o hexdiff hexdiff.c\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D hexdiff  -t $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ahroach/hexdiff",
         description: "Terminal application for differencing two binary files, with color-coded output",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

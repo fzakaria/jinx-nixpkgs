@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "logrotate",
       version: "3.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "logrotate",
           repo: "logrotate",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,14 +51,14 @@ sed -i '2iexit 77' test/test-0110.sh
 `),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nixos-logrotate": nix.thunk(() => nix.sel(nixosTests, "logrotate")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/logrotate/logrotate",
         description: "Rotates and compresses system logs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -67,7 +67,7 @@ sed -i '2iexit 77' test/test-0110.sh
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "logrotate",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "logrotate_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

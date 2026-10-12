@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astrofrog",
           repo: "mpl-scatter-density",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [matplotlib, numpy, fast_histogram]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_mpl, writableTmpDirAsHomeHook]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "agg")),
       }));
       const disabledTests = nix.thunk(() => ["test_default_dpi"]);
       const pythonImportsCheck = nix.thunk(() => ["mpl_scatter_density"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/astrofrog/mpl-scatter-density",
         description: "Fast scatter density plots for Matplotlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

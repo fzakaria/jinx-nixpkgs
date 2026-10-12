@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const speedtest_rs = nix.arg($, "speedtest-rs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "speedtest-rs",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nelsonjchen",
           repo: "speedtest-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
           "--skip=speedtest::tests::test_get_server_list_with_config",
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: speedtest_rs })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: speedtest_rs })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line internet speedtest tool written in rust",
         homepage: "https://github.com/nelsonjchen/speedtest-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/nelsonjchen/speedtest-rs/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

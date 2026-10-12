@@ -29,47 +29,47 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "unclutter"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         unclutter: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Enable unclutter to hide your mouse cursor when inactive",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "unclutter", nix.thunk(() => ({})))),
           keystroke: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Wait for a keystroke before hiding the cursor",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
             })))),
           timeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Number of seconds before the cursor is marked inactive",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 1n,
             })))),
           threshold: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Minimum number of pixels considered cursor movement",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 1n,
             })))),
           excluded: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Names of windows where unclutter should not apply",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => [""]),
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "More arguments to pass to the unclutter command",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
@@ -79,20 +79,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           user: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               unclutter: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "unclutter",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/unclutter \\
   -idle ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "timeout")))} \\
   -jitter ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sub(nix.sel(cfg, "threshold"), 1n)))} \\
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "unclutter", "threeshold"]), nix.thunk(() => ["services", "unclutter", "threshold"]))),
     ]),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "rnhmjoj"))];

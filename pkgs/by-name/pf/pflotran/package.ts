@@ -29,23 +29,23 @@ export default nix.lambda((args) => (() => {
   const petsc$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(petsc, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "3.21.4";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-${version}.tar.gz`),
           hash: "sha256-l7v+ASBL9FLbBmBGTRWDwBihjwLe3uLz+GwXtn8u7e0=",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })())), "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       withMetis: true,
       withParmetis: true,
       python3Packages: python312Packages,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "PFLOTRAN",
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "pflotran",
           repo: "pflotran",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [petsc$, blas, lapack, hdf5_fortran_mpi, parmetis]),
       propagatedBuildInputs: nix.thunk(() => [mpi]),
       propagatedUserEnvPkgs: nix.thunk(() => [mpi]),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, mpi: mpi })),
       enableParallelBuilding: true,
       preConfigure: nix.thunk(() => nix.str`substituteInPlace src/pflotran/makefile \\
   --subst-var-by "HDF5_FORTRAN_LIBS" "${nix.app(nix.sel(lib, "getLib"), hdf5_fortran_mpi)}/lib" \\
   --subst-var-by "HDF5_FORTRAN_INCLUDE" "${nix.app(nix.sel(lib, "getDev"), hdf5_fortran_mpi)}/include"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Parallel, multi-physics simulation code for subsurface flow and transport",
         homepage: "https://pflotran.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

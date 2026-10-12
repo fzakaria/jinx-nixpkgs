@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nixos-bgrt-plymouth",
       version: "0-unstable-2024-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "plymouth-theme-nixos-bgrt",
           owner: "helsinki-systems",
           rev: "9b3913c38212463f3e21e8e805eead8f332215fa",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/plymouth/themes/nixos-bgrt\ncp -r $src/{*.plymouth,images} $out/share/plymouth/themes/nixos-bgrt/\nsubstituteInPlace $out/share/plymouth/themes/nixos-bgrt/*.plymouth --replace '@IMAGES@' \"$out/share/plymouth/themes/nixos-bgrt/images\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "BGRT theme with a spinning NixOS logo",
         homepage: "https://github.com/helsinki-systems/plymouth-theme-nixos-bgrt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

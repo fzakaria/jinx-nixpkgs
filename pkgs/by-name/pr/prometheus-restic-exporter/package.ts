@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "prometheus-restic-exporter";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ngosang",
           repo: "restic-exporter",
           rev: version,
@@ -41,14 +41,14 @@ patchShebangs $out/bin/restic-exporter.py
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "restic-exporter": nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "restic")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for the Restic backup system",
         homepage: "https://github.com/ngosang/restic-exporter",
         changelog: nix.thunk(() => nix.str`https://github.com/ngosang/restic-exporter/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -61,7 +61,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

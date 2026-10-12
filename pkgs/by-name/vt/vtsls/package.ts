@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const vtsls = nix.arg($, "vtsls");
   const runCommand = nix.arg($, "runCommand");
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vtsls",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "yioneko",
           repo: "vtsls",
           tag: nix.thunk(() => nix.str`server-v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nodejs_slim_22]),
       pnpmWorkspaces: nix.thunk(() => ["@vtsls/language-server", "@vtsls/language-service", "@vtsls/vscode-fuzzy"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pnpmWorkspaces: nix.thunk(() => nix.attr(finalAttrs, "pnpmWorkspaces")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-jYh79MtcfW/p6twuDM1JDwukSnn2/TJQYvHBlut0QnE=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./vtsls-build-patch.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$4, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CI: true })),
       buildPhase: "runHook preBuild\n\n# during build this sha is used as a marker to skip applying patches and\n# copying files, which doesn't matter in this case\necho \"dummysha\" > ./packages/service/HEAD\n\n# Requires a git repository during build\ngit init packages/service/vscode\n\n# Depends on the @vtsls/language-service workspace\n# '--workspace-concurrency=1' helps debug failing builds.\npnpm --filter \"@vtsls/language-server...\" build\n\n# These trash deterministic builds. During build the whole directory is\n# copied to another path.\nrm -rf packages/service/vscode/.git\nrm -rf packages/service/src/typescript-language-features/.git\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/vtsls-language-server}\ncp -r {packages,node_modules} $out/lib/vtsls-language-server\nln -s $out/lib/vtsls-language-server/packages/server/bin/vtsls.js $out/bin/vtsls\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           smoke: nix.thunk(() => nix.app(runCommand, "vtsls-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`INIT_REQUEST='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"rootUri":"file:///tmp","workspaceFolders":[{"uri":"file:///tmp","name":"test"}],"capabilities":{}}}'
 CONTENT_LENGTH=\${#INIT_REQUEST}
 
@@ -77,7 +77,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "LSP wrapper for typescript extension of vscode",
         homepage: "https://github.com/yioneko/vtsls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

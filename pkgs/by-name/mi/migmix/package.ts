@@ -16,27 +16,27 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "migmix",
       version: "20150712",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63544/migmix-1p-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "0wp44axcalaak04nj3dgpx0vk13nqa3ihx2vjv4acsgv83x8ciph",
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63544/migmix-2p-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "0y7s3rbxrp5bv56qgihk8b847lqgibfhn2wlkzx7z655fbzdgxw9",
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63544/migmix-1m-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "1sfym0chy8ilyd9sr3mjc0bf63vc33p05ynpdc11miivxn4qsshx",
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63544/migmix-2m-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "0hg04rvm39fh4my4akmv4rhfc14s3ipz2aw718h505k9hppkhkch",
           })))),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "1fhh8wg6lxwrnsg9rl4ihffl0bsp1wqa5gps9fx60kr6j9wpvmbg",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-quality Japanese font based on M+ fonts and IPA fonts",
         homepage: "https://itouhiro.github.io/mixfont-mplus-ipa/migmix/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ipa")),

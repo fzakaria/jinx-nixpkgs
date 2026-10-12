@@ -15,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mpvScripts = nix.arg($, "mpvScripts");
   return nix.app(buildLua, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpv-osc-tethys",
       version: "0-unstable-2024-08-19",
       scriptPath: "osc_tethys.lua",
       extraScriptsToCopy: nix.thunk(() => ["mpv_thumbnail_script_server.lua"]),
       extraScriptsToLoad: nix.thunk(() => ["mpv_thumbnail_script_server.lua"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dontCollideCheck: nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "thumbnail", mpvScripts)),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Zren",
           repo: "mpv-osc-tethys",
           rev: "c4167f88a0e9944738419e90a71f1f80fba39ccb",
           hash: "sha256-eAY+ZUuOxPJiNCuL7lqMBU4iURCMz12LQdfaYj4WFQc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OSC UI replacement for MPV with icons from the bomi video player",
         homepage: "https://github.com/Zren/mpv-osc-tethys",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

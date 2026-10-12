@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kanalizer",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VOICEVOX",
           repo: "kanalizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       model: nix.thunk(() => (() => {
         const modelTag = "v5";
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://huggingface.co/VOICEVOX/kanalizer-model/resolve/${modelTag}/model/c2k.safetensors`),
             hash: "sha256-sKhunAsN9Uwz2O1+eFQN8fh09eq67cFotTtLHsWJBRM=",
           })));
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 ln -s "$model" crates/kanalizer-rs/models/model-c2k.safetensors
 `),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +59,7 @@ ln -s "$model" crates/kanalizer-rs/models/model-c2k.safetensors
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["kanalizer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library that guesses the Japanese pronunciation of English words",
         homepage: "https://github.com/VOICEVOX/kanalizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

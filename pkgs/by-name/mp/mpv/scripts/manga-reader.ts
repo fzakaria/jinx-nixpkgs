@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const buildLua = nix.arg($, "buildLua");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "manga-reader",
       version: "0-unstable-2026-06-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dudemanguy",
           repo: "mpv-manga-reader",
           rev: "0551b033ac22b97298d94e480216748f68786b9f",
           hash: "sha256-TmRWBKgTlgOszOI1CLHveGMNH23UHSvbijz8wC4M/mM=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manga reading script for mpv",
         longDescription: "mpv-manga-reader is a script aimed at making mpv a usable manga reader.\n",
         homepage: "https://github.com/Dudemanguy/mpv-manga-reader",

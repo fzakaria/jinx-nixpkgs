@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "awk-language-server",
       version: "0.10.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Beaglefoot",
           repo: "awk-language-server",
           tag: nix.thunk(() => nix.str`server-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ mv -f package.json $out/
 `),
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-PaebqpXQGBxqcaxun8zi6TPeIgHmY+2fjsE/3LaWPN8=",
         })))),
@@ -58,7 +58,7 @@ mv -f package.json $out/
       yarnBuildScript: "build:server",
       dontNpmPrune: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Language Server for AWK and associated VSCode client extension",
         homepage: "https://github.com/Beaglefoot/awk-language-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

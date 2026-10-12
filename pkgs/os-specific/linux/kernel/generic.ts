@@ -84,13 +84,13 @@ export default nix.lambda((args) => (() => {
       const buildPackages_1 = nix.argOr($_1, "buildPackages", () => nix.sel(args$, "buildPackages"));
       const pkgsBuildBuild_1 = nix.argOr($_1, "pkgsBuildBuild", () => nix.sel(args$, "pkgsBuildBuild"));
       const kernelFeatures = nix.thunk(() => nix.app(nix.sel(lib, "foldr"), (x) => (y) => nix.update(nix.selOr(x, () => ({}), "features"), y), nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           efiBootStub: true,
           netfilterRPFilter: true,
           ia32Emulation: true,
         }, features)), kernelPatches));
       const commonStructuredConfig = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-config.nix")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           lib: lib,
           stdenv: stdenv_1,
           version: version,
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
           const $_2 = nix.formals(args_3, formals$3);
           const args_4 = args_3;
           const structuredExtraConfig_1 = nix.argOr($_2, "structuredExtraConfig", () => ({}));
-          return (nix.asBool(nix.has(args_4, "extraStructuredConfig")) ? nix.builtins.throw("Passing `extraStructuredConfig` to the Linux kernel (e.g.\nvia `boot.kernelPatches` in NixOS) is not supported anymore. Use\n`structuredExtraConfig` instead.\n") : { __proto__: pos$3, settings: structuredExtraConfig_1 });
+          return (nix.asBool(nix.has(args_4, "extraStructuredConfig")) ? nix.builtins.throw("Passing `extraStructuredConfig` to the Linux kernel (e.g.\nvia `boot.kernelPatches` in NixOS) is not supported anymore. Use\n`structuredExtraConfig` instead.\n") : { [nix.POS]: pos$3, settings: structuredExtraConfig_1 });
         })(), formals$3), kernelPatches));
       const kernelConfigFun = (baseConfigStr) => (() => {
         const configFromPatches = nix.thunk(() => nix.builtins.map(nix.lambda((args_3) => (() => {
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
       })();
       const withRust = nix.thunk(() => nix.eq(nix.selOr(nix.selOr(configfile, () => ({}), "moduleStructuredConfig", "settings", "RUST"), () => null, "tristate"), "y"));
       const configfile = nix.thunk(() => nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           ignoreConfigErrors: ignoreConfigErrors,
           autoModules: autoModules,
           preferBuiltin: preferBuiltin,
@@ -126,11 +126,11 @@ export default nix.lambda((args) => (() => {
           depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages_1, "stdenv", "cc"))]),
           nativeBuildInputs: nix.thunk(() => nix.concat([perl, gmp, libmpc, mpfr, bison, flex], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "5.2")), pahole), nix.app(nix.sel(lib, "optionals"), withRust, nix.thunk(() => [rust_bindgen_unwrapped, rustc_unwrapped]))))),
           env: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             RUST_LIB_SRC: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withRust, nix.thunk(() => nix.sel(rustPlatform, "rustLibSrc")))),
           })),
           makeFlags: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-flags.nix")), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               lib: lib,
               stdenv: stdenv_1,
               buildPackages: buildPackages_1,
@@ -165,32 +165,32 @@ DEBUG=1 ARCH=$kernelArch CROSS_COMPILE=${nix.sel(stdenv_1, "cc", "targetPrefix")
           passthru: nix.thunk(() => (() => {
             const module = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../../nixos/modules/system/boot/kernel_config.nix")));
             const moduleStructuredConfig = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 modules: nix.thunk(() => nix.concat([module], nix.concat(nix.app(nix.sel(lib, "optionals"), enableCommonConfig, nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       settings: commonStructuredConfig,
                       _file: "pkgs/os-specific/linux/kernel/common-config.nix",
                     })),
                   ])), nix.concat([
                   nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     settings: structuredExtraConfig,
                     _file: "structuredExtraConfig",
                   })),
                 ], structuredConfigFromPatches)))),
               }))), "config"));
             const structuredConfig = nix.thunk(() => nix.sel(moduleStructuredConfig, "settings"));
-            return { __proto__: pos$9, module, moduleStructuredConfig, structuredConfig };
+            return { [nix.POS]: pos$9, module, moduleStructuredConfig, structuredConfig };
           })()),
         }))));
       const kernel = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build.nix"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           lib: lib,
           stdenv: stdenv_1,
           buildPackages: buildPackages_1,
         })), nix.thunk(() => nix.update({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pname: pname,
           version: version,
           src: src,
@@ -202,16 +202,16 @@ DEBUG=1 ARCH=$kernelArch CROSS_COMPILE=${nix.sel(stdenv_1, "cc", "targetPrefix")
           modDirVersion: modDirVersion,
           pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", args_2)),
           config: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             CONFIG_MODULES: "y",
             CONFIG_FW_LOADER: "y",
             CONFIG_RUST: nix.thunk(() => (nix.asBool(withRust) ? "y" : "n")),
           })),
-        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(target, null)), nix.thunk(() => ({ __proto__: pos$14, target: target }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(buildDTBs, null)), nix.thunk(() => ({ __proto__: pos$15, buildDTBs: buildDTBs }))))))));
+        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(target, null)), nix.thunk(() => ({ [nix.POS]: pos$14, target: target }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(buildDTBs, null)), nix.thunk(() => ({ [nix.POS]: pos$15, buildDTBs: buildDTBs }))))))));
       return nix.app(nix.sel(kernel, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), nix.update(extraPassthru, {
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             features: kernelFeatures,
             commonStructuredConfig: commonStructuredConfig,
             structuredExtraConfig: structuredExtraConfig,
@@ -219,7 +219,7 @@ DEBUG=1 ARCH=$kernelArch CROSS_COMPILE=${nix.sel(stdenv_1, "cc", "targetPrefix")
             isLTS: isLTS,
             isZen: isZen,
             configEnv: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs_1) => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 depsBuildBuild: nix.thunk(() => nix.concat(nix.selOr(previousAttrs_1, () => [], "depsBuildBuild"), (() => {
                   const w = nix.withScope(pkgsBuildBuild_1, null);
                   return [
@@ -230,7 +230,7 @@ DEBUG=1 ARCH=$kernelArch CROSS_COMPILE=${nix.sel(stdenv_1, "cc", "targetPrefix")
               }))),
             tests: nix.thunk(() => (() => {
               const overridableKernel = nix.thunk(() => nix.update(nix.sel(finalAttrs, "finalPackage"), {
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 override: (args_3) => nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.add("override is stubbed for NixOS kernel tests, not applying changes these arguments: ", nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "toFunction"), args_3, nix.thunk(() => ({}))))))))), overridableKernel),
               }));
               const versionDoesNotDependOnPatchesEtcNixOS = nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(nix.app(nixos, nix.lambda((args_3) => (() => {
@@ -238,11 +238,11 @@ DEBUG=1 ARCH=$kernelArch CROSS_COMPILE=${nix.sel(stdenv_1, "cc", "targetPrefix")
                     const config = nix.arg($_2, "config");
                     const pkgs = nix.arg($_2, "pkgs");
                     return {
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       boot: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         kernelPatches: nix.thunk(() => [
-                          nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), nix.thunk(() => ({ __proto__: pos$18, patch: nix.thunk(() => nix.sel(pkgs, "emptyFile")) })))),
+                          nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), nix.thunk(() => ({ [nix.POS]: pos$18, patch: nix.thunk(() => nix.sel(pkgs, "emptyFile")) })))),
                         ]),
                       })),
                     };
@@ -255,14 +255,14 @@ This is a problem for the configurability of ${attrName} in version-aware logic 
 Strictness can creep in through optional attributes, or assertions and warnings that run as part of code that shouldn't access what is checked.
 `;
                     return {
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       kernelPatches: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.app(explain, "kernelPatches")))),
                       structuredExtraConfig: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.app(explain, "structuredExtraConfig")))),
                       modDirVersion: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.app(explain, "modDirVersion")))),
                     };
                   })()))), "version")), emptyFile));
               return nix.update({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 versionDoesNotDependOnPatchesEtc: versionDoesNotDependOnPatchesEtc,
                 testsForKernel: nix.thunk(() => nix.app(nix.sel(nixosTests, "kernel-generic", "passthru", "testsForKernel"), overridableKernel)),
               }, kernelTests);

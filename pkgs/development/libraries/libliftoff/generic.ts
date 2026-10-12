@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const patches = nix.arg($, "patches");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libliftoff",
       version: version,
       src: src,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Lightweight KMS plane library",
         longDescription: "libliftoff eases the use of KMS planes from userspace without standing in\nyour way. Users create \"virtual planes\" called layers, set KMS properties\non them, and libliftoff will pick planes for these layers if possible.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

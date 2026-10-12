@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-2yH4Fp6k9P3CQI1IykSFk0neJkf75JSp1sPt/AVCwhw=",
@@ -62,7 +62,7 @@ substituteInPlace tests/test_hooks.py \\
       const preCheck = "export HOME=\"$(mktemp -d)\"\n";
       const disabledTests = nix.thunk(() => ["test_should_invoke_main"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/audreyr/cookiecutter",
         changelog: nix.thunk(() => nix.str`https://github.com/cookiecutter/cookiecutter/blob/${version}/HISTORY.md`),
         description: "Command-line utility that creates projects from project templates",
@@ -74,7 +74,7 @@ substituteInPlace tests/test_hooks.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

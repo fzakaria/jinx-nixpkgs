@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "roundcube";
       const version = "1.7.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/roundcube/roundcubemail/releases/download/${version}/roundcubemail-${version}-complete.tar.gz`),
           sha256: "sha256-LGyHjwCT8b9/tghngdLdkmnWUsAWuGk5wVfF8XKROaI=",
         }))));
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       const dontCheckForBrokenSymlinks = true;
       const installPhase = "mkdir $out\ncp -r * $out/\nln -sf /etc/roundcube/config.inc.php $out/config/config.inc.php\nrm -rf $out/installer\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         withPlugins: (f) => nix.app(buildEnv, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${nix.sel(roundcube, "name")}-with-plugins`),
             paths: nix.thunk(() => nix.concat(nix.app(f, roundcubePlugins), [
               roundcube,
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
             ])),
           }))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           roundcube: nix.thunk(() => nix.attr(nixosTests, "roundcube")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open Source Webmail Software",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

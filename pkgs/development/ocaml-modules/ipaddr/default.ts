@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ipaddr",
       version: nix.thunk(() => nix.attr(macaddr, "version")),
       src: nix.thunk(() => nix.attr(macaddr, "src")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_sexp_conv, ounit2]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(macaddr, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library for manipulation of IP (and MAC) address representations",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pname = "sweethome3d";
   const version = "7.5";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://sourceforge/sweethome3d/SweetHome3D-${version}-src.zip`),
       hash: "sha256-+rAhq5sFXC34AMYCcdAYZzrUa3LDy4S5Zid4DlEVvTQ=",
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./build-xml.patch"), nix.path(here, "./config.patch")]);
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://www.sweethome3d.com/index.jsp",
     description: "Design and visualize your future home",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -40,16 +40,16 @@ export default nix.lambda((args) => (() => {
     broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
   }));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     application: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         src: src,
         meta: meta,
         patches: patches,
       }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
         src: src,

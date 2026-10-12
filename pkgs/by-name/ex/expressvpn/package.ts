@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const clientBuild = "2";
   const version = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ".", nix.thunk(() => [clientVersion, clientBuild])));
   const expressvpnBase = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.expressvpn.works/clients/linux/expressvpn_${version}-1_amd64.deb`),
           hash: "sha256-cDZ9R+MA3FXEto518bH4/c1X4W9XxgTvXns7zisylew=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmv usr/ $out/\nrunHook postInstall\n",
     }))));
   const expressvpndFHS = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "expressvpnd",
       runScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-wrapper`), nix.thunk(() => nix.str`mkdir -p /host/etc
@@ -65,7 +65,7 @@ ln -s ${sysctl}/bin/sysctl sbin/sysctl
       })(),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -79,7 +79,7 @@ ln -s ${expressvpnBase}/share/{bash-completion,doc,man} $out/share/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI client for ExpressVPN",
         homepage: "https://www.expressvpn.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

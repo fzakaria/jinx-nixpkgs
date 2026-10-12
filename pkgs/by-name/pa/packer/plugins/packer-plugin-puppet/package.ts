@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkPackerPlugin = nix.arg($, "mkPackerPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkPackerPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "packer-plugin-puppet",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "packer-plugin-puppet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-SmOoso0A0w34Tp6LEFOM3pxvJSkMZNi9Wvy5w7s4dc0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Packer plugin for Puppet",
         homepage: "https://github.com/hashicorp/packer-plugin-puppet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const MenhirLib = nix.arg($, "MenhirLib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "json",
       owner: "liyishuai",
       repo: "coq-json",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const from = nix.thunk(() => nix.sel(lib, "versions"));
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "0.2.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-qDRTgWLUvu4x3/d3BDcqo2I4W5ZmLyRiwuY/Tm/FuKA=",
         })),
         "0.1.3": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-lElAzW4IuX+BB6ngDjlyKn0MytLRfbhQanB+Lct/WR0=",
         })),
       })),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [parsec, MenhirLib, nix.thunk(() => nix.sel(coq, "ocamlPackages", "menhir"))]),
       useDuneifVersion: (v) => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "0.2.0", v)) || nix.asBool(nix.eq(v, "dev"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "From JSON to Coq, and vice versa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       })),
     }))), "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(o, "version"), null)) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLt"), "0.2.0", nix.thunk(() => nix.sel(o, "version")))))), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         buildFlags: nix.thunk(() => ["MENHIRFLAGS=--coq", "MENHIRFLAGS+=--coq-no-version-check"]),
       }))));
 })(), formals$1);

@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
   const cuda_cudart = nix.thunk(() => nix.attr(cudaPackages, "cuda_cudart"));
   const libcufft = nix.thunk(() => nix.attr(cudaPackages, "libcufft"));
   const llama_cpp_rpc = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(llama_cpp_grpc, "overrideAttrs"), (prev) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "llama-cpp-rpc",
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(prev, "cmakeFlags"), [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GGML_AVX", false)),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GGML_F16C", false)),
       ])),
     })), "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       cudaSupport: false,
       openclSupport: false,
       blasSupport: false,
@@ -104,10 +104,10 @@ export default nix.lambda((args) => (() => {
       vulkanSupport: false,
     }))));
   const llama_cpp_grpc = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(llama_cpp, "overrideAttrs"), (final) => (prev) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "llama-cpp-grpc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "ggerganov",
           repo: "llama.cpp",
           rev: "d6d2c2ab8c8865784ba9fef37f2b2de3f2134d33",
@@ -135,7 +135,7 @@ cd ..
       ])),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(prev, "buildInputs"), [protobuf, grpc, openssl, curl])),
     })), "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       cudaSupport: with_cublas,
       rocmSupport: false,
       openclSupport: with_clblas,
@@ -143,7 +143,7 @@ cd ..
       vulkanSupport: with_vulkan,
     }))));
   const espeak_ng$ = nix.thunk(() => nix.app(nix.sel(espeak_ng, "overrideAttrs"), (self_1) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "espeak-ng'",
       src: nix.thunk(() => nix.attr(go_piper, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(go_piper, "src", "name")}/espeak`),
@@ -163,7 +163,7 @@ cd ..
       postInstall: null,
     })));
   const piper_phonemize = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "piper-phonemize",
       src: nix.thunk(() => nix.attr(go_piper, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(go_piper, "src", "name")}/piper-phonemize`),
@@ -173,10 +173,10 @@ cd ..
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ONNXRUNTIME_DIR", nix.thunk(() => nix.str`${nix.sel(onnxruntime, "dev")}`))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ESPEAK_NG_DIR", nix.thunk(() => nix.str`${espeak_ng$}`))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, "espeak-ng": espeak_ng$ })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, "espeak-ng": espeak_ng$ })),
     }))));
   const piper_tts$ = nix.thunk(() => nix.app(nix.sel(piper_tts, "overrideAttrs"), (self_1) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "piper-tts'",
       src: nix.thunk(() => nix.attr(go_piper, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(go_piper, "src", "name")}/piper`),
@@ -184,10 +184,10 @@ cd ..
       postInstall: "cp CMakeFiles/piper.dir/src/cpp/piper.cpp.o $out/piper.o\ncd $out\nmkdir bin lib\nmv lib*so* lib/\nmv piper piper_phonemize bin/\nrm -rf cmake pkgconfig espeak-ng-data *.ort\n",
     })));
   const go_piper = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       name: "go-piper",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "mudler",
           repo: "go-piper",
           rev: "e10ca041a885d4a8f3871d52924b47792d5e5aa0",
@@ -206,10 +206,10 @@ cp *.a $out
 `),
     }))));
   const whisper_cpp = nix.thunk(() => nix.app(nix.sel(effectiveStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: "whisper-cpp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           owner: "ggerganov",
           repo: "whisper.cpp",
           rev: "6266a9f9e56a5b925e9892acf650f3eb1245814d",
@@ -230,10 +230,10 @@ cp *.a $out
       postInstall: "install -Dt $out/bin bin/*\n",
     }))));
   const bark = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       name: "bark",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           owner: "PABannier",
           repo: "bark.cpp",
           tag: "v1.0.0",
@@ -244,10 +244,10 @@ cp *.a $out
       nativeBuildInputs: nix.thunk(() => [cmake]),
     }))));
   const stable_diffusion = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: "stable-diffusion",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           owner: "richiejp",
           repo: "stable-diffusion.cpp",
           rev: "53e3b17eb3d0b5760ced06a1f98320b68b34aaae",
@@ -266,7 +266,7 @@ cp *.a $out
   const pname = "local-ai";
   const version = "2.28.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       owner: "mudler",
       repo: "LocalAI",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -282,14 +282,14 @@ ${cp} ${bark} sources/bark.cpp
 ${cp} ${stable_diffusion} sources/stablediffusion-ggml.cpp
 `;
   })());
-  const self = nix.thunk(() => nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ __proto__: pos$19, stdenv: effectiveStdenv })), nix.thunk(() => ({
-      __proto__: pos$26,
+  const self = nix.thunk(() => nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$19, stdenv: effectiveStdenv })), nix.thunk(() => ({
+      [nix.POS]: pos$26,
       pname: pname,
       version: version,
       src: src,
       vendorHash: "sha256-1OY/y1AeL0K+vOU4Jk/cj7rToVLC9EkkNhgifB+icDM=",
       env: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str` -isystem ${opencv}/include/opencv4`),
         GO_TAGS: nix.thunk(() => nix.builtins.concatStringsSep(" ", GO_TAGS)),
       })),
@@ -340,9 +340,9 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         "local-packages": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "go-piper": go_piper,
           "llama-cpp-grpc": llama_cpp_grpc,
           "whisper-cpp": whisper_cpp,
@@ -354,18 +354,18 @@ runHook postInstall
           "stable-diffusion": stable_diffusion,
         })),
         features: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           with_cublas: with_cublas,
           with_openblas: with_openblas,
           with_vulkan: with_vulkan,
           with_tts: with_tts,
           with_clblas: with_clblas,
         })),
-        tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$23, self: self })))),
+        tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$23, self: self })))),
         lib: nix.thunk(() => nix.app(callPackages, nix.path(here, "./lib.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         description: "OpenAI alternative to run local LLMs, image and audio generation",
         mainProgram: "local-ai",
         homepage: "https://localai.io",

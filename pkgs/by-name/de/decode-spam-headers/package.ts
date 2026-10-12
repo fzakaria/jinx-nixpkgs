@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "decode-spam-headers";
       const version = "2022-09-22-unreleased";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mgeeky",
           repo: "decode-spam-headers",
           rev: "492b6e744475cd5d3dd68a8140bc3478244b7df1",
@@ -42,7 +42,7 @@ mv \\
         nix.thunk(() => nix.sel(python3Packages, "colorama")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mgeeky/decode-spam-headers/",
         description: "Script that helps you understand why your E-Mail ended up in Spam",
         mainProgram: "decode-spam-headers",
@@ -51,7 +51,7 @@ mv \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

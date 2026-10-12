@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "warpd",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rvaiya",
           repo: "warpd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["PREFIX=$(out)"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withWayland)), "DISABLE_WAYLAND=y"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withX)), "DISABLE_X=y")))),
       postPatch: "substituteInPlace mk/linux.mk \\\n  --replace '-m644' '-Dm644' \\\n  --replace '-m755' '-Dm755' \\\n  --replace 'warpd.1.gz $(DESTDIR)' 'warpd.1.gz -t $(DESTDIR)' \\\n  --replace 'bin/warpd $(DESTDIR)' 'bin/warpd -t $(DESTDIR)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modal keyboard driven interface for mouse manipulation",
         homepage: "https://github.com/rvaiya/warpd",
         changelog: nix.thunk(() => nix.str`https://github.com/rvaiya/warpd/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

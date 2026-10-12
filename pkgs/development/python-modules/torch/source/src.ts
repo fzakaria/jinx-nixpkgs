@@ -84,490 +84,490 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(version, "2.13.0"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/torch/source/src.nix:7:1");
   return nix.sel((() => {
     const src_aiter = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "ROCm",
         repo: "aiter",
         rev: "9a469a608b2c10b7157df573a38d31e5bf4038b4",
         hash: "sha256-kaX3uAkgE99puYu+ODdKjvsN+LLl1Jt95vtd5Xh0Mg8=",
       }))));
     const src_aiter_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner: "ROCm",
         repo: "aiter",
         rev: "b4b75165fbd2456dfd0f074c5b2ef91bc87d97e5",
         hash: "sha256-Q3nTakD9XbeHe5myYUrv51Iwh6Ifg46hKfn0CK9izhc=",
       }))));
     const src_asmjit = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner: "asmjit",
         repo: "asmjit",
         rev: "a3199e8857792cd10b7589ff5d58343d2c9008ea",
         hash: "sha256-qb0lM1N1FIvoADNsZZdlg8HAheePv/LvSDvRhOAqZc0=",
       }))));
     const src_benchmark = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner: "google",
         repo: "benchmark",
         rev: "299e5928955cc62af9968370293b916f5130916f",
         hash: "sha256-iPK3qLrZL2L08XW1a7SGl7GAt5InQ5nY+Dn8hBuxSOg=",
       }))));
     const src_benchmark_protobuf = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         owner: "google",
         repo: "benchmark",
         rev: "5b7683f49e1e9223cf9927b24f6fd3d6bd82e3f8",
         hash: "sha256-iFRgjLkftuszAqBnmS9GXU8BwYnabmwMAQyw19sfjb4=",
       }))));
     const src_civetweb = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         owner: "civetweb",
         repo: "civetweb",
         rev: "d7ba35bbb649209c66e582d5a0244ba988a15159",
         hash: "sha256-eXb5f2jhtfxDORG+JniSy17kzB7A4vM0UnUQAfKTquU=",
       }))));
     const src_clang_cindex_python3 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         owner: "wjakob",
         repo: "clang-cindex-python3",
         rev: "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
         hash: "sha256-IDUIuAvgCzWaHoTJUZrH15bqoVcP8bZk+Gs1Ae6/CpY=",
       }))));
     const src_composable_kernel = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "f1746955fdaf80a3414de814bf32437686dac347",
         hash: "sha256-B/xNuBPUdjL1b+0IzRnaSXT2FKUo5cYwYcKqfKqJ8Eg=",
       }))));
     const src_composable_kernel_aiter = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "fcc9372c009c8e0a23fece77b582da83b04a654f",
         hash: "sha256-Xwj48Ftwqlea5ZIP7q7cRh2U2tlHTd1cdW4TYf5J0Dg=",
       }))));
     const src_composable_kernel_aiter_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "eb033ef2089e00f821930c04ef7c589da073f1c8",
         hash: "sha256-43he+hJYdu++a8zIg2A4eycMeU/KyzoiWFxeti96eEA=",
       }))));
     const src_composable_kernel_fbgemm_MSLK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "7fe50dc3da2069d6645d9deb8c017a876472a977",
         hash: "sha256-OxA0ekcaRxAmBFlXkvS7XAX40kcWCwyytHWV6vROWjo=",
       }))));
     const src_composable_kernel_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         owner: "ROCm",
         repo: "composable_kernel",
         rev: "791afc64655301487cac6e5361c677a0a4b82059",
         hash: "sha256-at/UrMSQP+6f9AeTmw2/UmBbNog8OQNQFZvbGkmGAtQ=",
       }))));
     const src_cpp_httplib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         owner: "yhirose",
         repo: "cpp-httplib",
         rev: "811dd0b6f2382f50f801f3cfdb5ba349d08bb575",
         hash: "sha256-+tJPA2yUT4irfEBRv2LHxc70xYY6+gWJWtSRtMGF3sw=",
       }))));
     const src_cpr = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         owner: "libcpr",
         repo: "cpr",
         rev: "871ed52d350214a034f6ef8a3b8f51c5ce1bd400",
         hash: "sha256-TxoDCIa7pS+nfI8hNiGIRQKpYNrKSd1yCXPfVXPcRW8=",
       }))));
     const src_cpuinfo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         owner: "pytorch",
         repo: "cpuinfo",
         rev: "bc3c01e230c6974283e4b89421cfb0e232435589",
         hash: "sha256-nm1ifv/ASJwCWoz+9HeuCi+bcCNTh/swvkxJolItgyU=",
       }))));
     const src_cpuinfo_fbgemm = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         owner: "pytorch",
         repo: "cpuinfo",
         rev: "161a9ec374884f4b3e85725cb22e05f9458fdc93",
         hash: "sha256-uzo6QpNfzTcqOpDse14e2OoxNyKDU8jSx+/wPLxmpJg=",
       }))));
     const src_cudnn_frontend = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         owner: "NVIDIA",
         repo: "cudnn-frontend",
         rev: "c4a97621eca52fa0c3a1862a411a16be580b25c6",
         hash: "sha256-I6el8e6Jo1l/S5eqxWiH2KksNxw4hJ+av5qj/yqJjI8=",
       }))));
     const src_cutlass = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         owner: "NVIDIA",
         repo: "cutlass",
         rev: "da5e086dab31d63815acafdac9a9c5893b1c69e2",
         hash: "sha256-0q9Ad0Z6E/rO2PdM4uQc8H0E0qs9uKc3reHepiHhjEc=",
       }))));
     const src_cutlass_fbgemm_MSLK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         owner: "jwfromm",
         repo: "cutlass",
         rev: "571edeb2d0ac872a8392fc49285b156b07884b4e",
         hash: "sha256-EnEtWPJqJBLGOk93HdUL45NFqIVG5qetJX6vnc7K6pE=",
       }))));
     const src_cutlass_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         owner: "NVIDIA",
         repo: "cutlass",
         rev: "7127592069c2fe01b041e174ba4345ef9b279671",
         hash: "sha256-/fEfuriQbrjjLP+yRjeo88SgW3IurdlU+6rR9+w5woQ=",
       }))));
     const src_DCGM = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         owner: "NVIDIA",
         repo: "DCGM",
         rev: "ffde4e54bc7249a6039a5e6b45b395141e1217f9",
         hash: "sha256-jlnq25byEep7wRF3luOIGaiaYjqSVaTBx02N6gE/ox8=",
       }))));
     const src_dynolog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         owner: "facebookincubator",
         repo: "dynolog",
         rev: "d2ffe0a4e3acace628db49974246b66fc3e85fb1",
         hash: "sha256-AebAZeDE9mXvg1XsgDm/4DIAMDIkbd+HGgcTmxV+HX0=",
       }))));
     const src_fbgemm = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         owner: "pytorch",
         repo: "fbgemm",
         rev: "d08742c6602efedc6a3c9fca124b96ad555316e4",
         hash: "sha256-lPZFwSjr1yd3lXhyYA6UrYr+kVHo0IA5QJvQpPtNiU8=",
       }))));
     const src_fbjni = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         owner: "facebookincubator",
         repo: "fbjni",
         rev: "7e1e1fe3858c63c251c637ae41a20de425dde96f",
         hash: "sha256-PsgUHtCE3dNR2QdUnRjrXb0ZKZNGwFkA8RWYkZEklEY=",
       }))));
     const src_flash_attention = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         owner: "Dao-AILab",
         repo: "flash-attention",
         rev: "6c4f74fb338e0c3cdb07ac6f5eab5f54fc367c15",
         hash: "sha256-k6158mEJocKIRS4MQIM+Ih4VMHnXCKJGcykZFi91J2w=",
       }))));
     const src_flatbuffers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         owner: "google",
         repo: "flatbuffers",
         rev: "a2cd1ea3b6d3fee220106b5fed3f7ce8da9eb757",
         hash: "sha256-6L6Eb+2xGXEqLYITWsNNPW4FTvfPFSmChK4hLusk5gU=",
       }))));
     const src_fmt = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         owner: "fmtlib",
         repo: "fmt",
         rev: "407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
         hash: "sha256-ZmI1Dv0ZabPlxa02OpERI47jp7zFfjpeWCy1WyuPYZ0=",
       }))));
     const src_fmt_dynolog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         owner: "fmtlib",
         repo: "fmt",
         rev: "cd4af11efc9c622896a3e4cb599fa28668ca3d05",
         hash: "sha256-Ks3UG3V0Pz6qkKYFhy71ZYlZ9CPijO6GBrfMqX5zAp8=",
       }))));
     const src_fmt_kineto = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         owner: "fmtlib",
         repo: "fmt",
         rev: "40626af88bd7df9a5fb80be7b25ac85b122d6c21",
         hash: "sha256-sAlU5L/olxQUYcv8euVYWTTB8TrVeQgXLHtXy8IMEnU=",
       }))));
     const src_FP16 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         owner: "Maratyszcza",
         repo: "FP16",
         rev: "4dfe081cf6bcd15db339cf2680b9281b8451eeb3",
         hash: "sha256-B27LtVnL52niaFgPW0pp5Uulub/Q3NvtSDkJNahrSBk=",
       }))));
     const src_FXdiv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         owner: "Maratyszcza",
         repo: "FXdiv",
         rev: "b408327ac2a15ec3e43352421954f5b1967701d1",
         hash: "sha256-BEjscsejYVhRxDAmah5DT3+bglp8G5wUTTYL7+HjWds=",
       }))));
     const src_gemmlowp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         owner: "google",
         repo: "gemmlowp",
         rev: "3fb5c176c17c765a3492cd2f0321b0dab712f350",
         hash: "sha256-G3PAf9j7Tb4dUoaV9Tmxkkfu3v+w0uFbZ+MWS68tlRw=",
       }))));
     const src_gflags = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         owner: "gflags",
         repo: "gflags",
         rev: "e171aa2d15ed9eb17054558e0b3a6a413bb01067",
         hash: "sha256-4NLd/p72H7ZiFCCVjTfM/rDvZ8CVPMxYpnJ2O1od8ZA=",
       }))));
     const src_gflags_gflags = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         owner: "gflags",
         repo: "gflags",
         rev: "8411df715cf522606e3b1aca386ddfc0b63d34b4",
         hash: "sha256-Bb4g64u5a0QRWwDl1ryNXmht6NKFWPW9bAF07yYRJ6I=",
       }))));
     const src_glog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         owner: "google",
         repo: "glog",
         rev: "b33e3bad4c46c8a6345525fd822af355e5ef9446",
         hash: "sha256-xqRp9vaauBkKz2CXbh/Z4TWqhaUtqfbsSlbYZR/kW9s=",
       }))));
     const src_gloo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         owner: "pytorch",
         repo: "gloo",
         rev: "bcd1672ee07538123ea8f4fac76832efc58fb8ef",
         hash: "sha256-taZFCV6+4hXL63P+coJHEuOuyoGfDEr2BrSGOMdFprk=",
       }))));
     const src_googletest = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         owner: "google",
         repo: "googletest",
         rev: "52eb8108c5bdec04579160ae17225d66034bd723",
         hash: "sha256-HIHMxAUR4bjmFLoltJeIAVSulVQ6kVuIT2Ku+lwAx/4=",
       }))));
     const src_googletest_prometheus_cpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         owner: "google",
         repo: "googletest",
         rev: "e2239ee6043f73722e7aa812a459f54a28552929",
         hash: "sha256-SjlJxushfry13RGA7BCjYC9oZqV4z6x8dOiHfl/wpF0=",
       }))));
     const src_googletest_protobuf = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         owner: "google",
         repo: "googletest",
         rev: "5ec7f0c4a113e2f18ac2c6cc7df51ad6afc24081",
         hash: "sha256-Zh7t6kOabEZxIuTwREerNSgbZLPnGWv78h0wQQAIuT4=",
       }))));
     const src_googletest_tensorpipe = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         owner: "google",
         repo: "googletest",
         rev: "aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e",
         hash: "sha256-L2HR+QTQmagk92JiuW3TRx47so33xQvewdeYL1ipUPs=",
       }))));
     const src_hipify_torch = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         owner: "ROCmSoftwarePlatform",
         repo: "hipify_torch",
         rev: "63b6a7b541fa7f08f8475ca7d74054db36ff2691",
         hash: "sha256-TH9fyprP21sRsxGs4VrahhFSIXDhnLvV09c+ZCE27u0=",
       }))));
     const src_ideep = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         owner: "intel",
         repo: "ideep",
         rev: "e087b6e4b32a7ba684db82231d1558123968ac1d",
         hash: "sha256-AVSsugGYiQ4QOWMVaHj1hzlPTZmg65yrGMmrWytvUuM=",
       }))));
     const src_ittapi = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         owner: "intel",
         repo: "ittapi",
         rev: "0c57540822deb5dae43bef6c1cc9b3be4772a033",
         hash: "sha256-v6efQEMW1r5fsjOIpJQQPoau6sina/iKxAY1cfEUZQc=",
       }))));
     const src_json = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         owner: "nlohmann",
         repo: "json",
         rev: "55f93686c01528224f448c19128836e7df245f72",
         hash: "sha256-cECvDOLxgX7Q9R3IE86Hj9JJUxraDQvhoyPDF03B2CY=",
       }))));
     const src_json_dynolog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         owner: "nlohmann",
         repo: "json",
         rev: "4f8fba14066156b73f1189a2b8bd568bde5284c5",
         hash: "sha256-DTsZrdB9GcaNkx7ZKxcgCA3A9ShM5icSF0xyGguJNbk=",
       }))));
     const src_kineto = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         owner: "pytorch",
         repo: "kineto",
         rev: "094d3c1d072362d0a919a77299459eee94f97931",
         hash: "sha256-KFP2wrFj3Tgv1U5b4YJr2mWq+xo1mZzVUejFxGhv9z4=",
       }))));
     const src_kleidiai = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         owner: "ARM-software",
         repo: "kleidiai",
         rev: "d7770c89632329a9914ef1a90289917597639cbe",
         hash: "sha256-5/LkO8ihQCeA6nok68OrzurOcIgjFgXntO1C3By5HUw=",
       }))));
     const src_libnop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         owner: "google",
         repo: "libnop",
         rev: "910b55815be16109f04f4180e9adee14fb4ce281",
         hash: "sha256-AsPZt+ylfdGpytQ1RoQljKeXE2uGkGONCaWzLK2sZhA=",
       }))));
     const src_libuv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         owner: "libuv",
         repo: "libuv",
         rev: "5152db2cbfeb5582e9c27c5ea1dba2cd9e10759b",
         hash: "sha256-ayTk3qkeeAjrGj5ab7wF7vpWI8XWS1EeKKUqzaD/LY0=",
       }))));
     const src_mimalloc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         owner: "microsoft",
         repo: "mimalloc",
         rev: "02a2f5df9d7d46d30263b83832eebeeab62dc5fe",
         hash: "sha256-7wJ6IE6WXuIFmuuM1W5TawC4LYjhc18aYlaujnOXyx4=",
       }))));
     const src_mkl_dnn = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         owner: "intel",
         repo: "mkl-dnn",
         rev: "80afa71049cd69a3df32adcccb623b12cd7baa22",
         hash: "sha256-t5+DF4/qgEYQpTY8Qox0BTfpykfs5kFqYy6HrEJaVu0=",
       }))));
     const src_MSLK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         owner: "meta-pytorch",
         repo: "MSLK",
         rev: "3d332d1c0c0ac7765852c97b3979c9ef913e037f",
         hash: "sha256-iuwAI8ko4yzifjoqKLxtz6UFOAOoWhsw4+3Unkiv6aE=",
       }))));
     const src_NNPACK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         owner: "Maratyszcza",
         repo: "NNPACK",
         rev: "c07e3a0400713d546e0dea2d5466dd22ea389c73",
         hash: "sha256-GzF53u1ELtmEH3WbBzGBemlQhjj3EIKB+37wMtSYE2g=",
       }))));
     const src_NVTX = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         owner: "NVIDIA",
         repo: "NVTX",
         rev: "3ebbc93ded7285963bff932c678fa367eb393ba6",
         hash: "sha256-F1TD1lK0sE6UWMhelF1q147T5Jk3xFUHwsmKoE+WnXY=",
       }))));
     const src_onnx = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         owner: "onnx",
         repo: "onnx",
         rev: "e709452ef2bbc1d113faf678c24e6d3467696e83",
         hash: "sha256-UhtF+CWuyv5/Pq/5agLL4Y95YNP63W2BraprhRqJOag=",
       }))));
     const src_PeachPy = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         owner: "malfet",
         repo: "PeachPy",
         rev: "f45429b087dd7d5bc78bb40dc7cf06425c252d67",
         hash: "sha256-eyhfnOOZPtsJwjkF6ybv3F77fyjaV6wzgu+LxadZVw0=",
       }))));
     const src_pfs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         owner: "dtrugman",
         repo: "pfs",
         rev: "f68a2fa8ea36c783bdd760371411fcb495aa3150",
         hash: "sha256-VB7/7hi4vZKgpjpgir+CyWIMwoNLHGRIXPJvVOn8Pq4=",
       }))));
     const src_pocketfft = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         owner: "mreineck",
         repo: "pocketfft",
         rev: "0fa0ef591e38c2758e3184c6c23e497b9f732ffa",
         hash: "sha256-Fu786IHiU6Bl66gZ/UJmqOROjlya3viLyzOxwdZVi9c=",
       }))));
     const src_prometheus_cpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         owner: "jupp0r",
         repo: "prometheus-cpp",
         rev: "b1234816facfdda29845c46696a02998a4af115a",
         hash: "sha256-Dj+adszXnWHOcZJ/QTOX214N86pjy71tLuPU6bHcMPg=",
       }))));
     const src_protobuf = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         owner: "protocolbuffers",
         repo: "protobuf",
         rev: "d1eca4e4b421cd2997495c4b4e65cea6be4e9b8a",
         hash: "sha256-InCW/Sb4E7dQeg3VHgpCtm91qqfh0Qpmu4ZzKffacOQ=",
       }))));
     const src_psimd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         owner: "Maratyszcza",
         repo: "psimd",
         rev: "072586a71b55b7f8c584153d223e95687148a900",
         hash: "sha256-lV+VZi2b4SQlRYrhKx9Dxc6HlDEFz3newvcBjTekupo=",
       }))));
     const src_pthreadpool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         owner: "google",
         repo: "pthreadpool",
         rev: "a56dcd79c699366e7ac6466792c3025883ff7704",
         hash: "sha256-WfyuPfII4eSmLskZV0TAcu4K6OyW38TjkDHm+VUx5eY=",
       }))));
     const src_pybind11 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         owner: "pybind",
         repo: "pybind11",
         rev: "d03662f0984f652b60e7ddce53d3868002275197",
         hash: "sha256-QZKnIOopEDsiRFkc1qQ+DaDHoTNuEEgQVeiAL0sQqak=",
       }))));
     const src_pybind11_onnx = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         owner: "pybind",
         repo: "pybind11",
         rev: "a2e59f0e7065404b44dfe92a28aca47ba1378dc4",
         hash: "sha256-SNLdtrOjaC3lGHN9MAqTf51U9EzNKQLyTMNPe0GcdrU=",
       }))));
     const src_pybind11_tensorpipe = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         owner: "pybind",
         repo: "pybind11",
         rev: "a23996fce38ff6ccfbcdc09f1e63f2c4be5ea2ef",
         hash: "sha256-3TALLHJAeWCSf88oBgLyyUoI/HyWGasAcAy4fGOQt04=",
       }))));
     const src_pytorch = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         owner: "pytorch",
         repo: "pytorch",
         rev: "v2.13.0",
         hash: "sha256-ho3L7gDflBkJ+i47rpTc7/AaHWgXe1U00wFaRLLH8W8=",
       }))));
     const src_sleef = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         owner: "shibatch",
         repo: "sleef",
         rev: "5a1d179df9cf652951b59010a2d2075372d67f68",
         hash: "sha256-bjT+F7/nyiB4f0T06/flbpIWFZbUxjf1TjWMe3112Ig=",
       }))));
     const src_tensorpipe = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         owner: "pytorch",
         repo: "tensorpipe",
         rev: "2b4cd91092d335a697416b2a3cb398283246849d",
         hash: "sha256-ZidonG6q621rbdRrlW6ad7WdH0os81GNBBuPE5kQEsU=",
       }))));
     const src_VulkanMemoryAllocator = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         owner: "GPUOpen-LibrariesAndSDKs",
         repo: "VulkanMemoryAllocator",
         rev: "1d8f600fd424278486eade7ed3e877c99f0846b1",
         hash: "sha256-TPEqV8uHbnyphLG0A+b2tgLDQ6K7a2dOuDHlaFPzTeE=",
       }))));
     const src_XNNPACK = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         owner: "google",
         repo: "XNNPACK",
         rev: "51a0103656eff6fc9bfd39a4597923c4b542c883",
@@ -815,7 +815,7 @@ cp -r ${src_pybind11_tensorpipe_recursive}/* $out/third_party/pybind11
     const src_VulkanMemoryAllocator_recursive = src_VulkanMemoryAllocator;
     const src_XNNPACK_recursive = src_XNNPACK;
     return {
-      __proto__: pos$71,
+      [nix.POS]: pos$71,
       src_aiter,
       "src_aiter_flash-attention": src_aiter_flash_attention,
       src_asmjit,

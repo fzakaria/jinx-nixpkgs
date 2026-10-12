@@ -39,45 +39,45 @@ export default nix.lambda((args) => (() => {
     const elfFile = nix.arg($_1, "elfFile");
     const runpathEntries = nix.arg($_1, "runpathEntries");
     return nix.app(nix.sel(nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         expectedArray: runpathEntries,
         script: "set -eu\nnixLog \"running getRunpathEntries with ${elfFile@Q} to populate actualArray\"\ngetRunpathEntries \"$elfFile\" actualArray || {\n  nixErrorLog \"getRunpathEntries failed\"\n  exit 1\n}\n",
       }))), "overrideAttrs"), (prevAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         elfFile: elfFile,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [getRunpathEntries])),
         meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         })),
       }));
   })(), formals$2);
   return nix.update(nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "getRunpathEntries",
           src: nix.path(here, "./getRunpathEntries.bash"),
         })))),
       shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "getRunpathEntries",
           src: nix.path(here, "./getRunpathEntries.bash"),
         })))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       notElfFileFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "notElfFileFails",
-          drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({ __proto__: pos$7, name: "notElfFile", elfFile: emptyFile, runpathEntries: [] })))),
+          drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({ [nix.POS]: pos$7, name: "notElfFile", elfFile: emptyFile, runpathEntries: [] })))),
           expectedBuilderLogEntries: nix.thunk(() => ["getRunpathEntries failed"]),
         })))),
       staticElfFileFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "staticElfFileFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "staticElfFile",
               elfFile: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgsStatic, "hello")))),
               runpathEntries: [],
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
           expectedBuilderLogEntries: nix.thunk(() => ["getRunpathEntries failed"]),
         })))),
       hello: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: "hello",
           elfFile: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), hello)),
           runpathEntries: nix.thunk(() => [
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       libstdcplusplus: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "libstdcplusplus",
           elfFile: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib/libstdc++.so`),
           runpathEntries: nix.thunk(() => [

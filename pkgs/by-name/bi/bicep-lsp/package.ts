@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bicep-lsp";
       const version = "0.34.44";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Azure",
           repo: "bicep",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [icu, libkrb5, openssl, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))])));
       const doCheck = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Domain Specific Language (DSL) for deploying Azure resources declaratively",
         homepage: "https://github.com/Azure/bicep/",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/bicep/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

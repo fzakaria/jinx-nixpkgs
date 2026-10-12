@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lsiutil";
       const version = "1.72";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/exactassembly/meta-xa-stm/raw/f96cf6e13f3c9c980f5651510dd96279b9b2af4f/recipes-support/lsiutil/files/lsiutil-${version}.tar.gz`),
           sha256: "sha256-aTi+EogY1aDWYq3anjRkjz1mzINVfUPQbOPHthxrvS4=",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\ngcc -Wall -O lsiutil.c -o lsiutil\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nmkdir -p \"$out/bin\"\ninstall -Dm755 lsiutil \"$out/bin/lsiutil\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/exactassembly/meta-xa-stm/tree/master/recipes-support/lsiutil/files",
         description: "Configuration utility for MPT adapters (FC, SCSI, and SAS/SATA)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

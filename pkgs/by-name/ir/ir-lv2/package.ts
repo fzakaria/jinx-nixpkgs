@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zita_convolver = nix.arg($, "zita-convolver");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ir.lv2",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20251216014553/https://git.hq.sig7.se/ir.lv2.git/snapshot/1d4a4f9b1aad6223d541ebb0c16d85d527478222.tar.gz",
           hash: "sha256-lTzj4tf7jNOKnvcZzEbzPqg4aPgXcbCVwIHoV+5G+hU=",
         })))),
       buildInputs: nix.thunk(() => [fftw, gtk2, lv2, libsamplerate, libsndfile, zita_convolver]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       postBuild: "make convert4chan",
       installPhase: "runHook preInstall\nmake PREFIX=\"$out\" INSTDIR=\"$out/lib/lv2\" install\ninstall -Dm755 convert4chan \"$out/bin/convert4chan\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://factorial.hu/plugins/lv2/ir",
         description: "Low-latency, realtime, high performance signal convolver especially for creating reverb effects.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const fakeSubmodule = (module) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$2,
-      type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ __proto__: pos$1, modules: nix.thunk(() => [module]) })))),
+      [nix.POS]: pos$2,
+      type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: nix.thunk(() => [module]) })))),
       description: "This is a [modular service](https://nixos.org/manual/nixos/unstable/#modular-services), which can be imported into a NixOS configuration using the [`system.services`](https://search.nixos.org/options?channel=unstable&show=system.services&query=modular+service) option.",
     })));
   const modularServicesModule = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "<imports = [ pkgs.autopush-rs.services.autoconnect ]>": nix.thunk(() => nix.app(fakeSubmodule, nix.thunk(() => nix.sel(pkgs, "autopush-rs", "services", "autoconnect")))),
       "<imports = [ pkgs.autopush-rs.services.autoendpoint ]>": nix.thunk(() => nix.app(fakeSubmodule, nix.thunk(() => nix.sel(pkgs, "autopush-rs", "services", "autoendpoint")))),
       "<imports = [ pkgs.ghostunnel.services.default ]>": nix.thunk(() => nix.app(fakeSubmodule, nix.thunk(() => nix.sel(pkgs, "ghostunnel", "services", "default")))),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     documentation: nix.thunk(() => ({
-      __proto__: pos$6,
-      nixos: nix.thunk(() => ({ __proto__: pos$5, extraModules: nix.thunk(() => [modularServicesModule]) })),
+      [nix.POS]: pos$6,
+      nixos: nix.thunk(() => ({ [nix.POS]: pos$5, extraModules: nix.thunk(() => [modularServicesModule]) })),
     })),
   };
 })(), formals$1);

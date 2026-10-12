@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "icomoon-feather",
       version: "0-unstable-2024-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adi1090x",
           repo: "polybar-themes",
           rev: "adb6a4546a8351a469fa779df173e46b69aa1ac3",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 fonts/panels/icomoon_feather.ttf -t $out/share/fonts/truetype/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/adi1090x/polybar-themes/tree/master/fonts/panels",
         description: "Icomoon feather font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

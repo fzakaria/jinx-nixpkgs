@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: "prometheus-siebenmann-zfs-exporter",
       version: "unstable-2022-08-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "siebenmann",
           repo: "zfs_exporter",
           rev: "c5f18cb0d470c24dbd2c12553a87d0aca3ddc50b",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-YjEK/nKqoMch0UygoCkk8mAclRFhsjodFVHhN49zeW4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ZFS Exporter for the Prometheus monitoring system (Siebenmann/cks-upstream variant)",
         mainProgram: "zfs_exporter",
         homepage: "https://github.com/siebenmann/zfs_exporter",

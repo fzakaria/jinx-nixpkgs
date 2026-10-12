@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "belr",
       buildInputs: nix.thunk(() => [bctoolbox]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Belledonne Communications' language recognition library (a SIP parsing library). Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       })),

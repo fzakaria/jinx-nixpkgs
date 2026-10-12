@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "xsl"))];
       })());
     })(), formals$2)), "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phing",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/phingofficial/phing",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-cMKHJT0Ylo+8QXBVCcoj1ImSAOOMkV/KqgomXA7vHK0=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant",
         changelog: nix.thunk(() => nix.str`https://github.com/phingofficial/phing/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/phingofficial/phing",

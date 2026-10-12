@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "vscode-eslint",
         publisher: "dbaeumer",
         version: "3.0.34",
         hash: "sha256-ynCPFzne4YS4WNjQSmGky+e2IaE3SLxj6FkjKyLPcAs=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/dbaeumer.vscode-eslint/changelog",
         description: "Integrates ESLint JavaScript into VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint",

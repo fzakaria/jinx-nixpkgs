@@ -39,51 +39,51 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const ukiSettings = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       boot: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         uki: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Name of the UKI",
             })))),
           version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => nix.sel(config, "system", "image", "version")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.system.image.version")),
               description: "Version of the image or generation the UKI belongs to",
             })))),
           tries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")))),
               default: null,
               description: "Number of boot attempts before this UKI is considered bad.\n\nIf no tries are specified (the default) automatic boot assessment remains inactive.\n\nSee documentation on [Automatic Boot Assessment](https://systemd.io/AUTOMATIC_BOOT_ASSESSMENT/) and\n[boot counting](https://uapi-group.org/specifications/specs/boot_loader_specification/#boot-counting)\nfor more information.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "The configuration settings for ukify. These control what the UKI\ncontains and how it is built.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The configuration file passed to {manpage}`ukify(1)` to create the UKI.\n\nBy default this configuration file is created from {option}`boot.uki.settings`.\n",
             })))),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         boot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           loader: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             ukiFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 internal: true,
                 description: "Name of the UKI file",
@@ -93,16 +93,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       boot: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         uki: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "system", "image", "id"), null)) ? nix.sel(config, "system", "image", "id") : "nixos")))),
           settings: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             UKI: nix.thunk(() => nix.update({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               Linux: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.str`${nix.sel(config, "boot", "kernelPackages", "kernel")}/${nix.sel(config, "system", "boot", "loader", "kernelFile")}`))),
               Initrd: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "initialRamdisk")}/${nix.sel(config, "system", "boot", "loader", "initrdFile")}`))),
               Cmdline: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.str`init=${nix.sel(config, "system", "build", "toplevel")}/init ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "boot", "kernelParams")))}`))),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
               OSRelease: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.str`@${nix.sel(config, "system", "build", "etc")}/etc/os-release`))),
               EFIArch: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), efiArch)),
             }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "hardware", "deviceTree", "enable")) && nix.asBool(!nix.eq(nix.sel(config, "hardware", "deviceTree", "name"), null)))), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 DeviceTree: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.str`${nix.sel(config, "hardware", "deviceTree", "package")}/${nix.sel(config, "hardware", "deviceTree", "name")}`))),
               }))))),
           })),
@@ -119,11 +119,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         boot: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           loader: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             ukiFile: nix.thunk(() => (() => {
               const name = nix.thunk(() => nix.sel(config, "boot", "uki", "name"));
               const version = nix.thunk(() => nix.sel(config, "boot", "uki", "version"));
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         build: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           uki: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.sel(config, "system", "boot", "loader", "ukiFile")), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 ${nix.sel(pkgs, "buildPackages", "systemdUkify")}/lib/systemd/ukify build \\
   --config=${nix.sel(cfg, "configFile")} \\
@@ -144,7 +144,7 @@ ${nix.sel(pkgs, "buildPackages", "systemdUkify")}/lib/systemd/ukify build \\
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-power-menu",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jluttine",
           repo: "rofi-power-menu",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\ncp rofi-power-menu $out/bin/rofi-power-menu\ncp dmenu-power-menu $out/bin/dmenu-power-menu\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shows a Power/Lock menu with Rofi",
         homepage: "https://github.com/jluttine/rofi-power-menu",
         maintainers: nix.thunk(() => (() => {

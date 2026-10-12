@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "bad6603bb14d279193107714b288be206cac565dfa49aa5b105294dd5c4aab93",
@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "py.test\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Most basic Text::Unidecode port",
         homepage: "https://github.com/kmike/text-unidecode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raleway",
       version: "4.101",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/theleagueof/raleway/releases/download/${nix.sel(finalAttrs, "version")}/Raleway-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-itNHIMoRjiaqYAJoDNetkCquv47VAfel8MAzwsd//Ww=",
         })))),
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Raleway is an elegant sans-serif typeface family",
         longDescription: "Initially designed by Matt McInerney as a single thin weight, it was\nexpanded into a 9 weight family by Pablo Impallari and Rodrigo Fuenzalida\nin 2012 and iKerned by Igino Marini. In 2013 the Italics where added, and\nmost recently — a variable version.\n\nIt features both old style and lining numerals, standard and\ndiscretionary ligatures, a pretty complete set of diacritics, as well as\na stylistic alternate inspired by more geometric sans-serif typefaces\nthan its neo-grotesque inspired default character set.\n\nIt also has a sister display family, Raleway Dots.\n",
         homepage: "https://www.theleagueofmoveabletype.com/raleway",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const cyrus_sasl = nix.arg($, "cyrus_sasl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cyrus-sasl-xoauth2",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moriyoshi",
           repo: "cyrus-sasl-xoauth2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-cyrus-sasl=${nix.builtins.placeholder("out")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/moriyoshi/cyrus-sasl-xoauth2",
         description: "XOAUTH2 mechanism plugin for cyrus-sasl",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

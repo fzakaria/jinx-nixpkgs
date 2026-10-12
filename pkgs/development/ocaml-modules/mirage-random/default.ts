@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-random",
       version: "3.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-random/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-random-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-Sf4/KB1kMMwXI+yr5H/JuOmynYPNXwlk9dAA+gFAZs8=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Random signatures for MirageOS",
         homepage: "https://github.com/mirage/mirage-random",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

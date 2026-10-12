@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pname = "findutils-static";
   const version = "4.11.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/findutils/findutils-${version}.tar.xz`),
       hash: "sha256-v9GcsGzHHzNS1WfpAoTYzawCrIl3S76t8LUzsMEUMv0=",
     }))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
         xz,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "get-version": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/find --version
 ${result}/bin/xargs --version
 mkdir $out
@@ -60,7 +60,7 @@ mkdir $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU Find Utilities, the basic directory searching utilities of the GNU operating system",
         homepage: "https://www.gnu.org/software/findutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

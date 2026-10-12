@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x11basic",
       version: "1.28-65",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kollo",
           repo: "X11Basic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "touch x11basic.{eps,svg}\nmkdir -p $out/{bin,lib}\nmkdir -p $out/share/{applications,icons/hicolor/scalable/apps}\ncp -r ../examples $out/share/.\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://x11-basic.codeberg.page",
         description: "Basic interpreter and compiler with graphics capabilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtremoteobjects",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       outputs: nix.thunk(() => ["out"]),

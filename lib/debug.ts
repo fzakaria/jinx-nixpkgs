@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
     const traceSeq = (x) => (y) => nix.app(trace, nix.thunk(() => nix.builtins.deepSeq(x, x)), y);
     const traceSeqN = (depth) => (x) => (y) => (() => {
       const snip = (v) => (nix.asBool(nix.app(isList, v)) ? nix.app(noQuotes, "[…]", v) : (nix.asBool(nix.app(isAttrs, v)) ? nix.app(noQuotes, "{…}", v) : nix.force(v)));
-      const noQuotes = (str) => (v) => ({ __proto__: pos$1, __pretty: nix.thunk(() => nix.app(const$, str)), val: v });
+      const noQuotes = (str) => (v) => ({ [nix.POS]: pos$1, __pretty: nix.thunk(() => nix.app(const$, str)), val: v });
       const modify = (n) => (fn) => (v) => (nix.asBool(nix.eq(n, 0n)) ? nix.app(fn, v) : (nix.asBool(nix.app(isList, v)) ? nix.builtins.map(nix.thunk(() => nix.app(modify, nix.thunk(() => nix.sub(n, 1n)), fn)), v) : (nix.asBool(nix.app(isAttrs, v)) ? nix.app(mapAttrs, nix.thunk(() => nix.app(const$, nix.thunk(() => nix.app(modify, nix.thunk(() => nix.sub(n, 1n)), fn)))), v) : nix.force(v))));
-      return nix.app(trace, nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ __proto__: pos$2, allowPrettyValues: true })), nix.thunk(() => nix.app(modify, depth, snip, x)))), y);
+      return nix.app(trace, nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$2, allowPrettyValues: true })), nix.thunk(() => nix.app(modify, depth, snip, x)))), y);
     })();
     const traceValSeqFn = (f) => (v) => nix.app(traceValFn, f, nix.thunk(() => nix.builtins.deepSeq(v, v)));
     const traceValSeq = nix.thunk(() => nix.app(traceValSeqFn, id));
@@ -47,13 +47,13 @@ export default nix.lambda((args) => (() => {
     const traceValSeqN = nix.thunk(() => nix.app(traceValSeqNFn, id));
     const traceFnSeqN = (depth) => (name) => (f) => (v) => (() => {
       const res = nix.thunk(() => nix.app(f, v));
-      return nix.app(nix.sel(lib, "traceSeqN"), nix.thunk(() => nix.add(depth, 1n)), nix.thunk(() => ({ __proto__: pos$3, fn: name, from: v, to: res })), res);
+      return nix.app(nix.sel(lib, "traceSeqN"), nix.thunk(() => nix.add(depth, 1n)), nix.thunk(() => ({ [nix.POS]: pos$3, fn: name, from: v, to: res })), res);
     })();
     const runTests = (tests) => nix.app(concatLists, nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.app(mapAttrs, (name) => (test) => (() => {
             const testsToRun = nix.thunk(() => (nix.asBool(nix.has(tests, "tests")) ? nix.sel(tests, "tests") : []));
             return (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.app(substring, 0n, 4n, name), "test")) || nix.asBool(nix.app(elem, name, testsToRun)))) && nix.asBool((nix.asBool(nix.eq(testsToRun, [])) || nix.asBool(nix.app(elem, name, nix.thunk(() => nix.sel(tests, "tests")))))))) && nix.asBool(!nix.eq(nix.sel(test, "expr"), nix.sel(test, "expected"))))) ? [
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: name,
                 expected: nix.thunk(() => nix.sel(test, "expected")),
                 result: nix.thunk(() => nix.sel(test, "expr")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const failures = nix.arg($_1, "failures");
       const description = nix.argOr($_1, "description", () => "tests");
       return (nix.asBool(nix.eq(failures, [])) ? null : (() => {
-        const toPretty = (value) => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ __proto__: pos$5, allowPrettyValues: true })), value)));
+        const toPretty = (value) => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.app(nix.sel(generators, "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$5, allowPrettyValues: true })), value)));
         const failureToPretty = (failure) => nix.str`FAIL ${nix.app(toPretty, nix.thunk(() => nix.sel(failure, "name")))}:
 Expected:
 ${nix.app(toPretty, nix.thunk(() => nix.sel(failure, "expected")))}
@@ -79,12 +79,12 @@ ${nix.app(toPretty, nix.thunk(() => nix.sel(failure, "result")))}
       })());
     })(), formals$2);
     const testAllTrue = (expr) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       expr: expr,
       expected: nix.thunk(() => nix.builtins.map((x) => true, expr)),
     });
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       trace,
       addErrorContext,
       unsafeGetAttrPos,

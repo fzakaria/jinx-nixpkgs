@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libevent",
       version: "2.1.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libevent/libevent/releases/download/release-${nix.sel(finalAttrs, "version")}-stable/libevent-${nix.sel(finalAttrs, "version")}-stable.tar.gz`),
           hash: "sha256-9+k4O4wLqoG2h+W17swBvu+vGxm2QVHZXtYWR/56MVw=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/libevent/libevent/commit/883630f76cbf512003b81de25cd96cb75c6cf0f9.patch",
             hash: "sha256-VPJqJUAovw6V92jpqIXkIR1xYGbxIWxaHr8cePWI2SU=",
           })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Event notification library",
         mainProgram: "event_rpcgen.py",
         longDescription: "The libevent API provides a mechanism to execute a callback function\nwhen a specific event occurs on a file descriptor or after a timeout\nhas been reached.  Furthermore, libevent also support callbacks due\nto signals or regular timeouts.\n\nlibevent is meant to replace the event loop found in event driven\nnetwork servers.  An application just needs to call event_dispatch()\nand then add or remove events dynamically without having to change\nthe event loop.\n",

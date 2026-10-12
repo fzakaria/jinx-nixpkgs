@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const volk = nix.arg($, "volk");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "suscan",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BatchDrake",
           repo: "suscan",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Channel scanner based on sigutils library",
         homepage: "https://github.com/BatchDrake/suscan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

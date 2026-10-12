@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const enableLibpulseaudio = nix.argOr($, "enableLibpulseaudio", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libpulseaudio))));
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sox",
       version: "14.4.2-unstable-2021-05-09",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/sox/code",
           rev: "42b3557e13e0fe01a83465b672d89faddbe65f49",
           hash: "sha256-9cpOwio69GvzVeDq79BSmJgds9WU5kA/KUlAkHcpN5c=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(enableAlsa) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), alsa_lib), nix.concat(nix.app(nix.sel(lib, "optional"), enableLibao, libao), nix.concat(nix.app(nix.sel(lib, "optional"), enableLame, lame), nix.concat(nix.app(nix.sel(lib, "optional"), enableLibmad, libmad), nix.concat(nix.app(nix.sel(lib, "optionals"), enableLibogg, nix.thunk(() => [libogg, libvorbis])), nix.concat(nix.app(nix.sel(lib, "optional"), enableOpusfile, opusfile), nix.concat(nix.app(nix.sel(lib, "optional"), enableFLAC, flac), nix.concat(nix.app(nix.sel(lib, "optional"), enablePNG, libpng), nix.concat(nix.app(nix.sel(lib, "optional"), enableLibsndfile, libsndfile), nix.concat(nix.app(nix.sel(lib, "optional"), enableWavpack, wavpack), nix.concat(nix.app(nix.sel(lib, "optionals"), enableAMR, nix.thunk(() => [amrnb, amrwb])), nix.app(nix.sel(lib, "optional"), enableLibpulseaudio, libpulseaudio))))))))))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sample Rate Converter for audio",
         homepage: "https://sox.sourceforge.net/",
         maintainers: [],

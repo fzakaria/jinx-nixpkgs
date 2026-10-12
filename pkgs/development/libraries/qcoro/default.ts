@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qcoro";
       const version = "0.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danvratil",
           repo: "qcoro",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [wrapQtAppsHook, cmake]);
       const buildInputs = nix.thunk(() => [qtbase, qtwebsockets, libpthread_stubs]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for using C++20 coroutines in connection with certain asynchronous Qt actions",
         homepage: "https://github.com/danvratil/qcoro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

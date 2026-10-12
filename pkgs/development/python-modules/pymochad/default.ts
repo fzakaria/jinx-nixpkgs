@@ -25,26 +25,26 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mtreinish",
           repo: "pymochad",
           tag: version,
           hash: "sha256-nwh97sbYkt4F/u02zTDemWEztSco27oJCemd6kTnCMk=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr, setuptools]);
       const dependencies = nix.thunk(() => [six]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mock, fixtures, testtools]);
       const pythonImportsCheck = nix.thunk(() => ["pymochad"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for sending commands to the mochad TCP gateway daemon for the X10 CMA15A controller",
         homepage: "https://github.com/mtreinish/pymochad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kennedyshead",
           repo: "py-melissa-climate",
           tag: nix.thunk(() => nix.str`V${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["melissa"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/kennedyshead/py-melissa-climate/releases/tag/${nix.sel(src, "tag")}`),
         description: "API wrapper for Melissa Climate",
         homepage: "https://github.com/kennedyshead/py-melissa-climate",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

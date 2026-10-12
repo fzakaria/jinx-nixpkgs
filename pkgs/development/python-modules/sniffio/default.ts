@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-9DJO3GcKD0l1CoG4lfNcOtuEPMpG8FMPefwbq7I3idw=",
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [glibcLocales]);
       const nativeCheckInputs = nix.thunk(() => [curio, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/python-trio/sniffio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Sniff out which async library your code is running under",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

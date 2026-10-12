@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const voluptuous = nix.arg($, "voluptuous");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pybotvac",
       version: "0.0.29",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9mapPFzdAAzHJFuFaxiyGh0utznzTSXzRa6AZRj/Oq8=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pybotvac"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for interacting with Neato Botvac Connected vacuum robots",
         homepage: "https://github.com/stianaske/pybotvac",
         changelog: nix.thunk(() => nix.str`https://github.com/stianaske/pybotvac/releases/tag/v${nix.sel(finalAttrs, "version")}`),

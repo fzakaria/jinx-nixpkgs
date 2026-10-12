@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.25.1";
       const minimalOCamlVersion = "4.08";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rescript-lang",
           repo: "reanalyze",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [cppo]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program analysis for ReScript and OCaml projects",
         homepage: "https://github.com/rescript-lang/reanalyze/",
         changelog: nix.thunk(() => nix.str`https://github.com/rescript-lang/reanalyze/blob/v${version}/Changes.md`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

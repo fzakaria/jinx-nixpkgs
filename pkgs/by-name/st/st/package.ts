@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "st",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/st/st-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Xr1JtaOMVgn+zsD39LFjP/0dkYkvaAXbEcYb3ptgYLA=",
         })))),
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
       preInstall: "export TERMINFO=$terminfo/share/terminfo\nmkdir -p $TERMINFO $out/nix-support\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n",
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "st")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "git://git.suckless.org/st" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "git://git.suckless.org/st" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://st.suckless.org/",
         description: "Simple Terminal for X from Suckless.org Community",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

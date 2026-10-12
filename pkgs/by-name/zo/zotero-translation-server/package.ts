@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zotero-translation-server",
       version: "unstable-2023-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zotero",
           repo: "translation-server",
           rev: "cf96d57f4e2af66fee7df9bad00681b3f4ac7d77",
@@ -35,7 +35,7 @@ ln -s $out/lib/node_modules/translation-server/config $out/share/zotero-translat
 ln -s $out/lib/node_modules/translation-server/modules $out/share/zotero-translation-server/modules
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Node.js-based server to run Zotero translators",
         homepage: "https://github.com/zotero/translation-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

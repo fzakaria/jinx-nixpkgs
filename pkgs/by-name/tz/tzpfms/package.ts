@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const zfs = nix.arg($, "zfs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tzpfms",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~nabijaczleweli",
           repo: "tzpfms",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DHmJpfURyFPeOWxIkfwn4f0n2WeDYErevC1gY2oM3Vg=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         TZPFMS_VERSION: nix.thunk(() => nix.str`"${nix.sel(finalAttrs, "version")}"`),
         TZPFMS_DATE: "January 1, 1980",
       })),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       dontInstall: true,
       preFixup: "rm -rf $out/{build,systemd,initramfs-tools,dracut}\nmkdir -p $out/bin\nmv -v $out/zfs-* $out/bin\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://git.sr.ht/~nabijaczleweli/tzpfms",
         description: "TPM-based encryption keys for ZFS datasets.",
         longDescription: "Essentially BitLocker, but for ZFS – a random raw key is generated\nand sealed to the TPM (both 2 and 1.x supported) with an additional\noptional password in front of it, tying the dataset to the platform\nand an additional optional secret (or to the possession of the back-up).\n",

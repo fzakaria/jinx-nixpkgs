@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const withUnixSockets = nix.argOr($, "withUnixSockets", () => false);
   const withWebSockets = nix.argOr($, "withWebSockets", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "civetweb",
       version: "1.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "civetweb",
           repo: "civetweb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-pkg-config-files.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2025-55763.patch",
             url: "https://github.com/civetweb/civetweb/commit/76e222bcb77ba8452e5da4e82ae6cecd499c25e0.patch",
             hash: "sha256-gv2FR53SxmRCCTRjj17RhIjoHkgOz5ENs9oHmcfFmw8=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CIVETWEB_ENABLE_ZLIB", withZlib)),
       ], nix.app(nix.sel(lib, "optional"), withUnixSockets, "-DCMAKE_C_FLAGS=-DUSE_X_DOM_SOCKET"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Embedded C/C++ web server",
         mainProgram: "civetweb",
         homepage: "https://github.com/civetweb/civetweb",

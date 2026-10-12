@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-OU8kiVdlh8/XVTd6CaBn9GytIggZZQkgIf0avL54Uqg=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "examples/test.ipynb::Cell 3",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Widgets to help facilitate reuse of large datasets across different widgets",
         homepage: "https://github.com/vidartf/ipydatawidgets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         __structuredAttrs,
         pname,
         version,

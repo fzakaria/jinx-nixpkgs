@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "basic",
       version: "0.1.0",
       src: nix.path(here, "./package"),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$1, lockFile: nix.path(here, "./package/Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./package/Cargo.lock") })),
       doInstallCheck: true,
       installCheckPhase: "$out/bin/basic\n",
     })));

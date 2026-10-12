@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libconfig = nix.arg($, "libconfig");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libusbgx",
       version: "0-unstable-2021-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linux-usb-gadgets",
           repo: "libusbgx",
           rev: "060784424609d5a4e3bce8355f788c93f09802a5",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libconfig]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library encapsulating the kernel USB gadget-configfs userspace API functionality",
         homepage: "https://github.com/linux-usb-gadgets/libusbgx",
         license: nix.thunk(() => (() => {

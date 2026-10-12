@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BlackFoundryCom",
           repo: "black-renderer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [fonttools, uharfbuzz]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cairo: nix.thunk(() => [pycairo]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cairo: nix.thunk(() => [pycairo]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pillow]);
       const disabledTestPaths = nix.thunk(() => [
         "Tests/test_mainprog.py",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["blackrenderer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Renderer for OpenType COLR fonts, with multiple backends",
         homepage: "https://github.com/BlackFoundryCom/black-renderer",
         changelog: nix.thunk(() => nix.str`https://github.com/BlackFoundryCom/black-renderer/releases/tag/v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

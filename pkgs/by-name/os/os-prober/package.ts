@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const dmraid = nix.arg($, "dmraid");
   const lvm2 = nix.arg($, "lvm2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.85",
       pname: "os-prober",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "installer-team",
           repo: "os-prober",
@@ -74,14 +74,14 @@ for file in $out/bin/*; do
 done;
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "os-prober": nix.thunk(() => nix.sel(nixosTests, "os-prober")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Utility to detect other OSs on a set of drives",
         homepage: "http://packages.debian.org/source/sid/os-prober",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

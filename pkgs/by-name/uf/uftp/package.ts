@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uftp",
       version: "5.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/uftp-multicast/source-tar/uftp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-y4ZowZsfELxjoW/6iT4gXcPshjYQN9R32AAyYOvEAIA=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace makefile --replace gcc cc\n",
       installPhase: "mkdir -p $out/bin $man/share/man/man1\ncp {uftp,uftpd,uftp_keymgt,uftpproxyd} $out/bin/\ncp {uftp.1,uftpd.1,uftp_keymgt.1,uftpproxyd.1} $man/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Encrypted UDP based FTP with multicast",
         homepage: "https://uftp-multicast.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

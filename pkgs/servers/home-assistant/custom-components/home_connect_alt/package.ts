@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "home_connect_alt";
       const version = "1.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ekutner",
           repo: "home-connect-hass",
           tag: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [home_connect_async]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ekutner/home-connect-hass/releases/tag/${nix.sel(src, "tag")}`),
         description: "Alternative (and improved) Home Connect integration for Home Assistant",
         homepage: "https://github.com/ekutner/home-connect-hass",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

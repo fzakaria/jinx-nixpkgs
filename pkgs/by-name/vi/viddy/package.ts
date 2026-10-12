@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "viddy",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sachaos",
           repo: "viddy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-P+TtxV2kuHeBHr8GQeJ0VWPkjimfcAtBUFt0z79ML6A=",
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_BUILD_DATE: "2026-06-14",
         VERGEN_GIT_DESCRIBE: "Nixpkgs",
       })),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["VIDDY_DATA"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       preInstallCheck: "export VIDDY_DATA=\"$PWD\";\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/sachaos/viddy/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Modern `watch` command",
         homepage: "https://github.com/sachaos/viddy",

@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const enableValgrindCheck = nix.argOr($, "enableValgrindCheck", () => false);
   const installExperimentalTools = nix.argOr($, "installExperimentalTools", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "composefs",
       version: "1.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "composefs",
           repo: "composefs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/composefs/composefs/commit/b3cb176a771386081c993e29ae42e77dabe5a577.patch",
             hash: "sha256-nzUENLM24G6NezhPywVsRzRgWmL1VZdMfZTsXNorJl8=",
           })))),
@@ -62,17 +62,17 @@ export default nix.lambda((args) => (() => {
       mesonCheckFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableValgrindCheck, nix.thunk(() => ["--setup=valgrind"]))),
       preCheck: "patchShebangs --build ../tests/*dir ../tests/*.sh\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "activation-etc-overlay-immutable": nix.thunk(() => nix.attr(nixosTests, "activation-etc-overlay-immutable")),
           "activation-etc-overlay-mutable": nix.thunk(() => nix.attr(nixosTests, "activation-etc-overlay-mutable")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "File system for mounting container images",
         homepage: "https://github.com/composefs/composefs",
         changelog: nix.thunk(() => nix.str`https://github.com/composefs/composefs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

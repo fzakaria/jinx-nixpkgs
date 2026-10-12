@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const torch_einops_utils = nix.arg($, "torch-einops-utils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyper-connections",
       version: "0.4.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lucidrains",
           repo: "hyper-connections",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_mhc_dtype_restoration"]))),
       pythonImportsCheck: nix.thunk(() => ["hyper_connections"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to make multiple residual streams",
         homepage: "https://github.com/lucidrains/hyper-connections",
         changelog: nix.thunk(() => nix.str`https://github.com/lucidrains/hyper-connections/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.0";
       const format = "other";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ablab/quast/releases/download/quast_${version}/quast-${version}.tar.gz`),
           hash: "sha256-rJ26A++dClHXqeLFaCYQTnjzQPYmOjrTk2SEQt68dOw=",
         }))));
@@ -57,7 +57,7 @@ ln -s $out/bin/quast.py $out/bin/quast
       const dontPatchELF = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Evaluates genome assemblies by computing various metrics",
         homepage: "https://github.com/ablab/quast",
         sourceProvenance: nix.thunk(() => (() => {
@@ -72,7 +72,7 @@ ln -s $out/bin/quast.py $out/bin/quast
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

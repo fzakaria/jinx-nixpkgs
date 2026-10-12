@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.04.08.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RonnyPfannschmidt",
           repo: "prance",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [chardet, packaging, requests, ruamel_yaml, six]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cli: nix.thunk(() => [click]),
         flex: nix.thunk(() => [flex]),
         icu: nix.thunk(() => [pyicu]),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["prance"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Resolving Swagger/OpenAPI 2.0 and 3.0.0 Parser",
         homepage: "https://github.com/RonnyPfannschmidt/prance",
         changelog: nix.thunk(() => nix.str`https://github.com/RonnyPfannschmidt/prance/blob/${nix.sel(src, "rev")}/CHANGES.rst`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "prance",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

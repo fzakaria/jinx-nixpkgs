@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const vivaldi_ffmpeg_codecs = nix.arg($, "vivaldi-ffmpeg-codecs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "edhm-ui",
       version: "3.0.72",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/BlueMystical/EDHM_UI/releases/download/v${nix.sel(finalAttrs, "version")}/edhm-ui-v3-linux-x64.zip`),
           hash: "sha256-bpYNl/I2T3sNbhjqqbYXo7c8JWi9tUBBDX/aRSIz+rA=",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [libglvnd]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "edhm-ui",
             exec: "edhm-ui",
             icon: "edhm-ui",
@@ -97,13 +97,13 @@ install -Dm644 $out/opt/edhm-ui/resources/images/icon.png $out/share/icons/hicol
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "HUD modification manager for Elite Dangerous",
         homepage: "https://github.com/BlueMystical/EDHM_UI",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
           nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               shortName: "edhm-custom",
               fullName: "EDHM Custom Restrictive License - Non-redistributable",
               free: false,

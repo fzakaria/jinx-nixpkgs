@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const rresult = nix.arg($, "rresult");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "conan-unix",
       version: nix.thunk(() => nix.attr(conan, "version")),
       src: nix.thunk(() => nix.attr(conan, "src")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const libgee = nix.arg($, "libgee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libisocodes",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toddy15",
           repo: "libisocodes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [vala, pkg_config, gobject_introspection]),
       buildInputs: nix.thunk(() => [libxml2, libgee]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easily access XML data of the iso-codes package",
         longDescription: "This library can be used to easily access XML data of\nthe iso-codes package. It will provide an abstraction\nlayer to handle both the version 3 and the upcoming\nversion 4 of iso-codes. Moreover, all available\ntranslations can be used as well.\n\nThis library makes use of the GObject introspection\nfeatures, so that it is accessible from a variety of\nprogramming languages, for example C, Vala, Ruby,\nPython, Perl, Lua, JavaScript, PHP and many more.\n",
         homepage: "https://github.com/toddy15/libisocodes",

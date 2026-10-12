@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tuliprox",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "euzu",
           repo: "tuliprox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         dart_sass,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: 1n,
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         OPENSSL_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), openssl)}`),
@@ -64,15 +64,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "cp -rf frontend/dist $out/web\nmkdir -p $out/resources\ncp -rf resources/*.ts $out/resources\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tuliprox: nix.thunk(() => nix.attr(nixosTests, "tuliprox")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Flexible IPTV playlist processor & proxy in Rust",
         homepage: "https://github.com/euzu/tuliprox",
         changelog: nix.thunk(() => nix.str`https://github.com/euzu/tuliprox/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

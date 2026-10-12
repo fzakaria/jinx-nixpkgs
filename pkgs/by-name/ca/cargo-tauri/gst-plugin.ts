@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tauri-asset-gst-plugin",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tauri-apps",
           repo: "tauri-gstreamer-plugin",
           tag: nix.thunk(() => nix.str`gst-plugin-tauri-v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir $out/lib/gstreamer-1.0\nmv $out/lib/*.so $out/lib/gstreamer-1.0/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GStreamer plugin to support media playback via Tauri's asset:// protocol",
         homepage: "https://github.com/tauri-apps/tauri-gstreamer-plugin/",
         license: nix.thunk(() => [

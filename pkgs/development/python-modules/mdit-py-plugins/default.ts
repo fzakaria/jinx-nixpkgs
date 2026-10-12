@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_regressions = nix.arg($, "pytest-regressions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdit-py-plugins",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "executablebooks",
           repo: "mdit-py-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_regressions]),
       pythonImportsCheck: nix.thunk(() => ["mdit_py_plugins"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of core plugins for markdown-it-py",
         homepage: "https://github.com/executablebooks/mdit-py-plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/mdit-py-plugins/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

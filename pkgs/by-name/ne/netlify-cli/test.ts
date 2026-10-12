@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(runCommand, "netlify-cli-test", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => nix.concat([netlify_cli, curl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "ps"))])))),
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 600n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 600n })),
     })), "mkdir home\nexport HOME=$PWD/home\n\n# Create a simple site\necho '<h1>hi</h1>' >index.html\necho '/with-redirect /' >_redirects\n\n# Start a local server and wait for it to respond\n# Edge functions require specific version of Deno and internet access for other Netlify stuff\nnetlify dev --offline --internal-disable-edge-functions --port 8888 --debug 2>&1 | tee log &\nsleep 0.1 || true\nfor (( i=0; i<300; i++ )); do\n  if ! jobs %% > /dev/null; then\n    echo \"Server died before starting\" >&2\n    exit 1\n  fi\n  if grep --ignore-case 'Local dev server ready' <log; then\n    break\n  else\n    sleep 1\n  fi\ndone\n\n# Test the local server\ncurl -L http://localhost:8888/with-redirect | grep '<h1>hi</h1>'\n\n# Success\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

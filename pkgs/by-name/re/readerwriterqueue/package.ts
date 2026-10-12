@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "readerwriterqueue",
       version: "1.0.6-2024-07-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cameron314",
           repo: "readerwriterqueue",
           rev: "16b48ae1148284e7b40abf72167206a4390a4592",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast single-producer, single-consumer lock-free queue for C",
         homepage: "https://github.com/cameron314/readerwriterqueue",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

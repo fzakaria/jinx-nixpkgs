@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tkimg",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tkimg/tkimg/Img-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-TRtE2/BVrYgkdKtbF06UjLvokokgLGQ/EKDLxhz2Ckw=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [tcllib]),
       buildInputs: nix.thunk(() => [libx11, tcllib, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/tkimg/",
         description: "Img package adds several image formats to Tcl/Tk",
         maintainers: nix.thunk(() => (() => {

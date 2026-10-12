@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Brunas",
           repo: "meteo_lt-pkg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_context_manager", "test_get_forecast", "test_get_nearest_place"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Brunas/meteo_lt-pkg/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Meteo.Lt weather forecast package",
         homepage: "https://github.com/Brunas/meteo_lt-pkg",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

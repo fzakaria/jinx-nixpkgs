@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vodozemac-bindings-cpp",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://iron.lily-is.land/diffusion/VB/vodozemac-bindings.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-j6s+O3s6xSIZ+6aWI3itVwL4OU4qhoXos1R2NMBrJdo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cargo, perl, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C++ bindings for the vodozemac cryptographic library.",
         homepage: "https://iron.lily-is.land/diffusion/VB/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

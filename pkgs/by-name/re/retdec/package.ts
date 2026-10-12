@@ -47,43 +47,43 @@ export default nix.lambda((args) => (() => {
   const buildDevTools = nix.argOr($, "buildDevTools", () => true);
   const compileYaraPatterns = nix.argOr($, "compileYaraPatterns", () => true);
   const capstone = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "capstone-engine",
       repo: "capstone",
       rev: "5.0-rc2",
       sha256: "sha256-nB7FcgisBa8rRDS3k31BbkYB+tdqA6Qyj9hqCnFW+ME=",
     }))));
   const llvm = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "avast-tl",
       repo: "llvm",
       rev: "2a1f3d8a97241c6e91710be8f84cf3cf80c03390",
       sha256: "sha256-+v1T0VI9R92ed9ViqsfYZMJtPCjPHCr4FenoYdLuFOU=",
     }))));
   const yaracpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "VirusTotal",
       repo: "yara",
       rev: "v4.2.0-rc1",
       sha256: "sha256-WcN6ClYO2d+/MdG06RHx3kN0o0WVAY876dJiG7CwJ8w=",
     }))));
   const yaramod = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "avast",
       repo: "yaramod",
       rev: "aa06dd408c492a8f4488774caf2ee105ccc23ab5",
       sha256: "sha256-NVDRf2U5H92EN/Ks//uxNEaeKU+sT4VL4QyyYMO+zKk=",
     }))));
   const keystone = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "keystone-engine",
       repo: "keystone",
       rev: "d7ba8e378e5284e6384fc9ecd660ed5f6532e922",
       sha256: "1yzw3v8xvxh1rysh97y0i8y9svzbglx2zbsqjhrfx18vngh0x58f",
     }))));
   const retdec_support_version = "2019-03-08";
-  const retdec_support = nix.thunk(() => nix.update({ __proto__: pos$6, rev: retdec_support_version }, nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$7,
+  const retdec_support = nix.thunk(() => nix.update({ [nix.POS]: pos$6, rev: retdec_support_version }, nix.app(fetchzip, nix.thunk(() => ({
+      [nix.POS]: pos$7,
       url: nix.thunk(() => nix.str`https://github.com/avast-tl/retdec-support/releases/download/${retdec_support_version}/retdec-support_${retdec_support_version}.tar.xz`),
       hash: "sha256-t1tx4MfLW/lwtbO5JQ1nrFBIOeMclq+0dENuXW+ahIM=",
       stripRoot: false,
@@ -99,20 +99,20 @@ if ! echo "$expected" | grep -q "$have"; then
 fi
 `;
   const deps = nix.thunk(() => nix.update({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     CAPSTONE: capstone,
     LLVM: llvm,
     YARA: yaracpp,
     YARAMOD: yaramod,
     SUPPORT_PKG: retdec_support,
-  }, nix.app(nix.sel(lib, "optionalAttrs"), enableTests, nix.thunk(() => ({ __proto__: pos$9, KEYSTONE: keystone })))));
+  }, nix.app(nix.sel(lib, "optionalAttrs"), enableTests, nix.thunk(() => ({ [nix.POS]: pos$9, KEYSTONE: keystone })))));
   const install_share = nix.thunk(() => nix.app(writeText, "install-share.py", "import os, sys, shutil, subprocess\n\ninstall_path, arch_url, sha256hash_ref, version = sys.argv[1:]\nsupport_dir = os.path.join(install_path, 'share', 'retdec', 'support')\n\nassert os.path.isdir(arch_url), \"nix install-share.py expects a path for support url\"\n\nos.makedirs(support_dir, exist_ok=True)\nshutil.copytree(arch_url, support_dir, dirs_exist_ok=True)\nsubprocess.check_call(['chmod', '-R', 'u+w', support_dir])\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "retdec",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "avast",
           repo: "retdec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -120,7 +120,7 @@ fi
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             url: "https://github.com/avast/retdec/commit/dbaab2c3d17b1eae22c581e8ab6bfefadf4ef6ae.patch",
             hash: "sha256-YqHYPGAGWT4x6C+CpsOSsOIZ+NPM2FBQtGQFs74OUIQ=",
           })))),
@@ -190,7 +190,7 @@ substituteInPlace scripts/retdec-unpacker.py \\
 rm -rf $out/bin/__pycache__
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Retargetable machine-code decompiler based on LLVM",
         homepage: "https://retdec.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

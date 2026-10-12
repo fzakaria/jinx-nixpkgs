@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpu-switch-unstable",
       version: "2017-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0xbb",
           repo: "gpu-switch",
           rev: "a365f56d435c8ef84c4dd2ab935ede4992359e31",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\ncp gpu-switch $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application that allows to switch between the graphic cards of dual-GPU MacBook Pro models",
         mainProgram: "gpu-switch",
         homepage: "https://github.com/0xbb/gpu-switch",

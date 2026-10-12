@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.argOr($_1, "postInstall", () => "");
       const path = nix.argOr($_1, "path", () => nix.app(nix.sel(lib, "getName"), name));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["namePrefix", "path"])), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.add(namePrefix, name)),
           installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -39,8 +39,8 @@ runHook postInstall
 `),
         })));
     })(), formals$2);
-    const buildKakounePluginFrom2Nix = (attrs) => nix.app(buildKakounePlugin, nix.thunk(() => nix.update({ __proto__: pos$2, dontBuild: true, dontConfigure: true }, attrs)));
-    return { __proto__: pos$3, buildKakounePlugin, buildKakounePluginFrom2Nix };
+    const buildKakounePluginFrom2Nix = (attrs) => nix.app(buildKakounePlugin, nix.thunk(() => nix.update({ [nix.POS]: pos$2, dontBuild: true, dontConfigure: true }, attrs)));
+    return { [nix.POS]: pos$3, buildKakounePlugin, buildKakounePluginFrom2Nix };
   })();
 })(), formals$1);
 //# sourceMappingURL=build-kakoune-plugin.ts.map

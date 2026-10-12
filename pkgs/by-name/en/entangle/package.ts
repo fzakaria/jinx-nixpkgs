@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const libxdmcp = nix.arg($, "libxdmcp");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "entangle",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "entangle",
           repo: "entangle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./girepository-2.0.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/entangle/entangle/-/commit/54795d275a93e94331a614c8712740fcedbdd4f0.patch",
             sha256: "iEgqGjKa0xwSdctwvNdEV361l9nx+bz53xn3fuDgtzY=",
           })))),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "sed -i \"/subdir('reference')/d\" \"docs/meson.build\"\npatchShebangs --build build-aux meson_post_install.py\nsed -i meson_post_install.py \\\n  -e \"/print('Update icon cache...')/d\" \\\n  -e \"/gtk-update-icon-cache/d\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tethered camera control and capture",
         longDescription: "Entangle uses GTK and libgphoto2 to provide a graphical interface\nfor tethered photography with digital cameras.\nIt includes control over camera shooting and configuration settings\nand 'hands off' shooting directly from the controlling computer.\nThis app can also serve as a camera app for mobile devices.\n",
         homepage: "https://gitlab.com/entangle/entangle",

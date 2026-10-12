@@ -52,48 +52,48 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const backupPath = "/var/lib/pgbackrest";
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "pgbackrest-posix",
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       primary: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            openssh: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+            [nix.POS]: pos$8,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init.sql", "CREATE TABLE t(c text);\nINSERT INTO t VALUES ('hello world');\n")),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   name: "app-user",
-                  ensureClauses: nix.thunk(() => ({ __proto__: pos$2, login: true })),
+                  ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$2, login: true })),
                 })),
               ]),
             })),
             pgbackrest: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               repos: nix.thunk(() => ({
-                __proto__: pos$6,
-                backup: nix.thunk(() => ({ __proto__: pos$5, type: "posix", path: backupPath, "host-user": "pgbackrest" })),
+                [nix.POS]: pos$6,
+                backup: nix.thunk(() => ({ [nix.POS]: pos$5, type: "posix", path: backupPath, "host-user": "pgbackrest" })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             users: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               postgres: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$9, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$10,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$9, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -104,58 +104,58 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
-            openssh: nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+            [nix.POS]: pos$28,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
             pgbackrest: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               repos: nix.thunk(() => ({
-                __proto__: pos$17,
-                localhost: nix.thunk(() => ({ __proto__: pos$16, path: backupPath })),
+                [nix.POS]: pos$17,
+                localhost: nix.thunk(() => ({ [nix.POS]: pos$16, path: backupPath })),
               })),
               stanzas: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 default: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   jobs: nix.thunk(() => ({
-                    __proto__: pos$19,
-                    future: nix.thunk(() => ({ __proto__: pos$18, schedule: "3000-01-01", type: "full" })),
+                    [nix.POS]: pos$19,
+                    future: nix.thunk(() => ({ [nix.POS]: pos$18, schedule: "3000-01-01", type: "full" })),
                   })),
                   instances: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     primary: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       path: nix.thunk(() => nix.sel(nodes, "primary", "services", "postgresql", "dataDir")),
                       user: "postgres",
                     })),
                   })),
                 })),
                 "config-format": nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     "start-fast": true,
                     "compress-level": 3n,
                     "buffer-size": "2MiB",
                     "db-timeout": 600n,
                     "db-exclude": nix.thunk(() => ["db1", "db2", "db5"]),
-                    "tablespace-map": nix.thunk(() => ({ __proto__: pos$23, ts_01: "/db/ts_01", ts_02: "/db/ts_02" })),
+                    "tablespace-map": nix.thunk(() => ({ [nix.POS]: pos$23, ts_01: "/db/ts_01", ts_02: "/db/ts_02" })),
                   })),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             users: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               pgbackrest: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$30,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$29, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$30,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$29, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),

@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torchsnapshot",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytorch",
           repo: "torchsnapshot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_linear_barrier_timeout"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_tensor_copy"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Performant, memory-efficient checkpointing library for PyTorch applications, designed with large, complex distributed workloads in mind",
         homepage: "https://github.com/pytorch/torchsnapshot/",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/torchsnapshot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

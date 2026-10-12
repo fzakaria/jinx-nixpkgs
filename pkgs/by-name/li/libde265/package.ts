@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const imlib2Full = nix.arg($, "imlib2Full");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "1.1.2",
       pname: "libde265",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strukturag",
           repo: "libde265",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,22 +37,22 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           imagemagick: imagemagick,
           libheif: libheif,
           imlib2Full: imlib2Full,
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
           "test-corpus-decode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-corpus-decode.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               libde265: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/strukturag/libde265",
         changelog: nix.thunk(() => nix.str`https://github.com/strukturag/libde265/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open h.265 video codec implementation",

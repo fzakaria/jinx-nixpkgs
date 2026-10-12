@@ -53,40 +53,40 @@ export default nix.lambda((args) => (() => {
   const lists = nix.thunk(() => nix.attr(lib, "lists"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felbinger"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         suricata: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Suricata")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "suricata", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               visible: false,
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "suricata.yaml", nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   settingsYaml: nix.thunk(() => nix.app(nix.sel(yaml, "generate"), "suricata-settings-raw.yaml", nix.thunk(() => nix.app(filterAttrsRecursive, (name) => (value) => !nix.eq(value, null), nix.thunk(() => nix.sel(cfg, "settings")))))),
                 })), "echo \"%YAML 1.1\" > $out\necho \"---\" >> $out\ncat $settingsYaml >> $out\n")),
               description: "Configuration file for suricata.\n\nIt is not usual to override the default values; it is recommended to use `settings`.\nIf you want to include extra configuration to the file, use the `settings.includes`.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
-              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => ({ __proto__: pos$4, config: config, lib: lib, yaml: yaml })))))),
+              [nix.POS]: pos$5,
+              type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, config: config, lib: lib, yaml: yaml })))))),
               example: nix.thunk(() => nix.app(literalExpression, "vars.address-groups.HOME_NET = \"192.168.178.0/24\";\noutputs = [\n  {\n    fast = {\n      enabled = true;\n      filename = \"fast.log\";\n      append = \"yes\";\n    };\n  }\n  {\n    eve-log = {\n      enabled = true;\n      filetype = \"regular\";\n      filename = \"eve.json\";\n      community-id = true;\n      types = [\n        {\n          alert.tagged-packets = \"yes\";\n        }\n      ];\n    };\n  }\n];\naf-packet = [\n  {\n    interface = \"eth0\";\n    cluster-id = \"99\";\n    cluster-type = \"cluster_flow\";\n    defrag = \"yes\";\n  }\n  {\n    interface = \"default\";\n  }\n];\naf-xdp = [\n  {\n    interface = \"eth1\";\n  }\n];\ndpdk.interfaces = [\n  {\n    interface = \"eth2\";\n  }\n];\npcap = [\n  {\n    interface = \"eth3\";\n  }\n];\napp-layer.protocols = {\n  telnet.enabled = \"yes\";\n  dnp3.enabled = \"yes\";\n  modbus.enabled = \"yes\";\n};\n")),
               description: "Suricata settings",
             })))),
           enabledSources: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => [
                 "abuse.ch/sslbl-blacklist",
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
               description: "List of sources that should be enabled.\nCurrently sources which require a secret-code are not supported.\n",
             })))),
           disabledRules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => [
                 "2270000",
@@ -118,14 +118,14 @@ export default nix.lambda((args) => (() => {
               description: "List of matchers specifying which rules should be disabled.\nThese can be raw SID numbers or something like \"group:emerging-coinminer.rules\".\n",
             })))),
           dropRules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[ \"2274852\" \"4327876\" \"902244405\" ]\n")),
               description: "List of matchers specifying which rules should be converted to drop rules.\nThese can be raw SID numbers or something like \"group:emerging-coinminer.rules\".\n",
             })))),
           reloadOnRulesetUpdate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to reload Suricata if it is running after an automated ruleset update.\nThis is a blocking reload, and may take some time depending on the number of rules and computational power of the host.\n",
@@ -140,33 +140,33 @@ export default nix.lambda((args) => (() => {
         return nix.app(unique, nix.thunk(() => nix.builtins.map((e) => nix.sel(e, "interface"), nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "af-packet"), null)), nix.thunk(() => nix.sel(cfg, "settings", "af-packet"))), nix.concat(nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "af-xdp"), null)), nix.thunk(() => nix.sel(cfg, "settings", "af-xdp"))), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "dpdk"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "settings", "dpdk", "interfaces"), null)))), nix.thunk(() => nix.sel(cfg, "settings", "dpdk", "interfaces"))), nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "pcap"), null)), nix.thunk(() => nix.sel(cfg, "settings", "pcap"))))))))));
       })());
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               assertion: nix.thunk(() => nix.gt(nix.builtins.length(captureInterfaces), 0n)),
               message: "At least one capture interface must be configured:\n- `services.suricata.settings.af-packet`\n- `services.suricata.settings.af-xdp`\n- `services.suricata.settings.dpdk.interfaces`\n- `services.suricata.settings.pcap`\n",
             })),
           ]),
           boot: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             kernelModules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "af-packet"), null)), nix.thunk(() => ["af_packet"]))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "settings", "run-as", "group"), nix.thunk(() => ({}))]])),
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "settings", "run-as", "user"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 group: nix.thunk(() => nix.sel(cfg, "settings", "run-as", "group")),
                 isSystemUser: true,
               }))],
             ])),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               rules: nix.thunk(() => [
                 nix.thunk(() => nix.str`d ${nix.sel(cfg, "settings", "default-log-dir")} 755 ${nix.sel(cfg, "settings", "run-as", "user")} ${nix.sel(cfg, "settings", "run-as", "group")}`),
                 nix.thunk(() => nix.str`d /var/lib/suricata 755 ${nix.sel(cfg, "settings", "run-as", "user")} ${nix.sel(cfg, "settings", "run-as", "group")}`),
@@ -174,11 +174,11 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "suricata-update": nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   OnBootSec: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "30s")),
                   OnUnitActiveSec: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "24h")),
                   Persistent: true,
@@ -187,19 +187,19 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               "suricata-blocking-reload": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "reloadOnRulesetUpdate")), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   description: "Refresh Runtime Suricata Ruleset",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     Type: "oneshot",
                     ExecCondition: "systemctl is-active --quiet suricata.service",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/suricatasc -c reload-rules`),
                   })),
                 })))),
               "suricata-update": nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "Update Suricata Rules",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
@@ -219,7 +219,7 @@ ${nix.sel(python, "interpreter")} ${pkg}/bin/suricata-update update --suricata-c
 `;
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   Type: "oneshot",
                   PrivateTmp: true,
                   PrivateDevices: true,
@@ -235,14 +235,14 @@ ${nix.sel(python, "interpreter")} ${pkg}/bin/suricata-update update --suricata-c
                 })),
               })),
               suricata: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 description: "Suricata",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["suricata-update.service"]),
                 serviceConfig: nix.thunk(() => (() => {
                   const interfaceOptions = nix.thunk(() => nix.app(nix.sel(strings, "concatMapStrings"), (interface$) => nix.str` -i ${interface$}`, captureInterfaces));
                   return {
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     ExecStartPre: nix.thunk(() => nix.str`!${pkg}/bin/suricata -c ${nix.sel(cfg, "configFile")} -T`),
                     ExecStart: nix.thunk(() => nix.str`!${pkg}/bin/suricata -c ${nix.sel(cfg, "configFile")}${interfaceOptions}`),
                     Restart: "on-failure",

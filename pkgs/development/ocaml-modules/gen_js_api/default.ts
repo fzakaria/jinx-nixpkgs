@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const js_of_ocaml_compiler = nix.arg($, "js_of_ocaml-compiler");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gen_js_api",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LexiFi",
           repo: "gen_js_api",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [js_of_ocaml_compiler, nodejs]),
       doCheck: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/LexiFi/gen_js_api",
         description: "Easy OCaml bindings for JavaScript libraries",
         longDescription: "gen_js_api aims at simplifying the creation of OCaml bindings for\nJavaScript libraries. Authors of bindings write OCaml signatures for\nJavaScript libraries and the tool generates the actual binding code with a\ncombination of implicit conventions and explicit annotations.\n\ngen_js_api is to be used with the js_of_ocaml compiler.\n",

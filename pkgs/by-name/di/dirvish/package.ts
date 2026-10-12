@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dirvish",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://dirvish.org/dirvish${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "6b7f29c3541448db3d317607bda3eb9bac9fb3c51f970611ffe27e9d63507dcd",
         })))),
@@ -58,7 +58,7 @@ done
       installPhase: "mkdir -p $out/bin\ncp --target-directory=$out/bin $executables\n\nfor manpage in $manpages; do\n  if [[ $manpage =~ \\.([[:digit:]]+)$ ]]; then\n    section=${BASH_REMATCH[1]}\n    mkdir -p $out/man/man$section\n    cp --target-directory=$out/man/man$section $manpage\n  else\n    echo \"Couldn't determine man page section by filename\"\n    exit 1\n  fi\ndone\n",
       postFixup: "for executable in $executables; do\n  wrapProgram $out/bin/$executable \\\n    --set PERL5LIB \"$PERL5LIB\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, disk based, rotating network backup system",
         homepage: "http://dirvish.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "osl2")),

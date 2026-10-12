@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rocksdict",
       version: "0.3.29",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rocksdict",
           repo: "RocksDict",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-yP+OAVioKOGPvcYM8s1TTNHzzaFxw1sUQDrWxmptuJo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "libclang")))}/lib`),
       })),
       maturinBuildFlags: nix.thunk(() => ["--no-default-features", "--features bindgen-runtime"]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["test"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python fast on-disk dictionary / RocksDB & SpeeDB Python binding",
         homepage: "https://github.com/rocksdict/RocksDict",
         changelog: nix.thunk(() => nix.str`https://github.com/rocksdict/RocksDict/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

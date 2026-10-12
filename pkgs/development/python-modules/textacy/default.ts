@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const spacy = nix.arg($, "spacy");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "textacy",
       version: "0.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chartbeat-labs",
           repo: "textacy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         spacy,
         tqdm,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, vis: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, vis: nix.thunk(() => [matplotlib]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => [
         "tests/test_constants.py",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["textacy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Higher-level text processing, built on spaCy",
         homepage: "https://textacy.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/chartbeat-labs/textacy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

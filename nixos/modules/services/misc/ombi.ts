@@ -32,41 +32,41 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ombi"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         ombi: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Ombi, a web application that automatically gives your shared Plex or\nEmby users the ability to request content by themselves!\n\nOptionally see <https://docs.ombi.app/info/reverse-proxy>\non how to set up a reverse proxy\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ombi", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/ombi",
               description: "The directory where Ombi stores its data files.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5000n,
               description: "The port for the Ombi web interface.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the Ombi web interface.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ombi",
               description: "User account under which Ombi runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ombi",
               description: "Group under which Ombi runs.",
@@ -75,24 +75,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             ombi: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Ombi",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -103,24 +103,24 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "ombi")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               ombi: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ombi")), nix.thunk(() => ({ __proto__: pos$18, ombi: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ombi")), nix.thunk(() => ({ [nix.POS]: pos$18, ombi: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

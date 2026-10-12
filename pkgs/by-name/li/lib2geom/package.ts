@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const inkscape = nix.arg($, "inkscape");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lib2geom",
       version: "1.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inkscape",
           repo: "lib2geom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
           "ellipse-test",
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => nix.update({ __proto__: pos$2, inkscape: inkscape }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-            __proto__: pos$3,
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$2, inkscape: inkscape }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
+            [nix.POS]: pos$3,
             "aarch64-cross": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "lib2geom")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Easy to use 2D geometry library in C++",
         homepage: "https://gitlab.com/inkscape/lib2geom",
         license: nix.thunk(() => [

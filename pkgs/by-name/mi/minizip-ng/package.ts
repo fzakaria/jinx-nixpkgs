@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const enableCompat = nix.argOr($, "enableCompat", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add("minizip-ng", nix.app(nix.sel(lib, "optionalString"), enableCompat, "-compat"))),
       version: "4.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zlib-ng",
           repo: "minizip-ng",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MZ_COMPAT", enableCompat)),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MZ_PKCRYPT", false))])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-register")),
       })),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fork of the popular zip manipulation library found in the zlib distribution",
         homepage: "https://github.com/zlib-ng/minizip-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

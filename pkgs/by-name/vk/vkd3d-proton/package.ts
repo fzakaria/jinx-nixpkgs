@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(sources, "vkd3d-proton"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [glslang, meson, ninja, wine]),
       strictDeps: true,
       postPatch: "substituteInPlace meson.build \\\n  --replace-fail \"vkd3d_build = vcs_tag(\" \\\n                 \"vkd3d_build = vcs_tag( fallback : '$(cat .nixpkgs-auxfiles/vkd3d_build)'\", \\\n  --replace-fail \"vkd3d_version = vcs_tag(\" \\\n                 \"vkd3d_version = vcs_tag( fallback : '$(cat .nixpkgs-auxfiles/vkd3d_version)'\",\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, sources: sources })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, sources: sources })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(wine, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/HansKristian-Work/vkd3d-proton",
         description: "Fork of VKD3D, which aims to implement the full Direct3D 12 API on top of Vulkan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const xercesc = nix.arg($, "xercesc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xmlcopyeditor",
       version: "1.3.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xml-copy-editor/xmlcopyeditor-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6HHKl7hqyvF3gJ9vmjLjTT49prJ8KhEEV0qPsJfQfJE=",
         })))),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [intltool, pkg_config]),
       buildInputs: nix.thunk(() => [aspell, boost, expat, libxml2, libxslt, pcre2, wxwidgets_3_2, xercesc]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, free, validating XML editor",
         homepage: "https://xml-copy-editor.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

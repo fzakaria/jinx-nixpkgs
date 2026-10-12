@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const limesuite = nix.arg($, "limesuite");
   const rtl_sdr = nix.arg($, "rtl-sdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sdr-j-fm",
       version: "3.20-unstable-2025-10-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JvanKatwijk",
           repo: "sdr-j-fm",
           rev: "e348cc0a4b4b16f716f36115400dfd861b9a0bd5",
@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.5")),
       ])),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         features: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           AIRSPY: true,
           SDRPLAY_V3: true,
           HACKRF: true,
@@ -78,7 +78,7 @@ wrapProgram $out/bin/fmreceiver \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "runtimeDependencies")))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SDR based FM radio receiver software",
         homepage: "https://github.com/JvanKatwijk/sdr-j-fm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

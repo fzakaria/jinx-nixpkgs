@@ -24,29 +24,29 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "systemd-oomd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: 1024n })),
+          [nix.POS]: pos$13,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 1024n })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             oomd: nix.thunk(() => ({
-              __proto__: pos$3,
-              extraConfig: nix.thunk(() => ({ __proto__: pos$2, DefaultMemoryPressureDurationSec: "1s" })),
+              [nix.POS]: pos$3,
+              extraConfig: nix.thunk(() => ({ [nix.POS]: pos$2, DefaultMemoryPressureDurationSec: "1s" })),
             })),
             slices: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               workload: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Test slice for memory pressure kills",
                 sliceConfig: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   MemoryAccounting: true,
                   ManagedOOMMemoryPressure: "kill",
                   ManagedOOMMemoryPressureLimit: "10%",
@@ -54,22 +54,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               testbloat: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Create a lot of memory pressure",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   Slice: "workload.slice",
                   MemoryHigh: "5M",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/tail /dev/zero`),
                 })),
               })),
               testchill: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "No memory pressure",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   Slice: "workload.slice",
                   MemoryHigh: "3M",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/sleep infinity`),

@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
   const listenTcp = nix.argOr($, "listenTcp", () => true);
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: testName,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             printing: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               stateless: true,
               startWhenNeeded: socket,
@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             printers: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               ensurePrinters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   name: "DeskjetLocal",
                   deviceUri: "usb://foobar/printers/foobar",
                   model: "drv:///sample.drv/deskjet.ppd",
@@ -75,45 +75,45 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             printing: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               startWhenNeeded: socket,
               listenAddresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.asBool(listenTcp)), [])),
             })),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             printers: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               ensurePrinters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   name: "DeskjetRemote",
                   deviceUri: "ipp://server/printers/DeskjetLocal",
                   location: "",
                   model: "drv:///sample.drv/deskjet.ppd",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   name: "DeskjetRemote2",
                   deviceUri: "ipp://server/printers/DeskjetLocal",
                   model: "drv:///sample.drv/deskjet.ppd",
                 })),
               ]),
               ensureClasses: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Basement: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   description: "All the printers in my basement",
                   location: "Floor 0",
                   printers: nix.thunk(() => ["DeskjetRemote"]),
                 })),
                 House: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   description: "All the printers in my house",
                   location: "Home",
                   printers: nix.thunk(() => ["DeskjetRemote", "DeskjetRemote2"]),

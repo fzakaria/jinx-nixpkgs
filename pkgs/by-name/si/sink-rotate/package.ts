@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sink-rotate",
       version: "2.3.0-unstable-2026-05-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mightyiam",
           repo: "sink-rotate",
           rev: "8bf24a2ebad7151fe5a7e8dd4577effccbd6fa2a",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${wireplumber}/bin/wpctl
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command that rotates the default PipeWire audio sink",
         homepage: "https://github.com/mightyiam/sink-rotate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

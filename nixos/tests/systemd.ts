@@ -45,24 +45,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     name: "systemd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           imports: nix.thunk(() => [nix.path(here, "common/user-account.nix"), nix.path(here, "common/x11.nix")]),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "/test-x-initrd-mount": nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 device: "/dev/vdb",
                 fsType: "ext2",
                 autoFormat: true,
@@ -72,23 +72,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
             etc: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "systemd/system-preset/10-testservice.preset": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 text: nix.thunk(() => nix.str`disable ${nix.sel(config, "systemd", "services", "testservice1", "name")}
 `),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               Manager: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 DefaultEnvironment: "XXX_SYSTEM=foo",
                 WatchdogDevice: "/dev/watchdog",
                 RuntimeWatchdogSec: "30s",
@@ -97,28 +97,28 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             user: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
-                Manager: nix.thunk(() => ({ __proto__: pos$9, DefaultEnvironment: "\"XXX_USER=bar\"" })),
+                [nix.POS]: pos$10,
+                Manager: nix.thunk(() => ({ [nix.POS]: pos$9, DefaultEnvironment: "\"XXX_USER=bar\"" })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 testservice2: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   description: "Test Service 2",
                   wantedBy: nix.thunk(() => ["default.target"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$11, Type: "oneshot" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Type: "oneshot" })),
                   script: "if [ \"$XXX_USER\" = bar ]; then\n  touch \"$HOME/user_conf_read\"\nfi\n",
                 })),
               })),
             })),
             shutdownRamfs: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               contents: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 "/etc/systemd/system-shutdown/test": nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "test.shutdown", nix.thunk(() => nix.str`PATH=${nix.app(nix.sel(lib_1, "makeBinPath"), nix.thunk(() => (() => {
                         const w = nix.withScope(pkgs, null);
                         return [
@@ -136,46 +136,46 @@ umount /tmp/shared
               storePaths: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "util-linux")}/bin`)]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               "oncalendar-test": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "calendar test",
                 startAt: "Wed 10:00 Asia/Tokyo",
                 script: "true",
               })),
               testDependency1: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "Test Dependency 1",
                 wantedBy: nix.thunk(() => [
                   nix.thunk(() => nix.sel(config, "systemd", "services", "testservice1", "name")),
                 ]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$19, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Type: "oneshot" })),
                 script: "true\n",
               })),
               testservice1: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 description: "Test Service 1",
                 wantedBy: nix.thunk(() => [nix.thunk(() => nix.sel(config, "systemd", "targets", "multi-user", "name"))]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$21, Type: "oneshot" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Type: "oneshot" })),
                 script: "if [ \"$XXX_SYSTEM\" = foo ]; then\n  touch /system_conf_read\nfi\n",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             journald: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               settings: nix.thunk(() => ({
-                __proto__: pos$26,
-                Journal: nix.thunk(() => ({ __proto__: pos$25, Storage: "volatile" })),
+                [nix.POS]: pos$26,
+                Journal: nix.thunk(() => ({ [nix.POS]: pos$25, Storage: "volatile" })),
               })),
             })),
           })),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$30,
-              auto: nix.thunk(() => ({ __proto__: pos$29, user: "alice" })),
+              [nix.POS]: pos$30,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$29, user: "alice" })),
             })),
           })),
         };

@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const webUIPort = 8888n;
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "qbit-manage",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "flyingpeakock"))]),
       };
     })()),
@@ -45,15 +45,15 @@ export default nix.lambda((args) => (() => {
       const qbittorrent_user = "user";
       const environmentFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "qbit-manage.env", "QBIT_PASS=\"adminadmin\"\n"));
       const qbittorrent = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: true,
         webuiPort: null,
         serverConfig: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           Preferences: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             WebUI: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               Username: qbittorrent_user,
               Password_PBKDF2: "@ByteArray(6DIf26VOpTCYbgNiO6DAFQ==:e6241eaAWGzRotQZvVA5/up9fj5wwSAThLgXI2lVMsYTu1StUgX9MgmElU3Sa/M8fs+zqwZv9URiUOObjqJGNw==)",
               Port: qbittorrent_port,
@@ -62,41 +62,41 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       return {
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         simple: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
-            "qbit-manage": nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            [nix.POS]: pos$7,
+            "qbit-manage": nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
           })),
         })),
         declarative: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             qbittorrent: qbittorrent,
             "qbit-manage": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: true,
               environmentFile: environmentFile,
               extraArgs: nix.thunk(() => ["--skip-qb-version-check"]),
               settings: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 qbt: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   host: nix.thunk(() => nix.str`localhost:${nix.builtins.toString(qbittorrent_port)}`),
                   user: qbittorrent_user,
                   pass: "!ENV QBIT_PASS",
                 })),
                 tracker: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  dummy: nix.thunk(() => ({ __proto__: pos$10, tag: "dummy" })),
+                  [nix.POS]: pos$11,
+                  dummy: nix.thunk(() => ({ [nix.POS]: pos$10, tag: "dummy" })),
                 })),
-                cat: nix.thunk(() => ({ __proto__: pos$12, dummy: "/tmp" })),
-                directory: nix.thunk(() => ({ __proto__: pos$13, root_dir: "/tmp" })),
+                cat: nix.thunk(() => ({ [nix.POS]: pos$12, dummy: "/tmp" })),
+                directory: nix.thunk(() => ({ [nix.POS]: pos$13, root_dir: "/tmp" })),
               })),
-              webServer: nix.thunk(() => ({ __proto__: pos$15, enable: true, port: webUIPort })),
-              commands: nix.thunk(() => ({ __proto__: pos$16, startupDelay: 5n, schedule: 30n })),
+              webServer: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, port: webUIPort })),
+              commands: nix.thunk(() => ({ [nix.POS]: pos$16, startupDelay: 5n, schedule: 30n })),
             })),
           })),
         })),

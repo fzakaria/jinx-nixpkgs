@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hidden-bar";
       const version = "1.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dwarvesf/hidden/releases/download/v${version}/Hidden-Bar-v${version}-macos.zip`),
           hash: "sha256-qKX1KZ/fq1K9/7L1cop21MumkHVOmzsS8nvTjy52wLw=",
         }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nmkdir -p $out/Applications\nmv \"Hidden Bar.app\" $out/Applications\n\nrunHook postInstall\n";
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ultra-light MacOS utility that helps hide menu bar icons",
         homepage: "https://github.com/dwarvesf/hidden",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

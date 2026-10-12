@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hatsu"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doc: nix.path(here, "./hatsu.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -39,17 +39,17 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         hatsu: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Self-hosted and fully-automated ActivityPub bridge for static sites")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hatsu", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -60,34 +60,34 @@ export default nix.lambda((args) => (() => {
                           ]))))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     HATSU_DATABASE_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "sqlite:///var/lib/hatsu/hatsu.sqlite?mode=rwc",
                         example: "postgres://username:password@host/database",
                         description: "Database URL.",
                       })))),
                     HATSU_DOMAIN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "The domain name of your instance (eg 'hatsu.local').",
                       })))),
                     HATSU_LISTEN_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "Host where hatsu should listen for incoming requests.",
                       })))),
                     HATSU_LISTEN_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         apply: nix.builtins.toString,
                         default: 3939n,
                         description: "Port where hatsu should listen for incoming requests.",
                       })))),
                     HATSU_PRIMARY_ACCOUNT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "The primary account of your instance (eg 'example.com').",
                       })))),
@@ -100,13 +100,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             hatsu: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               environment: nix.thunk(() => nix.sel(cfg, "settings")),
               description: "Hatsu server",
               documentation: nix.thunk(() => ["https://hatsu.cli.rs/"]),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`),
                 Restart: "on-failure",

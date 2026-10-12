@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const withPayload = nix.argOr($, "withPayload", () => null);
   const withFDT = nix.argOr($, "withFDT", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensbi",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "riscv-software-src",
           repo: "opensbi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RISC-V Open Source Supervisor Binary Interface",
         homepage: "https://github.com/riscv-software-src/opensbi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

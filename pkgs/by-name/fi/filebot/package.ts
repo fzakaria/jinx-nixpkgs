@@ -28,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const genericUpdater = nix.arg($, "genericUpdater");
   const writeShellScript = nix.arg($, "writeShellScript");
   const lanterna = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://search.maven.org/remotecontent?filepath=com/googlecode/lanterna/lanterna/3.1.3/lanterna-3.1.3.jar",
       hash: "sha256-4EeBz34i9+7iYwnx2IC74SQMLw6ThgNKJD8Hy6eMUOA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "filebot",
       version: "5.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20230917142929/https://get.filebot.net/filebot/FileBot_${nix.sel(finalAttrs, "version")}/FileBot_${nix.sel(finalAttrs, "version")}-portable.tar.xz`),
           hash: "sha256-1LYFc76wQOnmlkdGjE7ZuRh4FeM2o8ZM4sfDwx8hyBc=",
         })))),
@@ -78,14 +78,14 @@ wrapProgram $out/opt/filebot.sh \\
 ln -s $out/opt/filebot.sh $out/bin/filebot
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             versionLister: nix.thunk(() => nix.app(writeShellScript, "filebot-versionLister", "curl -s https://www.filebot.net \\\n  | sed -rne 's,^.*FileBot_([0-9]*\\.[0-9]+\\.[0-9]+)-portable.tar.xz.*,\\1,p'\n")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ultimate TV and Movie Renamer",
         longDescription: "FileBot is the ultimate tool for organizing and renaming your Movies, TV\nShows and Anime as well as fetching subtitles and artwork. It's smart and\njust works.\n",
         homepage: "https://filebot.net",

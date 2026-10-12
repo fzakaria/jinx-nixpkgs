@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mnot",
           repo: "http_sfv",
           rev: nix.thunk(() => nix.str`http_sfv-${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["http_sfv"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to parse and serialise HTTP structured field values",
         homepage: "https://github.com/mnot/http_sfv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

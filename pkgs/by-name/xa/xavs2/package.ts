@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nasm = nix.arg($, "nasm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "xavs2",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pkuvcl",
           repo: "xavs2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-4w/WTXvRQbohKL+YALQCCYglHQKVvehlUYfitX/lLPw=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-incompatible-pointer-types"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) || nix.asBool(nix.sel(stdenv, "cc", "isZig")))), nix.thunk(() => ["-Wno-incompatible-function-pointer-types"])))))),
       })),
       postPatch: "substituteInPlace ./version.sh \\\n  --replace-fail \"date\" 'date -ud \"@$SOURCE_DATE_EPOCH\"'\n",
@@ -55,18 +55,18 @@ export AS=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "nasm" : "")
       nativeBuildInputs: nix.thunk(() => [nasm]),
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/pkuvcl/xavs2",
         description: "Open-source encoder of AVS2-P2/IEEE1857.4 video coding standard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

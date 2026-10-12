@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "trinity",
       version: "1.9-unstable-2026-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kernelslacker",
           repo: "trinity",
           rev: "4ecfd4492750cc7a92e0ccba197a308c5456b564",
           hash: "sha256-4n44ZqA7T9SoQdUwXa4LJIDwyU91rV0lRMGiQqxTn1c=",
         })))),
       postPatch: "patchShebangs configure\npatchShebangs scripts\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fomit-frame-pointer" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fomit-frame-pointer" })),
       enableParallelBuilding: true,
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Linux System call fuzz tester",
         mainProgram: "trinity",
         homepage: "https://github.com/kernelslacker/trinity",

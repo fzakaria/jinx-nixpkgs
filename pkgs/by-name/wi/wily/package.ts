@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxt = nix.arg($, "libxt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.13.42",
       pname: "wily",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/wily/wily-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1jy4czk39sh365b0mjpj4d5wmymj98x163vmwzyx3j183jqrhm2z",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-gcc14-build.patch"),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "wily",
             version: "0.13.42",
             debianRevision: "4",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Emulation of ACME",
         homepage: "http://wily.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),

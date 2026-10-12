@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stackit-core",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "stackit_core",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-v9ItsZYLRz4DSk/xxDDHk5r/HKCVh8D0fgIKet1E01I=",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["stackit.core"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Core functionality for the STACKIT SDK",
         homepage: "https://github.com/stackitcloud/stackit-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/stackitcloud/stackit-sdk-python/releases/tag/core/v${nix.sel(finalAttrs, "version")}`),

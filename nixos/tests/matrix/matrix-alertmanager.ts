@@ -34,30 +34,30 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const secret_files = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "secret-files", nix.thunk(() => ({})), "mkdir -p $out\necho -n faketoken > $out/token.txt\necho -n wontbeused > $out/secret.txt\n"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "matrix-alertmanager",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erethon"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       homeserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "matrix-synapse": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$6,
-                database: nix.thunk(() => ({ __proto__: pos$2, name: "sqlite3" })),
+                [nix.POS]: pos$6,
+                database: nix.thunk(() => ({ [nix.POS]: pos$2, name: "sqlite3" })),
                 tls_certificate_path: "../common/acme/server/acme.test.cert.pem",
                 tls_private_key_path: "../common/acme/server/acme.test.key.pem",
                 enable_registration: true,
@@ -65,12 +65,12 @@ export default nix.lambda((args) => (() => {
                 registration_shared_secret: "supersecret-registration",
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8448n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ __proto__: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$3, compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: pos$4, compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
-            firewall: nix.thunk(() => ({ __proto__: pos$9, allowedTCPPorts: nix.thunk(() => [8448n]) })),
+            [nix.POS]: pos$10,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [8448n]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScriptBin"), "register_alertmanager_user", nix.thunk(() => nix.str`exec ${nix.sel(pkgs_1, "matrix-synapse")}/bin/register_new_matrix_user \\
   -u alertmanager \\
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
   http://localhost:8448
 `))),
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "hardcode_matrix_values", nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "sqlite-utils"))];
@@ -110,32 +110,32 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             etc: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "token-file": nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 source: nix.thunk(() => nix.str`${secret_files}/token.txt`),
               })),
               "secret-file": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 source: nix.thunk(() => nix.str`${secret_files}/secret.txt`),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "matrix-alertmanager": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               tokenFile: nix.thunk(() => nix.str`/etc/${nix.sel(config, "environment", "etc", "token-file", "target")}`),
               secretFile: nix.thunk(() => nix.str`/etc/${nix.sel(config, "environment", "etc", "secret-file", "target")}`),
               homeserverUrl: "http://homeserver:8448",
               matrixRooms: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   receivers: nix.thunk(() => ["matrix"]),
                   roomId: "!room_id:homeserver",
                 })),

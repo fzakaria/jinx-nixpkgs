@@ -99,43 +99,43 @@ end
 dnscrypt_setup()
 `);
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         dnsdist: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dnsdist domain name server")),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Listen IP address",
               default: "0.0.0.0",
             })))),
           listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Listen port",
               default: 53n,
             })))),
           dnscrypt: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a DNSCrypt endpoint to dnsdist")),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Listen IP address of the endpoint",
                 default: "0.0.0.0",
               })))),
             listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 description: "Listen port of the endpoint",
                 default: 443n,
               })))),
             providerName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`2.dnscrypt-cert.${nix.sel(config, "networking", "hostName")}`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "2.dnscrypt-cert.${config.networking.hostName}")),
@@ -143,20 +143,20 @@ dnscrypt_setup()
                 description: "The name that will be given to this DNSCrypt resolver.\n\n::: {.note}\nThe provider name must start with `2.dnscrypt-cert.`.\n:::\n",
               })))),
             providerKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The filepath to the provider secret key.\nIf not given a new provider key pair will be generated in\n/var/lib/dnsdist on the first run.\n\n::: {.note}\nThe file must be readable by the dnsdist user/group.\n:::\n",
               })))),
             certLifetime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 15n,
                 description: "The lifetime (in minutes) of the resolver certificate.\nThis will be automatically rotated before expiration.\n",
               })))),
           })),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra lines to be added verbatim to dnsdist.conf.\n",
@@ -165,31 +165,31 @@ dnscrypt_setup()
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             dnsdist: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "dnsdist daemons user",
               isSystemUser: true,
               group: "dnsdist",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, dnsdist: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, dnsdist: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dnsdist"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             dnsdist: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               startLimitIntervalSec: 0n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 User: "dnsdist",
                 Group: "dnsdist",
                 RuntimeDirectory: "dnsdist",

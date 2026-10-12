@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "castnow";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xat",
           repo: "castnow",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-1cLuti3JHpMHn1sno8gE8Ko+eoUWCqFUfIDIBAS+M34=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line Chromecast player",
         homepage: "https://github.com/xat/castnow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
         mainProgram: "castnow",
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

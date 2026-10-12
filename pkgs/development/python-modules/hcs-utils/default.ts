@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hcs-utils",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hcs",
           repo: "hcs_utils",
           rev: "77668de42895dedb6b4baddf4207f331776de897",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_expand", "test_blocking"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library collecting some useful snippets",
         homepage: "https://gitlab.com/hcs/hcs_utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

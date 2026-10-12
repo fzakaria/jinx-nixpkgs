@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       minimalOCamlVersion: "4.07",
       version: "0.3.0",
       pname: "optint",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/optint/releases/download/v${nix.sel(finalAttrs, "version")}/optint-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-KVz/LBNLA4WxO6gdUAXZ+EG6QNSlAq7RDJl/I57xFHs=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/optint",
         description: "Abstract type of integer between x64 and x86 architecture",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "services", "rosenpass"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         rosenpass: nix.thunk(() => (() => {
           const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
           const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
@@ -70,78 +70,78 @@ export default nix.lambda((args) => (() => {
           const str = nix.thunk(() => nix.attr(from, "str"));
           const submodule = nix.thunk(() => nix.attr(from, "submodule"));
           return {
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Rosenpass")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rosenpass", nix.thunk(() => ({})))),
             defaultDevice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nullOr, str)),
                 description: "Name of the network interface to use for all peers by default.",
                 example: "wg0",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       public_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: path,
                           description: "Path to a file containing the public key of the local Rosenpass peer. Generate this by running {command}`rosenpass gen-keys`.",
                         })))),
                       secret_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: path,
                           description: "Path to a file containing the secret key of the local Rosenpass peer. Generate this by running {command}`rosenpass gen-keys`.",
                         })))),
                       listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(listOf, str)),
                           description: "List of local endpoints to listen for connections.",
                           default: [],
                           example: nix.thunk(() => nix.app(literalExpression, "[ \"0.0.0.0:10000\" ]")),
                         })))),
                       verbosity: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["Verbose", "Quiet"]))),
                           default: "Quiet",
                           description: "Verbosity of output produced by the service.",
                         })))),
                       peers: nix.thunk(() => (() => {
                         const peer = nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               public_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   type: path,
                                   description: "Path to a file containing the public key of the remote Rosenpass peer.",
                                 })))),
                               endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   type: nix.thunk(() => nix.app(nullOr, str)),
                                   default: null,
                                   description: "Endpoint of the remote Rosenpass peer.",
                                 })))),
                               device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$8,
+                                  [nix.POS]: pos$8,
                                   type: str,
                                   default: nix.thunk(() => nix.sel(cfg, "defaultDevice")),
                                   defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "defaultDevice")}`))),
                                   description: "Name of the local WireGuard interface to use for this peer.",
                                 })))),
                               peer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   type: str,
                                   description: "WireGuard public key corresponding to the remote Rosenpass peer.",
                                 })))),
                             })),
                           }))));
                         return nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(listOf, peer)),
                             description: "List of peers to exchange keys with.",
                             default: [],
@@ -157,11 +157,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         warnings: nix.thunk(() => (() => {
           const extractions = nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               relevant: nix.thunk(() => nix.sel(config, "systemd", "network", "enable")),
               root: nix.thunk(() => nix.sel(config, "systemd", "network", "netdevs")),
               peer: (x) => nix.sel(x, "wireguardPeers"),
@@ -169,7 +169,7 @@ export default nix.lambda((args) => (() => {
               description: nix.thunk(() => nix.str`${nix.sel(options, "systemd", "network", "netdevs")}."<name>".wireguardPeers.*.PublicKey`),
             })),
             nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               relevant: nix.thunk(() => nix.sel(config, "networking", "wireguard", "enable")),
               root: nix.thunk(() => nix.sel(config, "networking", "wireguard", "interfaces")),
               peer: (x) => nix.sel(x, "peers"),
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
               const peer = (x) => nix.sel(x, "peers");
               const key = (x) => nix.sel(x, "publicKey");
               const description = nix.thunk(() => nix.str`${nix.sel(options, "networking", "wg-quick", "interfaces")}."<name>".peers.*.publicKey`);
-              return { __proto__: pos$21, relevant, root, peer, key, description };
+              return { [nix.POS]: pos$21, relevant, root, peer, key, description };
             })()),
           ]);
           const relevantExtractions = nix.thunk(() => nix.app(filter, (x) => nix.sel(x, "relevant"), extractions));
@@ -209,23 +209,23 @@ ${unusual}
 `)));
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "package")),
             nix.thunk(() => nix.sel(pkgs, "wireguard-tools")),
           ]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             rosenpass: nix.thunk(() => (() => {
               const filterNonNull = nix.thunk(() => nix.app(filterAttrsRecursive, (_) => (v) => !nix.eq(v, null)));
               const config_1 = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.app(filterNonNull, nix.thunk(() => nix.update(nix.sel(cfg, "settings"), (() => {
                     const credentialPath = (id) => nix.str`$CREDENTIALS_DIRECTORY/${id}`;
                     const peersWithoutNulls = nix.thunk(() => nix.builtins.map(filterNonNull, nix.thunk(() => nix.sel(cfg, "settings", "peers"))));
                     return {
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       secret_key: nix.thunk(() => nix.app(credentialPath, "pqsk")),
                       public_key: nix.thunk(() => nix.app(credentialPath, "pqpk")),
                       peers: peersWithoutNulls,
@@ -240,7 +240,7 @@ ${unusual}
                   nix.thunk(() => nix.sel(pkgs, "wireguard-tools")),
                 ]);
                 const serviceConfig = nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   User: "rosenpass",
                   Group: "rosenpass",
                   RuntimeDirectory: "rosenpass",
@@ -252,14 +252,14 @@ ${unusual}
                   ]),
                 }));
                 const environment = nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   CONFIG: nix.thunk(() => nix.str`%t/${nix.sel(serviceConfig, "RuntimeDirectory")}/config.toml`),
                 }));
                 const script = nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "envsubst")))} -i ${config_1} -o "$CONFIG"
 rosenpass exchange-config "$CONFIG"
 `);
                 return {
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   wantedBy,
                   wants,
                   after,

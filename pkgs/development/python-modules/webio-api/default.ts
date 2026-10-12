@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "webio_api",
           version: version,
           hash: "sha256-xS1uf407+ommERkZSYrElD6/tNXyBma3OFs4jUE5+tY=",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["webio_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple API to use for communication with WebIO device meant for Home Assistant integration",
         homepage: "https://github.com/nasWebio/webio_api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

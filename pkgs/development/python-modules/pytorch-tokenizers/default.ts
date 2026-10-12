@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const transformers = nix.arg($, "transformers");
   const pybind11_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pybind",
       repo: "pybind11",
       tag: "v2.13.6",
       hash: "sha256-SNLdtrOjaC3lGHN9MAqTf51U9EzNKQLyTMNPe0GcdrU=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pytorch-tokenizers",
       version: "1.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "meta-pytorch",
           repo: "tokenizers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-cEt+1n4ORgixipx14vCuFBYDSeaDF0UupITlihLxsew=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-pybind11.patch"), nix.thunk(() => ({ __proto__: pos$3, pybind11: pybind11_src })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-pybind11.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, pybind11: pybind11_src })))),
         nix.path(here, "./add-missing-cstdint-sentencepiece.patch"),
       ]),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"pip>=23\",' \"\" \\\n  --replace-fail '\"pytest\",' \"\"\n",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, transformers]),
       disabledTestPaths: nix.thunk(() => ["test/test_hf_tokenizer.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ implementations for various tokenizers (sentencepiece, tiktoken, etc.)",
         homepage: "https://github.com/meta-pytorch/tokenizers",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/tokenizers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hologram-server"));
   const cfgFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hologram-server.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ldap: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           host: nix.thunk(() => nix.sel(cfg, "ldapHost")),
           bind: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             dn: nix.thunk(() => nix.sel(cfg, "ldapBindDN")),
             password: nix.thunk(() => nix.sel(cfg, "ldapBindPassword")),
           })),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           groupClassAttr: nix.thunk(() => nix.sel(cfg, "groupClassAttr")),
         })),
         aws: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           account: nix.thunk(() => nix.sel(cfg, "awsAccount")),
           defaultrole: nix.thunk(() => nix.sel(cfg, "awsDefaultRole")),
         })),
@@ -65,93 +65,93 @@ export default nix.lambda((args) => (() => {
         cachetimeout: nix.thunk(() => nix.sel(cfg, "cacheTimeoutSeconds")),
       }))))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         "hologram-server": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Hologram server for AWS instance credentials",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0:3100",
               description: "Address and port to listen on",
             })))),
           ldapHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Address of the LDAP server to use",
             })))),
           ldapInsecure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to connect to LDAP over SSL or not",
             })))),
           ldapUserAttr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cn",
               description: "The LDAP attribute for usernames",
             })))),
           ldapBaseDN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The base DN for your Hologram users",
             })))),
           ldapBindDN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "DN of account to use to query the LDAP server",
             })))),
           ldapBindPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Password of account to use to query the LDAP server",
             })))),
           enableLdapRoles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to assign user roles based on the user's LDAP group memberships",
             })))),
           groupClassAttr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "groupOfNames",
               description: "The objectclass attribute to search for groups when enableLdapRoles is true",
             })))),
           roleAttr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "businessCategory",
               description: "Which LDAP group attribute to search for authorized role ARNs",
             })))),
           awsAccount: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "AWS account number",
             })))),
           awsDefaultRole: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "AWS default role",
             })))),
           statsAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Address of statsd server",
             })))),
           cacheTimeoutSeconds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 3600n,
               description: "How often (in seconds) to refresh the LDAP cache",
@@ -160,18 +160,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "hologram-server": nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "Provide EC2 instance credentials to machines outside of EC2",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hologram")}/bin/hologram-server --debug --conf ${cfgFile}`),
               })),
             })),

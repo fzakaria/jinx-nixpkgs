@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hardware", "deepcool-digital-linux"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "NotAShelf"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hardware: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "deepcool-digital-linux": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DeepCool Digital monitoring daemon")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "deepcool-digital-linux", nix.thunk(() => ({})))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  # Change the update interval\n  \"--update 750\"\n  # Enable the alarm\n  \"--alarm\"\n]\n")),
@@ -51,21 +51,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "deepcool-digital-linux": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "DeepCool Digital",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 StateDirectory: "deepcool-digital-linux",
                 WorkingDirectory: "/var/lib/deepcool-digital-linux",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),

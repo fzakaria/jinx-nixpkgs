@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.32";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eliben",
           repo: "pyelftools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ ${nix.sel(python, "interpreter")} test/run_readelf_tests.py --parallel
 `);
       const pythonImportsCheck = nix.thunk(() => ["elftools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for analyzing ELF files and DWARF debugging information",
         homepage: "https://github.com/eliben/pyelftools",
         changelog: nix.thunk(() => nix.str`https://github.com/eliben/pyelftools/blob/v${version}/CHANGES`),
@@ -56,7 +56,7 @@ ${nix.sel(python, "interpreter")} test/run_readelf_tests.py --parallel
         mainProgram: "readelf.py",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

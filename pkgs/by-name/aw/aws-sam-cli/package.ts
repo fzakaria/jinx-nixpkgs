@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.165.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-sam-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -151,19 +151,19 @@ export PATH="$PATH:$out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() 
       ]);
       const pythonImportsCheck = nix.thunk(() => ["samcli"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: aws_sam_cli, command: "sam --version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: aws_sam_cli, command: "sam --version" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       }));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI tool for local development and testing of Serverless applications",
         homepage: "https://github.com/aws/aws-sam-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-sam-cli/releases/tag/v${version}`),
@@ -178,7 +178,7 @@ export PATH="$PATH:$out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() 
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

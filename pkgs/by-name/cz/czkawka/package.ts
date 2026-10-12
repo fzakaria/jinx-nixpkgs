@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const self = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "czkawka",
       version: "12.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qarmin",
           repo: "czkawka",
           tag: nix.thunk(() => nix.sel(self, "version")),
@@ -73,15 +73,15 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/czkawka_cli`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: self, command: "czkawka_cli --version" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: self, command: "czkawka_cli --version" })))),
         })),
-        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ __proto__: pos$4, czkawka: self })))),
+        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, czkawka: self })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/qarmin/czkawka",
         description: "Simple, fast and easy to use app to remove unnecessary files from your computer",
         changelog: nix.thunk(() => nix.str`https://github.com/qarmin/czkawka/raw/${nix.sel(self, "version")}/Changelog.md`),

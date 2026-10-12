@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "undercut-f1";
       const version = "4.0.89";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JustAman62",
           repo: "undercut-f1",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/undercutf1 --version | grep -q "${version}"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source F1 Live Timing TUI client with replay, driver tracker and team-radio transcription",
         homepage: "https://github.com/JustAman62/undercut-f1",
         changelog: nix.thunk(() => nix.str`https://github.com/JustAman62/undercut-f1/releases/tag/v${version}`),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "datefudge",
       version: "1.27",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://salsa.debian.org/debian/datefudge.git",
           rev: nix.thunk(() => nix.str`debian/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BN/Ct1FRZjvpkRCPpRlXmjeRvrNnuJBXwwI1P2HCisc=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/datefudge --prefix PATH : ${coreutils}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fake the system date",
         longDescription: "datefudge is a small utility that pretends that the system time is\ndifferent by pre-loading a small library which modifies the time,\ngettimeofday and clock_gettime system calls.\n",
         homepage: "https://packages.qa.debian.org/d/datefudge.html",

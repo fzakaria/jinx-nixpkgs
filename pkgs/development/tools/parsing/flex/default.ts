@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flex",
       version: "2.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/westes/flex/releases/download/v${nix.sel(finalAttrs, "version")}/flex-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6HquAyvwfCb4WsDtMlCZjDdiHZX4vXSLMfFbM8Re6ZU=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "glibc-2.26.patch",
             url: "https://raw.githubusercontent.com/lede-project/source/0fb14a2b1ab2f82ce63f4437b062229d73d90516/tools/flex/patches/200-build-AC_USE_SYSTEM_EXTENSIONS-in-configure.ac.patch",
             hash: "sha256-eSDA0hIIfQbXx0DP1dTQU2uIqBxIXjbB6O+E134g91Y=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "gcc-15.patch",
             url: "https://github.com/westes/flex/commit/bf254c75b1e0d2641ebbd7fc85fb183f36a62ea7.patch",
             hash: "sha256-Bnv23M2K1Qf7pEaEz0ueSNzTCdjMTDiMm+H7JaxUISs=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "ln -s $out/bin/flex $out/bin/lex\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/westes/flex",
         description: "Fast lexical analyser generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

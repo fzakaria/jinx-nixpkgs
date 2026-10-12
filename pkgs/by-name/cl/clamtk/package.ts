@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "clamtk";
       const version = "6.18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dave-theunsub",
           repo: "clamtk",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +60,7 @@ substituteInPlace lib/Schedule.pm \\
       const installPhase = "runHook preInstall\n\ninstall -Dm755 clamtk -t $out/bin\ninstall -Dm444 lib/*.pm -t $out/lib/perl5/site_perl/ClamTk\ninstall -Dm444 clamtk.desktop -t $out/share/applications\ninstall -Dm444 images/* -t $out/share/pixmaps\ninstall -Dm444 clamtk.1.gz -t $out/share/man/man1\ninstall -Dm444 {CHANGES,LICENSE,*.md} -t $out/share/doc/clamtk\n\nrunHook postInstall\n";
       const preFixup = "gappsWrapperArgs+=(\n  --prefix PERL5LIB : $PERL5LIB\n  --set GI_TYPELIB_PATH \"$GI_TYPELIB_PATH\"\n)\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy to use, lightweight front-end for ClamAV (Clam Antivirus).\n",
         mainProgram: "clamtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Plus")),
@@ -72,7 +72,7 @@ substituteInPlace lib/Schedule.pm \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

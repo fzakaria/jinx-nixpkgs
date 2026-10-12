@@ -86,25 +86,25 @@ export default nix.lambda((args) => (() => {
   const runtimeDir = "/run/httpd";
   const pkg = nix.thunk(() => nix.sel(cfg, "package", "out"));
   const apachectl = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "apachectl", nix.thunk(() => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => ({ __proto__: pos$1, priority: nix.thunk(() => nix.neg(1n)) })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, priority: nix.thunk(() => nix.neg(1n)) })),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 cp ${pkg}/bin/apachectl $out/bin/apachectl
 sed -i $out/bin/apachectl -e 's|$HTTPD -t|$HTTPD -t -f /etc/httpd/httpd.conf|'
 `)));
-  const php = nix.thunk(() => nix.app(nix.sel(cfg, "phpPackage", "override"), nix.thunk(() => ({ __proto__: pos$3, apxs2Support: true, apacheHttpd: pkg }))));
+  const php = nix.thunk(() => nix.app(nix.sel(cfg, "phpPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, apxs2Support: true, apacheHttpd: pkg }))));
   const phpModuleName = nix.thunk(() => (() => {
     const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), php))));
     return (nix.asBool(nix.eq(majorVersion, "8")) ? "php" : nix.str`php${majorVersion}`);
   })());
-  const mod_perl = nix.thunk(() => nix.app(nix.sel(pkgs, "apacheHttpdPackages", "mod_perl", "override"), nix.thunk(() => ({ __proto__: pos$4, apacheHttpd: pkg }))));
+  const mod_perl = nix.thunk(() => nix.app(nix.sel(pkgs, "apacheHttpdPackages", "mod_perl", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, apacheHttpd: pkg }))));
   const vhosts = nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(cfg, "virtualHosts"))));
   const acmeEnabledVhosts = nix.thunk(() => nix.app(nix.builtins.map, (hostOpts) => nix.update(hostOpts, {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       certName: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(hostOpts, "useACMEHost"), null)) ? nix.sel(hostOpts, "useACMEHost") : nix.sel(hostOpts, "hostName"))),
     }), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (hostOpts) => (nix.asBool(nix.sel(hostOpts, "enableACME")) || nix.asBool(!nix.eq(nix.sel(hostOpts, "useACMEHost"), null))), vhosts))));
   const vhostCertNames = nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => nix.app(nix.builtins.map, (hostOpts) => nix.sel(hostOpts, "certName"), acmeEnabledVhosts))));
-  const mkListenInfo = (hostOpts) => (nix.asBool(!nix.eq(nix.sel(hostOpts, "listen"), [])) ? nix.sel(hostOpts, "listen") : nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(hostOpts, "onlySSL")) || nix.asBool(nix.sel(hostOpts, "addSSL")))) || nix.asBool(nix.sel(hostOpts, "forceSSL")))), nix.thunk(() => nix.app(nix.builtins.map, (addr) => ({ __proto__: pos$6, ip: addr, port: 443n, ssl: true }), nix.thunk(() => nix.sel(hostOpts, "listenAddresses"))))), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(hostOpts, "onlySSL"))), nix.thunk(() => nix.app(nix.builtins.map, (addr) => ({ __proto__: pos$7, ip: addr, port: 80n, ssl: false }), nix.thunk(() => nix.sel(hostOpts, "listenAddresses")))))));
+  const mkListenInfo = (hostOpts) => (nix.asBool(!nix.eq(nix.sel(hostOpts, "listen"), [])) ? nix.sel(hostOpts, "listen") : nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(hostOpts, "onlySSL")) || nix.asBool(nix.sel(hostOpts, "addSSL")))) || nix.asBool(nix.sel(hostOpts, "forceSSL")))), nix.thunk(() => nix.app(nix.builtins.map, (addr) => ({ [nix.POS]: pos$6, ip: addr, port: 443n, ssl: true }), nix.thunk(() => nix.sel(hostOpts, "listenAddresses"))))), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(hostOpts, "onlySSL"))), nix.thunk(() => nix.app(nix.builtins.map, (addr) => ({ [nix.POS]: pos$7, ip: addr, port: 80n, ssl: false }), nix.thunk(() => nix.sel(hostOpts, "listenAddresses")))))));
   const listenInfo = nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => nix.app(nix.lookup(w, "concatMap"), mkListenInfo, vhosts))));
   const enableHttp2 = nix.thunk(() => nix.app(nix.lookup(w, "any"), (vhost) => nix.sel(vhost, "http2"), vhosts));
   const enableSSL = nix.thunk(() => nix.app(nix.lookup(w, "any"), (listen) => nix.sel(listen, "ssl"), listenInfo));
@@ -125,15 +125,15 @@ sed -i $out/bin/apachectl -e 's|$HTTPD -t|$HTTPD -t -f /etc/httpd/httpd.conf|'
     "systemd",
     nix.thunk(() => nix.str`mpm_${nix.sel(cfg, "mpm")}`),
   ], nix.concat((nix.asBool(nix.eq(nix.sel(cfg, "mpm"), "prefork")) ? ["cgi"] : ["cgid"]), nix.concat(nix.app(nix.lookup(w, "optional"), enableHttp2, "http2"), nix.concat(nix.app(nix.lookup(w, "optional"), enableSSL, "ssl"), nix.concat(nix.app(nix.lookup(w, "optional"), enableUserDir, "userdir"), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "enableMellon")), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "auth_mellon",
       path: nix.thunk(() => nix.str`${nix.sel(pkgs, "apacheHttpdPackages", "mod_auth_mellon")}/modules/mod_auth_mellon.so`),
     }))), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "enablePHP")), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: phpModuleName,
       path: nix.thunk(() => nix.str`${php}/modules/lib${phpModuleName}.so`),
     }))), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "enablePerl")), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "perl",
       path: nix.thunk(() => nix.str`${mod_perl}/modules/mod_perl.so`),
     }))), nix.sel(cfg, "extraModules"))))))))));
@@ -241,7 +241,7 @@ AddType application/x-httpd-php    .php .phtml
 `))}
   ${nix.sel(config_1, "extraConfig")}
 </Location>
-`, nix.thunk(() => nix.app(nix.lookup(w, "sortProperties"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (k) => (v) => nix.update(v, { __proto__: pos$11, location: k }), locations)))))));
+`, nix.thunk(() => nix.app(nix.lookup(w, "sortProperties"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (k) => (v) => nix.update(v, { [nix.POS]: pos$11, location: k }), locations)))))));
     return nix.str`${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "logPerVirtualHost")), nix.thunk(() => nix.str`ErrorLog ${nix.sel(cfg, "logDir")}/error-${nix.sel(hostOpts, "hostName")}.log
 CustomLog ${nix.sel(cfg, "logDir")}/access-${nix.sel(hostOpts, "hostName")}.log ${nix.sel(hostOpts, "logFormat")}
 `))}
@@ -296,7 +296,7 @@ ScriptSock ${runtimeDir}/cgisock
 ${(() => {
       const toStr = (listen) => nix.str`Listen ${nix.sel(listen, "ip")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(listen, "port")))} ${(nix.asBool(nix.sel(listen, "ssl")) ? "https" : "http")}`;
       const uniqueListen = nix.thunk(() => nix.app(nix.lookup(w, "uniqList"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           inputList: nix.thunk(() => nix.app(nix.builtins.map, toStr, listenInfo)),
         }))));
       return nix.app(nix.lookup(w, "concatStringsSep"), "\n", uniqueListen);
@@ -307,11 +307,11 @@ Group ${nix.sel(cfg, "group")}
 
 ${(() => {
       const mkModule = (module) => (nix.asBool(nix.app(nix.lookup(w, "isString"), module)) ? {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: module,
         path: nix.thunk(() => nix.str`${pkg}/modules/mod_${module}.so`),
       } : (nix.asBool(nix.app(nix.lookup(w, "isAttrs"), module)) ? {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: nix.thunk(() => nix.attr(module, "name")),
         path: nix.thunk(() => nix.attr(module, "path")),
       } : nix.app(nix.builtins.throw, "Expecting either a string or attribute set including a name and path.")));
@@ -358,7 +358,7 @@ ${nix.sel(cfg, "extraConfig")}
 ${nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", mkVHostConf, vhosts)}
 `)));
   const phpIni = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "php.ini", nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       options: nix.thunk(() => nix.sel(cfg, "phpOptions")),
       preferLocalBuild: true,
     })), nix.thunk(() => nix.str`cat ${php}/etc/php.ini > $out
@@ -367,7 +367,7 @@ echo "$options" >> $out
 `)));
   const mkCertOwnershipAssertion = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../../security/acme/mk-cert-ownership-assertion.nix"), lib));
   return {
-    __proto__: pos$71,
+    [nix.POS]: pos$71,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "httpd", "extraSubservices"]), "Most existing subservices have been ported to the NixOS module system. Please update your configuration accordingly.")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "httpd", "stateDir"]), "The httpd module now uses /run/httpd as a runtime directory.")),
@@ -387,15 +387,15 @@ echo "$options" >> $out
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "httpd", "sslServerKey"]), "Please define a virtual host using `services.httpd.virtualHosts`.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       services: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         httpd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the Apache HTTP Server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "apacheHttpd", nix.thunk(() => ({})))),
           configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: confFile,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "confFile")),
@@ -403,41 +403,41 @@ echo "$options" >> $out
               description: "Override the configuration file used by Apache. By default,\nNixOS generates one automatically.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Configuration lines appended to the generated Apache\nconfiguration file. Note that this mechanism will not work\nwhen {option}`configFile` is overridden.\n",
             })))),
           extraModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "unspecified")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  \"proxy_connect\"\n  { name = \"jk\"; path = \"${pkgs.apacheHttpdPackages.mod_jk}/modules/mod_jk.so\"; }\n]\n")),
               description: "Additional Apache modules to be used. These can be\nspecified as a string in the case of modules distributed\nwith Apache, or as an attribute set specifying the\n{var}`name` and {var}`path` of the\nmodule.\n",
             })))),
           adminAddr: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: "admin@example.org",
               default: null,
               description: "E-mail address of the server administrator.",
             })))),
           logFormat: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["combined", "common", "referer", "agent", "custom", "none"]))),
               default: "common",
               example: "custom",
               description: "Selects the access log format written to log files.\n\nThe values `combined`, `common`, `referer`, and `agent` correspond to predefined Apache HTTPD log formats.\nSetting the value to `custom` enables the use of a user-defined format string specified via `customLogFormat`.\nThe value `none` disables access logging entirely.\n\nFurther details on Apache log formats are available at <https://httpd.apache.org/docs/2.4/logs.html>.\n",
             })))),
           customLogFormat: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: null,
               example: "%{X-Forwarded-For}i %l %u %t \\\"%r\\\" %>s %b",
               description: "Defines a custom Apache HTTPD access log format string.\n\nThis option is only consulted when `logFormat` is set to `custom`.\nThe value must be a valid Apache `LogFormat` specification and will be registered under the symbolic name `custom`.\n\nSee <https://httpd.apache.org/docs/2.4/logs.html#formats> for the formal definition of log format directives.\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => [
@@ -464,38 +464,38 @@ echo "$options" >> $out
               description: "Controls the verbosity of the ErrorLog.\nSee <https://httpd.apache.org/docs/2.4/mod/core.html#loglevel> for more details.\n",
             })))),
           logPerVirtualHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "If enabled, each virtual host gets its own\n{file}`access.log` and\n{file}`error.log`, namely suffixed by the\n{option}`hostName` of the virtual host.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "wwwrun",
               description: "User account under which httpd children processes run.\n\nIf you require the main httpd process to run as\n`root` add the following configuration:\n```\nsystemd.services.httpd.serviceConfig.User = lib.mkForce \"root\";\n```\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "wwwrun",
               description: "Group under which httpd children processes run.\n",
             })))),
           logDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/log/httpd",
               description: "Directory for Apache's log files. It is created automatically.\n",
             })))),
           virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vhost-options.nix"))))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$28,
-                localhost: nix.thunk(() => ({ __proto__: pos$27, documentRoot: nix.thunk(() => nix.str`${pkg}/htdocs`) })),
+                [nix.POS]: pos$28,
+                localhost: nix.thunk(() => ({ [nix.POS]: pos$27, documentRoot: nix.thunk(() => nix.str`${pkg}/htdocs`) })),
               })),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  localhost = {\n    documentRoot = \"${package.out}/htdocs\";\n  };\n}\n")),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"foo.example.com\" = {\n    forceSSL = true;\n    documentRoot = \"/var/www/foo.example.com\"\n  };\n  \"bar.example.com\" = {\n    addSSL = true;\n    documentRoot = \"/var/www/bar.example.com\";\n  };\n}\n")),
@@ -506,41 +506,41 @@ echo "$options" >> $out
           phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "php", nix.thunk(() => ({})))),
           enablePerl: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the Perl module (mod_perl)")),
           phpOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "date.timezone = \"CET\"\n",
               description: "Options appended to the PHP configuration file {file}`php.ini`.\n",
             })))),
           mpm: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["event", "prefork", "worker"]))),
               default: "event",
               example: "worker",
               description: "Multi-processing module to be used by Apache. Available\nmodules are `prefork` (handles each\nrequest in a separate child process), `worker`\n(hybrid approach that starts a number of child processes\neach running a number of threads) and `event`\n(the default; a recent variant of `worker`\nthat handles persistent connections more efficiently).\n",
             })))),
           maxClients: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
               default: 150n,
               example: 8n,
               description: "Maximum number of httpd processes (prefork)",
             })))),
           maxRequestsPerChild: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
               default: 0n,
               example: 500n,
               description: "Maximum number of httpd requests answered per httpd child (prefork), 0 means unlimited.\n",
             })))),
           sslCiphers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "HIGH:!aNULL:!MD5:!EXP",
               description: "Cipher Suite available for negotiation in SSL proxy handshake.",
             })))),
           sslProtocols: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1",
               example: "All -SSLv2 -SSLv3",
@@ -550,15 +550,15 @@ echo "$options" >> $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             assertion: nix.thunk(() => nix.app(nix.lookup(w, "all"), (hostOpts) => !nix.asBool(nix.sel(hostOpts, "enableSSL")), vhosts)),
             message: "The option `services.httpd.virtualHosts.<name>.enableSSL` no longer has any effect; please remove it.\nSelect one of `services.httpd.virtualHosts.<name>.addSSL`, `services.httpd.virtualHosts.<name>.forceSSL`,\nor `services.httpd.virtualHosts.<name>.onlySSL`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             assertion: nix.thunk(() => nix.app(nix.lookup(w, "all"), (hostOpts) => (() => {
                 const w_1 = nix.withScope(hostOpts, w);
                 return (nix.asBool((nix.asBool(!nix.asBool((nix.asBool(nix.lookup(w_1, "addSSL")) && nix.asBool(nix.lookup(w_1, "onlySSL"))))) && nix.asBool(!nix.asBool((nix.asBool(nix.lookup(w_1, "forceSSL")) && nix.asBool(nix.lookup(w_1, "onlySSL"))))))) && nix.asBool(!nix.asBool((nix.asBool(nix.lookup(w_1, "addSSL")) && nix.asBool(nix.lookup(w_1, "forceSSL"))))));
@@ -566,17 +566,17 @@ echo "$options" >> $out
             message: "Options `services.httpd.virtualHosts.<name>.addSSL`,\n`services.httpd.virtualHosts.<name>.onlySSL` and `services.httpd.virtualHosts.<name>.forceSSL`\nare mutually exclusive.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             assertion: nix.thunk(() => nix.app(nix.lookup(w, "all"), (hostOpts) => !nix.asBool((nix.asBool(nix.sel(hostOpts, "enableACME")) && nix.asBool(!nix.eq(nix.sel(hostOpts, "useACMEHost"), null)))), vhosts)),
             message: "Options `services.httpd.virtualHosts.<name>.enableACME` and\n`services.httpd.virtualHosts.<name>.useACMEHost` are mutually exclusive.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enablePHP")) || nix.asBool(nix.sel(php, "ztsSupport")))),
             message: "The php package provided by `services.httpd.phpPackage` is not built with zts support. Please\nensure the php has zts support by settings `services.httpd.phpPackage = php.override { ztsSupport = true; }`\n",
           })),
         ], nix.app(nix.builtins.map, (name) => nix.app(mkCertOwnershipAssertion, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               cert: nix.thunk(() => nix.sel(config, "security", "acme", "certs", nix.key(nix.force(name)))),
               groups: nix.thunk(() => nix.sel(config, "users", "groups")),
               services: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "systemd", "services", "httpd"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(vhostCertNames, [])), nix.thunk(() => nix.sel(config, "systemd", "services", "httpd-config-reload"))))),
@@ -584,33 +584,33 @@ echo "$options" >> $out
         warnings: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (hostOpts) => nix.str`Using config.services.httpd.virtualHosts."${name}".servedFiles is deprecated and will become unsupported in a future release. Your configuration will continue to work as is but please migrate your configuration to config.services.httpd.virtualHosts."${name}".locations before the 20.09 release of NixOS.
 `, nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (name) => (hostOpts) => !nix.eq(nix.sel(hostOpts, "servedFiles"), []), nix.thunk(() => nix.sel(cfg, "virtualHosts")))))),
         users: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "wwwrun")), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               wwwrun: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Apache httpd user",
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "wwwrun")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "wwwrun")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               wwwrun: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "wwwrun")),
               })),
             })))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           acme: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             certs: nix.thunk(() => (() => {
               const acmePairs = nix.thunk(() => nix.app(nix.builtins.map, (hostOpts) => (() => {
                   const hasRoot = nix.thunk(() => !nix.eq(nix.sel(hostOpts, "acmeRoot"), null));
                   return nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.sel(hostOpts, "hostName")), nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       group: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "group")))),
                       webroot: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), nix.thunk(() => (nix.asBool(hasRoot) ? 1000n : 2000n)), nix.thunk(() => nix.sel(hostOpts, "acmeRoot")))),
                       dnsProvider: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), nix.thunk(() => (nix.asBool(hasRoot) ? 1000n : 2000n)), null)),
@@ -623,22 +623,22 @@ echo "$options" >> $out
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           etc: nix.thunk(() => ({
-            __proto__: pos$53,
-            "httpd/httpd.conf": nix.thunk(() => ({ __proto__: pos$52, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
+            [nix.POS]: pos$53,
+            "httpd/httpd.conf": nix.thunk(() => ({ [nix.POS]: pos$52, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
           })),
           systemPackages: nix.thunk(() => [apachectl, pkg]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           logrotate: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "logFormat"), "none")), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               settings: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 httpd: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   files: nix.thunk(() => nix.str`${nix.sel(cfg, "logDir")}/*.log`),
                   su: nix.thunk(() => nix.str`${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}`),
                   frequency: "daily",
@@ -651,7 +651,7 @@ echo "$options" >> $out
               })),
             })))),
           httpd: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             phpOptions: nix.thunk(() => nix.add("; Don't advertise PHP\nexpose_php = off\n", nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => nix.str`
 ; Apparently PHP doesn't use $TZ.
 date.timezone = "${nix.sel(config, "time", "timeZone")}"
@@ -692,9 +692,9 @@ date.timezone = "${nix.sel(config, "time", "timeZone")}"
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             rules: nix.thunk(() => (() => {
               const svc = nix.thunk(() => nix.sel(config, "systemd", "services", "httpd", "serviceConfig"));
               return [
@@ -704,9 +704,9 @@ date.timezone = "${nix.sel(config, "time", "timeZone")}"
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             httpd: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               description: "Apache HTTPD",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.app(nix.lookup(w, "concatLists"), nix.thunk(() => nix.app(nix.builtins.map, (certName) => [nix.thunk(() => nix.str`acme-${certName}.service`)], vhostCertNames)))),
@@ -718,8 +718,8 @@ date.timezone = "${nix.sel(config, "time", "timeZone")}"
                 nix.thunk(() => nix.sel(pkgs, "coreutils")),
                 nix.thunk(() => nix.sel(pkgs, "gnugrep")),
               ]),
-              environment: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enablePHP")), nix.thunk(() => ({ __proto__: pos$61, PHPRC: phpIni }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableMellon")), nix.thunk(() => ({
-                  __proto__: pos$62,
+              environment: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enablePHP")), nix.thunk(() => ({ [nix.POS]: pos$61, PHPRC: phpIni }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableMellon")), nix.thunk(() => ({
+                  [nix.POS]: pos$62,
                   LD_LIBRARY_PATH: nix.thunk(() => nix.str`${nix.sel(pkgs, "xmlsec")}/lib`),
                 }))))),
               preStart: nix.thunk(() => nix.str`# Get rid of old semaphores.  These tend to accumulate across
@@ -730,7 +730,7 @@ for i in $(${nix.sel(pkgs, "util-linux")}/bin/ipcs -s | grep ' ${nix.sel(cfg, "u
 done
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/httpd -D FOREGROUND -f /etc/httpd/httpd.conf`),
                 ExecReload: nix.thunk(() => nix.str`${pkg}/bin/httpd -f /etc/httpd/httpd.conf -k graceful`),
                 KillMode: "mixed",
@@ -748,16 +748,16 @@ done
             "httpd-config-reload": nix.thunk(() => (() => {
               const sslServices = nix.thunk(() => nix.app(nix.builtins.map, (certName) => nix.str`acme-order-renew-${certName}.service`, vhostCertNames));
               return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(vhostCertNames, [])), nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   wantedBy: nix.thunk(() => nix.concat(sslServices, ["multi-user.target"])),
                   after: sslServices,
                   restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "configFile"))]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     ConditionPathExists: nix.thunk(() => nix.app(nix.builtins.map, (certName) => nix.add(nix.sel(certs, nix.key(nix.force(certName)), "directory"), "/fullchain.pem"), vhostCertNames)),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     Type: "oneshot",
                     TimeoutSec: 60n,
                     ExecCondition: "/run/current-system/systemd/bin/systemctl -q is-active httpd.service",

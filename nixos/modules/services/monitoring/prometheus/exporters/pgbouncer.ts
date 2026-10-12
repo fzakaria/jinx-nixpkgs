@@ -34,69 +34,69 @@ export default nix.lambda((args) => (() => {
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     port: 9127n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "prometheus-pgbouncer-exporter", nix.thunk(() => ({})))),
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       connectionString: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           example: "postgres://admin:@localhost:6432/pgbouncer?sslmode=require",
           description: "Connection string for accessing pgBouncer.\n\nNOTE: You MUST keep pgbouncer as database name (special internal db)!!!\n\nNOTE: ignore_startup_parameters MUST contain \"extra_float_digits\".\n\nNOTE: Admin user (with password or passwordless) MUST exist in the\nauth_file if auth_type other than \"any\" is used.\n\nWARNING: this secret is stored in the world-readable Nix store!\nUse [](#opt-services.prometheus.exporters.pgbouncer.connectionEnvFile) if the\nURL contains a secret.\n",
         })))),
       connectionEnvFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           description: "File that must contain the environment variable\n`PGBOUNCER_EXPORTER_CONNECTION_STRING` which is set to the connection\nstring used by pgbouncer. I.e. the format is supposed to look like this:\n\n```\nPGBOUNCER_EXPORTER_CONNECTION_STRING=\"postgres://admin@localhost:6432/pgbouncer?sslmode=require\"\n```\n\nNOTE: You MUST keep pgbouncer as database name (special internal db)!\nNOTE: `services.pgbouncer.settings.pgbouncer.ignore_startup_parameters`\nMUST contain \"extra_float_digits\".\n\nMutually exclusive with [](#opt-services.prometheus.exporters.pgbouncer.connectionString).\n",
         })))),
       pidFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           description: "Path to PgBouncer pid file.\n\nIf provided, the standard process metrics get exported for the PgBouncer\nprocess, prefixed with 'pgbouncer_process_...'. The pgbouncer_process exporter\nneeds to have read access to files owned by the PgBouncer process. Depends on\nthe availability of /proc.\n\n<https://prometheus.io/docs/instrumenting/writing_clientlibs/#process-metrics>.\n\n",
         })))),
       webSystemdSocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Use systemd socket activation listeners instead of port listeners (Linux only).\n",
         })))),
       logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warn", "error"]))),
           default: "info",
           description: "Only log messages with the given severity or above.\n",
         })))),
       logFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["logfmt", "json"]))),
           default: "logfmt",
           description: "Output format of log messages. One of: [logfmt, json]\n",
         })))),
       webConfigFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           description: "Path to configuration file that can enable TLS or authentication.\n",
         })))),
       extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           description: "Extra commandline options when launching Prometheus.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       after: nix.thunk(() => ["pgbouncer.service"]),
       script: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat([
           nix.thunk(() => nix.str`exec -- ${nix.app(escapeShellArg, nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))))}`),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`--web.config.file ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "webConfigFile")))}`),
           ])), nix.sel(cfg, "extraFlags")))))))))))),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         RestrictAddressFamilies: nix.thunk(() => ["AF_INET", "AF_INET6", "AF_UNIX"]),
         EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "connectionEnvFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "connectionEnvFile"))]))),
       })),
@@ -125,9 +125,9 @@ export default nix.lambda((args) => (() => {
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["connectionStringFile"]), "As replacement, the option `services.prometheus.exporters.pgbouncer.connectionEnvFile`\nhas been added. In contrast to `connectionStringFile` it must be an environment file\nwith the connection string being set to `PGBOUNCER_EXPORTER_CONNECTION_STRING`.\n\nThe change was necessary since the former option wrote the contents of the file\ninto the cmdline of the exporter making the connection string effectively\nworld-readable.\n")),
       nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         options: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           warnings: nix.thunk(() => nix.sel(options, "warnings")),
           assertions: nix.thunk(() => nix.sel(options, "assertions")),
         })),

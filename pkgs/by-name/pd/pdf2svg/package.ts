@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const poppler = nix.arg($, "poppler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pdf2svg",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dawbarton",
           repo: "pdf2svg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [cairo, poppler]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PDF converter to SVG format",
         homepage: "http://www.cityinthesky.co.uk/opensource/pdf2svg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

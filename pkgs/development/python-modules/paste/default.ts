@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pasteorg",
           repo: "paste",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_form"]);
       const pythonNamespaces = nix.thunk(() => ["paste"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(setuptools, "version")), "82")),
         description: "Tools for using a Web Server Gateway Interface stack",
         homepage: "https://pythonpaste.readthedocs.io/",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

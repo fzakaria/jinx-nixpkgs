@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const grayjay = nix.arg($, "grayjay");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${nix.sel(grayjay, "pname")}-frontend`),
       version: nix.thunk(() => nix.attr(grayjay, "version")),
       src: nix.thunk(() => nix.attr(grayjay, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(grayjay, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Grayjay frontend subpackage",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

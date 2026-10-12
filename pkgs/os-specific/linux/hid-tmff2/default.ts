@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hid-tmff2",
       version: "0.83-unstable-2026-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kimplul",
           repo: "hid-tmff2",
           rev: "c5b9b79d4e61b77e0827e81dd676420b3c366743",
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL_MOD_PATH=${nix.builtins.placeholder("out")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postPatch: "sed -i '/depmod -A/d' Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux kernel module for Thrustmaster T300RS, T248 and TX(experimental)",
         homepage: "https://github.com/Kimplul/hid-tmff2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

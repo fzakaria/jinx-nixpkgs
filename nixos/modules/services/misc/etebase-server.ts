@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
   const configIni = nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "etebase-server.ini", nix.thunk(() => nix.sel(cfg, "settings"))));
   const defaultUser = "etebase-server";
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "etebase-server", "customIni"]), "Set the option `services.etebase-server.settings' instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "etebase-server", "database"]), "Set the option `services.etebase-server.settings.database' instead.")),
@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "etebase-server", "host"]), nix.thunk(() => ["services", "etebase-server", "settings", "allowed_hosts", "allowed_host1"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         "etebase-server": nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "etebase-server", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/etebase-server",
               description: "Directory to store the Etebase server data.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "port")));
@@ -90,13 +90,13 @@ export default nix.lambda((args) => (() => {
               description: "Port to listen on.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open ports in the firewall for the server.\n",
             })))),
           unixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -106,22 +106,22 @@ export default nix.lambda((args) => (() => {
               example: "/run/etebase-server/etebase-server.sock",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   freeformType: nix.thunk(() => nix.sel(iniFmt, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     global: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to set django's DEBUG flag.\n",
                         })))),
                       secret_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -130,14 +130,14 @@ export default nix.lambda((args) => (() => {
                           description: "The path to a file containing the secret\nused as django's SECRET_KEY.\n",
                         })))),
                       static_root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/static`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.etebase-server.dataDir}/static\"")),
                           description: "The directory for static files.",
                         })))),
                       media_root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/media`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.etebase-server.dataDir}/media\"")),
@@ -145,9 +145,9 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     allowed_hosts: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       allowed_host1: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "0.0.0.0",
                           example: "localhost",
@@ -155,15 +155,15 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     database: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       engine: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["django.db.backends.sqlite3", "django.db.backends.postgresql"]))),
                           default: "django.db.backends.sqlite3",
                           description: "The database engine to use.",
                         })))),
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/db.sqlite3`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.etebase-server.dataDir}/db.sqlite3\"")),
@@ -175,13 +175,13 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
               description: "Configuration for `etebase-server`. Refer to\n<https://github.com/etesync/server/blob/master/etebase-server.ini.example>\nand <https://github.com/etesync/server/wiki>\nfor details on supported values.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$20,
-                global: nix.thunk(() => ({ __proto__: pos$18, debug: true, media_root: "/path/to/media" })),
-                allowed_hosts: nix.thunk(() => ({ __proto__: pos$19, allowed_host2: "localhost" })),
+                [nix.POS]: pos$20,
+                global: nix.thunk(() => ({ [nix.POS]: pos$18, debug: true, media_root: "/path/to/media" })),
+                allowed_hosts: nix.thunk(() => ({ [nix.POS]: pos$19, allowed_host2: "localhost" })),
               })),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User under which Etebase server runs.",
@@ -190,14 +190,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
               nix.thunk(() => nix.app(nix.lookup(w, "runCommand"), "etebase-server", nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "makeWrapper"))]),
                 })), nix.thunk(() => nix.str`makeWrapper ${nix.sel(cfg, "package")}/bin/etebase-server \\
   $out/bin/etebase-server \\
@@ -208,9 +208,9 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' - ${nix.sel(cfg, "user")} ${nix.sel(config, "users", "users", nix.key(nix.sel(cfg, "user")), "group")} - -`),
             ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "unixSocket"), null)), nix.thunk(() => [
@@ -218,21 +218,21 @@ export default nix.lambda((args) => (() => {
               ])))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "etebase-server": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "An Etebase (EteSync 2.0) server",
               after: nix.thunk(() => ["network.target", "systemd-tmpfiles-setup.service"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Restart: "always",
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 ETEBASE_EASY_CONFIG_PATH: configIni,
                 PYTHONPATH: nix.thunk(() => nix.sel(cfg, "package", "pythonPath")),
               })),
@@ -256,10 +256,10 @@ fi
           })),
         })),
         users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 isSystemUser: true,
                 group: defaultUser,
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -268,9 +268,9 @@ fi
             groups: nix.thunk(() => nix.attrsDyn({}, [[defaultUser, nix.thunk(() => ({}))]])),
           })))),
         networking: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3";
       const minimalOCamlVersion = "5.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/talex5/ocaml-wayland/releases/download/v${version}/wayland-${version}.tbz`),
           hash: "sha256-EGJ6lPTO+XFHmRUo/NJG+PJ8y/MCbq/ezplbU+6UaKA=",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, eio_main]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure OCaml Wayland protocol library",
         homepage: "https://github.com/talex5/ocaml-wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wayland-scanner-ocaml",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "localstack",
           repo: "plux",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_resolve_distribution_information"]);
       const pythonImportsCheck = nix.thunk(() => ["plugin.core"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic code loading framework for building pluggable Python distributions",
         homepage: "https://github.com/localstack/plux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

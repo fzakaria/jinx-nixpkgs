@@ -56,16 +56,16 @@ export default nix.lambda((args) => (() => {
     return nix.update(nix.app(nix.sel(lib, "genAttrs"), cocPackages, (pkg) => (() => {
         const cocPkg = nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(pkg))));
         return nix.app(buildVimPlugin, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pname: nix.thunk(() => nix.attr(cocPkg, "pname")),
             version: nix.thunk(() => nix.attr(cocPkg, "version")),
             meta: nix.thunk(() => nix.attr(cocPkg, "meta")),
             src: nix.thunk(() => nix.str`${cocPkg}/lib/node_modules/${nix.sel(cocPkg, "pname")}`),
           })));
       })()), {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "coc-nginx": nix.thunk(() => nix.app(buildVimPlugin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(coc_nginx, "pname")),
           version: nix.thunk(() => nix.attr(coc_nginx, "version")),
           meta: nix.thunk(() => nix.attr(coc_nginx, "meta")),

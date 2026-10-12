@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const love = nix.arg($, "love");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vrrtest",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nixola",
           repo: "VRRTest",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(love, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool testing variable refresh rates",
         homepage: "https://github.com/Nixola/VRRTest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

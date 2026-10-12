@@ -36,34 +36,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "motioneye"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         motioneye: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "motionEye")),
           packages: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             motioneye: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "motioneye", nix.thunk(() => ({})))),
             motion: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "motion", nix.thunk(() => ({})))),
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ffmpeg-headless", nix.thunk(() => ({})))),
           })),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "motioneye",
               description: "User to run motionEye under.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "motioneye",
               description: "Group to run motionEye under.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  conf_path = lib.mkDefault \"/var/lib/motioneye/conf\";\n  run_path = lib.mkDefault \"/run/motioneye\";\n  log_path = lib.mkDefault \"/var/log/motioneye\";\n  media_path = lib.mkDefault \"/var/lib/motioneye/media\";\n}\n")),
@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           motioneye: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               conf_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/motioneye/conf")),
               run_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/motioneye")),
               log_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/log/motioneye")),
@@ -88,11 +88,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               group: nix.thunk(() => nix.attr(cfg, "group")),
               isSystemUser: true,
               extraGroups: nix.thunk(() => ["video"]),
@@ -100,16 +100,16 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             settings: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               motioneye: nix.thunk(() => (() => {
                 const config_1 = nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   d: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0750",
@@ -125,9 +125,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             motioneye: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "motionEye Server",
               after: nix.thunk(() => ["network.target", "local-fs.target", "remote-fs.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "environment", "etc", "motioneye/motioneye.conf", "source")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 RuntimeDirectory: "motioneye",
@@ -158,11 +158,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "motioneye/motioneye.conf": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               text: nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (key) => (value) => nix.str`${key} ${nix.app(nix.sel(lib, "escapeShellArg"), value)}`, nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),

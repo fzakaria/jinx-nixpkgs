@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fbmenugen";
       const version = "0.87";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trizen",
           repo: "fbmenugen",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             xmessage: xmessage,
             fluxbox: fluxbox,
             gnused: gnused,
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\ninstall -D -t $out/bin fbmenugen\ninstall -D -t $out/etc/xdg/fbmenugen schema.pl\nrunHook postInstall\n";
       const postFixup = "wrapProgram \"$out/bin/fbmenugen\" --prefix PERL5LIB : \"$PERL5LIB\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/trizen/fbmenugen",
         description: "Simple menu generator for the Fluxbox Window Manager",
         mainProgram: "fbmenugen",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

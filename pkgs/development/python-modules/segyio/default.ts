@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const postPatch = "# Fixing bug making one test fail in the python 3.10 build\nsubstituteInPlace python/segyio/open.py --replace \\\n\"cube_metrics = f.xfd.cube_metrics(iline, xline)\" \\\n\"cube_metrics = f.xfd.cube_metrics(int(iline), int(xline))\"\n";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "equinor",
           repo: "segyio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, ninja, scikit_build]);
       const nativeCheckInputs = nix.thunk(() => [pytest, numpy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast Python library for SEGY files",
         homepage: "https://github.com/equinor/segyio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

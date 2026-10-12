@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coppwr",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dimtpap",
           repo: "coppwr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libxkbcommon, wayland]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low level control GUI for the PipeWire multimedia server",
         homepage: "https://github.com/dimtpap/coppwr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

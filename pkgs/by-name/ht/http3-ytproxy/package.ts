@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const libwebp = nix.arg($, "libwebp");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "http3-ytproxy",
       version: "0-unstable-2022-07-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TeamPiped",
           repo: "http3-ytproxy",
           rev: "4059da180bb9d7b0de10c1a041bd0e134f1b6408",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libwebp]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "YouTube traffic proxy for video playback and images",
         homepage: "https://github.com/TeamPiped/http3-ytproxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

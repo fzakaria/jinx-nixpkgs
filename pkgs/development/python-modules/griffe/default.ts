@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkdocstrings",
           repo: "griffe",
           tag: version,
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => [colorama]);
       const nativeCheckInputs = nix.thunk(() => [git, jsonschema, pytest_gitconfig, pytestCheckHook]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiofiles]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiofiles]) }));
       const pythonImportsCheck = nix.thunk(() => ["griffe"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_api.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Signatures for entire Python programs",
         homepage: "https://github.com/mkdocstrings/griffe",
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocstrings/griffe/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "griffe",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

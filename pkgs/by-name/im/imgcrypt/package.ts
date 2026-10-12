@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imgcrypt",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containerd",
           repo: "imgcrypt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["ctd-decoder", "ctr"]),
       postFixup: "mv $out/bin/ctr $out/bin/ctr-enc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Image encryption library and command line tool",
         homepage: "https://github.com/containerd/imgcrypt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

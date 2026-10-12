@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyGetWindow",
           version: version,
           hash: "sha256-F4lDVefSswXNgy1xdwg4QBfBaYqQziT29/vwJC3Qpog=",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const propagatedBuildInputs = nix.thunk(() => [pyrect]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, cross-platform module for obtaining GUI information on applications' windows",
         homepage: "https://github.com/asweigart/PyGetWindow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

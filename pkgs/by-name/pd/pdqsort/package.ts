@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pdqsort",
       version: "0-unstable-2021-03-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orlp",
           repo: "pdqsort",
           rev: "b1ef26a55cdb60d236a5cb199c4234c704f46726",
@@ -30,25 +30,25 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/include\ncp -r *.h $out/include/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           bench: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: "pdqsort-bench",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               doCheck: true,
               checkPhase: "c++ bench/bench.cpp -o bench/bench\n./bench/bench > $out\n",
               meta: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),
               })),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Novel sorting algorithm that combines the fast average case of randomized quicksort with the fast worst case of heapsort",
         homepage: "https://github.com/orlp/pdqsort",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

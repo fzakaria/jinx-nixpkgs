@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check-zfs";
       const version = "2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zlacelle",
           repo: "nagios_check_zfs_linux",
           tag: version,
@@ -34,7 +34,7 @@ substituteInPlace check_zfs.py \\
 `);
       const installPhase = "runHook preInstall\n\ninstall -Dm 755 check_zfs.py $out/bin/check_zfs\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Check the health, capacity, fragmentation, and other things for use with Nagios monitoring",
         homepage: "https://github.com/zlacelle/nagios_check_zfs_linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -45,7 +45,7 @@ substituteInPlace check_zfs.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

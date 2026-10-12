@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "duration",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hannesm/duration/releases/download/v${nix.sel(finalAttrs, "version")}/duration-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-zYjaaTlR4SEuqD4kzhf3Z+laOanOKt2gZUsy11zmjBM=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hannesm/duration",
         description: "Conversions to various time units",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

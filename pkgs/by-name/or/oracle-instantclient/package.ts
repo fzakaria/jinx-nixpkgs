@@ -37,21 +37,21 @@ export default nix.lambda((args) => (() => {
   const throwSystem = "unsupported";
   const components = nix.thunk(() => nix.concat(["basic", "sdk", "sqlplus", "tools"], nix.app(optional, odbcSupport, "odbc")));
   const version = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "21.10.0.0.0",
     "aarch64-linux": "19.10.0.0.0",
     "aarch64-darwin": "23.3.0.23.09",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const directory = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "2110000",
     "aarch64-linux": "191000",
     "aarch64-darwin": "233023",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hashes = nix.thunk(() => nix.selOr({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       basic: "sha256-uo0QBOmx7TQyroD+As60IhjEkz//+0Cm1tWvLI3edaE=",
       sdk: "sha256-TIBFi1jHLJh+SUNFvuL7aJpxh61hG6gXhFIhvdPgpts=",
       sqlplus: "sha256-mF9kLjhZXe/fasYDfmZrYPL2CzAp3xDbi624RJDA4lM=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       odbc: "sha256-3M6/cEtUrIFzQay8eHNiLGE+L0UF+VTmzp4cSBcrzlk=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       basic: "sha256-DNntH20BAmo5kOz7uEgW2NXaNfwdvJ8l8oMnp50BOsY=",
       sdk: "sha256-8VpkNyLyFMUfQwbZpSDV/CB95RoXfaMr8w58cRt/syw=",
       sqlplus: "sha256-iHcyijHhAvjsAqN9R+Rxo2R47k940VvPbScc2MWYn0Q=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       odbc: "sha256-T+RIIKzZ9xEg/E72pfs5xqHz2WuIWKx/oRfDrQbw3ms=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       basic: "sha256-G83bWDhw9wwjLVee24oy/VhJcCik7/GtKOzgOXuo1/4=",
       sdk: "sha256-PerfzgietrnAkbH9IT7XpmaFuyJkPHx0vl4FCtjPzLs=",
       sqlplus: "sha256-khOjmaExAb3rzWEwJ/o4XvRMQruiMw+UgLFtsOGn1nY=",
@@ -76,25 +76,25 @@ export default nix.lambda((args) => (() => {
     })),
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const rels = nix.thunk(() => nix.selOr({
-    __proto__: pos$8,
-    "aarch64-darwin": nix.thunk(() => ({ __proto__: pos$7, basic: "1", tools: "1" })),
+    [nix.POS]: pos$8,
+    "aarch64-darwin": nix.thunk(() => ({ [nix.POS]: pos$7, basic: "1", tools: "1" })),
   }, () => ({}), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const arch = nix.thunk(() => nix.selOr({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "x86_64-linux": "linux.x64",
     "aarch64-linux": "linux.arm64",
     "aarch64-darwin": "macos.arm64",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const shortArch = nix.thunk(() => nix.selOr({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     "x86_64-linux": "linux",
     "aarch64-linux": "linux",
     "aarch64-darwin": "mac",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
-  const suffix = nix.thunk(() => nix.selOr({ __proto__: pos$11, "aarch64-darwin": ".dmg" }, () => "dbru.zip", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$11, "aarch64-darwin": ".dmg" }, () => "dbru.zip", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const srcFilename = (component) => (arch_1) => (version_1) => (rel) => nix.add(nix.add(nix.str`instantclient-${component}-${arch_1}-${version_1}`, nix.app(optionalString, nix.thunk(() => !nix.eq(rel, "")), nix.thunk(() => nix.str`-${rel}`))), suffix);
   const fetcher = (srcFilename_1) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       url: nix.thunk(() => nix.str`https://download.oracle.com/otn_software/${shortArch}/instantclient/${directory}/${srcFilename_1}`),
       sha256: hash,
     })));
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
   const pname = "oracle-instantclient";
   const extLib = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: pname,
       version: version,
       srcs: srcs,
@@ -131,7 +131,7 @@ ln -sfn $out/bin/sqlplus $out/bin/sqlplus64
 `),
       postFixup: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for exe in \"$out/bin/\"* ; do\n  if [ ! -L \"$exe\" ]; then\n    install_name_tool -add_rpath \"$lib/lib\" \"$exe\"\n  fi\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Oracle instant client libraries and sqlplus CLI",
         longDescription: "Oracle instant client provides access to Oracle databases (OCI,\nOCCI, Pro*C, ODBC or JDBC). This package includes the sqlplus\ncommand line SQL client.\n",
         sourceProvenance: nix.thunk(() => (() => {

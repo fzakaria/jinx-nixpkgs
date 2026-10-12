@@ -23,42 +23,42 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "sx",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thiagokokada"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "icewm"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
-            getty: nix.thunk(() => ({ __proto__: pos$3, autologinUser: "alice" })),
+            [nix.POS]: pos$7,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$3, autologinUser: "alice" })),
             xserver: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
-              displayManager: nix.thunk(() => ({ __proto__: pos$5, sx: nix.thunk(() => ({ __proto__: pos$4, enable: true })) })),
+              displayManager: nix.thunk(() => ({ [nix.POS]: pos$5, sx: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })) })),
             })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             bash: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               loginShellInit: "mkdir -p \"$HOME/.config/sx\"\necho 'exec icewm' > \"$HOME/.config/sx/sxrc\"\nchmod +x \"$HOME/.config/sx/sxrc\"\n\nsx\n",
             })),
           })),

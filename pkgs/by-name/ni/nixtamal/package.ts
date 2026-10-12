@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nixtamal = nix.arg($, "nixtamal");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nixtamal",
       version: "2.1.0",
       release_year: 2026n,
       minimalOCamlVersion: "5.3",
       src: nix.thunk(() => nix.app(fetchdarcs, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://darcs.toastal.in.th/nixtamal/stable/",
           mirrors: nix.thunk(() => ["https://smeder.ee/~toastal/nixtamal.darcs"]),
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "eio_main")),
           nix.thunk(() => nix.lookup(w_1, "eio_posix")),
           nix.thunk(() => nix.lookup(w_1, "jingoo")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "jsont"), "override"), nix.thunk(() => ({ __proto__: pos$2, withBrr: false, withBytesrw: true, withTypegist: false })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "jsont"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withBrr: false, withBytesrw: true, withTypegist: false })))),
           nix.thunk(() => nix.lookup(w_1, "ppx_blob")),
           nix.thunk(() => nix.lookup(w_1, "kdl")),
           nix.thunk(() => nix.lookup(w_1, "logs")),
@@ -126,18 +126,18 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(nixtamal, "bin")),
               command: nix.thunk(() => nix.str`${nix.sel(nixtamal, "meta", "mainProgram")} --version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "nixtamal",

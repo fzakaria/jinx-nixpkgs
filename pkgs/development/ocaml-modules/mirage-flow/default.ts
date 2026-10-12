@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-flow",
       version: "5.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-flow/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-flow-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-N8p5yuDtmycLh3Eu3LOXpd7Eqzk1eygQfgDapshVMyM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct, fmt, lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flow implementations and combinators for MirageOS",
         homepage: "https://github.com/mirage/mirage-flow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

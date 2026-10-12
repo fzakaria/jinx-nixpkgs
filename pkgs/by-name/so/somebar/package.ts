@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const conf = nix.argOr($, "conf", () => null);
   const configFile = nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), conf)) || nix.asBool(nix.builtins.isPath(conf)))) ? nix.force(conf) : "src/config.def.hpp"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "somebar",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~raphi",
           repo: "somebar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       prePatch: nix.thunk(() => nix.str`cp ${configFile} src/config.hpp
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~raphi/somebar",
         description: "dwm-like bar for dwl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

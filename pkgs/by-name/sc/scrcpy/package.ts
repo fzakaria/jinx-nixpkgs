@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const sdl3 = nix.arg($, "sdl3");
   const version = "4.1";
   const prebuilt_server = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "scrcpy-server",
       version: version,
       url: nix.thunk(() => nix.str`https://github.com/Genymobile/scrcpy/releases/download/v${version}/scrcpy-server-v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scrcpy";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Genymobile",
           repo: "scrcpy",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -51,7 +51,7 @@ ln -s "${prebuilt_server}" "$out/share/scrcpy/scrcpy-server"
 wrapProgram "$out/bin/scrcpy" --prefix PATH : "${android_tools}/bin"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Display and control Android devices over USB or TCP/IP",
         homepage: "https://github.com/Genymobile/scrcpy",
         changelog: nix.thunk(() => nix.str`https://github.com/Genymobile/scrcpy/releases/tag/v${version_1}`),
@@ -74,7 +74,7 @@ wrapProgram "$out/bin/scrcpy" --prefix PATH : "${android_tools}/bin"
         mainProgram: "scrcpy",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src,

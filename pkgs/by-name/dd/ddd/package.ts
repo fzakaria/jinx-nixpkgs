@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const gdb = nix.arg($, "gdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ddd",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/ddd/ddd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-XUy8iguwRYVDhm1nkwjFOj7wZuQC/loZGOGWmKPTWA8=",
         })))),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => nix.concat([imagemagick], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [desktopToDarwinBundle])))),
       buildInputs: nix.thunk(() => [motif, ncurses, libx11, libxt]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DHAVE_SYS_IOCTL_H" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DHAVE_SYS_IOCTL_H" })))),
       configureFlags: nix.thunk(() => ["--enable-builtin-manual", "--enable-builtin-app-defaults"]),
       makeFlags: nix.thunk(() => ["EXEEXT=exe"]),
       enableParallelBuilding: true,
       postInstall: "mv $out/bin/dddexe $out/bin/ddd\nconvert icons/ddd.xbm ddd.png\ninstall -D ddd.png $out/share/icons/hicolor/48x48/apps/ddd.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://www.gnu.org/software/ddd/news.html",
         description: "Graphical front-end for command-line debuggers",
         homepage: "https://www.gnu.org/software/ddd",

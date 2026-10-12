@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const beamPackages = nix.thunk(() => nix.app(nix.sel(beamMinimal29Packages, "overrideScope"), (final) => (prev) => ({ __proto__: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_20")) })));
+  const beamPackages = nix.thunk(() => nix.app(nix.sel(beamMinimal29Packages, "overrideScope"), (final) => (prev) => ({ [nix.POS]: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_20")) })));
   return nix.app(nix.sel(beamPackages, "mixRelease"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "paseo-relay",
       version: "0-unstable-2026-08-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "getpaseo",
           repo: "paseo-relay",
           rev: "3fc41c96c8c63f3a7109e832899cc57d473c4531",
           hash: "sha256-53r3Mz1GCv5Vozbg02YfiGABn8HTvoao5R+4CxTKj3w=",
         })))),
       mixFodDeps: nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`mix-deps-${nix.sel(finalAttrs, "pname")}`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mv $out/bin/paseo_relay $out/bin/paseo-relay\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "A distributed, protocol-compatible relay for Paseo",
         homepage: "https://github.com/getpaseo/paseo-relay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libintl = nix.arg($, "libintl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pam_p11",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenSC",
           repo: "pam_p11",
           rev: nix.thunk(() => nix.str`pam_p11-${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([pam, nix.thunk(() => nix.sel(libp11, "passthru", "openssl")), libp11], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libintl])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OpenSC/pam_p11",
         description: "Authentication with PKCS#11 modules",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

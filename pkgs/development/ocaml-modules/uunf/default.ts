@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const pname = "uunf";
   const webpage = nix.thunk(() => nix.str`https://erratique.ch/software/${pname}`);
   const hash = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "15.0.0": "sha256-B/prPAwfqS8ZPS3fyDDIzXWRbKofwOCyCfwvh9veuug=",
     "18.0.0": "sha256-PigyC3vjIFWo2pNa3yUJBv3qgcpZXWf6ytGIOoaiHiM=",
   }, nix.key(nix.str`${version}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finallAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finallAttrs, "pname")}-${nix.sel(finallAttrs, "version")}`),
       version: version,
       pname: pname,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`${webpage}/releases/${pname}-${version}.tbz`),
           hash: hash,
         })))),
@@ -52,7 +52,7 @@ runHook postBuild
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCaml module for normalizing Unicode text",
         homepage: webpage,
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

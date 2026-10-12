@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const apr = nix.arg($, "apr");
   const version = "1.0.20";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "svn-all-fast-export",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svn-all-fast-export",
           repo: "svn2git",
           rev: version,
@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`APR_INCLUDE=${nix.sel(apr, "dev")}/include/apr-1`),
         nix.thunk(() => nix.str`SVN_INCLUDE=${nix.sel(subversion, "dev")}/include/subversion-1`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["CONFIG-=app_bundle"])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lsvn_fs-1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lsvn_fs-1" })),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/svn-all-fast-export/svn2git",
         description: "Fast-import based converter for an svn repo to git repos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -50,9 +50,9 @@ ${nix.sel(pkgs, "hddtemp")}/bin/hddtemp ${nix.app(nix.sel(lib, "escapeShellArgs"
   "\${drives[@]}"
 `);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -62,38 +62,38 @@ ${nix.sel(pkgs, "hddtemp")}/bin/hddtemp ${nix.app(nix.sel(lib, "escapeShellArgs"
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       hardware: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         sensor: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hddtemp: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Enable this option to support HDD/SSD temperature sensors.\n",
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
               })))),
             drives: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "List of drives to monitor. If you pass /dev/disk/by-path/* entries the symlinks will be resolved as hddtemp doesn't like names with colons.",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               })))),
             unit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Celsius or Fahrenheit",
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["C", "F"]))),
                 default: "C",
               })))),
             dbEntries: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Additional DB entries",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
               })))),
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Additional arguments passed to the daemon.",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
@@ -103,20 +103,20 @@ ${nix.sel(pkgs, "hddtemp")}/bin/hddtemp ${nix.app(nix.sel(lib, "escapeShellArgs"
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             hddtemp: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "HDD/SSD temperature",
               documentation: nix.thunk(() => ["man:hddtemp(8)"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               enableStrictShellChecks: true,
               script: script,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "forking",
                 StateDirectory: "hddtemp",
                 PrivateTmp: true,

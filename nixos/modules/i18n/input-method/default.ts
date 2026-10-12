@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "i18n", "inputMethod"));
   const allowedTypes = nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["ibus", "fcitx5", "nabi", "uim", "hime", "kime"])));
   const gtk2_cache = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gtk2-immodule.cache", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       preferLocalBuild: true,
       allowSubstitutes: false,
       buildInputs: nix.thunk(() => [
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 GTK_PATH=${nix.sel(cfg, "package")}/lib/gtk-2.0/ ${nix.app(nix.sel(pkgs, "stdenv", "hostPlatform", "emulator"), nix.thunk(() => nix.sel(pkgs, "buildPackages")))} gtk-query-immodules-2.0 > $out/etc/gtk-2.0/immodules.cache
 `)));
   const gtk3_cache = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "gtk3-immodule.cache", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       preferLocalBuild: true,
       allowSubstitutes: false,
       buildInputs: nix.thunk(() => [
@@ -54,27 +54,27 @@ GTK_PATH=${nix.sel(cfg, "package")}/lib/gtk-2.0/ ${nix.app(nix.sel(pkgs, "stdenv
 GTK_PATH=${nix.sel(cfg, "package")}/lib/gtk-3.0/ ${nix.app(nix.sel(pkgs, "stdenv", "hostPlatform", "emulator"), nix.thunk(() => nix.sel(pkgs, "buildPackages")))} gtk-query-immodules-3.0 > $out/etc/gtk-3.0/immodules.cache
 `)));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       i18n: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         inputMethod: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "an additional input method type"), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: nix.thunk(() => !nix.eq(nix.sel(cfg, "enabled"), null)),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`true` if the deprecated option `enabled` is set, false otherwise")),
           })),
           enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), allowedTypes)),
               default: null,
               example: "fcitx5",
               description: "Deprecated - use `type` and `enable = true` instead",
             })))),
           type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), allowedTypes)),
               default: nix.thunk(() => nix.sel(cfg, "enabled")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "The value of the deprecated option `enabled`, defaulting to null")),
@@ -82,26 +82,26 @@ GTK_PATH=${nix.sel(cfg, "package")}/lib/gtk-3.0/ ${nix.app(nix.sel(pkgs, "stdenv
               description: "Select the enabled input method. Input methods is a software to input symbols that are not available on standard input devices.\n\nInput methods are specially used to input Chinese, Japanese and Korean characters.\n\nCurrently the following input methods are available in NixOS:\n\n- ibus: The intelligent input bus, extra input engines can be added using `i18n.inputMethod.ibus.engines`.\n- fcitx5: The next generation of fcitx, addons (including engines, dictionaries, skins) can be added using `i18n.inputMethod.fcitx5.addons`.\n- nabi: A Korean input method based on XIM. Nabi doesn't support Qt 5.\n- uim: The universal input method, is a library with a XIM bridge. uim mainly support Chinese, Japanese and Korean.\n- hime: An extremely easy-to-use input method framework.\n- kime: Koream IME.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               internal: true,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The input method method package.\n",
             })))),
           enableGtk2: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Gtk2 support")),
-          enableGtk3: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Gtk3 support"), { __proto__: pos$7, default: true })),
+          enableGtk3: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Gtk3 support"), { [nix.POS]: pos$7, default: true })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "enabled"), null)), "i18n.inputMethod.enabled will be removed in a future release. Please use .type, and .enable = true instead")),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableGtk2")) && nix.asBool(nix.app(nix.sel(pkgs, "stdenv", "hostPlatform", "emulatorAvailable"), nix.thunk(() => nix.sel(pkgs, "buildPackages")))))), gtk2_cache), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableGtk3")) && nix.asBool(nix.app(nix.sel(pkgs, "stdenv", "hostPlatform", "emulatorAvailable"), nix.thunk(() => nix.sel(pkgs, "buildPackages")))))), gtk3_cache)))),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$13, maintainers: [], doc: nix.path(here, "./default.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$13, maintainers: [], doc: nix.path(here, "./default.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

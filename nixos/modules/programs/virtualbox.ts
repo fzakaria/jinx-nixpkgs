@@ -11,15 +11,15 @@ const pos$5 = nix.positions(here + "/virtualbox.nix", [["config", 8, 3]]);
 export default nix.thunk(() => (() => {
   const msg = nix.thunk(() => nix.add(nix.add("Importing <nixpkgs/nixos/modules/programs/virtualbox.nix> is ", "deprecated, please use `virtualisation.virtualbox.host.enable = true' "), "instead."));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     config: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       warnings: nix.thunk(() => [msg]),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         virtualbox: nix.thunk(() => ({
-          __proto__: pos$2,
-          host: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          host: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       })),
     })),

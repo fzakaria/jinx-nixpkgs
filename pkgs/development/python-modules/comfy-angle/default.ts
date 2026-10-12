@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const comfyui = nix.arg($, "comfyui");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comfy-angle",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Comfy-Org",
           repo: "comfy-angle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ ln -s ${egl}/lib/{libEGL,libGLESv2}${nix.sel(stdenv, "hostPlatform", "extensions
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Redistributable ANGLE libraries",
         homepage: "https://github.com/Comfy-Org/comfy-angle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

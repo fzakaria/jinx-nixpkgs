@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pname = "pdlib";
   const version = "1.1.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goodspb",
           repo: "pdlib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(dlib, "override"), nix.thunk(() => ({ __proto__: pos$2, guiSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(dlib, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, guiSupport: true })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PHP extension for Dlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/goodspb/pdlib",

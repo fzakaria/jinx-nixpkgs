@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pysigma = nix.arg($, "pysigma");
   const pysigma_backend_elasticsearch = nix.arg($, "pysigma-backend-elasticsearch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysigma-backend-opensearch",
       version: "2.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SigmaHQ",
           repo: "pySigma-backend-opensearch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pysigma, pysigma_backend_elasticsearch]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to support OpenSearch for pySigma",
         homepage: "https://github.com/SigmaHQ/pySigma-backend-opensearch",
         changelog: nix.thunk(() => nix.str`https://github.com/SigmaHQ/pySigma-backend-opensearch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

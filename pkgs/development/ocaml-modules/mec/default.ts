@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const bisect_ppx = nix.arg($, "bisect_ppx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mec",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/nomadic-labs/cryptography/ocaml-ec/-/archive/${nix.sel(finalAttrs, "version")}/ocaml-ec-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-uIcGj/exSfuuzsv6C/bnJXpYRu3OY3dcKMW/7+qwi2U=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zarith]),
       checkInputs: nix.thunk(() => [alcotest, bisect_ppx]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mec - Mini Elliptic Curve library",
         homepage: "https://gitlab.com/nomadic-labs/cryptography/ocaml-ec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

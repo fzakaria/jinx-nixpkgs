@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "sarif_om",
           version: version,
           sha256: "cd5f416b3083e00d402a92e449a7ff67af46f11241073eea0461802a3b5aef98",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sarif_om"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Classes implementing the SARIF 2.1.0 object model",
         homepage: "https://github.com/microsoft/sarif-python-om",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

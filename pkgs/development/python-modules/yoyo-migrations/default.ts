@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const sqlparse = nix.arg($, "sqlparse");
   const tabulate = nix.arg($, "tabulate");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yoyo-migrations",
       version: "9.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~olly",
           repo: "yoyo",
           vc: "hg",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["yoyo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://hg.sr.ht/~olly/yoyo/browse/CHANGELOG.rst?rev=${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Database schema migration tool",
         homepage: "https://ollycope.com/software/yoyo",

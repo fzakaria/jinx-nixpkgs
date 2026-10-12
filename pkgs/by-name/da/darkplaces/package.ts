@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "darkplaces",
       version: "20140513-unstable-2026-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DarkPlacesEngine",
           repo: "darkplaces",
           rev: "d93f9c4292039354a2b8d40d11bc386891e55fe5",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   $out/bin/darkplaces
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.icculus.org/twilight/darkplaces/",
         description: "Quake 1 engine implementation by LadyHavoc",
         longDescription: "A game engine based on the Quake 1 engine by id Software.\nIt improves and builds upon the original 1996 engine by adding modern\nrendering features, and expanding upon the engine's native game code\nlanguage QuakeC, as well as supporting additional map and model formats.\n",

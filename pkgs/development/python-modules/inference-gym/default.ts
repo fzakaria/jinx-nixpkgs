@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           format: format,
           version: version,
           pname: "inference_gym",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["inference_gym"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Place to exercise inference methods to help make them faster, leaner and more robust",
         homepage: "https://github.com/tensorflow/probability/tree/main/spinoffs/inference_gym",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

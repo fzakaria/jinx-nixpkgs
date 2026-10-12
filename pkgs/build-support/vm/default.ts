@@ -159,17 +159,17 @@ to the \`kernel\` derivation output (e.g. "bzImage" or "Image").
     "virtiofs",
     "crc32c",
   ]);
-  const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib/qemu-common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, stdenv: stdenv }))));
+  const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../nixos/lib/qemu-common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv }))));
   const qemu = nix.thunk(() => nix.sel(buildPackages, "qemu_kvm"));
   const modulesClosure = nix.thunk(() => nix.app(makeModulesClosure, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       kernel: nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "modules", kernelModules)),
       rootModules: rootModules,
       firmware: kernelModules,
     }))));
   const hd = "vda";
   const initrdUtils = nix.thunk(() => nix.app(runCommand, "initrd-utils", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "nukeReferences"))]),
       allowedReferences: nix.thunk(() => ["out", modulesClosure]),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -290,9 +290,9 @@ echo "starting stage 2 ($command)"
 exec switch_root /fs $command
 `)));
   const initrd = nix.thunk(() => nix.app(makeInitrd, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       contents: nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$4, object: stage1Init, symlink: "/init" })),
+        nix.thunk(() => ({ [nix.POS]: pos$4, object: stage1Init, symlink: "/init" })),
       ]),
     }))));
   const stage2Init = nix.thunk(() => nix.app(writeScript, "vm-run-stage2", nix.thunk(() => nix.str`#! ${bash}/bin/sh
@@ -450,14 +450,14 @@ mkdir /mnt/proc /mnt/dev /mnt/sys
       const args_2 = nix.arg($_1, "args");
       const builder = nix.arg($_1, "builder");
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         requiredSystemFeatures: nix.thunk(() => ["kvm"]),
         builder: nix.thunk(() => nix.str`${bash}/bin/sh`),
         args: nix.thunk(() => ["-e", nix.thunk(() => nix.app(vmRunCommand, qemuCommandLinux))]),
         origArgs: args_2,
         origBuilder: builder,
         env: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           QEMU_OPTS: nix.thunk(() => nix.str`${QEMU_OPTS} -m ${nix.builtins.toString(memSize)} -object memory-backend-memfd,id=mem,size=${nix.builtins.toString(memSize)}M,share=on -machine memory-backend=mem`),
         })),
         __structuredAttrs: true,
@@ -468,7 +468,7 @@ mkdir /mnt/proc /mnt/dev /mnt/sys
     const file = nix.arg($_1, "file");
     const fs = nix.argOr($_1, "fs", () => null);
     return nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "extract-file",
           buildInputs: nix.thunk(() => [util_linux]),
           buildCommand: nix.thunk(() => nix.str`ln -s ${kernelModules}/lib /lib
@@ -494,7 +494,7 @@ cp -Rv tmp/* $out/ || exit 0
     const file = nix.arg($_1, "file");
     const fs = nix.argOr($_1, "fs", () => null);
     return nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "extract-file-mtd",
           buildInputs: nix.thunk(() => [util_linux, mtdutils]),
           buildCommand: nix.thunk(() => nix.str`ln -s ${kernelModules}/lib /lib
@@ -516,7 +516,7 @@ cp -R tmp/* $out/
         })))));
   })(), formals$5);
   const runInLinuxImage = (drv) => nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), drv, (attrs) => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         mountDisk: nix.thunk(() => nix.selOr(attrs, () => true, "mountDisk")),
         preVM: nix.thunk(() => nix.str`diskImage=$(pwd)/disk-image.qcow2
 origImage=${nix.sel(attrs, "diskImage")}
@@ -541,14 +541,14 @@ ${qemu}/bin/qemu-img create -F ${nix.sel(attrs, "diskImageFormat")} -b "$origIma
     const memSize = nix.argOr($_1, "memSize", () => 512n);
     const unifiedSystemDir = nix.argOr($_1, "unifiedSystemDir", () => false);
     return nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           name: name,
           preInstall: preInstall,
           postInstall: postInstall,
           rpms: rpms,
           QEMU_OPTS: QEMU_OPTS,
           memSize: memSize,
-          preVM: nix.thunk(() => nix.app(createEmptyImage, nix.thunk(() => ({ __proto__: pos$11, size: size, fullName: fullName })))),
+          preVM: nix.thunk(() => nix.app(createEmptyImage, nix.thunk(() => ({ [nix.POS]: pos$11, size: size, fullName: fullName })))),
           buildCommand: nix.thunk(() => nix.str`${createRootFS}
 
 chroot=$(type -tP chroot)
@@ -599,7 +599,7 @@ rm /mnt/.debug
 ${util_linux}/bin/umount /mnt${storeDir} /mnt/tmp /mnt/dev ${nix.app(nix.sel(lib, "optionalString"), unifiedSystemDir, "/mnt/proc")}
 ${util_linux}/bin/umount /mnt
 `),
-          passthru: nix.thunk(() => ({ __proto__: pos$12, fullName: fullName })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$12, fullName: fullName })),
         })))));
   })(), formals$6);
   const makeImageTestScript = (image) => nix.app(writeScript, "image-test", nix.thunk(() => nix.str`#! ${bash}/bin/sh
@@ -621,7 +621,7 @@ mountDisk=1
 ${qemuCommandLinux}
 `));
   const buildRPM = (attrs) => nix.app(runInLinuxImage, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         prePhases: nix.thunk(() => ["prepareImagePhase", "sysInfoPhase"]),
         dontConfigure: true,
         outDir: nix.thunk(() => nix.str`rpms/${nix.sel(attrs, "diskImage", "name")}`),
@@ -642,14 +642,14 @@ ${qemuCommandLinux}
     const QEMU_OPTS = nix.argOr($_1, "QEMU_OPTS", () => "");
     const memSize = nix.argOr($_1, "memSize", () => 512n);
     return nix.app(runInLinuxVM, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: name,
           postInstall: postInstall,
           QEMU_OPTS: QEMU_OPTS,
           memSize: memSize,
           debsFlat: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), debs)),
           debsGrouped: nix.thunk(() => nix.builtins.map(nix.builtins.toString, debs)),
-          preVM: nix.thunk(() => nix.app(createEmptyImage, nix.thunk(() => ({ __proto__: pos$15, size: size, fullName: fullName })))),
+          preVM: nix.thunk(() => nix.app(createEmptyImage, nix.thunk(() => ({ [nix.POS]: pos$15, size: size, fullName: fullName })))),
           buildCommand: nix.thunk(() => nix.str`${createRootFS}
 
 PATH=$PATH:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dpkg, glibc, xz]))}
@@ -714,7 +714,7 @@ ${util_linux}/bin/umount /mnt/proc
 ${util_linux}/bin/umount /mnt/dev
 ${util_linux}/bin/umount /mnt
 `),
-          passthru: nix.thunk(() => ({ __proto__: pos$16, fullName: fullName })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$16, fullName: fullName })),
         }, args_2)))));
   })(), formals$7);
   const rpmClosureGenerator = nix.lambda((args_1) => (() => {
@@ -726,7 +726,7 @@ ${util_linux}/bin/umount /mnt
     const archs = nix.argOr($_1, "archs", () => []);
     nix.assert_(nix.eq(nix.builtins.length(packagesLists), nix.builtins.length(urlPrefixes)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/vm/default.nix:844:5");
     return nix.app(runCommand, nix.thunk(() => nix.str`${name}.nix`), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(buildPackages, "perl")),
           nix.thunk(() => nix.sel(buildPackages, "perlPackages", "URI")),
@@ -778,7 +778,7 @@ perl -w ${nix.path(here, "./rpm/rpm-closure.pl")} \\
     const memSize = nix.argOr($_1, "memSize", () => 512n);
     const unifiedSystemDir = nix.argOr($_1, "unifiedSystemDir", () => false);
     return nix.app(fillDiskWithRPMs, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         name: name,
         fullName: fullName,
         size: size,
@@ -790,13 +790,13 @@ perl -w ${nix.path(here, "./rpm/rpm-closure.pl")} \\
         QEMU_OPTS: QEMU_OPTS,
         memSize: memSize,
         rpms: nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.app(rpmClosureGenerator, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: name,
               packagesLists: packagesLists,
               urlPrefixes: urlPrefixes,
               archs: archs,
               packages: nix.thunk(() => nix.concat(packages, extraPackages)),
-            }))))), nix.thunk(() => ({ __proto__: pos$20, fetchurl: fetchurl })))),
+            }))))), nix.thunk(() => ({ [nix.POS]: pos$20, fetchurl: fetchurl })))),
       })));
   })(), formals$9);
   const debClosureGenerator = nix.lambda((args_1) => (() => {
@@ -806,7 +806,7 @@ perl -w ${nix.path(here, "./rpm/rpm-closure.pl")} \\
     const urlPrefix = nix.arg($_1, "urlPrefix");
     const packages = nix.arg($_1, "packages");
     return nix.app(runCommand, nix.thunk(() => nix.str`${name}.nix`), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(buildPackages, "perl")),
           nix.thunk(() => nix.sel(buildPackages, "dpkg")),
@@ -849,14 +849,14 @@ nixfmt $out
     const QEMU_OPTS = nix.argOr($_1, "QEMU_OPTS", () => "");
     const memSize = nix.argOr($_1, "memSize", () => 512n);
     const expr = nix.thunk(() => nix.app(debClosureGenerator, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         name: name,
         packagesLists: packagesLists,
         urlPrefix: urlPrefix,
         packages: nix.thunk(() => nix.concat(packages, extraPackages)),
       }))));
     return nix.update(nix.app(fillDiskWithDebs, nix.thunk(() => nix.update({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: name,
         fullName: fullName,
         size: size,
@@ -864,17 +864,17 @@ nixfmt $out
         createRootFS: createRootFS,
         QEMU_OPTS: QEMU_OPTS,
         memSize: memSize,
-        debs: nix.thunk(() => nix.concat(nix.app(nix.builtins.import(expr), nix.thunk(() => ({ __proto__: pos$24, fetchurl: fetchurl }))), extraDebs)),
-      }, args_2))), { __proto__: pos$26, expr: expr });
+        debs: nix.thunk(() => nix.concat(nix.app(nix.builtins.import(expr), nix.thunk(() => ({ [nix.POS]: pos$24, fetchurl: fetchurl }))), extraDebs)),
+      }, args_2))), { [nix.POS]: pos$26, expr: expr });
   })(), formals$11);
   const rpmDistros = nix.thunk(() => ({
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     fedora42x86_64: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       name: "fedora-42-x86_64",
       fullName: "Fedora 42 (x86_64)",
       packagesList: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           url: "https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Everything/x86_64/os/repodata/cd483b35df017d68b73a878a392bbf666a43d75db54c386e4720bc369eb5c3a3-primary.xml.zst",
           hash: "sha256-zUg7Nd8BfWi3OoeKOSu/ZmpD1121TDhuRyC8Np61w6M=",
         })))),
@@ -884,11 +884,11 @@ nixfmt $out
       unifiedSystemDir: true,
     })),
     fedora43x86_64: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       name: "fedora-43-x86_64",
       fullName: "Fedora 43 (x86_64)",
       packagesList: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           url: "https://dl.fedoraproject.org/pub/fedora/linux/releases/43/Everything/x86_64/os/repodata/fffa3e9f63fffd3d21b8ea5e9bb0fe349a7ed1d4e09777a618cec93a2bcc305f-primary.xml.zst",
           hash: "sha256-//o+n2P//T0huOpem7D+NJp+0dTgl3emGM7JOivMMF8=",
         })))),
@@ -898,17 +898,17 @@ nixfmt $out
       unifiedSystemDir: true,
     })),
     rocky9x86_64: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       name: "rocky-9.6-x86_64",
       fullName: "Rocky Linux 9.6 (x86_64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             url: "https://dl.rockylinux.org/vault/rocky/9.6/BaseOS/x86_64/os/repodata/9965e429a90787a87a07eed62872d046411fb7dded524b96d74c4ce1eade327a-primary.xml.gz",
             hash: "sha256-mWXkKakHh6h6B+7WKHLQRkEft93tUkuW10xM4ereMno=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             url: "https://dl.rockylinux.org/vault/rocky/9.6/AppStream/x86_64/os/repodata/8cc9f795679c3365c06b6135f685ebf4188a5863a5f52f09f8cabd4f09c4dfa1-primary.xml.gz",
             hash: "sha256-jMn3lWecM2XAa2E19oXr9BiKWGOl9S8J+Mq9TwnE36E=",
           })))),
@@ -922,17 +922,17 @@ nixfmt $out
       unifiedSystemDir: true,
     })),
     rocky10x86_64: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       name: "rocky-10.0-x86_64",
       fullName: "Rocky Linux 10.0 (x86_64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             url: "https://dl.rockylinux.org/vault/rocky/10.0/BaseOS/x86_64/os/repodata/484d5c43cdb1058dd1328a6b891f45c85f1cb2620c528f2ef423d4b9feb9e2f0-primary.xml.gz",
             hash: "sha256-SE1cQ82xBY3RMopriR9FyF8csmIMUo8u9CPUuf654vA=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             url: "https://dl.rockylinux.org/vault/rocky/10.0/AppStream/x86_64/os/repodata/32c93064142d89f3f19c11e92642c5abd8368418f7ab3f3bdd752e4afa9b5b23-primary.xml.gz",
             hash: "sha256-MskwZBQtifPxnBHpJkLFq9g2hBj3qz873XUuSvqbWyM=",
           })))),
@@ -946,17 +946,17 @@ nixfmt $out
       unifiedSystemDir: true,
     })),
     alma9x86_64: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       name: "alma-9.6-x86_64",
       fullName: "AlmaLinux 9.6 (x86_64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             url: "https://vault.almalinux.org/9.6/BaseOS/x86_64/os/repodata/26d6cf944c86ef850773e61919e892a375ff10bb2254003e1d71673db9900b07-primary.xml.gz",
             hash: "sha256-JtbPlEyG74UHc+YZGeiSo3X/ELsiVAA+HXFnPbmQCwc=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             url: "https://vault.almalinux.org/9.6/AppStream/x86_64/os/repodata/afb5d18b78d819d826d3d0e32ba439da7b9e0fd91d726dd833366496b1b8ca20-primary.xml.gz",
             hash: "sha256-r7XRi3jYGdgm09DjK6Q52nueD9kdcm3YMzZklrG4yiA=",
           })))),
@@ -970,17 +970,17 @@ nixfmt $out
       unifiedSystemDir: true,
     })),
     alma10x86_64: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       name: "alma-10.0-x86_64",
       fullName: "AlmaLinux 10.0 (x86_64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             url: "https://vault.almalinux.org/10.0/BaseOS/x86_64/os/repodata/4d88695fa7ccb6298897fa9682ac1ded4628df342ffe08312846225e4469e3e4-primary.xml.gz",
             hash: "sha256-TYhpX6fMtimIl/qWgqwd7UYo3zQv/ggxKEYiXkRp4+Q=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             url: "https://vault.almalinux.org/10.0/AppStream/x86_64/os/repodata/11ac32065bae6f2c2451803458690fc550e79f93a4ea9f438930f0c228964791-primary.xml.gz",
             hash: "sha256-EawyBluubywkUYA0WGkPxVDnn5Ok6p9DiTDwwiiWR5E=",
           })))),
@@ -994,17 +994,17 @@ nixfmt $out
       unifiedSystemDir: true,
     })),
     oracle9x86_64: nix.thunk(() => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       name: "oracle-9-x86_64",
       fullName: "Oracle Linux 9 (x86_64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             url: "https://yum.oracle.com/repo/OracleLinux/OL9/baseos/latest/x86_64/repodata/bc292d67f73fc606db1872d5ba8804da06a514efe64523247035f0d3b678fb63-primary.xml.gz",
             hash: "sha256-vCktZ/c/xgbbGHLVuogE2galFO/mRSMkcDXw07Z4+2M=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             url: "https://yum.oracle.com/repo/OracleLinux/OL9/appstream/x86_64/repodata/6fabacadf7cdf22cbb21dc296f58e6b852d5b8ec9a927e214231477ef90083f9-primary.xml.gz",
             hash: "sha256-b6usrffN8iy7Idwpb1jmuFLVuOyakn4hQjFHfvkAg/k=",
           })))),
@@ -1018,11 +1018,11 @@ nixfmt $out
       unifiedSystemDir: true,
     })),
     amazon2023x86_64: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       name: "amazon-2023-x86_64",
       fullName: "Amazon Linux 2023 (x86_64)",
       packagesList: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           url: "https://cdn.amazonlinux.com/al2023/core/guids/6fa961924efb4835a7e8de43c89726dca28a5cf5906f891262d8f78a31ea3aaf/x86_64/repodata/primary.xml.gz",
           hash: "sha256-Ezdsc8a2aOIbyXvQ/nyanWe1fl089VgtfegaPcu2oo4=",
         })))),
@@ -1033,39 +1033,39 @@ nixfmt $out
     })),
   }));
   const debDistros = nix.thunk(() => ({
-    __proto__: pos$93,
+    [nix.POS]: pos$93,
     ubuntu2204i386: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       name: "ubuntu-22.04-jammy-i386",
       fullName: "Ubuntu 22.04 Jammy (i386)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy/main/binary-i386/Packages.xz",
             hash: "sha256-iZBmwT0ep4v+V3sayybbOgZBOFFZwPGpOKtmuLMMVPQ=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy/universe/binary-i386/Packages.xz",
             hash: "sha256-DO2LdpZ9rDDBhWj2gvDWd0TJJVZHxKsYTKTi6GXjm1E=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-updates/main/binary-i386/Packages.xz",
             hash: "sha256-g95BtOoMxacZEHMBbcMes4a1P9HKf/QGOMOPr+OKayo=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-updates/universe/binary-i386/Packages.xz",
             hash: "sha256-VbazaDDJKSUyQchGmw5f+FYAr4PIXWZJSBF0WVC5j+0=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-security/main/binary-i386/Packages.xz",
             hash: "sha256-SkP4PqjUAbEMtktR5WQm/3jQl9O0T2VOVTP9QIYIVkQ=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-security/universe/binary-i386/Packages.xz",
             hash: "sha256-citjk8LAGSRlXgOXgf3oe9vBCUC6/DJGhRJl/3ppN9c=",
           })))),
@@ -1074,37 +1074,37 @@ nixfmt $out
       packages: nix.thunk(() => nix.concat(commonDebPackages, ["diffutils", "libc-bin"])),
     })),
     ubuntu2204x86_64: nix.thunk(() => ({
-      __proto__: pos$62,
+      [nix.POS]: pos$62,
       name: "ubuntu-22.04-jammy-amd64",
       fullName: "Ubuntu 22.04 Jammy (amd64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy/main/binary-amd64/Packages.xz",
             hash: "sha256-N8tX8VVMv6ccWinun/7hipqMF4K7BWjgh0t/9M6PnBE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy/universe/binary-amd64/Packages.xz",
             hash: "sha256-0pyyTJP+xfQyVXBrzn60bUd5lSA52MaKwbsUpvNlXOI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-updates/main/binary-amd64/Packages.xz",
             hash: "sha256-I57YuLZ458RljXfp1xFxqQLGNJh9uu8kQC0hc88XZro=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-updates/universe/binary-amd64/Packages.xz",
             hash: "sha256-ZXobWMi7tkakZ89GoyKpiRhRxMRXud0DOerSfzz5CPE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-security/main/binary-amd64/Packages.xz",
             hash: "sha256-cifTPY1iyckkaLd7dp+VPRlF0viWKrWXhM8HVWaMuUw=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/jammy-security/universe/binary-amd64/Packages.xz",
             hash: "sha256-LTSOGbzkv0KrF2JM6oVT1Ml2KQkySXMbKNMBb9AyfQM=",
           })))),
@@ -1113,37 +1113,37 @@ nixfmt $out
       packages: nix.thunk(() => nix.concat(commonDebPackages, ["diffutils", "libc-bin"])),
     })),
     ubuntu2404x86_64: nix.thunk(() => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       name: "ubuntu-24.04-noble-amd64",
       fullName: "Ubuntu 24.04 Noble (amd64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/noble/main/binary-amd64/Packages.xz",
             hash: "sha256-KmoZnhAxpcJ5yzRmRtWUmT81scA91KgqqgMjmA3ZJFE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/noble/universe/binary-amd64/Packages.xz",
             hash: "sha256-upBX+huRQ4zIodJoCNAMhTif4QHQwUliVN+XI2QFWZo=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/noble-updates/main/binary-amd64/Packages.xz",
             hash: "sha256-leBJ29a2C2qdIPdjSSuwkHKUSq8GEC9L0DgdxHWZ55s=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/noble-updates/universe/binary-amd64/Packages.xz",
             hash: "sha256-CWYA0A4ytptWdClW3ACdIH4hKscblDh5OgxExP4VdJA=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/noble-security/main/binary-amd64/Packages.xz",
             hash: "sha256-TYs8ugCYqzOleH2OebdrpB8E68PfxB+7sRb+PlfANEo=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             url: "https://snapshot.ubuntu.com/ubuntu/20260101T000000Z/dists/noble-security/universe/binary-amd64/Packages.xz",
             hash: "sha256-bK9R8CUjLQ1V4GP7/KqZooSnKHF5+T5SuBs0butC82M=",
           })))),
@@ -1152,37 +1152,37 @@ nixfmt $out
       packages: nix.thunk(() => nix.concat(commonDebPackages, ["diffutils", "libc-bin"])),
     })),
     ubuntu2604x86_64: nix.thunk(() => ({
-      __proto__: pos$76,
+      [nix.POS]: pos$76,
       name: "ubuntu-26.04-resolute-amd64",
       fullName: "Ubuntu 26.04 Resolute (amd64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             url: "https://snapshot.ubuntu.com/ubuntu/20260515T222303Z/dists/resolute/main/binary-amd64/Packages.xz",
             hash: "sha256-7ZrEHLJj767MWgagdC3FZXDi+1/5TE8uSy+9zd1zzyQ=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             url: "https://snapshot.ubuntu.com/ubuntu/20260515T222303Z/dists/resolute/universe/binary-amd64/Packages.xz",
             hash: "sha256-FYe+htZtOFQjJSFeDhCfdb1pXI8k15Os4nYgOKatWB4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             url: "https://snapshot.ubuntu.com/ubuntu/20260515T222303Z/dists/resolute-updates/main/binary-amd64/Packages.xz",
             hash: "sha256-xaUdPgtH3jCgTJXYUbksMHvzt6jj6YfdzSAb+91tQNw=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             url: "https://snapshot.ubuntu.com/ubuntu/20260515T222303Z/dists/resolute-updates/universe/binary-amd64/Packages.xz",
             hash: "sha256-gXEKlgpgyrcnIhYwz1vxypFNX50EMbwhmidbDvUruKc=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             url: "https://snapshot.ubuntu.com/ubuntu/20260515T222303Z/dists/resolute-security/main/binary-amd64/Packages.xz",
             hash: "sha256-tzAvbwp+/6snpL8TtbtTx2kEL2f+XfGAwDCl/r6ka6Y=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             url: "https://snapshot.ubuntu.com/ubuntu/20260515T222303Z/dists/resolute-security/universe/binary-amd64/Packages.xz",
             hash: "sha256-gXEKlgpgyrcnIhYwz1vxypFNX50EMbwhmidbDvUruKc=",
           })))),
@@ -1191,11 +1191,11 @@ nixfmt $out
       packages: nix.thunk(() => nix.concat(commonDebPackages, ["diffutils", "libc-bin"])),
     })),
     debian11i386: nix.thunk(() => ({
-      __proto__: pos$78,
+      [nix.POS]: pos$78,
       name: "debian-11.11-bullseye-i386",
       fullName: "Debian 11.11 Bullseye (i386)",
       packagesList: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/bullseye/main/binary-i386/Packages.xz",
           hash: "sha256-kUg1VBUO6co/5bKloxncta49191oCeF05Hm399+UuDA=",
         })))),
@@ -1203,11 +1203,11 @@ nixfmt $out
       packages: commonDebianPackages,
     })),
     debian11x86_64: nix.thunk(() => ({
-      __proto__: pos$80,
+      [nix.POS]: pos$80,
       name: "debian-11.11-bullseye-amd64",
       fullName: "Debian 11.11 Bullseye (amd64)",
       packagesList: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/bullseye/main/binary-amd64/Packages.xz",
           hash: "sha256-HDQFREKX6thkcRwY5kvOSBDbY7SDQKL52BGC2fI1rXE=",
         })))),
@@ -1215,17 +1215,17 @@ nixfmt $out
       packages: commonDebianPackages,
     })),
     debian12i386: nix.thunk(() => ({
-      __proto__: pos$83,
+      [nix.POS]: pos$83,
       name: "debian-12.12-bookworm-i386",
       fullName: "Debian 12.12 Bookworm (i386)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/bookworm/main/binary-i386/Packages.xz",
             hash: "sha256-nIijsNoHUYkrL6eiwN4FCLHnJy/Bv/RMvnbMIHvieVI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/bookworm-backports/main/binary-i386/Packages.xz",
             hash: "sha256-/ja7+DNIKc2ZUIXiocTjLbaD2EPsfeyZcd5ndEMapp4=",
           })))),
@@ -1234,17 +1234,17 @@ nixfmt $out
       packages: commonDebianPackages,
     })),
     debian12x86_64: nix.thunk(() => ({
-      __proto__: pos$86,
+      [nix.POS]: pos$86,
       name: "debian-12.12-bookworm-amd64",
       fullName: "Debian 12.12 Bookworm (amd64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/bookworm/main/binary-amd64/Packages.xz",
             hash: "sha256-PfjQeu3tXmXZhH7foSD6WyFrvY4PfwSN/v5pBeShIBE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/bookworm-backports/main/binary-amd64/Packages.xz",
             hash: "sha256-S3NSvw1kX2zxzMh+WYhY58VUR7iLrTEIuXwwSK6itIs=",
           })))),
@@ -1253,17 +1253,17 @@ nixfmt $out
       packages: commonDebianPackages,
     })),
     debian13i386: nix.thunk(() => ({
-      __proto__: pos$89,
+      [nix.POS]: pos$89,
       name: "debian-13.2-trixie-i386",
       fullName: "Debian 13.2 Trixie (i386)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/trixie/main/binary-i386/Packages.xz",
             hash: "sha256-9zozvFZoWiv3wNe9rb+kPwSOgc5G5f4zmNpdoet5A78=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$88,
+            [nix.POS]: pos$88,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/trixie-backports/main/binary-i386/Packages.xz",
             hash: "sha256-hEBAQ73Jnv8zp9YvNXWLEObyrSlQNBNBj/XoofJL7eI=",
           })))),
@@ -1272,17 +1272,17 @@ nixfmt $out
       packages: commonDebianPackages,
     })),
     debian13x86_64: nix.thunk(() => ({
-      __proto__: pos$92,
+      [nix.POS]: pos$92,
       name: "debian-13.2-trixie-amd64",
       fullName: "Debian 13.2 Trixie (amd64)",
       packagesLists: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/trixie/main/binary-amd64/Packages.xz",
             hash: "sha256-g7f+tKljUXAC4gxJfzSC8+j0GbiwRZjonv25tYuvxtU=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             url: "https://snapshot.debian.org/archive/debian/20260105T082626Z/dists/trixie-backports/main/binary-amd64/Packages.xz",
             hash: "sha256-9OoR36FsyK7MQMLHLFMRJ9O11WKq9JCfGwnprpztxNw=",
           })))),
@@ -1371,10 +1371,10 @@ nixfmt $out
   ]);
   const commonDebianPackages = nix.thunk(() => nix.concat(commonDebPackages, ["sysvinit", "diff"]));
   const diskImageFuns = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (as) => (as2) => nix.app(makeImageFromRPMDist, nix.thunk(() => nix.update(as, as2))), rpmDistros), nix.app(nix.sel(lib, "mapAttrs"), (name) => (as) => (as2) => nix.app(makeImageFromDebDist, nix.thunk(() => nix.update(as, as2))), debDistros)));
-  const diskImageExtraFuns = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (f) => (extraPackages) => nix.app(f, nix.thunk(() => ({ __proto__: pos$94, extraPackages: extraPackages }))), diskImageFuns));
+  const diskImageExtraFuns = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (f) => (extraPackages) => nix.app(f, nix.thunk(() => ({ [nix.POS]: pos$94, extraPackages: extraPackages }))), diskImageFuns));
   const diskImages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (f) => nix.app(f, nix.thunk(() => ({}))), diskImageFuns));
   return {
-    __proto__: pos$95,
+    [nix.POS]: pos$95,
     buildRPM: buildRPM,
     commonDebPackages: commonDebPackages,
     commonDebianPackages: commonDebianPackages,

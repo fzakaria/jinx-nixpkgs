@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
     const outputHash = nix.argOr($_1, "outputHash", () => nix.sel(lib, "fakeHash"));
     const outputHashAlgo = nix.argOr($_1, "outputHashAlgo", () => null);
     return nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "svn-export-ssh",
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [subversion, expect]),
           strictDeps: true,
           __structuredAttrs: true,
           env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), sshSupport, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               SVN_SSH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), openssh)),
             })))),
           outputHash: outputHash,

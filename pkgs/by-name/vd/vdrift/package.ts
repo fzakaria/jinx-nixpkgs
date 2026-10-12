@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const data = nix.argOr($, "data", () => nix.app(fetchsvn, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "svn://svn.code.sf.net/p/vdrift/code/vdrift-data",
       rev: "1446",
       sha256: "sha256-KEu49GAOfenPyuaUItt6W9pkuqUNpXgmTSFuc7ThljQ=",
     }))));
   const version = "unstable-2021-09-05";
   const bin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vdrift",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "vdrift",
           repo: "vdrift",
           rev: "7e9e00c8612b2014d491f026dd86b03f9fb04dcd",
@@ -61,7 +61,7 @@ scons -j$NIX_BUILD_CORES
 runHook postBuild
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Car racing game",
         mainProgram: "vdrift",
         homepage: "https://vdrift.net/",
@@ -74,11 +74,11 @@ runHook postBuild
   return nix.app(nix.sel(nix.app(writeShellScriptBin, "vdrift", nix.thunk(() => nix.str`export VDRIFT_DATA_DIRECTORY="${data}"
 exec ${bin}/bin/vdrift "$@"
 `)), "overrideAttrs"), (_) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.attr(bin, "pname")),
       version: nix.thunk(() => nix.attr(bin, "version")),
       name: wrappedName,
-      meta: nix.thunk(() => nix.update(nix.sel(bin, "meta"), { __proto__: pos$5, hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(bin, "meta"), { [nix.POS]: pos$5, hydraPlatforms: [] })),
       unwrapped: bin,
       bin: bin,
       data: data,

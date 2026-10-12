@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/mifi/lossless-cut/releases/download/v${version}/LosslessCut-linux-x86_64.AppImage`),
       hash: hash,
     }))));
-  const extracted = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const extracted = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -45,7 +45,7 @@ wrapProgram "$out/bin/losslesscut" \\
   --add-flags "--disable-seccomp-filter-sandbox"
 `),
       meta: nix.thunk(() => nix.update(metaCommon, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "losslesscut",
       })),

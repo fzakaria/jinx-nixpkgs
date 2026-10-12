@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
   const normalUsers = (config) => nix.app(nix.sel(lib, "filterAttrs"), (name) => (user) => nix.sel(user, "isNormalUser"), nix.thunk(() => nix.sel(config, "users", "users")));
   const isMemberOf = (config) => (groupName) => (user) => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(user, "name")), nix.thunk(() => nix.sel(config, "users", "groups", nix.key(nix.force(groupName)), "members")));
   const generateUserAttrSet = (config) => (user) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     status: 1n,
     username: nix.thunk(() => nix.sel(user, "name")),
     password: "",
@@ -85,18 +85,18 @@ export default nix.lambda((args) => (() => {
     email: nix.thunk(() => nix.str`${nix.sel(user, "name")}@example.com`),
     home_dir: nix.thunk(() => nix.str`${nix.sel(config, "services", "sftpgo", "dataDir")}/users/${nix.sel(user, "name")}`),
     virtual_folders: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(isMemberOf, config, sharedFolderName, user)), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: sharedFolderName,
         mapped_path: nix.thunk(() => nix.str`${nix.sel(config, "services", "sftpgo", "dataDir")}/${sharedFolderName}`),
         virtual_path: nix.thunk(() => nix.str`/${sharedFolderName}`),
       })))),
     permissions: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "/": nix.thunk(() => ["list"]),
         "/private": nix.thunk(() => ["*"]),
-      })), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(isMemberOf, config, "shared", user)), nix.thunk(() => ({ __proto__: pos$3, "/shared": nix.thunk(() => ["*"]) })))))),
+      })), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(isMemberOf, config, "shared", user)), nix.thunk(() => ({ [nix.POS]: pos$3, "/shared": nix.thunk(() => ["*"]) })))))),
     filters: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       allowed_ip: [],
       denied_ip: [],
       web_client: nix.thunk(() => [
@@ -113,14 +113,14 @@ export default nix.lambda((args) => (() => {
     quota_files: 0n,
   });
   const loadDataJson = (config) => nix.app(nix.sel(pkgs, "writeText"), "users-and-folders.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         users: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (user) => nix.app(generateUserAttrSet, config, user), nix.thunk(() => nix.app(normalUsers, config)))),
         folders: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: sharedFolderName,
             description: "shared folder",
-            filesystem: nix.thunk(() => ({ __proto__: pos$6, provider: 0n })),
+            filesystem: nix.thunk(() => ({ [nix.POS]: pos$6, provider: 0n })),
             mapped_path: nix.thunk(() => nix.str`${nix.sel(config, "services", "sftpgo", "dataDir")}/${sharedFolderName}`),
             users: nix.thunk(() => nix.sel(config, "users", "groups", nix.key(sharedFolderName), "members")),
           })),
@@ -141,44 +141,44 @@ export default nix.lambda((args) => (() => {
   const sftpPort = 2022n;
   const httpPort = 8080n;
   return {
-    __proto__: pos$58,
+    [nix.POS]: pos$58,
     name: "sftpgo",
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yayayayaka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
-            firewall: nix.thunk(() => ({ __proto__: pos$10, allowedTCPPorts: nix.thunk(() => [sftpPort, httpPort]) })),
+            [nix.POS]: pos$11,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [sftpPort, httpPort]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               ensureDatabases: nix.thunk(() => ["sftpgo"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$12, name: "sftpgo", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$12, name: "sftpgo", ensureDBOwnership: true })),
               ]),
             })),
             sftpgo: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               loadDataFile: nix.thunk(() => nix.app(loadDataJson, nix.thunk(() => nix.sel(nodes, "server")))),
               settings: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 data_provider: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   driver: "postgresql",
                   name: "sftpgo",
                   username: "sftpgo",
@@ -187,10 +187,10 @@ export default nix.lambda((args) => (() => {
                   create_default_admin: true,
                 })),
                 httpd: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   bindings: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       address: "",
                       port: httpPort,
                       enable_https: false,
@@ -200,8 +200,8 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })),
                 sftpd: nix.thunk(() => ({
-                  __proto__: pos$18,
-                  bindings: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$17, address: "", port: sftpPort }))]),
+                  [nix.POS]: pos$18,
+                  bindings: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, address: "", port: sftpPort }))]),
                   host_keys: nix.thunk(() => [snakeOilHostKey]),
                   password_authentication: false,
                   keyboard_interactive_authentication: false,
@@ -210,14 +210,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               sftpgo: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 after: nix.thunk(() => ["postgresql.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   SFTPGO_LOADDATA_MODE: "0",
                   SFTPGO_DEFAULT_ADMIN_USERNAME: adminUsername,
                   SFTPGO_DEFAULT_ADMIN_PASSWORD: adminPassword,
@@ -225,7 +225,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               rules: nix.thunk(() => (() => {
                 const sftpgoUser = nix.thunk(() => nix.sel(nodes, "server", "services", "sftpgo", "user"));
                 const sftpgoGroup = nix.thunk(() => nix.sel(nodes, "server", "services", "sftpgo", "group"));
@@ -241,59 +241,59 @@ d ${statePath}/users/${nix.sel(user, "name")}/private 0700 ${sftpgoUser} ${sftpg
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             users: nix.thunk(() => (() => {
               const commonAttrs = nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 isNormalUser: true,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$28,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$27, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$28,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$27, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               }));
               return {
-                __proto__: pos$34,
-                admin: nix.thunk(() => nix.update(commonAttrs, { __proto__: pos$30, password: adminPassword })),
+                [nix.POS]: pos$34,
+                admin: nix.thunk(() => nix.update(commonAttrs, { [nix.POS]: pos$30, password: adminPassword })),
                 alice: nix.thunk(() => nix.update(commonAttrs, {
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   password: alicePassword,
                   extraGroups: nix.thunk(() => [sharedFolderName]),
                 })),
                 bob: nix.thunk(() => nix.update(commonAttrs, {
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   password: bobPassword,
                   extraGroups: nix.thunk(() => [sharedFolderName]),
                 })),
-                eve: nix.thunk(() => nix.update(commonAttrs, { __proto__: pos$33, password: evePassword })),
+                eve: nix.thunk(() => nix.update(commonAttrs, { [nix.POS]: pos$33, password: evePassword })),
               };
             })()),
             groups: nix.thunk(() => nix.attrsDyn({}, [[sharedFolderName, nix.thunk(() => ({}))]])),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             privilegedPorts: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   networking: nix.thunk(() => ({
-                    __proto__: pos$37,
-                    firewall: nix.thunk(() => ({ __proto__: pos$36, allowedTCPPorts: nix.thunk(() => [22n, 80n]) })),
+                    [nix.POS]: pos$37,
+                    firewall: nix.thunk(() => ({ [nix.POS]: pos$36, allowedTCPPorts: nix.thunk(() => [22n, 80n]) })),
                   })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     sftpgo: nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         sftpd: nix.thunk(() => ({
-                          __proto__: pos$39,
-                          bindings: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$38, address: "", port: 22n }))]))),
+                          [nix.POS]: pos$39,
+                          bindings: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$38, address: "", port: 22n }))]))),
                         })),
                         httpd: nix.thunk(() => ({
-                          __proto__: pos$41,
-                          bindings: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$40, address: "", port: 80n }))]))),
+                          [nix.POS]: pos$41,
+                          bindings: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$40, address: "", port: 80n }))]))),
                         })),
                       })),
                     })),
@@ -308,17 +308,17 @@ d ${statePath}/users/${nix.sel(user, "name")}/private 0700 ${sftpgoUser} ${sftpg
         const $_1 = nix.formals(args_1, formals$4);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           programs: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             ssh: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               knownHosts: nix.thunk(() => (() => {
                 const commonAttrs = nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   publicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE61C7pTXfnLG2u9So+ijNTKaSOg009UrquqNL3fpEu1",
                 }));
-                return { __proto__: pos$50, server: commonAttrs, "[server]:2022": commonAttrs };
+                return { [nix.POS]: pos$50, server: commonAttrs, "[server]:2022": commonAttrs };
               })()),
             })),
           })),
@@ -364,11 +364,11 @@ with subtest("Copy a file over sftp"):
 with subtest("Attempting an interactive SSH sessions must fail"):
     client.fail("ssh -p ${nix.builtins.toString(sftpPort)} alice@server")
 
-${nix.app(accessSharedFoldersSubtest, nix.thunk(() => ({ __proto__: pos$55, username: "alice", shouldSucceed: true })))}
+${nix.app(accessSharedFoldersSubtest, nix.thunk(() => ({ [nix.POS]: pos$55, username: "alice", shouldSucceed: true })))}
 
-${nix.app(accessSharedFoldersSubtest, nix.thunk(() => ({ __proto__: pos$56, username: "bob", shouldSucceed: true })))}
+${nix.app(accessSharedFoldersSubtest, nix.thunk(() => ({ [nix.POS]: pos$56, username: "bob", shouldSucceed: true })))}
 
-${nix.app(accessSharedFoldersSubtest, nix.thunk(() => ({ __proto__: pos$57, username: "eve", shouldSucceed: false })))}
+${nix.app(accessSharedFoldersSubtest, nix.thunk(() => ({ [nix.POS]: pos$57, username: "eve", shouldSucceed: false })))}
 
 with subtest("Test sharing files"):
     # Alice uploads a file to shared folder

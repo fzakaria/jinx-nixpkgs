@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "postgresqlBackup"));
   const postgresqlBackupService = (db) => (dumpCmd) => (() => {
-    const compressSuffixes = nix.thunk(() => ({ __proto__: pos$1, none: "", gzip: ".gz", zstd: ".zstd" }));
+    const compressSuffixes = nix.thunk(() => ({ [nix.POS]: pos$1, none: "", gzip: ".gz", zstd: ".zstd" }));
     const compressSuffix = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(cfg, "compression")), compressSuffixes));
     const compressCmd = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(cfg, "compression")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         none: "cat",
         gzip: nix.thunk(() => nix.str`${nix.sel(pkgs, "gzip")}/bin/gzip -c -${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "compressionLevel")))} --rsyncable`),
         zstd: nix.thunk(() => nix.str`${nix.sel(pkgs, "zstd")}/bin/zstd -c -${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "compressionLevel")))} --rsyncable`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     const prevFiles = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(mkSqlPath, ".prev")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), compressSuffixes))));
     const inProgressFile = nix.thunk(() => nix.app(mkSqlPath, ".in-progress", compressSuffix));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       enable: true,
       description: nix.thunk(() => nix.str`Backup of ${db} database(s)`),
       requires: nix.thunk(() => ["postgresql.target"]),
@@ -76,24 +76,24 @@ ${dumpCmd} \\
 
 mv ${inProgressFile} ${curFile}
 `),
-      serviceConfig: nix.thunk(() => ({ __proto__: pos$3, Type: "oneshot", User: "postgres" })),
+      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot", User: "postgres" })),
       startAt: nix.thunk(() => nix.sel(cfg, "startAt")),
     };
   })();
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "postgresqlBackup", "period"]), "A systemd timer is now used instead of cron.\nThe starting time can be configured via <literal>services.postgresqlBackup.startAt</literal>.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         postgresqlBackup: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "PostgreSQL dumps")),
           startAt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "*-*-* 01:15:00",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -102,44 +102,44 @@ mv ${inProgressFile} ${curFile}
               description: "This option defines (see `systemd.time` for format) when the\ndatabases should be dumped.\nThe default is to update at 01:15 (at night) every day.\n",
             })))),
           backupAll: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => nix.eq(nix.sel(cfg, "databases"), [])),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "services.postgresqlBackup.databases == []")),
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Backup all databases using pg_dumpall.\nThis option is mutual exclusive to\n`services.postgresqlBackup.databases`.\nThe resulting backup dump will have the name all.sql.gz.\nThis option is the default if no databases are specified.\n",
             })))),
           databases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of database names to dump.\n",
             })))),
           location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "/var/backup/postgresql",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path of directory where the PostgreSQL database dumps will be placed.\n",
             })))),
           pgdumpOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
               default: "-C",
               description: "Command line options for pg_dump. This options is not used if\n`config.services.postgresqlBackup.backupAll` is enabled. Note that\nconfig.services.postgresqlBackup.backupAll is also active, when no\ndatabases where specified.\n",
             })))),
           pgdumpAllOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
               default: "",
               description: "Command line options for pg_dumpall. This options is not used if\n`config.services.postgresqlBackup.backupAll` is disabled.\n",
             })))),
           compression: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["none", "gzip", "zstd"]))),
               default: "gzip",
               description: "The type of compression to use on the generated database dump.\n",
             })))),
           compressionLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 1n, 19n)),
               default: 6n,
               description: "The compression level used when compression is enabled.\ngzip accepts levels 1 to 9. zstd accepts levels 1 to 19.\n",
@@ -149,23 +149,23 @@ mv ${inProgressFile} ${curFile}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "backupAll")) || nix.asBool(nix.eq(nix.sel(cfg, "databases"), [])))),
                 message: "config.services.postgresqlBackup.backupAll cannot be used together with config.services.postgresqlBackup.databases",
               })),
               nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "compression"), "none")) || nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "compression"), "gzip")) && nix.asBool(nix.ge(nix.sel(cfg, "compressionLevel"), 1n)))) && nix.asBool(nix.le(nix.sel(cfg, "compressionLevel"), 9n)))))) || nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "compression"), "zstd")) && nix.asBool(nix.ge(nix.sel(cfg, "compressionLevel"), 1n)))) && nix.asBool(nix.le(nix.sel(cfg, "compressionLevel"), 19n)))))),
                 message: "config.services.postgresqlBackup.compressionLevel must be set between 1 and 9 for gzip and 1 and 19 for zstd",
               })),
             ]),
             systemd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d '${nix.sel(cfg, "location")}' 0700 postgres - - -`),
                 ]),
@@ -173,23 +173,23 @@ mv ${inProgressFile} ${curFile}
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "backupAll")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               systemd: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 services: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   postgresqlBackup: nix.thunk(() => nix.app(postgresqlBackupService, "all", nix.thunk(() => nix.str`pg_dumpall ${nix.sel(cfg, "pgdumpAllOptions")}`))),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "backupAll"))), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               systemd: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 services: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((db) => (() => {
                       const cmd = nix.thunk(() => nix.str`pg_dump ${nix.sel(cfg, "pgdumpOptions")} ${db}`);
                       return {
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         name: nix.thunk(() => nix.str`postgresqlBackup-${db}`),
                         value: nix.thunk(() => nix.app(postgresqlBackupService, db, cmd)),
                       };
@@ -198,7 +198,7 @@ mv ${inProgressFile} ${curFile}
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Scrumplex"))];

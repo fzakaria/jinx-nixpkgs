@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pom",
       version: "0.1.0-unstable-2024-05-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maaslalani",
           repo: "pom",
           rev: "699204a6db4f942ee6a6bf0dc389709ab6e1663f",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=main.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pomodoro timer in your terminal",
         homepage: "https://github.com/maaslalani/pom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

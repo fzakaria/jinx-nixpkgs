@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sound-theme-freedesktop",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "054abv4gmfk9maw93fis0bf605rc56dah7ys5plc4pphxqh8nlfb",
           url: nix.thunk(() => nix.str`https://people.freedesktop.org/~mccann/dist/sound-theme-freedesktop-${nix.sel(finalAttrs, "version")}.tar.bz2`),
         })))),
       nativeBuildInputs: nix.thunk(() => [intltool]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Freedesktop reference sound theme",
         homepage: "http://freedesktop.org/wiki/Specifications/sound-theme-spec",
         license: nix.thunk(() => (() => {

@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const textlint_rule_unexpanded_acronym = nix.arg($, "textlint-rule-unexpanded-acronym");
   const textlint_rule_write_good = nix.arg($, "textlint-rule-write-good");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "textlint",
       version: "15.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint",
           repo: "textlint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-overrides.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,8 +92,8 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        withPackages: (ps) => nix.app(runCommand, "textlint-with-packages", nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${textlint}/bin/textlint $out/bin/textlint \\
+        [nix.POS]: pos$5,
+        withPackages: (ps) => nix.app(runCommand, "textlint-with-packages", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${textlint}/bin/textlint $out/bin/textlint \\
   --set NODE_PATH ${nix.app(nix.sel(lib, "makeSearchPath"), "lib/node_modules", ps)}
 `)),
         testPackages: nix.lambda((args_1) => (() => {
@@ -109,7 +109,7 @@ runHook postInstall
           const args_2 = nix.thunk(() => nix.add(nix.str`${testFile} ${(nix.asBool(isPreset) ? "--preset" : "--rule")} ${ruleName$}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(plugin, null)), nix.thunk(() => nix.str` --plugin ${pluginName}`))));
           return nix.attrsDyn({}, [
             [nix.str`${pname}-test`, nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(textlint, "withPackages"), nix.thunk(() => [rule, plugin]))),
                 ]),
@@ -138,7 +138,7 @@ runHook postInstall
             ]))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Pluggable natural language linter for text and markdown",
         homepage: "https://github.com/textlint/textlint",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint/textlint/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

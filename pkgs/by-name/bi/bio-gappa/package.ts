@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bio-gappa",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lczech",
           repo: "gappa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lczech/gappa",
         description: "Toolkit for analyzing and visualizing phylogenetic (placement) data",
         longDescription: "gappa is a collection of commands for working with phylogenetic data. Its\nmain focus are evolutionary placements of short environmental sequences\non a reference phylogenetic tree. Such data are typically produced by\ntools such as EPA-ng, RAxML-EPA or pplacer, and usually stored in jplace\nfiles.\n",

@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const port = "tnc0";
   const socatPort = 1234n;
   const createAX25Node = (nodeId) => ({
-    __proto__: pos$13,
-    boot: nix.thunk(() => ({ __proto__: pos$1, kernelModules: nix.thunk(() => ["ax25"]) })),
+    [nix.POS]: pos$13,
+    boot: nix.thunk(() => ({ [nix.POS]: pos$1, kernelModules: nix.thunk(() => ["ax25"]) })),
     networking: nix.thunk(() => ({
-      __proto__: pos$3,
-      firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [socatPort]) })),
+      [nix.POS]: pos$3,
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [socatPort]) })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       systemPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       ax25: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         axports: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${port}`, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             baud: baud,
             tty: tty,
             enable: true,
@@ -66,15 +66,15 @@ export default nix.lambda((args) => (() => {
             description: "mocked tnc",
           }))],
         ])),
-        axlisten: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+        axlisten: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "ax25-mock-hardware": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "mock AX.25 TNC and Radio",
           wantedBy: nix.thunk(() => ["default.target"]),
           before: nix.thunk(() => [
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
           ]),
           after: nix.thunk(() => ["network.target"]),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             Type: "exec",
             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "socat")}/bin/socat -d -d tcp:192.168.1.1:${nix.builtins.toString(socatPort)} pty,link=${tty},b${nix.builtins.toString(baud)},raw`),
           })),
@@ -92,27 +92,27 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "ax25Simple",
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       node1: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(createAX25Node, 1n)),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             systemd: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               services: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 "ax25-mock-ether": nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   description: "mock radio ether",
                   wantedBy: nix.thunk(() => ["default.target"]),
                   requires: nix.thunk(() => ["network.target"]),
                   before: nix.thunk(() => ["ax25-mock-hardware.service"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     Type: "exec",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "socat")}/bin/socat-broker.sh tcp4-listen:${nix.builtins.toString(socatPort)}`),
                   })),

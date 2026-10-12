@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
   const flip = nix.thunk(() => nix.attr(from_5, "flip"));
   nix.assert_(nix.app(assertMsg, nix.thunk(() => !nix.asBool(enableTools)), "enableTools is not yet implemented"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/packages/cutlass.nix:41:1");
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "cutlass",
       version: "4.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "cutlass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -118,23 +118,23 @@ substituteInPlace ./python/cutlass_cppgen/backend/compiler.py \\
 `))),
       requiredSystemFeatures: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => ["big-parallel", "cuda"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
         platformAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             message: nix.thunk(() => nix.str`all capabilities are >= 7.0 (${nix.builtins.toJSON(nix.thunk(() => nix.sel(flags, "cudaCapabilities")))})`),
             assertion: nix.thunk(() => nix.app(all, nix.thunk(() => nix.app(flip, versionAtLeast, "7.0")), nix.thunk(() => nix.sel(flags, "cudaCapabilities")))),
           })),
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CUDA Templates for Linear Algebra Subroutines",
         homepage: "https://github.com/NVIDIA/cutlass",
         license: nix.thunk(() => nix.sel(licenses, "bsd3")),

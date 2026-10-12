@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pick",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mptre",
           repo: "pick",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "8cgt5KpLfnLwhucn4DQYC/7ot1u24ahJxWG+/1SL584=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Fuzzy text selection utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

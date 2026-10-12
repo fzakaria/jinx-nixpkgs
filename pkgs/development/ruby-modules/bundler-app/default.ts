@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
     const postBuild = nix.argOr($_1, "postBuild", () => "");
     const gemConfig = nix.argOr($_1, "gemConfig", () => null);
     const passthru = nix.argOr($_1, "passthru", () => ({}));
-    const basicEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../bundled-common"), nix.thunk(() => ({ __proto__: pos$1, ruby: ruby_1 })), args_2));
+    const basicEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "../bundled-common"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby_1 })), args_2));
     const cmdArgs = nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["postBuild", "gemConfig", "passthru", "gemset", "gemdir"])), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       preferLocalBuild: preferLocalBuild,
       allowSubstitutes: allowSubstitutes,
@@ -50,13 +50,13 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(ruby_1, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: pname,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
       };
       })(), meta)),
       passthru: nix.thunk(() => nix.update(nix.sel(basicEnv, "passthru"), nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         basicEnv: basicEnv,
         env: nix.thunk(() => nix.attr(basicEnv, "env")),
       }, passthru))),

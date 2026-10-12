@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miguelgrinberg",
           repo: "python-socketio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [bidict, python_engineio]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         client: nix.thunk(() => [requests, websocket_client]),
         asyncio_client: nix.thunk(() => [aiohttp]),
       }));
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/async/test_admin.py", "tests/common/test_admin.py"])));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Socket.IO server and client",
         longDescription: "Socket.IO is a lightweight transport protocol that enables real-time\nbidirectional event-based communication between clients and a server.\n",
         homepage: "https://github.com/miguelgrinberg/python-socketio/",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

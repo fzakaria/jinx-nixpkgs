@@ -27,30 +27,30 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "systemd-initrd-vlan",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "majiir"))]),
     })),
     nodes: nix.thunk(() => (() => {
       const network = (id) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         networking: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           vlans: nix.thunk(() => ({
-            __proto__: pos$3,
-            "eth1.10": nix.thunk(() => ({ __proto__: pos$2, id: 10n, interface: "eth1" })),
+            [nix.POS]: pos$3,
+            "eth1.10": nix.thunk(() => ({ [nix.POS]: pos$2, id: 10n, interface: "eth1" })),
           })),
           interfaces: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "eth1.10": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 addresses: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     address: nix.thunk(() => nix.str`192.168.10.${id}`),
                     prefixLength: 24n,
                   })),
@@ -61,28 +61,28 @@ export default nix.lambda((args) => (() => {
         })),
       });
       return {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         server: nix.thunk(() => nix.update(nix.app(network, "1"), {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           boot: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             initrd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               systemd: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 enable: true,
                 services: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "boot-blocker": nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     before: nix.thunk(() => ["initrd.target"]),
                     wantedBy: nix.thunk(() => ["initrd.target"]),
                     script: "sleep infinity",
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$10, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$10, Type: "oneshot" })),
                   })),
                 })),
               })),
-              network: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+              network: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
             })),
           })),
         })),

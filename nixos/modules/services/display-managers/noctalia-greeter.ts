@@ -65,46 +65,46 @@ export default nix.lambda((args) => (() => {
   const listOf = nix.thunk(() => nix.attr(from, "listOf"));
   const str = nix.thunk(() => nix.attr(from, "str"));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "noctalia-greeter": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Noctalia Greeter, a minimal login greeter for greetd")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "noctalia-greeter", nix.thunk(() => ({})))),
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Arguments to add to the noctalia-greeter-session invocation.",
                 type: nix.thunk(() => nix.app(listOf, str)),
                 default: [],
               })))),
             passwordlessSyncUsers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(listOf, str)),
                 default: [],
                 description: "Local users allowed to apply the constrained appearance-only sync through\nPolkit without authentication. The constrained sync operation never accepts\nsession command configuration. Leave empty to require administrator\nauthentication for every sync.\n",
                 example: nix.thunk(() => ["alice"]),
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Settings for noctalia-greeter written to greeter.toml.\n\nNote that it also can contain some state, like the most recently used\nsession, which will be clobbered on every activation and boot. This is\ndue to an upstream limitation; the state is due to be moved to another\nfile.\n",
                 type: nix.thunk(() => nix.attr(format, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  cursor: nix.thunk(() => ({ __proto__: pos$3, theme: "Adwaita", size: 24n })),
-                  keyboard: nix.thunk(() => ({ __proto__: pos$4, layout: "us" })),
+                  [nix.POS]: pos$5,
+                  cursor: nix.thunk(() => ({ [nix.POS]: pos$3, theme: "Adwaita", size: 24n })),
+                  keyboard: nix.thunk(() => ({ [nix.POS]: pos$4, layout: "us" })),
                 })),
               })))),
             cursorTheme: nix.thunk(() => ({
-              __proto__: pos$9,
-              package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "cursor theme", nix.thunk(() => ({ __proto__: pos$7, nullable: true, default: null })))),
+              [nix.POS]: pos$9,
+              package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "cursor theme", nix.thunk(() => ({ [nix.POS]: pos$7, nullable: true, default: null })))),
               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   type: str,
                   default: "Adwaita",
                   description: "Name of the cursor theme to use for noctalia-greeter.\n",
@@ -121,29 +121,29 @@ export default nix.lambda((args) => (() => {
         return (nix.asBool(!nix.eq(g, "")) ? nix.force(g) : "greeter");
       })());
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               assertion: nix.thunk(() => !nix.eq(nix.selOr(config, () => ({}), "users", "users", nix.key(nix.force(user))), {})),
               message: nix.thunk(() => nix.str`noctalia-greeter: user ${user} does not exist. Please create it before referencing it.`),
             })),
             nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               assertion: nix.thunk(() => nix.app(all, (name) => nix.builtins.hasAttr(name, nix.thunk(() => nix.sel(config, "users", "users"))), nix.thunk(() => nix.sel(cfg, "passwordlessSyncUsers")))),
               message: "noctalia-greeter: every passwordless sync user must be a configured user.",
             })),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "noctalia-greeter": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   cursor: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "cursorTheme", "package"), null)), nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       theme: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "cursorTheme", "name")))),
                       path: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`${nix.sel(cfg, "cursorTheme", "package")}/share/icons`))),
                     })))),
@@ -151,40 +151,40 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             greetd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               settings: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 default_session: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   command: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "noctalia-greeter-session")} ${nix.app(escapeShellArgs, nix.thunk(() => nix.sel(cfg, "extraArgs")))}`))),
                 })),
               })),
             })),
-            "accounts-daemon": nix.thunk(() => ({ __proto__: pos$23, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
+            "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$23, enable: nix.thunk(() => nix.app(mkDefault, true)) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               settings: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 "10-noctalia-greeter": nix.thunk(() => nix.update({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   "/var/lib/noctalia-greeter": nix.thunk(() => ({
-                    __proto__: pos$27,
-                    d: nix.thunk(() => ({ __proto__: pos$26, user: user, group: group, mode: "0750" })),
+                    [nix.POS]: pos$27,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$26, user: user, group: group, mode: "0750" })),
                   })),
                 }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     "/var/lib/noctalia-greeter/greeter.toml": nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       "L+": nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         argument: nix.thunk(() => nix.str`${nix.app(nix.sel(format, "generate"), "greeter.toml", nix.thunk(() => nix.sel(cfg, "settings")))}`),
                         user: user,
                         group: group,
@@ -196,9 +196,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             polkit: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               enablePkexecWrapper: nix.thunk(() => nix.app(mkDefault, true)),
               extraConfig: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "passwordlessSyncUsers"), [])), nix.thunk(() => nix.app(mkAfter, nix.thunk(() => nix.str`polkit.addRule(function(action, subject) {
@@ -217,7 +217,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const knot_dns = nix.arg($, "knot-dns");
   const curlWithGnuTls = nix.arg($, "curlWithGnuTls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ngtcp2",
       version: "1.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ngtcp2",
           repo: "ngtcp2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => nix.concat([cunit], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), ncurses))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.update(nix.sel(knot_dns, "passthru", "tests"), { __proto__: pos$2, curlWithGnuTls: curlWithGnuTls })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.update(nix.sel(knot_dns, "passthru", "tests"), { [nix.POS]: pos$2, curlWithGnuTls: curlWithGnuTls })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/ngtcp2/ngtcp2",
         description: "Effort to implement RFC9000 QUIC protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

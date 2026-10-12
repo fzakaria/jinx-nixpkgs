@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "speedtest-go",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "showwin",
           repo: "speedtest-go",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["example"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI and Go API to Test Internet Speed using speedtest.net",
         homepage: "https://github.com/showwin/speedtest-go",
         changelog: nix.thunk(() => nix.str`https://github.com/showwin/speedtest-go/releases/tag/v${nix.sel(finalAttrs, "version")}`),

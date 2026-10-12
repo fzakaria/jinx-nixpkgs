@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const splitString = nix.thunk(() => nix.attr(lib, "splitString"));
   const unique = nix.thunk(() => nix.attr(lib, "unique"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     mkModDirDrv: (mods) => (modsDatFile) => (() => {
       const recursiveDeps = (modDrv) => nix.concat([modDrv], nix.builtins.map(recursiveDeps, nix.thunk(() => nix.sel(modDrv, "deps"))));
       const modDrvs = nix.thunk(() => nix.app(unique, nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.builtins.map(recursiveDeps, mods))))));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "factorio-mod-directory",
           preferLocalBuild: true,
           buildCommand: nix.thunk(() => nix.add(nix.str`mkdir -p $out
@@ -51,7 +51,7 @@ done
         const optionalDeps = nix.argOr($_2, "optionalDeps", () => []);
         const recommendedDeps = nix.argOr($_2, "recommendedDeps", () => []);
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: src,
             name: nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), nix.thunk(() => (nix.asBool(!nix.eq(name, null)) ? nix.force(name) : nix.app(removeSuffix, ".zip", nix.thunk(() => nix.app(head, nix.thunk(() => nix.app(splitString, "?", nix.thunk(() => nix.sel(src, "name"))))))))))),
             deps: nix.thunk(() => nix.concat(deps, nix.concat(nix.app(optionals, allOptionalMods, optionalDeps), nix.app(optionals, allRecommendedMods, recommendedDeps)))),

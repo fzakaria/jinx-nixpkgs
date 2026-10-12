@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const scripts_bin_path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, getent, gnugrep, gnused, gnutar, util_linux])));
   const upstream_version = "1.6.13";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "schroot",
       version: nix.thunk(() => nix.str`${upstream_version}-5`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://codeberg.org/shelter/reschroot/archive/release/reschroot-${upstream_version}.tar.gz`),
           hash: "sha256-wF1qG7AhDUAeZSLu4sRl4LQ8bJj3EB1nH56e+Is6zPU=",
         })))),
@@ -76,7 +76,7 @@ done
 rm -vrf $out/lib $out/include
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight virtualisation tool",
         longDescription: "Schroot is a program that allows the user to run a command or a login shell in a chroot environment.\n",
         homepage: "https://codeberg.org/shelter/reschroot",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const publicsuffix_list = nix.arg($, "publicsuffix-list");
   const tagVersion = "2.2019-12-21";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "publicsuffix2",
       version: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => [""]), tagVersion)),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nexB",
           repo: "python-publicsuffix2",
           rev: nix.thunk(() => nix.str`release-${tagVersion}`),
@@ -37,7 +37,7 @@ ln -s ${publicsuffix_list}/share/publicsuffix/public_suffix_list.dat src/publics
 `),
       pythonImportsCheck: nix.thunk(() => ["publicsuffix2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get a public suffix for a domain name using the Public Suffix List",
         homepage: "https://github.com/nexB/python-publicsuffix2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

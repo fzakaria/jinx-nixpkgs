@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const macfuse_stubs = nix.arg($, "macfuse-stubs");
   const gnutls = nix.arg($, "gnutls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ntfs3g",
       version: "2026.9.18",
       outputs: nix.thunk(() => ["out", "dev", "man", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tuxera",
           repo: "ntfs-3g",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Prefer ntfs-3g over the ntfs driver in the kernel.\nln -sv mount.ntfs-3g $out/sbin/mount.ntfs\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tuxera/ntfs-3g",
         description: "FUSE-based NTFS driver with full write support",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ryand56"))]),

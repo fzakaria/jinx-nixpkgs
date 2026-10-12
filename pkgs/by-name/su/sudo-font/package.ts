@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sudo-font",
       version: "3.6",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jenskutilek/sudo-font/releases/download/v${nix.sel(finalAttrs, "version")}/sudo.zip`),
           hash: "sha256-4jw1MGxV/a78U7jAfnRLxfZFOqDzyTctCaqKT/s1mMU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Font for programmers and command line users",
         homepage: "https://www.kutilek.de/sudo-font/",
         changelog: nix.thunk(() => nix.str`https://github.com/jenskutilek/sudo-font/raw/v${nix.sel(finalAttrs, "version")}/sudo/FONTLOG.txt`),

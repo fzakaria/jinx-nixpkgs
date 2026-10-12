@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       re,
     ])));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "7.0.0",
       pname: "ocsigenserver",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "ocsigenserver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +86,7 @@ wrapProgram $out/bin/ocsigenserver \\
 `),
       dontPatchShebangs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://ocsigen.org/ocsigenserver/",
         description: "Full featured Web server",
         longDescription: "A full featured Web server. It implements most features of the HTTP protocol, and has a very powerful extension mechanism that make very easy to plug your own OCaml modules for generating pages.\n",

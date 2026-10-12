@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const librusty_v8 = nix.argOr($, "librusty_v8", () => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchers.nix"), nix.thunk(() => ({}))));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fetchLibrustyV8: nix.thunk(() => nix.attr(from, "fetchLibrustyV8")),
     };
     })())));
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spacetimedb",
       version: "2.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "clockworklabs",
           repo: "spacetimedb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         RUSTY_V8_ARCHIVE: librusty_v8,
         SPACETIMEDB_NIX_BUILD_GIT_COMMIT: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
         CFLAGS: "-O",
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/spacetime`),
       postInstall: "mv $out/bin/spacetimedb-cli $out/bin/spacetime\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
         description: "Full-featured relational database system that lets you run your application logic inside the database",
         homepage: "https://github.com/clockworklabs/SpacetimeDB",

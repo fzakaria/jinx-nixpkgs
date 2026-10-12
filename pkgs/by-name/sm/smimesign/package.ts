@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "smimesign";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "github",
           repo: "smimesign",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.versionString=v${version}`)]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "S/MIME signing utility for macOS and Windows that is compatible with Git",
         homepage: "https://github.com/github/smimesign",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "windows"))),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "enorris"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

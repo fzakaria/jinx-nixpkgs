@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "doc"]);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyca",
           repo: "pynacl",
           tag: version,
@@ -38,10 +38,10 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libsodium]);
       const propagatedNativeBuildInputs = nix.thunk(() => [cffi]);
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook, pytest_xdist]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SODIUM_INSTALL: "system" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SODIUM_INSTALL: "system" }));
       const pythonImportsCheck = nix.thunk(() => ["nacl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python binding to the Networking and Cryptography (NaCl) library",
         homepage: "https://github.com/pyca/pynacl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         outputs,

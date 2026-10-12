@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "13",
       pname: "physlock",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xyb3rt",
           repo: "physlock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace Makefile \\\n  --replace \"-m 4755 -o root -g root\" \"\"\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SESSION=systemd"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Secure suspend/hibernate-friendly alternative to `vlock -an`",
         homepage: "https://github.com/xyb3rt/physlock",
         mainProgram: "physlock",

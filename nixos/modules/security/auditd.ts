@@ -60,44 +60,44 @@ export default nix.lambda((args) => (() => {
         ]))));
   })());
   const pluginOptions = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       options: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         active: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "this plugin")),
         direction: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["in", "out"]))),
             default: "out",
             description: "The option is dictated by the plugin. In or out are the only choices.\nYou cannot make a plugin operate in a way it wasn't  designed just by\nchanging this option. This option is to give a clue to the event dispatcher\nabout which direction events flow.\n\n::: {.note}\nInbound events are not supported yet.\n:::\n",
           })))),
         path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "path")),
             description: "This is the absolute path to the plugin executable.",
           })))),
         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["always"]))),
             readOnly: true,
             default: "always",
             description: "This tells the dispatcher how the plugin wants to be run. There is only\none valid option, `always`, which means the plugin is external and should\nalways be run. The default is `always` since there are no more builtin plugins.\n",
           })))),
         args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")))))),
             default: null,
             description: "This allows you to pass arguments to the child program.\nGenerally plugins do not take arguments and have their own\nconfig file that instructs them how they should be configured.\n",
           })))),
         format: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["binary", "string"]))),
             default: "string",
             description: "Binary passes the data exactly as the audit event dispatcher gets it from\nthe audit daemon. The string option tells the dispatcher to completely change\nthe event into a string suitable for parsing with the audit parsing library.\n",
           })))),
         settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), settingsType)),
                 })))))),
             default: null,
@@ -108,30 +108,30 @@ export default nix.lambda((args) => (() => {
   const prepareConfigValue = (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToYesNo"), v) : (nix.asBool(nix.app(nix.sel(lib, "isList"), v)) ? nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map(prepareConfigValue, v))) : nix.builtins.toString(v)));
   const prepareConfigText = (conf) => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => (nix.asBool(nix.eq(v, null)) ? nix.str`#${k} =` : nix.str`${k} = ${nix.app(prepareConfigValue, v)}`), conf)));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       security: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         auditd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Linux Audit daemon")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "auditd", nix.thunk(() => ({ __proto__: pos$10, default: "audit" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "auditd", nix.thunk(() => ({ [nix.POS]: pos$10, default: "audit" })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), settingsType)),
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     space_left: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "int")), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[0-9]+%")))),
                         default: 75n,
                         description: "If the free space in the filesystem containing log_file drops below this value, the audit daemon takes the action specified by\n{option}`space_left_action`. If the value of {option}`space_left` is specified as a whole number, it is interpreted as an absolute size in mebibytes\n(MiB). If the value is specified as a number between 1 and 99 followed by a percentage sign (e.g., 5%), the audit daemon calculates\nthe absolute size in megabytes based on the size of the filesystem containing {option}`log_file`. (E.g., if the filesystem containing\n{option}`log_file` is 2 gibibytes in size, and {option}`space_left` is set to 25%, then the audit daemon sets {option}`space_left` to approximately 500 mebibytes.\n\n::: {.note}\nThis calculation is performed when the audit daemon starts, so if you resize the filesystem containing {option}`log_file` while the\naudit daemon is running, you should send the audit daemon SIGHUP to re-read the configuration file and recalculate the correct per‐\ncentage.\n:::\n",
                       })))),
                     admin_space_left: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "int")), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[0-9]+%")))),
                         default: 50n,
                         description: "This is a numeric value in mebibytes (MiB) that tells the audit daemon when to perform a configurable action because the system is running\nlow on disk space. This should be considered the last chance to do something before running out of disk space. The numeric value for\nthis parameter should be lower than the number for {option}`space_left`. You may also append a percent sign (e.g. 1%) to the number to have\nthe audit daemon calculate the number based on the disk partition size.\n",
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
               description: "auditd configuration file contents. See {auditd.conf} for supported values.",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), pluginOptions)),
               default: nix.thunk(() => ({})),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  af_unix = {\n    path = lib.getExe' config.security.auditd.package \"audisp-af_unix\";\n    args = [\n      \"0640\"\n      \"/run/audit/audispd_events\"\n      \"string\"\n    ];\n  };\n  remote = {\n    path = lib.getExe' config.security.auditd.package \"audisp-remote\";\n    settings = { };\n  };\n  filter = {\n    path = lib.getExe' config.security.auditd.package \"audisp-filter\";\n    args = [\n      \"allowlist\"\n      \"/etc/audit/audisp-filter.conf\"\n      (lib.getExe' config.security.auditd.package \"audisp-syslog\")\n      \"LOG_USER\"\n      \"LOG_INFO\"\n      \"interpret\"\n    ];\n    settings = { };\n  };\n  syslog = {\n    path = lib.getExe' config.security.auditd.package \"audisp-syslog\";\n    args = [ \"LOG_INFO\" ];\n  };\n}\n")),
@@ -152,10 +152,10 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (() => {
               const cfg$ = nix.thunk(() => nix.sel(cfg, "settings"));
               return (nix.asBool((!nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isInt"), nix.thunk(() => nix.sel(cfg$, "space_left")))) && nix.asBool(nix.app(nix.sel(lib, "isInt"), nix.thunk(() => nix.sel(cfg$, "admin_space_left")))))) || nix.asBool(nix.gt(nix.sel(cfg$, "space_left"), nix.sel(cfg$, "admin_space_left"))))) && nix.asBool((() => {
@@ -167,28 +167,28 @@ export default nix.lambda((args) => (() => {
           })),
         ]),
         security: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           audit: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           auditd: nix.thunk(() => ({
-            __proto__: pos$28,
-            settings: nix.thunk(() => ({ __proto__: pos$22, plugin_dir: "/etc/audit/plugins.d" })),
+            [nix.POS]: pos$28,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$22, plugin_dir: "/etc/audit/plugins.d" })),
             plugins: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               af_unix: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 path: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "audisp-af_unix")),
                 args: nix.thunk(() => ["0640", "/run/audit/audispd_events", "string"]),
               })),
               remote: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 path: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "audisp-remote")),
                 settings: nix.thunk(() => ({})),
               })),
               filter: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 path: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "audisp-filter")),
                 args: nix.thunk(() => [
                   "allowlist",
@@ -201,7 +201,7 @@ export default nix.lambda((args) => (() => {
                 settings: nix.thunk(() => ({})),
               })),
               syslog: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 path: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "audisp-syslog")),
                 args: nix.thunk(() => ["LOG_INFO"]),
               })),
@@ -209,31 +209,31 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "audit/auditd.conf": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               text: nix.thunk(() => nix.app(prepareConfigText, nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           }, nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (pluginName) => (pluginDefinitionConfigValue) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`audit/plugins.d/${pluginName}.conf`), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 text: nix.thunk(() => nix.app(prepareConfigText, nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), pluginDefinitionConfigValue, nix.thunk(() => ["settings"]))))),
               }))), nix.thunk(() => nix.sel(cfg, "plugins"))), nix.app(nix.sel(lib, "mapAttrs'"), (pluginName) => (pluginDefinitionConfigValue) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`audit/audisp-${pluginName}.conf`), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 text: nix.thunk(() => nix.app(prepareConfigText, nix.thunk(() => nix.sel(pluginDefinitionConfigValue, "settings")))),
               }))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(nix.sel(v, "settings"), null), nix.thunk(() => nix.sel(cfg, "plugins")))))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "out"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             auditd: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 LogsDirectory: "audit",
                 LogsDirectoryMode: "0700",
                 RuntimeDirectory: "audit",

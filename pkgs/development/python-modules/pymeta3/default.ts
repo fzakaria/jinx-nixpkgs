@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "PyMeta3",
           hash: "sha256-GL2jJtmpu/WHv8DuC8loZJZNeLBnKIvPVdTZhoHQW8s=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pymeta"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pattern-matching language based on OMeta for Python 3 and 2",
         homepage: "https://github.com/wbond/pymeta3",
         changelog: nix.thunk(() => nix.str`https://github.com/wbond/pymeta3/releases/tag/${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

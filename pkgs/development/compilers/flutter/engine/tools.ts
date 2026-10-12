@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const depot_toolsHash = nix.argOr($, "depot_toolsHash", () => "sha256-k+XQSYJQYc9vAUjwrRxaAlX/sK74W45m5byS31hSpwc=");
   const cipdCommit = nix.argOr($, "cipdCommit", () => "7120a6a515089a3ff5d1f61ff4ee17750dc038af");
   const cipdHashes = nix.argOr($, "cipdHashes", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "linux-386": "sha256-CshLfw49uglvWNwWE4K7ucBUF+IZlXDaIQsTXtFEJ8U=",
     "linux-amd64": "sha256-rxpI+HqfZiOYvzyyQ9P93s70feDmrLgbm4Xh3o88LwQ=",
     "linux-arm64": "sha256-XTTKbw1Q2lin+pf7VADalpBy3AWMTEd7yItsE/pePxw=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     const arch = nix.thunk(() => (nix.asBool(nix.sel(platform, "isx86_64")) ? "amd64" : (nix.asBool((nix.asBool(nix.sel(platform, "isx86")) && nix.asBool(nix.sel(platform, "is32bit")))) ? "386" : (nix.asBool(nix.sel(platform, "isAarch64")) ? "arm64" : (nix.asBool((nix.asBool(nix.sel(platform, "isMips")) && nix.asBool(nix.eq(nix.sel(platform, "parsed", "cpu", "significantByte"), "littleEndian")))) ? "mipsle" : (nix.asBool(nix.sel(platform, "isMips64")) ? nix.str`mips64${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(platform, "parsed", "cpu", "significantByte"), "littleEndian")), "le")}` : (nix.asBool(nix.sel(platform, "isPower64")) ? nix.str`ppc64${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(platform, "parsed", "cpu", "significantByte"), "littleEndian")), "le")}` : (nix.asBool(nix.sel(platform, "isS390x")) ? "s390x" : (nix.asBool(nix.sel(platform, "isRiscV64")) ? "riscv64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported CPU "${nix.sel(platform, "parsed", "cpu", "name")}"`)))))))))));
     const alt_arch = nix.thunk(() => (nix.asBool(nix.sel(platform, "isx86_64")) ? "x64" : (nix.asBool(nix.sel(platform, "isAarch64")) ? "arm64" : nix.sel(platform, "parsed", "cpu", "name"))));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       os: os,
       "alt-os": alt_os,
       arch: arch,
@@ -65,18 +65,18 @@ export default nix.lambda((args) => (() => {
   const host_constants = nix.thunk(() => nix.app(mkConstants, hostPlatform));
   const stdenv_constants = nix.thunk(() => nix.app(mkConstants, nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     depot_tools: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://chromium.googlesource.com/chromium/tools/depot_tools.git",
         rev: depot_toolsCommit,
         hash: depot_toolsHash,
       })))),
     cipd: nix.thunk(() => (() => {
       const unwrapped = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`cipd-${cipdCommit}`), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: nix.thunk(() => nix.str`cipd-${cipdCommit}-unwrapped`),
               url: nix.thunk(() => nix.str`https://chrome-infra-packages.appspot.com/client?platform=${nix.sel(stdenv_constants, "platform")}&version=git_revision:${cipdCommit}`),
               hash: nix.thunk(() => nix.sel(cipdHashes, nix.key(nix.sel(stdenv_constants, "platform")))),

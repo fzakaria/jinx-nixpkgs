@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const pname = "uhk-agent";
   const version = "11.0.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/UltimateHackingKeyboard/agent/releases/download/v${version}/UHK.Agent-${version}-linux-x86_64.AppImage`),
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
       sha256: "sha256-decdwGkN/d7A4KNbQiKoWiZ0CCFxTD+F4ukPWxw2R3k=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -64,7 +64,7 @@ makeWrapper "${electron}/bin/electron" "$out/bin/${pname}" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configuration application of the Ultimate Hacking Keyboard",
         homepage: "https://github.com/UltimateHackingKeyboard/agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "terminus-font-ttf",
       version: "4.49.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.ax86.net/terminus-ttf/files/${nix.sel(finalAttrs, "version")}/terminus-ttf-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-dK7MH4I1RhsIGzcnRA+7f3P5oi9B63RA+uASVDNtxNI=",
         })))),
       installPhase: "runHook preInstall\n\nfor i in *.ttf; do\n  local destname=\"$(echo \"$i\" | sed -E 's|-[[:digit:].]+\\.ttf$|.ttf|')\"\n  install -Dm 644 \"$i\" \"$out/share/fonts/truetype/$destname\"\ndone\n\ninstall -Dm 644 COPYING \"$out/share/doc/terminus-font-ttf/COPYING\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clean fixed width TTF font",
         longDescription: "Monospaced bitmap font designed for long work with computers\n(TTF version, mainly for Java applications)\n",
         homepage: "https://files.ax86.net/terminus-ttf",

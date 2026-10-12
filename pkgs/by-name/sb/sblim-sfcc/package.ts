@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sblim-sfcc",
       version: "2.2.8-unstable-2023-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kkaempf",
           repo: "sblim-sfcc",
           rev: "881fccbaf19e26cbef3da1bebe2b42b3a9de1147",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small Footprint CIM Client Library",
         homepage: "https://sourceforge.net/projects/sblim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cpl10")),

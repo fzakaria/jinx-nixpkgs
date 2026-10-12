@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const themeConfig = nix.argOr($, "themeConfig", () => null);
   const embeddedTheme = nix.argOr($, "embeddedTheme", () => "astronaut");
-  const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "", nix.thunk(() => ({ __proto__: pos$1, General: themeConfig }))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "", nix.thunk(() => ({ [nix.POS]: pos$1, General: themeConfig }))));
   const basePath = "$out/share/sddm/themes/sddm-astronaut-theme";
   const sedString = "ConfigFile=Themes/";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sddm-astronaut",
       version: "0-unstable-2026-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Keyitdev",
           repo: "sddm-astronaut-theme",
           rev: "abb3163c724935af888ba5ea9ac0c4f22afd8048",
@@ -57,11 +57,11 @@ sed -i "s|^${sedString}.*\\\\.conf$|${sedString}${embeddedTheme}.conf|" ${basePa
 ln -sf ${configFile} ${basePath}/Themes/${embeddedTheme}.conf.user
 `))), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern looking qt6 sddm theme",
         homepage: "https://github.com/Keyitdev/sddm-astronaut-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

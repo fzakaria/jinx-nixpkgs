@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libportal_gtk4 = nix.arg($, "libportal-gtk4");
   const libwebp = nix.arg($, "libwebp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "annotator",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phase1geo",
           repo: "annotator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         libwebp,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Image annotation for Elementary OS",
         homepage: "https://github.com/phase1geo/Annotator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CZ-NIC",
           repo: "pyoidc",
           tag: version,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, freezegun, responses, testfixtures]);
       const pythonImportsCheck = nix.thunk(() => ["oic"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenID Connect implementation in Python",
         homepage: "https://github.com/CZ-NIC/pyoidc",
         changelog: nix.thunk(() => nix.str`https://github.com/CZ-NIC/pyoidc/releases/tag/${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

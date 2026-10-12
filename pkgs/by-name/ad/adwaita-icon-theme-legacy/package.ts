@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "adwaita-icon-theme-legacy",
       version: "46.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/adwaita-icon-theme-legacy/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/adwaita-icon-theme-legacy-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VISA9YWJpUty0Ygzt1WxX/vVZ+MYcknXTi4fj5nyL7Q=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, gtk4]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "adwaita-icon-theme-legacy" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "adwaita-icon-theme-legacy" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fullcolor icon theme providing fallback for legacy apps",
         homepage: "https://gitlab.gnome.org/GNOME/adwaita-icon-theme-legacy",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/adwaita-icon-theme-legacy/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

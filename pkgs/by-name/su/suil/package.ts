@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withX11 = nix.argOr($, "withX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const mesonEnable = nix.thunk(() => nix.attr(lib, "mesonEnable"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "suil",
       version: "0.10.20",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lv2",
           repo: "suil",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://drobilla.net/software/suil",
         description: "Lightweight C library for loading and wrapping LV2 plugin UIs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

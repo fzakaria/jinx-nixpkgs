@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const wlr_protocols = nix.arg($, "wlr-protocols");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zsnow",
       version: "0-unstable-2025-12-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DarkVanityOfLight",
           repo: "ZSnoW",
           rev: "db8491639e45dbb925652512cb5941f1ea1a1ec2",
           hash: "sha256-h9o/6X2WPfeJrLIx3WnVo0l4i80zHnmO2KkYuVJY2Sk=",
         })))),
       zigWayland: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ifreund",
           repo: "zig-wayland",
           tag: "v0.4.0",
@@ -58,11 +58,11 @@ substituteInPlace build.zig.zon \\
 `),
       dontUseZigCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "XSnow for Wayland",
         homepage: "https://github.com/DarkVanityOfLight/ZSnoW",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-40")),

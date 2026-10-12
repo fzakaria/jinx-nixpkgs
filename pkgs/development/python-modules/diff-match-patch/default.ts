@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "20241021";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "diff_match_patch",
           version: version,
           hash: "sha256-vq5XqZ+kgIRTKTXuKWi4Zh24YYYuyCxvIfSs3W2DUHM=",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [flit_core]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/diff-match-patch-python/diff-match-patch",
         description: "Diff, Match and Patch libraries for Plain Text",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

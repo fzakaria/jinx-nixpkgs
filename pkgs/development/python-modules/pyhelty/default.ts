@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyhelty",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ebaschiera",
           repo: "pyhelty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pyhelty"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async client library for Helty Flow VMC (mechanical ventilation) units",
         homepage: "https://github.com/ebaschiera/pyhelty",
         changelog: nix.thunk(() => nix.str`https://github.com/ebaschiera/pyhelty/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

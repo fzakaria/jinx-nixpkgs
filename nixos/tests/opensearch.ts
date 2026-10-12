@@ -27,18 +27,18 @@ export default nix.thunk(() => (() => {
       const pkgs = nix.arg($, "pkgs");
       const lib = nix.arg($, "lib");
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "opensearch",
-        meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           machine: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$5,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2048n })),
+                [nix.POS]: pos$5,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  opensearch: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+                  [nix.POS]: pos$4,
+                  opensearch: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
                 })),
               })),
               extraSettings,
@@ -48,33 +48,33 @@ export default nix.thunk(() => (() => {
       };
     })(), formals$1));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     opensearch: nix.thunk(() => nix.app(opensearchTest, nix.thunk(() => ({})))),
     opensearchCustomPathAndUser: nix.thunk(() => nix.app(opensearchTest, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           opensearch: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             dataDir: "/var/opensearch_test",
             user: "open_search",
             group: "open_search",
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             rules: nix.thunk(() => ["d /var/opensearch_test 0700 open_search open_search -"]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
-          groups: nix.thunk(() => ({ __proto__: pos$12, open_search: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$15,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, open_search: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             open_search: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "OpenSearch daemon user",
               group: "open_search",
               isSystemUser: true,

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvidia-vaapi-driver",
       version: "0.0.18",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elFarto",
           repo: "nvidia-vaapi-driver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "addDriverRunpath \"$out/lib/dri/nvidia_drv_video.so\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/elFarto/nvidia-vaapi-driver",
         description: "VA-API implementation using NVIDIA's NVDEC",
         changelog: nix.thunk(() => nix.str`https://github.com/elFarto/nvidia-vaapi-driver/releases/tag/v${nix.sel(finalAttrs, "version")}`),

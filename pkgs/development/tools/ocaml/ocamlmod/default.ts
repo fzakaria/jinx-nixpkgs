@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocamlmod",
       version: "0.1.1",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/gildor478/ocamlmod/releases/download/v${nix.sel(finalAttrs, "version")}/ocamlmod-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-qMG+y/iS+L4qtKiJX01pTTAdQuGLoIA+so1fqY9bm8o=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit2]),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gildor478/ocamlmod",
         description: "Generate OCaml modules from source files",
         mainProgram: "ocamlmod",

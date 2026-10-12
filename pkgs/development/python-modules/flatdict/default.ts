@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gmr",
           repo: "flatdict",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const pythonImportsCheck = nix.thunk(() => ["flatdict"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for interacting with nested dicts as a single level dict with delimited keys",
         homepage: "https://github.com/gmr/flatdict",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

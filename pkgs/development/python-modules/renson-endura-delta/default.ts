@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "renson_endura_delta",
           version: version,
           hash: "sha256-bL4faNFh+ocNNspZCXE6/UZ4nH3mKkHSAEvwtN0xfoE=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, requests_mock]);
       const pythonImportsCheck = nix.thunk(() => ["renson_endura_delta"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to interact with Renson endura delta",
         homepage: "https://github.com/jimmyd-be/Renson-endura-delta-library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

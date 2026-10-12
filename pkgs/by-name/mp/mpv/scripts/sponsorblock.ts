@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mpv_sponsorblock",
       version: "0-unstable-2023-01-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "po5",
           repo: "mpv_sponsorblock",
           rev: "7785c1477103f2fafabfd65fdcf28ef26e6d7f0d",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/po5/mpv_sponsorblock/pull/17/commits/e65b360a7d03a3430b4829e457a6670b2f617b09.patch",
             sha256: "00wv0pvbz0dz2ibka66zhl2jk0pil4pyv6ipjfz37i81q6szyhs5",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/po5/mpv_sponsorblock/pull/17/commits/3832304d959205e99120a14c0560ed3c37104b08.patch",
             sha256: "149ffvn714n2m3mqs8mgrbs24bcr74kqfkx7wyql36ndhm88xd2z",
           })))),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
 `),
       extraScriptsToCopy: nix.thunk(() => ["sponsorblock_shared"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Script for mpv to skip sponsored segments of YouTube videos",
         homepage: "https://github.com/po5/mpv_sponsorblock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

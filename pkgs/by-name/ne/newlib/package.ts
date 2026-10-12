@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const nanoizeNewlib = nix.argOr($, "nanoizeNewlib", () => false);
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "newlib",
       version: "4.6.0.20260123",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://sourceware.org/pub/newlib/newlib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-b/J+O/AiZm9D94AiVb5oDu/3IqwYGxcl0h4ugxhgTuM=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nanoizeNewlib, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "newlib-3.3.0-no-nano-cxx.patch",
               url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-libs/newlib/files/newlib-3.3.0-no-nano-cxx.patch?id=9ee5a1cd6f8da6d084b93b3dbd2e8022a147cfbf",
               sha256: "sha256-S3mf7vwrzSMWZIGE+d61UDH+/SK/ao1hTPee1sElgco=",
@@ -85,12 +85,12 @@ cp $out${nix.sel(finalAttrs, "passthru", "incdir")}/newlib.h $out${nix.sel(final
 )
 `)), "[ \"$(find $out -type f | wc -l)\" -gt 0 ] || (echo '$out is empty' 1>&2 && exit 1)")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         incdir: nix.thunk(() => nix.str`/${nix.sel(stdenvNoLibc, "targetPlatform", "config")}/include`),
         libdir: nix.thunk(() => nix.str`/${nix.sel(stdenvNoLibc, "targetPlatform", "config")}/lib`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C library intended for use on embedded systems",
         homepage: "https://sourceware.org/newlib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

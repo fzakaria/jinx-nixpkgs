@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "json-handler-registry",
       version: "1.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "massultidev",
           repo: "json-handler-registry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dataclasses_json, pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["json_handler_registry"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Registry for JSON handlers",
         homepage: "https://bitbucket.org/massultidev/json-handler-registry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

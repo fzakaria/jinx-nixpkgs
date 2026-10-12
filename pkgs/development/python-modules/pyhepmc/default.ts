@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyhepmc",
       version: "2.16.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-hep",
           repo: "pyhepmc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [backports_zstd, numpy]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DEXTERNAL_PYBIND11=ON"]))),
       })),
       nativeCheckInputs: nix.thunk(() => [graphviz, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pyhepmc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy-to-use Python bindings for HepMC3",
         homepage: "https://github.com/scikit-hep/pyhepmc",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-hep/pyhepmc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

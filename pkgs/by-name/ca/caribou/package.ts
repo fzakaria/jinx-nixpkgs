@@ -42,33 +42,33 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "caribou",
       version: "0.4.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/caribou/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/caribou-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-nEPZ9L0w9P6n94DU6LFPdYkQfFLpy2vSAr0NHCBk3lU=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://bugzilla.gnome.org/attachment.cgi?id=364774",
             hash: "sha256-bU+/PTfkMh0KAUNCDhYYJ2iq9JlWLtwztdO4/EohYZY=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.gnome.org/GNOME/caribou/-/commit/c52ce71c49dc8d6109a58d16cc8d491d7bd1d781.patch",
             hash: "sha256-jbF1Ygp8Q0ENN/5aEpROuK5zkufIfn6cGW8dncl7ET4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-build-modern-vala.patch",
             url: "https://gitlab.gnome.org/GNOME/caribou/-/commit/76fbd11575f918fc898cb0f5defe07f67c11ec38.patch",
             hash: "sha256-XkyRYXWmlcHTx2q81WFUMXV273MKkG5DeTAhdOY/wmM=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "CVE-2021-3567.patch",
             url: "https://gitlab.gnome.org/GNOME/caribou/-/commit/d41c8e44b12222a290eaca16703406b113a630c6.patch",
             hash: "sha256-yIsEqSflpAdQPAB6eNr6fctxzyACu7N1HVfMIdCQou0=",
@@ -100,15 +100,15 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-gtk2-module=no"]),
       postPatch: "patchShebangs .\nsubstituteInPlace libcaribou/Makefile.am --replace \"--shared-library=libcaribou.so.0\" \"--shared-library=$out/lib/libcaribou.so.0\"\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$7, packageName: "caribou" })))),
+        [nix.POS]: pos$8,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$7, packageName: "caribou" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Input assistive technology intended for switch and pointer users",
         mainProgram: "caribou-preferences",
         homepage: "https://gitlab.gnome.org/Archive/caribou",

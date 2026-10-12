@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libdvdcss = nix.arg($, "libdvdcss");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libdvdread",
       version: "4.9.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://dvdnav.mplayerhq.hu/releases/libdvdread-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "d91275471ef69d488b05cf15c60e1cd65e17648bfc692b405787419f47ca424a",
         })))),
       buildInputs: nix.thunk(() => [libdvdcss]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-ldvdcss" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-ldvdcss" })),
       postInstall: "ln -s dvdread $out/include/libdvdread\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://dvdnav.mplayerhq.hu/",
         description: "Library for reading DVDs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

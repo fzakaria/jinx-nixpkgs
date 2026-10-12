@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torchlibrosa",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Yqi+7fnJtBQaBiNN8/ECKfe6huZ2eMzuAkiexO8EQCg=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "export NUMBA_CACHE_DIR=\"$(mktemp -d)\"\n",
       pythonImportsCheck: nix.thunk(() => ["torchlibrosa"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyTorch implementation of part of librosa functions",
         homepage: "https://github.com/qiuqiangkong/torchlibrosa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

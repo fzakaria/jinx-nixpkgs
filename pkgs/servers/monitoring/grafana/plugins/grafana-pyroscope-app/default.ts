@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "grafana-pyroscope-app",
       version: "2.3.1",
       zipHash: "sha256-m9hkW4t+2LtZ9AnCS3qoPieRm0T+a0lfAhd8X45gsNk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Integrate seamlessly with Pyroscope, the open-source continuous profiling platform, providing a smooth, query-less experience for browsing and analyzing profiling data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {

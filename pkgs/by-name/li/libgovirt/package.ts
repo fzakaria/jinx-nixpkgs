@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.9";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgovirt/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgovirt-${version}.tar.xz`),
           sha256: "sha256-6RDuJTyaVYlO4Kq+niQyepom6xj1lqdBbyWL/VnZUdk=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./auto-disable-incompatible-compiler-warnings.patch")]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
               "-Wno-typedef-redefinition",
               "-Wno-missing-field-initializers",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [meson, pkg_config, gobject_introspection, ninja]);
       const propagatedBuildInputs = nix.thunk(() => [glib, librest]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/libgovirt",
         description: "GObject wrapper for the oVirt REST API",
         maintainers: nix.thunk(() => (() => {
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

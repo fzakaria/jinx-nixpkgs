@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "picocrypt-cli",
       version: "1.49",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Picocrypt",
           repo: "CLI",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/picocrypt`),
       vendorHash: "sha256-HscCZ6z/tGLNlm6AjYmAG156LS3VGeye12eyeqYVGtw=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line interface for Picocrypt",
         homepage: "https://github.com/Picocrypt/CLI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const acceptLicense = nix.argOr($, "acceptLicense", () => nix.selOr(config, () => false, "xxe-pe", "acceptLicense"));
   const pkg_path = "$out/lib/xxe";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "XMLmind XML Editor Personal Edition",
       exec: "xxe",
       icon: "xxe",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         nix.assert_((!nix.asBool(!nix.asBool(acceptLicense)) || nix.asBool(nix.builtins.throw("You must accept the XMLmind XML Editor Personal Edition License at\nhttps://www.xmlmind.com/xmleditor/license_xxe_perso.html\nby setting nixpkgs config option `xxe-pe.acceptLicense = true;`\nor by using `xxe-pe.override { acceptLicense = true; }` package.\n"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xx/xxe-pe/package.nix:36:5");
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://www.xmlmind.com/xmleditor/_download/xxe-perso-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
             sha256: "sha256-JZ9nQwMrQL/1HKGwvXoWlnTx55ZK/UYjMJAddCtm0rw=",
           })));
@@ -61,7 +61,7 @@ makeWrapper "${pkg_path}/bin/xxe" "$out/bin/xxe" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openjdk11]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Strictly validating, near WYSIWYG, XML editor with DocBook support",
         homepage: "https://www.xmlmind.com/xmleditor/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -69,7 +69,7 @@ makeWrapper "${pkg_path}/bin/xxe" "$out/bin/xxe" \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -35,53 +35,53 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "owncast"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         owncast: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "owncast, a video live streaming solution")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/owncast",
               description: "The directory where owncast stores its data files. If left as the default value this directory will automatically be created before the owncast server starts, otherwise the sysadmin is responsible for ensuring the directory exists with appropriate ownership and permissions.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open the appropriate ports in the firewall for owncast.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "owncast",
               description: "User account under which owncast runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "owncast",
               description: "Group under which owncast runs.",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "The IP address to bind the owncast web server to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "TCP port where owncast web-gui listens.\n",
             })))),
           "rtmp-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 1935n,
               description: "TCP port where owncast rtmp service listens.\n",
@@ -90,52 +90,52 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             owncast: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "A self-hosted live video and web chat server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "owncast")}/bin/owncast -webserverport ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} -rtmpport ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "rtmp-port")))} -webserverip ${nix.sel(cfg, "listen")}`),
                     Restart: "on-failure",
                   })),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/owncast")), nix.thunk(() => ({ __proto__: pos$12, StateDirectory: "owncast" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/owncast")), nix.thunk(() => ({ [nix.POS]: pos$12, StateDirectory: "owncast" })))),
                 ]))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "owncast")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               owncast: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "owncast system user",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "owncast")), nix.thunk(() => ({ __proto__: pos$18, owncast: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "owncast")), nix.thunk(() => ({ [nix.POS]: pos$18, owncast: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               allowedTCPPorts: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "rtmp-port"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "listen"), "127.0.0.1")), nix.thunk(() => nix.sel(cfg, "port"))))),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "MayNiklas"))];

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "zlib_wrapper",
           version: version,
           hash: "sha256-Yxqc7fSDdnAPlGLzTbgcEQxiTKJDSJmPgm0eV62JiGQ=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["zlib_wrapper"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper around zlib with custom header crc32",
         homepage: "https://pypi.org/project/zlib_wrapper/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

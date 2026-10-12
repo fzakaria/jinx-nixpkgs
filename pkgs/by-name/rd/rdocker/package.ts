@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rdocker",
       version: "0-unstable-2018-07-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dvddarias",
           repo: "rdocker",
           rev: "949377de0154ade2d28c6d4c4ec33b65ea813b5a",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Securely control a remote docker daemon CLI using ssh forwarding, no SSL setup needed",
         mainProgram: "rdocker",
         homepage: "https://github.com/dvddarias/rdocker",

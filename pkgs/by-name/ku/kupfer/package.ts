@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kupfer",
       version: "329",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kupferlauncher/kupfer/releases/download/v${nix.sel(finalAttrs, "version")}/kupfer-v${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-9kX30EYYkb7s/T5VfpyqZQ5F1wpvtWfTT790LZmVqq0=",
         })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smart, quick launcher",
         homepage: "https://kupferlauncher.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

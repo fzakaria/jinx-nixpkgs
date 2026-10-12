@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rust-federation-tester"));
   const configFile = "/run/rust-federation-tester/config.yaml";
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     DynamicUser: true,
     RuntimeDirectory: "rust-federation-tester",
     RuntimeDirectoryPreserve: true,
@@ -69,42 +69,42 @@ export default nix.lambda((args) => (() => {
     SystemCallArchitectures: "native",
     SystemCallFilter: nix.thunk(() => ["@system-service"]),
   }));
-  const secretsInjection = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ __proto__: pos$2, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), configFile));
+  const secretsInjection = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ [nix.POS]: pos$2, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), configFile));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "rust-federation-tester": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "rust-federation-tester")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(lib, "types", "json")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     frontend_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         example: "federation-tester.example.org",
                         description: "URL of the service's frontend.\n",
                       })))),
                     database_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "sqlite:///var/lib/rust-federation-tester/db?mode=rwc",
                         example: "postgres://localhost/db?currentSchema=schema",
                         description: "The database to store accounts and statistics.\n",
                       })))),
                     smtp: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "mail delivery for configured alerts")),
                     })),
                     listen_addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "[::]:8080",
                         example: "unix:/run/rust-federation-tester/rust-federation-tester.sock",
@@ -118,13 +118,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           sockets: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "rust-federation-tester": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Matrix-Federation-Tester in Rust socket",
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => [
@@ -133,15 +133,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "rust-federation-tester-setup": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Matrix-Federation-Tester in Rust",
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rust-federation-tester"))]),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   commonServiceConfig,
                   nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     LoadCredential: nix.thunk(() => nix.sel(secretsInjection, "credentials")),
@@ -153,7 +153,7 @@ migration up
                 ]))),
             })),
             "rust-federation-tester": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Matrix-Federation-Tester in Rust",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               documentation: nix.thunk(() => ["https://github.com/MTRNord/rust-federation-tester"]),
@@ -162,7 +162,7 @@ migration up
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   commonServiceConfig,
                   nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     ExecSearchPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rust-federation-tester"))]))),
                     ExecStart: "rust-federation-tester",
                     Restart: "on-failure",

@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const runCommandCC = nix.arg($, "runCommandCC");
   const testPackage = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "build-test-binaries",
       src: nix.path(here, "./."),
       vendorHash: null,
       buildTestBinaries: true,
     }))));
   return nix.app(runCommandCC, "build-test-binaries-check", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [testPackage]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, testPackage: testPackage })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, testPackage: testPackage })),
     })), "fail() {\n  echo \"Test failed: $1\" >&2\n  exit 1\n}\n\ncommand -v build-test-binaries.test ||\n  fail \"build-test-binaries.test not found in PATH\"\n\nbuild-test-binaries.test -test.v | tee $out ||\n  fail \"build-test-binaries.test failed\"\n\ngrep -q \"Hello from test\" $out ||\n  fail \"Output does not contain expected string\"\n");
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

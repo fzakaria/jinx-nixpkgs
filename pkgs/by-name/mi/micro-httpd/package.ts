@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "micro-httpd",
       version: "20140814",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://acme.com/software/micro_httpd/micro_httpd_14Aug2014.tar.gz",
           sha256: "0mlm24bi31s0s8w55i0sysv2nc1n2x4cfp6dm47slz49h2fz24rk",
         })))),
       preBuild: "makeFlagsArray=(BINDIR=\"$out/bin\" MANDIR=\"$out/share/man/man8\")\nmkdir -p $out/bin\nmkdir -p $out/share/man/man8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://acme.com/software/micro_httpd/",
         description: "Really small HTTP server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

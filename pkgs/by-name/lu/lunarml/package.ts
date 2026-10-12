@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mlton = nix.arg($, "mlton");
   const lua5_3 = nix.arg($, "lua5_3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.3.0",
       pname: "lunarml",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "minoki",
           repo: "LunarML",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $doc/lunarml $out/{bin,lib}\ncp -r bin $out\ncp -r lib $out\ncp -r example $doc/lunarml\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard ML compiler that produces Lua/JavaScript",
         mainProgram: "lunarml",
         homepage: "https://github.com/minoki/LunarML",

@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoLatestModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "govulncheck",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "golang",
           repo: "vuln",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-OvgAEWf7WtPNXZEZYNeSqy7dZP9cF3wfQSt9WU79OIM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       vendorHash: "sha256-wSSxsmEzpFiaDfRsgFWOtA9UnoENm57VVltB+MA6y0E=",
       subPackages: nix.thunk(() => ["cmd/govulncheck"]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: nix.thunk(() => ["--version"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck",
         downloadPage: "https://github.com/golang/vuln",
         changelog: nix.thunk(() => nix.str`https://github.com/golang/vuln/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

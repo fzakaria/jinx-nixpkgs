@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sherpa-onnx",
       version: nix.thunk(() => nix.attr(sherpa_onnx, "version")),
       pyproject: false,
@@ -28,7 +28,7 @@ runHook postInstall
 `),
       pythonImportsCheck: nix.thunk(() => ["sherpa_onnx"]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(sherpa_onnx, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for sherpa-onnx speech recognition",
       })),
     })));

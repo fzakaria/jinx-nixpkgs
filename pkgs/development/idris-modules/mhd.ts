@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mhd",
       version: "2016-04-22",
       ipkgName: "MHD",
       idrisDeps: nix.thunk(() => [contrib, effects]),
       extraBuildInputs: nix.thunk(() => [libmicrohttpd]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colin-adams",
           repo: "idris-libmicrohttpd",
           rev: "a8808bc06fa292d4b3389f32cb00716e43122a46",
           sha256: "0wvp1qi3bn4hk52vsid6acfwvwbs58sggylbpjvkxzycsbhz4nx4",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Binding of the GNU libmicrohttpd library to the Idris C backend",
         homepage: "https://github.com/colin-adams/idris-libmicrohttpd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

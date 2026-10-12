@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "...",
       pname: "nvidia-libs",
       src: nix.thunk(() => nix.attr(nvidia_driver, "src")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         libx11,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         LOCALBASE: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
         VKICD_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/vulkan/icd.d`),
         VKLAYERS_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/vulkan/implicit_layer.d`),

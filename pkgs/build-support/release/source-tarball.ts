@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const bootstrapBuildInputs = nix.argOr($, "bootstrapBuildInputs", () => [autoconf, automake, libtool]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       dontBuild: true,
       dontInstall: true,
       doDist: true,
@@ -57,7 +57,7 @@ eval "$postAutoconf"
 `),
       failureHook: "if test -n \"$succeedOnFailure\"; then\n    if test -n \"$keepBuildDirectory\"; then\n        KEEPBUILDDIR=\"$out/`basename $TMPDIR`\"\n        echo \"Copying build directory to $KEEPBUILDDIR\"\n        mkdir -p $KEEPBUILDDIR\n        cp -R \"$TMPDIR/\"* $KEEPBUILDDIR\n    fi\nfi\n",
     }, nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["lib"])), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.add(nix.add(nix.add(name, "-"), version), versionSuffix)),
       buildInputs: nix.thunk(() => nix.concat(buildInputs, bootstrapBuildInputs)),
       preUnpack: "mkdir -p $out/nix-support\n",
@@ -66,12 +66,12 @@ eval "$postAutoconf"
       tarballs: "*.tar.gz *.tar.bz2 *.tar.xz",
       finalPhase: "for i in \"$out/tarballs/\"*; do\n    echo \"file source-dist $i\" >> $out/nix-support/hydra-build-products\ndone\n\n# Try to figure out the release name.\nreleaseName=$( (cd $out/tarballs && ls) | head -n 1 | sed -e 's^\\.[a-z].*^^')\ntest -n \"$releaseName\" && (echo \"$releaseName\" >> $out/nix-support/hydra-release-name)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         src: src,
         version: nix.thunk(() => nix.add(version, versionSuffix)),
       })),
       meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Source distribution",
         schedulingPriority: 200n,
       })),

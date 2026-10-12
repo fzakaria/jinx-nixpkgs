@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pecita",
       version: "5.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://pecita.eu/b/Pecita.otf",
           hash: "sha256-D9IZ+p4UFHUNt9me7D4vv0x6rMK9IaViKPliCEyX6t4=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/opentype\ncp -v $src $out/share/fonts/opentype/Pecita.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pecita.eu/police-en.php",
         description: "Handwritten font with connected glyphs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

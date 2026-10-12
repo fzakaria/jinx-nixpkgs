@@ -40,50 +40,50 @@ export default nix.lambda((args) => (() => {
       const walBackupDir = "/var/cache/wals/pg_wal";
       const recoveryFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "recovery.signal", ""));
       return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: nix.thunk(() => nix.str`postgresql-wal-receiver-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "euxane"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               systemd: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 tmpfiles: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   rules: nix.thunk(() => ["d /var/cache/wals 0750 postgres postgres - -"]),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   "postgresql-wal-receiver-main": nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       RestartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 5n)),
                     })),
                   })),
                   postgresql: nix.thunk(() => ({
-                    __proto__: pos$6,
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$5, ReadWritePaths: nix.thunk(() => ["/var/cache/wals"]) })),
+                    [nix.POS]: pos$6,
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, ReadWritePaths: nix.thunk(() => ["/var/cache/wals"]) })),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   package: package$,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     max_replication_slots: 10n,
                     max_wal_senders: 10n,
                     recovery_end_command: "touch recovery.done",
@@ -97,11 +97,11 @@ select * from pg_create_physical_replication_slot('${replicationSlot}');
 `))),
                 })),
                 postgresqlWalReceiver: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   receivers: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     main: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       postgresqlPackage: package$,
                       connection: replicationConn,
                       slot: replicationSlot,
@@ -160,6 +160,6 @@ machine.succeed(
 `),
       };
     })(), formals$2));
-  return nix.app(genTests, nix.thunk(() => ({ __proto__: pos$18, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$18, makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql-wal-receiver.ts.map

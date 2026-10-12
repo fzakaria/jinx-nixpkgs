@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "ssh-agent-auth",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nicoo"))];
@@ -41,39 +41,39 @@ export default nix.lambda((args) => (() => {
       const nodeConfig = (n) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             users: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               admin: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["wheel"]),
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$2, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$3,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$2, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
-              foo: nix.thunk(() => ({ __proto__: pos$5, isNormalUser: true })),
+              foo: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pam: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               sshAgentAuth: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 authorizedKeysFiles: nix.thunk(() => ["/etc/ssh/authorized_keys.d/%u"]),
                 enable: true,
               })),
             })),
           }, [
-            [nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), n), nix.thunk(() => ({ __proto__: pos$10, enable: true, wheelNeedsPassword: true }))],
+            [nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), n), nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, wheelNeedsPassword: true }))],
           ])),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
-            openssh: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+            [nix.POS]: pos$13,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           })),
         };
       })(), formals$2);

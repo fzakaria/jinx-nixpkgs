@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.38.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "outscale",
           repo: "osc-sdk-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/test_net.py"]);
       const pythonImportsCheck = nix.thunk(() => ["osc_sdk_python"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDK to perform actions on Outscale API",
         homepage: "https://github.com/outscale/osc-sdk-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

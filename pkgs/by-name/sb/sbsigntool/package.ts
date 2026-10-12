@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const deterministic_host_uname = nix.arg($, "deterministic-host-uname");
   const withMan = nix.argOr($, "withMan", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sbsigntool",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/jejb/sbsigntools.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5DInWgl1gThjjfGOsts1H1s1GbMCkd0gjbmG3gA3Fhg=",
@@ -61,7 +61,7 @@ automake --add-missing -Wno-portability
       configureFlags: nix.thunk(() => ["CFLAGS=-Wno-error=unused-but-set-variable"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for maintaining UEFI signature databases",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/jejb/sbsigntools.git",
         maintainers: nix.thunk(() => (() => {

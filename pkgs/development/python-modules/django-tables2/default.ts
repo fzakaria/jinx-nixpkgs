@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jieter",
           repo: "django-tables2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tablib: nix.thunk(() => nix.concat([tablib], nix.concat(nix.sel(tablib, "optional-dependencies", "xls"), nix.sel(tablib, "optional-dependencies", "yaml")))),
       }));
-      const env = nix.thunk(() => ({ __proto__: pos$3, DJANGO_SETTINGS_MODULE: "tests.app.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, DJANGO_SETTINGS_MODULE: "tests.app.settings" }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         django_filter,
         lxml,
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/jieter/django-tables2/blob/v${version}/CHANGELOG.md`),
         description: "Django app for creating HTML tables",
         homepage: "https://github.com/jieter/django-tables2",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

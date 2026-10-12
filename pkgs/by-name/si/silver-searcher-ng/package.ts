@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "silver-searcher-ng",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "silver-searcher",
           repo: "silver-searcher-ng",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-IiVFbS9XGmqcGN4NRXFC07cV6bGKDs9C2y5XxJKdvFk=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./bash-completion.patch")]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lgcc_s" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lgcc_s" })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [pcre2, zlib, xz]),
       doCheck: true,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/silver-searcher/silver-searcher-ng",
         description: "Code-searching tool similar to ack, but faster",
         maintainers: nix.thunk(() => (() => {

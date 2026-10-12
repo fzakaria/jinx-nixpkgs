@@ -10,33 +10,33 @@ const pos$5 = nix.positions(here + "/pinned.nix", [["version", 28, 5], ["hash", 
 const pos$6 = nix.positions(here + "/pinned.nix", [["cargo-pgrx_0_16_0", 3, 3], ["cargo-pgrx_0_16_1", 9, 3], ["cargo-pgrx_0_17_0", 15, 3], ["cargo-pgrx_0_18_0", 21, 3], ["cargo-pgrx_0_19_0", 27, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$6,
+  [nix.POS]: pos$6,
   "cargo-pgrx_0_16_0": nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "0.16.0",
     hash: "sha256-emNR7fXNVD9sY/Mdno7mwpH6l/7AD28cBUsFRn9je50=",
     cargoHash: "sha256-3eyBDWDoCzSU0tbab8qbjSnBkkN0oOgd7YbuyHLEHYw=",
   })),
   "cargo-pgrx_0_16_1": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "0.16.1",
     hash: "sha256-AjoBr+/sEPdzbD0wLUNVm2syCySkGaFOFQ70TST1U9w=",
     cargoHash: "sha256-95DHq5GLnAqb3bbKwwaeBeKEmkfRh81ZTRaJ7L59DAg=",
   })),
   "cargo-pgrx_0_17_0": nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "0.17.0",
     hash: "sha256-Ld7m7ggxlf8FufpeiAE9qcu49X0SgX6XXHS6KIewGyA=",
     cargoHash: "sha256-hNj39YzJna8iZxnlrLz+uLduxaD+uvggQRM7ng3MN1k=",
   })),
   "cargo-pgrx_0_18_0": nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: "0.18.0",
     hash: "sha256-sBezVDNnyqFQwvFm/CkhlY1zm7Ii2NQPeTfoUQu55e0=",
     cargoHash: "sha256-/miOlhZ87fnKT1f+XVaWK4xAzHje8OGVlYl4iU0Sf34=",
   })),
   "cargo-pgrx_0_19_0": nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     version: "0.19.0",
     hash: "sha256-1OTE+mPtR9vaJhVGvq9X3fNd1nRoedoABUaVGQvFwNU=",
     cargoHash: "sha256-dTfbgc6pGLP3s9y3zfIk97XUkPiLngdIoilIX7UM4W8=",

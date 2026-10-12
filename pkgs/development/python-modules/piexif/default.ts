@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hMatoba",
           repo: "Piexif",
           rev: version,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/hMatoba/Piexif/commit/5209b53e9689ce28dcd045f384633378d619718f.patch",
             sha256: "0ak571jf76r1vszp2g3cd5c16fz2zkbi43scayy933m5qdrhd8g1",
           })))),
       ]);
       const nativeCheckInputs = nix.thunk(() => [pillow]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simplify Exif manipulations with Python",
         homepage: "https://github.com/hMatoba/Piexif",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

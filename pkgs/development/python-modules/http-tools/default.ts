@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const mitmproxy = nix.arg($, "mitmproxy");
   const markupsafe = nix.arg($, "markupsafe");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "http-tools",
       version: "6.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MobSF",
           repo: "httptools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["mitmproxy"]),
       pythonImportsCheck: nix.thunk(() => ["http_tools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "httptools helps you to capture, repeat and live intercept HTTP requests with scripting capabilities",
         homepage: "https://github.com/MobSF/httptools",
         changelog: nix.thunk(() => nix.str`https://github.com/MobSF/httptools/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

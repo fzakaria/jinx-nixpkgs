@@ -107,22 +107,22 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "stash"));
   const stashType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       options: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(types, "path")),
             description: "location of your media files",
           })))),
         excludevideo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Whether to exclude video files from being scanned into Stash",
           })))),
         excludeimage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Whether to exclude image files from being scanned into Stash",
@@ -130,52 +130,52 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const stashBoxType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       options: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "The name of the Stash Box",
           })))),
         endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "URL to the Stash Box graphql api",
           })))),
         apikey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Stash Box API key",
           })))),
       })),
     }))));
   const recentlyReleased = (mode) => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     __typename: "CustomFilter",
     message: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       id: "recently_released_objects",
-      values: nix.thunk(() => ({ __proto__: pos$11, objects: mode })),
+      values: nix.thunk(() => ({ [nix.POS]: pos$11, objects: mode })),
     })),
     mode: nix.thunk(() => nix.app(toUpper, mode)),
     sortBy: "date",
     direction: "DESC",
   });
   const recentlyAdded = (mode) => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     __typename: "CustomFilter",
     message: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       id: "recently_added_objects",
-      values: nix.thunk(() => ({ __proto__: pos$14, objects: mode })),
+      values: nix.thunk(() => ({ [nix.POS]: pos$14, objects: mode })),
     })),
     mode: nix.thunk(() => nix.app(toUpper, mode)),
     sortBy: "created_at",
     direction: "DESC",
   });
   const uiPresets = nix.thunk(() => ({
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     recentlyReleasedScenes: nix.thunk(() => nix.app(recentlyReleased, "Scenes")),
     recentlyAddedScenes: nix.thunk(() => nix.app(recentlyAdded, "Scenes")),
     recentlyReleasedGalleries: nix.thunk(() => nix.app(recentlyReleased, "Galleries")),
@@ -189,41 +189,41 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const settingsType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
       options: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "localhost",
             example: "::1",
             description: "The ip address that Stash should bind to.",
           })))),
         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.sel(types, "port")),
             default: 9999n,
             example: 1234n,
             description: "The port that Stash should listen on.",
           })))),
         stash: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), stashType)),
             description: "Add directories containing your adult videos and images.\nStash will use these directories to find videos and/or images during scanning.\n",
             example: nix.thunk(() => nix.app(literalExpression, "{\n  stash = [\n    {\n      Path = \"/media/drive/videos\";\n      ExcludeImage = true;\n    }\n  ];\n}\n")),
           })))),
         stash_boxes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), stashBoxType)),
             default: [],
             description: "Stash-box facilitates automated tagging of scenes and performers based on fingerprints and filenames",
             example: nix.thunk(() => nix.app(literalExpression, "{\n  stash_boxes = [\n    {\n      name = \"StashDB\";\n      endpoint = \"https://stashdb.org/graphql\";\n      apikey = \"aaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbb.cccccccccccccc\";\n    }\n  ];\n}\n")),
           })))),
         ui: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           frontPageContent: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Search filters to display on the front page.",
               type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "attrs")))), nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "attrs")))))))),
               default: (presets) => [
@@ -238,163 +238,163 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         blobs_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/blobs`),
             description: "Path to blobs",
           })))),
         cache: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/cache`),
             description: "Path to cache",
           })))),
         database: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/go.sqlite`),
             description: "Path to the SQLite database",
           })))),
         generated: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/generated`),
             description: "Path to generated files",
           })))),
         plugins_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/plugins`),
             description: "Path to scrapers",
           })))),
         scrapers_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(types, "path")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/scrapers`),
             description: "Path to scrapers",
           })))),
         blobs_storage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["FILESYSTEM", "DATABASE"]))),
             default: "FILESYSTEM",
             description: "Where to store blobs",
           })))),
         calculate_md5: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Whether to calculate MD5 checksums for scene video files",
           })))),
         create_image_clip_from_videos: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Create Image Clips from Video extensions when Videos are disabled in Library",
           })))),
         dangerous_allow_public_without_auth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Learn more at <https://docs.stashapp.cc/networking/authentication-required-when-accessing-stash-from-the-internet/>",
           })))),
         gallery_cover_regex: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "(poster|cover|folder|board)\\.[^.]+$",
             description: "Regex used to identify images as gallery covers",
           })))),
         no_proxy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "localhost,127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12",
             description: "A list of domains for which the proxy must not be used",
           })))),
         nobrowser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "If we should not auto-open a browser window on startup",
           })))),
         notifications_enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "If we should send notifications to the desktop",
           })))),
         parallel_tasks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             type: nix.thunk(() => nix.sel(types, "int")),
             default: 1n,
             description: "Number of parallel tasks to start during scan/generate",
           })))),
         preview_audio: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Include audio stream in previews",
           })))),
         preview_exclude_end: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             type: nix.thunk(() => nix.sel(types, "int")),
             default: 0n,
             description: "Duration of start of video to exclude when generating previews",
           })))),
         preview_exclude_start: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             type: nix.thunk(() => nix.sel(types, "int")),
             default: 0n,
             description: "Duration of end of video to exclude when generating previews",
           })))),
         preview_segment_duration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             type: nix.thunk(() => nix.sel(types, "float")),
             default: 0.75,
             description: "Preview segment duration, in seconds",
           })))),
         preview_segments: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             type: nix.thunk(() => nix.sel(types, "int")),
             default: 12n,
             description: "Number of segments in a preview file",
           })))),
         security_tripwire_accessed_from_public_internet: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: "",
             description: "Learn more at <https://docs.stashapp.cc/networking/authentication-required-when-accessing-stash-from-the-internet/>",
           })))),
         sequential_scanning: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Modifies behaviour of the scanning functionality to generate support files (previews/sprites/phash) at the same time as fingerprinting/screenshotting",
           })))),
         show_one_time_moved_notification: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Whether a small notification to inform the user that Stash will no longer show a terminal window, and instead will be available in the tray",
           })))),
         sound_on_preview: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: "Enable sound on mouseover previews",
           })))),
         theme_color: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "#202b33",
             description: "Sets the `theme-color` property in the UI",
           })))),
         video_file_naming_algorithm: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["OSHASH", "MD5"]))),
             default: "OSHASH",
             description: "Hash algorithm to use for generated file naming",
           })))),
         write_image_thumbnails: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Write image thumbnails to disk when generating on the fly",
@@ -402,22 +402,22 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const pluginType = (kind) => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
       default: [],
       description: nix.thunk(() => nix.str`The ${kind} Stash should be started with.
 `),
       apply: (srcs) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`stash-${kind}`), nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           srcs: srcs,
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yq-go"))]),
           preferLocalBuild: true,
         })), "mkdir -p $out\ntouch $out/.keep\nfind $srcs -mindepth 1 -name '*.yml' | while read plugin_file; do\n  grep -q \"^#pkgignore\" \"$plugin_file\" && continue\n\n  plugin_dir=$(dirname $plugin_file)\n  out_path=$out/$(basename $plugin_dir)\n  mkdir -p $out_path\n  ls $plugin_dir | xargs -I{} ln -sf \"$plugin_dir/{}\" $out_path\n\n  env \\\n    plugin_id=$(basename $plugin_file .yml) \\\n    plugin_name=\"$(yq '.name' $plugin_file)\" \\\n    plugin_description=\"$(yq '.description' $plugin_file)\" \\\n    plugin_version=\"$(yq '.version' $plugin_file)\" \\\n    plugin_files=\"$(find -L $out_path -mindepth 1 -type f -printf \"%P\\n\")\" \\\n    yq -n '\n      .id = strenv(plugin_id) |\n      .name = strenv(plugin_name) |\n      (\n        strenv(plugin_description) as $desc |\n        with(select($desc == \"null\"); .metadata = {}) |\n        with(select($desc != \"null\"); .metadata.description = $desc)\n      ) |\n      (\n        strenv(plugin_version) as $ver |\n        with(select($ver == \"null\"); .version = \"Unknown\") |\n        with(select($ver != \"null\"); .version = $ver)\n      ) |\n      .date = (now | format_datetime(\"2006-01-02 15:04:05\")) |\n      .files = (strenv(plugin_files) | split(\"\\n\"))\n    ' > $out_path/manifest\ndone\n"),
     })));
   return {
-    __proto__: pos$87,
+    [nix.POS]: pos$87,
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -425,63 +425,63 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       services: nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         stash: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           enable: nix.thunk(() => nix.app(mkEnableOption, "stash")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "stash", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "stash",
               description: "User under which Stash runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "stash",
               description: "Group under which Stash runs.",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/stash",
               description: "The directory where Stash stores its files.",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the Stash web interface.",
             })))),
           username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "nonEmptyStr")))),
               default: null,
               example: "admin",
               description: "Username for login.\n\n::: {.warning}\n  This option takes precedence over {option}`services.stash.settings.username`\n::\n\n",
             })))),
           passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/path/to/password/file",
               description: "Path to file containing password for login.\n\n::: {.warning}\n  This option takes precedence over {option}`services.stash.settings.password`\n::\n\n",
             })))),
           jwtSecretKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "Path to file containing a secret used to sign JWT tokens.",
             })))),
           sessionStoreKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "Path to file containing a secret for session store.",
             })))),
           mutableSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               description: "Whether the Stash config.yml is writeable by Stash.\n\nIf `false`, Any config changes done from within Stash UI will be temporary and reset to those defined in {option}`services.stash.settings` upon `Stash.service` restart.\nIf `true`, the {option}`services.stash.settings` will only be used to initialize the Stash configuration if it does not exist, and are subsequently ignored.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
@@ -490,25 +490,25 @@ export default nix.lambda((args) => (() => {
           mutableScrapers: nix.thunk(() => nix.app(mkEnableOption, "Whether scrapers can be installed, updated, uninstalled manually.")),
           plugins: nix.thunk(() => nix.app(pluginType, "plugins")),
           scrapers: nix.thunk(() => nix.app(pluginType, "scrapers")),
-          settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$65, type: settingsType, description: "Stash configuration" })))),
+          settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$65, type: settingsType, description: "Stash configuration" })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "xor"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "username"), null)) || nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "settings", "username"), null)))), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "passwordFile"), null)) || nix.asBool(!nix.eq(nix.selOr(cfg, () => null, "settings", "password"), null))))))),
             message: "You must set either both username and password, or neither.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           stash: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             settings: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               username: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "username"), null)), nix.thunk(() => nix.sel(cfg, "username")))),
               plugins_path: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "mutablePlugins"))), nix.thunk(() => nix.sel(cfg, "plugins")))),
               scrapers_path: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "mutableScrapers"))), nix.thunk(() => nix.sel(cfg, "scrapers")))),
@@ -516,17 +516,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           firewall: nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$75,
+              [nix.POS]: pos$75,
               group: nix.thunk(() => nix.attr(cfg, "group")),
               isSystemUser: true,
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -535,16 +535,16 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             settings: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               "10-stash-datadir": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   d: nix.thunk(() => ({
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0755",
@@ -554,9 +554,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             stash: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => (() => {
@@ -568,11 +568,11 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               environment: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 STASH_CONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/config.yml`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 DynamicUser: false,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),

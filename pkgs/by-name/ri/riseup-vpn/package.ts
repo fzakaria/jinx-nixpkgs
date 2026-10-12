@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const provider = nix.argOr($, "provider", () => "riseup");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`${provider}-vpn`),
       version: "0.24.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "0xacab.org",
           owner: "leap",
           repo: "bitmask-vpn",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             qtbase: nix.thunk(() => nix.attr(qt6, "qtbase")),
             qtdeclarative: nix.thunk(() => nix.attr(qt6, "qtdeclarative")),
             qttools: nix.thunk(() => nix.attr(qt6, "qttools")),
@@ -118,9 +118,9 @@ install -m 444 -D providers/${provider}/assets/icon.svg $out/share/icons/hicolor
 `)))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "bitmask-root": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/helpers`),
@@ -139,7 +139,7 @@ substituteInPlace se.leap.bitmask.policy \\
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Generic VPN client by LEAP",
         longDescription: nix.thunk(() => nix.str`Bitmask, by LEAP (LEAP Encryption Access Project),
 is an application to provide easy and secure encrypted communication

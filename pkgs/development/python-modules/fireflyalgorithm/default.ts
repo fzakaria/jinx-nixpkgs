@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firefly-cpp",
           repo: "FireflyAlgorithm",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["fireflyalgorithm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the stochastic nature-inspired algorithm for optimization",
         mainProgram: "firefly-algorithm",
         homepage: "https://github.com/firefly-cpp/FireflyAlgorithm",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vega",
           repo: "vl-convert",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./libffi-sys-system-feature.patch")]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
           hash: "sha256-P228JMS5K0TbZYyPgKhIbZ1NviwO1jHO5dClFYerNbI=",
         }))));
       const buildAndTestSubdir = "vl-convert-python";
-      const env = nix.thunk(() => ({ __proto__: pos$3, RUSTY_V8_ARCHIVE: librusty_v8 }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, RUSTY_V8_ARCHIVE: librusty_v8 }));
       const build_system = nix.thunk(() => [
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libffi]);
       const pythonImportsCheck = nix.thunk(() => ["vl_convert"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "vl-convert-python@(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Utilities for converting Vega-Lite specs from the command line and Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/vega/vl-convert",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

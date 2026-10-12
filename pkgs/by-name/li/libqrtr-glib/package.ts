@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_43 = nix.arg($, "docbook_xml_dtd_43");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libqrtr-glib",
       version: "1.4.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "mobile-broadband",
           repo: "libqrtr-glib",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       buildInputs: nix.thunk(() => [glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.freedesktop.org/mobile-broadband/libqrtr-glib",
         description: "Qualcomm IPC Router protocol helper library",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const package$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({}))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({})))));
   return nix.app(nix.sel(package$, "overrideAttrs"), (finalAttrs) => (oldAttrs) => ({
-      __proto__: pos$3,
-      passthru: nix.thunk(() => nix.update({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") }, nix.selOr(oldAttrs, () => ({}), "passthru"))),
+      [nix.POS]: pos$3,
+      passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") }, nix.selOr(oldAttrs, () => ({}), "passthru"))),
       pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", finalAttrs)),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy to get into fully moddable First Person Shooter with advanced movement mechanics",
         homepage: "https://krunker.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

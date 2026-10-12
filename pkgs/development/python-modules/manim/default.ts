@@ -170,13 +170,13 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "manim",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ManimCommunity",
           repo: "manim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -215,7 +215,7 @@ export default nix.lambda((args) => (() => {
         watchdog,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => [audioop_lts])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         jupyterlab: nix.thunk(() => [jupyterlab, notebook]),
         typst: nix.thunk(() => [typst]),
       })),
@@ -237,7 +237,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.builtins.import(nix.path(here, "./failing_tests.nix"))),
       pythonImportsCheck: nix.thunk(() => ["manim"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Animation engine for explanatory math videos - Community version",
         longDescription: "Manim is an animation engine for explanatory math videos. It's used to\ncreate precise animations programmatically, as seen in the videos of\n3Blue1Brown on YouTube. This is the community maintained version of\nmanim.\n",
         mainProgram: "manim",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildNavidromeGoPlugin = nix.arg($, "buildNavidromeGoPlugin");
   return nix.app(buildNavidromeGoPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "audiomuseai",
       version: "10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NeptuneHub",
           repo: "AudioMuse-AI-NV-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-mXes+doBSa5kcfHp1cuzTz30wnyyPN7NLC0iOSL8FDo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/NeptuneHub/AudioMuse-AI-NV-plugin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Navidrome plugin that integrates core AudioMuse-AI features into the Navidrome frontend.",
         homepage: "https://github.com/NeptuneHub/AudioMuse-AI-NV-plugin",

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chtd",
           repo: "psycopg2cffi",
           tag: version,
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [postgresql, postgresqlTestHook, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["testEmptyArray"]);
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["psycopg2cffi/tests/psycopg2_tests/test_notify.py"])));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PGDATABASE: "psycopg2_test" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PGDATABASE: "psycopg2_test" }));
       const pythonImportsCheck = nix.thunk(() => ["psycopg2cffi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of the psycopg2 module using cffi",
         homepage: "https://pypi.org/project/psycopg2cffi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

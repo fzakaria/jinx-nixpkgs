@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const extraCheckInputs = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(home_assistant, "python3Packages")), null);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       alexa: nix.thunk(() => nix.app(concatMap, getComponentDeps, nix.thunk(() => ["cloud", "frontend", "stream"]))),
       analytics: nix.thunk(() => nix.app(getComponentDeps, "homeassistant_hardware")),
       anthropic: nix.thunk(() => nix.concat(nix.app(getComponentDeps, "ai_task"), nix.app(getComponentDeps, "openai_conversation"))),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   const extraDisabledTestPaths = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     ecovacs: nix.thunk(() => [
       "tests/components/ecovacs/test_vacuum.py::test_clean_area_room_from_not_current_map",
       "tests/components/ecovacs/test_vacuum.py::test_clean_area_no_map",
@@ -109,14 +109,14 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const extraDisabledTests = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     conversation: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_error_no_device_on_floor"]))),
     homeassistant_connect_zbt2: nix.thunk(() => ["test_usb_device_reactivity"]),
     homeassistant: nix.thunk(() => ["test_deprecated_installation_issue_core"]),
     zeroconf: nix.thunk(() => ["test_subscribe_discovery"]),
   }));
   return nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(home_assistant, "supportedComponentsWithTests")), (component) => nix.app(nix.sel(home_assistant, "overridePythonAttrs"), (old) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.str`homeassistant-test-${component}`),
         pyproject: false,
         dontBuild: true,
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         dontUsePytestXdist: true,
         enabledTestPaths: nix.thunk(() => [nix.thunk(() => nix.str`tests/components/${component}`)]),
         meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           broken: nix.thunk(() => nix.app(nix.sel(lib, "elem"), component, [])),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         })),

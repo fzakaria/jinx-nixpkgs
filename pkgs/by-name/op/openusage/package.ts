@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openusage",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robinebers/openusage/releases/download/v${nix.sel(finalAttrs, "version")}/OpenUsage-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-ycKm7kzOM+fv5Jhjv3JrG+oyK3LEOj9Ps7ll2Pz0T9c=",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Burning through your subscriptions too fast? Paying for stuff you never use? Stop guessing. OpenUsage is free and open source.",
         homepage: "https://www.openusage.ai/",
         changelog: nix.thunk(() => nix.str`https://github.com/robinebers/openusage/releases/tag/v${nix.sel(finalAttrs, "version")}`),

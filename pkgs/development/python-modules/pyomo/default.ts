@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "pyomo",
           owner: "pyomo",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["doc/", "examples/", "pyomo/environ/tests/test_environ.py"]);
       const disabledTests = nix.thunk(() => ["test_get_os_version"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Optimization Modeling Objects",
         homepage: "http://www.pyomo.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Pyomo/pyomo/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pyomo",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

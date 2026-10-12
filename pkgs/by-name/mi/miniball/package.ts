@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "miniball",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.inf.ethz.ch/personal/gaertner/miniball/Miniball.hpp",
           sha256: "1piap5v8wqq0aachrq6j50qkr01gzpyndl6vf661vyykrfq0nnd2",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/include\ncp $src $out/include/miniball.hpp\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smallest Enclosing Balls of Points",
         homepage: "https://www.inf.ethz.ch/personal/gaertner/miniball.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

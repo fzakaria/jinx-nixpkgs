@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocamlgraph",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/backtracking/ocamlgraph/releases/download/${nix.sel(finalAttrs, "version")}/ocamlgraph-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-sJViEIY8wk9IAgO6PC7wbfrlV5U2oFdENk595YgisjA=",
         })))),
       minimalOCamlVersion: "4.08",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/backtracking/ocamlgraph",
         description: "Graph library for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

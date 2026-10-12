@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wiki-tui",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Builditluc",
           repo: "wiki-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses, openssl]),
       cargoHash: "sha256-0M3vHj/dzHcI2FJLramTsFMw4m/WGp9vX9Tq52dSW1o=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and easy to use Wikipedia Text User Interface",
         homepage: "https://github.com/builditluc/wiki-tui",
         changelog: nix.thunk(() => nix.str`https://github.com/Builditluc/wiki-tui/releases/tag/v${nix.sel(finalAttrs, "version")}`),

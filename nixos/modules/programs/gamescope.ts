@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const gamescope = nix.thunk(() => (() => {
     const wrapperArgs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "args"), [])), nix.thunk(() => nix.str`--add-flags "${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "args")))}"`)), nix.builtins.attrValues(nix.thunk(() => nix.builtins.mapAttrs((var$) => (val) => nix.str`--set-default ${var$} ${val}`, nix.thunk(() => nix.sel(cfg, "env")))))));
     return nix.app(nix.sel(pkgs, "runCommand"), "gamescope", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeBinaryWrapper"))]),
       })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${nix.sel(cfg, "package")}/bin/gamescope $out/bin/gamescope --inherit-argv0 \\
@@ -38,31 +38,31 @@ ln -s ${nix.sel(cfg, "package")}/bin/gamescopectl $out/bin/gamescopectl
 `));
   })());
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gamescope: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gamescope, the SteamOS session compositing window manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gamescope", nix.thunk(() => ({})))),
           enableWsi: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gamescope-wsi, the Vulkan WSI layer, alongside gamescope")),
           capSysNice: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Add cap_sys_nice capability to the GameScope\nbinary so that it may renice itself.\n",
             })))),
           args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--rt", "--prefer-vk-device 8086:9bc4"]),
               description: "Arguments passed to GameScope on startup.\n",
             })))),
           env: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# for Prime render offload on Nvidia laptops.\n# Also requires `hardware.nvidia.prime.offload.enable`.\n{\n  __NV_PRIME_RENDER_OFFLOAD = \"1\";\n  __VK_LAYER_NV_optimus = \"NVIDIA_only\";\n  __GLX_VENDOR_LIBRARY_NAME = \"nvidia\";\n}\n")),
@@ -72,13 +72,13 @@ ln -s ${nix.sel(cfg, "package")}/bin/gamescopectl $out/bin/gamescopectl
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         security: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "capSysNice")), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               gamescope: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 owner: "root",
                 group: "root",
                 source: nix.thunk(() => nix.str`${gamescope}/bin/gamescope`),
@@ -87,13 +87,13 @@ ln -s ${nix.sel(cfg, "package")}/bin/gamescopectl $out/bin/gamescopectl
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "capSysNice"))), nix.thunk(() => [gamescope]))),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           graphics: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableWsi")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               extraPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "gamescope-wsi"))];
@@ -105,7 +105,7 @@ ln -s ${nix.sel(cfg, "package")}/bin/gamescopectl $out/bin/gamescopectl
             })))),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$15, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$15, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=gamescope.ts.map

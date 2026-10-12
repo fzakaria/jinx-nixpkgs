@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const poppler_utils = nix.arg($, "poppler-utils");
   const exempi = nix.arg($, "exempi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "equalx",
       version: "0.7.1-unstable-2020-02-26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "q-quark",
           repo: "equalx",
           rev: "b7175a574379d86c43cabbdb6071f0b6d40d8e79",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstallBin equalx\ninstallManPage equalx.1\ninstall -Dm644 equalx.appdata.xml $out/share/metainfo/eqaulx.appdata.xml\ninstall -Dm644 resources/equalx.ico $out/share/icons/hicolor/256x256/apps/equalx.ico\ninstall -Dm644 resources/equalx.desktop $out/share/applications/equalx.desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical interface to latex and a bunch of conversion programs",
         homepage: "https://equalx.sourceforge.io/",
         mainProgram: "equalx",

@@ -26,7 +26,7 @@ export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ihaskellEnv
 ${ihaskellEnv}/bin/ihaskell install -l $(${ihaskellEnv}/bin/ghc --print-libdir) && ${jupyter}/bin/jupyter notebook
 `)));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ihaskell-with-packages",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => [ihaskellEnv, jupyter]),

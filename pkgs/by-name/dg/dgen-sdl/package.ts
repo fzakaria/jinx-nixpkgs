@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dgen-sdl";
       const version = "1.33";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/dgen/files/dgen/${version}/dgen-sdl-${version}.tar.gz`),
           hash: "sha256-meLAYBfCKHPHf4gYbrzAmGckTrbgQsdjuwlLArje9h4=",
         }))));
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         "--with-star=no",
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-reserved-user-defined-literal")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://dgen.sourceforge.net/",
         description: "Sega Genesis/Mega Drive emulator",
         longDescription: "DGen/SDL is a free, open source emulator for Sega Genesis/Mega Drive\nsystems. DGen was originally written by Dave, then ported to SDL by Joe\nGroff and Phil K. Hornung in 1998.\n\nIt features:\n\n- Game Genie/Hex codes support\n- PAL/NTSC, fullscreen modes\n- Joypad/joystick support\n- Mouse support\n- Highly configurable controls\n- OpenGL textured video output\n- Portable (64‐bit, endian safe), runs in Windows using MinGW\n- Screenshots, demos recording and playback\n- Musashi (generic) and StarScream (x86‐only) CPU cores\n- Cyclone 68000 and DrZ80 (both ARM‐only) CPU cores\n- CZ80 (generic) and MZ80 (generic and x86‐only versions)\n- 16‐bit, 8000 to 48000Hz sound output\n- Support for 8, 15, 16, 24 and 32 bpp modes\n- Archived/compressed ROMs support\n- M68K debugger (contributed by Edd Barrett)\n- Z80 debugger\n- hqx and scale2x upscaling filters\n- VGM dumping\n",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

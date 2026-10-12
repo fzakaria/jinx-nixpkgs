@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JAMdotTech",
           repo: "py-sr25519",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-kCOmmzCCR363J5pYJ99BDUhUWeYniMf+e+NJByRnl+c=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests.py"]);
       const pythonImportsCheck = nix.thunk(() => ["sr25519"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for sr25519 library",
         homepage: "https://github.com/JAMdotTech/py-sr25519",
         changelog: nix.thunk(() => nix.str`https://github.com/JAMdotTech/py-sr25519/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

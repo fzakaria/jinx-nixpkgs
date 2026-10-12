@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "undefined-medium",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/andirueckel/undefined-medium/archive/v1.3.zip",
           hash: "sha256-cVdk6a0xijAQ/18W5jalqRS7IiPufMJW27Scns+nbEY=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 fonts/otf/*.otf -t $out/share/fonts/opentype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://undefined-medium.com/",
         description: "Pixel grid-based monospace typeface",
         longDescription: "undefined medium is a free and open-source pixel grid-based\nmonospace typeface suitable for programming, writing, and\nwhatever else you can think of … it’s pretty undefined.\n",

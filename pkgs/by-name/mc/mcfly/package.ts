@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcfly",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cantino",
           repo: "mcfly",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ substituteInPlace mcfly.fish --replace '(command which mcfly)'  '${nix.builtins.
 `),
       cargoHash: "sha256-9oNfXNQywvgTREa0G1UbId4ezLSCem4IBkqE5X234hE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cantino/mcfly",
         description: "Upgraded ctrl-r where history results make sense for what you're working on right now",
         changelog: nix.thunk(() => nix.str`https://github.com/cantino/mcfly/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.txt`),

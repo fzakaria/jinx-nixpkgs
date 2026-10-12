@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       "red",
       "all",
     ]), colorVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "0-unstable-2025-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yeyushengfan258",
           repo: "reversal-icon-theme",
           rev: "26b97f00640cd9eaeb8f196eda3a8d298158a08f",
@@ -68,11 +68,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Colorful Design Rectangle icon theme",
         homepage: "https://github.com/yeyushengfan258/Reversal-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

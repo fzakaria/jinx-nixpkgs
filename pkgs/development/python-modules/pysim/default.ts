@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pytlv = nix.arg($, "pytlv");
   const cmd2 = nix.arg($, "cmd2");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysim",
       version: "unstable-2023-08-13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osmocom",
           repo: "pysim",
           rev: "09ff0e2b433b7143d5b40b4494744569b805e554",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pySim"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python tool to program SIMs / USIMs / ISIMs",
         homepage: "https://github.com/osmocom/pysim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const icoutils = nix.arg($, "icoutils");
   const jre8 = nix.arg($, "jre8");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "groove-simulator",
       exec: "groove-simulator",
       icon: "groove",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "groove";
       const version = "5.8.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/groove/groove/${version}/groove-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}-bin.zip`),
           sha256: "sha256-JwoUlO6F2+8NtCnLC+xm5q0Jm8RIyU1rnuKGmjgJhFU=",
         }))));
@@ -57,7 +57,7 @@ icotool -x -i 1 -o $out/share/icons/hicolor/32x32/apps/groove.png groove-green-g
 icotool -x -i 2 -o $out/share/icons/hicolor/16x16/apps/groove.png groove-green-g.ico
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GRaphs for Object-Oriented VErification",
         homepage: "https://groove.cs.utwente.nl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -69,7 +69,7 @@ icotool -x -i 2 -o $out/share/icons/hicolor/16x16/apps/groove.png groove-green-g
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cohttp-server-lwt-unix",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
       propagatedBuildInputs: nix.thunk(() => [http, lwt]),
       checkInputs: nix.thunk(() => [cohttp_lwt_unix, ppx_expect]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), { __proto__: pos$1, description: "Lightweight Cohttp + Lwt based HTTP server" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), { [nix.POS]: pos$1, description: "Lightweight Cohttp + Lwt based HTTP server" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=server-lwt-unix.ts.map

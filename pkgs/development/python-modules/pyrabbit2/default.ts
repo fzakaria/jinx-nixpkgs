@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "d27160cb35c096f0072df57307233d01b117a451236e136604a8e51be6f106c0",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pythonic interface to the RabbitMQ Management HTTP API",
         homepage: "https://github.com/deslum/pyrabbit2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

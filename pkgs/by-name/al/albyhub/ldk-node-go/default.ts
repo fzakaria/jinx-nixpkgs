@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ldkNode = nix.arg($, "ldkNode");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ldk-node-go",
       version: "0-unstable-2026-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getAlby",
           repo: "ldk-node-go",
           rev: "5ba22268f000c78baa5cf57329eb0b1c07bd91d7",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ldkNode]),
       propagatedBuildInputs: nix.thunk(() => [ldkNode]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Experimental Go bindings for LDK-node",
         homepage: "https://github.com/getAlby/ldk-node-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

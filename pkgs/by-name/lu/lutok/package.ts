@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(lib, "fix"), (drv) => (() => {
-      const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ __proto__: pos$1, doInstallCheck: false })));
+      const atf$ = nix.thunk(() => nix.app(nix.sel(atf, "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, doInstallCheck: false })));
       const kyua$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(kyua, "override"), nix.thunk(() => ({
-          __proto__: pos$3,
-          lutok: nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ __proto__: pos$2, doCheck: false }))),
-        }))), "overrideAttrs"), (_) => ({ __proto__: pos$4, doInstallCheck: false })));
+          [nix.POS]: pos$3,
+          lutok: nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: false }))),
+        }))), "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, doInstallCheck: false })));
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname: "lutok",
           version: "0.4",
           outputs: nix.thunk(() => ["out", "dev"]),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "freebsd",
               repo: "lutok",
               rev: nix.thunk(() => nix.str`lutok-${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
           checkInputs: nix.thunk(() => [atf$]),
           nativeCheckInputs: nix.thunk(() => [kyua$]),
           passthru: nix.thunk(() => ({
-            __proto__: pos$7,
-            updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$6, "rev-prefix": "lutok-" })))),
+            [nix.POS]: pos$7,
+            updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "lutok-" })))),
           })),
           __structuredAttrs: true,
           meta: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             description: "Lightweight C++ API for Lua",
             homepage: "https://github.com/freebsd/lutok/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.16.0.post1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ParallelSSH",
           repo: "parallel-ssh",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pssh"]);
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous parallel SSH client library",
         homepage: "https://github.com/ParallelSSH/parallel-ssh",
         changelog: nix.thunk(() => nix.str`https://github.com/ParallelSSH/parallel-ssh/blob/${nix.sel(src, "tag")}/Changelog.rst`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

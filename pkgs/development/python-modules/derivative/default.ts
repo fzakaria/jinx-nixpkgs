@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andgoldschmidt",
           repo: "derivative",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, scipy, scikit_learn, spectral_derivatives, importlib_metadata]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Numerical differentiation of noisy time series data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://derivative.readthedocs.io/en/latest/",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

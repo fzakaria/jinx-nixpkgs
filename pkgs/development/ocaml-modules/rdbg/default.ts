@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const lutils = nix.arg($, "lutils");
   const ounit = nix.arg($, "ounit");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rdbg",
       version: "1.199.0",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www-verimag.imag.fr/DIST-TOOLS/SYNCHRONE/pool/rdbg.v${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha512:6076eaa3608a313f8ac71a4f5aa4fcc64aeb0c646d581e5035110d4c80f94de34f2ba26f90a9a1e92a7f788c9e799f1f7b0e3728c853a21983ad732f0ee60352",
         })))),
       buildInputs: nix.thunk(() => [num, ounit]),
       propagatedBuildInputs: nix.thunk(() => [lutils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gricad-gitlab.univ-grenoble-alpes.fr/verimag/synchrone/rdbg",
         description: "Programmable debugger that targets reactive programs for which a rdbg-plugin exists. Currently two plugins exist : one for Lustre, and one for Lutin (nb: both are synchronous programming languages)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.argOr($_1, "name", () => null);
     const src = nix.arg($_1, "src");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         __structuredAttrs: true,
         strictDeps: true,
         name: nix.thunk(() => (nix.asBool(nix.eq(name, null)) ? nix.app(nix.sel(lib, "warn"), "testers.shellcheck: name will be required in a future release, defaulting to run-shellcheck", "run-shellcheck") : nix.str`shellcheck-${name}`)),

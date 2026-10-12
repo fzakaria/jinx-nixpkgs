@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linien-org",
           repo: "linien",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [importlib_metadata, numpy, rpyc, scipy, appdirs]);
       const pythonImportsCheck = nix.thunk(() => ["linien_common"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Shared components of the Linien spectroscopy lock application",
         homepage: "https://github.com/linien-org/linien/tree/develop/linien-common",
         changelog: nix.thunk(() => nix.str`https://github.com/linien-org/linien/blob/v${version}/CHANGELOG.md`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(numpy, "version")), "2")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

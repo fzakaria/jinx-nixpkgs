@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pname = "powerdns-admin";
   const version = "2026.08.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "PowerDNS-Admin",
       repo: "PowerDNS-Admin",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -80,12 +80,12 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   const assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: src,
       offlineCache: nix.thunk(() => nix.app(fetchYarnBerryDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: yarnLock,
           hash: "sha256-jdYmtAbEhZwaNGmUVTyvz4ejhTRJg95fsy+7r8dwWS8=",
         })))),
@@ -99,7 +99,7 @@ printf 'nodeLinker: node-modules\\n' >> .yarnrc.yml
     }))));
   const assetsPy = nix.thunk(() => nix.app(writeText, "assets.py", "from flask_assets import Environment\nassets = Environment()\nassets.register('js_login', 'generated/login.js')\nassets.register('css_login', 'generated/login.css')\nassets.register('js_main', 'generated/main.js')\nassets.register('css_main', 'generated/main.css')\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -128,12 +128,12 @@ runHook postInstall
 `),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pythonPath: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "makePythonPath"), pythonDeps)),
         tests: nix.thunk(() => nix.sel(nixosTests, "powerdns-admin")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PowerDNS web interface with advanced features",
         mainProgram: "powerdns-admin",
         homepage: "https://github.com/PowerDNS-Admin/PowerDNS-Admin",

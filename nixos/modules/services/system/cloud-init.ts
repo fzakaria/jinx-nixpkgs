@@ -67,23 +67,23 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const cfgfile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "cloud.cfg", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "cloud-init": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the cloud-init service. This services reads\nconfiguration metadata in a cloud environment and configures\nthe machine according to this metadata.\n\nThis configuration is not completely compatible with the\nNixOS way of doing configuration, as configuration done by\ncloud-init might be overridden by a subsequent nixos-rebuild\ncall. However, some parts of cloud-init fall outside of\nNixOS's responsibility, like filesystem resizing and ssh\npublic key provisioning, and cloud-init is useful for that\nparts. Thus, be wary that using cloud-init in NixOS might\ncome as some cost.\n",
             })))),
           btrfs: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => nix.app(hasFs, "btrfs")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "hasFs \"btrfs\"")),
@@ -91,9 +91,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           ext4: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => nix.app(hasFs, "ext4")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "hasFs \"ext4\"")),
@@ -101,9 +101,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           xfs: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => nix.app(hasFs, "xfs")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "hasFs \"xfs\"")),
@@ -111,31 +111,31 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           network: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Allow the cloud-init service to configure network interfaces\nthrough systemd-networkd.\n",
               })))),
           })),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "List of additional packages to be available within cloud-init jobs.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Structured cloud-init configuration.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({})),
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "raw cloud-init configuration.\n\nTakes precedence over the `settings` option if set.\n",
@@ -144,17 +144,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "cloud-init": nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               system_info: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   distro: "nixos",
-                  network: nix.thunk(() => ({ __proto__: pos$17, renderers: nix.thunk(() => ["networkd"]) })),
+                  network: nix.thunk(() => ({ [nix.POS]: pos$17, renderers: nix.thunk(() => ["networkd"]) })),
                 })))),
               users: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["root"]))),
               disable_root: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
@@ -199,28 +199,28 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
-            "cloud/cloud.cfg": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "config"), "")) ? { __proto__: pos$22, source: cfgfile } : { __proto__: pos$23, text: nix.thunk(() => nix.sel(cfg, "config")) })),
+            [nix.POS]: pos$24,
+            "cloud/cloud.cfg": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "config"), "")) ? { [nix.POS]: pos$22, source: cfgfile } : { [nix.POS]: pos$23, text: nix.thunk(() => nix.sel(cfg, "config")) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           network: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "network", "enable")), true)),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             "cloud-init-local": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Initial cloud-init job (pre-networking)",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["systemd-networkd.service", "dhcpcd.service"]),
               path: path,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "cloud-init")}/bin/cloud-init init --local`),
                 RemainAfterExit: "yes",
@@ -229,7 +229,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "cloud-init": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "Initial cloud-init job (metadata service crawler)",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => [
@@ -243,7 +243,7 @@ export default nix.lambda((args) => (() => {
               requires: nix.thunk(() => ["network.target"]),
               path: path,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "cloud-init")}/bin/cloud-init init`),
                 RemainAfterExit: "yes",
@@ -252,14 +252,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "cloud-config": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "Apply the settings specified in cloud-config",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target", "cloud-config.target"]),
               path: path,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "cloud-init")}/bin/cloud-init modules --mode=config`),
                 RemainAfterExit: "yes",
@@ -268,7 +268,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "cloud-final": nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               description: "Execute cloud user/final scripts",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -276,7 +276,7 @@ export default nix.lambda((args) => (() => {
               requires: nix.thunk(() => ["cloud-config.target"]),
               path: path,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 Type: "oneshot",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "cloud-init")}/bin/cloud-init modules --mode=final`),
                 RemainAfterExit: "yes",
@@ -286,9 +286,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             "cloud-config": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               description: "Cloud-config availability",
               requires: nix.thunk(() => ["cloud-init-local.service", "cloud-init.service"]),
             })),
@@ -296,7 +296,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "zimbatm"))]),
     })),
   };

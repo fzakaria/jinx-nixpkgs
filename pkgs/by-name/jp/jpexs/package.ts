@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const jdk8 = nix.arg($, "jdk8");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jpexs",
       version: "26.2.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version${nix.sel(finalAttrs, "version")}/ffdec_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-ReHYd+50dkDO/KcTDpFglm4FtJtt3EPfF4mDjaFZjb8=",
           stripRoot: false,
@@ -51,7 +51,7 @@ makeWrapper ${jdk8}/bin/java $out/bin/ffdec \\
           const categories = nix.thunk(() => ["Development", "Java"]);
           const startupWMClass = "com-jpexs-decompiler-flash-gui-Main";
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name,
             exec,
             icon,
@@ -63,7 +63,7 @@ makeWrapper ${jdk8}/bin/java $out/bin/ffdec \\
           };
         })()))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flash SWF decompiler and editor",
         mainProgram: "ffdec",
         longDescription: "Open-source Flash SWF decompiler and editor. Extract resources,\nconvert SWF to FLA, edit ActionScript, replace images, sounds,\ntexts or fonts.\n",

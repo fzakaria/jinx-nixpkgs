@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apparmor-init",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/init`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-rc-apparmor-functions-FHS.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [apparmor_bin_utils, apparmor_parser, coreutils, gnused, gnugrep, systemd]))),
           })))),
       ]),
@@ -67,7 +67,7 @@ done
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mandatory access control system - init files",
       })),
     }));

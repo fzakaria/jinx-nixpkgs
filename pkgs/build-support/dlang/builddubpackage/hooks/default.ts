@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     dubSetupHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const makeSetupHook = nix.arg($_1, "makeSetupHook");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "dub-setup-hook",
-            meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./dub-setup-hook.sh"));
       })(), formals$2), nix.thunk(() => ({})))),
     dubBuildHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         const makeSetupHook = nix.arg($_1, "makeSetupHook");
         const dub = nix.arg($_1, "dub");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "dub-build-hook",
             propagatedBuildInputs: nix.thunk(() => [dub]),
-            meta: nix.thunk(() => ({ __proto__: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./dub-build-hook.sh"));
       })(), formals$3), nix.thunk(() => ({})))),
     dubCheckHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
@@ -45,10 +45,10 @@ export default nix.lambda((args) => (() => {
         const makeSetupHook = nix.arg($_1, "makeSetupHook");
         const dub = nix.arg($_1, "dub");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "dub-check-hook",
             propagatedBuildInputs: nix.thunk(() => [dub]),
-            meta: nix.thunk(() => ({ __proto__: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })), nix.path(here, "./dub-check-hook.sh"));
       })(), formals$4), nix.thunk(() => ({})))),
   };

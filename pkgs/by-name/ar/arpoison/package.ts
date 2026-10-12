@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libnet = nix.arg($, "libnet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arpoison",
       version: "0.7",
       buildInputs: nix.thunk(() => [libnet]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.arpoison.net/arpoison-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0krhszx3s0qwfg4rma5a51ak71nnd9xfs2ibggc3hwiz506s2x37",
         })))),
       postPatch: "substituteInPlace Makefile --replace gcc cc",
       installPhase: "mkdir -p $out/bin $out/share/man/man8\ngzip arpoison.8\ncp arpoison $out/bin\ncp arpoison.8.gz $out/share/man/man8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UNIX arp cache update utility",
         homepage: "http://www.arpoison.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

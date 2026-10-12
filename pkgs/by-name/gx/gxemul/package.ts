@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gxemul",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gavare.se/gxemul/src/gxemul-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ecRDfG+MqQT0bTOsNgYqZf3PSpKiSEeOQIqxEpXPjoM=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`export PREFIX=${nix.builtins.placeholder("out")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gavare.se/gxemul/",
         description: "Gavare's experimental emulator",
         longDescription: "GXemul is a framework for full-system computer architecture\nemulation. Several real machines have been implemented within the\nframework, consisting of processors (ARM, MIPS, Motorola 88K, PowerPC, and\nSuperH) and surrounding hardware components such as framebuffers,\ninterrupt controllers, busses, disk controllers, and serial\ncontrollers. The emulation is working well enough to allow several\nunmodified \"guest\" operating systems to run.\n",

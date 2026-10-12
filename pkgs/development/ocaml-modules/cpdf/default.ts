@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const camlpdf = nix.arg($, "camlpdf");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-cpdf`),
       version: "2.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnwhitington",
           repo: "cpdf-source",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preInstall: "mkdir -p $OCAMLFIND_DESTDIR\nmkdir -p $out/bin\ncp cpdf $out/bin\nmkdir -p $out/share/\ncp -r doc $out/share\ncp cpdfmanual.pdf $out/share/doc/cpdf/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PDF Command Line Tools",
         homepage: "https://www.coherentpdf.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/johnwhitington/cpdf-source/blob/${nix.sel(finalAttrs, "src", "rev")}/Changes.txt`),

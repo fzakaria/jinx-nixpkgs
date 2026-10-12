@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [libeduvpn_common, setuptools]);
       const nativeCheckInputs = nix.thunk(() => [selenium]);
       const pythonImportsCheck = nix.thunk(() => ["eduvpn_common"]);
-      const meta = nix.thunk(() => nix.update(nix.sel(libeduvpn_common, "meta"), { __proto__: pos$1, description: "Python wrapper for libeduvpn-common" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(libeduvpn_common, "meta"), { [nix.POS]: pos$1, description: "Python wrapper for libeduvpn-common" }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version,
         src,
         pname,

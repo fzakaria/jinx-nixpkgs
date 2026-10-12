@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["usePython", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fish = nix.arg($, "fish");
-  return nix.app(nix.sel(fish, "override"), nix.thunk(() => ({ __proto__: pos$1, usePython: false })));
+  return nix.app(nix.sel(fish, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, usePython: false })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

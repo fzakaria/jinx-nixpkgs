@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "macpm",
       version: "0.24-unstable-2024-11-19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "visualcjy",
           repo: "macpm",
           rev: "7882d4c86c84bb23a8966ca57990de9b11397bd4",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "ln -rs $out/bin/macpm $out/bin/asitop\n",
       pythonImportsCheck: nix.thunk(() => ["macpm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perf monitoring CLI tool for Apple Silicon; previously named 'asitop'",
         homepage: "https://github.com/visualcjy/macpm",
         mainProgram: "macpm",

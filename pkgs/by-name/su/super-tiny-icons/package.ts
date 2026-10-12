@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "super-tiny-icons",
       version: "0-unstable-2025-10-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "edent",
           repo: "SuperTinyIcons",
           rev: "621ddf6c231d142cccaa411c3c29001404550624",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons/SuperTinyIcons\nfind $src/images -type d -exec cp -r {} $out/share/icons/SuperTinyIcons/ \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Miniscule SVG versions of common logos",
         longDescription: "Super Tiny Web Icons are minuscule SVG versions of your favourite logos.\nThe average size is under 568 bytes!\n",
         homepage: "https://github.com/edent/SuperTinyIcons",

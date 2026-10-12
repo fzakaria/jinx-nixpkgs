@@ -17,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const akku = nix.arg($, "akku");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "ufo5260987423",
         name: "magic-scheme",
         version: "0.0.16",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."magicScheme.scheme-langserver.serverPath".default = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(akkuPackages, "scheme-langserver")), "scheme-langserver")}" | .contributes.configuration.properties."magicScheme.scheme.path".default = "${nix.app(nix.sel(lib, "getExe'"), chez, "scheme")}" | .contributes.configuration.properties."magicScheme.akku.path".default = "${nix.app(nix.sel(lib, "getExe"), akku)}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds support for Scheme(r6rs standard)",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ufo5260987423.magic-scheme",
         homepage: "https://github.com/ufo5260987423/magic-scheme",

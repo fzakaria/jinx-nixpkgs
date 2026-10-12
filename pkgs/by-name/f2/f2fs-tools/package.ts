@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const lz4 = nix.arg($, "lz4");
   const lzo = nix.arg($, "lzo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "f2fs-tools",
       version: "1.16.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/snapshot/f2fs-tools-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-zNG1F//+BTBzlEc6qNVixyuCB6PMZD5Kf8pVK0ePYiA=",
         })))),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./f2fs-tools-cross-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "lfs64.patch",
             url: "https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/patch/?id=b15b6cc56ac7764be17acbdbf96448f388992adc",
             hash: "sha256-9XrNf9MMMDGOsuP3DvUhm30Sa2xICDtXbUIvM/TP35o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "c23.patch",
             url: "https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/patch/?id=6617d15a660becc23825007ab3fc2d270b5b250f",
             hash: "sha256-XgceNqwCDa5m9CJTQCmjfiDhZ7x/rO+UiBZwrovgywA=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man", "dev", "lib"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/",
         description: "Userland tools for the f2fs filesystem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

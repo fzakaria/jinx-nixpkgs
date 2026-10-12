@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "waagent"));
   const settingsFormat = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     type: nix.thunk(() => (() => {
       const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
       const singleAtom = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "str")),
             nix.thunk(() => nix.lookup(w_1, "int")),
             nix.thunk(() => nix.lookup(w_1, "float")),
-          ])))), { __proto__: pos$1, description: "atom (bool, string, int or float) or null" }));
+          ])))), { [nix.POS]: pos$1, description: "atom (bool, string, int or float) or null" }));
       const atom = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "either"), singleAtom, nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), singleAtom))), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.add(nix.sel(singleAtom, "description"), " or a list of them")),
       }));
       return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "either"), atom, nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), atom))), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.add(nix.sel(atom, "description"), " or an attribute set of them")),
         })));
     })()),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "concatLists")),
         ])) : [
         nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), ".", path)),
           value: value_1,
         })),
@@ -112,48 +112,48 @@ export default nix.lambda((args) => (() => {
     })(),
   }));
   const settingsType = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
       options: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         Provisioning: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           Enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "cloud-init", "enable"))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "!config.services.cloud-init.enable")),
               description: "Whether to enable provisioning functionality in the agent.\n\nIf provisioning is disabled, SSH host and user keys in the image are preserved\nand configuration in the Azure provisioning API is ignored.\n\nSet to `false` if cloud-init is used for provisioning tasks.\n",
             })))),
           Agent: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["auto", "waagent", "cloud-init", "disabled"]))),
               default: "auto",
               description: "Which provisioning agent to use.\n",
             })))),
         })),
         ResourceDisk: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           Format: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "If set to `true`, waagent formats and mounts the resource disk that the platform provides,\nunless the file system type in `ResourceDisk.FileSystem` is set to `ntfs`.\nThe agent makes a single Linux partition (ID 83) available on the disk.\nThis partition isn't formatted if it can be successfully mounted.\n\nThis configuration has no effect if resource disk is managed by cloud-init.\n",
             })))),
           FileSystem: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "ext4",
               description: "The file system type for the resource disk.\nIf the string is `X`, then `mkfs.X` should be present in the environment.\nYou can add additional filesystem packages using `services.waagent.extraPackages`.\n\nThis configuration has no effect if resource disk is managed by cloud-init.\n",
             })))),
           MountPoint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/mnt/resource",
               description: "This option specifies the path at which the resource disk is mounted.\nThe resource disk is a temporary disk and might be emptied when the VM is deprovisioned.\n\nThis configuration has no effect if resource disk is managed by cloud-init.\n",
             })))),
           MountOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -163,61 +163,61 @@ export default nix.lambda((args) => (() => {
               description: "This option specifies disk mount options to be passed to the `mount -o` command.\nFor more information, see the {manpage}`mount(8)` manual page.\n",
             })))),
           EnableSwap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "If enabled, the agent creates a swap file (`/swapfile`) on the resource disk\nand adds it to the system swap space.\n\nThis configuration has no effect if resource disk is managed by cloud-init.\n",
             })))),
           SwapSizeMB: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 0n,
               description: "Specifies the size of the swap file in MiB (1024×1024 bytes).\n\nThis configuration has no effect if resource disk is managed by cloud-init.\n",
             })))),
         })),
         Logs: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           Verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "If you set this option, log verbosity is boosted.\nWaagent logs to `/var/log/waagent.log` and uses the system logrotate functionality to rotate logs.\n",
             })))),
         })),
         OS: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           EnableRDMA: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "If enabled, the agent attempts to install and then load an RDMA kernel driver\nthat matches the version of the firmware on the underlying hardware.\n",
             })))),
           RootDeviceScsiTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: 300n,
               description: "Configures the SCSI timeout in seconds on the OS disk and data drives.\nIf set to `null`, the system defaults are used.\n",
             })))),
         })),
         HttpProxy: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           Host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "If you set http proxy, waagent will use is proxy to access the Internet.\n",
             })))),
           Port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
               default: null,
               description: "If you set http proxy, waagent will use this proxy to access the Internet.\n",
             })))),
         })),
         AutoUpdate: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           UpdateToLatestVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether or not to enable auto-update of the Extension Handler.\n",
@@ -226,24 +226,24 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         waagent: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Windows Azure Linux Agent")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "waagent", nix.thunk(() => ({})))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               default: [],
               description: "Additional packages to add to the waagent {env}`PATH`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.powershell ]")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: settingsType,
               default: nix.thunk(() => ({})),
               description: "The waagent.conf configuration, see <https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/agent-linux> for documentation.\n",
@@ -252,25 +252,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "settings", "HttpProxy", "Host"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "HttpProxy", "Port"), null)))),
             message: "Option services.waagent.settings.HttpProxy.Port must be set if services.waagent.settings.HttpProxy.Host is set.",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           initrd: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             kernelModules: nix.thunk(() => ["ata_piix"]),
             services: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               udev: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(pkgs, w);
                 return {
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   packages: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "waagent"))]),
                   binPackages: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "coreutils"))]),
                 };
@@ -279,58 +279,58 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$40,
-          firewall: nix.thunk(() => ({ __proto__: pos$38, allowedUDPPorts: nix.thunk(() => [68n]) })),
-          dhcpcd: nix.thunk(() => ({ __proto__: pos$39, persistent: true })),
+          [nix.POS]: pos$40,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$38, allowedUDPPorts: nix.thunk(() => [68n]) })),
+          dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$39, persistent: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           udev: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             packages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, w);
               return [nix.thunk(() => nix.lookup(w_1, "waagent"))];
             })()),
           })),
           logrotate: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$43,
-              "/var/log/waagent.log": nix.thunk(() => ({ __proto__: pos$42, compress: true, frequency: "monthly", rotate: 6n })),
+              [nix.POS]: pos$43,
+              "/var/log/waagent.log": nix.thunk(() => ({ [nix.POS]: pos$42, compress: true, frequency: "monthly", rotate: 6n })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           etc: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             "waagent.conf": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "waagent.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           targets: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             provisioned: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               description: "Services Requiring Azure VM provisioning to have finished",
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             "consume-hypervisor-entropy": nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               description: "Consume entropy in ACPI table provided by Hyper-V",
               wantedBy: nix.thunk(() => ["sshd.service", "waagent.service"]),
               before: nix.thunk(() => ["sshd.service", "waagent.service"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
               script: "echo \"Fetching entropy...\"\ncat /sys/firmware/acpi/tables/OEM0 > /dev/random\n",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 StandardError: "journal+console",
@@ -338,7 +338,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             waagent: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "cloud-init", "enable")), nix.thunk(() => ["cloud-init.service"])))),
               wants: nix.thunk(() => ["network-online.target", "sshd.service", "sshd-keygen.service"]),
@@ -363,9 +363,9 @@ export default nix.lambda((args) => (() => {
                 ], nix.sel(cfg, "extraPackages"));
               })()),
               description: "Windows Azure Agent Service",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$53, ConditionPathExists: "/etc/waagent.conf" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$53, ConditionPathExists: "/etc/waagent.conf" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -daemon`),
                 Type: "simple",
                 Restart: "always",
@@ -376,8 +376,8 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$59,
-          sudo: nix.thunk(() => ({ __proto__: pos$58, extraConfig: "#includedir /etc/sudoers.d\n" })),
+          [nix.POS]: pos$59,
+          sudo: nix.thunk(() => ({ [nix.POS]: pos$58, extraConfig: "#includedir /etc/sudoers.d\n" })),
         })),
       })))),
   };

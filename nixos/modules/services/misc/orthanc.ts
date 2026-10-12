@@ -38,53 +38,53 @@ export default nix.lambda((args) => (() => {
   const opt = nix.thunk(() => nix.sel(options, "services", "orthanc"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         orthanc: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Orthanc server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "orthanc", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/orthanc",
               example: "/home/foo",
               description: "State directory of Orthanc.",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
               example: "{\n  ORTHANC_NAME = \"Orthanc server\";\n}\n",
               description: "Extra environment variables\nFor more details see <https://orthanc.uclouvain.be/book/users/configuration.html>\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Environment file to be passed to the systemd service.\nUseful for passing secrets to the service to prevent them from being\nworld-readable in the Nix store.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/var/lib/secrets/orthancSecrets",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 HttpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 8042n)),
                 IndexDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/orthanc/")),
                 StorageDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/orthanc/")),
               })),
-              example: nix.thunk(() => ({ __proto__: pos$6, Name: "My Orthanc Server", HttpPort: 12345n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$6, Name: "My Orthanc Server", HttpPort: 12345n })),
               description: "Configuration written to a json file that is read by orthanc.\nSee <https://orthanc.uclouvain.be/book/index.html> for more.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open the firewall for Orthanc.\nThis adds `services.orthanc.settings.HttpPort` to `networking.firewall.allowedTCPPorts`.\n",
@@ -93,20 +93,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           orthanc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             settings: nix.thunk(() => nix.sel(opt, "settings", "default")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             orthanc: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Orthanc is a lightweight, RESTful DICOM server for healthcare and medical research",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
               serviceConfig: nix.thunk(() => (() => {
                 const config_json = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "orthanc-config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
                 return {
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${config_json}`),
                   EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
                   WorkingDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -143,18 +143,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "HttpPort"))]),
             })))),
         })),
         time: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           timeZone: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "UTC")),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$22, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$22, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=orthanc.ts.map

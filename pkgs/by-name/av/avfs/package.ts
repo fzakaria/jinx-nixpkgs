@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "avfs",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/avf/${nix.sel(finalAttrs, "version")}/avfs-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-B81p1MDH7QgOgP8EDZgChkBa04pEP9xS3Dle/vEcRLE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [fuse3, xz, zlib]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         })))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-library", "--enable-fuse"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--with-system-zlib"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://avf.sourceforge.net/",
         description: "Virtual filesystem that allows browsing of compressed files",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

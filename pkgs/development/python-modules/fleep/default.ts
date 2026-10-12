@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fleep",
       version: "1.0.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "floyernick",
           repo: "fleep-py",
           rev: "994bc2c274482d80ab13d89d8f7343eb316d3e44",
@@ -31,7 +31,7 @@ ${nix.sel(python, "interpreter")} tests/speedtest.py
 `),
       pythonImportsCheck: nix.thunk(() => ["fleep"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "File format determination library",
         homepage: "https://github.com/floyernick/fleep-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

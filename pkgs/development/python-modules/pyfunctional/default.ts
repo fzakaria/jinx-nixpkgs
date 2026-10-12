@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const dill = nix.arg($, "dill");
   const tabulate = nix.arg($, "tabulate");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyfunctional",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EntilZha",
           repo: "PyFunctional",
           rev: "6ed2e9a8a73d97141a8a7edab25e1aefadc256a3",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["functional"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for creating data pipelines with chain functional programming",
         homepage: "https://github.com/EntilZha/PyFunctional",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

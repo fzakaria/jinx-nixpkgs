@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const findlib = nix.arg($, "findlib");
   const ocamlbuild = nix.arg($, "ocamlbuild");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-erm_xml`),
       version: "0.3+20180112",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hannesm",
           repo: "xml",
           rev: "bbabdade807d8281fc48806da054b70dfe482479",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       createFindlibDestdir: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hannesm/xml",
         description: "XML Parser for discrete data",
         platforms: nix.thunk(() => nix.selOr(ocaml, () => [], "meta", "platforms")),

@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "enscript",
       version: "1.6.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/enscript/enscript-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1fy0ymvzrrvs889zanxcaxjfcxarm2d3k43c9frmbl1ld7dblmkd",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./0001-use-system-getopt.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/debian/enscript/-/raw/7a51479540a210dee5eee4ece5b54e3ce15dec52/debian/patches/1096582-gcc-15",
             hash: "sha256-0H8FNCKgQ1YCwcBaMChQSuFaYlmzSsoqtfsNSr567+Y=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Converter from ASCII to PostScript, HTML, or RTF",
         longDescription: "GNU Enscript converts ASCII files to PostScript, HTML, or RTF and\nstores generated output to a file or sends it directly to the\nprinter.  It includes features for `pretty-printing'\n(language-sensitive code highlighting) in several programming\nlanguages.\n\nEnscript can be easily extended to handle different output media and\nit has many options that can be used to customize printouts.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const dontUseCmakeConfigure = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_INSTALLED_POCKETSPHINX", true)),
       }));
       const buildInputs = nix.thunk(() => [pocketsphinx]);
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [memory_profiler, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pocketsphinx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small speech recognizer",
         homepage: "https://github.com/cmusphinx/pocketsphinx",
         changelog: nix.thunk(() => nix.str`https://github.com/cmusphinx/pocketsphinx/blob/v${version}/NEWS`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         src,
         pname,

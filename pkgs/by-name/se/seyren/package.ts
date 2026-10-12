@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seyren",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/scobal/seyren/releases/download/${nix.sel(finalAttrs, "version")}/seyren-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "1fixij04n8hgmaj8kw8i6vclwyd6n94x0n6ify73ynm6dfv8g37x",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 makeWrapper "${jre}/bin/java" "$out"/bin/seyren --add-flags "-jar $src"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alerting dashboard for Graphite",
         mainProgram: "seyren",
         homepage: "https://github.com/scobal/seyren",

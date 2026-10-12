@@ -32,25 +32,25 @@ export default nix.lambda((args) => (() => {
   const bobPublicKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "id_ed25519.pub", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZNonUP1ePHLrvn0W9D2hdN6zWWZYFyJc+QR6pOKQEw bob@client\n"));
   const gitoliteAdminConfSnippet = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "gitolite-admin-conf-snippet", "repo alice-project\n    RW+     =   alice\n"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "gitolite",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bjornfor"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            gitolite: nix.thunk(() => ({ __proto__: pos$2, enable: true, adminPubkey: adminPublicKey })),
-            openssh: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            gitolite: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, adminPubkey: adminPublicKey })),
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
         };
       })(), formals$2),
@@ -58,24 +58,24 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             ssh: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               extraConfig: "Host *\n  UserKnownHostsFile /dev/null\n  StrictHostKeyChecking no\n  # there's nobody around that can input password\n  PreferredAuthentications publickey\n",
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             users: nix.thunk(() => ({
-              __proto__: pos$11,
-              alice: nix.thunk(() => ({ __proto__: pos$9, isNormalUser: true })),
-              bob: nix.thunk(() => ({ __proto__: pos$10, isNormalUser: true })),
+              [nix.POS]: pos$11,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$9, isNormalUser: true })),
+              bob: nix.thunk(() => ({ [nix.POS]: pos$10, isNormalUser: true })),
             })),
           })),
         };

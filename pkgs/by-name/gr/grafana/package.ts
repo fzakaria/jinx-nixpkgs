@@ -33,26 +33,26 @@ export default nix.lambda((args) => (() => {
   const faketty = nix.arg($, "faketty");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "grafana",
       version: "13.2.3",
       subPackages: nix.thunk(() => ["pkg/cmd/grafana", "pkg/cmd/grafana-server", "pkg/cmd/grafana-cli"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grafana",
           repo: "grafana",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ySpywbu/JzuzvI9iVDXuzBu/nIAICr2e8raOeeie1YE=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CYPRESS_INSTALL_BINARY: 0n,
         PUPPETEER_SKIP_DOWNLOAD: 1n,
         NODE_OPTIONS: "--max_old_space_size=4096",
       })),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(buildPackages, "yarn-berry_4-fetcher", "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-rDH/PUHcbPEivSE5BecDaRgW56EPpLPbV1dd7UbgPaA=",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(yarn_berry_4_fetcher, "yarnBerryConfigHook")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(xcbuild, "xcbuild"))])))),
       overrideModAttrs: (old) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(nix.app(nix.sel(lib, "getName"), x), nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(buildPackages, "yarn-berry_4-fetcher", "yarnBerryConfigHook")))), nix.thunk(() => nix.sel(old, "nativeBuildInputs")))),
       }),
       postConfigure: "# Generate DI code that's required to compile the package.\n# From https://github.com/grafana/grafana/blob/v8.2.3/Makefile#L33-L35\nwire gen -tags oss ./pkg/server\nwire gen -tags oss ./pkg/cmd/grafana-cli/runner\n\n# ```\n# go-1.25.4/share/go/pkg/tool/linux_amd64/link: running aarch64-unknown-linux-gnu-gcc failed: exit status 1\n# aarch64-unknown-linux-gnu-gcc -m64 -s -o $WORK/b001/exe/gen -rdynamic /build/go-link-507658645/go.o\n# aarch64-unknown-linux-gnu-gcc: error: unrecognized command-line option '-m64'\n# ```\n# Above log is due to https://github.com/golang/go/blob/b194f5d24a71e34f147c90e4351d80ac75be55de/src/cmd/cgo/gcc.go#L1763\nCC=\"$CC_FOR_BUILD\" LD=\"$CC_FOR_BUILD\" GOOS= GOARCH= CGO_ENABLED=0 go generate ./kinds/gen.go\nCC=\"$CC_FOR_BUILD\" LD=\"$LD_FOR_BUILD\" GOOS= GOARCH= CGO_ENABLED=0 go generate ./public/app/plugins/gen.go\n",
@@ -91,12 +91,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/grafana\ncp -r public conf $out/share/grafana/\n",
       postFixup: "while read line; do\n  remove-references-to -t $offlineCache \"$line\"\ndone < <(find $out -type f -name '*.js.map' -or -name '*.js')\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, grafana: nix.thunk(() => nix.attr(nixosTests, "grafana")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, grafana: nix.thunk(() => nix.attr(nixosTests, "grafana")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Gorgeous metric viz, dashboards & editors for Graphite, InfluxDB & OpenTSDB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://grafana.com",

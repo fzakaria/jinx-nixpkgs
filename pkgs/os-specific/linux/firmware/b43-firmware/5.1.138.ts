@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const b43_fwcutter = nix.arg($, "b43-fwcutter");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "b43-firmware",
       version: "5.100.138",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/minios-linux/b43-firmware/releases/download/b43-firmware/broadcom-wl-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-8ecGeqxbYrZ7i25MUXmQJ3gEM5rBYGXrE8cx/5Ca5G8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [b43_fwcutter]),
       installPhase: "mkdir -p $out/lib/firmware\nb43-fwcutter -w $out/lib/firmware linux/wl_apsta.o\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for cards supported by the b43 kernel module",
         homepage: "https://wireless.wiki.kernel.org/en/users/drivers/b43",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

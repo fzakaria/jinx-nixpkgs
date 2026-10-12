@@ -26,53 +26,53 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "mimir",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             mimir: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               configuration: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 ingester: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  ring: nix.thunk(() => ({ __proto__: pos$2, replication_factor: 1n })),
+                  [nix.POS]: pos$3,
+                  ring: nix.thunk(() => ({ [nix.POS]: pos$2, replication_factor: 1n })),
                 })),
               })),
             })),
             telegraf: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               extraConfig: nix.thunk(() => ({
-                __proto__: pos$12,
-                agent: nix.thunk(() => ({ __proto__: pos$6, interval: "1s", flush_interval: "1s" })),
+                [nix.POS]: pos$12,
+                agent: nix.thunk(() => ({ [nix.POS]: pos$6, interval: "1s", flush_interval: "1s" })),
                 inputs: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   exec: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     commands: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/echo 'foo i=42i'`)]),
                     data_format: "influx",
                   })),
                 })),
                 outputs: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   http: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     url: "http://localhost:8080/api/v1/push",
                     data_format: "prometheusremotewrite",
                     headers: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       "Content-Type": "application/x-protobuf",
                       "Content-Encoding": "snappy",
                       "X-Scope-OrgID": "nixos",

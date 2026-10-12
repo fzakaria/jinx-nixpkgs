@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libressl = nix.arg($, "libressl");
   const libevent = nix.arg($, "libevent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gmid",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "omar-polo",
           repo: "gmid",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libressl, libevent]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and secure Gemini server",
         homepage: "https://gmid.omarpolo.com/",
         changelog: "https://gmid.omarpolo.com/changelog.html",

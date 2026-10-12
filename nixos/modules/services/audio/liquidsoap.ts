@@ -28,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const streamService = (name) => (() => {
     const stream = nix.thunk(() => nix.builtins.getAttr(name, nix.thunk(() => nix.sel(config, "services", "liquidsoap", "streams"))));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: name,
       value: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         after: nix.thunk(() => ["network-online.target", "sound.target"]),
         description: nix.thunk(() => nix.str`${name} liquidsoap stream`),
         wantedBy: nix.thunk(() => ["multi-user.target"]),
         path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wget"))]),
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "liquidsoap")}/bin/liquidsoap ${stream}`),
           User: "liquidsoap",
           LogsDirectory: "liquidsoap",
@@ -47,15 +47,15 @@ export default nix.lambda((args) => (() => {
     };
   })();
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         liquidsoap: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           streams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Set of Liquidsoap streams to start,\none systemd service per stream.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  myStream1 = \"/etc/liquidsoap/myStream1.liq\";\n  myStream2 = ./myStream2.liq;\n  myStream3 = \"out(playlist(\\\"/srv/music/\\\"))\";\n}\n")),
@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.builtins.length(streams), 0n)), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             liquidsoap: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "liquidsoap")),
               group: "liquidsoap",
               extraGroups: nix.thunk(() => ["audio"]),
@@ -81,15 +81,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             liquidsoap: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "liquidsoap")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map(streamService, streams)))),
         })),
       })))),

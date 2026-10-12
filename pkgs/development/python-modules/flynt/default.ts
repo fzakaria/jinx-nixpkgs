@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const hatch_vcs = nix.arg($, "hatch-vcs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flynt",
       version: "1.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ikamensh",
           repo: "flynt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flynt"]),
       disabledTests: nix.thunk(() => ["test_fstringify", "test_mixed_quote_types_unsafe"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to automatically convert old string literal formatting to f-strings",
         homepage: "https://github.com/ikamensh/flynt",
         changelog: nix.thunk(() => nix.str`https://github.com/ikamensh/flynt/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -28,19 +28,19 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const cfgFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         apple: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           touchBar: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "support for the Touch Bar on some Apple laptops using tiny-dfr")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tiny-dfr", nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(format, "type")),
                 default: nix.thunk(() => ({})),
                 description: "Configuration for tiny-dfr. See [example configuration][1] for available options.\n\n[1]: https://github.com/WhatAmISupposedToPutHere/tiny-dfr/blob/master/share/tiny-dfr/config.toml\n",
@@ -51,27 +51,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
-            "tiny-dfr": nix.thunk(() => ({ __proto__: pos$6, restartTriggers: nix.thunk(() => [cfgFile]) })),
+            [nix.POS]: pos$7,
+            "tiny-dfr": nix.thunk(() => ({ [nix.POS]: pos$6, restartTriggers: nix.thunk(() => [cfgFile]) })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           udev: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           etc: nix.thunk(() => ({
-            __proto__: pos$12,
-            "tiny-dfr/config.toml": nix.thunk(() => ({ __proto__: pos$11, source: cfgFile })),
+            [nix.POS]: pos$12,
+            "tiny-dfr/config.toml": nix.thunk(() => ({ [nix.POS]: pos$11, source: cfgFile })),
           })),
         })),
       })))),

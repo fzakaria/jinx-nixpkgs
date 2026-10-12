@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const tomli_w = nix.arg($, "tomli-w");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "heretic-llm",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p-e-w",
           repo: "heretic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,12 +80,12 @@ export default nix.lambda((args) => (() => {
         transformers,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         research: nix.thunk(() => [imageio, matplotlib, numpy, scikit_learn]),
       })),
       pythonImportsCheck: nix.thunk(() => ["heretic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to remove censorship removal for language models",
         homepage: "https://github.com/p-e-w/heretic",
         changelog: nix.thunk(() => nix.str`https://github.com/p-e-w/heretic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

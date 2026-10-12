@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcfly-fzf",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bnprks",
           repo: "mcfly-fzf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ substituteInPlace shell/mcfly-fzf.fish --replace '(command -v mcfly-fzf)' '${nix
 `),
       cargoHash: "sha256-xHYOhq/vDmjP7RfgRR15Isj7rg/nIV9tz9XznHBENig=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bnprks/mcfly-fzf",
         description: "Integrate Mcfly with fzf to combine a solid command history database with a widely-loved fuzzy search UI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

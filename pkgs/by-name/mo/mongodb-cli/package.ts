@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mongodb-cli",
       version: "2.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mongodb",
           repo: "mongodb-cli",
           tag: nix.thunk(() => nix.str`mongocli/v${nix.sel(finalAttrs, "version")}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd mongocli \\\n  --bash <($out/bin/mongocli completion bash) \\\n  --fish <($out/bin/mongocli completion fish) \\\n  --zsh <($out/bin/mongocli completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=mongocli/v(.+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Manage your MongoDB via ops manager and cloud manager",
         homepage: "https://github.com/mongodb/mongodb-cli",
         changelog: nix.thunk(() => nix.str`https://www.mongodb.com/docs/mongocli/current/release-notes/#mongodb-cli-${nix.sel(finalAttrs, "version")}`),

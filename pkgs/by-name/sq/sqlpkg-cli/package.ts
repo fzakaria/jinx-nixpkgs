@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlpkg-cli",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nalgeon",
           repo: "sqlpkg-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv -v $out/bin/cli $out/bin/sqlpkg\n",
       preCheck: "export HOME=\"$TMP\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SQLite package manager",
         homepage: "https://github.com/nalgeon/sqlpkg-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/nalgeon/sqlpkg-cli/releases/tag/${nix.sel(finalAttrs, "version")}`),

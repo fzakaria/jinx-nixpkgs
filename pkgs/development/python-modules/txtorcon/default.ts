@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-BAjwY6n8uN9Snayle7c3PqD1tOuv/NUQN1S3xWF3P2g=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
       const pythonImportsCheck = nix.thunk(() => ["txtorcon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Twisted-based Tor controller client, with state-tracking and configuration abstractions",
         homepage: "https://github.com/meejah/txtorcon",
         changelog: nix.thunk(() => nix.str`https://github.com/meejah/txtorcon/releases/tag/v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

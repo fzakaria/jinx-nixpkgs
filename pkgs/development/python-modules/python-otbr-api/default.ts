@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-otbr-api",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "python-otbr-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["python_otbr_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for the Open Thread Border Router",
         homepage: "https://github.com/home-assistant-libs/python-otbr-api",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/python-otbr-api/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const sqlalchemy = nix.arg($, "sqlalchemy");
   const typer = nix.arg($, "typer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlmodel",
       version: "0.0.42",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tiangolo",
           repo: "sqlmodel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sqlmodel"]),
       disabledTestPaths: nix.thunk(() => ["docs_src/tutorial/", "tests/test_tutorial/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to work with SQL databases",
         homepage: "https://github.com/fastapi/sqlmodel",
         changelog: nix.thunk(() => nix.str`https://github.com/fastapi/sqlmodel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

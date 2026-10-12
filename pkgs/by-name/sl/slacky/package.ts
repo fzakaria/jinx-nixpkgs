@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "slacky",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andirsun",
           repo: "Slacky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/icons
 ln -s $out/lib/node_modules/slacky/build/icons/icon.png $out/share/icons/slacky.png
 makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/slacky \\
@@ -44,7 +44,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/slacky \\
   --add-flags $out/lib/node_modules/slacky/
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "slacky",
             exec: "slacky %u",
             icon: "slacky",
@@ -56,11 +56,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/slacky \\
             mimeTypes: nix.thunk(() => ["x-scheme-handler/slack"]),
           })))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unofficial Slack desktop client for arm64 Linux",
         homepage: "https://github.com/andirsun/Slacky",
         changelog: nix.thunk(() => nix.str`https://github.com/andirsun/Slacky/releases/tag/v${nix.sel(finalAttrs, "version")}`),

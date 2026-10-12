@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const wireplumber = nix.arg($, "wireplumber");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "wireplumber",
       buildInputs: nix.thunk(() => [wireplumber]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for wireplumber" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for wireplumber" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=wireplumber.ts.map

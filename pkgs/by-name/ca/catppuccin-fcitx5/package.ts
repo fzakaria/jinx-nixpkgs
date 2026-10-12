@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const withRoundedCorners = nix.argOr($, "withRoundedCorners", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "catppuccin-fcitx5",
       version: "0-unstable-2025-05-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "fcitx5",
           rev: "393845cf3ed0e0000bfe57fe1b9ad75748e2547f",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), withRoundedCorners, "find src -name theme.conf -exec sed -i -E 's/^# (Image=(panel|highlight).svg)/\\1/' {} +\n")), "mkdir -p $out/share/fcitx5\ncp -r src $out/share/fcitx5/themes\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Soothing pastel theme for Fcitx5",
         homepage: "https://github.com/catppuccin/fcitx5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

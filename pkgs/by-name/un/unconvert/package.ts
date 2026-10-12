@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "unconvert",
       version: "0-unstable-2026-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdempsky",
           repo: "unconvert",
           rev: "33842c47157aa10fcb7bf53e7f67e1bad15b0ecc",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-l4DAb6TziWjGbQ6AS6l2wH6VLTuOS5MJiXx+pp1JKk4=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), "--version=branch")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Remove unnecessary type conversions from Go source",
         mainProgram: "unconvert",
         homepage: "https://github.com/mdempsky/unconvert",

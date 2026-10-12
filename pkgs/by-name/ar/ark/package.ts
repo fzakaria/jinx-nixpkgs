@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const R = nix.arg($, "R");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ark",
       version: "0.1.252",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "posit-dev",
           repo: "ark",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   --prefix R_LIBS_SITE : "$(${nix.app(nix.sel(lib, "getExe'"), R, "Rscript")} -e 'cat(Sys.getenv("R_LIBS_SITE"))')"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "R kernel for Jupyter applications, powering Positron's R support",
         homepage: "https://github.com/posit-dev/ark",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

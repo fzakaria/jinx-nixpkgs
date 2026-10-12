@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csa",
       version: "0.5.100810",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/csa/csa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1syg81dzdil0dyx1mlx1n7if3qsf2iz243p2zv34a1acfqm509r3",
         })))),
       postInstall: "rm $out/lib/ladspa/celllm_3890.*",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/csa/",
         description: "Group of LADSPA Audio plugins for FM broadcast and more",
         longDescription: "CSA means : Contrôle Signal Audio.\nIt contains the following plugins:\nEmphasised Limiter, Cellular Leveler, Simple right/left amplifier. Blind Peak Meter.\n",

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const graphviz = nix.arg($, "graphviz");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gcc, graphviz, tk, swarm])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spin",
       version: "6.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nimble-code",
           repo: "Spin",
           rev: nix.thunk(() => nix.str`version-${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ makeWrapper $out/share/spin/ispin.tcl $out/bin/ispin \\
   --prefix PATH : $out/bin:${binPath}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Formal verification tool for distributed software systems",
         homepage: "https://spinroot.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

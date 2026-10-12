@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-backdate",
       version: "2023-07-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rixx",
           repo: "git-backdate",
           rev: "8ba5a0eba04e5559be2e4b1b6e02e62b64ca4dd8",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "runHook preInstall\ninstall -Dm555 git-backdate -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backdate a commit or range of commit to a date or range of dates",
         homepage: "https://github.com/rixx/git-backdate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

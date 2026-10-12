@@ -15,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: "drbd-driver",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "birkb"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           boot: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             kernelModules: nix.thunk(() => ["drbd"]),
             extraModulePackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ycm_cmake_modules = nix.arg($, "ycm-cmake-modules");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yarp",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robotology",
           repo: "yarp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv ./$out/lib/*.so $out/lib/",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Yet Another Robot Platform",
         homepage: "http://yarp.it",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

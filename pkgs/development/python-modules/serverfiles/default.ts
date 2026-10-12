@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "serverfiles",
       version: "0.3.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XhD8MudYeR43NbwIvOLtRwKoOx5Fq5bF1ZzIruz76+E=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["serverfiles"]),
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility that accesses files on a HTTP server and stores them locally for reuse",
         homepage: "https://github.com/biolab/serverfiles",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

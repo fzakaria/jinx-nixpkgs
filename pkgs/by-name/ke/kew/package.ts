@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const withPulseaudio = nix.argOr($, "withPulseaudio", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "pulseaudio"));
   const uppercaseFirst = (x) => nix.add(nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 1n, x))), nix.app(nix.sel(lib, "substring"), 1n, nix.thunk(() => nix.sub(nix.app(nix.sel(lib, "strings", "stringLength"), x), 1n)), x));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kew",
       version: "4.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ravachol",
           repo: "kew",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line music player for Linux",
         homepage: "https://github.com/ravachol/kew",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qtgraphicaleffects = nix.thunk(() => nix.attr(qt5, "qtgraphicaleffects"));
   const qtquickcontrols2 = nix.thunk(() => nix.attr(qt5, "qtquickcontrols2"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensoundmeter",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psmokotnin",
           repo: "osm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, qtgraphicaleffects, qtquickcontrols2]),
       installPhase: "runHook preInstall\n\ninstall OpenSoundMeter -Dt $out/bin\ninstall OpenSoundMeter.desktop -m444 -Dt $out/share/applications\ninstall icons/white.png -m444 -D $out/share/icons/OpenSoundMeter.png\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sound measurement application for tuning audio systems in real-time",
         homepage: "https://opensoundmeter.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

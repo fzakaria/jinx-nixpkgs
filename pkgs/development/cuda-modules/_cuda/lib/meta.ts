@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     _mkMetaBadPlatforms: (finalAttrs) => (() => {
       const failedAssertionsString = nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "_mkFailedAssertionsString"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "platformAssertions"))));
       const hasFailedAssertions = nix.thunk(() => !nix.eq(failedAssertionsString, ""));

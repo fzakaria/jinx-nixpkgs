@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.18.0";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ur-fault",
           repo: "TMaze",
           tag: version,
@@ -33,15 +33,15 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [alsa_lib]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple multiplatform maze solving game for terminal",
         homepage: "https://github.com/ur-fault/TMaze",
         license: nix.thunk(() => nix.update(nix.sel(lib, "licenses", "unfree"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fullName: "Komarek's public license v1",
           url: "https://github.com/ur-fault/TMaze/blob/master/LICENSE",
         })),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tmaze",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         __structuredAttrs,

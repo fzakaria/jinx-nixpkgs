@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.attr(vectorcode, "src"));
   const version = nix.thunk(() => nix.attr(vectorcode, "version"));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       version: version,
       pname: "vectorcode.nvim",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vectorcode, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Index and navigate your code repository using vectorcode",
         homepage: "https://github.com/Davidyz/VectorCode/blob/main/docs/neovim/README.md",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

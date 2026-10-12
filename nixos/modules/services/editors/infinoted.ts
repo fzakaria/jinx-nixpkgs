@@ -35,77 +35,77 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "infinoted"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         infinoted: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "infinoted")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "libinfinity", nix.thunk(() => ({})))),
           keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Private key to use for TLS\n",
             })))),
           certificateFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Server certificate to use for TLS\n",
             })))),
           certificateChain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Chain of CA-certificates to which our `certificateFile` is relative.\nOptional for TLS.\n",
             })))),
           securityPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["no-tls", "allow-tls", "require-tls"]))),
               default: "require-tls",
               description: "How strictly to enforce clients connection with TLS.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 6523n,
               description: "Port to listen on\n",
             })))),
           rootDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/infinoted/documents/",
               description: "Root of the directory structure to serve\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["note-text", "note-chat", "logging", "autosave"]),
               description: "Plugins to enable\n",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File to read server-wide password from\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "[autosave]\ninterval=10\n",
               description: "Additional configuration to append to infinoted.conf\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "infinoted",
               description: "What to call the dedicated user under which infinoted is run\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "infinoted",
               description: "What to call the primary group of the dedicated user under which infinoted is run\n",
@@ -114,31 +114,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "infinoted")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               infinoted: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Infinoted user",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "infinoted")), nix.thunk(() => ({ __proto__: pos$17, infinoted: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "infinoted")), nix.thunk(() => ({ [nix.POS]: pos$17, infinoted: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             infinoted: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Gobby Dedicated Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "simple",
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "infinoted")} --config-file=/var/lib/infinoted/infinoted.conf`),

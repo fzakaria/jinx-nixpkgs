@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_5_4"));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "owi",
       version: "0.2-unstable-2026-05-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocamlpro",
           repo: "owi",
           rev: "2d6ec0d897a209f34849d25f8bcfc73298820be3",
@@ -84,12 +84,12 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, owi: nix.thunk(() => nix.attr(nixosTests, "owi")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, owi: nix.thunk(() => nix.attr(nixosTests, "owi")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Symbolic execution for Wasm, C, C++, Rust and Zig",
         homepage: "https://ocamlpro.github.io/owi/",
         downloadPage: "https://github.com/OCamlPro/owi",

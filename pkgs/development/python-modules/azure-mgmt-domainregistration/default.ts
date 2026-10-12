@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "azure-mgmt-domainregistration",
       version: "1.0.0b1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_domainregistration",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9ayRrmCqmTY8yMLtrj/IIUb5xONb9SQoz8wvN29Wvy0=",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [azure_mgmt_core, isodate, typing_extensions]),
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.domainregistration"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "This package will be released in the near future. Stay tuned",
         homepage: "https://pypi.org/project/azure-mgmt-domainregistration",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

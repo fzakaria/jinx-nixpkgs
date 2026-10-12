@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsa-udev-rules",
       version: "unstable-2023-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsa",
           repo: "wally",
           rev: "a6648f6b543b703e3902faf5c08e997e0d58c909",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "mkdir -p $out/lib/udev/rules.d\ncp dist/linux64/50-oryx.rules $out/lib/udev/rules.d/\ncp dist/linux64/50-wally.rules $out/lib/udev/rules.d/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "udev rules for ZSA devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

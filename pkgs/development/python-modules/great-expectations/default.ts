@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "great-expectations",
       version: "1.11.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "great-expectations",
           repo: "great_expectations",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["great_expectations"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: true,
         description: "Library for writing unit tests for data validation",
         homepage: "https://docs.greatexpectations.io",

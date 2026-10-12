@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(ioquake3, "overrideAttrs"), (old) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ioq3-scion",
       version: "0-unstable-2024-12-14",
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [pan_bindings, libsodium])),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lschulz",
           repo: "ioq3-scion",
           rev: "a21c257b9ad1d897f6c31883511c3f422317aa0a",
           hash: "sha256-CBy3Av/mkFojXr0tAXPRWKwLeQJPebazXQ4wzKEmx0I=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ioquake3 with support for path aware networking",
         homepage: "https://github.com/lschulz/ioq3-scion",
         maintainers: nix.thunk(() => (() => {

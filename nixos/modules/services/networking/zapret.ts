@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
   const params = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "params"))));
   const qnum = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "qnum"))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         zapret: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Zapret DPI bypass service.")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zapret", nix.thunk(() => ({})))),
           params: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
               description: "Specify the bypass parameters for Zapret binary.\nThere are no universal parameters as they vary between different networks, so you'll have to find them yourself.\n\nThis can be done by running the `blockcheck` binary from zapret package, i.e. `nix-shell -p nftables zapret --command blockcheck` (or `iptables` instead of `nftables` if that is what your firewall is using).\nIt'll try different params and then tell you which params are working for your network.\n",
             })))),
           whitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
               description: "Specify a list of domains to bypass. All other domains will be ignored.\nYou can specify either whitelist or blacklist, but not both.\nIf neither are specified, then bypass all domains.\n\nIt is recommended to specify the whitelist. This will make sure that other resources won't be affected by this service.\n",
             })))),
           blacklist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -85,38 +85,38 @@ export default nix.lambda((args) => (() => {
               description: "Specify a list of domains NOT to bypass. All other domains will be bypassed.\nYou can specify either whitelist or blacklist, but not both.\nIf neither are specified, then bypass all domains.\n",
             })))),
           qnum: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: 200n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Routing queue number.\nOnly change this if you already use the default queue number somewhere else.\n",
             })))),
           configureFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to setup firewall routing so that system http(s) traffic is forwarded via this service.\nDisable if you want to set it up manually.\n",
             })))),
           httpSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to route http traffic on port 80.\nHttp bypass rarely works and you might want to disable it if you don't utilise http connections.\n",
             })))),
           httpMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "first",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["first", "full"]))),
               example: "full",
               description: "By default this service only changes the first packet sent, which is enough in most cases.\nBut there are DPIs that monitor the whole traffic within a session.\nThat requires full processing of every packet, which increases the CPU usage.\n\nSet the mode to `full` if http doesn't work.\n",
             })))),
           udpSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable UDP routing.\nThis requires you to specify `udpPorts` and `--dpi-desync-any-protocol` parameter.\n",
             })))),
           udpPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -130,40 +130,40 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "whitelist"))), 0n)) || nix.asBool(nix.eq(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "blacklist"))), 0n)))),
                 message: "Can't specify both whitelist and blacklist.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 assertion: nix.thunk(() => !nix.eq(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "params"))), 0n)),
                 message: "You have to specify zapret parameters. See the params option's description.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "udpSupport")) || nix.asBool(!nix.eq(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "udpPorts"))), 0n)))),
                 message: "You have to specify UDP ports or disable UDP support.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "configureFirewall"))) || nix.asBool(!nix.asBool(nix.sel(config, "networking", "nftables", "enable"))))),
                 message: "You need to manually configure you firewall for Zapret service when using nftables.",
               })),
             ]),
             systemd: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               services: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 zapret: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   description: "DPI bypass service",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/nfqws --pidfile=/run/nfqws.pid ${params} ${whitelist} ${blacklist} --qnum=${qnum}`),
                     Type: "simple",
                     PIDFile: "/run/nfqws.pid",
@@ -190,11 +190,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureFirewall")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               networking: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 firewall: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   extraCommands: nix.thunk(() => (() => {
                     const httpParams = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "httpMode"), "first")), "-m connbytes --connbytes-dir=original --connbytes-mode=packets --connbytes 1:6"));
                     const udpPorts = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "udpPorts"))));
@@ -208,7 +208,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nishimara"))];

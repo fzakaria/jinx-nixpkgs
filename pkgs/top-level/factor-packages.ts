@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const inside = (self) => (() => {
     const callPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "newScope"), self));
     return nix.update(nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         buildFactorApplication: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/mk-factor-application.nix"), nix.thunk(() => ({})))),
         buildFactorVocab: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/mk-vocab.nix"), nix.thunk(() => ({})))),
         "factor-unwrapped": factor_unwrapped,
         "factor-lang": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/wrapper.nix"), nix.thunk(() => ({})))),
-        "factor-no-gui": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/wrapper.nix"), nix.thunk(() => ({ __proto__: pos$1, guiSupport: false })))),
-        "factor-minimal": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/wrapper.nix"), nix.thunk(() => ({ __proto__: pos$2, enableDefaults: false, guiSupport: false })))),
-        "factor-minimal-gui": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/wrapper.nix"), nix.thunk(() => ({ __proto__: pos$3, enableDefaults: false })))),
+        "factor-no-gui": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, guiSupport: false })))),
+        "factor-minimal": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, enableDefaults: false, guiSupport: false })))),
+        "factor-minimal-gui": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/compilers/factor-lang/wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, enableDefaults: false })))),
         bresenham: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/factor-vocabs/bresenham"), nix.thunk(() => ({})))),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "config", "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         interpreter: nix.thunk(() => nix.builtins.throw("factorPackages now offers various wrapped factor runtimes (see documentation) and the buildFactorApplication helper.")),
       }))));
   })();

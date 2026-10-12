@@ -27,48 +27,48 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "limesurvey",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "aanderse"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           limesurvey: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             httpd: nix.thunk(() => ({
-              __proto__: pos$3,
-              virtualHost: nix.thunk(() => ({ __proto__: pos$2, hostName: "example.local", adminAddr: "root@example.local" })),
+              [nix.POS]: pos$3,
+              virtualHost: nix.thunk(() => ({ [nix.POS]: pos$2, hostName: "example.local", adminAddr: "root@example.local" })),
             })),
             encryptionKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "key", nix.thunk(() => nix.app(nix.sel(lib, "strings", "replicate"), 32n, "0")))),
             encryptionNonceFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nonce", nix.thunk(() => nix.app(nix.sel(lib, "strings", "replicate"), 24n, "0")))),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
-          hosts: nix.thunk(() => ({ __proto__: pos$6, "127.0.0.1": nix.thunk(() => ["example.local"]) })),
+          [nix.POS]: pos$7,
+          hosts: nix.thunk(() => ({ [nix.POS]: pos$6, "127.0.0.1": nix.thunk(() => ["example.local"]) })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           nginx: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             inheritParentConfig: true,
             configuration: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               services: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 limesurvey: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   webserver: "nginx",
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$9,
-                    virtualHost: nix.thunk(() => ({ __proto__: pos$8, serverName: "example.local" })),
+                    [nix.POS]: pos$9,
+                    virtualHost: nix.thunk(() => ({ [nix.POS]: pos$8, serverName: "example.local" })),
                   })),
                 })),
               })),

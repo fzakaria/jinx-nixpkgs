@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "graphicsmagick",
       version: "1.3.48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/graphicsmagick/GraphicsMagick-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-khjreBeREPkTcQZqt1yztN0DS5u0ZLKc6bq3oRl5Iys=",
         })))),
@@ -75,22 +75,22 @@ export default nix.lambda((args) => (() => {
       postConfigure: "nuke-refs -e $out ./magick/magick_config.h\n",
       postInstall: "sed -i 's/-ltiff.*'\\'/\\'/ $out/bin/*\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "imagemagick-compat": nix.thunk(() => nix.app(callPackage, nix.path(here, "./imagemagick-compat.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             graphicsmagick: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "issue-157920": nix.thunk(() => nix.app(runCommand, "issue-157920-regression-test", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`gm convert ${graphviz}/share/doc/graphviz/neatoguide.pdf jpg:$out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "http://www.graphicsmagick.org",
         description: "Swiss army knife of image processing",
         longDescription: "GraphicsMagick is the swiss army knife of image processing, providing a\nrobust and efficient collection of tools and libraries which support\nreading, writing, and manipulating an image in over 92 major formats\nincluding important formats like DPX, GIF, JPEG, JPEG-2000, JXL, PNG, PDF,\nPNM, TIFF, and WebP.\n",

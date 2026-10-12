@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pyjwt = nix.arg($, "pyjwt");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "visionpluspython",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Watts-Digital",
           repo: "visionpluspython",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["visionpluspython"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Watts-Digital/visionpluspython/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python API wrapper for Watts Vision+ smart home system",
         homepage: "https://github.com/Watts-Digital/visionpluspython",

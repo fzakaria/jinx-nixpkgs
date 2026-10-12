@@ -49,97 +49,97 @@ output {
   const logstashSettingsYml = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "logstash.yml", nix.thunk(() => nix.sel(cfg, "extraSettings"))));
   const logstashJvmOptionsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "jvm.options", nix.thunk(() => nix.sel(cfg, "extraJvmOptions"))));
   const logstashSettingsDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "logstash-settings", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       logstashJvmOptionsFile: logstashJvmOptionsFile,
       logstashSettingsYml: logstashSettingsYml,
       preferLocalBuild: true,
     })), "mkdir -p $out\nln -s $logstashSettingsYml $out/logstash.yml\nln -s $logstashJvmOptionsFile $out/jvm.options\n"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "logstash", "address"]), nix.thunk(() => ["services", "logstash", "listenAddress"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "logstash", "enableWeb"]), "The web interface was removed from logstash")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         logstash: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable logstash.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "logstash", nix.thunk(() => ({})))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.logstash-contrib ]")),
               description: "The paths to find other logstash plugins in.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/logstash",
               description: "A path to directory writable by logstash that it uses to store data.\nPlugins will also have access to this path.\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["debug", "info", "warn", "error", "fatal"]))),
               default: "warn",
               description: "Logging verbosity level.",
             })))),
           filterWorkers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 1n,
               description: "The quantity of filter workers to run.",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Address on which to start webserver.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "9292",
               description: "Port on which to start webserver.",
             })))),
           inputConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "generator { }",
               description: "Logstash input configuration.",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "''\n  # Read from journal\n  pipe {\n    command => \"${config.systemd.package}/bin/journalctl -f -o json\"\n    type => \"syslog\" codec => json {}\n  }\n''\n")),
             })))),
           filterConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "logstash filter configuration.",
               example: "if [type] == \"syslog\" {\n  # Keep only relevant systemd fields\n  # https://www.freedesktop.org/software/systemd/man/systemd.journal-fields.html\n  prune {\n    whitelist_names => [\n      \"type\", \"@timestamp\", \"@version\",\n      \"MESSAGE\", \"PRIORITY\", \"SYSLOG_FACILITY\"\n    ]\n  }\n}\n",
             })))),
           outputConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "stdout { codec => rubydebug }",
               description: "Logstash output configuration.",
               example: "redis { host => [\"localhost\"] data_type => \"list\" key => \"logstash\" codec => json }\nelasticsearch { }\n",
             })))),
           extraSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra Logstash settings in YAML format.",
               example: "pipeline:\n  batch:\n    size: 125\n    delay: 5\n",
             })))),
           extraJvmOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra JVM options, one per line (jvm.options format).",
@@ -149,18 +149,18 @@ output {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             logstash: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Logstash Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bash"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/mkdir -p "${nix.sel(cfg, "dataDir")}" ; ${nix.sel(pkgs, "coreutils")}/bin/chmod 700 "${nix.sel(cfg, "dataDir")}"`),
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "filter"), (s) => !nix.eq(nix.app(nix.sel(lib, "stringLength"), s), 0n), nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/logstash`),

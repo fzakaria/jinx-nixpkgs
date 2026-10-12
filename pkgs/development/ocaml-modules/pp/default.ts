@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const version = nix.argOr($, "version", () => "2.0.0");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pp",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-dune/pp/releases/download/${nix.sel(finalAttrs, "version")}/pp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "2.0.0": "sha256-hlE1FRiwkrSi3vTggXHCdhUvkvtqhKixm2uSnM20RBk=",
             "1.2.0": "sha256-pegiVzxVr7Qtsp7FbqzR8qzY9lzy3yh44pHeN0zmkJw=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Alternative pretty printing library to the Format module of the OCaml standard library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

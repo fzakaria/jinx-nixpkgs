@@ -20,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "switch-to-configuration",
       version: "0.1.0",
       src: nix.thunk(() => nix.builtins.filterSource((name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", name)), nix.path(here, "./."))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SYSTEMD_DBUS_INTERFACE_DIR: nix.thunk(() => nix.str`${nix.sel(buildPackages, "systemd")}/share/dbus-1/interfaces`),
       })),
       nativeCheckInputs: nix.thunk(() => [clippy]),
       preCheck: "echo \"Running clippy...\"\ncargo clippy -- -Dwarnings\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           switchTest: nix.thunk(() => nix.attr(nixosTests, "switchTest")),
           "switchTest-basics": nix.thunk(() => nix.attr(nixosTests, "switchTest-basics")),
           "switchTest-units": nix.thunk(() => nix.attr(nixosTests, "switchTest-units")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "NixOS switch-to-configuration program",
         mainProgram: "switch-to-configuration",
         maintainers: nix.thunk(() => (() => {

@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "agorakit"));
-  const agorakit = nix.thunk(() => nix.app(nix.sel(pkgs, "agorakit", "override"), nix.thunk(() => ({ __proto__: pos$1, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) }))));
+  const agorakit = nix.thunk(() => nix.app(nix.sel(pkgs, "agorakit", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) }))));
   const db = nix.thunk(() => nix.sel(cfg, "database"));
   const mail = nix.thunk(() => nix.sel(cfg, "mail"));
   const user = nix.thunk(() => nix.sel(cfg, "user"));
@@ -100,35 +100,35 @@ sudo ${php} artisan "$@"
 `)));
   const tlsEnabled = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "nginx", "addSSL")) || nix.asBool(nix.sel(cfg, "nginx", "forceSSL")))) || nix.asBool(nix.sel(cfg, "nginx", "onlySSL")))) || nix.asBool(nix.sel(cfg, "nginx", "enableACME"))));
   return {
-    __proto__: pos$70,
+    [nix.POS]: pos$70,
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         agorakit: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "agorakit")),
           phpPackage: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "php82", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "agorakit",
               description: "User agorakit runs as.",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "agorakit",
               description: "Group agorakit runs as.",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           appKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "A file containing the Laravel APP_KEY - a 32 character long,\nbase64 encoded key used for encryption where needed. Can be\ngenerated with <code>head -c 32 /dev/urandom | base64</code>.\n",
               example: "/run/keys/agorakit-appkey",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             })))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "networking", "domain"), null)) ? nix.sel(config, "networking", "fqdn") : nix.sel(config, "networking", "hostName"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.fqdn")),
@@ -136,7 +136,7 @@ sudo ${php} artisan "$@"
               description: "The hostname to serve agorakit on.\n",
             })))),
           appURL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "The root URL that you want to host agorakit on. All URLs in agorakit will be generated using this value.\nIf you change this in the future you may need to run a command to update stored URLs in the database.\nCommand example: <code>php artisan agorakit:update-url https://old.example.com https://new.example.com</code>\n",
               default: nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), tlsEnabled, "s")}://${nix.sel(cfg, "hostName")}`),
               defaultText: "http${lib.optionalString tlsEnabled \"s\"}://${cfg.hostName}",
@@ -144,40 +144,40 @@ sudo ${php} artisan "$@"
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "agorakit data directory",
               default: "/var/lib/agorakit",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 3306n,
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "agorakit",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: user,
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "user")),
                 description: "Database username.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -187,46 +187,46 @@ sudo ${php} artisan "$@"
                 description: "A file containing the password corresponding to\n<option>database.user</option>.\n",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
           })),
           mail: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             driver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["smtp", "sendmail"]))),
                 default: "smtp",
                 description: "Mail driver to use.",
               })))),
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "localhost",
                 description: "Mail host address.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 1025n,
                 description: "Mail host port.",
               })))),
             fromName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "agorakit",
                 description: "Mail \"from\" name.",
               })))),
             from: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "mail@agorakit.com",
                 description: "Mail \"from\" email.",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -236,7 +236,7 @@ sudo ${php} artisan "$@"
                 description: "Mail username.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -246,7 +246,7 @@ sudo ${php} artisan "$@"
                 description: "A file containing the password corresponding to\n<option>mail.user</option>.\n",
               })))),
             encryption: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["tls"]))));
@@ -256,14 +256,14 @@ sudo ${php} artisan "$@"
               })))),
           })),
           maxUploadSize: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "18M",
               example: "1G",
               description: "The maximum size for uploads (e.g. images).",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -273,7 +273,7 @@ sudo ${php} artisan "$@"
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -284,14 +284,14 @@ sudo ${php} artisan "$@"
               description: "Options for the agorakit PHP pool. See the documentation on <literal>php-fpm.conf</literal>\nfor details on configuration directives.\n",
             })))),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$27, config: config, lib: lib })))), nix.thunk(() => ({})))))),
+              [nix.POS]: pos$28,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$27, config: config, lib: lib })))), nix.thunk(() => ({})))))),
               default: nix.thunk(() => ({})),
               example: "{\n  serverAliases = [\n    \"agorakit.${config.networking.domain}\"\n  ];\n  # To enable encryption and let let's encrypt take care of certificate\n  forceSSL = true;\n  enableACME = true;\n}\n",
               description: "With this option, you can customize the nginx virtualHost settings.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -301,11 +301,11 @@ sudo ${php} artisan "$@"
                           nix.thunk(() => nix.lookup(w_1, "path")),
                           nix.thunk(() => nix.lookup(w_1, "str")),
                         ]))), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           options: nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             _secret: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$29,
+                                [nix.POS]: pos$29,
                                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                                 description: "The path to a file containing the value the\noption should be set to in the final\nconfiguration file.\n",
                               })))),
@@ -320,27 +320,27 @@ sudo ${php} artisan "$@"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(db, "createLocally")) || nix.asBool(nix.eq(nix.sel(db, "user"), user)))),
             message: nix.thunk(() => nix.str`services.agorakit.database.user must be set to ${user} if services.agorakit.database.createLocally is set true.`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(db, "createLocally")) || nix.asBool(nix.eq(nix.sel(db, "passwordFile"), null)))),
             message: "services.agorakit.database.passwordFile cannot be specified if services.agorakit.database.createLocally is set to true.",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           agorakit: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             config: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               APP_ENV: "production",
-              APP_KEY: nix.thunk(() => ({ __proto__: pos$38, _secret: nix.thunk(() => nix.sel(cfg, "appKeyFile")) })),
+              APP_KEY: nix.thunk(() => ({ [nix.POS]: pos$38, _secret: nix.thunk(() => nix.sel(cfg, "appKeyFile")) })),
               APP_URL: nix.thunk(() => nix.sel(cfg, "appURL")),
               DB_HOST: nix.thunk(() => nix.sel(db, "host")),
               DB_PORT: nix.thunk(() => nix.sel(db, "port")),
@@ -353,8 +353,8 @@ sudo ${php} artisan "$@"
               MAIL_PORT: nix.thunk(() => nix.sel(mail, "port")),
               MAIL_USERNAME: nix.thunk(() => nix.sel(mail, "user")),
               MAIL_ENCRYPTION: nix.thunk(() => nix.sel(mail, "encryption")),
-              DB_PASSWORD: nix.thunk(() => ({ __proto__: pos$39, _secret: nix.thunk(() => nix.sel(db, "passwordFile")) })),
-              MAIL_PASSWORD: nix.thunk(() => ({ __proto__: pos$40, _secret: nix.thunk(() => nix.sel(mail, "passwordFile")) })),
+              DB_PASSWORD: nix.thunk(() => ({ [nix.POS]: pos$39, _secret: nix.thunk(() => nix.sel(db, "passwordFile")) })),
+              MAIL_PASSWORD: nix.thunk(() => ({ [nix.POS]: pos$40, _secret: nix.thunk(() => nix.sel(mail, "passwordFile")) })),
               APP_SERVICES_CACHE: "/run/agorakit/cache/services.php",
               APP_PACKAGES_CACHE: "/run/agorakit/cache/packages.php",
               APP_CONFIG_CACHE: "/run/agorakit/cache/config.php",
@@ -364,24 +364,24 @@ sudo ${php} artisan "$@"
             })),
           })),
           mysql: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(db, "createLocally")), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               enable: true,
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(db, "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   name: nix.thunk(() => nix.sel(db, "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(db, "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             pools: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               agorakit: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 user: user,
                 group: group,
                 phpPackage: nix.thunk(() => nix.sel(cfg, "phpPackage")),
@@ -390,7 +390,7 @@ post_max_size = ${nix.sel(cfg, "maxUploadSize")}
 upload_max_filesize = ${nix.sel(cfg, "maxUploadSize")}
 `),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   "listen.mode": "0660",
                   "listen.owner": user,
                   "listen.group": group,
@@ -399,7 +399,7 @@ upload_max_filesize = ${nix.sel(cfg, "maxUploadSize")}
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
             recommendedTlsSettings: true,
             recommendedOptimisation: true,
@@ -410,40 +410,40 @@ upload_max_filesize = ${nix.sel(cfg, "maxUploadSize")}
               [nix.sel(cfg, "hostName"), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "nginx")),
                   nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     root: nix.thunk(() => nix.app(nix.lookup(w, "mkForce"), nix.thunk(() => nix.str`${agorakit}/public`))),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         index: "index.php",
                         tryFiles: "$uri $uri/ /index.php?$query_string",
                       })),
                       "~ \\.php$": nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "agorakit", "socket")};
 `),
                       })),
-                      "~ \\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ __proto__: pos$51, extraConfig: "expires 365d;" })),
+                      "~ \\.(js|css|gif|png|ico|jpg|jpeg)$": nix.thunk(() => ({ [nix.POS]: pos$51, extraConfig: "expires 365d;" })),
                     })),
                   })),
                 ])))],
             ])),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$56, systemPackages: nix.thunk(() => [artisan]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$56, systemPackages: nix.thunk(() => [artisan]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           services: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             "agorakit-setup": nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               description: "Preparation tasks for agorakit",
               before: nix.thunk(() => ["phpfpm-agorakit.service"]),
               after: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(db, "createLocally")), "mysql.service")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: user,
@@ -456,9 +456,9 @@ upload_max_filesize = ${nix.sel(cfg, "maxUploadSize")}
               script: nix.thunk(() => (() => {
                 const isSecret = (v) => (nix.asBool((nix.asBool(nix.app(nix.lookup(w, "isAttrs"), v)) && nix.asBool(nix.has(v, "_secret")))) && nix.asBool(nix.app(nix.lookup(w, "isString"), nix.thunk(() => nix.sel(v, "_secret")))));
                 const agorakitEnvVars = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), "=", nix.thunk(() => ({
-                        __proto__: pos$58,
+                        [nix.POS]: pos$58,
                         mkValueString: (v) => (() => {
                           const w_1 = nix.withScope(nix.builtins, w);
                           return (nix.asBool(nix.app(nix.lookup(w_1, "isInt"), v)) ? nix.app(nix.builtins.toString, v) : (nix.asBool(nix.app(nix.lookup(w_1, "isString"), v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "true" : (nix.asBool(nix.eq(false, v)) ? "false" : (nix.asBool(nix.app(isSecret, v)) ? nix.app(nix.lookup(w_1, "hashString"), "sha256", nix.thunk(() => nix.sel(v, "_secret"))) : nix.app(nix.builtins.throw, nix.thunk(() => nix.str`unsupported type ${nix.app(nix.lookup(w_1, "typeOf"), v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`)))))));
@@ -494,7 +494,7 @@ ${php} artisan config:cache
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}                            0710 ${user} ${group} - -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/public                     0750 ${user} ${group} - -`),
@@ -512,14 +512,14 @@ ${php} artisan config:cache
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(user, "agorakit")), nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$66,
-              agorakit: nix.thunk(() => ({ __proto__: pos$64, group: group, isSystemUser: true })),
+              [nix.POS]: pos$66,
+              agorakit: nix.thunk(() => ({ [nix.POS]: pos$64, group: group, isSystemUser: true })),
             }, [
-              [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({ __proto__: pos$65, extraGroups: nix.thunk(() => [group]) }))],
+              [nix.str`${nix.sel(config, "services", "nginx", "user")}`, nix.thunk(() => ({ [nix.POS]: pos$65, extraGroups: nix.thunk(() => [group]) }))],
             ])))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(group, "agorakit")), nix.thunk(() => ({ __proto__: pos$67, agorakit: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(group, "agorakit")), nix.thunk(() => ({ [nix.POS]: pos$67, agorakit: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

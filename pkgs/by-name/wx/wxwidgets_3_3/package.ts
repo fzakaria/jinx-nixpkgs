@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const withPrivateFonts = nix.argOr($, "withPrivateFonts", () => false);
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wxwidgets",
       version: "3.3.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wxWidgets",
           repo: "wxWidgets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
           "--with-urlsession",
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["--with-libcurl"])), nix.app(nix.sel(lib, "optionals"), withWebKit, nix.thunk(() => ["--enable-webview", "--enable-webviewwebkit"]))))))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           SEARCH_LIB: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`${nix.sel(libGLU, "out")}/lib`),
               nix.thunk(() => nix.str`${nix.sel(libGL, "out")}/lib`),
@@ -102,14 +102,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "\n    pushd $out/include\n    ln -s wx-*/* .\n    popd\n  ",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         compat30: compat30,
         compat32: compat32,
         withEGL: withEGL,
         withPrivateFonts: withPrivateFonts,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.wxwidgets.org/",
         description: "Cross-Platform C++ GUI Library",
         longDescription: "wxWidgets gives you a single, easy-to-use API for writing GUI applications\non multiple platforms that still utilize the native platform's controls\nand utilities. Link with the appropriate library for your platform and\ncompiler, and your application will adopt the look and feel appropriate to\nthat platform. On top of great GUI functionality, wxWidgets gives you:\nonline help, network programming, streams, clipboard and drag and drop,\nmultithreading, image loading and saving in a variety of popular formats,\ndatabase support, HTML viewing and printing, and much more.\n",

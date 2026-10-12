@@ -10,10 +10,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./binary.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2.090.1",
       hashes: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         osx: "sha256-9HwGVO/8jfZ6aTiDIUi8w4C4Ukry0uUS8ACP3Ig8dmU=",
         linux: "sha256-ByCrIA4Nt7i9YT0L19VXIL1IqIp+iObcZux407amZu4=",
       })),

@@ -31,35 +31,35 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "opentsdb"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "opentsdb.conf", nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         opentsdb: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OpenTSDB")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "opentsdb", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opentsdb",
               description: "User account under which OpenTSDB runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "opentsdb",
               description: "Group account under which OpenTSDB runs.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 4242n,
               description: "Which port OpenTSDB listens on.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "tsd.core.auto_create_metrics = true\ntsd.http.request.enable_chunked  = true\n",
               description: "The contents of OpenTSDB's configuration file\n",
@@ -68,25 +68,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "opentsdb", "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             opentsdb: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "OpenTSDB Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["hbase.service"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 JAVA_HOME: nix.thunk(() => nix.str`${nix.sel(pkgs, "jre")}`),
               })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnuplot"))]),
               preStart: nix.thunk(() => nix.str`COMPRESSION=NONE HBASE_HOME=${nix.sel(config, "services", "hbase", "package")} ${nix.sel(cfg, "package")}/share/opentsdb/tools/create_table.sh
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 PermissionsStartOnly: true,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -96,20 +96,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             opentsdb: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "OpenTSDB Server user",
               group: "opentsdb",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "opentsdb")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             opentsdb: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "opentsdb")),
             })),
           })),

@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const teensy_cmake_macros = nix.arg($, "teensy-cmake-macros");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "teensy-cmake-macros-hook",
       propagatedBuildInputs: nix.thunk(() => [teensy_cmake_macros]),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, "teensy-cmake-macros": teensy_cmake_macros })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "teensy-cmake-macros": teensy_cmake_macros })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(teensy_cmake_macros, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Setup hook for teensy-cmake-macros",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

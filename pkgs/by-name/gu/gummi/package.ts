@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.8.3",
       pname: "gummi",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexandervdm",
           repo: "gummi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "gummi",
             version: "0.8.3+really0.8.3",
             debianRevision: "6",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dpm644 COPYING $out/share/licenses/$name/COPYING\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gummi.app",
         description: "Simple LaTex editor for GTK users",
         mainProgram: "gummi",

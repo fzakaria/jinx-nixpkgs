@@ -45,21 +45,21 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "ipu6"));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hardware: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ipu6: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "support for Intel IPU6/MIPI cameras")),
           platform: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["ipu6", "ipu6ep", "ipu6epmtl"]))),
               description: "Choose the version for your hardware platform.\n\nUse `ipu6` for Tiger Lake, `ipu6ep` for Alder Lake or Raptor Lake,\nand `ipu6epmtl` for Meteor Lake.\n",
             })))),
           videoDeviceNumber: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "int")),
               default: 50n,
               description: "v4l2loopback device number for the relay output (`/dev/videoN`).\n\nMust be fixed so application camera permission grants, which are keyed to\nthe PipeWire node name (derived from the sysfs device path), survive\nreboots. Choose a number above the IPU6 raw node range (typically 3-34)\nand any other v4l2loopback devices on the system.\n",
@@ -68,16 +68,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         boot: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           extraModulePackages: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);
             return [nix.thunk(() => nix.lookup(w, "ipu6-drivers"))];
           })()),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           firmware: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -87,26 +87,26 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           udev: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             extraRules: "SUBSYSTEM==\"intel-ipu6-psys\", MODE=\"0660\", GROUP=\"video\"\nSUBSYSTEM==\"media\", DRIVERS==\"intel-ipu6\", MODE=\"0600\", GROUP=\"root\", TAG-=\"uaccess\"\nSUBSYSTEM==\"video4linux\", DRIVERS==\"intel-ipu6\", MODE=\"0600\", GROUP=\"root\", TAG-=\"uaccess\"\n",
           })),
           pipewire: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             wireplumber: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               extraConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 "ipu6-v4l2-rules": nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   "monitor.v4l2.rules": nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$12,
-                      matches: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$9, "device.product.name": "ipu6" }))]),
+                      [nix.POS]: pos$12,
+                      matches: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, "device.product.name": "ipu6" }))]),
                       actions: nix.thunk(() => ({
-                        __proto__: pos$11,
-                        "update-props": nix.thunk(() => ({ __proto__: pos$10, "device.disabled": true })),
+                        [nix.POS]: pos$11,
+                        "update-props": nix.thunk(() => ({ [nix.POS]: pos$10, "device.disabled": true })),
                       })),
                     })),
                   ]),
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           "v4l2-relayd": nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             instances: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               ipu6: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 enable: nix.thunk(() => nix.app(mkDefault, true)),
                 cardLabel: nix.thunk(() => nix.app(mkDefault, "Intel MIPI Camera")),
                 extraPackages: nix.thunk(() => (() => {
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
                   return nix.concat([], nix.concat(nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "platform"), "ipu6")), nix.thunk(() => nix.lookup(w, "icamerasrc-ipu6"))), nix.concat(nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "platform"), "ipu6ep")), nix.thunk(() => nix.lookup(w, "icamerasrc-ipu6ep"))), nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "platform"), "ipu6epmtl")), nix.thunk(() => nix.lookup(w, "icamerasrc-ipu6epmtl"))))));
                 })()),
                 input: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   pipeline: "icamerasrc",
                   format: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "platform"), "ipu6")), nix.thunk(() => nix.app(mkDefault, "NV12")))),
                 })),
@@ -136,15 +136,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rules: nix.thunk(() => ["d /run/camera 0755 root video -"]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "v4l2-relayd-ipu6": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               preStart: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.str`mkdir -p "$(dirname "$V4L2_DEVICE_FILE")"
 ${nix.sel(config, "boot", "kernelPackages", "v4l2loopback", "bin")}/bin/v4l2loopback-ctl \\
   add --name "Intel MIPI Camera" --exclusive-caps=1 ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "videoDeviceNumber")))} || [ $? -eq 17 ]

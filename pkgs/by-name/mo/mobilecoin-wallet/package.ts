@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "mobilecoin-wallet";
   const version = "1.9.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/mobilecoinofficial/desktop-wallet/releases/download/v${version}/MobileCoin.Wallet-${version}.AppImage`),
       hash: "sha256-JfG+eHsPFXZKi9Vjbw7CPvhmeMvfPWSDS65Ey4Lb8iQ=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -38,7 +38,7 @@ substituteInPlace $out/share/applications/${pname}.desktop \\
   --replace "AppRun" "${pname}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "User-friendly desktop wallet with support for transaction history, encrypted contact book, gift codes, and payments",
         homepage: "https://github.com/mobilecoinofficial/desktop-wallet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

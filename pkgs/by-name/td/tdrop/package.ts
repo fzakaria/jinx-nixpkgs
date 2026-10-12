@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tdrop",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noctuid",
           repo: "tdrop",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Glorified WM-Independent Dropdown Creator",
         mainProgram: "tdrop",
         homepage: "https://github.com/noctuid/tdrop",

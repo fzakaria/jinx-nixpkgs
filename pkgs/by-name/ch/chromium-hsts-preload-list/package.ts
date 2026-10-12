@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "chromium-hsts-preload-list",
       version: "156.0.8068.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://raw.github.com/chromium/chromium/${nix.sel(finalAttrs, "version")}/net/http/transport_security_state_static.json`),
           hash: "sha256-IqKm5y6lcbqA7EeP2pDGX8+tVLHSs/gBUAi8PIuIydY=",
         })))),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       installPhase: "runHook preInstall\n\ninstall -Dm444 $src $out/share/chromium-hsts-preload-list/transport_security_state_static.json\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Chromium HSTS preload list",
         homepage: "https://www.chromium.org/hsts/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

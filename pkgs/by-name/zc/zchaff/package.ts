@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zchaff";
       const version = "2007.3.12";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.princeton.edu/~chaff/zchaff/zchaff.64bit.${version}.zip`),
           sha256: "sha256-88fAtJb7o+Qv2GohTdmquxMEq4oCbiKbqLFmS7zs1Ak=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\ninstall -Dm755 -t $out/bin zchaff\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.princeton.edu/~chaff/zchaff.html",
         description: "Accelerated SAT Solver from Princeton",
         mainProgram: "zchaff",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const groups = nix.thunk(() => nix.attr(from, "groups"));
   const rootDir = "/run/freeciv";
   const argsFormat = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     type: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
       const valueType = nix.thunk(() => nix.update(nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "float")),
             nix.thunk(() => nix.lookup(w, "str")),
             nix.thunk(() => nix.app(nix.lookup(w, "listOf"), valueType)),
-          ])))), { __proto__: pos$1, description: "freeciv-server params" }));
+          ])))), { [nix.POS]: pos$1, description: "freeciv-server params" }));
       return nix.force(valueType);
     })()),
     generate: (name) => (value) => (() => {
@@ -64,39 +64,39 @@ export default nix.lambda((args) => (() => {
     })(),
   }));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         freeciv: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "freeciv")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Parameters of freeciv-server.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(argsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     Announce: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["IPv4", "IPv6", "none"]))),
                         default: "none",
                         description: "Announce game in LAN using given protocol.",
                       })))),
                     auth: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "server authentication")),
                     Database: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         apply: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "auth.conf")),
                         default: "[fcdb]\n  backend=\"sqlite\"\n  database=\"/var/lib/freeciv/auth.sqlite\"\n",
                         description: "Enable database connection with given configuration.",
                       })))),
                     debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 3n)),
                         default: 0n,
                         description: "Set debug log level.",
@@ -105,26 +105,26 @@ export default nix.lambda((args) => (() => {
                     Guests: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "guests to login if auth is enabled")),
                     Newusers: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "new users to login if auth is enabled")),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 5556n,
                         description: "Listen for clients on given port",
                       })))),
                     quitidle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                         default: null,
                         description: "Quit if no players for given time in seconds.",
                       })))),
                     read: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                         apply: (v) => nix.add(nix.app(nix.sel(pkgs, "writeTextDir"), "read.serv", v), "/read"),
                         default: "/fcdb lua sqlite_createdb()\n",
                         description: "Startup script.",
                       })))),
                     saves: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: "/var/lib/freeciv/saves/",
                         description: "Save games to given directory,\na sub-directory named after the starting date of the service\nwill me inserted to preserve older saves.\n",
@@ -137,20 +137,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
-          groups: nix.thunk(() => ({ __proto__: pos$16, freeciv: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$17,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$16, freeciv: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           sockets: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             freeciv: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ListenFIFO: "/run/freeciv.stdin",
                 SocketGroup: nix.thunk(() => nix.sel(groups, "freeciv", "name")),
                 SocketMode: "660",
@@ -159,15 +159,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             freeciv: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "Freeciv Service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$21, HOME: "/var/lib/freeciv" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$21, HOME: "/var/lib/freeciv" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 Restart: "on-failure",
                 RestartSec: "5s",
                 StandardInput: "fd:freeciv.socket",
@@ -176,7 +176,7 @@ export default nix.lambda((args) => (() => {
                 ExecStart: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "freeciv-server", nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add("set -eux\nsavedir=$(date +%Y-%m-%d_%H-%M-%S)\n", nix.str`${nix.sel(pkgs, "freeciv")}/bin/freeciv-server`), " "), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "saves"), null)), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
                         "--saves",
                         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "settings", "saves")))}/$savedir`),
-                      ]))))), " "), nix.app(nix.sel(argsFormat, "generate"), "freeciv-server", nix.thunk(() => nix.update(nix.sel(cfg, "settings"), { __proto__: pos$22, saves: null }))))))),
+                      ]))))), " "), nix.app(nix.sel(argsFormat, "generate"), "freeciv-server", nix.thunk(() => nix.update(nix.sel(cfg, "settings"), { [nix.POS]: pos$22, saves: null }))))))),
                 DynamicUser: true,
                 RuntimeDirectory: nix.thunk(() => [nix.thunk(() => nix.builtins.baseNameOf(rootDir))]),
                 RuntimeDirectoryMode: "755",
@@ -231,15 +231,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "julm"))];

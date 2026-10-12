@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const pname = "libmaa";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dict/libmaa-${version}.tar.gz`),
           sha256: "1idi4c30pi79g5qfl7rr9s17krbjbg93bi8f2qrbsdlh78ga19ar",
         }))));
       const buildInputs = nix.thunk(() => [libtool]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-truncation" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-truncation" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides many low-level data structures which are helpful for writing compilers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$4, version, pname, src, buildInputs, env, meta };
+      return { [nix.POS]: pos$4, version, pname, src, buildInputs, env, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=libmaa.ts.map

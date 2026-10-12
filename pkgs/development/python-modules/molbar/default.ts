@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "MolBar";
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.rwth-aachen.de/bannwarthlab/molbar",
           rev: nix.thunk(() => nix.str`release_v${version}`),
           hash: "sha256-wHvsj1/BJpfbSKEB7Fk8PkH6laN/VMKoluZo+4bprlo=",
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unique molecular identifiers for molecular barcoding",
         homepage: "https://git.rwth-aachen.de/bannwarthlab/molbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sheepforce"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

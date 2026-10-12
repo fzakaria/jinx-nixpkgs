@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "ef60e9210d4727e82f0095a686cb07b676d055918f0c59c5bfa8598da03e59d1",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure Python library that lets one to read metadata from media files",
         homepage: "http://hg.hardcoded.net/hsaudiotag/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { __proto__: pos$3, pname, version, format, disabled, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, disabled, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

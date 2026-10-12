@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "convmv",
       version: "2.06",
       outputs: nix.thunk(() => ["bin", "man", "out"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.j3e.de/linux/convmv/convmv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-36UPh+eZBT/J2rkvOcHeqkVKSl4yO9GJp/BxWGDrgGU=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       dontPatchShebangs: true,
       postFixup: "wrapProgram \"$bin/bin/convmv\" --prefix PERL5LIB : \"$PERL5LIB\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts filenames from one encoding to another",
         downloadPage: "https://www.j3e.de/linux/convmv/",
         license: nix.thunk(() => (() => {

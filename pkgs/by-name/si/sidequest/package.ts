@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
   const pname = "sidequest";
   const version = "0.10.42";
   const sidequest = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/SideQuestVR/SideQuest/releases/download/v${version}/SideQuest-${version}.tar.xz`),
           hash: "sha256-YZp7OAjUOXepVv5dPhh9Q2HicUKjSOGfhrWyMKy2gME=",
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "sidequest",
             exec: "sidequest",
             icon: "sidequest",
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [sidequest, icu, openssl, zlib, libxkbcommon, libxshmfence],
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
 `),
       runScript: "sidequest",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open app store and side-loading tool for Android-based VR devices such as the Oculus Go, Oculus Quest or Moverio BT 300",
         homepage: "https://github.com/SideQuestVR/SideQuest",
         downloadPage: "https://github.com/SideQuestVR/SideQuest/releases",

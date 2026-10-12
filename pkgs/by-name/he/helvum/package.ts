@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helvum";
       const version = "0.6.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "pipewire",
           repo: "helvum",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-fDsVYFJ2fm5dLpcCp7Pm4s3+jqTx4r9IQokoVQ0sM04=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [desktop_file_utils, glib, gtk4, libadwaita, pipewire]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GTK patchbay for pipewire",
         homepage: "https://gitlab.freedesktop.org/pipewire/helvum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "helvum",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

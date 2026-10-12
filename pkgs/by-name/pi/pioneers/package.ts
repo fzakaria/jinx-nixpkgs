@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pioneers",
       version: "15.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pio/pioneers-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07b3xdd81n8ybsb4fzc5lx0813y9crzp1hj69khncf4faj48sdcs",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, intltool, itstool]),
       buildInputs: nix.thunk(() => [gtk3, libxml2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Addicting game based on The Settlers of Catan",
         homepage: "https://pio.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

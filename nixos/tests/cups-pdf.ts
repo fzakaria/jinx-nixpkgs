@@ -24,46 +24,46 @@ export default nix.lambda((args) => (() => {
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "cups-pdf",
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "poppler-utils"))]),
           })),
           fonts: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dejavu_fonts"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             printing: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "cups-pdf": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: true,
                 instances: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   opt: nix.thunk(() => ({})),
-                  noopt: nix.thunk(() => ({ __proto__: pos$3, installPrinter: false })),
+                  noopt: nix.thunk(() => ({ [nix.POS]: pos$3, installPrinter: false })),
                 })),
               })),
             })),
           })),
           hardware: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             printers: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               ensurePrinters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "noopt",
                   model: "CUPS-PDF_noopt.ppd",
                   deviceUri: "cups-pdf:/noopt",
@@ -88,7 +88,7 @@ for name in ("opt", "noopt"):
     assert text.encode() in run(f"${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(hostPkgs, "tesseract")))} $out/{name}.jpeg stdout", shell=True, check=True, capture_output=True).stdout
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

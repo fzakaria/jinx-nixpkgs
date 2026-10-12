@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const formats = nix.arg($, "formats");
   const sample = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))), "generate"), "example-schema.json", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       $schema: "http://json-schema.org/draft-07/schema#",
       $id: "https://example.com/example-2.9.json",
       title: "Example Schema",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
 }
 `)));
   return nix.app(runCommand, "json-schema-catalog-rs-test-run", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [json_schema_catalog_rs]),
       sample: sample,
     })), nix.thunk(() => nix.str`set -u

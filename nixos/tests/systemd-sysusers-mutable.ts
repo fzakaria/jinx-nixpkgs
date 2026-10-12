@@ -34,38 +34,38 @@ export default nix.lambda((args) => (() => {
   const sysuserPassword = "hello";
   const newSysuserPassword = "$y$j9T$p6OI0WN7.rSfZBOijjRdR.$xUOA2MTcB48ac.9Oc5fz8cxwLv1mMqabnn333iOzSA6";
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "activation-sysusers-mutable",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemd: nix.thunk(() => ({
-            __proto__: pos$3,
-            sysusers: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            sysusers: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mutableUsers: true,
             users: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               root: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                 initialHashedPassword: rootPassword,
               })),
               sysuser: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 isSystemUser: true,
                 group: "wheel",
                 home: "/sysuser",
@@ -74,32 +74,32 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             etc: nix.thunk(() => ({
-              __proto__: pos$9,
-              overlay: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+              [nix.POS]: pos$9,
+              overlay: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             initrd: nix.thunk(() => ({
-              __proto__: pos$12,
-              systemd: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+              [nix.POS]: pos$12,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
             })),
             kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "new-generation": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               configuration: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 users: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   users: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     "new-sysuser": nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       isSystemUser: true,
                       group: "wheel",
                       home: "/new-sysuser",

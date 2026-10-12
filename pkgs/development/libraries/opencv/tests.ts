@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const isAarch64 = nix.thunk(() => nix.attr(from_1, "isAarch64"));
   const isDarwin = nix.thunk(() => nix.attr(from_1, "isDarwin"));
   return nix.app(runCommand, "opencv4-tests", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       __structuredAttrs: true,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([writableTmpDirAsHomeHook], nix.app(optionals, enableGStreamer, nix.thunk(() => (() => {

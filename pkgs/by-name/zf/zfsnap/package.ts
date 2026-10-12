@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.0.0-beta3",
       pname: "zfsnap",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zfsnap",
           repo: "zfsnap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ substituteInPlace sbin/zfsnap.sh \\
 `),
       installPhase: "mkdir -p $out/bin\nmv sbin/zfsnap.sh $out/bin/zfsnap\nmv share $out\ninstallManPage man/*/*\ninstallShellCompletion completion/*.{bash,zsh}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable, performant script to make rolling ZFS snapshots easy",
         mainProgram: "zfsnap",
         homepage: "https://github.com/zfsnap/zfsnap",

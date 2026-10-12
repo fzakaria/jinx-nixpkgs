@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const flask = nix.arg($, "flask");
   const brotli = nix.arg($, "brotli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flask-static-digest",
       version: "0.4.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nickjj",
           repo: "flask-static-digest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [flask]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, brotli: nix.thunk(() => [brotli]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, brotli: nix.thunk(() => [brotli]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["flask_static_digest"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flask extension for md5 tagging and compressing static files",
         homepage: "https://github.com/nickjj/flask-static-digest",
         changelog: nix.thunk(() => nix.str`https://github.com/nickjj/flask-static-digest/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

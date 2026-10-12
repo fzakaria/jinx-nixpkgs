@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uutils-util-linux",
       version: "0.0.1-unstable-2026-09-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uutils",
           repo: "util-linux",
           rev: "77b6743fb63660a6a3f9a9ad09ff1963480d0e74",
@@ -60,11 +60,11 @@ substituteInPlace tests/by-util/test_setpgid.rs \\
         "--skip=test_chcpu::linux::test_every_absent_cpu_is_reported_once",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rust reimplementation of the util-linux project",
         homepage: "https://github.com/uutils/util-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

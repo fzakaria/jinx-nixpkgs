@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fcitx5-sitelen-pona",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Toastberries",
           repo: "fcitx5-sitelen-pona",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fcitx5\ncp -r fcitx5/{inputmethod,punctuation,table} \"$out/share/fcitx5/\"\n\nmkdir -p $out/share/icons/hicolor/scalable/status\nfor icon in icons/*; do\n  install -Dm644 \"$icon\" \"$out/share/icons/hicolor/scalable/status/fcitx5-$(basename \"$icon\")\"\ndone\n\nrunHook postInstall\n",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(fcitx5, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "IME using Fcitx5 for writing toki pona's sitelen pona glyphs",
         longDescription: "This tool is an IME using Fcitx5\nWith it, you can easily write toki pona's sitelen pona glyphs\nSimply type your words in latin characters, and they'll be changed into sitelen pona\n",

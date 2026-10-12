@@ -26,27 +26,27 @@ export default nix.lambda((args) => (() => {
   const alicePassword = "foobar";
   const hashedAlicePassword = "$6$MsMrE1q.1HrCgTS$Vq2e/uILzYjSN836TobAyN9xh9oi7EmCmucnZID25qgPoibkw8qTCugiAPnn4eCGvn1A.7oEBFJaaGUaJsQQY.";
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "pam-oath-login",
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           security: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pam: nix.thunk(() => ({
-              __proto__: pos$2,
-              oath: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+              [nix.POS]: pos$2,
+              oath: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             users: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               alice: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 isNormalUser: true,
                 name: "alice",
                 uid: 1000n,
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               setupOathSnakeoilFile: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 wantedBy: nix.thunk(() => ["default.target"]),
                 before: nix.thunk(() => ["default.target"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$7, type: "oneshot", RemainAfterExit: true })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, type: "oneshot", RemainAfterExit: true })),
                 script: nix.thunk(() => nix.str`touch /etc/users.oath
 chmod 600 /etc/users.oath
 chown root /etc/users.oath

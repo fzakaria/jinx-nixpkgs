@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hieroglyph";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nyergler",
           repo: "hieroglyph",
           tag: nix.thunk(() => nix.str`hieroglyph-${version}`),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "hieroglyph-upgrade-versioneer",
             url: "https://github.com/nyergler/hieroglyph/commit/9cebee269ac10964b2436c0204156b7bd620a3d4.patch",
             hash: "sha256-ZvU7uASU727/NUAW8I7k9idzMpEdnuwRshdHm2/GQ3w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "hieroglyph-slide-builder-type-error",
             url: "https://github.com/nyergler/hieroglyph/pull/174/commits/d75c550f797e3635d33db11f50968755288962a7.patch",
             hash: "sha256-qNQVgWL9jy0cwtxKUbWi3Qc77RU2H3raN0BzBjDk9C8=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["hieroglyph"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generate HTML presentations from plain text sources",
         homepage: "https://github.com/nyergler/hieroglyph/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

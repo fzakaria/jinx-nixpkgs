@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plotutils",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/plotutils/plotutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1arkyizn5wbgvbh53aziv3s6lmd3wm9lqzkhxb3hijlp1y124hjg",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful C/C++ library for exporting 2D vector graphics",
         longDescription: "The GNU plotutils package contains software for both programmers and\ntechnical users.  Its centerpiece is libplot, a powerful C/C++\nfunction library for exporting 2-D vector graphics in many file\nformats, both vector and raster.  It can also do vector graphics\nanimations.\n\nlibplot is device-independent in the sense that its API (application\nprogramming interface) does not depend on the type of graphics file\nto be exported.\n\nBesides libplot, the package contains command-line programs for\nplotting scientific data.  Many of them use libplot to export\ngraphics.\n",
         homepage: "https://www.gnu.org/software/plotutils/",

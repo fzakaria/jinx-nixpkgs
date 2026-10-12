@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lit = nix.arg($, "lit");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "outputcheck",
       version: "0.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stp",
           repo: "OutputCheck",
           rev: "eab62a5dd5129f6a4ebfbe4bbe41d35611f7c48d",
@@ -41,7 +41,7 @@ echo ${nix.sel(finalAttrs, "version")} > RELEASE-VERSION
       checkPhase: "runHook preCheck\n\nlit -v tests/\n\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["OutputCheck"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for checking tool output inspired by LLVM's FileCheck",
         homepage: "https://github.com/stp/OutputCheck",
         changelog: nix.thunk(() => nix.str`https://github.com/stp/OutputCheck/releases/tag/${nix.sel(finalAttrs, "version")}`),

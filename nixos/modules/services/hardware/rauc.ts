@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const mountDir = nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/mnt`);
   const mkSlot = (slot) => (nix.asBool(nix.sel(slot, "enable")) ? nix.update(nix.sel(slot, "settings"), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     device: nix.thunk(() => nix.attr(slot, "device")),
     type: nix.thunk(() => nix.attr(slot, "type")),
   }) : null);
   const slotSections = nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.app(filter, (slot) => !nix.eq(slot, null), nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(mapAttrsToList, (name) => (indexes) => nix.app(imap0, (idx) => (slot) => nix.app(nameValuePair, nix.thunk(() => nix.str`slot.${name}.${nix.builtins.toString(idx)}`), nix.thunk(() => nix.app(mkSlot, slot))), indexes), nix.thunk(() => nix.sel(cfg, "slots"))))))))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "rauc.conf", nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           system: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             compatible: nix.thunk(() => nix.attr(cfg, "compatible")),
             bootloader: nix.thunk(() => nix.attr(cfg, "bootloader")),
             "bundle-formats": nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(cfg, "bundleFormats")))),
@@ -85,37 +85,37 @@ export default nix.lambda((args) => (() => {
           })),
         })), slotSections))))));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         rauc: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(mkEnableOption, "RAUC A/B update service")),
           "mark-good": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkEnableOption, "RAUC Good-marking service")),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(mkEnableOption, "RAUC client in the system environment")),
           })),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "rauc", nix.thunk(() => ({})))),
           compatible: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "The compatibility string for this system. Can be any format so long as you are consistent.",
               type: nix.thunk(() => nix.sel(types, "str")),
               example: "nix/appliance/foo",
             })))),
           bootloader: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "The bootloader backend for RAUC.",
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["barebox", "grub", "uboot", "efi", "custom", "noop"]))),
               example: "grub",
             })))),
           bundleFormats: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Allowable formats for the RAUC bundle.",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -125,33 +125,33 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => ["-plain", "+verity"]),
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "The state directory for RAUC.",
               default: "/var/lib/rauc",
               type: nix.thunk(() => nix.sel(types, "path")),
             })))),
           slots: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "RAUC slot definitions. Every key is a slot class and every value is a list of slot indexes.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       options: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         enable: nix.thunk(() => nix.app(mkEnableOption, "this RAUC slot")),
                         device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             description: "The device to update.",
                             type: nix.thunk(() => nix.sel(types, "str")),
                           })))),
                         type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             description: "The type of the device.",
                             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["raw", "nand", "nor", "ubivol", "ubifs", "ext4", "vfat"]))),
                             default: "raw",
                           })))),
                         settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             description: "Settings for this slot.",
                             type: nix.thunk(() => nix.sel(types, "attrs")),
                             default: nix.thunk(() => ({})),
@@ -160,7 +160,7 @@ export default nix.lambda((args) => (() => {
                     })))))))),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Rauc configuration that will be converted to INI. Refer to:\n<https://rauc.readthedocs.io/en/latest/reference.html#sec-ref-slot-config>\nfor details on supported values.\n\nAll module-specific options override these.\n",
@@ -170,20 +170,20 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             systemd: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 rauc: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "RAUC Update Service",
                   documentation: nix.thunk(() => ["https://rauc.readthedocs.io"]),
                   wants: nix.thunk(() => ["basic.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["dbus.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     Type: "dbus",
                     BusName: "de.pengutronix.rauc",
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --conf=${configFile} --mount=/run/rauc/mnt service`),
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0750 root root - -`),
                   nix.thunk(() => nix.str`d ${mountDir} 0750 root root - -`),
@@ -204,33 +204,33 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "client", "enable")))), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             services: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               dbus: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "mark-good", "enable")))), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             systemd: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               services: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 "rauc-mark-good": nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   description: "RAUC Good-marking service",
                   documentation: nix.thunk(() => ["https://rauc.readthedocs.io"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["rauc.service", "multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --conf=${configFile} status mark-good`),
                   })),
@@ -240,7 +240,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "numinit"))];

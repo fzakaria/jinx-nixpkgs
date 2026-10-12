@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stderred",
       version: "unstable-2021-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ku1ik",
           repo: "stderred",
           rev: "b2238f7c72afb89ca9aaa2944d7f4db8141057ea",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Colorize all stderr output that goes to terminal, making it distinguishable from stdout",
         homepage: "https://github.com/ku1ik/stderred",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

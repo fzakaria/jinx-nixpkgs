@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "optnix",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~watersucks",
           repo: "optnix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-g/H91PiHWSRRQOkaobw2wAYX/07DFxWTCTlKzf7BT1Y=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, scdoc]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_ENABLED: 0n,
         VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./optnix -t $out/bin\n\ninstall -Dm755 ./optnix.1 -t $out/share/man/man1\ninstall -Dm755 ./optnix.toml.5 -t $out/share/man/man5\n\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd optnix \\\n  --bash <($out/bin/optnix --completion bash) \\\n  --fish <($out/bin/optnix --completion fish) \\\n  --zsh <($out/bin/optnix --completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/water-sucks/optnix",
         description: "Options searcher for Nix module systems",
         changelog: nix.thunk(() => nix.str`https://github.com/water-sucks/optnix/releases/tag/v${nix.sel(finalAttrs, "version")}`),

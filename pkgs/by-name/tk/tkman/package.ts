@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const rman = nix.arg($, "rman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tkman",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tkman/tkman-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-S4ffz+7zmVy9+isz/8q+FV4wF5Rw2iL1ftY8RsJjRLs=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-text/tkman/files/tkman-CVE-2008-5137.diff?id=dec60bb6900d6ebdaaa6aa1dcb845b30b739f9b5",
             hash: "sha256-l97SY2/YnMgzHYKnVYCVJKV7oGLN1hXNpeHFlLVzTMA=",
           })))),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "wrapProgram $out/bin/tkman \\\n  --run 'export MANPATH=\"$(manpath)\"'\nrm $out/bin/retkman # doesn't work\ninstall -Dm644 contrib/TkMan.gif $out/share/icons/hicolor/64x64/apps/tkman.gif\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "tkman",
             desktopName: "TkMan",
             comment: "Graphical man page and info viewer",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Graphical, hypertext manual page and Texinfo browser for UNIX",
         mainProgram: "tkman",
         longDescription: "TkMan is a graphical, hypertext manual page and Texinfo browser for UNIX.\nTkMan boasts hypertext links, unmatched online text formatting and display\nquality, (optional) outline view of man pages, high quality display and\nsuperior navigational interface to Texinfo documents, a novel information\nvisualization mechanism called Notemarks, full text search among man pages\nand Texinfo, incremental and regular expression search within pages,\nregular expression search within Texinfo that shows all matches (not just\nthe next), robustly attached yellow highlight annotations, a shortcut/hot\nlist, lists of all pages in user configurable volumes, a comprehensive\nPreferences panel, and man page versioning support, among many other features.\n",

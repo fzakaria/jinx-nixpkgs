@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const ocl_icd = nix.arg($, "ocl-icd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lucky-commit",
       version: "2.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "not-an-aardvark",
           repo: "lucky-commit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: nix.thunk(() => !nix.asBool(withOpenCL)),
       checkNoDefaultFeatures: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Change the start of your git commit hashes to whatever you want",
         homepage: "https://github.com/not-an-aardvark/lucky-commit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

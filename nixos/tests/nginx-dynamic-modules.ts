@@ -16,30 +16,30 @@ const formals$2 = { args: { nodes: false }, ellipsis: true };
 const pos$10 = nix.positions(here + "/nginx-dynamic-modules.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 16, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$10,
+  [nix.POS]: pos$10,
   name: "nginx-dynamic-modules",
   nodes: nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nginx: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
             additionalModules: nix.thunk(() => [
-              nix.thunk(() => nix.update(nix.sel(pkgs, "nginxModules", "echo"), { __proto__: pos$1, dynamic: true })),
+              nix.thunk(() => nix.update(nix.sel(pkgs, "nginxModules", "echo"), { [nix.POS]: pos$1, dynamic: true })),
             ]),
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               localhost: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  "/": nix.thunk(() => ({ __proto__: pos$2, extraConfig: "echo \"dynamic-module-ok\";\n" })),
+                  [nix.POS]: pos$3,
+                  "/": nix.thunk(() => ({ [nix.POS]: pos$2, extraConfig: "echo \"dynamic-module-ok\";\n" })),
                 })),
               })),
             })),

@@ -34,17 +34,17 @@ export default nix.lambda((args) => (() => {
   const forceX11 = nix.argOr($, "forceX11", () => false);
   const fetchpatch = nix.arg($, "fetchpatch");
   const baseRom = nix.thunk(() => (nix.asBool(!nix.eq(mm64baserom, null)) ? nix.force(mm64baserom) : nix.app(requireFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "mm.us.rev1.rom.z64",
       message: "zelda64recomp currently only supports the US version of Majora's Mask.\nPlease dump your copy and rename it to mm.us.rev1.rom.z64\nand add it to the nix store using\nnix-store --add-fixed sha256 mm.us.rev1.rom.z64\nSee https://dumping.guide/carts/nintendo/n64 for more details.\n",
       hash: "sha256-77E2WzrjYmBFFMD5oaLRH13IaIulvmYKN96/XjvkPys=",
     })))));
   return nix.app(nix.sel(llvmPackages_19, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zelda64recomp",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Zelda64Recomp",
           repo: "Zelda64Recomp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "rmlui-cstdint.patch",
             url: "https://github.com/mikke89/RmlUi/commit/8c27b0a5cb601a3c57ecddc6ce8769ca93a97cb8.patch",
             stripLen: 1n,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, gtk3, vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "Zelda64Recompiled",
             icon: "zelda64recomp",
             exec: "Zelda64Recompiled",
@@ -112,7 +112,7 @@ substituteInPlace CMakeLists.txt \\
     ${nix.app(nix.sel(lib, "optionalString"), forceX11, "--set SDL_VIDEODRIVER x11")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Static recompilation of Majora's Mask (and soon Ocarina of Time) for PC (Windows/Linux)",
         homepage: "https://github.com/Zelda64Recomp/Zelda64Recomp",
         license: nix.thunk(() => (() => {

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dbus-test-runner",
       version: "19.04.0-unstable-2019-10-02",
       src: nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "lp:dbus-test-runner",
           rev: "109",
           hash: "sha256-4yH19X98SVqpviCBIWzIX6FYHWxCbREpuKCNjQuTFDk=",
@@ -62,14 +62,14 @@ substituteInPlace tests/Makefile.am \\
         nix.thunk(() => nix.str`XVFB_RUN=${nix.app(nix.sel(lib, "getExe"), xvfb_run)}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small little utility to run a couple of executables under a new DBus session for testing",
         mainProgram: "dbus-test-runner",
         homepage: "https://launchpad.net/dbus-test-runner",

@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const games = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     ctf: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       id: "ctf",
       version: "1.07",
       description: "'Capture The Flag' for Yamagi Quake II",
       sha256: "0i9bwhjvq6yhalrsbzjambh27fdzrzgswqz3jgfn9qw6k1kjvlin",
     })),
     "ground-zero": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       id: "rogue",
       version: "2.07",
       description: "'Ground Zero' for Yamagi Quake II",
       sha256: "1m2r4vgfdxpsi0lkf32liwf1433mdhhmjxiicjwzqjlkncjyfcb1",
     })),
     "the-reckoning": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       id: "xatrix",
       version: "2.08",
       description: "'The Reckoning' for Yamagi Quake II",
@@ -49,20 +49,20 @@ export default nix.lambda((args) => (() => {
       const title_1 = title;
       const pname = nix.thunk(() => nix.str`yquake2-${title_1}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           sha256: sha256,
           owner: "yquake2",
           repo: nix.thunk(() => nix.sel(data, "id")),
           rev: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "toUpper"), id)}_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
         }))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ __proto__: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" }))));
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/lib/yquake2/${id}
 cp release/* $out/lib/yquake2/${id}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: nix.thunk(() => nix.attr(data, "description")),
         homepage: "https://www.yamagi.org/quake2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -73,7 +73,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         id,
         version,
         description,

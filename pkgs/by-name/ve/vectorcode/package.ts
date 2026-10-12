@@ -28,20 +28,20 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const lspSupport = nix.argOr($, "lspSupport", () => true);
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         chromadb: nix.thunk(() => nix.app(nix.sel(super$, "chromadb", "overridePythonAttrs"), (old) => (() => {
             const version = "0.6.3";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "chroma-core",
                 repo: "chroma",
                 tag: version,
                 hash: "sha256-yvAX8buETsdPvMQmRK5+WFz4fVaGIdNlfhSadtHwU5U=",
               }))));
             const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 pname: "chromadb",
                 version: version,
                 src: src,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
               "chromadb/test/db/test_migrations.py::test_migrations[sqlite]",
             ]);
             return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               version,
               src,
               cargoDeps,
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "Davidyz",
           repo: "VectorCode",
           tag: version,
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           intel: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "openvino")),
             nix.thunk(() => nix.lookup(w_2, "optimum")),
@@ -202,13 +202,13 @@ export default nix.lambda((args) => (() => {
       const passthru = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python, "pkgs"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         python: python,
         chromadb: nix.thunk(() => nix.attr(from, "chromadb")),
       };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Code repository indexing tool to supercharge your LLM experience",
         homepage: "https://github.com/Davidyz/VectorCode",
         changelog: nix.thunk(() => nix.str`https://github.com/Davidyz/VectorCode/releases/tag/${nix.sel(src, "tag")}`),
@@ -221,7 +221,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,

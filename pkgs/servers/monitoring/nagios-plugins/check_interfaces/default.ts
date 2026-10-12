@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check_interfaces";
       const version = "1.4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/NETWAYS/check_interfaces/releases/download/v${version}/check_interfaces-${version}.tar.gz`),
           hash: "sha256-sQ2lee2gxyrl455tumMJ4EbKc8mYEDXl18Wik6daf5Q=",
         }))));
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/NETWAYS/check_interfaces/releases/tag/v${version}`),
         description: "Icinga check plugin for network hardware interfaces",
         homepage: "https://github.com/NETWAYS/check_interfaces/",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "check_interfaces",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

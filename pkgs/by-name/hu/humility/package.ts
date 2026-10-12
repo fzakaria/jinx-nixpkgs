@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const cargo_readme = nix.arg($, "cargo-readme");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "humility",
       version: "0-unstable-2025-02-25",
       nativeBuildInputs: nix.thunk(() => [pkg_config, cargo_readme]),
       buildInputs: nix.thunk(() => [libusb1, libftdi]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oxidecomputer",
           repo: "humility",
           rev: "4e9b9f9efb455d62b44345b7c8659dcd962c73da",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-GZkHPoDKiqTVwRAWXXbELXC1I/KRO+9sshY8/rGbA4A=",
       cargoBuildFlags: nix.thunk(() => ["-p humility-cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Debugger for Hubris",
         mainProgram: "humility",
         homepage: "https://github.com/oxidecomputer/humility",

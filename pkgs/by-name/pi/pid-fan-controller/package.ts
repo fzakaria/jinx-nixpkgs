@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "0.1.5";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pid-fan-controller",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zimward",
           repo: "pid-fan-controller",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace resources/pid-fan-controller.service \\\n  --replace-fail '/usr/bin' \"$out/bin\"\n",
       postInstall: "install -Dm0644 resources/pid-fan-controller.service $out/lib/systemd/system/pid-fan-controller.service\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Service to provide closed-loop PID fan control",
         homepage: "https://github.com/zimward/pid-fan-controller",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

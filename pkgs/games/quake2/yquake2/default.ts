@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openalSupport = nix.argOr($, "openalSupport", () => true);
   const openal = nix.arg($, "openal");
-  const games = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./games.nix")), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const games = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./games.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   const wrapper = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       stdenv: stdenv,
       lib: lib,
       buildEnv: buildEnv,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yquake2";
       const version = "8.60";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "yquake2",
           repo: "yquake2",
           rev: nix.thunk(() => nix.str`QUAKE2_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n# Yamagi Quake II expects all binaries (executables and libs) to be in the\n# same directory.\nmkdir -p $out/bin $out/lib/yquake2 $out/share/games/quake2/baseq2\ncp -r release/* $out/lib/yquake2\nln -s $out/lib/yquake2/quake2 $out/bin/yquake2\nln -s $out/lib/yquake2/q2ded $out/bin/yq2ded\ncp $src/stuff/yq2.cfg $out/share/games/quake2/baseq2\ninstall -Dm644 stuff/icon/Quake2.png $out/share/icons/hicolor/512x512/apps/yamagi-quake2.png;\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "yquake2",
             exec: "yquake2",
             icon: "yamagi-quake2",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Yamagi Quake II client",
         homepage: "https://www.yamagi.org/quake2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,
@@ -102,12 +102,12 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     yquake2: yquake2,
     "yquake2-ctf": nix.thunk(() => nix.app(wrapper, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(games, "ctf"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         games: nix.thunk(() => [nix.thunk(() => nix.sel(games, "ctf"))]),
         name: "yquake2-ctf",
         description: nix.thunk(() => nix.attr(from, "description")),
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
     "yquake2-ground-zero": nix.thunk(() => nix.app(wrapper, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(games, "ground-zero"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         games: nix.thunk(() => [nix.thunk(() => nix.sel(games, "ground-zero"))]),
         name: "yquake2-ground-zero",
         description: nix.thunk(() => nix.attr(from, "description")),
@@ -125,14 +125,14 @@ export default nix.lambda((args) => (() => {
     "yquake2-the-reckoning": nix.thunk(() => nix.app(wrapper, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(games, "the-reckoning"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         games: nix.thunk(() => [nix.thunk(() => nix.sel(games, "the-reckoning"))]),
         name: "yquake2-the-reckoning",
         description: nix.thunk(() => nix.attr(from, "description")),
       };
       })()))),
     "yquake2-all-games": nix.thunk(() => nix.app(wrapper, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         games: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), games)),
         name: "yquake2-all-games",
         description: "Yamagi Quake II with all add-on games",

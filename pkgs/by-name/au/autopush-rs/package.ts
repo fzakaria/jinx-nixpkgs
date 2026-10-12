@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "fernet_key",
         version: version,
         src: src,
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "autopush",
       version: "1.83.1",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "fernet"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mozilla-services",
           repo: "autopush-rs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,40 +70,40 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => ["postgres", "redis", "reliable_report"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         BINDGEN_EXTRA_CLANG_ARGS: nix.thunk(() => nix.str`-I${nix.sel(stdenv, "cc", "libc", "dev")}/include`),
         CMAKE_POLICY_VERSION_MINIMUM: "3.5",
       })),
       doCheck: false,
       postInstall: nix.thunk(() => nix.str`mkdir -p $fernet/bin
 ln -s ${nix.app(fernetKey, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         })))}/bin/fernet_key $fernet/bin/fernet_key
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         tests: nix.thunk(() => nix.sel(nixosTests, "autopush-rs")),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           autoconnect: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             imports: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service-autoconnect.nix"), nix.thunk(() => ({ __proto__: pos$5, pkgs: pkgs })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service-autoconnect.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: pkgs })))),
             ]),
             autoconnect: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })),
           })),
           autoendpoint: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             imports: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service-autoendpoint.nix"), nix.thunk(() => ({ __proto__: pos$8, pkgs: pkgs })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service-autoendpoint.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, pkgs: pkgs })))),
             ]),
             autoendpoint: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })),
           })),
@@ -111,7 +111,7 @@ ln -s ${nix.app(fernetKey, nix.thunk(() => ({
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Mozilla Push server and Push Endpoint",
         homepage: "https://mozilla-services.github.io/autopush-rs/index.html",
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla-services/autopush-rs/releases/tag/${nix.sel(finalAttrs, "version")}`),

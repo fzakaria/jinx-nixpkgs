@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
       const release = "9.1";
       const version = nix.thunk(() => nix.str`${release}.0`);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcl/tcl${version}-src.tar.gz`),
           hash: "sha256-iSJYZOQvzgvWA9/cD2jwOJsyuHIsryzw3fU+3bGH0cQ=",
         }))));
-      return { __proto__: pos$2, release, version, src };
+      return { [nix.POS]: pos$2, release, version, src };
     })())));
 })(), formals$1);
 //# sourceMappingURL=9.1.ts.map

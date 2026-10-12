@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter-server",
           repo: "pytest-jupyter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,21 +40,21 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const propagatedBuildInputs = nix.thunk(() => [jupyter_core]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         client: nix.thunk(() => [jupyter_client, nbformat, ipykernel]),
         server: nix.thunk(() => [jupyter_server, jupyter_client, nbformat, ipykernel]),
       }));
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_timeout, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ __proto__: pos$3, doCheck: false }))),
+          [nix.POS]: pos$4,
+          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: false }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-server/pytest-jupyter/releases/tag/${nix.sel(src, "tag")}`),
         description: "Pytest plugin for testing Jupyter core libraries and extensions",
         homepage: "https://github.com/jupyter-server/pytest-jupyter",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

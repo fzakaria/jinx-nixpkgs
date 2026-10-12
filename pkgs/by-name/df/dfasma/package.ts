@@ -22,39 +22,39 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const libsForQt5 = nix.arg($, "libsForQt5");
   const reaperFork = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sha256: "07m2wf2gqyya95b65gawrnr4pvc9jyzmg6h8sinzgxlpskz93wwc",
         rev: "39053e8896eedd7b3e8a9e9a9ffd80f1fc6ceb16",
         repo: "REAPER",
         owner: "gillesdegottex",
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
     })),
   }));
   const libqaudioextra = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sha256: "0m6x1qm7lbjplqasr2jhnd2ndi0y6z9ybbiiixnlwfm23sp15wci",
         rev: "9ae051989a8fed0b2f8194b1501151909a821a89",
         repo: "libqaudioextra",
         owner: "gillesdegottex",
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "dfasma",
       version: "1.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           sha256: "09fcyjm0hg3y51fnjax88m93im39nbynxj79ffdknsazmqw9ac0h",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "dfasma",
@@ -75,7 +75,7 @@ cp -Rv "${nix.sel(libqaudioextra, "src")}"/* external/libqaudioextra
 substituteInPlace dfasma.pro --replace "CONFIG += file_sdif" "";
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Analyse and compare audio files in time and frequency",
         mainProgram: "dfasma",
         longDescription: "DFasma is free open-source software to compare audio files by time and\nfrequency. The comparison is first visual, using wavforms and spectra. It\nis also possible to listen to time-frequency segments in order to allow\nperceptual comparison. It is basically dedicated to analysis. Even though\nthere are basic functionalities to align the signals in time and\namplitude, this software does not aim to be an audio editor.\n",

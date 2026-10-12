@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? nix.force(gccMultiStdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "5.9.0",
       pname: "rr",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rr-debugger",
           repo: "rr",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rr-debugger/rr/commit/6251648873b9e1ed23536beebbaa5d6fead3d5be.patch",
             hash: "sha256-k+jeGUJyybYq3GF2zIhpDF8NT66Buq6nztUbh28qVD8=",
           })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "disable32bit", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       doCheck: false,
       preCheck: "export HOME=$TMPDIR",
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gdb]))}";
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://rr-project.org/",
         description: "Records nondeterministic executions and debugs them deterministically",
         longDescription: "rr aspires to be your primary debugging tool, replacing -- well,\nenhancing -- gdb. You record a failure once, then debug the\nrecording, deterministically, as many times as you want. Every\ntime the same execution is replayed.\n",

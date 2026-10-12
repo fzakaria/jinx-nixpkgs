@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "msedgedriver",
       version: "154.0.4258.62",
       src: nix.thunk(() => (() => {
         const driverArch = nix.thunk(() => nix.sel({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "aarch64-darwin": "mac64_m1",
           "x86_64-darwin": "mac64",
           "x86_64-linux": "linux64",
         }, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://msedgedriver.microsoft.com/${nix.sel(finalAttrs, "version")}/edgedriver_${driverArch}.zip`),
             hash: nix.thunk(() => nix.sel({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               mac64_m1: "sha256-eFA5A+Nz1unvOl6GRpjUImNL/+cokrnXac4W0l9qNJo=",
               mac64: "sha256-iTkNzBakkPcznw/QcGtIfyEaWwpjzXZWH2Va9CkkDgc=",
               linux64: "sha256-nWM5lYGYiCzwyAJ0gjBMXsTrxihPHSEBdQ71gFacFLk=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       installPhase: "runHook preInstall\n\ninstall -D msedgedriver $out/bin/msedgedriver\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver",
         description: "WebDriver implementation that controls an Edge browser running on the local machine",
         sourceProvenance: nix.thunk(() => (() => {

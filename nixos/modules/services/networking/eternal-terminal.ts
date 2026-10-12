@@ -27,40 +27,40 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "eternal-terminal"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "eternal-terminal": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Eternal Terminal server")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: 2022n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "The port the server should listen on. Will use the server's default (2022) if not specified.\n\nMake sure to open this port in the firewall if necessary.\n",
             })))),
           verbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 0n,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => nix.app(nix.sel(lib, "range"), 0n, 9n)))),
               description: "The verbosity level (0-9).\n",
             })))),
           silent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "If enabled, disables all logging.\n",
             })))),
           logSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: 20971520n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "The maximum log size.\n",
             })))),
           telemetry: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Collects anonymous usage data and crash reports.\n",
@@ -69,22 +69,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "eternal-terminal"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "eternal-terminal": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Eternal Terminal server.",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "exec",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "eternal-terminal")}/bin/etserver --logtostdout --cfgfile=${nix.app(nix.sel(pkgs, "writeText"), "et.cfg", nix.thunk(() => nix.str`; et.cfg : Config file for Eternal Terminal
 ;
@@ -105,7 +105,7 @@ telemetry = ${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg,
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tomasrivera"))];

@@ -34,9 +34,9 @@ export default nix.thunk(() => (() => {
     const uInitrdCompression = nix.argOr($, "uInitrdCompression", () => null);
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(makeUInitrd, null)) && nix.asBool(nix.eq(uInitrdArch, null)))) && nix.asBool(nix.eq(uInitrdCompression, null)))), "makeInitrdNg: U‐Boot legacy image support has been removed as it is deprecated upstream and ARMv5 kernels no longer default to uImage"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/kernel/make-initrd-ng.nix:64:1");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         __structuredAttrs: true,
-        unsafeDiscardReferences: nix.thunk(() => ({ __proto__: pos$1, out: true })),
+        unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
         name: name,
         extension: extension,
         prepend: prepend,
@@ -45,7 +45,7 @@ export default nix.thunk(() => (() => {
         nativeBuildInputs: nix.thunk(() => [makeInitrdNGTool, cpio]),
         buildCommand: "mkdir -p ./root/{run,tmp,var/empty}\nln -s ../run ./root/var/run\nmake-initrd-ng <(echo \"$contentsJSON\") ./root\nmkdir \"$out\"\n(cd root && find . -exec touch -h -d '@1' '{}' +)\nfor PREP in ${prepend[@]}; do\n  cat $PREP >> $out/initrd\ndone\n(cd root && find . -print0 | sort -z | cpio --quiet -o -H newc -R +0:+0 --reproducible --null | eval -- $compress >> \"$out/initrd\")\n\nln -s \"initrd\" \"$out/initrd$extension\"\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           compressorExecutableFunction: _compressorFunction,
           compressorArgs: _compressorArgsReal,
         })),

@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
   const documentationLink = "https://manual.calibre-ebook.com";
   const generatedDocumentationLink = nix.thunk(() => nix.add(documentationLink, "/generated/en/calibre-server.html"));
   const execFlags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`--${k}=${nix.builtins.toString(v)}`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => !nix.eq(value, null), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "listen-on": nix.thunk(() => nix.sel(cfg, "host")),
         port: nix.thunk(() => nix.sel(cfg, "port")),
         "auth-mode": nix.thunk(() => nix.sel(cfg, "auth", "mode")),
         userdb: nix.thunk(() => nix.sel(cfg, "auth", "userDb")),
       }))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "auth", "enable")), "--enable-auth"), nix.sel(cfg, "extraFlags"))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["services", "calibre-server", "libraryDir"]), nix.thunk(() => ["services", "calibre-server", "libraries"]), (config_1) => (() => {
           const libraryDir = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), nix.thunk(() => ["services", "calibre-server", "libraryDir"]), config_1));
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
         })())),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "calibre-server": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "calibre-server (e-book software)")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "calibre", nix.thunk(() => ({})))),
           libraries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ["/var/lib/calibre-server"]),
               description: nix.thunk(() => nix.str`Make sure each library path is initialized before service startup.
@@ -76,7 +76,7 @@ See the [calibredb documentation](${documentationLink}/generated/en/calibredb.ht
 `),
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: nix.thunk(() => nix.str`Extra flags to pass to the calibre-server command.
@@ -84,19 +84,19 @@ See the [calibre-server documentation](${generatedDocumentationLink}) for detail
 `),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "calibre-server",
               description: "The user under which calibre-server runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "calibre-server",
               description: "The group under which calibre-server runs.",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               example: "::1",
@@ -105,7 +105,7 @@ See the [calibre-server documentation](${generatedDocumentationLink}#cmdoption-c
 `),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: 8080n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: nix.thunk(() => nix.str`The port on which to listen for connections.
@@ -113,15 +113,15 @@ See the [calibre-server documentation](${generatedDocumentationLink}#cmdoption-c
 `),
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the Calibre Server web interface.",
             })))),
           auth: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: nix.thunk(() => nix.str`Password based authentication to access the server.
@@ -129,7 +129,7 @@ See the [calibre-server documentation](${generatedDocumentationLink}#cmdoption-c
 `),
               })))),
             mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["auto", "basic", "digest"]))),
                 default: "auto",
                 description: nix.thunk(() => nix.str`Choose the type of authentication used.
@@ -138,7 +138,7 @@ See the [calibre-server documentation](${generatedDocumentationLink}#cmdoption-c
 `),
               })))),
             userDb: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 description: nix.thunk(() => nix.str`Choose users database file to use for authentication.
@@ -151,18 +151,18 @@ See the [calibre-server documentation](${documentationLink}/server.html#managing
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "calibre-server": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Calibre Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Restart: "always",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/calibre-server`)], nix.concat(execFlags, nix.concat(["--"], nix.sel(cfg, "libraries"))))))),
@@ -171,15 +171,15 @@ See the [calibre-server documentation](${documentationLink}/server.html#managing
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "calibre-server")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "calibre-server": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 home: "/var/lib/calibre-server",
                 createHome: true,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "calibre-server")),
@@ -187,22 +187,22 @@ See the [calibre-server documentation](${documentationLink}/server.html#managing
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "calibre-server")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               "calibre-server": nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "calibre-server")),
               })),
             })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$29, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$29, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=calibre-server.ts.map

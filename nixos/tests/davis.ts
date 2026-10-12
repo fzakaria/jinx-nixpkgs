@@ -26,29 +26,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "davis",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "davis", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         return {
-          __proto__: pos$7,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 512n })),
+          [nix.POS]: pos$7,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 512n })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             davis: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               hostname: "davis.example.com",
-              database: nix.thunk(() => ({ __proto__: pos$3, driver: "postgresql" })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$3, driver: "postgresql" })),
               mail: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 dsnFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "davisMailDns", "smtp://username:password@example.com:25")}`),
                 inviteFromAddress: "dav@example.com",
               })),
@@ -64,19 +64,19 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const config_1 = nix.arg($_1, "config");
         return {
-          __proto__: pos$13,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$8, memorySize: 512n })),
+          [nix.POS]: pos$13,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, memorySize: 512n })),
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fcgi"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             davis: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               hostname: "davis.example.com",
-              database: nix.thunk(() => ({ __proto__: pos$10, driver: "postgresql" })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$10, driver: "postgresql" })),
               adminLogin: "admin",
               appSecretFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "davisAppSecret", "52882ef142066e09ab99ce816ba72522e789505caba224")}`),
               adminPasswordFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "davisAdminPass", "nixos")}`),

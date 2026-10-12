@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const virtio_win = nix.arg($, "virtio-win");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "virt-v2v",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/virt-v2v/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-stable/virt-v2v-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-RJPwtI6GHN+W+Pw8jdEAgQMbR42aGqTYW2rPtAYBPYM=",
         })))),
@@ -89,27 +89,27 @@ done
 ln -s "${nix.sel(pkgsCross, "mingwW64", "rhsrvany")}/bin/" $out/share/virt-tools
 `)))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/libguestfs/guestfs-tools",
             "rev-prefix": "v",
             "odd-unstable": true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/libguestfs/virt-v2v",
         description: "Convert guests from foreign hypervisors to run on KVM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

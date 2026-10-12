@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aacgain",
       version: "2.0.0-unstable-2022-07-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dgilman",
           repo: "aacgain",
           rev: "9f9ae95a20197d1072994dbd89672bba2904bdb5",
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, autoconf, automake, libtool]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=narrowing -DHAVE_GETOPT_H=1",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "ReplayGain for AAC files",
         homepage: "https://github.com/dgilman/aacgain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "6a2f2f58db1c5b24a2cc79de6345760377ad8bdc13813f5265f6c3e63d16b3d7",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Timeout decorator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/pnpnpn/timeout-decorator",
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

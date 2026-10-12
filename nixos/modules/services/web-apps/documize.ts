@@ -36,72 +36,72 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.lookup(w, "optionalString"), predicate, template);
     })());
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         documize: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Documize Wiki")),
           stateDirectoryName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "documize",
               description: "The name of the directory below {file}`/var/lib/private`\nwhere documize runs in and stores, for example, backups.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "documize-community", nix.thunk(() => ({})))),
           salt: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "3edIYV6c8B28b19fh",
               description: "The salt string used to encode JWT tokens, if not set a random value will be generated.\n",
             })))),
           cert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "The {file}`cert.pem` file used for https.\n",
             })))),
           key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "The {file}`key.pem` file used for https.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 5001n,
               description: "The http/https port number.\n",
             })))),
           forcesslport: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
               default: null,
               description: "Redirect given http port number to TLS.\n",
             })))),
           offline: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Set `true` for offline mode.\n",
               apply: (v) => (nix.asBool(nix.eq(true, v)) ? 1n : 0n),
             })))),
           dbtype: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["mysql", "percona", "mariadb", "postgresql", "sqlserver"]))),
               default: "postgresql",
               description: "Specify the database provider: `mysql`, `percona`, `mariadb`, `postgresql`, `sqlserver`\n",
             })))),
           db: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Database specific connection string for example:\n- MySQL/Percona/MariaDB:\n  `user:password@tcp(host:3306)/documize`\n- MySQLv8+:\n  `user:password@tcp(host:3306)/documize?allowNativePasswords=true`\n- PostgreSQL:\n  `host=localhost port=5432 dbname=documize user=admin password=secret sslmode=disable`\n- MSSQL:\n  `sqlserver://username:password@localhost:1433?database=Documize` or\n  `sqlserver://sa@localhost/SQLExpress?database=Documize`\n",
             })))),
           location: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               description: "reserved\n",
@@ -110,18 +110,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "documize-server": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Documize Wiki",
               documentation: nix.thunk(() => ["https://documize.com/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/documize`),
                     nix.thunk(() => nix.app(mkParams, false, nix.thunk(() => ["db", "dbtype", "port"]))),

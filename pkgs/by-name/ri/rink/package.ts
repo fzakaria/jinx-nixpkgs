@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const asciidoctor = nix.arg($, "asciidoctor");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.9.0",
       pname: "rink",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tiffany352",
           repo: "rink-rs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make man\n",
       postInstall: "installManPage build/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unit-aware calculator",
         mainProgram: "rink",
         homepage: "https://rinkcalc.app",

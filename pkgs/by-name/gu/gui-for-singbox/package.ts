@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
   const pname = "gui-for-singbox";
   const version = "1.27.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "GUI-for-Cores",
       repo: "GUI.for.SingBox",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-yxswEVjNjU5U9EJXSq5HYc+1DbPv73C+RsoYaMhJkvg=",
     }))));
   const metaCommon = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://github.com/GUI-for-Cores/GUI.for.SingBox",
     hydraPlatforms: [],
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./frontend-runtime-path.patch")]),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -73,13 +73,13 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm run build-only\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GUI program developed by vue3",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));
   return nix.app(buildGo127Module, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       version: version,
       src: src,
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nwails build -m -s -trimpath -skipbindings -devtools -tags webkit2_41 -o GUI.for.SingBox\n\nrunHook postBuild\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "gui-for-singbox",
             exec: "GUI.for.SingBox",
             icon: "gui-for-singbox",
@@ -104,15 +104,15 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm 0755 build/bin/GUI.for.SingBox $out/bin/GUI.for.SingBox\ninstall -Dm 0644 build/appicon.png $out/share/icons/hicolor/256x256/apps/gui-for-singbox.png\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         frontend: frontend,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$", "--subpackage", "frontend"]),
           })))),
       })),
       meta: nix.thunk(() => nix.update(metaCommon, {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "SingBox GUI program developed by vue3 + wails",
         mainProgram: "GUI.for.SingBox",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

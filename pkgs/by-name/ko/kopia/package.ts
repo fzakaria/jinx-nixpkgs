@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kopia = nix.arg($, "kopia");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kopia",
       version: "0.23.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kopia",
           repo: "kopia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace internal/mount/mount_posix_webdav_helper_linux.go \\\n  --replace-fail \"/usr/bin/mount\" \"mount\" \\\n  --replace-fail \"/usr/bin/umount\" \"umount\"\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kopia \\\n  --bash <($out/bin/kopia --completion-script-bash) \\\n  --zsh <($out/bin/kopia --completion-script-zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "kopia-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: kopia })))),
+          [nix.POS]: pos$3,
+          "kopia-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: kopia })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://kopia.io",
         changelog: nix.thunk(() => nix.str`https://github.com/kopia/kopia/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication",

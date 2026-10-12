@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const tracee = nix.arg($, "tracee");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tracee",
       version: "0.23.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aquasecurity",
           repo: "tracee",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "share"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $lib/lib/tracee $share/share/tracee\n\nmv ./dist/{tracee,signatures} $out/bin/\nmv ./dist/tracee.bpf.o $lib/lib/tracee/\nmv ./cmd/tracee-rules/templates $share/share/tracee/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           integration: nix.thunk(() => nix.sel(nixosTests, "tracee")),
-          "integration-test-cli": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./integration-tests.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib, tracee: tracee, makeWrapper: makeWrapper })))),
+          "integration-test-cli": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./integration-tests.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, tracee: tracee, makeWrapper: makeWrapper })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: tracee,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               command: "tracee version",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://aquasecurity.github.io/tracee/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/aquasecurity/tracee/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Linux Runtime Security and Forensics using eBPF",

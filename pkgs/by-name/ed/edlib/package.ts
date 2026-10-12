@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "edlib",
       version: "1.3.9.post1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Martinsos",
           repo: "edlib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "bump-cmake-version.patch",
             url: "https://github.com/Martinsos/edlib/commit/47359e591f3861f12105fa8e72242de64d5597c4.patch?full_index=1",
             hash: "sha256-Efbv8XYF1jOz6MypIyhfFJGQQt8gTYNZRd+R8ukIf3o=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\nbin/runTests\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://martinsos.github.io/edlib",
         description: "Lightweight, fast C/C++ library for sequence alignment using edit distance",
         maintainers: nix.thunk(() => (() => {

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xa = nix.arg($, "xa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libsidplayfp",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsidplayfp",
           repo: "libsidplayfp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,19 +59,19 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, "mkdir -p $doc/share/doc/libsidplayfp\nmv docs/html $doc/share/doc/libsidplayfp/\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))))),
+        [nix.POS]: pos$3,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Library to play Commodore 64 music derived from libsidplay2",
         longDescription: "libsidplayfp is a C64 music player library which integrates\nthe reSID SID chip emulation into a cycle-based emulator\nenvironment, constantly aiming to improve emulation of the\nC64 system and the SID chips.\n",
         homepage: "https://github.com/libsidplayfp/libsidplayfp",

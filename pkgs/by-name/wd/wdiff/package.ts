@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wdiff",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/wdiff/wdiff-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-KaRFfrDtNckC5nMtcfJeHWx/5/oO2g+2w3HtZ3m0n9Y=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [which]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/wdiff/",
         description: "Comparing files on a word by word basis",
         mainProgram: "wdiff",

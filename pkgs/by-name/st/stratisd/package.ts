@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
   const clevisSupport = nix.argOr($, "clevisSupport", () => false);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "stratisd",
       version: "3.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stratis-storage",
           repo: "stratisd",
           tag: nix.thunk(() => nix.str`stratisd-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8PZiJgecssQYTSBnCj2mumUqdTZPouRRB0sW4pVrQAU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -91,7 +91,7 @@ substituteInPlace systemd/stratis-fstab-setup \\
       ]),
       outputs: nix.thunk(() => ["out", "initrd"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         EXECUTABLES_PATHS: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([xfsprogs, thin_provisioning_tools, cryptsetup], nix.app(nix.sel(lib, "optionals"), clevisSupport, nix.thunk(() => [clevis, jose, jq, curl, tpm2_tools, coreutils])))))),
       })),
       makeFlags: nix.thunk(() => [
@@ -114,17 +114,17 @@ rm -r "$out/lib/dracut"
 rm -r "$out/lib/systemd/system-generators"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "stratis"), (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "installer-systemd-stage-1"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           stratisRoot: nix.thunk(() => nix.attr(from, "stratisRoot")),
         };
         })())),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Easy to use local storage management for Linux",
         homepage: "https://stratis-storage.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -27,27 +27,27 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const port = "7745";
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "homebox",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "homebox", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         simple: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             homebox: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 HBOX_WEB_PORT: port,
                 HBOX_OPTIONS_ALLOW_REGISTRATION: "true",
                 HBOX_LOG_LEVEL: "trace",
@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         postgres: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           imports: nix.thunk(() => [nix.thunk(() => nix.sel(self, "simple"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             homebox: nix.thunk(() => ({
-              __proto__: pos$7,
-              database: nix.thunk(() => ({ __proto__: pos$6, createLocally: true })),
+              [nix.POS]: pos$7,
+              database: nix.thunk(() => ({ [nix.POS]: pos$6, createLocally: true })),
             })),
           })),
         })),
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
           const user = nix.thunk(() => nix.attr(from, "user"));
           const group = nix.thunk(() => nix.attr(from, "group"));
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             systemd: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d /run/homebox 0700 ${user} ${group}`),
                   nix.thunk(() => nix.str`f /run/homebox/pepper 0400 ${user} ${group} - 0a7524fa7b4555ab793c177557b7b8db6619b47cc0574fb99716315e03b6ddf1d67961ee9bf36b19bef448ed3e530957`),
@@ -87,10 +87,10 @@ export default nix.lambda((args) => (() => {
             })),
             imports: nix.thunk(() => [nix.thunk(() => nix.sel(self, "simple"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               homebox: nix.thunk(() => ({
-                __proto__: pos$13,
-                secrets: nix.thunk(() => ({ __proto__: pos$12, HBOX_AUTH_API_KEY_PEPPER: "/run/homebox/pepper" })),
+                [nix.POS]: pos$13,
+                secrets: nix.thunk(() => ({ [nix.POS]: pos$12, HBOX_AUTH_API_KEY_PEPPER: "/run/homebox/pepper" })),
               })),
             })),
           };

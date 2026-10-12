@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-pbz/tSCBujnfDV6aiE/G+BnZLjpCOJNDunfL+An+H0U=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [starlette, baize]);
       const nativeCheckInputs = nix.thunk(() => [baize, httpx, pytest_asyncio, pytestCheckHook, starlette]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert WSGI app to ASGI app or ASGI app to WSGI app",
         homepage: "https://github.com/abersheeran/a2wsgi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

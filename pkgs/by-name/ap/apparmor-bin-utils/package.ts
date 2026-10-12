@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libapparmor = nix.arg($, "libapparmor");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "apparmor-bin-utils",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "BINDIR=$(out)/bin", "SBINDIR=$(out)/bin"]),
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Mandatory access control system - binary user-land utilities",
       })),
     })));

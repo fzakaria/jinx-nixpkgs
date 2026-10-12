@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
       const pname = "apache-httpd";
       const version = "2.4.69";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/httpd/httpd-${version}.tar.bz2`),
           hash: "sha256-xebrxm40m4fX/GkWrnzCqAjtNIAD3hNM+enYnT4sxz0=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "apache-httpd-cross-compile.patch",
             url: "https://gitlab.com/buildroot.org/buildroot/-/raw/5dae8cddeecf16c791f3c138542ec51c4e627d75/package/apache/0001-cross-compile.patch",
             hash: "sha256-KGnAa6euOt6dkZQwURyVITcfqTkDkSR8zpE97DywUUw=",
@@ -75,7 +75,7 @@ sed -i configure.in \\
   -e 's|perlbin=.*|perlbin="/usr/bin/env perl"|'
 ${nix.app(nix.sel(lib, "optionalString"), withLynx, nix.thunk(() => nix.str`sed -i support/apachectl.in -e 's|@LYNX_PATH@|${lynx}/bin/lynx|'`))}
 `);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-lgcc_s" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lgcc_s" }))));
       const configureFlags = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-apr=${nix.sel(apr, "dev")}`),
         nix.thunk(() => nix.str`--with-apr-util=${nix.sel(aprutil, "dev")}`),
@@ -102,7 +102,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withLynx, nix.thunk(() => nix.str`sed 
       const stripDebugList = nix.thunk(() => ["lib", "modules", "bin"]);
       const postInstall = "mkdir -p $doc/share/doc/httpd\nmv $out/manual $doc/share/doc/httpd\nmkdir -p $dev/bin\nmv $out/bin/apxs $dev/bin/apxs\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         apr: apr,
         aprutil: aprutil,
         sslSupport: sslSupport,
@@ -111,7 +111,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withLynx, nix.thunk(() => nix.str`sed 
         luaSupport: luaSupport,
         lua5: lua5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "acme-integration": nix.thunk(() => nix.sel(nixosTests, "acme", "httpd")),
           proxy: nix.thunk(() => nix.sel(nixosTests, "proxy")),
           php: nix.thunk(() => nix.sel(nixosTests, "php", "httpd")),
@@ -121,7 +121,7 @@ head -n1 ${nix.sel(pkgsCross, "aarch64-multiplatform", "apacheHttpd")}/bin/dbmma
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Apache HTTPD, the world's most popular web server",
         homepage: "https://httpd.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -132,7 +132,7 @@ head -n1 ${nix.sel(pkgsCross, "aarch64-multiplatform", "apacheHttpd")}/bin/dbmma
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

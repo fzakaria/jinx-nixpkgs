@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const hello = nix.arg($, "hello");
-  return nix.app(runCommand, "hello-test-run", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [hello]) })), "diff -U3 --color=auto <(hello) <(echo 'Hello, world!')\ntouch $out\n");
+  return nix.app(runCommand, "hello-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [hello]) })), "diff -U3 --color=auto <(hello) <(echo 'Hello, world!')\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

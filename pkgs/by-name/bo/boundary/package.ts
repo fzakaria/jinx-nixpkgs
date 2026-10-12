@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
         const system = nix.thunk(() => nix.attr(from, "system"));
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)));
         const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "x86_64-linux": "linux_amd64",
             "aarch64-linux": "linux_arm64",
             "aarch64-darwin": "darwin_arm64",
           }))));
         const hash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-S5wt4Wy2SfO+36YwxQo86vnSIv4I0tMdfXro3i2qS6k=",
             "aarch64-linux": "sha256-bu+tYL5uHs67JG1MxCUDIQ9xwYxArbz/FElN0QCXNU4=",
             "aarch64-darwin": "sha256-PEaxwEKCidLvDbMSfXZ2ehWOwblLjzU+yy9Qq9tavtw=",
           }))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://releases.hashicorp.com/boundary/${version}/boundary_${version}_${suffix}.zip`),
             hash: hash,
             stripRoot: false,
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       const dontPatchELF = true;
       const dontPatchShebangs = true;
       const dontStrip = true;
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://boundaryproject.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/boundary/blob/v${version}/CHANGELOG.md`),
         description: "Enables identity-based access management for dynamic infrastructure",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "boundary",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

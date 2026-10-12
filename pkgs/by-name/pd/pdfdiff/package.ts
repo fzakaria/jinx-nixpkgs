@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pdfdiff";
       const version = "0.93";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cascremers",
           repo: "pdfdiff",
           rev: version,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "mkdir -p $out/bin\ncp pdfdiff.py $out/bin/pdfdiff\nchmod +x $out/bin/pdfdiff\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/cascremers/pdfdiff",
         description: "Tool to view the difference between two PDF or PS files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

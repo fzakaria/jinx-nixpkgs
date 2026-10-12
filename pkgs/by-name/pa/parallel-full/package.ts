@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   })());
   const willCite = nix.argOr($, "willCite", () => false);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`parallel-full-${nix.sel(parallel, "version")}`),
       pname: nix.thunk(() => nix.attr(parallel, "pname")),
       version: nix.thunk(() => nix.attr(parallel, "version")),

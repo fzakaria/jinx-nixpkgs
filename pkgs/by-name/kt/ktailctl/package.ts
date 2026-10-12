@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const version = "0.22.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "f-koehler",
       repo: "KTailctl",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-FcWhetRUlIxZ3tdDyklxZ1ctQhE7IZao91xP0V3rjYA=",
     }))));
   const goDeps = nix.thunk(() => nix.sel(nix.app(buildGo127Module, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ktailctl-go-wrapper",
       src: src,
       version: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Skuff6OoeYHg8TxJAPuFNzN5G3tS21QBAc5WSEB3jk0=",
     }))), "goModules"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ktailctl",
       version: version,
       src: src,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI to monitor and manage Tailscale on your Linux desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/f-koehler/KTailctl/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/f-koehler/KTailctl",

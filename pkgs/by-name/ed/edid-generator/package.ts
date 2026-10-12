@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const v4l_utils = nix.arg($, "v4l-utils");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edid-generator",
       version: "master-2023-11-20",
       compressFirmware: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akatrevorjay",
           repo: "edid-generator",
           rev: "476a016d8b488df749bf6d6efbf7b9fbfb2e3cb8",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -Dm 444 *.bin -t \"$out/lib/firmware/edid\"\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hackerswork to generate an EDID blob from given Xorg Modelines",
         homepage: "https://github.com/akatrevorjay/edid-generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

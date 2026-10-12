@@ -28,10 +28,10 @@ export default nix.lambda((args) => (() => {
   const esbuild = nix.arg($, "esbuild");
   const nix_update_script = nix.arg($, "nix-update-script");
   const lockedEsbuild = nix.thunk(() => nix.app(nix.sel(esbuild, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "0.21.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evanw",
           repo: "esbuild",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "syncyomi",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "SyncYomi",
           repo: "SyncYomi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-7AySGQBQHaTp2M1uj5581ZqcpzgexI1KvanWMOc6rx0=",
       web: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (webFinalAttrs) => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(webFinalAttrs, "src", "name")}/web`),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pname: nix.thunk(() => nix.attr(webFinalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(webFinalAttrs, "version")),
               src: nix.thunk(() => nix.attr(webFinalAttrs, "src")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
             })))),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
           env: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lockedEsbuild)),
           })),
           buildPhase: "runHook preBuild\npnpm build\nrunHook postBuild\n",
@@ -86,11 +86,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"))), "mv $out/bin/SyncYomi $out/bin/syncyomi\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open-source project to synchronize Tachiyomi manga reading progress and library across multiple devices",
         homepage: "https://github.com/SyncYomi/SyncYomi",
         changelog: nix.thunk(() => nix.str`https://github.com/SyncYomi/SyncYomi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

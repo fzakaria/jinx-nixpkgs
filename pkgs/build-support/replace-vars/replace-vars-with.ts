@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$4), nix.thunk(() => nix.app(nix.sel(lib, "attrsToList"), replacements))))));
     const optionalAttrs = nix.thunk(() => (nix.asBool(nix.eq(nix.builtins.intersectAttrs(attrs, forcedAttrs), {})) ? nix.builtins.removeAttrs(attrs, nix.thunk(() => ["replacements"])) : nix.builtins.throw(nix.thunk(() => nix.str`Passing any of ${nix.builtins.concatStringsSep(", ", nix.thunk(() => nix.builtins.attrNames(forcedAttrs)))} to replaceVarsWith is not supported.`))));
     const forcedAttrs = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doCheck: true,
       dontUnpack: true,
       preferLocalBuild: true,
@@ -75,7 +75,7 @@ runHook postCheck
       })()),
     }));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => (nix.asBool((nix.asBool(nix.has(attrs, "pname")) && nix.asBool(nix.has(attrs, "version")))) ? nix.str`${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}` : nix.builtins.baseNameOf(src))),
       }, nix.update(optionalAttrs, forcedAttrs))));
   })(), formals$2);

@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sphinx-doc",
           repo: "sphinx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-test-stemmer.patch",
             url: "https://github.com/sphinx-doc/sphinx/commit/c01b0eb640bbc3dbd8141f3ea08df9edaa78ab2c.patch?full_index=1",
             hash: "sha256-Zi2WoYMSRg2xvbocj9XhEmXPAEebBokl9XyuSEpDaF0=",
@@ -136,11 +136,11 @@ export default nix.lambda((args) => (() => {
           "test_stringify_type_union_operator",
         ])))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, breathe: breathe })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, breathe: breathe })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python documentation generator",
         longDescription: "Sphinx makes it easy to create intelligent and beautiful documentation.\n\nHere are some of Sphinx’s major features:\n- Output formats: HTML (including Windows HTML Help), LaTeX (for printable\n  PDF versions), ePub, Texinfo, manual pages, plain text\n- Extensive cross-references: semantic markup and automatic links for\n  functions, classes, citations, glossary terms and similar pieces of\n  information\n- Hierarchical structure: easy definition of a document tree, with\n  automatic links to siblings, parents and children\n- Automatic indices: general index as well as a language-specific module\n  indices\n- Code handling: automatic highlighting using the Pygments highlighter\n- Extensions: automatic testing of code snippets, inclusion of docstrings\n  from Python modules (API docs) via built-in extensions, and much more\n  functionality via third-party extensions.\n- Themes: modify the look and feel of outputs via creating themes, and\n  re-use many third-party themes.\n- Contributed extensions: dozens of extensions contributed by users; most\n  of them installable from PyPI.\n\nSphinx uses the reStructuredText markup language by default, and can read\nMyST markdown via third-party extensions. Both of these are powerful and\nstraightforward to use, and have functionality for complex documentation\nand publishing workflows. They both build upon Docutils to parse and write\ndocuments.\n",
         homepage: "https://www.sphinx-doc.org",
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

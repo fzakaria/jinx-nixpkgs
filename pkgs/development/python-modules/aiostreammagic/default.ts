@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiostreammagic",
       version: "2.13.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noahhusby",
           repo: "aiostreammagic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["aiostreammagic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for interfacing with Cambridge Audio/Stream Magic compatible streamers",
         homepage: "https://github.com/noahhusby/aiostreammagic",
         changelog: nix.thunk(() => nix.str`https://github.com/noahhusby/aiostreammagic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nightdiamond-cursors",
       version: "0-unstable-2026-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vimlinuz",
           repo: "NightDiamond-cursors",
           rev: "49650765c3396ccee9ffb796608845d4660d5692",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons\ncp -r NightDiamond-* $out/share/icons/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/vimlinuz/NightDiamond-cursors",
         description: "NightDiamond cursor themes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const playerctl = nix.arg($, "playerctl");
   const runtimeLibs = nix.thunk(() => [libGL, libx11, libxext, libxi, libxrender, libxtst, fontconfig, libxkbcommon]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "rush-lyrics",
       version: "7.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shub39",
           repo: "Rush",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace desktopApp/build.gradle.kts \\\n  --replace-fail 'implementation(compose.desktop.currentOs)' \\\n                 $'implementation(compose.desktop.linux_x64)\\n            implementation(compose.desktop.linux_arm64)'\n",
       nativeBuildInputs: nix.thunk(() => [gradle_9, makeWrapper, copyDesktopItems]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -71,7 +71,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "rush-lyrics",
             desktopName: "Rush",
             genericName: "Lyrics App",
@@ -82,11 +82,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "App to search, save and share lyrics like Spotify",
         homepage: "https://github.com/shub39/Rush",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

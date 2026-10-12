@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const astring = nix.arg($, "astring");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "progress",
       minimalOCamlVersion: "4.08",
       version: nix.thunk(() => nix.attr(terminal, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, astring]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Progress bar library for OCaml",
         homepage: "https://github.com/CraigFe/progress",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

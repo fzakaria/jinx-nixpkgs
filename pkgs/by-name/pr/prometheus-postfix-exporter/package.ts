@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "postfix_exporter";
       const version = "0.20.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hsn723",
           repo: "postfix_exporter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "getLib"), systemdLibs)}/lib"
 `)));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, postfix: nix.thunk(() => nix.attr(from, "postfix")) };
+          return { [nix.POS]: pos$2, postfix: nix.thunk(() => nix.attr(from, "postfix")) };
         })()),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Prometheus exporter for Postfix",
         mainProgram: "postfix_exporter",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const yq = nix.arg($, "yq");
   return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "update-vaultwarden",
         runtimeInputs: nix.thunk(() => [curl, git, gnugrep, gnused, jq, yq, nix$, nix_prefetch_git, nix_update]),
         text: "VAULTWARDEN_VERSION=$(curl --silent https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest | jq -r '.tag_name')\nnix-update \"vaultwarden\" --version \"$VAULTWARDEN_VERSION\"\n\nURL_VAULTWARDEN_DOCKER_SETTINGS=\"https://raw.githubusercontent.com/dani-garcia/vaultwarden/${VAULTWARDEN_VERSION}/docker/DockerSettings.yaml\"\nWEBVAULT_VERSION=\"$(curl --silent \"$URL_VAULTWARDEN_DOCKER_SETTINGS\" | yq -r \".vault_version\")\"\nURL_BW_WEBVAULT_DOCKERFILE=\"https://raw.githubusercontent.com/dani-garcia/bw_web_builds/refs/tags/${WEBVAULT_VERSION}/Dockerfile\"\nWEBVAULT_REV=\"$(curl --silent \"$URL_BW_WEBVAULT_DOCKERFILE\" | grep -m1 \"^ARG VAULT_VERSION=\" | cut -d'=' -f2)\"\nURL_VW_WEBVAULT_TAGS=\"https://api.github.com/repos/vaultwarden/vw_web_builds/tags\"\nWEBVAULT_TAG=\"$(curl --silent \"$URL_VW_WEBVAULT_TAGS\" | jq -r --arg rev \"${WEBVAULT_REV}\" '.[] | select(.commit.sha == $rev) | .name')\"\nnix-update \"vaultwarden.webvault\" --version \"$WEBVAULT_TAG\"\n",

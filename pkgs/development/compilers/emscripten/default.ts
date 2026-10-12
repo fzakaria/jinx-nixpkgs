@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emscripten";
       const version = "6.0.9";
       const llvmEnv = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`emscripten-llvm-${version}`),
           paths: nix.thunk(() => (() => {
             const w = nix.withScope(llvmPackages, null);
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }))));
       const nodeModules = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`emscripten-node-modules-${version}`),
           pname: pname,
           version: version,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "cp -r node_modules $out/\n",
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "emscripten-core",
           repo: "emscripten",
           hash: "sha256-zfNbudFzII/nc0oyojalEaVppSWbCg7v1yiM7ENYQSE=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [nodejs]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-emulate-clang-sysroot-include-logic.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             resourceDir: nix.thunk(() => nix.str`${llvmEnv}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "version")))}/`),
           })))),
         nix.path(here, "./0002-libunwind-restore-Unwind_CallPersonality.patch"),
@@ -197,16 +197,16 @@ fi
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\npushd $TMPDIR\necho 'int main() { try { throw 42; } catch (int) { return 0; } return 1; }' > throw.cpp\n$out/bin/em++ -fwasm-exceptions throw.cpp -o throw.js\npopd\n\nrunHook postInstallCheck\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         targetPrefix: "em",
         bintools: emscripten,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--subpackage", "nodeModules"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/emscripten-core/emscripten",
         description: "LLVM-to-JavaScript Compiler",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -220,7 +220,7 @@ fi
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         llvmEnv,

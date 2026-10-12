@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "8.4.3",
       pname: "tix",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/tix/tix/8.4.3/Tix8.4.3-src.tar.gz",
           hash: "sha256-Vi8ED/dlfhC1z/wsQZNfGlPGQC6z1fMYkRPXNP1sA8s=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "tix-8.4.3-tcl8.5.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-tcltk/tix/files/tix-8.4.3-tcl8.5.patch?id=56bd759df1d0c750a065b8c845e93d5dfa6b549d",
             hash: "sha256-cpsvacSWedHZRRBsTu3zDnqR+NUg/P6kvTgD3Dur+HM=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./duplicated-xlowerwindow.patch"),
         nix.path(here, "./fix-clang16.patch"),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(tcl, "release"), "8.6")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "tix-8.4.3-tcl8.6.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-tcltk/tix/files/tix-8.4.3-tcl8.6.patch?id=56bd759df1d0c750a065b8c845e93d5dfa6b549d",
             hash: "sha256-ZuSzljvvHeW3ewQ/ui6ZfFl9QzQqppXJDP3ILgQFX8k=",
@@ -56,7 +56,7 @@ done;
         "--libdir=${prefix}/lib",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Widget library for Tcl/Tk",
         homepage: "https://tix.sourceforge.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

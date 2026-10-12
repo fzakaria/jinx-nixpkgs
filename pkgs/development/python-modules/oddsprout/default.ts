@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const dahlia = nix.arg($, "dahlia");
   const ixia = nix.arg($, "ixia");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oddsprout",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trag1c",
           repo: "oddsprout",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["oddsprout"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/trag1c/oddsprout/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Generate random JSON with no schemas involved",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

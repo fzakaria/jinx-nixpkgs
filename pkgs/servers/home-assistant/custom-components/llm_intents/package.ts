@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "skye-harris",
       domain: "llm_intents",
       version: "1.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "llm_intents",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_home_control.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/skye-harris/llm_intents/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Exposes internet search tools for use by LLM-backed Assist in Home Assistant",
         homepage: "https://github.com/skye-harris/llm_intents",

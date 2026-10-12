@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const expat = nix.arg($, "expat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bloodspilot-xpilot-fxi-server",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bloodspilot/server/server%20v${nix.sel(finalAttrs, "version")}/xpilot-${nix.sel(finalAttrs, "version")}fxi.tar.gz`),
           hash: "sha256-UYZGHrSkoQwJ4siaob2XGD8YoKHRPKCSfwa7CPW18DQ=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./bloodspilot-server-strcpy-fix.patch"),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiplayer X11 space combat game (server part)",
         mainProgram: "xpilots",
         homepage: "http://bloodspilot.sf.net/",

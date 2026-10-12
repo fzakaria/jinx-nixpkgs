@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bront_fonts",
       version: "0-unstable-2015-06-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chrismwendt",
           repo: "bront",
           rev: "aef23d9a11416655a8351230edb3c2377061c077",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm {DejaVuSansMono,UbuntuMono}.ttf",
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bront Fonts",
         longDescription: "Ubuntu Mono Bront and DejaVu Sans Mono Bront fonts.",
         homepage: "https://github.com/chrismwendt/bront",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openshot-qt",
       version: "3.5.1-unstable-2026-07-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenShot",
           repo: "openshot-qt",
           rev: "9cd2b3f3ee9024c3496487a2de30a402515ed659",
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
   --prefix PYTHONPATH : "$out/${nix.sel(python3Packages, "python", "sitePackages")}/openshot_qt"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         libopenshot: libopenshot,
         "libopenshot-audio": nix.thunk(() => nix.attr(libopenshot, "libopenshot-audio")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://openshot.org/",
         description: "Free, open-source video editor",
         longDescription: "OpenShot Video Editor is a free, open-source video editor for Linux.\nOpenShot can take your videos, photos, and music files and help you create\nthe film you have always dreamed of. Easily add sub-titles, transitions,\nand effects, and then export your film to DVD, YouTube, Vimeo, Xbox 360,\nand many other common formats.\n",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const ffmpeg_6 = nix.arg($, "ffmpeg_6");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gifski",
       version: "1.34.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ImageOptim",
           repo: "gifski",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => ["video"]),
       checkType: "debug",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GIF encoder based on libimagequant (pngquant)",
         homepage: "https://gif.ski/",
         changelog: nix.thunk(() => nix.str`https://github.com/ImageOptim/gifski/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const bundlerEnv = nix.arg($, "bundlerEnv");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "polar-env",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "polar",
       version: "unstable-2021-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cmaion",
           repo: "polar",
           rev: "be15f5f897f8a919dd639009873147dca2a9cea0",
@@ -53,7 +53,7 @@ EOF
     done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tools to interact with Polar watches",
         longDescription: "A set of command line tools written in Ruby to interact with Polar watches\nand decode raw data files.\n\nUdev rules can be added as:\n\n  services.udev.packages = [ pkgs.polar ]\n",
         homepage: "https://github.com/cmaion/polar",

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const common = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ini/default.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs, lib: lib }))), "common"));
+  const common = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ini/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, lib: lib }))), "common"));
   const iniAtom = nix.thunk(() => nix.attr(common, "iniAtom"));
   const from = nix.thunk(() => nix.sel(lib, "generators"));
   const toGitINI = nix.thunk(() => nix.attr(from, "toGitINI"));
@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const attrsOf = nix.thunk(() => nix.attr(from_1, "attrsOf"));
   const either = nix.thunk(() => nix.attr(from_1, "either"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const listsAsDuplicateKeys = nix.argOr($_1, "listsAsDuplicateKeys", () => false);
       const atom = nix.thunk(() => nix.app(iniAtom, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           listsAsDuplicateKeys: listsAsDuplicateKeys,
           listToValue: null,
           atomsCoercedToLists: false,
         }))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(either, atom, nix.thunk(() => nix.app(attrsOf, atom)))))))),
-        lib: nix.thunk(() => ({ __proto__: pos$4, types: nix.thunk(() => ({ __proto__: pos$3, atom: atom })) })),
+        lib: nix.thunk(() => ({ [nix.POS]: pos$4, types: nix.thunk(() => ({ [nix.POS]: pos$3, atom: atom })) })),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(toGitINI, value))),
       };
     })(), formals$2),

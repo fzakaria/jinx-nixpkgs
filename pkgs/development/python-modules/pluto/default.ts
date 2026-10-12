@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const zapf = nix.arg($, "zapf");
   const pytango = nix.arg($, "pytango");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pluto",
       version: "3.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://forge.frm2.tum.de/review/mlz/pils/pluto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+H9ubjLpepCVF/rgSTuZfm1pjWjHUvYBc9mKHgL3I1Y=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "qtwayland"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pytango, zapf, pyqt5]),
       pythonImportsCheck: nix.thunk(() => ["pluto"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PLC debug tool",
         homepage: "https://forge.frm2.tum.de/review/plugins/gitiles/mlz/pils/pluto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

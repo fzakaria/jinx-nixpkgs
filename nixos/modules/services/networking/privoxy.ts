@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w_1, "path")),
       ])));
     return nix.update(nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), atom, nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), atom))))), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "privoxy configuration type. The format consists of an attribute\nset of settings. Each setting can be either a value (integer, string,\nboolean or path) or a list of such values.\n",
     });
   })());
   const ageType = nix.thunk(() => nix.update(nix.sel(nix.lookup(w, "types"), "str"), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     check: (x) => (nix.asBool(nix.app(nix.lookup(w, "isString"), x)) && nix.asBool(!nix.eq(nix.app(nix.sel(nix.builtins, "match"), "([0-9]+([smhdw]|min|ms|us)*)+", x), null))),
     description: "tmpfiles.d(5) age format",
   }));
@@ -75,73 +75,73 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.lookup(w, "mapAttrsToList"), serialise, nix.thunk(() => nix.sel(cfg, "settings")))))))));
   const inspectAction = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "inspect-all-https.action", "# Enable HTTPS inspection for all requests\n{+https-inspection}\n/\n"));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         privoxy: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Privoxy, non-caching filtering proxy")),
           enableTor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to configure Privoxy to use Tor's faster SOCKS port,\nsuitable for HTTP.\n",
             })))),
           inspectHttps: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to configure Privoxy to inspect HTTPS requests, meaning all\nencrypted traffic will be filtered as well. This works by decrypting\nand re-encrypting the requests using a per-domain generated certificate.\n\nTo issue per-domain certificates, Privoxy must be provided with a CA\ncertificate, using the `ca-cert-file`,\n`ca-key-file` settings.\n\n::: {.warning}\nThe CA certificate must also be added to the system trust roots,\notherwise browsers will reject all Privoxy certificates as invalid.\nYou can do so by using the option\n{option}`security.pki.certificateFiles`.\n:::\n",
             })))),
           certsLifetime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: ageType,
               default: "10d",
               example: "12h",
               description: "If `inspectHttps` is enabled, the time generated HTTPS\ncertificates will be stored in a temporary directory for reuse. Once\nthe lifetime has expired the directory will cleared and the certificate\nwill have to be generated again, on-demand.\n\nDepending on the traffic, you may want to reduce the lifetime to limit\nthe disk usage, since Privoxy itself never deletes the certificates.\n\n::: {.note}\nThe format is that of the {manpage}`tmpfiles.d(5)`\nAge parameter.\n:::\n",
             })))),
           userActions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Actions to be included in a `user.action` file. This\nwill have a higher priority and can be used to override all other\nactions.\n",
             })))),
           userFilters: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Filters to be included in a `user.filter` file. This\nwill have a higher priority and can be used to override all other\nfilters definitions.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   freeformType: configType,
                   options: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     "listen-address": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                         default: "127.0.0.1:8118",
                         description: "Pair of address:port the proxy server is listening to.",
                       })))),
                     "enable-edit-actions": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Whether the web-based actions file editor may be used.",
                       })))),
                     actionsfile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         apply: (x) => nix.concat(x, nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "userActions"), "")), nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "user.actions", nix.thunk(() => nix.sel(cfg, "userActions")))))))),
                         default: nix.thunk(() => ["match-all.action", "default.action"]),
                         description: "List of paths to Privoxy action files. These paths may either be\nabsolute or relative to the privoxy configuration directory.\n",
                       })))),
                     filterfile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: nix.thunk(() => ["default.filter"]),
                         apply: (x) => nix.concat(x, nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "userFilters"), "")), nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "user.filter", nix.thunk(() => nix.sel(cfg, "userFilters")))))))),
@@ -157,36 +157,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             privoxy: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Privoxy daemon user",
               isSystemUser: true,
               group: "privoxy",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$20, privoxy: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$20, privoxy: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             rules: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "inspectHttps")), nix.thunk(() => nix.str`d ${nix.sel(cfg, "settings", "certificate-directory")} 0770 privoxy privoxy ${nix.sel(cfg, "certsLifetime")}`))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             privoxy: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Filtering web proxy",
               documentation: nix.thunk(() => ["man:privoxy(8)"]),
               after: nix.thunk(() => ["network.target", "nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 User: "privoxy",
                 Group: "privoxy",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "privoxy")}/bin/privoxy --no-daemon ${configFile}`),
@@ -196,7 +196,7 @@ export default nix.lambda((args) => (() => {
                 ProtectSystem: "full",
               })),
               unitConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "inspectHttps")), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   ConditionPathExists: nix.thunk(() => (() => {
                     const w_2 = nix.withScope(nix.thunk(() => nix.sel(cfg, "settings")), w);
                     return [
@@ -209,33 +209,33 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           tor: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             settings: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               SOCKSPort: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableTor")), nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$28, addr: "127.0.0.1", port: 9063n, IsolateDestAddr: false })),
+                  nix.thunk(() => ({ [nix.POS]: pos$28, addr: "127.0.0.1", port: 9063n, IsolateDestAddr: false })),
                 ]))),
             })),
           })),
           privoxy: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             settings: nix.thunk(() => nix.update({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               "user-manual": nix.thunk(() => nix.str`${nix.sel(pkgs, "privoxy")}/share/doc/privoxy/user-manual`),
               "temporary-directory": "/tmp",
               filterfile: nix.thunk(() => ["default.filter"]),
               actionsfile: nix.thunk(() => nix.concat(["match-all.action", "default.action"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "inspectHttps")), nix.thunk(() => nix.app(nix.builtins.toString, inspectAction))))),
             }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableTor")), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 "forward-socks5": "/ 127.0.0.1:9063 .",
                 toggle: true,
                 "enable-remote-toggle": false,
                 "enable-edit-actions": false,
                 "enable-remote-http-toggle": false,
               }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "inspectHttps")), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 "ca-directory": "/var/empty",
                 "certificate-directory": "/run/privoxy/certs",
                 "trusted-cas-file": nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
@@ -255,7 +255,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_2, "rnhmjoj"))];

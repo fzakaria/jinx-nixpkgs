@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "assay",
       version: "0-unstable-2024-05-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brandon-rhodes",
           repo: "assay",
           rev: "74617d70e77afa09f58b3169cf496679ac5d5621",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), "substituteInPlace assay/assertion.py \\\n  --replace-fail \"op.load_assertion_error\" \"op.load_common_constant\"\n")),
       pythonImportsCheck: nix.thunk(() => ["assay"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/brandon-rhodes/assay",
         description: "Attempt to write a Python testing framework I can actually stand",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

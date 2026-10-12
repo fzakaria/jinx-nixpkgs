@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const host = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const system = nix.thunk(() => (nix.asBool(nix.eq(host, "x86_64-linux")) ? "linuxx64" : (nix.asBool(nix.eq(host, "aarch64-linux")) ? "linuxarmv8" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${host}`)))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.roonlabs.com/updates/production/RoonBridge_${system}_${urlVersion}.tar.bz2`),
       hash: nix.thunk(() => (nix.asBool(nix.eq(system, "linuxx64")) ? "sha256-7flBDwWeHU0VPDsgV7ut+nwRv3PoJ4KxbFOXcAXE1No=" : (nix.asBool(nix.eq(system, "linuxarmv8")) ? "sha256-UbwvTQ8ted/PaUpE6deEaaSLaPl45HSslOWzXQloWKk=" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${host}`))))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roon-bridge",
       src: src,
       version: version,
@@ -70,9 +70,9 @@ makeWrapper "$out/Bridge/RoonBridge" "$out/bin/RoonBridge" --chdir "$out"
 runHook postInstall
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Music player for music lovers",
         changelog: "https://community.roonlabs.com/c/roon/software-release-notes/18",
         homepage: "https://roonlabs.com",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const openpam = nix.arg($, "openpam");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scion-apps",
       version: "0.6.0-unstable-2026-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netsec-ethz",
           repo: "scion-apps",
           rev: "6c990ccb5b39fe0f7a23a3d8dcb4528439c3f5c5",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip=^(TestMangleSCIONAddrURL|TestRoundTripper)$"]),
       ldflags: nix.thunk(() => ["-s"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Public repository for SCION applications",
         homepage: "https://github.com/netsec-ethz/scion-apps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

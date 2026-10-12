@@ -1185,25 +1185,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$883,
+    [nix.POS]: pos$883,
     "adoc-mode": nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const elpaBuild = nix.arg($_1, "elpaBuild");
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "adoc-mode",
             ename: "adoc-mode",
             version: "0.9.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: "https://elpa.nongnu.org/nongnu/adoc-mode-0.9.0.tar",
                 sha256: "11anl5b9ka9aww2w2jv0clrvq98f2vsa9ri3n1xxdll5z77rvw56",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               homepage: "https://elpa.nongnu.org/nongnu/adoc-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1215,18 +1215,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: "afternoon-theme",
             ename: "afternoon-theme",
             version: "0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 url: "https://elpa.nongnu.org/nongnu/afternoon-theme-0.1.tar",
                 sha256: "0xxvr3njpbdlm8iyyklwijjaysyknwpw51hq2443wq37bsxciils",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               homepage: "https://elpa.nongnu.org/nongnu/afternoon-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1238,18 +1238,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pname: "age",
             ename: "age",
             version: "0.1.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 url: "https://elpa.nongnu.org/nongnu/age-0.1.9.tar",
                 sha256: "0y8vlr8w4xfapixdr35acmcsll06kci04rsz5pzi20amkhrj9i50",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               homepage: "https://elpa.nongnu.org/nongnu/age.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1264,18 +1264,18 @@ export default nix.lambda((args) => (() => {
         const markdown_mode = nix.arg($_1, "markdown-mode");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pname: "aidermacs",
             ename: "aidermacs",
             version: "1.13",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 url: "https://elpa.nongnu.org/nongnu/aidermacs-1.13.tar",
                 sha256: "0ikwyyfq67zqkd6kxgvgscbhdgmy8lwb86sq8bq1yw9xdrbj9mng",
               })))),
             packageRequires: nix.thunk(() => [compat, markdown_mode, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               homepage: "https://elpa.nongnu.org/nongnu/aidermacs.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1287,18 +1287,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             pname: "alect-themes",
             ename: "alect-themes",
             version: "0.11",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 url: "https://elpa.nongnu.org/nongnu/alect-themes-0.11.tar",
                 sha256: "1ij0c321gi3vqcw0pzzsi02b3370l2ynijq0999j1jxrillc9h2l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               homepage: "https://elpa.nongnu.org/nongnu/alect-themes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1310,18 +1310,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             pname: "ample-theme",
             ename: "ample-theme",
             version: "0.3.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 url: "https://elpa.nongnu.org/nongnu/ample-theme-0.3.0.tar",
                 sha256: "12z8z6da1xfc642w2wc82sjlfj3ymlz3jwrg3ydc2fapis2d3ibi",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               homepage: "https://elpa.nongnu.org/nongnu/ample-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1333,18 +1333,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             pname: "annotate",
             ename: "annotate",
             version: "2.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 url: "https://elpa.nongnu.org/nongnu/annotate-2.5.0.tar",
                 sha256: "0nydnnjx1p4fkiix70zg0apxxd0sprlzxk111lvgnamp3c4hxf93",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               homepage: "https://elpa.nongnu.org/nongnu/annotate.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1356,18 +1356,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             pname: "anti-zenburn-theme",
             ename: "anti-zenburn-theme",
             version: "2.5.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 url: "https://elpa.nongnu.org/nongnu/anti-zenburn-theme-2.5.1.tar",
                 sha256: "121038d6mjdfis1c5v9277bd6kz656n0c25daxq85mfswvjlar0i",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               homepage: "https://elpa.nongnu.org/nongnu/anti-zenburn-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1379,18 +1379,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             pname: "anzu",
             ename: "anzu",
             version: "0.66",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 url: "https://elpa.nongnu.org/nongnu/anzu-0.66.tar",
                 sha256: "17pyi02mydv59g5qwdzmf1rymkvvg52kx4b8n45pkwkhrwdmj2g3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               homepage: "https://elpa.nongnu.org/nongnu/anzu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1402,18 +1402,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             pname: "apache-mode",
             ename: "apache-mode",
             version: "2.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 url: "https://elpa.nongnu.org/nongnu/apache-mode-2.2.0.tar",
                 sha256: "10fgbgww7j60dik7b7mvnm1zwgv9y8p5wzggkrdk50dv3gjfxg8f",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               homepage: "https://elpa.nongnu.org/nongnu/apache-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1425,18 +1425,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             pname: "apropospriate-theme",
             ename: "apropospriate-theme",
             version: "0.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 url: "https://elpa.nongnu.org/nongnu/apropospriate-theme-0.2.0.tar",
                 sha256: "1hsv26iqr0g6c3gy1df2qkd3ilwq6xaa89ch7pqh64737qrlw9db",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               homepage: "https://elpa.nongnu.org/nongnu/apropospriate-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1449,18 +1449,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const spinner = nix.arg($_1, "spinner");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             pname: "arduino-mode",
             ename: "arduino-mode",
             version: "1.3.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 url: "https://elpa.nongnu.org/nongnu/arduino-mode-1.3.1.tar",
                 sha256: "1k42qx7kgm8svv70czzlkmm3c7cddf93bqvf6267hbkaihhyd21y",
               })))),
             packageRequires: nix.thunk(() => [spinner]),
             meta: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               homepage: "https://elpa.nongnu.org/nongnu/arduino-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1472,18 +1472,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             pname: "auto-dim-other-buffers",
             ename: "auto-dim-other-buffers",
             version: "2.2.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 url: "https://elpa.nongnu.org/nongnu/auto-dim-other-buffers-2.2.3.tar",
                 sha256: "19h5lmjzmy1a3jksjx8n9wq5qi7idi7bpvz5qv3rhm19bwhwml01",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               homepage: "https://elpa.nongnu.org/nongnu/auto-dim-other-buffers.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1496,18 +1496,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             pname: "autothemer",
             ename: "autothemer",
             version: "0.2.19",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 url: "https://elpa.nongnu.org/nongnu/autothemer-0.2.19.tar",
                 sha256: "0mx99y7ygf36a7kr89s04xzyjgrmbia457dw21kvhs6jwksgdl4x",
               })))),
             packageRequires: nix.thunk(() => [dash]),
             meta: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               homepage: "https://elpa.nongnu.org/nongnu/autothemer.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1519,18 +1519,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             pname: "base32",
             ename: "base32",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 url: "https://elpa.nongnu.org/nongnu/base32-1.0.tar",
                 sha256: "1k1n0zlks9dammpmr0875xh5vw5prmc7rr5kwd262xidscj19k6w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               homepage: "https://elpa.nongnu.org/nongnu/base32.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1542,18 +1542,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             pname: "bash-completion",
             ename: "bash-completion",
             version: "3.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 url: "https://elpa.nongnu.org/nongnu/bash-completion-3.2.tar",
                 sha256: "19xpv87nb1gskfsfqj8hmhbzlhxk0m6dflizsnrq94bh7rbw3s12",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               homepage: "https://elpa.nongnu.org/nongnu/bash-completion.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1565,18 +1565,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             pname: "beancount",
             ename: "beancount",
             version: "0.9.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 url: "https://elpa.nongnu.org/nongnu/beancount-0.9.0.tar",
                 sha256: "0pr86vw8qkdbwvzvqs9pyhq6vabg6jik79cs0j3xrsjjpaz324zi",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               homepage: "https://elpa.nongnu.org/nongnu/beancount.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1588,18 +1588,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             pname: "better-jumper",
             ename: "better-jumper",
             version: "1.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 url: "https://elpa.nongnu.org/nongnu/better-jumper-1.0.1.tar",
                 sha256: "1jdmbp1jjip8vmmc66z2wgx95lzp1b92m66p160mdm4g3skl64c2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               homepage: "https://elpa.nongnu.org/nongnu/better-jumper.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1611,18 +1611,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             pname: "bind-map",
             ename: "bind-map",
             version: "1.1.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 url: "https://elpa.nongnu.org/nongnu/bind-map-1.1.2.tar",
                 sha256: "037xk912hx00ia62h6kdfa56g44dhd0628va22znxg251izvnqxq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               homepage: "https://elpa.nongnu.org/nongnu/bind-map.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1634,18 +1634,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             pname: "bison-mode",
             ename: "bison-mode",
             version: "0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 url: "https://elpa.nongnu.org/nongnu/bison-mode-0.4.tar",
                 sha256: "0k0h96bpcndi3m9fdk74j0ynm50n6by508mv3ds9ala26dpdr7qa",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               homepage: "https://elpa.nongnu.org/nongnu/bison-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1657,18 +1657,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             pname: "blow",
             ename: "blow",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 url: "https://elpa.nongnu.org/nongnu/blow-1.0.tar",
                 sha256: "009x0y86692ccj2v0cizr40ly6xdp72bnwj5pjayg3y0ph4iz0cj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               homepage: "https://elpa.nongnu.org/nongnu/blow.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1680,18 +1680,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             pname: "blueprint-ts-mode",
             ename: "blueprint-ts-mode",
             version: "0.0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 url: "https://elpa.nongnu.org/nongnu/blueprint-ts-mode-0.0.3.tar",
                 sha256: "0v1sk80dka2gdkwcbria12ih3jrna3866ngdswcskyqcnkxm7b7n",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               homepage: "https://elpa.nongnu.org/nongnu/blueprint-ts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1703,18 +1703,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             pname: "boxquote",
             ename: "boxquote",
             version: "2.4.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 url: "https://elpa.nongnu.org/nongnu/boxquote-2.4.1.tar",
                 sha256: "18gwx8dh2xbr90m1mvmp5jb8ssyn5cmq833sd4nsa76i021yh1l6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               homepage: "https://elpa.nongnu.org/nongnu/boxquote.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1726,18 +1726,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             pname: "buttercup",
             ename: "buttercup",
             version: "1.40",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 url: "https://elpa.nongnu.org/nongnu/buttercup-1.40.tar",
                 sha256: "09r1yp05m7p6906isz1x6dhc7mrxsdisxa19a8py73gqsm1ymf1c",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               homepage: "https://elpa.nongnu.org/nongnu/buttercup.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1749,18 +1749,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             pname: "camera",
             ename: "camera",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 url: "https://elpa.nongnu.org/nongnu/camera-0.3.tar",
                 sha256: "0r9b20li82qcc141p4blyaj0xng5f4xrghhl09wc15ffi0cmbq7d",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               homepage: "https://elpa.nongnu.org/nongnu/camera.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1772,18 +1772,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             pname: "caml",
             ename: "caml",
             version: "4.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 url: "https://elpa.nongnu.org/nongnu/caml-4.9.tar",
                 sha256: "1xzk83bds4d23rk170n975mijlmin5dh7crfc5swwvzh8w88qxmk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               homepage: "https://elpa.nongnu.org/nongnu/caml.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1797,18 +1797,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             pname: "casual",
             ename: "casual",
             version: "3.0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 url: "https://elpa.nongnu.org/nongnu/casual-3.0.2.tar",
                 sha256: "1hiql2wqvqk3c9y2mxa19l9ns64f469k58ca5wpg5jjflq02hjyq",
               })))),
             packageRequires: nix.thunk(() => [csv_mode, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               homepage: "https://elpa.nongnu.org/nongnu/casual.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1820,18 +1820,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             pname: "cdlatex",
             ename: "cdlatex",
             version: "4.18.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 url: "https://elpa.nongnu.org/nongnu/cdlatex-4.18.5.tar",
                 sha256: "0d7ivpxkn7a4cam0cmgar9s0r943ni046dfn6z9k50zhzhaxcw6y",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               homepage: "https://elpa.nongnu.org/nongnu/cdlatex.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1851,18 +1851,18 @@ export default nix.lambda((args) => (() => {
         const spinner = nix.arg($_1, "spinner");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             pname: "cider",
             ename: "cider",
             version: "2.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 url: "https://elpa.nongnu.org/nongnu/cider-2.0.1.tar",
                 sha256: "1iqgdciimd5r4payvl37wm3f2y758lmaz72hjikd2idjk9c2xy1p",
               })))),
             packageRequires: nix.thunk(() => [clojure_mode, compat, parseedn, queue, seq, sesman, spinner, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               homepage: "https://elpa.nongnu.org/nongnu/cider.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1874,18 +1874,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             pname: "clojure-mode",
             ename: "clojure-mode",
             version: "5.23.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 url: "https://elpa.nongnu.org/nongnu/clojure-mode-5.23.0.tar",
                 sha256: "1l4nxsp1lsbq1c0zg1bisc3fjmjjrjs1ahw17fajl0kblp96b0xg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               homepage: "https://elpa.nongnu.org/nongnu/clojure-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1897,18 +1897,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             pname: "clojure-ts-mode",
             ename: "clojure-ts-mode",
             version: "0.6.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$91,
+                [nix.POS]: pos$91,
                 url: "https://elpa.nongnu.org/nongnu/clojure-ts-mode-0.6.0.tar",
                 sha256: "0jvza581i0npj22jpzd1x08dsssdsw53xmfnq61widi6bs24bi92",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               homepage: "https://elpa.nongnu.org/nongnu/clojure-ts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1923,18 +1923,18 @@ export default nix.lambda((args) => (() => {
         const keymap_popup = nix.arg($_1, "keymap-popup");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             pname: "codex-ide",
             ename: "codex-ide",
             version: "0.1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 url: "https://elpa.nongnu.org/nongnu/codex-ide-0.1.3.tar",
                 sha256: "104lgsm224d25rmxi79rf6z7w47c0x3224gyyxmyib2zsd8cp01a",
               })))),
             packageRequires: nix.thunk(() => [compat, eat, keymap_popup]),
             meta: nix.thunk(() => ({
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               homepage: "https://elpa.nongnu.org/nongnu/codex-ide.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1947,18 +1947,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$99,
+            [nix.POS]: pos$99,
             pname: "coffee-mode",
             ename: "coffee-mode",
             version: "0.6.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 url: "https://elpa.nongnu.org/nongnu/coffee-mode-0.6.3.tar",
                 sha256: "1anywqp2b99dmilfnajxgf4msc0viw6ndl0lxpgaa7d2b3mzx9nq",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               homepage: "https://elpa.nongnu.org/nongnu/coffee-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1971,18 +1971,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             pname: "color-theme-tangotango",
             ename: "color-theme-tangotango",
             version: "0.0.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$100,
+                [nix.POS]: pos$100,
                 url: "https://elpa.nongnu.org/nongnu/color-theme-tangotango-0.0.6.tar",
                 sha256: "0lfr3xg9xvfjb12kcw80d35a1ayn4f5w1dkd2b0kx0wxkq0bykim",
               })))),
             packageRequires: nix.thunk(() => [color_theme]),
             meta: nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               homepage: "https://elpa.gnu.org/packages/color-theme-tangotango.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -1994,18 +1994,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             pname: "cond-let",
             ename: "cond-let",
             version: "1.1.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 url: "https://elpa.nongnu.org/nongnu/cond-let-1.1.4.tar",
                 sha256: "1ycb83llj94d78v80l14snsk5ih748cw4q68fsmxwdrx77jvr492",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               homepage: "https://elpa.nongnu.org/nongnu/cond-let.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2019,18 +2019,18 @@ export default nix.lambda((args) => (() => {
         const flycheck = nix.arg($_1, "flycheck");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$108,
+            [nix.POS]: pos$108,
             pname: "consult-flycheck",
             ename: "consult-flycheck",
             version: "1.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 url: "https://elpa.nongnu.org/nongnu/consult-flycheck-1.2.tar",
                 sha256: "0g5lb3p4g91ax0c4zkkyvi2l4hkq5b9r2bciddgg1h4bsmrs6vhx",
               })))),
             packageRequires: nix.thunk(() => [consult, flycheck]),
             meta: nix.thunk(() => ({
-              __proto__: pos$107,
+              [nix.POS]: pos$107,
               homepage: "https://elpa.nongnu.org/nongnu/consult-flycheck.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2044,18 +2044,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const popon = nix.arg($_1, "popon");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             pname: "corfu-terminal",
             ename: "corfu-terminal",
             version: "0.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$109,
+                [nix.POS]: pos$109,
                 url: "https://elpa.nongnu.org/nongnu/corfu-terminal-0.7.tar",
                 sha256: "0a41hfma4iiinq2cgvwqqwxhrwjn5c7igl5sgvgx0mbjki2n6sll",
               })))),
             packageRequires: nix.thunk(() => [corfu, popon]),
             meta: nix.thunk(() => ({
-              __proto__: pos$110,
+              [nix.POS]: pos$110,
               homepage: "https://elpa.nongnu.org/nongnu/corfu-terminal.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2067,18 +2067,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             pname: "crux",
             ename: "crux",
             version: "0.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 url: "https://elpa.nongnu.org/nongnu/crux-0.5.0.tar",
                 sha256: "0cykjwwhl6r02fsyam4vnmlxiyq8b8qsgncb1hjnz4gj7mxc9gg4",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               homepage: "https://elpa.nongnu.org/nongnu/crux.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2091,18 +2091,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             pname: "csv2ledger",
             ename: "csv2ledger",
             version: "1.5.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 url: "https://elpa.nongnu.org/nongnu/csv2ledger-1.5.5.tar",
                 sha256: "09k7q33jxwrcf52csgf25kd9wqcs9bicl8azmkbrmm8d9jqgg3md",
               })))),
             packageRequires: nix.thunk(() => [csv_mode]),
             meta: nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               homepage: "https://elpa.nongnu.org/nongnu/csv2ledger.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2114,18 +2114,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             pname: "cyberpunk-theme",
             ename: "cyberpunk-theme",
             version: "1.22",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$118,
+                [nix.POS]: pos$118,
                 url: "https://elpa.nongnu.org/nongnu/cyberpunk-theme-1.22.tar",
                 sha256: "1kgkgpb07d4kh2rf88pfgyji42qv80443i67nzha2fx01zbd5swb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               homepage: "https://elpa.nongnu.org/nongnu/cyberpunk-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2138,18 +2138,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const recomplete = nix.arg($_1, "recomplete");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$123,
+            [nix.POS]: pos$123,
             pname: "cycle-at-point",
             ename: "cycle-at-point",
             version: "0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$121,
+                [nix.POS]: pos$121,
                 url: "https://elpa.nongnu.org/nongnu/cycle-at-point-0.2.tar",
                 sha256: "1q3gylksr754s0pl8x1hdk0q4p0vz6lnasswgsqpx44nmnbsrw6z",
               })))),
             packageRequires: nix.thunk(() => [recomplete]),
             meta: nix.thunk(() => ({
-              __proto__: pos$122,
+              [nix.POS]: pos$122,
               homepage: "https://elpa.nongnu.org/nongnu/cycle-at-point.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2161,18 +2161,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             pname: "d-mode",
             ename: "d-mode",
             version: "202408131340",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$124,
+                [nix.POS]: pos$124,
                 url: "https://elpa.nongnu.org/nongnu/d-mode-202408131340.tar",
                 sha256: "19dgc0yd2fmc9xbrajc1l98p7p2wiwg43ajq4gssxdshb5vi5mn9",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               homepage: "https://elpa.nongnu.org/nongnu/d-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2184,18 +2184,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$129,
+            [nix.POS]: pos$129,
             pname: "dart-mode",
             ename: "dart-mode",
             version: "1.0.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$127,
+                [nix.POS]: pos$127,
                 url: "https://elpa.nongnu.org/nongnu/dart-mode-1.0.7.tar",
                 sha256: "1k9pn7nqskz39m3zwi9jhd1a2q440jgrla1a37qip73mwrdril1i",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               homepage: "https://elpa.nongnu.org/nongnu/dart-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2208,18 +2208,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             pname: "datetime",
             ename: "datetime",
             version: "0.10.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$130,
+                [nix.POS]: pos$130,
                 url: "https://elpa.nongnu.org/nongnu/datetime-0.10.2.tar",
                 sha256: "1mpsk5zrl7kja0pk6fw1qw2drq3laphmnnj8ppr0ahinyrqy05kw",
               })))),
             packageRequires: nix.thunk(() => [extmap]),
             meta: nix.thunk(() => ({
-              __proto__: pos$131,
+              [nix.POS]: pos$131,
               homepage: "https://elpa.nongnu.org/nongnu/datetime.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2232,18 +2232,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$135,
+            [nix.POS]: pos$135,
             pname: "denote-refs",
             ename: "denote-refs",
             version: "0.1.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$133,
+                [nix.POS]: pos$133,
                 url: "https://elpa.nongnu.org/nongnu/denote-refs-0.1.2.tar",
                 sha256: "0jq14adxpx9bxddkj3a4bahyr3yarjn85iplhhy9yk7k9wy7wis0",
               })))),
             packageRequires: nix.thunk(() => [denote]),
             meta: nix.thunk(() => ({
-              __proto__: pos$134,
+              [nix.POS]: pos$134,
               homepage: "https://elpa.nongnu.org/nongnu/denote-refs.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2255,18 +2255,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$138,
+            [nix.POS]: pos$138,
             pname: "devhelp",
             ename: "devhelp",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$136,
+                [nix.POS]: pos$136,
                 url: "https://elpa.nongnu.org/nongnu/devhelp-1.0.tar",
                 sha256: "14x1990yr3qqzv9dqn7xg69hqgpmgjsi68f2fg07v670lk7hs8xb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$137,
+              [nix.POS]: pos$137,
               homepage: "https://elpa.nongnu.org/nongnu/devhelp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2278,18 +2278,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$141,
+            [nix.POS]: pos$141,
             pname: "devil",
             ename: "devil",
             version: "0.6.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$139,
+                [nix.POS]: pos$139,
                 url: "https://elpa.nongnu.org/nongnu/devil-0.6.0.tar",
                 sha256: "01n552pvr598igmd2q6w9kgjrwgzrgrb4w59mxpsylcv6wy2v2h5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$140,
+              [nix.POS]: pos$140,
               homepage: "https://elpa.nongnu.org/nongnu/devil.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2301,18 +2301,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$144,
+            [nix.POS]: pos$144,
             pname: "diff-ansi",
             ename: "diff-ansi",
             version: "0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$142,
+                [nix.POS]: pos$142,
                 url: "https://elpa.nongnu.org/nongnu/diff-ansi-0.2.tar",
                 sha256: "0i1216mw0zgy3jdhhxsn5wpjqgxv5als1lljb1ddqjl21y6z74nw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$143,
+              [nix.POS]: pos$143,
               homepage: "https://elpa.nongnu.org/nongnu/diff-ansi.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2325,18 +2325,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$147,
+            [nix.POS]: pos$147,
             pname: "dirvish",
             ename: "dirvish",
             version: "2.3.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$145,
+                [nix.POS]: pos$145,
                 url: "https://elpa.nongnu.org/nongnu/dirvish-2.3.0.tar",
                 sha256: "0am64p4h08isz8al70zz3dchx43szgnl5qa6i81s3mf3bmw8vpn6",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$146,
+              [nix.POS]: pos$146,
               homepage: "https://elpa.nongnu.org/nongnu/dirvish.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2348,18 +2348,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$150,
+            [nix.POS]: pos$150,
             pname: "doc-show-inline",
             ename: "doc-show-inline",
             version: "0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$148,
+                [nix.POS]: pos$148,
                 url: "https://elpa.nongnu.org/nongnu/doc-show-inline-0.1.tar",
                 sha256: "13y7k4zp8x8fcyidw0jy6zf92af660zwb7qpps91l2dh7zwjsl2v",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$149,
+              [nix.POS]: pos$149,
               homepage: "https://elpa.nongnu.org/nongnu/doc-show-inline.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2371,18 +2371,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$153,
+            [nix.POS]: pos$153,
             pname: "dockerfile-mode",
             ename: "dockerfile-mode",
             version: "1.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$151,
+                [nix.POS]: pos$151,
                 url: "https://elpa.nongnu.org/nongnu/dockerfile-mode-1.9.tar",
                 sha256: "11cdwb3l0fkzx8xgcf9xi6mi7q86jf9vfhagpc076qxwwjz0vgp7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$152,
+              [nix.POS]: pos$152,
               homepage: "https://elpa.nongnu.org/nongnu/dockerfile-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2394,18 +2394,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$156,
+            [nix.POS]: pos$156,
             pname: "doom-game",
             ename: "doom-game",
             version: "0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$154,
+                [nix.POS]: pos$154,
                 url: "https://elpa.nongnu.org/nongnu/doom-game-0.4.tar",
                 sha256: "1174hrzng98sk2whnrm2ax37a4lfnm07yvm37iww919lv3mffpqf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$155,
+              [nix.POS]: pos$155,
               homepage: "https://elpa.nongnu.org/nongnu/doom-game.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2417,18 +2417,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$159,
+            [nix.POS]: pos$159,
             pname: "dracula-theme",
             ename: "dracula-theme",
             version: "1.8.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$157,
+                [nix.POS]: pos$157,
                 url: "https://elpa.nongnu.org/nongnu/dracula-theme-1.8.3.tar",
                 sha256: "03md51d5ibfynnw9kavxi5wk353spivvpbg7bndiy9mdl1cqc1cg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$158,
+              [nix.POS]: pos$158,
               homepage: "https://elpa.nongnu.org/nongnu/dracula-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2441,18 +2441,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const php_mode = nix.arg($_1, "php-mode");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$162,
+            [nix.POS]: pos$162,
             pname: "drupal-mode",
             ename: "drupal-mode",
             version: "0.8.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$160,
+                [nix.POS]: pos$160,
                 url: "https://elpa.nongnu.org/nongnu/drupal-mode-0.8.1.tar",
                 sha256: "0f3dd2647g964grzq95d73iznhpmrr9w7fmkifjk3ivz0rgdgjsq",
               })))),
             packageRequires: nix.thunk(() => [php_mode]),
             meta: nix.thunk(() => ({
-              __proto__: pos$161,
+              [nix.POS]: pos$161,
               homepage: "https://elpa.nongnu.org/nongnu/drupal-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2464,18 +2464,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$165,
+            [nix.POS]: pos$165,
             pname: "dslide",
             ename: "dslide",
             version: "0.6.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$163,
+                [nix.POS]: pos$163,
                 url: "https://elpa.nongnu.org/nongnu/dslide-0.6.2.tar",
                 sha256: "02lny7c7v6345nlprmpi39pyk7m9lpr85g8xkd70ivkpc122qdy2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$164,
+              [nix.POS]: pos$164,
               homepage: "https://elpa.nongnu.org/nongnu/dslide.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2488,18 +2488,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$168,
+            [nix.POS]: pos$168,
             pname: "eat",
             ename: "eat",
             version: "0.9.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$166,
+                [nix.POS]: pos$166,
                 url: "https://elpa.nongnu.org/nongnu/eat-0.9.4.tar",
                 sha256: "0jn5rzyg1abjsb18brr1ha4vmhvxpkp8pxvaxfa0g0phcb2iz5ql",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$167,
+              [nix.POS]: pos$167,
               homepage: "https://elpa.nongnu.org/nongnu/eat.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2511,18 +2511,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$171,
+            [nix.POS]: pos$171,
             pname: "edit-indirect",
             ename: "edit-indirect",
             version: "0.1.13",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$169,
+                [nix.POS]: pos$169,
                 url: "https://elpa.nongnu.org/nongnu/edit-indirect-0.1.13.tar",
                 sha256: "10zshywbp0f00k2d4f5bc44ynvw3f0626vl35lbah1kwmgzrrjdd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$170,
+              [nix.POS]: pos$170,
               homepage: "https://elpa.nongnu.org/nongnu/edit-indirect.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2535,18 +2535,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const nadvice = nix.arg($_1, "nadvice");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$174,
+            [nix.POS]: pos$174,
             pname: "editorconfig",
             ename: "editorconfig",
             version: "0.11.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$172,
+                [nix.POS]: pos$172,
                 url: "https://elpa.nongnu.org/nongnu/editorconfig-0.11.0.tar",
                 sha256: "0adzm6fhx5vgg20qy9f7cqpnx938mp1ls91y5cw71pjm9ihs2cyv",
               })))),
             packageRequires: nix.thunk(() => [nadvice]),
             meta: nix.thunk(() => ({
-              __proto__: pos$173,
+              [nix.POS]: pos$173,
               homepage: "https://elpa.nongnu.org/nongnu/editorconfig.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2558,18 +2558,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$177,
+            [nix.POS]: pos$177,
             pname: "eglot-inactive-regions",
             ename: "eglot-inactive-regions",
             version: "0.6.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$175,
+                [nix.POS]: pos$175,
                 url: "https://elpa.nongnu.org/nongnu/eglot-inactive-regions-0.6.5.tar",
                 sha256: "133wbmmzxfhzkjlm3sjllg3wl5r2dyprs2rmwi8r7nq3p831ak0n",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$176,
+              [nix.POS]: pos$176,
               homepage: "https://elpa.nongnu.org/nongnu/eglot-inactive-regions.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2581,18 +2581,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$180,
+            [nix.POS]: pos$180,
             pname: "eldoc-diffstat",
             ename: "eldoc-diffstat",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$178,
+                [nix.POS]: pos$178,
                 url: "https://elpa.nongnu.org/nongnu/eldoc-diffstat-1.0.tar",
                 sha256: "0cxmhi1whzh4z62vv1pyvl2v6wr0jbq560m6zib8zicvdfxqlpgk",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$179,
+              [nix.POS]: pos$179,
               homepage: "https://elpa.nongnu.org/nongnu/eldoc-diffstat.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2606,18 +2606,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const posframe = nix.arg($_1, "posframe");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$183,
+            [nix.POS]: pos$183,
             pname: "eldoc-mouse",
             ename: "eldoc-mouse",
             version: "3.0.10",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$181,
+                [nix.POS]: pos$181,
                 url: "https://elpa.nongnu.org/nongnu/eldoc-mouse-3.0.10.tar",
                 sha256: "1jjp2iwgv2lj1b84yk66vm04rh3f34d84rkahyk37jdba1d7gfkh",
               })))),
             packageRequires: nix.thunk(() => [eglot, posframe]),
             meta: nix.thunk(() => ({
-              __proto__: pos$182,
+              [nix.POS]: pos$182,
               homepage: "https://elpa.nongnu.org/nongnu/eldoc-mouse.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2631,18 +2631,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const nov = nix.arg($_1, "nov");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$186,
+            [nix.POS]: pos$186,
             pname: "eldoc-mouse-nov",
             ename: "eldoc-mouse-nov",
             version: "0.1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$184,
+                [nix.POS]: pos$184,
                 url: "https://elpa.nongnu.org/nongnu/eldoc-mouse-nov-0.1.1.tar",
                 sha256: "1jg1s0v255jm6gzvvl2r0dqrjb95z2lgc0yy1pc1avf4ynsrk5d9",
               })))),
             packageRequires: nix.thunk(() => [eldoc_mouse, nov]),
             meta: nix.thunk(() => ({
-              __proto__: pos$185,
+              [nix.POS]: pos$185,
               homepage: "https://elpa.nongnu.org/nongnu/eldoc-mouse-nov.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2655,18 +2655,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$189,
+            [nix.POS]: pos$189,
             pname: "elfeed",
             ename: "elfeed",
             version: "4.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$187,
+                [nix.POS]: pos$187,
                 url: "https://elpa.nongnu.org/nongnu/elfeed-4.2.0.tar",
                 sha256: "1qk1f27cz3l2wxdpicc07f47h28dxnc0h42gpp7gv7xcwy35gmnw",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$188,
+              [nix.POS]: pos$188,
               homepage: "https://elpa.nongnu.org/nongnu/elfeed.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2681,18 +2681,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const simple_httpd = nix.arg($_1, "simple-httpd");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$192,
+            [nix.POS]: pos$192,
             pname: "elfeed-web",
             ename: "elfeed-web",
             version: "4.1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$190,
+                [nix.POS]: pos$190,
                 url: "https://elpa.nongnu.org/nongnu/elfeed-web-4.1.0.tar",
                 sha256: "0khkpw4cfwcaxc5h6xkvyag5zkimb0zwi71si6jyym8z5csfk4km",
               })))),
             packageRequires: nix.thunk(() => [compat, elfeed, simple_httpd]),
             meta: nix.thunk(() => ({
-              __proto__: pos$191,
+              [nix.POS]: pos$191,
               homepage: "https://elpa.nongnu.org/nongnu/elfeed-web.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2704,18 +2704,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$195,
+            [nix.POS]: pos$195,
             pname: "elixir-mode",
             ename: "elixir-mode",
             version: "2.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$193,
+                [nix.POS]: pos$193,
                 url: "https://elpa.nongnu.org/nongnu/elixir-mode-2.5.0.tar",
                 sha256: "1x6aral441mv9443h21lnaymbpazwii22wcqvk2jfqjmyl1xj1yz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$194,
+              [nix.POS]: pos$194,
               homepage: "https://elpa.nongnu.org/nongnu/elixir-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2727,18 +2727,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$198,
+            [nix.POS]: pos$198,
             pname: "elpher",
             ename: "elpher",
             version: "3.7.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$196,
+                [nix.POS]: pos$196,
                 url: "https://elpa.nongnu.org/nongnu/elpher-3.7.0.tar",
                 sha256: "1z12nb9a9gbksfnirnqv5fi6b7ygkjgyvrd7glp3ymbp765pjb2p",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$197,
+              [nix.POS]: pos$197,
               homepage: "https://elpa.nongnu.org/nongnu/elpher.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2750,18 +2750,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$201,
+            [nix.POS]: pos$201,
             pname: "emacsql",
             ename: "emacsql",
             version: "4.4.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$199,
+                [nix.POS]: pos$199,
                 url: "https://elpa.nongnu.org/nongnu/emacsql-4.4.1.tar",
                 sha256: "1gja15jyalzrlcs85ng98p6g7b0id4rayj4shwf7x1ic30sv12p3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$200,
+              [nix.POS]: pos$200,
               homepage: "https://elpa.nongnu.org/nongnu/emacsql.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2774,18 +2774,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$204,
+            [nix.POS]: pos$204,
             pname: "engine-mode",
             ename: "engine-mode",
             version: "2.2.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$202,
+                [nix.POS]: pos$202,
                 url: "https://elpa.nongnu.org/nongnu/engine-mode-2.2.4.tar",
                 sha256: "0gp1mnf0yaq4w91pj989dzlxpbpcqqj0yls23wf2ly53kbaarzv9",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$203,
+              [nix.POS]: pos$203,
               homepage: "https://elpa.nongnu.org/nongnu/engine-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2797,18 +2797,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$207,
+            [nix.POS]: pos$207,
             pname: "eprolog",
             ename: "eprolog",
             version: "0.3.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$205,
+                [nix.POS]: pos$205,
                 url: "https://elpa.nongnu.org/nongnu/eprolog-0.3.2.tar",
                 sha256: "1vbnbdpmxvqgay5m01bcm1wlsyz16nn4fydv7ipd8kzr4lw59qyg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$206,
+              [nix.POS]: pos$206,
               homepage: "https://elpa.nongnu.org/nongnu/eprolog.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2821,18 +2821,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$210,
+            [nix.POS]: pos$210,
             pname: "esxml",
             ename: "esxml",
             version: "0.3.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$208,
+                [nix.POS]: pos$208,
                 url: "https://elpa.nongnu.org/nongnu/esxml-0.3.8.tar",
                 sha256: "1r3hjjidqafr1drc0v0v7blglhf5mp544s6i4hc6xwkhg0amhd92",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$209,
+              [nix.POS]: pos$209,
               homepage: "https://elpa.nongnu.org/nongnu/esxml.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2844,18 +2844,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$213,
+            [nix.POS]: pos$213,
             pname: "evil",
             ename: "evil",
             version: "1.15.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$211,
+                [nix.POS]: pos$211,
                 url: "https://elpa.nongnu.org/nongnu/evil-1.15.0.tar",
                 sha256: "0ciglddlq0z91jyggp86d9g3gwfzjp55xhldqpxpq39a2xkwqh0q",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$212,
+              [nix.POS]: pos$212,
               homepage: "https://elpa.nongnu.org/nongnu/evil.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2869,18 +2869,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$216,
+            [nix.POS]: pos$216,
             pname: "evil-anzu",
             ename: "evil-anzu",
             version: "0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$214,
+                [nix.POS]: pos$214,
                 url: "https://elpa.nongnu.org/nongnu/evil-anzu-0.2.tar",
                 sha256: "1vn61aj0bnvkj2l3cd8m8q3n7kn09hdp6d13wc58w9pw8nrg0vq5",
               })))),
             packageRequires: nix.thunk(() => [anzu, evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$215,
+              [nix.POS]: pos$215,
               homepage: "https://elpa.nongnu.org/nongnu/evil-anzu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2893,18 +2893,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$219,
+            [nix.POS]: pos$219,
             pname: "evil-args",
             ename: "evil-args",
             version: "1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$217,
+                [nix.POS]: pos$217,
                 url: "https://elpa.nongnu.org/nongnu/evil-args-1.1.tar",
                 sha256: "0fv30wny2f4mg8l9jrjgxisz6nbmn84980yszbrcbkqi81dzzlyi",
               })))),
             packageRequires: nix.thunk(() => [evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$218,
+              [nix.POS]: pos$218,
               homepage: "https://elpa.nongnu.org/nongnu/evil-args.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2917,18 +2917,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$222,
+            [nix.POS]: pos$222,
             pname: "evil-collection",
             ename: "evil-collection",
             version: "3.0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$220,
+                [nix.POS]: pos$220,
                 url: "https://elpa.nongnu.org/nongnu/evil-collection-3.0.3.tar",
                 sha256: "1zb34mlv5fqmh5nl0kphrfy1grz41b3wnk05l2z0y8k3v33ymbh8",
               })))),
             packageRequires: nix.thunk(() => [evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$221,
+              [nix.POS]: pos$221,
               homepage: "https://elpa.nongnu.org/nongnu/evil-collection.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2941,18 +2941,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$225,
+            [nix.POS]: pos$225,
             pname: "evil-emacs-cursor-model-mode",
             ename: "evil-emacs-cursor-model-mode",
             version: "0.1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$223,
+                [nix.POS]: pos$223,
                 url: "https://elpa.nongnu.org/nongnu/evil-emacs-cursor-model-mode-0.1.3.tar",
                 sha256: "03mn90kpn5lj1yxg5pl69wa01ms2xi9bj1w5dix5ac153iqlddjm",
               })))),
             packageRequires: nix.thunk(() => [evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$224,
+              [nix.POS]: pos$224,
               homepage: "https://elpa.nongnu.org/nongnu/evil-emacs-cursor-model-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2966,18 +2966,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$228,
+            [nix.POS]: pos$228,
             pname: "evil-escape",
             ename: "evil-escape",
             version: "3.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$226,
+                [nix.POS]: pos$226,
                 url: "https://elpa.nongnu.org/nongnu/evil-escape-3.16.tar",
                 sha256: "0vv6k3zaaw4ckk6qjiw1n41815w1g4qgy2hfgsj1vm7xc9i9zjzp",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$227,
+              [nix.POS]: pos$227,
               homepage: "https://elpa.nongnu.org/nongnu/evil-escape.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -2991,18 +2991,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$231,
+            [nix.POS]: pos$231,
             pname: "evil-exchange",
             ename: "evil-exchange",
             version: "0.41",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$229,
+                [nix.POS]: pos$229,
                 url: "https://elpa.nongnu.org/nongnu/evil-exchange-0.41.tar",
                 sha256: "1yk7zdxl7c8c2ic37l0rsaynnpcrhdbblk2frl5m8phf54g82d8i",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$230,
+              [nix.POS]: pos$230,
               homepage: "https://elpa.nongnu.org/nongnu/evil-exchange.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3015,18 +3015,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$234,
+            [nix.POS]: pos$234,
             pname: "evil-goggles",
             ename: "evil-goggles",
             version: "0.0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$232,
+                [nix.POS]: pos$232,
                 url: "https://elpa.nongnu.org/nongnu/evil-goggles-0.0.2.tar",
                 sha256: "0nipk8r7l5c50n9zry5264cfilx730l68ssldw3hyj14ybdf6dch",
               })))),
             packageRequires: nix.thunk(() => [evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$233,
+              [nix.POS]: pos$233,
               homepage: "https://elpa.nongnu.org/nongnu/evil-goggles.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3040,18 +3040,18 @@ export default nix.lambda((args) => (() => {
         const iedit = nix.arg($_1, "iedit");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$237,
+            [nix.POS]: pos$237,
             pname: "evil-iedit-state",
             ename: "evil-iedit-state",
             version: "1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$235,
+                [nix.POS]: pos$235,
                 url: "https://elpa.nongnu.org/nongnu/evil-iedit-state-1.3.tar",
                 sha256: "1955bci018rpbdvixlw0gxay10g0vgg2xwsfmfyxcblk5glrv5cp",
               })))),
             packageRequires: nix.thunk(() => [evil, iedit]),
             meta: nix.thunk(() => ({
-              __proto__: pos$236,
+              [nix.POS]: pos$236,
               homepage: "https://elpa.nongnu.org/nongnu/evil-iedit-state.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3065,18 +3065,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$240,
+            [nix.POS]: pos$240,
             pname: "evil-indent-plus",
             ename: "evil-indent-plus",
             version: "1.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$238,
+                [nix.POS]: pos$238,
                 url: "https://elpa.nongnu.org/nongnu/evil-indent-plus-1.0.1.tar",
                 sha256: "1kzlvi8xgfxy26w1m31nyh6vrq787vchkmk4r1xaphk9wn9bw1pq",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$239,
+              [nix.POS]: pos$239,
               homepage: "https://elpa.nongnu.org/nongnu/evil-indent-plus.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3091,18 +3091,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const smartparens = nix.arg($_1, "smartparens");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$243,
+            [nix.POS]: pos$243,
             pname: "evil-lisp-state",
             ename: "evil-lisp-state",
             version: "8.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$241,
+                [nix.POS]: pos$241,
                 url: "https://elpa.nongnu.org/nongnu/evil-lisp-state-8.2.tar",
                 sha256: "14v1nv797b4rxxxnvzwy6pp10g3mmvifb919iv7nx96sbn919w0p",
               })))),
             packageRequires: nix.thunk(() => [bind_map, evil, smartparens]),
             meta: nix.thunk(() => ({
-              __proto__: pos$242,
+              [nix.POS]: pos$242,
               homepage: "https://elpa.nongnu.org/nongnu/evil-lisp-state.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3114,18 +3114,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$246,
+            [nix.POS]: pos$246,
             pname: "evil-matchit",
             ename: "evil-matchit",
             version: "4.1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$244,
+                [nix.POS]: pos$244,
                 url: "https://elpa.nongnu.org/nongnu/evil-matchit-4.1.0.tar",
                 sha256: "10wdnk5mwfzyn78qaaf0via30bs3nf2r6hq41ml6dq6xvmkfbp4a",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$245,
+              [nix.POS]: pos$245,
               homepage: "https://elpa.nongnu.org/nongnu/evil-matchit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3137,18 +3137,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$249,
+            [nix.POS]: pos$249,
             pname: "evil-nerd-commenter",
             ename: "evil-nerd-commenter",
             version: "3.6.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$247,
+                [nix.POS]: pos$247,
                 url: "https://elpa.nongnu.org/nongnu/evil-nerd-commenter-3.6.1.tar",
                 sha256: "1nzqwqp2gq3wka2x782yqz5d8bw3wglra42907kylkqwqbxryh0w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$248,
+              [nix.POS]: pos$248,
               homepage: "https://elpa.nongnu.org/nongnu/evil-nerd-commenter.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3162,18 +3162,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const shift_number = nix.arg($_1, "shift-number");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$252,
+            [nix.POS]: pos$252,
             pname: "evil-numbers",
             ename: "evil-numbers",
             version: "0.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$250,
+                [nix.POS]: pos$250,
                 url: "https://elpa.nongnu.org/nongnu/evil-numbers-0.8.tar",
                 sha256: "0l1ik0fz1bzpxnz9rnn0817j8ghpwhf3qv3lidzb3vpbynkas5a1",
               })))),
             packageRequires: nix.thunk(() => [evil, shift_number]),
             meta: nix.thunk(() => ({
-              __proto__: pos$251,
+              [nix.POS]: pos$251,
               homepage: "https://elpa.nongnu.org/nongnu/evil-numbers.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3186,18 +3186,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$255,
+            [nix.POS]: pos$255,
             pname: "evil-surround",
             ename: "evil-surround",
             version: "1.0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$253,
+                [nix.POS]: pos$253,
                 url: "https://elpa.nongnu.org/nongnu/evil-surround-1.0.4.tar",
                 sha256: "1fzhqg2zrfl1yvhf96s5m0b9793cysciqbxiihxzrnnf2rnrlls2",
               })))),
             packageRequires: nix.thunk(() => [evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$254,
+              [nix.POS]: pos$254,
               homepage: "https://elpa.nongnu.org/nongnu/evil-surround.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3211,18 +3211,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$258,
+            [nix.POS]: pos$258,
             pname: "evil-visual-mark-mode",
             ename: "evil-visual-mark-mode",
             version: "0.0.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$256,
+                [nix.POS]: pos$256,
                 url: "https://elpa.nongnu.org/nongnu/evil-visual-mark-mode-0.0.5.tar",
                 sha256: "0hjg9jmyhhc6a6zzjicwy62m9bh7wlw6hc4cf2g6g416c0ri2d18",
               })))),
             packageRequires: nix.thunk(() => [dash, evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$257,
+              [nix.POS]: pos$257,
               homepage: "https://elpa.nongnu.org/nongnu/evil-visual-mark-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3235,18 +3235,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$261,
+            [nix.POS]: pos$261,
             pname: "evil-visualstar",
             ename: "evil-visualstar",
             version: "0.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$259,
+                [nix.POS]: pos$259,
                 url: "https://elpa.nongnu.org/nongnu/evil-visualstar-0.2.0.tar",
                 sha256: "03liavxxpawvlgwdsihzz3z08yv227zjjqyll1cbmbk0678kbl7m",
               })))),
             packageRequires: nix.thunk(() => [evil]),
             meta: nix.thunk(() => ({
-              __proto__: pos$260,
+              [nix.POS]: pos$260,
               homepage: "https://elpa.nongnu.org/nongnu/evil-visualstar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3258,18 +3258,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$264,
+            [nix.POS]: pos$264,
             pname: "exec-path-from-shell",
             ename: "exec-path-from-shell",
             version: "2.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$262,
+                [nix.POS]: pos$262,
                 url: "https://elpa.nongnu.org/nongnu/exec-path-from-shell-2.2.tar",
                 sha256: "14nzk04aypqminpqs181nh3di23nnw64z0ir940ajs9bx5pv9s1w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$263,
+              [nix.POS]: pos$263,
               homepage: "https://elpa.nongnu.org/nongnu/exec-path-from-shell.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3281,18 +3281,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$267,
+            [nix.POS]: pos$267,
             pname: "extmap",
             ename: "extmap",
             version: "1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$265,
+                [nix.POS]: pos$265,
                 url: "https://elpa.nongnu.org/nongnu/extmap-1.3.tar",
                 sha256: "0k4xh101wi3jby74a44mlqsqinsfsjdrv2k19aanp6xvl60smb04",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$266,
+              [nix.POS]: pos$266,
               homepage: "https://elpa.nongnu.org/nongnu/extmap.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3305,18 +3305,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const markdown_mode = nix.arg($_1, "markdown-mode");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$270,
+            [nix.POS]: pos$270,
             pname: "fedi",
             ename: "fedi",
             version: "0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$268,
+                [nix.POS]: pos$268,
                 url: "https://elpa.nongnu.org/nongnu/fedi-0.4.tar",
                 sha256: "0zh2rkkj1wyj7csg72gg54mxlrd5kav54z3qhk6lp6j8h3zxkdvd",
               })))),
             packageRequires: nix.thunk(() => [markdown_mode]),
             meta: nix.thunk(() => ({
-              __proto__: pos$269,
+              [nix.POS]: pos$269,
               homepage: "https://elpa.nongnu.org/nongnu/fedi.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3332,18 +3332,18 @@ export default nix.lambda((args) => (() => {
         const tp = nix.arg($_1, "tp");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$273,
+            [nix.POS]: pos$273,
             pname: "fj",
             ename: "fj",
             version: "0.42",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$271,
+                [nix.POS]: pos$271,
                 url: "https://elpa.nongnu.org/nongnu/fj-0.42.tar",
                 sha256: "0k967nd2iky2simr4sh48f7v74ksw2irynrnp9k3xa7zcbyvy5xd",
               })))),
             packageRequires: nix.thunk(() => [fedi, magit, tp, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$272,
+              [nix.POS]: pos$272,
               homepage: "https://elpa.nongnu.org/nongnu/fj.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3355,18 +3355,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$276,
+            [nix.POS]: pos$276,
             pname: "flamegraph",
             ename: "flamegraph",
             version: "0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$274,
+                [nix.POS]: pos$274,
                 url: "https://elpa.nongnu.org/nongnu/flamegraph-0.2.tar",
                 sha256: "0zlji7iq7zrxix4mzw6z25rqgrmlnxnrc7skflkj0nv90z5w3fsh",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$275,
+              [nix.POS]: pos$275,
               homepage: "https://elpa.nongnu.org/nongnu/flamegraph.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3379,18 +3379,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$279,
+            [nix.POS]: pos$279,
             pname: "flx",
             ename: "flx",
             version: "0.6.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$277,
+                [nix.POS]: pos$277,
                 url: "https://elpa.nongnu.org/nongnu/flx-0.6.3.tar",
                 sha256: "01dpzw3ghfprrcn8ankbawxis3xc9ri6pw5s33kgam3gimyvn5ad",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$278,
+              [nix.POS]: pos$278,
               homepage: "https://elpa.nongnu.org/nongnu/flx.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3404,18 +3404,18 @@ export default nix.lambda((args) => (() => {
         const flx = nix.arg($_1, "flx");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$282,
+            [nix.POS]: pos$282,
             pname: "flx-ido",
             ename: "flx-ido",
             version: "0.6.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$280,
+                [nix.POS]: pos$280,
                 url: "https://elpa.nongnu.org/nongnu/flx-ido-0.6.3.tar",
                 sha256: "0j30638d3kakg8ms5l2yh05gd1i41kjs7lgq2ca32zx4m52vjf56",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, flx]),
             meta: nix.thunk(() => ({
-              __proto__: pos$281,
+              [nix.POS]: pos$281,
               homepage: "https://elpa.nongnu.org/nongnu/flx-ido.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3428,18 +3428,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$285,
+            [nix.POS]: pos$285,
             pname: "flycheck",
             ename: "flycheck",
             version: "39.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$283,
+                [nix.POS]: pos$283,
                 url: "https://elpa.nongnu.org/nongnu/flycheck-39.0.tar",
                 sha256: "1gf0yz6jpxxfp7bicqy3a18ddrxhzwivgdz8k9ivmssbwjyn77fm",
               })))),
             packageRequires: nix.thunk(() => [seq]),
             meta: nix.thunk(() => ({
-              __proto__: pos$284,
+              [nix.POS]: pos$284,
               homepage: "https://elpa.nongnu.org/nongnu/flycheck.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3452,18 +3452,18 @@ export default nix.lambda((args) => (() => {
         const flymake = nix.argOr($_1, "flymake", () => null);
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$288,
+            [nix.POS]: pos$288,
             pname: "flymake-guile",
             ename: "flymake-guile",
             version: "0.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$286,
+                [nix.POS]: pos$286,
                 url: "https://elpa.nongnu.org/nongnu/flymake-guile-0.5.tar",
                 sha256: "0gfblb49l52j7iq3y6fxx1jpr72z61pwxsxfknvfi4y05znxnf0k",
               })))),
             packageRequires: nix.thunk(() => [flymake]),
             meta: nix.thunk(() => ({
-              __proto__: pos$287,
+              [nix.POS]: pos$287,
               homepage: "https://elpa.nongnu.org/nongnu/flymake-guile.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3475,18 +3475,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$291,
+            [nix.POS]: pos$291,
             pname: "flymake-kondor",
             ename: "flymake-kondor",
             version: "0.1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$289,
+                [nix.POS]: pos$289,
                 url: "https://elpa.nongnu.org/nongnu/flymake-kondor-0.1.3.tar",
                 sha256: "0y5qnlk3q0fjch12d4vwni7v6rk0h5056s5lzjgns71x36xd1i21",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$290,
+              [nix.POS]: pos$290,
               homepage: "https://elpa.nongnu.org/nongnu/flymake-kondor.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3501,18 +3501,18 @@ export default nix.lambda((args) => (() => {
         const popon = nix.arg($_1, "popon");
         const posframe = nix.arg($_1, "posframe");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$294,
+            [nix.POS]: pos$294,
             pname: "flymake-popon",
             ename: "flymake-popon",
             version: "0.5.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$292,
+                [nix.POS]: pos$292,
                 url: "https://elpa.nongnu.org/nongnu/flymake-popon-0.5.1.tar",
                 sha256: "0a9p0mnp1n4znb9xgi5ldjv8x1khhdr5idb8vcd444nd03q0lj6s",
               })))),
             packageRequires: nix.thunk(() => [flymake, popon, posframe]),
             meta: nix.thunk(() => ({
-              __proto__: pos$293,
+              [nix.POS]: pos$293,
               homepage: "https://elpa.nongnu.org/nongnu/flymake-popon.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3524,18 +3524,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$297,
+            [nix.POS]: pos$297,
             pname: "flymake-pyrefly",
             ename: "flymake-pyrefly",
             version: "0.1.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$295,
+                [nix.POS]: pos$295,
                 url: "https://elpa.nongnu.org/nongnu/flymake-pyrefly-0.1.8.tar",
                 sha256: "19h8lmwk4p3lq985d0sqv1b9s6g04dazl31bc0n0y90ksl6ab5f5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$296,
+              [nix.POS]: pos$296,
               homepage: "https://elpa.nongnu.org/nongnu/flymake-pyrefly.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3548,18 +3548,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$300,
+            [nix.POS]: pos$300,
             pname: "focus",
             ename: "focus",
             version: "1.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$298,
+                [nix.POS]: pos$298,
                 url: "https://elpa.nongnu.org/nongnu/focus-1.0.1.tar",
                 sha256: "164xlxc5x2i955rfjdhlxp5ch55bh79gr7mzfychkjx0x088hcaa",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$299,
+              [nix.POS]: pos$299,
               homepage: "https://elpa.nongnu.org/nongnu/focus.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3572,18 +3572,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$303,
+            [nix.POS]: pos$303,
             pname: "forth-mode",
             ename: "forth-mode",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$301,
+                [nix.POS]: pos$301,
                 url: "https://elpa.nongnu.org/nongnu/forth-mode-0.3.tar",
                 sha256: "1xhx5dcna0r6b9l9svqlvhqrhnd4678ifzbn5mzf34y09kq7djl2",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$302,
+              [nix.POS]: pos$302,
               homepage: "https://elpa.nongnu.org/nongnu/forth-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3596,18 +3596,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$306,
+            [nix.POS]: pos$306,
             pname: "free-keys",
             ename: "free-keys",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$304,
+                [nix.POS]: pos$304,
                 url: "https://elpa.nongnu.org/nongnu/free-keys-1.0.tar",
                 sha256: "04x4hmia5rx6bd8pkp5b9g4mn081r14vyk1jbdygdzr5w5rhifx3",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$305,
+              [nix.POS]: pos$305,
               homepage: "https://elpa.nongnu.org/nongnu/free-keys.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3619,18 +3619,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$309,
+            [nix.POS]: pos$309,
             pname: "gc-buffers",
             ename: "gc-buffers",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$307,
+                [nix.POS]: pos$307,
                 url: "https://elpa.nongnu.org/nongnu/gc-buffers-1.0.tar",
                 sha256: "00204vanfabyf6cgbn64xgqhqz8mlppizsgi31xg6id1qgrj37p3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$308,
+              [nix.POS]: pos$308,
               homepage: "https://elpa.nongnu.org/nongnu/gc-buffers.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3643,18 +3643,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$312,
+            [nix.POS]: pos$312,
             pname: "geiser",
             ename: "geiser",
             version: "0.33.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$310,
+                [nix.POS]: pos$310,
                 url: "https://elpa.nongnu.org/nongnu/geiser-0.33.2.tar",
                 sha256: "0qgkdz0jb5ra322pvpjfg4xps6jyv8pw052ay1gi6hmxiz4pn6jm",
               })))),
             packageRequires: nix.thunk(() => [project]),
             meta: nix.thunk(() => ({
-              __proto__: pos$311,
+              [nix.POS]: pos$311,
               homepage: "https://elpa.nongnu.org/nongnu/geiser.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3667,18 +3667,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$315,
+            [nix.POS]: pos$315,
             pname: "geiser-chez",
             ename: "geiser-chez",
             version: "0.18",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$313,
+                [nix.POS]: pos$313,
                 url: "https://elpa.nongnu.org/nongnu/geiser-chez-0.18.tar",
                 sha256: "14l2a7njx3bzxj1qpc1m5mx4prm3ixgsiii3k484brbn4vim4j58",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$314,
+              [nix.POS]: pos$314,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-chez.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3691,18 +3691,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$318,
+            [nix.POS]: pos$318,
             pname: "geiser-chibi",
             ename: "geiser-chibi",
             version: "0.17",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$316,
+                [nix.POS]: pos$316,
                 url: "https://elpa.nongnu.org/nongnu/geiser-chibi-0.17.tar",
                 sha256: "17kkgs0z2xwbbwn7s49lnha6pmri1h7jnnhh5qvxif5xyvyy8bih",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$317,
+              [nix.POS]: pos$317,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-chibi.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3715,18 +3715,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$321,
+            [nix.POS]: pos$321,
             pname: "geiser-chicken",
             ename: "geiser-chicken",
             version: "0.17",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$319,
+                [nix.POS]: pos$319,
                 url: "https://elpa.nongnu.org/nongnu/geiser-chicken-0.17.tar",
                 sha256: "1l0x0b5gcmc6v2gd2jhrz4zz2630rggq8w7ffzhsf8b8hr4d1ixy",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$320,
+              [nix.POS]: pos$320,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-chicken.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3739,18 +3739,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$324,
+            [nix.POS]: pos$324,
             pname: "geiser-gambit",
             ename: "geiser-gambit",
             version: "0.18.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$322,
+                [nix.POS]: pos$322,
                 url: "https://elpa.nongnu.org/nongnu/geiser-gambit-0.18.1.tar",
                 sha256: "1pqify8vqxzpm202zz9q92hp65yhs624z6qc2hgp9c1zms56jkqs",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$323,
+              [nix.POS]: pos$323,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-gambit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3763,18 +3763,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$327,
+            [nix.POS]: pos$327,
             pname: "geiser-gauche",
             ename: "geiser-gauche",
             version: "0.0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$325,
+                [nix.POS]: pos$325,
                 url: "https://elpa.nongnu.org/nongnu/geiser-gauche-0.0.2.tar",
                 sha256: "189addy5xvx62j91ihi23i8dh5msm0wlwxyi8n07f4m2garrn14l",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$326,
+              [nix.POS]: pos$326,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-gauche.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3788,18 +3788,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$330,
+            [nix.POS]: pos$330,
             pname: "geiser-guile",
             ename: "geiser-guile",
             version: "0.28.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$328,
+                [nix.POS]: pos$328,
                 url: "https://elpa.nongnu.org/nongnu/geiser-guile-0.28.5.tar",
                 sha256: "078hmmqg6m428bg2sf640bwylrh4y64qanbz00prvjhgkrp1awnn",
               })))),
             packageRequires: nix.thunk(() => [geiser, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$329,
+              [nix.POS]: pos$329,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-guile.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3812,18 +3812,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$333,
+            [nix.POS]: pos$333,
             pname: "geiser-kawa",
             ename: "geiser-kawa",
             version: "0.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$331,
+                [nix.POS]: pos$331,
                 url: "https://elpa.nongnu.org/nongnu/geiser-kawa-0.0.1.tar",
                 sha256: "1qh4qr406ahk4k8g46nzkiic1fidhni0a5zv4i84cdypv1c4473p",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$332,
+              [nix.POS]: pos$332,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-kawa.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3836,18 +3836,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$336,
+            [nix.POS]: pos$336,
             pname: "geiser-mit",
             ename: "geiser-mit",
             version: "0.15",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$334,
+                [nix.POS]: pos$334,
                 url: "https://elpa.nongnu.org/nongnu/geiser-mit-0.15.tar",
                 sha256: "12wimv5x2k64ww9x147dlx2gfygmgz96hqcdhkbidi1smhfz11gk",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$335,
+              [nix.POS]: pos$335,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-mit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3860,18 +3860,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$339,
+            [nix.POS]: pos$339,
             pname: "geiser-racket",
             ename: "geiser-racket",
             version: "0.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$337,
+                [nix.POS]: pos$337,
                 url: "https://elpa.nongnu.org/nongnu/geiser-racket-0.16.tar",
                 sha256: "08sn32ams88ism6k24kq7s54vrdblkn15x9lldyqg4zapbllr1ny",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$338,
+              [nix.POS]: pos$338,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-racket.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3884,18 +3884,18 @@ export default nix.lambda((args) => (() => {
         const geiser = nix.arg($_1, "geiser");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$342,
+            [nix.POS]: pos$342,
             pname: "geiser-stklos",
             ename: "geiser-stklos",
             version: "1.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$340,
+                [nix.POS]: pos$340,
                 url: "https://elpa.nongnu.org/nongnu/geiser-stklos-1.8.tar",
                 sha256: "1525n49igcnwr2wsjv4a74yk1gbjvv1l9rmkcpafyxyykvi94j6s",
               })))),
             packageRequires: nix.thunk(() => [geiser]),
             meta: nix.thunk(() => ({
-              __proto__: pos$341,
+              [nix.POS]: pos$341,
               homepage: "https://elpa.nongnu.org/nongnu/geiser-stklos.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3911,18 +3911,18 @@ export default nix.lambda((args) => (() => {
         const transient = nix.arg($_1, "transient");
         const with_editor = nix.arg($_1, "with-editor");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$345,
+            [nix.POS]: pos$345,
             pname: "git-commit",
             ename: "git-commit",
             version: "4.0.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$343,
+                [nix.POS]: pos$343,
                 url: "https://elpa.nongnu.org/nongnu/git-commit-4.0.0.tar",
                 sha256: "10fh8i3l07qxsfw23q2mkb7rxgc7n2chirzdjd9bnlqrxybrayli",
               })))),
             packageRequires: nix.thunk(() => [compat, seq, transient, with_editor]),
             meta: nix.thunk(() => ({
-              __proto__: pos$344,
+              [nix.POS]: pos$344,
               homepage: "https://elpa.nongnu.org/nongnu/git-commit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3935,18 +3935,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$348,
+            [nix.POS]: pos$348,
             pname: "git-modes",
             ename: "git-modes",
             version: "1.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$346,
+                [nix.POS]: pos$346,
                 url: "https://elpa.nongnu.org/nongnu/git-modes-1.5.0.tar",
                 sha256: "0fxvv451pf8izn5q16ly21dxjax43l2p7qav11hi7qmygrrhxsc6",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$347,
+              [nix.POS]: pos$347,
               homepage: "https://elpa.nongnu.org/nongnu/git-modes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3962,18 +3962,18 @@ export default nix.lambda((args) => (() => {
         const org_gnosis = nix.arg($_1, "org-gnosis");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$351,
+            [nix.POS]: pos$351,
             pname: "gnosis",
             ename: "gnosis",
             version: "0.7.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$349,
+                [nix.POS]: pos$349,
                 url: "https://elpa.nongnu.org/nongnu/gnosis-0.7.0.tar",
                 sha256: "0r8mblfdqzjbvcis1387yvgrcg2b47zld179dax9n4smbzvzc3gb",
               })))),
             packageRequires: nix.thunk(() => [compat, emacsql, org_gnosis, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$350,
+              [nix.POS]: pos$350,
               homepage: "https://elpa.nongnu.org/nongnu/gnosis.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -3985,18 +3985,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$354,
+            [nix.POS]: pos$354,
             pname: "gnu-apl-mode",
             ename: "gnu-apl-mode",
             version: "1.5.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$352,
+                [nix.POS]: pos$352,
                 url: "https://elpa.nongnu.org/nongnu/gnu-apl-mode-1.5.1.tar",
                 sha256: "0hzdmrhrcnq49cklpmbx1sq7d9qd2q6pprgshhhjx45mnn1q24v0",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$353,
+              [nix.POS]: pos$353,
               homepage: "https://elpa.nongnu.org/nongnu/gnu-apl-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4008,18 +4008,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$357,
+            [nix.POS]: pos$357,
             pname: "gnu-indent",
             ename: "gnu-indent",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$355,
+                [nix.POS]: pos$355,
                 url: "https://elpa.nongnu.org/nongnu/gnu-indent-1.0.tar",
                 sha256: "1aj8si93ig1qbdqgq3f4jwnsws63drkfwfzxlq0i3qqfhsni0a15",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$356,
+              [nix.POS]: pos$356,
               homepage: "https://elpa.nongnu.org/nongnu/gnu-indent.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4032,18 +4032,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$360,
+            [nix.POS]: pos$360,
             pname: "gnuplot",
             ename: "gnuplot",
             version: "0.12",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$358,
+                [nix.POS]: pos$358,
                 url: "https://elpa.nongnu.org/nongnu/gnuplot-0.12.tar",
                 sha256: "13pbnlwg9z7yc8s1hr1fq031cl9swld2jgxdd74jra49vvh6a3ar",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$359,
+              [nix.POS]: pos$359,
               homepage: "https://elpa.nongnu.org/nongnu/gnuplot.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4055,18 +4055,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$363,
+            [nix.POS]: pos$363,
             pname: "go-mode",
             ename: "go-mode",
             version: "1.6.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$361,
+                [nix.POS]: pos$361,
                 url: "https://elpa.nongnu.org/nongnu/go-mode-1.6.0.tar",
                 sha256: "0ilvkl7iv47v0xyha07gfyv1a4c50ifw57bp7rx8ai77v30f3a2a",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$362,
+              [nix.POS]: pos$362,
               homepage: "https://elpa.nongnu.org/nongnu/go-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4078,18 +4078,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$366,
+            [nix.POS]: pos$366,
             pname: "golden-ratio",
             ename: "golden-ratio",
             version: "1.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$364,
+                [nix.POS]: pos$364,
                 url: "https://elpa.nongnu.org/nongnu/golden-ratio-1.0.1.tar",
                 sha256: "169jl82906k03vifks0zs4sk5gcxax5jii6nysh6y6ns2h656cqx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$365,
+              [nix.POS]: pos$365,
               homepage: "https://elpa.nongnu.org/nongnu/golden-ratio.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4101,18 +4101,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$369,
+            [nix.POS]: pos$369,
             pname: "gotham-theme",
             ename: "gotham-theme",
             version: "1.1.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$367,
+                [nix.POS]: pos$367,
                 url: "https://elpa.nongnu.org/nongnu/gotham-theme-1.1.9.tar",
                 sha256: "195r8idq2ak6wpmgifpgvx52hljb8i7p9wx6ii1kh0baaqk31qq2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$368,
+              [nix.POS]: pos$368,
               homepage: "https://elpa.nongnu.org/nongnu/gotham-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4124,18 +4124,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$372,
+            [nix.POS]: pos$372,
             pname: "goto-chg",
             ename: "goto-chg",
             version: "1.7.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$370,
+                [nix.POS]: pos$370,
                 url: "https://elpa.nongnu.org/nongnu/goto-chg-1.7.5.tar",
                 sha256: "1j5vk8vc1v865fc8gdy0p5lpp2kkl0yn9f75npiva3ay6mwvnvay",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$371,
+              [nix.POS]: pos$371,
               homepage: "https://elpa.nongnu.org/nongnu/goto-chg.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4149,18 +4149,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$375,
+            [nix.POS]: pos$375,
             pname: "gptel",
             ename: "gptel",
             version: "0.9.9.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$373,
+                [nix.POS]: pos$373,
                 url: "https://elpa.nongnu.org/nongnu/gptel-0.9.9.6.tar",
                 sha256: "1pd5gjfwvambhbxl0dl5rh7fs2zy338a9zvcfn46gvvkwarq99ha",
               })))),
             packageRequires: nix.thunk(() => [compat, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$374,
+              [nix.POS]: pos$374,
               homepage: "https://elpa.nongnu.org/nongnu/gptel.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4172,18 +4172,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$378,
+            [nix.POS]: pos$378,
             pname: "graphql-mode",
             ename: "graphql-mode",
             version: "1.0.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$376,
+                [nix.POS]: pos$376,
                 url: "https://elpa.nongnu.org/nongnu/graphql-mode-1.0.0.tar",
                 sha256: "0pfyznfndc8g2g3a3pxzcjsh3cah3amhz5124flrja5fqdgdmpjz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$377,
+              [nix.POS]: pos$377,
               homepage: "https://elpa.nongnu.org/nongnu/graphql-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4195,18 +4195,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$381,
+            [nix.POS]: pos$381,
             pname: "gruber-darker-theme",
             ename: "gruber-darker-theme",
             version: "0.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$379,
+                [nix.POS]: pos$379,
                 url: "https://elpa.nongnu.org/nongnu/gruber-darker-theme-0.7.tar",
                 sha256: "1ib9ad120g39fbkj41am6khglv1p6g3a9hk2jj2kl0c6czr1il2r",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$380,
+              [nix.POS]: pos$380,
               homepage: "https://elpa.nongnu.org/nongnu/gruber-darker-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4219,18 +4219,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$384,
+            [nix.POS]: pos$384,
             pname: "gruvbox-theme",
             ename: "gruvbox-theme",
             version: "1.30.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$382,
+                [nix.POS]: pos$382,
                 url: "https://elpa.nongnu.org/nongnu/gruvbox-theme-1.30.3.tar",
                 sha256: "1g2drp4gx7z5qaxpfira0xrc2mhrqbda0ag32zbdyrv1jcw6h9im",
               })))),
             packageRequires: nix.thunk(() => [autothemer]),
             meta: nix.thunk(() => ({
-              __proto__: pos$383,
+              [nix.POS]: pos$383,
               homepage: "https://elpa.nongnu.org/nongnu/gruvbox-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4242,18 +4242,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$387,
+            [nix.POS]: pos$387,
             pname: "guru-mode",
             ename: "guru-mode",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$385,
+                [nix.POS]: pos$385,
                 url: "https://elpa.nongnu.org/nongnu/guru-mode-1.0.tar",
                 sha256: "0kmbllzvp8qzj8ck2azq2wfw66ywc80zicncja62bi6zsh2l622z",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$386,
+              [nix.POS]: pos$386,
               homepage: "https://elpa.nongnu.org/nongnu/guru-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4266,18 +4266,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$390,
+            [nix.POS]: pos$390,
             pname: "haml-mode",
             ename: "haml-mode",
             version: "3.2.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$388,
+                [nix.POS]: pos$388,
                 url: "https://elpa.nongnu.org/nongnu/haml-mode-3.2.1.tar",
                 sha256: "0hhra7bryk3n649s3byzq6vv5ywd4bqkfppya7bswqkj3bakiyil",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$389,
+              [nix.POS]: pos$389,
               homepage: "https://elpa.nongnu.org/nongnu/haml-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4289,18 +4289,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$393,
+            [nix.POS]: pos$393,
             pname: "haskell-mode",
             ename: "haskell-mode",
             version: "17.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$391,
+                [nix.POS]: pos$391,
                 url: "https://elpa.nongnu.org/nongnu/haskell-mode-17.5.tar",
                 sha256: "1yjy0cvgs5cnq5d9sv24p1p66z83r9rhbgn0nsccc12rn2gm3hyn",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$392,
+              [nix.POS]: pos$392,
               homepage: "https://elpa.nongnu.org/nongnu/haskell-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4312,18 +4312,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$396,
+            [nix.POS]: pos$396,
             pname: "haskell-tng-mode",
             ename: "haskell-tng-mode",
             version: "0.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$394,
+                [nix.POS]: pos$394,
                 url: "https://elpa.nongnu.org/nongnu/haskell-tng-mode-0.0.1.tar",
                 sha256: "0l6rs93322la2fn8wyvxshl6f967ngamw2m1hnm2j6hvmqph5cpj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$395,
+              [nix.POS]: pos$395,
               homepage: "https://elpa.nongnu.org/nongnu/haskell-tng-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4335,18 +4335,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$399,
+            [nix.POS]: pos$399,
             pname: "haskell-ts-mode",
             ename: "haskell-ts-mode",
             version: "1.3.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$397,
+                [nix.POS]: pos$397,
                 url: "https://elpa.nongnu.org/nongnu/haskell-ts-mode-1.3.5.tar",
                 sha256: "19cy20wh2al1akgyx24jkks1hmfrhdrbw4h7a9g1nxsn7bw88lqy",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$398,
+              [nix.POS]: pos$398,
               homepage: "https://elpa.nongnu.org/nongnu/haskell-ts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4360,18 +4360,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const wfnames = nix.arg($_1, "wfnames");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$402,
+            [nix.POS]: pos$402,
             pname: "helm",
             ename: "helm",
             version: "4.0.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$400,
+                [nix.POS]: pos$400,
                 url: "https://elpa.nongnu.org/nongnu/helm-4.0.7.tar",
                 sha256: "1x1wg3z6y5rb4r17ifwvz79pa3m6w9kkvxlfivznqh4ajgafrnn5",
               })))),
             packageRequires: nix.thunk(() => [helm_core, wfnames]),
             meta: nix.thunk(() => ({
-              __proto__: pos$401,
+              [nix.POS]: pos$401,
               homepage: "https://elpa.nongnu.org/nongnu/helm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4384,18 +4384,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$405,
+            [nix.POS]: pos$405,
             pname: "helm-core",
             ename: "helm-core",
             version: "4.0.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$403,
+                [nix.POS]: pos$403,
                 url: "https://elpa.nongnu.org/nongnu/helm-core-4.0.7.tar",
                 sha256: "1d7a61rbc7rlr144v9qm6c89dnchn7xwcv05gl6kdapb7gir9l8f",
               })))),
             packageRequires: nix.thunk(() => [async$]),
             meta: nix.thunk(() => ({
-              __proto__: pos$404,
+              [nix.POS]: pos$404,
               homepage: "https://elpa.nongnu.org/nongnu/helm-core.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4410,18 +4410,18 @@ export default nix.lambda((args) => (() => {
         const markdown_mode = nix.arg($_1, "markdown-mode");
         const websocket = nix.arg($_1, "websocket");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$408,
+            [nix.POS]: pos$408,
             pname: "hermes",
             ename: "hermes",
             version: "0.7.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$406,
+                [nix.POS]: pos$406,
                 url: "https://elpa.nongnu.org/nongnu/hermes-0.7.0.tar",
                 sha256: "0g2rqq1r1np0z1f0kqqfnrnixq729v84gq0frhc6d3rmrp6lv0z1",
               })))),
             packageRequires: nix.thunk(() => [keymap_popup, markdown_mode, websocket]),
             meta: nix.thunk(() => ({
-              __proto__: pos$407,
+              [nix.POS]: pos$407,
               homepage: "https://elpa.nongnu.org/nongnu/hermes.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4433,18 +4433,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$411,
+            [nix.POS]: pos$411,
             pname: "hideshowvis",
             ename: "hideshowvis",
             version: "0.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$409,
+                [nix.POS]: pos$409,
                 url: "https://elpa.nongnu.org/nongnu/hideshowvis-0.9.tar",
                 sha256: "0yi9qcbacn97gl9y3zmvzr1b48hhx6h1yjcwllficahiq39fs0h8",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$410,
+              [nix.POS]: pos$410,
               homepage: "https://elpa.nongnu.org/nongnu/hideshowvis.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4456,18 +4456,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$414,
+            [nix.POS]: pos$414,
             pname: "highlight-parentheses",
             ename: "highlight-parentheses",
             version: "2.2.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$412,
+                [nix.POS]: pos$412,
                 url: "https://elpa.nongnu.org/nongnu/highlight-parentheses-2.2.2.tar",
                 sha256: "13686dkgpn30di3kkc60l3dhrrjdknqkmvgjnl97mrbikxfma7w2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$413,
+              [nix.POS]: pos$413,
               homepage: "https://elpa.nongnu.org/nongnu/highlight-parentheses.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4479,18 +4479,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$417,
+            [nix.POS]: pos$417,
             pname: "hl-block-mode",
             ename: "hl-block-mode",
             version: "0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$415,
+                [nix.POS]: pos$415,
                 url: "https://elpa.nongnu.org/nongnu/hl-block-mode-0.2.tar",
                 sha256: "0anv7bvrwylp504l3g42jcbcfmibv9jzs2kbkny46xd9vfb3kyrl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$416,
+              [nix.POS]: pos$416,
               homepage: "https://elpa.nongnu.org/nongnu/hl-block-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4502,18 +4502,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$420,
+            [nix.POS]: pos$420,
             pname: "hl-column",
             ename: "hl-column",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$418,
+                [nix.POS]: pos$418,
                 url: "https://elpa.nongnu.org/nongnu/hl-column-1.0.tar",
                 sha256: "11d7xplpjx0b6ppcjv4giazrla1qcaaf2i6s5g0j5zxb1m60kkfz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$419,
+              [nix.POS]: pos$419,
               homepage: "https://elpa.nongnu.org/nongnu/hl-column.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4525,18 +4525,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$423,
+            [nix.POS]: pos$423,
             pname: "htmlize",
             ename: "htmlize",
             version: "1.59",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$421,
+                [nix.POS]: pos$421,
                 url: "https://elpa.nongnu.org/nongnu/htmlize-1.59.tar",
                 sha256: "0ng3gngv4y67ncr7a0zl7mj22c4772mkqf3dazspmp3jfqdyq9sr",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$422,
+              [nix.POS]: pos$422,
               homepage: "https://elpa.nongnu.org/nongnu/htmlize.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4555,18 +4555,18 @@ export default nix.lambda((args) => (() => {
         const taxy_magit_section = nix.arg($_1, "taxy-magit-section");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$426,
+            [nix.POS]: pos$426,
             pname: "hyperdrive",
             ename: "hyperdrive",
             version: "0.5.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$424,
+                [nix.POS]: pos$424,
                 url: "https://elpa.nongnu.org/nongnu/hyperdrive-0.5.2.tar",
                 sha256: "1gn6kdxvds27bjfsamzihqg8bddwsyfmc2g36p50km2qfa8fgpvz",
               })))),
             packageRequires: nix.thunk(() => [compat, map, org, persist, plz, taxy_magit_section, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$425,
+              [nix.POS]: pos$425,
               homepage: "https://elpa.nongnu.org/nongnu/hyperdrive.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4580,18 +4580,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org_transclusion = nix.arg($_1, "org-transclusion");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$429,
+            [nix.POS]: pos$429,
             pname: "hyperdrive-org-transclusion",
             ename: "hyperdrive-org-transclusion",
             version: "0.3.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$427,
+                [nix.POS]: pos$427,
                 url: "https://elpa.nongnu.org/nongnu/hyperdrive-org-transclusion-0.3.1.tar",
                 sha256: "074ylcblg6wg2yg8jv1i6cn8vig56br0bqp5xwmhkslwrkqj05cj",
               })))),
             packageRequires: nix.thunk(() => [hyperdrive, org_transclusion]),
             meta: nix.thunk(() => ({
-              __proto__: pos$428,
+              [nix.POS]: pos$428,
               homepage: "https://elpa.nongnu.org/nongnu/hyperdrive-org-transclusion.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4603,18 +4603,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$432,
+            [nix.POS]: pos$432,
             pname: "idle-highlight-mode",
             ename: "idle-highlight-mode",
             version: "1.1.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$430,
+                [nix.POS]: pos$430,
                 url: "https://elpa.nongnu.org/nongnu/idle-highlight-mode-1.1.5.tar",
                 sha256: "0wr7xakvvdykj4gwmi88w6jbwgiyj85fq1y7k0f50i0631xbwvpq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$431,
+              [nix.POS]: pos$431,
               homepage: "https://elpa.nongnu.org/nongnu/idle-highlight-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4628,18 +4628,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const prop_menu = nix.arg($_1, "prop-menu");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$435,
+            [nix.POS]: pos$435,
             pname: "idris-mode",
             ename: "idris-mode",
             version: "1.1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$433,
+                [nix.POS]: pos$433,
                 url: "https://elpa.nongnu.org/nongnu/idris-mode-1.1.0.tar",
                 sha256: "1vlm7gshrkwp9lfm5jcp1rnsjxwzqknrjhl3q5ifwmicyvqkqwsv",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, prop_menu]),
             meta: nix.thunk(() => ({
-              __proto__: pos$434,
+              [nix.POS]: pos$434,
               homepage: "https://elpa.nongnu.org/nongnu/idris-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4651,18 +4651,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$438,
+            [nix.POS]: pos$438,
             pname: "iedit",
             ename: "iedit",
             version: "0.9.9.9.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$436,
+                [nix.POS]: pos$436,
                 url: "https://elpa.nongnu.org/nongnu/iedit-0.9.9.9.9.tar",
                 sha256: "12s71yj8ycrls2fl97qs3igk5y06ksbmfq2idz0a2zrdggndg0b6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$437,
+              [nix.POS]: pos$437,
               homepage: "https://elpa.nongnu.org/nongnu/iedit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4675,18 +4675,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$441,
+            [nix.POS]: pos$441,
             pname: "inf-clojure",
             ename: "inf-clojure",
             version: "3.4.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$439,
+                [nix.POS]: pos$439,
                 url: "https://elpa.nongnu.org/nongnu/inf-clojure-3.4.0.tar",
                 sha256: "0j79fi1993mwy66nrqgks5b0v84yy5g7h2ddzfhl4r0kigm8ag6p",
               })))),
             packageRequires: nix.thunk(() => [clojure_mode]),
             meta: nix.thunk(() => ({
-              __proto__: pos$440,
+              [nix.POS]: pos$440,
               homepage: "https://elpa.nongnu.org/nongnu/inf-clojure.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4698,18 +4698,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$444,
+            [nix.POS]: pos$444,
             pname: "inf-ruby",
             ename: "inf-ruby",
             version: "2.9.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$442,
+                [nix.POS]: pos$442,
                 url: "https://elpa.nongnu.org/nongnu/inf-ruby-2.9.0.tar",
                 sha256: "0q6vfll2s1wc1fkmjdqsfws51j6x13knr96k94z2mjnjclv4qgcj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$443,
+              [nix.POS]: pos$443,
               homepage: "https://elpa.nongnu.org/nongnu/inf-ruby.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4721,18 +4721,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$447,
+            [nix.POS]: pos$447,
             pname: "inkpot-theme",
             ename: "inkpot-theme",
             version: "0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$445,
+                [nix.POS]: pos$445,
                 url: "https://elpa.nongnu.org/nongnu/inkpot-theme-0.1.tar",
                 sha256: "0ik7vkwqlsgxmdckd154kh82zg8jr41vwc0a200x9920l5mnfjq2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$446,
+              [nix.POS]: pos$446,
               homepage: "https://elpa.nongnu.org/nongnu/inkpot-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4744,18 +4744,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$450,
+            [nix.POS]: pos$450,
             pname: "isl",
             ename: "isl",
             version: "1.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$448,
+                [nix.POS]: pos$448,
                 url: "https://elpa.nongnu.org/nongnu/isl-1.7.tar",
                 sha256: "1nksczxv2bq6l8wg855a0ahzp1w3dhai4vwni8hyrp5fk2z0gcan",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$449,
+              [nix.POS]: pos$449,
               homepage: "https://elpa.nongnu.org/nongnu/isl.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4769,18 +4769,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$453,
+            [nix.POS]: pos$453,
             pname: "iwindow",
             ename: "iwindow",
             version: "1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$451,
+                [nix.POS]: pos$451,
                 url: "https://elpa.nongnu.org/nongnu/iwindow-1.1.tar",
                 sha256: "04d5dxqazxfx8ap9vmhj643x7lmpa0wmzcm9w9mlvsk2kaz0j19i",
               })))),
             packageRequires: nix.thunk(() => [compat, seq]),
             meta: nix.thunk(() => ({
-              __proto__: pos$452,
+              [nix.POS]: pos$452,
               homepage: "https://elpa.nongnu.org/nongnu/iwindow.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4792,18 +4792,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$456,
+            [nix.POS]: pos$456,
             pname: "j-mode",
             ename: "j-mode",
             version: "2.0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$454,
+                [nix.POS]: pos$454,
                 url: "https://elpa.nongnu.org/nongnu/j-mode-2.0.2.tar",
                 sha256: "109fy5r3hfz15qdsrmdr6iik4w1kzn2pz7077xrd4mbi7gw5ggdx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$455,
+              [nix.POS]: pos$455,
               homepage: "https://elpa.nongnu.org/nongnu/j-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4817,18 +4817,18 @@ export default nix.lambda((args) => (() => {
         const keymap_popup = nix.arg($_1, "keymap-popup");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$459,
+            [nix.POS]: pos$459,
             pname: "jabber",
             ename: "jabber",
             version: "0.14.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$457,
+                [nix.POS]: pos$457,
                 url: "https://elpa.nongnu.org/nongnu/jabber-0.14.0.tar",
                 sha256: "1wbb1gn6xv0ag118ygys5f8rgkdq5b2lkhksiywfpsqqw9kf71yv",
               })))),
             packageRequires: nix.thunk(() => [fsm, keymap_popup]),
             meta: nix.thunk(() => ({
-              __proto__: pos$458,
+              [nix.POS]: pos$458,
               homepage: "https://elpa.nongnu.org/nongnu/jabber.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4840,18 +4840,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$462,
+            [nix.POS]: pos$462,
             pname: "jade-mode",
             ename: "jade-mode",
             version: "1.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$460,
+                [nix.POS]: pos$460,
                 url: "https://elpa.nongnu.org/nongnu/jade-mode-1.0.1.tar",
                 sha256: "0pv0n9vharda92avggd91q8i98yjim9ccnz5m5c5xw12hxcsfj17",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$461,
+              [nix.POS]: pos$461,
               homepage: "https://elpa.nongnu.org/nongnu/jade-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4863,18 +4863,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$465,
+            [nix.POS]: pos$465,
             pname: "javelin",
             ename: "javelin",
             version: "0.2.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$463,
+                [nix.POS]: pos$463,
                 url: "https://elpa.nongnu.org/nongnu/javelin-0.2.3.tar",
                 sha256: "1abk4sb3vp04qkzdil54bfph4xdpgq5nz41ay8dz4gnipwfdwdwg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$464,
+              [nix.POS]: pos$464,
               homepage: "https://elpa.nongnu.org/nongnu/javelin.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4886,18 +4886,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$468,
+            [nix.POS]: pos$468,
             pname: "jinja2-mode",
             ename: "jinja2-mode",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$466,
+                [nix.POS]: pos$466,
                 url: "https://elpa.nongnu.org/nongnu/jinja2-mode-0.3.tar",
                 sha256: "0dg1zn7mghclnxsmcl5nq5jqibm18sja23058q9lk6nph4fvz5dq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$467,
+              [nix.POS]: pos$467,
               homepage: "https://elpa.nongnu.org/nongnu/jinja2-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4909,18 +4909,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$471,
+            [nix.POS]: pos$471,
             pname: "julia-mode",
             ename: "julia-mode",
             version: "1.1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$469,
+                [nix.POS]: pos$469,
                 url: "https://elpa.nongnu.org/nongnu/julia-mode-1.1.0.tar",
                 sha256: "1r8xsn5j1gdr2izy6q1xs13v7wcabgdrn7f6x608406kbhd01rrv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$470,
+              [nix.POS]: pos$470,
               homepage: "https://elpa.nongnu.org/nongnu/julia-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4934,18 +4934,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$474,
+            [nix.POS]: pos$474,
             pname: "keycast",
             ename: "keycast",
             version: "1.4.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$472,
+                [nix.POS]: pos$472,
                 url: "https://elpa.nongnu.org/nongnu/keycast-1.4.8.tar",
                 sha256: "0rgaqc2d7n8a498n8jb14890gp6z49nqnpzk1h0xw03hnh8smz90",
               })))),
             packageRequires: nix.thunk(() => [compat, cond_let]),
             meta: nix.thunk(() => ({
-              __proto__: pos$473,
+              [nix.POS]: pos$473,
               homepage: "https://elpa.nongnu.org/nongnu/keycast.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4957,18 +4957,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$477,
+            [nix.POS]: pos$477,
             pname: "kotlin-mode",
             ename: "kotlin-mode",
             version: "2.0.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$475,
+                [nix.POS]: pos$475,
                 url: "https://elpa.nongnu.org/nongnu/kotlin-mode-2.0.0.tar",
                 sha256: "0d247kxbrhkbmgldmalywmx6fqiz35ifvjbv20lyrmnbyhx1zr97",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$476,
+              [nix.POS]: pos$476,
               homepage: "https://elpa.nongnu.org/nongnu/kotlin-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -4982,18 +4982,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const markdown_mode = nix.arg($_1, "markdown-mode");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$480,
+            [nix.POS]: pos$480,
             pname: "lem",
             ename: "lem",
             version: "0.25",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$478,
+                [nix.POS]: pos$478,
                 url: "https://elpa.nongnu.org/nongnu/lem-0.25.tar",
                 sha256: "1hrnq46bmz10a3w89flhw85rqs58wpnywslx3p8g16196ln348sd",
               })))),
             packageRequires: nix.thunk(() => [fedi, markdown_mode]),
             meta: nix.thunk(() => ({
-              __proto__: pos$479,
+              [nix.POS]: pos$479,
               homepage: "https://elpa.nongnu.org/nongnu/lem.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5006,18 +5006,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$483,
+            [nix.POS]: pos$483,
             pname: "llama",
             ename: "llama",
             version: "1.0.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$481,
+                [nix.POS]: pos$481,
                 url: "https://elpa.nongnu.org/nongnu/llama-1.0.5.tar",
                 sha256: "10ysi2a7aifp9ixrhygfcas7zn9dfqy1zpiycwz3gamlzkvjzw2l",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$482,
+              [nix.POS]: pos$482,
               homepage: "https://elpa.nongnu.org/nongnu/llama.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5032,18 +5032,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$486,
+            [nix.POS]: pos$486,
             pname: "logview",
             ename: "logview",
             version: "0.19.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$484,
+                [nix.POS]: pos$484,
                 url: "https://elpa.nongnu.org/nongnu/logview-0.19.3.tar",
                 sha256: "1ldcjf0p8m0qnhqc98f5hi5kk05adl3j21b7nkc0b879v9bc9in9",
               })))),
             packageRequires: nix.thunk(() => [compat, datetime, extmap]),
             meta: nix.thunk(() => ({
-              __proto__: pos$485,
+              [nix.POS]: pos$485,
               homepage: "https://elpa.nongnu.org/nongnu/logview.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5059,18 +5059,18 @@ export default nix.lambda((args) => (() => {
         const seq = nix.arg($_1, "seq");
         const stream = nix.arg($_1, "stream");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$489,
+            [nix.POS]: pos$489,
             pname: "loopy",
             ename: "loopy",
             version: "0.16.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$487,
+                [nix.POS]: pos$487,
                 url: "https://elpa.nongnu.org/nongnu/loopy-0.16.1.tar",
                 sha256: "17p5km90v2pwwqr66x39h2ca6dx47xig1rkpvk1m4nlw32nqv1dh",
               })))),
             packageRequires: nix.thunk(() => [compat, map, seq, stream]),
             meta: nix.thunk(() => ({
-              __proto__: pos$488,
+              [nix.POS]: pos$488,
               homepage: "https://elpa.nongnu.org/nongnu/loopy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5084,18 +5084,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const loopy = nix.arg($_1, "loopy");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$492,
+            [nix.POS]: pos$492,
             pname: "loopy-dash",
             ename: "loopy-dash",
             version: "0.13.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$490,
+                [nix.POS]: pos$490,
                 url: "https://elpa.nongnu.org/nongnu/loopy-dash-0.13.0.tar",
                 sha256: "1hylniv839x8cl4nbdl64s4h1cnmbwfl47138z32bgdmcv1kbxqi",
               })))),
             packageRequires: nix.thunk(() => [dash, loopy]),
             meta: nix.thunk(() => ({
-              __proto__: pos$491,
+              [nix.POS]: pos$491,
               homepage: "https://elpa.nongnu.org/nongnu/loopy-dash.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5107,18 +5107,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$495,
+            [nix.POS]: pos$495,
             pname: "lorem-ipsum",
             ename: "lorem-ipsum",
             version: "0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$493,
+                [nix.POS]: pos$493,
                 url: "https://elpa.nongnu.org/nongnu/lorem-ipsum-0.4.tar",
                 sha256: "0d1c6zalnqhyn88dbbi8wqzvp0ppswhqv656hbj129jwp4iida4x",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$494,
+              [nix.POS]: pos$494,
               homepage: "https://elpa.nongnu.org/nongnu/lorem-ipsum.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5130,18 +5130,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$498,
+            [nix.POS]: pos$498,
             pname: "lua-mode",
             ename: "lua-mode",
             version: "20221027",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$496,
+                [nix.POS]: pos$496,
                 url: "https://elpa.nongnu.org/nongnu/lua-mode-20221027.tar",
                 sha256: "0mg4fjprrcwqfrzxh6wpl92r3ywpj3586444c6yvq1rs56z5wvj5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$497,
+              [nix.POS]: pos$497,
               homepage: "https://elpa.nongnu.org/nongnu/lua-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5155,18 +5155,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$501,
+            [nix.POS]: pos$501,
             pname: "macrostep",
             ename: "macrostep",
             version: "0.9.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$499,
+                [nix.POS]: pos$499,
                 url: "https://elpa.nongnu.org/nongnu/macrostep-0.9.5.tar",
                 sha256: "16nl81hsbkiwwsy7gcg150xpf8k1899afcsnr1h25z2z6qz3bp9l",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$500,
+              [nix.POS]: pos$500,
               homepage: "https://elpa.nongnu.org/nongnu/macrostep.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5185,18 +5185,18 @@ export default nix.lambda((args) => (() => {
         const transient = nix.arg($_1, "transient");
         const with_editor = nix.arg($_1, "with-editor");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$504,
+            [nix.POS]: pos$504,
             pname: "magit",
             ename: "magit",
             version: "4.7.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$502,
+                [nix.POS]: pos$502,
                 url: "https://elpa.nongnu.org/nongnu/magit-4.7.1.tar",
                 sha256: "1rgjrwx0ifkxb1hcfcq6h0zrk5ymvhirijxlhz695snxmqs8mlxj",
               })))),
             packageRequires: nix.thunk(() => [compat, cond_let, llama, magit_section, seq, transient, with_editor]),
             meta: nix.thunk(() => ({
-              __proto__: pos$503,
+              [nix.POS]: pos$503,
               homepage: "https://elpa.nongnu.org/nongnu/magit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5212,18 +5212,18 @@ export default nix.lambda((args) => (() => {
         const llama = nix.arg($_1, "llama");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$507,
+            [nix.POS]: pos$507,
             pname: "magit-section",
             ename: "magit-section",
             version: "4.7.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$505,
+                [nix.POS]: pos$505,
                 url: "https://elpa.nongnu.org/nongnu/magit-section-4.7.1.tar",
                 sha256: "1gsqcigjb8hr799faihhnxqa2pm93yzs0vc7qpy2acrra3x7qhk5",
               })))),
             packageRequires: nix.thunk(() => [compat, cond_let, llama, seq]),
             meta: nix.thunk(() => ({
-              __proto__: pos$506,
+              [nix.POS]: pos$506,
               homepage: "https://elpa.nongnu.org/nongnu/magit-section.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5235,18 +5235,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$510,
+            [nix.POS]: pos$510,
             pname: "markdown-mode",
             ename: "markdown-mode",
             version: "2.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$508,
+                [nix.POS]: pos$508,
                 url: "https://elpa.nongnu.org/nongnu/markdown-mode-2.8.tar",
                 sha256: "1868sy5ywlad21ldb6ly1r62vdnc533rdr88s9jmn3r3dcnfwrf2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$509,
+              [nix.POS]: pos$509,
               homepage: "https://elpa.nongnu.org/nongnu/markdown-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5261,18 +5261,18 @@ export default nix.lambda((args) => (() => {
         const persist = nix.arg($_1, "persist");
         const tp = nix.arg($_1, "tp");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$513,
+            [nix.POS]: pos$513,
             pname: "mastodon",
             ename: "mastodon",
             version: "2.1.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$511,
+                [nix.POS]: pos$511,
                 url: "https://elpa.nongnu.org/nongnu/mastodon-2.1.4.tar",
                 sha256: "0zh8mskr7dzwl09cf1jza63skiq13xf84iqslww8scmyhhzmgnka",
               })))),
             packageRequires: nix.thunk(() => [compat, persist, tp]),
             meta: nix.thunk(() => ({
-              __proto__: pos$512,
+              [nix.POS]: pos$512,
               homepage: "https://elpa.nongnu.org/nongnu/mastodon.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5284,18 +5284,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$516,
+            [nix.POS]: pos$516,
             pname: "material-theme",
             ename: "material-theme",
             version: "2015",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$514,
+                [nix.POS]: pos$514,
                 url: "https://elpa.nongnu.org/nongnu/material-theme-2015.tar",
                 sha256: "117ismd3p577cr59b6995byyq90zn4nd81dlf4pm8p0iiziryyji",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$515,
+              [nix.POS]: pos$515,
               homepage: "https://elpa.nongnu.org/nongnu/material-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5311,18 +5311,18 @@ export default nix.lambda((args) => (() => {
         const url_scgi = nix.arg($_1, "url-scgi");
         const xml_rpc = nix.arg($_1, "xml-rpc");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$519,
+            [nix.POS]: pos$519,
             pname: "mentor",
             ename: "mentor",
             version: "0.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$517,
+                [nix.POS]: pos$517,
                 url: "https://elpa.nongnu.org/nongnu/mentor-0.5.tar",
                 sha256: "1sqdwdbanrdvrr8qqn23ylcyc98jcjc7yq1g1d963v8d9wfbailv",
               })))),
             packageRequires: nix.thunk(() => [async$, seq, url_scgi, xml_rpc]),
             meta: nix.thunk(() => ({
-              __proto__: pos$518,
+              [nix.POS]: pos$518,
               homepage: "https://elpa.nongnu.org/nongnu/mentor.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5334,18 +5334,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$522,
+            [nix.POS]: pos$522,
             pname: "meow",
             ename: "meow",
             version: "1.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$520,
+                [nix.POS]: pos$520,
                 url: "https://elpa.nongnu.org/nongnu/meow-1.5.0.tar",
                 sha256: "1fwd6lwaci23scgv65fxrxg51w334pw92l4c51ci9s0qgh1vjb01",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$521,
+              [nix.POS]: pos$521,
               homepage: "https://elpa.nongnu.org/nongnu/meow.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5357,18 +5357,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$525,
+            [nix.POS]: pos$525,
             pname: "minibar",
             ename: "minibar",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$523,
+                [nix.POS]: pos$523,
                 url: "https://elpa.nongnu.org/nongnu/minibar-0.3.tar",
                 sha256: "0vxjw485bja8h3gmqmvg9541f21ricwcw6ydlhv9174as5cmwx5j",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$524,
+              [nix.POS]: pos$524,
               homepage: "https://elpa.nongnu.org/nongnu/minibar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5380,18 +5380,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$528,
+            [nix.POS]: pos$528,
             pname: "moe-theme",
             ename: "moe-theme",
             version: "1.1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$526,
+                [nix.POS]: pos$526,
                 url: "https://elpa.nongnu.org/nongnu/moe-theme-1.1.0.tar",
                 sha256: "103xs821rvq3dq886jy53rc3lycv7xzyr69x1a4yn4lbyf5q4bp6",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$527,
+              [nix.POS]: pos$527,
               homepage: "https://elpa.nongnu.org/nongnu/moe-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5403,18 +5403,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$531,
+            [nix.POS]: pos$531,
             pname: "monokai-theme",
             ename: "monokai-theme",
             version: "3.5.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$529,
+                [nix.POS]: pos$529,
                 url: "https://elpa.nongnu.org/nongnu/monokai-theme-3.5.3.tar",
                 sha256: "14ylizbhfj2hlc52gi2fs70avz39s46wnr96dbbq4l8vmhxs7il5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$530,
+              [nix.POS]: pos$530,
               homepage: "https://elpa.nongnu.org/nongnu/monokai-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5429,18 +5429,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$534,
+            [nix.POS]: pos$534,
             pname: "mpv",
             ename: "mpv",
             version: "0.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$532,
+                [nix.POS]: pos$532,
                 url: "https://elpa.nongnu.org/nongnu/mpv-0.2.0.tar",
                 sha256: "183alhd5fvmlhhfm0wl7b50axs01pgiwv735c43bfzdi2ny4szcm",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, json, org]),
             meta: nix.thunk(() => ({
-              __proto__: pos$533,
+              [nix.POS]: pos$533,
               homepage: "https://elpa.nongnu.org/nongnu/mpv.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5453,18 +5453,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$537,
+            [nix.POS]: pos$537,
             pname: "multiple-cursors",
             ename: "multiple-cursors",
             version: "1.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$535,
+                [nix.POS]: pos$535,
                 url: "https://elpa.nongnu.org/nongnu/multiple-cursors-1.5.0.tar",
                 sha256: "05nvanam57mwa1rajnjrp9j9j23bmr5za90yp56jb6rsi8mphzbx",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$536,
+              [nix.POS]: pos$536,
               homepage: "https://elpa.nongnu.org/nongnu/multiple-cursors.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5476,18 +5476,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$540,
+            [nix.POS]: pos$540,
             pname: "nasm-mode",
             ename: "nasm-mode",
             version: "1.1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$538,
+                [nix.POS]: pos$538,
                 url: "https://elpa.nongnu.org/nongnu/nasm-mode-1.1.1.tar",
                 sha256: "19k0gwwx2fz779yli6pcl0a7grhsbhwyisq76lmnnclw0gkf686l",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$539,
+              [nix.POS]: pos$539,
               homepage: "https://elpa.nongnu.org/nongnu/nasm-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5499,18 +5499,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$543,
+            [nix.POS]: pos$543,
             pname: "nginx-mode",
             ename: "nginx-mode",
             version: "1.1.10",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$541,
+                [nix.POS]: pos$541,
                 url: "https://elpa.nongnu.org/nongnu/nginx-mode-1.1.10.tar",
                 sha256: "0c6biqxbwpkrbqi639ifgv8jkfadssyznjkq6hxvqgjh3nnyrlx3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$542,
+              [nix.POS]: pos$542,
               homepage: "https://elpa.nongnu.org/nongnu/nginx-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5524,18 +5524,18 @@ export default nix.lambda((args) => (() => {
         const magit_section = nix.arg($_1, "magit-section");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$546,
+            [nix.POS]: pos$546,
             pname: "nix-mode",
             ename: "nix-mode",
             version: "1.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$544,
+                [nix.POS]: pos$544,
                 url: "https://elpa.nongnu.org/nongnu/nix-mode-1.5.0.tar",
                 sha256: "0hansrsyzx8j31rk45y8zs9hbfjgbv9sf3r37s2a2adz48n9k86g",
               })))),
             packageRequires: nix.thunk(() => [magit_section, transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$545,
+              [nix.POS]: pos$545,
               homepage: "https://elpa.nongnu.org/nongnu/nix-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5548,18 +5548,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$549,
+            [nix.POS]: pos$549,
             pname: "nov",
             ename: "nov",
             version: "0.5.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$547,
+                [nix.POS]: pos$547,
                 url: "https://elpa.nongnu.org/nongnu/nov-0.5.0.tar",
                 sha256: "1isr91a4wkpy81nn620r10gwi6v1z6phb4wmf2zf1g3i0czzpz4x",
               })))),
             packageRequires: nix.thunk(() => [esxml]),
             meta: nix.thunk(() => ({
-              __proto__: pos$548,
+              [nix.POS]: pos$548,
               homepage: "https://elpa.nongnu.org/nongnu/nov.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5571,18 +5571,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$552,
+            [nix.POS]: pos$552,
             pname: "oblivion-theme",
             ename: "oblivion-theme",
             version: "0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$550,
+                [nix.POS]: pos$550,
                 url: "https://elpa.nongnu.org/nongnu/oblivion-theme-0.1.tar",
                 sha256: "0njm7znh84drqwkp4jjsr8by6q9xd65r8l7xaqahzhk78167q6s4",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$551,
+              [nix.POS]: pos$551,
               homepage: "https://elpa.nongnu.org/nongnu/oblivion-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5594,18 +5594,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$555,
+            [nix.POS]: pos$555,
             pname: "opam-switch-mode",
             ename: "opam-switch-mode",
             version: "1.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$553,
+                [nix.POS]: pos$553,
                 url: "https://elpa.nongnu.org/nongnu/opam-switch-mode-1.7.tar",
                 sha256: "1gpc1syb51am2gkb3cgfb28rhh6ik41c1gx9gjf1h8m6zxb75433",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$554,
+              [nix.POS]: pos$554,
               homepage: "https://elpa.nongnu.org/nongnu/opam-switch-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5618,18 +5618,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$558,
+            [nix.POS]: pos$558,
             pname: "org-auto-tangle",
             ename: "org-auto-tangle",
             version: "0.6.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$556,
+                [nix.POS]: pos$556,
                 url: "https://elpa.nongnu.org/nongnu/org-auto-tangle-0.6.0.tar",
                 sha256: "1vh3k283h90v3qilyx1n30k4ny5rkry6x9s6778s0sm6f6hwdggd",
               })))),
             packageRequires: nix.thunk(() => [async$]),
             meta: nix.thunk(() => ({
-              __proto__: pos$557,
+              [nix.POS]: pos$557,
               homepage: "https://elpa.nongnu.org/nongnu/org-auto-tangle.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5642,18 +5642,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$561,
+            [nix.POS]: pos$561,
             pname: "org-contrib",
             ename: "org-contrib",
             version: "0.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$559,
+                [nix.POS]: pos$559,
                 url: "https://elpa.nongnu.org/nongnu/org-contrib-0.8.tar",
                 sha256: "0bw6wrnkbx26k0zxgglyps2nnmgwr6yvkizxqnknds3y5r643j34",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              __proto__: pos$560,
+              [nix.POS]: pos$560,
               homepage: "https://elpa.nongnu.org/nongnu/org-contrib.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5668,18 +5668,18 @@ export default nix.lambda((args) => (() => {
         const persist = nix.arg($_1, "persist");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$564,
+            [nix.POS]: pos$564,
             pname: "org-drill",
             ename: "org-drill",
             version: "2.7.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$562,
+                [nix.POS]: pos$562,
                 url: "https://elpa.nongnu.org/nongnu/org-drill-2.7.0.tar",
                 sha256: "0118vdd0gv2ipgfljkda4388gdly45c5vg0yfn3z4p0p8mjd15lg",
               })))),
             packageRequires: nix.thunk(() => [org, persist, seq]),
             meta: nix.thunk(() => ({
-              __proto__: pos$563,
+              [nix.POS]: pos$563,
               homepage: "https://elpa.nongnu.org/nongnu/org-drill.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5691,18 +5691,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$567,
+            [nix.POS]: pos$567,
             pname: "org-history",
             ename: "org-history",
             version: "0.5.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$565,
+                [nix.POS]: pos$565,
                 url: "https://elpa.nongnu.org/nongnu/org-history-0.5.2.tar",
                 sha256: "0fnic45ppibjx5d576s5d3cxh4dc4jc66nxyx9m1b5jxik53a2wx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$566,
+              [nix.POS]: pos$566,
               homepage: "https://elpa.nongnu.org/nongnu/org-history.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5715,18 +5715,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$570,
+            [nix.POS]: pos$570,
             pname: "org-journal",
             ename: "org-journal",
             version: "2.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$568,
+                [nix.POS]: pos$568,
                 url: "https://elpa.nongnu.org/nongnu/org-journal-2.2.0.tar",
                 sha256: "12mvi8x8rsm93s55z8ns1an00l2p545swc0gzmx38ff57m7jb1mj",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              __proto__: pos$569,
+              [nix.POS]: pos$569,
               homepage: "https://elpa.nongnu.org/nongnu/org-journal.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5738,18 +5738,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$573,
+            [nix.POS]: pos$573,
             pname: "org-mime",
             ename: "org-mime",
             version: "0.3.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$571,
+                [nix.POS]: pos$571,
                 url: "https://elpa.nongnu.org/nongnu/org-mime-0.3.4.tar",
                 sha256: "06ard0fndp1iffd8lqqrf4dahbxkh76blava9s6xzxf75zzmlsyj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$572,
+              [nix.POS]: pos$572,
               homepage: "https://elpa.nongnu.org/nongnu/org-mime.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5762,18 +5762,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$576,
+            [nix.POS]: pos$576,
             pname: "org-present",
             ename: "org-present",
             version: "0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$574,
+                [nix.POS]: pos$574,
                 url: "https://elpa.nongnu.org/nongnu/org-present-0.1.tar",
                 sha256: "18zrvrd9aih57gj14qmxv9rf5j859vkvxcni3fkdbj84y5pq2fpy",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              __proto__: pos$575,
+              [nix.POS]: pos$575,
               homepage: "https://elpa.nongnu.org/nongnu/org-present.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5786,18 +5786,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$579,
+            [nix.POS]: pos$579,
             pname: "org-superstar",
             ename: "org-superstar",
             version: "1.7.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$577,
+                [nix.POS]: pos$577,
                 url: "https://elpa.nongnu.org/nongnu/org-superstar-1.7.0.tar",
                 sha256: "1c52kpsj52zswjyv35b6pdd41y4a8hkm1rww3zmrdm80h05sifz0",
               })))),
             packageRequires: nix.thunk(() => [org]),
             meta: nix.thunk(() => ({
-              __proto__: pos$578,
+              [nix.POS]: pos$578,
               homepage: "https://elpa.nongnu.org/nongnu/org-superstar.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5811,18 +5811,18 @@ export default nix.lambda((args) => (() => {
         const org_transclusion = nix.arg($_1, "org-transclusion");
         const plz = nix.arg($_1, "plz");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$582,
+            [nix.POS]: pos$582,
             pname: "org-transclusion-http",
             ename: "org-transclusion-http",
             version: "0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$580,
+                [nix.POS]: pos$580,
                 url: "https://elpa.nongnu.org/nongnu/org-transclusion-http-0.4.tar",
                 sha256: "1k57672w0dcw63dp1a6m5fc0pkm8p5la9811m16r440i7wqq0kmr",
               })))),
             packageRequires: nix.thunk(() => [org_transclusion, plz]),
             meta: nix.thunk(() => ({
-              __proto__: pos$581,
+              [nix.POS]: pos$581,
               homepage: "https://elpa.nongnu.org/nongnu/org-transclusion-http.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5834,18 +5834,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$585,
+            [nix.POS]: pos$585,
             pname: "org-tree-slide",
             ename: "org-tree-slide",
             version: "2.8.22",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$583,
+                [nix.POS]: pos$583,
                 url: "https://elpa.nongnu.org/nongnu/org-tree-slide-2.8.22.tar",
                 sha256: "1wqc5d2nxs4s6p2ap6sdalxnyigpxini8ck6jikaarmfqcghnx2m",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$584,
+              [nix.POS]: pos$584,
               homepage: "https://elpa.nongnu.org/nongnu/org-tree-slide.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5862,18 +5862,18 @@ export default nix.lambda((args) => (() => {
         const magit = nix.arg($_1, "magit");
         const org = nix.arg($_1, "org");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$588,
+            [nix.POS]: pos$588,
             pname: "orgit",
             ename: "orgit",
             version: "2.2.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$586,
+                [nix.POS]: pos$586,
                 url: "https://elpa.nongnu.org/nongnu/orgit-2.2.1.tar",
                 sha256: "0qcc3yj2vkx9x4as57gasjlcbryvjxhdqsl014iac5b8q8fxvs6j",
               })))),
             packageRequires: nix.thunk(() => [compat, cond_let, llama, magit, org]),
             meta: nix.thunk(() => ({
-              __proto__: pos$587,
+              [nix.POS]: pos$587,
               homepage: "https://elpa.nongnu.org/nongnu/orgit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5885,18 +5885,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$591,
+            [nix.POS]: pos$591,
             pname: "p4-16-mode",
             ename: "p4-16-mode",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$589,
+                [nix.POS]: pos$589,
                 url: "https://elpa.nongnu.org/nongnu/p4-16-mode-0.3.tar",
                 sha256: "1kwfqs7ikfjkkpv3m440ak40mjyf493gqygmc4hac8phlf9ns6dv",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$590,
+              [nix.POS]: pos$590,
               homepage: "https://elpa.nongnu.org/nongnu/p4-16-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5909,18 +5909,18 @@ export default nix.lambda((args) => (() => {
         const let_alist = nix.arg($_1, "let-alist");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$594,
+            [nix.POS]: pos$594,
             pname: "package-lint",
             ename: "package-lint",
             version: "0.26",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$592,
+                [nix.POS]: pos$592,
                 url: "https://elpa.nongnu.org/nongnu/package-lint-0.26.tar",
                 sha256: "0sgqq19zvnlvf64ash2cig3n2avjrsjn107wfvm222sk2bm0ld1j",
               })))),
             packageRequires: nix.thunk(() => [let_alist]),
             meta: nix.thunk(() => ({
-              __proto__: pos$593,
+              [nix.POS]: pos$593,
               homepage: "https://elpa.nongnu.org/nongnu/package-lint.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5933,18 +5933,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$597,
+            [nix.POS]: pos$597,
             pname: "pacmacs",
             ename: "pacmacs",
             version: "0.1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$595,
+                [nix.POS]: pos$595,
                 url: "https://elpa.nongnu.org/nongnu/pacmacs-0.1.1.tar",
                 sha256: "02ahl0608xmmlkb014gqvv6f45l5lrkm3s4l6m5p5r98rwmlj3q9",
               })))),
             packageRequires: nix.thunk(() => [dash]),
             meta: nix.thunk(() => ({
-              __proto__: pos$596,
+              [nix.POS]: pos$596,
               homepage: "https://elpa.nongnu.org/nongnu/pacmacs.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5956,18 +5956,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$600,
+            [nix.POS]: pos$600,
             pname: "page-break-lines",
             ename: "page-break-lines",
             version: "0.15",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$598,
+                [nix.POS]: pos$598,
                 url: "https://elpa.nongnu.org/nongnu/page-break-lines-0.15.tar",
                 sha256: "018mn6h6nmkkgv1hsk0k8fjyg38wpg2f0cvqlv9p392sapca59ay",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$599,
+              [nix.POS]: pos$599,
               homepage: "https://elpa.nongnu.org/nongnu/page-break-lines.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -5979,18 +5979,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$603,
+            [nix.POS]: pos$603,
             pname: "paredit",
             ename: "paredit",
             version: "26",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$601,
+                [nix.POS]: pos$601,
                 url: "https://elpa.nongnu.org/nongnu/paredit-26.tar",
                 sha256: "1sk8nhsysa3y8fvds67cbwwzivzxlyw8d81y7f7pqc5lflidjrpc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$602,
+              [nix.POS]: pos$602,
               homepage: "https://elpa.nongnu.org/nongnu/paredit.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6002,18 +6002,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$606,
+            [nix.POS]: pos$606,
             pname: "parseclj",
             ename: "parseclj",
             version: "1.1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$604,
+                [nix.POS]: pos$604,
                 url: "https://elpa.nongnu.org/nongnu/parseclj-1.1.1.tar",
                 sha256: "0kkg5fdjbf2dm8jmirm86sjbqnzyhy72iml4qwwnshxjfhz1f0yi",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$605,
+              [nix.POS]: pos$605,
               homepage: "https://elpa.nongnu.org/nongnu/parseclj.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6027,18 +6027,18 @@ export default nix.lambda((args) => (() => {
         const map = nix.arg($_1, "map");
         const parseclj = nix.arg($_1, "parseclj");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$609,
+            [nix.POS]: pos$609,
             pname: "parseedn",
             ename: "parseedn",
             version: "1.2.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$607,
+                [nix.POS]: pos$607,
                 url: "https://elpa.nongnu.org/nongnu/parseedn-1.2.1.tar",
                 sha256: "0q6wkcjxwqf81pvrcjbga91lr4ml6adbhmc7j71f53awrpc980ak",
               })))),
             packageRequires: nix.thunk(() => [map, parseclj]),
             meta: nix.thunk(() => ({
-              __proto__: pos$608,
+              [nix.POS]: pos$608,
               homepage: "https://elpa.nongnu.org/nongnu/parseedn.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6050,18 +6050,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$612,
+            [nix.POS]: pos$612,
             pname: "pcmpl-args",
             ename: "pcmpl-args",
             version: "0.1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$610,
+                [nix.POS]: pos$610,
                 url: "https://elpa.nongnu.org/nongnu/pcmpl-args-0.1.3.tar",
                 sha256: "1lycckmwhp9l0pcrzx6c11iqwaw94h00334pzagkcfay7lz3hcgd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$611,
+              [nix.POS]: pos$611,
               homepage: "https://elpa.nongnu.org/nongnu/pcmpl-args.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6073,18 +6073,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$615,
+            [nix.POS]: pos$615,
             pname: "pcre2el",
             ename: "pcre2el",
             version: "1.12",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$613,
+                [nix.POS]: pos$613,
                 url: "https://elpa.nongnu.org/nongnu/pcre2el-1.12.tar",
                 sha256: "1p0fgqm5342698gadnvziwbvv2kxj953975sp92cx7ddcyv2xr3c",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$614,
+              [nix.POS]: pos$614,
               homepage: "https://elpa.nongnu.org/nongnu/pcre2el.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6098,18 +6098,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const tablist = nix.arg($_1, "tablist");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$618,
+            [nix.POS]: pos$618,
             pname: "pdf-tools",
             ename: "pdf-tools",
             version: "1.3.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$616,
+                [nix.POS]: pos$616,
                 url: "https://elpa.nongnu.org/nongnu/pdf-tools-1.3.0.tar",
                 sha256: "0kxv31jh8spndkf0lm2z6ibh9mna055ck4dmzbvws7rfk208rxip",
               })))),
             packageRequires: nix.thunk(() => [let_alist, tablist]),
             meta: nix.thunk(() => ({
-              __proto__: pos$617,
+              [nix.POS]: pos$617,
               homepage: "https://elpa.nongnu.org/nongnu/pdf-tools.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6122,18 +6122,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const peg = nix.arg($_1, "peg");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$621,
+            [nix.POS]: pos$621,
             pname: "pg",
             ename: "pg",
             version: "0.69",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$619,
+                [nix.POS]: pos$619,
                 url: "https://elpa.nongnu.org/nongnu/pg-0.69.tar",
                 sha256: "1xmghf7wjcwc1gd780ycbadg24irr6xdjfwgjg1v6r96v62ss4mf",
               })))),
             packageRequires: nix.thunk(() => [peg]),
             meta: nix.thunk(() => ({
-              __proto__: pos$620,
+              [nix.POS]: pos$620,
               homepage: "https://elpa.nongnu.org/nongnu/pg.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6145,18 +6145,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$624,
+            [nix.POS]: pos$624,
             pname: "php-mode",
             ename: "php-mode",
             version: "1.28.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$622,
+                [nix.POS]: pos$622,
                 url: "https://elpa.nongnu.org/nongnu/php-mode-1.28.0.tar",
                 sha256: "1vmwb391l67517iwkvf7fpy4jxpbdf7w7nk42m615i0gvbizvfym",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$623,
+              [nix.POS]: pos$623,
               homepage: "https://elpa.nongnu.org/nongnu/php-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6168,18 +6168,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$627,
+            [nix.POS]: pos$627,
             pname: "pinyin-isearch",
             ename: "pinyin-isearch",
             version: "1.7.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$625,
+                [nix.POS]: pos$625,
                 url: "https://elpa.nongnu.org/nongnu/pinyin-isearch-1.7.2.tar",
                 sha256: "05ikv89b8w3yhjmf97vgqnlppycfini2fivxl5cc25865pbi2dn3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$626,
+              [nix.POS]: pos$626,
               homepage: "https://elpa.nongnu.org/nongnu/pinyin-isearch.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6191,18 +6191,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$630,
+            [nix.POS]: pos$630,
             pname: "popon",
             ename: "popon",
             version: "0.13",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$628,
+                [nix.POS]: pos$628,
                 url: "https://elpa.nongnu.org/nongnu/popon-0.13.tar",
                 sha256: "0z0m7j30pdfw58cxxkmw5pkfpy8y1ax00wm4820rkqxz1f5sbkdb",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$629,
+              [nix.POS]: pos$629,
               homepage: "https://elpa.nongnu.org/nongnu/popon.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6214,18 +6214,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$633,
+            [nix.POS]: pos$633,
             pname: "popup",
             ename: "popup",
             version: "0.5.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$631,
+                [nix.POS]: pos$631,
                 url: "https://elpa.nongnu.org/nongnu/popup-0.5.9.tar",
                 sha256: "06q31bv6nsdkdgyg6x0zzjnlq007zhqw2ssjmj44izl6h6fkr26m",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$632,
+              [nix.POS]: pos$632,
               homepage: "https://elpa.nongnu.org/nongnu/popup.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6237,18 +6237,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$636,
+            [nix.POS]: pos$636,
             pname: "powershell",
             ename: "powershell",
             version: "0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$634,
+                [nix.POS]: pos$634,
                 url: "https://elpa.nongnu.org/nongnu/powershell-0.4.tar",
                 sha256: "13f7rfjcip64if7mxd12pnrw409xdmxblddri49laacvi1qhlj9k",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$635,
+              [nix.POS]: pos$635,
               homepage: "https://elpa.nongnu.org/nongnu/powershell.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6260,18 +6260,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$639,
+            [nix.POS]: pos$639,
             pname: "project-nix-store",
             ename: "project-nix-store",
             version: "0.12.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$637,
+                [nix.POS]: pos$637,
                 url: "https://elpa.nongnu.org/nongnu/project-nix-store-0.12.0.tar",
                 sha256: "0648bq6i1lysk4y3ddq4yh2qy9113cyx6jvg2a0mypw4mb96y22j",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$638,
+              [nix.POS]: pos$638,
               homepage: "https://elpa.nongnu.org/nongnu/project-nix-store.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6284,18 +6284,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$642,
+            [nix.POS]: pos$642,
             pname: "projectile",
             ename: "projectile",
             version: "3.4.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$640,
+                [nix.POS]: pos$640,
                 url: "https://elpa.nongnu.org/nongnu/projectile-3.4.0.tar",
                 sha256: "14awc69qxq4xpz7k5hm4jsqsf9krgwf07w5k6yg5ibzk3x0prypn",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$641,
+              [nix.POS]: pos$641,
               homepage: "https://elpa.nongnu.org/nongnu/projectile.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6307,18 +6307,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$645,
+            [nix.POS]: pos$645,
             pname: "proof-general",
             ename: "proof-general",
             version: "4.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$643,
+                [nix.POS]: pos$643,
                 url: "https://elpa.nongnu.org/nongnu/proof-general-4.5.tar",
                 sha256: "0mlmh7z93f7ypjlh6mxrxgcn47ysvi8qg8869qfxjgmskbfdvx2w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$644,
+              [nix.POS]: pos$644,
               homepage: "https://elpa.nongnu.org/nongnu/proof-general.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6331,18 +6331,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$648,
+            [nix.POS]: pos$648,
             pname: "prop-menu",
             ename: "prop-menu",
             version: "0.1.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$646,
+                [nix.POS]: pos$646,
                 url: "https://elpa.nongnu.org/nongnu/prop-menu-0.1.2.tar",
                 sha256: "1cbps617k2nfi5jcv7y1zip4v64mi17r3rhw9w3n4r5hbl4sjwmw",
               })))),
             packageRequires: nix.thunk(() => [cl_lib]),
             meta: nix.thunk(() => ({
-              __proto__: pos$647,
+              [nix.POS]: pos$647,
               homepage: "https://elpa.nongnu.org/nongnu/prop-menu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6355,18 +6355,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$651,
+            [nix.POS]: pos$651,
             pname: "racket-mode",
             ename: "racket-mode",
             version: "1.0.20260908.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$649,
+                [nix.POS]: pos$649,
                 url: "https://elpa.nongnu.org/nongnu/racket-mode-1.0.20260908.0.tar",
                 sha256: "11b9rh6bzqav9pbsrms4v9qip3vlsl3gzcaq0pq70y8zcd7zc4c1",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$650,
+              [nix.POS]: pos$650,
               homepage: "https://elpa.nongnu.org/nongnu/racket-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6378,18 +6378,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$654,
+            [nix.POS]: pos$654,
             pname: "radio",
             ename: "radio",
             version: "0.4.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$652,
+                [nix.POS]: pos$652,
                 url: "https://elpa.nongnu.org/nongnu/radio-0.4.3.tar",
                 sha256: "1xr10zhm8fk75h0i07jry5c05cds4xbb012wa943cbibxj0cma68",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$653,
+              [nix.POS]: pos$653,
               homepage: "https://elpa.nongnu.org/nongnu/radio.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6401,18 +6401,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$657,
+            [nix.POS]: pos$657,
             pname: "rainbow-delimiters",
             ename: "rainbow-delimiters",
             version: "2.1.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$655,
+                [nix.POS]: pos$655,
                 url: "https://elpa.nongnu.org/nongnu/rainbow-delimiters-2.1.5.tar",
                 sha256: "0f4zhz92z5qk3p9ips2d76qi64xv6y8jrxh5nvbq46ivj5c0hnw2",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$656,
+              [nix.POS]: pos$656,
               homepage: "https://elpa.nongnu.org/nongnu/rainbow-delimiters.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6424,18 +6424,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$660,
+            [nix.POS]: pos$660,
             pname: "raku-mode",
             ename: "raku-mode",
             version: "0.2.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$658,
+                [nix.POS]: pos$658,
                 url: "https://elpa.nongnu.org/nongnu/raku-mode-0.2.1.tar",
                 sha256: "00iwkp4hwjdiymzbwm41m27avrn3n63hnwd9amyx0nsa0kdhrfyx",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$659,
+              [nix.POS]: pos$659,
               homepage: "https://elpa.nongnu.org/nongnu/raku-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6447,18 +6447,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$663,
+            [nix.POS]: pos$663,
             pname: "recomplete",
             ename: "recomplete",
             version: "0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$661,
+                [nix.POS]: pos$661,
                 url: "https://elpa.nongnu.org/nongnu/recomplete-0.2.tar",
                 sha256: "1jhyqgww8wawrxxd2zjb7scpamkbcp98hak9qmbn6ckgzdadks64",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$662,
+              [nix.POS]: pos$662,
               homepage: "https://elpa.nongnu.org/nongnu/recomplete.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6470,18 +6470,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$666,
+            [nix.POS]: pos$666,
             pname: "reformatter",
             ename: "reformatter",
             version: "0.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$664,
+                [nix.POS]: pos$664,
                 url: "https://elpa.nongnu.org/nongnu/reformatter-0.8.tar",
                 sha256: "0bv0fbw3ach6jgnv67xjzxdzaghqa1rhgkmfsmkkbyz8ncbybj87",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$665,
+              [nix.POS]: pos$665,
               homepage: "https://elpa.nongnu.org/nongnu/reformatter.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6493,18 +6493,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$669,
+            [nix.POS]: pos$669,
             pname: "request",
             ename: "request",
             version: "0.3.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$667,
+                [nix.POS]: pos$667,
                 url: "https://elpa.nongnu.org/nongnu/request-0.3.3.tar",
                 sha256: "02j24v8jdjsvi3v3asydb1zfiarzaxrpsshvgf62nhgk6x08845z",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$668,
+              [nix.POS]: pos$668,
               homepage: "https://elpa.nongnu.org/nongnu/request.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6516,18 +6516,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$672,
+            [nix.POS]: pos$672,
             pname: "rfc-mode",
             ename: "rfc-mode",
             version: "1.4.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$670,
+                [nix.POS]: pos$670,
                 url: "https://elpa.nongnu.org/nongnu/rfc-mode-1.4.2.tar",
                 sha256: "0lhs8wa4sr387xyibqqskkqgyhhhy48qp5wbjs8r5p68j1s1q86m",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$671,
+              [nix.POS]: pos$671,
               homepage: "https://elpa.nongnu.org/nongnu/rfc-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6539,18 +6539,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$675,
+            [nix.POS]: pos$675,
             pname: "rpm-spec-mode",
             ename: "rpm-spec-mode",
             version: "0.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$673,
+                [nix.POS]: pos$673,
                 url: "https://elpa.nongnu.org/nongnu/rpm-spec-mode-0.16.tar",
                 sha256: "0gc50kn1wmvz6k9afra7zcnsk7z76cc50vkvw3q8i7p911z55rfj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$674,
+              [nix.POS]: pos$674,
               homepage: "https://elpa.nongnu.org/nongnu/rpm-spec-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6562,18 +6562,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$678,
+            [nix.POS]: pos$678,
             pname: "rubocop",
             ename: "rubocop",
             version: "0.6.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$676,
+                [nix.POS]: pos$676,
                 url: "https://elpa.nongnu.org/nongnu/rubocop-0.6.0.tar",
                 sha256: "026cna402hg9lsrf88kmb2as667fgaianj2qd3ik9y89ps4xyzxf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$677,
+              [nix.POS]: pos$677,
               homepage: "https://elpa.nongnu.org/nongnu/rubocop.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6585,18 +6585,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$681,
+            [nix.POS]: pos$681,
             pname: "rust-mode",
             ename: "rust-mode",
             version: "1.0.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$679,
+                [nix.POS]: pos$679,
                 url: "https://elpa.nongnu.org/nongnu/rust-mode-1.0.6.tar",
                 sha256: "1x2hj5rhdcm9hdnr78430jh1ycwjiva5vv7xqm7758vcxw7x0nag",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$680,
+              [nix.POS]: pos$680,
               homepage: "https://elpa.nongnu.org/nongnu/rust-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6609,18 +6609,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$684,
+            [nix.POS]: pos$684,
             pname: "sapling",
             ename: "sapling",
             version: "0.3.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$682,
+                [nix.POS]: pos$682,
                 url: "https://elpa.nongnu.org/nongnu/sapling-0.3.2.tar",
                 sha256: "05cs0mc1129bpffach5kl73kpd33a6lj5vvr33fggcspv9ddxbv4",
               })))),
             packageRequires: nix.thunk(() => [transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$683,
+              [nix.POS]: pos$683,
               homepage: "https://elpa.nongnu.org/nongnu/sapling.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6633,18 +6633,18 @@ export default nix.lambda((args) => (() => {
         const haml_mode = nix.arg($_1, "haml-mode");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$687,
+            [nix.POS]: pos$687,
             pname: "sass-mode",
             ename: "sass-mode",
             version: "3.0.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$685,
+                [nix.POS]: pos$685,
                 url: "https://elpa.nongnu.org/nongnu/sass-mode-3.0.16.tar",
                 sha256: "0ag7qi9dq4j23ywbwni7pblp6l1ik95vjhclxm82s1911a8m7pj2",
               })))),
             packageRequires: nix.thunk(() => [haml_mode]),
             meta: nix.thunk(() => ({
-              __proto__: pos$686,
+              [nix.POS]: pos$686,
               homepage: "https://elpa.nongnu.org/nongnu/sass-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6657,18 +6657,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$690,
+            [nix.POS]: pos$690,
             pname: "scad-mode",
             ename: "scad-mode",
             version: "99.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$688,
+                [nix.POS]: pos$688,
                 url: "https://elpa.nongnu.org/nongnu/scad-mode-99.0.tar",
                 sha256: "1wdb7ri2716r4m22asj370c3mnjchcsnxjwbw3m13rgvkj2ax6j4",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$689,
+              [nix.POS]: pos$689,
               homepage: "https://elpa.nongnu.org/nongnu/scad-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6680,18 +6680,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$693,
+            [nix.POS]: pos$693,
             pname: "scala-mode",
             ename: "scala-mode",
             version: "1.1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$691,
+                [nix.POS]: pos$691,
                 url: "https://elpa.nongnu.org/nongnu/scala-mode-1.1.1.tar",
                 sha256: "1dmaq00432smrwqx6ybw855vdwp7s8h358c135ji5d581mkhpai5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$692,
+              [nix.POS]: pos$692,
               homepage: "https://elpa.nongnu.org/nongnu/scala-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6703,18 +6703,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$696,
+            [nix.POS]: pos$696,
             pname: "scroll-on-drag",
             ename: "scroll-on-drag",
             version: "0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$694,
+                [nix.POS]: pos$694,
                 url: "https://elpa.nongnu.org/nongnu/scroll-on-drag-0.1.tar",
                 sha256: "0ga8w9px2x9a2ams0lm7ganbixylgpx8g2m3jrwfih0ib3z26kqc",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$695,
+              [nix.POS]: pos$695,
               homepage: "https://elpa.nongnu.org/nongnu/scroll-on-drag.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6726,18 +6726,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$699,
+            [nix.POS]: pos$699,
             pname: "scroll-on-jump",
             ename: "scroll-on-jump",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$697,
+                [nix.POS]: pos$697,
                 url: "https://elpa.nongnu.org/nongnu/scroll-on-jump-0.3.tar",
                 sha256: "02vksmab2bmasv1n8hawapzhnyfk3w0b0gbxbznp5zj6kzb8yr1q",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$698,
+              [nix.POS]: pos$698,
               homepage: "https://elpa.nongnu.org/nongnu/scroll-on-jump.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6749,18 +6749,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$702,
+            [nix.POS]: pos$702,
             pname: "selected-window-contrast",
             ename: "selected-window-contrast",
             version: "0.4.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$700,
+                [nix.POS]: pos$700,
                 url: "https://elpa.nongnu.org/nongnu/selected-window-contrast-0.4.1.tar",
                 sha256: "0qpqw2nv91ki8n1rq33vlggbb8967sq34z1apqr4x3v4cjm4ym7a",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$701,
+              [nix.POS]: pos$701,
               homepage: "https://elpa.nongnu.org/nongnu/selected-window-contrast.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6772,18 +6772,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$705,
+            [nix.POS]: pos$705,
             pname: "sesman",
             ename: "sesman",
             version: "0.3.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$703,
+                [nix.POS]: pos$703,
                 url: "https://elpa.nongnu.org/nongnu/sesman-0.3.2.tar",
                 sha256: "1mrv32cp87dhzpcv55v4zv4nq37lrsprsdhhjb2q0msqab3b0r31",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$704,
+              [nix.POS]: pos$704,
               homepage: "https://elpa.nongnu.org/nongnu/sesman.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6795,18 +6795,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$708,
+            [nix.POS]: pos$708,
             pname: "shellcop",
             ename: "shellcop",
             version: "0.1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$706,
+                [nix.POS]: pos$706,
                 url: "https://elpa.nongnu.org/nongnu/shellcop-0.1.0.tar",
                 sha256: "1gj178fm0jj8dbfy0crwcjidih4r6g9dl9lprzpxzgswvma32g0w",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$707,
+              [nix.POS]: pos$707,
               homepage: "https://elpa.nongnu.org/nongnu/shellcop.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6819,18 +6819,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$711,
+            [nix.POS]: pos$711,
             pname: "simple-httpd",
             ename: "simple-httpd",
             version: "1.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$709,
+                [nix.POS]: pos$709,
                 url: "https://elpa.nongnu.org/nongnu/simple-httpd-1.7.tar",
                 sha256: "10frydnqcgxmrbiy8aw4kaf9phfhrijl4286lx6krsmlxhf8vflc",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$710,
+              [nix.POS]: pos$710,
               homepage: "https://elpa.nongnu.org/nongnu/simple-httpd.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6843,18 +6843,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const macrostep = nix.arg($_1, "macrostep");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$714,
+            [nix.POS]: pos$714,
             pname: "slime",
             ename: "slime",
             version: "2.32",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$712,
+                [nix.POS]: pos$712,
                 url: "https://elpa.nongnu.org/nongnu/slime-2.32.tar",
                 sha256: "0j2f98l5pmzn2k947alsb2h0idywxwdg02gl6rinrrabyazhjnim",
               })))),
             packageRequires: nix.thunk(() => [macrostep]),
             meta: nix.thunk(() => ({
-              __proto__: pos$713,
+              [nix.POS]: pos$713,
               homepage: "https://elpa.nongnu.org/nongnu/slime.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6866,18 +6866,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$717,
+            [nix.POS]: pos$717,
             pname: "sly",
             ename: "sly",
             version: "1.0.43",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$715,
+                [nix.POS]: pos$715,
                 url: "https://elpa.nongnu.org/nongnu/sly-1.0.43.tar",
                 sha256: "1c7kzbpcrij4z09bxfa1rq5w23jw9h8v4s6fa6ihr13x67gsif84",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$716,
+              [nix.POS]: pos$716,
               homepage: "https://elpa.nongnu.org/nongnu/sly.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6889,18 +6889,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$720,
+            [nix.POS]: pos$720,
             pname: "smartparens",
             ename: "smartparens",
             version: "1.11.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$718,
+                [nix.POS]: pos$718,
                 url: "https://elpa.nongnu.org/nongnu/smartparens-1.11.0.tar",
                 sha256: "0kvlyx2bhw4q6k79wf5cm4srlmfncsbii4spdgafwmv8j7vw6ya3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$719,
+              [nix.POS]: pos$719,
               homepage: "https://elpa.nongnu.org/nongnu/smartparens.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6912,18 +6912,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$723,
+            [nix.POS]: pos$723,
             pname: "solarized-theme",
             ename: "solarized-theme",
             version: "2.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$721,
+                [nix.POS]: pos$721,
                 url: "https://elpa.nongnu.org/nongnu/solarized-theme-2.2.0.tar",
                 sha256: "0nzivlnwivrmqxc91xr45sdca0qz202aq6wjv0sys3386a89vyb3",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$722,
+              [nix.POS]: pos$722,
               homepage: "https://elpa.nongnu.org/nongnu/solarized-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6935,18 +6935,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$726,
+            [nix.POS]: pos$726,
             pname: "spacemacs-theme",
             ename: "spacemacs-theme",
             version: "0.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$724,
+                [nix.POS]: pos$724,
                 url: "https://elpa.nongnu.org/nongnu/spacemacs-theme-0.2.tar",
                 sha256: "07lkaj6gm5iz503p5l6sm1y62mc5wk13nrwzv81f899jw99jcgml",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$725,
+              [nix.POS]: pos$725,
               homepage: "https://elpa.nongnu.org/nongnu/spacemacs-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6958,18 +6958,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$729,
+            [nix.POS]: pos$729,
             pname: "spell-fu",
             ename: "spell-fu",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$727,
+                [nix.POS]: pos$727,
                 url: "https://elpa.nongnu.org/nongnu/spell-fu-0.3.tar",
                 sha256: "11a5361xjap02s0mm2sylhxqqrv64v72d70cg1vzch7iwfi18l9c",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$728,
+              [nix.POS]: pos$728,
               homepage: "https://elpa.nongnu.org/nongnu/spell-fu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -6981,18 +6981,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$732,
+            [nix.POS]: pos$732,
             pname: "sqlite3",
             ename: "sqlite3",
             version: "0.17",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$730,
+                [nix.POS]: pos$730,
                 url: "https://elpa.nongnu.org/nongnu/sqlite3-0.17.tar",
                 sha256: "17fx2bnzajqjzd9jgwvn6pjwshgirign975rrsc1m47cwniz0bnq",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$731,
+              [nix.POS]: pos$731,
               homepage: "https://elpa.nongnu.org/nongnu/sqlite3.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7004,18 +7004,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$735,
+            [nix.POS]: pos$735,
             pname: "standard-keys-mode",
             ename: "standard-keys-mode",
             version: "1.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$733,
+                [nix.POS]: pos$733,
                 url: "https://elpa.nongnu.org/nongnu/standard-keys-mode-1.0.1.tar",
                 sha256: "0a9gmgr1rzaggyskpxwq47f7fh6rv04qwp1h7mnapzz8004635x1",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$734,
+              [nix.POS]: pos$734,
               homepage: "https://elpa.nongnu.org/nongnu/standard-keys-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7027,18 +7027,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$738,
+            [nix.POS]: pos$738,
             pname: "stylus-mode",
             ename: "stylus-mode",
             version: "1.0.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$736,
+                [nix.POS]: pos$736,
                 url: "https://elpa.nongnu.org/nongnu/stylus-mode-1.0.1.tar",
                 sha256: "0vihp241msg8f0ph8w3w9fkad9b12pmpwg0q5la8nbw7gfy41mz5",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$737,
+              [nix.POS]: pos$737,
               homepage: "https://elpa.nongnu.org/nongnu/stylus-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7050,18 +7050,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$741,
+            [nix.POS]: pos$741,
             pname: "subatomic-theme",
             ename: "subatomic-theme",
             version: "1.8.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$739,
+                [nix.POS]: pos$739,
                 url: "https://elpa.nongnu.org/nongnu/subatomic-theme-1.8.2.tar",
                 sha256: "0vpaswm5mdyb8cir160mb8ffgzaz7kbq3gvc2zrnh531zb994mqg",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$740,
+              [nix.POS]: pos$740,
               homepage: "https://elpa.nongnu.org/nongnu/subatomic-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7073,18 +7073,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$744,
+            [nix.POS]: pos$744,
             pname: "subed",
             ename: "subed",
             version: "1.5.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$742,
+                [nix.POS]: pos$742,
                 url: "https://elpa.nongnu.org/nongnu/subed-1.5.2.tar",
                 sha256: "1qgcq06nkabw0rqsr478pj8cnfp114q83i1w69gm1y5qhhvpnwyn",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$743,
+              [nix.POS]: pos$743,
               homepage: "https://elpa.nongnu.org/nongnu/subed.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7097,18 +7097,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$747,
+            [nix.POS]: pos$747,
             pname: "sweeprolog",
             ename: "sweeprolog",
             version: "0.27.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$745,
+                [nix.POS]: pos$745,
                 url: "https://elpa.nongnu.org/nongnu/sweeprolog-0.27.6.tar",
                 sha256: "063bindr1rfbpa59nf0zrjq3axj3siiskaxd7d37pada411j654i",
               })))),
             packageRequires: nix.thunk(() => [compat]),
             meta: nix.thunk(() => ({
-              __proto__: pos$746,
+              [nix.POS]: pos$746,
               homepage: "https://elpa.nongnu.org/nongnu/sweeprolog.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7120,18 +7120,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$750,
+            [nix.POS]: pos$750,
             pname: "swift-mode",
             ename: "swift-mode",
             version: "10.0.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$748,
+                [nix.POS]: pos$748,
                 url: "https://elpa.nongnu.org/nongnu/swift-mode-10.0.0.tar",
                 sha256: "07wydsy8ihfmr1i4hya270f9v5dy9mfn6kzbmyj3kf9kx5grhybl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$749,
+              [nix.POS]: pos$749,
               homepage: "https://elpa.nongnu.org/nongnu/swift-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7144,18 +7144,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$753,
+            [nix.POS]: pos$753,
             pname: "swsw",
             ename: "swsw",
             version: "2.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$751,
+                [nix.POS]: pos$751,
                 url: "https://elpa.nongnu.org/nongnu/swsw-2.3.tar",
                 sha256: "0qwdv174bh9k1bpd5szzmhk7hw89xf7rz2i2hzdrmlpvcs3ps653",
               })))),
             packageRequires: nix.thunk(() => [emacs]),
             meta: nix.thunk(() => ({
-              __proto__: pos$752,
+              [nix.POS]: pos$752,
               homepage: "https://elpa.gnu.org/packages/swsw.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7168,18 +7168,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$756,
+            [nix.POS]: pos$756,
             pname: "symbol-overlay",
             ename: "symbol-overlay",
             version: "4.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$754,
+                [nix.POS]: pos$754,
                 url: "https://elpa.nongnu.org/nongnu/symbol-overlay-4.3.tar",
                 sha256: "0f27axzjbrh4nx6ixpjbb8vx7s2y6l074cdqzia1c87a8b6301c6",
               })))),
             packageRequires: nix.thunk(() => [seq]),
             meta: nix.thunk(() => ({
-              __proto__: pos$755,
+              [nix.POS]: pos$755,
               homepage: "https://elpa.nongnu.org/nongnu/symbol-overlay.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7191,18 +7191,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$759,
+            [nix.POS]: pos$759,
             pname: "systemd",
             ename: "systemd",
             version: "1.6.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$757,
+                [nix.POS]: pos$757,
                 url: "https://elpa.nongnu.org/nongnu/systemd-1.6.1.tar",
                 sha256: "0b0l70271kalicaix4p1ipr5vrj401cj8zvsi3243q1hp04k1m2g",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$758,
+              [nix.POS]: pos$758,
               homepage: "https://elpa.nongnu.org/nongnu/systemd.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7214,18 +7214,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$762,
+            [nix.POS]: pos$762,
             pname: "tablist",
             ename: "tablist",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$760,
+                [nix.POS]: pos$760,
                 url: "https://elpa.nongnu.org/nongnu/tablist-1.0.tar",
                 sha256: "0z05va5fq054xysvhnpblxk5x0v6k4ian0hby6vryfxg9828gy57",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$761,
+              [nix.POS]: pos$761,
               homepage: "https://elpa.nongnu.org/nongnu/tablist.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7238,18 +7238,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$765,
+            [nix.POS]: pos$765,
             pname: "tabspaces",
             ename: "tabspaces",
             version: "1.11.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$763,
+                [nix.POS]: pos$763,
                 url: "https://elpa.nongnu.org/nongnu/tabspaces-1.11.0.tar",
                 sha256: "1gfvykgg8ngrssb79fdlaqzcgvhhhlda28a3w77766w9gsvgcycr",
               })))),
             packageRequires: nix.thunk(() => [project]),
             meta: nix.thunk(() => ({
-              __proto__: pos$764,
+              [nix.POS]: pos$764,
               homepage: "https://elpa.nongnu.org/nongnu/tabspaces.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7261,18 +7261,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$768,
+            [nix.POS]: pos$768,
             pname: "tangotango-theme",
             ename: "tangotango-theme",
             version: "0.0.7",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$766,
+                [nix.POS]: pos$766,
                 url: "https://elpa.nongnu.org/nongnu/tangotango-theme-0.0.7.tar",
                 sha256: "1w287p8lpmkm80qy1di2xmd71k051qmg89cn7s21kgi4br3hbbph",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$767,
+              [nix.POS]: pos$767,
               homepage: "https://elpa.nongnu.org/nongnu/tangotango-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7284,18 +7284,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$771,
+            [nix.POS]: pos$771,
             pname: "teco",
             ename: "teco",
             version: "9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$769,
+                [nix.POS]: pos$769,
                 url: "https://elpa.nongnu.org/nongnu/teco-9.tar",
                 sha256: "1c794lb22pbqc3dsaadjp0jn50j1c6wrx1b2xq1pp39yja49qvpp",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$770,
+              [nix.POS]: pos$770,
               homepage: "https://elpa.nongnu.org/nongnu/teco.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7310,18 +7310,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const seq = nix.arg($_1, "seq");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$774,
+            [nix.POS]: pos$774,
             pname: "telephone-line",
             ename: "telephone-line",
             version: "0.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$772,
+                [nix.POS]: pos$772,
                 url: "https://elpa.nongnu.org/nongnu/telephone-line-0.5.tar",
                 sha256: "0pmn1r2g639c8g3rw5q2d5cgdz79d4ipr3r4dzwx2mgff3ri1ylm",
               })))),
             packageRequires: nix.thunk(() => [cl_generic, cl_lib, seq]),
             meta: nix.thunk(() => ({
-              __proto__: pos$773,
+              [nix.POS]: pos$773,
               homepage: "https://elpa.nongnu.org/nongnu/telephone-line.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7333,18 +7333,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$777,
+            [nix.POS]: pos$777,
             pname: "testcover-mark-line",
             ename: "testcover-mark-line",
             version: "0.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$775,
+                [nix.POS]: pos$775,
                 url: "https://elpa.nongnu.org/nongnu/testcover-mark-line-0.3.tar",
                 sha256: "1p1dmxqdyk82qbcmggmzn15nz4jm98j5bjivy56vimgncqfbaf4h",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$776,
+              [nix.POS]: pos$776,
               homepage: "https://elpa.nongnu.org/nongnu/testcover-mark-line.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7356,18 +7356,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$780,
+            [nix.POS]: pos$780,
             pname: "textile-mode",
             ename: "textile-mode",
             version: "1.0.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$778,
+                [nix.POS]: pos$778,
                 url: "https://elpa.nongnu.org/nongnu/textile-mode-1.0.0.tar",
                 sha256: "02nc3wijsb626631m09f2ygpmimkbl46x5hi8yk0wl18y66yq972",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$779,
+              [nix.POS]: pos$779,
               homepage: "https://elpa.nongnu.org/nongnu/textile-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7379,18 +7379,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$783,
+            [nix.POS]: pos$783,
             pname: "toc-org",
             ename: "toc-org",
             version: "1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$781,
+                [nix.POS]: pos$781,
                 url: "https://elpa.nongnu.org/nongnu/toc-org-1.1.tar",
                 sha256: "0qhkn1a4j1q5gflqlyha2534sms8xsx03i7dizrckhl368yznwan",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$782,
+              [nix.POS]: pos$782,
               homepage: "https://elpa.nongnu.org/nongnu/toc-org.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7403,18 +7403,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$786,
+            [nix.POS]: pos$786,
             pname: "totp-auth",
             ename: "totp-auth",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$784,
+                [nix.POS]: pos$784,
                 url: "https://elpa.nongnu.org/nongnu/totp-auth-1.0.tar",
                 sha256: "0hzj0p1r18q8vkhkbxbfakvmgld9y8n5hzza5zir0cpalv5590r5",
               })))),
             packageRequires: nix.thunk(() => [base32]),
             meta: nix.thunk(() => ({
-              __proto__: pos$785,
+              [nix.POS]: pos$785,
               homepage: "https://elpa.nongnu.org/nongnu/totp-auth.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7427,18 +7427,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const transient = nix.arg($_1, "transient");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$789,
+            [nix.POS]: pos$789,
             pname: "tp",
             ename: "tp",
             version: "0.9",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$787,
+                [nix.POS]: pos$787,
                 url: "https://elpa.nongnu.org/nongnu/tp-0.9.tar",
                 sha256: "0xaqynvw65l5dm3hxba6v8jrh2pvn6b2q0npsf9sdwryjg2zlk41",
               })))),
             packageRequires: nix.thunk(() => [transient]),
             meta: nix.thunk(() => ({
-              __proto__: pos$788,
+              [nix.POS]: pos$788,
               homepage: "https://elpa.nongnu.org/nongnu/tp.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7450,18 +7450,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$792,
+            [nix.POS]: pos$792,
             pname: "treepy",
             ename: "treepy",
             version: "0.1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$790,
+                [nix.POS]: pos$790,
                 url: "https://elpa.nongnu.org/nongnu/treepy-0.1.3.tar",
                 sha256: "07xwqvqhnx3nkrj0pb9fgbg3agcrxdzxl3c8isi3pxwqnchykk0z",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$791,
+              [nix.POS]: pos$791,
               homepage: "https://elpa.nongnu.org/nongnu/treepy.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7473,18 +7473,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$795,
+            [nix.POS]: pos$795,
             pname: "treesit-fold",
             ename: "treesit-fold",
             version: "0.2.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$793,
+                [nix.POS]: pos$793,
                 url: "https://elpa.nongnu.org/nongnu/treesit-fold-0.2.1.tar",
                 sha256: "1dxrp6rd6bp90h7yhkr61jf83w7ivryk2ln6hdyl6lirfk7d4h43",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$794,
+              [nix.POS]: pos$794,
               homepage: "https://elpa.nongnu.org/nongnu/treesit-fold.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7496,18 +7496,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$798,
+            [nix.POS]: pos$798,
             pname: "treeview",
             ename: "treeview",
             version: "1.3.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$796,
+                [nix.POS]: pos$796,
                 url: "https://elpa.nongnu.org/nongnu/treeview-1.3.1.tar",
                 sha256: "02xac8kfh5j6vz0k44wif5v9h9xzs7srwxk0jff21qw32wy4accl",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$797,
+              [nix.POS]: pos$797,
               homepage: "https://elpa.nongnu.org/nongnu/treeview.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7519,18 +7519,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$801,
+            [nix.POS]: pos$801,
             pname: "tuareg",
             ename: "tuareg",
             version: "3.1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$799,
+                [nix.POS]: pos$799,
                 url: "https://elpa.nongnu.org/nongnu/tuareg-3.1.0.tar",
                 sha256: "1fhw143rmdzrfrh6y3jdsyq6yqwv1dy6m6sg4s3mbqhnhxawc9sm",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$800,
+              [nix.POS]: pos$800,
               homepage: "https://elpa.nongnu.org/nongnu/tuareg.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7542,18 +7542,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$804,
+            [nix.POS]: pos$804,
             pname: "typescript-mode",
             ename: "typescript-mode",
             version: "0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$802,
+                [nix.POS]: pos$802,
                 url: "https://elpa.nongnu.org/nongnu/typescript-mode-0.4.tar",
                 sha256: "1fs369h8ysrx1d8qzvz75izmlx4gzl619g7yjp9ck2wjv50wx95q",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$803,
+              [nix.POS]: pos$803,
               homepage: "https://elpa.nongnu.org/nongnu/typescript-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7565,18 +7565,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$807,
+            [nix.POS]: pos$807,
             pname: "typst-ts-mode",
             ename: "typst-ts-mode",
             version: "0.12.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$805,
+                [nix.POS]: pos$805,
                 url: "https://elpa.nongnu.org/nongnu/typst-ts-mode-0.12.2.tar",
                 sha256: "170q09ma08cksyg9bapfhid28f0xi46ssdv7bzdyiy3gc4x61i4b",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$806,
+              [nix.POS]: pos$806,
               homepage: "https://elpa.nongnu.org/nongnu/typst-ts-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7588,18 +7588,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$810,
+            [nix.POS]: pos$810,
             pname: "ujelly-theme",
             ename: "ujelly-theme",
             version: "1.3.6",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$808,
+                [nix.POS]: pos$808,
                 url: "https://elpa.nongnu.org/nongnu/ujelly-theme-1.3.6.tar",
                 sha256: "19z3nf8avsipyywwlr77sy1bmf6gx5kk3fyph6nn4sn5vhcmgg0p",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$809,
+              [nix.POS]: pos$809,
               homepage: "https://elpa.nongnu.org/nongnu/ujelly-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7611,18 +7611,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$813,
+            [nix.POS]: pos$813,
             pname: "undo-fu",
             ename: "undo-fu",
             version: "0.5",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$811,
+                [nix.POS]: pos$811,
                 url: "https://elpa.nongnu.org/nongnu/undo-fu-0.5.tar",
                 sha256: "00pgvmks1nvdimsac534qny5vpq8sgcfgybiz3ck3mgfklj4kshj",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$812,
+              [nix.POS]: pos$812,
               homepage: "https://elpa.nongnu.org/nongnu/undo-fu.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7634,18 +7634,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$816,
+            [nix.POS]: pos$816,
             pname: "undo-fu-session",
             ename: "undo-fu-session",
             version: "0.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$814,
+                [nix.POS]: pos$814,
                 url: "https://elpa.nongnu.org/nongnu/undo-fu-session-0.8.tar",
                 sha256: "1l69q4g5f9dza0npw9sp2y398q142xzpfgrmhl3aa2fjq49d4bcf",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$815,
+              [nix.POS]: pos$815,
               homepage: "https://elpa.nongnu.org/nongnu/undo-fu-session.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7657,18 +7657,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$819,
+            [nix.POS]: pos$819,
             pname: "vc-fossil",
             ename: "vc-fossil",
             version: "20230504",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$817,
+                [nix.POS]: pos$817,
                 url: "https://elpa.nongnu.org/nongnu/vc-fossil-20230504.tar",
                 sha256: "1q78xcfzpvvrlr9b9yh57asrlks2n0nhxhxl8dyfwad6gm0yr948",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$818,
+              [nix.POS]: pos$818,
               homepage: "https://elpa.nongnu.org/nongnu/vc-fossil.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7681,18 +7681,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const sapling = nix.arg($_1, "sapling");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$822,
+            [nix.POS]: pos$822,
             pname: "vc-sapling",
             ename: "vc-sapling",
             version: "0.2.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$820,
+                [nix.POS]: pos$820,
                 url: "https://elpa.nongnu.org/nongnu/vc-sapling-0.2.1.tar",
                 sha256: "03qwybz6b8zi2ky9b29fy0h5443v3sp4d7f8xn6v85r3694a38kd",
               })))),
             packageRequires: nix.thunk(() => [sapling]),
             meta: nix.thunk(() => ({
-              __proto__: pos$821,
+              [nix.POS]: pos$821,
               homepage: "https://elpa.nongnu.org/nongnu/vc-sapling.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7704,18 +7704,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$825,
+            [nix.POS]: pos$825,
             pname: "vcomplete",
             ename: "vcomplete",
             version: "2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$823,
+                [nix.POS]: pos$823,
                 url: "https://elpa.nongnu.org/nongnu/vcomplete-2.0.tar",
                 sha256: "03f60ncrf994pc4q15m0p2admmy4gpg5c51nbr3xycqp16pq8dz1",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$824,
+              [nix.POS]: pos$824,
               homepage: "https://elpa.nongnu.org/nongnu/vcomplete.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7727,18 +7727,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$828,
+            [nix.POS]: pos$828,
             pname: "visual-fill-column",
             ename: "visual-fill-column",
             version: "2.7.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$826,
+                [nix.POS]: pos$826,
                 url: "https://elpa.nongnu.org/nongnu/visual-fill-column-2.7.1.tar",
                 sha256: "0c5vammsvj0cx343s9nncdmcrpbaqiwk276clqkib594g74rjnmd",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$827,
+              [nix.POS]: pos$827,
               homepage: "https://elpa.nongnu.org/nongnu/visual-fill-column.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7751,18 +7751,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const vcard = nix.arg($_1, "vcard");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$831,
+            [nix.POS]: pos$831,
             pname: "vm",
             ename: "vm",
             version: "8.3.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$829,
+                [nix.POS]: pos$829,
                 url: "https://elpa.nongnu.org/nongnu/vm-8.3.2.tar",
                 sha256: "0s2l4sjzgq4mm82dq6856wncsdvwsgk569i2rybbcsbw6v4hyvwv",
               })))),
             packageRequires: nix.thunk(() => [vcard]),
             meta: nix.thunk(() => ({
-              __proto__: pos$830,
+              [nix.POS]: pos$830,
               homepage: "https://elpa.nongnu.org/nongnu/vm.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7774,18 +7774,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$834,
+            [nix.POS]: pos$834,
             pname: "web-mode",
             ename: "web-mode",
             version: "17.3.25",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$832,
+                [nix.POS]: pos$832,
                 url: "https://elpa.nongnu.org/nongnu/web-mode-17.3.25.tar",
                 sha256: "1a52p408a99by7p1xdv1yy2m389c0l3s54mf2b44rqpskzgr6g3m",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$833,
+              [nix.POS]: pos$833,
               homepage: "https://elpa.nongnu.org/nongnu/web-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7799,18 +7799,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const request = nix.arg($_1, "request");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$837,
+            [nix.POS]: pos$837,
             pname: "webpaste",
             ename: "webpaste",
             version: "3.2.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$835,
+                [nix.POS]: pos$835,
                 url: "https://elpa.nongnu.org/nongnu/webpaste-3.2.2.tar",
                 sha256: "04156iwgbc49l3b6s5vzbffw1xrkansvczi6q29d5waxwi6a2nfc",
               })))),
             packageRequires: nix.thunk(() => [cl_lib, request]),
             meta: nix.thunk(() => ({
-              __proto__: pos$836,
+              [nix.POS]: pos$836,
               homepage: "https://elpa.nongnu.org/nongnu/webpaste.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7822,18 +7822,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$840,
+            [nix.POS]: pos$840,
             pname: "wfnames",
             ename: "wfnames",
             version: "1.2",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$838,
+                [nix.POS]: pos$838,
                 url: "https://elpa.nongnu.org/nongnu/wfnames-1.2.tar",
                 sha256: "1yy034fx86wn6yv4671fybc4zn5g619zcnnfvryq6zpwibj6fikz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$839,
+              [nix.POS]: pos$839,
               homepage: "https://elpa.nongnu.org/nongnu/wfnames.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7845,18 +7845,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$843,
+            [nix.POS]: pos$843,
             pname: "wgrep",
             ename: "wgrep",
             version: "3.0.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$841,
+                [nix.POS]: pos$841,
                 url: "https://elpa.nongnu.org/nongnu/wgrep-3.0.0.tar",
                 sha256: "18j94y6xrjdmy5sk83mh5zaz4vqpi97pcjila387c0d84j1v2wzz",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$842,
+              [nix.POS]: pos$842,
               homepage: "https://elpa.nongnu.org/nongnu/wgrep.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7868,18 +7868,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$846,
+            [nix.POS]: pos$846,
             pname: "why-this",
             ename: "why-this",
             version: "2.0.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$844,
+                [nix.POS]: pos$844,
                 url: "https://elpa.nongnu.org/nongnu/why-this-2.0.4.tar",
                 sha256: "1swidi6z6rhhy2zvas84vmkj41zaqpdxfssg6x6lvzzq34cgq0ph",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$845,
+              [nix.POS]: pos$845,
               homepage: "https://elpa.nongnu.org/nongnu/why-this.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7894,18 +7894,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const llama = nix.arg($_1, "llama");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$849,
+            [nix.POS]: pos$849,
             pname: "with-editor",
             ename: "with-editor",
             version: "3.5.4",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$847,
+                [nix.POS]: pos$847,
                 url: "https://elpa.nongnu.org/nongnu/with-editor-3.5.4.tar",
                 sha256: "09kzcfqm23yiqqf380y2122qadgbmhk1r2275vpfk6zczip1blvd",
               })))),
             packageRequires: nix.thunk(() => [compat, cond_let, llama]),
             meta: nix.thunk(() => ({
-              __proto__: pos$848,
+              [nix.POS]: pos$848,
               homepage: "https://elpa.nongnu.org/nongnu/with-editor.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7917,18 +7917,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$852,
+            [nix.POS]: pos$852,
             pname: "with-simulated-input",
             ename: "with-simulated-input",
             version: "3.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$850,
+                [nix.POS]: pos$850,
                 url: "https://elpa.nongnu.org/nongnu/with-simulated-input-3.0.tar",
                 sha256: "0a2kqrv3q399n1y21v7m4c9ivm56j28kasb466rq704jccvzblfr",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$851,
+              [nix.POS]: pos$851,
               homepage: "https://elpa.nongnu.org/nongnu/with-simulated-input.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7942,18 +7942,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const project = nix.arg($_1, "project");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$855,
+            [nix.POS]: pos$855,
             pname: "workroom",
             ename: "workroom",
             version: "2.3.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$853,
+                [nix.POS]: pos$853,
                 url: "https://elpa.nongnu.org/nongnu/workroom-2.3.1.tar",
                 sha256: "0k0npmcs3cdkfds0r8p0gm8xa42bzdjiciilh65jka15fqknx486",
               })))),
             packageRequires: nix.thunk(() => [compat, project]),
             meta: nix.thunk(() => ({
-              __proto__: pos$854,
+              [nix.POS]: pos$854,
               homepage: "https://elpa.nongnu.org/nongnu/workroom.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7965,18 +7965,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$858,
+            [nix.POS]: pos$858,
             pname: "writegood-mode",
             ename: "writegood-mode",
             version: "2.2.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$856,
+                [nix.POS]: pos$856,
                 url: "https://elpa.nongnu.org/nongnu/writegood-mode-2.2.0.tar",
                 sha256: "00phrzbd03gzc5y2ybizyp9smd6ybmmx2j7jf6hg5cmfyjmq8ahw",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$857,
+              [nix.POS]: pos$857,
               homepage: "https://elpa.nongnu.org/nongnu/writegood-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -7988,18 +7988,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$861,
+            [nix.POS]: pos$861,
             pname: "ws-butler",
             ename: "ws-butler",
             version: "1.3",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$859,
+                [nix.POS]: pos$859,
                 url: "https://elpa.nongnu.org/nongnu/ws-butler-1.3.tar",
                 sha256: "14q19rvps5jcshyls3aa55pxmqbbkhhbdlchnl7ybxwkvvmig9zh",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$860,
+              [nix.POS]: pos$860,
               homepage: "https://elpa.nongnu.org/nongnu/ws-butler.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8011,18 +8011,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$864,
+            [nix.POS]: pos$864,
             pname: "xah-fly-keys",
             ename: "xah-fly-keys",
             version: "28.11.20260901082352",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$862,
+                [nix.POS]: pos$862,
                 url: "https://elpa.nongnu.org/nongnu/xah-fly-keys-28.11.20260901082352.tar",
                 sha256: "1h4923fwqy45173pc8li6n78nd4arrb6p8q33c5zig4z4d17sv6b",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$863,
+              [nix.POS]: pos$863,
               homepage: "https://elpa.nongnu.org/nongnu/xah-fly-keys.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8035,18 +8035,18 @@ export default nix.lambda((args) => (() => {
         const json = nix.argOr($_1, "json", () => null);
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$867,
+            [nix.POS]: pos$867,
             pname: "xkcd",
             ename: "xkcd",
             version: "1.1",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$865,
+                [nix.POS]: pos$865,
                 url: "https://elpa.nongnu.org/nongnu/xkcd-1.1.tar",
                 sha256: "1qs4jv6h2i8g7s214xr4s6jgykdbac4lfc5hd0gmylkwlvs3pzcp",
               })))),
             packageRequires: nix.thunk(() => [json]),
             meta: nix.thunk(() => ({
-              __proto__: pos$866,
+              [nix.POS]: pos$866,
               homepage: "https://elpa.nongnu.org/nongnu/xkcd.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8058,18 +8058,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$870,
+            [nix.POS]: pos$870,
             pname: "xml-rpc",
             ename: "xml-rpc",
             version: "1.6.17",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$868,
+                [nix.POS]: pos$868,
                 url: "https://elpa.nongnu.org/nongnu/xml-rpc-1.6.17.tar",
                 sha256: "1r8j87xddv80dx6lxzr2kq6czwk2l22bfxmplnma9fc2bsf1k2wy",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$869,
+              [nix.POS]: pos$869,
               homepage: "https://elpa.nongnu.org/nongnu/xml-rpc.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8081,18 +8081,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$873,
+            [nix.POS]: pos$873,
             pname: "yaml-mode",
             ename: "yaml-mode",
             version: "0.0.16",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$871,
+                [nix.POS]: pos$871,
                 url: "https://elpa.nongnu.org/nongnu/yaml-mode-0.0.16.tar",
                 sha256: "0bhflv50z379p6ysdq89bdszkxp8zdmlb8plj1bm2nqsgc39hdm7",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$872,
+              [nix.POS]: pos$872,
               homepage: "https://elpa.nongnu.org/nongnu/yaml-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8105,18 +8105,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const yasnippet = nix.arg($_1, "yasnippet");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$876,
+            [nix.POS]: pos$876,
             pname: "yasnippet-snippets",
             ename: "yasnippet-snippets",
             version: "1.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$874,
+                [nix.POS]: pos$874,
                 url: "https://elpa.nongnu.org/nongnu/yasnippet-snippets-1.0.tar",
                 sha256: "0si61d0niabh18vbgdz6w5zirpxpp7c4mrcn5x1n3r5vnhv3n7m2",
               })))),
             packageRequires: nix.thunk(() => [yasnippet]),
             meta: nix.thunk(() => ({
-              __proto__: pos$875,
+              [nix.POS]: pos$875,
               homepage: "https://elpa.nongnu.org/nongnu/yasnippet-snippets.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8128,18 +8128,18 @@ export default nix.lambda((args) => (() => {
         const fetchurl = nix.arg($_1, "fetchurl");
         const lib = nix.arg($_1, "lib");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$879,
+            [nix.POS]: pos$879,
             pname: "zenburn-theme",
             ename: "zenburn-theme",
             version: "2.11.0",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$877,
+                [nix.POS]: pos$877,
                 url: "https://elpa.nongnu.org/nongnu/zenburn-theme-2.11.0.tar",
                 sha256: "07w81s514v5vb69mdsm0174ah4nixami1x00qhilm4yx9i96g417",
               })))),
             packageRequires: [],
             meta: nix.thunk(() => ({
-              __proto__: pos$878,
+              [nix.POS]: pos$878,
               homepage: "https://elpa.nongnu.org/nongnu/zenburn-theme.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),
@@ -8152,18 +8152,18 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const reformatter = nix.arg($_1, "reformatter");
         return nix.app(elpaBuild, nix.thunk(() => ({
-            __proto__: pos$882,
+            [nix.POS]: pos$882,
             pname: "zig-mode",
             ename: "zig-mode",
             version: "0.0.8",
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$880,
+                [nix.POS]: pos$880,
                 url: "https://elpa.nongnu.org/nongnu/zig-mode-0.0.8.tar",
                 sha256: "1085lxm6k7b91c0q8jmmir59hzaqi8jgspbs89bvia2vq5x9xd87",
               })))),
             packageRequires: nix.thunk(() => [reformatter]),
             meta: nix.thunk(() => ({
-              __proto__: pos$881,
+              [nix.POS]: pos$881,
               homepage: "https://elpa.nongnu.org/nongnu/zig-mode.html",
               license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
             })),

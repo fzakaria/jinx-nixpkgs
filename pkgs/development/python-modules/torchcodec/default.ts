@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   const libavif_root = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "libavif-root",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libavif)),
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libavif)),
       ]),
     }))));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$8,
       pname: "torchcodec",
       version: "0.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "meta-pytorch",
           repo: "torchcodec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,17 +97,17 @@ substituteInPlace test/test_decoders.py \\
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [torch]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         I_CONFIRM_THIS_IS_NOT_A_LICENSE_VIOLATION: true,
         ENABLE_CUDA: cudaSupport,
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_AVIF_S3", nix.thunk(() => nix.sel(libavif_root, "outPath")))),
           ]))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)}`),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           ROCM_PATH: nix.thunk(() => nix.sel(torch, "rocmtoolkit_joined")),
           ROCM_SOURCE_DIR: nix.thunk(() => nix.sel(torch, "rocmtoolkit_joined")),
           PYTORCH_ROCM_ARCH: nix.thunk(() => nix.sel(torch, "gpuTargetString")),
@@ -119,7 +119,7 @@ substituteInPlace test/test_decoders.py \\
       disabledTestPaths: nix.thunk(() => ["test/plugin/test_plugins.py"]),
       disabledTests: nix.thunk(() => nix.concat(["test_audio_against_cli"], nix.concat(nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => ["test_python_logger"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_python_logger"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "PyTorch media decoding and encoding",
         homepage: "https://github.com/meta-pytorch/torchcodec",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/torchcodec/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

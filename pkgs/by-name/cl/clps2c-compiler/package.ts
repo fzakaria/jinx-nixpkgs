@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const keystone_rev = "MIPS-0.9.2";
   const keystone_sha256 = "sha256-xLkO06ZgnmAavJMP1kjDwXT1hc5eSDXv+4MUkOz6xeo=";
   const keystone_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "keystone",
       owner: owner,
       repo: "keystone",
       rev: keystone_rev,
       sha256: keystone_sha256,
     }))));
-  const keystone_override = nix.thunk(() => nix.app(nix.sel(keystone, "overrideAttrs"), (old) => ({ __proto__: pos$2, src: keystone_src })));
+  const keystone_override = nix.thunk(() => nix.app(nix.sel(keystone, "overrideAttrs"), (old) => ({ [nix.POS]: pos$2, src: keystone_src })));
   return nix.app(buildDotnetModule, nix.thunk(() => (() => {
       const version_1 = version;
       const pname_1 = pname;
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: pname_1,
             owner: owner,
             repo: "CLPS2C-Compiler",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [keystone_override]);
       const projectFile = "CLPS2C-Compiler/CLPS2C-Compiler/CLPS2C-Compiler.csproj";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/NiV-L-A/CLPS2C-Compiler",
         description: "Compiler for CLPS2C, a domain-specific language built specifically for writing PS2 cheat codes",
         mainProgram: "CLPS2C-Compiler",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: version_1,
         pname: pname_1,
         srcs,

@@ -29,28 +29,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         toxvpn: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "toxvpn running on startup")),
           localip: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "10.123.123.1",
               description: "your ip on the vpn",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 33445n,
               description: "udp port for toxcore, port-forward to help with connectivity if you run many nodes behind one NAT",
             })))),
           auto_add_peers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["toxid1", "toxid2"]),
@@ -60,21 +60,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "toxvpn", "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             toxvpn: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "toxvpn daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => (() => {
                   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       i: nix.thunk(() => nix.sel(config, "services", "toxvpn", "localip")),
                       l: "/run/toxvpn/control",
                       u: "toxvpn",
@@ -93,22 +93,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "toxvpn"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             toxvpn: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               isSystemUser: true,
               group: "toxvpn",
               home: "/var/lib/toxvpn",
               createHome: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, toxvpn: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, toxvpn: nix.thunk(() => ({})) })),
         })),
       })))),
   };

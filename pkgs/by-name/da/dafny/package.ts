@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const examples = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "gaberch",
       repo: "Various-Algorithms-Verified-With-Dafny",
       rev: "50e451bbcd15e52e27d5bbbf66b0b4c4abbff41c",
       hash: "sha256-Ng5wve/4gQr/2hsFWUFFcTL3K2xH7dP9w8IrmvWMKyg=",
     }))));
   const tests = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     verify: nix.thunk(() => nix.app(runCommand, "dafny-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 cp ${examples}/SlowMax.dfy $out
 ${dafny}/bin/dafny verify --allow-warnings $out/SlowMax.dfy
@@ -39,7 +39,7 @@ ${dafny}/bin/dafny verify --allow-warnings $out/SlowMax.dfy
       const pname = "Dafny";
       const version = "4.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "dafny-lang",
           repo: "dafny",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,9 +72,9 @@ substituteInPlace Source/DafnyRuntime/DafnyRuntime.csproj \\
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [z3, dotnet_sdk]))}`),
       ]);
       const postFixup = "ln -s \"$out/bin/Dafny\" \"$out/bin/dafny\" || true\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, tests: tests }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, tests: tests }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Programming language with built-in specification constructs",
         homepage: "https://research.microsoft.com/dafny",
         maintainers: nix.thunk(() => (() => {
@@ -88,7 +88,7 @@ substituteInPlace Source/DafnyRuntime/DafnyRuntime.csproj \\
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

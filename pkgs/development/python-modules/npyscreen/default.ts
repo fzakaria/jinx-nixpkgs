@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "4.10.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0vhjwn0dan3zmffvh80dxb4x67jysvvf1imp6pk4dsfslpwy0bk2",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for developing console applications using Python and curses",
         homepage: "https://www.npcole.com/npyscreen/",
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

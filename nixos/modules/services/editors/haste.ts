@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "haste-server"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "haste-server": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "haste-server")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "firewall passthrough for haste-server")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Configuration for haste-server.\nFor documentation see [project readme](https://github.com/toptal/haste-server#settings)\n",
               type: nix.thunk(() => nix.sel(format, "type")),
             })))),
@@ -53,20 +53,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           firewall: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           "haste-server": nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "::")),
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 7777n)),
               keyLength: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 10n)),
@@ -74,39 +74,39 @@ export default nix.lambda((args) => (() => {
               staticMaxAge: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 86400n)),
               recompressStaticAssets: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
               logging: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$7, level: "verbose", type: "Console", colorize: true })),
+                  nix.thunk(() => ({ [nix.POS]: pos$7, level: "verbose", type: "Console", colorize: true })),
                 ]))),
-              keyGenerator: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$8, type: "phonetic" })))),
+              keyGenerator: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$8, type: "phonetic" })))),
               rateLimits: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 categories: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   normal: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     totalRequests: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 500n)),
                     every: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 60000n)),
                   })),
                 })),
               })),
-              storage: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$12, type: "file" })))),
+              storage: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$12, type: "file" })))),
               documents: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 about: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${pkg}/share/haste-server/about.md`))),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "haste-server": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 User: "haste-server",
                 DynamicUser: true,
                 StateDirectory: "haste-server",

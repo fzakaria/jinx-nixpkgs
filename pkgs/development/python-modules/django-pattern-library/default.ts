@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "torchbox",
           repo: "django-pattern-library",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const propagatedBuildInputs = nix.thunk(() => [django, pyyaml, markdown]);
       const nativeCheckInputs = nix.thunk(() => [beautifulsoup4, pytestCheckHook, pytest_django, mkdocs]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings.dev" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings.dev" }));
       const pythonImportsCheck = nix.thunk(() => ["pattern_library"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "UI pattern libraries for Django templates",
         homepage: "https://github.com/torchbox/django-pattern-library/",
         changelog: nix.thunk(() => nix.str`https://github.com/torchbox/django-pattern-library/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

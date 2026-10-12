@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const mockito = nix.arg($, "mockito");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onlinepayments-sdk-python3",
       version: "4.23.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wl-online-payments-direct",
           repo: "sdk-python3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["testConnection_request", "testConnection_response"]),
       pythonImportsCheck: nix.thunk(() => ["onlinepayments"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SDK to communicate with the Online Payments platform using the Online Payments Server API",
         homepage: "https://github.com/wl-online-payments-direct/sdk-python3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

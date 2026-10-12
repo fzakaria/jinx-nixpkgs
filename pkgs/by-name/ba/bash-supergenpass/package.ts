@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bash-supergenpass",
       version: "0-unstable-2024-03-24",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lanzz",
           repo: "bash-supergenpass",
           rev: "03416ad4d753d825acd0443a01ac13d385d5e048",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
 wrapProgram "$out/bin/supergenpass" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssl, coreutils, gnugrep]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://github.com/lanzz/bash-supergenpass.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/lanzz/bash-supergenpass.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bash shell-script implementation of SuperGenPass password generation",
         longDescription: "Bash shell-script implementation of SuperGenPass password generation\nUsage: ./supergenpass.sh <domain> [ <length> ]\n\nDefault <length> is 10, which is also the original SuperGenPass default length.\n\nThe <domain> parameter is also optional, but it does not make much sense to omit it.\n\nsupergenpass will ask for your master password interactively, and it will not be displayed on your terminal.\n",
         homepage: "https://github.com/lanzz/bash-supergenpass",

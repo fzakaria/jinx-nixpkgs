@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gentium_plus = nix.arg($, "gentium-plus");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hottext",
       version: "20231003",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~ehmry",
           repo: "hottext",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         })))),
       lockFile: nix.path(here, "./lock.json"),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         HOTTEXT_FONT_PATH: nix.thunk(() => nix.str`${gentium_plus}/share/fonts/truetype/GentiumPlus-Regular.ttf`),
       })),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           categories: nix.thunk(() => ["Utility"]),
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
           desktopName: "hottext",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "cp -r $desktopItem/* $out\n",
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple RSVP speed-reading utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         homepage: "https://git.sr.ht/~ehmry/hottext",

@@ -70,25 +70,25 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), secretsTypeBase)),
     ])));
   const secretsType = nix.thunk(() => nix.update(secretsTypeBase, {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: nix.thunk(() => nix.str`nested attribute set of ${nix.sel(types, "externalPath", "description")}`),
   }));
   const labels = (instance) => nix.concat(nix.sel(instance, "settings", "runner", "labels"), nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (value) => nix.selOr(value, () => [], "labels"), nix.thunk(() => nix.sel(instance, "settings", "server", "connections"))))));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => nix.sel(pkgs, "forgejo-runner", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         "forgejo-runner": nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "forgejo-runner", nix.thunk(() => ({})))),
           instances: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: nix.thunk(() => ({})),
               description: "Forgejo Runner instances.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
                     const config_1 = nix.arg($_1, "config");
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       imports: nix.thunk(() => [
                         nix.path(here, "../../misc/assertions.nix"),
                         nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["url"]), nix.thunk(() => ["settings", "server", "connections", "default", "url"]))),
@@ -148,10 +148,10 @@ Assuming you are migrating from \`services.gitea-actions-runner', you will need 
 `))),
                       ]),
                       config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config_1, "enable")), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           assertions: nix.thunk(() => nix.concat([
                             nix.thunk(() => ({
-                              __proto__: pos$3,
+                              [nix.POS]: pos$3,
                               assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "any"), (label) => nix.app(nix.sel(lib, "hasInfix"), ":docker", label), nix.thunk(() => nix.app(labels, config_1)))) || nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(config_1, "runtimes", "docker")) || nix.asBool(nix.sel(config_1, "runtimes", "podman")))) || nix.asBool(nix.lt(nix.sel(options, "runtimes", "docker", "highestPrio"), nix.sel(nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => ({}))), "priority"))))) || nix.asBool(nix.lt(nix.sel(options, "runtimes", "podman", "highestPrio"), nix.sel(nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => ({}))), "priority"))))))),
                               message: nix.thunk(() => nix.str`The option \`${nix.sel(options, "settings")}' has at least one label of
 type \`docker' configured, but no compatible container runtime enabled.
@@ -167,7 +167,7 @@ and are certain this is wrong, you can set
 `),
                             })),
                             nix.thunk(() => ({
-                              __proto__: pos$4,
+                              [nix.POS]: pos$4,
                               assertion: nix.thunk(() => !nix.eq(nix.sel(config_1, "settings", "server", "connections"), {})),
                               message: nix.thunk(() => nix.str`The option \`${nix.sel(options, "settings")}.server.connections' requires at least one connection.
 `),
@@ -175,31 +175,31 @@ and are certain this is wrong, you can set
                           ], nix.app(foldlAttrs, (assertions) => (_) => (connection) => nix.concat(assertions, nix.sel(connection, "assertions")), [], nix.thunk(() => nix.sel(config_1, "settings", "server", "connections"))))),
                         })))),
                       options: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         enable: nix.thunk(() => nix.app(mkEnableOption, "this Forgejo Runner instance")),
                         settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             default: nix.thunk(() => ({})),
                             description: "Free-form settings written directly to the {file}`config.yaml` file.\nRefer to [`config.example.yaml`] or run {command}`forgejo-runner generation-config` for supported values.\n\n[`config.example.yaml`]: https://code.forgejo.org/forgejo/runner/src/branch/main/internal/pkg/config/config.example.yaml\n",
                             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$18,
+                                [nix.POS]: pos$18,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 config: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (_) => nix.str`file:$CREDENTIALS_DIRECTORY/${nix.app(nix.sel(lib, "join"), "__", path)}`, nix.thunk(() => nix.sel(config_1, "secrets")))),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$17,
+                                  [nix.POS]: pos$17,
                                   runner: nix.thunk(() => ({
-                                    __proto__: pos$7,
+                                    [nix.POS]: pos$7,
                                     labels: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$6,
+                                        [nix.POS]: pos$6,
                                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                                         example: nix.thunk(() => nix.app(literalExpression, "[\n  # provide a debian base with nodejs for actions\n  \"debian-latest:docker://node:current\"\n  # fake the ubuntu name, because node provides no ubuntu builds\n  \"ubuntu-latest:docker://node:current\"\n  # provide native execution on the host\n  #\"native:host\"\n]\n")),
                                         description: "Labels used to map jobs to their runtime environment.\n\nMany common actions require {command}`bash`, {command}`git` and {command}`node`,\nas well as a filesystem that follows the filesystem hierarchy standard.\n\nIf you specify a label of type `docker`, the resulting runner service\nwill be automatically added to the *Podman* or *Docker* group.\n\nSee <https://forgejo.org/docs/latest/admin/actions/configuration/#choosing-labels>.\n\n::: {.note}\nLabels of type [`lxc`] are currently not supported.\n:::\n\n[`lxc`]: https://forgejo.org/docs/latest/admin/actions/configuration/#lxc\n",
                                       })))),
                                   })),
                                   server: nix.thunk(() => ({
-                                    __proto__: pos$16,
+                                    [nix.POS]: pos$16,
                                     connections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        __proto__: pos$15,
+                                        [nix.POS]: pos$15,
                                         default: nix.thunk(() => ({})),
                                         description: "One or more connections to Forgejo instances, each with a UUID and Token pair.\n\nSee <https://forgejo.org/docs/latest/admin/actions/registration/>.\n\n::: {.note}\nEphemeral runner mode is not yet supported by this module.\n:::\n",
                                         example: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`{
@@ -217,14 +217,14 @@ and are certain this is wrong, you can set
                                               const name_1 = nix.arg($_2, "name");
                                               const config_2 = nix.arg($_2, "config");
                                               return {
-                                                __proto__: pos$14,
+                                                [nix.POS]: pos$14,
                                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                                 imports: nix.thunk(() => [nix.path(here, "../../misc/assertions.nix")]),
                                                 config: nix.thunk(() => ({
-                                                  __proto__: pos$9,
+                                                  [nix.POS]: pos$9,
                                                   assertions: nix.thunk(() => [
                                                     nix.thunk(() => ({
-                                                      __proto__: pos$8,
+                                                      [nix.POS]: pos$8,
                                                       assertion: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(config_2, "token"), null)) && nix.asBool(nix.has(config_2, "token_url")))) && nix.asBool(!nix.eq(nix.sel(config_2, "token_url"), null)))) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(config_2, "token"), null)) && nix.asBool(nix.has(config_2, "token_url")))) && nix.asBool(nix.eq(nix.sel(config_2, "token_url"), null)))))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(config_2, "token"), null)) && nix.asBool(!nix.asBool(nix.has(config_2, "token_url"))))))),
                                                       message: nix.thunk(() => nix.str`The option \`${nix.sel(options, "settings")}' needs to have exactly one of
 \`server.connections.${name_1}.token_url': ${(nix.asBool(nix.has(config_2, "token_url")) ? nix.app(nix.sel(lib, "toJSON"), nix.thunk(() => nix.sel(config_2, "token_url"))) : "<not set>")} or
@@ -239,21 +239,21 @@ Hint:
                                                   ]),
                                                 })),
                                                 options: nix.thunk(() => ({
-                                                  __proto__: pos$13,
+                                                  [nix.POS]: pos$13,
                                                   url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                      __proto__: pos$10,
+                                                      [nix.POS]: pos$10,
                                                       type: nix.thunk(() => nix.sel(types, "str")),
                                                       example: "https://example.com/",
                                                       description: "Base URL of your Forgejo instance.\n",
                                                     })))),
                                                   uuid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                      __proto__: pos$11,
+                                                      [nix.POS]: pos$11,
                                                       type: nix.thunk(() => nix.sel(types, "str")),
                                                       example: "c9e50be9-a7c3-4aee-ba35-624c4ff8c519",
                                                       description: "UUID of this runner.\n\nSee <https://forgejo.org/docs/latest/admin/actions/registration/>.\n",
                                                     })))),
                                                   token: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                                      __proto__: pos$12,
+                                                      [nix.POS]: pos$12,
                                                       type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                                       example: "6634bb58be0db23cc013a2e72dd1828ae0257cf",
                                                       description: nix.thunk(() => nix.str`Token of this runner.
@@ -280,7 +280,7 @@ To store the secret securely, see {option}\`${nix.sel(options, "secrets")}.serve
                               })))),
                           })))),
                         secrets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: secretsType,
                             default: nix.thunk(() => ({})),
                             description: nix.thunk(() => nix.str`This follows the same structure as {option}\`${nix.sel(options, "settings")}\`
@@ -294,7 +294,7 @@ and templated into {option}\`${nix.sel(options, "settings")}\` for you.
                             example: nix.thunk(() => nix.app(literalExpression, "{\n  server.connections.example = {\n    token_url = \"/run/keys/forgejo-runner_token\";\n  };\n\n  cache = {\n    secret_url = \"/run/keys/forgejo-runner_cache-secret\";\n  };\n}\n")),
                           })))),
                         hostPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
                             default: nix.thunk(() => (() => {
                               const w = nix.withScope(pkgs, null);
@@ -320,23 +320,23 @@ add it here. Your package will take priority over {command}\`gitMinimal\`.
 `),
                           })))),
                         runtimes: nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: nix.thunk(() => nix.app(nix.sel(lib, "any"), (label) => nix.app(nix.sel(lib, "hasSuffix"), ":host", label), nix.thunk(() => nix.app(labels, config_1)))),
                               defaultText: nix.thunk(() => nix.app(literalMD, "Whether this instance has at least one label with suffix `:host`.")),
                               description: "Whether to configure the systemd service for jobs with the backend of type `host`.\n\n::: {.warning}\nSetting this will override the automatic detection and safeguards.\n:::\n",
                             })))),
                           docker: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$23,
+                              [nix.POS]: pos$23,
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "any"), (label) => nix.app(nix.sel(lib, "hasInfix"), ":docker", label), nix.thunk(() => nix.app(labels, config_1)))) && nix.asBool(nix.sel(config$, "virtualisation", "docker", "enable")))),
                               defaultText: nix.thunk(() => nix.app(literalMD, "Whether this instance has at least one label with infix `:docker`\nand {option}`config.virtualisation.docker.enable` set to `true`.\n")),
                               description: "Whether to configure the systemd service to work with Docker.\n\n::: {.warning}\nSetting this will override the automatic detection and safeguards.\n:::\n",
                             })))),
                           podman: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "any"), (label) => nix.app(nix.sel(lib, "hasInfix"), ":docker", label), nix.thunk(() => nix.app(labels, config_1)))) && nix.asBool(nix.sel(config$, "virtualisation", "podman", "enable")))),
                               defaultText: nix.thunk(() => nix.app(literalMD, "Whether this instance has at least one label with infix `:docker`\nand {option}`config.virtualisation.podman.enable` set to `true`.\n")),
@@ -344,7 +344,7 @@ add it here. Your package will take priority over {command}\`gitMinimal\`.
                             })))),
                         })),
                         configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             internal: true,
                             readOnly: true,
                             type: nix.thunk(() => nix.sel(types, "path")),
@@ -359,25 +359,25 @@ add it here. Your package will take priority over {command}\`gitMinimal\`.
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "instances"), {})), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         assertions: nix.thunk(() => nix.app(foldlAttrs, (assertions) => (_) => (instance) => nix.concat(assertions, nix.sel(instance, "assertions")), [], nix.thunk(() => nix.sel(cfg, "instances")))),
         warnings: nix.thunk(() => nix.app(foldlAttrs, (warnings) => (_) => (instance) => nix.concat(warnings, nix.sel(instance, "warnings")), [], nix.thunk(() => nix.sel(cfg, "instances")))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (instance) => nix.app(nameValuePair, nix.thunk(() => nix.str`forgejo-runner-${nix.app(nix.sel(utils, "escapeSystemdPath"), name)}`), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 enable: nix.thunk(() => nix.attr(instance, "enable")),
                 description: "Forgejo Runner",
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => nix.concat(["network-online.target"], nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(instance, "runtimes", "docker")), nix.thunk(() => ["docker.service"])), nix.app(optionals, nix.thunk(() => nix.sel(instance, "runtimes", "podman")), nix.thunk(() => ["podman.service"]))))),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   HOME: nix.thunk(() => nix.str`/var/lib/forgejo-runner/${name}`),
                 })),
                 path: nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(instance, "runtimes", "host")), nix.thunk(() => nix.sel(instance, "hostPackages"))), [nix.thunk(() => nix.sel(pkgs, "gitMinimal"))])),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   DynamicUser: true,
                   StateDirectory: nix.thunk(() => nix.str`forgejo-runner/${name}`),
                   WorkingDirectory: nix.thunk(() => nix.str`/var/lib/forgejo-runner/${name}`),

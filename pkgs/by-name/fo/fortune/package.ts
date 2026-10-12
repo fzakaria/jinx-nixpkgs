@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   const withOffensive = nix.argOr($, "withOffensive", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fortune-mod",
       version: "3.26.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/shlomif/fortune-mod/releases/download/fortune-mod-${nix.sel(finalAttrs, "version")}/fortune-mod-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-rE0UhsrJuZkEkQcTa5QQb+mKSurADsY1sUTEN2S//kw=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withOffensive)), "rm $out/share/games/fortunes/men-women*\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "fortune",
         description: "Program that displays a pseudorandom message from a database of quotations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

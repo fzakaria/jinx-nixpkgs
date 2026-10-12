@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "formatter",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Djaler",
           repo: "Formatter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ext4: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext4`),
             exfat: nix.thunk(() => nix.str`${exfat}/bin/mkfs.exfat`),
             fat: nix.thunk(() => nix.str`${dosfstools}/bin/mkfs.fat`),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, libgee, nix.thunk(() => nix.sel(pantheon, "granite"))]),
       postPatch: "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple formatter designed for elementary OS",
         homepage: "https://github.com/Djaler/Formatter",
         maintainers: nix.thunk(() => (() => {

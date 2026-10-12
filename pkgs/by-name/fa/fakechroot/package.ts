@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "fakechroot",
       version: "2.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dex4er",
           repo: "fakechroot",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,33 +40,33 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/dex4er/fakechroot/pull/46/commits/dcc0cfe3941e328538f9e62b2c0b15430d393ec1.patch",
             sha256: "1mk8j2njd94s7vf2wggi08xxxzx8dxrvdricl9cbspvkyp715w2m",
             excludes: nix.thunk(() => ["NEWS.md"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/dex4er/fakechroot/commit/534e6d555736b97211523970d378dfb0db2608e9.patch",
             sha256: "sha256-bUlGJZvOSrATPt8bxGqU1UETTUD9V/HhJyA5ZxsOLQU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/dex4er/fakechroot/commit/75d7e6fa191c11a791faff06a0de86eaa7801d05.patch",
             sha256: "sha256-vWN7zFkKlBd/F+h/66z21RiZqkSCn3UIzy9NHV7TYDg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/dex4er/fakechroot/commit/693a3597ea7fccfb62f357503ff177bd3e3d5a89.patch",
             sha256: "sha256-bFXsT0hWocJFbtS1cpzo7oIy/x66iUw6QE1/cEoZ+3k=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/dex4er/fakechroot/commit/e7c1f3a446e594a4d0cce5f5d499c9439ce1d5c5.patch",
             sha256: "sha256-eX6kB4U1ZlXoRtkSVEIBTRjO/cTS/7z5a9S366DiRMg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/dex4er/fakechroot/pull/115/commits/15479d9436b534cee0115064bd8deb8d4ece9b8c.patch",
             hash: "sha256-wMIZ3hW5XkRXQYBMADlN6kxhDSiEr84PGWBW+f4b4Ko=",
           })))),
@@ -87,15 +87,15 @@ done
         nix.thunk(() => nix.str`ac_cv_path_POD2MAN=${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "perl")), "pod2man")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "nixos-etc": nix.thunk(() => nix.sel(nixosTests, "etc", "test-etc-fakeroot")),
         })),
       })),
       preFixup: "patchShebangs --host $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         homepage: "https://github.com/dex4er/fakechroot",
         description: "Give a fake chroot environment through LD_PRELOAD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

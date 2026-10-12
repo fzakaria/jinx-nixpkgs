@@ -100,105 +100,105 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const build_asdf_system = nix.arg($, "build-asdf-system");
   const overrides = (self) => (super$) => ({
-    __proto__: pos$88,
+    [nix.POS]: pos$88,
     cl_plus_ssl: nix.thunk(() => nix.app(nix.sel(super$, "cl_plus_ssl", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
       }))),
     "cl-cffi-gtk-glib": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-glib", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glib"))]),
       }))),
     "cl-cffi-gtk-cairo": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-cairo", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cairo"))]),
       }))),
     "cl-cairo2": nix.thunk(() => nix.app(nix.sel(super$, "cl-cairo2", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cairo"))]),
       }))),
     "cl-cairo2-xlib": nix.thunk(() => nix.app(nix.sel(super$, "cl-cairo2-xlib", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk2-x11"))]),
       }))),
     "cl-freetype2": nix.thunk(() => nix.app(nix.sel(super$, "cl-freetype2", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "freetype"))]),
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "freetype"))]),
         patches: nix.thunk(() => [nix.path(here, "./patches/cl-freetype2-fix-grovel-includes.patch")]),
       }))),
     "cl-pango": nix.thunk(() => nix.app(nix.sel(super$, "cl-pango", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pango"))]),
       }))),
     "cl-gtk2-gdk": nix.thunk(() => nix.app(nix.sel(super$, "cl-gtk2-gdk", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk2-x11"))]),
       }))),
     "cl-gtk2-glib": nix.thunk(() => nix.app(nix.sel(super$, "cl-gtk2-glib", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glib"))]),
       }))),
     "cl-gtk2-pango": nix.thunk(() => nix.app(nix.sel(super$, "cl-gtk2-pango", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pango"))]),
       }))),
     "cl-rsvg2": nix.thunk(() => nix.app(nix.sel(super$, "cl-rsvg2", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "librsvg"))]),
       }))),
     "cl-cffi-gtk-gdk": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-gdk", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk3"))]),
       }))),
     "cl-cffi-gtk-gdk-pixbuf": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-gdk-pixbuf", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gdk-pixbuf"))]),
       }))),
     "cl-cffi-gtk-pango": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-pango", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pango"))]),
       }))),
     "cl-gobject-introspection": nix.thunk(() => nix.app(nix.sel(super$, "cl-gobject-introspection", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         nativeLibs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "glib")),
           nix.thunk(() => nix.sel(pkgs, "gobject-introspection")),
         ]),
       }))),
     "cl-mysql": nix.thunk(() => nix.app(nix.sel(super$, "cl-mysql", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mariadb", "client"))]),
       }))),
     "clsql-postgresql": nix.thunk(() => nix.app(nix.sel(super$, "clsql-postgresql", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libpq"))]),
       }))),
     "clsql-sqlite3": nix.thunk(() => nix.app(nix.sel(super$, "clsql-sqlite3", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sqlite"))]),
       }))),
     "cl-webkit2": nix.thunk(() => nix.app(nix.sel(super$, "cl-webkit2", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "webkitgtk_4_1"))]),
       }))),
     "dbd-mysql": nix.thunk(() => nix.app(nix.sel(super$, "dbd-mysql", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mariadb", "client"))]),
       }))),
     enchant: nix.thunk(() => nix.app(nix.sel(super$, "enchant", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "enchant_2"))]),
       }))),
     lla: nix.thunk(() => nix.app(nix.sel(super$, "lla", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openblas"))]),
       }))),
     cffi: nix.thunk(() => nix.app(nix.sel(super$, "cffi", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         javaLibs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               groupId: "net.java.dev.jna",
               artifactId: "jna",
               version: "5.9.0",
@@ -207,212 +207,212 @@ export default nix.lambda((args) => (() => {
         ]),
       }))),
     "cffi-libffi": nix.thunk(() => nix.app(nix.sel(super$, "cffi-libffi", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libffi"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libffi"))]),
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./patches/cffi-libffi-darwin-ffi-h.patch")]))),
       }))),
     "cl-rabbit": nix.thunk(() => nix.app(nix.sel(super$, "cl-rabbit", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rabbitmq-c"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rabbitmq-c"))]),
       }))),
     "trivial-ssh-libssh2": nix.thunk(() => nix.app(nix.sel(super$, "trivial-ssh-libssh2", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libssh2"))]),
       }))),
     sqlite: nix.thunk(() => nix.app(nix.sel(super$, "sqlite", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sqlite"))]),
       }))),
     duckdb: nix.thunk(() => nix.app(nix.sel(super$, "duckdb", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "duckdb"))]),
       }))),
     "cl-libuv": nix.thunk(() => nix.app(nix.sel(super$, "cl-libuv", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libuv"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libuv"))]),
       }))),
     "cl-liballegro": nix.thunk(() => nix.app(nix.sel(super$, "cl-liballegro", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "allegro5"))]),
       }))),
     "cl-ode": nix.thunk(() => nix.app(nix.sel(super$, "cl-ode", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         nativeLibs: nix.thunk(() => (() => {
           const ode$ = nix.thunk(() => nix.app(nix.sel(pkgs, "ode", "overrideAttrs"), (o_1) => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               configureFlags: nix.thunk(() => ["--enable-shared", "--enable-double-precision"]),
             })));
           return [ode$];
         })()),
       }))),
     classimp: nix.thunk(() => nix.app(nix.sel(super$, "classimp", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "assimp"))]),
       }))),
     sdl2: nix.thunk(() => nix.app(nix.sel(super$, "sdl2", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2"))]),
       }))),
     "sdl2-image": nix.thunk(() => nix.app(nix.sel(super$, "sdl2-image", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2_image"))]),
       }))),
     "sdl2-mixer": nix.thunk(() => nix.app(nix.sel(super$, "sdl2-mixer", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2_mixer"))]),
       }))),
     "sdl2-ttf": nix.thunk(() => nix.app(nix.sel(super$, "sdl2-ttf", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2_ttf"))]),
       }))),
     "lispbuilder-sdl-cffi": nix.thunk(() => nix.app(nix.sel(super$, "lispbuilder-sdl-cffi", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL"))]),
       }))),
     "cl-opengl": nix.thunk(() => nix.app(nix.sel(super$, "cl-opengl", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libGL"))]),
       }))),
     "cl-glu": nix.thunk(() => nix.app(nix.sel(super$, "cl-glu", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libGLU"))]),
       }))),
     "cl-glut": nix.thunk(() => nix.app(nix.sel(super$, "cl-glut", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libglut"))]),
       }))),
     "cl-glfw": nix.thunk(() => nix.app(nix.sel(super$, "cl-glfw", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glfw"))]),
       }))),
     "cl-glfw-opengl-core": nix.thunk(() => nix.app(nix.sel(super$, "cl-glfw-opengl-core", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libGL"))]),
       }))),
     "cl-glfw3": nix.thunk(() => nix.app(nix.sel(super$, "cl-glfw3", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glfw"))]),
       }))),
     lev: nix.thunk(() => nix.app(nix.sel(super$, "lev", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libev"))]),
       }))),
     "cl-rdkafka": nix.thunk(() => nix.app(nix.sel(super$, "cl-rdkafka", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rdkafka"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rdkafka"))]),
       }))),
     "cl-async-ssl": nix.thunk(() => nix.app(nix.sel(super$, "cl-async-ssl", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
       }))),
     iolib: nix.thunk(() => nix.app(nix.sel(super$, "iolib", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libfixposix"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libfixposix"))]),
         systems: nix.thunk(() => ["iolib", "iolib/os", "iolib/pathnames"]),
       }))),
     "cl-ana_dot_hdf-cffi": nix.thunk(() => nix.app(nix.sel(super$, "cl-ana_dot_hdf-cffi", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hdf5"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hdf5"))]),
         env: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "env"), {
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lhdf5"]))),
         })),
       }))),
     antik: nix.thunk(() => nix.app(nix.sel(super$, "antik", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "antik-base": nix.thunk(() => nix.app(nix.sel(super$, "antik-base", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "foreign-array": nix.thunk(() => nix.app(nix.sel(super$, "foreign-array", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "physical-dimension": nix.thunk(() => nix.app(nix.sel(super$, "physical-dimension", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "science-data": nix.thunk(() => nix.app(nix.sel(super$, "science-data", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     gsll: nix.thunk(() => nix.app(nix.sel(super$, "gsll", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
       }))),
     "cl-libyaml": nix.thunk(() => nix.app(nix.sel(super$, "cl-libyaml", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libyaml"))]),
       }))),
     "cl-libxml2": nix.thunk(() => nix.app(nix.sel(super$, "cl-libxml2", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libxml2"))]),
       }))),
     "cl-readline": nix.thunk(() => nix.app(nix.sel(super$, "cl-readline", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "readline"))]),
       }))),
     md5: nix.thunk(() => nix.app(nix.sel(super$, "md5", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         lispLibs: nix.thunk(() => [nix.thunk(() => nix.sel(super$, "flexi-streams"))]),
       }))),
     pzmq: nix.thunk(() => nix.app(nix.sel(super$, "pzmq", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "pzmq-compat": nix.thunk(() => nix.app(nix.sel(super$, "pzmq-compat", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "pzmq-examples": nix.thunk(() => nix.app(nix.sel(super$, "pzmq-examples", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "pzmq-test": nix.thunk(() => nix.app(nix.sel(super$, "pzmq-test", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "cl-git": nix.thunk(() => nix.app(nix.sel(super$, "cl-git", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libgit2"))]),
       }))),
     "trivial-package-manager": nix.thunk(() => nix.app(nix.sel(super$, "trivial-package-manager", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "which"))]),
       }))),
     "cl-sat_dot_glucose": nix.thunk(() => nix.app(nix.sel(super$, "cl-sat_dot_glucose", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glucose"))]),
         patches: nix.thunk(() => [nix.path(here, "./patches/cl-sat-binary-from-path.patch")]),
       }))),
     "cl-sat_dot_minisat": nix.thunk(() => nix.app(nix.sel(super$, "cl-sat_dot_minisat", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minisat"))]),
       }))),
     hu_dot_dwim_dot_graphviz: nix.thunk(() => nix.app(nix.sel(super$, "hu_dot_dwim_dot_graphviz", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "graphviz"))]),
       }))),
     math: nix.thunk(() => nix.app(nix.sel(super$, "math", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         patches: nix.thunk(() => [nix.path(here, "./patches/math-no-compile-time-directory.patch")]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fontconfig"))]),
       }))),
     "mcclim-fonts": nix.thunk(() => nix.app(nix.sel(super$, "mcclim-fonts", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         lispLibs: nix.thunk(() => nix.concat(nix.sel(o, "lispLibs"), [
           nix.thunk(() => nix.sel(super$, "cl-dejavu")),
           nix.thunk(() => nix.sel(super$, "zpb-ttf")),
@@ -423,71 +423,71 @@ export default nix.lambda((args) => (() => {
         systems: nix.thunk(() => ["mcclim-fonts", "mcclim-fonts/truetype"]),
       }))),
     "mcclim-render": nix.thunk(() => nix.app(nix.sel(super$, "mcclim-render", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         lispLibs: nix.thunk(() => nix.concat(nix.sel(o, "lispLibs"), [nix.thunk(() => nix.sel(self, "mcclim-fonts"))])),
       }))),
     "mcclim-layouts": nix.thunk(() => nix.app(nix.sel(super$, "mcclim-layouts", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$74,
+        [nix.POS]: pos$74,
         systems: nix.thunk(() => ["mcclim-layouts", "mcclim-layouts/tab"]),
         lispLibs: nix.thunk(() => nix.concat(nix.sel(o, "lispLibs"), [nix.thunk(() => nix.sel(self, "mcclim"))])),
       }))),
     "cl-charms": nix.thunk(() => nix.app(nix.sel(super$, "cl-charms", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ncurses"))]),
       }))),
     "libusb-ffi": nix.thunk(() => nix.app(nix.sel(super$, "libusb-ffi", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libusb-compat-0_1"))]),
       }))),
     "jpeg-turbo": nix.thunk(() => nix.app(nix.sel(super$, "jpeg-turbo", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libjpeg_turbo"))]),
       }))),
     "vorbisfile-ffi": nix.thunk(() => nix.app(nix.sel(super$, "vorbisfile-ffi", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$78,
+        [nix.POS]: pos$78,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libvorbis"))]),
       }))),
     png: nix.thunk(() => nix.app(nix.sel(super$, "png", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libpng"))]),
       }))),
     zmq: nix.thunk(() => nix.app(nix.sel(super$, "zmq", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$80,
+        [nix.POS]: pos$80,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "czmq"))]),
       }))),
     consfigurator: nix.thunk(() => nix.app(nix.sel(super$, "consfigurator", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         nativeLibs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "acl")),
           nix.thunk(() => nix.sel(pkgs, "libcap")),
         ]),
       }))),
     "cl-gss": nix.thunk(() => nix.app(nix.sel(super$, "cl-gss", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$82,
+        [nix.POS]: pos$82,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libkrb5"))]),
       }))),
     magicffi: nix.thunk(() => nix.app(nix.sel(super$, "magicffi", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "file"))]),
       }))),
     keystone: nix.thunk(() => nix.app(nix.sel(super$, "keystone", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$84,
+        [nix.POS]: pos$84,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "keystone"))]),
       }))),
     capstone: nix.thunk(() => nix.app(nix.sel(super$, "capstone", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "capstone"))]),
       }))),
     vk: nix.thunk(() => nix.app(nix.sel(super$, "vk", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "vulkan-loader"))]),
       }))),
     "_3d-math": nix.thunk(() => nix.app(nix.sel(super$, "_3d-math", "overrideLispAttrs"), (o) => ({
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         flags: nix.thunk(() => nix.concat(nix.sel(o, "flags"), (nix.asBool(nix.eq(nix.sel(o, "program"), "sbcl")) ? ["--dynamic-space-size 4096"] : []))),
       }))),
   });
-  const qlpkgs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.pathExists(nix.path(here, "./imported.nix"))), nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./imported.nix"), nix.thunk(() => ({ __proto__: pos$89, "build-asdf-system": build_asdf_system }))))));
+  const qlpkgs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.pathExists(nix.path(here, "./imported.nix"))), nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./imported.nix"), nix.thunk(() => ({ [nix.POS]: pos$89, "build-asdf-system": build_asdf_system }))))));
   return nix.app(nix.sel(qlpkgs, "overrideScope"), overrides);
 })(), formals$1);
 //# sourceMappingURL=ql.ts.map

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const python3Packages = nix.arg($, "python3Packages");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     autosort: nix.thunk(() => nix.app(callPackage, nix.path(here, "./autosort"), nix.thunk(() => ({})))),
     colorize_nicks: nix.thunk(() => nix.app(callPackage, nix.path(here, "./colorize_nicks"), nix.thunk(() => ({})))),
     edit: nix.thunk(() => nix.app(callPackage, nix.path(here, "./edit"), nix.thunk(() => ({})))),
     multiline: nix.thunk(() => nix.app(callPackage, nix.path(here, "./multiline"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PodParser: nix.thunk(() => nix.attr(perlPackages, "PodParser")),
       })))),
     url_hint: nix.thunk(() => nix.app(callPackage, nix.path(here, "./url_hint"), nix.thunk(() => ({})))),
     "weechat-grep": nix.thunk(() => nix.app(callPackage, nix.path(here, "./weechat-grep"), nix.thunk(() => ({})))),
     "weechat-matrix-bridge": nix.thunk(() => nix.app(callPackage, nix.path(here, "./weechat-matrix-bridge"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cjson: nix.thunk(() => nix.attr(luaPackages, "cjson")),
         luaffi: nix.thunk(() => nix.attr(luaPackages, "luaffi")),
       })))),

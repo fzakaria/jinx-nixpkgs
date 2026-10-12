@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pastel = nix.arg($, "pastel");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "pastel-console",
       version: "0.0.0-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [console, pastel]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Small library for pretty coloring to Console output",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/pastel-console",
         homepage: "https://reason-native.com/docs/pastel/console",

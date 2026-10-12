@@ -33,17 +33,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mptcpd"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mptcpd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Multipath TCP path management daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mptcpd", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  core = {\n    \"addr-flags\" = \"subflow\";\n    \"notify-flags\" = \"existing,skip_link_local,skip_loopback,check_route\";\n    \"load-plugins\" = \"addr_adv,sspi\";\n  };\n}\n")),
@@ -53,33 +53,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           networkmanager: nix.thunk(() => ({
-            __proto__: pos$6,
-            connectionConfig: nix.thunk(() => ({ __proto__: pos$5, "connection.mptcp-flags": 1n })),
+            [nix.POS]: pos$6,
+            connectionConfig: nix.thunk(() => ({ [nix.POS]: pos$5, "connection.mptcp-flags": 1n })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "mptcpd/mptcpd.conf": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "mptcpd.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           mptcpd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               core: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 log: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "journal")),
                 "plugin-dir": nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/mptcpd`),
                 "path-manager": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "addr_adv")),
@@ -88,15 +88,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             mptcp: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 ExecStart: nix.thunk(() => ["", nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/libexec/mptcpd`)]),
               })),
             })),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nim65s"))];

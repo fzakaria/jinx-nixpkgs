@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alpernebbi",
           repo: "git-annex-adapter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,22 +38,22 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/alpernebbi/git-annex-adapter/commit/6c210d828e8a57b12c716339ad1bf15c31cd4a55.patch",
             sha256: "17kp7pnm9svq9av4q7hfic95xa1w3z02dnr8nmg14sjck2rlmqsi",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/alpernebbi/git-annex-adapter/commit/b78a8f445f1fb5cf34b28512fc61898ef166b5a1.patch",
             hash: "sha256-BSVoOPWsgY1btvn68bco4yb90FAC7ay2kYZ+q9qDHHw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/alpernebbi/git-annex-adapter/commit/d0d8905965a3659ce95cbd8f8b1e8598f0faf76b.patch",
             hash: "sha256-UcRTKzD3sbXGIuxj4JzZDnvjTYyWVkfeWgKiZ1rAlus=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./git-annex-path.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             gitAnnex: nix.thunk(() => nix.str`${git_annex}/bin/git-annex`),
           })))),
       ]);
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         "test_process_annex_metadata_batch",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/alpernebbi/git-annex-adapter",
         description: "Call git-annex commands from Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

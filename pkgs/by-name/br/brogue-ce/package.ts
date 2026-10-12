@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const terminal = nix.argOr($, "terminal", () => false);
   const graphics = nix.argOr($, "graphics", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "brogue-ce",
       version: "1.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tmewett",
           repo: "BrogueCE",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(graphics))), "make Brogue.app $makeFlags\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "brogue-ce",
             desktopName: "Brogue CE",
             genericName: "Roguelike",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/opt\ncp -r bin $out/opt/brogue-ce\ninstall -Dm755 linux/brogue-multiuser.sh $out/bin/brogue-ce\ninstall -Dm 644 bin/assets/icon.png $out/share/icons/hicolor/256x256/apps/brogue-ce.png\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(graphics))), "mkdir -p $out/Applications\nmv Brogue.app \"$out/Applications/Brogue CE.app\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Community-lead fork of the minimalist roguelike game Brogue",
         mainProgram: "brogue-ce",
         homepage: "https://github.com/tmewett/BrogueCE",

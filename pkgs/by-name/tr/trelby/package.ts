@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trelby",
       version: "2.4.16.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trelby",
           repo: "trelby",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "install -Dm644 trelby/resources/trelby.desktop $out/share/applications/trelby.desktop\n\ninstall -Dm644 trelby/resources/icon256.png $out/share/icons/hicolor/256x256/apps/trelby.png\n\nsubstituteInPlace $out/share/applications/trelby.desktop \\\n  --replace-fail \"Icon=trelby256\" \"Icon=trelby\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, multiplatform, feature-rich screenwriting program",
         homepage: "https://www.trelby.org",
         downloadPage: "https://github.com/trelby/trelby",

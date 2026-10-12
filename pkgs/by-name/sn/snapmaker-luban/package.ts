@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snapmaker-luban";
       const version = "4.15.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Snapmaker/Luban/releases/download/v${version}/snapmaker-luban-${version}-linux-x64.tar.gz`),
           hash: "sha256-X4XNzkl5ky3C8fj92J9OQxj12zmIQ+xS02wYLWo94oU=",
         }))));
@@ -130,7 +130,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             exec: "snapmaker-luban",
             icon: "snapmaker-luban",
@@ -140,7 +140,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Snapmaker Luban is an easy-to-use 3-in-1 software tailor-made for Snapmaker machines",
         homepage: "https://github.com/Snapmaker/Luban",
         sourceProvenance: nix.thunk(() => (() => {
@@ -156,7 +156,7 @@ runHook postInstall
         knownVulnerabilities: nix.thunk(() => ["CVE-2023-5217"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

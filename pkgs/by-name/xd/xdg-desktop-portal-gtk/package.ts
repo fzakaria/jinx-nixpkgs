@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xdg-desktop-portal-gtk",
       version: "1.15.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flatpak",
           repo: "xdg-desktop-portal-gtk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ cp -r ${gnome_settings_daemon}/share/gsettings-schemas/ $out/share/
 `))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop integration portals for sandboxed apps",
         homepage: "https://github.com/flatpak/xdg-desktop-portal-gtk",
         maintainers: nix.thunk(() => (() => {

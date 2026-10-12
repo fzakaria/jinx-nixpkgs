@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const soFile = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "8.0": "tideways-php-8.0.so",
     "8.1": "tideways-php-8.1.so",
     "8.2": "tideways-php-8.2.so",
     "8.3": "tideways-php-8.3.so",
   }, () => nix.builtins.throw("Unsupported PHP version."), nix.key(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(php, "version"))))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "tideways-php",
       extensionName: "tideways",
       version: "5.20.0",
@@ -43,27 +43,27 @@ install -D ${soFile} $out/lib/php/extensions/tideways.so
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         sources: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/extension/${nix.sel(finalAttrs, "version")}/tideways-php-${nix.sel(finalAttrs, "version")}-x86_64.tar.gz`),
               hash: "sha256-uAmsmz+4tsCGw4jlzyZbUNjuzBU/HcIDWrHCC+0t4Xw=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/extension/${nix.sel(finalAttrs, "version")}/tideways-php-${nix.sel(finalAttrs, "version")}-arm64.tar.gz`),
               hash: "sha256-gPhr32G6h/U1uR/aaeIWpOaDV9HF8EbQF7p1kJ5SDis=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/tideways/extension/${nix.sel(finalAttrs, "version")}/tideways-php-${nix.sel(finalAttrs, "version")}-macos-arm.tar.gz`),
               hash: "sha256-VfgX1SNYKoFR290gRoRXfD5CoLhDPkK+3+4o13P1kiM=",
             })))),
         })),
         updateScript: nix.thunk(() => nix.str`${nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "update-tideways-probe",
             runtimeInputs: nix.thunk(() => [curl, gnugrep, common_updater_scripts]),
             text: nix.thunk(() => nix.str`NEW_VERSION=$(curl --fail -L https://tideways.com/profiler/downloads | grep -E 'https://tideways.s3.amazonaws.com/extension/[0-9]+\\.[0-9]+\\.[0-9]+/tideways-php-[0-9]+\\.[0-9]+\\.[0-9]+-x86_64.tar.gz' | grep -oP 'extension/\\K[0-9]+\\.[0-9]+\\.[0-9]+')
@@ -80,7 +80,7 @@ done
           })))}/bin/update-tideways-probe`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Tideways PHP Probe",
         homepage: "https://tideways.com/",
         sourceProvenance: nix.thunk(() => (() => {

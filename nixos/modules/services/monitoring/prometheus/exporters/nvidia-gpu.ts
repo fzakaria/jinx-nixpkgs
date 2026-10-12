@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "nvidia-gpu"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     port: 9835n,
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-nvidia-gpu-exporter")}/bin/nvidia_gpu_exporter \\
   --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   --nvidia-smi-command ${nix.sel(config, "hardware", "nvidia", "package", "bin")}/bin/nvidia-smi \\

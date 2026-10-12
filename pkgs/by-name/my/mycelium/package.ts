@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mycelium",
       version: "0.7.10",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/myceliumd`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "threefoldtech",
           repo: "mycelium",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: 1n,
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         OPENSSL_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), openssl)}`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mycelium: nix.thunk(() => nix.attr(nixosTests, "mycelium")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "End-2-end encrypted IPv6 overlay network",
         homepage: "https://github.com/threefoldtech/mycelium",
         changelog: nix.thunk(() => nix.str`https://github.com/threefoldtech/mycelium/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

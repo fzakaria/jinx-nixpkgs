@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "neo4j",
       version: "6.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neo4j",
           repo: "neo4j-python-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [pytz]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         numpy: nix.thunk(() => [numpy]),
         pandas: nix.thunk(() => [numpy, pandas]),
         pyarrow: nix.thunk(() => [pyarrow]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["neo4j"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Neo4j Bolt Driver for Python",
         homepage: "https://github.com/neo4j/neo4j-python-driver",
         changelog: nix.thunk(() => nix.str`https://github.com/neo4j/neo4j-python-driver/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

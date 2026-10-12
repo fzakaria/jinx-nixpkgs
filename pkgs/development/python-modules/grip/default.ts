@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "grip",
       version: "4.6.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joeyespo",
           repo: "grip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "set-default-encoding.patch",
             url: "https://github.com/joeyespo/grip/commit/2784eb2c1515f1cdb1554d049d48b3bff0f42085.patch",
             hash: "sha256-veVJKJtt8mP1jmseRD7pNR3JgIxX1alYHyQok/rBpiQ=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [responses, pytestCheckHook, addBinToPathHook]),
       enabledTestMarks: nix.thunk(() => ["not assumption"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Preview GitHub Markdown files like Readme locally before committing them",
         mainProgram: "grip",
         homepage: "https://github.com/joeyespo/grip",

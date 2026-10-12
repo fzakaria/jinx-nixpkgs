@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const macaddr = nix.arg($, "macaddr");
   const mirage_net = nix.arg($, "mirage-net");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ethernet",
       version: "3.2.0",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ethernet/releases/download/v${nix.sel(finalAttrs, "version")}/ethernet-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-TB2nAhQiHZ1Dk6n/3i49s9HKNH92yNUl3xl94hByrAk=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct, mirage_net, macaddr, lwt, logs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml Ethernet (IEEE 802.3) layer, used in MirageOS",
         homepage: "https://github.com/mirage/ethernet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

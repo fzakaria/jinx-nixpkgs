@@ -19,40 +19,40 @@ const pos$14 = nix.positions(here + "/rsync.nix", [["machine", 4, 9]]);
 const pos$15 = nix.positions(here + "/rsync.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 43, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$15,
+  [nix.POS]: pos$15,
   name: "rsync",
   nodes: nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     machine: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       users: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         users: nix.thunk(() => ({
-          __proto__: pos$2,
-          test: nix.thunk(() => ({ __proto__: pos$1, isNormalUser: true })),
+          [nix.POS]: pos$2,
+          test: nix.thunk(() => ({ [nix.POS]: pos$1, isNormalUser: true })),
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         rsync: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: true,
           jobs: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             root: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               sources: nix.thunk(() => ["/root/src/"]),
               destination: "/root/dst",
-              settings: nix.thunk(() => ({ __proto__: pos$4, archive: true, delete: true, mkpath: true })),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$5, OnCalendar: "daily", Persistent: false })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$4, archive: true, delete: true, mkpath: true })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$5, OnCalendar: "daily", Persistent: false })),
               inhibit: nix.thunk(() => ["sleep"]),
             })),
             user: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               sources: nix.thunk(() => ["/home/test/src/"]),
               destination: "/home/test/dst",
-              settings: nix.thunk(() => ({ __proto__: pos$7, archive: true, delete: true, mkpath: true })),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$8, OnCalendar: "daily", Persistent: false })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$7, archive: true, delete: true, mkpath: true })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$8, OnCalendar: "daily", Persistent: false })),
               user: "test",
               group: "users",
             })),

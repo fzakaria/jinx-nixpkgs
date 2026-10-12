@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "novacom";
       const version = "18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openwebos",
           repo: "novacom",
           rev: nix.thunk(() => nix.str`submissions/${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.7)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const postInstall = "install -Dm755 -t $out/bin ../scripts/novaterm\nsubstituteInPlace $out/bin/novaterm --replace \"exec novacom\" \"exec $out/bin/novacom\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for communicating with WebOS devices",
         homepage: "https://github.com/openwebos/novacom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

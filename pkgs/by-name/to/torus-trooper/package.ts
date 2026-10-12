@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const bulletml = nix.arg($, "bulletml");
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/t/torus-trooper/0.22.dfsg1-14/debian/patches/${patchname}.patch`),
       sha256: hash,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torus-trooper",
       version: "0.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://abagames.sakura.ne.jp/windows/tt${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "1yhki1fdp3fi4y2iq12vca69f6k38dqjaw9z4lwcxky5kbgb7jvg",
         })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GDC=ldc2"]),
       installPhase: "install -Dm755 torus-trooper $out/bin/torus-trooper\nmkdir -p $out/share/games/torus-trooper\ncp -r barrage sounds images $out/share/games/torus-trooper/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.asahi-net.or.jp/~cs8k-cyu/windows/tt_e.html",
         description: "Fast-paced abstract scrolling shooter game",
         mainProgram: "torus-trooper",

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "transient-fish",
       version: "0-unstable-2024-03-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zzhaolei",
           repo: "transient.fish",
           rev: "be0093f1799462a93953e69896496dee4d063fd6",
           hash: "sha256-rEkCimnkxcydKRI2y4DxEM7FD7F2/cGTZJN2Edq/Acc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fish plugin to enable a transient prompt",
         homepage: "https://github.com/zzhaolei/transient.fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

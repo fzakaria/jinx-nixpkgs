@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const zlib = nix.arg($, "zlib");
   const abseil_cpp$ = abseil_cpp_202601;
-  const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf, "override"), nix.thunk(() => ({ __proto__: pos$1, "abseil-cpp": abseil_cpp$ }))));
+  const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "abseil-cpp": abseil_cpp$ }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "shaka-packager",
       version: "3.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "shaka-project",
           repo: "shaka-packager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,19 +67,19 @@ export default nix.lambda((args) => (() => {
       ]),
       ninjaFlags: nix.thunk(() => ["mpd_generator", "packager", "pssh_box_py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-nixpkgs-release`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Media packaging framework for VOD and Live DASH and HLS applications",
         homepage: "https://shaka-project.github.io/shaka-packager/html/",
         changelog: nix.thunk(() => nix.str`https://github.com/shaka-project/shaka-packager/releases/tag/v${nix.sel(finalAttrs, "version")}`),

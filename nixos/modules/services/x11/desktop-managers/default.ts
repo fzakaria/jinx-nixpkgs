@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(xcfg, "desktopManager"));
   const needBGCond = (d) => (nix.asBool((nix.asBool(!nix.asBool((nix.asBool(nix.has(d, "bgSupport")) && nix.asBool(nix.sel(d, "bgSupport"))))) && nix.asBool(nix.sel(xcfg, "enable")))) && nix.asBool(nix.sel(cfg, "wallpaper", "enable")));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     imports: nix.thunk(() => [
       nix.path(here, "./none.nix"),
       nix.path(here, "./xterm.nix"),
@@ -54,43 +54,43 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../../desktop-managers/gnome.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         xserver: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             wallpaper: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   default: true,
                   description: "The file {file}`~/.background-image` is used as a background image.\nThe `mode` option specifies the placement of this image onto your desktop.\nTo disable this, set this option to `false`.\n",
                 })))),
               mode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["center", "fill", "max", "scale", "tile"]))),
                   default: "scale",
                   example: "fill",
                   description: "Possible values:\n`center`: Center the image on the background. If it is too small, it will be surrounded by a black border.\n`fill`: Like `scale`, but preserves aspect ratio by zooming the image until it fits. Either a horizontal or a vertical part of the image will be cut off.\n`max`: Like `fill`, but scale the image to the maximum size that fits the screen with black borders on one side.\n`scale`: Fit the file into the background without repeating it, cutting off stuff or using borders. But the aspect ratio is not preserved either.\n`tile`: Tile (repeat) the image in case it is too small for the screen.\n",
                 })))),
               combineScreens: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(types, "bool")),
                   default: false,
                   description: "When set to `true` the wallpaper will stretch across all screens.\nWhen set to `false` the wallpaper is duplicated to all screens.\n",
                 })))),
             })),
             session: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 internal: true,
                 default: [],
-                example: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ __proto__: pos$5, name: "kde", bgSupport: true, start: "..." })))),
+                example: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$5, name: "kde", bgSupport: true, start: "..." })))),
                 description: "Internal option used to add some common line to desktop manager\nscripts before forwarding the value to the\n`displayManager`.\n",
                 apply: nix.thunk(() => nix.app(nix.builtins.map, (d) => nix.update(d, {
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     manage: "desktop",
                     start: nix.thunk(() => nix.add(nix.sel(d, "start"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(needBGCond, d)), nix.thunk(() => nix.str`
 if [ -e $HOME/.background-image ]; then
@@ -104,12 +104,12 @@ fi
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         xserver: nix.thunk(() => ({
-          __proto__: pos$13,
-          displayManager: nix.thunk(() => ({ __proto__: pos$12, session: nix.thunk(() => nix.sel(cfg, "session")) })),
+          [nix.POS]: pos$13,
+          displayManager: nix.thunk(() => ({ [nix.POS]: pos$12, session: nix.thunk(() => nix.sel(cfg, "session")) })),
         })),
       })),
     })),

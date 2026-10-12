@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const opaline = nix.arg($, "opaline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ott",
       version: "0.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ott-lang",
           repo: "ott",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installTargets: "ott.install",
       postInstall: nix.thunk(() => nix.add("opaline -prefix $out\n", "rm -r $out/share/emacs\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for the working semanticist",
         mainProgram: "ott",
         longDescription: "Ott is a tool for writing definitions of programming languages and\ncalculi. It takes as input a definition of a language syntax and\nsemantics, in a concise and readable ASCII notation that is close to\nwhat one would write in informal mathematics. It generates LaTeX to\nbuild a typeset version of the definition, and Coq, HOL, and Isabelle\nversions of the definition. Additionally, it can be run as a filter,\ntaking a LaTeX/Coq/Isabelle/HOL source file with embedded (symbolic)\nterms of the defined language, parsing them and replacing them by\ntarget-system terms.\n",

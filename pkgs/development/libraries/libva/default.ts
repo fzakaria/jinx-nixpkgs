@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const vlc = nix.arg($, "vlc");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.add("libva", nix.app(nix.sel(lib, "optionalString"), minimal, "-minimal"))),
       version: "2.24.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "libva",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.str`-Ddriverdir=${nix.sel(mesa, "driverLink")}/lib/dri:/usr/lib/dri:/usr/lib32/dri:/usr/lib/x86_64-linux-gnu/dri:/usr/lib/i386-linux-gnu/dri`),
         ]))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "--undefined-version" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-DHAVE_SECURE_GETENV" }))))),
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "--undefined-version" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(stdenv, () => false, "targetPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DHAVE_SECURE_GETENV" }))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "intel-compute-runtime": intel_compute_runtime,
           "intel-media-driver": intel_media_driver,
           "intel-vaapi-driver": intel_vaapi_driver,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Implementation for VA-API (Video Acceleration API)",
         longDescription: "VA-API is an open-source library and API specification, which provides\naccess to graphics hardware acceleration capabilities for video\nprocessing. It consists of a main library (this package) and\ndriver-specific acceleration backends for each supported hardware vendor.\n",
         homepage: "https://01.org/linuxmedia/vaapi",

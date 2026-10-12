@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const libwebsockets = nix.arg($, "libwebsockets");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bellepoule",
       version: "5.7",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/bellepoule",
           rev: "06516d698fde9662d95cf6a8758eb1fbcc89e983",
           hash: "sha256-9bbFzi9JPryJK2zv4O1TUDaeoB9GVV7LRNn6Xl8lajg=",
         }))), "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           env: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             GIT_CONFIG_COUNT: 1n,
             GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
             GIT_CONFIG_VALUE_0: "git@github.com:",
@@ -86,7 +86,7 @@ make HOME=$(pwd) DISTRIB=nixos V=1 package
 cd ./Perso/PPA/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}_${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fencing tournaments management software",
         homepage: "http://betton.escrime.free.fr",
         changelog: nix.thunk(() => nix.str`https://git.launchpad.net/bellepoule/log/?h=${nix.sel(finalAttrs, "version")}`),

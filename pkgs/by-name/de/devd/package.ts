@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "devd",
       version: "0.9-unstable-2020-04-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cortesi",
           repo: "devd",
           rev: "c1a3bfba27d8e028de90fb24452374412a4cffb3",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-o7MbN/6n7fkp/yqYyQbfWBUqI09/JYh5jtV31gjNf6w=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/cortesi/devd/commit/5f4720bf41399736b4e7e1a493da6c87a583d0b2.patch",
             hash: "sha256-WDN08XNsDPuZwBCE8iDXgGAWFwx2UTwqRkhzKMtPKR8=",
           })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/devd"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Local webserver for developers",
         mainProgram: "devd",
         homepage: "https://github.com/cortesi/devd",

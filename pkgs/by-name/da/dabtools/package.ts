@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const rtl_sdr = nix.arg($, "rtl-sdr");
   const fftw = nix.arg($, "fftw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dabtools",
       version: "20180405",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Opendigitalradio",
           repo: "dabtools",
           rev: "8b0b2258b02020d314efd4d0d33a56c8097de0d1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rtl_sdr, fftw, libusb1]),
       postPatch: "substituteInPlace CMakeLists.txt src/CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 2.8)\" \\\n  \"cmake_minimum_required(VERSION 3.5)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Commandline tools for DAB and DAB+ digital radio broadcasts",
         homepage: "https://github.com/Opendigitalradio/dabtools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

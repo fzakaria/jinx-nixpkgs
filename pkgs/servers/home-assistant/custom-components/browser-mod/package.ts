@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const domain = "browser_mod";
       const version = "3.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "hass-browser_mod",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")),
       ]);
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           hash: "sha256-GgeXLnRh1bF3DFTRmjyhSgV/xJYf42zr9XCOlJYZwnA=",
         }))));
       const npmBuildScript = "build";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Home Assistant integration to turn your browser into a controllable entity and media player",
         homepage: "https://github.com/thomasloven/hass-browser_mod",
         changelog: nix.thunk(() => nix.str`https://github.com/thomasloven/hass-browser_mod/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner,
         domain,
         version,

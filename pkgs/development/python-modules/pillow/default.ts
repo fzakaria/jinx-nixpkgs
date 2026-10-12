@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-pillow",
           repo: "pillow",
           tag: version,
@@ -82,7 +82,7 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
 `;
       })());
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         fpx: nix.thunk(() => [olefile]),
         mic: nix.thunk(() => [olefile]),
         xmp: nix.thunk(() => [defusedxml]),
@@ -94,9 +94,9 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
           "Tests/test_file_avif.py::TestFileAvif::test_background_from_gif",
         ])));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           imageio: imageio,
           matplotlib: matplotlib,
           pilkit: pilkit,
@@ -106,7 +106,7 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://python-pillow.github.io/",
         changelog: nix.thunk(() => nix.str`https://pillow.readthedocs.io/en/stable/releasenotes/${version}.html`),
         description: "Friendly PIL fork (Python Imaging Library)",
@@ -118,7 +118,7 @@ export CFLAGS="$CFLAGS -I${nix.sel(libxcb, "dev")}/include"
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

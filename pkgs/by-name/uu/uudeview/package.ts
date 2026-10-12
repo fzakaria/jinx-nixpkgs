@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uudeview",
       version: "0.5.20-unstable-2025-03-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hannob",
           repo: "uudeview",
           rev: "7640bc56aa5016cdc9c139eb1ab3ec874e47c744",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace tcl/xdeview --replace \"exec uuwish\" \"exec $out/bin/uuwish\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nice and Friendly Decoder",
         homepage: "http://www.fpx.de/fp/Software/UUDeview/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

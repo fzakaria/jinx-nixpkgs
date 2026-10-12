@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/msojocs/bilibili-linux/releases/download/v${version}/io.github.msojocs.bilibili_${version}_amd64.deb`),
         hash: nix.thunk(() => nix.sel(sources, "x86_64-hash")),
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/msojocs/bilibili-linux/releases/download/v${version}/io.github.msojocs.bilibili_${version}_arm64.deb`),
         hash: nix.thunk(() => nix.sel(sources, "arm64-hash")),
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bilibili",
       src: src,
       version: version,
@@ -60,9 +60,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/bilibili \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Electron-based bilibili desktop client",
         homepage: "https://github.com/msojocs/bilibili-linux",
         license: nix.thunk(() => (() => {

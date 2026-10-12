@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "3.16",
       pname: "containers",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c-cube",
           repo: "ocaml-containers",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/c-cube/ocaml-containers/commit/3b49ad2a4e8cfe366d0588e1940d626f0e1b8a2d.patch",
             hash: "sha256-LFe+LtpBBrf82SX57b4iQSvfd9tSXmnfhffjvjcfLpg=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gen, iter, qcheck_core, uutf, yojson]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/c-cube/ocaml-containers",
         description: "Modular standard library focused on data structures",
         longDescription: "Containers is a standard library (BSD license) focused on data structures,\ncombinators and iterators, without dependencies on unix. Every module is\nindependent and is prefixed with 'CC' in the global namespace. Some modules\nextend the stdlib (e.g. CCList provides safe map/fold_right/append, and\nadditional functions on lists).\n\nIt also features optional libraries for dealing with strings, and\nhelpers for unix and threads.\n",

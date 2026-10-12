@@ -32,68 +32,68 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "samba-wsdd"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         "samba-wsdd": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Web Services Dynamic Discovery host daemon. This enables (Samba) hosts, like your local NAS device,\nto be found by Web Service Discovery Clients like Windows\n")),
           interface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "eth0",
               description: "Interface or address to use.",
             })))),
           hoplimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               example: 2n,
               description: "Hop limit for multicast packets (default = 1).",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Whether to open the required firewall ports in the firewall.\n",
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           workgroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "HOME",
               description: "Set workgroup name (default WORKGROUP).",
             })))),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "FILESERVER",
               description: "Override (NetBIOS) hostname to be used (default hostname).",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Set domain name (disables workgroup).",
             })))),
           discovery: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable discovery operation mode.",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/run/wsdd/wsdd.sock",
               description: "Listen on path or localhost port in discovery mode.",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["--shortlog"]),
               example: nix.thunk(() => ["--verbose", "--no-http", "--ipv4only", "--no-host"]),
@@ -103,22 +103,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wsdd"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "samba-wsdd": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Web Services Dynamic Discovery host daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 DynamicUser: true,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "wsdd")}/bin/wsdd ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "interface"), null)), nix.thunk(() => nix.str`--interface '${nix.sel(cfg, "interface")}'`))} \\
@@ -159,9 +159,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               allowedTCPPorts: nix.thunk(() => [5357n]),
               allowedUDPPorts: nix.thunk(() => [3702n]),
             })))),

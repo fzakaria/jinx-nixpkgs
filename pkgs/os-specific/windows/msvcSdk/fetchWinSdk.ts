@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const host = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const hostArch = nix.thunk(() => (nix.asBool(nix.sel(host, "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(host, "isAarch64")) ? "aarch64" : (nix.asBool(nix.sel(host, "isx86_32")) ? "x86" : (nix.asBool(nix.sel(host, "isAarch32")) ? "aarch" : nix.builtins.throw("Unsupported system"))))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["manifest", "arch"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         const manifest = nix.argOr($_1, "manifest", () => null);
         const arch = nix.argOr($_1, "arch", () => nix.force(hostArch));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: name,
           __structuredAttrs: true,
           dontUnpack: true,
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
             "download",
           ])),
           buildPhase: nix.thunk(() => nix.selOr(args_2, () => "runHook preBuild\n\nxwin \"${xwinArgs[@]}\"\n\nrunHook postBuild\n", "buildPhase")),
-          passthru: nix.thunk(() => ({ __proto__: pos$1, arch: arch })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$1, arch: arch })),
           meta: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             license: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               deprecated: false,
               fullName: "Microsoft Software License Terms",
               shortName: "msvc",

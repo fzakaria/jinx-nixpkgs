@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "talentedhack",
       version: "1.86",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeremysalwen",
           repo: "talentedhack",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "sed -r 's/^CFLAGS.*$/\\0 -fvisibility=hidden/' -i Makefile\n",
       installPhase: "d=$out/lib/lv2/talentedhack.lv2\nmkdir -p $d\ncp *.so *.ttl $d\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jeremysalwen/TalentedHack",
         description: "LV2 port of Autotalent pitch correction plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const m2libc = nix.arg($, "m2libc");
   const mescc_tools = nix.arg($, "mescc-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "m2-mesoplanet",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oriansj",
           repo: "M2-Mesoplanet",
           rev: nix.thunk(() => nix.str`Release_${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ ln -s ${m2libc}/include/M2libc M2libc
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(m2libc, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Macro Expander Saving Our m2-PLANET",
         homepage: "https://github.com/oriansj/M2-Mesoplanet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

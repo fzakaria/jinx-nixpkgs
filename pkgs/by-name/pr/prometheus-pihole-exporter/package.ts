@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pihole-exporter";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eko",
           repo: "pihole-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-4qbfXRXEViR/2fCmanlU88zvbJb5oppHWC7rVQaneLc=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for PI-Hole's Raspberry PI ad blocker",
         mainProgram: "pihole-exporter",
         homepage: "https://github.com/eko/pihole-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

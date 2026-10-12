@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const fplll = nix.arg($, "fplll");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sollya",
       version: "8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.sollya.org/releases/sollya-${nix.sel(finalAttrs, "version")}/sollya-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-WNc0+aL8jmczwR+W0t+aslvvJNccQBIw4p8KEzmoEZI=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CFLAGS=-std=c17"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool environment for safe floating-point code development",
         mainProgram: "sollya",
         homepage: "https://www.sollya.org/",

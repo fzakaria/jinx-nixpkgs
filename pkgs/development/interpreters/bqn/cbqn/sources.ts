@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     cbqn: nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "cbqn",
         version: "0.12.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "dzaima",
             repo: "CBQN",
             rev: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       return nix.force(self);
     })()),
     "cbqn-bytecode": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cbqn-bytecode",
       version: "0-unstable-2026-01-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "dzaima",
           repo: "cbqnBytecode",
           rev: "156b47caf895f6706811c5c34bbbbaf192b8018b",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     replxx: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "replxx",
       version: "0-unstable-2026-02-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "dzaima",
           repo: "replxx",
           rev: "5e3bd870699007b9536d29f60e3a2b0a68ce0a7a",
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     singeli: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "singeli",
       version: "0-unstable-2026-03-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "mlochbaum",
           repo: "Singeli",
           rev: "5187ed3aa22a2257b63c04a5498ec756fa6263cb",

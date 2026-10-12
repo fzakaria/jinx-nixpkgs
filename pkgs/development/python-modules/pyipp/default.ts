@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.17.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ctalkington",
           repo: "python-ipp",
           tag: version,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["pyipp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ctalkington/python-ipp/releases/tag/${version}`),
         description: "Asynchronous Python client for Internet Printing Protocol (IPP)",
         homepage: "https://github.com/ctalkington/python-ipp",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

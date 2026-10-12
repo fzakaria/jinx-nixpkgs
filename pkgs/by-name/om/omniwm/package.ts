@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "omniwm",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/OmniNull/OmniWM/releases/download/v${nix.sel(finalAttrs, "version")}/OmniWM-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-HxSF4dFmgxaX6M7bnBF1d/WUn+AN7q6Fcr7W1sWOtOI=",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libarchive]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/OmniWM.app\"\ncp -r . \"$out/Applications/OmniWM.app\"\n\n# Symlink executables to bin\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/OmniWM.app/Contents/MacOS/OmniWM\" \"$out/bin/OmniWM\"\nln -s \"$out/Applications/OmniWM.app/Contents/MacOS/omniwmctl\" \"$out/bin/omniwmctl\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MacOS Niri and Hyprland inspired tiling window manager",
         homepage: "https://github.com/OmniNull/OmniWM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

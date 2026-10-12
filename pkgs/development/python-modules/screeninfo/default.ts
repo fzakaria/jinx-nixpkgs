@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rr-",
           repo: "screeninfo",
           tag: version,
@@ -44,7 +44,7 @@ substituteInPlace screeninfo/enumerators/xrandr.py \\
       const disabledTestPaths = nix.thunk(() => ["tests/test_screeninfo.py"]);
       const pythonImportsCheck = nix.thunk(() => ["screeninfo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fetch location and size of physical screens",
         homepage: "https://github.com/rr-/screeninfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ substituteInPlace screeninfo/enumerators/xrandr.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

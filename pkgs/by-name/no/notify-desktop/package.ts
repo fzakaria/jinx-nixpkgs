@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "notify-desktop",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nowrep",
           repo: "notify-desktop",
           rev: "9863919fb4ce7820810ac14a09a46ee73c3d56cc",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus]),
       installPhase: "mkdir -p $out/bin\ninstall -m 755 bin/notify-desktop $out/bin/notify-desktop\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Little application that lets you send desktop notifications with one command",
         longDescription: "It's basically clone of notify-send from libnotify,\nbut it supports reusing notifications on screen by passing its ID.\nIt also does not use any external dependencies (except from libdbus of course).\n",
         homepage: "https://github.com/nowrep/notify-desktop",

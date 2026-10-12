@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const pname = "proton-authenticator";
   const version = "1.1.6";
   const nodejs = nodejs_24;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "ProtonMail",
       repo: "WebClients",
       rev: nix.thunk(() => nix.str`proton-authenticator@${version}`),
       hash: "sha256-Zd3cSkzRBDnLNY2sM7EXWCX6F6+ePOpslnEroludzag=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: pname,
       version: version,
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       yarnLock: nix.path(here, "./yarn.lock"),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           yarnLock: nix.thunk(() => nix.attr(finalAttrs, "yarnLock")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
 `),
       tauriBuildFlags: nix.thunk(() => ["--no-sign"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Two-factor authentication manager with optional sync (built from source)",
         longDescription: "This package builds proton-authenticator from source.\n\nChanged: proton-authenticator is now source-compiled by default.\nFor the pre-built binary version, use proton-authenticator-bin instead.\n",
         homepage: "https://proton.me/authenticator",

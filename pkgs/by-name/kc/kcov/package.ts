@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kcov";
       const version = "43";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SimonKagstrom",
           repo: "kcov",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [curl, zlib, elfutils, libiberty, libopcodes]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "works-on-c": nix.thunk(() => nix.app(runCommandCC, "works-on-c", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -ex
 cat - > a.c <<EOF
 int main() {}
@@ -53,7 +53,7 @@ test -e /tmp/kcov/index.html
 touch $out
 set +x
 `))),
-          "works-on-rust": nix.thunk(() => nix.app(runCommandCC, "works-on-rust", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [rustc]) })), nix.thunk(() => nix.str`set -ex
+          "works-on-rust": nix.thunk(() => nix.app(runCommandCC, "works-on-rust", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [rustc]) })), nix.thunk(() => nix.str`set -ex
 cat - > a.rs <<EOF
 fn main() {}
 EOF
@@ -67,7 +67,7 @@ set +x
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Code coverage tester for compiled programs, Python scripts and shell scripts",
         longDescription: "Kcov is a code coverage tester for compiled programs, Python\nscripts and shell scripts. It allows collecting code coverage\ninformation from executables without special command-line\narguments, and continuously produces output from long-running\napplications.\n",
         homepage: "http://simonkagstrom.github.io/kcov/index.html",
@@ -80,7 +80,7 @@ set +x
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

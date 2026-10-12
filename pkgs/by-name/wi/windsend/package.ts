@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "windsend",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doraemonkeys",
           repo: "WindSend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,10 +43,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, copyDesktopItems]),
       buildInputs: nix.thunk(() => [libx11, libxcursor, libxrandr, libxinerama, libxi, libxext, libxtst, sqlite]),
       dontUseCmakeConfigure: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "windsend",
             exec: "WindSend",
             icon: "windsend",
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       postInstall: "install -Dm644 ../../app_icon/web/icon-512.png $out/share/icons/hicolor/512x512/apps/windsend.png\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Quickly and securely sync clipboard, transfer files and directories between devices",
         homepage: "https://github.com/doraemonkeys/WindSend",
         mainProgram: "WindSend",

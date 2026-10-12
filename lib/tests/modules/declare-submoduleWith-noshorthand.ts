@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const sub = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
         })))),
     })),
   }));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
-          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ __proto__: pos$4, modules: nix.thunk(() => [sub]) })))),
+          [nix.POS]: pos$5,
+          type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$4, modules: nix.thunk(() => [sub]) })))),
           default: nix.thunk(() => ({})),
         })))),
     })),

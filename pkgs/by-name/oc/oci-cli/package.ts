@@ -23,30 +23,30 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       self: py,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         jmespath: nix.thunk(() => nix.app(nix.sel(super$, "jmespath", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "0.10.0";
             const src = nix.thunk(() => nix.update(nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pname: "jmespath",
                 version: version,
                 sha256: "b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9",
-              }))), { __proto__: pos$2, tag: version }));
+              }))), { [nix.POS]: pos$2, tag: version }));
             const doCheck = false;
-            return { __proto__: pos$3, version, src, doCheck };
+            return { [nix.POS]: pos$3, version, src, doCheck };
           })())),
       }),
     }))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "oci-cli",
       version: "3.94.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           owner: "oracle",
           repo: "oci-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,11 +95,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["oci_cli"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Command Line Interface for Oracle Cloud Infrastructure",
         homepage: "https://docs.cloud.oracle.com/iaas/Content/API/Concepts/cliconcepts.htm",
         changelog: nix.thunk(() => nix.str`https://github.com/oracle/oci-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

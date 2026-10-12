@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const rare_regex = nix.arg($, "rare-regex");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rare",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zix99",
           repo: "rare",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip=TestNoMountTraverseWithSymlink"]),
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withPcre2, nix.thunk(() => ["pcre2"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: rare_regex })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: rare_regex })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast text scanner/regex extractor and realtime summarizer",
         homepage: "https://rare.zdyn.net",
         maintainers: nix.thunk(() => (() => {

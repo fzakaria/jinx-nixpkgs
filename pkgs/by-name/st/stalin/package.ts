@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stalin";
       const version = "0.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "ftp://ftp.ecn.purdue.edu/qobi/stalin.tar.Z",
           sha256: "0lz8riccpigdixwf6dswwva6s4kxaz3dzxhkqhcxgwmffy30vw8s",
         }))));
@@ -45,7 +45,7 @@ substituteInPlace "$out/bin/stalin" \\
   --replace "$PWD/include" "$out/share/stalin-${version}/include"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.ece.purdue.edu/~qobi/software.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "Optimizing Scheme compiler",
@@ -53,7 +53,7 @@ substituteInPlace "$out/bin/stalin" \\
         platforms: nix.thunk(() => ["i686-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

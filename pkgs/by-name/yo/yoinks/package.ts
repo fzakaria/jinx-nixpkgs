@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yoinks",
       version: "0.3.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pablostanley",
           repo: "yoinks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,17 +37,17 @@ wrapProgram $out/bin/yoinks \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [yt_dlp]))}
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FFMPEG_BIN: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), ffmpeg_headless)}`),
       })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Yoink any video from YouTube, X, Instagram, Threads & 1800+ sites — right from your terminal.",
         homepage: "https://github.com/pablostanley/yoinks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

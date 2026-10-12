@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
     const src = nix.argOr($_1, "src", () => null);
     const hash = nix.argOr($_1, "hash", () => "");
     const sha256 = nix.argOr($_1, "sha256", () => "");
-    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { __proto__: pos$1, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { __proto__: pos$2, outputHashAlgo: "sha256", outputHash: sha256 } : {
-      __proto__: pos$3,
+    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$1, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: pos$2, outputHashAlgo: "sha256", outputHash: sha256 } : {
+      [nix.POS]: pos$3,
       outputHashAlgo: "sha256",
       outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")),
     })));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "offline",
         dontUnpack: nix.thunk(() => nix.eq(src, null)),
         dontInstall: true,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         buildPhase: "runHook preBuild\n\nyarnLock=${yarnLock:=$PWD/yarn.lock}\nyarn-berry-fetcher fetch $yarnLock $missingHashes\n\nrunHook postBuild\n",
         outputHashMode: "recursive",
         dontFixup: true,
-        passthru: nix.thunk(() => ({ __proto__: pos$4, berryVersion: berryVersion })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$4, berryVersion: berryVersion })),
       }, nix.update(hash_, nix.builtins.removeAttrs(args_2, nix.thunk(() => nix.concat(["name", "pname", "version", "hash", "sha256"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(src, null)), "src"))))))));
   })(), formals$2);
 })(), formals$1);

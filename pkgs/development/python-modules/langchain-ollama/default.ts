@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "langchain-ollama",
       version: "1.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain-ollama==${nix.sel(finalAttrs, "version")}`),
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_standard_params_model_override"]),
       pythonImportsCheck: nix.thunk(() => ["langchain_ollama"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "rev-prefix": "langchain-ollama==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Integration package connecting Ollama and LangChain",
         homepage: "https://github.com/langchain-ai/langchain/tree/master/libs/partners/ollama",

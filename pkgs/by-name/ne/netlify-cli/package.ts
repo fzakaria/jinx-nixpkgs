@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netlify-cli";
       const version = "23.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netlify",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [vips]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           test: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Netlify command line tool",
         homepage: "https://github.com/netlify/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/netlify/cli/blob/v${version}/CHANGELOG.md`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "netlify",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

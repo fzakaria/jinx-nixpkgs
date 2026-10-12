@@ -16,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "auto-patchelf-structured-log-test",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tonelib.net/download/221222/ToneLib-Jam-amd64.deb",
           sha256: "sha256-c6At2lRPngQPpE7O+VY/Hsfw+QfIb3COIuHfbqqIEuM=",
         })))),

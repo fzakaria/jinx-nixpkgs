@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: "userborn-import-legacy",
       version: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./Cargo.toml")), "package", "version")),
       src: nix.thunk(() => nix.builtins.filterSource((name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", name)), nix.path(here, "./."))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "userborn-migration": nix.thunk(() => nix.attr(nixosTests, "userborn-migration")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "One-shot migration from update-users-groups.pl state to userborn",
         longDescription: "Runs once before userborn on systems migrating from\nupdate-users-groups.pl. Adds locked stub entries to\n/etc/{passwd,group,shadow} for every name in\n/var/lib/nixos/{uid,gid}-map without a live entry so freed ids are\nnot reassigned, and creates previous-userborn.json based on\ndeclarative-{users,groups}.\n\nTemporary. Will be removed once the perl implementation has been\ngone for two NixOS releases.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

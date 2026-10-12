@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dask",
           repo: "dask-gateway",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [aiohttp, colorlog, cryptography, traitlets]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         kerberos: nix.thunk(() => [pykerberos]),
         jobqueue: nix.thunk(() => [sqlalchemy]),
         local: nix.thunk(() => [sqlalchemy]),
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dask_gateway_server"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multi-tenant server for securely deploying and managing multiple Dask clusters",
         homepage: "https://gateway.dask.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

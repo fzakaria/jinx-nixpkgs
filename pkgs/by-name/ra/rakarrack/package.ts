@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rakarrack",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/rakarrack/rakarrack-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1rpf63pdn54c4yg13k7cb1w1c7zsvl97c4qxcpz41c8l91xd55kn",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-effects processor emulating a guitar effects pedalboard",
         homepage: "https://rakarrack.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

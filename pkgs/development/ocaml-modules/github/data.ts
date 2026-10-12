@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const atdgen = nix.arg($, "atdgen");
   const atdgen_runtime = nix.arg($, "atdgen-runtime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "github-data",
       version: nix.thunk(() => nix.attr(github, "version")),
       src: nix.thunk(() => nix.attr(github, "src")),
       postPatch: "substituteInPlace lib_data/dune --replace-warn 'atdgen)' 'atdgen-runtime)'\n",
       nativeBuildInputs: nix.thunk(() => [atdgen]),
       propagatedBuildInputs: nix.thunk(() => [yojson, atdgen_runtime]),
-      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { __proto__: pos$1, description: "GitHub APIv3 data library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { [nix.POS]: pos$1, description: "GitHub APIv3 data library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=data.ts.map

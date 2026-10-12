@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "matlab-language-server",
       version: "1.3.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mathworks",
           repo: "matlab-language-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-v6jnz6Qk7ao99Iw1PZnyGfvdbK+a7Mp6Jvjm5teVuDE=",
       npmBuildScript: "package",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language Server for MATLAB® code",
         homepage: "https://github.com/mathworks/MATLAB-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/mathworks/MATLAB-language-server/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

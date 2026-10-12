@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jdom",
       version: "2.0.6.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jdom.org/dist/binary/jdom-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-Y++mlO+7N5EU2NhRzLl5x5WXNqu/2tDO/NpNhfRegcg=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/java\ncp -a . $out/share/java\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java-based solution for accessing, manipulating, and outputting XML data from Java code",
         homepage: "http://www.jdom.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

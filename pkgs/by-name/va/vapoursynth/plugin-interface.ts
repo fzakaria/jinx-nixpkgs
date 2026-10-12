@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const withPlugins = nix.arg($, "withPlugins");
   return (plugins) => (() => {
-    const pythonEnvironment = nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({ __proto__: pos$1, extraLibs: plugins }))));
+    const pythonEnvironment = nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraLibs: plugins }))));
     const getRecursivePropagatedBuildInputs = (pkgs) => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((pkg) => (() => {
           const cleanPropagatedBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.sel(pkg, "propagatedBuildInputs"))));
           return nix.concat(cleanPropagatedBuildInputs, nix.app(getRecursivePropagatedBuildInputs, cleanPropagatedBuildInputs));
         })(), pkgs)));
     const deepPlugins = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(plugins, nix.app(getRecursivePropagatedBuildInputs, plugins)))));
     const pluginsEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "vapoursynth-plugins-env",
         pathsToLink: nix.thunk(() => ["/lib/vapoursynth"]),
         paths: deepPlugins,
       }))));
     const nixPlugins = nix.thunk(() => nix.app(runCommandCC, nix.thunk(() => nix.str`libvapoursynth-nix-plugins${ext}`), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         executable: true,
         preferLocalBuild: true,
         allowSubstitutes: false,
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       })), "$CC -x c -shared -fPIC - -o \"$out\" <<<\"$src\"\n"));
     const ext = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
     return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(vapoursynth, "overrideAttrs"), (previousAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "vapoursynth-with-plugins",
         configureFlags: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "configureFlags"), [nix.thunk(() => nix.str`--with-plugindir=${pluginsEnv}/lib/vapoursynth`)])),
       })) : nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(vapoursynth, "name")}-with-plugins`), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           python3: python3,
           src: nix.thunk(() => nix.attr(vapoursynth, "src")),
           version: nix.thunk(() => nix.attr(vapoursynth, "version")),

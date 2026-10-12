@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "asynch",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "long2ice",
           repo: "asynch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,17 +45,17 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core, setuptools, cython]),
       dependencies: nix.thunk(() => nix.concat([ciso8601, tzlocal], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [tzdata])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         compression: nix.thunk(() => nix.concat([clickhouse_cityhash, lz4], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => [zstd])))),
       })),
       pythonImportsCheck: nix.thunk(() => ["asynch"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, asynch: nix.thunk(() => nix.attr(nixosTests, "asynch")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, asynch: nix.thunk(() => nix.attr(nixosTests, "asynch")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Asyncio driver for ClickHouse with native TCP support",
         homepage: "https://github.com/long2ice/asynch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

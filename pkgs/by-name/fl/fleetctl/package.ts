@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "fleetctl",
       version: nix.thunk(() => nix.attr(fleet, "version")),
       src: nix.thunk(() => nix.attr(fleet, "src")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/fleet-v${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool for managing Fleet",

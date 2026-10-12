@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-default-settings";
       const version = "8.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "default-settings",
           tag: version,
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postFixup = "# https://github.com/elementary/default-settings/issues/55\nrm -r $out/share/cups\nrm -r $out/share/applications\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Default settings and configuration files for elementary",
         homepage: "https://github.com/elementary/default-settings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexmojaki",
           repo: "executing",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_two_statement_lookups", "test_many_source_for_filename_calls"]);
       const pythonImportsCheck = nix.thunk(() => ["executing"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get information about what a frame is currently doing, particularly the AST node being executed",
         homepage: "https://github.com/alexmojaki/executing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

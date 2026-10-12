@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "service.subtitles.a4ksubtitles";
       const version = "3.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "a4k-openproject",
           repo: "a4kSubtitles",
           rev: nix.thunk(() => nix.str`${namespace}/${namespace}-${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, vfs_libarchive]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://a4k-openproject.github.io/a4kSubtitles/",
         description: "Multi-Source Subtitles Addon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

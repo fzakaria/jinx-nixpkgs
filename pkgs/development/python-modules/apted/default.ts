@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apted",
       version: "1.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JoaoFelipe",
           repo: "apted",
           rev: "828b3e3f4c053f7d35f0b55b0d5597e8041719ac",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["apted"]),
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "APTED algorithm for the Tree Edit Distance",
         homepage: "https://github.com/JoaoFelipe/apted",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

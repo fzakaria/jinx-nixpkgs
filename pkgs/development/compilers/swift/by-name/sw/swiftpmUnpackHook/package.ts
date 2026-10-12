@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const swiftpm = nix.arg($, "swiftpm");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), swiftpm)}-unpack-hook-${nix.app(nix.sel(lib, "getVersion"), swiftpm)}`),
-      substitutions: nix.thunk(() => ({ __proto__: pos$1, jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)) })),
+      substitutions: nix.thunk(() => ({ [nix.POS]: pos$1, jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)) })),
     })), nix.path(here, "./setup-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

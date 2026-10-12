@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgedit-gtksourceview",
       version: "299.7.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgedit_amtk, libgedit_gfls, libxml2]),
       propagatedBuildInputs: nix.thunk(() => [glib, gtk3, shared_mime_info]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Source code editing widget for GTK",
         homepage: "https://gitlab.gnome.org/World/gedit/libgedit-gtksourceview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

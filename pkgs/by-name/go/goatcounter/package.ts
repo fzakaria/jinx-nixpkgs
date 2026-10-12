@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const goatcounter = nix.arg($, "goatcounter");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "goatcounter",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arp242",
           repo: "goatcounter",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X zgo.at/goatcounter/v2.Version=${nix.sel(finalAttrs, "src", "rev")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           moduleTest: nix.thunk(() => nix.sel(nixosTests, "goatcounter")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: goatcounter,
               command: "goatcounter version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Easy web analytics. No tracking of personal data",
         changelog: nix.thunk(() => nix.str`https://github.com/arp242/goatcounter/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         longDescription: "GoatCounter is an open source web analytics platform available as a hosted\nservice (free for non-commercial use) or self-hosted app. It aims to offer easy\nto use and meaningful privacy-friendly web analytics as an alternative to\nGoogle Analytics or Matomo.\n",

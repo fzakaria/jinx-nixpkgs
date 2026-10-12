@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "skytemple",
       version: "1.8.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SkyTemple",
           repo: "skytemple",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "install -Dm444 org.skytemple.SkyTemple.desktop -t $out/share/applications\ninstall -Dm444 installer/skytemple.ico $out/share/icons/hicolor/256x256/apps/org.skytemple.SkyTemple.ico\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SkyTemple/skytemple",
         description: "ROM hacking tool for Pokémon Mystery Dungeon Explorers of Sky",
         mainProgram: "skytemple",

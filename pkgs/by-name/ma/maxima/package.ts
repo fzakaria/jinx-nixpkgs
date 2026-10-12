@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const lisp_compiler = nix.argOr($, "lisp-compiler", () => nix.force(sbcl));
   const searchPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(x, null), nix.thunk(() => [lisp_compiler, rlwrap, tk, gnuplot])))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "maxima",
       version: "5.49.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/maxima/maxima-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-bUAaSqMHzTpanK3KT6lsTvDiT/laGLtqj4A+PSEUre4=",
         })))),
@@ -53,26 +53,26 @@ ln -s ../maxima/${nix.sel(finalAttrs, "version")}/doc $out/share/doc/maxima
 `)))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/sagemath/sage/07d6c37d18811e2b377a9689790a7c5e24da16ba/build/pkgs/maxima/patches/infodir.patch",
             sha256: "09v64n60f7i6frzryrj0zd056lvdpms3ajky4f9p6kankhbiv21x",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://raw.githubusercontent.com/sagemath/sage/07d6c37d18811e2b377a9689790a7c5e24da16ba/build/pkgs/maxima/patches/matrixexp.patch",
             sha256: "06961hn66rhjijfvyym21h39wk98sfxhp051da6gz0n9byhwc6zg",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://raw.githubusercontent.com/sagemath/sage/07d6c37d18811e2b377a9689790a7c5e24da16ba/build/pkgs/maxima/patches/undoing_true_false_printing_patch.patch",
             sha256: "0fvi3rcjv6743sqsbgdzazy9jb6r1p1yq63zyj9fx42wd1hgf7yx",
           })))),
       ]),
       doCheck: false,
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, "lisp-compiler": lisp_compiler })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, "lisp-compiler": lisp_compiler })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/maxima/code/ci/master/tree/changelogs/ChangeLog-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.md`),
         description: "Computer algebra system",
         homepage: "http://maxima.sourceforge.net",

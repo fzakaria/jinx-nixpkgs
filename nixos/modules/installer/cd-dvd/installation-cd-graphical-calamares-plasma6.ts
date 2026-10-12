@@ -33,64 +33,64 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-calamares.nix")]),
     isoImage: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "plasma6")),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       desktopManager: nix.thunk(() => ({
-        __proto__: pos$3,
-        plasma6: nix.thunk(() => ({ __proto__: pos$2, enable: true, enableQt5Integration: false })),
+        [nix.POS]: pos$3,
+        plasma6: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, enableQt5Integration: false })),
       })),
       displayManager: nix.thunk(() => ({
-        __proto__: pos$6,
-        "plasma-login-manager": nix.thunk(() => ({ __proto__: pos$4, enable: true })),
-        autoLogin: nix.thunk(() => ({ __proto__: pos$5, enable: true, user: "nixos" })),
+        [nix.POS]: pos$6,
+        "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+        autoLogin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, user: "nixos" })),
       })),
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       plasma6: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kdePackages", "plasma-workspace-wallpapers"))]),
       })),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$11,
-      "kde-pim": nix.thunk(() => ({ __proto__: pos$10, enable: false })),
+      [nix.POS]: pos$11,
+      "kde-pim": nix.thunk(() => ({ [nix.POS]: pos$10, enable: false })),
     })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       tmpfiles: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         settings: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "10-installer-desktop": nix.thunk(() => (() => {
             const manualDesktopFile = "/run/current-system/sw/share/applications/nixos-manual.desktop";
             return {
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "/home/nixos/Desktop": nix.thunk(() => ({
-                __proto__: pos$13,
-                d: nix.thunk(() => ({ __proto__: pos$12, user: "nixos", group: "users", mode: "0755" })),
+                [nix.POS]: pos$13,
+                d: nix.thunk(() => ({ [nix.POS]: pos$12, user: "nixos", group: "users", mode: "0755" })),
               })),
               "/home/nixos/Desktop/nixos-manual.desktop": nix.thunk(() => ({
-                __proto__: pos$15,
-                "L+": nix.thunk(() => ({ __proto__: pos$14, argument: manualDesktopFile })),
+                [nix.POS]: pos$15,
+                "L+": nix.thunk(() => ({ [nix.POS]: pos$14, argument: manualDesktopFile })),
               })),
               "/home/nixos/Desktop/gparted.desktop": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "L+": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   argument: nix.thunk(() => nix.str`${nix.sel(pkgs, "gparted")}/share/applications/gparted.desktop`),
                 })),
               })),
               "/home/nixos/Desktop/calamares.desktop": nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 "L+": nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   argument: nix.thunk(() => nix.str`${nix.sel(pkgs, "calamares-nixos")}/share/applications/calamares.desktop`),
                 })),
               })),

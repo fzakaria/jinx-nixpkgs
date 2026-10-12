@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.21";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "ea7919caee14abe741016d8e37e96bc67a43e22f77c079e55962273f39dbea4e",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API towards Ubiquity Networks UniFi controller",
         homepage: "https://github.com/finish06/unifi-api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "peterhoeg"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

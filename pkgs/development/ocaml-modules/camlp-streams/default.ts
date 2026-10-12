@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "camlp-streams",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml",
           repo: "camlp-streams",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-kHuFBqu0mjFv53sOtmFZcX2reo5ToaOpItP7P53bfGQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stream and Genlex libraries for use with Camlp4 and Camlp5",
         homepage: "https://github.com/ocaml/camlp-streams",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

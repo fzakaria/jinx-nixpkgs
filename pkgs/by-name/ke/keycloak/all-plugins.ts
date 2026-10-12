@@ -21,29 +21,29 @@ export default nix.lambda((args) => (() => {
   const junixsocket_common = nix.arg($, "junixsocket-common");
   const junixsocket_native_common = nix.arg($, "junixsocket-native-common");
   return nix.update({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "apple-identity-provider-keycloak": nix.thunk(() => nix.app(callPackage, nix.path(here, "./apple-identity-provider-keycloak"), nix.thunk(() => ({})))),
     "keycloak-2fa-app-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "keycloak-2fa-app-authenticator",
         module: "app-authenticator",
         description: "Keycloak MFA provider connecting a native mobile app for login approval",
       })))),
     "keycloak-2fa-email-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "keycloak-2fa-email-authenticator",
         module: "email-authenticator",
         description: "Keycloak authentication provider for 2FA via email OTP",
       })))),
     "keycloak-2fa-sms-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "keycloak-2fa-sms-authenticator",
         module: "sms-authenticator",
         description: "Keycloak authentication provider for 2FA via SMS",
       })))),
     "keycloak-discord": nix.thunk(() => nix.app(callPackage, nix.path(here, "./keycloak-discord"), nix.thunk(() => ({})))),
     "keycloak-enforce-mfa-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "keycloak-enforce-mfa-authenticator",
         module: "enforce-mfa",
         description: "Keycloak authenticator that enforces MFA",
@@ -57,21 +57,21 @@ export default nix.lambda((args) => (() => {
     "junixsocket-common": nix.thunk(() => nix.sel(junixsocket_common, "passthru", "jar")),
     "junixsocket-native-common": nix.thunk(() => nix.sel(junixsocket_native_common, "passthru", "jar")),
     "quarkus-systemd-notify": nix.thunk(() => nix.sel(nix.app(fetchMavenArtifact, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         groupId: "io.quarkiverse.systemd.notify",
         artifactId: "quarkus-systemd-notify",
         version: "1.0.1",
         hash: "sha256-3I4j22jyIpokU4kdobkt6cDsALtxYFclA+DV+BqtmLY=",
       }))), "passthru", "jar")),
     "quarkus-systemd-notify-deployment": nix.thunk(() => nix.sel(nix.app(fetchMavenArtifact, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         groupId: "io.quarkiverse.systemd.notify",
         artifactId: "quarkus-systemd-notify-deployment",
         version: "1.0.1",
         hash: "sha256-xHxzBxriSd/OU8gEcDG00VRkJYPYJDfAfPh/FkQe+zg=",
       }))), "passthru", "jar")),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       "keycloak-metrics-spi": nix.thunk(() => nix.builtins.throw("keycloak.plugins.keycloak-metrics-spi has been removed in favor of Keycloak's native metrics.")),
       "scim-for-keycloak": nix.thunk(() => nix.builtins.throw("keycloak.plugins.scim-for-keycloak has been removed as it is end-of-life upstream.")),
       "scim-keycloak-user-storage-spi": nix.thunk(() => nix.builtins.throw("keycloak.plugins.scim-keycloak-user-storage-spi has been removed as it is unmaintained upstream.")),

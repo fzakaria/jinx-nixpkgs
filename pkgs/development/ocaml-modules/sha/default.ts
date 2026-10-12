@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sha";
       const version = "1.15.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/djs55/ocaml-${pname}/releases/download/v${version}/${pname}-${version}.tbz`),
           hash: "sha256-beWxITmxmZzp30zHiloxiGwqVHydRIvyhT+LU7zx8bE=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
       const checkInputs = nix.thunk(() => [ounit2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Binding for SHA interface code in OCaml",
         homepage: "https://github.com/djs55/ocaml-sha/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const toml = nix.arg($, "toml");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ansible-pylibssh",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "ansible_pylibssh",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-pItebbIQYrxiWFSOaj5DYwQ9QBKPDmt5Z3Slm2p9voI=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [libssh]),
       pythonImportsCheck: nix.thunk(() => ["pylibsshext"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings to client functionality of libssh specific to Ansible use case",
         homepage: "https://github.com/ansible/pylibssh",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/pylibssh/releases/tag/v${nix.sel(finalAttrs, "version")}`),

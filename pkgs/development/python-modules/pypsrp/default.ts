@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pypsrp",
       version: "0.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jborean93",
           repo: "pypsrp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cryptography, httpcore, httpx, psrpcore, pyspnego, requests]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         credssp: nix.thunk(() => [requests_credssp]),
         kerberos: nix.thunk(() => nix.sel(pyspnego, "optional-dependencies", "kerberos")),
         named_pipe: nix.thunk(() => [psutil]),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "test_psrp_multiple_commands",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PowerShell Remoting Protocol Client library",
         homepage: "https://github.com/jborean93/pypsrp",
         changelog: nix.thunk(() => nix.str`https://github.com/jborean93/pypsrp/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

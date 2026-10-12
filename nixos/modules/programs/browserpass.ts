@@ -27,57 +27,57 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         browserpass: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Browserpass native messaging host")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "browserpass", "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           etc: nix.thunk(() => (() => {
             const appId = "com.github.browserpass.native.json";
             const source = (part) => nix.str`${nix.sel(pkgs, "browserpass")}/lib/browserpass/${part}/${appId}`;
             return nix.attrsDyn({}, [
-              [nix.str`chromium/native-messaging-hosts/${appId}`, nix.thunk(() => ({ __proto__: pos$4, source: nix.thunk(() => nix.app(source, "hosts/chromium")) }))],
+              [nix.str`chromium/native-messaging-hosts/${appId}`, nix.thunk(() => ({ [nix.POS]: pos$4, source: nix.thunk(() => nix.app(source, "hosts/chromium")) }))],
               [nix.str`chromium/policies/managed/${appId}`, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 source: nix.thunk(() => nix.app(source, "policies/chromium")),
               }))],
-              [nix.str`opt/chrome/native-messaging-hosts/${appId}`, nix.thunk(() => ({ __proto__: pos$6, source: nix.thunk(() => nix.app(source, "hosts/chromium")) }))],
+              [nix.str`opt/chrome/native-messaging-hosts/${appId}`, nix.thunk(() => ({ [nix.POS]: pos$6, source: nix.thunk(() => nix.app(source, "hosts/chromium")) }))],
               [nix.str`opt/chrome/policies/managed/${appId}`, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 source: nix.thunk(() => nix.app(source, "policies/chromium")),
               }))],
-              [nix.str`opt/vivaldi/native-messaging-hosts/${appId}`, nix.thunk(() => ({ __proto__: pos$8, source: nix.thunk(() => nix.app(source, "hosts/chromium")) }))],
+              [nix.str`opt/vivaldi/native-messaging-hosts/${appId}`, nix.thunk(() => ({ [nix.POS]: pos$8, source: nix.thunk(() => nix.app(source, "hosts/chromium")) }))],
               [nix.str`opt/vivaldi/policies/managed/${appId}`, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 source: nix.thunk(() => nix.app(source, "policies/chromium")),
               }))],
               [nix.str`opt/brave/native-messaging-hosts/${appId}`, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 source: nix.thunk(() => nix.app(source, "hosts/chromium")),
               }))],
               [nix.str`opt/brave/policies/managed/${appId}`, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 source: nix.thunk(() => nix.app(source, "policies/chromium")),
               }))],
             ]);
           })()),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           firefox: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             nativeMessagingHosts: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "browserpass"))]),
             })),
           })),

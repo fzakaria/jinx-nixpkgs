@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const opusfile = nix.arg($, "opusfile");
   const libsndfile = nix.arg($, "libsndfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alure2",
       version: "0-unstable-2020-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kcat",
           repo: "alure",
           rev: "50f92fe528e77da82197fd947d1cf9b0a82a0c7d",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openal, libvorbis, opusfile, libsndfile]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility library for OpenAL, providing a C++ API and managing common tasks that include file loading, caching, and streaming",
         homepage: "https://github.com/kcat/alure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

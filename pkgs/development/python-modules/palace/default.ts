@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~cnx",
           repo: "palace",
           rev: version,
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["palace"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pythonic Audio Library and Codecs Environment",
         homepage: "https://mcsinyx.gitlab.io/palace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "McSinyx"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

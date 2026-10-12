@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apache-directory-studio",
       version: "2.0.0-M17",
       versionWithDate: "2.0.0.v20210717-M17",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/directory/studio/${nix.sel(finalAttrs, "versionWithDate")}/ApacheDirectoryStudio-${nix.sel(finalAttrs, "versionWithDate")}-linux.gtk.x86_64.tar.gz`),
           sha256: "19zdspzv4n3mfgb1g45s3wh0vbvn6a9zjd4xi5x2afmdjkzlwxi4",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)))),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "apache-directory-studio",
           exec: "ApacheDirectoryStudio",
           icon: "apache-directory-studio",
@@ -65,7 +65,7 @@ magick icon.xpm $out/share/icons/hicolor/48x48/apps/apache-directory-studio.png
 install -D -t "$out/share/applications" ${nix.sel(finalAttrs, "desktopItem")}/share/applications/*
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Eclipse-based LDAP browser and directory client",
         homepage: "https://directory.apache.org/studio/",
         sourceProvenance: nix.thunk(() => (() => {

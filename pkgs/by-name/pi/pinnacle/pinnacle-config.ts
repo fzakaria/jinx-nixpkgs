@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const pinnacle_src = nix.arg($, "pinnacle-src");
   return (args_1) => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["nativeBuildInputs", "buildInputs"])), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       PINNACLE_PROTOBUF_API_DEFS: nix.thunk(() => nix.str`${pinnacle_src}/api/protobuf`),
       PINNACLE_PROTOBUF_SNOWCAP_API_DEFS: nix.thunk(() => nix.str`${pinnacle_src}/snowcap/api/protobuf`),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "nativeBuildInputs"), [protobuf, pkg_config])),

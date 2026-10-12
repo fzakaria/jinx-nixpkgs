@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const postFixup = nix.argOr($, "postFixup", () => "");
   const description = nix.arg($, "description");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       buildFlags: buildFlags,
       buildInputs: buildInputs,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: postFixup,
       version: "0-unstable-2025-06-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fte-team",
           repo: "fteqw",
           rev: "41f35720eda2d1e54d039975db28f46d68a963cb",
@@ -50,7 +50,7 @@ install -Dm755 engine/release/${releaseFile} $out/bin/${pname}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: description,
         homepage: "https://fteqw.org",
         longDescription: "FTE is a game engine baed on QuakeWorld able to\nplay games such as Quake 1, 2, 3, and Hexen 2.\nIt includes various features such as extended map\nlimits, vulkan and OpenGL renderers, a dedicated\nserver, and fteqcc, for easier QuakeC development\n",

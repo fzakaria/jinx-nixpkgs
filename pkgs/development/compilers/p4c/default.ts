@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const enableMultithreading = nix.argOr($, "enableMultithreading", () => false);
   const toCMakeBoolean = (v) => (nix.asBool(v) ? "ON" : "OFF");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "p4c",
       version: "1.2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p4lang",
           repo: "p4c",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-13.patch",
             url: "https://github.com/p4lang/p4c/commit/6756816100b7c51e3bf717ec55114a8e8575ba1d.patch",
             hash: "sha256-wWM1qjgQCNMPdrhQF38jzFgODUsAcaHTajdbV7L3y8o=",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([bison, flex, cmake, protobuf, python3], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDocumentation, nix.thunk(() => [doxygen, graphviz])), nix.app(nix.sel(lib, "optionals"), enableBPF, nix.thunk(() => [libllvm, libbpf]))))),
       buildInputs: nix.thunk(() => [protobuf, boost, boehmgc, gmp, flex]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: "https://github.com/p4lang/p4c/releases",
         description: "Reference compiler for the P4 programming language",
         homepage: "https://github.com/p4lang/p4c",

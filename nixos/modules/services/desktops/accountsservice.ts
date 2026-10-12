@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "accounts-daemon": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable AccountsService, a DBus service for accessing\nthe list of user accounts and information attached to those accounts.\n",
@@ -47,35 +47,35 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "accounts-daemon", "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "accountsservice"))]),
           pathsToLink: nix.thunk(() => ["/share/accountsservice"]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           dbus: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "accountsservice"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "accountsservice"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "accounts-daemon": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 wantedBy: nix.thunk(() => ["graphical.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   XDG_DATA_DIRS: nix.thunk(() => nix.str`${nix.sel(config, "system", "path")}/share`),
                   LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
                 })),
               })), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(config, "users", "mutableUsers"))), nix.thunk(() => ({
-                  __proto__: pos$12,
-                  environment: nix.thunk(() => ({ __proto__: pos$11, NIXOS_USERS_PURE: "true" })),
+                  [nix.POS]: pos$12,
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$11, NIXOS_USERS_PURE: "true" })),
                 })))))),
           })),
         })),

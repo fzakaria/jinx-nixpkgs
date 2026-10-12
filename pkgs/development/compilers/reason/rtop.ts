@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const utop = nix.arg($, "utop");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rtop",
       version: nix.thunk(() => nix.attr(reason, "version")),
       src: nix.thunk(() => nix.attr(reason, "src")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   --prefix OCAMLPATH : "$OCAMLPATH:$OCAMLFIND_DESTDIR"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(reason, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Toplevel (or REPL) for Reason, based on utop",
         mainProgram: "rtop",
       })),

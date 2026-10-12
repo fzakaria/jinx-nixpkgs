@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-semver",
           repo: "python-semver",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["semver"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package to work with Semantic Versioning (http://semver.org/)",
         homepage: "https://python-semver.readthedocs.io/",
         changelog: "https://github.com/python-semver/python-semver/releases/tag/3.0.0",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pysemver",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

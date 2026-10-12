@@ -34,28 +34,28 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "dashy"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         dashy: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Dashy, a highly customizable, easy to use, privacy-respecting dashboard app.\n\nNote that this builds a static web app as opposed to running a full node server, unlike the default docker image.\n\nWriting config changes to disk through the UI, triggering a rebuild through the UI and application status checks are\nunavailable without the node server; Everything else will work fine.\n\nSee the deployment docs for [building from source](https://dashy.to/docs/deployment#build-from-source), [hosting with a CDN](https://dashy.to/docs/deployment#hosting-with-cdn) and [CDN cloud deploy](https://dashy.to/docs/deployment#cdn--cloud-deploy) for more information.\n")),
           virtualHost: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enableNginx: nix.thunk(() => nix.app(mkEnableOption, "a virtualhost to serve dashy through nginx")),
             domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Domain to use for the virtual host.\n\nThis can be used to change nginx options like\n```nix\nservices.nginx.virtualHosts.\"$\\{config.services.dashy.virtualHost.domain}\".listen = [ ... ]\n```\nor\n```nix\nservices.nginx.virtualHosts.\"example.com\".listen = [ ... ]\n```\n",
                 type: str,
               })))),
           })),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "dashy-ui", nix.thunk(() => ({})))),
           finalDrv: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               readOnly: true,
-              default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) ? nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$3, settings: nix.thunk(() => nix.attr(cfg, "settings")) }))) : nix.sel(cfg, "package"))),
+              default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), {})) ? nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, settings: nix.thunk(() => nix.attr(cfg, "settings")) }))) : nix.sel(cfg, "package"))),
               defaultText: "if cfg.settings != {}\nthen cfg.package.override {inherit (cfg) settings;}\nelse cfg.package;\n",
               type: package$,
               description: "Final derivation containing the fully built static files\n",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
               return {
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               description: "Settings serialized into `user-data/conf.yml` before build.\nIf left empty, the default configuration shipped with the package will be used instead.\n\nNote that the full configuration will be written to the nix store as world readable, which may include secrets such as [password hashes](https://dashy.to/docs/configuring#appconfigauthusers-optional).\n\nTo add files such as icons or backgrounds, you can reference them in line such as\n```nix\nicon = \"$\\{./icon.png}\";\n```\nThis will add the file to the nix store upon build, referencing it by file path as expected by Dashy.\n",
               example: "{\n  appConfig = {\n    cssThemes = [\n      \"example-theme-1\"\n      \"example-theme-2\"\n    ];\n    enableFontAwesome = true;\n    fontAwesomeKey = \"e9076c7025\";\n    theme = \"thebe\";\n  };\n  pageInfo = {\n    description = \"My Awesome Dashboard\";\n    navLinks = [\n      {\n        path = \"/\";\n        title = \"Home\";\n      }\n      {\n        path = \"https://example.com\";\n        title = \"Example 1\";\n      }\n      {\n        path = \"https://example.com\";\n        title = \"Example 2\";\n      }\n    ];\n    title = \"Dashy\";\n  };\n  sections = [\n    {\n      displayData = {\n        collapsed = true;\n        cols = 2;\n        customStyles = \"border: 2px dashed red;\";\n        itemSize = \"large\";\n      };\n      items = [\n        {\n          backgroundColor = \"#0079ff\";\n          color = \"#00ffc9\";\n          description = \"Source code and documentation on GitHub\";\n          icon = \"fab fa-github\";\n          target = \"sametab\";\n          title = \"Source\";\n          url = \"https://github.com/Lissy93/dashy\";\n        }\n        {\n          description = \"View currently open issues, or raise a new one\";\n          icon = \"fas fa-bug\";\n          title = \"Issues\";\n          url = \"https://github.com/Lissy93/dashy/issues\";\n        }\n        {\n          description = \"Live Demo #1\";\n          icon = \"fas fa-rocket\";\n          target = \"iframe\";\n          title = \"Demo 1\";\n          url = \"https://dashy-demo-1.as93.net\";\n        }\n        {\n          description = \"Live Demo #2\";\n          icon = \"favicon\";\n          target = \"newtab\";\n          title = \"Demo 2\";\n          url = \"https://dashy-demo-2.as93.net\";\n        }\n      ];\n      name = \"Getting Started\";\n    }\n  ];\n}\n",
@@ -74,19 +74,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "virtualHost", "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "virtualHost", "domain")}`, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       root: nix.thunk(() => nix.sel(cfg, "finalDrv")),
                       tryFiles: "$uri /index.html ",
                     })),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "therealgramdalf"))]),
     })),
   };

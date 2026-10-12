@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bic",
       version: "1.0.0-unstable-2022-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hexagonal-sun",
           repo: "bic",
           rev: "b224d2776fdfe84d02eb96a21880a9e4ceeb3065",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gcc]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C interpreter and API explorer",
         mainProgram: "bic",
         longDescription: "bic This a project that allows developers to explore and test C-APIs using a\nread eval print loop, also known as a REPL.\n",

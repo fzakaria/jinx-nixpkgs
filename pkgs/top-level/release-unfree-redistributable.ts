@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux", "aarch64-linux"]);
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     config: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       allowAliases: false,
       allowUnfree: true,
       cudaSupport: false,
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   }));
   const full = nix.argOr($, "full", () => false);
   const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       supportedSystems: supportedSystems,
       nixpkgsArgs: nixpkgsArgs,
     }))));

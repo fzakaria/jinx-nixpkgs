@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const gradle = nix.arg($, "gradle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ktfmt",
       version: "0.63",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kotlin",
           repo: "ktfmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.path(here, "./remove-idea-plugin.patch"),
       nativeBuildInputs: nix.thunk(() => [gradle, jdk17, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -50,7 +50,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_headless, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Program that reformats Kotlin source code to comply with the common community standard for Kotlin code conventions",
         homepage: "https://github.com/Kotlin/ktfmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

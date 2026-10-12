@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "php-codesniffer",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PHPCSStandards",
           repo: "PHP_CodeSniffer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-qLYXFgY5cg2Fz33lrhwHHoqmbmtZo81ngVuUFh6N648=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "PHP coding standard tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

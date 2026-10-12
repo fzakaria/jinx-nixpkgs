@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "libguestfs-appliance";
       const version = "1.56.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/binaries/appliance/appliance-${version}.tar.xz`),
           hash: "sha256-YbJlNaogMyutdtc7d+etyJvdd//yE8tedsZfkGXJr54=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ncp README.fixed initrd kernel root $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VM appliance disk image used in libguestfs package",
         homepage: "https://libguestfs.org",
         license: nix.thunk(() => (() => {
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
         hydraPlatforms: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

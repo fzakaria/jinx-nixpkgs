@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "extras",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Ey423hC5yR1dTMYgFgpHbgRoqI8WyUMYF6ZylhGoG04=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "substituteInPlace extras/tests/test_extras.py \\\n    --replace-fail \"assertEquals(\" \"assertEqual(\"\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, testtools]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Useful extra bits for Python - things that should be in the standard library",
         homepage: "https://github.com/testing-cabal/extras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

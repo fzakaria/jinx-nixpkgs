@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(a, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: name,
         pluginType: pluginType,
         configurePhase: configurePhase,
@@ -32,6 +32,6 @@ export default nix.lambda((args) => (() => {
         installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\nmv * $out/\n\nrunHook postInstall\n",
       })));
   })(), formals$2);
-  return { __proto__: pos$2, buildMoodlePlugin: buildMoodlePlugin };
+  return { [nix.POS]: pos$2, buildMoodlePlugin: buildMoodlePlugin };
 })(), formals$1);
 //# sourceMappingURL=moodle-utils.ts.map

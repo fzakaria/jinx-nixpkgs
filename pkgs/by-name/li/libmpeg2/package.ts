@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.5.1",
       pname: "libmpeg2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://libmpeg2.sourceforge.net/files/libmpeg2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1m3i322n2fwgrvbs1yck7g5md1dbg22bhq5xdqmjpz5m7j4jxqny",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./getopt-getenv-signatures.patch")]),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "CFLAGS=-std=gnu89")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://libmpeg2.sourceforge.net/",
         description: "Free library for decoding mpeg-2 and mpeg-1 video streams",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

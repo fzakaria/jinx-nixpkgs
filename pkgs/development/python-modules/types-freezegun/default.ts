@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "types-freezegun",
       version: "1.1.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types-freezegun",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yzotLu6VDqy6rAZzq1BJmCM2XOuMZVursVRKQURkCew=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["freezegun-stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for freezegun",
         homepage: "https://github.com/python/typeshed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

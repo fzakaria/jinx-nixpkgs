@@ -19,32 +19,32 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     basic: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "rshim",
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "nikstur"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config_1 = nix.arg($_1, "config");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               services: nix.thunk(() => ({
-                __proto__: pos$5,
-                rshim: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+                [nix.POS]: pos$5,
+                rshim: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
               })),
             };
           })(), formals$2),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cppunit = nix.arg($, "cppunit");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpp-utilities",
       version: "5.37.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Martchus",
           repo: "cpp-utilities",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "checkFlagsArray+=(\n  \"LD_LIBRARY_PATH=$PWD\"\n)\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Martchus/cpp-utilities",
         description: "Common C++ classes and routines used by @Martchus' applications featuring argument parser, IO and conversion utilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

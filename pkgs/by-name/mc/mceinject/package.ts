@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mceinject",
       version: "0-unstable-2013-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andikleen",
           repo: "mce-inject",
           rev: "4cbe46321b4a81365ff3aafafe63967264dbfec5",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [flex, bison]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Os", "-g", "-Wall"]))),
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpthread"]))),
       })),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installFlags: nix.thunk(() => ["destdir=$(out)", "manprefix=/share"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to inject machine checks into x86 kernel for testing",
         mainProgram: "mce-inject",
         longDescription: "mce-inject allows to inject machine check errors on the software level\ninto a running Linux kernel. This is intended for validation of the\nkernel machine check handler.\n",

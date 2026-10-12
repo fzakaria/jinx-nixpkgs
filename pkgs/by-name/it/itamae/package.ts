@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "itamae",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["itamae"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "itamae")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and lightweight configuration management tool inspired by Chef",
         homepage: "https://itamae.kitchen/",
         license: nix.thunk(() => (() => {

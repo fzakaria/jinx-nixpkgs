@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_write_good = nix.arg($, "textlint-rule-write-good");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-write-good",
       version: "2.0.0-unstable-2024-05-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-rule",
           repo: "textlint-rule-write-good",
           rev: "586afa0989ae9ac8a93436f58a24d99afe1cac21",
           hash: "sha256-ghEmWkwGVvLMy6Gf7IrariDRNfuNBc9EVOQz5w38g0I=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-J02MoKPEYtehQMSaOR1Ytfme1ffgHbQcNnEENeTaxaA=",
         })))),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn --offline build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nrm -r test\nmkdir -p $out/lib/node_modules/textlint-rule-write-good\ncp -r . $out/lib/node_modules/textlint-rule-write-good/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_write_good,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Textlint rule to check your English styles with write-good",
         homepage: "https://github.com/textlint-rule/textlint-rule-write-good",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-rule/textlint-rule-write-good/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

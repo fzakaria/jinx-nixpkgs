@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "last-resort";
       const version = "17.000";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/unicode-org/last-resort-font/releases/download/${version}/LastResortHE-Regular.ttf`),
           hash: "sha256-OpNv4jeenhZKj5gZCVy/U9kwWi0IUy2b5bSW9L5FvN4=",
         }))));
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\ninstall -D -m 0644 $src $out/share/fonts/truetype/LastResortHE-Regular.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fallback font of last resort",
         homepage: "https://github.com/unicode-org/last-resort-font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

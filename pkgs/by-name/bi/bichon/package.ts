@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bichon",
       version: "2.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rustmailer",
           repo: "bichon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-f+n38ffIIebd0puhyWaDsWfreMs3sWAi1osqEz9BHYg=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         GIT_HASH: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
       })),
       preBuild: "# Build web frontend before rust build\npushd web\npnpm run build\npopd\n\n# Just sets the GIT_HASH variable for builds, we set it above so we don't need git\nrm crates/server/build.rs\n",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bichon-cli`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/rustmailer/bichon/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Lightweight, high-performance Rust email archiver with WebUI",
         homepage: "https://github.com/rustmailer/bichon",

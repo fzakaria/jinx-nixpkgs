@@ -30,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const pyfakefs = nix.arg($, "pyfakefs");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const test_data = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pydicom",
       repo: "pydicom-data",
       rev: "8da482f208401d63cd63f3f4efc41b6856ef36c7",
       hash: "sha256-ji7SppKdiszaXs8yCSIPkJj4Ld++XWNw9FuxLoFLfFo=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pydicom",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pydicom",
           repo: "pydicom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,17 +51,17 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [numpy]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pixeldata: nix.thunk(() => nix.concat([pillow, pyjpegls, pylibjpeg, pylibjpeg_libjpeg, gdcm], nix.concat(nix.sel(pylibjpeg, "optional-dependencies", "openjpeg"), nix.sel(pylibjpeg, "optional-dependencies", "rle")))),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pyfakefs, writableTmpDirAsHomeHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "pixeldata"))),
       stripExclude: nix.thunk(() => ["*/pydicom/data/*"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "pydicom-data": test_data,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          pytest: nix.thunk(() => nix.app(nix.sel(pydicom, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$4, doCheck: true })))),
+          [nix.POS]: pos$5,
+          pytest: nix.thunk(() => nix.app(nix.sel(pydicom, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, doCheck: true })))),
         })),
       })),
       doCheck: false,
@@ -77,7 +77,7 @@ ln -s ${test_data}/data_store/data $HOME/.pydicom/data
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_array"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_time_check"]))))),
       pythonImportsCheck: nix.thunk(() => ["pydicom"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Python package for working with DICOM files",
         mainProgram: "pydicom",
         homepage: "https://pydicom.github.io",

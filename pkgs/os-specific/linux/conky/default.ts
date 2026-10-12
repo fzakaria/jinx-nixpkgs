@@ -83,11 +83,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(journalSupport) || nix.asBool(!nix.eq(systemd, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/linux/conky/default.nix:92:1");
   nix.assert_((!nix.asBool(extrasSupport) || nix.asBool(!nix.eq(python3, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/linux/conky/default.nix:94:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conky",
       version: "1.22.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brndnmtthws",
           repo: "conky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -140,7 +140,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://conky.cc",
         changelog: nix.thunk(() => nix.str`https://github.com/brndnmtthws/conky/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Advanced, highly configurable system monitor based on torsmo",

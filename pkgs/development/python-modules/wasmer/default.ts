@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
         const pyproject = true;
         const outputs = nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(pname_1, "wasmer")), "testsout")));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "wasmerio",
             repo: "wasmer-python",
             rev: version,
             hash: "sha256-Iu28LMDNmtL2r7gJV5Vbb8HZj18dlkHe+mw/Y1L8YKE=",
           }))));
         const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: pname_1,
             version: version,
             src: src,
@@ -73,9 +73,9 @@ substituteInPlace ${buildAndTestSubdir_1}/Cargo.toml \\
         const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(pname_1, "wasmer")), "mkdir $testsout\ncp -R tests $testsout/tests\n"));
         const doCheck = false;
         const passthru = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(pname_1, "wasmer")), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
             })))),
         }));
@@ -83,7 +83,7 @@ substituteInPlace ${buildAndTestSubdir_1}/Cargo.toml \\
           nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname_1)}`),
         ]);
         const meta = nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           broken: nix.thunk(() => nix.app(pythonAtLeast, "3.12")),
           description: "Python extension to run WebAssembly binaries",
           homepage: "https://github.com/wasmerio/wasmer-python",
@@ -92,7 +92,7 @@ substituteInPlace ${buildAndTestSubdir_1}/Cargo.toml \\
           maintainers: [],
         }));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: pname_1,
           version,
           pyproject,
@@ -112,21 +112,21 @@ substituteInPlace ${buildAndTestSubdir_1}/Cargo.toml \\
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     wasmer: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "wasmer",
         buildAndTestSubdir: "packages/api",
         cargoHash: "sha256-oHyjzEqv88e2CHhWhKjUh6K0UflT9Y1JD//3oiE/UBQ=",
       })))),
     "wasmer-compiler-cranelift": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "wasmer-compiler-cranelift",
         buildAndTestSubdir: "packages/compiler-cranelift",
         cargoHash: "sha256-oHyjzEqv88e2CHhWhKjUh6K0UflT9Y1JD//3oiE/UBQ=",
       })))),
     "wasmer-compiler-llvm": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "wasmer-compiler-llvm",
         buildAndTestSubdir: "packages/compiler-llvm",
         cargoHash: "sha256-oHyjzEqv88e2CHhWhKjUh6K0UflT9Y1JD//3oiE/UBQ=",
@@ -134,7 +134,7 @@ substituteInPlace ${buildAndTestSubdir_1}/Cargo.toml \\
         extraBuildInputs: nix.thunk(() => [libffi, nix.thunk(() => nix.sel(libxml2, "out")), ncurses, zlib]),
       })))),
     "wasmer-compiler-singlepass": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: "wasmer-compiler-singlepass",
         buildAndTestSubdir: "packages/compiler-singlepass",
         cargoHash: "sha256-oHyjzEqv88e2CHhWhKjUh6K0UflT9Y1JD//3oiE/UBQ=",

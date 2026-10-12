@@ -22,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const tests = nix.thunk(() => ({
-    __proto__: pos$2,
-    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ __proto__: pos$1, nixPackage: nix.thunk(() => nix.sel(pkgs, "nix")) })))),
+    [nix.POS]: pos$2,
+    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ [nix.POS]: pos$1, nixPackage: nix.thunk(() => nix.sel(pkgs, "nix")) })))),
   }));
   const testsForPackage = (args_1) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     test: nix.thunk(() => nix.update(nix.app(testMiscFeatures, args_1), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         override: (args$) => nix.sel(nix.app(testsForPackage, nix.thunk(() => nix.update(args_1, args$))), "test"),
       })),
     })),
@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => (() => {
         const foo = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "foo", "Hello World"));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: nix.thunk(() => nix.str`${nix.sel(nixPackage, "pname")}-misc`),
           meta: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [
@@ -54,14 +54,14 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const lib_1 = nix.arg($_2, "lib");
               return {
-                __proto__: pos$9,
-                system: nix.thunk(() => ({ __proto__: pos$7, extraDependencies: nix.thunk(() => [foo]) })),
-                nix: nix.thunk(() => ({ __proto__: pos$8, package: nixPackage })),
+                [nix.POS]: pos$9,
+                system: nix.thunk(() => ({ [nix.POS]: pos$7, extraDependencies: nix.thunk(() => [foo]) })),
+                nix: nix.thunk(() => ({ [nix.POS]: pos$8, package: nixPackage })),
               };
             })(), formals$3),
           })),

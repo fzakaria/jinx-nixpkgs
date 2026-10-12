@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "upspin",
       version: "unstable-2023-02-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "upspin",
           repo: "upspin",
           rev: "67e250ec27d8878c0009213b8e32c6803f2727ea",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Jl++FvKyqz5WFa/Eoly+UnFsoC9Qwdaizhkq6LyJ+XQ=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Global name space for storing data akin to a filesystem",
         homepage: "https://upspin.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

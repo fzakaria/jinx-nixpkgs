@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gemstash",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["gemstash"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "gemstash")),
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           gemstash: nix.thunk(() => nix.attr(nixosTests, "gemstash")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cache for RubyGems.org and a private gem server",
         homepage: "https://github.com/rubygems/gemstash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

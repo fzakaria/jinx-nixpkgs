@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gnupg = nix.arg($, "gnupg");
   const gpgme = nix.arg($, "gpgme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nemo-seahorse",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "nemo-extensions",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, nemo, gpgme, dbus_glib, libcryptui, gcr_3, libnotify, gnupg]),
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_LIBNEMO_EXTENSION_EXTENSIONDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(nemo, "extensiondir")}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-seahorse",
         changelog: "https://github.com/linuxmint/nemo-extensions/blob/master/nemo-seahorse/ChangeLog",
         description: "Nemo seahorse extension",

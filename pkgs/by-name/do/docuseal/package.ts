@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "docuseal",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docusealco",
           repo: "docuseal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,19 +41,19 @@ export default nix.lambda((args) => (() => {
           postFetch: "rm $out/db/schema.rb",
         })))),
       rubyEnv: nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "docuseal-gems",
           ruby: ruby_4_0,
           gemdir: nix.path(here, "./."),
         })))),
       docusealWeb: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "docuseal-web",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
           offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               hash: "sha256-62nI/QUzlpI1VyZ6PWPz2kSp4S2GUIQDaf4jUwzyj24=",
             })))),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "rubyEnv", "wrappedRuby"))]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         RAILS_ENV: "production",
         BUNDLE_WITHOUT: "development:test",
       })),
@@ -91,16 +91,16 @@ runHook postInstall
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [pdfium, leptonica]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "docuseal-psql": nix.thunk(() => nix.attr(nixosTests, "docuseal-psql")),
           "docuseal-sqlite": nix.thunk(() => nix.attr(nixosTests, "docuseal-sqlite")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open source tool for creating, filling and signing digital documents",
         homepage: "https://www.docuseal.co/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

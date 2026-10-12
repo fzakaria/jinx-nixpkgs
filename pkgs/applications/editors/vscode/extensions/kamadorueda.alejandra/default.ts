@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "alejandra",
         publisher: "kamadorueda",
         version: "1.0.0",
@@ -36,7 +36,7 @@ jq -e '
 | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Uncompromising Nix Code Formatter",
         homepage: "https://github.com/kamadorueda/alejandra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

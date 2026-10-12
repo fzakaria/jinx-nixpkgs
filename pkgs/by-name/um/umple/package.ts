@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const longVersion = nix.thunk(() => nix.attr(from, "longVersion"));
   const umpleJar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(versions, "umpleJar"))));
   const joptSimple = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jopt-simple",
       repo: "jopt-simple",
       tag: "jopt-simple-4.4",
       hash: "sha256-sOQaEq2qzvEwJzwZIcMQus3tetzA6O2VPl8XUJAtupM=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "umple",
       version: "1.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "umple",
           repo: "umple",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ substituteInPlace build/package-files/template.1 \\
 find . -type f \\( -name '*.java' -o -name '*.ump' \\) -exec sed -i "s/@UMPLE_VERSION@/${longVersion}/g" {} +
 `),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -112,13 +112,13 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.path(here, "./update.sh"),
         bootstrap: umpleJar,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "2dshapes": nix.thunk(() => nix.app(runCommand, "umple-test", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 nix.thunk(() => nix.sel(gradle_8, "jdk")),
@@ -128,7 +128,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Model-oriented programming language and modelling tool for integrating UML constructs into high-level languages",
         mainProgram: "umple",
         homepage: "https://github.com/umple/umple",

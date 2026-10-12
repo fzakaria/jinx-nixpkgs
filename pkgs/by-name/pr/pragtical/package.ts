@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pragtical",
       version: "3.11.2",
       pluginManagerRev: "v1.5.2",
       linenoiseRev: "e78e236c8d85c078fdd9fc4e1f08716058aa1a42",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pragtical",
           repo: "pragtical",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ find subprojects -type d -name .git -prune -execdir rm -r {} +
       ]),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "use_system_lua", true))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pragtical/pragtical/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.md`),
         description: "Practical and pragmatic code editor",
         homepage: "https://pragtical.dev",

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __darwinAllowLocalNetworking = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "coinmetrics_api_client",
           hash: "sha256-01qVVuV+Cc17ooGe51+367gFOTSxYhWDm9xnOKkMeho=",
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
         websocket_client,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pandas: nix.thunk(() => [pandas]),
         polars: nix.thunk(() => [polars]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_mock], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["coinmetrics.api_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Coin Metrics API v4 client library",
         homepage: "https://coinmetrics.github.io/api-client-python/site/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "coinmetrics",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

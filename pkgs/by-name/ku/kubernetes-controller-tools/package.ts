@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "controller-tools",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "controller-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       subPackages: nix.thunk(() => ["cmd/controller-gen", "cmd/type-scaffold", "cmd/helpgen"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to use with the Kubernetes controller-runtime libraries",
         homepage: "https://github.com/kubernetes-sigs/controller-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/kubernetes-sigs/controller-tools/releases/tag/v${nix.sel(finalAttrs, "version")}`),

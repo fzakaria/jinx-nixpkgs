@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const oniguruma = nix.arg($, "oniguruma");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faq",
       version: "0.0.7-unstable-2022-01-09",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jzelinskie",
           repo: "faq",
           rev: "594bb8e15dc4070300f39c168354784988646231",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/faq"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intended to be a more flexible jq, supporting additional formats",
         mainProgram: "faq",
         homepage: "https://github.com/jzelinskie/faq",

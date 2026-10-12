@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   return nix.app(nix.sel(pkgsi686Linux, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zsnes2",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xyproto",
           repo: "zsnes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgsi686Linux, "udevCheckHook")),
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "sdl3", "overrideAttrs"), (oldAttrs) => ({ __proto__: pos$2, doCheck: false }))),
+        nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "sdl3", "overrideAttrs"), (oldAttrs) => ({ [nix.POS]: pos$2, doCheck: false }))),
         nix.thunk(() => nix.sel(pkgsi686Linux, "libGL")),
         nix.thunk(() => nix.sel(pkgsi686Linux, "libGLU")),
         nix.thunk(() => nix.sel(pkgsi686Linux, "libpng")),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       ]),
       dontConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wp,-D_FORTIFY_SOURCE=0"]))),
       })),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       postInstall: "install -Dm644 linux/zsnes.desktop $out/share/applications/zsnes.desktop\ninstall -Dm644 icons/16x16x32.png $out/share/icons/hicolor/16x16/apps/zsnes.png\ninstall -Dm644 icons/32x32x32.png $out/share/icons/hicolor/32x32/apps/zsnes.png\ninstall -Dm644 icons/48x48x32.png $out/share/icons/hicolor/48x48/apps/zsnes.png\ninstall -Dm644 icons/64x64x32.png $out/share/icons/hicolor/64x64/apps/zsnes.png\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/xyproto/zsnes",
         description: "Maintained fork of zsnes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

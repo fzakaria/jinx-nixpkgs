@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.93";
       const outputs = nix.thunk(() => ["out", "lib", "dev", "doc", "man"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mchehab",
           repo: "zbar",
           rev: version,
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "variable-pkg-config-path.patch",
             url: "https://github.com/mchehab/zbar/commit/368571ffa1a0f6cc41f708dd0d27f9b6e9409df8.patch",
             hash: "sha256-4VEuGAyR7rcIijPLlh4pzL82ESm99Wb35PV/FbY9H6Y=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "qt5-detection-fix.patch",
             url: "https://github.com/mchehab/zbar/commit/a549566ea11eb03622bd4458a1728ffe3f589163.patch",
             hash: "sha256-NY3bAElwNvGP9IR6JxUf62vbjx3hONrqu9pMSqaZcLY=",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [argp_standalone])));
       const preConfigure = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "export LDFLAGS=\"-liconv\"\n"));
       const postConfigure = "patchShebangs test\n";
-      const env = nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-DQT_NO_DEBUG" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-DQT_NO_DEBUG" }));
       const configureFlags = nix.thunk(() => nix.concat(["--without-python"], nix.concat((nix.asBool(enableDbus) ? [
         nix.thunk(() => nix.str`--with-dbusconfdir=${nix.builtins.placeholder("out")}/share`),
       ] : ["--without-dbus"]), (nix.asBool(enableVideo) ? ["--with-gtk=gtk3"] : ["--disable-video", "--without-gtk", "--without-qt"]))));
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableVideo, "wrapGApp \"$out/bin/zbarcam-gtk\"\nwrapQtApp \"$out/bin/zbarcam-qt\"\n"));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Bar code reader",
         longDescription: "ZBar is an open source software suite for reading bar codes from various\nsources, such as video streams, image files and raw intensity sensors. It\nsupports many popular symbologies (types of bar codes) including\nEAN-13/UPC-A, UPC-E, EAN-8, Code 128, Code 39, Interleaved 2 of 5 and QR\nCode.\n",
         maintainers: nix.thunk(() => (() => {
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "zbarimg",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

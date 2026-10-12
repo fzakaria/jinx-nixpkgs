@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "groovy-language-server";
       const version = "0-unstable-2025-12-03";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}-${version}`),
           owner: "GroovyLanguageServer",
           repo: "groovy-language-server",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-rLi6xvGFVRvAVmP59Te1MxKA6HzQ+qPtEC5lMws5tFQ=",
         }))));
       const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         }))));
@@ -54,7 +54,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://github.com/GroovyLanguageServer/groovy-language-server",
           description: "Groovy Language Server",
           longDescription: "Groovy Language Server",
@@ -64,7 +64,7 @@ runHook postInstall
         };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

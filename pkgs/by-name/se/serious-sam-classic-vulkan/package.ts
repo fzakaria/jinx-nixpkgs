@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(serious_sam_classic, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "serious-sam-classic-vulkan",
       src: nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "SeriousSamClassic-VK",
           hash: "sha256-fnWJOmgaW4/PfrmXiN7qodHEXc96/AZCbUo3dwelY6s=",
         })))),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "unsigned", "pname")}-signed`),
       version: nix.thunk(() => nix.attr(from, "version")),
       dontUnpack: true,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [lndir, authenticodeCheckHook]),
       authenticodeCertificate: uefiCertificate,
       unsigned: nix.thunk(() => nix.app(nix.sel(shim_unsigned, "override"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           vendorCertFile: uefiCertificate,
           defaultLoader: nix.thunk(() => nix.str`\\\\systemd-boot${nix.sel(stdenvNoCC, "hostPlatform", "efiArch")}.efi`),
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ]), (peName) => nix.app(nix.sel(autopen, "authenticode", "mkSignedPe"), nix.thunk(() => (() => {
             const from_1 = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
             return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(from_1, "pname")),
             version: nix.thunk(() => nix.attr(from_1, "version")),
             signingKey: uefiSigningKey,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(nix.sel(shim_unsigned, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.str`${nix.sel(shim_unsigned, "meta", "description")} (signed)`),
       })),
     };

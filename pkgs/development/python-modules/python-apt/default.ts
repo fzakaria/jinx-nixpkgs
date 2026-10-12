@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "apt-team",
           repo: "python-apt",
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(apt, "dev"))]);
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DEBVER: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DEBVER: version }));
       const pythonImportsCheck = nix.thunk(() => ["apt_pkg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/apt-team/python-apt/-/blob/${version}/debian/changelog`),
         description: "Python bindings for APT",
         homepage: "https://launchpad.net/python-apt",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ocplib_endian = nix.arg($, "ocplib-endian");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cbor",
       version: "0.5",
       minimalOCamlVersion: "4.07.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ygrek/ocaml-cbor/releases/download/${nix.sel(finalAttrs, "version")}/ocaml-cbor-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4mpm/fv9X5uFRQO8XqBhOpxYwZreEtJ3exIwN6YulKM=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [yojson]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CBOR encoder/decoder (RFC 7049) - native OCaml implementation",
         homepage: "https://github.com/ygrek/ocaml-cbor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

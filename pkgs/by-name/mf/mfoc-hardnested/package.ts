@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libnfc = nix.arg($, "libnfc");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mfoc-hardnested",
       version: "0-unstable-2023-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nfc-tools",
           repo: "mfoc-hardnested",
           rev: "a6007437405a0f18642a4bbca2eeba67c623d736",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libnfc, xz]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of mfoc integrating hardnested code from the proxmark",
         mainProgram: "mfoc-hardnested",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

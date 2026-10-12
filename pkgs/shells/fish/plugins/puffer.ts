@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "puffer";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nickeb96",
           repo: "puffer-fish",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-MdeegvBu/AqvaMu0g1UHKBvfb6SHUiTUiA62h87r/Xg=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Text Expansions for Fish",
         homepage: "https://github.com/nickeb96/puffer-fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "quantenzitrone"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=puffer.ts.map

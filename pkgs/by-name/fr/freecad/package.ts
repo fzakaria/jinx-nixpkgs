@@ -71,15 +71,15 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   const freecad_utils = nix.thunk(() => nix.app(callPackage, nix.path(here, "./freecad-utils.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       python: nix.thunk(() => nix.attr(python3Packages, "python")),
     }))));
   return nix.app(nix.sel(freecad_utils, "makeCustomizable"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "freecad",
         version: "1.1.4",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "FreeCAD",
             repo: "FreeCAD",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -141,10 +141,10 @@ export default nix.lambda((args) => (() => {
         })()),
         postFixup: "mv $out/share/doc $out\nln -s $out/doc $out/share/doc\nln -s $out/bin/FreeCAD $out/bin/freecad\nln -s $out/bin/FreeCADCmd $out/bin/freecadcmd\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               extraArgs: nix.thunk(() => ["--version-regex", "([0-9.]+)"]),
             })))),
         })),
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
         versionCheckProgramArg: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/freecadcmd`),
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           homepage: "https://www.freecad.org",
           description: "General purpose Open Source 3D CAD/MCAD/CAx/CAE/PLM modeler",
           longDescription: "FreeCAD is an open-source parametric 3D modeler made primarily to design\nreal-life objects of any size. Parametric modeling allows you to easily\nmodify your design by going back into your model history and changing its\nparameters.\n\nFreeCAD allows you to sketch geometry constrained 2D shapes and use them\nas a base to build other objects. It contains many components to adjust\ndimensions or extract design details from 3D models to create high quality\nproduction ready drawings.\n\nFreeCAD is designed to fit a wide range of uses including product design,\nmechanical engineering and architecture. Whether you are a hobbyist, a\nprogrammer, an experienced CAD user, a student or a teacher, you will feel\nright at home with FreeCAD.\n",
@@ -170,7 +170,7 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           mainProgram: "freecad",
           identifiers: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "freecad", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           })),
         })),

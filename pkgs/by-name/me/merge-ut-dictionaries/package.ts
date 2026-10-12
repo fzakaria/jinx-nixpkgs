@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   ]);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.eq(dictionaries, [])), "merge-ut-dictionaries needs at least one dictionary."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/me/merge-ut-dictionaries/package.nix:23:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "merge-ut-dictionaries",
       version: "0-unstable-2024-10-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "utuhiro78",
           repo: "merge-ut-dictionaries",
           rev: "4e08ad0bc0e493a35e9408edf963a3e77257b4cf",
@@ -63,11 +63,11 @@ done
       buildPhase: "runHook preBuild\n\nbash make.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dt $out mozcdic-ut.txt\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mozc UT dictionaries are additional dictionaries for Mozc",
         homepage: "https://github.com/utuhiro78/merge-ut-dictionaries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

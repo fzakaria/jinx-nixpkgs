@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const imgui = nix.arg($, "imgui");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`${nix.sel(imgui, "pname")}-demo`),
       version: nix.thunk(() => nix.attr(imgui, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(imgui, "src")}/examples/example_glfw_opengl3`),
@@ -23,10 +23,10 @@ cp ${nix.path(here, "./CMakeLists.txt")} CMakeLists.txt
 `),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ __proto__: pos$1, IMGUI_BUILD_GLFW_BINDING: true })))),
+        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, IMGUI_BUILD_GLFW_BINDING: true })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standalone ImPlot Demos",
         homepage: "https://github.com/ocornut/imgui/tree/master/examples/example_glfw_opengl3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

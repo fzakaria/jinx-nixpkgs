@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const chromium = nix.arg($, "chromium");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grafana-kiosk",
       version: "1.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grafana",
           repo: "grafana-kiosk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/grafana-kiosk --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [chromium]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kiosk Utility for Grafana",
         homepage: "https://github.com/grafana/grafana-kiosk",
         changelog: nix.thunk(() => nix.str`https://github.com/grafana/grafana-kiosk/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

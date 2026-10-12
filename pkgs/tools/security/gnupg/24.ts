@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   nix.assert_((!nix.asBool(guiSupport) || nix.asBool(!nix.asBool(enableMinimal))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/security/gnupg/24.nix:36:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gnupg",
       version: "2.4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/gnupg/gnupg-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-3RerLpoE/XnTnYU/WZy8hSBi3bmrUqTd60F2/YswKWQ=",
         })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableMinimal)), nix.thunk(() => [adns, bzip2, gnutls, libusb1, openldap, readline, sqlite, zlib])), nix.app(nix.sel(lib, "optionals"), withTpm2Tss, nix.thunk(() => [tpm2_tss]))))),
       strictDeps: true,
       freepgPatches: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "freepg",
           repo: "gnupg",
           tag: "source-2.4.9-freepg-1",
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("substituteInPlace configure configure.ac \\\n  --replace-fail \"hkps://keyserver.ubuntu.com\"  \"hkps://keys.openpgp.org\"\nsubstituteInPlace doc/gnupg.info-1 doc/dirmngr.texi \\\n  --replace-fail \"https://keyserver.ubuntu.com\" \"https://keys.openpgp.org\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(withPcsc))), nix.thunk(() => nix.str`sed -i 's,"libpcsclite\\.so[^"]*","${nix.app(nix.sel(lib, "getLib"), pcsclite)}/lib/libpcsclite.so",g' scd/scdaemon.c
 `)))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-implicit-function-declaration")),
       })),
       configureFlags: nix.thunk(() => nix.concat([
@@ -133,10 +133,10 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeCheckInputs: nix.thunk(() => [openssh]),
       doCheck: nix.thunk(() => !nix.asBool(enableMinimal)),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, tests: nix.thunk(() => nix.sel(nixosTests, "gnupg")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => nix.sel(nixosTests, "gnupg")) })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gnupg.org",
         changelog: nix.thunk(() => nix.str`https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git;a=blob;f=NEWS;hb=refs/tags/gnupg-${nix.sel(finalAttrs, "version")}`),
         description: "Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation",
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "gpg",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnupg", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

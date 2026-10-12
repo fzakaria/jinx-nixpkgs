@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "webdump",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.codemadness.org/webdump",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-XaqnFaCfTlzTkuMXrt1sQRCnO29yD1aCj/owmVAqDXU=",
         })))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.codemadness.org/git/webdump",
         description: "HTML to plain-text converter for webpages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

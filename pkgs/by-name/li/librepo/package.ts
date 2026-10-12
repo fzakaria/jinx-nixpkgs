@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.20.0",
       pname: "librepo",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rpm-software-management",
           repo: "librepo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`moveToOutput "lib/${nix.sel(python3, "libPrefix")}" "$py"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library providing C and Python (libcURL like) API for downloading linux repository metadata and packages",
         homepage: "https://rpm-software-management.github.io/librepo/",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/dnf5/releases/tag/${nix.sel(finalAttrs, "version")}`),

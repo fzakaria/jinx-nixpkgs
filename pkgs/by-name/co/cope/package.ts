@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cope",
       version: "0-unstable-2025-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deftdawg",
           repo: "cope",
           rev: "6d0322a8493361ad32e454b97998df715dbe7b97",
@@ -72,7 +72,7 @@ cp -f $src/new-cope $out/libexec/cope
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Colourful wrapper for terminal programs",
         homepage: "https://github.com/deftdawg/cope",
         license: nix.thunk(() => (() => {

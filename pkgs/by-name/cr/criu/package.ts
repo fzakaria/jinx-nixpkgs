@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const gnutar = nix.arg($, "gnutar");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "criu",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "checkpoint-restore",
           repo: "criu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "conflicting-redefinition-of-rseq-enums.patch",
             url: "https://github.com/checkpoint-restore/criu/commit/3f3acc3200a23140abaa32a2017ae159d3c2d02c.patch?full_index=1",
             hash: "sha256-J8n4TjqjzJLLULnpJdR/6YWa/8moFQMn+wNo4a0otgE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/checkpoint-restore/criu/commit/a810faba33f43d61372741ed196eafd485546f83.patch?full_index=1",
             hash: "sha256-UHSSC3qI6dvtUAiXNnKXTtuXZYGE0SXpUnQ917SXFaU=",
           })))),
@@ -96,7 +96,7 @@ ln -sf ${protobuf}/include/google/protobuf/descriptor.proto ./images/google/prot
 `),
       makeFlags: nix.thunk(() => (() => {
         const linuxArchMapping = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           x86_64: "x86",
           arm: "arm",
           arm64: "aarch64",
@@ -125,7 +125,7 @@ ln -sf ${protobuf}/include/google/protobuf/descriptor.proto ./images/google/prot
 wrapPythonPrograms
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Userspace checkpoint/restore for Linux",
         homepage: "https://criu.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -35,43 +35,43 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "sitespeed-io"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "sitespeed-io": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Sitespeed.io")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "sitespeed-io",
               description: "User account under which sitespeed-io runs.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sitespeed-io", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "/var/lib/sitespeed-io",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The base sitespeed-io data directory.",
             })))),
           period: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hourly",
               description: "Systemd calendar expression when to run. See {manpage}`systemd.time(7)`.\n",
             })))),
           runs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: [],
               description: "A list of run configurations. The service will call sitespeed-io once\nfor every run listed here. This lets you examine different websites\nwith different sitespeed-io settings.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       urls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
                           description: "URLs the service should monitor.\n",
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               freeformType: nix.thunk(() => nix.sel(format, "type")),
                               options: nix.thunk(() => ({})),
                             })))),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
                           description: "Configuration for sitespeed-io, see\n<https://www.sitespeed.io/documentation/sitespeed.io/configuration/>\nfor available options. The value here will be directly transformed to\nJSON and passed as `--config` to the program.\n",
                         })))),
                       extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -105,29 +105,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "runs"), [])),
             message: "At least one run must be configured.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (run) => !nix.eq(nix.sel(run, "urls"), []), nix.thunk(() => nix.sel(cfg, "runs")))),
             message: "All runs must have at least one url configured.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "sitespeed-io": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Check website status",
               startAt: nix.thunk(() => nix.sel(cfg, "period")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
               })),
@@ -141,10 +141,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           extraUsers: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "user")),
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.2.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rany2",
           repo: "edge-tts",
           tag: version,
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [aiohttp, certifi, tabulate, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["edge_tts"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Microsoft Edge text-to-speech service WITHOUT Edge, Windows and API keys",
         longDescription: "`edge-tts` is a Python module that allows you to use Microsoft\nEdge's online text-to-speech service from within your Python\ncode or using the provided `edge-tts` or `edge-playback`\ncommand.\n",
         homepage: "https://github.com/rany2/edge-tts",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "edge-tts",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

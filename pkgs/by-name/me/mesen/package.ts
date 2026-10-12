@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mesen";
       const version = "2.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nesdev-org",
           repo: "MesenCE",
           tag: version,
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`ln -s ${nix.sel(passthru, "core")}/lib/MesenCore.* $out/lib/mesen
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         core: nix.thunk(() => nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "mesen-core",
             version: version,
             src: src,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi-system emulator that supports NES, SNES, Game Boy, Game Boy Advance, PC Engine, SMS/Game Gear and WonderSwan games",
         homepage: "https://www.mesen.ca",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

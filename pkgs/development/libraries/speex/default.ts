@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "speex";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.us.xiph.org/releases/speex/speex-${version}.tar.gz`),
           sha256: "sha256-S0TU8rOKNwotmKeDKf78VqDPk9HBvnACkhe6rmYo/uo=",
         }))));
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [speexdsp]);
       const configureFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withFft, nix.thunk(() => ["--with-fft=gpl-fftw3"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.speex.org/",
         description: "Open Source/Free Software patent-free audio compression format designed for speech",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

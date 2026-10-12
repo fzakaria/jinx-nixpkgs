@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "lovelace_gen";
       const version = "0.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thomasloven",
           repo: "hass-lovelace_gen",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           changelog: nix.thunk(() => nix.str`https://github.com/thomasloven/hass-lovelace_gen/releases/tag/${version}`),
           description: "Improve the lovelace yaml parser for Home Assistant",
           homepage: "https://github.com/thomasloven/hass-lovelace_gen",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           })()),
         };
       })());
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

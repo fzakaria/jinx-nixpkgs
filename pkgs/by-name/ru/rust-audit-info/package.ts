@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rust-audit-info",
       version: "0.5.4",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "rust-audit-info",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-zxdF65/9cgdDLM7HA30NCEZj1S5SogH+oM3aq55K0os=",
         })))),
       cargoHash: "sha256-ygz9uYwuDI892kwYwJPTsTAkBfsnRN2unOgqv8VHXSA=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool to extract the dependency trees embedded in binaries by cargo-auditable",
         mainProgram: "rust-audit-info",
         homepage: "https://github.com/rust-secure-code/cargo-auditable/tree/master/rust-audit-info",

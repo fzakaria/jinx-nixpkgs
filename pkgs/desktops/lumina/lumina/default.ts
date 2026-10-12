@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lumina";
       const version = "1.6.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lumina-desktop",
           repo: "lumina",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -86,9 +86,9 @@ substituteInPlace src-qt5/desktop-utils/lumina-sudo/lumina-sudo.pro \\
         "CONFIG+=WITH_I18N",
         nix.thunk(() => nix.str`LRELEASE=${nix.app(nix.sel(lib, "getDev"), qttools)}/bin/lrelease`),
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, providedSessions: nix.thunk(() => ["Lumina-DE"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["Lumina-DE"]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight, portable desktop environment",
         longDescription: "The Lumina Desktop Environment is a lightweight system interface\nthat is designed for use on any Unix-like operating system. It\nis based on QT5.\n",
         homepage: "https://lumina-desktop.org",
@@ -97,7 +97,7 @@ substituteInPlace src-qt5/desktop-utils/lumina-sudo/lumina-sudo.pro \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lumina"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

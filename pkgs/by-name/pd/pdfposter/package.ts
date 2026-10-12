@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "pypdf"))];
       })());
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pdfposter",
           version: version,
           hash: "sha256-Y5gUrHI470vsORETxkpf3WH5YXgdIeTZvSb3v/UgD24=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["pdfposter", "pdfposter.cmd"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Split large pages of a PDF into smaller ones for poster printing",
         mainProgram: "pdfposter",
         homepage: "https://pdfposter.readthedocs.io",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

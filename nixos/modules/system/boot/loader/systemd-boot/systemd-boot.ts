@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "boot", "loader", "systemd-boot"));
   const efi = nix.thunk(() => nix.sel(config, "boot", "loader", "efi"));
-  const checkedSource = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "systemd-boot", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`install -m755 -D ${nix.path(here, "./systemd-boot-builder.py")} $out
+  const checkedSource = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "systemd-boot", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`install -m755 -D ${nix.path(here, "./systemd-boot-builder.py")} $out
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "buildPackages", "mypy")))} \\
   --no-implicit-optional \\
   --disallow-untyped-calls \\
@@ -89,7 +89,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "buildPackages",
 `)));
   const edk2ShellEspPath = "efi/edk2-uefi-shell/shell.efi";
   const systemdBootBuilder = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "systemd-boot",
       dir: "bin",
       src: checkedSource,
@@ -129,7 +129,7 @@ ${nix.sel(pkgs, "coreutils")}/bin/install -D /dev/null "${bootMountPoint}/${nixo
         const bootCountingTries = nix.thunk(() => nix.sel(cfg, "bootCounting", "tries"));
         const bootCounting = nix.thunk(() => (nix.asBool(nix.sel(cfg, "bootCounting", "enable")) ? "True" : "False"));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           storeDir,
           python3,
           systemd,
@@ -158,9 +158,9 @@ ${systemdBootBuilder}/bin/systemd-boot "$@"
 ${nix.sel(cfg, "extraInstallCommands")}
 `)));
   return {
-    __proto__: pos$67,
+    [nix.POS]: pos$67,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "julienmalka"))];
@@ -172,46 +172,46 @@ ${nix.sel(cfg, "extraInstallCommands")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["boot", "loader", "systemd-boot", "netbootxyz", "entryFilename"]), nix.thunk(() => ["boot", "loader", "systemd-boot", "netbootxyz", "sortKey"]), (config_1) => nix.app(nix.sel(lib, "strings", "removeSuffix"), ".conf", nix.thunk(() => nix.sel(config_1, "boot", "loader", "systemd-boot", "netbootxyz", "entryFilename"))))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       boot: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         loader: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           "systemd-boot": nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to enable the systemd-boot (formerly gummiboot) EFI boot manager.\nFor more information about systemd-boot:\n<https://www.freedesktop.org/wiki/Software/systemd/systemd-boot/>\n",
               })))),
             sortKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: "nixos",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The sort key used for the NixOS bootloader entries.\nThis key determines sorting relative to non-NixOS entries.\nSee also <https://uapi-group.org/specifications/specs/boot_loader_specification/#sorting>\n\nThis option can also be used to control the sorting of NixOS specialisations.\n\nBy default, specialisations inherit the sort key of their parent generation\nand will have the same value for both the sort-key and the version (i.e. the generation number),\nsystemd-boot will therefore sort them based on their file name, meaning that\nin your boot menu you will have each main generation directly followed by\nits specialisations sorted alphabetically by their names.\n\nIf you want a different ordering for a specialisation, you can override\nits sort-key which will cause the specialisation to be uncoupled from its\nparent generation. It will then be sorted by its new sort-key just like\nany other boot entry.\n\nThe sort-key is stored in the generation's bootspec, which means that\ngenerations keep their sort-keys even if the original definition of the\ngeneration was removed from the NixOS configuration.\nIt also means that updating the sort-key will only affect new generations,\nwhile old ones will keep the sort-key that they were originally built with.\n",
               })))),
             editor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: true,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to allow editing the kernel command-line before\nboot. It is recommended to set this to false, as it allows\ngaining root access by passing init=/bin/sh as a kernel\nparameter. However, it is enabled by default for backwards\ncompatibility.\n",
               })))),
             xbootldrMountPoint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 description: "Where the XBOOTLDR partition is mounted.\n\nIf set, this partition will be used as $BOOT to store boot loader entries and extra files\ninstead of the EFI partition. As per the bootloader specification, it is recommended that\nthe EFI and XBOOTLDR partitions be mounted at `/efi` and `/boot`, respectively.\n",
               })))),
             configurationLimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: null,
                 example: 120n,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
                 description: "Maximum number of latest generations in the boot menu.\nUseful to prevent boot partition running out of disk space.\n\n`null` means no limit i.e. all generations\nthat have not been garbage collected yet.\n",
               })))),
             installDeviceTree: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.sel(config, "hardware", "deviceTree")), w);
                   return (nix.asBool(nix.lookup(w_1, "enable")) && nix.asBool(!nix.eq(nix.lookup(w_1, "name"), null)));
@@ -220,101 +220,101 @@ ${nix.sel(cfg, "extraInstallCommands")}
                 description: "Install the devicetree blob specified by `config.hardware.deviceTree.name`\nto the ESP and instruct systemd-boot to pass this DTB to linux.\n",
               })))),
             extraInstallCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 default: "",
                 example: "default_cfg=$(cat /boot/loader/loader.conf | grep default | awk '{print $2}')\ninit_value=$(cat /boot/loader/entries/$default_cfg | grep init= | awk '{print $2}')\nsed -i \"s|@INIT@|$init_value|g\" /boot/custom/config_with_placeholder.conf\n",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                 description: "Additional shell commands inserted in the bootloader installer\nscript after generating menu entries. It can be used to expand\non extra boot entries that cannot incorporate certain pieces of\ninformation (such as the resulting `init=` kernel parameter).\n",
               })))),
             consoleMode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: "keep",
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["0", "1", "2", "5", "auto", "max", "keep"]))),
                 description: "The resolution of the console. The following values are valid:\n\n- `\"0\"`: Standard UEFI 80x25 mode\n- `\"1\"`: 80x50 mode, not supported by all devices\n- `\"2\"`: The first non-standard mode provided by the device firmware, if any\n- `\"5\"`: Applicable for SteamDeck where this mode represent horizontal mode\n- `\"auto\"`: Pick a suitable mode automatically using heuristics\n- `\"max\"`: Pick the highest-numbered available mode\n- `\"keep\"`: Keep the mode selected by firmware (the default)\n",
               })))),
             memtest86: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   default: false,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Make Memtest86+ available from the systemd-boot menu. Memtest86+ is a\nprogram for testing memory.\n",
                 })))),
               sortKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   default: "o_memtest86",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "`systemd-boot` orders the menu entries by their sort keys,\nso if you want something to appear after all the NixOS entries,\nit should start with {file}`o` or onwards.\n\nSee also {option}`boot.loader.systemd-boot.sortKey`.\n",
                 })))),
             })),
             netbootxyz: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   default: false,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Make `netboot.xyz` available from the\n`systemd-boot` menu. `netboot.xyz`\nis a menu system that allows you to boot OS installers and\nutilities over the network.\n",
                 })))),
               sortKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   default: "o_netbootxyz",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   description: "`systemd-boot` orders the menu entries by their sort keys,\nso if you want something to appear after all the NixOS entries,\nit should start with {file}`o` or onwards.\n\nSee also {option}`boot.loader.systemd-boot.sortKey`.\n",
                 })))),
             })),
             "edk2-uefi-shell": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   default: false,
                   description: "Make the EDK2 UEFI Shell available from the systemd-boot menu.\nIt can be used to manually boot other operating systems or for debugging.\n",
                 })))),
               sortKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "o_edk2-uefi-shell",
                   description: "`systemd-boot` orders the menu entries by their sort keys,\nso if you want something to appear after all the NixOS entries,\nit should start with {file}`o` or onwards.\n\nSee also {option}`boot.loader.systemd-boot.sortKey`..\n",
                 })))),
             })),
             extraEntries: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ \"memtest86.conf\" = ''\n  title Memtest86+\n  efi /efi/memtest86/memtest.efi\n  sort-key z_memtest\n''; }\n")),
                 description: "Any additional entries you want added to the `systemd-boot` menu.\nThese entries will be copied to {file}`$BOOT/loader/entries`.\nEach attribute name denotes the destination file name,\nand the corresponding attribute value is the contents of the entry.\n\nTo control the ordering of the entry in the boot menu, use the sort-key\nfield, see\n<https://uapi-group.org/specifications/specs/boot_loader_specification/#sorting>\nand {option}`boot.loader.systemd-boot.sortKey`.\n",
               })))),
             extraFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ \"efi/memtest86/memtest.efi\" = pkgs.memtest86plus.efi; }\n")),
                 description: "A set of files to be copied to {file}`$BOOT`.\nEach attribute name denotes the destination file name in\n{file}`$BOOT`, while the corresponding\nattribute value specifies the source file.\n",
               })))),
             graceful: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Invoke `bootctl install` with the `--graceful` option,\nwhich ignores errors when EFI variables cannot be written or when the EFI System Partition\ncannot be found. Currently only applies to random seed operations.\n\nOnly enable this option if `systemd-boot` otherwise fails to install, as the\nscope or implication of the `--graceful` option may change in the future.\n",
               })))),
             bootCounting: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "[Automatic Boot Assessment](https://systemd.io/AUTOMATIC_BOOT_ASSESSMENT/).\n\nNew boot entries are written with a boot counter in the file name. On\neach boot, systemd-boot decrements the counter; once the booted system\nreaches `boot-complete.target`, `systemd-bless-boot.service` removes the\ncounter and marks the entry as good. An entry whose counter reaches zero\nis considered bad and will be skipped in favour of an older generation\n")),
               tries: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   default: 3n,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "positive")),
                   description: "Number of boot attempts a freshly written entry is given before it is\nconsidered bad.\n",
                 })))),
             })),
             rebootForBitlocker: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Enable *EXPERIMENTAL* BitLocker support.\n\nTry to detect BitLocker encrypted drives along with an active\nTPM. If both are found and Windows Boot Manager is selected in\nthe boot menu, set the \"BootNext\" EFI variable and restart the\nsystem. The firmware will then start Windows Boot Manager\ndirectly, leaving the TPM PCRs in expected states so that\nWindows can unseal the encryption key.\n",
               })))),
             windows: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 default: nix.thunk(() => ({})),
                 description: "Make Windows bootable from systemd-boot. This option is not necessary when Windows and\nNixOS use the same EFI System Partition (ESP). In that case, Windows will automatically be\ndetected by systemd-boot.\n\nHowever, if Windows is installed on a separate drive or ESP, you can use this option to add\na menu entry for each installation manually.\n\nThe attribute name is used for the title of the menu entry and internal file names.\n",
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"10\".efiDeviceHandle = \"HD0c3\";\n  \"11-ame\" = {\n    title = \"Windows 11 Ameliorated Edition\";\n    efiDeviceHandle = \"HD0b1\";\n  };\n  \"11-home\" = {\n    title = \"Windows 11 Home\";\n    efiDeviceHandle = \"FS1\";\n    sortKey = \"z_windows\";\n  };\n}\n")),
@@ -322,17 +322,17 @@ ${nix.sel(cfg, "extraInstallCommands")}
                       const $_1 = nix.formals(args_1, formals$2);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         options: nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           efiDeviceHandle: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               example: "HD1b3",
                               description: "The device handle of the EFI System Partition (ESP) where the Windows bootloader is\nlocated. This is the device handle that the EDK2 UEFI Shell uses to load the\nbootloader.\n\nTo find this handle, follow these steps:\n1. Set {option}`boot.loader.systemd-boot.edk2-uefi-shell.enable` to `true`\n2. Run `nixos-rebuild boot`\n3. Reboot and select \"EDK2 UEFI Shell\" from the systemd-boot menu\n4. Run `map -c` to list all consistent device handles\n5. For each device handle (for example, `HD0c1`), run `ls HD0c1:\\EFI`\n6. If the output contains the directory `Microsoft`, you might have found the correct device handle\n7. Run `HD0c1:\\EFI\\Microsoft\\Boot\\Bootmgfw.efi` to check if Windows boots correctly\n8. If it does, this device handle is the one you need (in this example, `HD0c1`)\n\nThis option is required, there is no useful default.\n",
                             })))),
                           title: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               example: "Michaelsoft Binbows",
                               default: nix.thunk(() => nix.str`Windows ${name}`),
@@ -340,7 +340,7 @@ ${nix.sel(cfg, "extraInstallCommands")}
                               description: "The title of the boot menu entry.\n",
                             })))),
                           sortKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$30,
+                              [nix.POS]: pos$30,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               default: nix.thunk(() => nix.str`o_windows_${name}`),
                               defaultText: "attribute name of this entry, prefixed with \"o_windows_\"",
@@ -355,85 +355,85 @@ ${nix.sel(cfg, "extraInstallCommands")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             assertion: nix.thunk(() => nix.app(nix.lookup(w, "hasPrefix"), "/", nix.thunk(() => nix.sel(efi, "efiSysMountPoint")))),
             message: nix.thunk(() => nix.str`The ESP mount point '${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(efi, "efiSysMountPoint")))}' must be an absolute path`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "xbootldrMountPoint"), null)) || nix.asBool(nix.app(nix.lookup(w, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "xbootldrMountPoint")))))),
             message: nix.thunk(() => nix.str`The XBOOTLDR mount point '${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "xbootldrMountPoint")))}' must be an absolute path`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "xbootldrMountPoint"), nix.sel(efi, "efiSysMountPoint"))),
             message: nix.thunk(() => nix.str`The XBOOTLDR mount point '${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "xbootldrMountPoint")))}' cannot be the same as the ESP mount point '${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(efi, "efiSysMountPoint")))}'`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$42,
-            assertion: nix.thunk(() => nix.has(nix.selOr(config, () => ({ __proto__: pos$41, efiBootStub: true }), "boot", "kernelPackages", "kernel", "features"), "efiBootStub")),
+            [nix.POS]: pos$42,
+            assertion: nix.thunk(() => nix.has(nix.selOr(config, () => ({ [nix.POS]: pos$41, efiBootStub: true }), "boot", "kernelPackages", "kernel", "features"), "efiBootStub")),
             message: "This kernel does not support the EFI boot stub",
           })),
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "installDeviceTree")) || nix.asBool((!nix.asBool(nix.sel(config, "hardware", "deviceTree", "enable")) || nix.asBool(!nix.eq(nix.sel(config, "hardware", "deviceTree", "name"), null)))))),
             message: "Cannot install devicetree without 'config.hardware.deviceTree.enable' enabled and 'config.hardware.deviceTree.name' set",
           })),
         ], nix.concat(nix.app(nix.lookup(w, "concatMap"), (filename) => [
             nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               assertion: nix.thunk(() => !nix.asBool(nix.app(nix.lookup(w, "hasInfix"), "/", filename))),
               message: nix.thunk(() => nix.str`boot.loader.systemd-boot.extraEntries.${nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), filename)} is invalid: entries within folders are not supported`),
             })),
             nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               assertion: nix.thunk(() => nix.app(nix.lookup(w, "hasSuffix"), ".conf", filename)),
               message: nix.thunk(() => nix.str`boot.loader.systemd-boot.extraEntries.${nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), filename)} is invalid: entries must have a .conf file extension`),
             })),
           ], nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "extraEntries"))))), nix.concat(nix.app(nix.lookup(w, "concatMap"), (filename) => [
             nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               assertion: nix.thunk(() => !nix.asBool(nix.app(nix.lookup(w, "hasPrefix"), "/", filename))),
               message: nix.thunk(() => nix.str`boot.loader.systemd-boot.extraFiles.${nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), filename)} is invalid: paths must not begin with a slash`),
             })),
             nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               assertion: nix.thunk(() => !nix.asBool(nix.app(nix.lookup(w, "hasInfix"), "..", filename))),
               message: nix.thunk(() => nix.str`boot.loader.systemd-boot.extraFiles.${nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), filename)} is invalid: paths must not reference the parent directory`),
             })),
             nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               assertion: nix.thunk(() => !nix.asBool(nix.app(nix.lookup(w, "hasInfix"), "nixos/.extra-files", nix.thunk(() => nix.app(nix.lookup(w, "toLower"), filename))))),
               message: nix.thunk(() => nix.str`boot.loader.systemd-boot.extraFiles.${nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), filename)} is invalid: files cannot be placed in the nixos/.extra-files directory`),
             })),
           ], nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "extraFiles"))))), nix.app(nix.lookup(w, "concatMap"), (winVersion) => [
             nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               assertion: nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "match"), "^[-_0-9A-Za-z]+$", winVersion), null)),
               message: nix.thunk(() => nix.str`boot.loader.systemd-boot.windows.${winVersion} is invalid: key must only contain alphanumeric characters, hyphens, and underscores`),
             })),
           ], nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrNames"), nix.thunk(() => nix.sel(cfg, "windows"))))))))),
         boot: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           loader: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             grub: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
             })),
             supportsInitrdSecrets: true,
             "systemd-boot": nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               extraFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "memtest86", "enable")), nix.thunk(() => ({
-                      __proto__: pos$51,
+                      [nix.POS]: pos$51,
                       "efi/memtest86/memtest.efi": nix.thunk(() => nix.sel(pkgs, "memtest86plus", "efi")),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "netbootxyz", "enable")), nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       "efi/netbootxyz/netboot.xyz.efi": nix.thunk(() => nix.str`${nix.sel(pkgs, "netbootxyz-efi")}`),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "edk2-uefi-shell", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "windows"), {})))), nix.thunk(() => nix.attrsDyn({}, [
@@ -442,21 +442,21 @@ ${nix.sel(cfg, "extraInstallCommands")}
                 ]))),
               extraEntries: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "memtest86", "enable")), nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       "memtest86.conf": nix.thunk(() => nix.str`title  Memtest86+
 efi    /efi/memtest86/memtest.efi
 sort-key ${nix.sel(cfg, "memtest86", "sortKey")}
 `),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "netbootxyz", "enable")), nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       "netbootxyz.conf": nix.thunk(() => nix.str`title  netboot.xyz
 efi    /efi/netbootxyz/netboot.xyz.efi
 sort-key ${nix.sel(cfg, "netbootxyz", "sortKey")}
 `),
                     })))),
                   nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "edk2-uefi-shell", "enable")), nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       "edk2-uefi-shell.conf": nix.thunk(() => nix.str`title  EDK2 UEFI Shell
 efi    /${edk2ShellEspPath}
 sort-key ${nix.sel(cfg, "edk2-uefi-shell", "sortKey")}
@@ -472,13 +472,13 @@ sort-key ${nix.sel(cfg_1, "sortKey")}
             })),
           })),
           bootspec: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             extensions: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               "org.nixos.systemd-boot": nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(config, "boot", "loader", "systemd-boot"));
                 return {
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 sortKey: nix.thunk(() => nix.attr(from, "sortKey")),
                 devicetree: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "installDeviceTree")), nix.thunk(() => nix.str`${nix.sel(config, "hardware", "deviceTree", "package")}/${nix.sel(config, "hardware", "deviceTree", "name")}`))),
               };
@@ -487,11 +487,11 @@ sort-key ${nix.sel(cfg_1, "sortKey")}
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$65,
-          build: nix.thunk(() => ({ __proto__: pos$62, installBootLoader: finalSystemdBootBuilder })),
+          [nix.POS]: pos$65,
+          build: nix.thunk(() => ({ [nix.POS]: pos$62, installBootLoader: finalSystemdBootBuilder })),
           boot: nix.thunk(() => ({
-            __proto__: pos$64,
-            loader: nix.thunk(() => ({ __proto__: pos$63, id: "systemd-boot" })),
+            [nix.POS]: pos$64,
+            loader: nix.thunk(() => ({ [nix.POS]: pos$63, id: "systemd-boot" })),
           })),
           requiredKernelConfig: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(config, "lib", "kernelConfig")), w);

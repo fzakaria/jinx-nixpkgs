@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
     "MAX 10 FPGA",
   ]);
   const unwrapped = nix.argOr($, "unwrapped", () => nix.app(callPackage, nix.path(here, "./quartus.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       unstick: unstick,
       supportedDevices: supportedDevices,
       withQuesta: withQuesta,
     }))));
   const extraProfile = nix.argOr($, "extraProfile", () => "");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "quartus-prime-lite",
       exec: "quartus",
       icon: "quartus",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
 exec ${nix.app(nix.sel(lib, "getExe'"), xdg_utils, "xdg-open")} "$@"
 `)));
   return nix.app(buildFHSEnv, (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "quartus-prime-lite",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       targetPkgs: (pkgs) => (() => {
@@ -88,9 +88,9 @@ ln -sr "${nix.lookup(w, "glibc")}/lib/ld-linux-x86-64.so.2" "$out/lib/ld-lsb-x86
       multiArch: withQuesta,
       multiPkgs: (pkgs) => (() => {
         const w = nix.withScope(pkgs, null);
-        const freetype = nix.thunk(() => nix.app(nix.sel(pkgs, "freetype", "override"), nix.thunk(() => ({ __proto__: pos$3, libpng: nix.thunk(() => nix.lookup(w, "libpng12")) }))));
-        const fontconfig = nix.thunk(() => nix.app(nix.sel(pkgs, "fontconfig", "override"), nix.thunk(() => ({ __proto__: pos$4, freetype: freetype }))));
-        const libxft = nix.thunk(() => nix.app(nix.sel(pkgs, "libxft", "override"), nix.thunk(() => ({ __proto__: pos$5, freetype: freetype, fontconfig: fontconfig }))));
+        const freetype = nix.thunk(() => nix.app(nix.sel(pkgs, "freetype", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, libpng: nix.thunk(() => nix.lookup(w, "libpng12")) }))));
+        const fontconfig = nix.thunk(() => nix.app(nix.sel(pkgs, "fontconfig", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, freetype: freetype }))));
+        const libxft = nix.thunk(() => nix.app(nix.sel(pkgs, "libxft", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, freetype: freetype, fontconfig: fontconfig }))));
         return [
           nix.thunk(() => nix.lookup(w, "libxml2")),
           nix.thunk(() => nix.lookup(w, "ncurses5")),
@@ -188,18 +188,18 @@ fi
 `, extraProfile)),
       runScript: "",
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         unwrapped: unwrapped,
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           buildSof: nix.thunk(() => nix.app(runCommand, "quartus-prime-lite-test-build-sof", nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
-              env: nix.thunk(() => ({ __proto__: pos$6, NIXPKGS_QUARTUS_REPRODUCIBLE_BUILD: "1" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$6, NIXPKGS_QUARTUS_REPRODUCIBLE_BUILD: "1" })),
             })), "cat >mydesign.vhd <<EOF\nlibrary ieee;\nuse ieee.std_logic_1164.all;\n\nentity mydesign is\nport (\n    in_0: in std_logic;\n    in_1: in std_logic;\n    out_1: out std_logic\n);\nend mydesign;\n\narchitecture dataflow of mydesign is\nbegin\n    out_1 <= in_0 and in_1;\nend dataflow;\nEOF\n\nquartus_sh --flow compile mydesign\n\nif ! [ -f mydesign.sof ]; then\n    echo \"error: failed to produce mydesign.sof\" >&2\n    exit 1\nfi\n\nsha1sum mydesign.sof > \"$out\"\n")),
           questaEncryptedModel: nix.thunk(() => nix.app(runCommand, "quartus-prime-lite-test-questa-encrypted-model", nix.thunk(() => ({
-              __proto__: pos$9,
-              env: nix.thunk(() => ({ __proto__: pos$8, NIXPKGS_QUARTUS_REPRODUCIBLE_BUILD: "1" })),
+              [nix.POS]: pos$9,
+              env: nix.thunk(() => ({ [nix.POS]: pos$8, NIXPKGS_QUARTUS_REPRODUCIBLE_BUILD: "1" })),
             })), nix.thunk(() => nix.str`"${nix.sel(finalAttrs, "finalPackage")}/bin/vlog" "${nix.sel(finalAttrs, "passthru", "unwrapped")}/questa_fse/intel/verilog/src/arriav_atoms_ncrypt.v"
 touch "$out"
 `))),

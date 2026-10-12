@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "websockets"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "n8n",
       version: "2.39.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "n8n-io",
           repo: "n8n",
           tag: nix.thunk(() => nix.str`n8n@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fmo0xL6IF6J+D5ZamkoBXyZ4Q8s3l5MeBWaXc39OsTU=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -97,7 +97,7 @@ makeWrapper ${python}/bin/python $out/bin/n8n-task-runner-python \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.sel(nixosTests, "n8n")),
         updateScript: nix.path(here, "./update.sh"),
       })),
@@ -105,7 +105,7 @@ runHook postInstall
       dontPatchELF: true,
       dontRewriteSymlinks: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free and source-available fair-code licensed workflow automation tool",
         longDescription: "Free and source-available fair-code licensed workflow automation tool.\nEasily automate tasks across different services.\n",
         homepage: "https://n8n.io",

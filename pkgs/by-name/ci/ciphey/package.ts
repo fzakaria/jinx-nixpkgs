@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ciphey",
       version: "0.12.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bee-san",
           repo: "Ciphey",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,19 +39,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [oniguruma, openssl, sqlite, zstd]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBSQLITE3_SYS_USE_PKG_CONFIG: true,
         RUSTONIG_SYSTEM_LIBONIG: true,
         ZSTD_SYS_USE_PKG_CONFIG: true,
       })),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to automatically decrypt encryptions or hashes",
         homepage: "https://github.com/bee-san/Ciphey",
         changelog: nix.thunk(() => nix.str`https://github.com/bee-san/Ciphey/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

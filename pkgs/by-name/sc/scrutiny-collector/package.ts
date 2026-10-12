@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "0.9.5",
       pname: "scrutiny-collector",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AnalogJ",
           repo: "scrutiny",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       subPackages: "collector/cmd/collector-metrics",
       vendorHash: "sha256-UdQ9O/l32XgRZNR/vQeBJhhAGQ6vNvle/+DY1fi6XaY=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-extldflags=-static"]),
       tags: nix.thunk(() => ["static"]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -44,15 +44,15 @@ wrapProgram $out/bin/scrutiny-collector-metrics \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "scrutiny-collector": nix.thunk(() => nix.sel(nixosTests, "scrutiny")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Hard disk metrics collector for Scrutiny",
         homepage: "https://github.com/AnalogJ/scrutiny",
         changelog: nix.thunk(() => nix.str`https://github.com/AnalogJ/scrutiny/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bfetch",
       version: "1.0.1-unstable-2021-05-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NNBnh",
           repo: "bfetch",
           rev: "ef88e9d3f815e5074efc8ef4b7f32be6818130f2",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs --host bin/bfetch\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SuperB general-purpose fetch displayer written in portable sh",
         homepage: "https://github.com/NNBnh/bfetch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

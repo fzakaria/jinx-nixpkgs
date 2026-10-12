@@ -31,36 +31,36 @@ export default nix.lambda((args) => (() => {
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const connectionDir = nix.thunk(() => (nix.asBool(nix.sel(globalCfg, "stateless")) ? "/run" : "/var/lib"));
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     tunnel: nix.thunk(() => ({})),
     gateway: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       traffic_policy_file: nix.thunk(() => nix.str`${trafficConfigFile}`),
     })),
   }));
-  const defaultTrafficConfig = nix.thunk(() => ({ __proto__: pos$3, ASes: nix.thunk(() => ({})), ConfigVersion: 9001n }));
+  const defaultTrafficConfig = nix.thunk(() => ({ [nix.POS]: pos$3, ASes: nix.thunk(() => ({})), ConfigVersion: 9001n }));
   const configFile = nix.thunk(() => nix.app(nix.sel(toml, "generate"), "scion-ip-gateway.toml", nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), defaultConfig, nix.thunk(() => nix.sel(cfg, "config"))))));
   const trafficConfigFile = nix.thunk(() => nix.app(nix.sel(json, "generate"), "scion-ip-gateway-traffic.json", nix.thunk(() => nix.app(nix.lookup(w, "recursiveUpdate"), defaultTrafficConfig, nix.thunk(() => nix.sel(cfg, "trafficConfig"))))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         scion: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "scion-ip-gateway": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the scion-ip-gateway service")),
             config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(toml, "type")),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  tunnel = {\n    src_ipv4 = \"172.16.100.1\";\n  };\n}\n")),
                 description: "scion-ip-gateway daemon configuration\n",
               })))),
             trafficConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.sel(json, "type")),
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  ASes = {\n    \"2-ffaa:0:b\" = {\n      Nets = [\n          \"172.16.1.0/24\"\n      ];\n    };\n  };\n  ConfigVersion = 9001;\n}\n")),
@@ -71,19 +71,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "scion-ip-gateway": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "SCION IP Gateway Service",
               after: nix.thunk(() => ["network-online.target", "scion-dispatcher.service"]),
               wants: nix.thunk(() => ["network-online.target", "scion-dispatcher.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "simple",
                 Group: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "services", "scion", "scion-dispatcher", "enable"), true)) ? "scion" : null)),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(globalCfg, "package")}/bin/scion-ip-gateway --config ${configFile}`),

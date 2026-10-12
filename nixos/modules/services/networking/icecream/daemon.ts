@@ -36,77 +36,77 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "icecream", "daemon"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         icecream: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           daemon: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Icecream Daemon")),
             openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to automatically open receive port in the firewall.\n",
               })))),
             openBroadcast: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Whether to automatically open the firewall for scheduler discovery.\n",
               })))),
             cacheLimit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "u16")),
                 default: 256n,
                 description: "Maximum size in Megabytes of cache used to store compile environments of compile clients.\n",
               })))),
             netName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "ICECREAM",
                 description: "Network name to connect to. A scheduler with the same name needs to be running.\n",
               })))),
             noRemote: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Prevent jobs from other nodes being scheduled on this daemon.\n",
               })))),
             schedulerHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Explicit scheduler hostname, useful in firewalled environments.\n\nUses scheduler autodiscovery via broadcast if set to null.\n",
               })))),
             maxProcesses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "u16")))),
                 default: null,
                 description: "Maximum number of compile jobs started in parallel for this daemon.\n\nUses the number of CPUs if set to null.\n",
               })))),
             nice: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), nix.thunk(() => nix.neg(20n)), 19n)),
                 default: 5n,
                 description: "The level of niceness to use.\n",
               })))),
             hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Hostname of the daemon in the icecream infrastructure.\n\nUses the hostname retrieved via uname if set to null.\n",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "icecc",
                 description: "User to run the icecream daemon as. Set to root to enable receive of\nremote compile environments.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "icecream", nix.thunk(() => ({})))),
             extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: [],
                 description: "Additional command line parameters.",
@@ -117,26 +117,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [10245n]))),
             allowedUDPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openBroadcast")), nix.thunk(() => [8765n]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "icecc-daemon": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Icecream compile daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "getBin"), nix.thunk(() => nix.sel(cfg, "package")))}/bin/iceccd`),
                     "-b",
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "emantor"))];

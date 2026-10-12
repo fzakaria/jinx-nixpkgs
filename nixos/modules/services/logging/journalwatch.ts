@@ -62,70 +62,70 @@ ${nix.app(mkPatterns, nix.thunk(() => nix.sel(cfg, "filterBlocks")))}
 ${nix.sel(block, "filters")}
 
 `, filterBlocks)));
-  const journalwatchConfigDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "journalwatch-config", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`mkdir -p $out/journalwatch
+  const journalwatchConfigDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "journalwatch-config", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`mkdir -p $out/journalwatch
 ln -sf ${journalwatchConfig} $out/journalwatch/config
 ln -sf ${journalwatchPatterns} $out/journalwatch/patterns
 `)));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         journalwatch: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, periodically check the journal with journalwatch and report the results by mail.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "journalwatch", nix.thunk(() => ({})))),
           priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 7n)),
               default: 6n,
               description: "Lowest priority of message to be considered.\nA value between 7 (\"debug\"), and 0 (\"emerg\"). Defaults to 6 (\"info\").\nIf you don't care about anything with \"info\" priority, you can reduce\nthis to e.g. 5 (\"notice\") to considerably reduce the amount of\nmessages without needing many {option}`filterBlocks`.\n",
             })))),
           mailFrom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.str`journalwatch@${nix.sel(config, "networking", "hostName")}`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"journalwatch@${config.networking.hostName}\"")),
               description: "Mail address to send journalwatch reports from.\n",
             })))),
           mailTo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Mail address to send journalwatch reports to.\n",
             })))),
           mailBinary: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/run/wrappers/bin/sendmail",
               description: "Sendmail-compatible binary to be used to send the messages.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Extra lines to be added verbatim to the journalwatch/config configuration file.\nYou can add any commandline argument to the config, without the '--'.\nSee `journalwatch --help` for all arguments and their description.\n",
             })))),
           filterBlocks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       match: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "SYSLOG_IDENTIFIER = systemd",
                           description: "Syntax: `field = value`\nSpecifies the log entry `field` this block should apply to.\nIf the `field` of a message matches this `value`,\nthis patternBlock's {option}`filters` are applied.\nIf `value` starts and ends with a slash, it is interpreted as\nan extended python regular expression, if not, it's an exact match.\nThe journal fields are explained in {manpage}`systemd.journal-fields(7)`.\n",
                         })))),
                       filters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "(Stopped|Stopping|Starting|Started) .*\n(Reached target|Stopped target) .*\n",
                           description: "The filters to apply on all messages which satisfy {option}`match`.\nAny of those messages that match any specified filter will be removed from journalwatch's output.\nEach filter is an extended Python regular expression.\nYou can specify multiple filters and separate them by newlines.\nLines starting with '#' are comments. Inline-comments are not permitted.\n",
@@ -134,19 +134,19 @@ ln -sf ${journalwatchPatterns} $out/journalwatch/patterns
                   })))))),
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   match: "_SYSTEMD_UNIT = systemd-logind.service",
                   filters: "New session [a-z]?\\d+ of user \\w+\\.\nRemoved session [a-z]?\\d+\\.\n",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   match: "SYSLOG_IDENTIFIER = /(CROND|crond)/",
                   filters: "pam_unix\\(crond:session\\): session (opened|closed) for user \\w+\n\\(\\w+\\) CMD .*\n",
                 })),
               ]),
               default: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   match: "SYSLOG_IDENTIFIER = systemd",
                   filters: "(Stopped|Stopping|Starting|Started) .*\n(Created slice|Removed slice) user-\\d*\\.slice\\.\nReceived SIGRTMIN\\+24 from PID .*\n(Reached target|Stopped target) .*\nStartup finished in \\d*ms\\.\n",
                 })),
@@ -154,13 +154,13 @@ ln -sf ${journalwatchPatterns} $out/journalwatch/patterns
               description: "filterBlocks can be defined to blacklist journal messages which are not errors.\nEach block matches on a log entry field, and the filters in that block then are matched\nagainst all messages with a matching log entry field.\n\nAll messages whose PRIORITY is at least 6 (INFO) are processed by journalwatch.\nIf you don't specify any filterBlocks, PRIORITY is reduced to 5 (NOTICE) by default.\n\nAll regular expressions are extended Python regular expressions, for details\nsee: http://doc.pyschools.com/html/regex.html\n",
             })))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hourly",
               description: "How often to run journalwatch.\n\nThe format is described in {manpage}`systemd.time(7)`.\n",
             })))),
           accuracy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "10min",
               description: "The time window around the interval in which the journalwatch run will be scheduled.\n\nThe format is described in {manpage}`systemd.time(7)`.\n",
@@ -169,30 +169,30 @@ ln -sf ${journalwatchPatterns} $out/journalwatch/patterns
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [user, nix.thunk(() => ({ __proto__: pos$21, isSystemUser: true, home: dataDir, group: group }))],
+            [user, nix.thunk(() => ({ [nix.POS]: pos$21, isSystemUser: true, home: dataDir, group: group }))],
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             rules: nix.thunk(() => [nix.thunk(() => nix.str`R ${dataDir}/config`)]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             journalwatch: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               environment: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 XDG_DATA_HOME: nix.thunk(() => nix.str`${dataDir}/share`),
                 XDG_CONFIG_HOME: journalwatchConfigDir,
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 User: user,
                 Group: group,
                 Type: "oneshot",
@@ -205,13 +205,13 @@ ln -sf ${journalwatchPatterns} $out/journalwatch/patterns
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             journalwatch: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "Periodic journalwatch run",
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 OnCalendar: nix.thunk(() => nix.sel(cfg, "interval")),
                 AccuracySec: nix.thunk(() => nix.sel(cfg, "accuracy")),
                 Persistent: true,
@@ -221,7 +221,7 @@ ln -sf ${journalwatchPatterns} $out/journalwatch/patterns
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "florianjacob"))];

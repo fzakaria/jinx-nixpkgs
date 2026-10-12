@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const removeWarningPopup = nix.argOr($, "removeWarningPopup", () => false);
   const withObsVkCapture = nix.argOr($, "withObsVkCapture", () => false);
   const fhsEnv = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: nix.thunk(() => nix.attr(bottles_unwrapped, "version")),
     multiArch: true,
     targetPkgs: (pkgs) => (() => {
       const w = nix.withScope(pkgs, null);
       return nix.concat([
         nix.thunk(() => nix.app(nix.sel(bottles_unwrapped, "override"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             removeWarningPopup: removeWarningPopup,
             withObsVkCapture: withObsVkCapture,
           })))),
@@ -125,11 +125,11 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bottles",
       paths: nix.thunk(() => [
-        nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => nix.update(fhsEnv, { __proto__: pos$3, pname: "bottles", runScript: "bottles" })))),
-        nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => nix.update(fhsEnv, { __proto__: pos$4, pname: "bottles-cli", runScript: "bottles-cli" })))),
+        nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => nix.update(fhsEnv, { [nix.POS]: pos$3, pname: "bottles", runScript: "bottles" })))),
+        nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => nix.update(fhsEnv, { [nix.POS]: pos$4, pname: "bottles-cli", runScript: "bottles-cli" })))),
       ]),
       postBuild: nix.thunk(() => nix.str`mkdir -p $out/share
 ln -s ${bottles_unwrapped}/share/applications $out/share

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "requests_unixsocket",
           version: version,
           hash: "sha256-sllhWMNW7O5o0nukaaUiESMKxvsM3otmr7GfDtR6GZU=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, waitress]);
       const pythonImportsCheck = nix.thunk(() => ["requests_unixsocket"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use requests to talk HTTP via a UNIX domain socket",
         homepage: "https://github.com/msabramo/requests-unixsocket",
         changelog: nix.thunk(() => nix.str`https://github.com/msabramo/requests-unixsocket/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

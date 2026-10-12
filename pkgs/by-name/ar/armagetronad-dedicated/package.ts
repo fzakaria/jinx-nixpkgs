@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const armagetronad = nix.arg($, "armagetronad");
-  return nix.app(nix.sel(armagetronad, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, dedicatedServer: true }, args_1)));
+  return nix.app(nix.sel(armagetronad, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, dedicatedServer: true }, args_1)));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

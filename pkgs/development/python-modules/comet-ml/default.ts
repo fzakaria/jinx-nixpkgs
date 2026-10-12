@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const wrapt = nix.arg($, "wrapt");
   const wurlitzer = nix.arg($, "wurlitzer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comet-ml",
       version: "3.58.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "comet_ml",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+YQSl1bhlR8z3Wjp9kdaR68hkpjgj9rY07jXU64JqWU=",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["comet_ml"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Platform designed to help machine learning teams track, compare, explain, and optimize their models",
         homepage: "https://www.comet.com/site/",
         changelog: "https://www.comet.com/docs/v2/api-and-sdk/python-sdk/releases/",

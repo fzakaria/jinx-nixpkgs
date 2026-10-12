@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr";
       const version = "2.8.3";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.tvdr.de/vdr.git",
           rev: version,
           hash: "sha256-7ofaDmuE6rLhzfVLU5GHc79vVN+xgGzQvJtztgXRDtA=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $out/lib/vdr # only needed if vdr is started without any plugin\nmkdir -p $out/share/vdr/conf\ncp *.conf $out/share/vdr/conf\n";
       const outputs = nix.thunk(() => ["out", "dev", "man"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.tvdr.de/",
         description: "Video Disc Recorder",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

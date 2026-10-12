@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchsvn = nix.arg($, "fetchsvn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xavs",
       version: "55",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://svn.code.sf.net/p/xavs/code/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "0drw16wm95dqszpl7j33y4gckz0w0107lnz6wkzb66f0dlbv48cf",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: nix.thunk(() => nix.add("patchShebangs configure\npatchShebangs config.sub\npatchShebangs version.sh\npatchShebangs tools/countquant_xavs.pl\npatchShebangs tools/patcheck\npatchShebangs tools/regression-test.pl\npatchShebangs tools/xavs-format\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace config.guess --replace 'uname -p' 'uname -m'\nsubstituteInPlace configure \\\n  --replace '-O4' '-O3' \\\n  --replace ' -s ' ' ' \\\n  --replace 'LDFLAGS -s' 'LDFLAGS' \\\n  --replace '-dynamiclib' ' ' \\\n  --replace '-falign-loops=16' ' '\nsubstituteInPlace Makefile --replace '-Wl,-soname,' ' '\n"))),
       configureFlags: nix.thunk(() => ["--enable-pic", "--enable-shared", "--disable-asm"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AVS encoder and decoder",
         mainProgram: "xavs",
         homepage: "https://xavs.sourceforge.net/",

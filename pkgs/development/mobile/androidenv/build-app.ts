@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const androidsdk = nix.thunk(() => nix.sel(nix.app(composeAndroidPackages, androidArgs), "androidsdk"));
     const extraArgs = nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => nix.concat(["name"], nix.builtins.attrNames(androidSdkFormalArgs)))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => [""]), name)),
         ANDROID_HOME: nix.thunk(() => nix.str`${androidsdk}/libexec/android-sdk`),
         buildInputs: nix.thunk(() => [jdk, ant]),

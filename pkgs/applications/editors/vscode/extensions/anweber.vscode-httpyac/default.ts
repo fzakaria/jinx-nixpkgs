@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const httpyac = nix.arg($, "httpyac");
   const version = "6.16.7";
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "vscode-httpyac",
         publisher: "anweber",
         version: version,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       })),
       buildInputs: nix.thunk(() => [httpyac]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/AnWeber/vscode-httpyac/releases/tag/${version}`),
         description: "Quickly and easily send REST, Soap, GraphQL, GRPC, MQTT, RabbitMQ and WebSocket requests directly within Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=anweber.vscode-httpyac",

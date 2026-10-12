@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-point",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Qyriad",
           repo: "git-point",
           rev: "v0.2.2",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-YwinEAJ8djCE2tHp8VcfcyHSa8rUn8RBnsdW0YqIM3o=",
       postInstall: "mkdir -p \"$out/share/man/man1\"\n\"$out/bin/git-point\" --mangen > \"$out/share/man/man1/git-point.1\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Qyriad/git-point",
         description: "Set arbitrary refs without shooting yourself in the foot, a porcelain `git update-ref`",
         maintainers: nix.thunk(() => [

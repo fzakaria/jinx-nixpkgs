@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nullfsvfs";
       const version = "0.27";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abbbi",
           repo: "nullfsvfs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ install -p -m 644 nullfsvfs.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual black hole file system that behaves like /dev/null",
         homepage: "https://github.com/abbbi/nullfsvfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -48,7 +48,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const torcs_without_data = nix.arg($, "torcs-without-data");
   const torcs_data = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "torcs-data",
       version: nix.thunk(() => nix.attr(torcs_without_data, "version")),
       src: nix.thunk(() => nix.attr(torcs_without_data, "src")),
@@ -29,10 +29,10 @@ substituteInPlace torcs.desktop \\
   --replace-fail "Icon=torcs.png" "Icon=torcs"
 install -D -m644 torcs.desktop $out/share/applications/torcs.desktop
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$1, hydraPlatforms: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, hydraPlatforms: [] })),
     })));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torcs",
       version: nix.thunk(() => nix.attr(torcs_without_data, "version")),
       paths: nix.thunk(() => [torcs_without_data, torcs_data]),
@@ -40,7 +40,7 @@ install -D -m644 torcs.desktop $out/share/applications/torcs.desktop
 substituteInPlace $out/bin/torcs \\
   --replace-fail "${torcs_without_data}" "$out"
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(torcs_without_data, "meta"), { __proto__: pos$3, description: "Car racing game", hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(torcs_without_data, "meta"), { [nix.POS]: pos$3, description: "Car racing game", hydraPlatforms: [] })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

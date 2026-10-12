@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const git = nix.arg($, "git");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tar-unix",
       version: nix.thunk(() => nix.attr(tar, "version")),
       src: nix.thunk(() => nix.attr(tar, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [tar, fpath, logs, lwt]),
       nativeCheckInputs: nix.thunk(() => [git]),
       meta: nix.thunk(() => nix.update(nix.sel(tar, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Decode and encode tar format files from Unix",
       })),
     })));

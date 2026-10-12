@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "proxy_tools",
           version: version,
           hash: "sha256-zLN1H1KcBH4tilhEDYayBTA88P6BRveE0cvNlPCigBA=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["proxy_tools"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jtushman/proxy_tools",
         description: "Simple (hopefully useful) Proxy (as in the GoF design pattern) implementation for Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

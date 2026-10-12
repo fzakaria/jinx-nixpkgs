@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gboeing",
           repo: "osmnx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["osmnx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Package to easily download, construct, project, visualize, and analyze complex street networks from OpenStreetMap with NetworkX",
         homepage: "https://github.com/gboeing/osmnx",
         changelog: nix.thunk(() => nix.str`https://github.com/gboeing/osmnx/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

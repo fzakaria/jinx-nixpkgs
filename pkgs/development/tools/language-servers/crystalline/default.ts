@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "0.18.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "elbywan",
       repo: "crystalline",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Z5qVm1ovhMUccS9KSp8i7UowxxgEr9OvnJRYREaNmnM=",
     }))));
   return nix.app(nix.sel(crystal, "buildCrystalPackage"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "crystalline",
       version: version,
       src: src,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       shardsFile: nix.path(here, "./shards.nix"),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "llvm")), openssl, makeWrapper]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LLVM_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(llvmPackages, "llvm")))), "llvm-config")),
       })),
       preConfigure: nix.thunk(() => nix.str`substituteInPlace "./src/crystalline/main.cr" \\
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       doInstallCheck: false,
       crystalBinaries: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         crystalline: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: "src/crystalline.cr",
           options: nix.thunk(() => ["--release", "--no-debug", "--progress", "-Dpreview_mt"]),
         })),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         ]))}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Language Server Protocol implementation for Crystal",
         mainProgram: "crystalline",
         homepage: "https://github.com/elbywan/crystalline",

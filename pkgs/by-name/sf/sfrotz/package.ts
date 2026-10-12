@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["frontend", 1, 29]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const frotz = nix.arg($, "frotz");
-  return nix.app(nix.sel(frotz, "override"), nix.thunk(() => ({ __proto__: pos$1, frontend: "sdl" })));
+  return nix.app(nix.sel(frotz, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, frontend: "sdl" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

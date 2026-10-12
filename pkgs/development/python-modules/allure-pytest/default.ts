@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.15.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allure-framework",
           repo: "allure-python",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["allure_pytest"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Allure integrations for Python test frameworks",
         homepage: "https://github.com/allure-framework/allure-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

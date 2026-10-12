@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yggdrasil",
       version: "0.5.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yggdrasil-network",
           repo: "yggdrasil-go",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
         "-w",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, basic: nix.thunk(() => nix.sel(nixosTests, "yggdrasil")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, basic: nix.thunk(() => nix.sel(nixosTests, "yggdrasil")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Experiment in scalable routing as an encrypted IPv6 overlay network",
         homepage: "https://yggdrasil-network.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gif-for-cli",
       version: "1.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "gif-for-cli",
           rev: "31f8aa2d617d6d6e941154f60e287c38dd9a74d5",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pillow-10-compatibility.patch",
             url: "https://github.com/google/gif-for-cli/commit/49b13ec981e197cbc10f920b7b25a97c4cc6a61c.patch",
             hash: "sha256-B8wfkdhSUY++St6DzgaJ1xF1mZKvi8oxLXbo63yemDM=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Render gifs as ASCII art in your cli",
         longDescription: "Takes in a GIF, short video, or a query to the Tenor GIF API and converts it to animated ASCII art.",
         homepage: "https://github.com/google/gif-for-cli",

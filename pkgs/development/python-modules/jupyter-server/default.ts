@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jupyter-server",
       version: "2.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jupyter_server",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cNmhiD9X01duoX9M4GHsGnqtfvOI0AQoz7f15PACInE=",
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Backend—i.e. core services, APIs, and REST endpoints—to Jupyter web applications",
         homepage: "https://github.com/jupyter-server/jupyter_server",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-server/jupyter_server/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
@@ -118,9 +118,9 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
         mainProgram: "jupyter-server",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             vendor: "jupyter",
             product: "jupyter_server",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),

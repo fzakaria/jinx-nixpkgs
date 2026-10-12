@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "json-schema-catalog-rs",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roberth",
           repo: "json-schema-catalog-rs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,22 +36,22 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/json-schema-catalog`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-run.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "json-schema-catalog-rs": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           jsonSchemaCatalogs: nix.thunk(() => nix.app(nix.sel(jsonSchemaCatalogs, "tests", "override"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "json-schema-catalog-rs": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI for working with JSON Schema Catalogs",
         longDescription: "A JSON Schema Catalog file provides a mapping from schema URIs to schema locations.\nBy constructing and using a catalog, you can avoid the need to download and parse schemas from the internet.\nThis is particularly useful when working with large schemas or when you need to work, test or build offline.\n",
         homepage: "https://github.com/roberth/json-schema-catalog-rs",

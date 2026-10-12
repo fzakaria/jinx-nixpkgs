@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jelmer",
           repo: "xandikos",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,15 +48,15 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "installManPage man/xandikos{,-milter}.8\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, xandikos: nix.thunk(() => nix.sel(nixosTests, "xandikos")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, xandikos: nix.thunk(() => nix.sel(nixosTests, "xandikos")) })),
       }));
       const nativeCheckInputs = nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return [nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight CalDAV/CardDAV server",
         homepage: "https://github.com/jelmer/xandikos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xandikos",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

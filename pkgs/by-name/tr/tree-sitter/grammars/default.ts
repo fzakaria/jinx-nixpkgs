@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenv = nix.arg($, "stdenv");
   const grammar_sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./grammar-sources.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lib: lib,
       fetchpatch: fetchpatch,
       fetchFromGitLab: fetchFromGitLab,
@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
     const parts = nix.thunk(() => nix.app(nix.sel(lib, "match"), "(.+):([^/]+)/([^/?]+)((/|.+ref=)([^&]+))?", url));
     const ref = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), parts, 5n));
     return nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), parts, 0n)),
       owner: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), parts, 1n)),
       repo: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), parts, 2n)),
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(ref, null)), nix.thunk(() => ({ __proto__: pos$3, ref: ref }))));
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(ref, null)), nix.thunk(() => ({ [nix.POS]: pos$3, ref: ref }))));
   })();
   const isUnstable = (version) => nix.app(nix.sel(lib, "isList"), nix.thunk(() => nix.app(nix.sel(lib, "match"), ".+-unstable-.+", version)));
   return nix.app(nix.sel(lib, "mapAttrs'"), (language) => (attrs) => (() => {
       const source = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(attrs, "url")), nix.thunk(() => nix.app(parseUrl, nix.thunk(() => nix.sel(attrs, "url"))))));
       return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tree-sitter-${language}`), nix.thunk(() => nix.update({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           language: language,
           passthru: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 extraArgs: nix.thunk(() => nix.concat([
                   "--override-filename",
                   "pkgs/by-name/tr/tree-sitter/grammars/grammar-sources.nix",
@@ -60,10 +60,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(attrs, "url")) && nix.asBool(nix.has(attrs, "hash")))), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             src: nix.thunk(() => (() => {
               const fetch = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(source, "type")), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   github: fetchFromGitHub,
                   gitlab: fetchFromGitLab,
                   sourcehut: fetchFromSourcehut,
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
                 }))));
               const rev = nix.thunk(() => (nix.asBool(nix.app(isUnstable, nix.thunk(() => nix.sel(attrs, "version")))) ? nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`tree-sitter grammar '${language}': unstable version requires a pinned 'rev' attribute`)), "rev") : nix.selOr(source, () => nix.str`v${nix.sel(attrs, "version")}`, "ref")));
               return nix.app(fetch, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   owner: nix.thunk(() => nix.attr(source, "owner")),
                   repo: nix.thunk(() => nix.attr(source, "repo")),
                   rev: rev,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "1.5.4";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       pname: "gnupg",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "php-gnupg",
           repo: "php-gnupg",
           rev: nix.thunk(() => nix.str`gnupg-${version}`),
@@ -53,13 +53,13 @@ substituteInPlace tests/gnupgt.inc \\
 `),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-test-typos.patch",
             url: "https://github.com/php-gnupg/php-gnupg/commit/4b9160b94df1d831d7bcc4f980cb8969d9ab5c11.patch",
             hash: "sha256-fJ/H1tbwMuLUpdWe0+oPyzhBFAsjG2QzmZSiuIsMekY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-clearsign-newline-test.patch",
             url: "https://github.com/php-gnupg/php-gnupg/commit/6eda368b55044343349a8e76f6beda3ad54660dc.patch",
             hash: "sha256-/c+cxfAj3Cg7m2+sFiHWQr4R9atPypQuAUVyAOI8ZeM=",
@@ -67,7 +67,7 @@ substituteInPlace tests/gnupgt.inc \\
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/php-gnupg/php-gnupg/releases/tag/gnupg-${version}`),
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(php, "version")), "8.1")),
         description: "PHP wrapper for GpgME library that provides access to GnuPG",

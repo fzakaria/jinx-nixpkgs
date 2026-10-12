@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-uGraUIr4HRnt6yE8aBsdSCRsGpHTBMbIGkJ2dMF+uRw=",
@@ -43,22 +43,22 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [iniconfig, packaging, pluggy, pygments]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         testing: nix.thunk(() => [argcomplete, attrs, hypothesis, mock, requests, setuptools, xmlschema]),
       }));
       const postInstall = "mkdir $testout\ncp -R testing $testout/testing\n";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const setupHook = nix.thunk(() => nix.app(writeText, "pytest-hook", "pytestcachePhase() {\n    find $out -name .pytest_cache -type d -exec rm -rf {} +\n}\nappendToVar preDistPhases pytestcachePhase\n\n# pytest generates it's own bytecode files to improve assertion messages.\n# These files similar to cpython's bytecode files but are never laoded\n# by python interpreter directly. We remove them for a few reasons:\n# - files are non-deterministic: https://github.com/NixOS/nixpkgs/issues/139292\n#   (file headers are generatedt by pytest directly and contain timestamps)\n# - files are not needed after tests are finished\npytestRemoveBytecodePhase () {\n    # suffix is defined at:\n    #    https://github.com/pytest-dev/pytest/blob/7.2.1/src/_pytest/assertion/rewrite.py#L51-L53\n    find $out -name \"*-pytest-*.py[co]\" -delete\n}\nappendToVar preDistPhases pytestRemoveBytecodePhase\n"));
       const pythonImportsCheck = nix.thunk(() => ["pytest"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Framework for writing tests",
         homepage: "https://docs.pytest.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest/releases/tag/${version}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

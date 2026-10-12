@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const isocodes = nix.arg($, "isocodes");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "subtitleeditor",
       version: "0.56.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "subtitleeditor",
           repo: "subtitleeditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`substituteInPlace ./configure --replace /usr/bin/file ${file}/bin/file`),
       configureFlags: nix.thunk(() => ["--disable-debug"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK 3 application to edit video subtitles",
         longDescription: "Subtitle Editor is a GTK 3 tool to edit subtitles for GNU/Linux/*BSD. It\ncan be used for new subtitles or as a tool to transform, edit, correct\nand refine existing subtitle. This program also shows sound waves, which\nmakes it easier to synchronise subtitles to voices.\n",
         homepage: "https://subtitleeditor.github.io/subtitleeditor/",

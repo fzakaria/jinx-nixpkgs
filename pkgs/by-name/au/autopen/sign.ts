@@ -24,21 +24,21 @@ export default nix.lambda((args) => (() => {
     const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "message", args_2));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(hideDerivation, nix.thunk(() => nix.app(mkAutopenDerivation, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${nix.sel(message, "name")}.sig`),
           signingKey: signingKey,
           message: message,
           autopenArgs: nix.thunk(() => [
             "sign",
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               signingKey: signingKey,
               output: nix.thunk(() => nix.builtins.placeholder("out")),
             })),
             message,
           ]),
           allowedRequisites: nix.thunk(() => ["out"]),
-          passthru: nix.thunk(() => ({ __proto__: pos$2, message: message })),
+          passthru: nix.thunk(() => ({ [nix.POS]: pos$2, message: message })),
           pos: pos,
           meta: meta,
         })))));

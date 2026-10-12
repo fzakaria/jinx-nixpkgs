@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyVirtualDisplay",
           version: version,
           hash: "sha256-CXVbw86263JfsH7KVCX0PyNY078I4A0qm3kqGu3RYVk=",
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               xauth: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xauth)),
               xdpyinfo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xdpyinfo)),
             })))),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
         psutil,
         pytest_timeout,
         pytestCheckHook,
-        nix.thunk(() => nix.app(nix.sel(vncdotool, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(vncdotool, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: false })))),
         xorg_server,
         xmessage,
         xvfb,
       ]);
       const pytestFlags = nix.thunk(() => ["-v"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python wrapper for Xvfb, Xephyr and Xvnc",
         homepage: "https://github.com/ponty/pyvirtualdisplay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

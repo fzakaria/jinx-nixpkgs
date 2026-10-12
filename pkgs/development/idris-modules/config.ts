@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const test = nix.arg($, "test");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "config",
       version: "2017-11-06",
       idrisDeps: nix.thunk(() => [effects, containers, lightyear, test]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benclifford",
           repo: "idris-config",
           rev: "92f98652f5cb06a76c47809f16c661ec6cf11048",
           sha256: "1w2w2l4drvkf8mdzh3lwn6l5lnkbxlx9p22s7spw82n5s4wib6c9",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parsers for various configuration files written in Idris",
         homepage: "https://github.com/benclifford/idris-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

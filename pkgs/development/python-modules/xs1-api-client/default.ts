@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markusressel",
           repo: "xs1-api-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [requests, urllib3]);
       const pythonImportsCheck = nix.thunk(() => ["xs1_api_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for accessing actuator and sensor data on the EZcontrol XS1 Gateway",
         homepage: "https://github.com/markusressel/xs1-api-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

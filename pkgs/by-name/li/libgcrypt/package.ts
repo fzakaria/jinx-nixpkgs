@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const rsyslog = nix.arg($, "rsyslog");
   nix.assert_((!nix.asBool(enableCapabilities) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libgcrypt/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libgcrypt",
       version: "1.12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/libgcrypt/libgcrypt-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-139o9Ih5UQ55ovZZd8zGiYF4HqCSPlvf+sKhk+o9Zg4=",
         })))),
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelChecking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, gnupg: gnupg, libotr: libotr, rsyslog: rsyslog })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gnupg: gnupg, libotr: libotr, rsyslog: rsyslog })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.gnu.org/software/libgcrypt/",
         changelog: nix.thunk(() => nix.str`https://git.gnupg.org/cgi-bin/gitweb.cgi?p=libgcrypt.git;a=blob;f=NEWS;hb=refs/tags/libgcrypt-${nix.sel(finalAttrs, "version")}`),
         description: "General-purpose cryptographic library",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "coolcuber"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnupg", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

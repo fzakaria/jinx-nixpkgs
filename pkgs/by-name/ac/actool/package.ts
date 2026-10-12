@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const icu = nix.arg($, "icu");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "actool",
       version: "2.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "viraptor",
           repo: "actool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Q0fSZNXw/71kMemYzwVsBRFcAMNl4ItKu56YdB0AAdM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Apple's actool reimplementation",
         homepage: "https://github.com/viraptor/actool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

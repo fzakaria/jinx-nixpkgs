@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runCommand = nix.arg($, "runCommand");
   const rubies = nix.argOr($, "rubies", () => null);
-  const rubiesEnv = nix.thunk(() => nix.app(runCommand, "chruby-env", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
+  const rubiesEnv = nix.thunk(() => nix.app(runCommand, "chruby-env", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => nix.str`ln -s ${path} $out/${name}
 `, rubies)))}
 `)));
@@ -23,7 +23,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
       const pname = "chruby";
       const version = "0.3.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "postmodern",
           repo: "chruby",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
 `)));
       const installPhase = "mkdir $out\ncp -r bin $out\ncp -r share $out\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Changes the current Ruby",
         homepage: "https://github.com/postmodern/chruby",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

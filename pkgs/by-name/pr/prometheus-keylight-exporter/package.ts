@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "keylight-exporter";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdlayher",
           repo: "keylight_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-0QSsGgokErRNIHQIjZQn5t1dvc306uZck8uLSgjcrck=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, keylight: nix.thunk(() => nix.attr(from, "keylight")) };
+          return { [nix.POS]: pos$2, keylight: nix.thunk(() => nix.attr(from, "keylight")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/mdlayher/keylight_exporter",
         description: "Prometheus exporter for Elgato Key Light devices",
         mainProgram: "keylight_exporter",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "mdlayher"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

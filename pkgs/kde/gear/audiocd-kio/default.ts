@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lame = nix.arg($, "lame");
   const opus_tools = nix.arg($, "opus-tools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "audiocd-kio",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./encoder-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             lame: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lame)),
             opusenc: nix.thunk(() => nix.str`${opus_tools}/bin/opusenc`),
           })))),

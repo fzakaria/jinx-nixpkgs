@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const pname = "bloodhound-ce";
   const version = "8.3.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "SpecterOps",
       repo: "BloodHound",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const yarn_berry = yarn_berry_3;
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bloodhound-ce-frontend",
       version: version,
       src: src,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
@@ -78,56 +78,56 @@ export default nix.lambda((args) => (() => {
     const azver = "v2.8.1";
     const shver = "v2.8.0";
     const sharphound = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`https://github.com/SpecterOps/SharpHound/releases/download/${shver}/sharphound_${shver}_windows_x86.zip`),
         hash: "sha256-BjBOxjhQYpqD/qUy9EsuXplK8JAuPU/LE2O0Ooxr+r4=",
       }))));
     return nix.app(pipe, nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           os: "darwin",
           arch: "amd64",
           hash: "sha256-HD5vMc6vt71wj5ST6On417iY3DJZQXdG8Il73H22m9Q=",
         })),
         nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           os: "darwin",
           arch: "arm64",
           hash: "sha256-57i+/9gV17pqQqqnEianJdJ6Jtg4DsExMkfAEqaeNns=",
         })),
         nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           os: "linux",
           arch: "amd64",
           hash: "sha256-8wrEef0+ik5WAsIV7tInyUlNnsUBw6Ux9LE7gVS3Fhs=",
         })),
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           os: "linux",
           arch: "arm64",
           hash: "sha256-23lokcbd2Yp9pWibsb5SNW/YE/eHpHCFZv2PbBlw0Xo=",
         })),
         nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           os: "windows",
           arch: "amd64",
           hash: "sha256-IkEfEh2VFNTnuUAez6/vMY7sMv4rtDR3Paerev/xoqs=",
         })),
         nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           os: "windows",
           arch: "arm64",
           hash: "sha256-qEgmO7oNy/pUXH7lbOoJxNznl2mPofj2R5RGBZdOoUI=",
         })),
       ]), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.builtins.map, (x) => nix.str`cp ${nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               url: nix.thunk(() => nix.str`https://github.com/SpecterOps/AzureHound/releases/download/${azver}/azurehound_${azver}_${nix.sel(x, "os")}_${nix.sel(x, "arch")}.zip`),
               hash: nix.thunk(() => nix.attr(x, "hash")),
             })))} azurehound_${azver}_${nix.sel(x, "os")}_${nix.sel(x, "arch")}.zip`)),
         concatLines,
         (copyAzurehoundZips) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pname: "bloodhound-ce-collectors",
             version: version,
             src: src,
@@ -145,7 +145,7 @@ for i in $out/*/*.zip; do sha256sum "$i" > "$i.sha256"; done
       ]));
   })());
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: pname,
       version: version,
       src: src,
@@ -167,9 +167,9 @@ cp -r ${frontend} cmd/api/src/api/static/assets
 wrapProgram $out/bin/bloodhound-ce \\
   --set BHE_COLLECTORS_BASE_PATH ${collectors}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$13, frontend: frontend, collectors: collectors })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$13, frontend: frontend, collectors: collectors })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Six Degrees of Domain Admin",
         homepage: "https://github.com/SpecterOps/BloodHound",
         changelog: nix.thunk(() => nix.str`https://github.com/SpecterOps/BloodHound/releases/tag/v${version}`),

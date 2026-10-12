@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdcht",
           repo: "crysp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py \\\n  --replace \"'pytest-runner',\" \"\"\n";
       const pythonImportsCheck = nix.thunk(() => ["crysp"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module that provides crypto-related facilities",
         homepage: "https://github.com/bdcht/crysp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

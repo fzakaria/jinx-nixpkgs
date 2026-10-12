@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.1.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "putter",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~rycee",
           repo: "putter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-36f4f+3vf0ZknmSwe3oNOxPgexTjizXQ73Ac3JeG6ZU=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Symlink or copy files according to a JSON manifest",
         mainProgram: "putter",
         homepage: "https://git.sr.ht/~rycee/putter",

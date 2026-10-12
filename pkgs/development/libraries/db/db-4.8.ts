@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const autoconf269 = nix.arg($, "autoconf269");
   return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "4.8.30",
       sha256: "0ampbl2f0hb1nix195kz1syrqqxpmvnvnfvphambj7xjrl3iljg0",
       extraPatches: nix.thunk(() => [
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./darwin-mutexes-4.8.patch"),
       ]),
       drvArgs: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         hardeningDisable: nix.thunk(() => ["format"]),
         doCheck: false,
       })),

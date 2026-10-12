@@ -33,67 +33,67 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "gitDaemon"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         gitDaemon: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Git daemon, which allows public hosting of git repositories\nwithout any access controls. This is mostly intended for read-only access.\n\nYou can allow write access by setting daemon.receivepack configuration\nitem of the repository to true. This is solely meant for a closed LAN setting\nwhere everybody is friendly.\n\nIf you need any access controls, use something else.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "git", nix.thunk(() => ({})))),
           basePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "/srv/git/",
               description: "Remap all the path requests as relative to the given path. For example,\nif you set base-path to /srv/git, then if you later try to pull\ngit://example.com/hello.git, Git daemon will interpret the path as /srv/git/hello.git.\n",
             })))),
           exportAll: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Publish all directories that look like Git repositories (have the objects\nand refs subdirectories), even if they do not have the git-daemon-export-ok file.\n\nIf disabled, you need to touch .git/git-daemon-export-ok in each repository\nyou want the daemon to publish.\n\nWarning: enabling this without a repository whitelist or basePath\npublishes every git repository you have.\n",
             })))),
           repositories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["/srv/git", "/home/user/git/repo2"]),
               description: "A whitelist of paths of git repositories, or directories containing repositories\nall of which would be published. Paths must not end in \"/\".\n\nWarning: leaving this empty and enabling exportAll publishes all\nrepositories in your filesystem or basePath if specified.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "example.com",
               description: "Listen on a specific IP address or hostname.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9418n,
               description: "Port to listen on.",
             })))),
           options: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Extra configuration options to be passed to Git daemon.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "git",
               description: "User under which Git daemon would be running.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "git",
               description: "Group under which Git daemon would be running.",
@@ -102,32 +102,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "git")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               git: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "git")),
                 group: "git",
                 description: "Git daemon user",
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "git")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               git: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "git")),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "git-daemon": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               script: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} daemon --reuseaddr `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "basePath"), "")), nix.thunk(() => nix.str`--base-path=${nix.sel(cfg, "basePath")} `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "listenAddress"), "")), nix.thunk(() => nix.str`--listen=${nix.sel(cfg, "listenAddress")} `))), nix.str`--port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} --user=${nix.sel(cfg, "user")} --group=${nix.sel(cfg, "group")} ${nix.sel(cfg, "options")} `), "--verbose "), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "exportAll")), "--export-all ")), nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "repositories"))))),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const withEspeak = nix.argOr($, "withEspeak", () => false);
   const espeak = nix.argOr($, "espeak", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rockbox-utility",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.rockbox.org/rbutil/source/RockboxUtility-v${nix.sel(finalAttrs, "version")}-src.tar.bz2`),
           hash: "sha256-guNO11a0d30RexPEAAQGIgV9W17zgTjZ/LNz/oUn4HM=",
         })))),
@@ -55,7 +55,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withEspeak, nix.thunk(() => nix.str`--
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.rockbox.org",
         description: "Open source firmware for digital music players",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

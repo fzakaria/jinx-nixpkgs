@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ghciwatch",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MercuryTechnologies",
           repo: "ghciwatch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-x+8cA3wO8LOB1/bMKZlKTkuts1IobEsAhRIJQWwrpjs=",
         })))),
       cargoHash: "sha256-ysB1BJbMJ8KSCGSQzs9AnOA4SnnRcukC5R/vU45pbRM=",
-      env: nix.thunk(() => ({ __proto__: pos$2, GHC_VERSIONS: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GHC_VERSIONS: "" })),
       checkFlags: "--test \"unit\"",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ghci-based file watching recompiler for Haskell development",
         homepage: "https://github.com/MercuryTechnologies/ghciwatch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ghciwatch",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }));

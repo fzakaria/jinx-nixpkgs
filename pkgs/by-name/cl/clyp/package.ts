@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clyp",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "murat-cileli",
           repo: "clyp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gobject_introspection, gtk4]),
       ldflags: nix.thunk(() => ["-s"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clipboard manager for Linux",
         homepage: "https://github.com/murat-cileli/clyp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

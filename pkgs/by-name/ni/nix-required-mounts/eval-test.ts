@@ -27,46 +27,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   const base = nix.thunk(() => nix.app(nixos, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
-        userborn: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+        [nix.POS]: pos$2,
+        userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
       })),
       programs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "nix-required-mounts": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: true,
           presets: nix.thunk(() => ({
-            __proto__: pos$4,
-            "nvidia-gpu": nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            "nvidia-gpu": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$8,
-        "/": nix.thunk(() => ({ __proto__: pos$7, device: "/dev/null", fsType: "none" })),
+        [nix.POS]: pos$8,
+        "/": nix.thunk(() => ({ [nix.POS]: pos$7, device: "/dev/null", fsType: "none" })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         loader: nix.thunk(() => ({
-          __proto__: pos$10,
-          grub: nix.thunk(() => ({ __proto__: pos$9, enable: false })),
+          [nix.POS]: pos$10,
+          grub: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       })),
     }))));
   const machine = nix.thunk(() => nix.app(nix.sel(base, "extendModules"), nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       modules: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           hardware: nix.thunk(() => ({
-            __proto__: pos$15,
-            graphics: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+            [nix.POS]: pos$15,
+            graphics: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
           })),
         })),
       ]),

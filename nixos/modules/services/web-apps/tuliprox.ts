@@ -74,66 +74,66 @@ export default nix.lambda((args) => (() => {
   const apiProxySettingsYaml = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "api-proxy.yml", nix.thunk(() => nix.sel(cfg, "apiProxySettings"))));
   const mappingSettingsYaml = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "mapping.yml", nix.thunk(() => nix.sel(cfg, "mappingSettings"))));
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nyanloutre"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       services: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         tuliprox: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tuliprox IPTV playlist processor & proxy")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tuliprox", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional command-line arguments for the systemd service.\n\nRefer to the [Tuliprox documentation] for available arguments.\n\n[Tuliprox documentation]: https://github.com/euzu/tuliprox?tab=readme-ov-file#command-line-arguments\n",
             })))),
           systemSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
-                api: nix.thunk(() => ({ __proto__: pos$3, host: "0.0.0.0", port: 8901n })),
+                [nix.POS]: pos$4,
+                api: nix.thunk(() => ({ [nix.POS]: pos$3, host: "0.0.0.0", port: 8901n })),
               })),
               description: "Main config file\n\nRefer to the [Tuliprox documentation] for available attributes\n\n[Tuliprox documentation]: https://github.com/euzu/tuliprox?tab=readme-ov-file#1-configyml\n",
             })))),
           sourceSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 templates: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     name: "not_red_button",
                     value: "NOT (Title ~ \"(?i).*red button.*\")",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     name: "not_low_resolution",
                     value: "NOT (Title ~ \"(?i).*(360p|240p).*\")",
                   })),
-                  nix.thunk(() => ({ __proto__: pos$8, name: "all_channels", value: "Title ~ \".*\"" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$8, name: "all_channels", value: "Title ~ \".*\"" })),
                   nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     name: "final_channel_lineup",
                     value: "!all_channels! AND !not_red_button! AND !not_low_resolution!",
                   })),
                 ]),
                 sources: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     inputs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         name: "iptv-org",
                         type: "m3u",
                         url: "https://iptv-org.github.io/iptv/countries/uk.m3u",
@@ -141,15 +141,15 @@ export default nix.lambda((args) => (() => {
                     ]),
                     targets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         name: "iptv-org",
                         output: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$11, type: "xtream" })),
-                          nix.thunk(() => ({ __proto__: pos$12, type: "m3u", filename: "iptv.m3u" })),
-                          nix.thunk(() => ({ __proto__: pos$13, type: "hdhomerun", username: "local", device: "hdhr1" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$11, type: "xtream" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$12, type: "m3u", filename: "iptv.m3u" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$13, type: "hdhomerun", username: "local", device: "hdhr1" })),
                         ]),
                         filter: "!final_channel_lineup!",
-                        options: nix.thunk(() => ({ __proto__: pos$14, ignore_logo: false, share_live_streams: true })),
+                        options: nix.thunk(() => ({ [nix.POS]: pos$14, ignore_logo: false, share_live_streams: true })),
                         mapping: nix.thunk(() => ["iptv-org"]),
                       })),
                     ]),
@@ -159,13 +159,13 @@ export default nix.lambda((args) => (() => {
               description: "Source definitions\n\nRefer to the [Tuliprox documentation] for available attributes\n\n[Tuliprox documentation]: https://github.com/euzu/tuliprox?tab=readme-ov-file#2-sourceyml\n",
             })))),
           apiProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 server: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     name: "default",
                     protocol: "http",
                     host: "192.169.1.9",
@@ -174,7 +174,7 @@ export default nix.lambda((args) => (() => {
                     message: "Welcome to tuliprox",
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     name: "external",
                     protocol: "https",
                     host: "tuliprox.mydomain.tv",
@@ -185,11 +185,11 @@ export default nix.lambda((args) => (() => {
                 ]),
                 user: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     target: "xc_m3u",
                     credentials: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         username: "test1",
                         password: "secret1",
                         token: "token1",
@@ -206,48 +206,48 @@ export default nix.lambda((args) => (() => {
               description: "Users and proxy configuration\n\nRefer to the [Tuliprox documentation] for available attributes\n\n[Tuliprox documentation]: https://github.com/euzu/tuliprox?tab=readme-ov-file#3-api-proxy-config\n",
             })))),
           mappingSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 mappings: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   templates: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$25, name: "bbc", value: "Title ~ \"^BBC\"" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$25, name: "bbc", value: "Title ~ \"^BBC\"" })),
                     nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       name: "documentary",
                       value: "(Group ~ \"(Documentary|Outdoor)\")",
                     })),
-                    nix.thunk(() => ({ __proto__: pos$27, name: "entertainment", value: "Group ~ \"Entertainment\"" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$27, name: "entertainment", value: "Group ~ \"Entertainment\"" })),
                     nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       name: "pluto_tv",
                       value: "(Caption ~ \"Pluto TV\") AND NOT(Caption ~ \"Sports\")",
                     })),
-                    nix.thunk(() => ({ __proto__: pos$29, name: "business", value: "Group ~ \"Business\"" })),
+                    nix.thunk(() => ({ [nix.POS]: pos$29, name: "business", value: "Group ~ \"Business\"" })),
                   ]),
                   mapping: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       id: "iptv-org",
                       match_as_ascii: true,
                       mapper: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$30, filter: "!bbc!", script: "@Group = \"BBC\"\n" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$30, filter: "!bbc!", script: "@Group = \"BBC\"\n" })),
                         nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           filter: "!documentary!",
                           script: "@Group = \"Documentary\"\n",
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           filter: "!entertainment!",
                           script: "@Group = \"Entertainment\"\n",
                         })),
-                        nix.thunk(() => ({ __proto__: pos$33, filter: "!pluto_tv!", script: "@Group = \"Pluto TV\"\n" })),
-                        nix.thunk(() => ({ __proto__: pos$34, filter: "!business!", script: "@Group = \"News\"\n" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$33, filter: "!pluto_tv!", script: "@Group = \"Pluto TV\"\n" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$34, filter: "!business!", script: "@Group = \"News\"\n" })),
                         nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           filter: "Input ~ \"iptv-org\"",
                           script: "@Caption = concat(@Caption, \" (iptv-org)\")\n",
                         })),
@@ -262,15 +262,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         services: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           tuliprox: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             systemSettings: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               api: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 host: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "127.0.0.1")),
                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 8901n)),
                 web_root: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/web`))),
@@ -280,14 +280,14 @@ export default nix.lambda((args) => (() => {
               custom_stream_response_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/resources`))),
             })),
             sourceSettings: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               sources: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), [])),
             })),
             apiProxySettings: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               server: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     name: "default",
                     protocol: "http",
                     host: nix.thunk(() => nix.sel(cfg, "systemSettings", "api", "host")),
@@ -299,23 +299,23 @@ export default nix.lambda((args) => (() => {
               user: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), [])),
             })),
             mappingSettings: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               mappings: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 mapping: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), [])),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           services: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             tuliprox: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               description: "Tuliprox server",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                     "--server",

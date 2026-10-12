@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "upgrade-assistant",
       version: "1.0.518",
       nugetHash: "sha256-VpesxikW1it/j/Wh4xj5Qj7mdfsgLljTuTJd2IzCHTk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/dotnet/upgrade-assistant",
         description: "Tool to assist developers in upgrading .NET Framework applications to .NET 6 and beyond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

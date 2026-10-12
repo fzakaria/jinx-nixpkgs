@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "thumbs",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcsonline",
           repo: "tmux-thumbs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-xvfjWS1QZWrlwytFyWVtjOyB3EPT9leodVLt72yyM4E=",
       patches: nix.thunk(() => [nix.path(here, "./fix.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/fcsonline/tmux-thumbs",
         description: "Lightning fast version of tmux-fingers written in Rust, copy/pasting tmux like vimium/vimperator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

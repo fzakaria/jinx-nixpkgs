@@ -32,20 +32,20 @@ export default nix.lambda((args) => (() => {
     const cfg = nix.thunk(() => nix.sel(config, "tlshd"));
     const configFile = nix.thunk(() => nix.sel(config, "configData", "tlshd.conf", "path"));
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       _class: "service",
       options: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tlshd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Package to use for tlshd.",
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "The `ktls-utils` package that provided this module.")),
               type: nix.thunk(() => nix.sel(types, "package")),
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Configuration for tlshd in INI format.\nSee {manpage}`tlshd.conf(5)` for available options.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))),
               default: nix.thunk(() => ({})),
@@ -54,16 +54,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         configData: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "tlshd.conf": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "settings")))),
           })),
         })),
         process: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           argv: nix.thunk(() => [
             nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
             "--config",
@@ -71,18 +71,18 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "systemd")), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             service: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Handshake service for kernel TLS consumers",
               documentation: nix.thunk(() => ["man:tlshd(8)"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$9, DefaultDependencies: false })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$9, DefaultDependencies: false })),
               before: nix.thunk(() => ["remote-fs-pre.target"]),
               wantedBy: nix.thunk(() => ["remote-fs.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Restart: "on-failure",
                 DynamicUser: true,
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN"]),

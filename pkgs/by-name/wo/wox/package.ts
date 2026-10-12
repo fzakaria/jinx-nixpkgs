@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "wox",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Wox-launcher",
           repo: "Wox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/wox.core`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./plugin-host-python.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "plugin-host-python": nix.thunk(() => nix.str`${nix.sel(finalAttrs, "passthru", "plugin-host-python")}/bin/run`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./plugin-host-nodejs.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "nodejs-path": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nodejs)}`),
             "plugin-host-nodejs": nix.thunk(() => nix.str`${nix.sel(finalAttrs, "passthru", "plugin-host-python")}/node-host.js`),
           })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, copyDesktopItems, pkg_config]),
       buildInputs: nix.thunk(() => [gtk3, libayatana_appindicator, libx11, libxkbcommon, libxtst]),
-      env: nix.thunk(() => ({ __proto__: pos$4, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 1n })),
       ldflags: nix.thunk(() => ["-s", "-w", "-X 'wox/util.ProdEnv=true'"]),
       preBuild: nix.thunk(() => nix.str`mkdir -p resource/ui/flutter resource/hosts
 cp -r ${nix.sel(finalAttrs, "passthru", "ui-flutter")}/app/${nix.sel(finalAttrs, "passthru", "ui-flutter", "pname")} resource/ui/flutter/wox
@@ -71,7 +71,7 @@ cp ${nix.sel(finalAttrs, "passthru", "plugin-host-nodejs")}/node-host.js resourc
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "wox",
             exec: "wox %U",
             icon: "wox",
@@ -80,13 +80,13 @@ cp ${nix.sel(finalAttrs, "passthru", "plugin-host-nodejs")}/node-host.js resourc
       ]),
       postInstall: "install -Dm644 ../assets/app.png $out/share/icons/wox.png\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "plugin-host-nodejs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugin-host-nodejs.nix"), nix.thunk(() => ({})))),
         "plugin-host-python": nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugin-host-python.nix"), nix.thunk(() => ({})))),
         "ui-flutter": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui-flutter.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Cross-platform launcher that simply works",
         homepage: "https://github.com/Wox-launcher/Wox",
         changelog: nix.thunk(() => nix.str`https://github.com/Wox-launcher/Wox/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

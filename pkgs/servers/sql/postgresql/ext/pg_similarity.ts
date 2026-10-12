@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pg_similarity",
       version: "pg_similarity_1_0-unstable-2021-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eulerto",
           repo: "pg_similarity",
           rev: "b9cb0a2d501b91e33cd1ef550b05483ca3563f71",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pg16.patch",
             url: "https://github.com/eulerto/pg_similarity/commit/f7781ea5ace80f697a8249e03e3ce47d4b0f6b2f.patch",
             hash: "sha256-MPDvWfNzSg28lXL5u5/Un9pOCJjqJ4Fz9b8XCfalgts=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extension to support similarity queries on PostgreSQL",
         longDescription: "pg_similarity is an extension to support similarity queries on PostgreSQL. The implementation\nis tightly integrated in the RDBMS in the sense that it defines operators so instead of the traditional\noperators (= and <>) you can use ~~~ and ~!~ (any of these operators represents a similarity function).\n",
         homepage: "https://github.com/eulerto/pg_similarity",

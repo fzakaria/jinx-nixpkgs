@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsspec-xrootd",
       version: "0.5.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CoffeaTeam",
           repo: "fsspec-xrootd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_broken_server", "test_touch_modified"]),
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_basicio.py"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XRootD implementation for fsspec",
         homepage: "https://github.com/CoffeaTeam/fsspec-xrootd",
         changelog: nix.thunk(() => nix.str`https://github.com/CoffeaTeam/fsspec-xrootd/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

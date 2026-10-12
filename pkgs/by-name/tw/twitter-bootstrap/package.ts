@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(fetchzip, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "twitter-bootstrap",
       version: "5.3.8",
       url: nix.thunk(() => nix.str`https://github.com/twbs/bootstrap/releases/download/v${nix.sel(finalAttrs, "version")}/bootstrap-${nix.sel(finalAttrs, "version")}-dist.zip`),
       hash: "sha256-StRhHJIRGzguLlo0BGOAMy0PCCmMovzgU/5xZJgVrqQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Front-end framework for faster and easier web development",
         homepage: "https://getbootstrap.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

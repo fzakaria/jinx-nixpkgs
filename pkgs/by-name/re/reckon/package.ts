@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`${pname}-${version}-gems`),
             gemdir: nix.path(here, "./."),
           }))));
@@ -39,11 +39,11 @@ runHook postInstall
 `;
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: reckon,
               version: nix.thunk(() => nix.str`${version}`),
             })))),
@@ -51,7 +51,7 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "reckon")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Flexibly import bank account CSV files into Ledger for command line accounting",
         mainProgram: "reckon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +63,7 @@ runHook postInstall
         changelog: nix.thunk(() => nix.str`https://github.com/cantino/reckon/blob/v${version}/CHANGELOG.md`),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         dontUnpack,

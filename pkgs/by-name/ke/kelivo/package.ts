@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kelivo",
       version: "1.3.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Chevey339",
           repo: "kelivo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-sQZPgIS6ZPnG1KLIgKCKJzWFnhpvURb+ZQcdsMvNXOk=",
         })))),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
-      env: nix.thunk(() => ({ __proto__: pos$2, pubspecLockFilePath: "./pubspec.lock.json" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, pubspecLockFilePath: "./pubspec.lock.json" })),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       buildInputs: nix.thunk(() => [
         orc,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 assets/app_icon.png $out/share/icons/hicolor/1024x1024/apps/kelivo.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "kelivo",
             desktopName: "Kelivo",
             exec: "kelivo %U",
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Network", "Utility"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Flutter LLM Chat Client",
         homepage: "https://kelivo.psycheas.top/",
         downloadPage: "https://github.com/Chevey339/kelivo/releases",

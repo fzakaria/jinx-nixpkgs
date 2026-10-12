@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "omd",
       version: "1.3.2",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/omd/releases/download/${nix.sel(finalAttrs, "version")}/omd-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-YCPhZCYx8I9njrVyWCCHnte7Wj/+53fN7evCjB+F+ts=",
         })))),
       preBuild: "substituteInPlace src/dune --replace \"bytes)\" \")\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible Markdown library and tool in OCaml",
         homepage: "https://github.com/ocaml/omd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const mkAutopenDerivation = nix.thunk(() => nix.attr(from, "mkAutopenDerivation"));
   const fakeDerivation = (outPath) => (attrs) => (() => {
     const drv = nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: "derivation",
       outputs: nix.thunk(() => ["out"]),
       out: drv,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     return nix.force(drv);
   })();
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     import: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const args_2 = args_1;
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "name", args_2));
       const meta = nix.argOr($_1, "meta", () => ({}));
       const signingKey = nix.thunk(() => nix.app(fakeDerivation, nix.thunk(() => nix.str`${path}`), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: name,
           verificationKey: verificationKey,
           meta: nix.thunk(() => nix.update(meta, nix.attrsDyn({}, [
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
           ]))),
         }))));
       const verificationKey = nix.thunk(() => nix.app(hideDerivation, nix.thunk(() => nix.app(mkAutopenDerivation, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`${name}-verification-key`),
             autopenArgs: nix.thunk(() => [
               "signing-key",
               "get-verification-key",
               nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 signingKey: signingKey,
                 output: nix.thunk(() => nix.builtins.placeholder("out")),
               })),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "name", args_2));
       const meta = nix.argOr($_1, "meta", () => ({}));
       const verificationKey_1 = nix.thunk(() => nix.app(fakeDerivation, nix.thunk(() => nix.str`${nix.sel(args_2, "verificationKey")}`), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`${name}-verification-key`),
           meta: nix.thunk(() => nix.update(meta, nix.attrsDyn({}, [
             [(nix.asBool(nix.has(meta, "description")) ? "description" : null), nix.thunk(() => nix.str`${nix.sel(meta, "description")} (verification key)`)],
@@ -90,20 +90,20 @@ export default nix.lambda((args) => (() => {
           ]))),
         }))));
       const fileRefPath = nix.thunk(() => nix.builtins.path(nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           path: nix.path(here, "./."),
           name: nix.thunk(() => nix.str`${name}-key-handle-${nix.app(hashString, "sha256", nix.thunk(() => nix.str`${verificationKey_1}`))}`),
           filter: (_) => (__1) => false,
         }))));
       return nix.app(mkAutopenDerivation, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: nix.thunk(() => nix.str`${name}-signing-key`),
           autopenArgs: nix.thunk(() => [
             "signing-key",
             "remote",
             "create",
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               socketPath: socketPath,
               fileRefPath: fileRefPath,
               verificationKey: verificationKey_1,
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
           ]),
           allowedRequisites: nix.thunk(() => ["out", fileRefPath]),
           passthru: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             socketPath: socketPath,
             fileRefPath: fileRefPath,
             verificationKey: verificationKey_1,

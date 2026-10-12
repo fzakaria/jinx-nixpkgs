@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "jjk",
         publisher: "jjk",
         version: "0.11.0",
         hash: "sha256-hEgr8u6p2aI5TwjgC+iNF7M5oU+DLLZcw7M88Ech87w=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/keanemind/jjk/releases",
         description: "Visual Studio Code extension for the Jujutsu (jj) version control system",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=jjk.jjk",

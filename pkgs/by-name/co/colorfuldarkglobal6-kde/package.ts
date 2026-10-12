@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colorfuldarkglobal6-kde",
       version: "0-unstable-2026-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "L4ki",
           repo: "Colorful-Plasma-Themes",
           rev: "67fe0058dc44c3b86898fee1c930d718fcc834dc",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p \"$out/share/plasma/desktoptheme/Colorful-Dark-Global-6\"\nmkdir -p \"$out/share/aurorae/themes/Colorful-Dark-6\"\nmkdir -p \"$out/share/color-schemes\"\nmkdir -p \"$out/share/konsole\"\nmkdir -p \"$out/share/icons/Colorful-Dark-6\"\n\ncp -rd \"Colorful Global Themes/Colorful-Dark-Global-6\"/* -t \"$out/share/plasma/desktoptheme/Colorful-Dark-Global-6/\"\n\ncp -rd \"Colorful Window Decorations/Colorful-Blur-Dark-Aurorae-6\" -t \"$out/share/aurorae/themes/\"\ncp -rd \"Colorful Window Decorations/Colorful-Dark-Aurorae-6\" -t \"$out/share/aurorae/themes/\"\ncp -rd \"Colorful Window Decorations/Colorful-Dark-Color-Aurorae-6\" -t \"$out/share/aurorae/themes/\"\n\ncp -rd \"Colorful Konsole Color Schemes\"/* -t \"$out/share/konsole\"\n\ncp -rd \"Colorful Color Schemes\"/* -t \"$out/share/color-schemes/\"\ncp -rd \"Colorful Icons Themes/Colorful-Dark-Icons\" -t \"$out/share/icons/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of the Colorful-Dark-Global-6 theme for Plasma",
         homepage: "https://github.com/L4ki/Colorful-Plasma-Themes/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

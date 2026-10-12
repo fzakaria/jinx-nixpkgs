@@ -20,27 +20,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "transmission",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [9091n]) })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [9091n]) })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$5,
-            apparmor: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$5,
+            apparmor: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
-            transmission: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            [nix.POS]: pos$7,
+            transmission: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
           })),
         };
       })(), formals$2),

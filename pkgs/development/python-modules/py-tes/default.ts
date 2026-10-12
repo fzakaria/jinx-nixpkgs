@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-tes",
       version: "1.1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ohsu-comp-bio",
           repo: "py-tes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tes"]),
       disabledTestPaths: nix.thunk(() => ["tests/integration"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python SDK for the GA4GH Task Execution API",
         homepage: "https://github.com/ohsu-comp-bio/py-tes",
         changelog: nix.thunk(() => nix.str`https://github.com/ohsu-comp-bio/py-tes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

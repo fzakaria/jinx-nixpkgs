@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pypubsub",
       version: "4.0.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schollii",
           repo: "pypubsub",
           rev: "v4.0.3",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest]),
       checkPhase: "cd tests/suite\npy.test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/schollii/pypubsub",
         description: "Python 3 publish-subscribe library",
         longDescription: "Provides a publish-subscribe API to facilitate event-based or\nmessage-based  architecture in a single-process application. It is pure\nPython  and works on Python 3.3+. It is centered on the notion of a topic;\nsenders publish messages of a given topic, and listeners subscribe to\nmessages of a given topic, all inside the same process. The package also\nsupports a variety of advanced features that facilitate debugging and\nmaintaining topics and messages in larger desktop- or server-based\napplications.\n",

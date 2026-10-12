@@ -41,95 +41,95 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "pixiecore"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "bbigras"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pixiecore: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Pixiecore")),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Open ports (67, 69, 4011 UDP and 'port', 'statusPort' TCP) in the firewall for Pixiecore.\n",
             })))),
           mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Which mode to use",
               default: "boot",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["api", "boot", "quick"]))),
             })))),
           debug: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Log more things that aren't directly related to booting a recognized client",
             })))),
           dhcpNoBind: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Handle DHCP traffic without binding to the DHCP server port",
             })))),
           quick: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Which quick option to use",
               default: "xyz",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["arch", "centos", "coreos", "debian", "fedora", "ubuntu", "xyz"]))),
             })))),
           kernel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.selOr(nix.lookup(w, "types"), () => nix.sel(nix.lookup(w, "types"), "path"), "str")),
               default: "",
               description: "Kernel path. Ignored unless mode is set to 'boot'",
             })))),
           initrd: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.selOr(nix.lookup(w, "types"), () => nix.sel(nix.lookup(w, "types"), "path"), "str")),
               default: "",
               description: "Initrd path. Ignored unless mode is set to 'boot'",
             })))),
           cmdLine: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "Kernel commandline arguments. Ignored unless mode is set to 'boot'",
             })))),
           listen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "0.0.0.0",
               description: "IPv4 address to listen on",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 80n,
               description: "Port to listen on for HTTP",
             })))),
           statusPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 80n,
               description: "HTTP port for status information (can be the same as --port)",
             })))),
           apiServer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "http://localhost:8080",
               description: "URI to connect to the API. Ignored unless mode is set to 'api'",
             })))),
           extraArguments: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Additional command line arguments to pass to Pixiecore",
@@ -138,14 +138,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         users: nix.thunk(() => ({
-          __proto__: pos$21,
-          groups: nix.thunk(() => ({ __proto__: pos$18, pixiecore: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$21,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$18, pixiecore: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             pixiecore: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Pixiecore daemon user",
               group: "pixiecore",
               isSystemUser: true,
@@ -153,9 +153,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "port")),
                 nix.thunk(() => nix.sel(cfg, "statusPort")),
@@ -164,17 +164,17 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             pixiecore: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Pixiecore server",
               after: nix.thunk(() => ["network.target"]),
               wants: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: "pixiecore",
                 Restart: "always",
                 AmbientCapabilities: nix.thunk(() => nix.concat(["cap_net_bind_service"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "dhcpNoBind")), "cap_net_raw"))),

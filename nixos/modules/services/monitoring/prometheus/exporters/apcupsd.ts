@@ -21,27 +21,27 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9162n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       apcupsdAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: ":3551",
           description: "Address of the apcupsd Network Information Server (NIS).\n",
         })))),
       apcupsdNetwork: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["tcp", "tcp4", "tcp6"]))),
           default: "tcp",
           description: "Network of the apcupsd Network Information Server (NIS): one of \"tcp\", \"tcp4\", or \"tcp6\".\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-apcupsd-exporter")}/bin/apcupsd_exporter \\
   -telemetry.addr ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   -apcupsd.addr ${nix.sel(cfg, "apcupsdAddress")} \\

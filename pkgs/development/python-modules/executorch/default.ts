@@ -58,20 +58,20 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(torch, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   const cmsis_nn_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "ARM-software",
       repo: "CMSIS-NN",
       rev: "dbf45dbfcc515421dd6099037d3e2637b90748c8",
       hash: "sha256-FOr7DevJxroGAOmnqKK9/suXjOeaZYQFlFIrYmU19WQ=",
     }))));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$7,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$7,
       pname: "executorch",
       version: "1.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "pytorch",
           repo: "executorch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
     '_flatc_cached_path = os.getenv("FLATC_EXECUTABLE", "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "flatbuffers")))}")'
 `, "substituteInPlace pyproject.toml \\\n  --replace-fail '\"pip>=23\",' \"\" \\\n  --replace-fail \"cmake>=3.26,<4.0.0\" \"cmake\" \\\n  --replace-fail \"\\\"patchelf; sys_platform == 'linux'\\\",\" \"\"\n"), "substituteInPlace backends/xnnpack/third-party/pthreadpool/CMakeLists.txt \\\n  --replace-fail \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.5 FATAL_ERROR)\" \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)\"\n"), "substituteInPlace third-party/flatcc/include/flatcc/portable/grisu3_print.h \\\n  --replace-fail \\\n    'static char hexdigits[16] = \"0123456789ABCDEF\";' \\\n    'static char hexdigits[17] = \"0123456789ABCDEF\";'\n\nsed -i \"1i #include <cstdint>\" backends/apple/coreml/runtime/inmemoryfs/memory_buffer.hpp\nsed -i \"1i #include <cstdint>\" extension/llm/tokenizers/third-party/sentencepiece/src/sentencepiece_processor.h\n")),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         BUILD_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_SKIP_BUILD_RPATH", true)),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMSIS_NN_LOCAL_PATH", nix.thunk(() => nix.sel(cmsis_nn_src, "outPath")))),
           ]))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(torch, "cudaCapabilities")))),
         }))))),
       "build-system": nix.thunk(() => [certifi, cmake, packaging, pyyaml, setuptools, zstd]),
@@ -187,7 +187,7 @@ export default nix.lambda((args) => (() => {
           "test_tile_positional_embedding_aoti",
         ]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "On-device AI across mobile, embedded and edge for PyTorch",
         homepage: "https://github.com/pytorch/executorch",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/executorch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

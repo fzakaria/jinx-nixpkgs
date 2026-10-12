@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "14.0.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "pychromecast",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pychromecast"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for Python to communicate with the Google Chromecast",
         homepage: "https://github.com/home-assistant-libs/pychromecast",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/pychromecast/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

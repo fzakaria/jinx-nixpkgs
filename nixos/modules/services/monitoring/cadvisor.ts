@@ -34,70 +34,70 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "cadvisor"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         cadvisor: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Cadvisor service")),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "127.0.0.1",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Cadvisor listening host",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: 8080n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Cadvisor listening port",
             })))),
           storageDriver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: "influxdb",
               description: "Cadvisor storage driver.",
             })))),
           storageDriverHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "localhost:8086",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Cadvisor storage driver host.",
             })))),
           storageDriverDb: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "root",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Cadvisord storage driver database name.",
             })))),
           storageDriverUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "root",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Cadvisor storage driver username.",
             })))),
           storageDriverPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "root",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Cadvisor storage driver password.\n\nWarning: this password is stored in the world-readable Nix store. It's\nrecommended to use the {option}`storageDriverPasswordFile` option\nsince that gives you control over the security of the password.\n{option}`storageDriverPasswordFile` also takes precedence over {option}`storageDriverPassword`.\n",
             })))),
           storageDriverPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "File that contains the cadvisor storage driver password.\n\n{option}`storageDriverPasswordFile` takes precedence over {option}`storageDriverPassword`\n\nWarning: when {option}`storageDriverPassword` is non-empty this defaults to a file in the\nworld-readable Nix store that contains the value of {option}`storageDriverPassword`.\n\nIt's recommended to override this with a path not in the Nix store.\nTip: use [nixops key management](https://nixos.org/nixops/manual/#idm140737318306400)\n",
             })))),
           storageDriverSecure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Cadvisor storage driver, enable secure communication.",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Additional cadvisor options.\n\nSee <https://github.com/google/cadvisor/blob/master/docs/runtime_options.md> for available options.\n",
@@ -107,13 +107,13 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             cadvisor: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               storageDriverPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "storageDriverPassword"), "")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         name: "cadvisor-storage-driver-password",
                         text: nix.thunk(() => nix.sel(cfg, "storageDriverPassword")),
                       })))))))))),
@@ -121,13 +121,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             systemd: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               services: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 cadvisor: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target", "docker.service", "influxdb.service"]),
                   path: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "boot", "zfs", "enabled")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zfs"))]))),
@@ -148,7 +148,7 @@ done
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "storageDriverSecure")), "-storage_driver_secure")}
 `))}
 `),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$18, TimeoutStartSec: 300n })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, TimeoutStartSec: 300n })),
                 })),
               })),
             })),

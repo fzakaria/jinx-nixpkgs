@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "FreshRSS";
       const version = "1.30.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FreshRSS",
           repo: "FreshRSS",
           rev: version,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\nmkdir -p $out\ncp -vr * $out/\ncp $overrideConfig $out/constants.local.php\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           freshrss: nix.thunk(() => nix.attr(nixosTests, "freshrss")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "FreshRSS is a free, self-hostable RSS aggregator",
         homepage: "https://www.freshrss.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

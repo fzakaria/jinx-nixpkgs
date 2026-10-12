@@ -20,50 +20,50 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       indent2: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "indent2",
           indent: 2n,
           src: nix.path(here, "./src/indent2.sh"),
         })))),
       indent2Bin: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "indent2Bin",
           indent: 2n,
           src: nix.path(here, "./src"),
         })))),
       indent2With0: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "indent2",
               indent: 0n,
               src: nix.path(here, "./src/indent2.sh"),
             })))),
         })))),
       indent2BinWith0: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "indent2Bin",
               indent: 0n,
               src: nix.path(here, "./src"),
             })))),
         })))),
       indent2With4: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "indent2",
               indent: 4n,
               src: nix.path(here, "./src/indent2.sh"),
             })))),
         })))),
       indent2BinWith4: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shfmt"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "indent2Bin",
               indent: 4n,
               src: nix.path(here, "./src"),

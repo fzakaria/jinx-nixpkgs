@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       const useFetchGit = nix.thunk(() => (nix.asBool(leaveDotGit) || nix.asBool(deepClone)));
       const fetcher = nix.thunk(() => (nix.asBool(useFetchGit) ? nix.force(fetchgit) : nix.force(fetchzip)));
       const gitRepoUrl = nix.thunk(() => nix.str`git://${domain}/${owner}/${repo}`);
-      const fetcherArgs = nix.thunk(() => nix.update((nix.asBool(useFetchGit) ? { __proto__: pos$1, rev: rev, leaveDotGit: leaveDotGit, url: gitRepoUrl } : {
-        __proto__: pos$3,
+      const fetcherArgs = nix.thunk(() => nix.update((nix.asBool(useFetchGit) ? { [nix.POS]: pos$1, rev: rev, leaveDotGit: leaveDotGit, url: gitRepoUrl } : {
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}/${rev}/snap.tar.gz`),
-        passthru: nix.thunk(() => ({ __proto__: pos$2, gitRepoUrl: gitRepoUrl })),
-      }), nix.update(passthruAttrs, { __proto__: pos$4, name: name })));
-      return nix.update(nix.app(fetcher, fetcherArgs), { __proto__: pos$5, rev: rev });
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, gitRepoUrl: gitRepoUrl })),
+      }), nix.update(passthruAttrs, { [nix.POS]: pos$4, name: name })));
+      return nix.update(nix.app(fetcher, fetcherArgs), { [nix.POS]: pos$5, rev: rev });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

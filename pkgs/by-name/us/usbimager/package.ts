@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usbimager",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bztsrc",
           repo: "usbimager",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       makeFlags: nix.thunk(() => nix.concat(["PREFIX=$(out)"], nix.concat(nix.app(nix.sel(lib, "optional"), withLibui, "USE_LIBUI=yes"), nix.app(nix.sel(lib, "optional"), withUdisks, "USE_UDISKS2=yes")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very minimal GUI app that can write compressed disk images to USB drives",
         homepage: "https://gitlab.com/bztsrc/usbimager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

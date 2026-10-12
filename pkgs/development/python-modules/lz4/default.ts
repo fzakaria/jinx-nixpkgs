@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lz4",
       version: "4.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-lz4",
           repo: "python-lz4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [pkgconfig, setuptools_scm, setuptools]),
       pythonImportsCheck: nix.thunk(() => ["lz4", "lz4.block", "lz4.frame", "lz4.stream"]),
       nativeCheckInputs: nix.thunk(() => [psutil, pytest_cov_stub, pytestCheckHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PYLZ4_EXPERIMENTAL: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PYLZ4_EXPERIMENTAL: true })),
       preCheck: nix.thunk(() => nix.str`rm -r lz4
 export PYTHONPATH=$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-lz4/python-lz4/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "LZ4 Bindings for Python",
         homepage: "https://github.com/python-lz4/python-lz4",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "CompBus",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magnetophon",
           repo: "CompBus",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "for f in *.dsp;\ndo\n  faust2jaqt -time -vec -double -t 99999 $f\ndone\n\nfor f in *.dsp;\ndo\n  faust2lv2  -time -vec -double -gui -t 99999 $f\ndone\n",
       installPhase: "mkdir -p $out/lib/lv2\nmv *.lv2/ $out/lib/lv2\nmkdir -p $out/bin\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Group of compressors mixed into a bus, sidechained from that mix bus. For jack and lv2",
         homepage: "https://github.com/magnetophon/CompBus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

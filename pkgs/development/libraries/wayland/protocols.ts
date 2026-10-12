@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wayland-protocols",
       version: "1.49",
       doCheck: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "linker"), "bfd")))) && nix.asBool(!nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian"))))))) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), wayland)))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/wayland/${nix.sel(finalAttrs, "pname")}/-/releases/${nix.sel(finalAttrs, "version")}/downloads/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-7EyPdJQtbf96zotM5HZPDvn/YYqTXZdOp37e4q0kCxQ=",
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dtests=${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wayland protocol extensions",
         longDescription: "wayland-protocols contains Wayland protocols that add functionality not\navailable in the Wayland core protocol. Such protocols either add\ncompletely new functionality, or extend the functionality of some other\nprotocol either in Wayland core, or some other protocol in\nwayland-protocols.\n",
         homepage: "https://gitlab.freedesktop.org/wayland/wayland-protocols",
@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
         pkgConfigModules: nix.thunk(() => ["wayland-protocols"]),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.freedesktop.org/wayland/wayland-protocols.git",
           })))),
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),

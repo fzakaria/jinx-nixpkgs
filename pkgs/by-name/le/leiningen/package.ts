@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const rlwrap = nix.arg($, "rlwrap");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "leiningen",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://codeberg.org/leiningen/leiningen/raw/tag/${nix.sel(finalAttrs, "version")}/bin/lein-pkg`),
           hash: "sha256-EqnF46JHFhnKPWSnRi+SD99xOuiVnrT81iV8IzMrWqQ=",
         })))),
       jarsrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://codeberg.org/leiningen/leiningen/releases/download/${nix.sel(finalAttrs, "version")}/leiningen-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           hash: "sha256-tyGlc69jF4TyfMtS5xnm0Sh9nTlRrVbTFtOPfs+oGqI=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         JARNAME: nix.thunk(() => nix.str`leiningen-${nix.sel(finalAttrs, "version")}-standalone.jar`),
       })),
       dontUnpack: true,
@@ -55,7 +55,7 @@ wrapProgram $out/bin/lein \\
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://leiningen.org/",
         description: "Project automation for Clojure",
         sourceProvenance: nix.thunk(() => (() => {

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const binlore = nix.arg($, "binlore");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "esh",
       version: "0.1.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jirutka",
           repo: "esh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +49,9 @@ substituteInPlace tests/test-dump.exp \\
       doCheck: true,
       checkTarget: "test",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         binlore: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), "execer can bin/esh\n")),
         })),
       })),
@@ -59,7 +59,7 @@ substituteInPlace tests/test-dump.exp \\
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple templating engine based on shell",
         mainProgram: "esh",
         homepage: "https://github.com/jirutka/esh",

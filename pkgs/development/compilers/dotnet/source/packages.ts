@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const fallbackTargetPackages = nix.argOr($, "fallbackTargetPackages", () => ({}));
   const mkWrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "../wrapper.nix"), nix.thunk(() => ({}))));
   const mkCommon = (type) => (args_1) => nix.app(mkWrapper, type, nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(args_1, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         outputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => ["out"], "outputs"), ["man"])),
         postFixup: nix.thunk(() => nix.add(nix.selOr(args_1, () => "", "postFixup"), nix.str`ln -s ${nix.sel(vmr, "man")} $man
 `)),
         propagatedSandboxProfile: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "(allow file-read* (subpath \"/private/var/db/mds/system\"))\n(allow mach-lookup (global-name \"com.apple.SecurityServer\")\n                  (global-name \"com.apple.system.opendirectoryd.membership\"))\n")),
         passthru: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "passthru"), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           icu: nix.thunk(() => nix.attr(vmr, "icu")),
           hasCrossTargetBug: nix.thunk(() => nix.attr(vmr, "hasCrossTargetBug")),
         })),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const runtimeVersion = nix.thunk(() => nix.sel(releaseManifest, "runtimeVersion"));
   const aspnetcoreVersion = nix.thunk(() => nix.selOr(releaseManifest, () => nix.sel(releaseManifest, "runtimeVersion"), "aspNetCoreVersion"));
   const mkPackage = (pname) => (version) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: vmr,
@@ -114,7 +114,7 @@ runHook postInstall
       ])))))],
   ])));
   const sdk = nix.thunk(() => nix.app(mkCommon, "sdk", nix.thunk(() => nix.attrsDyn({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`${baseName}-sdk`),
       version: sdkVersion,
       src: vmr,
@@ -146,19 +146,19 @@ done
 runHook postInstall
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         hasILCompiler: nix.thunk(() => nix.attr(vmr, "hasILCompiler")),
         packages: packages,
         targetPackages: targetPackages,
         runtime: runtime,
         aspnetcore: aspnetcore,
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(vmr, "meta"), { __proto__: pos$5, mainProgram: "dotnet" })),
+      meta: nix.thunk(() => nix.update(nix.sel(vmr, "meta"), { [nix.POS]: pos$5, mainProgram: "dotnet" })),
     }, [
       [(nix.asBool((nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), sdkVersion, "10")))) ? "postInstall" : null), "mkdir -p \"$out\"/nix-support\ncp \"$src\"/nix-support/manual-sdk-deps \"$out\"/nix-support/manual-sdk-deps\n"],
     ]))));
   const runtime = nix.thunk(() => nix.app(mkCommon, "runtime", nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.str`${baseName}-runtime`),
       version: runtimeVersion,
       src: vmr,
@@ -173,10 +173,10 @@ ln -s "$out"/share/dotnet/dotnet "$out"/bin/dotnet
 
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(vmr, "meta"), { __proto__: pos$7, mainProgram: "dotnet" })),
+      meta: nix.thunk(() => nix.update(nix.sel(vmr, "meta"), { [nix.POS]: pos$7, mainProgram: "dotnet" })),
     }))));
   const aspnetcore = nix.thunk(() => nix.app(mkCommon, "aspnetcore", nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: nix.thunk(() => nix.str`${baseName}-aspnetcore-runtime`),
       version: aspnetcoreVersion,
       src: vmr,
@@ -194,10 +194,10 @@ chmod +w "$out"/share/dotnet/shared
 
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(vmr, "meta"), { __proto__: pos$9, mainProgram: "dotnet" })),
+      meta: nix.thunk(() => nix.update(nix.sel(vmr, "meta"), { [nix.POS]: pos$9, mainProgram: "dotnet" })),
     }))));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     vmr: vmr,
     sdk: sdk,
     runtime: runtime,

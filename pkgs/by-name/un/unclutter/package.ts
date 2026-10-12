@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unclutter",
       version: "8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ibiblio.org/pub/X11/contrib/utilities/unclutter-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "33a78949a7dedf2e8669ae7b5b2c72067896497820292c96afaa60bb71d1f2a6",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "install.man"]),
       preInstall: "mkdir -pv \"$out\"/{bin,share/man/man1}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hides mouse pointer while not in use",
         longDescription: "Unclutter hides your X mouse cursor when you do not need it, to prevent\nit from getting in the way. You have only to move the mouse to restore\nthe mouse cursor. Unclutter is very useful in tiling wm's where you do\nnot need the mouse often.\n\nJust run it from your .bash_profile like that:\n\n    unclutter -idle 1 &\n",
         maintainers: [],

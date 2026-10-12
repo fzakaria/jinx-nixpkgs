@@ -14,11 +14,11 @@ const pos$7 = nix.positions(here + "/package.nix", [["pname", 38, 11], ["version
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
-  const allowedPatternsPath = nix.argOr($, "allowedPatternsPath", () => nix.app(callPackage, nix.path(here, "./closure.nix"), nix.thunk(() => ({ __proto__: pos$1, allowedPatterns: allowedPatterns }))));
+  const allowedPatternsPath = nix.argOr($, "allowedPatternsPath", () => nix.app(callPackage, nix.path(here, "./closure.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, allowedPatterns: allowedPatterns }))));
   const allowedPatterns = nix.argOr($, "allowedPatterns", () => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "nvidia-gpu": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       onFeatures: nix.thunk(() => ["gpu", "nvidia-gpu", "opengl", "cuda"]),
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(addDriverRunpath, "driverLink")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(attrs, "project"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       pyproject: true,
@@ -55,10 +55,10 @@ export default nix.lambda((args) => (() => {
   ${nix.builtins.concatStringsSep(" ", extraWrapperArgs)}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         allowedPatterns: allowedPatterns,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "nix-required-mounts": nix.thunk(() => nix.attr(nixosTests, "nix-required-mounts")),
           "eval-nvidia-gpu-preset": nix.thunk(() => nix.app(callPackage, nix.path(here, "./eval-test.nix"), nix.thunk(() => ({})))),
         })),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(attrs, "project"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: nix.thunk(() => nix.attr(from_1, "description")),
         homepage: nix.thunk(() => nix.sel(attrs, "project", "urls", "Homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

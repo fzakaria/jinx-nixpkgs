@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "arduino";
       const version = "0.12.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnu-octave",
           repo: "octave-arduino",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const requiredOctavePackages = nix.thunk(() => [instrument_control]);
       const propagatedBuildInputs = nix.thunk(() => [arduino_core_unwrapped]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "Octave Arduino Toolkit",
         homepage: "https://gnu-octave.github.io/packages/arduino/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         description: "Basic Octave implementation of the matlab arduino extension, allowing communication to a programmed arduino board to control its hardware",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

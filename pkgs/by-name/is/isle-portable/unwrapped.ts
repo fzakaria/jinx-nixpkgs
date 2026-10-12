@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const imguiDebug = nix.argOr($, "imguiDebug", () => false);
   const emscriptenHost = nix.argOr($, "emscriptenHost", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       strictDeps: true,
       pname: "isle-portable",
       version: "0-unstable-2026-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "isledecomp",
           repo: "isle-portable",
           rev: "03cb40190a1aedea23b857942d14359c86ad3857",
@@ -83,15 +83,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ISLE_EMSCRIPTEN_HOST", emscriptenHost)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
         wrapped: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "isle-portable-unwrapped": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Portable decompilation of Lego Island",
         homepage: "https://github.com/isledecomp/isle-portable",
         license: nix.thunk(() => (() => {

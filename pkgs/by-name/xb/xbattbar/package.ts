@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xbattbar",
       version: "1.4.9",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://salsa.debian.org/debian/xbattbar.git",
           tag: nix.thunk(() => nix.str`upstream/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ZrJAyDyvlUmNpxBC06yrzBJ7vhrZY4+GbfBDQoF+h4M=",
@@ -35,7 +35,7 @@ sed -i -e "s,/usr/bin/perl,${perl}/bin/perl," xbattbar-check-sys
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,libexec}\n\ninstall -m 0755 xbattbar $out/bin/\ninstall -m 0755 xbattbar-check-acpi $out/libexec/\ninstall -m 0755 xbattbar-check-sys $out/libexec/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display battery status in X11",
         homepage: "https://salsa.debian.org/debian/xbattbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

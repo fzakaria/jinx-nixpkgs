@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const mpv = nix.arg($, "mpv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ff2mpv",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woodruffw",
           repo: "ff2mpv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs .\nsubstituteInPlace ff2mpv.json \\\n  --replace '/home/william/scripts/ff2mpv' \"$out/bin/ff2mpv.py\"\n",
       installPhase: "mkdir -p $out/bin $out/lib/mozilla/native-messaging-hosts\ncp ff2mpv.py $out/bin\ncp ff2mpv.json $out/lib/mozilla/native-messaging-hosts\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Messaging Host for ff2mpv firefox addon",
         homepage: "https://github.com/woodruffw/ff2mpv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

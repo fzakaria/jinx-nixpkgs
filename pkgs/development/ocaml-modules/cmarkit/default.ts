@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cmarkit";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/cmarkit/releases/cmarkit-${version}.tbz`),
           hash: "sha256-RouM5iU7VeTT0+4yhBgdEmxROeP/X31iqDjd1VI7z5c=",
         }))));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CommonMark parser and renderer for OCaml",
         homepage: "https://erratique.ch/software/cmarkit",
         changelog: nix.thunk(() => nix.str`https://github.com/dbuenzli/cmarkit/blob/v${version}/CHANGES.md`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

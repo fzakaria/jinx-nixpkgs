@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openmeters",
       version: "1.15.2-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "httpsworldview",
           repo: "openmeters",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
         ]))}' $out/bin/openmeters
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and professional audio metering/visualization for Linux",
         longDescription: "OpenMeters is a fast audio metering application for Linux built with\nRust and PipeWire. It provides LUFS/RMS/true-peak loudness meters\n(ITU-R BS.1770-5), a spectrogram with spectral reassignment, a\nspectrum analyser, an oscilloscope with stable-trigger mode, a\nstereometer (X/Y vector scope, M/S goniometer) and a waveform view,\nwith per-application and per-device capture.\n",
         homepage: "https://github.com/httpsworldview/openmeters",

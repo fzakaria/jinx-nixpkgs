@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nwjs = nix.arg($, "nwjs");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       desktopName: "Piskel",
       comment: "Easy-to-use sprite editor",
       name: "piskel",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const pname = "piskel";
       const version = "0.15.2-SNAPSHOT-unstable-2026-04-09";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "piskelapp",
           repo: "piskel",
           rev: "a6b9c02daefceb10093f71e92d52d16920ccb16e",
           hash: "sha256-AorkV1mqZJ9coRMRCCdYIdAwhedrBRG8GR7Y0/zPPHo=",
         }))));
       const npmDepsHash = "sha256-tu0A5Xcz2V12pRF0LxHA48czkPR/0SslA3SEGdhdqMQ=";
-      const env = nix.thunk(() => ({ __proto__: pos$3, PUPPETEER_SKIP_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PUPPETEER_SKIP_DOWNLOAD: "1" }));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 
@@ -56,7 +56,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname} \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Easy-to-use sprite editor",
         homepage: "https://github.com/piskelapp/piskel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -69,7 +69,7 @@ runHook postInstall
       }));
       const __structuredAttrs = true;
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

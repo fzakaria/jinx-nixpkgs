@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mbello",
           repo: "memory-tempfile",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "poetry-core.patch",
             url: "https://github.com/mbello/memory-tempfile/commit/938a3a3abf01756b1629eca6c69e970021bbc7c0.patch",
             hash: "sha256-q3027MwKXtX09MH7T2UrX19BImK1FJo+YxADfxcdTME=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["memory_tempfile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create temporary files and temporary dirs in memory-based filesystems on Linux",
         homepage: "https://github.com/mbello/memory-tempfile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const godot_4_5 = nix.arg($, "godot_4_5");
   const nix_update_script = nix.arg($, "nix-update-script");
   const presets = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "i686-linux": "Linux 32-bit",
     "x86_64-linux": "Linux 64-bit",
     "aarch64-linux": "Linux ARM64",
@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const preset = nix.thunk(() => nix.selOr(presets, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const godot = godot_4_5;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pixelorama",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Orama-Interactive",
           repo: "Pixelorama",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +56,11 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -D -m 755 -t $out/libexec ./build/pixelorama\ninstall -D -m 644 -t $out/libexec ./build/pixelorama.pck\ninstall -D -m 644 -t $out/share/applications ./Misc/Linux/com.orama_interactive.Pixelorama.desktop\ninstall -D -m 644 -T ./assets/graphics/icons/icon.png $out/share/icons/hicolor/256x256/apps/pixelorama.png\ninstall -d -m 755 $out/bin\nln -s $out/libexec/pixelorama $out/bin/pixelorama\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://orama-interactive.itch.io/pixelorama",
         description: "Free & open-source 2D sprite editor, made with the Godot Engine",
         changelog: nix.thunk(() => nix.str`https://github.com/Orama-Interactive/Pixelorama/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

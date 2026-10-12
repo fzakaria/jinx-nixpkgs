@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_tile";
       const version = "0.8.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstreetmap",
           repo: "mod_tile",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       const enableParallelChecking = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([iana_etc, ps], nix.app(nix.sel(lib, "filter"), (pkg) => !nix.asBool(nix.sel(pkg, "meta", "broken")), nix.thunk(() => [jq, memcached]))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/openstreetmap/mod_tile",
         description: "Efficiently render and serve OpenStreetMap tiles using Apache and Mapnik",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

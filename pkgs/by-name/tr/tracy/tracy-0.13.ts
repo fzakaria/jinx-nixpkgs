@@ -23,22 +23,22 @@ export default nix.lambda((args) => (() => {
   const nativefiledialog_extended = nix.arg($, "nativefiledialog-extended");
   const html_tidy = nix.arg($, "html-tidy");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     version: "0.13.1",
     srcHash: "sha256-D4aQ5kSfWH9qEUaithR0W/E5pN5on0n9YoBHeMggMSE=",
     extraBuildInputs: nix.thunk(() => [md4c, pugixml, curl, zstd, nlohmann_json, html_tidy]),
     cpmSrcs: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "ImGui",
           owner: "ocornut",
           repo: "imgui",
           rev: "v1.92.5-docking",
           hash: "sha256-/jVT7+874LCeSF/pdNVTFoSOfRisSqxCJnt5/SGCXPQ=",
         })))),
-      nix.thunk(() => nix.update(nix.sel(nativefiledialog_extended, "src"), { __proto__: pos$2, name: "nfd" })),
+      nix.thunk(() => nix.update(nix.sel(nativefiledialog_extended, "src"), { [nix.POS]: pos$2, name: "nfd" })),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "PPQSort",
           owner: "GabTux",
           repo: "PPQSort",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-HgM+p2QGd9C8A8l/VaEB+cLFDrY2HU6mmXyTNh7xd0A=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "PackageProject.cmake",
           owner: "TheLartians",
           repo: "PackageProject.cmake",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-E7WZSYDlss5bidbiWL1uX41Oh6JxBRtfhYsFU19kzIw=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "capstone",
           owner: "capstone-engine",
           repo: "capstone",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-18PTj4hvBw8RTgzaFGeaDbBfkxmotxSoGtprIjcEuVg=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: "base64",
           owner: "aklomp",
           repo: "base64",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-dIaNfQ/znpAdg0/vhVNTfoaG7c8eFrdDTI0QDHcghXU=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: "usearch",
           owner: "unum-cloud",
           repo: "usearch",

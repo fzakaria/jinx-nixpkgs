@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "8.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "retext-project",
           repo: "retext",
           tag: version,
           hash: "sha256-npQ1eVb2iyswbqxi262shC9u/g9oE0ofkLbisFgqQM4=",
         }))));
       const toolbarIcons = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/retext-project/retext/archive/icons.zip",
           hash: "sha256-nqKAUg9nTzGPPxr80KTn6JX9JgCUJwpcwp8aOIlcxPY=",
         }))));
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`makeWrapperArgs+=("\${qtWrapperArgs[@]}")
 makeWrapperArgs+=(
   "--set" "ASPELL_CONF" "dict-dir ${nix.app(buildEnv, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "aspell-all-dicts",
           paths: nix.thunk(() => nix.builtins.map((path) => nix.str`${path}/lib/aspell`, enchantAspellDicts)),
         })))}"
@@ -84,7 +84,7 @@ substituteInPlace $out/share/applications/me.mitya57.ReText.desktop \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ReText"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Editor for Markdown and reStructuredText",
         homepage: "https://github.com/retext-project/retext/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -96,7 +96,7 @@ substituteInPlace $out/share/applications/me.mitya57.ReText.desktop \\
         mainProgram: "retext",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

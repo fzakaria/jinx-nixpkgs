@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "flycast",
       version: "0-unstable-2026-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flyinghead",
           repo: "flycast",
           rev: "ea087b9140ff5a3b1809e090da0f8d644ee2db95",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DLIBRETRO=ON"]),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flycast libretro port",
         homepage: "https://github.com/flyinghead/flycast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "noaa-apt",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "martinber",
           repo: "noaa-apt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Used by macro pointing to resource location at compile time.\nexport NOAA_APT_RES_DIR=$out/share/noaa-apt\n",
       postInstall: "# Resources.\nmkdir -p $out/share/noaa-apt\ncp -R $src/res/* $out/share/noaa-apt/\n\n# Desktop icon.\ninstall -Dm644 -t $out/share/applications $src/debian/ar.com.mbernardi.noaa-apt.desktop\ninstall -Dm644 -t $out/share/icons/hicolor/48x48/apps $src/debian/ar.com.mbernardi.noaa-apt.png\ninstall -Dm644 -t $out/share/icons/hicolor/scalable/apps $src/debian/ar.com.mbernardi.noaa-apt.svg\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NOAA APT image decoder",
         homepage: "https://noaa-apt.mbernardi.com.ar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

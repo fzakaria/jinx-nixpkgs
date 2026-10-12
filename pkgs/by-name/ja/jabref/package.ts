@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk25;
   const openjfx = openjfx25;
   const jre = nix.thunk(() => nix.app(nix.sel(jre25_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [
         "java.base",
         "java.compiler",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0-alpha.6";
       const pname = "jabref";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "JabRef",
           repo: "jabref",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             comment: nix.thunk(() => nix.sel(meta, "description")),
             name: "JabRef",
             desktopName: "JabRef",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
             mimeTypes: nix.thunk(() => ["text/x-bibtex"]),
           })))),
       ]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$4, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, data: nix.path(here, "./deps.json") }))));
       const postPatch = nix.thunk(() => nix.str`sed -i -e '/vendor/d' build-logic/src/main/kotlin/org.jabref.gradle.feature.compile.gradle.kts
 sed -i -e '/javafx-base/s/26.0.1/25/' build-support/src/main/java/*.java
 sed -i -e 's/javafx = .*/javafx = "25"/' versions/build.gradle.kts
@@ -114,7 +114,7 @@ popd
       const nativeBuildInputs = nix.thunk(() => [
         jdk,
         gradle,
-        nix.thunk(() => nix.app(nix.sel(jbang, "override"), nix.thunk(() => ({ __proto__: pos$5, jdk: jdk })))),
+        nix.thunk(() => nix.app(nix.sel(jbang, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, jdk: jdk })))),
         wrapGAppsHook3,
         copyDesktopItems,
         unzip,
@@ -205,7 +205,7 @@ runHook postInstall
 `);
       const gradleUpdateScript = "# Add jbang deps to gradle\nsed -n 's|//DEPS \\(.*\\)|    implementation(\"\\1\")|p' build-support/src/main/java/*.java | sort -u | sed -i '/dependencies {/r /dev/stdin' build-logic/build.gradle.kts\n\ngradle assemble -Dos.arch=amd64\ngradle assemble -Dos.arch=aarch64\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open source bibliography reference manager",
         homepage: "https://www.jabref.org",
         sourceProvenance: nix.thunk(() => (() => {
@@ -224,7 +224,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version,
         pname,
         src,

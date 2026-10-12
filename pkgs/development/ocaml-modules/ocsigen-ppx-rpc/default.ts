@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36.0")) ? "1.1" : "1.0"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ocsigen-ppx-rpc",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ocsigen",
           repo: "ocsigen-ppx-rpc",
           tag: version,
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.0": "sha256:0qgasd89ayamgl2rfyxsipznmwa3pjllkyq9qg0g1f41h8ixpsfh",
             "1.1": "sha256-YjRB0cem+iDnQIIQcHI6vo5crSxAGNGM65qyG3lTtkE=",
           }, nix.key(nix.str`${version}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [ppxlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ocsigen/ocsigen-ppx-rpc/",
         description: "Syntax for RPCs for Eliom and Ocsigen Start",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

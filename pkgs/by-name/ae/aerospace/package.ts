@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const appName = "AeroSpace.app";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aerospace",
       version: "0.21.3-Beta",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/nikitabobko/AeroSpace/releases/download/v${nix.sel(finalAttrs, "version")}/AeroSpace-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-JHXtF3IKUbge7z2cMBi4L9IruiByNPCIKugLe4ymvys=",
         })))),
@@ -41,15 +41,15 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/nikitabobko/AeroSpace.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "aerospace",
         homepage: "https://github.com/nikitabobko/AeroSpace",

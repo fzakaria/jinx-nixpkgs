@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "radicle-httpd",
       version: "0.28.0",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         RADICLE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           seed: "seed.radicle.dev",
           repo: "z4V1sjrXqjvFdnCUbxPFqd5p4DtH5",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -56,12 +56,12 @@ done
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, radicle: nix.thunk(() => nix.attr(nixosTests, "radicle")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, radicle: nix.thunk(() => nix.attr(nixosTests, "radicle")) })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Radicle JSON HTTP API Daemon",
         longDescription: "A Radicle HTTP daemon exposing a JSON HTTP API that allows someone to browse local\nrepositories on a Radicle node via their web browser.\n",
         homepage: "https://radicle.dev",

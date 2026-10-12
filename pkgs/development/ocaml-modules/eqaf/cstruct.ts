@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const eqaf = nix.arg($, "eqaf");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "eqaf-cstruct",
       src: nix.thunk(() => nix.attr(eqaf, "src")),
       version: nix.thunk(() => nix.attr(eqaf, "version")),

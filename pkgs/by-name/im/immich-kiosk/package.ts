@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "immich-kiosk";
       const version = "0.44.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "damongolding",
           repo: "immich-kiosk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-2N5tk4xEW45cBQbdrGAdFJ9ovLBSCP1wx9z9R5OGQVQ=";
       const proxyVendor = true;
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
           hash: "sha256-eKKguY1nlStG86Iap4aSz2hi0LgXkInp8YDGyypYmlI=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const npmRoot = "frontend";
       const nativeBuildInputs = nix.thunk(() => [nodejs, go_task, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]);
       const overrideModAttrs = (oldAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.builtins.filter((drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.selOr(oldAttrs, () => [], "nativeBuildInputs")))),
         preBuild: "go tool templ generate\n",
       });
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.version=${version}`)]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight slideshow for running on kiosk devices and browsers that uses Immich as a data source",
         longDescription: "Immich Kiosk is a lightweight slideshow for running on kiosk devices and\nbrowsers that uses Immich as a data source. It displays photos and videos\nfrom your Immich server in a configurable slideshow format, perfect for\ndigital photo frames and kiosk displays.\n\nThis is not an official Immich project and is not affiliated with Immich.\n",
         homepage: "https://github.com/damongolding/immich-kiosk",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "immich-kiosk",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

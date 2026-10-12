@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const slop = nix.arg($, "slop");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "screenkey",
       version: "1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "screenkey",
           repo: "screenkey",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail libXtst.so.6 ${nix.app(nix.sel(lib, "getLib"), libxtst)}/lib/libXtst.so.6
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.thregr.org/~wavexx/software/screenkey/",
         description: "Screencast tool to display your keys inspired by Screenflick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

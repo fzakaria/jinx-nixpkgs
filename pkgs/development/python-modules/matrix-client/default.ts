@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "matrix_client",
           version: version,
           hash: "sha256-BnivQPLLLwkoqQikEMApdH1Ay5YaxaPxvQWqNVY8MVY=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py --replace \\\n  \"pytest-runner~=5.1\" \"\"\n";
       const pythonImportsCheck = nix.thunk(() => ["matrix_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Matrix Client-Server SDK",
         homepage: "https://github.com/matrix-org/matrix-python-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

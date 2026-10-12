@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "blur-effect",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sonald",
           repo: "blur-effect",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "cmake-4.patch",
             url: "https://github.com/sonald/blur-effect/commit/76322ad8bd0e653726a6791eb8ebcc829cbb1b38.patch?full_index=1",
             hash: "sha256-f0PBhfdrcLCZBzYx+j8+qIG9boW3S4CSyz+bS9vFKRc=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake]),
       buildInputs: nix.thunk(() => [gdk_pixbuf, libGL, libgbm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sonald/blur-effect",
         description: "Off-screen image blurring utility using OpenGL ES 3.0",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

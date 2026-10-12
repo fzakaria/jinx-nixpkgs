@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-uchar`);
       const version = "0.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/uchar/releases/download/v${version}/uchar-${version}.tbz`),
           sha256: "1w2saw7zanf9m9ffvz2lvcxvlm118pws2x1wym526xmydhqpyfa7",
         }))));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compatibility library for OCaml’s Uchar module",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

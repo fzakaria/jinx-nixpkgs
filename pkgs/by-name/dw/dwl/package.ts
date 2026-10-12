@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const conf = nix.argOr($, "conf", () => null);
   nix.assert_((!nix.asBool(withCustomConfigH) || nix.asBool(!nix.eq(configH, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/dw/dwl/package.nix:39:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dwl",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dwl",
           repo: "dwl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,11 +71,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "dwl -v 2>&1; return 0",
             })))),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://codeberg.org/dwl/dwl",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dwl/dwl/src/branch/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Dynamic window manager for Wayland",

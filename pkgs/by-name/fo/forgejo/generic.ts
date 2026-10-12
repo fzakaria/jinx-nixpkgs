@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
     const fetchFromCodeberg = nix.arg($_1, "fetchFromCodeberg");
     const buildNpmPackage = nix.arg($_1, "buildNpmPackage");
     const writableTmpDirAsHomeHook = nix.arg($_1, "writableTmpDirAsHomeHook");
-    const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({ __proto__: pos$1, owner: "forgejo", repo: "forgejo", rev: rev, hash: hash }))));
+    const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({ [nix.POS]: pos$1, owner: "forgejo", repo: "forgejo", rev: rev, hash: hash }))));
     const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "forgejo-frontend",
         src: src,
         version: version,
@@ -94,11 +94,11 @@ cp -R ./options/locale $out/locale
 wrapProgram $out/bin/forgejo \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, git, gzip, openssh]))}
 `);
-        const overrideModAttrs = (_) => ({ __proto__: pos$3, postPatch: null });
+        const overrideModAttrs = (_) => ({ [nix.POS]: pos$3, postPatch: null });
         const passthru = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           npmDeps: nix.thunk(() => nix.attr(frontend, "npmDeps")),
-          "data-compressed": nix.thunk(() => nix.app(runCommand, "forgejo-data-compressed", nix.thunk(() => ({ __proto__: pos$4, nativeBuildInputs: nix.thunk(() => [brotli, lndir]) })), nix.thunk(() => nix.str`mkdir $out
+          "data-compressed": nix.thunk(() => nix.app(runCommand, "forgejo-data-compressed", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [brotli, lndir]) })), nix.thunk(() => nix.str`mkdir $out
 lndir ${nix.sel(forgejo, "data")}/ $out/
 
 # Create static gzip and brotli files
@@ -108,7 +108,7 @@ find -L $out -type f -regextype posix-extended -iregex '.*\\.(css|html|js|svg|tt
 `))),
           tests: nix.thunk(() => (nix.asBool(lts) ? nix.sel(nixosTests, "forgejo-lts") : nix.sel(nixosTests, "forgejo"))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraArgs: nix.thunk(() => nix.concat(nixUpdateExtraArgs, [
                 "--version-regex",
                 nix.thunk(() => nix.str`v(${nix.app(nix.sel(lib, "versions", "major"), version_1)}\\.[0-9.]+)`),
@@ -116,7 +116,7 @@ find -L $out -type f -regextype posix-extended -iregex '.*\\.(css|html|js|svg|tt
             })))),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Self-hosted lightweight software forge",
           homepage: "https://forgejo.org",
           changelog: nix.thunk(() => nix.str`https://codeberg.org/forgejo/forgejo/releases/tag/v${version_1}`),
@@ -126,7 +126,7 @@ find -L $out -type f -regextype posix-extended -iregex '.*\\.(css|html|js|svg|tt
           mainProgram: "forgejo",
         }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           version: version_1,
           src: src_1,

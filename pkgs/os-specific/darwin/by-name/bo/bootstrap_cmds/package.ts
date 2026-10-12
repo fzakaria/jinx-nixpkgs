@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const Libc = nix.thunk(() => nix.app(sourceRelease, "Libc"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "adv_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/os" \\
   '${Libc}/os/assumes.h' \\
@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   const mkAppleDerivation$ = nix.thunk(() => nix.app(nix.sel(mkAppleDerivation, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
-      meson: nix.thunk(() => nix.app(nix.sel(meson, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, doInstallCheck: false })))),
+      [nix.POS]: pos$3,
+      meson: nix.thunk(() => nix.app(nix.sel(meson, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doInstallCheck: false })))),
     }))));
   return nix.app(mkAppleDerivation$, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       releaseName: "bootstrap_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-N28WLkFo8fXiQqqpmRmOBE3BzqXHIy94fhZIxEkmOw4=",
       xcodeProject: "mig.xcodeproj",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0001-Specify-MIGCC-for-use-with-substitute.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             clang: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "targetPackages", "clang")))}/bin/${nix.sel(buildPackages, "targetPackages", "clang", "targetPrefix")}clang`),
           })))),
         nix.path(here, "./patches/0002-Always-remove-working-directory.patch"),
       ]),
       postPatch: "# Fix the name to something Meson will like.\nsubstituteInPlace migcom.tproj/lexxer.l \\\n  --replace-fail 'y.tab.h' 'parser.tab.h'\n",
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
@@ -66,7 +66,7 @@ substituteInPlace "$out/bin/mig" \\
   --replace-fail '/usr/bin/xcrun' '${nix.sel(buildPackages, "xcbuild", "xcrun")}/bin/xcrun'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Contains mig command for generating headers from definitions",
       })),
     })));

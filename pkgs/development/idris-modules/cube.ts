@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cube",
       version: "2017-07-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aatxe",
           repo: "cube.idr",
           rev: "edf66d82b3a363dc65c6f5416c9e24e746bad71e",
           sha256: "11k45j0b4qabj6zhwjvynyj56nmssf7d4fnkv66bd2w1pxnshzxg",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the Lambda Cube in Idris",
         homepage: "https://github.com/aatxe/cube.idr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

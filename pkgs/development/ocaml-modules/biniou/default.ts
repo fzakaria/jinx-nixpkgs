@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const camlp_streams = nix.arg($, "camlp-streams");
   const easy_format = nix.arg($, "easy-format");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "biniou",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-community/biniou/releases/download/${nix.sel(finalAttrs, "version")}/biniou-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-i/P/F80Oyy1rbR2UywjvCJ1Eyu+W6brmvmg51Cj6MY8=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [camlp_streams, easy_format]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Binary data format designed for speed, safety, ease of use and backward compatibility as protocols evolve",
         homepage: "https://github.com/ocaml-community/biniou",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

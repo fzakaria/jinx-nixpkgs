@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NanoVNA-Saver",
           repo: "nanovna-saver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
 `);
       const preFixup = "makeWrapperArgs+=(\n  \"${gappsWrapperArgs[@]}\"\n  \"${qtWrapperArgs[@]}\"\n)\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/NanoVNA-Saver/nanovna-saver",
         description: "Tool for reading, displaying and saving data from the NanoVNA",
         mainProgram: "NanoVNASaver",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

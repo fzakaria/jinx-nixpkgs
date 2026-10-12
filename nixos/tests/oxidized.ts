@@ -28,39 +28,39 @@ const pos$19 = nix.positions(here + "/oxidized.nix", [["name", 13, 3], ["nodes",
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: nix.thunk(() => ({})) }))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: nix.thunk(() => ({})) }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   return nix.app(makeTest, nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       name: "oxidized",
       nodes: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             security: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               pam: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 services: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  sshd: nix.thunk(() => ({ __proto__: pos$3, allowNullPassword: true })),
+                  [nix.POS]: pos$4,
+                  sshd: nix.thunk(() => ({ [nix.POS]: pos$3, allowNullPassword: true })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$11,
-              sshd: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+              [nix.POS]: pos$11,
+              sshd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
               openssh: nix.thunk(() => ({
-                __proto__: pos$9,
-                settings: nix.thunk(() => ({ __proto__: pos$8, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
+                [nix.POS]: pos$9,
+                settings: nix.thunk(() => ({ [nix.POS]: pos$8, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
               })),
               oxidized: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs_1, "oxidized")),
                 routerDB: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "oxidized-router.db", "localhost:linuxgeneric:root\n")),
@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               services: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 oxidized: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   stopIfChanged: false,
-                  environment: nix.thunk(() => ({ __proto__: pos$12, HOME: "/var/lib/oxidized", APP_ENV: "production" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$12, HOME: "/var/lib/oxidized", APP_ENV: "production" })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     StateDirectory: "oxidized",
                     MemoryDenyWriteExecute: false,
                     PrivateNetwork: false,

@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ulauncher",
       version: "5.15.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Ulauncher/Ulauncher/releases/download/${nix.sel(finalAttrs, "version")}/ulauncher_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YgOw3Gyy/o8qorWAnAlQrAZ2ZTnyP3PagLs2Qkdg788=",
         })))),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-path.patch"),
         nix.path(here, "./fix-extensions.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "support-gir1.2-webkit2-4.1.patch",
             url: "https://src.fedoraproject.org/rpms/ulauncher/raw/rawhide/f/support-gir1.2-webkit2-4.1.patch",
             hash: "sha256-w1c+Yf6SA3fyMrMn1LXzCXf5yuynRYpofkkUqZUKLS8=",
@@ -122,12 +122,12 @@ substituteInPlace bin/ulauncher-toggle \\
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "ulauncher",
             desktopName: "Ulauncher",
             exec: "ulauncher",
@@ -136,7 +136,7 @@ substituteInPlace bin/ulauncher-toggle \\
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast application launcher for Linux, written in Python, using GTK",
         homepage: "https://ulauncher.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

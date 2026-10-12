@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const domain = "average";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "ha-average",
           tag: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "sed -i \"/pip>=/d\" custom_components/average/manifest.json\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Limych/ha-average/releases/tag/${version}`),
         description: "Average Sensor for Home Assistant",
         homepage: "https://github.com/Limych/ha-average",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-40")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, postPatch, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

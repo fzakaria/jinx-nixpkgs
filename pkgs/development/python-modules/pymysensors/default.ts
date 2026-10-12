@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theolind",
           repo: "pymysensors",
           tag: version,
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
         pyserial_asyncio_fast,
         voluptuous,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, "mqtt-client": nix.thunk(() => [paho_mqtt]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, "mqtt-client": nix.thunk(() => [paho_mqtt]) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_sugar, pytest_timeout, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["mysensors"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python API for talking to a MySensors gateway",
         homepage: "https://github.com/theolind/pymysensors",
         changelog: nix.thunk(() => nix.str`https://github.com/theolind/pymysensors/releases/tag/${nix.sel(src, "tag")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pymysensors",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

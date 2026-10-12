@@ -24,10 +24,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "systemd-lock-handler",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "liff"))];
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -43,46 +43,46 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const touch = nix.thunk(() => nix.str`${nix.app(nix.sel(lib_1, "getBin"), nix.thunk(() => nix.sel(pkgs, "coreutils")))}/bin/touch`);
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [nix.path(here, "common/wayland-cage.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            "systemd-lock-handler": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            "systemd-lock-handler": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             user: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               services: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 "test-lock": nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   partOf: nix.thunk(() => ["lock.target"]),
                   onSuccess: nix.thunk(() => ["unlock.target"]),
                   before: nix.thunk(() => ["lock.target"]),
                   wantedBy: nix.thunk(() => ["lock.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     ExecStart: nix.thunk(() => nix.str`${touch} /tmp/lock.target.activated`),
                   })),
                 })),
                 "test-unlock": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   partOf: nix.thunk(() => ["unlock.target"]),
                   after: nix.thunk(() => ["unlock.target"]),
                   wantedBy: nix.thunk(() => ["unlock.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     ExecStart: nix.thunk(() => nix.str`${touch} /tmp/unlock.target.activated`),
                   })),
                 })),
                 "test-sleep": nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   partOf: nix.thunk(() => ["sleep.target"]),
                   before: nix.thunk(() => ["sleep.target"]),
                   wantedBy: nix.thunk(() => ["sleep.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     ExecStart: nix.thunk(() => nix.str`${touch} /tmp/sleep.target.activated`),
                   })),
                 })),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysilero-vad",
       version: "3.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhasspy",
           repo: "pysilero-vad",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       dontUsePythonImportsCheck: nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "aarch64-linux")),
       preCheck: "# don't shadow the build result during tests\nrm -rf pysilero_vad\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pre-packaged voice activity detector using silero-vad",
         homepage: "https://github.com/rhasspy/pysilero-vad",
         changelog: nix.thunk(() => nix.str`https://github.com/rhasspy/pysilero-vad/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

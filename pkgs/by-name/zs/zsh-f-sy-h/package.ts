@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-f-sy-h";
       const version = "1.67";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "z-shell",
           repo: "F-Sy-H",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "plugindir=\"$out/share/zsh/site-functions\"\n\nmkdir -p \"$plugindir\"\ncp -r -- F-Sy-H.plugin.zsh chroma functions share themes \"$plugindir\"/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Feature-rich Syntax Highlighting for Zsh",
         homepage: "https://github.com/z-shell/F-Sy-H",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

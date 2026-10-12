@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "psmisc",
       version: "23.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psmisc",
           repo: "psmisc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       preConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), "# Goes past the rpl_malloc linking failure\nexport ac_cv_func_malloc_0_nonnull=yes\nexport ac_cv_func_realloc_0_nonnull=yes\n"), "echo $version > .tarball-version\n./autogen.sh\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/psmisc/psmisc",
         description: "Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

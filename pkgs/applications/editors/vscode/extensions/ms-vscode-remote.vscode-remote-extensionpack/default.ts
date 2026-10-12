@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "vscode-remote-extensionpack",
         publisher: "ms-vscode-remote",
         version: "0.26.0",
         hash: "sha256-YUo0QbJILa9BzWub6Wi6cDD/Zsy/H8LZ8j+9H+5pVHY=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual Studio Code extension pack that lets you open any folder in a container, on a remote machine, or in WSL and take advantage of VS Code's full feature set",
         homepage: "https://github.com/Microsoft/vscode-remote-release",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

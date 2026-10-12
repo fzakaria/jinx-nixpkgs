@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "acme_tiny",
           version: version,
           hash: "sha256-LV64B+JZhq69qbBJ2dFG8YW6/q1u+x6MxB1rQrm8pjw=",
@@ -35,14 +35,14 @@ substituteInPlace tests/utils.py --replace-fail /etc/ssl/openssl.cnf ${nix.sel(o
       const nativeCheckInputs = nix.thunk(() => [fusepy, fuse]);
       const pythonImportsCheck = nix.thunk(() => ["acme_tiny"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny script to issue and renew TLS certs from Let's Encrypt",
         mainProgram: "acme-tiny",
         homepage: "https://github.com/diafygi/acme-tiny",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

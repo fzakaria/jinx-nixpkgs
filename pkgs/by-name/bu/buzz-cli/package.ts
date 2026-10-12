@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "buzz-cli",
       version: "0.1.0-unstable-2026-09-02",
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "block",
           repo: "buzz",
           rev: "47d068e2109d077414cbf2f4f1c927f6d051037a",
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--package=buzz-cli"]),
       cargoTestFlags: nix.thunk(() => ["--package=buzz-cli"]),
       nativeCheckInputs: nix.thunk(() => [cacert]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "-C link-arg=-Wl,-no_uuid" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C link-arg=-Wl,-no_uuid" })))),
       preBuild: "# Remap transient Nix build paths for reproducible output.\nexport RUSTFLAGS=\"--remap-path-prefix=$NIX_BUILD_TOP=/build ${RUSTFLAGS:-}\"\nexport NIX_CFLAGS_COMPILE=\"-ffile-prefix-map=$NIX_BUILD_TOP=/build ${NIX_CFLAGS_COMPILE:-}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Agent-first CLI for Buzz relay",
         homepage: "https://github.com/block/buzz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

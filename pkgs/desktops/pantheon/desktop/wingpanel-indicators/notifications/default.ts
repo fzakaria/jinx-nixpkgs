@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wingpanel-indicator-notifications";
       const version = "7.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "wingpanel-indicator-notifications",
           rev: version,
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [elementary_notifications, granite, gtk3, libgee, libhandy, wingpanel]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Notifications Indicator for Wingpanel",
         homepage: "https://github.com/elementary/wingpanel-indicator-notifications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

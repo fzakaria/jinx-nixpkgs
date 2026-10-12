@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpy-utils",
       version: "0.1.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-die8hseaidhs9X7mfFvV8C8zn0uyw08gcHNqmjl+2Z4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-mfusepy.patch",
             url: "https://github.com/nickzoic/mpy-utils/commit/1513b4dc1096bd8861792cd13abafd2342fb5510.patch?full_index=1",
             hash: "sha256-ZgSEP+4yJf/0itApSmVh/hSqW10Ty+/kOjxg+XJsnn4=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["mpy_utils", "mpy_utils.replcontrol"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MicroPython development utility programs",
         homepage: "https://github.com/nickzoic/mpy-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

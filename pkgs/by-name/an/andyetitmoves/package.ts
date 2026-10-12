@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const commercialName = nix.thunk(() => nix.str`${pname}-${version}_${postfix}.tar.gz`);
         const demoUrl = nix.thunk(() => nix.str`http://www.andyetitmoves.net/demo/${pname}Demo-${version}_${postfix}.tar.gz`);
         return (nix.asBool(commercialVersion) ? nix.app(requireFile, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             message: nix.thunk(() => nix.str`We cannot download the commercial version automatically, as you require a license.
 Once you bought a license, you need to add your downloaded version to the nix store.
 You can do this by using "nix-prefetch-url file:///$PWD/${commercialName}" in the
@@ -43,7 +43,7 @@ directory where you saved it.
             name: commercialName,
             sha256: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "15wvzmmidvykwjrbnq70h5jrvnjx1hcrm0357qj85q4aqbzavh01" : "1v8z16qa9ka8sf7qq45knsxj87s6sipvv3a7xq11pb5xk08fb2ql")),
           }))) : nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: demoUrl,
             sha256: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "0f14vrrbq05hsbdajrb5y9za65fpng1lc8f0adb4aaz27x7sh525" : "0mg41ya0b27blq3b5498kwl4rj46dj21rcd7qd0rw1kyvr7sx4v4")),
           }))));
@@ -79,13 +79,13 @@ chmod +x $out/bin/$binName
         openal,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Physics/Gravity Platform game",
         longDescription: "And Yet It Moves is an award-winning physics-based platform game in which players rotate the game world at will to solve challenging puzzles. Tilting the world turns walls into floors, slides into platforms, and stacks of rocks into dangerous hazards.\n",
         homepage: "http://www.andyetitmoves.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { __proto__: pos$4, pname, version, src, installPhase, buildInputs, meta };
+      return { [nix.POS]: pos$4, pname, version, src, installPhase, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "eaf-js-video-player",
       version: "0-unstable-2025-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacs-eaf",
           repo: "eaf-js-video-player",
           rev: "6e4e938c42b265e108a0474a22813322ff2db124",
           hash: "sha256-tyovHnVX1kkom8W56GI/+PfaQSoCiB4OJj535Dbzah0=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-grLuq11Sgx6jYCDjWch1AYuL8d/NCsr9BmAPvEgrfG8=",
@@ -49,12 +49,12 @@ cp -r node_modules $LISPDIR/
 cp -r dist $LISPDIR/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         eafPythonDeps: (ps) => [],
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "EAF Video Player (JS) application",
         homepage: "https://github.com/emacs-eaf/eaf-js-video-player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

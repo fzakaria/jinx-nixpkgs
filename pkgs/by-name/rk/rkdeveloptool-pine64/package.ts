@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const rev = "17823e99898131a234ccdb39ad114dbaeebb7fc3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rkdeveloptool",
       version: "unstable-2021-09-04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/pine64-org/quartz-bsp/rkdeveloptool/-/archive/${rev}/rkdeveloptool-${rev}.tar.gz`),
           hash: "sha256-KbNjuRb6/FTTInxXVYVTtCfEKZJC/aBdtkZDkDu+rKE=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/pine64-org/quartz-bsp/rkdeveloptool/",
         description: "Tool from Rockchip to communicate with Rockusb devices (pine64 fork)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "jaxe",
       version: "0-unstable-2026-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kurtjd",
           repo: "jaxe",
           rev: "c767afd785e01a15bcd575a2d93b737add82b675",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CHIP-8, S-CHIP, and XO-CHIP emulator core for libretro",
         homepage: "https://github.com/kurtjd/jaxe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlmap",
       version: "1.10.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-YiColRzO57wX5CRkB/++LJSGiagxkvIZTDVInHolUHY=",
@@ -37,7 +37,7 @@ echo 'LAST_UPDATE_NAGGING_DAYS = float("inf")' >> sqlmap/lib/core/settings.py
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sqlmap"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic SQL injection and database takeover tool",
         homepage: "https://sqlmap.org",
         changelog: nix.thunk(() => nix.str`https://github.com/sqlmapproject/sqlmap/releases/tag/${nix.sel(finalAttrs, "version")}`),

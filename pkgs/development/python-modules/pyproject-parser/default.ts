@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyproject_parser",
           version: version,
           hash: "sha256-QEe9miURXkABmeZyzZ2Pi6QF2BSNZadsvzr7z3fpZuI=",
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), optional_dependencies, nix.thunk(() => ["all"]))))),
         cli: nix.thunk(() => [click, consolekit, sdjson]),
         readme: nix.thunk(() => nix.concat([docutils, readme_renderer], nix.sel(readme_renderer, "optional-dependencies", "md"))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parser for ‘pyproject.toml’",
         homepage: "https://github.com/repo-helper/pyproject-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

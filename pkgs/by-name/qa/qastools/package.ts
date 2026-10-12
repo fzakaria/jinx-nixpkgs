@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qastools",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sebholt",
           repo: "qastools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of desktop applications for ALSA configuration",
         homepage: "https://gitlab.com/sebholt/qastools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

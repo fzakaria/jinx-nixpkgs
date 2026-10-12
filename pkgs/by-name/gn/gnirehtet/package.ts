@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "2.5.1";
   const apk = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gnirehtet.apk",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Genymobile/gnirehtet/releases/download/v${version}/gnirehtet-rust-linux64-v${version}.zip`),
           hash: "sha256-e1wwMhcco9VNoBUzbEq1ESbkX2bqTOkCbPmnV9CpvGo=",
         })))),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gnirehtet";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Genymobile",
           repo: "gnirehtet",
           rev: nix.thunk(() => nix.str`v${version_1}`),
           hash: "sha256-ewLYCZgkjbh6lR9e4iTddCIrB+5dxyviIXhOqlZsLqc=",
         }))));
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, apk: apk }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, apk: apk }));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/relay-rust`);
       const cargoHash = "sha256-xfRTGGlL1/Bq04aGWJSGgkoTGKYiiUAdkHu4zJS3x/U=";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
 --set ADB ${nix.sel(androidenv, "androidPkgs", "platform-tools")}/bin/adb
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Reverse tethering over adb for Android",
         mainProgram: "gnirehtet",
         longDescription: "This project provides reverse tethering over adb for Android: it allows devices to use the internet connection of the computer they are plugged on. It does not require any root access (neither on the device nor on the computer).\n\nThis relies on adb, make sure you have the required permissions/udev rules.\n",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src,

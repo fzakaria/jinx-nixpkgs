@@ -29,21 +29,21 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "2.63.23";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "filebrowser",
       repo: "filebrowser",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-G0TIQE+Rru4JWBJIi8kdxSaP0CDPo2DyWLmcU2AX7Fs=",
     }))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "filebrowser-frontend",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
       nativeBuildInputs: nix.thunk(() => [nodejs_slim, pnpmConfigHook, pnpmBuildHook, pnpm_10]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir $out\nmv dist $out\n\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "filebrowser",
       version: version,
       src: src,
@@ -69,16 +69,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/filebrowser/filebrowser/v2/version.Version=v${version}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
         frontend: frontend,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           filebrowser: nix.thunk(() => nix.attr(nixosTests, "filebrowser")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Web application for managing files and directories",
         homepage: "https://filebrowser.org",
         changelog: nix.thunk(() => nix.str`https://github.com/filebrowser/filebrowser/releases/${nix.sel(src, "tag")}`),

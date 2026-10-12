@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pname = "pytest-html";
   const version = "4.2.0";
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "pytest_html",
       version: version,
       hash: "sha256-tqiMulB1ANhwmVkgHi51fTlB6Fn9F8/U7Yexb8DGeRI=",
     }))));
   const web_assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-web-assets`),
       version: version,
       src: src,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm644 src/pytest_html/resources/{app.js,style.css} -t $out/lib\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [hatch_vcs, hatchling]),
       buildInputs: nix.thunk(() => [pytest, web_assets]),
       propagatedBuildInputs: nix.thunk(() => [jinja2, pytest_metadata]),
-      env: nix.thunk(() => ({ __proto__: pos$3, HATCH_BUILD_NO_HOOKS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, HATCH_BUILD_NO_HOOKS: true })),
       preBuild: nix.thunk(() => nix.str`install -Dm644 ${web_assets}/lib/{app.js,style.css} -t src/pytest_html/resources
 `),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pytest_html"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Plugin for generating HTML reports",
         homepage: "https://github.com/pytest-dev/pytest-html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

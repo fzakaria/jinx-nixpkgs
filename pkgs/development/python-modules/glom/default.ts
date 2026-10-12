@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "25.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GufaiL42k99ArSe99Xp2WlXAdchslxvN3WeSdAPrAGk=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [boltons, attrs, face]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, yaml: nix.thunk(() => [pyyaml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, yaml: nix.thunk(() => [pyyaml]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const preCheck = "# test_cli.py checks the output of running \"glom\"\nexport PATH=$out/bin:$PATH\n";
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.11")), nix.thunk(() => [
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["glom"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for restructuring data",
         longDescription: "glom helps pull together objects from other objects in a\ndeclarative, dynamic, and downright simple way.\n",
         homepage: "https://github.com/mahmoud/glom",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "glom",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

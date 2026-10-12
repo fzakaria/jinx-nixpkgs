@@ -60,14 +60,14 @@ rm -r $out/bin $out/share $out/include $out/etc/unbound
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --replace-needed libunbound.so.8 $out/${nix.sel(python, "sitePackages")}/libunbound.so.8 $out/${nix.sel(python, "sitePackages")}/_unbound.so
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python library for Unbound, the validating, recursive, and caching DNS resolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://www.unbound.net",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

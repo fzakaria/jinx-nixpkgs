@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
   const turbo = nix.arg($, "turbo");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const xcbuild = nix.arg($, "xcbuild");
-  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_9, "override"), nix.thunk(() => ({ __proto__: pos$1, java: jdk }))));
+  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_9, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk }))));
   const jdk = jdk17;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "modrinth-app-unwrapped",
       version: "0.21.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "modrinth",
           repo: "code",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,8 +54,8 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gradle-from-path.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
-            gradle: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`gradle-exe-wrapper-${nix.sel(gradle, "version")}`), nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [makeShellWrapper]) })), nix.thunk(() => nix.str`makeShellWrapper ${nix.app(nix.sel(lib, "getExe"), gradle)} $out \\
+            [nix.POS]: pos$4,
+            gradle: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`gradle-exe-wrapper-${nix.sel(gradle, "version")}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeShellWrapper]) })), nix.thunk(() => nix.str`makeShellWrapper ${nix.app(nix.sel(lib, "getExe"), gradle)} $out \\
   --add-flags "\\\${NIX_GRADLEFLAGS_COMPILE:-}"
 `))),
           })))),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
 `),
       cargoHash: "sha256-YQz/DbTZVx1zpct0d4IMBB++RqFg26zmg2Px/xCPa8A=",
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["--package", "theseus_gui"]),
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         TURBO_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), turbo)),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-mmacosx-version-min=10.15")),
       })),
@@ -104,11 +104,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "local nixGradleFlags=()\nconcatTo nixGradleFlags gradleFlags gradleFlagsArray\nexport NIX_GRADLEFLAGS_COMPILE=\"${nixGradleFlags[@]}\"\n\ncp packages/app-lib/.env.prod packages/app-lib/.env\n",
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeBinaryWrapper \"$out\"/Applications/Modrinth\\ App.app/Contents/MacOS/Modrinth\\ App \"$out\"/bin/ModrinthApp\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "desktop-file-edit \\\n  --set-comment \"Modrinth's game launcher\" \\\n  --set-key=\"StartupNotify\" --set-value=\"true\" \\\n  --set-key=\"Categories\" --set-value=\"Game;ActionGame;AdventureGame;Simulation;\" \\\n  --set-key=\"Keywords\" --set-value=\"game;minecraft;mc;\" \\\n  --set-key=\"StartupWMClass\" --set-value=\"ModrinthApp\" \\\n  $out/share/applications/Modrinth\\ App.desktop\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Modrinth's game launcher",
         longDescription: "A unique, open source launcher that allows you to play your favorite mods,\nand keep them up to date, all in one neat little package\n",
         homepage: "https://modrinth.com",

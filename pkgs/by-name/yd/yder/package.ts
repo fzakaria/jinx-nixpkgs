@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const subunit = nix.arg($, "subunit");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yder",
       version: "1.4.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "babelouest",
           repo: "yder",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_YDER_TESTING=on"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withSystemd)), "-DWITH_JOURNALD=off"))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Logging library for C applications",
         homepage: "https://github.com/babelouest/yder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

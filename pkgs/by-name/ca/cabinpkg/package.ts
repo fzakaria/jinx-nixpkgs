@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.0";
       const tag = nix.thunk(() => nix.str`v${version}`);
       const sha256 = "sha256-NUuEgTpq86rDcsQnpG0IsSmgLT0cXhd1y32gT57QPAw=";
-      return { __proto__: pos$1, owner, repo, version, tag, sha256 };
+      return { [nix.POS]: pos$1, owner, repo, version, tag, sha256 };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "cabinpkg";
       const version = "0.11.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "cabinpkg",
           repo: "cabin",
           tag: version,
@@ -47,7 +47,7 @@ cp -rf ${toml11} build/DEPS/toml11
       const makeFlags = nix.thunk(() => ["RELEASE=1", "COMMIT_HASH=", "COMMIT_SHORT_HASH=", "COMMIT_DATE="]);
       const installFlags = nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
         homepage: "https://cabinpkg.com",
         description: "Package manager and build system for C++",
@@ -57,7 +57,7 @@ cp -rf ${toml11} build/DEPS/toml11
         mainProgram: "cabin",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

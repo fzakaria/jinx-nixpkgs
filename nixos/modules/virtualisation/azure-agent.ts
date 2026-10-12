@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return nix.app(nix.lookup(w, "warn"), "`virtualisation.azure.agent` provided by `azure-agent.nix` module has been replaced\nby `services.waagent` options, and will be removed in a future release.\n", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       imports: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "azure", "agent", "enable"]), nix.thunk(() => ["services", "waagent", "enable"]))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "azure", "agent", "verboseLogging"]), nix.thunk(() => ["services", "waagent", "settings", "Logs", "Verbose"]))),

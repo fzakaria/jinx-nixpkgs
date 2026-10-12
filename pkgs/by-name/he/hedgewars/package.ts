@@ -54,17 +54,17 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hedgewars",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hedgewars.org/download/releases/hedgewars-src-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-xcGHfAuuE1THXSuVJ7b5qfeemZMuXQix9vfeFwgGYTA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "hedgewars-ffmpeg-9.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/hedgewars/-/raw/1b03bb9764d38fa6020552174676a9e024d8b18e/ffmpeg-9.patch?inline=false",
             hash: "sha256-J8W8WvQgcteKoUUVDxBINVhMzmec+UuWWltKZ2aq9Go=",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DNOSERVER=${(nix.asBool(withServer) ? "OFF" : "ON")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (e) => nix.str`-rpath ${e}/lib`, nix.thunk(() => [
             nix.thunk(() => nix.sel(SDL2, "out")),
             SDL2_image,
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libGLU, libglut, physfs]))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Funny turn-based artillery game, featuring fighting hedgehogs",
         homepage: "https://hedgewars.org/",
         license: nix.thunk(() => (() => {

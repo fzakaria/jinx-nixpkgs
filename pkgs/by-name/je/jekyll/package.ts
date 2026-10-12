@@ -32,7 +32,7 @@ fi
 exec ${ruby}/bin/ruby "$@"
 `)));
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jekyll",
       exes: nix.thunk(() => ["jekyll"]),
       ruby: ruby,
@@ -40,9 +40,9 @@ exec ${ruby}/bin/ruby "$@"
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/jekyll --prefix PATH : ${rubyWrapper}/bin
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blog-aware, static site generator, written in Ruby",
         longDescription: "Jekyll is a simple, blog-aware, static site generator, written in Ruby.\nThink of it like a file-based CMS, without all the complexity. Jekyll\ntakes your content, renders Markdown and Liquid templates, and spits out a\ncomplete, static website ready to be served by Apache, Nginx or another\nweb server. Jekyll is the engine behind GitHub Pages, which you can use to\nhost sites right from your GitHub repositories.\n",
         homepage: "https://jekyllrb.com/",

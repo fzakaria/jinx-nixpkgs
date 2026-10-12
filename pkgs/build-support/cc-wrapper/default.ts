@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
   const gccForLibs_solib = nix.thunk(() => nix.add(nix.app(getLib, gccForLibs), nix.app(optionalString, nix.thunk(() => !nix.eq(targetPlatform, hostPlatform)), nix.thunk(() => nix.str`/${nix.sel(targetPlatform, "config")}`))));
   const libcxx_solib = nix.thunk(() => nix.str`${nix.app(getLib, libcxx)}/lib`);
   const isGccArchSupported = (arch) => (nix.asBool(nix.sel(targetPlatform, "isPower")) ? false : (nix.asBool(isGNU) ? nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86-64-v2": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "11.0")),
     "x86-64-v3": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "11.0")),
     "x86-64-v4": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "11.0")),
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
     "la64v1.1": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "14.0")),
     la664: nix.thunk(() => nix.app(versionAtLeast, ccVersion, "14.0")),
   }, () => true, nix.key(nix.force(arch))) : (nix.asBool(isClang) ? nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86-64-v2": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "12.0")),
     "x86-64-v3": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "12.0")),
     "x86-64-v4": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "12.0")),
@@ -144,17 +144,17 @@ export default nix.lambda((args) => (() => {
     "la64v1.1": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "19.1")),
     la664: nix.thunk(() => nix.app(versionAtLeast, ccVersion, "19.1")),
   }, () => true, nix.key(nix.force(arch))) : false)));
-  const isGccTuneSupported = (tune_1) => (nix.asBool(nix.sel(targetPlatform, "isx86")) ? nix.selOr({ __proto__: pos$3, generic: true, intel: true }, () => nix.app(isGccArchSupported, tune_1), nix.key(nix.force(tune_1))) : (nix.asBool(nix.sel(targetPlatform, "isAarch64")) ? (nix.asBool(isGNU) ? nix.selOr({
-    __proto__: pos$4,
+  const isGccTuneSupported = (tune_1) => (nix.asBool(nix.sel(targetPlatform, "isx86")) ? nix.selOr({ [nix.POS]: pos$3, generic: true, intel: true }, () => nix.app(isGccArchSupported, tune_1), nix.key(nix.force(tune_1))) : (nix.asBool(nix.sel(targetPlatform, "isAarch64")) ? (nix.asBool(isGNU) ? nix.selOr({
+    [nix.POS]: pos$4,
     "cortex-a53": true,
     "cortex-a72": true,
     "cortex-a72.cortex-a53": true,
   }, () => false, nix.key(nix.force(tune_1))) : (nix.asBool(isClang) ? nix.selOr({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "cortex-a53": nix.thunk(() => nix.app(versionAtLeast, ccVersion, "3.9")),
   }, () => false, nix.key(nix.force(tune_1))) : false)) : (nix.asBool(nix.sel(targetPlatform, "isPower")) ? true : (nix.asBool(nix.sel(targetPlatform, "isMips")) ? nix.app(isGccArchSupported, tune_1) : false))));
   const findBestTuneApproximation = (tune_1) => (() => {
-    const guess = nix.thunk(() => (nix.asBool(isClang) ? nix.selOr({ __proto__: pos$6, "cortex-a72.cortex-a53": "cortex-a72" }, () => nix.force(tune_1), nix.key(nix.force(tune_1))) : nix.force(tune_1)));
+    const guess = nix.thunk(() => (nix.asBool(isClang) ? nix.selOr({ [nix.POS]: pos$6, "cortex-a72.cortex-a53": "cortex-a72" }, () => nix.force(tune_1), nix.key(nix.force(tune_1))) : nix.force(tune_1)));
     return (nix.asBool(nix.app(isGccTuneSupported, guess)) ? nix.force(guess) : null);
   })();
   const thumb = nix.thunk(() => (nix.asBool(nix.sel(targetPlatform, "gcc", "thumb")) ? "thumb" : "arm"));
@@ -169,14 +169,14 @@ export default nix.lambda((args) => (() => {
   const fortifyIncludeFlag = nix.thunk(() => (nix.asBool(isFlang) ? "-I" : "-isystem"));
   nix.assert_((!nix.asBool(includeFortifyHeaders$) || nix.asBool(!nix.eq(fortify_headers, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/cc-wrapper/default.nix:422:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: nix.thunk(() => nix.add(targetPrefix, (nix.asBool(!nix.eq(name, "")) ? nix.force(name) : nix.str`${ccName}-wrapper`))),
       version: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(cc, null)), ccVersion)),
       preferLocalBuild: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(optionals, propagateDoc, nix.thunk(() => ["man", "info"])))),
       isArocc: isArocc,
       passthru: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         targetPrefix: targetPrefix,
         suffixSalt: suffixSalt,
         bintools: bintools,
@@ -303,7 +303,7 @@ wrap ${targetPrefix}go ${nix.path(here, "./go-wrapper.sh")} $ccPath/${targetPref
       propagatedBuildInputs: nix.thunk(() => nix.concat([bintools], extraTools)),
       depsTargetTargetPropagated: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(libcxx, null)), libcxx), extraPackages)),
       setupHooks: nix.thunk(() => nix.concat([nix.path(here, "../setup-hooks/role.bash")], nix.concat(nix.app(optional, nix.thunk(() => nix.selOr(cc, () => true, "langC")), nix.path(here, "./setup-hook.sh")), nix.concat(nix.app(optional, nix.thunk(() => nix.selOr(cc, () => false, "langFortran")), nix.path(here, "./fortran-hook.sh")), nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(targetPlatform, "isWindows")) || nix.asBool(nix.sel(targetPlatform, "isCygwin")))), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "win-dll-hook.sh",
             dontUnpack: true,
             strictDeps: true,
@@ -392,7 +392,7 @@ substituteAll ${nix.path(here, "./add-clang-cc-cflags-before.sh")} $out/nix-supp
 `;
         })()))), extraBuildCommands), nix.app(concatStringsSep, "; ", nix.thunk(() => nix.app(mapAttrsToList, (name_1) => (value) => nix.str`echo ${nix.builtins.toString(value)} >> $out/nix-support/${name_1}`, nixSupport))))),
       env: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         isClang: isClang,
         isFlang: isFlang,
         expandResponseParams: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(expand_response_params, "")), nix.thunk(() => nix.app(nix.sel(lib, "getExe"), expand_response_params)))),
@@ -420,7 +420,7 @@ substituteAll ${nix.path(here, "./add-clang-cc-cflags-before.sh")} $out/nix-supp
       meta: nix.thunk(() => (() => {
         const cc_ = nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => !nix.eq(cc, null)), cc));
         return nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(cc_, "meta")), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cc, "meta")), nix.thunk(() => ["priority"])))), {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: nix.thunk(() => nix.add(nix.app(attrByPath, nix.thunk(() => ["meta", "description"]), "System C compiler", cc_), " (wrapper script)")),
           priority: 10n,
           mainProgram: nix.thunk(() => (nix.asBool(!nix.eq(name, "")) ? nix.force(name) : nix.str`${targetPrefix}${ccName}`)),

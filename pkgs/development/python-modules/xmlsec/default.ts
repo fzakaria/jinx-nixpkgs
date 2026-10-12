@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const hypothesis = nix.arg($, "hypothesis");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xmlsec",
       version: "1.3.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xmlsec",
           repo: "python-xmlsec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "xmlsec-1.3.11-test-compatibility.patch",
             url: "https://github.com/xmlsec/python-xmlsec/commit/5e8b4e6aa133c358b8aaf8e17ceb5b3b7fea78e8.patch",
             includes: nix.thunk(() => ["src/*", "tests/*"]),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["test_reinitialize_module"]))),
       pythonImportsCheck: nix.thunk(() => ["xmlsec"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for the XML Security Library",
         homepage: "https://github.com/xmlsec/python-xmlsec",
         changelog: nix.thunk(() => nix.str`https://github.com/xmlsec/python-xmlsec/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

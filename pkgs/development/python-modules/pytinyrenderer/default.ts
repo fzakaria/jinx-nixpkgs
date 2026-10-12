@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-X+20eYUJy5EaA6O8no3o1NWqNrHeUuuHjv7xBLlaPRU=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pytinyrenderer"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for Tiny Renderer",
         homepage: "https://pypi.org/project/pytinyrenderer/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

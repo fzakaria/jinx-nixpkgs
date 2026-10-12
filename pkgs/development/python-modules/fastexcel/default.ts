@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fastexcel",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ToucanToco",
           repo: "fastexcel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-//zEMGJvFlujnIReA/f2YLk1xfinq9EymsfP7GdkPb8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         rustc,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pyarrow: nix.thunk(() => [pyarrow]),
         pandas: nix.thunk(() => [pandas, pyarrow]),
         polars: nix.thunk(() => [polars]),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf python/fastexcel\n",
       nativeCheckInputs: nix.thunk(() => [pandas, polars, pyarrow, pytest_mock, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast excel file reader for Python, written in Rust",
         homepage: "https://github.com/ToucanToco/fastexcel/",
         changelog: nix.thunk(() => nix.str`https://github.com/ToucanToco/fastexcel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

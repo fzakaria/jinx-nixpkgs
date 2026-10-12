@@ -58,20 +58,20 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "astropy",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-pKptFnbhiE6DfsEZ557ugd6nrbWGg2FmEdhp78z+bUM=",
         }))));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=unused-command-line-argument",
         }))));
       const build_system = nix.thunk(() => [cython, extension_helpers, setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [astropy_iers_data, numpy, packaging, pyerfa, pyyaml]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           recommended: nix.thunk(() => [scipy, matplotlib]),
           ipython: nix.thunk(() => [ipython]),
           jupyter: nix.thunk(() => nix.concat([ipywidgets, ipykernel, pandas], nix.sel(self, "ipython"))),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--hypothesis-profile=ci"]);
       const postCheck = "rm conftest.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://docs.astropy.org/en/${nix.sel(src, "tag")}/changelog.html`),
         description: "Astronomy/Astrophysics library for Python",
         homepage: "https://www.astropy.org",
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

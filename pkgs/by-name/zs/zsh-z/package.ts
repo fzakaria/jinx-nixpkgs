@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-z",
       version: "2.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agkozak",
           repo: "zsh-z",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir -p $out/share/zsh-z\ncp _zshz zsh-z.plugin.zsh $out/share/zsh-z\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jump quickly to directories that you have visited frequently in the past, or recently",
         homepage: "https://github.com/agkozak/zsh-z",
         changelog: nix.thunk(() => nix.str`https://github.com/agkozak/zsh-z/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

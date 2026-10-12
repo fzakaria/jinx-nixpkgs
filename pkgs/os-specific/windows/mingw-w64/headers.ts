@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const crt = nix.argOr($, "crt", () => nix.sel(stdenvNoCC, "hostPlatform", "libc"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mingw_w64-headers",
       version: "14.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/mingw-w64/mingw-w64-v${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-bq+SHZ65h9OCCzZOqXdbwZuWXsgUkLb91xZSbCjhmVw=",
         })))),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "cd mingw-w64-headers\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         headersOnly: true,
-        tests: nix.thunk(() => ({ __proto__: pos$2, wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
         updateScript: nix.path(here, "./update.nu"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.mingw-w64.org/",
         downloadPage: "https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/",
         description: "Collection of headers and libraries for building native Windows applications",

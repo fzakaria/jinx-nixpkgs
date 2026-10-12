@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quicksand",
       version: "2.0-unstable-2021-01-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andrew-paglinawan",
           repo: "QuicksandFamily",
           rev: "be4b9d638e1c79fa42d4a0ab0aa7fe29466419c7",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/andrew-paglinawan/QuicksandFamily",
         description: "Sans serif font designed using geometric shapes",
         longDescription: "Quicksand is a sans serif typeface designed by Andrew Paglinawan\nin 2008 using geometric shapes as it's core foundation. It is\ndesigned for display purposes but legible enough to use in small\nsizes as well. Quicksand Family is available in three styles\nwhich are Light, Regular and Bold including true italics for each weight.\n",

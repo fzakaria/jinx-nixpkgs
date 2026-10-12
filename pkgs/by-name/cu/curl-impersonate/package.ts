@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lexiforest",
           repo: "curl-impersonate",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -79,17 +79,17 @@ BUILD_DIR="$PWD/build" ZIG_FLAGS='-target ${nix.sel(stdenv, "hostPlatform", "con
       const installCheckPhase = "runHook preInstallCheck\n\nversion_output=$($out/bin/curl-impersonate -V)\necho \"$version_output\"\necho \"$version_output\" | grep -q zlib\necho \"$version_output\" | grep -q zstd\necho \"$version_output\" | grep -q brotli\necho \"$version_output\" | grep -q nghttp2\necho \"$version_output\" | grep -q BoringSSL\necho \"$version_output\" | grep -q IDN\n\nrunHook postInstallCheck\n";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({})))),
         updateScript: nix.path(here, "./update.sh"),
         src: src,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "curl-impersonate": nix.thunk(() => nix.attr(nixosTests, "curl-impersonate")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/lexiforest/curl-impersonate/releases/tag/${nix.sel(src, "tag")}`),
         description: "Special build of curl that can impersonate Chrome, Edge, Safari and Firefox",
         homepage: "https://github.com/lexiforest/curl-impersonate",
@@ -108,7 +108,7 @@ BUILD_DIR="$PWD/build" ZIG_FLAGS='-target ${nix.sel(stdenv, "hostPlatform", "con
         mainProgram: "curl-impersonate",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

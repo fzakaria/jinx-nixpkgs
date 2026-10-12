@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "opentracker",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erdgeist.org/arts/software/opentracker/opentracker-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-OGDWL+GJ7EG7BM4WnsFpgropbrLdBj5vg425tqW6hnA=",
         })))),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -D opentracker $out/bin/opentracker\ninstall -D opentracker.conf.sample $out/share/doc/opentracker.conf.sample\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "bittorrent-integration": nix.thunk(() => nix.sel(nixosTests, "bittorrent")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://erdgeist.org/arts/software/opentracker/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "beerware")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

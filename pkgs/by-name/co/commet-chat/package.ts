@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const libwebrtcRpath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libgbm, libdrm])));
   const libwebrtc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/flutter-webrtc/flutter-webrtc/releases/download/v1.2.0/libwebrtc.zip",
       hash: "sha256-i4LRG44f//SDIOl072yZavkYoTZdiydPZndeOm6/fBM=",
     }))));
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "commet-chat",
       version: "0.4.2+hotfix.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "commetchat",
           repo: "commet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pubspecLockFilePath: "../pubspec.lock",
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         calendar_view: "sha256-tGAMK89VsgqfKQy+t8x5zl6dbQEf5h4HxSUR8crB1oM=",
         desktop_webview_window: "sha256-EOh5QoOuAxiYn0IcdxY7taN2Twu8GshY9zAoGCztPnA=",
         dynamic_color: "sha256-4zSTiXplkBjtPtzssj3VaHTVo9YlYKNTMLgBIM5MMe4=",
@@ -80,19 +80,19 @@ export default nix.lambda((args) => (() => {
         libunwind,
       ], nix.sel(mpv_unwrapped, "buildInputs"))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_LDFLAGS: nix.thunk(() => nix.str`-rpath-link ${libwebrtcRpath}`),
         COMMET_PROD: 1n,
       })),
       targetFlutterPlatform: "linux",
       customSourceBuilders: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         flutter_webrtc: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version = nix.arg($_1, "version");
           const src = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: "flutter_webrtc",
               version: version,
               src: src,
@@ -128,7 +128,7 @@ patchelf --add-rpath ${libwebrtcRpath} $out/app/commet-chat/lib/libwebrtc.so
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://commet.chat",
         description: "Client for Matrix focused on providing a feature rich experience while maintaining a simple interface",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

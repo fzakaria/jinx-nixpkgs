@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const iconConvTools = nix.arg($, "iconConvTools");
   const plMpegSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "phoboslab",
       repo: "pl_mpeg",
       rev: "c871f2be022ece7ef4f64230b4fb8e1fb9eb6023",
       hash: "sha256-Mr+hid5RRQ2Yh6UcNDFFbbHMrGGVju0o20KIAEvzEg8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "moon-child-fe",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "MorsGames",
           repo: "MoonChildFE",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MOONCHILD_VENDORED_PL_MPEG", false)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         MOONCHILD_PL_MPEG_PATH: plMpegSrc,
         MOONCHILD_GAMECONTROLLERDB_PATH: nix.thunk(() => nix.str`${sdl_gamecontrollerdb}/share/gamecontrollerdb.txt`),
       })),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/icons/hicolor/256x256/apps/\n\ncd /build/source\nmv ./Bin/Release $out/share/MoonChildFE\nicoFileToHiColorTheme game.ico MoonChildFE $out\n\nln -s \"$out/share/MoonChildFE/Moon Child FE\" $out/bin/MoonChildFE\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "MoonChildFE",
             desktopName: "Moon Child - Friend Edition",
             exec: "MoonChildFE",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/MorsGames/MoonChildFE/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Modern source port of the 1997 Windows 95 classic, Moon Child",
         homepage: "https://github.com/MorsGames/MoonChildFE",

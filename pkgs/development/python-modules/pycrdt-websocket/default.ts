@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pycrdt-websocket",
       version: "0.16.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "y-crdt",
           repo: "pycrdt-websocket",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [anyio, pycrdt, pycrdt_store, sqlite_anyio]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, django: nix.thunk(() => [channels]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, django: nix.thunk(() => [channels]) })),
       pythonImportsCheck: nix.thunk(() => ["pycrdt.websocket"]),
       nativeCheckInputs: nix.thunk(() => [
         httpx_ws,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_pycrdt_yjs.py"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "WebSocket Connector for pycrdt",
         homepage: "https://github.com/jupyter-server/pycrdt-websocket",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-server/pycrdt-websocket/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

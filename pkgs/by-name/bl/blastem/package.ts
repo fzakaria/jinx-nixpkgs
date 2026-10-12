@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "blastem",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.retrodev.com/repos/blastem",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Fs78GFmvndJz+Ngpzw3bRyL8IX8UUJBAbV3TcNbHJHA=",
@@ -38,23 +38,23 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, glew, SDL2]),
       makeFlags: nix.thunk(() => ["HOST_ZLIB=1"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2)}/include/SDL2`),
       })),
       installPhase: "runHook preInstall\n\n# not sure if any executable other than blastem is really needed here\ninstall -Dm755 blastem dis zdis upddis sh2dis termhelper -t $out/share/blastem\ninstall -Dm644 gamecontrollerdb.txt default.cfg rom.db -t $out/share/blastem\ncp -r shaders $out/share/blastem/shaders\n\n# wrapping instead of sym-linking makes sure argv0 stays at the original location\nmakeWrapper $out/share/blastem/blastem $out/bin/blastem\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "blastem -v",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast and accurate emulator for Sega's 16-bit and 8-bit consoles",
         longDescription: "BlastEm is a free and Open Source emulator for Sega's 16-bit and 8-bit consoles.\nIt's fast enough for your old PC and accurate enough for the most demanding demos.\nWhile BlastEm's primary focus is the Genesis (known as the Megadrive outside North America),\nit also supports the Sega CD, 32X, Master System, Game Gear, SG-1000, SC-3000, Sega Pico and Yamaha Copera.\n",
         homepage: "https://www.retrodev.com/blastem/",

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "echo \"$_flet_setup_view\" >> src/flet_desktop/__init__.py\n";
       const pythonImportsCheck = nix.thunk(() => ["flet_desktop"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Compiled Flutter Flet desktop client",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "ppxlib"))];
       })());
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "ocsigen-i18n",
           rev: version,
           hash: "sha256-NIl1YUTws8Ff4nrqdhU7oS/TN0lxVQgrtyEZtpS1ojM=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ocsigen/ocsigen-i18n",
         description: "I18n made easy for web sites written with eliom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gal_bolle"))]),
       }));
-      return { __proto__: pos$3, pname, version, buildInputs, src, meta };
+      return { [nix.POS]: pos$3, pname, version, buildInputs, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const yt_dlp = nix.arg($, "yt-dlp");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cliamp",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bjarneo",
           repo: "cliamp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
 `),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal Winamp - a retro terminal music player inspired by Winamp 2.x",
         homepage: "https://github.com/bjarneo/cliamp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

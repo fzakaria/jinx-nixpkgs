@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "holoviz",
           repo: "datashader",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["scripts/download_data.py"]);
       const pythonImportsCheck = nix.thunk(() => ["datashader"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Data visualization toolchain based on aggregating into a grid",
         mainProgram: "datashader",
         homepage: "https://datashader.org",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

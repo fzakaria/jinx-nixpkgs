@@ -100,116 +100,116 @@ const pos$93 = nix.positions(here + "/examples.nix", [["powernv", 17, 3], ["musl
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const platforms = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./platforms.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   const riscv = (bits) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     config: nix.thunk(() => nix.str`riscv${bits}-unknown-linux-gnu`),
   });
   return (() => {
-    const powernv = nix.thunk(() => ({ __proto__: pos$3, config: "powerpc64le-unknown-linux-gnu" }));
-    const musl_power = nix.thunk(() => ({ __proto__: pos$4, config: "powerpc64le-unknown-linux-musl" }));
-    const ppc64_elfv1 = nix.thunk(() => ({ __proto__: pos$5, config: "powerpc64-unknown-linux-gnuabielfv1" }));
-    const ppc64_elfv2 = nix.thunk(() => ({ __proto__: pos$6, config: "powerpc64-unknown-linux-gnuabielfv2" }));
+    const powernv = nix.thunk(() => ({ [nix.POS]: pos$3, config: "powerpc64le-unknown-linux-gnu" }));
+    const musl_power = nix.thunk(() => ({ [nix.POS]: pos$4, config: "powerpc64le-unknown-linux-musl" }));
+    const ppc64_elfv1 = nix.thunk(() => ({ [nix.POS]: pos$5, config: "powerpc64-unknown-linux-gnuabielfv1" }));
+    const ppc64_elfv2 = nix.thunk(() => ({ [nix.POS]: pos$6, config: "powerpc64-unknown-linux-gnuabielfv2" }));
     const ppc64 = ppc64_elfv2;
     const ppc64_musl = nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       config: "powerpc64-unknown-linux-musl",
-      gcc: nix.thunk(() => ({ __proto__: pos$7, abi: "elfv2" })),
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$7, abi: "elfv2" })),
     }));
     const ppc32 = nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       config: "powerpc-unknown-linux-gnu",
-      rust: nix.thunk(() => ({ __proto__: pos$9, rustcTarget: "powerpc-unknown-linux-gnu" })),
+      rust: nix.thunk(() => ({ [nix.POS]: pos$9, rustcTarget: "powerpc-unknown-linux-gnu" })),
     }));
-    const armv5tel_multiplatform = nix.thunk(() => ({ __proto__: pos$11, config: "armv5tel-unknown-linux-gnueabi" }));
-    const raspberryPi = nix.thunk(() => nix.update({ __proto__: pos$12, config: "armv6l-unknown-linux-gnueabihf" }, nix.sel(platforms, "raspberrypi")));
-    const bluefield2 = nix.thunk(() => nix.update({ __proto__: pos$13, config: "aarch64-unknown-linux-gnu" }, nix.sel(platforms, "bluefield2")));
-    const remarkable1 = nix.thunk(() => nix.update({ __proto__: pos$14, config: "armv7l-unknown-linux-gnueabihf" }, nix.sel(platforms, "zero-gravitas")));
-    const remarkable2 = nix.thunk(() => nix.update({ __proto__: pos$15, config: "armv7l-unknown-linux-gnueabihf" }, nix.sel(platforms, "zero-sugar")));
-    const armv7l_hf_multiplatform = nix.thunk(() => ({ __proto__: pos$16, config: "armv7l-unknown-linux-gnueabihf" }));
-    const aarch64_multiplatform = nix.thunk(() => ({ __proto__: pos$17, config: "aarch64-unknown-linux-gnu" }));
+    const armv5tel_multiplatform = nix.thunk(() => ({ [nix.POS]: pos$11, config: "armv5tel-unknown-linux-gnueabi" }));
+    const raspberryPi = nix.thunk(() => nix.update({ [nix.POS]: pos$12, config: "armv6l-unknown-linux-gnueabihf" }, nix.sel(platforms, "raspberrypi")));
+    const bluefield2 = nix.thunk(() => nix.update({ [nix.POS]: pos$13, config: "aarch64-unknown-linux-gnu" }, nix.sel(platforms, "bluefield2")));
+    const remarkable1 = nix.thunk(() => nix.update({ [nix.POS]: pos$14, config: "armv7l-unknown-linux-gnueabihf" }, nix.sel(platforms, "zero-gravitas")));
+    const remarkable2 = nix.thunk(() => nix.update({ [nix.POS]: pos$15, config: "armv7l-unknown-linux-gnueabihf" }, nix.sel(platforms, "zero-sugar")));
+    const armv7l_hf_multiplatform = nix.thunk(() => ({ [nix.POS]: pos$16, config: "armv7l-unknown-linux-gnueabihf" }));
+    const aarch64_multiplatform = nix.thunk(() => ({ [nix.POS]: pos$17, config: "aarch64-unknown-linux-gnu" }));
     const armv7a_android_prebuilt = nix.thunk(() => nix.update({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       config: "armv7a-unknown-linux-androideabi",
-      rust: nix.thunk(() => ({ __proto__: pos$18, rustcTarget: "armv7-linux-androideabi" })),
+      rust: nix.thunk(() => ({ [nix.POS]: pos$18, rustcTarget: "armv7-linux-androideabi" })),
       androidSdkVersion: "35",
       androidNdkVersion: "27",
       useAndroidPrebuilt: true,
     }, nix.sel(platforms, "armv7a-android")));
     const aarch64_android_prebuilt = nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       config: "aarch64-unknown-linux-android",
-      rust: nix.thunk(() => ({ __proto__: pos$20, rustcTarget: "aarch64-linux-android" })),
+      rust: nix.thunk(() => ({ [nix.POS]: pos$20, rustcTarget: "aarch64-linux-android" })),
       androidSdkVersion: "35",
       androidNdkVersion: "27",
       useAndroidPrebuilt: true,
     }));
     const aarch64_android = nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       config: "aarch64-unknown-linux-android",
       androidSdkVersion: "35",
       androidNdkVersion: "27",
       useAndroidPrebuilt: false,
       useLLVM: true,
     }));
-    const ben_nanonote = nix.thunk(() => nix.update({ __proto__: pos$23, config: "mipsel-unknown-linux-uclibc" }, nix.sel(platforms, "ben_nanonote")));
-    const fuloongminipc = nix.thunk(() => nix.update({ __proto__: pos$24, config: "mipsel-unknown-linux-gnu" }, nix.sel(platforms, "fuloong2f_n32")));
-    const mips_linux_gnu = nix.thunk(() => nix.update({ __proto__: pos$25, config: "mips-unknown-linux-gnu" }, nix.sel(platforms, "gcc_mips32r2_o32")));
-    const mipsel_linux_gnu = nix.thunk(() => nix.update({ __proto__: pos$26, config: "mipsel-unknown-linux-gnu" }, nix.sel(platforms, "gcc_mips32r2_o32")));
-    const mips64_linux_gnuabin32 = nix.thunk(() => nix.update({ __proto__: pos$27, config: "mips64-unknown-linux-gnuabin32" }, nix.sel(platforms, "gcc_mips64r2_n32")));
-    const mips64el_linux_gnuabin32 = nix.thunk(() => nix.update({ __proto__: pos$28, config: "mips64el-unknown-linux-gnuabin32" }, nix.sel(platforms, "gcc_mips64r2_n32")));
-    const mips64_linux_gnuabi64 = nix.thunk(() => nix.update({ __proto__: pos$29, config: "mips64-unknown-linux-gnuabi64" }, nix.sel(platforms, "gcc_mips64r2_64")));
-    const mips64el_linux_gnuabi64 = nix.thunk(() => nix.update({ __proto__: pos$30, config: "mips64el-unknown-linux-gnuabi64" }, nix.sel(platforms, "gcc_mips64r2_64")));
-    const muslpi = nix.thunk(() => nix.update(raspberryPi, { __proto__: pos$31, config: "armv6l-unknown-linux-musleabihf" }));
-    const aarch64_multiplatform_musl = nix.thunk(() => ({ __proto__: pos$32, config: "aarch64-unknown-linux-musl" }));
-    const gnu64 = nix.thunk(() => ({ __proto__: pos$33, config: "x86_64-unknown-linux-gnu" }));
-    const gnu32 = nix.thunk(() => ({ __proto__: pos$34, config: "i686-unknown-linux-gnu" }));
-    const musl64 = nix.thunk(() => ({ __proto__: pos$35, config: "x86_64-unknown-linux-musl" }));
-    const musl32 = nix.thunk(() => ({ __proto__: pos$36, config: "i686-unknown-linux-musl" }));
+    const ben_nanonote = nix.thunk(() => nix.update({ [nix.POS]: pos$23, config: "mipsel-unknown-linux-uclibc" }, nix.sel(platforms, "ben_nanonote")));
+    const fuloongminipc = nix.thunk(() => nix.update({ [nix.POS]: pos$24, config: "mipsel-unknown-linux-gnu" }, nix.sel(platforms, "fuloong2f_n32")));
+    const mips_linux_gnu = nix.thunk(() => nix.update({ [nix.POS]: pos$25, config: "mips-unknown-linux-gnu" }, nix.sel(platforms, "gcc_mips32r2_o32")));
+    const mipsel_linux_gnu = nix.thunk(() => nix.update({ [nix.POS]: pos$26, config: "mipsel-unknown-linux-gnu" }, nix.sel(platforms, "gcc_mips32r2_o32")));
+    const mips64_linux_gnuabin32 = nix.thunk(() => nix.update({ [nix.POS]: pos$27, config: "mips64-unknown-linux-gnuabin32" }, nix.sel(platforms, "gcc_mips64r2_n32")));
+    const mips64el_linux_gnuabin32 = nix.thunk(() => nix.update({ [nix.POS]: pos$28, config: "mips64el-unknown-linux-gnuabin32" }, nix.sel(platforms, "gcc_mips64r2_n32")));
+    const mips64_linux_gnuabi64 = nix.thunk(() => nix.update({ [nix.POS]: pos$29, config: "mips64-unknown-linux-gnuabi64" }, nix.sel(platforms, "gcc_mips64r2_64")));
+    const mips64el_linux_gnuabi64 = nix.thunk(() => nix.update({ [nix.POS]: pos$30, config: "mips64el-unknown-linux-gnuabi64" }, nix.sel(platforms, "gcc_mips64r2_64")));
+    const muslpi = nix.thunk(() => nix.update(raspberryPi, { [nix.POS]: pos$31, config: "armv6l-unknown-linux-musleabihf" }));
+    const aarch64_multiplatform_musl = nix.thunk(() => ({ [nix.POS]: pos$32, config: "aarch64-unknown-linux-musl" }));
+    const gnu64 = nix.thunk(() => ({ [nix.POS]: pos$33, config: "x86_64-unknown-linux-gnu" }));
+    const gnu32 = nix.thunk(() => ({ [nix.POS]: pos$34, config: "i686-unknown-linux-gnu" }));
+    const musl64 = nix.thunk(() => ({ [nix.POS]: pos$35, config: "x86_64-unknown-linux-musl" }));
+    const musl32 = nix.thunk(() => ({ [nix.POS]: pos$36, config: "i686-unknown-linux-musl" }));
     const riscv64 = nix.thunk(() => nix.app(riscv, "64"));
     const riscv32 = nix.thunk(() => nix.app(riscv, "32"));
-    const riscv64_musl = nix.thunk(() => ({ __proto__: pos$37, config: "riscv64-unknown-linux-musl" }));
-    const riscv64_embedded = nix.thunk(() => ({ __proto__: pos$38, config: "riscv64-none-elf" }));
-    const riscv32_embedded = nix.thunk(() => ({ __proto__: pos$39, config: "riscv32-none-elf" }));
-    const mips64_embedded = nix.thunk(() => ({ __proto__: pos$40, config: "mips64-none-elf" }));
-    const mips_embedded = nix.thunk(() => ({ __proto__: pos$41, config: "mips-none-elf" }));
-    const loongarch64_linux = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(platforms, "loongarch64-multiplatform")), nix.thunk(() => ({ __proto__: pos$42, config: "loongarch64-unknown-linux-gnu" }))));
+    const riscv64_musl = nix.thunk(() => ({ [nix.POS]: pos$37, config: "riscv64-unknown-linux-musl" }));
+    const riscv64_embedded = nix.thunk(() => ({ [nix.POS]: pos$38, config: "riscv64-none-elf" }));
+    const riscv32_embedded = nix.thunk(() => ({ [nix.POS]: pos$39, config: "riscv32-none-elf" }));
+    const mips64_embedded = nix.thunk(() => ({ [nix.POS]: pos$40, config: "mips64-none-elf" }));
+    const mips_embedded = nix.thunk(() => ({ [nix.POS]: pos$41, config: "mips-none-elf" }));
+    const loongarch64_linux = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(platforms, "loongarch64-multiplatform")), nix.thunk(() => ({ [nix.POS]: pos$42, config: "loongarch64-unknown-linux-gnu" }))));
     const loongarch64_linux_embedded = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(platforms, "loongarch64-multiplatform")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         config: "loongarch64-unknown-linux-gnu",
-        gcc: nix.thunk(() => ({ __proto__: pos$43, arch: "loongarch64", "strict-align": true })),
+        gcc: nix.thunk(() => ({ [nix.POS]: pos$43, arch: "loongarch64", "strict-align": true })),
       }))));
-    const mmix = nix.thunk(() => ({ __proto__: pos$45, config: "mmix-unknown-mmixware", libc: "newlib" }));
-    const rx_embedded = nix.thunk(() => ({ __proto__: pos$46, config: "rx-none-elf" }));
-    const msp430 = nix.thunk(() => ({ __proto__: pos$47, config: "msp430-elf" }));
-    const avr = nix.thunk(() => ({ __proto__: pos$48, config: "avr" }));
-    const vc4 = nix.thunk(() => ({ __proto__: pos$49, config: "vc4-elf" }));
-    const or1k = nix.thunk(() => ({ __proto__: pos$50, config: "or1k-elf" }));
-    const m68k = nix.thunk(() => ({ __proto__: pos$51, config: "m68k-unknown-linux-gnu" }));
-    const arc = nix.thunk(() => ({ __proto__: pos$52, config: "arc-unknown-linux-gnu" }));
-    const sh4 = nix.thunk(() => ({ __proto__: pos$53, config: "sh4-unknown-linux-gnu" }));
-    const s390 = nix.thunk(() => ({ __proto__: pos$54, config: "s390-unknown-linux-gnu" }));
-    const s390x = nix.thunk(() => ({ __proto__: pos$55, config: "s390x-unknown-linux-gnu" }));
-    const arm_embedded = nix.thunk(() => ({ __proto__: pos$56, config: "arm-none-eabi" }));
-    const arm_embedded_nano = nix.thunk(() => ({ __proto__: pos$57, config: "arm-none-eabi", libc: "newlib-nano" }));
+    const mmix = nix.thunk(() => ({ [nix.POS]: pos$45, config: "mmix-unknown-mmixware", libc: "newlib" }));
+    const rx_embedded = nix.thunk(() => ({ [nix.POS]: pos$46, config: "rx-none-elf" }));
+    const msp430 = nix.thunk(() => ({ [nix.POS]: pos$47, config: "msp430-elf" }));
+    const avr = nix.thunk(() => ({ [nix.POS]: pos$48, config: "avr" }));
+    const vc4 = nix.thunk(() => ({ [nix.POS]: pos$49, config: "vc4-elf" }));
+    const or1k = nix.thunk(() => ({ [nix.POS]: pos$50, config: "or1k-elf" }));
+    const m68k = nix.thunk(() => ({ [nix.POS]: pos$51, config: "m68k-unknown-linux-gnu" }));
+    const arc = nix.thunk(() => ({ [nix.POS]: pos$52, config: "arc-unknown-linux-gnu" }));
+    const sh4 = nix.thunk(() => ({ [nix.POS]: pos$53, config: "sh4-unknown-linux-gnu" }));
+    const s390 = nix.thunk(() => ({ [nix.POS]: pos$54, config: "s390-unknown-linux-gnu" }));
+    const s390x = nix.thunk(() => ({ [nix.POS]: pos$55, config: "s390x-unknown-linux-gnu" }));
+    const arm_embedded = nix.thunk(() => ({ [nix.POS]: pos$56, config: "arm-none-eabi" }));
+    const arm_embedded_nano = nix.thunk(() => ({ [nix.POS]: pos$57, config: "arm-none-eabi", libc: "newlib-nano" }));
     const armhf_embedded = nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       config: "arm-none-eabihf",
-      gcc: nix.thunk(() => ({ __proto__: pos$58, arch: "armv5t", fpu: "vfp" })),
+      gcc: nix.thunk(() => ({ [nix.POS]: pos$58, arch: "armv5t", fpu: "vfp" })),
     }));
     const aarch64_embedded = nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       config: "aarch64-none-elf",
-      rust: nix.thunk(() => ({ __proto__: pos$60, rustcTarget: "aarch64-unknown-none" })),
+      rust: nix.thunk(() => ({ [nix.POS]: pos$60, rustcTarget: "aarch64-unknown-none" })),
     }));
-    const aarch64be_embedded = nix.thunk(() => ({ __proto__: pos$62, config: "aarch64_be-none-elf" }));
-    const ppc_embedded = nix.thunk(() => ({ __proto__: pos$63, config: "powerpc-none-eabi" }));
-    const ppcle_embedded = nix.thunk(() => ({ __proto__: pos$64, config: "powerpcle-none-eabi" }));
-    const i686_embedded = nix.thunk(() => ({ __proto__: pos$65, config: "i686-elf" }));
-    const x86_64_embedded = nix.thunk(() => ({ __proto__: pos$66, config: "x86_64-elf" }));
-    const microblaze_embedded = nix.thunk(() => ({ __proto__: pos$67, config: "microblazeel-none-elf" }));
+    const aarch64be_embedded = nix.thunk(() => ({ [nix.POS]: pos$62, config: "aarch64_be-none-elf" }));
+    const ppc_embedded = nix.thunk(() => ({ [nix.POS]: pos$63, config: "powerpc-none-eabi" }));
+    const ppcle_embedded = nix.thunk(() => ({ [nix.POS]: pos$64, config: "powerpcle-none-eabi" }));
+    const i686_embedded = nix.thunk(() => ({ [nix.POS]: pos$65, config: "i686-elf" }));
+    const x86_64_embedded = nix.thunk(() => ({ [nix.POS]: pos$66, config: "x86_64-elf" }));
+    const microblaze_embedded = nix.thunk(() => ({ [nix.POS]: pos$67, config: "microblazeel-none-elf" }));
     const iphone64 = nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       config: "arm64-apple-ios",
       darwinSdkVersion: "14.3",
       xcodeVer: "12.3",
@@ -217,7 +217,7 @@ export default nix.lambda((args) => (() => {
       useiOSPrebuilt: true,
     }));
     const iphone64_simulator = nix.thunk(() => ({
-      __proto__: pos$69,
+      [nix.POS]: pos$69,
       config: "x86_64-apple-ios",
       darwinSdkVersion: "14.3",
       xcodeVer: "12.3",
@@ -226,52 +226,52 @@ export default nix.lambda((args) => (() => {
       useiOSPrebuilt: true,
     }));
     const aarch64_darwin = nix.thunk(() => ({
-      __proto__: pos$70,
+      [nix.POS]: pos$70,
       config: "arm64-apple-darwin",
       xcodePlatform: "MacOSX",
       platform: nix.thunk(() => ({})),
     }));
-    const x86_64_unknown_uefi = nix.thunk(() => ({ __proto__: pos$71, config: "x86_64-unknown-uefi" }));
-    const aarch64_unknown_uefi = nix.thunk(() => ({ __proto__: pos$72, config: "aarch64-unknown-uefi" }));
-    const mingw_msvcrt_i686 = nix.thunk(() => ({ __proto__: pos$73, config: "i686-w64-mingw32", libc: "msvcrt" }));
-    const mingw_msvcrt_x86_64 = nix.thunk(() => ({ __proto__: pos$74, config: "x86_64-w64-mingw32", libc: "msvcrt" }));
-    const mingw_ucrt_x86_64 = nix.thunk(() => ({ __proto__: pos$75, config: "x86_64-w64-mingw32", libc: "ucrt" }));
+    const x86_64_unknown_uefi = nix.thunk(() => ({ [nix.POS]: pos$71, config: "x86_64-unknown-uefi" }));
+    const aarch64_unknown_uefi = nix.thunk(() => ({ [nix.POS]: pos$72, config: "aarch64-unknown-uefi" }));
+    const mingw_msvcrt_i686 = nix.thunk(() => ({ [nix.POS]: pos$73, config: "i686-w64-mingw32", libc: "msvcrt" }));
+    const mingw_msvcrt_x86_64 = nix.thunk(() => ({ [nix.POS]: pos$74, config: "x86_64-w64-mingw32", libc: "msvcrt" }));
+    const mingw_ucrt_x86_64 = nix.thunk(() => ({ [nix.POS]: pos$75, config: "x86_64-w64-mingw32", libc: "ucrt" }));
     const mingw_ucrt_x86_64_llvm = nix.thunk(() => ({
-      __proto__: pos$77,
+      [nix.POS]: pos$77,
       config: "x86_64-w64-mingw32",
       libc: "ucrt",
-      rust: nix.thunk(() => ({ __proto__: pos$76, rustcTarget: "x86_64-pc-windows-gnullvm" })),
+      rust: nix.thunk(() => ({ [nix.POS]: pos$76, rustcTarget: "x86_64-pc-windows-gnullvm" })),
       useLLVM: true,
     }));
     const mingw_ucrt_aarch64 = nix.thunk(() => ({
-      __proto__: pos$79,
+      [nix.POS]: pos$79,
       config: "aarch64-w64-mingw32",
       libc: "ucrt",
-      rust: nix.thunk(() => ({ __proto__: pos$78, rustcTarget: "aarch64-pc-windows-gnullvm" })),
+      rust: nix.thunk(() => ({ [nix.POS]: pos$78, rustcTarget: "aarch64-pc-windows-gnullvm" })),
     }));
     const mingw32 = mingw_msvcrt_i686;
     const mingwW64 = mingw_msvcrt_x86_64;
     const ucrt64 = mingw_ucrt_x86_64;
     const ucrtAarch64 = mingw_ucrt_aarch64;
-    const x86_64_windows = nix.thunk(() => ({ __proto__: pos$80, config: "x86_64-pc-windows-msvc" }));
-    const aarch64_windows = nix.thunk(() => ({ __proto__: pos$81, config: "aarch64-pc-windows-msvc" }));
-    const x86_64_cygwin = nix.thunk(() => ({ __proto__: pos$82, config: "x86_64-pc-cygwin" }));
-    const aarch64_freebsd = nix.thunk(() => ({ __proto__: pos$83, config: "aarch64-unknown-freebsd" }));
-    const x86_64_freebsd = nix.thunk(() => ({ __proto__: pos$84, config: "x86_64-unknown-freebsd" }));
-    const x86_64_netbsd = nix.thunk(() => ({ __proto__: pos$85, config: "x86_64-unknown-netbsd" }));
-    const x86_64_netbsd_llvm = nix.thunk(() => ({ __proto__: pos$86, config: "x86_64-unknown-netbsd", useLLVM: true }));
-    const x86_64_openbsd = nix.thunk(() => ({ __proto__: pos$87, config: "x86_64-unknown-openbsd", useLLVM: true }));
-    const wasm32_wasip1 = nix.thunk(() => ({ __proto__: pos$88, config: "wasm32-unknown-wasip1", useLLVM: true }));
-    const wasi32 = nix.thunk(() => ({ __proto__: pos$89, config: "wasm32-unknown-wasip1", useLLVM: true }));
+    const x86_64_windows = nix.thunk(() => ({ [nix.POS]: pos$80, config: "x86_64-pc-windows-msvc" }));
+    const aarch64_windows = nix.thunk(() => ({ [nix.POS]: pos$81, config: "aarch64-pc-windows-msvc" }));
+    const x86_64_cygwin = nix.thunk(() => ({ [nix.POS]: pos$82, config: "x86_64-pc-cygwin" }));
+    const aarch64_freebsd = nix.thunk(() => ({ [nix.POS]: pos$83, config: "aarch64-unknown-freebsd" }));
+    const x86_64_freebsd = nix.thunk(() => ({ [nix.POS]: pos$84, config: "x86_64-unknown-freebsd" }));
+    const x86_64_netbsd = nix.thunk(() => ({ [nix.POS]: pos$85, config: "x86_64-unknown-netbsd" }));
+    const x86_64_netbsd_llvm = nix.thunk(() => ({ [nix.POS]: pos$86, config: "x86_64-unknown-netbsd", useLLVM: true }));
+    const x86_64_openbsd = nix.thunk(() => ({ [nix.POS]: pos$87, config: "x86_64-unknown-openbsd", useLLVM: true }));
+    const wasm32_wasip1 = nix.thunk(() => ({ [nix.POS]: pos$88, config: "wasm32-unknown-wasip1", useLLVM: true }));
+    const wasi32 = nix.thunk(() => ({ [nix.POS]: pos$89, config: "wasm32-unknown-wasip1", useLLVM: true }));
     const wasm32_unknown_none = nix.thunk(() => ({
-      __proto__: pos$91,
+      [nix.POS]: pos$91,
       config: "wasm32-unknown-none",
-      rust: nix.thunk(() => ({ __proto__: pos$90, rustcTarget: "wasm32-unknown-unknown" })),
+      rust: nix.thunk(() => ({ [nix.POS]: pos$90, rustcTarget: "wasm32-unknown-unknown" })),
       useLLVM: true,
     }));
-    const ghcjs = nix.thunk(() => ({ __proto__: pos$92, config: "javascript-unknown-ghcjs" }));
+    const ghcjs = nix.thunk(() => ({ [nix.POS]: pos$92, config: "javascript-unknown-ghcjs" }));
     return {
-      __proto__: pos$93,
+      [nix.POS]: pos$93,
       powernv,
       "musl-power": musl_power,
       "ppc64-elfv1": ppc64_elfv1,

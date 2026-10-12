@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nixos-firewall-tool",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       src: nix.thunk(() => nix.builtins.filterSource((name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", name)), nix.path(here, "./."))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.sel(buildPackages, "shellcheck-minimal", "compiler", "bootstrapAvailable")),
       checkPhase: "shellcheck nixos-firewall-tool\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Tool to temporarily manipulate the NixOS firewall",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

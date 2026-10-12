@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const xauth = nix.arg($, "xauth");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xtrace",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "xtrace",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
     --prefix PATH ':' "${xauth}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://salsa.debian.org/debian/xtrace",
         description: "Tool to trace X11 protocol connections",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

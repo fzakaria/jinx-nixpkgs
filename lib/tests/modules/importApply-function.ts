@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const lib = nix.arg($_1, "lib");
     const config = nix.arg($_1, "config");
-    return { __proto__: pos$1, value: foo };
+    return { [nix.POS]: pos$1, value: foo };
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=importApply-function.ts.map

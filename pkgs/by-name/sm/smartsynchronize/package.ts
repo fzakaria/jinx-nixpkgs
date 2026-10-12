@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const jre = openjdk21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smartsynchronize",
       version: "4.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.syntevo.com/downloads/smartsynchronize/smartsynchronize-linux-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           hash: "sha256-F+Yrr029nPnnCvFEhIxgeXloyt2JRKSw8uOmVySWKzo=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\nmkdir -pv $out/{bin,share/applications,share/icons/hicolor/scalable/apps/}\ncp -av ./lib $out/\ncp -av bin/smartsynchronize.sh $out/bin/smartsynchronize\n\ncp -av $desktopItem/share/applications/* $out/share/applications/\nfor icon_size in 32 48 64 128 256; do\n    path=$icon_size'x'$icon_size\n    icon=bin/smartsynchronize-$icon_size.png\n    mkdir -p $out/share/icons/hicolor/$path/apps\n    cp $icon $out/share/icons/hicolor/$path/apps/smartsynchronize.png\ndone\n\ncp -av bin/smartsynchronize.svg $out/share/icons/hicolor/scalable/apps/\n\nrunHook postInstall\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "smartsynchronize",
           exec: "smartsynchronize",
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
           keywords: nix.thunk(() => ["compare", "file manager"]),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "File Manager, File/Directory Compare",
         longDescription: "SmartSynchronize is a dual-pane, keyboard-centric, multi-platform file manager.\nIt also is known for its file compare, directory compare and file merge.\nSmartSynchronize is free to use for active Open Source developers and users from academic institutions.\n",
         homepage: "https://www.syntevo.com/smartsynchronize/",

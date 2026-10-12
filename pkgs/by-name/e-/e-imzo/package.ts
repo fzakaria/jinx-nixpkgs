@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "e-imzo",
       version: "6.4.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.xinux.uz/e-imzo/E-IMZO-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wHcVIGTNRMit5LqHcXcGGi7foDmiwHVXUcxl4ZlhGnY=",
         })))),
@@ -42,7 +42,7 @@ makeWrapper ${jre8}/bin/java $out/bin/e-imzo \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "For uzbek state web identity proving & key signing",
         mainProgram: "e-imzo",
         platforms: nix.thunk(() => (() => {

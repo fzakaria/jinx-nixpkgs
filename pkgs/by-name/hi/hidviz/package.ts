@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const asio_1_32_0 = nix.arg($, "asio_1_32_0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hidviz",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hidviz",
           repo: "hidviz",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ substituteInPlace libhidx/libhidx/src/Connector.cc --replace-fail '/usr/local/li
       ]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwebengine")), libusb1, protobuf, asio_1_32_0]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hidviz/hidviz",
         description: "GUI application for in-depth analysis of USB HID class devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

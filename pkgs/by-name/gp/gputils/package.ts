@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gputils",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gputils/gputils-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-j7iCCzHXwffHdhQcyzxPBvQK+RXaY3QSjXUtHu463fI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "gputils",
             version: "1.5.2",
             debianRevision: "2",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gputils.sourceforge.io",
         description: "Collection of tools for the Microchip (TM) PIC microcontrollers. It includes gpasm, gplink, and gplib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

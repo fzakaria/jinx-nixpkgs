@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gdal = nix.arg($, "gdal");
   const lib = nix.arg($, "lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gdal",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-gdal/ocaml-gdal/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-fW6bX4cv8eW2dsbv0SaeQwRpuPWB0mGzokQVjCaA8Z8=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ctypes_foreign, gdal]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml GDAL and OGR bindings",
         homepage: "https://github.com/ocaml-gdal/ocaml-gdal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "greetd-mini-wl-greeter",
       version: "0-unstable-2024-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "philj56",
           repo: "greetd-mini-wl-greeter",
           rev: "61f25ed34a1a35a061c2f3605fc3d4b37a7d0d8e",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       buildInputs: nix.thunk(() => [meson, ninja, scdoc]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extremely minimal raw Wayland greeter for greetd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/philj56/greetd-mini-wl-greeter",

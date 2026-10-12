@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dsremote",
       version: "0-unstable-2025-07-07",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Teuniz",
           repo: "DSRemote",
           rev: "b290debcfecd4fecf2069fb958bd43fe9e5ce5e1",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify"]),
       postPatch: "substituteInPlace dsremote.pro \\\n  --replace-fail \"/usr/\" \"$out/\" \\\n  --replace-fail \"/etc/\" \"$out/etc/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rigol DS1000Z remote control and waveform viewer",
         homepage: "https://www.teuniz.net/DSRemote",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

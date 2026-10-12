@@ -49,15 +49,15 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(rocmPackages, "rocm-runtime")),
     nix.thunk(() => nix.sel(rocmPackages, "rocm-core")),
   ]);
-  const rocmtoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$1, name: "rocm-merged", paths: rocmLibs }))));
+  const rocmtoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "rocm-merged", paths: rocmLibs }))));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ctranslate2",
       version: "4.8.2",
       __strutcturedAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "OpenNMT",
           repo: "CTranslate2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_CPU_DISPATCH", false)),
         ]))))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           ROCM_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rocmSupport, rocmtoolkit_joined)),
         })))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withMkl, nix.thunk(() => [mkl])), nix.concat(nix.app(nix.sel(lib, "optionals"), withCUDA, nix.thunk(() => [
@@ -98,15 +98,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(cudaPackages, "libcurand")),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withCUDA) && nix.asBool(withCuDNN))), nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cudnn"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), rocmSupport, rocmLibs), nix.concat(nix.app(nix.sel(lib, "optionals"), withOneDNN, nix.thunk(() => [onednn])), nix.concat(nix.app(nix.sel(lib, "optionals"), withOpenblas, nix.thunk(() => [openblas])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))]))))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           libretranslate: libretranslate,
           "wyoming-faster-whisper": wyoming_faster_whisper,
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast inference engine for Transformer models",
         mainProgram: "ct2-translator",
         homepage: "https://github.com/OpenNMT/CTranslate2",

@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const odoo_version = "17.0";
   const odoo_release = "20250506";
   const python = nix.thunk(() => nix.app(nix.sel(python311, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: python,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "docutils-0_17": nix.thunk(() => nix.app(nix.sel(prev, "docutils", "overridePythonAttrs"), (old) => (() => {
             const version = "0.17";
             const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: "git://repo.or.cz/docutils.git",
                 rev: nix.thunk(() => nix.str`docutils-${version}`),
                 hash: "sha256-O/9q/Dg1DBIxKdNBOhDV16yy5ez0QANJYMjeovDoWX8=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
               const w = nix.withScope(prev, null);
               return [nix.thunk(() => nix.lookup(w, "setuptools"))];
             })());
-            return { __proto__: pos$2, version, src, buildInputs };
+            return { [nix.POS]: pos$2, version, src, buildInputs };
           })())),
       }),
     }))));
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`${odoo_version}.${odoo_release}`);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`https://nightly.odoo.com/${odoo_version}/nightly/src/odoo_${version}.zip`),
           name: nix.thunk(() => nix.str`odoo-${version}`),
           hash: "sha256-V15Oe3AOBJ1agt5WmpFZnC7EkyoKyxTH8Iqdf2/9aec=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/odoo/odoo/commit/ade3200e8138a9c28eb9b294a4efd2753a8e5591.patch?full_index=1",
             hash: "sha256-EFKjrR38eg9bxlNmRNoLSXem+MjQKqPcR3/mSgs0cDs=",
           })))),
@@ -125,16 +125,16 @@ substituteInPlace odoo/service/server.py \\
       })());
       const dontStrip = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           odoo17: nix.thunk(() => nix.attr(nixosTests, "odoo17")),
           "odoo17-multiprocess": nix.thunk(() => nix.attr(nixosTests, "odoo17-multiprocess")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Open Source ERP and CRM",
         homepage: "https://www.odoo.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -147,7 +147,7 @@ substituteInPlace odoo/service/server.py \\
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "misoc",
       version: "0.12-unstable-2025-10-03",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m-labs",
           repo: "misoc",
           rev: "59043e979f78934f2c2f99ac417c65aa0c7be0b9",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook, numpy]),
       pythonImportsCheck: nix.thunk(() => ["misoc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Original high performance and small footprint system-on-chip based on Migen",
         homepage: "https://github.com/m-labs/misoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ristretto",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "ristretto",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`# Pull in HEIF, JXL and WebP support for ristretto.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extraLoaders: nix.thunk(() => [
             nix.thunk(() => nix.sel(libheif, "lib")),
             libjxl,
@@ -61,11 +61,11 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
         })))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "ristretto-" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "ristretto-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast and lightweight picture-viewer for the Xfce desktop environment",
         homepage: "https://gitlab.xfce.org/apps/ristretto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "native-sparse-attention-pytorch",
       version: "0.2.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lucidrains",
           repo: "native-sparse-attention-pytorch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, tqdm]),
       disabledTestPaths: nix.thunk(() => ["test_flex_masks.py", "test_triton_nsa.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             disabledTestPaths: [],
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Native Sparse Attention",
         homepage: "https://github.com/lucidrains/native-sparse-attention-pytorch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unicrypto = nix.arg($, "unicrypto");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "certipy-ad",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ly4k",
           repo: "Certipy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["certipy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and CLI tool to enumerate and abuse misconfigurations in Active Directory Certificate Services",
         homepage: "https://github.com/ly4k/Certipy",
         changelog: nix.thunk(() => nix.str`https://github.com/ly4k/Certipy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

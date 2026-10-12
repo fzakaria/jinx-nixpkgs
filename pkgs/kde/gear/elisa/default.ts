@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const libvlc = nix.arg($, "libvlc");
   const withVLC = nix.argOr($, "withVLC", () => true);
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "elisa",
       extraBuildInputs: nix.thunk(() => nix.concat([qtmultimedia], nix.app(nix.sel(lib, "optional"), withVLC, libvlc))),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "elisa" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "elisa" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

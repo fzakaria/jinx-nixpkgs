@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "glance",
       version: "0.8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glanceapp",
           repo: "glance",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, service: nix.thunk(() => nix.sel(nixosTests, "glance")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, service: nix.thunk(() => nix.sel(nixosTests, "glance")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/glanceapp/glance",
         changelog: nix.thunk(() => nix.str`https://github.com/glanceapp/glance/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Self-hosted dashboard that puts all your feeds in one place",

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9700n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pools: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -37,23 +37,23 @@ export default nix.lambda((args) => (() => {
           description: "Name of the pool(s) to collect, repeat for multiple pools (default: all pools).\n",
         })))),
       depth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 1n,
           description: "Depth of the vdev tree to report on.\n0 is the pool, 1 is top level vdevs, 2 is devices too.\n",
         })))),
       fullPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Report the full path of disks.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "zfs", "package"))]),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-siebenmann-zfs-exporter")}/bin/zfs_exporter \\
   --listen-addr ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   --depth ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "depth")))} \\

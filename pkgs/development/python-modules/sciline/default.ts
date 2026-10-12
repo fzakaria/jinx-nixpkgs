@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sciline",
       version: "26.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipp",
           repo: "sciline",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["sciline"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build scientific pipelines for your data",
         homepage: "https://scipp.github.io/sciline/",
         changelog: nix.thunk(() => nix.str`https://github.com/scipp/sciline/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

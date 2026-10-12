@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const version = "5.1.0-6";
   const unpacked = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       pname: "dell-command-configure-unpacked",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://dl.dell.com/FOLDER12705845M/1/command-configure_${version}.ubuntu24_amd64.tar.gz`),
             "https://web.archive.org/web/20250421172156/https://dl.dell.com/FOLDER12705845M/1/command-configure_5.1.0-6.ubuntu24_amd64.tar.gz",
@@ -42,7 +42,7 @@ dpkg-deb -x srvadmin-hapi_9.5.0_amd64.deb srvadmin-hapi
     })));
   const wrapperLibName = "wrapper-lib.so";
   const wrapperLib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dell-command-configure-unpacked-wrapper-lib",
       version: version,
       unpackPhase: nix.thunk(() => nix.str`cp ${nix.path(here, "./wrapper-lib.c")} wrapper-lib.c
@@ -55,7 +55,7 @@ cc -fPIC -shared lib.c -o ${wrapperLibName}
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: version,
       pname: "dell-command-configure",
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
@@ -76,7 +76,7 @@ ${patchelfUnstable}/bin/patchelf \\
   $out/lib/*
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Configure BIOS settings on Dell laptops",
         homepage: "https://www.dell.com/support/article/us/en/19/sln311302/dell-command-configure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

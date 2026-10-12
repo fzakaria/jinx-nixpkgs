@@ -99,10 +99,10 @@ export default nix.thunk(() => (() => {
         const allArgs = nix.thunk(() => nix.update(args_1, nix.update(prevArgs, innerArgs)));
         const filteredArgs = nix.thunk(() => nix.builtins.removeAttrs(allArgs, nix.thunk(() => ["extensions", "extraConfig"])));
         const php = nix.thunk(() => nix.app(generic, filteredArgs));
-        const php_packages = nix.thunk(() => nix.app(nix.sel(nix.app(callPackage, nix.path(here, "../../../top-level/php-packages.nix"), nix.thunk(() => ({ __proto__: pos$1, phpPackage: phpWithExtensions }))), "overrideScope"), packageOverrides));
+        const php_packages = nix.thunk(() => nix.app(nix.sel(nix.app(callPackage, nix.path(here, "../../../top-level/php-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, phpPackage: phpWithExtensions }))), "overrideScope"), packageOverrides));
         const allExtensionFunctions = nix.thunk(() => nix.concat(prevExtensionFunctions, [extensions]));
         const enabledExtensions = nix.thunk(() => nix.builtins["foldl'"]((enabled) => (f) => nix.app(f, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enabled: enabled,
               all: nix.thunk(() => nix.sel(php_packages, "extensions")),
             }))), [], allExtensionFunctions));
@@ -116,7 +116,7 @@ export default nix.thunk(() => (() => {
               const phpDeps = nix.thunk(() => nix.concat(nix.selOr(ext, () => [], "internalDeps"), nix.selOr(ext, () => [], "peclDeps")));
               const type = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(ext, () => false, "zendExtension")), "zend_")}extension`);
               return nix.app(nix.sel(lib, "nameValuePair"), extName, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   text: nix.thunk(() => nix.str`${type}=${ext}/lib/php/extensions/${extName}.so`),
                   deps: nix.thunk(() => nix.builtins.map(getExtName, phpDeps)),
                 })));
@@ -126,26 +126,26 @@ export default nix.thunk(() => (() => {
 ${extraConfig}
 `)));
         const phpWithExtensions = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pname: "php-with-extensions",
             version: nix.thunk(() => nix.attr(php, "version")),
             strictDeps: true,
             __structuredAttrs: true,
             nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
             passthru: nix.thunk(() => nix.update(nix.sel(php, "passthru"), {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               buildEnv: nix.thunk(() => nix.app(mkBuildEnv, allArgs, allExtensionFunctions)),
               withExtensions: nix.thunk(() => nix.app(mkWithExtensions, allArgs, allExtensionFunctions)),
               overrideAttrs: (f) => (() => {
                 const phpAttrsOverrides_1 = nix.thunk(() => nix.selOr(filteredArgs, () => (final) => (prev) => ({}), "phpAttrsOverrides"));
                 const newPhpAttrsOverrides = nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), phpAttrsOverrides_1)), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), f))));
-                const php_1 = nix.thunk(() => nix.app(generic, nix.thunk(() => nix.update(filteredArgs, { __proto__: pos$4, phpAttrsOverrides: newPhpAttrsOverrides }))));
-                return nix.app(nix.sel(php_1, "buildEnv"), nix.thunk(() => ({ __proto__: pos$5, extensions: extensions, extraConfig: extraConfig })));
+                const php_1 = nix.thunk(() => nix.app(generic, nix.thunk(() => nix.update(filteredArgs, { [nix.POS]: pos$4, phpAttrsOverrides: newPhpAttrsOverrides }))));
+                return nix.app(nix.sel(php_1, "buildEnv"), nix.thunk(() => ({ [nix.POS]: pos$5, extensions: extensions, extraConfig: extraConfig })));
               })(),
               phpIni: nix.thunk(() => nix.str`${phpWithExtensions}/lib/php.ini`),
               unwrapped: php,
               tests: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 nixos: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(nixosTests, nix.key(nix.str`php${nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(php, "version")))))}`))))),
                 package: nix.thunk(() => nix.sel(tests, "php")),
               })),
@@ -160,7 +160,7 @@ ${extraConfig}
               composerHooks2: nix.thunk(() => nix.attr(php_packages, "composerHooks2")),
               mkExtension: nix.thunk(() => nix.attr(php_packages, "mkExtension")),
               packages: nix.thunk(() => nix.sel(php_packages, "tools")),
-              meta: nix.thunk(() => nix.update(nix.sel(php, "meta"), { __proto__: pos$7, outputsToInstall: nix.thunk(() => ["out"]) })),
+              meta: nix.thunk(() => nix.update(nix.sel(php, "meta"), { [nix.POS]: pos$7, outputsToInstall: nix.thunk(() => ["out"]) })),
             })),
             paths: nix.thunk(() => [php]),
             postBuild: nix.thunk(() => nix.str`ln -s ${extraInit} $out/lib/php.ini
@@ -184,22 +184,22 @@ fi
           }))));
         return nix.force(phpWithExtensions);
       })(), formals$2));
-    const mkWithExtensions = (prevArgs) => (prevExtensionFunctions) => (extensions) => nix.app(mkBuildEnv, prevArgs, prevExtensionFunctions, nix.thunk(() => ({ __proto__: pos$10, extensions: extensions })));
+    const mkWithExtensions = (prevArgs) => (prevExtensionFunctions) => (extensions) => nix.app(mkBuildEnv, prevArgs, prevExtensionFunctions, nix.thunk(() => ({ [nix.POS]: pos$10, extensions: extensions })));
     const defaultPhpSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         url: nix.thunk(() => nix.str`https://www.php.net/distributions/php-${version}.tar.bz2`),
         hash: hash,
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
         const attrs = nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           pname: "php",
           version: version,
           enableParallelBuilding: true,
           nativeBuildInputs: nix.thunk(() => [autoconf, automake, bison, flex, libtool, pkg_config, re2c]),
           buildInputs: nix.thunk(() => nix.concat([pcre2], nix.concat(nix.app(nix.sel(lib, "optionals"), pearSupport, nix.thunk(() => [nix.thunk(() => nix.sel(libxml2, "dev"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(fpmSupport) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [acl])), nix.concat(nix.app(nix.sel(lib, "optional"), apxs2Support, apacheHttpd), nix.concat(nix.app(nix.sel(lib, "optional"), argon2Support, libargon2), nix.concat(nix.app(nix.sel(lib, "optional"), systemdSupport, systemdLibs), nix.app(nix.sel(lib, "optional"), valgrindSupport, valgrind)))))))),
           env: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-std=c++11")),
             SKIP_PERF_SENSITIVE: 1n,
           })),
@@ -220,7 +220,7 @@ fi
           separateDebugInfo: true,
           outputs: nix.thunk(() => ["out", "dev"]),
           passthru: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             updateScript: nix.thunk(() => (() => {
               const script = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`php${nix.app(nix.sel(lib, "versions", "major"), version)}${nix.app(nix.sel(lib, "versions", "minor"), version)}-update-script`), nix.thunk(() => nix.str`set -o errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, curl, jq]))}
@@ -235,31 +235,31 @@ update-source-version "$UPDATE_NIX_ATTR_PATH.unwrapped" "$new_version" "--file=$
               const newPhpAttrsOverrides = nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), phpAttrsOverrides)), nix.thunk(() => nix.app(nix.sel(lib, "toExtension"), f))));
               const phpOverridden = nix.thunk(() => nix.app(nix.sel(finalAttrs, "overrideAttrs"), f));
               return nix.update(phpOverridden, {
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 passthru: nix.thunk(() => nix.update(nix.sel(phpOverridden, "passthru"), {
-                  __proto__: pos$15,
-                  buildEnv: nix.thunk(() => nix.app(mkBuildEnv, nix.thunk(() => ({ __proto__: pos$13, phpAttrsOverrides: newPhpAttrsOverrides })), [])),
-                  withExtensions: nix.thunk(() => nix.app(mkWithExtensions, nix.thunk(() => ({ __proto__: pos$14, phpAttrsOverrides: newPhpAttrsOverrides })), [])),
+                  [nix.POS]: pos$15,
+                  buildEnv: nix.thunk(() => nix.app(mkBuildEnv, nix.thunk(() => ({ [nix.POS]: pos$13, phpAttrsOverrides: newPhpAttrsOverrides })), [])),
+                  withExtensions: nix.thunk(() => nix.app(mkWithExtensions, nix.thunk(() => ({ [nix.POS]: pos$14, phpAttrsOverrides: newPhpAttrsOverrides })), [])),
                 })),
               });
             })(),
             ztsSupport: ztsSupport,
             services: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 imports: nix.thunk(() => [
-                  nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ __proto__: pos$17, formats: formats, coreutils: coreutils })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$17, formats: formats, coreutils: coreutils })))),
                 ]),
                 "php-fpm": nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
                 })),
               })),
             })),
           })),
           meta: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             description: "HTML-embedded scripting language",
             homepage: "https://www.php.net/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

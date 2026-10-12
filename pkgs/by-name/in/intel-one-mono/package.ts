@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "intel-one-mono",
       version: "1.4.0",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/intel/intel-one-mono/releases/download/V${nix.sel(finalAttrs, "version")}/otf.zip`),
             hash: "sha256-dO+O5mdAPHYHRbwS/F4ssWhFRBlPrT1TQJGcFzqCJ/w=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/intel/intel-one-mono/releases/download/V${nix.sel(finalAttrs, "version")}/ttf.zip`),
             hash: "sha256-VIY1UtJdy5w/U2CylvyYDW4fv9AuDSFCJOi3jworzPA=",
           })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\ninstall -Dm644 -t $out/share/fonts/truetype/ ttf/*.ttf\ninstall -Dm644 -t $out/share/fonts/opentype/ otf/*.otf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Intel One Mono, an expressive monospaced font family that’s built with clarity, legibility, and the needs of developers in mind",
         homepage: "https://github.com/intel/intel-one-mono",
         changelog: nix.thunk(() => nix.str`https://github.com/intel/intel-one-mono/releases/tag/V${nix.sel(finalAttrs, "version")}`),

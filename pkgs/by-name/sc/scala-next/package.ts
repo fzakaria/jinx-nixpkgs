@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const scala = nix.arg($, "scala");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(scala, "bare", "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "3.8.4",
       pname: "scala-next",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(oldAttrs, "src"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.attr(from, "url")),
           hash: "sha256-yy+aNY7ESe7EF9Y+/Ztvxr1moTsTR9ScJVceyihIV9M=",
         };

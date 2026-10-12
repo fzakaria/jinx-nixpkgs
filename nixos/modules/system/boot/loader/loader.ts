@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "loader", "grub", "timeout"]), nix.thunk(() => ["boot", "loader", "timeout"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "loader", "gummiboot", "timeout"]), nix.thunk(() => ["boot", "loader", "timeout"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       boot: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         loader: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           timeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: 5n,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               description: "Timeout (in seconds) until loader boots the default menu item. Use null if the loader menu should be displayed indefinitely.\n",

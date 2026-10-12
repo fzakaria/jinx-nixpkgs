@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const ngtcp2_gnutls = nix.arg($, "ngtcp2-gnutls");
   return nix.app(nix.sel(curl, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       gnutlsSupport: true,
       opensslSupport: false,
       ngtcp2: ngtcp2_gnutls,

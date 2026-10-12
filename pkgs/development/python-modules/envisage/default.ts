@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const traits = nix.arg($, "traits");
   const traitsui = nix.arg($, "traitsui");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "envisage",
       version: "7.0.4-unstable-2026-07-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "enthought",
           repo: "envisage",
           rev: "8b1548a589ff1c317a3a1c709e2d186302e8df88",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["envisage"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for building applications whose functionalities can be extended by adding plug-ins",
         homepage: "https://github.com/enthought/envisage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

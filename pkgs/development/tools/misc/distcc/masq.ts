@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const gccRaw = nix.arg($, "gccRaw");
   const binutils = nix.arg($, "binutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`distcc-masq-${nix.sel(gccRaw, "name")}`),
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -49,7 +49,7 @@ else
 fi
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));

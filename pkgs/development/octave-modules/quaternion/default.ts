@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "quaternion";
       const version = "2.4.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-S8tkdDlyaT8E7W0v6kkGs4qTU/G4DG5vLQvA9vjPOgc=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/quaternion/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })()),
         description: "Quaternion package for GNU Octave, includes a quaternion class with overloaded operators",
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

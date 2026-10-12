@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaraco",
           repo: "keyring",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pyfakefs, pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/backends/test_macOS.py"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "tests/test_multiprocess.py")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Store and access your passwords safely",
         homepage: "https://github.com/jaraco/keyring",
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/keyring/blob/${nix.sel(src, "tag")}/NEWS.rst`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

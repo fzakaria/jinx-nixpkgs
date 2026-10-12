@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     environment: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       systemPackages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "w3m-nographics")),
         nix.thunk(() => nix.sel(pkgs, "testdisk")),
@@ -48,17 +48,17 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       supportedFilesystems: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ["ext2", "ext3", "ext4", "btrfs", "cifs", "f2fs", "ntfs", "vfat", "xfs"]),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), nix.thunk(() => nix.sel(config, "boot", "zfs", "package")))), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               zfs: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })))),
         ]))),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hostId: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "8425e349")),
     })),
   };

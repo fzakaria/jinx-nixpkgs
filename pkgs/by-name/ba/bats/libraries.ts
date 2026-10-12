@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     "bats-assert": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "bats-assert",
         version: "2.2.4",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "bats-core",
             repo: "bats-assert",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-assert\"\ncp load.bash \"$out/share/bats/bats-assert\"\ncp -r src \"$out/share/bats/bats-assert\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Common assertions for Bats",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-assert",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))),
     "bats-file": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "bats-file",
         version: "0.4.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "bats-core",
             repo: "bats-file",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-file\"\ncp load.bash \"$out/share/bats/bats-file\"\ncp -r src \"$out/share/bats/bats-file\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Common filesystem assertions for Bats",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-file",
@@ -75,11 +75,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))),
     "bats-detik": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "bats-detik",
         version: "1.3.3",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "bats-core",
             repo: "bats-detik",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-detik\"\ncp -r lib/* \"$out/share/bats/bats-detik\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Library to ease e2e tests of applications in K8s environments",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-detik",
@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))),
     "bats-support": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: "bats-support",
         version: "0.3.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "bats-core",
             repo: "bats-support",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-support\"\ncp load.bash \"$out/share/bats/bats-support\"\ncp -r src \"$out/share/bats/bats-support\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "Supporting library for Bats test helpers",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-support",

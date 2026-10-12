@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-rest-polymorphic",
       version: "0.1.10",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apirobot",
           repo: "django-rest-polymorphic",
           rev: "9d920eb91ef13144094426f9ebc0ca80247c0fe3",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_django, pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["rest_polymorphic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Polymorphic serializers for Django REST Framework",
         homepage: "https://github.com/apirobot/django-rest-polymorphic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

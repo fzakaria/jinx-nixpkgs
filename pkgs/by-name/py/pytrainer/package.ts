@@ -32,20 +32,20 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xvfb_run = nix.arg($, "xvfb-run");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       self: python,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$2,
-        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ __proto__: pos$1, enableGtk3: true })))),
+        [nix.POS]: pos$2,
+        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGtk3: true })))),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pytrainer",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "pytrainer",
           repo: "pytrainer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +53,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/pytrainer/pytrainer/commit/9847c76e61945466775bde038057bf5fd31ae089.patch",
             hash: "sha256-cGNu4lK0eQWzcSFTKc8g/qHSSHfy0ow4T3eT+zl5lPM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/pytrainer/pytrainer/commit/eda968a8b48074f03efbdfbd692b46edef3658cd.patch",
             hash: "sha256-MdxsKO6DgncHhGlJWcEeyYiPKf3qdhMqXrYYC+jqros=",
           })))),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
   ${nix.sel(python, "interpreter")} -m unittest
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/pytrainer/pytrainer",
         description: "Application for logging and graphing sporting excursions",
         mainProgram: "pytrainer",

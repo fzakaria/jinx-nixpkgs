@@ -40,34 +40,34 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "ntpd-rs.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const validateConfig = (file) => nix.app(nix.sel(pkgs, "runCommand"), "validate-ntpd-rs.toml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
     })), nix.thunk(() => nix.str`ntp-ctl validate -c ${file}
 ln -s "${file}" "$out"
 `));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "ntpd-rs": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Network Time Service (ntpd-rs)")),
           metrics: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ntpd-rs Prometheus Metrics Exporter")),
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ntpd-rs", nix.thunk(() => ({})))),
           useNetworkingTimeServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Use source time servers from {var}`networking.timeServers` in config.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$4, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              [nix.POS]: pos$5,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$4, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
               default: nix.thunk(() => ({})),
               description: "Settings to write to {file}`ntp.toml`\n\nSee <https://docs.ntpd-rs.pendulum-project.org/man/ntp.toml.5>\nfor more information about available options.\n",
             })))),
@@ -75,32 +75,32 @@ ln -s "${file}" "$out"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "services", "timesyncd", "enable"))),
             message: "`ntpd-rs` is not compatible with `services.timesyncd`. Please disable one of them.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "systemd-timedated": nix.thunk(() => ({
-              __proto__: pos$12,
-              environment: nix.thunk(() => ({ __proto__: pos$11, SYSTEMD_TIMEDATED_NTP_SERVICES: "ntpd-rs.service" })),
+              [nix.POS]: pos$12,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$11, SYSTEMD_TIMEDATED_NTP_SERVICES: "ntpd-rs.service" })),
             })),
             "ntpd-rs": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 User: "",
                 Group: "",
                 DynamicUser: true,
@@ -137,10 +137,10 @@ ln -s "${file}" "$out"
               })),
             })),
             "ntpd-rs-metrics": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "metrics", "enable")), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   User: "",
                   Group: "",
                   DynamicUser: true,
@@ -180,19 +180,19 @@ ln -s "${file}" "$out"
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
-          timesyncd: nix.thunk(() => ({ __proto__: pos$19, enable: false })),
+          [nix.POS]: pos$24,
+          timesyncd: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
           "ntpd-rs": nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             settings: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               observability: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 "log-level": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "warn")),
                 "observation-path": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/run/ntpd-rs/observe")),
               })),
               source: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useNetworkingTimeServers")), nix.thunk(() => nix.builtins.map((ts) => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     mode: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "strings", "hasInfix"), "pool", ts)) ? "pool" : "server")),
                     address: ts,
                   }), nix.thunk(() => nix.sel(config, "networking", "timeServers")))))),
@@ -201,7 +201,7 @@ ln -s "${file}" "$out"
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fpletz"))];

@@ -15,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "win-disk-writer",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/TechUnRestricted/WinDiskWriter/releases/download/v${nix.sel(finalAttrs, "version")}/WinDiskWriter.${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-3+Pjp1T0u6G64W8dm4pWRiznDWNW4cMxTkoAIQgvtQY=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/WinDiskWriter.app\"\ncp -R . \"$out/Applications/WinDiskWriter.app/\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Windows Bootable USB creator for macOS",
         homepage: "https://github.com/TechUnRestricted/WinDiskWriter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

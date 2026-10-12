@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "anakron",
       version: "0.3.3",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/molarmanful/ANAKRON/releases/download/v${nix.sel(finalAttrs, "version")}/ANAKRON-release_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-l4MA3OsMnqPIBWKx3ZO5XnxjE0gnIGyAtsZe2z/9zrw=",
         })))),
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "runHook preInstall\n\nmisc=\"$out/share/fonts/misc\"\ninstall -D -m 644 *.{bdf,otb,pcf} -t \"$misc\"\ninstall -D -m 644 *.psfu -t \"$out/share/consolefonts\"\ninstall -D -m 644 *.ttf -t \"$out/share/fonts/truetype\"\n\n# create fonts.dir so NixOS xorg module adds to fp\nmkfontdir \"$misc\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Thicc retrofuturistic bitmap font made for the modern screen",
         homepage: "https://github.com/molarmanful/ANAKRON",
         changelog: nix.thunk(() => nix.str`https://github.com/molarmanful/ANAKRON/releases/tag/v${nix.sel(finalAttrs, "version")}`),

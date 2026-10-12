@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pystemmer = nix.arg($, "pystemmer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snowballstemmer",
       version: "3.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-4Hu8VKDXmP5gEKEjmEIuYqi/u6lcOU/QlW71jLTT4mA=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pystemmer]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "16 stemmer algorithms (15 + Poerter English stemmer) generated from Snowball algorithms",
         homepage: "https://snowballstem.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/snowballstem/snowball/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

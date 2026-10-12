@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "gpio";
       const version = "0.0.4";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raboof",
           repo: "ha-gpio",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [gpiod]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant GPIO custom integration",
         homepage: "https://codeberg.org/raboof/ha-gpio",
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

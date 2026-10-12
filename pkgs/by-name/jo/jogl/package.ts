@@ -31,21 +31,21 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const version = "2.4.0";
   const gluegen_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "git://jogamp.org/srv/scm/gluegen.git",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-qQzq7v2vMFeia6gXaNHS3AbOp9HhDRgISp7P++CKErA=",
       fetchSubmodules: true,
     }))));
   const jogl_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "git://jogamp.org/srv/scm/jogl.git",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PHDq7uFEQfJ2P0eXPUi0DGFR1ob/n5a68otgzpFnfzQ=",
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jogl",
       version: version,
       srcs: nix.thunk(() => [gluegen_src, jogl_src]),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           libgbm,
         ]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SOURCE_LEVEL: "1.8",
         TARGET_LEVEL: "1.8",
         TARGET_RT_JAR: "null.jar",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nfor f in gluegen jogl; do\n  pushd $f/make\n  ant\n  popd\ndone\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/java\ncp -v $NIX_BUILD_TOP/gluegen/build/gluegen-rt{,-natives-linux-*}.jar $out/share/java/\ncp -v $NIX_BUILD_TOP/jogl/build/jar/jogl-all{,-natives-linux-*}.jar  $out/share/java/\ncp -v $NIX_BUILD_TOP/jogl/build/nativewindow/nativewindow{,-awt,-natives-linux-*,-os-drm,-os-x11}.jar  $out/share/java/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Java libraries for 3D Graphics, Multimedia and Processing",
         homepage: "https://jogamp.org/",
         changelog: "https://jogamp.org/deployment/jogamp-current/archive/ChangeLogs/",

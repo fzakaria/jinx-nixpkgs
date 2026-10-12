@@ -36,87 +36,87 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "diod"));
   const diodBool = (b) => (nix.asBool(b) ? "1" : "0");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         diod: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the diod 9P file server.",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["0.0.0.0:564"]),
               description: "[ \"IP:PORT\" [,\"IP:PORT\",...] ]\nList the interfaces and ports that diod should listen on.\n",
             })))),
           exports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List the file systems that clients will be allowed to mount. All paths should\nbe fully qualified. The exports table can include two types of element:\na string element (as above),\nor an alternate table element form { path=\"/path\", opts=\"ro\" }.\nIn the alternate form, the (optional) opts attribute is a comma-separated list\nof export options. The two table element forms can be mixed in the exports\ntable. Note that although diod will not traverse file system boundaries for a\ngiven mount due to inode uniqueness constraints, subdirectories of a file\nsystem can be separately exported.\n",
             })))),
           exportall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Export all file systems listed in /proc/mounts. If new file systems are mounted\nafter diod has started, they will become immediately mountable. If there is a\nduplicate entry for a file system in the exports list, any options listed in\nthe exports entry will apply.\n",
             })))),
           exportopts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Establish a default set of export options. These are overridden, not appended\nto, by opts attributes in an \"exports\" entry.\n",
             })))),
           nwthreads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 16n,
               description: "Sets the (fixed) number of worker threads created to handle 9P\nrequests for a unique aname.\n",
             })))),
           authRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allow clients to connect without authentication, i.e. without a valid MUNGE credential.\n",
             })))),
           userdb: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This option disables password/group lookups. It allows any uid to attach and\nassumes gid=uid, and supplementary groups contain only the primary gid.\n",
             })))),
           allsquash: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Remap all users to \"nobody\". The attaching user need not be present in the\npassword file.\n",
             })))),
           squashuser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nobody",
               description: "Change the squash user. The squash user must be present in the password file.\n",
             })))),
           logdest: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "syslog:daemon:err",
               description: "Set the destination for logging.\nThe value has the form of \"syslog:facility:level\" or \"filename\".\n",
             })))),
           statfsPassthru: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This option configures statfs to return the host file system's type\nrather than V9FS_MAGIC.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration options for diod.conf.",
@@ -125,14 +125,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "diod", "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "diod"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "diod.conf": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               text: nix.thunk(() => nix.str`allsquash = ${nix.app(diodBool, nix.thunk(() => nix.sel(cfg, "allsquash")))}
 auth_required = ${nix.app(diodBool, nix.thunk(() => nix.sel(cfg, "authRequired")))}
 exportall = ${nix.app(diodBool, nix.thunk(() => nix.sel(cfg, "exportall")))}
@@ -150,11 +150,11 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "diod"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
-            diod: nix.thunk(() => ({ __proto__: pos$20, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+            [nix.POS]: pos$21,
+            diod: nix.thunk(() => ({ [nix.POS]: pos$20, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
           })),
         })),
       })))),

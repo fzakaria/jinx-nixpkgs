@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lemonade",
       version: "1.1.1-unstable-2021-06-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lemonade-command",
           repo: "lemonade",
           rev: "97ad2f7d63cbe6c696af36a754d399b4be4553bc",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/lemonade-command/lemonade/commit/2b292b0c9d8dc57f73c30a58b3f0f790a953b212.patch",
             sha256: "sha256-jUcOfsKu1IYa7arZuAvhuD0vw7JTmhzA/VLxOtAnbmI=",
           })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-wjQfTKVNmehu4aU5425gS0YWKj53dosVSTLgdu9KjKc=",
       subPackages: nix.thunk(() => ["."]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Remote utility tool that to copy, paste and open browsers over TCP",
         homepage: "https://github.com/lemonade-command/lemonade/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

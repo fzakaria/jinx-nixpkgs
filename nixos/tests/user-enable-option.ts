@@ -19,27 +19,27 @@ export default nix.thunk(() => (() => {
   const system_disabled = "username-system-disabled";
   const passwd = "enableOptionPasswd";
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "user-enable-option",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         users: nix.thunk(() => ({
-          __proto__: pos$6,
-          groups: nix.thunk(() => ({ __proto__: pos$1, "test-group": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$6,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$1, "test-group": nix.thunk(() => ({})) })),
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [normal_enabled, nix.thunk(() => ({ __proto__: pos$2, enable: true, isNormalUser: true, initialPassword: passwd }))],
-            [normal_disabled, nix.thunk(() => ({ __proto__: pos$3, enable: false, isNormalUser: true, initialPassword: passwd }))],
+            [normal_enabled, nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, isNormalUser: true, initialPassword: passwd }))],
+            [normal_disabled, nix.thunk(() => ({ [nix.POS]: pos$3, enable: false, isNormalUser: true, initialPassword: passwd }))],
             [system_enabled, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               isSystemUser: true,
               initialPassword: passwd,
               group: "test-group",
             }))],
             [system_disabled, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: false,
               isSystemUser: true,
               initialPassword: passwd,

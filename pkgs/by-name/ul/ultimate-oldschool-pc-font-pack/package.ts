@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const pname = "ultimate-oldschool-pc-font-pack";
       const version = "2.2";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://int10h.org/oldschool-pc-fonts/download/oldschool_pc_font_pack_v${version}_linux.zip`),
           stripRoot: false,
           hash: "sha256-54U8tZzvivTSOgmGesj9QbIgkSTm9w4quMhsuEc0Xy4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ultimate Oldschool PC Font Pack (TTF Fonts)",
         homepage: "https://int10h.org/oldschool-pc-fonts/",
         changelog: "https://int10h.org/oldschool-pc-fonts/readme/#history",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "endgame"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

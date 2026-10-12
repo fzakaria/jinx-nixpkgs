@@ -21,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const poppler_utils = nix.arg($, "poppler-utils");
   const deps = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => (() => {
       const name = nix.thunk(() => nix.str`anystyle-cli-${version}`);
-      const source = nix.thunk(() => ({ __proto__: pos$1, sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) }));
+      const source = nix.thunk(() => ({ [nix.POS]: pos$1, sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) }));
       const version = "1.5.0";
       const ruby_1 = ruby;
       const gemdir = nix.path(here, "./.");
       const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           anystyle: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             source: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               remotes: nix.thunk(() => ["https://rubygems.org"]),
               sha256: "C/OrU7guHzHdY80upEXRfhWmUYDxpI54NIvIjKv0znw=",
               type: "gem",
             })),
           })),
         }))));
-      return { __proto__: pos$5, name, source, version, ruby: ruby_1, gemdir, gemset };
+      return { [nix.POS]: pos$5, name, source, version, ruby: ruby_1, gemdir, gemset };
     })())));
   return nix.app(buildRubyGem, nix.thunk(() => (() => {
       const ruby_1 = ruby;
       const gemName = "anystyle-cli";
       const pname = gemName;
       const version = "1.5.0";
-      const source = nix.thunk(() => ({ __proto__: pos$6, sha256: "Bkk00PBk/6noCXgAbr1XUcdBq5vpdeL0ES02eeNA594=" }));
+      const source = nix.thunk(() => ({ [nix.POS]: pos$6, sha256: "Bkk00PBk/6noCXgAbr1XUcdBq5vpdeL0ES02eeNA594=" }));
       const propagatedBuildInputs = nix.thunk(() => [deps]);
       const preFixup = nix.thunk(() => nix.str`wrapProgram $out/bin/anystyle --prefix PATH : ${poppler_utils}/bin
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Command line interface to the AnyStyle Parser and Finder",
         homepage: "https://anystyle.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         ruby: ruby_1,
         gemName,
         pname,

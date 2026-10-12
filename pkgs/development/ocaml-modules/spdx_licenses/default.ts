@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spdx_licenses",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kit-ty-kate/spdx_licenses/releases/download/v${nix.sel(finalAttrs, "version")}/spdx_licenses-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ciUka6XWRg2bYqzXWOGsNc62J5OshtXNSDCqbPooGVA=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kit-ty-kate/spdx_licenses",
         description: "Library providing a strict SPDX License Expression parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

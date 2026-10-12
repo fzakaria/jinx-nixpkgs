@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iana-etc",
       version: "20251215",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Mic92/iana-etc/releases/download/${nix.sel(finalAttrs, "version")}/iana-etc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-BUGhVHvWSdFJdqaoPasLt87lTUFVF2B7X7sfigwrJss=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook", "export NIX_ETC_PROTOCOLS=@out@/etc/protocols\nexport NIX_ETC_SERVICES=@out@/etc/services\n")),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Mic92/iana-etc",
         description: "IANA protocol and port number assignments (/etc/protocols and /etc/services)",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

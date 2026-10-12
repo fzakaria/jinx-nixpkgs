@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
     const knownVulnerabilities = nix.argOr($_1, "knownVulnerabilities", () => []);
     const versionCheckHook = nix.arg($_1, "versionCheckHook");
     const docker_meta = nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -103,16 +103,16 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       identifiers: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "docker", version)),
       })),
     }));
     const docker_runc = nix.thunk(() => nix.app(nix.sel(runc, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "docker-runc",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "opencontainers",
             repo: "runc",
             tag: runcRev,
@@ -123,12 +123,12 @@ export default nix.lambda((args) => (() => {
         patches: [],
       }))));
     const docker_containerd = nix.thunk(() => nix.app(nix.sel(containerd, "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "docker-containerd",
         version: version,
         outputs: nix.thunk(() => ["out"]),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "containerd",
             repo: "containerd",
             tag: containerdRev,
@@ -138,11 +138,11 @@ export default nix.lambda((args) => (() => {
         installTargets: "install",
       })));
     const docker_tini = nix.thunk(() => nix.app(nix.sel(tini, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "docker-tini",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             owner: "krallin",
             repo: "tini",
             rev: tiniRev,
@@ -151,9 +151,9 @@ export default nix.lambda((args) => (() => {
         patches: [],
         postPatch: "",
         buildInputs: nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "static"))]),
-        env: nix.thunk(() => ({ __proto__: pos$8, NIX_CFLAGS_COMPILE: "-DMINIMAL=ON" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$8, NIX_CFLAGS_COMPILE: "-DMINIMAL=ON" })),
       }))));
-    const moby_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ __proto__: pos$10, owner: "moby", repo: "moby", tag: mobyRev, hash: mobyHash }))));
+    const moby_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$10, owner: "moby", repo: "moby", tag: mobyRev, hash: mobyHash }))));
     const extraMobyPath = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
           iproute2,
           iptables,
@@ -166,7 +166,7 @@ export default nix.lambda((args) => (() => {
         ])))));
     const extraMobyUserPath = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(clientOnly)))), nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rootlesskit, slirp4netns, fuse_overlayfs])))));
     const moby = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pname: "moby",
           version: version,
           src: moby_src,
@@ -211,15 +211,15 @@ makeWrapper $out/libexec/docker/dockerd-rootless.sh $out/bin/dockerd-rootless \\
 runHook postInstall
 `),
           env: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             DOCKER_BUILDTAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["journald"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withBtrfs)), nix.thunk(() => ["exclude_graphdriver_btrfs"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLvm)), nix.thunk(() => ["exclude_graphdriver_devicemapper"])), nix.app(nix.sel(lib, "optionals"), withSeccomp, nix.thunk(() => ["seccomp"])))))))),
           })),
           meta: nix.thunk(() => nix.update(docker_meta, {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             homepage: "https://mobyproject.org/",
             description: "Collaborative project for the container ecosystem to assemble container-based systems",
             identifiers: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "mobyproject", version)),
             })),
           })),
@@ -227,10 +227,10 @@ runHook postInstall
     const plugins = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), buildxSupport, nix.thunk(() => [docker_buildx])), nix.concat(nix.app(nix.sel(lib, "optionals"), composeSupport, nix.thunk(() => [docker_compose])), nix.concat(nix.app(nix.sel(lib, "optionals"), sbomSupport, nix.thunk(() => [docker_sbom])), nix.app(nix.sel(lib, "optionals"), initSupport, nix.thunk(() => [docker_init]))))));
     const dockerCliPluginsDirs = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/libexec/docker/cli-plugins`, plugins))));
     return nix.app(buildGoModule, nix.thunk(() => nix.update({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         pname: "docker",
         version: version,
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ __proto__: pos$15, owner: "docker", repo: "cli", rev: cliRev, hash: cliHash })))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$15, owner: "docker", repo: "cli", rev: cliRev, hash: cliHash })))),
         patches: nix.thunk(() => [
           nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "26.0.0")) ? nix.path(here, "./cli-system-plugin-dir-from-env-25.patch") : nix.path(here, "./cli-system-plugin-dir-from-env.patch"))),
         ]),
@@ -273,13 +273,13 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           "moby-src": moby_src,
-          tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(clientOnly)), nix.thunk(() => ({ __proto__: pos$16, docker: nix.thunk(() => nix.attr(nixosTests, "docker")) })))),
+          tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(clientOnly)), nix.thunk(() => ({ [nix.POS]: pos$16, docker: nix.thunk(() => nix.attr(nixosTests, "docker")) })))),
           updateScript: nix.path(here, "./update.sh"),
         })),
         meta: nix.thunk(() => nix.update(docker_meta, {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           homepage: "https://www.docker.com/",
           description: "Open source project to pack, ship and run any application as a lightweight container",
           longDescription: "Docker is a platform designed to help developers build, share, and run modern applications.\n\nTo enable the docker daemon on NixOS, set the `virtualisation.docker.enable` option to `true`.\n",
@@ -287,7 +287,7 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
           knownVulnerabilities: knownVulnerabilities,
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(clientOnly)), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           "docker-runc": docker_runc,
           "docker-containerd": docker_containerd,
           "docker-tini": docker_tini,
@@ -295,11 +295,11 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
         }))))));
   })(), formals$2);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     docker_25: nix.thunk(() => (() => {
       const version = "25.0.16";
       return nix.app(callPackage, dockerGen, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           version: version,
           cliRev: "43987fca488a535d810c429f75743d8c7b63bf4f",
           cliHash: "sha256-OwufdfuUPbPtgqfPeiKrQVkOOacU2g4ommHb770gV40=",
@@ -316,7 +316,7 @@ ln -s ${moby}/etc/systemd/system/docker.socket $out/etc/systemd/system/docker.so
     docker_29: nix.thunk(() => (() => {
       const version = "29.8.1";
       return nix.app(callPackage, dockerGen, nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           version: version,
           cliRev: nix.thunk(() => nix.str`v${version}`),
           cliHash: "sha256-xJ0UATkStx31/DHzmmXE0Srm9BYMY1RZ5rIz36kHesw=",

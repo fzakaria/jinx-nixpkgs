@@ -160,21 +160,21 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "concatMap"), (mod) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "elem"), mod, componentSpecificModules))), nix.thunk(() => nix.str`${nix.app(toLua, mod)};`)), nix.thunk(() => nix.sel(cfg, "package", "communityModules")));
   })());
   const sslOpts = (_) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
           description: "Path to the key file.",
         })))),
       cert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
           description: "Path to the certificate file.",
         })))),
       extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
           default: nix.thunk(() => ({})),
           description: "Extra SSL configuration options.",
@@ -182,229 +182,229 @@ export default nix.lambda((args) => (() => {
     })),
   });
   const discoOpts = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "URL of the endpoint you want to make discoverable",
         })))),
       description: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "A short description of the endpoint you want to advertise",
         })))),
     })),
   }));
   const moduleOpts = nix.thunk(() => ({
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     roster: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Allow users to have a roster",
       })))),
     saslauth: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Authentication for clients and servers. Recommended if you want to log in.",
       })))),
     tls: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Add support for secure TLS on c2s/s2s connections",
       })))),
     dialback: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "s2s dialback support",
       })))),
     disco: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Service discovery",
       })))),
     carbons: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Keep multiple clients in sync",
       })))),
     csi: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Implements the CSI protocol that allows clients to report their active/inactive state to the server",
       })))),
     cloud_notify: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Push notifications to inform users of new messages or other pertinent information even when they have no XMPP clients online",
       })))),
     pep: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Enables users to publish their mood, activity, playing music and more",
       })))),
     private: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Private XML storage (for room bookmarks, etc.)",
       })))),
     blocklist: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Allow users to block communications with other users",
       })))),
     vcard: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Allow users to set vCards",
       })))),
     vcard_legacy: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Converts users profiles and Avatars between old and new formats",
       })))),
     bookmarks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Allows interop between older clients that use XEP-0048: Bookmarks in its 1.0 version and recent clients which use it in PEP",
       })))),
     version: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Replies to server version requests",
       })))),
     uptime: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Report how long server has been running",
       })))),
     time: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Let others know the time here on this server",
       })))),
     ping: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Replies to XMPP pings with pongs",
       })))),
     register: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Allow users to register on this server using a client and change passwords",
       })))),
     mam: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Store messages in an archive and allow users to access it",
       })))),
     smacks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Allow a client to resume a disconnected session, and prevent message loss",
       })))),
     admin_adhoc: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Allows administration via an XMPP client that supports ad-hoc commands",
       })))),
     http_files: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Serve static files from a directory over HTTP",
       })))),
     proxy65: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: true,
         description: "Enables a file transfer proxy service which clients behind NAT can use",
       })))),
     admin_telnet: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Opens telnet console interface on localhost port 5582",
       })))),
     bosh: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Enable BOSH clients, aka 'Jabber over HTTP'",
       })))),
     websocket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Enable WebSocket support",
       })))),
     limits: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Enable bandwidth limiting for XMPP connections",
       })))),
     groups: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Shared roster support",
       })))),
     server_contact_info: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Publish contact information for this service",
       })))),
     announce: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Send announcement to all online users",
       })))),
     welcome: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Welcome users who register accounts",
       })))),
     watchregistrations: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Alert admins of registrations",
       })))),
     motd: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Send a message to users when they log in",
       })))),
     legacyauth: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Legacy authentication. Only used by some old clients and bots",
@@ -412,9 +412,9 @@ export default nix.lambda((args) => (() => {
   }));
   const toLua = (x) => (nix.asBool(nix.app(nix.sel(nix.builtins, "isString"), x)) ? nix.str`"${x}"` : (nix.asBool(nix.app(nix.sel(nix.builtins, "isBool"), x)) ? nix.app(nix.lookup(w, "boolToString"), x) : (nix.asBool(nix.app(nix.sel(nix.builtins, "isInt"), x)) ? nix.app(nix.builtins.toString, x) : (nix.asBool(nix.app(nix.sel(nix.builtins, "isList"), x)) ? nix.str`{ ${nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", toLua, x)} }` : nix.app(nix.builtins.throw, "Invalid Lua value")))));
   const settingsToLua = (prefix) => (settings) => nix.app(nix.sel(nix.lookup(w, "generators"), "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       listsAsDuplicateKeys: false,
-      mkKeyValue: (k) => nix.app(nix.sel(nix.lookup(w, "generators"), "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$46, mkValueString: toLua })), " = ", nix.thunk(() => nix.add(prefix, k))),
+      mkKeyValue: (k) => nix.app(nix.sel(nix.lookup(w, "generators"), "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$46, mkValueString: toLua })), " = ", nix.thunk(() => nix.add(prefix, k))),
     })), nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (k) => (v) => !nix.eq(v, null), settings)));
   const createSSLOptsStr = (o) => nix.str`ssl = {
   cafile = "/etc/ssl/certs/ca-bundle.crt";
@@ -424,118 +424,118 @@ export default nix.lambda((args) => (() => {
 };
 `;
   const mucOpts = (_) => ({
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     options: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "Domain name of the MUC",
         })))),
       name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "The name to return in service discovery responses for the MUC service itself",
           default: "Prosody Chatrooms",
         })))),
       restrictRoomCreation: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [true, false, "admin", "local"]))),
           default: false,
           description: "Restrict room creation to server admins",
         })))),
       maxHistoryMessages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
           default: 20n,
           description: "Specifies a limit on what each room can be configured to keep",
         })))),
       roomLocking: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: true,
           description: "Enables room locking, which means that a room must be\nconfigured before it can be used. Locked rooms are invisible\nand cannot be entered by anyone but the creator\n",
         })))),
       roomLockTimeout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
           default: 300n,
           description: "Timeout after which the room is destroyed or unlocked if not\nconfigured, in seconds\n",
         })))),
       tombstones: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: true,
           description: "When a room is destroyed, it leaves behind a tombstone which\nprevents the room being entered or recreated. It also allows\nanyone who was not in the room at the time it was destroyed\nto learn about it, and to update their bookmarks. Tombstones\nprevents the case where someone could recreate a previously\nsemi-anonymous room in order to learn the real JIDs of those\nwho often join there.\n",
         })))),
       tombstoneExpiry: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
           default: 2678400n,
           description: "This settings controls how long a tombstone is considered\nvalid. It defaults to 31 days. After this time, the room in\nquestion can be created again.\n",
         })))),
       allowners_muc: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "Add module allowners, any user in chat is able to\nkick other. Useful in jitsi-meet to kick ghosts.\n",
         })))),
       moderation: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "Allow rooms to be moderated",
         })))),
       roomDefaultPublic: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: true,
           description: "If set, the MUC rooms will be public by default.",
         })))),
       roomDefaultMembersOnly: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "If set, the MUC rooms will only be accessible to the members by default.",
         })))),
       roomDefaultModerated: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "If set, the MUC rooms will be moderated by default.",
         })))),
       roomDefaultPublicJids: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "If set, the MUC rooms will display the public JIDs by default.",
         })))),
       roomDefaultChangeSubject: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "If set, the rooms will display the public JIDs by default.",
         })))),
       roomDefaultHistoryLength: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
           default: 20n,
           description: "Number of history message sent to participants by default.",
         })))),
       roomDefaultLanguage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           default: "en",
           description: "Default room language.",
         })))),
       extraModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
           default: [],
           description: "Additional modules to load on this MUC component.",
         })))),
       extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
           default: "",
           description: "Additional MUC specific configuration",
@@ -547,7 +547,7 @@ export default nix.lambda((args) => (() => {
     const config_1 = nix.arg($_1, "config");
     const options = nix.arg($_1, "options");
     return {
-      __proto__: pos$77,
+      [nix.POS]: pos$77,
       freeformType: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
         const atom = nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -556,12 +556,12 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w_1, "str")),
             nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), atom)),
           ])));
-        return nix.update(nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), atom))), { __proto__: pos$69, description: "int, bool, string or list of them" });
+        return nix.update(nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), atom))), { [nix.POS]: pos$69, description: "int, bool, string or list of them" });
       })()),
       options: nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             type: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -569,32 +569,32 @@ export default nix.lambda((args) => (() => {
             description: "Domain name for a http_file_share service.",
           })))),
         http_host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             description: "To avoid an additional DNS record and certificate, you may set this option to your primary domain (e.g. \"example.com\")\nor use a reverse proxy to handle the HTTP for that domain.\n",
           })))),
         http_external_url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: null,
             description: "External URL in case Prosody sits behind a reverse proxy.",
           })))),
         size_limit: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
             default: nix.thunk(() => nix.mul(nix.mul(10n, 1024n), 1024n)),
             defaultText: "10 * 1024 * 1024",
             description: "Maximum file size, in bytes.",
           })))),
         expires_after: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "1 week",
             description: "Max age of a file before it gets deleted.",
           })))),
         daily_quota: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
             default: nix.thunk(() => nix.mul(10n, nix.sel(config_1, "size_limit"))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`10 * ${nix.sel(options, "size_limit")}`))),
@@ -605,28 +605,28 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   const vHostOpts = (_) => ({
-    __proto__: pos$83,
+    [nix.POS]: pos$83,
     options: nix.thunk(() => ({
-      __proto__: pos$82,
+      [nix.POS]: pos$82,
       domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "Domain name",
         })))),
       enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "Whether to enable the virtual host",
         })))),
       ssl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$80,
+          [nix.POS]: pos$80,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), sslOpts)))),
           default: null,
           description: "Paths to SSL files",
         })))),
       extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
           default: "",
           description: "Additional virtual host specific configuration",
@@ -635,13 +635,13 @@ export default nix.lambda((args) => (() => {
   });
   const configFile = nix.thunk(() => (() => {
     const httpDiscoItems = nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "httpFileShare"), null)), nix.thunk(() => ({
-        __proto__: pos$84,
+        [nix.POS]: pos$84,
         url: nix.thunk(() => nix.sel(cfg, "httpFileShare", "domain")),
         description: "HTTP file share endpoint",
       }))));
     const mucDiscoItems = nix.thunk(() => nix.app(nix.sel(nix.builtins, "foldl'"), (acc) => (muc) => nix.concat([
         nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           url: nix.thunk(() => nix.sel(muc, "domain")),
           description: nix.thunk(() => nix.str`${nix.sel(muc, "domain")} MUC endpoint`),
         })),
@@ -717,7 +717,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 `))}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "httpFileShare", "http_external_url"), null)), nix.thunk(() => nix.str`http_external_url = "${nix.sel(cfg, "httpFileShare", "http_external_url")}"
 `))}
-${nix.app(settingsToLua, "  http_file_share_", nix.thunk(() => nix.update(nix.sel(cfg, "httpFileShare"), { __proto__: pos$86, domain: null, http_host: null, http_external_url: null })))}
+${nix.app(settingsToLua, "  http_file_share_", nix.thunk(() => nix.update(nix.sel(cfg, "httpFileShare"), { [nix.POS]: pos$86, domain: null, http_host: null, http_external_url: null })))}
 `))}
 
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`VirtualHost "${nix.sel(v, "domain")}"
@@ -728,117 +728,117 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
 `));
   })());
   return {
-    __proto__: pos$143,
+    [nix.POS]: pos$143,
     options: nix.thunk(() => ({
-      __proto__: pos$123,
+      [nix.POS]: pos$123,
       services: nix.thunk(() => ({
-        __proto__: pos$122,
+        [nix.POS]: pos$122,
         prosody: nix.thunk(() => ({
-          __proto__: pos$121,
+          [nix.POS]: pos$121,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the prosody server",
             })))),
           checkConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$88,
+              [nix.POS]: pos$88,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               example: false,
               description: "Check the configuration file with `prosodyctl check config`",
             })))),
           xmppComplianceSuite: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "The XEP-0423 defines a set of recommended XEPs to implement\nfor a server. It's generally a good idea to implement this\nset of extensions if you want to provide your users with a\ngood XMPP experience.\n\nThis NixOS module aims to provide a \"advanced server\"\nexperience as per defined in the XEP-0423[1] specification.\n\nSetting this option to true will prevent you from building a\nNixOS configuration which won't comply with this standard.\nYou can explicitly decide to ignore this standard if you\nknow what you are doing by setting this option to false.\n\n[1] https://xmpp.org/extensions/xep-0423.html\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "prosody", nix.thunk(() => ({
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               example: "pkgs.prosody.override {\n  withExtraLibs = [ pkgs.luaPackages.lpty ];\n  withCommunityModules = [ \"auth_external\" ];\n};\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/prosody",
               description: "The prosody home directory used to store all data. If left as the default value\nthis directory will automatically be created before the prosody server starts, otherwise\nyou are responsible for ensuring the directory exists with appropriate ownership\nand permissions.\n",
             })))),
           disco_items: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), discoOpts)))),
               default: [],
               description: "List of discoverable items you want to advertise.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "prosody",
               description: "User account under which prosody runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the prosody service starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$94,
+              [nix.POS]: pos$94,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "prosody",
               description: "Group account under which prosody runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the group exists before the prosody service starts.\n:::\n",
             })))),
           allowRegistration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Allow account creation",
             })))),
           httpPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
               description: "Listening HTTP ports list for this service.",
               default: nix.thunk(() => [5280n]),
             })))),
           httpInterfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["*", "::"]),
               description: "Interfaces on which the HTTP server will listen on.",
             })))),
           httpsPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
               description: "Listening HTTPS ports list for this service.",
               default: nix.thunk(() => [5281n]),
             })))),
           httpsInterfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["*", "::"]),
               description: "Interfaces on which the HTTPS server will listen on.",
             })))),
           c2sRequireEncryption: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Force clients to use encrypted connections? This option will\nprevent clients from authenticating unless they are using encryption.\n",
             })))),
           s2sRequireEncryption: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Force servers to use encrypted connections? This option will\nprevent servers from authenticating unless they are using encryption.\nNote that this is different from authentication.\n",
             })))),
           s2sSecureAuth: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$102,
+              [nix.POS]: pos$102,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Force certificate authentication for server-to-server connections?\nThis provides ideal security, but requires servers you communicate\nwith to support encryption AND present valid, trusted certificates.\nFor more information see <https://prosody.im/doc/s2s#security>\n",
             })))),
           s2sInsecureDomains: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["insecure.example.com"]),
               description: "Some servers have invalid or self-signed certificates. You can list\nremote domains here that will not be required to authenticate using\ncertificates. They will be authenticated using DNS instead, even\nwhen s2s_secure_auth is enabled.\n",
             })))),
           s2sSecureDomains: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["jabber.org"]),
@@ -846,77 +846,77 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
             })))),
           modules: moduleOpts,
           extraModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Enable custom modules",
             })))),
           extraPluginPaths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$106,
+              [nix.POS]: pos$106,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               description: "Additional path in which to look find plugins/modules",
             })))),
           httpFileShare: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$108,
+              [nix.POS]: pos$108,
               description: "Configures the http_file_share module to handle user uploads.\n\nSee <https://prosody.im/doc/modules/mod_http_file_share> for a full list of options.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), httpFileShareOpts)))),
               default: null,
-              example: nix.thunk(() => ({ __proto__: pos$107, domain: "uploads.my-xmpp-example-host.org" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$107, domain: "uploads.my-xmpp-example-host.org" })),
             })))),
           muc: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$110,
+              [nix.POS]: pos$110,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), mucOpts)))),
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$109, domain: "conference.my-xmpp-example-host.org" })),
+                nix.thunk(() => ({ [nix.POS]: pos$109, domain: "conference.my-xmpp-example-host.org" })),
               ]),
               description: "Multi User Chat (MUC) configuration",
             })))),
           virtualHosts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$115,
+              [nix.POS]: pos$115,
               description: "Define the virtual hosts",
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), vHostOpts)));
               })()),
               example: nix.thunk(() => ({
-                __proto__: pos$112,
-                myhost: nix.thunk(() => ({ __proto__: pos$111, domain: "my-xmpp-example-host.org", enabled: true })),
+                [nix.POS]: pos$112,
+                myhost: nix.thunk(() => ({ [nix.POS]: pos$111, domain: "my-xmpp-example-host.org", enabled: true })),
               })),
               default: nix.thunk(() => ({
-                __proto__: pos$114,
-                localhost: nix.thunk(() => ({ __proto__: pos$113, domain: "localhost", enabled: true })),
+                [nix.POS]: pos$114,
+                localhost: nix.thunk(() => ({ [nix.POS]: pos$113, domain: "localhost", enabled: true })),
               })),
             })))),
           ssl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), sslOpts)))),
               default: null,
               description: "Paths to SSL files",
             })))),
           admins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["admin1@example.com", "admin2@example.com"]),
               description: "List of administrators of the current host",
             })))),
           authentication: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$118,
+              [nix.POS]: pos$118,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["internal_plain", "internal_hashed", "cyrus", "anonymous", "ldap"]))),
               default: "internal_hashed",
               example: "internal_plain",
               description: "Authentication mechanism used for logins.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Additional prosody configuration\n\nThe generated file is processed by `envsubst` to allow secrets to be passed securely via environment variables.\n",
             })))),
           log: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$120,
+              [nix.POS]: pos$120,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "\"*syslog\"",
               description: "Logging configuration. See [](https://prosody.im/doc/logging) for more details",
@@ -929,17 +929,17 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "prosody", "uploadHttp"]), "mod_http_upload has been obsoloted and been replaced by mod_http_file_share which can be configured with httpFileShare options.")),
     ]),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$141,
+        [nix.POS]: pos$141,
         assertions: nix.thunk(() => (() => {
           const genericErrMsg = "\nHaving a server not XEP-0423-compliant might make your XMPP\nexperience terrible. See the NixOS manual for further\ninformation.\n\nIf you know what you're doing, you can disable this warning by\nsetting config.services.prosody.xmppComplianceSuite to false.\n";
           const errors = nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$124,
+              [nix.POS]: pos$124,
               assertion: nix.thunk(() => (nix.asBool(nix.gt(nix.app(nix.sel(nix.builtins, "length"), nix.thunk(() => nix.sel(cfg, "muc"))), 0n)) || nix.asBool(!nix.asBool(nix.sel(cfg, "xmppComplianceSuite"))))),
               message: nix.thunk(() => nix.add("You need to setup at least a MUC domain to comply with\nXEP-0423.\n", genericErrMsg)),
             })),
             nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "httpFileShare"), null)) || nix.asBool(!nix.asBool(nix.sel(cfg, "xmppComplianceSuite"))))),
               message: nix.thunk(() => nix.add("You need to setup http_file_share modules through config.services.prosody.httpFileShare to comply with XEP-0423.\n", genericErrMsg)),
             })),
@@ -947,15 +947,15 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
           return nix.force(errors);
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$130,
+          [nix.POS]: pos$130,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$129,
-            "prosody/certs/.dummy": nix.thunk(() => ({ __proto__: pos$126, text: "" })),
+            [nix.POS]: pos$129,
+            "prosody/certs/.dummy": nix.thunk(() => ({ [nix.POS]: pos$126, text: "" })),
             "prosody/prosody.cfg.lua": nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               source: nix.thunk(() => (nix.asBool(nix.sel(cfg, "checkConfig")) ? nix.app(nix.sel(pkgs, "runCommandLocal"), "prosody.cfg.lua", nix.thunk(() => ({
-                  __proto__: pos$127,
+                  [nix.POS]: pos$127,
                   nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 })), nix.thunk(() => nix.str`cp ${configFile} prosody.cfg.lua
 # Replace the hardcoded path to cacerts with one that is accessible in the build sandbox
@@ -969,11 +969,11 @@ cp prosody.cfg.lua $out
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$135,
+          [nix.POS]: pos$135,
           users: nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             prosody: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "prosody")), nix.thunk(() => ({
-                __proto__: pos$131,
+                [nix.POS]: pos$131,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "prosody")),
                 description: "Prosody user",
                 group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -981,19 +981,19 @@ cp prosody.cfg.lua $out
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$134,
+            [nix.POS]: pos$134,
             prosody: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "prosody")), nix.thunk(() => ({
-                __proto__: pos$133,
+                [nix.POS]: pos$133,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "prosody")),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$140,
+          [nix.POS]: pos$140,
           services: nix.thunk(() => ({
-            __proto__: pos$139,
+            [nix.POS]: pos$139,
             prosody: nix.thunk(() => ({
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               description: "Prosody XMPP server",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -1005,7 +1005,7 @@ cp prosody.cfg.lua $out
 `),
               serviceConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$136,
+                    [nix.POS]: pos$136,
                     User: nix.thunk(() => nix.sel(cfg, "user")),
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     Type: "notify-reload",
@@ -1028,13 +1028,13 @@ cp prosody.cfg.lua $out
                     RestrictRealtime: true,
                     RestrictSUIDSGID: true,
                   })),
-                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/prosody")), nix.thunk(() => ({ __proto__: pos$137, StateDirectory: "prosody" })))),
+                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/prosody")), nix.thunk(() => ({ [nix.POS]: pos$137, StateDirectory: "prosody" })))),
                 ]))),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$142, doc: nix.path(here, "./prosody.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$142, doc: nix.path(here, "./prosody.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=prosody.ts.map

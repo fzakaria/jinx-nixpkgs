@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pygsl",
           repo: "pygsl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gsl]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/pygsl/raw/c35177ef7f8f5104a2b96a87d909248140ee6009/f/pygsl-incompatible-pointer.patch",
             hash: "sha256-o7hZScnRqD7rxRn2EOxoys2F1U4GVOS9BmcxjTsh/vc=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "cd tests\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python interface for GNU Scientific Library",
         homepage: "https://github.com/pygsl/pygsl",
         changelog: nix.thunk(() => nix.str`https://github.com/pygsl/pygsl/blob/${nix.sel(src, "tag")}/ChangeLog`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

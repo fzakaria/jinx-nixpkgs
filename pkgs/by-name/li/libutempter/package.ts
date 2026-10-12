@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libutempter",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "altlinux",
           repo: "libutempter",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-alt1`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./exec_path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "build-overwrite-already-existing-symlinks-during-ins.patch",
             url: "https://github.com/altlinux/libutempter/commit/717116b93d496a19f7f8abf8702517de0053f66e.patch",
             hash: "sha256-4YaxgbORNm+rlp0YzYKj5a7/zJl1dxo72i/Rei9qulg=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "mandir=${out}/share/man",
       ])),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/altlinux/libutempter",
         description: "Interface for terminal emulators such as screen and xterm to record user sessions to utmp and wtmp files",
         longDescription: "The bundled utempter binary must be able to run as a user belonging to group utmp.\nOn NixOS systems, this can be achieved by creating a setguid wrapper.\n",

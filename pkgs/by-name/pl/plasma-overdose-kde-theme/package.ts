@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plasma-overdose-kde-theme",
       version: "0-unstable-2022-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Notify-ctrl",
           repo: "Plasma-Overdose",
           rev: "d8bf078b4819885d590db27cd1d25d8f4f08fe4c",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\nmv colorschemes $out/share/color-schemes\nmv plasma $out/share/plasma\n\nmkdir -p $out/share/aurorae\nmv aurorae $out/share/aurorae/themes\n\nmkdir -p $out/share/icons/Plasma-Overdose\nmv cursors/index.theme $out/share/icons/Plasma-Overdose/cursor.theme\nmv cursors/cursors $out/share/icons/Plasma-Overdose/cursors\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cute KDE theme inspired by the game Needy Girl Overdose",
         homepage: "https://github.com/Notify-ctrl/Plasma-Overdose",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

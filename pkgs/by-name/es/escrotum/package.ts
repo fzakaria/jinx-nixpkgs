@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "escrotum",
       version: "1.0.1-unstable-2020-12-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Roger",
           repo: "escrotum",
           rev: "a41d0f11bb6af4f08e724b8ccddf8513d905c0d1",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $man/share/man/man1\ncp man/escrotum.1 $man/share/man/man1/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Roger/escrotum",
         description: "Linux screen capture using pygtk, inspired by scrot",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

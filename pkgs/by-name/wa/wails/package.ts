@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wails",
       version: "2.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wailsapp",
           repo: "wails",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   --set CGO_LDFLAGS "-L${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [zlib]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Build desktop applications using Go & Web Technologies",
         homepage: "https://wails.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

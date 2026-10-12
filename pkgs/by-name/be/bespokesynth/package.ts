@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "bespokesynth",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BespokeSynth",
           repo: "bespokesynth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -118,16 +118,16 @@ wrapProgram $out/bin/BespokeSynth \\
         ]))}'
 `)),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, libxrandr, libxinerama, libxext, libxcursor, libxscrnsaver]))}`))),
       })),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Software modular synth with controllers support, scripting and VST",
         homepage: "https://www.bespokesynth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

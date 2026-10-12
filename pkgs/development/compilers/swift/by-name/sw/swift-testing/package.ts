@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions"));
   const sharedLibrary = nix.thunk(() => nix.attr(from, "sharedLibrary"));
   const buildSharedLibrary = nix.thunk(() => nix.sel(stdenv, "buildPlatform", "extensions", "sharedLibrary"));
-  const swift$ = nix.thunk(() => nix.app(nix.sel(swift, "override"), nix.thunk(() => ({ __proto__: pos$1, "swift-testing": null }))));
+  const swift$ = nix.thunk(() => nix.app(nix.sel(swift, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "swift-testing": null }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swift-testing",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(swift_sources, "swift-testing"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "swiftlang",
           repo: "swift-testing",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -60,7 +60,7 @@ install_name_tool "\${!outputDev}/lib/swift/host/plugins/testing/libTestingMacro
 `)),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern testing package for Swift",
         homepage: "https://github.com/swiftlang/swift-testing",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

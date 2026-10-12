@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jshint",
       version: "2.13.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jshint",
           repo: "jshint",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RANA+kL7gL5bGa5KywEH/G+mAsPEoNkfxlp/pHeW8iE=",
         })))),
       npmDepsHash: "sha256-4P1rQmNIENbJPFqpbgnrq4V2tZe4MWySIphwUtnNcuc=",
-      env: nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "1" })),
       postBuild: "npm run test-node\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool that helps to detect errors and potential problems in your JavaScript code",
         homepage: "https://jshint.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -42,56 +42,56 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "str")),
             nix.thunk(() => nix.lookup(w, "path")),
             nix.thunk(() => nix.app(nix.lookup(w, "listOf"), type)),
-          ])))))), { __proto__: pos$1, description: "value coercible to CLI argument" });
+          ])))))), { [nix.POS]: pos$1, description: "value coercible to CLI argument" });
   })());
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const blueprint_file = nix.thunk(() => nix.app(nix.sel(format, "generate"), "blueprint.yml", nix.thunk(() => nix.sel(cfg, "blueprint"))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "newt", "id"]), nix.thunk(() => ["services", "newt", "settings", "id"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "newt", "logLevel"]), nix.thunk(() => ["services", "newt", "settings", "log-level"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "newt", "endpoint"]), nix.thunk(() => ["services", "newt", "settings", "endpoint"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         newt: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Newt, user space tunnel client for Pangolin")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fosrl-newt", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: type,
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$2, endpoint: "pangolin.example.com", id: "8yfsghj438a20ol" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, endpoint: "pangolin.example.com", id: "8yfsghj438a20ol" })),
               description: "Settings for Newt module, see [Newt CLI docs](https://github.com/fosrl/newt?tab=readme-ov-file#cli-args) for more information.",
             })))),
           blueprint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.attr(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "proxy-resources": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   jellyfin: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     name: "Jellyfin",
                     protocol: "http",
                     "full-domain": "jfn.example.com",
                     targets: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$4, hostname: "localhost", method: "http", port: 8096n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$4, hostname: "localhost", method: "http", port: 8096n })),
                     ]),
-                    auth: nix.thunk(() => ({ __proto__: pos$5, "sso-enabled": true })),
+                    auth: nix.thunk(() => ({ [nix.POS]: pos$5, "sso-enabled": true })),
                   })),
                 })),
               })),
               description: "Blueprint for declarative settings, see [Newt Blueprint docs](https://docs.pangolin.net/manage/blueprints#blueprints) for more information.",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -103,27 +103,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)),
             message: "services.newt.environmentFile must be provided when Newt is enabled.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             newt: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Newt, user space tunnel client for Pangolin",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$15, HOME: "/var/lib/private/newt" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$15, HOME: "/var/lib/private/newt" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
-                ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ({ __proto__: pos$16, "blueprint-file": blueprint_file })))))}`),
+                [nix.POS]: pos$17,
+                ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ({ [nix.POS]: pos$16, "blueprint-file": blueprint_file })))))}`),
                 DynamicUser: true,
                 StateDirectory: "newt",
                 StateDirectoryMode: "0700",
@@ -198,7 +198,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "jackr"))];

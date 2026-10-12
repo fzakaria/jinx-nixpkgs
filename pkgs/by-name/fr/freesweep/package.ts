@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freesweep",
       version: "1.0.2-unstable-2024-04-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rwestlund",
           repo: "freesweep",
           rev: "68c0ee5b29d1087d216d95875a7036713cd25fc0",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./autogen.sh",
       installPhase: "runHook preInstall\ninstall -D -m 0555 freesweep $out/bin/freesweep\ninstall -D -m 0444 sweeprc $out/share/sweeprc\ninstallManPage freesweep.6\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console minesweeper-style game written in C for Unix-like systems",
         mainProgram: "freesweep",
         homepage: "https://github.com/rwestlund/freesweep",

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GmnwW/IleBlvsGj1YwSPZrOho9uVlWeNzpZX6VbstZ0=",
@@ -33,7 +33,7 @@ substituteInPlace setup.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nanoleaf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for interacting with Nanoleaf Aurora lighting",
         homepage: "https://github.com/software-2/nanoleaf",
         changelog: nix.thunk(() => nix.str`https://github.com/software-2/nanoleaf/releases/tag/${version}`),
@@ -41,7 +41,7 @@ substituteInPlace setup.py \\
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

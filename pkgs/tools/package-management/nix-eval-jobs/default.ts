@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nixComponents = nix.arg($, "nixComponents");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-eval-jobs",
       version: "2.35.4",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NixOS",
           repo: "nix-eval-jobs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nixComponents: nixComponents,
         nix: nix.thunk(() => nix.sel(nixComponents, "nix-cli")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hydra's builtin hydra-eval-jobs as a standalone",
         homepage: "https://github.com/NixOS/nix-eval-jobs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

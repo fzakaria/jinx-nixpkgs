@@ -17,29 +17,29 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "whois",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Cryolitia"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         programs: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           whois: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             settings: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$2, pattern: "\\.dn42$", server: "whois.dn42" })),
-              nix.thunk(() => ({ __proto__: pos$3, pattern: "\\-DN42$", server: "whois.dn42" })),
-              nix.thunk(() => ({ __proto__: pos$4, pattern: "^as424242[0-9]{4}$", server: "whois.dn42" })),
+              nix.thunk(() => ({ [nix.POS]: pos$2, pattern: "\\.dn42$", server: "whois.dn42" })),
+              nix.thunk(() => ({ [nix.POS]: pos$3, pattern: "\\-DN42$", server: "whois.dn42" })),
+              nix.thunk(() => ({ [nix.POS]: pos$4, pattern: "^as424242[0-9]{4}$", server: "whois.dn42" })),
             ]),
           })),
         })),

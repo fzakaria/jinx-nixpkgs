@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       core: "dosbox",
       version: "0-unstable-2026-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "dosbox-libretro",
           rev: "988aa330d10b1423873ebfd8dcb6106df2538c44",
           hash: "sha256-yRipBvCzDyceBI35iHFMZPpl7md5fImRAQ8Azr7z9Rs=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=gnu++11" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++11" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Port of DOSBox to libretro",
         homepage: "https://github.com/libretro/dosbox-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

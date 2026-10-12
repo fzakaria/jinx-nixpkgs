@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nuv = nix.arg($, "nuv");
   const version = nix.arg($, "version");
-  return nix.app(runCommand, "nuv-test-run", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [nuv]) })), nix.thunk(() => nix.str`export TMP_BASE=$(mktemp -d /tmp/.nuv-XXXXX)
+  return nix.app(runCommand, "nuv-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [nuv]) })), nix.thunk(() => nix.str`export TMP_BASE=$(mktemp -d /tmp/.nuv-XXXXX)
 export HOME=$TMP_BASE
 export NUV_REPO=""
 export NUV_ROOT=$TMP_BASE/.nuv/3.0.0/olaris

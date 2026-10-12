@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const kbd = nix.arg($, "kbd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "logkeys",
       version: "2018-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kernc",
           repo: "logkeys",
           rev: "7a9f19fb6b152d9f00a0b3fe29ab266ff1f88129",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/Makefile.am --replace 'root' '$(id -u)'\nsubstituteInPlace configure.ac --replace '/dev/input' '/tmp'\nsed -i '/chmod u+s/d' src/Makefile.am\n",
       preConfigure: "./autogen.sh",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "logkeys")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "logkeys")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU/Linux keylogger that works",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://github.com/kernc/logkeys",

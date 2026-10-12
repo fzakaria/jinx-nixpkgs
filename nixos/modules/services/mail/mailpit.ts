@@ -40,46 +40,46 @@ export default nix.lambda((args) => (() => {
   const isNonNull = (v) => !nix.eq(v, null);
   const genCliFlags = (settings) => nix.app(concatStringsSep, " ", nix.thunk(() => nix.app(nix.sel(cli, "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.app(filterAttrs, nix.thunk(() => nix.app(const$, isNonNull)), settings)))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         mailpit: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           instances: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(types, "str")),
                           nix.thunk(() => nix.sel(types, "int")),
                           nix.thunk(() => nix.sel(types, "bool")),
                         ]))))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       database: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           default: null,
                           example: "mailpit.db",
                           description: "Specify the local database filename to store persistent data.\nIf `null`, a temporary file will be created that will be removed when the application stops.\nIt's recommended to specify a relative path. The database will be written into the service's\nstate directory then.\n",
                         })))),
                       max: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                           default: 500n,
                           description: "Maximum number of emails to keep. If the number is exceeded, old emails\nwill be deleted.\n\nSet to `0` to never prune old emails.\n",
                         })))),
                       listen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           default: "127.0.0.1:8025",
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "HTTP bind interface and port for UI.\n",
                         })))),
                       smtp: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           default: "127.0.0.1:1025",
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "SMTP bind interface and port.\n",
@@ -92,16 +92,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(instances, {})), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => nix.app(mapAttrs$, (name) => (cfg) => nix.app(nameValuePair, nix.thunk(() => nix.str`mailpit-${name}`), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   DynamicUser: true,
                   StateDirectory: "mailpit",
                   WorkingDirectory: "%S/mailpit",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
         nix.thunk(() => nix.sel(lib, "maintainers", "osnyx")),

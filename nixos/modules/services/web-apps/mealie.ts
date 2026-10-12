@@ -38,52 +38,52 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mealie"));
   const pkg = nix.thunk(() => nix.sel(cfg, "package"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         mealie: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Mealie, a recipe manager and meal planner")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mealie", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "Address on which the service should listen.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9000n,
               description: "Port on which to serve the Mealie service.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the port in the firewall.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")));
               })()),
               default: nix.thunk(() => ({})),
               description: "Configuration of the Mealie service.\n\nSee [the mealie documentation](https://nightly.mealie.io/documentation/getting-started/installation/backend-config/) for available options and default values.\n",
-              example: nix.thunk(() => ({ __proto__: pos$4, ALLOW_SIGNUP: "false" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, ALLOW_SIGNUP: "false" })),
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--log-level", "debug"]),
               description: "Specifies extra command line arguments to pass to mealie (Gunicorn).\n",
             })))),
           credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -93,9 +93,9 @@ export default nix.lambda((args) => (() => {
               description: "File containing credentials used in mealie such as {env}`POSTGRES_PASSWORD`\nor sensitive LDAP options.\n\nExpects the format of an `EnvironmentFile=`, as described by {manpage}`systemd.exec(5)`.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Configure local PostgreSQL database server for Mealie.\n",
@@ -105,20 +105,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             mealie: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Mealie, a self hosted recipe manager and meal planner",
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"))),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 PRODUCTION: "true",
                 API_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 BASE_URL: nix.thunk(() => nix.str`http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
                 NLTK_DATA: nix.thunk(() => nix.sel(pkgs, "nltk-data", "averaged-perceptron-tagger-eng")),
               }, nix.builtins.mapAttrs((_) => (val) => nix.builtins.toString(val), nix.thunk(() => nix.sel(cfg, "settings"))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 DynamicUser: true,
                 User: "mealie",
                 ExecStartPre: nix.thunk(() => nix.str`${pkg}/libexec/init_db`),
@@ -139,28 +139,28 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           firewall: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           mealie: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 DB_ENGINE: "postgres",
                 POSTGRES_URL_OVERRIDE: "postgresql://mealie:@/mealie?host=/run/postgresql",
               })))),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: true,
               ensureDatabases: nix.thunk(() => ["mealie"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$22, name: "mealie", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$22, name: "mealie", ensureDBOwnership: true })),
               ]),
             })))),
         })),

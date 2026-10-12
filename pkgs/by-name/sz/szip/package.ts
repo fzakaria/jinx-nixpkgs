@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
       const pname = "szip";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://support.hdfgroup.org/ftp/lib-external/szip/${version}/src/szip-${version}.tar.gz`),
           sha256: "04nlhkzzf1gihvrfbzc6rq4kc13p92ly39dzrb4y4jrd9y5rbvi1",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compression library that can be used with the hdf5 library",
         homepage: "https://www.hdfgroup.org/doc_resource/SZIP/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

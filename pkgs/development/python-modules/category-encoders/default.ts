@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-learn-contrib",
           repo: "category_encoders",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["category_encoders"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for sklearn compatible categorical variable encoders",
         homepage: "https://github.com/scikit-learn-contrib/category_encoders",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-learn-contrib/category_encoders/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

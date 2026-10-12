@@ -13,21 +13,21 @@ const pos$7 = nix.positions(here + "/fish.nix", [["machine", 4, 9]]);
 const pos$8 = nix.positions(here + "/fish.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 20, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   name: "fish",
   nodes: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         programs: nix.thunk(() => ({
-          __proto__: pos$2,
-          fish: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          fish: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -37,8 +37,8 @@ export default nix.thunk(() => ({
           })()),
         })),
         documentation: nix.thunk(() => ({
-          __proto__: pos$5,
-          man: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+          [nix.POS]: pos$5,
+          man: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
         })),
       };
     })(), formals$1),

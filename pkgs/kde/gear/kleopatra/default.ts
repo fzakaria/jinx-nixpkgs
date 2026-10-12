@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const akonadi_mime = nix.arg($, "akonadi-mime");
   const kdsingleapplication = nix.arg($, "kdsingleapplication");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kleopatra",
       extraNativeBuildInputs: nix.thunk(() => [shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [akonadi_mime, kdsingleapplication]),

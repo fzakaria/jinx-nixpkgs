@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhmdnd",
           repo: "pycompliance",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pycompliance"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simply library to represent compliance benchmarks as tree structures",
         homepage: "https://github.com/rhmdnd/pycompliance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

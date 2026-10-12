@@ -86,18 +86,18 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gnome-shell",
       version: "50.4",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-shell/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-shell-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-xTGTlTnbMWpBrvI2cDcKvRMw0yVPhLyw+fTa5dbjYs8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             glib_compile_schemas: nix.thunk(() => nix.str`${nix.sel(glib, "dev")}/bin/glib-compile-schemas`),
             gsettings: nix.thunk(() => nix.str`${nix.sel(glib, "bin")}/bin/gsettings`),
             unzip: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), unzip)}/bin/unzip`),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./icon-theme-directory-identity.patch"),
         nix.path(here, "./greeter-logo-size.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/gnome-shell/raw/dcd112d9708954187e7490564c2229d82ba5326f/f/0001-gdm-Work-around-failing-fingerprint-auth.patch",
             hash: "sha256-mgXty5HhiwUO1UV3/eDgWtauQKM0cRFQ0U7uocST25s=",
           })))),
@@ -194,7 +194,7 @@ cp "${nix.app(nix.sel(glib, "getSchemaPath"), mutter)}/org.gnome.mutter.gschema.
       postInstall: nix.thunk(() => nix.str`# Pull in WebP and JXL support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extraLoaders: nix.thunk(() => [libjxl, librsvg, webp_pixbuf_loader]),
         })))}"
 `),
@@ -205,13 +205,13 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
       postFixup: "# The services need typelibs.\nfor svc in org.gnome.ScreenSaver org.gnome.Shell.Extensions org.gnome.Shell.Notifications org.gnome.Shell.Screencast; do\n  wrapGApp $out/share/gnome-shell/$svc\ndone\n\n# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mozillaPlugin: "/lib/mozilla/plugins",
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$5, packageName: "gnome-shell" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$5, packageName: "gnome-shell" })))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Core user interface for the GNOME desktop",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-shell",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

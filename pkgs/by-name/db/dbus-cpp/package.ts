@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const process_cpp = nix.arg($, "process-cpp");
   const properties_cpp = nix.arg($, "properties-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dbus-cpp",
       version: "5.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lib-cpp/dbus-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["async_execution_load_test", "executor_test"]),
       preFixup: "moveToOutput libexec/examples $examples\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Dbus-binding leveraging C++-11",
         homepage: "https://gitlab.com/ubports/development/core/lib-cpp/dbus-cpp",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lib-cpp/dbus-cpp/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

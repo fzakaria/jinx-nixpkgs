@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zztgo",
       version: "0-unstable-2020-05-29",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benhoyt",
           repo: "zztgo",
           rev: "9edb1452d887852c5c68cae0a91a6227cd4ef7a9",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postInstall: "install -Dm644 TOWN.ZZT $out/share/zztgo/TOWN.ZZT\ninstall -Dm644 zzt.terminal $out/share/zztgo/zzt.terminal\n\nwrapProgram $out/bin/zztgo \\\n  --chdir $out/share/zztgo\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of ZZT to Go",
         homepage: "https://github.com/benhoyt/zztgo",
         mainProgram: "zztgo",

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const enableGui = nix.argOr($, "enableGui", () => true);
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apitrace",
       version: "14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apitrace",
           repo: "apitrace",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,7 +74,7 @@ done
 
 `, nix.app(nix.sel(lib, "optionalString"), enableGui, "wrapQtApp $out/bin/qapitrace\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://apitrace.github.io",
         description: "Tools to trace OpenGL, OpenGL ES, Direct3D, and DirectDraw APIs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

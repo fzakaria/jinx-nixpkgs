@@ -14,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const idris2CompilerPackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "idris2-version": "0.8.0",
         "idris2-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "idris-lang",
             repo: "Idris2",
             rev: nix.thunk(() => nix.str`v${nix.sel(self, "idris2-version")}`),

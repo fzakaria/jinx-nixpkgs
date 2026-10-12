@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "facter",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mic92"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hardware: nix.thunk(() => ({
-          __proto__: pos$3,
-          facter: nix.thunk(() => ({ __proto__: pos$2, reportPath: nix.path(here, "./facter.json") })),
+          [nix.POS]: pos$3,
+          facter: nix.thunk(() => ({ [nix.POS]: pos$2, reportPath: nix.path(here, "./facter.json") })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nixos-facter"))]),
         })),
       })),

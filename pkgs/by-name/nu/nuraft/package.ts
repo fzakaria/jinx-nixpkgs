@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nuraft",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eBay",
           repo: "NuRaft",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-13.patch",
             url: "https://github.com/eBay/NuRaft/commit/fddf33a4d8cd7fcd0306cc838a30893a4df3d58f.patch",
             hash: "sha256-JOtR3llE4QwQM7PBx+ILR87zsPB0GZ/aIKbSdHIrePA=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost, asio_1_32_0, openssl, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/eBay/NuRaft",
         description: "C++ implementation of Raft core logic as a replication library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

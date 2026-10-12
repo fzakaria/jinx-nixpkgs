@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pktgen",
       version: "26.03.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pktgen",
           repo: "Pktgen-DPDK",
           tag: nix.thunk(() => nix.str`pktgen-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [dpdk, libbsd, libpcap, lua5_3, numactl, which]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RTE_SDK: dpdk,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=sign-compare"]))),
         NIX_LDFLAGS: "-lrte_net_bond",
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "# meson installs unneeded files with conflicting generic names, such as\n# include/cli.h and lib/liblua.so.\nrm -rf $out/include $out/lib\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Traffic generator powered by DPDK",
         homepage: "http://dpdk.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

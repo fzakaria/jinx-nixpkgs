@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = nix.argOr($, "version", () => "2.3.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amqp-client",
       version: version,
       minimalOCamlVersion: "4.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andersfugmann",
           repo: "amqp-client",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Amqp client base library",
         homepage: "https://github.com/andersfugmann/amqp-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

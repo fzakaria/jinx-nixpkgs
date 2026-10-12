@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "matchbox",
       version: "1.2",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libmatchbox]),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             nix.thunk(() => nix.str`-L${libx11}/lib`),
@@ -35,20 +35,20 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://downloads.yoctoproject.org/releases/matchbox/matchbox-window-manager/${nix.sel(finalAttrs, "version")}/matchbox-window-manager-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1zyfq438b466ygcz78nvsmnsc5bhg4wcfnpxb43kbkwpyx53m8l1",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fno-common.patch",
             url: "https://git.yoctoproject.org/matchbox-window-manager/patch/?id=844f61069896fe3f549ab425d731c061028f697c",
             sha256: "1md2s7q094hn4gzg21pfyz8d426y07d5rbx2icas9nvc8jj7bwfc",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "X window manager for non-desktop embedded systems",
         homepage: "https://www.yoctoproject.org/software-item/matchbox/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

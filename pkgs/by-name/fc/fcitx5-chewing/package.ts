@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-chewing";
       const version = "5.1.13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: pname,
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [fcitx5, libchewing]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chewing wrapper for Fcitx5",
         homepage: "https://github.com/fcitx/fcitx5-chewing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

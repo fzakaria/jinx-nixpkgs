@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "polarity",
       version: "0-unstable-2026-05-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "polarity-lang",
           repo: "polarity",
           rev: "522f7a7b70608cda6ce3207c81d26bef17b0cdf9",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-7vBLZwUpZ/LQ4MO1JZhpErFvh5EQyS+7IN1U5wyAP/E=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Language with Dependent Data and Codata Types",
         homepage: "https://polarity-lang.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/polarity-lang/polarity/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

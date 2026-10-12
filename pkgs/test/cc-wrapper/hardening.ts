@@ -190,11 +190,11 @@ export default nix.lambda((args) => (() => {
   const hello = nix.arg($, "hello");
   const debian_devscripts = nix.arg($, "debian-devscripts");
   const writeCBinWithStdenv = (codePath) => (stdenv$) => (env) => nix.app(runCommandWith, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "test-bin",
       stdenv: stdenv$,
       derivationArgs: nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         codePath: codePath,
         preferLocalBuild: true,
         allowSubstitutes: false,
@@ -209,9 +209,9 @@ export default nix.lambda((args) => (() => {
 #endif
 int main() {}
 `))), stdenv$, nix.thunk(() => nix.update(derivationArgs, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         env: nix.thunk(() => nix.update(nix.selOr(derivationArgs, () => ({}), "env"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           TEST_SOURCE_LANG: nix.thunk(() => nix.selOr(derivationArgs, () => "c++", "env", "TEST_SOURCE_LANG")),
         })),
       })))));
@@ -227,27 +227,27 @@ int main() {}
 #error "Expected _LIBCPP_HARDENING_MODE to equal ${expectValue}"
 #endif
 `, "int main() {}\n")))), stdenv$, nix.thunk(() => nix.update(env, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         env: nix.thunk(() => nix.update(nix.selOr(env, () => ({}), "env"), {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           TEST_SOURCE_LANG: nix.thunk(() => nix.selOr(env, () => "c++", "env", "TEST_SOURCE_LANG")),
         })),
       })))));
-  const helloWithStdEnv = (stdenv$) => (env) => nix.app(nix.sel(nix.app(nix.sel(hello, "override"), nix.thunk(() => ({ __proto__: pos$7, stdenv: stdenv$ }))), "overrideAttrs"), nix.thunk(() => nix.update({
-      __proto__: pos$8,
+  const helloWithStdEnv = (stdenv$) => (env) => nix.app(nix.sel(nix.app(nix.sel(hello, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: stdenv$ }))), "overrideAttrs"), nix.thunk(() => nix.update({
+      [nix.POS]: pos$8,
       preBuild: "export CFLAGS=\"$TEST_EXTRA_FLAGS\"\n",
       NIX_DEBUG: "1",
       postFixup: "cp $out/bin/hello $out/bin/test-bin\n",
     }, env)));
   const stdenvUnsupport = (additionalUnsupported) => nix.app(nix.sel(stdenv, "override"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       cc: nix.thunk(() => nix.app(nix.sel(stdenv, "cc", "override"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cc: nix.thunk(() => nix.app(nix.sel(lib, "extendDerivation"), true, nix.thunk(() => (() => {
               const hardeningUnsupportedFlagsByTargetPlatform = (_) => nix.force(hardeningUnsupportedFlags);
               const hardeningUnsupportedFlags = nix.thunk(() => nix.concat((nix.asBool(nix.has(nix.sel(stdenv, "cc", "cc"), "hardeningUnsupportedFlagsByTargetPlatform")) ? nix.app(nix.sel(stdenv, "cc", "cc", "hardeningUnsupportedFlagsByTargetPlatform"), nix.thunk(() => nix.sel(stdenv, "targetPlatform"))) : nix.selOr(stdenv, () => [], "cc", "cc", "hardeningUnsupportedFlags")), additionalUnsupported));
               return {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 hardeningUnsupportedFlagsByTargetPlatform,
                 hardeningUnsupportedFlags,
               };
@@ -267,11 +267,11 @@ int main() {}
     const stackClashStr = "Stack clash protection: yes";
     const expectFailureClause = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), expectFailure, " && echo 'ERROR: Expected hardening-check to fail, but it passed!' >&2 && false"));
     return nix.app(runCommandCC, "check-test-bin", nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         nativeBuildInputs: nix.thunk(() => [debian_devscripts]),
         buildInputs: nix.thunk(() => [testBin]),
         meta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           platforms: nix.thunk(() => (nix.asBool(ignoreStackClashProtection) ? nix.sel(lib, "platforms", "linux") : ["x86_64-linux"])),
           broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))) && nix.asBool(!nix.asBool(ignoreFortify)))),
         })),
@@ -288,13 +288,13 @@ int main() {}
 { grep -F '${stackClashStr}' $out || { echo "Didn't find '${stackClashStr}' in output" && false ;} ;}
 `))), "} ; then\n"), nix.app(nix.sel(lib, "optionalString"), expectFailure, "echo 'ERROR: Expected hardening-check to fail, but it passed!' >&2\n")), "  exit 2\nfi\n")));
   })(), formals$2);
-  const nameDrvAfterAttrName = nix.thunk(() => nix.app(nix.builtins.mapAttrs, (name) => (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ __proto__: pos$14, name: nix.thunk(() => nix.str`test-${name}`) }))));
+  const nameDrvAfterAttrName = nix.thunk(() => nix.app(nix.builtins.mapAttrs, (name) => (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ [nix.POS]: pos$14, name: nix.thunk(() => nix.str`test-${name}`) }))));
   const fortifyExecTest = nix.thunk(() => nix.app(fortifyExecTestFull, true, "012345 7", "0123456 7"));
   const fortifyExecTestFull = (expectProtection) => (saturatedArgs) => (oneTooFarArgs) => (testBin) => nix.app(runCommand, "exec-test", nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       buildInputs: nix.thunk(() => [testBin]),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))),
       })),
     })), nix.thunk(() => nix.str`(
@@ -312,15 +312,15 @@ echo "Expected behaviour observed"
 touch $out
 `));
   const brokenIf = (cond) => (drv) => (nix.asBool(cond) ? nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-      __proto__: pos$18,
-      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$17, broken: true })),
+      [nix.POS]: pos$18,
+      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$17, broken: true })),
     })) : nix.force(drv));
   const overridePlatforms = (platforms) => (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-      __proto__: pos$20,
-      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { __proto__: pos$19, platforms: platforms })),
+      [nix.POS]: pos$20,
+      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$19, platforms: platforms })),
     }));
   const instructionPresenceTest = (label) => (mnemonicPattern) => (testBin) => (expectFailure) => nix.app(runCommand, nix.thunk(() => nix.str`${label}-instr-test`), nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       nativeBuildInputs: nix.thunk(() => [bintools]),
       buildInputs: nix.thunk(() => [testBin]),
     })), nix.thunk(() => nix.str`touch $out
@@ -339,7 +339,7 @@ fi
 `));
   const pacRetTest = (testBin) => (expectFailure) => nix.app(overridePlatforms, nix.thunk(() => ["aarch64-linux"]), nix.thunk(() => nix.app(instructionPresenceTest, "pacret", "\\bpaciasp\\b", testBin, expectFailure)));
   const elfNoteTest = (label) => (pattern) => (testBin) => (expectFailure) => nix.app(runCommand, nix.thunk(() => nix.str`${label}-elf-note-test`), nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       nativeBuildInputs: nix.thunk(() => [bintools]),
       buildInputs: nix.thunk(() => [testBin]),
     })), nix.thunk(() => nix.str`touch $out
@@ -354,299 +354,299 @@ fi
 `));
   const shadowStackTest = (testBin) => (expectFailure) => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(overridePlatforms, nix.thunk(() => ["x86_64-linux"]), nix.thunk(() => nix.app(elfNoteTest, "shadowstack", "\\bSHSTK\\b", testBin, expectFailure)))));
   return nix.app(nameDrvAfterAttrName, nix.thunk(() => nix.update({
-      __proto__: pos$162,
-      bindNowExplicitEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$23, hardeningEnable: nix.thunk(() => ["bindnow"]) })))), nix.thunk(() => ({ __proto__: pos$24, ignoreBindNow: false })))))),
-      fortifyExplicitEnabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$25, hardeningEnable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ __proto__: pos$26, ignoreFortify: false })))),
-      fortify1ExplicitEnabledExecTest: nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$27, hardeningEnable: nix.thunk(() => ["fortify"]) })))))),
-      fortifyExplicitEnabledExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$28, hardeningEnable: nix.thunk(() => ["fortify"]) })))))))),
-      fortify3ExplicitEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "cc", "isGNU"))) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$29, hardeningEnable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ __proto__: pos$30, ignoreFortify: false })))))),
-      fortify3ExplicitEnabledExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) || nix.asBool(!nix.asBool(nix.sel(stdenv, "cc", "isGNU"))))) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$31, hardeningEnable: nix.thunk(() => ["fortify3"]) })))))))),
+      [nix.POS]: pos$162,
+      bindNowExplicitEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$23, hardeningEnable: nix.thunk(() => ["bindnow"]) })))), nix.thunk(() => ({ [nix.POS]: pos$24, ignoreBindNow: false })))))),
+      fortifyExplicitEnabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$25, hardeningEnable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ [nix.POS]: pos$26, ignoreFortify: false })))),
+      fortify1ExplicitEnabledExecTest: nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$27, hardeningEnable: nix.thunk(() => ["fortify"]) })))))),
+      fortifyExplicitEnabledExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$28, hardeningEnable: nix.thunk(() => ["fortify"]) })))))))),
+      fortify3ExplicitEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "cc", "isGNU"))) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$29, hardeningEnable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ [nix.POS]: pos$30, ignoreFortify: false })))))),
+      fortify3ExplicitEnabledExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) || nix.asBool(!nix.asBool(nix.sel(stdenv, "cc", "isGNU"))))) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$31, hardeningEnable: nix.thunk(() => ["fortify3"]) })))))))),
       sfa1explicitEnabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
-            env: nix.thunk(() => ({ __proto__: pos$32, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
-          })))), nix.thunk(() => ({ __proto__: pos$34, ignoreFortify: false })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$32, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$34, ignoreFortify: false })))),
       sfa1explicitEnabledExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTestFull, true, "012345", "0123456", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
-              env: nix.thunk(() => ({ __proto__: pos$35, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$35, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
             })))))))),
       sfa1explicitEnabledDoesntProtectDefLen1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
-            env: nix.thunk(() => ({ __proto__: pos$37, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
-          })))), nix.thunk(() => ({ __proto__: pos$39, ignoreFortify: false, expectFailure: true })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$37, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$39, ignoreFortify: false, expectFailure: true })))),
       sfa1explicitEnabledDoesntProtectDefLen1ExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTestFull, false, "''", "0", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
-              env: nix.thunk(() => ({ __proto__: pos$40, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$40, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
             })))))))),
       sfa3explicitEnabledProtectsDefLen1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
-            env: nix.thunk(() => ({ __proto__: pos$42, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
-          })))), nix.thunk(() => ({ __proto__: pos$44, ignoreFortify: false })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$42, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$44, ignoreFortify: false })))),
       sfa3explicitEnabledProtectsDefLen1ExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTestFull, true, "''", "0", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
-              env: nix.thunk(() => ({ __proto__: pos$45, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$45, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
             })))))))),
       sfa3explicitEnabledDoesntProtectCorrectFlex: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
-            env: nix.thunk(() => ({ __proto__: pos$47, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=" })),
-          })))), nix.thunk(() => ({ __proto__: pos$49, ignoreFortify: false, expectFailure: true })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$47, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$49, ignoreFortify: false, expectFailure: true })))),
       sfa3explicitEnabledDoesntProtectCorrectFlexExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTestFull, false, "", "0", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
-              env: nix.thunk(() => ({ __proto__: pos$50, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$50, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=" })),
             })))))))),
-      pieAlwaysEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({})))), nix.thunk(() => ({ __proto__: pos$52, ignorePie: false })))))),
-      relROExplicitEnabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$53, hardeningEnable: nix.thunk(() => ["relro"]) })))), nix.thunk(() => ({ __proto__: pos$54, ignoreRelRO: false })))),
-      stackProtectorExplicitEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$55, hardeningEnable: nix.thunk(() => ["stackprotector"]) })))), nix.thunk(() => ({ __proto__: pos$56, ignoreStackProtector: false })))))),
+      pieAlwaysEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({})))), nix.thunk(() => ({ [nix.POS]: pos$52, ignorePie: false })))))),
+      relROExplicitEnabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$53, hardeningEnable: nix.thunk(() => ["relro"]) })))), nix.thunk(() => ({ [nix.POS]: pos$54, ignoreRelRO: false })))),
+      stackProtectorExplicitEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$55, hardeningEnable: nix.thunk(() => ["stackprotector"]) })))), nix.thunk(() => ({ [nix.POS]: pos$56, ignoreStackProtector: false })))))),
       stackClashProtectionExplicitEnabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               hardeningEnable: nix.thunk(() => ["stackclashprotection"]),
-            })))), nix.thunk(() => ({ __proto__: pos$58, ignoreStackClashProtection: false })))))),
-      pacRetExplicitEnabled: nix.thunk(() => nix.app(pacRetTest, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$59, hardeningEnable: nix.thunk(() => ["pacret"]) })))), false)),
-      shadowStackExplicitEnabled: nix.thunk(() => nix.app(shadowStackTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$60, hardeningEnable: nix.thunk(() => ["shadowstack"]) })))), false)),
-      glibcxxassertionsExplicitEnabled: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, true, stdenv, nix.thunk(() => ({ __proto__: pos$61, hardeningEnable: nix.thunk(() => ["glibcxxassertions"]) })))),
-      bindNowExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$62, hardeningDisable: nix.thunk(() => ["bindnow"]) })))), nix.thunk(() => ({ __proto__: pos$63, ignoreBindNow: false, expectFailure: true })))),
-      fortifyExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$64, hardeningDisable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ __proto__: pos$65, ignoreFortify: false, expectFailure: true })))),
-      fortify3ExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$66, hardeningDisable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ __proto__: pos$67, ignoreFortify: false, expectFailure: true })))),
+            })))), nix.thunk(() => ({ [nix.POS]: pos$58, ignoreStackClashProtection: false })))))),
+      pacRetExplicitEnabled: nix.thunk(() => nix.app(pacRetTest, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$59, hardeningEnable: nix.thunk(() => ["pacret"]) })))), false)),
+      shadowStackExplicitEnabled: nix.thunk(() => nix.app(shadowStackTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$60, hardeningEnable: nix.thunk(() => ["shadowstack"]) })))), false)),
+      glibcxxassertionsExplicitEnabled: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, true, stdenv, nix.thunk(() => ({ [nix.POS]: pos$61, hardeningEnable: nix.thunk(() => ["glibcxxassertions"]) })))),
+      bindNowExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$62, hardeningDisable: nix.thunk(() => ["bindnow"]) })))), nix.thunk(() => ({ [nix.POS]: pos$63, ignoreBindNow: false, expectFailure: true })))),
+      fortifyExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$64, hardeningDisable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ [nix.POS]: pos$65, ignoreFortify: false, expectFailure: true })))),
+      fortify3ExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$66, hardeningDisable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ [nix.POS]: pos$67, ignoreFortify: false, expectFailure: true })))),
       fortifyExplicitDisabledDisablesFortify3: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             hardeningEnable: nix.thunk(() => ["fortify3"]),
             hardeningDisable: nix.thunk(() => ["fortify"]),
-          })))), nix.thunk(() => ({ __proto__: pos$69, ignoreFortify: false, expectFailure: true })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$69, ignoreFortify: false, expectFailure: true })))),
       fortify3ExplicitDisabledDoesntDisableFortify: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             hardeningEnable: nix.thunk(() => ["fortify"]),
             hardeningDisable: nix.thunk(() => ["fortify3"]),
-          })))), nix.thunk(() => ({ __proto__: pos$71, ignoreFortify: false })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$71, ignoreFortify: false })))),
       sfa1explicitDisabled: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               hardeningEnable: nix.thunk(() => ["fortify"]),
               hardeningDisable: nix.thunk(() => ["strictflexarrays1"]),
-              env: nix.thunk(() => ({ __proto__: pos$72, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
-            })))), nix.thunk(() => ({ __proto__: pos$74, ignoreFortify: false, expectFailure: true })))))),
+              env: nix.thunk(() => ({ [nix.POS]: pos$72, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+            })))), nix.thunk(() => ({ [nix.POS]: pos$74, ignoreFortify: false, expectFailure: true })))))),
       sfa1explicitDisabledExecTest: nix.thunk(() => nix.app(fortifyExecTestFull, false, "012345", "0123456", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             hardeningEnable: nix.thunk(() => ["fortify"]),
             hardeningDisable: nix.thunk(() => ["strictflexarrays1"]),
-            env: nix.thunk(() => ({ __proto__: pos$75, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+            env: nix.thunk(() => ({ [nix.POS]: pos$75, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
           })))))),
       sfa1explicitDisabledDisablesSfa3: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
               hardeningDisable: nix.thunk(() => ["strictflexarrays1"]),
-              env: nix.thunk(() => ({ __proto__: pos$77, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
-            })))), nix.thunk(() => ({ __proto__: pos$79, ignoreFortify: false, expectFailure: true })))))),
+              env: nix.thunk(() => ({ [nix.POS]: pos$77, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+            })))), nix.thunk(() => ({ [nix.POS]: pos$79, ignoreFortify: false, expectFailure: true })))))),
       sfa1explicitDisabledDisablesSfa3ExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTestFull, false, "''", "0", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
               hardeningDisable: nix.thunk(() => ["strictflexarrays1"]),
-              env: nix.thunk(() => ({ __proto__: pos$80, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$80, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
             })))))))),
       sfa3explicitDisabledDoesntDisableSfa1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
             hardeningDisable: nix.thunk(() => ["strictflexarrays3"]),
-            env: nix.thunk(() => ({ __proto__: pos$82, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
-          })))), nix.thunk(() => ({ __proto__: pos$84, ignoreFortify: false })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$82, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$84, ignoreFortify: false })))),
       sfa3explicitDisabledDoesntDisableSfa1ExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTestFull, true, "012345", "0123456", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
               hardeningDisable: nix.thunk(() => ["strictflexarrays3"]),
-              env: nix.thunk(() => ({ __proto__: pos$85, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$85, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
             })))))))),
-      relROExplicitDisabled: nix.thunk(() => nix.app(brokenIf, true, nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({})))), nix.thunk(() => ({ __proto__: pos$87, ignoreRelRO: false, expectFailure: true })))))),
-      stackProtectorExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$88, hardeningDisable: nix.thunk(() => ["stackprotector"]) })))), nix.thunk(() => ({ __proto__: pos$89, ignoreStackProtector: false, expectFailure: true })))),
+      relROExplicitDisabled: nix.thunk(() => nix.app(brokenIf, true, nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({})))), nix.thunk(() => ({ [nix.POS]: pos$87, ignoreRelRO: false, expectFailure: true })))))),
+      stackProtectorExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$88, hardeningDisable: nix.thunk(() => ["stackprotector"]) })))), nix.thunk(() => ({ [nix.POS]: pos$89, ignoreStackProtector: false, expectFailure: true })))),
       stackClashProtectionExplicitDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             hardeningDisable: nix.thunk(() => ["stackclashprotection"]),
-          })))), nix.thunk(() => ({ __proto__: pos$91, ignoreStackClashProtection: false, expectFailure: true })))),
-      pacRetExplicitDisabled: nix.thunk(() => nix.app(pacRetTest, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$92, hardeningDisable: nix.thunk(() => ["pacret"]) })))), true)),
-      shadowStackExplicitDisabled: nix.thunk(() => nix.app(shadowStackTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$93, hardeningDisable: nix.thunk(() => ["shadowstack"]) })))), true)),
-      glibcxxassertionsExplicitDisabled: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, false, stdenv, nix.thunk(() => ({ __proto__: pos$94, hardeningDisable: nix.thunk(() => ["glibcxxassertions"]) })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$91, ignoreStackClashProtection: false, expectFailure: true })))),
+      pacRetExplicitDisabled: nix.thunk(() => nix.app(pacRetTest, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$92, hardeningDisable: nix.thunk(() => ["pacret"]) })))), true)),
+      shadowStackExplicitDisabled: nix.thunk(() => nix.app(shadowStackTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$93, hardeningDisable: nix.thunk(() => ["shadowstack"]) })))), true)),
+      glibcxxassertionsExplicitDisabled: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, false, stdenv, nix.thunk(() => ({ [nix.POS]: pos$94, hardeningDisable: nix.thunk(() => ["glibcxxassertions"]) })))),
       lchFastExplicitDisabled: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_NONE", stdenv, nix.thunk(() => ({
-          __proto__: pos$95,
+          [nix.POS]: pos$95,
           hardeningDisable: nix.thunk(() => ["libcxxhardeningfast"]),
         })))),
       lchExtensiveExplicitEnabled: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_EXTENSIVE", stdenv, nix.thunk(() => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           hardeningEnable: nix.thunk(() => ["libcxxhardeningextensive"]),
         })))),
       lchExtensiveExplicitDisabledDoesntDisableLchFast: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_FAST", stdenv, nix.thunk(() => ({
-          __proto__: pos$97,
+          [nix.POS]: pos$97,
           hardeningEnable: nix.thunk(() => ["libcxxhardeningfast"]),
           hardeningDisable: nix.thunk(() => ["libcxxhardeningextensive"]),
         })))),
       lchFastExplicitDisabledDisablesLchExtensive: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_NONE", stdenv, nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           hardeningEnable: nix.thunk(() => ["libcxxhardeningextensive"]),
           hardeningDisable: nix.thunk(() => ["libcxxhardeningfast"]),
         })))),
       lchFastExtensiveExplicitEnabledResultsInLchExtensive: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_EXTENSIVE", stdenv, nix.thunk(() => ({
-          __proto__: pos$99,
+          [nix.POS]: pos$99,
           hardeningEnable: nix.thunk(() => ["libcxxhardeningfast", "libcxxhardeningextensive"]),
         })))),
       lchFastExtensiveExplicitDisabledDisablesBoth: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_NONE", stdenv, nix.thunk(() => ({
-          __proto__: pos$100,
+          [nix.POS]: pos$100,
           hardeningDisable: nix.thunk(() => ["libcxxhardeningfast", "libcxxhardeningextensive"]),
         })))),
-      fortifyStdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify", "fortify3"]))), nix.thunk(() => ({ __proto__: pos$101, hardeningEnable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ __proto__: pos$102, ignoreFortify: false, expectFailure: true })))),
-      fortify3StdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify3"]))), nix.thunk(() => ({ __proto__: pos$103, hardeningEnable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ __proto__: pos$104, ignoreFortify: false, expectFailure: true })))),
-      fortifyStdenvUnsuppUnsupportsFortify3: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify"]))), nix.thunk(() => ({ __proto__: pos$105, hardeningEnable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ __proto__: pos$106, ignoreFortify: false, expectFailure: true })))),
-      fortify3StdenvUnsuppDoesntUnsuppFortify1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f1exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify3"]))), nix.thunk(() => ({ __proto__: pos$107, hardeningEnable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ __proto__: pos$108, ignoreFortify: false })))),
-      fortify3StdenvUnsuppDoesntUnsuppFortify1ExecTest: nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify3"]))), nix.thunk(() => ({ __proto__: pos$109, hardeningEnable: nix.thunk(() => ["fortify"]) })))))),
+      fortifyStdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify", "fortify3"]))), nix.thunk(() => ({ [nix.POS]: pos$101, hardeningEnable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ [nix.POS]: pos$102, ignoreFortify: false, expectFailure: true })))),
+      fortify3StdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify3"]))), nix.thunk(() => ({ [nix.POS]: pos$103, hardeningEnable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ [nix.POS]: pos$104, ignoreFortify: false, expectFailure: true })))),
+      fortifyStdenvUnsuppUnsupportsFortify3: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify"]))), nix.thunk(() => ({ [nix.POS]: pos$105, hardeningEnable: nix.thunk(() => ["fortify3"]) })))), nix.thunk(() => ({ [nix.POS]: pos$106, ignoreFortify: false, expectFailure: true })))),
+      fortify3StdenvUnsuppDoesntUnsuppFortify1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f1exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify3"]))), nix.thunk(() => ({ [nix.POS]: pos$107, hardeningEnable: nix.thunk(() => ["fortify"]) })))), nix.thunk(() => ({ [nix.POS]: pos$108, ignoreFortify: false })))),
+      fortify3StdenvUnsuppDoesntUnsuppFortify1ExecTest: nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["fortify3"]))), nix.thunk(() => ({ [nix.POS]: pos$109, hardeningEnable: nix.thunk(() => ["fortify"]) })))))),
       sfa1StdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["strictflexarrays1", "strictflexarrays3"]))), nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
-            env: nix.thunk(() => ({ __proto__: pos$110, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
-          })))), nix.thunk(() => ({ __proto__: pos$112, ignoreFortify: false, expectFailure: true })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$110, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$112, ignoreFortify: false, expectFailure: true })))),
       sfa3StdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["strictflexarrays3"]))), nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
-            env: nix.thunk(() => ({ __proto__: pos$113, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
-          })))), nix.thunk(() => ({ __proto__: pos$115, ignoreFortify: false, expectFailure: true })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$113, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$115, ignoreFortify: false, expectFailure: true })))),
       sfa1StdenvUnsuppUnsupportsSfa3: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["strictflexarrays1"]))), nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays3"]),
-            env: nix.thunk(() => ({ __proto__: pos$116, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
-          })))), nix.thunk(() => ({ __proto__: pos$118, ignoreFortify: false, expectFailure: true })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$116, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$118, ignoreFortify: false, expectFailure: true })))),
       sfa3StdenvUnsuppDoesntUnsuppSfa1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["strictflexarrays3"]))), nix.thunk(() => ({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
-            env: nix.thunk(() => ({ __proto__: pos$119, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
-          })))), nix.thunk(() => ({ __proto__: pos$121, ignoreFortify: false })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$119, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$121, ignoreFortify: false })))),
       sfa3StdenvUnsuppDoesntUnsuppSfa1ExecTest: nix.thunk(() => nix.app(brokenIf, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => nix.app(fortifyExecTestFull, true, "012345", "0123456", nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["strictflexarrays3"]))), nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               hardeningEnable: nix.thunk(() => ["fortify", "strictflexarrays1"]),
-              env: nix.thunk(() => ({ __proto__: pos$122, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$122, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
             })))))))),
-      stackProtectorStdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["stackprotector"]))), nix.thunk(() => ({ __proto__: pos$124, hardeningEnable: nix.thunk(() => ["stackprotector"]) })))), nix.thunk(() => ({ __proto__: pos$125, ignoreStackProtector: false, expectFailure: true })))),
+      stackProtectorStdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["stackprotector"]))), nix.thunk(() => ({ [nix.POS]: pos$124, hardeningEnable: nix.thunk(() => ["stackprotector"]) })))), nix.thunk(() => ({ [nix.POS]: pos$125, ignoreStackProtector: false, expectFailure: true })))),
       stackClashProtectionStdenvUnsupp: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(helloWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["stackclashprotection"]))), nix.thunk(() => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             hardeningEnable: nix.thunk(() => ["stackclashprotection"]),
-          })))), nix.thunk(() => ({ __proto__: pos$127, ignoreStackClashProtection: false, expectFailure: true })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$127, ignoreStackClashProtection: false, expectFailure: true })))),
       stackProtectorReenabledEnv: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$128,
+            [nix.POS]: pos$128,
             hardeningDisable: nix.thunk(() => ["stackprotector"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"stackprotector\"\n",
-          })))), nix.thunk(() => ({ __proto__: pos$129, ignoreStackProtector: false })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$129, ignoreStackProtector: false })))),
       stackProtectorReenabledFromAllEnv: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$130,
+            [nix.POS]: pos$130,
             hardeningDisable: nix.thunk(() => ["all"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"stackprotector\"\n",
-          })))), nix.thunk(() => ({ __proto__: pos$131, ignoreStackProtector: false })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$131, ignoreStackProtector: false })))),
       stackProtectorRedisabledEnv: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             hardeningEnable: nix.thunk(() => ["stackprotector"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"\"\n",
-          })))), nix.thunk(() => ({ __proto__: pos$133, ignoreStackProtector: false, expectFailure: true })))),
-      glibcxxassertionsStdenvUnsupp: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, false, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["glibcxxassertions"]))), nix.thunk(() => ({ __proto__: pos$134, hardeningEnable: nix.thunk(() => ["glibcxxassertions"]) })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$133, ignoreStackProtector: false, expectFailure: true })))),
+      glibcxxassertionsStdenvUnsupp: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, false, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["glibcxxassertions"]))), nix.thunk(() => ({ [nix.POS]: pos$134, hardeningEnable: nix.thunk(() => ["glibcxxassertions"]) })))),
       lchFastStdenvUnsupp: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_NONE", nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["libcxxhardeningfast"]))), nix.thunk(() => ({
-          __proto__: pos$135,
+          [nix.POS]: pos$135,
           hardeningEnable: nix.thunk(() => ["libcxxhardeningfast"]),
         })))),
       lchFastStdenvUnsuppUnsupportsLchExtensive: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_NONE", nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["libcxxhardeningfast"]))), nix.thunk(() => ({
-          __proto__: pos$136,
+          [nix.POS]: pos$136,
           hardeningEnable: nix.thunk(() => ["libcxxhardeningextensive"]),
         })))),
       lchExtensiveStdenvUnsuppDoesntUnsupportLchFast: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_FAST", nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["libcxxhardeningextensive"]))), nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           hardeningEnable: nix.thunk(() => ["libcxxhardeningfast", "libcxxhardeningextensive"]),
         })))),
       fortify3EnabledEnvEnablesFortify1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$138,
+            [nix.POS]: pos$138,
             hardeningDisable: nix.thunk(() => ["fortify", "fortify3"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"fortify3\"\n",
-          })))), nix.thunk(() => ({ __proto__: pos$139, ignoreFortify: false })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$139, ignoreFortify: false })))),
       fortify3EnabledEnvEnablesFortify1ExecTest: nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$140,
+            [nix.POS]: pos$140,
             hardeningDisable: nix.thunk(() => ["fortify", "fortify3"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"fortify3\"\n",
           })))))),
       fortifyEnabledEnvDoesntEnableFortify3: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f3exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$141,
+            [nix.POS]: pos$141,
             hardeningDisable: nix.thunk(() => ["fortify", "fortify3"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"fortify\"\n",
-          })))), nix.thunk(() => ({ __proto__: pos$142, ignoreFortify: false, expectFailure: true })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$142, ignoreFortify: false, expectFailure: true })))),
       sfa3EnabledEnvEnablesSfa1: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$144,
+            [nix.POS]: pos$144,
             hardeningDisable: nix.thunk(() => ["strictflexarrays1", "strictflexarrays3"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"fortify strictflexarrays3\"\n",
-            env: nix.thunk(() => ({ __proto__: pos$143, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
-          })))), nix.thunk(() => ({ __proto__: pos$145, ignoreFortify: false })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$143, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$145, ignoreFortify: false })))),
       sfa3EnabledEnvEnablesSfa1ExecTest: nix.thunk(() => nix.app(fortifyExecTestFull, true, "012345", "0123456", nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$147,
+            [nix.POS]: pos$147,
             hardeningDisable: nix.thunk(() => ["strictflexarrays1", "strictflexarrays3"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"fortify strictflexarrays3\"\n",
-            env: nix.thunk(() => ({ __proto__: pos$146, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
+            env: nix.thunk(() => ({ [nix.POS]: pos$146, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=7" })),
           })))))),
       sfa1EnabledEnvDoesntEnableSfa3: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(flexArrF2ExampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$149,
+            [nix.POS]: pos$149,
             hardeningDisable: nix.thunk(() => ["strictflexarrays1", "strictflexarrays3"]),
             postConfigure: "export NIX_HARDENING_ENABLE=\"fortify strictflexarrays1\"\n",
-            env: nix.thunk(() => ({ __proto__: pos$148, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
-          })))), nix.thunk(() => ({ __proto__: pos$150, ignoreFortify: false, expectFailure: true })))),
+            env: nix.thunk(() => ({ [nix.POS]: pos$148, TEST_EXTRA_FLAGS: "-DBUFFER_DEF_SIZE=1" })),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$150, ignoreFortify: false, expectFailure: true })))),
       lchFastEnabledEnv: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_FAST", stdenv, nix.thunk(() => ({
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           hardeningDisable: nix.thunk(() => ["libcxxhardeningfast", "libcxxhardeningextensive"]),
           postConfigure: "export NIX_HARDENING_ENABLE=\"libcxxhardeningfast\"\n",
         })))),
       lchExtensiveEnabledEnv: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_EXTENSIVE", stdenv, nix.thunk(() => ({
-          __proto__: pos$152,
+          [nix.POS]: pos$152,
           hardeningDisable: nix.thunk(() => ["libcxxhardeningfast", "libcxxhardeningextensive"]),
           postConfigure: "export NIX_HARDENING_ENABLE=\"libcxxhardeningextensive\"\n",
         })))),
       lchFastExtensiveEnabledEnvResultsInLchExtensive: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_EXTENSIVE", stdenv, nix.thunk(() => ({
-          __proto__: pos$153,
+          [nix.POS]: pos$153,
           hardeningDisable: nix.thunk(() => ["libcxxhardeningfast", "libcxxhardeningextensive"]),
           postConfigure: "export NIX_HARDENING_ENABLE=\"libcxxhardeningextensive libcxxhardeningfast\"\n",
         })))),
       stackProtectorUnsupportedEnabledEnv: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f2exampleWithStdEnv, nix.thunk(() => nix.app(stdenvUnsupport, nix.thunk(() => ["stackprotector"]))), nix.thunk(() => ({
-            __proto__: pos$154,
+            [nix.POS]: pos$154,
             postConfigure: "export NIX_HARDENING_ENABLE=\"stackprotector\"\n",
-          })))), nix.thunk(() => ({ __proto__: pos$155, ignoreStackProtector: false, expectFailure: true })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$155, ignoreStackProtector: false, expectFailure: true })))),
       fortify1ExplicitEnabledCmdlineDisabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$156,
+            [nix.POS]: pos$156,
             hardeningEnable: nix.thunk(() => ["fortify"]),
             postConfigure: "export TEST_EXTRA_FLAGS='-D_FORTIFY_SOURCE=0'\n",
-          })))), nix.thunk(() => ({ __proto__: pos$157, ignoreFortify: false, expectFailure: false })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$157, ignoreFortify: false, expectFailure: false })))),
       fortify1ExplicitDisabledCmdlineEnabled: nix.thunk(() => nix.app(checkTestBin, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$158,
+            [nix.POS]: pos$158,
             hardeningDisable: nix.thunk(() => ["fortify"]),
             postConfigure: "export TEST_EXTRA_FLAGS='-D_FORTIFY_SOURCE=1'\n",
-          })))), nix.thunk(() => ({ __proto__: pos$159, ignoreFortify: false })))),
+          })))), nix.thunk(() => ({ [nix.POS]: pos$159, ignoreFortify: false })))),
       fortify1ExplicitDisabledCmdlineEnabledExecTest: nix.thunk(() => nix.app(fortifyExecTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({
-            __proto__: pos$160,
+            [nix.POS]: pos$160,
             hardeningDisable: nix.thunk(() => ["fortify"]),
             postConfigure: "export TEST_EXTRA_FLAGS='-D_FORTIFY_SOURCE=1'\n",
           })))))),
       fortify1ExplicitEnabledCmdlineDisabledNoWarn: nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({
-          __proto__: pos$161,
+          [nix.POS]: pos$161,
           hardeningEnable: nix.thunk(() => ["fortify"]),
           postConfigure: "export TEST_EXTRA_FLAGS='-D_FORTIFY_SOURCE=0 -Werror'\n",
         })))),
     }, (() => {
       const tb = nix.thunk(() => nix.app(f2exampleWithStdEnv, stdenv, nix.thunk(() => ({
-          __proto__: pos$163,
+          [nix.POS]: pos$163,
           hardeningDisable: nix.thunk(() => ["all"]),
           hardeningEnable: nix.thunk(() => ["fortify"]),
         }))));
       return {
-        __proto__: pos$173,
-        allExplicitDisabledBindNow: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ __proto__: pos$164, ignoreBindNow: false, expectFailure: true })))),
-        allExplicitDisabledFortify: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ __proto__: pos$165, ignoreFortify: false, expectFailure: true })))),
-        allExplicitDisabledRelRO: nix.thunk(() => nix.app(brokenIf, true, nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ __proto__: pos$166, ignoreRelRO: false, expectFailure: true })))))),
-        allExplicitDisabledStackProtector: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ __proto__: pos$167, ignoreStackProtector: false, expectFailure: true })))),
-        allExplicitDisabledStackClashProtection: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ __proto__: pos$168, ignoreStackClashProtection: false, expectFailure: true })))),
-        allExplicitDisabledPacRet: nix.thunk(() => nix.app(pacRetTest, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$169, hardeningDisable: nix.thunk(() => ["all"]) })))), true)),
-        allExplicitDisabledShadowStack: nix.thunk(() => nix.app(shadowStackTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ __proto__: pos$170, hardeningDisable: nix.thunk(() => ["all"]) })))), true)),
-        allExplicitDisabledGlibcxxAssertions: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, false, stdenv, nix.thunk(() => ({ __proto__: pos$171, hardeningDisable: nix.thunk(() => ["all"]) })))),
-        allExplicitDisabledLibcxxHardening: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_NONE", stdenv, nix.thunk(() => ({ __proto__: pos$172, hardeningDisable: nix.thunk(() => ["all"]) })))),
+        [nix.POS]: pos$173,
+        allExplicitDisabledBindNow: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ [nix.POS]: pos$164, ignoreBindNow: false, expectFailure: true })))),
+        allExplicitDisabledFortify: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ [nix.POS]: pos$165, ignoreFortify: false, expectFailure: true })))),
+        allExplicitDisabledRelRO: nix.thunk(() => nix.app(brokenIf, true, nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ [nix.POS]: pos$166, ignoreRelRO: false, expectFailure: true })))))),
+        allExplicitDisabledStackProtector: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ [nix.POS]: pos$167, ignoreStackProtector: false, expectFailure: true })))),
+        allExplicitDisabledStackClashProtection: nix.thunk(() => nix.app(checkTestBin, tb, nix.thunk(() => ({ [nix.POS]: pos$168, ignoreStackClashProtection: false, expectFailure: true })))),
+        allExplicitDisabledPacRet: nix.thunk(() => nix.app(pacRetTest, nix.thunk(() => nix.app(helloWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$169, hardeningDisable: nix.thunk(() => ["all"]) })))), true)),
+        allExplicitDisabledShadowStack: nix.thunk(() => nix.app(shadowStackTest, nix.thunk(() => nix.app(f1exampleWithStdEnv, stdenv, nix.thunk(() => ({ [nix.POS]: pos$170, hardeningDisable: nix.thunk(() => ["all"]) })))), true)),
+        allExplicitDisabledGlibcxxAssertions: nix.thunk(() => nix.app(checkGlibcxxassertionsWithStdEnv, false, stdenv, nix.thunk(() => ({ [nix.POS]: pos$171, hardeningDisable: nix.thunk(() => ["all"]) })))),
+        allExplicitDisabledLibcxxHardening: nix.thunk(() => nix.app(checkLibcxxHardeningWithStdEnv, "_LIBCPP_HARDENING_MODE_NONE", stdenv, nix.thunk(() => ({ [nix.POS]: pos$172, hardeningDisable: nix.thunk(() => ["all"]) })))),
       };
     })())));
 })(), formals$1);

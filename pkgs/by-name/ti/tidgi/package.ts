@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ast_grep = nix.arg($, "ast-grep");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tidgi",
       version: "0.12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tiddly-gittly/TidGi-Desktop/releases/download/v${nix.sel(finalAttrs, "version")}/TidGi-darwin-arm64-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-bSJFM67+KVECUqjwu1HYipn+zOps1ahNzM721yZL52c=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-tidgi", nix.thunk(() => nix.str`version=$(nix eval --raw --file . tidgi.version)
 latestVersion=$(curl \${GITHUB_TOKEN:+-u ":$GITHUB_TOKEN"} --fail --silent https://api.github.com/repos/tiddly-gittly/TidGi-Desktop/releases/latest | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output .tag_name | sed 's/^v//')
 if [[ "$latestVersion" == "$version" ]]; then
@@ -51,7 +51,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/tiddly-gittly/TidGi-Desktop/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Customizable personal knowledge-base and blogging platform with git as backup manager",
         homepage: "https://github.com/tiddly-gittly/TidGi-Desktop",

@@ -38,68 +38,68 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "plantuml-server"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "plantuml-server", "allowPlantumlInclude"]), "This option has been removed from PlantUML.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "plantuml-server": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "PlantUML server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "plantuml-server", nix.thunk(() => ({})))),
           packages: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             jdk: nix.thunk(() => nix.app(mkPackageOption, pkgs, "jdk", nix.thunk(() => ({})))),
-            jetty: nix.thunk(() => nix.app(mkPackageOption, pkgs, "jetty", nix.thunk(() => ({ __proto__: pos$1, default: nix.thunk(() => ["jetty_12"]) })))),
+            jetty: nix.thunk(() => nix.app(mkPackageOption, pkgs, "jetty", nix.thunk(() => ({ [nix.POS]: pos$1, default: nix.thunk(() => ["jetty_12"]) })))),
           })),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "plantuml",
               description: "User which runs PlantUML server.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "plantuml",
               description: "Group which runs PlantUML server.",
             })))),
           home: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/plantuml",
               description: "Home directory of the PlantUML server instance.",
             })))),
           listenHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "Host to listen on.",
             })))),
           listenPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "Port to listen on.",
             })))),
           plantumlLimitSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "int")),
               default: 4096n,
               description: "Limits image width and height.",
             })))),
           graphvizPackage: nix.thunk(() => nix.app(mkPackageOption, pkgs, "graphviz", nix.thunk(() => ({})))),
           plantumlStats: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Set it to on to enable statistics report (https://plantuml.com/statistics-report).",
             })))),
           httpAuthorization: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "When calling the proxy endpoint, the value of HTTP_AUTHORIZATION will be used to set the HTTP Authorization header.",
@@ -108,17 +108,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "plantuml-server": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "PlantUML server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 PLANTUML_LIMIT_SIZE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "plantumlLimitSize")))),
                 GRAPHVIZ_DOT: nix.thunk(() => nix.str`${nix.sel(cfg, "graphvizPackage")}/bin/dot`),
                 PLANTUML_STATS: nix.thunk(() => (nix.asBool(nix.sel(cfg, "plantumlStats")) ? "on" : "off")),
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
     -Djetty.http.port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenPort")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 StateDirectory: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "home"), "/var/lib/plantuml")), "plantuml")),
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

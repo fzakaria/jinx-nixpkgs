@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helm-diff";
       const version = "3.15.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "databus23",
           repo: "helm-diff",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ mv $out/${pname}/bin/{helm-,}diff
 install -m644 -Dt $out/${pname} plugin.yaml
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helm plugin that shows a diff",
         homepage: "https://github.com/databus23/helm-diff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +45,7 @@ install -m644 -Dt $out/${pname} plugin.yaml
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

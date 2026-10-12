@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "transducers",
       version: "2017-07-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QuentinDuval",
           repo: "IdrisReducers",
           rev: "2947ffa3559b642baeb3e43d7bb382e16bd073a8",
           sha256: "0wzbbp5n113mva99mqr119zwp5pgj4l6wq9033z4f0kbm2nhmcfr",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composable algorithmic transformation",
         homepage: "https://github.com/QuentinDuval/IdrisReducers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

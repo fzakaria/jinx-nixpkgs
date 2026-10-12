@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fvm",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "conceptadev",
           repo: "fvm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
         })))),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [yq_go]),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "fvm.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$3, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "fvm.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$3, supportedFeatures: [] })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple CLI to manage Flutter SDK versions",
         homepage: "https://github.com/conceptadev/fvm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const target = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "bender",
       version: "0.32.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pulp-platform",
           repo: "bender",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,23 +37,23 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-1exuDZPsmtorOeRWPb+UMX7U/Uc+0U0Rs0bG9L+/ipc=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./build-rs.patch"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             slangSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "MikePopoloski",
                 repo: "slang",
                 tag: "v11.0",
                 hash: "sha256-popHzwX0qwv2POAl7/qX3e//OwJRXGtSl9xogpSn2LI=",
               })))),
             fmtSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 owner: "fmtlib",
                 repo: "fmt",
                 tag: "12.1.0",
                 hash: "sha256-ZmI1Dv0ZabPlxa02OpERI47jp7zFfjpeWCy1WyuPYZ0=",
               })))),
             mimallocSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 owner: "microsoft",
                 repo: "mimalloc",
                 tag: "v3.3.2",
@@ -69,7 +69,7 @@ BENDER="$PWD/target/${target}/$cargoBuildType/bender" tests/run_all.sh
 `),
       postInstall: "installShellCompletion --cmd bender \\\n  --bash <($out/bin/bender completion bash) \\\n  --fish <($out/bin/bender completion fish) \\\n  --zsh <($out/bin/bender completion zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Dependency management tool for hardware projects",
         homepage: "https://github.com/pulp-platform/bender",
         changelog: nix.thunk(() => nix.str`https://github.com/pulp-platform/bender/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

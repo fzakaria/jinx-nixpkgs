@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const gifski = nix.arg($, "gifski");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "peek",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phw",
           repo: "peek",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/phw/peek/commit/008d15316ab5428363c512b263ca8138cb8f52ba.patch",
             sha256: "xxJ+r5uRk93MEzWTFla88ewZsnUl3+YKTenzDygtKP0=",
           })))),
@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [which, ffmpeg_full, gifski]))})
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/phw/peek",
         description: "Simple animated GIF screen recorder with an easy to use interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

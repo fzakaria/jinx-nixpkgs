@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "awsume",
       version: "4.5.7",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trek10inc",
           repo: "awsume",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-UTwqu2czo2ASql18dj0qwPGmKCF0QxVqyX7PZMWRUeg=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, AWSUME_SKIP_ALIAS_SETUP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, AWSUME_SKIP_ALIAS_SETUP: 1n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       dependencies: nix.thunk(() => (() => {
         const w = nix.withScope(python3Packages, null);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd awsume \\\n  --bash <(PYTHONPATH=./awsume/configure python3 -c\"import autocomplete; print(autocomplete.SCRIPTS['bash'])\") \\\n  --zsh <(PYTHONPATH=./awsume/configure python3 -c\"import autocomplete; print(autocomplete.ZSH_AUTOCOMPLETE_FUNCTION)\") \\\n  --fish <(PYTHONPATH=./awsume/configure python3 -c\"import autocomplete; print(autocomplete.SCRIPTS['fish'])\") \\\n\nrm -f $out/bin/awsume.bat\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for easily assuming AWS IAM roles from the command line",
         homepage: "https://github.com/trek10inc/awsume",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

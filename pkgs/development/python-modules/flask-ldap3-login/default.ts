@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nickw444",
           repo: "flask-ldap3-login",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mock]);
       const pythonImportsCheck = nix.thunk(() => ["flask_ldap3_login"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LDAP3 Logins for Flask/Flask-Login",
         homepage: "https://flask-ldap3-login.readthedocs.org",
         changelog: nix.thunk(() => nix.str`https://github.com/nickw444/flask-ldap3-login/releases/tag/v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

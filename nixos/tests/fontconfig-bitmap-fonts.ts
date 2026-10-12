@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     name: "fontconfig-bitmap-fonts",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fonts: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "terminus_font"))]),
-            fontconfig: nix.thunk(() => ({ __proto__: pos$1, allowBitmaps: true })),
+            fontconfig: nix.thunk(() => ({ [nix.POS]: pos$1, allowBitmaps: true })),
           })),
         };
       })(), formals$2),

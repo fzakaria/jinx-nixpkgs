@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const stripPrefix = nix.argOr($, "stripPrefix", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   const disableInitExecTls = nix.argOr($, "disableInitExecTls", () => false);
   const pageSizeKiB = nix.argOr($, "pageSizeKiB", () => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")))) ? 64n : 4n));
-  const pageSizeMap = nix.thunk(() => ({ __proto__: pos$1, "4": 12n, "16": 14n, "64": 16n }));
+  const pageSizeMap = nix.thunk(() => ({ [nix.POS]: pos$1, "4": 12n, "16": 14n, "64": 16n }));
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "pageSizeKiB", nix.thunk(() => nix.builtins.toString(pageSizeKiB)), nix.thunk(() => nix.builtins.attrNames(pageSizeMap))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/je/jemalloc/package.nix:36:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "jemalloc",
       version: "5.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "jemalloc",
           repo: "jemalloc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./o3-to-o2.patch"),
         nix.path(here, "./skip-extent-test-with-prof-active.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "jemalloc-dont-use-nonstandard-throw-bad-alloc.patch",
             url: "https://github.com/jemalloc/jemalloc/commit/1a15fe33a48c52bfe26ea83e49f0d317a47da3ea.patch",
             hash: "sha256-pL9fo8UMSbFlHCo3LFFkw0qBsdrVHcEJIkLutZYa2Yg=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-lg-page=${nix.builtins.toString(nix.thunk(() => nix.sel(pageSizeMap, nix.key(nix.str`${nix.builtins.toString(pageSizeKiB)}`))))}`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "--with-lg-vaddr=48")))))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-error=array-bounds")),
       })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://jemalloc.net/",
         downloadPage: "https://github.com/jemalloc/jemalloc",
         description: "General purpose malloc(3) implementation",

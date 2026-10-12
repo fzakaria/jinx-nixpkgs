@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const schedule = nix.arg($, "schedule");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysmappee",
       version: "0.2.29",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smappee",
           repo: "pysmappee",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pysmappee"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python Library for the Smappee dev API",
         homepage: "https://github.com/smappee/pysmappee",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

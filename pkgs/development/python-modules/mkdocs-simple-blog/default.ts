@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FernandoCelmer",
           repo: "mkdocs-simple-blog",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_simple_blog"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple blog generator plugin for MkDocs",
         homepage: "https://fernandocelmer.github.io/mkdocs-simple-blog/",
         changelog: nix.thunk(() => nix.str`https://github.com/FernandoCelmer/mkdocs-simple-blog/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

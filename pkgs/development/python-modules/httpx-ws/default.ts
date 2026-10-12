@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frankie567",
           repo: "httpx-ws",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["httpx_ws"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_api.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebSocket support for HTTPX",
         homepage: "https://github.com/frankie567/httpx-ws",
         changelog: nix.thunk(() => nix.str`https://github.com/frankie567/httpx-ws/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

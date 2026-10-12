@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "buttermanager",
       version: "2.5.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "egara",
           repo: "buttermanager",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${qtWrapperArgs[@]}", "${gappsWrapperArgs[@]}"]),
       postInstall: "substituteInPlace packaging/buttermanager.desktop \\\n  --replace-fail /opt/buttermanager/gui/buttermanager.svg buttermanager\n\ninstall -Dm444 packaging/buttermanager.desktop -t $out/share/applications\ninstall -Dm444 packaging/buttermanager.svg -t $out/share/icons/hicolor/scalable/apps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Btrfs tool for managing snapshots, balancing filesystems and upgrading the system safely",
         homepage: "https://github.com/egara/buttermanager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

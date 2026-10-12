@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.attr(from, "arch"));
   const platform = nix.thunk(() => nix.attr(from, "platform"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "copilot-language-server",
       version: "1.551.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/github/copilot-language-server-release/releases/download/${nix.sel(finalAttrs, "version")}/copilot-language-server-js-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-wDV1F8rzO49sp2XxcZdvwyWKSzu+2CWahZ2kLoVoGRE=",
           stripRoot: false,
@@ -63,15 +63,15 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => ["HOME"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Use GitHub Copilot with any editor or IDE via the Language Server Protocol",
         homepage: "https://github.com/features/copilot",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             deprecated: false,
             free: false,
             fullName: "GitHub Copilot Product Specific Terms",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-W3DLZCXUH9y5NPipFEu6URmKN+oVXMgeDF1rfKtxRng=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pysecuritas"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client to access Securitas Direct Mobile API",
         homepage: "https://github.com/Cebeerre/pysecuritas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pysecuritas",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

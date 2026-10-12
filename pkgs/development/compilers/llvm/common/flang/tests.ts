@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const flangExe = nix.thunk(() => nix.str`${flang}/bin/flang`);
   const writeHello = "cat > hello.f90 <<'EOF'\nprogram hello\nend program hello\nEOF\n";
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "compile-smoke": nix.thunk(() => nix.app(runCommand, "flang-compile-smoke", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -euo pipefail
 
 ${writeHello}

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
           const Revision = "722200c4adbd6d1e5d847dfbbd9dec07aa4ca38d";
           const Branch = Revision;
           const BuildUser = "nix";
-          return { __proto__: pos$1, Version, Revision, Branch, BuildUser };
+          return { [nix.POS]: pos$1, Version, Revision, Branch, BuildUser };
         })());
         const varFlags = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`-X github.com/prometheus/common/version.${name}=${value}`, setVars))));
         return [nix.thunk(() => nix.str`${varFlags}`), "-s", "-w"];
       })());
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "SuperQ",
           repo: "smokeping_prober",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-rNk9mCVpc2N+lLAarDenmOLy00swS1rkTNxMy62wR+k=";
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$3, smokeping: nix.thunk(() => nix.attr(from, "smokeping")) };
+          return { [nix.POS]: pos$3, smokeping: nix.thunk(() => nix.attr(from, "smokeping")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Prometheus exporter for sending continual ICMP/UDP pings",
         mainProgram: "smokeping_prober",
         homepage: "https://github.com/SuperQ/smokeping_prober",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         ldflags,

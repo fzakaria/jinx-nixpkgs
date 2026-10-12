@@ -15,30 +15,30 @@ const pos$7 = nix.positions(here + "/nginx-modsecurity.nix", [["name", 3, 3], ["
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "nginx-modsecurity",
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nginx: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               additionalModules: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nginxModules", "modsecurity"))]),
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 localhost: nix.thunk(() => (() => {
                   const modsecurity_conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "modsecurity.conf", "SecRuleEngine On\nSecDefaultAction \"phase:1,log,auditlog,deny,status:403\"\nSecDefaultAction \"phase:2,log,auditlog,deny,status:403\"\nSecRule REQUEST_METHOD   \"HEAD\"        \"id:100, phase:1, block\"\nSecRule REQUEST_FILENAME \"secret.html\" \"id:101, phase:2, block\"\n"));
                   const testroot = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "testroot", nix.thunk(() => ({})), "mkdir -p $out\necho \"<html><body>Hello World!</body></html>\" > $out/index.html\necho \"s3cret\" > $out/secret.html\n"));
                   return {
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     root: testroot,
                     extraConfig: nix.thunk(() => nix.str`modsecurity on;
 modsecurity_rules_file ${modsecurity_conf};

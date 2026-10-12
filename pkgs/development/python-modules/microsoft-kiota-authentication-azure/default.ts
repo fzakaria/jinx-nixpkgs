@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "microsoft-kiota-authentication-azure",
       version: "1.14.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "kiota-python",
           tag: nix.thunk(() => nix.str`microsoft-kiota-authentication-azure-v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["kiota_authentication_azure"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "microsoft-kiota-authentication-azure-v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "microsoft-kiota-authentication-azure-v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Kiota Azure authentication provider",
         homepage: "https://github.com/microsoft/kiota-python/tree/main/packages/authentication/azure",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/kiota-python/releases/tag/microsoft-kiota-authentication-azure-${nix.sel(finalAttrs, "src", "tag")}`),

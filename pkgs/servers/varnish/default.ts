@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         const pname = "varnish";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://vinyl-cache.org/_downloads/${pname}-${version_1}.tgz`),
             hash: hash,
           }))));
@@ -82,17 +82,17 @@ substituteInPlace Makefile \\
         const postInstall = nix.thunk(() => nix.add(nix.str`wrapProgram "$out/sbin/varnishd" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc"))]))}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "cp bin/varnishd/vhp_hufdec.h $vhp_hufdec_h\n")));
         const env = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-fexcess-precision=standard")),
         }));
         const outputs = nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => ["man", "vhp_hufdec_h"]))));
         const passthru = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           python: python3,
           tests: nix.thunk(() => nix.sel(nixosTests, nix.key(nix.str`varnish${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)))}`))),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Web application accelerator also known as a caching HTTP reverse proxy",
           homepage: "https://www.varnish-cache.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -104,7 +104,7 @@ substituteInPlace Makefile \\
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname,
           version: version_1,
           src,
@@ -124,9 +124,9 @@ substituteInPlace Makefile \\
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     varnish80: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "8.0.2",
         hash: "sha256-yGCDuFBGPBiJmCmQncAs5miLKfyoCym6+PbixW6tMI8=",
       })))),

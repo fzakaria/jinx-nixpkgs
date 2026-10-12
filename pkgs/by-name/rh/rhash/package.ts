@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.4.6",
       pname: "rhash",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhash",
           repo: "RHash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(["install", "install-lib-headers"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(enableStatic)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), nix.thunk(() => ["install-lib-so-link"])))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rhash.sourceforge.net/",
         description: "Console utility and library for computing and verifying hash sums of files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const LeanSearchClient = nix.arg($, "LeanSearchClient");
   const importGraph = nix.arg($, "importGraph");
   const tests = nix.arg($, "tests");
-  const leangz_raw = nix.thunk(() => nix.app(nix.sel(leangz, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$1, cargoBuildNoDefaultFeatures: true }))));
+  const leangz_raw = nix.thunk(() => nix.app(nix.sel(leangz, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, cargoBuildNoDefaultFeatures: true }))));
   const mathlib__archive = nix.thunk(() => nix.app(buildLakePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lean4-mathlib",
       version: "4.34.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "leanprover-community",
           repo: "mathlib4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [leangz_raw]),
       postInstall: "local lib=\"$out/.lake/build/lib/lean\"\nlocal ir=\"$out/.lake/build/ir\"\nfind \"$lib\" -name '*.trace' -print0 \\\n  | xargs -0 -P\"$NIX_BUILD_CORES\" -I{} bash -c '\n      base=\"${1%.trace}\"; rel=\"${base#'\"$lib\"'/}\"\n      leantar -C \"'\"$lib\"'\" -C \"'\"$ir\"'\" \"$base.ltar\" \\\n        \"$rel.trace\" \"$rel.olean\" \"$rel.olean.server\" \"$rel.olean.private\" \\\n        \"$rel.ilean\" -i 1 \"$rel.c\"\n      rm \"$base\".{trace,olean,olean.server,olean.private,ilean} \"'\"$ir\"'/$rel.c\"\n    ' _ {}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mathematical library for Lean 4",
         homepage: "https://github.com/leanprover-community/mathlib4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(runCommand, nix.thunk(() => nix.sel(mathlib__archive, "name")), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nativeBuildInputs: nix.thunk(() => [leangz_raw]),
       pname: nix.thunk(() => nix.attr(mathlib__archive, "pname")),
       version: nix.thunk(() => nix.attr(mathlib__archive, "version")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mathlib__archive: mathlib__archive,
         src: nix.thunk(() => nix.attr(mathlib__archive, "src")),
         lakePackageName: nix.thunk(() => nix.attr(mathlib__archive, "lakePackageName")),
@@ -71,12 +71,12 @@ export default nix.lambda((args) => (() => {
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(tests, "lake"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "weak-minimax": nix.thunk(() => nix.attr(from, "weak-minimax")),
         };
         })()),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(mathlib__archive, "meta"), { __proto__: pos$7, hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(mathlib__archive, "meta"), { [nix.POS]: pos$7, hydraPlatforms: [] })),
     })), nix.thunk(() => nix.str`mkdir -p $out
 cp -rT ${mathlib__archive} $out
 chmod -R u+w $out

@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const btrfsProgsPatched = nix.thunk(() => nix.app(nix.sel(btrfs_progs, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://raw.githubusercontent.com/Lakshmipathi/dduper/7e8f995a3a6179a31d15ce073bce6cfbaefb81ed/patch/btrfs-progs-v6.11/0001-Print-csum-for-a-given-file-on-stdout.patch",
             hash: "sha256-ndydH5tHKYLKhstNdpfuJVCUrwl+6VJwprKy4hz8uwM=",
           })))),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dduper",
       version: "0.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "lakshmipathi",
           repo: "dduper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ninstall -m755 ./dduper $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast block-level out-of-band BTRFS deduplication tool",
         mainProgram: "dduper",
         homepage: "https://github.com/Lakshmipathi/dduper",

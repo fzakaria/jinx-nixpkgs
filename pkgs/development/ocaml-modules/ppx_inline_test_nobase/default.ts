@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_inline_test_nobase",
       version: "0.17.0.3",
       minimalOCamlVersion: "4.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kakadu",
           repo: "ppx_inline_test_nobase",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [mtime, ppxlib, sexplib0]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Syntax extension for writing in-line tests in ocaml code",
         homepage: "https://github.com/Kakadu/ppx_inline_test_nobase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

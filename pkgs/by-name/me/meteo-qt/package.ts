@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "meteo-qt",
       version: "4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dglent",
           repo: "meteo-qt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["meteo_qt"]),
       makeWrapperArgs: nix.thunk(() => ["${qtWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System tray application for weather status information",
         homepage: "https://github.com/dglent/meteo-qt",
         changelog: nix.thunk(() => nix.str`https://github.com/dglent/meteo-qt/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

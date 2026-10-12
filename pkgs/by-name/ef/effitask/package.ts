@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "effitask",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "todotxt-rs",
           repo: "effitask",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ make install PREFIX="$out" TARGET="target/${nix.sel(stdenv, "hostPlatform", "rus
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical task manager, based on the todo.txt format",
         longDescription: "To use it as todo.sh add-on, create a symlink like this:\nmkdir ~/.todo.actions.d/\nln -s $(which effitask) ~/.todo.actions.d/et\n\nOr use it as standalone program by defining some environment variables\nlike described in the projects readme.\n",
         homepage: "https://github.com/todotxt-rs/effitask",

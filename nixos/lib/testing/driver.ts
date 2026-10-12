@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(hostPkgs, "stdenv", "hostPlatform"));
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   const testDriver = nix.thunk(() => nix.app(nix.sel(config, "pythonTestDriverPackage", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enableOCR: nix.thunk(() => nix.attr(config, "enableOCR")),
       extraPythonPackages: nix.thunk(() => nix.attr(config, "extraPythonPackages")),
       enableNspawn: nix.thunk(() => !nix.eq(nix.sel(config, "containers"), {})),
@@ -70,15 +70,15 @@ export default nix.lambda((args) => (() => {
   })());
   const withChecks = nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.sel(config, "skipLint")), "Linting is disabled"));
   const driver = nix.thunk(() => nix.app(nix.sel(hostPkgs, "runCommand"), nix.thunk(() => nix.str`nixos-test-driver-${nix.sel(config, "name")}`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(hostPkgs, "makeWrapper"))], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(config, "skipTypeCheck"))), nix.thunk(() => [nix.thunk(() => nix.sel(hostPkgs, "ty"))])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(config, "skipLint"))), nix.thunk(() => [nix.thunk(() => nix.sel(hostPkgs, "ruff"))]))))),
       buildInputs: nix.thunk(() => [testDriver]),
       preferLocalBuild: true,
       passthru: nix.thunk(() => nix.update(nix.sel(config, "passthru"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         testScript: nix.thunk(() => nix.sel(config, "testScriptString")),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(config, "meta"), { __proto__: pos$3, mainProgram: "nixos-test-driver" })),
+      meta: nix.thunk(() => nix.update(nix.sel(config, "meta"), { [nix.POS]: pos$3, mainProgram: "nixos-test-driver" })),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "skipTypeCheck"))) || nix.asBool(!nix.asBool(nix.sel(config, "skipLint"))))), nix.thunk(() => nix.str`# prepend type hints so the test script can be type checked with ty
@@ -101,11 +101,11 @@ wrapProgram $out/bin/nixos-test-driver \\
   ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (arg) => ["--add-flags", arg], nix.thunk(() => nix.sel(config, "extraDriverArgs")))))}
 `)));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pythonTestDriverPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Package containing the python NixOS test driver implementation",
           type: nix.thunk(() => nix.sel(types, "package")),
           default: nix.thunk(() => nix.sel(hostPkgs, "nixos-test-driver")),
@@ -113,73 +113,73 @@ wrapProgram $out/bin/nixos-test-driver \\
           readOnly: true,
         })))),
       driver: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Package containing a script that runs the test.",
           type: nix.thunk(() => nix.sel(types, "package")),
           defaultText: nix.thunk(() => nix.app(literalMD, "set by the test framework")),
         })))),
       hostPkgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Nixpkgs attrset used outside the nodes.",
           type: nix.thunk(() => nix.sel(types, "raw")),
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "import nixpkgs { inherit system config overlays; }\n")),
         })))),
       qemu: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             description: "Which qemu package to use for the virtualisation of [{option}`nodes`](#test-opt-nodes).",
             type: nix.thunk(() => nix.sel(types, "package")),
             default: nix.thunk(() => nix.sel(hostPkgs, "qemu_test")),
             defaultText: "hostPkgs.qemu_test",
           })))),
         forceAccel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "Whether to force the use of hardware-accelerated virtualisation.\nWhen enabled, QEMU will not fall back to the slower software emulation\n(TCG) and will instead error out if the accelerator is not available.\n",
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
           })))),
       })),
       globalTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: "A global timeout for the complete test, expressed in seconds.\nBeyond that timeout, every resource will be killed and released and the test will fail.\n\nBy default, we use a 1 hour timeout.\n",
           type: nix.thunk(() => nix.sel(types, "int")),
           default: nix.thunk(() => nix.mul(60n, 60n)),
           example: nix.thunk(() => nix.mul(10n, 60n)),
         })))),
       enableOCR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: "Whether to enable Optical Character Recognition functionality for\ntesting graphical programs. See [`Machine objects`](#ssec-machine-objects).\n",
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
         })))),
       extraPythonPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           description: "Python packages to add to the test driver.\n\nThe argument is a Python package set, similar to `pkgs.pythonPackages`.\n",
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "p: [ p.numpy ]\n")),
           type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))))),
           default: (ps) => [],
         })))),
       extraDriverArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           description: "Extra arguments to pass to the test driver.\n\nThey become part of [{option}`driver`](#test-opt-driver) via `wrapProgram`.\n",
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
         })))),
       skipLint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Do not run the linters. This may speed up your iteration cycle, but it is not something you should commit.\n",
         })))),
       skipTypeCheck: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
           description: "Disable type checking. This must not be enabled for new NixOS tests.\n\nThis may speed up your iteration cycle, unless you're working on the [{option}`testScript`](#test-opt-testScript).\n",
         })))),
       logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           description: "Log level for the test driver.",
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warning", "error"]))),
           default: "info",
@@ -187,33 +187,33 @@ wrapProgram $out/bin/nixos-test-driver \\
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       _module: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         args: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           hostPkgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), nix.thunk(() => nix.sel(lib, "modules", "defaultOverridePriority")), nix.thunk(() => nix.sel(config, "hostPkgs")))),
         })),
       })),
       driver: nix.thunk(() => nix.app(withChecks, driver)),
-      passthru: nix.thunk(() => ({ __proto__: pos$21, driver: nix.thunk(() => nix.sel(config, "driver")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$21, driver: nix.thunk(() => nix.sel(config, "driver")) })),
       nodeDefaults: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             qemu: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enableSharedMemory: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), isLinux)),
               options: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => ["-device virtio-gpu-pci"]))),
             })),
           })),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(sshBackdoor, "enable")) || nix.asBool(nix.sel(config_1, "virtualisation", "qemu", "enableSharedMemory")))),
               message: nix.thunk(() => nix.str`When turning on the SSH backdoor of the NixOS test-framework,
 \`virtualisation.qemu.enableSharedMemory\` MUST be \`true\`

@@ -75,10 +75,10 @@ export default nix.lambda((args) => (() => {
   const fetchegg = nix.arg($, "fetchegg");
   return (() => {
     const aes = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "aes-1.5",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "aes",
             version: "1.5",
             sha256: "0gjlvz5nk0fnaclljpyfk21rkf0nidjj6wcv3jbnpmfafgjny5fi",
@@ -86,10 +86,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const blob_utils = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "blob-utils-1.0.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "blob-utils",
             version: "1.0.3",
             sha256: "17vdn02fnxnjx5ixgqimln93lqvzyq4y9w02fw7xnbdcjzqm0xml",
@@ -97,10 +97,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, string_utils]),
       }))));
     const check_errors = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "check-errors-1.13.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "check-errors",
             version: "1.13.0",
             sha256: "12a0sn82n98jybh72zb39fdddmr5k4785xglxb16750fhy8rmjwi",
@@ -108,10 +108,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper]),
       }))));
     const crypto_tools = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "crypto-tools-1.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "crypto-tools",
             version: "1.3",
             sha256: "0442wly63zis19vh8xc9nhxgp9sabaccxylpzmchd5f1d48iag65",
@@ -119,10 +119,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const foreigners = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "foreigners-1.4.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "foreigners",
             version: "1.4.1",
             sha256: "07nvyadhkd52q0kkvch1a5d7ivpmrhmyg295s4mxb1nw4wz46gfz",
@@ -130,10 +130,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable]),
       }))));
     const lookup_table = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: "lookup-table-1.13.5",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "lookup-table",
             version: "1.13.5",
             sha256: "1nzly6rhynawlvzlyilk8z8cxz57cf9n5iv20glkhh28pz2izmrb",
@@ -141,10 +141,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, check_errors, miscmacros, record_variants, synch]),
       }))));
     const lru_cache = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: "lru-cache-0.5.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             name: "lru-cache",
             version: "0.5.3",
             sha256: "0z6g3106c4j21v968hfzy9nnbfq2d83y0nyd20aifpq4g55c0d40",
@@ -152,10 +152,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [record_variants]),
       }))));
     const matchable = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         name: "matchable-3.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             name: "matchable",
             version: "3.3",
             sha256: "07y3lpzgm4djiwi9y2adc796f9kwkmdr28fkfkw65syahdax8990",
@@ -163,10 +163,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const message_digest = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         name: "message-digest-3.1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             name: "message-digest",
             version: "3.1.0",
             sha256: "1w6bax19dwgih78vcimiws0rja7qsd8hmbm6qqg2hf9cw3vab21s",
@@ -181,10 +181,10 @@ export default nix.lambda((args) => (() => {
         ]),
       }))));
     const miscmacros = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         name: "miscmacros-2.96",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             name: "miscmacros",
             version: "2.96",
             sha256: "1ajdgjrni10i2hmhcp4rawnxajjxry3kmq1krdmah4sf0kjrgajc",
@@ -192,10 +192,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const parley = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         name: "parley-0.9.2",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             name: "parley",
             version: "0.9.2",
             sha256: "1vsbx4dk1240gzq02slzmavd1jrq04qj7ssnvg15h8xh81xwhbbz",
@@ -203,10 +203,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [stty, srfi_71, miscmacros]),
       }))));
     const pathname_expand = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: "pathname-expand-0.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             name: "pathname-expand",
             version: "0.1",
             sha256: "14llya7l04z49xpi3iylk8aglrw968vy304ymavhhqlyzmzwkx3g",
@@ -214,10 +214,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const posix_extras = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         name: "posix-extras-0.1.6",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             name: "posix-extras",
             version: "0.1.6",
             sha256: "0gnmhn2l0161ham7f8i0lx1ay94ap8l8l7ga4nw9qs86lk024abi",
@@ -226,10 +226,10 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.path(here, "./posix-extras-add-sysmacros-include.patch")]),
       }))));
     const record_variants = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         name: "record-variants-0.5.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             name: "record-variants",
             version: "0.5.1",
             sha256: "15wgysxkm8m4hx9nhhw9akchzipdnqc7yj3qd3zn0z7sxg4sld1h",
@@ -237,10 +237,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const regex = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         name: "regex-1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             name: "regex",
             version: "1.0",
             sha256: "1z9bh7xvab6h5cdlsz8jk02pv5py1i6ryqarbcs3wdgkkjgmmkif",
@@ -248,10 +248,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const setup_helper = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         name: "setup-helper-1.5.5",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             name: "setup-helper",
             version: "1.5.5",
             sha256: "1lpplp8f2wyc486dd98gs4wl1kkhh1cs6vdqkxrdk7f92ikmwbx3",
@@ -259,10 +259,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const sha2 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         name: "sha2-3.1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             name: "sha2",
             version: "3.1.0",
             sha256: "01ch290f2kcv1yv8spjdaqwipl80vvgpqc4divsj3vxckvgkawq2",
@@ -270,10 +270,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [message_digest]),
       }))));
     const sql_de_lite = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         name: "sql-de-lite-0.6.6",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             name: "sql-de-lite",
             version: "0.6.6",
             sha256: "1mh3hpsibq2gxcpjaycqa4ckznj268xpfzsa6pn0i6iac6my3qra",
@@ -281,10 +281,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [lru_cache, foreigners]),
       }))));
     const srfi_37 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         name: "srfi-37-1.3.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             name: "srfi-37",
             version: "1.3.1",
             sha256: "1a2zdkdzrv15fw9dfdy8067fsgh4kr8ppffm8mc3cmlczrrd58cb",
@@ -292,10 +292,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const srfi_71 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         name: "srfi-71-1.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             name: "srfi-71",
             version: "1.1",
             sha256: "01mlaxw2lfczykmx69xki2s0f4ywlg794rl4kz07plvzn0s3fbqq",
@@ -303,10 +303,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const ssql = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         name: "ssql-0.2.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             name: "ssql",
             version: "0.2.4",
             sha256: "0qhnghhx1wrvav4s7l780mspwlh8s6kzq4bl0cslwp1km90fx9bk",
@@ -314,10 +314,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable]),
       }))));
     const string_utils = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         name: "string-utils-1.2.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             name: "string-utils",
             version: "1.2.4",
             sha256: "07alvghg0dahilrm4jg44bndl0x69sv1zbna9l20cbdvi35i0jp1",
@@ -325,10 +325,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, miscmacros, lookup_table, check_errors]),
       }))));
     const stty = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         name: "stty-0.2.6",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             name: "stty",
             version: "0.2.6",
             sha256: "09jmjpdsd3yg6d0f0imcihmn49i28x09lgl60i2dllffs25k22s4",
@@ -336,10 +336,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, foreigners]),
       }))));
     const synch = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         name: "synch-2.1.2",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             name: "synch",
             version: "2.1.2",
             sha256: "1m9mnbq0m5jsxmd1a3rqpwpxj0l1b7vn1fknvxycc047pmlcyl00",
@@ -347,10 +347,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, check_errors]),
       }))));
     const tiger_hash = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         name: "tiger-hash-3.1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             name: "tiger-hash",
             version: "3.1.0",
             sha256: "0j9dsbjp9cw0y4w4srg0qwgh53jw2v3mx4y4h040ds0fkxlzzknx",
@@ -358,10 +358,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [message_digest]),
       }))));
     const ugarit = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         name: "ugarit-2.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             name: "ugarit",
             version: "2.0",
             sha256: "1l5zkr6b8l5dw9p5mimbva0ncqw1sbvp3d4cywm1hqx2m03a0f1n",
@@ -383,10 +383,10 @@ export default nix.lambda((args) => (() => {
         ]),
       }))));
     const variable_item = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         name: "variable-item-1.3.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             name: "variable-item",
             version: "1.3.1",
             sha256: "19b3mhb8kr892sz9yyzq79l0vv28dgilw9cf415kj6aq16yp4d5n",
@@ -394,10 +394,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, check_errors]),
       }))));
     const bind = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         name: "bind-1.5.2",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             name: "bind",
             version: "1.5.2",
             sha256: "1x768k7dlfmkvgaf2idiaaqqgnqdnif5yb7ib6a6zndacbwz9jps",
@@ -405,10 +405,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [silex, matchable, coops, regex, make]),
       }))));
     const coops = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         name: "coops-1.93",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             name: "coops",
             version: "1.93",
             sha256: "0mrkk7pmn9r691svzm4113mn0xsk36zi3f15m86n29a6c7897php",
@@ -416,10 +416,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable, record_variants]),
       }))));
     const make = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         name: "make-1.8",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             name: "make",
             version: "1.8",
             sha256: "1w6xsjyapi2x8dv21dpidkyw1kjfsbasddn554xx561pi3i0yv9h",
@@ -427,10 +427,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const silex = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         name: "silex-1.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             name: "silex",
             version: "1.4",
             sha256: "17x7f07aa3qnay3bhjr7knjivhycs54j97jyv3gjs1h8qnp63g00",
@@ -438,10 +438,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const z3 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         name: "z3-1.44",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             name: "z3",
             version: "1.44",
             sha256: "16ayp4zkgm332q4bmjj22acqg197aqp6d8ifyyjj205iv6k0f3x4",
@@ -449,7 +449,7 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [bind]),
       }))));
     return {
-      __proto__: pos$65,
+      [nix.POS]: pos$65,
       aes,
       "blob-utils": blob_utils,
       "check-errors": check_errors,

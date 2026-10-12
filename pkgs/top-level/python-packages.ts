@@ -517,21 +517,21 @@ export default (self) => (super$) => (() => {
     const from_5 = nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/types-aiobotocore-packages"), nix.thunk(() => ({}))));
     const from_6 = nix.thunk(() => nix.sel(self, "wasmerPackages"));
     return {
-    __proto__: pos$501,
+    [nix.POS]: pos$501,
     bootstrap: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "recurseIntoAttrs"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "flit-core": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bootstrap/flit-core"), nix.thunk(() => ({})))))),
         installer: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bootstrap/installer"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               "flit-core": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "bootstrap")), "flit-core")),
             })))))),
         build: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bootstrap/build"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "flit-core": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "bootstrap")), "flit-core")),
               installer: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "bootstrap")), "installer")),
             })))))),
         packaging: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bootstrap/packaging"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "flit-core": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "bootstrap")), "flit-core")),
               installer: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "bootstrap")), "installer")),
             })))))),
@@ -575,7 +575,7 @@ export default (self) => (super$) => (() => {
     addict: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/addict"), nix.thunk(() => ({})))),
     adext: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/adext"), nix.thunk(() => ({})))),
     adguardhome: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/adguardhome"), nix.thunk(() => ({})))),
-    adios2: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "adios2", "override"), nix.thunk(() => ({ __proto__: pos$5, python3Packages: self, pythonSupport: true })))))),
+    adios2: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "adios2", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, python3Packages: self, pythonSupport: true })))))),
     adjusttext: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/adjusttext"), nix.thunk(() => ({})))),
     adlfs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/adlfs"), nix.thunk(() => ({})))),
     adsbcot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/adsbcot"), nix.thunk(() => ({})))),
@@ -604,7 +604,7 @@ export default (self) => (super$) => (() => {
     ahocorapy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ahocorapy"), nix.thunk(() => ({})))),
     "ahocorasick-rs": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ahocorasick-rs"), nix.thunk(() => ({})))),
     "ai-edge-litert": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ai-edge-litert"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "openvino-native": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "openvino")),
       })))),
     aigpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/aigpy"), nix.thunk(() => ({})))),
@@ -769,12 +769,12 @@ export default (self) => (super$) => (() => {
     aioquic_1_2: nix.thunk(() => nix.app(nix.sel(self, "aioquic", "overrideAttrs"), nix.thunk(() => (() => {
         const version = "1.2.0";
         const src = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "fetchPypi"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pname: "aioquic",
             version: version,
             hash: "sha256-+RJjuz9xlIxciRW01Q7jcABPIKQW9n+rPcyQVWx+cZk=",
           }))));
-        return { __proto__: pos$8, version, src };
+        return { [nix.POS]: pos$8, version, src };
       })()))),
     aioraven: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/aioraven"), nix.thunk(() => ({})))),
     aiorecollect: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/aiorecollect"), nix.thunk(() => ({})))),
@@ -895,7 +895,7 @@ export default (self) => (super$) => (() => {
     "alibabacloud-tea-xml": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/alibabacloud-tea-xml"), nix.thunk(() => ({})))),
     "alibabacloud-vpc20160428": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/alibabacloud-vpc20160428"), nix.thunk(() => ({})))),
     aligator: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/aligator"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         aligator: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "aligator")),
       })))),
     "alive-progress": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/alive-progress"), nix.thunk(() => ({})))),
@@ -1167,7 +1167,7 @@ export default (self) => (super$) => (() => {
     amcrest: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/amcrest"), nix.thunk(() => ({})))),
     "amd-aiter": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/amd-aiter"), nix.thunk(() => ({})))),
     "amd-quark": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/amd-quark"), nix.thunk(() => ({})))),
-    amdsmi: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "rocmPackages", "amdsmi", "override"), nix.thunk(() => ({ __proto__: pos$10, python: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    amdsmi: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "rocmPackages", "amdsmi", "override"), nix.thunk(() => ({ [nix.POS]: pos$10, python: nix.thunk(() => nix.lookup(w, "python")) })))))),
     "ament-package": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ament-package"), nix.thunk(() => ({})))),
     "amplitude-analytics": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/amplitude-analytics"), nix.thunk(() => ({})))),
     amply: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/amply"), nix.thunk(() => ({})))),
@@ -1182,7 +1182,7 @@ export default (self) => (super$) => (() => {
     "anel-pwrctrl-homeassistant": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anel-pwrctrl-homeassistant"), nix.thunk(() => ({})))),
     angr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/angr"), nix.thunk(() => ({})))),
     angrcli: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/angrcli"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         coreutils: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "coreutils")),
       })))),
     angrop: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/angrop"), nix.thunk(() => ({})))),
@@ -1190,7 +1190,7 @@ export default (self) => (super$) => (() => {
     anitopy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anitopy"), nix.thunk(() => ({})))),
     "anki-audio": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anki-audio"), nix.thunk(() => ({})))),
     "anki-mac-helper": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anki-mac-helper"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         swift: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "swift")),
       })))),
     anndata: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anndata"), nix.thunk(() => ({})))),
@@ -1207,7 +1207,7 @@ export default (self) => (super$) => (() => {
     ansi2image: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ansi2image"), nix.thunk(() => ({})))),
     ansible: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ansible"), nix.thunk(() => ({})))),
     "ansible-builder": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ansible-builder"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         podman: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "podman")),
       })))),
     "ansible-compat": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ansible-compat"), nix.thunk(() => ({})))),
@@ -1223,7 +1223,7 @@ export default (self) => (super$) => (() => {
     anthemav: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anthemav"), nix.thunk(() => ({})))),
     anthropic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anthropic"), nix.thunk(() => ({})))),
     "antlr4-python3-runtime": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/antlr4-python3-runtime"), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         antlr4: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "antlr4")),
       })))),
     anyascii: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anyascii"), nix.thunk(() => ({})))),
@@ -1233,7 +1233,7 @@ export default (self) => (super$) => (() => {
     anyqt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anyqt"), nix.thunk(() => ({})))),
     anysqlite: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anysqlite"), nix.thunk(() => ({})))),
     anytree: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anytree"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     anywidget: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/anywidget"), nix.thunk(() => ({})))),
@@ -1291,8 +1291,8 @@ export default (self) => (super$) => (() => {
     archinfo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/archinfo"), nix.thunk(() => ({})))),
     archspec: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/archspec"), nix.thunk(() => ({})))),
     area: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/area"), nix.thunk(() => ({})))),
-    arelle: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/arelle"), nix.thunk(() => ({ __proto__: pos$16, gui: true })))),
-    "arelle-headless": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/arelle"), nix.thunk(() => ({ __proto__: pos$17, gui: false })))),
+    arelle: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/arelle"), nix.thunk(() => ({ [nix.POS]: pos$16, gui: true })))),
+    "arelle-headless": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/arelle"), nix.thunk(() => ({ [nix.POS]: pos$17, gui: false })))),
     aresponses: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/aresponses"), nix.thunk(() => ({})))),
     argcomplete: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/argcomplete"), nix.thunk(() => ({})))),
     argh: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/argh"), nix.thunk(() => ({})))),
@@ -1301,7 +1301,7 @@ export default (self) => (super$) => (() => {
     "argon2-cffi-bindings": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/argon2-cffi-bindings"), nix.thunk(() => ({})))),
     "argos-translate-files": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/argos-translate-files"), nix.thunk(() => ({})))),
     argostranslate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/argostranslate"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         "ctranslate2-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "ctranslate2")),
       })))),
     "argparse-addons": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/argparse-addons"), nix.thunk(() => ({})))),
@@ -1433,10 +1433,10 @@ export default (self) => (super$) => (() => {
     "audioop-lts": nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "pythonAtLeast"), "3.13")) ? nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/audioop-lts"), nix.thunk(() => ({}))) : null)),
     audioread: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/audioread"), nix.thunk(() => ({})))),
     audiotools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/audiotools"), nix.thunk(() => ({})))),
-    audit: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "audit", "override"), nix.thunk(() => ({ __proto__: pos$19, python3Packages: self })))))),
+    audit: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "audit", "override"), nix.thunk(() => ({ [nix.POS]: pos$19, python3Packages: self })))))),
     auditok: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/auditok"), nix.thunk(() => ({})))),
     auditwheel: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/auditwheel"), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         bzip2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "bzip2")),
         gnutar: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "gnutar")),
         patchelf: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "patchelf")),
@@ -1473,7 +1473,7 @@ export default (self) => (super$) => (() => {
     autoslot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/autoslot"), nix.thunk(() => ({})))),
     av: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/av"), nix.thunk(() => ({})))),
     avahi: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "avahi", "override"), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           python: nix.thunk(() => nix.lookup(w, "python")),
           withPython: true,
         })))))),
@@ -1488,7 +1488,7 @@ export default (self) => (super$) => (() => {
     awesomeversion: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/awesomeversion"), nix.thunk(() => ({})))),
     awkward: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/awkward"), nix.thunk(() => ({})))),
     "awkward-cpp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/awkward-cpp"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
         ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
       })))),
@@ -1664,9 +1664,9 @@ export default (self) => (super$) => (() => {
     babelfish: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/babelfish"), nix.thunk(() => ({})))),
     babelfont: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/babelfont"), nix.thunk(() => ({})))),
     babelgladeextractor: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/babelgladeextractor"), nix.thunk(() => ({})))),
-    babeltrace: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "babeltrace", "override"), nix.thunk(() => ({ __proto__: pos$23, pythonPackages: self, enablePython: true })))))),
+    babeltrace: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "babeltrace", "override"), nix.thunk(() => ({ [nix.POS]: pos$23, pythonPackages: self, enablePython: true })))))),
     babeltrace2: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "babeltrace2", "override"), nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           python: nix.thunk(() => nix.attr(self, "python")),
           pythonPackages: self,
           enablePython: true,
@@ -1680,7 +1680,7 @@ export default (self) => (super$) => (() => {
     "backports-strenum": nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "pythonAtLeast"), "3.11")) ? null : nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/backports-strenum"), nix.thunk(() => ({}))))),
     "backports-tarfile": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/backports-tarfile"), nix.thunk(() => ({})))),
     "backports-zstd": nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "pythonAtLeast"), "3.14")) ? null : nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/backports-zstd"), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
       }))))),
     backrefs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/backrefs"), nix.thunk(() => ({})))),
@@ -1703,7 +1703,7 @@ export default (self) => (super$) => (() => {
     banks: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/banks"), nix.thunk(() => ({})))),
     bap: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bap"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "ocaml-ng", "ocamlPackages_4_14"));
-        return { __proto__: pos$26, bap: nix.thunk(() => nix.attr(from_1, "bap")) };
+        return { [nix.POS]: pos$26, bap: nix.thunk(() => nix.attr(from_1, "bap")) };
       })()))),
     barectf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/barectf"), nix.thunk(() => ({})))),
     baron: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/baron"), nix.thunk(() => ({})))),
@@ -1732,7 +1732,7 @@ export default (self) => (super$) => (() => {
     "bc-detect-secrets": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bc-detect-secrets"), nix.thunk(() => ({})))),
     "bc-jsonpath-ng": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bc-jsonpath-ng"), nix.thunk(() => ({})))),
     "bc-python-hcl2": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bc-python-hcl2"), nix.thunk(() => ({})))),
-    bcc: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "bcc", "override"), nix.thunk(() => ({ __proto__: pos$27, python3Packages: self })))))),
+    bcc: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "bcc", "override"), nix.thunk(() => ({ [nix.POS]: pos$27, python3Packages: self })))))),
     bcdoc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bcdoc"), nix.thunk(() => ({})))),
     "bce-python-sdk": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bce-python-sdk"), nix.thunk(() => ({})))),
     bcf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bcf"), nix.thunk(() => ({})))),
@@ -1767,7 +1767,7 @@ export default (self) => (super$) => (() => {
     bech32: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bech32"), nix.thunk(() => ({})))),
     beetcamp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beetcamp"), nix.thunk(() => ({})))),
     beets: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beets"), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         chromaprint: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "chromaprint")),
       })))),
     "beets-alternatives": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beets-alternatives"), nix.thunk(() => ({})))),
@@ -1775,7 +1775,7 @@ export default (self) => (super$) => (() => {
     "beets-copyartifacts": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beets-copyartifacts"), nix.thunk(() => ({})))),
     "beets-filetote": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beets-filetote"), nix.thunk(() => ({})))),
     "beets-importreplace": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beets-importreplace"), nix.thunk(() => ({})))),
-    "beets-minimal": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "beets"), "override"), nix.thunk(() => ({ __proto__: pos$29, disableAllPlugins: true })))),
+    "beets-minimal": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "beets"), "override"), nix.thunk(() => ({ [nix.POS]: pos$29, disableAllPlugins: true })))),
     "beets-ytimport": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beets-ytimport"), nix.thunk(() => ({})))),
     "before-after": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/before-after"), nix.thunk(() => ({})))),
     behave: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/behave"), nix.thunk(() => ({})))),
@@ -1783,7 +1783,7 @@ export default (self) => (super$) => (() => {
     "bencode-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bencode-py"), nix.thunk(() => ({})))),
     bencoder: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bencoder"), nix.thunk(() => ({})))),
     bencodetools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bencodetools"), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         bencodetools: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "bencodetools")),
       })))),
     beniget: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/beniget"), nix.thunk(() => ({})))),
@@ -1906,13 +1906,13 @@ export default (self) => (super$) => (() => {
     "boolean-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/boolean-py"), nix.thunk(() => ({})))),
     booleanoperations: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/booleanoperations"), nix.thunk(() => ({})))),
     boost: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "boost", "override"), nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           python: nix.thunk(() => nix.attr(self, "python")),
           numpy: nix.thunk(() => nix.attr(self, "numpy")),
           enablePython: true,
         })))))),
     "boost-histogram": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/boost-histogram"), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         boost: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "boost")),
       })))),
     borb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/borb"), nix.thunk(() => ({})))),
@@ -1922,7 +1922,7 @@ export default (self) => (super$) => (() => {
     boschshcpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/boschshcpy"), nix.thunk(() => ({})))),
     "bot-safe-agents": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bot-safe-agents"), nix.thunk(() => ({})))),
     botan3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/botan3"), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         botan3: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "botan3")),
       })))),
     boto3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/boto3"), nix.thunk(() => ({})))),
@@ -1941,7 +1941,7 @@ export default (self) => (super$) => (() => {
     braceexpand: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/braceexpand"), nix.thunk(() => ({})))),
     bracex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bracex"), nix.thunk(() => ({})))),
     brainflow: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/brainflow"), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         brainflow: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "brainflow")),
       })))),
     braintree: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/braintree"), nix.thunk(() => ({})))),
@@ -1961,12 +1961,12 @@ export default (self) => (super$) => (() => {
     brother: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/brother"), nix.thunk(() => ({})))),
     "brother-ql-next": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/brother-ql-next"), nix.thunk(() => ({})))),
     brotli: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/brotli"), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         brotli: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "brotli")),
       })))),
     "brotli-asgi": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/brotli-asgi"), nix.thunk(() => ({})))),
     brotlicffi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/brotlicffi"), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         brotli: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "brotli")),
       })))),
     brotlipy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/brotlipy"), nix.thunk(() => ({})))),
@@ -2015,7 +2015,7 @@ export default (self) => (super$) => (() => {
     "bx-py-utils": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bx-py-utils"), nix.thunk(() => ({})))),
     "bx-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bx-python"), nix.thunk(() => ({})))),
     bytecode: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bytecode"), nix.thunk(() => ({})))),
-    bytesize: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libbytesize", "override"), nix.thunk(() => ({ __proto__: pos$37, python3Packages: self })))))),
+    bytesize: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libbytesize", "override"), nix.thunk(() => ({ [nix.POS]: pos$37, python3Packages: self })))))),
     bytewax: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/bytewax"), nix.thunk(() => ({})))),
     cache: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cache"), nix.thunk(() => ({})))),
     cachecontrol: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cachecontrol"), nix.thunk(() => ({})))),
@@ -2028,7 +2028,7 @@ export default (self) => (super$) => (() => {
     cachy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cachy"), nix.thunk(() => ({})))),
     cadwyn: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cadwyn"), nix.thunk(() => ({})))),
     caffe: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "caffe", "override"), nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           pythonSupport: true,
           python: nix.thunk(() => nix.attr(self, "python")),
           numpy: nix.thunk(() => nix.attr(self, "numpy")),
@@ -2059,11 +2059,11 @@ export default (self) => (super$) => (() => {
     canopen: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/canopen"), nix.thunk(() => ({})))),
     cantools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cantools"), nix.thunk(() => ({})))),
     capstone: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/capstone"), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         capstone: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "capstone")),
       })))),
     capstone_4: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/capstone/4.nix"), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         capstone_4: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "capstone_4")),
       })))),
     captcha: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/captcha"), nix.thunk(() => ({})))),
@@ -2076,7 +2076,7 @@ export default (self) => (super$) => (() => {
     cartopy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cartopy"), nix.thunk(() => ({})))),
     "casa-formats-io": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/casa-formats-io"), nix.thunk(() => ({})))),
     casaconfig: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/casaconfig"), nix.thunk(() => ({})))),
-    casadi: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "casadi", "override"), nix.thunk(() => ({ __proto__: pos$41, pythonSupport: true, python3Packages: self })))))),
+    casadi: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "casadi", "override"), nix.thunk(() => ({ [nix.POS]: pos$41, pythonSupport: true, python3Packages: self })))))),
     casatasks: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/casatasks"), nix.thunk(() => ({})))),
     casatools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/casatools"), nix.thunk(() => ({})))),
     "case-converter": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/case-converter"), nix.thunk(() => ({})))),
@@ -2086,10 +2086,10 @@ export default (self) => (super$) => (() => {
     castepxbin: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/castepxbin"), nix.thunk(() => ({})))),
     casttube: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/casttube"), nix.thunk(() => ({})))),
     catalogue: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/catalogue"), nix.thunk(() => ({})))),
-    catalyst: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "catalyst", "override"), nix.thunk(() => ({ __proto__: pos$42, python3Packages: self, pythonSupport: true })))))),
+    catalyst: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "catalyst", "override"), nix.thunk(() => ({ [nix.POS]: pos$42, python3Packages: self, pythonSupport: true })))))),
     catboost: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/catboost"), nix.thunk(() => ({
-        __proto__: pos$44,
-        catboost: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "catboost", "override"), nix.thunk(() => ({ __proto__: pos$43, pythonSupport: true, python3Packages: self })))),
+        [nix.POS]: pos$44,
+        catboost: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "catboost", "override"), nix.thunk(() => ({ [nix.POS]: pos$43, pythonSupport: true, python3Packages: self })))),
       })))),
     "categorical-distance": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/categorical-distance"), nix.thunk(() => ({})))),
     "category-encoders": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/category-encoders"), nix.thunk(() => ({})))),
@@ -2099,9 +2099,9 @@ export default (self) => (super$) => (() => {
     "causal-conv1d": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/causal-conv1d"), nix.thunk(() => ({})))),
     cbor: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cbor"), nix.thunk(() => ({})))),
     cbor2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cbor2"), nix.thunk(() => ({})))),
-    cbor2WithoutCExtensions: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cbor2"), nix.thunk(() => ({ __proto__: pos$45, withCExtensions: false })))),
+    cbor2WithoutCExtensions: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cbor2"), nix.thunk(() => ({ [nix.POS]: pos$45, withCExtensions: false })))),
     cccolutils: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cccolutils"), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         "krb5-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "krb5")),
       })))),
     cdcs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cdcs"), nix.thunk(() => ({})))),
@@ -2146,7 +2146,7 @@ export default (self) => (super$) => (() => {
     cfscrape: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cfscrape"), nix.thunk(() => ({})))),
     cftime: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cftime"), nix.thunk(() => ({})))),
     cgal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cgal"), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         cgal: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cgal")),
       })))),
     cgen: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cgen"), nix.thunk(() => ({})))),
@@ -2184,7 +2184,7 @@ export default (self) => (super$) => (() => {
     choreographer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/choreographer"), nix.thunk(() => ({})))),
     "chroma-hnswlib": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/chroma-hnswlib"), nix.thunk(() => ({})))),
     chromadb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/chromadb"), nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         "zstd-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "zstd")),
       })))),
     "ci-info": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ci-info"), nix.thunk(() => ({})))),
@@ -2208,7 +2208,7 @@ export default (self) => (super$) => (() => {
     cjkwrap: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cjkwrap"), nix.thunk(() => ({})))),
     "ckcc-protocol": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ckcc-protocol"), nix.thunk(() => ({})))),
     ckzg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ckzg"), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         clang: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "clang")),
       })))),
     clang: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/clang"), nix.thunk(() => ({})))),
@@ -2262,7 +2262,7 @@ export default (self) => (super$) => (() => {
     cligj: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cligj"), nix.thunk(() => ({})))),
     clikit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/clikit"), nix.thunk(() => ({})))),
     clingo: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "clingo", "override"), nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           python: nix.thunk(() => nix.lookup(w, "python")),
           withPython: true,
         })))))),
@@ -2290,7 +2290,7 @@ export default (self) => (super$) => (() => {
     cma: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cma"), nix.thunk(() => ({})))),
     cmaes: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cmaes"), nix.thunk(() => ({})))),
     cmake: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cmake"), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
       })))),
     "cmake-build-extension": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cmake-build-extension"), nix.thunk(() => ({})))),
@@ -2302,7 +2302,7 @@ export default (self) => (super$) => (() => {
     cmdline: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cmdline"), nix.thunk(() => ({})))),
     cmdstanpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cmdstanpy"), nix.thunk(() => ({})))),
     cmigemo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cmigemo"), nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         cmigemo: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmigemo")),
       })))),
     cmsdials: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cmsdials"), nix.thunk(() => ({})))),
@@ -2312,7 +2312,7 @@ export default (self) => (super$) => (() => {
     cnvkit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cnvkit"), nix.thunk(() => ({})))),
     co2signal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/co2signal"), nix.thunk(() => ({})))),
     coal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/coal"), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         coal: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "coal")),
       })))),
     coapthon3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/coapthon3"), nix.thunk(() => ({})))),
@@ -2331,7 +2331,7 @@ export default (self) => (super$) => (() => {
     "coinbase-advanced-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/coinbase-advanced-py"), nix.thunk(() => ({})))),
     coincidence: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/coincidence"), nix.thunk(() => ({})))),
     coincurve: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/coincurve"), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         secp256k1: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "secp256k1")),
       })))),
     "coinmetrics-api-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/coinmetrics-api-client"), nix.thunk(() => ({})))),
@@ -2430,7 +2430,7 @@ export default (self) => (super$) => (() => {
     "conda-package-streaming": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/conda-package-streaming"), nix.thunk(() => ({})))),
     "condense-json": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/condense-json"), nix.thunk(() => ({})))),
     conduit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/conduit"), nix.thunk(() => ({})))),
-    "conduit-mpi": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/conduit"), nix.thunk(() => ({ __proto__: pos$55, mpiSupport: true })))),
+    "conduit-mpi": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/conduit"), nix.thunk(() => ({ [nix.POS]: pos$55, mpiSupport: true })))),
     confection: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/confection"), nix.thunk(() => ({})))),
     configargparse: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/configargparse"), nix.thunk(() => ({})))),
     configclass: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/configclass"), nix.thunk(() => ({})))),
@@ -2489,7 +2489,7 @@ export default (self) => (super$) => (() => {
     "corsair-scan": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/corsair-scan"), nix.thunk(() => ({})))),
     cose: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cose"), nix.thunk(() => ({})))),
     cot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cot"), nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         qemu: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "qemu")),
       })))),
     "country-list": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/country-list"), nix.thunk(() => ({})))),
@@ -2503,7 +2503,7 @@ export default (self) => (super$) => (() => {
     cpe: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cpe"), nix.thunk(() => ({})))),
     "cpe-search": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cpe-search"), nix.thunk(() => ({})))),
     cppe: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cppe"), nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         cppe: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cppe")),
       })))),
     cppheaderparser: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cppheaderparser"), nix.thunk(() => ({})))),
@@ -2532,7 +2532,7 @@ export default (self) => (super$) => (() => {
     "crispy-bootstrap5": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/crispy-bootstrap5"), nix.thunk(() => ({})))),
     crochet: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/crochet"), nix.thunk(() => ({})))),
     crocoddyl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/crocoddyl"), nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         crocoddyl: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "crocoddyl")),
       })))),
     "cron-converter": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/cron-converter"), nix.thunk(() => ({})))),
@@ -2575,7 +2575,7 @@ export default (self) => (super$) => (() => {
     ct3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ct3"), nix.thunk(() => ({})))),
     "ctap-keyring-device": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ctap-keyring-device"), nix.thunk(() => ({})))),
     ctranslate2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ctranslate2"), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         "ctranslate2-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "ctranslate2")),
       })))),
     ctypesgen: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ctypesgen"), nix.thunk(() => ({})))),
@@ -2651,7 +2651,7 @@ export default (self) => (super$) => (() => {
     daqp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/daqp"), nix.thunk(() => ({})))),
     "darabonba-core": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/darabonba-core"), nix.thunk(() => ({})))),
     darkdetect: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/darkdetect"), nix.thunk(() => ({})))),
-    dartsim: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "dartsim", "override"), nix.thunk(() => ({ __proto__: pos$60, pythonSupport: true, python3Packages: self })))))),
+    dartsim: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "dartsim", "override"), nix.thunk(() => ({ [nix.POS]: pos$60, pythonSupport: true, python3Packages: self })))))),
     dasbus: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dasbus"), nix.thunk(() => ({})))),
     dash: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dash"), nix.thunk(() => ({})))),
     "dash-bootstrap-components": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dash-bootstrap-components"), nix.thunk(() => ({})))),
@@ -2686,7 +2686,7 @@ export default (self) => (super$) => (() => {
     datadiff: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/datadiff"), nix.thunk(() => ({})))),
     datadog: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/datadog"), nix.thunk(() => ({})))),
     datafusion: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/datafusion"), nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         protoc: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "protobuf")),
       })))),
     "datalab-platform": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/datalab-platform"), nix.thunk(() => ({})))),
@@ -2737,7 +2737,7 @@ export default (self) => (super$) => (() => {
     "dbus-fast": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dbus-fast"), nix.thunk(() => ({})))),
     "dbus-next": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dbus-next"), nix.thunk(() => ({})))),
     "dbus-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dbus-python"), nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         dbus: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "dbus")),
       })))),
     "dbus-python-client-gen": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dbus-python-client-gen"), nix.thunk(() => ({})))),
@@ -2829,7 +2829,7 @@ export default (self) => (super$) => (() => {
     devtools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/devtools"), nix.thunk(() => ({})))),
     dfdiskcache: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dfdiskcache"), nix.thunk(() => ({})))),
     dftd4: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../by-name/df/dftd4/python.nix"), nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         dftd4: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "dftd4")),
       })))),
     diagrams: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/diagrams"), nix.thunk(() => ({})))),
@@ -2932,7 +2932,7 @@ export default (self) => (super$) => (() => {
     "django-async-backend": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/django-async-backend"), nix.thunk(() => ({})))),
     "django-auditlog": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/django-auditlog"), nix.thunk(() => ({})))),
     "django-auth-ldap": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/django-auth-ldap"), nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         openldap: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "openldap")),
       })))),
     "django-autocomplete-light": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/django-autocomplete-light"), nix.thunk(() => ({})))),
@@ -3137,7 +3137,7 @@ export default (self) => (super$) => (() => {
     "djvulibre-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/djvulibre-python"), nix.thunk(() => ({})))),
     dkimpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dkimpy"), nix.thunk(() => ({})))),
     dlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dlib"), nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         dlib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "dlib")),
       })))),
     dlinfo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dlinfo"), nix.thunk(() => ({})))),
@@ -3149,7 +3149,7 @@ export default (self) => (super$) => (() => {
     "dm-haiku": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dm-haiku"), nix.thunk(() => ({})))),
     "dm-sonnet": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dm-sonnet"), nix.thunk(() => ({})))),
     "dm-tree": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dm-tree"), nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         "abseil-cpp": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "abseil-cpp")),
       })))),
     "dmenu-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dmenu"), nix.thunk(() => ({})))),
@@ -3180,7 +3180,7 @@ export default (self) => (super$) => (() => {
     "docling-jobkit": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/docling-jobkit"), nix.thunk(() => ({})))),
     "docling-mcp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/docling-mcp"), nix.thunk(() => ({})))),
     "docling-parse": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/docling-parse"), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         "loguru-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "loguru")),
       })))),
     "docling-serve": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/docling-serve"), nix.thunk(() => ({})))),
@@ -3215,7 +3215,7 @@ export default (self) => (super$) => (() => {
     doorbirdpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/doorbirdpy"), nix.thunk(() => ({})))),
     dopy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dopy"), nix.thunk(() => ({})))),
     dot2tex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dot2tex"), nix.thunk(() => ({
-        __proto__: pos$68,
+        [nix.POS]: pos$68,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     dotmap: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dotmap"), nix.thunk(() => ({})))),
@@ -3282,7 +3282,7 @@ export default (self) => (super$) => (() => {
     "dtw-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dtw-python"), nix.thunk(() => ({})))),
     ducc0: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ducc0"), nix.thunk(() => ({})))),
     duckdb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/duckdb"), nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         duckdb: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "duckdb")),
       })))),
     "duckdb-engine": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/duckdb-engine"), nix.thunk(() => ({})))),
@@ -3292,7 +3292,7 @@ export default (self) => (super$) => (() => {
     duet: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/duet"), nix.thunk(() => ({})))),
     dufte: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dufte"), nix.thunk(() => ({})))),
     dulwich: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dulwich"), nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         gnupg: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "gnupg")),
       })))),
     dunamai: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/dunamai"), nix.thunk(() => ({})))),
@@ -3344,10 +3344,10 @@ export default (self) => (super$) => (() => {
     ebusdpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ebusdpy"), nix.thunk(() => ({})))),
     "ec2-metadata": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ec2-metadata"), nix.thunk(() => ({})))),
     ec2instanceconnectcli: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ec2instanceconnectcli"), nix.thunk(() => ({})))),
-    eccodes: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "eccodes", "override"), nix.thunk(() => ({ __proto__: pos$71, enablePython: true, python3Packages: self })))))),
+    eccodes: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "eccodes", "override"), nix.thunk(() => ({ [nix.POS]: pos$71, enablePython: true, python3Packages: self })))))),
     ecdsa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ecdsa"), nix.thunk(() => ({})))),
     echo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/echo"), nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     ecoaliface: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ecoaliface"), nix.thunk(() => ({})))),
@@ -3366,7 +3366,7 @@ export default (self) => (super$) => (() => {
     editorconfig: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/editorconfig"), nix.thunk(() => ({})))),
     "edk2-pytool-library": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/edk2-pytool-library"), nix.thunk(() => ({})))),
     edlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/edlib"), nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         edlib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "edlib")),
       })))),
     "eduvpn-common": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/eduvpn-common"), nix.thunk(() => ({})))),
@@ -3393,7 +3393,7 @@ export default (self) => (super$) => (() => {
     elementpath: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/elementpath"), nix.thunk(() => ({})))),
     elevate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/elevate"), nix.thunk(() => ({})))),
     elevenlabs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/elevenlabs"), nix.thunk(() => ({})))),
-    elfdeps: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "elfdeps", "override"), nix.thunk(() => ({ __proto__: pos$74, python3Packages: self })))))),
+    elfdeps: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "elfdeps", "override"), nix.thunk(() => ({ [nix.POS]: pos$74, python3Packages: self })))))),
     elgato: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/elgato"), nix.thunk(() => ({})))),
     eliot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/eliot"), nix.thunk(() => ({})))),
     "elkm1-lib": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/elkm1-lib"), nix.thunk(() => ({})))),
@@ -3431,8 +3431,8 @@ export default (self) => (super$) => (() => {
     "enochecker-core": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/enochecker-core"), nix.thunk(() => ({})))),
     enrich: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/enrich"), nix.thunk(() => ({})))),
     enterpriseattack: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/enterpriseattack"), nix.thunk(() => ({})))),
-    entrance: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/entrance"), nix.thunk(() => ({ __proto__: pos$75, routerFeatures: false })))),
-    "entrance-with-router-features": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/entrance"), nix.thunk(() => ({ __proto__: pos$76, routerFeatures: true })))),
+    entrance: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/entrance"), nix.thunk(() => ({ [nix.POS]: pos$75, routerFeatures: false })))),
+    "entrance-with-router-features": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/entrance"), nix.thunk(() => ({ [nix.POS]: pos$76, routerFeatures: true })))),
     "entry-points-txt": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/entry-points-txt"), nix.thunk(() => ({})))),
     entrypoint2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/entrypoint2"), nix.thunk(() => ({})))),
     entrypoints: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/entrypoints"), nix.thunk(() => ({})))),
@@ -3478,7 +3478,7 @@ export default (self) => (super$) => (() => {
     "et-xmlfile": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/et-xmlfile"), nix.thunk(() => ({})))),
     etcd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/etcd"), nix.thunk(() => ({})))),
     etcd3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/etcd3"), nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         etcd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "etcd")),
       })))),
     ete3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ete3"), nix.thunk(() => ({})))),
@@ -3519,7 +3519,7 @@ export default (self) => (super$) => (() => {
     ewmhlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ewmhlib"), nix.thunk(() => ({})))),
     "exa-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/exa-py"), nix.thunk(() => ({})))),
     "example-robot-data": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/example-robot-data"), nix.thunk(() => ({
-        __proto__: pos$78,
+        [nix.POS]: pos$78,
         "example-robot-data": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "example-robot-data")),
       })))),
     exceptiongroup: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/exceptiongroup"), nix.thunk(() => ({})))),
@@ -3534,7 +3534,7 @@ export default (self) => (super$) => (() => {
     exifread: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/exifread"), nix.thunk(() => ({})))),
     exitcode: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/exitcode"), nix.thunk(() => ({})))),
     exiv2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/exiv2"), nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         exiv2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "exiv2")),
       })))),
     exllamav3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/exllamav3"), nix.thunk(() => ({})))),
@@ -3552,11 +3552,11 @@ export default (self) => (super$) => (() => {
     "extract-msg": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/extract-msg"), nix.thunk(() => ({})))),
     extractcode: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/extractcode"), nix.thunk(() => ({})))),
     "extractcode-7z": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/extractcode/7z.nix"), nix.thunk(() => ({
-        __proto__: pos$80,
+        [nix.POS]: pos$80,
         p7zip: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "p7zip")),
       })))),
     "extractcode-libarchive": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/extractcode/libarchive.nix"), nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         libarchive: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libarchive")),
         libb2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libb2")),
         bzip2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "bzip2")),
@@ -3572,7 +3572,7 @@ export default (self) => (super$) => (() => {
     ezdxf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ezdxf"), nix.thunk(() => ({})))),
     ezodf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ezodf"), nix.thunk(() => ({})))),
     ezyrb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ezyrb"), nix.thunk(() => ({})))),
-    f3d: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "f3d", "override"), nix.thunk(() => ({ __proto__: pos$82, withPythonBinding: true, python3Packages: self })))))),
+    f3d: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "f3d", "override"), nix.thunk(() => ({ [nix.POS]: pos$82, withPythonBinding: true, python3Packages: self })))))),
     "f5-icontrol-rest": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/f5-icontrol-rest"), nix.thunk(() => ({})))),
     "f5-sdk": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/f5-sdk"), nix.thunk(() => ({})))),
     f90nml: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/f90nml"), nix.thunk(() => ({})))),
@@ -3591,15 +3591,15 @@ export default (self) => (super$) => (() => {
     fairscale: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fairscale"), nix.thunk(() => ({})))),
     fairseq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fairseq"), nix.thunk(() => ({})))),
     faiss: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/faiss"), nix.thunk(() => ({
-        __proto__: pos$84,
-        "faiss-build": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "faiss", "override"), nix.thunk(() => ({ __proto__: pos$83, pythonSupport: true, python3Packages: self })))),
+        [nix.POS]: pos$84,
+        "faiss-build": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "faiss", "override"), nix.thunk(() => ({ [nix.POS]: pos$83, pythonSupport: true, python3Packages: self })))),
       })))),
     "faiss-cpu": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/faiss-cpu"), nix.thunk(() => ({
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         faiss: nix.thunk(() => nix.app(nix.sel(self, "faiss", "override"), nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             "faiss-build": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "faiss", "override"), nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 pythonSupport: true,
                 python3Packages: self,
                 cudaSupport: false,
@@ -3655,7 +3655,7 @@ export default (self) => (super$) => (() => {
     "fastmcp-slim": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fastmcp-slim"), nix.thunk(() => ({})))),
     fastmri: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fastmri"), nix.thunk(() => ({})))),
     "fastnlo-toolkit": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "fastnlo-toolkit", "override"), nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           withPython: true,
           python: nix.thunk(() => nix.attr(self, "python")),
         })))))),
@@ -3721,7 +3721,7 @@ export default (self) => (super$) => (() => {
     finitude: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/finitude"), nix.thunk(() => ({})))),
     fints: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fints"), nix.thunk(() => ({})))),
     finufft: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/finufft"), nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         finufft: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "finufft")),
       })))),
     finvizfinance: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/finvizfinance"), nix.thunk(() => ({})))),
@@ -3836,7 +3836,7 @@ export default (self) => (super$) => (() => {
     "flask-xml-rpc-re": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/flask-xml-rpc-re"), nix.thunk(() => ({})))),
     flatbencode: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/flatbencode"), nix.thunk(() => ({})))),
     flatbuffers: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/flatbuffers"), nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         flatbuffers: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "flatbuffers")),
       })))),
     flatdict: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/flatdict"), nix.thunk(() => ({})))),
@@ -3889,7 +3889,7 @@ export default (self) => (super$) => (() => {
     fontbakery: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fontbakery"), nix.thunk(() => ({})))),
     fontfeatures: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fontfeatures"), nix.thunk(() => ({})))),
     fontforge: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "fontforge", "override"), nix.thunk(() => ({
-          __proto__: pos$91,
+          [nix.POS]: pos$91,
           withPython: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
         })))))),
@@ -3913,7 +3913,7 @@ export default (self) => (super$) => (() => {
     "fortune-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fortune-python"), nix.thunk(() => ({})))),
     "foss-flame": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/foss-flame"), nix.thunk(() => ({})))),
     foundationdb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/foundationdb"), nix.thunk(() => ({
-        __proto__: pos$92,
+        [nix.POS]: pos$92,
         foundationdb: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "foundationdb")),
       })))),
     foundrytools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/foundrytools"), nix.thunk(() => ({})))),
@@ -3930,7 +3930,7 @@ export default (self) => (super$) => (() => {
     freenub: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/freenub"), nix.thunk(() => ({})))),
     "freertos-gdb": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/freertos-gdb"), nix.thunk(() => ({})))),
     freesasa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/freesasa"), nix.thunk(() => ({
-        __proto__: pos$93,
+        [nix.POS]: pos$93,
         freesasa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "freesasa")),
       })))),
     freesms: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/freesms"), nix.thunk(() => ({})))),
@@ -3974,7 +3974,7 @@ export default (self) => (super$) => (() => {
     furl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/furl"), nix.thunk(() => ({})))),
     furo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/furo"), nix.thunk(() => ({})))),
     fuse: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fuse-python"), nix.thunk(() => ({
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         fuse: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "fuse")),
       })))),
     fusepy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fusepy"), nix.thunk(() => ({})))),
@@ -3989,7 +3989,7 @@ export default (self) => (super$) => (() => {
     fxrays: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fxrays"), nix.thunk(() => ({})))),
     "fyta-cli": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/fyta-cli"), nix.thunk(() => ({})))),
     g2pkk: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/g2pkk"), nix.thunk(() => ({})))),
-    galario: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "galario", "override"), nix.thunk(() => ({ __proto__: pos$95, enablePython: true, pythonPackages: self })))))),
+    galario: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "galario", "override"), nix.thunk(() => ({ [nix.POS]: pos$95, enablePython: true, pythonPackages: self })))))),
     galois: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/galois"), nix.thunk(() => ({})))),
     gamble: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gamble"), nix.thunk(() => ({})))),
     gaphas: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gaphas"), nix.thunk(() => ({})))),
@@ -4001,7 +4001,7 @@ export default (self) => (super$) => (() => {
     gast: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gast"), nix.thunk(() => ({})))),
     gatt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gatt"), nix.thunk(() => ({})))),
     gattlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gattlib"), nix.thunk(() => ({
-        __proto__: pos$96,
+        [nix.POS]: pos$96,
         bluez: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "bluez")),
         glib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "glib")),
         "pkg-config": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "pkg-config")),
@@ -4015,11 +4015,11 @@ export default (self) => (super$) => (() => {
     "gcp-storage-emulator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gcp-storage-emulator"), nix.thunk(() => ({})))),
     gcsa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gcsa"), nix.thunk(() => ({})))),
     gcsfs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gcsfs"), nix.thunk(() => ({})))),
-    gdal: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gdal", "override"), nix.thunk(() => ({ __proto__: pos$97, python3Packages: self })))))),
+    gdal: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gdal", "override"), nix.thunk(() => ({ [nix.POS]: pos$97, python3Packages: self })))))),
     gdata: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gdata"), nix.thunk(() => ({})))),
     "gdb-pt-dump": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gdb-pt-dump"), nix.thunk(() => ({})))),
     gdcm: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gdcm", "override"), nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           python: nix.thunk(() => nix.attr(self, "python")),
           enablePython: true,
         })))))),
@@ -4028,7 +4028,7 @@ export default (self) => (super$) => (() => {
     gdstk: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gdstk"), nix.thunk(() => ({})))),
     ge25519: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ge25519"), nix.thunk(() => ({})))),
     geant4: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "geant4", "override"), nix.thunk(() => ({
-          __proto__: pos$99,
+          [nix.POS]: pos$99,
           enablePython: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
         })))))),
@@ -4037,7 +4037,7 @@ export default (self) => (super$) => (() => {
     gekko: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gekko"), nix.thunk(() => ({})))),
     gemfileparser: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gemfileparser"), nix.thunk(() => ({})))),
     gemfileparser2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gemfileparser2"), nix.thunk(() => ({})))),
-    gemmi: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gemmi", "override"), nix.thunk(() => ({ __proto__: pos$100, enablePython: true, python3Packages: self })))))),
+    gemmi: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gemmi", "override"), nix.thunk(() => ({ [nix.POS]: pos$100, enablePython: true, python3Packages: self })))))),
     "genai-prices": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/genai-prices"), nix.thunk(() => ({})))),
     genanki: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/genanki"), nix.thunk(() => ({})))),
     "general-sam": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/general-sam"), nix.thunk(() => ({})))),
@@ -4063,7 +4063,7 @@ export default (self) => (super$) => (() => {
     geodatasets: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/geodatasets"), nix.thunk(() => ({})))),
     geographiclib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/geographiclib"), nix.thunk(() => ({})))),
     geoip: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/geoip"), nix.thunk(() => ({
-        __proto__: pos$101,
+        [nix.POS]: pos$101,
         libgeoip: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "geoip")),
       })))),
     geoip2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/geoip2"), nix.thunk(() => ({})))),
@@ -4098,7 +4098,7 @@ export default (self) => (super$) => (() => {
     geventhttpclient: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/geventhttpclient"), nix.thunk(() => ({})))),
     "gfal2-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gfal2-python"), nix.thunk(() => ({})))),
     "gfal2-util": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gfal2-util"), nix.thunk(() => ({
-        __proto__: pos$102,
+        [nix.POS]: pos$102,
         xrootd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "xrootd")),
       })))),
     gflags: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gflags"), nix.thunk(() => ({})))),
@@ -4160,9 +4160,9 @@ export default (self) => (super$) => (() => {
     gmpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gmpy"), nix.thunk(() => ({})))),
     gmpy2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gmpy2"), nix.thunk(() => ({})))),
     gmqtt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gmqtt"), nix.thunk(() => ({})))),
-    gmsh: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gmsh", "override"), nix.thunk(() => ({ __proto__: pos$103, python3Packages: self, enablePython: true })))))),
+    gmsh: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gmsh", "override"), nix.thunk(() => ({ [nix.POS]: pos$103, python3Packages: self, enablePython: true })))))),
     gntp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gntp"), nix.thunk(() => ({})))),
-    gnucash: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gnucash", "override"), nix.thunk(() => ({ __proto__: pos$104, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    gnucash: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "gnucash", "override"), nix.thunk(() => ({ [nix.POS]: pos$104, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     gnureadline: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gnureadline"), nix.thunk(() => ({})))),
     "go2rtc-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/go2rtc-client"), nix.thunk(() => ({})))),
     goalzero: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/goalzero"), nix.thunk(() => ({})))),
@@ -4235,7 +4235,7 @@ export default (self) => (super$) => (() => {
     "google-cloud-workstations": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/google-cloud-workstations"), nix.thunk(() => ({})))),
     "google-compute-engine": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/google-compute-engine"), nix.thunk(() => ({})))),
     "google-crc32c": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/google-crc32c"), nix.thunk(() => ({
-        __proto__: pos$105,
+        [nix.POS]: pos$105,
         crc32c: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "crc32c")),
       })))),
     "google-genai": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/google-genai"), nix.thunk(() => ({})))),
@@ -4266,23 +4266,23 @@ export default (self) => (super$) => (() => {
     goveelights: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/goveelights"), nix.thunk(() => ({})))),
     gower: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gower"), nix.thunk(() => ({})))),
     gpaw: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gpaw"), nix.thunk(() => ({
-        __proto__: pos$106,
+        [nix.POS]: pos$106,
         libxc: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxc")),
       })))),
     gpg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gpg"), nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         gpgme: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "gpgme")),
       })))),
     gphoto2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gphoto2"), nix.thunk(() => ({})))),
     "gpib-ctypes": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gpib-ctypes"), nix.thunk(() => ({})))),
     gpiod: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gpiod"), nix.thunk(() => ({
-        __proto__: pos$108,
+        [nix.POS]: pos$108,
         libgpiod: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libgpiod")),
       })))),
     gpiodevice: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gpiodevice"), nix.thunk(() => ({})))),
     gpiozero: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gpiozero"), nix.thunk(() => ({})))),
     gprof2dot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gprof2dot"), nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     gps3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gps3"), nix.thunk(() => ({})))),
@@ -4302,7 +4302,7 @@ export default (self) => (super$) => (() => {
     "gradient-utils": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gradient-utils"), nix.thunk(() => ({})))),
     gradio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gradio"), nix.thunk(() => ({})))),
     "gradio-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gradio/client.nix"), nix.thunk(() => ({
-        __proto__: pos$110,
+        [nix.POS]: pos$110,
         jq: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "jq")),
       })))),
     "gradio-pdf": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gradio-pdf"), nix.thunk(() => ({})))),
@@ -4311,7 +4311,7 @@ export default (self) => (super$) => (() => {
     grandalf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/grandalf"), nix.thunk(() => ({})))),
     granian: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/granian"), nix.thunk(() => ({})))),
     "graph-tool": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/graph-tool"), nix.thunk(() => ({
-        __proto__: pos$111,
+        [nix.POS]: pos$111,
         cgal: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cgal")),
       })))),
     graphemeu: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/graphemeu"), nix.thunk(() => ({})))),
@@ -4367,19 +4367,19 @@ export default (self) => (super$) => (() => {
     grpclib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/grpclib"), nix.thunk(() => ({})))),
     gruut: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gruut"), nix.thunk(() => ({})))),
     "gruut-ipa": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gruut-ipa"), nix.thunk(() => ({
-        __proto__: pos$112,
+        [nix.POS]: pos$112,
         espeak: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "espeak")),
       })))),
     gsd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gsd"), nix.thunk(() => ({})))),
     gsm0338: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gsm0338"), nix.thunk(() => ({})))),
     gspread: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gspread"), nix.thunk(() => ({})))),
     gssapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gssapi"), nix.thunk(() => ({
-        __proto__: pos$113,
+        [nix.POS]: pos$113,
         "krb5-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "krb5")),
       })))),
     "gst-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gst-python"), nix.thunk(() => (() => {
         const from_2 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "buildPackages"));
-        return { __proto__: pos$114, meson: nix.thunk(() => nix.attr(from_2, "meson")) };
+        return { [nix.POS]: pos$114, meson: nix.thunk(() => nix.attr(from_2, "meson")) };
       })()))),
     gstools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gstools"), nix.thunk(() => ({})))),
     "gstools-cython": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gstools-cython"), nix.thunk(() => ({})))),
@@ -4389,11 +4389,11 @@ export default (self) => (super$) => (() => {
     gtts: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gtts"), nix.thunk(() => ({})))),
     "gtts-token": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gtts-token"), nix.thunk(() => ({})))),
     gudhi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/gudhi"), nix.thunk(() => ({
-        __proto__: pos$115,
+        [nix.POS]: pos$115,
         cgal: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cgal")),
       })))),
     guessit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/guessit"), nix.thunk(() => ({})))),
-    guestfs: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libguestfs", "override"), nix.thunk(() => ({ __proto__: pos$116, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    guestfs: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libguestfs", "override"), nix.thunk(() => ({ [nix.POS]: pos$116, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     guidance: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/guidance"), nix.thunk(() => ({})))),
     "guidance-stitch": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/guidance-stitch"), nix.thunk(() => ({})))),
     guidata: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/guidata"), nix.thunk(() => ({})))),
@@ -4414,14 +4414,14 @@ export default (self) => (super$) => (() => {
     h11: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/h11"), nix.thunk(() => ({})))),
     h2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/h2"), nix.thunk(() => ({})))),
     h3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/h3"), nix.thunk(() => ({
-        __proto__: pos$117,
+        [nix.POS]: pos$117,
         h3: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "h3_4")),
       })))),
     h5io: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/h5io"), nix.thunk(() => ({})))),
     h5netcdf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/h5netcdf"), nix.thunk(() => ({})))),
     h5py: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/h5py"), nix.thunk(() => ({})))),
     "h5py-mpi": nix.thunk(() => nix.app(nix.sel(self, "h5py", "override"), nix.thunk(() => ({
-        __proto__: pos$118,
+        [nix.POS]: pos$118,
         hdf5: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "hdf5-mpi")),
       })))),
     "ha-ffmpeg": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ha-ffmpeg"), nix.thunk(() => ({})))),
@@ -4440,7 +4440,7 @@ export default (self) => (super$) => (() => {
     hacking: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hacking"), nix.thunk(() => ({})))),
     haishoku: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/haishoku"), nix.thunk(() => ({})))),
     hakuin: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hakuin"), nix.thunk(() => ({})))),
-    halide: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.sel(nix.app(nix.sel(nix.lookup(w, "pkgs"), "halide", "override"), nix.thunk(() => ({ __proto__: pos$119, pythonSupport: true, python3Packages: self }))), "lib")))),
+    halide: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.sel(nix.app(nix.sel(nix.lookup(w, "pkgs"), "halide", "override"), nix.thunk(() => ({ [nix.POS]: pos$119, pythonSupport: true, python3Packages: self }))), "lib")))),
     halo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/halo"), nix.thunk(() => ({})))),
     halohome: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/halohome"), nix.thunk(() => ({})))),
     handout: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/handout"), nix.thunk(() => ({})))),
@@ -4486,7 +4486,7 @@ export default (self) => (super$) => (() => {
     hdate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hdate"), nix.thunk(() => ({})))),
     hdbscan: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hdbscan"), nix.thunk(() => ({})))),
     hdf5plugin: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hdf5plugin"), nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
         lz4: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "lz4")),
       })))),
@@ -4509,7 +4509,7 @@ export default (self) => (super$) => (() => {
     "hepdata-converter": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hepdata-converter"), nix.thunk(() => ({})))),
     "hepdata-lib": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hepdata-lib"), nix.thunk(() => ({})))),
     "hepdata-validator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hepdata-validator"), nix.thunk(() => ({})))),
-    hepmc3: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "hepmc3", "override"), nix.thunk(() => ({ __proto__: pos$121, python: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    hepmc3: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "hepmc3", "override"), nix.thunk(() => ({ [nix.POS]: pos$121, python: nix.thunk(() => nix.lookup(w, "python")) })))))),
     hepunits: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hepunits"), nix.thunk(() => ({})))),
     "here-routing": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/here-routing"), nix.thunk(() => ({})))),
     "here-transit": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/here-transit"), nix.thunk(() => ({})))),
@@ -4528,12 +4528,12 @@ export default (self) => (super$) => (() => {
     hibpwned: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hibpwned"), nix.thunk(() => ({})))),
     hickle: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hickle"), nix.thunk(() => ({})))),
     hid: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hid"), nix.thunk(() => ({
-        __proto__: pos$122,
+        [nix.POS]: pos$122,
         hidapi: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "hidapi")),
       })))),
     "hid-parser": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hid-parser"), nix.thunk(() => ({})))),
     hidapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hidapi"), nix.thunk(() => ({
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         hidapi: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "hidapi")),
         udev: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "udev")),
       })))),
@@ -4563,7 +4563,7 @@ export default (self) => (super$) => (() => {
     "hlk-sw16": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hlk-sw16"), nix.thunk(() => ({})))),
     hmmlearn: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hmmlearn"), nix.thunk(() => ({})))),
     hnswlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hnswlib"), nix.thunk(() => ({
-        __proto__: pos$124,
+        [nix.POS]: pos$124,
         hnswlib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "hnswlib")),
       })))),
     "hocr-tools": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hocr-tools"), nix.thunk(() => ({})))),
@@ -4588,7 +4588,7 @@ export default (self) => (super$) => (() => {
     hoptorch: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hoptorch"), nix.thunk(() => ({})))),
     horimote: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/horimote"), nix.thunk(() => ({})))),
     "horizon-eda": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/horizon-eda"), nix.thunk(() => ({
-        __proto__: pos$125,
+        [nix.POS]: pos$125,
         "horizon-eda": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "horizon-eda")),
       })))),
     housekeeping: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/housekeeping"), nix.thunk(() => ({})))),
@@ -4883,7 +4883,7 @@ export default (self) => (super$) => (() => {
     hyrule: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/hyrule"), nix.thunk(() => ({})))),
     "i-pi": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/i-pi"), nix.thunk(() => ({})))),
     "i2c-tools": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/i2c-tools"), nix.thunk(() => ({
-        __proto__: pos$126,
+        [nix.POS]: pos$126,
         "i2c-tools": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "i2c-tools")),
       })))),
     i2csense: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/i2csense"), nix.thunk(() => ({})))),
@@ -4909,7 +4909,7 @@ export default (self) => (super$) => (() => {
     iceportal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/iceportal"), nix.thunk(() => ({})))),
     icmplib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/icmplib"), nix.thunk(() => ({})))),
     icnsutil: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/icnsutil"), nix.thunk(() => ({})))),
-    icoextract: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "icoextract", "override"), nix.thunk(() => ({ __proto__: pos$127, python3Packages: self })))))),
+    icoextract: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "icoextract", "override"), nix.thunk(() => ({ [nix.POS]: pos$127, python3Packages: self })))))),
     icontract: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/icontract"), nix.thunk(() => ({})))),
     ics: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ics"), nix.thunk(() => ({})))),
     id: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/id"), nix.thunk(() => ({})))),
@@ -4928,7 +4928,7 @@ export default (self) => (super$) => (() => {
     ifaddr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ifaddr"), nix.thunk(() => ({})))),
     "ifconfig-parser": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ifconfig-parser"), nix.thunk(() => ({})))),
     ifcopenshell: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ifcopenshell"), nix.thunk(() => ({
-        __proto__: pos$128,
+        [nix.POS]: pos$128,
         cgal_5: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cgal_5")),
         libxml2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxml2")),
       })))),
@@ -4937,7 +4937,7 @@ export default (self) => (super$) => (() => {
     ignite: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ignite"), nix.thunk(() => ({})))),
     ignorant: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ignorant"), nix.thunk(() => ({})))),
     igraph: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/igraph"), nix.thunk(() => ({
-        __proto__: pos$129,
+        [nix.POS]: pos$129,
         igraph: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "igraph")),
       })))),
     ihcsdk: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ihcsdk"), nix.thunk(() => ({})))),
@@ -4979,7 +4979,7 @@ export default (self) => (super$) => (() => {
     "importlib-resources": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/importlib-resources"), nix.thunk(() => ({})))),
     importmagic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/importmagic"), nix.thunk(() => ({})))),
     imread: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/imread"), nix.thunk(() => ({
-        __proto__: pos$130,
+        [nix.POS]: pos$130,
         libjpeg: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libjpeg")),
         libpng: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libpng")),
         libtiff: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libtiff")),
@@ -4994,11 +4994,11 @@ export default (self) => (super$) => (() => {
     "indevolt-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/indevolt-api"), nix.thunk(() => ({})))),
     "indexed-bzip2": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/indexed-bzip2"), nix.thunk(() => ({})))),
     "indexed-gzip": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/indexed-gzip"), nix.thunk(() => ({
-        __proto__: pos$131,
+        [nix.POS]: pos$131,
         zlib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zlib")),
       })))),
     "indexed-zstd": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/indexed-zstd"), nix.thunk(() => ({
-        __proto__: pos$132,
+        [nix.POS]: pos$132,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
       })))),
     indicio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/indicio"), nix.thunk(() => ({})))),
@@ -5107,14 +5107,14 @@ export default (self) => (super$) => (() => {
     irisclient: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/irisclient"), nix.thunk(() => ({})))),
     "irm-kmi-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/irm-kmi-api"), nix.thunk(() => ({})))),
     ironcalc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../by-name/ir/ironcalc/python.nix"), nix.thunk(() => ({
-        __proto__: pos$133,
+        [nix.POS]: pos$133,
         ironcalc: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ironcalc")),
       })))),
     isal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/isal"), nix.thunk(() => ({})))),
     isbnlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/isbnlib"), nix.thunk(() => ({})))),
     "iseo-argo-ble": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/iseo-argo-ble"), nix.thunk(() => ({})))),
     islpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/islpy"), nix.thunk(() => ({
-        __proto__: pos$134,
+        [nix.POS]: pos$134,
         isl: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "isl_0_27")),
       })))),
     ismartgate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ismartgate"), nix.thunk(() => ({})))),
@@ -5144,7 +5144,7 @@ export default (self) => (super$) => (() => {
     iterfzf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/iterfzf"), nix.thunk(() => ({})))),
     iterm2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/iterm2"), nix.thunk(() => ({})))),
     itk: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "itk", "override"), nix.thunk(() => ({
-          __proto__: pos$135,
+          [nix.POS]: pos$135,
           python: nix.thunk(() => nix.lookup(w, "python")),
           numpy: nix.thunk(() => nix.lookup(w, "numpy")),
           enablePython: true,
@@ -5195,7 +5195,7 @@ export default (self) => (super$) => (() => {
     jaxlib: nix.thunk(() => nix.lookup(w, "jaxlib-bin")),
     "jaxlib-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jaxlib/bin.nix"), nix.thunk(() => ({})))),
     "jaxlib-build": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jaxlib"), nix.thunk(() => ({
-        __proto__: pos$136,
+        [nix.POS]: pos$136,
         "snappy-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "snappy")),
       })))),
     jaxopt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jaxopt"), nix.thunk(() => ({})))),
@@ -5237,7 +5237,7 @@ export default (self) => (super$) => (() => {
     jpylyzer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jpylyzer"), nix.thunk(() => ({})))),
     jpype1: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jpype1"), nix.thunk(() => ({})))),
     jq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jq"), nix.thunk(() => ({
-        __proto__: pos$137,
+        [nix.POS]: pos$137,
         jq: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "jq")),
       })))),
     jsbeautifier: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jsbeautifier"), nix.thunk(() => ({})))),
@@ -5321,7 +5321,7 @@ export default (self) => (super$) => (() => {
     "jupyter-nbextensions-configurator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jupyter-nbextensions-configurator"), nix.thunk(() => ({})))),
     "jupyter-packaging": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jupyter-packaging"), nix.thunk(() => ({})))),
     "jupyter-repo2docker": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jupyter-repo2docker"), nix.thunk(() => ({
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         "pkgs-docker": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "docker")),
       })))),
     "jupyter-server": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jupyter-server"), nix.thunk(() => ({})))),
@@ -5361,7 +5361,7 @@ export default (self) => (super$) => (() => {
     jxmlease: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/jxmlease"), nix.thunk(() => ({})))),
     "k-diffusion": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/k-diffusion"), nix.thunk(() => ({})))),
     k5test: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/k5test"), nix.thunk(() => ({
-        __proto__: pos$139,
+        [nix.POS]: pos$139,
         findutils: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "findutils")),
         "krb5-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "krb5")),
       })))),
@@ -5371,7 +5371,7 @@ export default (self) => (super$) => (() => {
     kaggle: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kaggle"), nix.thunk(() => ({})))),
     kagglehub: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kagglehub"), nix.thunk(() => ({})))),
     kagglesdk: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kagglesdk"), nix.thunk(() => ({})))),
-    kahip: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "kahip", "override"), nix.thunk(() => ({ __proto__: pos$140, pythonSupport: true, python3Packages: self })))))),
+    kahip: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "kahip", "override"), nix.thunk(() => ({ [nix.POS]: pos$140, pythonSupport: true, python3Packages: self })))))),
     kaitaistruct: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kaitaistruct"), nix.thunk(() => ({})))),
     "kaiterra-async-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kaiterra-async-client"), nix.thunk(() => ({})))),
     kajiki: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kajiki"), nix.thunk(() => ({})))),
@@ -5420,17 +5420,17 @@ export default (self) => (super$) => (() => {
     "keystone-engine": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/keystone-engine"), nix.thunk(() => ({})))),
     keystoneauth1: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/keystoneauth1"), nix.thunk(() => ({})))),
     keyutils: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/keyutils"), nix.thunk(() => ({
-        __proto__: pos$141,
+        [nix.POS]: pos$141,
         keyutils: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "keyutils")),
       })))),
     kfactory: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kfactory"), nix.thunk(() => ({})))),
     kgb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kgb"), nix.thunk(() => ({})))),
     khanaa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/khanaa"), nix.thunk(() => ({})))),
     kiauto: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kiauto"), nix.thunk(() => ({
-        __proto__: pos$142,
+        [nix.POS]: pos$142,
         kicadPkg: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "kicad")),
       })))),
-    kicad: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.sel(nix.app(nix.sel(nix.lookup(w, "pkgs"), "kicad", "override"), nix.thunk(() => ({ __proto__: pos$143, python3: nix.thunk(() => nix.lookup(w, "python")) }))), "src")))),
+    kicad: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.sel(nix.app(nix.sel(nix.lookup(w, "pkgs"), "kicad", "override"), nix.thunk(() => ({ [nix.POS]: pos$143, python3: nix.thunk(() => nix.lookup(w, "python")) }))), "src")))),
     "kicad-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kicad-python"), nix.thunk(() => ({})))),
     kicadcliwrapper: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kicadcliwrapper"), nix.thunk(() => ({})))),
     kinparse: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kinparse"), nix.thunk(() => ({})))),
@@ -5443,14 +5443,14 @@ export default (self) => (super$) => (() => {
     kiwisolver: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kiwisolver"), nix.thunk(() => ({})))),
     klaus: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/klaus"), nix.thunk(() => ({})))),
     klayout: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/klayout"), nix.thunk(() => ({
-        __proto__: pos$144,
+        [nix.POS]: pos$144,
         klayout: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "klayout")),
       })))),
     klein: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/klein"), nix.thunk(() => ({})))),
     kmapper: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kmapper"), nix.thunk(() => ({})))),
     kml2geojson: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kml2geojson"), nix.thunk(() => ({})))),
     kmock: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kmock"), nix.thunk(() => ({})))),
-    kmsxx: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "kmsxx", "override"), nix.thunk(() => ({ __proto__: pos$145, withPython: true, python3Packages: self })))))),
+    kmsxx: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "kmsxx", "override"), nix.thunk(() => ({ [nix.POS]: pos$145, withPython: true, python3Packages: self })))))),
     knack: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/knack"), nix.thunk(() => ({})))),
     kneaddata: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kneaddata"), nix.thunk(() => ({})))),
     kneed: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kneed"), nix.thunk(() => ({})))),
@@ -5468,7 +5468,7 @@ export default (self) => (super$) => (() => {
     kotsu: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/kotsu"), nix.thunk(() => ({})))),
     krakenex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/krakenex"), nix.thunk(() => ({})))),
     krb5: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/krb5"), nix.thunk(() => ({
-        __proto__: pos$146,
+        [nix.POS]: pos$146,
         "krb5-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "krb5")),
       })))),
     "krfzf-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/krfzf-py"), nix.thunk(() => ({})))),
@@ -5490,13 +5490,13 @@ export default (self) => (super$) => (() => {
     lacuscore: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lacuscore"), nix.thunk(() => ({})))),
     lakeside: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lakeside"), nix.thunk(() => ({})))),
     lammps: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lammps"), nix.thunk(() => ({
-        __proto__: pos$147,
+        [nix.POS]: pos$147,
         lammps: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "lammps")),
       })))),
     "lance-namespace": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lance-namespace"), nix.thunk(() => ({})))),
     "lance-namespace-urllib3-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lance-namespace-urllib3-client"), nix.thunk(() => ({})))),
     lancedb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lancedb"), nix.thunk(() => ({
-        __proto__: pos$148,
+        [nix.POS]: pos$148,
         protobuf: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "protobuf")),
       })))),
     langchain: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/langchain"), nix.thunk(() => ({})))),
@@ -5549,7 +5549,7 @@ export default (self) => (super$) => (() => {
     laszip: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/laszip"), nix.thunk(() => (() => {
         const from_3 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "__splicedPackages"));
         return {
-        __proto__: pos$149,
+        [nix.POS]: pos$149,
         cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
         ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
         laszip: nix.thunk(() => nix.attr(from_3, "laszip")),
@@ -5593,7 +5593,7 @@ export default (self) => (super$) => (() => {
     leb128: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/leb128"), nix.thunk(() => ({})))),
     "led-ble": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/led-ble"), nix.thunk(() => ({})))),
     ledger: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "ledger", "override"), nix.thunk(() => ({
-          __proto__: pos$150,
+          [nix.POS]: pos$150,
           usePython: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
         }))))), "py")),
@@ -5604,7 +5604,7 @@ export default (self) => (super$) => (() => {
     "legacy-api-wrap": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/legacy-api-wrap"), nix.thunk(() => ({})))),
     "legacy-cgi": nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "pythonOlder"), "3.13")) ? null : nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/legacy-cgi"), nix.thunk(() => ({}))))),
     leidenalg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/leidenalg"), nix.thunk(() => ({
-        __proto__: pos$151,
+        [nix.POS]: pos$151,
         "igraph-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "igraph")),
       })))),
     lektricowifi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lektricowifi"), nix.thunk(() => ({})))),
@@ -5616,12 +5616,12 @@ export default (self) => (super$) => (() => {
     lexilang: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lexilang"), nix.thunk(() => ({})))),
     "lg-rs232-tv": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lg-rs232-tv"), nix.thunk(() => ({})))),
     lgpio: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lgpio", "override"), nix.thunk(() => ({
-          __proto__: pos$152,
+          [nix.POS]: pos$152,
           buildPythonPackage: nix.thunk(() => nix.lookup(w, "buildPythonPackage")),
           pyProject: "PY_LGPIO",
           lgpioWithoutPython: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "lgpio")),
         })))))),
-    lhapdf: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lhapdf", "override"), nix.thunk(() => ({ __proto__: pos$153, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    lhapdf: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lhapdf", "override"), nix.thunk(() => ({ [nix.POS]: pos$153, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     lhpapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lhpapi"), nix.thunk(() => ({})))),
     lib4package: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lib4package"), nix.thunk(() => ({})))),
     lib4sbom: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lib4sbom"), nix.thunk(() => ({})))),
@@ -5635,14 +5635,14 @@ export default (self) => (super$) => (() => {
         const python = nix.arg($, "python");
         const pythonImportsCheckHook = nix.arg($, "pythonImportsCheckHook");
         const setuptools = nix.arg($, "setuptools");
-        return nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libapparmor", "override"), nix.thunk(() => ({ __proto__: pos$154, python3Packages: python3Packages })))));
+        return nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libapparmor", "override"), nix.thunk(() => ({ [nix.POS]: pos$154, python3Packages: python3Packages })))));
       })(), formals$1), nix.thunk(() => ({})))),
     "libarchive-c": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libarchive-c"), nix.thunk(() => ({
-        __proto__: pos$155,
+        [nix.POS]: pos$155,
         libarchive: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libarchive")),
       })))),
     libasyncns: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libasyncns"), nix.thunk(() => ({
-        __proto__: pos$156,
+        [nix.POS]: pos$156,
         libasyncns: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libasyncns")),
       })))),
     libbs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libbs"), nix.thunk(() => ({})))),
@@ -5652,10 +5652,10 @@ export default (self) => (super$) => (() => {
         const python = nix.arg($, "python");
         const pythonImportsCheckHook = nix.arg($, "pythonImportsCheckHook");
         const libcap_ng = nix.arg($, "libcap_ng");
-        return nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libcap_ng", "override"), nix.thunk(() => ({ __proto__: pos$157, withPython: true, python3Packages: python3Packages })))));
+        return nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libcap_ng", "override"), nix.thunk(() => ({ [nix.POS]: pos$157, withPython: true, python3Packages: python3Packages })))));
       })(), formals$2), nix.thunk(() => ({})))),
     libcec: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libcec", "override"), nix.thunk(() => ({
-          __proto__: pos$158,
+          [nix.POS]: pos$158,
           python3: nix.thunk(() => nix.lookup(w, "python")),
           pythonSupport: true,
         })))))),
@@ -5663,38 +5663,38 @@ export default (self) => (super$) => (() => {
     libcomps: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "pipe"), nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libcomps")), nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "toPythonModule")),
         (p) => nix.app(nix.sel(p, "overrideAttrs"), (super$_1) => ({
-            __proto__: pos$160,
-            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { __proto__: pos$159, outputsToInstall: nix.thunk(() => ["py"]) })),
+            [nix.POS]: pos$160,
+            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { [nix.POS]: pos$159, outputsToInstall: nix.thunk(() => ["py"]) })),
           })),
-        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ __proto__: pos$161, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
+        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ [nix.POS]: pos$161, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
         (p) => nix.sel(p, "py"),
       ]))),
     libcst: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libcst"), nix.thunk(() => ({})))),
     libdebug: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libdebug"), nix.thunk(() => ({
-        __proto__: pos$162,
+        [nix.POS]: pos$162,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
       })))),
     libdnf: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "pipe"), nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libdnf")), nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "toPythonModule")),
         (p) => nix.app(nix.sel(p, "overrideAttrs"), (super$_1) => ({
-            __proto__: pos$164,
-            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { __proto__: pos$163, outputsToInstall: nix.thunk(() => ["py"]) })),
+            [nix.POS]: pos$164,
+            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { [nix.POS]: pos$163, outputsToInstall: nix.thunk(() => ["py"]) })),
           })),
-        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ __proto__: pos$165, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
+        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ [nix.POS]: pos$165, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
         (p) => nix.sel(p, "py"),
       ]))),
     libear: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libear"), nix.thunk(() => ({})))),
     "liberty-parser": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/liberty-parser"), nix.thunk(() => ({})))),
     libevdev: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libevdev"), nix.thunk(() => ({})))),
     libfdt: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "dtc", "override"), nix.thunk(() => ({
-          __proto__: pos$166,
+          [nix.POS]: pos$166,
           python: nix.thunk(() => nix.lookup(w, "python")),
           pythonSupport: true,
         })))))),
-    libfive: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libfive", "override"), nix.thunk(() => ({ __proto__: pos$167, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    libfive: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libfive", "override"), nix.thunk(() => ({ [nix.POS]: pos$167, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     libgravatar: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libgravatar"), nix.thunk(() => ({})))),
     libiio: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libiio", "override"), nix.thunk(() => ({
-          __proto__: pos$168,
+          [nix.POS]: pos$168,
           pythonSupport: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
         }))))), "python")),
@@ -5705,7 +5705,7 @@ export default (self) => (super$) => (() => {
     liblistenbrainz: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/liblistenbrainz"), nix.thunk(() => ({})))),
     liblp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/liblp"), nix.thunk(() => ({})))),
     liblzfse: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/liblzfse"), nix.thunk(() => ({
-        __proto__: pos$169,
+        [nix.POS]: pos$169,
         lzfse: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "lzfse")),
       })))),
     libmambapy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libmambapy"), nix.thunk(() => ({})))),
@@ -5713,30 +5713,30 @@ export default (self) => (super$) => (() => {
     libmodulemd: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "pipe"), nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libmodulemd")), nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "toPythonModule")),
         (p) => nix.app(nix.sel(p, "overrideAttrs"), (super$_1) => ({
-            __proto__: pos$171,
+            [nix.POS]: pos$171,
             meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), {
-              __proto__: pos$170,
+              [nix.POS]: pos$170,
               outputsToInstall: nix.thunk(() => ["py"]),
               broken: nix.thunk(() => (nix.asBool(nix.selOr(super$_1, () => false, "meta", "broken")) || nix.asBool(!nix.asBool(nix.lookup(w, "isPy3k"))))),
             })),
           })),
-        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ __proto__: pos$172, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
+        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ [nix.POS]: pos$172, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
         (p) => nix.sel(p, "py"),
       ]))),
     libmr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libmr"), nix.thunk(() => ({})))),
     libnacl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libnacl"), nix.thunk(() => ({
-        __proto__: pos$173,
+        [nix.POS]: pos$173,
         libsodium: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libsodium")),
       })))),
     libnbd: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libnbd", "override"), nix.thunk(() => ({
-          __proto__: pos$174,
+          [nix.POS]: pos$174,
           buildPythonBindings: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
         })))))),
     "libparse-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libparse-python/package.nix"), nix.thunk(() => ({})))),
     libpass: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libpass"), nix.thunk(() => ({})))),
     libpcap: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libpcap"), nix.thunk(() => ({
-        __proto__: pos$175,
+        [nix.POS]: pos$175,
         pkgsLibpcap: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libpcap")),
       })))),
     libpulse: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libpulse"), nix.thunk(() => ({})))),
@@ -5744,11 +5744,11 @@ export default (self) => (super$) => (() => {
     libpwquality: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "pipe"), nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libpwquality")), nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "toPythonModule")),
         (p) => nix.app(nix.sel(p, "overrideAttrs"), (super$_1) => ({
-            __proto__: pos$177,
-            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { __proto__: pos$176, outputsToInstall: nix.thunk(() => ["py"]) })),
+            [nix.POS]: pos$177,
+            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { [nix.POS]: pos$176, outputsToInstall: nix.thunk(() => ["py"]) })),
           })),
         (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({
-            __proto__: pos$178,
+            [nix.POS]: pos$178,
             enablePython: true,
             python3: nix.thunk(() => nix.lookup(w, "python")),
           }))),
@@ -5758,7 +5758,7 @@ export default (self) => (super$) => (() => {
     libpysal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libpysal"), nix.thunk(() => ({})))),
     libpyvivotek: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libpyvivotek"), nix.thunk(() => ({})))),
     libredwg: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libredwg", "override"), nix.thunk(() => ({
-          __proto__: pos$179,
+          [nix.POS]: pos$179,
           enablePython: true,
           python: nix.thunk(() => nix.attr(self, "python")),
           libxml2: nix.thunk(() => nix.attr(self, "libxml2")),
@@ -5767,10 +5767,10 @@ export default (self) => (super$) => (() => {
     librepo: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "pipe"), nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "librepo")), nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "toPythonModule")),
         (p) => nix.app(nix.sel(p, "overrideAttrs"), (super$_1) => ({
-            __proto__: pos$181,
-            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { __proto__: pos$180, outputsToInstall: nix.thunk(() => ["py"]) })),
+            [nix.POS]: pos$181,
+            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { [nix.POS]: pos$180, outputsToInstall: nix.thunk(() => ["py"]) })),
           })),
-        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ __proto__: pos$182, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
+        (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({ [nix.POS]: pos$182, python3: nix.thunk(() => nix.lookup(w, "python")) }))),
         (p) => nix.sel(p, "py"),
       ]))),
     librespot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/librespot"), nix.thunk(() => ({})))),
@@ -5779,13 +5779,13 @@ export default (self) => (super$) => (() => {
     librouteros: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/librouteros"), nix.thunk(() => ({})))),
     librt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/librt"), nix.thunk(() => ({})))),
     libsass: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libsass"), nix.thunk(() => ({
-        __proto__: pos$183,
+        [nix.POS]: pos$183,
         libsass: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libsass")),
       })))),
     libsast: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libsast"), nix.thunk(() => ({})))),
     libsavitar: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libsavitar"), nix.thunk(() => ({})))),
     libsbml: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libsbml", "override"), nix.thunk(() => ({
-          __proto__: pos$184,
+          [nix.POS]: pos$184,
           withPython: true,
           python: nix.thunk(() => nix.attr(self, "python")),
         })))))),
@@ -5793,11 +5793,11 @@ export default (self) => (super$) => (() => {
     libselinux: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "pipe"), nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libselinux")), nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "toPythonModule")),
         (p) => nix.app(nix.sel(p, "overrideAttrs"), (super$_1) => ({
-            __proto__: pos$186,
-            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { __proto__: pos$185, outputsToInstall: nix.thunk(() => ["py"]) })),
+            [nix.POS]: pos$186,
+            meta: nix.thunk(() => nix.update(nix.sel(super$_1, "meta"), { [nix.POS]: pos$185, outputsToInstall: nix.thunk(() => ["py"]) })),
           })),
         (p) => nix.app(nix.sel(p, "override"), nix.thunk(() => ({
-            __proto__: pos$187,
+            [nix.POS]: pos$187,
             enablePython: true,
             python3: nix.thunk(() => nix.lookup(w, "python")),
             python3Packages: self,
@@ -5805,7 +5805,7 @@ export default (self) => (super$) => (() => {
         (p) => nix.sel(p, "py"),
       ]))),
     libsixel: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libsixel"), nix.thunk(() => ({
-        __proto__: pos$188,
+        [nix.POS]: pos$188,
         libsixel: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libsixel")),
       })))),
     libsoundtouch: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libsoundtouch"), nix.thunk(() => ({})))),
@@ -5813,40 +5813,40 @@ export default (self) => (super$) => (() => {
     libtfr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libtfr"), nix.thunk(() => ({})))),
     libthumbor: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libthumbor"), nix.thunk(() => ({})))),
     libtmux: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libtmux"), nix.thunk(() => ({})))),
-    "libtorrent-rasterbar": nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libtorrent-rasterbar", "override"), nix.thunk(() => ({ __proto__: pos$189, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "python")),
+    "libtorrent-rasterbar": nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libtorrent-rasterbar", "override"), nix.thunk(() => ({ [nix.POS]: pos$189, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "python")),
     "libusb-package": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libusb-package"), nix.thunk(() => ({
-        __proto__: pos$190,
+        [nix.POS]: pos$190,
         libusb1: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libusb1")),
       })))),
     libusb1: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libusb1"), nix.thunk(() => ({
-        __proto__: pos$191,
+        [nix.POS]: pos$191,
         libusb1: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libusb1")),
       })))),
     libusbsio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libusbsio"), nix.thunk(() => ({
-        __proto__: pos$192,
+        [nix.POS]: pos$192,
         libusbsio: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libusbsio")),
       })))),
     libuuu: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libuuu"), nix.thunk(() => ({})))),
     libvalkey: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libvalkey"), nix.thunk(() => ({})))),
     libversion: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libversion"), nix.thunk(() => ({
-        __proto__: pos$193,
+        [nix.POS]: pos$193,
         libversion: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libversion")),
       })))),
     "libvirt-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/libvirt-python"), nix.thunk(() => ({
-        __proto__: pos$194,
+        [nix.POS]: pos$194,
         libvirt: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libvirt")),
       })))),
     libxc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../by-name/li/libxc/python.nix"), nix.thunk(() => ({
-        __proto__: pos$195,
+        [nix.POS]: pos$195,
         libxc: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libxc_7")),
       })))),
     libxml2: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libxml2", "override"), nix.thunk(() => ({
-          __proto__: pos$196,
+          [nix.POS]: pos$196,
           pythonSupport: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
         }))))), "py")),
     libxslt: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libxslt", "override"), nix.thunk(() => ({
-          __proto__: pos$197,
+          [nix.POS]: pos$197,
           pythonSupport: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
           libxml2: nix.thunk(() => nix.attr(self, "libxml2")),
@@ -5864,7 +5864,7 @@ export default (self) => (super$) => (() => {
     "licomp-reclicense": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/licomp-reclicense"), nix.thunk(() => ({})))),
     "licomp-toolkit": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/licomp-toolkit"), nix.thunk(() => ({})))),
     lida: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lida"), nix.thunk(() => ({})))),
-    lief: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lief", "override"), nix.thunk(() => ({ __proto__: pos$198, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
+    lief: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lief", "override"), nix.thunk(() => ({ [nix.POS]: pos$198, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
     life360: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/life360"), nix.thunk(() => ({})))),
     lifelines: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lifelines"), nix.thunk(() => ({})))),
     "lifx-async": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lifx-async"), nix.thunk(() => ({})))),
@@ -5905,7 +5905,7 @@ export default (self) => (super$) => (() => {
     linuxpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/linuxpy"), nix.thunk(() => ({})))),
     "lion-pytorch": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lion-pytorch"), nix.thunk(() => ({})))),
     liquidctl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/liquidctl"), nix.thunk(() => ({})))),
-    lirc: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lirc", "override"), nix.thunk(() => ({ __proto__: pos$199, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    lirc: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lirc", "override"), nix.thunk(() => ({ [nix.POS]: pos$199, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     lit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lit"), nix.thunk(() => ({})))),
     litecli: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/litecli"), nix.thunk(() => ({})))),
     litellm: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/litellm"), nix.thunk(() => ({})))),
@@ -5993,14 +5993,14 @@ export default (self) => (super$) => (() => {
     "llm-video-frames": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/llm-video-frames"), nix.thunk(() => ({})))),
     llmx: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/llmx"), nix.thunk(() => ({})))),
     llvmlite: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/llvmlite"), nix.thunk(() => ({
-        __proto__: pos$200,
+        [nix.POS]: pos$200,
         cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
         ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
       })))),
     "lm-eval": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lm-eval"), nix.thunk(() => ({})))),
     "lm-format-enforcer": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lm-format-enforcer"), nix.thunk(() => ({})))),
     lmdb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lmdb"), nix.thunk(() => ({
-        __proto__: pos$201,
+        [nix.POS]: pos$201,
         lmdb: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "lmdb")),
       })))),
     lmfit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lmfit"), nix.thunk(() => ({})))),
@@ -6033,7 +6033,7 @@ export default (self) => (super$) => (() => {
     logica: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/logica"), nix.thunk(() => ({})))),
     "logical-unification": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/logical-unification"), nix.thunk(() => ({})))),
     "logilab-common": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/logilab/common.nix"), nix.thunk(() => ({
-        __proto__: pos$202,
+        [nix.POS]: pos$202,
         pytestCheckHook: nix.thunk(() => nix.lookup(w, "pytest7CheckHook")),
       })))),
     "logilab-constraint": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/logilab/constraint.nix"), nix.thunk(() => ({})))),
@@ -6088,7 +6088,7 @@ export default (self) => (super$) => (() => {
     lw12: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lw12"), nix.thunk(() => ({})))),
     lxmf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lxmf"), nix.thunk(() => ({})))),
     lxml: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/lxml"), nix.thunk(() => ({
-        __proto__: pos$203,
+        [nix.POS]: pos$203,
         libxml2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxml2")),
         libxslt: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxslt")),
         zlib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zlib")),
@@ -6154,11 +6154,11 @@ export default (self) => (super$) => (() => {
     mariadb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mariadb"), nix.thunk(() => ({})))),
     marimo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/marimo"), nix.thunk(() => ({})))),
     marisa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/marisa"), nix.thunk(() => ({
-        __proto__: pos$204,
+        [nix.POS]: pos$204,
         marisa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "marisa")),
       })))),
     "marisa-trie": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/marisa-trie"), nix.thunk(() => ({
-        __proto__: pos$205,
+        [nix.POS]: pos$205,
         "marisa-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "marisa")),
       })))),
     markdown: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/markdown"), nix.thunk(() => ({})))),
@@ -6187,11 +6187,11 @@ export default (self) => (super$) => (() => {
     mat2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mat2"), nix.thunk(() => ({})))),
     matchpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/matchpy"), nix.thunk(() => ({})))),
     "material-color-utilities": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/material-color-utilities"), nix.thunk(() => ({})))),
-    materialx: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "materialx", "override"), nix.thunk(() => ({ __proto__: pos$206, python3Packages: self, pythonSupport: true })))))),
+    materialx: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "materialx", "override"), nix.thunk(() => ({ [nix.POS]: pos$206, python3Packages: self, pythonSupport: true })))))),
     materialyoucolor: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/materialyoucolor"), nix.thunk(() => ({})))),
     mathutils: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mathutils"), nix.thunk(() => ({})))),
     matplotlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/matplotlib"), nix.thunk(() => ({
-        __proto__: pos$207,
+        [nix.POS]: pos$207,
         stdenv: nix.thunk(() => (nix.asBool(nix.sel(nix.lookup(w, "stdenv"), "hostPlatform", "isDarwin")) ? nix.sel(nix.lookup(w, "pkgs"), "clangStdenv") : nix.sel(nix.lookup(w, "pkgs"), "stdenv"))),
       })))),
     "matplotlib-inline": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/matplotlib-inline"), nix.thunk(() => ({})))),
@@ -6269,7 +6269,7 @@ export default (self) => (super$) => (() => {
     meraki: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/meraki"), nix.thunk(() => ({})))),
     mercadopago: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mercadopago"), nix.thunk(() => ({})))),
     mercantile: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mercantile"), nix.thunk(() => ({})))),
-    mercurial: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "mercurial", "override"), nix.thunk(() => ({ __proto__: pos$208, python3Packages: self })))))),
+    mercurial: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "mercurial", "override"), nix.thunk(() => ({ [nix.POS]: pos$208, python3Packages: self })))))),
     merge3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/merge3"), nix.thunk(() => ({})))),
     mergecal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mergecal"), nix.thunk(() => ({})))),
     mergedb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mergedb"), nix.thunk(() => ({})))),
@@ -6284,9 +6284,9 @@ export default (self) => (super$) => (() => {
     meshio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/meshio"), nix.thunk(() => ({})))),
     meshlabxml: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/meshlabxml"), nix.thunk(() => ({})))),
     meshtastic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/meshtastic"), nix.thunk(() => ({})))),
-    meson: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nix.lookup(w, "pkgs"), "meson", "override"), nix.thunk(() => ({ __proto__: pos$209, python3: nix.thunk(() => nix.lookup(w, "python")) }))), "overridePythonAttrs"), (oldAttrs) => ({ __proto__: pos$210, setupHook: null }))))),
+    meson: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nix.lookup(w, "pkgs"), "meson", "override"), nix.thunk(() => ({ [nix.POS]: pos$209, python3: nix.thunk(() => nix.lookup(w, "python")) }))), "overridePythonAttrs"), (oldAttrs) => ({ [nix.POS]: pos$210, setupHook: null }))))),
     "meson-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/meson-python"), nix.thunk(() => ({
-        __proto__: pos$211,
+        [nix.POS]: pos$211,
         ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
       })))),
     messagebird: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/messagebird"), nix.thunk(() => ({})))),
@@ -6333,7 +6333,7 @@ export default (self) => (super$) => (() => {
     millheater: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/millheater"), nix.thunk(() => ({})))),
     miltertest: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/miltertest"), nix.thunk(() => ({})))),
     "mim-solvers": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mim-solvers"), nix.thunk(() => ({
-        __proto__: pos$212,
+        [nix.POS]: pos$212,
         "mim-solvers": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mim-solvers")),
       })))),
     minari: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/minari"), nix.thunk(() => ({})))),
@@ -6350,7 +6350,7 @@ export default (self) => (super$) => (() => {
     minikerberos: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/minikerberos"), nix.thunk(() => ({})))),
     "minimal-snowplow-tracker": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/minimal-snowplow-tracker"), nix.thunk(() => ({})))),
     minimock: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/minimock"), nix.thunk(() => ({})))),
-    "mininet-python": nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "mininet", "override"), nix.thunk(() => ({ __proto__: pos$213, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
+    "mininet-python": nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "mininet", "override"), nix.thunk(() => ({ [nix.POS]: pos$213, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
     minio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/minio"), nix.thunk(() => ({})))),
     minisbd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/minisbd"), nix.thunk(() => ({})))),
     miniupnpc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/miniupnpc"), nix.thunk(() => ({})))),
@@ -6433,7 +6433,7 @@ export default (self) => (super$) => (() => {
     "mlflow-tracing": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mlflow-tracing"), nix.thunk(() => ({})))),
     mlrose: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mlrose"), nix.thunk(() => ({})))),
     mlt: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "mlt", "override"), nix.thunk(() => ({
-          __proto__: pos$214,
+          [nix.POS]: pos$214,
           python3: nix.thunk(() => nix.lookup(w, "python")),
           enablePython: true,
         })))))),
@@ -6441,8 +6441,8 @@ export default (self) => (super$) => (() => {
     "mlx-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mlx/bin.nix"), nix.thunk(() => ({})))),
     "mlx-lm": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mlx-lm"), nix.thunk(() => ({})))),
     "mlx-metal": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mlx/metal.nix"), nix.thunk(() => ({})))),
-    "mlx-metal-macos15": nix.thunk(() => nix.app(nix.sel(self, "mlx-metal", "override"), nix.thunk(() => ({ __proto__: pos$215, macosVariant: "15" })))),
-    "mlx-metal-macos26": nix.thunk(() => nix.app(nix.sel(self, "mlx-metal", "override"), nix.thunk(() => ({ __proto__: pos$216, macosVariant: "26" })))),
+    "mlx-metal-macos15": nix.thunk(() => nix.app(nix.sel(self, "mlx-metal", "override"), nix.thunk(() => ({ [nix.POS]: pos$215, macosVariant: "15" })))),
+    "mlx-metal-macos26": nix.thunk(() => nix.app(nix.sel(self, "mlx-metal", "override"), nix.thunk(() => ({ [nix.POS]: pos$216, macosVariant: "26" })))),
     "mlx-vlm": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mlx-vlm"), nix.thunk(() => ({})))),
     mlxtend: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mlxtend"), nix.thunk(() => ({})))),
     "mmcif-pdbx": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mmcif-pdbx"), nix.thunk(() => ({})))),
@@ -6481,7 +6481,7 @@ export default (self) => (super$) => (() => {
     "modern-colorthief": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/modern-colorthief"), nix.thunk(() => ({})))),
     moderngl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/moderngl"), nix.thunk(() => ({})))),
     "moderngl-window": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/moderngl-window"), nix.thunk(() => ({
-        __proto__: pos$217,
+        [nix.POS]: pos$217,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     "moehlenhoff-alpha2": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/moehlenhoff-alpha2"), nix.thunk(() => ({})))),
@@ -6535,7 +6535,7 @@ export default (self) => (super$) => (() => {
     mpi4py: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mpi4py"), nix.thunk(() => ({})))),
     "mpl-scatter-density": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mpl-scatter-density"), nix.thunk(() => ({})))),
     "mpl-typst": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mpl-typst"), nix.thunk(() => ({
-        __proto__: pos$218,
+        [nix.POS]: pos$218,
         typst: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "typst")),
       })))),
     mplcursors: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mplcursors"), nix.thunk(() => ({})))),
@@ -6550,7 +6550,7 @@ export default (self) => (super$) => (() => {
     "mpris-server": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mpris-server"), nix.thunk(() => ({})))),
     mprisify: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mprisify"), nix.thunk(() => ({})))),
     mpv: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mpv"), nix.thunk(() => ({
-        __proto__: pos$219,
+        [nix.POS]: pos$219,
         mpv: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mpv")),
       })))),
     mpyq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mpyq"), nix.thunk(() => ({})))),
@@ -6582,11 +6582,11 @@ export default (self) => (super$) => (() => {
     "mt-940": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mt-940"), nix.thunk(() => ({})))),
     mtcnn: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mtcnn"), nix.thunk(() => ({})))),
     mujoco: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mujoco"), nix.thunk(() => ({
-        __proto__: pos$220,
+        [nix.POS]: pos$220,
         mujoco: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mujoco")),
       })))),
     "mujoco-mjx": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mujoco-mjx"), nix.thunk(() => ({
-        __proto__: pos$221,
+        [nix.POS]: pos$221,
         "mujoco-main": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "mujoco")),
       })))),
     "mujoco-warp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mujoco-warp"), nix.thunk(() => ({})))),
@@ -6632,7 +6632,7 @@ export default (self) => (super$) => (() => {
     mygene: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mygene"), nix.thunk(() => ({})))),
     mygpoclient: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/mygpoclient"), nix.thunk(() => ({})))),
     myhdl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/myhdl"), nix.thunk(() => ({
-        __proto__: pos$222,
+        [nix.POS]: pos$222,
         ghdl: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ghdl")),
         iverilog: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "iverilog")),
       })))),
@@ -7008,7 +7008,7 @@ export default (self) => (super$) => (() => {
     namex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/namex"), nix.thunk(() => ({})))),
     nampa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nampa"), nix.thunk(() => ({})))),
     nanoarrow: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nanoarrow"), nix.thunk(() => ({
-        __proto__: pos$223,
+        [nix.POS]: pos$223,
         "zstd-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "zstd")),
         "nanoarrow-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "nanoarrow")),
       })))),
@@ -7019,7 +7019,7 @@ export default (self) => (super$) => (() => {
     nanoid: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nanoid"), nix.thunk(() => ({})))),
     nanoleaf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nanoleaf"), nix.thunk(() => ({})))),
     "nanomsg-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nanomsg-python"), nix.thunk(() => ({
-        __proto__: pos$224,
+        [nix.POS]: pos$224,
         nanomsg: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "nanomsg")),
       })))),
     nanotime: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nanotime"), nix.thunk(() => ({})))),
@@ -7060,7 +7060,7 @@ export default (self) => (super$) => (() => {
     ncclient: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ncclient"), nix.thunk(() => ({})))),
     nclib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nclib"), nix.thunk(() => ({})))),
     ndcurves: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ndcurves"), nix.thunk(() => ({
-        __proto__: pos$225,
+        [nix.POS]: pos$225,
         ndcurves: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ndcurves")),
       })))),
     ndeflib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ndeflib"), nix.thunk(() => ({})))),
@@ -7080,7 +7080,7 @@ export default (self) => (super$) => (() => {
     "neoteroi-mkdocs": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/neoteroi-mkdocs"), nix.thunk(() => ({})))),
     nessclient: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nessclient"), nix.thunk(() => ({})))),
     nest: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "nest-mpi", "override"), nix.thunk(() => ({
-          __proto__: pos$226,
+          [nix.POS]: pos$226,
           withPython: true,
           python3: nix.thunk(() => nix.lookup(w, "python")),
         })))))),
@@ -7096,7 +7096,7 @@ export default (self) => (super$) => (() => {
     netdata: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/netdata"), nix.thunk(() => ({})))),
     "netdata-pandas": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/netdata-pandas"), nix.thunk(() => ({})))),
     netdisco: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/netdisco"), nix.thunk(() => ({})))),
-    "netgen-mesher": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "netgen", "override"), nix.thunk(() => ({ __proto__: pos$227, python3Packages: self })))))),
+    "netgen-mesher": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "netgen", "override"), nix.thunk(() => ({ [nix.POS]: pos$227, python3Packages: self })))))),
     nethsm: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nethsm"), nix.thunk(() => ({})))),
     netifaces: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/netifaces"), nix.thunk(() => ({})))),
     "netifaces-plus": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/netifaces-plus"), nix.thunk(() => ({})))),
@@ -7110,7 +7110,7 @@ export default (self) => (super$) => (() => {
     neuralfoil: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/neuralfoil"), nix.thunk(() => ({})))),
     neurio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/neurio"), nix.thunk(() => ({})))),
     neurokit2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/neurokit2"), nix.thunk(() => ({})))),
-    "neuron-full": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "neuron-full", "override"), nix.thunk(() => ({ __proto__: pos$228, python3: nix.thunk(() => nix.lookup(w, "python")) })))),
+    "neuron-full": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "neuron-full", "override"), nix.thunk(() => ({ [nix.POS]: pos$228, python3: nix.thunk(() => nix.lookup(w, "python")) })))),
     neuronpy: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.lookup(w, "neuron-full")))),
     nevow: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nevow"), nix.thunk(() => ({})))),
     newick: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/newick"), nix.thunk(() => ({})))),
@@ -7125,7 +7125,7 @@ export default (self) => (super$) => (() => {
     nexusrpc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nexusrpc"), nix.thunk(() => ({})))),
     nfcpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nfcpy"), nix.thunk(() => ({})))),
     nftables: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../os-specific/linux/nftables/python.nix"), nix.thunk(() => ({
-        __proto__: pos$229,
+        [nix.POS]: pos$229,
         nftables: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "nftables")),
       })))),
     "ngff-zarr": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ngff-zarr"), nix.thunk(() => ({})))),
@@ -7151,14 +7151,14 @@ export default (self) => (super$) => (() => {
     nine: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nine"), nix.thunk(() => ({})))),
     "ninebot-ble": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ninebot-ble"), nix.thunk(() => ({})))),
     ninja: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ninja"), nix.thunk(() => ({
-        __proto__: pos$230,
+        [nix.POS]: pos$230,
         ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
       })))),
     nipap: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nipap"), nix.thunk(() => ({})))),
     "nipreps-versions": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nipreps-versions"), nix.thunk(() => ({})))),
     nipy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nipy"), nix.thunk(() => ({})))),
     nipype: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nipype"), nix.thunk(() => ({
-        __proto__: pos$231,
+        [nix.POS]: pos$231,
         which: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "which")),
       })))),
     niquests: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/niquests"), nix.thunk(() => ({})))),
@@ -7168,13 +7168,13 @@ export default (self) => (super$) => (() => {
     nitypes: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nitypes"), nix.thunk(() => ({})))),
     niworkflows: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/niworkflows"), nix.thunk(() => ({})))),
     "nix-kernel": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nix-kernel"), nix.thunk(() => ({
-        __proto__: pos$232,
+        [nix.POS]: pos$232,
         nix: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "nix")),
       })))),
     "nix-prefetch-github": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nix-prefetch-github"), nix.thunk(() => ({})))),
     nixl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nixl"), nix.thunk(() => ({
-        __proto__: pos$234,
-        nixl: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "nixl", "override"), nix.thunk(() => ({ __proto__: pos$233, python3Packages: self })))),
+        [nix.POS]: pos$234,
+        nixl: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "nixl", "override"), nix.thunk(() => ({ [nix.POS]: pos$233, python3Packages: self })))),
       })))),
     "nixpkgs-plugin-update": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nixpkgs-plugin-update"), nix.thunk(() => ({})))),
     "nixpkgs-pytools": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nixpkgs-pytools"), nix.thunk(() => ({})))),
@@ -7187,7 +7187,7 @@ export default (self) => (super$) => (() => {
     nmapthon2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nmapthon2"), nix.thunk(() => ({})))),
     nmcli: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nmcli"), nix.thunk(() => ({})))),
     nnaudio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nnaudio"), nix.thunk(() => ({})))),
-    nnpdf: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "nnpdf", "override"), nix.thunk(() => ({ __proto__: pos$235, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    nnpdf: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "nnpdf", "override"), nix.thunk(() => ({ [nix.POS]: pos$235, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     "noaa-coops": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/noaa-coops"), nix.thunk(() => ({})))),
     nocasedict: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nocasedict"), nix.thunk(() => ({})))),
     nocaselist: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/nocaselist"), nix.thunk(() => ({})))),
@@ -7220,11 +7220,11 @@ export default (self) => (super$) => (() => {
     notify2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/notify2"), nix.thunk(() => ({})))),
     "notion-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/notion-client"), nix.thunk(() => ({})))),
     notmuch: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/notmuch"), nix.thunk(() => ({
-        __proto__: pos$236,
+        [nix.POS]: pos$236,
         notmuch: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "notmuch")),
       })))),
     notmuch2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/notmuch2"), nix.thunk(() => ({
-        __proto__: pos$237,
+        [nix.POS]: pos$237,
         notmuch: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "notmuch")),
       })))),
     notobuilder: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/notobuilder"), nix.thunk(() => ({})))),
@@ -7252,16 +7252,16 @@ export default (self) => (super$) => (() => {
     numba: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/numba"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "config"));
         return {
-        __proto__: pos$238,
+        [nix.POS]: pos$238,
         cudaSupport: nix.thunk(() => nix.attr(from_4, "cudaSupport")),
       };
       })()))),
     "numba-cuda": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/numba-cuda"), nix.thunk(() => ({})))),
     "numba-scipy": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/numba-scipy"), nix.thunk(() => ({})))),
-    numbaWithCuda: nix.thunk(() => nix.app(nix.sel(self, "numba", "override"), nix.thunk(() => ({ __proto__: pos$239, cudaSupport: true })))),
+    numbaWithCuda: nix.thunk(() => nix.app(nix.sel(self, "numba", "override"), nix.thunk(() => ({ [nix.POS]: pos$239, cudaSupport: true })))),
     numbagg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/numbagg"), nix.thunk(() => ({})))),
     numcodecs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/numcodecs"), nix.thunk(() => ({
-        __proto__: pos$240,
+        [nix.POS]: pos$240,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
       })))),
     numdifftools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/numdifftools"), nix.thunk(() => ({})))),
@@ -7304,7 +7304,7 @@ export default (self) => (super$) => (() => {
     obfsproxy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/obfsproxy"), nix.thunk(() => ({})))),
     objexplore: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/objexplore"), nix.thunk(() => ({})))),
     objgraph: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/objgraph"), nix.thunk(() => ({
-        __proto__: pos$241,
+        [nix.POS]: pos$241,
         graphvizPkgs: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "graphviz")),
       })))),
     objprint: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/objprint"), nix.thunk(() => ({})))),
@@ -7321,7 +7321,7 @@ export default (self) => (super$) => (() => {
     "oci-lexer-parser": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/oci-lexer-parser"), nix.thunk(() => ({})))),
     ocifs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ocifs"), nix.thunk(() => ({})))),
     ocrmypdf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ocrmypdf"), nix.thunk(() => ({
-        __proto__: pos$242,
+        [nix.POS]: pos$242,
         tesseract: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "tesseract5")),
       })))),
     od: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/od"), nix.thunk(() => ({})))),
@@ -7361,7 +7361,7 @@ export default (self) => (super$) => (() => {
     omitempty: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/omitempty"), nix.thunk(() => ({})))),
     omnikinverter: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/omnikinverter"), nix.thunk(() => ({})))),
     omnilogic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/omnilogic"), nix.thunk(() => ({})))),
-    omniorb: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "omniorb", "override"), nix.thunk(() => ({ __proto__: pos$243, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
+    omniorb: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "omniorb", "override"), nix.thunk(() => ({ [nix.POS]: pos$243, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
     omniorbpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/omniorbpy"), nix.thunk(() => ({})))),
     omorfi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/omorfi"), nix.thunk(() => ({})))),
     omrdatasettools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/omrdatasettools"), nix.thunk(() => ({})))),
@@ -7379,16 +7379,16 @@ export default (self) => (super$) => (() => {
     "onlinepayments-sdk-python3": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onlinepayments-sdk-python3"), nix.thunk(() => ({})))),
     "onlykey-solo-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onlykey-solo-python"), nix.thunk(() => ({})))),
     onnx: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onnx"), nix.thunk(() => ({
-        __proto__: pos$245,
-        onnx: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "onnx", "override"), nix.thunk(() => ({ __proto__: pos$244, python3Packages: self })))),
+        [nix.POS]: pos$245,
+        onnx: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "onnx", "override"), nix.thunk(() => ({ [nix.POS]: pos$244, python3Packages: self })))),
       })))),
     "onnx-asr": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onnx-asr"), nix.thunk(() => ({})))),
     "onnx-ir": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onnx-ir"), nix.thunk(() => ({})))),
     "onnxconverter-common": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onnxconverter-common"), nix.thunk(() => ({})))),
     onnxmltools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onnxmltools"), nix.thunk(() => ({})))),
     onnxruntime: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onnxruntime"), nix.thunk(() => ({
-        __proto__: pos$247,
-        onnxruntime: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "onnxruntime", "override"), nix.thunk(() => ({ __proto__: pos$246, python3Packages: self, pythonSupport: true })))),
+        [nix.POS]: pos$247,
+        onnxruntime: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "onnxruntime", "override"), nix.thunk(() => ({ [nix.POS]: pos$246, python3Packages: self, pythonSupport: true })))),
         openvino: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "openvino")),
       })))),
     "onnxruntime-tools": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/onnxruntime-tools"), nix.thunk(() => ({})))),
@@ -7417,7 +7417,7 @@ export default (self) => (super$) => (() => {
     "openapi-schema-validator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openapi-schema-validator"), nix.thunk(() => ({})))),
     "openapi-spec-validator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openapi-spec-validator"), nix.thunk(() => ({})))),
     openapi3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openapi3"), nix.thunk(() => ({})))),
-    openbabel: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openbabel", "override"), nix.thunk(() => ({ __proto__: pos$248, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    openbabel: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openbabel", "override"), nix.thunk(() => ({ [nix.POS]: pos$248, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     opencamlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opencamlib"), nix.thunk(() => ({})))),
     opencc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opencc"), nix.thunk(() => ({})))),
     "openccu-data": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openccu-data"), nix.thunk(() => ({})))),
@@ -7429,7 +7429,7 @@ export default (self) => (super$) => (() => {
     "opencv-contrib-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opencv-contrib-python"), nix.thunk(() => ({})))),
     "opencv-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opencv-python"), nix.thunk(() => ({})))),
     "opencv-python-headless": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opencv-python-headless"), nix.thunk(() => ({})))),
-    opencv4: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "opencv4", "override"), nix.thunk(() => ({ __proto__: pos$249, enablePython: true, pythonPackages: self })))))),
+    opencv4: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "opencv4", "override"), nix.thunk(() => ({ [nix.POS]: pos$249, enablePython: true, pythonPackages: self })))))),
     opencv4Full: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "opencv4", "override"), nix.thunk(() => (() => {
           const enablePython = true;
           const pythonPackages = self;
@@ -7451,7 +7451,7 @@ export default (self) => (super$) => (() => {
           const enableDC1394 = true;
           const enableDocs = true;
           return {
-            __proto__: pos$250,
+            [nix.POS]: pos$250,
             enablePython,
             pythonPackages,
             enableCuda,
@@ -7480,12 +7480,12 @@ export default (self) => (super$) => (() => {
     "openfga-sdk": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openfga-sdk"), nix.thunk(() => ({})))),
     openhomedevice: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openhomedevice"), nix.thunk(() => ({})))),
     "openidc-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openidc-client"), nix.thunk(() => ({})))),
-    openimageio: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openimageio", "override"), nix.thunk(() => ({ __proto__: pos$251, enablePython: true, python3Packages: self })))))),
+    openimageio: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openimageio", "override"), nix.thunk(() => ({ [nix.POS]: pos$251, enablePython: true, python3Packages: self })))))),
     "openinference-instrumentation": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openinference-instrumentation"), nix.thunk(() => ({})))),
     "openinference-instrumentation-claude-agent-sdk": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openinference-instrumentation-claude-agent-sdk"), nix.thunk(() => ({})))),
     "openinference-instrumentation-openai": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openinference-instrumentation-openai"), nix.thunk(() => ({})))),
     "openinference-semantic-conventions": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openinference-semantic-conventions"), nix.thunk(() => ({})))),
-    openmm: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openmm", "override"), nix.thunk(() => ({ __proto__: pos$252, python3Packages: self, enablePython: true })))))),
+    openmm: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openmm", "override"), nix.thunk(() => ({ [nix.POS]: pos$252, python3Packages: self, enablePython: true })))))),
     "openmm-torch": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openmm-torch"), nix.thunk(() => ({})))),
     "openpaperwork-core": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../applications/office/paperwork/openpaperwork-core.nix"), nix.thunk(() => ({})))),
     "openpaperwork-gtk": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../applications/office/paperwork/openpaperwork-gtk.nix"), nix.thunk(() => ({})))),
@@ -7498,11 +7498,11 @@ export default (self) => (super$) => (() => {
     "opensearch-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opensearch-py"), nix.thunk(() => ({})))),
     "opensensemap-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opensensemap-api"), nix.thunk(() => ({})))),
     opensfm: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opensfm"), nix.thunk(() => ({})))),
-    openshadinglanguage: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openshadinglanguage", "override"), nix.thunk(() => ({ __proto__: pos$253, python3Packages: self })))))),
+    openshadinglanguage: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openshadinglanguage", "override"), nix.thunk(() => ({ [nix.POS]: pos$253, python3Packages: self })))))),
     openshift: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openshift"), nix.thunk(() => ({})))),
     opensimplex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opensimplex"), nix.thunk(() => ({})))),
     openslide: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openslide"), nix.thunk(() => ({
-        __proto__: pos$254,
+        [nix.POS]: pos$254,
         openslide: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "openslide")),
       })))),
     openstackdocstheme: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openstackdocstheme"), nix.thunk(() => ({})))),
@@ -7548,23 +7548,23 @@ export default (self) => (super$) => (() => {
     "opentelemetry-util-http": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opentelemetry-util-http"), nix.thunk(() => ({})))),
     opentimestamps: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opentimestamps"), nix.thunk(() => ({})))),
     opentsne: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opentsne"), nix.thunk(() => ({})))),
-    openturns: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openturns", "override"), nix.thunk(() => ({ __proto__: pos$255, python3Packages: self, enablePython: true })))))),
+    openturns: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openturns", "override"), nix.thunk(() => ({ [nix.POS]: pos$255, python3Packages: self, enablePython: true })))))),
     "opentype-feature-freezer": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opentype-feature-freezer"), nix.thunk(() => ({})))),
     opentypespec: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/opentypespec"), nix.thunk(() => ({})))),
     openusd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openusd"), nix.thunk(() => ({
-        __proto__: pos$256,
+        [nix.POS]: pos$256,
         alembic: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "alembic")),
       })))),
     openvino: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openvino"), nix.thunk(() => ({
-        __proto__: pos$258,
-        "openvino-native": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openvino", "override"), nix.thunk(() => ({ __proto__: pos$257, python3Packages: self })))),
+        [nix.POS]: pos$258,
+        "openvino-native": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openvino", "override"), nix.thunk(() => ({ [nix.POS]: pos$257, python3Packages: self })))),
       })))),
     "openvino-genai": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openvino-genai"), nix.thunk(() => ({
-        __proto__: pos$260,
-        "openvino-genai-native": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openvino-genai", "override"), nix.thunk(() => ({ __proto__: pos$259, python3Packages: self })))),
+        [nix.POS]: pos$260,
+        "openvino-genai-native": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "openvino-genai", "override"), nix.thunk(() => ({ [nix.POS]: pos$259, python3Packages: self })))),
       })))),
     "openvino-tokenizers": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openvino-tokenizers"), nix.thunk(() => ({
-        __proto__: pos$261,
+        [nix.POS]: pos$261,
         "openvino-tokenizers-native": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "openvino-tokenizers")),
       })))),
     openwebifpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/openwebifpy"), nix.thunk(() => ({})))),
@@ -7600,8 +7600,8 @@ export default (self) => (super$) => (() => {
     ormar: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ormar"), nix.thunk(() => ({})))),
     ormsgpack: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ormsgpack"), nix.thunk(() => ({})))),
     ortools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ortools"), nix.thunk(() => ({
-        __proto__: pos$263,
-        "or-tools": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "or-tools", "override"), nix.thunk(() => ({ __proto__: pos$262, python3: nix.thunk(() => nix.sel(self, "python")) })))),
+        [nix.POS]: pos$263,
+        "or-tools": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "or-tools", "override"), nix.thunk(() => ({ [nix.POS]: pos$262, python3: nix.thunk(() => nix.sel(self, "python")) })))),
       })))),
     oru: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/oru"), nix.thunk(() => ({})))),
     orvibo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/orvibo"), nix.thunk(() => ({})))),
@@ -7632,7 +7632,7 @@ export default (self) => (super$) => (() => {
     oslotest: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/oslotest"), nix.thunk(() => ({})))),
     osmapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/osmapi"), nix.thunk(() => ({})))),
     osmium: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/osmium"), nix.thunk(() => ({
-        __proto__: pos$264,
+        [nix.POS]: pos$264,
         lz4: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "lz4")),
       })))),
     osmnx: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/osmnx"), nix.thunk(() => ({})))),
@@ -7700,7 +7700,7 @@ export default (self) => (super$) => (() => {
     pandantic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pandantic"), nix.thunk(() => ({})))),
     pandas: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pandas"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "darwin"));
-        return { __proto__: pos$265, adv_cmds: nix.thunk(() => nix.attr(from_4, "adv_cmds")) };
+        return { [nix.POS]: pos$265, adv_cmds: nix.thunk(() => nix.attr(from_4, "adv_cmds")) };
       })()))),
     "pandas-datareader": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pandas-datareader"), nix.thunk(() => ({})))),
     "pandas-flavor": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pandas-flavor"), nix.thunk(() => ({})))),
@@ -7784,7 +7784,7 @@ export default (self) => (super$) => (() => {
     "pbs-installer": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pbs-installer"), nix.thunk(() => ({})))),
     pbxproj: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pbxproj"), nix.thunk(() => ({})))),
     "pcapy-ng": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pcapy-ng"), nix.thunk(() => ({
-        __proto__: pos$266,
+        [nix.POS]: pos$266,
         libpcap: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libpcap")),
       })))),
     pcffont: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pcffont"), nix.thunk(() => ({})))),
@@ -7831,7 +7831,7 @@ export default (self) => (super$) => (() => {
     peft: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/peft"), nix.thunk(() => ({})))),
     pegen: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pegen"), nix.thunk(() => ({})))),
     pelican: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pelican"), nix.thunk(() => ({
-        __proto__: pos$267,
+        [nix.POS]: pos$267,
         glibcLocales: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "glibcLocales")),
         git: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "git")),
       })))),
@@ -7857,7 +7857,7 @@ export default (self) => (super$) => (() => {
     pescea: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pescea"), nix.thunk(() => ({})))),
     pesq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pesq"), nix.thunk(() => ({})))),
     petl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/petl"), nix.thunk(() => ({})))),
-    petsc4py: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "petsc", "override"), nix.thunk(() => ({ __proto__: pos$268, python3Packages: self, pythonSupport: true })))))),
+    petsc4py: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "petsc", "override"), nix.thunk(() => ({ [nix.POS]: pos$268, python3Packages: self, pythonSupport: true })))))),
     petsctools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/petsctools"), nix.thunk(() => ({})))),
     pettingzoo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pettingzoo"), nix.thunk(() => ({})))),
     pex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pex"), nix.thunk(() => ({})))),
@@ -7907,7 +7907,7 @@ export default (self) => (super$) => (() => {
     piep: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/piep"), nix.thunk(() => ({})))),
     piexif: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/piexif"), nix.thunk(() => ({})))),
     pigpio: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "pigpio", "override"), nix.thunk(() => ({
-          __proto__: pos$269,
+          [nix.POS]: pos$269,
           buildPythonPackage: nix.thunk(() => nix.lookup(w, "buildPythonPackage")),
         })))))),
     pijuice: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pijuice"), nix.thunk(() => ({})))),
@@ -7916,7 +7916,7 @@ export default (self) => (super$) => (() => {
     pikepdf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pikepdf"), nix.thunk(() => ({})))),
     pilkit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pilkit"), nix.thunk(() => ({})))),
     pillow: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pillow"), nix.thunk(() => ({
-        __proto__: pos$270,
+        [nix.POS]: pos$270,
         freetype: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "freetype")),
         lcms2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "lcms2")),
         libavif: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libavif")),
@@ -7939,7 +7939,7 @@ export default (self) => (super$) => (() => {
     ping3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ping3"), nix.thunk(() => ({})))),
     pingouin: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pingouin"), nix.thunk(() => ({})))),
     pinocchio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pinocchio"), nix.thunk(() => ({
-        __proto__: pos$271,
+        [nix.POS]: pos$271,
         pinocchio: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "pinocchio")),
       })))),
     pins: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pins"), nix.thunk(() => ({})))),
@@ -7958,7 +7958,7 @@ export default (self) => (super$) => (() => {
     pipdeptree: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pipdeptree"), nix.thunk(() => ({})))),
     pipe: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pipe"), nix.thunk(() => ({})))),
     "piper-phonemize": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/piper-phonemize"), nix.thunk(() => ({
-        __proto__: pos$272,
+        [nix.POS]: pos$272,
         "onnxruntime-native": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "onnxruntime")),
         "piper-phonemize-native": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "piper-phonemize")),
       })))),
@@ -7972,7 +7972,7 @@ export default (self) => (super$) => (() => {
     "pixel-ring": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pixel-ring"), nix.thunk(() => ({})))),
     pixelmatch: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pixelmatch"), nix.thunk(() => ({})))),
     pjsua2: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "pjsip", "override"), nix.thunk(() => ({
-          __proto__: pos$273,
+          [nix.POS]: pos$273,
           pythonSupport: true,
           python3: nix.thunk(() => nix.sel(self, "python")),
         }))))), "py")),
@@ -7988,7 +7988,7 @@ export default (self) => (super$) => (() => {
     "planetary-computer": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/planetary-computer"), nix.thunk(() => ({})))),
     plantuml: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plantuml"), nix.thunk(() => ({})))),
     "plantuml-markdown": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plantuml-markdown"), nix.thunk(() => ({
-        __proto__: pos$274,
+        [nix.POS]: pos$274,
         plantuml: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "plantuml")),
       })))),
     plasTeX: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plasTeX"), nix.thunk(() => ({})))),
@@ -8005,7 +8005,7 @@ export default (self) => (super$) => (() => {
     plexauth: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plexauth"), nix.thunk(() => ({})))),
     plexwebsocket: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plexwebsocket"), nix.thunk(() => ({})))),
     plfit: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "plfit", "override"), nix.thunk(() => ({
-          __proto__: pos$275,
+          [nix.POS]: pos$275,
           withPython: true,
           python: nix.thunk(() => nix.attr(self, "python")),
         })))))),
@@ -8030,14 +8030,14 @@ export default (self) => (super$) => (() => {
     plover_4: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plover/4.nix"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libsForQt5"));
         return {
-        __proto__: pos$276,
+        [nix.POS]: pos$276,
         wrapQtAppsHook: nix.thunk(() => nix.attr(from_4, "wrapQtAppsHook")),
       };
       })()))),
     plover_5: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plover/5.nix"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "qt6"));
         return {
-        __proto__: pos$277,
+        [nix.POS]: pos$277,
         qtbase: nix.thunk(() => nix.attr(from_4, "qtbase")),
         wrapQtAppsHook: nix.thunk(() => nix.attr(from_4, "wrapQtAppsHook")),
         qtsvg: nix.thunk(() => nix.attr(from_4, "qtsvg")),
@@ -8054,7 +8054,7 @@ export default (self) => (super$) => (() => {
     "plum-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plum-py"), nix.thunk(() => ({})))),
     plumbum: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plumbum"), nix.thunk(() => ({})))),
     plumed: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/plumed"), nix.thunk(() => ({
-        __proto__: pos$278,
+        [nix.POS]: pos$278,
         plumed: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "plumed")),
       })))),
     pluralizer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pluralizer"), nix.thunk(() => ({})))),
@@ -8075,7 +8075,7 @@ export default (self) => (super$) => (() => {
     pocket: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pocket"), nix.thunk(() => ({})))),
     "pocket-tts": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pocket-tts"), nix.thunk(() => ({})))),
     pocketsphinx: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pocketsphinx"), nix.thunk(() => ({
-        __proto__: pos$279,
+        [nix.POS]: pos$279,
         pocketsphinx: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "pocketsphinx")),
       })))),
     podcastparser: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/podcastparser"), nix.thunk(() => ({})))),
@@ -8106,7 +8106,7 @@ export default (self) => (super$) => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "qt5"));
         const from_5 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libsForQt5"));
         return {
-        __proto__: pos$280,
+        [nix.POS]: pos$280,
         qtbase: nix.thunk(() => nix.attr(from_4, "qtbase")),
         qmake: nix.thunk(() => nix.attr(from_4, "qmake")),
         poppler: nix.thunk(() => nix.attr(from_5, "poppler")),
@@ -8206,20 +8206,20 @@ export default (self) => (super$) => (() => {
     "protobuf-py-ext": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/protobuf-py-ext"), nix.thunk(() => ({})))),
     "protobuf3-to-dict": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/protobuf3-to-dict"), nix.thunk(() => ({})))),
     protobuf4: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/protobuf/4.nix"), nix.thunk(() => ({
-        __proto__: pos$281,
+        [nix.POS]: pos$281,
         protobuf: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "protobuf_25")),
       })))),
     protobuf5: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/protobuf/5.nix"), nix.thunk(() => ({
-        __proto__: pos$282,
+        [nix.POS]: pos$282,
         protobuf: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "__splicedPackages", "protobuf_29")),
       })))),
     protobuf6: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/protobuf/6.nix"), nix.thunk(() => ({
-        __proto__: pos$283,
+        [nix.POS]: pos$283,
         protobuf: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "__splicedPackages", "protobuf_33")),
       })))),
     protobuf7: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/protobuf/7.nix"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "__splicedPackages"));
-        return { __proto__: pos$284, protobuf: nix.thunk(() => nix.attr(from_4, "protobuf")) };
+        return { [nix.POS]: pos$284, protobuf: nix.thunk(() => nix.attr(from_4, "protobuf")) };
       })()))),
     protoletariat: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/protoletariat"), nix.thunk(() => ({})))),
     "proton-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/proton-client"), nix.thunk(() => ({})))),
@@ -8233,7 +8233,7 @@ export default (self) => (super$) => (() => {
     prowlpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/prowlpy"), nix.thunk(() => ({})))),
     "prox-tv": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/prox-tv"), nix.thunk(() => ({})))),
     proxmoxer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/proxmoxer"), nix.thunk(() => ({})))),
-    proxsuite: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "proxsuite", "override"), nix.thunk(() => ({ __proto__: pos$285, pythonSupport: true, python3Packages: self })))))),
+    proxsuite: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "proxsuite", "override"), nix.thunk(() => ({ [nix.POS]: pos$285, pythonSupport: true, python3Packages: self })))))),
     "proxy-db": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/proxy-db"), nix.thunk(() => ({})))),
     "proxy-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/proxy-py"), nix.thunk(() => ({})))),
     "proxy-tools": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/proxy-tools"), nix.thunk(() => ({})))),
@@ -8298,7 +8298,7 @@ export default (self) => (super$) => (() => {
     pwkit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pwkit"), nix.thunk(() => ({})))),
     pwlf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pwlf"), nix.thunk(() => ({})))),
     pwntools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pwntools"), nix.thunk(() => ({
-        __proto__: pos$286,
+        [nix.POS]: pos$286,
         debugger: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "gdb")),
       })))),
     py: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py"), nix.thunk(() => ({})))),
@@ -8316,7 +8316,7 @@ export default (self) => (super$) => (() => {
     "py-dactyl": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py-dactyl"), nix.thunk(() => ({})))),
     "py-datastruct": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py-datastruct"), nix.thunk(() => ({})))),
     "py-desmume": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py-desmume"), nix.thunk(() => ({
-        __proto__: pos$287,
+        [nix.POS]: pos$287,
         libpcap: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libpcap")),
       })))),
     "py-deviceid": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py-deviceid"), nix.thunk(() => ({})))),
@@ -8373,7 +8373,7 @@ export default (self) => (super$) => (() => {
     py3dns: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py3dns"), nix.thunk(() => ({})))),
     py3dtiles: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py3dtiles"), nix.thunk(() => ({})))),
     py3exiv2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py3exiv2"), nix.thunk(() => ({
-        __proto__: pos$288,
+        [nix.POS]: pos$288,
         exiv2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "exiv2")),
       })))),
     py3langid: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py3langid"), nix.thunk(() => ({})))),
@@ -8383,7 +8383,7 @@ export default (self) => (super$) => (() => {
     py4j: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py4j"), nix.thunk(() => ({})))),
     py65: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py65"), nix.thunk(() => ({})))),
     py7zr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/py7zr"), nix.thunk(() => ({})))),
-    pyabpoa: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "abpoa", "override"), nix.thunk(() => ({ __proto__: pos$289, enablePython: true, python3Packages: self })))))),
+    pyabpoa: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "abpoa", "override"), nix.thunk(() => ({ [nix.POS]: pos$289, enablePython: true, python3Packages: self })))))),
     "pyacaia-async": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyacaia-async"), nix.thunk(() => ({})))),
     pyacoustid: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyacoustid"), nix.thunk(() => ({})))),
     "pyadjoint-ad": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyadjoint-ad"), nix.thunk(() => ({})))),
@@ -8416,7 +8416,7 @@ export default (self) => (super$) => (() => {
     pyarlo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyarlo"), nix.thunk(() => ({})))),
     pyarr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyarr"), nix.thunk(() => ({})))),
     pyarrow: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyarrow"), nix.thunk(() => ({
-        __proto__: pos$290,
+        [nix.POS]: pos$290,
         "arrow-cpp": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "arrow-cpp")),
         cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
       })))),
@@ -8436,7 +8436,7 @@ export default (self) => (super$) => (() => {
     pyatome: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyatome"), nix.thunk(() => ({})))),
     pyatspi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyatspi"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "buildPackages"));
-        return { __proto__: pos$291, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
+        return { [nix.POS]: pos$291, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
       })()))),
     pyatv: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyatv"), nix.thunk(() => ({})))),
     pyaudio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyaudio"), nix.thunk(() => ({})))),
@@ -8463,7 +8463,7 @@ export default (self) => (super$) => (() => {
     pybloomfilter3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pybloomfilter3"), nix.thunk(() => ({})))),
     pyblu: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyblu"), nix.thunk(() => ({})))),
     pybluez: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pybluez"), nix.thunk(() => ({
-        __proto__: pos$292,
+        [nix.POS]: pos$292,
         bluez: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "bluez")),
       })))),
     pybotvac: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pybotvac"), nix.thunk(() => ({})))),
@@ -8479,12 +8479,12 @@ export default (self) => (super$) => (() => {
     pybullet: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pybullet"), nix.thunk(() => ({})))),
     pycairo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycairo"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "buildPackages"));
-        return { __proto__: pos$293, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
+        return { [nix.POS]: pos$293, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
       })()))),
     pycambia: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycambia"), nix.thunk(() => ({})))),
     pycangjie: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycangjie"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "buildPackages"));
-        return { __proto__: pos$294, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
+        return { [nix.POS]: pos$294, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
       })()))),
     pycapnp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycapnp"), nix.thunk(() => ({})))),
     pycaption: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycaption"), nix.thunk(() => ({})))),
@@ -8502,7 +8502,7 @@ export default (self) => (super$) => (() => {
     "pycep-parser": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycep-parser"), nix.thunk(() => ({})))),
     pycfdns: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycfdns"), nix.thunk(() => ({})))),
     pycflow2dot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycflow2dot"), nix.thunk(() => ({
-        __proto__: pos$295,
+        [nix.POS]: pos$295,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     pycfmodel: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycfmodel"), nix.thunk(() => ({})))),
@@ -8555,7 +8555,7 @@ export default (self) => (super$) => (() => {
     pycuda: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pycuda"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "stdenv"));
         return {
-        __proto__: pos$296,
+        [nix.POS]: pos$296,
         mkDerivation: nix.thunk(() => nix.attr(from_4, "mkDerivation")),
       };
       })()))),
@@ -8591,7 +8591,7 @@ export default (self) => (super$) => (() => {
     pydeck: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydeck"), nix.thunk(() => ({})))),
     pydeconz: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydeconz"), nix.thunk(() => ({})))),
     pydeep2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydeep2"), nix.thunk(() => ({
-        __proto__: pos$297,
+        [nix.POS]: pos$297,
         ssdeep: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ssdeep")),
       })))),
     pydelijn: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydelijn"), nix.thunk(() => ({})))),
@@ -8599,7 +8599,7 @@ export default (self) => (super$) => (() => {
     pydenticon: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydenticon"), nix.thunk(() => ({})))),
     pydeprecate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydeprecate"), nix.thunk(() => ({})))),
     pydeps: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydeps"), nix.thunk(() => ({
-        __proto__: pos$298,
+        [nix.POS]: pos$298,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     pydes: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydes"), nix.thunk(() => ({})))),
@@ -8625,7 +8625,7 @@ export default (self) => (super$) => (() => {
     pydoe: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydoe"), nix.thunk(() => ({})))),
     pydoods: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydoods"), nix.thunk(() => ({})))),
     pydot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydot"), nix.thunk(() => ({
-        __proto__: pos$299,
+        [nix.POS]: pos$299,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     pydrawise: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pydrawise"), nix.thunk(() => ({})))),
@@ -8665,7 +8665,7 @@ export default (self) => (super$) => (() => {
     pyemoncms: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyemoncms"), nix.thunk(() => ({})))),
     pyemvue: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyemvue"), nix.thunk(() => ({})))),
     pyenchant: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyenchant"), nix.thunk(() => ({
-        __proto__: pos$300,
+        [nix.POS]: pos$300,
         enchant_2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "enchant_2")),
       })))),
     pyenphase: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyenphase"), nix.thunk(() => ({})))),
@@ -8726,12 +8726,12 @@ export default (self) => (super$) => (() => {
     pyfunctional: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyfunctional"), nix.thunk(() => ({})))),
     pyfuse3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyfuse3"), nix.thunk(() => ({})))),
     pyfwup: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyfwup"), nix.thunk(() => ({
-        __proto__: pos$301,
+        [nix.POS]: pos$301,
         libusb1: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libusb1")),
       })))),
     pyfxa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyfxa"), nix.thunk(() => ({})))),
     pyfzf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyfzf"), nix.thunk(() => ({
-        __proto__: pos$302,
+        [nix.POS]: pos$302,
         fzf: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "fzf")),
       })))),
     "pyg-lib": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyg-lib"), nix.thunk(() => ({})))),
@@ -8772,11 +8772,11 @@ export default (self) => (super$) => (() => {
     "pygobject-stubs": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygobject-stubs"), nix.thunk(() => ({})))),
     pygobject3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygobject/3.nix"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "buildPackages"));
-        return { __proto__: pos$303, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
+        return { [nix.POS]: pos$303, meson: nix.thunk(() => nix.attr(from_4, "meson")) };
       })()))),
     pygount: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygount"), nix.thunk(() => ({})))),
     pygraphviz: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygraphviz"), nix.thunk(() => ({
-        __proto__: pos$304,
+        [nix.POS]: pos$304,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     pygreat: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygreat"), nix.thunk(() => ({})))),
@@ -8784,7 +8784,7 @@ export default (self) => (super$) => (() => {
     pygrister: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygrister"), nix.thunk(() => ({})))),
     pygrok: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygrok"), nix.thunk(() => ({})))),
     pygsl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pygsl"), nix.thunk(() => ({
-        __proto__: pos$305,
+        [nix.POS]: pos$305,
         gsl: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "gsl")),
         swig: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "swig")),
       })))),
@@ -8824,7 +8824,7 @@ export default (self) => (super$) => (() => {
     pyimgbox: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyimgbox"), nix.thunk(() => ({})))),
     pyimouapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyimouapi"), nix.thunk(() => ({})))),
     pyimpfuzzy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyimpfuzzy"), nix.thunk(() => ({
-        __proto__: pos$306,
+        [nix.POS]: pos$306,
         ssdeep: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ssdeep")),
       })))),
     pyindego: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyindego"), nix.thunk(() => ({})))),
@@ -8870,11 +8870,11 @@ export default (self) => (super$) => (() => {
     pykdl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pykdl"), nix.thunk(() => ({})))),
     pykdtree: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pykdtree"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "llvmPackages"));
-        return { __proto__: pos$307, openmp: nix.thunk(() => nix.attr(from_4, "openmp")) };
+        return { [nix.POS]: pos$307, openmp: nix.thunk(() => nix.attr(from_4, "openmp")) };
       })()))),
     pykeepass: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pykeepass"), nix.thunk(() => ({})))),
     pykerberos: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pykerberos"), nix.thunk(() => ({
-        __proto__: pos$308,
+        [nix.POS]: pos$308,
         "krb5-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "krb5")),
       })))),
     pykeyatome: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pykeyatome"), nix.thunk(() => ({})))),
@@ -8911,7 +8911,7 @@ export default (self) => (super$) => (() => {
     pylibconfig2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pylibconfig2"), nix.thunk(() => ({})))),
     pylibdmtx: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pylibdmtx"), nix.thunk(() => ({})))),
     pylibftdi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pylibftdi"), nix.thunk(() => ({
-        __proto__: pos$309,
+        [nix.POS]: pos$309,
         libusb1: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libusb1")),
       })))),
     pylibjpeg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pylibjpeg"), nix.thunk(() => ({})))),
@@ -9020,7 +9020,7 @@ export default (self) => (super$) => (() => {
     pympler: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pympler"), nix.thunk(() => ({})))),
     pymsgbox: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pymsgbox"), nix.thunk(() => ({})))),
     pymssql: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pymssql"), nix.thunk(() => ({
-        __proto__: pos$310,
+        [nix.POS]: pos$310,
         "krb5-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "krb5")),
       })))),
     pymumble: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pymumble"), nix.thunk(() => ({})))),
@@ -9038,7 +9038,7 @@ export default (self) => (super$) => (() => {
     pynanoleaf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pynanoleaf"), nix.thunk(() => ({})))),
     pynauty: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pynauty"), nix.thunk(() => ({})))),
     pync: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pync"), nix.thunk(() => ({
-        __proto__: pos$311,
+        [nix.POS]: pos$311,
         which: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "which")),
       })))),
     pynecil: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pynecil"), nix.thunk(() => ({})))),
@@ -9091,13 +9091,13 @@ export default (self) => (super$) => (() => {
     "pyobjc-framework-WebKit": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyobjc-framework-WebKit"), nix.thunk(() => ({})))),
     "pyobjc-framework-libdispatch": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyobjc-framework-libdispatch"), nix.thunk(() => ({})))),
     pyobjus: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyobjus"), nix.thunk(() => ({
-        __proto__: pos$312,
+        [nix.POS]: pos$312,
         clang: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "clang")),
       })))),
     pyocd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyocd"), nix.thunk(() => ({})))),
     "pyocd-pemicro": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyocd-pemicro"), nix.thunk(() => ({})))),
     pyocr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyocr"), nix.thunk(() => ({
-        __proto__: pos$313,
+        [nix.POS]: pos$313,
         tesseract: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "tesseract4")),
       })))),
     pyoctoprintapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyoctoprintapi"), nix.thunk(() => ({})))),
@@ -9110,7 +9110,7 @@ export default (self) => (super$) => (() => {
     "pyopen-wakeword": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyopen-wakeword/default.nix"), nix.thunk(() => ({})))),
     pyopencl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyopencl"), nix.thunk(() => ({})))),
     pyopengl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyopengl"), nix.thunk(() => ({
-        __proto__: pos$314,
+        [nix.POS]: pos$314,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     "pyopengl-accelerate": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyopengl-accelerate"), nix.thunk(() => ({})))),
@@ -9140,7 +9140,7 @@ export default (self) => (super$) => (() => {
     pypager: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pypager"), nix.thunk(() => ({})))),
     pypalazzetti: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pypalazzetti"), nix.thunk(() => ({})))),
     pypamtest: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libpam-wrapper", "override"), nix.thunk(() => ({
-          __proto__: pos$315,
+          [nix.POS]: pos$315,
           enablePython: true,
           python: nix.thunk(() => nix.lookup(w, "python")),
         })))))),
@@ -9187,8 +9187,8 @@ export default (self) => (super$) => (() => {
     "pyppeteer-ng": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyppeteer-ng"), nix.thunk(() => ({})))),
     pyppmd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyppmd"), nix.thunk(() => ({})))),
     pyprecice: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyprecice"), nix.thunk(() => ({
-        __proto__: pos$317,
-        precice: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "precice", "override"), nix.thunk(() => ({ __proto__: pos$316, python3Packages: self })))),
+        [nix.POS]: pos$317,
+        precice: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "precice", "override"), nix.thunk(() => ({ [nix.POS]: pos$316, python3Packages: self })))),
       })))),
     pypresence: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pypresence"), nix.thunk(() => ({})))),
     pyprind: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyprind"), nix.thunk(() => ({})))),
@@ -9214,29 +9214,29 @@ export default (self) => (super$) => (() => {
     "pyqt-builder": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt-builder"), nix.thunk(() => ({})))),
     pyqt3d: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt3d"), nix.thunk(() => ({})))),
     pyqt5: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt/5.x.nix"), nix.thunk(() => ({
-        __proto__: pos$318,
+        [nix.POS]: pos$318,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
-    "pyqt5-multimedia": nix.thunk(() => nix.app(nix.sel(self, "pyqt5", "override"), nix.thunk(() => ({ __proto__: pos$319, withMultimedia: true })))),
+    "pyqt5-multimedia": nix.thunk(() => nix.app(nix.sel(self, "pyqt5", "override"), nix.thunk(() => ({ [nix.POS]: pos$319, withMultimedia: true })))),
     "pyqt5-sip": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt/sip.nix"), nix.thunk(() => ({
-        __proto__: pos$320,
+        [nix.POS]: pos$320,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     pyqt6: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt/6.x.nix"), nix.thunk(() => ({
-        __proto__: pos$321,
+        [nix.POS]: pos$321,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     "pyqt6-charts": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt6-charts"), nix.thunk(() => ({
-        __proto__: pos$322,
+        [nix.POS]: pos$322,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     "pyqt6-qscintilla": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qscintilla"), nix.thunk(() => ({})))),
     "pyqt6-sip": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt/pyqt6-sip.nix"), nix.thunk(() => ({
-        __proto__: pos$323,
+        [nix.POS]: pos$323,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     "pyqt6-webengine": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqt6-webengine"), nix.thunk(() => ({
-        __proto__: pos$324,
+        [nix.POS]: pos$324,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     pyqtchart: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyqtchart"), nix.thunk(() => ({})))),
@@ -9268,20 +9268,20 @@ export default (self) => (super$) => (() => {
     pyrdfa3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyrdfa3"), nix.thunk(() => ({})))),
     "pyre-extensions": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyre-extensions"), nix.thunk(() => ({})))),
     pyreadstat: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyreadstat"), nix.thunk(() => ({})))),
-    pyrealsense2: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "librealsense", "override"), nix.thunk(() => ({ __proto__: pos$325, enablePython: true, pythonPackages: self })))))),
+    pyrealsense2: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "librealsense", "override"), nix.thunk(() => ({ [nix.POS]: pos$325, enablePython: true, pythonPackages: self })))))),
     pyrealsense2WithCuda: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "librealsenseWithCuda", "override"), nix.thunk(() => ({
-          __proto__: pos$326,
+          [nix.POS]: pos$326,
           cudaSupport: true,
           enablePython: true,
           pythonPackages: self,
         })))))),
-    pyrealsense2WithoutCuda: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "librealsenseWithoutCuda", "override"), nix.thunk(() => ({ __proto__: pos$327, enablePython: true, pythonPackages: self })))))),
+    pyrealsense2WithoutCuda: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "librealsenseWithoutCuda", "override"), nix.thunk(() => ({ [nix.POS]: pos$327, enablePython: true, pythonPackages: self })))))),
     pyrecswitch: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyrecswitch"), nix.thunk(() => ({})))),
     pyrect: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyrect"), nix.thunk(() => ({})))),
     pyregion: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyregion"), nix.thunk(() => ({})))),
     pyregrws: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyregrws"), nix.thunk(() => ({})))),
     pyrender: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyrender"), nix.thunk(() => ({
-        __proto__: pos$328,
+        [nix.POS]: pos$328,
         mesa: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mesa")),
       })))),
     pyrepetierng: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyrepetierng"), nix.thunk(() => ({})))),
@@ -9307,13 +9307,13 @@ export default (self) => (super$) => (() => {
     pyrympro: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyrympro"), nix.thunk(() => ({})))),
     pysabnzbd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysabnzbd"), nix.thunk(() => ({})))),
     pysail: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysail"), nix.thunk(() => ({
-        __proto__: pos$329,
+        [nix.POS]: pos$329,
         protoc: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "protobuf")),
       })))),
     pysaj: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysaj"), nix.thunk(() => ({})))),
     pysam: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysam"), nix.thunk(() => ({})))),
     pysaml2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysaml2"), nix.thunk(() => ({
-        __proto__: pos$330,
+        [nix.POS]: pos$330,
         xmlsec: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "xmlsec")),
       })))),
     pysatochip: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysatochip"), nix.thunk(() => ({})))),
@@ -9329,7 +9329,7 @@ export default (self) => (super$) => (() => {
     "pyscaffoldext-travis": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyscaffoldext-travis"), nix.thunk(() => ({})))),
     pyscard: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyscard"), nix.thunk(() => ({})))),
     pyscf: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyscf"), nix.thunk(() => ({
-        __proto__: pos$331,
+        [nix.POS]: pos$331,
         libxc: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxc")),
       })))),
     pyschedule: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyschedule"), nix.thunk(() => ({})))),
@@ -9344,7 +9344,7 @@ export default (self) => (super$) => (() => {
     pysdcp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysdcp"), nix.thunk(() => ({})))),
     pysdl2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysdl2"), nix.thunk(() => ({})))),
     pysdl3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysdl3"), nix.thunk(() => ({})))),
-    pysearpc: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libsearpc", "override"), nix.thunk(() => ({ __proto__: pos$332, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
+    pysearpc: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "libsearpc", "override"), nix.thunk(() => ({ [nix.POS]: pos$332, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
     pysecretsocks: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysecretsocks"), nix.thunk(() => ({})))),
     pysecuritas: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysecuritas"), nix.thunk(() => ({})))),
     pysendfile: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysendfile"), nix.thunk(() => ({})))),
@@ -9365,18 +9365,18 @@ export default (self) => (super$) => (() => {
     pyshp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyshp"), nix.thunk(() => ({})))),
     pysiaalarm: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysiaalarm"), nix.thunk(() => ({})))),
     pyside2: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyside2"), nix.thunk(() => ({
-          __proto__: pos$333,
+          [nix.POS]: pos$333,
           cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
           ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
           qt5: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "qt5")),
         })))))),
     "pyside2-tools": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyside2-tools"), nix.thunk(() => ({
-          __proto__: pos$334,
+          [nix.POS]: pos$334,
           cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
           qt5: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "qt5")),
         })))))),
     pyside6: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyside6"), nix.thunk(() => ({
-          __proto__: pos$335,
+          [nix.POS]: pos$335,
           cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
           ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
         })))))),
@@ -9405,7 +9405,7 @@ export default (self) => (super$) => (() => {
     pyskyqremote: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyskyqremote"), nix.thunk(() => ({})))),
     pyslim: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyslim"), nix.thunk(() => ({})))),
     pyslurm: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyslurm"), nix.thunk(() => ({
-        __proto__: pos$336,
+        [nix.POS]: pos$336,
         slurm: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "slurm")),
       })))),
     pysma: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysma"), nix.thunk(() => ({})))),
@@ -9466,14 +9466,14 @@ export default (self) => (super$) => (() => {
     pystardict: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pystardict"), nix.thunk(() => ({})))),
     pystatgrab: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pystatgrab"), nix.thunk(() => ({})))),
     pystemd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pystemd"), nix.thunk(() => ({
-        __proto__: pos$337,
+        [nix.POS]: pos$337,
         systemd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "systemd")),
       })))),
     pystemmer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pystemmer"), nix.thunk(() => ({})))),
     pystiebeleltron: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pystiebeleltron"), nix.thunk(() => ({})))),
     pystray: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pystray"), nix.thunk(() => ({})))),
     pystrich: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pystrich"), nix.thunk(() => ({
-        __proto__: pos$338,
+        [nix.POS]: pos$338,
         ghostscript: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ghostscript")),
       })))),
     pysubs2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysubs2"), nix.thunk(() => ({})))),
@@ -9481,7 +9481,7 @@ export default (self) => (super$) => (() => {
     pysunspec2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysunspec2"), nix.thunk(() => ({})))),
     "pysvg-py3": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysvg-py3"), nix.thunk(() => ({})))),
     pysvn: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pysvn"), nix.thunk(() => ({
-        __proto__: pos$339,
+        [nix.POS]: pos$339,
         bash: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "bash")),
         subversion: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "subversion")),
         apr: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "apr")),
@@ -9668,9 +9668,9 @@ export default (self) => (super$) => (() => {
     "pytest-xdist": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytest-xdist"), nix.thunk(() => ({})))),
     "pytest-xprocess": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytest-xprocess"), nix.thunk(() => ({})))),
     "pytest-xvfb": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytest-xvfb"), nix.thunk(() => ({})))),
-    pytest7CheckHook: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pytestCheckHook"), "override"), nix.thunk(() => ({ __proto__: pos$340, pytest: nix.thunk(() => nix.lookup(w, "pytest_7")) })))),
-    pytest8_3CheckHook: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pytestCheckHook"), "override"), nix.thunk(() => ({ __proto__: pos$341, pytest: nix.thunk(() => nix.lookup(w, "pytest_8_3")) })))),
-    pytest9_0CheckHook: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pytestCheckHook"), "override"), nix.thunk(() => ({ __proto__: pos$342, pytest: nix.thunk(() => nix.lookup(w, "pytest_9_0")) })))),
+    pytest7CheckHook: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pytestCheckHook"), "override"), nix.thunk(() => ({ [nix.POS]: pos$340, pytest: nix.thunk(() => nix.lookup(w, "pytest_7")) })))),
+    pytest8_3CheckHook: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pytestCheckHook"), "override"), nix.thunk(() => ({ [nix.POS]: pos$341, pytest: nix.thunk(() => nix.lookup(w, "pytest_8_3")) })))),
+    pytest9_0CheckHook: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pytestCheckHook"), "override"), nix.thunk(() => ({ [nix.POS]: pos$342, pytest: nix.thunk(() => nix.lookup(w, "pytest_9_0")) })))),
     pytest_7: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytest/7.nix"), nix.thunk(() => ({})))),
     pytest_8_3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytest/8_3.nix"), nix.thunk(() => ({})))),
     pytest_9_0: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytest/9_0.nix"), nix.thunk(() => ({})))),
@@ -9680,7 +9680,7 @@ export default (self) => (super$) => (() => {
     "python-apt": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-apt"), nix.thunk(() => ({})))),
     "python-arango": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-arango"), nix.thunk(() => ({})))),
     "python-augeas": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-augeas"), nix.thunk(() => ({
-        __proto__: pos$343,
+        [nix.POS]: pos$343,
         augeas: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "augeas")),
       })))),
     "python-avatars": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-avatars"), nix.thunk(() => ({})))),
@@ -9788,7 +9788,7 @@ export default (self) => (super$) => (() => {
     "python-keycloak": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-keycloak"), nix.thunk(() => ({})))),
     "python-keystoneclient": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-keystoneclient"), nix.thunk(() => ({})))),
     "python-ldap": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-ldap"), nix.thunk(() => ({
-        __proto__: pos$344,
+        [nix.POS]: pos$344,
         openldap: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "openldap")),
         cyrus_sasl: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cyrus_sasl")),
       })))),
@@ -9807,7 +9807,7 @@ export default (self) => (super$) => (() => {
     "python-ly": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-ly"), nix.thunk(() => ({})))),
     "python-lzf": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-lzf"), nix.thunk(() => ({})))),
     "python-lzo": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-lzo"), nix.thunk(() => ({
-        __proto__: pos$345,
+        [nix.POS]: pos$345,
         lzo: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "lzo")),
       })))),
     "python-magic": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-magic"), nix.thunk(() => ({})))),
@@ -9824,14 +9824,14 @@ export default (self) => (super$) => (() => {
         const proj = nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "proj"));
         const zlib = nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zlib"));
         const boost = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "boost", "override"), nix.thunk(() => ({
-            __proto__: pos$346,
+            [nix.POS]: pos$346,
             enablePython: true,
             python: nix.thunk(() => nix.lookup(w, "python")),
           }))));
-        const harfbuzz = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "harfbuzz", "override"), nix.thunk(() => ({ __proto__: pos$347, withIcu: true }))));
-        const mapnik = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "mapnik", "override"), nix.thunk(() => ({ __proto__: pos$348, boost: boost, harfbuzz: harfbuzz }))));
+        const harfbuzz = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "harfbuzz", "override"), nix.thunk(() => ({ [nix.POS]: pos$347, withIcu: true }))));
+        const mapnik = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "mapnik", "override"), nix.thunk(() => ({ [nix.POS]: pos$348, boost: boost, harfbuzz: harfbuzz }))));
         return {
-          __proto__: pos$349,
+          [nix.POS]: pos$349,
           "pkg-config": pkg_config,
           cairo,
           icu,
@@ -9850,7 +9850,7 @@ export default (self) => (super$) => (() => {
     "python-matter-server": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-matter-server"), nix.thunk(() => ({})))),
     "python-melcloud": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-melcloud"), nix.thunk(() => ({})))),
     "python-memcached": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-memcached"), nix.thunk(() => ({
-        __proto__: pos$350,
+        [nix.POS]: pos$350,
         memcached: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "memcached")),
       })))),
     "python-miio": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-miio"), nix.thunk(() => ({})))),
@@ -9888,7 +9888,7 @@ export default (self) => (super$) => (() => {
     "python-packer": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-packer"), nix.thunk(() => ({})))),
     "python-pae": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-pae"), nix.thunk(() => ({})))),
     "python-pam": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-pam"), nix.thunk(() => ({
-        __proto__: pos$351,
+        [nix.POS]: pos$351,
         pam: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "pam")),
       })))),
     "python-path": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-path"), nix.thunk(() => ({})))),
@@ -9919,11 +9919,11 @@ export default (self) => (super$) => (() => {
     "python-smarttub": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-smarttub"), nix.thunk(() => ({})))),
     "python-sn2": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-sn2"), nix.thunk(() => ({})))),
     "python-snap7": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-snap7"), nix.thunk(() => ({
-        __proto__: pos$352,
+        [nix.POS]: pos$352,
         snap7: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "snap7")),
       })))),
     "python-snappy": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-snappy"), nix.thunk(() => ({
-        __proto__: pos$353,
+        [nix.POS]: pos$353,
         "snappy-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "snappy")),
       })))),
     "python-snoo": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-snoo"), nix.thunk(() => ({})))),
@@ -9938,7 +9938,7 @@ export default (self) => (super$) => (() => {
     "python-stdnum": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-stdnum"), nix.thunk(() => ({})))),
     "python-string-utils": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-string-utils"), nix.thunk(() => ({})))),
     "python-subunit": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-subunit"), nix.thunk(() => ({
-        __proto__: pos$354,
+        [nix.POS]: pos$354,
         subunit: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "subunit")),
         cppunit: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cppunit")),
         check: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "check")),
@@ -9972,7 +9972,7 @@ export default (self) => (super$) => (() => {
     "python-xapp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/python-xapp"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "buildPackages"));
         return {
-        __proto__: pos$355,
+        [nix.POS]: pos$355,
         meson: nix.thunk(() => nix.attr(from_4, "meson")),
         gtk3: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "gtk3")),
         "gobject-introspection": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "gobject-introspection")),
@@ -10004,7 +10004,7 @@ export default (self) => (super$) => (() => {
     pythonkuma: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pythonkuma"), nix.thunk(() => ({})))),
     pythonnet: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pythonnet"), nix.thunk(() => ({})))),
     "pythonocc-core": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pythonocc-core"), nix.thunk(() => ({
-          __proto__: pos$356,
+          [nix.POS]: pos$356,
           fontconfig: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "fontconfig")),
           rapidjson: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "rapidjson")),
           libx11: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libx11")),
@@ -10015,7 +10015,7 @@ export default (self) => (super$) => (() => {
     pythonqwt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pythonqwt"), nix.thunk(() => ({})))),
     pythran: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pythran"), nix.thunk(() => (() => {
         const from_4 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "llvmPackages"));
-        return { __proto__: pos$357, openmp: nix.thunk(() => nix.attr(from_4, "openmp")) };
+        return { [nix.POS]: pos$357, openmp: nix.thunk(() => nix.attr(from_4, "openmp")) };
       })()))),
     pythreejs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pythreejs"), nix.thunk(() => ({})))),
     pytibber: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytibber"), nix.thunk(() => ({})))),
@@ -10059,14 +10059,14 @@ export default (self) => (super$) => (() => {
     pyturbojpeg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyturbojpeg"), nix.thunk(() => ({})))),
     pytweening: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytweening"), nix.thunk(() => ({})))),
     pytz: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytz"), nix.thunk(() => ({
-        __proto__: pos$358,
+        [nix.POS]: pos$358,
         tzdata: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "tzdata")),
       })))),
     "pytz-deprecation-shim": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pytz-deprecation-shim"), nix.thunk(() => ({})))),
     pyu2f: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyu2f"), nix.thunk(() => ({})))),
     pyuca: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyuca"), nix.thunk(() => ({})))),
     pyudev: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyudev"), nix.thunk(() => ({
-        __proto__: pos$359,
+        [nix.POS]: pos$359,
         udev: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "udev")),
       })))),
     pyunbound: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyunbound"), nix.thunk(() => ({})))),
@@ -10076,7 +10076,7 @@ export default (self) => (super$) => (() => {
     pyupgrade: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyupgrade"), nix.thunk(() => ({})))),
     pyuptimerobot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyuptimerobot"), nix.thunk(() => ({})))),
     pyusb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyusb"), nix.thunk(() => ({
-        __proto__: pos$360,
+        [nix.POS]: pos$360,
         libusb1: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libusb1")),
       })))),
     pyuseragents: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyuseragents"), nix.thunk(() => ({})))),
@@ -10091,7 +10091,7 @@ export default (self) => (super$) => (() => {
     pyvex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyvex"), nix.thunk(() => ({})))),
     pyvicare: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyvicare"), nix.thunk(() => ({})))),
     pyvips: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyvips"), nix.thunk(() => ({
-        __proto__: pos$361,
+        [nix.POS]: pos$361,
         vips: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "vips")),
         glib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "glib")),
       })))),
@@ -10117,7 +10117,7 @@ export default (self) => (super$) => (() => {
     pywayland: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywayland"), nix.thunk(() => ({})))),
     pywaze: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywaze"), nix.thunk(() => ({})))),
     pywbem: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywbem"), nix.thunk(() => ({
-        __proto__: pos$362,
+        [nix.POS]: pos$362,
         libxml2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxml2")),
       })))),
     pyweatherflowrest: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyweatherflowrest"), nix.thunk(() => ({})))),
@@ -10129,7 +10129,7 @@ export default (self) => (super$) => (() => {
     pywemo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywemo"), nix.thunk(() => ({})))),
     pywerview: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywerview"), nix.thunk(() => ({})))),
     pywfa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywfa"), nix.thunk(() => ({})))),
-    pywidevine: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywidevine"), nix.thunk(() => ({ __proto__: pos$363, protobuf: nix.thunk(() => nix.lookup(w, "protobuf6")) })))),
+    pywidevine: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywidevine"), nix.thunk(() => ({ [nix.POS]: pos$363, protobuf: nix.thunk(() => nix.lookup(w, "protobuf6")) })))),
     pywiim: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywiim"), nix.thunk(() => ({})))),
     pywikibot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywikibot"), nix.thunk(() => ({})))),
     pywilight: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pywilight"), nix.thunk(() => ({})))),
@@ -10164,7 +10164,7 @@ export default (self) => (super$) => (() => {
     pyzmq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyzmq"), nix.thunk(() => ({})))),
     pyzotero: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyzotero"), nix.thunk(() => ({})))),
     pyzstd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyzstd"), nix.thunk(() => ({
-        __proto__: pos$364,
+        [nix.POS]: pos$364,
         "zstd-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "zstd")),
       })))),
     pyzx: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/pyzx"), nix.thunk(() => ({})))),
@@ -10180,18 +10180,18 @@ export default (self) => (super$) => (() => {
     "qcs-sdk-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qcs-sdk-python"), nix.thunk(() => ({})))),
     qdarkstyle: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qdarkstyle"), nix.thunk(() => ({})))),
     qdldl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qdldl"), nix.thunk(() => ({
-        __proto__: pos$365,
+        [nix.POS]: pos$365,
         qdldl: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "qdldl")),
       })))),
     "qdrant-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qdrant-client"), nix.thunk(() => ({})))),
     qemu: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qemu"), nix.thunk(() => ({
-        __proto__: pos$366,
+        [nix.POS]: pos$366,
         qemu: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "qemu")),
       })))),
     "qemu-qmp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qemu-qmp"), nix.thunk(() => ({})))),
     qgrid: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qgrid"), nix.thunk(() => ({})))),
     qh3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qh3"), nix.thunk(() => ({
-        __proto__: pos$367,
+        [nix.POS]: pos$367,
         cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
       })))),
     qiling: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qiling"), nix.thunk(() => ({})))),
@@ -10209,19 +10209,19 @@ export default (self) => (super$) => (() => {
     qrcode: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qrcode"), nix.thunk(() => ({})))),
     "qrcode-terminal": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qrcode-terminal"), nix.thunk(() => ({})))),
     qrcodegen: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qrcodegen"), nix.thunk(() => ({
-        __proto__: pos$368,
+        [nix.POS]: pos$368,
         qrcodegen: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "qrcodegen")),
       })))),
     qreactor: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qreactor"), nix.thunk(() => ({})))),
-    qscintilla: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qscintilla"), nix.thunk(() => ({ __proto__: pos$369, useQt6: false })))),
+    qscintilla: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qscintilla"), nix.thunk(() => ({ [nix.POS]: pos$369, useQt6: false })))),
     qstylizer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qstylizer"), nix.thunk(() => ({})))),
     "qt-material": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qt-material"), nix.thunk(() => ({})))),
     qt5reactor: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qt5reactor"), nix.thunk(() => ({})))),
-    qt6: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "qt6", "override"), nix.thunk(() => ({ __proto__: pos$370, python3: nix.thunk(() => nix.sel(self, "python")) })))),
+    qt6: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "qt6", "override"), nix.thunk(() => ({ [nix.POS]: pos$370, python3: nix.thunk(() => nix.sel(self, "python")) })))),
     qtawesome: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qtawesome"), nix.thunk(() => ({})))),
     qtconsole: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qtconsole"), nix.thunk(() => ({})))),
     qtile: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qtile"), nix.thunk(() => ({
-        __proto__: pos$371,
+        [nix.POS]: pos$371,
         wlroots: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "wlroots_0_20")),
       })))),
     "qtile-bonsai": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/qtile-bonsai"), nix.thunk(() => ({})))),
@@ -10255,8 +10255,8 @@ export default (self) => (super$) => (() => {
     r2pipe: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/r2pipe"), nix.thunk(() => ({})))),
     rachiopy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rachiopy"), nix.thunk(() => ({})))),
     "radicale-infcloud": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/radicale-infcloud"), nix.thunk(() => ({
-        __proto__: pos$373,
-        radicale: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "radicale", "override"), nix.thunk(() => ({ __proto__: pos$372, python3: nix.thunk(() => nix.lookup(w, "python")) })))),
+        [nix.POS]: pos$373,
+        radicale: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "radicale", "override"), nix.thunk(() => ({ [nix.POS]: pos$372, python3: nix.thunk(() => nix.lookup(w, "python")) })))),
       })))),
     "radio-beam": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/radio-beam"), nix.thunk(() => ({})))),
     radios: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/radios"), nix.thunk(() => ({})))),
@@ -10276,7 +10276,7 @@ export default (self) => (super$) => (() => {
     rapidfuzz: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rapidfuzz"), nix.thunk(() => ({})))),
     "rapidfuzz-capi": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rapidfuzz-capi"), nix.thunk(() => ({})))),
     rapidgzip: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rapidgzip"), nix.thunk(() => ({
-        __proto__: pos$374,
+        [nix.POS]: pos$374,
         nasm: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "nasm")),
       })))),
     rapidocr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rapidocr"), nix.thunk(() => ({})))),
@@ -10284,18 +10284,18 @@ export default (self) => (super$) => (() => {
     rapidyaml: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rapidyaml"), nix.thunk(() => ({})))),
     "rapt-ble": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rapt-ble"), nix.thunk(() => ({})))),
     rarfile: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rarfile"), nix.thunk(() => ({
-        __proto__: pos$375,
+        [nix.POS]: pos$375,
         libarchive: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libarchive")),
         unrar: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "unrar")),
       })))),
     "raspyrfm-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/raspyrfm-client"), nix.thunk(() => ({})))),
     rasterio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rasterio"), nix.thunk(() => ({
-        __proto__: pos$376,
+        [nix.POS]: pos$376,
         "gdal-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "gdal")),
       })))),
     ratarmount: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ratarmount"), nix.thunk(() => ({})))),
     ratarmountcore: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ratarmountcore"), nix.thunk(() => ({
-        __proto__: pos$377,
+        [nix.POS]: pos$377,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
       })))),
     ratelim: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ratelim"), nix.thunk(() => ({})))),
@@ -10306,7 +10306,7 @@ export default (self) => (super$) => (() => {
     ray: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ray"), nix.thunk(() => ({})))),
     raygeo: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/raygeo"), nix.thunk(() => ({})))),
     raylib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/raylib"), nix.thunk(() => ({
-        __proto__: pos$378,
+        [nix.POS]: pos$378,
         raylib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "raylib")),
       })))),
     razdel: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/razdel"), nix.thunk(() => ({})))),
@@ -10319,9 +10319,9 @@ export default (self) => (super$) => (() => {
     rdbtools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rdbtools"), nix.thunk(() => ({})))),
     rdflib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rdflib"), nix.thunk(() => ({})))),
     rdkit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rdkit"), nix.thunk(() => ({
-        __proto__: pos$380,
+        [nix.POS]: pos$380,
         boost: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "boost", "override"), nix.thunk(() => ({
-            __proto__: pos$379,
+            [nix.POS]: pos$379,
             enablePython: true,
             python: nix.thunk(() => nix.lookup(w, "python")),
           })))),
@@ -10344,7 +10344,7 @@ export default (self) => (super$) => (() => {
     rebulk: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rebulk"), nix.thunk(() => ({})))),
     "recipe-scrapers": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/recipe-scrapers"), nix.thunk(() => ({})))),
     recline: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/recline"), nix.thunk(() => ({})))),
-    recoll: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "recoll", "override"), nix.thunk(() => ({ __proto__: pos$381, python3Packages: self })))))),
+    recoll: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "recoll", "override"), nix.thunk(() => ({ [nix.POS]: pos$381, python3Packages: self })))))),
     recommonmark: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/recommonmark"), nix.thunk(() => ({})))),
     reconplogger: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/reconplogger"), nix.thunk(() => ({})))),
     recordlinkage: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/recordlinkage"), nix.thunk(() => ({})))),
@@ -10380,7 +10380,7 @@ export default (self) => (super$) => (() => {
     remarshal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/remarshal"), nix.thunk(() => ({})))),
     rembg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rembg"), nix.thunk(() => ({})))),
     remctl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/remctl"), nix.thunk(() => ({
-        __proto__: pos$382,
+        [nix.POS]: pos$382,
         "remctl-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "remctl")),
       })))),
     remi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/remi"), nix.thunk(() => ({})))),
@@ -10481,7 +10481,7 @@ export default (self) => (super$) => (() => {
     rflink: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rflink"), nix.thunk(() => ({})))),
     rgbxy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rgbxy"), nix.thunk(() => ({})))),
     rgpio: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "lgpio", "override"), nix.thunk(() => ({
-          __proto__: pos$383,
+          [nix.POS]: pos$383,
           buildPythonPackage: nix.thunk(() => nix.lookup(w, "buildPythonPackage")),
           pyProject: "PY_RGPIO",
         })))))),
@@ -10509,7 +10509,7 @@ export default (self) => (super$) => (() => {
     "riscv-isac": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/riscv-isac"), nix.thunk(() => ({})))),
     "riscv-model": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/riscv-model"), nix.thunk(() => ({})))),
     ritassist: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ritassist"), nix.thunk(() => ({})))),
-    rivet: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "rivet", "override"), nix.thunk(() => ({ __proto__: pos$384, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    rivet: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "rivet", "override"), nix.thunk(() => ({ [nix.POS]: pos$384, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     rjpl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rjpl"), nix.thunk(() => ({})))),
     rjsmin: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rjsmin"), nix.thunk(() => ({})))),
     "rkm-codes": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rkm-codes"), nix.thunk(() => ({})))),
@@ -10554,7 +10554,7 @@ export default (self) => (super$) => (() => {
     roombapy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/roombapy"), nix.thunk(() => ({})))),
     roonapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/roonapi"), nix.thunk(() => ({})))),
     root: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/root"), nix.thunk(() => ({
-        __proto__: pos$385,
+        [nix.POS]: pos$385,
         root: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "root")),
       })))),
     rope: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rope"), nix.thunk(() => ({})))),
@@ -10577,12 +10577,12 @@ export default (self) => (super$) => (() => {
     "rpi-lgpio": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rpi-lgpio"), nix.thunk(() => ({})))),
     rplcd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rplcd"), nix.thunk(() => ({})))),
     rply: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rply"), nix.thunk(() => ({})))),
-    rpm: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "rpm", "override"), nix.thunk(() => ({ __proto__: pos$386, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
+    rpm: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "rpm", "override"), nix.thunk(() => ({ [nix.POS]: pos$386, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
     rpmfile: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rpmfile"), nix.thunk(() => ({})))),
     rpmfluff: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rpmfluff"), nix.thunk(() => ({})))),
     rpy2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rpy2"), nix.thunk(() => ({})))),
     "rpy2-rinterface": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rpy2-rinterface"), nix.thunk(() => ({
-        __proto__: pos$387,
+        [nix.POS]: pos$387,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
       })))),
     "rpy2-robjects": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rpy2-robjects"), nix.thunk(() => ({})))),
@@ -10608,7 +10608,7 @@ export default (self) => (super$) => (() => {
     rtoml: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rtoml"), nix.thunk(() => ({})))),
     rtp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rtp"), nix.thunk(() => ({})))),
     rtree: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rtree"), nix.thunk(() => ({
-        __proto__: pos$388,
+        [nix.POS]: pos$388,
         libspatialindex: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libspatialindex")),
       })))),
     "rtslib-fb": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rtslib-fb"), nix.thunk(() => ({})))),
@@ -10620,7 +10620,7 @@ export default (self) => (super$) => (() => {
     rubymarshal: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rubymarshal"), nix.thunk(() => ({})))),
     rucio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/rucio"), nix.thunk(() => ({})))),
     ruff: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ruff"), nix.thunk(() => ({
-        __proto__: pos$389,
+        [nix.POS]: pos$389,
         ruff: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ruff")),
       })))),
     "ruff-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ruff-api"), nix.thunk(() => ({})))),
@@ -10665,24 +10665,24 @@ export default (self) => (super$) => (() => {
     sam2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sam2"), nix.thunk(() => ({})))),
     samarium: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/samarium"), nix.thunk(() => ({})))),
     samplerate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/samplerate"), nix.thunk(() => ({
-        __proto__: pos$390,
+        [nix.POS]: pos$390,
         libsamplerate: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libsamplerate")),
       })))),
     "samplerate-ledfx": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/samplerate-ledfx"), nix.thunk(() => ({
-        __proto__: pos$391,
+        [nix.POS]: pos$391,
         libsamplerate: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libsamplerate")),
       })))),
     "samsung-exlink": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/samsung-exlink"), nix.thunk(() => ({})))),
     samsungctl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/samsungctl"), nix.thunk(() => ({})))),
     samsungtvws: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/samsungtvws"), nix.thunk(() => ({})))),
     sane: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sane"), nix.thunk(() => ({
-        __proto__: pos$392,
+        [nix.POS]: pos$392,
         "sane-backends": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "sane-backends")),
       })))),
     saneyaml: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/saneyaml"), nix.thunk(() => ({})))),
     sanic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sanic"), nix.thunk(() => ({
-        __proto__: pos$394,
-        "sanic-testing": nix.thunk(() => nix.app(nix.sel(self, "sanic-testing", "override"), nix.thunk(() => ({ __proto__: pos$393, sanic: null })))),
+        [nix.POS]: pos$394,
+        "sanic-testing": nix.thunk(() => nix.app(nix.sel(self, "sanic-testing", "override"), nix.thunk(() => ({ [nix.POS]: pos$393, sanic: null })))),
       })))),
     "sanic-auth": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sanic-auth"), nix.thunk(() => ({})))),
     "sanic-cors": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sanic-cors"), nix.thunk(() => ({})))),
@@ -10712,7 +10712,7 @@ export default (self) => (super$) => (() => {
     scanpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/scanpy"), nix.thunk(() => ({})))),
     scantree: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/scantree"), nix.thunk(() => ({})))),
     scapy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/scapy"), nix.thunk(() => ({
-        __proto__: pos$395,
+        [nix.POS]: pos$395,
         libpcap: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libpcap")),
       })))),
     scenedetect: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/scenedetect"), nix.thunk(() => ({})))),
@@ -10788,7 +10788,7 @@ export default (self) => (super$) => (() => {
     "sebaubuntu-libs": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sebaubuntu-libs"), nix.thunk(() => ({})))),
     seccomp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/seccomp"), nix.thunk(() => ({})))),
     secp256k1: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/secp256k1"), nix.thunk(() => ({
-        __proto__: pos$396,
+        [nix.POS]: pos$396,
         secp256k1: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "secp256k1")),
       })))),
     secretstorage: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/secretstorage"), nix.thunk(() => ({})))),
@@ -10804,7 +10804,7 @@ export default (self) => (super$) => (() => {
     segments: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/segments"), nix.thunk(() => ({})))),
     segno: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/segno"), nix.thunk(() => ({})))),
     segyio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/segyio"), nix.thunk(() => ({
-        __proto__: pos$397,
+        [nix.POS]: pos$397,
         cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
         ninja: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ninja")),
       })))),
@@ -10817,7 +10817,7 @@ export default (self) => (super$) => (() => {
     "semaphore-bot": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/semaphore-bot"), nix.thunk(() => ({})))),
     semchunk: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/semchunk"), nix.thunk(() => ({})))),
     semgrep: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/semgrep"), nix.thunk(() => ({
-        __proto__: pos$398,
+        [nix.POS]: pos$398,
         "semgrep-core": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/semgrep/semgrep-core.nix"), nix.thunk(() => ({})))),
       })))),
     semver: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/semver"), nix.thunk(() => ({})))),
@@ -10838,7 +10838,7 @@ export default (self) => (super$) => (() => {
     "sentence-stream": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sentence-stream"), nix.thunk(() => ({})))),
     "sentence-transformers": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sentence-transformers"), nix.thunk(() => ({})))),
     sentencepiece: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sentencepiece"), nix.thunk(() => ({
-        __proto__: pos$399,
+        [nix.POS]: pos$399,
         sentencepiece: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "sentencepiece")),
       })))),
     sentinel: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sentinel"), nix.thunk(() => ({})))),
@@ -10895,22 +10895,22 @@ export default (self) => (super$) => (() => {
     shellingham: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/shellingham"), nix.thunk(() => ({})))),
     shelljob: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/shelljob"), nix.thunk(() => ({})))),
     "sherpa-onnx": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sherpa-onnx"), nix.thunk(() => ({
-        __proto__: pos$401,
-        "sherpa-onnx": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sherpa-onnx", "override"), nix.thunk(() => ({ __proto__: pos$400, python3Packages: self, pythonSupport: true })))),
+        [nix.POS]: pos$401,
+        "sherpa-onnx": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sherpa-onnx", "override"), nix.thunk(() => ({ [nix.POS]: pos$400, python3Packages: self, pythonSupport: true })))),
       })))),
     shiboken2: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/shiboken2"), nix.thunk(() => ({
-          __proto__: pos$402,
+          [nix.POS]: pos$402,
           cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
           llvmPackages: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "llvmPackages")),
           qt5: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "qt5")),
         })))))),
     shiboken6: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/shiboken6"), nix.thunk(() => ({
-          __proto__: pos$403,
+          [nix.POS]: pos$403,
           cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
           llvmPackages: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "llvmPackages")),
         })))))),
     "shiboken6-generator": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/shiboken6-generator"), nix.thunk(() => ({
-          __proto__: pos$404,
+          [nix.POS]: pos$404,
           cmake: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "cmake")),
           llvmPackages: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "llvmPackages")),
         })))))),
@@ -10948,7 +10948,7 @@ export default (self) => (super$) => (() => {
     "simp-sexp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/simp-sexp"), nix.thunk(() => ({})))),
     simpful: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/simpful"), nix.thunk(() => ({})))),
     "simple-dftd3": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/libraries/science/chemistry/simple-dftd3/python.nix"), nix.thunk(() => ({
-        __proto__: pos$405,
+        [nix.POS]: pos$405,
         "simple-dftd3": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "simple-dftd3")),
       })))),
     "simple-di": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/simple-di"), nix.thunk(() => ({})))),
@@ -10969,7 +10969,7 @@ export default (self) => (super$) => (() => {
     simplegeneric: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/simplegeneric"), nix.thunk(() => ({})))),
     simplehound: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/simplehound"), nix.thunk(() => ({})))),
     simpleitk: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/simpleitk"), nix.thunk(() => ({
-        __proto__: pos$406,
+        [nix.POS]: pos$406,
         itk: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "itk")),
         simpleitk: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "simpleitk")),
       })))),
@@ -10993,7 +10993,7 @@ export default (self) => (super$) => (() => {
     siphash24: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/siphash24"), nix.thunk(() => ({})))),
     siphashc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/siphashc"), nix.thunk(() => ({})))),
     sipyco: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sipyco"), nix.thunk(() => ({})))),
-    sirius: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sirius", "override"), nix.thunk(() => ({ __proto__: pos$407, enablePython: true, pythonPackages: self })))))),
+    sirius: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sirius", "override"), nix.thunk(() => ({ [nix.POS]: pos$407, enablePython: true, pythonPackages: self })))))),
     sismic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sismic"), nix.thunk(() => ({})))),
     "sisyphus-control": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sisyphus-control"), nix.thunk(() => ({})))),
     siuba: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/siuba"), nix.thunk(() => ({})))),
@@ -11023,7 +11023,7 @@ export default (self) => (super$) => (() => {
     "skytemple-rust": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/skytemple-rust"), nix.thunk(() => ({})))),
     "skytemple-ssb-debugger": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/skytemple-ssb-debugger"), nix.thunk(() => ({})))),
     "skytemple-ssb-emulator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/skytemple-ssb-emulator"), nix.thunk(() => ({
-        __proto__: pos$408,
+        [nix.POS]: pos$408,
         libpcap: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libpcap")),
       })))),
     "slack-bolt": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slack-bolt"), nix.thunk(() => ({})))),
@@ -11032,19 +11032,19 @@ export default (self) => (super$) => (() => {
     sleekxmppfs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sleekxmppfs"), nix.thunk(() => ({})))),
     sleepyq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sleepyq"), nix.thunk(() => ({})))),
     slepc4py: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "slepc", "override"), nix.thunk(() => ({
-          __proto__: pos$409,
+          [nix.POS]: pos$409,
           pythonSupport: true,
           python3Packages: self,
           petsc: nix.thunk(() => nix.lookup(w, "petsc4py")),
         })))))),
-    sleqp: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sleqp", "override"), nix.thunk(() => ({ __proto__: pos$410, pythonSupport: true, python3Packages: self })))))),
+    sleqp: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sleqp", "override"), nix.thunk(() => ({ [nix.POS]: pos$410, pythonSupport: true, python3Packages: self })))))),
     "slh-dsa": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slh-dsa"), nix.thunk(() => ({})))),
     slicer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slicer"), nix.thunk(() => ({})))),
     slicerator: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slicerator"), nix.thunk(() => ({})))),
     slip10: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slip10"), nix.thunk(() => ({})))),
     "slither-analyzer": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slither-analyzer"), nix.thunk(() => ({})))),
     slixmpp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slixmpp"), nix.thunk(() => ({
-        __proto__: pos$411,
+        [nix.POS]: pos$411,
         gnupg: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "gnupg")),
       })))),
     "slixmpp-omemo": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/slixmpp-omemo"), nix.thunk(() => ({})))),
@@ -11075,9 +11075,9 @@ export default (self) => (super$) => (() => {
     "smpp-pdu": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/smpp-pdu"), nix.thunk(() => ({})))),
     smpplib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/smpplib"), nix.thunk(() => ({})))),
     smtpdfix: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/smtpdfix"), nix.thunk(() => ({})))),
-    snack: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "newt", "override"), nix.thunk(() => ({ __proto__: pos$412, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
+    snack: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "newt", "override"), nix.thunk(() => ({ [nix.POS]: pos$412, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
     snakebite: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/snakebite"), nix.thunk(() => ({})))),
-    snakemake: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "snakemake", "override"), nix.thunk(() => ({ __proto__: pos$413, python3Packages: self })))))),
+    snakemake: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "snakemake", "override"), nix.thunk(() => ({ [nix.POS]: pos$413, python3Packages: self })))))),
     "snakemake-executor-plugin-cluster-generic": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/snakemake-executor-plugin-cluster-generic"), nix.thunk(() => ({})))),
     "snakemake-interface-common": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/snakemake-interface-common"), nix.thunk(() => ({})))),
     "snakemake-interface-executor-plugins": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/snakemake-interface-executor-plugins"), nix.thunk(() => ({})))),
@@ -11109,12 +11109,12 @@ export default (self) => (super$) => (() => {
     snscrape: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/snscrape"), nix.thunk(() => ({})))),
     snuggs: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/snuggs"), nix.thunk(() => ({})))),
     soapysdr: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "soapysdr", "override"), nix.thunk(() => ({
-          __proto__: pos$414,
+          [nix.POS]: pos$414,
           python: nix.thunk(() => nix.attr(self, "python")),
           usePython: true,
         })))))),
     "soapysdr-with-plugins": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "soapysdr-with-plugins", "override"), nix.thunk(() => ({
-          __proto__: pos$415,
+          [nix.POS]: pos$415,
           python: nix.thunk(() => nix.attr(self, "python")),
           usePython: true,
         })))))),
@@ -11157,7 +11157,7 @@ export default (self) => (super$) => (() => {
     soupsieve: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/soupsieve"), nix.thunk(() => ({})))),
     sourmash: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sourmash"), nix.thunk(() => ({})))),
     soxr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/soxr"), nix.thunk(() => ({
-        __proto__: pos$416,
+        [nix.POS]: pos$416,
         libsoxr: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "soxr")),
       })))),
     spacy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/spacy"), nix.thunk(() => ({})))),
@@ -11167,7 +11167,7 @@ export default (self) => (super$) => (() => {
     "spacy-loggers": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/spacy-loggers"), nix.thunk(() => ({})))),
     "spacy-lookups-data": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/spacy/lookups-data.nix"), nix.thunk(() => ({})))),
     "spacy-models": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/spacy/models.nix"), nix.thunk(() => ({
-        __proto__: pos$417,
+        [nix.POS]: pos$417,
         jq: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "jq")),
       })))),
     "spacy-pkuseg": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/spacy-pkuseg"), nix.thunk(() => ({})))),
@@ -11208,7 +11208,7 @@ export default (self) => (super$) => (() => {
     "sphinx-autodoc-typehints": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinx-autodoc-typehints"), nix.thunk(() => ({})))),
     "sphinx-autodoc2": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinx-autodoc2"), nix.thunk(() => ({})))),
     "sphinx-automodapi": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinx-automodapi"), nix.thunk(() => ({
-        __proto__: pos$418,
+        [nix.POS]: pos$418,
         graphviz: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "graphviz")),
       })))),
     "sphinx-basic-ng": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinx-basic-ng"), nix.thunk(() => ({})))),
@@ -11278,13 +11278,13 @@ export default (self) => (super$) => (() => {
     "sphinxcontrib-mermaid": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinxcontrib-mermaid"), nix.thunk(() => ({})))),
     "sphinxcontrib-moderncmakedomain": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinxcontrib-moderncmakedomain"), nix.thunk(() => ({})))),
     "sphinxcontrib-mscgen": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinxcontrib-mscgen"), nix.thunk(() => ({
-        __proto__: pos$419,
+        [nix.POS]: pos$419,
         mscgen: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "mscgen")),
       })))),
     "sphinxcontrib-nwdiag": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinxcontrib-nwdiag"), nix.thunk(() => ({})))),
     "sphinxcontrib-openapi": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinxcontrib-openapi"), nix.thunk(() => ({})))),
     "sphinxcontrib-plantuml": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinxcontrib-plantuml"), nix.thunk(() => ({
-        __proto__: pos$420,
+        [nix.POS]: pos$420,
         plantuml: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "plantuml")),
       })))),
     "sphinxcontrib-programoutput": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sphinxcontrib-programoutput"), nix.thunk(() => ({})))),
@@ -11347,7 +11347,7 @@ export default (self) => (super$) => (() => {
     "sqlite-migrate": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sqlite-migrate"), nix.thunk(() => ({})))),
     "sqlite-utils": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sqlite-utils"), nix.thunk(() => ({})))),
     "sqlite-vec": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sqlite-vec"), nix.thunk(() => ({
-        __proto__: pos$421,
+        [nix.POS]: pos$421,
         "sqlite-vec-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "sqlite-vec")),
       })))),
     sqlitedict: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sqlitedict"), nix.thunk(() => ({})))),
@@ -11368,7 +11368,7 @@ export default (self) => (super$) => (() => {
     srt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/srt"), nix.thunk(() => ({})))),
     srvlookup: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/srvlookup"), nix.thunk(() => ({})))),
     ssdeep: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ssdeep"), nix.thunk(() => ({
-        __proto__: pos$422,
+        [nix.POS]: pos$422,
         ssdeep: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ssdeep")),
       })))),
     ssdp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ssdp"), nix.thunk(() => ({})))),
@@ -11454,7 +11454,7 @@ export default (self) => (super$) => (() => {
     "stix2-validator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stix2-validator"), nix.thunk(() => ({})))),
     stm32loader: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stm32loader"), nix.thunk(() => ({})))),
     stockfish: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stockfish"), nix.thunk(() => ({
-        __proto__: pos$423,
+        [nix.POS]: pos$423,
         stockfish: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "stockfish")),
       })))),
     "stomp-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stomp-py"), nix.thunk(() => ({})))),
@@ -11462,7 +11462,7 @@ export default (self) => (super$) => (() => {
     stookwijzer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stookwijzer"), nix.thunk(() => ({})))),
     "stop-words": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stop-words"), nix.thunk(() => ({})))),
     storage3: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/storage3"), nix.thunk(() => ({})))),
-    stp: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "stp", "override"), nix.thunk(() => ({ __proto__: pos$424, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
+    stp: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "stp", "override"), nix.thunk(() => ({ [nix.POS]: pos$424, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
     stransi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stransi"), nix.thunk(() => ({})))),
     strategies: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/strategies"), nix.thunk(() => ({})))),
     stravalib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/stravalib"), nix.thunk(() => ({})))),
@@ -11518,12 +11518,12 @@ export default (self) => (super$) => (() => {
     succulent: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/succulent"), nix.thunk(() => ({})))),
     "sudachidict-core": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sudachidict"), nix.thunk(() => ({})))),
     "sudachidict-full": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sudachidict"), nix.thunk(() => ({
-        __proto__: pos$426,
-        sudachidict: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sudachidict", "override"), nix.thunk(() => ({ __proto__: pos$425, "dict-type": "full" })))),
+        [nix.POS]: pos$426,
+        sudachidict: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sudachidict", "override"), nix.thunk(() => ({ [nix.POS]: pos$425, "dict-type": "full" })))),
       })))),
     "sudachidict-small": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sudachidict"), nix.thunk(() => ({
-        __proto__: pos$428,
-        sudachidict: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sudachidict", "override"), nix.thunk(() => ({ __proto__: pos$427, "dict-type": "small" })))),
+        [nix.POS]: pos$428,
+        sudachidict: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "sudachidict", "override"), nix.thunk(() => ({ [nix.POS]: pos$427, "dict-type": "small" })))),
       })))),
     sudachipy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/sudachipy"), nix.thunk(() => ({})))),
     suds: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/suds"), nix.thunk(() => ({})))),
@@ -11583,7 +11583,7 @@ export default (self) => (super$) => (() => {
     symbex: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/symbex"), nix.thunk(() => ({})))),
     symbolic: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/symbolic"), nix.thunk(() => ({})))),
     symengine: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/symengine"), nix.thunk(() => ({
-        __proto__: pos$429,
+        [nix.POS]: pos$429,
         symengine: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "symengine")),
       })))),
     symfc: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/symfc"), nix.thunk(() => ({})))),
@@ -11592,7 +11592,7 @@ export default (self) => (super$) => (() => {
     syncedlyrics: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/syncedlyrics"), nix.thunk(() => ({})))),
     syncer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/syncer"), nix.thunk(() => ({})))),
     synchronicity: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/synchronicity"), nix.thunk(() => ({})))),
-    "syndication-domination": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "syndication-domination", "override"), nix.thunk(() => ({ __proto__: pos$430, enablePython: true, python3Packages: self })))))),
+    "syndication-domination": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "syndication-domination", "override"), nix.thunk(() => ({ [nix.POS]: pos$430, enablePython: true, python3Packages: self })))))),
     "syne-tune": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/syne-tune"), nix.thunk(() => ({})))),
     synergy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/synergy"), nix.thunk(() => ({})))),
     "synology-srm": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/synology-srm"), nix.thunk(() => ({})))),
@@ -11604,7 +11604,7 @@ export default (self) => (super$) => (() => {
     systembridgeconnector: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/systembridgeconnector"), nix.thunk(() => ({})))),
     systembridgemodels: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/systembridgemodels"), nix.thunk(() => ({})))),
     "systemd-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/systemd-python"), nix.thunk(() => ({
-        __proto__: pos$431,
+        [nix.POS]: pos$431,
         systemd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "systemd")),
       })))),
     systemdunitparser: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/systemdunitparser"), nix.thunk(() => ({})))),
@@ -11620,7 +11620,7 @@ export default (self) => (super$) => (() => {
     "tabula-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tabula-py"), nix.thunk(() => ({})))),
     tabulate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tabulate"), nix.thunk(() => ({})))),
     tabview: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tabview"), nix.thunk(() => ({})))),
-    taco: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "taco", "override"), nix.thunk(() => ({ __proto__: pos$432, enablePython: true })))))),
+    taco: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "taco", "override"), nix.thunk(() => ({ [nix.POS]: pos$432, enablePython: true })))))),
     tadasets: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tadasets"), nix.thunk(() => ({})))),
     "tag-expressions": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tag-expressions"), nix.thunk(() => ({})))),
     "tagoio-sdk": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tagoio-sdk"), nix.thunk(() => ({})))),
@@ -11642,7 +11642,7 @@ export default (self) => (super$) => (() => {
     "taxii2-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/taxii2-client"), nix.thunk(() => ({})))),
     tblib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tblib"), nix.thunk(() => ({})))),
     tblite: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/libraries/science/chemistry/tblite/python.nix"), nix.thunk(() => ({
-        __proto__: pos$433,
+        [nix.POS]: pos$433,
         tblite: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "tblite")),
         meson: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "meson")),
         "simple-dftd3": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "simple-dftd3")),
@@ -11660,7 +11660,7 @@ export default (self) => (super$) => (() => {
     telegraph: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/telegraph"), nix.thunk(() => ({})))),
     telepath: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/telepath"), nix.thunk(() => ({})))),
     telethon: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/telethon"), nix.thunk(() => ({
-        __proto__: pos$434,
+        [nix.POS]: pos$434,
         openssl: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "openssl")),
       })))),
     "telethon-session-sqlalchemy": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/telethon-session-sqlalchemy"), nix.thunk(() => ({})))),
@@ -11692,7 +11692,7 @@ export default (self) => (super$) => (() => {
     "tensorflow-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tensorflow/bin.nix"), nix.thunk(() => (() => {
         const from_5 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "config"));
         return {
-        __proto__: pos$435,
+        [nix.POS]: pos$435,
         cudaSupport: nix.thunk(() => nix.attr(from_5, "cudaSupport")),
       };
       })()))),
@@ -11700,8 +11700,8 @@ export default (self) => (super$) => (() => {
     "tensorflow-estimator-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tensorflow-estimator/bin.nix"), nix.thunk(() => ({})))),
     "tensorflow-metadata": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tensorflow-metadata"), nix.thunk(() => ({})))),
     "tensorflow-probability": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tensorflow-probability"), nix.thunk(() => ({})))),
-    tensorflowWithCuda: nix.thunk(() => nix.app(nix.sel(self, "tensorflow", "override"), nix.thunk(() => ({ __proto__: pos$436, cudaSupport: true })))),
-    tensorflowWithoutCuda: nix.thunk(() => nix.app(nix.sel(self, "tensorflow", "override"), nix.thunk(() => ({ __proto__: pos$437, cudaSupport: false })))),
+    tensorflowWithCuda: nix.thunk(() => nix.app(nix.sel(self, "tensorflow", "override"), nix.thunk(() => ({ [nix.POS]: pos$436, cudaSupport: true })))),
+    tensorflowWithoutCuda: nix.thunk(() => nix.app(nix.sel(self, "tensorflow", "override"), nix.thunk(() => ({ [nix.POS]: pos$437, cudaSupport: false })))),
     tensorly: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tensorly"), nix.thunk(() => ({})))),
     tensorrt: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tensorrt"), nix.thunk(() => ({})))),
     tensorstore: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tensorstore"), nix.thunk(() => ({})))),
@@ -11745,7 +11745,7 @@ export default (self) => (super$) => (() => {
     textfsm: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/textfsm"), nix.thunk(() => ({})))),
     textile: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/textile"), nix.thunk(() => ({})))),
     textnets: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/textnets"), nix.thunk(() => ({
-        __proto__: pos$438,
+        [nix.POS]: pos$438,
         en_core_web_sm: nix.thunk(() => nix.sel(nix.lookup(w, "spacy-models"), "en_core_web_sm")),
       })))),
     textparser: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/textparser"), nix.thunk(() => ({})))),
@@ -11796,7 +11796,7 @@ export default (self) => (super$) => (() => {
     "tika-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tika-client"), nix.thunk(() => ({})))),
     tiktoken: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tiktoken"), nix.thunk(() => ({})))),
     tiledb: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tiledb"), nix.thunk(() => ({
-        __proto__: pos$439,
+        [nix.POS]: pos$439,
         tiledb: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "tiledb")),
       })))),
     tilelang: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tilelang"), nix.thunk(() => ({})))),
@@ -11819,7 +11819,7 @@ export default (self) => (super$) => (() => {
     timple: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/timple"), nix.thunk(() => ({})))),
     timy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/timy"), nix.thunk(() => ({})))),
     "tiny-cuda-nn": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "tiny-cuda-nn", "override"), nix.thunk(() => ({
-          __proto__: pos$440,
+          [nix.POS]: pos$440,
           cudaPackages: nix.thunk(() => nix.sel(self, "torch", "cudaPackages")),
           python3Packages: self,
           pythonSupport: true,
@@ -11841,7 +11841,7 @@ export default (self) => (super$) => (() => {
     titlecase: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/titlecase"), nix.thunk(() => ({})))),
     tivars: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tivars"), nix.thunk(() => ({})))),
     tkinter: nix.thunk(() => (nix.asBool(nix.lookup(w, "isPyPy")) ? null : nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tkinter"), nix.thunk(() => ({
-        __proto__: pos$441,
+        [nix.POS]: pos$441,
         tcl: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "pythonAtLeast"), "3.14")) ? nix.sel(nix.lookup(w, "pkgs"), "tcl-9_0") : nix.sel(nix.lookup(w, "pkgs"), "tcl-8_6"))),
         tk: nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "pythonAtLeast"), "3.14")) ? nix.sel(nix.lookup(w, "pkgs"), "tk-9_0") : nix.sel(nix.lookup(w, "pkgs"), "tk-8_6"))),
       }))))),
@@ -11888,7 +11888,7 @@ export default (self) => (super$) => (() => {
     "toptica-lasersdk": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/toptica-lasersdk"), nix.thunk(() => ({})))),
     torch: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch/source"), nix.thunk(() => ({})))),
     "torch-audiomentations": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-audiomentations"), nix.thunk(() => ({})))),
-    "torch-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch/bin"), nix.thunk(() => ({ __proto__: pos$442, triton: nix.thunk(() => nix.sel(self, "triton-bin")) })))),
+    "torch-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch/bin"), nix.thunk(() => ({ [nix.POS]: pos$442, triton: nix.thunk(() => nix.sel(self, "triton-bin")) })))),
     "torch-c-dlpack-ext": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-c-dlpack-ext"), nix.thunk(() => ({})))),
     "torch-checkpointing": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-checkpointing"), nix.thunk(() => ({})))),
     "torch-cluster": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-cluster"), nix.thunk(() => ({})))),
@@ -11896,24 +11896,24 @@ export default (self) => (super$) => (() => {
     "torch-ema": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-ema"), nix.thunk(() => ({})))),
     "torch-geometric": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-geometric"), nix.thunk(() => ({})))),
     "torch-memory-saver": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-memory-saver"), nix.thunk(() => ({})))),
-    "torch-no-triton": nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ __proto__: pos$443, tritonSupport: false })))),
+    "torch-no-triton": nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ [nix.POS]: pos$443, tritonSupport: false })))),
     "torch-pitch-shift": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-pitch-shift"), nix.thunk(() => ({})))),
     "torch-tb-profiler": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torch-tb-profiler/default.nix"), nix.thunk(() => ({})))),
     torchWithCuda: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({
-        __proto__: pos$444,
+        [nix.POS]: pos$444,
         triton: nix.thunk(() => nix.sel(self, "triton-cuda")),
         cudaSupport: true,
         rocmSupport: false,
       })))),
     torchWithRocm: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({
-        __proto__: pos$445,
+        [nix.POS]: pos$445,
         triton: nix.thunk(() => nix.sel(self, "triton-no-cuda")),
         rocmSupport: true,
         cudaSupport: false,
       })))),
-    torchWithVulkan: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ __proto__: pos$446, vulkanSupport: true })))),
-    torchWithoutCuda: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ __proto__: pos$447, cudaSupport: false })))),
-    torchWithoutRocm: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ __proto__: pos$448, rocmSupport: false })))),
+    torchWithVulkan: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ [nix.POS]: pos$446, vulkanSupport: true })))),
+    torchWithoutCuda: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ [nix.POS]: pos$447, cudaSupport: false })))),
+    torchWithoutRocm: nix.thunk(() => nix.app(nix.sel(self, "torch", "override"), nix.thunk(() => ({ [nix.POS]: pos$448, rocmSupport: false })))),
     torchao: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torchao"), nix.thunk(() => ({})))),
     torchaudio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torchaudio"), nix.thunk(() => ({})))),
     "torchaudio-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/torchaudio/bin.nix"), nix.thunk(() => ({})))),
@@ -11948,7 +11948,7 @@ export default (self) => (super$) => (() => {
     "total-connect-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/total-connect-client"), nix.thunk(() => ({})))),
     touying: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/touying"), nix.thunk(() => ({})))),
     towncrier: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/towncrier"), nix.thunk(() => ({
-        __proto__: pos$449,
+        [nix.POS]: pos$449,
         git: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "git")),
       })))),
     tox: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tox"), nix.thunk(() => ({})))),
@@ -11961,7 +11961,7 @@ export default (self) => (super$) => (() => {
     trackpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trackpy"), nix.thunk(() => ({})))),
     trafilatura: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trafilatura"), nix.thunk(() => ({})))),
     trailbase: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trailbase"), nix.thunk(() => ({
-        __proto__: pos$450,
+        [nix.POS]: pos$450,
         trailbase: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "trailbase")),
       })))),
     trailrunner: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trailrunner"), nix.thunk(() => ({})))),
@@ -11974,8 +11974,8 @@ export default (self) => (super$) => (() => {
     trampoline: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trampoline"), nix.thunk(() => ({})))),
     transaction: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/transaction"), nix.thunk(() => ({})))),
     "transformer-engine": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/transformer-engine"), nix.thunk(() => ({})))),
-    "transformer-engine-jax": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "transformer-engine"), "override"), nix.thunk(() => ({ __proto__: pos$451, withJax: true, withPytorch: false })))),
-    "transformer-engine-pytorch": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "transformer-engine"), "override"), nix.thunk(() => ({ __proto__: pos$452, withJax: false, withPytorch: true })))),
+    "transformer-engine-jax": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "transformer-engine"), "override"), nix.thunk(() => ({ [nix.POS]: pos$451, withJax: true, withPytorch: false })))),
+    "transformer-engine-pytorch": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "transformer-engine"), "override"), nix.thunk(() => ({ [nix.POS]: pos$452, withJax: false, withPytorch: true })))),
     transformers: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/transformers"), nix.thunk(() => ({})))),
     transformers_4: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/transformers/4.nix"), nix.thunk(() => ({})))),
     transforms3d: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/transforms3d"), nix.thunk(() => ({})))),
@@ -11994,7 +11994,7 @@ export default (self) => (super$) => (() => {
     "tree-sitter-c-sharp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tree-sitter-c-sharp"), nix.thunk(() => ({})))),
     "tree-sitter-config": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tree-sitter-config"), nix.thunk(() => ({})))),
     "tree-sitter-embedded-template": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tree-sitter-embedded-template"), nix.thunk(() => ({})))),
-    "tree-sitter-grammars": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "mapAttrs"), (name) => (grammarDrv) => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tree-sitter-grammars"), nix.thunk(() => ({ __proto__: pos$453, name: name, grammarDrv: grammarDrv }))), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "filterAttrs"), (name) => (value) => !nix.asBool(nix.app(nix.sel(nix.builtins, "elem"), name, nix.thunk(() => [
+    "tree-sitter-grammars": nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "mapAttrs"), (name) => (grammarDrv) => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tree-sitter-grammars"), nix.thunk(() => ({ [nix.POS]: pos$453, name: name, grammarDrv: grammarDrv }))), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "filterAttrs"), (name) => (value) => !nix.asBool(nix.app(nix.sel(nix.builtins, "elem"), name, nix.thunk(() => [
               "tree-sitter-go-template",
               "tree-sitter-php-only",
               "tree-sitter-sql",
@@ -12021,7 +12021,7 @@ export default (self) => (super$) => (() => {
     trevorproxy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trevorproxy"), nix.thunk(() => ({})))),
     trezor: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trezor"), nix.thunk(() => ({})))),
     "trezor-agent": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trezor-agent"), nix.thunk(() => ({
-        __proto__: pos$454,
+        [nix.POS]: pos$454,
         pinentry: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "pinentry-curses")),
       })))),
     trie: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trie"), nix.thunk(() => ({})))),
@@ -12033,15 +12033,15 @@ export default (self) => (super$) => (() => {
     "trio-typing": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trio-typing"), nix.thunk(() => ({})))),
     "trio-websocket": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trio-websocket"), nix.thunk(() => ({})))),
     triton: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/triton"), nix.thunk(() => ({
-        __proto__: pos$455,
+        [nix.POS]: pos$455,
         llvm: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "triton-llvm")),
       })))),
     "triton-bin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/triton/bin.nix"), nix.thunk(() => ({})))),
-    "triton-cuda": nix.thunk(() => nix.app(nix.sel(self, "triton", "override"), nix.thunk(() => ({ __proto__: pos$456, cudaSupport: true })))),
-    "triton-no-cuda": nix.thunk(() => nix.app(nix.sel(self, "triton", "override"), nix.thunk(() => ({ __proto__: pos$457, cudaSupport: false })))),
+    "triton-cuda": nix.thunk(() => nix.app(nix.sel(self, "triton", "override"), nix.thunk(() => ({ [nix.POS]: pos$456, cudaSupport: true })))),
+    "triton-no-cuda": nix.thunk(() => nix.app(nix.sel(self, "triton", "override"), nix.thunk(() => ({ [nix.POS]: pos$457, cudaSupport: false })))),
     tritonclient: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tritonclient"), nix.thunk(() => ({})))),
     trl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trl"), nix.thunk(() => ({})))),
-    trlib: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "trlib", "override"), nix.thunk(() => ({ __proto__: pos$458, pythonSupport: true, python3Packages: self })))))),
+    trlib: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "trlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$458, pythonSupport: true, python3Packages: self })))))),
     trmnl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/trmnl"), nix.thunk(() => ({})))),
     troi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/troi"), nix.thunk(() => ({})))),
     troposphere: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/troposphere"), nix.thunk(() => ({})))),
@@ -12057,7 +12057,7 @@ export default (self) => (super$) => (() => {
     "ts1-signatures": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ts1-signatures"), nix.thunk(() => ({})))),
     tsfresh: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tsfresh"), nix.thunk(() => ({})))),
     tsid: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tsid"), nix.thunk(() => ({
-        __proto__: pos$459,
+        [nix.POS]: pos$459,
         tsid: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "tsid")),
       })))),
     tskit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/tskit"), nix.thunk(() => ({})))),
@@ -12111,20 +12111,20 @@ export default (self) => (super$) => (() => {
     txredisapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/txredisapi"), nix.thunk(() => ({})))),
     txrequests: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/txrequests"), nix.thunk(() => ({})))),
     txtai: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/txtai"), nix.thunk(() => ({
-        __proto__: pos$460,
+        [nix.POS]: pos$460,
         "sqlite-vec-c": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "sqlite-vec")),
       })))),
     txtorcon: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/txtorcon"), nix.thunk(() => ({})))),
     txzmq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/txzmq"), nix.thunk(() => ({})))),
     ty: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ty"), nix.thunk(() => ({
-        __proto__: pos$461,
+        [nix.POS]: pos$461,
         ty: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "ty")),
       })))),
     "type-infer": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/type-infer"), nix.thunk(() => ({})))),
     typechecks: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/typechecks"), nix.thunk(() => ({})))),
     typecode: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/typecode"), nix.thunk(() => ({})))),
     "typecode-libmagic": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/typecode/libmagic.nix"), nix.thunk(() => ({
-        __proto__: pos$462,
+        [nix.POS]: pos$462,
         file: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "file")),
         zlib: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zlib")),
       })))),
@@ -12547,7 +12547,7 @@ export default (self) => (super$) => (() => {
     "types-webencodings": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/types-webencodings"), nix.thunk(() => ({})))),
     "types-xxhash": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/types-xxhash"), nix.thunk(() => ({})))),
     typesense: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/typesense"), nix.thunk(() => ({
-        __proto__: pos$463,
+        [nix.POS]: pos$463,
         typesense: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "typesense")),
         curl: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "curl")),
       })))),
@@ -12581,7 +12581,7 @@ export default (self) => (super$) => (() => {
     udtools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/udtools"), nix.thunk(() => ({})))),
     ueagle: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ueagle"), nix.thunk(() => ({})))),
     ueberzug: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ueberzug"), nix.thunk(() => ({
-        __proto__: pos$464,
+        [nix.POS]: pos$464,
         libx11: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libx11")),
         libxext: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxext")),
       })))),
@@ -12626,11 +12626,11 @@ export default (self) => (super$) => (() => {
     unicodedata2: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unicodedata2"), nix.thunk(() => ({})))),
     unicodeit: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unicodeit"), nix.thunk(() => ({})))),
     unicorn: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unicorn"), nix.thunk(() => ({
-        __proto__: pos$465,
+        [nix.POS]: pos$465,
         unicorn: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "unicorn")),
       })))),
     "unicorn-angr": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unicorn-angr"), nix.thunk(() => ({
-        __proto__: pos$466,
+        [nix.POS]: pos$466,
         "unicorn-angr": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "unicorn-angr")),
       })))),
     unicrypto: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unicrypto"), nix.thunk(() => ({})))),
@@ -12645,7 +12645,7 @@ export default (self) => (super$) => (() => {
     unify: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unify"), nix.thunk(() => ({})))),
     "unique-log-filter": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unique-log-filter"), nix.thunk(() => ({})))),
     "units-llnl": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/units-llnl"), nix.thunk(() => ({
-        __proto__: pos$467,
+        [nix.POS]: pos$467,
         "units-llnl": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "units-llnl")),
       })))),
     "unittest-xml-reporting": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unittest-xml-reporting"), nix.thunk(() => ({})))),
@@ -12655,11 +12655,11 @@ export default (self) => (super$) => (() => {
     "unix-ar": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unix-ar"), nix.thunk(() => ({})))),
     unpaddedbase64: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unpaddedbase64"), nix.thunk(() => ({})))),
     unrar: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unrar"), nix.thunk(() => ({
-        __proto__: pos$468,
+        [nix.POS]: pos$468,
         unrar: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "unrar")),
       })))),
     unrardll: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unrardll"), nix.thunk(() => ({
-        __proto__: pos$469,
+        [nix.POS]: pos$469,
         unrar: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "unrar")),
       })))),
     unrpa: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/unrpa"), nix.thunk(() => ({})))),
@@ -12719,13 +12719,13 @@ export default (self) => (super$) => (() => {
     userpath: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/userpath"), nix.thunk(() => ({})))),
     ush: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ush"), nix.thunk(() => ({})))),
     usort: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/usort"), nix.thunk(() => ({})))),
-    ustreamer: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "ustreamer", "override"), nix.thunk(() => ({ __proto__: pos$470, python3Packages: self, withPython: true })))))),
+    ustreamer: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "ustreamer", "override"), nix.thunk(() => ({ [nix.POS]: pos$470, python3Packages: self, withPython: true })))))),
     utils: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/utils"), nix.thunk(() => ({})))),
     utitools: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/utitools"), nix.thunk(() => ({})))),
     "uuid-utils": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/uuid-utils"), nix.thunk(() => ({})))),
     uuid6: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/uuid6"), nix.thunk(() => ({})))),
     uv: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/uv"), nix.thunk(() => ({
-        __proto__: pos$471,
+        [nix.POS]: pos$471,
         uv: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "uv")),
       })))),
     "uv-build": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/uv-build"), nix.thunk(() => ({})))),
@@ -12749,7 +12749,7 @@ export default (self) => (super$) => (() => {
     valkey: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/valkey"), nix.thunk(() => ({})))),
     "vallox-websocket-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vallox-websocket-api"), nix.thunk(() => ({})))),
     vapoursynth: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vapoursynth"), nix.thunk(() => ({
-        __proto__: pos$472,
+        [nix.POS]: pos$472,
         vapoursynth: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "vapoursynth")),
       })))),
     variants: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/variants"), nix.thunk(() => ({})))),
@@ -12793,7 +12793,7 @@ export default (self) => (super$) => (() => {
     "victron-vrm": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/victron-vrm"), nix.thunk(() => ({})))),
     videocr: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/videocr"), nix.thunk(() => ({})))),
     vidstab: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vidstab"), nix.thunk(() => ({})))),
-    viennarna: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "viennarna", "override"), nix.thunk(() => ({ __proto__: pos$473, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
+    viennarna: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "viennarna", "override"), nix.thunk(() => ({ [nix.POS]: pos$473, python3: nix.thunk(() => nix.sel(self, "python")) })))))),
     viewstate: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/viewstate"), nix.thunk(() => ({})))),
     "vilfo-api-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vilfo-api-client"), nix.thunk(() => ({})))),
     vina: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../by-name/au/autodock-vina/python-bindings.nix"), nix.thunk(() => ({})))),
@@ -12813,13 +12813,13 @@ export default (self) => (super$) => (() => {
     vivisect: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vivisect"), nix.thunk(() => (() => {
         const from_6 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "libsForQt5"));
         return {
-        __proto__: pos$474,
+        [nix.POS]: pos$474,
         wrapQtAppsHook: nix.thunk(() => nix.attr(from_6, "wrapQtAppsHook")),
       };
       })()))),
     vizaio: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vizaio"), nix.thunk(() => ({})))),
     "vl-convert-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vl-convert-python"), nix.thunk(() => ({
-        __proto__: pos$475,
+        [nix.POS]: pos$475,
         protobuf: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "protobuf")),
       })))),
     vllm: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vllm"), nix.thunk(() => ({})))),
@@ -12847,7 +12847,7 @@ export default (self) => (super$) => (() => {
     "vt-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vt-py"), nix.thunk(() => ({})))),
     "vtherm-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vtherm-api"), nix.thunk(() => ({})))),
     vtjp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vtjp"), nix.thunk(() => ({})))),
-    vtk: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "vtk", "override"), nix.thunk(() => ({ __proto__: pos$476, pythonSupport: true, python3Packages: self })))))),
+    vtk: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "vtk", "override"), nix.thunk(() => ({ [nix.POS]: pos$476, pythonSupport: true, python3Packages: self })))))),
     vtracer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vtracer"), nix.thunk(() => ({})))),
     vttlib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vttlib"), nix.thunk(() => ({})))),
     vulkan: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/vulkan"), nix.thunk(() => ({})))),
@@ -12880,7 +12880,7 @@ export default (self) => (super$) => (() => {
     ward: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ward"), nix.thunk(() => ({})))),
     warlock: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/warlock"), nix.thunk(() => ({})))),
     "warp-lang": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/warp-lang"), nix.thunk(() => ({
-        __proto__: pos$477,
+        [nix.POS]: pos$477,
         stdenv: nix.thunk(() => (nix.asBool(nix.sel(nix.lookup(w, "stdenv"), "hostPlatform", "isDarwin")) ? nix.sel(nix.lookup(w, "pkgs"), "llvmPackages_21", "stdenv") : nix.sel(nix.lookup(w, "pkgs"), "stdenv"))),
         llvmPackages: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "llvmPackages_21")),
       })))),
@@ -12971,7 +12971,7 @@ export default (self) => (super$) => (() => {
     whisper: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/whisper"), nix.thunk(() => ({})))),
     whispers: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/whispers"), nix.thunk(() => ({})))),
     whisperx: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/whisperx"), nix.thunk(() => ({
-        __proto__: pos$478,
+        [nix.POS]: pos$478,
         ffmpeg: nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "ffmpeg-headless")),
         "ctranslate2-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "ctranslate2")),
       })))),
@@ -13036,8 +13036,8 @@ export default (self) => (super$) => (() => {
     wunsen: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/wunsen"), nix.thunk(() => ({})))),
     wurlitzer: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/wurlitzer"), nix.thunk(() => ({})))),
     wxpython: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/wxpython/4.2.nix"), nix.thunk(() => ({
-        __proto__: pos$480,
-        wxGTK: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "wxwidgets_3_2", "override"), nix.thunk(() => ({ __proto__: pos$479, withWebKit: true })))),
+        [nix.POS]: pos$480,
+        wxGTK: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "wxwidgets_3_2", "override"), nix.thunk(() => ({ [nix.POS]: pos$479, withWebKit: true })))),
       })))),
     wyoming: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/wyoming"), nix.thunk(() => ({})))),
     "x-transformers": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/x-transformers"), nix.thunk(() => ({})))),
@@ -13047,7 +13047,7 @@ export default (self) => (super$) => (() => {
     x3dh: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/x3dh"), nix.thunk(() => ({})))),
     x690: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/x690"), nix.thunk(() => ({})))),
     xapian: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xapian"), nix.thunk(() => ({
-        __proto__: pos$481,
+        [nix.POS]: pos$481,
         xapian: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "xapian")),
       })))),
     xarray: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xarray"), nix.thunk(() => ({})))),
@@ -13064,19 +13064,19 @@ export default (self) => (super$) => (() => {
     xdis: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xdis"), nix.thunk(() => ({})))),
     xdoctest: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xdoctest"), nix.thunk(() => ({})))),
     xdot: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xdot"), nix.thunk(() => ({
-        __proto__: pos$482,
+        [nix.POS]: pos$482,
         graphviz: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "graphviz")),
       })))),
     xdxf2html: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xdxf2html"), nix.thunk(() => ({})))),
     xeddsa: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xeddsa"), nix.thunk(() => ({})))))),
     xeger: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xeger"), nix.thunk(() => ({})))),
-    xen: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "xen", "override"), nix.thunk(() => ({ __proto__: pos$483, python3Packages: self })))))),
+    xen: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "xen", "override"), nix.thunk(() => ({ [nix.POS]: pos$483, python3Packages: self })))))),
     xformers: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xformers"), nix.thunk(() => (() => {
         const from_7 = nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "llvmPackages"));
-        return { __proto__: pos$484, openmp: nix.thunk(() => nix.attr(from_7, "openmp")) };
+        return { [nix.POS]: pos$484, openmp: nix.thunk(() => nix.attr(from_7, "openmp")) };
       })()))),
     xgboost: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xgboost"), nix.thunk(() => ({
-        __proto__: pos$485,
+        [nix.POS]: pos$485,
         xgboost: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "xgboost")),
       })))),
     xgrammar: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xgrammar"), nix.thunk(() => ({})))),
@@ -13097,7 +13097,7 @@ export default (self) => (super$) => (() => {
     xmljson: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xmljson"), nix.thunk(() => ({})))),
     xmlschema: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xmlschema"), nix.thunk(() => ({})))),
     xmlsec: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xmlsec"), nix.thunk(() => ({
-        __proto__: pos$486,
+        [nix.POS]: pos$486,
         libxslt: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxslt")),
         libxml2: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libxml2")),
         libtool: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "libtool")),
@@ -13115,7 +13115,7 @@ export default (self) => (super$) => (() => {
     "xpath-expressions": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xpath-expressions"), nix.thunk(() => ({})))),
     xpybutil: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xpybutil"), nix.thunk(() => ({})))),
     xrootd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xrootd"), nix.thunk(() => ({
-        __proto__: pos$487,
+        [nix.POS]: pos$487,
         xrootd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "xrootd")),
       })))),
     "xs1-api-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/xs1-api-client"), nix.thunk(() => ({})))),
@@ -13167,16 +13167,16 @@ export default (self) => (super$) => (() => {
     yeelight: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yeelight"), nix.thunk(() => ({})))),
     yeelightsunflower: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yeelightsunflower"), nix.thunk(() => ({})))),
     yfinance: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yfinance"), nix.thunk(() => ({})))),
-    yoda: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yoda", "override"), nix.thunk(() => ({ __proto__: pos$488, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    yoda: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yoda", "override"), nix.thunk(() => ({ [nix.POS]: pos$488, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     "yolink-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yolink-api"), nix.thunk(() => ({})))),
-    yosys: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yosys", "override"), nix.thunk(() => ({ __proto__: pos$489, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
+    yosys: nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yosys", "override"), nix.thunk(() => ({ [nix.POS]: pos$489, python3: nix.thunk(() => nix.lookup(w, "python")) })))))),
     "yoto-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yoto-api"), nix.thunk(() => ({})))),
     "youless-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youless-api"), nix.thunk(() => ({})))),
     yourdfpy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yourdfpy"), nix.thunk(() => ({})))),
     youseedee: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youseedee"), nix.thunk(() => ({})))),
     youtokentome: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youtokentome"), nix.thunk(() => ({})))),
     "youtube-dl": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youtube-dl"), nix.thunk(() => ({})))),
-    "youtube-dl-light": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youtube-dl"), nix.thunk(() => ({ __proto__: pos$490, ffmpegSupport: false })))),
+    "youtube-dl-light": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youtube-dl"), nix.thunk(() => ({ [nix.POS]: pos$490, ffmpegSupport: false })))),
     "youtube-search": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youtube-search"), nix.thunk(() => ({})))),
     "youtube-search-python": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youtube-search-python"), nix.thunk(() => ({})))),
     "youtube-transcript-api": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/youtube-transcript-api"), nix.thunk(() => ({})))),
@@ -13184,18 +13184,18 @@ export default (self) => (super$) => (() => {
     yowsup: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yowsup"), nix.thunk(() => ({})))),
     "yoyo-migrations": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yoyo-migrations"), nix.thunk(() => ({})))),
     yq: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yq"), nix.thunk(() => ({
-        __proto__: pos$491,
+        [nix.POS]: pos$491,
         jq: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "jq")),
       })))),
-    "yt-dlp": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yt-dlp", "override"), nix.thunk(() => ({ __proto__: pos$492, python3Packages: self })))))),
+    "yt-dlp": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yt-dlp", "override"), nix.thunk(() => ({ [nix.POS]: pos$492, python3Packages: self })))))),
     "yt-dlp-dearrow": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yt-dlp-dearrow"), nix.thunk(() => ({})))),
     "yt-dlp-ejs": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yt-dlp-ejs"), nix.thunk(() => ({})))),
-    "yt-dlp-light": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yt-dlp-light", "override"), nix.thunk(() => ({ __proto__: pos$493, python3Packages: self })))))),
+    "yt-dlp-light": nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "yt-dlp-light", "override"), nix.thunk(() => ({ [nix.POS]: pos$493, python3Packages: self })))))),
     yte: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yte"), nix.thunk(() => ({})))),
     ytmusicapi: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/ytmusicapi"), nix.thunk(() => ({})))),
     yubico: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yubico"), nix.thunk(() => ({})))),
     "yubico-client": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/yubico-client"), nix.thunk(() => ({})))),
-    "z3-solver": nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "z3", "override"), nix.thunk(() => ({ __proto__: pos$494, python3Packages: self }))))), "python")),
+    "z3-solver": nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "z3", "override"), nix.thunk(() => ({ [nix.POS]: pos$494, python3Packages: self }))))), "python")),
     "z3c-checkversions": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/z3c-checkversions"), nix.thunk(() => ({})))),
     "zabbix-utils": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zabbix-utils"), nix.thunk(() => ({})))),
     zalgolib: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zalgolib"), nix.thunk(() => ({})))),
@@ -13211,9 +13211,9 @@ export default (self) => (super$) => (() => {
     "zcc-helper": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zcc-helper"), nix.thunk(() => ({})))),
     zconfig: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zconfig"), nix.thunk(() => ({})))),
     zdaemon: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zdaemon"), nix.thunk(() => ({})))),
-    zeek: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "zeek", "broker", "override"), nix.thunk(() => ({ __proto__: pos$495, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
+    zeek: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "zeek", "broker", "override"), nix.thunk(() => ({ [nix.POS]: pos$495, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
     zeep: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zeep"), nix.thunk(() => ({})))),
-    zeitgeist: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "zeitgeist", "override"), nix.thunk(() => ({ __proto__: pos$496, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
+    zeitgeist: nix.thunk(() => nix.sel(nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pkgs"), "zeitgeist", "override"), nix.thunk(() => ({ [nix.POS]: pos$496, python3: nix.thunk(() => nix.lookup(w, "python")) }))))), "py")),
     zenlog: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zenlog"), nix.thunk(() => ({})))),
     zenoh: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zenoh"), nix.thunk(() => ({})))),
     zensical: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zensical"), nix.thunk(() => ({})))),
@@ -13247,7 +13247,7 @@ export default (self) => (super$) => (() => {
     zipp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zipp"), nix.thunk(() => ({})))),
     "zipstream-ng": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zipstream-ng"), nix.thunk(() => ({})))),
     "zlib-ng": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zlib-ng"), nix.thunk(() => ({
-        __proto__: pos$497,
+        [nix.POS]: pos$497,
         "zlib-ng": nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zlib-ng")),
       })))),
     "zm-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zm-py"), nix.thunk(() => ({})))),
@@ -13278,13 +13278,13 @@ export default (self) => (super$) => (() => {
     "zope-testing": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zope-testing"), nix.thunk(() => ({})))),
     "zope-testrunner": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zope-testrunner"), nix.thunk(() => ({})))),
     zopfli: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zopfli"), nix.thunk(() => ({
-        __proto__: pos$498,
+        [nix.POS]: pos$498,
         zopfli: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zopfli")),
       })))),
     zpp: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zpp"), nix.thunk(() => ({})))),
     zstandard: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zstandard"), nix.thunk(() => ({})))),
     zstd: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zstd"), nix.thunk(() => ({
-        __proto__: pos$499,
+        [nix.POS]: pos$499,
         zstd: nix.thunk(() => nix.attr(nix.thunk(() => nix.lookup(w, "pkgs")), "zstd")),
       })))),
     zulip: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zulip"), nix.thunk(() => ({})))),
@@ -13295,7 +13295,7 @@ export default (self) => (super$) => (() => {
     zxcvbn: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zxcvbn"), nix.thunk(() => ({})))),
     "zxcvbn-rs-py": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zxcvbn-rs-py"), nix.thunk(() => ({})))),
     "zxing-cpp": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../development/python-modules/zxing-cpp"), nix.thunk(() => ({
-        __proto__: pos$500,
+        [nix.POS]: pos$500,
         "libzxing-cpp": nix.thunk(() => nix.sel(nix.lookup(w, "pkgs"), "zxing-cpp")),
       })))),
   };

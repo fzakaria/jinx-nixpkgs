@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lzfse = nix.arg($, "lzfse");
   const gcc = nix.arg($, "gcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "img4lib",
       version: "0-unstable-2021-11-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xerub",
           repo: "img4lib",
           rev: "69772c72f3c08f021ec9fa4c386f2b3df60a38b7",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "\n    runHook preInstall\n\n    install -Dm755 img4 $out/bin/img4\n\n    runHook postInstall\n  ",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and tool for parsing, manipulating, and patching Apple .img4 container files",
         homepage: "https://github.com/xerub/img4lib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

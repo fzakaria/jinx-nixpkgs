@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomduck",
           repo: pname,
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })());
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standalone pandoc filter from the pandoc-xnos suite for numbering figures and figure references",
         homepage: "https://github.com/tomduck/pandoc-fignos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pandoc-fignos",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

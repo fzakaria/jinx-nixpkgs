@@ -35,57 +35,57 @@ export default nix.lambda((args) => (() => {
 If you would like to avoid that, please set enableConfigCheck to false.
 `), nix.thunk(() => nix.builtins.toFile(nix.thunk(() => nix.builtins.baseNameOf(file)), nix.thunk(() => nix.builtins.readFile(file))))));
   const checkConfig = (file) => nix.app(nix.sel(pkgs, "runCommand"), "checked-snmp-exporter-config.yml", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "buildPackages", "prometheus-snmp-exporter"))]),
     })), nix.thunk(() => nix.str`ln -s ${nix.app(coerceConfigFile, file)} $out
 snmp_exporter --dry-run --config.file $out
 `));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     port: 9116n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       configurationPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           description: "Path to a snmp exporter configuration file. Mutually exclusive with 'configuration' option.\n",
           example: nix.thunk(() => nix.app(literalExpression, "./snmp.yml")),
         })))),
       configuration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "attrs")))),
           default: null,
           description: "Snmp exporter configuration as nix attribute set. Mutually exclusive with 'configurationPath' option.\n",
           example: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             auths: nix.thunk(() => ({
-              __proto__: pos$4,
-              public_v2: nix.thunk(() => ({ __proto__: pos$3, community: "public", version: 2n })),
+              [nix.POS]: pos$4,
+              public_v2: nix.thunk(() => ({ [nix.POS]: pos$3, community: "public", version: 2n })),
             })),
           })),
         })))),
       enableConfigCheck: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           description: "Whether to run a correctness check for the configuration file. This depends\non the configuration file residing in the nix-store. Paths passed as string will\nbe copied to the store.\n",
         })))),
       logFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["logfmt", "json"]))),
           default: "logfmt",
           description: "Output format of log messages.\n",
         })))),
       logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warn", "error"]))),
           default: "info",
           description: "Only log messages with the given severity or above.\n",
         })))),
       environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/root/prometheus-snmp-exporter.env",
@@ -96,9 +96,9 @@ snmp_exporter --dry-run --config.file $out
       const uncheckedConfigFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configurationPath"), null)) ? nix.sel(cfg, "configurationPath") : nix.str`${nix.app(nix.sel(pkgs, "writeText"), "snmp-exporter-conf.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "configuration")))))}`));
       const configFile = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableConfigCheck")) ? nix.app(checkConfig, uncheckedConfigFile) : nix.force(uncheckedConfigFile)));
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-snmp-exporter")}/bin/snmp_exporter \\
   --config.file=${nix.app(escapeShellArg, configFile)} \\

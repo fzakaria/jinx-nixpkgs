@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OHF-Voice",
           repo: "wyoming",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,23 +37,23 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         http: nix.thunk(() => nix.concat([flask, swagger_ui_py], nix.sel(flask, "optional-dependencies", "async"))),
         zeroconf: nix.thunk(() => [zeroconf]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["wyoming"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "wyoming-faster-whisper": wyoming_faster_whisper,
           "wyoming-openwakeword": wyoming_openwakeword,
           "wyoming-piper": wyoming_piper,
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/wyoming/releases/tag/${nix.sel(src, "tag")}`),
         description: "Protocol for Rhasspy Voice Assistant",
         homepage: "https://github.com/OHF-Voice/wyoming",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

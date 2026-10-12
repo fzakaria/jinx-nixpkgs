@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cargo-guppy",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guppy-rs",
           repo: "guppy",
           tag: nix.thunk(() => nix.str`guppy-${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "cargo-guppy"]),
       cargoTestFlags: nix.thunk(() => ["-p", "cargo-guppy"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version-regex=guppy-(.*)"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=guppy-(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/guppy-rs/guppy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Command-line frontend for guppy",
         homepage: "https://github.com/guppy-rs/guppy/tree/main/cargo-guppy",

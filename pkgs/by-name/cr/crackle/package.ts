@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crackle",
       version: "0.1-unstable-2020-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikeryan",
           repo: "crackle",
           rev: "d83b4b6f4145ca53c46c36bbd7ccad751af76b75",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL=${coreutils}/bin/install`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Crack and decrypt BLE encryption",
         homepage: "https://github.com/mikeryan/crackle",
         maintainers: nix.thunk(() => (() => {

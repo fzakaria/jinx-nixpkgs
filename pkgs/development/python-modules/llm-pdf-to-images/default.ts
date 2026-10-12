@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "llm-pdf-to-images",
           tag: version,
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["llm_pdf_to_images"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_pdf_to_images)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM fragment plugin to load a PDF as a sequence of images",
         homepage: "https://github.com/simonw/llm-pdf-to-images",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm-pdf-to-images/releases/tag/${version}/CHANGELOG.md`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

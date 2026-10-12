@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "lcov_cobertura",
           version: version,
           hash: "sha256-76jiZPK93rt/UCTkrOErYz2dWQSLxkdCfR4blojItY8=",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [distutils]);
       const pythonImportsCheck = nix.thunk(() => ["lcov_cobertura"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Converts code coverage from lcov format to Cobertura's XML format",
         mainProgram: "lcov_cobertura",
         homepage: "https://eriwen.github.io/lcov-to-cobertura-xml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

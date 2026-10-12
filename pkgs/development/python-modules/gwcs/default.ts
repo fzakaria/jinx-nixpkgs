@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gwcs",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spacetelescope",
           repo: "gwcs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_doctestplus, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["gwcs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to manage the Generalized World Coordinate System",
         homepage: "https://github.com/spacetelescope/gwcs",
         changelog: nix.thunk(() => nix.str`https://github.com/spacetelescope/gwcs/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

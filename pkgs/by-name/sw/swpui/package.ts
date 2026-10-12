@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swpui",
       version: "0.10.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beeb",
           repo: "swpui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-rrC0TUbFjlWjdUEa+aYtirjXUSuc83bl4uGX6Tkr37M=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TUI utility to search and replace with a focus on ergonomics, speed and case-awareness",
         homepage: "https://github.com/beeb/swpui",
         changelog: nix.thunk(() => nix.str`https://github.com/beeb/swpui/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

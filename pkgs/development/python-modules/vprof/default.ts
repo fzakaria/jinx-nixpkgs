@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.38";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-fxAAkS7rekUMfJTTzJZzmvRa0P8B1avMCwmhddQP+ts=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["vprof"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Visual profiler for Python",
         homepage: "https://github.com/nvdv/vprof",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vprof",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

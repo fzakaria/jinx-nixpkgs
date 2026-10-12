@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const aiohttp = nix.arg($, "aiohttp");
   const pyjwt = nix.arg($, "pyjwt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ha-xthings-cloud",
       version: "1.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XthingsJacobs",
           repo: "ha-xthings-cloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [aiohttp, pyjwt]),
       pythonImportsCheck: nix.thunk(() => ["ha_xthings_cloud"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async Python client for Xthings Cloud API",
         homepage: "https://github.com/XthingsJacobs/ha-xthings-cloud",
         changelog: nix.thunk(() => nix.str`https://github.com/XthingsJacobs/ha-xthings-cloud/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

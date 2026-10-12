@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const go_bindata_assetfs = nix.arg($, "go-bindata-assetfs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "documize-community",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "documize",
           repo: "community",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd edition",
       subPackages: nix.thunk(() => ["."]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           documize: nix.thunk(() => nix.attr(nixosTests, "documize")),
         })),
       })),
       postInstall: "mv $out/bin/edition $out/bin/documize\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source Confluence alternative for internal & external docs built with Golang + EmberJS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: [],

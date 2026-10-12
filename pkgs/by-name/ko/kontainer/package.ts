@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const distrobox = nix.arg($, "distrobox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kontainer",
       version: "1.6.2",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DenysMb",
           repo: "Kontainer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [distrobox]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical management application for Distrobox containers",
         longDescription: "Kontainer is a graphical user interface (GUI) application built with KDE Kirigami that provides a user-friendly way to manage Distrobox containers.\n\n*Container Management*: Create new containers from various Linux distributions, delete existing containers, upgrade containers and list and view all containers.\n\n*Terminal Integration*: Open terminal sessions inside containers using the system default terminal emulator and execute commands within containers.\n\n*Package Management*: Install package files inside containers and automatic detection of appropriate package managers based on container distribution.\n\n*Desktop Integration*: Generate desktop shortcuts for containers, full integration with the host system through Distrobox and color-coded container listing based on distribution.\n",
         homepage: "https://github.com/DenysMb/Kontainer",

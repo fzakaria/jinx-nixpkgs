@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "convos";
       const version = "8.05";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "convos-chat",
           repo: "convos",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -71,9 +71,9 @@ ln -s $AUTO_SHARE_PATH/public/assets $out/assets
 cp -vR templates $out/templates
 cp Makefile.PL $out/Makefile.PL
 `, "wrapProgram $out/bin/convos --set MOJO_HOME $out\n"));
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "convos")) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "convos")) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://convos.chat",
         description: "IRC browser client",
         mainProgram: "convos",
@@ -84,7 +84,7 @@ cp Makefile.PL $out/Makefile.PL
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

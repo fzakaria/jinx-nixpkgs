@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libhighscore = nix.arg($, "libhighscore");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "highscore-sameboy",
       version: "0-unstable-2026-06-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "highscore-emu",
           repo: "SameBoy",
           rev: "10703e58fde906df5cd80b81a104b959880bed42",
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, rgbds]),
       buildInputs: nix.thunk(() => [libhighscore]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libhighscore, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Port of SameBoy to Highscore",
         homepage: "https://github.com/highscore-emu/SameBoy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

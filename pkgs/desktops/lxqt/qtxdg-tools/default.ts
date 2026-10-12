@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtxdg-tools";
       const version = "4.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "qtxdg-tools",
           rev: version,
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, lxqt_build_tools, wrapQtAppsHook]);
       const buildInputs = nix.thunk(() => [libqtxdg, qtbase, qtsvg]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/lxqt/qtxdg-tools",
         description: "libqtxdg user tools",
         mainProgram: "qtxdg-mat",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

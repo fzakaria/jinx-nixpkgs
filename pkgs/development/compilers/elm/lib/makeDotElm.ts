@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   return (ver) => (deps) => (() => {
     const cmds = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (info) => (() => {
         const pkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["/"]), nix.thunk(() => ["-"]), name), nix.str`-${nix.sel(info, "version")}`)),
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: nix.thunk(() => nix.str`https://github.com/${name}/archive/${nix.sel(info, "version")}.tar.gz`),
                 meta: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   homepage: nix.thunk(() => nix.str`https://github.com/${name}/`),
                 })),
                 sha256: nix.thunk(() => nix.attr(info, "sha256")),

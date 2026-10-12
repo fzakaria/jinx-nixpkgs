@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const openonload = nix.arg($, "openonload");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tcpdirect",
       version: "9.0.2.45",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Xilinx-CNS",
           repo: "tcpdirect",
           rev: nix.thunk(() => nix.str`tcpdirect-${nix.sel(finalAttrs, "version")}`),
@@ -63,11 +63,11 @@ runHook postInstall
 patchelf --add-rpath ${nix.sel(openonload, "lib")}/lib $lib/lib/libonload_zf.so
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ultra low latency kernel bypass TCP and UDP implementation for AMD Solarflare network adapters",
         homepage: "https://www.openonload.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

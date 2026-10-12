@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "icoextract",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jlu5",
           repo: "icoextract",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["icoextract"]),
       postInstall: "install -Dm644 exe-thumbnailer.thumbnailer -t $out/share/thumbnailers\n\nsubstituteInPlace $out/share/thumbnailers/exe-thumbnailer.thumbnailer \\\n  --replace-fail \"Exec=exe-thumbnailer\" \"Exec=$out/bin/exe-thumbnailer\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract icons from Windows PE files",
         homepage: "https://github.com/jlu5/icoextract",
         changelog: nix.thunk(() => nix.str`https://github.com/jlu5/icoextract/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

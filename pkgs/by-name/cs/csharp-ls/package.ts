@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
   return nix.app(buildDotnetGlobalTool, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "csharp-ls",
       version: "0.28.0",
       nugetHash: "sha256-j4FeTyJnQQaoJEvroH5LSwYuMVKOQEqoSJMS7/uMDgw=",
@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Roslyn-based LSP language server for C#",
         mainProgram: "csharp-ls",
         homepage: "https://github.com/razzmatazz/csharp-language-server",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-xaujzQYPKKmATRT/Dto4KHyDNzUpqR2+6SIDiurUIvA=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["mkdocs_macros_test"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of a (model) pluglet for mkdocs-macros",
         homepage: "https://github.com/fralau/mkdocs-macros-test",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

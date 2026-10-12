@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const version = "0.1.7-unstable-2026-08-15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "amkillam",
       repo: "ryzen_smu",
       rev: "d2983668300dd2a598e5a7dc40e71ce0678cc270",
       hash: "sha256-OmEoycRO3hGkqueLa0i6AzmwMEbdkkPrwJkMyYxOTek=",
     }))));
   const monitor_cpu = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "monitor-cpu",
       version: version,
       src: src,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall userspace/monitor_cpu -Dm755 -t $out/bin\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`ryzen-smu-${nix.sel(kernel, "version")}`),
       version: version,
       src: src,
@@ -53,7 +53,7 @@ install ${monitor_cpu}/bin/monitor_cpu -Dm755 -t $out/bin
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux kernel driver that exposes access to the SMU (System Management Unit) for certain AMD Ryzen Processors",
         homepage: "https://github.com/amkillam/ryzen_smu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

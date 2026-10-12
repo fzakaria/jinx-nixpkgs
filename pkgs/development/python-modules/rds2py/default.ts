@@ -32,21 +32,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BiocPy",
           repo: "rds2py",
           tag: version,
           hash: "sha256-GbRpkt+K2HXuAT7KtI4h1SnZ4RtSo5hrea2L92VZj/o=",
         }))));
       const rds2cpp_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "LTLA",
           repo: "rds2cpp",
           rev: "v1.1.0",
           hash: "sha256-q7C/oORmhgXlqnZnslhyrxBc3RRF2gdgGuQU4TimxtI=",
         }))));
       const byteme_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "LTLA",
           repo: "byteme",
           rev: "v1.2.2",
@@ -74,7 +74,7 @@ chmod -R u+w build/_deps
       const dontUseCmakeConfigure = true;
       const pythonImportsCheck = nix.thunk(() => ["rds2py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Read RDS files, in Python",
         homepage: "https://github.com/BiocPy/rds2py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -84,7 +84,7 @@ chmod -R u+w build/_deps
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adbc-driver-manager",
       version: "1.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "adbc_driver_manager",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RZkfDC3jadMwxqIRyi7bzOY4nF3IHN5wRhvetvj3smg=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["adbc_driver_manager"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A generic entrypoint for ADBC drivers",
         homepage: "https://pypi.org/project/adbc-driver-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => true);
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libyafaray",
       version: "unstable-2022-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YafaRay",
           repo: "libYafaRay",
           rev: "6e8c45fb150185b3356220e5f99478f20408ee49",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([freetype, libjpeg, libtiff, libxml2, opencv, openexr, swig, zlib], nix.app(nix.sel(lib, "optional"), withPython, python3))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free, open source raytracer",
         downloadPage: "https://github.com/YafaRay/libYafaRay",
         homepage: "http://www.yafaray.org",

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const intltool = nix.arg($, "intltool");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-dev-tools",
       version: "4.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "xfce",
           repo: "xfce4-dev-tools",
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "xfce4-dev-tools-", "odd-unstable": true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-dev-tools-", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.xfce.org/xfce/xfce4-dev-tools",
         description: "Autoconf macros and scripts to augment app build systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

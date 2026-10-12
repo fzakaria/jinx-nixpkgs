@@ -18,31 +18,31 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "rss-bridge-caddy",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "mynacol"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             services: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "rss-bridge": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: true,
                 webserver: "caddy",
                 virtualHost: "localhost:80",
                 config: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  system: nix.thunk(() => ({ __proto__: pos$2, enabled_bridges: nix.thunk(() => ["DemoBridge"]) })),
+                  [nix.POS]: pos$3,
+                  system: nix.thunk(() => ({ [nix.POS]: pos$2, enabled_bridges: nix.thunk(() => ["DemoBridge"]) })),
                 })),
               })),
             })),

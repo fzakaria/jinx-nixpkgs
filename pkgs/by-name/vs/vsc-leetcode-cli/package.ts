@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vsc-leetcode-cli",
       version: "unstable-2021-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leetcode-tools",
           repo: "leetcode-cli",
           rev: "c5f6b8987185ae9f181e138f999825516240f44c",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
       dontCheckForBrokenSymlinks: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for leetcode.com",
         homepage: "https://github.com/leetcode-tools/leetcode-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

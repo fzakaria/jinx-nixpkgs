@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const kcrash = nix.arg($, "kcrash");
   const kded = nix.arg($, "kded");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kio",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, kdoctools]),
       buildInputs: nix.thunk(() => nix.concat([
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       patches: nix.thunk(() => [nix.path(here, "./0001-Remove-impure-smbd-search-path.patch")]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, homepage: "https://api.kde.org/frameworks/kio/html/" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://api.kde.org/frameworks/kio/html/" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

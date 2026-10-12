@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcp-gateway",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MikkoParkkola",
           repo: "mcp-gateway",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Universal MCP Gateway - Single-port multiplexing with Meta-MCP for ~95% context token savings",
         homepage: "https://github.com/MikkoParkkola/mcp-gateway",
         changelog: nix.thunk(() => nix.str`https://github.com/MikkoParkkola/mcp-gateway/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

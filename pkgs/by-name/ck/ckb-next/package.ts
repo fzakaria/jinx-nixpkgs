@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.6.2-unstable-2025-09-25",
       pname: "ckb-next",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ckb-next",
           repo: "ckb-next",
           rev: "4bf942dba5e73c2778ef797b6b8dd6b0239aca9a",
@@ -62,14 +62,14 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.path(here, "./install-dirs.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./modprobe.patch"), nix.thunk(() => ({ __proto__: pos$2, kmod: kmod })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./modprobe.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, kmod: kmod })))),
       ]),
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.str`substituteInPlace "$out/lib/udev/rules.d/99-ckb-next-daemon.rules" \\
   --replace-fail "/usr/bin/env sed" "${nix.app(nix.sel(lib, "getExe"), gnused)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Driver and configuration tool for Corsair keyboards and mice",
         homepage: "https://github.com/ckb-next/ckb-next",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

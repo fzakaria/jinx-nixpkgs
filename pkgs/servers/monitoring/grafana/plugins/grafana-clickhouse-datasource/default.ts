@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const pname = "grafana-clickhouse-datasource";
       const version = "4.16.0";
       const zipHash = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "sha256-fmYrMoLMFSA/bG7db7IhEKcgYAd3ukRTZOtT6h0bCbw=",
         "aarch64-linux": "sha256-TTo85HkQrq6bbifAfG30BPVP72nqOYP9yaJ7INpBN1U=",
         "aarch64-darwin": "sha256-NC5yVkrnD1J1LiDbSnKwNZsUOCShgfSZy8FuDnXpZWs=",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Connects Grafana to ClickHouse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         sourceProvenance: nix.thunk(() => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), zipHash)),
       }));
-      return { __proto__: pos$3, pname, version, zipHash, meta };
+      return { [nix.POS]: pos$3, pname, version, zipHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

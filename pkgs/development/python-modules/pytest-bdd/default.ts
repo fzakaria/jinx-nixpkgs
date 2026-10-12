@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-bdd",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PATH=$PATH:$out/bin\n";
       const pythonImportsCheck = nix.thunk(() => ["pytest_bdd"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BDD library for the pytest",
         homepage: "https://github.com/pytest-dev/pytest-bdd",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-bdd/blob/${version}/CHANGES.rst`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pytest-bdd",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

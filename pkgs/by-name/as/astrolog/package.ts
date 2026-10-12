@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const withEphemeris = nix.argOr($, "withEphemeris", () => true);
   const withMoonsEphemeris = nix.argOr($, "withMoonsEphemeris", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "astrolog",
       version: "7.70",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.astrolog.org/ftp/ast77src.zip",
           hash: "sha256-rG7njEtnHwUDqWstj0bQxm2c9CbsOmWOCYs0FtiVoJE=",
           stripRoot: false,
         })))),
       patchPhase: "sed -i \"s:~/astrolog:$out/astrolog:g\" astrolog.h\nsubstituteInPlace Makefile --replace cc \"$CC\" --replace strip \"$STRIP\"\n",
       buildInputs: nix.thunk(() => [libx11]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
       installPhase: nix.thunk(() => (() => {
         const ephemeris = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "http://astrolog.org/ftp/ephem/astephem.zip",
             hash: "sha256-+on9LE27hCPRacHaIo6wz6M3V+G1QpyJ1Rp4wHbycM0=",
             stripRoot: false,
           }))));
         const moonsEphemeris = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://www.astrolog.org/ftp/ephem/moons/sepm.zip",
             hash: "sha256-bHJc1yyR2loSOC4QJWsYNtKRYpxN9ZnKK5cWCapAptI=",
             stripRoot: false,
           }))));
         const atlas = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "http://astrolog.org/ftp/atlas/atlasbig.as",
             hash: "sha256-sEiuc7azeBA5959QOIo0qllXqHo7LABGV4sB08xNWsM=",
           }))));
@@ -67,7 +67,7 @@ cp -r ${moonsEphemeris}/*.se1 $out/ephemeris
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "kmein"))];

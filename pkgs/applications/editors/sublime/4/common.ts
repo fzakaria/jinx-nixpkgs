@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     const versionFile = nix.thunk(() => nix.builtins.toString(nix.path(here, "./packages.nix")));
     const neededLibraries = nix.thunk(() => [libx11, libxtst, glib, libglvnd, gtk3, cairo, pango, curl, sqlite]);
     const binaryPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: nix.thunk(() => nix.str`${pnameBase}-bin`),
         version: buildVersion,
         src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -84,16 +84,16 @@ runHook postBuild
   "\${gappsWrapperArgs[@]}"
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           sources: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: nix.thunk(() => nix.app(downloadUrl, "arm64")),
                 sha256: aarch64sha256,
               })))),
             "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: nix.thunk(() => nix.app(downloadUrl, "x64")),
                 sha256: x64sha256,
               })))),
@@ -101,7 +101,7 @@ runHook postBuild
         })),
       })));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pnameBase,
         version: buildVersion,
         dontUnpack: true,
@@ -123,7 +123,7 @@ for directory in ${binaryPackage}/Icon/*; do
 done
 `)),
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           unwrapped: binaryPackage,
           updateScript: nix.thunk(() => (() => {
             const script = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${packageAttribute}-update-script`), nix.thunk(() => nix.str`set -o errexit
@@ -145,7 +145,7 @@ done
           })()),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           description: "Sophisticated text editor for code, markup and prose",
           homepage: "https://www.sublimetext.com/",
           maintainers: nix.thunk(() => (() => {

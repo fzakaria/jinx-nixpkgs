@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mscgen",
       version: "0.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.mcternan.me.uk/mscgen/software/mscgen-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "3c3481ae0599e1c2d30b7ed54ab45249127533ab2f20e768a0ae58d8551ddc23",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.mcternan.me.uk/mscgen/",
         description: "Convert Message Sequence Chart descriptions into PNG, SVG, or EPS images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

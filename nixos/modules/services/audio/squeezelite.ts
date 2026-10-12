@@ -30,41 +30,41 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "squeezelite"));
   const serviceDeps = nix.thunk(() => nix.concat(["network.target", "sound.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "pulseaudio", "enable")), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "pulseaudio", "systemWide")) ? ["pulseaudio.service"] : ["pipewire.service", "pipewire-pulse.socket"])))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "squeezelite", "pulseAudio"]), nix.thunk(() => ["services", "squeezelite", "pulseaudio", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "squeezelite", "extraArguments"]), nix.thunk(() => ["services", "squeezelite", "extraArgs"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         squeezelite: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Squeezelite, a software Squeezebox emulator")),
           package: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "squeezelite", nix.thunk(() => ({}))), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "pulseaudio", "enable")) ? nix.sel(pkgs, "squeezelite-pulse") : nix.sel(pkgs, "squeezelite"))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.squeezelite.pulseaudio.enable then pkgs.squeezelite-pulse else pkgs.squeezelite")),
           })),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "name to report to server",
               default: null,
             })))),
           mutableName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "store name in file, controllable by server",
               default: nix.thunk(() => nix.eq(nix.sel(cfg, "name"), null)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.squeezelite.name == null")),
             })))),
           pulseaudio: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "pulseaudio support")),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "group for accessing to pulseaudio socket",
                 default: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "pulseaudio", "systemWide")) ? "pulse-access" : "pipewire")),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Additional command line arguments to pass to Squeezelite.\n",
@@ -81,36 +81,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "name"), null)) || nix.asBool(!nix.asBool(nix.sel(cfg, "mutableName"))))),
             message: "'services.squeezelite.name' and 'services.squeezelite.mutableName' are mutually exclusive",
           })),
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "pulseaudio", "enable"))) || nix.asBool((nix.asBool((nix.asBool(nix.sel(config, "services", "pulseaudio", "enable")) && nix.asBool(nix.sel(config, "services", "pulseaudio", "systemWide")))) || nix.asBool((nix.asBool((nix.asBool(nix.sel(config, "services", "pipewire", "enable")) && nix.asBool(nix.sel(config, "services", "pipewire", "pulse", "enable")))) && nix.asBool(nix.sel(config, "services", "pipewire", "systemWide")))))))),
             message: "`services.squeezelite.pulseaudio.enable = true' requires a system-wide Pulseaudio server. Either:\n- `services.pulseaudio.enable = true' and `services.pulseaudio.systemWide = true'\nor\n- `services.pipewire.enable = true', `services.pipewire.pulse.enable = true', and `services.pipewire.systemWide = true'\nshould be set.\n",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             squeezelite: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               wantedBy: nix.thunk(() => ["multi-user.target", "sound.target"]),
               after: serviceDeps,
               requires: serviceDeps,
               description: "Software Squeezebox emulator",
               environment: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 XDG_CONFIG_HOME: "%S/squeezelite/.config",
                 XDG_RUNTIME_DIR: "%t/squeezelite",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStartPre: nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -l`),
                 ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "pulseaudio", "enable"))), nix.thunk(() => [

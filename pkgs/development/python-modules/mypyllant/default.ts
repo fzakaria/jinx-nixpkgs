@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mypyllant",
       version: "0.9.18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "signalkraft",
           repo: "myPyllant",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["myPyllant"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to interact with the API behind the myVAILLANT app",
         homepage: "https://github.com/signalkraft/myPyllant",
         changelog: nix.thunk(() => nix.str`https://github.com/signalkraft/myPyllant/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

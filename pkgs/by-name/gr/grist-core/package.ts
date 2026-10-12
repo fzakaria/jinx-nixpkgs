@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const fetchGristEnterprise = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetch-grist-enterprise.nix"), nix.thunk(() => ({}))));
       const enterprise = nix.thunk(() => nix.app(fetchGristEnterprise, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           gristSrc: nix.thunk(() => nix.sel(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fAi0qCfNPH+w51EmsaecS1y0aP4vx2kYK9hS5UQHIA8=",
@@ -65,24 +65,24 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(p, "wrapt")),
         ])));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "grist-core",
         version: "1.7.20",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "gristlabs",
             repo: "grist-core",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-umLdlxC0YBhhb17XMDVOeSNVJqkO9+DFwaHP3Sq3rWw=",
           })))),
         offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
             hash: "sha256-o3hsHfgq1/14j0O13mjJ4a+dpwQ9kXkDnNOHsEhCroM=",
           })))),
         env: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           GRIST_SKIP_EXT_AUTOSETUP: "1",
           sandboxPath: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "bin", nix.thunk(() => nix.concat([pythonEnv], sandboxEnv)))),
           sandboxLibPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([pythonEnv], sandboxEnv)))),
@@ -149,21 +149,21 @@ runHook postInstall
 `),
         postInstall: "unlink $out/grist-core/static/mocha.js\nunlink $out/grist-core/static/sinon.js\nunlink $out/grist-core/static/mocha.css\n\nunlink $out/grist-core/node_modules/msgpackr/node_modules/.bin/download-msgpackr-prebuilds\nunlink $out/grist-core/node_modules/.bin/download-msgpackr-prebuilds\n\nunlink $out/grist-core/bower_components/bootstrap\n\nsubstituteAllInPlace $out/grist-core/sandbox/gvisor/run.py\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pythonEnv: pythonEnv,
           enterpriseSrc: nix.thunk(() => nix.sel(enterprise, "src")),
           enterpriseOfflineCache: nix.thunk(() => nix.sel(enterprise, "offlineCache")),
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "grist-core": nix.thunk(() => nix.sel(nixosTests, "grist")),
           })),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               extraArgs: nix.thunk(() => ["--custom-dep", "enterpriseSrc", "--custom-dep", "enterpriseOfflineCache"]),
             })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "sinavir"))];

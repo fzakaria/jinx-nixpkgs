@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const xrandr = nix.arg($, "xrandr");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "modrinth-app",
       version: nix.thunk(() => nix.attr(modrinth_app_unwrapped, "version")),
       paths: nix.thunk(() => [modrinth_app_unwrapped]),
@@ -73,7 +73,7 @@ wrapGApp "$out/bin/ModrinthApp"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(modrinth_app_unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

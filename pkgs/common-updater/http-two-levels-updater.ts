@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const patchlevel_unstable = nix.argOr($_1, "patchlevel-unstable", () => false);
     const url = nix.argOr($_1, "url", () => null);
     return nix.app(genericUpdater, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname,
         version: version,
         attrPath: attrPath,

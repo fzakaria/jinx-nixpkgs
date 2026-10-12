@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "pvr.hdhomerun";
       const version = "21.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-pvr",
           repo: "pvr.hdhomerun",
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const extraBuildInputs = nix.thunk(() => [jsoncpp, libhdhomerun]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kodi-pvr/pvr.hdhomerun",
         description: "Kodi's HDHomeRun PVR client addon",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$3, pname, namespace, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, namespace, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

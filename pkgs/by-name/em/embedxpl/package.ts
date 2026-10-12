@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "embedxpl",
       version: "3.12.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrhenrike",
           repo: "EmbedXPL-Forge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           all: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "numpy")),
             nix.thunk(() => nix.lookup(w_2, "pymodbus")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["embedxpl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Embedded Device Security Assessment Framework",
         homepage: "https://github.com/mrhenrike/EmbedXPL-Forge",
         changelog: nix.thunk(() => nix.str`https://github.com/mrhenrike/EmbedXPL-Forge/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

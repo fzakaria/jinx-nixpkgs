@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "Ruff (Python) wrapper plugin",
       hash: "sha256-kKdkIV4QbJZ8njBd8jVhwQsi7I3+PqWT/e3ORqWV7yQ=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: [],
         configKey: "ruff",
         fileExtensions: nix.thunk(() => ["py", "pyi"]),

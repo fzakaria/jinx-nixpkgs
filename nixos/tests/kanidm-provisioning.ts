@@ -131,40 +131,40 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
   const provisionIdmAdminPassword = "very-strong-password-for-idm-admin";
   const provisionIdmAdminPassword2 = "very-strong-alternative-password-for-idm-admin";
   return {
-    __proto__: pos$104,
+    [nix.POS]: pos$104,
     name: nix.thunk(() => nix.str`kanidm-provisioning-${nix.sel(kanidmPackage, "version")}`),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oddlama"))];
       })()),
     })),
     _module: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       args: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         kanidmPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkDefault"), nix.thunk(() => nix.sel(pkgs, "kanidmWithSecretProvisioning_1_11")))),
       })),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$103,
+      [nix.POS]: pos$103,
       provision: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$102,
+          [nix.POS]: pos$102,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             kanidm: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               package: kanidmPackage,
               server: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   origin: nix.thunk(() => nix.str`https://${serverDomain}`),
                   domain: serverDomain,
                   bindaddress: "[::]:443",
@@ -174,10 +174,10 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
                 })),
               })),
               client: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   uri: nix.thunk(() => nix.str`https://${serverDomain}`),
                   verify_ca: true,
                   verify_hostnames: true,
@@ -186,19 +186,19 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             credentialProvision: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   services: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     kanidm: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       provision: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           enable: true,
                           adminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "admin-pw", provisionAdminPassword)),
                           idmAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "idm-admin-pw", provisionIdmAdminPassword)),
@@ -209,17 +209,17 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
               })(), formals$3),
             })),
             changedCredential: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 return {
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   services: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     kanidm: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       provision: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           enable: true,
                           idmAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "idm-admin-pw", provisionIdmAdminPassword2)),
                         })))),
@@ -229,24 +229,24 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
               })(), formals$4),
             })),
             addEntities: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$5);
                 return {
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   services: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     kanidm: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       provision: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           enable: true,
                           groups: nix.thunk(() => ({
-                            __proto__: pos$22,
-                            supergroup1: nix.thunk(() => ({ __proto__: pos$20, members: nix.thunk(() => ["testgroup1"]) })),
+                            [nix.POS]: pos$22,
+                            supergroup1: nix.thunk(() => ({ [nix.POS]: pos$20, members: nix.thunk(() => ["testgroup1"]) })),
                             testgroup1: nix.thunk(() => ({})),
                             imperative: nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               overwriteMembers: false,
                               members: nix.thunk(() => ["testuser1"]),
                             })),
@@ -254,46 +254,46 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
                             "service1-admin": nix.thunk(() => ({})),
                           })),
                           persons: nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             testuser1: nix.thunk(() => ({
-                              __proto__: pos$23,
+                              [nix.POS]: pos$23,
                               displayName: "Test User",
                               legalName: "Jane Doe",
                               mailAddresses: nix.thunk(() => ["jane.doe@example.com"]),
                               groups: nix.thunk(() => ["testgroup1", "service1-access"]),
                             })),
                             testuser2: nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               displayName: "Powerful Test User",
                               legalName: "Ryouiki Tenkai",
                               groups: nix.thunk(() => ["service1-admin"]),
                             })),
                           })),
                           systems: nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             oauth2: nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               service1: nix.thunk(() => ({
-                                __proto__: pos$31,
+                                [nix.POS]: pos$31,
                                 displayName: "Service One",
                                 originUrl: "https://one.example.com/",
                                 originLanding: "https://one.example.com/landing",
                                 basicSecretFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "bs-service1", "very-strong-secret-for-service1")),
                                 scopeMaps: nix.thunk(() => ({
-                                  __proto__: pos$26,
+                                  [nix.POS]: pos$26,
                                   "service1-access": nix.thunk(() => ["openid", "email", "profile"]),
                                 })),
-                                supplementaryScopeMaps: nix.thunk(() => ({ __proto__: pos$27, "service1-admin": nix.thunk(() => ["admin"]) })),
+                                supplementaryScopeMaps: nix.thunk(() => ({ [nix.POS]: pos$27, "service1-admin": nix.thunk(() => ["admin"]) })),
                                 claimMaps: nix.thunk(() => ({
-                                  __proto__: pos$30,
+                                  [nix.POS]: pos$30,
                                   groups: nix.thunk(() => ({
-                                    __proto__: pos$29,
-                                    valuesByGroup: nix.thunk(() => ({ __proto__: pos$28, "service1-admin": nix.thunk(() => ["admin"]) })),
+                                    [nix.POS]: pos$29,
+                                    valuesByGroup: nix.thunk(() => ({ [nix.POS]: pos$28, "service1-admin": nix.thunk(() => ["admin"]) })),
                                   })),
                                 })),
                               })),
                               service2: nix.thunk(() => ({
-                                __proto__: pos$32,
+                                [nix.POS]: pos$32,
                                 displayName: "Service Two",
                                 originUrl: "https://two.example.com/",
                                 originLanding: "https://landing2.example.com/",
@@ -309,65 +309,65 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
               })(), formals$5),
             })),
             changeAttributes: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$6);
                 return {
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   services: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     kanidm: nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       provision: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           enable: true,
                           idmAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "idm-admin-pw", provisionIdmAdminPassword)),
                           groups: nix.thunk(() => ({
-                            __proto__: pos$41,
+                            [nix.POS]: pos$41,
                             supergroup1: nix.thunk(() => ({})),
                             testgroup1: nix.thunk(() => ({})),
-                            imperative: nix.thunk(() => ({ __proto__: pos$40, overwriteMembers: false })),
+                            imperative: nix.thunk(() => ({ [nix.POS]: pos$40, overwriteMembers: false })),
                             "service1-access": nix.thunk(() => ({})),
                             "service1-admin": nix.thunk(() => ({})),
                           })),
                           persons: nix.thunk(() => ({
-                            __proto__: pos$44,
+                            [nix.POS]: pos$44,
                             testuser1: nix.thunk(() => ({
-                              __proto__: pos$42,
+                              [nix.POS]: pos$42,
                               displayName: "Test User (changed)",
                               legalName: "Jane Doe (changed)",
                               mailAddresses: nix.thunk(() => ["jane.doe@example.com", "second.doe@example.com"]),
                               groups: nix.thunk(() => ["service1-access"]),
                             })),
                             testuser2: nix.thunk(() => ({
-                              __proto__: pos$43,
+                              [nix.POS]: pos$43,
                               displayName: "Powerful Test User (changed)",
                               legalName: "Ryouiki Tenkai (changed)",
                               groups: nix.thunk(() => ["service1-admin"]),
                             })),
                           })),
                           systems: nix.thunk(() => ({
-                            __proto__: pos$53,
+                            [nix.POS]: pos$53,
                             oauth2: nix.thunk(() => ({
-                              __proto__: pos$52,
+                              [nix.POS]: pos$52,
                               service1: nix.thunk(() => ({
-                                __proto__: pos$50,
+                                [nix.POS]: pos$50,
                                 displayName: "Service One (changed)",
                                 originUrl: nix.thunk(() => ["https://changed-one.example.com/", "https://changed-one.example.org/"]),
                                 originLanding: "https://changed-one.example.com/landing-changed",
                                 basicSecretFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "bs-service1", "changed-very-strong-secret-for-service1")),
-                                scopeMaps: nix.thunk(() => ({ __proto__: pos$45, "service1-access": nix.thunk(() => ["openid", "email"]) })),
-                                supplementaryScopeMaps: nix.thunk(() => ({ __proto__: pos$46, "service1-admin": nix.thunk(() => ["adminchanged"]) })),
+                                scopeMaps: nix.thunk(() => ({ [nix.POS]: pos$45, "service1-access": nix.thunk(() => ["openid", "email"]) })),
+                                supplementaryScopeMaps: nix.thunk(() => ({ [nix.POS]: pos$46, "service1-admin": nix.thunk(() => ["adminchanged"]) })),
                                 claimMaps: nix.thunk(() => ({
-                                  __proto__: pos$49,
+                                  [nix.POS]: pos$49,
                                   groups: nix.thunk(() => ({
-                                    __proto__: pos$48,
-                                    valuesByGroup: nix.thunk(() => ({ __proto__: pos$47, "service1-admin": nix.thunk(() => ["adminchanged"]) })),
+                                    [nix.POS]: pos$48,
+                                    valuesByGroup: nix.thunk(() => ({ [nix.POS]: pos$47, "service1-admin": nix.thunk(() => ["adminchanged"]) })),
                                   })),
                                 })),
                               })),
                               service2: nix.thunk(() => ({
-                                __proto__: pos$51,
+                                [nix.POS]: pos$51,
                                 displayName: "Service Two (changed)",
                                 originUrl: "https://changed-two.example.com/",
                                 originLanding: "https://changed-landing2.example.com/",
@@ -383,49 +383,49 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
               })(), formals$6),
             })),
             removeAttributes: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$7);
                 return {
-                  __proto__: pos$72,
+                  [nix.POS]: pos$72,
                   services: nix.thunk(() => ({
-                    __proto__: pos$71,
+                    [nix.POS]: pos$71,
                     kanidm: nix.thunk(() => ({
-                      __proto__: pos$70,
+                      [nix.POS]: pos$70,
                       provision: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                          __proto__: pos$69,
+                          [nix.POS]: pos$69,
                           enable: true,
                           idmAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "idm-admin-pw", provisionIdmAdminPassword)),
                           groups: nix.thunk(() => ({
-                            __proto__: pos$59,
+                            [nix.POS]: pos$59,
                             supergroup1: nix.thunk(() => ({})),
                             "service1-access": nix.thunk(() => ({})),
                             "service1-admin": nix.thunk(() => ({})),
                           })),
                           persons: nix.thunk(() => ({
-                            __proto__: pos$62,
-                            testuser1: nix.thunk(() => ({ __proto__: pos$60, displayName: "Test User (changed)" })),
+                            [nix.POS]: pos$62,
+                            testuser1: nix.thunk(() => ({ [nix.POS]: pos$60, displayName: "Test User (changed)" })),
                             testuser2: nix.thunk(() => ({
-                              __proto__: pos$61,
+                              [nix.POS]: pos$61,
                               displayName: "Powerful Test User (changed)",
                               groups: nix.thunk(() => ["service1-admin"]),
                             })),
                           })),
                           systems: nix.thunk(() => ({
-                            __proto__: pos$68,
+                            [nix.POS]: pos$68,
                             oauth2: nix.thunk(() => ({
-                              __proto__: pos$67,
+                              [nix.POS]: pos$67,
                               service1: nix.thunk(() => ({
-                                __proto__: pos$65,
+                                [nix.POS]: pos$65,
                                 displayName: "Service One (changed)",
                                 originUrl: "https://changed-one.example.com/",
                                 originLanding: "https://changed-one.example.com/landing-changed",
                                 basicSecretFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "bs-service1", "changed-very-strong-secret-for-service1")),
-                                scopeMaps: nix.thunk(() => ({ __proto__: pos$63, "service1-access": [] })),
-                                supplementaryScopeMaps: nix.thunk(() => ({ __proto__: pos$64, "service1-admin": [] })),
+                                scopeMaps: nix.thunk(() => ({ [nix.POS]: pos$63, "service1-access": [] })),
+                                supplementaryScopeMaps: nix.thunk(() => ({ [nix.POS]: pos$64, "service1-admin": [] })),
                               })),
                               service2: nix.thunk(() => ({
-                                __proto__: pos$66,
+                                [nix.POS]: pos$66,
                                 displayName: "Service Two (changed)",
                                 originUrl: "https://changed-two.example.com/",
                                 originLanding: "https://changed-landing2.example.com/",
@@ -439,17 +439,17 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
               })(), formals$7),
             })),
             removeEntities: nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$8);
                 return {
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   services: nix.thunk(() => ({
-                    __proto__: pos$76,
+                    [nix.POS]: pos$76,
                     kanidm: nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       provision: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                          __proto__: pos$74,
+                          [nix.POS]: pos$74,
                           enable: true,
                           idmAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "idm-admin-pw", provisionIdmAdminPassword)),
                         })))),
@@ -459,35 +459,35 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
               })(), formals$8),
             })),
             extraJsonFile: nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$9);
                 return {
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   services: nix.thunk(() => ({
-                    __proto__: pos$89,
+                    [nix.POS]: pos$89,
                     kanidm: nix.thunk(() => ({
-                      __proto__: pos$88,
+                      [nix.POS]: pos$88,
                       provision: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                          __proto__: pos$87,
+                          [nix.POS]: pos$87,
                           enable: true,
                           idmAdminPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "idm-admin-pw", provisionIdmAdminPassword)),
                           extraJsonFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "extra-json.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                                __proto__: pos$83,
+                                [nix.POS]: pos$83,
                                 persons: nix.thunk(() => ({
-                                  __proto__: pos$80,
-                                  testuser2: nix.thunk(() => ({ __proto__: pos$79, displayName: "Test User 2" })),
+                                  [nix.POS]: pos$80,
+                                  testuser2: nix.thunk(() => ({ [nix.POS]: pos$79, displayName: "Test User 2" })),
                                 })),
                                 groups: nix.thunk(() => ({
-                                  __proto__: pos$82,
-                                  testgroup1: nix.thunk(() => ({ __proto__: pos$81, members: nix.thunk(() => ["testuser2"]) })),
+                                  [nix.POS]: pos$82,
+                                  testgroup1: nix.thunk(() => ({ [nix.POS]: pos$81, members: nix.thunk(() => ["testuser2"]) })),
                                 })),
                               })))))),
-                          groups: nix.thunk(() => ({ __proto__: pos$84, testgroup1: nix.thunk(() => ({})) })),
+                          groups: nix.thunk(() => ({ [nix.POS]: pos$84, testgroup1: nix.thunk(() => ({})) })),
                           persons: nix.thunk(() => ({
-                            __proto__: pos$86,
+                            [nix.POS]: pos$86,
                             testuser1: nix.thunk(() => ({
-                              __proto__: pos$85,
+                              [nix.POS]: pos$85,
                               displayName: "Test User 1",
                               groups: nix.thunk(() => ["testgroup1"]),
                             })),
@@ -500,29 +500,29 @@ cp ${nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")} $out/snakeoil.key
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             pki: nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$97,
-            hosts: nix.thunk(() => ({ __proto__: pos$95, "::1": nix.thunk(() => [serverDomain]) })),
-            firewall: nix.thunk(() => ({ __proto__: pos$96, allowedTCPPorts: nix.thunk(() => [443n]) })),
+            [nix.POS]: pos$97,
+            hosts: nix.thunk(() => ({ [nix.POS]: pos$95, "::1": nix.thunk(() => [serverDomain]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$96, allowedTCPPorts: nix.thunk(() => [443n]) })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$100,
+            [nix.POS]: pos$100,
             users: nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               kanidm: nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 shell: nix.thunk(() => nix.sel(pkgs_1, "bashInteractive")),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             systemPackages: nix.thunk(() => [
               kanidmPackage,
               nix.thunk(() => nix.sel(pkgs_1, "openldap")),

@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const freefont_ttf = nix.arg($, "freefont_ttf");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kernelshark",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/trace-cmd/kernel-shark.git/snapshot/kernelshark-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-OT6ClyZRE+pxWwm+sfzvN3CnoCIyxcAiVsi1fdzaT4M=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://lore.kernel.org/linux-trace-devel/20251010131715.1123934-1-michal.sojka@cvut.cz/raw",
             hash: "sha256-hT+EhauFlQGjhXyq7Z9FwjS3C+0Jlz6n5BDKCXwzBCc=",
           })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DTT_FONT_FILE=${freefont_ttf}/share/fonts/truetype/FreeSans.ttf`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI for trace-cmd which is an interface for the Linux kernel ftrace subsystem",
         homepage: "https://kernelshark.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

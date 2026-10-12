@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 5000n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "path")),
           description: "Path to the YACE configuration file, defining which CloudWatch\nmetrics to scrape. See\n<https://github.com/prometheus-community/yet-another-cloudwatch-exporter#configuration>\nfor the format. AWS credentials are supplied separately via the\nenvironment (see {option}`environmentFile`, an IMDS instance role,\nor the usual `AWS_*` variables).\n",
         })))),
       environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
           example: "/run/secrets/yace.env",
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         EnvironmentFile: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
         ExecStart: nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "yet-another-cloudwatch-exporter")))),

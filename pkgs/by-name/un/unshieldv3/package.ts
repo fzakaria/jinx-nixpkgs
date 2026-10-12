@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unshieldv3",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wfr",
           repo: "unshieldv3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postCheck: "for i in $src/test-data/*.Z; do\n  mkdir -p test\n  ./unshieldv3 extract $i test\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to extract .Z files from InstallShield V3 (Z) installers",
         homepage: "https://github.com/wfr/unshieldv3",
         changelog: nix.thunk(() => nix.str`https://github.com/wfr/unshieldv3/releases/tag/v${nix.sel(finalAttrs, "version")}`),

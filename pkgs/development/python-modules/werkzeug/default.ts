@@ -31,25 +31,25 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-m61hpCaNrBEvHFzUYwpW7eYBtu1CAwBneoaQg9cKTEQ=",
         }))));
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [markupsafe]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, watchdog: nix.thunk(() => [watchdog]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, watchdog: nix.thunk(() => [watchdog]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([cffi, cryptography, ephemeral_port_reserve, pytest_timeout, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["werkzeug"]);
       const disabledTests = nix.thunk(() => nix.concat(["test_http_proxy", "test_basic", "test_long_build"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_get_machine_id"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/test_serving.py"]);
       const disabledTestMarks = nix.thunk(() => ["filterwarnings"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, moto: moto, "sentry-sdk": sentry_sdk })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, moto: moto, "sentry-sdk": sentry_sdk })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://werkzeug.palletsprojects.com/en/stable/changes/#version-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
         homepage: "https://palletsprojects.com/p/werkzeug/",
         description: "Comprehensive WSGI web application library",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

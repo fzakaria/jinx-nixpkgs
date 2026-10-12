@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ChrisMandich",
           repo: "PyFlume",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [requests_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyflume"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to work with Flume sensors",
         homepage: "https://github.com/ChrisMandich/PyFlume",
         changelog: nix.thunk(() => nix.str`https://github.com/ChrisMandich/PyFlume/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

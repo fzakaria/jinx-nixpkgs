@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const minizip = nix.arg($, "minizip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "powertabeditor",
       version: "2.0.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "powertab",
           repo: "powertabeditor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
         minizip,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "View and edit guitar tablature",
         homepage: "https://powertab.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/powertab/powertabeditor/blob/refs/tags/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

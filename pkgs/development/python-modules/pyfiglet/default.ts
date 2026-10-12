@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pyfiglet";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-25yZQO0b8wSN7/U07VL/La+7ws12ELF7teyh321CeO8=",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FIGlet in pure Python",
         mainProgram: "pyfiglet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "thoughtpolice"))];
         })()),
       }));
-      return { __proto__: pos$3, version, format, pname, src, doCheck, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

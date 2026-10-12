@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goudy-bookletter-1911",
       version: "2011-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "goudy-bookletter-1911",
           rev: "85ff5b834b4f63feb36fd2053949c19660580e48",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/opentype $src/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Public domain font based on Frederic Goudy’s Kennerley Oldstyle",
         homepage: "https://www.theleagueofmoveabletype.com/goudy-bookletter-1911",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

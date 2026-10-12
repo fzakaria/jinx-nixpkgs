@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libglut = nix.arg($, "libglut");
   const apple_sdk = nix.arg($, "apple-sdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "construo",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Construo/construo/releases/download/v${nix.sel(finalAttrs, "version")}/construo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1wmj527hbj1qv44cdsj6ahfjrnrjwg2dp8gdick8nd07vm062qxa",
         })))),
@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
   '-I${apple_sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/GLUT.framework/Headers/'
 `))),
       preConfigure: "substituteInPlace src/Makefile.in \\\n  --replace games bin\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Masses and springs simulation game",
         mainProgram: "construo.x11",
         homepage: "http://fs.fsf.org/construo/",

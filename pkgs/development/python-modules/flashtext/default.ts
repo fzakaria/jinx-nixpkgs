@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1kq5idfp9skqkjdcld40igxn2yqjly8jpmxawkp0skwxw29jpgm1",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/vi3k6i5/flashtext",
         description: "Python package to replace keywords in sentences or extract keywords from sentences",
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

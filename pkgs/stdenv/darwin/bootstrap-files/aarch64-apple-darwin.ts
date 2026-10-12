@@ -7,14 +7,14 @@ const pos$2 = nix.positions(here + "/aarch64-apple-darwin.nix", [["url", 19, 5],
 const pos$3 = nix.positions(here + "/aarch64-apple-darwin.nix", [["bootstrapTools", 14, 3], ["unpack", 18, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   bootstrapTools: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://tarballs.nixos.org/stdenv/aarch64-apple-darwin/d8657587c0c1ce2191b4b489299c386b5b7148c6/bootstrap-tools.tar.xz",
       hash: "sha256-i+KwTIY6P3dKfNmE42BWC9+qUomoDxazO50uvrzNlpE=",
     })))),
   unpack: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "http://tarballs.nixos.org/stdenv/aarch64-apple-darwin/d8657587c0c1ce2191b4b489299c386b5b7148c6/unpack.nar.xz",
       hash: "sha256-mzql+dmvqtn663HvzWZORA8f9d9RPShwPJNIk9VGEvU=",
       name: "unpack",

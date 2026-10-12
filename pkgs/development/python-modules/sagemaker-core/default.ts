@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sagemaker-core",
       version: "1.0.78",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "sagemaker-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +51,12 @@ export default nix.lambda((args) => (() => {
         pyyaml,
         rich,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, codegen: nix.thunk(() => [black, pandas, pylint, pytest]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, codegen: nix.thunk(() => [black, pandas, pylint, pytest]) })),
       pythonImportsCheck: nix.thunk(() => ["sagemaker_core"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       disabledTestPaths: nix.thunk(() => ["integ/test_codegen.py", "tst/generated/test_logs.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python object-oriented interface for interacting with Amazon SageMaker resources",
         homepage: "https://github.com/aws/sagemaker-core",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/sagemaker-core/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

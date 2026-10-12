@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const crossSystem0 = crossSystem;
   const pristineLib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
   const lib = nix.thunk(() => (nix.asBool(__allowFileset) ? nix.force(pristineLib) : nix.app(nix.sel(pristineLib, "extend"), (_) => (__1) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fileset: nix.thunk(() => nix.builtins.abort("\nThe use of `lib.fileset` is currently forbidden in Nixpkgs due to the\nupstream Nix bug <https://github.com/NixOS/nix/issues/11503>. This\ncauses difficult‐to‐debug errors when combined with chroot stores,\nsuch as in the NixOS installer.\n\nFor packages that require source to be vendored inside Nixpkgs,\nplease use a subdirectory of the package instead.\n")),
     }))));
   const throwIfNot = nix.thunk(() => nix.attr(lib, "throwIfNot"));
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
     const system = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), crossSystem0));
     return (nix.asBool((nix.asBool(nix.eq(crossSystem0, null)) || nix.asBool(nix.app(nix.sel(lib, "systems", "equals"), system, localSystem_1)))) ? nix.force(localSystem_1) : nix.force(system));
   })());
-  const config1 = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), config0)) ? nix.app(config0, nix.thunk(() => ({ __proto__: pos$2, lib: lib, pkgs: pkgs }))) : nix.force(config0)));
+  const config1 = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), config0)) ? nix.app(config0, nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, pkgs: pkgs }))) : nix.force(config0)));
   const configEval = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       modules: nix.thunk(() => [
         nix.path(here, "./config.nix"),
         nix.lambda((args_2) => (() => {
           const $_1 = nix.formals(args_2, formals$2);
           const options = nix.arg($_1, "options");
-          return { __proto__: pos$3, _file: "nixpkgs.config", config: config1 };
+          return { [nix.POS]: pos$3, _file: "nixpkgs.config", config: config1 };
         })(), formals$2),
       ]),
       class: "nixpkgsConfig",
@@ -57,10 +57,10 @@ export default nix.lambda((args) => (() => {
 ${failedAssertionsString}`)) : nix.app(nix.sel(lib, "showWarnings"), nix.thunk(() => nix.sel(configEval, "config", "warnings")), nix.thunk(() => nix.sel(configEval, "config"))));
   })());
   const nixpkgsFun = (newArgs) => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => nix.update(args_1, newArgs)));
-  const allPackages = (newArgs) => nix.app(nix.builtins.import(nix.path(here, "./stage.nix")), nix.thunk(() => nix.update({ __proto__: pos$5, lib: lib, nixpkgsFun: nixpkgsFun }, newArgs)));
-  const boot = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/booter.nix")), nix.thunk(() => ({ __proto__: pos$6, lib: lib, allPackages: allPackages }))));
+  const allPackages = (newArgs) => nix.app(nix.builtins.import(nix.path(here, "./stage.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$5, lib: lib, nixpkgsFun: nixpkgsFun }, newArgs)));
+  const boot = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/booter.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, lib: lib, allPackages: allPackages }))));
   const stages = nix.thunk(() => nix.app(stdenvStages, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       lib: lib,
       localSystem: localSystem_1,
       crossSystem: crossSystem_1,

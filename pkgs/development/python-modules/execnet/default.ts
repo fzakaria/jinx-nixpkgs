@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Y9g7/dmiPjW5xqMmFBIyT5ZMLsjc2NPGkW7pNz4L780=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["execnet"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed Python deployment and communication",
         homepage: "https://execnet.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/execnet/blob/v${version}/CHANGELOG.rst`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

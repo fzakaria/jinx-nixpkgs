@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miniconfig",
           repo: "python-openevse-wifi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [requests_mock, pytestCheckHook, pytest_cov_stub]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-to-poetry-core.patch",
             url: "https://github.com/miniconfig/python-openevse-wifi/commit/1083868dd9f39a8ad7bb17f02cea1b8458e5b82d.patch",
             hash: "sha256-XGeyi/PchBju1ICgL/ZCDGCbWwIJmLAcHuKaj+kDsI0=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["openevsewifi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for communicating with the wifi module from OpenEVSE",
         homepage: "https://github.com/miniconfig/python-openevse-wifi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

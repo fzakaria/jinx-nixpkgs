@@ -27,22 +27,22 @@ export default nix.lambda((args) => (() => {
   const gcc14Stdenv = nix.arg($, "gcc14Stdenv");
   const stableVersion = "1.4.0";
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ath9k-htc-blobless-firmware",
       version: nix.thunk(() => (nix.asBool(enableUnstable) ? nix.str`${stableVersion}-unstable-2022-05-22` : stableVersion)),
-      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ __proto__: pos$1, owner: "qca", repo: "open-ath9k-htc-firmware" }, (nix.asBool(enableUnstable) ? {
-          __proto__: pos$2,
+      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: pos$1, owner: "qca", repo: "open-ath9k-htc-firmware" }, (nix.asBool(enableUnstable) ? {
+          [nix.POS]: pos$2,
           rev: "d856466a068afe4069335257c0d28295ff777d92",
           hash: "sha256-9OE6qYGABeXjf1r/Depd+811EJ2e8I0Ni5ePHSOh9G4=",
         } : {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Q/A0ryIC5E1pt2Sh7o79gxHbe4OgdlrwflOWtxWSS5o=",
         }))))),
       postPatch: "patchShebangs target_firmware/firmware-crc.pl\nsubstituteInPlace target_firmware/CMakeLists.txt \\\n--replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 2.6)\" \\\n               \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10)\"\n",
       nativeBuildInputs: nix.thunk(() => [m4, cmake, perl]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-w", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUnstable)), " -fpermissive"))),
       })),
       dontUseCmakeConfigure: true,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
                   const url = nix.thunk(() => nix.sel(urls_and_hashes, nix.key(nix.str`${nix.add(nix.app(toUpper, vname), "_URL")}`)));
                   const sha256 = nix.thunk(() => nix.selOr(urls_and_hashes, () => "", nix.key(nix.str`${nix.add(nix.app(toUpper, vname), "_SUM")}`)));
                   const name = nix.thunk(() => nix.app(last, nix.thunk(() => nix.app(splitString, "/", url))));
-                  return { __proto__: pos$5, url, sha256, name };
+                  return { [nix.POS]: pos$5, url, sha256, name };
                 })())))),
             nix.thunk(() => nix.app(map, (v) => nix.str`ln -sT ${v} toolchain/dl/${nix.sel(v, "name")}`)),
             nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n")),
@@ -78,13 +78,13 @@ ln -s htc_9271.fw "$out/lib/firmware/ath9k_htc/htc_9271-${stableVersion}.fw"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         src: nix.thunk(() => nix.attr(finalAttrs, "src")),
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-updateScript`), nix.thunk(() => nix.str`nix-shell '<nixpkgs>' -A ${nix.sel(finalAttrs, "pname")}${nix.app(nix.sel(lib, "optionalString"), enableUnstable, "-unstable")}.passthru.update \\
 > pkgs/os-specific/linux/firmware/ath9k/urls-and-hashes-${nix.sel(finalAttrs, "version")}.nix
 `))),
         update: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-update`),
             shellHook: nix.thunk(() => nix.add(nix.add(nix.str`echo 'rec {'
 echo '  BASEDIR="$NIX_BUILD_TOP";'
@@ -97,7 +97,7 @@ make --dry-run --print-data-base -f ${nix.sel(finalAttrs, "src")}/Makefile downl
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Blobless, open source wifi firmware for ath9k_htc.ko",
         longDescription: "Firmware for Qualcomm Atheros cards which use the ath9k_htc.ko\nLinux driver, supporting 802.11 abgn on both 2.4ghz and 5ghz\nbands, 3x3-antenna MIMO, up to 600mbit/sec.\n\nMost devices which use this driver are based on the Qualcomm\nAtheros AR9271 chip, which is a PCIe device.  If your device\nis connected via USB, it will also include a Qualcomm Atheros\nAR7010, which bridges from a USB gadget interface to a PCIe\nhost interface.  This repository includes the firmware for\nboth chips.\n\nThis firmware is completely open source with no blobs, which\nis quite rare in the wifi world.  Wifi chips have their own\ndedicated general-purpose CPUs.  This source code allows you\nto see what those CPUs are doing and modify their behavior.\n",
         license: nix.thunk(() => (() => {

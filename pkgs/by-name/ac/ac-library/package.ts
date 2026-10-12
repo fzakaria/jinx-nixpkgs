@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ac-library",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atcoder",
           repo: "ac-library",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\nsubstituteInPlace test/test_expander.py \\\n  --replace-fail \"g++\" \"$CXX\"\npython -m pytest --ignore-glob='test/unittest/googletest/*'\n\npushd test/unittest\nmkdir build\ncd build\ncmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=$STDCXX\nmake\nctest -VV\npopd\n\nrunHook postInstallCheck\n",
       hardeningDisable: nix.thunk(() => ["strictoverflow"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-bounds"]))),
       })),
       installPhase: "runHook preInstall\n\ninstall -d $dev/include/atcoder\ninstall -m644 atcoder/* $dev/include/atcoder/\ninstall -Dm755 expander.py $out/bin/expander\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official library of AtCoder",
         homepage: "https://github.com/atcoder/ac-library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

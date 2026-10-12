@@ -39,36 +39,36 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "openstackImage"));
   const imageBootMode = nix.thunk(() => (nix.asBool(nix.sel(config, "openstack", "efi")) ? "uefi" : "legacy-bios"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     imports: nix.thunk(() => nix.concat([
       nix.path(here, "../../../modules/virtualisation/openstack-config.nix"),
       nix.path(here, "../../../modules/virtualisation/disk-size-option.nix"),
       nix.path(here, "../../../modules/image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sinceRelease: 2411n,
           from: nix.thunk(() => ["openstackImage", "sizeMB"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sinceRelease: 2505n,
           from: nix.thunk(() => ["openstackImage", "name"]),
           to: nix.thunk(() => ["image", "baseName"]),
         })))),
     ], nix.app(nix.sel(lib, "optional"), copyChannel, nix.path(here, "../../../modules/installer/cd-dvd/channel.nix")))),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       openstackImage: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ramMB: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(types, "int")),
             default: nix.thunk(() => nix.mul(3n, 1024n)),
             description: "RAM allocation for build VM",
           })))),
         format: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["raw", "qcow2"]))),
             default: "qcow2",
             description: "The image format to output",
@@ -76,49 +76,49 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$23,
-      documentation: nix.thunk(() => ({ __proto__: pos$7, enable: copyChannel })),
+      [nix.POS]: pos$23,
+      documentation: nix.thunk(() => ({ [nix.POS]: pos$7, enable: copyChannel })),
       openstack: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         efi: true,
         zfs: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: true,
           datasets: nix.thunk(() => ({
-            __proto__: pos$12,
-            "tank/system/root": nix.thunk(() => ({ __proto__: pos$8, mount: "/" })),
-            "tank/system/var": nix.thunk(() => ({ __proto__: pos$9, mount: "/var" })),
-            "tank/local/nix": nix.thunk(() => ({ __proto__: pos$10, mount: "/nix" })),
-            "tank/user/home": nix.thunk(() => ({ __proto__: pos$11, mount: "/home" })),
+            [nix.POS]: pos$12,
+            "tank/system/root": nix.thunk(() => ({ [nix.POS]: pos$8, mount: "/" })),
+            "tank/system/var": nix.thunk(() => ({ [nix.POS]: pos$9, mount: "/var" })),
+            "tank/local/nix": nix.thunk(() => ({ [nix.POS]: pos$10, mount: "/nix" })),
+            "tank/user/home": nix.thunk(() => ({ [nix.POS]: pos$11, mount: "/home" })),
           })),
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(8n, 1024n)))),
         diskSizeAutoSupported: false,
       })),
-      image: nix.thunk(() => ({ __proto__: pos$16, extension: nix.thunk(() => nix.sel(cfg, "format")) })),
+      image: nix.thunk(() => ({ [nix.POS]: pos$16, extension: nix.thunk(() => nix.sel(cfg, "format")) })),
       system: nix.thunk(() => ({
-        __proto__: pos$22,
-        nixos: nix.thunk(() => ({ __proto__: pos$17, tags: nix.thunk(() => ["openstack", "zfs"]) })),
+        [nix.POS]: pos$22,
+        nixos: nix.thunk(() => ({ [nix.POS]: pos$17, tags: nix.thunk(() => ["openstack", "zfs"]) })),
         build: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           image: nix.thunk(() => nix.sel(config, "system", "build", "openstackImage")),
           openstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-single-disk-zfs-image.nix")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               lib: lib,
               config: config,
               contents: nix.thunk(() => nix.attr(cfg, "contents")),
               format: nix.thunk(() => nix.attr(cfg, "format")),
               name: nix.thunk(() => nix.sel(config, "image", "baseName")),
-              pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({ __proto__: pos$18, system: nix.thunk(() => nix.attr(pkgs, "system")) })))),
+              pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({ [nix.POS]: pos$18, system: nix.thunk(() => nix.attr(pkgs, "system")) })))),
               configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", "{ modulesPath, ... }: {\n  imports = [ \"${modulesPath}/virtualisation/openstack-config.nix\" ];\n  openstack.zfs.enable = true;\n}\n")),
               includeChannel: copyChannel,
               bootSize: 1000n,
               memSize: nix.thunk(() => nix.sel(cfg, "ramMB")),
               rootSize: nix.thunk(() => nix.sel(config, "virtualisation", "diskSize")),
-              rootPoolProperties: nix.thunk(() => ({ __proto__: pos$19, ashift: 12n, autoexpand: "on" })),
+              rootPoolProperties: nix.thunk(() => ({ [nix.POS]: pos$19, ashift: 12n, autoexpand: "on" })),
               datasets: nix.thunk(() => nix.sel(config, "openstack", "zfs", "datasets")),
               postVM: nix.thunk(() => nix.str` extension=\${rootDiskImage##*.}
  friendlyName=$out/${nix.sel(config, "image", "baseName")}

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "playpauseandstop",
           repo: "aiohttp-middlewares",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         "test_shield_middleware_funcitonal[PUT-False]",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of useful middlewares for aiohttp.web applications",
         homepage: "https://github.com/playpauseandstop/aiohttp-middlewares",
         changelog: nix.thunk(() => nix.str`https://github.com/playpauseandstop/aiohttp-middlewares/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

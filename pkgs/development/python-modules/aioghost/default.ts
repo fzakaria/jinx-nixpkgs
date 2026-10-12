@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aioghost",
       version: "0.4.30",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TryGhost",
           repo: "aioghost",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_aiohttp, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aioghost"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async Python client for the Ghost Admin API",
         homepage: "https://github.com/TryGhost/aioghost",
         changelog: nix.thunk(() => nix.str`https://github.com/TryGhost/aioghost/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

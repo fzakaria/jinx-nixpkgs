@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const linux_latest = nix.arg($, "linux_latest");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "u-root",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "u-root",
           repo: "u-root",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => ["-s"]),
       allowGoReference: true,
       preCheck: nix.thunk(() => nix.str`substituteInPlace ./uroot_test.go \\
@@ -47,26 +47,26 @@ export default nix.lambda((args) => (() => {
   --replace-fail '-files=/bin/bash' '-files=${bash}/bin/bash'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "kernel-amd64": nix.thunk(() => nix.app(linuxManualConfig, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             version: nix.thunk(() => nix.attr(linux_latest, "version")),
             src: nix.thunk(() => nix.attr(linux_latest, "src")),
             configfile: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: "https://raw.githubusercontent.com/hugelgupf/vmtest/5d9f3d34a58dc7b13bca786e8ac32d3e2ce4e95d/images/kernel-amd64/config_linux.txt",
                 hash: "sha256-CjhWWK6YwSOXP10mpnJjG5nwLWs2cDtebvlDBLzN5fI=",
               })))),
             allowImportFromDerivation: true,
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=^v(0\\.\\d+\\.\\d+)$"]),
           })))),
-        tests: nix.thunk(() => ({ __proto__: pos$6, "u-root-cmds": u_root_cmds })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "u-root-cmds": u_root_cmds })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Fully Go userland with Linux bootloaders",
         longDescription: "u-root can create a one-binary root file system (initramfs) containing a busybox-like set of tools written in Go.\n\nThe package exposes `u-root.kernel-amd64` passthru for a minimal and pre-configured kernel to be used locally with QEMU.\n\nThe u-root commands are available as `u-root-cmds`.\n",
         homepage: "https://u-root.org/",

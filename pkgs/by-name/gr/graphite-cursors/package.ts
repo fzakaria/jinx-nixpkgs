@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graphite-cursors",
       version: "2021-11-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "graphite-cursors",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -dm 755 $out/share/icons\nmv dist-dark $out/share/icons/graphite-dark\nmv dist-light $out/share/icons/graphite-light\nmv dist-dark-nord $out/share/icons/graphite-dark-nord\nmv dist-light-nord $out/share/icons/graphite-light-nord\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphite cursor theme",
         homepage: "https://github.com/vinceliuice/Graphite-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

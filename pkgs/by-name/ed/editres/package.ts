@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "editres",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxaw, libxkbfile, libxmu, libxres, libxt, xorgproto]),
       installFlags: nix.thunk(() => ["appdefaultdir=$(out)/share/X11/app-defaults"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=editres-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dynamic resource editor for X Toolkit applications",
         longDescription: "Editres is a tool that allows users and application developers to view the full widget\nhierarchy of any Xt Toolkit application that speaks the Editres protocol. In addition, editres\nwill help the user construct resource specifications, allow the user to apply the resource\nto the application and view the results dynamically. Once the user is happy with a resource\nspecification editres will append the resource string to the user's X Resources file.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/editres",

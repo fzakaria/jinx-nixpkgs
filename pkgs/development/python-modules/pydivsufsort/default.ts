@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pydivsufsort",
       version: "0.0.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aFpXkfrl4gDOi3pOXVFbYVP/3nF1MxvQ34GkIRCK1N8=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [cython, numpy]),
       pythonImportsCheck: nix.thunk(() => ["pydivsufsort"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to `libdivsufsort`",
         homepage: "https://github.com/louisabraham/pydivsufsort",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

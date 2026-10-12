@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-abbr";
       const version = "6.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "olets",
           repo: "zsh-abbr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const installPhase = "runHook preInstall\n\ninstall *.zsh -Dt $out/share/zsh/zsh-abbr/\ninstall completions/* -Dt $out/share/zsh/zsh-abbr/completions/\n\ninstall zsh-job-queue/*.zsh -Dt $out/share/zsh/zsh-abbr/zsh-job-queue/\ninstall zsh-job-queue/completions/* -Dt $out/share/zsh/zsh-abbr/zsh-job-queue/completions/\n\n# Required for `man` to find the manpage of abbr, since it looks via PATH\ninstallManPage man/man1/*\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/olets/zsh-abbr",
         description: "Zsh manager for auto-expanding abbreviations, inspired by fish shell",
         license: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

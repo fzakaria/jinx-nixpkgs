@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libparserutils = nix.arg($, "libparserutils");
   const libwapcaplet = nix.arg($, "libwapcaplet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libcss",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libcss-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-LfIVu+w01R1gwaBLAbLfTV0Y9RDx86evS4DN21ZxFU4=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`NSSHARED=${netsurf_buildsystem}/share/netsurf-buildsystem`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-fallthrough",
             nix.thunk(() => nix.str`-Wno-error=${(nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? "maybe-uninitialized" : "uninitialized")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.netsurf-browser.org/projects/libcss/",
         description: "Cascading Style Sheets library for netsurf browser",
         longDescription: "LibCSS is a CSS parser and selection engine. It aims to parse the forward\ncompatible CSS grammar. It was developed as part of the NetSurf project\nand is available for use by other software, under a more permissive\nlicense.\n",

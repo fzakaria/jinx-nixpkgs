@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sankey-chart";
       const version = "6.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MindFreeze",
           repo: "ha-sankey-chart",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-uKPKlJwaiVlUyCmLzD3mIl8T5OCHn2o9Yo9oBVQ/Zuk=";
       const installPhase = "runHook preInstall\n\nmkdir $out/\ncp -v dist/ha-sankey-chart.js $out/sankey-chart.js\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant lovelace card to display a sankey chart",
         homepage: "https://github.com/MindFreeze/ha-sankey-chart",
         changelog: nix.thunk(() => nix.str`https://github.com/MindFreeze/ha-sankey-chart/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

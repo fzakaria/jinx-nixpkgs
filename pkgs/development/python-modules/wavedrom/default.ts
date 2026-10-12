@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const svgwrite = nix.arg($, "svgwrite");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wavedrom",
       version: "2.0.3.post3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MntNXcpZPIElfCAv6lFvepCHR/sRUnw1nwNPW3r39Hs=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_upstream"]),
       pythonImportsCheck: nix.thunk(() => ["wavedrom"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WaveDrom compatible Python command line",
         mainProgram: "wavedrompy",
         homepage: "https://github.com/wallento/wavedrompy",

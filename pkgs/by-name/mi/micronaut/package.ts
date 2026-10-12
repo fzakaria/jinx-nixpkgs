@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "micronaut",
       version: "5.1.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/micronaut-projects/micronaut-starter/releases/download/v${nix.sel(finalAttrs, "version")}/micronaut-cli-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Dkaevauxol3Xi6gPXQrGzzD5I8N5wJwhlxeMPGpr7TQ=",
         })))),
@@ -34,7 +34,7 @@ installShellCompletion --bash --name mn.bash bin/mn_completion
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern, JVM-based, full-stack framework for building microservice applications",
         longDescription: "Micronaut is a modern, JVM-based, full stack microservices framework\ndesigned for building modular, easily testable microservice applications.\nReflection-based IoC frameworks load and cache reflection data for\nevery single field, method, and constructor in your code, whereas with\nMicronaut, your application startup time and memory consumption are\nnot bound to the size of your codebase.\n",
         homepage: "https://micronaut.io/",

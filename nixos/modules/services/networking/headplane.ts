@@ -107,145 +107,145 @@ export default nix.lambda((args) => (() => {
   const filterSettings = nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(filterAttrsRecursive, (_) => (v) => !nix.asBool(nix.app(nix.sel(lib, "elem"), v, nix.thunk(() => [nix.thunk(() => ({})), null])))))));
   const agentSettings = nix.thunk(() => nix.sel(cfg, "settings", "integration", "agent"));
   const settings = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     integration: nix.thunk(() => nix.update(nix.sel(cfg, "settings", "integration"), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       agent: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(agentSettings, null)) || nix.asBool(!nix.asBool(nix.sel(agentSettings, "enabled"))))) ? null : nix.force(agentSettings))),
     })),
   }));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "headplane-config.yaml", nix.thunk(() => nix.app(filterSettings, settings))));
   return {
-    __proto__: pos$86,
+    [nix.POS]: pos$86,
     options: nix.thunk(() => ({
-      __proto__: pos$71,
+      [nix.POS]: pos$71,
       services: nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         headplane: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Headplane")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "headplane", nix.thunk(() => ({})))),
           agent: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "headplane-agent", nix.thunk(() => ({})))),
           })),
           debug: nix.thunk(() => nix.app(mkEnableOption, "debug logging")),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               description: "Headplane configuration options. Generates a YAML config file.\nSee <https://github.com/tale/headplane/blob/main/config.example.yaml>.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   options: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     server: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             options: nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$4,
+                                  [nix.POS]: pos$4,
                                   type: nix.thunk(() => nix.sel(types, "str")),
                                   default: "127.0.0.1",
                                   description: "The host address to bind to.",
                                   example: "0.0.0.0",
                                 })))),
                               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$5,
+                                  [nix.POS]: pos$5,
                                   type: nix.thunk(() => nix.sel(types, "port")),
                                   default: 3000n,
                                   description: "The port to listen on.",
                                 })))),
                               base_url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$6,
+                                  [nix.POS]: pos$6,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                   default: null,
                                   description: "The base URL for Headplane. Used for OIDC redirect callback URL\ndetection. Should not include the dashboard prefix (/admin).\n",
                                   example: "https://headplane.example.com",
                                 })))),
                               cookie_secret_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$7,
+                                  [nix.POS]: pos$7,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                   default: null,
                                   description: "Path to a file containing the cookie secret.\nThe secret must be exactly 32 characters long.\n",
                                   example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.sops.secrets.headplane_cookie.path")),
                                 })))),
                               cookie_secure: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$8,
+                                  [nix.POS]: pos$8,
                                   type: nix.thunk(() => nix.sel(types, "bool")),
                                   default: true,
                                   description: "Should the cookies only work over HTTPS?\nSet to false if running via HTTP without a proxy.\nRecommended to be true in production.\n",
                                 })))),
                               cookie_max_age: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                                   default: 86400n,
                                   description: "The maximum age of the session cookie in seconds.",
                                 })))),
                               cookie_domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                   default: null,
                                   description: "Restrict the cookie to a specific domain.\nThis may not work as expected if not using a reverse proxy.\n",
                                   example: "example.com",
                                 })))),
                               data_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$11,
+                                  [nix.POS]: pos$11,
                                   type: nix.thunk(() => nix.sel(types, "path")),
                                   default: "/var/lib/headplane",
                                   description: "The path to persist Headplane specific data.\nAll data going forward is stored in this directory, including the internal database and any cache related files.\n",
                                   example: "/var/lib/headplane",
                                 })))),
                               proxy_auth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                        __proto__: pos$20,
+                                        [nix.POS]: pos$20,
                                         options: nix.thunk(() => ({
-                                          __proto__: pos$19,
+                                          [nix.POS]: pos$19,
                                           enabled: nix.thunk(() => nix.app(mkEnableOption, "delegating Headplane authentication to a trusted reverse proxy\ninstead of logging in through Headplane directly. Identity\nheaders are only trusted on requests whose client IP matches\n`allowed_cidrs`; all Headscale API calls then use\n`headscale.api_key_path`\n")),
                                           allowed_cidrs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$12,
+                                              [nix.POS]: pos$12,
                                               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                                               default: nix.thunk(() => ["127.0.0.1/32", "::1/128"]),
                                               description: "Client CIDRs allowed to authenticate via the configured proxy\nheaders.\n",
                                               example: nix.thunk(() => ["10.0.0.0/8"]),
                                             })))),
                                           trusted_proxy_cidrs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$13,
+                                              [nix.POS]: pos$13,
                                               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                                               default: nix.thunk(() => ["127.0.0.1/32", "::1/128"]),
                                               description: "Direct proxy CIDRs trusted to supply `ip_header`.\n",
                                               example: nix.thunk(() => ["127.0.0.1/32"]),
                                             })))),
                                           ip_header: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$14,
+                                              [nix.POS]: pos$14,
                                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                               default: null,
                                               description: "Header containing the original client IP, such as\n`X-Forwarded-For` or `X-Real-IP`. Only read when the direct\nsocket peer matches `trusted_proxy_cidrs`.\n",
                                               example: "X-Forwarded-For",
                                             })))),
                                           user_header: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$15,
+                                              [nix.POS]: pos$15,
                                               type: nix.thunk(() => nix.sel(types, "str")),
                                               default: "Remote-User",
                                               description: "Header containing the stable authenticated user identity.\n",
                                               example: "Remote-User",
                                             })))),
                                           email_header: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$16,
+                                              [nix.POS]: pos$16,
                                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                               default: null,
                                               description: "Optional header containing the authenticated user's email address.",
                                               example: "Remote-Email",
                                             })))),
                                           name_header: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$17,
+                                              [nix.POS]: pos$17,
                                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                               default: null,
                                               description: "Optional header containing the authenticated user's display name.",
                                               example: "Remote-Name",
                                             })))),
                                           picture_header: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$18,
+                                              [nix.POS]: pos$18,
                                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                               default: null,
                                               description: "Optional header containing the authenticated user's profile picture URL.",
@@ -262,20 +262,20 @@ export default nix.lambda((args) => (() => {
                         description: "Server configuration for Headplane web application.",
                       })))),
                     headscale: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             options: nix.thunk(() => ({
-                              __proto__: pos$31,
+                              [nix.POS]: pos$31,
                               api_key_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$25,
+                                  [nix.POS]: pos$25,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                   default: null,
                                   description: "Path to a file containing a Headscale API key.\nThis is required for OIDC authentication aswell for the Headplane agent.\n",
                                   example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.sops.secrets.headplane_pre_authkey.path")),
                                 })))),
                               url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$26,
+                                  [nix.POS]: pos$26,
                                   type: nix.thunk(() => nix.sel(types, "str")),
                                   default: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "headscale", "port")))}`),
                                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "http://127.0.0.1:${toString config.services.headscale.port}")),
@@ -283,14 +283,14 @@ export default nix.lambda((args) => (() => {
                                   example: "https://headscale.example.com",
                                 })))),
                               tls_cert_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$27,
+                                  [nix.POS]: pos$27,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                   default: null,
                                   description: "Path to a file containing the TLS certificate.\n",
                                   example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.sops.secrets.tls_cert.path")),
                                 })))),
                               public_url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$28,
+                                  [nix.POS]: pos$28,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                   default: nix.thunk(() => nix.sel(config, "services", "headscale", "settings", "server_url")),
                                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.headscale.settings.server_url")),
@@ -298,7 +298,7 @@ export default nix.lambda((args) => (() => {
                                   example: "https://headscale.example.com",
                                 })))),
                               config_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$29,
+                                  [nix.POS]: pos$29,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                   default: nix.thunk(() => nix.sel(config, "services", "headscale", "configFile")),
                                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.headscale.configFile")),
@@ -307,7 +307,7 @@ export default nix.lambda((args) => (() => {
                                 })))),
                               config_strict: nix.thunk(() => nix.app(mkEnableOption, "Headplane internally validates the Headscale configuration\nto ensure that it changes the configuration in a safe way.\nDisabled by default because it clashes with how the Headplane works in NixOS.\n")),
                               dns_records_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$30,
+                                  [nix.POS]: pos$30,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                   default: null,
                                   description: "If you are using `dns.extra_records_path` in your Headscale configuration, you need to set this to the path for Headplane to be able to read the DNS records.\nEnsure that the file is both readable and writable by the Headplane process.\nWhen using this, Headplane will no longer need to automatically restart Headscale for DNS record changes.\n",
@@ -319,25 +319,25 @@ export default nix.lambda((args) => (() => {
                         description: "Headscale specific settings for Headplane integration.",
                       })))),
                     integration: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             options: nix.thunk(() => ({
-                              __proto__: pos$46,
+                              [nix.POS]: pos$46,
                               agent: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$41,
+                                  [nix.POS]: pos$41,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                        __proto__: pos$40,
+                                        [nix.POS]: pos$40,
                                         options: nix.thunk(() => ({
-                                          __proto__: pos$39,
+                                          [nix.POS]: pos$39,
                                           enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$34,
+                                              [nix.POS]: pos$34,
                                               type: nix.thunk(() => nix.sel(types, "bool")),
                                               default: false,
                                               description: "The Headplane agent allows retrieving information about nodes.\nThis allows the UI to display version, OS, and connectivity data.\nYou will see the Headplane agent in your Tailnet as a node when it connects.\n",
                                             })))),
                                           executable_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$35,
+                                              [nix.POS]: pos$35,
                                               type: nix.thunk(() => nix.sel(types, "path")),
                                               readOnly: true,
                                               default: nix.thunk(() => nix.str`${nix.sel(cfg, "agent", "package")}/bin/hp_agent`),
@@ -345,19 +345,19 @@ export default nix.lambda((args) => (() => {
                                               description: "Path to the headplane agent binary.\n",
                                             })))),
                                           host_name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$36,
+                                              [nix.POS]: pos$36,
                                               type: nix.thunk(() => nix.sel(types, "str")),
                                               default: "headplane-agent",
                                               description: "Optionally change the name of the agent in the Tailnet.",
                                             })))),
                                           cache_ttl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$37,
+                                              [nix.POS]: pos$37,
                                               type: nix.thunk(() => nix.sel(types, "ints", "positive")),
                                               default: 180000n,
                                               description: "How long to cache agent information (in milliseconds).\nIf you want data to update faster, reduce the TTL, but this will increase the frequency of requests to Headscale.\n",
                                             })))),
                                           work_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                              __proto__: pos$38,
+                                              [nix.POS]: pos$38,
                                               type: nix.thunk(() => nix.sel(types, "path")),
                                               default: "/var/lib/headplane/agent",
                                               description: "Do not change this unless you are running a custom deployment.\nThe work_dir represents where the agent will store its data to be able to automatically reauthenticate with your Tailnet.\nIt needs to be writable by the user running the Headplane process.\n",
@@ -368,13 +368,13 @@ export default nix.lambda((args) => (() => {
                                   description: "Agent configuration for the Headplane agent.",
                                 })))),
                               proc: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$45,
+                                  [nix.POS]: pos$45,
                                   type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                      __proto__: pos$44,
+                                      [nix.POS]: pos$44,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$43,
+                                        [nix.POS]: pos$43,
                                         enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                            __proto__: pos$42,
+                                            [nix.POS]: pos$42,
                                             type: nix.thunk(() => nix.sel(types, "bool")),
                                             default: true,
                                             description: "Enable \"Native\" integration that works when Headscale and\nHeadplane are running outside of a container. There is no additional\nconfiguration, but you need to ensure that the Headplane process\ncan terminate the Headscale process.\n",
@@ -390,89 +390,89 @@ export default nix.lambda((args) => (() => {
                         description: "Integration configurations for Headplane to interact with Headscale.",
                       })))),
                     oidc: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$64,
+                              [nix.POS]: pos$64,
                               options: nix.thunk(() => ({
-                                __proto__: pos$63,
+                                [nix.POS]: pos$63,
                                 enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$49,
+                                    [nix.POS]: pos$49,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     default: true,
                                     description: "Explicitly control OIDC availability.\nSet to false to define OIDC config without enabling it.\n",
                                   })))),
                                 issuer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$50,
+                                    [nix.POS]: pos$50,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "URL to OpenID issuer.",
                                     example: "https://provider.example.com/issuer-url",
                                   })))),
                                 client_id: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$51,
+                                    [nix.POS]: pos$51,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     description: "The client ID for the OIDC client.",
                                     example: "your-client-id",
                                   })))),
                                 client_secret_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$52,
+                                    [nix.POS]: pos$52,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                                     default: null,
                                     description: "Path to a file containing the OIDC client secret.\n",
                                     example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.sops.secrets.oidc_client_secret.path")),
                                   })))),
                                 disable_api_key_login: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$53,
+                                    [nix.POS]: pos$53,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     default: false,
                                     description: "Whether to disable API key login.",
                                   })))),
                                 token_endpoint_auth_method: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$54,
+                                    [nix.POS]: pos$54,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["client_secret_post", "client_secret_basic", "client_secret_jwt"]))))),
                                     default: null,
                                     description: "The token endpoint authentication method.\nIf not set, Headplane will auto-detect the best method\nand fall back to client_secret_basic.\n",
                                   })))),
                                 use_pkce: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$55,
+                                    [nix.POS]: pos$55,
                                     type: nix.thunk(() => nix.sel(types, "bool")),
                                     default: false,
                                     description: "Whether to use PKCE when authenticating users.\nYour OIDC provider must support PKCE and it must be enabled on the client.\n",
                                   })))),
                                 profile_picture_source: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$56,
+                                    [nix.POS]: pos$56,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["oidc", "gravatar"]))),
                                     default: "oidc",
                                     description: "Source for user profile pictures.",
                                   })))),
                                 scope: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$57,
+                                    [nix.POS]: pos$57,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     default: "openid email profile",
                                     description: "OIDC scope to request.",
                                   })))),
                                 extra_params: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$59,
+                                    [nix.POS]: pos$59,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))),
                                     default: null,
                                     description: "Extra parameters to send to the OIDC provider.",
-                                    example: nix.thunk(() => ({ __proto__: pos$58, prompt: "consent" })),
+                                    example: nix.thunk(() => ({ [nix.POS]: pos$58, prompt: "consent" })),
                                   })))),
                                 authorization_endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$60,
+                                    [nix.POS]: pos$60,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                     default: null,
                                     description: "Custom authorization endpoint URL.",
                                     example: "https://provider.example.com/authorize",
                                   })))),
                                 token_endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$61,
+                                    [nix.POS]: pos$61,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                     default: null,
                                     description: "Custom token endpoint URL.",
                                     example: "https://provider.example.com/token",
                                   })))),
                                 userinfo_endpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$62,
+                                    [nix.POS]: pos$62,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                     default: null,
                                     description: "Custom userinfo endpoint URL.",
@@ -491,48 +491,48 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             assertion: nix.thunk(() => nix.sel(config, "services", "headscale", "enable")),
             message: "services.headplane requires services.headscale.enable = true.\nThe headplane module references the headscale systemd unit\n(in `after`/`requires`) and reads its configFile, port, user,\nand group. Enable headscale or disable headplane.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "server", "cookie_secret_path"), null)),
             message: "services.headplane.settings.server.cookie_secret_path must be set.\nHeadplane refuses to start without either `cookie_secret` or\n`cookie_secret_path` (validated at startup, see upstream\napp/server/config/schema.ts). The NixOS module only exposes the\n*_path form to keep secrets out of the world-readable /nix/store.\nProvide a path to a file containing a 32-character secret, e.g.\nvia systemd `LoadCredential` or sops-nix.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "oidc"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "headscale", "api_key_path"), null)))),
             message: "services.headplane.settings.headscale.api_key_path must be set\nwhen services.headplane.settings.oidc is non-null.\nHeadplane's OIDC flow requires a Headscale API key to mint sessions.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(agentSettings, null)) || nix.asBool(!nix.asBool(nix.sel(agentSettings, "enabled"))))) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "headscale", "api_key_path"), null)))),
             message: "services.headplane.settings.headscale.api_key_path must be set when the agent is enabled.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "settings", "server", "proxy_auth"), null)) || nix.asBool(!nix.asBool(nix.sel(cfg, "settings", "server", "proxy_auth", "enabled"))))) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "headscale", "api_key_path"), null)))),
             message: "services.headplane.settings.headscale.api_key_path must be set\nwhen services.headplane.settings.server.proxy_auth.enabled is true.\nProxy authentication requires a Headscale API key to make Headscale\nAPI calls on behalf of proxy-authenticated users.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$78,
-            "headplane/config.yaml": nix.thunk(() => ({ __proto__: pos$77, source: settingsFile })),
+            [nix.POS]: pos$78,
+            "headplane/config.yaml": nix.thunk(() => ({ [nix.POS]: pos$77, source: settingsFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           services: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             headplane: nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               description: "Headscale Web UI",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -543,11 +543,11 @@ export default nix.lambda((args) => (() => {
               requires: nix.thunk(() => [nix.thunk(() => nix.sel(config, "systemd", "services", "headscale", "name"))]),
               restartTriggers: nix.thunk(() => [settingsFile]),
               environment: nix.thunk(() => ({
-                __proto__: pos$80,
+                [nix.POS]: pos$80,
                 HEADPLANE_DEBUG_LOG: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "debug")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 User: nix.thunk(() => nix.sel(config, "services", "headscale", "user")),
                 Group: nix.thunk(() => nix.sel(config, "services", "headscale", "group")),
                 StateDirectory: "headplane",

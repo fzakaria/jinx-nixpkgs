@@ -29,22 +29,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "nzbhydra2"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nzbhydra2: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "NZBHydra2, Usenet meta search")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/nzbhydra2",
               description: "The directory where NZBHydra2 stores its data files.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the NZBHydra2 web interface.",
@@ -54,24 +54,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0700 nzbhydra2 nzbhydra2 - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             nzbhydra2: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "NZBHydra2",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 Type: "simple",
                 User: "nzbhydra2",
                 Group: "nzbhydra2",
@@ -97,16 +97,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$12,
-          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ __proto__: pos$11, allowedTCPPorts: nix.thunk(() => [5076n]) })))),
+          [nix.POS]: pos$12,
+          firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [5076n]) })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
-            nzbhydra2: nix.thunk(() => ({ __proto__: pos$13, group: "nzbhydra2", isSystemUser: true })),
+            [nix.POS]: pos$14,
+            nzbhydra2: nix.thunk(() => ({ [nix.POS]: pos$13, group: "nzbhydra2", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, nzbhydra2: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, nzbhydra2: nix.thunk(() => ({})) })),
         })),
       })))),
   };

@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
   const xdmcfg = nix.thunk(() => nix.sel(xcfg, "displayManager"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "displayManager", "ly"));
   const xEnv = nix.thunk(() => nix.sel(config, "systemd", "services", "display-manager", "environment"));
-  const ly = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$1, x11Support: nix.thunk(() => nix.sel(cfg, "x11Support")) }))));
+  const ly = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, x11Support: nix.thunk(() => nix.sel(cfg, "x11Support")) }))));
   const iniFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "iniWithGlobalSection"), nix.thunk(() => ({}))));
   const attrNames = nix.thunk(() => nix.attr(lib, "attrNames"));
   const concatMapStrings = nix.thunk(() => nix.attr(lib, "concatMapStrings"));
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
 exec systemd-cat -t xserver-wrapper ${nix.sel(xdmcfg, "xserverBin")} ${nix.builtins.toString(nix.thunk(() => nix.sel(xdmcfg, "xserverArgs")))} "$@"
 `)));
   const defaultConfig = nix.thunk(() => nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     shutdown_cmd: "/run/current-system/systemd/bin/systemctl poweroff",
     restart_cmd: "/run/current-system/systemd/bin/systemctl reboot",
     service_name: "ly",
@@ -93,39 +93,39 @@ exec systemd-cat -t xserver-wrapper ${nix.sel(xdmcfg, "xserverBin")} ${nix.built
     brightness_up_cmd: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "brightnessctl")))} -q -n s +10%`),
     brightness_down_cmd: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "brightnessctl")))} -q -n s 10%-`),
   }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(dmcfg, "autoLogin", "enable")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       auto_login_service: "ly-autologin",
       auto_login_session: nix.thunk(() => nix.sel(dmcfg, "sessionData", "autologinSession")),
       auto_login_user: nix.thunk(() => nix.sel(dmcfg, "autoLogin", "user")),
     })))));
   const finalConfig = nix.thunk(() => nix.update(defaultConfig, nix.sel(cfg, "settings")));
-  const cfgFile = nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "config.ini", nix.thunk(() => ({ __proto__: pos$4, globalSection: finalConfig }))));
+  const cfgFile = nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "config.ini", nix.thunk(() => ({ [nix.POS]: pos$4, globalSection: finalConfig }))));
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         displayManager: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           ly: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(mkEnableOption, "ly as the display manager")),
             x11Support: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Whether to enable support for X11",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["ly"]), nix.thunk(() => ({})))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.sel(iniFmt, "lib", "types", "atom")));
                 })()),
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$6, load: false, save: false })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$6, load: false, save: false })),
                 description: "Extra settings merged in and overwriting defaults in config.ini.\n",
               })))),
           })),
@@ -133,76 +133,76 @@ exec systemd-cat -t xserver-wrapper ${nix.sel(xdmcfg, "xserverBin")} ${nix.built
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(dmcfg, "autoLogin", "enable")) || nix.asBool(!nix.eq(nix.sel(dmcfg, "sessionData", "autologinSession"), null)))),
             message: "ly auto-login requires that services.displayManager.defaultSession is set.\n",
           })),
         ]),
         security: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           pam: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             services: nix.thunk(() => nix.update({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               ly: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 useDefaultRules: false,
                 rules: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$13, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$13, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$14, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$14, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                   password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$15, name: "login", control: "substack", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$15, name: "login", control: "substack", modulePath: "login" })),
                     ]))),
                   session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$16, name: "login", control: "include", modulePath: "login" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$16, name: "login", control: "include", modulePath: "login" })),
                     ]))),
                 })),
               })),
             }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(dmcfg, "autoLogin", "enable")), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 "ly-autologin": nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   useDefaultRules: false,
                   rules: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     auth: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           name: "nologin",
                           control: "requisite",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_nologin.so`),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           name: "ly-normal-user",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_succeed_if.so`),
-                          settings: nix.thunk(() => ({ __proto__: pos$21, quiet: true })),
+                          settings: nix.thunk(() => ({ [nix.POS]: pos$21, quiet: true })),
                           args: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => ["uid", ">=", "1000"]))),
                         })),
                         nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           name: "permit",
                           control: "required",
                           modulePath: nix.thunk(() => nix.str`${nix.sel(config, "security", "pam", "package")}/lib/security/pam_permit.so`),
                         })),
                       ]))),
                     account: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$24, name: "ly", control: "include", modulePath: "ly" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$24, name: "ly", control: "include", modulePath: "ly" })),
                       ]))),
                     password: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$25, name: "ly", control: "include", modulePath: "ly" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$25, name: "ly", control: "include", modulePath: "ly" })),
                       ]))),
                     session: nix.thunk(() => nix.app(nix.sel(utils, "pam", "autoOrderRules"), nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$26, name: "ly", control: "include", modulePath: "ly" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$26, name: "ly", control: "include", modulePath: "ly" })),
                       ]))),
                   })),
                 })),
@@ -210,41 +210,41 @@ exec systemd-cat -t xserver-wrapper ${nix.sel(xdmcfg, "xserverBin")} ${nix.built
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           etc: nix.thunk(() => ({
-            __proto__: pos$33,
-            "ly/config.ini": nix.thunk(() => ({ __proto__: pos$32, source: cfgFile })),
+            [nix.POS]: pos$33,
+            "ly/config.ini": nix.thunk(() => ({ [nix.POS]: pos$32, source: cfgFile })),
           })),
           systemPackages: nix.thunk(() => [ly]),
           pathsToLink: nix.thunk(() => ["/share/ly"]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$41,
-          dbus: nix.thunk(() => ({ __proto__: pos$35, packages: nix.thunk(() => [ly]) })),
+          [nix.POS]: pos$41,
+          dbus: nix.thunk(() => ({ [nix.POS]: pos$35, packages: nix.thunk(() => [ly]) })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: true,
             generic: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               enable: true,
               execCmd: "exec /run/current-system/sw/bin/ly",
             })),
             ly: nix.thunk(() => ({
-              __proto__: pos$38,
-              settings: nix.thunk(() => ({ __proto__: pos$37, tty: 1n })),
+              [nix.POS]: pos$38,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$37, tty: 1n })),
             })),
           })),
-          xserver: nix.thunk(() => ({ __proto__: pos$40, display: null })),
+          xserver: nix.thunk(() => ({ [nix.POS]: pos$40, display: null })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           services: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             "display-manager": nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               after: nix.thunk(() => ["systemd-user-sessions.service", "plymouth-quit-wait.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 Type: "idle",
                 StandardInput: "tty",
                 TTYPath: nix.thunk(() => nix.str`/dev/tty${nix.builtins.toString(nix.thunk(() => nix.sel(finalConfig, "tty")))}`),
@@ -256,7 +256,7 @@ exec systemd-cat -t xserver-wrapper ${nix.sel(xdmcfg, "xserverBin")} ${nix.built
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

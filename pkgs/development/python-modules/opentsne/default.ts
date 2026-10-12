@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pavlin-policar",
           repo: "openTSNE",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["openTSNE"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (old) => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.str`${nix.sel(old, "pname")}-tests`),
               pyproject: false,
               postPatch: "rm openTSNE -rf",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modular Python implementation of t-Distributed Stochasitc Neighbor Embedding",
         homepage: "https://github.com/pavlin-policar/openTSNE",
         changelog: nix.thunk(() => nix.str`https://github.com/pavlin-policar/openTSNE/releases/tag/v${version}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

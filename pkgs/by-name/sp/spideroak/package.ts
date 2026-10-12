@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const ldpath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [fontconfig, freetype, glib, libice, libsm, libx11, libxext, libxrender, zlib])));
   const version = "7.5.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spideroak",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`SpiderOakONE-${version}-x86_64-1.tgz`),
           url: nix.thunk(() => nix.str`https://spideroak-releases.s3.us-east-2.amazonaws.com/SpiderOakONE-${version}-x86_64-1.tgz`),
           hash: hash,
@@ -63,7 +63,7 @@ runHook postInstall
 `),
       nativeBuildInputs: nix.thunk(() => [patchelf, makeWrapper]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://spideroak.com",
         description: "Secure online backup and synchronization",
         sourceProvenance: nix.thunk(() => (() => {

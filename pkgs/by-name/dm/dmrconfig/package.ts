@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(gcc15Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dmrconfig",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenRTX",
           repo: "dmrconfig",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/OpenRTX/dmrconfig/commit/1a6901488db26262a6b69f80b0e795864e9e8d0a.patch",
             hash: "sha256-whxo4KeBFXrWLRZS4heeWzr8HpIyxFBEu1ohVZIP/Q4=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/lib/udev/rules.d\nmake install\ninstall 99-dmr.rules $out/lib/udev/rules.d/99-dmr.rules\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configuration utility for DMR radios",
         longDescription: "DMRconfig is a utility for programming digital radios via USB programming cable.\n",
         homepage: "https://github.com/OpenRTX/dmrconfig",

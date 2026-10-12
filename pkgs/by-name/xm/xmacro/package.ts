@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const libxi = nix.arg($, "libxi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmacro",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://download.sarine.nl/xmacro/xmacro-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1p9jljxyn4j6piljiyi2xv6f8jhjbzhabprp8p0qmqxaxgdipi61",
         })))),
       preInstall: "echo -e 'install:\n\tmkdir ${out}/bin;\n\tcp xmacrorec2 xmacroplay ${out}/bin;' >>Makefile; ",
       buildInputs: nix.thunk(() => [libx11, libxtst, xorgproto, libxi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       })),

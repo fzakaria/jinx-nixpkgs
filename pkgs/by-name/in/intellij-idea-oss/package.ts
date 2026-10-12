@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   const src = nix.thunk(() => nix.app(nix.sel(jetbrains, "mkJetBrainsSource"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "2025.3.4",
       buildNumber: "253.32098.37",
       buildType: "idea",
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
         "packages.jetbrains.team/maven/p/kt/bootstrap",
       ]),
       "kotlin-jps-plugin": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: "2.2.20",
         hash: "sha256-+jGghK2+yq+YFm5zT7ob+WTgTiJnHXAjDtlZjOzSISQ=",
       })),
     }))));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: src,
       fsnotifier: fsnotifier,
       version: nix.thunk(() => nix.attr(src, "version")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--set M2 "${maven}/maven/bin"`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.jetbrains.com/idea/",
         description: "Free Java, Kotlin, Groovy and Scala IDE from JetBrains (built from source)",
         longDescription: "IDE for Java SE, Groovy & Scala development Powerful environment for building Google Android apps Integration with JUnit, TestNG, popular SCMs, Ant & Maven.\nAlso known as IntelliJ.\n",

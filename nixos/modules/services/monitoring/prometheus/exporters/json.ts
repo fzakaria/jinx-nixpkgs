@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const mkRemovedOptionModule = nix.thunk(() => nix.attr(lib, "mkRemovedOptionModule"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 7979n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "path")),
           description: "Path to configuration file.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-json-exporter")}/bin/json_exporter \\
   --config.file ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "configFile")))} \\
   --web.listen-address="${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}" \\
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["url"]), "This option was removed. The URL of the endpoint serving JSON\nmust now be provided to the exporter by prometheus via the url\nparameter `target'.\n\nIn prometheus a scrape URL would look like this:\n\n  http://some.json-exporter.host:7979/probe?target=https://example.com/some/json/endpoint\n\nFor more information, take a look at the official documentation\n(https://github.com/prometheus-community/json_exporter) of the json_exporter.\n")),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         options: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           warnings: nix.thunk(() => nix.sel(options, "warnings")),
           assertions: nix.thunk(() => nix.sel(options, "assertions")),
         })),

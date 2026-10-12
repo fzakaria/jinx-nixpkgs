@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const darwin = nix.arg($, "darwin");
   return (self) => (super$) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       sourceRelease: (name) => nix.app(nix.sel(lib, "warn"), "`apple-sdk.sourceRelease` is deprecated and is now an alias for `darwin.sourceRelease`. Please use `darwin.sourceRelease` directly.", nix.thunk(() => nix.sel(darwin, "sourceRelease")), name),
     })),
   });

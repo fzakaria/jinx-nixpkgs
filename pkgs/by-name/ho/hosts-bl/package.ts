@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hosts-bl",
       version: "0-unstable-2024-11-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ScriptTiger",
           repo: "Hosts-BL",
           rev: "b3ac0a50fce8e714e754a17e6a11f8709386782c",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "go mod init github.com/ScriptTiger/Hosts-BL\n",
       vendorHash: null,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ScriptTiger/Hosts-BL",
         description: "Simple tool to handle hosts file black lists",
         mainProgram: "Hosts-BL",

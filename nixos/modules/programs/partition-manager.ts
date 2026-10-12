@@ -20,33 +20,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "partition-manager"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oxalica"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "partition-manager": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "KDE Partition Manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["kdePackages", "partitionmanager"]), nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "partition-manager", "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           dbus: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "kpmcore"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "package", "kpmcore")),
             nix.thunk(() => nix.sel(cfg, "package")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-fpath`);
       const version = "0.7.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/fpath/releases/fpath-${version}.tbz`),
           sha256: "03z7mj0sqdz465rc4drj1gr88l9q3nfs374yssvdjdyhjbqqzc0j",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml module for handling file system paths with POSIX and Windows conventions",
         homepage: "https://erratique.ch/software/fpath",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

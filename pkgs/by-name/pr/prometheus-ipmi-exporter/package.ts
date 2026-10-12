@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ipmi_exporter";
       const version = "1.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus-community",
           repo: "ipmi_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/ipmi_exporter --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [freeipmi]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, ipmi: nix.thunk(() => nix.attr(from, "ipmi")) };
+          return { [nix.POS]: pos$2, ipmi: nix.thunk(() => nix.attr(from, "ipmi")) };
         })()),
       }));
       const ldflags = nix.thunk(() => [
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.BuildDate=unknown",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "IPMI exporter for Prometheus",
         mainProgram: "ipmi_exporter",
         homepage: "https://github.com/prometheus-community/ipmi_exporter",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

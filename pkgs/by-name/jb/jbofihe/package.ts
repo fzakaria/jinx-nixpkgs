@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jbofihe",
       version: "0.43",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lojban",
           repo: "jbofihe",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n(cd tests && ./run *.in)\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser & analyser for Lojban",
         homepage: "https://github.com/lojban/jbofihe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

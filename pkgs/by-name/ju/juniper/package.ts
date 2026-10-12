@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "juniper";
       const version = "4.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "calebh",
           repo: "Juniper",
           rev: "286050d6be5606db0973feda556d8fbc48b4566c",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dotnet_sdk, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Functional reactive programming language for programming Arduino",
         longDescription: "The purpose of Juniper is to provide a functional reactive programming\nplatform for designing Arduino projects. FRP's high-level approach to\ntiming-based events fits naturally with Arduino, with which programming\nalmost entirely revolves around reacting to realtime events. Juniper\ntranspiles to Arduino C++, which is then compiled to an Arduino\nexecutable.\n",
         homepage: "https://www.juniper-lang.org/",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

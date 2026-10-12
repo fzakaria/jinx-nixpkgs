@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.7.17";
   const sha256 = "20eb48989b5ae5e60e438eff6830ac79a0d89ac26dff058097260e747e866444";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/mycryptohq/mycrypto/releases/download/${version}/linux-x86-64_${version}_MyCrypto.AppImage`),
       sha256: sha256,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: pname,
       desktopName: pname,
       comment: "MyCrypto is a free, open-source interface for interacting with the blockchain",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Finance"]),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -44,7 +44,7 @@ chmod -R +w $out/share
 mv $out/share/icons/hicolor/{0x0,256x256}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free, open-source interface for interacting with the blockchain",
         longDescription: "MyCrypto is an open-source, client-side tool for generating ether wallets,\nhandling ERC-20 tokens, and interacting with the blockchain more easily.\n",
         homepage: "https://mycrypto.com",

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apc-temp-fetch",
       version: "0.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "APC-Temp-fetch",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-lXGj/xrOkdMMYvuyVVSCojjQlzISFUT14VTn//iOARo=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["APC_Temp_fetch"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unified temperature fetcher interface to several UPS network adapters",
         homepage: "https://github.com/YZITE/APC_Temp_fetch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

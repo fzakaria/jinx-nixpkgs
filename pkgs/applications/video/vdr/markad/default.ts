@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-markad";
       const version = "4.2.22";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "vdr-plugin-markad",
           owner: "kfb77",
           hash: "sha256-Sp9saT/w3QwLEz9mo4kMUrXMXc5S/DOxm4nN1FPEgtk=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Plugin for VDR that marks advertisements",
         mainProgram: "markad",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

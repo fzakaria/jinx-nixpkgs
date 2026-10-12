@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyinsteon",
           repo: "pyinsteon",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [async_generator, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyinsteon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to support Insteon home automation projects",
         longDescription: "This is a Python package to interface with an Insteon Modem. It has been\ntested to work with most USB or RS-232 serial based devices such as the\n2413U, 2412S, 2448A7 and Hub models 2242 and 2245.\n",
         homepage: "https://github.com/pyinsteon/pyinsteon",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "insteon_tools",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

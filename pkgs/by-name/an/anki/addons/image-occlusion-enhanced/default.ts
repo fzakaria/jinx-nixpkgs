@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const anki_utils = nix.arg($, "anki-utils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "image-occlusion-enhanced",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glutanimate",
           repo: "image-occlusion-enhanced",
           sparseCheckout: nix.thunk(() => ["src/image_occlusion_enhanced"]),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src/image_occlusion_enhanced`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds extra features for creating image-based cloze-deletions\n",
         homepage: "https://github.com/glutanimate/image-occlusion-enhanced",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

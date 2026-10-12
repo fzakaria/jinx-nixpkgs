@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.app(check, "4.06")) ? (() => {
       const version = "2.18.13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garrigue",
           repo: "lablgtk",
           rev: version,
@@ -37,27 +37,27 @@ export default nix.lambda((args) => (() => {
         }))));
       const env = nix.thunk(() => ({}));
       const buildInputs = nix.thunk(() => [camlp_streams]);
-      return { __proto__: pos$2, version, src, env, buildInputs };
+      return { [nix.POS]: pos$2, version, src, env, buildInputs };
     })() : (nix.asBool(nix.app(check, "3.12")) ? {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2.18.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://forge.ocamlcore.org/frs/download.php/1627/lablgtk-2.18.5.tar.gz",
           sha256: "0cyj6sfdvzx8hw7553lhgwc0krlgvlza0ph3dk9gsxy047dm3wib",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
     } : nix.builtins.throw(nix.thunk(() => nix.str`lablgtk is not available for OCaml ${nix.sel(ocaml, "version")}`))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-lablgtk`),
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.attr(param, "src")),
       env: nix.thunk(() => nix.attr(param, "env")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://github.com/garrigue/lablgtk/commit/c9717249954d1713815d435c84f9953a685af4be.patch",
             hash: "sha256-jxmcAIIpdee7sPKfeLAijBnwgKDTjXuiWlh6c9rs+18=",
           })))),
@@ -75,7 +75,7 @@ export OCAMLPATH=$out/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/:$OCAMLPAT
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "OCaml interface to GTK",
         homepage: "http://lablgtk.forge.ocamlcore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

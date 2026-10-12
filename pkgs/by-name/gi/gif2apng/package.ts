@@ -21,33 +21,33 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zopfli = nix.arg($, "zopfli");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gif2apng",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gif2apng/gif2apng-${nix.sel(finalAttrs, "version")}-src.zip`),
           stripRoot: false,
           hash: "sha256-rt1Vp4hjeFAVWJOU04BdU2YvBwECe9Q1c7EpNpIN+uE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/g/gif2apng/1.9%2Bsrconly-3%2Bdeb11u1/debian/patches/10-7z.patch",
             hash: "sha256-zQgSWP/CIGaTUIxP/X92zpAQVSGgVo8gQEoCCMn+XT0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.org/data/main/g/gif2apng/1.9%2Bsrconly-3%2Bdeb11u1/debian/patches/CVE-2021-45909.patch",
             hash: "sha256-ZDN3xgvktgahDEtrEpyVsL+4u+97Fo9vAB1RSKhu8KA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.org/data/main/g/gif2apng/1.9%2Bsrconly-3%2Bdeb11u1/debian/patches/CVE-2021-45910.patch",
             hash: "sha256-MzOUOC7kqH22DmTMXoDu+jZAMBJPndnFNJGAQv5FcdI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://sources.debian.org/data/main/g/gif2apng/1.9%2Bsrconly-3%2Bdeb11u1/debian/patches/CVE-2021-45911.patch",
             hash: "sha256-o2YDHsSaorCx/6bQQfudzkLHo9pakgyvs2Pbafplnek=",
           })))),
@@ -56,10 +56,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, zopfli]),
       preBuild: "buildFlagsArray+=(\"LIBS=-lzopfli -lstdc++ -lz\")\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
-      env: nix.thunk(() => ({ __proto__: pos$6, NIX_CFLAGS_COMPILE: "-DENABLE_LOCAL_ZOPFLI" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-DENABLE_LOCAL_ZOPFLI" })),
       installPhase: "runHook preInstall\ninstall -Dm755 gif2apng $out/bin/gif2apng\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://gif2apng.sourceforge.net/",
         description: "Simple program that converts animations from GIF to APNG format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

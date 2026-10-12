@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bdf2ttf",
       version: "2.0-unstable-2016-07-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "koron",
           repo: "bdf2ttf",
           rev: "1baae7b70a432153e3d876966e47a78f0e572eac",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["gcc"]),
       installPhase: "runHook preInstall\ninstall -Dm755 bdf2ttf $out/bin/bdf2ttf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert BDF font file to TTF (embed bitmap as is, not convert to vector)",
         homepage: "https://github.com/koron/bdf2ttf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/extra-libs.nix", [["ea2cea3b-5b76-57ae-a6ef-0a8af62496e1", 10, 3], ["c0090381-4147-56d7-9ebc-da0b1113ec56", 14, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$1,
+  [nix.POS]: pos$1,
   "ea2cea3b-5b76-57ae-a6ef-0a8af62496e1": nix.thunk(() => ["dbus.lib"]),
   "c0090381-4147-56d7-9ebc-da0b1113ec56": nix.thunk(() => ["dbus.lib"]),
 }));

@@ -16,30 +16,30 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchzip = nix.arg($, "fetchzip");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://dl.fastmailcdn.com/desktop/production/mac/arm64/Fastmail-1.8.0-arm64-mac.zip",
           hash: "sha512-TT/oMY6F0tNzS9fyYybJDOdsLkDWTubAlVGRhm3V7cWaoR/6wpx7AhTLLZLidKGDVn55OFqHLAy0TBocVwkx+w==",
         })))),
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://dl.fastmailcdn.com/desktop/production/linux/arm64/com.fastmail.Fastmail-1.8.0-arm64.AppImage",
           hash: "sha512-salt9b6hxkn+uW0QIlauGcobRua8ih2bYIgCR7otCQjhcUCz7SuLN8zryfM8Q+awNJ9p6RILrv5S0t2QFihPlA==",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "https://dl.fastmailcdn.com/desktop/production/linux/x64/com.fastmail.Fastmail-1.8.0.AppImage",
           hash: "sha512-t5Ygan37PcUpt2z4bAEpUbtEO4TlBM4QLkP2ycfhaBxQD9L/pJH4iWI+SL4emg4oWZSJk0GnehlWhCosayiIlQ==",
         })))),

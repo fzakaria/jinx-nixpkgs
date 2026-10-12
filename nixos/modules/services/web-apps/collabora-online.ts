@@ -45,16 +45,16 @@ export default nix.lambda((args) => (() => {
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "services", "collabora-online"));
   const freeformType = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type"))), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "`coolwsd.xml` configuration type, used to override values in the default configuration.\n\nAttribute names correspond to XML tags unless prefixed with `@`. Nested attribute sets\ncorrespond to nested XML tags. Attribute prefixed with `@` correspond to XML attributes. E.g.,\n`{ storage.wopi.\"@allow\" = true; }` in Nix corresponds to\n`<storage><wopi allow=\"true\"/></storage>` in `coolwsd.xml`, or `--o:storage.wopi[@allow]=true`\nin the command line.\n\nArrays correspond to multiple elements with the same tag name. E.g.\n`{ host = [ ''127\\.0\\.0\\.1'' \"::1\" ]; }` in Nix corresponds to\n```xml\n<net><post_allow>\n  <host>127\\.0\\.0\\.1</host>\n  <host>::1</host>\n</post_allow></net>\n```\nin `coolwsd.xml`, or\n`--o:net.post_allow.host[0]='127\\.0\\.0\\.1 --o:net.post_allow.host[1]=::1` in the command line.\n\nNull values could be used to remove an element from the default configuration.\n",
   }));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "coolwsd.xml", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "jq")),
         nix.thunk(() => nix.sel(pkgs, "yq-go")),
       ]),
-      userConfig: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$2, config: nix.thunk(() => nix.sel(cfg, "settings")) })))),
+      userConfig: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, config: nix.thunk(() => nix.sel(cfg, "settings")) })))),
       passAsFile: nix.thunk(() => ["userConfig"]),
     })), nix.thunk(() => nix.str`yq --input-format=xml \\
    --xml-attribute-prefix=@ \\
@@ -74,41 +74,41 @@ yq --output-format=xml \\
    > $out
 `)));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "collabora-online": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "collabora-online")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Collabora Online", nix.thunk(() => ({ __proto__: pos$4, default: "collabora-online" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Collabora Online", nix.thunk(() => ({ [nix.POS]: pos$4, default: "collabora-online" })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9980n,
               description: "Listening port",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: freeformType,
               default: nix.thunk(() => ({})),
               description: "Configuration for Collabora Online WebSocket Daemon, see\n<https://sdk.collaboraonline.com/docs/installation/Configuration.html>, or\n<https://github.com/CollaboraOnline/online/blob/master/coolwsd.xml.in> for the default\nconfiguration.\n",
             })))),
           aliasGroups: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "scheme://hostname:port",
                           description: "Hostname to allow or deny.",
                         })))),
                       aliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: [],
                           example: nix.thunk(() => ["scheme://aliasname1:port", "scheme://aliasname2:port"]),
@@ -120,7 +120,7 @@ yq --output-format=xml \\
               description: "Alias groups to use.",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra arguments to pass to the service.",
@@ -129,19 +129,19 @@ yq --output-format=xml \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           "collabora-online": nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               child_root_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/cool/child-roots")),
               sys_template_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/cool/systemplate")),
               file_server_root_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(config, "services", "collabora-online", "package")}/share/coolwsd`))),
               mount_namespaces: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               ssl: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ca_file_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(config, "services", "collabora-online", "package")}/etc/coolwsd/ca-chain.cert.pem`))),
                 cert_file_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(config, "services", "collabora-online", "package")}/etc/coolwsd/cert.pem`))),
                 key_file_path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(config, "services", "collabora-online", "package")}/etc/coolwsd/key.pem`))),
@@ -150,23 +150,23 @@ yq --output-format=xml \\
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => ({
-            __proto__: pos$21,
-            cool: nix.thunk(() => ({ __proto__: pos$20, isSystemUser: true, group: "cool" })),
+            [nix.POS]: pos$21,
+            cool: nix.thunk(() => ({ [nix.POS]: pos$20, isSystemUser: true, group: "cool" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$22, cool: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$22, cool: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "coolwsd-systemplate-setup": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Collabora Online WebSocket Daemon Setup",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/coolwsd-systemplate-setup`),
                     "/var/lib/cool/systemplate",
@@ -179,17 +179,17 @@ yq --output-format=xml \\
               })),
             })),
             coolwsd: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Collabora Online WebSocket Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "coolwsd-systemplate-setup.service"]),
               environment: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.app(nix.sel(lib, "imap1"), (n) => (ag) => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     name: nix.thunk(() => nix.str`aliasgroup${nix.builtins.toString(n)}`),
                     value: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(ag, "host"))], nix.sel(ag, "aliases"))))),
                   }), nix.thunk(() => nix.sel(cfg, "aliasGroups")))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/coolwsd`),
                     nix.thunk(() => nix.str`--config-file=${configFile}`),
@@ -210,7 +210,7 @@ yq --output-format=xml \\
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xzfc"))]),
     })),
   };

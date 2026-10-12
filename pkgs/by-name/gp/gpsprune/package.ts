@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gpsprune",
       version: "25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://activityworkshop.net/software/gpsprune/gpsprune_${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-8FGOigjHIvj+CZwq0Lht7UZjtmrE5l2Aqx92gZjau44=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [jre]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gpsprune",
             exec: "gpsprune %F",
             icon: "gpsprune",
@@ -58,7 +58,7 @@ ${unzip}/bin/unzip -p $src tim/prune/gui/images/window_icon_64.png > $out/share/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Application for viewing, editing and converting GPS coordinate data",
         homepage: "https://activityworkshop.net/software/gpsprune/",
         changelog: "https://activityworkshop.net/software/gpsprune/whats_new.html",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libidn2 = nix.arg($, "libidn2");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "maildrop",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/courier/maildrop/${nix.sel(finalAttrs, "version")}/maildrop-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-YfNjWVcSTiTfqrhAlWpQlG3LL25m2CE6ECBJu60a2GE=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./maildrop.configure.hack.patch")]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.courier-mta.org/maildrop/",
         description: "Mail filter/mail delivery agent that is used by the Courier Mail Server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

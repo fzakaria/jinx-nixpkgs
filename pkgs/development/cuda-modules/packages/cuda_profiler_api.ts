@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_profiler_api",
       outputs: nix.thunk(() => ["out", "dev", "include"]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "API for profiling CUDA runtime" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "API for profiling CUDA runtime" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=cuda_profiler_api.ts.map

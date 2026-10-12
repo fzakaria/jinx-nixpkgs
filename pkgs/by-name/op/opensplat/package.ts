@@ -33,16 +33,16 @@ export default nix.lambda((args) => (() => {
   const rocmPackages = nix.arg($, "rocmPackages");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
-  const torch = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "torch", "override"), nix.thunk(() => ({ __proto__: pos$1, cudaSupport: cudaSupport, rocmSupport: rocmSupport }))));
+  const torch = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "torch", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaSupport: cudaSupport, rocmSupport: rocmSupport }))));
   const stdenv$ = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "opensplat",
       version: "1.1.4",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pierotofy",
           repo: "OpenSplat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/pierotofy/OpenSplat/commit/7fb96e86a43ac6cfd3eb3a7f6be190c5f2dbeb73.patch",
             hash: "sha256-hWJWU/n1pRAAbExAYUap6CoSjIu2dzCToUmacSSpa0I=",
           })))),
@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(rocmPackages, "miopen")),
         ])), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))]))))),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(python3, "pkgs", "torch", "cudaCapabilities")))}`),
           NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           PYTORCH_ROCM_ARCH: nix.thunk(() => nix.sel(torch, "gpuTargetString")),
           HIPFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(rocmPackages, "rocprim")))}/include`),
@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUDA_TOOLKIT_ROOT_DIR", nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc", "outPath")))),
         ]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Production-grade 3D gaussian splatting",
         homepage: "https://github.com/pierotofy/OpenSplat/",
         license: nix.thunk(() => [

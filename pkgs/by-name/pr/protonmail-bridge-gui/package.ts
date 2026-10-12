@@ -26,20 +26,20 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const guiSourcePath = "internal/frontend/bridge-gui";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "protonmail-bridge-gui",
       version: nix.thunk(() => nix.attr(protonmail_bridge, "version")),
       src: nix.thunk(() => nix.attr(protonmail_bridge, "src")),
       patches: nix.thunk(() => [
         nix.path(here, "./use-nix-googletest.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/daniel-fahey/proton-bridge/commit/9b282369523ce2aabcf95369a2ed3867efb5a4ac.patch?full_index=1",
             relative: guiSourcePath,
             hash: "sha256-CGBelsplAqLI+6GtDR+VELfVsLoHPN0324gfZ3obKpI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/daniel-fahey/proton-bridge/commit/7823fe4904186253798fc633724988d43dd642e0.patch?full_index=1",
             relative: guiSourcePath,
             hash: "sha256-2heMfZdXLL8/uyM0jZ860Jw76c+gHtc0G6pWmIRCONY=",
@@ -85,7 +85,7 @@ install -Dm644 ../../../../dist/bridge.svg $out/share/icons/hicolor/scalable/app
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ProtonMail/proton-bridge/blob/${nix.sel(finalAttrs, "src", "rev")}/Changelog.md`),
         description: "Qt-based GUI to use your ProtonMail account with your local e-mail client",
         downloadPage: "https://github.com/ProtonMail/proton-bridge/releases",

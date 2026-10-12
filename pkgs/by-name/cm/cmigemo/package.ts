@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const skkDictionaries = nix.arg($, "skkDictionaries");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmigemo",
       version: "1.3e",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "koron",
           repo: "cmigemo",
           rev: "e0f6145f61e0b7058c3006f344e58571d9fdd83a",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx-install" : "gcc-install")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that supports Japanese incremental search with Romaji",
         mainProgram: "cmigemo",
         homepage: "https://www.kaoriya.net/software/cmigemo",

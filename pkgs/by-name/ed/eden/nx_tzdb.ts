@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tzdb_to_nx",
       version: "230326",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.eden-emu.dev",
           owner: "eden-emu",
           repo: "tzdb_to_nx",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ninjaFlags: nix.thunk(() => ["x80e"]),
       installPhase: "runHook preInstall\n\ncp -r src/tzdb/nx $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RFC 8536 time zone data converted to the Nintendo Switch format",
         homepage: "https://git.crueter.xyz/misc/tzdb_to_nx",
         maintainers: nix.thunk(() => (() => {

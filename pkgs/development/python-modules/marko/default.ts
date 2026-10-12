@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const python_slugify = nix.arg($, "python-slugify");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "marko",
       version: "2.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frostming",
           repo: "marko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [pdm_backend]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         codehilite: nix.thunk(() => [pygments]),
         repr: nix.thunk(() => [objprint]),
         toc: nix.thunk(() => [python_slugify]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["marko"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Markdown parser with high extensibility",
         homepage: "https://github.com/frostming/marko",
         changelog: nix.thunk(() => nix.str`https://github.com/frostming/marko/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

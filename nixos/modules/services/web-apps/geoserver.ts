@@ -29,35 +29,35 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "geoserver"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         geoserver: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Geoserver service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "geoserver", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "geoserver",
               description: "The (system) user that will run the service.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "geoserver",
               description: "The user's group.",
             })))),
           jvmOpts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Any options passed to the JVM via the `JAVA_OPTS` environment variable. See [startup.sh](https://github.com/geoserver/geoserver/blob/main/src/release/bin/startup.sh) for details.",
             })))),
           jettyOpts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "jetty.http.port=1234",
@@ -67,12 +67,12 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               group: nix.thunk(() => nix.sel(cfg, "group")),
               isSystemUser: true,
             }))],
@@ -80,22 +80,22 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "group")}`, nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             geoserver: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Geoserver",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 GEOSERVER_HOME: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/geoserver`),
                 GEOSERVER_DATA_DIR: "/var/lib/geoserver",
                 JAVA_OPTS: nix.thunk(() => nix.str`${nix.sel(cfg, "jvmOpts")}`),
                 JETTY_OPTS: nix.thunk(() => nix.str`${nix.sel(cfg, "jettyOpts")}`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/geoserver-startup`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
     })),
   };

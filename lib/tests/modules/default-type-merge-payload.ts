@@ -21,44 +21,44 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   const fooOf = (elemType) => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "foo",
       functor: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "foo",
         type: (payload) => nix.app(fooOf, nix.thunk(() => nix.sel(payload, "elemType"))),
         binOp: (a) => (_b) => nix.force(a),
-        payload: nix.thunk(() => ({ __proto__: pos$1, elemType: elemType })),
+        payload: nix.thunk(() => ({ [nix.POS]: pos$1, elemType: elemType })),
       })),
     })));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         options: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(fooOf, nix.thunk(() => nix.sel(lib, "types", "int")))),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         options: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(fooOf, nix.thunk(() => nix.sel(lib, "types", "int")))),
             })))),
         })),
       })),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           default: nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(options, "foo")), "ok")),
         })))),
     })),

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libsepol",
       version: "3.11",
       se_url: "https://github.com/SELinuxProject/selinux/releases/download",
       outputs: nix.thunk(() => ["bin", "out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/libsepol-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-efPSyI9Et+tc9U2XkuAyMil+F/l6F5Fj8nUAmaAPFk0=",
         })))),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["DISABLE_SHARED=y"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform", "parsed", "kernel", "name"), nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))), nix.thunk(() => [
           nix.thunk(() => nix.str`OS=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Darwin" : "Linux")}`),
         ]))))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, se_url: nix.thunk(() => nix.attr(finalAttrs, "se_url")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, se_url: nix.thunk(() => nix.attr(finalAttrs, "se_url")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SELinux binary policy manipulation library",
         homepage: "http://userspace.selinuxproject.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

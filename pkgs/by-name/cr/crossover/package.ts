@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "crossover",
       version: "26.3.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://media.codeweavers.com/pub/crossover/cxmac/demo/crossover-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-hojghIxOX3nxzDUctS0yRH2gDGwAz9O0uy0WTURYmiY=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R CrossOver.app $out/Applications/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "crossover-update-script", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, gnugrep, gnused, coreutils, common_updater_scripts]))}"
 
@@ -55,7 +55,7 @@ update-source-version "crossover" "$new_version" \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Run Windows applications on macOS without a Windows license",
         homepage: "https://www.codeweavers.com/crossover",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

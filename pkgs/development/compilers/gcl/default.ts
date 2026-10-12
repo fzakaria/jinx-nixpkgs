@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gcl";
       const version = "2.6.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gcl/gcl-${version}.tar.gz`),
           hash: "sha256-CfNBfFEqoXM6Y4gJ06Y6wpDuuUSL6CeV9bZoG9MHNFo=",
         }))));
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const configureFlags = nix.thunk(() => ["--enable-ansi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU Common Lisp compiler working via GCC",
         mainProgram: "gcl",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lisp"))]),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         broken: true,
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, configureFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, configureFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

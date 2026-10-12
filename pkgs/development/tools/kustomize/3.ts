@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "kustomize",
           rev: nix.thunk(() => nix.str`kustomize/v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/kustomize`);
       const vendorHash = "sha256-xLeetcmzvpILLLMhMx7oahWLxguFjG3qbYpeeWpFUlw=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Customization of kubernetes YAML configurations",
         longDescription: "kustomize lets you customize raw, template-free YAML files for\nmultiple purposes, leaving the original YAML untouched and usable\nas is.\n",
         homepage: "https://github.com/kubernetes-sigs/kustomize",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kustomize",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

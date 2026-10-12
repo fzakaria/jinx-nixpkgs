@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "21.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-jEnrGTddSqs+W4NYYGFODLF+VrtaIOGHSAj6W+xno1g=",
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const checkPhase = "trial -j$NIX_BUILD_CORES ldaptor\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-Python Twisted library for LDAP",
         homepage: "https://github.com/twisted/ldaptor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

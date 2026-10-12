@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const grenier = nix.arg($, "grenier");
   const pprint = nix.arg($, "pprint");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmon",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/let-def/cmon/releases/download/v${nix.sel(finalAttrs, "version")}/cmon-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-lJi5NV27YqyDgUx1i4vBj/buzyzdWJSrSceGGs82grg=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [grenier, pprint]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A library for printing OCaml values with sharing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/let-def/cmon",

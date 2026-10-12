@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libatomic_ops",
       version: "7.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.ivmaisoft.com/_bin/atomic_ops/libatomic_ops-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://github.com/ivmai/libatomic_ops/releases/download/v${nix.sel(finalAttrs, "version")}/libatomic_ops-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), nix.thunk(() => [autoconf, automake, libtool]))),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "sed -i -e \"/libatomic_ops_gpl_la_SOURCES/a libatomic_ops_gpl_la_LIBADD = libatomic_ops.la\" src/Makefile.am\n./autogen.sh\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for semi-portable access to hardware-provided atomic memory update operations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2026-08-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "colloid-icon-theme",
           tag: version,
@@ -60,11 +60,11 @@ runHook postInstall
 `);
       const postFixup = "find $out/share/icons -xtype l -delete\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Colloid icon theme",
         homepage: "https://github.com/vinceliuice/colloid-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -75,7 +75,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version,
         src,

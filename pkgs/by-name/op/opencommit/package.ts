@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opencommit";
       const version = "3.3.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "di-sukharev",
           repo: "opencommit",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,18 +31,18 @@ ${nix.app(nix.sel(lib, "getExe"), npm_lockfile_fix)} package-lock.json
         }))));
       const npmDepsHash = "sha256-9oJ4hE633IOVWXNKvRFsXaYh1zNAxbu0la92Gia/MBY=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AI-powered commit message generator",
         homepage: "https://www.npmjs.com/package/opencommit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matteopacini"))]),
         mainProgram: "oco",
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

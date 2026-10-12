@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return (self) => (super$) => (() => {
     const from = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.lookup(w, "addBuildDepends"), nix.thunk(() => [nix.thunk(() => nix.sel(self, "foldable1-classes-compat"))])), super$));
     return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     array: null,
     base: null,
     binary: null,
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
     some: nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "base-orphans")), nix.thunk(() => nix.sel(super$, "some")))),
     hedgehog: nix.thunk(() => nix.app(nix.lookup(w, "dontHaddock"), nix.thunk(() => nix.sel(super$, "hedgehog")))),
     hpack: nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         testFlags: nix.thunk(() => nix.concat(["--skip=/Hpack/renderCabalFile/is inverse to readCabalFile/"], nix.selOr(drv, () => [], "testFlags"))),
       }), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "hpack")))))),
     "crypton-x509-store": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(self, "crypton-x509-store_1_6_11")))),
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
     "toml-reader": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "toml-reader")))),
     "ghc-check": nix.thunk(() => nix.app(nix.lookup(w, "dontHaddock"), nix.thunk(() => nix.sel(super$, "ghc-check")))),
     "ghc-tags": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(self, "ghc-tags_1_7")))))),
-    "ghc-lib-parser": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(self, "ghc-lib-parser_9_6_7_20250325", "override"), nix.thunk(() => ({ __proto__: pos$2, happy: nix.thunk(() => nix.sel(self, "happy_1_20_1_1")) })))))),
+    "ghc-lib-parser": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(self, "ghc-lib-parser_9_6_7_20250325", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, happy: nix.thunk(() => nix.sel(self, "happy_1_20_1_1")) })))))),
     "ghc-lib-parser-ex": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(self, "ghc-lib-parser-ex_9_6_0_2")))),
-    "ghc-lib": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(self, "ghc-lib_9_6_7_20250325", "override"), nix.thunk(() => ({ __proto__: pos$3, happy: nix.thunk(() => nix.sel(self, "happy_1_20_1_1")) })))))),
+    "ghc-lib": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(self, "ghc-lib_9_6_7_20250325", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, happy: nix.thunk(() => nix.sel(self, "happy_1_20_1_1")) })))))),
     tar: nix.thunk(() => nix.sel(self, "tar_0_6_3_0")),
     "ghc-exactprint": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "ghc-exactprint_1_6_1_3")))),
     "th-extras": nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "th-extras")))),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
     path: nix.thunk(() => nix.sel(self, "path_0_9_5")),
     "haskell-language-server": nix.thunk(() => nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => nix.sel(pkgs, "config", "allowAliases")), "haskell-language-server has dropped support for ghc 9.4 in version 2.12.0.0, please use a newer ghc version or an older nixpkgs", nix.thunk(() => nix.app(nix.lookup(w, "markBroken"), nix.thunk(() => nix.sel(super$, "haskell-language-server")))))),
     hlint: nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(self, "hlint_3_6_1")))),
-    stan: nix.thunk(() => nix.app(nix.sel(super$, "stan", "override"), nix.thunk(() => ({ __proto__: pos$4, "directory-ospath-streaming": null })))),
+    stan: nix.thunk(() => nix.app(nix.sel(super$, "stan", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, "directory-ospath-streaming": null })))),
     "indexed-traversable": nix.thunk(() => nix.attr(from, "indexed-traversable")),
     OneTuple: nix.thunk(() => nix.attr(from, "OneTuple")),
     these: nix.thunk(() => nix.attr(from, "these")),

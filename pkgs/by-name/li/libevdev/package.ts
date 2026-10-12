@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libevdev",
       version: "1.13.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/libevdev/libevdev-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-c/IV7MvYIz9BRzesBryiaH5nxEuX0tdXYJGqlxhVERA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, python3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper library for evdev devices",
         homepage: "https://www.freedesktop.org/software/libevdev/doc/latest/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

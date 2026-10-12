@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const schema_salad = nix.arg($, "schema-salad");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cwl-utils",
       version: "0.45",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "common-workflow-language",
           repo: "cwl-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "test_cwl_inputs_to_jsonschema",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for CWL",
         homepage: "https://github.com/common-workflow-language/cwl-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/common-workflow-language/cwl-utils/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

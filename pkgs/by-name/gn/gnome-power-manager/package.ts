@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-power-manager",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-power-manager/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-power-manager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-vyQ9Y4n4v6cclYU07SZpspllxH9Vw8vkmDspbQ+Z5dc=",
         })))),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, glib, upower]),
       postPatch: "substituteInPlace meson_post_install.sh \\\n  --replace-fail \"gtk-update-icon-cache\" \"gtk4-update-icon-cache\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-power-manager" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-power-manager" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/gnome-power-manager",
         description: "View battery and power statistics provided by UPower",
         mainProgram: "gnome-power-statistics",

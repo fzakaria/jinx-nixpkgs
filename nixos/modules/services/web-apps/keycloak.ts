@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
   const isPath = nix.thunk(() => nix.attr(nix.builtins, "isPath"));
   const prefixUnlessEmpty = (prefix) => (string) => nix.app(optionalString, nix.thunk(() => !nix.eq(string, "")), nix.thunk(() => nix.str`${prefix}${string}`));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "keycloak", "bindAddress"]), nix.thunk(() => ["services", "keycloak", "settings", "http-host"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "keycloak", "forceBackendUrlToFrontendUrl"]), nix.thunk(() => ["services", "keycloak", "settings", "hostname-strict-backchannel"]))),
@@ -119,9 +119,9 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "keycloak", "extraConfig"]), "Use `services.keycloak.settings' instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         keycloak: nix.thunk(() => (() => {
           const bool = nix.thunk(() => nix.attr(types, "bool"));
           const str = nix.thunk(() => nix.attr(types, "str"));
@@ -140,16 +140,16 @@ export default nix.lambda((args) => (() => {
   paths are copied into the world-readable Nix store.
 `)) : nix.force(value));
           return {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: bool,
                 default: false,
                 example: true,
                 description: "Whether to enable the Keycloak identity and access management\nserver.\n",
               })))),
             sslCertificate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nullOr, path)),
                 default: null,
                 example: "/run/keys/ssl_cert",
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
                 description: "The path to a PEM formatted certificate to use for TLS/SSL\nconnections.\n",
               })))),
             sslCertificateKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nullOr, path)),
                 default: null,
                 example: "/run/keys/ssl_key",
@@ -165,30 +165,30 @@ export default nix.lambda((args) => (() => {
                 description: "The path to a PEM formatted private key to use for TLS/SSL\nconnections.\n",
               })))),
             plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: [],
                 description: "Keycloak plugin jar, ear files or derivations containing\nthem. Packaged plugins are available through\n`pkgs.keycloak.plugins`.\n",
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["mysql", "mariadb", "postgresql"]))),
                   default: "postgresql",
                   example: "mariadb",
                   description: "The type of database Keycloak should connect to.\n",
                 })))),
               host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: str,
                   default: "localhost",
                   description: "Hostname of the database to connect to.\n\nFor PostgreSQL, this can also be a path to a Unix socket\ndirectory (e.g., `/run/postgresql`) to use peer authentication.\nThis requires adding `junixsocket-common` and `junixsocket-native-common`\nto [](#opt-services.keycloak.plugins).\n",
                 })))),
               port: nix.thunk(() => (() => {
-                const dbPorts = nix.thunk(() => ({ __proto__: pos$7, postgresql: 5432n, mariadb: 3306n, mysql: 3306n }));
+                const dbPorts = nix.thunk(() => ({ [nix.POS]: pos$7, postgresql: 5432n, mariadb: 3306n, mysql: 3306n }));
                 return nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     type: port,
                     default: nix.thunk(() => nix.sel(dbPorts, nix.key(nix.sel(cfg, "database", "type")))),
                     defaultText: nix.thunk(() => nix.app(literalMD, "default port of selected database")),
@@ -196,38 +196,38 @@ export default nix.lambda((args) => (() => {
                   })));
               })()),
               useSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: bool,
                   default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "host"), "localhost")) && nix.asBool(!nix.asBool(nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(cfg, "database", "host"))))))),
                   defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "database", "host")} != "localhost" && !lib.hasPrefix "/" config.${nix.sel(opt, "database", "host")}`))),
                   description: "Whether the database connection should be secured by SSL / TLS.\n\nDefaults to `false` for localhost and Unix socket connections.\n",
                 })))),
               caCert: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                   default: null,
                   description: "The SSL / TLS CA certificate that verifies the identity of the\ndatabase server.\n\nRequired when PostgreSQL is used and SSL is turned on.\n\nFor MySQL, if left at `null`, the default\nJava keystore is used, which should suffice if the server\ncertificate is issued by an official CA.\n",
                 })))),
               createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   type: bool,
                   default: true,
                   description: "Whether a database should be automatically created on the\nlocal host. Set this to false if you plan on provisioning a\nlocal database yourself. This has no effect if\nservices.keycloak.database.host is customized.\n",
                 })))),
               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: str,
                   default: "keycloak",
                   description: "Database name to use when connecting to an external or\nmanually provisioned database; has no effect when a local\ndatabase is automatically provisioned.\n\nTo use this with a local database, set [](#opt-services.keycloak.database.createLocally) to\n`false` and create the database and user\nmanually.\n",
                 })))),
               username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: str,
                   default: "keycloak",
                   description: "Username to use when connecting to an external or manually\nprovisioned database; has no effect when a local database is\nautomatically provisioned.\n\nTo use this with a local database, set [](#opt-services.keycloak.database.createLocally) to\n`false` and create the database and user\nmanually.\n",
                 })))),
               passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                   default: null,
                   example: "/run/keys/db_password",
@@ -237,54 +237,54 @@ export default nix.lambda((args) => (() => {
             })),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "keycloak", nix.thunk(() => ({})))),
             initialAdminPassword: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nullOr, str)),
                 default: null,
                 description: "Initial password set for the temporary `admin` user.\nThe password is not stored safely and should be changed\nimmediately in the admin panel.\n\nSee [Admin bootstrap and recovery](https://www.keycloak.org/server/bootstrap-admin-recovery) for details.\n",
               })))),
             themes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(attrsOf, package$)),
                 default: nix.thunk(() => ({})),
                 description: "Additional theme packages for Keycloak. Each theme is linked into\nsubdirectory with a corresponding attribute name.\n\nTheme packages consist of several subdirectories which provide\ndifferent theme types: for example, `account`,\n`login` etc. After adding a theme to this option you\ncan select it by its name in Keycloak administration console.\n",
               })))),
             realmFiles: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(listOf, path)),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  ./some/realm.json\n  ./another/realm.json\n]\n")),
                 default: [],
                 description: "Realm files that the server is going to import during startup.\nIf a realm already exists in the server, the import operation is\nskipped. Importing the master realm is not supported. All files are\nexpected to be in `json` format. See the\n[documentation](https://www.keycloak.org/server/importExport) for\nfurther information.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [str, int, bool, nix.thunk(() => nix.app(attrsOf, path))]))))))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       "http-host": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: str,
                           default: "::",
                           example: "::1",
                           description: "On which address Keycloak should accept new connections.\n",
                         })))),
                       "http-port": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: port,
                           default: 80n,
                           example: 8080n,
                           description: "On which port Keycloak should listen for new HTTP connections.\n",
                         })))),
                       "https-port": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: port,
                           default: 443n,
                           example: 8443n,
                           description: "On which port Keycloak should listen for new HTTPS connections.\n",
                         })))),
                       "http-relative-path": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: str,
                           default: "/",
                           example: "/auth",
@@ -292,13 +292,13 @@ export default nix.lambda((args) => (() => {
                           description: "The path relative to `/` for serving\nresources.\n\n::: {.note}\nIn versions of Keycloak using Wildfly (&lt;17),\nthis defaulted to `/auth`. If\nupgrading from the Wildfly version of Keycloak,\ni.e. a NixOS version before 22.05, you'll likely\nwant to set this to `/auth` to\nkeep compatibility with your clients.\n\nSee <https://www.keycloak.org/migration/migrating-to-quarkus>\nfor more information on migrating from Wildfly to Quarkus.\n:::\n",
                         })))),
                       hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.app(nullOr, str)),
                           example: "keycloak.example.com",
                           description: "The hostname part of the public URL used as base for\nall frontend requests.\n\nSee <https://www.keycloak.org/server/hostname>\nfor more information about hostname configuration.\n",
                         })))),
                       "hostname-backchannel-dynamic": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: bool,
                           default: false,
                           example: true,
@@ -345,9 +345,9 @@ done
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name) => (theme) => nix.str`linkTheme ${theme} ${nix.app(escapeShellArg, name)}`, nix.thunk(() => nix.sel(cfg, "themes")))))}
 `)));
       const keycloakConfig = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), "=", nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               mkValueString: (v) => (nix.asBool(nix.app(isInt, v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(isString, v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "true" : (nix.asBool(nix.eq(false, v)) ? "false" : (nix.asBool(nix.app(isSecret, v)) ? nix.app(hashString, "sha256", nix.thunk(() => nix.sel(v, "_secret"))) : nix.builtins.throw(nix.thunk(() => nix.str`unsupported type ${nix.app(typeOf, v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`))))))),
             })))),
         }))));
@@ -355,7 +355,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
       const filteredConfig = nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.asBool(nix.app(elem, v, nix.thunk(() => [nix.thunk(() => ({})), null]))))), nix.thunk(() => nix.sel(cfg, "settings"))));
       const confFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "keycloak.conf", nix.thunk(() => nix.app(keycloakConfig, filteredConfig))));
       const keycloakBuild = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           confFile: confFile,
           plugins: nix.thunk(() => nix.concat(nix.sel(cfg, "package", "enabledPlugins"), nix.concat(nix.sel(cfg, "plugins"), (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "package", "plugins")), null);
@@ -366,49 +366,49 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
           })()))),
         }))));
       return nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "database", "useSSL")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")))) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "caCert"), null)))),
               message: "A CA certificate must be specified (in 'services.keycloak.database.caCert') when PostgreSQL is used with SSL",
             })),
             nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               assertion: nix.thunk(() => (!nix.asBool(createLocalPostgreSQL) || nix.asBool(nix.selOr(config, () => true, "services", "postgresql", "settings", "standard_conforming_strings")))),
               message: "Setting up a local PostgreSQL db for Keycloak requires `standard_conforming_strings` turned on to work reliably",
             })),
             nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "hostname"), null)) || nix.asBool(!nix.asBool(nix.selOr(cfg, () => true, "settings", "hostname-strict"))))),
               message: "Setting the Keycloak hostname is required, see `services.keycloak.settings.hostname`",
             })),
             nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               assertion: nix.thunk(() => nix.eq(nix.selOr(cfg, () => null, "settings", "hostname-url"), null)),
               message: "The option `services.keycloak.settings.hostname-url' has been removed.\nSet `services.keycloak.settings.hostname' instead.\nSee [New Hostname options](https://www.keycloak.org/docs/25.0.0/upgrading/#new-hostname-options) for details.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               assertion: nix.thunk(() => nix.eq(nix.selOr(cfg, () => null, "settings", "hostname-strict-backchannel"), null)),
               message: "The option `services.keycloak.settings.hostname-strict-backchannel' has been removed.\nSet `services.keycloak.settings.hostname-backchannel-dynamic' instead.\nSee [New Hostname options](https://www.keycloak.org/docs/25.0.0/upgrading/#new-hostname-options) for details.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               assertion: nix.thunk(() => nix.eq(nix.selOr(cfg, () => null, "settings", "proxy"), null)),
               message: "The option `services.keycloak.settings.proxy' has been removed.\nSet `services.keycloak.settings.proxy-headers` in combination\nwith other hostname options as needed instead.\nSee [Proxy option removed](https://www.keycloak.org/docs/latest/upgrading/index.html#proxy-option-removed)\nfor more information.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)) || nix.asBool(nix.app(hasPrefix, "/", nix.thunk(() => nix.sel(cfg, "database", "host")))))),
               message: "services.keycloak.database.passwordFile must be set unless using\nUnix socket authentication (host starting with /).\n",
             })),
           ]),
-          environment: nix.thunk(() => ({ __proto__: pos$41, systemPackages: nix.thunk(() => [keycloakBuild]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$41, systemPackages: nix.thunk(() => [keycloakBuild]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             keycloak: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               settings: nix.thunk(() => (() => {
                 const postgresParams = nix.thunk(() => nix.app(concatStringsSep, "&", nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(cfg, "database", "useSSL")), nix.thunk(() => ["ssl=true"])), nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "caCert"), null)), nix.thunk(() => [
                       nix.thunk(() => nix.str`sslrootcert=${nix.sel(cfg, "database", "caCert")}`),
@@ -424,17 +424,17 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
                 const unixSocketUrl = nix.thunk(() => nix.str`jdbc:postgresql://localhost/${dbName}?socketFactory=org.newsclub.net.unix.AFUNIXSocketFactory$FactoryArg&socketFactoryArg=${nix.sel(cfg, "database", "host")}/.s.PGSQL.${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))}&sslMode=disable`);
                 return nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       db: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "postgresql")) ? "postgres" : nix.sel(cfg, "database", "type"))),
                       "db-username": nix.thunk(() => (nix.asBool(databaseActuallyCreateLocally) ? "keycloak" : nix.sel(cfg, "database", "username"))),
                       "db-password": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           _secret: nix.thunk(() => nix.sel(cfg, "database", "passwordFile")),
                         })))),
                     })),
-                    nix.thunk(() => nix.app(mkIf, isUnixSocket, nix.thunk(() => ({ __proto__: pos$44, "db-url": unixSocketUrl })))),
+                    nix.thunk(() => nix.app(mkIf, isUnixSocket, nix.thunk(() => ({ [nix.POS]: pos$44, "db-url": unixSocketUrl })))),
                     nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(isUnixSocket)), nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         "db-url-host": nix.thunk(() => nix.sel(cfg, "database", "host")),
                         "db-url-port": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))),
                         "db-url-database": dbName,
@@ -442,7 +442,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
                         "db-url": null,
                       })))),
                     nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "sslCertificate"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "sslCertificateKey"), null)))), nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         "https-certificate-file": "/run/keycloak/ssl/ssl_cert",
                         "https-certificate-key-file": "/run/keycloak/ssl/ssl_key",
                       })))),
@@ -450,11 +450,11 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
               })()),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               enable: nix.thunk(() => nix.app(mkDefault, createLocalPostgreSQL)),
             })),
             mysql: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               enable: nix.thunk(() => nix.app(mkDefault, createLocalMySQL)),
               package: nix.thunk(() => (() => {
                 const dbPkg = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mariadb")) ? nix.sel(pkgs, "mariadb") : nix.sel(pkgs, "mysql84")));
@@ -463,17 +463,17 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             services: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               keycloakPostgreSQLInit: nix.thunk(() => nix.app(mkIf, createLocalPostgreSQL, nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   after: nix.thunk(() => ["postgresql.target"]),
                   before: nix.thunk(() => ["keycloak.service"]),
                   bindsTo: nix.thunk(() => ["postgresql.target"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "postgresql", "package"))]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     User: "postgres",
@@ -486,13 +486,13 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
                   enableStrictShellChecks: true,
                 })))),
               keycloakMySQLInit: nix.thunk(() => nix.app(mkIf, createLocalMySQL, nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   after: nix.thunk(() => ["mysql.service"]),
                   before: nix.thunk(() => ["keycloak.service"]),
                   bindsTo: nix.thunk(() => ["mysql.service"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "mysql", "package"))]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     User: nix.thunk(() => nix.sel(config, "services", "mysql", "user")),
@@ -511,7 +511,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
 `;
                 const secretReplacements = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), mkSecretReplacement, secretPaths));
                 return {
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   after: databaseServices,
                   bindsTo: databaseServices,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -524,16 +524,16 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (name)
                     ];
                   })()),
                   environment: nix.thunk(() => nix.update({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     KC_HOME_DIR: "/run/keycloak",
                     KC_CONF_DIR: "/run/keycloak/conf",
                   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "initialAdminPassword"), null)), nix.thunk(() => ({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       KC_BOOTSTRAP_ADMIN_USERNAME: "admin",
                       KC_BOOTSTRAP_ADMIN_PASSWORD: nix.thunk(() => nix.sel(cfg, "initialAdminPassword")),
                     }))))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     LoadCredential: nix.thunk(() => nix.concat(nix.builtins.map((p) => nix.str`${nix.builtins.baseNameOf(p)}:${p}`, secretPaths), nix.app(optionals, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "sslCertificate"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "sslCertificateKey"), null)))), nix.thunk(() => [
                         nix.thunk(() => nix.str`ssl_cert:${nix.sel(cfg, "sslCertificate")}`),
                         nix.thunk(() => nix.str`ssl_key:${nix.sel(cfg, "sslCertificateKey")}`),
@@ -572,9 +572,9 @@ sed -i '/db-/ s|\\\\|\\\\\\\\|g' /run/keycloak/conf/keycloak.conf
               })()),
             })),
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               settings: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 "10-keycloak": nix.thunk(() => (() => {
                   const mkTarget = (file) => (() => {
                     const baseName = nix.thunk(() => nix.builtins.baseNameOf(file));
@@ -582,11 +582,11 @@ sed -i '/db-/ s|\\\\|\\\\\\\\|g' /run/keycloak/conf/keycloak.conf
                     return nix.str`/run/keycloak/data/import/${name}`;
                   })();
                   const settingsList = nix.thunk(() => nix.builtins.map((f) => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       name: nix.thunk(() => nix.app(mkTarget, f)),
                       value: nix.thunk(() => ({
-                        __proto__: pos$61,
-                        "L+": nix.thunk(() => ({ __proto__: pos$60, argument: nix.thunk(() => nix.str`${f}`) })),
+                        [nix.POS]: pos$61,
+                        "L+": nix.thunk(() => ({ [nix.POS]: pos$60, argument: nix.thunk(() => nix.str`${f}`) })),
                       })),
                     }), nix.thunk(() => nix.sel(cfg, "realmFiles"))));
                   return nix.builtins.listToAttrs(settingsList);
@@ -597,7 +597,7 @@ sed -i '/db-/ s|\\\\|\\\\\\\\|g' /run/keycloak/conf/keycloak.conf
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       doc: nix.path(here, "./keycloak.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);

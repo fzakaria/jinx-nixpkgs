@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libbsd = nix.arg($, "libbsd");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fwts",
       version: "26.07.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fwts",
           repo: "fwts",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ substituteInPlace src/lib/src/fwts_devicetree.c \\
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wiki.ubuntu.com/FirmwareTestSuite",
         description: "Firmware Test Suite",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

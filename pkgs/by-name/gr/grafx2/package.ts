@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grafx2",
       version: "2.8.3091",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`grafx2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           url: "https://pulkomandy.tk/projects/GrafX2/downloads/65",
           hash: "sha256-KdY7GUhQp/Q7t/ktLPGxI66ZHy2gDAffn2yB5pmcJCM=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["--directory=src", "PREFIX=$(out)"]),
       postInstall: "installManPage misc/unix/grafx2.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://grafx2.eu/",
         description: "Ultimate 256-color painting program",
         longDescription: "GrafX2 is a bitmap paint program inspired by the Amiga programs ​Deluxe\nPaint and Brilliance. Specialized in 256-color drawing, it includes a very\nlarge number of tools and effects that make it particularly suitable for\npixel art, game graphics, and generally any detailed graphics painted with\na mouse.\n\nThe program is mostly developed on Haiku, Linux and Windows, but is also\nportable on many other platforms.\n",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "starfetch",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Haruno19",
           repo: "starfetch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("substituteInPlace src/starfetch.cpp --replace-fail /usr/local/ $out/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "substituteInPlace makefile --replace-warn g++ clang++\n"))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/starfetch\ncp starfetch $out/bin/\ncp -r res/* $out/share/starfetch/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI star constellations displayer",
         homepage: "https://github.com/Haruno19/starfetch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

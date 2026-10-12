@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const controlPort = nix.argOr($, "controlPort", () => 30912n);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "framework-control",
       version: "0.5.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ozturkkl",
           repo: "framework-control",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "service",
       npmRoot: "web",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "framework-control-npm-deps",
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
           hash: "sha256-zRKUAaqOiGsd5igrb7By43KsxLXhBY/HmhD8qVB6VlU=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "framework-control",
             desktopName: "Framework Control",
             comment: "Lightweight control surface for Framework laptops",
@@ -63,16 +63,16 @@ export default nix.lambda((args) => (() => {
             startupNotify: true,
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, FRAMEWORK_CONTROL_PORT: controlPort })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, FRAMEWORK_CONTROL_PORT: controlPort })),
       preBuild: "pushd web\nnpm run build\npopd\n",
       buildFeatures: nix.thunk(() => ["embed-ui"]),
       postInstall: "mv $out/bin/framework-control-service $out/bin/framework-control\n\ninstall -Dm644 web/public/assets/logo.png \\\n  $out/share/icons/hicolor/256x256/apps/framework-control.png\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lightweight control surface for Framework laptops",
         homepage: "https://github.com/ozturkkl/framework-control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

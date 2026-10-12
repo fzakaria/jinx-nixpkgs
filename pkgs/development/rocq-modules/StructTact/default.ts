@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "StructTact",
       owner: "uwplse",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.9", "9.3")), "20230107")),
@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "20230107": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           rev: "2f2ff253be29bb09f36cab96d036419b18a95b00",
           hash: "sha256-4mWdnWD8m1ddgqWHqzjqclhinXJaB/YoLlmLeeL0yZA=",
         })),
         "20210328": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rev: "179bd5312e9d8b63fc3f4071c628cddfc496d741",
           hash: "sha256:1y5r1zm3hli10ah6lnj7n8hxad6rb6rgldd0g7m2fjibzvwqzhdg",
         })),
         "20181102": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           rev: "82a85b7ec07e71fa6b30cfc05f6a7bfb09ef2510",
           hash: "sha256:08zry20flgj7qq37xk32kzmg4fg6d4wi9m7pf9aph8fd3j2a0b5v",
         })),

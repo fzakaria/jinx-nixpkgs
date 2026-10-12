@@ -28,51 +28,51 @@ const pos$22 = nix.positions(here + "/corerad.nix", [["router", 4, 5], ["client"
 const pos$23 = nix.positions(here + "/corerad.nix", [["name", 2, 3], ["nodes", 3, 3], ["testScript", 56, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$23,
+  [nix.POS]: pos$23,
   name: "corerad",
   nodes: nix.thunk(() => ({
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     router: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       boot: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         kernel: nix.thunk(() => ({
-          __proto__: pos$2,
-          sysctl: nix.thunk(() => ({ __proto__: pos$1, "net.ipv6.conf.all.forwarding": true })),
+          [nix.POS]: pos$2,
+          sysctl: nix.thunk(() => ({ [nix.POS]: pos$1, "net.ipv6.conf.all.forwarding": true })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         interfaces: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           eth1: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             ipv6: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               addresses: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$4, address: "fd00:dead:beef:dead::1", prefixLength: 64n })),
+                nix.thunk(() => ({ [nix.POS]: pos$4, address: "fd00:dead:beef:dead::1", prefixLength: 64n })),
               ]),
             })),
           })),
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         corerad: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             interfaces: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$9, name: "eth0", monitor: true })),
+              nix.thunk(() => ({ [nix.POS]: pos$9, name: "eth0", monitor: true })),
               nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 name: "eth1",
                 advertise: true,
-                prefix: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$10, prefix: "::/64" }))]),
+                prefix: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, prefix: "::/64" }))]),
               })),
             ]),
-            debug: nix.thunk(() => ({ __proto__: pos$12, address: "localhost:9430", prometheus: true })),
+            debug: nix.thunk(() => ({ [nix.POS]: pos$12, address: "localhost:9430", prometheus: true })),
           })),
         })),
       })),
@@ -81,16 +81,16 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         boot: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           kernel: nix.thunk(() => ({
-            __proto__: pos$18,
-            sysctl: nix.thunk(() => ({ __proto__: pos$17, "net.ipv6.conf.all.autoconf": true })),
+            [nix.POS]: pos$18,
+            sysctl: nix.thunk(() => ({ [nix.POS]: pos$17, "net.ipv6.conf.all.autoconf": true })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ndisc6"))];

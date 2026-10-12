@@ -90,46 +90,46 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "desktopManager", "cinnamon"));
   const serviceCfg = nix.thunk(() => nix.sel(config, "services", "cinnamon"));
   const nixos_gsettings_overrides = nix.thunk(() => nix.app(nix.sel(pkgs, "cinnamon-gsettings-overrides", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       extraGSettingsOverridePackages: nix.thunk(() => nix.sel(cfg, "extraGSettingsOverridePackages")),
       extraGSettingsOverrides: nix.thunk(() => nix.sel(cfg, "extraGSettingsOverrides")),
     }))));
   const notExcluded = (pkg) => nix.app(nix.sel(utils, "disablePackageByName"), pkg, nix.thunk(() => nix.sel(config, "environment", "cinnamon", "excludePackages")));
   return {
-    __proto__: pos$76,
+    [nix.POS]: pos$76,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         cinnamon: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           apps: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Cinnamon default applications")),
           })),
         })),
         xserver: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             cinnamon: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the cinnamon desktop manager")),
               sessionPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   default: [],
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
                   example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.gpaste ]")),
                   description: "Additional list of packages to be added to the session search path.\nUseful for GSettings-conditional autostart.\n\nNote that this should be a last resort; patching the package is preferred (see GPaste).\n",
                 })))),
               extraGSettingsOverrides: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   default: "",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                   description: "Additional gsettings overrides.",
                 })))),
               extraGSettingsOverridePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   default: [],
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                   description: "List of packages for which gsettings are overridden.",
@@ -139,11 +139,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         cinnamon: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           excludePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.blueman ]")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
@@ -154,36 +154,36 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             services: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               displayManager: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cinnamon"))]),
               })),
               xserver: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 displayManager: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   lightdm: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     greeters: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       slick: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                         theme: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "mint-themes")))), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             name: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "Mint-Y-Aqua")),
                             package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mint-themes")))),
                           })))),
                         iconTheme: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "mint-y-icons")))), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             name: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "Mint-Y-Sand")),
                             package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mint-y-icons")))),
                           })))),
                         cursorTheme: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "mint-cursor-themes")))), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             name: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "Bibata-Modern-Classic")),
                             package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mint-cursor-themes")))),
                           })))),
@@ -194,19 +194,19 @@ export default nix.lambda((args) => (() => {
                 updateDbusEnvironment: true,
               })),
               blueman: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "blueman")))))),
               })),
               hardware: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 bolt: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "bolt")))))),
                 })),
               })),
-              "accounts-daemon": nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+              "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
               dbus: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 packages: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(pkgs, w);
                   return [
@@ -218,57 +218,57 @@ export default nix.lambda((args) => (() => {
                 })()),
               })),
               cinnamon: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 apps: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 })),
               })),
               gnome: nix.thunk(() => ({
-                __proto__: pos$37,
-                "evolution-data-server": nix.thunk(() => ({ __proto__: pos$31, enable: true })),
-                "glib-networking": nix.thunk(() => ({ __proto__: pos$32, enable: true })),
-                "gnome-keyring": nix.thunk(() => ({ __proto__: pos$33, enable: true })),
+                [nix.POS]: pos$37,
+                "evolution-data-server": nix.thunk(() => ({ [nix.POS]: pos$31, enable: true })),
+                "glib-networking": nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
+                "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
                 "gnome-online-accounts": nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 })),
                 "gcr-ssh-agent": nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 })),
-                "at-spi2-core": nix.thunk(() => ({ __proto__: pos$36, enable: true })),
+                "at-spi2-core": nix.thunk(() => ({ [nix.POS]: pos$36, enable: true })),
               })),
-              gvfs: nix.thunk(() => ({ __proto__: pos$38, enable: true })),
+              gvfs: nix.thunk(() => ({ [nix.POS]: pos$38, enable: true })),
               "power-profiles-daemon": nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
               switcherooControl: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
               touchegg: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
-              udisks2: nix.thunk(() => ({ __proto__: pos$42, enable: true })),
+              udisks2: nix.thunk(() => ({ [nix.POS]: pos$42, enable: true })),
               upower: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(config, "powerManagement", "enable")))),
               })),
               libinput: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
-              colord: nix.thunk(() => ({ __proto__: pos$45, enable: true })),
+              colord: nix.thunk(() => ({ [nix.POS]: pos$45, enable: true })),
               orca: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "orca")))))),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               extraInit: nix.thunk(() => nix.add(nix.str`${nix.app(nix.lookup(w, "concatMapStrings"), (p) => nix.str`if [ -d "${p}/share/gsettings-schemas/${nix.sel(p, "name")}" ]; then
   export XDG_DATA_DIRS=$XDG_DATA_DIRS\${XDG_DATA_DIRS:+:}${p}/share/gsettings-schemas/${nix.sel(p, "name")}
 fi
@@ -283,7 +283,7 @@ fi
                 const w_1 = nix.withScope(pkgs, w);
                 return nix.concat([
                   nix.thunk(() => nix.app(nix.lookup(w_1, "writeTextFile"), nix.thunk(() => ({
-                      __proto__: pos$48,
+                      [nix.POS]: pos$48,
                       name: "x-cinnamon-mimeapps",
                       destination: "/share/applications/x-cinnamon-mimeapps.list",
                       text: "[Default Applications]\ninode/directory=nemo.desktop\n",
@@ -325,32 +325,32 @@ fi
                   ]), nix.thunk(() => nix.sel(config, "environment", "cinnamon", "excludePackages"))));
               })()),
               sessionVariables: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 NIX_GSETTINGS_OVERRIDES_DIR: nix.thunk(() => nix.str`${nixos_gsettings_overrides}/share/gsettings-schemas/nixos-gsettings-overrides/glib-2.0/schemas`),
               })),
               pathsToLink: nix.thunk(() => ["/share"]),
             })),
             hardware: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               bluetooth: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               polkit: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 enable: true,
                 enablePkexecWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               })),
               pam: nix.thunk(() => ({
-                __proto__: pos$55,
-                services: nix.thunk(() => ({ __proto__: pos$54, "cinnamon-screensaver": nix.thunk(() => ({})) })),
+                [nix.POS]: pos$55,
+                services: nix.thunk(() => ({ [nix.POS]: pos$54, "cinnamon-screensaver": nix.thunk(() => ({})) })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               packages: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(pkgs, w);
                 return nix.concat([nix.thunk(() => nix.lookup(w_1, "cinnamon-session"))], nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => [
@@ -360,34 +360,34 @@ fi
               })()),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               networkmanager: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
             })),
             programs: nix.thunk(() => ({
-              __proto__: pos$64,
-              dconf: nix.thunk(() => ({ __proto__: pos$60, enable: true })),
+              [nix.POS]: pos$64,
+              dconf: nix.thunk(() => ({ [nix.POS]: pos$60, enable: true })),
               "system-config-printer": nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "printing", "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)))),
               })),
               bash: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 vteIntegration: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
               zsh: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 vteIntegration: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$68,
-              mime: nix.thunk(() => ({ __proto__: pos$65, enable: true })),
-              icons: nix.thunk(() => ({ __proto__: pos$66, enable: true })),
+              [nix.POS]: pos$68,
+              mime: nix.thunk(() => ({ [nix.POS]: pos$65, enable: true })),
+              icons: nix.thunk(() => ({ [nix.POS]: pos$66, enable: true })),
               portal: nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 enable: true,
                 extraPortals: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "xdg-desktop-portal-xapp")),
@@ -397,7 +397,7 @@ fi
               })),
             })),
             fonts: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               packages: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(pkgs, w);
                 return [
@@ -408,20 +408,20 @@ fi
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(serviceCfg, "apps", "enable")), nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             programs: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               "gnome-disks": nix.thunk(() => ({
-                __proto__: pos$71,
+                [nix.POS]: pos$71,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "gnome-disk-utility")))))),
               })),
               "gnome-terminal": nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "gnome-terminal")))))),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               systemPackages: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(pkgs, w);
                 return nix.app(nix.sel(utils, "removePackagesByName"), nix.thunk(() => [

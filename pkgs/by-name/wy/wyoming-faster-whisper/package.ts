@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wyoming-faster-whisper",
       version: "3.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OHF-Voice",
           repo: "wyoming-faster-whisper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           transformers: nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "transformers"))], nix.sel(nix.lookup(w_2, "transformers"), "optional-dependencies", "torch"))),
           sherpa: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "sherpa-onnx"))]),
           onnx_asr: nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "onnx-asr"))], nix.concat(nix.sel(nix.lookup(w_2, "onnx-asr"), "optional-dependencies", "cpu"), nix.sel(nix.lookup(w_2, "onnx-asr"), "optional-dependencies", "hub")))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["wyoming_faster_whisper"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/wyoming-faster-whisper/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Wyoming Server for Faster Whisper",
         homepage: "https://github.com/OHF-Voice/wyoming-faster-whisper",

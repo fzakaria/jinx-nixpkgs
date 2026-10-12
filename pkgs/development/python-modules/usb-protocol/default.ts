@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greatscottgadgets",
           repo: "python-usb-protocol",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["usb_protocol"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/greatscottgadgets/python-usb-protocol/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library providing utilities, data structures, constants, parsers, and tools for working with the USB protocol",
         homepage: "https://github.com/greatscottgadgets/python-usb-protocol",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

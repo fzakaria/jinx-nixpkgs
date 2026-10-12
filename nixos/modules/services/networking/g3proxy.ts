@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         g3proxy: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(mkEnableOption, "g3proxy, a generic purpose forward proxy")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "g3proxy", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  server = [{\n    name = \"test\";\n    escaper = \"default\";\n    type = \"socks_proxy\";\n    listen = {\n      address = \"[::]:10086\";\n    };\n  }];\n}\n")),
@@ -47,17 +47,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             g3proxy: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "g3proxy server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 ExecStart: nix.thunk(() => (() => {
                   const g3proxy_yaml = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "g3proxy.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
                   return nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config-file ${g3proxy_yaml} --systemd --control-dir %t/g3proxy`;

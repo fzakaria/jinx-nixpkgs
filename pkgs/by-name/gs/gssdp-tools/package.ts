@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gssdp-tools",
       version: nix.thunk(() => nix.attr(gssdp_1_6, "version")),
       src: nix.thunk(() => nix.attr(gssdp_1_6, "src")),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./standalone-tools.patch"), nix.thunk(() => ({ __proto__: pos$1, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./standalone-tools.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [gssdp_1_6, gtk4, libsoup_3]),
       preConfigure: "cd tools\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Device Sniffer tool based on GSSDP framework",
         mainProgram: "gssdp-device-sniffer",
         homepage: "http://www.gupnp.org/",

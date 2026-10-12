@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-fPd5FI2eZusoOGA+rOFAxTw878i4/l1NWgOl+11Xs8E=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Diaoul/enzyme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Python video metadata parser",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

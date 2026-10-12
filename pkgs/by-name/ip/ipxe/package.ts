@@ -59,26 +59,26 @@ export default nix.lambda((args) => (() => {
   const isx86_64 = nix.thunk(() => nix.attr(from, "isx86_64"));
   const platformTarget = (platform) => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(enableDefaultPlatformTargets) && nix.asBool(platform))));
   const targets = nix.thunk(() => nix.update(nix.app(platformTarget, isx86_64, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "bin-x86_64-efi/ipxe.efi": null,
       "bin-x86_64-efi/ipxe.efirom": null,
       "bin-x86_64-efi/ipxe.usb": "ipxe-efi.usb",
       "bin-x86_64-efi/snp.efi": null,
     }))), nix.update(nix.app(platformTarget, isx86, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "bin/ipxe.dsk": null,
       "bin/ipxe.usb": null,
       "bin/ipxe.iso": null,
       "bin/ipxe.lkrn": null,
       "bin/undionly.kpxe": null,
     }))), nix.update(nix.app(platformTarget, isAarch32, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "bin-arm32-efi/ipxe.efi": null,
       "bin-arm32-efi/ipxe.efirom": null,
       "bin-arm32-efi/ipxe.usb": "ipxe-efi.usb",
       "bin-arm32-efi/snp.efi": null,
     }))), nix.update(nix.app(platformTarget, isAarch64, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "bin-arm64-efi/ipxe.efi": null,
       "bin-arm64-efi/ipxe.efirom": null,
       "bin-arm64-efi/ipxe.usb": "ipxe-efi.usb",
@@ -89,11 +89,11 @@ export default nix.lambda((args) => (() => {
   const options = nix.thunk(() => nix.concat(nix.app(optionals, enableDefaultOptions, nix.thunk(() => ["PING_CMD", "IMAGE_TRUST_CMD", "DOWNLOAD_PROTO_HTTP", "DOWNLOAD_PROTO_HTTPS"])), additionalOptions));
   nix.assert_(nix.app(assertOneOf, "When building iPXE, the 'firmwareBinary' parameter", firmwareBinary, binaries), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ip/ipxe/package.nix:97:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "ipxe",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "ipxe",
           repo: "ipxe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -101,19 +101,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "w89c840-unused-variable.patch",
             url: "https://github.com/ipxe/ipxe/commit/2d28657ef63217b9a1774605267d84f89d751441.patch",
             hash: "sha256-p1r1iDOJbss458LlmfpuIkk+6VqthDl0mcK/EfcCqS4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "x86_64-drop-regparm-attribute.patch",
             url: "https://github.com/ipxe/ipxe/commit/c18d0a23b634ae001ea877020c0236bfca1468e5.patch",
             hash: "sha256-spEIdyw30zYiYmhnvYQEVUrr/uMnFqJO/yLWnPb+QMc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "librm-regparm-attribute-only-for-i386.patch",
             url: "https://github.com/ipxe/ipxe/commit/be35d67a029485f461ce83cbeda15056a52cb069.patch",
             hash: "sha256-ki6gUPC6njGvu27RsD3f1L0m82NOKj9es0/o0jXCpqk=",
@@ -143,12 +143,12 @@ mkdir -p $out
 ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(getTargets, (from_1) => (to) => (nix.asBool(nix.builtins.isNull(to)) ? nix.str`cp -v ${from_1} $out` : nix.str`cp -v ${from_1} $out/${to}`))))}
 `, nix.app(optionalString, nix.thunk(() => nix.app(elem, "undionly.kpxe", binaries)), "# Some PXE constellations especially with dnsmasq are looking for the file with .0 ending\n# let's provide it as a symlink to be compatible in this case.\nln -s undionly.kpxe $out/undionly.kpxe.0\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         firmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/${firmwareBinary}`),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Network boot firmware",
         homepage: "https://ipxe.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ipxe/ipxe/releases/tag/v${nix.sel(finalAttrs, "version")}`),

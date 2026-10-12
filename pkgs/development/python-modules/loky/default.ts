@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "loky",
       version: "3.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joblib",
           repo: "loky",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           "test_sync_object_handling",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Robust and reusable Executor for joblib",
         homepage: "https://github.com/joblib/loky",
         changelog: nix.thunk(() => nix.str`https://github.com/joblib/loky/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

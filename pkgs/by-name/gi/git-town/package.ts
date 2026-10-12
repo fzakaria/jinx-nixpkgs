@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "git-town",
       version: "24.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-town",
           repo: "git-town",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd git-town \\\n  --bash <($out/bin/git-town completions bash) \\\n  --fish <($out/bin/git-town completions fish) \\\n  --zsh <($out/bin/git-town completions zsh)\n"), nix.str`wrapProgram $out/bin/git-town --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git]))}
 `)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: git_town,
               command: "git-town --version",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Generic, high-level git support for git-flow workflows",
         homepage: "https://www.git-town.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

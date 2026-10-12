@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const withGUI = nix.argOr($, "withGUI", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lshw",
       version: "02.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lyonel",
           repo: "lshw",
           rev: nix.thunk(() => nix.str`B.${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), withGUI, "install-gui"))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/lyonel/lshw/blob/master/docs/Changelog",
         description: "Provide detailed information on the hardware configuration of the machine",
         homepage: "https://ezix.org/project/wiki/HardwareLiSter",

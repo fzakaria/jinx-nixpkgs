@@ -21,19 +21,19 @@ export default nix.lambda((args) => (() => {
     return (packagesFun) => (() => {
       const explicitRequires = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), packagesFun)) ? nix.app(packagesFun, self) : nix.force(packagesFun)));
       return nix.app(runCommand, nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "appendToName"), "with-packages", emacs), "name")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           emacs: emacs,
           explicitRequires: explicitRequires,
           nativeBuildInputs: nix.thunk(() => [emacs, lndir, makeBinaryWrapper]),
           preferLocalBuild: true,
           allowSubstitutes: false,
           deps: nix.thunk(() => nix.app(runCommand, "emacs-packages-deps", nix.thunk(() => nix.update({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               explicitRequires: explicitRequires,
               lndir: lndir,
               emacs: emacs,
             }, nix.app(nix.sel(lib, "optionalAttrs"), withNativeCompilation, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 LIBRARY_PATH: nix.thunk(() => nix.attr(emacs, "LIBRARY_PATH")),
               }))))), nix.thunk(() => nix.str`findInputsOld() {
   local pkg="$1"; shift

@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "linyaps"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "linyaps", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         linyaps: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "linyaps, a cross-distribution package manager with sandboxed apps and shared runtime")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "linyaps", nix.thunk(() => ({})))),
           boxPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "linyaps-box", nix.thunk(() => ({})))),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           profiles: nix.thunk(() => ["/var/lib/linglong/entries"]),
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(cfg, "package")),
@@ -60,35 +60,35 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$7,
-          polkit: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+          [nix.POS]: pos$7,
+          polkit: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$9,
-          fontDir: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+          [nix.POS]: pos$9,
+          fontDir: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           dbus: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$17,
-          groups: nix.thunk(() => ({ __proto__: pos$14, "deepin-linglong": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$17,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$14, "deepin-linglong": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "deepin-linglong": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               group: "deepin-linglong",
               isSystemUser: true,
               description: "Linyaps/Linglong system helper",

@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libGL = nix.arg($, "libGL");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     fteqw: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update((() => {
         const pname = "fteqw";
         const buildFlags = nix.thunk(() => ["m-rel"]);
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 `);
         const description = "Hybrid and versatile game engine";
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname,
           buildFlags,
           nativeBuildInputs,
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
 `);
         const description = "Dedicated server for FTEQW";
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname,
           releaseFile,
           buildFlags,
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         };
       })(), attrs)))),
     fteqcc: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "fteqcc",
         buildFlags: nix.thunk(() => ["qcc-rel"]),
         buildInputs: nix.thunk(() => [zlib]),

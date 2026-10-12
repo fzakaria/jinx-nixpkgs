@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const pname = "wingpanel-applications-menu";
       const version = "8.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "applications-menu",
           tag: version,
           hash: "sha256-wHPdZnHDa9DirjGEfKyAa1jKjYD6aj8QwMZ9KxqLPkM=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, bc: nix.thunk(() => nix.str`${bc}/bin/bc`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, bc: nix.thunk(() => nix.str`${bc}/bin/bc`) })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gettext, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => nix.concat([
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight and stylish app launcher for Pantheon",
         homepage: "https://github.com/elementary/applications-menu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

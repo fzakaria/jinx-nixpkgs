@@ -20,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const seq = nix.arg($, "seq");
   const version_sha = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1.12.0",
     hash: "sha256-oB8r8i9ywvSrq9jT52NeNcG/a8WkGtbVoAdFTdq60dQ=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "1.11.0",
     hash: "sha256-AfwkR4DA9r5yrnlrH7dQ82feGGJP110H7nl4LtbfjU8=",
   } : {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "1.9.0",
     hash: "sha256:1gas4ky49zgxph3870nffzkr6y41kkpqp4nj38pz1gh49zcf12aj",
   })));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "re",
       version: nix.thunk(() => nix.sel(version_sha, "version")),
       minimalOCamlVersion: "4.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/ocaml-re/releases/download/${nix.sel(finalAttrs, "version")}/re-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.attr(version_sha, "hash")),
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.12")) ? nix.force(ounit2) : nix.force(ounit))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/ocaml/ocaml-re",
         description: "Pure OCaml regular expressions, with support for Perl and POSIX-style strings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

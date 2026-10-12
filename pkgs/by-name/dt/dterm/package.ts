@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dterm",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.knossos.net.nz/downloads/dterm-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-lFM7558e7JZeWYhtXwCjXLZ1xdsdiUGfJTu3LxQKvds=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin",
       installFlags: nix.thunk(() => ["BIN=$(out)/bin/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.knossos.net.nz/resources/free-software/dterm/",
         description: "Simple terminal program",
         longDescription: "dterm is a simple terminal emulator, which doesn’t actually emulate any\nparticular terminal. Mainly, it is designed for use with xterm and\nfriends, which already do a perfectly good emulation, and therefore don’t\nneed any special help; dterm simply provides a means by which keystrokes\nare forwarded to the serial line, and data forwarded from the serial line\nappears on the terminal.\n",

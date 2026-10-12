@@ -35,19 +35,19 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: "buildbot",
     containers: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       bbmaster: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "buildbot-master": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               factorySteps: nix.thunk(() => [
                 "steps.Git(repourl='git://gitrepo/fakerepo.git', mode='incremental')",
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedTCPPorts: nix.thunk(() => [8010n, 8011n, 9989n]) })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [8010n, 8011n, 9989n]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -78,13 +78,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            "buildbot-worker": nix.thunk(() => ({ __proto__: pos$7, enable: true, masterUrl: "bbmaster:9989" })),
+            [nix.POS]: pos$8,
+            "buildbot-worker": nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, masterUrl: "bbmaster:9989" })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -99,32 +99,32 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
-            openssh: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+            [nix.POS]: pos$12,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
-            firewall: nix.thunk(() => ({ __proto__: pos$13, allowedTCPPorts: nix.thunk(() => [22n, 9418n]) })),
+            [nix.POS]: pos$14,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [22n, 9418n]) })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "git"))];
             })()),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             services: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "git-daemon": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 description: "Git daemon for the test",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target", "sshd.service"]),
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$16, Restart: "always" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Restart: "always" })),
                 path: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs_1, null);
                   return [
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.lookup(w, "openssh")),
                   ];
                 })()),
-                environment: nix.thunk(() => ({ __proto__: pos$17, HOME: "/root" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$17, HOME: "/root" })),
                 preStart: "git config --global user.name 'Nobody Fakeuser'\ngit config --global user.email 'nobody\\@fakerepo.com'\nrm -rvf /srv/repos/fakerepo.git /tmp/fakerepo\nmkdir -pv /srv/repos/fakerepo ~/.ssh\nssh-keyscan -H gitrepo > ~/.ssh/known_hosts\ncat ~/.ssh/known_hosts\n\nmkdir -p /src/repos/fakerepo\ncd /srv/repos/fakerepo\nrm -rf *\ngit init\necho -e '#!/bin/sh\\necho fakerepo' > fakerepo.sh\ncat fakerepo.sh\ntouch .git/git-daemon-export-ok\ngit add fakerepo.sh .git/git-daemon-export-ok\ngit commit -m fakerepo\n",
                 script: "git daemon --verbose --export-all --base-path=/srv/repos --reuseaddr\n",
               })),
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "gitrepo.wait_for_unit(\"git-daemon.service\")\ngitrepo.wait_for_unit(\"multi-user.target\")\n\nwith subtest(\"Repo is accessible via git daemon\"):\n    bbmaster.systemctl(\"start network-online.target\")\n    bbmaster.wait_for_unit(\"network-online.target\")\n    bbmaster.succeed(\"rm -rfv /tmp/fakerepo\")\n    bbmaster.succeed(\"git clone git://gitrepo/fakerepo /tmp/fakerepo\")\n\nwith subtest(\"Master service and worker successfully connect\"):\n    bbmaster.wait_for_unit(\"buildbot-master.service\")\n    bbmaster.wait_until_succeeds(\"curl --fail -s --head http://bbmaster:8010\")\n    bbworker.systemctl(\"start network-online.target\")\n    bbworker.wait_for_unit(\"network-online.target\")\n    bbworker.succeed(\"nc -z bbmaster 8010\")\n    bbworker.succeed(\"nc -z bbmaster 9989\")\n    bbworker.wait_for_unit(\"buildbot-worker.service\")\n\nwith subtest(\"Stop buildbot worker\"):\n    bbmaster.succeed(\"systemctl -l --no-pager status buildbot-master\")\n    bbmaster.succeed(\"systemctl stop buildbot-master\")\n    bbworker.fail(\"nc -z bbmaster 8010\")\n    bbworker.fail(\"nc -z bbmaster 9989\")\n    bbworker.succeed(\"systemctl -l --no-pager status buildbot-worker\")\n    bbworker.succeed(\"systemctl stop buildbot-worker\")\n\nwith subtest(\"Buildbot daemon mode works\"):\n    bbmaster.succeed(\n        \"buildbot create-master /tmp\",\n        \"mv -fv /tmp/master.cfg.sample /tmp/master.cfg\",\n        \"sed -i 's/8010/8011/' /tmp/master.cfg\",\n        \"buildbot start /tmp\",\n        \"nc -z bbmaster 8011\",\n    )\n    bbworker.wait_until_succeeds(\"curl --fail -s --head http://bbmaster:8011\")\n    bbmaster.wait_until_succeeds(\"buildbot stop /tmp\")\n    bbworker.fail(\"nc -z bbmaster 8011\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => nix.sel(pkgs, "lib", "teams", "buildbot", "members")),
     })),
   };

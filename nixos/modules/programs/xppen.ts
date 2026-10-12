@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "xppen"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         xppen: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "XPPen PenTablet application")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "xppen_4", nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               example: "pkgs.xppen_3",
               extraDescription: "Use xppen_4 for newer and xppen_3 for older tablets.\nTo check which version of the driver you need, go to\nhttps://www.xp-pen.com/download/ then select your tablet\nand look for the major version in the available files for Linux.\n",
             })))),
@@ -44,36 +44,36 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         hardware: nix.thunk(() => ({
-          __proto__: pos$6,
-          uinput: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+          [nix.POS]: pos$6,
+          uinput: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           udev: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             rules: nix.thunk(() => ["d /var/lib/pentablet/conf/xppen 0777 - - -"]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "xppen-create-config-dir": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "oneshot",
                 TimeoutSec: 60n,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "xppen-create-config-dir", nix.thunk(() => nix.str`readarray -d "" files < <(find ${nix.sel(cfg, "package")}/usr/lib/pentablet/conf -type f -print0)

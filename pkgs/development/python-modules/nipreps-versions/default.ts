@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const vcs_versioning = nix.arg($, "vcs-versioning");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nipreps-versions",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nipreps",
           repo: "version-schemes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nipreps_versions"]),
       disabledTests: nix.thunk(() => ["invalid_branch_version", "test_next_calver"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Setuptools_scm plugin for nipreps version schemes",
         homepage: "https://github.com/nipreps/version-schemes",
         changelog: nix.thunk(() => nix.str`https://github.com/nipreps/version-schemes/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

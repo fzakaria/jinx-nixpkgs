@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hddfancontrol",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desbma",
           repo: "hddfancontrol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [hddtemp, hdparm, sdparm, smartmontools]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamically control fan speed according to hard drive temperature on Linux",
         changelog: nix.thunk(() => nix.str`https://github.com/desbma/hddfancontrol/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/desbma/hddfancontrol",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hmr_enabler",
       version: "0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nextcloud",
           repo: "hmr_enabler",
           rev: "d5d9d330d405ac4aa0de1a87d1133784560462ed",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-js9O89jIRxX2DKI+LYjL3d9RsLdzUB4iUNUgngTryz8=",
       postInstall: "chmod -R u+w $out/share\nmv $out/share/php/hmr_enabler/* $out/\nrm -r $out/share $out/composer.* $out/Makefile $out/psalm.xml $out/tests\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Development Nextcloud app to enable apps to use hot module reloading",
         homepage: "https://github.com/nextcloud/hmr_enabler",
         changelog: "https://github.com/nextcloud/hmr_enabler/blob/master/CHANGELOG.md",

@@ -17,35 +17,35 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       security: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pam: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           oath: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable the OATH (one-time password) PAM module.\n",
               })))),
             digits: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [6n, 7n, 8n]))),
                 default: 6n,
                 description: "Specify the lib.length of the one-time password in number of\ndigits.\n",
               })))),
             window: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 5n,
                 description: "Specify the number of one-time passwords to check in order\nto accommodate for situations where the system and the\nclient are slightly out of sync (iteration for HOTP or time\nsteps for TOTP).\n",
               })))),
             usersFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 default: "/etc/users.oath",
                 description: "Set the path to file where the user's credentials are\nstored. This file must not be world readable!\n",

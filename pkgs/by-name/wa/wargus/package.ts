@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const stratagus = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stratagus.nix"), nix.thunk(() => ({}))));
   const dataDownload = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://archive.org/download/warcraft-ii-tides-of-darkness_202105/Warcess.zip",
       sha256: "0yxgvf8xpv1w2bjmny4a38pa3xcdgqckk9abj21ilkc5zqzqmm9b",
     }))));
   const data = nix.thunk(() => nix.app(runCommand, "warcraft2", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       buildInputs: nix.thunk(() => [unzip, bchunk, p7zip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     })), nix.thunk(() => nix.str`unzip ${dataDownload} "Warcraft.II.Tides.of.Darkness/Warcraft II - Tides of Darkness (1995)/games/WarcrafD/cd/"{WC2BTDP.img,WC2BTDP.cue}
@@ -57,7 +57,7 @@ cp -r DATA $out
       const pname = "wargus";
       const version = nix.thunk(() => nix.attr(stratagus, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "wargus",
           repo: "wargus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +65,7 @@ cp -r DATA $out
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/Wargus/wargus/commit/e89e121edadaf3ab365263c68b5baec305a5c65f.patch",
             sha256: "sha256-9FgflNyqZUrBY1prOahicnjslMxxUrK2bLspfGeZ6Os=",
           })))),
@@ -85,7 +85,7 @@ $out/bin/wartool -v -r ${data} $out/share/games/stratagus/wargus
 ln -s $out/share/games/stratagus/wargus/{contrib/black_title.png,graphics/ui/black_title.png}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Importer and scripts for Warcraft II: Tides of Darkness, the expansion Beyond the Dark Portal, and Aleonas Tales",
         homepage: "https://wargus.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -93,7 +93,7 @@ ln -s $out/share/games/stratagus/wargus/{contrib/black_title.png,graphics/ui/bla
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

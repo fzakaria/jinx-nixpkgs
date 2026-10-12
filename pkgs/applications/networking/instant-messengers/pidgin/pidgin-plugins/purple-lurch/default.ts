@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "purple-lurch";
       const version = "0.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gkdr",
           repo: "lurch",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const installPhase = "install -Dm755 -t $out/lib/purple-2 build/lurch.so\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/gkdr/lurch",
         description: "XEP-0384: OMEMO Encryption for libpurple",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

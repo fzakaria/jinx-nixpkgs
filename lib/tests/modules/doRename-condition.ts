@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const doRename = nix.thunk(() => nix.attr(lib, "doRename"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
-        foo: nix.thunk(() => ({ __proto__: pos$1, enable: nix.thunk(() => nix.app(mkEnableOption, "foo")) })),
+        [nix.POS]: pos$6,
+        foo: nix.thunk(() => ({ [nix.POS]: pos$1, enable: nix.thunk(() => nix.app(mkEnableOption, "foo")) })),
         foos: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   options: nix.thunk(() => ({
-                    __proto__: pos$3,
-                    bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
+                    [nix.POS]: pos$3,
+                    bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
                   })),
                 })))))),
             default: nix.thunk(() => ({})),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(doRename, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           from: nix.thunk(() => ["services", "foo", "bar"]),
           to: nix.thunk(() => ["services", "foos", "", "bar"]),
           visible: true,

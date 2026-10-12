@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h4ckf0r0day",
           repo: "obscura",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: 1n,
         RUSTY_V8_ARCHIVE: librusty_v8,
         OBSCURA_VERSION: version,
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.path(here, "./update.sh"),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Headless browser for AI agents and web scraping",
           homepage: "https://github.com/h4ckf0r0day/obscura",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "asl20")),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         __structuredAttrs,
         version,

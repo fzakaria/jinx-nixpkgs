@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blambright",
           repo: "qstylizer",
           tag: version,
           hash: "sha256-Is/kYkSX9fOX+pLv5g1ns2OxeLpSkaCfO2jPIbiuIxA=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr, setuptools]);
       const dependencies = nix.thunk(() => [inflection, tinycss2]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_mock]);
       const pythonImportsCheck = nix.thunk(() => ["qstylizer"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Qt stylesheet generation utility for PyQt/PySide",
         homepage: "https://github.com/blambright/qstylizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

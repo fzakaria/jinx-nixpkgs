@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["cryptography_vectors"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Test vectors for the cryptography package",
         homepage: "https://cryptography.io/en/latest/development/test-vectors/",
         downloadPage: "https://github.com/pyca/cryptography/tree/master/vectors",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

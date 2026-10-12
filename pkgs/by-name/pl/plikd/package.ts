@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "plikd",
       version: "1.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "root-gg",
           repo: "plik",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-WCtfkzlZnyzZDwNDBrW06bUbLYTL2C704Y7aXbiVi5c=",
         })))),
       "src-webapp": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/root-gg/plik/releases/download/${nix.sel(finalAttrs, "version")}/plik-${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           hash: "sha256-taUFXZJeUHYjjhrVlLgKYPxNn6W5o8uoEVcu+f5flCA=",
         })))),
@@ -51,11 +51,11 @@ makeWrapper $out/libexec/plikd/bin/plikd $out/bin/plikd \\
   --chdir "$out/libexec/plikd/bin"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, plikd: nix.thunk(() => nix.attr(nixosTests, "plikd")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, plikd: nix.thunk(() => nix.attr(nixosTests, "plikd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Scalable & friendly temporary file upload system",
         homepage: "https://github.com/root-gg/plik",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

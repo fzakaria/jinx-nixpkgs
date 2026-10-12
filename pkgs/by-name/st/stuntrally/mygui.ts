@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const ogre_next = nix.arg($, "ogre-next");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mygui",
       version: "0-unstable-2024-02-01",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cryham",
           repo: "mygui-next",
           rev: "a1490ffe01d503c31a00d8277007ffcb27a4258e",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "MYGUI_RENDERSYSTEM", "8")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for creating GUIs for games and 3D applications (Stunt Rally fork)",
         homepage: "http://mygui.info/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

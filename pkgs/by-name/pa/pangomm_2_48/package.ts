@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/pangomm/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/pangomm-${version}.tar.xz`),
           hash: "sha256-8emEyFqFtqDmFhY2ZSH1HdgoKgcrtF0VtQhHYrYvTA4=",
         }))));
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pango, glibmm_2_68, cairomm_1_16]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: "pangomm",
             attrPath: "pangomm_2_48",
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ interface to the Pango text rendering library",
         longDescription: "Pango is a library for laying out and rendering of text, with an\nemphasis on internationalization.  Pango can be used anywhere\nthat text layout is needed, though most of the work on Pango so\nfar has been done in the context of the GTK widget toolkit.\nPango forms the core of text and font handling for GTK.\n",
         homepage: "https://www.pango.org/",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         __structuredAttrs,

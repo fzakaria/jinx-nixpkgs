@@ -56,26 +56,26 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", (a) => nix.str`cp -v ${a}/* $out/`, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (addon) => nix.app(nix.sel(pkgs, "writeTextDir"), nix.thunk(() => nix.str`${name}.json`), nix.thunk(() => nix.builtins.toJSON(addon))), nix.thunk(() => nix.sel(cfg, "addons")))))}
 `)));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           addonManager: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               bootstrapAddons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   description: "Bootstrap addons are like regular addons, but they are applied with cluster-admin rights.\nThey are applied at addon-manager startup only.\n",
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "attrs")))),
                   example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"my-service\" = {\n    \"apiVersion\" = \"v1\";\n    \"kind\" = \"Service\";\n    \"metadata\" = {\n      \"name\" = \"my-service\";\n      \"namespace\" = \"default\";\n    };\n    \"spec\" = { ... };\n  };\n}\n")),
                 })))),
               addons: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: "Kubernetes addons (any kind of Kubernetes resource can be an addon).",
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "attrs")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "attrs")))))))),
@@ -88,27 +88,27 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", (a) => nix.str`cp -v ${a}/* 
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "kubernetes/addons": nix.thunk(() => ({ __proto__: pos$7, source: nix.thunk(() => nix.str`${addons}/`) })),
+            [nix.POS]: pos$8,
+            "kubernetes/addons": nix.thunk(() => ({ [nix.POS]: pos$7, source: nix.thunk(() => nix.str`${addons}/`) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "kube-addon-manager": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Kubernetes addon manager",
               wantedBy: nix.thunk(() => ["kubernetes.target"]),
               after: nix.thunk(() => ["kube-apiserver.service"]),
-              environment: nix.thunk(() => ({ __proto__: pos$10, ADDON_PATH: "/etc/kubernetes/addons/" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$10, ADDON_PATH: "/etc/kubernetes/addons/" })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gawk"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Slice: "kubernetes.slice",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(top, "package")}/bin/kube-addons`),
                 WorkingDirectory: nix.thunk(() => nix.sel(top, "dataDir")),
@@ -117,29 +117,29 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", (a) => nix.str`cp -v ${a}/* 
                 Restart: "on-failure",
                 RestartSec: 10n,
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$12, StartLimitIntervalSec: 0n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$12, StartLimitIntervalSec: 0n })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           kubernetes: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             addonManager: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               bootstrapAddons: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isRBACEnabled, nix.thunk(() => (() => {
                   const name = "system:kube-addon-manager";
                   const namespace = "kube-system";
                   return {
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     "kube-addon-manager-r": nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       apiVersion: "rbac.authorization.k8s.io/v1",
                       kind: "Role",
-                      metadata: nix.thunk(() => ({ __proto__: pos$16, name: name, namespace: namespace })),
+                      metadata: nix.thunk(() => ({ [nix.POS]: pos$16, name: name, namespace: namespace })),
                       rules: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           apiGroups: nix.thunk(() => ["*"]),
                           resources: nix.thunk(() => ["*"]),
                           verbs: nix.thunk(() => ["*"]),
@@ -147,19 +147,19 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", (a) => nix.str`cp -v ${a}/* 
                       ]),
                     })),
                     "kube-addon-manager-rb": nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       apiVersion: "rbac.authorization.k8s.io/v1",
                       kind: "RoleBinding",
-                      metadata: nix.thunk(() => ({ __proto__: pos$19, name: name, namespace: namespace })),
+                      metadata: nix.thunk(() => ({ [nix.POS]: pos$19, name: name, namespace: namespace })),
                       roleRef: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         apiGroup: "rbac.authorization.k8s.io",
                         kind: "Role",
                         name: name,
                       })),
                       subjects: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           apiGroup: "rbac.authorization.k8s.io",
                           kind: "User",
                           name: name,
@@ -167,13 +167,13 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", (a) => nix.str`cp -v ${a}/* 
                       ]),
                     })),
                     "kube-addon-manager-cluster-lister-cr": nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       apiVersion: "rbac.authorization.k8s.io/v1",
                       kind: "ClusterRole",
-                      metadata: nix.thunk(() => ({ __proto__: pos$23, name: nix.thunk(() => nix.str`${name}:cluster-lister`) })),
+                      metadata: nix.thunk(() => ({ [nix.POS]: pos$23, name: nix.thunk(() => nix.str`${name}:cluster-lister`) })),
                       rules: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           apiGroups: nix.thunk(() => ["*"]),
                           resources: nix.thunk(() => ["*"]),
                           verbs: nix.thunk(() => ["list"]),
@@ -181,27 +181,27 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", (a) => nix.str`cp -v ${a}/* 
                       ]),
                     })),
                     "kube-addon-manager-cluster-lister-crb": nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       apiVersion: "rbac.authorization.k8s.io/v1",
                       kind: "ClusterRoleBinding",
-                      metadata: nix.thunk(() => ({ __proto__: pos$26, name: nix.thunk(() => nix.str`${name}:cluster-lister`) })),
+                      metadata: nix.thunk(() => ({ [nix.POS]: pos$26, name: nix.thunk(() => nix.str`${name}:cluster-lister`) })),
                       roleRef: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         apiGroup: "rbac.authorization.k8s.io",
                         kind: "ClusterRole",
                         name: nix.thunk(() => nix.str`${name}:cluster-lister`),
                       })),
-                      subjects: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$28, kind: "User", name: name }))]),
+                      subjects: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$28, kind: "User", name: name }))]),
                     })),
                   };
                 })()))),
             })),
             pki: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               certs: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 addonManager: nix.thunk(() => nix.app(nix.sel(top, "lib", "mkCert"), nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     name: "kube-addon-manager",
                     CN: "system:kube-addon-manager",
                     action: "systemctl restart kube-addon-manager.service",
@@ -211,7 +211,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), ";", (a) => nix.str`cp -v ${a}/* 
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$38, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$38, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=addon-manager.ts.map

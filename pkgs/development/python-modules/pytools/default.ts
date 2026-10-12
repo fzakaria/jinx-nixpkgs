@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
       const version = "2026.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Jg4NiMmpA8Zc/jT76Bh2T0Sj+W5yLho2Rc5NWWrdIrE=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [platformdirs, siphash24, typing_extensions]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, numpy: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, numpy: nix.thunk(() => [numpy]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pytools", "pytools.lex"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Miscellaneous Python lifesavers",
         homepage: "https://github.com/inducer/pytools/",
         changelog: nix.thunk(() => nix.str`https://github.com/inducer/pytools/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

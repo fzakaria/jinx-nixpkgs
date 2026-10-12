@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "polkadot",
       version: "2606-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "paritytech",
           repo: "polkadot-sdk",
           rev: nix.thunk(() => nix.str`polkadot-stable${nix.sel(finalAttrs, "version")}`),
@@ -52,20 +52,20 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [cacert]),
       doCheck: false,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: 1n,
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=polkadot-stable(\\d{4}(?:-\\d+)?)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Implementation of a https://polkadot.network node in Rust based on the Substrate framework",
         homepage: "https://github.com/paritytech/polkadot-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

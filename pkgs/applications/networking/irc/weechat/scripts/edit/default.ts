@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
       const pname = "edit-weechat";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keith",
           repo: "edit-weechat",
           rev: version,
           sha256: "1s42r0l0xkhlp6rbc23cm4vlda91il6cg53w33hqfhd2wz91s66w",
         }))));
       const dontBuild = true;
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, scripts: nix.thunk(() => ["edit.py"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["edit.py"]) }));
       const installPhase = "runHook preInstall\ninstall -D edit.py $out/share/edit.py\nrunHook postInstall\n";
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "This simple weechat plugin allows you to compose messages in your $EDITOR",
         homepage: "https://github.com/keith/edit-weechat",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

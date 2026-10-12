@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const rcs = nix.arg($, "rcs");
   const asciidoctor = nix.arg($, "asciidoctor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simple-revision-control",
       version: "1.41",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esr",
           repo: "src",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.catb.org/esr/src/",
         description: "Simple single-file revision control",
         longDescription: "SRC, acronym of Simple Revision Control, is RCS/SCCS reloaded with a\nmodern UI, designed to manage single-file solo projects kept more than one\nto a directory. Use it for FAQs, ~/bin directories, config files, and the\nlike. Features integer sequential revision numbers, a command set that\nwill seem familiar to Subversion/Git/hg users, and no binary blobs\nanywhere.\n",

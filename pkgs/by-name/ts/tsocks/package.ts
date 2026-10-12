@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tsocks",
       version: "1.8beta5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tsocks/tsocks-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ixkymiph771dcdzvssi9dr2pk1bzaw9zv85riv3xl40mzspx7c4",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--libdir=${nix.builtins.placeholder("out")}/lib`)]),
       preBuild: "# We don't need the saveme binary, it is in fact never stored and we're\n# never injecting stuff into ld.so.preload anyway\nsed -i \\\n  -e \"s,TARGETS=\\(.*\\)..SAVE.\\(.*\\),TARGETS=\\1\\2,\" \\\n  -e \"/SAVE/d\" Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transparent SOCKS v4 proxying library",
         mainProgram: "tsocks",
         homepage: "https://tsocks.sourceforge.net/",

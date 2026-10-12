@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "terser";
       const version = "5.51.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terser",
           repo: "terser",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-j8wQy2Tk7Rh8jjv6g3MYirWrjKthpV16A5pr5Jt/rwo=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JavaScript parser, mangler and compressor toolkit for ES6+",
         mainProgram: "terser",
         homepage: "https://terser.org",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "talyz"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

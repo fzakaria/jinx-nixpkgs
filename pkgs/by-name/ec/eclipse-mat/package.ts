@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const baseVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "pad"), 3n, nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const sources = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-linux": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           suffix: "linux.gtk.x86_64",
           hash: "sha256-4eqAp5hNQR5MTX37qwktqSVfe3ctaBolamEEm8yIN2c=",
         })),
         "aarch64-linux": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           suffix: "linux.gtk.aarch64",
           hash: "sha256-MJUome0KjXjmjROTTnDbSTSnDKiUGHt6LAZY1giXmQ0=",
         })),
         "aarch64-darwin": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           suffix: "macosx.cocoa.aarch64",
           hash: "sha256-Of/BJTaxD6x0+aNDKeod1RVWG86XFBmk8qdbU/p73qQ=",
         })),
@@ -53,13 +53,13 @@ export default nix.lambda((args) => (() => {
       const system = nix.thunk(() => nix.attr(from, "system"));
       const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "eclipse-mat",
         version: "1.17.0.20260601",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://ftp.halifax.rwth-aachen.de/eclipse/mat/${baseVersion}/rcp/MemoryAnalyzer-${nix.sel(finalAttrs, "version")}-${nix.sel(source, "suffix")}.zip`),
               nix.thunk(() => nix.str`https://download.eclipse.org/mat/${baseVersion}/rcp/MemoryAnalyzer-${nix.sel(finalAttrs, "version")}-${nix.sel(source, "suffix")}.zip`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         noAuditTmpdir: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: "eclipse-mat",
                 exec: "eclipse-mat",
                 icon: "eclipse-mat",
@@ -118,9 +118,9 @@ done
 
 runHook postInstall
 `)),
-        passthru: nix.thunk(() => ({ __proto__: pos$7, updateScript: nix.path(here, "./update.sh") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Fast and feature-rich Java heap analyzer",
           longDescription: "The Eclipse Memory Analyzer is a tool that helps you find memory\nleaks and reduce memory consumption. Use the Memory Analyzer to\nanalyze productive heap dumps with hundreds of millions of\nobjects, quickly calculate the retained sizes of objects, see\nwho is preventing the Garbage Collector from collecting objects,\nrun a report to automatically extract leak suspects.\n",
           homepage: "https://eclipse.dev/mat/",

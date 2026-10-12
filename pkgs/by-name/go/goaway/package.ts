@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   const version = "0.63.17";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pommee",
       repo: "goaway",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-cRx7XN8eaxqqI5+CWF93U4rgP8sH3HY4MPOA6VtqXK8=",
     }))));
   const goaway_web = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goaway-web",
       version: version,
       src: src,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -r client/dist $out\n\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "goaway",
       version: version,
       src: src,
@@ -72,7 +72,7 @@ cp -r ${goaway_web} client/dist
  --prefix PATH : $out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [net_tools]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight DNS sinkhole written in Go with a modern dashboard client",
         homepage: "https://github.com/pommee/goaway",
         changelog: nix.thunk(() => nix.str`https://github.com/pommee/goaway/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

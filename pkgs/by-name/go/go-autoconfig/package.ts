@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-autoconfig",
       version: "0.0.1-unstable-2022-08-03",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savely-krasovsky",
           repo: "go-autoconfig",
           rev: "b1b182202da82cc881dccd715564853395d4f76a",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-pI2iucrt7XLLZNOz364kOEulXxPdvJp92OewqnkQEO4=",
       postInstall: "cp -r templates $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IMAP/SMTP autodiscover feature for Thunderbird, Apple Mail and Microsoft Outlook",
         homepage: "https://github.com/savely-krasovsky/go-autoconfig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

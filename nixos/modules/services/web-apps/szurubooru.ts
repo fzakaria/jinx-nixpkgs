@@ -67,122 +67,122 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const python = nix.thunk(() => nix.sel(pkgs, "python3"));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         szurubooru: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Szurubooru, an image board engine dedicated for small and medium communities")),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "szurubooru",
               description: "User account under which Szurubooru runs.\n",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "szurubooru",
               description: "Group under which Szurubooru runs.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/szurubooru",
               example: "/var/lib/szuru",
               description: "The path to the data directory in which Szurubooru will store its data.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               example: true,
               description: "Whether to open the firewall for the port in {option}`services.szurubooru.server.port`.\n",
             })))),
           server: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["szurubooru", "server"]), nix.thunk(() => ({})))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 8080n,
                 example: 9000n,
                 description: "Port to expose HTTP service.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "127.0.0.1",
                 example: "0.0.0.0",
                 description: "The host address for Szurubooru to bind to.",
               })))),
             threads: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "int")),
                 default: 4n,
                 example: 6n,
                 description: "Number of waitress threads to start.",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "szurubooru",
                           example: "Szuru",
                           description: "Name shown in the website title and on the front page.",
                         })))),
                       domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "http://example.com",
                           description: "Full URL to the homepage of this szurubooru site (with no trailing slash).",
                         })))),
                       secretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           example: "/run/secrets/szurubooru-server-secret",
                           description: "File containing a secret used to salt the users' password hashes and generate filenames for static content.\n",
                         })))),
                       delete_source_files: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["yes", "no"]))),
                           default: "no",
                           example: "yes",
                           description: "Whether to delete thumbnails and source files on post delete.",
                         })))),
                       smtp: nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             example: "localhost",
                             description: "Host of the SMTP server used to send reset password.",
                           })))),
                         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "port")))),
                             default: null,
                             example: 25n,
                             description: "Port of the SMTP server.",
                           })))),
                         user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             default: null,
                             example: "bot",
                             description: "User to connect to the SMTP server.",
                           })))),
                         passFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             default: null,
                             example: "/run/secrets/szurubooru-smtp-pass",
@@ -190,7 +190,7 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       data_url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "server", "settings", "domain")}/data/`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${services.szurubooru.server.settings.domain}/data/\"")),
@@ -198,7 +198,7 @@ export default nix.lambda((args) => (() => {
                           description: "Full URL to the data endpoint.",
                         })))),
                       data_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/data`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${services.szurubooru.dataDir}/data\"")),
@@ -206,14 +206,14 @@ export default nix.lambda((args) => (() => {
                           description: "Path to the static files.",
                         })))),
                       debug: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 0n,
                           example: 1n,
                           description: "Whether to generate server logs.",
                         })))),
                       show_sql: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(types, "int")),
                           default: 0n,
                           example: 1n,
@@ -225,26 +225,26 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["szurubooru", "client"]), nix.thunk(() => ({})))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 example: "192.168.1.2",
                 description: "Host on which the PostgreSQL database runs.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 5432n,
                 description: "The port under which PostgreSQL listens to.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: nix.thunk(() => nix.sel(cfg, "database", "user")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "szurubooru.database.name")),
@@ -252,14 +252,14 @@ export default nix.lambda((args) => (() => {
                 description: "Name of the PostgreSQL database.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "szurubooru",
                 example: "szuru",
                 description: "PostgreSQL user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 example: "/run/secrets/szurubooru-db-password",
                 description: "A file containing the password for the PostgreSQL user.",
@@ -269,21 +269,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         networking: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           firewall: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "server", "port"))]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$40,
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "szurubooru")), nix.thunk(() => ({ __proto__: pos$37, szurubooru: nix.thunk(() => ({})) })))),
+          [nix.POS]: pos$40,
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "szurubooru")), nix.thunk(() => ({ [nix.POS]: pos$37, szurubooru: nix.thunk(() => ({})) })))),
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "szurubooru")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               szurubooru: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Szurubooru Daemon user",
                 isSystemUser: true,
@@ -291,17 +291,17 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             szurubooru: nix.thunk(() => (() => {
               const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.yaml", nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(cfg, "server", "settings")), nix.thunk(() => [
                     (settings) => nix.app(nix.sel(lib, "recursiveUpdate"), settings, nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         secretFile: null,
                         secret: "$SZURUBOORU_SECRET",
                         smtp: nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           pass: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(settings, "smtp", "passFile"), null)) ? "$SZURUBOORU_SMTP_PASS" : null)),
                           passFile: null,
                           enable: null,
@@ -311,7 +311,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (x) => !nix.eq(x, null))),
                   ])))));
               return {
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 description: "Server of Szurubooru, an image board engine dedicated for small and medium communities",
                 wantedBy: nix.thunk(() => ["multi-user.target", "szurubooru-client.service"]),
                 before: nix.thunk(() => ["szurubooru-client.service"]),
@@ -333,7 +333,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "server", "packag
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "server", "package", "waitress")))} --host ${nix.sel(cfg, "server", "host")} --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "port")))} --threads ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "threads")))} szurubooru.facade:app
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   LoadCredential: nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`secret:${nix.sel(cfg, "server", "settings", "secretFile")}`),
                     nix.thunk(() => nix.str`database:${nix.sel(cfg, "database", "passwordFile")}`),
@@ -353,7 +353,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "server", "packag
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ratcornu"))];

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fonttosfnt",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, util_macros, autoreconfHook]),
       buildInputs: nix.thunk(() => [libfontenc, freetype, xorgproto]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=fonttosfnt-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Wraps a set of bdf or pcf bitmap fonts in a sfnt (TrueType or OpenType) wrapper",
         homepage: "https://gitlab.freedesktop.org/xorg/app/fonttosfnt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

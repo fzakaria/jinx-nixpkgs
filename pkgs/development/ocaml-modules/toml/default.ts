@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.08";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml-toml",
           repo: "to.ml",
           rev: version,
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [menhir]);
       const propagatedBuildInputs = nix.thunk(() => [iso8601]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation in OCaml of the Toml minimal language",
         homepage: "http://ocaml-toml.github.io/To.ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

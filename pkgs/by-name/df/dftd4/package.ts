@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/df/dftd4/package.nix:20:1");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/df/dftd4/package.nix:21:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dftd4",
       version: "4.2.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dftd4",
           repo: "dftd4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./build-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-get_numerical_hessian_api-to-public-api.patch",
             url: "https://github.com/dftd4/dftd4/commit/f84dc4033d9ce036e74e709b9cf42c72249f4f52.patch",
             hash: "sha256-mdKWIKz8A92lI0sMl5rXwhzKd2UDej0yPYiKllH1Asc=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs --build \\\n  config/install-mod.py \\\n  app/tester.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
         changelog: nix.thunk(() => nix.str`https://github.com/dftd4/dftd4/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         mainProgram: "dftd4",

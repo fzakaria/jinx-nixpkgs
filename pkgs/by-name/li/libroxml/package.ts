@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libroxml",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.libroxml.net/pool/v2.x/libroxml-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0y0vc9n4rfbimjp28nx4kdfzz08j5xymh5xjy84l9fhfac5z5a0x",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This library is minimum, easy-to-use, C implementation for xml file parsing",
         homepage: "https://www.libroxml.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

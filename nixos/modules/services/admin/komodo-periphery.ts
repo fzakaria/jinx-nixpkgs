@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
     const actualServerEnabled = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "inbound", "serverEnabled"), null)) ? nix.sel(cfg, "inbound", "serverEnabled") : nix.eq(nix.sel(cfg, "outbound", "coreAddress"), "")));
     const hasAnyPrivateKey = nix.thunk(() => !nix.eq(nix.sel(cfg, "auth", "privateKey"), ""));
     const baseSettings = nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default_terminal_command: nix.thunk(() => nix.sel(cfg, "defaultTerminalCommand")),
       disable_terminals: nix.thunk(() => nix.sel(cfg, "disableTerminals")),
       disable_container_terminals: nix.thunk(() => nix.sel(cfg, "disableContainerTerminals")),
@@ -123,21 +123,21 @@ export default nix.lambda((args) => (() => {
       allowed_ips: nix.thunk(() => nix.sel(cfg, "inbound", "allowedIps")),
       ssl_enabled: nix.thunk(() => nix.sel(cfg, "inbound", "ssl", "enable")),
     }, nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       core_address: nix.thunk(() => nix.sel(cfg, "outbound", "coreAddress")),
       connect_as: nix.thunk(() => nix.sel(cfg, "outbound", "connectAs")),
       onboarding_key: "",
     }, nix.update({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       logging: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         level: nix.thunk(() => nix.sel(cfg, "logging", "level")),
         stdio: nix.thunk(() => nix.sel(cfg, "logging", "stdio")),
         opentelemetry_service_name: nix.thunk(() => nix.sel(cfg, "logging", "opentelemetryServiceName")),
         opentelemetry_scope_name: nix.thunk(() => nix.sel(cfg, "logging", "opentelemetryScopeName")),
         pretty: nix.thunk(() => nix.sel(cfg, "logging", "pretty")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "logging", "otlpEndpoint"), "")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           otlp_endpoint: nix.thunk(() => nix.sel(cfg, "logging", "otlpEndpoint")),
         }))))),
       pretty_startup_config: nix.thunk(() => nix.sel(cfg, "prettyStartupConfig")),
@@ -146,7 +146,7 @@ export default nix.lambda((args) => (() => {
   })());
   const configFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.app(nix.sel(settingsFormat, "generate"), "komodo-periphery.toml", genFinalSettings) : nix.sel(cfg, "configFile")));
   return {
-    __proto__: pos$87,
+    [nix.POS]: pos$87,
     imports: nix.thunk(() => (() => {
       const w = nix.withScope(lib, null);
       return [
@@ -163,181 +163,181 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
     options: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       services: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         "komodo-periphery": nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Periphery, a multi-server Docker and Git deployment agent by Komodo")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "komodo", nix.thunk(() => ({})))),
           dockerHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Docker host socket URI to use for container operations.\nIf null, uses the default Docker socket and automatically enables Docker.\nSet this to use alternative container runtimes like Podman or remote Docker hosts.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# Podman rootless\n\"unix:///run/user/1000/podman/podman.sock\"\n\n# Podman rootful\n\"unix:///run/podman/podman.sock\"\n\n# Remote Docker\n\"tcp://192.168.1.100:2375\"\n")),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to the Periphery configuration file.\n\n- If `null` (default), a configuration file will be automatically generated\n  from the module options (recommended for most users).\n- If set to a path, that file will be used directly as the configuration file.\n- You can also use `pkgs.writeText` to write configuration inline in your NixOS configuration.\n\nWhen using a custom config file, all other module options (except `package`, `user`, `group`,\n`environment`, and `environmentFile`) will be ignored.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# Option 1: Use an existing config file\n\"/etc/komodo/periphery.toml\"\n\n# Option 2: Write config inline using pkgs.writeText\npkgs.writeText \"periphery.toml\" ''\n  root_directory = \"/var/lib/komodo-periphery\"\n\n  logging.level = \"info\"\n  logging.stdio = \"standard\"\n''\n")),
             })))),
           rootDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/komodo-periphery",
               description: "Root directory for Komodo Periphery data.",
             })))),
           repoDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.komodo-periphery.rootDirectory}/repos\"")),
               description: "Directory for Komodo Periphery to manage repos. If null, defaults to `${rootDirectory}/repos`.",
             })))),
           stackDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.komodo-periphery.rootDirectory}/stacks\"")),
               description: "Directory for Komodo Periphery to manage stacks. If null, defaults to `${rootDirectory}/stacks`.",
             })))),
           buildDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.komodo-periphery.rootDirectory}/builds\"")),
               description: "Directory for Komodo Periphery to manage builds. If null, defaults to `${rootDirectory}/builds`.",
             })))),
           logging: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["off", "error", "warn", "info", "debug", "trace"]))),
                 default: "info",
                 description: "Logging verbosity level.",
               })))),
             stdio: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["standard", "json", "none"]))),
                 default: "standard",
                 description: "Logging format for stdout/stderr.",
               })))),
             otlpEndpoint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "OpenTelemetry OTLP endpoint for traces.",
                 example: "http://localhost:4317",
               })))),
             opentelemetryServiceName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "Periphery",
                 description: "(v2.0+) OpenTelemetry service name attached to telemetry.",
               })))),
             opentelemetryScopeName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "Komodo",
                 description: "(v2.0+) OpenTelemetry scope name attached to telemetry.",
               })))),
             pretty: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "(v2.0+) Enable human-readable logging (multi-line).",
               })))),
           })),
           prettyStartupConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "(v2.0+) Enable human-readable startup config log (multi-line).",
             })))),
           passkeyFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to file containing passkeys (v1.X compatibility).\nThis will be passed via `PERIPHERY_PASSKEYS_FILE` environment variable.\nConsider migrating to the new v2.0+ authentication mechanism.\n",
               example: "/run/secrets/komodo-passkey",
             })))),
           extraSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Extra settings to add to the generated TOML config.",
               example: nix.thunk(() => ({
-                __proto__: pos$22,
-                secrets: nix.thunk(() => ({ __proto__: pos$21, GITHUB_TOKEN: "ghp_xxxx" })),
+                [nix.POS]: pos$22,
+                secrets: nix.thunk(() => ({ [nix.POS]: pos$21, GITHUB_TOKEN: "ghp_xxxx" })),
               })),
             })))),
           defaultTerminalCommand: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "bash",
               description: "(v2.0+) Default terminal command used to initialize the shell.",
               example: "zsh",
             })))),
           disableTerminals: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable remote shell access through Periphery.",
             })))),
           disableContainerTerminals: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "(v2.0+) Disable remote container shell access through Periphery.",
             })))),
           statsPollingRate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "5-sec",
               description: "System stats polling interval.",
               example: "10-sec",
             })))),
           containerStatsPollingRate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "30-sec",
               description: "Container stats polling interval.",
               example: "1-min",
             })))),
           legacyComposeCli: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Use `docker-compose` instead of `docker compose`.",
             })))),
           includeDiskMounts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Only include these mount paths in disk reporting.",
               example: nix.thunk(() => ["/mnt/data", "/mnt/backup"]),
             })))),
           excludeDiskMounts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Exclude these mount paths from disk reporting.",
               example: nix.thunk(() => ["/tmp", "/boot"]),
             })))),
           auth: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             privateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "(v2.0+) Private key used with the Noise handshake.\n\nUse `file:/path/to/file` prefix to load from a file. If the file doesn't exist,\nPeriphery will generate and write a new key to the path.\n\nIf empty, defaults to `file:${rootDirectory}/keys/periphery.key`.\n",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# Reference a secret file\n\"file:${config.age.secrets.komodo-private-key.path}\"\n\n# Or direct path\n\"file:/run/secrets/komodo-private-key\"\n")),
               })))),
             corePublicKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "(v2.0+) Accepted public keys to allow Core(s) to connect.\nAccepts Spki base64 DER directly or can reference files using `file:/path/to/core.pub` prefix.\nYou can mix direct keys and file references.\n\nFor better security, use the `file:` prefix to reference secret files.\n",
@@ -345,44 +345,44 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           inbound: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             serverEnabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                 default: null,
                 description: "Enable the inbound connection server for Core -> Periphery connections.\nIf null, defaults to false when `outbound.coreAddress` is defined, otherwise true.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8120n,
                 description: "Port for the inbound Periphery server to listen on.",
               })))),
             bindIp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "[::]",
                 description: "IP address the periphery server will bind to.\nThe default allows external IPv4 and IPv6 connections.\n",
               })))),
             allowedIps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Limit the IP addresses which can connect to Periphery.\nSupports IPv4/IPv6 addresses and subnets.\nEmpty list allows all connections.\n",
                 example: nix.thunk(() => ["::ffff:12.34.56.78", "10.0.10.0/24"]),
               })))),
             ssl: nix.thunk(() => ({
-              __proto__: pos$42,
-              enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "(v2.0+) SSL/TLS support for inbound connections"), { __proto__: pos$39, default: true })),
+              [nix.POS]: pos$42,
+              enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "(v2.0+) SSL/TLS support for inbound connections"), { [nix.POS]: pos$39, default: true })),
               keyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: nix.thunk(() => nix.str`${nix.sel(cfg, "rootDirectory")}/ssl/key.pem`),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.komodo-periphery.rootDirectory}/ssl/key.pem\"")),
                   description: "Path to SSL key file.\nIf the file doesn't exist and SSL is enabled, self-signed keys will be generated using openssl.\n",
                 })))),
               certFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: nix.thunk(() => nix.str`${nix.sel(cfg, "rootDirectory")}/ssl/cert.pem`),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.komodo-periphery.rootDirectory}/ssl/cert.pem\"")),
@@ -391,23 +391,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           outbound: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             coreAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "(v2.0+) The address of Komodo Core. Must be reachable from this host.\nIf provided, Periphery will operate in outbound mode.\n",
                 example: "demo.komo.do",
               })))),
             connectAs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "(v2.0+) The Server this Periphery agent should connect as.\nMust match an existing Server name or id.\n",
                 example: "server-name",
               })))),
             onboardingKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "(v2.0+) Path to file containing the onboarding key.\nThis will be passed via `PERIPHERY_ONBOARDING_KEY_FILE` environment variable.\n",
@@ -415,31 +415,31 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "komodo-periphery",
               description: "User under which the Periphery agent runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "komodo-periphery",
               description: "Group under which the Periphery agent runs.",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Environment file for additional configuration via environment variables.",
               example: "/run/secrets/komodo-periphery.env",
             })))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               description: "Environment variables to set for the service.",
               example: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 RUST_LOG: "komodo=debug",
                 DOCKER_HOST: "unix:///var/run/docker.sock",
               })),
@@ -448,19 +448,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           docker: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.eq(nix.sel(cfg, "dockerHost"), null)))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "komodo-periphery")), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Komodo Periphery service user",
@@ -473,61 +473,61 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             settings: nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               "10-komodo-periphery": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "rootDirectory")}`, nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   d: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     mode: "0755",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${actualRepoDir}`, nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   d: nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     mode: "0755",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${actualStackDir}`, nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   d: nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     mode: "0755",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${actualBuildDir}`, nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   d: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     mode: "0755",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "rootDirectory")}/keys`, nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   d: nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     mode: "0700",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                   })),
                 }))],
                 [nix.str`${nix.sel(cfg, "rootDirectory")}/ssl`, nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   d: nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     mode: "0700",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -537,9 +537,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             "komodo-periphery": nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               description: "Komodo Periphery - Multi-server Docker and Git deployment agent",
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "dockerHost"), null)), "docker.service"))),
               wants: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "dockerHost"), null)), "docker.service"))),
@@ -549,7 +549,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "virtualisation", "docker", "package")),
               ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "disableTerminals"))), nix.thunk(() => ["/run/current-system/sw", "/run/wrappers"])))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -563,26 +563,26 @@ export default nix.lambda((args) => (() => {
                     configFile,
                   ]))),
                 Environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`${name}=${value}`, nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "configFile"), null)), nix.thunk(() => ({
-                      __proto__: pos$74,
+                      [nix.POS]: pos$74,
                       PERIPHERY_ROOT_DIRECTORY: nix.thunk(() => nix.sel(cfg, "rootDirectory")),
                       PERIPHERY_REPO_DIR: actualRepoDir,
                       PERIPHERY_STACK_DIR: actualStackDir,
                       PERIPHERY_BUILD_DIR: actualBuildDir,
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "configFile"), null)) && nix.asBool(nix.sel(cfg, "inbound", "ssl", "enable")))), nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       PERIPHERY_SSL_KEY_FILE: nix.thunk(() => nix.sel(cfg, "inbound", "ssl", "keyFile")),
                       PERIPHERY_SSL_CERT_FILE: nix.thunk(() => nix.sel(cfg, "inbound", "ssl", "certFile")),
-                    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dockerHost"), null)), nix.thunk(() => ({ __proto__: pos$76, DOCKER_HOST: nix.thunk(() => nix.sel(cfg, "dockerHost")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "passkeyFiles"), null)), nix.thunk(() => ({
-                      __proto__: pos$77,
+                    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dockerHost"), null)), nix.thunk(() => ({ [nix.POS]: pos$76, DOCKER_HOST: nix.thunk(() => nix.sel(cfg, "dockerHost")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "passkeyFiles"), null)), nix.thunk(() => ({
+                      [nix.POS]: pos$77,
                       PERIPHERY_PASSKEYS_FILE: nix.thunk(() => nix.sel(cfg, "passkeyFiles")),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "auth", "privateKey"), "")), nix.thunk(() => ({
-                      __proto__: pos$78,
+                      [nix.POS]: pos$78,
                       PERIPHERY_PRIVATE_KEY: nix.thunk(() => nix.sel(cfg, "auth", "privateKey")),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "auth", "corePublicKeys"), [])), nix.thunk(() => ({
-                      __proto__: pos$79,
+                      [nix.POS]: pos$79,
                       PERIPHERY_CORE_PUBLIC_KEYS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "auth", "corePublicKeys")))),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "outbound", "onboardingKeyFile"), null)), nix.thunk(() => ({
-                      __proto__: pos$80,
+                      [nix.POS]: pos$80,
                       PERIPHERY_ONBOARDING_KEY_FILE: nix.thunk(() => nix.sel(cfg, "outbound", "onboardingKeyFile")),
                     }))), nix.sel(cfg, "environment"))))))))))),
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
@@ -598,7 +598,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$86,
+      [nix.POS]: pos$86,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "channinghe"))];

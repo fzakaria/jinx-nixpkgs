@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmcarpenter2",
           repo: "swifter",
           tag: version,
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([pandas, psutil, dask, tqdm], nix.sel(dask, "optional-dependencies", "dataframe")));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         groupby: nix.thunk(() => [ray]),
         notebook: nix.thunk(() => [ipywidgets]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["swifter"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Package which efficiently applies any function to a pandas dataframe or series in the fastest available manner",
         homepage: "https://github.com/jmcarpenter2/swifter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

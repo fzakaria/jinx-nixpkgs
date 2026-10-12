@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           const pname_1 = pname;
           const version_1 = version;
           const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: nix.thunk(() => nix.str`${pname_1}.${version_1}.nupkg`),
               url: url,
               sha256: sha256,
@@ -53,7 +53,7 @@ runHook postInstall
           const preFixup = "patch-nupkgs $out/share/nuget/packages\n";
           const createInstallableNugetSource = installable;
           const meta = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             sourceProvenance: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
               return [
@@ -63,7 +63,7 @@ runHook postInstall
             })()),
           }));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname_1,
             version: version_1,
             src,

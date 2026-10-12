@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(pkgsCross, "musl64"));
   const rustPlatform = nix.thunk(() => nix.attr(from, "rustPlatform"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nnd",
       version: "0.80",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "al13n321",
           repo: "nnd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-p3BbXKrTo3ggNGXorVwhANcm6NRzik69jHwn7cM5S1s=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Debugger for Linux",
         homepage: "https://github.com/al13n321/nnd/tree/main",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

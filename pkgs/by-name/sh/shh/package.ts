@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const enableDocumentationGeneration = nix.argOr($, "enableDocumentationGeneration", () => true);
   const isNativeDocgen = nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))) && nix.asBool(enableDocumentationFeature)));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "shh",
       version: "2026.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "desbma",
           repo: "shh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-zE4qRXrQHqppTmZ9rHeqt4mvMgoRIzX73/CPf4IRgYo=",
       patches: nix.thunk(() => [nix.path(here, "./fix_run_checks.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SHH_STRACE_BIN_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), strace)),
       })),
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableDocumentationFeature, "generate-extras")),
@@ -52,11 +52,11 @@ installShellCompletion --cmd ${nix.sel(finalAttrs, "meta", "mainProgram")} \\
   --zsh target/shellcomplete/_${nix.sel(finalAttrs, "meta", "mainProgram")}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Automatic systemd service hardening guided by strace profiling",
         homepage: "https://github.com/desbma/shh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const grub2 = nix.arg($, "grub2");
-  return nix.app(nix.sel(grub2, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, xenSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["grub2"])))));
+  return nix.app(nix.sel(grub2, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, xenSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["grub2"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "2.5.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Azure",
       repo: "azure-storage-fuse",
       rev: nix.thunk(() => nix.str`blobfuse2-${version}`),
       sha256: "sha256-P68vhxvG/3fOMJeNxf2LS2GJDnojswm/dl6QLDXpiLA=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "blobfuse",
       version: version,
       src: src,
@@ -36,15 +36,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fuse3]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: blobfuse })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: blobfuse })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Mount an Azure Blob storage as filesystem through FUSE",
         homepage: "https://github.com/Azure/azure-storage-fuse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

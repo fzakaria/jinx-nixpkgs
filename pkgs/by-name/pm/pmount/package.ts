@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const whiteList = nix.argOr($, "whiteList", () => "/etc/pmount.allow");
   nix.assert_(nix.app(nix.sel(lib, "hasSuffix"), "/", mediaDir), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pm/pmount/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "pmount",
       version: "0.9.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/p/pmount/pmount_${nix.sel(finalAttrs, "version")}.orig.tar.bz2`),
           sha256: "db38fc290b710e8e9e9d442da2fb627d41e13b3ee80326c15cc2595ba00ea036",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: name,
               hash: hash,
               url: nix.thunk(() => nix.str`https://salsa.debian.org/debian/pmount/-/raw/430e4634aa7a2e6a5a91852c5b0fd3698b186000/debian/patches/${name}`),
@@ -54,42 +54,42 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return nix.builtins.map(fetchDebPatch, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "02-fix-spelling-binary-errors.patch",
               hash: "sha256-ukGHDqsG3Eo/0bhv2GPwX0N6uZOI+3BowMY+l1wtd9o=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "03-fix-spelling-manpage-error.patch",
               hash: "sha256-rsa3t165+yWBOnRV3SnOMmYSuNuydZtnOdydUzcjDaQ=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "04-fix-implicit-function-declaration.patch",
               hash: "sha256-Le8gVIW72oZGymN7gM5uOGNEhrzOTirnilNedUkSpco=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "05-exfat-support.patch",
               hash: "sha256-Yl9QuA8tMIej4nQIbYibcUVFJdgnVaN+34/xoJp5NbU=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "06-C99-implicit-function-declaration-fixes.patch",
               hash: "sha256-xFFfl9BkBqbUSAKaJwvKNgHyWbxUO5wKyEpwz3anwdM=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "07-Add-probing-for-Btrfs.patch",
               hash: "sha256-9SKyLAVmZTGgsAi9aCxkw1OzWVcegoZy2DaupiS9kPA=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "08-Support-btlkOpen-alongside-of-luksOpen.patch",
               hash: "sha256-2PJky3lRUKkOB2Js86XN8gqmYMxpsUbLJ39XnrirCDw=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "09-Probe-for-f2fs.patch",
               hash: "sha256-VMnrSEaIPwEfbUi+Q88vQdSBQgq4+jJ19Bjc/ueemnw=",
             })),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: "# etc/Mafile.am is hardcoded and it does not respect the --prefix option.\nsubstituteInPlace ./etc/Makefile --replace DESTDIR prefix\n# Do not change ownership & Do not add the set user ID bit\nsubstituteInPlace ./src/Makefile --replace '-o root -g root -m 4755 ' '-m 755 '\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://salsa.debian.org/debian/pmount",
         description: "Mount removable devices as normal user",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

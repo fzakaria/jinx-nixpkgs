@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const core_unix = nix.argOr($, "core_unix", () => null);
   const async$ = nix.arg($, "async");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "faraday-async",
       version: nix.thunk(() => nix.attr(faraday, "version")),
       src: nix.thunk(() => nix.attr(faraday, "src")),
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [faraday, core_unix, async$]),
-      meta: nix.thunk(() => nix.update(nix.sel(faraday, "meta"), { __proto__: pos$1, description: "Async support for Faraday" })),
+      meta: nix.thunk(() => nix.update(nix.sel(faraday, "meta"), { [nix.POS]: pos$1, description: "Async support for Faraday" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=async.ts.map

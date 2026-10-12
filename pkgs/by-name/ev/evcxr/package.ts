@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isUnix")) && nix.asBool(!nix.asBool(nix.lookup(w, "isDarwin"))));
   })());
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "evcxr",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evcxr",
           repo: "evcxr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-aZDoYB0qbXyASGT6uj48DAxJRHkZg66hD/Qy3UjcjJo=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUST_SRC_PATH: nix.thunk(() => nix.str`${nix.sel(rustPlatform, "rustLibSrc")}`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper, cmake]),
@@ -64,11 +64,11 @@ rm $out/bin/print_performance_info
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Evaluation context for Rust",
         homepage: "https://github.com/evcxr/evcxr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

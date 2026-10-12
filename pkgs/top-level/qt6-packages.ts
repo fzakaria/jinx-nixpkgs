@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = __splicedPackages;
   const qt6 = nix.thunk(() => nix.sel(pkgsHostTarget, "qt6"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "qt6Packages")),
       f: (self) => (() => {
         const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
         const noExtraAttrs = (set) => nix.app(nix.sel(lib, "attrsets", "removeAttrs"), set, nix.thunk(() => ["extend", "override", "overrideScope", "overrideDerivation"]));
         return nix.update(nix.app(noExtraAttrs, qt6), nix.update({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "accounts-qml-module": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qml-module"), nix.thunk(() => ({})))),
           "accounts-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qt"), nix.thunk(() => ({})))),
           "appstream-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/appstream/qt.nix"), nix.thunk(() => ({})))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           "fcitx5-chinese-addons": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-chinese-addons.nix"), nix.thunk(() => ({})))),
           "fcitx5-configtool": nix.thunk(() => nix.app(nix.sel(kdePackages, "callPackage"), nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-configtool.nix"), nix.thunk(() => ({})))),
           "fcitx5-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-qt.nix"), nix.thunk(() => ({})))),
-          "fcitx5-skk-qt": nix.thunk(() => nix.app(nix.sel(pkgs, "fcitx5-skk", "override"), nix.thunk(() => ({ __proto__: pos$1, enableQt: true })))),
+          "fcitx5-skk-qt": nix.thunk(() => nix.app(nix.sel(pkgs, "fcitx5-skk", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableQt: true })))),
           "fcitx5-unikey": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-unikey.nix"), nix.thunk(() => ({})))),
           "fcitx5-with-addons": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/with-addons.nix"), nix.thunk(() => ({})))),
           kdsoap: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/kdsoap"), nix.thunk(() => ({})))),
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
           libqtdbusmock: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbusmock"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "lomiri-qt6"));
               return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
             };
             })()))),
           libqtdbustest: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbustest"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "lomiri-qt6"));
               return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
             };
             })()))),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
           qmenumodel: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qmenumodel"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "lomiri-qt6"));
               return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
             };
             })()))),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
           qxlsx: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qxlsx"), nix.thunk(() => ({})))),
           qzxing: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qzxing"), nix.thunk(() => ({})))),
           poppler: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/poppler"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               lcms: nix.thunk(() => nix.sel(pkgs, "lcms2")),
               qt6Support: true,
               suffix: "qt6",
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
           timed: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/system/timed"), nix.thunk(() => ({})))),
           wayqt: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/wayqt"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             qt6gtk2: nix.thunk(() => nix.builtins.throw("'qt6Packages.qt6gtk2' has been removed, as it relies on gtk2 libraries")),
             qwlroots: nix.thunk(() => nix.builtins.throw("'qt6Packages.qwlroots' has been removed because it has been merged into treeland upstream.\nThe upstream no longer provides it as a standalone development library.\n")),
             waylib: nix.thunk(() => nix.builtins.throw("'qt6Packages.waylib' has been removed because it has been merged into treeland upstream.\nThe upstream no longer provides it as a standalone development library.\n")),

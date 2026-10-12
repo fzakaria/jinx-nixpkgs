@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const imagescanVersion = "3.65.0";
       const version = "1.1.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://buzo.eu/mirror/epson/imagescan-bundle-fedora-32-${imagescanVersion}.x64.rpm.tar.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20221027001620if_/https://download2.ebz.epson.net/imagescanv3/fedora/latest1/rpm/x64/imagescan-bundle-fedora-32-${imagescanVersion}.x64.rpm.tar.gz`),
@@ -34,7 +34,7 @@ patchelf \\
   $out/libexec/utsushi/networkscan
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network scan plugin for ImageScan v3",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -45,7 +45,7 @@ patchelf \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         imagescanVersion,
         version,

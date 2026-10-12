@@ -22,42 +22,42 @@ export default nix.lambda((args) => (() => {
   const cvs = nix.arg($, "cvs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cvsps",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/c/cvsps/cvsps_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "0nh7q7zcmagx0i63h6fqqkkq9i55k77myvb8h6jn2f266f5iklwi",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/01_ignoretrunk.patch",
             sha256: "1gzb97dw2a6bm0bmim7p7wvsn0r82y3a8n22ln6rbbkkd8vlnzcb",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/02_dynamicbufferalloc.patch",
             sha256: "0dm7azxnw0g9pdqkb3y4y2h047zgrclbh40av6c868wfp2j6l9sc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/03_diffoptstypo.patch",
             sha256: "06n8652g7inpv8cgqir7ijq00qw1fr0v44m2pbmgx7ilmna2vrcw",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/05-inet_addr_fix.patch",
             sha256: "10w6px96dz8bb69asjzshvp787ccazmqnjsggqc4gwdal95q3cn7",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/fix-makefile",
             sha256: "0m92b55hgldwg6lwdaybbj0n3lw1b3wj2xkk1cz1ywq073bpf3jm",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://sources.debian.net/data/main/c/cvsps/2.1-7/debian/patches/fix-manpage",
             sha256: "0gky14rhx82wv0gj8bkc74ki5xilhv5i3k1jc7khklr4lb6mmhpx",
           })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cvs, zlib]),
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Tool to generate CVS patch set information",
         longDescription: "CVSps is a program for generating `patchset' information from a\nCVS repository.  A patchset in this case is defined as a set of\nchanges made to a collection of files, and all committed at the\nsame time (using a single \"cvs commit\" command).\n",
         homepage: "https://sourceforge.net/projects/cvsps/",

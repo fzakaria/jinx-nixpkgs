@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "24.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-YR4poBrFlw8Ad/nFd+dG1IwIJYi0EbM6DdVcTYcpSfY=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["face"]);
       const disabledTests = nix.thunk(() => ["test_search_prs_basic", "test_module_shortcut"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line interface parser and framework",
         longDescription: "A command-line interface parser and framework, friendly for\nusers, full-featured for developers.\n",
         homepage: "https://github.com/mahmoud/face",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

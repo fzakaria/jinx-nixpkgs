@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
   const cuda_nvcc = nix.thunk(() => nix.attr(cudaPackages, "cuda_nvcc"));
   const cudaArchitecturesString = nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString"));
   const mp11_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "mp11-src",
       owner: "boostorg",
       repo: "mp11",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-cLPvjkf2Au+B19PJNrUkTW/VPxybi1MpPxnIl4oo4/o=",
     }))));
   const safeint_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "safeint-src",
       owner: "dcleblanc",
       repo: "safeint",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-pjwjrqq6dfiVsXIhbBtbolhiysiFlFTnx5XcX77f+C0=",
     }))));
   const onnx_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "onnx-src",
       owner: "onnx",
       repo: "onnx",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-eF6BdTwTuHh6ckuLGN1d6z2GLU47lPqtzu4zIv8+cTs=",
     }))));
   const cutlass_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "cutlass-src",
       owner: "NVIDIA",
       repo: "cutlass",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-0q9Ad0Z6E/rO2PdM4uQc8H0E0qs9uKc3reHepiHhjEc=",
     }))));
   const dlpack_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "dlpack-src",
       owner: "dmlc",
       repo: "dlpack",
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-YqgzCyNywixebpHGx16tUuczmFS5pjCz5WjR89mv9eI=",
     }))));
   const coremltools_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "coremltools-src",
       owner: "apple",
       repo: "coremltools",
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-kajQFHpl+4UK6fp+rM8TP0GiqIFYXPVFc2x1p19rBSw=",
     }))));
   const fp16_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "fp16-src",
       owner: "Maratyszcza",
       repo: "FP16",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-m2d9bqZoGWzuUPGkd29MsrdscnJRtuIkLIMp3fMmtRY=",
     }))));
   const psimd_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "psimd-src",
       owner: "Maratyszcza",
       repo: "psimd",
@@ -127,11 +127,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const isCudaJetson = nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(nix.sel(cudaPackages, "flags", "isJetsonBuild"))));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "onnxruntime",
       version: "1.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "microsoft",
           repo: "onnxruntime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -267,8 +267,8 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_PSIMD", nix.thunk(() => nix.str`${psimd_src}`))),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.5")),
         ]))))))))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$10, NIX_LDFLAGS: "-z,noexecstack" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          __proto__: pos$11,
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$10, NIX_LDFLAGS: "-z,noexecstack" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
+          [nix.POS]: pos$11,
           MIOPEN_PATH: nix.thunk(() => nix.sel(rocmPackages, "miopen")),
           HIPFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (pkg) => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), pkg)}/include`, nix.thunk(() => [
               nix.thunk(() => nix.sel(rocmPackages, "hipblas")),
@@ -281,7 +281,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(rocmPackages, "rocthrust")),
             ]))),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           NIX_CFLAGS_COMPILE: "-DFLATBUFFERS_LOCALE_INDEPENDENT=0",
           GTEST_FILTER: "*:-ContribOpTest.StringNormalizer*",
         })))))),
@@ -296,18 +296,18 @@ export default nix.lambda((args) => (() => {
       disallowedRequisites: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getBin"), cuda_nvcc))]))),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         cudaSupport: cudaSupport,
         cudaPackages: cudaPackages,
         ncclSupport: ncclSupport,
         protobuf: protobuf,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), pythonSupport, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             python: nix.thunk(() => nix.sel(python3Packages, "onnxruntime")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Cross-platform, high performance scoring engine for ML models",
         longDescription: "ONNX Runtime is a performance-focused complete scoring engine\nfor Open Neural Network Exchange (ONNX) models, with an open\nextensible architecture to continually address the latest developments\nin AI and Deep Learning. ONNX Runtime stays up to date with the ONNX\nstandard with complete implementation of all ONNX operators, and\nsupports all ONNX releases (1.2+) with both future and backwards\ncompatibility.\n",
         homepage: "https://github.com/microsoft/onnxruntime",

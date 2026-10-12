@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   const isx86_64 = nix.thunk(() => nix.attr(from, "isx86_64"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "presenterm",
       version: "0.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mfontanini",
           repo: "presenterm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => [makeBinaryWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isx86_64))), nix.thunk(() => [lld])))),
       cargoHash: "sha256-OlZXf8Wg32mXGDGbavLVf1ELoqqSmc8z9DNpvGOfAJ8=",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isx86_64))), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isx86_64))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
       checkFlags: nix.thunk(() => ["--skip=external_snippet"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal based slideshow tool",
         changelog: nix.thunk(() => nix.str`https://github.com/mfontanini/presenterm/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/mfontanini/presenterm",

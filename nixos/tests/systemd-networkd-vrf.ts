@@ -63,24 +63,24 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const mkNode = (vlan) => (id) => ({
-    __proto__: pos$9,
-    virtualisation: nix.thunk(() => ({ __proto__: pos$1, vlans: nix.thunk(() => [vlan]) })),
-    networking: nix.thunk(() => ({ __proto__: pos$2, useDHCP: false, useNetworkd: true })),
+    [nix.POS]: pos$9,
+    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [vlan]) })),
+    networking: nix.thunk(() => ({ [nix.POS]: pos$2, useDHCP: false, useNetworkd: true })),
     systemd: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       network: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         enable: true,
         networks: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`10-eth${nix.builtins.toString(vlan)}`, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             matchConfig: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               Name: nix.thunk(() => nix.str`eth${nix.builtins.toString(vlan)}`),
             })),
-            linkConfig: nix.thunk(() => ({ __proto__: pos$4, RequiredForOnline: "no" })),
+            linkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, RequiredForOnline: "no" })),
             networkConfig: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               Address: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(vlan)}.${nix.builtins.toString(id)}/24`),
               IPv4Forwarding: "yes",
               IPv6Forwarding: "yes",
@@ -91,71 +91,71 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     name: "systemd-networkd-vrf",
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$40,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$11, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: pos$40,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, vlans: nix.thunk(() => [1n, 2n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             useDHCP: false,
             useNetworkd: true,
-            firewall: nix.thunk(() => ({ __proto__: pos$12, checkReversePath: "loose" })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$12, checkReversePath: "loose" })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             network: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               enable: true,
               netdevs: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 "10-vrf1": nix.thunk(() => ({
-                  __proto__: pos$16,
-                  netdevConfig: nix.thunk(() => ({ __proto__: pos$14, Kind: "vrf", Name: "vrf1", MTUBytes: "1300" })),
-                  vrfConfig: nix.thunk(() => ({ __proto__: pos$15, Table: 23n })),
+                  [nix.POS]: pos$16,
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$14, Kind: "vrf", Name: "vrf1", MTUBytes: "1300" })),
+                  vrfConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Table: 23n })),
                 })),
                 "10-vrf2": nix.thunk(() => ({
-                  __proto__: pos$19,
-                  netdevConfig: nix.thunk(() => ({ __proto__: pos$17, Kind: "vrf", Name: "vrf2", MTUBytes: "1300" })),
-                  vrfConfig: nix.thunk(() => ({ __proto__: pos$18, Table: 42n })),
+                  [nix.POS]: pos$19,
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Kind: "vrf", Name: "vrf2", MTUBytes: "1300" })),
+                  vrfConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Table: 42n })),
                 })),
               })),
               networks: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 "10-vrf1": nix.thunk(() => ({
-                  __proto__: pos$24,
-                  matchConfig: nix.thunk(() => ({ __proto__: pos$21, Name: "vrf1" })),
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$22, IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
+                  [nix.POS]: pos$24,
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Name: "vrf1" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$22, IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$23, Destination: "192.168.1.2", Metric: 100n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$23, Destination: "192.168.1.2", Metric: 100n })),
                   ]),
                 })),
                 "10-vrf2": nix.thunk(() => ({
-                  __proto__: pos$28,
-                  matchConfig: nix.thunk(() => ({ __proto__: pos$25, Name: "vrf2" })),
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$26, IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
+                  [nix.POS]: pos$28,
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$25, Name: "vrf2" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$26, IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$27, Destination: "192.168.2.3", Metric: 100n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$27, Destination: "192.168.2.3", Metric: 100n })),
                   ]),
                 })),
                 "10-eth1": nix.thunk(() => ({
-                  __proto__: pos$32,
-                  matchConfig: nix.thunk(() => ({ __proto__: pos$29, Name: "eth1" })),
-                  linkConfig: nix.thunk(() => ({ __proto__: pos$30, RequiredForOnline: "no" })),
+                  [nix.POS]: pos$32,
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$29, Name: "eth1" })),
+                  linkConfig: nix.thunk(() => ({ [nix.POS]: pos$30, RequiredForOnline: "no" })),
                   networkConfig: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     VRF: "vrf1",
                     Address: "192.168.1.1/24",
                     IPv4Forwarding: "yes",
@@ -163,11 +163,11 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "10-eth2": nix.thunk(() => ({
-                  __proto__: pos$36,
-                  matchConfig: nix.thunk(() => ({ __proto__: pos$33, Name: "eth2" })),
-                  linkConfig: nix.thunk(() => ({ __proto__: pos$34, RequiredForOnline: "no" })),
+                  [nix.POS]: pos$36,
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$33, Name: "eth2" })),
+                  linkConfig: nix.thunk(() => ({ [nix.POS]: pos$34, RequiredForOnline: "no" })),
                   networkConfig: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     VRF: "vrf2",
                     Address: "192.168.2.1/24",
                     IPv4Forwarding: "yes",
@@ -182,20 +182,20 @@ export default nix.lambda((args) => (() => {
       node1: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(mkNode, 1n, 2n)),
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             services: nix.thunk(() => ({
-              __proto__: pos$42,
-              openssh: nix.thunk(() => ({ __proto__: pos$41, enable: true })),
+              [nix.POS]: pos$42,
+              openssh: nix.thunk(() => ({ [nix.POS]: pos$41, enable: true })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               users: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 root: nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   openssh: nix.thunk(() => ({
-                    __proto__: pos$44,
-                    authorizedKeys: nix.thunk(() => ({ __proto__: pos$43, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                    [nix.POS]: pos$44,
+                    authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$43, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                   })),
                 })),
               })),

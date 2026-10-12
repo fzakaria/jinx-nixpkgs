@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "teltasync",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmho",
           repo: "teltasync",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio, syrupy]),
       pythonImportsCheck: nix.thunk(() => ["teltasync"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async, typed API client for Teltonika routers, built for Home Assistant",
         homepage: "https://codeberg.org/dmho/teltasync",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dmho/teltasync/releases/tag/v${nix.sel(finalAttrs, "version")}`),

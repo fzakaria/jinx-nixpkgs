@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => !nix.eq(usePipewire, usePulseaudio)), "You need to enable one and only one of pulseaudio or pipewire support"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ja/jamesdsp/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "jamesdsp",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Audio4Linux",
           repo: "JDSP4Linux",
           fetchSubmodules: true,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Audio4Linux/JDSP4Linux/pull/241.patch",
             hash: "sha256-RtVKlw2ca8An4FodeD0RN95z9yHDHBgAxsEwLAmW7co=",
             name: "fix-build-with-new-pipewire.patch",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), usePulseaudio, "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n")),
       qmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), usePulseaudio, nix.thunk(() => ["CONFIG+=USE_PULSEAUDIO"]))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             "-Wno-error=implicit-int",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "jamesdsp",
             desktopName: "JamesDSP",
             genericName: "Audio effects processor",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -D resources/icons/icon.png $out/share/icons/hicolor/512x512/apps/jamesdsp.png\ninstall -D resources/icons/icon.svg $out/share/icons/hicolor/scalable/apps/jamesdsp.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Audio effect processor for PipeWire clients",
         mainProgram: "jamesdsp",

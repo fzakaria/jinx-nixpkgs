@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coffea",
       version: "2026.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CoffeaTeam",
           repo: "coffea",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Basic tools and wrappers for enabling not-too-alien syntax when running columnar Collider HEP analysis",
         homepage: "https://github.com/CoffeaTeam/coffea",
         changelog: nix.thunk(() => nix.str`https://github.com/CoffeaTeam/coffea/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

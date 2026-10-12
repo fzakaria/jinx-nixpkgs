@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: "1.7-2",
       pname: "fbterm",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "fbterm",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "export HOME=$PWD\n",
       postInstall: nix.thunk(() => (() => {
         const fbtermrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fbtermrc?h=fbterm",
             hash: "sha256-zNIfi2ZjEGc5PLdOIirKGTXESb5Wm5XBAI1sfHa31LY=",
           }))));
@@ -58,38 +58,38 @@ cp "${fbtermrc}" "$out/etc/fbterm"
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fbconfig.patch?h=fbterm",
             hash: "sha256-skCdUqyMkkqxS1YUI7cofsfnNNo3SL/qe4WEIXlhm/s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/color_palette.patch?h=fbterm",
             hash: "sha256-SkWxzfapyBTtMpTXkiFHRAw8/uXw7cAWwg5Q3TqWlk8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fbterm.patch?h=fbterm",
             hash: "sha256-XNHBTGQGeaQPip2XgcKlr123VDwils2pnyiGqkBGhzU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/0001-Fix-build-with-gcc-6.patch?h=fbterm",
             hash: "sha256-3d3zBvr5upICVVkd6tn63IhuB0sF67f62aKnf8KvOwg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_ftbfs_crosscompile.patch?h=fbterm",
             hash: "sha256-jv/FSG6dHR0jKjPXQIfqsvpiT/XYzwv/VwuV+qUSovM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_ftbfs_epoll.patch?h=fbterm",
             hash: "sha256-wkhfG0uY/5ZApcXTERkaKqz5IDpnilxUEcxull4645A=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Framebuffer terminal emulator",
         mainProgram: "fbterm",
         homepage: "https://salsa.debian.org/debian/fbterm",

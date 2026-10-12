@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "irmin-chunk",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, irmin_test]),
       meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Irmin backend which allow to store values into chunks",
       })),
     })));

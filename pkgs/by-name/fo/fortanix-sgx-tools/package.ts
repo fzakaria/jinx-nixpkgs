@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const openssl_3_5 = nix.arg($, "openssl_3_5");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fortanix-sgx-tools",
       version: "0.6.1",
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
       buildInputs: nix.thunk(() => [openssl_3_5]),
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-IVkmZs3imzj8uN8kqEzN/Oio3H+Nqzu8ORjARNx1TpQ=",
         })))),
       cargoHash: "sha256-jYd9KRZgdBoVepmV4x4E3Y7h1SzSLv2clB0uPSWv8tE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for building and running enclaves for the Fortanix SGX ABI",
         homepage: "https://github.com/fortanix/rust-sgx",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ozwaldorf"))]),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "fbneo",
       version: "0-unstable-2026-09-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "fbneo",
           rev: "aceeebed9e7edc8a28652365a064baee9a16e274",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       preBuild: "cd src/burner/libretro",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of FBNeo to libretro",
         homepage: "https://github.com/libretro/fbneo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

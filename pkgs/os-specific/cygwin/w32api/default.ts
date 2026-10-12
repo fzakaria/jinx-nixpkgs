@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel((nix.asBool(headersOnly) ? nix.force(stdenvNoCC) : nix.force(stdenvNoLibc)), "mkDerivation"), nix.thunk(() => nix.update((() => {
       const from = nix.thunk(() => nix.sel(windows, "mingw_w64_headers"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`w32api${nix.app(nix.sel(lib, "optionalString"), headersOnly, "-headers")}`),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(headersOnly)), "dev"))),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), true, "w32api"))]),
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$1, incdir: "/include/w32api/", libdir: "/lib/w32api/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, incdir: "/include/w32api/", libdir: "/lib/w32api/" })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(windows, "mingw_w64_headers", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MinGW w32api package for Cygwin",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from_1, "downloadPage")),
@@ -41,8 +41,8 @@ export default nix.lambda((args) => (() => {
       };
       })()),
     };
-    })(), (nix.asBool(headersOnly) ? { __proto__: pos$4, preConfigure: "cd mingw-w64-headers\n" } : {
-      __proto__: pos$5,
+    })(), (nix.asBool(headersOnly) ? { [nix.POS]: pos$4, preConfigure: "cd mingw-w64-headers\n" } : {
+      [nix.POS]: pos$5,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       hardeningDisable: nix.thunk(() => ["stackprotector", "fortify"]),
     }))));

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danielperna84",
           repo: "ha-philipsjs",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["haphilipsjs"]);
       const dontCheckPythonMetadata = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to interact with Philips TVs with jointSPACE API",
         homepage: "https://github.com/danielperna84/ha-philipsjs",
         changelog: nix.thunk(() => nix.str`https://github.com/danielperna84/ha-philipsjs/releases/tag/${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

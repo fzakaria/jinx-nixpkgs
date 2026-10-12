@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dissect-apfs",
       version: "1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.apfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["dissect.apfs"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_apfs.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dissect module implementing a parser for APFS",
         homepage: "https://github.com/fox-it/dissect.apfs",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.apfs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

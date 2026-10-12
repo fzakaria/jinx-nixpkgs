@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const sshping = nix.arg($, "sshping");
   const wireshark = nix.arg($, "wireshark");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libssh",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.libssh.org/files/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libssh-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-SVYPZ32W43BqkErC3hEW4l82gJN9UeXJIZj8ukocHp8=",
         })))),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       postFixup: "substituteInPlace $dev/lib/cmake/libssh/libssh-config.cmake \\\n  --replace-fail \"set(_IMPORT_PREFIX \\\"$out\\\")\" \"set(_IMPORT_PREFIX \\\"$dev\\\")\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ffmpeg: ffmpeg, sshping: sshping, wireshark: wireshark })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ffmpeg: ffmpeg, sshping: sshping, wireshark: wireshark })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SSH client library",
         homepage: "https://libssh.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

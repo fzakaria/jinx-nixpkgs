@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const tests = nix.arg($, "tests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "json2cdn",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uku3lig",
           repo: "json2cdn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle_8, makeBinaryWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -47,16 +47,16 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre_headless)} $out/bin/json2cdn -
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "formats-cdn": nix.thunk(() => nix.sel(tests, "pkgs-lib", "formats", "passthru", "entries", "pass-cdnAtoms")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_headless, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Converts a JSON file to dzikoysk's CDN format",
         homepage: "https://github.com/uku3lig/json2cdn",
         sourceProvenance: nix.thunk(() => (() => {

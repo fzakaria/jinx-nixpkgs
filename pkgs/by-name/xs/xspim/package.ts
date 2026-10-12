@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libsm = nix.arg($, "libsm");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xspim",
       version: "9.1.22",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://svn.code.sf.net/p/spimsimulator/code/",
           rev: "r739",
           sha256: "1kazfgrbmi4xq7nrkmnqw1280rhdyc1hmr82flrsa3g1b1rlmj1s",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       postCheck: "popd\n",
       preInstall: "mkdir -p $out/share/spim\ninstall -D ../spim/spim $out/bin/spim\ninstall -D ../Documentation/spim.man $out/share/man/man1/spim.1\ninstall -D ../Documentation/xspim.man $out/share/man/man1/xspim.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MIPS32 simulator",
         homepage: "https://spimsimulator.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

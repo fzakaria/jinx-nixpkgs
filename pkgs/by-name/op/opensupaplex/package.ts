@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/sergiou87/open-supaplex/b102548699cf16910b59559f689ecfad88d2a7d2/open-supaplex.svg",
       sha256: "sha256-nKeSBUGjSulbEP7xxc6smsfCRjyc/xsLykH0o3Rq5wo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "opensupaplex",
       version: "7.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sergiou87",
           repo: "open-supaplex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2_mixer]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-DFILE_DATA_PATH=${nix.builtins.placeholder("out")}/lib/opensupaplex`),
             "-DFILE_FHS_XDG_DIRS",
@@ -69,11 +69,11 @@ cp ${icon} $out/share/icons/hicolor/scalable/apps/open-supaplex.svg
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: opensupaplex,
               command: "opensupaplex --help",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ runHook postInstall
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "opensupaplex",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "open-supaplex",
@@ -93,7 +93,7 @@ runHook postInstall
       ]),
       stripExclude: nix.thunk(() => ["lib/opensupaplex/*"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Decompilation of Supaplex in C and SDL",
         homepage: "https://github.com/sergiou87/open-supaplex",
         changelog: nix.thunk(() => nix.str`https://github.com/sergiou87/open-supaplex/blob/master/changelog/v${nix.sel(finalAttrs, "version")}.txt`),

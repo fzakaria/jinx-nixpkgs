@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const wasmRuntime = nix.argOr($, "wasmRuntime", () => "wasmtime");
   const depsHash = nix.argOr($, "depsHash", () => null);
   const srcVer = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1.36.10",
     rev: "053a8989382dd91542ecf0cef8f379b9cb761cdd",
     hash: "sha256-6bGXZfU2JutiriefwBudt46BrJRnwEqQCjYVRjUgyaY=",
   }));
   const depsHash$ = nix.thunk(() => (nix.asBool(!nix.eq(depsHash, null)) ? nix.force(depsHash) : nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-EUPWZ8N8wXtnOle8WMLfdxQEdCnTv1JJSbgG39UOoMc=",
     "aarch64-linux": "sha256-WltewtSjwvmYfZQwYAslCCoBdLY1MyO9jnMC/bCzVeg=",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")))));
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(srcVer, "version"));
       const bazel = bazel_7;
       const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               owner: "envoyproxy",
               repo: "envoy",
               hash: nix.thunk(() => nix.attr(srcVer, "hash")),
@@ -110,9 +110,9 @@ mv bazel/nix/rules_rust.patch bazel/rules_rust.patch
       const nativeBuildInputs = nix.thunk(() => [cmake, python3, gn, jdk, ninja, patchelf, cacert, git]);
       const buildInputs = nix.thunk(() => [linuxHeaders]);
       const fetchAttrs = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         sha256: depsHash$,
-        env: nix.thunk(() => ({ __proto__: pos$5, CARGO_BAZEL_REPIN: true })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$5, CARGO_BAZEL_REPIN: true })),
         dontUseCmakeConfigure: true,
         dontUseGnConfigure: true,
         postPatch: nix.thunk(() => nix.str`${postPatch}
@@ -211,7 +211,7 @@ rm -rf $bazelOut/external/cargo_bazel_bootstrap $bazelOut/external/dynamic_modul
 `),
       }));
       const buildAttrs = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         dontUseCmakeConfigure: true,
         dontUseGnConfigure: true,
         dontUseNinjaInstall: true,
@@ -277,12 +277,12 @@ cp $bazelOut/external/Cargo.Bazel.lock source/extensions/dynamic_modules/sdk/rus
       ]);
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           envoy: nix.thunk(() => nix.sel(nixosTests, "envoy")),
           pomerium: nix.thunk(() => nix.sel(nixosTests, "pomerium")),
-          "deps-store-free": nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`${nix.sel(envoy, "name")}-deps-store-free-test`), nix.thunk(() => ({ __proto__: pos$8, nativeBuildInputs: nix.thunk(() => [gnutar, gnugrep]) })), nix.thunk(() => nix.str`touch $out
+          "deps-store-free": nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`${nix.sel(envoy, "name")}-deps-store-free-test`), nix.thunk(() => ({ [nix.POS]: pos$8, nativeBuildInputs: nix.thunk(() => [gnutar, gnugrep]) })), nix.thunk(() => nix.str`touch $out
 tar -xf ${nix.sel(envoy, "deps")}
 grep -r /nix/store external && status=$? || status=$?
 case $status in
@@ -307,7 +307,7 @@ esac
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://envoyproxy.io",
         changelog: nix.thunk(() => nix.str`https://github.com/envoyproxy/envoy/releases/tag/v${version}`),
         description: "Cloud-native edge and service proxy",
@@ -320,7 +320,7 @@ esac
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname,
         version,
         bazel,

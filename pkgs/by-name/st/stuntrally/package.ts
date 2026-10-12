@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const mygui = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mygui.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stuntrally",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stuntrally",
           repo: "stuntrally3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-BJMMsJ/ONZTpvXetaaHlgm6rih9oZmtJNBXv0IM855Y=",
         })))),
       tracks: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "stuntrally",
           repo: "tracks3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -104,9 +104,9 @@ popd
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, mygui: mygui })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, mygui: mygui })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "3D racing game with Sci-Fi elements and own Track Editor",
         homepage: "https://cryham.org/stuntrally/",
         mainProgram: "stuntrally3",

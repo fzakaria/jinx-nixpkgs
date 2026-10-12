@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const doCheck = nix.argOr($, "doCheck", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlton",
       version: version,
       doCheck: doCheck,
-      src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({ __proto__: pos$1, url: url, rev: rev, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, rev: rev, hash: hash })))),
       nativeBuildInputs: nix.thunk(() => [which, mltonBootstrap]),
       buildInputs: nix.thunk(() => [gmp]),
       strictDeps: true,
@@ -41,7 +41,7 @@ makeFlagsArray=(
   WITH_GMP_LIB_DIR="${gmp}/lib"
   )
 `),
-      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: lib })))),
+      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=from-git-source.ts.map

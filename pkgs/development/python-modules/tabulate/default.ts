@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const wcwidth = nix.arg($, "wcwidth");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.10.0",
       pname: "tabulate",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astanin",
           repo: "python-tabulate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-JnwkABtIgPqANuv3lo8e8zr8m6a/qnxz4w1QvTVZFxg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [setuptools, setuptools_scm]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, widechars: nix.thunk(() => [wcwidth]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, widechars: nix.thunk(() => [wcwidth]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "optional-dependencies"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pretty-print tabular data",
         mainProgram: "tabulate",
         homepage: "https://github.com/astanin/python-tabulate",

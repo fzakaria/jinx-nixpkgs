@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "reproc",
       version: "14.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DaanDeMeyer",
           repo: "reproc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "reproc-gcc-13-2.patch",
             url: "https://github.com/DaanDeMeyer/reproc/commit/0b23d88894ccedde04537fa23ea55cb2f8365342.patch",
             sha256: "sha256-QyC0UcKAWCKSvSvyZTLI2eF/TuuqbGGH6cOQrS2DiCE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "reproc-gcc-13-1.patch",
             url: "https://github.com/DaanDeMeyer/reproc/commit/9f399675b821e175f85ac3ee6e3fd2e6056573eb.patch",
             sha256: "sha256-h/gnDFPWPpUFkys10YXjjEPibgRT1atHSVwbO0kId+U=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace reproc++/reproc++.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\nsubstituteInPlace reproc/reproc.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/DaanDeMeyer/reproc",
         description: "Cross-platform (C99/C++11) process library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

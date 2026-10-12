@@ -25,53 +25,53 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "ulogd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "p-h"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
             nftables: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               ruleset: "table inet filter {\n  chain input {\n    type filter hook input priority 0;\n    icmp type { echo-request, echo-reply } log group 2 accept\n  }\n\n  chain output {\n    type filter hook output priority 0; policy accept;\n    icmp type { echo-request, echo-reply } log group 2 accept\n  }\n\n  chain forward {\n    type filter hook forward priority 0; policy drop;\n  }\n\n}\n",
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             ulogd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 global: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   logfile: "/var/log/ulogd.log",
                   stack: nix.thunk(() => [
                     "log1:NFLOG,base1:BASE,ifi1:IFINDEX,ip2str1:IP2STR,print1:PRINTPKT,emu1:LOGEMU",
                     "log1:NFLOG,base1:BASE,pcap1:PCAP",
                   ]),
                 })),
-                log1: nix.thunk(() => ({ __proto__: pos$6, group: 2n })),
-                pcap1: nix.thunk(() => ({ __proto__: pos$7, sync: 1n, file: "/var/log/ulogd.pcap" })),
-                emu1: nix.thunk(() => ({ __proto__: pos$8, sync: 1n, file: "/var/log/ulogd_pkts.log" })),
+                log1: nix.thunk(() => ({ [nix.POS]: pos$6, group: 2n })),
+                pcap1: nix.thunk(() => ({ [nix.POS]: pos$7, sync: 1n, file: "/var/log/ulogd.pcap" })),
+                emu1: nix.thunk(() => ({ [nix.POS]: pos$8, sync: 1n, file: "/var/log/ulogd_pkts.log" })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "tcpdump"))];

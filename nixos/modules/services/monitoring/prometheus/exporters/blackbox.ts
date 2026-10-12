@@ -28,7 +28,7 @@ If you would like to avoid that, please set enableConfigCheck to false.
 `), nix.thunk(() => nix.builtins.toFile(nix.thunk(() => nix.builtins.baseNameOf(file)), nix.thunk(() => nix.builtins.readFile(file))))));
   const checkConfigLocation = (file) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "/tmp/", file)) ? nix.builtins.throw(nix.thunk(() => nix.str`${logPrefix}: configuration file must not reside within /tmp - it won't be visible to the systemd service.`)) : nix.force(file));
   const checkConfig = (file) => nix.app(nix.sel(pkgs, "runCommand"), "checked-blackbox-exporter.conf", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "buildPackages", "prometheus-blackbox-exporter")),
@@ -37,17 +37,17 @@ If you would like to avoid that, please set enableConfigCheck to false.
 blackbox_exporter --config.check --config.file $out
 `));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9115n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       configFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "path")),
           description: "Path to configuration file.\n",
         })))),
       enableConfigCheck: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           description: "Whether to run a correctness check for the configuration file. This depends\non the configuration file residing in the nix-store. Paths passed as string will\nbe copied to the store.\n",
@@ -56,9 +56,9 @@ blackbox_exporter --config.check --config.file $out
     serviceOpts: nix.thunk(() => (() => {
       const adjustedConfigFile = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableConfigCheck")) ? nix.app(checkConfig, nix.thunk(() => nix.sel(cfg, "configFile"))) : nix.app(checkConfigLocation, nix.thunk(() => nix.sel(cfg, "configFile")))));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           AmbientCapabilities: nix.thunk(() => ["CAP_NET_RAW"]),
           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-blackbox-exporter")}/bin/blackbox_exporter \\
   --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

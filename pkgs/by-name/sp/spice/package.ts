@@ -40,24 +40,24 @@ export default nix.lambda((args) => (() => {
   const orc = nix.arg($, "orc");
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spice",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.spice-space.org/download/releases/spice-server/spice-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-Cm7JUo8FNxJhu7LUb/Nee1xF/4m7l1qZr5Wl8g/0cX0=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./remove-rt-on-darwin.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "spice-test-display-base-initializer-anonymous-union.patch",
             url: "https://gitlab.freedesktop.org/spice/spice/-/commit/59bc22a40611121b2ea7888bf3c1a501c4fc0b91.patch",
             hash: "sha256-VQ+DrzmIws3EyZU5c0OqMZwMltUvCW34h5oXuHB8YWs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "spice-test-gst-initializer-anonymous-union.patch",
             url: "https://gitlab.freedesktop.org/spice/spice/-/commit/a904cd86430aa555a50730e9389e210637a546c1.patch",
             hash: "sha256-6GGqi+Y4I/oftE8zXuRnX021+r7SrQPUdAdBsCv9MIw=",
@@ -91,12 +91,12 @@ export default nix.lambda((args) => (() => {
         spice_protocol,
         zlib,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gdk_pixbuf]))))),
-      env: nix.thunk(() => ({ __proto__: pos$4, NIX_CFLAGS_COMPILE: "-fno-stack-protector" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fno-stack-protector" })),
       mesonFlags: nix.thunk(() => ["-Dgstreamer=1.0"]),
       postPatch: "patchShebangs build-aux\n",
       postInstall: "ln -s spice-server $out/include/spice\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Complete open source solution for interaction with virtualized desktop devices",
         longDescription: "The Spice project aims to provide a complete open source solution for interaction\nwith virtualized desktop devices.The Spice project deals with both the virtualized\ndevices and the front-end. Interaction between front-end and back-end is done using\nVD-Interfaces. The VD-Interfaces (VDI) enable both ends of the solution to be easily\nutilized by a third-party component.\n",
         homepage: "https://www.spice-space.org/",

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.30.0";
       const outputs = nix.thunk(() => ["out", "webfont"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/the-moonwitch/Cozette/releases/download/v.${version}/CozetteFonts-v-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}.zip`),
           hash: "sha256-Njh6V5wTBKM/1QKmPwG1qiOYyAJSVQXLTBLN03V6DaE=",
         }))));
@@ -39,7 +39,7 @@ bdf2psf --fb cozette_hidpi.bdf ${bdf2psf}/share/bdf2psf/standard.equivalents ${c
 `);
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.psfu -t \"$out/share/consolefonts/\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bitmap programming font optimized for coziness",
         homepage: "https://github.com/the-moonwitch/cozette",
         changelog: nix.thunk(() => nix.str`https://github.com/the-moonwitch/Cozette/blob/v.${version}/CHANGELOG.md`),
@@ -51,7 +51,7 @@ bdf2psf --fb cozette_hidpi.bdf ${bdf2psf}/share/bdf2psf/standard.equivalents ${c
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

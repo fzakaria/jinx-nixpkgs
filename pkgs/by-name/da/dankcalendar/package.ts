@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dankcalendar",
       version: "1.6.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AvengeMedia",
           repo: "dankcalendar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.add("install -Dm644 $src/assets/com.danklinux.dankcalendar.desktop \\\n  $out/share/applications/com.danklinux.dankcalendar.desktop\ninstall -Dm644 $src/assets/com.danklinux.dankcalendar.svg \\\n  $out/share/icons/hicolor/scalable/apps/com.danklinux.dankcalendar.svg\n\ninstall -Dm644 $src/assets/systemd/dcal.service \\\n  $out/lib/systemd/user/dcal.service\nsubstituteInPlace $out/lib/systemd/user/dcal.service \\\n  --replace-fail /usr/bin/dcal $out/bin/dcal\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd dcal \\\n  --bash <($out/bin/dcal completion bash) \\\n  --fish <($out/bin/dcal completion fish) \\\n  --zsh <($out/bin/dcal completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Local, Google, Microsoft, and CalDAV calendars for the dank desktop",
         homepage: "https://github.com/AvengeMedia/dankcalendar",
         changelog: nix.thunk(() => nix.str`https://github.com/AvengeMedia/dankcalendar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

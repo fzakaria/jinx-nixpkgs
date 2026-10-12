@@ -32,25 +32,25 @@ export default nix.lambda((args) => (() => {
   const patchelfUnstable = nix.arg($, "patchelfUnstable");
   const binaryName = "librewolf";
   const mozillaPlatforms = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux-x86_64",
     "aarch64-linux": "linux-arm64",
   }));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const arch = nix.thunk(() => nix.selOr(mozillaPlatforms, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const policies = nix.thunk(() => nix.selOr(config, () => ({}), "librewolf", "policies"));
-  const policiesJson = nix.thunk(() => nix.app(writeText, "librewolf-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$2, policies: policies }))))));
+  const policiesJson = nix.thunk(() => nix.app(writeText, "librewolf-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, policies: policies }))))));
   const pname = "librewolf-bin-unwrapped";
   const version = "156.0.1-1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://codeberg.org/api/packages/librewolf/generic/librewolf/${version}/librewolf-${version}-${arch}-package.tar.xz`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "x86_64-linux": "sha256-2D6GwlqhiHdz7i6+9lWWBHZ3XHL/w9/ffCeZzYoOpLc=",
             "aarch64-linux": "sha256-v+w2zgv+HtTii3ifufOcYtaGFOE3WD/dDkTuaZmmOPk=",
           }, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -73,7 +73,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(config, () =
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         binaryName: binaryName,
         applicationName: "LibreWolf",
         libName: nix.thunk(() => nix.str`librewolf-bin-${version}`),
@@ -83,7 +83,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fork of Firefox, focused on privacy, security and freedom (upstream binary release)",
         homepage: "https://librewolf.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

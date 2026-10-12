@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "imwheel",
       version: "1.0.0pre12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/imwheel/imwheel-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "2320ed019c95ca4d922968e1e1cbf0c075a914e865e3965d2bd694ca3d57cfe3",
         })))),
       buildInputs: nix.thunk(() => [libx11, libxext, libxi, libxmu, libxt, libxtst]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       makeFlags: nix.thunk(() => ["sysconfdir=/etc", "ETCDIR=/etc"]),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`ETCDIR=${nix.builtins.placeholder("out")}/etc`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://imwheel.sourceforge.net/",
         description: "Mouse wheel configuration tool for XFree86/Xorg",
         maintainers: nix.thunk(() => (() => {

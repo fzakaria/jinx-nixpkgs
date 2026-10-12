@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nitrokey",
           repo: "nethsm-sdk-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_nethsm_users.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client-side Python SDK for NetHSM",
         homepage: "https://github.com/Nitrokey/nethsm-sdk-py",
         changelog: nix.thunk(() => nix.str`https://github.com/Nitrokey/nethsm-sdk-py/releases/tag/${nix.sel(src, "tag")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "panicgh"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

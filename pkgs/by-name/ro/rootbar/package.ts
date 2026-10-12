@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rootbar",
       version: "unstable-2024-08-07",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://hg.sr.ht/~scoopta/rootbar",
           rev: "36333af9fd8d",
           sha256: "sha256-CpORCSJyHZhcK14EhjxoPt/h0026NU5J/kicL1dX96o=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [gtk3, json_c, libpulseaudio, wayland]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://hg.sr.ht/~scoopta/rootbar",
         description: "Bar for wlroots-based Wayland compositors",
         mainProgram: "rootbar",

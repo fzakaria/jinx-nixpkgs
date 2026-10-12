@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const rsync = nix.arg($, "rsync");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alpine-make-vm-image",
       version: "0.13.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alpinelinux",
           repo: "alpine-make-vm-image",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/alpinelinux/alpine-make-vm-image",
         description: "Make customized Alpine Linux disk image for virtual machines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

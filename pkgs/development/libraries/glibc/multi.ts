@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const nameVersion = nix.thunk(() => nix.builtins.parseDrvName(nix.thunk(() => nix.sel(glibc, "name"))));
   const glibc64 = glibc;
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(nameVersion, "name")}-multi-${nix.sel(nameVersion, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       outputs: nix.thunk(() => ["out", "bin", "dev", "static"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         libgcc: nix.thunk(() => nix.app(nix.sel(lib, "lists", "filter"), (x) => !nix.eq(x, null), nix.thunk(() => [
             nix.thunk(() => nix.selOr(glibc64, () => null, "libgcc")),
             nix.thunk(() => nix.selOr(glibc32, () => null, "libgcc")),

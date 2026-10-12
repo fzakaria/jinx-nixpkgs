@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "jmusicbot"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         jmusicbot: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "jmusicbot, a Discord music bot that's easy to set up and run yourself")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "jmusicbot", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The directory where config.txt and serversettings.json is saved.\nIf left as the default value this directory will automatically be created before JMusicBot starts, otherwise the sysadmin is responsible for ensuring the directory exists with appropriate ownership and permissions.\nUntouched by the value of this option config.txt needs to be placed manually into this directory.\n",
               default: "/var/lib/jmusicbot/",
@@ -42,33 +42,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             jmusicbot: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               description: "Discord music bot that's easy to set up and run yourself!",
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/JMusicBot`),
                     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
                     Restart: "always",
                     RestartSec: 20n,
                     DynamicUser: true,
                   })),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/jmusicbot")), nix.thunk(() => ({ __proto__: pos$6, StateDirectory: "jmusicbot" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "stateDir"), "/var/lib/jmusicbot")), nix.thunk(() => ({ [nix.POS]: pos$6, StateDirectory: "jmusicbot" })))),
                 ]))),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$11, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$11, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=jmusicbot.ts.map

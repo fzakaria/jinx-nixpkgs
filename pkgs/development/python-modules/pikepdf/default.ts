@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const scikit_build_core = nix.arg($, "scikit-build-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pikepdf",
       version: "10.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pikepdf",
           repo: "pikepdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             jbig2dec: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), jbig2dec, "jbig2dec")),
             mutool: nix.thunk(() => (nix.asBool(withMupdf) ? nix.app(nix.sel(lib, "getExe'"), mupdf_headless, "mutool") : "mutool")),
           })))),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [deprecated, lxml, packaging, pillow]),
       pythonImportsCheck: nix.thunk(() => ["pikepdf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pikepdf/pikepdf",
         description: "Read and write PDFs with Python, powered by qpdf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

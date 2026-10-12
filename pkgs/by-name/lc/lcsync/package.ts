@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lcsync",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "librecast",
           repo: "lcsync",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://codeberg.org/librecast/lcsync/src/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Librecast File and Syncing Tool",
         mainProgram: "lcsync",

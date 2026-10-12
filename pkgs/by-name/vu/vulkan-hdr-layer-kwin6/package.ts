@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vulkan-hdr-layer-kwin6",
       version: "0-unstable-2026-03-25",
       depsBuildBuild: nix.thunk(() => [pkg_config]),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [vulkan_headers, vulkan_loader, libx11, wayland]),
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Zamundaaa",
           repo: "VK_hdr_layer",
           rev: "57b26b8927b133566be13a7702f74a62109bad15",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Vulkan Wayland HDR WSI Layer (Xaver Hugl's fork for KWin 6)",
         homepage: "https://github.com/Zamundaaa/VK_hdr_layer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

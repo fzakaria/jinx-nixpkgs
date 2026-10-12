@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ousret",
           repo: "kiss-headers",
           tag: version,
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_serializer.py", "tests/test_with_http_request.py"]);
       const pythonImportsCheck = nix.thunk(() => ["kiss_headers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for HTTP/1.1 style headers",
         homepage: "https://github.com/Ousret/kiss-headers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

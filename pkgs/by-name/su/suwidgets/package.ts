@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sigutils = nix.arg($, "sigutils");
   const fftwSinglePrec = nix.arg($, "fftwSinglePrec");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "suwidgets",
       version: "unstable-2022-04-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BatchDrake",
           repo: "SuWidgets",
           rev: "826b3eeae5b682dc063f53b427caa9c7c48131ea",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase")), sigutils, fftwSinglePrec]),
       qmakeFlags: nix.thunk(() => ["SuWidgetsLib.pro"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sigutils-related widgets",
         homepage: "https://github.com/BatchDrake/SuWidgets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

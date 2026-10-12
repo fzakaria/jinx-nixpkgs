@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const jq = nix.arg($, "jq");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vega-cli",
       version: "6.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vega",
           repo: "vega",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ mv lerna.json.tmp lerna.json
       buildPhase: "runHook preBuild\n\nnpm run build --scope vega-cli --include-dependencies --stream\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n# prune non-prod deps\nnpm prune --omit=dev --no-save --workspace vega-cli\n\nmkdir -p $out/lib/node_modules/vega-cli\nrm -rf packages/**/{test,*.md,.npmignore}\ncp -r ./packages ./node_modules $out/lib/node_modules/vega-cli\nln -s $out/lib/node_modules/vega-cli/packages/vega-cli/bin $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tools for the Vega visualization grammar",
         homepage: "https://vega.github.io/vega/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

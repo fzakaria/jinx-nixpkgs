@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lunarcalendar",
       version: "0.0.9",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wolfhong",
           repo: "LunarCalendar",
           rev: "885418ea1a2a90b7e0bbe758919af9987fb2863b",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["lunarcalendar"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/wolfhong/LunarCalendar",
         description: "Lunar-Solar Converter, containing a number of lunar and solar festivals in China",
         mainProgram: "lunar-find",

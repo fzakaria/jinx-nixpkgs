@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "qbittorrent_api",
           version: version,
           hash: "sha256-lkLEUouu5nIW6rhwIs4pcEislt8vjJ8c+SDeB461C2I=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["qbittorrentapi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client implementation for qBittorrent's Web API",
         homepage: "https://github.com/rmartin16/qbittorrent-api",
         changelog: nix.thunk(() => nix.str`https://github.com/rmartin16/qbittorrent-api/blob/v${version}/CHANGELOG.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

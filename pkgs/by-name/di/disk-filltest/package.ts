@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "disk-filltest",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bingmann",
           repo: "disk-filltest",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -D -m0644 -t $doc/share/doc/disk-filltest README\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://panthema.net/2013/disk-filltest",
         description: "Simple program to detect bad disks by filling them with random data",
         longDescription: "disk-filltest is a tool to check storage disks for coming failures by\nwrite files with pseudo-random data to the current directory until the\ndisk is full, read the files again and verify the sequence written. It\nalso can measure read/write speed while filling the disk.\n",

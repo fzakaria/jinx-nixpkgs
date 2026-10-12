@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "nautilus-open-any-terminal"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "nautilus-open-any-terminal": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nautilus-open-any-terminal")),
           terminal: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -59,26 +59,26 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
           sessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "services", "desktopManager", "gnome", "enable"))), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               NAUTILUS_4_EXTENSION_DIR: nix.thunk(() => nix.str`${nix.sel(pkgs, "nautilus-python")}/lib/nautilus/extensions-4`),
             })))),
           pathsToLink: nix.thunk(() => ["/share/nautilus-python/extensions"]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           dconf: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "terminal"), null)), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: true,
               profiles: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 user: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   databases: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       settings: nix.thunk(() => ({
-                        __proto__: pos$8,
-                        "com/github/stunkymonkey/nautilus-open-any-terminal": nix.thunk(() => ({ __proto__: pos$7, terminal: nix.thunk(() => nix.sel(cfg, "terminal")) })),
+                        [nix.POS]: pos$8,
+                        "com/github/stunkymonkey/nautilus-open-any-terminal": nix.thunk(() => ({ [nix.POS]: pos$7, terminal: nix.thunk(() => nix.sel(cfg, "terminal")) })),
                       })),
                       lockAll: true,
                     })),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

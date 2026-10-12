@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const runtimeShell = nix.arg($, "runtimeShell");
   const stdenv = gccStdenv;
-  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lambda-lisp-blc",
       version: nix.thunk(() => nix.sel(s, "lambdaLispVersion")),
       src: nix.thunk(() => nix.sel(s, "src")),
@@ -53,7 +53,7 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\na=$(echo \"(* (+ 1 2 3 4 5 6 7 8 9 10) 12020569 (- 2 5))\" | $out/bin/lambda-lisp-blc | tr -d \"> \");\ntest $a == -1983393885\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lisp interpreter written in untyped lambda calculus",
         homepage: "https://github.com/woodrush/lambdalisp",
         longDescription: "LambdaLisp is a Lisp interpreter written as a closed untyped lambda calculus term.\nIt is written as a lambda calculus term LambdaLisp = λx. ... which takes a string\nx as an input and returns a string as an output. The input x is the Lisp program\nand the user's standard input, and the output is the standard output. Characters\nare encoded into lambda term representations of natural numbers using the Church\nencoding, and strings are encoded as a list of characters with lists expressed as\nlambdas in the Mogensen-Scott encoding, so the entire computation process solely\nconsists of the beta-reduction of lambda terms, without introducing any\nnon-lambda-type object.\n",

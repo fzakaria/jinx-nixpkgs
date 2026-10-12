@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "17.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-5dkMskEf/z3G/MFjNGgjPA4OAjlCLAh8dzTRaFBVuPM=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [jsonschema, jupyterhub, pyjwt, requests, ruamel_yaml, tornado, traitlets]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         googlegroups: nix.thunk(() => [google_api_python_client, google_auth_oauthlib]),
         mediawiki: nix.thunk(() => [mwoauth]),
       }));
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["oauthenticator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Authenticate JupyterHub users with common OAuth providers",
         homepage: "https://github.com/jupyterhub/oauthenticator",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/oauthenticator/blob/${version}/docs/source/reference/changelog.md`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

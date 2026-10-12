@@ -24,47 +24,47 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const buildPackages = nix.arg($, "buildPackages");
   const php_script_utils = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "php-script-utils",
       runtimeInputs: nix.thunk(() => [jq]),
       text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./php-script-utils.bash"))),
     }))));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     composerRepositoryHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "composer-repository-hook.sh",
         propagatedNativeBuildInputs: nix.thunk(() => [jq]),
         propagatedBuildInputs: nix.thunk(() => [cacert]),
         substitutions: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           phpScriptUtils: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), php_script_utils)),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./composer-repository-hook.sh"))),
     composerInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "composer-install-hook.sh",
         propagatedNativeBuildInputs: nix.thunk(() => [jq]),
         propagatedBuildInputs: nix.thunk(() => [cacert]),
         substitutions: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cmp: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "diffutils")))}/bin/cmp`),
           phpScriptUtils: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), php_script_utils)),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./composer-install-hook.sh"))),
     composerWithPluginVendorHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "composer-with-plugin-vendor-hook.sh",
         propagatedNativeBuildInputs: nix.thunk(() => [jq]),
         propagatedBuildInputs: nix.thunk(() => [cacert]),
         substitutions: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           cmp: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "diffutils")))}/bin/cmp`),
           phpScriptUtils: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), php_script_utils)),
         })),
-        meta: nix.thunk(() => ({ __proto__: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$9, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       })), nix.path(here, "./composer-with-plugin-vendor-hook.sh"))),
   };
 })(), formals$1);

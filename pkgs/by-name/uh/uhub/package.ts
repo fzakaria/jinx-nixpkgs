@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const tlsSupport = nix.argOr($, "tlsSupport", () => false);
   nix.assert_((!nix.asBool(tlsSupport) || nix.asBool(!nix.eq(openssl, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/uh/uhub/package.nix:13:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uhub",
       version: "unstable-2019-12-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "janvidar",
           repo: "uhub",
           rev: "35d8088b447527f56609b85b444bd0b10cd67b5c",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSSL_SUPPORT=${(nix.asBool(tlsSupport) ? "ON" : "OFF")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High performance peer-to-peer hub for the ADC network",
         homepage: "https://www.uhub.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

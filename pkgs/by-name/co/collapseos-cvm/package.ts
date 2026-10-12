@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "collapseos-cvm",
       version: "20220316",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://collapseos.org/files/collapseos-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8bt6wj93T82K9fqtuC/mctkMCzfvW0taxv6QAKeJb5g=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace common.mk \\\n  --replace \"-lcurses\" \"-lncurses\"\n",
       installPhase: "runHook preInstall;\nfind . -type f -executable -exec install -Dt $out/bin {} \\;\nrunHook postInstall;\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual machine for Collapse OS (Forth operating system)",
         changelog: "http://collapseos.org/files/CHANGES.txt",
         downloadPage: "http://collapseos.org/files/",

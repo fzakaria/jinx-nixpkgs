@@ -194,11 +194,11 @@ ${nix.sel(dir_cfg, "extraConfig")}
   const tlsOptions = (submodulePath) => nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       options: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: false,
             description: nix.thunk(() => nix.str`Specifies if TLS should be enabled.
@@ -206,7 +206,7 @@ If this set to \`false\` TLS will be completely disabled, even if ${nix.app(tlsL
 `),
           })))),
         require: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
             default: null,
             description: nix.thunk(() => nix.str`Require TLS or TLS-PSK encryption.
@@ -219,7 +219,7 @@ component will refuse any connection request that does not use TLS.
 `),
           })))),
         certificate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: null,
             description: nix.thunk(() => nix.str`The full path to the PEM encoded TLS certificate.
@@ -231,12 +231,12 @@ not be specified in a client context if ${nix.app(tlsLink, "tls.verifyPeer", sub
 `),
           })))),
         key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(types, "path")),
             description: "The path of a PEM encoded TLS private key.\nIt must correspond to the TLS certificate.\n",
           })))),
         verifyPeer: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "bool")))),
             default: null,
             description: nix.thunk(() => nix.str`Verify peer certificate.
@@ -252,7 +252,7 @@ Standard from Bacula is \`true\`.
 `),
           })))),
         allowedCN: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
             default: [],
             description: nix.thunk(() => nix.str`Common name attribute of allowed peer certificates.
@@ -263,7 +263,7 @@ CN list will not be checked if ${nix.app(tlsLink, "tls.verifyPeer", submodulePat
 `),
           })))),
         caCertificateFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: null,
             description: nix.thunk(() => nix.str`The path specifying a PEM encoded TLS CA certificate(s).
@@ -278,23 +278,23 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
   const directorOptions = (submodulePath) => nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       options: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "Specifies the password that must be supplied for the default Bacula\nConsole to be authorized. The same password must appear in the\nDirector resource of the Console configuration file. For added\nsecurity, the password is never passed across the network but instead\na challenge response hash code created with the password. This\ndirective is required. If you have either /dev/random or bc on your\nmachine, Bacula will generate a random password during the\nconfiguration process, otherwise it will be left blank and you must\nmanually supply it.\n\nThe password is plain text. It is not generated through any special\nprocess but as noted above, it is better to use random text for\nsecurity reasons.\n",
           })))),
         monitor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["no", "yes"]))),
             default: "no",
             example: "yes",
             description: "If Monitor is set to `no`, this director will have\nfull access to this Storage daemon. If Monitor is set to\n`yes`, this director will only be able to fetch the\ncurrent status of this Storage daemon.\n\nPlease note that if this director is being used by a Monitor, we\nhighly recommend to set this directive to yes to avoid serious\nsecurity problems.\n",
           })))),
         tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(tlsOptions, nix.thunk(() => nix.str`${submodulePath}.director.<name>`))))),
             description: "TLS Options for the Director in this Configuration.\n",
           })))),
@@ -304,27 +304,27 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
   const autochangerOptions = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       options: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         changerDevice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "The specified name-string must be the generic SCSI device name of the\nautochanger that corresponds to the normal read/write Archive Device\nspecified in the Device resource. This generic SCSI device name\nshould be specified if you have an autochanger or if you have a\nstandard tape drive and want to use the Alert Command (see below).\nFor example, on Linux systems, for an Archive Device name of\n`/dev/nst0`, you would specify\n`/dev/sg0` for the Changer Device name.  Depending\non your exact configuration, and the number of autochangers or the\ntype of autochanger, what you specify here can vary. This directive\nis optional. See the Using AutochangersAutochangersChapter chapter of\nthis manual for more details of using this and the following\nautochanger directives.\n",
           })))),
         changerCommand: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "The name-string specifies an external program to be called that will\nautomatically change volumes as required by Bacula. Normally, this\ndirective will be specified only in the AutoChanger resource, which\nis then used for all devices. However, you may also specify the\ndifferent Changer Command in each Device resource. Most frequently,\nyou will specify the Bacula supplied mtx-changer script as follows:\n\n`\"/path/mtx-changer %c %o %S %a %d\"`\n\nand you will install the mtx on your system (found in the depkgs\nrelease). An example of this command is in the default bacula-sd.conf\nfile. For more details on the substitution characters that may be\nspecified to configure your autochanger please see the\nAutochangersAutochangersChapter chapter of this manual. For FreeBSD\nusers, you might want to see one of the several chio scripts in\nexamples/autochangers.\n",
             default: "/etc/bacula/mtx-changer %c %o %S %a %d",
           })))),
         devices: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             description: "",
             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           })))),
         extraAutochangerConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             default: "",
             type: nix.thunk(() => nix.sel(types, "lines")),
             description: "Extra configuration to be passed in Autochanger directive.\n",
@@ -336,21 +336,21 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
   const deviceOptions = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$5);
     return {
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       options: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         archiveDevice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "The specified name-string gives the system file name of the storage\ndevice managed by this storage daemon. This will usually be the\ndevice file name of a removable storage device (tape drive), for\nexample `/dev/nst0` or\n`/dev/rmt/0mbn`. For a DVD-writer, it will be for\nexample `/dev/hdc`. It may also be a directory name\nif you are archiving to disk storage. In this case, you must supply\nthe full absolute path to the directory. When specifying a tape\ndevice, it is preferable that the \"non-rewind\" variant of the device\nfile name be given.\n",
           })))),
         mediaType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.sel(types, "str")),
             description: "The specified name-string names the type of media supported by this\ndevice, for example, `DLT7000`. Media type names are\narbitrary in that you set them to anything you want, but they must be\nknown to the volume database to keep track of which storage daemons\ncan read which volumes. In general, each different storage type\nshould have a unique Media Type associated with it. The same\nname-string must appear in the appropriate Storage resource\ndefinition in the Director's configuration file.\n\nEven though the names you assign are arbitrary (i.e. you choose the\nname you want), you should take care in specifying them because the\nMedia Type is used to determine which storage device Bacula will\nselect during restore. Thus you should probably use the same Media\nType specification for all drives where the Media can be freely\ninterchanged. This is not generally an issue if you have a single\nStorage daemon, but it is with multiple Storage daemons, especially\nif they have incompatible media.\n\nFor example, if you specify a Media Type of `DDS-4`\nthen during the restore, Bacula will be able to choose any Storage\nDaemon that handles `DDS-4`. If you have an\nautochanger, you might want to name the Media Type in a way that is\nunique to the autochanger, unless you wish to possibly use the\nVolumes in other drives. You should also ensure to have unique Media\nType names if the Media is not compatible between drives. This\nspecification is required for all devices.\n\nIn addition, if you are using disk storage, each Device resource will\ngenerally have a different mount point or directory. In order for\nBacula to select the correct Device resource, each one must have a\nunique Media Type.\n",
           })))),
         extraDeviceConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             default: "",
             type: nix.thunk(() => nix.sel(types, "lines")),
             description: "Extra configuration to be passed in Device directive.\n",
@@ -360,53 +360,53 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
     };
   })(), formals$5);
   return {
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     options: nix.thunk(() => ({
-      __proto__: pos$54,
+      [nix.POS]: pos$54,
       services: nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         "bacula-fd": nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable the Bacula File Daemon.\n",
             })))),
           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               default: nix.thunk(() => nix.str`${nix.sel(config, "networking", "hostName")}-fd`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"${config.networking.hostName}-fd\"")),
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The client name that must be used by the Director when connecting.\nGenerally, it is a good idea to use a name related to the machine so\nthat error messages can be easily identified if you have multiple\nClients. This directive is required.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               default: 9102n,
               type: nix.thunk(() => nix.sel(types, "port")),
               description: "This specifies the port number on which the Client listens for\nDirector connections. It must agree with the FDPort specified in\nthe Client resource of the Director's configuration file.\n",
             })))),
           director: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: nix.thunk(() => ({})),
               description: "This option defines director resources in Bacula File Daemon.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(directorOptions, "services.bacula-fd")))))),
             })))),
           tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(tlsOptions, "services.bacula-fd")))),
               default: nix.thunk(() => ({})),
               description: "TLS Options for the File Daemon.\nImportant notice: The backup won't be encrypted.\n",
             })))),
           extraClientConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration to be passed in Client directive.\n",
               example: "Maximum Concurrent Jobs = 20;\nHeartbeat Interval = 30;\n",
             })))),
           extraMessagesConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration to be passed in Messages directive.\n",
@@ -414,114 +414,114 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
             })))),
         })),
         "bacula-sd": nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable Bacula Storage Daemon.\n",
             })))),
           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               default: nix.thunk(() => nix.str`${nix.sel(config, "networking", "hostName")}-sd`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"${config.networking.hostName}-sd\"")),
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Specifies the Name of the Storage daemon.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               default: 9103n,
               type: nix.thunk(() => nix.sel(types, "port")),
               description: "Specifies port number on which the Storage daemon listens for\nDirector connections.\n",
             })))),
           director: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               default: nix.thunk(() => ({})),
               description: "This option defines Director resources in Bacula Storage Daemon.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(directorOptions, "services.bacula-sd")))))),
             })))),
           device: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               default: nix.thunk(() => ({})),
               description: "This option defines Device resources in Bacula Storage Daemon.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), deviceOptions)))),
             })))),
           autochanger: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               default: nix.thunk(() => ({})),
               description: "This option defines Autochanger resources in Bacula Storage Daemon.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), autochangerOptions)))),
             })))),
           extraStorageConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration to be passed in Storage directive.\n",
               example: "Maximum Concurrent Jobs = 20;\nHeartbeat Interval = 30;\n",
             })))),
           extraMessagesConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration to be passed in Messages directive.\n",
               example: "console = all\n",
             })))),
           tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(tlsOptions, "services.bacula-sd")))),
               default: nix.thunk(() => ({})),
               description: "TLS Options for the Storage Daemon.\nImportant notice: The backup won't be encrypted.\n",
             })))),
         })),
         "bacula-dir": nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to enable Bacula Director Daemon.\n",
             })))),
           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               default: nix.thunk(() => nix.str`${nix.sel(config, "networking", "hostName")}-dir`),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"${config.networking.hostName}-dir\"")),
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The director name used by the system administrator. This directive is\nrequired.\n",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               default: 9101n,
               type: nix.thunk(() => nix.sel(types, "port")),
               description: "Specify the port (a positive integer) on which the Director daemon\nwill listen for Bacula Console connections. This same port number\nmust be specified in the Director resource of the Console\nconfiguration file. The default is 9101, so normally this directive\nneed not be specified. This directive should not be used if you\nspecify DirAddresses (N.B plural) directive.\n",
             })))),
           password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Specifies the password that must be supplied for a Director.\n",
             })))),
           extraMessagesConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration to be passed in Messages directive.\n",
               example: "console = all\n",
             })))),
           extraDirectorConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration to be passed in Director directive.\n",
               example: "Maximum Concurrent Jobs = 20;\nHeartbeat Interval = 30;\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               default: "",
               type: nix.thunk(() => nix.sel(types, "lines")),
               description: "Extra configuration for Bacula Director Daemon.\n",
               example: "TODO\n",
             })))),
           tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.app(tlsOptions, "services.bacula-dir")))),
               default: nix.thunk(() => ({})),
               description: "TLS Options for the Director.\nImportant notice: The backup won't be encrypted.\n",
@@ -530,27 +530,27 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(fd_cfg, "enable")) || nix.asBool(nix.sel(sd_cfg, "enable")))) || nix.asBool(nix.sel(dir_cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         systemd: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           slices: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             "system-bacula": nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               description: "Bacula Backup System Slice",
               documentation: nix.thunk(() => ["man:bacula(8)", "https://www.bacula.org/"]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             "bacula-fd": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(fd_cfg, "enable")), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 after: nix.thunk(() => ["network.target"]),
                 description: "Bacula File Daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bacula"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "bacula")}/sbin/bacula-fd -f -u root -g bacula -c ${fd_conf}`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                   LogsDirectory: "bacula",
@@ -559,13 +559,13 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
                 })),
               })))),
             "bacula-sd": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(sd_cfg, "enable")), nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 after: nix.thunk(() => ["network.target"]),
                 description: "Bacula Storage Daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bacula"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "bacula")}/sbin/bacula-sd -f -u bacula -g bacula -c ${sd_conf}`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                   LogsDirectory: "bacula",
@@ -574,13 +574,13 @@ ${nix.app(tlsLink, "tls.verifyPeer", submodulePath)} is false, and are always re
                 })),
               })))),
             "bacula-dir": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(dir_cfg, "enable")), nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 after: nix.thunk(() => ["network.target", "postgresql.target"]),
                 description: "Bacula Director Daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bacula"))]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "bacula")}/sbin/bacula-dir -f -u bacula -g bacula -c ${dir_conf}`),
                   ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                   LogsDirectory: "bacula",
@@ -604,22 +604,22 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           postgresql: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(dir_cfg, "enable")), true)),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bacula"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           users: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             bacula: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               group: "bacula",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "bacula")),
               home: nix.thunk(() => nix.str`${libDir}`),
@@ -629,9 +629,9 @@ fi
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             bacula: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "bacula")),
             })),
           })),

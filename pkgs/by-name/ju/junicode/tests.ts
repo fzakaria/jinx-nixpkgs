@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const fonttype = nix.arg($_1, "fonttype");
     const file = nix.arg($_1, "file");
     return nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.str`${package$}-${tex}-${fonttype}`), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${package$}-test-${tex}-${fonttype}.pdf`), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           nativeBuildInputs: nix.thunk(() => [texliveWithJunicode]),
           tex: tex,
           fonttype: fonttype,
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })), "substituteAll $file test.tex\nHOME=$PWD $tex test.tex\ncp test.pdf $out\n")));
   })(), formals$2);
   return nix.builtins.listToAttrs(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapCartesianProduct"), texTest, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tex: nix.thunk(() => ["xelatex", "lualatex"]),
         fonttype: nix.thunk(() => ["ttf", "otf"]),
         package: nix.thunk(() => ["junicode"]),
         file: nix.thunk(() => [nix.path(here, "./test.tex")]),
       }))), [
       nix.thunk(() => nix.app(texTest, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           package: "junicodevf",
           fonttype: "ttf",
           tex: "lualatex",

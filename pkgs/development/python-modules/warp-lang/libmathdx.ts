@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libmathdx",
       version: "0.2.3",
       outputs: nix.thunk(() => ["out", "static"]),
@@ -34,20 +34,20 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`cuda${cudaVersion}`),
           ])));
         const hashes = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "12": nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "aarch64-linux": "sha256-d/aBC+zU2ciaw3isv33iuviXYaLGLdVDdzynGk9SFck=",
             "x86_64-linux": "sha256-CHIH0s4SnA67COtHBkwVCajW/3f0VxNBmuDLXy4LFIg=",
           })),
           "13": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-linux": "sha256-TetJbMts8tpmj5PV4+jpnUHMcooDrXUEKL3aGWqilKI=",
             "x86_64-linux": "sha256-wLJLbRpQWa6QEm8ibm1gxt3mXvkWvu0vEzpnqTIvE1M=",
           })),
         }));
         return nix.app(nix.sel(lib, "mapNullable"), (hash) => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               hash: hash,
               name: name,
               url: nix.thunk(() => nix.str`${baseURL}/cuda${cudaMajorVersion}/${name}.tar.gz`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ntar -xzf \"$src\" -C \"$out\"\n\nmkdir -p \"$static\"\nmoveToOutput \"lib/libmathdx_static.a\" \"$static\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library used to integrate cuBLASDx and cuFFTDx into Warp",
         homepage: "https://developer.nvidia.com/cublasdx-downloads",
         sourceProvenance: nix.thunk(() => (() => {

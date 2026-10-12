@@ -38,67 +38,67 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "artalk"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         artalk: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "artalk, a comment system")),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/etc/artalk/config.yml",
               description: "Artalk config file path. If it is not exist, Artalk will generate one.",
             })))),
           allowModify: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "allow Artalk store the settings to config file persistently",
             })))),
           workdir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/artalk",
               description: "Artalk working directory",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "artalk",
               description: "Artalk user name.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "artalk",
               description: "Artalk group name.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "artalk", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "0.0.0.0",
                         description: "Artalk server listen host\n",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 23366n,
                         description: "Artalk server listen port\n",
@@ -112,33 +112,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             artalk: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "artalk")), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "artalk user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             artalk: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "artalk")), nix.thunk(() => ({})))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             artalk: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.add(nix.str`umask 0077
@@ -152,7 +152,7 @@ rm /run/artalk/{old,new,result}
 rm /run/artalk/new
 `))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Type: "simple",

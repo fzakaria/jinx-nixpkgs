@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const clangStdenv = nix.arg($, "clangStdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yafetch",
       version: "0-unstable-2022-04-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kira64xyz",
           repo: "yafetch",
           rev: "a118cfc13f0b475db7c266105c10138d838788b8",
           hash: "sha256-bSJlerfbJG6h5dDwWQKHnVLH6DEuvuUyqaRuJ7jvOsA=",
         })))),
       prePatch: "substituteInPlace ./config.h --replace \\\n  \"#include \\\"ascii/gnu.h\\\"\" \"#include \\\"ascii/nixos.h\\\"\"\n\nsed '1i#include <array>' -i config.h # gcc12\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kira64xyz/yafetch",
         description: "Yet another fetch clone written in C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

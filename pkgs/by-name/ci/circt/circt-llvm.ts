@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.add(nix.sel(circt, "pname"), "-llvm")),
       version: nix.thunk(() => nix.attr(circt, "version")),
       src: nix.thunk(() => nix.attr(circt, "src")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => nix.update(nix.sel(llvm, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(circt, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       };
       })())),

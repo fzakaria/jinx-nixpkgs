@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.41.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kvesteri",
           repo: "sqlalchemy-utils",
           tag: version,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [sqlalchemy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         babel: nix.thunk(() => [babel]),
         arrow: nix.thunk(() => [arrow]),
         pendulum: nix.thunk(() => [pendulum]),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_utils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Various utility functions and datatypes for SQLAlchemy",
         homepage: "https://github.com/kvesteri/sqlalchemy-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/kvesteri/sqlalchemy-utils/releases/tag/${version}`),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

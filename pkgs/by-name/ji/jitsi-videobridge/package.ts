@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jitsi-videobridge2",
       version: "2.3-307-g4bb0aead1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.jitsi.org/stable/jitsi-videobridge2_${nix.sel(finalAttrs, "version")}-1_all.deb`),
           hash: "sha256-5im9MH8xwJMH3PklZX/Tli641HmmxV6df5jWfsBYxDo=",
         })))),
@@ -48,15 +48,15 @@ wrapProgram $out/bin/jitsi-videobridge \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "single-host-smoke-test": nix.thunk(() => nix.sel(nixosTests, "jitsi-meet")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "WebRTC compatible video router",
         longDescription: "Jitsi Videobridge is an XMPP server component that allows for multiuser video communication.\nUnlike the expensive dedicated hardware videobridges, Jitsi Videobridge does not mix the video\nchannels into a composite video stream, but only relays the received video channels to all call\nparticipants. Therefore, while it does need to run on a server with good network bandwidth,\nCPU horsepower is not that critical for performance.\n",
         homepage: "https://github.com/jitsi/jitsi-videobridge",

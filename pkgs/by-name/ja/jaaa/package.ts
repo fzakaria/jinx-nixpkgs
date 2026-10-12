@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const zita_alsa_pcmi = nix.arg($, "zita-alsa-pcmi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jaaa",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/jaaa-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1czksxx2g8na07k7g57qlz0vvkkgi5bzajcx7vc7jhb94hwmmxbc",
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SUFFIX=''"]),
       preConfigure: "cd ./source/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/index.html",
         description: "JACK and ALSA Audio Analyser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "multi-scrobbler",
       version: "0.16.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FoxxMD",
           repo: "multi-scrobbler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +54,11 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/${nix.sel(fin
   --chdir "$pkgDir"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scrobble music from many sources to many clients",
         longDescription: "multi-scrobbler monitors music listening activity from many Sources\n(Spotify, Jellyfin, Plex, Subsonic, Kodi, YouTube Music, Last.fm,\nListenBrainz, and more) and scrobbles to many Clients (Last.fm,\nListenBrainz, Maloja, Rocksky, teal.fm, and more).  A web interface\non port 9078 (PORT env var) provides status, logs, and OAuth flows.\n",
         homepage: "https://github.com/FoxxMD/multi-scrobbler",

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const extraPkgs = nix.argOr($, "extraPkgs", () => (pkgs_1) => []);
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopidy-youtube",
       version: "3.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "natumbri",
           repo: "mopidy-youtube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_api.py", "tests/test_backend.py", "tests/test_youtube.py"]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_youtube"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mopidy extension for playing music from YouTube",
         homepage: "https://github.com/natumbri/mopidy-youtube",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

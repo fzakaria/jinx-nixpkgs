@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "meek",
       version: "0.38.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "anti-censorship/pluggable-transports",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage doc/meek-client.1\ninstallManPage doc/meek-server.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blocking-resistant pluggable transport for Tor",
         longDescription: "meek is a blocking-resistant pluggable transport for Tor. It encodes a\ndata stream as a sequence of HTTPS requests and responses. Requests are\nreflected through a hard-to-block third-party web server in order to\navoid talking directly to a Tor bridge. HTTPS encryption hides\nfingerprintable byte patterns in Tor traffic.\n",
         homepage: "https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/meek",

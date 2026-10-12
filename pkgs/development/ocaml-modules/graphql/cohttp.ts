@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const cohttp_lwt_unix = nix.arg($, "cohttp-lwt-unix");
   const graphql_lwt = nix.arg($, "graphql-lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "graphql-cohttp",
       version: nix.thunk(() => nix.attr(graphql, "version")),
       src: nix.thunk(() => nix.attr(graphql, "src")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [alcotest, cohttp_lwt_unix, graphql_lwt]))),
       doCheck: true,
       postPatch: "substituteInPlace graphql-cohttp/src/graphql_websocket.ml \\\n  --replace-fail \"~flush:true ()\" \"~version:\\`HTTP_1_1 ()\"\n",
-      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { __proto__: pos$1, description: "Run GraphQL servers with “cohttp”" })),
+      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { [nix.POS]: pos$1, description: "Run GraphQL servers with “cohttp”" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=cohttp.ts.map

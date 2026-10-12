@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pdm_backend = nix.arg($, "pdm-backend");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "griffecli",
       pyproject: true,
       version: nix.thunk(() => nix.attr(griffelib, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [colorama, griffelib]),
       pythonImportsCheck: nix.thunk(() => ["griffecli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API",
         homepage: "https://github.com/mkdocstrings/griffe",
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocstrings/griffe/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const notebook = nix.arg($, "notebook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jupyterthemes",
       version: "0.20.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dunovank",
           repo: "jupyter-themes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["jupyterthemes"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Theme-ify your Jupyter Notebooks!",
         homepage: "https://github.com/dunovank/jupyter-themes",
         changelog: nix.thunk(() => nix.str`https://github.com/dunovank/jupyter-themes/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.md`),

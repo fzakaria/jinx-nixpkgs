@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "35.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-client",
           repo: "python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,19 +52,19 @@ export default nix.lambda((args) => (() => {
         urllib3,
         websocket_client,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, adal: nix.thunk(() => [adal]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, adal: nix.thunk(() => [adal]) }));
       const pythonImportsCheck = nix.thunk(() => ["kubernetes"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_rest_proxycare"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kubernetes Python client",
         homepage: "https://github.com/kubernetes-client/python",
         changelog: nix.thunk(() => nix.str`https://github.com/kubernetes-client/python/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

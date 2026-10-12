@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const nnueFile = "nn-89cb98a217f7.nnue";
   const nnueHash = "sha256-icuYohf3IBR8coYXYQl76koEKJl90iDsioGlYkMbu+Y=";
   const nnue = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://tests.stockfishchess.org/api/nn/${nnueFile}`),
       hash: nnueHash,
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "fishnet",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "lichess-org",
           repo: "fishnet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,13 +50,13 @@ cp -v '${nnue}' 'Fairy-Stockfish/src/${nnueFile}'
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`),
               runtimeInputs: nix.thunk(() => [curl, jq, nix_update, common_updater_scripts]),
               runtimeEnv: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 PNAME: nix.thunk(() => nix.sel(finalAttrs, "pname")),
                 PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                 GITHUB_REPOSITORY: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "owner")}/${nix.sel(finalAttrs, "src", "repo")}`),
@@ -67,7 +67,7 @@ cp -v '${nnue}' 'Fairy-Stockfish/src/${nnueFile}'
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Distributed Stockfish analysis for lichess.org",
         homepage: "https://github.com/lichess-org/fishnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

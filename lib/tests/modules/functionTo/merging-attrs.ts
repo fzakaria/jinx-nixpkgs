@@ -19,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       fun: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))),
         })))),
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
-          default: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(config, "fun"), nix.thunk(() => ({ __proto__: pos$2, a: "a", b: "b", c: "c" })))))))),
+          default: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(config, "fun"), nix.thunk(() => ({ [nix.POS]: pos$2, a: "a", b: "b", c: "c" })))))))),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       fun: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-          (input) => ({ __proto__: pos$5, a: nix.thunk(() => nix.attr(input, "a")) }),
-          (input) => ({ __proto__: pos$6, b: nix.thunk(() => nix.attr(input, "b")) }),
+          (input) => ({ [nix.POS]: pos$5, a: nix.thunk(() => nix.attr(input, "a")) }),
+          (input) => ({ [nix.POS]: pos$6, b: nix.thunk(() => nix.attr(input, "b")) }),
           (input) => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             b: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(input, "c")))),
           }),
         ]))),

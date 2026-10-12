@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
     ];
   })();
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "lutris",
       version: nix.thunk(() => nix.attr(lutris_unwrapped, "version")),
       runScript: "lutris",
@@ -242,7 +242,7 @@ ln -sf ${lutris_unwrapped}/share/icons $out/share
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lutris_unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

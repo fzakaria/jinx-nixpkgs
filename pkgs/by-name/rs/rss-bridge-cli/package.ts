@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const phpBin = nix.thunk(() => nix.str`${phpWithExts}/bin/php`);
   return nix.app(nix.sel(nix.app(writeShellScriptBin, "rss-bridge-cli", nix.thunk(() => nix.str`${phpBin} ${rss_bridge}/index.php "$@"
 `)), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rss-bridge-cli",
       version: nix.thunk(() => nix.sel(rss_bridge, "version")),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Command-line interface for RSS-Bridge",
         homepage: "https://github.com/RSS-Bridge/rss-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

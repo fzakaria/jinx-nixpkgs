@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "megatools",
       version: "1.11.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://xff.cz/git/megatools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-XOGjdvMw8wfhBwyOBnQqiiJeOGvYXKMYxiJ6BZeEwDQ=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line client for Mega.co.nz",
         homepage: "https://xff.cz/megatools/",
         changelog: "https://xff.cz/megatools/builds/NEWS",

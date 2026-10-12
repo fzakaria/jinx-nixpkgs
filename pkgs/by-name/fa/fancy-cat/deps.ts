@@ -21,47 +21,47 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "fastb64z-1.0.0-x5LyQZ2gAAAYQrdQBKuqfNOY0beaxhunrksEtUOmIjhq",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/freref/fastb64z/archive/3defc5d33162670c28e42af073cf9bc003017da6.tar.gz",
             hash: "sha256-QaYkoKL2VzY/KKI1HfLuPf6RK54WqkBxkw5+Jc+WRkM=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "fzwatch-0.2.2-6qM2ONQzAACLaMFX3DGopE-Y6etVZNn8kDh_4LhmWAMp",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/freref/fzwatch/archive/eab2fde9ab2a8fd721d4af67e78308fb6b522a16.tar.gz",
             hash: "sha256-PTBQGsmdlhsYWbvfrSBoxElWCTdA1bCeYeDywDOdGDA=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "uucode-0.1.0-ZZjBPj96QADXyt5sqwBJUnhaDYs_qBeeKijZvlRa0eqM",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/jacobsandlund/uucode",
             rev: "5f05f8f83a75caea201f12cc8ea32a2d82ea9732",
             hash: "sha256-sHPh+TQSdUGus/QTbj7KSJJkTuNTrK4VNmQDjS30Lf8=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "vaxis-0.5.1-BWNV_LosCQAGmCCNOLljCIw6j6-yt53tji6n6rwJ2BhS",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://github.com/rockorager/libvaxis/archive/7dbb9fd3122e4ffad262dd7c151d80d863b68558.tar.gz",
             hash: "sha256-zTyrZrIffM+GJIt973tKDeWHmOCwbn7KLDdQxSiK00Y=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "zigimg-0.1.0-8_eo2vHnEwCIVW34Q14Ec-xUlzIoVg86-7FU2ypPtxms",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://github.com/ivanstepanovftw/zigimg/archive/d7b7ab0ba0899643831ef042bd73289510b39906.tar.gz",
             hash: "sha256-vkcTloGX+vRw7e6GYJLO9eocYaEOYjXYE0dT7jscZ4A=",
           })))),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logilab-common",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "forge.extranet.logilab.fr",
           owner: "open-source",
           repo: "logilab-common",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytz]),
       preCheck: "export COLLECT_DEPRECATION_WARNINGS_PACKAGE_NAME=true\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python packages and modules used by Logilab",
         homepage: "https://logilab-common.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://forge.extranet.logilab.fr/open-source/logilab-common/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

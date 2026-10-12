@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cannatag",
           repo: "ldap3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ substituteInPlace _version.json \\
 `);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/cannatag/ldap3/commit/ca689f4893b944806f90e9d3be2a746ee3c502e4.patch",
             hash: "sha256-A8qI0t1OV3bkKaSdhVWHFBC9MoSkWynqxpgznV+5gh8=",
           })))),
@@ -50,14 +50,14 @@ substituteInPlace _version.json \\
       const enabledTestPaths = nix.thunk(() => ["test/"]);
       const preCheck = "export SERVER=NONE\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/cannatag/ldap3",
         description: "Strictly RFC 4510 conforming LDAP V3 pure Python client library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

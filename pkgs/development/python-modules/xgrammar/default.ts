@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const tiktoken = nix.arg($, "tiktoken");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xgrammar",
       version: "0.2.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlc-ai",
           repo: "xgrammar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,18 +48,18 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => nix.concat([apache_tvm_ffi, numpy, pydantic, torch, transformers], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => [triton])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         metal: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [mlx_lm]))),
       })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, sentencepiece, tiktoken, writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-ffat-lto-objects"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=array-bounds"])))))),
       })),
       disabledTests: nix.thunk(() => ["melody"]),
       pythonImportsCheck: nix.thunk(() => ["xgrammar"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Efficient, Flexible and Portable Structured Generation",
         homepage: "https://xgrammar.mlc.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/mlc-ai/xgrammar/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

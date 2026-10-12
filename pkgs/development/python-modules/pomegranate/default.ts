@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "pomegranate",
           owner: "jmschrei",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-2.6.patch",
             url: "https://github.com/jmschrei/pomegranate/pull/1142/commits/9ff5d5e2c959b44e569937e777b26184d1752a7b.patch",
             hash: "sha256-BXsVhkuL27QqK/n6Fa9oJCzrzNcL3EF6FblBeKXXSts=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const disabledTests = nix.thunk(() => ["test_sample"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Probabilistic and graphical models for Python, implemented in cython for speed",
         homepage: "https://github.com/jmschrei/pomegranate",
         changelog: nix.thunk(() => nix.str`https://github.com/jmschrei/pomegranate/releases/tag/v${version}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

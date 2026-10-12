@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
   const recommendedDisplayInformationPrograms = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withRecommendedDisplayInformationPrograms, nix.thunk(() => [mesa_demos, xdpyinfo, xprop, xrandr])));
   const programs = nix.thunk(() => nix.concat([ps, dnsutils], nix.concat(recommendedSystemPrograms, recommendedDisplayInformationPrograms)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inxi",
       version: "3.3.41-1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "smxi",
           repo: "inxi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +86,7 @@ runHook postInstall
 `),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Full featured CLI system information tool",
         longDescription: "inxi is a command line system information script built for console and\nIRC. It is also used a debugging tool for forum technical support to\nquickly ascertain users' system configurations and hardware. inxi shows\nsystem hardware, CPU, drivers, Xorg, Desktop, Kernel, gcc version(s),\nProcesses, RAM usage, and a wide variety of other useful information.\n",
         homepage: "https://smxi.org/docs/inxi.htm",

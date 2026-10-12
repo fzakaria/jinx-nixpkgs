@@ -30,24 +30,24 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lpac",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "estkme-group",
           repo: "lpac",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ALne5sHB6ff7cHAWe0rFwpP/Yz4EhZBiOrgdM2B8+OE=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LPAC_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       patches: nix.thunk(() => [
         nix.path(here, "./lpac-version.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/estkme-group/lpac/commit/be86645e596ee34f6d85cd0f3e039d5b31f35856.patch",
             hash: "sha256-Y3tL9A1uKjX0x1O2WrQQ9k88Zu+Lpc+MNV9DRYePwgs=",
           })))),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([curl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pcsclite])), nix.concat(nix.app(optional, withMbim, libmbim), nix.app(optional, withQmi, libqmi))))),
       postInstall: "mkdir -p $out/share/doc/lpac\ncp -vr $src/docs/* $out/share/doc/lpac\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: nix.thunk(() => nix.sel(finalAttrs, "pname")) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: nix.thunk(() => nix.sel(finalAttrs, "pname")) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C-based eUICC LPA",
         homepage: "https://github.com/estkme-group/lpac",
         mainProgram: "lpac",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "akvcam";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webcamoid",
           repo: "akvcam",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual camera driver for Linux",
         homepage: "https://github.com/webcamoid/akvcam",
         maintainers: [],
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

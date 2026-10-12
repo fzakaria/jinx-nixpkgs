@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bmake = nix.arg($, "bmake");
   const cleanPackaging = nix.arg($, "cleanPackaging");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kgt",
       version: "2023-06-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "katef",
           repo: "kgt",
           rev: "dc881796aa691f1fddb1d01ec77216b34fe8134d",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 ${nix.app(nix.sel(cleanPackaging, "commonFileActions"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           docFiles: nix.thunk(() => ["README.md", "LICENCE", "examples", "man", "examples", "doc"]),
           noiseFiles: nix.thunk(() => [
             "build/src",
@@ -64,7 +64,7 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.str`${nix.sel(cleanPackaging, "checkForRemainingFiles")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "BNF wrangling and railroad diagrams",
         mainProgram: "kgt",

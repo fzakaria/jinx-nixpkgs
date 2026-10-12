@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "python3-application",
           rev: nix.thunk(() => nix.str`release-${version}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [zope_interface, twisted]);
       const pythonImportsCheck = nix.thunk(() => ["application"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "release-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "release-" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Collection of modules that are useful when building python applications",
         homepage: "https://github.com/AGProjects/python3-application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "This package is a collection of modules that are useful when building python applications. Their purpose is to eliminate the need to divert resources into implementing the small tasks that every application needs to do in order to run successfully and focus instead on the application logic itself.\nThe modules that the application package provides are:\n  1. process - UNIX process and signal management.\n  2. python - python utility classes and functions.\n  3. configuration - a simple interface to handle configuration files.\n  4. log - an extensible system logger for console and syslog.\n  5. debug - memory troubleshooting and execution timing.\n  6. system - interaction with the underlying operating system.\n  7. notification - an application wide notification system.\n  8. version - manage version numbers for applications and packages.\n",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

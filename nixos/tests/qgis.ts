@@ -31,21 +31,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     const package$ = nix.arg($, "package");
-    const qgisPackage = nix.thunk(() => nix.app(nix.sel(package$, "override"), nix.thunk(() => ({ __proto__: pos$1, withServer: true }))));
+    const qgisPackage = nix.thunk(() => nix.app(nix.sel(package$, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withServer: true }))));
     const testScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "qgis-test.py",
         text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../pkgs/applications/gis/qgis/test.py"))),
       }))));
     return {
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       name: nix.thunk(() => nix.str`qgis-${nix.sel(package$, "version")}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "geospatial", "members")),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
@@ -53,19 +53,19 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const qgisServerUser = nix.thunk(() => nix.sel(config, "services", "nginx", "user"));
           const qgisServerSocket = "/run/qgis_mapserv.socket";
           return {
-            __proto__: pos$19,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$4, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+            [nix.POS]: pos$19,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
             imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
-            environment: nix.thunk(() => ({ __proto__: pos$5, systemPackages: nix.thunk(() => [qgisPackage]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$5, systemPackages: nix.thunk(() => [qgisPackage]) })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               sockets: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "qgis-server": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   listenStreams: nix.thunk(() => [qgisServerSocket]),
                   socketConfig: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     Accept: false,
                     SocketUser: qgisServerUser,
                     SocketMode: 600n,
@@ -75,12 +75,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "qgis-server": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   description: "QGIS server",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     User: qgisServerUser,
                     StandardOutput: "null",
                     StandardError: "journal",
@@ -98,18 +98,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               nginx: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   qgis: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       "~": nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         extraConfig: nix.thunk(() => nix.str`gzip off;
 include ${nix.sel(pkgs_1, "nginx")}/conf/fastcgi_params;
 include ${nix.sel(pkgs_1, "nginx")}/conf/fastcgi.conf;

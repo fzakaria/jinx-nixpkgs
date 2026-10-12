@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xcpretty",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["xcpretty"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "xcpretty")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible and fast xcodebuild formatter",
         homepage: "https://github.com/supermarin/xcpretty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

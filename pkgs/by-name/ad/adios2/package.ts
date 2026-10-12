@@ -54,28 +54,28 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => false);
   const withExamples = nix.argOr($, "withExamples", () => false);
   const adios2Packages = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     hdf5: nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mpi: mpi,
         mpiSupport: mpiSupport,
         cppSupport: nix.thunk(() => !nix.asBool(mpiSupport)),
       })))),
     catalyst: nix.thunk(() => nix.app(nix.sel(catalyst, "override"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mpi: mpi,
         mpiSupport: mpiSupport,
         python3Packages: python3Packages,
         pythonSupport: pythonSupport,
       })))),
-    mpi4py: nix.thunk(() => nix.app(nix.sel(python3Packages, "mpi4py", "override"), nix.thunk(() => ({ __proto__: pos$3, mpi: mpi })))),
+    mpi4py: nix.thunk(() => nix.app(nix.sel(python3Packages, "mpi4py", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: mpi })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       version: "2.12.1",
       pname: "adios2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "ornladios",
           repo: "adios2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         openssl,
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), ucx)), ucx), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLoongArch64")), libffi), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), zfp)), zfp))))),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mpiSupport, mpi), nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.app(nix.sel(python3Packages, "mkPythonMetaPackage"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -163,21 +163,21 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["adios2"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               moduleNames: nix.thunk(() => ["adios2"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$10,
-            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$9, doCheck: true })))),
+            [nix.POS]: pos$10,
+            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$9, doCheck: true })))),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://adios2.readthedocs.io/en/latest/",
         description: "Adaptable Input/Output System version 2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

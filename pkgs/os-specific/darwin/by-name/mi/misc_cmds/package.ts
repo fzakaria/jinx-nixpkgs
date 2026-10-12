@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "misc_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-xuEHBlgys/xI9lm/wtiVAKi+AWWvRluW2I4rWOmS1kw=",
       postPatch: "substituteInPlace calendar/pathnames.h \\\n  --replace-fail '/usr' \"$out\"\nsubstituteInPlace calendar/io.c \\\n  --replace-fail '/usr/local' \"$out\"\nsubstituteInPlace calendar/calendar.1 \\\n  --replace-fail '/usr/local/share/calendar, /usr/share/calendar' \"$out/share/calendar\"\n",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libedit, libutil, ncurses]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Miscellaneous commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Miscellaneous commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tlmviewer",
       pyproject: true,
       __structuredAttrs: true,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(torchlensmaker, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "3D optical scene viewer for torchlensmaker",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

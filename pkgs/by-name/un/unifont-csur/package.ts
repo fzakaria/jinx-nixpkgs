@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unifont-csur",
       version: "16.0.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://unifoundry.com/pub/unifont/unifont-${nix.sel(finalAttrs, "version")}/font-builds/unifont_csur-${nix.sel(finalAttrs, "version")}.otf`),
           hash: "sha256-41MXxHHohZFm42LMePmLSZp3bytsxMJmWh/0psIgWt4=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\ninstall -Dm644 $src $out/share/fonts/truetype/unifont_csur.ttf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unifont CSUR - Private Use Area font covering ConScript Unicode Registry",
         homepage: "https://unifoundry.com/unifont/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

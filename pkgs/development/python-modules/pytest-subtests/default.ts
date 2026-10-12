@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const attrs = nix.arg($, "attrs");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-subtests",
       version: "0.15.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-subtests",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pytest_subtests"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unittest subTest() support and subtests fixture",
         homepage: "https://github.com/pytest-dev/pytest-subtests",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-subtests/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const ubuntu_classic = nix.arg($, "ubuntu-classic");
   return nix.app(nix.sel(phira, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       overrideAssets: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "phira-assets",
           version: nix.thunk(() => nix.sel(phira, "version")),
           nativeBuildInputs: nix.thunk(() => [imagemagick]),

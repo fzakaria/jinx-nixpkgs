@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adafruit-platformdetect",
       version: "3.89.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "adafruit_platformdetect",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-dFUtGvz3eahMpjUnoerumZXEKf9CLbFUkrrQw1mcq0s=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["adafruit_platformdetect"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Platform detection for use by Adafruit libraries",
         homepage: "https://github.com/adafruit/Adafruit_Python_PlatformDetect",
         changelog: nix.thunk(() => nix.str`https://github.com/adafruit/Adafruit_Python_PlatformDetect/releases/tag/${nix.sel(finalAttrs, "version")}`),

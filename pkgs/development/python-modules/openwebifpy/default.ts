@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-FaynJT+bR63nIwLEwXjTjwPXZ3Q5/X+zpx0gTA3Pqo8=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["openwebif"]);
       const disabledTests = nix.thunk(() => ["test_get_picon_name"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a python interface to interact with a device running OpenWebIf",
         downloadPage: "https://github.com/autinerd/openwebifpy",
         homepage: "https://openwebifpy.readthedocs.io/",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

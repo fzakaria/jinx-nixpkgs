@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "streamlit-folium",
       version: "0.27.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "randyzwitch",
           repo: "streamlit-folium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PATH=\"$PATH:$out/bin\";\n",
       disabledTestPaths: nix.thunk(() => ["tests/test_frontend.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Streamlit Component for rendering Folium maps",
         homepage: "https://github.com/randyzwitch/streamlit-folium",
         changelog: nix.thunk(() => nix.str`https://github.com/randyzwitch/streamlit-folium/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

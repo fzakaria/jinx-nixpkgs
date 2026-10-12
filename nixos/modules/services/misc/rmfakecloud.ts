@@ -29,45 +29,45 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "rmfakecloud"));
   const serviceDataDir = "/var/lib/rmfakecloud";
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         rmfakecloud: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "rmfakecloud remarkable self-hosted cloud")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rmfakecloud", nix.thunk(() => ({})))),
           storageUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "https://local.appspot.com",
               description: "URL used by the tablet to access the rmfakecloud service.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Listening port number.\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["info", "debug", "warn", "error"]))),
               default: "info",
               description: "Logging level.\n",
             })))),
           extraSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
               })()),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$4, DATADIR: "/custom/path/for/rmfakecloud/data" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, DATADIR: "/custom/path/for/rmfakecloud/data" })),
               description: "Extra settings in the form of a set of key-value pairs.\nFor tokens and secrets, use `environmentFile` instead.\n\nAvailable settings are listed on\nhttps://ddvk.github.io/rmfakecloud/install/configuration/.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -80,16 +80,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             rmfakecloud: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "rmfakecloud remarkable self-hosted cloud",
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 STORAGE_URL: nix.thunk(() => nix.sel(cfg, "storageUrl")),
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 LOGLEVEL: nix.thunk(() => nix.sel(cfg, "logLevel")),
@@ -105,7 +105,7 @@ ${nix.sel(cfg, "package")}/bin/rmfakecloud
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 Type: "simple",
                 Restart: "always",
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
@@ -140,7 +140,7 @@ ${nix.sel(cfg, "package")}/bin/rmfakecloud
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "martinetd"))];

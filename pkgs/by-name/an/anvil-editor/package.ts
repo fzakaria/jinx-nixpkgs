@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "anvil-editor",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://anvil-editor.net/releases/anvil-src-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9lJg8IMt6+GJm5a7j7ZyhbwvAmlBKvtdOv9FD9MQdrA=",
         })))),
       modRoot: "anvil/editor",
       vendorHash: "sha256-Q2iVB5pvP2/VXjdSwWVkdqrVUj/nIiC/VHyD5nP9ilE=",
       anvilExtras: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "anvil-editor-extras",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -67,7 +67,7 @@ popd
       checkFlags: nix.thunk(() => ["-skip=^TestClearAfter$"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "anvil",
             exec: "anvil",
             icon: "anvil",
@@ -81,7 +81,7 @@ popd
 cp ${nix.sel(finalAttrs, "anvilExtras")}/bin/* $out/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Graphical, multi-pane tiling editor inspired by Acme",
         homepage: "https://anvil-editor.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

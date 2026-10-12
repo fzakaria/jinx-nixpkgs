@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const xapianSupport = nix.argOr($, "xapianSupport", () => false);
   const localsearchSupport = nix.argOr($, "localsearchSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "netatalk",
       version: "4.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/netatalk/netatalk/netatalk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yXQS9/S7u/qSJmT1K51qX3UoK5mlL+BGMTS7R3/qcV4=",
         })))),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
 `))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Apple Filing Protocol Server",
         homepage: "https://netatalk.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

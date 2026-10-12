@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "codeowners-validator",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mszostok",
           repo: "codeowners-validator",
           rev: "f3651e3810802a37bd965e6a9a7210728179d076",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "user-write-access-check",
             url: "https://github.com/mszostok/codeowners-validator/compare/f3651e3810802a37bd965e6a9a7210728179d076...840eeb88b4da92bda3e13c838f67f6540b9e8529.patch",
             hash: "sha256-t3Dtt8SP9nbO3gBrM0nRE7+G6N/ZIaczDyVHYAG/6mU=",

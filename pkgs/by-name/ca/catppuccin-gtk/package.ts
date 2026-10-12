@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const pname = "catppuccin-gtk";
   const version = "1.0.3";
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: theme accent`), validAccents, accents, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: color variant`), validVariants, nix.thunk(() => [variant]), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: size variant`), validSizes, nix.thunk(() => [size]), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: tweaks`), validTweaks, tweaks, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "gtk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -80,11 +80,11 @@ python3 build.py ${variant} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Soothing pastel theme for GTK",
         homepage: "https://github.com/catppuccin/gtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

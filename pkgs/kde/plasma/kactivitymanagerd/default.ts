@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.arg($, "qt5compat");
   const boost = nix.arg($, "boost");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kactivitymanagerd",
       extraBuildInputs: nix.thunk(() => [qt5compat, boost]),
     })));

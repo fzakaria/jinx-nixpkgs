@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ssh-agent-switcher"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jmmv"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "ssh-agent-switcher": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "ssh-agent-switcher daemon"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Whether to enable ssh-agent-switcher, a daemon that proxies SSH agent\nconnections to forwarded agents. This allows tmux/screen sessions to\naccess SSH agents across reconnections.\n\nThis is a per-user service that automatically starts when you log in\nvia SSH and sets SSH_AUTH_SOCK to point to a stable socket location.\n\nNote: This only activates for SSH sessions, not graphical or console logins.\n",
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ssh-agent-switcher", nix.thunk(() => ({})))),
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           loginShellInit: nix.thunk(() => nix.str`if [ -n "$SSH_CONNECTION" ]; then
   mkdir -p "\${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"

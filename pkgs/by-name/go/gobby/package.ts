@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const libinfinity = nix.arg($, "libinfinity");
   const intltool = nix.arg($, "intltool");
   const itstool = nix.arg($, "itstool");
-  const libinf = nix.thunk(() => nix.app(nix.sel(libinfinity, "override"), nix.thunk(() => ({ __proto__: pos$1, gtkWidgets: true, avahiSupport: avahiSupport }))));
+  const libinf = nix.thunk(() => nix.app(nix.sel(libinfinity, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, gtkWidgets: true, avahiSupport: avahiSupport }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gobby",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gobby",
           repo: "gobby",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtkmm3, gsasl, gtksourceview3, libxmlxx, libinf]),
       preConfigure: "./autogen.sh",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/gobby/gobby",
         description: "GTK-based collaborative editor supporting multiple documents in one session and a multi-user chat",
         mainProgram: "gobby-0.5",

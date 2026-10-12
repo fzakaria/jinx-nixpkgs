@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ruff = nix.arg($, "ruff");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.attr(ruff, "pname")),
       version: nix.thunk(() => nix.attr(ruff, "version")),
       src: nix.thunk(() => nix.attr(ruff, "src")),

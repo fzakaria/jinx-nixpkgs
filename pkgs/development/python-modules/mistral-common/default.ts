@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const pycountry = nix.arg($, "pycountry");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mistral-common",
       version: "1.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mistralai",
           repo: "mistral-common",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const self = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "optional-dependencies"));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           opencv: nix.thunk(() => [opencv_python_headless]),
           sentencepiece: nix.thunk(() => [sentencepiece]),
           soundfile: nix.thunk(() => [soundfile]),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([openai, pycountry, pytest_xdist, pytestCheckHook, uvicorn], nix.sel(finalAttrs, "finalPackage", "optional-dependencies", "all"))),
       disabledTests: nix.thunk(() => ["test_openai_chat_fields", "test_audio_base64"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools to help you work with Mistral models",
         homepage: "https://github.com/mistralai/mistral-common",
         changelog: nix.thunk(() => nix.str`https://github.com/mistralai/mistral-common/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

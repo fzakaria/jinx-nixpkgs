@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const shtab = nix.arg($, "shtab");
   const universal_pathlib = nix.arg($, "universal-pathlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tyro",
       version: "1.0.15",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brentyi",
           repo: "tyro",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export COLUMNS=200\nexport LINES=200\n",
       pythonImportsCheck: nix.thunk(() => ["tyro"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI interfaces & config objects, from types",
         homepage: "https://github.com/brentyi/tyro",
         changelog: nix.thunk(() => nix.str`https://github.com/brentyi/tyro/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const stestr = nix.arg($, "stestr");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "stestr-tests",
       version: nix.thunk(() => nix.attr(stestr, "version")),
       src: nix.thunk(() => nix.attr(stestr, "src")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "high-school-geometry",
       version: version,
       repo: "HighSchoolGeometry",
@@ -30,41 +30,41 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.16", "8.20")),
               out: "8.16",
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.16")),
               out: "8.13",
             })),
-            nix.thunk(() => ({ __proto__: pos$3, case: "8.12", out: "8.12" })),
-            nix.thunk(() => ({ __proto__: pos$4, case: "8.11", out: "8.11" })),
+            nix.thunk(() => ({ [nix.POS]: pos$3, case: "8.12", out: "8.12" })),
+            nix.thunk(() => ({ [nix.POS]: pos$4, case: "8.11", out: "8.11" })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "8.16": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-HvUrZ6l7wCshuKUZs8rvfMkTEv+oXuogI5LICcD8Bn8=",
         })),
         "8.13": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-5F/6155v0bWi5t7n4qU/GuR6jENngvWIIqJGPURzIeQ=",
         })),
         "8.12": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-OF7sahU+5Ormkcrd8t6p2Kp/B2/Q/6zYTV3/XBvlGHc=",
         })),
         "8.11": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-sVGeBBAJ7a7f+EJU1aSUvIVe9ip9PakY4379XWvvoqw=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Geometry in Coq for French high school",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

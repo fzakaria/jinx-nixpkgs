@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const libyaml = nix.arg($, "libyaml");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yaml-filter",
       version: "0.2.0",
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.\" \"cmake_minimum_required(VERSION 3.10\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenSCAP",
           repo: "yaml-filter",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libyaml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "YAML document filtering for libyaml",
         homepage: "https://github.com/OpenSCAP/yaml-filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

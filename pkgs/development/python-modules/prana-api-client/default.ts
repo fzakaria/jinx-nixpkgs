@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prana-api-client",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "prana_api_client",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-woERY0H9s8P6z375axzPz2k5VWb0xRJtWcAuWtLFtJU=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["prana_local_api_client"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async API client for Prana heat recovery ventilator",
         homepage: "https://pypi.org/project/prana-api-client/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

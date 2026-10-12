@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-multi-rtmp";
       const version = "0.6.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sorayuki",
           repo: "obs-multi-rtmp",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sorayuki/obs-multi-rtmp/commit/a1289fdef404b08a7acbbf0d6d0f93da4c9fc087.patch",
             hash: "sha256-PDkR315y0iem1+LAqGmiqBFUiMBeEgnFW/xd1W2bAu4=",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sorayuki/obs-multi-rtmp/",
         changelog: nix.thunk(() => nix.str`https://github.com/sorayuki/obs-multi-rtmp/releases/tag/${version}`),
         description: "Multi-site simultaneous broadcast plugin for OBS Studio",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

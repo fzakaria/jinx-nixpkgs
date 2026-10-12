@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvfancontrol";
       const version = "0.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foucault",
           repo: "nvfancontrol",
           rev: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = nix.thunk(() => nix.str`export LIBRARY_PATH=${libXNVCtrl}/lib:${libx11}/lib:${libxext}/lib
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nvidia dynamic fan control for Linux",
         homepage: "https://github.com/foucault/nvfancontrol",
         changelog: nix.thunk(() => nix.str`https://github.com/foucault/nvfancontrol/releases/tag/${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nvfancontrol",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const atk = nix.arg($, "atk");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qwertone",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "azymohliad",
           repo: "qwertone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3, pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib, atk, gtk3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple music synthesizer app based on usual qwerty-keyboard for input",
         mainProgram: "qwertone",
         homepage: "https://gitlab.com/azymohliad/qwertone",

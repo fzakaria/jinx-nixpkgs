@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pname = "lycheeslicer";
   const version = "7.6.6";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://mango-lychee.nyc3.cdn.digitaloceanspaces.com/LycheeSlicer-${version}.AppImage`),
       hash: "sha256-eDMhA8fCD++BYK58t4/2XUlzrhcwtbAuOzRsThQAiVs=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "Lychee Slicer",
       genericName: "Resin Slicer",
       comment: "All-in-one 3D slicer for Resin and Filament",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       keywords: nix.thunk(() => ["STL", "Slicer", "Printing"]),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 `),
       extraPkgs: (_) => [libxshmfence, wayland, wayland_protocols],
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "All-in-one 3D slicer for resin and FDM printers",
         homepage: "https://lychee.mango3d.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "terraria"));
   const opt = nix.thunk(() => nix.sel(options, "services", "terraria"));
-  const worldSizeMap = nix.thunk(() => ({ __proto__: pos$1, small: 1n, medium: 2n, large: 3n }));
+  const worldSizeMap = nix.thunk(() => ({ [nix.POS]: pos$1, small: 1n, medium: 2n, large: 3n }));
   const valFlag = (name) => (val) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(val, null)), nix.thunk(() => nix.str`-${name} "${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\\", "\""]), nix.thunk(() => nix.builtins.toString(val)))}"`));
   const boolFlag = (name) => (val) => nix.app(nix.sel(lib, "optionalString"), val, nix.thunk(() => nix.str`-${name}`));
   const flags = nix.thunk(() => [
@@ -77,84 +77,84 @@ fi
 tail --pid="$1" -f /dev/null
 `)));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         terraria: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: nix.thunk(() => nix.str`If enabled, starts a Terraria server. The server can be connected to via \`tmux -S \${config.${nix.sel(opt, "dataDir")}}/terraria.sock attach\`
 for administration by users who are a part of the \`terraria\` group (use \`C-b d\` shortcut to detach again).
 `),
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "terraria", nix.thunk(() => ({ __proto__: pos$3, default: "terraria-server" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "terraria", nix.thunk(() => ({ [nix.POS]: pos$3, default: "terraria-server" })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 7777n,
               description: "Specifies the port to listen on.\n",
             })))),
           maxPlayers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "u8")),
               default: 255n,
               description: "Sets the max number of players (between 1 and 255).\n",
             })))),
           password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Sets the server password. Leave `null` for no password.\n",
             })))),
           messageOfTheDay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Set the server message of the day text.\n",
             })))),
           worldPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The path to the world file (`.wld`) which should be loaded.\nIf no world exists at this path, one will be created with the size\nspecified by `autoCreatedWorldSize`.\n",
             })))),
           autoCreatedWorldSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["small", "medium", "large"]))),
               default: "medium",
               description: "Specifies the size of the auto-created world if `worldPath` does not\npoint to an existing world.\n",
             })))),
           banListPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "The path to the ban list.\n",
             })))),
           secure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Adds additional cheat protection to the server.",
             })))),
           noUPnP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disables automatic Universal Plug and Play.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open ports in the firewall",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/terraria",
               example: "/srv/terraria",
@@ -164,13 +164,13 @@ for administration by users who are a part of the \`terraria\` group (use \`C-b 
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             terraria: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Terraria server service user",
               group: "terraria",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -179,24 +179,24 @@ for administration by users who are a part of the \`terraria\` group (use \`C-b 
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             terraria: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "terraria")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             terraria: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               description: "Terraria Server Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 User: "terraria",
                 Group: "terraria",
                 Type: "forking",
@@ -209,9 +209,9 @@ for administration by users who are a part of the \`terraria\` group (use \`C-b 
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const appimageTools = nix.arg($, "appimageTools");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "starc",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/story-apps/starc/releases/download/v${nix.sel(finalAttrs, "version")}/starc-setup.AppImage`),
           hash: "sha256-ZNd69E70yTFOQGBAZuOJqKlzGS+0xSsAP2uh1EWb6B8=",
         })))),
@@ -33,7 +33,7 @@ wrapProgram $out/bin/starc \\
   --unset QT_PLUGIN_PATH
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intuitive screenwriting app that streamlines the writing process",
         homepage: "https://starc.app/",
         mainProgram: "starc",

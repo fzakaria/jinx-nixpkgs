@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "kvmgt"));
   const kernelPackages = nix.thunk(() => nix.sel(config, "boot", "kernelPackages"));
   const vgpuOptions = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     uuid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -47,32 +47,32 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         kvmgt: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "KVMGT (iGVT-g) VGPU support.\nWhen enabled on a host, allows Qemu/KVM guests to share host's Intel integrated graphics card.\nCurrently only one graphical device can be shared.\nTo allow host users to access the device without root add them to the kvm group: `users.extraUsers.<yourusername>.extraGroups = [ \"kvm\" ];`\n")),
           device: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "0000:00:02.0",
               description: "PCI ID of graphics card. You can figure it with {command}`ls /sys/class/mdev_bus`.",
             })))),
           vgpus: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
-                return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$4, options: vgpuOptions }))]))));
+                return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, options: vgpuOptions }))]))));
               })()),
               description: "Virtual GPUs of the host to be used in Qemu.\nYou can find devices via {command}`ls /sys/bus/pci/devices/*/mdev_supported_types` and find info about device via {command}`cat /sys/bus/pci/devices/*/mdev_supported_types/i915-GVTg_V5_4/description`\n",
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "i915-GVTg_V5_8": nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   uuid: nix.thunk(() => ["a297db4a-f4c2-11e6-90f6-d3b88d6c9525"]),
                 })),
               })),
@@ -81,42 +81,42 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => nix.app(nix.lookup(w, "versionAtLeast"), nix.thunk(() => nix.sel(kernelPackages, "kernel", "version")), "4.16")),
             message: "KVMGT is not properly supported for kernels older than 4.16",
           })))),
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           kernelModules: nix.thunk(() => ["kvmgt"]),
           kernelParams: nix.thunk(() => ["i915.enable_gvt=1"]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           udev: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             extraRules: "SUBSYSTEM==\"vfio\", OWNER=\"root\", GROUP=\"kvm\"\n",
           })),
         })),
         systemd: nix.thunk(() => (() => {
-          const vgpus = nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (mdev) => (opt) => nix.app(nix.builtins.map, (id) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`kvmgt-${id}`), nix.thunk(() => ({ __proto__: pos$15, mdev: mdev, uuid: id }))), nix.thunk(() => nix.sel(opt, "uuid"))), nix.thunk(() => nix.sel(cfg, "vgpus"))))))));
+          const vgpus = nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (mdev) => (opt) => nix.app(nix.builtins.map, (id) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`kvmgt-${id}`), nix.thunk(() => ({ [nix.POS]: pos$15, mdev: mdev, uuid: id }))), nix.thunk(() => nix.sel(opt, "uuid"))), nix.thunk(() => nix.sel(cfg, "vgpus"))))))));
           return {
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             paths: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (_) => (opt) => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: nix.thunk(() => nix.str`KVMGT VGPU ${nix.sel(opt, "uuid")} path`),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 pathConfig: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   PathExists: nix.thunk(() => nix.str`/sys/bus/pci/devices/${nix.sel(cfg, "device")}/mdev_supported_types/${nix.sel(opt, "mdev")}/create`),
                 })),
               }), vgpus)),
             services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (_) => (opt) => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: nix.thunk(() => nix.str`KVMGT VGPU ${nix.sel(opt, "uuid")}`),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -c 'echo ${nix.sel(opt, "uuid")} > /sys/bus/pci/devices/${nix.sel(cfg, "device")}/mdev_supported_types/${nix.sel(opt, "mdev")}/create'`),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "patryk27"))];

@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hackedbox",
       version: "0.8.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "museoa",
           repo: "hackedbox",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-hxfbEj7UxQ19xhetmdi0iyK6ceLUfUvAAyyTbNivlLQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
       buildInputs: nix.thunk(() => [
         freetype,
         fribidi,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bastard hacked offspring of Blackbox",
         homepage: "https://github.com/museoa/hackedbox/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

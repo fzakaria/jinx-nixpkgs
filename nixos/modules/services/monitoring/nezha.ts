@@ -36,39 +36,39 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         nezha: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Nezha Monitoring")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nezha", nix.thunk(() => ({})))),
           debug: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "verbose log")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Generate to {file}`config.yaml` as a Nix attribute set.\nCheck the [guide](https://nezha.wiki/en_US/guide/dashboard.html)\nfor possible options.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     listenhost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "Host on which the nezha web interface and grpc should listen.\n",
                       })))),
                     listenport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 8008n,
                         description: "Port on which the nezha web interface and grpc should listen.\n",
@@ -77,25 +77,25 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           mutableConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether the config.yaml is writable by Nezha.\n\nIf this option is disabled, changes on the web interface won't\nbe possible. If an config.yaml is present, it will be overwritten.\n",
             })))),
           jwtSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: null,
               description: "Path to the file containing the secret to sign web requests using JSON Web Tokens.\n",
             })))),
           agentSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: null,
               description: "Path to the file containing the secret used by agents to connect.\n",
             })))),
           extraThemes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.nezha-theme-nazhua ]")),
@@ -105,22 +105,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           nezha: nix.thunk(() => ({
-            __proto__: pos$15,
-            settings: nix.thunk(() => ({ __proto__: pos$14, debug: nix.thunk(() => nix.sel(cfg, "debug")) })),
+            [nix.POS]: pos$15,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$14, debug: nix.thunk(() => nix.sel(cfg, "debug")) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             nezha: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Restart: "on-failure",
                 StateDirectory: "nezha",
                 RuntimeDirectory: "nezha",
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
                 RestrictAddressFamilies: nix.thunk(() => ["AF_INET", "AF_INET6"]),
                 PrivateDevices: "yes",
                 ExecStart: nix.thunk(() => (() => {
-                  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$17, withThemes: nix.thunk(() => nix.sel(cfg, "extraThemes")) }))));
+                  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$17, withThemes: nix.thunk(() => nix.sel(cfg, "extraThemes")) }))));
                   return nix.str`${nix.app(nix.sel(lib, "getExe"), package$)} -c "\${CONFIGURATION_DIRECTORY}"/config.yaml -db "\${STATE_DIRECTORY}"/sqlite.db`;
                 })()),
               })),

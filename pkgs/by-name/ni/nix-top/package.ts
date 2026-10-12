@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const additionalPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [getent, ncurses, binutils_unwrapped, coreutils, findutils])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-top",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jerith666",
           repo: "nix-top",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ wrapProgram $out/bin/nix-top \\
   --prefix PATH : "$out/libexec/nix-top:${additionalPath}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s /bin/stty $out/libexec/nix-top\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tracks what nix is building",
         homepage: "https://github.com/jerith666/nix-top",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

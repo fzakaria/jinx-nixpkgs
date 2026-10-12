@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const img2pdf = nix.arg($, "img2pdf");
   const zathura = nix.arg($, "zathura");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "manga-cli",
       version: "unstable-2022-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "7USTIN",
           repo: "manga-cli",
           rev: "a69fe935341eaf96618a6b2064d4dcb36c8690b5",
@@ -37,7 +37,7 @@ wrapProgram $out/bin/manga-cli \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/7USTIN/manga-cli",
         description: "Bash script for reading mangas via the terminal by scraping manganato",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

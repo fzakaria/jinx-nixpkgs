@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const bulletml = nix.arg($, "bulletml");
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/t/tumiki-fighters/0.2.dfsg1-10/debian/patches/${patchname}.patch`),
       sha256: hash,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tumiki-fighters",
       version: "0.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://abagames.sakura.ne.jp/windows/tf${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "0djykfc1r8ysapklm621h89ana1c4qzc1m5nr9bqw4iccnmvwk3p",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GDC=ldc2"]),
       installPhase: "install -Dm755 tumiki-fighters $out/bin/tumiki-fighters\nmkdir -p $out/share/games/tumiki-fighters\ncp -r barrage sounds enemy field stage tumiki $out/share/games/tumiki-fighters/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.asahi-net.or.jp/~cs8k-cyu/windows/tf_e.html",
         description: "Sticky 2D shooter",
         mainProgram: "tumiki-fighters",

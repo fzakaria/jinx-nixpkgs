@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "superbol-studio-oss",
       version: "1.0.0",
       minimalOCamlVersion: "5.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "superbol-studio-oss",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -134,12 +134,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/superbol-free`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gnucobol: nix.thunk(() => nix.app(nix.sel(gnucobol, "overrideAttrs"), (old) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             version: "3.2-unstable-2025-12-04",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "OCamlPro",
                 repo: "gnucobol",
                 rev: "4b8c07b3dfd125f4379599cf45756c076f7699c7",
@@ -150,13 +150,13 @@ export default nix.lambda((args) => (() => {
             installFlags: nix.thunk(() => ["localedir=$out/share/locale"]),
             dontVersionCheck: true,
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
             })),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open-Source part of SuperBOL Studio, including the Visual Studio Code extension and its LSP server",
         homepage: "https://superbol.eu/",
         license: nix.thunk(() => (() => {

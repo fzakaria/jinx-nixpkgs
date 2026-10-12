@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caroline",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dcharles525",
           repo: "caroline",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [vala, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [glib, libgee, gtk3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Cairo Chart Library for GTK and Vala",
         homepage: "https://github.com/dcharles525/Caroline",
         maintainers: nix.thunk(() => (() => {

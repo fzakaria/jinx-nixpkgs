@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const mplayer = nix.arg($, "mplayer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gopro",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KonradIT",
           repo: "gopro-linux",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ wrapProgram $out/bin/gopro \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line interface for processing media filmed on GoPro HERO 3, 4, 5, 6, and 7 cameras",
         homepage: "https://github.com/KonradIT/gopro-linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

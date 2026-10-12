@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       isLazy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           default: nix.thunk(() => !nix.asBool(nix.has(nix.sel(config, "value"), "foo"))),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$4,
-      value: nix.thunk(() => ({ __proto__: pos$3, bar: nix.thunk(() => nix.builtins.throw("is not lazy")) })),
+      [nix.POS]: pos$4,
+      value: nix.thunk(() => ({ [nix.POS]: pos$3, bar: nix.thunk(() => nix.builtins.throw("is not lazy")) })),
     })),
   };
 })(), formals$1);

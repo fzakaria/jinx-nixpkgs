@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pslib";
       const version = "0.4.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${pname}-snixource-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/${pname}-${version}.tar.gz`),
           sha256: "sha256-gaWNvBLuUUy0o+HWCOyG6KmzxDrYCY6PV3WbA/jjH64=",
@@ -46,7 +46,7 @@ mkdir -p $doc/share/doc/${pname}
 cp -r ../doc/. $doc/share/doc/${pname}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C-library for generating multi page PostScript documents",
         homepage: "https://pslib.sourceforge.net/",
         changelog: "https://sourceforge.net/p/pslib/git/ci/master/tree/pslib/ChangeLog",
@@ -58,7 +58,7 @@ cp -r ../doc/. $doc/share/doc/${pname}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

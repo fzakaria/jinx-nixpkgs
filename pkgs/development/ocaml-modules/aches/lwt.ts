@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const aches = nix.arg($, "aches");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "aches-lwt",
       src: nix.thunk(() => nix.attr(ringo, "src")),
       version: nix.thunk(() => nix.attr(ringo, "version")),
       propagatedBuildInputs: nix.thunk(() => [aches, lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Caches (bounded-size stores) for Lwt promises",
         homepage: "https://gitlab.com/nomadic-labs/ringo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

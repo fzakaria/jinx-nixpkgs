@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ncrack",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nmap",
           repo: "ncrack",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/nmap/ncrack/commit/cc4103267bab6017a4da9d41156d0c1075012eba.patch",
             sha256: "06nlfvc7p108f8ppbcgwmj4iwmjy95xhc1sawa8c78lrx22r7gy3",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/ncrack/raw/425a54633e220b6bafca37554e5585e2c6b48082/f/ncrack-0.7-fedora-c99.patch",
             hash: "sha256-kPYLPJ04dFI+WZQBecuTHXdTZhc40FDQkt35Jrddoyw=",
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--without-zlib-version-check"]),
       buildInputs: nix.thunk(() => [openssl, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Network authentication tool",
         mainProgram: "ncrack",
         homepage: "https://nmap.org/ncrack/",

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "i18next-cli";
       const version = "1.74.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "i18next",
           repo: "i18next-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
 `);
       const npmDepsHash = "sha256-twPHPy4FWwwr/irl5bXI6wnN/3+Y8F76p0NQ2nN3s5c=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "A unified, high-performance i18next CLI",
         changelog: nix.thunk(() => nix.str`https://github.com/i18next/i18next-cli/blob/v${version}/CHANGELOG.md`),
         homepage: "https://www.locize.com/blog/i18next-cli",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "i18next-cli",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

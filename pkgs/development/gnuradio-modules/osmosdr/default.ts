@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
   const soapysdr_with_plugins = nix.arg($, "soapysdr-with-plugins");
   const features = nix.argOr($, "features", () => ({}));
   return nix.app(mkDerivation, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gr-osmosdr",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitea.osmocom.org/sdr/gr-osmosdr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jCUzBY1pYiEtcRQ97t9F6uEMVYw2NU0eoB5Xc2H6pGQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/osmocom/gr-osmosdr/commit/06249f1f0930aa553ef8877b50503b9f5c77b4a0.patch",
             hash: "sha256-ofjuDvTT2PzRTR6UWchTQzmr9a83ka5TfUdlCBe4Is0=",
           })))),
@@ -65,9 +65,9 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "finalPackage", "passthru", "enabledFeaturesCmakeFlags"))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "python-support")), nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "mako")), python])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         featuresDeps: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           airspy: nix.thunk(() => [airspy]),
           airspyhf: nix.thunk(() => [airspyhf]),
           bladerf: nix.thunk(() => [libbladeRF]),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         enabledFeaturesCmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (feat) => (val) => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => nix.str`ENABLE_${nix.app(nix.sel(lib, "toUpper"), feat)}`), val), features)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Gnuradio block for OsmoSDR and rtl-sdr",
         homepage: "https://sdr.osmocom.org/trac/wiki/GrOsmoSDR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

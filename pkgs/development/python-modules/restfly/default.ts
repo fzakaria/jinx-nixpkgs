@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "restfly",
       version: "2.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stevemcgrath",
           repo: "restfly",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_session_ssl_error"]),
       pythonImportsCheck: nix.thunk(() => ["restfly"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python RESTfly API Library Framework",
         homepage: "https://github.com/stevemcgrath/restfly",
         changelog: nix.thunk(() => nix.str`https://github.com/librestfly/restfly/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

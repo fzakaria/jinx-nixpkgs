@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vodozemac",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matrix-nio",
           repo: "vodozemac-python",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-y0mJsDRJzhwkYOERyMxvw4ih6bSMtmT+YTXds1bIyMI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-owvBFMoem6hn4dC9pR/DVqZoHFl7oIRBBodmAgWmDxU=",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# do not shadow imports\nrm -r vodozemac\n",
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for vodozemac",
         homepage: "https://github.com/matrix-nio/vodozemac-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

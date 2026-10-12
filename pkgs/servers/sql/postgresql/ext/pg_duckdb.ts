@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const which = nix.arg($, "which");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pg_duckdb",
       version: "1.1.1",
       duckdbVersion: "1.4.3",
       duckdbVersionFull: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "duckdbVersion")}-0-gd1dc88f950`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duckdb",
           repo: "pg_duckdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.sel(postgresql, "buildInputs"), [openssl, curl])),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \\\n    'git submodule update --init --recursive' \\\n    'true'\n\nsubstituteInPlace Makefile \\\n  --replace-fail \\\n    'PG_DUCKDB_LINK_FLAGS += -Wl,-rpath,$(PG_LIB)/ -L$(DUCKDB_BUILD_DIR)/src -L$(PG_LIB) -lstdc++ -llz4' \\\n    'PG_DUCKDB_LINK_FLAGS += -Wl,-rpath,$(PG_LIB)/ -L$(DUCKDB_BUILD_DIR)/src -L$(PG_LIB) -lstdc++ -llz4 -lssl -lcrypto'\n",
       httpfsSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "duckdb",
           repo: "duckdb-httpfs",
           rev: "9c7d34977b10346d0b4cbbde5df807d1dab0b2bf",
@@ -71,11 +71,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "shared_preload_libraries = 'pg_duckdb'\n",
               sql: "CREATE EXTENSION pg_duckdb;\nSELECT duckdb.raw_query('SELECT 42');\n",
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "DuckDB-powered Postgres extension for high-performance analytics",
         homepage: "https://github.com/duckdb/pg_duckdb",
         changelog: nix.thunk(() => nix.str`https://github.com/duckdb/pg_duckdb/releases/tag/v${nix.sel(finalAttrs, "version")}`),

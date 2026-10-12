@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const websockets = nix.arg($, "websockets");
   const httpx2 = nix.arg($, "httpx2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "httpx2",
       version: "2.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydantic",
           repo: "httpx2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_fancy_pypi_readme, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [anyio, certifi, httpcore2, idna]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         brotli: nix.thunk(() => (nix.asBool(isPyPy) ? [brotlicffi] : [brotli])),
         cli: nix.thunk(() => [click, pygments, rich]),
         http2: nix.thunk(() => [h2]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         chardet,
         pytestCheckHook,
         pytest_trio,
-        nix.thunk(() => nix.app(nix.sel(starlette, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(starlette, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: false })))),
         trustme,
         uvicorn,
         websockets,
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
         "test_response_decode_text_using_autodetect",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_keepalive_ping"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, httpx2: httpx2 })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, httpx2: httpx2 })),
       })),
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "A next generation HTTP client for Python",
         homepage: "https://github.com/pydantic/httpx2",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/httpx2/blob/${nix.sel(finalAttrs, "src", "tag")}/src/httpx2/CHANGELOG.md`),

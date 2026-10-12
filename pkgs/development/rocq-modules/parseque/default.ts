@@ -19,30 +19,30 @@ export default nix.lambda((args) => (() => {
   const rocq_core = nix.arg($, "rocq-core");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "parseque",
       repo: "parseque",
       owner: "rocq-community",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.sel(lib, "versions", "range"), "9.0", "9.3")), "0.3.1")),
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.sel(lib, "versions", "range"), "8.16", "8.20")), "0.2.2")),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "0.2.2": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-O50Rs7Yf1H4wgwb7ltRxW+7IF0b04zpfs+mR83rxT+E=",
         })),
         "0.3.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           sha256: "sha256-W2eenv5Q421eVn2ubbninFmmdT875f3w/Zs7yGHUKP4=",
         })),
         "0.3.1": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           sha256: "sha256-t7nHpHl6E3iXkhMO0A53URmKVpWENjf/VODVXjD9Y1A=",
         })),
       })),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       releaseRev: (v) => nix.str`v${v}`,
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "0.2.2", v))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Total parser combinators in Rocq",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

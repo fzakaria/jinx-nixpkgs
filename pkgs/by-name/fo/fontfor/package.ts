@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fontfor",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "7sDream",
           repo: "fontfor",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [expat, fontconfig, freetype]),
       cargoHash: "sha256-TOoNfGYQTr5UZeyasslJU9GRIAnH3p2a9UIFz8IJv7A=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Find fonts which can show a specified character and preview them in browser",
         homepage: "https://github.com/7sDream/fontfor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

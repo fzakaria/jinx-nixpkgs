@@ -40,16 +40,16 @@ export default nix.lambda((args) => (() => {
   const getconf = nix.arg($, "getconf");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "carton",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-git/releases/download/carton-v${nix.sel(finalAttrs, "version")}/git-carton-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-vWkBJdP4ZpRCEwzrFMzsdHay4VyiXix/+1qzk+7yDvk=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./carton-find-getconf.patch"), nix.thunk(() => ({ __proto__: pos$2, getconf: nix.thunk(() => nix.str`${getconf}`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./carton-find-getconf.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, getconf: nix.thunk(() => nix.str`${getconf}`) })))),
       ]),
       postPatch: "rm CHANGES.md\n",
       buildInputs: nix.thunk(() => [cmdliner, digestif, result, rresult, fpath, bos, hxd]),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [findlib]),
       checkInputs: nix.thunk(() => [base64, alcotest, alcotest_lwt, crowbar, lwt, mirage_flow]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of PACKv2 file in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/mirage/ocaml-git",

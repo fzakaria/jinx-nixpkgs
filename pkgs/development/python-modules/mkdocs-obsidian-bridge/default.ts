@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const mkdocs_test = nix.arg($, "mkdocs-test");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-obsidian-bridge",
       version: "1.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GooRoo",
           repo: "mkdocs-obsidian-bridge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mkdocs_obsidian_bridge"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, mkdocs_test]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use Obsidian’s syntax for your website with this MkDocs plugin",
         homepage: "https://github.com/GooRoo/mkdocs-obsidian-bridge",
         license: nix.thunk(() => (() => {

@@ -27,20 +27,20 @@ export default nix.lambda((args) => (() => {
   const nbval = nix.arg($, "nbval");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bqplot",
       version: "0.13.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bqplot",
           repo: "bqplot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-mYeQzmUa7WFDL8o6xsRD2bZ+3E9y4K/KyGE0zr0V4BA=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/js`),
           hash: "sha256-/QSZoanK92pV8g3n92g2pK17XjNgyerSe4UCV1/stXY=",
         })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/"]),
       pythonImportsCheck: nix.thunk(() => ["bqplot", "bqplot.pyplot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "2D plotting library for Jupyter based on Grammar of Graphics",
         homepage: "https://bqplot.github.io/bqplot",
         downloadPage: "https://github.com/bqplot/bqplot",

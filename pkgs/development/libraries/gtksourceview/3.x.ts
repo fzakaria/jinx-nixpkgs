@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gtksourceview",
       version: "3.24.11",
       __structuredAttrs: true,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
             sha256: "1zbpj283b5ycz767hqz5kdq02wzsga65pp4fykvhg8xj6x50f6v9",
           })));
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace gtksourceview/gtksourceview-utils.c --replace \"@NIX_SHARE_PATH@\" \"$out/share\"\n",
       patches: nix.thunk(() => [nix.path(here, "./3.x-nix_share_path.patch")]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       enableParallelBuilding: true,
@@ -70,14 +70,14 @@ xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/gtksourceview",
         pkgConfigModules: nix.thunk(() => ["gtksourceview-3.0"]),
         platforms: nix.thunk(() => (() => {

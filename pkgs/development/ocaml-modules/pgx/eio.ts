@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const eio_main = nix.arg($, "eio_main");
   const pgx = nix.arg($, "pgx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pgx_eio",
       version: nix.thunk(() => nix.attr(pgx, "version")),
       src: nix.thunk(() => nix.attr(pgx, "src")),
       propagatedBuildInputs: nix.thunk(() => [eio, pgx]),
       checkInputs: nix.thunk(() => [alcotest, base64, eio_main]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { __proto__: pos$1, description: "Pgx using Eio for IO" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { [nix.POS]: pos$1, description: "Pgx using Eio for IO" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=eio.ts.map

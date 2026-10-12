@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const darwin = nix.arg($, "darwin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nim-unwrapped",
       version: "2.2.12",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://nim-lang.org/download/nim-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Jjmgal6np/z1ffHn4e9NGyvuWMesm9ANvSqlvqHlpWo=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       configurePhase: nix.thunk(() => (() => {
         const bootstrapCompiler = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "nim-bootstrap",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,12 +63,12 @@ runHook postConfigure
       buildPhase: "runHook preBuild\nlocal HOME=$TMPDIR\n./bin/nim c --parallelBuild:$NIX_BUILD_CORES koch\n./koch boot $kochArgs --parallelBuild:$NIX_BUILD_CORES\n./koch toolsNoExternal $kochArgs --parallelBuild:$NIX_BUILD_CORES\n./bin/nim js -d:release tools/dochack/dochack.nim\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dt $out/bin bin/*\nln -sf $out/nim/bin/nim $out/bin/nim\nln -sf $out/nim/lib $out/lib\n./install.sh $out\ncp -a tools dist $out/nim/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nimHost: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "nimHost is deprecated, please use stdenv.hostPlatform.nim.os instead.", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "nim", "os")))),
         nimTarget: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "nimTarget is deprecated, please use stdenv.hostPlatform.nim.cpu instead.", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "nim", "cpu")))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Statically typed, imperative programming language",
         homepage: "https://nim-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

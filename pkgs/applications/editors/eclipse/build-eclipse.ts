@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
     const description = nix.arg($_1, "description");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
         src: src,
         desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "Eclipse",
             exec: "eclipse",
             icon: "eclipse",
@@ -96,9 +96,9 @@ ln -s $out/eclipse/icon.xpm $out/share/pixmaps/eclipse.xpm
 # ensure eclipse.ini does not try to use a justj jvm, as those aren't compatible with nix
 perl -i -p0e 's|-vm\\nplugins/org.eclipse.justj.*/jre/bin.*\\n||' $out/eclipse/eclipse.ini
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://www.eclipse.org/",
           description: description,
           sourceProvenance: nix.thunk(() => (() => {

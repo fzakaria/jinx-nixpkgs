@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "oxicloud",
       version: "0.8.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AtalayaLabs",
           repo: "OxiCloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--bin=oxicloud"]),
       postPatch: "# Upstream pins `target-cpu=native`, making the binary non-portable\n# (breaks the binary cache). Build for the generic baseline instead.\nrm -f .cargo/config.toml\n",
       "oxicloud-front": nix.thunk(() => nix.app(buildNpmPackage, (frontFinalAttrs) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "oxicloud-front",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
   --set-default OXICLOUD_STATIC_PATH ${nix.sel(finalAttrs, "oxicloud-front")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--subpackage", "oxicloud-front"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ultra-fast, secure & lightweight self-hosted cloud storage",
         homepage: "https://github.com/AtalayaLabs/OxiCloud",
         changelog: nix.thunk(() => nix.str`https://github.com/AtalayaLabs/OxiCloud/releases/tag/v${nix.sel(finalAttrs, "version")}`),

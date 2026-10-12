@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const enableParallelBuilding = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-oezcRD1AddWmDYDxueE0EwK0+UN/EZ5GQxwkdCz4xoY=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [boost, bluez]);
       const pythonImportsCheck = nix.thunk(() => ["mbientlab", "mbientlab.warble"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for MbientLab's Warble library",
         homepage: "https://github.com/mbientlab/pywarble",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

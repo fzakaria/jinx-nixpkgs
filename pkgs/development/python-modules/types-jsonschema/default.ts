@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const referencing = nix.arg($, "referencing");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "types-jsonschema",
       version: "4.26.0.20261006",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types_jsonschema",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-PrfbYbaBnUCt39qscXPnSQcafUqaQ5TwyERZjshLJQA=",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [referencing]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Typing stubs for jsonschema",
         homepage: "https://github.com/python/typeshed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

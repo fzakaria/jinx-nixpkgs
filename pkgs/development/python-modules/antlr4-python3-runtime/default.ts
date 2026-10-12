@@ -31,7 +31,7 @@ popd
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Runtime for ANTLR",
         mainProgram: "pygrun",
         homepage: "https://www.antlr.org/",
@@ -42,7 +42,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

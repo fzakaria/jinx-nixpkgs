@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mpdris2-rs",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "szclsya",
           repo: "mpdris2-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace misc/mpdris2-rs.service --replace-fail \"/usr/local\" \"$out\"\n",
       postInstall: "install -Dm644 misc/mpdris2-rs.service -t $out/lib/systemd/user\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Exposing MPRIS V2.2 D-Bus interface for MPD",
         longDescription: "A lightweight implementation of MPD to D-Bus bridge, which exposes MPD\nplayer and playlist information onto MPRIS2 interface so other programs\ncan use this generic interface to retrieve MPD's playback state.\n",
         homepage: "https://github.com/szclsya/mpdris2-rs",

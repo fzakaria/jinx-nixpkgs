@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "google-chat-linux";
       const version = "5.39.28-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "squalou",
           repo: "google-chat-linux",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-Lgo3pGmaRMawH4m264W0CwpIuiVZZbqhI5OHXOKau9c=";
       const dontNpmBuild = true;
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const postPatch = nix.thunk(() => nix.str`# https://github.com/electron/electron/issues/31121
 substituteInPlace src/paths.js \\
   --replace-fail "process.resourcesPath" "'$out/lib/node_modules/${pname}/assets'"
@@ -44,7 +44,7 @@ makeWrapper ${electron}/bin/electron $out/bin/${pname} \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "google-chat-linux",
             exec: "google-chat-linux",
             icon: "google-chat-linux",
@@ -54,11 +54,11 @@ makeWrapper ${electron}/bin/electron $out/bin/${pname} \\
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Electron-base client for Google Hangouts Chat",
         homepage: "https://github.com/squalou/google-chat-linux",
         downloadPage: "https://github.com/squalou/google-chat-linux/releases",
@@ -72,7 +72,7 @@ makeWrapper ${electron}/bin/electron $out/bin/${pname} \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

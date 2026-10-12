@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const enableOpenGLX11 = nix.argOr($, "enableOpenGLX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const enablePython = nix.argOr($, "enablePython", () => false);
   const enableRaytracerX11 = nix.argOr($, "enableRaytracerX11", () => false);
-  const boost_python = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$1, enablePython: true, python: python3 }))));
+  const boost_python = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python3 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "11.4.2",
       pname: "geant4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://cern.ch/geant4-data/releases/geant4-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-VyDyu6aSECfiBq1PCgb5vMNIras2JA6LJ3EPIM4+lxo=",
         })))),
@@ -82,14 +82,14 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add("substituteInPlace \"$out\"/bin/geant4.sh \\\n  --replace-fail \"export GEANT4_DATA_DIR\" \"# export GEANT4_DATA_DIR\"\n", nix.app(nix.sel(lib, "optionalString"), enableQt, "wrapQtAppsHook\n"))),
       setupHook: nix.path(here, "./geant4-hook.sh"),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         data: nix.thunk(() => nix.app(callPackage, nix.path(here, "./datasets.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         enableQt: enableQt,
       })),
       shellHook: "source $out/nix-support/setup-hook\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Toolkit for the simulation of the passage of particles through matter",
         longDescription: "Geant4 is a toolkit for the simulation of the passage of particles through matter.\nIts areas of application include high energy, nuclear and accelerator physics, as well as studies in medical and space science.\nThe two main reference papers for Geant4 are published in Nuclear Instruments and Methods in Physics Research A 506 (2003) 250-303, and IEEE Transactions on Nuclear Science 53 No. 1 (2006) 270-278.\n",
         homepage: "https://www.geant4.org",

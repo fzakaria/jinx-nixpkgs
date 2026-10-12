@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ed = nix.arg($, "ed");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bc",
       version: "1.08.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/bc/bc-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-eeMeAiqEsx3YCYFQY9S46lkLQJY3pSxQ7J9Cwr8zJxE=",
         })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GNU software calculator",
         homepage: "https://www.gnu.org/software/bc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

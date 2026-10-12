@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "nvidia-container-toolkit-docker": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./package.nix"), nix.thunk(() => ({})))),
       "nvidia-docker": nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(self, "nvidia-docker-unwrapped"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "nvidia-docker",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.sel(self, "nvidia-docker-unwrapped")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gmr",
           repo: "helper",
           rev: version,
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mock]);
       const pythonImportsCheck = nix.thunk(() => ["helper", "helper.config"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Development library for quickly writing configurable applications and daemons",
         homepage: "https://helper.readthedocs.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

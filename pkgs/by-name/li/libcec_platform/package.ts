@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "p8-platform",
       version: "2.1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pulse-Eight",
           repo: "platform",
           rev: nix.thunk(() => nix.str`p8-platform-${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "libcec-platform-fix-cmake4-1.patch",
             url: "https://github.com/Pulse-Eight/platform/commit/7350df98980b4e7036812b15812e3cb3c9353816.patch",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
             hash: "sha256-YbxQxmXF2Iv67SjX/kMD9Df2nggBFX0fBFMyNdXXZtI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "libcec-platform-fix-cmake4-5.patch",
             url: "https://github.com/Pulse-Eight/platform/commit/d7faed1c696b1a6a67f114a63a0f4c085f0f9195.patch",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DCMAKE_CXX_FLAGS='-std=c++11'")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Platform library for libcec and Kodi addons",
         homepage: "https://github.com/Pulse-Eight/platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lutgen-studio",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ozwaldorf",
           repo: "lutgen-rs",
           tag: nix.thunk(() => nix.str`lutgen-studio-v${nix.sel(finalAttrs, "version")}`),
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^lutgen-studio-v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official GUI for Lutgen, the best way to apply popular colorschemes to any image or wallpaper",
         homepage: "https://github.com/ozwaldorf/lutgen-rs",
         maintainers: nix.thunk(() => (() => {

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fastjet = nix.arg($, "fastjet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastjet-contrib",
       version: "1.101",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fastjet.hepforge.org/contrib/downloads/fjcontrib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-2+itIZn3LWTdKfYhj29T793I+z5d2cXRDy/R4j1uRPY=",
         })))),
@@ -41,7 +41,7 @@ substituteInPlace configure \\
       postBuild: "make fragile-shared\n",
       postInstall: "make fragile-shared-install\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Third party extensions for FastJet",
         homepage: "http://fastjet.fr/",
         changelog: nix.thunk(() => nix.str`https://phab.hepforge.org/source/fastjetsvn/browse/contrib/tags/${nix.sel(finalAttrs, "version")}/NEWS?as=source&blame=off`),

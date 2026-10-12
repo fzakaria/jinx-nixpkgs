@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-gutenprint-binary",
       version: "5.0.1",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.openprinting.org/download/printdriver/debian/dists/lsb3.1/main/binary-amd64/gutenprint_5.0.1-1lsb3.1_amd64.deb",
           sha256: "0an5gba6r6v54r53s2gj2fjk8fzpl4lrksjas2333528b0k8gbbc",
         }))) : nix.builtins.throw("TODO"))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       libPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc")), zlib]))),
       buildPhase: "ar -x $src data.tar.gz\ntar xfz data.tar.gz\ncp -r opt/gutenprint $out\n\nfor p in \\\n    $out/cups/lib/driver/gutenprint.5.0 \\\n    $out/bin/{escputil,cups-calibrate} \\\n    $out/cups/lib/driver/gutenprint.5.0 \\\n    $out/cups/lib/filter/{rastertogutenprint.5.0,commandtocanon,commandtoepson} \\\n    $out/cups/lib/backend/{canon,epson} \\\n    $out/sbin/cups-genppd.5.0 \\\n  ; do\n  patchelf --interpreter \"$(cat $NIX_CC/nix-support/dynamic-linker)\" \\\n      --set-rpath $libPath $p\ndone\n\nmkdir $out/lib\nln -s $out/cups/lib $out/lib/cups\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

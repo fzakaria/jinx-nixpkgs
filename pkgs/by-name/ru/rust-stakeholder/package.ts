@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rust-stakeholder",
       version: "0-unstable-2025-03-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "giacomo-b",
           repo: "rust-stakeholder",
           rev: "aacdccbed72be34e0231e6d15cecb6d87a9a5ef6",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-NxO+7Wh8Ff6RPFtmbEa3EJszfDaZDXGWZDAoXPEAnpI=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generate impressive-looking terminal output to look busy when stakeholders walk by",
         homepage: "https://github.com/giacomo-b/rust-stakeholder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

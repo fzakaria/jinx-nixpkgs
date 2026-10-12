@@ -33,77 +33,77 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const nodes = nix.thunk(() => ({
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     drupal_nginx: (_) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         drupal: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           webserver: "nginx",
           enable: true,
           sites: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "site1.local": nix.thunk(() => ({
-              __proto__: pos$2,
-              database: nix.thunk(() => ({ __proto__: pos$1, tablePrefix: "site1_" })),
+              [nix.POS]: pos$2,
+              database: nix.thunk(() => ({ [nix.POS]: pos$1, tablePrefix: "site1_" })),
               enable: true,
             })),
             "site2.local": nix.thunk(() => ({
-              __proto__: pos$4,
-              database: nix.thunk(() => ({ __proto__: pos$3, tablePrefix: "site2_" })),
+              [nix.POS]: pos$4,
+              database: nix.thunk(() => ({ [nix.POS]: pos$3, tablePrefix: "site2_" })),
               enable: true,
             })),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$10,
-        firewall: nix.thunk(() => ({ __proto__: pos$8, allowedTCPPorts: nix.thunk(() => [80n]) })),
+        [nix.POS]: pos$10,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$8, allowedTCPPorts: nix.thunk(() => [80n]) })),
         hosts: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
         })),
       })),
     }),
     drupal_caddy: (_) => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         drupal: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: true,
           webserver: "caddy",
           sites: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "site1.local": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
-              database: nix.thunk(() => ({ __proto__: pos$12, tablePrefix: "site1_" })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$12, tablePrefix: "site1_" })),
             })),
             "site2.local": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
-              database: nix.thunk(() => ({ __proto__: pos$14, tablePrefix: "site2_" })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$14, tablePrefix: "site2_" })),
             })),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$21,
-        firewall: nix.thunk(() => ({ __proto__: pos$19, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+        [nix.POS]: pos$21,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$19, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
         hosts: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           "127.0.0.1": nix.thunk(() => ["site1.local", "site2.local"]),
         })),
       })),
     }),
   }));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     name: "drupal",
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "OulipianSummer"))]),
     })),
     nodes: nodes,

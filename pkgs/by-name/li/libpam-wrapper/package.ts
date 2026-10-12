@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const python = nix.argOr($, "python", () => null);
   nix.assert_((!nix.asBool(enablePython) || nix.asBool(!nix.eq(python, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libpam-wrapper/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libpam-wrapper",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.samba.org/pam_wrapper.git",
           rev: nix.thunk(() => nix.str`pam_wrapper-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-AtfkiCUvCxUfll6lOlbMyy5AhS5R2BGF1+ecC1VuwzM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./python.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             siteDir: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.sel(python, "sitePackages")))),
             includeDir: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.str`include/${nix.sel(python, "libPrefix")}`))),
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [python])))),
       buildInputs: nix.thunk(() => [linux_pam]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wrapper for testing PAM modules",
         homepage: "https://cwrap.org/pam_wrapper.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

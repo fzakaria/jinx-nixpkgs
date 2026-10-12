@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const websocket_client = nix.arg($, "websocket-client");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jellyfin-apiclient-python",
       version: "1.20.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jellyfin",
           repo: "jellyfin-apiclient-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["jellyfin_apiclient_python"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API client for Jellyfin",
         homepage: "https://github.com/jellyfin/jellyfin-apiclient-python",
         changelog: nix.thunk(() => nix.str`https://github.com/jellyfin/jellyfin-apiclient-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

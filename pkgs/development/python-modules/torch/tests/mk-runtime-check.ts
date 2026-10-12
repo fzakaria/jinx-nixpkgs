@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libraries = nix.arg($, "libraries");
   const versionAttr = nix.arg($, "versionAttr");
   return nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       feature: feature,
       libraries: libraries,
       name: nix.thunk(() => nix.str`${feature}Available`),

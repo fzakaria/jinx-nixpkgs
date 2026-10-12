@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const coordgenlibs = nix.arg($, "coordgenlibs");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openbabel",
       version: "3.1.1-unstable-2024-12-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openbabel",
           repo: "openbabel",
           rev: "889c350feb179b43aa43985799910149d4eaa2bc",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontUseNinjaCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolbox designed to speak the many languages of chemical data",
         homepage: "http://openbabel.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

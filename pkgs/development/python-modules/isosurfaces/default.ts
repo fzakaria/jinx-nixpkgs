@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-+lHr6GTqk1WyaDDif91qQdWli0GfqNS0fjuLgHGNbiE=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["isosurfaces"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jared-hughes/isosurfaces",
         description: "Construct isolines/isosurfaces of a 2D/3D scalar field defined by a function",
         longDescription: "Construct isolines/isosurfaces of a 2D/3D scalar field defined by a\nfunction, i.e. curves over which f(x,y)=0 or surfaces over which\nf(x,y,z)=0. Most similar libraries use marching squares or similar over a\nuniform grid, but this uses a quadtree to avoid wasting time sampling\nmany far from the implicit surface.\n",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

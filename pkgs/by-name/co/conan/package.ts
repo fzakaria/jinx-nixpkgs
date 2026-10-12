@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const xcbuild = nix.arg($, "xcbuild");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "conan",
       version: "2.32.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "conan-io",
           repo: "conan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
         "test/unittests/tools/env/test_env_files.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decentralized and portable C/C++ package manager",
         homepage: "https://conan.io",
         changelog: nix.thunk(() => nix.str`https://github.com/conan-io/conan/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

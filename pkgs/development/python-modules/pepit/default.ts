@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pepit",
       version: "0.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PerformanceEstimation",
           repo: "PEPit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["PEPit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Performance Estimation in Python",
         changelog: nix.thunk(() => nix.str`https://pepit.readthedocs.io/en/latest/whatsnew/${nix.sel(finalAttrs, "version")}.html`),
         homepage: "https://pepit.readthedocs.io/",

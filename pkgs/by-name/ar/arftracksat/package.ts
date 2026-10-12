@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const curlpp = nix.arg($, "curlpp");
   const glm = nix.arg($, "glm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arftracksat",
       version: "1.0-unstable-2026-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arf20",
           repo: "arftracksat",
           rev: "a9b86878e2ee6f332dc1df07685b7d20970c2f7e",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/main.cpp --replace-fail '/usr/local' \"$out\"\nsubstituteInPlace config.json --replace-fail '/usr/local' \"$out\"\n",
       buildInputs: nix.thunk(() => nix.concat([curl, nlohmann_json, curlpp, glm], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [freeglut, libGL, libGLU])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Satellite tracking software for linux",
         homepage: "https://github.com/arf20/arftracksat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

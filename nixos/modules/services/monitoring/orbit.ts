@@ -34,26 +34,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "orbit"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         orbit: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Fleet Orbit agent"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Enable the Fleet Orbit agent.",
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# Use an enrollment secret from a plaintext file managed outside the Nix store.\n{\n  services.orbit = {\n    enable = true;\n    fleetUrl = \"https://fleet.example.com\";\n    enrollSecretPath = \"/etc/fleet/enroll-secret\";\n\n    desktop.enable = true;\n  };\n}\n\n# Use an enrollment secret from sops-nix.\n{ config, ... }:\n{\n  sops.secrets.fleet-orbit-enroll-secret = { };\n\n  services.orbit = {\n    enable = true;\n    fleetUrl = \"https://fleet.example.com\";\n    enrollSecretPath = config.sops.secrets.fleet-orbit-enroll-secret.path;\n\n    desktop.enable = true;\n  };\n}\n")),
           })),
           orbitPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fleet-orbit", nix.thunk(() => ({})))),
           osqueryPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "osquery", nix.thunk(() => ({})))),
           desktop: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Fleet Desktop tray application")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fleet-desktop", nix.thunk(() => ({})))),
             alternativeBrowserHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "fleet-browser.example.com",
@@ -61,64 +61,64 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           fleetUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "https://fleet.example.com",
               description: "The base URL of the Fleet server.",
             })))),
           enrollSecretPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/run/secrets/fleet-enroll-secret",
               description: "Path to a file containing the enroll secret for authenticating to the Fleet server.\nThis should point to a secret outside the Nix store, for example a sops-nix or agenix\nsecret path.\n",
             })))),
           fleetCertificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "cacert")}/etc/ssl/certs/ca-bundle.crt`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt\"")),
               description: "Path to the Fleet server certificate chain.",
             })))),
           debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable debug logging.",
             })))),
           devMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Run Orbit in development mode.",
             })))),
           enableScripts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable Fleet script execution.",
             })))),
           endUserEmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "user@example.com",
               description: "End-user email to pass to Orbit.",
             })))),
           fleetManagedHostIdentityCertificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Configure Orbit to use Fleet-managed host identity certificates.\nThis requires a Fleet Enterprise Edition subscription.\n",
             })))),
           hostIdentifier: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["uuid", "instance"]))))),
               default: null,
               example: "uuid",
               description: "Host identifier mode to use when Orbit and osquery enroll to Fleet.",
             })))),
           insecure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable TLS certificate verification.",
@@ -127,19 +127,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             orbit: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Fleet Orbit agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => !nix.eq(value, null), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   ORBIT_FLEET_URL: nix.thunk(() => nix.sel(cfg, "fleetUrl")),
                   ORBIT_ENROLL_SECRET_PATH: "%d/enroll-secret",
                   ORBIT_FLEET_CERTIFICATE: nix.thunk(() => nix.sel(cfg, "fleetCertificate")),
@@ -162,7 +162,7 @@ export default nix.lambda((args) => (() => {
                   NIX_ORBIT_DESKTOP_PATH: nix.thunk(() => (nix.asBool(nix.sel(cfg, "desktop", "enable")) ? nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "desktop", "package"))) : null)),
                 })))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "orbitPackage")))),
                 LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`enroll-secret:${nix.sel(cfg, "enrollSecretPath")}`)]),
                 StateDirectory: "orbit",

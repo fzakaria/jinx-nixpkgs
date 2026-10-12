@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-ecosystem",
           repo: "python-iceportal",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytest_httpx, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["iceportal"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for getting data from the ICE Portal",
         homepage: "https://github.com/home-assistant-ecosystem/python-iceportal",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-ecosystem/python-iceportal/releases/tag/${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

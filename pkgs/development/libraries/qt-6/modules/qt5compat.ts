@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const openssl = nix.arg($, "openssl");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qt5compat",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       buildInputs: nix.thunk(() => [libiconv, icu, openssl]),

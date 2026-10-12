@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const tiling_wm = nix.argOr($, "tiling_wm", () => false);
   const mkStudio = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)), nix.thunk(() => ({
-      __proto__: pos$2,
-      fontsConf: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$1, fontDirectories: [] })))),
+      [nix.POS]: pos$2,
+      fontsConf: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: [] })))),
       buildFHSEnv: buildFHSEnv,
       tiling_wm: tiling_wm,
     })));
   const stableVersion = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "2025.3.2.6",
     versionPrefix: "Panda%202",
     sha256Hash: "sha256-mAJPmDSoE9STOh45u0dIejL4TyR8CIqcGMhiixIFIWc=",
   }));
   const canaryVersion = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: "2026.1.2.1",
     versionPrefix: "canary-Quail%202",
     sha256Hash: "sha256-UYj+6CSmtxC11HVjPxc+m9r6b5RrXXFOzpDfSkx4mw4=",
   }));
   return {
-    __proto__: pos$7,
-    stable: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(stableVersion, { __proto__: pos$5, channel: "stable", pname: "android-studio-for-platform" })))),
+    [nix.POS]: pos$7,
+    stable: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(stableVersion, { [nix.POS]: pos$5, channel: "stable", pname: "android-studio-for-platform" })))),
     canary: nix.thunk(() => nix.app(mkStudio, nix.thunk(() => nix.update(canaryVersion, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         channel: "canary",
         pname: "android-studio-for-platform-canary",
       })))),

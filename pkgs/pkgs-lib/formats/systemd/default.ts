@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "generators"));
   const mkValueStringDefault = nix.thunk(() => nix.attr(from, "mkValueStringDefault"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     format: nix.thunk(() => (() => {
       const mkValueString = nix.thunk(() => nix.app(mkValueStringDefault, nix.thunk(() => ({}))));
       const mkKeyValue = (k) => (v) => (nix.asBool(nix.eq(v, null)) ? nix.str`# ${k} is unset` : nix.str`${k} = ${nix.app(mkValueString, v)}`);
-      const rawFormat = nix.thunk(() => nix.app(ini, nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true, mkKeyValue: mkKeyValue }))));
+      const rawFormat = nix.thunk(() => nix.app(ini, nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true, mkKeyValue: mkKeyValue }))));
       return nix.update(rawFormat, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         generate: (name) => (value) => nix.app(warn, "Direct use of `pkgs.formats.systemd` has been deprecated, please use `pkgs.formats.systemd { }` instead.", nix.thunk(() => nix.sel(rawFormat, "generate")), name, value),
         __functor: (self) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);

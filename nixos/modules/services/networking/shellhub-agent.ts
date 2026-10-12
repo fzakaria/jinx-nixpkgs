@@ -27,41 +27,41 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "shellhub-agent"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "shellhub-agent": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "ShellHub Agent daemon")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "shellhub-agent", nix.thunk(() => ({})))),
           preferredHostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "Set the device preferred hostname. This provides a hint to\nthe server to use this as hostname if it is available.\n",
             })))),
           keepAliveInterval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 30n,
               description: "Determine the interval to send the keep alive message to\nthe server. This has a direct impact of the bandwidth\nused by the device.\n",
             })))),
           tenantId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "ba0a880c-2ada-11eb-a35e-17266ef329d6",
               description: "The tenant ID to use when connecting to the ShellHub\nGateway.\n",
             })))),
           server: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "https://cloud.shellhub.io",
               description: "Server address of ShellHub Gateway to connect.\n",
             })))),
           privateKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/shellhub-agent/private.key",
               description: "Location where to store the ShellHub Agent private\nkey.\n",
@@ -70,13 +70,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "shellhub-agent": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "ShellHub Agent",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["local-fs.target"]),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
                 "time-sync.target",
               ]),
               environment: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 SHELLHUB_SERVER_ADDRESS: nix.thunk(() => nix.sel(cfg, "server")),
                 SHELLHUB_PRIVATE_KEY: nix.thunk(() => nix.sel(cfg, "privateKey")),
                 SHELLHUB_TENANT_ID: nix.thunk(() => nix.sel(cfg, "tenantId")),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
                 SHELLHUB_PREFERRED_HOSTNAME: nix.thunk(() => nix.sel(cfg, "preferredHostname")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 User: "root",
                 Restart: "on-failure",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/agent`),

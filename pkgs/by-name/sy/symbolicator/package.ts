@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "symbolicator",
       version: "26.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getsentry",
           repo: "symbolicator",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [bzip2, openssl, zstd]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SYMBOLICATOR_GIT_VERSION: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
         SYMBOLICATOR_RELEASE: nix.thunk(() => nix.sel(finalAttrs, "version")),
         ZSTD_SYS_USE_PKG_CONFIG: true,
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native Symbolication as a Service",
         homepage: "https://getsentry.github.io/symbolicator/",
         changelog: nix.thunk(() => nix.str`https://github.com/getsentry/symbolicator/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

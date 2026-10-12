@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1gl1jmihafawg7hvnn4xb20vd2x5qpvca0m1wr2gk0m2jj42yiq6",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [flit]);
       const pythonImportsCheck = nix.thunk(() => ["tidyexc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Raise rich, helpful exceptions",
         homepage: "https://github.com/kalekundert/tidyexc",
         changelog: nix.thunk(() => nix.str`https://github.com/kalekundert/tidyexc/blob/v${version}/CHANGELOG.md`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

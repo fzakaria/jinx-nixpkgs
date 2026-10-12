@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const why3 = nix.arg($, "why3");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "easycrypt",
       version: "2026.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "easycrypt",
           repo: "easycrypt",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\ndune install --prefix $out easycrypt\nrm $out/bin/ec-runtest\nwrapPythonProgramsIn \"$out/lib/easycrypt/commands\" \"${pythonPath[*]}\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

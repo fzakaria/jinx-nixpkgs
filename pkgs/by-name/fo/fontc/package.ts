@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fontc",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TjbhVkhoIoyp6A33v/QVaNLoHxB5whT/gOlehQTUKxM=",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-FLvEgIFgLE++59j5LeCRC4ptgRhAiDF7hani4Yh8kn0=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wherein we pursue oxidizing fontmake",
         homepage: "https://github.com/googlefonts/fontc",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/fontc/releases/tag/fontc-v${nix.sel(finalAttrs, "version")}`),

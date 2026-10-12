@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hatchling",
       version: "1.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-a0itQGikgu1yObOoIVvFW0eq0zRdWN/JTlU8XS1GIRs=",
@@ -42,7 +42,7 @@ ${nix.sel(python, "interpreter")} tests/downstream/integrate.py
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern, extensible Python build backend",
         mainProgram: "hatchling",
         homepage: "https://hatch.pypa.io/latest/",

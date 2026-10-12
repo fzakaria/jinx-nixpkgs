@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const rpmextract = nix.arg($, "rpmextract");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "storcli",
       version: "7.3103.00",
       phase: "32",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://docs.broadcom.com/docs-and-downloads/host-bus-adapters/host-bus-adapters-common-files/sas_sata_nvme_12g_p${nix.sel(finalAttrs, "phase")}/STORCLI_SAS3.5_P${nix.sel(finalAttrs, "phase")}.zip`),
           hash: "sha256-bOlIChZi2eWpc5QA+wXBQA4s+o/MVLVWsligjDpUXEU=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
         const system = nix.thunk(() => nix.attr(from, "system"));
-        const platforms = nix.thunk(() => ({ __proto__: pos$2, "x86_64-linux": "Linux", "aarch64-linux": "ARM/Linux" }));
+        const platforms = nix.thunk(() => ({ [nix.POS]: pos$2, "x86_64-linux": "Linux", "aarch64-linux": "ARM/Linux" }));
         const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${system}`)), nix.key(nix.force(system))));
         return nix.str`rpmextract $src/univ_viva_cli_rel/Unified_storcli_all_os/${platform}/storcli-00${nix.sel(finalAttrs, "version")}00.0000-1.*.rpm
 `;
@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -D ./opt/MegaRAID/storcli/storcli64 $out/bin/storcli64\nln -s storcli64 $out/bin/storcli\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} -v`),
             version: nix.thunk(() => nix.str`00${nix.sel(finalAttrs, "version")}00.0000`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.broadcom.com/support/download-search?pg=&pf=Host+Bus+Adapters&pn=&pa=&po=&dk=storcli&pl=&l=false",
         description: "Storage Command Line Tool",
         sourceProvenance: nix.thunk(() => (() => {

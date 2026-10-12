@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.jellycon";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jellyfin",
           repo: "jellycon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
 `);
       const propagatedBuildInputs = nix.thunk(() => [requests, dateutil, six, kodi_six, signals, websocket]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jellyfin/jellycon",
         description: "Lightweight Kodi add-on for Jellyfin",
         longDescription: "JellyCon is a lightweight Kodi add-on that lets you browse and play media\nfiles directly from your Jellyfin server within the Kodi interface. It can\neasily switch between multiple user accounts at will.\n",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         namespace,
         version,

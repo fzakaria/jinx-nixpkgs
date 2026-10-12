@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "24.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_resource",
           version: version,
           hash: "sha256-z2uJlfzdQHrJ/x3UdAhxKUKaHZDbsax3+XwZuWI3smU=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonNamespaces = nix.thunk(() => ["azure.mgmt"]);
       const pythonImportsCheck = nix.thunk(() => ["azure.mgmt.resource"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure SDK for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/resources/azure-mgmt-resource",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-resource_${version}/sdk/resources/azure-mgmt-resource/CHANGELOG.md`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

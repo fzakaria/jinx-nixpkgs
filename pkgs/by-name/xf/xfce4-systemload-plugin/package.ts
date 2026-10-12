@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const xfconf = nix.arg($, "xfconf");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-systemload-plugin",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-systemload-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-systemload-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-bjY7z4RbuIMptShY1loexuANtRIa6SRuRusDE12VacY=",
         })))),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [glib, gtk3, libgtop, libxfce4ui, libxfce4util, upower, xfce4_panel, xfconf]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-systemload-plugin",
             "rev-prefix": "xfce4-systemload-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-systemload-plugin",
         description: "System load plugin for Xfce panel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

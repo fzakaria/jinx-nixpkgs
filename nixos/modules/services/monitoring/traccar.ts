@@ -39,43 +39,43 @@ export default nix.lambda((args) => (() => {
 </properties>
 `));
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     database: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       driver: "org.h2.Driver",
       password: "",
       url: nix.thunk(() => nix.str`jdbc:h2:${stateDirectory}/traccar`),
       user: "sa",
     })),
-    logger: nix.thunk(() => ({ __proto__: pos$2, console: "true" })),
+    logger: nix.thunk(() => ({ [nix.POS]: pos$2, console: "true" })),
     web: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       override: nix.thunk(() => nix.str`${stateDirectory}/override`),
     })),
   }));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         traccar: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Traccar, an open source GPS tracking system")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "traccar", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra environment variables to pass to Traccar. Secrets should be passed\nusing the {option}`services.traccar.environmentFile` option instead.\n\nSee [the documentation](https://www.traccar.org/configuration-file/)\nfor more information.\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 CONFIG_USE_ENVIRONMENT_VARIABLES: "true",
                 DATABASE_URL: "jdbc:postgresql://localhost/traccar?socketFactory=org.newsclub.net.unix.AFUNIXSocketFactory$FactoryArg&socketFactoryArg=/run/postgresql/.s.PGSQL.5432",
               })),
             })))),
           settingsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -84,13 +84,13 @@ export default nix.lambda((args) => (() => {
               description: "File used as configuration for traccar. When specified, {option}`settings` is ignored.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               apply: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaultConfig)),
               default: defaultConfig,
               description: "{file}`config.xml` configuration as a Nix attribute set.\nThis option is ignored if `settingsFile` is set.\n\nNested attributes get translated to a properties entry in the traccar configuration.\nFor instance: `mail.smtp.port = \"25\"` results in the following entry:\n`<entry key='mail.smtp.port'>25</entry>`\n\nSecrets should be specified using {option}`environmentFile`\ninstead of this world-readable attribute set.\n[Traccar - Configuration File](https://www.traccar.org/configuration-file/).\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "File containing environment variables to substitute in the configuration before starting Traccar.\n\nCan be used for storing the secrets without making them available in the world-readable Nix store.\n\nFor example, you can set {option}`services.traccar.settings.database.password = \"$TRACCAR_DB_PASSWORD\"`\nand then specify `TRACCAR_DB_PASSWORD=\"<secret>\"` in the environment file.\nThis value will get substituted in the configuration file.\n",
@@ -101,13 +101,13 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const configuration = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settingsFile"), null)) ? nix.sel(cfg, "settingsFile") : nix.app(mkConfig, nix.thunk(() => nix.sel(cfg, "settings")))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               traccar: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 enable: true,
                 description: "Traccar",
                 after: nix.thunk(() => ["network-online.target"]),
@@ -125,7 +125,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "envsubst")))} \
 umask "$old_umask"
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   DynamicUser: true,
                   WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}`),
                   EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),

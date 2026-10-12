@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-session-ctl",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "gnome-session-ctl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [glib, systemd]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "gnome-session-ctl extracted from gnome-session for nixpkgs",
         homepage: "https://github.com/nix-community/gnome-session-ctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

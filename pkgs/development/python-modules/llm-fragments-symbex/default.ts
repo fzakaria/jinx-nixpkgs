@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "llm-fragments-symbex",
       version: "0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "llm-fragments-symbex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["llm_fragments_symbex"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_fragments_symbex)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM fragment loader for Python symbols",
         homepage: "https://github.com/simonw/llm-fragments-symbex",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm-fragments-symbex/releases/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "osxphotos",
       version: "0.76.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RhetTbull",
           repo: "osxphotos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
         "test_query_function_url",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Export photos from Apple's macOS Photos app and query the Photos library database to access metadata about images",
         homepage: "https://github.com/RhetTbull/osxphotos",
         changelog: nix.thunk(() => nix.str`https://github.com/RhetTbull/osxphotos/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

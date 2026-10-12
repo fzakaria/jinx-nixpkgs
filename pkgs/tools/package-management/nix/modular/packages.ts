@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const officialRelease = true;
   const nixComponents = nix.thunk(() => nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       splicePackages: splicePackages,
       newScope: nix.thunk(() => nix.attr(nixDependencies, "newScope")),
     })), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       otherSplices: otherSplices,
       f: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./packaging/components.nix")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           lib: lib,
           teams: teams,
           officialRelease: officialRelease,

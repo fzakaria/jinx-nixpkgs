@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
   const version = release;
   const runtimeDeps = (hostPlatform_1) => nix.concat([zlib, _icu, openssl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform_1, "isLinux")), nix.thunk(() => [krb5, lttng_ust_2_12])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform_1, "isDarwin")), nix.thunk(() => [krb5]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`${baseName}-vmr`),
       version: version,
       strictDeps: true,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
 export DYLD_LIBRARY_PATH
 `))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${sourceRepository}/archive/refs/tags/${tag}.tar.gz`),
           hash: tarballHash,
         })))),
@@ -259,11 +259,11 @@ buildFlags+=(--with-shared-components "$PWD"/.shared-components)
       dontConfigureNuget: true,
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LOCALE_ARCHIVE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(!nix.eq(glibcLocales, null)))), nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`))),
         NIX_CFLAGS_COMPILE: "-Wno-unused-command-line-argument",
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "11")))), nix.thunk(() => ({ __proto__: pos$3, NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING: "1" }))), nix.app(nix.sel(lib, "optionalAttrs"), isCross, nix.thunk(() => ({
-          __proto__: pos$4,
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "11")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING: "1" }))), nix.app(nix.sel(lib, "optionalAttrs"), isCross, nix.thunk(() => ({
+          [nix.POS]: pos$4,
           TOOLCHAIN: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config")),
           ROOTFS_DIR: nix.thunk(() => nix.app(runCommand, "rootfs", nix.thunk(() => ({})), "mkdir $out\nln -s /nix $out/\n")),
         })))))),
@@ -314,7 +314,7 @@ runHook postInstall
       preFixup: "stripExclude=(\\*.dll crossgen2)\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         releaseManifest: releaseManifest,
         buildRid: buildRid,
         hostRid: hostRid,
@@ -323,7 +323,7 @@ runHook postInstall
         hasCrossTargetBug: false,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Core functionality needed to create .NET Core projects, that is shared between Visual Studio and CLI",
         homepage: "https://dotnet.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

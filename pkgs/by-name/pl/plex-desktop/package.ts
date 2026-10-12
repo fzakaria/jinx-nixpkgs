@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
   const version = "1.115.0";
   const rev = "88";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     homepage: "https://plex.tv/",
     description: "Streaming media player for Plex",
     longDescription: "Plex for Linux is your client for playback on the Linux\ndesktop. It features the point and click interface you see in your browser\nbut uses a more powerful playback engine as well as\nsome other advance features.\n",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
     mainProgram: "plex-desktop",
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "plex-desktop",
       desktopName: "Plex",
       exec: "plex-desktop",
@@ -75,12 +75,12 @@ export default nix.lambda((args) => (() => {
       startupWMClass: "Plex",
     }))));
   const plex_desktop = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/qc6MFRM433ZhI1XjVzErdHivhSOhlpf0_${rev}.snap`),
           hash: "sha512-ofqr1B31aVpymFD381zlB66Dh93G9WqqRZjTPDTlG7IV90BPiPNgDSxdbci60HARP0zD6XnZa5kuqERqbupwZw==",
         })))),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -r . $out\nrm -r $out/etc\nrm -r $out/usr\n\n# flatpak removes these during installation.\nrm -r $out/lib/dri\nrm $out/lib/libpciaccess.so*\nrm $out/lib/libswresample.so*\nrm $out/lib/libva-*.so*\nrm $out/lib/libva.so*\nrm $out/lib/libdrm.so*\n\n# Keep dependencies where the version from nixpkgs is higher.\ncp usr/lib/x86_64-linux-gnu/libasound.so.2 $out/lib/libasound.so.2\ncp usr/lib/x86_64-linux-gnu/libjbig.so.0 $out/lib/libjbig.so.0\ncp usr/lib/x86_64-linux-gnu/libjpeg.so.8 $out/lib/libjpeg.so.8\ncp usr/lib/x86_64-linux-gnu/liblcms2.so.2 $out/lib/liblcms2.so.2\ncp usr/lib/x86_64-linux-gnu/libpci.so.3.7.0 $out/lib/libpci.so.3\ncp usr/lib/x86_64-linux-gnu/libsnappy.so.1.1.8 $out/lib/libsnappy.so.1\ncp usr/lib/x86_64-linux-gnu/libtiff.so.5 $out/lib/libtiff.so.5\ncp usr/lib/x86_64-linux-gnu/libwebp.so.7 $out/lib/libwebp.so.7\ncp usr/lib/x86_64-linux-gnu/libxkbfile.so.1.0.2 $out/lib/libxkbfile.so.1\ncp usr/lib/x86_64-linux-gnu/libxslt.so.1.1.34 $out/lib/libxslt.so.1\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       meta: meta,
@@ -146,7 +146,7 @@ set -o allexport
 ${nix.app(nix.sel(lib, "toShellVars"), extraEnv)}
 exec ${plex_desktop}/Plex.sh
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

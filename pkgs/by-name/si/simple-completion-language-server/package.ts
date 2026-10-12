@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const withCitation = nix.argOr($, "withCitation", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simple-completion-language-server",
       version: "0-unstable-2026-04-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "estin",
           repo: "simple-completion-language-server",
           rev: "f8319589ab87b18f441627999f4a8316dd712234",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-RgRmbQVZK/4U37CO8AjNQOqR/SXvL1TQU03LX7LnqPY=",
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withCitation, nix.thunk(() => ["citation"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server to enable word completion and snippets for Helix editor",
         homepage: "https://github.com/estin/simple-completion-language-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

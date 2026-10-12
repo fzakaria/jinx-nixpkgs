@@ -34,27 +34,27 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       networking: nix.thunk(() => ({
-        __proto__: pos$2,
-        firewall: nix.thunk(() => ({ __proto__: pos$1, allowedTCPPorts: nix.thunk(() => [3334n]) })),
+        [nix.POS]: pos$2,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [3334n]) })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         emptyDiskImages: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             size: 4096n,
             driveConfig: nix.thunk(() => ({
-              __proto__: pos$4,
-              deviceExtraOpts: nix.thunk(() => ({ __proto__: pos$3, serial: "data" })),
+              [nix.POS]: pos$4,
+              deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$3, serial: "data" })),
             })),
           })),
         ]),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "/data": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             device: "/dev/disk/by-id/virtio-data",
             fsType: "ext4",
             autoFormat: true,
@@ -62,16 +62,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         orangefs: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           server: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             dataStorageSpace: "/data/storage",
             metadataStorageSpace: "/data/meta",
             servers: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               server1: "tcp://server1:3334",
               server2: "tcp://server2:3334",
             })),
@@ -84,21 +84,21 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const lib = nix.arg($_1, "lib");
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       networking: nix.thunk(() => ({
-        __proto__: pos$15,
-        firewall: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+        [nix.POS]: pos$15,
+        firewall: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         orangefs: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           client: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
             fileSystems: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 target: "tcp://server1:3334/orangefs",
                 mountPoint: "/orangefs",
               })),
@@ -109,10 +109,10 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "orangefs",
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       server1: server,
       server2: server,
       client1: client,

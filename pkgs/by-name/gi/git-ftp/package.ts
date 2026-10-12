@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const man = nix.arg($, "man");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "git-ftp",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-ftp",
           repo: "git-ftp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-function-invocation-typo.patch",
             url: "https://github.com/git-ftp/git-ftp/commit/cddf7cbba80e710758f6aac0ec0d77552ea8cd75.patch",
             sha256: "sha256-2B0QaMJi78Bg3bA1jp41aiyql1/LCryoaDs7+xmS1HY=",
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
       installPhase: "make install-all prefix=$out\n",
       nativeBuildInputs: nix.thunk(() => [pandoc, man]),
       solutions: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "git-ftp": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           scripts: nix.thunk(() => ["bin/git-ftp"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, git, gnugrep, gawk, curl, hostname, gnused, findutils, lftp]),
-          fake: nix.thunk(() => ({ __proto__: pos$3, external: nix.thunk(() => ["security"]) })),
-          keep: nix.thunk(() => ({ __proto__: pos$4, $GIT_PAGER: true, $hook: true })),
+          fake: nix.thunk(() => ({ [nix.POS]: pos$3, external: nix.thunk(() => ["security"]) })),
+          keep: nix.thunk(() => ({ [nix.POS]: pos$4, $GIT_PAGER: true, $hook: true })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${git}/bin/git`),
             nix.thunk(() => nix.str`cannot:${lftp}/bin/lftp`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Git powered FTP client written as shell script",
         homepage: "https://git-ftp.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supabase-auth",
       version: "2.29.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "supabase",
           repo: "supabase-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/_sync/", "tests/_async/"]),
       pythonImportsCheck: nix.thunk(() => ["supabase_auth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library for Supabase Auth",
         homepage: "https://github.com/supabase/supabase-py/",
         changelog: nix.thunk(() => nix.str`https://github.com/supabase/supabase-py/blob/v${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

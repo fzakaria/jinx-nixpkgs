@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const gettext = nix.arg($, "gettext");
   const pfs = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       domain: "gitlab.gnome.org",
       group: "World",
       owner: "Phosh",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-u0Ac3DJ0FaawlRNQwPp6tVKJkUaFHH/r1T0QRa4bIaU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xdg-desktop-portal-phosh",
       version: "0.55.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-oHjBuQ9kD1RnBKSi+w3xxYBPrByzqsmKVOMIoHepoyQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +77,7 @@ chmod +w -R subprojects/pfs # Allow patches for subprojects to work
 rm subprojects/pfs/Cargo.lock
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "A backend implementation for xdg-desktop-portal that is using GTK/GNOME/Phosh to provide interfaces that aren't provided by the GTK portal",
         homepage: "https://gitlab.gnome.org/World/Phosh/xdg-desktop-portal-phosh",
         changelog: "https://gitlab.gnome.org/World/Phosh/xdg-desktop-portal-phosh/-/blob/main/NEWS",

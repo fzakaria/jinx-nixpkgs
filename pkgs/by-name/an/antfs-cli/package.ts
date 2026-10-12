@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "antfs-cli",
       version: "0-unstable-2017-02-11",
       pyproject: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/Tigge/antfs-cli",
         description: "Extracts FIT files from ANT-FS based sport watches",
         mainProgram: "antfs-cli",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Tigge",
           repo: "antfs-cli",
           rev: "85a6cc6fe6fc0ec38399f5aa30fb39177c565b52",

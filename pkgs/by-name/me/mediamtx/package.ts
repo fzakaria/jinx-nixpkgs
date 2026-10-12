@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   const hlsJs = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://cdn.jsdelivr.net/npm/hls.js@v1.6.15/dist/hls.min.js",
       hash: "sha256-QTqD4rsMd+0L8L4QXVOdF+9F39mEoLE+zTsUqQE4OTg=",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mediamtx",
       version: "1.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "bluenviron",
           repo: "mediamtx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,16 +47,16 @@ rm internal/staticsources/rpicamera/camera_linux_arm*.go
       subPackages: nix.thunk(() => ["."]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mediamtx: nix.thunk(() => nix.attr(nixosTests, "mediamtx")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "SRT, WebRTC, RTSP, RTMP, LL-HLS media server and media proxy",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

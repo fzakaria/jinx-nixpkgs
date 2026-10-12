@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const fuse3 = nix.arg($, "fuse3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "plakar",
       version: "1.1.7",
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PlakarKorp",
           repo: "plakar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-RQ1HhWL33Zi5n8G6RerLLgE2YJk/7HD4k1yiK+sQTBU=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "backup-allow-multiple-ignore-files.patch",
             url: "https://github.com/PlakarKorp/plakar/commit/049603ba4db8086ceb9aadf6197751083821e699.patch",
             includes: nix.thunk(() => ["subcommands/backup/backup.go"]),
             hash: "sha256-9uxkXpuWs758xlu3afANB14hqhVut7agvIeOlcm+98k=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "api-add-test-helpers.patch",
             url: "https://github.com/PlakarKorp/plakar/commit/e4153a448174e9d9df9f446560e303d89c48dd10.patch",
             includes: nix.thunk(() => ["api/helpers_test.go"]),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fuse3]))}
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "plakar",
         description: "Encrypted, queryable backups for engineers based on an immutable data store and portable archives",
         homepage: "https://www.plakar.io",

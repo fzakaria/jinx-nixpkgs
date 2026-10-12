@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         const buildPhase = nix.thunk(() => nix.selOr(args_2, () => "runHook preBuild\nrunHook postBuild\n", "buildPhase"));
         const checkPhase = nix.thunk(() => nix.selOr(args_2, () => "runHook preCheck\nrunHook postCheck\n", "checkPhase"));
         const installPhase = nix.thunk(() => (() => {
-          const baseDir = nix.thunk(() => nix.sel({ __proto__: pos$1, mod: "mods", soundpack: "sound", tileset: "gfx" }, nix.key(nix.force(type))));
+          const baseDir = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, mod: "mods", soundpack: "sound", tileset: "gfx" }, nix.key(nix.force(type))));
           return nix.selOr(args_2, () => nix.str`runHook preInstall
 destdir="$out/share/cataclysm-dda/${baseDir}"
 mkdir -p "$destdir"
@@ -36,12 +36,12 @@ runHook postInstall
 `, "installPhase");
         })());
         const passthru = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           forTiles: true,
           forCurses: nix.thunk(() => nix.eq(type, "mod")),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           modRoot,
           configurePhase,

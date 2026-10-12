@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const DBDmysql = nix.arg($, "DBDmysql");
   return nix.app(buildPerlPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "maatkit",
       version: "7540",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/maatkit/maatkit-7540.tar.gz",
           sha256: "1a7rxrddkrsfxb2wj01ha91ld0vapfkqcy8j9p08l76zz2l8p2v1",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [DBDmysql]),
       preConfigure: "find . | while read fn; do\n    if test -f \"$fn\"; then\n        first=$(dd if=\"$fn\" count=2 bs=1 2> /dev/null)\n        if test \"$first\" = \"#!\"; then\n            sed < \"$fn\" > \"$fn\".tmp \\\n                -e \"s|^#\\!\\(.*[/\\ ]perl.*\\)$|#\\!$perl/bin/perl $perlFlags|\"\n            if test -x \"$fn\"; then chmod +x \"$fn\".tmp; fi\n            mv \"$fn\".tmp \"$fn\"\n        fi\n    fi\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Database toolkit",
         longDescription: "You can use Maatkit to prove replication is working correctly, fix\ncorrupted data, automate repetitive tasks, speed up your servers, and\nmuch more.\n\nIn addition to MySQL, there is support for PostgreSQL, Memcached, and a\ngrowing variety of other databases and technologies.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

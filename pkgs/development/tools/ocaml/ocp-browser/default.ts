@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const lambda_term = nix.arg($, "lambda-term");
   const zed = nix.arg($, "zed");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocp-browser",
       version: "1.4.1",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "ocp-index",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cppo]),
       propagatedBuildInputs: nix.thunk(() => [cmdliner, lambda_term, ocp_index, re, zed]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OCamlPro/ocp-index",
         description: "Console browser for the documentation of installed OCaml libraries",
         changelog: nix.thunk(() => nix.str`https://github.com/OCamlPro/ocp-index/raw/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

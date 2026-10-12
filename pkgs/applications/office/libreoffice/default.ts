@@ -231,7 +231,7 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fontDirectories: nix.thunk(() => [
         amiri,
         caladea,
@@ -249,14 +249,14 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const jre$ = nix.thunk(() => nix.app(nix.sel(jre21_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       modules: nix.thunk(() => ["java.base", "java.desktop", "java.logging", "java.sql"]),
     }))));
   const mdds_2_1 = nix.thunk(() => nix.app(nix.sel(mdds, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "mdds",
           repo: "mdds",
           rev: "2.1.1",
@@ -264,10 +264,10 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   const libixion_0_19 = nix.thunk(() => nix.app(nix.sel(libixion, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "ixion",
           repo: "ixion",
           rev: "0.19.0",
@@ -276,17 +276,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost188, mdds_2_1, python3]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://gitlab.com/ixion/ixion/-/merge_requests/70.patch",
             hash: "sha256-FzU/aejcMktrDQql5pzobiq6BJXryIXQXZTBWCkyqtU=",
           })))),
       ]),
     }))));
   const liborcus_0_19 = nix.thunk(() => nix.app(nix.sel(liborcus, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: "0.19.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "orcus",
           repo: "orcus",
           rev: "0.19.2",
@@ -295,7 +295,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost188, libixion_0_19, mdds_2_1, python3, zlib]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://gitlab.com/orcus/orcus/-/merge_requests/200.patch",
             hash: "sha256-CZVw1+ri6UO56Bg/Y27W6G8JkGU6xDInd7fABr6i+7g=",
           })))),
@@ -304,26 +304,26 @@ export default nix.lambda((args) => (() => {
   const importVariant = (f) => nix.builtins.import(nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/src-${variant}/${f}`)));
   const version = nix.thunk(() => nix.app(importVariant, "version.nix"));
   const srcsAttributes = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     main: nix.thunk(() => nix.app(importVariant, "main.nix")),
     help: nix.thunk(() => nix.app(importVariant, "help.nix")),
     translations: nix.thunk(() => nix.app(importVariant, "translations.nix")),
     deps: nix.thunk(() => nix.app(importVariant, "deps.nix")),
   }));
   const srcs = nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     third_party: nix.thunk(() => nix.builtins.map((x) => nix.update(nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           url: nix.thunk(() => nix.attr(x, "url")),
           sha256: nix.thunk(() => nix.attr(x, "sha256")),
           name: nix.thunk(() => nix.attr(x, "name")),
         }))), {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         md5name: nix.thunk(() => nix.attr(x, "md5name")),
         md5: nix.thunk(() => nix.attr(x, "md5")),
       }), nix.thunk(() => nix.sel(srcsAttributes, "deps")))),
-    translations: nix.thunk(() => nix.app(nix.sel(srcsAttributes, "translations"), nix.thunk(() => ({ __proto__: pos$14, fetchurl: fetchurl, fetchgit: fetchgit })))),
-    help: nix.thunk(() => nix.app(nix.sel(srcsAttributes, "help"), nix.thunk(() => ({ __proto__: pos$15, fetchurl: fetchurl, fetchgit: fetchgit })))),
+    translations: nix.thunk(() => nix.app(nix.sel(srcsAttributes, "translations"), nix.thunk(() => ({ [nix.POS]: pos$14, fetchurl: fetchurl, fetchgit: fetchgit })))),
+    help: nix.thunk(() => nix.app(nix.sel(srcsAttributes, "help"), nix.thunk(() => ({ [nix.POS]: pos$15, fetchurl: fetchurl, fetchgit: fetchgit })))),
   }));
   const kdeDependencies = nix.thunk(() => [
     nix.thunk(() => nix.sel(qt6, "qtbase", "out")),
@@ -335,7 +335,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(kdePackages, "kwindowsystem")),
   ]);
   const mkKdeDeps = (pkgs) => (func) => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: nix.thunk(() => nix.str`libreoffice-kde-dependencies-${version}`),
       paths: nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.builtins.map((e) => [nix.thunk(() => nix.app(func, e))], pkgs)))),
     })));
@@ -343,10 +343,10 @@ export default nix.lambda((args) => (() => {
   const kdeDepsLibs = nix.thunk(() => nix.app(mkKdeDeps, kdeDependencies, getLib));
   const tarballPath = "external/tarballs";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       pname: "libreoffice",
       version: version,
-      src: nix.thunk(() => nix.app(nix.sel(srcsAttributes, "main"), nix.thunk(() => ({ __proto__: pos$18, fetchurl: fetchurl, fetchgit: fetchgit })))),
+      src: nix.thunk(() => nix.app(nix.sel(srcsAttributes, "main"), nix.thunk(() => ({ [nix.POS]: pos$18, fetchurl: fetchurl, fetchgit: fetchgit })))),
       postUnpack: nix.thunk(() => nix.add(nix.str`mkdir -v $sourceRoot/${tarballPath}
 
 ${nix.app(flip, concatMapStrings, nix.thunk(() => nix.sel(srcs, "third_party")), (f) => nix.str`ln -sfv ${f} $sourceRoot/${tarballPath}/${nix.sel(f, "md5name")}
@@ -367,80 +367,80 @@ cp -r --no-preserve=mode ${nix.sel(srcs, "translations")}/. $sourceRoot/translat
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(variant, "stable")), nix.thunk(() => [nix.path(here, "./dont-detect-qt-paths-from-qmake.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(variant, "stable")), nix.thunk(() => [
           nix.path(here, "./dont-detect-qt-paths-from-qmake-pre-26.8.patch"),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/raw/25.8.7-2/fix_build_with_poppler_26.01.0.patch",
               hash: "sha256-5JTTvJFIV5MG0Gz7y46wAr3q9tWdSVoZ9TJQlMJVqBc=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/raw/25.8.7-2/fix_build_with_poppler_26.02.0.patch",
               hash: "sha256-IInhSoqTemDITB+AtkvVa9eGbodTbUGSpMMpC9N/mmg=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/raw/25.8.7-2/fix_build_with_poppler_26.04.0.patch",
               hash: "sha256-I9owj/NTCTi6ISszuasH410NLlhunPn/Ig22tenu8tw=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/raw/25.8.7-2/fix_build_with_poppler_26.05.0.patch",
               hash: "sha256-7wdiciTf/LrTk0MibBBYGliWRCvK1rtTGESgH7db1I4=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/raw/25.8.7-3/fix_build_with_poppler_26.06.0.patch",
               hash: "sha256-j66IsrzaqQ55MRVzhlw25guuoDtxx1D4XeJsBhgWP2c=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.eq(variant, "collabora")) && nix.asBool(!nix.eq(variant, "collabora-coda")))), nix.thunk(() => [nix.path(here, "./readd-explicit-zlib-link.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(variant, "collabora")) || nix.asBool(nix.eq(variant, "collabora-coda")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               url: "https://github.com/LibreOffice/core/commit/7848e02819c007026952a3fdc9da0961333dc079.patch",
               includes: nix.thunk(() => ["sdext/*"]),
               hash: "sha256-Nw6GFmkFy13w/ktCxw5s7SHL34auP1BQ9JvQnQ65aVU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libreoffice-still/-/raw/f5241554e4a0f6fd95ac4e5cc398a30243407e6a/fix_build_with_poppler_25.10.patch",
               hash: "sha256-lbPOkc1HeT5Qsp6XfVyVJtmvSL68qTrmbd3q9lvKSu8=",
             })))),
           nix.path(here, "./fix-unpack-collabora.patch"),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               url: "https://github.com/LibreOffice/core/commit/6ebc3c540f2aa13363e3dcb32a44bfa2c7f66a9f.patch",
               hash: "sha256-5GCosJryorH1P1Z2Zjey7oEC3seLHN5kH/ar4U7E74E=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               url: "https://github.com/LibreOffice/core/commit/0084c2b22ce26084df5a379135ba8ac174585ac0.patch",
               hash: "sha256-zssmbzfaZX2sBdHbzm+aIC8ncidp3eupQoUloeGdPcQ=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               url: "https://github.com/LibreOffice/core/commit/19c32b44fead600118377417012b111a4f238766.patch",
               hash: "sha256-jO7oFEfoL7V1dj67vwDAEp2BwjQvfva4zV8sVAAc+2g=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               url: "https://github.com/LibreOffice/core/commit/a6325b777b7bb9e1c760a4f1a02d48ba0889a7b1.patch",
               hash: "sha256-QECBAdJ+4Q8c2kbdadNxzgDEebLvPy9cvRb34O7m5bA=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               url: "https://github.com/LibreOffice/core/commit/47cabcb187dfbccb36ee02513998fbfcee509d5e.patch",
               hash: "sha256-q883AMTtLzXwbwNRytCk6qiFA1snzba4JUsr7IaUEvI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               url: "https://github.com/LibreOffice/core/commit/0fede06b020fa0327877f4a8722290d48a742a2c.patch",
               hash: "sha256-8w89mtZuFvpZU0GVZoWPZVBM+UlgnbTYxoDJ8Ss64Bo=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               url: "https://github.com/LibreOffice/core/commit/aa9a194a99cec1dbcee9226b703fdcf9b62962d7.patch",
               hash: "sha256-Eztv186ke97u0ucdd3jQmJaxtrxnsiWWE/qVOBc2uGc=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               url: "https://github.com/LibreOffice/core/commit/d0265596672d78ad6f3980ff6fb900535aefd11f.patch",
               hash: "sha256-tp7MW+8ExivGKKWjLy60lxWNf2hXF+jCD0pajo+YbVo=",
             })))),
@@ -481,7 +481,7 @@ substituteInPlace configure.ac --replace-fail distutils.sysconfig sysconfig
         zip,
       ], nix.concat(nix.app(optionals, kdeIntegration, nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))])), nix.concat(nix.app(optionals, withJava, nix.thunk(() => [ant, jdk21])), nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "26.2.1.2")), nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "afdko"))])))))),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "passthru", "gst_packages"), nix.concat([
-        nix.thunk(() => nix.app(nix.sel(libpng, "override"), nix.thunk(() => ({ __proto__: pos$34, apngSupport: false })))),
+        nix.thunk(() => nix.app(nix.sel(libpng, "override"), nix.thunk(() => ({ [nix.POS]: pos$34, apngSupport: false })))),
         coinmp,
         abseil_cpp,
         bluez5,
@@ -505,7 +505,7 @@ substituteInPlace configure.ac --replace-fail distutils.sysconfig sysconfig
         gpgmepp,
         graphite2,
         gtk3,
-        nix.thunk(() => nix.app(nix.sel(harfbuzz, "override"), nix.thunk(() => ({ __proto__: pos$35, withIcu: true })))),
+        nix.thunk(() => nix.app(nix.sel(harfbuzz, "override"), nix.thunk(() => ({ [nix.POS]: pos$35, withIcu: true })))),
         hunspell,
         icu,
         lcms2,
@@ -669,7 +669,7 @@ export KF6LIB=${kdeDepsLibs}/lib
           nix.thunk(() => nix.str`--with-beanshell-jar=${bsh}`),
         ]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.str`-I${librdf_rasqal}/include/rasqal`, nix.app(nix.sel(lib, "optionalString"), debugLogging, " -DSAL_LOG_WARN=1 -DSAL_LOG_INFO=1 "))),
         FONTCONFIG_FILE: fontsConf,
       })),
@@ -684,7 +684,7 @@ export KF6LIB=${kdeDepsLibs}/lib
       __structuredAttrs: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         srcs: srcs,
         withJava: withJava,
         jdk: nix.thunk(() => (nix.asBool(withJava) ? nix.force(jre$) : null)),
@@ -742,7 +742,7 @@ export KF6LIB=${kdeDepsLibs}/lib
       disallowedRequisites: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(kdeIntegration)), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (x) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(x, "dev")), nix.thunk(() => nix.sel(x, "dev"))), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))))),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         changelog: nix.thunk(() => nix.str`https://wiki.documentfoundation.org/ReleaseNotes/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`),
         description: "Comprehensive, professional-quality productivity suite, a variant of openoffice.org",
         homepage: "https://libreoffice.org/",

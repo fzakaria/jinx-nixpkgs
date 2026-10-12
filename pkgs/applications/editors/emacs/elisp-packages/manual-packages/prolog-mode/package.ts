@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prolog-mode",
       ename: "prolog",
       version: "1.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://bruda.ca/_media/emacs/prolog.el",
           hash: "sha256-ZzIDFQWPq1vI9z3btgsHgn0axN6uRQn9Tt8TnqGybOk=",
         })))),
       postPatch: "substituteInPlace prolog.el \\\n  --replace-fail \";; prolog.el ---\" \";;; prolog.el ---\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bruda.ca/emacs/prolog_mode_for_emacs/",
         description: "Prolog mode for Emacs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

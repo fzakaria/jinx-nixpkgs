@@ -11,13 +11,13 @@ const pos$6 = nix.positions(here + "/gemset.nix", [["dependencies", 24, 5], ["gr
 const pos$7 = nix.positions(here + "/gemset.nix", [["bindata", 2, 3], ["elftools", 12, 3], ["one_gadget", 23, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   bindata: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "08r67nglsqnxrbn803szf5bdnqhchhq8kf2by94f37fcl65wpp19",
       type: "gem",
@@ -25,12 +25,12 @@ export default nix.thunk(() => ({
     version: "2.5.0",
   })),
   elftools: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["bindata"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0p96wj4sz3sfv9yxyl8z530554bkbf82vj24w6x7yf91qa1p8z6i",
       type: "gem",
@@ -38,12 +38,12 @@ export default nix.thunk(() => ({
     version: "1.1.3",
   })),
   one_gadget: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     dependencies: nix.thunk(() => ["elftools"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1j9478h929jm5hq2fs3v8y37a7y2hhpli90mbps7yvka4ykci7mw",
       type: "gem",

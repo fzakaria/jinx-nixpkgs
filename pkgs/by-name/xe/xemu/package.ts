@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const tomlplusplus = nix.arg($, "tomlplusplus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xemu",
       version: "0.8.136",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xemu-project",
           repo: "xemu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,7 +111,7 @@ echo '${nix.sel(finalAttrs, "version")}' > XEMU_VERSION
       postBuild: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "# Needed for HVF acceleration\ncodesign --entitlements $src/accel/hvf/entitlements.plist -f -s - qemu-system-i386-unsigned\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mv qemu-system-i386-unsigned qemu-system-i386\n"))),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -T qemu-system-i386 $out/bin/xemu\n\nfor resolution in 16x16 24x24 32x32 48x48 128x128 256x256 512x512\ndo\n  install -Dm644 -T ../ui/icons/xemu_$resolution.png \\\n    $out/share/icons/hicolor/$resolution/apps/xemu.png\ndone\n\ninstall -Dm644 -T ../ui/xemu.desktop $out/share/applications/xemu.desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://xemu.app/",
         description: "Original Xbox emulator",
         longDescription: "A free and open-source application that emulates the original Microsoft\nXbox game console, enabling people to play their original Xbox games on\nWindows, macOS, and Linux systems.\n",

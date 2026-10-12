@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "retrofe",
       version: "0.10.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "phulshof",
           repo: "RetroFE",
           rev: "2ddd65a76210d241031c4ac9268255f311df25d1",
@@ -84,7 +84,7 @@ runHook postInstall
 `),
       postInstall: "wrapProgram \"$out/bin/retrofe\" \\\n  --prefix GST_PLUGIN_PATH : \"$GST_PLUGIN_SYSTEM_PATH_1_0\" \\\n  --run 'export RETROFE_PATH=${RETROFE_PATH:-$PWD}'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Frontend for arcade cabinets and media PCs",
         homepage: "http://retrofe.nl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

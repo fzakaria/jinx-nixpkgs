@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const compat = nix.arg($, "compat");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "openbsd-compat-hook",
       substitutions: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "cc"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         compat: compat,
         suffixSalt: nix.thunk(() => nix.attr(from, "suffixSalt")),
       };
       })()),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./setup-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

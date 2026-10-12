@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpu_features",
       version: "0.10.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "cpu_features",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DBUILD_SHARED_LIBS=${(nix.asBool(static$) ? "OFF" : "ON")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross platform C99 library to get cpu features at runtime",
         homepage: "https://github.com/google/cpu_features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

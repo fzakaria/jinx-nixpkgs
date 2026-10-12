@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const libdeltachat = nix.arg($, "libdeltachat");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deltachat-repl",
       version: nix.thunk(() => nix.attr(libdeltachat, "version")),
       src: nix.thunk(() => nix.attr(libdeltachat, "src")),
       cargoDeps: nix.thunk(() => nix.attr(libdeltachat, "cargoDeps")),
       buildInputs: nix.thunk(() => nix.attr(libdeltachat, "buildInputs")),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      env: nix.thunk(() => ({ __proto__: pos$1, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, OPENSSL_NO_VENDOR: true })),
       cargoBuildFlags: nix.thunk(() => ["--package", "deltachat-repl"]),
       doCheck: false,
       meta: nix.thunk(() => nix.update(nix.sel(libdeltachat, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Delta Chat CLI client",
         mainProgram: "deltachat-repl",
       })),

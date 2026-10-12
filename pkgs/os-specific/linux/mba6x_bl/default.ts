@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mba6x_bl",
       version: "unstable-2017-12-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patjak",
           repo: "mba6x_bl",
           rev: "639719f516b664051929c2c0c1140ea4bf30ce81",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "INSTALL_MOD_PATH=$(out)",
       ])),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MacBook Air 6,1 and 6,2 (mid 2013) backlight driver",
         homepage: "https://github.com/patjak/mba6x_bl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -40,62 +40,62 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "nginx-status-page",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "h7x4"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$17,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$17,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             network: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               networks: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "01-eth1": nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$5, Address: "10.0.0.1/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Address: "10.0.0.1/24" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             nginx: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               statusPage: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$11,
-                    "/index.html": nix.thunk(() => ({ __proto__: pos$10, return: "200 'hello world\n'" })),
+                    [nix.POS]: pos$11,
+                    "/index.html": nix.thunk(() => ({ [nix.POS]: pos$10, return: "200 'hello world\n'" })),
                   })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w_1, "curl"))];
@@ -106,30 +106,30 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$27,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$18, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$27,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$19, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             network: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               networks: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 "01-eth1": nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$21, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w_1, "curl"))];

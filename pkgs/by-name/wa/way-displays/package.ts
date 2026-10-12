@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libinput = nix.arg($, "libinput");
   const yaml_cpp = nix.arg($, "yaml-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "way-displays",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alex-courtis",
           repo: "way-displays",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "CXX:=$(CXX)",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/alex-courtis/way-displays",
         description: "Auto Manage Your Wayland Displays",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

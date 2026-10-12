@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "trusttunnel-endpoint",
       version: "1.1.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TrustTunnel",
           repo: "TrustTunnel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-wZbyro1ozP+h/o8MocgI8FxeJHfEzessWfNObfc4CEg=",
       postPatch: "substituteInPlace $cargoDepsCopy/*/boring-sys-*/build/main.rs $cargoDepsCopy/*/quiche-*/src/build.rs \\\n  --replace-fail \"cargo:rustc-link-lib=static=crypto\" \"cargo:rustc-link-lib=dylib=crypto\" \\\n  --replace-fail \"cargo:rustc-link-lib=static=ssl\" \"cargo:rustc-link-lib=dylib=ssl\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BORING_BSSL_PATH: boringssl,
         BORING_BSSL_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.sel(boringssl, "dev")}/include`),
       })),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boringssl]),
       nativeCheckInputs: nix.thunk(() => [cacert, python3]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern, fast and obfuscated VPN protocol - endpoint component",
         homepage: "https://github.com/TrustTunnel/TrustTunnel",
         changelog: nix.thunk(() => nix.str`https://github.com/TrustTunnel/TrustTunnel/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

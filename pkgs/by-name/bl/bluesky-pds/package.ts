@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "setuptools"))]));
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pds",
       version: "0.4.5034",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bluesky-social",
           repo: "pds",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(cctools, "libtool"))])))),
       buildInputs: nix.thunk(() => [vips]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,15 +80,15 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/pds}\nmv node_modules $out/lib/pds\nmv index.ts $out/lib/pds\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "bluesky-pds": nix.thunk(() => nix.attr(nixosTests, "bluesky-pds")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Bluesky Personal Data Server (PDS)",
         homepage: "https://github.com/bluesky-social/pds",
         license: nix.thunk(() => (() => {

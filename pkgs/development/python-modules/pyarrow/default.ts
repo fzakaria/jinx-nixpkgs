@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [cloudpickle, fsspec]);
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pandas, pytestCheckHook, pytest_lazy_fixture]);
       const env = nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PYARROW_BUILD_TYPE: "release",
         PYARROW_WITH_DATASET: nix.thunk(() => nix.app(zero_or_one, true)),
         PYARROW_WITH_FLIGHT: nix.thunk(() => nix.app(zero_or_one, nix.thunk(() => nix.sel(arrow_cpp, "enableFlight")))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         ARROW_HOME: arrow_cpp,
         PARQUET_HOME: arrow_cpp,
       }, nix.app(nix.sel(lib, "optionalAttrs"), doCheck, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ARROW_TEST_DATA: nix.thunk(() => nix.sel(arrow_cpp, "env", "ARROW_TEST_DATA")),
         })))));
       const doCheck = true;
@@ -144,7 +144,7 @@ substituteInPlace pyarrow/tests/conftest.py --replace-fail ..conftest .parent_co
           "parquet",
         ]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-language development platform for in-memory data",
         homepage: "https://arrow.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -158,7 +158,7 @@ substituteInPlace pyarrow/tests/conftest.py --replace-fail ..conftest .parent_co
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

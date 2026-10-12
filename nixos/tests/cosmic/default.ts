@@ -43,59 +43,59 @@ export default nix.lambda((args) => (() => {
     --root-user-password ${nix.sel(user, "password")}
 `)));
   const cosmicTestDesktop = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "makeDesktopItem"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "cosmicTest",
       desktopName: nix.thunk(() => nix.str`COSMIC NixOS VM test (${testName})`),
       exec: "cosmicTest",
     }))));
-  const cosmicTestAutostartItem = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "makeAutostartItem"), nix.thunk(() => ({ __proto__: pos$2, name: "cosmicTest", package: cosmicTestDesktop }))));
+  const cosmicTestAutostartItem = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "makeAutostartItem"), nix.thunk(() => ({ [nix.POS]: pos$2, name: "cosmicTest", package: cosmicTestDesktop }))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: testName,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "cosmic", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       machine: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
-          flatpak: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$11,
+          flatpak: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$7,
-            "cosmic-greeter": nix.thunk(() => ({ __proto__: pos$5, enable: true })),
-            autoLogin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableAutologin, nix.thunk(() => ({ __proto__: pos$6, enable: true, user: nix.thunk(() => nix.sel(user, "name")) })))),
+            [nix.POS]: pos$7,
+            "cosmic-greeter": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            autoLogin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), enableAutologin, nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, user: nix.thunk(() => nix.sel(user, "name")) })))),
           })),
           desktopManager: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             cosmic: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
-              xwayland: nix.thunk(() => ({ __proto__: pos$8, enable: enableXWayland })),
+              xwayland: nix.thunk(() => ({ [nix.POS]: pos$8, enable: enableXWayland })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
-            alice: nix.thunk(() => ({ __proto__: pos$12, extraGroups: nix.thunk(() => ["uinput"]) })),
+            [nix.POS]: pos$14,
+            alice: nix.thunk(() => ({ [nix.POS]: pos$12, extraGroups: nix.thunk(() => ["uinput"]) })),
             root: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               password: nix.thunk(() => nix.sel(user, "password")),
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
             })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$17,
-          uinput: nix.thunk(() => ({ __proto__: pos$16, enable: true })),
+          [nix.POS]: pos$17,
+          uinput: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(config, "node", "pkgs")), null);
             return [
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$19, memorySize: 4096n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$19, memorySize: 4096n })),
       })),
     })),
     testScript: nix.lambda((args_1) => (() => {

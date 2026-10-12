@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "virt-top";
       const version = "1.1.2";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.annexia.org/virt-top.git",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-C1a47pWtjb38bnwmZ2Zq7/LlW3+BF5BGNMRFi97/ngU=",
@@ -52,7 +52,7 @@ substituteInPlace ocaml-link.sh.in --replace-fail '#!/bin/bash' '#!${nix.sel(std
 substituteInPlace configure.ac --replace-fail 'AC_CONFIG_MACRO_DIR([m4])' 'AC_CONFIG_MACRO_DIRS([m4 ${gettext}/share/gettext/m4])'
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Top-like utility for showing stats of virtualized domains",
         homepage: "https://people.redhat.com/~rjones/virt-top/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -61,7 +61,7 @@ substituteInPlace configure.ac --replace-fail 'AC_CONFIG_MACRO_DIR([m4])' 'AC_CO
         mainProgram: "virt-top",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

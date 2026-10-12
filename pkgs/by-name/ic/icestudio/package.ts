@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nwjs = nix.arg($, "nwjs");
   const python3 = nix.arg($, "python3");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "icestudio",
       version: "1.0.0.PRw-20260821-unstable-2026-08-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FPGAwars",
           repo: "icestudio",
           rev: "989c552b687993f54a5928f693e3502de02e29f8",
@@ -73,7 +73,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             desktopName: "Icestudio",
             comment: "Visual editor for open FPGA boards",
             name: "icestudio",
@@ -84,15 +84,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
         collection: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/FPGAwars/collection-default/archive/v0.4.1.zip",
             hash: "sha256-F2cAqkTPC7xfGnPQiS8lTrD4y34EkHFUEDPVaYzVVg8=",
           })))),
         app: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: "icestudio-app",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -103,7 +103,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Visual editor for open FPGA boards",
         homepage: "https://github.com/FPGAwars/icestudio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

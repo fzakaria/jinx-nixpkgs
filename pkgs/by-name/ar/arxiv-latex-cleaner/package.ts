@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "arxiv-latex-cleaner",
       version: "1.0.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google-research",
           repo: "arxiv-latex-cleaner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ ${nix.sel(python3, "interpreter")} -m unittest arxiv_latex_cleaner.tests.arxiv_l
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/google-research/arxiv-latex-cleaner",
         description: "Easily clean the LaTeX code of your paper to submit to arXiv",
         mainProgram: "arxiv_latex_cleaner",

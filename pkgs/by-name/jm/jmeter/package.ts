@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jmeter",
       version: "5.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "jmeter",
           rev: nix.thunk(() => nix.str`rel/v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/apache/jmeter/commit/f4f1ef144ab5678bddb010ed1f05c67a76f547a5.patch",
             hash: "sha256-ICG2z+nyJT0WDiYmU/Dx3VtkG83ymU7HwYjEuJMjaiY=",
             excludes: nix.thunk(() => ["xdocs/changes.xml"]),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [gradle, jdk17, makeWrapper, gitMinimal]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -139,7 +139,7 @@ echo "HTML report generation test passed!"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "100% pure Java desktop application designed to load test functional behavior and measure performance",
         longDescription: "The Apache JMeter desktop application is open source software, a 100%\npure Java application designed to load test functional behavior and\nmeasure performance. It was originally designed for testing Web\nApplications but has since expanded to other test functions.\n",
         homepage: "https://jmeter.apache.org/",

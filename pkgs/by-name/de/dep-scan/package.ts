@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const cdxgen = nix.arg($, "cdxgen");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dep-scan",
       version: "6.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owasp-dep-scan",
           repo: "dep-scan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,14 +71,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cdxgen]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "dep-scan": nix.thunk(() => nix.attr(nixosTests, "dep-scan")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Security and risk audit tool based on known vulnerabilities, advisories, and license limitations for project dependencies",
         homepage: "https://github.com/owasp-dep-scan/dep-scan",
         changelog: nix.thunk(() => nix.str`https://github.com/owasp-dep-scan/dep-scan/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "lao";
       const version = "0.0.20060226";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/f/fonts-lao/fonts-lao_${version}.orig.tar.xz`),
           hash: "sha256-DlgdyfhxxzVkNIL+NGsQ+PRlNkCuG3v2OahkIEYx60o=",
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts\ncp Phetsarath_OT.ttf $out/share/fonts\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TrueType font for Lao language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

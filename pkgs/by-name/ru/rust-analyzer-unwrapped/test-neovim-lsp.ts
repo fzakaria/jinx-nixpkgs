@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rust_analyzer = nix.arg($, "rust-analyzer");
   const rustc = nix.arg($, "rustc");
   return nix.app(runCommand, "test-neovim-rust-analyzer", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [cargo, neovim, rust_analyzer, rustc]),
       testRustSrc: "fn main() {\n  let mut var = vec![None];\n  var.push(Some(\"hello\".to_owned()));\n}\n",
       nvimConfig: "local caps = vim.lsp.protocol.make_client_capabilities()\ncaps[\"experimental\"] = { serverStatusNotification = true }\nvim.lsp.buf_attach_client(vim.api.nvim_get_current_buf(), vim.lsp.start_client({\n  cmd = { \"rust-analyzer\" },\n  capabilities = caps,\n  handlers = {\n    [\"experimental/serverStatus\"] = function(_, msg, ctx)\n      if msg.health == \"ok\" then\n        if msg.quiescent then\n          vim.cmd(\"goto 23\") -- let mut |var =...\n          vim.lsp.buf.hover()\n        end\n      else\n        print(\"error: server status is not ok: \")\n        vim.cmd(\"q\")\n      end\n    end,\n    [\"textDocument/hover\"] = function(_, msg, ctx)\n      if msg then\n        -- Keep newlines.\n        io.write(msg.contents.value)\n        vim.cmd(\"q\")\n      end\n    end,\n  },\n  on_error = function(code)\n    print(\"error: \" .. code)\n    vim.cmd(\"q\")\n  end\n}))\n",

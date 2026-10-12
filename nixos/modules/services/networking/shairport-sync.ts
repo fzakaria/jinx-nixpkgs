@@ -53,33 +53,33 @@ export default nix.lambda((args) => (() => {
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "libconfig"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "shairport-sync.conf", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "shairport-sync": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable the shairport-sync daemon.\n\nRunning with a local system-wide or remote pulseaudio server\nis recommended.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "options", "mkPackageOption"), pkgs, "shairport-sync", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(configFormat, "type")),
               default: nix.thunk(() => ({
-                __proto__: pos$4,
-                general: nix.thunk(() => ({ __proto__: pos$2, output_backend: "pulseaudio" })),
-                diagnostics: nix.thunk(() => ({ __proto__: pos$3, log_verbosity: 1n })),
+                [nix.POS]: pos$4,
+                general: nix.thunk(() => ({ [nix.POS]: pos$2, output_backend: "pulseaudio" })),
+                diagnostics: nix.thunk(() => ({ [nix.POS]: pos$3, log_verbosity: 1n })),
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
-                general: nix.thunk(() => ({ __proto__: pos$5, name: "NixOS Shairport", output_backend: "pipewire" })),
+                [nix.POS]: pos$8,
+                general: nix.thunk(() => ({ [nix.POS]: pos$5, name: "NixOS Shairport", output_backend: "pipewire" })),
                 metadata: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   enabled: "yes",
                   include_cover_art: "yes",
                   cover_art_cache_directory: "/tmp/shairport-sync/.cache/coverart",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
                   pipe_timeout: 5000n,
                 })),
                 mqtt: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   enabled: "yes",
                   hostname: "mqtt.server.domain.example",
                   port: 1883n,
@@ -98,25 +98,25 @@ export default nix.lambda((args) => (() => {
               description: "Configuration options for Shairport-Sync.\n\nSee the example [shairport-sync.conf][example-file] for possible options.\n\n[example-file]: https://github.com/mikebrady/shairport-sync/blob/master/scripts/shairport-sync.conf\n",
             })))),
           arguments: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               description: "Arguments to pass to the daemon. Defaults to a local pulseaudio\nserver.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to automatically open ports in the firewall.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "shairport",
               description: "User account name under which to run shairport-sync. The account\nwill be created.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "shairport",
               description: "Group account name under which to run shairport-sync. The account\nwill be created.\n",
@@ -125,46 +125,46 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "shairport-sync", "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => !nix.eq(nix.selOr(config, () => null, "services", "shairport-sync", "settings", "general", "output_backend"), "pw")),
             message: "shairport-sync 5.0 renamed the pipewire backend from 'pw' to 'pipewire'",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => !nix.eq(nix.selOr(config, () => null, "services", "shairport-sync", "settings", "general", "output_backend"), "pa")),
             message: "shairport-sync 5.0 renamed the pulseaudio backend from 'pa' to 'pulseaudio'",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           avahi: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: true,
-            publish: nix.thunk(() => ({ __proto__: pos$19, enable: true, userServices: true })),
+            publish: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true, userServices: true })),
           })),
           "shairport-sync": nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             settings: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               general: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 output_backend: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "pulseaudio")),
               })),
               diagnostics: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 log_verbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 1n)),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Shairport user",
               isSystemUser: true,
               createHome: true,
@@ -176,24 +176,24 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               allowedTCPPorts: nix.thunk(() => [5000n]),
-              allowedUDPPortRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$28, from: 6001n, to: 6011n }))]),
+              allowedUDPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$28, from: 6001n, to: 6011n }))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             "shairport-sync": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "shairport-sync",
               after: nix.thunk(() => ["network.target", "avahi-daemon.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.sel(cfg, "arguments")}`),
@@ -204,11 +204,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$36,
-            "shairport-sync.conf": nix.thunk(() => ({ __proto__: pos$35, source: configFile })),
+            [nix.POS]: pos$36,
+            "shairport-sync.conf": nix.thunk(() => ({ [nix.POS]: pos$35, source: configFile })),
           })),
         })),
       })))),

@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const isAbsolute = nix.thunk(() => nix.app(hasPrefix, "/"));
   const normalisePath = (path) => nix.str`${path}${nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.app(hasSlashSuffix, path))), "/")}`;
   const normalise = (mount) => nix.update(mount, {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     device: nix.thunk(() => nix.app(normalisePath, nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(mount, "device")))))),
     mountPoint: nix.thunk(() => nix.app(normalisePath, nix.thunk(() => nix.sel(mount, "mountPoint")))),
     depends: nix.thunk(() => nix.builtins.map(normalisePath, nix.thunk(() => nix.sel(mount, "depends")))),
@@ -105,10 +105,10 @@ export default nix.lambda((args) => (() => {
       const replacePrefix = (p) => (r) => (s) => (nix.asBool(nix.app(hasPrefix, p, s)) ? nix.add(r, nix.app(removePrefix, p, s)) : nix.force(s));
       return (s) => (() => {
         const rawComponents = nix.thunk(() => nix.app(filter, (c) => (nix.asBool(!nix.eq(c, "")) && nix.asBool(!nix.eq(c, "."))), nix.thunk(() => nix.app(splitString, "/", s))));
-        const simplified = nix.thunk(() => nix.app(foldl$, (acc) => (c) => (nix.asBool(nix.eq(c, "..")) ? (nix.asBool((nix.asBool(nix.app(isAbsolute, s)) && nix.asBool(nix.eq(nix.sel(acc, "components"), [])))) ? nix.force(acc) : nix.update(acc, { __proto__: pos$2, normalized: false })) : nix.update(acc, {
-            __proto__: pos$3,
+        const simplified = nix.thunk(() => nix.app(foldl$, (acc) => (c) => (nix.asBool(nix.eq(c, "..")) ? (nix.asBool((nix.asBool(nix.app(isAbsolute, s)) && nix.asBool(nix.eq(nix.sel(acc, "components"), [])))) ? nix.force(acc) : nix.update(acc, { [nix.POS]: pos$2, normalized: false })) : nix.update(acc, {
+            [nix.POS]: pos$3,
             components: nix.thunk(() => nix.concat(nix.sel(acc, "components"), [c])),
-          })), nix.thunk(() => ({ __proto__: pos$4, components: [], normalized: true })), rawComponents));
+          })), nix.thunk(() => ({ [nix.POS]: pos$4, components: [], normalized: true })), rawComponents));
         const notNormalized = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`escapeSystemdPath: ${s} is not a normalized path`)));
         const simplifiedPath = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(simplified, "normalized"))) ? nix.force(notNormalized) : (nix.asBool(!nix.eq(nix.sel(simplified, "components"), [])) ? nix.app(concatStringsSep, "/", nix.thunk(() => nix.sel(simplified, "components"))) : (nix.asBool((nix.asBool(nix.app(isAbsolute, s)) || nix.asBool(nix.eq(s, "")))) ? "/" : nix.force(notNormalized)))));
         return nix.app(slashesToDashes, nix.thunk(() => nix.app(replacePrefix, ".", escapeLeadingDot, nix.thunk(() => nix.app(escapeChar, simplifiedPath)))));
@@ -134,13 +134,13 @@ export default nix.lambda((args) => (() => {
       const loadCredential = nix.argOr($_1, "loadCredential", () => false);
       return (set) => (output) => (() => {
         const secretsRaw = nix.thunk(() => nix.app(recursiveGetAttrsetWithJqPrefix, set, attr));
-        const secrets = nix.thunk(() => nix.app(mapAttrs, (_name) => (set_1) => nix.update({ __proto__: pos$5, quote: true }, set_1), secretsRaw));
+        const secrets = nix.thunk(() => nix.app(mapAttrs, (_name) => (set_1) => nix.update({ [nix.POS]: pos$5, quote: true }, set_1), secretsRaw));
         const stringOrDefault = (str) => (def) => (nix.asBool(nix.eq(str, "")) ? nix.force(def) : nix.force(str));
         const sanitizePath = (path) => nix.app(nix.sel(lib, "stringAsChars"), (c) => (nix.asBool(!nix.eq(nix.builtins.match("[a-zA-Z0-9_.#=!-]", c), null)) ? nix.force(c) : "_"), path);
         const credentialTag = (index) => (path) => nix.str`${nix.builtins.toString(index)}_${nix.app(sanitizePath, nix.thunk(() => nix.sel(secrets, nix.key(nix.force(path)), nix.key(nix.force(attr)))))}`;
         const credentialPath = (index) => (name) => (nix.asBool(loadCredential) ? nix.str`"$CREDENTIALS_DIRECTORY/${nix.app(credentialTag, index, name)}"` : nix.str`'${nix.sel(secrets, nix.key(nix.force(name)), nix.key(nix.force(attr)))}'`);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           script: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`if [[ -h '${output}' ]]; then
   rm '${output}'
 fi
@@ -169,23 +169,23 @@ EOF
       return !nix.asBool(nix.app(elem, nix.thunk(() => nix.app(getName, package$)), namesToDisable));
     })();
     const systemdUtils = nix.thunk(() => ({
-      __proto__: pos$12,
-      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-lib.nix")), nix.thunk(() => ({ __proto__: pos$7, lib: lib, config: config, pkgs: pkgs, utils: utils })))),
-      unitOptions: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-unit-options.nix")), nix.thunk(() => ({ __proto__: pos$8, lib: lib, systemdUtils: systemdUtils })))),
-      types: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-types.nix")), nix.thunk(() => ({ __proto__: pos$9, lib: lib, systemdUtils: systemdUtils, pkgs: pkgs })))),
+      [nix.POS]: pos$12,
+      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$7, lib: lib, config: config, pkgs: pkgs, utils: utils })))),
+      unitOptions: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-unit-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$8, lib: lib, systemdUtils: systemdUtils })))),
+      types: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-types.nix")), nix.thunk(() => ({ [nix.POS]: pos$9, lib: lib, systemdUtils: systemdUtils, pkgs: pkgs })))),
       network: nix.thunk(() => ({
-        __proto__: pos$11,
-        units: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-network-units.nix")), nix.thunk(() => ({ __proto__: pos$10, lib: lib, systemdUtils: systemdUtils })))),
+        [nix.POS]: pos$11,
+        units: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./systemd-network-units.nix")), nix.thunk(() => ({ [nix.POS]: pos$10, lib: lib, systemdUtils: systemdUtils })))),
       })),
     }));
     const binfmtMagics = nix.thunk(() => nix.builtins.import(nix.path(here, "./binfmt-magics.nix")));
     const pam = nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       autoOrderRules: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "pipe")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "imap1"), (index) => (rule) => (() => {
               nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool(nix.has(rule, "order"))), "the 'order' option may not be set when using autoOrderRules"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/utils.nix:607:11");
               return nix.update(rule, {
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 order: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.add(10000n, nix.mul(index, 100n))))),
               });
             })())),
@@ -201,7 +201,7 @@ EOF
       const maxVal = nix.thunk(() => nix.app(length, versions));
       nix.assert_(nix.app(all, (v) => !nix.eq(nix.builtins.match("[0-9]{2}\\.[0-9]{2}", v), null), versions), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/utils.nix:693:7");
       return nix.update(nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, maxVal)),
           description: nix.thunk(() => nix.str`This option versions the format of state persisted by
 ${descriptionName}. Its default value depends on the value of
@@ -229,10 +229,10 @@ change {option}\`system.stateVersion\` at all.
 ${nix.app(concatImapStringsSep, "\n", (v) => (sv) => nix.str`* &lt;${sv}: ${nix.builtins.toString(nix.thunk(() => nix.sub(v, 1n)))}`, versions)}
 * otherwise: ${nix.builtins.toString(maxVal)}
 `))),
-        }))), { __proto__: pos$16, migrations: migrations });
+        }))), { [nix.POS]: pos$16, migrations: migrations });
     })(), formals$3);
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       copyFile,
       pathsNeededForBoot,
       fsNeededForBoot,

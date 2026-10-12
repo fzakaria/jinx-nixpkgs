@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libeventSupport = nix.argOr($, "libeventSupport", () => true);
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libverto",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latchset",
           repo: "libverto",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(optional, glibSupport, glib), nix.concat(nix.app(optional, libevSupport, libev), nix.app(optional, libeventSupport, libevent)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/latchset/libverto",
         description: "Asynchronous event loop abstraction library",
         longDescription: "Libverto exists to solve an important problem: many applications and\nlibraries are unable to write asynchronous code because they are unable to\npick an event loop. This is particularly true of libraries who want to be\nuseful to many applications who use loops that do not integrate with one\nanother or which use home-grown loops. libverto provides a loop-neutral\nasync api which allows the library to expose asynchronous interfaces and\noffload the choice of the main loop to the application.\n",

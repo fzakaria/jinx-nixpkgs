@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sunsetr",
       version: "0.12.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psi4j",
           repo: "sunsetr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-3umyyOwyJwBu/HQflzXtIFMdD5lBeSUrcDCvQPuECis=",
       checkFlags: nix.thunk(() => ["--skip=config::tests::test_geo_toml_exists_before_config_creation"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "sunsetr",
         description: "Automatic blue light filter for Hyprland, Niri, and everything Wayland",
         homepage: "https://github.com/psi4j/sunsetr",

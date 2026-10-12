@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "notty-community",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-community/notty-community/releases/download/v${nix.sel(finalAttrs, "version")}/notty-community-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-FrA3wGX4lQZtrwXked1K/8LLvXel8xYIZ57gEmxX/d8=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [lwt, uutf]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A declarative terminal library for OCaml",
         homepage: "https://github.com/ocaml-community/notty-community",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gotags",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jstemmer",
           repo: "gotags",
           rev: "4c0c4330071a994fbdfdff68f412d768fbcca313",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/jstemmer/gotags/commit/9146999bce9a88e15b5f123d1aa1613926dd9a9c.patch",
             hash: "sha256-6v/Ws15y50S6iCI1c0kEw5WHSg+1WqVT4mwdQKoi5G8=",
           })))),
       ]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ctags-compatible tag generator for Go",
         mainProgram: "gotags",
         homepage: "https://github.com/jstemmer/gotags",

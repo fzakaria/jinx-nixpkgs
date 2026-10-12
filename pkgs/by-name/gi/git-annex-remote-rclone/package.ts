@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "git-annex-remote-rclone";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-annex-remote-rclone",
           repo: "git-annex-remote-rclone",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ wrapProgram "$out/bin/git-annex-remote-rclone" \\
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rclone]))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/git-annex-remote-rclone/git-annex-remote-rclone",
         description: "Use rclone supported cloud storage providers with git-annex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -38,7 +38,7 @@ wrapProgram "$out/bin/git-annex-remote-rclone" \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "montag451"))]),
         mainProgram: "git-annex-remote-rclone",
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "isort",
           tag: version,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         "test_isort_should_warn_on_empty_custom_config_issue_1433",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python utility / library to sort Python imports",
         homepage: "https://github.com/PyCQA/isort",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "isort",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

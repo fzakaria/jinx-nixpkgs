@@ -39,35 +39,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const transitionType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       freeformType: nix.thunk(() => nix.sel(json, "type")),
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["delay", "event", "exec"]))),
             description: "Type of transition. Determines how bonsaid interprets the other options in this transition.\n",
           })))),
         command: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
             default: null,
             description: "Command to run when this transition is taken.\nThis is executed inline by `bonsaid` and blocks handling of any other events until completion.\nTo perform the command asynchronously, specify it like `[ \"setsid\" \"-f\" \"my-command\" ]`.\n\nOnly effects transitions with `type = \"exec\"`.\n",
           })))),
         delay_duration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
             default: null,
             description: "Nanoseconds to wait after the previous state change before performing this transition.\nThis can be placed at the same level as a `type = \"event\"` transition to achieve a\ntimeout mechanism.\n\nOnly effects transitions with `type = \"delay\"`.\n",
           })))),
         event_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             description: "Name of the event which should trigger this transition when received by `bonsaid`.\nEvents are sent to `bonsaid` by running `bonsaictl -e <event_name>`.\n\nOnly effects transitions with `type = \"event\"`.\n",
           })))),
         transitions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), transitionType)),
             default: [],
             description: "List of transitions out of this state.\nIf left empty, then this state is considered a terminal state and entering it will\ntrigger an immediate transition back to the root state (after processing side effects).\n",
@@ -77,42 +77,42 @@ export default nix.lambda((args) => (() => {
     }))));
   const cfg = nix.thunk(() => nix.sel(config, "services", "bonsaid"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "colinsane"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         bonsaid: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "bonsaid")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bonsai", nix.thunk(() => ({})))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra flags to pass to `bonsaid`, such as `[ \"-v\" ]` to enable verbose logging.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), transitionType)),
               description: "State transition definitions. See the upstream [README](https://git.sr.ht/~stacyharper/bonsai)\nfor extended documentation and a more complete example.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: "event",
                   event_name: "power_button_pressed",
                   transitions: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       type: "delay",
                       delay_duration: 600000000n,
                       transitions: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: "exec",
                           command: nix.thunk(() => ["swaymsg", "--", "output", "*", "power", "off"]),
                           transitions: [],
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
                       ]),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       type: "event",
                       event_name: "power_button_released",
                       transitions: [],
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
               ]),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to a .json file specifying the state transitions.\nYou don't need to set this unless you prefer to provide the json file\nyourself instead of using the `settings` option.\n",
             })))),
@@ -138,11 +138,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           bonsaid: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             configFile: nix.thunk(() => (() => {
               const filterNulls = (v) => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)) ? nix.app(nix.sel(lib, "mapAttrs"), (_) => filterNulls, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (a) => !nix.eq(a, null), v))) : (nix.asBool(nix.app(nix.sel(lib, "isList"), v)) ? nix.app(nix.sel(lib, "map"), filterNulls, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (a) => !nix.eq(a, null), v))) : nix.force(v)));
               return nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(json, "generate"), "bonsai_tree.json", nix.thunk(() => nix.app(filterNulls, nix.thunk(() => nix.sel(cfg, "settings")))))));
@@ -150,22 +150,22 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           user: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             services: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               bonsaid: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 description: "Bonsai Finite State Machine daemon",
                 documentation: nix.thunk(() => ["https://git.sr.ht/~stacyharper/bonsai"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                       nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "bonsaid")),
                       "-t",

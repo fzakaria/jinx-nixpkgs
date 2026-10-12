@@ -28,41 +28,41 @@ export default nix.lambda((args) => (() => {
   const submoduleOf = nix.thunk(() => nix.attr(types, "submoduleOf"));
   const str = nix.thunk(() => nix.attr(types, "str"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const options = nix.arg($_1, "options");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           options: nix.thunk(() => ({
-            __proto__: pos$11,
-            str: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: str })))),
+            [nix.POS]: pos$11,
+            str: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: str })))),
             attrsOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(attrsOf, str)),
-                default: nix.thunk(() => ({ __proto__: pos$2, foo: "foo", bar: "bar" })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$2, foo: "foo", bar: "bar" })),
               })))),
             attrsOfResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(options, "attrsOf", "valueMeta", "attrs")))),
               })))),
             listOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(listOf, str)),
                 default: nix.thunk(() => ["foo", "bar"]),
               })))),
             listOfResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: nix.thunk(() => nix.builtins.length(nix.thunk(() => nix.sel(options, "listOf", "valueMeta", "list")))),
               })))),
             submoduleOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(submoduleOf, nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
-                      str: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$7, type: str })))),
+                      [nix.POS]: pos$8,
+                      str: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$7, type: str })))),
                     })),
                   })))),
               })))),

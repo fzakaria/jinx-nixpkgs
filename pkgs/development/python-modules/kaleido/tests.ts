@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const kaleido = nix.arg($, "kaleido");
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(kaleido, "pname")}-tests`), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [python, plotly, pandas, kaleido]),
     })), nix.thunk(() => nix.str`python3 ${nix.path(here, "./tests.py")}`));
 })(), formals$1);

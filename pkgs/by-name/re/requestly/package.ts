@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "requestly";
   const version = "26.6.29";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/requestly/requestly-desktop-app/releases/download/v${version}/Requestly-${version}.AppImage`),
       hash: "sha256-TnHEt5CCGNb75KtDEzuDbkqba6V5Kqkl1JkPfHT6dPI=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 cp -r ${appimageContents}/usr/share/icons $out/share
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Intercept & Modify HTTP Requests",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

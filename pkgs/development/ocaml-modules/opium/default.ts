@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opium",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.attr(rock, "src")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest_lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OCaml web framework",
         homepage: "https://github.com/rgrinberg/opium",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytz = nix.arg($, "pytz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pysiaalarm",
       version: "3.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9icZnEpSaezVj9EH5s1u2mB2h9jP/oZcpkVE0WFM4W8=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cases, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pysiaalarm", "pysiaalarm.aio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for creating a client that talks with SIA-based alarm systems",
         homepage: "https://github.com/eavanvalkenburg/pysiaalarm",
         changelog: nix.thunk(() => nix.str`https://github.com/eavanvalkenburg/pysiaalarm/releases/tag/v${nix.sel(finalAttrs, "version")}`),

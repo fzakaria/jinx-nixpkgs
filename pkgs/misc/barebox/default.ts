@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const lz4 = nix.arg($, "lz4");
   const defaultVersion = "2026.06.1";
   const defaultSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://www.barebox.org/download/barebox-${defaultVersion}.tar.bz2`),
       sha256: "sha256-h1KzdSgZ7EqvhIodBt8FJCpklUUl+xW2zwezw91+vX8=",
     }))));
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const defconfig = nix.arg($_1, "defconfig");
       const extraMeta = nix.argOr($_1, "extraMeta", () => ({}));
       return nix.update(nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`barebox-${defconfig}`),
           strictDeps: true,
           version: nix.thunk(() => (nix.asBool(nix.eq(version, null)) ? defaultVersion : nix.force(version))),
@@ -74,7 +74,7 @@ runHook postInstall
           meta: nix.thunk(() => (() => {
             const w = nix.withScope(lib, null);
             return nix.update({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               homepage: "https://www.barebox.org",
               description: "Swiss Army Knife for bare metal",
               license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl2Only")),
@@ -87,14 +87,14 @@ runHook postInstall
         })), nix.builtins.removeAttrs(args_2, nix.thunk(() => ["extraMeta"])));
     })(), formals$2)));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     buildBarebox: buildBarebox,
     bareboxTools: nix.thunk(() => nix.app(buildBarebox, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         defconfig: "hosttools_defconfig",
         installDir: "$out/bin",
         extraMeta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         })),
         filesToInstall: nix.thunk(() => [

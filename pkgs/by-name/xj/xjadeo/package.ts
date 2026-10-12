@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xjadeo",
       version: "0.8.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "x42",
           repo: "xjadeo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([ffmpeg, libjack2, libx11, libxext, libxpm, freetype, libGLU, liblo, portmidi], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxv])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "X Jack Video Monitor",
         longDescription: "Xjadeo is a software video player that displays a video-clip in sync with\nan external time source (MTC, LTC, JACK-transport). Xjadeo is useful in\nsoundtrack composition, video monitoring or any task that requires to\nsynchronizing movie frames with external events.\n",
         homepage: "https://xjadeo.sourceforge.net",

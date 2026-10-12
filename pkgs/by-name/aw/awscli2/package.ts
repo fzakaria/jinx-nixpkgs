@@ -35,37 +35,37 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const cacert = nix.arg($, "cacert");
   const py = nix.thunk(() => nix.update(python3, {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     pkgs: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "overrideScope"), (final) => (prev) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "prompt-toolkit": nix.thunk(() => nix.app(nix.sel(prev, "prompt-toolkit", "overridePythonAttrs"), (prev_1) => (() => {
             const version = "3.0.51";
             const src = nix.thunk(() => nix.app(nix.sel(prev_1, "src", "override"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 tag: version,
                 hash: "sha256-pNYmjAgnP9nK40VS/qvPR3g+809Yra2ISASWJDdQKrU=",
               }))));
-            return { __proto__: pos$2, version, src };
+            return { [nix.POS]: pos$2, version, src };
           })())),
         "python-dateutil": nix.thunk(() => nix.app(nix.sel(prev, "python-dateutil", "overridePythonAttrs"), (prev_1) => (() => {
             const version = "2.8.2";
             const format = "setuptools";
             const pyproject = null;
             const src = nix.thunk(() => nix.app(nix.sel(prev_1, "src", "override"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 version: version,
                 hash: "sha256-ASPKzBYnrhnd88J6XeW9Z+5FhvvdZEDZdI+Ku0g9PoY=",
               }))));
             const patches = nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   url: "https://github.com/dateutil/dateutil/commit/f2293200747fb03d56c6c5997bfebeabe703576f.patch",
                   relative: "src",
                   hash: "sha256-BVEFGV/WGUz9H/8q+l62jnyN9VDnoSR71DdL+LIkb0o=",
                 })))),
             ]);
             const postPatch = null;
-            return { __proto__: pos$5, version, format, pyproject, src, patches, postPatch };
+            return { [nix.POS]: pos$5, version, format, pyproject, src, patches, postPatch };
           })())),
       }))),
   }));
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.35.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "aws",
           repo: "aws-cli",
           tag: version,
@@ -151,16 +151,16 @@ ln -sf ${cacert}/etc/ssl/certs/ca-no-trust-rules-bundle.crt awscli/botocore/cace
       ]);
       const pythonImportsCheck = nix.thunk(() => ["awscli"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         python: py,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             extraArgs: nix.thunk(() => ["--version-regex", "^(2\\.(.*))"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               package: awscli2,
               command: "aws --version",
               version: version,
@@ -168,7 +168,7 @@ ln -sf ${cacert}/etc/ssl/certs/ca-no-trust-rules-bundle.crt awscli/botocore/cace
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Unified tool to manage your AWS services",
         homepage: "https://aws.amazon.com/cli/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-cli/blob/${version}/CHANGELOG.rst`),
@@ -184,7 +184,7 @@ ln -sf ${cacert}/etc/ssl/certs/ca-no-trust-rules-bundle.crt awscli/botocore/cace
         mainProgram: "aws",
       }));
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname,
         version,
         pyproject,

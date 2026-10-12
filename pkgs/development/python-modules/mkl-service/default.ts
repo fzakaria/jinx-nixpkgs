@@ -22,27 +22,27 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IntelPython",
           repo: "mkl-service",
           tag: version,
           hash: "sha256-qiypoeCWUIghLmEYVOJaT4XUT7TNAJjWxnIq7HOZlkY=",
         }))));
       const build_system = nix.thunk(() => [cython, setuptools]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, MKLROOT: mkl }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, MKLROOT: mkl }));
       const dependencies = nix.thunk(() => [mkl]);
       const pythonImportsCheck = nix.thunk(() => ["mkl"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "cd $out\n";
       const disabledTests = nix.thunk(() => ["test_cbwr_all", "test_cbwr_branch"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python hooks for Intel(R) Math Kernel Library runtime control settings",
         homepage: "https://github.com/IntelPython/mkl-service",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

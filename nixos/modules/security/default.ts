@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "security"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       security: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lsm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             description: "A list of the LSMs to initialize in order.\n",
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           security: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             lsm: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ["landlock", "yama"]),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["bpf"]))),
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "lists", "length"), nix.thunk(() => nix.sel(cfg, "lsm"))), 0n)), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 assertion: nix.thunk(() => nix.eq(nix.builtins.length(nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "security=")), nix.thunk(() => nix.sel(config, "boot", "kernelParams"))))), 0n)),
                 message: "security parameter in boot.kernelParams cannot be used when security.lsm is used",
               })),
             ]),
             boot: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               kernelParams: nix.thunk(() => [
                 nix.thunk(() => nix.str`lsm=${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "lsm")))}`),
               ]),

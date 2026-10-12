@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const twisted = nix.arg($, "twisted");
   const zope_interface = nix.arg($, "zope-interface");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python3-eventlib",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AGProjects",
           repo: "python3-eventlib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [greenlet, twisted, zope_interface]),
       pythonImportsCheck: nix.thunk(() => ["eventlib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Networking library written in Python",
         homepage: "https://github.com/AGProjects/python3-eventlib",
         longDescription: "Eventlib is a networking library written in Python. It achieves high\nscalability by using non-blocking I/O while at the same time retaining\nhigh programmer usability by using coroutines to make the non-blocking io\noperations appear blocking at the source code level.\n",

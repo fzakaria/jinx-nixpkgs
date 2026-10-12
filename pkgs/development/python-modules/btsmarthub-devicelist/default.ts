@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "btsmarthub-devicelist",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jxwolstenholme",
           repo: "btsmarthub_devicelist",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [responses, requests, pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_btsmarthub2_detection_neither_router_present"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Retrieve a list of devices from a bt smarthub or bt smarthub 2 on a local network",
         homepage: "https://github.com/jxwolstenholme/btsmarthub_devicelist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

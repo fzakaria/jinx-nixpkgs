@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hisat2",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DaehwanKimLab",
           repo: "hisat2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3, perl]),
       installPhase: "mkdir -p $out/bin\ncp hisat2 \\\n   hisat2-inspect-l \\\n   hisat2-build-s \\\n   hisat2-align-l \\\n   hisat2-inspect \\\n   hisat2-align-s \\\n   hisat2-inspect-s \\\n   hisat2-build-l \\\n   hisat2-build \\\n   extract_exons.py \\\n   extract_splice_sites.py \\\n   hisat2_extract_exons.py \\\n   hisat2_extract_snps_haplotypes_UCSC.py \\\n   hisat2_extract_snps_haplotypes_VCF.py \\\n   hisat2_extract_splice_sites.py \\\n   hisat2_simulate_reads.py \\\n   $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graph based aligner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://daehwankimlab.github.io/hisat2/",

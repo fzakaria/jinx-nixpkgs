@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const libgtop = nix.arg($, "libgtop");
   const gtk4_layer_shell = nix.arg($, "gtk4-layer-shell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "swaysettings",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ErikReider",
           repo: "SwaySettings",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gtk-4.20-fix.patch",
             url: "https://github.com/ErikReider/SwaySettings/commit/e4f3749a053b5fbe0feab93e46d6eba380ee2e58.patch?full_index=1",
             hash: "sha256-3A0VPAUQ3UjQ2mqR24z5CQ5Tdjw73UzfPz5UUcl/FDA=",
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs build-aux/meson/postinstall.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI for configuring your sway desktop",
         longDescription: "Sway settings enables easy configuration of a sway desktop environment\nsuch as selection of application or icon themes.\n",
         homepage: "https://github.com/ErikReider/SwaySettings",

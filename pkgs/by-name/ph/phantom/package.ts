@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phantom",
       version: "0.0.0-unstable-2025-12-22",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ItsZariep",
           repo: "Phantom",
           rev: "7bba1e0a2d9b33d881fb999bb543324d14355505",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/applications $out/share/icons/hicolor/scalable/app\ncp phantom-qt $out/bin\ncp ../src/phantom-qt.desktop $out/share/applications\ncp ../src/phantom.svg $out/share/icons/hicolor/scalable/app\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Markdown editor with support for multi-tab",
         homepage: "https://codeberg.org/ItsZariep/Phantom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

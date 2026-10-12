@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const gst_libav = nix.thunk(() => nix.attr(gst_all_1, "gst-libav"));
   const gst_plugins_good = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gajim",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gajim",
           repo: "gajim",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableJingle, nix.thunk(() => [
           farstream,
           gst_libav,
-          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
           libnice,
         ])), nix.concat(nix.app(nix.sel(lib, "optional"), enableSecrets, libsecret), nix.concat(nix.app(nix.sel(lib, "optional"), enableSpelling, libspelling), nix.concat(nix.app(nix.sel(lib, "optional"), enableUPnP, gupnp_igd), nix.concat(nix.app(nix.sel(lib, "optional"), enableAppIndicator, libappindicator), nix.app(nix.sel(lib, "optional"), enableSoundNotifications, gsound)))))))),
       nativeBuildInputs: nix.thunk(() => [gettext, wrapGAppsHook3, gobject_introspection, libadwaita]),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pytestCheckHook"))]),
       strictDeps: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "http://gajim.org/",
         description: "XMPP chat client",
         longDescription: "Gajim aims to be an easy to use and fully-featured XMPP client. Just chat with your friends or family, easily share pictures and thoughts or discuss the news with your groups.",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "gajim",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gajim", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const pname = "django-admin-sortable2";
   const version = "2.3.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jrief",
       repo: "django-admin-sortable2",
       tag: version,
       hash: "sha256-noY0SELM+ZBWDoZ/pl1oUV/S0VICtG7sSaCtPGjjOpQ=",
     }))));
   const assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: src,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["adminsortable2"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generic drag-and-drop ordering for objects in the Django admin interface",
         homepage: "https://github.com/jrief/django-admin-sortable2",
         changelog: nix.thunk(() => nix.str`https://github.com/jrief/django-admin-sortable2/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version: version_1,
         src: src_1,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libfsm";
       const version = nix.thunk(() => nix.str`0.1pre2987_${nix.builtins.substring(0n, 8n, nix.thunk(() => nix.sel(src, "rev")))}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "katef",
           repo: "libfsm",
           rev: "087e3389ad2cd5e5c40caeb40387e632567d7258",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $lib $dev/lib\n\nmv $out/lib             $lib/lib\nmv $out/include         $dev/include\nmv $out/share/pkgconfig $dev/lib/pkgconfig\nrmdir $out/share\n\nfor x in libfsm.pc libre.pc; do\n  substituteInPlace \"$dev/lib/pkgconfig/$x\" \\\n    --replace 'libdir=${prefix}/lib' \"libdir=$lib/lib\"\ndone\n";
       const outputs = nix.thunk(() => ["out", "lib", "dev"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "DFA regular expression library & friends",
         homepage: "https://github.com/katef/libfsm",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nmmapper",
           repo: "python3-nmap",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["nmap3"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library which helps in using nmap port scanner",
         homepage: "https://github.com/nmmapper/python3-nmap",
         changelog: nix.thunk(() => nix.str`https://github.com/nmmapper/python3-nmap/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "everforest-cursors",
       version: "3212590527",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/talwat/everforest-cursors/releases/download/${nix.sel(finalAttrs, "version")}/everforest-cursors-variants.tar.bz2`),
           hash: "sha256-xXgtN9wbjbrGLUGYymMEGug9xEs9y44mq18yZVdbiuU=",
         })))),
       sourceRoot: ".",
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons\ncp -r ./everforest-cursors* $out/share/icons\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Everforest cursor theme, based on phinger-cursors",
         homepage: "https://github.com/talwat/everforest-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

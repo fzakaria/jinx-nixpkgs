@@ -24,25 +24,25 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download.jetbrains.com/idea/ideaIU-2026.2.3.tar.gz",
       hash: "sha256-aHUciuTUlAclHNGX33lfvtkbb9yF0QxzxGSameSWqzc=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://download.jetbrains.com/idea/ideaIU-2026.2.3-aarch64.tar.gz",
       hash: "sha256-hzKG3WQGlxojEYJ+3WbFYGDDRVgqSmsXdOOSUYOwLsU=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://download.jetbrains.com/idea/ideaIU-2026.2.3-aarch64.dmg",
       hash: "sha256-qsPNxthEG5QFJHP+43qWeSQqNvSfYP3ObM6qPnrUbjM=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "intellij-idea",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [lldb, musl]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.jetbrains.com/idea/",
         description: "Java, Kotlin, Groovy and Scala IDE from JetBrains",
         longDescription: "IDE for Java SE, Groovy & Scala development Powerful environment for building Google Android apps Integration with JUnit, TestNG, popular SCMs, Ant & Maven.\nAlso known as IntelliJ.\n",

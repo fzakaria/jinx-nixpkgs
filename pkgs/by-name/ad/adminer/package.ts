@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "adminer",
       version: "5.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/vrana/adminer/releases/download/v${nix.sel(finalAttrs, "version")}/adminer-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-vgPo43c56eD424z3SyR8i7UkLzt2/PaUaT/7778yl7M=",
         })))),
@@ -35,11 +35,11 @@ cp adminer-${nix.sel(finalAttrs, "version")}.php $out/adminer.php
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Database management in a single PHP file",
         homepage: "https://www.adminer.org",
         license: nix.thunk(() => (() => {

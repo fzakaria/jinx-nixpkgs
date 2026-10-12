@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "credhub-cli",
       version: "2.9.60",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudfoundry",
           repo: "credhub-cli",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "ln -s $out/bin/credhub-cli $out/bin/credhub\n",
       preCheck: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides a command line interface to interact with CredHub servers",
         homepage: "https://github.com/cloudfoundry/credhub-cli",
         maintainers: nix.thunk(() => (() => {

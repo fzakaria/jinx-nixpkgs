@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const runTest = nix.arg($, "runTest");
   const testFile = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/asmaloney/libE57Format-test-data/bbcacec05d60f923869545c5eab33d94c390d50e/self/ColouredCubeFloat.e57",
       hash: "sha256-bb95crNYvX3Qhkx4k6Sqe2GjOf1u4nxxswMfdjyXfTM=",
     }))));
   const vmTest = nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "e57inspector-vm",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
           return [
@@ -38,18 +38,18 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
             services: nix.thunk(() => ({
-              __proto__: pos$4,
-              xserver: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+              [nix.POS]: pos$4,
+              xserver: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "e57inspector"))]),
             })),
           };
@@ -66,10 +66,10 @@ machine.screenshot("screen.png")
 `),
     }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     vm: vmTest,
     "screenshot-analysis": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./vlm-screenshot-question.nix"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "e57inspector-screenshot-analysis",
         screenshot: nix.thunk(() => nix.str`${vmTest}/screen.png`),
         question: "Look at this screenshot of a desktop application.\nAnswer: Does the application show that a file was loaded into it successfully?\nFor this, only scans matter, as there are no images in the file.\nThe inspector on the left should show child elements below 'Data 3D'.\n",

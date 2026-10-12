@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tsja",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.amris.jp/tsja/tsja-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-h59UhUG/7biN8NaDiGK6kXDqfhR9uMzt8CpwbJ+PpEM=",
         })))),
@@ -39,17 +39,17 @@ substituteInPlace tsja.c --replace-fail /usr/local/lib/mecab ${mecab}/lib/mecab
       buildInputs: nix.thunk(() => [mecab, postgresql]),
       installPhase: "mkdir -p $out/lib $out/share/postgresql/extension\nmv libtsja.so $out/lib\nmv dbinit_libtsja.txt $out/share/postgresql/extension/libtsja_dbinit.sql\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: nix.thunk(() => nix.str`\\i ${nix.sel(finalAttrs, "finalPackage")}/share/postgresql/extension/libtsja_dbinit.sql
 `),
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   query: "EXISTS (SELECT 1 FROM ts_debug('japanese', 'PostgreSQLで日本語のテキスト検索ができます。') WHERE lexemes = '{日本語}')",
                   expected: "true",
                   description: "make sure '日本語' is parsed as a separate lexeme",
@@ -59,7 +59,7 @@ substituteInPlace tsja.c --replace-fail /usr/local/lib/mecab ${mecab}/lib/mecab
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "PostgreSQL extension implementing Japanese text search",
         homepage: "https://www.amris.jp/tsja/index.html",
         maintainers: nix.thunk(() => (() => {

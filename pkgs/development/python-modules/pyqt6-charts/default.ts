@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyqt6_charts",
           version: version,
           hash: "sha256-EJHNkZgGo84F0idnKfeb5Oy9CpOVAKiJkCbD71dpxlA=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for Qt6 QtCharts",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

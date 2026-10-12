@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add("dbqn", nix.app(nix.sel(lib, "optionalString"), buildNativeImage, "-native")));
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dzaima",
           repo: "BQN",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getBin"), jre)}/bin/java" "$out/bin/dbqn" \
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dzaima/BQN",
         description: nix.thunk(() => nix.add("BQN implementation in Java", nix.app(nix.sel(lib, "optionalString"), buildNativeImage, ", compiled as a native image"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getBin"), jre)}/bin/java" "$out/bin/dbqn" \
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

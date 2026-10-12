@@ -18,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "river-bnf",
       version: "0-unstable-2023-10-10",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~leon_plickat",
           repo: "river-bnf",
           rev: "bb8ded380ed5d539777533065b4fd33646ad5603",
           hash: "sha256-rm9Nt3WLgq9QOXzrkYBGp45EALNYFTQGInxfYIN0XcU=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => [wayland_scanner]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(wayland, "dev"))]),
       postPatch: "substituteInPlace Makefile --replace '/usr/local' $out\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Switch back'n'forth between river tags",
         homepage: "https://git.sr.ht/~leon_plickat/river-bnf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

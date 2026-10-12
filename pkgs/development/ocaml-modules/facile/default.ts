@@ -17,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const stdlib_shims = nix.arg($, "stdlib-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "facile",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Emmanuel-PLF/facile/releases/download/${nix.sel(finalAttrs, "version")}/facile-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "0jqrwmn6fr2vj2rrbllwxq4cmxykv7zh0y4vnngx29f5084a04jp",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://patch-diff.githubusercontent.com/raw/Emmanuel-PLF/facile/pull/4.patch",
           excludes: nix.thunk(() => ["Makefile"]),
           hash: "sha256-syZO3lzuHxE2Y4yUaS+XgAQUFtLrENy2MwyWzPygfdg=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [stdlib_shims]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://opti.recherche.enac.fr/facile/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         description: "Functional Constraint Library",

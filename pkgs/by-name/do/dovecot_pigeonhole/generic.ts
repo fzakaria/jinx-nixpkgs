@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
     const dovecotMajorMinor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(dovecot, "version"))));
     const isCurrent = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.4"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "dovecot-pigeonhole",
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.app(url, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                 dovecotMajorMinor: dovecotMajorMinor,
               })))),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
           ]))),
         enableParallelBuilding: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://pigeonhole.dovecot.org/",
           description: "Sieve plugin for the Dovecot IMAP server",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

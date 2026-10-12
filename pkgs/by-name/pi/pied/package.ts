@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pied";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Elleo",
           repo: "pied",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "install -D flatpak/com.mikeasoft.pied.desktop -t $out/share/applications\ninstall -D flatpak/com.mikeasoft.pied.png -t $out/share/icons/hicolor/256x256/apps\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Piper text-to-speech voice manager for use with Speech Dispatcher",
         homepage: "https://github.com/Elleo/pied",
         changelog: nix.thunk(() => nix.str`https://github.com/Elleo/pied/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

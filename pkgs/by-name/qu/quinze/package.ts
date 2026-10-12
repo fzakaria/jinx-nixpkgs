@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quinze",
       version: "2018-09-22",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://fontlibrary.org/assets/downloads/quinze/0271bb7be00ea75dcfa06ef7c7f1054e/quinze.zip",
           hash: "sha256-6C6drbAHme38tF2PtY/YFDdHCbR0JURs4F/K+KZqKiQ=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Narrow monospaced font, designed to fit a fifteen pixel bitmap",
         homepage: "https://fontlibrary.org/en/font/quinze",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

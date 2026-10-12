@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-bV5HauM0xmRI/9Pxp1cYLPLA8PbFvPER2y4mAMmgchs=",
           owner: "timbertson",
           repo: "gup",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make python";
       const installPhase = "mkdir $out\ncp -r python/bin $out/bin\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => [
           runtimeShell,
           "-c",
@@ -56,7 +56,7 @@ ${nix_update_source}/bin/nix-update-source \\
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Better make, inspired by djb's redo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -65,7 +65,7 @@ ${nix_update_source}/bin/nix-update-source \\
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         src,
         pname,

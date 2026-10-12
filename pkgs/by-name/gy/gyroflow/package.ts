@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const lens_profiles_version = "v41";
   const lens_profiles_db = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/gyroflow/lens_profiles/releases/download/${lens_profiles_version}/profiles.cbor.gz`),
       hash: "sha256-W5E2aXt13fnNogll8X54a2yFMOPVkQn4dQUGlgLn9nY=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gyroflow",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "gyroflow",
           repo: "gyroflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ substituteInPlace build.rs \\
   --replace-fail 'println!("cargo:rustc-env=BUILD_TIME={}", (time.as_secs() - 1642516578) / 600);' ""
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace build.rs \\\n  --replace-fail 'println!(\"cargo:rustc-link-lib=static:+whole-archive=x264\");' \"\" \\\n  --replace-fail 'println!(\"cargo:rustc-link-lib=static=x265\");' \"\"\n"))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [
             nix.thunk(() => nix.str`-F${nix.sel(qt6, "qtdeclarative")}/lib`),
             nix.thunk(() => nix.str`-I${nix.sel(qt6, "qtdeclarative")}/lib/QtQuick.framework/Headers`),
@@ -148,7 +148,7 @@ install -Dm644 resources/icon.svg $out/share/icons/hicolor/scalable/apps/gyroflo
       postFixup: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos=$out/Applications/Gyroflow.app/Contents/MacOS\nmakeQtWrapper $macos/gyroflow $macos/gyroflow-launcher\n\nmkdir -p $out/bin\nln -s ../Applications/Gyroflow.app/Contents/MacOS/gyroflow-launcher $out/bin/gyroflow\n" : "makeQtWrapper $out/opt/Gyroflow/gyroflow $out/bin/gyroflow\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "gyroflow",
               desktopName: "Gyroflow",
               genericName: "Video stabilization using gyroscope data",
@@ -164,11 +164,11 @@ install -Dm644 resources/icon.svg $out/share/icons/hicolor/scalable/apps/gyroflo
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Advanced gyro-based video stabilization tool",
         homepage: "https://gyroflow.xyz",
         mainProgram: "gyroflow",

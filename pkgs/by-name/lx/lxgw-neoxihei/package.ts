@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "lxgw-neoxihei";
       const version = "1.305";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lxgw/LxgwNeoXiHei/releases/download/v${version}/LXGWNeoXiHei.ttf`),
           hash: "sha256-iTz77GBHaPA3hatPNpUI3mjCdCczWaXK3uF+KFKXXVw=",
         }))));
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\ninstall -Dm644 $src $out/share/fonts/truetype/LXGWNeoXiHei.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simplified Chinese sans-serif font derived from IPAex Gothic",
         homepage: "https://github.com/lxgw/LxgwNeoXiHei",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ipa")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "zendo"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

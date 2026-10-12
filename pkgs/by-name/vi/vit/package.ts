@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vit",
       version: "2.3.4",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nix.lookup(w, "python"), "version")), "3.7")),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NGohCqDedUz3ra9zcjv30syO51Tut4XrGDcNM/dOXOI=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export TERM=${TERM-linux}\n",
       pythonImportsCheck: nix.thunk(() => ["vit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/scottkosty/vit",
         description: "Visual Interactive Taskwarrior",
         mainProgram: "vit",

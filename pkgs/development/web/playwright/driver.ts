@@ -46,27 +46,27 @@ export default nix.lambda((args) => (() => {
   const browsersJSON = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./browsers.json")), "browsers"));
   const version = "1.63.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Microsoft",
       repo: "playwright",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-W5x48pV5OlOzL65JQ3OJf2gL6T/FLAYJO2SwCb7IzOY=",
     }))));
   const playwright = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "playwright",
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}`),
       npmDepsHash: "sha256-6unp+NT6BHEaLE9XJ6tv49N/0yY4pJ5dyvSqmE9O3SQ=",
       nativeBuildInputs: nix.thunk(() => [cacert, jq]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
       postPatch: "sed -i '/\\/\\/ Update test runner./,/^\\s*$/{d}' utils/build/build.js\n# The dlopen library check uses ldconfig which doesn't work under Nix.\n# These libraries are already provided via rpath by autoPatchelfHook and wrapProgram.\nsubstituteInPlace packages/playwright-core/src/server/registry/index.ts \\\n  --replace-fail \"['libGLESv2.so.2', 'libx264.so']\" \"[]\"\n",
       installPhase: "runHook preInstall\n\nshopt -s extglob\n\nmkdir -p \"$out/lib/node_modules/playwright\"\ncp -r packages/playwright/!(bundles|src|node_modules|.*) \"$out/lib/node_modules/playwright\"\n\n# Nixpkgs packages only the top-level browser revisions. Remove platform-specific\n# overrides so Playwright selects the revisions available in the browser link farm.\njq 'del(.browsers[].revisionOverrides)' \\\n  packages/playwright-core/browsers.json > browser.json.tmp && mv browser.json.tmp packages/playwright-core/browsers.json\nmkdir -p \"$out/lib/node_modules/playwright-core\"\ncp -r packages/playwright-core/!(bundles|src|bin|.*) \"$out/lib/node_modules/playwright-core\"\n\nmkdir -p \"$out/lib/node_modules/@playwright/test\"\ncp -r packages/playwright-test/* \"$out/lib/node_modules/@playwright/test\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Framework for Web Testing and Automation",
         homepage: "https://playwright.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const playwright_core = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "playwright-core",
       version: nix.thunk(() => nix.attr(playwright, "version")),
       src: nix.thunk(() => nix.attr(playwright, "src")),
@@ -91,20 +91,20 @@ cp -r ${playwright}/lib/node_modules/playwright-core "$out"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         browsersJSON: browsersJSON,
         selectBrowsers: browsers,
         browsers: nix.thunk(() => nix.app(browsers, nix.thunk(() => ({})))),
         "browsers-chromium": nix.thunk(() => nix.app(browsers, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             withFirefox: false,
             withWebkit: false,
             withChromiumHeadlessShell: false,
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "browser-downloads": nix.thunk(() => nix.app(callPackage, nix.path(here, "./browser-downloads-test.nix"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "playwright-core": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -113,7 +113,7 @@ runHook postInstall
       })),
     })));
   const playwright_test = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "playwright-test",
       version: nix.thunk(() => nix.attr(playwright, "version")),
       src: nix.thunk(() => nix.attr(playwright, "src")),
@@ -131,25 +131,25 @@ makeWrapper "${nodejs}/bin/node" "$out/bin/playwright" \\
 
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(playwright, "meta"), { __proto__: pos$10, mainProgram: "playwright" })),
+      meta: nix.thunk(() => nix.update(nix.sel(playwright, "meta"), { [nix.POS]: pos$10, mainProgram: "playwright" })),
     })));
   const components = nix.thunk(() => ({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     chromium: nix.thunk(() => nix.app(callPackage, nix.path(here, "./chromium.nix"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(browsersJSON, "chromium"));
         return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         system: system,
         throwSystem: throwSystem,
         revision: nix.thunk(() => nix.attr(from_1, "revision")),
         browserVersion: nix.thunk(() => nix.attr(from_1, "browserVersion")),
-        fontconfig_file: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$12, fontDirectories: [] })))),
+        fontconfig_file: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$12, fontDirectories: [] })))),
       };
       })()))),
     "chromium-headless-shell": nix.thunk(() => nix.app(callPackage, nix.path(here, "./chromium-headless-shell.nix"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(browsersJSON, "chromium-headless-shell"));
         return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         system: system,
         throwSystem: throwSystem,
         revision: nix.thunk(() => nix.attr(from_1, "revision")),
@@ -159,7 +159,7 @@ runHook postInstall
     firefox: nix.thunk(() => nix.app(callPackage, nix.path(here, "./firefox.nix"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(browsersJSON, "firefox"));
         return {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         system: system,
         throwSystem: throwSystem,
         revision: nix.thunk(() => nix.attr(from_1, "revision")),
@@ -168,7 +168,7 @@ runHook postInstall
     webkit: nix.thunk(() => nix.app(callPackage, nix.path(here, "./webkit.nix"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(browsersJSON, "webkit"));
         return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         system: system,
         throwSystem: throwSystem,
         revision: nix.thunk(() => nix.attr(from_1, "revision")),
@@ -177,7 +177,7 @@ runHook postInstall
     ffmpeg: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ffmpeg.nix"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(browsersJSON, "ffmpeg"));
         return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         system: system,
         throwSystem: throwSystem,
         revision: nix.thunk(() => nix.attr(from_1, "revision")),
@@ -191,7 +191,7 @@ runHook postInstall
       const withWebkit = nix.argOr($_1, "withWebkit", () => true);
       const withFfmpeg = nix.argOr($_1, "withFfmpeg", () => true);
       const withChromiumHeadlessShell = nix.argOr($_1, "withChromiumHeadlessShell", () => true);
-      const fontconfig_file = nix.argOr($_1, "fontconfig_file", () => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$19, fontDirectories: [] }))));
+      const fontconfig_file = nix.argOr($_1, "fontconfig_file", () => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$19, fontDirectories: [] }))));
       const browsers_1 = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withChromium, nix.thunk(() => ["chromium"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withChromiumHeadlessShell, nix.thunk(() => ["chromium-headless-shell"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withFirefox, nix.thunk(() => ["firefox"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withWebkit, nix.thunk(() => ["webkit"])), nix.app(nix.sel(lib, "optionals"), withFfmpeg, nix.thunk(() => ["ffmpeg"])))))));
       return nix.app(linkFarm, "playwright-browsers", nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((name) => (() => {
               const value = nix.thunk(() => nix.sel(browsersJSON, nix.key(nix.force(name))));
@@ -199,7 +199,7 @@ runHook postInstall
             })(), browsers_1)))));
     })(), formals$2)));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     "playwright-core": playwright_core,
     "playwright-test": playwright_test,
   };

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rxvt";
       const version = "2.7.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/rxvt/${pname}-${version}.tar.gz`),
           sha256: "0jfl71gz3k7zh3kxdb8lxi06kajjnx7bq1rxjgk680l209jxask1",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const configurePhase = nix.thunk(() => nix.str`LIBTOOL=${libtool}/bin/libtool ./configure --prefix=$out --enable-everything --enable-smart-resize --enable-256-color
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rxvt.sourceforge.net/",
         description: "Colour vt102 terminal emulator with less features and lower memory consumption",
         longDescription: "rxvt (acronym for our extended virtual terminal) is a terminal\nemulator for the X Window System, originally written by Rob Nation\nas an extended version of the older xvt terminal by John Bovey of\nUniversity of Kent. Mark Olesen extensively modified it later and\ntook over maintenance for several years.\n\nrxvt is intended to be a slimmed-down alternate for xterm,\nomitting some of its little-used features, like Tektronix 4014\nemulation and toolkit-style configurability.\n",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

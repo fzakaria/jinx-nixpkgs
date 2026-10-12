@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ggshield",
       version: "1.54.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GitGuardian",
           repo: "ggshield",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_git_command_includes_longpaths_on_windows"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to find and fix various types of hardcoded secrets and infrastructure-as-code misconfigurations",
         homepage: "https://github.com/GitGuardian/ggshield",
         changelog: nix.thunk(() => nix.str`https://github.com/GitGuardian/ggshield/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

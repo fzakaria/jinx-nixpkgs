@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const userIcon = nix.argOr($, "userIcon", () => false);
   const clockEnabled = nix.argOr($, "clockEnabled", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "catppuccin-sddm",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "sddm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(clockEnabl
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Soothing pastel theme for SDDM",
         homepage: "https://github.com/catppuccin/sddm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

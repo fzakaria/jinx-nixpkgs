@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "trakt",
       owner: "ecranceMERCE",
       "opam-name": "rocq-trakt",
       release: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "1.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-Qhw5fWFYxUFO2kIWWz/og+4fuy9aYG27szfNk3IglhY=",
         })),
         "1.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-JmrtM9WcT8Bfy0WZCw8xdubuMomyXmfLXJwpnCNrvsg=",
         })),
         "1.2": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-YQRtK2MjjsMlytdu9iutUDKhwOo4yWrSwhyBb2zNHoE=",
         })),
         "1.2+8.13": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-hozms4sPSMr4lFkJ20x+uW9Wqt067bifnPQxdGyKhQQ=",
         })),
       })),
@@ -51,17 +51,17 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [nix.thunk(() => nix.sel(coq, "version"))]), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               cases: nix.thunk(() => [nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.15", "8.17"))]),
               out: "1.2",
             })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               cases: nix.thunk(() => [nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.13"))]),
               out: "1.2+8.13",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               cases: nix.thunk(() => [nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.17"))]),
               out: "1.1",
             })),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [coq_elpi, stdlib]),
       useDuneifVersion: (v) => (nix.asBool(!nix.eq(v, null)) && nix.asBool((nix.asBool(nix.eq(v, "dev")) || nix.asBool(nix.app(nix.sel(lib, "versions", "isGt"), "1.2.1", v))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Generic goal preprocessing tool for proof automation tactics in Coq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nixpkgs-lint",
       version: "1",
       __structuredAttrs: true,
@@ -35,7 +35,7 @@ wrapProgram $out/bin/nixpkgs-lint --set PERL5LIB $PERL5LIB
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Utility for Nixpkgs contributors to check Nixpkgs for common errors",
         mainProgram: "nixpkgs-lint",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

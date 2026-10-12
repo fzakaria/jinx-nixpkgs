@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tryolabs",
           repo: "norfair",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["numpy", "rich"]);
       const dependencies = nix.thunk(() => [filterpy, importlib_metadata, numpy, rich, scipy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         metrics: nix.thunk(() => [motmetrics]),
         video: nix.thunk(() => [opencv4]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["norfair"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight Python library for adding real-time multi-object tracking to any detector",
         changelog: nix.thunk(() => nix.str`https://github.com/tryolabs/norfair/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/tryolabs/norfair",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

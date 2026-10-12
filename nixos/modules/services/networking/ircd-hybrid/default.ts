@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const extraListen = nix.thunk(() => nix.app(nix.builtins.map, (ip) => nix.add(nix.add(nix.add(nix.add("host = \"", ip), "\";\nport = 6665 .. 6669, "), extraPort), "; "), nix.thunk(() => nix.sel(cfg, "extraIPs"))));
       const builder = nix.path(here, "./builder.sh");
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name,
         scripts,
         substFiles,
@@ -77,62 +77,62 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         ircdHybrid: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "IRCD")),
           serverName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "hades.arpa",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "IRCD server name.\n",
             })))),
           sid: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "0NL",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "IRCD server unique ID in a net of servers.\n",
             })))),
           description: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "Hybrid-7 IRC server.",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "IRCD server description.\n",
             })))),
           rsaKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: null,
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "/root/certificates/irc.key")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "IRCD server RSA key.\n",
             })))),
           certificate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: null,
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "/root/certificates/irc.pem")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "IRCD server SSL certificate. There are some limitations - read manual.\n",
             })))),
           adminEmail: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: "<bit-bucket@example.com>",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               example: "<name@domain.tld>",
               description: "IRCD server administrator e-mail.\n",
             })))),
           extraIPs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: [],
               example: nix.thunk(() => ["127.0.0.1"]),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Extra IP's to bind.\n",
             })))),
           extraPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "7117",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Extra port to avoid filtering.\n",
@@ -141,32 +141,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "ircdHybrid", "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             ircd: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "IRCD owner",
               group: "ircd",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "ircd")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ircd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "ircd")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "ircd-hybrid": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "IRCD Hybrid server",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),

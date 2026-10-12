@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const cudaCapabilities = nix.thunk(() => nix.attr(backendStdenv, "cudaCapabilities"));
       const cublasmpAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         redistName: "cublasmp",
         pname: "libcublasmp",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
           const minCudaCapability = nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13.0")) ? "7.5" : "7.0"));
           return [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               message: nix.thunk(() => nix.add(nix.str`cuBLASMp for CUDA ${cudaMajorVersion} supports CUDA compute capabilities ${minCudaCapability} and newer`, nix.str` (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), minCudaCapability)), cudaCapabilities)),
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               message: "cuBLASMp requires NCCL, which is unavailable for this platform",
               assertion: nix.thunk(() => nix.sel(nccl, "meta", "available")),
             })),
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
         })()),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             message: nix.thunk(() => nix.add(nix.str`cuBLASMp releases since 0.8.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require NCCL 2.29.2 or newer (found ${nix.sel(nccl, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cublasmpAtLeast, "0.8")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nccl, "version")), "2.29.2")))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "High-performance, multi-process, GPU-accelerated library for distributed basic dense linear algebra",
           longDescription: "NVIDIA cuBLASMp is a high-performance, multi-process, GPU-accelerated library for distributed basic dense linear\nalgebra.\n\ncuBLASMp is compatible with 2D block-cyclic data layout and provides PBLAS-like C APIs.\n",
           homepage: "https://docs.nvidia.com/cuda/cublasmp",

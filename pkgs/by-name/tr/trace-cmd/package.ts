@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const sourceHighlight = nix.arg($, "sourceHighlight");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "trace-cmd",
       version: "3.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/snapshot/trace-cmd-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7IMInvVLIjGcHZvnSzhcne+4ieFa85ep7KMn2Oy9pF8=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libtraceevent, libtracefs, zstd]),
       outputs: nix.thunk(() => ["out", "lib", "dev", "man", "devman"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MANPAGE_DOCBOOK_XSL: nix.thunk(() => nix.str`${docbook_xsl}/xml/xsl/docbook/manpages/docbook.xsl`),
       })),
       dontConfigure: true,
@@ -66,15 +66,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`completion_dir=${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git",
             "rev-prefix": "trace-cmd-v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "User-space tools for the Linux kernel ftrace subsystem",
         mainProgram: "trace-cmd",
         homepage: "https://www.trace-cmd.org/",

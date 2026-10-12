@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   const picosat = nix.arg($, "picosat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "aiger",
       version: "1.9.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arminbiere",
           repo: "aiger",
           tag: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(makePkgconfigItem, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "aiger",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cflags: nix.thunk(() => ["-I${includedir}"]),
             libs: nix.thunk(() => ["-L${libdir}", "-laiger"]),
-            variables: nix.thunk(() => ({ __proto__: pos$2, includedir: "@includedir@", libdir: "@libdir@" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$2, includedir: "@includedir@", libdir: "@libdir@" })),
             description: nix.thunk(() => nix.attr(from, "description")),
           };
           })()))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
         libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/lib`),
       })),
@@ -66,7 +66,7 @@ runHook postConfigure
       postInstall: "# test that installing picosat in configurePhase suceeded\ntest -f $out/bin/aigbmc\n\ninstall -m 444 -Dt $lib/lib libaiger.a\ninstall -m 444 -Dt $dev/include aiger.h\n",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "And-Inverter Graph (AIG) utilities",
         homepage: "https://fmv.jku.at/aiger/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

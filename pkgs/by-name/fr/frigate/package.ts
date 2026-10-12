@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const sqlite_vec = nix.arg($, "sqlite-vec");
   const stdenv = nix.arg($, "stdenv");
   const python3Packages = nix.thunk(() => nix.app(nix.sel(python313Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       tokenizers: nix.thunk(() => nix.app(nix.sel(super$, "tokenizers", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.22.1";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "huggingface",
               repo: "tokenizers",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
             }))));
           const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/bindings/python`);
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: version,
             src: src,
             sourceRoot: sourceRoot,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
               "TestTrainFromIterators",
             ]),
             cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 pname: nix.thunk(() => nix.attr(oldAttrs, "pname")),
                 version: version,
                 src: src,
@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
     })));
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "frigate",
       version: "0.18.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`frigate-${nix.sel(finalAttrs, "version")}-source`),
           owner: "blakeblackshear",
           repo: "frigate",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./ffmpeg.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libteflon-driverlink-path.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
         nix.path(here, "./onnxruntime-compat.patch"),
@@ -234,37 +234,37 @@ runHook postInstall
         "test_unconfigured_role_can_access_any_stream",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         python: python,
         python3Packages: python3Packages,
         pythonPath: nix.thunk(() => nix.add(nix.app(nix.sel(python3Packages, "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "dependencies"))), nix.str`:${frigate}/${nix.sel(python, "sitePackages")}`)),
         web: nix.thunk(() => nix.app(callPackage, nix.path(here, "./web.nix"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           })))),
         models: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           edgetpu: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 callPackage: callPackage,
                 directory: nix.path(here, "./models/edgetpu"),
               })))))),
           openvino: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 callPackage: callPackage,
                 directory: nix.path(here, "./models/openvino"),
               })))))),
           tflite: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 callPackage: callPackage,
                 directory: nix.path(here, "./models/tflite"),
               })))))),
         })),
-        tests: nix.thunk(() => ({ __proto__: pos$12, frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$12, frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         changelog: nix.thunk(() => nix.str`https://github.com/blakeblackshear/frigate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "NVR with realtime local object detection for IP cameras",
         longDescription: "A complete and local NVR designed for Home Assistant with AI\nobject detection. Uses OpenCV and Tensorflow to perform realtime\nobject detection locally for IP cameras.\n",

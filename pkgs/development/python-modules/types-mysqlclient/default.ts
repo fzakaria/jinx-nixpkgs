@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const version = "2.3.0.20260923";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "types-mysqlclient",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "types_mysqlclient",
           hash: "sha256-+Fy8ikS2wUDiqARUb0bKPUezU3z/fDPId5iKI/cP/6Q=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["MySQLdb-stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for mysqlclient",
         changelog: "https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/mysqlclient.md",
         homepage: "https://github.com/python/typeshed",

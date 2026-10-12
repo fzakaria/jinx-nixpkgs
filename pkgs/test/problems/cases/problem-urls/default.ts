@@ -16,29 +16,29 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         problems: nix.thunk(() => ({
-          __proto__: pos$2,
-          matchers: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, package: "a", handler: "error" }))]),
+          [nix.POS]: pos$2,
+          matchers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, package: "a", handler: "error" }))]),
         })),
       })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         maintainers: nix.thunk(() => ["hello"]),
         description: "Some package",
         problems: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           removal: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             message: "Removed because of XYZ.",
             urls: nix.thunk(() => ["https://example.com", "https://anotherexample.com"]),
           })),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbcli",
           repo: "litecli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const pythonImportsCheck = nix.thunk(() => ["litecli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI for SQLite Databases with auto-completion and syntax highlighting",
         homepage: "https://github.com/dbcli/litecli",
         changelog: nix.thunk(() => nix.str`https://github.com/dbcli/litecli/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "litecli",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

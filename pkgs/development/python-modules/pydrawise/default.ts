@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pydrawise",
       version: "2026.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dknowles2",
           repo: "pydrawise",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, freezegun, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pydrawise"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for interacting with Hydrawise sprinkler controllers through the GraphQL API",
         homepage: "https://github.com/dknowles2/pydrawise",
         changelog: nix.thunk(() => nix.str`https://github.com/dknowles2/pydrawise/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const displays = nix.argOr($, "displays", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "linuxhw-edid-fetcher",
       version: "0-unstable-2026-01-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxhw",
           repo: "EDID",
           rev: "9c0c1bffc9c0f1cb2044115149a5ecb1652803f8",
           hash: "sha256-kdGUAbdlS736iB9oGo46HLK3ne3BV4LmUv/3fliyQBA=",
         })))),
       fetch: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "linuxhw-edid-fetch",
             runtimeInputs: nix.thunk(() => [gawk, coreutils, nix.thunk(() => nix.sel(unixtools, "xxd")), curl, gnutar]),
             text: nix.thunk(() => nix.str`repo="\${repo:-"${nix.sel(finalAttrs, "src")}"}"
@@ -52,11 +52,11 @@ ln -s "$fetch" "$out/bin/"
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(displays, {})), "install -D --mode=444 --target-directory=\"$out/lib/firmware/edid\" *.bin\n")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fetcher for EDID binaries from Linux Hardware Project's EDID repository",
         homepage: "https://github.com/linuxhw/EDID",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),

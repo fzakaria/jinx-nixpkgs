@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "textlint-plugin-latex2e";
       const version = "1.2.1-unstable-2024-02-05";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint",
           repo: "textlint-plugin-latex2e",
           rev: "d3ba1be14543aaaf8e52f87d103fafb3ebb7c4b0",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-u2cMZC3s4iGCWG6iVMDYfb6XbxfjCdwpzl7opkwtrU8=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(textlint_plugin_latex2e, "pname")),
             rule: textlint_rule_max_comma,
             plugin: textlint_plugin_latex2e,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Textlint Plugin LaTeX2ε",
         homepage: "https://github.com/textlint/textlint-plugin-latex2e",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint/textlint-plugin-latex2e/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "natsukium"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

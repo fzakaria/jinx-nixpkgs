@@ -32,20 +32,20 @@ export default nix.lambda((args) => (() => {
   const testfixtures = nix.arg($, "testfixtures");
   const xz = nix.arg($, "xz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deebot-client",
       version: "18.6.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DeebotUniverse",
           repo: "client.py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-keO5pDzaIc/55xqCig10JWWJPkaLXmu03K969WDt8gQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         "test_client_reconnect_on_broker_error",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Deebot client library",
         homepage: "https://github.com/DeebotUniverse/client.py",
         changelog: nix.thunk(() => nix.str`https://github.com/DeebotUniverse/client.py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

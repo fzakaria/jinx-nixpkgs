@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.argOr($, "lib", () => nix.builtins.import(nix.path(here, "../lib")));
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     outPath: nix.thunk(() => nix.app(nix.sel(lib, "cleanSource"), nix.path(here, "./.."))),
     revCount: 56789n,
     shortRev: "gfedcba",
@@ -26,26 +26,26 @@ export default nix.lambda((args) => (() => {
   const nixpkgsSrc = nixpkgs;
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./..")), nix.thunk(() => ({}))));
   const removeMaintainers = (set) => (nix.asBool(nix.builtins.isAttrs(set)) ? (nix.asBool(nix.eq(nix.selOr(set, () => "", "type"), "derivation")) ? nix.update(set, {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.selOr(set, () => ({}), "meta")), nix.thunk(() => ["maintainers"]))),
   }) : nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.app(removeMaintainers, v), set)) : nix.force(set));
   return (() => {
     const nixos = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release.nix")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           stableBranch: stableBranch,
           supportedSystems: nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)),
           nixpkgs: nixpkgsSrc,
         }))))));
-    const nixpkgs_1 = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ __proto__: pos$4, supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc }))))));
+    const nixpkgs_1 = nix.thunk(() => nix.app(removeMaintainers, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, supportedSystems: supportedSystems, nixpkgs: nixpkgsSrc }))))));
     const tested = nix.thunk(() => (() => {
       const onFullSupported = (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, supportedSystems);
       const onAllSupported = (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)));
       const onSystems = (systems) => (x) => nix.builtins.map((system) => nix.str`${x}.${system}`, nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), systems, nix.thunk(() => nix.concat(supportedSystems, limitedSupportedSystems)))));
       return nix.app(nix.sel(pkgs, "releaseTools", "aggregate"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: nix.thunk(() => nix.str`nixos-${nix.sel(nixos, "channel", "version")}`),
           meta: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "Release-critical builds for the NixOS channel",
             maintainers: [],
           })),
@@ -188,7 +188,7 @@ export default nix.lambda((args) => (() => {
             ]))),
         })));
     })());
-    return { __proto__: pos$7, nixos, nixpkgs: nixpkgs_1, tested };
+    return { [nix.POS]: pos$7, nixos, nixpkgs: nixpkgs_1, tested };
   })();
 })(), formals$1);
 //# sourceMappingURL=release-combined.ts.map

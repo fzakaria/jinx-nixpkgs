@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "drumstick";
       const version = "2.11.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/drumstick/${version}/drumstick-${version}.tar.bz2`),
           hash: "sha256-fVN67Kd0hvyPV6hK898b0N3dtAGmGTXotIIVQtFgtnc=",
         }))));
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_QT5", nix.thunk(() => !nix.asBool(isQt6)))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MIDI libraries for Qt/C++",
         homepage: "https://drumstick.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

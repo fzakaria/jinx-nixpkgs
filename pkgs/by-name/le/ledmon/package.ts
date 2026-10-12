@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const sg3_utils = nix.arg($, "sg3_utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ledmon",
       version: "0.92",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "md-raid-utilities",
           repo: "ledmon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LEDMON_INSTDIR=${nix.builtins.placeholder("out")}/sbin`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/md-raid-utilities/ledmon",
         description: "Enclosure LED Utilities",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

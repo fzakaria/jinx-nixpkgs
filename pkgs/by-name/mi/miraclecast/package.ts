@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-good")),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "miraclecast",
       version: "1.0-unstable-2024-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "albfan",
           repo: "miraclecast",
           rev: "937747fd4de64a33bccf5adb73924c435ceb821b",
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/miracle-gst --set GST_PLUGIN_SYSTEM_PATH_1_0 ${gstreamerPluginPaths}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: miraclecast,
               command: "miracled --version",
               version: "Miraclecast 1",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Connect external monitors to your system via Wifi-Display specification also known as Miracast",
         homepage: "https://github.com/albfan/miraclecast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

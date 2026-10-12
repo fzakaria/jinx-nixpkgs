@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const sofia_sip = nix.arg($, "sofia_sip");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "calls",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/calls/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/calls-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8ozMjm+8UHnnuLXRGlUZabtw2QXl7ZDRsdho8SBFxy8=",
         })))),
@@ -110,11 +110,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), dbus, "dbus-run-session")} --config-file
 `),
       checkPhase: "runHook preCheck\n\nHOME=$(mktemp -d) \\\nxvfb-run -s '-screen 0 800x600x24' \\\n  bwrap --unshare-uts --hostname 127.0.0.1 --dev-bind / / \\\n  meson test --no-rebuild --print-errorlogs\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "calls" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "calls" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Phone dialer and call handler",
         longDescription: "GNOME Calls is a phone dialer and call handler. Setting NixOS option `programs.calls.enable = true` is recommended.",
         homepage: "https://gitlab.gnome.org/GNOME/calls",

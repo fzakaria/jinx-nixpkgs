@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const lua = nix.arg($, "lua");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dit",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hisham.hm/dit/releases/${nix.sel(finalAttrs, "version")}/dit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-p1uD0Q2kqB40fbAEk7/fdOVg9T7SW+2aACSn7hDAD+E=",
         })))),
       buildInputs: nix.thunk(() => nix.concat([ncurses, lua], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       prePatch: "patchShebangs tools/GenHeaders\nsubstituteInPlace Prototypes.h --replace 'tail' \"$(type -P tail)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console text editor for Unix that you already know how to use",
         homepage: "https://hisham.hm/dit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

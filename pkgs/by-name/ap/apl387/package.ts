@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fontforge = nix.arg($, "fontforge");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apl387",
       version: "0-unstable-2025-12-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dyalog",
           repo: "APL387",
           rev: "60ff47a728ee043f878dc2ed801d53e29fcebe9d",
@@ -34,7 +34,7 @@ runHook postBuild
       outputs: nix.thunk(() => ["out", "webfont"]),
       postInstall: "installFont svg $out/share/fonts/svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dyalog.github.io/APL387",
         description: "Redrawn and extended version of Adrian Smith's classic APL385 font with clean rounded look",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kermit",
       version: "9.0.302",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "ftp://ftp.kermitproject.org/kermit/archives/cku302.tar.gz",
           sha256: "0487mh6s99ijqf1pfmbm302pa5i4pzmm8s439hdl1ffs5g8jqpqd",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "make -f makefile linux KFLAGS='-D_IO_file_flags' LNKFLAGS='-lcrypt -lresolv'",
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/man/man1\nmake -f makefile install\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-std=gnu89 -Wno-implicit-function-declaration -Wno-implicit-int",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.kermitproject.org/ck90.html",
         description: "Portable Scriptable Network and Serial Communication Software",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pycryptodome = nix.arg($, "pycryptodome");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sjcl",
       version: "0.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "berlincode",
           repo: "sjcl",
           rev: "e8bdad312fa99c89c74f8651a1240afba8a9f3bd",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pycryptodome]),
       pythonImportsCheck: nix.thunk(() => ["sjcl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decrypt and encrypt messages compatible to the \"Stanford Javascript Crypto Library (SJCL)\" message format",
         homepage: "https://github.com/berlincode/sjcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

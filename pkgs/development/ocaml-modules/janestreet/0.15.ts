@@ -283,24 +283,24 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const openssl = nix.arg($, "openssl");
   const zstd = nix.arg($, "zstd");
-  const js_of_ocaml_compiler = nix.thunk(() => nix.app(nix.sel(self, "js_of_ocaml-compiler", "override"), nix.thunk(() => ({ __proto__: pos$1, version: "5.9.1" }))));
-  const js_of_ocaml = nix.thunk(() => nix.app(nix.sel(self, "js_of_ocaml", "override"), nix.thunk(() => ({ __proto__: pos$2, "js_of_ocaml-compiler": js_of_ocaml_compiler }))));
+  const js_of_ocaml_compiler = nix.thunk(() => nix.app(nix.sel(self, "js_of_ocaml-compiler", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "5.9.1" }))));
+  const js_of_ocaml = nix.thunk(() => nix.app(nix.sel(self, "js_of_ocaml", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "js_of_ocaml-compiler": js_of_ocaml_compiler }))));
   const gen_js_api = nix.thunk(() => nix.app(nix.sel(self, "gen_js_api", "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "js_of_ocaml-compiler": js_of_ocaml_compiler,
-      ojs: nix.thunk(() => nix.app(nix.sel(self, "ojs", "override"), nix.thunk(() => ({ __proto__: pos$3, "js_of_ocaml-compiler": js_of_ocaml_compiler })))),
+      ojs: nix.thunk(() => nix.app(nix.sel(self, "ojs", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, "js_of_ocaml-compiler": js_of_ocaml_compiler })))),
     }))));
-  const js_of_ocaml_ppx = nix.thunk(() => nix.app(nix.sel(self, "js_of_ocaml-ppx", "override"), nix.thunk(() => ({ __proto__: pos$5, js_of_ocaml: js_of_ocaml }))));
+  const js_of_ocaml_ppx = nix.thunk(() => nix.app(nix.sel(self, "js_of_ocaml-ppx", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, js_of_ocaml: js_of_ocaml }))));
   const w = nix.withScope(self, null);
   return {
-    __proto__: pos$269,
+    [nix.POS]: pos$269,
     abstract_algebra: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "abstract_algebra",
         minimalOCamlVersion: "4.08",
         hash: "12imf6ibm7qb8r1fpqnrl20x2z14zl3ri1vzg0z8qby9l8bv2fbd",
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Small library describing abstract algebra concepts",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -309,23 +309,23 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     accessor: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "accessor",
         minimalOCamlVersion: "4.09",
         hash: "17rzf0jpc9s3yrxcnn630jhgsw5mrnrhwbfh62hqxqanascc5rxh",
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Library that makes it nicer to work with nested functional data structures",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "higher_kinded"))]),
       })))),
     accessor_async: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "accessor_async",
         minimalOCamlVersion: "4.09",
         hash: "17r6af55ms0i496jsfx0xpdm336c2vhyf49b3s8s1gpz521wrgmc",
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Accessors for Async types, for use with the Accessor library",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -334,23 +334,23 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     accessor_base: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "accessor_base",
         minimalOCamlVersion: "4.09",
         hash: "1qvq005vxf6n1c7swzb4bzcqdh471bfb9gcmdj4m57xg85xznc1n",
         meta: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           description: "Accessors for Base types, for use with the Accessor library",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_accessor"))]),
       })))),
     accessor_core: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         minimalOCamlVersion: "4.09",
         pname: "accessor_core",
         hash: "0zrs5zbyrhfbah73g22l19bw1mmljhyb3l2mrwcxgbjq9pqp0k9v",
         meta: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           description: "Accessors for Core types, for use with the Accessor library",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -359,10 +359,10 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     async: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pname: "async",
         hash: "0pykmnsil754jsnr8gss91ykyjvivngx4ii0ih3nsg1x2jl9xmy2",
-        meta: nix.thunk(() => ({ __proto__: pos$16, description: "Monadic concurrency library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$16, description: "Monadic concurrency library" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async_rpc_kernel")),
           nix.thunk(() => nix.lookup(w, "async_unix")),
@@ -371,45 +371,45 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })))),
     async_extra: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         pname: "async_extra",
         hash: "0pxp0b4shz9krsj8xfzajv8a1mijgf0xdgxrn2abdqrz3rvj6pig",
-        meta: nix.thunk(() => ({ __proto__: pos$18, description: "Monadic concurrency library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$18, description: "Monadic concurrency library" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "async_kernel"))]),
       })))),
     async_find: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         pname: "async_find",
         hash: "119988nkcnw6l6wch4llqkvsrawv2gkbn5q4hngpdwvnw0g0aapv",
-        meta: nix.thunk(() => ({ __proto__: pos$20, description: "Directory traversal with Async" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$20, description: "Directory traversal with Async" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "async"))]),
       })))),
     async_inotify: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         pname: "async_inotify",
         hash: "1nxz6bijp7liy18ljrxg92v2m8v8fqcs1pmzg9kbcf0d4vij8j2p",
-        meta: nix.thunk(() => ({ __proto__: pos$22, description: "Async wrapper for inotify" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$22, description: "Async wrapper for inotify" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async_find")),
           nix.thunk(() => nix.lookup(w, "inotify")),
         ]),
       })))),
     async_interactive: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         pname: "async_interactive",
         hash: "00hr2lhs8p3hwnyllmns59rwlpimc5b7r6v4zn6cmpb1riblaxqp",
         meta: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           description: "Utilities for building simple command-line based user interfaces",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "async"))]),
       })))),
     async_js: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         pname: "async_js",
         hash: "184j077bz686k5lrqswircnrdqldb316ngpzq7xri1pcsl39sy3q",
         meta: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           description: "Small library that provide Async support for JavaScript platforms",
         })),
         buildInputs: nix.thunk(() => [js_of_ocaml_ppx]),
@@ -420,18 +420,18 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     async_kernel: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         pname: "async_kernel",
         hash: "01if6c8l2h64v7sk56xr8acnmj6g9whxcjrzzzvczspq88hq2bfh",
-        meta: nix.thunk(() => ({ __proto__: pos$28, description: "Monadic concurrency library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$28, description: "Monadic concurrency library" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
       })))),
     async_rpc_kernel: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         pname: "async_rpc_kernel",
         hash: "1b5rp5yam03ir4f1sixpzjg1zdqmkb7lvnaa82kac4fzk80gfrfr",
         meta: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           description: "Platform-independent core of Async RPC library",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -440,11 +440,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     async_rpc_websocket: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         pname: "async_rpc_websocket",
         hash: "1n93jhkz5r76xcc40c4i4sxcyfz1dbppz8sjfxpwcwjyi6lyhp1p",
         meta: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           description: "Library to serve and dispatch Async RPCs over websockets",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -454,31 +454,31 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     async_sendfile: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         pname: "async_sendfile",
         hash: "0lnagdxfnac4z29narphf2ab5a23ys883zmc45r96rssfx82i3fs",
         meta: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           description: "Thin wrapper around [Linux_ext.sendfile] to send full files",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "async_unix"))]),
       })))),
     async_shell: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         pname: "async_shell",
         hash: "07iwlyrc4smk6hsnz89cz2ihp670mllq0y9wbdafvagm1y1p62vx",
-        meta: nix.thunk(() => ({ __proto__: pos$36, description: "Shell helpers for Async" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$36, description: "Shell helpers for Async" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async")),
           nix.thunk(() => nix.lookup(w, "shell")),
         ]),
       })))),
     async_smtp: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         pname: "async_smtp",
         hash: "1m00j7wcb0blipnc1m6by70gd96a1k621b4dgvgffp8as04a461r",
         minimalOCamlVersion: "4.12",
-        meta: nix.thunk(() => ({ __proto__: pos$38, description: "SMTP client and server" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$38, description: "SMTP client and server" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async_extra")),
           nix.thunk(() => nix.lookup(w, "async_inotify")),
@@ -492,10 +492,10 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     async_ssl: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         pname: "async_ssl",
         hash: "1b7f7p3xj4jr2n2dxy2lp7a9k7944w6x2nrg6524clvcsd1ax4hn",
-        meta: nix.thunk(() => ({ __proto__: pos$40, description: "Async wrappers for SSL" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$40, description: "Async wrappers for SSL" })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "dune-configurator"))]),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async")),
@@ -506,21 +506,21 @@ export default nix.lambda((args) => (() => {
         postPatch: "substituteInPlace bindings/dune \\\n  --replace \"ctypes.foreign.threaded\" \"ctypes.foreign\"\n",
       })))),
     async_unix: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         pname: "async_unix",
         hash: "0z4fgpn93iw0abd7l9kac28qgzgc5qr2x0s1n2zh49lsdn02n6ys",
-        meta: nix.thunk(() => ({ __proto__: pos$42, description: "Monadic concurrency library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$42, description: "Monadic concurrency library" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async_kernel")),
           nix.thunk(() => nix.lookup(w, "core_unix")),
         ]),
       })))),
     async_websocket: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         pname: "async_websocket",
         hash: "16ixqfnx9jp77bvx11dlzsq0pzfpyiif60hl2q06zncyswky9xgb",
         meta: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           description: "Library that implements the websocket protocol on top of Async",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -529,13 +529,13 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     base: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         pname: "base",
         version: "0.15.1",
         hash: "sha256-CDKQVF+hAvJTo5QmRvyOfQNrdRgz6m+64q9UzNHlJEA=",
         minimalOCamlVersion: "4.10",
         meta: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           description: "Full standard library replacement for OCaml",
         })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "dune-configurator"))]),
@@ -543,12 +543,12 @@ export default nix.lambda((args) => (() => {
         checkInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "alcotest"))]),
       })))),
     base_bigstring: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         pname: "base_bigstring",
         hash: "1hv3hw2fwqmkrxms1g6rw3c18mmla1z5bva3anx45mnff903iv4q",
         minimalOCamlVersion: "4.08",
         meta: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           description: "String type based on [Bigarray], for use in I/O and C-bindings",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -557,12 +557,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     base_quickcheck: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         pname: "base_quickcheck",
         hash: "0q73kfr67cz5wp4qn4rq3lpa922hqmvwdiinnans0js65fvlgqsi",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           description: "Randomized testing framework, designed for compatibility with Base",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -574,7 +574,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     bignum: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         pname: "bignum",
         hash: "12q3xcv78b4s9srnc17jbyn53d5drmwmyvgp62p7nk3fs4f7cr4f",
         propagatedBuildInputs: nix.thunk(() => [
@@ -583,16 +583,16 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "zarith_stubs_js")),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           description: "Core-flavoured wrapper around zarith's arbitrary-precision rationals",
         })),
       })))),
     bin_prot: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         pname: "bin_prot",
         hash: "1qfqglscc25wwnjx7byqmjcnjww1msnr8940gyg8h93wdq43fjnh",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$54, description: "Binary protocol generator" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$54, description: "Binary protocol generator" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ppx_compare")),
           nix.thunk(() => nix.lookup(w, "ppx_custom_printf")),
@@ -602,11 +602,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     bonsai: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         pname: "bonsai",
         hash: "150zx2g1dmhyrxwqq8j7f2m3hjpmk5bk182ihx2gdbarhw1ainpm",
         meta: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           description: "Library for building dynamic webapps, using Js_of_ocaml",
         })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_pattern_bind"))]),
@@ -629,21 +629,21 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.path(here, "./bonsai_jsoo_4_0.patch")]),
       })))),
     cinaps: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         pname: "cinaps",
         version: "0.15.1",
         hash: "0g856cxmxg4vicwslhqldplkpwi158s2d62vwzv26xg5m6wjn9rg",
         minimalOCamlVersion: "4.04",
-        meta: nix.thunk(() => ({ __proto__: pos$58, description: "Trivial metaprogramming tool" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$58, description: "Trivial metaprogramming tool" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "re"))]),
         doCheck: false,
       })))),
     cohttp_async_websocket: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         pname: "cohttp_async_websocket",
         hash: "0d0smavnxpnwrmhlcf3b5a3cm3n9kz1y8fh6l28xv6zrn4sc7ik8",
         meta: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           description: "Websocket library for use with cohttp and async",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -655,23 +655,23 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     cohttp_static_handler: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         pname: "cohttp_static_handler",
         version: "0.15.0",
         hash: "sha256-ENaH8ChvjeMc9WeNIhkeNBB7YK9vB4lw95o6FFZI1ys=",
         meta: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           description: "Library for easily creating a cohttp handler for static files",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "cohttp-async_5_3"))]),
       })))),
     core: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         pname: "core",
         version: "0.15.1",
         hash: "sha256-SHjnNFl+JAjdgVoRgmnz0wqrrc3zoh0ZyG2UhUsUbJ8=",
         meta: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           description: "Industrial strength alternative to OCaml's standard library",
           broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.1")),
         })),
@@ -686,18 +686,18 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })))),
     core_bench: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         pname: "core_bench",
         hash: "0v6lm9vz6y1qd7h8pg9l5jsy8qr74vlk1nd4qzchld4jhwq7mbdi",
-        meta: nix.thunk(() => ({ __proto__: pos$66, description: "Benchmarking library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$66, description: "Benchmarking library" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "textutils"))]),
       })))),
     core_extended: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         pname: "core_extended",
         hash: "0sx79hc1y1daczib2p4nbyw4aqnznmdd83knrhs5q153j7lnlalx",
         meta: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           description: "Extra components that are not as closely vetted or as stable as Core",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -706,10 +706,10 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     core_kernel: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         pname: "core_kernel",
         hash: "05mb4vbf293iq1xx4acyrmi9cgcw6capwrsa54ils62alby6w6yq",
-        meta: nix.thunk(() => ({ __proto__: pos$70, description: "System-independent part of Core" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$70, description: "System-independent part of Core" })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jst-config"))]),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "base_bigstring")),
@@ -720,11 +720,11 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })))),
     core_unix: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         pname: "core_unix",
         version: "0.15.2",
         hash: "sha256-9f2PiLo+4Bjnfvh3scvIiPHj0wPZozmMMiCTe7vC1EA=",
-        meta: nix.thunk(() => ({ __proto__: pos$72, description: "Unix-specific portions of Core" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$72, description: "Unix-specific portions of Core" })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jst-config"))]),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "core_kernel")),
@@ -737,7 +737,7 @@ export default nix.lambda((args) => (() => {
         postPatch: "patchShebangs unix_pseudo_terminal/src/discover.sh\n",
       })))),
     csvfields: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         pname: "csvfields",
         version: "0.15.1",
         hash: "sha256-bBupsarwjte2NCncNDFSkrrmMR3EYPn+D7xI9zQOhFA=",
@@ -746,12 +746,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "num")),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           description: "Runtime support for ppx_xml_conv and ppx_csv_conv",
         })),
       })))),
     delimited_parsing: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         pname: "delimited_parsing",
         hash: "0d050v58zzi8c4qiwxbfcyrdw6zvncnnl3qj79qi0yq4xkg7820r",
         propagatedBuildInputs: nix.thunk(() => [
@@ -759,25 +759,25 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "core_extended")),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           description: "Parsing of character (e.g., comma) separated and fixed-width values",
         })),
       })))),
     ecaml: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         pname: "ecaml",
         hash: "08g2bl06vkn3bkqzkmvk2646aqb6jj4a7n3wgzpcx1c2gl3iw5i6",
-        meta: nix.thunk(() => ({ __proto__: pos$78, description: "Library for writing Emacs plugin in OCaml" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$78, description: "Library for writing Emacs plugin in OCaml" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async")),
           nix.thunk(() => nix.lookup(w, "expect_test_helpers_core")),
         ]),
       })))),
     email_message: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         pname: "email_message",
         hash: "00h66l2g5rjaay0hbyqy4v9i866g779miriwv20h9k4mliqdq7in",
-        meta: nix.thunk(() => ({ __proto__: pos$80, description: "E-mail message parser" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$80, description: "E-mail message parser" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "angstrom")),
           nix.thunk(() => nix.lookup(w, "async")),
@@ -788,11 +788,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     expect_test_helpers_async: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         pname: "expect_test_helpers_async",
         hash: "14v4966p5dmqgjb9sgrvnsixv0w0bagicn8v44g9mf9d88z8pfym",
         meta: nix.thunk(() => ({
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           description: "Async helpers for writing expectation tests",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -801,33 +801,33 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     expect_test_helpers_core: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         pname: "expect_test_helpers_core",
         hash: "0bxs3g0zzym8agfcbpg5lmrh6hcb86z861bq40xhhfwqf4pzdbfa",
-        meta: nix.thunk(() => ({ __proto__: pos$84, description: "Helpers for writing expectation tests" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$84, description: "Helpers for writing expectation tests" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "core_kernel")),
           nix.thunk(() => nix.lookup(w, "sexp_pretty")),
         ]),
       })))),
     fieldslib: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$87,
+        [nix.POS]: pos$87,
         pname: "fieldslib",
         hash: "0xwf9mdxlyr3f0vv5y82cyw2bsckwl8rwf6jm6bai1gqpgxjq756",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$86,
+          [nix.POS]: pos$86,
           description: "Syntax extension to define first class values representing record fields, to get and set record fields, iterate and fold over all fields of a record and create new record values",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "base"))]),
       })))),
     file_path: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         pname: "file_path",
         minimalOCamlVersion: "4.11",
         hash: "0vjvxviryywwwfdazcijwhpajp2d4mavlki7lj4qaafjrw62x14k",
         meta: nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           description: "Library for typed manipulation of UNIX-style file paths",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -841,22 +841,22 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     fuzzy_match: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$91,
+        [nix.POS]: pos$91,
         pname: "fuzzy_match",
         hash: "0s5w81698b07l5m11nwx8xbjcpmp54dnf5fcrnlva22jrlsf14h4",
-        meta: nix.thunk(() => ({ __proto__: pos$90, description: "Library for fuzzy string matching" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$90, description: "Library for fuzzy string matching" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "core")),
           nix.thunk(() => nix.lookup(w, "ppx_jane")),
         ]),
       })))),
     fzf: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$93,
+        [nix.POS]: pos$93,
         pname: "fzf",
         minimalOCamlVersion: "4.08",
         hash: "1ha0i6dx5bgwzbdi4rn98wjwi2imv5p2i7qs7hy0c6cmg88xbdry",
         meta: nix.thunk(() => ({
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           description: "Library for running the fzf command line tool",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -868,12 +868,12 @@ export default nix.lambda((args) => (() => {
 `),
       })))),
     higher_kinded: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         pname: "higher_kinded",
         minimalOCamlVersion: "4.09",
         hash: "0rafxxajqswi070h8sinhjna0swh1hc6d7i3q7y099yj3wlr2y1l",
         meta: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           description: "Library with an encoding of higher kinded types in OCaml",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -882,11 +882,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     incr_dom: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         pname: "incr_dom",
         hash: "1sija9w2im8vdp61h387w0mww9hh7jgkgsjcccps4lbv936ac7c1",
         meta: nix.thunk(() => ({
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           description: "Library for building dynamic webapps, using Js_of_ocaml",
         })),
         buildInputs: nix.thunk(() => [js_of_ocaml_ppx]),
@@ -899,11 +899,11 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.path(here, "./incr_dom_jsoo_4_0.patch")]),
       })))),
     incr_map: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         pname: "incr_map",
         hash: "0aq8wfylvq68him92vzh1fqmr7r0lfwc5cdiqr10r5x032vzpnii",
         meta: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           description: "Helpers for incremental operations on map like data structures",
         })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_pattern_bind"))]),
@@ -913,45 +913,45 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     incr_select: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$101,
+        [nix.POS]: pos$101,
         pname: "incr_select",
         hash: "0qm2i4hb5jh2ra95kq881s4chkwbd2prvql1c0nahd63h829m57l",
         meta: nix.thunk(() => ({
-          __proto__: pos$100,
+          [nix.POS]: pos$100,
           description: "Handling of large set of incremental outputs from a single input",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "incremental"))]),
       })))),
     incremental: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         pname: "incremental",
         hash: "1dp30mhljnbcxqimydwbmxx0x4y4xnb55gyhldm1f5qrwdxdl747",
-        meta: nix.thunk(() => ({ __proto__: pos$102, description: "Library for incremental computations" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$102, description: "Library for incremental computations" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
       })))),
     int_repr: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$105,
+        [nix.POS]: pos$105,
         pname: "int_repr",
         hash: "0ph88ym3s9dk30n17si2xam40sp8wv1xffw5cl3bskc2vfya1nvl",
-        meta: nix.thunk(() => ({ __proto__: pos$104, description: "Integers of various widths" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$104, description: "Integers of various widths" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "base")),
           nix.thunk(() => nix.lookup(w, "ppx_jane")),
         ]),
       })))),
     "jane-street-headers": nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         pname: "jane-street-headers",
         hash: "1lzk3w66x4429n2j75lwm55xafc46mywgdrbh9nc9jwqwgzf0wwx",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$106, description: "Jane Street C header files" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$106, description: "Jane Street C header files" })),
       })))),
     jsonaf: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         pname: "jsonaf",
         hash: "1j9rn8vsvfpgmdpmdqb5qhvss5171j8n3ii1bcgnavqinchbvqa6",
         meta: nix.thunk(() => ({
-          __proto__: pos$108,
+          [nix.POS]: pos$108,
           description: "Library for parsing, manipulating, and serializing data structured as JSON",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -962,11 +962,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "jst-config": nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$112,
+        [nix.POS]: pos$112,
         pname: "jst-config",
         hash: "1lxqsj5k3v8p7g802vj1xc6bs5wrfpszh3q61xvpcd42pf3ahma9",
         meta: nix.thunk(() => ({
-          __proto__: pos$110,
+          [nix.POS]: pos$110,
           description: "Compile-time configuration for Jane Street libraries",
         })),
         buildInputs: nix.thunk(() => [
@@ -976,53 +976,53 @@ export default nix.lambda((args) => (() => {
         ]),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$111,
+              [nix.POS]: pos$111,
               url: "https://github.com/janestreet/jst-config/commit/e5fdac6e5df9ba93e014a4d2db841fdbf209446f.patch",
               sha256: "sha256-8hVC76z5ilYD/++xRHVswy/l+zzDt63jH4hfSJ/rPaA=",
             })))),
         ]),
       })))),
     "ocaml-compiler-libs": nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$114,
+        [nix.POS]: pos$114,
         pname: "ocaml-compiler-libs",
         version: "0.12.4",
         minimalOCamlVersion: "4.04.1",
         hash: "00if2f7j9d8igdkj4rck3p74y17j6b233l91mq02drzrxj199qjv",
-        meta: nix.thunk(() => ({ __proto__: pos$113, description: "OCaml compiler libraries repackaged" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$113, description: "OCaml compiler libraries repackaged" })),
       })))),
     "ocaml-embed-file": nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$116,
+        [nix.POS]: pos$116,
         pname: "ocaml-embed-file",
         hash: "1nzgc0q05f0j3q1kwfpyhhhpgwrfjvmkqqifrkrm4y7d1i44bfnw",
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async")),
           nix.thunk(() => nix.lookup(w, "ppx_jane")),
         ]),
-        meta: nix.thunk(() => ({ __proto__: pos$115, description: "Files contents as module constants" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$115, description: "Files contents as module constants" })),
       })))),
     ocaml_intrinsics: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$118,
+        [nix.POS]: pos$118,
         pname: "ocaml_intrinsics",
         minimalOCamlVersion: "4.08",
         version: "0.15.2",
         hash: "sha256-f5zqrKaokj1aEvbu7lOuK0RoWSklFr6QFpV+oWbIX9U=",
-        meta: nix.thunk(() => ({ __proto__: pos$117, description: "Intrinsics" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$117, description: "Intrinsics" })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "dune-configurator"))]),
         doCheck: false,
       })))),
     parsexp: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         pname: "parsexp",
         hash: "1grzpxi39318vcqhwf723hqh11k68irh59zb3dyg9lw8wjn7752a",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$119, description: "S-expression parsing library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$119, description: "S-expression parsing library" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "base")),
           nix.thunk(() => nix.lookup(w, "sexplib0")),
         ]),
       })))),
     patdiff: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$122,
+        [nix.POS]: pos$122,
         pname: "patdiff",
         hash: "0623a7n5r659rkxbp96g361mvxkcgc6x9lcbkm3glnppplk5kxr9",
         buildInputs: nix.thunk(() => [bash]),
@@ -1032,22 +1032,22 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "ocaml_pcre")),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$121,
+          [nix.POS]: pos$121,
           description: "File Diff using the Patience Diff algorithm",
         })),
       })))),
     patience_diff: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$124,
+        [nix.POS]: pos$124,
         pname: "patience_diff",
         hash: "17yrhn4qfi31m8g1ygb3m6i9z4fqd8f60fn6viazgx06s3x4xp3v",
         meta: nix.thunk(() => ({
-          __proto__: pos$123,
+          [nix.POS]: pos$123,
           description: "Diff library using Bram Cohen's patience diff algorithm",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
       })))),
     posixat: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$126,
+        [nix.POS]: pos$126,
         pname: "posixat",
         hash: "1xgycwa0janrfn9psb7xrm0820blr82mqf1lvjy9ipqalj7v9w1f",
         minimalOCamlVersion: "4.07",
@@ -1055,26 +1055,26 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "ppx_optcomp")),
           nix.thunk(() => nix.lookup(w, "ppx_sexp_conv")),
         ]),
-        meta: nix.thunk(() => ({ __proto__: pos$125, description: "Binding to the posix *at functions" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$125, description: "Binding to the posix *at functions" })),
       })))),
     ppx_accessor: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$128,
+        [nix.POS]: pos$128,
         pname: "ppx_accessor",
         minimalOCamlVersion: "4.09",
         hash: "0qv51if1nk0zff2v6q946h8ac7bpd5xa4ivyixl9g4h2mk29w4qb",
         meta: nix.thunk(() => ({
-          __proto__: pos$127,
+          [nix.POS]: pos$127,
           description: "[@@deriving] plugin to generate accessors for use with the Accessor libraries",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "accessor"))]),
       })))),
     ppx_assert: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$130,
+        [nix.POS]: pos$130,
         pname: "ppx_assert",
         hash: "0dic250q3flrjs3i70a2qqqnhqqj75ddlixpy7hdfghjw32azw90",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$129,
+          [nix.POS]: pos$129,
           description: "Assert-like extension nodes that raise useful errors on failure",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1085,11 +1085,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_base: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$132,
+        [nix.POS]: pos$132,
         pname: "ppx_base",
         hash: "13rfmy2fxvwi7z5l1mai474ri5anqjm8q4hs7dblplsjjd9m5ld1",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$131, description: "Base set of ppx rewriters" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$131, description: "Base set of ppx rewriters" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ppx_cold")),
           nix.thunk(() => nix.lookup(w, "ppx_enumerate")),
@@ -1097,24 +1097,24 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_bench: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$134,
+        [nix.POS]: pos$134,
         pname: "ppx_bench",
         version: "0.15.1",
         hash: "sha256-2uk3NfpAODScoQtqiU+ZaOE8zOqkayn/jpfn3GQ4vQg=",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$133,
+          [nix.POS]: pos$133,
           description: "Syntax extension for writing in-line benchmarks in ocaml code",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_inline_test"))]),
       })))),
     ppx_bin_prot: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$136,
+        [nix.POS]: pos$136,
         pname: "ppx_bin_prot",
         hash: "1280wsls061fmvmdysjqn3lv4mnkyg400jnjf4jyfr14s33h1ad5",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$135,
+          [nix.POS]: pos$135,
           description: "Generation of bin_prot readers and writers from types",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1124,23 +1124,23 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })))),
     ppx_cold: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$138,
+        [nix.POS]: pos$138,
         pname: "ppx_cold",
         hash: "0x7xgpvy0l28k971xy08ibhr4w9nh8d9zvxc6jfxxx4fbfcv5gca",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$137,
+          [nix.POS]: pos$137,
           description: "Expands [@cold] into [@inline never][@specialise never][@local never]",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_compare: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$140,
+        [nix.POS]: pos$140,
         pname: "ppx_compare",
         hash: "1wjwqkr71p61vjidbr80l93y4kkad7xsfyp04w8qfqrj7h5nm625",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$139,
+          [nix.POS]: pos$139,
           description: "Generation of comparison functions from types",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1149,11 +1149,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_conv_func: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$142,
+        [nix.POS]: pos$142,
         pname: "ppx_conv_func",
         hash: "sha256-61jX8yHZYOnMx1Jlqaq9zSOz25HLOa0Wv/iG6Hu82zI=",
         meta: nix.thunk(() => ({
-          __proto__: pos$141,
+          [nix.POS]: pos$141,
           description: "Part of the Jane Street's PPX rewriters collection",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1162,22 +1162,22 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_custom_printf: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$144,
+        [nix.POS]: pos$144,
         pname: "ppx_custom_printf",
         hash: "1k8nmq6kwqz2wpkm9ymq749dz1vd8lxrjc711knp1wyz5935hnsv",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$143,
+          [nix.POS]: pos$143,
           description: "Printf-style format-strings for user-defined string conversion",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_sexp_conv"))]),
       })))),
     ppx_css: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$146,
+        [nix.POS]: pos$146,
         pname: "ppx_css",
         hash: "09dpmj3f3m3z1ji9hq775iqr3cfmv5gh7q9zlblizj4wx4y0ibyi",
         meta: nix.thunk(() => ({
-          __proto__: pos$145,
+          [nix.POS]: pos$145,
           description: "PPX that takes in css strings and produces a module for accessing the unique names defined within",
           broken: true,
         })),
@@ -1190,11 +1190,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_csv_conv: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$148,
+        [nix.POS]: pos$148,
         pname: "ppx_csv_conv",
         hash: "sha256-ctwgUs1buBZiNqac4760LhWd2/PMZRuxx8SE5T7yZ+g=",
         meta: nix.thunk(() => ({
-          __proto__: pos$147,
+          [nix.POS]: pos$147,
           description: "Generate functions to read/write records in csv format",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1203,34 +1203,34 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_disable_unused_warnings: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$150,
+        [nix.POS]: pos$150,
         pname: "ppx_disable_unused_warnings",
         hash: "0sb5i4v7p9df2bxk66rjs30k9fqdrwsq1jgykjv6wyrx2d9bv955",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$149,
+          [nix.POS]: pos$149,
           description: "Expands [@disable_unused_warnings] into [@warning \"-20-26-32-33-34-35-36-37-38-39-60-66-67\"]",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_enumerate: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$152,
+        [nix.POS]: pos$152,
         pname: "ppx_enumerate",
         hash: "1i0f6jv5cappw3idd70wpg76d7x6mvxapa89kri1bwz47hhg4pkz",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           description: "Generate a list containing all values of a finite type",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_expect: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$154,
+        [nix.POS]: pos$154,
         pname: "ppx_expect",
         version: "0.15.1",
         hash: "sha256-qlOipzTTdN9yQ35sItKmWpCv74kbuJLDg4IHNVTKvow=",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$153, description: "Cram like framework for OCaml" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$153, description: "Cram like framework for OCaml" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ppx_here")),
           nix.thunk(() => nix.lookup(w, "ppx_inline_test")),
@@ -1239,12 +1239,12 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })))),
     ppx_fields_conv: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$156,
+        [nix.POS]: pos$156,
         pname: "ppx_fields_conv",
         hash: "094wsnw7fcwgl9xg6vkjb0wbgpn9scsp847yhdd184sz9v1amz14",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$155,
+          [nix.POS]: pos$155,
           description: "Generation of accessor and iteration functions for ocaml records",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1253,20 +1253,20 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_fixed_literal: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$158,
+        [nix.POS]: pos$158,
         pname: "ppx_fixed_literal",
         hash: "10siwcqrqa4gh0mg6fkaby0jjskc01r81pcblc67h3vmbjjh08j9",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$157, description: "Simpler notation for fixed point literals" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$157, description: "Simpler notation for fixed point literals" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_hash: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$160,
+        [nix.POS]: pos$160,
         pname: "ppx_hash",
         hash: "15agkwavadllzxdv4syjna02083nfnap8qs4yqf5s0adjw73fzyg",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$159,
+          [nix.POS]: pos$159,
           description: "PPX rewriter that generates hash functions from type expressions and definitions",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1275,33 +1275,33 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_here: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$162,
+        [nix.POS]: pos$162,
         pname: "ppx_here",
         hash: "0jv81k8x18q8rxdyfwavrvx8yq9k5m3abpmgdg6zipx2ajcjzvag",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$161, description: "Expands [%here] into its location" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$161, description: "Expands [%here] into its location" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
         doCheck: false,
       })))),
     ppx_ignore_instrumentation: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$164,
+        [nix.POS]: pos$164,
         pname: "ppx_ignore_instrumentation",
         hash: "16fgig88g3jr0m3i636fr52h29h1yzhi8nhnl4029zn808kcdyj2",
         minimalOCamlVersion: "4.08",
         meta: nix.thunk(() => ({
-          __proto__: pos$163,
+          [nix.POS]: pos$163,
           description: "Ignore Jane Street specific instrumentation extensions",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_inline_test: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$166,
+        [nix.POS]: pos$166,
         pname: "ppx_inline_test",
         version: "0.15.1",
         hash: "sha256-9Up4/VK4gayuwbPc3r6gVRj78ILO2G3opL5UDOTKOgk=",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$165,
+          [nix.POS]: pos$165,
           description: "Syntax extension for writing in-line tests in ocaml code",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1311,11 +1311,11 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })))),
     ppx_jane: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$168,
+        [nix.POS]: pos$168,
         pname: "ppx_jane",
         hash: "1p6847gdfnnj6qpa4yh57s6wwpsl7rfgy0q7993chz24h9mhz5lk",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$167, description: "Standard Jane Street ppx rewriters" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$167, description: "Standard Jane Street ppx rewriters" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "base_quickcheck")),
           nix.thunk(() => nix.lookup(w, "ppx_bin_prot")),
@@ -1335,13 +1335,13 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_jsonaf_conv: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$170,
+        [nix.POS]: pos$170,
         pname: "ppx_jsonaf_conv",
         version: "0.15.1",
         hash: "0wprs7qmscklyskj4famhaqqisi6jypy414aqba14qdyi43w0cv3",
         minimalOCamlVersion: "4.08",
         meta: nix.thunk(() => ({
-          __proto__: pos$169,
+          [nix.POS]: pos$169,
           description: "[@@deriving] plugin to generate Jsonaf conversion functions",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1352,12 +1352,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_js_style: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$172,
+        [nix.POS]: pos$172,
         pname: "ppx_js_style",
         hash: "0q2p9pvmlncgv0hprph95xiv7s6q44ynvp4yl4dckf1qx68rb3ba",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$171,
+          [nix.POS]: pos$171,
           description: "Code style checker for Jane Street Packages",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1366,23 +1366,23 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_let: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$174,
+        [nix.POS]: pos$174,
         pname: "ppx_let",
         hash: "04v3fq0vnvvavxbc7hfsrg8732pwxbyw8pjl3xfplqdqci6fj15n",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$173, description: "Monadic let-bindings" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$173, description: "Monadic let-bindings" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ppxlib")),
           nix.thunk(() => nix.lookup(w, "ppx_here")),
         ]),
       })))),
     ppx_log: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$176,
+        [nix.POS]: pos$176,
         pname: "ppx_log",
         hash: "08i9gz3f4w3bmlrfdw7ja9awsfkhhldz03bnnc4hijfmn8sawzi0",
         minimalOCamlVersion: "4.08.0",
         meta: nix.thunk(() => ({
-          __proto__: pos$175,
+          [nix.POS]: pos$175,
           description: "Ppx_sexp_message-like extension nodes for lazily rendering log messages",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1394,60 +1394,60 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_module_timer: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$178,
+        [nix.POS]: pos$178,
         pname: "ppx_module_timer",
         hash: "0lzi5hxi10p89ddqbrc667267f888kqslal76gfhmszyk60n20av",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$177,
+          [nix.POS]: pos$177,
           description: "Ppx rewriter that records top-level module startup times",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "time_now"))]),
       })))),
     ppx_optcomp: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$180,
+        [nix.POS]: pos$180,
         pname: "ppx_optcomp",
         hash: "0ypivfipi8fcr9pqyvl2ajpcivmr1irdwwv248i4x6mggpc2pl0b",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$179, description: "Optional compilation for OCaml" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$179, description: "Optional compilation for OCaml" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_optional: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$182,
+        [nix.POS]: pos$182,
         pname: "ppx_optional",
         hash: "0amxwxhkyzamgnxx400qhvxzqr3m4sazhhkc516lm007pynv7xq2",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$181, description: "Pattern matching on flat options" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$181, description: "Pattern matching on flat options" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_pattern_bind: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$184,
+        [nix.POS]: pos$184,
         pname: "ppx_pattern_bind",
         hash: "01nfdk9yvk92r7sjl4ngxfsx8fyqh2dsjxz0i299nszv9jc4rn4f",
         minimalOCamlVersion: "4.07",
         meta: nix.thunk(() => ({
-          __proto__: pos$183,
+          [nix.POS]: pos$183,
           description: "PPX for writing fast incremental bind nodes in a pattern match",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_let"))]),
       })))),
     ppx_pipebang: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$186,
+        [nix.POS]: pos$186,
         pname: "ppx_pipebang",
         hash: "0sm5dghyalhws3hy1cc2ih36az1k4q02hcgj6l26gwyma3y4irvq",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$185,
+          [nix.POS]: pos$185,
           description: "PPX rewriter that inlines reverse application operators `|>` and `|!`",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_python: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$188,
+        [nix.POS]: pos$188,
         pname: "ppx_python",
         hash: "1d2wf0rkvxg07q6xq2zmxh6hmvnwlsmny3mm92jsg1s7bdl39gap",
         meta: nix.thunk(() => ({
-          __proto__: pos$187,
+          [nix.POS]: pos$187,
           description: "[@@deriving] plugin to generate Python conversion functions",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1457,13 +1457,13 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_sexp_conv: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$190,
+        [nix.POS]: pos$190,
         pname: "ppx_sexp_conv",
         version: "0.15.1",
         minimalOCamlVersion: "4.08.0",
         hash: "sha256-NYknZHyDklr71hihM2pPFQ7uAKkuKO2DJkjtsF+xc5g=",
         meta: nix.thunk(() => ({
-          __proto__: pos$189,
+          [nix.POS]: pos$189,
           description: "[@@deriving] plugin to generate S-expression conversion functions",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1473,12 +1473,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_sexp_message: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$192,
+        [nix.POS]: pos$192,
         pname: "ppx_sexp_message",
         hash: "0a7hx50bkkc5n5msc3zzc4ixnp7674x3mallknb9j31jnd8l90nj",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$191,
+          [nix.POS]: pos$191,
           description: "PPX rewriter for easy construction of s-expressions",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1487,12 +1487,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_sexp_value: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$194,
+        [nix.POS]: pos$194,
         pname: "ppx_sexp_value",
         hash: "0kz83j9v6yz3v8c6vr9ilhkcci4hhjd6i6r6afnx72jh6i7d3hnv",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$193,
+          [nix.POS]: pos$193,
           description: "PPX rewriter that simplifies building s-expressions from ocaml values",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1501,19 +1501,19 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_stable: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$196,
+        [nix.POS]: pos$196,
         pname: "ppx_stable",
         hash: "1as0v0x8c9ilyhngax55lvwyyi4a2wshyan668v0f2s1608cwb1l",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$195, description: "Stable types conversions generator" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$195, description: "Stable types conversions generator" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppxlib"))]),
       })))),
     ppx_string: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$198,
+        [nix.POS]: pos$198,
         pname: "ppx_string",
         minimalOCamlVersion: "4.04.2",
         hash: "1dp5frk6cig5m3m5rrh2alw63snyf845x7zlkkaljip02pqcbw1s",
-        meta: nix.thunk(() => ({ __proto__: pos$197, description: "Ppx extension for string interpolation" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$197, description: "Ppx extension for string interpolation" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ppx_base")),
           nix.thunk(() => nix.lookup(w, "ppxlib")),
@@ -1521,10 +1521,10 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_typed_fields: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$200,
+        [nix.POS]: pos$200,
         pname: "ppx_typed_fields",
         hash: "0hxililjgy4jh66b4xmphrfhv6qpp7dz7xbz3islp357hf18niqy",
-        meta: nix.thunk(() => ({ __proto__: pos$199, description: "GADT-based field accessors and utilities" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$199, description: "GADT-based field accessors and utilities" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "core")),
           nix.thunk(() => nix.lookup(w, "ppx_jane")),
@@ -1532,12 +1532,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_typerep_conv: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$202,
+        [nix.POS]: pos$202,
         pname: "ppx_typerep_conv",
         minimalOCamlVersion: "4.04.2",
         hash: "1q1lzykpm83ra4l5jh4rfddhd3c96kx4s4rvx0w4b51z1qk56zam",
         meta: nix.thunk(() => ({
-          __proto__: pos$201,
+          [nix.POS]: pos$201,
           description: "Generation of runtime types from type declarations",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1546,12 +1546,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ppx_variants_conv: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$204,
+        [nix.POS]: pos$204,
         pname: "ppx_variants_conv",
         minimalOCamlVersion: "4.04.2",
         hash: "1dh0bw9dn246k00pymf59yjkl6x6bxd76lkk9b5xpq2692wwlc3s",
         meta: nix.thunk(() => ({
-          __proto__: pos$203,
+          [nix.POS]: pos$203,
           description: "Generation of accessor and iteration functions for ocaml variant types",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1560,11 +1560,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     profunctor: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$206,
+        [nix.POS]: pos$206,
         pname: "profunctor",
         hash: "151vk0cagjwn0isnnwryn6gmvnpds4dyj1in9jvv5is8yij203gg",
         meta: nix.thunk(() => ({
-          __proto__: pos$205,
+          [nix.POS]: pos$205,
           description: "Library providing a signature for simple profunctors and traversal of a record",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1574,19 +1574,19 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     protocol_version_header: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$208,
+        [nix.POS]: pos$208,
         pname: "protocol_version_header",
         hash: "0s638cwf1357gg754rc4306654hhrhzqaqm2lp3yv5vj3ml8p4qy",
-        meta: nix.thunk(() => ({ __proto__: pos$207, description: "Protocol versioning" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$207, description: "Protocol versioning" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
       })))),
     pythonlib: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$210,
+        [nix.POS]: pos$210,
         pname: "pythonlib",
         version: "0.15.1",
         hash: "sha256-j8WXVTEiBmHtoTjkbnIh31vC4IghfAMaEL19nDLx3mc=",
         meta: nix.thunk(() => ({
-          __proto__: pos$209,
+          [nix.POS]: pos$209,
           description: "Library to help writing wrappers around ocaml code for python",
         })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_optcomp"))]),
@@ -1599,23 +1599,23 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     re2: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$212,
+        [nix.POS]: pos$212,
         pname: "re2",
         hash: "0z1cajd8abrryf3gz322jpynba79nv4a2kmmcdz0314ran5w68v3",
         meta: nix.thunk(() => ({
-          __proto__: pos$211,
+          [nix.POS]: pos$211,
           description: "OCaml bindings for RE2, Google's regular expression library",
         })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
         prePatch: "substituteInPlace src/re2_c/dune --replace 'CXX=g++' 'CXX=c++'\nsubstituteInPlace src/dune --replace '(cxx_flags (:standard \\ -pedantic) (-I re2_c/libre2))' '(cxx_flags (:standard \\ -pedantic) (-I re2_c/libre2) (-x c++))'\n",
       })))),
     re2_stable: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$214,
+        [nix.POS]: pos$214,
         pname: "re2_stable",
         version: "0.14.0",
         hash: "0kjc0ff6b3509s3b9n4q8ilb06d5fngdh3z58cm95vg7zkcas9w3",
         meta: nix.thunk(() => ({
-          __proto__: pos$213,
+          [nix.POS]: pos$213,
           description: "Re2_stable adds an incomplete but stable serialization of Re2",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1624,11 +1624,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     record_builder: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$216,
+        [nix.POS]: pos$216,
         pname: "record_builder",
         hash: "004nqcmwll0vy47mb3d3jlk21cc6adcjy62dkv2k966n9jkh472h",
         meta: nix.thunk(() => ({
-          __proto__: pos$215,
+          [nix.POS]: pos$215,
           description: "Library which provides traversal of records with an applicative",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1637,10 +1637,10 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "redis-async": nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$218,
+        [nix.POS]: pos$218,
         pname: "redis-async",
         hash: "0pccf4gkm880yyk8x4kgy5rwblkbscxav2sbis13abpms9vr7jfn",
-        meta: nix.thunk(() => ({ __proto__: pos$217, description: "Redis client for Async applications" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$217, description: "Redis client for Async applications" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async")),
           nix.thunk(() => nix.lookup(w, "bignum")),
@@ -1650,14 +1650,14 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     resource_cache: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$220,
+        [nix.POS]: pos$220,
         pname: "resource_cache",
         hash: "13wzx8ixgbb7jj5yrps890irw2wvkchnihsn7rfrcvnvrjzzjshm",
-        meta: nix.thunk(() => ({ __proto__: pos$219, description: "General resource cache" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$219, description: "General resource cache" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "async_rpc_kernel"))]),
       })))),
     sexp: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$222,
+        [nix.POS]: pos$222,
         pname: "sexp",
         hash: "00xlsymm1mpgs8cqkb6c36vh5hfw0saghvwiqh7jry65qc5nvv9z",
         propagatedBuildInputs: nix.thunk(() => [
@@ -1671,32 +1671,32 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "sexp_pretty")),
           nix.thunk(() => nix.lookup(w, "sexp_select")),
         ]),
-        meta: nix.thunk(() => ({ __proto__: pos$221, description: "S-expression swiss knife", broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$221, description: "S-expression swiss knife", broken: true })),
       })))),
     sexp_diff: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$224,
+        [nix.POS]: pos$224,
         pname: "sexp_diff",
         hash: "1p5xwhj634ij4a0m5k6a3abddi5315y7is1a6ha1lifdz3v985ll",
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
-        meta: nix.thunk(() => ({ __proto__: pos$223, description: "Code for computing the diff of two sexps" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$223, description: "Code for computing the diff of two sexps" })),
       })))),
     sexp_macro: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$226,
+        [nix.POS]: pos$226,
         pname: "sexp_macro",
         hash: "1l5dsv9gawmf5dg3rf8sxphp9qs3n4n038nlmf9rxzypzyn112k8",
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "async")),
           nix.thunk(() => nix.lookup(w, "sexplib")),
         ]),
-        meta: nix.thunk(() => ({ __proto__: pos$225, description: "Sexp macros" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$225, description: "Sexp macros" })),
       })))),
     sexp_pretty: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$228,
+        [nix.POS]: pos$228,
         pname: "sexp_pretty",
         version: "0.15.1",
         hash: "sha256-UJEO2P4C7ZaD110MEfkG4FXfGDVAAW2TAK489faV6SM=",
         minimalOCamlVersion: "4.07",
-        meta: nix.thunk(() => ({ __proto__: pos$227, description: "S-expression pretty-printer" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$227, description: "S-expression pretty-printer" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ppx_base")),
           nix.thunk(() => nix.lookup(w, "re")),
@@ -1704,7 +1704,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     sexp_select: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$230,
+        [nix.POS]: pos$230,
         pname: "sexp_select",
         hash: "0mmvga9w3gbb2gd1h4l8f1c3l2lrpn1zld2a8xgqyfqfff3vg31p",
         minimalOCamlVersion: "4.07",
@@ -1713,29 +1713,29 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "ppx_jane")),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$229,
+          [nix.POS]: pos$229,
           description: "Library to use CSS-style selectors to traverse sexp trees",
         })),
       })))),
     sexplib0: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$232,
+        [nix.POS]: pos$232,
         pname: "sexplib0",
         version: "0.15.1",
         hash: "sha256-6K0yrCbVFcUalN4cQuDI1TvWvNDjfXXRDhJKUskbqRY=",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$231,
+          [nix.POS]: pos$231,
           description: "Library containing the definition of S-expressions and some base converters",
         })),
       })))),
     sexplib: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$234,
+        [nix.POS]: pos$234,
         pname: "sexplib",
         version: "0.15.1",
         hash: "sha256-LkGNnp717LMHeWe1Ka6qUZcpw8fKSsd5MusaLgFjm70=",
         minimalOCamlVersion: "4.04.2",
         meta: nix.thunk(() => ({
-          __proto__: pos$233,
+          [nix.POS]: pos$233,
           description: "Library for serializing OCaml values to and from S-expressions",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1744,11 +1744,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     shell: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$236,
+        [nix.POS]: pos$236,
         pname: "shell",
         hash: "1vzdif7w9y1kw2qynlfixwphdgiflrf43j0fzinjp9f56vlhghhy",
         meta: nix.thunk(() => ({
-          __proto__: pos$235,
+          [nix.POS]: pos$235,
           description: "Yet another implementation of fork&exec and related functionality",
         })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jst-config"))]),
@@ -1757,7 +1757,7 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })))),
     shexp: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$238,
+        [nix.POS]: pos$238,
         pname: "shexp",
         hash: "05iswnhi92f4yvrh76j3254bvls6fbrdb56mv6vc6mi5f8z4l79i",
         minimalOCamlVersion: "4.07",
@@ -1766,31 +1766,31 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "spawn")),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$237,
+          [nix.POS]: pos$237,
           description: "Process library and s-expression based shell",
         })),
       })))),
     spawn: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$240,
+        [nix.POS]: pos$240,
         pname: "spawn",
         minimalOCamlVersion: "4.02.3",
         hash: "1fjr91psas5zmk1hxvxh0dchhn0pkyzlr4gg232f5g9vdgissi0p",
-        meta: nix.thunk(() => ({ __proto__: pos$239, description: "Spawning sub-processes" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$239, description: "Spawning sub-processes" })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_expect"))]),
       })))),
     splay_tree: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$242,
+        [nix.POS]: pos$242,
         pname: "splay_tree",
         hash: "1jxfh7f2hjrms5pm2cy1cf6ivphgiqqvyyr9hdcz8d3vi612p4dm",
-        meta: nix.thunk(() => ({ __proto__: pos$241, description: "Splay tree implementation" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$241, description: "Splay tree implementation" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
       })))),
     splittable_random: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$244,
+        [nix.POS]: pos$244,
         pname: "splittable_random",
         hash: "0ap5z4z1aagz4z02q9642cbl25jzws9lbc2x5xkpyjlc0qcm9v3m",
         meta: nix.thunk(() => ({
-          __proto__: pos$243,
+          [nix.POS]: pos$243,
           description: "PRNG that can be split into independent streams",
         })),
         propagatedBuildInputs: nix.thunk(() => [
@@ -1801,28 +1801,28 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     stdio: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$246,
+        [nix.POS]: pos$246,
         pname: "stdio",
         hash: "0g00b00kpjcadikq2asng35w7kvd24q9ldkiylwmn3gv3lrbipa8",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$245, description: "Standard IO library for OCaml" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$245, description: "Standard IO library for OCaml" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "base"))]),
       })))),
     textutils: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$248,
+        [nix.POS]: pos$248,
         pname: "textutils",
         hash: "1wass49h645wql9b7nck2iqlkf4648dkxvlvxixr7z80zcnb5rxr",
-        meta: nix.thunk(() => ({ __proto__: pos$247, description: "Text output utilities" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$247, description: "Text output utilities" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "core_unix")),
           nix.thunk(() => nix.lookup(w, "textutils_kernel")),
         ]),
       })))),
     textutils_kernel: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$250,
+        [nix.POS]: pos$250,
         pname: "textutils_kernel",
         hash: "068g11d98wsb5a6ds0p5xybdmx5nx9bxa0k11dmh3l57kn4c169x",
-        meta: nix.thunk(() => ({ __proto__: pos$249, description: "Text output utilities" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$249, description: "Text output utilities" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "core")),
           nix.thunk(() => nix.lookup(w, "ppx_jane")),
@@ -1830,11 +1830,11 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     time_now: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$252,
+        [nix.POS]: pos$252,
         pname: "time_now",
         hash: "1pa0hyh470j9jylii4983qagb6hq2dz6s0q2fnrcph9qbw83bc0c",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$251, description: "Reports the current time" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$251, description: "Reports the current time" })),
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "jst-config")),
           nix.thunk(() => nix.lookup(w, "ppx_optcomp")),
@@ -1846,43 +1846,43 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     timezone: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$254,
+        [nix.POS]: pos$254,
         pname: "timezone",
         hash: "00a007aji5rbz42kgbq1w90py6fm9k9akycs5abkcfll5rd0cbhx",
-        meta: nix.thunk(() => ({ __proto__: pos$253, description: "Time-zone handling" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$253, description: "Time-zone handling" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "core_kernel"))]),
       })))),
     topological_sort: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$256,
+        [nix.POS]: pos$256,
         pname: "topological_sort",
         hash: "0iqhp8n6g5n1ng80brjpav54229lykm2c1fc104s58lk3rqfvj9v",
-        meta: nix.thunk(() => ({ __proto__: pos$255, description: "Topological sort algorithm" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$255, description: "Topological sort algorithm" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ppx_jane")),
           nix.thunk(() => nix.lookup(w, "stdio")),
         ]),
       })))),
     typerep: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$258,
+        [nix.POS]: pos$258,
         pname: "typerep",
         hash: "1qxfi01qim0hrgd6d0bgvpxg36i99mmm8cw4wqpr9kxyqvgzv26z",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$257, description: "Typerep is a library for runtime types" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$257, description: "Typerep is a library for runtime types" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "base"))]),
       })))),
     variantslib: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$260,
+        [nix.POS]: pos$260,
         pname: "variantslib",
         hash: "033ns8ph6bd8g5cdfryjfcnrnzkdshppjyw5kl7cvszjfrz33ij7",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$259, description: "Part of Jane Street's Core library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$259, description: "Part of Jane Street's Core library" })),
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "base"))]),
       })))),
     vcaml: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$262,
+        [nix.POS]: pos$262,
         pname: "vcaml",
         hash: "12fd29x9dgf4f14xrx7z4y1bm1wbfynrs3jismjbiqnckfpbqrib",
-        meta: nix.thunk(() => ({ __proto__: pos$261, description: "OCaml bindings for the Neovim API" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$261, description: "OCaml bindings for the Neovim API" })),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "angstrom-async")),
           nix.thunk(() => nix.lookup(w, "async_extra")),
@@ -1891,12 +1891,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     virtual_dom: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$264,
+        [nix.POS]: pos$264,
         pname: "virtual_dom",
         version: "0.15.1",
         hash: "sha256-Uv6ZDxz2/H0nHjiycUKNQwy/zZyHHmwDEHknFHwDuDs=",
         meta: nix.thunk(() => ({
-          __proto__: pos$263,
+          [nix.POS]: pos$263,
           description: "OCaml bindings for the virtual-dom library",
         })),
         buildInputs: nix.thunk(() => [js_of_ocaml_ppx]),
@@ -1909,17 +1909,17 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     zarith_stubs_js: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$266,
+        [nix.POS]: pos$266,
         pname: "zarith_stubs_js",
         hash: "119xgr3kla9q1bvs4a5z2ivbmsrz4db3a9z0gf77ryqg4i22ywvl",
         minimalOCamlVersion: "4.04.2",
-        meta: nix.thunk(() => ({ __proto__: pos$265, description: "Javascripts stubs for the Zarith library" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$265, description: "Javascripts stubs for the Zarith library" })),
       })))),
     zstandard: nix.thunk(() => nix.app(nix.lookup(w, "janePackage"), nix.thunk(() => ({
-        __proto__: pos$268,
+        [nix.POS]: pos$268,
         pname: "zstandard",
         hash: "1blkv35g5q1drkc6zmc4m027gjz6vfdadra1kw1xkp1wlc2l4v3k",
-        meta: nix.thunk(() => ({ __proto__: pos$267, description: "OCaml bindings to Zstandard" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$267, description: "OCaml bindings to Zstandard" })),
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ppx_jane"))]),
         propagatedBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "core_kernel")),

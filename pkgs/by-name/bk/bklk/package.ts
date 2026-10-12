@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bklk",
       version: "0-unstable-2020-12-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ruunyox",
           repo: "bklk",
           rev: "26f3420aa5726e152a745278ddb98dc99c0a935e",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       installPhase: "mkdir -p $out/bin\ncp bklk $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ncurses Binary Clock",
         longDescription: "bklk is a simple binary clock for your terminal.",
         homepage: "https://github.com/Ruunyox/bklk",

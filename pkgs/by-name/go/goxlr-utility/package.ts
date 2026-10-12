@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const speechd_minimal = nix.arg($, "speechd-minimal");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goxlr-utility",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoXLR-on-Linux",
           repo: "goxlr-utility",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "install -Dm644 \"50-goxlr.rules\" \"$out/etc/udev/rules.d/50-goxlr.rules\"\ninstall -Dm644 \"daemon/resources/goxlr-utility.png\" \"$out/share/icons/hicolor/48x48/apps/goxlr-utility.png\"\ninstall -Dm644 \"daemon/resources/goxlr-utility.svg\" \"$out/share/icons/hicolor/scalable/apps/goxlr-utility.svg\"\ninstall -Dm644 \"daemon/resources/goxlr-utility-large.png\" \"$out/share/icons/hicolor/128x128/apps/goxlr-utility.png\"\ninstall -Dm644 \"daemon/resources/goxlr-utility.desktop\" \"$out/share/applications/goxlr-utility.desktop\"\nsubstituteInPlace $out/share/applications/goxlr-utility.desktop \\\n  --replace-fail /usr/bin $out/bin\n\ncompletions_dir=$(dirname $(find target -name 'goxlr-client.bash' | head -n 1))\ninstallShellCompletion --bash $completions_dir/goxlr-client.bash\ninstallShellCompletion --fish $completions_dir/goxlr-client.fish\ninstallShellCompletion --zsh  $completions_dir/_goxlr-client\ncompletions_dir=$(dirname $(find target -name 'goxlr-daemon.bash' | head -n 1))\ninstallShellCompletion --bash $completions_dir/goxlr-daemon.bash\ninstallShellCompletion --fish $completions_dir/goxlr-daemon.fish\ninstallShellCompletion --zsh  $completions_dir/_goxlr-daemon\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial GoXLR App replacement for Linux, Windows and MacOS",
         homepage: "https://github.com/GoXLR-on-Linux/goxlr-utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const re2 = nix.arg($, "re2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bulk_extractor",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simsong",
           repo: "bulk_extractor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [exiv2, flex, libewf, libxml2, openssl, zlib, re2]),
       preAutoreconf: "python3 etc/makefile_builder.py\nautoheader -f\naclocal -I m4\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital forensics tool for extracting information from file systems",
         longDescription: "bulk_extractor is a C++ program that scans a disk image, a file, or a\ndirectory of files and extracts useful information without parsing\nthe file system or file system structures. The results are stored in\nfeature files that can be easily inspected, parsed, or processed with\nautomated tools.\n",
         mainProgram: "bulk_extractor",

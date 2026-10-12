@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3";
       const commit_revision = "unspecified (nix build)";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lintingzhen",
           repo: "commitizen-go",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-TbrgKE7P3c0gkqJPDkbchWTPkOuTaTAWd8wDcpffcCc=";
       const subPackages = nix.thunk(() => ["."]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         nix.thunk(() => nix.str`-X 'github.com/lintingzhen/commitizen-go/cmd.revision=${commit_revision}'`),
         nix.thunk(() => nix.str`-X 'github.com/lintingzhen/commitizen-go/cmd.version=${version}'`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line utility to standardize git commit messages, golang version",
         homepage: "https://github.com/lintingzhen/commitizen-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "commitizen-go",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         commit_revision,

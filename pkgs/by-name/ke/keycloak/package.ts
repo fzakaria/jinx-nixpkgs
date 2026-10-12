@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(disabledFeatures, [])), nix.thunk(() => nix.str`--features-disabled=${nix.app(nix.sel(lib, "concatStringsSep"), ",", disabledFeatures)}`))}
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "keycloak",
       version: "26.7.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/keycloak/keycloak/releases/download/${nix.sel(finalAttrs, "version")}/keycloak-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-R0W9ehKjs/1DGF/ZwTb2Mo5ZBo4ceCQqcDM0J9+jBNU=",
         })))),
@@ -58,13 +58,13 @@ runHook postBuild
 done
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.sel(nixosTests, "keycloak")),
         plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./all-plugins.nix"), nix.thunk(() => ({})))),
         enabledPlugins: plugins,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.keycloak.org/",
         description: "Identity and access management for modern applications and services",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

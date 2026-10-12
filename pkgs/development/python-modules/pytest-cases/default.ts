@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pytest_cases",
           version: version,
           hash: "sha256-RR+ePs1dLYGkNiwQxEESb1s9GuOn769Z9gsfuTDfLWk=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pytest_cases"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Separate test code from test cases in pytest",
         homepage: "https://github.com/smarie/python-pytest-cases",
         changelog: nix.thunk(() => nix.str`https://github.com/smarie/python-pytest-cases/releases/tag/${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

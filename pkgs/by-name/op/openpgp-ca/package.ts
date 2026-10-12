@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gnupg = nix.arg($, "gnupg");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openpgp-ca",
       version: "0.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openpgp-ca",
           repo: "openpgp-ca",
           rev: nix.thunk(() => nix.str`openpgp-ca/v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, sqlite, pcsclite, nettle]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for managing OpenPGP keys within organizations",
         homepage: "https://openpgp-ca.org/",
         changelog: "https://openpgp-ca.org/doc/changelog/",

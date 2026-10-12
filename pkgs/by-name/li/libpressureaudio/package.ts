@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libpressureaudio",
       version: nix.thunk(() => nix.sel(apulse, "version")),
       src: nix.thunk(() => nix.sel(libpulseaudio, "src")),
@@ -72,7 +72,7 @@ EOF
 runHook postInstall
 `),
       meta: nix.thunk(() => nix.update(nix.sel(apulse, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Libpulse without any sound daemons over pure ALSA",
         longDescription: nix.thunk(() => nix.str`apulse (${nix.sel(apulse, "meta", "homepage")}) implements most of libpulse
 API over pure ALSA in 5% LOC of the original PulseAudio.

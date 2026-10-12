@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const withLibvirt = nix.argOr($, "withLibvirt", () => false);
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (_final) => (prev) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "ruamel-yaml": nix.thunk(() => nix.app(nix.sel(prev, "ruamel-yaml", "overridePythonAttrs"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: "0.18.10",
           src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pname: "ruamel.yaml",
               version: "0.18.10",
               hash: "sha256-IMhqsprCFT+ApCjhJUqK32htM4PfBEkFFMo7eaNi21g=",
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "fdroidserver",
       version: "2.4.5-unstable-2026-06-11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "fdroid",
           repo: "fdroidserver",
           rev: "00932d0a715b43b3ecf8da44826abf2ba65dd8b4",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fdroidserver"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.com/fdroid/fdroidserver",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/fdroid/fdroidserver/-/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Server and tools for F-Droid, the Free Software repository system for Android",

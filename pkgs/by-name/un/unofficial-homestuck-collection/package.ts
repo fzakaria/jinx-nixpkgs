@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const yarn = nix.arg($, "yarn");
   const libglvnd = nix.arg($, "libglvnd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "unofficial-homestuck-collection",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GiovanH",
           repo: "unofficial-homestuck-collection",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-disable-git-rev-check.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             git_branch: "'main'",
             git_revision: nix.thunk(() => nix.str`'${nix.sel(finalAttrs, "src", "rev")}'`),
             git_remote: nix.thunk(() => nix.str`'${nix.sel(finalAttrs, "src", "url")}'`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0004-Upgrade-Electron-14-to-force-removal-of-remote-module.patch"),
       ]),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.path(here, "./yarn.lock"),
           hash: "sha256-CKWFtIZBASGx/1tBR8n7aKPqfj4P9dCAPIzee/DIOP8=",
         })))),
@@ -101,7 +101,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/unofficial-hom
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Offline collection of Homestuck and its related works (ruffle only)",
         homepage: "https://homestuck.giovanh.com/unofficial-homestuck-collection/",
         changelog: nix.thunk(() => nix.str`https://github.com/GiovanH/unofficial-homestuck-collection/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const java_hamcrest = nix.arg($, "java-hamcrest");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "junit",
       version: "4.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "junit-team",
           repo: "junit4",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ runHook postInstall
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JUnit 4 testing framework for Java",
         homepage: "https://junit.org/junit4/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

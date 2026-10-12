@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.asBool(nix.sel(blas, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libmbd/package.nix:13:1");
   nix.assert_(!nix.asBool(nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libmbd/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libMBD",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libmbd",
           repo: "libMBD",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ EOF
       buildInputs: nix.thunk(() => [blas, lapack, scalapack]),
       propagatedBuildInputs: nix.thunk(() => [mpi]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Many-body dispersion library",
         homepage: "https://github.com/libmbd/libmbd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

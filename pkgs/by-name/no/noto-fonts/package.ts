@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const longDescription = nix.argOr($, "longDescription", () => "When text is rendered by a computer, sometimes characters are\ndisplayed as “tofu”. They are little boxes to indicate your device\ndoesn’t have a font to display the text.\nGoogle has been developing a font family called Noto, which aims to\nsupport all languages with a harmonious look and feel. Noto is\nGoogle’s answer to tofu. The name noto is to convey the idea that\nGoogle’s goal is to see “no more tofu”.  Noto has multiple styles and\nweights, and freely available to all.\n");
   const _variants = nix.thunk(() => nix.builtins.map((variant) => nix.builtins.replaceStrings(nix.thunk(() => [" "]), nix.thunk(() => [""]), variant), variants));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`noto-fonts${suffix}`),
       version: "2026.10.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "notofonts",
           repo: "notofonts.github.io",
           tag: nix.thunk(() => nix.str`noto-monthly-release-${nix.sel(finalAttrs, "version")}`),
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
 done
 `)), "rename 's/\\[.*\\]//' $out/share/fonts/noto/*\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "noto-monthly-release-" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "noto-monthly-release-" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "noto-fonts": nix.thunk(() => nix.attr(nixosTests, "noto-fonts")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Beautiful and free fonts for many languages",
         homepage: "https://www.google.com/get/noto/",
         longDescription: longDescription,

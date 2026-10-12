@@ -202,75 +202,75 @@ export default nix.lambda((args) => (() => {
     const config_1 = nix.arg($_1, "config");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       options: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: name,
             example: "smtp",
             description: "The name of the service to run. Defaults to the attribute set key.\n",
           })))),
         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["inet", "unix", "unix-dgram", "fifo", "pass"]))),
             default: "unix",
             example: "inet",
             description: "The type of the service",
           })))),
         private: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             example: false,
             description: "Whether the service's sockets and storage directory is restricted to\nbe only available via the mail system. If `null` is\ngiven it uses the postfix default `true`.\n",
           })))),
         privileged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             example: true,
             description: "",
           })))),
         chroot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             example: true,
             description: "Whether the service is chrooted to have only access to the\n{option}`services.postfix.queueDir` and the closure of\nstore paths specified by the {option}`program` option.\n",
           })))),
         wakeup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             example: 60n,
             description: "Automatically wake up the service after the specified number of\nseconds. If `0` is given, never wake the service\nup.\n",
           })))),
         wakeupUnusedComponent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             example: false,
             description: "If set to `false` the component will only be woken\nup if it is used. This is equivalent to postfix' notion of adding a\nquestion mark behind the wakeup time in\n{file}`master.cf`\n",
           })))),
         maxproc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             example: 1n,
             description: "The maximum number of processes to spawn for this service. If the\nvalue is `0` it doesn't have any limit. If\n`null` is given it uses the postfix default of\n`100`.\n",
           })))),
         command: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: name,
             example: "smtpd",
             description: "A program name specifying a Postfix service/daemon process.\nBy default it's the attribute {option}`name`.\n",
           })))),
         args: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             example: nix.thunk(() => ["-o", "smtp_helo_timeout=5"]),
             description: "Arguments to pass to the {option}`command`. There is no shell\nprocessing involved and shell syntax is passed verbatim to the\nprocess.\n",
           })))),
         rawEntry: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             internal: true,
@@ -278,7 +278,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         rawEntry: nix.thunk(() => (() => {
           const mkBool = (bool) => (nix.asBool(bool) ? "y" : "n");
           const mkArg = (arg) => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "-", arg)), "\n  ")}${arg}`;
@@ -346,18 +346,18 @@ export default nix.lambda((args) => (() => {
   const headerCheckOptions = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     return {
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       options: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pattern: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "/^.*/",
             example: "/^X-Mailer:/",
             description: "A regexp pattern matching the header",
           })))),
         action: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "DUNNO",
             example: "BCC mail@example.com",
@@ -383,9 +383,9 @@ export default nix.lambda((args) => (() => {
   const transportFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postfix-transport", nix.thunk(() => nix.sel(cfg, "transport"))));
   const headerChecksFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postfix-header-checks", headerChecks));
   return {
-    __proto__: pos$163,
+    [nix.POS]: pos$163,
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -395,51 +395,51 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$74,
+      [nix.POS]: pos$74,
       services: nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         postfix: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to run the Postfix mail server.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "postfix", nix.thunk(() => ({})))),
           enableSmtp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable the `smtp` service configured in the master.cf.\n\nThis service listens for plain text SMTP connections on port 25\nand supports explicit TLS via StartTLS.\n\nIt is the primary port used by SMTP servers to exchange mail.\n",
             })))),
           enableSubmission: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "\n          Whether to enable the `submission` service configured in master.cf.\n\n          This service listens for plain text SMTP connections on port 587\n          and supports explicit TLS via StartTLS.\n\n          It is a way for clients to login and submit mails after an inband\n          connection upgrade using StartTLS.\n\n          ::: {.warning}\n          [RFC 8314](https://www.rfc-editor.org/rfc/rfc8314) discourages the use\n          of explicit TLS for mail submissionn.\n          :::\n        ",
             })))),
           enableSubmissions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the `submissions` service configured in master.cf.\n\nThis service listen for implicit TLS connections on port 465.\n\n::: {.info}\nPer [RFC 8314](https://www.rfc-editor.org/rfc/rfc8314) implicit TLS\nis recommended for mail submission.\n:::\n",
             })))),
           submissionOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 smtpd_tls_security_level: "encrypt",
                 smtpd_sasl_auth_enable: "yes",
                 smtpd_client_restrictions: "permit_sasl_authenticated,reject",
                 milter_macro_daemon_name: "ORIGINATING",
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 smtpd_tls_security_level: "encrypt",
                 smtpd_sasl_auth_enable: "yes",
                 smtpd_sasl_type: "dovecot",
@@ -449,19 +449,19 @@ export default nix.lambda((args) => (() => {
               description: "Options for the submission config in master.cf",
             })))),
           submissionsOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 smtpd_sasl_auth_enable: "yes",
                 smtpd_client_restrictions: "permit_sasl_authenticated,reject",
                 milter_macro_daemon_name: "ORIGINATING",
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 smtpd_sasl_auth_enable: "yes",
                 smtpd_sasl_type: "dovecot",
                 smtpd_client_restrictions: "permit_sasl_authenticated,reject",
@@ -470,49 +470,49 @@ export default nix.lambda((args) => (() => {
               description: "Options for the submission config via smtps in master.cf.\n\nsmtpd_tls_security_level will be set to encrypt, if it is missing\nor has one of the values \"may\" or \"none\".\n\nsmtpd_tls_wrappermode with value \"yes\" will be added automatically.\n",
             })))),
           setSendmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to set the system sendmail to postfix's.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "postfix",
               description: "What to call the Postfix user (must be used only for postfix).",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "postfix",
               description: "What to call the Postfix group (must be used only for postfix).",
             })))),
           setgidGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "postdrop",
               description: "How to call postfix setgid group (for postdrop). Should\nbe uniquely used group.\n",
             })))),
           postmasterAlias: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "root",
               description: "Who should receive postmaster e-mail. Multiple values can be added by\nseparating values with comma.\n",
             })))),
           rootAlias: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Who should receive root e-mail. Blank for no redirection.\nMultiple values can be added by separating values with comma.\n",
             })))),
           extraAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Additional entries to put verbatim into aliases file, cf. man-page {manpage}`aliases(8)`.\n",
             })))),
           aliasMapType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["hash", "regexp", "pcre"]));
@@ -522,11 +522,11 @@ export default nix.lambda((args) => (() => {
               description: "The format the alias map should have. Use regexp if you want to use regular expressions.",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             main: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     freeformType: nix.thunk(() => (() => {
                       const w = nix.withScope(types, null);
                       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -538,9 +538,9 @@ export default nix.lambda((args) => (() => {
                             ]))))));
                     })()),
                     options: nix.thunk(() => ({
-                      __proto__: pos$50,
+                      [nix.POS]: pos$50,
                       message_size_limit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")));
@@ -550,7 +550,7 @@ export default nix.lambda((args) => (() => {
                           description: "Maximum size of an email message in bytes.\n\n<https://www.postfix.org/postconf.5.html#message_size_limit>\n",
                         })))),
                       mydestination: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -562,7 +562,7 @@ export default nix.lambda((args) => (() => {
                           description: "List of domain names intended for local delivery using /etc/passwd and /etc/aliases.\n\n::: {.warning}\nDo not include [virtual](https://www.postfix.org/VIRTUAL_README.html) domains in this list.\n:::\n\n<https://www.postfix.org/postconf.5.html#mydestination>\n",
                         })))),
                       myhostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.sel(types, "str")));
@@ -572,7 +572,7 @@ export default nix.lambda((args) => (() => {
                           description: "The internet hostname of this mail system.\n\nLeave unset to default to the system hostname with the {option}`mydomain` suffix.\n\n<https://www.postfix.org/postconf.5.html#myhostname>\n",
                         })))),
                       mynetworks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -582,7 +582,7 @@ export default nix.lambda((args) => (() => {
                           description: "List of trusted remote SMTP clients, that are allowed to relay mail.\n\nLeave unset to let Postfix populate this list based on the {option}`mynetworks_style` setting.\n\n<https://www.postfix.org/postconf.5.html#mynetworks>\n",
                         })))),
                       mynetworks_style: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["host", "subnet", "class"]))));
@@ -591,7 +591,7 @@ export default nix.lambda((args) => (() => {
                           description: "The method used for generating the default value for {option}`mynetworks`, if that option is unset.\n\n<https://www.postfix.org/postconf.5.html#mynetworks_style>\n",
                         })))),
                       recipient_delimiter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -601,7 +601,7 @@ export default nix.lambda((args) => (() => {
                           description: "Set of characters used as the delimiters for address extensions.\n\nThis allows creating different forwarding rules per extension.\n\n<https://www.postfix.org/postconf.5.html#recipient_delimiter>\n",
                         })))),
                       relayhost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -611,7 +611,7 @@ export default nix.lambda((args) => (() => {
                           description: "List of hosts to use for relaying outbound mail.\n\n::: {.note}\nPutting the hostname in angled brackets, e.g. `[relay.example.com]`, turns off MX and SRV lookups for the hostname.\n:::\n\n<https://www.postfix.org/postconf.5.html#relayhost>\n",
                         })))),
                       relay_domains: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -621,7 +621,7 @@ export default nix.lambda((args) => (() => {
                           description: "List of domains delivered via the relay transport.\n\n<https://www.postfix.org/postconf.5.html#relay_domains>\n",
                         })))),
                       smtp_tls_CAfile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$46,
+                          [nix.POS]: pos$46,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "config.security.pki.caBundle\n")),
@@ -629,7 +629,7 @@ export default nix.lambda((args) => (() => {
                           description: "File containing CA certificates of root CAs trusted to sign either remote SMTP server certificates or intermediate CA certificates.\n\nDefaults to the system CA bundle that is managed through the `security.pki` options.\n\n<https://www.postfix.org/postconf.5.html#smtp_tls_CAfile>\n",
                         })))),
                       smtp_tls_security_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [
                               "none",
                               "may",
@@ -644,7 +644,7 @@ export default nix.lambda((args) => (() => {
                           description: "The client TLS security level.\n\n::: {.tip}\nUse `dane` with a local DNSSEC validating DNS resolver enabled.\n:::\n\n<https://www.postfix.org/postconf.5.html#smtp_tls_security_level>\n",
                         })))),
                       smtpd_tls_chain_files: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$48,
+                          [nix.POS]: pos$48,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, null);
                             return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -657,7 +657,7 @@ export default nix.lambda((args) => (() => {
                           description: "List of paths to the server private keys and certificates.\n\n::: {.caution}\nThe order of items matters and a private key must always be followed by the corresponding certificate.\n:::\n\n<https://www.postfix.org/postconf.5.html#smtpd_tls_chain_files>\n",
                         })))),
                       smtpd_tls_security_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$49,
+                          [nix.POS]: pos$49,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["none", "may", "encrypt"]))),
                           default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "services", "postfix", "settings", "main", "smtpd_tls_chain_files"), [])) ? "may" : "none")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.postfix.settings.main.smtpd_tls_chain_files != [ ] then \"may\" else \"none\"\n")),
@@ -667,16 +667,16 @@ export default nix.lambda((args) => (() => {
                     })),
                   })))),
                 description: "The main.cf configuration file as key value set.\n\nNull values will not be rendered.\n\n::: {.tip}\nCheck `postconf -d` for the default values of all settings.\n:::\n",
-                example: nix.thunk(() => ({ __proto__: pos$52, mail_owner: "postfix", smtp_tls_security_level: "may" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$52, mail_owner: "postfix", smtp_tls_security_level: "may" })),
               })))),
             master: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), masterCfOptions)))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   submission: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     type: "inet",
                     args: nix.thunk(() => ["-o", "smtpd_tls_security_level=encrypt"]),
                   })),
@@ -685,25 +685,25 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           canonical: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Entries for the {manpage}`canonical(5)` table.\n",
             })))),
           virtual: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Entries for the virtual alias map, cf. man-page {manpage}`virtual(5)`.\n",
             })))),
           virtualMapType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["hash", "regexp", "pcre"]))),
               default: "hash",
               description: "What type of virtual alias map file to use. Use `\"regexp\"` for regular expressions.\n",
             })))),
           localRecipients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -712,13 +712,13 @@ export default nix.lambda((args) => (() => {
               description: "List of accepted local users. Specify a bare username, an\n`\"@domain.tld\"` wild-card, or a complete\n`\"user@domain.tld\"` address. If set, these names end\nup in the local recipient map -- see the {manpage}`local(8)` man-page -- and\neffectively replace the system user database lookup that's otherwise\nused by default.\n",
             })))),
           transport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Entries for the transport map, cf. man-page {manpage}`transport(5)`.\n",
             })))),
           dnsBlacklists: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -727,32 +727,32 @@ export default nix.lambda((args) => (() => {
               description: "dns blacklist servers to use with smtpd_client_restrictions",
             })))),
           dnsBlacklistOverrides: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "contents of check_client_access for overriding dnsBlacklists",
             })))),
           extraMasterConf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "submission inet n - n - - smtpd",
               description: "Extra lines to append to the generated master.cf file.",
             })))),
           enableHeaderChecks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
               description: "Whether to enable postfix header checks",
             })))),
           headerChecks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), headerCheckOptions)))),
               default: [],
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   pattern: "/^X-Spam-Flag:/",
                   action: "REDIRECT spam@example.com",
                 })),
@@ -760,20 +760,20 @@ export default nix.lambda((args) => (() => {
               description: "Postfix header checks.",
             })))),
           extraHeaderChecks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "/^X-Spam-Flag:/ REDIRECT spam@example.com",
               description: "Extra lines to /etc/postfix/header_checks file.",
             })))),
           aliasFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ({})),
               description: "Aliases' tables to be compiled and placed into /var/lib/postfix/conf.",
             })))),
           mapFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ({})),
               description: "Maps to be compiled and placed into /var/lib/postfix/conf.",
@@ -783,21 +783,21 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "postfix", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$134,
+            [nix.POS]: pos$134,
             environment: nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               etc: nix.thunk(() => ({
-                __proto__: pos$76,
-                postfix: nix.thunk(() => ({ __proto__: pos$75, source: "/var/lib/postfix/conf" })),
+                [nix.POS]: pos$76,
+                postfix: nix.thunk(() => ({ [nix.POS]: pos$75, source: "/var/lib/postfix/conf" })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               mail: nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 sendmailSetuidWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "postfix", "setSendmail")), nix.thunk(() => ({
-                    __proto__: pos$78,
+                    [nix.POS]: pos$78,
                     program: "sendmail",
                     source: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "sendmail")),
                     owner: "root",
@@ -807,11 +807,11 @@ export default nix.lambda((args) => (() => {
                   })))),
               })),
               postfix: nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$115,
+                  [nix.POS]: pos$115,
                   main: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => ({
-                      __proto__: pos$80,
+                      [nix.POS]: pos$80,
                       compatibility_level: nix.thunk(() => nix.sel(cfg, "package", "version")),
                       mail_owner: nix.thunk(() => nix.sel(cfg, "user")),
                       default_privs: "nobody",
@@ -831,58 +831,58 @@ export default nix.lambda((args) => (() => {
                       mail_spool_directory: "/var/spool/mail/",
                       setgid_group: nix.thunk(() => nix.sel(cfg, "setgidGroup")),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), haveAliases, nix.thunk(() => ({
-                      __proto__: pos$81,
+                      [nix.POS]: pos$81,
                       alias_maps: nix.thunk(() => [
                         nix.thunk(() => nix.str`${nix.sel(cfg, "aliasMapType")}:/etc/postfix/aliases`),
                       ]),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), haveTransport, nix.thunk(() => ({
-                      __proto__: pos$82,
+                      [nix.POS]: pos$82,
                       transport_maps: nix.thunk(() => ["hash:/etc/postfix/transport"]),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), haveVirtual, nix.thunk(() => ({
-                      __proto__: pos$83,
+                      [nix.POS]: pos$83,
                       virtual_alias_maps: nix.thunk(() => [
                         nix.thunk(() => nix.str`${nix.sel(cfg, "virtualMapType")}:/etc/postfix/virtual`),
                       ]),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), haveLocalRecipients, nix.thunk(() => ({
-                      __proto__: pos$84,
+                      [nix.POS]: pos$84,
                       local_recipient_maps: nix.thunk(() => nix.concat(["hash:/etc/postfix/local_recipients"], nix.app(nix.sel(lib, "optional"), haveAliases, "$alias_maps"))),
-                    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dnsBlacklists"), [])), nix.thunk(() => ({ __proto__: pos$85, smtpd_client_restrictions: clientRestrictions }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableHeaderChecks")), nix.thunk(() => ({
-                      __proto__: pos$86,
+                    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dnsBlacklists"), [])), nix.thunk(() => ({ [nix.POS]: pos$85, smtpd_client_restrictions: clientRestrictions }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableHeaderChecks")), nix.thunk(() => ({
+                      [nix.POS]: pos$86,
                       header_checks: nix.thunk(() => ["regexp:/etc/postfix/header_checks"]),
                     })))))))))),
                   master: nix.thunk(() => nix.update({
-                    __proto__: pos$105,
-                    pickup: nix.thunk(() => ({ __proto__: pos$87, private: false, wakeup: 60n, maxproc: 1n })),
-                    cleanup: nix.thunk(() => ({ __proto__: pos$88, private: false, maxproc: 0n })),
-                    qmgr: nix.thunk(() => ({ __proto__: pos$89, private: false, wakeup: 300n, maxproc: 1n })),
-                    tlsmgr: nix.thunk(() => ({ __proto__: pos$90, wakeup: 1000n, wakeupUnusedComponent: false, maxproc: 1n })),
-                    rewrite: nix.thunk(() => ({ __proto__: pos$91, command: "trivial-rewrite" })),
-                    bounce: nix.thunk(() => ({ __proto__: pos$92, maxproc: 0n })),
-                    defer: nix.thunk(() => ({ __proto__: pos$93, maxproc: 0n, command: "bounce" })),
-                    trace: nix.thunk(() => ({ __proto__: pos$94, maxproc: 0n, command: "bounce" })),
-                    verify: nix.thunk(() => ({ __proto__: pos$95, maxproc: 1n })),
+                    [nix.POS]: pos$105,
+                    pickup: nix.thunk(() => ({ [nix.POS]: pos$87, private: false, wakeup: 60n, maxproc: 1n })),
+                    cleanup: nix.thunk(() => ({ [nix.POS]: pos$88, private: false, maxproc: 0n })),
+                    qmgr: nix.thunk(() => ({ [nix.POS]: pos$89, private: false, wakeup: 300n, maxproc: 1n })),
+                    tlsmgr: nix.thunk(() => ({ [nix.POS]: pos$90, wakeup: 1000n, wakeupUnusedComponent: false, maxproc: 1n })),
+                    rewrite: nix.thunk(() => ({ [nix.POS]: pos$91, command: "trivial-rewrite" })),
+                    bounce: nix.thunk(() => ({ [nix.POS]: pos$92, maxproc: 0n })),
+                    defer: nix.thunk(() => ({ [nix.POS]: pos$93, maxproc: 0n, command: "bounce" })),
+                    trace: nix.thunk(() => ({ [nix.POS]: pos$94, maxproc: 0n, command: "bounce" })),
+                    verify: nix.thunk(() => ({ [nix.POS]: pos$95, maxproc: 1n })),
                     flush: nix.thunk(() => ({
-                      __proto__: pos$96,
+                      [nix.POS]: pos$96,
                       private: false,
                       wakeup: 1000n,
                       wakeupUnusedComponent: false,
                       maxproc: 0n,
                     })),
-                    proxymap: nix.thunk(() => ({ __proto__: pos$97, command: "proxymap" })),
-                    proxywrite: nix.thunk(() => ({ __proto__: pos$98, maxproc: 1n, command: "proxymap" })),
-                    showq: nix.thunk(() => ({ __proto__: pos$99, private: false })),
+                    proxymap: nix.thunk(() => ({ [nix.POS]: pos$97, command: "proxymap" })),
+                    proxywrite: nix.thunk(() => ({ [nix.POS]: pos$98, maxproc: 1n, command: "proxymap" })),
+                    showq: nix.thunk(() => ({ [nix.POS]: pos$99, private: false })),
                     error: nix.thunk(() => ({})),
-                    retry: nix.thunk(() => ({ __proto__: pos$100, command: "error" })),
+                    retry: nix.thunk(() => ({ [nix.POS]: pos$100, command: "error" })),
                     discard: nix.thunk(() => ({})),
-                    local: nix.thunk(() => ({ __proto__: pos$101, privileged: true })),
-                    virtual: nix.thunk(() => ({ __proto__: pos$102, privileged: true })),
+                    local: nix.thunk(() => ({ [nix.POS]: pos$101, privileged: true })),
+                    virtual: nix.thunk(() => ({ [nix.POS]: pos$102, privileged: true })),
                     lmtp: nix.thunk(() => ({})),
-                    anvil: nix.thunk(() => ({ __proto__: pos$103, maxproc: 1n })),
-                    scache: nix.thunk(() => ({ __proto__: pos$104, maxproc: 1n })),
+                    anvil: nix.thunk(() => ({ [nix.POS]: pos$103, maxproc: 1n })),
+                    scache: nix.thunk(() => ({ [nix.POS]: pos$104, maxproc: 1n })),
                   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableSubmission")), nix.thunk(() => ({
-                      __proto__: pos$107,
+                      [nix.POS]: pos$107,
                       submission: nix.thunk(() => ({
-                        __proto__: pos$106,
+                        [nix.POS]: pos$106,
                         type: "inet",
                         private: false,
                         command: "smtpd",
@@ -892,9 +892,9 @@ export default nix.lambda((args) => (() => {
                         })()),
                       })),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableSmtp")), nix.thunk(() => ({
-                      __proto__: pos$110,
+                      [nix.POS]: pos$110,
                       smtp_inet: nix.thunk(() => ({
-                        __proto__: pos$108,
+                        [nix.POS]: pos$108,
                         name: "smtp",
                         type: "inet",
                         private: false,
@@ -902,21 +902,21 @@ export default nix.lambda((args) => (() => {
                       })),
                       smtp: nix.thunk(() => ({})),
                       relay: nix.thunk(() => ({
-                        __proto__: pos$109,
+                        [nix.POS]: pos$109,
                         command: "smtp",
                         args: nix.thunk(() => ["-o", "smtp_fallback_relay="]),
                       })),
                     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableSubmissions")), nix.thunk(() => ({
-                      __proto__: pos$114,
+                      [nix.POS]: pos$114,
                       submissions: nix.thunk(() => ({
-                        __proto__: pos$113,
+                        [nix.POS]: pos$113,
                         type: "inet",
                         private: false,
                         command: "smtpd",
                         args: nix.thunk(() => (() => {
                           const mkKeyVal = (opt) => (val) => ["-o", nix.thunk(() => nix.add(nix.add(opt, "="), val))];
                           const adjustSmtpTlsSecurityLevel = nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "submissionsOptions"), "smtpd_tls_security_level"))) || nix.asBool(nix.eq(nix.sel(cfg, "submissionsOptions", "smtpd_tls_security_level"), "none")))) || nix.asBool(nix.eq(nix.sel(cfg, "submissionsOptions", "smtpd_tls_security_level"), "may"))));
-                          const submissionsOptions = nix.thunk(() => nix.update(nix.sel(cfg, "submissionsOptions"), nix.update({ __proto__: pos$111, smtpd_tls_wrappermode: "yes" }, nix.app(nix.sel(lib, "optionalAttrs"), adjustSmtpTlsSecurityLevel, nix.thunk(() => ({ __proto__: pos$112, smtpd_tls_security_level: "encrypt" }))))));
+                          const submissionsOptions = nix.thunk(() => nix.update(nix.sel(cfg, "submissionsOptions"), nix.update({ [nix.POS]: pos$111, smtpd_tls_wrappermode: "yes" }, nix.app(nix.sel(lib, "optionalAttrs"), adjustSmtpTlsSecurityLevel, nix.thunk(() => ({ [nix.POS]: pos$112, smtpd_tls_security_level: "encrypt" }))))));
                           return nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), mkKeyVal, submissionsOptions)));
                         })()),
                       })),
@@ -925,11 +925,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$122,
+              [nix.POS]: pos$122,
               wrappers: nix.thunk(() => ({
-                __proto__: pos$121,
+                [nix.POS]: pos$121,
                 mailq: nix.thunk(() => ({
-                  __proto__: pos$118,
+                  [nix.POS]: pos$118,
                   program: "mailq",
                   source: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "mailq")),
                   owner: "root",
@@ -938,7 +938,7 @@ export default nix.lambda((args) => (() => {
                   setgid: true,
                 })),
                 postqueue: nix.thunk(() => ({
-                  __proto__: pos$119,
+                  [nix.POS]: pos$119,
                   program: "postqueue",
                   source: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "postqueue")),
                   owner: "root",
@@ -947,7 +947,7 @@ export default nix.lambda((args) => (() => {
                   setgid: true,
                 })),
                 postdrop: nix.thunk(() => ({
-                  __proto__: pos$120,
+                  [nix.POS]: pos$120,
                   program: "postdrop",
                   source: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "postdrop")),
                   owner: "root",
@@ -958,11 +958,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$127,
+              [nix.POS]: pos$127,
               users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(user, "postfix")), nix.thunk(() => ({
-                  __proto__: pos$124,
+                  [nix.POS]: pos$124,
                   postfix: nix.thunk(() => ({
-                    __proto__: pos$123,
+                    [nix.POS]: pos$123,
                     description: "Postfix mail server user",
                     uid: nix.thunk(() => nix.sel(config, "ids", "uids", "postfix")),
                     group: group,
@@ -970,24 +970,24 @@ export default nix.lambda((args) => (() => {
                 })))),
               groups: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(group, "postfix")), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(group), nix.thunk(() => ({
-                    __proto__: pos$125,
+                    [nix.POS]: pos$125,
                     gid: nix.thunk(() => nix.sel(config, "ids", "gids", "postfix")),
                   }))],
                 ]))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(setgidGroup, "postdrop")), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(setgidGroup), nix.thunk(() => ({
-                    __proto__: pos$126,
+                    [nix.POS]: pos$126,
                     gid: nix.thunk(() => nix.sel(config, "ids", "gids", "postdrop")),
                   }))],
                 ]))))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               services: nix.thunk(() => ({
-                __proto__: pos$132,
+                [nix.POS]: pos$132,
                 "postfix-setup": nix.thunk(() => ({
-                  __proto__: pos$129,
+                  [nix.POS]: pos$129,
                   description: "Setup for Postfix mail server",
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$128, RemainAfterExit: true, Type: "oneshot" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$128, RemainAfterExit: true, Type: "oneshot" })),
                   script: nix.thunk(() => nix.str`# Backwards compatibility
 if [ ! -d /var/lib/postfix ] && [ -d /var/postfix ]; then
   mkdir -p /var/lib
@@ -1023,7 +1023,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "po
 `),
                 })),
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$131,
+                  [nix.POS]: pos$131,
                   description: "Postfix mail server",
                   documentation: nix.thunk(() => ["man:postfix(1)"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -1031,7 +1031,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "po
                   requires: nix.thunk(() => ["postfix-setup.service"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$130,
+                    [nix.POS]: pos$130,
                     Type: "forking",
                     Restart: "always",
                     PIDFile: "/var/lib/postfix/queue/pid/master.pid",
@@ -1055,72 +1055,72 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "po
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), haveAliases, nix.thunk(() => ({
-              __proto__: pos$138,
+              [nix.POS]: pos$138,
               services: nix.thunk(() => ({
-                __proto__: pos$137,
+                [nix.POS]: pos$137,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$136,
-                  aliasFiles: nix.thunk(() => ({ __proto__: pos$135, aliases: aliasesFile })),
+                  [nix.POS]: pos$136,
+                  aliasFiles: nix.thunk(() => ({ [nix.POS]: pos$135, aliases: aliasesFile })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), haveCanonical, nix.thunk(() => ({
-              __proto__: pos$142,
+              [nix.POS]: pos$142,
               services: nix.thunk(() => ({
-                __proto__: pos$141,
+                [nix.POS]: pos$141,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$140,
-                  mapFiles: nix.thunk(() => ({ __proto__: pos$139, canonical: canonicalFile })),
+                  [nix.POS]: pos$140,
+                  mapFiles: nix.thunk(() => ({ [nix.POS]: pos$139, canonical: canonicalFile })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), haveTransport, nix.thunk(() => ({
-              __proto__: pos$146,
+              [nix.POS]: pos$146,
               services: nix.thunk(() => ({
-                __proto__: pos$145,
+                [nix.POS]: pos$145,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$144,
-                  mapFiles: nix.thunk(() => ({ __proto__: pos$143, transport: transportFile })),
+                  [nix.POS]: pos$144,
+                  mapFiles: nix.thunk(() => ({ [nix.POS]: pos$143, transport: transportFile })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), haveVirtual, nix.thunk(() => ({
-              __proto__: pos$150,
+              [nix.POS]: pos$150,
               services: nix.thunk(() => ({
-                __proto__: pos$149,
+                [nix.POS]: pos$149,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$148,
-                  mapFiles: nix.thunk(() => ({ __proto__: pos$147, virtual: virtualFile })),
+                  [nix.POS]: pos$148,
+                  mapFiles: nix.thunk(() => ({ [nix.POS]: pos$147, virtual: virtualFile })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), haveLocalRecipients, nix.thunk(() => ({
-              __proto__: pos$154,
+              [nix.POS]: pos$154,
               services: nix.thunk(() => ({
-                __proto__: pos$153,
+                [nix.POS]: pos$153,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$152,
-                  mapFiles: nix.thunk(() => ({ __proto__: pos$151, local_recipients: localRecipientMapFile })),
+                  [nix.POS]: pos$152,
+                  mapFiles: nix.thunk(() => ({ [nix.POS]: pos$151, local_recipients: localRecipientMapFile })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableHeaderChecks")), nix.thunk(() => ({
-              __proto__: pos$158,
+              [nix.POS]: pos$158,
               services: nix.thunk(() => ({
-                __proto__: pos$157,
+                [nix.POS]: pos$157,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$156,
-                  mapFiles: nix.thunk(() => ({ __proto__: pos$155, header_checks: headerChecksFile })),
+                  [nix.POS]: pos$156,
+                  mapFiles: nix.thunk(() => ({ [nix.POS]: pos$155, header_checks: headerChecksFile })),
                 })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dnsBlacklists"), [])), nix.thunk(() => ({
-              __proto__: pos$162,
+              [nix.POS]: pos$162,
               services: nix.thunk(() => ({
-                __proto__: pos$161,
+                [nix.POS]: pos$161,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$160,
-                  mapFiles: nix.thunk(() => ({ __proto__: pos$159, client_access: checkClientAccessFile })),
+                  [nix.POS]: pos$160,
+                  mapFiles: nix.thunk(() => ({ [nix.POS]: pos$159, client_access: checkClientAccessFile })),
                 })),
               })),
             })))),

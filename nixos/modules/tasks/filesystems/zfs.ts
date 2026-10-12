@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
   const clevisDatasets = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (device) => (_) => nix.app(nix.sel(lib, "any"), (e) => (nix.asBool(nix.eq(nix.sel(e, "fsType"), "zfs")) && nix.asBool((nix.asBool(nix.eq(nix.sel(e, "device"), device)) || nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.str`${device}/`), nix.thunk(() => nix.sel(e, "device"))))))), nix.thunk(() => nix.sel(config, "system", "build", "fileSystems"))), nix.thunk(() => nix.sel(config, "boot", "initrd", "clevis", "devices"))))));
   const inInitrd = nix.thunk(() => nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "zfs"));
   const inSystem = nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "zfs"));
-  const autosnapPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "zfstools", "override"), nix.thunk(() => ({ __proto__: pos$1, zfs: nix.thunk(() => nix.sel(cfgZfs, "package")) }))));
+  const autosnapPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "zfstools", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, zfs: nix.thunk(() => nix.sel(cfgZfs, "package")) }))));
   const zfsAutoSnap = nix.thunk(() => nix.str`${autosnapPkg}/bin/zfs-auto-snapshot`);
   const datasetToPool = (x) => nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", x)), 0n);
   const fsToPool = (fs) => nix.app(datasetToPool, nix.thunk(() => nix.sel(fs, "device")));
@@ -202,13 +202,13 @@ poolImport() {
     return nix.concat(nix.builtins.map((x) => nix.str`${nix.app(mountPoint, x)}.mount`, poolFSes), nix.app(nix.sel(lib, "optional"), hasUsr, "sysusr-usr.mount"));
   })();
   const getKeyLocations = (pool) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), nix.thunk(() => nix.sel(cfgZfs, "requestEncryptionCredentials")))) ? {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     hasKeys: nix.thunk(() => nix.sel(cfgZfs, "requestEncryptionCredentials")),
     command: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/sbin/zfs list -rHo name,keylocation,keystatus -t volume,filesystem ${pool}`),
   } : (() => {
     const keys = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => nix.eq(nix.app(datasetToPool, x), pool), nix.thunk(() => nix.sel(cfgZfs, "requestEncryptionCredentials"))));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hasKeys: nix.thunk(() => !nix.eq(keys, [])),
       command: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/sbin/zfs list -Ho name,keylocation,keystatus -t volume,filesystem ${nix.builtins.toString(keys)}`),
     };
@@ -220,7 +220,7 @@ poolImport() {
     const force = nix.arg($_1, "force");
     const prefix = nix.argOr($_1, "prefix", () => "");
     return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`zfs-import-${pool}`), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: nix.thunk(() => nix.str`Import ZFS pool "${pool}"`),
         wants: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "boot", "initrd", "clevis", "useTang")), "network-online.target")),
         after: nix.thunk(() => nix.concat(["systemd-modules-load.service", "systemd-ask-password-console.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "boot", "initrd", "clevis", "useTang")), "network-online.target"))),
@@ -231,16 +231,16 @@ poolImport() {
         })()),
         before: nix.thunk(() => nix.concat(nix.app(getPoolMounts, prefix, pool), ["shutdown.target", "zfs-import.target"])),
         conflicts: nix.thunk(() => ["shutdown.target"]),
-        unitConfig: nix.thunk(() => ({ __proto__: pos$4, DefaultDependencies: "no" })),
-        serviceConfig: nix.thunk(() => ({ __proto__: pos$5, Type: "oneshot", RemainAfterExit: true })),
+        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$4, DefaultDependencies: "no" })),
+        serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Type: "oneshot", RemainAfterExit: true })),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           ZFS_FORCE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), force, "-f")),
         })),
         script: nix.thunk(() => (() => {
           const keyLocations = nix.thunk(() => nix.app(getKeyLocations, pool));
           return nix.add(nix.app(importLib, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               zpoolCmd: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/sbin/zpool`),
               awkCmd: nix.thunk(() => nix.str`${nix.sel(pkgs, "gawk")}/bin/awk`),
               pool: pool,
@@ -291,41 +291,41 @@ fi
       })));
   })(), formals$3);
   const zedConf = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           mkValueString: (v) => (nix.asBool(nix.app(nix.sel(lib, "isInt"), v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(nix.sel(lib, "isString"), v)) ? nix.str`"${v}"` : (nix.asBool(nix.eq(true, v)) ? "1" : (nix.asBool(nix.eq(false, v)) ? "0" : (nix.asBool(nix.app(nix.sel(lib, "isList"), v)) ? nix.add(nix.add("\"", nix.app(nix.sel(lib, "concatStringsSep"), " ", v)), "\"") : nix.app(nix.sel(lib, "err"), "this value is", nix.thunk(() => nix.builtins.toString(v)))))))),
         })), "=")),
     })), nix.thunk(() => nix.sel(cfgZED, "settings"))));
   return {
-    __proto__: pos$126,
+    [nix.POS]: pos$126,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "zfs", "enableLegacyCrypto"]), "The corresponding package was removed from nixpkgs.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["boot", "zfs", "enableUnstable"]), "Instead set `boot.zfs.package = pkgs.zfs_unstable;`")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "zfs", "allowHibernation"]), nix.thunk(() => ["boot", "zfs", "unsafeAllowHibernation"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       boot: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         zfs: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.sel(pkgs, "zfs")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.zfs")),
               description: "Configured ZFS userland tools package.",
             })))),
           modulePackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               internal: true,
               default: nix.thunk(() => nix.app(selectModulePackage, nix.thunk(() => nix.sel(cfgZfs, "package")))),
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "Configured ZFS kernel module package.",
             })))),
           enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               readOnly: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => (nix.asBool(inInitrd) || nix.asBool(inSystem))),
@@ -333,39 +333,39 @@ fi
               description: "True if ZFS filesystem support is enabled",
             })))),
           unsafeAllowHibernation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Allow hibernation (suspend to disk) support. This is generally considered **UNSAFE**,\nis not well supported by openzfs, and could lead to corruption and data loss.\n",
             })))),
           extraPools: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["tank", "data"]),
               description: "Name or GUID of extra ZFS pools that you wish to import during boot.\n\nUsually this is not necessary. Instead, you should set the mountpoint property\nof ZFS filesystems to `legacy` and add the ZFS filesystems to\nNixOS's {option}`fileSystems` option, which makes NixOS automatically\nimport the associated pool.\n\nHowever, in some cases (e.g. if you have many filesystems) it may be preferable\nto exclusively use ZFS commands to manage filesystems. If so, since NixOS/systemd\nwill not be managing those filesystems, you will need to specify the ZFS pool here\nso that NixOS automatically imports it on every boot.\n",
             })))),
           devNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/dev/disk/by-id",
               description: "Name of directory from which to import ZFS device, this is passed to `zpool import`\nas the value of the `-d` option.\n\nFor guidance on choosing this value, see\n[the ZFS documentation](https://openzfs.github.io/openzfs-docs/Project%20and%20Community/FAQ.html#selecting-dev-names-when-creating-a-pool-linux).\n",
             })))),
           forceImportRoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.11")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.versionOlder config.system.stateVersion \"26.11\"")),
               description: "Forcibly import the ZFS root pool(s) during early boot.\n\nIt is highly recommended to keep this option disabled as it bypasses ZFS\nsafeguard that protect your pools.\n\nIf NixOS fails to boot because it cannot import the root pool, you should boot\nwith the `zfs_force=1` option as a kernel parameter (e.g. by manually\nediting the kernel params via your bootloader).\nYou should only need to do this after unclean shutdowns.\n",
             })))),
           forceImportAll: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Forcibly import all ZFS pool(s).\n\nIt is highly recommended to keep this option disabled as it bypasses ZFS\nsafeguard that protect your pools.\n\nSee {option}`boot.zfs.forceImportRoot` for details.\n",
             })))),
           requestEncryptionCredentials: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "bool")), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: true,
               example: nix.thunk(() => ["tank", "data"]),
@@ -373,19 +373,19 @@ fi
             })))),
           useKeyringForCredentials: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Uses the kernel keyring for encryption credentials with keyname=zfs-<poolname>")),
           passwordTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "Timeout in seconds to wait for password entry for decrypt at boot.\n\nDefaults to 0, which waits forever.\n",
             })))),
           pools: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     options: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       devNodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           default: nix.thunk(() => nix.sel(cfgZfs, "devNodes")),
                           defaultText: "config.boot.zfs.devNodes",
@@ -397,7 +397,7 @@ fi
               description: "Configuration for individual pools to override global defaults.\n",
             })))),
           removeLinuxDRM: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Patch the kernel to change symbols needed by ZFS from\nEXPORT_SYMBOL_GPL to EXPORT_SYMBOL.\n\nCurrently has no effect, but may again in future if a kernel\nupdate breaks ZFS due to symbols being newly changed to GPL.\n",
@@ -405,73 +405,73 @@ fi
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         zfs: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           autoSnapshot: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Enable the (OpenSolaris-compatible) ZFS auto-snapshotting service.\nNote that you must set the `com.sun:auto-snapshot`\nproperty to `true` on all datasets which you wish\nto auto-snapshot.\n\nYou can override a child dataset to use, or not use auto-snapshotting\nby setting its flag with the given interval:\n`zfs set com.sun:auto-snapshot:weekly=false DATASET`\n",
               })))),
             flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 default: "-k -p",
                 example: "-k -p --utc",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Flags to pass to the zfs-auto-snapshot command.\n\nRun `zfs-auto-snapshot` (without any arguments) to\nsee available flags.\n\nIf it's not too inconvenient for snapshots to have timestamps in UTC,\nit is suggested that you append `--utc` to the list\nof default options (see example).\n\nOtherwise, snapshot names can cause name conflicts or apparent time\nreversals due to daylight savings, timezone or other date/time changes.\n",
               })))),
             frequent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 default: 4n,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 description: "Number of frequent (15-minute) auto-snapshots that you wish to keep.\n",
               })))),
             hourly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 default: 24n,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 description: "Number of hourly auto-snapshots that you wish to keep.\n",
               })))),
             daily: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 default: 7n,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 description: "Number of daily auto-snapshots that you wish to keep.\n",
               })))),
             weekly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 default: 4n,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 description: "Number of weekly auto-snapshots that you wish to keep.\n",
               })))),
             monthly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 default: 12n,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 description: "Number of monthly auto-snapshots that you wish to keep.\n",
               })))),
           })),
           trim: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 description: "Whether to enable periodic TRIM on all ZFS pools.",
                 default: true,
                 example: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               })))),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 default: "weekly",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "daily",
                 description: "How often we run trim. For most desktop and server systems\na sufficient trimming frequency is once a week.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
               })))),
             randomizedDelaySec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 default: "6h",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "12h",
@@ -479,24 +479,24 @@ fi
               })))),
           })),
           autoScrub: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "periodic scrubbing of ZFS pools")),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 default: "monthly",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "quarterly",
                 description: "Systemd calendar expression when to scrub ZFS pools. See\n{manpage}`systemd.time(7)`.\n",
               })))),
             randomizedDelaySec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 default: "6h",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "12h",
                 description: "Add a randomized delay before each ZFS autoscrub.\nThe delay will be chosen between zero and this value.\nThis value must be a time span in the format specified by\n{manpage}`systemd.time(7)`\n",
               })))),
             pools: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 default: [],
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: nix.thunk(() => ["tank"]),
@@ -504,23 +504,23 @@ fi
               })))),
           })),
           expandOnBoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["disabled", "all"]))), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: "disabled",
               example: nix.thunk(() => ["tank", "dozer"]),
               description: "After importing, expand each device in the specified pools.\n\nSet the value to the plain string \"all\" to expand all pools on boot:\n\n    services.zfs.expandOnBoot = \"all\";\n\nor set the value to a list of pools to expand the disks of specific pools:\n\n    services.zfs.expandOnBoot = [ \"tank\" \"dozer\" ];\n",
             })))),
           zed: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             enableMail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => !nix.eq(nix.sel(config, "services", "mail", "sendmailSetuidWrapper"), null)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.mail.sendmailSetuidWrapper != null\n")),
                 description: "Whether to enable ZED's ability to send emails.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 type: nix.thunk(() => (() => {
                   const t = nix.thunk(() => nix.sel(lib, "types"));
                   return nix.app(nix.sel(t, "attrsOf"), nix.thunk(() => nix.app(nix.sel(t, "oneOf"), nix.thunk(() => [
@@ -539,53 +539,53 @@ fi
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgZfs, "enabled")), nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 assertion: nix.thunk(() => nix.eq(nix.sel(cfgZfs, "modulePackage", "version"), nix.sel(cfgZfs, "package", "version"))),
                 message: "The kernel module and the userspace tooling versions are not matching, this is an unsupported usecase.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 assertion: nix.thunk(() => !nix.eq(nix.sel(config, "networking", "hostId"), null)),
                 message: "ZFS requires networking.hostId to be set",
               })),
               nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfgZfs, "forceImportAll")) || nix.asBool(nix.sel(cfgZfs, "forceImportRoot")))),
                 message: "If you enable boot.zfs.forceImportAll, you must also enable boot.zfs.forceImportRoot",
               })),
               nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfgZfs, "unsafeAllowHibernation")) || nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfgZfs, "forceImportRoot"))) && nix.asBool(!nix.asBool(nix.sel(cfgZfs, "forceImportAll"))))))),
                 message: "boot.zfs.unsafeAllowHibernation while force importing is enabled will cause data corruption",
               })),
               nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "elem"), "", allPools))),
                 message: "Automatic pool detection found an empty pool name, which can't be used.\nHint: for `fileSystems` entries with `fsType = zfs`, the `device` attribute\nshould be a zfs dataset name, like `device = \"pool/data/set\"`.\nThis error can be triggered by using an absolute path, such as `\"/dev/disk/...\"`.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfgZED, "enableMail")) || nix.asBool(nix.sel(config, "services", "mail", "sendmailSetuidWrapper", "enable")))),
                 message: "services.zfs.zed.enableMail requires services.mail.sendmailSetuidWrapper.enable to be enabled as otherwise no mail can be sent.",
               })),
             ]),
             warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(options, "boot", "zfs", "forceImportRoot", "definitionsWithLocations"), [
                 nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   file: nix.thunk(() => nix.attr({ file: nix.add(here, "/zfs.nix"), line: 705n, column: 26n }, "file")),
                   value: true,
                 })),
               ])), "`boot.zfs.forceImportRoot` is using the default value of `true`. It is highly recommended to set it to `false`, the new default from 26.11 on, to reduce the risk of data loss. Alternatively, you can silence this warning by explicitly setting it to `true`.")),
             boot: nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               kernelModules: nix.thunk(() => ["zfs"]),
               kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "zfs", "unsafeAllowHibernation"))), nix.thunk(() => ["nohibernate"]))),
               extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "modulePackage"))]),
               initrd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), inInitrd, nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   kernelModules: nix.thunk(() => ["zfs"]),
                   extraUtilsCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`copy_bin_and_libs ${nix.sel(cfgZfs, "package")}/sbin/zfs
 copy_bin_and_libs ${nix.sel(cfgZfs, "package")}/sbin/mount.zfs
@@ -599,7 +599,7 @@ copy_bin_and_libs ${nix.sel(cfgZfs, "package")}/lib/udev/zvol_id
                         nix.thunk(() => nix.str`ZFS_FORCE="${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfgZfs, "forceImportRoot")), "-f")}"
 `),
                       ], nix.concat([
-                        nix.thunk(() => nix.app(importLib, nix.thunk(() => ({ __proto__: pos$58, zpoolCmd: "zpool", awkCmd: "awk", pool: null })))),
+                        nix.thunk(() => nix.app(importLib, nix.thunk(() => ({ [nix.POS]: pos$58, zpoolCmd: "zpool", awkCmd: "awk", pool: null })))),
                       ], nix.builtins.map((pool) => nix.str`echo -n "importing root ZFS pool \\"${pool}\\"..."
 # Loop across the import until it succeeds, because the devices needed may not be discovered yet.
 if ! poolImported "${pool}"; then
@@ -621,22 +621,22 @@ ${(nix.asBool(nix.app(nix.sel(lib, "isBool"), nix.thunk(() => nix.sel(cfgZfs, "r
 `, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => nix.eq(nix.app(datasetToPool, x), pool), nix.thunk(() => nix.sel(cfgZfs, "requestEncryptionCredentials"))))))}
 `, rootPools)))))))),
                   systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]),
                       services: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((pool) => nix.app(createImportService, nix.thunk(() => ({
-                              __proto__: pos$59,
+                              [nix.POS]: pos$59,
                               pool: pool,
                               systemd: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package")),
                               force: nix.thunk(() => nix.sel(cfgZfs, "forceImportRoot")),
                               prefix: "/sysroot",
                             }))), rootPools)))),
                       targets: nix.thunk(() => ({
-                        __proto__: pos$62,
-                        "zfs-import": nix.thunk(() => ({ __proto__: pos$60, wantedBy: nix.thunk(() => ["zfs.target"]) })),
-                        zfs: nix.thunk(() => ({ __proto__: pos$61, wantedBy: nix.thunk(() => ["initrd.target"]) })),
+                        [nix.POS]: pos$62,
+                        "zfs-import": nix.thunk(() => ({ [nix.POS]: pos$60, wantedBy: nix.thunk(() => ["zfs.target"]) })),
+                        zfs: nix.thunk(() => ({ [nix.POS]: pos$61, wantedBy: nix.thunk(() => ["initrd.target"]) })),
                       })),
                       extraBin: nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         zpool: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/sbin/zpool`),
                         zfs: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/sbin/zfs`),
                         "mount.zfs": nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/sbin/mount.zfs`),
@@ -648,30 +648,30 @@ ${(nix.asBool(nix.app(nix.sel(lib, "isBool"), nix.thunk(() => nix.sel(cfgZfs, "r
                       ]),
                     })))),
                   services: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     udev: nix.thunk(() => ({
-                      __proto__: pos$65,
+                      [nix.POS]: pos$65,
                       packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]),
                     })),
                   })),
                 })))),
               loader: nix.thunk(() => ({
-                __proto__: pos$69,
+                [nix.POS]: pos$69,
                 grub: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(inInitrd) || nix.asBool(inSystem))), nix.thunk(() => ({
-                    __proto__: pos$68,
+                    [nix.POS]: pos$68,
                     zfsSupport: true,
                     zfsPackage: nix.thunk(() => nix.sel(cfgZfs, "package")),
                   })))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               shutdownRamfs: nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 contents: nix.thunk(() => ({
-                  __proto__: pos$72,
+                  [nix.POS]: pos$72,
                   "/etc/systemd/system-shutdown/zpool": nix.thunk(() => ({
-                    __proto__: pos$71,
+                    [nix.POS]: pos$71,
                     source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "zpool-sync-shutdown", nix.thunk(() => nix.str`exec ${nix.sel(cfgZfs, "package")}/bin/zpool sync
 `))),
                   })),
@@ -681,42 +681,42 @@ ${(nix.asBool(nix.app(nix.sel(lib, "isBool"), nix.thunk(() => nix.sel(cfgZfs, "r
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]),
               services: nix.thunk(() => (() => {
                 const createImportService$ = (pool) => nix.app(createImportService, nix.thunk(() => ({
-                    __proto__: pos$74,
+                    [nix.POS]: pos$74,
                     pool: pool,
                     systemd: nix.thunk(() => nix.sel(config, "systemd", "package")),
                     force: nix.thunk(() => nix.sel(cfgZfs, "forceImportAll")),
                   })));
                 const createSyncService = (pool) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`zfs-sync-${pool}`), nix.thunk(() => ({
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     description: nix.thunk(() => nix.str`Sync ZFS pool "${pool}"`),
                     wantedBy: nix.thunk(() => ["shutdown.target"]),
                     before: nix.thunk(() => ["final.target"]),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$75, DefaultDependencies: false })),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$76, Type: "oneshot", RemainAfterExit: true })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$75, DefaultDependencies: false })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$76, Type: "oneshot", RemainAfterExit: true })),
                     script: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/sbin/zfs set nixos:shutdown-time="$(date)" "${pool}"
 `),
                   })));
                 const createZfsService = (serv) => nix.app(nix.sel(lib, "nameValuePair"), serv, nix.thunk(() => ({
-                    __proto__: pos$78,
+                    [nix.POS]: pos$78,
                     after: nix.thunk(() => ["systemd-modules-load.service"]),
                     wantedBy: nix.thunk(() => ["zfs.target"]),
                   })));
                 return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.concat(nix.builtins.map(createImportService$, dataPools), nix.concat(nix.builtins.map(createSyncService, allPools), nix.builtins.map(createZfsService, nix.thunk(() => ["zfs-mount", "zfs-share", "zfs-zed"]))))));
               })()),
               targets: nix.thunk(() => ({
-                __proto__: pos$81,
-                "zfs-import": nix.thunk(() => ({ __proto__: pos$79, wantedBy: nix.thunk(() => ["zfs.target"]) })),
-                zfs: nix.thunk(() => ({ __proto__: pos$80, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                [nix.POS]: pos$81,
+                "zfs-import": nix.thunk(() => ({ [nix.POS]: pos$79, wantedBy: nix.thunk(() => ["zfs.target"]) })),
+                zfs: nix.thunk(() => ({ [nix.POS]: pos$80, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               zfs: nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 zed: nix.thunk(() => ({
-                  __proto__: pos$84,
+                  [nix.POS]: pos$84,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$83,
+                    [nix.POS]: pos$83,
                     ZED_EMAIL_PROG: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgZED, "enableMail")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.add(nix.add(nix.sel(config, "security", "wrapperDir"), "/"), nix.sel(config, "services", "mail", "sendmailSetuidWrapper", "program"))))))),
                     ZED_EMAIL_OPTS: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgZED, "enableMail")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@ADDRESS@")))),
                     PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
@@ -736,13 +736,13 @@ ${(nix.asBool(nix.app(nix.sel(lib, "isBool"), nix.thunk(() => nix.sel(cfgZfs, "r
                 })),
               })),
               udev: nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 extraRules: "ACTION==\"add|change\", KERNEL==\"sd[a-z]*[0-9]*|mmcblk[0-9]*p[0-9]*|nvme[0-9]*n[0-9]*p[0-9]*\", ENV{ID_FS_TYPE}==\"zfs_member\", ATTR{../queue/scheduler}=\"none\"\n",
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               etc: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.builtins.map((file) => nix.str`zfs/zed.d/${file}`, nix.thunk(() => nix.concat([
                     "all-syslog.sh",
                     "data-notify.sh",
@@ -767,34 +767,34 @@ ${(nix.asBool(nix.app(nix.sel(lib, "isBool"), nix.thunk(() => nix.sel(cfgZfs, "r
                       "vdev_attach-sync-led.sh",
                       "vdev_clear-sync-led.sh",
                     ]))))))), (file) => ({
-                  __proto__: pos$88,
+                  [nix.POS]: pos$88,
                   source: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/etc/${file}`),
                 })), {
-                __proto__: pos$91,
-                "zfs/zed.d/zed.rc": nix.thunk(() => ({ __proto__: pos$89, text: zedConf })),
+                [nix.POS]: pos$91,
+                "zfs/zed.d/zed.rc": nix.thunk(() => ({ [nix.POS]: pos$89, text: zedConf })),
                 "zfs/zpool.d": nix.thunk(() => ({
-                  __proto__: pos$90,
+                  [nix.POS]: pos$90,
                   source: nix.thunk(() => nix.str`${nix.sel(cfgZfs, "package")}/etc/zfs/zpool.d/`),
                 })),
               })),
               systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfgZfs, "package"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfgSnapshots, "enable")), autosnapPkg))),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$93,
+              [nix.POS]: pos$93,
               fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfgZfs, "enabled")) && nix.asBool(!nix.eq(cfgExpandOnBoot, "disabled")))), nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             systemd: nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               services: nix.thunk(() => ({
-                __proto__: pos$99,
+                [nix.POS]: pos$99,
                 "zpool-expand@": nix.thunk(() => ({
-                  __proto__: pos$96,
+                  [nix.POS]: pos$96,
                   description: "Expand ZFS pools",
                   after: nix.thunk(() => ["zfs.target"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$95, Type: "oneshot", RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$95, Type: "oneshot", RemainAfterExit: true })),
                   scriptArgs: "%i",
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]),
                   script: nix.thunk(() => nix.str`pool=$1
@@ -807,11 +807,11 @@ ${nix.sel(pkgs, "zpool-auto-expand-partitions")}/bin/zpool_part_disks --automati
                 "zpool-expand-pools": nix.thunk(() => (() => {
                   const poolListProvider = nix.thunk(() => (nix.asBool(nix.eq(cfgExpandOnBoot, "all")) ? "$(zpool list -H -o name)" : nix.app(nix.sel(lib, "escapeShellArgs"), cfgExpandOnBoot)));
                   return {
-                    __proto__: pos$98,
+                    [nix.POS]: pos$98,
                     description: "Expand specified ZFS pools",
                     wantedBy: nix.thunk(() => ["default.target"]),
                     after: nix.thunk(() => ["zfs.target"]),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$97, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$97, Type: "oneshot", RemainAfterExit: true })),
                     path: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(cfgExpandOnBoot, "all")), nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]))),
                     script: nix.thunk(() => nix.str`for pool in ${poolListProvider}; do
   systemctl start --no-block "zpool-expand@$pool"
@@ -823,21 +823,21 @@ done
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfgZfs, "enabled")) && nix.asBool(nix.sel(cfgSnapshots, "enable")))), nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             systemd: nix.thunk(() => ({
-              __proto__: pos$108,
+              [nix.POS]: pos$108,
               services: nix.thunk(() => (() => {
                 const descr = (name) => (nix.asBool(nix.eq(name, "frequent")) ? "15 mins" : (nix.asBool(nix.eq(name, "hourly")) ? "hour" : (nix.asBool(nix.eq(name, "daily")) ? "day" : (nix.asBool(nix.eq(name, "weekly")) ? "week" : (nix.asBool(nix.eq(name, "monthly")) ? "month" : nix.builtins.throw("unknown snapshot name"))))));
                 const numSnapshots = (name) => nix.builtins.getAttr(name, cfgSnapshots);
                 return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((snapName) => ({
-                      __proto__: pos$104,
+                      [nix.POS]: pos$104,
                       name: nix.thunk(() => nix.str`zfs-snapshot-${snapName}`),
                       value: nix.thunk(() => ({
-                        __proto__: pos$103,
+                        [nix.POS]: pos$103,
                         description: nix.thunk(() => nix.str`ZFS auto-snapshotting every ${nix.app(descr, snapName)}`),
                         after: nix.thunk(() => ["zfs-import.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$102,
+                          [nix.POS]: pos$102,
                           Type: "oneshot",
                           ExecStart: nix.thunk(() => nix.str`${zfsAutoSnap} ${cfgSnapFlags} ${snapName} ${nix.builtins.toString(nix.thunk(() => nix.app(numSnapshots, snapName)))}`),
                         })),
@@ -848,13 +848,13 @@ done
               timers: nix.thunk(() => (() => {
                 const timer = (name) => (nix.asBool(nix.eq(name, "frequent")) ? "*:0,15,30,45" : nix.force(name));
                 return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((snapName) => ({
-                      __proto__: pos$107,
+                      [nix.POS]: pos$107,
                       name: nix.thunk(() => nix.str`zfs-snapshot-${snapName}`),
                       value: nix.thunk(() => ({
-                        __proto__: pos$106,
+                        [nix.POS]: pos$106,
                         wantedBy: nix.thunk(() => ["timers.target"]),
                         timerConfig: nix.thunk(() => ({
-                          __proto__: pos$105,
+                          [nix.POS]: pos$105,
                           OnCalendar: nix.thunk(() => nix.app(timer, snapName)),
                           Persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "yes")),
                         })),
@@ -864,29 +864,29 @@ done
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfgZfs, "enabled")) && nix.asBool(nix.sel(cfgScrub, "enable")))), nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             systemd: nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               services: nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 "zfs-scrub": nix.thunk(() => ({
-                  __proto__: pos$111,
+                  [nix.POS]: pos$111,
                   description: "ZFS pools scrubbing",
                   after: nix.thunk(() => ["zfs-import.target"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$110, Type: "simple", IOSchedulingClass: "idle" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$110, Type: "simple", IOSchedulingClass: "idle" })),
                   script: nix.thunk(() => nix.str`# shellcheck disable=SC2046
 ${nix.sel(cfgZfs, "package")}/bin/zpool scrub -w ${(nix.asBool(!nix.eq(nix.sel(cfgScrub, "pools"), [])) ? nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfgScrub, "pools"))) : nix.str`$(${nix.sel(cfgZfs, "package")}/bin/zpool list -H -o name)`)}
 `),
                 })),
               })),
               timers: nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 "zfs-scrub": nix.thunk(() => ({
-                  __proto__: pos$114,
+                  [nix.POS]: pos$114,
                   wantedBy: nix.thunk(() => ["timers.target"]),
                   after: nix.thunk(() => ["multi-user.target"]),
                   timerConfig: nix.thunk(() => ({
-                    __proto__: pos$113,
+                    [nix.POS]: pos$113,
                     OnCalendar: nix.thunk(() => nix.sel(cfgScrub, "interval")),
                     Persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "yes")),
                     RandomizedDelaySec: nix.thunk(() => nix.sel(cfgScrub, "randomizedDelaySec")),
@@ -896,29 +896,29 @@ ${nix.sel(cfgZfs, "package")}/bin/zpool scrub -w ${(nix.asBool(!nix.eq(nix.sel(c
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfgZfs, "enabled")) && nix.asBool(nix.sel(cfgTrim, "enable")))), nix.thunk(() => ({
-            __proto__: pos$125,
+            [nix.POS]: pos$125,
             systemd: nix.thunk(() => ({
-              __proto__: pos$124,
+              [nix.POS]: pos$124,
               services: nix.thunk(() => ({
-                __proto__: pos$120,
+                [nix.POS]: pos$120,
                 "zpool-trim": nix.thunk(() => ({
-                  __proto__: pos$119,
+                  [nix.POS]: pos$119,
                   description: "ZFS pools trim",
                   after: nix.thunk(() => ["zfs-import.target"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(cfgZfs, "package"))]),
                   startAt: nix.thunk(() => nix.sel(cfgTrim, "interval")),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$118,
+                    [nix.POS]: pos$118,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -c 'for pool in $(zpool list -H -o name); do zpool trim $pool;  done || true' `),
                   })),
                 })),
               })),
               timers: nix.thunk(() => ({
-                __proto__: pos$123,
+                [nix.POS]: pos$123,
                 "zpool-trim": nix.thunk(() => ({
-                  __proto__: pos$122,
+                  [nix.POS]: pos$122,
                   timerConfig: nix.thunk(() => ({
-                    __proto__: pos$121,
+                    [nix.POS]: pos$121,
                     Persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "yes")),
                     RandomizedDelaySec: nix.thunk(() => nix.sel(cfgTrim, "randomizedDelaySec")),
                   })),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "google-auth-library-python-httplib2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const nativeCheckInputs = nix.thunk(() => [flask, mock, pytestCheckHook, pytest_localserver]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Authentication Library: httplib2 transport",
         homepage: "https://github.com/GoogleCloudPlatform/google-auth-library-python-httplib2",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-auth-library-python-httplib2/blob/v${version}/CHANGELOG.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

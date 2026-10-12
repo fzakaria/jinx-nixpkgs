@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
     "Remote",
   ]);
   const modules = nix.thunk(() => nix.app(nix.sel(lib, "tail"), frameworks));
-  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ __proto__: pos$1, escape: true }))));
+  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$1, escape: true }))));
   const frameworkPlist = (name) => nix.app(toPlist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       CFBundleExecutable: name,
       CFBundleIdentifier: nix.thunk(() => nix.str`eu.exelban.Stats.${name}`),
       CFBundleInfoDictionaryVersion: "6.0",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       CFBundleVersion: "1",
     })));
   const mainInfoPlist = (version) => nix.app(toPlist, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       CFBundleDevelopmentRegion: "en",
       CFBundleExecutable: "Stats",
       CFBundleIconFile: "AppIcon",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       LSApplicationCategoryType: "public.app-category.utilities",
       LSMinimumSystemVersion: "12.0",
       LSUIElement: true,
-      NSAppTransportSecurity: nix.thunk(() => ({ __proto__: pos$3, NSAllowsArbitraryLoads: true })),
+      NSAppTransportSecurity: nix.thunk(() => ({ [nix.POS]: pos$3, NSAllowsArbitraryLoads: true })),
       NSBluetoothAlwaysUsageDescription: "This permission allows obtaining battery level of Bluetooth devices",
       NSHumanReadableCopyright: "Copyright © 2020 Serhiy Mytrovtsiy. All rights reserved.",
       NSPrincipalClass: "NSApplication",
@@ -72,13 +72,13 @@ export default nix.lambda((args) => (() => {
       TeamId: "RP2S87B72W",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "stats",
       version: "3.0.13",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "exelban",
           repo: "Stats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [swift, perl, actool, makeWrapper, rcodesign]),
       buildInputs: nix.thunk(() => [leveldb]),
-      env: nix.thunk(() => ({ __proto__: pos$6, NIX_LDFLAGS: "-lIOReport" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_LDFLAGS: "-lIOReport" })),
       postPatch: "find . -name '*.swift' -exec perl -0777 -pi -e '\n  s/,(\\s*\\))/$1/g;\n  s/\\@retroactive //g;\n' {} +\n\n# CWPHYMode.mode11be (WiFi 7) requires macOS 15+ SDK; @unknown default covers it\nsed -i '/mode11be/d' Modules/Net/readers.swift\n\n",
       dontConfigure: true,
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -314,11 +314,11 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), rcodesign)} sign "$out/Applications/Stats.app"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/exelban/stats/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "macOS system monitor in your menu bar",
         homepage: "https://github.com/exelban/stats",

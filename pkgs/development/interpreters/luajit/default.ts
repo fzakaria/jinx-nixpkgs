@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
   const XCFLAGS = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableFFI)), "-DLUAJIT_DISABLE_FFI"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableJIT)), "-DLUAJIT_DISABLE_JIT"), nix.concat(nix.app(nix.sel(lib, "optional"), enable52Compat, "-DLUAJIT_ENABLE_LUA52COMPAT"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableGC64)), "-DLUAJIT_DISABLE_GC64"), nix.concat(nix.app(nix.sel(lib, "optional"), useSystemMalloc, "-DLUAJIT_USE_SYSMALLOC"), nix.concat(nix.app(nix.sel(lib, "optional"), enableValgrindSupport, "-DLUAJIT_USE_VALGRIND"), nix.concat(nix.app(nix.sel(lib, "optional"), enableGDBJITSupport, "-DLUAJIT_USE_GDBJIT"), nix.concat(nix.app(nix.sel(lib, "optional"), enableAPICheck, "-DLUAJIT_USE_APICHECK"), nix.concat(nix.app(nix.sel(lib, "optional"), enableVMAssertions, "-DLUAJIT_USE_ASSERT"), nix.concat(nix.app(nix.sel(lib, "optional"), enableRegisterAllocationRandomization, "-DLUAJIT_RANDOM_RA"), nix.app(nix.sel(lib, "optional"), deterministicStringIds, "-DLUAJIT_SECURITY_STRID=0"))))))))))));
   const buildStdenv = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(buildPackages, "stdenv", "hostPlatform", "isx86_64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")))) ? nix.sel(buildPackages, "pkgsi686Linux", "buildPackages", "stdenv") : nix.sel(buildPackages, "stdenv")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "luajit",
       version: version,
       src: src,
@@ -66,13 +66,13 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => ["TARGET_SYS=Windows"])), nix.concat(nix.app(nix.sel(lib, "optional"), enableJITDebugModule, "INSTALL_LJLIBD=$(INSTALL_LMOD)"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "BUILDMODE=static"))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(XCFLAGS)),
       })),
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), "if [[ -e src/luajit.exe && ! -e src/luajit ]]; then\n  cp -p src/luajit.exe src/luajit\nfi\n")),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/nix-support
 cp ${nix.app(replaceVars, nix.path(here, "../lua-5/utils.sh"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           luapathsearchpaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(finalAttrs, "LuaPathSearchPaths")))),
           luacpathsearchpaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(finalAttrs, "LuaCPathSearchPaths")))),
         })))} $out/nix-support/utils.sh
@@ -88,7 +88,7 @@ fi
       passthru: nix.thunk(() => (() => {
         const inputs$ = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), v))) && nix.asBool(!nix.eq(n, "passthruFun"))), inputs));
         const override = (attr) => (() => {
-          const lua = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { __proto__: pos$3, self: lua }))));
+          const lua = nix.thunk(() => nix.app(nix.sel(attr, "override"), nix.thunk(() => nix.update(inputs$, { [nix.POS]: pos$3, self: lua }))));
           return nix.force(lua);
         })();
         return nix.app(passthruFun, nix.thunk(() => (() => {
@@ -103,7 +103,7 @@ fi
             const luaOnHostForHost = nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsHostHost, nix.key(nix.force(luaAttr_1))))));
             const luaOnTargetForTarget = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), luaAttr_1, pkgsTargetTarget)), nix.thunk(() => nix.app(override, nix.thunk(() => nix.sel(pkgsTargetTarget, nix.key(nix.force(luaAttr_1))))))));
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               self: self_1,
               packageOverrides: packageOverrides_1,
               luaAttr: luaAttr_1,
@@ -118,7 +118,7 @@ fi
           })()));
       })()),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance JIT compiler for Lua 5.1",
         homepage: "https://luajit.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

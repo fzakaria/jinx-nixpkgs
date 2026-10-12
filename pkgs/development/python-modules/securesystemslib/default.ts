@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const ed25519 = nix.arg($, "ed25519");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "securesystemslib",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "secure-systems-lab",
           repo: "securesystemslib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"hatchling==1.29.0\"' '\"hatchling\"'\n",
       "build-system": nix.thunk(() => [hatchling]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PySPX: nix.thunk(() => [pyspx]),
         awskms: nix.thunk(() => [boto3, botocore, cryptography]),
         azurekms: nix.thunk(() => [azure_identity, azure_keyvault_keys, cryptography]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["securesystemslib"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_hsm_signer.py", "securesystemslib/_vendor/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cryptographic and general-purpose routines",
         homepage: "https://github.com/secure-systems-lab/securesystemslib",
         changelog: nix.thunk(() => nix.str`https://github.com/secure-systems-lab/securesystemslib/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

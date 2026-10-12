@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yaal",
           repo: "dramatiq-eager-broker",
           tag: version,
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [dramatiq]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "An eager broker for Dramatiq that executes tasks synchronously and immediately, without queuing",
         homepage: "https://codeberg.org/yaal/dramatiq-eager-broker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "erictapen"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

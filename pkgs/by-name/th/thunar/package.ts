@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const thunarPlugins = nix.argOr($, "thunarPlugins", () => []);
   const thunar = thunar_unwrapped;
   return (nix.asBool(nix.eq(thunarPlugins, [])) ? nix.force(thunar) : nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`thunar-with-plugins-${nix.sel(thunar, "version")}`),
       paths: nix.thunk(() => nix.concat([thunar], thunarPlugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -44,7 +44,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(thunar, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

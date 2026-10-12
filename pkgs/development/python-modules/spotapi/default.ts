@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const validators = nix.arg($, "validators");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spotapi",
       version: "1.2.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-x4UA65A4UvxqlDN5upHsPPa5yv8gKZw3kqLou/1xVtY=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         validators,
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pymongo: nix.thunk(() => [pymongo]),
         redis: nix.thunk(() => [redis]),
         websocket: nix.thunk(() => [websockets]),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["spotapi"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for the public & private Spotify API",
         homepage: "https://github.com/Aran404/SpotAPI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

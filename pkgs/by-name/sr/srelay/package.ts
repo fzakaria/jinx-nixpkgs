@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srelay",
       version: "0.4.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/socks-relay/socks-relay/srelay-${nix.sel(finalAttrs, "version")}/srelay-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1sn6005aqyfvrlkm5445cyyaj6h6wfyskfncfmds55x34hfyxpvl",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcrypt]),
       installPhase: "install -D srelay $out/bin/srelay",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SOCKS proxy and relay",
         homepage: "http://socks-relay.sourceforge.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

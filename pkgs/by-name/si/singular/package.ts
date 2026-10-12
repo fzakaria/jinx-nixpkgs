@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pname = "singular";
       const version = "4.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Singular",
           repo: "Singular",
           tag: nix.thunk(() => nix.str`Release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
@@ -60,22 +60,22 @@ export default nix.lambda((args) => (() => {
       const prePatch = "# don't let the tests depend on `hostname`\nsubstituteInPlace Tst/regress.cmd \\\n  --replace-fail 'mysystem_catch(\"hostname\")' 'nix_test_runner'\n\n# ld: file not found: @rpath/libquadmath.0.dylib\nsubstituteInPlace m4/p-procs.m4 \\\n  --replace-fail \"-flat_namespace\" \"\"\n\npatchShebangs .\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Singular/Singular/commit/05f5116e13c8a4f5f820c78c35944dd6d197d442.patch",
             hash: "sha256-4l7JaCCFzE+xINU+E92eBN5CJKIdtQHly4Ed3ZwbKTA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/Singular/Singular/commit/595d7167e6e019d45d9a4f1e18ae741df1f3c41d.patch",
             hash: "sha256-hpTZy/eAiHAaleasWPAenxM35aqeNAZ//o6OqqdGOJ4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/Singular/Singular/commit/6a47eae152527e3147e3168989301b676576e9eb.patch",
             hash: "sha256-JW72CoDg0Pkmcg+uklkyV94F9qaT3cnHUhUG/6bStKY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/Singular/Singular/commit/935a043cac58180942ab753efbd576ba59eaab8e.patch",
             hash: "sha256-T9ml6SnXCKImnQDnBU4zrpYGRi2wlTYvjmln0r1AvPM=",
           })))),
@@ -129,7 +129,7 @@ echo "Exit status $?"
       const enableParallelBuilding = true;
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CAS for polynomial computations",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.sel(lib, "platforms", "i686")), nix.thunk(() => nix.sel(lib, "platforms", "unix")))),
@@ -139,7 +139,7 @@ echo "Exit status $?"
         mainProgram: "Singular",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

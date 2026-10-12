@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "oha",
       version: "1.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hatoo",
           repo: "oha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-ONsYMaX4ZFmRd8+Pr33jg1iGkm4k5RktYl/6FHhfLhw=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CARGO_PROFILE_RELEASE_LTO: "fat",
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
       })),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP load generator inspired by rakyll/hey with tui animation",
         homepage: "https://github.com/hatoo/oha",
         changelog: nix.thunk(() => nix.str`https://github.com/hatoo/oha/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

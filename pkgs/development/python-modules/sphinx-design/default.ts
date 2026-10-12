@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytest_regressions = nix.arg($, "pytest-regressions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sphinx-design",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "executablebooks",
           repo: "sphinx-design",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [sphinx]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "theme-furo": nix.thunk(() => [furo]),
         "theme-pydata": nix.thunk(() => [pydata_sphinx_theme]),
         "theme-rtd": nix.thunk(() => [sphinx_rtd_theme]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [defusedxml, pytest_regressions, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sphinx_design"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sphinx extension for designing beautiful, view size responsive web components",
         homepage: "https://github.com/executablebooks/sphinx-design",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/sphinx-design/releases/tag/v${nix.sel(finalAttrs, "version")}`),

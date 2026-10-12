@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yutto",
       version: "2.3.1",
       pyproject: true,
       pythonRelaxDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yutto-dev",
           repo: "yutto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -ie 's/requires = \\[\"uv_build[^\"]*\"]/requires = [\"uv_build\"]/' pyproject.toml\n",
       pythonImportsCheck: nix.thunk(() => ["yutto"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bilibili downloader",
         homepage: "https://github.com/yutto-dev/yutto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

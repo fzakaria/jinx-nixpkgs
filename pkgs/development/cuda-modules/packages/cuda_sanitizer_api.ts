@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_sanitizer_api",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Enables the creation of sanitizing and tracing tools that target CUDA applications",
         longDescription: "The Compute Sanitizer API enables the creation of sanitizing and tracing tools that target CUDA applications.\nExamples of such tools are memory and race condition checkers.\n",
         homepage: "https://docs.nvidia.com/compute-sanitizer/SanitizerApiGuide",

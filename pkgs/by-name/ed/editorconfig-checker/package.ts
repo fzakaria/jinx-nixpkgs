@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const editorconfig_checker = nix.arg($, "editorconfig-checker");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "editorconfig-checker",
       version: "4.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "editorconfig-checker",
           repo: "editorconfig-checker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`)]),
       postInstall: "installManPage docs/editorconfig-checker.1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: editorconfig_checker })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: editorconfig_checker })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/editorconfig-checker/editorconfig-checker/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tool to verify that your files are in harmony with your .editorconfig",
         mainProgram: "editorconfig-checker",

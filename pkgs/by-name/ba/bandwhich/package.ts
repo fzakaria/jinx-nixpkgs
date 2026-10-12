@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bandwhich";
       const version = "0.23.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "imsnif",
           repo: "bandwhich",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "export BANDWHICH_GEN_DIR=_shell-files\nmkdir -p $BANDWHICH_GEN_DIR\n";
       const postInstall = "installManPage $BANDWHICH_GEN_DIR/bandwhich.1\n\ninstallShellCompletion $BANDWHICH_GEN_DIR/bandwhich.{bash,fish} \\\n  --zsh $BANDWHICH_GEN_DIR/_bandwhich\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI utility for displaying current network utilization",
         longDescription: "bandwhich sniffs a given network interface and records IP packet size, cross\nreferencing it with the /proc filesystem on linux or lsof on MacOS. It is\nresponsive to the terminal window size, displaying less info if there is\nno room for it. It will also attempt to resolve ips to their host name in\nthe background using reverse DNS on a best effort basis.\n",
         homepage: "https://github.com/imsnif/bandwhich",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bandwhich",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raccoon-scanner",
       version: "0.8.5-unstable-2025-06-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evyatarmeged",
           repo: "Raccoon",
           rev: "44024abaa6ca420b6b2c6f06285df306f360eb22",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for reconnaissance and vulnerability scanning",
         homepage: "https://github.com/evyatarmeged/Raccoon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

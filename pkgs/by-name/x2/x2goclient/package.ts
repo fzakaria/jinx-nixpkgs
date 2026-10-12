@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const openldap = nix.arg($, "openldap");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "x2goclient",
       version: "4.1.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://code.x2go.org/releases/source/x2goclient/x2goclient-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-q4uzx40xYlx0nkLxX4EP49JCknoVKYMIwT3qO5Fayjw=",
         })))),
@@ -66,7 +66,7 @@ substituteInPlace Makefile \\
         "--set QT_QPA_PLATFORM xcb",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical NoMachine NX3 remote desktop client",
         mainProgram: "x2goclient",
         homepage: "http://x2go.org/",

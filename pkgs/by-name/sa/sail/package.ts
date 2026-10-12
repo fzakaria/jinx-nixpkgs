@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sail",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lakehq",
           repo: "sail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [protobuf, pkg_config]),
       buildInputs: nix.thunk(() => [python3]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PYO3_PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python3)),
         PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), protobuf)),
       })),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Spark-compatible compute engine built on Apache Arrow and DataFusion",
         homepage: "https://github.com/lakehq/sail",
         changelog: nix.thunk(() => nix.str`https://github.com/lakehq/sail/blob/v${nix.sel(finalAttrs, "version")}/docs/reference/changelog/index.md`),

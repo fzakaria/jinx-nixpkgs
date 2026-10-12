@@ -31,25 +31,25 @@ export default nix.lambda((args) => (() => {
   const deterministic_uname = nix.arg($, "deterministic-uname");
   const nixosTests = nix.arg($, "nixosTests");
   const par2TurboSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nzbgetcom",
       repo: "par2cmdline-turbo",
       rev: "v1.4.0-20260323",
       hash: "sha256-oeQY7GJkaEmxEqJALpjAPFpfq+YsNWv4VajotE25xCI=",
     }))));
   const rapidyencSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "nzbgetcom",
       repo: "rapidyenc",
       rev: "v1.1.1-20260217",
       hash: "sha256-1K0LrB1AhacYS/54eCn+vQFAwP6IUVUrPCqFopojXDE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nzbget",
       version: "26.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "nzbgetcom",
           repo: "nzbget",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,11 +81,11 @@ substituteInPlace daemon/util/Util.cpp \\
       postInstall: "install -Dm444 nzbget.conf $out/share/nzbget/nzbget.conf\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, nzbget: nix.thunk(() => nix.attr(nixosTests, "nzbget")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, nzbget: nix.thunk(() => nix.attr(nixosTests, "nzbget")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://nzbget.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/nzbgetcom/nzbget/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

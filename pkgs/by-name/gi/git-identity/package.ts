@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "git-identity";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madx",
           repo: "git-identity",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\nronn --roff git-identity.1.ronn\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\nmkdir -p $out/bin\ncp git-identity $out/bin/git-identity\ninstallManPage git-identity.1\ninstallShellCompletion --cmd git-identity \\\n  --bash git-identity.bash-completion \\\n  --zsh git-identity.zsh-completion\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manage your identity in Git",
         mainProgram: "git-identity",
         homepage: "https://github.com/madx/git-identity",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

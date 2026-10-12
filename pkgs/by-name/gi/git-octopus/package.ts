@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-octopus",
       version: "1.4",
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
 done
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lesfurets",
           repo: "git-octopus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "14p61xk7jankp6gc26xciag9fnvm7r9vcbhclcy23f4ghf4q4sj1",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lesfurets/git-octopus",
         description: "Continuous merge workflow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

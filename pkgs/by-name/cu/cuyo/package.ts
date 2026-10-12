@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cuyo",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://savannah/cuyo/cuyo-2.1.0.tar.gz",
           sha256: "17yqv924x7yvwix7yz9jdhgyar8lzdhqvmpvv0any8rdkajhj23c",
         })))),
       buildInputs: nix.thunk(() => [SDL, SDL_mixer, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://karimmi.de/cuyo",
         description: "Stacking blocks game, with different rules for each level",
         mainProgram: "cuyo",

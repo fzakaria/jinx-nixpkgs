@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "psi-plus";
       const version = "1.5.2140";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "psi-plus",
           repo: "psi-plus-snapshots",
           tag: version,
@@ -74,14 +74,14 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), enablePlugins, nix.thunk(() => [html_tidy, http_parser, libotr, libomemo_c])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(chatType, "webengine")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwebengine"))]))))));
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), voiceMessagesSupport, "qtWrapperArgs+=(\n  --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\"\n)\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          webengine: nix.thunk(() => nix.app(nix.sel(psi_plus, "override"), nix.thunk(() => ({ __proto__: pos$2, chatType: "webengine" })))),
+          [nix.POS]: pos$3,
+          webengine: nix.thunk(() => nix.app(nix.sel(psi_plus, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, chatType: "webengine" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/psi-plus/psi-plus-snapshots",
         description: "XMPP (Jabber) client based on Qt5",
         mainProgram: "psi-plus",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const weconnect = nix.arg($, "weconnect");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "weconnect-mqtt",
       version: "0.49.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tillsteinbach",
           repo: "WeConnect-mqtt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ substituteInPlace pytest.ini \\
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["weconnect_mqtt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client that publishes data from Volkswagen WeConnect",
         homepage: "https://github.com/tillsteinbach/WeConnect-mqtt",
         changelog: nix.thunk(() => nix.str`https://github.com/tillsteinbach/WeConnect-mqtt/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

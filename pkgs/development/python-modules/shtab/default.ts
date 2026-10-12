@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const bashInteractive = nix.arg($, "bashInteractive");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shtab",
       version: "1.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tqdm",
           repo: "shtab",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [bashInteractive, pytest_timeout, pytestCheckHook, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["shtab"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automagic shell tab completion for Python CLI applications",
         mainProgram: "shtab",
         homepage: "https://tqdm.github.io/shtab/",

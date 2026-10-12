@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "guidance_stitch",
           version: version,
           hash: "sha256-Kg0O3oZds4eFfUlKe8sakDYhwT9XGGnN4RCcLFVpzZU=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [nbval, pytest_cov_stub, pytestCheckHook]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Guidance language for controlling large language models",
         homepage: "https://github.com/guidance-ai/guidance/tree/main/packages/python/stitch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flywheel-cli",
       version: "16.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/flywheel-dist/cli/${nix.sel(finalAttrs, "version")}/fw-linux_amd64-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-SxBjRd95hoh2zwX6IDnkZnTWVduQafPHvnWw8qTuM78=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\ninstall -Dt $out/bin ./linux_amd64/fw\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and command line interface for interacting with a Flywheel site",
         mainProgram: "fw",
         homepage: "https://gitlab.com/flywheel-io/public/python-cli",

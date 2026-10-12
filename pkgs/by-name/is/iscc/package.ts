@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iscc";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jrsoftware/issrc/releases/download/is-${tagVersion}/innosetup-${version_1}.exe`),
           hash: "sha256-9Bdg4fGuFdIIm7arFi4hcguSrnUG7XBmezkgAGPWjjQ=",
         }))));
@@ -54,7 +54,7 @@ runHook postInstall
 `);
       const dontStrip = 1n;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler for Inno Setup, a tool for creating Windows installers",
         homepage: "https://jrsoftware.org/isinfo.php",
         changelog: "https://jrsoftware.org/files/is6-whatsnew.htm",
@@ -67,7 +67,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(wineWow64Packages, "stable", "meta", "platforms")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

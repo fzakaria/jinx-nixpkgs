@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libjpeg = nix.arg($, "libjpeg");
   const debianPatches = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "mirror://debian/pool/main/u/uvccapture/uvccapture_0.5-3.debian.tar.gz",
       sha256: "0m29by13nw1r8sch366qzdxg5rsd1k766kqg1nj2pdb8f7pwjh9r",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uvccapture",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/u/uvccapture/uvccapture_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "1b3akkcmr3brbf93akr8xi20w8zqf2g0qfq928500wy04qi6jqpi",
         })))),
@@ -42,7 +42,7 @@ done
       preInstall: "mkdir -p \"$out/bin\"\n",
       postInstall: "mkdir -p \"$out/share/man/man1\"\ncp -v debian/uvccapture.1 \"$out/share/man/man1/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Capture image from USB webcam at a specified interval",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

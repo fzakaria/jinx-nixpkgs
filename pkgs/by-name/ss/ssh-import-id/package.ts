@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ssh-import-id",
       version: "5.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/ssh-import-id",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-tYbaJGH59qyvjp4kwo3ZFVs0EaE0Lsd2CQ6iraFkAdI=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installManPage $src/usr/share/man/man1/ssh-import-id.1\n",
       makeWrapperArgs: nix.thunk(() => ["--prefix", ":", "$out/bin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Retrieves an SSH public key and installs it locally",
         homepage: "https://launchpad.net/ssh-import-id",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

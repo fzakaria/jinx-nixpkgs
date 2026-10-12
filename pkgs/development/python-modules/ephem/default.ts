@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-kgyzA2nHn94QiMIGDVVepfilD9yAqSZYMv1b8ZXPFH8=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "pytest --pyargs ephem.tests -k \"not JPLTest\"\n";
       const pythonImportsCheck = nix.thunk(() => ["ephem"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compute positions of the planets and stars",
         homepage: "https://github.com/brandon-rhodes/pyephem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

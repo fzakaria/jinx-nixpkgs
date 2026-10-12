@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const yq = nix.arg($, "yq");
   const stubby = nix.arg($, "stubby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stubby",
       version: "0.4.3",
       outputs: nix.thunk(() => ["out", "man", "stubbyExampleJson"]),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([getdns, libyaml, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [systemdLibs])))),
       postInstall: "rm -r $out/share/doc\nyq \\\n  < $NIX_BUILD_TOP/$sourceRoot/stubby.yml.example \\\n  > $stubbyExampleJson\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         settingsExample: nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(stubby, "stubbyExampleJson")))))),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(getdns, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Local DNS Privacy stub resolver (using DNS-over-TLS)",
         mainProgram: "stubby",
         longDescription: "Stubby is an application that acts as a local DNS Privacy stub\nresolver (using RFC 7858, aka DNS-over-TLS). Stubby encrypts DNS\nqueries sent from a client machine (desktop or laptop) to a DNS\nPrivacy resolver increasing end user privacy. Stubby is developed by\nthe getdns team.\n",

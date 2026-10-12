@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const staticjinja = nix.arg($, "staticjinja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "staticjinja-test-minimal-template",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 30n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 30n })),
       buildCommand: nix.thunk(() => nix.str`${staticjinja}/bin/staticjinja build --srcpath ${nix.path(here, "./templates")}
 grep 'Hello World!' index
 touch $out

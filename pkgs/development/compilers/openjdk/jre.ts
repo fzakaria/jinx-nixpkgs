@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const modules = nix.argOr($, "modules", () => ["java.base"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`${nix.sel(jdk, "pname")}-minimal-jre`),
       version: nix.thunk(() => nix.sel(jdk, "version")),
       nativeBuildInputs: nix.thunk(() => [jdkOnBuild]),
@@ -33,16 +33,16 @@ runHook postBuild
 `),
       dontInstall: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         home: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "jre_minimal-hello": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_jre_minimal.nix"), nix.thunk(() => ({})))),
           "jre_minimal-hello-logging": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/test_jre_minimal_with_logging.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(jdk, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.str`Minimal JRE for OpenJDK ${nix.sel(jdk, "version")}`),
         longDescription: "This is a minimal JRE built from OpenJDK, containing only the specified modules.\nIt is suitable for running Java applications that do not require the full JDK.\n",
       })),

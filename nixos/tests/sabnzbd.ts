@@ -16,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "sabnzbd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jojosch"))];
       })()),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            sabnzbd: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            sabnzbd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
         };
       })(), formals$2),

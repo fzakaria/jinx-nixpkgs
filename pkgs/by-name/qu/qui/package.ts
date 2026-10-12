@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "qui",
       version: "1.30.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "autobrr",
           repo: "qui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LoMTUeMABJMzTobwa3PwlX7ffDWm3C344ZGRaWiboT4=",
         })))),
       "qui-web": nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs$) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/web`),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.attr(finalAttrs$, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs$, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs$, "src")),
@@ -70,12 +70,12 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "qui-web"]) })))),
-        tests: nix.thunk(() => ({ __proto__: pos$5, testService: nix.thunk(() => nix.sel(nixosTests, "qui")) })),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "qui-web"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, testService: nix.thunk(() => nix.sel(nixosTests, "qui")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Modern alternative webUI for qBittorrent, with multi-instance support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/autobrr/qui",

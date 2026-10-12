@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "loki",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/loki-lib/Loki/Loki%20${nix.sel(finalAttrs, "version")}/loki-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1xhwna961fl4298ac5cc629x5030zlw31vx4h8zws290amw5860g",
         })))),
       buildPhase: "substituteInPlace Makefile.common --replace /usr $out\nmake build-shared\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11"]))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "C++ library of designs, containing flexible implementations of common design patterns and idioms",
         homepage: "https://loki-lib.sourceforge.net",

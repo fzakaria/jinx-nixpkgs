@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gprolog",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://gnu/gprolog/gprolog-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`http://www.gprolog.org/gprolog-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mv -v $out/[A-Z]* $out/gprolog.ico $out/share/gprolog-${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/gprolog/",
         description: "GNU Prolog, a free Prolog compiler with constraint solving over finite domains",
         license: nix.thunk(() => (() => {

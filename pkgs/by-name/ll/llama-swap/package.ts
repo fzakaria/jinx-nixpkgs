@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const withUI = nix.argOr($, "withUI", () => true);
   const canExecute = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "llama-swap",
       version: "249",
       outputs: nix.thunk(() => ["out", "wol"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mostlygeek",
           repo: "llama-swap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-MhR8B2+Yb/xqrTlIxaVHLoQf1eTOO49c65l72IAuZyU=",
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withUI, nix.thunk(() => ["embed_ui"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "llama-swap": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nixos: nix.thunk(() => (nix.asBool(withUI) ? nix.sel(nixosTests, "llama-swap", "full") : nix.sel(nixosTests, "llama-swap", "minimal"))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
       })),
       nativeBuildInputs: nix.thunk(() => [versionCheckHook]),
       __darwinAllowLocalNetworking: true,
@@ -101,7 +101,7 @@ cp -r ${nix.sel(finalAttrs, "passthru", "ui")}/ui_dist internal/server/
       versionCheckProgramArg: "-version",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/mostlygeek/llama-swap",
         changelog: nix.thunk(() => nix.str`https://github.com/mostlygeek/llama-swap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Model swapping for llama.cpp (or any local OpenAPI compatible server)",

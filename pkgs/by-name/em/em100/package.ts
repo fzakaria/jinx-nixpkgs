@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "em100",
       version: "0-unstable-2024-11-14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://review.coreboot.org/em100",
           rev: "a78b4ba4774f05ecd7af495604b437113596d70e",
           hash: "sha256-jzP56SMMiWiOynW17CFksi1VhpGt4oYYJrf4Rp9Vfs4=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "runHook preInstall\ninstall -Dm755 em100 $out/bin/em100\ninstall -Dm755 makedpfw $out/bin/makedpfw\ninstall -Dm644 60-dediprog-em100pro.rules $out/lib/udev/rules.d/dediprog_em100.rules\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.coreboot.org",
         description: "Open source tool for the EM100 SPI flash emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

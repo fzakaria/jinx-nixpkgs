@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc9140cdncupswrapper";
       const version = "1.1.4-0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf100407/${pname}-${version}.i386.deb`),
           sha256: "18aramgqgra1shdhsa75i0090hk9i267gvabildwsk52kq2b96c6",
         }))));
@@ -57,7 +57,7 @@ sed -i "/#! \\/bin\\/sh/a PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(
 chmod +x $out/lib/cups/filter/brother_lpdwrapper_mfc9140cdn
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-9140CDN CUPS wrapper driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -72,7 +72,7 @@ chmod +x $out/lib/cups/filter/brother_lpdwrapper_mfc9140cdn
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

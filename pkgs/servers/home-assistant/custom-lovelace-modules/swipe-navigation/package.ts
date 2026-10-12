@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "swipe-navigation";
       const version = "1.16.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zanna-37",
           repo: "hass-swipe-navigation",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\nnpx rollup --config\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/swipe-navigation.js $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/zanna-37/hass-swipe-navigation/releases/tag/v${version}`),
         description: "Swipe through Home Assistant Dashboard views on mobile",
         homepage: "https://github.com/zanna-37/hass-swipe-navigation",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

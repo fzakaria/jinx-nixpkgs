@@ -47,48 +47,48 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "system", "autoUpgrade"));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       system: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         autoUpgrade: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to periodically upgrade NixOS to the latest\nversion. If enabled, a systemd timer will run\n`nixos-rebuild switch --upgrade` once a\nday.\n",
             })))),
           operation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["switch", "boot"]))),
               default: "switch",
               example: "boot",
               description: "Whether to run\n`nixos-rebuild switch --upgrade` or run\n`nixos-rebuild boot --upgrade`\n",
             })))),
           flake: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "github:kloenk/nix",
               description: "The Flake URI of the NixOS configuration to build.\nDisables the option {option}`system.autoUpgrade.channel`.\n",
             })))),
           channel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "https://channels.nixos.org/nixos-14.12-small",
               description: "The URI of the NixOS channel to use for automatic\nupgrades. By default, this is the channel set using\n{command}`nix-channel` (run `nix-channel --list`\nto see the current value).\n",
             })))),
           upgrade: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Disable adding the `--upgrade` parameter when `channel`\nis not set, such as when upgrading to the latest version\nof a flake honouring its lockfile.\n",
             })))),
           flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => [
@@ -101,51 +101,51 @@ export default nix.lambda((args) => (() => {
               description: "Any additional flags passed to {command}`nixos-rebuild`.\n\nIf you are using flakes and use a local repo you can add\n{command}`[ \"--update-input\" \"nixpkgs\" \"--commit-lock-file\" ]`\nto update nixpkgs.\n",
             })))),
           dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "04:40",
               example: "daily",
               description: "How often or when upgrade occurs. For most desktop and server systems\na sufficient upgrade frequency is once a day.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
             })))),
           allowReboot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Reboot the system into the new generation instead of a switch\nif the new generation uses a different kernel, kernel modules\nor initrd than the booted system.\nSee {option}`rebootWindow` for configuring the times at which a reboot is allowed.\n",
             })))),
           randomizedDelaySec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: "0",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "45min",
               description: "Add a randomized delay before each automatic upgrade.\nThe delay will be chosen between zero and this value.\nThis value must be a time span in the format specified by\n{manpage}`systemd.time(7)`\n",
             })))),
           fixedRandomDelay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               example: true,
               description: "Make the randomized delay consistent between runs.\nThis reduces the jitter between automatic upgrades.\nSee {option}`randomizedDelaySec` for configuring the randomized delay.\n",
             })))),
           rebootWindow: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Define a lower and upper time value (in HH:MM format) which\nconstitute a time window during which reboots are allowed\nimmediately after the upgrade finishes.\n\nThis option only has an effect when {option}`allowReboot` is enabled.\nThe default value of `null` means that reboots are allowed at any time.\n\nIf the system should be rebooted but the time window is missed,\nno reboot will be scheduled, and no switch will be performed.\nThe reboot will be reattempted after the next upgrade operation,\neven when no further system upgrades are available,\nas long as the time window is then met.\nTherefore {option}`dates` (with and without {option}`randomizedDelaySec`)\nshould be enclosed by the time window.\n",
               default: null,
-              example: nix.thunk(() => ({ __proto__: pos$11, lower: "01:00", upper: "05:00" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$11, lower: "01:00", upper: "05:00" })),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       options: nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         lower: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             description: "Lower limit of the reboot window",
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[[:digit:]]{2}:[[:digit:]]{2}")),
                             example: "01:00",
                           })))),
                         upper: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             description: "Upper limit of the reboot window",
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "[[:digit:]]{2}:[[:digit:]]{2}")),
                             example: "05:00",
@@ -155,14 +155,14 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: true,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               example: false,
               description: "Takes a boolean argument. If true, the time when the service\nunit was last triggered is stored on disk. When the timer is\nactivated, the service unit is triggered immediately if it\nwould have been triggered at least once during the time when\nthe timer was inactive. Such triggering is nonetheless\nsubject to the delay imposed by RandomizedDelaySec=. This is\nuseful to catch up on missed runs of the service when the\nsystem was powered down.\n",
             })))),
           runGarbageCollection: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to automatically run `nix-gc.service` after a successful\nsystem upgrade.\n",
@@ -171,23 +171,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "channel"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "flake"), null))))),
             message: "The options 'system.autoUpgrade.channel' and 'system.autoUpgrade.flake' cannot both be set.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "runGarbageCollection")) || nix.asBool(nix.sel(config, "nix", "enable")))),
             message: "The option 'system.autoUpgrade.runGarbageCollection = true' requires 'nix.enable = true'.\n",
           })),
         ]),
         system: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           autoUpgrade: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             flags: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "flake"), null)) ? nix.concat(["--no-build-output"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "channel"), null)), nix.thunk(() => [
                 "-I",
                 nix.thunk(() => nix.str`nixpkgs=${nix.sel(cfg, "channel")}/nixexprs.tar.xz`),
@@ -195,23 +195,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             "nixos-upgrade": nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "NixOS Upgrade",
               restartIfChanged: false,
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "X-StopOnRemoval": false,
                 OnSuccess: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "runGarbageCollection")) && nix.asBool(nix.sel(config, "nix", "enable")))), "nix-gc.service")),
               })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$27, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$27, Type: "oneshot" })),
               environment: nix.thunk(() => nix.update(nix.sel(config, "nix", "envVars"), nix.update((() => {
                 const from = nix.thunk(() => nix.sel(config, "environment", "sessionVariables"));
                 return {
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 NIX_PATH: nix.thunk(() => nix.attr(from, "NIX_PATH")),
                 HOME: "/root",
               };
@@ -277,11 +277,11 @@ fi
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             "nixos-upgrade": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 RandomizedDelaySec: nix.thunk(() => nix.sel(cfg, "randomizedDelaySec")),
                 FixedRandomDelay: nix.thunk(() => nix.sel(cfg, "fixedRandomDelay")),
                 Persistent: nix.thunk(() => nix.sel(cfg, "persistent")),

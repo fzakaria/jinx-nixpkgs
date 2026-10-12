@@ -21,9 +21,9 @@ export default nix.thunk(() => (() => {
     const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux", "aarch64-linux"]);
     const variant = nix.argOr($, "variant", () => "cuda");
     const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       config: nix.thunk(() => nix.attrsDyn({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         allowUnfreePredicate: nix.thunk(() => nix.sel(cudaLib, "allowUnfreeCudaPredicate")),
         allowInsecurePredicate: (p) => nix.eq(nix.app(nix.sel(lib, "getName"), p), "tensorrt"),
         inHydra: true,
@@ -34,7 +34,7 @@ export default nix.thunk(() => (() => {
     nix.assert_(nix.builtins.elem(variant, nix.thunk(() => ["cuda", "rocm", null])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/top-level/release-cuda.nix:43:1");
     const mkReleaseLib = nix.thunk(() => nix.builtins.import(nix.path(here, "./release-lib.nix")));
     const release_lib = nix.thunk(() => nix.app(mkReleaseLib, nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         supportedSystems: supportedSystems,
         nixpkgsArgs: nixpkgsArgs,
       }, nix.app(nix.sel(lib, "intersectAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), mkReleaseLib)), args_1)))));
@@ -45,7 +45,7 @@ export default nix.thunk(() => (() => {
     const autoPackageSets = nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.app(nix.sel(lib, "strings", "hasPrefix"), "cudaPackages")), nix.thunk(() => nix.builtins.attrNames(pkgs))));
     const autoPackagePlatforms = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), autoPackageSets, (pset) => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(pset)))))));
     const explicitPackagePlatforms = nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       blas: linux,
       blender: linux,
       faiss: linux,
@@ -69,9 +69,9 @@ export default nix.thunk(() => (() => {
       freecad: linux,
       gimp: linux,
       "gpu-screen-recorder": linux,
-      gst_all_1: nix.thunk(() => ({ __proto__: pos$4, "gst-plugins-bad": linux })),
+      gst_all_1: nix.thunk(() => ({ [nix.POS]: pos$4, "gst-plugins-bad": linux })),
       "jellyfin-ffmpeg": linux,
-      kdePackages: nix.thunk(() => ({ __proto__: pos$5, kdenlive: linux })),
+      kdePackages: nix.thunk(() => ({ [nix.POS]: pos$5, kdenlive: linux })),
       krita: linux,
       lightgbm: linux,
       "llama-cpp": linux,
@@ -79,7 +79,7 @@ export default nix.thunk(() => (() => {
       "mistral-rs": linux,
       monado: linux,
       noisetorch: linux,
-      "obs-studio-plugins": nix.thunk(() => ({ __proto__: pos$6, "obs-backgroundremoval": linux })),
+      "obs-studio-plugins": nix.thunk(() => ({ [nix.POS]: pos$6, "obs-backgroundremoval": linux })),
       octave: linux,
       ollama: linux,
       onnxruntime: linux,
@@ -101,7 +101,7 @@ export default nix.thunk(() => (() => {
       "wyoming-faster-whisper": linux,
       xgboost: linux,
       python3Packages: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         catboost: linux,
         cupy: linux,
         faiss: linux,

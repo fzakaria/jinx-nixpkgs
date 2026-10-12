@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libdbusmenu-lxqt";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "libdbusmenu-lxqt",
           rev: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, wrapQtAppsHook]);
       const buildInputs = nix.thunk(() => [qtbase]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Qt implementation of the DBusMenu protocol",
         homepage: "https://github.com/lxqt/libdbusmenu-lxqt",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

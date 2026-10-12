@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taschenrechner",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.fem-net.de",
           owner: "mabl",
           repo: "taschenrechner",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-1DNEsVwrGekCuQTgBNAe+j/4JKk0EFgkSklTXAjwFXU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cli-calculator written in Rust",
         homepage: "https://gitlab.fem-net.de/mabl/taschenrechner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pname = "meep";
       const version = "1.34.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NanoComp",
           repo: "meep",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -83,7 +83,7 @@ export PYTHON=${nix.sel(python, "interpreter")};
         "--with-openmp",
         "--enable-maintainer-mode",
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, mpi: mpi }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi }));
       const nativeCheckInputs = nix.thunk(() => [mpiCheckPhaseHook]);
       const pythonImportsCheck = nix.thunk(() => ["meep.mpb"]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
@@ -115,7 +115,7 @@ ${mpi}/bin/mpiexec -np 2 python3 test.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free finite-difference time-domain (FDTD) software for electromagnetic simulations",
         homepage: "https://meep.readthedocs.io/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -129,7 +129,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

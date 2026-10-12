@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stuffbin",
       version: "1.3.0",
       vendorHash: null,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "knadh",
           repo: "stuffbin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compress and embed static files and assets into Go binaries and access them with a virtual file system in production",
         homepage: "https://github.com/knadh/stuffbin",
         changelog: nix.thunk(() => nix.str`https://github.com/knadh/stuffbin/releases/tag/v${nix.sel(finalAttrs, "version")}`),

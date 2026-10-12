@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const withGamt = nix.argOr($, "withGamt", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amtterm",
       version: "1.7-1-unstable-2023-10-27",
       buildInputs: nix.thunk(() => nix.concat((() => {
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })(), nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), withGamt, nix.thunk(() => [gtk3, vte]))))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kraxel",
           repo: "amtterm",
           rev: "ed5da502cbb150982ad982211ad9475414b8689a",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)", "STRIP=", "USE_OPENSSL=1"]),
       postInstall: "wrapProgram $out/bin/amttool --prefix PERL5LIB : $PERL5LIB",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Intel AMT® SoL client + tools",
         homepage: "https://github.com/kraxel/amtterm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

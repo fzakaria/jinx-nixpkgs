@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Brwvu/Zevr8sOE3KAwakDDzVMc2VoFxIb1orXAes2U0=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["keep"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Meta CLI toolkit to keep personal shell command keeper and manage snippets",
         homepage: "https://github.com/OrkoHunter/keep",
         changelog: nix.thunk(() => nix.str`https://github.com/OrkoHunter/keep/releases/tag/${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "keep",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

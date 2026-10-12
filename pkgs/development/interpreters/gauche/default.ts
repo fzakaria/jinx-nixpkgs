@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gauche";
       const version = "0.9.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shirok",
           repo: "gauche",
           rev: nix.thunk(() => nix.str`release${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "R7RS Scheme scripting engine",
         homepage: "https://practical-scheme.net/gauche/",
         mainProgram: "gosh",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

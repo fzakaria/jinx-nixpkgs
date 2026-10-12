@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lerpn",
       version: "0-unstable-2023-06-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitea.alexisvl.rocks",
           owner: "alexisvl",
           repo: "lerpn",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\npatchShebangs test\n\nsubstituteInPlace test --replace-fail \"#raise TestFailedException()\" \"sys.exit(1)\"\n./test\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["LerpnApp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitea.alexisvl.rocks/alexisvl/lerpn",
         description: "Curses RPN calculator written in straight Python",
         maintainers: [],

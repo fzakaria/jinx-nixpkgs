@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const descent1_assets = nix.arg($, "descent1-assets");
   const descent2_assets = nix.arg($, "descent2-assets");
   const generic = (ver) => (assets) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`d${nix.builtins.toString(ver)}x-rebirth-full`),
       version: nix.thunk(() => nix.attr(assets, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -26,7 +26,7 @@ makeWrapper ${dxx_rebirth}/bin/d${nix.builtins.toString(ver)}x-rebirth $out/bin/
   --add-flags "-hogdir ${assets}/share/games/descent${nix.builtins.toString(ver)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`Descent ${nix.builtins.toString(ver)} using the DXX-Rebirth project engine and game assets from GOG`),
         homepage: "https://www.dxx-rebirth.com/",
         license: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ makeWrapper ${dxx_rebirth}/bin/d${nix.builtins.toString(ver)}x-rebirth $out/bin/
       })),
     })));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "d1x-rebirth-full": nix.thunk(() => nix.app(generic, 1n, descent1_assets)),
     "d2x-rebirth-full": nix.thunk(() => nix.app(generic, 2n, descent2_assets)),
   };

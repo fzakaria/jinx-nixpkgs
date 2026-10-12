@@ -18,35 +18,35 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "2.0.88";
   const platformMap = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/netbootxyz/netboot.xyz/releases/download/${version}/netboot.xyz-arm64.efi`),
       hash: "sha256-AeW92FU65XVJKGPi+A/iz7Jvtb7wKIO3xG3Cx7v4kRg=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/netbootxyz/netboot.xyz/releases/download/${version}/netboot.xyz.efi`),
       hash: "sha256-ipbZJ0mPCuwzb/TDtXXUBTuWOcSsKGAJ1GEGIgB2G7E=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "netboot.xyz-efi",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.selOr(platformMap, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.attr(from, "url")),
           hash: nix.thunk(() => nix.attr(from, "hash")),
         };
         })()))),
       dontUnpack: true,
       postInstall: "cp $src $out\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://netboot.xyz/",
         description: "Tool to boot OS installers and utilities over the network, to be run from a bootloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

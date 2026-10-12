@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gtk-mac-bundler";
       const version = "0.7.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GNOME",
           repo: "gtk-mac-bundler",
           rev: nix.thunk(() => nix.str`bundler-${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p $out/bin\nsubstitute gtk-mac-bundler.in $out/bin/gtk-mac-bundler \\\n  --subst-var-by PATH $out/share\nchmod a+x $out/bin/gtk-mac-bundler\n\nmkdir -p $out/share\ncp -r bundler $out/share\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper script that creates application bundles form GTK executables for macOS",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         homepage: "https://gitlab.gnome.org/GNOME/gtk-mac-bundler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

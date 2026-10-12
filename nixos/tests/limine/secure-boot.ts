@@ -25,44 +25,44 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "secureBoot",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "limine", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       platforms: nix.thunk(() => ["aarch64-linux", "i686-linux", "x86_64-linux"]),
     };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             useBootLoader: true,
             useEFIBoot: true,
-            efi: nix.thunk(() => ({ __proto__: pos$2, keepVariables: true })),
+            efi: nix.thunk(() => ({ [nix.POS]: pos$2, keepVariables: true })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             loader: nix.thunk(() => ({
-              __proto__: pos$8,
-              efi: nix.thunk(() => ({ __proto__: pos$4, canTouchEfiVariables: true })),
+              [nix.POS]: pos$8,
+              efi: nix.thunk(() => ({ [nix.POS]: pos$4, canTouchEfiVariables: true })),
               limine: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enable: true,
                 efiSupport: true,
                 secureBoot: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   enable: true,
                   autoGenerateKeys: true,
                   autoEnrollKeys: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     enable: true,
                     extraArgs: nix.thunk(() => ["--yes-this-might-brick-my-machine"]),
                   })),
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
-            fwupd: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+            [nix.POS]: pos$11,
+            fwupd: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "mokutil"))]),
           })),
         };

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bqn386",
       version: "0-unstable-2025-03-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dzaima",
           repo: "BQN386",
           rev: "4d8b9f668ba76a15ca9cd44d9bfedaf95a4c0d96",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "woff2"]),
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t $out/share/fonts/truetype *.ttf\ninstall -Dm444 -t $woff2/share/fonts/woff2 *.woff2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "APL and BQN font extending on APL386",
         homepage: "https://dzaima.github.io/BQN386/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

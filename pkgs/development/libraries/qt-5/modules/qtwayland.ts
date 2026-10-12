@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lib = nix.arg($, "lib");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtwayland",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtquickcontrols]),
       buildInputs: nix.thunk(() => [wayland]),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "bin"]),
       patches: nix.thunk(() => [nix.path(here, "./qtwayland-app_id.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     })));

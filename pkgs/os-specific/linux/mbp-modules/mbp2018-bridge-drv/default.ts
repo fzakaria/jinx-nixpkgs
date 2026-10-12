@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mbp2018-bridge-drv",
       version: "2020-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MCMrARM",
           repo: "mbp2018-bridge-drv",
           rev: "b43fcc069da73e051072fde24af4014c9c487286",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   INSTALL_MOD_PATH=$out M=$(pwd) modules_install $makeFlags
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Driver for MacBook models 2018 and newer, which makes the keyboard, mouse and audio output work",
         longDescription: "A driver for MacBook models 2018 and newer, implementing the VHCI (required for mouse/keyboard/etc.) and audio functionality.\n",
         homepage: "https://github.com/MCMrARM/mbp2018-bridge-drv",

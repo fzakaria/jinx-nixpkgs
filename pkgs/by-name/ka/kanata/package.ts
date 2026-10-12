@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const withCmd = nix.argOr($, "withCmd", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kanata",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jtroo",
           repo: "kanata",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,21 +48,21 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         darwinDriverVersion: "6.2.0",
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "update-script-kanata",
               runtimeInputs: nix.thunk(() => [curl, gnused, yq, jq, nix_update]),
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.sh"))),
             })))))),
         darwinDriver: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(karabiner_dk, "override"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "driver-version": nix.thunk(() => nix.sel(finalAttrs, "passthru", "darwinDriverVersion")),
           }))) : null)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool to improve keyboard comfort and usability with advanced customization",
         homepage: "https://github.com/jtroo/kanata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

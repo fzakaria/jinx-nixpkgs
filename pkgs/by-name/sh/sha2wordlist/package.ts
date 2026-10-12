@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libbsd = nix.arg($, "libbsd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sha2wordlist",
       version: "0-unstable-2023-02-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kirei",
           repo: "sha2wordlist",
           rev: "2017b7ac786cfb5ad7f35f3f9068333b426d65f7",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libbsd]),
       installPhase: "mkdir -p $out/bin\ninstall -m 755 sha2wordlist $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display SHA-256 as PGP words",
         homepage: "https://github.com/kirei/sha2wordlist",
         maintainers: nix.thunk(() => (() => {

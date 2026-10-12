@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "binsort",
       version: "0.4-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://neoscientists.org/~tmueller/binsort/download/binsort-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-l9T0LlDslxCgZYf8NrbsRly7bREOTGwptLteeg3TNRg=",
         })))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp binsort $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sort files by binary similarity",
         mainProgram: "binsort",
         homepage: "http://neoscientists.org/~tmueller/binsort/",

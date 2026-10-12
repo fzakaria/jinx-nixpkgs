@@ -54,59 +54,59 @@ Deny-IP=${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       options: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Enables nylon as a running service upon activation.\n",
           })))),
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "",
             description: "The name of this nylon instance.",
           })))),
         nrConnections: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             default: 10n,
             description: "The number of allowed simultaneous connections to the daemon, default 10.\n",
           })))),
         logging: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Enable logging, default is no logging.\n",
           })))),
         verbosity: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Enable verbose output, default is to not be verbose.\n",
           })))),
         acceptInterface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "lo",
             description: "Tell nylon which interface to listen for client requests on, default is \"lo\".\n",
           })))),
         bindInterface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "enp3s0f0",
             description: "Tell nylon which interface to use as an uplink, default is \"enp3s0f0\".\n",
           })))),
         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(lib, "types", "port")),
             default: 1080n,
             description: "What port to listen for client requests, default is 1080.\n",
           })))),
         allowedIPRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -115,7 +115,7 @@ Deny-IP=${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel
             description: "Allowed client IP ranges are evaluated first, defaults to ARIN IPv4 private ranges:\n  [ \"192.168.0.0/16\" \"127.0.0.0/8\" \"172.16.0.0/12\" \"10.0.0.0/8\" ]\n",
           })))),
         deniedIPRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -125,19 +125,19 @@ Deny-IP=${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), name)),
       })),
     };
   })(), formals$2);
   const mkNamedNylon = (cfg_1) => nix.attrsDyn({}, [
     [nix.str`nylon-${nix.sel(cfg_1, "name")}`, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       description: "Nylon, a lightweight SOCKS proxy server",
       after: nix.thunk(() => ["network.target"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         User: "nylon",
         Group: "nylon",
         WorkingDirectory: homeDir,
@@ -149,13 +149,13 @@ Deny-IP=${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel
   const enabledNylons = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (p) => nix.eq(nix.sel(p, "enable"), true), anyNylons));
   const nylonUnits = nix.thunk(() => nix.builtins.map((nylon) => nix.app(mkNamedNylon, nylon), enabledNylons));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         nylon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             default: nix.thunk(() => ({})),
             description: "Collection of named nylon instances",
             type: nix.thunk(() => (() => {
@@ -167,13 +167,13 @@ Deny-IP=${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), enabledNylons), 0n)), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             nylon: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               group: "nylon",
               description: "Nylon SOCKS Proxy",
               home: homeDir,
@@ -182,15 +182,15 @@ Deny-IP=${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             nylon: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "nylon")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => nix.app(nix.sel(lib, "foldr"), (a) => (b) => nix.update(a, b), nix.thunk(() => ({})), nylonUnits)),
         })),
       })))),

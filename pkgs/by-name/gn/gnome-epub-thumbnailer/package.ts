@@ -25,22 +25,22 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-epub-thumbnailer",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-epub-thumbnailer/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-epub-thumbnailer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-+QYZ1YxpkC8u/1e58AQrRzeGEIP0dZIaMQ/sxhL8oBc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsNoGuiHook, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [gdk_pixbuf, glib, libarchive, librsvg, libxml2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-epub-thumbnailer" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-epub-thumbnailer" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Thumbnailer for EPub and MOBI books",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-epub-thumbnailer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

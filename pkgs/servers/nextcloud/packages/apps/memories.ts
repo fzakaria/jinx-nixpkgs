@@ -27,15 +27,15 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const ncVersion = nix.arg($, "ncVersion");
   const latestVersionForNc = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "32": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "7.8.2",
       appHash: "sha256-O59G5kUkYlYxr8p/vEqs3LqLRKJZbeEgDhdY5eHfnZg=",
       srcHash: "sha256-KyUfrKHnRO3lMin0seSNFRnRRTPo12NbbvbkSpxSMQE=",
     })),
     "33": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "8.1.0",
       appHash: "sha256-SQ1gPdfICFqNBJM0dJOfKIJ/E1tBBcBQOjRdb/mKb04=",
       srcHash: "sha256-T0oz5d4kPX/Pm06vKGTrltUFd1pKccsz5IDjv/Vmuz0=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   }));
   const currentVersionInfo = nix.thunk(() => nix.selOr(latestVersionForNc, () => nix.builtins.throw(nix.thunk(() => nix.str`memories currently does not support nextcloud version ${ncVersion}`)), nix.key(nix.force(ncVersion))));
   const commonMeta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     homepage: "https://apps.nextcloud.com/apps/memories",
     changelog: nix.thunk(() => nix.str`https://github.com/pulsejet/memories/blob/v${nix.sel(currentVersionInfo, "version")}/CHANGELOG.md`),
     license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const pname = "go-vod";
       const version = nix.thunk(() => nix.attr(currentVersionInfo, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "pulsejet",
           repo: "memories",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,23 +66,23 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/go-vod`);
       const vendorHash = null;
       const meta = nix.thunk(() => nix.update(commonMeta, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Extremely minimal on-demand video transcoding server in go",
         mainProgram: "go-vod",
       }));
-      return { __proto__: pos$7, pname, version, src, sourceRoot, vendorHash, meta };
+      return { [nix.POS]: pos$7, pname, version, src, sourceRoot, vendorHash, meta };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "nextcloud-app-memories";
       const version = nix.thunk(() => nix.attr(currentVersionInfo, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: nix.thunk(() => nix.str`https://github.com/pulsejet/memories/releases/download/v${version}/memories.tar.gz`),
           hash: nix.thunk(() => nix.sel(currentVersionInfo, "appHash")),
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./memories-paths.diff"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             exiftool: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), exiftool)),
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg_headless)),
             ffprobe: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg_headless, "ffprobe")),
@@ -98,12 +98,12 @@ substituteInPlace lib/Service/BinExt.php \\
 `);
       const installPhase = "mkdir -p $out\ncp -r ./* $out/\n";
       const meta = nix.thunk(() => nix.update(commonMeta, {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Fast, modern and advanced photo management suite",
         longDescription: "All settings related to required packages and installed programs are hardcoded in program code and cannot be changed.\n",
       }));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname,
         version,
         src,

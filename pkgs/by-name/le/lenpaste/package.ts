@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lenpaste",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.lcomrade.su",
           owner: "root",
           repo: "lenpaste",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd"]),
       postInstall: "mv $out/bin/cmd $out/bin/lenpaste\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Web service that allows you to share notes anonymously, an alternative to pastebin.com",
         homepage: "https://git.lcomrade.su/root/lenpaste",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

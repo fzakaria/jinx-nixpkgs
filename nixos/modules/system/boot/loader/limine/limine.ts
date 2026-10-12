@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
   const limineInstallConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "limine-install.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(config, "system", "nixos"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         distroName: nix.thunk(() => nix.attr(from, "distroName")),
         nixPath: nix.thunk(() => nix.sel(config, "nix", "package")),
         efiBootMgrPath: nix.thunk(() => (nix.asBool(nix.sel(cfg, "efiSupport")) ? nix.sel(pkgs, "efibootmgr") : null)),
@@ -134,11 +134,11 @@ export default nix.lambda((args) => (() => {
       })())))));
   const defaultWallpaper = nix.thunk(() => nix.sel(pkgs, "nixos-artwork", "wallpapers", "simple-dark-gray-bootloader", "gnomeFilePath"));
   return {
-    __proto__: pos$88,
+    [nix.POS]: pos$88,
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "limine", "meta"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
@@ -146,124 +146,124 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["boot", "loader", "limine", "forceMbr"]), nix.thunk(() => ["boot", "loader", "limine", "force"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       boot: nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         loader: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           limine: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Limine Bootloader")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "limine", nix.thunk(() => ({})))),
             enableEditor: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Whether to allow editing the boot entries before booting them.\nIt is recommended to set this to false, as it allows gaining root\naccess by passing `init=/bin/sh` as a kernel parameter.\n",
             })),
             maxGenerations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: null,
                 example: 50n,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 description: "Maximum number of latest generations in the boot menu.\nUseful to prevent boot partition of running out of disk space.\n`null` means no limit i.e. all generations that were not\ngarbage collected yet.\n",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: "",
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "serial: yes\n")),
                 description: "A string which is prepended to limine.conf. The config format can be found [here](https://github.com/limine-bootloader/limine/blob/trunk/CONFIG.md).\n",
               })))),
             extraEntries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: "",
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "/memtest86\n  protocol: chainload\n  path: boot():///efi/memtest86/memtest86.efi\n")),
                 description: "A string which is appended to the end of limine.conf. The config format can be found [here](https://github.com/limine-bootloader/limine/blob/trunk/CONFIG.md).\n",
               })))),
             resolution: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 example: "1920x1080x32",
                 description: "The framebuffer resolution to set when booting Linux entries.\nThis controls the GOP mode that Limine sets before handing off to the kernel,\nwhich affects early boot graphics (e.g., simpledrm, efifb).\n\nFormat: `<width>x<height>` or `<width>x<height>x<bpp>`.\nIf bpp is omitted, defaults to 32.\n\nNote: Refresh rate is not supported because the UEFI GOP protocol only\ndefines framebuffer dimensions and pixel format, not display timing.\nRefresh rate is determined later by the GPU driver based on EDID.\n\nThis is distinct from {option}`boot.loader.limine.style.interface.resolution`\nwhich only affects the Limine bootloader's own menu interface.\n",
               })))),
             additionalFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ \"efi/memtest86/memtest86.efi\" = \"${pkgs.memtest86-efi}/BOOTX64.efi\"; }\n")),
                 description: "A set of files to be copied to {file}`/boot`. Each attribute name denotes the\ndestination file name in {file}`/boot`, while the corresponding attribute value\nspecifies the source file.\n",
               })))),
             validateChecksums: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: true,
               description: "Whether to validate file checksums before booting.\n",
             })),
             panicOnChecksumMismatch: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Whether or not checksum validation failure should be a fatal\nerror at boot time.\n",
             })),
             efiSupport: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isEfi")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.stdenv.hostPlatform.isEfi")),
               description: "Whether or not to install the limine EFI files.\n",
             })),
             efiInstallAsRemovable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => !nix.asBool(nix.sel(efi, "canTouchEfiVariables"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "!config.boot.loader.efi.canTouchEfiVariables")),
               description: "Whether or not to install the limine EFI files as removable.\n\nSee {option}`boot.loader.grub.efiInstallAsRemovable`\n",
             })),
             biosSupport: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "efiSupport"))) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "!config.boot.loader.limine.efiSupport && pkgs.stdenv.hostPlatform.isx86")),
               description: "Whether or not to install limine for BIOS.\n",
             })),
             biosDevice: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 default: "nodev",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Device to install the BIOS version of limine on.\n",
               })))),
             partitionIndex: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 description: "The 1-based index of the dedicated partition for limine's second stage.\n",
               })))),
             enrollConfig: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: nix.thunk(() => nix.sel(cfg, "panicOnChecksumMismatch")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "boot.loader.limine.panicOnChecksumMismatch")),
               description: "Whether or not to enroll the config.\nOnly works on EFI!\n",
             })),
             force: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "Force installation even if the safety checks fail, use absolutely only if necessary!\n",
             })),
             extraInstallCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 default: "",
                 type: nix.thunk(() => nix.sel(lib, "types", "lines")),
                 description: "Additional shell commands inserted in the bootloader installer\nscript after generating menu entries. It can be used to expand\non extra boot entries that cannot incorporate certain pieces of\ninformation (such as the resulting `init=` kernel parameter).\n",
               })))),
             secureBoot: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Whether to use sign the limine binary with sbctl.\n\n::: {.note}\nThis requires you to already have generated the keys and enrolled them with {command}`sbctl`.\n\nTo create keys use {command}`sbctl create-keys`.\n\nTo enroll them first reset secure boot to \"Setup Mode\". This is device specific.\nThen enroll them using {command}`sbctl enroll-keys -m -f`.\n\nYou can now rebuild your system with this option enabled.\n\nAfterwards turn setup mode off and enable secure boot.\n:::\n",
               })),
               autoGenerateKeys: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 description: "Generate keys automatically when none exists during bootloader installation",
               })),
               autoEnrollKeys: nix.thunk(() => ({
-                __proto__: pos$23,
-                enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), { __proto__: pos$21, description: "Enroll automatically generated keys" })),
+                [nix.POS]: pos$23,
+                enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), { [nix.POS]: pos$21, description: "Enroll automatically generated keys" })),
                 extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     default: nix.thunk(() => ["--microsoft", "--firmware-builtin"]),
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Extra arguments passed to sbctl",
@@ -272,22 +272,22 @@ export default nix.lambda((args) => (() => {
               sbctl: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sbctl", nix.thunk(() => ({})))),
             })),
             style: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               wallpapers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   default: nix.thunk(() => [defaultWallpaper]),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.nixos-artwork.wallpapers.simple-dark-gray-bootloader.gnomeFilePath ]")),
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                   description: "A list of wallpapers.\nIf more than one is specified, a random one will be selected at boot.\n",
                 })))),
               wallpaperStyle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   default: "stretched",
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["centered", "stretched", "tiled"]))),
                   description: "How the wallpaper should be fit to the screen.\n",
                 })))),
               backdrop: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "style", "wallpapers"), [defaultWallpaper])) ? "2F302F" : null)),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`2F302F` for the default wallpaper, `null` otherwise.")),
                   example: "7EBAE4",
@@ -295,104 +295,104 @@ export default nix.lambda((args) => (() => {
                   description: "Color to fill the rest of the screen with when wallpaper_style is centered in RRGGBB format.\n",
                 })))),
               interface: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 resolution: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "The resolution of the interface.\n",
                   })))),
                 branding: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "The title at the top of the screen.\n",
                   })))),
                 brandingColor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Color of the title at the top of the screen in RRGGBB format (Limine defaults to #00AAAA (cyan)).\n",
                   })))),
                 helpColor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Color of the help text displayed beside keybinds in RRGGBB format (Limine defaults to #00AA00 (dark green)).\n",
                   })))),
                 helpColorBright: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Color of the bright help text used for the auto-boot countdown digit in RRGGBB format (Limine defaults to #55FF55 (bright green)).\n",
                   })))),
                 helpHidden: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), null), {
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   description: "Whether or not to hide the keybinds at the top of the screen.\n",
                 })),
               })),
               graphicalTerminal: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 font: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   scale: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       default: null,
                       example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "2x2")),
                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                       description: "The scale of the font in the format <width>x<height>.\n",
                     })))),
                   spacing: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       default: null,
                       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                       description: "The horizontal spacing between characters in pixels.\n",
                     })))),
                 })),
                 palette: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "A semicolon-separated array of 8 colors in the format RRGGBB:\nblack, red, green, brown, blue, magenta, cyan, and gray.\n",
                   })))),
                 brightPalette: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "A semicolon-separated array of 8 colors in the format RRGGBB:\ndark gray, bright red, bright green, yellow, bright blue, bright magenta, bright cyan, and white.\n",
                   })))),
                 foreground: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Text foreground color (RRGGBB).\n",
                   })))),
                 background: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Text background color (TTRRGGBB). TT is transparency.\n",
                   })))),
                 brightForeground: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Text foreground bright color (RRGGBB).\n",
                   })))),
                 brightBackground: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     description: "Text background bright color (RRGGBB).\n",
                   })))),
                 margin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                     description: "The amount of margin around the terminal.\n",
                   })))),
                 marginGradient: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     default: null,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                     description: "The thickness in pixels for the margin around the terminal.\n",
@@ -405,45 +405,45 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isi686")))) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")))),
                 message: "Limine can only be installed on aarch64 & x86 platforms",
               })),
               nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "efiSupport")) || nix.asBool(nix.sel(cfg, "biosSupport")))),
                 message: "Both UEFI support and BIOS support for Limine are disabled, this will result in an unbootable system",
               })),
             ]),
             boot: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               loader: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 grub: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                 })),
                 supportsInitrdSecrets: true,
               })),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               boot: nix.thunk(() => ({
-                __proto__: pos$58,
-                loader: nix.thunk(() => ({ __proto__: pos$57, id: "limine" })),
+                [nix.POS]: pos$58,
+                loader: nix.thunk(() => ({ [nix.POS]: pos$57, id: "limine" })),
               })),
               build: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 installBootLoader: nix.thunk(() => (() => {
                   const install = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       src: nix.path(here, "./limine-install.py"),
                       isExecutable: true,
                       replacements: nix.thunk(() => ({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         python3: nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (python_packages) => [nix.thunk(() => nix.sel(python_packages, "psutil"))])),
                         configPath: limineInstallConfig,
                       })),
@@ -459,40 +459,40 @@ ${nix.sel(cfg, "extraInstallCommands")}
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "secureBoot", "enable")))), nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 assertion: nix.thunk(() => nix.sel(cfg, "enrollConfig")),
                 message: "Disabling enrollConfig allows bypassing secure boot.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 assertion: nix.thunk(() => nix.sel(cfg, "validateChecksums")),
                 message: "Disabling validateChecksums allows bypassing secure boot.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 assertion: nix.thunk(() => nix.sel(cfg, "panicOnChecksumMismatch")),
                 message: "Disabling panicOnChecksumMismatch allows bypassing secure boot.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 assertion: nix.thunk(() => nix.sel(cfg, "efiSupport")),
                 message: "Secure boot is only supported on EFI systems.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 assertion: nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableEditor"))),
                 message: "Editor is unconditionally disabled by Limine.",
               })),
             ]),
             boot: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               loader: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 limine: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   enrollConfig: true,
                   validateChecksums: true,
                   panicOnChecksumMismatch: true,
@@ -501,20 +501,20 @@ ${nix.sel(cfg, "extraInstallCommands")}
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "secureBoot", "enable")))) && nix.asBool(nix.sel(config, "services", "fwupd", "enable")))), nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             systemd: nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               services: nix.thunk(() => ({
-                __proto__: pos$76,
+                [nix.POS]: pos$76,
                 "fwupd-efi": nix.thunk(() => ({
-                  __proto__: pos$75,
+                  [nix.POS]: pos$75,
                   description: "Sign fwupd EFI app for secure boot",
                   wantedBy: nix.thunk(() => ["fwupd.service"]),
                   partOf: nix.thunk(() => ["fwupd.service"]),
                   before: nix.thunk(() => ["fwupd.service"]),
                   after: nix.thunk(() => ["systemd-tmpfiles-setup.service"]),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$73, ConditionPathIsDirectory: "/var/lib/sbctl" })),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$74, Type: "oneshot", RemainAfterExit: true })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$73, ConditionPathIsDirectory: "/var/lib/sbctl" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$74, Type: "oneshot", RemainAfterExit: true })),
                   script: nix.thunk(() => nix.str`fwupd_efi=(${nix.sel(config, "services", "fwupd", "package", "fwupd-efi")}/libexec/fwupd/efi/fwupd*.efi)
 for efi in "\${fwupd_efi[@]}"; do
   ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "secureBoot", "sbctl")))} sign -o "/run/fwupd-efi/$(basename "$efi").signed" "$efi"
@@ -524,29 +524,29 @@ done
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               fwupd: nix.thunk(() => ({
-                __proto__: pos$79,
-                uefiCapsuleSettings: nix.thunk(() => ({ __proto__: pos$78, DisableShimForSecureBoot: true })),
+                [nix.POS]: pos$79,
+                uefiCapsuleSettings: nix.thunk(() => ({ [nix.POS]: pos$78, DisableShimForSecureBoot: true })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "secureBoot", "enable")))) && nix.asBool(nix.sel(cfg, "secureBoot", "autoEnrollKeys", "enable")))), nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 assertion: nix.thunk(() => nix.sel(cfg, "secureBoot", "autoGenerateKeys")),
                 message: "autoEnrollKeys doesn't do anything without autoGenerateKeys.",
               })),
             ]),
             boot: nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               loader: nix.thunk(() => ({
-                __proto__: pos$85,
+                [nix.POS]: pos$85,
                 limine: nix.thunk(() => ({
-                  __proto__: pos$84,
-                  secureBoot: nix.thunk(() => ({ __proto__: pos$83, autoGenerateKeys: true })),
+                  [nix.POS]: pos$84,
+                  secureBoot: nix.thunk(() => ({ [nix.POS]: pos$83, autoGenerateKeys: true })),
                 })),
               })),
             })),

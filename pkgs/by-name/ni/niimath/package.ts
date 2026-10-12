@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const zlib = nix.arg($, "zlib");
   const niimathTestsSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "rordenlab",
       repo: "niimath_tests",
       rev: "e482edf54fb5bea6e08047ba731600d26925d493",
       hash: "sha256-FC9NHogt4Cmq7/9mao12LN7du9CoXVnonkwhafIpIQo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "niimath",
       version: "1.0.20250804",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "rordenlab",
           repo: "niimath",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ patchShebangs niimath_tests/canonical_test.sh
       checkPhase: "PATH=bin:$PATH ../niimath_tests/canonical_test.sh\n",
       nativeCheckInputs: nix.thunk(() => [coreutils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source clone of fslmaths",
         homepage: "https://github.com/rordenlab/niimath",
         changelog: nix.thunk(() => nix.str`https://github.com/rordenlab/niimath/releases/tag/v${nix.sel(finalAttrs, "version")}`),

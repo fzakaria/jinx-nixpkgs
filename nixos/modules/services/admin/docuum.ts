@@ -34,37 +34,37 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const concatMap = nix.thunk(() => nix.attr(lib, "concatMap"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         docuum: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(mkEnableOption, "docuum daemon")),
           threshold: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Threshold for deletion in bytes, like `10 GB`, `10 GiB`, `10GB` or percentage-based thresholds like `50%`",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "10 GB",
               example: "50%",
             })))),
           minAge: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Sets the minimum age of images to be considered for deletion.",
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               example: "1d",
             })))),
           keep: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Prevents deletion of images for which repository:tag matches the specified regex.",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["^my-image"]),
             })))),
           deletionChunkSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Removes specified quantity of images at a time.",
               type: nix.thunk(() => nix.sel(types, "int")),
               default: 1n,
@@ -74,27 +74,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             assertion: nix.thunk(() => nix.sel(config, "virtualisation", "docker", "enable")),
             message: "docuum requires docker on the host",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             docuum: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               after: nix.thunk(() => ["docker.socket"]),
               requires: nix.thunk(() => ["docker.socket"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "virtualisation", "docker", "package"))]),
-              environment: nix.thunk(() => ({ __proto__: pos$9, HOME: "/var/lib/docuum" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$9, HOME: "/var/lib/docuum" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 DynamicUser: true,
                 StateDirectory: "docuum",
                 SupplementaryGroups: nix.thunk(() => ["docker"]),

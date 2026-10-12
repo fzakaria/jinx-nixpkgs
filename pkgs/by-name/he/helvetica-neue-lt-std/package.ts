@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "helvetica-neue-lt-std",
       version: "2014.08.16",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20190823153624/http://ephifonts.com/downloads/helvetica-neue-lt-std.zip",
           stripRoot: false,
           hash: "sha256-ytoTTrnwN1lMw/gTxS4DRAq+tV5WzB2xHP4vVxLZ1ZI=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 'Helvetica Neue LT Std'/*.otf -t $out/share/fonts/opentype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://web.archive.org/web/20190926040940/http://www.ephifonts.com/free-helvetica-font-helvetica-neue-lt-std.html",
         description: "Helvetica Neue LT Std font",
         longDescription: "Helvetica Neue Lt Std is one of the most highly rated and complete\nfonts of all time. Developed in early 1983, this font has well\ncamouflaged heights and weights. The structure of the word is uniform\nthroughout all the characters.\n\nThe legibility with Helvetica Neue LT Std is said to have improved as\nopposed to other fonts. The tail of it is much longer in this\nfont. The numbers are well spaced and defined with high accuracy. The\npunctuation marks are heavily detailed as well.\n",

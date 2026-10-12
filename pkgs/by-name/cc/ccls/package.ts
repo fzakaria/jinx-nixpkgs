@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rapidjson = nix.arg($, "rapidjson");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ccls",
       version: "0.20250815.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MaskRay",
           repo: "ccls",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ substitute ${nix.path(here, "./wrapper")} $out/bin/ccls \\
 chmod --reference=$out/bin/$wrapped $out/bin/ccls
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C/c++ language server powered by clang",
         mainProgram: "ccls",
         homepage: "https://github.com/MaskRay/ccls",

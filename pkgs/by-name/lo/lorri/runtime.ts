@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const coreutils = nix.arg($, "coreutils");
   const tools = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "lorri-runtime-tools",
       paths: nix.thunk(() => [coreutils, bash]),
     }))));
-  const runtimeClosureInfo = nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({ __proto__: pos$2, rootPaths: nix.thunk(() => [tools]) }))));
+  const runtimeClosureInfo = nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: nix.thunk(() => [tools]) }))));
   const closureToNix = nix.thunk(() => nix.app(runCommand, "closure.nix", nix.thunk(() => ({})), nix.thunk(() => nix.str`(
   echo '{ dep, ... }: ['
   sed -E 's/^(.*)$/    (dep \\1)/' ${runtimeClosureInfo}/store-paths
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
 ) > $out
 `)));
   const runtimeClosureInfoAsNix = nix.thunk(() => nix.app(runCommand, "runtime-closure.nix", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       runtime_closure_list: closureToNix,
       tools_build_host: tools,
     })), nix.thunk(() => nix.str`substituteAll ${nix.path(here, "./runtime-closure.nix.template")} $out

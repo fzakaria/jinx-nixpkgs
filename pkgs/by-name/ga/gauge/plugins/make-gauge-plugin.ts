@@ -35,26 +35,26 @@ export default nix.lambda((args) => (() => {
     const url = nix.thunk(() => nix.attr(from_1, "url"));
     const hash = nix.thunk(() => nix.attr(from_1, "hash"));
     const systemMap = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "aarch64-darwin": "darwin.arm64",
       "aarch64-linux": "linux.arm64",
       "x86_64-linux": "linux.x86_64",
     }));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: nix.thunk(() => nix.str`gauge-plugin-${pname}`),
           version: nix.thunk(() => nix.attr(data, "version")),
-          src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({ __proto__: pos$2, url: url, hash: hash, stripRoot: false })))),
+          src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({ [nix.POS]: pos$2, url: url, hash: hash, stripRoot: false })))),
           nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), autoPatchelfHook)),
           installPhase: nix.thunk(() => nix.str`mkdir -p "$out/share/gauge-plugins/${pname}/${nix.sel(finalAttrs, "version")}"
 cp -r . "$out/share/gauge-plugins/${pname}/${nix.sel(finalAttrs, "version")}"
 `),
           passthru: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             tests: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               loadPlugin: nix.thunk(() => nix.app(testGaugePlugins, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   plugins: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 })))),
             })),

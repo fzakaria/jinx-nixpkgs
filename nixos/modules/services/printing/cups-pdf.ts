@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cups_pdf_wrapper = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.sel(pkgs, "cups-pdf-to-pdf", "name")}-wrapper.sh`),
       executable: true,
       destination: "/lib/cups/backend/cups-pdf",
@@ -63,13 +63,13 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
 `),
     }))));
   const cups_pdf_wrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`${nix.sel(pkgs, "cups-pdf-to-pdf", "name")}-wrapped`),
       paths: nix.thunk(() => [cups_pdf_wrapper, nix.thunk(() => nix.sel(pkgs, "cups-pdf-to-pdf"))]),
       ignoreCollisions: true,
     }))));
   const instanceSettings = (name) => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     freeformType: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -80,9 +80,9 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
             ]))))));
     })()),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       Out: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "singleLineStr")));
@@ -93,7 +93,7 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
           description: "output directory;\n`${HOME}` will be expanded to the user's home directory,\n`${USER}` will be expanded to the user name.\n",
         })))),
       AnonDirName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "singleLineStr")));
@@ -104,7 +104,7 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
           description: "path for anonymously created PDF files",
         })))),
       Spool: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "singleLineStr")));
@@ -115,13 +115,13 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
           description: "spool directory",
         })))),
       Anonuser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(lib, "types", "singleLineStr")),
           default: "root",
           description: "User for anonymous PDF creation.\nAn empty string disables this feature.\n",
         })))),
       GhostScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -138,26 +138,26 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       options: nix.thunk(() => ({
-        __proto__: pos$15,
-        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this cups-pdf instance"), { __proto__: pos$10, default: true })),
-        installPrinter: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a CUPS printer queue for this instance.\nThe queue will be named after the instance and will use the {file}`CUPS-PDF_opt.ppd` ppd file.\nIf this is disabled, you need to add the queue yourself to use the instance\n"), { __proto__: pos$11, default: true })),
+        [nix.POS]: pos$15,
+        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this cups-pdf instance"), { [nix.POS]: pos$10, default: true })),
+        installPrinter: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "a CUPS printer queue for this instance.\nThe queue will be named after the instance and will use the {file}`CUPS-PDF_opt.ppd` ppd file.\nIf this is disabled, you need to add the queue yourself to use the instance\n"), { [nix.POS]: pos$11, default: true })),
         confFileText: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             description: "This will contain the contents of {file}`cups-pdf.conf` for this instance, derived from {option}`settings`.\nYou can use this option to append text to the file.\n",
           })))),
         settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(instanceSettings, name)))),
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$13, Out: "${HOME}/cups-pdf", UserUMask: "0033" })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$13, Out: "${HOME}/cups-pdf", UserUMask: "0033" })),
             description: "Settings for a cups-pdf instance, see the descriptions in the template config file in the cups-pdf package.\nThe key value pairs declared here will be translated into proper key value pairs for {file}`cups-pdf.conf`.\nSetting a value to `null` disables the option and removes it from the file.\n",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         confFileText: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(config_1, "settings")), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (key) => (value) => !nix.eq(value, null))),
             nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (key) => nix.builtins.toString)),
@@ -181,7 +181,7 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
       nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => nix.app(nix.sel(lib, "getAttr"), "enable"))),
       nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => nix.app(nix.sel(lib, "getAttr"), "installPrinter"))),
       nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (instance) => nix.app(nix.sel(lib, "mapAttrs"), (key) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             name: name,
             model: "CUPS-PDF_opt.ppd",
             deviceUri: nix.thunk(() => nix.str`cups-pdf:/${name}`),
@@ -190,25 +190,25 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
           }))))),
     ])));
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         printing: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           "cups-pdf": nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the cups-pdf virtual pdf printer backend.\nBy default, this will install a single printer `pdf`.\nbut this can be changed/extended with {option}`services.printing.cups-pdf.instances`\n")),
             instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), instanceConfig)))),
-                default: nix.thunk(() => ({ __proto__: pos$19, pdf: nix.thunk(() => ({})) })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$19, pdf: nix.thunk(() => ({})) })),
                 example: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   pdf: nix.thunk(() => ({
-                    __proto__: pos$21,
-                    settings: nix.thunk(() => ({ __proto__: pos$20, Out: "${HOME}/cups-pdf", UserUMask: "0033" })),
+                    [nix.POS]: pos$21,
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$20, Out: "${HOME}/cups-pdf", UserUMask: "0033" })),
                   })),
                 })),
                 description: "Permits to raise one or more cups-pdf instances.\nEach instance is named by an attribute name, and the attribute's values control the instance' configuration.\n",
@@ -218,25 +218,25 @@ exec "${nix.sel(config, "security", "wrapperDir")}/cups-pdf" "$@"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cupsPdfCfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           printing: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: true,
             drivers: nix.thunk(() => [cups_pdf_wrapped]),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$31,
-          printers: nix.thunk(() => ({ __proto__: pos$30, ensurePrinters: printerSettings })),
+          [nix.POS]: pos$31,
+          printers: nix.thunk(() => ({ [nix.POS]: pos$30, ensurePrinters: printerSettings })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             cups: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               preStart: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => nix.str`rm -f /var/lib/cups/cups-pdf.conf
 ${copyConfigFileCmds}
 `))),
@@ -244,11 +244,11 @@ ${copyConfigFileCmds}
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             "cups-pdf": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               group: "lp",
               owner: "root",
               permissions: "+r,ug+x",
@@ -259,7 +259,7 @@ ${copyConfigFileCmds}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),
     })),
   };

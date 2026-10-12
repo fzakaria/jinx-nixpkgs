@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flamelens",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YS-L",
           repo: "flamelens",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-QcEN83Cd92i0Ll+8uWSLREKk5i0STwhAKTCx48BiI6A=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive flamegraph viewer in the terminal",
         homepage: "https://github.com/YS-L/flamelens",
         changelog: nix.thunk(() => nix.str`https://github.com/YS-L/flamelens/releases/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

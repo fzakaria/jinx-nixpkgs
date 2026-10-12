@@ -70,30 +70,30 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "firewallType", firewallType, nix.thunk(() => ["iptables", "nftables"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/co/connman/package.nix:65:1");
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "dnsType", dnsType, nix.thunk(() => ["internal", "systemd-resolved"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/co/connman/package.nix:69:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "connman",
       version: "1.43",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/network/connman/connman-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ElfOvjJ+eQC34rhMD7MwqpCBXkVYmM0vlB9DCO0r47w=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2025-32366.patch",
             url: "https://git.kernel.org/pub/scm/network/connman/connman.git/patch/?id=8d3be0285f1d4667bfe85dba555c663eb3d704b4",
             hash: "sha256-kPb4pZVWvnvTUcpc4wRc8x/pMUTXGIywj3w8IYKRTBs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2025-32743.patch",
             url: "https://git.kernel.org/pub/scm/network/connman/connman.git/patch/?id=d90b911f6760959bdf1393c39fe8d1118315490f",
             hash: "sha256-odkjYC/iM6dTIJx2WM/KKotXdTtgv8NMFNJMzx5+YU4=",
           })))),
       ], nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://git.alpinelinux.org/aports/plain/community/connman/libresolv.patch?id=e393ea84386878cbde3cccadd36a30396e357d1e",
               hash: "sha256-7Q1bp8rD/gGVYUqnIXqjr9vypR8jlC926p3KYWl9kLw=",
             })))),
@@ -147,11 +147,11 @@ export default nix.lambda((args) => (() => {
       ])))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, connman: nix.thunk(() => nix.sel(nixosTests, "connman")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, connman: nix.thunk(() => nix.sel(nixosTests, "connman")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Daemon for managing internet connections",
         homepage: "https://git.kernel.org/pub/scm/network/connman/connman.git/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

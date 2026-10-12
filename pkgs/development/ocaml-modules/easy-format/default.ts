@@ -16,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const params = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1.3.4",
     hash: "sha256-Hb8FHp9oV03ebi4lSma5xSTKQl6As26Zr5btlkq2EMM=",
   } : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "1.3.2",
     hash: "sha256-NEDCuILVN65ekBHrBqu1P1Zn5lHqS7O0YOqCMPqMGSY=",
   }));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "easy-format",
       version: nix.thunk(() => nix.attr(params, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-community/easy-format/releases/download/${nix.sel(finalAttrs, "version")}/easy-format-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.attr(params, "hash")),
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-level and functional interface to the Format module of the OCaml standard library",
         longDescription: "This module offers a high-level and functional interface to the Format module of\nthe OCaml standard library. It is a pretty-printing facility, i.e. it takes as\ninput some code represented as a tree and formats this code into the most\nvisually satisfying result, breaking and indenting lines of code where\nappropriate.\n\nInput data must be first modelled and converted into a tree using 3 kinds of\nnodes:\n\n* atoms\n* lists\n* labelled nodes\n\nAtoms represent any text that is guaranteed to be printed as-is. Lists can model\nany sequence of items such as arrays of data or lists of definitions that are\nlabelled with something like \"int main\", \"let x =\" or \"x:\".\n",
         homepage: "https://github.com/ocaml-community/easy-format",

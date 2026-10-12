@@ -22,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const SDL_image = nix.arg($, "SDL_image");
   const SDL_mixer = nix.arg($, "SDL_mixer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnujump",
       version: "1.0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gnujump/gnujump-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "05syy9mzbyqcfnm0hrswlmhwlwx54f0l6zhcaq8c1c0f8dgzxhqk",
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       buildInputs: nix.thunk(() => [libGL, libGLU, SDL, SDL_image, SDL_mixer]),
       patches: nix.thunk(() => [nix.path(here, "./fix-c23-prototypes.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lm" })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "gnujump",
             exec: "gnujump",
             icon: "gnujump",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm644 ${nix.path(here, "./gnujump.png")} $out/share/icons/hicolor/32x32/apps/gnujump.png
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://jump.gnu.sinusoid.es/index.php?title=Main_Page",
         description: "Clone of the simple yet addictive game Xjump",
         mainProgram: "gnujump",

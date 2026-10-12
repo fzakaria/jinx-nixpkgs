@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(pkgs, "lib", "strings"));
   const toJSON = nix.thunk(() => nix.attr(from_1, "toJSON"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     "cc-wrapper": nix.thunk(() => (() => {
       const pkgNames = nix.thunk(() => nix.app(attrNames, pkgs));
       const llvmTests = nix.thunk(() => (() => {
@@ -61,13 +61,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(filter, (n) => !nix.eq(n, "llvmPackages_17"))),
           ])));
         const tests = nix.thunk(() => nix.app(genAttrs, pkgSets, (name) => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               clang: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   stdenv: nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(name)), "stdenv")),
                 })))),
               libcxx: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   stdenv: nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(name)), "libcxxStdenv")),
                 })))),
             })))));
@@ -90,15 +90,15 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.app(filter, (n) => !nix.asBool(nix.app(hasSuffix, "MultiStdenv", n)))),
             ]))))));
         return nix.app(genAttrs, pkgSets, (name) => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               stdenv: nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(name)))),
             }))));
       })());
       return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           default: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({})))),
           supported: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "cc-wrapper-supported",
               builtGCC: nix.thunk(() => (() => {
                 const sets = nix.thunk(() => nix.app(pipe, gccTests, nix.thunk(() => [
@@ -124,25 +124,25 @@ export default nix.lambda((args) => (() => {
     "stdenv-inputs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv-inputs"), nix.thunk(() => ({})))),
     stdenv: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv"), nix.thunk(() => ({})))))),
     hardeningFlags: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({})))))),
-    "hardeningFlags-gcc": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({ __proto__: pos$7, stdenv: nix.thunk(() => nix.sel(pkgs, "gccStdenv")) })))))),
+    "hardeningFlags-gcc": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: nix.thunk(() => nix.sel(pkgs, "gccStdenv")) })))))),
     "hardeningFlags-clang": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           stdenv: nix.thunk(() => nix.sel(pkgs, "llvmPackages", "stdenv")),
         })))))),
     config: nix.thunk(() => nix.app(callPackage, nix.path(here, "./config.nix"), nix.thunk(() => ({})))),
     "top-level": nix.thunk(() => nix.app(callPackage, nix.path(here, "./top-level"), nix.thunk(() => ({})))),
     haskell: nix.thunk(() => nix.app(callPackage, nix.path(here, "./haskell"), nix.thunk(() => ({})))),
     hooks: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./hooks"), nix.thunk(() => ({})))))),
-    "cc-multilib-gcc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/multilib.nix"), nix.thunk(() => ({ __proto__: pos$9, stdenv: nix.thunk(() => nix.sel(pkgs, "gccMultiStdenv")) })))),
+    "cc-multilib-gcc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/multilib.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, stdenv: nix.thunk(() => nix.sel(pkgs, "gccMultiStdenv")) })))),
     "cc-multilib-clang": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/multilib.nix"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         stdenv: nix.thunk(() => nix.sel(pkgs, "clangMultiStdenv")),
       })))),
     "compress-drv": nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/compress-drv/test.nix"), nix.thunk(() => ({})))),
     fetchurl: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchurl/tests.nix"), nix.thunk(() => ({})))))),
     fetchtorrent: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchtorrent/tests.nix"), nix.thunk(() => ({})))))),
     fetchpatch: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchpatch/tests.nix"), nix.thunk(() => ({})))))),
-    fetchpatch2: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchpatch/tests.nix"), nix.thunk(() => ({ __proto__: pos$11, fetchpatch: nix.thunk(() => nix.sel(pkgs, "fetchpatch2")) })))))),
+    fetchpatch2: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchpatch/tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$11, fetchpatch: nix.thunk(() => nix.sel(pkgs, "fetchpatch2")) })))))),
     fetchDebianPatch: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchdebianpatch/tests.nix"), nix.thunk(() => ({})))))),
     fetchzip: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchzip/tests.nix"), nix.thunk(() => ({})))))),
     fetchgit: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchgit/tests.nix"), nix.thunk(() => ({})))))),
@@ -184,13 +184,13 @@ export default nix.lambda((args) => (() => {
     makeHardcodeGsettingsPatch: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-hardcode-gsettings-patch"), nix.thunk(() => ({})))))),
     makeWrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-wrapper"), nix.thunk(() => ({})))),
     makeBinaryWrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-binary-wrapper"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         makeBinaryWrapper: nix.thunk(() => nix.app(nix.sel(pkgs, "makeBinaryWrapper", "override"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             sanitizers: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64"))))), nix.thunk(() => ["undefined", "address"]))),
           })))),
       })))),
-    "lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ __proto__: pos$14, pkgs: pkgs })))),
+    "lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$14, pkgs: pkgs })))),
     "pkgs-lib": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "../pkgs-lib/tests"), nix.thunk(() => ({})))))),
     buildFHSEnv: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "./buildFHSEnv"), nix.thunk(() => ({})))))),
     "auto-patchelf-structured-log": nix.thunk(() => nix.app(callPackage, nix.path(here, "./auto-patchelf-structured-log"), nix.thunk(() => ({})))),
@@ -199,11 +199,11 @@ export default nix.lambda((args) => (() => {
     "auto-patchelf-hook-relativize-rpath": nix.thunk(() => nix.app(callPackage, nix.path(here, "./auto-patchelf-hook-relativize-rpath"), nix.thunk(() => ({})))),
     arrayUtilities: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(concatMapAttrs, (name) => (value) => nix.app(optionalAttrs, nix.thunk(() => nix.has(value, "passthru", "tests")), nix.thunk(() => nix.attrsDyn({}, [[nix.force(name), nix.thunk(() => nix.sel(value, "passthru", "tests"))]]))), nix.thunk(() => nix.sel(pkgs, "arrayUtilities")))))),
     qt5: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         wrapQtAppsHook: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.sel(pkgs, "qt5", "wrapQtAppsHook", "passthru", "tests")))),
       })))),
     qt6: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         wrapQtAppsHook: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.sel(pkgs, "qt6", "wrapQtAppsHook", "passthru", "tests")))),
       })))),
     srcOnly: nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/src-only/tests.nix"), nix.thunk(() => ({})))),

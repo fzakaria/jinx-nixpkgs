@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const discount = nix.arg($, "discount");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpd-notification",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eworm-de",
           repo: "mpd-notification",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmv mpd-notification $out/bin\n\nmkdir -p $out/lib/systemd/user\ncp systemd/mpd-notification.service $out/lib/systemd/user\n\nrunHook postInstall\n",
       postPatch: "substituteInPlace systemd/mpd-notification.service --replace /usr $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Notifications for mpd",
         homepage: "https://github.com/eworm-de/mpd-notification",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

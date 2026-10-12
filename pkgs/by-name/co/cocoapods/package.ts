@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const beta = nix.argOr($, "beta", () => false);
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       ruby: ruby,
       pname: "cocoapods",
       gemfile: nix.thunk(() => (nix.asBool(beta) ? nix.path(here, "./Gemfile-beta") : nix.path(here, "./Gemfile"))),
@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
       gemset: nix.thunk(() => (nix.asBool(beta) ? nix.path(here, "./gemset-beta.nix") : nix.path(here, "./gemset.nix"))),
       exes: nix.thunk(() => ["pod"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.builtins.toString(nix.path(here, "./update"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manages dependencies for your Xcode projects",
         homepage: "https://github.com/CocoaPods/CocoaPods",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

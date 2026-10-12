@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openttd-grfcodec",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenTTD",
           repo: "grfcodec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ rm -rf $out/.git
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/grfcodec`),
       installPhase: "mkdir -p $out/bin\ncp -a grfcodec grfid grfstrip nforenum $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low-level (dis)assembler and linter for OpenTTD GRF files",
         homepage: "http://openttd.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

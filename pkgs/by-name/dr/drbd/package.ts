@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const forOCF = nix.argOr($, "forOCF", () => false);
   const ocf_resource_agents = nix.arg($, "ocf-resource-agents");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "drbd",
       version: "9.34.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pkg.linbit.com/downloads/drbd/utils/drbd-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cGPmRRBWtsUbGrKeGjMyETEobRGu6jy59JFFizymPas=",
         })))),
@@ -108,11 +108,11 @@ substituteInPlace user/v9/drbdtool_common.c \\
       versionCheckProgram: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/drbdadm`)]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, drbd: nix.thunk(() => nix.sel(nixosTests, "drbd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, drbd: nix.thunk(() => nix.sel(nixosTests, "drbd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://linbit.com/drbd/",
         description: "Distributed Replicated Block Device, a distributed storage system for Linux (userspace utilities)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

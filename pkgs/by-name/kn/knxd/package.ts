@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withUsb = nix.argOr($, "withUsb", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "knxd",
       version: "0.14.75",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "knxd",
           repo: "knxd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ sed -i '2i exit' tools/get_libfmt
           "systemdsysusersdir=$(out)/lib/sysusers.d",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced router/gateway for KNX",
         homepage: "https://github.com/knxd/knxd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "noise-repellent",
       version: "0.3.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lucianodato",
           repo: "noise-repellent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/lv2 $out/lib/vst3\ncp -r \"NoiseRepellent_artefacts/Release/LV2/Noise Repellent.lv2\" $out/lib/lv2/\ncp -r \"NoiseRepellent_artefacts/Release/VST3/Noise Repellent.vst3\" $out/lib/vst3/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audio plugin for broadband noise reduction (LV2, VST3)",
         homepage: "https://github.com/lucianodato/noise-repellent",
         changelog: nix.thunk(() => nix.str`https://github.com/lucianodato/noise-repellent/releases/tag/v${nix.sel(finalAttrs, "version")}`),

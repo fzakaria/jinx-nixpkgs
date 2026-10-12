@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const wimlib = nix.arg($, "wimlib");
   const bins = nix.thunk(() => nix.concat([coreutils, debootstrap, gnupg, gnutar, squashfs_tools], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [cdrkit, hivex, wimlib]))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "distrobuilder",
       version: "3.4.0",
       vendorHash: "sha256-ipKwCeUNVgtkQTPOB5lze2SFaktClUr+4+c0uLX5J/w=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxc",
           repo: "distrobuilder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,20 +49,20 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/distrobuilder --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), bins)}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "incus-lts": nix.thunk(() => nix.sel(nixosTests, "incus-lts", "container")),
         })),
         generator: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generator.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "System container image builder for LXC and LXD",
         homepage: "https://github.com/lxc/distrobuilder",
         changelog: nix.thunk(() => nix.str`https://github.com/lxc/distrobuilder/releases/tag/v${nix.sel(finalAttrs, "version")}`),

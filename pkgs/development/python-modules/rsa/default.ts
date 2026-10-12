@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sybrenstuvel",
           repo: "python-rsa",
           rev: nix.thunk(() => nix.str`version-${version}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_mypy.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://stuvel.eu/rsa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Pure-Python RSA implementation",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

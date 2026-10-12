@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const withBlarggAPU = nix.argOr($, "withBlarggAPU", () => false);
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: nix.thunk(() => nix.add("snes9x2005", nix.app(nix.sel(lib, "optionalString"), withBlarggAPU, "-plus"))),
       version: "0-unstable-2026-07-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "snes9x2005",
           rev: "deb49d80d1836e3e737480a326e31a54c46c04ae",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withBlarggAPU, nix.thunk(() => ["USE_BLARGG_APU=1"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optimized port/rewrite of SNES9x 1.43 to Libretro",
         homepage: "https://github.com/libretro/snes9x2005",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

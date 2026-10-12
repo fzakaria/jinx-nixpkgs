@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dyndnsc",
       version: "0.6.1-unstable-2024-02-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "infothrill",
           repo: "python-dyndnsc",
           rev: "75f82ce64a91b9fd25cd362d295095be4dab72b5",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["dnswanip", "test_null_dummy"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic DNS update client with support for multiple protocols",
         longDescription: "Dyndnsc is a command line client for sending updates to Dynamic\nDNS (DDNS, DynDNS) services. It supports multiple protocols and\nservices, and it has native support for IPv6. The configuration\nfile allows using foreign, but compatible services. Dyndnsc\nships many different IP detection mechanisms, support for\nconfiguring multiple services in one place and it has a daemon\nmode for running unattended. It has a plugin system to provide\nexternal notification services.\n",
         homepage: "https://github.com/infothrill/python-dyndnsc",

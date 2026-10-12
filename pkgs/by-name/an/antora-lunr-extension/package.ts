@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antora-lunr-extension";
       const version = "1.0.0-alpha.8";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "antora",
           repo: "antora-lunr-extension",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace package.json --replace '\"_mocha\"' '\"\"'\n";
       const postInstall = "directory=\"$(mktemp --directory)\"\n\nmv \"$out/\"{.,}* \"$directory\"\nmv \"$directory/lib/node_modules/@antora/lunr-extension/\"{.,}* \"$out\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          run: nix.thunk(() => nix.app(nix.sel(antora, "tests", "run", "override"), nix.thunk(() => ({ __proto__: pos$2, "antora-lunr-extension-test": true })))),
+          [nix.POS]: pos$3,
+          run: nix.thunk(() => nix.app(nix.sel(antora, "tests", "run", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "antora-lunr-extension-test": true })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Antora extension adding offline, full-text search powered by Lunr",
         homepage: "https://gitlab.com/antora/antora-lunr-extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

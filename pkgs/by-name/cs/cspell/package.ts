@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cspell",
       version: "9.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "streetsidesoftware",
           repo: "cspell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["cspell..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
       buildInputs: nix.thunk(() => [nodejs, gitMinimal]),
       buildPhase: "runHook preBuild\n\npnpm --filter \"cspell...\" build\n\nrunHook postBuild\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: true })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/node_modules/cspell\nmkdir $out/bin\n\n# Re-install only production dependencies\nrm -rf node_modules packages/*/node_modules scripts/node_modules\npnpm config set nodeLinker hoisted\npnpm config set preferSymlinkedExecutables false\npnpm --filter=\"cspell...\" --offline --prod install\n\nmv ./package.json ./packages ./bin.mjs ./node_modules $out/lib/node_modules/cspell\n# Clean up unneeded files\npushd $out/lib/node_modules/cspell/packages\nrm -rf */*.md */tsconfig.* */LICENSE Samples */**/*.test.{j,t}s */**/*.map */__snapshots__ */src */Samples\n# These are example dictionaries, and are not needed\nrm -rf hunspell-reader/dictionaries\npushd cspell\nrm -rf dist/tsc\nrm -rf samples/ fixtures/ tools/ static/\npopd\npopd\n\nln -s $out/lib/node_modules/cspell/bin.mjs $out/bin/cspell\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Spell checker for code",
         homepage: "https://cspell.org",
         changelog: nix.thunk(() => nix.str`https://github.com/streetsidesoftware/cspell/releases/tag/v${nix.sel(finalAttrs, "version")}`),

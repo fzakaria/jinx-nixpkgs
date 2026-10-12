@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mqttmultimeter";
       const version = "1.8.2.272";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chkr1011",
           repo: "mqttMultimeter",
           rev: nix.thunk(() => nix.add("v", version)),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const runtimeDeps = nix.thunk(() => [libglvnd]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.sel(meta, "mainProgram")),
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
             icon: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: nix.thunk(() => nix.builtins.head(executables)),
         description: "MQTT traffic monitor",
         homepage: "https://github.com/chkr1011/mqttMultimeter",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

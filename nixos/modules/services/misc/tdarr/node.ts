@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   const nodesEnabled = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(!nix.eq(enabledNodes, {}))));
   const serverEnabled = nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(cfg, "server", "enable"))));
   const nodeConfigSyncScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tdarr-apply-node-db-config",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./apply-node-db-config.sh"))),
     }))));
   const nodeCommonConfig = (nodeCfg) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     serverURL: nix.thunk(() => nix.sel(nodeCfg, "serverURL")),
     serverIP: nix.thunk(() => nix.sel(nodeCfg, "serverIP")),
     serverPort: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(nodeCfg, "serverPort")))),
@@ -85,60 +85,60 @@ export default nix.lambda((args) => (() => {
     pathTranslators: nix.thunk(() => nix.sel(nodeCfg, "pathTranslators")),
   });
   const nodeConfigFiles = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (nodeId) => (nodeCfg) => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`Tdarr_Node_Config_${nodeId}.json`), nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(nix.app(nodeCommonConfig, nodeCfg), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nodeName: nix.thunk(() => nix.sel(nodeCfg, "name")),
           ffprobePath: "",
         }))))), enabledNodes));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       services: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         tdarr: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           nodes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               default: nix.thunk(() => ({})),
               description: "Attribute set of Tdarr processing nodes to run on this machine.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       options: nix.thunk(() => ({
-                        __proto__: pos$28,
-                        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this Tdarr node"), { __proto__: pos$4, default: true })),
+                        [nix.POS]: pos$28,
+                        enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "this Tdarr node"), { [nix.POS]: pos$4, default: true })),
                         package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(lib, "types", "package")),
                             default: nix.thunk(() => nix.sel(cfg, "package", "node")),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.tdarr.package.node")),
                             description: "Package to use for this Tdarr node.",
                           })))),
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.str`${nix.sel(config, "networking", "hostName")}-${name}`),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.networking.hostName}-${name}\"")),
                             description: "Display name for this node in the Tdarr web UI.",
                           })))),
                         dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/nodes/${name}`),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${config.services.tdarr.dataDir}/nodes/${name}\"")),
                             description: "Data directory for this node.",
                           })))),
                         serverURL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "server", "serverPort")))}`),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"http://127.0.0.1:${toString config.services.tdarr.server.serverPort}\"")),
                             description: "Full URL of the Tdarr server this node connects to.\n\nThis is the recommended way to specify the server location.\nWhen running a local server, the default value is correct.\nFor a remote server set this to e.g. `\"http://192.168.1.100:8266\"`.\n",
                           })))),
                         serverIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "127.0.0.1",
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"127.0.0.1\"")),
@@ -146,61 +146,61 @@ export default nix.lambda((args) => (() => {
                             example: "192.168.1.100",
                           })))),
                         serverPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: nix.thunk(() => nix.sel(cfg, "server", "serverPort")),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.tdarr.server.serverPort")),
                             description: "Port of the Tdarr server API.\n\nAlthough deprecated in favour of\n{option}`services.tdarr.nodes.<name>.serverURL`, the node\nbinary still reads this field for internal API calls.  Must\nmatch the port in {option}`serverURL` and the server's\n{option}`services.tdarr.server.serverPort`.\n",
                           })))),
                         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["mapped", "unmapped"]))),
                             default: "mapped",
                             description: "Node type.\n\n- `mapped`: Node accesses files directly from the library paths.\n- `unmapped`: Node receives files over the network API.\n",
                           })))),
                         priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.sel(lib, "types", "int")),
                             default: nix.thunk(() => nix.neg(1n)),
                             description: "Node priority for job assignment.\n\n`-1` means no priority. `0` is the highest priority, `1` is next, and so on.\n",
                           })))),
                         pollInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                             default: 2000n,
                             description: "How often the node checks the server for work, in milliseconds.",
                           })))),
                         startPaused: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether the node starts in a paused state.",
                           })))),
                         maxLogSizeMB: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                             default: 10n,
                             description: "Maximum log file size in megabytes.",
                           })))),
                         cronPluginUpdate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "",
                             description: "Cron expression for automatic plugin updates. Empty string disables.",
                           })))),
                         pathTranslators: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$20,
+                                  [nix.POS]: pos$20,
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$19,
+                                    [nix.POS]: pos$19,
                                     server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$17,
+                                        [nix.POS]: pos$17,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         description: "Server-side path for path translation.",
                                       })))),
                                     node: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$18,
+                                        [nix.POS]: pos$18,
                                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                                         description: "Node-side path for path translation.",
                                       })))),
@@ -211,34 +211,34 @@ export default nix.lambda((args) => (() => {
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  { server = \"/media\"; node = \"/mnt/media\"; }\n  { server = \"/cache\"; node = \"/mnt/cache\"; }\n]\n")),
                           })))),
                         workers: nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           transcodeGPU: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                               default: 0n,
                               description: "Number of GPU transcode workers. Can be overridden in the web UI.",
                             })))),
                           transcodeCPU: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$23,
+                              [nix.POS]: pos$23,
                               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                               default: 2n,
                               description: "Number of CPU transcode workers. Can be overridden in the web UI.",
                             })))),
                           healthcheckGPU: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                               default: 0n,
                               description: "Number of GPU healthcheck workers. Can be overridden in the web UI.",
                             })))),
                           healthcheckCPU: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                               default: 1n,
                               description: "Number of CPU healthcheck workers. Can be overridden in the web UI.",
                             })))),
                         })),
                         environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                             default: null,
                             description: "File containing environment variable overrides for this node,\nin the format accepted by systemd's `EnvironmentFile`.\n\nUseful for passing secrets like `apiKey` without putting them\nin the Nix store.\n",
@@ -252,11 +252,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nodesEnabled, nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         systemd: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (nodeId) => [
                 nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/nodes/${nodeId} 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
                 nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/nodes/${nodeId}/configs 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} -`),
@@ -265,13 +265,13 @@ export default nix.lambda((args) => (() => {
               ], nix.thunk(() => nix.builtins.attrNames(enabledNodes)))),
           })),
           services: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (nodeId) => (nodeCfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tdarr-node-${nodeId}`), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 description: nix.thunk(() => nix.str`Tdarr Node - ${nix.sel(nodeCfg, "name")}`),
                 after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), serverEnabled, nix.thunk(() => ["tdarr-server.service"])))),
                 wants: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), serverEnabled, nix.thunk(() => ["tdarr-server.service"]))),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   nodeName: nix.thunk(() => nix.sel(nodeCfg, "name")),
                   serverURL: nix.thunk(() => nix.sel(nodeCfg, "serverURL")),
                   serverIP: nix.thunk(() => nix.sel(nodeCfg, "serverIP")),
@@ -289,7 +289,7 @@ export default nix.lambda((args) => (() => {
                   rootDataPath: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(nodeCfg, "dataDir")))),
                 })),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   Type: "simple",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -310,11 +310,11 @@ export default nix.lambda((args) => (() => {
                       nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(nodeCfg, "dataDir")))),
                     ])), nix.sel(cfg, "libraryDir"))),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(nodeCfg, "environmentFile"), null)), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     EnvironmentFile: nix.thunk(() => nix.sel(nodeCfg, "environmentFile")),
                   }))))),
               }))), enabledNodes), nix.app(nix.sel(lib, "mapAttrs'"), (nodeId) => (nodeCfg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`tdarr-node-config-${nodeId}`), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 description: nix.thunk(() => nix.str`Apply Tdarr node config via API - ${nix.sel(nodeCfg, "name")}`),
                 after: nix.thunk(() => nix.concat([
                   "network-online.target",
@@ -326,7 +326,7 @@ export default nix.lambda((args) => (() => {
                 ], nix.app(nix.sel(lib, "optionals"), serverEnabled, nix.thunk(() => ["tdarr-server.service"])))),
                 partOf: nix.thunk(() => [nix.thunk(() => nix.str`tdarr-node-${nodeId}.service`)]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -335,7 +335,7 @@ export default nix.lambda((args) => (() => {
                   TimeoutStartSec: 180n,
                   ExecStart: nix.thunk(() => (() => {
                     const nodeUpdatesFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`tdarr-node-updates-${nodeId}.json`), nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.update(nix.app(nodeCommonConfig, nodeCfg), {
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           nodeTags: nix.thunk(() => nix.sel(nodeCfg, "type")),
                           nodePaused: nix.thunk(() => nix.sel(nodeCfg, "startPaused")),
                         }))))));

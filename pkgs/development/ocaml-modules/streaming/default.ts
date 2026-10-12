@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const minimalOCamlVersion = "4.08";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/odis-labs/streaming/releases/download/${version}/streaming-${version}.tbz`),
           hash: "sha256-W+3GYZpsLj1SnQhuSmjXdi/85fMajWpz4b7x5W0bnJs=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [stdlib_shims]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://odis-labs.github.io/streaming",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "Fast, safe and composable streaming abstractions",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

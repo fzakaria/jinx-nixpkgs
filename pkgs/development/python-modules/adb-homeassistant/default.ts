@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adb-homeassistant",
       version: "1.3.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JeffLIrion",
           repo: "python-adb",
           rev: "5949bf432307cbba7128e84d7bc6add7f054a078",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest, mock]),
       checkPhase: "py.test test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure python implementation of the Android ADB and Fastboot protocols",
         homepage: "https://github.com/JeffLIrion/python-adb/tree/adb-homeassistant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

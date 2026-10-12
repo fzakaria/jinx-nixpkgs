@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const apacheHttpd = nix.arg($, "apacheHttpd");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rustls-ffi",
       version: "0.15.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rustls",
           repo: "rustls-ffi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bhh9KtL7AvRLX1W6+FKdimq+YZsIsQHFdVKf1h1i0Jo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,11 +63,11 @@ ${nix.sel(buildPackages, "rust", "envVars", "setEnv")} cargo ctest -j $NIX_BUILD
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           curl: nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               opensslSupport: false,
               rustlsSupport: true,
               http3Support: false,
@@ -77,7 +77,7 @@ runHook postCheck
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "C-to-rustls bindings",
         homepage: "https://github.com/rustls/rustls-ffi/",
         pkgConfigModules: nix.thunk(() => ["rustls"]),

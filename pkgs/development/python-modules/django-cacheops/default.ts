@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-cacheops",
       version: "7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Suor",
           repo: "django-cacheops",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgs, "valkey")),
         redisTestHook,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Slick ORM cache with automatic granular event-driven invalidation for Django",
         homepage: "https://github.com/Suor/django-cacheops",
         changelog: nix.thunk(() => nix.str`https://github.com/Suor/django-cacheops/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

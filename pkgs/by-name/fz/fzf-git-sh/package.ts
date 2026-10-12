@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fzf-git-sh";
       const version = "0-unstable-2026-08-06";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "junegunn",
           repo: "fzf-git.sh",
           rev: "d5b0a5dcd1e073b8bfca45338d5dfad3e5642471",
@@ -72,11 +72,11 @@ ${bash}/bin/bash -c "source $out/share/${pname}/fzf-git.sh"
 ${fish}/bin/fish -c "source $out/share/${pname}/fzf-git.fish"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/junegunn/fzf-git.sh",
         description: "Bash, zsh and fish key bindings for Git objects, powered by fzf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -87,7 +87,7 @@ ${fish}/bin/fish -c "source $out/share/${pname}/fzf-git.fish"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

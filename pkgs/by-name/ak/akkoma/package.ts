@@ -22,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   const beamPackages = nix.thunk(() => nix.app(nix.sel(beam_minimal, "packages", "erlang_27", "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       elixir: nix.thunk(() => nix.sel(final, "elixir_1_17")),
       rebar3: nix.thunk(() => nix.app(nix.sel(final, "rebar3WithPlugins"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           plugins: nix.thunk(() => (() => {
             const w = nix.withScope(final, null);
             return [nix.thunk(() => nix.lookup(w, "pc"))];
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(beamPackages, "mixRelease"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "akkoma",
       version: "3.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           domain: "akkoma.dev",
           owner: "AkkomaGang",
           repo: "akkoma",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [file]),
       mixFodDeps: nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "mix-deps-akkoma",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -73,11 +73,11 @@ done
       dontUseCmakeConfigure: true,
       postBuild: "# Digest and compress static files\nrm -f priv/static/READ_THIS_BEFORE_TOUCHING_FILES_HERE\nmix do deps.loadpaths --no-deps-check, phx.digest --no-compile\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => (() => {
           const w = nix.withScope(nixosTests, null);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             akkoma: nix.thunk(() => nix.lookup(w, "akkoma")),
             "akkoma-confined": nix.thunk(() => nix.lookup(w, "akkoma-confined")),
           };
@@ -87,7 +87,7 @@ done
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "ActivityPub microblogging server",
         homepage: "https://akkoma.social",
         changelog: nix.thunk(() => nix.str`https://akkoma.dev/AkkomaGang/akkoma/releases/tag/v${nix.sel(finalAttrs, "version")}`),

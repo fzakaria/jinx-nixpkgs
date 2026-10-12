@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools_80 = nix.arg($, "setuptools_80");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xstatic-asciinema-player",
       version: "2.6.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "XStatic-asciinema-player",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yA6WC067St82Dm6StaCKdWrRBhmNemswetIO8iodfcw=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["xstatic.pkg.asciinema_player"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xstatic-py/xstatic-asciinema-player",
         description: "Asciinema-player packaged for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

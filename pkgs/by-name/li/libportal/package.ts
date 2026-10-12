@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const variant = nix.argOr($, "variant", () => null);
   nix.assert_((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(variant, null)) || nix.asBool(nix.eq(variant, "gtk3")))) || nix.asBool(nix.eq(variant, "gtk4")))) || nix.asBool(nix.eq(variant, "qt5")))) || nix.asBool(nix.eq(variant, "qt6"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libportal/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.add("libportal", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${variant}`)))),
       version: "0.9.1",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(variant, "qt5")), "devdoc"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flatpak",
           repo: "libportal",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(variant, "qt6")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6Packages, "qtbase"))]))))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "libportal-fix-qt6.9-private-api-usage.patch",
             url: "https://github.com/flatpak/libportal/commit/796053d2eebe4532aad6bd3fd80cdf3b197806ec.patch?full_index=1",
             hash: "sha256-TPIKKnZCcp/bmmsaNlDxAsKLTBe6BKPCTOutLjXPCHQ=",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flatpak portal library",
         homepage: "https://github.com/flatpak/libportal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

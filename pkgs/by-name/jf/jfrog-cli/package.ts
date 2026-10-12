@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jfrog-cli",
       version: "2.124.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jfrog",
           repo: "jfrog-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Name the output the same way as the original build script does\nmv $out/bin/jfrog-cli $out/bin/jf\n",
       nativeCheckInputs: nix.thunk(() => [nodejs, writableTmpDirAsHomeHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jfrog/jfrog-cli",
         description: "Client for accessing to JFrog's Artifactory and Mission Control through their respective REST APIs",
         changelog: nix.thunk(() => nix.str`https://github.com/jfrog/jfrog-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

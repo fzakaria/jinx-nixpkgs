@@ -47,72 +47,72 @@ export default nix.lambda((args) => (() => {
   const separatedString = nix.thunk(() => nix.attr(from, "separatedString"));
   const submodule = nix.thunk(() => nix.attr(from, "submodule"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         firewalld: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "FirewallD config file.\nSee {manpage}`firewalld.conf(5)`.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [bool, nonEmptyStr]))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     DefaultZone: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nonEmptyStr,
                         description: "Default zone for connections.",
                         default: "public",
                       })))),
                     CleanupOnExit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: bool,
                         description: "Whether to clean up firewall rules when firewalld stops.",
                         default: true,
                       })))),
                     CleanupModulesOnExit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: bool,
                         description: "Whether to unload all firewall-related kernel modules when firewalld stops.",
                         default: false,
                       })))),
                     IPv6_rpfilter: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["strict", "loose", "strict-forward", "loose-forward", "no"]))),
                         description: "Performs reverse path filtering (RPF) on IPv6 packets as per RFC 3704.\n\nPossible values:\n\n`\"strict\"`\n: Performs \"strict\" filtering as per RFC 3704.\n  This check verifies that the in ingress interface is the same interface that would be used to send a packet reply to the source.\n  That is, `ingress == egress`.\n\n`\"loose\"`\n: Performs \"loose\" filtering as per RFC 3704.\n  This check only verifies that there is a route back to the source through any interface; even if it's not the same one on which the packet arrived.\n\n`\"strict-forward\"`\n: This is almost identical to \"strict\", but does not perform RPF for packets targeted to the host (INPUT).\n\n`\"loose-forward\"`\n: This is almost identical to \"loose\", but does not perform RPF for packets targeted to the host (INPUT).\n\n`\"no\"`\n: RPF is completely disabled.\n\nThe rp_filter for IPv4 is controlled using sysctl.\n",
                         default: "strict",
                       })))),
                     IndividualCalls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: bool,
                         description: "Whether to use individual -restore calls to apply changes to the firewall.\nThe use of individual calls increases the time that is needed to apply changes and to start the daemon, but is good for debugging as error messages are more specific.\n",
                         default: false,
                       })))),
                     LogDenied: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["all", "unicast", "broadcast", "multicast", "off"]))),
                         description: "Add logging rules right before reject and drop rules in the INPUT, FORWARD and OUTPUT chains for the default rules and also final reject and drop rules in zones for the configured link-layer packet type.\n",
                         default: "off",
                       })))),
                     FirewallBackend: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["nftables", "iptables"]))),
                         description: "The firewall backend implementation.\nThis applies to all firewalld primitives.\nThe only exception is direct and passthrough rules which always use the traditional iptables, ip6tables, and ebtables backends.\n\n::: {.caution}\nThe iptables backend is deprecated.\nIt will be removed in a future release.\n:::\n",
                         default: "nftables",
                       })))),
                     FlushAllOnReload: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: bool,
                         description: "Whether to flush all runtime rules on a reload.",
                         default: true,
                       })))),
                     ReloadPolicy: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => (() => {
                           const policy = nix.thunk(() => nix.app(enum$, nix.thunk(() => ["DROP", "REJECT", "ACCEPT"])));
                           return nix.app(either, policy, commas);
@@ -121,31 +121,31 @@ export default nix.lambda((args) => (() => {
                         default: "INPUT:DROP,FORWARD:DROP,OUTPUT:DROP",
                       })))),
                     RFC3964_IPv4: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: bool,
                         description: "Whether to filter IPv6 traffic with 6to4 destination addresses that correspond to IPv4 addresses that should not be routed over the public internet.\n",
                         default: true,
                       })))),
                     StrictForwardPorts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: bool,
                         description: "If enabled, the generated destination NAT (DNAT) rules will NOT accept traffic that was DNAT'd by other entities, e.g. docker.\nFirewalld will be strict and not allow published container ports until they're explicitly allowed via firewalld.\nIf set to `false`, then docker (and podman) integrates seamlessly with firewalld.\nPublished container ports are implicitly allowed.\n",
                         default: false,
                       })))),
                     NftablesFlowtable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(separatedString, " ")),
                         description: "This may improve forwarded traffic throughput by enabling nftables flowtable.\nIt is a software fastpath and avoids calling nftables rule evaluation for data packets.\nIts value is a space separate list of interfaces.\n",
                         default: "off",
                       })))),
                     NftablesCounters: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: bool,
                         description: "Whether to add a counter to every nftables rule.",
                         default: false,
                       })))),
                     NftablesTableOwner: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: bool,
                         description: "If enabled, the generated nftables rule set will be owned exclusively by firewalld.\nThis prevents other entities from mistakenly (or maliciously) modifying firewalld's rule set.\nIf you intend to modify firewalld's rules, set this to `false`.\n",
                         default: true,
@@ -157,20 +157,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "settings", "FirewallBackend"), "nftables")) || nix.asBool(nix.sel(config, "networking", "nftables", "enable")))),
             message: "FirewallD uses nftables as the firewall backend (by default), but nftables support isn't enabled.\nPlease read the description of networking.nftables.enable for possible problems.\nIf using nftables is not desired, set services.firewalld.settings.FirewallBackend to \"iptables\", but be aware that FirewallD has deprecated support for it, and will override firewall rule set by other services, if any.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "firewalld/firewalld.conf": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               text: nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (k) => (v) => nix.str`${k}=${(nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToYesNo"), v) : nix.force(v))}`, nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),

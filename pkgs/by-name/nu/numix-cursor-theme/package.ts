@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "numix-cursor-theme";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numixproject",
           repo: "numix-cursor-theme",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "patchShebangs .\nHOME=$TMP ./build.sh\n";
       const installPhase = "install -dm 755 $out/share/icons\ncp -dr --no-preserve='ownership' Numix-Cursor{,-Light} $out/share/icons/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Numix cursor theme",
         homepage: "https://numixproject.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

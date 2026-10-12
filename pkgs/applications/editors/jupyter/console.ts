@@ -21,21 +21,21 @@ export default nix.lambda((args) => (() => {
     const definitions = nix.argOr($_1, "definitions", () => nix.sel(jupyter_kernel, "default"));
     const kernel = nix.argOr($_1, "kernel", () => null);
     return nix.app(nix.sel(nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extraLibs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "jupyter-console"))]),
         makeWrapperArgs: nix.thunk(() => nix.concat([
-          nix.thunk(() => nix.str`--set JUPYTER_PATH ${nix.app(nix.sel(jupyter_kernel, "create"), nix.thunk(() => ({ __proto__: pos$1, definitions: definitions })))}`),
+          nix.thunk(() => nix.str`--set JUPYTER_PATH ${nix.app(nix.sel(jupyter_kernel, "create"), nix.thunk(() => ({ [nix.POS]: pos$1, definitions: definitions })))}`),
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(kernel, null)), nix.thunk(() => ["--add-flags --kernel", nix.thunk(() => nix.str`--add-flags ${kernel}`)])))),
       }))), "overrideAttrs"), (oldAttrs) => ({
-        __proto__: pos$4,
-        meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { __proto__: pos$3, mainProgram: "jupyter-console" })),
+        [nix.POS]: pos$4,
+        meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), { [nix.POS]: pos$3, mainProgram: "jupyter-console" })),
       }));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     mkConsole: mkConsole,
     withSingleKernel: (definition) => nix.app(mkConsole, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         definitions: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(definition, "language")), definition)),
           ]))),

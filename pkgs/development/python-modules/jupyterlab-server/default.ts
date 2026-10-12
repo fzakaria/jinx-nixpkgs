@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const strict_rfc3339 = nix.arg($, "strict-rfc3339");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jupyterlab-server",
       version: "2.28.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyterlab",
           repo: "jupyterlab_server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-openapi-core-compat.patch")]),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [babel, jinja2, json5, jsonschema, jupyter_server, packaging, requests]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, openapi: nix.thunk(() => [openapi_core, ruamel_yaml]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, openapi: nix.thunk(() => [openapi_core, ruamel_yaml]) })),
       pythonImportsCheck: nix.thunk(() => ["jupyterlab_server"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         pytest_jupyter,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_translation_api.py"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of server components for JupyterLab and JupyterLab like applications",
         homepage: "https://github.com/jupyterlab/jupyterlab_server",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterlab/jupyterlab_server/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

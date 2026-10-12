@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xplr",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sayanarijit",
           repo: "xplr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-3Bfpy8xqSHK5RUwXdFRbjs6/GDWT7c5k7MYbqEiROkM=",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           TARGET_STRIP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}strip`),
         })))),
       postPatch: "rm .cargo/config.toml\n",
       postInstall: "mkdir -p $out/share/applications\ncp assets/desktop/xplr.desktop $out/share/applications\n\nmkdir -p $out/share/icons/hicolor/scalable/apps\ncp assets/icon/xplr.svg $out/share/icons/hicolor/scalable/apps\n\nfor size in 16 32 64 128; do\n  icon_dir=$out/share/icons/hicolor/${size}x$size/apps\n  mkdir -p $icon_dir\n  cp assets/icon/xplr$size.png $icon_dir/xplr.png\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hackable, minimal, fast TUI file explorer",
         mainProgram: "xplr",
         homepage: "https://xplr.dev",

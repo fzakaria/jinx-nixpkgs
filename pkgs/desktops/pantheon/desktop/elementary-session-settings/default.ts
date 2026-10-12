@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "elementary-session-settings",
       version: "8.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elementary",
           repo: "session-settings",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,12 +60,12 @@ substituteInPlace $out/share/wayland-sessions/pantheon-wayland.desktop \\
   --replace-fail "TryExec=io.elementary.wingpanel" "TryExec=${wingpanel}/bin/io.elementary.wingpanel"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         providedSessions: nix.thunk(() => ["pantheon-wayland"]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Session settings for elementary",
         homepage: "https://github.com/elementary/session-settings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

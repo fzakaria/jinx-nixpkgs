@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "photon",
       version: "1.3.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s0md3v",
           repo: "Photon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/photon
   --add-flags "-O $out/share/photon/photon.py"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightning fast web crawler which extracts URLs, files, intel & endpoints from a target",
         homepage: "https://github.com/s0md3v/Photon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

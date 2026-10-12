@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kafka_lwt",
       version: nix.thunk(() => nix.attr(kafka, "version")),
       src: nix.thunk(() => nix.attr(kafka, "src")),
       buildInputs: nix.thunk(() => [cmdliner]),
       propagatedBuildInputs: nix.thunk(() => [kafka, lwt]),
       meta: nix.thunk(() => nix.update(nix.sel(kafka, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OCaml bindings for Kafka, Lwt bindings",
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       })),

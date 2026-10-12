@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.update(nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => (() => {
       const w = nix.withScope(self, null);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         switchboardPlugs: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "switchboard-plug-about")),
           nix.thunk(() => nix.lookup(w, "switchboard-plug-applications")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mutter: nix.thunk(() => nix.sel(pkgs, "mutter48")),
         "gnome-settings-daemon": nix.thunk(() => nix.sel(pkgs, "gnome-settings-daemon48")),
         "elementary-gsettings-schemas": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/elementary-gsettings-schemas"), nix.thunk(() => ({})))),
-        touchegg: nix.thunk(() => nix.app(nix.sel(pkgs, "touchegg", "override"), nix.thunk(() => ({ __proto__: pos$1, withPantheon: true })))),
+        touchegg: nix.thunk(() => nix.app(nix.sel(pkgs, "touchegg", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withPantheon: true })))),
         appcenter: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/appcenter"), nix.thunk(() => ({})))),
         "elementary-calculator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/elementary-calculator"), nix.thunk(() => ({})))),
         "elementary-calendar": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/elementary-calendar"), nix.thunk(() => ({})))),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
         "elementary-tasks": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/elementary-tasks"), nix.thunk(() => ({})))),
         "elementary-terminal": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/elementary-terminal"), nix.thunk(() => ({})))),
         "elementary-videos": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/elementary-videos"), nix.thunk(() => ({})))),
-        epiphany: nix.thunk(() => nix.app(nix.sel(pkgs, "epiphany", "override"), nix.thunk(() => ({ __proto__: pos$2, withPantheon: true })))),
+        epiphany: nix.thunk(() => nix.app(nix.sel(pkgs, "epiphany", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withPantheon: true })))),
         sideload: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/sideload"), nix.thunk(() => ({})))),
         "elementary-default-settings": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/elementary-default-settings"), nix.thunk(() => ({})))),
         "elementary-greeter": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/elementary-greeter"), nix.thunk(() => ({})))),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         "file-roller-contract": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/file-roller-contract"), nix.thunk(() => ({})))),
         gala: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/gala"), nix.thunk(() => ({})))),
         wingpanel: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/wingpanel"), nix.thunk(() => ({})))),
-        "wingpanel-with-indicators": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/wingpanel/wrapper.nix"), nix.thunk(() => ({ __proto__: pos$3, indicators: null })))),
+        "wingpanel-with-indicators": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/wingpanel/wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, indicators: null })))),
         granite: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libraries/granite"), nix.thunk(() => ({})))),
         granite7: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libraries/granite/7"), nix.thunk(() => ({})))),
         "live-chart": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libraries/live-chart"), nix.thunk(() => ({})))),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         "wingpanel-indicator-sound": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/wingpanel-indicators/sound"), nix.thunk(() => ({})))),
         "wingpanel-quick-settings": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./desktop/wingpanel-indicators/quick-settings"), nix.thunk(() => ({})))),
         switchboard: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/switchboard"), nix.thunk(() => ({})))),
-        "switchboard-with-plugs": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/switchboard/wrapper.nix"), nix.thunk(() => ({ __proto__: pos$4, plugs: null })))),
+        "switchboard-with-plugs": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/switchboard/wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, plugs: null })))),
         "switchboard-plug-about": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/switchboard-plugs/about"), nix.thunk(() => ({})))),
         "switchboard-plug-applications": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/switchboard-plugs/applications"), nix.thunk(() => ({})))),
         "switchboard-plug-bluetooth": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./apps/switchboard-plugs/bluetooth"), nix.thunk(() => ({})))),
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
         "elementary-wallpapers": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./artwork/elementary-wallpapers"), nix.thunk(() => ({})))),
       };
     })()), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       vala: nix.thunk(() => nix.builtins.throw("The ‘pantheon.vala’ alias was removed on 2022-02-02, please use ‘pkgs.vala’ directly.")),
       cerbere: nix.thunk(() => nix.builtins.throw("Cerbere is now obsolete https://github.com/elementary/cerbere/releases/tag/2.5.1.")),
       "elementary-screenshot-tool": nix.thunk(() => nix.builtins.throw("The ‘pantheon.elementary-screenshot-tool’ alias was removed on 2022-02-02, please use ‘pantheon.elementary-screenshot’ directly.")),

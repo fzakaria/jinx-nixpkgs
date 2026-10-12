@@ -32,42 +32,42 @@ export default nix.lambda((args) => (() => {
   const storagePath = nix.thunk(() => nix.str`/var/lib/${storageDir}`);
   const vendorId = "4939";
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "leonm1"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "matter-server": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Matter-server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "python-matter-server", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5580n,
               description: "Port to expose the matter-server service on.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the port in the firewall.",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["critical", "error", "warning", "info", "debug"]))),
               default: "info",
               description: "Verbosity of logs from the matter-server",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Attribute set of extra arguments to pass to the matter-server executable.\nSee <https://github.com/home-assistant-libs/python-matter-server?tab=readme-ov-file#running-the-development-server> for options.\n",
@@ -76,27 +76,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         networking: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           firewall: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "matter-server": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               after: nix.thunk(() => ["network-online.target"]),
               before: nix.thunk(() => ["home-assistant.service"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Matter Server",
               environment: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 HOME: storagePath,
                 SSL_CERT_FILE: nix.thunk(() => nix.str`${nix.sel(pkgs, "cacert")}/etc/ssl/certs/ca-bundle.crt`),
               })),
@@ -113,7 +113,7 @@ OTA_UPDATE_DIR="$CACHE_DIRECTORY/updates"
 mkdir -p "$OTA_UPDATE_DIR"
 
 "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}" ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.update({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     port: nix.thunk(() => nix.sel(cfg, "port")),
                     vendorid: vendorId,
                     "storage-path": storagePath,
@@ -123,7 +123,7 @@ mkdir -p "$OTA_UPDATE_DIR"
                   }, nix.sel(cfg, "extraArgs"))))))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 RuntimeDirectory: nix.thunk(() => ["matter-server/root"]),
                 RootDirectory: "%t/matter-server/root",
                 CacheDirectory: nix.thunk(() => ["matter-server"]),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "rfc3339_validator",
           version: version,
           sha256: "0srg0b89aikzinw72s433994k5gv5lfyarq1adhas11kz6yjm2hk",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, hypothesis, strict_rfc3339]);
       const pythonImportsCheck = nix.thunk(() => ["rfc3339_validator"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RFC 3339 validator for Python",
         homepage: "https://github.com/naimetti/rfc3339-validator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

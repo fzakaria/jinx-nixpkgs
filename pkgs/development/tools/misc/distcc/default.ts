@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const pname = "distcc";
   const version = "3.4";
   const distcc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "distcc",
           repo: "distcc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,10 +73,10 @@ installFlags="sysconfdir=$out/etc";
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         links: (extraConfig) => nix.app(runCommand, "distcc-links", nix.thunk(() => ({
-            __proto__: pos$3,
-            passthru: nix.thunk(() => ({ __proto__: pos$2, gcc: nix.thunk(() => nix.sel(gcc, "cc")) })),
+            [nix.POS]: pos$3,
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$2, gcc: nix.thunk(() => nix.sel(gcc, "cc")) })),
           })), nix.thunk(() => nix.str`mkdir -p $out/bin
 if [ -x "${nix.sel(gcc, "cc")}/bin/gcc" ]; then
   cat > $out/bin/gcc << EOF
@@ -95,10 +95,10 @@ EOF
   chmod +x $out/bin/g++
 fi
 `)),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast, free distributed C/C++ compiler",
         homepage: "http://distcc.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

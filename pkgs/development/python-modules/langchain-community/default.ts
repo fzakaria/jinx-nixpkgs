@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langchain-community",
           tag: nix.thunk(() => nix.str`libs/community/v${version}`),
@@ -97,15 +97,15 @@ export default nix.lambda((args) => (() => {
         "tests/unit_tests/indexes/test_sql_record_manager.py",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "rev-prefix": "libs/community/v",
             ignoredVersions: "a|b|dev|rc",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Community contributed LangChain integrations",
         homepage: "https://github.com/langchain-ai/langchain-community",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain-community/releases/tag/${nix.sel(src, "tag")}`),
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

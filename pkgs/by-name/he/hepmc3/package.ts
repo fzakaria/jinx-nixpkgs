@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.str`${nix.app(nix.lookup(w, "major"), nix.thunk(() => nix.sel(python, "version")))}${nix.app(nix.lookup(w, "minor"), nix.thunk(() => nix.sel(python, "version")))}`;
   })());
-  const root_py = nix.thunk(() => (nix.asBool(enablePython) ? nix.app(nix.sel(root, "override"), nix.thunk(() => ({ __proto__: pos$1, python3: python }))) : nix.force(root)));
+  const root_py = nix.thunk(() => (nix.asBool(enablePython) ? nix.app(nix.sel(root, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))) : nix.force(root)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hepmc3",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://hepmc.web.cern.ch/hepmc/releases/HepMC3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-CCQBYLDyjcMpOqTWHOZeLWfNWXrPb6ykOfLkZiX355M=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["pyHepMC3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HepMC package is an object oriented, C++ event record for High Energy Physics Monte Carlo generators and simulation",
         mainProgram: "HepMC3-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

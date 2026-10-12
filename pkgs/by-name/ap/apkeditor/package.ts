@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     const projectName = nix.thunk(() => nix.attr(args_1, "projectName"));
     const outJar = nix.thunk(() => nix.str`share/${projectName}/${projectName}.jar`);
     const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         __darwinAllowLocalNetworking: true,
         buildInputs: nix.thunk(() => [jre]),
         nativeBuildInputs: nix.thunk(() => [gradle]),
@@ -44,9 +44,9 @@ install -Dm644 build/libs/*.jar $out/${outJar}
 runHook postInstall
 `),
       }, nix.update(args_1, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
             return [
@@ -58,25 +58,25 @@ runHook postInstall
       })))));
     return nix.force(self);
   })();
-  const arsclib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./arsclib"), nix.thunk(() => ({ __proto__: pos$4, REAndroidLibrary: REAndroidLibrary }))));
-  const smali = nix.thunk(() => nix.app(callPackage, nix.path(here, "./smali"), nix.thunk(() => ({ __proto__: pos$5, REAndroidLibrary: REAndroidLibrary }))));
-  const jcommand = nix.thunk(() => nix.app(callPackage, nix.path(here, "./jcommand"), nix.thunk(() => ({ __proto__: pos$6, REAndroidLibrary: REAndroidLibrary }))));
+  const arsclib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./arsclib"), nix.thunk(() => ({ [nix.POS]: pos$4, REAndroidLibrary: REAndroidLibrary }))));
+  const smali = nix.thunk(() => nix.app(callPackage, nix.path(here, "./smali"), nix.thunk(() => ({ [nix.POS]: pos$5, REAndroidLibrary: REAndroidLibrary }))));
+  const jcommand = nix.thunk(() => nix.app(callPackage, nix.path(here, "./jcommand"), nix.thunk(() => ({ [nix.POS]: pos$6, REAndroidLibrary: REAndroidLibrary }))));
   const apkeditor = nix.thunk(() => (() => {
     const pname = "apkeditor";
     const version = "1.4.9";
     const projectName = "APKEditor";
     return nix.app(REAndroidLibrary, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: pname,
         version: version,
         projectName: projectName,
         passthru: nix.thunk(() => ({
-          __proto__: pos$8,
-          deps: nix.thunk(() => ({ __proto__: pos$7, arsclib: arsclib, smali: smali, jcommand: jcommand })),
+          [nix.POS]: pos$8,
+          deps: nix.thunk(() => ({ [nix.POS]: pos$7, arsclib: arsclib, smali: smali, jcommand: jcommand })),
           updateScript: nix.path(here, "./update.sh"),
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             owner: "REAndroid",
             repo: "APKEditor",
             tag: nix.thunk(() => nix.str`V${version}`),
@@ -96,7 +96,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/APKEditor \\
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         meta: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           description: "Powerful android apk resources editor",
           homepage: "https://github.com/REAndroid/APKEditor",
           changelog: nix.thunk(() => nix.str`https://github.com/REAndroid/APKEditor/releases/tag/V${version}`),

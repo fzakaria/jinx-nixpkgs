@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pname = "srctools";
   const version = "2.7.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Ht+PUHzOjUNlllan1NvmvRRI7TGq3ws8Uwg8G/yJ9ZE=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postCheck: "python3 src/pythoncapi-compat/runtests.py --current\n",
       pythonImportsCheck: nix.thunk(() => ["srctools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modules for working with Valve's Source Engine file formats",
         homepage: "https://github.com/TeamSpen210/srctools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

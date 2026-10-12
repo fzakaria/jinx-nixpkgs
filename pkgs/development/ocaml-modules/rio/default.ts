@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rio",
       version: "0.0.8",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/leostera/riot/releases/download/${nix.sel(finalAttrs, "version")}/riot-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SsiDz53b9bMIT9Q3IwDdB3WKy98WSd9fiieU41qZpeE=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ergonomic, composable, efficient read/write streams",
         homepage: "https://github.com/leostera/riot",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/riot/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

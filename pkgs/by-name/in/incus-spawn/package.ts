@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: "0.2.15",
       pname: "incus-spawn",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
@@ -50,33 +50,33 @@ runHook postInstall
       doInstallCheck: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))),
       installCheckPhase: "runHook preInstallCheck\n\ninstallShellCompletion --cmd isx \\\n  --bash <($out/bin/isx completion bash) \\\n  --zsh <($out/bin/isx completion zsh) \\\n  --fish <($out/bin/isx completion fish)\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/incus-spawn-linux-amd64`),
               hash: "sha256-3YEasRSG7n5MLIkKrA1m/8Uu20ZS6D2L0tcDKcbnPoI=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/incus-spawn-linux-aarch64`),
               hash: "sha256-ZoMiinluk8VAb28xIHcYv26K95torSIK+bd8AGvE/Po=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/incus-spawn-macos-aarch64`),
               hash: "sha256-dnmm4GwU5pB/ME+W4stW+jUMSUOiKGsuXnQJBRgTkps=",
             })))),
         })),
         "git-remote-isx": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/git-remote-isx`),
             hash: "sha256-I9zmdLzO7VcfLHdgFD2Lvwiq4fkDw885j1JWsL8c+hA=",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$6, package: incus_spawn, command: "isx --version" })))),
+          [nix.POS]: pos$7,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, package: incus_spawn, command: "isx --version" })))),
         })),
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-incus-spawn", nix.thunk(() => nix.str`set -o errexit
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, common_updater_scripts]))}"
@@ -92,7 +92,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "CLI tool for managing isolated Incus development environments",
         longDescription: "incus-spawn (isx) creates isolated Linux development environments using\nIncus system containers with copy-on-write branching, a MITM TLS proxy\nfor credential isolation, and an interactive TUI.\n",
         homepage: "https://github.com/Sanne/incus-spawn",

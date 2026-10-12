@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pmclanahan",
           repo: "django-celery-email",
           rev: version,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, django_appconf, celery]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytest]);
       const pytestFlags = nix.thunk(() => ["tests/tests.py"]);
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "executable")} runtests.py
 `);
       const pythonImportsCheck = nix.thunk(() => ["djcelery_email"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/pmclanahan/django-celery-email",
         description: "Django email backend that uses a celery task for sending the email",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

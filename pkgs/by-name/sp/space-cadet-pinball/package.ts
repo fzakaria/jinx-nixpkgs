@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const unrar = nix.arg($, "unrar");
   const assets = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://archive.org/download/SpaceCadet_Plus95/Space_Cadet.rar",
       hash: "sha256-fC+zsR8BY6vXpUkVd6i1jF0IZZxVKVvNi6VWCKT+pA4=",
       stripRoot: false,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "SpaceCadetPinball";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "k4zmu2a",
           repo: "SpaceCadetPinball",
           rev: nix.thunk(() => nix.str`Release_${version}`),
@@ -58,7 +58,7 @@ runHook postInstall
   ${assets}/Sounds/*.WAV -t ${assetsDest}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reverse engineering of 3D Pinball for Windows – Space Cadet, a game bundled with Windows",
         homepage: "https://github.com/k4zmu2a/SpaceCadetPinball",
         license: nix.thunk(() => (() => {
@@ -76,7 +76,7 @@ runHook postInstall
         mainProgram: "SpaceCadetPinball",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

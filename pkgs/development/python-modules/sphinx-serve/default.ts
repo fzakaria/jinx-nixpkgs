@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "8d90f6595114108500b1f935d3f4d07bf5192783c67ce83f944ef289099669c9",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sphinx_serve"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spawns a simple HTTP server to preview your sphinx documents",
         mainProgram: "sphinx-serve",
         homepage: "https://github.com/tlatsas/sphinx-serve",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "colobot-data",
       version: "0.2.2-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colobot",
           repo: "colobot-data",
           tag: nix.thunk(() => nix.str`colobot-gold-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gettext]),
       patchPhase: "cp -r $src localSrc\nchmod +w localSrc/help/bots/po\nfind -type d -exec chmod +w {} \\;\nfor po in localSrc/help/{bots,cbot,object,generic,programs}/po/* localSrc/levels/*{/*/*,}/po/*; do\n  rm $po\n  touch $po\ndone\n# skip music\nrm localSrc/music/CMakeLists.txt\ncd localSrc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://colobot.info/",
         description: "Game data for colobot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

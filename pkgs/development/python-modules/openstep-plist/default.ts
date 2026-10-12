@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "openstep_plist",
           version: version,
           hash: "sha256-Kg1w/3oDzOZKcnBitkuy9cmvn9SmNqqkM5tqqiz2UZU=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["openstep_plist"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/fonttools/openstep-plist/releases/tag/v${version}`),
         description: "Parser for the 'old style' OpenStep property list format also known as ASCII plist",
         homepage: "https://github.com/fonttools/openstep-plist",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

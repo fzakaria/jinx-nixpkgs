@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const isCrossCompiling = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "s9fes",
       version: "20181205",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.t3x.org/s9fes/s9fes-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-Lp/akaDy3q4FmIE6x0fj9ae/SOD7tdsmzy2xdcCh13o=",
         })))),
@@ -38,7 +38,7 @@ ${nix.app(nix.sel(lib, "optionalString"), isCrossCompiling, nix.thunk(() => nix.
       enableParallelBuilding: true,
       enableParallelInstalling: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scheme 9 From Empty Space, an interpreter for R4RS Scheme",
         homepage: "http://www.t3x.org/s9fes/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

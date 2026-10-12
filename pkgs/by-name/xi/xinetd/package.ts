@@ -19,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const libtirpc = nix.arg($, "libtirpc");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "xinetd",
       version: "2.3.15.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/openSUSE/xinetd/releases/download/${nix.sel(finalAttrs, "version")}/xinetd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-K6pYEBC8cDYavfo38SHpKuucXOZ/mnGRPOvWk1nMllQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildInputs: nix.thunk(() => [libtirpc]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "xinetd")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "xinetd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Secure replacement for inetd",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         homepage: "https://github.com/openSUSE/xinetd",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const ncurses5 = nix.arg($, "ncurses5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "guile-ncurses",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7onozq/Kud0O8/wazJsQ9NIbpLJW0ynYQtYYPmP41zM=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [guile, libffi, ncurses5]),
       configureFlags: nix.thunk(() => ["--with-gnu-filesystem-hierarchy"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       postFixup: nix.thunk(() => nix.str`for f in $out/${nix.sel(guile, "siteDir")}/ncurses/**.scm; do \\
@@ -40,7 +40,7 @@ done
 `),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.gnu.org/software/guile-ncurses/",
         description: "Scheme interface to the NCurses libraries",
         mainProgram: "guile-ncurses-shell",

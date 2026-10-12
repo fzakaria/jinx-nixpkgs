@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const plotly = nix.arg($, "plotly");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hvplot",
       version: "0.12.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "holoviz",
           repo: "hvplot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export MPLBACKEND=agg\n",
       pythonImportsCheck: nix.thunk(() => ["hvplot.pandas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-level plotting API for the PyData ecosystem built on HoloViews",
         homepage: "https://hvplot.pyviz.org",
         changelog: nix.thunk(() => nix.str`https://github.com/holoviz/hvplot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

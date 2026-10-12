@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const pigz = nix.arg($, "pigz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sanoid",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jimsalterjrs",
           repo: "sanoid",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "CaptureTiny")),
         ];
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "sanoid")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "sanoid")) })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 mkdir -p "$out/bin"
@@ -86,7 +86,7 @@ wrapProgram "$out/bin/findoid" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Policy-driven snapshot management tool for ZFS filesystems",
         homepage: "https://github.com/jimsalterjrs/sanoid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

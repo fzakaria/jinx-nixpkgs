@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.35";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shaypal5",
           repo: "birch",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-versioneer-on-python312.patch",
             url: "https://github.com/shaypal5/birch/commit/84d597b2251ebb76fb15fb70fc86c83baa19dc0b.patch",
             hash: "sha256-xXADCSIhq1ARny2twzrhR1J8LkMFWFl6tmGxrM8RvkU=",
@@ -48,7 +48,7 @@ substituteInPlace versioneer.py birch/_version.py \\
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, pyyaml]);
       const preCheck = "export HOME=\"$(mktemp -d)\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple hierarchical configuration for Python packages",
         homepage: "https://github.com/shaypal5/birch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -58,7 +58,7 @@ substituteInPlace versioneer.py birch/_version.py \\
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

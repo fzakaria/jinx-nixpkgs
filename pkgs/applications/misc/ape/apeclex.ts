@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const attemptoClex = nix.arg($, "attemptoClex");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./."), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ape-clex",
       lexiconPath: nix.thunk(() => nix.str`${attemptoClex}/clex_lexicon.pl`),
       description: "Parser for Attempto Controlled English (ACE) with a large lexicon (~100,000 entries)",

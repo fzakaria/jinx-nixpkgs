@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pname = "bitcomet";
   const version = "2.21.2";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     homepage: "https://www.bitcomet.com",
     description: "BitTorrent download client",
     mainProgram: "bitcometd",
@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
     maintainers: [],
   }));
   const bitcomet = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")));
-        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ __proto__: pos$2, "x86_64-linux": "x86_64", "aarch64-linux": "arm64" }))));
+        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$2, "x86_64-linux": "x86_64", "aarch64-linux": "arm64" }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: nix.thunk(() => nix.str`https://download.bitcomet.com/linux/${arch}/BitComet-${version}-${arch}.deb`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "x86_64-linux": "sha256-qHPr4G921W1Pl7n0Wv98yLRbsAkJBrOcyg9kHHjtBGc=",
                 "aarch64-linux": "sha256-VC/dvAGmhqlmZT5XB41x/fTGvMZjYCuz/tSp9MYFUHo=",
               })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ndesktop-file-edit usr/share/applications/bitcomet.desktop \\\n  --remove-key=\"Version\" \\\n  --remove-key=\"Comment\" \\\n  --set-key=\"Exec\" --set-value=\"BitComet\" \\\n  --set-icon=\"bitcomet\"\ncp -r usr $out\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       meta: meta,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       targetPkgs: (pkgs) => nix.concat([bitcomet], nix.app(nix.sel(appimageTools, "defaultFhsEnvArgs", "targetPkgs"), pkgs)),
       multiPkgs: nix.thunk(() => nix.sel(appimageTools, "defaultFhsEnvArgs", "multiPkgs")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         bitcomet: bitcomet,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-bitcomet", nix.thunk(() => nix.str`latestVersion=$(curl --fail --silent https://www.cometbbs.com/t/linux%E5%86%85%E6%B5%8B%E7%89%88/88604 | grep -oP 'BitComet-\\K[0-9]+\\.[0-9]+\\.[0-9]+(?=-x86_64\\.deb)' | head -n1)
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} pkgsCross.gnu64.bitcomet.bitcomet --version $latestVersion

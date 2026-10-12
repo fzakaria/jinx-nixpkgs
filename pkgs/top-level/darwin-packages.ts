@@ -52,14 +52,14 @@ export default nix.thunk(() => (() => {
     const aliases = (final) => (prev) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../top-level/darwin-aliases.nix")), lib, final, prev, pkgs)));
     const autoCalledPackagesWithAliases = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => [autoCalledPackages, aliases])));
     const mkBootstrapStdenv = (stdenv_1) => nix.app(nix.sel(stdenv_1, "override"), (old) => ({
-        __proto__: pos$2,
-        extraBuildInputs: nix.thunk(() => nix.builtins.map((pkg) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg)) && nix.asBool(nix.eq(nix.app(nix.sel(lib, "getName"), pkg), "apple-sdk")))) ? nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ __proto__: pos$1, enableBootstrap: true }))) : nix.force(pkg)), nix.thunk(() => nix.selOr(old, () => [], "extraBuildInputs")))),
+        [nix.POS]: pos$2,
+        extraBuildInputs: nix.thunk(() => nix.builtins.map((pkg) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg)) && nix.asBool(nix.eq(nix.app(nix.sel(lib, "getName"), pkg), "apple-sdk")))) ? nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableBootstrap: true }))) : nix.force(pkg)), nix.thunk(() => nix.selOr(old, () => [], "extraBuildInputs")))),
       }));
     return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "darwin")),
         extra: (self) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "clang-unwrapped": nix.thunk(() => nix.attr(llvmPackages, "clang-unwrapped")),
           mkAppleDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../os-specific/darwin/mk-apple-derivation"), nix.thunk(() => ({})))),
         }),
@@ -68,16 +68,16 @@ export default nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(self, "file_cmds"));
               const from_2 = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../os-specific/darwin/xcode"), nix.thunk(() => ({}))));
               return {
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               ps: nix.thunk(() => nix.attr(from, "ps")),
               bootstrapStdenv: nix.thunk(() => nix.app(mkBootstrapStdenv, stdenv)),
               binutils: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   libc: nix.thunk(() => nix.selOr(targetPackages, () => nix.force(libc), "libc")),
                   bintools: nix.thunk(() => nix.sel(self, "binutils-unwrapped")),
                 })))),
               binutilsNoLibc: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   libc: nix.thunk(() => nix.selOr(targetPackages, () => nix.force(preLibcHeaders), "preLibcHeaders")),
                   bintools: nix.thunk(() => nix.sel(self, "binutils-unwrapped")),
                 })))),
@@ -158,26 +158,26 @@ export default nix.thunk(() => (() => {
                   const modules = nix.arg($_1, "modules");
                   const toGuest = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["darwin"]), nix.thunk(() => ["linux"])));
                   const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       configuration: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         imports: nix.thunk(() => nix.concat([nix.path(here, "../../nixos/modules/profiles/nix-builder-vm.nix")], modules)),
-                        virtualisation: nix.thunk(() => ({ __proto__: pos$7, host: nix.thunk(() => ({ __proto__: pos$6, pkgs: pkgs })) })),
+                        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, host: nix.thunk(() => ({ [nix.POS]: pos$6, pkgs: pkgs })) })),
                         nixpkgs: nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           hostPlatform: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(toGuest, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")))))),
                         })),
                       })),
                       system: null,
                     }))));
                   return nix.sel(nixos, "config", "system", "build", "macos-builder-installer");
-                })(), formals$2), nix.thunk(() => ({ __proto__: pos$11, modules: [] })))),
+                })(), formals$2), nix.thunk(() => ({ [nix.POS]: pos$11, modules: [] })))),
               "linux-builder-x86_64": nix.thunk(() => nix.app(nix.sel(self, "linux-builder", "override"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   modules: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$13,
-                      nixpkgs: nix.thunk(() => ({ __proto__: pos$12, hostPlatform: "x86_64-linux" })),
+                      [nix.POS]: pos$13,
+                      nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$12, hostPlatform: "x86_64-linux" })),
                     })),
                   ]),
                 })))),
@@ -185,32 +185,32 @@ export default nix.thunk(() => (() => {
                   const $_1 = nix.formals(args_1, formals$3);
                   const modules = nix.arg($_1, "modules");
                   const nixos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../nixos")), nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       configuration: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         imports: nix.thunk(() => nix.concat([nix.path(here, "../../nixos/modules/profiles/nix-builder-vz-vm.nix")], modules)),
                         virtualisation: nix.thunk(() => ({
-                          __proto__: pos$16,
-                          host: nix.thunk(() => ({ __proto__: pos$15, pkgs: pkgs })),
+                          [nix.POS]: pos$16,
+                          host: nix.thunk(() => ({ [nix.POS]: pos$15, pkgs: pkgs })),
                         })),
                         nixpkgs: nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           hostPlatform: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "aarch64-linux")),
                         })),
                       })),
                       system: null,
                     }))));
                   return nix.app(nix.sel(nixos, "config", "system", "build", "macos-builder-installer", "overrideAttrs"), (oldAttrs) => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       passthru: nix.thunk(() => nix.update(nix.sel(oldAttrs, "passthru"), {
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         tests: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru", "tests"), {
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           "store-gc": nix.thunk(() => nix.sel(nixosTests, "linux-builder-vz-store-gc")),
                         })),
                       })),
                     }));
-                })(), formals$3), nix.thunk(() => ({ __proto__: pos$23, modules: [] })))),
+                })(), formals$3), nix.thunk(() => ({ [nix.POS]: pos$23, modules: [] })))),
             };
             })())))),
       })));

@@ -30,23 +30,23 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const version = "5.7.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "suitenumerique",
       repo: "docs",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-/kCrh5CUFcurXpK8trdlW2kI1JDoKeD7n40vjvG/v4E=",
     }))));
   const mail_templates = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`lasuite-docs-${version}-mjml`),
       src: src,
       sourceRoot: "source/src/mail",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         DOCS_DIR_MAILS: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
       })),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.thunk(() => nix.str`${src}/src/mail/yarn.lock`),
           hash: "sha256-Y+E1HhQRdmdQf9kfkL09W/R29oN8wCLNsMBDnNGx6T0=",
         })))),
@@ -54,15 +54,15 @@ export default nix.lambda((args) => (() => {
       dontInstall: true,
     }))));
   const python3Packages$ = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "django-treebeard": nix.thunk(() => nix.app(nix.sel(super$, "django-treebeard", "overridePythonAttrs"), (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const src_1 = nix.arg($_1, "src");
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             version: "4.8.0",
             src: nix.thunk(() => nix.app(nix.sel(src_1, "override"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 hash: "sha256-DrjI0HlrJhNqrYul3SO0xkkFwjWRn94OgvTA/Z3wv84=",
               })))),
           };
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
     })));
   const python3Packages_1 = python3Packages$;
   return nix.app(nix.sel(python3Packages_1, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "lasuite-docs",
       pyproject: true,
       version: version,
@@ -162,14 +162,14 @@ cp -r impress/configuration $out/${nix.sel(python3, "sitePackages")}/impress/con
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "login-and-create-doc": nix.thunk(() => nix.sel(nixosTests, "lasuite-docs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Collaborative note taking, wiki and documentation platform that scales. Built with Django and React. Opensource alternative to Notion or Outline",
         homepage: "https://github.com/suitenumerique/docs",
         changelog: nix.thunk(() => nix.str`https://github.com/suitenumerique/docs/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

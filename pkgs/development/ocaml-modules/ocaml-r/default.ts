@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const R = nix.arg($, "R");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ocaml-r",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pveber/ocaml-r/releases/download/v${nix.sel(finalAttrs, "version")}/ocaml-r-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-nbO36z/bSMb2vQjW5A9O2hjuF2RVzefFN53l/u3KF+o=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pveber/ocaml-r/commit/c70704dd9ff1ed6b4035beef3316dc95275aaf4f.patch",
             hash: "sha256-I3SX+6gVo9l7epeFhtae8Ji4q51mr53sv7MPxvRBdJg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/pveber/ocaml-r/commit/c90ce656bd55236e74907f2ef5bc70ff11a0cedc.patch",
             hash: "sha256-ACU4d8Npq1IXR3hysk6npHHU8ZRcAgRkHg/c+Sb8dkM=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OCaml bindings for the R interpreter",
         homepage: "https://github.com/pveber/ocaml-r/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

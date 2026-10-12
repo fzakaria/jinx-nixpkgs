@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const enableDiscord = nix.argOr($, "enableDiscord", () => true);
   const enableTextureFix = nix.argOr($, "enableTextureFix", () => true);
   const libc_hack = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "libc-hack",
       text: "#include <unistd.h>\n#include <string.h>\n#include <pthread.h>\n",
       destination: "/include/libc.h",
     }))));
-  const baserom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ __proto__: pos$2, region: "us", showRegionMessage: false }))), "romPath"));
+  const baserom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, region: "us", showRegionMessage: false }))), "romPath"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sm64coopdx",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "coop-deluxe",
           repo: "sm64coopdx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       icon: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/res/icon.ico`),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "sm64coopdx",
             exec: "sm64coopdx",
@@ -101,7 +101,7 @@ makeWrapper $share/sm64coopdx $out/bin/sm64coopdx \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Multiplayer fork of the Super Mario 64 decompilation",
         longDescription: "This is a fork of sm64ex-coop, which was itself a fork of sm64ex, which was a fork of the sm64 decompilation project.\n\nIt allows multiple people to play within and across levels, has multiple character models, and mods in the form of lua scripts.\n\nArguments:\n\n- `enableTextureFix`: (default: `true`) whether to enable texture fixes. Upstream describes disabling this as \"for purists\"\n- `enableDiscord`: (default: `true`) whether to enable discord integration, which allows showing status and connecting to games over discord\n- `enableCoopNet`: (default: `true`) whether to enable Co-op Net integration, a server made specifically for multiplayer sm64\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

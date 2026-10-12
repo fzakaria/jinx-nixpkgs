@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           const pname_1 = pname;
           const version = "3.32.1";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "projectcalico",
               repo: "calico",
               rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
           const subPackages_1 = subPackages;
           const ldflags = nix.thunk(() => ["-s", "-w"]);
           const meta = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             homepage: "https://projectcalico.docs.tigera.io",
             changelog: nix.thunk(() => nix.str`https://github.com/projectcalico/calico/releases/tag/v${version}`),
             description: "Cloud native networking and network security",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
             mainProgram: mainProgram,
           }));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname_1,
             version,
             src,
@@ -64,38 +64,38 @@ export default nix.lambda((args) => (() => {
           };
         })()));
     })(), formals$2), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       "calico-apiserver": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "apiserver",
         subPackages: nix.thunk(() => ["apiserver/cmd/..."]),
       })),
       "calico-app-policy": nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         doCheck: false,
         mainProgram: "dikastes",
         subPackages: nix.thunk(() => ["app-policy/cmd/..."]),
       })),
       "calico-cni-plugin": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: "calico",
         subPackages: nix.thunk(() => ["cni-plugin/cmd/..."]),
       })),
       "calico-kube-controllers": nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         doCheck: false,
         mainProgram: "kube-controllers",
         subPackages: nix.thunk(() => ["kube-controllers/cmd/..."]),
       })),
       "calico-pod2daemon": nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mainProgram: "flexvol",
         subPackages: nix.thunk(() => ["pod2daemon/csidriver", "pod2daemon/flexvol", "pod2daemon/nodeagent"]),
       })),
-      "calico-typha": nix.thunk(() => ({ __proto__: pos$9, subPackages: nix.thunk(() => ["typha/cmd/..."]) })),
-      calicoctl: nix.thunk(() => ({ __proto__: pos$10, subPackages: nix.thunk(() => ["calicoctl/calicoctl"]) })),
+      "calico-typha": nix.thunk(() => ({ [nix.POS]: pos$9, subPackages: nix.thunk(() => ["typha/cmd/..."]) })),
+      calicoctl: nix.thunk(() => ({ [nix.POS]: pos$10, subPackages: nix.thunk(() => ["calicoctl/calicoctl"]) })),
       "confd-calico": nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         mainProgram: "confd",
         subPackages: nix.thunk(() => ["confd"]),
       })),

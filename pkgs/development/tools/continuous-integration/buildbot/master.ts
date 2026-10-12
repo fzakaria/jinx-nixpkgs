@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
 ln -sfv ${buildbot}/lib $out/lib
 `);
       const passthru = nix.thunk(() => nix.update(nix.sel(buildbot, "passthru"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pyproject: pyproject,
         withPlugins: (morePlugins) => nix.app(withPlugins, nix.thunk(() => nix.concat(morePlugins, plugins))),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         pyproject,
@@ -91,7 +91,7 @@ ln -sfv ${buildbot}/lib $out/lib
       const version = "4.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "buildbot",
           repo: "buildbot",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -140,19 +140,19 @@ ln -sfv ${buildbot}/lib $out/lib
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")));
       const preCheck = "export PATH=\"$out/bin:$PATH\"\n";
       const passthru = nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         withPlugins: withPlugins,
         python: python,
         updateScript: nix.path(here, "./update.sh"),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             buildbot: nix.thunk(() => nix.attr(nixosTests, "buildbot")),
           })),
         })))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Open-source continuous integration framework for automating software build, test, and release processes",
         homepage: "https://buildbot.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/tag/v${version}`),
@@ -160,7 +160,7 @@ ln -sfv ${buildbot}/lib $out/lib
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

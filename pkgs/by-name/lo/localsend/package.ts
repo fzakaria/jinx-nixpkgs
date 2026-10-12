@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const pname = "localsend";
   const version = "1.18.0";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Open source cross-platform alternative to AirDrop",
     homepage: "https://localsend.org/",
     donationPage: "https://localsend.org/donate",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       meta: meta,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       makeBinaryWrapper: makeBinaryWrapper,
       undmg: undmg,
     }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: meta,

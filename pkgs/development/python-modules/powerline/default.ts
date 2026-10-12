@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "powerline";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "powerline",
           repo: "powerline",
           tag: version,
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const postInstall = "install -dm755 \"$out/etc/fonts/conf.d\"\ninstall -m644 \"font/10-powerline-symbols.conf\" \"$out/etc/fonts/conf.d/10-powerline-symbols.conf\"\ninstall -dm755 \"$out/share/fish/vendor_functions.d\"\ninstall -m644 \"powerline/bindings/fish/powerline-setup.fish\" \"$out/share/fish/vendor_functions.d/powerline-setup.fish\"\n\ncp -ra powerline/bindings/{bash,shell,tcsh,tmux,vim,zsh} $out/share/\nrm $out/share/*/*.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/powerline/powerline",
         description: "Ultimate statusline/prompt utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         format,

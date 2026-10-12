@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uget-integrator",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ugetdm",
           repo: "uget-integrator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [uget, nix.thunk(() => nix.sel(python3Packages, "python"))]),
       installPhase: "for f in conf/com.ugetdm.{chrome,firefox}.json; do\n  substituteInPlace $f --replace \"/usr\" \"$out\"\ndone\n\ninstallBin bin/uget-integrator\ninstall -D -t $out/etc/opt/chrome/native-messaging-hosts conf/com.ugetdm.chrome.json\ninstall -D -t $out/etc/chromium/native-messaging-hosts   conf/com.ugetdm.chrome.json\ninstall -D -t $out/etc/opera/native-messaging-hosts      conf/com.ugetdm.chrome.json\ninstall -D -t $out/lib/mozilla/native-messaging-hosts    conf/com.ugetdm.firefox.json\n\nwrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native messaging host to integrate uGet Download Manager with web browsers",
         mainProgram: "uget-integrator",
         homepage: "https://github.com/ugetdm/uget-integrator",

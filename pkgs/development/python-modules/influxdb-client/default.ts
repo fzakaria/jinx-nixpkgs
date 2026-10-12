@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.50.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "influxdata",
           repo: "influxdb-client-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [certifi, python_dateutil, reactivex, urllib3]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => [aiocsv, aiohttp]),
         ciso: nix.thunk(() => [ciso8601]),
         extra: nix.thunk(() => [numpy, pandas]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["influxdb_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "InfluxDB client library",
         homepage: "https://github.com/influxdata/influxdb-client-python",
         changelog: nix.thunk(() => nix.str`https://github.com/influxdata/influxdb-client-python/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

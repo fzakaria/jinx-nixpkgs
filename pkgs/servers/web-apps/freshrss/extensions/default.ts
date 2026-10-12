@@ -35,48 +35,48 @@ export default nix.lambda((args) => (() => {
   const buildFreshRssExtension = nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./freshrss-utils.nix"), nix.thunk(() => ({}))), "buildFreshRssExtension"));
   const official_extensions_rev_date = "2025-12-26";
   const official_extensions_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "FreshRSS",
       repo: "Extensions",
       rev: "42c32bfd9af2d816933cf310e24d25888a8e167d",
       hash: "sha256-El488QK3xWQM01GsuyBizud6VghXsRDqiOblnMfjVxE=",
     }))));
   const baseExtensions = (_self) => nix.app(nix.sel(lib, "mapAttrs"), (_n) => nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       "auto-ttl": nix.thunk(() => nix.app(buildFreshRssExtension, nix.thunk(() => (() => {
           const FreshRssExtUniqueId = "AutoTTL";
           const pname = "auto-ttl";
           const version = "0.5.0";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               owner: "mgnsk",
               repo: "FreshRSS-AutoTTL",
               rev: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-OiTiLZ2BjQD1W/BD8EkUt7WB2wOjL6GMGJ+APT4YpwE=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "FreshRSS extension for automatic feed refresh TTL based on the average frequency of entries",
             homepage: "https://github.com/mgnsk/FreshRSS-AutoTTL",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stunkymonkey"))]),
           }));
-          return { __proto__: pos$4, FreshRssExtUniqueId, pname, version, src, meta };
+          return { [nix.POS]: pos$4, FreshRssExtUniqueId, pname, version, src, meta };
         })()))),
       demo: nix.thunk(() => nix.app(buildFreshRssExtension, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           FreshRssExtUniqueId: "Demo",
           pname: "demo",
           version: "0.1-unstable-2023-12-22",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               owner: "FreshRSS",
               repo: "xExtension-Demo",
               rev: "8d60f71a2f0411f5fbbb1f88a57791cee0848f35",
               hash: "sha256-5fe8TjefSiGMaeZkurxSJjX8qEEa1ArhJxDztp7ZNZc=",
             })))),
           meta: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "FreshRSS Extension for the demo version",
             homepage: "https://github.com/FreshRSS/xExtension-Demo",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -84,12 +84,12 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       "reading-time": nix.thunk(() => nix.app(buildFreshRssExtension, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           FreshRssExtUniqueId: "ReadingTime",
           pname: "reading-time",
           version: "1.5",
           src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               domain: "framagit.org",
               owner: "Lapineige",
               repo: "FreshRSS_Extension-ReadingTime",
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-C5cRfaphx4Qz2xg2z+v5qRji8WVSIpvzMbethTdSqsk=",
             })))),
           meta: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "FreshRSS extension adding a reading time estimation next to each article",
             homepage: "https://framagit.org/Lapineige/FreshRSS_Extension-ReadingTime",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -109,30 +109,30 @@ export default nix.lambda((args) => (() => {
           const pname = "reddit-image";
           const version = "1.2.0";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               owner: "aledeg",
               repo: "xExtension-RedditImage",
               rev: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-H/uxt441ygLL0RoUdtTn9Q6Q/Ois8RHlhF8eLpTza4Q=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             description: "FreshRSS extension to process Reddit feeds",
             homepage: "https://github.com/aledeg/xExtension-RedditImage",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stunkymonkey"))]),
           }));
-          return { __proto__: pos$13, FreshRssExtUniqueId, pname, version, src, meta };
+          return { [nix.POS]: pos$13, FreshRssExtUniqueId, pname, version, src, meta };
         })()))),
       "title-wrap": nix.thunk(() => nix.app(buildFreshRssExtension, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           FreshRssExtUniqueId: "TitleWrap",
           pname: "title-wrap",
           version: nix.thunk(() => nix.str`0.3.1-unstable-${official_extensions_rev_date}`),
           src: official_extensions_src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(official_extensions_src, "name")}/xExtension-TitleWrap`),
           meta: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             description: "FreshRSS extension instead of truncating the title is wrapped",
             homepage: "https://github.com/FreshRSS/Extensions/tree/master/xExtension-TitleWrap",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -140,14 +140,14 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       "unsafe-auto-login": nix.thunk(() => nix.app(buildFreshRssExtension, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           FreshRssExtUniqueId: "UnsafeAutologin",
           pname: "unsafe-auto-login",
           version: nix.thunk(() => nix.str`1.0.0-unstable-${official_extensions_rev_date}`),
           src: official_extensions_src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(official_extensions_src, "name")}/xExtension-UnsafeAutologin`),
           meta: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             description: "FreshRSS extension to bring back unsafe autologin functionality.",
             homepage: "https://github.com/FreshRSS/Extensions/tree/master/xExtension-UnsafeAutologin",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -155,14 +155,14 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       youtube: nix.thunk(() => nix.app(buildFreshRssExtension, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           FreshRssExtUniqueId: "YouTube",
           pname: "youtube",
           version: nix.thunk(() => nix.str`1.1.0-unstable-${official_extensions_rev_date}`),
           src: official_extensions_src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(official_extensions_src, "name")}/xExtension-YouTube`),
           meta: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             description: "FreshRSS extension allows you to directly watch YouTube/PeerTube videos from within subscribed channel feeds",
             homepage: "https://github.com/FreshRSS/Extensions/tree/master/xExtension-YouTube",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -175,6 +175,6 @@ export default nix.lambda((args) => (() => {
       (_self) => (super$) => nix.app(nix.sel(lib, "recursiveUpdate"), super$, nix.thunk(() => nix.app(aliases, super$))),
     ])));
   const toFix = nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "extends")))), baseExtensions, overlays));
-  return nix.update(nix.app(nix.sel(lib, "fix"), toFix), { __proto__: pos$21, buildFreshRssExtension: buildFreshRssExtension });
+  return nix.update(nix.app(nix.sel(lib, "fix"), toFix), { [nix.POS]: pos$21, buildFreshRssExtension: buildFreshRssExtension });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

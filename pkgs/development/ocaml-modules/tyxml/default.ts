@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const pname = "tyxml";
       const version = "4.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocsigen/tyxml/releases/download/${version}/tyxml-${version}.tbz`),
           hash: "sha256-v+tnPGtOEgpOykxIRIrdR9w/jQLCtA9j/9zMTpHJAt0=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [uutf, re]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://ocsigen.org/tyxml/",
         description: "Library that makes it almost impossible for your OCaml programs to generate wrong XML output, using static typing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

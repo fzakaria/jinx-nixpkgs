@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const netpbm = nix.arg($, "netpbm");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sng",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sng/sng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yb37gPWhfbGquTN7rtZKjr6lwN34KRXGiHuM+4fs5h4=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sng.sourceforge.net/",
         description: "Minilanguage designed to represent the entire contents of a PNG file in an editable form",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

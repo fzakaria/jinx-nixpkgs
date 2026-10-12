@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyupio",
           repo: "dparse",
           tag: version,
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [packaging]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, conda: nix.thunk(() => [pyyaml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, conda: nix.thunk(() => [pyyaml]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["dparse"]);
       const disabledTests = nix.thunk(() => ["test_update_pipfile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parser for Python dependency files",
         homepage: "https://github.com/pyupio/dparse",
         changelog: nix.thunk(() => nix.str`https://github.com/pyupio/dparse/blob/${version}/HISTORY.rst`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

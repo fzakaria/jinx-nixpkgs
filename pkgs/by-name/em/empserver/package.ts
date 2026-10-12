@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "empserver",
       version: "4.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gefla",
           repo: "empserver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ touch "$sourceRoot/.dirty-stamp"
       preConfigure: "./bootstrap\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-player, client/server Internet based war game",
         homepage: "https://www.wolfpackempire.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

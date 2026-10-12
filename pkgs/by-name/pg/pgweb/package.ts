@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pgweb = nix.arg($, "pgweb");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgweb",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sosedoff",
           repo: "pgweb",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               package: pgweb,
               command: "pgweb --version",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/sosedoff/pgweb/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Web-based database browser for PostgreSQL",
         longDescription: "A simple postgres browser that runs as a web server. You can view data,\nrun queries and examine tables and indexes.\n",

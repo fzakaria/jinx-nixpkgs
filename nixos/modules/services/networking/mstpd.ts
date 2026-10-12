@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mstpd"));
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mstpd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to enable the multiple spanning tree protocol daemon.\n",
@@ -41,22 +41,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mstpd"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             mstpd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Multiple Spanning Tree Protocol Daemon",
               wantedBy: nix.thunk(() => ["network.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$6, ConditionCapability: "CAP_NET_ADMIN" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, ConditionCapability: "CAP_NET_ADMIN" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(pkgs, "mstpd")}/bin/mstpd mstpd`),
                 PIDFile: "/run/mstpd.pid",

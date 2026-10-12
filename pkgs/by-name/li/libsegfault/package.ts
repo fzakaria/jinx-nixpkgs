@@ -20,28 +20,28 @@ export default nix.lambda((args) => (() => {
   const libbacktrace = nix.arg($, "libbacktrace");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libsegfault",
       version: "0-unstable-2025-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonathanpoelen",
           repo: "libsegfault",
           rev: "30346f0103d6c301d5be28ec59c57396a9939931",
           sha256: "AlR5lVo/lQ8RPY2/mlztwhOmWqINU0hHVE6as5D2s8k=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED=1")),
       })),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       buildInputs: nix.thunk(() => [boost, libbacktrace]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Implementation of libSegFault.so with Boost.stracktrace",
         homepage: "https://github.com/jonathanpoelen/libsegfault",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

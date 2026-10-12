@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const version = "1.4.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "OHF-voice",
       repo: "speech-to-phrase",
       tag: nix.thunk(() => nix.str`v${version}`),
       fetchSubmodules: true,
       hash: "sha256-1Yj4cxFxBQdhytl8YTDbjC44veRNmLhwiRZEhsVcfS4=",
     }))));
-  const stt_onlyprobs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stt-onlyprobs.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
+  const stt_onlyprobs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stt-onlyprobs.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
   const tools = nix.thunk(() => nix.app(runCommand, "speech-to-phrase-tools", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/kaldi
 ln -s ${kaldi}/{bin,lib} $out/kaldi
 cp -r ${kaldi}/share/kaldi/egs/wsj/s5/{steps,utils} $out/kaldi
@@ -45,7 +45,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), stt_onlyprobs)} $out/stt_onlyprobs
 `)));
   const python3Packages = nix.thunk(() => nix.attr(home_assistant, "python3Packages"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "speech-to-phrase",
       version: version,
       src: src,
@@ -105,7 +105,7 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/speech
         "tests/test_recognize.py::test_recognize",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/speech-to-phrase/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/OHF-Voice/speech-to-phrase",
         description: "Fast and personalized local speech-to-text",

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "13.2";
       const outputs = nix.thunk(() => ["out", "tex"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/auctex/auctex-${version}.tar.gz`),
           hash: "sha256-Hn5AKrz4RmlOuncZklvwlcI+8zpeZgIgHHS2ymCUQDU=",
         }))));
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "mkdir -p \"$tex\"\nexport HOME=$(mktemp -d)\n";
       const configureFlags = nix.thunk(() => ["--with-lispdir=${out}/share/emacs/site-lisp", "--with-texmf-dir=${tex}"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/auctex",
         description: "Extensible package for writing and formatting TeX files in GNU Emacs and XEmacs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

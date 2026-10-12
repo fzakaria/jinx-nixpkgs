@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libseccomp",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/seccomp/libseccomp/releases/download/v${nix.sel(finalAttrs, "version")}/libseccomp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UB9mxmciXVN5G5fh18+Fq3ZMKX0EiB9g849FHEsO4b4=",
         })))),
@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
       preFixup: "rm -rfv src",
       postInstall: "cp -R ./src/python/ tmp-pythonsrc/\ntar -zcf $pythonsrc --mtime=\"@$SOURCE_DATE_EPOCH\" --sort=name --transform s/tmp-pythonsrc/python-foundationdb/ ./tmp-pythonsrc/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           seccomp: nix.thunk(() => nix.attr(python3Packages, "seccomp")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High level library for the Linux Kernel seccomp filter",
         mainProgram: "scmp_sys_resolver",
         homepage: "https://github.com/seccomp/libseccomp",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "thoughtpolice"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "libseccomp_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

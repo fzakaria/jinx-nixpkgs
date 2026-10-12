@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "randomconv",
       version: "0.2.0",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hannesm/randomconv/releases/download/v${nix.sel(finalAttrs, "version")}/randomconv-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-sxce3wfjQaRGj5L/wh4qiGO4LtXDb3R3zJja8F1bY+o=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hannesm/randomconv",
         description: "Convert from random bytes to random native numbers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

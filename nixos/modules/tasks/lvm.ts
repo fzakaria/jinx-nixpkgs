@@ -79,24 +79,24 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "lvm"));
   return {
-    __proto__: pos$67,
+    [nix.POS]: pos$67,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         lvm: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "lvm2"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: true,
             description: "Whether to enable lvm2.\n\n:::{.note}\nThe lvm2 package contains device-mapper udev rules and without those tools like cryptsetup do not fully function!\n:::\n",
           })),
           resizeHelper: nix.thunk(() => ({
-            __proto__: pos$3,
-            enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "lvresize_fs_helper"), { __proto__: pos$2, default: true })),
+            [nix.POS]: pos$3,
+            enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "lvresize_fs_helper"), { [nix.POS]: pos$2, default: true })),
           })),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               default: nix.thunk(() => nix.sel(pkgs, "lvm2")),
               internal: true,
@@ -104,32 +104,32 @@ export default nix.lambda((args) => (() => {
               description: "This option allows you to override the LVM package that's used on the system\n(udev rules, tmpfiles, systemd services).\nDefaults to pkgs.lvm2, pkgs.lvm2_dmeventd if dmeventd or pkgs.lvm2_vdo if vdo is enabled.\n",
             })))),
           dmeventd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the LVM dmevent daemon")),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             thin: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "support for booting from ThinLVs")),
             })),
             vdo: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "support for booting from VDOLVs")),
             })),
           })),
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         initrd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             lvm: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "booting from LVM2 in the initrd"), {
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "*This will only be used when systemd is used in stage 1.*\n\nWhether to enable booting from LVM2 in the initrd.\n",
                 default: nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")) && nix.asBool(nix.sel(config, "services", "lvm", "enable")))),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.initrd.systemd.enable && config.services.lvm.enable")),
@@ -141,108 +141,108 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           environment: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             etc: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               "lvm/lvm.conf": nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), "config {}")),
               })),
             })),
           })),
         })),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             systemd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "out"))]),
               })),
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "lvm/lvm.conf": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   text: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "resizeHelper", "enable")), nix.thunk(() => nix.str`global/lvresize_fs_helper_executable = ${nix.sel(pkgs, "lvm2", "scripts")}/libexec/lvresize_fs_helper`))),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               udev: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "out"))]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "lvm", "enable")), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             boot: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               initrd: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 services: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   udev: nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                     binPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   initrdBin: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "dmeventd", "enable")), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             systemd: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               sockets: nix.thunk(() => ({
-                __proto__: pos$36,
-                "dm-event": nix.thunk(() => ({ __proto__: pos$35, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+                [nix.POS]: pos$36,
+                "dm-event": nix.thunk(() => ({ [nix.POS]: pos$35, wantedBy: nix.thunk(() => ["sockets.target"]) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$38,
-                "lvm2-monitor": nix.thunk(() => ({ __proto__: pos$37, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+                [nix.POS]: pos$38,
+                "lvm2-monitor": nix.thunk(() => ({ [nix.POS]: pos$37, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               etc: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 "lvm/lvm.conf": nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   text: nix.thunk(() => nix.str`dmeventd/executable = ${nix.sel(cfg, "package")}/bin/dmeventd`),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               lvm: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "lvm2_dmeventd")))),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "boot", "thin", "enable")), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             boot: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               initrd: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 kernelModules: nix.thunk(() => ["dm-snapshot", "dm-thin-pool"]),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   initrdBin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "lvm", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "thin-provisioning-tools"))]))),
                 })),
                 extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`for BIN in ${nix.sel(pkgs, "thin-provisioning-tools")}/bin/*; do
@@ -256,11 +256,11 @@ done
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               etc: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 "lvm/lvm.conf": nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   text: nix.thunk(() => nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (bin) => nix.str`global/${bin}_executable = ${nix.sel(pkgs, "thin-provisioning-tools")}/bin/${bin}`, nix.thunk(() => [
                       "thin_check",
                       "thin_dump",
@@ -275,21 +275,21 @@ done
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "boot", "vdo", "enable")), nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.9")),
                 message: "boot.vdo.enable requires at least kernel version 6.9",
               })),
             ]),
             boot: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               initrd: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 kernelModules: nix.thunk(() => ["dm-vdo"]),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   initrdBin: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "services", "lvm", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "vdo"))]))),
                 })),
                 extraUtilsCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`ls ${nix.sel(pkgs, "vdo")}/bin/ | while read BIN; do
@@ -306,29 +306,29 @@ done
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               lvm: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 package: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 999n, nix.thunk(() => nix.sel(pkgs, "lvm2_vdo")))),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "vdo"))]),
             })),
           })))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "dmeventd", "enable")) || nix.asBool(nix.sel(cfg, "boot", "thin", "enable")))), nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             boot: nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               initrd: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   contents: nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     "/etc/lvm/lvm.conf": nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       text: nix.thunk(() => nix.add(nix.add(nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(config, "boot", "initrd", "services", "lvm", "enable")) && nix.asBool(nix.sel(cfg, "boot", "thin", "enable")))), nix.thunk(() => nix.app(nix.lookup(w, "concatMapStringsSep"), "\n", (bin) => nix.str`global/${bin}_executable = /bin/${bin}`, nix.thunk(() => [
                             "thin_check",
                             "thin_dump",

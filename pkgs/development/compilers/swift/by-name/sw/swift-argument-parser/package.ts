@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const swift_foundation = nix.arg($, "swift-foundation");
   const swift_minimal = nix.arg($, "swift-minimal");
   const swiftPlatform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform"));
-  const swift = nix.thunk(() => nix.app(nix.sel(swift_minimal, "override"), nix.thunk(() => ({ __proto__: pos$1, "swift-foundation": swift_foundation }))));
+  const swift = nix.thunk(() => nix.app(nix.sel(swift_minimal, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "swift-foundation": swift_foundation }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "swift-argument-parser",
       version: "1.8.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "apple",
           repo: "swift-argument-parser",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,12 +52,12 @@ substitute ${nix.path(here, "./files/ArgumentParserConfig.cmake")} "\${!outputDe
   --replace-fail '@swiftPlatform@' ${swiftPlatform}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/apple/swift-argument-parser",
         description: "Type-safe argument parsing for Swift",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

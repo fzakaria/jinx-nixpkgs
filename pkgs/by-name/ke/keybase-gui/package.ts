@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const versionSuffix = "20260603142455.f60f2ff97e";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keybase-gui",
       version: "6.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/keybase_${nix.add(nix.add(nix.sel(finalAttrs, "version"), "-"), versionSuffix)}_amd64.deb`),
           hash: "sha256-4OqjEc2kLJpJ7FC7WR0DAfsmsrvoKHrm4RtBdGpkti4=",
         })))),
@@ -135,7 +135,7 @@ substituteInPlace $out/share/applications/keybase.desktop \\
   --replace-fail run_keybase $out/bin/keybase-gui
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.keybase.io/",
         description: "Keybase official GUI",
         mainProgram: "keybase-gui",

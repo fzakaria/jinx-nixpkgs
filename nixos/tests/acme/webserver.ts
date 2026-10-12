@@ -68,24 +68,24 @@ export default nix.lambda((args) => (() => {
     const lib = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       name: serverName,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "acme", "members")),
         timeout: 300n,
       })),
       interactive: nix.thunk(() => ({
-        __proto__: pos$3,
-        sshBackdoor: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+        [nix.POS]: pos$3,
+        sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         acme: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           const nodes = nix.arg($_2, "nodes");
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             imports: nix.thunk(() => [nix.path(here, "../common/acme/server")]),
           };
         })(), formals$3),
@@ -93,14 +93,14 @@ export default nix.lambda((args) => (() => {
           const $_2 = nix.formals(args_2, formals$4);
           const nodes = nix.arg($_2, "nodes");
           return {
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             imports: nix.thunk(() => [nix.path(here, "../common/acme/client"), baseModule]),
             networking: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               domain: domain,
-              firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
               hosts: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "127.0.0.1": nix.thunk(() => [
                   nix.thunk(() => nix.str`proxied.${domain}`),
                   nix.thunk(() => nix.str`certchange.${domain}`),
@@ -112,43 +112,43 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               targets: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 "renew-triggered": nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   wantedBy: nix.thunk(() => [nix.thunk(() => nix.str`${serverName}-config-reload.service`)]),
                   after: nix.thunk(() => [nix.thunk(() => nix.str`${serverName}-config-reload.service`)]),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$9, RefuseManualStart: true })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$9, RefuseManualStart: true })),
                 })),
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               acme: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 certs: nix.thunk(() => nix.attrsDyn({}, [
-                  [nix.str`proxied.${domain}`, nix.thunk(() => ({ __proto__: pos$13, listenHTTP: ":8080", group: group }))],
+                  [nix.str`proxied.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$13, listenHTTP: ":8080", group: group }))],
                 ])),
               })),
             })),
             specialisation: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               certchange: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   security: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     acme: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       certs: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`proxied.${domain}`, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`certchange.${domain}`)]),
                         }))],
                       ])),
@@ -156,17 +156,17 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
               })),
-              certundo: nix.thunk(() => ({ __proto__: pos$21, configuration: nix.thunk(() => ({})) })),
+              certundo: nix.thunk(() => ({ [nix.POS]: pos$21, configuration: nix.thunk(() => ({})) })),
               zeroconf: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   services: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(serverName), nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`zeroconf.${domain}`, nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           addSSL: true,
                           enableACME: true,
                           serverAliases: nix.thunk(() => [nix.thunk(() => nix.str`zeroconf2.${domain}`)]),
@@ -177,65 +177,65 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               rmalias: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   services: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(serverName), nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
-                        [nix.str`zeroconf.${domain}`, nix.thunk(() => ({ __proto__: pos$26, addSSL: true, enableACME: true }))],
+                        [nix.str`zeroconf.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$26, addSSL: true, enableACME: true }))],
                       ])),
                     }))],
                   ])),
                 })),
               })),
               nullroot: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   security: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     acme: nix.thunk(() => ({
-                      __proto__: pos$31,
-                      defaults: nix.thunk(() => ({ __proto__: pos$30, listenHTTP: ":8081" })),
+                      [nix.POS]: pos$31,
+                      defaults: nix.thunk(() => ({ [nix.POS]: pos$30, listenHTTP: ":8081" })),
                     })),
                   })),
                   services: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(serverName), nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
-                        [nix.str`nullroot.${domain}`, nix.thunk(() => ({ __proto__: pos$33, addSSL: true, enableACME: true, acmeRoot: null }))],
+                        [nix.str`nullroot.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$33, addSSL: true, enableACME: true, acmeRoot: null }))],
                       ])),
                     }))],
                   ])),
                 })),
               })),
               zeroconf3: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 configuration: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   services: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(serverName), nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`zeroconf.${domain}`, nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           addSSL: true,
                           enableACME: true,
                           serverAliases: nix.thunk(() => [nix.thunk(() => nix.str`zeroconf2.${domain}`)]),
                         }))],
-                        [nix.str`zeroconf3.${domain}`, nix.thunk(() => ({ __proto__: pos$38, addSSL: true, enableACME: true }))],
+                        [nix.str`zeroconf3.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$38, addSSL: true, enableACME: true }))],
                       ])),
                     }))],
                   ])),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     timers: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`acme-renew-zeroconf3.${domain}`, nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         timerConfig: nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           OnCalendar: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "*-*-* *:*:0/5")),
                           AccuracySec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 0n)),
                           RandomizedDelaySec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 0n)),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autospotting",
       version: "0-unstable-2023-07-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LeanerCloud",
           repo: "AutoSpotting",
           rev: "6b08f61d72eafddf01bb68ccb789505f1c7be3eb",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["scripts"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically convert your existing AutoScaling groups to up to 90% cheaper spot instances with minimal configuration changes",
         homepage: "https://github.com/cloudutil/AutoSpotting",
         license: nix.thunk(() => nix.sel(lib, "licenses", "osl3")),

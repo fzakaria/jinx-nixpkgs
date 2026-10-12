@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_image = nix.arg($, "SDL2_image");
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redeclipse",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/redeclipse/base/releases/download/v${nix.sel(finalAttrs, "version")}/redeclipse_${nix.sel(finalAttrs, "version")}_nix.tar.bz2`),
           sha256: "143i713ggbk607qr4n39pi0pn8d93x9x6fcbh8rc51jb9qhi8p5i",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["system-install"]),
       postInstall: "cp -R -t $out/share/redeclipse/data/ data/*\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "First person arena shooter, featuring parkour, impulse boosts, and more",
         longDescription: "Red Eclipse is a fun-filled new take on the first person arena shooter,\nfeaturing parkour, impulse boosts, and more. The development is geared\ntoward balanced gameplay, with a general theme of agility in a variety of\nenvironments.\n",
         homepage: "https://www.redeclipse.net",

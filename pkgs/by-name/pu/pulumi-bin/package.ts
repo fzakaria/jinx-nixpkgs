@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const data = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./data.nix")), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pulumi",
       version: nix.thunk(() => nix.attr(data, "version")),
       postUnpack: "mv pulumi-* pulumi\n",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook, makeWrapper])))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.selOr(stdenv, () => null, "cc", "cc", "libgcc"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://pulumi.io/",
         description: "Pulumi is a cloud development platform that makes creating cloud programs easy and productive",
         sourceProvenance: nix.thunk(() => (() => {

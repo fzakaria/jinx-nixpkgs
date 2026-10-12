@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blockstream-electrs";
       const version = "0.4.1-unstable-2026-04-20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blockstream",
           repo: "electrs",
           rev: "503b740cce2133fd07f451cbe93249a4e092b300",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
       const buildInputs = nix.thunk(() => [rust_jemalloc_sys]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
         BITCOIND_SKIP_DOWNLOAD: true,
@@ -53,7 +53,7 @@ export ELECTRUMD_EXE=${electrum}/bin/electrum
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/electrs --version\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Efficient re-implementation of Electrum Server in Rust",
         longDescription: "A blockchain index engine and HTTP API written in Rust based on\n[romanz/electrs](https://github.com/romanz/electrs).\n\nUsed as the backend for the [Esplora block explorer](https://github.com/Blockstream/esplora)\npowering <https://blockstream.info>.\n\nAPI documentation [is available here](https://github.com/blockstream/esplora/blob/master/API.md).\n\nDocumentation for the database schema and indexing process [is available here](https://github.com/Blockstream/electrs/blob/new-index/doc/schema.md).\n",
         homepage: "https://github.com/Blockstream/electrs",
@@ -65,7 +65,7 @@ export ELECTRUMD_EXE=${electrum}/bin/electrum
         mainProgram: "electrs",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

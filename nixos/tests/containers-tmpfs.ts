@@ -19,37 +19,37 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "containers-tmpfs",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "patryk27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             writableStore: true,
             additionalPaths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "stdenv"))]),
           })),
           containers: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             tmpfs: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               autoStart: true,
               tmpfs: nix.thunk(() => ["/var", "/var/log", "/some/random/path"]),
               config: nix.thunk(() => ({
-                __proto__: pos$4,
-                nix: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+                [nix.POS]: pos$4,
+                nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
               })),
             })),
           })),

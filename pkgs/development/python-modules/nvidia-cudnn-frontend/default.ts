@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const torch = nix.arg($, "torch");
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(cudaPackages, "cudnn-frontend"));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
       meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [looseversion, pytestCheckHook, torch]),
       enabledTestPaths: nix.thunk(() => ["test/"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(nvidia_cudnn_frontend, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),

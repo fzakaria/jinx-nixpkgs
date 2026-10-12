@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kr106",
       version: "2.5.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kayrockscreenprinting",
           repo: "ultramaster_kr106",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "KR106_COPY_AFTER_BUILD", false)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp -r KR106_artefacts/Release/LV2  $out/lib/lv2\ncp -r KR106_artefacts/Release/VST3 $out/lib/vst3\ncp -r KR106_artefacts/Release/CLAP $out/lib/clap\ninstall -Dm755 \"KR106_artefacts/Release/Standalone/Ultramaster KR-106\" $out/bin/kr106\n\nrunHook postInstall\n",
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Synthesizer plugin emulating the Roland Juno-6, Juno-60 and Juno-106",
         homepage: "https://kayrock.org/kr106",
         downloadPage: "https://github.com/kayrockscreenprinting/ultramaster_kr106",

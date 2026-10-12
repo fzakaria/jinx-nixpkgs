@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.1";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gi-docgen/${nix.app(nix.sel(lib, "versions", "major"), version)}/gi-docgen-${version}.tar.xz`),
           hash: "sha256-wxbWwEaZl2toI5Eqrh+ypqP/olU7Qivoj7VuuIGs9Hk=",
         }))));
@@ -47,11 +47,11 @@ substituteInPlace $out/nix-support/propagated-build-inputs \\
   --replace-fail "${python3}" ""
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gi-docgen" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gi-docgen" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Documentation generator for GObject-based libraries",
         mainProgram: "gi-docgen",
         homepage: "https://gitlab.gnome.org/GNOME/gi-docgen",
@@ -59,7 +59,7 @@ substituteInPlace $out/nix-support/propagated-build-inputs \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "insteon_frontend_home_assistant",
           version: version,
           hash: "sha256-p5hL8LE8h/4ytHft/v23uzv7YwR9UBDVru8n7WeY99Q=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["insteon_frontend"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pyinsteon/insteon-panel/releases/tag/${version}`),
         description: "Insteon frontend for Home Assistant",
         homepage: "https://github.com/pyinsteon/insteon-panel",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mbuffer",
       version: "20260926",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.maier-komor.de/software/mbuffer/mbuffer-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-85kfZQJ51gsIpluJsc2SXy4xJGToT8YIeeBUtLsdXO4=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for buffering data streams with a large set of unique features",
         homepage: "https://www.maier-komor.de/mbuffer.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

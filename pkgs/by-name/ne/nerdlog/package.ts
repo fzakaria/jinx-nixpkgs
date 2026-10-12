@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nerdlog",
       version: "1.13.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dimonomid",
           repo: "nerdlog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/dimonomid/nerdlog/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Fast, remote-first, multi-host TUI log viewer with timeline histogram",
         longDescription: "Nerdlog is a fast, remote-first, multi-host TUI log viewer with timeline histogram\nand no central server. Loosely inspired by Graylog/Kibana, but without the bloat.\nPretty much no setup needed, either.\n",

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const aapt = nix.arg($, "aapt");
   const dart_1 = nix.thunk(() => nix.sel(args_1, "dart"));
   const flutterTools_1 = nix.thunk(() => nix.selOr(args_1, () => nix.app(callPackage, nix.path(here, "./flutter-tools.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         dart: dart_1,
         engineVersion: engineVersion,
         patches: patches,
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         systemPlatform: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       }))), "flutterTools"));
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`flutter-${version}-unwrapped`),
       src: src,
       patches: patches,
@@ -130,7 +130,7 @@ $out/bin/flutter --version | fgrep --quiet '${nix.builtins.substring(0n, 10n, en
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dart: dart_1,
         engineVersion: engineVersion,
         artifactHashes: artifactHashes,
@@ -139,7 +139,7 @@ runHook postInstallCheck
         sdk: unwrapped,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Makes it easy and fast to build beautiful apps for mobile and beyond",
         longDescription: "Flutter is Google's SDK for crafting beautiful,\nfast user experiences for mobile, web, and desktop from a single codebase.\n",
         homepage: "https://flutter.dev",

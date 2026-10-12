@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const isStereo = nix.argOr($, "isStereo", () => false);
   const pname = nix.thunk(() => nix.add("goattracker", nix.app(nix.sel(lib, "optionalString"), isStereo, "-stereo")));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: pname,
       desktopName: nix.thunk(() => nix.add("GoatTracker 2", nix.app(nix.sel(lib, "optionalString"), isStereo, " Stereo"))),
       genericName: "Music Tracker",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       keywords: nix.thunk(() => ["tracker", "music"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: nix.thunk(() => (nix.asBool(isStereo) ? "2.77" : "2.77")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/goattracker2/GoatTracker_${nix.sel(finalAttrs, "version")}${nix.app(nix.sel(lib, "optionalString"), isStereo, "_Stereo")}.zip`),
           sha256: nix.thunk(() => (nix.asBool(isStereo) ? "1hiig2d152sv9kazwz33i56x1c54h5sh21ipkqnp6qlnwj8x1ksy" : "sha256-lsK9amqzrKL1uxixx2SsbqaawkXK4UACpyzYfFVFYe8=")),
         })))),
@@ -55,7 +55,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [desktopItem]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add("Crossplatform music editor for creating Commodore 64 music. Uses reSID library by Dag Lem and supports alternatively HardSID & CatWeasel devices", nix.app(nix.sel(lib, "optionalString"), isStereo, " - Stereo version"))),
         homepage: "https://cadaver.github.io/tools.html",
         downloadPage: "https://sourceforge.net/projects/goattracker2/",

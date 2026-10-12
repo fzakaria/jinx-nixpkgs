@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     _class: "nixosTest",
-    node: nix.thunk(() => ({ __proto__: pos$1, pkgs: nix.thunk(() => nix.sel(hostPkgs, "pkgsLinux")) })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: nix.thunk(() => nix.sel(hostPkgs, "pkgsLinux")) })),
   };
 })(), formals$1);
 //# sourceMappingURL=read-only-pkgs.ts.map

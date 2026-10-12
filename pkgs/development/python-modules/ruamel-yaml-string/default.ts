@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ruamel-yaml-string",
       version: "0.1.1",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ruamel.yaml.string",
           hash: "sha256-enrtzAVdRcAE04t1b1hHTr77EGhR9M5WzlhBVwl4Q1A=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [ruamel_yaml]),
       pythonImportsCheck: nix.thunk(() => ["ruamel.yaml"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add dump_to_string/dumps method that returns YAML document as string",
         homepage: "https://sourceforge.net/projects/ruamel-yaml-string/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trashy",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1xHyhAV8hpgMngQdamRzEliyG60t+I3KfsDJi0+180o=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd trash \\\n  --bash <($out/bin/trash completions bash) \\\n  --fish <($out/bin/trash completions fish) \\\n  --zsh <($out/bin/trash completions zsh) \\\n\ninstallManPage --name trashy.1 <($out/bin/trash manpage)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple, fast, and featureful alternative to rm and trash-cli",
         homepage: "https://github.com/oberblastmeister/trashy",
         changelog: nix.thunk(() => nix.str`https://github.com/oberblastmeister/trashy/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

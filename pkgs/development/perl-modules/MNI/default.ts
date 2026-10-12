@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildPerlPackage = nix.arg($, "buildPerlPackage");
   const lib = nix.arg($, "lib");
   return nix.app(buildPerlPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "MNI-Perllib",
       version: "2012-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BIC-MNI",
           repo: "mni-perllib",
           rev: "b908472b4390180ea5d19a121ac5edad6ed88d83",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./no-stdin.patch")]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MNI MINC perllib (not used much anymore)",
         homepage: "https://github.com/BIC-MNI/mni-perllib",
         license: nix.thunk(() => (() => {

@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "squeekboard";
       const version = "1.43.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-UsUr4UnYNo2ybEdNyOD/IiafEZ1YJFwRQ3CVy76X2H0=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
         feedbackd,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Virtual keyboard supporting Wayland",
         homepage: "https://gitlab.gnome.org/World/Phosh/squeekboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

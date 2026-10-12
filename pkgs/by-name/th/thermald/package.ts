@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const upower = nix.arg($, "upower");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "thermald",
       version: "2.5.12",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "thermal_daemon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "demote-fatal-error-to-warning-for-non-mobile-platform.patch",
             url: "https://github.com/panchoh/thermal_daemon/commit/7f2a5d09010c1ffa9ce53c4fe0e673bcc504ea67.patch",
             hash: "sha256-XQM6OfIg/2SZxhxB/NrCUEiWxBl/AtI4Y/jdcXBVoJM=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "NO_CONFIGURE=1 ./autogen.sh",
       postInstall: "cp ./data/thermal-conf.xml $out/etc/thermald/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Thermal Daemon",
         homepage: "https://github.com/intel/thermal_daemon",
         changelog: "https://github.com/intel/thermal_daemon/blob/master/README.txt",

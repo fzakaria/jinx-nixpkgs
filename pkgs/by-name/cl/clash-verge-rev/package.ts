@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const pname = "clash-verge-rev";
   const version = "2.5.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "clash-verge-rev",
       repo: "clash-verge-rev",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
     }))));
   const pnpm_hash = "sha256-AS07hD3QqPJDLLUvNgArtXpH54ek14PmEjevP1WxTHs=";
   const vendor_hash = "sha256-GPqgzOLFPAb8SNgE3vI5Ypx+zJvk+5TgkttRVktxttU=";
-  const service = nix.thunk(() => nix.app(callPackage, nix.path(here, "./service.nix"), nix.thunk(() => ({ __proto__: pos$2, meta: meta }))));
+  const service = nix.thunk(() => nix.app(callPackage, nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, meta: meta }))));
   const unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       libsoup_3: libsoup_3,
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "Clash GUI based on tauri",
     homepage: "https://github.com/clash-verge-rev/clash-verge-rev",
     longDescription: "Clash GUI based on tauri\nSetting NixOS option `programs.clash-verge.enable = true` is recommended.\n",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       src: src,
       version: version,
@@ -79,7 +79,7 @@ ln -s ${nix.sel(dbip_country_lite, "mmdb")} $out/lib/Clash\\ Verge/resources/Cou
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, unwrapped: unwrapped, service: service })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: unwrapped, service: service })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

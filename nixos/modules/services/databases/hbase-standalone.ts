@@ -44,50 +44,50 @@ export default nix.lambda((args) => (() => {
         ${nix.app(buildProperty, nix.thunk(() => nix.update(nix.sel(opt, "settings", "default"), nix.sel(cfg, "settings"))))}
       </configuration>
 `)));
-  const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "hbase-config-dir", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "hbase-config-dir", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 cp ${nix.sel(cfg, "package")}/conf/* $out/
 rm $out/hbase-site.xml
 ln -s ${configFile} $out/hbase-site.xml
 `)));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "hbase"]), nix.thunk(() => ["services", "hbase-standalone"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "hbase-standalone": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "HBase master in standalone mode with embedded regionserver and zookeper.\nDo not use this configuration for production nor for evaluating HBase performance\n")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hbase", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hbase",
               description: "User account under which HBase runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "hbase",
               description: "Group account under which HBase runs.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/hbase",
               description: "Specifies location of HBase database files. This location should be\nwritable and readable for the user the HBase service runs as\n(hbase by default).\n",
             })))),
           logDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/log/hbase",
               description: "Specifies the location of HBase log files.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -97,7 +97,7 @@ ln -s ${configFile} $out/hbase-site.xml
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "hbase.rootdir": nix.thunk(() => nix.str`file://${nix.sel(cfg, "dataDir")}/hbase`),
                 "hbase.zookeeper.property.dataDir": nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/zookeeper`),
               })),
@@ -112,29 +112,29 @@ ln -s ${configFile} $out/hbase-site.xml
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "logDir")}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             hbase: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "HBase Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 JAVA_HOME: nix.thunk(() => nix.str`${nix.sel(pkgs, "jre8")}`),
                 HBASE_LOG_DIR: nix.thunk(() => nix.sel(cfg, "logDir")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/hbase --config ${configDir} master start`),
@@ -143,20 +143,20 @@ ln -s ${configFile} $out/hbase-site.xml
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             hbase: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "HBase Server user",
               group: "hbase",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "hbase")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             hbase: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "hbase")),
             })),
           })),

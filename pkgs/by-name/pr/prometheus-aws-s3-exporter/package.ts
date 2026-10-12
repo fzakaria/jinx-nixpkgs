@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "aws-s3-exporter";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ribbybibby",
           repo: "s3_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Exports Prometheus metrics about S3 buckets and objects",
         mainProgram: "s3_exporter",
         homepage: "https://github.com/ribbybibby/s3_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mmahut"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

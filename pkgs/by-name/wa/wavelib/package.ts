@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wavelib",
       version: "0-unstable-2025-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rafat",
           repo: "wavelib",
           rev: "7f61bf592f3c470b2a7d8199431fde821d7253ac",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nBin/Release/wavelibLibTests\nrunHook postCheck\n",
       postInstall: "rm -r $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C Implementation of Discrete Wavelet Transform (DWT,SWT and MODWT)",
         homepage: "https://github.com/rafat/wavelib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

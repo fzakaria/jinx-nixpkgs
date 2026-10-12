@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zig-shell-completions",
       version: "0-unstable-2025-11-25",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ziglang",
           repo: "shell-completions",
           rev: "c2983a75dcbcaf3a1df74ab563a9bd3c8e7f448e",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstallShellCompletion --bash --name zig.bash _zig.bash\ninstallShellCompletion --zsh --name _zig _zig\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codeberg.org/ziglang/shell-completions",
         description: "Shell completions for the Zig compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-clock",
       version: "4.2.0",
       minimalOCamlVersion: "4.06",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-clock/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-clock-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-+hfRXVviPHm6dB9ffLiO1xEt4WpEEM6oHHG5gIaImEc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libraries and module types for portable clocks",
         homepage: "https://github.com/mirage/mirage-clock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

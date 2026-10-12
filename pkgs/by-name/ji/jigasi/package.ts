@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jdk17_headless = nix.arg($, "jdk17_headless");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jigasi",
       version: "1.1-412-ge9a3acc",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.jitsi.org/stable/jigasi_${nix.sel(finalAttrs, "version")}-1_all.deb`),
           hash: "sha256-NlJxfUyUGUqyk8rQAtykZhyAhMapmTvca42HaG1MRJU=",
         })))),
@@ -39,14 +39,14 @@ ln -s $out/share/jigasi/jigasi.sh $out/bin/jigasi
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "single-node-smoke-test": nix.thunk(() => nix.sel(nixosTests, "jitsi-meet")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Server-side application that allows regular SIP clients to join Jitsi Meet conferences",
         mainProgram: "jigasi",
         longDescription: "Jitsi Gateway to SIP: a server-side application that allows regular SIP clients to join Jitsi Meet conferences hosted by Jitsi Videobridge.\n",

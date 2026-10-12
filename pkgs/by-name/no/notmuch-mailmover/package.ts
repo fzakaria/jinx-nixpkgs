@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "notmuch-mailmover",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "michaeladler",
           repo: "notmuch-mailmover",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [notmuch, lua5_4]),
       postInstall: "installManPage share/notmuch-mailmover.1.gz\n\nmkdir -p $out/share/notmuch-mailmover\ncp -dR example $out/share/notmuch-mailmover/\n\ninstallShellCompletion --cmd notmuch-mailmover \\\n  --bash share/notmuch-mailmover.bash \\\n  --fish share/notmuch-mailmover.fish \\\n  --zsh share/_notmuch-mailmover\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Application to assign notmuch tagged mails to IMAP folders",
         mainProgram: "notmuch-mailmover",
         homepage: "https://github.com/michaeladler/notmuch-mailmover/",

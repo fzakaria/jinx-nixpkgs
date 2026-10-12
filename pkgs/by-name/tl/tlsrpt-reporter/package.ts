@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tlsrpt-reporter",
       version: "0.5.0",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sys4",
           repo: "tlsrpt-reporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sys4/tlsrpt-reporter/commit/32d00c13508dd7f9695b77e253e88c88dc838fbd.patch",
             hash: "sha256-RUNF86RkTu6DLv6/7eaY//fFB8kGzmZxQ70kdNpLxj8=",
           })))),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_b0rkcmd", "test_intarg_cmd_float", "test_intarg_cmd_string"]),
       pythonImportsCheck: nix.thunk(() => ["tlsrpt_reporter"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, tlsrpt: nix.thunk(() => nix.attr(nixosTests, "tlsrpt")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, tlsrpt: nix.thunk(() => nix.attr(nixosTests, "tlsrpt")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Application suite to receive TLSRPT datagrams and to generate and deliver TLSRPT reports",
         homepage: "https://github.com/sys4/tlsrpt-reporter",
         changelog: nix.thunk(() => nix.str`https://github.com/sys4/tlsrpt-reporter/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

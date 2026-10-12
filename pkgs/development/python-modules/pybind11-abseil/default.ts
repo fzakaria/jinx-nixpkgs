@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "202402.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pybind",
           repo: "pybind11_abseil",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pybind11_abseil.patch",
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/pybind11-abseil/pybind11_abseil.patch?rev=2",
             hash: "sha256-zwxCIhYMvexdSUmKM22OMBMEo0NRDgMtSVMDySFCn6U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "use-system-packages-if-possible.patch",
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/pybind11-abseil/use-system-packages-if-possible.patch?rev=2",
             hash: "sha256-CLHOSni2ej6ICtvMtBoCIpR9CNPPibwIS+hYbOCAwBE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "0001-Install-headers-and-CMake-development-files.patch",
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/pybind11-abseil/0001-Install-headers-and-CMake-development-files.patch?rev=2",
             hash: "sha256-TU9AzvF83aROY4gwys2ITOcdtjEm4x2IbhX4cHNWp0M=",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "Python_EXECUTABLE", nix.thunk(() => nix.sel(python, "interpreter")))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Pybind11 bindings for the Abseil C++ Common Libraries",
         homepage: "https://github.com/pybind/pybind11_abseil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

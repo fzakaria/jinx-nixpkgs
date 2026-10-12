@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const graphviz_nox = nix.arg($, "graphviz-nox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastcdr",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eProsima",
           repo: "Fast-CDR",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [gtest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/eProsima/Fast-CDR",
         description: "Serialization library for OMG's Common Data Representation (CDR)",
         longDescription: "A C++ library that provides two serialization mechanisms. One is the\nstandard CDR serialization mechanism, while the other is a faster\nimplementation that modifies the standard.\n",

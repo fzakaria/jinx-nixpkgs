@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const registryDat = nix.arg($_1, "registryDat");
     const elmVersion = nix.arg($_1, "elmVersion");
     const makeDotElm = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./makeDotElm.nix")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         stdenv: stdenv,
         lib: lib,
         fetchurl: fetchurl,

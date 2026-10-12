@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xmlformat",
       version: "1.9-unstable-2026-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "someth2say",
           repo: "xmlformat",
           rev: "172a7db1bde6abe91836048a20afe2805a963e76",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl]),
       installPhase: "mkdir -p $out/bin\ncp bin/xmlformat.pl $out/bin/xmlformat\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Configurable formatter (or 'pretty-printer') for XML documents",
         homepage: "https://github.com/someth2say/xmlformat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

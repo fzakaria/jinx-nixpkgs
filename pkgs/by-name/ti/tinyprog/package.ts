@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`1.0.24.dev114+g${nix.app(nix.sel(lib, "substring"), 0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinyfpga",
           repo: "TinyFPGA-Bootloader",
           rev: "97f6353540bf7c0d27f5612f202b48f41da75299",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "pyusb")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tinyfpga/TinyFPGA-Bootloader/tree/master/programmer",
         description: "Programmer for FPGA boards using the TinyFPGA USB Bootloader",
         mainProgram: "tinyprog",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

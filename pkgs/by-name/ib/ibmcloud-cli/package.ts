@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   })());
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos_arm64" : nix.str`linux_${arch}`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ibmcloud-cli",
       version: "2.46.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.clis.cloud.ibm.com/ibm-cloud-cli/${nix.sel(finalAttrs, "version")}/binaries/IBM_Cloud_CLI_${nix.sel(finalAttrs, "version")}_${platform}.tgz`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "aarch64-darwin": "sha256-BxSEmQNIiT3nbBFQdVdo7bJsqtZfq35DyxlJX70/EmU=",
             "x86_64-linux": "sha256-0FaW6eaJJ5YQWjfMIXf4I5spjG8kFeqwH2vm9BNTBzI=",
             "aarch64-linux": "sha256-wZYB9SCIJWl6rZGJnRTevsl/sE2Rel1m6LIp+ZilYng=",
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, writableTmpDirAsHomeHook]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 ibmcloud $out/bin/ibmcloud\nmkdir -p $out/share/ibmcloud\ncp LICENSE NOTICE $out/share/ibmcloud\ninstallShellCompletion --cmd ibmcloud --bash <($out/bin/ibmcloud --generate-bash-completion)\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line client for IBM Cloud",
         homepage: "https://cloud.ibm.com/docs/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

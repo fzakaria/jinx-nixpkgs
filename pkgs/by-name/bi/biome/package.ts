@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "biome",
       version: "2.5.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "biomejs",
           repo: "biome",
           rev: nix.thunk(() => nix.str`@biomejs/biome@${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "--skip=cases::help::start_help",
       ])),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BIOME_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         LIBGIT2_NO_VENDOR: 1n,
         INSTA_UPDATE: "no",
@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Installs biome schema aside with the package\ninstall -Dm644 packages/@biomejs/biome/configuration_schema.json $out/share/schema.json\n",
       preCheck: "# tests assume git repository\ngit init\n\n# tests assume $BIOME_VERSION is unset\nunset BIOME_VERSION\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         jsonschema: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/schema.json`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Toolchain of the web",
         homepage: "https://biomejs.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/biomejs/biome/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

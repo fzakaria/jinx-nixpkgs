@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/run/wrappers/bin/sendmail");
   const atWrapperPath = nix.argOr($, "atWrapperPath", () => "/run/wrappers/bin/at");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "at",
       version: "3.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/a/at/at_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-uwZrOJ18m7nYSjVzgDK4XDDLp9lJ91gZKtxyyUd/07g=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/riscv/riscv-poky/master/meta/recipes-extended/at/at/0001-remove-glibc-assumption.patch",
             hash: "sha256-1UobqEZWoaq0S8DUDPuI80kTx0Gut2/VxDIwcKeGZOY=",
           })))),
@@ -55,7 +55,7 @@ substituteInPlace ./configure --replace-fail "test -d /var/run" "true"
       postInstall: nix.thunk(() => nix.str`sed -i "6i test -x ${atWrapperPath} && exec ${atWrapperPath} -qb now  # exec doesn't return" "$out/bin/batch"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Classical Unix `at' job scheduling command",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://tracker.debian.org/pkg/at",

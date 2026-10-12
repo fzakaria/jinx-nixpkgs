@@ -23,58 +23,58 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "common/ec2.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       makeTest: nix.thunk(() => nix.lookup(w_1, "makeTest")),
       pkgs: pkgs,
     })))), w_1);
   const config_1 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           fileSystems: nix.thunk(() => ({
-            __proto__: pos$5,
-            "/": nix.thunk(() => ({ __proto__: pos$4, device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
+            [nix.POS]: pos$5,
+            "/": nix.thunk(() => ({ [nix.POS]: pos$4, device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             loader: nix.thunk(() => ({
-              __proto__: pos$7,
-              grub: nix.thunk(() => ({ __proto__: pos$6, device: "/dev/vda" })),
+              [nix.POS]: pos$7,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/vda" })),
               timeout: 0n,
             })),
           })),
-          nixpkgs: nix.thunk(() => ({ __proto__: pos$9, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$9, pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
   const image = nix.thunk(() => nix.add(nix.app(nix.builtins.import, nix.path(here, "../lib/make-disk-image.nix"), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pkgs: pkgs,
       config: config_1,
       lib: nix.thunk(() => nix.sel(pkgs, "lib")),
       format: "qcow2",
       contents: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "testFile", "contents")),
           target: "/testFile",
           user: "1234",
           group: "5678",
           mode: "755",
         })),
-        nix.thunk(() => ({ __proto__: pos$13, source: nix.path(here, "./."), target: "/testDir" })),
+        nix.thunk(() => ({ [nix.POS]: pos$13, source: nix.path(here, "./."), target: "/testDir" })),
       ]),
     }))), "/nixos.qcow2"));
   return nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       name: "image-contents",
       image: image,
       script: "machine.start()\n# Test that if contents includes a file, it is copied to the target.\nassert \"content\" in machine.succeed(\"cat /testFile\")\nfileDetails = machine.succeed(\"ls -l /testFile\")\nassert \"1234\" in fileDetails\nassert \"5678\" in fileDetails\nassert \"rwxr-xr-x\" in fileDetails\n\n# Test that if contents includes a directory, it is copied to the target.\ndirList = machine.succeed(\"ls /testDir\")\nassert \"image-contents.nix\" in dirList\n",

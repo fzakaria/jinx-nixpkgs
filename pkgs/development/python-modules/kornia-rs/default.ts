@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kornia",
           repo: "kornia-rs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nasm,
       ]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [numpy, pytest_xdist, pytestCheckHook, torch]);
       const disabledTests = nix.thunk(() => ["test_apriltag_decoder"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kornia/kornia-rs",
         description: "Python bindings to Low-level Computer Vision library in Rust",
         changelog: nix.thunk(() => nix.str`https://github.com/kornia/kornia-rs/releases/tag/v${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

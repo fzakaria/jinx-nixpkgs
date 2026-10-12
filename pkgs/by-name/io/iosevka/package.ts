@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`Iosevka${nix.builtins.toString(set)}`);
       const version = "34.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "be5invis",
           repo: "iosevka",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([go_toml, ttfautohint_nox], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools]))));
       const strictDeps = true;
       const buildPlan = nix.thunk(() => (nix.asBool(nix.builtins.isAttrs(privateBuildPlan)) ? nix.builtins.toJSON(nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           buildPlans: nix.thunk(() => nix.attrsDyn({}, [[nix.force(pname), privateBuildPlan]])),
         }))) : nix.force(privateBuildPlan)));
       const extraParameters_1 = extraParameters;
@@ -56,7 +56,7 @@ runHook postConfigure
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://typeof.net/Iosevka/",
         downloadPage: "https://github.com/be5invis/Iosevka/releases",
         description: "Versatile typeface for code, from code",
@@ -69,7 +69,7 @@ runHook postConfigure
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

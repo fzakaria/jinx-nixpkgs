@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "abseil-cpp";
       const version = "20210324.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abseil",
           repo: "abseil-cpp",
           rev: version,
@@ -31,19 +31,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/abseil/abseil-cpp/commit/5bfa70c75e621c5d5ec095c8c4c0c050dcb2957e.patch",
             sha256: "0nhjxqfxpi2pkfinnqvd5m4npf9l1kg39mjx9l3087ajhadaywl5",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "gcc-13.patch",
             url: "https://github.com/abseil/abseil-cpp/commit/36a4b073f1e7e02ed7d1ac140767e36f82f09b7c.patch",
             hash: "sha256-aA7mwGEtv/cQINcawjkukmCvfNuqwUeDFssSiNKPdgg=",
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLoongArch64")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://github.com/abseil/abseil-cpp/commit/808bc202fc13e85a7948db0d7fb58f0f051200b1.patch",
               sha256: "sha256-ayY/aV/xWOdEyFSDqV7B5WDGvZ0ASr/aeBeYwP5RZVc=",
             })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(cxxStandard, null)), nix.thunk(() => [nix.thunk(() => nix.str`-DCMAKE_CXX_STANDARD=${cxxStandard}`)]))));
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open-source collection of C++ code designed to augment the C++ standard library",
         homepage: "https://abseil.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

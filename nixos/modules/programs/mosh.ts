@@ -25,22 +25,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "mosh"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mosh: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "mosh")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mosh", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to automatically open the necessary ports in the firewall.",
             default: true,
           })),
           withUtempter: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Whether to enable libutempter for mosh.\n\nThis is required so that mosh can write to /var/run/utmp (which can be queried with `who` to display currently connected user sessions).\nNote, this will add a guid wrapper for the group utmp!\n",
             default: true,
           })),
@@ -48,24 +48,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           firewall: nix.thunk(() => ({
-            __proto__: pos$8,
-            allowedUDPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ __proto__: pos$7, from: 60000n, to: 61000n })))),
+            [nix.POS]: pos$8,
+            allowedUDPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$7, from: 60000n, to: 61000n })))),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "withUtempter")), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               utempter: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 source: nix.thunk(() => nix.str`${nix.sel(pkgs, "libutempter")}/lib/utempter/utempter`),
                 owner: "root",
                 group: "utmp",

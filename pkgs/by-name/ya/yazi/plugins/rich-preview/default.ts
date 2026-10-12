@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rich-preview.yazi",
       version: "0-unstable-2026-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AnirudhG07",
           repo: "rich-preview.yazi",
           rev: "02597c4a129a36e3ab013b1fd052cf0f555d5490",
           hash: "sha256-8QfBzKyNmKFxwtOmhhpnxUZBRmrN3mPWV/n/0MZlsYo=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Preview file types using rich in Yazi",
         homepage: "https://github.com/AnirudhG07/rich-preview.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

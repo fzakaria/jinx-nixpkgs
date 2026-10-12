@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mujs",
       version: "1.3.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mujs.com/downloads/mujs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-fPOl5iLP9BkD7/8DNFGPyUrwYyVnUsOLpGGKUZHkTxg=",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       installFlags: nix.thunk(() => ["install-shared"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "git://git.ghostscript.com/mujs.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.ghostscript.com/mujs.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://mujs.com/",
         description: "Lightweight, embeddable Javascript interpreter",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

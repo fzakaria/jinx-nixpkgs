@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "has2k1",
           repo: "scikit-misc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ substituteInPlace pyproject.toml \\
       const pytestFlags = nix.thunk(() => ["--pyargs", "skmisc"]);
       const pythonImportsCheck = nix.thunk(() => ["skmisc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Miscellaneous tools for scientific computing",
         homepage: "https://github.com/has2k1/scikit-misc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -60,7 +60,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

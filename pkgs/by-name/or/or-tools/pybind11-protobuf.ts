@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pybind11-protobuf",
       version: "0-unstable-2025-10-29",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pybind",
           repo: "pybind11_protobuf",
           rev: "4825dca68c8de73f5655fc50ce79c49c4d814652",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_FIND_PACKAGE_PREFER_CONFIG", true)),
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pybind11 bindings for Google's Protocol Buffers",
         homepage: "https://github.com/pybind/pybind11_protobuf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

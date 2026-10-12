@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jantman",
           repo: "versionfinder",
           rev: version,
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestFindPipInfo", "test_find_pkg_info"]);
       const pythonImportsCheck = nix.thunk(() => ["versionfinder"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find the version of another package, whether installed via pip, setuptools or git",
         homepage: "https://github.com/jantman/versionfinder",
         changelog: nix.thunk(() => nix.str`https://github.com/jantman/versionfinder/blob/${version}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

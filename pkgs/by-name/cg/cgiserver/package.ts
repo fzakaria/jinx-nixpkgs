@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const zstd = nix.arg($, "zstd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cgiserver",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://src.anomalous.eu/cgiserver/snapshot/cgiserver-${nix.sel(finalAttrs, "version")}.tar.zst`),
           nativeBuildInputs: nix.thunk(() => [zstd]),
           hash: "sha256-uIrOZbHzxAdUJF12MBOzRUA6mSPvOKJ/K9ZwwLVId5E=",
         })))),
       vendorHash: "sha256-mygMtVbNWwtIkxTGxMnuAMUU0mp49NZ50B9d436nWgI=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://src.anomalous.eu/cgiserver/about/",
         description: "Lightweight web server for sandboxing CGI applications",
         mainProgram: "cgiserver",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wl-gammarelay-applet",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lgbishop",
           repo: "wl-gammarelay-applet",
           rev: "8a0d9e6364d7445fc69c59b2f168cfec91c2fe87",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       runtimeDependencies: nix.thunk(() => [wayland, libxkbcommon, nix.thunk(() => nix.sel(fontconfig, "lib"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control wl-gammarelay-rs via applet",
         longDescription: "wl-gammarelay-applet is a small desktop applet for controlling\nwl-gammarelay-rs via DBus. This applet is written in Rust and\nprovides a Slint UI.\n",
         homepage: "https://github.com/lgbishop/wl-gammarelay-applet",

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const netbsdSetupHook = nix.arg($, "netbsdSetupHook");
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "fts",
       path: "include/fts.h",
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, netbsdSetupHook]),

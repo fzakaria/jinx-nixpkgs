@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polkit-gnome",
       version: "0.105",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/polkit-gnome/${nix.sel(finalAttrs, "version")}/polkit-gnome-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-F4RJSWO4v5oA7txs06KGj7EjuKXlFuZsXtpI3xerk2k=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 substituteAll ${nix.path(here, "./polkit-gnome-authentication-agent-1.desktop")} $out/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/Archive/policykit-gnome",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/Archive/policykit-gnome/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Dbus session bus service that is used to bring up authentication dialogs",

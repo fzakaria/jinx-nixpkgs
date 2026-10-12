@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/bindings`);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "add-python-build-files.patch",
             url: "https://github.com/asg017/sqlite-vec/commit/c1917deb11aa79dcac32440679345b93e13b1b86.patch",
             hash: "sha256-4/9QLKuM/1AbD8AQHwJ14rhWVYVc+MILvK6+tWwWQlw=",
             stripLen: 1n,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-python-test.patch",
             url: "https://github.com/asg017/sqlite-vec/commit/608972c9dcbfc7f4583e99fd8de6e5e16da11081.patch",
             hash: "sha256-8dfw7zs7z2FYh8DoAxurMYCDMOheg8Zl1XGcPw1A1BM=",
@@ -51,16 +51,16 @@ substituteInPlace sqlite_vec/__init__.py \\
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const nativeBuildInputs = nix.thunk(() => [pyprojectVersionPatchHook]);
       const dependencies = nix.thunk(() => [sqlite_vec_c]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, numpy: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, numpy: nix.thunk(() => [numpy]) }));
       const nativeCheckInputs = nix.thunk(() => [numpy, openai, pytestCheckHook, sqlite_vec_c]);
       const pythonImportsCheck = nix.thunk(() => ["sqlite_vec"]);
       const meta = nix.thunk(() => nix.update(nix.sel(sqlite_vec_c, "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python bindings for sqlite-vec",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

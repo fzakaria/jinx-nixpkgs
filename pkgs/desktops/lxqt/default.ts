@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const packages = (self) => (() => {
     const w = nix.withScope(self, null);
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       libqtxdg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libqtxdg"), nix.thunk(() => ({})))),
       "lxqt-build-tools": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lxqt-build-tools"), nix.thunk(() => ({})))),
       libsysstat: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libsysstat"), nix.thunk(() => ({})))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       "compton-conf": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./compton-conf"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),
           qttools: nix.thunk(() => nix.attr(from, "qttools")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       "lxqt-build-tools_0_13": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lxqt-build-tools"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: "0.13.0",
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),
         };
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       libqtxdg_3_12: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libqtxdg"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: "3.12.0",
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       "libfm-qt_1_4": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libfm-qt"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: "1.4.0",
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qttools: nix.thunk(() => nix.attr(from, "qttools")),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
       qtermwidget_1_4: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./qtermwidget"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: "1.4.0",
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),

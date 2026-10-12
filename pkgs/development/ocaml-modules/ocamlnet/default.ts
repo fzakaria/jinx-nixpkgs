@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocamlnet`);
       const version = "4.1.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://download.camlcity.org/download/ocamlnet-${version}.tar.gz`),
           sha256: "1vlwxjxr946gdl61a1d7yk859cijq45f60dhn54ik3w4g6cx33pr",
         }))));
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://projects.camlcity.org/projects/ocamlnet.html",
         description: "Library implementing Internet protocols (http, cgi, email, etc.) for OCaml",
         license: nix.thunk(() => (() => {
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fastjar",
       version: "0.98",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "fastjar-source",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           url: nix.thunk(() => nix.str`mirror://savannah/fastjar/fastjar-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -32,15 +32,15 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://savannah.nongnu.org/projects/fastjar/",
         description: "Fast Java archiver written in C",
         longDescription: "FastJar is an attempt at creating a feature-for-feature copy of Sun's\nJDK's 'jar' command.  Sun's jar (or Blackdown's for that matter) is\nwritten entirely in Java which makes it dog slow.  Since FastJar is\nwritten in C, it can create the same .jar file as Sun's tool in a fraction\nof the time.\n",

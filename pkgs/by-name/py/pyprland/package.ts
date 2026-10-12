@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pyprland",
       version: "3.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprland-community",
           repo: "pyprland",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`# file has shebang but cant be run due to a relative import, has proper entrypoint in /bin
 chmod -x $out/${nix.sel(python3Packages, "python", "sitePackages")}/pyprland/command.py
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, HYPRLAND_INSTANCE_SIGNATURE: "dummy" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, HYPRLAND_INSTANCE_SIGNATURE: "dummy" })),
       pythonImportsCheck: nix.thunk(() => [
         "pyprland",
         "pyprland.adapters",
@@ -72,11 +72,11 @@ chmod -x $out/${nix.sel(python3Packages, "python", "sitePackages")}/pyprland/com
         "pyprland.plugins.workspaces_follow_focus",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "pypr",
         description: "Hyperland plugin system",
         homepage: "https://github.com/hyprland-community/pyprland",

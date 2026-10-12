@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clapper-enhancers",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rafostar",
           repo: "clapper-enhancers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-Denhancersdir=${nix.builtins.placeholder("out")}/${nix.sel(finalAttrs, "passthru", "pluginPath")}`),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginPath: "lib/clapper-enhancers/plugins" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginPath: "lib/clapper-enhancers/plugins" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(clapper_unwrapped, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plugins enhancing Clapper library capabilities",
         homepage: "https://github.com/Rafostar/clapper-enhancers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

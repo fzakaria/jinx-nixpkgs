@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const bun = nix.arg($, "bun");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(equibop, "version")),
       src: nix.thunk(() => nix.attr(equibop, "src")),
       pname: nix.thunk(() => nix.add(nix.sel(equibop, "pname"), "-modules")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\n\nbun install \\\n    --filter=equibop \\\n    --force \\\n    --frozen-lockfile \\\n    --ignore-scripts \\\n    --linker=hoisted \\\n    --no-progress\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
       outputHash: nix.thunk(() => nix.selOr({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         "x86_64-linux": "sha256-TKFL47b+Xh8ChlSyXdhRY+zmPAnkHJss2vNblBvOSmw=",
         "aarch64-linux": "sha256-S5JNtQvDLFrOT+XCSMqFltrTlcRAzWcbXbRZk4CEkrA=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),

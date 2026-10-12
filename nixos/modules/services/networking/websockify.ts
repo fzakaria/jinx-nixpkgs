@@ -28,35 +28,35 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "networking", "websockify"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           websockify: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Whether to enable websockify to forward websocket connections to TCP connections.",
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               })))),
             sslCert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Path to the SSL certificate.",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               })))),
             sslKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Path to the SSL key.",
                 default: nix.thunk(() => nix.sel(cfg, "sslCert")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.services.networking.websockify.sslCert")),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               })))),
             portMap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Ports to map by default.",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
@@ -66,13 +66,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "websockify@": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Service to forward websocket connections to TCP connections (from port:to port %I)",
               script: nix.thunk(() => nix.str`IFS=':' read -a array <<< "$1"
 ${nix.sel(pkgs, "python3Packages", "websockify")}/bin/websockify --ssl-only \\
@@ -82,11 +82,11 @@ ${nix.sel(pkgs, "python3Packages", "websockify")}/bin/websockify --ssl-only \\
             })),
           })),
           targets: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "default-websockify": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Target to start all default websockify@ services",
-              unitConfig: nix.thunk(() => ({ __proto__: pos$11, "X-StopOnReconfiguration": true })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, "X-StopOnReconfiguration": true })),
               wants: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (value) => nix.str`websockify@${name}:${nix.app(nix.builtins.toString, value)}.service`, nix.thunk(() => nix.sel(cfg, "portMap")))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),

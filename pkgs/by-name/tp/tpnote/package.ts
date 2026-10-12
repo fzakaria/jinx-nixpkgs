@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tpnote",
       version: "1.27.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getreu",
           repo: "tp-note",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [oniguruma]),
       postPatch: "# In these `Cargo.toml`s, local dependencies should be specified by path,\n# otherwise they will be looked up in vendored dependencies.\nsubstituteInPlace tpnote/Cargo.toml \\\n  --replace-fail 'tpnote-lib = { version =' 'tpnote-lib = { path = \"../tpnote-lib\", version ='\n\nsubstituteInPlace tpnote-lib/Cargo.toml \\\n  --replace-fail 'tpnote-html2md = { version =' 'tpnote-html2md = { path = \"../tpnote-html2md\", version ='\n",
       postInstall: "installManPage docs/build/man/man1/tpnote.1\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       checkType: "debug",
       cargoTestFlags: nix.thunk(() => ["--package", "tpnote-lib"]),
       doCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/getreu/tp-note/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Markup enhanced granular note-taking",
         homepage: "https://blog.getreu.net/projects/tp-note/",

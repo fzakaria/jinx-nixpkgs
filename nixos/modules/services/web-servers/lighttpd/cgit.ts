@@ -38,30 +38,30 @@ favicon=${pathPrefix}/favicon.ico
 ${nix.sel(cfg, "configText")}
 `)));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         lighttpd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cgit: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: false,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "If true, enable cgit (fast web interface for git repositories) as a\nsub-service in lighttpd.\n",
               })))),
             subdir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: "cgit",
                 example: "",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The subdirectory in which to serve cgit. The web application will be\naccessible at http://yourserver/${subdir}\n",
               })))),
             configText: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: "",
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "''\n  source-filter=${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py\n  about-filter=${pkgs.cgit}/lib/cgit/filters/about-formatting.sh\n  cache-size=1000\n  scan-path=/srv/git\n''\n")),
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
@@ -72,15 +72,15 @@ ${nix.sel(cfg, "configText")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cgit"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           lighttpd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enableModules: nix.thunk(() => ["mod_cgi", "mod_alias", "mod_setenv"]),
             extraConfig: nix.thunk(() => nix.str`$HTTP["url"] =~ "^/${nix.sel(cfg, "subdir")}" {
     cgi.assign = (
@@ -100,12 +100,12 @@ ${nix.sel(cfg, "configText")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             lighttpd: nix.thunk(() => ({
-              __proto__: pos$12,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$11, CacheDirectory: "cgit" })),
+              [nix.POS]: pos$12,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$11, CacheDirectory: "cgit" })),
             })),
           })),
         })),

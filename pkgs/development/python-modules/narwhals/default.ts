@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.23.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "narwhals-dev",
           repo: "narwhals",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [uv_build]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dask: nix.thunk(() => nix.concat([dask], nix.sel(dask, "optional-dependencies", "dataframe"))),
         pandas: nix.thunk(() => [pandas]),
         polars: nix.thunk(() => [polars]),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["tests/tpch_q1_test.py"])));
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight and extensible compatibility layer between dataframe libraries",
         homepage: "https://github.com/narwhals-dev/narwhals",
         changelog: nix.thunk(() => nix.str`https://github.com/narwhals-dev/narwhals/releases/tag/${nix.sel(src, "tag")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-crev",
       version: "0.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crev-dev",
           repo: "cargo-crev",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-ezMpxYrJJ2zqEwCaDu2DFMwd6d/nfPVO6z2Lm4elIYE=",
         })))),
       cargoHash: "sha256-CYvvwgDZ+yAr7kLGEVZLVx7+sZUc5vu85AT5xLJBSbQ=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
       preCheck: "export HOME=$(mktemp -d)\ngit config --global user.name \"Nixpkgs Test\"\ngit config --global user.email \"nobody@example.com\"\n",
       nativeBuildInputs: nix.thunk(() => [perl, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libgit2, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv, curl])))),
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cryptographically verifiable code review system for the cargo (Rust) package manager",
         mainProgram: "cargo-crev",
         homepage: "https://github.com/crev-dev/cargo-crev",

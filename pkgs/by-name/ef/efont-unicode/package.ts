@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fonttosfnt = nix.arg($, "fonttosfnt");
   const bdftopcf = nix.arg($, "bdftopcf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "efont-unicode",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://openlab.ring.gr.jp/efont/dist/unicode-bdf/efont-unicode-bdf-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-fT7SsYlV3dCQrf0IZfiNI1grj3ngDgr8IkWdg+f9m3M=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ndir=share/fonts/misc\ninstall -D -m 644 -t \"$out/$dir\" *.otb *.pcf.gz\ninstall -D -m 644 -t \"$bdf/$dir\" *.bdf\nmkfontdir \"$out/$dir\"\nmkfontdir \"$bdf/$dir\"\n\nrunHook postInstall\n",
       outputs: nix.thunk(() => ["out", "bdf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "/efont/ Unicode bitmap font",
         homepage: "http://openlab.ring.gr.jp/efont/unicode/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

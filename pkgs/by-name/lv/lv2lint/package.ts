@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const elfutils = nix.arg($, "elfutils");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lv2lint",
       version: "0.16.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "open-music-kontrollers.ch",
           owner: "~hp",
           repo: "lv2lint",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "x11-tests", true)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Check whether a given LV2 plugin is up to the specification",
         homepage: "https://git.open-music-kontrollers.ch/~hp/lv2lint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

@@ -46,52 +46,52 @@ export default nix.lambda((args) => (() => {
       const pkgs = nix.arg($_1, "pkgs");
       const lib = nix.arg($_1, "lib");
       return {
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         name: name,
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "hmenke"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           server: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             boot: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               kernel: nix.thunk(() => ({
-                __proto__: pos$3,
-                sysctl: nix.thunk(() => ({ __proto__: pos$2, "net.ipv4.ip_forward": "1" })),
+                [nix.POS]: pos$3,
+                sysctl: nix.thunk(() => ({ [nix.POS]: pos$2, "net.ipv4.ip_forward": "1" })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               useDHCP: false,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$5, address: "192.168.0.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.0.1", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
               firewall: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 rejectPackets: true,
                 allowedTCPPorts: nix.thunk(() => [8488n]),
                 allowedUDPPorts: nix.thunk(() => [8488n]),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               shadowsocks: nix.thunk(() => nix.update({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: true,
                 package: package$,
                 encryptionMethod: "chacha20-ietf-poly1305",
@@ -101,21 +101,21 @@ export default nix.lambda((args) => (() => {
                 fastOpen: false,
                 mode: "tcp_and_udp",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(plugin, null)), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   plugin: plugin,
                   pluginOpts: nix.thunk(() => nix.str`server;${pluginOpts}`),
                 }))))),
               nginx: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   server: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "index.html", "It works!")),
                       })),
                     })),
@@ -125,29 +125,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             networking: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               useDHCP: false,
               interfaces: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$20, address: "192.168.0.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$20, address: "192.168.0.2", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               services: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "shadowsocks-client": nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   description: "connect to shadowsocks",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),

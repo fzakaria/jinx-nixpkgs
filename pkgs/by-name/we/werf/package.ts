@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "werf",
       version: "2.73.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "werf",
           repo: "werf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [btrfs_progs])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc", "static"))])))),
       subPackages: nix.thunk(() => ["cmd/werf"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? 1n : 0n)),
       })),
       ldflags: nix.thunk(() => nix.concat([
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion \\\n    --cmd werf \\\n    --$shell <($out/bin/werf completion --shell=$shell)\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GitOps delivery tool",
         longDescription: "werf is a CNCF Sandbox CLI tool to implement full-cycle CI/CD to\nKubernetes easily. werf integrates into your CI system and leverages\nfamiliar and reliable technologies, such as Git, Dockerfile, Helm, and\nBuildah.\n",
         homepage: "https://werf.io",

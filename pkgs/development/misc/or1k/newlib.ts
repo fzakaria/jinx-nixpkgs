@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoLibc = nix.arg($, "stdenvNoLibc");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "or1k-newlib",
       version: "0-unstable-2018-11-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openrisc",
           repo: "newlib",
           rev: "8ac94ca7bbe4ceddafe6583ee4766d3c15b18ac8",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ]),
       dontDisableStatic: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         incdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/include`),
         libdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/lib`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, homepage: "https://github.com/openrisc/newlib" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, homepage: "https://github.com/openrisc/newlib" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=newlib.ts.map

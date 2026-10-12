@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const enableSystemd = nix.argOr($, "enableSystemd", () => true);
   const statdPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([util_linux, coreutils], nix.app(nix.sel(lib, "optionals"), enableSystemd, nix.thunk(() => [systemdMinimal]))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "nfs-utils",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/utils/nfs-utils/${nix.sel(finalAttrs, "version")}/nfs-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fbwF64sygosyKHK3WaYss5ectBGPNE3YYWgT0TkOhOA=",
         })))),
@@ -93,17 +93,17 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), enableLdap, "--enable-ldap"))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://raw.githubusercontent.com/alpinelinux/aports/cb880042d48d77af412d4688f24b8310ae44f55f/main/nfs-utils/musl-getservbyport.patch",
               sha256: "1fqws9dz8n1d9a418c54r11y3w330qgy2652dpwcy96cm44sqyhf",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/void-linux/void-packages/raw/31f0d5fef2f74999212bcfa6f982969973432750/srcpkgs/nfs-utils/patches/musl-includes.patch",
               hash: "sha256-dZEafrXDZH/IPo1u7B65u01nwFMfcqSMnVyHAapexa8=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: "https://github.com/void-linux/void-packages/raw/31f0d5fef2f74999212bcfa6f982969973432750/srcpkgs/nfs-utils/patches/musl-fix_long_unsigned_int.patch",
               hash: "sha256-wcQ2IRmlBP61qZVlXk6osi4UH8ETtjllVogPEaZNK9o=",
             })))),
@@ -136,9 +136,9 @@ sed -i \\
       doCheck: false,
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libkrb5))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "nfs3-simple": nix.thunk(() => nix.sel(nixosTests, "nfs3", "simple")),
           "nfs4-simple": nix.thunk(() => nix.sel(nixosTests, "nfs4", "simple")),
           "nfs4-kerberos": nix.thunk(() => nix.sel(nixosTests, "nfs4", "kerberos")),
@@ -146,7 +146,7 @@ sed -i \\
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Linux user-space NFS utilities",
         longDescription: "This package contains various Linux user-space Network File\nSystem (NFS) utilities, including RPC `mount' and `nfs'\ndaemons.\n",
         changelog: nix.thunk(() => nix.str`https://www.kernel.org/pub/linux/utils/nfs-utils/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "version")}-Changelog`),

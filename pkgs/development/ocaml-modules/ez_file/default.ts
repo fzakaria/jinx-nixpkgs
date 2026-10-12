@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const ocplib_stuff = nix.arg($, "ocplib_stuff");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ez_file",
       version: "0.5.0",
       minimalOCamlVersion: "4.11",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "ez_file",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [re, ocplib_stuff, ppx_expect]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library with helpers to manipulate files, read/write their content, search directories, etc",
         homepage: "https://github.com/OCamlPro/ez_file",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")), nix.thunk(() => nix.sel(lib, "licenses", "ocamlLgplLinkingException")))),

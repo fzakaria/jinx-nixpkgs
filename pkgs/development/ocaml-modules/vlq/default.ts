@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const pname = "vlq";
       const version = "0.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flowtype/ocaml-vlq/releases/download/v${version}/vlq-v${version}.tbz`),
           sha256: "02wr9ph4q0nxmqgbc67ydf165hmrdv9b655krm2glc3ahb6larxi",
         }))));
       const buildInputs = nix.thunk(() => [dune_configurator]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Encoding variable-length quantities, in particular base64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/flowtype/ocaml-vlq",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nomeata"))]),
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

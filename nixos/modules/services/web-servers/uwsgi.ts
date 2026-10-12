@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
     const python = nix.thunk(() => (nix.asBool(hasPython3) ? nix.sel(cfg, "package", "python3") : null));
     const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), nix.thunk(() => nix.selOr(c, () => (self) => [], "pythonPackages"))));
     const uwsgiCfg = nix.thunk(() => ({
-      __proto__: pos$5,
-      uwsgi: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(c, "type"), "normal")) ? nix.update({ __proto__: pos$1, plugins: plugins }, nix.update(nix.app(nix.builtins.removeAttrs, c, nix.thunk(() => ["type", "pythonPackages"])), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(python, null)), nix.thunk(() => ({
-          __proto__: pos$2,
+      [nix.POS]: pos$5,
+      uwsgi: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(c, "type"), "normal")) ? nix.update({ [nix.POS]: pos$1, plugins: plugins }, nix.update(nix.app(nix.builtins.removeAttrs, c, nix.thunk(() => ["type", "pythonPackages"])), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.eq(python, null)), nix.thunk(() => ({
+          [nix.POS]: pos$2,
           pyhome: nix.thunk(() => nix.str`${pythonEnv}`),
           env: nix.thunk(() => (() => {
             const envs = nix.thunk(() => nix.app(nix.lookup(w, "partition"), nix.thunk(() => nix.app(nix.lookup(w, "hasPrefix"), "PATH=")), nix.thunk(() => nix.selOr(c, () => [], "env"))));
@@ -68,9 +68,9 @@ export default nix.lambda((args) => (() => {
             ], nix.sel(envs, "wrong"));
           })()),
         }))))) : (nix.asBool(isEmperor) ? nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         emperor: nix.thunk(() => (nix.asBool(!nix.eq(nix.app(nix.sel(nix.builtins, "typeOf"), nix.thunk(() => nix.sel(c, "vassals"))), "set")) ? nix.sel(c, "vassals") : nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "vassals",
             paths: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), buildCfg, nix.thunk(() => nix.sel(c, "vassals")))),
           }))))),
@@ -79,32 +79,32 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(pkgs, "writeTextDir"), nix.thunk(() => nix.str`${name}.json`), nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), uwsgiCfg)));
   })();
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         uwsgi: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Enable uWSGI",
             })))),
           runDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/run/uwsgi",
               description: "Where uWSGI communication sockets can live",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               internal: true,
             })))),
           instance: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 const valueType = nix.thunk(() => nix.update(nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -115,43 +115,43 @@ export default nix.lambda((args) => (() => {
                       nix.thunk(() => nix.app(nix.lookup(w_1, "lazyAttrsOf"), valueType)),
                       nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), valueType)),
                       nix.thunk(() => nix.app(nix.lookup(w_1, "mkOptionType"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           name: "function",
                           description: "function",
                           check: (x) => nix.app(nix.lookup(w_1, "isFunction"), x),
                           merge: nix.thunk(() => nix.lookup(w_1, "mergeOneOption")),
                         })))),
                     ])))), {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   description: "Json value or lambda",
-                  emptyValue: nix.thunk(() => ({ __proto__: pos$10, value: nix.thunk(() => ({})) })),
+                  emptyValue: nix.thunk(() => ({ [nix.POS]: pos$10, value: nix.thunk(() => ({})) })),
                 }));
                 return nix.force(valueType);
               })()),
-              default: nix.thunk(() => ({ __proto__: pos$12, type: "normal" })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$12, type: "normal" })),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  type = \"emperor\";\n  vassals = {\n    moin = {\n      type = \"normal\";\n      pythonPackages = self: with self; [ moinmoin ];\n      socket = \"${config.services.uwsgi.runDir}/uwsgi.sock\";\n    };\n  };\n}\n")),
               description: "uWSGI configuration. It awaits an attribute `type` inside which can be either\n`normal` or `emperor`.\n\nFor `normal` mode you can specify `pythonPackages` as a function\nfrom libraries set into a list of libraries. `pythonpath` will be set accordingly.\n\nFor `emperor` mode, you should use `vassals` attribute\nwhich should be either a set of names and configurations or a path to a directory.\n\nOther attributes will be used in configuration file as-is. Notice that you can redefine\n`plugins` setting here.\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Plugins used with uWSGI",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "uwsgi",
               description: "User account under which uWSGI runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "uwsgi",
               description: "Group account under which uWSGI runs.",
             })))),
           capabilities: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               apply: (caps) => nix.concat(caps, nix.app(nix.lookup(w, "optionals"), isEmperor, imperialPowers)),
               default: [],
@@ -162,21 +162,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             rules: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "runDir"), "/run/uwsgi")), nix.thunk(() => nix.str`d ${nix.sel(cfg, "runDir")} 775 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")}
 `))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             uwsgi: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Type: "notify",
@@ -193,29 +193,29 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "uwsgi")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               uwsgi: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "uwsgi")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "uwsgi")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               uwsgi: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "uwsgi")),
               })),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           uwsgi: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             package: nix.thunk(() => nix.app(nix.sel(pkgs, "uwsgi", "override"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 plugins: nix.thunk(() => nix.app(nix.lookup(w, "unique"), nix.thunk(() => nix.sel(cfg, "plugins")))),
               })))),
           })),

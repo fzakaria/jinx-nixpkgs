@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.40.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "google_cloud_dlp",
           version: version,
           hash: "sha256-8qQqtcWaFPSHssbiqdTAkMaovS9YxfuwOH3P6fsr6uc=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_inspect_content", "test_list_dlp_jobs"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.dlp", "google.cloud.dlp_v2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cloud Data Loss Prevention (DLP) API API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-dlp",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-dlp-v${version}/packages/google-cloud-dlp/CHANGELOG.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

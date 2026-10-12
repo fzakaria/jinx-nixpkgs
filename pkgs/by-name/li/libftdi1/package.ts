@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const onOff = (a) => (nix.asBool(a) ? "ON" : "OFF");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libftdi",
       version: "1.5-unstable-2023-12-21",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://developer.intra2net.com/libftdi",
           rev: "de9f01ece34d2fe6e842e0250a38f4b16eda2429",
           hash: "sha256-U37M5P7itTF1262oW+txbKxcw2lhYHAwy1ML51SDVMs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "swig-4.3.0-fix.patch",
             url: "https://src.fedoraproject.org/rpms/libftdi/raw/9051ea9ea767eced58b69d855a5d700a5d4602cc/f/libftdi-1.5-swig-4.3.patch",
             hash: "sha256-X5tqiPewnyAyvLzR6s0VbNpZKLd0idtPGU4ro36CZHI=",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("install -Dm644 ../packages/99-libftdi.rules \"$out/etc/udev/rules.d/60-libftdi.rules\"\n", nix.app(optionalString, docSupport, "cp -r doc/man \"$out/share/\"\ncp -r doc/html \"$out/share/doc/libftdi1/\"\n"))),
       preFixup: "substituteInPlace $out/lib/pkgconfig/libftdi1.pc --replace-fail \"libdir=$out/$out/lib\" \"libdir=$out/lib\"\nsubstituteInPlace $out/lib/pkgconfig/libftdipp1.pc --replace-fail \"libdir=$out/$out/lib\" \"libdir=$out/lib\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to talk to FTDI chips using libusb",
         homepage: "https://www.intra2net.com/en/developer/libftdi/",
         license: nix.thunk(() => (() => {

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dtach",
       version: "0.9-unstable-2025-06-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crigler",
           repo: "dtach",
           rev: "b027c27b2439081064d07a86883c8e0b20a183c9",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -D dtach $out/bin/dtach\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dtach.sourceforge.net/",
         description: "Program that emulates the detach feature of screen",
         longDescription: "dtach is a tiny program that emulates the detach feature of\nscreen, allowing you to run a program in an environment that is\nprotected from the controlling terminal and attach to it later.\ndtach does not keep track of the contents of the screen, and\nthus works best with programs that know how to redraw\nthemselves.\n",

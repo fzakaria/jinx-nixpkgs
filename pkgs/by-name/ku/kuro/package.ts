@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
       const pname = "kuro";
       const version = "9.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davidsmorais",
           repo: "kuro",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-9Z/r5T5ZI5aBghHmwiJcft/x/wTRzDlbIupujN2RFfU=",
         }))));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-GTiNv7u1QK/wjQgpka7REuoLn2wjZG59kYJQaZZPycI=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const nativeBuildInputs = nix.thunk(() => [
         yarnConfigHook,
         yarnBuildHook,
@@ -74,7 +74,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "kuro",
             exec: "kuro",
             icon: "kuro",
@@ -88,7 +88,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/davidsmorais/kuro/releases/tag/${nix.sel(src, "rev")}`),
         description: "Unofficial, featureful, open source, community-driven, free Microsoft To-Do app",
         homepage: "https://github.com/davidsmorais/kuro",
@@ -102,7 +102,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "six"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pkcs11-provider",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openssl-projects",
           repo: "pkcs11-provider",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         pkcs11ProviderPython3,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [valgrind])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [softhsm]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         KRYOPTIC: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), kryoptic)}/lib`),
       })),
       postPatch: "patchShebangs --build .\nsubstituteInPlace tests/kryoptic-init.sh \\\n  --replace-fail /usr/local/lib/kryoptic \"\\\\${KRYOPTIC}\"\n",
@@ -78,14 +78,14 @@ export DESTDIR="$(realpath .install)"
       __darwinAllowLocalNetworking: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d+\\.\\d+\\.\\d+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/latchset/pkcs11-provider",
         description: "OpenSSL 3.x provider to access hardware or software tokens using the PKCS#11 Cryptographic Token Interface",
         maintainers: nix.thunk(() => (() => {

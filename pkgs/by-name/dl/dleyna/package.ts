@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const gupnp_av = nix.arg($, "gupnp-av");
   const gupnp_dlna = nix.arg($, "gupnp-dlna");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dleyna",
       version: "0.8.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "dLeyna",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gupnp_1_6, gupnp_dlna, gupnp_av, gupnp_dlna]),
       mesonFlags: nix.thunk(() => ["-Ddocs=false"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of utility functions that are used by the higher level dLeyna",
         homepage: "https://gitlab.gnome.org/World/dLeyna",
         maintainers: nix.thunk(() => (() => {

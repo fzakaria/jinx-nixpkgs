@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const s2n_tls = nix.arg($, "s2n-tls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "slurm",
       version: "26-05-4-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SchedMD",
           repo: "slurm",
           tag: nix.thunk(() => nix.str`slurm-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -120,7 +120,7 @@ ln -s ${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cuda
         nix.thunk(() => nix.str`--with-bpf=${libbpf}`),
         "--enable-slurmrestd",
         nix.thunk(() => nix.str`--with-s2n=${nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.sel(s2n_tls, "name")),
             paths: nix.thunk(() => [s2n_tls, nix.thunk(() => nix.app(nix.sel(lib, "getDev"), s2n_tls))]),
           })))}`),
@@ -132,11 +132,11 @@ ln -s ${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cuda
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), enablePAM, "export LIBRARY_PATH=\"$PWD/src/api/.libs:${LIBRARY_PATH:+:$LIBRARY_PATH}\"\nmkdir -p $out/lib/security\nmake -C contribs/pam install\nmake -C contribs/pam_slurm_adopt install\n"), "rm -f $out/lib/*.la $out/lib/slurm/*.la $out/lib/security/*.la\n")),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, slurm: nix.thunk(() => nix.sel(nixosTests, "slurm")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, slurm: nix.thunk(() => nix.sel(nixosTests, "slurm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "http://www.schedmd.com/",
         description: "Simple Linux Utility for Resource Management",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

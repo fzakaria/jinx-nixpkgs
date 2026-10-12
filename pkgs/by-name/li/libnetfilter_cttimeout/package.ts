@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnetfilter_cttimeout",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://netfilter.org/projects/libnetfilter_cttimeout/files/libnetfilter_cttimeout-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-C1naLzIE4cgMuF0fbXIoX8B7AaL1Z4q/Xcz7vv1lAyU=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libmnl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace library that provides the programming interface to the connection tracking timeout infrastructure",
         longDescription: "libnetfilter_cttimeout is the userspace library that provides the programming\ninterface to the fine-grain connection tracking timeout infrastructure.\nWith this library, you can create, update and delete timeout policies that can\nbe attached to traffic flows. This library is used by conntrack-tools.\n",
         homepage: "https://netfilter.org/projects/libnetfilter_cttimeout/",

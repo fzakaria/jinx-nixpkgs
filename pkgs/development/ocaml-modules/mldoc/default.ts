@@ -29,24 +29,24 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const xmlm = nix.arg($, "xmlm");
   const angstrom$ = nix.thunk(() => nix.app(nix.sel(angstrom, "overrideAttrs"), (attrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       patches: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/logseq/angstrom/commit/bbe36c99c13678937d4c983a427e02a733d6cc24.patch",
             sha256: "sha256-RapY1QJ8U0HOqJ9TFDnCYB4tFLFuThESzdBZqjYuDUA=",
           })))),
       ])),
     })));
-  const uri$ = nix.thunk(() => nix.app(nix.sel(uri, "override"), nix.thunk(() => ({ __proto__: pos$3, angstrom: angstrom$ }))));
+  const uri$ = nix.thunk(() => nix.app(nix.sel(uri, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, angstrom: angstrom$ }))));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mldoc",
       version: "1.5.8",
       minimalOCamlVersion: "4.10",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "logseq",
           repo: "mldoc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner, core, core_bench, core_unix, js_of_ocaml, js_of_ocaml_ppx, lwt]),
       propagatedBuildInputs: nix.thunk(() => [angstrom$, uri$, yojson, ppx_deriving_yojson, xmlm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/logseq/mldoc",
         description: "Another Emacs Org-mode and Markdown parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

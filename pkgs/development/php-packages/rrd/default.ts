@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const rrdtool = nix.arg($, "rrdtool");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rrd",
       version: "2.0.3",
       hash: "sha256-pCFh5YzcioU7cs/ymJidy96CsPdkVt1ZzgKFTJK3MPc=",
@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/php/pecl-processing-rrd/pull/4/commits/dd4856dc89499a0141b1710e791f0e1096c7b244.patch",
             hash: "sha256-ES+cMhMBUubFB5TpTZzzKKfEK2cY737z7zCuNy4XF8Y=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PHP bindings to RRD tool system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
         homepage: "https://github.com/php/pecl-processing-rrd",

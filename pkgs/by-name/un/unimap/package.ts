@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nmap = nix.arg($, "nmap");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unimap",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Edu4rdSHL",
           repo: "unimap",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-1haSdmhK14XvKunSbj9jPTuHJK5tWdzdFAqxhg2TI0s=",
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles, makeBinaryWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [pkg_config])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [openssl]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })))),
       postInstall: nix.thunk(() => nix.str`installManPage unimap.1
 wrapProgram $out/bin/unimap \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nmap]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scan only once by IP address and reduce scan times with Nmap for large amounts of data",
         homepage: "https://github.com/Edu4rdSHL/unimap",
         changelog: nix.thunk(() => nix.str`https://github.com/Edu4rdSHL/unimap/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

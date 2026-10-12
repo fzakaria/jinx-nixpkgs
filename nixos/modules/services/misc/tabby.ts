@@ -34,49 +34,49 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "tabby"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const tabbyPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       acceleration: nix.thunk(() => nix.attr(cfg, "acceleration")),
     }))));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "tabby", "indexInterval"]), "These options are now managed within the tabby WebGUI")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tabby: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Self-hosted AI coding assistant using large language models")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tabby", nix.thunk(() => ({})))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "Specifies the hostname on which the tabby server HTTP interface listens.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 11029n,
               description: "Specifies the bind port on which the tabby server HTTP interface listens.\n",
             })))),
           model: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "TabbyML/StarCoder-1B",
               description: "Specify the model that tabby will use to generate completions.\n\nThis model will be downloaded automatically if it is not already present.\n\nIf you want to utilize an existing model that you've already\ndownloaded you'll need to move it into tabby's state directory which\nlives in `/var/lib/tabby`. Because the tabby.service is configured to\nuse a DynamicUser the service will need to have been started at least\nonce before you can move the locally existing model into\n`/var/lib/tabby`. You can set the model to 'none' and tabby will\nstartup and fail to download a model, but will have created the\n`/var/lib/tabby` directory. You can then copy over the model manually\ninto `/var/lib/tabby`, update the model option to the name you just\ndownloaded and copied over then `nixos-rebuild switch` to start using\nit.\n\n$ tabby download --model TabbyML/DeepseekCoder-6.7B\n$ find ~/.tabby/ | tail -n1\n/home/ghthor/.tabby/models/TabbyML/DeepseekCoder-6.7B/ggml/q8_0.v2.gguf\n$ sudo rsync -r ~/.tabby/models/ /var/lib/tabby/models/\n$ sudo chown -R tabby:tabby /var/lib/tabby/models/\n\nSee for Model Options:\n> <https://github.com/TabbyML/registry-tabby>\n",
             })))),
           acceleration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["cpu", "rocm", "cuda", "metal"]))))),
               default: null,
               example: "rocm",
               description: "Specifies the device to use for hardware acceleration.\n\n-   `cpu`: no acceleration just use the CPU\n-  `rocm`: supported by modern AMD GPUs\n-  `cuda`: supported by modern NVIDIA GPUs\n- `metal`: supported on darwin aarch64 machines\n\nTabby will try and determine what type of acceleration that is\nalready enabled in your configuration when `acceleration = null`.\n\n- nixpkgs.config.cudaSupport\n- nixpkgs.config.rocmSupport\n- if stdenv.hostPlatform.isDarwin && stdenv.hostPlatform.isAarch64\n\nIFF multiple acceleration methods are found to be enabled or if you\nhaven't set either `cudaSupport or rocmSupport` you will have to\nspecify the device type manually here otherwise it will default to\nthe first from the list above or to cpu.\n",
             })))),
           usageCollection: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Enable sending anonymous usage data.\n\nSee for more details:\n> <https://tabby.tabbyml.com/docs/configuration#usage-collection>\n",
@@ -85,11 +85,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
-        environment: nix.thunk(() => ({ __proto__: pos$10, systemPackages: nix.thunk(() => [tabbyPackage]) })),
+        [nix.POS]: pos$18,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$10, systemPackages: nix.thunk(() => [tabbyPackage]) })),
         systemd: nix.thunk(() => (() => {
           const serviceUser = nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             WorkingDirectory: "/var/lib/tabby",
             StateDirectory: nix.thunk(() => ["tabby"]),
             ConfigurationDirectory: nix.thunk(() => ["tabby"]),
@@ -98,15 +98,15 @@ export default nix.lambda((args) => (() => {
             Group: "tabby",
           }));
           const serviceEnv = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$12, TABBY_ROOT: "%S/tabby" })),
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "usageCollection"))), nix.thunk(() => ({ __proto__: pos$13, TABBY_DISABLE_USAGE_COLLECTION: "1" })))),
+              nix.thunk(() => ({ [nix.POS]: pos$12, TABBY_ROOT: "%S/tabby" })),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "usageCollection"))), nix.thunk(() => ({ [nix.POS]: pos$13, TABBY_DISABLE_USAGE_COLLECTION: "1" })))),
             ])));
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             services: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               tabby: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 description: "Self-hosted AI coding assistant using large language models",
                 after: nix.thunk(() => ["network.target"]),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
                 serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     serviceUser,
                     nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), tabbyPackage)} serve --model ${nix.sel(cfg, "model")} --host ${nix.sel(cfg, "host")} --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} --device ${nix.sel(tabbyPackage, "featureDevice")}`),
                     })),
                   ]))),
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ghthor"))];

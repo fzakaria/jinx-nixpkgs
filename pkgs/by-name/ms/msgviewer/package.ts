@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msgviewer";
       const uname = "MSGViewer";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/msgviewer/${uname}-${version}/${uname}-${version}.zip`),
           sha256: "0igmr8c0757xsc94xlv2470zv2mz57zaj52dwr9wj8agmj23jbjz",
         }))));
@@ -38,7 +38,7 @@ chmod 755 $out/bin/msgviewer
 `);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, unzip]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Viewer for .msg files (MS Outlook)",
         mainProgram: "msgviewer",
         homepage: "https://www.washington.edu/alpine/",
@@ -54,7 +54,7 @@ chmod 755 $out/bin/msgviewer
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         uname,

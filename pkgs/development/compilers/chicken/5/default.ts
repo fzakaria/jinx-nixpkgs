@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "../common"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "5.4.0",
       hash: "sha256-PF1KphwRZ79tm/nq+JHadjC6n188Fb8JUVpwOb/N7F8=",
       binaryVersion: 11n,
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       overridesFile: nix.path(here, "./overrides.nix"),
       invalidDependencies: nix.thunk(() => ["srfi-4", "cond-expand", "http-curl"]),
     }))), "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       egg2nix: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./egg2nix.nix"), nix.thunk(() => ({})))),
     }));
 })(), formals$1);

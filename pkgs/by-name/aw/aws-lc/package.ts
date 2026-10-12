@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const useSharedLibraries = nix.argOr($, "useSharedLibraries", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const withRustBindings = nix.argOr($, "withRustBindings", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "aws-lc",
       version: "5.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-lc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nninja run_minimal_tests\nrunHook postCheck\n",
       postInstall: nix.thunk(() => nix.add("moveToOutput lib/crypto/cmake \"$dev\"\nmoveToOutput lib/ssl/cmake \"$dev\"\n", nix.app(nix.sel(lib, "optionalString"), withRustBindings, "moveToOutput share/rust \"$dev\"\n"))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=stringop-overflow"]))))),
       })),
       postFixup: "for f in $out/lib/{crypto,ssl}/cmake/*/*-targets.cmake; do\n  substituteInPlace \"$f\" \\\n    --replace-fail \\\n      'INTERFACE_INCLUDE_DIRECTORIES \"\\$<\\$<BOOL:1>:>;${_IMPORT_PREFIX}/include\"' \\\n      'INTERFACE_INCLUDE_DIRECTORIES \"\"'\ndone\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: aws_lc, command: "bssl version" })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: aws_lc, command: "bssl version" })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: aws_lc,
               moduleNames: nix.thunk(() => ["libcrypto", "libssl", "openssl"]),
             })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "General-purpose cryptographic library maintained by the AWS Cryptography team for AWS and their customers",
         homepage: "https://github.com/aws/aws-lc",
         license: nix.thunk(() => [

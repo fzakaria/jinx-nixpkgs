@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torch-audiomentations",
       version: "0.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asteroid-team",
           repo: "torch-audiomentations",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "test_transform_is_differentiable",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast audio data augmentation in PyTorch",
         homepage: "https://github.com/asteroid-team/torch-audiomentations",
         changelog: nix.thunk(() => nix.str`https://github.com/asteroid-team/torch-audiomentations/releases/tag/v${nix.sel(finalAttrs, "version")}`),

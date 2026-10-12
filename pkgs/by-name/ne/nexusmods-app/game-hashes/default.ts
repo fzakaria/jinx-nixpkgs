@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const repo = "game-hashes";
   const repoURL = nix.thunk(() => nix.str`https://github.com/${owner}/${repo}`);
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`${repoURL}/releases/download/${release}/game_hashes_db.zip`),
       hash: "sha256-lu/C/WkjXtGJuZrsTg9fc/aEyJSsj9unjz1Sym39/b8=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         src: src,
         release: release,
         owner: owner,

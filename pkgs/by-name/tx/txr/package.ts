@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const libffi = nix.arg($, "libffi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "txr",
       version: "302",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.kylheku.com/cgit/txr/snapshot/txr-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-8N4BLtYiGOBJ0Jo5rmqTh1mNjqwSp8LX2dkGwnw271Q=",
         })))),
@@ -39,7 +39,7 @@ substituteInPlace tests/018/process.tl --replace /usr/bin/env ${nix.app(nix.sel(
       })()),
       postInstall: "mkdir -p $out/share/vim-plugins/txr/{syntax,ftdetect}\n\ncp {tl,txr}.vim $out/share/vim-plugins/txr/syntax/\n\ncat > $out/share/vim-plugins/txr/ftdetect/txr.vim <<EOF\n  au BufRead,BufNewFile *.txr set filetype=txr | set lisp\n  au BufRead,BufNewFile *.tl,*.tlo set filetype=tl | set lisp\nEOF\nmkdir -p $out/share/nvim\nln -s $out/share/vim-plugins/txr $out/share/nvim/site\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://nongnu.org/txr",
         description: "Original, New Programming Language for Convenient Data Munging",
         longDescription: "TXR is a general-purpose, multi-paradigm programming language. It\ncomprises two languages integrated into a single tool: a text scanning and\nextraction language referred to as the TXR Pattern Language (sometimes\njust \"TXR\"), and a general-purpose dialect of Lisp called TXR Lisp.\n\nTXR can be used for everything from \"one liner\" data transformation tasks\nat the command line, to data scanning and extracting scripts, to full\napplication development in a wide range of areas.\n",

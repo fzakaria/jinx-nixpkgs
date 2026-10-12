@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const rtpPath = nix.arg($, "rtpPath");
   const toVimPlugin = nix.arg($, "toVimPlugin");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     addRtp: (drv) => nix.app(nix.sel(lib, "warn"), "`addRtp` is deprecated, does nothing.", drv),
     buildVimPlugin: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const addonInfo = nix.argOr($_1, "addonInfo", () => null);
       const meta = nix.argOr($_1, "meta", () => ({}));
       const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.has(attrs, "vimprefix")), "The 'vimprefix' is now hardcoded in toVimPlugin", name)),
           __structuredAttrs: true,
           unpackPhase: unpackPhase,
@@ -49,7 +49,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.selOr(
 runHook postInstall
 `, "installPhase")),
           meta: nix.thunk(() => nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           }, meta)),
         }))));

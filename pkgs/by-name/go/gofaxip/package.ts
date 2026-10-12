@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gofaxip",
       version: "1.4-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gonicus",
           repo: "gofaxip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CI: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CI: "1" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "T.38 backend for HylaFAX using FreeSWITCH",
         homepage: "https://github.com/gonicus/gofaxip",
         changelog: nix.thunk(() => nix.str`https://github.com/gonicus/gofaxip/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const discord_canary = nix.arg($, "discord-canary");
   const discord_development = nix.arg($, "discord-development");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openasar",
       version: "0-unstable-2026-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GooseMod",
           repo: "OpenAsar",
           rev: "5a44615cad9db23ae57573c498b26bae4e6e255b",
@@ -51,12 +51,12 @@ runHook postBuild
       installPhase: "runHook preInstall\n\ninstall app.asar $out\n\nrunHook postInstall\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [discord, discord_ptb, discord_canary, discord_development]), (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(p, "pname")), nix.thunk(() => nix.sel(p, "tests", "withOpenASAR"))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source alternative of Discord desktop's \"app.asar\"",
         homepage: "https://openasar.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MAECProject",
           repo: "python-maec",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["maec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for parsing, manipulating, and generating MAEC content",
         homepage: "https://github.com/MAECProject/python-maec/",
         changelog: nix.thunk(() => nix.str`https://github.com/MAECProject/python-maec/blob/${nix.sel(src, "rev")}/CHANGES.txt`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

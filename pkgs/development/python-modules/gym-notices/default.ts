@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "gym_notices",
           version: version,
           hash: "sha256-n5R372iowV5CYl1PpTYxI34+aulH8yW1wUnAgUma3Bs=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["gym_notices"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Notices for Python package Gym",
         homepage: "https://github.com/Farama-Foundation/gym-notices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

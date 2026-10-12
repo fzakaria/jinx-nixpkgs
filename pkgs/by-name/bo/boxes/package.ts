@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libunistring = nix.arg($, "libunistring");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "boxes",
       version: "2.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ascii-boxes",
           repo: "boxes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "install -Dm755 -t $out/bin out/boxes\ninstall -Dm644 -t $out/share/boxes boxes-config\ninstall -Dm644 -t $out/share/man/man1 doc/boxes.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line program which draws, removes, and repairs ASCII art boxes",
         mainProgram: "boxes",
         homepage: "https://boxes.thomasjensen.com",

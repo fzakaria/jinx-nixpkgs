@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "phylactery",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://trong.loang.net/phylactery/snapshot/phylactery-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UokK6rVjpzbcKOkZteo5kU7rFMm1meBUM4bkYAYM8rI=",
         })))),
       vendorHash: null,
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           phylactery: nix.thunk(() => nix.sel(nixosTests, "phylactery")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Old school comic web server",
         mainProgram: "phylactery",
         homepage: "https://trong.loang.net/phylactery/about",

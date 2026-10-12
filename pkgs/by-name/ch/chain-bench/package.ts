@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chain-bench",
       version: "0.1.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aquasecurity",
           repo: "chain-bench",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ $out/bin/chain-bench --version | grep "v${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/aquasecurity/chain-bench",
         changelog: nix.thunk(() => nix.str`https://github.com/aquasecurity/chain-bench/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Open-source tool for auditing your software supply chain stack for security compliance based on a new CIS Software Supply Chain benchmark",

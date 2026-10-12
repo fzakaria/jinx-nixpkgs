@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ap--",
           repo: "python-seabreeze",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,20 +45,20 @@ substituteInPlace setup.py \\
 `);
       const nativeBuildInputs = nix.thunk(() => [cython, git, pkgconfig, setuptools, setuptools_scm, udevCheckHook]);
       const propagatedBuildInputs = nix.thunk(() => [numpy, libusb_compat_0_1]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, pyseabreeze: nix.thunk(() => [pyusb]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pyseabreeze: nix.thunk(() => [pyusb]) }));
       const postInstall = "mkdir -p $out/etc/udev/rules.d\ncp os_support/10-oceanoptics.rules $out/etc/udev/rules.d/10-oceanoptics.rules\n";
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, mock, zipp], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["TestHardware"]);
       const setupPyBuildFlags = nix.thunk(() => ["--without-cseabreeze"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ap--/python-seabreeze",
         description: "Python library to access Ocean Optics spectrometers",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

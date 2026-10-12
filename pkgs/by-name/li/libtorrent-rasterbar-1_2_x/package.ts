@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const boost_build = nix.arg($, "boost-build");
   const version = "1.2.19";
   const boostPython = nix.thunk(() => nix.app(nix.sel(boost186, "override"), (_) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enablePython: true,
       python: python311,
       enableStatic: true,
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       enableMultiThreaded: true,
       taggedLayout: false,
     })));
-  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), (_) => ({ __proto__: pos$2, static: true })));
+  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), (_) => ({ [nix.POS]: pos$2, static: true })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libtorrent-rasterbar",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "arvidn",
           repo: "libtorrent",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +67,7 @@ moveToOutput "lib/${nix.sel(python311, "libPrefix")}" "$python"
         nix.thunk(() => nix.str`--with-boost-libdir=${nix.sel(boostPython, "out")}/lib`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://libtorrent.org/",
         description: "C++ BitTorrent implementation focusing on efficiency and scalability",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

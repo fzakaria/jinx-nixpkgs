@@ -95,30 +95,30 @@ export default nix.lambda((args) => (() => {
       const trail = nix.argOr($_1, "trail", () => "");
       return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(hasAttr, path, etc)), nix.thunk(() => nix.str`${nix.sel(config, "environment", "etc", nix.key(nix.force(path)), "source")}${trail} ${mode},`));
     })(), formals$2);
-    return (nix.asBool(nix.app(isAttrs, arg)) ? nix.app(go, arg) : nix.app(go, nix.thunk(() => ({ __proto__: pos$1, path: arg }))));
+    return (nix.asBool(nix.app(isAttrs, arg)) ? nix.app(go, arg) : nix.app(go, nix.thunk(() => ({ [nix.POS]: pos$1, path: arg }))));
   })();
   return {
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     config: nix.thunk(() => ({
-      __proto__: pos$71,
+      [nix.POS]: pos$71,
       security: nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         apparmor: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           includes: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             "abstractions/tunables/alias": "alias /bin -> /run/current-system/sw/bin,\nalias /lib/modules -> /run/current-system/kernel/lib/modules,\nalias /sbin -> /run/current-system/sw/sbin,\nalias /usr -> /run/current-system/sw,\n",
             "abstractions/audio": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/audio"
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
                 "asound.conf",
                 "esound/esd.conf",
                 "libao.conf",
-                nix.thunk(() => ({ __proto__: pos$2, path: "pulse", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$3, path: "pulse", trail: "/**" })),
-                nix.thunk(() => ({ __proto__: pos$4, path: "sound", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$5, path: "sound", trail: "/**" })),
-                nix.thunk(() => ({ __proto__: pos$6, path: "alsa/conf.d", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$7, path: "alsa/conf.d", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$2, path: "pulse", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$3, path: "pulse", trail: "/**" })),
+                nix.thunk(() => ({ [nix.POS]: pos$4, path: "sound", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$5, path: "sound", trail: "/**" })),
+                nix.thunk(() => ({ [nix.POS]: pos$6, path: "alsa/conf.d", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$7, path: "alsa/conf.d", trail: "/*" })),
                 "openal/alsoft.conf",
                 "wildmidi/wildmidi.conf",
               ])))),
@@ -128,7 +128,7 @@ include <abstractions/pam>
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
                 "nologin",
                 "securetty",
-                nix.thunk(() => ({ __proto__: pos$8, path: "security", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$8, path: "security", trail: "/*" })),
                 "shadow",
                 "gshadow",
                 "pwdb.conf",
@@ -154,13 +154,13 @@ ${nix.sel(pkgs, "stdenv", "cc", "libc")}/share/i18n/** r,
                 "profile.dos",
                 "profile",
                 "profile.d",
-                nix.thunk(() => ({ __proto__: pos$9, path: "profile.d", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$9, path: "profile.d", trail: "/*" })),
                 "bashrc",
                 "bash.bashrc",
                 "bash.bashrc.local",
                 "bash_completion",
                 "bash_completion.d",
-                nix.thunk(() => ({ __proto__: pos$10, path: "bash_completion.d", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$10, path: "bash_completion.d", trail: "/*" })),
                 "inputrc",
                 "DIR_COLORS",
               ])))),
@@ -173,48 +173,48 @@ ${nix.app(etcRule, "cups/cups-client.conf")}
 ${nix.app(etcRule, "machine-id")}
 `),
             "abstractions/dconf": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/dconf"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$11, path: "dconf", trail: "/**" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$11, path: "dconf", trail: "/**" })))}
 `),
             "abstractions/dri-common": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/dri-common"
 ${nix.app(etcRule, "drirc")}
 `),
             "abstractions/fonts": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/fonts"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$12, path: "fonts", trail: "/**" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$12, path: "fonts", trail: "/**" })))}
 `),
             "abstractions/gnome": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/gnome"
 include <abstractions/fonts>
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$13, path: "gnome", trail: "/gtkrc*" })),
-                nix.thunk(() => ({ __proto__: pos$14, path: "gtk", trail: "/*" })),
-                nix.thunk(() => ({ __proto__: pos$15, path: "gtk-2.0", trail: "/*" })),
-                nix.thunk(() => ({ __proto__: pos$16, path: "gtk-3.0", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$13, path: "gnome", trail: "/gtkrc*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$14, path: "gtk", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$15, path: "gtk-2.0", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$16, path: "gtk-3.0", trail: "/*" })),
                 "orbitrc",
-                nix.thunk(() => ({ __proto__: pos$17, path: "pango", trail: "/*" })),
-                nix.thunk(() => ({ __proto__: pos$18, path: "/etc/gnome-vfs-2.0", trail: "/modules/" })),
-                nix.thunk(() => ({ __proto__: pos$19, path: "/etc/gnome-vfs-2.0", trail: "/modules/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$17, path: "pango", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$18, path: "/etc/gnome-vfs-2.0", trail: "/modules/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$19, path: "/etc/gnome-vfs-2.0", trail: "/modules/*" })),
                 "papersize",
-                nix.thunk(() => ({ __proto__: pos$20, path: "cups", trail: "/lpoptions" })),
-                nix.thunk(() => ({ __proto__: pos$21, path: "gnome", trail: "/defaults.list" })),
-                nix.thunk(() => ({ __proto__: pos$22, path: "xdg", trail: "/{,*-}mimeapps.list" })),
+                nix.thunk(() => ({ [nix.POS]: pos$20, path: "cups", trail: "/lpoptions" })),
+                nix.thunk(() => ({ [nix.POS]: pos$21, path: "gnome", trail: "/defaults.list" })),
+                nix.thunk(() => ({ [nix.POS]: pos$22, path: "xdg", trail: "/{,*-}mimeapps.list" })),
                 "xdg/mimeapps.list",
               ])))),
             "abstractions/kde": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/kde"
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$23, path: "qt3", trail: "/kstylerc" })),
-                nix.thunk(() => ({ __proto__: pos$24, path: "qt3", trail: "/qt_plugins_3.3rc" })),
-                nix.thunk(() => ({ __proto__: pos$25, path: "qt3", trail: "/qtrc" })),
+                nix.thunk(() => ({ [nix.POS]: pos$23, path: "qt3", trail: "/kstylerc" })),
+                nix.thunk(() => ({ [nix.POS]: pos$24, path: "qt3", trail: "/qt_plugins_3.3rc" })),
+                nix.thunk(() => ({ [nix.POS]: pos$25, path: "qt3", trail: "/qtrc" })),
                 "kderc",
-                nix.thunk(() => ({ __proto__: pos$26, path: "kde3", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$26, path: "kde3", trail: "/*" })),
                 "kde4rc",
-                nix.thunk(() => ({ __proto__: pos$27, path: "xdg", trail: "/kdeglobals" })),
-                nix.thunk(() => ({ __proto__: pos$28, path: "xdg", trail: "/Trolltech.conf" })),
+                nix.thunk(() => ({ [nix.POS]: pos$27, path: "xdg", trail: "/kdeglobals" })),
+                nix.thunk(() => ({ [nix.POS]: pos$28, path: "xdg", trail: "/Trolltech.conf" })),
               ])))),
             "abstractions/kerberosclient": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/kerberosclient"
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$29, path: "krb5.keytab", mode: "rk" })),
+                nix.thunk(() => ({ [nix.POS]: pos$29, path: "krb5.keytab", mode: "rk" })),
                 "krb5.conf",
                 "krb5.conf.d",
-                nix.thunk(() => ({ __proto__: pos$30, path: "krb5.conf.d", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$30, path: "krb5.conf.d", trail: "/*" })),
                 "krb.conf",
                 "krb.realms",
                 "srvtab",
@@ -223,9 +223,9 @@ include <abstractions/fonts>
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
                 "ldap.conf",
                 "ldap.secret",
-                nix.thunk(() => ({ __proto__: pos$31, path: "openldap", trail: "/*" })),
-                nix.thunk(() => ({ __proto__: pos$32, path: "openldap", trail: "/cacerts/*" })),
-                nix.thunk(() => ({ __proto__: pos$33, path: "sasl2", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$31, path: "openldap", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$32, path: "openldap", trail: "/cacerts/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$33, path: "sasl2", trail: "/*" })),
               ])))),
             "abstractions/likewise": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/likewise"
 `),
@@ -250,11 +250,11 @@ ${nix.app(getLib, nix.thunk(() => nix.sel(pkgs, "nss")))}/lib64/libnss_*.so* mr,
                 "protocols",
                 "netconfig",
                 "resolv.conf",
-                nix.thunk(() => ({ __proto__: pos$34, path: "samba", trail: "/lmhosts" })),
+                nix.thunk(() => ({ [nix.POS]: pos$34, path: "samba", trail: "/lmhosts" })),
                 "services",
                 "default/nss",
-                nix.thunk(() => ({ __proto__: pos$35, path: "libnl", trail: "/classid" })),
-                nix.thunk(() => ({ __proto__: pos$36, path: "libnl-3", trail: "/classid" })),
+                nix.thunk(() => ({ [nix.POS]: pos$35, path: "libnl", trail: "/classid" })),
+                nix.thunk(() => ({ [nix.POS]: pos$36, path: "libnl-3", trail: "/classid" })),
               ])))),
             "abstractions/nis": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/nis"
 `),
@@ -264,37 +264,37 @@ ${nix.app(getLib, nix.thunk(() => nix.sel(pkgs, "nss")))}/lib64/libnss_*.so* mr,
 ${nix.app(etcRule, "vdpau_wrapper.cfg")}
 `),
             "abstractions/opencl-common": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/opencl-common"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$37, path: "OpenCL", trail: "/**" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$37, path: "OpenCL", trail: "/**" })))}
 `),
             "abstractions/opencl-mesa": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/opencl-mesa"
 ${nix.app(etcRule, "default/drirc")}
 `),
             "abstractions/openssl": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/openssl"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$38, path: "ssl", trail: "/openssl.cnf" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$38, path: "ssl", trail: "/openssl.cnf" })))}
 `),
             "abstractions/p11-kit": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/p11-kit"
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$39, path: "pkcs11", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$40, path: "pkcs11", trail: "/pkcs11.conf" })),
-                nix.thunk(() => ({ __proto__: pos$41, path: "pkcs11", trail: "/modules/" })),
-                nix.thunk(() => ({ __proto__: pos$42, path: "pkcs11", trail: "/modules/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$39, path: "pkcs11", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$40, path: "pkcs11", trail: "/pkcs11.conf" })),
+                nix.thunk(() => ({ [nix.POS]: pos$41, path: "pkcs11", trail: "/modules/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$42, path: "pkcs11", trail: "/modules/*" })),
               ])))),
             "abstractions/perl": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/perl"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$43, path: "perl", trail: "/**" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$43, path: "perl", trail: "/**" })))}
 `),
             "abstractions/php": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/php"
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$44, path: "php", trail: "/**/" })),
-                nix.thunk(() => ({ __proto__: pos$45, path: "php5", trail: "/**/" })),
-                nix.thunk(() => ({ __proto__: pos$46, path: "php7", trail: "/**/" })),
-                nix.thunk(() => ({ __proto__: pos$47, path: "php", trail: "/**.ini" })),
-                nix.thunk(() => ({ __proto__: pos$48, path: "php5", trail: "/**.ini" })),
-                nix.thunk(() => ({ __proto__: pos$49, path: "php7", trail: "/**.ini" })),
+                nix.thunk(() => ({ [nix.POS]: pos$44, path: "php", trail: "/**/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$45, path: "php5", trail: "/**/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$46, path: "php7", trail: "/**/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$47, path: "php", trail: "/**.ini" })),
+                nix.thunk(() => ({ [nix.POS]: pos$48, path: "php5", trail: "/**.ini" })),
+                nix.thunk(() => ({ [nix.POS]: pos$49, path: "php7", trail: "/**.ini" })),
               ])))),
             "abstractions/postfix-common": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/postfix-common"
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
                 "mailname",
-                nix.thunk(() => ({ __proto__: pos$50, path: "postfix", trail: "/*.cf" })),
+                nix.thunk(() => ({ [nix.POS]: pos$50, path: "postfix", trail: "/*.cf" })),
                 "postfix/main.cf",
                 "postfix/master.cf",
               ])))),
@@ -303,12 +303,12 @@ ${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$43, path: "perl", trail: "/
             "abstractions/golang": "# Container-aware GOMAXPROCS\nowner @{PROC}/@{pid}/mountinfo r,\nowner @{PROC}/@{pid}/cgroup r,\n@{sys}/fs/cgroup/**/{cpu.cfs_quota_us,cpu.cfs_period_us} r, # V1\n@{sys}/fs/cgroup/**/cpu.max r, # V2\n",
             "abstractions/qt5": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/qt5"
 `, nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", etcRule, nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$51, path: "xdg", trail: "/QtProject/qtlogging.ini" })),
-                nix.thunk(() => ({ __proto__: pos$52, path: "xdg/QtProject", trail: "/qtlogging.ini" })),
+                nix.thunk(() => ({ [nix.POS]: pos$51, path: "xdg", trail: "/QtProject/qtlogging.ini" })),
+                nix.thunk(() => ({ [nix.POS]: pos$52, path: "xdg/QtProject", trail: "/qtlogging.ini" })),
                 "xdg/QtProject/qtlogging.ini",
               ])))),
             "abstractions/samba": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/samba"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$53, path: "samba", trail: "/*" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$53, path: "samba", trail: "/*" })))}
 `),
             "abstractions/ssl_certs": nix.thunk(() => nix.add(nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/ssl_certs"
 
@@ -323,27 +323,27 @@ ${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$53, path: "samba", trail: "
                 "ssl/certs/ca-certificates.crt",
                 "ssl/certs/ca-bundle.crt",
                 "pki/tls/certs/ca-bundle.crt",
-                nix.thunk(() => ({ __proto__: pos$54, path: "ssl/trust", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$55, path: "ssl/trust", trail: "/*" })),
-                nix.thunk(() => ({ __proto__: pos$56, path: "ssl/trust/anchors", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$57, path: "ssl/trust/anchors", trail: "/**" })),
-                nix.thunk(() => ({ __proto__: pos$58, path: "pki/trust", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$59, path: "pki/trust", trail: "/*" })),
-                nix.thunk(() => ({ __proto__: pos$60, path: "pki/trust/anchors", trail: "/" })),
-                nix.thunk(() => ({ __proto__: pos$61, path: "pki/trust/anchors", trail: "/**" })),
+                nix.thunk(() => ({ [nix.POS]: pos$54, path: "ssl/trust", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$55, path: "ssl/trust", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$56, path: "ssl/trust/anchors", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$57, path: "ssl/trust/anchors", trail: "/**" })),
+                nix.thunk(() => ({ [nix.POS]: pos$58, path: "pki/trust", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$59, path: "pki/trust", trail: "/*" })),
+                nix.thunk(() => ({ [nix.POS]: pos$60, path: "pki/trust/anchors", trail: "/" })),
+                nix.thunk(() => ({ [nix.POS]: pos$61, path: "pki/trust/anchors", trail: "/**" })),
               ])))),
             "abstractions/ssl_keys": "# security.acme NixOS module\n/var/lib/acme/*/full.pem r,\n/var/lib/acme/*/key.pem r,\n",
             "abstractions/vulkan": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/vulkan"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$62, path: "vulkan/icd.d", trail: "/" })))}
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$63, path: "vulkan/icd.d", trail: "/*.json" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$62, path: "vulkan/icd.d", trail: "/" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$63, path: "vulkan/icd.d", trail: "/*.json" })))}
 `),
             "abstractions/winbind": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/winbind"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$64, path: "samba", trail: "/smb.conf" })))}
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$65, path: "samba", trail: "/dhcp.conf" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$64, path: "samba", trail: "/smb.conf" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$65, path: "samba", trail: "/dhcp.conf" })))}
 `),
             "abstractions/X": nix.thunk(() => nix.str`include "${nix.sel(pkgs, "apparmor-profiles")}/etc/apparmor.d/abstractions/X"
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$66, path: "X11/cursors", trail: "/" })))}
-${nix.app(etcRule, nix.thunk(() => ({ __proto__: pos$67, path: "X11/cursors", trail: "/**" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$66, path: "X11/cursors", trail: "/" })))}
+${nix.app(etcRule, nix.thunk(() => ({ [nix.POS]: pos$67, path: "X11/cursors", trail: "/**" })))}
 `),
           })),
         })),

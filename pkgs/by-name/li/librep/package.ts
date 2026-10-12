@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "librep",
       version: "0.92.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SawfishWM",
           repo: "librep",
           tag: nix.thunk(() => nix.str`librep-${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-implicit-int",
             url: "https://github.com/SawfishWM/librep/commit/48f557ab34d47a7a1fd9e8425542f720be40946e.patch",
             hash: "sha256-MbFBNCgjEU1/QnjOe3uCWKVhpxo/E8c9q2TT3+CwPfY=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["CFLAGS=-std=gnu89"]))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/SawfishWM/librep",
         description: "Fast, lightweight, and versatile Lisp environment",
         longDescription: "librep is a Lisp system for UNIX, comprising an interpreter, a byte-code\ncompiler, and a virtual machine. It can serve as an application extension\nlanguage but is also suitable for standalone scripts.\n",

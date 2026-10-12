@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "k3sup",
       version: "0.13.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexellis",
           repo: "k3sup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`substituteInPlace vendor/github.com/alexellis/go-execute/v2/exec.go \\
   --replace "/bin/bash" "${bash}/bin/bash"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/alexellis/k3sup/cmd.GitCommit=ref/tags/${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ installShellCompletion --cmd k3sup \\
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/alexellis/k3sup",
         description: "Bootstrap Kubernetes with k3s over SSH",
         mainProgram: "k3sup",

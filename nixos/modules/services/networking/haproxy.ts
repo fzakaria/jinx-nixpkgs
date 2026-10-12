@@ -36,29 +36,29 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(cfg, "config")}
 `)));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         haproxy: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "HAProxy, the reliable, high performance TCP/HTTP load balancer")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "haproxy", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "haproxy",
               description: "User account under which haproxy runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "haproxy",
               description: "Group account under which haproxy runs.",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               description: "Contents of the HAProxy configuration file,\n{file}`haproxy.conf`.\n",
@@ -67,32 +67,32 @@ ${nix.sel(cfg, "config")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "config"), null)),
             message: "You must provide services.haproxy.config.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
-            "haproxy.cfg": nix.thunk(() => ({ __proto__: pos$8, source: haproxyCfg })),
+            [nix.POS]: pos$9,
+            "haproxy.cfg": nix.thunk(() => ({ [nix.POS]: pos$8, source: haproxyCfg })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             haproxy: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "HAProxy",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 Type: "notify",
@@ -121,16 +121,16 @@ ${nix.sel(cfg, "config")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "haproxy")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               haproxy: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "haproxy")), nix.thunk(() => ({ __proto__: pos$17, haproxy: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "haproxy")), nix.thunk(() => ({ [nix.POS]: pos$17, haproxy: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

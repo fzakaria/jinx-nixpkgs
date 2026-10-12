@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libpthread_stubs = nix.arg($, "libpthread-stubs");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bemenu",
       version: "0.6.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Cloudef",
           repo: "bemenu",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => nix.concat(["clients"], nix.concat(nix.app(nix.sel(lib, "optional"), ncursesSupport, "curses"), nix.concat(nix.app(nix.sel(lib, "optional"), waylandSupport, "wayland"), nix.app(nix.sel(lib, "optional"), x11Support, "x11"))))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "so=\"$(find \"$out/lib\" -name \"libbemenu.so.[0-9]\" -print -quit)\"\nfor f in \"$out/bin/\"*; do\n    install_name_tool -change \"$(basename $so)\" \"$so\" $f\n    wrapProgram $f --set BEMENU_BACKEND curses\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Cloudef/bemenu",
         description: "Dynamic menu library and client program inspired by dmenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

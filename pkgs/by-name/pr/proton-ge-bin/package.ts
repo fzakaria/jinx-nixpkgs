@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "passthru", "variants", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       steamDisplayName: "GE-Proton",
       pname: "proton-ge-bin",
       version: "GE-Proton11-7",
@@ -48,23 +48,23 @@ runHook postInstall
 `),
       preFixup: "substituteInPlace \"$steamcompattool/compatibilitytool.vdf\" \\\n  --replace-fail \"$toolName\" \"$steamDisplayName\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         variants: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "x86_64-linux": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             toolName: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-x86_64`),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 url: nix.thunk(() => nix.str`https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "version")}-x86_64.tar.gz`),
                 hash: "sha256-ftW0vE45v2JsbaYqo/So0ZFfvdtakHX0XEXEE4TdxLk=",
               })))),
           })),
           "aarch64-linux": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             toolName: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-aarch64`),
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: nix.thunk(() => nix.str`https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "version")}-aarch64.tar.gz`),
                 hash: "sha256-tyI95zCUQklRVA9YtarD+gBQouMVcJmv7BafNx5CQu8=",
               })))),
@@ -80,7 +80,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Compatibility tool for Steam Play based on Wine and additional components.\n\n(This is intended for use in the `programs.steam.extraCompatPackages` option only.)\n",
         homepage: "https://github.com/GloriousEggroll/proton-ge-custom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

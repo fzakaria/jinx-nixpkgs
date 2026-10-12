@@ -51,70 +51,70 @@ export default nix.lambda((args) => (() => {
   const name = "coder";
   const configRefUrl = "https://coder.com/docs/@main/admin/setup/configuration-reference";
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         coder: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Coder service")),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "coder",
               description: "User under which the coder service runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise it needs to be configured manually.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "coder",
               description: "Group under which the coder service runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise it needs to be configured manually.\n:::\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "coder", nix.thunk(() => ({})))),
           homeDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Home directory for coder user.\n",
               default: "/var/lib/coder",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Listen address.\n",
               default: "127.0.0.1:3000",
             })))),
           accessUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Access URL should be a external IP address or domain with DNS records pointing to Coder.\n",
               default: null,
               example: "https://coder.example.com",
             })))),
           wildcardAccessUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "If you are providing TLS certificates directly to the Coder server, you must use a single certificate for the root and wildcard domains.\n",
               default: null,
               example: "*.coder.example.com",
             })))),
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             extra: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")),
                 description: nix.thunk(() => nix.str`Extra environment variables to pass run Coder's server with.
 See [Coder configuration reference](${configRefUrl}).
 `),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   CODER_OAUTH2_GITHUB_ALLOW_SIGNUPS: true,
                   CODER_OAUTH2_GITHUB_ALLOWED_ORGS: "your-org",
                 })),
               })))),
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 description: nix.thunk(() => nix.str`Systemd environment file to add to Coder.
 See [Coder configuration reference](${configRefUrl}).
@@ -123,52 +123,52 @@ See [Coder configuration reference](${configRefUrl}).
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             createLocally: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Create the database and database user locally.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "/run/postgresql",
                 description: "Hostname hosting the database.\n",
               })))),
             database: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "coder",
                 description: "Name of database.\n",
               })))),
             username: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "coder",
                 description: "Username for accessing the database.\n",
               })))),
             password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Password for accessing the database.\n",
               })))),
             sslmode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: "disable",
                 description: "Password for accessing the database.\n",
               })))),
           })),
           tlsCert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "The path to the TLS certificate.\n",
               default: null,
             })))),
           tlsKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "The path to the TLS key.\n",
               default: null,
@@ -177,25 +177,25 @@ See [Coder configuration reference](${configRefUrl}).
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "username"), name)) && nix.asBool(nix.eq(nix.sel(cfg, "database", "database"), nix.sel(cfg, "database", "username"))))))),
             message: nix.thunk(() => nix.str`services.coder.database.username must be set to ${name} if services.coder.database.createLocally is set true`),
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             coder: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Coder - Self-hosted developer workspaces on your infra",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.update(nix.sel(cfg, "environment", "extra"), {
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 CODER_ACCESS_URL: nix.thunk(() => nix.sel(cfg, "accessUrl")),
                 CODER_WILDCARD_ACCESS_URL: nix.thunk(() => nix.sel(cfg, "wildcardAccessUrl")),
                 CODER_PG_CONNECTION_URL: nix.thunk(() => nix.str`user=${nix.sel(cfg, "database", "username")} ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "password"), null)), nix.thunk(() => nix.str`password=${nix.sel(cfg, "database", "password")}`))} database=${nix.sel(cfg, "database", "database")} host=${nix.sel(cfg, "database", "host")} ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "sslmode"), null)), nix.thunk(() => nix.str`sslmode=${nix.sel(cfg, "database", "sslmode")}`))}`),
@@ -205,7 +205,7 @@ See [Coder configuration reference](${configRefUrl}).
                 CODER_TLS_KEY_FILE: nix.thunk(() => nix.sel(cfg, "tlsKey")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ProtectSystem: "full",
                 PrivateTmp: "yes",
                 PrivateDevices: "yes",
@@ -226,14 +226,14 @@ See [Coder configuration reference](${configRefUrl}).
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "database"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   name: nix.thunk(() => nix.sel(cfg, "user")),
                   ensureDBOwnership: true,
                 })),
@@ -241,11 +241,11 @@ See [Coder configuration reference](${configRefUrl}).
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           groups: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), name)), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "group")}`, nix.thunk(() => ({}))]])))),
           users: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), name)), nix.thunk(() => nix.attrsDyn({}, [
               [name, nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 description: "Coder service user",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "homeDir")),
@@ -256,7 +256,7 @@ See [Coder configuration reference](${configRefUrl}).
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => nix.sel(pkgs, "coder", "meta", "maintainers")),
     })),
   };

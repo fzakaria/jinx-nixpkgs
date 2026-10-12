@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const testo = nix.arg($, "testo");
   const ppx_deriving = nix.arg($, "ppx_deriving");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "testo-diff",
       version: nix.thunk(() => nix.attr(testo, "version")),
       src: nix.thunk(() => nix.attr(testo, "src")),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving]),
-      meta: nix.thunk(() => nix.update(nix.sel(testo, "meta"), { __proto__: pos$1, description: "Pure-OCaml diff implementation" })),
+      meta: nix.thunk(() => nix.update(nix.sel(testo, "meta"), { [nix.POS]: pos$1, description: "Pure-OCaml diff implementation" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=diff.ts.map

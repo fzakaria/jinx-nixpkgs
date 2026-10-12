@@ -118,26 +118,26 @@ mv  ${resultFile}.tmp ${resultFile}
     const tests = nix.arg($_1, "tests");
     const w = nix.withScope(lib, null);
     return nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: nix.thunk(() => nix.str`keymap-${layout}`),
         nodes: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           machine: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             console: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               keyMap: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 900n, layout)),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               xserver: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 desktopManager: nix.thunk(() => ({
-                  __proto__: pos$3,
-                  xterm: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+                  [nix.POS]: pos$3,
+                  xterm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
                 })),
                 xkb: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   layout: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 900n, layout)),
                 })),
               })),
@@ -205,235 +205,235 @@ for test_case_name, test_data in tests.items():
       })));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), mkKeyboardTest, nix.thunk(() => ({
-      __proto__: pos$86,
+      [nix.POS]: pos$86,
       azerty: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           azqw: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             qwerty: nix.thunk(() => ["q", "w"]),
             expect: nix.thunk(() => ["a", "z"]),
           })),
           altgr: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             qwerty: nix.thunk(() => ["alt_r-2", "alt_r-3", "alt_r-4", "alt_r-5", "alt_r-6"]),
             expect: nix.thunk(() => ["~", "#", "{", "[", "|"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$17,
-          console: nix.thunk(() => ({ __proto__: pos$13, keyMap: "fr" })),
+          [nix.POS]: pos$17,
+          console: nix.thunk(() => ({ [nix.POS]: pos$13, keyMap: "fr" })),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             xserver: nix.thunk(() => ({
-              __proto__: pos$15,
-              xkb: nix.thunk(() => ({ __proto__: pos$14, layout: "fr" })),
+              [nix.POS]: pos$15,
+              xkb: nix.thunk(() => ({ [nix.POS]: pos$14, layout: "fr" })),
             })),
           })),
         })),
       })),
       bone: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         tests: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           layer1: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             qwerty: nix.thunk(() => ["f", "j"]),
             expect: nix.thunk(() => ["e", "n"]),
           })),
           layer2: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             qwerty: nix.thunk(() => ["shift-f", "shift-j", "shift-6"]),
             expect: nix.thunk(() => ["E", "N", "$"]),
           })),
           layer3: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             qwerty: nix.thunk(() => ["caps_lock-d", "caps_lock-f"]),
             expect: nix.thunk(() => ["{", "}"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$27,
-          console: nix.thunk(() => ({ __proto__: pos$23, keyMap: "bone" })),
+          [nix.POS]: pos$27,
+          console: nix.thunk(() => ({ [nix.POS]: pos$23, keyMap: "bone" })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             xserver: nix.thunk(() => ({
-              __proto__: pos$25,
-              xkb: nix.thunk(() => ({ __proto__: pos$24, layout: "de", variant: "bone" })),
+              [nix.POS]: pos$25,
+              xkb: nix.thunk(() => ({ [nix.POS]: pos$24, layout: "de", variant: "bone" })),
             })),
           })),
         })),
       })),
       colemak: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         tests: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           homerow: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             qwerty: nix.thunk(() => ["a", "s", "d", "f", "j", "k", "l", "semicolon"]),
             expect: nix.thunk(() => ["a", "r", "s", "t", "n", "e", "i", "o"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$35,
-          console: nix.thunk(() => ({ __proto__: pos$31, keyMap: "colemak" })),
+          [nix.POS]: pos$35,
+          console: nix.thunk(() => ({ [nix.POS]: pos$31, keyMap: "colemak" })),
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             xserver: nix.thunk(() => ({
-              __proto__: pos$33,
-              xkb: nix.thunk(() => ({ __proto__: pos$32, layout: "us", variant: "colemak" })),
+              [nix.POS]: pos$33,
+              xkb: nix.thunk(() => ({ [nix.POS]: pos$32, layout: "us", variant: "colemak" })),
             })),
           })),
         })),
       })),
       dvorak: nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         tests: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           homerow: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             qwerty: nix.thunk(() => ["a", "s", "d", "f", "j", "k", "l", "semicolon"]),
             expect: nix.thunk(() => ["a", "o", "e", "u", "h", "t", "n", "s"]),
           })),
           symbols: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             qwerty: nix.thunk(() => ["q", "w", "e", "minus", "equal"]),
             expect: nix.thunk(() => ["'", ",", ".", "[", "]"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$44,
-          console: nix.thunk(() => ({ __proto__: pos$40, keyMap: "dvorak" })),
+          [nix.POS]: pos$44,
+          console: nix.thunk(() => ({ [nix.POS]: pos$40, keyMap: "dvorak" })),
           services: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             xserver: nix.thunk(() => ({
-              __proto__: pos$42,
-              xkb: nix.thunk(() => ({ __proto__: pos$41, layout: "us", variant: "dvorak" })),
+              [nix.POS]: pos$42,
+              xkb: nix.thunk(() => ({ [nix.POS]: pos$41, layout: "us", variant: "dvorak" })),
             })),
           })),
         })),
       })),
       "dvorak-programmer": nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         tests: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           homerow: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             qwerty: nix.thunk(() => ["a", "s", "d", "f", "j", "k", "l", "semicolon"]),
             expect: nix.thunk(() => ["a", "o", "e", "u", "h", "t", "n", "s"]),
           })),
           numbers: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             qwerty: nix.thunk(() => nix.builtins.map((x) => nix.str`shift-${x}`, nix.thunk(() => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus"]))),
             expect: nix.thunk(() => ["%", "7", "5", "3", "1", "9", "0", "2", "4", "6", "8"]),
           })),
           symbols: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             qwerty: nix.thunk(() => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus"]),
             expect: nix.thunk(() => ["&", "[", "{", "}", "(", "=", "*", ")", "+", "]", "!"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$54,
-          console: nix.thunk(() => ({ __proto__: pos$50, keyMap: "dvorak-programmer" })),
+          [nix.POS]: pos$54,
+          console: nix.thunk(() => ({ [nix.POS]: pos$50, keyMap: "dvorak-programmer" })),
           services: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             xserver: nix.thunk(() => ({
-              __proto__: pos$52,
-              xkb: nix.thunk(() => ({ __proto__: pos$51, layout: "us", variant: "dvp" })),
+              [nix.POS]: pos$52,
+              xkb: nix.thunk(() => ({ [nix.POS]: pos$51, layout: "us", variant: "dvp" })),
             })),
           })),
         })),
       })),
       neo: nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         tests: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           layer1: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             qwerty: nix.thunk(() => ["f", "j"]),
             expect: nix.thunk(() => ["e", "n"]),
           })),
           layer2: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             qwerty: nix.thunk(() => ["shift-f", "shift-j", "shift-6"]),
             expect: nix.thunk(() => ["E", "N", "$"]),
           })),
           layer3: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             qwerty: nix.thunk(() => ["caps_lock-d", "caps_lock-f"]),
             expect: nix.thunk(() => ["{", "}"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$64,
-          console: nix.thunk(() => ({ __proto__: pos$60, keyMap: "neo" })),
+          [nix.POS]: pos$64,
+          console: nix.thunk(() => ({ [nix.POS]: pos$60, keyMap: "neo" })),
           services: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             xserver: nix.thunk(() => ({
-              __proto__: pos$62,
-              xkb: nix.thunk(() => ({ __proto__: pos$61, layout: "de", variant: "neo" })),
+              [nix.POS]: pos$62,
+              xkb: nix.thunk(() => ({ [nix.POS]: pos$61, layout: "de", variant: "neo" })),
             })),
           })),
         })),
       })),
       qwertz: nix.thunk(() => ({
-        __proto__: pos$74,
+        [nix.POS]: pos$74,
         tests: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           zy: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             qwerty: nix.thunk(() => ["z", "y"]),
             expect: nix.thunk(() => ["y", "z"]),
           })),
           altgr: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             qwerty: nix.thunk(() => nix.builtins.map((x) => nix.str`alt_r-${x}`, nix.thunk(() => ["q", "less", "7", "8", "9", "0"]))),
             expect: nix.thunk(() => ["@", "|", "{", "[", "]", "}"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$73,
-          console: nix.thunk(() => ({ __proto__: pos$69, keyMap: "de" })),
+          [nix.POS]: pos$73,
+          console: nix.thunk(() => ({ [nix.POS]: pos$69, keyMap: "de" })),
           services: nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             xserver: nix.thunk(() => ({
-              __proto__: pos$71,
-              xkb: nix.thunk(() => ({ __proto__: pos$70, layout: "de" })),
+              [nix.POS]: pos$71,
+              xkb: nix.thunk(() => ({ [nix.POS]: pos$70, layout: "de" })),
             })),
           })),
         })),
       })),
       custom: nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         tests: nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           us: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             qwerty: nix.thunk(() => ["a", "b", "g", "d", "z", "shift-2", "shift-3"]),
             expect: nix.thunk(() => ["a", "b", "g", "d", "z", "@", "#"]),
           })),
           greek: nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             qwerty: nix.thunk(() => nix.builtins.map((x) => nix.str`alt_r-${x}`, nix.thunk(() => ["a", "b", "g", "d", "z"]))),
             expect: nix.thunk(() => ["α", "β", "γ", "δ", "ζ"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          __proto__: pos$84,
-          console: nix.thunk(() => ({ __proto__: pos$78, useXkbConfig: true })),
+          [nix.POS]: pos$84,
+          console: nix.thunk(() => ({ [nix.POS]: pos$78, useXkbConfig: true })),
           services: nix.thunk(() => ({
-            __proto__: pos$83,
+            [nix.POS]: pos$83,
             xserver: nix.thunk(() => ({
-              __proto__: pos$82,
+              [nix.POS]: pos$82,
               xkb: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 layout: "us-greek",
                 extraLayouts: nix.thunk(() => ({
-                  __proto__: pos$80,
+                  [nix.POS]: pos$80,
                   "us-greek": nix.thunk(() => ({
-                    __proto__: pos$79,
+                    [nix.POS]: pos$79,
                     description: "US layout with alt-gr greek",
                     languages: nix.thunk(() => ["eng"]),
                     symbolsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "us-greek", "xkb_symbols \"us-greek\"\n{\n  include \"us(basic)\"\n  include \"level3(ralt_switch)\"\n  key <LatA> { [ a, A, Greek_alpha ] };\n  key <LatB> { [ b, B, Greek_beta  ] };\n  key <LatG> { [ g, G, Greek_gamma ] };\n  key <LatD> { [ d, D, Greek_delta ] };\n  key <LatZ> { [ z, Z, Greek_zeta  ] };\n};\n")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TNThieding",
           repo: "exif",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, baseline]);
       const pythonImportsCheck = nix.thunk(() => ["exif"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read and modify image EXIF metadata using Python",
         homepage: "https://gitlab.com/TNThieding/exif",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/TNThieding/exif/-/blob/v${version}/docs/release_notes.rst`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DeakoLights",
           repo: "pydeako",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, pytest_asyncio, pytest9_0CheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pydeako"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module used to discover and communicate with Deako devices over the network locally",
         homepage: "https://github.com/DeakoLights/pydeako",
         changelog: nix.thunk(() => nix.str`https://github.com/DeakoLights/pydeako/releases/tag/${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

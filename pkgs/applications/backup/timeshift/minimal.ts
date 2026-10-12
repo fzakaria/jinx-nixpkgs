@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const timeshift_unwrapped = nix.arg($, "timeshift-unwrapped");
   const timeshift_wrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(nix.app(timeshift_wrapper, timeshift_unwrapped, []), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.add(nix.sel(oldAttrs, "meta", "description"), " (without runtime dependencies)")),
         longDescription: nix.thunk(() => nix.add(nix.sel(oldAttrs, "meta", "longDescription"), "This package is a wrapped version of timeshift-unwrapped\nwithout runtime dependencies of command utilities.\n")),
       })),

@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rayforge",
       version: "1.11.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "barebaric",
           repo: "rayforge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -95,11 +95,11 @@ dynamic = ["dependencies"]'
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "2D CAD and G-code sender for laser cutters and engravers",
         homepage: "https://github.com/barebaric/rayforge",
         changelog: nix.thunk(() => nix.str`https://github.com/barebaric/rayforge/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const xmlschema = nix.arg($, "xmlschema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "twomemo",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Syndace",
           repo: "python-twomemo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [doubleratchet, omemo, x3dh, xeddsa, protobuf, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, xml: nix.thunk(() => [xmlschema]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, xml: nix.thunk(() => [xmlschema]) })),
       pythonImportsCheck: nix.thunk(() => ["twomemo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backend implementation of the urn:xmpp:omemo:2 namespace for python-omemo",
         homepage: "https://github.com/Syndace/python-twomemo",
         changelog: nix.thunk(() => nix.str`https://github.com/Syndace/python-twomemo/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const hidapi = nix.arg($, "hidapi");
   const pyscard = nix.arg($, "pyscard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nitrokey",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nitrokey",
           repo: "nitrokey-sdk-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "compatibility-with-pytest.patch",
             url: "https://github.com/Nitrokey/nitrokey-sdk-py/commit/c9b2516aa10027d238665ab7718fb474d80a2753.patch?full_index=1",
             hash: "sha256-3qYlV0RFLM2aJKfnO9WoQkXZuMisdaGuutmkRp33bWc=",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
         protobuf,
         pyserial,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, ccid: nix.thunk(() => [pyscard]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, ccid: nix.thunk(() => [pyscard]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["nitrokey"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python SDK for Nitrokey devices",
         homepage: "https://github.com/Nitrokey/nitrokey-sdk-py",
         changelog: nix.thunk(() => nix.str`https://github.com/Nitrokey/nitrokey-sdk-py/releases/tag/v${nix.sel(finalAttrs, "version")}`),

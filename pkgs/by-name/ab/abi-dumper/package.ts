@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const elfutils = nix.arg($, "elfutils");
   const vtable_dumper = nix.arg($, "vtable-dumper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "abi-dumper",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lvc",
           repo: "abi-dumper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "mkdir -p $out",
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lvc/abi-dumper",
         description: "Dump ABI of an ELF object containing DWARF debug info",
         mainProgram: "abi-dumper",

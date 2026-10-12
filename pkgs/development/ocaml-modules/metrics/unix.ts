@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mtime = nix.arg($, "mtime");
   const uuidm = nix.arg($, "uuidm");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "metrics-unix",
       version: nix.thunk(() => nix.attr(metrics, "version")),
       src: nix.thunk(() => nix.attr(metrics, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gnuplot]),
       checkInputs: nix.thunk(() => [metrics_lwt]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { __proto__: pos$1, description: "Unix backend for the Metrics library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { [nix.POS]: pos$1, description: "Unix backend for the Metrics library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

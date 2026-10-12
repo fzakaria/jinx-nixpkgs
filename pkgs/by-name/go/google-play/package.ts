@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "google-play";
       const version = "1.7.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UlyssesZh",
           repo: "google-play",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["internal/play", "internal/badging"]);
       const vendorHash = "sha256-q0p9+74qUSY2AAnagtM6d6PPEhM1HHF019QWxTemiIo=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI app to download APK from Google Play or send API requests",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

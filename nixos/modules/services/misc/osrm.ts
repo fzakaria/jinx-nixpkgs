@@ -31,52 +31,52 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "osrm"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         osrm: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the OSRM service.",
             })))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "IP address on which the web server will listen.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5000n,
               description: "Port on which the web server will run.",
             })))),
           threads: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 4n,
               description: "Number of threads to use.",
             })))),
           algorithm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["CH", "CoreCH", "MLD"]))),
               default: "MLD",
               description: "Algorithm to use for the data. Must be one of CH, CoreCH, MLD",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--max-table-size 1000", "--max-matching-size 1000"]),
               description: "Extra command line arguments passed to osrm-routed",
             })))),
           dataFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               example: "/var/lib/osrm/berlin-latest.osrm",
               description: "Data file location",
@@ -85,32 +85,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             osrm: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               group: nix.thunk(() => nix.sel(config, "users", "users", "osrm", "name")),
               description: "OSRM user",
               createHome: false,
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$13, osrm: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$13, osrm: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             osrm: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "OSRM service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 User: nix.thunk(() => nix.sel(config, "users", "users", "osrm", "name")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "osrm-backend")}/bin/osrm-routed \\
   --ip ${nix.sel(cfg, "address")} \\

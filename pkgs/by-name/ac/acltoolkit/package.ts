@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "acltoolkit",
       version: "0.2.2-unstable-2023-02-03",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zblurx",
           repo: "acltoolkit",
           rev: "a5219946aa445c0a3b4a406baea67b33f78bca7c",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["acltoolkit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ACL abuse swiss-knife",
         homepage: "https://github.com/zblurx/acltoolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libtiff = nix.arg($, "libtiff");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scantailor-advanced",
       version: "1.0.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vigri",
           repo: "scantailor-advanced",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtbase")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/vigri/scantailor-advanced",
         description: "Interactive post-processing tool for scanned pages (vigri's fork)",
         mainProgram: "scantailor",

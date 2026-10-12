@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvidia-dlprof-pytorch-nvtx";
       const version = "1.8.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pypi.nvidia.com/nvidia-dlprof-pytorch-nvtx/nvidia_dlprof_pytorch_nvtx-${version}-py3-none-any.whl`),
           hash: "sha256-IHVCXnkVy3lXw22ISpeMdt5T7UZSzHp8sbWGF/emwGw=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, torch]);
       const pythonImportsCheck = nix.thunk(() => ["nvidia_dlprof_pytorch_nvtx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NVIDIA DLProf Pytorch NVTX markers",
         homepage: "https://docs.nvidia.com/deeplearning/frameworks/dlprof-user-guide/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

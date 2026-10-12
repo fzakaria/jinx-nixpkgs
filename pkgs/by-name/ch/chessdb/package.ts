@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chessdb",
       version: "3.6.19-beta-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/chessdb/ChessDB-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0brc3wln3bxp979iqj2w1zxpfd0pch8zzazhdmwf7acww4hrsz62",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "MANDIR=$(out)/man",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://chessdb.sourceforge.net/",
         description: "Free chess database",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

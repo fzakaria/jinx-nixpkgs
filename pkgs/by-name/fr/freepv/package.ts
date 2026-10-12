@@ -24,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libxxf86vm = nix.arg($, "libxxf86vm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "freepv",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/freepv/freepv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1w19abqjn64w47m35alg7bcdl1p97nf11zn64cp4p0dydihmhv56",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [libjpeg, libGLU, libGL, libglut, zlib, libx11, libxml2, libpng, libxxf86vm]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.4.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n\nsed -i -e '/GECKO/d' CMakeLists.txt\nsed -i -e '/mozilla/d' src/CMakeLists.txt\nsed -i -e '1i \\\n  #include <cstdio>' src/libfreepv/OpenGLRenderer.cpp\nsed -i -e '1i \\\n  #include <cstring>' src/libfreepv/Image.cpp\nsubstituteInPlace src/libfreepv/Action.h \\\n  --replace NULL nullptr\nsubstituteInPlace src/libfreepv/pngReader.cpp \\\n  --replace png_set_gray_1_2_4_to_8 png_set_expand_gray_1_2_4_to_8\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive -Wno-narrowing" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive -Wno-narrowing" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source panorama viewer using GL",
         homepage: "https://freepv.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

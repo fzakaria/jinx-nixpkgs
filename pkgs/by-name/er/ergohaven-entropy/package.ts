@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ergohaven-entropy",
       version: "0.3.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ergohaven",
           repo: "entropy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
         xkeyboard_config,
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "entropy",
             exec: "entropy",
             icon: "entropy",
@@ -103,7 +103,7 @@ wrapProgram $out/share/entropy/ibus/entropy-ibus-engine \\
   --prefix GI_TYPELIB_PATH : ${nix.app(nix.sel(lib, "makeSearchPath"), "lib/girepository-1.0", nix.thunk(() => [glib, ibus]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern app for programmable keyboards and input devices",
         longDescription: "Entropy is a desktop app with a modern, minimalist, and intuitive\ninterface for configuring programmable input devices running Vial-QMK\nor Vial-RMK firmware: split keyboards, macropads, trackballs, touchpad\nmodules, and other hardware that exposes keyboard-style firmware\nfeatures through HID.\n",
         homepage: "https://github.com/ergohaven/entropy",

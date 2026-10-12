@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "linyaps",
       version: "1.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenAtom-Linyaps",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,7 +121,7 @@ substituteInPlace libs/linglong/src/linglong/repo/ostree_repo.cpp \\
       ]),
       postFixup: "# Wrap all executables except ll-init\nfind \"$out\" -type f -executable \\\n  \\( -path \"$out/bin/*\" -o -path \"$out/libexec/*\" \\) \\\n  ! -name \"ll-init\" \\\n  -print0 | while IFS= read -r -d \"\" f; do\n  wrapQtApp \"$f\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-distribution package manager with sandboxed apps and shared runtime",
         homepage: "https://linyaps.org.cn",
         downloadPage: "https://github.com/OpenAtom-Linyaps/linyaps",

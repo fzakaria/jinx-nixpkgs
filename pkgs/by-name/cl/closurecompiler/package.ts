@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "closure-compiler",
       version: "20260804",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/com/google/javascript/closure-compiler/v${nix.sel(finalAttrs, "version")}/closure-compiler-v${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-DLhqS5Z2nGebT8LS3A5azQq9Df+TKUW5D74yckdGaik=",
         })))),
@@ -32,7 +32,7 @@ makeWrapper ${jre}/bin/java $out/bin/closure-compiler \\
   --add-flags "\\$NIX_JAVA_ARGS -jar $out/share/java/closure-compiler-v${nix.sel(finalAttrs, "version")}.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for making JavaScript download and run faster",
         mainProgram: "closure-compiler",
         homepage: "https://developers.google.com/closure/compiler/",

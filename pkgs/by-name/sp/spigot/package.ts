@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spigot",
       version: "20240909.f158e08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/spigot/spigot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8re4ubDgsTjc/WrE60b6eXBrGEJSKJTEXd/XMdJ79nM=",
         })))),
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           approximation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/approximation.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               spigot: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.chiark.greenend.org.uk/~sgtatham/spigot/",
         description: "Command-line exact real calculator",
         mainProgram: "spigot",

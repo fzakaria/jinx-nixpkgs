@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Routes",
           version: version,
           sha256: "b6346459a15f0cbab01a45a90c3d25caf980d4733d628b4cc1952b865125d053",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["routes"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Re-implementation of the Rails routes system for mapping URLs to application actions",
         homepage: "https://github.com/bbangert/routes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

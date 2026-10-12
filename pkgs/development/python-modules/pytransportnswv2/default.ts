@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const httpx = nix.arg($, "httpx");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytransportnswv2",
       version: "3.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-QlPaqeBRQm3dLMY0kX/Uq2hxNrp2pTMJHiKi71WVfpY=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["TransportNSWv2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to access Transport NSW information",
         homepage: "https://github.com/andystewart999/TransportNSW",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const enableTruecolor = nix.argOr($, "enableTruecolor", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crispy-doom",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabiangreffrath",
           repo: "crispy-doom",
           tag: nix.thunk(() => nix.str`crispy-doom-${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fabiangreffrath.github.io/crispy-homepage",
         changelog: nix.thunk(() => nix.str`https://github.com/fabiangreffrath/crispy-doom/releases/tag/crispy-doom-${nix.sel(finalAttrs, "version")}`),
         description: "Limit-removing enhanced-resolution Doom source port based on Chocolate Doom",

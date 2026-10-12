@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-nXTqsJNX/LwAglPcPZkmdYPfF+vDLN+nNdZaDFTrHzE=",
         }))));
       const jarHash = "sha256-x2KH6tnoG7sogtjrJvUaxy0PCEA8q/zneuI969oBOKo=";
-      const skeinJar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./skeinjar.nix"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, jarHash: jarHash }))));
+      const skeinJar = nix.thunk(() => nix.app(callPackage, nix.path(here, "./skeinjar.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, jarHash: jarHash }))));
       const build_system = nix.thunk(() => [setuptools_80, versioneer]);
       const dependencies = nix.thunk(() => [cryptography, grpcio, pyyaml]);
       const buildInputs = nix.thunk(() => [grpcio_tools]);
@@ -51,7 +51,7 @@ rm versioneer.py
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_ui", "test_tornado", "test_kv", "test_core", "test_cli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://jcristharif.com/skein",
         description: "Tool and library for easily deploying applications on Apache YARN",
         mainProgram: "skein",
@@ -65,7 +65,7 @@ rm versioneer.py
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

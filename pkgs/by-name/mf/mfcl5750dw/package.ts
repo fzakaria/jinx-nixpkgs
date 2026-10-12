@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const arches = nix.thunk(() => ["x86_64", "i686", "armv7l"]);
   const runtimeDeps = nix.thunk(() => [ghostscript, file, gnused, gnugrep, coreutils, which]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mfcl5750dw",
       version: "3.5.1-1",
       nativeBuildInputs: nix.thunk(() => [dpkg, makeWrapper, autoPatchelfHook]),
       buildInputs: nix.thunk(() => [perl]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102614/mfcl5750dwcupswrapper-${nix.sel(finalAttrs, "version")}.i386.deb`),
           sha256: "afe6d18e17d26348f3b8a4f9a003107984940c429a7dd193054303a21f5e65b5",
         })))),
       lpr_src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102613/mfcl5750dwlpr-${nix.sel(finalAttrs, "version")}.i386.deb`),
           sha256: "b1b9c1f9ae8522a65fdd2db1e760aed835807ba593d001ac5471635a157cd1f1",
         })))),
@@ -78,7 +78,7 @@ $out/share/cups/model/
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.brother.com/",
         description: "Brother MFCL5750DW CUPS driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

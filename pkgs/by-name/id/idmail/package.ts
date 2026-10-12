@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const tailwindcss_3 = nix.arg($, "tailwindcss_3");
   const wasm_bindgen_cli_0_2_106 = nix.arg($, "wasm-bindgen-cli_0_2_106");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "idmail",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oddlama",
           repo: "idmail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-FU9CfOJ9tNY+97OZDw2qYZHTPoFp9Ch2VigXaxBnFCw=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTC_BOOTSTRAP: 1n,
         RUSTFLAGS: "--cfg=web_sys_unstable_apis",
       })),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\ncargo leptos build --release\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share\ncp target/release/idmail $out/bin\ncp -r target/site $out/share\nwrapProgram $out/bin/idmail --set LEPTOS_SITE_ROOT $out/share/site\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Email alias and account management interface for self-hosted mailservers",
         homepage: "https://github.com/oddlama/idmail",
         changelog: nix.thunk(() => nix.str`https://github.com/oddlama/idmail/releases/tag/v${nix.sel(finalAttrs, "version")}`),

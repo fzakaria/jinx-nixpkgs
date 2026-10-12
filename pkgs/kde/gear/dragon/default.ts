@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kxmlgui = nix.arg($, "kxmlgui");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dragon",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtmultimedia, kconfigwidgets, kparts, kxmlgui, ffmpeg]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "dragon" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "dragon" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

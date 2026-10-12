@@ -23,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ddns-updater"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "ddns-updater": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Container to update DNS records periodically with WebUI for many DNS providers")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ddns-updater", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Environment variables to be set for the ddns-updater service. DATADIR is ignored to enable using systemd DynamicUser. For full list see <https://github.com/qdm12/ddns-updater>",
               default: nix.thunk(() => ({})),
@@ -42,20 +42,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "ddns-updater": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
-              environment: nix.thunk(() => nix.update(nix.sel(cfg, "environment"), { __proto__: pos$5, DATADIR: "%S/ddns-updater" })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$6, Description: "DDNS-updater service" })),
+              environment: nix.thunk(() => nix.update(nix.sel(cfg, "environment"), { [nix.POS]: pos$5, DATADIR: "%S/ddns-updater" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Description: "DDNS-updater service" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 TimeoutSec: "5min",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 RestartSec: 30n,

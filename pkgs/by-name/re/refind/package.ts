@@ -30,24 +30,24 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
   const archids = nix.thunk(() => ({
-    __proto__: pos$4,
-    "x86_64-linux": nix.thunk(() => ({ __proto__: pos$1, hostarch: "x86_64", efiPlatform: "x64" })),
+    [nix.POS]: pos$4,
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$1, hostarch: "x86_64", efiPlatform: "x64" })),
     "i686-linux": nix.thunk(() => (() => {
       const hostarch_1 = "ia32";
       const efiPlatform_1 = hostarch_1;
-      return { __proto__: pos$2, hostarch: hostarch_1, efiPlatform: efiPlatform_1 };
+      return { [nix.POS]: pos$2, hostarch: hostarch_1, efiPlatform: efiPlatform_1 };
     })()),
-    "aarch64-linux": nix.thunk(() => ({ __proto__: pos$3, hostarch: "aarch64", efiPlatform: "aa64" })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$3, hostarch: "aarch64", efiPlatform: "aa64" })),
   }));
   const from = nix.thunk(() => nix.selOr(archids, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hostarch = nix.thunk(() => nix.attr(from, "hostarch"));
   const efiPlatform = nix.thunk(() => nix.attr(from, "efiPlatform"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "refind",
       version: "0.14.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/refind/${nix.sel(finalAttrs, "version")}/refind-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-99k86A2na4bFZygeoiW2qHkHzob/dyM8k1elIsEVyPA=",
         })))),
@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-toolchain.patch"),
         nix.path(here, "./0002-preserve-dates.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/refind/-/raw/0.14.2-2/fix-target-option.patch",
             hash: "sha256-8JxTlgbbgZnXxRrqbPMIBcuT5KEbwXQ8eURKZXeVLU0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/refind/-/raw/0.14.2-2/gnu-efi-4-compat.patch",
             hash: "sha256-F37fCfVhLJBQB8HnNYMN4lSA/+wfuRKUgkT8PBSdkOs=",
           })))),
@@ -142,15 +142,15 @@ wrapProgram $out/bin/refind-mvrefind \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [efibootmgr]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           uefiCdrom: nix.thunk(() => nix.sel(nixosTests, "boot", "uefiCdrom")),
           refind: nix.thunk(() => nix.attr(nixosTests, "refind")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Graphical {,U}EFI boot manager",
         longDescription: "rEFInd is a graphical boot manager for EFI- and UEFI-based\ncomputers, such as all Intel-based Macs and recent (most 2011\nand later) PCs. rEFInd presents a boot menu showing all the EFI\nboot loaders on the EFI-accessible partitions, and optionally\nBIOS-bootable partitions on Macs. EFI-compatible OSes, including\nLinux, provide boot loaders that rEFInd can detect and\nlaunch. rEFInd can launch Linux EFI boot loaders such as ELILO,\nGRUB Legacy, GRUB 2, and 3.3.0 and later kernels with EFI stub\nsupport. EFI filesystem drivers for ext2/3/4fs, ReiserFS, HFS+,\nand ISO-9660 enable rEFInd to read boot loaders from these\nfilesystems, too. rEFInd's ability to detect boot loaders at\nruntime makes it very easy to use, particularly when paired with\nLinux kernels that provide EFI stub support.\n",
         homepage: "http://refind.sourceforge.net/",

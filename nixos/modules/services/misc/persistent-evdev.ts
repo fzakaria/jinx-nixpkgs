@@ -26,21 +26,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "persistent-evdev"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "persistent-evdev-config", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cache: "/var/cache/persistent-evdev",
       devices: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (virt) => (phys) => nix.str`/dev/input/by-id/${phys}`, nix.thunk(() => nix.sel(cfg, "devices")))),
     }))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "persistent-evdev": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "virtual input devices that persist even if the backing device is hotplugged")),
           devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -53,18 +53,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "persistent-evdev": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               documentation: nix.thunk(() => ["https://github.com/aiberia/persistent-evdev/blob/master/README.md"]),
               description: "Persistent evdev proxy",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 Restart: "on-failure",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "persistent-evdev")}/bin/persistent-evdev.py ${configFile}`),
                 CacheDirectory: "persistent-evdev",
@@ -73,15 +73,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "persistent-evdev"))]),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lodi"))];

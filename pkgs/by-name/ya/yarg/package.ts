@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yarg",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/YARC-Official/YARG/releases/download/v${nix.sel(finalAttrs, "version")}/YARG_v${nix.sel(finalAttrs, "version")}-Linux-x86_64.zip`),
           stripRoot: false,
           hash: "sha256-xIWiQe0GSt6S9j2Xte/p+FHuO07Tv69zxS+OdNEI1sI=",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         wayland,
       ]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "yarg",
           desktopName: "YARG",
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 YARG \"$out/bin/yarg\"\ninstall -Dm644 UnityPlayer.so \"$out/libexec/yarg/UnityPlayer.so\"\n\nmkdir -p \"$out/share/icons/hicolor/128x128/apps\"\ncp -r YARG_Data \"$out/share/yarg\"\nln -s \"$out/share/yarg\" \"$out/bin/yarg_Data\"\nln -s \"$out/share/yarg/Resources/UnityPlayer.png\" \"$out/share/icons/hicolor/128x128/apps/yarg.png\"\ninstall -Dm644 \"$desktopItem/share/applications/yarg.desktop\" \"$out/share/applications/yarg.desktop\"\n\nrunHook postInstall\n",
       postFixup: "patchelf \\\n  --add-needed libasound.so.2 \\\n  --add-needed libdbus-1.so.3 \\\n  --add-needed libGL.so.1 \\\n  --add-needed libhidapi-hidraw.so.0 \\\n  --add-needed libpthread.so.0 \\\n  --add-needed libudev.so.1 \\\n  --add-needed libvulkan.so.1 \\\n  --add-needed libwayland-client.so.0 \\\n  --add-needed libwayland-cursor.so.0 \\\n  --add-needed libwayland-egl.so.1 \\\n  --add-needed libX11.so.6 \\\n  --add-needed libXcursor.so.1 \\\n  --add-needed libXext.so.6 \\\n  --add-needed libXi.so.6 \\\n  --add-needed libXinerama.so.1 \\\n  --add-needed libxkbcommon.so.0 \\\n  --add-needed libXrandr.so.2 \\\n  --add-needed libXss.so.1 \\\n  --add-needed libXxf86vm.so.1 \\\n  \"$out/libexec/yarg/UnityPlayer.so\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free, open-source, plastic guitar game",
         homepage: "https://yarg.in",
         changelog: nix.thunk(() => nix.str`https://github.com/YARC-Official/YARG/releases/tag/v${nix.sel(finalAttrs, "version")}`),

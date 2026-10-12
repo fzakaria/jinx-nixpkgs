@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const lwt_dllist = nix.arg($, "lwt-dllist");
   const result = nix.arg($, "result");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "netchannel",
       version: "2.1.3",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-net-xen/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-net-xen-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-gOpzY4bn9L8wkbeViXy/XQmxKqqJfd99bcHQFitYFOE=",
         })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         result,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network device for reading and writing Ethernet frames via then Xen netfront/netback protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),

@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const totem_pl_parser = nix.arg($, "totem-pl-parser");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "grilo",
       version: "0.3.19",
       outputs: nix.thunk(() => ["out", "dev", "man", "devdoc"]),
       outputBin: "dev",
       setupHook: nix.path(here, "./setup-hook.sh"),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/grilo/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/grilo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "CGnIHRmrE5xmfXlWfBTdy2y1y/wBCNBMreKH6ylTZwY=",
         })))),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       buildInputs: nix.thunk(() => [glib, liboauth, gtk3, libxml2, libsoup_3, totem_pl_parser]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "grilo", versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "grilo", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/grilo",
         description: "Framework that provides access to various sources of multimedia content, using a pluggable system",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

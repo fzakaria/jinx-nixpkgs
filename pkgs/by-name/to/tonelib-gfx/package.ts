@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tonelib-gfx";
       const version = "4.9.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tonelib.vip/download/25-11-10/ToneLib-GFX-amd64.deb",
           hash: "sha256-WL9kV50R5AGG57I5IkNz7EKd4NPlf0iO+QiE8k+E26Q=",
         }))));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const unpackCmd = "dpkg -x $curSrc source";
       const installPhase = "mv usr $out\nsubstituteInPlace $out/share/applications/ToneLib-GFX.desktop --replace /usr/ $out/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tonelib GFX is an amp and effects modeling software for electric guitar and bass",
         homepage: "https://tonelib.net/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ToneLib-GFX",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

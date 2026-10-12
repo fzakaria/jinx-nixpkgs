@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graplang",
       version: "1.46",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.lunabase.org/~faber/Vault/software/grap/grap-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha512-7n+jLANU/x+wGrpjwYAnf45fQ5M91SwraiCbvUKe6XhWtilhGoT2yTlLkPlTihETTkizLyssW5gj5gbwNHaooA==",
         })))),
       nativeBuildInputs: nix.thunk(() => [flex, bison]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language for typesetting graphs",
         longDescription: "Grap is an Expressive language for describing graphs and incorporating\nthem in typeset documents.  It is implemented as a preprocessor to\nKernigan's pic language for describing languages, so any system that can\nuse pic can use grap. For sure, TeX and groff can use it.\n",
         homepage: "https://www.lunabase.org/~faber/Vault/software/grap/",

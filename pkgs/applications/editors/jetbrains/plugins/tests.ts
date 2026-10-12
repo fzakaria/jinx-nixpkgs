@@ -51,30 +51,30 @@ export default nix.lambda((args) => (() => {
     webstorm,
   ] : [ide]));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     empty: nix.thunk(() => (() => {
       const modify_ide = (ide_1) => nix.app(nix.sel(jetbrains, "plugins", "addPlugins"), ide_1, []);
       return nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "jetbrains-test-plugins-empty",
           paths: nix.thunk(() => nix.builtins.map(modify_ide, ides)),
         })));
     })()),
     "stored-correctly": nix.thunk(() => (() => {
       const nixidea = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://plugins.jetbrains.com/files/8607/786671/NixIDEA-0.4.0.18.zip",
           hash: "sha256-JShheBoOBiWM9HubMUJvBn4H3DnWykvqPyrmetaCZiM=",
         }))));
       const wakatime = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           executable: true,
           url: "https://plugins.jetbrains.com/files/7425/760442/WakaTime.jar",
           hash: "sha256-DobKZKokueqq0z75d2Fo3BD8mWX9+LpGdT9C7Eu2fHc=",
         }))));
       const modify_ide = (ide_1) => nix.app(nix.sel(jetbrains, "plugins", "addPlugins"), ide_1, nix.thunk(() => [nixidea, wakatime]));
       return nix.app(runCommand, "test-jetbrains-plugins-stored-correctly", nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           idePaths: nix.thunk(() => nix.builtins.map(modify_ide, ides)),
         })), "set -e\nexec &> >(tee -a \"$out\")\n\nIFS=' ' read -ra ideArray <<< \"$idePaths\"\nfor ide in \"${ideArray[@]}\"; do\n  echo \"processing $ide\"\n\n  echo \"> ensure normal plugin is available\"\n  (\n    set -x\n    find -L $ide/*/plugins -type f -iname 'NixIDEA-*.jar' | grep .\n  )\n\n  echo \"> ensure single JAR file plugin is available\"\n  (\n    set -x\n    PATH_TO_LINK=$(find $ide/*/plugins -maxdepth 1 -type l -iname '*wakatime.jar' | grep .)\n    test -f $(readlink $PATH_TO_LINK)\n  )\n  echo \"\"\ndone\n\necho \"test done! ok!\"\n");
     })()),

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nbutools",
       version: "0-unstable-2023-06-06",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "airbus-seclab",
           repo: "nbutools",
           rev: "d82fb96d5623e7d3076cc0a1db06a640f63b9552",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for offensive security of NetBackup infrastructures",
         homepage: "https://github.com/airbus-seclab/nbutools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

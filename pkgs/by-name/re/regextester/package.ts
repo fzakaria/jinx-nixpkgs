@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "regextester",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "artemanufrij",
           repo: "regextester",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`${nix.sel(glib, "dev")}/bin/glib-compile-schemas $out/share/glib-2.0/schemas
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop application to test regular expressions interactively",
         mainProgram: "com.github.artemanufrij.regextester",
         homepage: "https://github.com/artemanufrij/regextester",

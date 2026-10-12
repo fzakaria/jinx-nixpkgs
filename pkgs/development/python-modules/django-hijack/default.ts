@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.7.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-hijack",
           repo: "django-hijack",
           tag: version,
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, pytest_django]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.test_app.settings\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Allows superusers to hijack (=login as) and work on behalf of another user",
         homepage: "https://github.com/django-hijack/django-hijack",
         changelog: nix.thunk(() => nix.str`https://github.com/django-hijack/django-hijack/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

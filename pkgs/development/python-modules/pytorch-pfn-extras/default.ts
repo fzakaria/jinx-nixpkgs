@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytorch-pfn-extras",
       version: "0.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pfnet",
           repo: "pytorch-pfn-extras",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
           "tests/pytorch_pfn_extras_tests/training_tests/extensions_tests/test_sharded_snapshot.py",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["tests/pytorch_pfn_extras_tests/nn_tests/modules_tests/test_lazy_conv.py"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Supplementary components to accelerate research and development in PyTorch",
         homepage: "https://github.com/pfnet/pytorch-pfn-extras",
         changelog: nix.thunk(() => nix.str`https://github.com/pfnet/pytorch-pfn-extras/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

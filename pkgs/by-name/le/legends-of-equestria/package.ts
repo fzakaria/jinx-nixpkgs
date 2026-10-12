@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
   const version = "2025.06.002";
   const description = "Free-to-play MMORPG";
   const srcOptions = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://mega.nz/file/QmBXXDiC#XoG19N2_uBIHVKDNId5mE4cod9q29iPkYOfGDgAX_Oo",
       outputHash: "IdcowkU2k2grg133jTf3EOENATCCige64BMYXtFupRE=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://mega.nz/file/xr4AHIrb#pD5wDIiYys2my4_59UWiYoqBpdyUQHf_CalPZe7hpME",
       outputHash: "PpDUFnobznB5FHYSF+m9S3RcNIdi7eWyxxDHRdS+zlY=",
     })),
@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
     libxscrnsaver,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(runCommand, "mega-loe", nix.thunk(() => nix.update(nix.sel(srcOptions, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.str`${pname}-source`),
           version: version,
           nativeBuildInputs: nix.thunk(() => [megacmd, unzip]),
@@ -130,10 +130,10 @@ ln -s $loeHome/LoE_Data/Resources/UnityPlayer.png $icon
 
 runHook postInstall
 ` : "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n")),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "legends-of-equestria",
             comment: description,
             desktopName: "Legends of Equestria",
@@ -144,7 +144,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: description,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), srcOptions)),

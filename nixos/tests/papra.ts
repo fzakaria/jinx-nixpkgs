@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "papra",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           papra: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               AUTH_IS_EMAIL_VERIFICATION_REQUIRED: false,
               AUTH_FIRST_USER_AS_ADMIN: true,
             })),
@@ -61,7 +61,7 @@ with subtest("Register a user"):
         "curl --fail --silent"
         + " --cookie-jar ${cookieJar}"
         + " --json ${nix.app(jsonArg, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           email: "admin@example.com",
           password: "correct horse battery staple",
           name: "Admin",
@@ -73,7 +73,7 @@ with subtest("Create an organization"):
     organization = json.loads(machine.succeed(
         "curl --fail --silent"
         + " --cookie ${cookieJar}"
-        + " --json ${nix.app(jsonArg, nix.thunk(() => ({ __proto__: pos$8, name: "Test Org" })))}"
+        + " --json ${nix.app(jsonArg, nix.thunk(() => ({ [nix.POS]: pos$8, name: "Test Org" })))}"
         + " ${serverBaseUrl}/api/organizations"
     ))
     org_id = organization["organization"]["id"]

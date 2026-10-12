@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const withCalceph = nix.argOr($, "withCalceph", () => true);
   const cppSupport = nix.argOr($, "cppSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supernovas",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sigmyne",
           repo: "supernovas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance astrometry library for C/C++",
         homepage: "https://smithsonian.github.io/SuperNOVAS/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

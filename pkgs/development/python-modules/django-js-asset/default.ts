@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthiask",
           repo: "django-js-asset",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytestCheckHook]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.testapp.settings\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/matthiask/django-js-asset/blob/${version}/CHANGELOG.rst`),
         description: "Script tag with additional attributes for django.forms.Media",
         homepage: "https://github.com/matthiask/django-js-asset",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

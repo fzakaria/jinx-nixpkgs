@@ -38,44 +38,44 @@ export default nix.lambda((args) => (() => {
   const mhsendmail = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "mailhog-sendmail", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "mailhog")))} sendmail $@
 `)));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mailhog", "user"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mailhog: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MailHog, web and API based SMTP testing")),
-          setSendmail: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "set the system sendmail to mailhogs's"), { __proto__: pos$1, default: true })),
+          setSendmail: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "set the system sendmail to mailhogs's"), { [nix.POS]: pos$1, default: true })),
           storage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["maildir", "memory"]))),
               default: "memory",
               description: "Store mails on disk or in memory.",
             })))),
           apiPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8025n,
               description: "Port on which the API endpoint will listen.",
             })))),
           smtpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 1025n,
               description: "Port on which the SMTP endpoint will listen.",
             })))),
           uiPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8025n,
               description: "Port on which the HTTP UI will listen.",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of additional arguments to pass to the MailHog process.",
@@ -84,18 +84,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             mailhog: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "MailHog - Web and API based SMTP testing",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "exec",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "mailhog")))} ${args_1}`),
                 DynamicUser: true,
@@ -106,11 +106,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           mail: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             sendmailSetuidWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setSendmail")), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 program: "sendmail",
                 source: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), mhsendmail)),
                 owner: "nobody",
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "RTUnreal"))];

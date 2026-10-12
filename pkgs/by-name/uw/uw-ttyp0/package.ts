@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const targetsDat = nix.argOr($, "targetsDat", () => null);
   const variantsDat = nix.argOr($, "variantsDat", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uw-ttyp0",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/uw-ttyp0-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-mVBt2HlOGl1c1YEebB5V7u+Yn4w1Af25Jlvalyq6FjA=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.add((nix.asBool(nix.eq(targetsDat, null)) ? "cat << EOF > TARGETS.dat\nSIZES = 11 12 13 14 15 16 17 18 22 \\\n11b 12b 13b 14b 15b 16b 17b 18b 22b 15i 16i 17i 18i\nENCODINGS = uni\nGEN_PCF = 1\nGEN_OTB = 1\nGEN_CONS_LINUX = 1\nEOF\n" : nix.str`cp "${targetsDat}" TARGETS.dat`), (nix.asBool(nix.eq(variantsDat, null)) ? "cat << EOF > VARIANTS.dat\nCOPYTO AccStress PApostropheAscii\nCOPYTO PAmComma AccGraveAscii\nCOPYTO Digit0Slashed Digit0\nEOF\n" : nix.str`cp "${variantsDat}" VARIANTS.dat`))),
       configurePhase: "runHook preConfigure\n./configure \\\n  --prefix=\"$out\" \\\n  --otbdir=\"$out/share/fonts/X11/misc\" \\\n  --pcfdir=\"$out/share/fonts/X11/misc\" \\\n  --conslinuxdir=\"$out/share/consolefonts\"\nrunHook postConfigure\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monospace bitmap screen fonts for X11",
         homepage: "https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/",
         license: nix.thunk(() => (() => {

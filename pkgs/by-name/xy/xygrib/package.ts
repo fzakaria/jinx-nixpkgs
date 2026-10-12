@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openjpeg = nix.arg($, "openjpeg");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "unstable-2022-05-16",
       pname: "xygrib",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opengribs",
           repo: "XyGrib",
           rev: "88c425ca2d7f4ba5d7ab75bfa25e177bee02d310",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 3.1.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p \"$out/Applications\" \"$out/XyGrib/XyGrib.app/Contents/Resources\"\ncp \"../data/img/xyGrib.icns\" \"$out/XyGrib/XyGrib.app/Contents/Resources/xyGrib.icns\"\nmv $out/XyGrib/XyGrib.app $out/Applications\nwrapQtApp \"$out/Applications/XyGrib.app/Contents/MacOS/XyGrib\"\n" : "wrapQtApp $out/XyGrib/XyGrib\nmkdir -p $out/bin\nln -s $out/XyGrib/XyGrib $out/bin/xygrib\ninstall -Dm444 $src/debian/xygrib.png -t $out/share/icons/hicolor/32x32/apps\ninstall -Dm444 $src/debian/xygrib.desktop -t $out/share/applications\nsubstituteInPlace $out/share/applications/xygrib.desktop \\\n  --replace 'Exec=XyGrib' 'Exec=xygrib'\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://opengribs.org",
         description: "Weather Forecast Visualization",
         mainProgram: "xygrib",

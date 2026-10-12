@@ -50,10 +50,10 @@ export default nix.lambda((args) => (() => {
   const initiatorName = "iqn.2020-08.org.linux-iscsi.initiatorhost:example";
   const targetName = "iqn.2003-01.org.linux-iscsi.target.x8664:sn.acf8fd9c23af";
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     name: "iscsi",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -63,25 +63,25 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       target: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             target: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               config: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 fabric_modules: [],
                 storage_objects: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     dev: "/dev/vdb",
                     name: "test",
                     plugin: "block",
@@ -91,16 +91,16 @@ export default nix.lambda((args) => (() => {
                 ]),
                 targets: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     fabric: "iscsi",
                     tpgs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         enable: true,
-                        attributes: nix.thunk(() => ({ __proto__: pos$3, authentication: 0n, generate_node_acls: 1n })),
+                        attributes: nix.thunk(() => ({ [nix.POS]: pos$3, authentication: 0n, generate_node_acls: 1n })),
                         luns: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             alias: "94dfe06967",
                             alua_tg_pt_gp_name: "default_tg_pt_gp",
                             index: 0n,
@@ -109,10 +109,10 @@ export default nix.lambda((args) => (() => {
                         ]),
                         node_acls: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             mapped_luns: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 alias: "d42f5bdf8a",
                                 index: 0n,
                                 tpg_lun: 0n,
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
                         ]),
                         portals: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             ip_address: "[::]",
                             iser: false,
                             offload: false,
@@ -141,15 +141,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             firewall: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               allowedTCPPorts: nix.thunk(() => [3260n]),
               allowedUDPPorts: nix.thunk(() => [3260n]),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             memorySize: 2048n,
             emptyDiskImages: nix.thunk(() => [2048n]),
           })),
@@ -161,11 +161,11 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             openiscsi: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: true,
               enableAutoLoginOut: true,
               discoverPortal: "target",
@@ -173,23 +173,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "xfsprogs"))];
             })()),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             extraDependencies: nix.thunk(() => [
               nix.thunk(() => nix.sel(nodes, "initiatorRootDisk", "system", "build", "toplevel")),
             ]),
           })),
           nix: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               "hashed-mirrors": null,
               "connect-timeout": 1n,
@@ -204,12 +204,12 @@ export default nix.lambda((args) => (() => {
         const modulesPath = nix.arg($_1, "modulesPath");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           boot: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             loader: nix.thunk(() => ({
-              __proto__: pos$25,
-              grub: nix.thunk(() => ({ __proto__: pos$24, enable: false })),
+              [nix.POS]: pos$25,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$24, enable: false })),
             })),
             kernelParams: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 5n, nix.thunk(() => [
                 "boot.shell_on_fail",
@@ -217,21 +217,21 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.str`ip=${nix.sel(config, "networking", "primaryIPAddress")}:::255.255.255.0::eth1:none`),
               ]))),
             initrd: nix.thunk(() => ({
-              __proto__: pos$27,
-              systemd: nix.thunk(() => ({ __proto__: pos$26, enable: false })),
+              [nix.POS]: pos$27,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$26, enable: false })),
             })),
             "iscsi-initiator": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               discoverPortal: "target",
               name: initiatorName,
               target: targetName,
             })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$30, writableStore: false })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$30, writableStore: false })),
           fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 5n, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               "/": nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 fsType: "xfs",
                 device: "/dev/sda",
                 options: nix.thunk(() => ["_netdev"]),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "specfile",
       version: "0.41.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "packit",
           repo: "specfile",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["specfile"]),
       disabledTests: nix.thunk(() => ["test_update_tag", "test_sanitize", "test_shell_expansions"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for parsing and manipulating RPM spec files",
         homepage: "https://github.com/packit/specfile",
         changelog: nix.thunk(() => nix.str`https://github.com/packit/specfile/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

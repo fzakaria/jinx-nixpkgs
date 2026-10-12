@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bartTC",
           repo: "django-markup",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [django]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all_filter_dependencies: nix.thunk(() => [bleach, docutils, markdown, pygments, python_creole, smartypants, textile]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["django_markup"]);
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_rst_with_pygments"]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=django_markup.tests\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generic Django application to convert text with specific markup to html",
         homepage: "https://github.com/bartTC/django-markup",
         changelog: nix.thunk(() => nix.str`https://github.com/bartTC/django-markup/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

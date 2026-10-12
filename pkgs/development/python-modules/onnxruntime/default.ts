@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const packaging = nix.arg($, "packaging");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(onnxruntime, "pname")),
       version: nix.thunk(() => nix.attr(onnxruntime, "version")),
       format: "wheel",
       src: nix.thunk(() => nix.sel(onnxruntime, "dist")),
       unpackPhase: "cp -r $src dist\nchmod +w dist\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$1, NIX_LDFLAGS: "-z,noexecstack" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_LDFLAGS: "-z,noexecstack" })))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       pythonRemoveDeps: nix.thunk(() => ["flatbuffers", "protobuf", "sympy"]),
       buildInputs: nix.thunk(() => nix.concat([onednn, re2, nix.thunk(() => nix.sel(onnxruntime, "protobuf")), onnxruntime], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(onnxruntime, "passthru", "cudaSupport")), nix.thunk(() => (() => {

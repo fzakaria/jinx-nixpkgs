@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => (() => {
       const colibrilib = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "colibrilib",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "zarith"))];
           })()),
           meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "A library of domains and propagators proved in Why3",
           })),
         }))));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "colibri2",
         version: "0.6",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "pub",
             repo: "colibrics",
             domain: "git.frama-c.com",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "A CP solver for smtlib",
           homepage: "https://colibri.frama-c.com/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

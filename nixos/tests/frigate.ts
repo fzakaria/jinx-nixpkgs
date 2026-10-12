@@ -27,38 +27,38 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "frigate",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "frigate", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     containers: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           frigate: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             hostname: "localhost",
             settings: nix.thunk(() => ({
-              __proto__: pos$8,
-              mqtt: nix.thunk(() => ({ __proto__: pos$2, enabled: false })),
+              [nix.POS]: pos$8,
+              mqtt: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: false })),
               cameras: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 test: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   ffmpeg: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     input_args: "-fflags nobuffer -strict experimental -fflags +genpts+discardcorrupt -r 10 -use_wallclock_as_timestamps 1",
                     inputs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         path: "http://127.0.0.1:8080",
                         roles: nix.thunk(() => ["record"]),
                       })),
@@ -66,21 +66,21 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
               })),
-              record: nix.thunk(() => ({ __proto__: pos$7, enabled: true })),
+              record: nix.thunk(() => ({ [nix.POS]: pos$7, enabled: true })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "video-stream": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Start a test stream that frigate can capture",
               before: nix.thunk(() => ["frigate.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "ffmpeg-headless")))} -re -f lavfi -i smptebars=size=1280x720:rate=5 -f mpegts -listen 1 http://0.0.0.0:8080`),
                 Restart: "always",
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "httpie"))];

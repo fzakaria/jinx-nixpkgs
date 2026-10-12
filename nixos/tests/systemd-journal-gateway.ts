@@ -15,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "systemd-journal-gateway",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "minijackson"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       client: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           journald: nix.thunk(() => ({
-            __proto__: pos$3,
-            gateway: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            gateway: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         })),
       })),

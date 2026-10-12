@@ -43,53 +43,53 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const successMessage = "Success 3333115147933743662";
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "rathole",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xokdvium"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       server: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           network: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             networks: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "01-eth1": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ __proto__: pos$4, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           rathole: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             role: "server",
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               server: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 bind_addr: "0.0.0.0:2333",
                 services: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  "success-message": nix.thunk(() => ({ __proto__: pos$9, bind_addr: "0.0.0.0:80", token: "hunter2" })),
+                  [nix.POS]: pos$10,
+                  "success-message": nix.thunk(() => ({ [nix.POS]: pos$9, bind_addr: "0.0.0.0:80", token: "hunter2" })),
                 })),
               })),
             })),
@@ -100,48 +100,48 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$31,
-          networking: nix.thunk(() => ({ __proto__: pos$16, useNetworkd: true, useDHCP: false })),
+          [nix.POS]: pos$31,
+          networking: nix.thunk(() => ({ [nix.POS]: pos$16, useNetworkd: true, useDHCP: false })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             network: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               networks: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 "01-eth1": nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$17, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             nginx: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 "127.0.0.1": nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "success-message.txt", successMessage)),
                 })),
               })),
             })),
             rathole: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: true,
               role: "client",
               credentialsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rathole-credentials.toml", "[client.services.success-message]\ntoken = \"hunter2\"\n")),
               settings: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 client: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   remote_addr: "10.0.0.1:2333",
                   services: nix.thunk(() => ({
-                    __proto__: pos$26,
-                    "success-message": nix.thunk(() => ({ __proto__: pos$25, local_addr: "127.0.0.1:80" })),
+                    [nix.POS]: pos$26,
+                    "success-message": nix.thunk(() => ({ [nix.POS]: pos$25, local_addr: "127.0.0.1:80" })),
                   })),
                 })),
               })),

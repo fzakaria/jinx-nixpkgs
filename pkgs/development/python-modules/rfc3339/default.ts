@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1l6l1bh91i2r4dwcm86hlkx8cbh1xwgsk8hb4jvr5y5fxxg3ng6m",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["rfc3339"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Format dates according to the RFC 3339",
         homepage: "https://hg.sr.ht/~henryprecheur/rfc3339",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

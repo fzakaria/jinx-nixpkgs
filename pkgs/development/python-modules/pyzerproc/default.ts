@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emlove",
           repo: "pyzerproc",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyzerproc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to control Zerproc Bluetooth LED smart string lights",
         mainProgram: "pyzerproc",
         homepage: "https://github.com/emlove/pyzerproc",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

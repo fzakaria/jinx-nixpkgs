@@ -21,9 +21,9 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => nix.attr(flit, "patches"));
       const postPatch = "cd flit_core";
       const doCheck = false;
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => ({ __proto__: pos$1, flit: flit })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => ({ [nix.POS]: pos$1, flit: flit })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distribution-building parts of Flit. See flit package for more information",
         homepage: "https://github.com/pypa/flit",
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/flit/blob/${nix.sel(src, "rev")}/doc/history.rst`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "python"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -22,46 +22,46 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const articleTitle = "Hello from the test feed";
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "selfoss",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hosts: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "127.0.0.1": nix.thunk(() => ["selfoss.local", "feed.local"]),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           selfoss: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
-            nginx: nix.thunk(() => ({ __proto__: pos$4, enable: true, virtualHost: "selfoss.local" })),
+            nginx: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, virtualHost: "selfoss.local" })),
             settings: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               username: "testuser",
               password: "$2y$12$s/LJYwyDbWJWIyQuUEhyHekD9V3mTLZsdwpuWxtTOgO2BtHGu5vyi",
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "feed.local": nix.thunk(() => (() => {
                 const url = "http://feed.local/";
                 return {
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "rss.xml", nix.thunk(() => nix.str`<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>

@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "flow.record",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [msgpack]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         compression: nix.thunk(() => [lz4, zstandard]),
         duckdb: nix.thunk(() => [duckdb, pytz]),
         elastic: nix.thunk(() => [elasticsearch]),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/adapter/test_xlsx.py", "tests/tools/test_rdump.py"]);
       const disabledTests = nix.thunk(() => ["test_rdump_fieldtype_path_json"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for defining and creating structured data",
         homepage: "https://github.com/fox-it/flow.record",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/flow.record/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

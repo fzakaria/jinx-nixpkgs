@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libgig";
       const version = "4.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.linuxsampler.org/packages/${pname}-${version}.tar.bz2`),
           sha256: "sha256-/DMSAiEJGeMXLE02qyQjHeo2Z9hyIUHwx5OcpUURnQE=",
         }))));
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "make -f Makefile.svn";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.linuxsampler.org",
         description: "Gigasampler file access library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

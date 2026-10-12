@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "polaris-web",
       version: "69",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agersant",
           repo: "polaris-web",
           tag: nix.thunk(() => nix.str`build-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/UmAOunc/79DpZByUrzqNA7q7JNugEceKRZvyTGhtVQ=",
         })))),
       npmDepsHash: "sha256-c11CWJB76gX+Bxmqac3VxWjJxQVzYCaaf+pmQQpnOds=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CYPRESS_INSTALL_BINARY: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CYPRESS_INSTALL_BINARY: "0" })),
       npmBuildScript: "production",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\ncp -a dist $out/share/polaris-web\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web client for Polaris",
         homepage: "https://github.com/agersant/polaris-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

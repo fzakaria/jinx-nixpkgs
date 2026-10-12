@@ -62,80 +62,80 @@ rpcsslprivatekeyfile=${nix.sel(cfg, "rpc", "key")}
 rpcsslciphers=TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH
 `))))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         namecoind: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "namecoind, Namecoin client")),
           wallet: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: nix.thunk(() => nix.str`${dataDir}/wallet.dat`),
               description: "Wallet file. The ownership of the file has to be\nnamecoin:namecoin, and the permissions must be 0640.\n",
             })))),
           generate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to generate (mine) Namecoins.\n",
             })))),
           extraNodes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "List of additional peer IP addresses to connect to.\n",
             })))),
           trustedNodes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "List of the only peer IP addresses to connect to. If specified\nno other connection will be made.\n",
             })))),
           rpc: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "User name for RPC connections.\n",
               })))),
             password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Password for RPC connections.\n",
               })))),
             address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "0.0.0.0",
                 description: "IP address the RPC server will bind to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 8332n,
                 description: "Port the RPC server will bind to.\n",
               })))),
             certificate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 example: "/var/lib/namecoind/server.cert",
                 description: "Certificate file for securing RPC connections.\n",
               })))),
             key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 example: "/var/lib/namecoind/server.pem",
                 description: "Key file for securing RPC connections.\n",
               })))),
             allowFrom: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ["127.0.0.1"]),
                 description: "List of IP address ranges allowed to use the RPC API.\nWiledcards (*) can be user to specify a range.\n",
@@ -145,13 +145,13 @@ rpcsslciphers=TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             namecoin: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "namecoin")),
               description: "Namecoin daemon user",
               home: dataDir,
@@ -159,26 +159,26 @@ rpcsslciphers=TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             namecoin: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "namecoin")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             namecoind: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Namecoind daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               startLimitIntervalSec: 120n,
               startLimitBurst: 5n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 User: "namecoin",
                 Group: "namecoin",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "namecoind")}/bin/namecoind -conf=${configFile} -datadir=${dataDir} -printtoconsole`),
@@ -203,7 +203,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "rnhmjoj"))];

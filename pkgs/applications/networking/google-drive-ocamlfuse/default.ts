@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const tiny_httpd = nix.arg($, "tiny_httpd");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-drive-ocamlfuse",
       version: "0.9.0",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astrada",
           repo: "google-drive-ocamlfuse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit2]),
       buildInputs: nix.thunk(() => [extlib, fuse3, gapi_ocaml, sqlite3, otoml, tiny_httpd]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/astrada/google-drive-ocamlfuse/",
         description: "FUSE-based file system backed by Google Drive, written in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

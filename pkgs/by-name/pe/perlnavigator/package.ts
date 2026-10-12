@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.6.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bscan",
       repo: "PerlNavigator",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-CNsgFf+W7YQwAR++GwfTka4Cy8woRu02BQIJRmRAxK4=",
     }))));
   const browser_ext = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "perlnavigator-web-server",
       version: version,
       src: src,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r . \"$out\"\n",
     }))));
   const client = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "perlnavigator-client",
       version: version,
       src: src,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r . \"$out\"\n",
     }))));
   const server = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "perlnavigator-server",
       version: version,
       src: src,
@@ -67,14 +67,14 @@ cp -r ${client} client
 cp -r ${server} server
 chmod +w browser-ext client server
 `);
-      const env = nix.thunk(() => ({ __proto__: pos$5, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n }));
       const npmBuildScript = "compile";
       const postInstall = nix.thunk(() => nix.str`cp -r ${browser_ext}/node_modules "$out/lib/node_modules/perlnavigator/browser-ext"
 cp -r ${client}/node_modules "$out/lib/node_modules/perlnavigator/client"
 cp -r ${server}/node_modules "$out/lib/node_modules/perlnavigator/server"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/bscan/PerlNavigator/blob/${nix.sel(src_1, "rev")}/CHANGELOG.md`),
         description: "Perl Language Server that includes syntax checking, perl critic, and code navigation",
         homepage: "https://github.com/bscan/PerlNavigator/tree/main/server",
@@ -83,7 +83,7 @@ cp -r ${server}/node_modules "$out/lib/node_modules/perlnavigator/server"
         maintainers: [],
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version: version_1,
         src: src_1,

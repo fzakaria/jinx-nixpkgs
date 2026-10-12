@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "proycon-wayout",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~proycon",
           repo: "wayout",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [scdoc, ninja, meson, cmake, pkg_config, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland_protocols, wayland, cairo, pango]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Takes text from standard input and outputs it to a desktop-widget on Wayland desktops",
         homepage: "https://git.sr.ht/~proycon/wayout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

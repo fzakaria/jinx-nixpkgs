@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const strictDeps = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xmlrpc-c/xmlrpc-c-${version}.tgz`),
           hash: "sha256-Z9hgBiRZ6ieEwHtNeRMxnZU5+nKfU0N46OQciRjyrfY=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: pname,
             version: version,
             debianRevision: "1",
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = "(cd tools/xmlrpc && make && make install)\npatchShebangs --build $out/bin/xmlrpc-c-config\n";
       const enableParallelBuilding = false;
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=implicit-function-declaration")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight RPC library based on XML and HTTP",
         homepage: "https://xmlrpc-c.sourceforge.net/",
         changelog: "https://xmlrpc-c.sourceforge.io/change.html",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         __structuredAttrs,

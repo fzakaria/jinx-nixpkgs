@@ -19,26 +19,26 @@ export default nix.lambda((args) => (() => {
       const pname = "xfwm4-themes";
       const version = "4.10.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xfce/src/art/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.bz2`),
           sha256: "sha256-MhTV8A6XA7XoyefDKH1gbe3scoXOtNXbMy6TraZv1XU=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(httpTwoLevelsUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://archive.xfce.org/src/art/${pname}`),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.xfce.org/",
         description: "Themes for Xfce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xfce"))]),
       }));
-      return { __proto__: pos$5, pname, version, src, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const yt_dlp = nix.arg($, "yt-dlp");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gallery-dl",
       version: "1.32.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mikf",
           repo: "gallery-dl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/test_results.py", "test/test_downloader.py", "test/test_ytdl.py"]),
       pythonImportsCheck: nix.thunk(() => ["gallery_dl"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://codeberg.org/mikf/gallery-dl/src/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Command-line program to download image-galleries and -collections from several image hosting sites",
         homepage: "https://codeberg.org/mikf/gallery-dl",

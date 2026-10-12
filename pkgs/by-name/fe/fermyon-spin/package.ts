@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const fermyon_spin = nix.arg($, "fermyon-spin");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "fermyon-spin",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spinframework",
           repo: "spin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf, installShellFiles]),
       buildInputs: nix.thunk(() => [openssl, zlib]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BUILD_SPIN_EXAMPLES: "0",
         VERGEN_GIT_SHA: "c0b3726a",
         VERGEN_GIT_COMMIT_DATE: "2026-08-25",
         VERGEN_GIT_COMMIT_TIMESTAMP: "2026-08-25T21:29:56Z",
         VERGEN_GIT_BRANCH: "main",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux")))), nix.thunk(() => nix.attrsDyn({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           HOST_CFLAGS: nix.thunk(() => nix.str`-L${nix.sel(buildPackages, "glibc", "static")}/lib`),
         }, [
           [nix.str`CARGO_TARGET_${nix.sel(stdenv, "hostPlatform", "rust", "cargoEnvVarTarget")}_RUSTFLAGS`, "-C relocation-model=static -C link-arg=-no-pie"],
@@ -57,18 +57,18 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd spin \\\n  --bash <(COMPLETE=bash $out/bin/spin) \\\n  --fish <(COMPLETE=fish $out/bin/spin) \\\n  --zsh <(COMPLETE=zsh $out/bin/spin)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Framework for building, deploying, and running fast, secure, and composable cloud microservices with WebAssembly",
         homepage: "https://github.com/spinframework/spin",
         changelog: nix.thunk(() => nix.str`https://github.com/spinframework/spin/releases/tag/v${nix.sel(finalAttrs, "version")}`),

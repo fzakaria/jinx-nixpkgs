@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const snis_assets = nix.arg($, "snis-assets");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "snis",
       version: nix.thunk(() => nix.attr(snis_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       ignoreCollisions: true,
       pathsToLink: nix.thunk(() => ["/", "/bin"]),
       postBuild: "for i in $out/bin/*; do\n  wrapProgram \"$i\" \\\n    --set SNIS_ASSET_DIR \"$out/share/snis\"\ndone\n",
-      meta: nix.thunk(() => nix.update(nix.sel(snis_unwrapped, "meta"), { __proto__: pos$1, hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(snis_unwrapped, "meta"), { [nix.POS]: pos$1, hydraPlatforms: [] })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

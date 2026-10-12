@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.09";
       const tag = "v0.2609.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maunium",
           repo: "meowlnir",
           tag: tag,
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/maunium/meowlnir",
         description: "Opinionated Matrix moderation bot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "meowlnir",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         tag,

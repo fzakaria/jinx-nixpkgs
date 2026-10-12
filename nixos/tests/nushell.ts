@@ -29,22 +29,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "nushell",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "nushell", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           programs: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nushell: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "nushellPlugins")), null);
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             users: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               test: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 isNormalUser: true,
                 password: "test",
                 shell: nix.thunk(() => nix.sel(pkgs, "nushell")),
@@ -68,25 +68,25 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            getty: nix.thunk(() => ({ __proto__: pos$7, autologinUser: "test" })),
+            [nix.POS]: pos$8,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$7, autologinUser: "test" })),
           })),
         };
       })(), formals$2),
       noPlugins: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           programs: nix.thunk(() => ({
-            __proto__: pos$11,
-            nushell: nix.thunk(() => ({ __proto__: pos$10, enable: true, plugins: [] })),
+            [nix.POS]: pos$11,
+            nushell: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, plugins: [] })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             users: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               test: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 isNormalUser: true,
                 password: "test",
                 shell: nix.thunk(() => nix.sel(pkgs, "nushell")),
@@ -94,8 +94,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
-            getty: nix.thunk(() => ({ __proto__: pos$15, autologinUser: "test" })),
+            [nix.POS]: pos$16,
+            getty: nix.thunk(() => ({ [nix.POS]: pos$15, autologinUser: "test" })),
           })),
         };
       })(), formals$3),

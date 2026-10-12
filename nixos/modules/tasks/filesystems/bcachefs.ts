@@ -79,10 +79,10 @@ fi
     const requiredMounts = nix.thunk(() => nix.app(extractProperty, "x-systemd.requires-mounts-for=", nix.thunk(() => nix.sel(fs, "options"))));
     const wantedMounts = nix.thunk(() => nix.app(extractProperty, "x-systemd.wants-mounts-for=", nix.thunk(() => nix.sel(fs, "options"))));
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`unlock-bcachefs-${nix.app(nix.sel(utils, "escapeSystemdPath"), nix.thunk(() => nix.sel(fs, "mountPoint")))}`),
       value: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.str`Unlock bcachefs for ${nix.sel(fs, "mountPoint")}`),
         requiredBy: nix.thunk(() => [mountUnit]),
         after: nix.thunk(() => nix.concat([deviceUnit], nix.concat(requiredUnits, wantedUnits))),
@@ -91,14 +91,14 @@ fi
         requires: requiredUnits,
         wants: wantedUnits,
         unitConfig: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           RequiresMountsFor: requiredMounts,
           WantsMountsFor: wantedMounts,
           DefaultDependencies: false,
         })),
         conflicts: nix.thunk(() => ["shutdown.target"]),
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           Type: "oneshot",
           ExecCondition: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/bcachefs unlock -c "${device}"`),
           Restart: "on-failure",
@@ -122,19 +122,19 @@ fi
     };
   })();
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       boot: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         bcachefs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "bcachefs-tools", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               extraDescription: "This package should also provide a passthru 'kernelModule'\nattribute to build the out-of-tree kernel module.\n",
             })))),
           modulePackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "callPackage"), nix.thunk(() => nix.sel(cfg, "package", "kernelModule")), nix.thunk(() => ({})))),
               internal: true,
@@ -142,20 +142,20 @@ fi
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         bcachefs: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           autoScrub: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "regular bcachefs scrub")),
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 example: nix.thunk(() => ["/"]),
                 description: "List of paths to bcachefs filesystems to regularly call {command}`bcachefs scrub` on.\nDefaults to all mount points with bcachefs filesystems.\n",
               })))),
             interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: "monthly",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "weekly",
@@ -167,10 +167,10 @@ fi
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "bcachefs")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 assertion: nix.thunk(() => (() => {
                   const kernel = nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel"));
                   return (nix.asBool(nix.app(nix.sel(kernel, "kernelAtLeast"), "6.7")) || nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.selOr(kernel, () => null, "structuredExtraConfig", "BCACHEFS_FS")), nix.thunk(() => [
@@ -183,37 +183,37 @@ fi
               })),
             ]),
             system: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               udev: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               })),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "modulePackage"))]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), nix.thunk(() => nix.app(mkUnits, "")), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (fs) => (nix.asBool(nix.eq(nix.sel(fs, "fsType"), "bcachefs")) && nix.asBool(!nix.asBool(nix.app(nix.sel(utils, "fsNeededForBoot"), fs)))), nix.thunk(() => nix.sel(config, "fileSystems")))))),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.selOr(config, () => false, "boot", "initrd", "supportedFilesystems", "bcachefs")) || nix.asBool(!nix.eq(bootFs, {})))), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               boot: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 initrd: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   availableKernelModules: nix.thunk(() => nix.concat(["bcachefs", "sha256"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(config, "boot", "kernelPackages", "kernel", "kernelOlder"), "6.15")), nix.thunk(() => ["poly1305", "chacha20"])))),
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     extraBin: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       bcachefs: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/bcachefs`),
                       "mount.bcachefs": nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/mount.bcachefs`),
                     })),
@@ -230,30 +230,30 @@ copy_bin_and_libs ${nix.sel(cfg, "package")}/bin/mount.bcachefs
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgScrub, "enable")), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   assertion: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "6.14")),
                   message: "Bcachefs scrubbing is supported from kernel version 6.14 or later.",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfgScrub, "enable")) || nix.asBool(!nix.eq(nix.sel(cfgScrub, "fileSystems"), [])))),
                   message: "If 'services.bcachefs.autoScrub' is enabled, you need to have at least one\nbcachefs file system mounted via 'fileSystems' or specify a list manually\nin 'services.bcachefs.autoScrub.fileSystems'.\n",
                 })),
               ]),
               services: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 bcachefs: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   autoScrub: nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     fileSystems: nix.thunk(() => (() => {
                       const isDeviceInList = (list) => (device) => !nix.eq(nix.builtins.filter((e) => nix.eq(nix.sel(e, "device"), device), list), []);
                       const uniqueDeviceList = nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), (acc) => (e) => (nix.asBool(nix.app(isDeviceInList, acc, nix.thunk(() => nix.sel(e, "device")))) ? nix.force(acc) : nix.concat(acc, [e])), []));
                       return nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.builtins.map((e) => nix.sel(e, "mountPoint"), nix.thunk(() => nix.app(uniqueDeviceList, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (fs) => ({
-                                __proto__: pos$29,
+                                [nix.POS]: pos$29,
                                 mountPoint: nix.thunk(() => nix.sel(fs, "mountPoint")),
                                 device: nix.thunk(() => nix.sel(fs, "device")),
                               }), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (fs) => nix.eq(nix.sel(fs, "fsType"), "bcachefs"), nix.thunk(() => nix.sel(config, "fileSystems")))))))))));
@@ -262,16 +262,16 @@ copy_bin_and_libs ${nix.sel(cfg, "package")}/bin/mount.bcachefs
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 timers: nix.thunk(() => (() => {
                   const scrubTimer = (fs) => (() => {
                     const fs$ = nix.thunk(() => (nix.asBool(nix.eq(fs, "/")) ? "root" : nix.app(nix.sel(utils, "escapeSystemdPath"), fs)));
                     return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`bcachefs-scrub-${fs$}`), nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         description: nix.thunk(() => nix.str`regular bcachefs scrub timer on ${fs}`),
                         wantedBy: nix.thunk(() => ["timers.target"]),
                         timerConfig: nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           OnCalendar: nix.thunk(() => nix.sel(cfgScrub, "interval")),
                           AccuracySec: "1d",
                           Persistent: true,
@@ -284,12 +284,12 @@ copy_bin_and_libs ${nix.sel(cfg, "package")}/bin/mount.bcachefs
                   const scrubService = (fs) => (() => {
                     const fs$ = nix.thunk(() => (nix.asBool(nix.eq(fs, "/")) ? "root" : nix.app(nix.sel(utils, "escapeSystemdPath"), fs)));
                     return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`bcachefs-scrub-${fs$}`), nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         description: nix.thunk(() => nix.str`bcachefs scrub on ${fs}`),
                         conflicts: nix.thunk(() => ["shutdown.target", "sleep.target"]),
                         before: nix.thunk(() => ["shutdown.target", "sleep.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           Type: "oneshot",
                           Nice: 19n,
                           IOSchedulingClass: "idle",
@@ -309,7 +309,7 @@ copy_bin_and_libs ${nix.sel(cfg, "package")}/bin/mount.bcachefs
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "bcachefs-tools", "meta"));
       return {
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),

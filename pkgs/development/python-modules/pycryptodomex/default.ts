@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pycryptodome = nix.arg($, "pycryptodome");
   return nix.app(nix.sel(pycryptodome, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "pycryptodomex",
       postPatch: "touch .separate_namespace\n",
       pythonImportsCheck: nix.thunk(() => ["Cryptodome"]),

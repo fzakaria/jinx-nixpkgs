@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const popon = nix.arg($, "popon");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "acm-terminal",
       version: "0-unstable-2023-12-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twlz0ne",
           repo: "acm-terminal",
           rev: "1851d8fa2a27d3fd8deeeb29cd21c3002b8351ba",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [acm, popon]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/twlz0ne/acm-terminal",
         description: "Patch for LSP bridge acm on Terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

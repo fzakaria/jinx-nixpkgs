@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "texmaker",
       version: "6.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.xm1math.net/texmaker/texmaker-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Jey7FtFW7RUosxUR03ydp4WKLe8yi4fxf8h39X9ROc8=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`METAINFODIR=${nix.builtins.placeholder("out")}/share/metainfo`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TeX and LaTeX editor",
         longDescription: "This editor is a full fledged IDE for TeX and\nLaTeX editing with completion, structure viewer, preview,\nspell checking and support of any compilation chain.\n",
         homepage: "http://www.xm1math.net/texmaker/",

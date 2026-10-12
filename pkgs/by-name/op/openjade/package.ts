@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const opensp = nix.arg($, "opensp");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openjade",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/openjade/openjade-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1l92sfvx1f0wmkbvzv1385y1gb3hh010xksi1iyviyclrjb7jb8x",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--enable-splibdir=${opensp}/lib`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of DSSSL, an ISO standard for formatting SGML (and XML) documents",
         mainProgram: "openjade",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

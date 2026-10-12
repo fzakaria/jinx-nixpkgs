@@ -45,15 +45,15 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const version = "2.5.5";
-  const openjdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
-  const sparrowArch = nix.thunk(() => nix.sel({ __proto__: pos$2, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
-  const javaArch = nix.thunk(() => nix.sel({ __proto__: pos$3, "x86_64-linux": "x64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
-  const jnaArch = nix.thunk(() => nix.sel({ __proto__: pos$4, "x86_64-linux": "x86-64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+  const openjdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const sparrowArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+  const javaArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, "x86_64-linux": "x64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+  const jnaArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$4, "x86_64-linux": "x86-64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.str`https://github.com/sparrowwallet/sparrow/releases/download/${version}/sparrowwallet-${version}-${sparrowArch}.tar.gz`),
       hash: nix.thunk(() => nix.sel({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "x86_64-linux": "sha256-fopZv35yk72SRRjdqOp3R2lmNCl95Uh4wcX1zbUoVZ0=",
         "aarch64-linux": "sha256-E9DOz3juTDxDkO5dwfNUq4pI9a1B28BsQZfGpyTqCb4=",
       }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`))),
@@ -73,12 +73,12 @@ mv $downloadedFile $out
 `),
     }))));
   const manifest = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       url: nix.thunk(() => nix.str`https://github.com/sparrowwallet/sparrow/releases/download/${version}/sparrow-${version}-manifest.txt`),
       hash: "sha256-/beBl+4nD9CZLQn0OsiZxWKaJTmyHaQi/devyImEJI8=",
     }))));
   const manifestSignature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       url: nix.thunk(() => nix.str`https://github.com/sparrowwallet/sparrow/releases/download/${version}/sparrow-${version}-manifest.txt.asc`),
       hash: "sha256-kk4rC68Ij/mUeSgX1bw7x4unUeriFsmcruBky1pbYro=",
     }))));
@@ -134,7 +134,7 @@ ${openjdk}/bin/java "\${params[@]}" "$@"
 exec ${tor}/bin/tor "$@"
 `)));
   const jdk_modules = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "jdk-modules",
       nativeBuildInputs: nix.thunk(() => [openjdk]),
       dontUnpack: true,
@@ -148,7 +148,7 @@ popd
       installPhase: "mkdir -p $out\ncp manifest.txt $out/\ncp -r modules/ $out/\n",
     }))));
   const sparrow_modules = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "sparrow-modules",
       version: version,
       src: src,
@@ -238,7 +238,7 @@ cp tor.gz modules/io.matthewnelson.kmp.tor.resource.exec.tor/io/matthewnelson/km
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, copyDesktopItems, udevCheckHook]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "sparrow-desktop",
             exec: "sparrow-desktop",
             icon: "sparrow-desktop",
@@ -256,7 +256,7 @@ cp tor.gz modules/io.matthewnelson.kmp.tor.resource.exec.tor/io/matthewnelson/km
           })))),
       ]);
       const sparrow_icons = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           version: version_1,
           src: src_1,
           pname: "sparrow-icons",
@@ -283,15 +283,15 @@ runHook postInstall
 `);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           command: nix.thunk(() => [nix.path(here, "./update.sh"), nix.path(here, "./.")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Modern desktop Bitcoin wallet application supporting most hardware wallets and built on common standards such as PSBT, with an emphasis on transparency and usability",
         homepage: "https://sparrowwallet.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -313,7 +313,7 @@ runHook postInstall
         mainProgram: "sparrow-desktop",
       }));
       return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         version: version_1,
         src: src_1,
         pname,

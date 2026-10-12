@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const model = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/google-coral/test_data/raw/release-frogfish/ssdlite_mobiledet_coco_qat_postprocess.tflite",
       hash: "sha256-kLszpjTgQZFMwYGapd+ZgY5sOWxNLblSwP16nP/Eck8=",
     }))));
   return nix.app(nix.sel(model, "overrideAttrs"), (_) => ({
-      __proto__: pos$3,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, model: model })),
+      [nix.POS]: pos$3,
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, model: model })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

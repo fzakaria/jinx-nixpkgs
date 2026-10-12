@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ap4duvRp/RH0UYTzfsKOGYsdZJWtdPYdxKV3JrKxujE=",
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy]);
       const pythonImportsCheck = nix.thunk(() => ["fluidsynth"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for FluidSynth, a MIDI synthesizer that uses SoundFont instruments",
         homepage: "https://github.com/nwhitehead/pyfluidsynth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

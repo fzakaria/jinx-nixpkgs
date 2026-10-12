@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pyside_tools_rcc = nix.thunk(() => nix.app(writeShellScriptBin, "pyside6-rcc", nix.thunk(() => nix.str`exec ${nix.sel(qt6, "qtbase")}/libexec/rcc -g python "$@"
 `)));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sasview",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SasView",
           repo: "sasview",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fitting and data analysis for small angle scattering data",
         homepage: "https://www.sasview.org",
         changelog: nix.thunk(() => nix.str`https://github.com/SasView/sasview/releases/tag/v${version}`),

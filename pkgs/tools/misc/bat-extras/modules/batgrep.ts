@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const ripgrep = nix.arg($, "ripgrep");
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "batgrep",
       dependencies: nix.thunk(() => [less, coreutils, ripgrep]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Quickly search through and highlight files using ripgrep",
       })),
     })));

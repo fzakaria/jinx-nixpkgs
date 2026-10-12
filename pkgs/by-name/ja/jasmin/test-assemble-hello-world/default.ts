@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const jasmin = nix.arg($, "jasmin");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "jasmin-test-assemble-hello-world",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
       buildCommand: nix.thunk(() => nix.str`${jasmin}/bin/jasmin ${nix.path(here, "./HelloWorld.j")}
 ${jre}/bin/java HelloWorld | grep "Hello World"
 touch $out

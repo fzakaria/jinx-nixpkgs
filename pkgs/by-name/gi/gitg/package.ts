@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libdazzle = nix.arg($, "libdazzle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gitg",
       version: "50",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gitg/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gitg-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-MxIWqGkgzU6KubADbmPOyz4aHRFixhqjG9aSTphagVQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/gitg/raw/630cf1bdb50ad37fb20b81d76caa8622e7225c58/f/gitg-gir-2.0.patch",
             hash: "sha256-9pC7wrxWcI1C/8yB5AcaED0RyaVbQzT0Ajuz0TM4hmo=",
           })))),
@@ -94,12 +94,12 @@ substituteInPlace tests/libgitg/test-commit.vala --replace-fail "/bin/bash" "${b
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gitg" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gitg" })))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/gitg",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gitg/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GNOME GUI client to view git repositories",

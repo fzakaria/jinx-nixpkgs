@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wapiti",
       version: "3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wapiti-scanner",
           repo: "wapiti",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -153,11 +153,11 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.concat(["tests/attack/test_mod_ssl.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/web/test_persister.py"])))),
       pythonImportsCheck: nix.thunk(() => ["wapitiCore"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web application vulnerability scanner",
         longDescription: "Wapiti allows you to audit the security of your websites or web applications.\nIt performs \"black-box\" scans (it does not study the source code) of the web\napplication by crawling the webpages of the deployed webapp, looking for\nscripts and forms where it can inject data. Once it gets the list of URLs,\nforms and their inputs, Wapiti acts like a fuzzer, injecting payloads to see\nif a script is vulnerable.\n",
         homepage: "https://wapiti-scanner.github.io/",

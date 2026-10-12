@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkPythonMetaPackage = nix.arg($, "mkPythonMetaPackage");
   const opencv4 = nix.arg($, "opencv4");
   return nix.app(mkPythonMetaPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opencv-contrib-python",
       version: nix.thunk(() => nix.attr(opencv4, "version")),
       dependencies: nix.thunk(() => [opencv4]),
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(opencv4, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
       };

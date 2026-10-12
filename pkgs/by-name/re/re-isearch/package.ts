@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "re-Isearch",
       version: "2.20220925.4.0a-unstable-2026-03-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "re-Isearch",
           repo: "re-Isearch",
           rev: "54054aab10fce6ab0a3b0271034fcc85b2a4f99d",
@@ -48,11 +48,11 @@ makeFlagsArray+=(
       enableParallelBuilding: false,
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\n\ncp ../bin/{Iindex,Isearch,Iutil,Idelete,zpresent,Iwatch,zipper} $out/bin\ncp ../lib/*.so $out/lib/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Novel multimodal search and retrieval engine",
         homepage: "https://nlnet.nl/project/Re-iSearch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opkg-utils",
       version: "unstable-2014-10-30",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.yoctoproject.org/opkg-utils",
           rev: "762d9dadce548108d4204c2113461a7dd6f57e60",
           sha256: "09jfkq2p5wv0ifxkw62f4m7pkvpaalh74j2skymi8lh4268krfwz",
         })))),
       preBuild: "makeFlagsArray+=(PREFIX=\"$out\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper scripts for use with the opkg package manager",
         homepage: "http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses5 = nix.arg($, "ncurses5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.0.76",
       pname: "kythe",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/kythe/kythe/releases/download/v${nix.sel(finalAttrs, "version")}/kythe-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-7qQw91Y9uAXJnk0aQnymDXrvAc7HZpmGUpz+LCYpY1Y=",
         })))),
@@ -39,7 +39,7 @@ cp -R ./ $out
 ln -s $out/tools $out/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pluggable, (mostly) language-agnostic ecosystem for building tools that work with code",
         longDescription: "The Kythe project was founded to provide and support tools and standards\n  that encourage interoperability among programs that manipulate source\n  code. At a high level, the main goal of Kythe is to provide a standard,\n  language-agnostic interchange mechanism, allowing tools that operate on\n  source code — including build systems, compilers, interpreters, static\n  analyses, editors, code-review applications, and more — to share\n  information with each other smoothly.  ",
         homepage: "https://kythe.io/",

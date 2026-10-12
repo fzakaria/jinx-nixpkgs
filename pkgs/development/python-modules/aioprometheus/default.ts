@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const fastapi = nix.arg($, "fastapi");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aioprometheus",
       version: "22.5.0-unstable-2023-12-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "claws",
           repo: "aioprometheus",
           rev: "2fabe659c3c5259b50ac90c3106df7d41b8a3c74",
@@ -43,16 +43,16 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aioprometheus"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           aiohttp: nix.thunk(() => [aiohttp]),
           starlette: nix.thunk(() => [starlette]),
           quart: nix.thunk(() => [quart]),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus Python client library for asyncio-based applications",
         homepage: "https://github.com/claws/aioprometheus",
         changelog: nix.thunk(() => nix.str`https://github.com/claws/aioprometheus/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

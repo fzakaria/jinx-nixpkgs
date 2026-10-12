@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ratslap",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "krayon",
           repo: "ratslap",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ratslap $out/bin\n\nmv manpage.1 ratslap.1\ninstallManPage ratslap.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configure G300 and G300s Logitech mice",
         longDescription: "A tool to configure Logitech mice on Linux. Supports remapping\nall buttons and configuring modes, DPI settings and the LED.\n",
         homepage: "https://github.com/krayon/ratslap",

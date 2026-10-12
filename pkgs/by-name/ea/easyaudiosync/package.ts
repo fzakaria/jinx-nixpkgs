@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "easyaudiosync",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "complexlogic",
           repo: "EasyAudioSync",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv \"easyaudiosync.app\" \"Easy Audio Sync.app\"\ncp -r \"Easy Audio Sync.app\" $out/Applications\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm755 easyaudiosync $out/bin/easyaudiosync\n\nfor RES in 48 64 128 256; do\n  install -Dm755 \"$src/assets/icons/easyaudiosync${RES}.png\" \"$out/share/icons/hicolor/${RES}x${RES}/apps/easyaudiosync.png\"\ndone\n\ninstall -Dm755 \"$src/assets/icons/easyaudiosync.svg\" \"$out/share/icons/hicolor/scalable/apps/easyaudiosync.svg\"\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "easyaudiosync",
             exec: "easyaudiosync",
             icon: "easyaudiosync",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Audio library syncing and conversion utility",
         longDescription: "Easy Audio Sync is an audio library syncing and conversion utility.\nThe intended use is syncing an audio library with many lossless files to a mobile device\nwith limited storage.\n\nThe program's design is inspired by the rsync utility. It supports folder-based\nsource to destination syncing, with added audio transcoding capability, and is\nGUI-based instead of CLI-based.\n",
         homepage: "https://github.com/complexlogic/EasyAudioSync",

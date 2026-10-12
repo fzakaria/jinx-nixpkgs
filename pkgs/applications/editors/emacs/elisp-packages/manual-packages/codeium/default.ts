@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "codeium",
       version: "1.6.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Exafunction",
           repo: "codeium.el",
           rev: "1.6.13",
@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0000-set-codeium-command-executable.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             codeium: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), codeium, "codeium_language_server")),
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(codeium, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free, ultrafast Copilot alternative for Emacs",
         homepage: "https://github.com/Exafunction/codeium.el",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-dXUvInNYkl10zdGQhJ6h1JqCNlZ+VsvwnEMb2xj6qOA=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["validobj"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library that takes semistructured data (for example JSON and YAML configuration files) and converts it to more structured Python objects",
         homepage: "https://github.com/Zaharid/validobj",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

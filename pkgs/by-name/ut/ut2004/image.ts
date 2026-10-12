@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "ut2004-image",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             "https://files.oldunreal.net/UT2004.ISO",
             "https://files2.oldunreal.net/UT2004.ISO",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -D $src $out/ut2004.iso\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unreal Tournament 2004 CD image provided by OldUnreal",
         homepage: "https://oldunreal.com/downloads/ut2004/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

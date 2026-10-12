@@ -21,30 +21,30 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "environment",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               boot: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 kernelPackages: nix.thunk(() => nix.sel(pkgs_1, "linuxPackages")),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  plainFile: nix.thunk(() => ({ __proto__: pos$2, text: "Hello World\n" })),
-                  "folder/with/file": nix.thunk(() => ({ __proto__: pos$3, text: "Foo Bar!\n" })),
+                  [nix.POS]: pos$4,
+                  plainFile: nix.thunk(() => ({ [nix.POS]: pos$2, text: "Hello World\n" })),
+                  "folder/with/file": nix.thunk(() => ({ [nix.POS]: pos$3, text: "Foo Bar!\n" })),
                 })),
                 sessionVariables: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   TERMINFO_DIRS: "/run/current-system/sw/share/terminfo",
                   NIXCON: "awesome",
                   SHOULD_NOT_BE_SET: "oops",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               environment: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 sessionVariables: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   SHOULD_NOT_BE_SET: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                 })),
               })),

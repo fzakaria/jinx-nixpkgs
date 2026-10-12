@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cms-DQM",
           repo: "dials-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [pydantic, requests, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pandas: nix.thunk(() => [pandas]),
         tqdm: nix.thunk(() => [tqdm]),
       }));
       const pythonRelaxDeps = nix.thunk(() => ["pydantic", "typing-extensions"]);
       const pythonImportsCheck = nix.thunk(() => ["cmsdials"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python API client interface to CMS DIALS service",
         homepage: "https://github.com/cms-DQM/dials-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

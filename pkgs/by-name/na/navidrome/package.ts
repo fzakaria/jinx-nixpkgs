@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "navidrome",
       version: "0.64.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "navidrome",
           repo: "navidrome",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-/3NhF/OHDxWrciN5GdROiO1yhjjdm5F5ntW7h6tzFGc=",
       npmRoot: "ui",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ui`),
           hash: "sha256-uRF9cf6HZE0gyCvGTEZ520d2gMsxmccEYLJBgc47pMg=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       runtimeInputs: plugins,
       overrideModAttrs: (oldAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/navidrome/navidrome/consts.gitTag=v${nix.sel(finalAttrs, "version")}`),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           CGO_CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-return-local-addr"]))),
         })))),
       postPatch: "patchShebangs ui/bin/update-workbox.sh\n",
@@ -89,16 +89,16 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (plugin) => nix.str`find ${
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg_headless]))}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         plugins: plugins,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           navidrome: nix.thunk(() => nix.sel(nixosTests, "navidrome")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Music Server and Streamer compatible with Subsonic/Airsonic",
         mainProgram: "navidrome",
         homepage: "https://www.navidrome.org/",

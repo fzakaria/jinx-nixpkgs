@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zweckj",
           repo: "onedrive-personal-sdk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["onedrive_personal_sdk"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/zweckj/onedrive-personal-sdk/releases/tag/${nix.sel(src, "tag")}`),
         description: "Package to interact with the Microsoft Graph API for personal OneDrives",
         homepage: "https://github.com/zweckj/onedrive-personal-sdk",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

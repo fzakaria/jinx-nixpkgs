@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
     const fetchConfigured = nix.argOr($_1, "fetchConfigured", () => true);
     const dontAddBazelOpts = nix.argOr($_1, "dontAddBazelOpts", () => false);
     const fArgs = nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["buildAttrs", "fetchAttrs", "removeRulesCC"])), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       bazelFlags: bazelFlags,
       bazelBuildFlags: bazelBuildFlags,
@@ -92,11 +92,11 @@ bazel \\
     })(), formals$3);
     const chmodder = nix.thunk(() => nix.app(writeCBin, "chmodder", "#include <stdio.h>\n#include <stdlib.h>\n#include <sys/types.h>\n#include <sys/stat.h>\n#include <errno.h>\n#include <string.h>\n\nint main(int argc, char** argv) {\n  mode_t mode = S_IRWXU | S_IRWXG | S_IRWXO;\n  if (argc != 2) {\n    fprintf(stderr, \"usage: chmodder file\");\n    exit(EXIT_FAILURE);\n  }\n  if (lchmod(argv[1], mode) != 0) {\n    fprintf(stderr, \"failed to lchmod '%s': %s\", argv[0], strerror(errno));\n    exit(EXIT_FAILURE);\n  }\n}\n"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(fBuildAttrs, {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         deps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(fFetchAttrs, nix.update((() => {
-            const from = nix.thunk(() => nix.app(nix.sel(lib, "fetchers", "normalizeHash"), nix.thunk(() => ({ __proto__: pos$3, hashTypes: nix.thunk(() => ["sha256"]) })), fetchAttrs));
+            const from = nix.thunk(() => nix.app(nix.sel(lib, "fetchers", "normalizeHash"), nix.thunk(() => ({ [nix.POS]: pos$3, hashTypes: nix.thunk(() => ["sha256"]) })), fetchAttrs));
             return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.str`${name}-deps.tar`),
             impureEnvVars: nix.thunk(() => nix.concat(nix.sel(lib, "fetchers", "proxyImpureEnvVars"), nix.selOr(fFetchAttrs, () => [], "impureEnvVars"))),
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(fFetchAttrs, () => [], "nativeBuildInputs"), [bazel])),
@@ -113,7 +113,7 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
             buildPhase: nix.thunk(() => nix.selOr(fFetchAttrs, () => nix.str`runHook preBuild
 
 ${nix.app(bazelCmd, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   cmd: nix.thunk(() => (nix.asBool(fetchConfigured) ? "build --nobuild" : "fetch")),
                   additionalFlags: nix.thunk(() => nix.concat(["--loading_phase_threads=1", "$bazelFetchFlags"], (nix.asBool(fetchConfigured) ? ["--jobs", "$NIX_BUILD_CORES"] : []))),
                   targets: nix.thunk(() => nix.concat(nix.sel(fFetchAttrs, "bazelTargets"), nix.sel(fFetchAttrs, "bazelTestTargets"))),
@@ -174,14 +174,14 @@ runHook postInstall
             outputHashAlgo: nix.thunk(() => nix.attr(from, "outputHashAlgo")),
           };
           })(), (nix.asBool(nix.selOr(fFetchAttrs, () => false, "__structuredAttrs")) ? {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             outputChecks: nix.thunk(() => ({
-              __proto__: pos$6,
-              out: nix.thunk(() => ({ __proto__: pos$5, allowedRequisites: nix.thunk(() => ["out"]) })),
+              [nix.POS]: pos$6,
+              out: nix.thunk(() => ({ [nix.POS]: pos$5, allowedRequisites: nix.thunk(() => ["out"]) })),
             })),
-          } : { __proto__: pos$8, allowedRequisites: [] })))))),
+          } : { [nix.POS]: pos$8, allowedRequisites: [] })))))),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(fBuildAttrs, () => [], "nativeBuildInputs"), [
-          nix.thunk(() => nix.app(nix.sel(bazel, "override"), nix.thunk(() => ({ __proto__: pos$9, enableNixHacks: true })))),
+          nix.thunk(() => nix.app(nix.sel(bazel, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, enableNixHacks: true })))),
         ])),
         preHook: nix.thunk(() => nix.add(nix.selOr(fBuildAttrs, () => "", "preHook"), "export bazelOut=\"$NIX_BUILD_TOP/output\"\nexport bazelUserRoot=\"$NIX_BUILD_TOP/tmp\"\nexport HOME=\"$NIX_BUILD_TOP\"\n")),
         preConfigure: nix.thunk(() => nix.add(nix.str`mkdir -p "$bazelOut"
@@ -230,19 +230,19 @@ if [ -z "\${dontAddBazelOpts:-}" ]; then
 fi
 
 ${nix.app(bazelCmd, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               cmd: "test",
               additionalFlags: nix.thunk(() => nix.concat(["--test_output=errors"], nix.concat(nix.sel(fBuildAttrs, "bazelTestFlags"), ["--jobs", "$NIX_BUILD_CORES"]))),
               targets: nix.thunk(() => nix.sel(fBuildAttrs, "bazelTestTargets")),
             })))}
 ${nix.app(bazelCmd, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               cmd: "build",
               additionalFlags: nix.thunk(() => nix.concat(nix.sel(fBuildAttrs, "bazelBuildFlags"), ["--jobs", "$NIX_BUILD_CORES"])),
               targets: nix.thunk(() => nix.sel(fBuildAttrs, "bazelTargets")),
             })))}
 ${nix.app(bazelCmd, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               cmd: "run",
               additionalFlags: nix.thunk(() => nix.concat(nix.sel(fBuildAttrs, "bazelRunFlags"), ["--jobs", "$NIX_BUILD_CORES"])),
               targets: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(fBuildAttrs, "bazelRunTarget"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(fBuildAttrs, "bazelRunTarget"))]))),

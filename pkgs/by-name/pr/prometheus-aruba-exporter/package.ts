@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prometheus-aruba-exporter",
       version: "0-unstable-2023-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slashdoom",
           repo: "aruba_exporter",
           rev: "ca30cd687f949c9b0ac4e451c17583e6a9eb835a",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-1XYwrajzKoWOPg4aKE5rJVjWZ9RWBKD/kANOZHtWJCk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for metrics from Aruba devices including ArubaSwitchOS, ArubaOS-CX, ArubaOS (Instant AP and controllers/gateways)",
         mainProgram: "aruba_exporter",
         homepage: "https://github.com/slashdoom/aruba_exporter",

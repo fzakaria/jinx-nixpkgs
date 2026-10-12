@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dosis";
       const version = "1.007";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "impallari",
           repo: "Dosis",
           rev: "12df1e13e58768f20e0d48ff15651b703f9dd9dc",
@@ -30,7 +30,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version} README.md FONTLOG.txt
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very simple, rounded, sans serif family",
         longDescription: "Dosis is a very simple, rounded, sans serif family.\n\nThe lighter weights are minimalist. The bolder weights have more\npersonality. The medium weight is nice and balanced. The overall result is\na family that's clean and modern, and can express a wide range of\nvoices & feelings.\n\nIt comes in 7 incremental weights: ExtraLight, Light, Book, Medium,\nSemibold, Bold & ExtraBold\n",
         homepage: "https://github.com/impallari/Dosis",
@@ -38,7 +38,7 @@ runHook postInstall
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

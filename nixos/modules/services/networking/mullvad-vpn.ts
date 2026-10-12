@@ -41,19 +41,19 @@ export default nix.lambda((args) => (() => {
   const getExe$ = nix.thunk(() => nix.attr(lib, "getExe'"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "mullvad-vpn"));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "mullvad-vpn": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the Mullvad VPN service")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mullvad", nix.thunk(() => ({})))),
-          enableExcludeWrapper: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the security wrapper the allows the use of `mullvad-exclude`, a command that tunnels a single command directly to the clearnet, bypassing the system-wide VPN. It is recommended to disable this option for security models where privileged (`setuid`) binaries are a concern"), { __proto__: pos$1, default: true })),
+          enableExcludeWrapper: nix.thunk(() => nix.update(nix.app(mkEnableOption, "the security wrapper the allows the use of `mullvad-exclude`, a command that tunnels a single command directly to the clearnet, bypassing the system-wide VPN. It is recommended to disable this option for security models where privileged (`setuid`) binaries are a concern"), { [nix.POS]: pos$1, default: true })),
           enableEarlyBootBlocking: nix.thunk(() => nix.app(mkEnableOption, "an additional systemd service that ensures that the Mullvad VPN daemon will block all traffic early in the boot process, as opposed to blocking traffic after the network has been set up. Enabling this option matches what upstream Mullvad distributes for their supported distros, but is disabled by default in NixOS as it may conflict with non-Mullvad network configurations. If you do not have a custom network configuration, it is recommended to enable this option in order to prevent network leaks during the boot process")),
           gui: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Mullvad VPN graphical user interface")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "mullvad-vpn", nix.thunk(() => ({})))),
           })),
@@ -61,26 +61,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => nix.selOr(cfg, () => false, "package", "hasMullvadDaemon")),
             message: nix.thunk(() => nix.str`'services.mullvad-vpn.package' is using '${nix.selOr(cfg, () => "unknown-package", "package", "name")}', but this package has indicated that it does not contain a Mullvad VPN Daemon. This may be due to the fact that you have configured 'services.mullvad-vpn.package' to point to 'pkgs.mullvad-vpn', which no longer contains the Mullvad Daemon. Please unset 'services.mullvad-vpn.package' and enable 'services.mullvad-vpn.gui.enable' if you wish to use Mullvad VPN's graphical user interface.`),
           })),
         ]),
         warnings: nix.thunk(() => nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(cfg, "gui", "enable")) && nix.asBool(!nix.asBool(nix.selOr(cfg, () => false, "gui", "package", "hasMullvadGUI"))))), "'services.mullvad-vpn.gui.package' reports that it does not contain a Mullvad VPN graphical user interface. The Mullvad VPN desktop app may be unavailable.")),
-        boot: nix.thunk(() => ({ __proto__: pos$7, kernelModules: nix.thunk(() => ["tun"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$7, kernelModules: nix.thunk(() => ["tun"]) })),
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => nix.concat(nix.app(singleton, nix.thunk(() => nix.sel(cfg, "package"))), nix.app(optional, nix.thunk(() => nix.sel(cfg, "gui", "enable")), nix.thunk(() => nix.sel(cfg, "gui", "package"))))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "mullvad-exclude": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableExcludeWrapper")), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 setuid: true,
                 owner: "root",
                 group: "root",
@@ -89,31 +89,31 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           resolved: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "mullvad-early-boot-blocking": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableEarlyBootBlocking")), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "Mullvad early boot network blocker",
                 wantedBy: nix.thunk(() => ["mullvad-daemon.service"]),
                 before: nix.thunk(() => ["network-pre.target", "mullvad-daemon.service"]),
                 after: nix.thunk(() => ["local-fs.target"]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$14, DefaultDependencies: "no" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$14, DefaultDependencies: "no" })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "mullvad-daemon")} -v --initialize-early-boot-firewall`),
                 })),
               })))),
             "mullvad-daemon": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Mullvad VPN daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["network-online.target"]),
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
               startLimitIntervalSec: 20n,
               path: nix.thunk(() => nix.concat(nix.app(singleton, nix.thunk(() => nix.sel(pkgs, "iproute2"))), nix.app(optional, nix.thunk(() => nix.sel(config, "networking", "resolvconf", "enable")), nix.thunk(() => nix.sel(config, "networking", "resolvconf", "package"))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "mullvad-daemon")} -vv --disable-stdout-timestamps`),
                 Restart: "always",
                 RestartSec: 1n,
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

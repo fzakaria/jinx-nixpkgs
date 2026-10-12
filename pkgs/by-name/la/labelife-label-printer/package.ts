@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const cups = nix.arg($, "cups");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const archAttrset = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-linux": "aarch64",
     "armv6l-linux": "arm",
     "armv7l-linux": "armhf",
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   }));
   const archiveSnapshot = "20260804054912";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labelife-label-printer",
       version: "2.3.2.002",
       arch: nix.thunk(() => nix.selOr(archAttrset, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/${archiveSnapshot}/https://oss.qu-in.ltd/Labelife/Label_Printer_Driver_Linux.zip`),
           hash: "sha256-UJ2wHQllvj1nY/rwrINwBzyCQP/KwwTSrlyuNXguq5o=",
         })))),
@@ -59,7 +59,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CUPS driver for Labelife-compatible thermal label printers",
         downloadPage: "https://labelife.net/#/chart",
         homepage: "https://labelife.net",

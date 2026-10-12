@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libxkbcommon",
       version: "1.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xkbcommon",
           repo: "libxkbcommon",
           tag: nix.thunk(() => nix.str`xkbcommon-${nix.sel(finalAttrs, "version")}`),
@@ -59,17 +59,17 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       preCheck: "patchShebangs ../test/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library to handle keyboard descriptions",
         longDescription: "libxkbcommon is a keyboard keymap compiler and support library which\nprocesses a reduced subset of keymaps as defined by the XKB (X Keyboard\nExtension) specification. It also contains a module for handling Compose\nand dead keys.\n",
         homepage: "https://xkbcommon.org",

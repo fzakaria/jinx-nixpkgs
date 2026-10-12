@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "27.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-rAdl49REVa223b9EF9zORg/ECgWXjAjv3ylIBy9ttUA=",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for ØMQ",
         homepage: "https://pyzmq.readthedocs.io/",
         license: nix.thunk(() => (() => {
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

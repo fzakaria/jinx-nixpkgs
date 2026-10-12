@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const kmod = nix.arg($, "kmod");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "alsa-ucm-conf",
       version: "1.2.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://alsa/lib/alsa-ucm-conf-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-zz0cB+CJqDxOziwg8F3WqKq3/NEIdow4gROGiAV1SSs=",
         })))),
@@ -37,11 +37,11 @@ substituteInPlace ucm2/lib/card-init.conf \\
   --replace-fail '/sbin/modprobe' '${kmod}/bin/modprobe'
 `))), "\nmkdir -p $out/share/alsa\ncp -r ucm ucm2 $out/share/alsa\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://www.alsa-project.org/files/pub/lib/" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://www.alsa-project.org/files/pub/lib/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.alsa-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/alsa-project/alsa-ucm-conf/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "ALSA Use Case Manager configuration",

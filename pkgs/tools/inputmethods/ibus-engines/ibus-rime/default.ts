@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-rime";
       const version = "1.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rime",
           repo: "ibus-rime",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DRIME_DATA_DIR=${nix.builtins.placeholder("out")}/share/rime-data`),
       ]);
       const rimeDataDrv = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "ibus-rime-data",
           paths: rimeDataPkgs,
           postBuild: "mkdir -p $out/share/rime-data\n\n# Ensure default.yaml exists\n[ -e \"$out/share/rime-data/default.yaml\" ] || touch \"$out/share/rime-data/default.yaml\"\n",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`cp -r "${rimeDataDrv}/share/rime-data/." $out/share/rime-data/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         isIbusEngine: true,
         description: "Rime input method engine for IBus",
         homepage: "https://rime.im/",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

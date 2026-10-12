@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "playdate-sdk";
       const version = "3.1.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${version}.tar.gz`),
           sha256: "sha256-fj2RJhHoL3kAev0qOp5ooZyL/HAltfdhgF8hNoRw15M=",
         }))));
@@ -75,7 +75,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "PlaydateSimulator",
             exec: "PlaydateSimulator %u",
             icon: "PlaydateSimulator",
@@ -87,7 +87,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official SDK and development tools for the Playdate handheld console, including Lua/C APIs, simulator, and Mirror capture utility",
         homepage: "https://play.date",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -99,7 +99,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

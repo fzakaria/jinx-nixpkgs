@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const wirelesstools = nix.arg($, "wirelesstools");
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "networkd-notify",
       version: "unstable-2022-11-29",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wavexx",
           repo: "networkd-notify",
           rev: "c2f3e71076a0f51c097064b1eb2505a361c7cc0e",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop notification integration for systemd-networkd",
         mainProgram: "networkd-notify",
         homepage: "https://gitlab.com/wavexx/networkd-notify",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prestodb",
           repo: "presto-python-client",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["integration_tests"]);
       const pythonImportsCheck = nix.thunk(() => ["prestodb"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client for Presto (https://prestodb.io), a distributed SQL engine for interactive and batch big data processing",
         homepage: "https://github.com/prestodb/presto-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/prestodb/presto-python-client/releases/tag/${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

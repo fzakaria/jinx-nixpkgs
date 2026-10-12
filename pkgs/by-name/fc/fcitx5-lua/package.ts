@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const lua = lua5_3;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fcitx5-lua",
       version: "5.0.18",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fcitx",
           repo: "fcitx5-lua",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
         gettext,
       ]),
       buildInputs: nix.thunk(() => [fcitx5, lua]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, extraLdLibraries: nix.thunk(() => [lua]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, extraLdLibraries: nix.thunk(() => [lua]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lua support for Fcitx 5",
         homepage: "https://github.com/fcitx/fcitx5-lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

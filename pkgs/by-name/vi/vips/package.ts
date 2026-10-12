@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "vips",
       version: "8.18.7",
       outputs: nix.thunk(() => nix.concat(["bin", "out", "man", "dev"], nix.app(nix.sel(lib, "optionals"), withDevDoc, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libvips",
           repo: "libvips",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -110,26 +110,26 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withDevDoc, nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "docs", true))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(imagemagick, null)), nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "magick", false)))))),
       postFixup: "moveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "vips --version",
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/libvips/libvips/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         homepage: "https://www.libvips.org/",
         description: "Image processing system for large images",

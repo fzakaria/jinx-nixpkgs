@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(rev, null)), nix.thunk(() => nix.eq(version_1, null)))), "onlyoffice_fetch requires one of either `rev` or `version` to be provided (not both)."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cr/cryptpad/package.nix:40:5");
     return (nix.asBool(!nix.eq(rev, null)) ? nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         rev: rev,
         hash: hash,
         owner: "cryptpad",
         repo: "onlyoffice-builds",
       }))) : nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/cryptpad/onlyoffice-editor/releases/download/${version_1}/onlyoffice-editor.zip`),
         hash: hash,
       }))));
@@ -74,43 +74,43 @@ rm -rf "$oo_dir"/web-apps/apps/*/main/resources/help
 `;
   const onlyoffice_versions = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       subdir: "v1",
       rev: "4f370beb",
       hash: "sha256-TE/99qOx4wT2s0op9wi+SHwqTPYq/H+a9Uus9Zj4iSY=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       subdir: "v2b",
       rev: "d9da72fd",
       hash: "sha256-SiRDRc2vnLwCVnvtk+C8PKw7IeuSzHBaJmZHogRe3hQ=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       subdir: "v4",
       rev: "6ebc6938",
       hash: "sha256-eto1+8Tk/s3kbUCpbUh8qCS8EOq700FYG1/KiHyynaA=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       subdir: "v5",
       rev: "88a356f0",
       hash: "sha256-8j1rlAyHlKx6oAs2pIhjPKcGhJFj6ZzahOcgenyeOCc=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       subdir: "v6",
       rev: "abd8a309",
       hash: "sha256-BZdExj2q/bqUD3k9uluOot2dlrWKA+vpad49EdgXKww=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       subdir: "v7",
       version: "v7.3.3.60+11",
       hash: "sha256-He8RwsaJPBhaxFklA7vSxxNUpmcM41lW859gQUUJWbQ=",
     })),
     nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       subdir: "v8",
       version: "v8.3.3.23+5",
       hash: "sha256-+53jzvmGltD1yjXAimLl8zL1V4YDc1qF1PUFSeyiUm8=",
@@ -118,7 +118,7 @@ rm -rf "$oo_dir"/web-apps/apps/*/main/resources/help
   ]);
   const x2t_version = "v7.3+1";
   const x2t = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       url: nix.thunk(() => nix.str`https://github.com/cryptpad/onlyoffice-x2t-wasm/releases/download/${x2t_version}/x2t.zip`),
       hash: "sha256-hrbxrI8RC1pBatGZ76TAiVfUbZid7+eRuXk6lmz7OgQ=",
     }))));
@@ -128,11 +128,11 @@ unzip -q ${x2t} -d "$X2T_DIR"
 echo "${x2t_version}" > "$X2T_DIR"/.version
 `);
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       version: version,
       pname: "cryptpad",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           owner: "cryptpad",
           repo: "cryptpad",
           tag: version,
@@ -191,14 +191,14 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/cryptpad" \\
   --run "if ! [ -d customize ]; then \\"${nix.app(nix.sel(lib, "getExe"), nodejs)}\\" \\"$out_cryptpad/scripts/build.js\\"; fi"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         tests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           cryptpad: nix.thunk(() => nix.sel(nixosTests, "cryptpad")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Collaborative office suite, end-to-end encrypted and open-source",
         homepage: "https://cryptpad.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

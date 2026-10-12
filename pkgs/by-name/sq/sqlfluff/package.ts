@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlfluff",
       version: "4.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sqlfluff",
           repo: "sqlfluff",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["sqlfluff"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SQL linter and auto-formatter",
         homepage: "https://www.sqlfluff.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/sqlfluff/sqlfluff/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

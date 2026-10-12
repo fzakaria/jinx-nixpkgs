@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kotlin",
       version: "2.4.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/JetBrains/kotlin/releases/download/v${nix.sel(finalAttrs, "version")}/kotlin-compiler-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-WenKdMeQTvLBIrEhFJN2c8zOaN6CCmY/DtZsz4eZ4Lc=",
         })))),
@@ -40,7 +40,7 @@ if [ -f $out/LICENSE ]; then
 fi
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General purpose programming language",
         longDescription: "Kotlin is a statically typed language that targets the JVM and JavaScript.\nIt is a general-purpose language intended for industry use.\nIt is developed by a team at JetBrains although it is an OSS language\nand has external contributors.\n",
         homepage: "https://kotlinlang.org/",

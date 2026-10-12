@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const libical = nix.arg($, "libical");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "itinerary",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [qtlocation, qtpositioning, libical]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "itinerary" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "itinerary" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

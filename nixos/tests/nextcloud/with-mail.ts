@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
@@ -42,48 +42,48 @@ export default nix.lambda((args) => (() => {
       const certs = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
       const domain = nix.thunk(() => nix.sel(certs, "domain"));
       return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         name: name,
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             const nodes = nix.arg($_2, "nodes");
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               security: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 pki: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
                 })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "stalwart", "networking", "primaryIPAddress")} ${domain}
 `),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$7,
-                  "nextcloud/mail_smtppassword": nix.thunk(() => ({ __proto__: pos$6, text: "foobar" })),
+                  [nix.POS]: pos$7,
+                  "nextcloud/mail_smtppassword": nix.thunk(() => ({ [nix.POS]: pos$6, text: "foobar" })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 nextcloud: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  config: nix.thunk(() => ({ __proto__: pos$9, dbtype: "sqlite" })),
+                  [nix.POS]: pos$12,
+                  config: nix.thunk(() => ({ [nix.POS]: pos$9, dbtype: "sqlite" })),
                   settings: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     mail_from_address: "alice",
                     mail_domain: domain,
                     mail_smtpmode: "smtp",
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
                     mail_smtpname: "alice",
                     mail_send_plaintext_only: true,
                   })),
-                  secrets: nix.thunk(() => ({ __proto__: pos$11, mail_smtppassword: "/etc/nextcloud/mail_smtppassword" })),
+                  secrets: nix.thunk(() => ({ [nix.POS]: pos$11, mail_smtppassword: "/etc/nextcloud/mail_smtppassword" })),
                 })),
               })),
             };
@@ -102,14 +102,14 @@ export default nix.lambda((args) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               imports: nix.thunk(() => [nix.path(here, "../stalwart/stalwart-config.nix")]),
               networking: nix.thunk(() => ({
-                __proto__: pos$16,
-                firewall: nix.thunk(() => ({ __proto__: pos$15, allowedTCPPorts: nix.thunk(() => [587n]) })),
+                [nix.POS]: pos$16,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedTCPPorts: nix.thunk(() => [587n]) })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "test-imap-read", nix.thunk(() => ({})), nix.thunk(() => nix.str`from imaplib import IMAP4
 
@@ -136,7 +136,7 @@ with IMAP4('localhost') as imap:
           })(), formals$4),
         })),
         "test-helpers": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           init: nix.thunk(() => nix.str`stalwart.wait_for_unit("multi-user.target")
 stalwart.wait_until_succeeds("nc -vzw 2 localhost 587")
 

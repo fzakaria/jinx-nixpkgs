@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libconfuse",
       version: "3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libconfuse",
           repo: "libconfuse",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Small configuration file parser library for C",
         longDescription: "libConfuse (previously libcfg) is a configuration file parser library\nwritten in C. It supports sections and (lists of) values, as well as\nsome other features. It makes it very easy to add configuration file\ncapability to a program using a simple API.\n\nThe goal of libConfuse is not to be the configuration file parser library\nwith a gazillion of features. Instead, it aims to be easy to use and\nquick to integrate with your code.\n",

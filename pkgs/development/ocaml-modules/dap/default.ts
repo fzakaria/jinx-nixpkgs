@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const ppx_here = nix.arg($, "ppx_here");
   const react = nix.arg($, "react");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dap",
       version: "1.0.6",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/hackwaly/ocaml-dap/releases/download/${nix.sel(finalAttrs, "version")}/dap-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "1zq0f8429m38a4x3h9n3rv7n1vsfjbs72pfi5902a89qwyilkcp0",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         react,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Debug adapter protocol",
         homepage: "https://github.com/hackwaly/ocaml-dap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

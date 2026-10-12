@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixPackage = nix.argOr($, "nixPackage", () => nix.sel(nixVersions, "stable"));
   const cargoFlags = nix.thunk(() => ["-p", "nix-web"]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-web",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gorgon",
           repo: "gorgon",
           rev: nix.thunk(() => nix.str`nix-web-v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: cargoFlags,
       cargoTestFlags: cargoFlags,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_WEB_BUILD_NIX_CLI_PATH: nix.thunk(() => nix.str`${nixPackage}/bin/nix`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web interface for the Nix store",
         homepage: "https://codeberg.org/gorgon/gorgon/src/branch/main/nix-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

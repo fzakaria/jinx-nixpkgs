@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_readers_weather",
           version: version,
           hash: "sha256-YaE2uqNwfo2M0h32ZepOquWV87Q37HEO2/Mfndm8U9c=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["llama_index.readers.weather"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Readers Integration for Weather",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-weather",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

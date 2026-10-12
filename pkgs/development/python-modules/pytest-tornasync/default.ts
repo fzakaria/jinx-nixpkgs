@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const tornado = nix.arg($, "tornado");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-tornasync",
       version: "0.6.0.post2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eukaryote",
           repo: "pytest-tornasync",
           rev: "c5f013f1f727f1ca1fcf8cc748bba7f4a2d79e56",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest, tornado]),
       checkPhase: "pytest test\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "py.test plugin for testing Python 3.5+ Tornado code",
         homepage: "https://github.com/eukaryote/pytest-tornasync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

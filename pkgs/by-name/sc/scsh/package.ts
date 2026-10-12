@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const scheme48 = nix.arg($, "scheme48");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scsh",
       version: "0.7-unstable-2024-03-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scheme",
           repo: "scsh",
           rev: "6770db21b08edd907d1c9bd962297ff55664e3fe",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-scheme48=${scheme48}`)]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`SCHEME48VERSION=${nix.sel(scheme48, "version")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scheme shell",
         homepage: "http://www.scsh.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

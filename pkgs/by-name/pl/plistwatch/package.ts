@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plistwatch",
       version: "0-unstable-2023-06-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catilac",
           repo: "plistwatch",
           rev: "34d808c1509eea22fe88a2dbb6f0a1669a2a5b23",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./go-modules.patch")]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monitors and prints changes to MacOS plists in real time",
         homepage: "https://github.com/catilac/plistwatch",
         maintainers: nix.thunk(() => (() => {

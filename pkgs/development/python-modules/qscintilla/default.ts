@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const qtVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))));
   const pyQtPackage = nix.thunk(() => (nix.asBool(useQt6) ? nix.force(pyqt6) : nix.force(pyqt5)));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => (nix.asBool(nix.eq(qtVersion, "5")) ? "qscintilla" : nix.str`pyqt${qtVersion}-qscintilla`)),
       version: nix.thunk(() => nix.sel(qscintilla, "version")),
       src: nix.thunk(() => nix.sel(qscintilla, "src")),
@@ -55,7 +55,7 @@ export PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH"
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => [nix.thunk(() => nix.str`PyQt${qtVersion}.Qsci`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python binding to QScintilla, Qt based text editing control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         homepage: "https://www.riverbankcomputing.com/software/qscintilla/",

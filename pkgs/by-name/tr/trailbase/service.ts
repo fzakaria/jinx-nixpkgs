@@ -31,38 +31,38 @@ export default nix.lambda((args) => (() => {
     const types = nix.thunk(() => nix.attr(lib, "types"));
     const cfg = nix.thunk(() => nix.sel(config, "trailbase"));
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       _class: "service",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lucasew"))]),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       })),
       options: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         trailbase: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Package to use for TrailBase.",
               defaultText: "The package that provided this module.",
               type: nix.thunk(() => nix.sel(types, "package")),
             })))),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Authority (`<host>:<port>`) the HTTP server binds to.",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1:4000",
               example: "0.0.0.0:4000",
             })))),
           depot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Directory for runtime files including the databases.",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "/var/lib/trailbase",
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Extra arguments to pass to `trail run`.",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
@@ -70,9 +70,9 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         process: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           argv: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))),
             "--depot",
@@ -83,17 +83,17 @@ export default nix.lambda((args) => (() => {
           ], nix.sel(cfg, "extraArgs"))),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "systemd")), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           systemd: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             service: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "TrailBase",
               after: nix.thunk(() => ["network.target"]),
               wants: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "simple",
                 Restart: "on-failure",
                 DynamicUser: true,

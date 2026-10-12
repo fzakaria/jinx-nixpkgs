@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const useSystemd = nix.argOr($, "useSystemd", () => true);
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rpcbind",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.linux-nfs.org/projects/steved/rpcbind.git",
           rev: nix.thunk(() => nix.str`refs/tags/rpcbind-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: "sha256-xHPVg/2u1GRy1s5nipKK2I5sbHRMF0Cxd+ZHMaLRxvU=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ONC RPC portmapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

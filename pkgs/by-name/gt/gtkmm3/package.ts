@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gtkmm",
       version: "3.24.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtkmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtkmm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "erfiJmgIcW4mw5kkrOH7RtqGwX7znZiWJMQjFLMrWnY=",
         })))),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glibmm_2_4, gtk3, atkmm, cairomm_1_0, pangomm_1_4]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: "gtkmm",
             attrPath: "gtkmm3",
             versionPolicy: "odd-unstable",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ interface to the GTK graphical user interface library",
         longDescription: "gtkmm is the official C++ interface for the popular GUI library\nGTK.  Highlights include typesafe callbacks, and a\ncomprehensive set of widgets that are easily extensible via\ninheritance.  You can create user interfaces either in code or\nwith the Glade User Interface designer, using libglademm.\nThere's extensive documentation, including API reference and a\ntutorial.\n",
         homepage: "https://gtkmm.gnome.org/",

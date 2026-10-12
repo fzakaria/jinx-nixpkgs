@@ -42,37 +42,37 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(firewall, "nfta
 ${nix.sel(cfg, "appendConfig")}
 `)));
   const firewall = nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? "nftables" : "iptables"));
-  const miniupnpd = nix.thunk(() => nix.app(nix.sel(pkgs, "miniupnpd", "override"), nix.thunk(() => ({ __proto__: pos$1, firewall: firewall }))));
+  const miniupnpd = nix.thunk(() => nix.app(nix.sel(pkgs, "miniupnpd", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, firewall: firewall }))));
   const firewallScripts = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(firewall, "iptables")), nix.thunk(() => nix.concat(["iptables"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "networking", "enableIPv6")), "ip6tables")))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         miniupnpd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "MiniUPnP daemon")),
           externalInterface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Name of the external interface.\n",
             })))),
           internalIPs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: nix.thunk(() => ["192.168.1.1/24", "enp1s0"]),
               description: "The IP address ranges to listen on.\n",
             })))),
           natpmp: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "NAT-PMP support")),
           upnp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to enable UPNP support.\n",
             })))),
           appendConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Configuration lines appended to the MiniUPnP config.\n",
@@ -81,22 +81,22 @@ ${nix.sel(cfg, "appendConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           firewall: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             extraCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(firewallScripts, [])), nix.thunk(() => nix.app(nix.sel(nix.builtins, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.builtins.map, (fw) => nix.str`EXTIF=${nix.sel(cfg, "externalInterface")} ${nix.sel(pkgs, "bash")}/bin/bash -x ${miniupnpd}/etc/miniupnpd/${fw}_init.sh
 `, firewallScripts)))))),
             extraStopCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(firewallScripts, [])), nix.thunk(() => nix.app(nix.sel(nix.builtins, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.builtins.map, (fw) => nix.str`EXTIF=${nix.sel(cfg, "externalInterface")} ${nix.sel(pkgs, "bash")}/bin/bash -x ${miniupnpd}/etc/miniupnpd/${fw}_removeall.sh
 `, firewallScripts)))))),
           })),
           nftables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(firewall, "nftables")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               tables: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 miniupnpd: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   family: "inet",
                   content: "chain miniupnpd {}\nchain prerouting_miniupnpd {\n  type nat hook prerouting priority dstnat; policy accept;\n}\nchain postrouting_miniupnpd {\n  type nat hook postrouting priority srcnat; policy accept;\n}\n",
                 })),
@@ -104,16 +104,16 @@ ${nix.sel(cfg, "appendConfig")}
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             miniupnpd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "MiniUPnP daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStart: nix.thunk(() => nix.str`${miniupnpd}/bin/miniupnpd -f ${configFile}`),
                 PIDFile: "/run/miniupnpd.pid",
                 Type: "forking",

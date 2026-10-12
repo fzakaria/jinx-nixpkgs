@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "azure-mgmt-network",
       version: "30.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_network",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-mxfCWeY0SAiqqAo0u8SxPxa8ARhd2dsTfqoK4mZkhho=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["azure.mgmt"]),
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.network"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure SDK for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/network/azure-mgmt-network",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-network_${nix.sel(finalAttrs, "version")}/sdk/network/azure-mgmt-network/CHANGELOG.md`),

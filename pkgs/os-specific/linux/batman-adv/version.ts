@@ -6,11 +6,11 @@ const pos$1 = nix.positions(here + "/version.nix", [["alfred", 12, 5], ["batctl"
 const pos$2 = nix.positions(here + "/version.nix", [["version", 2, 3], ["minKernelVersion", 4, 3], ["sha256", 11, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   version: "2026.3",
   minKernelVersion: "5.15",
   sha256: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     alfred: "sha256-H4FQVIGqSIjpcRazdPKVOqQsJdoQYphGciadxZG7BDE=",
     batctl: "sha256-LIRD+uezRxpQCDf4z7vCt7urYC5DzoxhsQBWDewdnuA=",
     "batman-adv": "sha256-w1JOfY8Uh4agUmVKexCQ45R0bTpx7l1lf5ht168WF2I=",

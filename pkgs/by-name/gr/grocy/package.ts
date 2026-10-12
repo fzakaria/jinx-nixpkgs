@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const php = php85;
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "grocy",
       version: "4.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grocy",
           repo: "grocy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       composerStrictValidation: false,
       vendorHash: "sha256-mxZcRga2mUyZPyvy77H5INF8tDr/UEj4hw+DhIL9o6M=",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-NnAhw53Ojh0VGWOkwlOoN8mm7/BOUutgV87/Z14dfxg=",
         })))),
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nexport HOME=$(mktemp -d)\nyarn config --offline set yarn-offline-mirror $offlineCache\nfixup-yarn-lock yarn.lock\nyarn install --offline --frozen-lockfile --no-progress --non-interactive\n\nrunHook postConfigure\n",
       postInstall: "chmod -R u+w $out/share\nmv $out/share/php/grocy/* $out\nrm -r $out/share\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         phpPackage: php,
-        tests: nix.thunk(() => ({ __proto__: pos$3, grocy: nix.thunk(() => nix.attr(nixosTests, "grocy")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, grocy: nix.thunk(() => nix.attr(nixosTests, "grocy")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

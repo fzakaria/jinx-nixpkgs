@@ -85,77 +85,77 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const defaultUser = "slskd";
   return {
-    __proto__: pos$73,
+    [nix.POS]: pos$73,
     options: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       services: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         slskd: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "slskd")),
             package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "slskd", nix.thunk(() => ({})))),
             user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                 default: defaultUser,
                 description: "User account under which slskd runs.",
               })))),
             group: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
                 default: defaultUser,
                 description: "Group under which slskd runs.",
               })))),
             domain: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))),
                 default: null,
                 description: "If non-null, enables an nginx reverse proxy virtual host at this FQDN,\nat the path configurated with `services.slskd.web.url_base`.\n",
                 example: "slskd.example.com",
               })))),
             nginx: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
-                type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ __proto__: pos$4, config: config, lib: lib })))))),
+                [nix.POS]: pos$5,
+                type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../web-servers/nginx/vhost-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, config: config, lib: lib })))))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  enableACME = true;\n  forceSSL = true;\n}\n")),
                 description: "This option customizes the nginx virtual host set up for slskd.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.lookup(w_1, "path")),
                 description: "Path to the environment file sourced on startup.\nIt must at least contain the variables `SLSKD_SLSK_USERNAME` and `SLSKD_SLSK_PASSWORD`.\nWeb interface credentials should also be set here in `SLSKD_USERNAME` and `SLSKD_PASSWORD`.\nOther, optional credentials like SOCKS5 with `SLSKD_SLSK_PROXY_USERNAME` and `SLSKD_SLSK_PROXY_PASSWORD`\nshould all reside here instead of in the world-readable nix store.\nVariables are documented at <https://github.com/slskd/slskd/blob/master/docs/config.md>\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.lookup(w_1, "bool")),
                 description: "Whether to open the firewall for the soulseek network listen port (not the web interface port).",
                 default: false,
               })))),
             settings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 description: "Application configuration for slskd. See\n[documentation](https://github.com/slskd/slskd/blob/master/docs/config.md).\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     imports: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["global"]), nix.thunk(() => ["transfers"]))),
                     ]),
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$51,
+                      [nix.POS]: pos$51,
                       remote_file_management: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "modification of share contents through the web ui")),
                       flags: nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         force_share_scan: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             type: nix.thunk(() => nix.lookup(w_1, "bool")),
                             description: "Force a rescan of shares on every startup.",
                           })))),
                         no_version_check: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             type: nix.thunk(() => nix.lookup(w_1, "bool")),
                             default: true,
                             visible: false,
@@ -163,16 +163,16 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       directories: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         incomplete: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")))),
                             description: "Directory where incomplete downloading files are stored.",
                             defaultText: "/var/lib/slskd/incomplete",
                             default: null,
                           })))),
                         downloads: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")))),
                             description: "Directory where downloaded files are stored.",
                             defaultText: "/var/lib/slskd/downloads",
@@ -180,75 +180,75 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       shares: nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         directories: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             description: "Paths to shared directories. See\n[documentation](https://github.com/slskd/slskd/blob/master/docs/config.md#directories)\nfor advanced usage.\n",
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"/home/John/Music\" \"!/home/John/Music/Recordings\" \"[Music Drive]/mnt\" ]")),
                           })))),
                         filters: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"\\.ini$\" \"Thumbs.db$\" \"\\.DS_Store$\" ]")),
                             description: "Regular expressions of files to exclude from sharing.",
                           })))),
                       })),
                       rooms: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                           description: "Chat rooms to join on startup.",
                         })))),
                       soulseek: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         description: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.lookup(w_1, "str")),
                             description: "The user description for the Soulseek network.",
                             defaultText: "A slskd user. https://github.com/slskd/slskd",
                           })))),
                         listen_port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.lookup(w_1, "port")),
                             description: "The port on which to listen for incoming connections.",
                             default: 50300n,
                           })))),
                       })),
                       transfers: nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         upload: nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           slots: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                               description: "Limit of the number of concurrent upload slots.",
                             })))),
                           speed_limit: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                               description: "Total upload speed limit in kibibytes per second.",
                             })))),
                         })),
                         download: nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           slots: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                               description: "Limit of the number of concurrent download slots.",
                             })))),
                           speed_limit: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                               description: "Total download speed limit in kibibytes per second.",
                             })))),
                         })),
                       })),
                       filters: nix.thunk(() => ({
-                        __proto__: pos$30,
+                        [nix.POS]: pos$30,
                         search: nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           request: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"^.{1,2}$\" ]")),
                               description: "Incoming search requests which match this filter are ignored.",
@@ -256,23 +256,23 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       web: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$31,
+                            [nix.POS]: pos$31,
                             type: nix.thunk(() => nix.lookup(w_1, "port")),
                             default: 5030n,
                             description: "The HTTP listen port.",
                           })))),
                         url_base: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.lookup(w_1, "path")),
                             default: "/",
                             description: "The base path in the url for web requests.",
                           })))),
                         https: nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           disabled: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               type: nix.thunk(() => nix.lookup(w_1, "bool")),
                               default: true,
                               description: "Disable the built-in HTTPS server",
@@ -280,46 +280,46 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       retention: nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         transfers: nix.thunk(() => ({
-                          __proto__: pos$44,
+                          [nix.POS]: pos$44,
                           upload: nix.thunk(() => ({
-                            __proto__: pos$39,
+                            [nix.POS]: pos$39,
                             succeeded: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$36,
+                                [nix.POS]: pos$36,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                                 description: "Lifespan of succeeded upload tasks.",
                                 defaultText: "(indefinite)",
                               })))),
                             errored: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$37,
+                                [nix.POS]: pos$37,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                                 description: "Lifespan of errored upload tasks.",
                                 defaultText: "(indefinite)",
                               })))),
                             cancelled: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$38,
+                                [nix.POS]: pos$38,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                                 description: "Lifespan of cancelled upload tasks.",
                                 defaultText: "(indefinite)",
                               })))),
                           })),
                           download: nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             succeeded: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$40,
+                                [nix.POS]: pos$40,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                                 description: "Lifespan of succeeded download tasks.",
                                 defaultText: "(indefinite)",
                               })))),
                             errored: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$41,
+                                [nix.POS]: pos$41,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                                 description: "Lifespan of errored download tasks.",
                                 defaultText: "(indefinite)",
                               })))),
                             cancelled: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                __proto__: pos$42,
+                                [nix.POS]: pos$42,
                                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                                 description: "Lifespan of cancelled download tasks.",
                                 defaultText: "(indefinite)",
@@ -327,16 +327,16 @@ export default nix.lambda((args) => (() => {
                           })),
                         })),
                         files: nix.thunk(() => ({
-                          __proto__: pos$47,
+                          [nix.POS]: pos$47,
                           complete: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$45,
+                              [nix.POS]: pos$45,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                               description: "Lifespan of completely downloaded files in minutes.",
                               example: 20160n,
                               defaultText: "(indefinite)",
                             })))),
                           incomplete: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$46,
+                              [nix.POS]: pos$46,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "ints"), "unsigned")),
                               description: "Lifespan of incomplete downloading files in minutes.",
                               defaultText: "(indefinite)",
@@ -344,9 +344,9 @@ export default nix.lambda((args) => (() => {
                         })),
                       })),
                       logger: nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         disk: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$49,
+                            [nix.POS]: pos$49,
                             type: nix.thunk(() => nix.lookup(w_1, "bool")),
                             description: "Whether to log to the application directory.",
                             default: false,
@@ -365,27 +365,27 @@ export default nix.lambda((args) => (() => {
       const confWithoutNullValues = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (key) => (value) => (nix.asBool(nix.sel(nix.builtins.tryEval(value), "success")) && nix.asBool(!nix.eq(value, null))), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["global"])))));
       const configurationYaml = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "slskd.yml", confWithoutNullValues));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           services: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             slskd: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               settings: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 remote_configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
               })),
             })),
             nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "domain")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "nginx")),
                       nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         locations: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`${nix.sel(cfg, "settings", "web", "url_base")}`, nix.thunk(() => ({
-                            __proto__: pos$59,
+                            [nix.POS]: pos$59,
                             proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "web", "port")))}`),
                             proxyWebsockets: true,
                           }))],
@@ -396,10 +396,10 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${defaultUser}`, nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   isSystemUser: true,
                 }))],
@@ -407,16 +407,16 @@ export default nix.lambda((args) => (() => {
             groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${defaultUser}`, nix.thunk(() => ({}))]])))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             services: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               slskd: nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 description: "A modern client-server application for the Soulseek file sharing network",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   Type: "simple",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -450,16 +450,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             firewall: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "settings", "soulseek", "listen_port")))),
             })),
           })),
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

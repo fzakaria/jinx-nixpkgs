@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const from_2 = nix.thunk(() => nix.sel(lib, "strings"));
   const concatMapStrings = nix.thunk(() => nix.attr(from_2, "concatMapStrings"));
   const optionalString = nix.thunk(() => nix.attr(from_2, "optionalString"));
-  const sway = nix.thunk(() => nix.app(nix.sel(sway_unwrapped, "overrideAttrs"), (old) => ({ __proto__: pos$1, isNixOS: isNixOS, enableXWayland: enableXWayland })));
+  const sway = nix.thunk(() => nix.app(nix.sel(sway_unwrapped, "overrideAttrs"), (old) => ({ [nix.POS]: pos$1, isNixOS: isNixOS, enableXWayland: enableXWayland })));
   const baseWrapper = nix.thunk(() => nix.app(writeShellScriptBin, nix.thunk(() => nix.sel(sway, "meta", "mainProgram")), nix.thunk(() => nix.str`set -o errexit
 if [ ! "$_SWAY_WRAPPER_ALREADY_EXECUTED" ]; then
   export XDG_CURRENT_DESKTOP=${nix.sel(sway, "meta", "mainProgram")}
@@ -56,7 +56,7 @@ else
 fi
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["-unwrapped"]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(sway, "pname")))),
       version: nix.thunk(() => nix.attr(sway, "version")),
       paths: nix.thunk(() => nix.concat(nix.app(optional, withBaseWrapper, baseWrapper), [sway])),
@@ -73,7 +73,7 @@ wrapProgram $out/bin/${nix.sel(sway, "meta", "mainProgram")} \\
       passthru: nix.thunk(() => (() => {
         const from_3 = nix.thunk(() => nix.sel(sway, "passthru"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.attr(from_3, "tests")),
         providedSessions: nix.thunk(() => [nix.thunk(() => nix.sel(sway, "meta", "mainProgram"))]),
       };

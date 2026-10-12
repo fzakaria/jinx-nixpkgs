@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const php84 = nix.arg($, "php84");
   const php = php84;
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "postfixadmin",
       version: "4.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "postfixadmin",
           repo: "postfixadmin",
           tag: nix.thunk(() => nix.str`postfixadmin-${nix.sel(finalAttrs, "version")}`),
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-uyHEfWCC6V4d+ez7FbqBKrh4IfbQ2pgD4UvbdGEfobI=",
       postInstall: "out_dir=\"$out\"/share/php/postfixadmin/\n\nln -sf /etc/postfixadmin/config.local.php \"$out_dir\"\nln -sf /var/cache/postfixadmin/templates_c \"$out_dir\"\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, phpPackage: php })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, phpPackage: php })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/postfixadmin/postfixadmin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web based virtual user administration interface for Postfix mail servers",
         homepage: "https://postfixadmin.sourceforge.io/",

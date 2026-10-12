@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const e2fsprogs = nix.arg($, "e2fsprogs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pam_mktemp",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://openwall.com/pam/modules/pam_mktemp/pam_mktemp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Zs+AwYQ5yjRW25ZALy7qwUsaBQPMHRvn8rFtXwefPz0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "inherit_private_prefix_from_home.patch",
             url: "https://git.altlinux.org/gears/p/pam_mktemp.git?p=pam_mktemp.git;a=commitdiff_plain;h=3d2e8ad6da6a44c047bf7a8afa1e1bb2a6e36a55",
             hash: "sha256-xe44fi2xH9jqlStlIR4QPB0KS7spflRdOsvNPEmxJpU",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "allow_private_prefix_to_be_stricter.patch",
             url: "https://git.altlinux.org/gears/p/pam_mktemp.git?p=pam_mktemp.git;a=commitdiff_plain;h=bb2cee0c695d22310e5364c30d74bccb0dbf3205",
             hash: "sha256-TouysUVlNnl+m7lJ2VKPxUTYD2om1Jh5FEJ6NHMAI4U=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.openwall.com/pam/",
         description: "PAM for login service to provide per-user private directories",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

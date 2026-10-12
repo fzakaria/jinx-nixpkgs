@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
     ffmpeg,
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11, libGLU, libGL]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ultrastardx",
       version: "2026.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UltraStar-Deluxe",
           repo: "USDX",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,15 +61,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => nix.concat([fpc, libpng], sharedLibs)),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (x) => nix.str`-rpath ${nix.app(nix.sel(lib, "getLib"), x)}/lib`, sharedLibs)),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, MACOSX_DEPLOYMENT_TARGET: "10.13" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, MACOSX_DEPLOYMENT_TARGET: "10.13" }))))),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export PFLAGS_EXTRA="-FD${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools")))}/bin -XR$SDKROOT $PFLAGS_EXTRA"
 `))),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "make macos-app\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R UltraStarDeluxe.app \"$out/Applications/\"\nln -s \"$out/Applications/UltraStarDeluxe.app/Contents/MacOS/ultrastardx\" \\\n      \"$out/bin/ultrastardx\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "make install\ninstall -Dm644 dists/ultrastardx.desktop \\\n  \"$out/share/applications/ultrastardx.desktop\"\n")), "runHook postInstall\n")),
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://usdx.eu/",
         description: "Free and open source karaoke game",
         mainProgram: "ultrastardx",

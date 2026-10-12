@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "proxyt",
       version: "0.0.7",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaxxstorm",
           repo: "proxyt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X=github.com/jaxxstorm/proxyt/cmd.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd proxyt \\\n  --bash <($out/bin/proxyt completion bash) \\\n  --fish <($out/bin/proxyt completion fish) \\\n  --zsh <($out/bin/proxyt completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/jaxxstorm/proxyt/releases/${nix.sel(finalAttrs, "version")}`),
         description: "Simple proxy for the Tailscale control plane",
         homepage: "https://github.com/jaxxstorm/proxyt",

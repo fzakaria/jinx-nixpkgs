@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tclap",
       version: "1.4-3feeb7b",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.code.sf.net/p/tclap/code",
           rev: "3feeb7b2499b37d9cb80890cadaf7c905a9a50c6",
           hash: "sha256-byLianB6Vf+I9ABMmsmuoGU2o5RO9c5sMckWW0F+GDM=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "touch docs/manual.html\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Templatized C++ Command Line Parser Library (v1.4)",
         homepage: "https://tclap.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

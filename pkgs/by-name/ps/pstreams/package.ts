@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "PStreams",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/pstreams/code",
           rev: nix.thunk(() => (() => {
             const dot2Underscore = nix.thunk(() => nix.app(nix.sel(lib, "strings", "stringAsChars"), (c) => (nix.asBool(nix.eq(c, ".")) ? "_" : nix.force(c))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preInstall: "rm INSTALL",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "POSIX Process Control in C++",
         longDescription: "PStreams allows you to run another program from your C++ application and\nto transfer data between the two programs similar to shell pipelines.\n\nIn the simplest case, a PStreams class is like a C++ wrapper for the\nPOSIX.2 functions popen(3) and pclose(3), using C++ iostreams instead of\nC's stdio library.\n",
         homepage: "https://pstreams.sourceforge.net/",

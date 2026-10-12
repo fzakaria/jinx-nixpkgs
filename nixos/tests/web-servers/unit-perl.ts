@@ -21,39 +21,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "www/app.psgi", "my $app = sub {\n    return [\n        \"200\",\n        [ \"Content-Type\" => \"text/plain\" ],\n        [ \"Hello, Perl on Unit!\" ],\n    ];\n};\n"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "unit-perl-test",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sgo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             unit: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               config: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "strings", "toJSON"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   listeners: nix.thunk(() => ({
-                    __proto__: pos$3,
-                    "*:8080": nix.thunk(() => ({ __proto__: pos$2, application: "perl" })),
+                    [nix.POS]: pos$3,
+                    "*:8080": nix.thunk(() => ({ [nix.POS]: pos$2, application: "perl" })),
                   })),
                   applications: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     perl: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       type: "perl",
                       script: nix.thunk(() => nix.str`${testdir}/www/app.psgi`),
                     })),

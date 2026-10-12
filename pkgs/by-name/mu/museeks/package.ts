@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "museeks",
       version: "0.23.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/martpie/museeks/releases/download/${nix.sel(finalAttrs, "version")}/Museeks_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-2WkWBd4opWpCcjE+uWRbDC8RPQoVvflpxbWuuNF2Z54=",
         })))),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ncp -r usr $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, clean and cross-platform music player",
         homepage: "https://github.com/martpie/museeks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

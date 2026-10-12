@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.7.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Saghen",
       repo: "blink.pairs",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-HrBUKw1qWRmciiPgBkjTArDxmYayKXesQafJixvUpbc=",
     }))));
   const blink_pairs_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blink-pairs",
       version: version,
       src: src,
       cargoHash: "sha256-XLlluprxhVueHhkIufJa7fJXvFxpJJzh89+yL9PZ4GI=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTC_BOOTSTRAP: 1n,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "blink.pairs",
       version: version,
       src: src,
@@ -57,12 +57,12 @@ ln -s ${blink_pairs_lib}/lib/libblink_pairs_parser${ext} lib/
       })()),
       nvimSkipModules: nix.thunk(() => ["repro"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.blink-pairs.blink-pairs-lib" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.blink-pairs.blink-pairs-lib" })))),
         "blink-pairs-lib": blink_pairs_lib,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Rainbow highlighting and intelligent auto-pairs for Neovim",
         homepage: "https://github.com/Saghen/blink.pairs",
         changelog: nix.thunk(() => nix.str`https://github.com/Saghen/blink.pairs/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const pname = "workout-tracker";
   const version = "2.9.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jovandeginste",
       repo: "workout-tracker",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-xsVPAZYrsD27pGhb0cuCZDJLgaI/4w6uDvXsameMt00=",
     }))));
   const assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: src,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -r ../assets \"$out\"\nrunHook postInstall\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -56,15 +56,15 @@ ln -s ${assets} ./assets
       ]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "workout-tracker": nix.thunk(() => nix.attr(nixosTests, "workout-tracker")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/jovandeginste/workout-tracker/releases/tag/v${version}`),
         description: "Workout tracking web application for personal use",
         homepage: "https://github.com/jovandeginste/workout-tracker",

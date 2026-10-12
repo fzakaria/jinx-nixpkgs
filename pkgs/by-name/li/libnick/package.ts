@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libnick",
       version: "2025.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NickvisionApps",
           repo: "libnick",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,18 +49,18 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace cmake/libnick.pc.in \\\n--replace-fail 'libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@' \\\n               'libdir=@CMAKE_INSTALL_FULL_LIBDIR@' \\\n--replace-fail 'includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@' \\\n               'includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform development base for native Nickvision applications",
         homepage: "https://github.com/NickvisionApps/libnick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const gccStdenv = nix.arg($, "gccStdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ii",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/ii-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-T2evzSCMB5ObiKrb8hSXpwKtCgf5tabOhh+fOf/lQls=",
         })))),
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tools.suckless.org/ii/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Irc it, simple FIFO based irc client",

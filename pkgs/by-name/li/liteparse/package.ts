@@ -31,23 +31,23 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const pdfium = nix.thunk(() => (() => {
     const asset = nix.thunk(() => nix.sel({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "x86_64-linux": "pdfium-linux-x64",
       "aarch64-linux": "pdfium-linux-arm64",
     }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const hash = nix.thunk(() => nix.sel({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "pdfium-linux-x64": "sha256-r5byH9jp1TlVAT2tHRewA9ASACXnh7fOYRpoXVcodZQ=",
       "pdfium-linux-arm64": "sha256-6B7ER90ACX6y/CbP+IvlPqMhSVcRpDr56ntQvr3qkiY=",
     }, nix.key(nix.force(asset))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "pdfium",
         version: "chromium-7897",
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/run-llama/pdfium-binaries/releases/download/chromium%2F7897/${asset}.tgz`),
             hash: hash,
           })))),
@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
   const leptonicaSrc = nix.thunk(() => nix.sel(leptonica, "src"));
   const tesseractSrc = nix.thunk(() => nix.sel(tesseract, "tesseractBase", "src"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "liteparse",
       version: "2.15.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "run-llama",
           repo: "liteparse",
           tag: nix.thunk(() => nix.str`crates-v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ cp ${nix.sel(tesseract, "languages", "eng")} "$HOME/.tesseract-rs/tessdata/eng.t
 cp ${nix.sel(tesseract, "languages", "tur")} "$HOME/.tesseract-rs/tessdata/tur.traineddata"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         OPENSSL_NO_VENDOR: true,
         PDFIUM_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), pdfium)}/include`),
         PDFIUM_LIB_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), pdfium)}/lib`),
@@ -100,11 +100,11 @@ cp ${nix.sel(tesseract, "languages", "tur")} "$HOME/.tesseract-rs/tessdata/tur.t
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Fast and lightweight document parser by LlamaIndex",
         homepage: "https://github.com/run-llama/liteparse",
         changelog: nix.thunk(() => nix.str`https://github.com/run-llama/liteparse/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

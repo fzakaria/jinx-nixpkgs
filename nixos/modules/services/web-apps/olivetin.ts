@@ -37,42 +37,42 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "olivetin"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         olivetin: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OliveTin")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "The olivetin package to use.",
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "26.05")) ? nix.sel(pkgs, "olivetin-3k") : nix.sel(pkgs, "olivetin"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if lib.versionAtLeast config.system.stateVersion \"26.05\"\nthen pkgs.olivetin-3k\nelse pkgs.olivetin\n")),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The user account under which OliveTin runs.",
               default: "olivetin",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The group under which OliveTin runs.",
               default: "olivetin",
             })))),
           path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -84,16 +84,16 @@ export default nix.lambda((args) => (() => {
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [ bash ]\n")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Configuration of OliveTin. See <https://docs.olivetin.app/config.html> for more information.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     ListenAddressSingleHTTPFrontend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "The address to listen on for the internal \"microproxy\" frontend.\n",
                         default: "127.0.0.1:8000",
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           extraConfigFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/secrets/olivetin.yaml"]),
@@ -113,11 +113,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           olivetin: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             path: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "bash"))];
@@ -125,11 +125,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             olivetin: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "OliveTin",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target", "local-fs.target"]),
@@ -147,7 +147,7 @@ mkdir -p /run/olivetin/config
 mv "$tmp" /run/olivetin/config/config.yaml
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 RuntimeDirectory: "olivetin",
@@ -159,16 +159,16 @@ mv "$tmp" /run/olivetin/config/config.yaml
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "olivetin")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               olivetin: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "olivetin")), nix.thunk(() => ({ __proto__: pos$22, olivetin: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "olivetin")), nix.thunk(() => ({ [nix.POS]: pos$22, olivetin: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

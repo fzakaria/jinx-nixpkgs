@@ -36,60 +36,60 @@ export default nix.lambda((args) => (() => {
   const gid = nix.thunk(() => nix.sel(config, "ids", "gids", "gpsd"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "gpsd"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "gpsd", "device"]), "Use `services.gpsd.devices` instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         gpsd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable `gpsd`, a GPS service daemon.\n",
             })))),
           devices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["/dev/ttyUSB0"]),
               description: "List of devices that `gpsd` should subscribe to.\n\nA device may be a local serial device for GPS input, or a\nURL of the form:\n`[{dgpsip|ntrip}://][user:passwd@]host[:port][/stream]` in\nwhich case it specifies an input source for DGPS or ntrip\ndata.\n",
             })))),
           readonly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable the broken-device-safety, otherwise\nknown as read-only mode.  Some popular bluetooth and USB\nreceivers lock up or become totally inaccessible when\nprobed or reconfigured.  This switch prevents gpsd from\nwriting to a receiver.  This means that gpsd cannot\nconfigure the receiver for optimal performance, but it\nalso means that gpsd cannot break the receiver.  A better\nsolution would be for Bluetooth to not be so fragile.  A\nplatform independent method to identify\nserial-over-Bluetooth devices would also be nice.\n",
             })))),
           nowait: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "don't wait for client connects to poll GPS\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 2947n,
               description: "The port where to listen for TCP connections.\n",
             })))),
           debugLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 0n,
               description: "The debugging level.\n",
             })))),
           listenany: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Listen on all addresses rather than just loopback.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["-r", "-s", "19200"]),
@@ -99,32 +99,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             gpsd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               uid: uid,
               group: "gpsd",
               description: "gpsd daemon user",
               home: "/var/empty",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$15, gpsd: nix.thunk(() => ({ __proto__: pos$14, gid: gid })) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, gpsd: nix.thunk(() => ({ [nix.POS]: pos$14, gid: gid })) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             gpsd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "GPSD daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 Type: "forking",
                 ExecStart: nix.thunk(() => (() => {
                   const devices = nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "devices"))));

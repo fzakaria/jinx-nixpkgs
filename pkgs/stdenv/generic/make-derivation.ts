@@ -128,8 +128,8 @@ export default (lib) => (() => {
     nix.path(here, "./default-builder.sh"),
   ]);
   const isSingularDependency = (dep) => (nix.asBool((nix.asBool((nix.asBool(nix.eq(dep, null)) || nix.asBool(nix.app(isDerivation, dep)))) || nix.asBool(nix.app(isString, dep)))) || nix.asBool(nix.app(isPath, dep)));
-  const cachedOutputChecks = nix.thunk(() => ({ __proto__: pos$1, out: nix.thunk(() => ({})) }));
-  const debugCachedOutputChecks = nix.thunk(() => ({ __proto__: pos$2, out: nix.thunk(() => ({})), debug: nix.thunk(() => ({})) }));
+  const cachedOutputChecks = nix.thunk(() => ({ [nix.POS]: pos$1, out: nix.thunk(() => ({})) }));
+  const debugCachedOutputChecks = nix.thunk(() => ({ [nix.POS]: pos$2, out: nix.thunk(() => ({})), debug: nix.thunk(() => ({})) }));
   const unsafeDerivationToUntrackedOutpath = (drv) => (nix.asBool((nix.asBool(nix.app(isDerivation, drv)) && nix.asBool(!nix.asBool(nix.selOr(drv, () => false, "__contentAddressed"))))) ? nix.app(unsafeDiscardStringContext, nix.thunk(() => nix.sel(drv, "outPath"))) : nix.force(drv));
   const makeOutputChecks = (attrs) => nix.attrsDyn({}, [
     [(nix.asBool(nix.has(attrs, "disallowedReferences")) ? "disallowedReferences" : null), nix.thunk(() => nix.builtins.map(unsafeDerivationToUntrackedOutpath, nix.thunk(() => nix.sel(attrs, "disallowedReferences"))))],
@@ -143,17 +143,17 @@ export default (lib) => (() => {
     const enableParallelBuildingByDefault = nix.thunk(() => nix.attr(config, "enableParallelBuildingByDefault"));
     const contentAddressedByDefault = nix.thunk(() => nix.attr(config, "contentAddressedByDefault"));
     const userHook = nix.thunk(() => nix.selOr(config, () => null, "stdenv", "userHook"));
-    const checkMeta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./check-meta.nix")), nix.thunk(() => ({ __proto__: pos$3, lib: lib, config: config }))));
+    const checkMeta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./check-meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib, config: config }))));
     return (stdenv) => (() => {
-      const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/cmake.nix")), nix.thunk(() => ({ __proto__: pos$4, lib: lib, stdenv: stdenv }))));
+      const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/cmake.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib, stdenv: stdenv }))));
       const makeCMakeFlags = nix.thunk(() => nix.attr(from_2, "makeCMakeFlags"));
-      const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/meson.nix")), nix.thunk(() => ({ __proto__: pos$5, lib: lib, stdenv: stdenv }))));
+      const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/lib/meson.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, lib: lib, stdenv: stdenv }))));
       const makeMesonFlags = nix.thunk(() => nix.attr(from_3, "makeMesonFlags"));
       const commonMeta = nix.thunk(() => nix.app(nix.sel(checkMeta, "commonMeta"), hostPlatform));
       const assertValidity = nix.thunk(() => nix.app(nix.sel(checkMeta, "assertValidity"), hostPlatform));
       const mkDerivation = (fnOrAttrs) => nix.app(makeDerivationExtensible, nix.thunk(() => nix.app(toFunction, fnOrAttrs)));
       const makeDerivationExtensible = (rattrs) => (() => {
-        const args = nix.thunk(() => nix.app(rattrs, nix.thunk(() => nix.update(args, { __proto__: pos$6, finalPackage: finalPackage, overrideAttrs: overrideAttrs }))));
+        const args = nix.thunk(() => nix.app(rattrs, nix.thunk(() => nix.update(args, { [nix.POS]: pos$6, finalPackage: finalPackage, overrideAttrs: overrideAttrs }))));
         const overrideAttrs = (f0) => nix.app(makeDerivationExtensible, (final) => (() => {
             const prev = nix.thunk(() => nix.app(rattrs, final));
             const thisOverlay = nix.thunk(() => (nix.asBool(nix.app(isFunction, f0)) ? (() => {
@@ -265,7 +265,7 @@ be removed in a future nixpkgs release.`), nix.thunk(() => nix.app(seq, nix.thun
         return (nix.asBool((nix.asBool(nix.app(any, isErroneous, hardeningEnable)) || nix.asBool(nix.app(any, (flag) => (nix.asBool(!nix.eq(flag, "all")) && nix.asBool(nix.app(isErroneous, flag))), hardeningDisable)))) ? nix.builtins.abort(nix.thunk(() => (() => {
             const erroneousHardeningFlags = nix.thunk(() => nix.app(subtractLists, knownHardeningFlags, nix.thunk(() => nix.concat(hardeningEnable, nix.app(remove, "all", hardeningDisable)))));
             return nix.add("mkDerivation was called with unsupported hardening flags: ", nix.app(toPretty, nix.thunk(() => ({})), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 erroneousHardeningFlags: erroneousHardeningFlags,
                 hardeningDisable: hardeningDisable,
                 hardeningEnable: hardeningEnable,
@@ -306,7 +306,7 @@ be removed in a future nixpkgs release.`), nix.thunk(() => nix.app(seq, nix.thun
               propagatedTargetTargetOutputs,
             ])));
           const derivationArg = nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, removedOrReplacedAttrNames), nix.attrsDyn({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             builder: nix.thunk(() => nix.selOr(attrs, () => nix.force(stdenvShell), "realBuilder")),
             args: nix.thunk(() => nix.selOr(attrs, () => (nix.asBool(nix.has(attrs, "builder")) ? [
                 "-e",
@@ -382,7 +382,7 @@ be removed in a future nixpkgs release.`), nix.thunk(() => nix.app(seq, nix.thun
               const attrsOutputChecks = nix.thunk(() => nix.app(makeOutputChecks, attrs));
               const attrsOutputChecksFiltered = nix.thunk(() => nix.app(filterAttrs, (_) => (v) => !nix.eq(v, null), attrsOutputChecks));
               return (nix.asBool((nix.asBool((nix.asBool(!nix.asBool(nix.has(attrs, "outputs"))) && nix.asBool(!nix.asBool(nix.has(attrs, "outputChecks"))))) && nix.asBool((nix.asBool(nix.eq(attrsOutputChecks, {})) || nix.asBool(nix.eq(attrsOutputChecksFiltered, {})))))) ? (nix.asBool(separateDebugInfo$) ? nix.force(debugCachedOutputChecks) : nix.force(cachedOutputChecks)) : nix.app(listToAttrs, nix.thunk(() => nix.builtins.map((name) => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     name: name,
                     value: nix.thunk(() => (() => {
                       const raw = nix.thunk(() => nix.app(zipAttrsWith, (_) => nix.force(concatLists), nix.thunk(() => [
@@ -412,22 +412,22 @@ be removed in a future nixpkgs release.`), nix.thunk(() => nix.app(seq, nix.thun
           return (nix.asBool(nix.eq(algo, "md5")) ? nix.builtins.throw(nix.thunk(() => nix.str`Rejected insecure ${algo} hash '${nix.sel(attrs, "outputHash")}'`)) : true);
         })())), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/generic/make-derivation.nix:953:5");
         const env$ = nix.thunk(() => (nix.asBool(nix.has(attrs, "meta", "mainProgram")) ? nix.update(env, {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           NIX_MAIN_PROGRAM: nix.thunk(() => nix.sel(attrs, "meta", "mainProgram")),
         }) : nix.force(env)));
         const derivationArg = nix.thunk(() => nix.app(makeDerivationArgument, nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, argumentAttrsToRemove), nix.attrsDyn({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             cmakeFlags: nix.thunk(() => nix.app(makeCMakeFlags, attrs)),
             mesonFlags: nix.thunk(() => nix.app(makeMesonFlags, attrs)),
           }, [[(nix.asBool(__structuredAttrs) ? "env" : null), checkedEnv]])))));
         const meta_1 = nix.thunk(() => nix.app(commonMeta, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             validity: validity,
             attrs: attrs,
             pos: pos,
             references: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), nix.concat(nix.selOr(attrs, () => [], "buildInputs"), nix.concat(nix.selOr(attrs, () => [], "propagatedNativeBuildInputs"), nix.selOr(attrs, () => [], "propagatedBuildInputs"))))),
           }))));
-        const validity = nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({ __proto__: pos$13, meta: meta_1, attrs: attrs }))));
+        const validity = nix.thunk(() => nix.app(assertValidity, nix.thunk(() => ({ [nix.POS]: pos$13, meta: meta_1, attrs: attrs }))));
         const checkedEnv = nix.thunk(() => (() => {
           const overlappingArgs = nix.thunk(() => nix.app(intersectAttrs, env$, derivationArg));
           nix.assert_((nix.asBool((nix.asBool(nix.app(isAttrs, env)) && nix.asBool(!nix.asBool(nix.app(isDerivation, env))))) || nix.asBool(nix.builtins.throw("`env` must be an attribute set of environment variables. Set `env.env` or pick a more specific name."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/generic/make-derivation.nix:989:9");
@@ -442,9 +442,9 @@ ${errors}`;
             })(), env$);
         })());
         return nix.app(extendDerivation, nix.thunk(() => nix.sel(validity, "handled")), nix.thunk(() => nix.update({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             inputDerivation: nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => nix.update(nix.builtins.removeAttrs(derivationArg, attrsToRemoveLast), {
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 name: nix.thunk(() => nix.add("inputDerivation", nix.app(optionalString, nix.thunk(() => nix.has(derivationArg, "name")), nix.thunk(() => nix.str`-${nix.sel(derivationArg, "name")}`)))),
                 outputs: nix.thunk(() => ["out"]),
                 requiredSystemFeatures: [],
@@ -468,7 +468,7 @@ done
             meta: meta_1,
           }, passthru)), nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => nix.update(derivationArg, checkedEnv)))));
       })(), formals$2);
-      return { __proto__: pos$16, mkDerivation: mkDerivation };
+      return { [nix.POS]: pos$16, mkDerivation: mkDerivation };
     })();
   })();
 })();

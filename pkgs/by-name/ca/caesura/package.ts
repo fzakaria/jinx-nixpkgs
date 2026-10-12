@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const sox_ng = nix.arg($, "sox_ng");
   const runtimeDeps = nix.thunk(() => [flac, lame, sox_ng]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "caesura",
       version: "0.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RogueOneEcho",
           repo: "caesura",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "normalize-sox-dependent-full-spectrogram-widths.patch",
             url: "https://github.com/RogueOneEcho/caesura/commit/3af818ae35a3e18f444c889d9d3b88294f4f110f.patch?full_index=1",
             hash: "sha256-znAbk6hFVj198BUUwwDo76SWei0cKINeXzlYEFvTwHA=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       nativeCheckInputs: nix.thunk(() => nix.concat([cacert, writableTmpDirAsHomeHook], runtimeDeps)),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CAESURA_NIX: "1",
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/caesura \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))}
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Versatile command line tool for automated verifying and transcoding of all your torrents",
         homepage: "https://github.com/RogueOneEcho/caesura",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

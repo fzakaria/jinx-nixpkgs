@@ -54,44 +54,44 @@ export default nix.lambda((args) => (() => {
   const rct1Path = nix.argOr($, "rct1Path", () => null);
   const rct2Path = nix.argOr($, "rct2Path", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "openrct2",
       version: "0.5.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenRCT2",
           repo: "OpenRCT2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-FcZVBhiKLoxVX7rhJEfBqGy+yA8w8twGsVSitVuxbWQ=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.path(here, "./update.sh"),
         "objects-version": "1.7.11",
         "openmusic-version": "1.6.1",
         "opensfx-version": "1.0.6",
         "title-sequences-version": "0.4.26",
         assets: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           objects: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/objects/releases/download/v${nix.sel(finalAttrs, "passthru", "objects-version")}/objects.zip`),
               hash: "sha256-dOc7vQEjOVEbs1ndD7sUj9qJl5CuN9fWmGHYgYOxlFI=",
             })))),
           openmusic: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/OpenMusic/releases/download/v${nix.sel(finalAttrs, "passthru", "openmusic-version")}/openmusic.zip`),
               hash: "sha256-mUs1DTsYDuHLlhn+J/frrjoaUjKEDEvUeonzP6id4aE=",
             })))),
           opensfx: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/OpenSoundEffects/releases/download/v${nix.sel(finalAttrs, "passthru", "opensfx-version")}/opensound.zip`),
               hash: "sha256-BrkPPhnCFnUt9EHVUbJqnj4bp3Vb3SECUEtzv5k2CL4=",
             })))),
           "title-sequences": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/title-sequences/releases/download/v${nix.sel(finalAttrs, "passthru", "title-sequences-version")}/title-sequences.zip`),
               hash: "sha256-2ruXh7FXY0L8pN2fZLP4z6BKfmzpwruWEPR7dikFyFg=",
             })))),
@@ -188,7 +188,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rct2Path, null
   ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rct2Path, null)), nix.thunk(() => nix.str`--add-flags '--rct2-data-path="${rct2Path}"'`))}
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Open source re-implementation of RollerCoaster Tycoon 2",
         longDescription: "OpenRCT2 is an open source re-implementation of RollerCoaster Tycoon 2, a\nconstruction and management simulation video game that simulates amusement\npark management.\n\nThe original RCT2 game data is required to play.\n\nThe path to an existing RCT1 or RCT2 installation can be provided at\nbuild time via the rct1Path and rct2Path arguments respectively:\n\n  openrct2.override {\n    rct1Path = \"/path/to/rct1\";\n    rct2Path = \"/path/to/rct2\";\n  };\n\nAlternatively, if no paths are provided, the game will prompt for the\nRCT2 data on first launch. For RCT1, you will then need to go to\nthe game settings and specify the path to the data directory.\n",
         homepage: "https://openrct2.io",

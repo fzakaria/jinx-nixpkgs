@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libraryExtension = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "library"));
   const toolLTO = nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "SWIFT_TOOLS_ENABLE_LTO", "thin"));
   return nix.app(nix.sel(nix.app(nix.sel(swiftc, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdlib: null,
       swiftComponents: nix.thunk(() => [
         "back-deployment",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         "stdlib",
       ]),
     }))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "stdlib",
       outputs: nix.thunk(() => ["out", "dev"]),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "filter"), (flag) => !nix.eq(flag, toolLTO), nix.thunk(() => nix.selOr(old, () => [], "cmakeFlags"))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [

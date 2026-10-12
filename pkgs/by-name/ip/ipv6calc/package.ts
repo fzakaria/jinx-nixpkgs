@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libmaxminddb = nix.argOr($, "libmaxminddb", () => null);
   const geolite_legacy = nix.argOr($, "geolite-legacy", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ipv6calc",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pbiering",
           repo: "ipv6calc",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libmaxminddb, geolite_legacy, getopt, ip2location_c, openssl, perl]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/pbiering/ipv6calc/commit/9b6aebd3690d93b6c2f9efa9346ec72540b1a718.patch",
             hash: "sha256-Y/XBMWdG2/Pfr/vZ2+RGYGj2JS3mWJwQGkXnKvXHArg=",
           })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(libmaxminddb, null)), nix.thunk(() => ["--enable-mmdb"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(geolite_legacy, null)), nix.thunk(() => [nix.thunk(() => nix.str`--with-geoip-db=${geolite_legacy}/share/GeoIP`)])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(ip2location_c, null)), nix.thunk(() => ["--enable-ip2location"])))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Calculate/manipulate (not only) IPv6 addresses",
         longDescription: "ipv6calc is a small utility to manipulate (not only) IPv6 addresses and\nis able to do other tricky things. Intentions were converting a given\nIPv6 address into compressed format, converting a given IPv6 address into\nthe same format like shown in /proc/net/if_inet6 and (because it was not\ndifficult) migrating the Perl program ip6_int into.\nNow only one utility is needed to do a lot.\n",
         homepage: "http://www.deepspace6.net/projects/ipv6calc.html",

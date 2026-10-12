@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxmu = nix.arg($, "libxmu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freenect",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenKinect",
           repo: "libfreenect",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (x) => nix.str`substituteInPlace ${x} --replace "{GLUT_LIBRARY}" "{GLUT_LIBRARIES}"
 `, nix.thunk(() => ["examples/CMakeLists.txt", "wrappers/cpp/CMakeLists.txt"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Drivers and libraries for the Xbox Kinect device on Windows, Linux, and macOS",
         homepage: "http://openkinect.org",
         license: nix.thunk(() => (() => {

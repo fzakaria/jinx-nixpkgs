@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const providers = nix.argOr($, "providers", () => []);
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       aiolibdatachannel: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./aiolibdatachannel.nix"), nix.thunk(() => ({})))),
       "music-assistant-frontend": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./frontend.nix"), nix.thunk(() => ({})))),
       "music-assistant-models": nix.thunk(() => nix.app(nix.sel(prev, "music-assistant-models", "overridePythonAttrs"), (oldAttrs) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: "1.1.205",
           src: nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               hash: "sha256-4pUBsUrH4mzsOvjOMHwEkfnhMfLweb+JK/v4mAimA+0=",
             })))),
         }))),
@@ -50,10 +50,10 @@ export default nix.lambda((args) => (() => {
       const meta = nix.arg($_1, "meta");
       const version = "7.6.0";
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: version,
         src: nix.thunk(() => nix.app(nix.sel(src, "override"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             hash: "sha256-7xloMYaoAB1uwj4/5KK8PFd/mjXTgMFjS0SGW7Rrynw=",
           })))),
         nativeCheckInputs: nix.thunk(() => (() => {
@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pytestCheckHook"))];
         })()),
         preCheck: nix.thunk(() => nix.str`ln -s ${nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "chardet",
             repo: "test-data",
             tag: version,
             hash: "sha256-kgD/fCxVuxgn6x2JVf4ij8ptzRi7AfqswccQ0akWL0s=",
           })))} tests/data
 `),
-        meta: nix.thunk(() => nix.update(meta, { __proto__: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")) })),
+        meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")) })),
       };
     })(), formals$2)));
   const providersMeta = nix.thunk(() => nix.builtins.import(nix.path(here, "./providers.nix")));
@@ -77,13 +77,13 @@ export default nix.lambda((args) => (() => {
   const providerDependencies = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (provider) => nix.app(nix.sel(providerPackages, nix.key(nix.force(provider))), pythonPackages), providers));
   nix.assert_((!nix.asBool(nix.app(nix.sel(lib, "elem"), "ariacast", providers)) || nix.asBool(nix.builtins.throw("music-assistant: ariacast has not been packaged, yet."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mu/music-assistant/package.nix:76:1");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "music-assistant",
       version: "2.10.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           owner: "music-assistant",
           repo: "server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg.patch"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg_7_headless, "ffmpeg")),
             ffprobe: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg_7_headless, "ffprobe")),
           })))),
@@ -176,7 +176,7 @@ fi
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(pythonPackages, null);
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           test: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "pytest-aiohttp")),
             nix.thunk(() => nix.lookup(w_2, "pytest-cov-stub")),
@@ -264,7 +264,7 @@ cp ${nix.sel(pythonPackages, "beat-this", "passthru", "small0Ckpt")} $HOME/.cach
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["tests/providers/smart_fades/test_provider.py"])))),
       pythonImportsCheck: nix.thunk(() => ["music_assistant"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pythonPackages: pythonPackages,
         providerPackages: providerPackages,
         providerNames: providerNames,
@@ -273,7 +273,7 @@ cp ${nix.sel(pythonPackages, "beat-this", "passthru", "small0Ckpt")} $HOME/.cach
         tests: nix.thunk(() => nix.sel(nixosTests, "music-assistant")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://github.com/music-assistant/server/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Music Assistant is a music library manager for various music sources which can easily stream to a wide range of supported players",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pax = nix.arg($, "pax");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "include",
       noCC: true,
       extraPaths: nix.thunk(() => [

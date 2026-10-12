@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.7.10",
       pname: "mwic",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jwilk/mwic/releases/download/${nix.sel(finalAttrs, "version")}/mwic-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-dmIHPehkxpSb78ymVpcPCu4L41coskrHQOg067dprOo=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://jwilk.net/software/mwic",
         description: "Spell-checker that groups possible misspellings and shows them in their contexts",
         mainProgram: "mwic",

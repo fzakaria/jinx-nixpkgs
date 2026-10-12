@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "primePy",
           version: version,
           hash: "sha256-Jf1+JTRLB4mlmEx12J8FT88fGAvvIMmY5L77rJLeRmk=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, wheel]);
       const pythonImportsCheck = nix.thunk(() => ["primePy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This module contains several useful functions to work with prime numbers. from primePy import primes",
         homepage: "https://pypi.org/project/primePy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

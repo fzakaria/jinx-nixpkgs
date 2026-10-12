@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "molly-brown",
       version: "0-unstable-2023-02-10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tildegit.org/solderpunk/molly-brown.git",
           rev: "56d8dde14abc90b784b7844602f12100af9756e0",
           hash: "sha256-kfopRyCrDaiVjKYseyWacIT9MJ8PzB8LAs6YMgYqCrs=",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-czfHnXS9tf5vQQNXhWH7DStmhsorSc4Di/yZuv4LHRk=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, basic: nix.thunk(() => nix.sel(nixosTests, "molly-brown")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, basic: nix.thunk(() => nix.sel(nixosTests, "molly-brown")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Full-featured Gemini server",
         mainProgram: "molly-brown",
         homepage: "https://tildegit.org/solderpunk/molly-brown",

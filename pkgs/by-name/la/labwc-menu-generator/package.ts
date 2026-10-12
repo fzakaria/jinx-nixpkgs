@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labwc-menu-generator",
       version: "0.2.0-unstable-2026-08-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "labwc",
           repo: "labwc-menu-generator",
           rev: "b31ae37532d77e638e27e8a3f3a4865ca5ccab71",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/labwc/labwc-menu-generator",
         description: "Menu generator for labwc",
         mainProgram: "labwc-menu-generator",

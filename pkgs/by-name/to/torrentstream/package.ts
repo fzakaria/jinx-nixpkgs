@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "torrentstream";
       const version = "1.0.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trueromanus",
           repo: "TorrentStream",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const dotnetFlags = nix.thunk(() => ["-p:PublishAot=false", "-p:PublishSingleFile=true"]);
       const patches = nix.thunk(() => [nix.path(here, "./0001-display-the-message-of-caught-exceptions.patch")]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/trueromanus/TorrentStream",
         description: "Simple web server for streaming torrent files in video players",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

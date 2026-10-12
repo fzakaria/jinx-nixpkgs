@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const dune_configurator = nix.arg($, "dune-configurator");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iomux",
       version: "0.4",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/haesbaert/ocaml-iomux/releases/download/v${nix.sel(finalAttrs, "version")}/iomux-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Hjk/rlWUdoSMXHBSUHaxEHDoBqVJ7rrghLBGqXcrqzU=",
         })))),
       buildInputs: nix.thunk(() => [dune_configurator]),
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/haesbaert/ocaml-iomux",
         description: "IO Multiplexers for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const enableSigbusFix = nix.argOr($, "enableSigbusFix", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsigsegv",
       version: "2.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/libsigsegv/libsigsegv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-A2hVZgIlyzgXoZD8AOZ2TOeDYFG6y0jTXiZES4wXKdk=",
         })))),
       patches: nix.thunk(() => (nix.asBool(enableSigbusFix) ? [nix.path(here, "./sigbus_fix.patch")] : null)),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/libsigsegv/",
         description: "Library to handle page faults in user mode",
         longDescription: "GNU libsigsegv is a library for handling page faults in user mode. A\npage fault occurs when a program tries to access to a region of memory\nthat is currently not available. Catching and handling a page fault is\na useful technique for implementing pageable virtual memory,\nmemory-mapped access to persistent databases, generational garbage\ncollectors, stack overflow handlers, distributed shared memory, and\nmore.\n",

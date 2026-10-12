@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/define-submoduleWith-shorthand.nix", [["con
 const pos$2 = nix.positions(here + "/define-submoduleWith-shorthand.nix", [["submodule", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  submodule: nix.thunk(() => ({ __proto__: pos$1, config: true })),
+  [nix.POS]: pos$2,
+  submodule: nix.thunk(() => ({ [nix.POS]: pos$1, config: true })),
 }));
 //# sourceMappingURL=define-submoduleWith-shorthand.ts.map

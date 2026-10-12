@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ia-writer-duospace",
       version: "0-unstable-2018-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iaolo",
           repo: "iA-Fonts",
           rev: "55edf60f544078ab1e14987bc67e9029a200e0eb",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/opentype\ncp \"iA Writer Duospace/OTF (Mac)/\"*.otf $out/share/fonts/opentype/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "iA Writer Duospace Typeface",
         homepage: "https://ia.net/topics/in-search-of-the-perfect-writing-font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

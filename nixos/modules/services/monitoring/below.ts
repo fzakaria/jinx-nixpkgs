@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "below"));
   const cfgContents = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n} = "${v}"`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_k) => (v) => !nix.eq(v, null), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           log_dir: nix.thunk(() => nix.sel(cfg, "dirs", "log")),
           store_dir: nix.thunk(() => nix.sel(cfg, "dirs", "store")),
           cgroup_filter_out: nix.thunk(() => nix.sel(cfg, "cgroupFilterOut")),
         }))))))));
   const mkDisableOption = (n) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
       default: true,
       description: nix.thunk(() => nix.str`Whether to enable ${n}.`),
     })));
   const optionalType = (ty) => (x) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => nix.update(x, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       description: nix.thunk(() => nix.sel(x, "description")),
       type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), ty)),
       default: null,
@@ -57,45 +57,45 @@ export default nix.lambda((args) => (() => {
   const optionalStr = nix.thunk(() => nix.app(optionalType, nix.thunk(() => nix.sel(lib, "types", "str"))));
   const optionalInt = nix.thunk(() => nix.app(optionalType, nix.thunk(() => nix.sel(lib, "types", "int"))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         below: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "'below' resource monitor")),
           cgroupFilterOut: nix.thunk(() => nix.app(optionalStr, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "A regexp matching the full paths of cgroups whose data shouldn't be collected",
               example: "user.slice.*",
             })))),
           collect: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             diskStats: nix.thunk(() => nix.app(mkDisableOption, "dist_stat collection")),
             ioStats: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "io.stat collection for cgroups")),
             exitStats: nix.thunk(() => nix.app(mkDisableOption, "eBPF-based exitstats")),
           })),
           compression: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "data compression")),
           })),
           retention: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             size: nix.thunk(() => nix.app(optionalInt, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Size limit for below's data, in bytes. Data is deleted oldest-first, in 24h 'shards'.\n\n::: {.note}\nThe size limit may be exceeded by at most the size of the active shard, as:\n- the active shard cannot be deleted;\n- the size limit is only enforced when a new shard is created.\n:::\n",
               })))),
             time: nix.thunk(() => nix.app(optionalInt, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Retention time, in seconds.\n\n::: {.note}\nAs data is stored in 24 hour shards which are discarded as a whole,\nonly data expired by 24h (or more) is guaranteed to be discarded.\n:::\n\n::: {.note}\nIf `retention.size` is set, data may be discarded earlier than the specified time.\n:::\n",
               })))),
           })),
           dirs: nix.thunk(() => ({
-            __proto__: pos$12,
-            log: nix.thunk(() => nix.app(optionalPath, nix.thunk(() => ({ __proto__: pos$10, description: "Where to store below's logs" })))),
+            [nix.POS]: pos$12,
+            log: nix.thunk(() => nix.app(optionalPath, nix.thunk(() => ({ [nix.POS]: pos$10, description: "Where to store below's logs" })))),
             store: nix.thunk(() => nix.app(optionalPath, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "Where to store below's data",
                 example: "/var/lib/below",
               })))),
@@ -104,26 +104,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "below"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$17,
-            "below/below.conf": nix.thunk(() => ({ __proto__: pos$16, text: cfgContents })),
+            [nix.POS]: pos$17,
+            "below/below.conf": nix.thunk(() => ({ [nix.POS]: pos$16, text: cfgContents })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "below"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             below: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [cfgContents]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ExecStart: nix.thunk(() => [
                   "",
                   nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "below")))} record `, nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "collect", "diskStats"))), "--disable-disk-stat"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "collect", "ioStats")), "--collect-io-stat"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "collect", "exitStats"))), "--disable-exitstats"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "compression", "enable")), "--compress"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "retention", "size"), null)), nix.thunk(() => nix.str`--store-size-limit ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "retention", "size")))}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "retention", "time"), null)), nix.thunk(() => nix.str`--retain-for-s ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "retention", "time")))}`))))))))))),
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nicoo"))];

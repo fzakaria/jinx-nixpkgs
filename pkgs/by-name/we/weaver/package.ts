@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "weaver",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-telemetry",
           repo: "weaver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-hWewiXx5+wL2DNPi+9nUJ5IXHzg1mxass2ASSnTEKk0=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       pnpmRoot: "ui",
       buildInputs: nix.thunk(() => [openssl]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config, nodejs, pnpmConfigHook, pnpm, python3]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CXXFLAGS: "-std=c++20", OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++20", OPENSSL_NO_VENDOR: true })),
       preBuild: "pushd ui\npnpm build\npopd\n",
       checkFlags: nix.thunk(() => [
         "--skip=test_cli_interface",
@@ -72,17 +72,17 @@ export default nix.lambda((args) => (() => {
   --fish <($out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")} completion fish)
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "OpenTelemetry tool for dealing with semantic conventions and application telemetry schemas",
         homepage: "https://github.com/open-telemetry/weaver",
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/weaver/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

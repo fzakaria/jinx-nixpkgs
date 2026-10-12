@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "2.2.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "vyfor",
       repo: "cord.nvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-SONErPOIaRltx51+GCsGtR0FDSWp/36x3lDbYLSMxXM=",
     }))));
   const cord_server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cord",
       src: src,
       version: version,
@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
       RUSTC_BOOTSTRAP: 1n,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: false,
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "cord" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "cord" })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cord.nvim",
       version: version,
       src: src,
@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
     "or '${cord_server}'"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.cord-nvim.cord-nvim-rust" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.cord-nvim.cord-nvim-rust" })))),
         "cord-server": cord_server,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/vyfor/cord.nvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         changelog: nix.thunk(() => nix.str`https://github.com/vyfor/cord.nvim/releases/tag/v${version}`),

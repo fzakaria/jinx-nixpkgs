@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yEd",
       version: "3.25.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250322075239/https://www.yworks.com/resources/yed/demo/yEd-3.25.1.zip",
           sha256: "sha256-CDciM2IW+nocbFMVmTXMWh2eYcDAMZ+lxsg/Rb7KRgo=",
         })))),
@@ -41,7 +41,7 @@ makeWrapper ${jre}/bin/java $out/bin/yed \\
 `),
       dontWrapGApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

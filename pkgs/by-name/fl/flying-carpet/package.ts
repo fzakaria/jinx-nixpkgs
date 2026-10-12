@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flying-carpet",
       version: "10.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spieglt",
           repo: "FlyingCarpet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip", "network"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "FlyingCarpet",
             desktopName: "FlyingCarpet",
             exec: "FlyingCarpet",
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 \"Flying Carpet/src-tauri/icons/32x32.png\" \"$out/share/icons/hicolor/32x32/apps/FlyingCarpet.png\"\ninstall -Dm644 \"Flying Carpet/src-tauri/icons/128x128.png\" \"$out/share/icons/hicolor/128x128/apps/FlyingCarpet.png\"\ninstall -Dm644 \"Flying Carpet/src-tauri/icons/128x128@2x.png\" \"$out/share/icons/hicolor/256x256@2/apps/FlyingCarpet.png\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Send and receive files between Android, iOS, Linux, macOS, and Windows over ad hoc WiFi",
         homepage: "https://github.com/spieglt/FlyingCarpet",
         changelog: nix.thunk(() => nix.str`https://github.com/spieglt/FlyingCarpet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

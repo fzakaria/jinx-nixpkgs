@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const remind = nix.arg($, "remind");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wyrd",
       version: "1.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wyrd-calendar",
           repo: "wyrd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [remind]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Text-based front-end to Remind",
         longDescription: "Wyrd is a text-based front-end to Remind, a sophisticated\ncalendar and alarm program. Remind's power lies in its\nprogrammability, and Wyrd does not hide this capability behind\nflashy GUI dialogs. Rather, Wyrd is designed to make you more\nefficient at editing your reminder files directly.\n",
         homepage: "https://gitlab.com/wyrd-calendar/wyrd",

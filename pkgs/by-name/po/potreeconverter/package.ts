@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "PotreeConverter",
       version: "unstable-2023-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "potree",
           repo: "PotreeConverter",
           rev: "af4666fa1090983d8ce7c11dcf49ba19eda90995",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\nmv liblaszip.so $out/lib\nmv PotreeConverter $out/bin\nln -s $out/bin/PotreeConverter $out/bin/potreeconverter\n\n# Create an empty wrapper, since PotreeConverter segfaults if called via\n# $PATH rather than absolute path. An empty wrapper forces an absolute path\n# on each invocation\nwrapProgram $out/bin/PotreeConverter\n\nrunHook postInstall\n",
       postFixup: "ln -s $src/resources $out/bin/resources\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create multi res point cloud to use with potree",
         homepage: "https://github.com/potree/PotreeConverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

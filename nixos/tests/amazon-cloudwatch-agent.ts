@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const region = "ap-northeast-1";
   const sharedConfigurationDefaultProfile = "default";
   const sharedConfigurationFile = nix.thunk(() => nix.app(nix.sel(iniFormat, "generate"), "config", nix.thunk(() => nix.attrsDyn({}, [
-      [nix.str`${sharedConfigurationDefaultProfile}`, nix.thunk(() => ({ __proto__: pos$1, region: region }))],
+      [nix.str`${sharedConfigurationDefaultProfile}`, nix.thunk(() => ({ [nix.POS]: pos$1, region: region }))],
     ]))));
   const sharedCredentialsFile = nix.thunk(() => nix.app(nix.sel(iniFormat, "generate"), "credentials", nix.thunk(() => nix.attrsDyn({}, [
       [nix.str`${sharedConfigurationDefaultProfile}`, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aws_access_key_id: "placeholder",
         aws_secret_access_key: "placeholder",
         aws_session_token: "placeholder",
@@ -49,46 +49,46 @@ cp ${sharedConfigurationFile} $out/config
 cp ${sharedCredentialsFile} $out/credentials
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "amazon-cloudwatch-agent",
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "amazon-cloudwatch-agent": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               commonConfiguration: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 credentials: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   shared_credential_profile: sharedConfigurationDefaultProfile,
                   shared_credential_file: nix.thunk(() => nix.str`${sharedConfigurationDirectory}/credentials`),
                 })),
               })),
               configuration: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 agent: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   region: region,
                   debug: true,
                   logfile: "/var/log/amazon-cloudwatch-agent/amazon-cloudwatch-agent.log",
                 })),
                 logs: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   logs_collected: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     files: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       collect_list: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           file_path: "/var/log/amazon-cloudwatch-agent/amazon-cloudwatch-agent.log",
                           log_group_name: "/var/log/amazon-cloudwatch-agent/amazon-cloudwatch-agent.log",
                           log_stream_name: "{local_hostname}",
@@ -98,21 +98,21 @@ cp ${sharedCredentialsFile} $out/credentials
                   })),
                 })),
                 traces: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   local_mode: true,
-                  traces_collected: nix.thunk(() => ({ __proto__: pos$10, xray: nix.thunk(() => ({})) })),
+                  traces_collected: nix.thunk(() => ({ [nix.POS]: pos$10, xray: nix.thunk(() => ({})) })),
                 })),
               })),
               mode: "onPremise",
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             services: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "amazon-cloudwatch-agent": nix.thunk(() => ({
-                __proto__: pos$16,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$15, RuntimeDirectoryPreserve: true })),
+                [nix.POS]: pos$16,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, RuntimeDirectoryPreserve: true })),
               })),
             })),
           })),

@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amoeba",
       version: "1.1",
       debver: "31",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/contrib/a/amoeba/amoeba_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
             hash: "sha256-NT6oMuAlTcVZEnYjMCF+BD+k3/w7LfWEmj6bkQln3sM=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/contrib/a/amoeba/amoeba_${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "debver")}.debian.tar.xz`),
             hash: "sha256-Ga/YeXbPXjkG/6qd9Z201d14Hlj/Je6DxgzeIQOqrWc=",
           })))),
@@ -51,7 +51,7 @@ sed -i main/linux-config/linux-config.cpp -e 's|libgtk-x11-2.0.so.0|${gtk3}/lib/
       buildInputs: nix.thunk(() => [alsa_lib, expat, freetype, gtk3, libvorbis, libGLU, libxxf86vm]),
       installPhase: "mkdir -p $out/bin\ncp amoeba $out/bin/\ninstallManPage ../debian/amoeba.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast-paced, polished OpenGL demonstration by Excess",
         homepage: "https://packages.qa.debian.org/a/amoeba.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

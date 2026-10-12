@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const enableXWayland = nix.argOr($, "enableXWayland", () => true);
   const dbusSupport = nix.argOr($, "dbusSupport", () => true);
   return nix.app(nix.sel(sway, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withBaseWrapper: withBaseWrapper,
       extraSessionCommands: extraSessionCommands,
       withGtkWrapper: withGtkWrapper,

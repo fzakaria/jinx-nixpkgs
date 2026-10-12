@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const filterNull = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null)));
   const serviceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     Type: "simple",
     Restart: "always",
     User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
     WorkingDirectory: package$,
   }));
   const environment = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     RAILS_ENV: "production",
     NODE_ENV: "production",
     RAILS_SERVE_STATIC_FILES: "true",
@@ -91,122 +91,122 @@ export default nix.lambda((args) => (() => {
     REDIS_URL: nix.thunk(() => nix.str`redis://${nix.sel(cfg, "redis", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))}`),
   }));
   const databaseConfig = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "database.yml", nix.thunk(() => nix.sel(cfg, "database", "settings"))));
-  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$3, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) }))));
+  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, dataDir: nix.thunk(() => nix.sel(cfg, "dataDir")) }))));
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         zammad: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Zammad, a web-based, open source user support/ticketing solution")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zammad", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "zammad",
               description: "Name of the Zammad user.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "zammad",
               description: "Name of the Zammad group.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/zammad",
               description: "Path to a folder that will contain Zammad working directory.\n",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               example: "192.168.23.42",
               description: "Host address.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Web service port.",
             })))),
           websocketPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 6042n,
               description: "Websocket service port.",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to create a local redis automatically.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "zammad",
                 description: "Name of the redis server. Only used if `createLocally` is set to true.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Redis server address.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 6379n,
                 description: "Port of the redis server.",
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/run/postgresql",
                 description: "Database host address.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: null,
                 description: "Database port. Use `null` for default port.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "zammad",
                 description: "Database name.\n",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "zammad",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/zammad-dbpassword",
                 description: "A file containing the password for {option}`services.zammad.database.user`.\n",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to create a local database automatically.",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n}\n")),
@@ -214,21 +214,21 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             configure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to configure a local nginx for Zammad.",
               })))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The domain under which zammad will be reachable.",
               })))),
           })),
           secretKeyBaseFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/secret_key_base",
@@ -241,9 +241,9 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "zammad", "openPorts"]), "The openPorts option was removed in favor of the nginx.configure option.")),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "zammad", nix.thunk(() => nix.str`if [[ \${1:-} != run ]]; then
   echo "This script only supports the run subcommand".
@@ -258,15 +258,15 @@ sudo -u ${nix.sel(cfg, "user")} -- env ${nix.app(nix.sel(lib, "concatMapAttrsStr
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           zammad: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             database: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               settings: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 production: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => nix.app(filterNull, nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       adapter: "postgresql",
                       database: nix.thunk(() => nix.sel(cfg, "database", "name")),
                       pool: 50n,
@@ -280,29 +280,29 @@ sudo -u ${nix.sel(cfg, "user")} -- env ${nix.app(nix.sel(lib, "concatMapAttrsStr
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "configure")), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "nginx", "domain")}`, nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   forceSSL: true,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "zammad", "port")))}`),
                       recommendedProxySettings: true,
                       root: nix.thunk(() => nix.str`${nix.sel(config, "services", "zammad", "package")}/public/`),
                       extraConfig: "proxy_set_header CLIENT_IP $remote_addr;\n",
                     })),
                     "/cable": nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "zammad", "port")))}`),
                       proxyWebsockets: true,
                       extraConfig: "proxy_set_header CLIENT_IP $remote_addr;\n",
                     })),
                     "/ws": nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "zammad", "websocketPort")))}`),
                       proxyWebsockets: true,
                       extraConfig: "proxy_set_header CLIENT_IP $remote_addr;\n",
@@ -312,22 +312,22 @@ sudo -u ${nix.sel(cfg, "user")} -- env ${nix.app(nix.sel(lib, "concatMapAttrsStr
               ])),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           redis: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               servers: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "redis", "name")}`, nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   enable: true,
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                 }))],
@@ -335,10 +335,10 @@ sudo -u ${nix.sel(cfg, "user")} -- env ${nix.app(nix.sel(lib, "concatMapAttrsStr
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               group: nix.thunk(() => nix.str`${nix.sel(cfg, "group")}`),
               isSystemUser: true,
             }))],
@@ -347,29 +347,29 @@ sudo -u ${nix.sel(cfg, "user")} -- env ${nix.app(nix.sel(lib, "concatMapAttrsStr
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), "zammad")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "name"), "zammad")))))),
             message: "services.zammad.database.user must be set to \"zammad\" if services.zammad.database.createLocally is set to true",
           })),
           nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "a password cannot be specified if services.zammad.database.createLocally is set to true",
           })),
           nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "redis", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "redis", "host"), "localhost")))),
             message: "the redis host must be localhost if services.zammad.redis.createLocally is set to true",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           services: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             "zammad-web": nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               environment: environment,
-              serviceConfig: nix.thunk(() => nix.update(serviceConfig, { __proto__: pos$51, TimeoutStartSec: 1200n })),
+              serviceConfig: nix.thunk(() => nix.update(serviceConfig, { [nix.POS]: pos$51, TimeoutStartSec: 1200n })),
               after: nix.thunk(() => nix.concat(["network.target", "systemd-tmpfiles-setup.service"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => [nix.thunk(() => nix.str`redis-${nix.sel(cfg, "redis", "name")}.service`)]))))),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target"]))),
               description: "Zammad web",
@@ -415,7 +415,7 @@ echo "Done"
               script: nix.thunk(() => nix.str`./script/rails server -b ${nix.sel(cfg, "host")} -p ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
             })),
             "zammad-websocket": nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               serviceConfig: serviceConfig,
               environment: environment,
               after: nix.thunk(() => ["zammad-web.service"]),
@@ -425,7 +425,7 @@ echo "Done"
               script: nix.thunk(() => nix.str`./script/websocket-server.rb -b ${nix.sel(cfg, "host")} -p ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "websocketPort")))} start`),
             })),
             "zammad-worker": nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               serviceConfig: serviceConfig,
               environment: environment,
               after: nix.thunk(() => ["zammad-web.service"]),
@@ -436,7 +436,7 @@ echo "Done"
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}                               0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/config                        0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -451,7 +451,7 @@ echo "Done"
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$59,
+      [nix.POS]: pos$59,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

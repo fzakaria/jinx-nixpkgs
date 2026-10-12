@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kubernetes-validate",
       version: "1.36.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "kubernetes_validate",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7b/S256ItXECmqFqsRFsZQKtK5YotnON051jkyP4RxU=",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["kubernetes_validate"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to validate Kubernetes resource definitions against the declared Kubernetes schemas",
         homepage: "https://github.com/willthames/kubernetes-validate",
         changelog: nix.thunk(() => nix.str`https://github.com/willthames/kubernetes-validate/releases/tag/v${nix.sel(finalAttrs, "version")}`),

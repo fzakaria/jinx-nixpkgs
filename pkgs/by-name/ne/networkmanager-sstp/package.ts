@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.2";
       const name = nix.thunk(() => nix.str`${pname}${nix.app(nix.sel(lib, "optionalString"), withGnome, "-gnome")}-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
           sha256: "sha256-zd+g86cZLyibLhYLal6XzUb9wFu7kHROp0KzRM95Qng=",
         }))));
@@ -51,14 +51,14 @@ sed -i 's#/sbin/sstpc#${sstp}/bin/sstpc#' src/nm-sstp-service.c
       ]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, attrPath: "networkmanager-sstp" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, attrPath: "networkmanager-sstp" })))),
         networkManagerPlugin: "VPN/nm-sstp-service.name",
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NetworkManager's sstp plugin",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         teams: nix.thunk(() => nix.attr(from, "teams")),
@@ -68,7 +68,7 @@ sed -i 's#/sbin/sstpc#${sstp}/bin/sstpc#' src/nm-sstp-service.c
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         name,

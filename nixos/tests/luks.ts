@@ -33,36 +33,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     name: "luks",
     nodes: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           boot: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             initrd: nix.thunk(() => ({
-              __proto__: pos$2,
-              systemd: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+              [nix.POS]: pos$2,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
             })),
             loader: nix.thunk(() => ({
-              __proto__: pos$4,
-              "systemd-boot": nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+              [nix.POS]: pos$4,
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             })),
             kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 5n, nix.thunk(() => ["console=tty1"]))),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             useBootLoader: true,
             useEFIBoot: true,
             mountHostNixStore: true,
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "cryptsetup"))];
@@ -70,38 +70,38 @@ export default nix.lambda((args) => (() => {
           })),
           specialisation: nix.thunk(() => (() => {
             const boot_luks = nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               configuration: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 boot: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   initrd: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     luks: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                          __proto__: pos$10,
-                          cryptroot: nix.thunk(() => ({ __proto__: pos$8, device: "/dev/vdb" })),
-                          cryptroot2: nix.thunk(() => ({ __proto__: pos$9, device: "/dev/vdc" })),
+                          [nix.POS]: pos$10,
+                          cryptroot: nix.thunk(() => ({ [nix.POS]: pos$8, device: "/dev/vdb" })),
+                          cryptroot2: nix.thunk(() => ({ [nix.POS]: pos$9, device: "/dev/vdc" })),
                         })))),
                     })),
                   })),
                 })),
-                virtualisation: nix.thunk(() => ({ __proto__: pos$14, rootDevice: "/dev/mapper/cryptroot" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, rootDevice: "/dev/mapper/cryptroot" })),
               })),
             }));
             const boot_luks_custom_keymap = nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(boot_luks, "configuration")),
                   nix.thunk(() => ({
-                    __proto__: pos$18,
-                    console: nix.thunk(() => ({ __proto__: pos$17, keyMap: "neo" })),
+                    [nix.POS]: pos$18,
+                    console: nix.thunk(() => ({ [nix.POS]: pos$17, keyMap: "neo" })),
                   })),
                 ]))),
             }));
             return {
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "boot-luks": boot_luks,
               "boot-luks-custom-keymap": boot_luks_custom_keymap,
             };

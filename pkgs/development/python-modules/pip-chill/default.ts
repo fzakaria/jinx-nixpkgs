@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pip_chill",
           version: version,
           hash: "sha256-55vFFKv+FE8u9SKQ9ZZ30nnLBbQIT6n4FLvlzA6gTBw=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["pip_chill"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "More relaxed `pip freeze`",
         homepage: "https://github.com/rbanffy/pip-chill",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pip-chill",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

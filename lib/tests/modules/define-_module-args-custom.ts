@@ -11,12 +11,12 @@ const pos$4 = nix.positions(here + "/define-_module-args-custom.nix", [["config"
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     config: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       _module: nix.thunk(() => ({
-        __proto__: pos$2,
-        args: nix.thunk(() => ({ __proto__: pos$1, custom: true })),
+        [nix.POS]: pos$2,
+        args: nix.thunk(() => ({ [nix.POS]: pos$1, custom: true })),
       })),
     })),
   };

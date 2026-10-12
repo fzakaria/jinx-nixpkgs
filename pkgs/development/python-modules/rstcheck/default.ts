@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rstcheck",
           repo: "rstcheck",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [rstcheck_core, typer]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, sphinx: nix.thunk(() => [sphinx]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, sphinx: nix.thunk(() => [sphinx]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["rstcheck"]);
       const preCheck = "# The tests need to find and call the rstcheck executable\nexport PATH=\"$PATH:$out/bin\";\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Checks syntax of reStructuredText and code blocks nested within it",
         homepage: "https://github.com/myint/rstcheck",
         changelog: nix.thunk(() => nix.str`https://github.com/rstcheck/rstcheck/blob/v${version}/CHANGELOG.md`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "rstcheck",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

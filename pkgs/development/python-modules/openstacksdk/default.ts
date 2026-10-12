@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const openstackdocstheme = nix.arg($, "openstackdocstheme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "openstacksdk",
       version: "4.20.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "openstacksdk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-pyproject.patch")]),
       postPatch: "# Disable rsvgconverter not needed to build manpage\nsubstituteInPlace doc/source/conf.py \\\n  --replace-fail \"'sphinxcontrib.rsvgconverter',\" \"#'sphinxcontrib.rsvgconverter',\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [pbr, setuptools]),
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         "openstack.test",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "SDK for building applications to work with OpenStack clouds",
         mainProgram: "openstack",
         homepage: "https://docs.openstack.org/openstacksdk/latest/",

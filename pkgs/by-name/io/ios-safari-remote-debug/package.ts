@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ios-safari-remote-debug",
       version: "0-unstable-2024-09-09",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.gay/besties/ios-safari-remote-debug.git",
           rev: "b3c69873997c08fce83c48a5ab42f5a2354efdf2",
           hash: "sha256-Hh/CeH0ba4uPMlEo+OZ3w36pTpsW6OLtYIE5v6dkUjo=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 cp -r injectedCode views $out/share/${nix.sel(finalAttrs, "pname")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remote debugger for iOS Safari",
         homepage: "https://git.gay/besties/ios-safari-remote-debug",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

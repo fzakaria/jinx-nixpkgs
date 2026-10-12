@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const buildOpenRAEngine = nix.arg($, "buildOpenRAEngine");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildOpenRAEngine, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       build: "bleed",
       version: "20250531",
       rev: "9c8470d18e3d850583e64a5defc5d3492ba5055b",

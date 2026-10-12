@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0.post0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "planetary-computer-sdk-for-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         adlfs: nix.thunk(() => [adlfs]),
         azure: nix.thunk(() => [azure_storage_blob]),
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), optional_dependencies, nix.thunk(() => ["all"]))))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([responses, pytestCheckHook], nix.sel(optional_dependencies, "all")));
       const disabledTests = nix.thunk(() => ["test_get_adlfs_filesystem", "test_get_container_client", "test_signing"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Planetary Computer SDK for Python",
         homepage: "https://github.com/microsoft/planetary-computer-sdk-for-python",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/planetary-computer-sdk-for-python/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "planetarycomputer",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

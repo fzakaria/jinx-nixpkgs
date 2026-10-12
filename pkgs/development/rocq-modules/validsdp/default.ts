@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const owner = "validsdp";
   const version_1 = version;
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+    const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
         nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -42,19 +42,19 @@ export default nix.lambda((args) => (() => {
       ]), null);
   })());
   const release = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "1.1.0": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       hash: "sha256-lbESAFBEBpOShNFh6RZQYPLRhdqYvdKBrxJOMy2L+Ws=",
     })),
     "1.1.1": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hash: "sha256-B+Gy16WjBqqNHvjLE6nBV/ulfDVZUWwA5FO07XnqC60=",
     })),
   }));
   const releaseRev = (v) => nix.str`v${v}`;
   const packages = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     libvalidsdp: [],
     validsdp: nix.thunk(() => ["libvalidsdp"]),
   }));
@@ -80,12 +80,12 @@ export default nix.lambda((args) => (() => {
     ]);
     const intra_deps = nix.thunk(() => nix.builtins.map(validsdp_, nix.thunk(() => nix.sel(packages, nix.key(nix.force(package$))))));
     const pkgpath = nix.thunk(() => nix.app(nix.sel(lib, "switch"), package$, nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$6, case: "libvalidsdp", out: "libvalidsdp" })),
-        nix.thunk(() => ({ __proto__: pos$7, case: "validsdp", out: "." })),
+        nix.thunk(() => ({ [nix.POS]: pos$6, case: "libvalidsdp", out: "libvalidsdp" })),
+        nix.thunk(() => ({ [nix.POS]: pos$7, case: "validsdp", out: "." })),
       ]), package$));
     const pname = package$;
     const derivation = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         version: version_1,
         pname: pname,
         defaultVersion: defaultVersion,
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         preBuild: nix.thunk(() => nix.str`cd ${pkgpath}
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "ValidSDP",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         })),

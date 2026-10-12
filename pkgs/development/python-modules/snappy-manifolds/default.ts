@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3-manifolds",
           repo: "snappy_manifolds",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["snappy_manifolds"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Database of snappy manifolds",
         changelog: nix.thunk(() => nix.str`https://github.com/3-manifolds/snappy_manifolds/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://snappy.computop.org",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

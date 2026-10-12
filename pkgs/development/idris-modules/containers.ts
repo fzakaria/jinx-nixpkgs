@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const test = nix.arg($, "test");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "containers",
       version: "2017-09-10",
       idrisDeps: nix.thunk(() => [effects, test]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jfdm",
           repo: "idris-containers",
           rev: "fb96aaa3f40faa432cd7a36d956dbc4fe9279234",
           sha256: "0vyjadd9sb8qcbzvzhnqwc8wa7ma770c10xhn96jsqsnzr81k52d",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Various data structures for use in the Idris Language",
         homepage: "https://github.com/jfdm/idris-containers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

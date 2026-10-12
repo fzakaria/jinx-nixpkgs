@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_monitor_query",
           version: version,
           hash: "sha256-ewXy/KxPtn/J93p9TF2YoPMJn7c7V8aewbCAdzmUZxs=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [azure_core, isodate, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["azure", "azure.monitor.query"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-monitor-query_${version}/sdk/monitor/azure-monitor-query/CHANGELOG.md`),
         description: "Microsoft Azure Monitor Query Client Library for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-query",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => nix.sel(azure_cli, "meta", "maintainers")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

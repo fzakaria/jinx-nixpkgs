@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "version",
       ], nix.builtins.attrNames(xcodewrapperFormalArgs)))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => [""]), name)),
         buildPhase: nix.thunk(() => nix.str`# Be sure that the Xcode wrapper has priority over everything else.
 # When using buildInputs this does not seem to be the case.

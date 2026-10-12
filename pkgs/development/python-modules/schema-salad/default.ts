@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.10.20260814121804";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "common-workflow-language",
           repo: "schema_salad",
           tag: version,
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
         "test_bad_schemas",
       ]);
       const pythonImportsCheck = nix.thunk(() => ["schema_salad"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, pycodegen: nix.thunk(() => [black]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pycodegen: nix.thunk(() => [black]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Semantic Annotations for Linked Avro Data",
         homepage: "https://github.com/common-workflow-language/schema_salad",
         changelog: nix.thunk(() => nix.str`https://github.com/common-workflow-language/schema_salad/releases/tag/${nix.sel(src, "tag")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

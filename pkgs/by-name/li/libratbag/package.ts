@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const libunistring = nix.arg($, "libunistring");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libratbag",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libratbag",
           repo: "libratbag",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonFlags: nix.thunk(() => ["-Dsystemd-unit-dir=./lib/systemd/system/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configuration library for gaming mice",
         homepage: "https://github.com/libratbag/libratbag",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

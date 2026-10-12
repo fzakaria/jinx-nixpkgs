@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const bleak = nix.arg($, "bleak");
   const bleak_retry_connector = nix.arg($, "bleak-retry-connector");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eurotronic-cometblue-ha",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rikroe",
           repo: "eurotronic-cometblue",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["eurotronic_cometblue_ha"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client for Eurotronic GmbH BLE Comet (and rebranded) Radiator TRVs",
         homepage: "https://github.com/rikroe/eurotronic-cometblue",
         changelog: nix.thunk(() => nix.str`https://github.com/rikroe/eurotronic-cometblue/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

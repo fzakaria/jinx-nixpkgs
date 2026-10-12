@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "primer3-py",
       version: "2.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libnano",
           repo: "primer3-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "python setup.py build_ext --inplace\n",
       pythonImportsCheck: nix.thunk(() => ["primer3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Oligo analysis and primer design",
         homepage: "https://github.com/libnano/primer3-py",
         changelog: nix.thunk(() => nix.str`https://github.com/libnano/primer3-py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),

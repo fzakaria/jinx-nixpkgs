@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "goverlay",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "benjamimgois",
           repo: "goverlay",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -107,11 +107,11 @@ patchelf $out/libexec/pascube --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPat
 patchelf $out/libexec/bgmod-splash --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, nix.thunk(() => nix.sel(qt6Packages, "libqtpas"))]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source project that aims to create a Graphical UI to help manage Linux overlays",
         homepage: "https://github.com/benjamimgois/goverlay",
         changelog: nix.thunk(() => nix.str`https://github.com/benjamimgois/goverlay/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

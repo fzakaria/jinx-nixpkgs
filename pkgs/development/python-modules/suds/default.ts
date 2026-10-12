@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "suds-community",
           repo: "suds",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-YdL+zDelRspQ6VMqa45vK1DDS3HjFvKE1P02USVBrEo=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SUDS_PACKAGE: "suds" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SUDS_PACKAGE: "suds" }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, six]);
       const pythonImportsCheck = nix.thunk(() => ["suds"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/suds-community/suds/blob/v${version}/CHANGELOG.md`),
         description: "Lightweight SOAP python client for consuming Web Services",
         homepage: "https://github.com/suds-community/suds",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

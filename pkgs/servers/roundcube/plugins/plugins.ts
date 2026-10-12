@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     callPackage: callPackage,
     roundcubePlugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./roundcube-plugin.nix"), nix.thunk(() => ({})))),
     carddav: nix.thunk(() => nix.app(callPackage, nix.path(here, "./carddav"), nix.thunk(() => ({})))),

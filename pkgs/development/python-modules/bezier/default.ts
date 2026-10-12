@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bezier";
       const version = "2024.6.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dhermes",
           repo: "bezier",
           tag: version,
@@ -39,19 +39,19 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, full: nix.thunk(() => [matplotlib, scipy, sympy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [matplotlib, scipy, sympy]) }));
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         BEZIER_IGNORE_VERSION_CHECK: 1n,
         BEZIER_INSTALL_PREFIX: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "bezier-fortran-extension",
             version: version,
             src: src,
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/src/fortran`),
             nativeBuildInputs: nix.thunk(() => [cmake, gfortran]),
             env: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-complain-wrong-lang")),
               NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-z,noexecstack")),
             })),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["bezier"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Helper for Bézier Curves, Triangles, and Higher Order Objects",
         changelog: "https://bezier.readthedocs.io/en/latest/releases/latest.html",
         homepage: "https://github.com/dhermes/bezier",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

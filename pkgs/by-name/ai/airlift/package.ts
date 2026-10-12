@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const kind = nix.arg($, "kind");
   const docker = nix.arg($, "docker");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "airlift",
       pyproject: true,
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JcW2FXl+SrdveRmG5bD1ttf6F3LwvGZQF4ZCTpDpPa8=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["airlift"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible, configuration driven CLI for Apache Airflow local development",
         homepage: "https://github.com/jl178/airlift",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

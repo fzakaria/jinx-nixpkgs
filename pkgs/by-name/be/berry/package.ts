@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "berry",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JLErvin",
           repo: "berry",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
 `),
       preConfigure: "patchShebangs configure\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D_C99_SOURCE")),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "berry",
             exec: "berry",
             comment: "A healthy, bite-sized window manager",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://berrywm.org/",
         description: "Healthy, bite-sized window manager",
         longDescription: "berry is a healthy, bite-sized window manager written in C for unix\nsystems. Its main features include:\n\n- Controlled via a powerful command-line client, allowing users to control\n  windows via a hotkey daemon such as sxhkd or expand functionality via\n  shell scripts.\n- Small, hackable source code.\n- Extensible theming options with double borders, title bars, and window\n  text.\n- Intuitively place new windows in unoccupied spaces.\n- Virtual desktops.\n",

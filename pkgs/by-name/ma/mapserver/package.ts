@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const swig = nix.arg($, "swig");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mapserver",
       version: "8.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MapServer",
           repo: "MapServer",
           rev: nix.thunk(() => nix.str`rel-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -87,7 +87,7 @@ cp -r src/mapscript/python/mapscript $out/${nix.sel(python3, "sitePackages")}
 `))),
       pythonImportsCheck: nix.thunk(() => ["mapscript"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Platform for publishing spatial data and interactive mapping applications to the web",
         homepage: "https://mapserver.org/",
         changelog: "https://mapserver.org/development/changelog/",

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const cohttp = nix.arg($, "cohttp");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cohttp-top",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ppx_expect]),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CoHTTP toplevel pretty printers for HTTP types",
       })),
     })));

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-LZU2YPdJiepaCH/TWNrtJiuyPlJP6t1+c3a2uHL0fmo=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]);
       const nativeCheckInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Print license based on selection and user options",
         homepage: "https://github.com/licenses/lice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lice",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

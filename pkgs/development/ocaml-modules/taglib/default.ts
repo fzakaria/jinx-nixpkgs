@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "taglib";
       const version = "0.3.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savonet",
           repo: "ocaml-taglib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [dune_configurator]);
       const propagatedBuildInputs = nix.thunk(() => [taglib_1, zlib]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/savonet/ocaml-taglib",
         description: "Bindings for the taglib library which provides functions for reading tags in headers of audio files",
         license: nix.thunk(() => (() => {
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

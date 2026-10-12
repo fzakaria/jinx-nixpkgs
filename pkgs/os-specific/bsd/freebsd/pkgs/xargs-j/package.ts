@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "xargs-j",
       src: nix.path(here, "./xargs-j.sh"),
       dir: "bin",
       isExecutable: true,
-      replacements: nix.thunk(() => ({ __proto__: pos$1, runtimeShell: runtimeShell })),
+      replacements: nix.thunk(() => ({ [nix.POS]: pos$1, runtimeShell: runtimeShell })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multitran-data",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/multitran/multitran-data.tar.bz2",
           sha256: "9c2ff5027c2fe72b0cdf056311cd7543f447feb02b455982f20d4a3966b7828c",
         })))),
       patchPhase: "sed -i -e 's@\\$(DESTDIR)/usr@'$out'@' Makefile\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran data english-russian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

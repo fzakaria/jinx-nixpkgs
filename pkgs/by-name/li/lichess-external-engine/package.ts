@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lichess-external-engine",
       version: "1.0.0-unstable-2024-05-10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lichess-org",
           repo: "external-engine",
           rev: "a6ef15a8e395eb609535857aabf18837ea7696cf",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 example-provider.py $out/bin/lichess-external-engine\nrunHook postInstall\n",
       installCheckPhase: "$out/bin/lichess-external-engine --help\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Using engines running outside of the browser for analysis on lichess",
         homepage: "https://github.com/lichess-org/external-engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "holo-cli",
       version: "0.5.0-unstable-2026-03-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "holo-routing",
           repo: "holo-cli",
           rev: "36fdc13323e384c086da8663f0d510b238fb6e4f",
@@ -38,21 +38,21 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-77aUfXcnVQLVEKQuUdBZ4k5/3rOoe9PvGC0AlJS0UJc=",
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`pushd $cargoDepsCopy/*/libyang4-sys-*
 patch -p1 < ${nix.app(replaceVars, nix.path(here, "./libyang4-sys.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             PCRE2_INCLUDE_DIRS: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), pcre2)}/include`),
             PCRE2_LIBRARIES: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), pcre2)}/lib/libpcre2-8${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))}
 popd
 `))),
-      env: nix.thunk(() => ({ __proto__: pos$3, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, protobuf]),
       buildInputs: nix.thunk(() => [pcre2]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Holo` Command Line Interface",
         homepage: "https://github.com/holo-routing/holo-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -9,12 +9,12 @@ const pos$2 = nix.positions(here + "/release-r.nix", [["rPackages", 23, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux", "aarch64-linux"]);
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ __proto__: pos$1, supportedSystems: supportedSystems }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, supportedSystems: supportedSystems }))));
   const mapTestOn = nix.thunk(() => nix.attr(from, "mapTestOn"));
   const packagePlatforms = nix.thunk(() => nix.attr(from, "packagePlatforms"));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   return nix.app(mapTestOn, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       rPackages: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "rPackages")))),
     })));
 })(), formals$1);

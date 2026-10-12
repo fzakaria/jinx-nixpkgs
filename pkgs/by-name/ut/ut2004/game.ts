@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const ut2004Packages = nix.arg($, "ut2004Packages");
   const gameData = nix.thunk(() => nix.sel(ut2004Packages, "data"));
   const patch_version = "3374-preview-23";
-  const systemDir = nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-linux": "SystemARM64", "x86_64-linux": "System" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const systemDir = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "SystemARM64", "x86_64-linux": "System" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ut2004",
       version: patch_version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UT2004Patches/releases/download/${patch_version}/OldUnreal-UT2004Patch3374-Linux-094b94dc.tar.bz2`),
           hash: "sha256-F56kPIgxv/FHAFhQzTc8DsK3Dc9vhBwhCcFSXvEa1NM=",
         })))),
@@ -129,7 +129,7 @@ runHook postInstall
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "ut2004",
             desktopName: "Unreal Tournament 2004",
             comment: nix.thunk(() => nix.str`Unreal Tournament 2004 with OldUnreal patch ${patch_version}`),
@@ -139,7 +139,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "First-person arena shooter",
         longDescription: nix.thunk(() => nix.str`Unreal Tournament 2004 with OldUnreal patch ${patch_version}.
 Pin ut2004Packages.image to avoid downloading the disc image when build tools are updated (for example libarchive) at the cost of extra disk space.

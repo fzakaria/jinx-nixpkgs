@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
   const defaultConfigUIPlatform = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.sel(cfg, "uiSettings"));
     return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     platform: nix.thunk(() => nix.attr(from, "platform")),
     name: nix.thunk(() => nix.attr(from, "name")),
     port: nix.thunk(() => nix.attr(from, "port")),
@@ -83,12 +83,12 @@ export default nix.lambda((args) => (() => {
   };
   })());
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Homebridge",
     bridge: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cfg, "settings", "bridge"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.attr(from, "name")),
       port: nix.thunk(() => nix.attr(from, "port")),
       username: "CC:22:3D:E3:CE:30",
@@ -99,110 +99,110 @@ export default nix.lambda((args) => (() => {
   }));
   const defaultConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.json", defaultConfig));
   const nixOverrideConfig = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     platforms: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "uiSettings"))], nix.sel(cfg, "settings", "platforms"))),
   }));
   const nixOverrideConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "nixOverrideConfig.json", nixOverrideConfig));
   const jqMergeFilter = "reduce .[] as $item (\n  {};\n  . * $item + {\n    \"platforms\": (\n      ((.platforms // []) + ($item.platforms // [])) |\n      group_by(.platform) |\n      map(reduce .[] as $platform ({}; . * $platform))\n    ),\n    \"accessories\": (\n      ((.accessories // []) + ($item.accessories // [])) |\n      group_by(.name) |\n      map(reduce .[] as $accessory ({}; . * $accessory))\n    )\n  }\n)\n";
-  const jqMergeFilterFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ __proto__: pos$5, name: "jqMergeFilter.jq", text: jqMergeFilter }))));
+  const jqMergeFilterFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({ [nix.POS]: pos$5, name: "jqMergeFilter.jq", text: jqMergeFilter }))));
   const validatePlatforms = (platforms) => (() => {
     const conflictingPlatforms = nix.thunk(() => nix.builtins.filter((p) => nix.eq(nix.sel(p, "platform"), "config"), platforms));
     return (nix.asBool(nix.gt(nix.builtins.length(conflictingPlatforms), 0n)) ? nix.builtins.throw("The platforms list must not contain any platform with platform type 'config'.  Use the uiSettings attribute instead.") : nix.force(platforms));
   })();
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         homebridge: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Homebridge: Homekit home automation")),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "homebridge",
                 description: "User to run homebridge as.",
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "homebridge",
                 description: "Group to run homebridge as.",
               })))),
             openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Open ports in the firewall for the Homebridge web interface and service.\n",
             })),
             userStoragePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "/var/lib/homebridge",
                 description: "Path to store homebridge user files (needs to be writeable).\n",
               })))),
             pluginPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "/var/lib/homebridge/node_modules",
                 description: "Path to the plugin download directory (needs to be writeable).\nSeems this needs to end with node_modules, as Homebridge will run npm\non the parent directory.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Path to an environment-file which may contain secrets.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 default: nix.thunk(() => ({})),
                 description: "Configuration options for homebridge.\n\nFor more details, see [the homebridge documentation](https://github.com/homebridge/homebridge/wiki/Homebridge-Config-JSON-Explained).\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       description: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.lookup(w, "str")),
                           default: "Homebridge",
                           description: "Description of the homebridge instance.",
                           readOnly: true,
                         })))),
                       bridge: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             default: "Homebridge",
                             description: "Name of the homebridge",
                           })))),
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.lookup(w, "port")),
                             default: 51826n,
                             description: "The port homebridge listens on",
                           })))),
                       })),
                       platforms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           description: "Homebridge Platforms",
                           default: [],
                           apply: validatePlatforms,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$19,
+                                [nix.POS]: pos$19,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$18,
+                                  [nix.POS]: pos$18,
                                   name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$16,
+                                      [nix.POS]: pos$16,
                                       type: nix.thunk(() => nix.lookup(w, "str")),
                                       description: "Name of the platform",
                                     })))),
                                   platform: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$17,
+                                      [nix.POS]: pos$17,
                                       type: nix.thunk(() => nix.lookup(w, "str")),
                                       description: "Platform type",
                                     })))),
@@ -210,21 +210,21 @@ export default nix.lambda((args) => (() => {
                               })))))),
                         })))),
                       accessories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           description: "Homebridge Accessories",
                           default: [],
                           type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                                __proto__: pos$24,
+                                [nix.POS]: pos$24,
                                 freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                                 options: nix.thunk(() => ({
-                                  __proto__: pos$23,
+                                  [nix.POS]: pos$23,
                                   name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$21,
+                                      [nix.POS]: pos$21,
                                       type: nix.thunk(() => nix.lookup(w, "str")),
                                       description: "Name of the accessory",
                                     })))),
                                   accessory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                      __proto__: pos$22,
+                                      [nix.POS]: pos$22,
                                       type: nix.thunk(() => nix.lookup(w, "str")),
                                       description: "Accessory type",
                                     })))),
@@ -235,46 +235,46 @@ export default nix.lambda((args) => (() => {
                   })))),
               })))),
             uiSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 default: nix.thunk(() => ({})),
                 description: "Configuration options for homebridge config UI plugin.\n\nFor more details, see [the homebridge-config-ui-x documentation](https://github.com/homebridge/homebridge-config-ui-x/wiki/Config-Options).\n",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       platform: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$29,
+                          [nix.POS]: pos$29,
                           type: nix.thunk(() => nix.lookup(w, "str")),
                           default: "config",
                           description: "Type of the homebridge UI platform",
                           readOnly: true,
                         })))),
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.lookup(w, "str")),
                           default: "Config",
                           description: "Name of the homebridge UI platform",
                           readOnly: true,
                         })))),
                       restart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.lookup(w, "str")),
                           default: restartCommand,
                           description: "Command to restart the homebridge UI service",
                           readOnly: true,
                         })))),
                       log: nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         method: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             default: "systemd",
                             description: "Method to use for logging",
                             readOnly: true,
                           })))),
                         service: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             type: nix.thunk(() => nix.lookup(w, "str")),
                             default: "homebridge",
                             description: "Name of the systemd service to log to",
@@ -282,7 +282,7 @@ export default nix.lambda((args) => (() => {
                           })))),
                       })),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.lookup(w, "port")),
                           default: 8581n,
                           description: "The port the UI web service should listen on",
@@ -295,13 +295,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             homebridge: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "Homebridge",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["syslog.target", "network-online.target"]),
@@ -338,7 +338,7 @@ rm -rf "${nix.sel(cfg, "userStoragePath")}/homebridge-packages/homebridge-config
 ln -s "${nix.sel(pkgs, "homebridge-config-ui-x")}/lib/node_modules/homebridge-config-ui-x" "${nix.sel(cfg, "userStoragePath")}/homebridge-packages/homebridge-config-ui-x"
 `),
               environment: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 HOMEBRIDGE_CONFIG_UI_TERMINAL: "1",
                 DISABLE_OPENCOLLECTIVE: "true",
                 UIX_STRICT_PLUGIN_RESOLUTION: "1",
@@ -358,7 +358,7 @@ ln -s "${nix.sel(pkgs, "homebridge-config-ui-x")}/lib/node_modules/homebridge-co
                 ];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 PermissionsStartOnly: true,
@@ -388,11 +388,11 @@ ln -s "${nix.sel(pkgs, "homebridge-config-ui-x")}/lib/node_modules/homebridge-co
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "homebridge")), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               homebridge: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 extraGroups: nix.thunk(() => ["systemd-journal"]),
                 description: "homebridge user",
@@ -400,29 +400,29 @@ ln -s "${nix.sel(pkgs, "homebridge-config-ui-x")}/lib/node_modules/homebridge-co
                 home: nix.thunk(() => nix.sel(cfg, "userStoragePath")),
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "homebridge")), nix.thunk(() => ({ __proto__: pos$49, homebridge: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "homebridge")), nix.thunk(() => ({ [nix.POS]: pos$49, homebridge: nix.thunk(() => ({})) })))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           sudo: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             extraRules: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 users: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user"))]),
                 commands: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     command: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/systemctl restart homebridge`),
                     options: nix.thunk(() => ["NOPASSWD"]),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     command: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/shutdown -h now`),
                     options: nix.thunk(() => ["NOPASSWD"]),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     command: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/shutdown -r now`),
                     options: nix.thunk(() => ["NOPASSWD"]),
                   })),
@@ -432,9 +432,9 @@ ln -s "${nix.sel(pkgs, "homebridge-config-ui-x")}/lib/node_modules/homebridge-co
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           firewall: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => nix.sel(cfg, "settings", "bridge", "port")),
                 nix.thunk(() => nix.sel(cfg, "uiSettings", "port")),

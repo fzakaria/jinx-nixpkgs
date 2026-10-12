@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-7vFtKfgxrVers64yoFZXOYZiGfHr+90pfTKJTrmUDrE=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [git, mock, twisted, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["towncrier"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to produce useful, summarised news files",
         homepage: "https://github.com/twisted/towncrier/",
         changelog: nix.thunk(() => nix.str`https://github.com/twisted/towncrier/blob/${version}/NEWS.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "towncrier",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

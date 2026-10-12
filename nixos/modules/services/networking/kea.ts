@@ -87,43 +87,43 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "kea"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const chooseNotNull = (x) => (y) => (nix.asBool(!nix.eq(x, null)) ? nix.force(x) : nix.force(y));
-  const dhcp4Config = nix.thunk(() => nix.app(chooseNotNull, nix.thunk(() => nix.sel(cfg, "dhcp4", "configFile")), nix.thunk(() => nix.app(nix.sel(format, "generate"), "kea-dhcp4.conf", nix.thunk(() => ({ __proto__: pos$1, Dhcp4: nix.thunk(() => nix.sel(cfg, "dhcp4", "settings")) }))))));
-  const dhcp6Config = nix.thunk(() => nix.app(chooseNotNull, nix.thunk(() => nix.sel(cfg, "dhcp6", "configFile")), nix.thunk(() => nix.app(nix.sel(format, "generate"), "kea-dhcp6.conf", nix.thunk(() => ({ __proto__: pos$2, Dhcp6: nix.thunk(() => nix.sel(cfg, "dhcp6", "settings")) }))))));
+  const dhcp4Config = nix.thunk(() => nix.app(chooseNotNull, nix.thunk(() => nix.sel(cfg, "dhcp4", "configFile")), nix.thunk(() => nix.app(nix.sel(format, "generate"), "kea-dhcp4.conf", nix.thunk(() => ({ [nix.POS]: pos$1, Dhcp4: nix.thunk(() => nix.sel(cfg, "dhcp4", "settings")) }))))));
+  const dhcp6Config = nix.thunk(() => nix.app(chooseNotNull, nix.thunk(() => nix.sel(cfg, "dhcp6", "configFile")), nix.thunk(() => nix.app(nix.sel(format, "generate"), "kea-dhcp6.conf", nix.thunk(() => ({ [nix.POS]: pos$2, Dhcp6: nix.thunk(() => nix.sel(cfg, "dhcp6", "settings")) }))))));
   const dhcpDdnsConfig = nix.thunk(() => nix.app(chooseNotNull, nix.thunk(() => nix.sel(cfg, "dhcp-ddns", "configFile")), nix.thunk(() => nix.app(nix.sel(format, "generate"), "kea-dhcp-ddns.conf", nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         DhcpDdns: nix.thunk(() => nix.sel(cfg, "dhcp-ddns", "settings")),
       }))))));
   return {
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "kea", "ctrl-agent"]), "https://kb.isc.org/docs/things-to-be-aware-of-when-upgrading-to-kea-3-2#the-kea-control-agent-ca\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       services: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         kea: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kea", nix.thunk(() => ({})))),
             dhcp4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "DHCP4 Server configuration\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     options: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kea DHCP4 server")),
                       extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                           default: [],
                           description: "List of additional arguments to pass to the daemon.\n",
                         })))),
                       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                           default: null,
                           description: nix.thunk(() => nix.str`Kea DHCP4 configuration as a path, see <https://kea.readthedocs.io/en/kea-${nix.sel(cfg, "package", "version")}/arm/dhcp4-srv.html>.
@@ -133,27 +133,27 @@ Most users should prefer using [settings](#opt-services.kea.dhcp4.settings) inst
 `),
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(format, "type")),
                           default: null,
                           example: nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             "valid-lifetime": 4000n,
                             "renew-timer": 1000n,
                             "rebind-timer": 2000n,
-                            "interfaces-config": nix.thunk(() => ({ __proto__: pos$6, interfaces: nix.thunk(() => ["eth0"]) })),
+                            "interfaces-config": nix.thunk(() => ({ [nix.POS]: pos$6, interfaces: nix.thunk(() => ["eth0"]) })),
                             "lease-database": nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               type: "memfile",
                               persist: true,
                               name: "/var/lib/kea/dhcp4.leases",
                             })),
                             subnet4: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$9,
+                                [nix.POS]: pos$9,
                                 id: 1n,
                                 subnet: "192.0.2.0/24",
-                                pools: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$8, pool: "192.0.2.100 - 192.0.2.240" }))]),
+                                pools: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$8, pool: "192.0.2.100 - 192.0.2.240" }))]),
                               })),
                             ]),
                           })),
@@ -164,22 +164,22 @@ Most users should prefer using [settings](#opt-services.kea.dhcp4.settings) inst
                   })))),
               })))),
             dhcp6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 description: "DHCP6 Server configuration\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     options: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kea DHCP6 server")),
                       extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                           default: [],
                           description: "List of additional arguments to pass to the daemon.\n",
                         })))),
                       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                           default: null,
                           description: nix.thunk(() => nix.str`Kea DHCP6 configuration as a path, see <https://kea.readthedocs.io/en/kea-${nix.sel(cfg, "package", "version")}/arm/dhcp6-srv.html>.
@@ -189,29 +189,29 @@ Most users should prefer using [settings](#opt-services.kea.dhcp6.settings) inst
 `),
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.sel(format, "type")),
                           default: null,
                           example: nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             "valid-lifetime": 4000n,
                             "renew-timer": 1000n,
                             "rebind-timer": 2000n,
                             "preferred-lifetime": 3000n,
-                            "interfaces-config": nix.thunk(() => ({ __proto__: pos$17, interfaces: nix.thunk(() => ["eth0"]) })),
+                            "interfaces-config": nix.thunk(() => ({ [nix.POS]: pos$17, interfaces: nix.thunk(() => ["eth0"]) })),
                             "lease-database": nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               type: "memfile",
                               persist: true,
                               name: "/var/lib/kea/dhcp6.leases",
                             })),
                             subnet6: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$20,
+                                [nix.POS]: pos$20,
                                 id: 1n,
                                 subnet: "2001:db8:1::/64",
                                 pools: nix.thunk(() => [
-                                  nix.thunk(() => ({ __proto__: pos$19, pool: "2001:db8:1::1-2001:db8:1::ffff" })),
+                                  nix.thunk(() => ({ [nix.POS]: pos$19, pool: "2001:db8:1::1-2001:db8:1::ffff" })),
                                 ]),
                               })),
                             ]),
@@ -223,22 +223,22 @@ Most users should prefer using [settings](#opt-services.kea.dhcp6.settings) inst
                   })))),
               })))),
             "dhcp-ddns": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 description: "Kea DHCP-DDNS configuration\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     options: nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Kea DDNS server")),
                       extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                           default: [],
                           description: "List of additional arguments to pass to the daemon.\n",
                         })))),
                       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                           default: null,
                           description: nix.thunk(() => nix.str`Kea DHCP-DDNS configuration as a path, see <https://kea.readthedocs.io/en/kea-${nix.sel(cfg, "package", "version")}/arm/ddns.html>.
@@ -248,19 +248,19 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
 `),
                         })))),
                       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.sel(format, "type")),
                           default: null,
                           example: nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             "ip-address": "127.0.0.1",
                             port: 53001n,
                             "dns-server-timeout": 100n,
                             "ncr-protocol": "UDP",
                             "ncr-format": "JSON",
                             "tsig-keys": [],
-                            "forward-ddns": nix.thunk(() => ({ __proto__: pos$28, "ddns-domains": [] })),
-                            "reverse-ddns": nix.thunk(() => ({ __proto__: pos$29, "ddns-domains": [] })),
+                            "forward-ddns": nix.thunk(() => ({ [nix.POS]: pos$28, "ddns-domains": [] })),
+                            "reverse-ddns": nix.thunk(() => ({ [nix.POS]: pos$29, "ddns-domains": [] })),
                           })),
                           description: nix.thunk(() => nix.str`Kea DHCP-DDNS configuration as an attribute set, see <https://kea.readthedocs.io/en/kea-${nix.sel(cfg, "package", "version")}/arm/ddns.html>.
 `),
@@ -274,12 +274,12 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
     })),
     config: nix.thunk(() => (() => {
       const commonEnvironment = nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         KEA_HOOK_SCRIPTS_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/nix/store")),
         KEA_HOOKS_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/kea/hooks`))),
       }));
       const commonServiceConfig = nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         ExecReload: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "kill")),
             "-HUP",
@@ -297,42 +297,42 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
       }));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "dhcp4", "enable")) || nix.asBool(nix.sel(cfg, "dhcp6", "enable")))) || nix.asBool(nix.sel(cfg, "dhcp-ddns", "enable")))), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               environment: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 users: nix.thunk(() => ({
-                  __proto__: pos$42,
-                  kea: nix.thunk(() => ({ __proto__: pos$41, isSystemUser: true, group: "kea" })),
+                  [nix.POS]: pos$42,
+                  kea: nix.thunk(() => ({ [nix.POS]: pos$41, isSystemUser: true, group: "kea" })),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$43, kea: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$43, kea: nix.thunk(() => ({})) })),
               })),
             })),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dhcp4", "enable")), nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 assertions: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     assertion: nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(nix.sel(cfg, "dhcp4", "settings"), null)), nix.thunk(() => nix.eq(nix.sel(cfg, "dhcp4", "configFile"), null)))),
                     message: "Either services.kea.dhcp4.settings or services.kea.dhcp4.configFile must be set to a non-null value.",
                   })),
                 ]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$48,
-                    "kea/dhcp4-server.conf": nix.thunk(() => ({ __proto__: pos$47, source: dhcp4Config })),
+                    [nix.POS]: pos$48,
+                    "kea/dhcp4-server.conf": nix.thunk(() => ({ [nix.POS]: pos$47, source: dhcp4Config })),
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   services: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     "kea-dhcp4-server": nix.thunk(() => ({
-                      __proto__: pos$51,
+                      [nix.POS]: pos$51,
                       description: "Kea DHCP4 Server",
                       documentation: nix.thunk(() => [
                         "man:kea-dhcp4(8)",
@@ -344,7 +344,7 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
                       environment: commonEnvironment,
                       restartTriggers: nix.thunk(() => [dhcp4Config]),
                       serviceConfig: nix.thunk(() => nix.update({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                             nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "kea-dhcp4")),
                             "-c",
@@ -358,27 +358,27 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
                 })),
               })))),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dhcp6", "enable")), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 assertions: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     assertion: nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(nix.sel(cfg, "dhcp6", "settings"), null)), nix.thunk(() => nix.eq(nix.sel(cfg, "dhcp6", "configFile"), null)))),
                     message: "Either services.kea.dhcp6.settings or services.kea.dhcp6.configFile must be set to a non-null value.",
                   })),
                 ]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$57,
-                    "kea/dhcp6-server.conf": nix.thunk(() => ({ __proto__: pos$56, source: dhcp6Config })),
+                    [nix.POS]: pos$57,
+                    "kea/dhcp6-server.conf": nix.thunk(() => ({ [nix.POS]: pos$56, source: dhcp6Config })),
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   services: nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     "kea-dhcp6-server": nix.thunk(() => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       description: "Kea DHCP6 Server",
                       documentation: nix.thunk(() => [
                         "man:kea-dhcp6(8)",
@@ -390,7 +390,7 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
                       environment: commonEnvironment,
                       restartTriggers: nix.thunk(() => [dhcp6Config]),
                       serviceConfig: nix.thunk(() => nix.update({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                             nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "kea-dhcp6")),
                             "-c",
@@ -404,27 +404,27 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
                 })),
               })))),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dhcp-ddns", "enable")), nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 assertions: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     assertion: nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(nix.sel(cfg, "dhcp-ddns", "settings"), null)), nix.thunk(() => nix.eq(nix.sel(cfg, "dhcp-ddns", "configFile"), null)))),
                     message: "Either services.kea.dhcp-ddns.settings or services.kea.dhcp-ddns.configFile must be set to a non-null value.",
                   })),
                 ]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$66,
-                    "kea/dhcp-ddns.conf": nix.thunk(() => ({ __proto__: pos$65, source: dhcpDdnsConfig })),
+                    [nix.POS]: pos$66,
+                    "kea/dhcp-ddns.conf": nix.thunk(() => ({ [nix.POS]: pos$65, source: dhcpDdnsConfig })),
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   services: nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     "kea-dhcp-ddns-server": nix.thunk(() => ({
-                      __proto__: pos$69,
+                      [nix.POS]: pos$69,
                       description: "Kea DHCP-DDNS Server",
                       documentation: nix.thunk(() => [
                         "man:kea-dhcp-ddns(8)",
@@ -436,7 +436,7 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
                       environment: commonEnvironment,
                       restartTriggers: nix.thunk(() => [dhcpDdnsConfig]),
                       serviceConfig: nix.thunk(() => nix.update({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                             nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "kea-dhcp-ddns")),
                             "-c",
@@ -452,7 +452,7 @@ Most users should prefer using [settings](#opt-services.kea.dhcp-ddns.settings) 
           ]))));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hexa"))];

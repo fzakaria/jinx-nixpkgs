@@ -44,29 +44,29 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), ",\n", nix.thunk(() => nix.builtins.
 }
 `)));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         cgminer: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "cgminer, an ASIC/FPGA/GPU miner for bitcoin and litecoin")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cgminer", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cgminer",
               description: "User account under which cgminer runs",
             })))),
           pools: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               description: "List of pools where to mine",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   url: "http://p2pool.org:9332",
                   username: "17EUZxTvs9uRmPsjPZSYUU3zCz9iwstudk",
                   password: "X",
@@ -74,13 +74,13 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), ",\n", nix.thunk(() => nix.builtins.
               ]),
             })))),
           hardware: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "int")))))))),
               description: "List of config options for every GPU",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   intensity: 9n,
                   "gpu-engine": "0-985",
                   "gpu-fan": "0-85",
@@ -91,7 +91,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), ",\n", nix.thunk(() => nix.builtins.
                   "temp-target": 75n,
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   intensity: 9n,
                   "gpu-engine": "0-950",
                   "gpu-fan": "0-85",
@@ -104,12 +104,12 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), ",\n", nix.thunk(() => nix.builtins.
               ]),
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "bool")), nix.thunk(() => nix.sel(lib, "types", "int")))))),
               description: "Additional config",
               example: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "auto-fan": true,
                 "auto-gpu": true,
                 expiry: 120n,
@@ -125,35 +125,35 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), ",\n", nix.thunk(() => nix.builtins.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "cgminer", "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "cgminer")), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               cgminer: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 isSystemUser: true,
                 group: "cgminer",
                 description: "Cgminer user",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "cgminer")), nix.thunk(() => ({ __proto__: pos$14, cgminer: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "cgminer")), nix.thunk(() => ({ [nix.POS]: pos$14, cgminer: nix.thunk(() => ({})) })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             cgminer: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cgminer"))]),
               after: nix.thunk(() => ["network.target", "display-manager.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 LD_LIBRARY_PATH: "/run/opengl-driver/lib:/run/opengl-driver-32/lib",
                 DISPLAY: nix.thunk(() => nix.str`:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "xserver", "display")))}`),
                 GPU_MAX_ALLOC_PERCENT: "100",
@@ -161,7 +161,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), ",\n", nix.thunk(() => nix.builtins.
               })),
               startLimitIntervalSec: 60n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "cgminer")}/bin/cgminer --syslog --text-only --config ${cgminerConfig}`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 RestartSec: "30s",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const delta = nix.arg($, "delta");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diffnav",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dlvhdr",
           repo: "diffnav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [delta]))}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd diffnav \\\n --bash <($out/bin/diffnav completion bash) \\\n --fish <($out/bin/diffnav completion fish) \\\n --zsh <($out/bin/diffnav completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/dlvhdr/diffnav/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Git diff pager based on delta but with a file tree, à la GitHub",
         homepage: "https://github.com/dlvhdr/diffnav",

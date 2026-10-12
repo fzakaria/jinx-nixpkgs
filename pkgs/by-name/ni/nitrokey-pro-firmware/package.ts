@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fakeGit = nix.thunk(() => nix.app(writeShellScriptBin, "git", nix.thunk(() => nix.str`echo "${version}.nitrokey"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nitrokey-pro-firmware",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nitrokey",
           repo: "nitrokey-pro-firmware",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [fakeGit, gcc_arm_embedded, python3, srecord]),
       installPhase: "runHook preInstall\ninstall -D build/gcc/bootloader.hex $out/bootloader.hex\ninstall -D build/gcc/nitrokey-pro-firmware.hex $out/firmware.hex\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware for the Nitrokey Pro device",
         homepage: "https://github.com/Nitrokey/nitrokey-pro-firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

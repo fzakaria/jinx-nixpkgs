@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpm";
       const version = "4.20.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.osuosl.org/pub/rpm/releases/rpm-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.x/rpm-${version}.tar.bz2`),
           hash: "sha256-UmR+EmODZFM6tnHLyOSFyW+fCIidk/4O0QSmYyZhEk8=",
         }))));
@@ -80,7 +80,7 @@ sed -i 's#PATHS ENV MYPATH#PATHS ENV PATH#' CMakeLists.txt
       const propagatedBuildInputs = nix.thunk(() => nix.concat([popt], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), elfutils)), elfutils)));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.rpm.org/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -94,7 +94,7 @@ sed -i 's#PATHS ENV MYPATH#PATHS ENV PATH#' CMakeLists.txt
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libcap-text-verifier",
       version: "0-unstable",
       __structuredAttrs: true,
@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libcap]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => ({ __proto__: pos$1, vm: nix.thunk(() => nix.sel(nixosTests, "wrappers")) })),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, vm: nix.thunk(() => nix.sel(nixosTests, "wrappers")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Verify textual POSIX capability sets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {

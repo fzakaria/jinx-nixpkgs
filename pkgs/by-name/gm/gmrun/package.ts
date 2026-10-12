@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gmrun",
       version: "1.4w",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wdlkmpx",
           repo: "gmrun",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preFixup: "gappsWrapperArgs+=(--set-default GDK_BACKEND x11)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gnome Completion-Run Utility",
         longDescription: "A simple program which provides a \"run program\" window, featuring a bash-like TAB completion.\nIt uses GTK interface.\nAlso, supports CTRL-R / CTRL-S / \"!\" for searching through history.\nRunning commands in a terminal with CTRL-Enter. URL handlers.\n",
         homepage: "https://github.com/wdlkmpx/gmrun",

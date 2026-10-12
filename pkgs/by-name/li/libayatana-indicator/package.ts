@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libayatana-indicator",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AyatanaIndicators",
           repo: "libayatana-indicator",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ayatana_ido]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ayatana Indicators Shared Library",
         homepage: "https://github.com/AyatanaIndicators/libayatana-indicator",
         changelog: nix.thunk(() => nix.str`https://github.com/AyatanaIndicators/libayatana-indicator/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

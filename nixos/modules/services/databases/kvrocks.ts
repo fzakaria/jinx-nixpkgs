@@ -54,10 +54,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "kvrocks"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "keyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       listsAsDuplicateKeys: true,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkValueString: (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToYesNo"), v) : nix.builtins.toString(v)),
         })), " ")),
     }))));
@@ -73,73 +73,73 @@ export default nix.lambda((args) => (() => {
   const openFilesReserved = 128n;
   const hasUnixSocket = nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "unixsocket"), ""));
   const hasTcp = nix.thunk(() => nix.gt(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(cfg, "settings", "bind"))), 0n));
-  const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "kvrocks.conf", nix.thunk(() => nix.update({ __proto__: pos$3, daemonize: "no", supervised: "systemd" }, nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["bind", "unixsocket"])), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(hasTcp) && nix.asBool(!nix.asBool(nix.sel(cfg, "socketActivation"))))), nix.thunk(() => ({
-        __proto__: pos$4,
+  const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "kvrocks.conf", nix.thunk(() => nix.update({ [nix.POS]: pos$3, daemonize: "no", supervised: "systemd" }, nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => ["bind", "unixsocket"])), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(hasTcp) && nix.asBool(!nix.asBool(nix.sel(cfg, "socketActivation"))))), nix.thunk(() => ({
+        [nix.POS]: pos$4,
         bind: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "settings", "bind")))),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasUnixSocket, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         unixsocket: nix.thunk(() => nix.sel(cfg, "settings", "unixsocket")),
-      }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ({ __proto__: pos$6, "socket-fd": 3n }))))))))));
+      }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ({ [nix.POS]: pos$6, "socket-fd": 3n }))))))))));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => nix.sel(pkgs, "kvrocks", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         kvrocks: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Kvrocks server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "kvrocks", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kvrocks",
               description: "User account under which Kvrocks runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "kvrocks",
               description: "Group under which Kvrocks runs.",
             })))),
           socketActivation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable systemd socket activation for TCP.\nRequires exactly one address in {option}`services.kvrocks.settings.bind`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => ["127.0.0.1", "::1"]),
                         description: "The addresses to bind to.",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 6666n,
                         description: "Accept connections on the specified port.",
                       })))),
                     unixsocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "",
                         example: "/run/kvrocks/kvrocks.sock",
                         description: "Unix socket path.",
                       })))),
                     dir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: defaultDir,
                         description: "Directory for database files.",
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 workers: 8n,
                 maxclients: 10000n,
                 "rename-command": nix.thunk(() => ["KEYS \"\"", "FLUSHDB \"\""]),
@@ -156,7 +156,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for kvrocks.\nSee <https://github.com/apache/kvrocks/blob/unstable/kvrocks.conf> for supported options.\n\nList values are emitted as repeated keys (for example `rename-command`),\nexcept {option}`services.kvrocks.settings.bind` which is space-separated\non a single line.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the kvrocks port.",
@@ -165,37 +165,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => (nix.asBool(hasTcp) || nix.asBool(hasUnixSocket))),
             message: "services.kvrocks: set settings.bind and/or settings.unixsocket.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "socketActivation")) || nix.asBool(nix.eq(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "settings", "bind"))), 1n)))),
             message: "services.kvrocks.socketActivation requires exactly one settings.bind address.",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           firewall: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "openFirewall")) && nix.asBool(hasTcp))), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "port"))]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             settings: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               "10-kvrocks": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isDefaultDir)), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(dataDir), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     d: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       user: nix.thunk(() => nix.sel(cfg, "user")),
                       group: nix.thunk(() => nix.sel(cfg, "group")),
                       mode: "0700",
@@ -205,9 +205,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             kvrocks: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 description: "Kvrocks socket",
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 listenStreams: nix.thunk(() => (() => {
@@ -217,7 +217,7 @@ export default nix.lambda((args) => (() => {
                   return nix.app(nix.sel(lib, "singleton"), listenStream);
                 })()),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   Accept: false,
                   SocketUser: nix.thunk(() => nix.sel(cfg, "user")),
                   SocketGroup: nix.thunk(() => nix.sel(cfg, "group")),
@@ -225,16 +225,16 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             kvrocks: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               description: "Kvrocks - Distributed key value database",
               documentation: nix.thunk(() => ["https://kvrocks.apache.org/"]),
               wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "socketActivation"))), nix.thunk(() => ["multi-user.target"]))),
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ["kvrocks.socket"])))),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ["kvrocks.socket"]))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -c ${configFile}`),
                 Restart: "on-failure",
@@ -283,17 +283,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "kvrocks")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               kvrocks: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Kvrocks daemon user",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "kvrocks")), nix.thunk(() => ({ __proto__: pos$40, kvrocks: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "kvrocks")), nix.thunk(() => ({ [nix.POS]: pos$40, kvrocks: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

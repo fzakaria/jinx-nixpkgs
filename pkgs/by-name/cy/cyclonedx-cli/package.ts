@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cyclonedx-cli";
       const version = "0.32.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CycloneDX",
           repo: "cyclonedx-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nugetDeps = nix.path(here, "./deps.json");
       const preFixup = "cd $out/bin\nfind . ! -name 'cyclonedx' -type f -exec rm -f {} +\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CycloneDX CLI tool for SBOM analysis, merging, diffs and format conversions",
         homepage: "https://github.com/CycloneDX/cyclonedx-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/CycloneDX/cyclonedx-cli/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cyclonedx",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

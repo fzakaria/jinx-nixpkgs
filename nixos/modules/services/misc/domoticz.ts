@@ -23,22 +23,22 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "domoticz"));
   const pkgDesc = "Domoticz home automation";
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         domoticz: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), pkgDesc)),
           bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "IP address to bind to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "Port to bind to for HTTP, set to 0 to disable HTTP.",
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             domoticz: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: pkgDesc,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 DynamicUser: true,
                 StateDirectory: "domoticz",
                 Restart: "always",

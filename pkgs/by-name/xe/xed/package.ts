@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2024.11.04";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intelxed",
           repo: "mbuild",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python-based build system used for building XED",
         homepage: "https://github.com/intelxed/mbuild",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "xed",
       version: "2026.07.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "intelxed",
           repo: "xed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n./mfile.py examples\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\ninstallBin obj/wkit/examples/obj/xed\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mbuild: mbuild,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "mbuild"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "mbuild"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
         description: "Intel X86 Encoder Decoder (Intel XED)",
         homepage: "https://intelxed.github.io/",

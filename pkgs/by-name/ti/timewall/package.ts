@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libheif = nix.arg($, "libheif");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "timewall",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bcyran",
           repo: "timewall",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,15 +32,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-hM8sTzYqoybSO3I2cwUpQE0YOO9PEBNYndR1o1+Bx/U=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
       buildInputs: nix.thunk(() => [libheif]),
-      env: nix.thunk(() => ({ __proto__: pos$2, SHELL_COMPLETIONS_DIR: "completions" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SHELL_COMPLETIONS_DIR: "completions" })),
       preBuild: "mkdir $SHELL_COMPLETIONS_DIR\n",
       postInstall: "installShellCompletion \\\n  --bash $SHELL_COMPLETIONS_DIR/timewall.bash \\\n  --zsh $SHELL_COMPLETIONS_DIR/_timewall \\\n  --fish $SHELL_COMPLETIONS_DIR/timewall.fish\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Apple dynamic HEIF wallpapers on GNU/Linux",
         homepage: "https://github.com/bcyran/timewall",
         changelog: nix.thunk(() => nix.str`https://github.com/bcyran/timewall/releases/tag/${nix.sel(finalAttrs, "version")}`),

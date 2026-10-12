@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.2.2",
       pname: "iptraf-ng",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iptraf-ng",
           repo: "iptraf-ng",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "prefix=/usr", "sbindir=/bin"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console-based network monitoring utility (fork of iptraf)",
         longDescription: "IPTraf-ng is a console-based network monitoring utility. IPTraf-ng\ngathers data like TCP connection packet and byte counts, interface\nstatistics and activity indicators, TCP/UDP traffic breakdowns, and LAN\nstation packet and byte counts. IPTraf-ng features include an IP traffic\nmonitor which shows TCP flag information, packet and byte counts, ICMP\ndetails, OSPF packet types, and oversized IP packet warnings; interface\nstatistics showing IP, TCP, UDP, ICMP, non-IP and other IP packet counts,\nIP checksum errors, interface activity and packet size counts; a TCP and\nUDP service monitor showing counts of incoming and outgoing packets for\ncommon TCP and UDP application ports, a LAN statistics module that\ndiscovers active hosts and displays statistics about their activity; TCP,\nUDP and other protocol display filters so you can view just the traffic\nyou want; logging; support for Ethernet, FDDI, ISDN, SLIP, PPP, and\nloopback interfaces; and utilization of the built-in raw socket interface\nof the Linux kernel, so it can be used on a wide variety of supported\nnetwork cards.\n",
         homepage: "https://github.com/iptraf-ng/iptraf-ng",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xercesc = nix.arg($, "xercesc");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libe57format",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asmaloney",
           repo: "libE57Format",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(gtest, "src")} test/extern/googletest
 `))),
       "libE57Format-test-data_src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "asmaloney",
           repo: "libE57Format-test-data",
           rev: "2171612112b06afd4fec5babe8837be69d910149",
@@ -49,11 +49,11 @@ ln -s ${nix.sel(gtest, "src")} test/extern/googletest
       postCheck: "./testE57\n",
       postInstall: "cd $out/lib\ng++ -Wl,--no-undefined -shared -o libE57FormatShared.so -L. -Wl,-whole-archive -lE57Format -Wl,-no-whole-archive -lxerces-c\nmv libE57FormatShared.so libE57Format.so\n\nif [ \"${dontDisableStatic:-1}\" -ne \"1\" ]; then\n  rm libE57Format.a\nfi\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for reading & writing the E57 file format",
         homepage: "https://github.com/asmaloney/libE57Format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

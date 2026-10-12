@@ -32,51 +32,51 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.lookup(w, "str")))), (x) => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.app(nix.sel(lib, "toList"), x))), nix.thunk(() => nix.lookup(w, "str")))));
   })());
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       xdg: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         mime: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to install files to support the\n[XDG Shared MIME-info specification](https://specifications.freedesktop.org/shared-mime-info-spec/latest) and the\n[XDG MIME Applications specification](https://specifications.freedesktop.org/mime-apps-spec/latest).\n",
             })))),
           addedAssociations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: associationOptions,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "application/pdf": "firefox.desktop",
                 "text/*": nix.thunk(() => ["nvim.desktop", "codium.desktop"]),
               })),
               description: "Adds associations between mimetypes and applications. See the\n[specifications](https://specifications.freedesktop.org/mime-apps-spec/latest/associations) for more information.\nGlobs in all variations are supported.\n",
             })))),
           defaultApplications: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: associationOptions,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "application/pdf": "firefox.desktop",
                 "image/*": nix.thunk(() => ["sxiv.desktop", "gimp.desktop"]),
               })),
               description: "Sets the default applications for given mimetypes. See the\n[specifications](https://specifications.freedesktop.org/mime-apps-spec/latest/default) for more information.\nGlobs in all variations are supported.\n",
             })))),
           removedAssociations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: associationOptions,
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 "audio/*": nix.thunk(() => ["mpv.desktop", "umpv.desktop"]),
                 "inode/directory": "codium.desktop",
               })),
@@ -86,16 +86,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           etc: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "xdg/mimeapps.list": nix.thunk(() => (() => {
               const generateMimeScript = (title) => (attrs) => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(attrs, {})), nix.thunk(() => nix.str`echo "[${title}]" >> $out
 `)), nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => nix.str`generateMimeItem "${k}" "${(nix.asBool(nix.app(nix.sel(lib, "isList"), v)) ? nix.app(nix.sel(lib, "concatStringsSep"), ";", v) : nix.force(v))}"`, attrs))))));
               return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "addedAssociations"), {})) || nix.asBool(!nix.eq(nix.sel(cfg, "defaultApplications"), {})))) || nix.asBool(!nix.eq(nix.sel(cfg, "removedAssociations"), {})))), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "mimeapps.list", nix.thunk(() => ({})), nix.thunk(() => nix.str`function generateMimeItem() {
   mime=$1
   app=$2
@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
   fi
 }
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), generateMimeScript, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             "Added Associations": nix.thunk(() => nix.sel(cfg, "addedAssociations")),
                             "Default Applications": nix.thunk(() => nix.sel(cfg, "defaultApplications")),
                             "Removed Associations": nix.thunk(() => nix.sel(cfg, "removedAssociations")),

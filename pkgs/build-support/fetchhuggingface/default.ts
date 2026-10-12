@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const repoRevToNameMaybe = nix.arg($, "repoRevToNameMaybe");
   const fetchgit = nix.arg($, "fetchgit");
-  const repoPrefixes = nix.thunk(() => ({ __proto__: pos$1, model: "", dataset: "datasets/", space: "spaces/" }));
+  const repoPrefixes = nix.thunk(() => ({ [nix.POS]: pos$1, model: "", dataset: "datasets/", space: "spaces/" }));
   return nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const args_2 = args_1;
@@ -44,20 +44,20 @@ export default nix.lambda((args) => (() => {
       const baseUrl = nix.thunk(() => nix.str`https://${domain}/${nix.sel(repoPrefixes, nix.key(nix.force(repoType)))}${repoId}`);
       const gitRepoUrl = nix.thunk(() => nix.str`${baseUrl}.git`);
       const newMeta = nix.thunk(() => nix.update(meta, nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.selOr(meta, () => nix.force(baseUrl), "homepage")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(position, null)), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           position: nix.thunk(() => nix.str`${nix.sel(position, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(position, "line")))}`),
         }))))));
       const backendFetcher = nix.thunk(() => nix.builtins.getAttr(backend, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           lfs: fetchgit,
           xet: nix.thunk(() => nix.builtins.throw("fetchFromHuggingFace: the Xet backend is not implemented yet")),
         }))));
       nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.eq(nix.builtins.match("[^/]+(/[^/]+)?", repoId), null)), "fetchFromHuggingFace requires `repoId` to be in the form `repo` or `owner/repo`."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchhuggingface/default.nix:75:3");
       return nix.update(nix.app(backendFetcher, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["backend", "domain", "repoId", "repoType"])), {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           branchName: branchName,
           deepClone: deepClone,
           fetchSubmodules: fetchSubmodules,
@@ -71,8 +71,8 @@ export default nix.lambda((args) => (() => {
           url: gitRepoUrl,
           fetchLFS: true,
           meta: newMeta,
-          passthru: nix.thunk(() => nix.update({ __proto__: pos$5, gitRepoUrl: gitRepoUrl }, passthru)),
-        }))), { __proto__: pos$7, repoId: repoId, repoType: repoType });
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$5, gitRepoUrl: gitRepoUrl }, passthru)),
+        }))), { [nix.POS]: pos$7, repoId: repoId, repoType: repoType });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

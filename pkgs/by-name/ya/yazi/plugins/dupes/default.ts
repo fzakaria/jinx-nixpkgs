@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdupes = nix.arg($, "jdupes");
   const bash = nix.arg($, "bash");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dupes.yazi",
       version: "0-unstable-2026-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mshnwq",
           repo: "dupes.yazi",
           rev: "1edf7a406410d5d18b4fbda7b3540e35ab3ad5d6",
@@ -33,7 +33,7 @@ substituteInPlace main.lua --replace-fail \\
   'set_state("shell", "${nix.app(nix.sel(lib, "getExe"), bash)}")'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Duplicate files plugin for Yazi",
         homepage: "https://github.com/Mshnwq/dupes.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

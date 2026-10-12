@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pg_ed25519",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dwagin",
           repo: "pg_ed25519",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-IOL3ogbPCMNmwDwpeaCZSoaFLJRX0Oah+ysgyUfHg5s=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PostgreSQL extension for signing and verifying ed25519 signatures",
         homepage: "https://gitlab.com/dwagin/pg_ed25519",
         maintainers: nix.thunk(() => (() => {

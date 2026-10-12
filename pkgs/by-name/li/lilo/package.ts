@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const dev86 = nix.arg($, "dev86");
   const sharutils = nix.arg($, "sharutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lilo",
       version: "24.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.joonet.de/lilo/ftp/sources/lilo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4VjxneRWDJNevgUHwht5v/F2GLkjDYB2/oxf/5/b1bE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [dev86, sharutils]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon -std=gnu17" })),
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`),
         "SBIN_DIR=/bin",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "MAN_DIR=/share/man",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.joonet.de/lilo/",
         description: "Linux bootloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

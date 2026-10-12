@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const python3 = nix.arg($, "python3");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: python,
-      packageOverrides: (self) => (super$) => ({ __proto__: pos$1, mistune: nix.thunk(() => nix.sel(self, "mistune_2")) }),
+      packageOverrides: (self) => (super$) => ({ [nix.POS]: pos$1, mistune: nix.thunk(() => nix.sel(self, "mistune_2")) }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "lektor";
       const version = "3.4.0b14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "lektor",
           repo: "lektor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Wr3MhUGihqlPyUlWM8KT+sb/FtHH/NfRNDT9QCKJj5k=",
         }))));
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           src: nix.thunk(() => nix.str`${src}/${npmRoot}`),
           hash: "sha256-zcvfVVLhHPas4ulyQ9HDG3f5Bofco1A6pDx9TmREOIk=",
         }))));
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const postCheck = "make test-js\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Static content management system",
         homepage: "https://www.getlektor.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/lektor/lektor/blob/v${version}/CHANGES.md`),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

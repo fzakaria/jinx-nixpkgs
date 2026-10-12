@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cryptolyzer",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coroner",
           repo: "cryptolyzer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "find $out -name \"__pycache__\" -type d | xargs rm -rv\n\n# Prevent creating more binary byte code later (e.g. during\n# pythonImportsCheck)\nexport PYTHONDONTWRITEBYTECODE=1\n",
       pythonImportsCheck: nix.thunk(() => ["cryptolyzer"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "../cryptodatahub/update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "../cryptodatahub/update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cryptographic protocol analyzer",
         homepage: "https://gitlab.com/coroner/cryptolyzer",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/coroner/cryptolyzer/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

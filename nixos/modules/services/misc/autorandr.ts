@@ -73,9 +73,9 @@ export default nix.lambda((args) => (() => {
       const getSubOptions = (prefix) => nix.app(nix.sel(elemType, "getSubOptions"), nix.thunk(() => nix.concat(prefix, ["*", "*"])));
       const getSubModules = nix.thunk(() => nix.sel(elemType, "getSubModules"));
       const substSubModules = (mod) => nix.app(matrixOf, n, m, nix.thunk(() => nix.app(nix.sel(elemType, "substSubModules"), mod)));
-      const functor = nix.thunk(() => nix.app(nix.sel(lib, "types", "elemTypeFunctor"), "attrsWith", nix.thunk(() => ({ __proto__: pos$1, elemType: elemType, name: name }))));
+      const functor = nix.thunk(() => nix.app(nix.sel(lib, "types", "elemTypeFunctor"), "attrsWith", nix.thunk(() => ({ [nix.POS]: pos$1, elemType: elemType, name: name }))));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name,
         description,
         check,
@@ -87,23 +87,23 @@ export default nix.lambda((args) => (() => {
       };
     })()));
   const profileModule = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         fingerprint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             description: "Output name to EDID mapping.\nUse `autorandr --fingerprint` to get current setup values.\n",
             default: nix.thunk(() => ({})),
           })))),
         config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), configModule)),
             description: "Per output profile configuration.",
             default: nix.thunk(() => ({})),
           })))),
         hooks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: hooksModule,
             description: "Profile hook scripts.",
             default: nix.thunk(() => ({})),
@@ -111,97 +111,97 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const configModule = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       options: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether to enable the output.",
             default: true,
           })))),
         crtc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")))),
             description: "Output video display controller.",
             default: null,
             example: 0n,
           })))),
         primary: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Whether output should be marked as primary",
             default: false,
           })))),
         position: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Output position",
             default: "",
             example: "5760x0",
           })))),
         mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Output resolution.",
             default: "",
             example: "3840x2160",
           })))),
         rate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Output framerate.",
             default: "",
             example: "60.00",
           })))),
         gamma: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Output gamma configuration.",
             default: "",
             example: "1.0:0.909:0.833",
           })))),
         rotate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["normal", "left", "right", "inverted"]))))),
             description: "Output rotate configuration.",
             default: null,
             example: "left",
           })))),
         transform: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(matrixOf, 3n, 3n, nix.thunk(() => nix.sel(lib, "types", "float")))))),
             default: null,
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  [ 0.6 0.0 0.0 ]\n  [ 0.0 0.6 0.0 ]\n  [ 0.0 0.0 1.0 ]\n]\n")),
             description: "Refer to\n{manpage}`xrandr(1)`\nfor the documentation of the transform matrix.\n",
           })))),
         dpi: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "ints", "positive")))),
             description: "Output DPI configuration.",
             default: null,
             example: 96n,
           })))),
         scale: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   options: nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     method: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["factor", "pixel"]))),
                         description: "Output scaling method.",
                         default: "factor",
                         example: "pixel",
                       })))),
                     x: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "float")), nix.thunk(() => nix.sel(lib, "types", "ints", "positive")))),
                         description: "Horizontal scaling factor/pixels.",
                       })))),
                     y: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "float")), nix.thunk(() => nix.sel(lib, "types", "ints", "positive")))),
                         description: "Vertical scaling factor/pixels.",
                       })))),
@@ -214,23 +214,23 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const hooksModule = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       options: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         postswitch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), hookType)),
             description: "Postswitch hook executed after mode switch.",
             default: nix.thunk(() => ({})),
           })))),
         preswitch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), hookType)),
             description: "Preswitch hook executed before mode switch.",
             default: nix.thunk(() => ({})),
           })))),
         predetect: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), hookType)),
             description: "Predetect hook executed before autorandr attempts to run xrandr.\n",
             default: nix.thunk(() => ({})),
@@ -238,7 +238,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const hookToFile = (folder) => (name) => (hook) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`xdg/autorandr/${folder}/${name}`), nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       source: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScriptBin"), "hook", hook)}/bin/hook`),
     })));
   const profileToFiles = (name) => (profile) => (() => {
@@ -246,11 +246,11 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`xdg/autorandr/${name}/setup`, nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), fingerprintToString, nix.thunk(() => nix.lookup(w, "fingerprint")))))),
           }))],
           [nix.str`xdg/autorandr/${name}/config`, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), configToString, nix.thunk(() => nix.sel(profile, "config")))))),
           }))],
         ])),
@@ -264,41 +264,41 @@ export default nix.lambda((args) => (() => {
 off
 `);
   return {
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         autorandr: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "handling of hotplug and sleep events by autorandr")),
           defaultTarget: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               default: "default",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Fallback if no monitor layout can be detected. See the docs\n(https://github.com/phillipberndt/autorandr/blob/v1.0/README.md#how-to-use)\nfor further reference.\n",
             })))),
           ignoreLid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Treat outputs as connected even if their lids are closed",
             })))),
           matchEdid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Match displays based on edid instead of name",
             })))),
           hooks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: hooksModule,
               description: "Global hook scripts",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  postswitch = {\n    \"notify-i3\" = \"${pkgs.i3}/bin/i3-msg restart\";\n    \"change-background\" = readFile ./change-background.sh;\n    \"change-dpi\" = ''\n      case \"$AUTORANDR_CURRENT_PROFILE\" in\n        default)\n          DPI=120\n          ;;\n        home)\n          DPI=192\n          ;;\n        work)\n          DPI=144\n          ;;\n        *)\n          echo \"Unknown profle: $AUTORANDR_CURRENT_PROFILE\"\n          exit 1\n      esac\n      echo \"Xft.dpi: $DPI\" | ${pkgs.xrdb}/bin/xrdb -merge\n    '';\n  };\n}\n")),
             })))),
           profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), profileModule)),
               description: "Autorandr profiles specification.",
               default: nix.thunk(() => ({})),
@@ -308,16 +308,16 @@ off
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         services: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           udev: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "autorandr"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "autorandr"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), nix.thunk(() => nix.app(hookToFile, "postswitch.d")), nix.thunk(() => nix.sel(cfg, "hooks", "postswitch")))),
@@ -327,18 +327,18 @@ off
             ]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             autorandr: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               wantedBy: nix.thunk(() => ["sleep.target"]),
               description: "Autorandr execution hook",
               after: nix.thunk(() => ["sleep.target"]),
               startLimitIntervalSec: 5n,
               startLimitBurst: 1n,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "autorandr")}/bin/autorandr \\
   --batch \\
   --change \\
@@ -355,7 +355,7 @@ off
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "alexnortung"))];

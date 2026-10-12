@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "evohome-async",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zxdavb",
           repo: "evohome-async",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [aiohttp, aiozoneinfo, voluptuous]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cli: nix.thunk(() => [aiofiles, asyncclick, debugpy, keyring]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "cli"))),
       pythonImportsCheck: nix.thunk(() => ["evohomeasync2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for connecting to Honeywell's TCC RESTful API",
         homepage: "https://github.com/zxdavb/evohome-async",
         changelog: nix.thunk(() => nix.str`https://github.com/zxdavb/evohome-async/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

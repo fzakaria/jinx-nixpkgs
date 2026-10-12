@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netsniff-ng",
       version: "0.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "netsniff-ng",
           owner: "netsniff-ng",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/netsniff-ng/netsniff-ng/commit/1af7ae33e3e8178ab5c649c3a52838d4375c4228.patch",
             sha256: "sha256-aNV1Srnr396HsyAKVQoCeGBo/oduxLrUidlZLuI5Rlk=",
           })))),
@@ -84,7 +84,7 @@ ln -sv ${geolite_legacy}/share/GeoIP/GeoIPASNumv6.dat $out/etc/netsniff-ng/asnam
 rm -v $out/etc/netsniff-ng/geoip.conf # updating databases after installation is impossible
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Swiss army knife for daily Linux network plumbing",
         longDescription: "netsniff-ng is a free Linux networking toolkit. Its gain of performance\nis reached by zero-copy mechanisms, so that on packet reception and\ntransmission the kernel does not need to copy packets from kernel space\nto user space and vice versa. The toolkit can be used for network\ndevelopment and analysis, debugging, auditing or network reconnaissance.\n",
         homepage: "http://netsniff-ng.org/",

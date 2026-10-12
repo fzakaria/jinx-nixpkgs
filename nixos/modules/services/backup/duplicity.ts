@@ -42,97 +42,97 @@ export default nix.lambda((args) => (() => {
   const stateDirectory = "/var/lib/duplicity";
   const localTarget = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "file://", nix.thunk(() => nix.sel(cfg, "targetUrl")))) ? nix.app(nix.sel(lib, "removePrefix"), "file://", nix.thunk(() => nix.sel(cfg, "targetUrl"))) : null));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         duplicity: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "backups with duplicity")),
           root: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/",
               description: "Root directory to backup.\n",
             })))),
           include: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["/home"]),
               description: "List of paths to include into the backups. See the FILE SELECTION\nsection in {manpage}`duplicity(1)` for details on the syntax.\n",
             })))),
           exclude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of paths to exclude from backups. See the FILE SELECTION section in\n{manpage}`duplicity(1)` for details on the syntax.\n",
             })))),
           includeFileList: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/path/to/fileList.txt",
               description: "File containing newline-separated list of paths to include into the\nbackups. See the FILE SELECTION section in {manpage}`duplicity(1)` for\ndetails on the syntax.\n",
             })))),
           excludeFileList: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/path/to/fileList.txt",
               description: "File containing newline-separated list of paths to exclude into the\nbackups. See the FILE SELECTION section in {manpage}`duplicity(1)` for\ndetails on the syntax.\n",
             })))),
           targetUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "s3://host:port/prefix",
               description: "Target url to backup to. See the URL FORMAT section in\n{manpage}`duplicity(1)` for supported urls.\n",
             })))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path of a file containing secrets (gpg passphrase, access key...) in\nthe format of EnvironmentFile as described by\n{manpage}`systemd.exec(5)`. For example:\n```\nPASSPHRASE=«...»\nAWS_ACCESS_KEY_ID=«...»\nAWS_SECRET_ACCESS_KEY=«...»\n```\n",
             })))),
           frequency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: "daily",
               description: "Run duplicity with the given frequency (see\n{manpage}`systemd.time(7)` for the format).\nIf null, do not run automatically.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--backend-retry-delay", "100"]),
               description: "Extra command-line flags passed to duplicity. See\n{manpage}`duplicity(1)`.\n",
             })))),
           fullIfOlderThan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "never",
               example: "1M",
               description: "If `\"never\"` (the default) always do incremental\nbackups (the first backup will be a full backup, of course).  If\n`\"always\"` always do full backups.  Otherwise, this\nmust be a string representing a duration. Full backups will be made\nwhen the latest full backup is older than this duration. If this is not\nthe case, an incremental backup is performed.\n",
             })))),
           cleanup: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             maxAge: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "6M",
                 description: "If non-null, delete all backup sets older than the given time.  Old backup sets\nwill not be deleted if backup sets newer than time depend on them.\n",
               })))),
             maxFull: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 default: null,
                 example: 2n,
                 description: "If non-null, delete all backups sets that are older than the count:th last full\nbackup (in other words, keep the last count full backups and\nassociated incremental sets).\n",
               })))),
             maxIncr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 default: null,
                 example: 1n,
@@ -143,15 +143,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             duplicity: nix.thunk(() => nix.update({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "backup files with duplicity",
-              environment: nix.thunk(() => ({ __proto__: pos$18, HOME: stateDirectory })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$18, HOME: stateDirectory })),
               script: nix.thunk(() => (() => {
                 const target = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "targetUrl"))));
                 const extra = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(["--archive-dir", stateDirectory], nix.sel(cfg, "extraFlags")))));
@@ -168,24 +168,24 @@ exec ${dup} ${(nix.asBool(nix.eq(nix.sel(cfg, "fullIfOlderThan"), "always")) ? "
 `;
               })()),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 PrivateTmp: true,
                 ProtectSystem: "strict",
                 ProtectHome: "read-only",
                 StateDirectory: nix.thunk(() => nix.builtins.baseNameOf(stateDirectory)),
-              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(localTarget, null)), nix.thunk(() => ({ __proto__: pos$20, ReadWritePaths: localTarget }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$21,
+              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(localTarget, null)), nix.thunk(() => ({ [nix.POS]: pos$20, ReadWritePaths: localTarget }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => ({
+                  [nix.POS]: pos$21,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "secretFile")),
                 })))))),
-            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "frequency"), null)), nix.thunk(() => ({ __proto__: pos$23, startAt: nix.thunk(() => nix.sel(cfg, "frequency")) }))))),
+            }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "frequency"), null)), nix.thunk(() => ({ [nix.POS]: pos$23, startAt: nix.thunk(() => nix.sel(cfg, "frequency")) }))))),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(localTarget, null)), nix.thunk(() => nix.str`d ${localTarget} 0700 root root -`))),
           })),
         })),
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "include"), [])) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "exclude"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "extraFlags"), [])))))),
             message: "Duplicity will fail if you only specify included paths (\"Because the\ndefault is to include all files, the expression is redundant. Exiting\nbecause this probably isn't what you meant.\")\n",
           })))),

@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quartz-wm",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.freedesktop.org/xorg/app/quartz-wm.git",
           tag: nix.thunk(() => nix.str`quartz-wm-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-1+KZNeR4Gq2uWBHTN53PTITHuly1Z4buR+grzdVNwhs=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/xorg/app/quartz-wm/-/commit/2f7b5957ffb05dfbf9182f1f2a1ad13069802946.patch",
             hash: "sha256-z6jd4Q6deMnawIF6wsztJmHWfK5ZGCyyW09cZzLOx00=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, util_macros]),
       buildInputs: nix.thunk(() => [libxinerama, libapplewm, xorgproto, libxrandr, libxext, pixman]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.freedesktop.org/xorg/app/quartz-wm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),

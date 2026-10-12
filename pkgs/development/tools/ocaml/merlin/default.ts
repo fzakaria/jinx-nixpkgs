@@ -27,19 +27,19 @@ export default nix.lambda((args) => (() => {
       const pname = "merlin";
       const version = "3.8.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/merlin/releases/download/v${version}/merlin-${version}.tbz`),
           sha256: "sha256-wmBGNwXL3BduF4o1sUXtAOUHJ4xmMvsWAxl/QdNj/28=",
         }))));
       const minimalOCamlVersion = "4.02.3";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "dot-merlin-reader": nix.thunk(() => nix.str`${dot_merlin_reader}/bin/dot-merlin-reader`),
             dune: nix.thunk(() => nix.str`${dune_2}/bin/dune`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "vim-python-12-syntax-warning-fix.patch",
             url: "https://github.com/ocaml/merlin/commit/9e0c47b0d5fd0c4edc37c4c7ce927b155877557d.patch",
             hash: "sha256-HmdTISE/s45C5cwLgsCHNUW6OAPSsvQ/GcJE6VDEobs=",
@@ -48,14 +48,14 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const buildInputs = nix.thunk(() => [dot_merlin_reader, yojson, csexp, result, seq, menhirSdk]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Editor-independent tool to ease the development of programs in OCaml",
         homepage: "https://github.com/ocaml/merlin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

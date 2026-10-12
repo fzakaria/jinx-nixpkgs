@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
-  const jdk$ = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdk$ = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pattypan",
       version: "26.02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "yarl",
           repo: "pattypan",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         imagemagick,
       ]),
       dontWrapGApps: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, JAVA_TOOL_OPTIONS: "-Dfile.encoding=UTF8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, JAVA_TOOL_OPTIONS: "-Dfile.encoding=UTF8" })),
       buildPhase: "runHook preBuild\nant\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons/hicolor/96x96/apps\ninstall -Dm644 pattypan.jar -t $out/share/pattypan\nmagick src/pattypan/resources/logo.png -resize 96x96 $out/share/icons/hicolor/96x96/apps/pattypan.png\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.str`makeWrapper ${jdk$}/bin/java $out/bin/pattypan \\
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "pattypan",
             exec: "pattypan",
             icon: "pattypan",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Uploader for Wikimedia Commons",
         homepage: "https://commons.wikimedia.org/wiki/Commons:Pattypan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

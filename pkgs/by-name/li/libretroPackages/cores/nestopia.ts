@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "nestopia",
       version: "0-unstable-2026-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "nestopia",
           rev: "8f00f500912a847062de432e38765c7285483e62",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       preBuild: "cd libretro",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nestopia libretro port",
         homepage: "https://github.com/libretro/nestopia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

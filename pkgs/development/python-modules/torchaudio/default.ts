@@ -38,20 +38,20 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$8,
       pname: "torchaudio",
       version: "2.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pytorch",
           repo: "audio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TncROn9wfn5HOaIvupS2/KD9JCgwfHyfnbZRc+SiqJ0=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CTC_DECODER: 1n,
         USE_CUDA: cudaSupport,
         TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)}`),
@@ -107,21 +107,21 @@ export default nix.lambda((args) => (() => {
           "test_lfilter_shape_6",
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(torchaudio, "overridePythonAttrs"), (old) => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-gpuCheck`),
             dontCheckPythonMetadata: true,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUCTC_DECODER: 0n,
               TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUDA: 0n,
             })),
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "PyTorch audio library",
         homepage: "https://pytorch.org/audio",
         downloadPage: "https://github.com/pytorch/audio",

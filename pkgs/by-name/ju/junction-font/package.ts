@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "junction",
       version: "2014-05-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theleagueof",
           repo: "junction",
           rev: "fb73260e86dd301b383cf6cc9ca8e726ef806535",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/opentype $src/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Junction is a a humanist sans-serif font",
         longDescription: "Junction is a a humanist sans-serif, and the first open-source type\nproject started by The League of Moveable Type. It has been updated\n(2014) to include additional weights (light/bold) and expanded\ninternational support.\n",
         homepage: "https://www.theleagueofmoveabletype.com/junction",

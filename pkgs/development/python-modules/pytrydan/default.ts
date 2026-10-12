@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const tenacity = nix.arg($, "tenacity");
   const typer = nix.arg($, "typer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytrydan",
       version: "1.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dgomes",
           repo: "pytrydan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook, respx, syrupy]),
       pythonImportsCheck: nix.thunk(() => ["pytrydan"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to interface with V2C EVSE Trydan",
         homepage: "https://github.com/dgomes/pytrydan",
         changelog: nix.thunk(() => nix.str`https://github.com/dgomes/pytrydan/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

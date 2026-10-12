@@ -8,6 +8,6 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./com
     const version = nix.thunk(() => nix.str`0.5.3.0-${rev}`);
     const rev = "31f1b5dec81561a1b1d36b8e3065ce091dce2ec6";
     const hash = "sha256-/oTcWGA43KQwniQKyZEPOlpmoRusDjb+k29GWc8wZzw=";
-    return { __proto__: pos$1, version, rev, hash };
+    return { [nix.POS]: pos$1, version, rev, hash };
   })())));
 //# sourceMappingURL=0.5.3.0-31f1b5dec81561a1b1d36b8e3065ce091dce2ec6.ts.map

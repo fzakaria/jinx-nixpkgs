@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kubetui",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sarub0b0",
           repo: "kubetui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=workers::kube::store::tests::kubeconfigからstateを生成"]),
       cargoHash: "sha256-1FTckTIqBM4ckyB7YlgzM0GcoahMDnVBrAl1/P67TJ8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sarub0b0/kubetui",
         changelog: nix.thunk(() => nix.str`https://github.com/sarub0b0/kubetui/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

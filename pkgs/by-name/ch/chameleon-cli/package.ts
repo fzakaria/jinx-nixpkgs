@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "chameleon-cli",
       version: "2.2.0-unstable-2026-10-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RfidResearchGroup",
           repo: "ChameleonUltra",
           rev: "5a4c8873981a22a2d3901fa63ac870069a732a49",
@@ -57,14 +57,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), python3)} $out/bin/chameleon-cli \
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line interface for Chameleon Ultra",
         homepage: "https://github.com/RfidResearchGroup/ChameleonUltra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

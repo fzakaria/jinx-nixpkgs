@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const ppx_jane = nix.arg($, "ppx_jane");
   const dedent = nix.argOr($, "dedent", () => null);
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grace",
       version: "0.3.0",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnyob",
           repo: "grace",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [core, ppx_jane, dedent]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A fancy diagnostics library that allows your compilers to exit with grace",
         homepage: "https://github.com/johnyob/grace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(teamtype, "src"));
       const meta = nix.thunk(() => nix.attr(teamtype, "meta"));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/nvim-plugin`);
-      return { __proto__: pos$1, pname, version, src, meta, sourceRoot };
+      return { [nix.POS]: pos$1, pname, version, src, meta, sourceRoot };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

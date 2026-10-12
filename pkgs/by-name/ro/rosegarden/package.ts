@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const lrdf = nix.arg($, "lrdf");
   const libogg = nix.arg($, "libogg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rosegarden",
       version: "26.06",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/rosegarden/rosegarden-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-ddnwHGqkbRoIwawp7jdeSqsdzbZw+3IwqeacCUWNO9k=",
         })))),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLILV_INCLUDE_DIR=${nix.sel(lilv, "dev")}/include/lilv-0`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.rosegardenmusic.com/",
         description: "Music composition and editing environment",
         mainProgram: "rosegarden",

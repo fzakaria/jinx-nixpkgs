@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const cython = nix.arg($, "cython");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cymem",
       version: "2.0.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "explosion",
           repo: "cymem",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# remove src module, so tests use the installed module instead\nmv ./cymem/tests ./tests\nrm -r ./cymem\n",
       pythonImportsCheck: nix.thunk(() => ["cymem"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cython memory pool for RAII-style memory management",
         homepage: "https://github.com/explosion/cymem",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/cymem/releases/tag/release-${nix.sel(finalAttrs, "src", "tag")}`),

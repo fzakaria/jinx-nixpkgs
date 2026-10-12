@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libnpp",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library of primitives for image and signal processing",
         longDescription: "NPP is a library of over 5,000 primitives for image and signal processing that lets you easily perform tasks\nsuch as color conversion, image compression, filtering, thresholding, and image manipulation.\n",
         homepage: "https://developer.nvidia.com/npp",

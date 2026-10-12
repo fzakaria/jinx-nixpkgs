@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const enableProgram = nix.argOr($, "enableProgram", () => true);
   const enableExamples = nix.argOr($, "enableExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tlrender",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grizzlypeak3d",
           repo: "tlRender",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source library for building playback and review applications",
         longDescription: "An open source library for building playback and review applications for\nvisual effects, film, and animation.\n\nThe library can render and playback timelines with multiple video clips,\nimage sequences, audio clips, and transitions. Examples are provided for\nintegrating the library with Qt and OpenGL applications.\n",
         homepage: "https://github.com/grizzlypeak3d/tlRender",

@@ -32,37 +32,37 @@ export default nix.lambda((args) => (() => {
   const import_relays_file = nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "import_relays.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "importRelays")))))}`);
   const blastr_relays_file = nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "blastr_relays.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "blastrRelays")))))}`);
   const mergedSettings = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     IMPORT_SEED_RELAYS_FILE: import_relays_file,
     BLASTR_RELAYS_FILE: blastr_relays_file,
   }));
   const cfg = nix.thunk(() => nix.sel(config, "services", "haven"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         haven: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "haven")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "haven", nix.thunk(() => ({})))),
           blastrRelays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of relay configurations for blastr",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  \"relay.example.com\"\n]\n")),
             })))),
           importRelays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of relay configurations for importing historical events",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  \"relay.example.com\"\n]\n")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: defaultSettings,
               defaultText: "See <https://github.com/bitvora/haven/blob/master/.env.example>",
               apply: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaultSettings)),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  RELAY_URL = \"relay.example.com\";\n  OWNER_NPUB = \"npub1...\";\n}\n")),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to a file containing sensitive environment variables. See <https://github.com/bitvora/haven> for documentation.\nThe file should contain environment-variable assignments like:\nS3_SECRET_KEY=mysecretkey\nS3_ACCESS_KEY_ID=myaccesskey\n",
@@ -80,32 +80,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             haven: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Haven daemon user",
               group: "haven",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$11, haven: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$11, haven: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             haven: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "haven",
               wants: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs"), (name) => (value) => (nix.asBool(nix.builtins.isBool(value)) ? (nix.asBool(value) ? "true" : "false") : nix.builtins.toString(value)), mergedSettings)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/haven`),
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
                 User: "haven",
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felixzieger"))];

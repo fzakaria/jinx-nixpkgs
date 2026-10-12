@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const sysctl = nix.arg($, "sysctl");
   const depsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [acpi, apm, bin, gnugrep, sysctl])));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.sbin/zzz",
       postPatch: nix.thunk(() => nix.str`sed -E -i -e "s|/bin/sh|${nix.app(nix.sel(lib, "getBin"), bin)}/bin/sh|g" $BSDSRCDIR/usr.sbin/zzz/zzz.sh
 sed -E -i -e "s|PATH=.*|PATH=${depsPath}|g" $BSDSRCDIR/usr.sbin/zzz/zzz.sh

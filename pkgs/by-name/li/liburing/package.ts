@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liburing",
       version: "2.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axboe",
           repo: "liburing",
           tag: nix.thunk(() => nix.str`liburing-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ for file in $(find ./examples -executable -type f); do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace library for the Linux io_uring API",
         homepage: "https://github.com/axboe/liburing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

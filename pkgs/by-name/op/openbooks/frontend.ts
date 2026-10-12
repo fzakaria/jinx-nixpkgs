@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "openbooks-frontend",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(common, "src")}/server/app`),
       npmDepsHash: "sha256-OtXPOFK18b6tzFIvXkThafLUw0GlioRmxjzcKYeTalU=",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), { __proto__: pos$1, description: "Openbooks frontend" })),
+      meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: pos$1, description: "Openbooks frontend" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

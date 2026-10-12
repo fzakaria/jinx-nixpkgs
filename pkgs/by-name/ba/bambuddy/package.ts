@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const version = "1.2.5.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "maziggy",
       repo: "bambuddy",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-cYDl1QbIMECqE0zkKL92Vnoh1M6PIpVdsb3tGJHYPJ8=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "bambuddy-frontend",
       version: version,
       src: src,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bambuddy",
       version: version,
       src: src,
@@ -106,7 +106,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe'"), python, "uvicorn")} $out/bin/bamb
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Self-hosted command center for Bambu Lab",
         homepage: "https://bambuddy.cool/",
         changelog: nix.thunk(() => nix.str`https://github.com/maziggy/bambuddy/blob/v${version}/CHANGELOG.md`),

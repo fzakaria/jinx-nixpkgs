@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const iconConvTools = nix.arg($, "iconConvTools");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "pokefinder",
       version: "4.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Admiral-Fish",
           repo: "PokeFinder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./set-desktop-file-name.patch")]),
       postPatch: "    substituteInPlace CMakeLists.txt \\\n      --replace-fail 'set(CMAKE_OSX_ARCHITECTURES \"x86_64;arm64\")' \"\"\n    substituteInPlace Core/CMakeLists.txt \\\n      --replace-fail 'if (APPLE)' 'if (FALSE)'\n    substituteInPlace Core/RNG/SHA1.cpp \\\n      --replace-fail '#include \"SHA1.hpp\"' '#include \"SHA1.hpp\"\n#include <algorithm>'\n\n    mkdir -p Core/Resources/compression\n    touch Core/Resources/compression/__init__.py\n    cat <<EOF > Core/Resources/compression/zstd.py\nimport zstandard as zstd\n\ndef compress(data, level=3):\n    cctx = zstd.ZstdCompressor(level=level)\n    return cctx.compress(data)\n\ndef decompress(data):\n    dctx = zstd.ZstdDecompressor()\n    return dctx.decompress(data)\nEOF\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch")), "-flax-vector-conversions")),
       })),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -R PokeFinder.app $out/Applications\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "install -D PokeFinder $out/bin/PokeFinder\nicoFileToHiColorTheme $src/Form/Images/pokefinder.ico pokefinder $out\n")), "runHook postInstall\n")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems, iconConvTools])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "pokefinder",
             exec: "PokeFinder",
             icon: "pokefinder",
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qttools")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/Admiral-Fish/PokeFinder",
         description: "Cross platform Pokémon RNG tool",
         mainProgram: "PokeFinder",

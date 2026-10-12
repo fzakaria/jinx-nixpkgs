@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "terminal-space-program",
       version: "0.44.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jasonfen",
           repo: "terminal-space-program",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/jasonfen/terminal-space-program/internal/version.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       __darwinAllowLocalNetworking: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal-native orbital-mechanics rocket simulator",
         homepage: "https://terminalspaceprogram.com",
         changelog: "https://github.com/jasonfen/terminal-space-program/blob/main/docs/version-history.md",

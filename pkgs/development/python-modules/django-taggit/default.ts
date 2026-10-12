@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jazzband",
           repo: "django-taggit",
           tag: version,
@@ -39,14 +39,14 @@ substituteInPlace tests/test_utils.py \\
 ${nix.sel(python, "interpreter")} -m django test --settings=tests.settings
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tagging for django",
         homepage: "https://github.com/jazzband/django-taggit",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-taggit/blob/${version}/CHANGELOG.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

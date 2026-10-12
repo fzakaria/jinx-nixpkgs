@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const xz = nix.thunk(() => nix.attr(pkgs, "xz"));
   return (() => {
     const sourceTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./source-tarball.nix")), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         lib: lib,
         stdenv: stdenv,
         autoconf: autoconf,
@@ -47,21 +47,21 @@ export default nix.lambda((args) => (() => {
         libtool: libtool,
       }, args_1)));
     const makeSourceTarball = sourceTarball;
-    const binaryTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./binary-tarball.nix")), nix.thunk(() => nix.update({ __proto__: pos$2, lib: lib, stdenv: stdenv }, args_1)));
-    const mvnBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./maven-build.nix")), nix.thunk(() => nix.update({ __proto__: pos$3, lib: lib, stdenv: stdenv }, args_1)));
-    const nixBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nix-build.nix")), nix.thunk(() => nix.update({ __proto__: pos$4, lib: lib, stdenv: stdenv }, args_1)));
+    const binaryTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./binary-tarball.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$2, lib: lib, stdenv: stdenv }, args_1)));
+    const mvnBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./maven-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$3, lib: lib, stdenv: stdenv }, args_1)));
+    const nixBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nix-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$4, lib: lib, stdenv: stdenv }, args_1)));
     const coverageAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lcov: lcov,
         enableGCOVInstrumentation: enableGCOVInstrumentation,
         makeGCOVReport: makeGCOVReport,
         doCoverageAnalysis: true,
       }, args_1)));
-    const clangAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ __proto__: pos$6, "clang-analyzer": clang_analyzer, doClangAnalysis: true }, args_1)));
-    const coverityAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ __proto__: pos$7, "cov-build": cov_build, xz: xz, doCoverityAnalysis: true }, args_1)));
-    const rpmBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./rpm-build.nix")), nix.thunk(() => nix.update({ __proto__: pos$8, lib: lib, vmTools: vmTools }, args_1)));
+    const clangAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: pos$6, "clang-analyzer": clang_analyzer, doClangAnalysis: true }, args_1)));
+    const coverityAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: pos$7, "cov-build": cov_build, xz: xz, doCoverityAnalysis: true }, args_1)));
+    const rpmBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./rpm-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$8, lib: lib, vmTools: vmTools }, args_1)));
     const debBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./debian-build.nix")), nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         lib: lib,
         stdenv: stdenv,
         vmTools: vmTools,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const constituents = nix.arg($_1, "constituents");
       const meta = nix.argOr($_1, "meta", () => ({}));
       return nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           constituents: constituents,
           meta: meta,
           preferLocalBuild: true,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.argOr($_1, "meta", () => ({}));
       const isNixOS = nix.argOr($_1, "isNixOS", () => true);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           preferLocalBuild: true,
           _hydraAggregate: true,
           dontConfigure: true,
@@ -111,11 +111,11 @@ for i in $constituents; do
   fi
 done
 `),
-          meta: nix.thunk(() => nix.update(meta, { __proto__: pos$11, isHydraChannel: true })),
+          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$11, isHydraChannel: true })),
         }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["meta"])))));
     })(), formals$3);
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       sourceTarball,
       makeSourceTarball,
       binaryTarball,

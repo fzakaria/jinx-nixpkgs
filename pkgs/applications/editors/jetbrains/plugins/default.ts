@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
     addPlugins: (ide) => (unprocessedPlugins) => (() => {
       const processPlugin = (plugin) => nix.app(nix.sel(lib, "throwIfNot"), nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), plugin)), "addPlugins no longer supports resolving plugins by name or id strings. Please supply a derivation instead", plugin);
       const plugins = nix.thunk(() => nix.builtins.map(processPlugin, unprocessedPlugins));
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "meta", "mainProgram"), "-with-plugins")),
           version: nix.thunk(() => nix.sel(ide, "version")),
           src: ide,
           dontInstall: true,
           dontStrip: true,
           passthru: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             plugins: nix.thunk(() => nix.concat(plugins, nix.selOr(ide, () => [], "plugins"))),
           })),
           newPlugins: plugins,

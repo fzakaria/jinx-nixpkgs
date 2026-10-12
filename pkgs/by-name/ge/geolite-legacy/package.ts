@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const pname = "geolite-legacy";
       const version = "20260204";
       const geoip = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://archive.archlinux.org/packages/g/geoip-database/geoip-database-${version}-1-any.pkg.tar.zst`),
           hash: "sha256-OJSBPAwzJO+qjjgQwpG7bsaJ8C4DpLMRbLMYfK+DSFA=",
           nativeBuildInputs: nix.thunk(() => [zstd]),
           stripRoot: false,
         }))));
       const extra = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://archive.archlinux.org/packages/g/geoip-database-extra/geoip-database-extra-${version}-1-any.pkg.tar.zst`),
           hash: "sha256-L7uJtbkXD5H5bbZNsrFDzHwKZvhg/6fOwo0DM2Iuh9o=",
           nativeBuildInputs: nix.thunk(() => [zstd]),
@@ -41,16 +41,16 @@ cp ${geoip}/usr/share/GeoIP/*.dat $out/share/GeoIP
 cp ${extra}/usr/share/GeoIP/*.dat $out/share/GeoIP
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "update-geolite-legacy",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, pcre2]),
               text: "url=https://archive.archlinux.org/packages/g/geoip-database/\n\nversion=$(list-directory-versions --pname geoip-database --url $url |\n          pcre2grep -o1 '^(\\d{8})-1-any\\.pkg\\.tar\\.zst$' |\n          sort -n |\n          tail -1)\n\nfor key in geoip extra; do\n    update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\" --source-key=$key --ignore-same-version\ndone\n",
             })))))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GeoLite Legacy IP geolocation databases",
         homepage: "https://mailfud.org/geoip-legacy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -60,7 +60,7 @@ cp ${extra}/usr/share/GeoIP/*.dat $out/share/GeoIP
           return [nix.thunk(() => nix.lookup(w, "fpletz"))];
         })()),
       }));
-      return { __proto__: pos$6, pname, version, geoip, extra, buildCommand, passthru, meta };
+      return { [nix.POS]: pos$6, pname, version, geoip, extra, buildCommand, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

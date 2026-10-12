@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(curl, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "c-aresSupport": true,
       ldapSupport: true,
       gsaslSupport: true,

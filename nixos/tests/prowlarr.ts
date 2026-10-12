@@ -21,30 +21,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "prowlarr",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            prowlarr: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            prowlarr: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             customDataDir: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 services: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  prowlarr: nix.thunk(() => ({ __proto__: pos$4, dataDir: "/srv/prowlarr" })),
+                  [nix.POS]: pos$5,
+                  prowlarr: nix.thunk(() => ({ [nix.POS]: pos$4, dataDir: "/srv/prowlarr" })),
                 })),
               })),
             })),

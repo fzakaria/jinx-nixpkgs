@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const ocaml$ = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14_unsafe_string", "ocaml"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "weidu",
       version: "251",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WeiDUorg",
           repo: "weidu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}.00`),
@@ -39,7 +39,7 @@ mkdir -p obj/{.depend,x86_LINUX}
       installPhase: "runHook preInstall\n\nfor b in tolower weidu weinstall; do\n  install -Dm555 $b.asm.exe $out/bin/$b\ndone\n\ninstall -Dm444 -t $out/share/doc/weidu README* COPYING\n\nrunHook postInstall\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "InfinityEngine Modding Engine",
         homepage: "https://weidu.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

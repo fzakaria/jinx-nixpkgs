@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "hfsutils",
       version: "3.2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://fossies.org/linux/misc/old/hfsutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://ftp2.osuosl.org/pub/clfs/conglomeration/hfsutils/hfsutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "15",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-3xOuEFHJeuVBmdqT/fec1jOxdBiXoUFG7ixGztJlxic=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "15",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-vXRjfJE3mJZyt739Ji5PnMnb94X50QhF0gpwCxRYqc4=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "15",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-m0zDWZsMXcytaOyHUqo8Dbb5A9G2DyjX8TCGXvXVpmc=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "16",
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "strings", "withFeatureAs"), true, "tk", tk)),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       enableParallelBuilding: true,
@@ -112,18 +112,18 @@ runHook postInstallCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "hvol --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Tools for reading and writing Macintosh volumes",
         longDescription: "HFS is the “Hierarchical File System”, the native volume format used on modern Macintosh computers.\nhfsutils is the name of a comprehensive software package being developed to permit manipulation of\nHFS volumes from UNIX and other systems.\n",
         homepage: "https://www.mars.org/home/rob/proj/hfs/",

@@ -85,16 +85,16 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "redis"));
   const mkValueString = (value) => (nix.asBool(nix.eq(value, true)) ? "yes" : (nix.asBool(nix.eq(value, false)) ? "no" : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), value)));
   const redisConfig = (settings) => nix.app(nix.sel(pkgs, "writeText"), "redis.conf", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         listsAsDuplicateKeys: true,
-        mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$1, mkValueString: mkValueString })), " ")),
+        mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$1, mkValueString: mkValueString })), " ")),
       })), settings)));
   const redisName = (name) => nix.add("redis", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(name, "")), nix.thunk(() => nix.add("-", name))));
   const enabledServers = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (conf) => nix.sel(conf, "enable"), nix.thunk(() => nix.sel(config, "services", "redis", "servers"))));
   return {
-    __proto__: pos$71,
+    [nix.POS]: pos$71,
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "redis"))]),
     })),
     imports: nix.thunk(() => [
@@ -127,15 +127,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "redis", "settings"]), nix.thunk(() => ["services", "redis", "servers", "", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       services: nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         redis: nix.thunk(() => ({
-          __proto__: pos$51,
+          [nix.POS]: pos$51,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "redis", nix.thunk(() => ({})))),
-          vmOverCommit: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "set `vm.overcommit_memory` sysctl to 1\n(Suggested for Background Saving: <https://redis.io/docs/get-started/faq/>)\n"), { __proto__: pos$4, default: true })),
+          vmOverCommit: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "set `vm.overcommit_memory` sysctl to 1\n(Suggested for Background Saving: <https://redis.io/docs/get-started/faq/>)\n"), { [nix.POS]: pos$4, default: true })),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
@@ -143,39 +143,39 @@ export default nix.lambda((args) => (() => {
                       const config_1 = nix.arg($_1, "config");
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         options: nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Redis server")),
                           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               default: nix.thunk(() => nix.app(redisName, name)),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if name == \"\" then \"redis\" else \"redis-${name}\"\n")),
                               description: "User account under which this instance of redis-server runs.\n\n::: {.note}\nIf left as the default value this user will automatically be\ncreated on system activation, otherwise you are responsible for\nensuring the user exists before the redis service starts.\n",
                             })))),
                           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               default: nix.thunk(() => nix.sel(config_1, "user")),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.user")),
                               description: "Group account under which this instance of redis-server runs.\n\n::: {.note}\nIf left as the default value this group will automatically be\ncreated on system activation, otherwise you are responsible for\nensuring the group exists before the redis service starts.\n",
                             })))),
                           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                               default: nix.thunk(() => (nix.asBool(nix.eq(name, "")) ? 6379n : 0n)),
                               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if name == \"\" then 6379 else 0")),
                               description: "The TCP port to accept connections.\nIf port 0 is specified Redis will not listen on a TCP socket.\n",
                             })))),
                           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                               default: false,
                               description: "Whether to open ports in the firewall for the server.\n",
                             })))),
                           extraParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -185,7 +185,7 @@ export default nix.lambda((args) => (() => {
                               example: nix.thunk(() => ["--sentinel"]),
                             })))),
                           bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$10,
+                              [nix.POS]: pos$10,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -195,7 +195,7 @@ export default nix.lambda((args) => (() => {
                               example: "192.0.2.1",
                             })))),
                           unixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -205,46 +205,46 @@ export default nix.lambda((args) => (() => {
                               description: "The path to the socket to bind to.",
                             })))),
                           unixSocketPerm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               default: 660n,
                               description: "Change permissions for the socket",
                               example: 600n,
                             })))),
                           logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$13,
+                              [nix.POS]: pos$13,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               default: "notice",
                               example: "debug",
                               description: "Specify the server verbosity level, options: debug, verbose, notice, warning.",
                             })))),
                           logfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               default: "/dev/null",
                               description: "Specify the log file name. Also 'stdout' can be used to force Redis to log on the standard output.",
                               example: "/var/log/redis.log",
                             })))),
                           syslog: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                               default: true,
                               description: "Enable logging to the system logger.",
                             })))),
                           databases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$16,
+                              [nix.POS]: pos$16,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               default: 16n,
                               description: "Set the number of databases.",
                             })))),
                           maxclients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$17,
+                              [nix.POS]: pos$17,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               default: 10000n,
                               description: "Set the max number of connected clients at the same time.",
                             })))),
                           save: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -257,23 +257,23 @@ export default nix.lambda((args) => (() => {
                               description: "The schedule in which data is persisted to disk, represented as a list of lists where the first element represent the amount of seconds and the second the number of changes.\n\nIf set to the empty list (`[]`) then RDB persistence will be disabled (useful if you are using AOF or don't want any persistence).\n",
                             })))),
                           slaveOf: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.lambda((args_2) => (() => {
                                       const $_2 = nix.formals(args_2, formals$3);
                                       return {
-                                        __proto__: pos$22,
+                                        [nix.POS]: pos$22,
                                         options: nix.thunk(() => ({
-                                          __proto__: pos$21,
+                                          [nix.POS]: pos$21,
                                           ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$19,
+                                              [nix.POS]: pos$19,
                                               type: nix.thunk(() => nix.lookup(w_1, "str")),
                                               description: "IP of the Redis master",
                                               example: "192.168.1.100",
                                             })))),
                                           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                              __proto__: pos$20,
+                                              [nix.POS]: pos$20,
                                               type: nix.thunk(() => nix.lookup(w_1, "port")),
                                               description: "port of the Redis master",
                                               default: 6379n,
@@ -284,10 +284,10 @@ export default nix.lambda((args) => (() => {
                               })()),
                               default: null,
                               description: "IP and port to which this redis instance acts as a slave.",
-                              example: nix.thunk(() => ({ __proto__: pos$23, ip: "192.168.1.100", port: 6379n })),
+                              example: nix.thunk(() => ({ [nix.POS]: pos$23, ip: "192.168.1.100", port: 6379n })),
                             })))),
                           masterAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -296,7 +296,7 @@ export default nix.lambda((args) => (() => {
                               description: "If the master is password protected (using the requirePass configuration)\nit is possible to tell the slave to authenticate before starting the replication synchronization\nprocess, otherwise the master will refuse the slave request.\n(STORED PLAIN TEXT, WORLD-READABLE IN NIX STORE)\n",
                             })))),
                           masterAuthFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -306,7 +306,7 @@ export default nix.lambda((args) => (() => {
                               example: "/run/keys/redis-master-password",
                             })))),
                           masterUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -315,7 +315,7 @@ export default nix.lambda((args) => (() => {
                               description: "If the master is password protected via ACLs this option can be used to specify\nthe Redis user that is used by replicas.",
                             })))),
                           requirePass: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -325,7 +325,7 @@ export default nix.lambda((args) => (() => {
                               example: "letmein!",
                             })))),
                           requirePassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -335,7 +335,7 @@ export default nix.lambda((args) => (() => {
                               example: "/run/keys/redis-password",
                             })))),
                           sentinelAuthPassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$30,
+                              [nix.POS]: pos$30,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -345,7 +345,7 @@ export default nix.lambda((args) => (() => {
                               example: "/run/keys/sentinel-password",
                             })))),
                           sentinelAuthUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$31,
+                              [nix.POS]: pos$31,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -354,7 +354,7 @@ export default nix.lambda((args) => (() => {
                               description: "The username to use to monitor a master from Sentinel.",
                             })))),
                           sentinelMasterHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$32,
+                              [nix.POS]: pos$32,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -363,7 +363,7 @@ export default nix.lambda((args) => (() => {
                               description: "The IP address (recommended) or hostname of the Redis master that Sentinel will monitor.",
                             })))),
                           sentinelMasterName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -372,7 +372,7 @@ export default nix.lambda((args) => (() => {
                               description: "The master name of the Redis master that Sentinel will monitor.",
                             })))),
                           sentinelMasterPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$34,
+                              [nix.POS]: pos$34,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")));
@@ -381,7 +381,7 @@ export default nix.lambda((args) => (() => {
                               description: "The TCP port of the Redis master that Sentinel will monitor.",
                             })))),
                           sentinelMasterQuorum: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$35,
+                              [nix.POS]: pos$35,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")));
@@ -390,32 +390,32 @@ export default nix.lambda((args) => (() => {
                               description: "The Sentinel quorum (minimum number of Sentinel nodes online for failover)",
                             })))),
                           appendOnly: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$36,
+                              [nix.POS]: pos$36,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                               default: false,
                               description: "By default data is only periodically persisted to disk, enable this option to use an append-only file for improved persistence.",
                             })))),
                           appendFsync: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$37,
+                              [nix.POS]: pos$37,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                               default: "everysec",
                               description: "How often to fsync the append-only log, options: no, always, everysec.",
                             })))),
                           slowLogLogSlowerThan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$38,
+                              [nix.POS]: pos$38,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               default: 10000n,
                               description: "Log queries whose execution take longer than X in milliseconds.",
                               example: 1000n,
                             })))),
                           slowLogMaxLen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$39,
+                              [nix.POS]: pos$39,
                               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                               default: 128n,
                               description: "Maximum number of items to keep in slow log.",
                             })))),
                           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$40,
+                              [nix.POS]: pos$40,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -431,10 +431,10 @@ export default nix.lambda((args) => (() => {
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$48,
+                          [nix.POS]: pos$48,
                           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$42,
+                                [nix.POS]: pos$42,
                                 port: nix.thunk(() => nix.attr(config_1, "port")),
                                 logfile: nix.thunk(() => nix.attr(config_1, "logfile")),
                                 databases: nix.thunk(() => nix.attr(config_1, "databases")),
@@ -451,22 +451,22 @@ export default nix.lambda((args) => (() => {
                                 "slowlog-log-slower-than": nix.thunk(() => nix.sel(config_1, "slowLogLogSlowerThan")),
                                 "slowlog-max-len": nix.thunk(() => nix.sel(config_1, "slowLogMaxLen")),
                               })),
-                              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "bind"), null)), nix.thunk(() => ({ __proto__: pos$43, bind: nix.thunk(() => nix.attr(config_1, "bind")) })))),
+                              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "bind"), null)), nix.thunk(() => ({ [nix.POS]: pos$43, bind: nix.thunk(() => nix.attr(config_1, "bind")) })))),
                               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "unixSocket"), null)), nix.thunk(() => ({
-                                  __proto__: pos$44,
+                                  [nix.POS]: pos$44,
                                   unixsocket: nix.thunk(() => nix.sel(config_1, "unixSocket")),
                                   unixsocketperm: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config_1, "unixSocketPerm")))),
                                 })))),
                               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "slaveOf"), null)), nix.thunk(() => ({
-                                  __proto__: pos$45,
+                                  [nix.POS]: pos$45,
                                   slaveof: nix.thunk(() => nix.str`${nix.sel(config_1, "slaveOf", "ip")} ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config_1, "slaveOf", "port")))}`),
                                 })))),
                               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "masterAuth"), null)), nix.thunk(() => ({
-                                  __proto__: pos$46,
+                                  [nix.POS]: pos$46,
                                   masterauth: nix.thunk(() => nix.sel(config_1, "masterAuth")),
                                 })))),
                               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "requirePass"), null)), nix.thunk(() => ({
-                                  __proto__: pos$47,
+                                  [nix.POS]: pos$47,
                                   requirepass: nix.thunk(() => nix.sel(config_1, "requirePass")),
                                 })))),
                             ]))),
@@ -481,24 +481,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(enabledServers, {})), nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (conf) => [
               nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(conf, "requirePass"), null)) || nix.asBool(nix.eq(nix.sel(conf, "requirePassFile"), null)))),
                 message: nix.thunk(() => nix.str`You can only set one of services.redis.servers.${name}.requirePass
 or services.redis.servers.${name}.requirePassFile
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(conf, "masterAuth"), null)) || nix.asBool(nix.eq(nix.sel(conf, "masterAuthFile"), null)))),
                 message: nix.thunk(() => nix.str`You can only set one of services.redis.servers.${name}.masterAuth
 or services.redis.servers.${name}.masterAuthFile
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(conf, "masterUser"), null)) || nix.asBool((nix.asBool(!nix.eq(nix.sel(conf, "masterAuth"), null)) || nix.asBool(!nix.eq(nix.sel(conf, "masterAuthFile"), null)))))),
                 message: nix.thunk(() => nix.str`If using services.redis.servers.${name}.masterUser, either
 services.redis.servers.${name}.masterAuthFile or
@@ -506,7 +506,7 @@ services.redis.servers.${name}.masterAuth must be provided
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(conf, "sentinelMasterName"), null)) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(conf, "sentinelMasterHost"), null)) && nix.asBool(!nix.eq(nix.sel(conf, "sentinelMasterPort"), null)))) && nix.asBool(!nix.eq(nix.sel(conf, "sentinelMasterQuorum"), null)))))),
                 message: nix.thunk(() => nix.str`For Sentinel,
 services.redis.servers.${name}.sentinelMasterName,
@@ -517,7 +517,7 @@ must all be provided
 `),
               })),
               nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(conf, "sentinelAuthPassFile"), null)) || nix.asBool(!nix.eq(nix.sel(conf, "sentinelMasterName"), null)))),
                 message: nix.thunk(() => nix.str`For Sentinel authentication, services.redis.servers.${name}.sentinelMasterName,
 must be provided
@@ -525,27 +525,27 @@ must be provided
               })),
             ], enabledServers)))),
         boot: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           kernel: nix.thunk(() => ({
-            __proto__: pos$60,
-            sysctl: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "vmOverCommit")), nix.thunk(() => ({ __proto__: pos$59, "vm.overcommit_memory": "1" })))),
+            [nix.POS]: pos$60,
+            sysctl: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "vmOverCommit")), nix.thunk(() => ({ [nix.POS]: pos$59, "vm.overcommit_memory": "1" })))),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$63,
+          [nix.POS]: pos$63,
           firewall: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (conf) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(conf, "openFirewall")), nix.thunk(() => nix.sel(conf, "port"))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), enabledServers)))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$66,
+          [nix.POS]: pos$66,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(redisName, name)), nix.thunk(() => ({
-                __proto__: pos$65,
+                [nix.POS]: pos$65,
                 description: nix.thunk(() => nix.str`System user for the redis-server instance ${name}`),
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(conf, "group")),
@@ -553,14 +553,14 @@ must be provided
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(redisName, name)), nix.thunk(() => ({}))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (conf) => nix.eq(nix.sel(conf, "group"), nix.app(redisName, name)), enabledServers)))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(redisName, name)), nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 description: nix.thunk(() => nix.str`Redis Server - ${nix.app(redisName, name)}`),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/${nix.selOr(cfg, () => "redis-server", "package", "serverBin")} /var/lib/${nix.app(redisName, name)}/redis.conf ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(conf, "extraParams")))}`),
                   ExecStartPre: nix.thunk(() => nix.add("+", nix.app(nix.sel(pkgs, "writeShellScript"), nix.thunk(() => nix.str`${nix.app(redisName, name)}-prep-conf`), nix.thunk(() => (() => {
                       const redisConfVar = nix.thunk(() => nix.str`/var/lib/${nix.app(redisName, name)}/redis.conf`);

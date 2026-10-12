@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-secret",
       version: "0.5.0-unstable-2024-12-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "git-secret",
           owner: "sobolevn",
           rev: "fdc5e755b34569b0ad3d84a85e611afbb86c4db5",
@@ -44,7 +44,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bash-tool to store your private data inside a git repository",
         homepage: "https://sobolevn.me/git-secret/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

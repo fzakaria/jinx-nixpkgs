@@ -32,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const withDebug = nix.argOr($, "withDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "opengamepadui",
       version: "0.46.0",
       buildType: nix.thunk(() => (nix.asBool(withDebug) ? "debug" : "release")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ShadowBlip",
           repo: "OpenGamepadUI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4WRaf5PLgeVBoaO3YmEOSuZqP2S8uMLomwTiNRT9Weg=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-aykBD6cyhLL3I2oCrxXEFotmULrhOlte9zNON9liQx4=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       env: nix.thunk(() => (() => {
         const versionAndRelease = nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(godot_4_6, "version"))));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           GODOT: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), godot_4_6)),
           GODOT_VERSION: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionAndRelease, 0n)),
           GODOT_RELEASE: nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionAndRelease, 1n)),
@@ -80,11 +80,11 @@ patchelf --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), runtimeDependenc
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source gamepad-native game launcher and overlay",
         homepage: "https://github.com/ShadowBlip/OpenGamepadUI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

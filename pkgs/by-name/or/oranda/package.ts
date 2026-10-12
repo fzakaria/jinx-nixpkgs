@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const oniguruma = nix.arg($, "oniguruma");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "oranda",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axodotdev",
           repo: "oranda",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [oniguruma]),
       checkFlags: nix.thunk(() => ["--skip=build", "--skip=integration"]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTONIG_SYSTEM_LIBONIG: true,
         ORANDA_USE_TAILWIND_BINARY: true,
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, OPENSSL_CONF: "" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_CONF: "" }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generate beautiful landing pages for your developer tools",
         homepage: "https://github.com/axodotdev/oranda",
         changelog: nix.thunk(() => nix.str`https://github.com/axodotdev/oranda/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

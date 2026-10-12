@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "coolercontrol",
         version: version,
         src: src,
@@ -38,7 +38,7 @@ install -Dm644 "${src}/packaging/metadata/org.coolercontrol.CoolerControl-symbol
 install -Dm644 "${src}/packaging/metadata/org.coolercontrol.CoolerControl-alert-symbolic.svg" -t "$out/share/icons/hicolor/symbolic/apps/"
 `),
         meta: nix.thunk(() => nix.update(meta, {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: nix.thunk(() => nix.str`${nix.sel(meta, "description")} (GUI)`),
           mainProgram: "coolercontrol",
         })),

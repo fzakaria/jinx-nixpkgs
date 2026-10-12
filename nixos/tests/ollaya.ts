@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const port = 11435n;
   const apiKey = "ollaya-test-key";
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "ollaya",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             ollaya: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               port: port,
-              settings: nix.thunk(() => ({ __proto__: pos$2, OLLAYA_API_KEY: apiKey })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$2, OLLAYA_API_KEY: apiKey })),
             })),
           })),
         };

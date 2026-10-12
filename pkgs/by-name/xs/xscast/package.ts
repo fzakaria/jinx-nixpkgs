@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xmodmap = nix.arg($, "xmodmap");
   const xinput = nix.arg($, "xinput");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xscast-unstable",
       version: "2016-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tckmn",
           repo: "xscast",
           rev: "9e6fd3c28d3f5ae630619f6dbccaf1f6ca594b21",
@@ -43,7 +43,7 @@ wrapProgram "$out/bin/xscast" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tckmn/xscast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Screencasts of windows with list of keystrokes overlaid",

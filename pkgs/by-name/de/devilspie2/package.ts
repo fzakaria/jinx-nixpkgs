@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lua5_5 = nix.arg($, "lua5_5");
   const libwnck = nix.arg($, "libwnck");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "devilspie2",
       version: "0.45",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dsalt",
           repo: "devilspie2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, lua5_5, libwnck]),
       installPhase: "mkdir -p $out/bin $out/share/man/man1\ncp bin/devilspie2 $out/bin\ncp devilspie2.1 $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Window matching utility",
         longDescription: "Devilspie2 is a window matching utility, allowing the user to\nperform scripted actions on windows as they are created. For\nexample you can script a terminal program to always be\npositioned at a specific screen position, or position a window\non a specific workspace.\n",
         homepage: "https://www.nongnu.org/devilspie2/",

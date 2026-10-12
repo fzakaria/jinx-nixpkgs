@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "livebook-service",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             livebook: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enableUserService: true,
-              environment: nix.thunk(() => ({ __proto__: pos$1, LIVEBOOK_PORT: 20123n })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$1, LIVEBOOK_PORT: 20123n })),
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "livebook.env", "LIVEBOOK_PASSWORD = \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n")),
             })),
           })),

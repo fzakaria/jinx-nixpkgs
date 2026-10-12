@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const searchNixProfiles = nix.argOr($, "searchNixProfiles", () => true);
   const devaMapsSource = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "aspell-u-deva",
       url: "https://ftp.gnu.org/gnu/aspell/dict/mr/aspell6-mr-0.10-0.tar.bz2",
       sha256: "1v8cdl8x2j1d4vbvsq1xrqys69bbccd6mi03fywrhkrrljviyri1",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "aspell";
       const version = "0.60.8.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnu/aspell/aspell-${version}.tar.gz`),
           hash: "sha256-V/5IY+rmBI9yJFqFdbRLcY+4XKFLn4wK/EGyVN/XaRk=",
         }))));
@@ -47,10 +47,10 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`cp ${devaMapsSource}/u-deva.{cmap,cset} $out/lib/aspell/
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          "uses-curses": nix.thunk(() => nix.app(runCommand, "aspell-curses", nix.thunk(() => ({ __proto__: pos$3, buildInputs: nix.thunk(() => [glibc]) })), nix.thunk(() => nix.str`if ! ldd ${aspell}/bin/aspell | grep -q ${ncurses}
+          [nix.POS]: pos$4,
+          "uses-curses": nix.thunk(() => nix.app(runCommand, "aspell-curses", nix.thunk(() => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [glibc]) })), nix.thunk(() => nix.str`if ! ldd ${aspell}/bin/aspell | grep -q ${ncurses}
 then
   echo "Test failure: It does not look like aspell picked up the curses dependency."
   exit 1
@@ -60,7 +60,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Spell checker for many languages",
         homepage: "http://aspell.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -71,7 +71,7 @@ touch $out
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

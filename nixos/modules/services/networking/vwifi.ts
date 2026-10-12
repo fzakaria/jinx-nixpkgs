@@ -61,14 +61,14 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "vwifi"));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         vwifi: nix.thunk(() => (() => {
           const mkOptionalPort = (name) => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: nix.thunk(() => nix.str`The ${name} port. Set to null if we should leave it unset.
 `),
               type: nix.thunk(() => (() => {
@@ -78,30 +78,30 @@ export default nix.lambda((args) => (() => {
               default: null,
             })));
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "vwifi", nix.thunk(() => ({})))),
             module: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(mkEnableOption, "mac80211_hwsim module")),
               numRadios: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   description: "The number of virtual radio interfaces to create.",
                   type: nix.thunk(() => nix.sel(types, "int")),
                   default: 1n,
                 })))),
               macPrefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   description: "The prefix for MAC addresses to use, without the trailing ':'.\nIf one radio is created, you can specify the whole MAC address here.\nThe default is defined in vwifi/src/config.h.\n",
                   type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^(([0-9A-Fa-f]{2}:){0,5}[0-9A-Fa-f]{2})$")),
                   default: "74:F8:F6",
                 })))),
             })),
             client: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(mkEnableOption, "vwifi client")),
               spy: nix.thunk(() => nix.app(mkEnableOption, "spy mode, useful for wireless monitors")),
               serverAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   description: "The address of the server. If set to null, will try to use the vsock protocol.\nNote that this assumes that the server is spawned on the host and passed through to\nQEMU, with something like:\n\n-device vhost-vsock-pci,id=vwifi0,guest-cid=42\n",
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               serverPort: nix.thunk(() => nix.app(mkOptionalPort, "server port")),
               extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: "Extra arguments to pass to vwifi-client. You can use this if you want to bring\nthe radios up using vwifi-client instead of at boot.\n",
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
@@ -122,14 +122,14 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             server: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: nix.thunk(() => nix.app(mkEnableOption, "vwifi server")),
               vsock: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: nix.thunk(() => nix.app(mkEnableOption, "vsock kernel module")),
               })),
               ports: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 vhost: nix.thunk(() => nix.app(mkOptionalPort, "vhost")),
                 tcp: nix.thunk(() => nix.app(mkOptionalPort, "TCP server")),
                 spy: nix.thunk(() => nix.app(mkOptionalPort, "spy interface")),
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
               })),
               openFirewall: nix.thunk(() => nix.app(mkEnableOption, "opening the firewall for the TCP and spy ports")),
               extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   description: "Extra arguments to pass to vwifi-server. You can use this for things including\nchanging the ports or inducing packet loss.\n",
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
@@ -153,22 +153,22 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "module", "enable")), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             boot: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               kernelModules: nix.thunk(() => ["mac80211_hwsim"]),
               extraModprobeConfig: "# We'll add more radios using vwifi-add-interfaces in the systemd unit.\noptions mac80211_hwsim radios=0\n",
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               services: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 "vwifi-add-interfaces": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.gt(nix.sel(cfg, "module", "numRadios"), 0n)), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     description: "vwifi interface bringup",
                     wantedBy: nix.thunk(() => ["network-pre.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       Type: "oneshot",
                       ExecStart: nix.thunk(() => (() => {
                         const args_1 = nix.thunk(() => [
@@ -183,18 +183,18 @@ export default nix.lambda((args) => (() => {
             })),
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 assertion: nix.thunk(() => !nix.asBool(nix.app(hasSuffix, ":", nix.thunk(() => nix.sel(cfg, "module", "macPrefix"))))),
                 message: "services.vwifi.module.macPrefix should not have a trailing \":\".\n",
               })),
             ]),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             systemd: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 "vwifi-client": nix.thunk(() => (() => {
                   const clientArgs = nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "client", "spy")), "--spy"), nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "client", "serverAddress"), null)), nix.thunk(() => nix.sel(cfg, "client", "serverAddress"))), nix.concat(nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "client", "serverPort"), null)), nix.thunk(() => ["--port", nix.thunk(() => nix.sel(cfg, "client", "serverPort"))])), nix.sel(cfg, "client", "extraArgs")))));
                   return (() => {
@@ -203,32 +203,32 @@ export default nix.lambda((args) => (() => {
                     const after = nix.thunk(() => ["network.target"]);
                     const requires = after;
                     const serviceConfig = nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vwifi-client ${nix.app(escapeShellArgs, clientArgs)}`),
                     }));
-                    return { __proto__: pos$23, description, wantedBy, after, requires, serviceConfig };
+                    return { [nix.POS]: pos$23, description, wantedBy, after, requires, serviceConfig };
                   })();
                 })()),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             boot: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               kernelModules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "vsock", "enable")), nix.thunk(() => ["vhost_vsock"]))),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               firewall: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "openFirewall")), nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "ports", "tcp"), null)), nix.thunk(() => nix.sel(cfg, "server", "ports", "tcp"))), nix.app(optional, nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "ports", "spy"), null)), nix.thunk(() => nix.sel(cfg, "server", "ports", "spy"))))))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               services: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 "vwifi-server": nix.thunk(() => (() => {
                   const serverArgs = nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => !nix.eq(nix.sel(cfg, "server", "ports", "vhost"), null)), nix.thunk(() => [
                       "--port-vhost",
@@ -249,10 +249,10 @@ export default nix.lambda((args) => (() => {
                     const after = nix.thunk(() => ["network.target"]);
                     const requires = after;
                     const serviceConfig = nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/vwifi-server ${nix.app(escapeShellArgs, serverArgs)}`),
                     }));
-                    return { __proto__: pos$31, description, wantedBy, after, requires, serviceConfig };
+                    return { [nix.POS]: pos$31, description, wantedBy, after, requires, serviceConfig };
                   })();
                 })()),
               })),
@@ -260,7 +260,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "numinit"))];

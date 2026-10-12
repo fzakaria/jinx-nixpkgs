@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_cuxxfilt",
       outputs: nix.thunk(() => ["out", "bin", "dev", "include", "static"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Decode low-level identifiers that have been mangled by CUDA C++ into user readable names",
         longDescription: "cu++filt decodes (demangles) low-level identifiers that have been mangled by CUDA C++ into user readable names.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-binary-utilities#cu-filt",

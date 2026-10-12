@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), resolvedRuntimeDependencies));
   const runtimeProgramPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), resolvedRuntimePrograms));
   return nix.app(runCommand, nix.thunk(() => nix.str`fastfetch-${nix.sel(unwrapped, "version")}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastfetch",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       strictDeps: true,
@@ -76,14 +76,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(unwrapped, "passthru")), nix.thunk(() => ["updateScript"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unwrapped: unwrapped,
         runtimeDependencies: resolvedRuntimeDependencies,
         runtimePrograms: resolvedRuntimePrograms,
         minimal: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`fastfetch.minimal` has been renamed to `fastfetch-unwrapped`", unwrapped)),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(unwrapped, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         priority: nix.thunk(() => nix.sub(nix.selOr(unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         longDescription: "Fast and highly customizable system info script.\n\nThis wrapped package makes optional runtime libraries available to the\nfull-featured fastfetch-unwrapped binary.\n",
       })),

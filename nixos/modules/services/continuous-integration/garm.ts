@@ -44,49 +44,49 @@ export default nix.lambda((args) => (() => {
   const defaultPort = 9997n;
   const capabilities = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.lt(nix.sel(cfg, "settings", "apiserver", "port"), 1024n)), "CAP_NET_BIND_SERVICE"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         garm: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GARM, a self-hosted runner manager for GitHub Actions and Gitea Actions")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "garm", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     apiserver: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "127.0.0.1",
                           description: "Address the API server binds to. Runner instances fetch their\nmetadata from it and report back to it, so it has to be reachable\nfrom wherever the provider creates them.\n",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: defaultPort,
                           description: "Port the API server listens on.",
                         })))),
                     })),
                     database: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "sqlite3",
                           description: "Database backend to use.",
                         })))),
                       sqlite3: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         db_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: "/var/lib/garm/garm.db",
                             description: "Location of the SQLite database.",
@@ -94,9 +94,9 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     jwt_auth: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       time_to_live: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "8760h",
                           description: "Lifetime of the tokens issued to runner instances.",
@@ -112,29 +112,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => nix.has(nix.sel(cfg, "settings", "jwt_auth"), "secret")),
             message: "services.garm.settings.jwt_auth.secret must be set.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => nix.has(nix.sel(cfg, "settings", "database"), "passphrase")),
             message: "services.garm.settings.database.passphrase must be set.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             garm: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "GitHub Actions Runner Manager (garm)",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -150,7 +150,7 @@ rm "$RUNTIME_DIRECTORY/secret"
 `;
                 })(), secretPaths))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -config %t/garm/config.toml`),
                 DynamicUser: true,
                 StateDirectory: "garm",
@@ -183,7 +183,7 @@ rm "$RUNTIME_DIRECTORY/secret"
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       doc: nix.path(here, "./garm.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

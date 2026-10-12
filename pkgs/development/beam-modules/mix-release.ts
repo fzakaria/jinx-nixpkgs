@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const mixNixDepsSetupHook = nix.arg($, "mixNixDepsSetupHook");
   const mixReleaseSetupHook = nix.arg($, "mixReleaseSetupHook");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["compileFlags", "erlangCompilerOptions"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_((!nix.asBool(stripDebug) || nix.asBool(!nix.asBool(enableDebugInfo))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/beam-modules/mix-release.nix:105:5");
         nix.assert_((!nix.asBool(!nix.eq(escriptBinName, null)) || nix.asBool(nix.eq(mixReleaseName, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/beam-modules/mix-release.nix:106:5");
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, nix.concat([
             erlang,
             elixir,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
           strictDeps: true,
           __darwinAllowLocalNetworking: true,
           env: nix.thunk(() => nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             MIX_ENV: mixEnv,
             MIX_TARGET: mixTarget,
             MIX_BUILD_PREFIX: nix.thunk(() => nix.add((nix.asBool(nix.eq(mixTarget, "host")) ? "" : nix.str`${mixTarget}_`), nix.str`${mixEnv}`)),

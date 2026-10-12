@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "immichframe",
       version: "1.0.37.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "immichFrame",
           repo: "immichFrame",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nodejs]),
       npmRoot: "immichFrame.Web",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/${nix.sel(finalAttrs, "npmRoot")}`),
           hash: "sha256-RyMY5ooC6Q+W+Y24ILv+WCcWLMDToZ52yefFuoAYubY=",
         })))),
@@ -52,15 +52,15 @@ popd
         nix.thunk(() => nix.str`--chdir ${nix.builtins.placeholder("out")}/lib/immichframe`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           immichframe: nix.thunk(() => nix.attr(nixosTests, "immichframe")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/immichFrame/ImmichFrame/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Display your photos from Immich as a digital photo frame",
         homepage: "https://immichframe.dev",

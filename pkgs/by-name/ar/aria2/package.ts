@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aria2",
       version: "1.37.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aria2",
           repo: "aria2",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, aria2: nix.thunk(() => nix.sel(nixosTests, "aria2")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, aria2: nix.thunk(() => nix.sel(nixosTests, "aria2")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://aria2.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/aria2/aria2/releases/tag/release-${nix.sel(finalAttrs, "version")}`),
         description: "Lightweight, multi-protocol, multi-source, command-line download utility",

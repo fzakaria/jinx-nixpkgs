@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "818aa57667693810415dc203ba3f75f1541e931a8dc30b6e8b21563541a70388",
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [scipy, h5py, pillow, tensorflow]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Deep learning library featuring a higher-level API for TensorFlow",
         homepage: "https://github.com/tflearn/tflearn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

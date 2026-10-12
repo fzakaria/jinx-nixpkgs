@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`mkdir -p $out/bin
 cp ${name} $out/bin/${name}
 `);
-      const meta = nix.thunk(() => ({ __proto__: pos$1, mainProgram: name }));
+      const meta = nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: name }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name,
         version,
         src,

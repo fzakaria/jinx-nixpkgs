@@ -18,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const libredirect = nix.arg($, "libredirect");
   const sources = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/CordyJ/Open-TuringPlus/releases/download/v6.2.1/opentplus-62-linux64.tar.gz",
       sha256: "sha256-FoOlOcRWpStg4aerjr+FmcXXnwYftrqG1j4iZJ+4AzE=",
     })),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`/bin/rm=${coreutils}/bin/rm`),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "turingplus-bootstrap",
       version: "6.2.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.sel(sources, nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`))))),
@@ -57,7 +57,7 @@ wrapProgram $out/bin/tssl \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extended version of the Turing programming language with concurrency and systems programming features",
         mainProgram: "tpc",
         platforms: nix.thunk(() => ["x86_64-linux"]),

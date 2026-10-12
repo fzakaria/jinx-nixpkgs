@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garbled1",
           repo: "pybalboa",
           rev: "6aa7e3c401ab03b93c083acdf430afb708e20e9b",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_cancel_task"]);
       const pythonImportsCheck = nix.thunk(() => ["pybalboa"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to communicate with a Balboa spa wifi adapter",
         homepage: "https://github.com/garbled1/pybalboa",
         changelog: nix.thunk(() => nix.str`https://github.com/garbled1/pybalboa/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

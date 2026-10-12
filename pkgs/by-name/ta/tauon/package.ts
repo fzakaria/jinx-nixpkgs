@@ -41,20 +41,20 @@ export default nix.lambda((args) => (() => {
   const withDiscordRPC = nix.argOr($, "withDiscordRPC", () => true);
   const version = "12.1.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Taiko2k",
       repo: "Tauon",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Fy7NGZOUsrqgaIXUHqoNgK3A2OxnbFwJZfJDERsP6KA=",
     }))));
   const lrclib_solver = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lrclib-solver",
       version: version,
       src: nix.thunk(() => nix.str`${src}/src/lrclib-solver`),
       cargoHash: "sha256-uNEf0d462W9mJHGLeAE/aLjpyzKT5orKZ7BYQ+53msY=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "lrclib-solver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tauon",
       pyproject: true,
       version: version,
@@ -154,9 +154,9 @@ mkdir -p $out/share/icons/hicolor/scalable/apps
 install -Dm644 extra/tauonmb{,-symbolic}.svg $out/share/icons/hicolor/scalable/apps
 ln -s ${nix.app(nix.sel(lib, "getExe"), lrclib_solver)} $out/${nix.sel(python3Packages, "python", "sitePackages")}/tauon/lrclib-solver
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, "lrclib-solver": lrclib_solver })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "lrclib-solver": lrclib_solver })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Linux desktop music player from the future",
         mainProgram: "tauon",
         homepage: "https://tauonmusicbox.rocks/",

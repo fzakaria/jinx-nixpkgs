@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "newlisp",
       version: "10.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.newlisp.org/downloads/newlisp-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-3C0P9lHCsnW8SvOvi6WYUab7bh6t3CCudftgsekBJuw=",
         })))),
       buildInputs: nix.thunk(() => [libffi, readline]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       configureScript: "./configure-alt",
       doCheck: true,
       checkTarget: "testall",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lisp-like, general-purpose scripting language",
         longDescription: "newLISP is a Lisp-like, general-purpose scripting language. It is\nespecially well-suited for applications in AI, simulation, natural\nlanguage processing, big data, machine learning and statistics. Because\nof its small resource requirements, newLISP is excellent for embedded\nsystems applications. Most of the functions you will ever need are\nalready built in. This includes networking functions, support for\ndistributed and multicore processing, and Bayesian statistics.\n",
         homepage: "https://www.newlisp.org/",

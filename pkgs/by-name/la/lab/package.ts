@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const git = nix.arg($, "git");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lab",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zaquestion",
           repo: "lab",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ wrapProgram $out/bin/lab \\
   --suffix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, xdg_utils]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wraps Git or Hub, making it simple to clone, fork, and interact with repositories on GitLab",
         homepage: "https://zaquestion.github.io/lab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

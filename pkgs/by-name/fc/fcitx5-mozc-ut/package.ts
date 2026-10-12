@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fcitx5_mozc = nix.arg($, "fcitx5-mozc");
   const mozc_ut = nix.arg($, "mozc-ut");
-  return nix.app(nix.sel(fcitx5_mozc, "override"), nix.thunk(() => ({ __proto__: pos$1, mozc: mozc_ut })));
+  return nix.app(nix.sel(fcitx5_mozc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mozc: mozc_ut })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

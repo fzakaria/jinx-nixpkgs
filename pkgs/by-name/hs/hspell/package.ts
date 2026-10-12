@@ -19,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = nix.thunk(() => nix.str`${nix.sel(passthru, "pname")}-${nix.sel(passthru, "version")}`);
-      const passthru = nix.thunk(() => ({ __proto__: pos$1, pname: "hspell", version: "1.4" }));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PERL_USE_UNSAFE_INC: "1" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, pname: "hspell", version: "1.4" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PERL_USE_UNSAFE_INC: "1" }));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}${name}.tar.gz`),
           hash: "sha256-cxD11YdA0h1tIVwReWWGAu99qXqBa8FJfIdkvpeqvqM=",
         }))));
@@ -43,14 +43,14 @@ substituteInPlace Makefile --replace "STRIP=strip" "STRIP=${nix.app(nix.sel(lib,
       const strictDeps = true;
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Hebrew spell checker",
         homepage: "http://hspell.ivrix.org.il/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name,
         passthru,
         env,

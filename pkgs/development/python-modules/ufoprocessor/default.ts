@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-/TjTzDWblBcbqNP9weTe/eIgas70+X11tIUDu4rAOwE=",
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat([defcon, fontmath, fontparts, fonttools, mutatormath], nix.concat(nix.sel(defcon, "optional-dependencies", "lxml"), nix.concat(nix.sel(fonttools, "optional-dependencies", "lxml"), nix.sel(fonttools, "optional-dependencies", "ufo")))));
       const checkPhase = "runHook preCheck\nfor t in Tests/*.py; do\n  python \"$t\"\ndone\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read, write and generate UFOs with designspace data",
         homepage: "https://github.com/LettError/ufoProcessor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

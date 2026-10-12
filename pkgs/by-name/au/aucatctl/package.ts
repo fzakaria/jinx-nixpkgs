@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const sndio = nix.arg($, "sndio");
   const libbsd = nix.arg($, "libbsd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aucatctl",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.sndio.org/aucatctl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "524f2fae47db785234f166551520d9605b9a27551ca438bd807e3509ce246cf0",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       preBuild: nix.thunk(() => nix.add("makeFlagsArray+=(\"PREFIX=$out\")\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD"))))), "makeFlagsArray+=(LDADD=\"-lsndio -lbsd\")\n\n# Fix warning about implicit declaration of function 'strlcpy'\nsubstituteInPlace aucatctl.c \\\n  --replace '#include <string.h>' '#include <bsd/string.h>'\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility that allows to send MIDI messages to control sndiod and/or aucat volumes",
         homepage: "http://www.sndio.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

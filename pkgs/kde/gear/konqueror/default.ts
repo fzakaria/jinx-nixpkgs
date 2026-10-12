@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtwebengine = nix.arg($, "qtwebengine");
   const hunspell = nix.arg($, "hunspell");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "konqueror",
       extraNativeBuildInputs: nix.thunk(() => [hunspell]),
       extraBuildInputs: nix.thunk(() => [qtwebengine]),

@@ -38,38 +38,38 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const meta = nix.argOr($_1, "meta", () => ({}));
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       variant: variant,
       patches: patches,
       src: nix.thunk(() => nix.sel({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainline: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://https.git.savannah.gnu.org/git/emacs.git",
             rev: rev,
             hash: hash,
           })))),
-        macport: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ __proto__: pos$2, owner: "jdtsmith", repo: "emacs-mac", rev: rev, hash: hash })))),
+        macport: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$2, owner: "jdtsmith", repo: "emacs-mac", rev: rev, hash: hash })))),
       }, nix.key(nix.force(variant)))),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: nix.thunk(() => nix.sel({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           mainline: "https://www.gnu.org/software/emacs/",
           macport: "https://github.com/jdtsmith/emacs-mac",
         }, nix.key(nix.force(variant)))),
         description: nix.thunk(() => nix.add("Extensible, customizable GNU text editor", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(variant, "macport")), " - macport variant"))),
         longDescription: nix.thunk(() => nix.add("GNU Emacs is an extensible, customizable text editor—and more. At its core\nis an interpreter for Emacs Lisp, a dialect of the Lisp programming\nlanguage with extensions to support text editing.\n\nThe features of GNU Emacs include: content-sensitive editing modes,\nincluding syntax coloring, for a wide variety of file types including\nplain text, source code, and HTML; complete built-in documentation,\nincluding a tutorial for new users; full Unicode support for nearly all\nhuman languages and their scripts; highly customizable, using Emacs Lisp\ncode or a graphical interface; a large number of extensions that add other\nfunctionality, including a project planner, mail and news reader, debugger\ninterface, calendar, and more. Many of these extensions are distributed\nwith GNU Emacs; others are available separately.\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(variant, "macport")), "\nThis release initially was built from Mitsuharu Yamamoto's patched source code\ntailored for macOS. Moved to a fork of the latter starting with emacs v30 as the\noriginal project seems to be currently dormant.\n"))),
         changelog: nix.thunk(() => nix.sel({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           mainline: nix.thunk(() => nix.str`https://cgit.git.savannah.gnu.org/cgit/emacs.git/plain/etc/NEWS?h=${rev}`),
           macport: nix.thunk(() => nix.str`https://github.com/jdtsmith/emacs-mac/blob/${rev}/NEWS-mac`),
         }, nix.key(nix.force(variant)))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => nix.sel({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           mainline: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }, nix.key(nix.force(variant)))),
         platforms: nix.thunk(() => nix.sel({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           mainline: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           macport: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         }, nix.key(nix.force(variant)))),
@@ -95,9 +95,9 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     emacs31: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-emacs.nix")), nix.thunk(() => nix.app(mkArgs, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           pname: "emacs",
           version: "31.1",
           variant: "mainline",
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-lFT5Vt49G17t/fRm5yppO5p9ui10I9JNJVaGO1GPZFI=",
           patches: (fetchpatch) => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 name: "CVE-2024-53920.patch",
                 url: "https://cgit.git.savannah.gnu.org/cgit/emacs.git/patch/?id=abc802ee2eb0b1663349ddf22a461f8e54a383fb",
                 hash: "sha256-ViRD4E27WDs7lLO6YPNroMo3Zq5/ASqMlmNtVI1V/Lo=",
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
           ],
         })))))),
     "emacs30-macport": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-emacs.nix")), nix.thunk(() => nix.app(mkArgs, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           pname: "emacs-mac",
           version: "30.2.50",
           variant: "macport",
@@ -121,29 +121,29 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-KFgQZBW0QRX0k4k8gkVuGhNTfxArOH1+rwUzsmyEuss=",
           patches: (fetchpatch) => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 url: "https://gitweb.gentoo.org/proj/emacs-patches.git/plain/emacs/30.2/01_all_treesit-0.26.patch?id=d0f47979806d9be5a190fdb4ffa1bde439b2d616",
                 hash: "sha256-3pWeRxjAhr3ntBR3xDhoDUZDjU6xICU23NUpb/Vl6R4=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 url: "https://gitweb.gentoo.org/proj/emacs-patches.git/plain/emacs/30.2/02_all_ts-query-pred.patch?id=86190bf195b3e17108372d8ad89eb57037180dd2",
                 hash: "sha256-0GPyfKLSaB09a8hamrSf6lx4Qk8Big4AKMOivkN1wEM=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 name: "nullify-read-symbol-shorthands-around-risky-intern-calls-80574.patch",
                 url: "https://cgit.git.savannah.gnu.org/cgit/emacs.git/patch/?id=8466eb44991707d128110bdc549fad14c8e1d61e",
                 hash: "sha256-SyRCay2MahCJovtzBHA9M1H9hXhtD5IG3ZFSEUwaWlg=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 name: "CVE-2026-79992.patch",
                 url: "https://gitweb.gentoo.org/proj/emacs-patches.git/plain/emacs/30.2/05_all_tramp.patch?id=2a6292f81affedcc468c594c60808e652ae87118",
                 hash: "sha256-WMjTscIuOXakuTO2H+w/Hd61V61V6ZrLh9WPMd58l+M=",
               })))),
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 name: "CVE-2024-53920.patch",
                 url: "https://cgit.git.savannah.gnu.org/cgit/emacs.git/patch/?id=abc802ee2eb0b1663349ddf22a461f8e54a383fb",
                 hash: "sha256-ViRD4E27WDs7lLO6YPNroMo3Zq5/ASqMlmNtVI1V/Lo=",

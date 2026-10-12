@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       self: py,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         wtforms: nix.thunk(() => nix.app(nix.sel(super$, "wtforms", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "2.3.1";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pname: "WTForms",
                 version: version,
                 sha256: "sha256-hhoTs65SHWcA2sOydxlwvTVKY7pwQ+zDqCtSiFlqGXI=",
               }))));
             const doCheck = false;
-            return { __proto__: pos$2, version, src, doCheck };
+            return { [nix.POS]: pos$2, version, src, doCheck };
           })())),
       }),
     }))));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: pname,
           version: version,
           hash: "sha256-XFzWD4KAW5jt5BwXZvO0iZdJKpzC6dRkxNLv5N8XUfc=",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       })());
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Self-hosted knowledge repository",
         homepage: "https://archivy.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

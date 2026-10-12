@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hickory-dns",
       version: "0.26.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hickory-dns",
           repo: "hickory-dns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,17 +97,17 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt";
 # skip some doctests that need network
 substituteInPlace crates/resolver/src/lib.rs --replace-fail '//! \`\`\`rust' '//! \`\`\`rust,no_run'
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBSQLITE3_SYS_USE_PKG_CONFIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBSQLITE3_SYS_USE_PKG_CONFIG: 1n })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "hickory-dns": nix.thunk(() => nix.attr(nixosTests, "hickory-dns")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rust based DNS client, server, and resolver",
         homepage: "https://hickory-dns.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/hickory-dns/hickory-dns/releases/tag/v${nix.sel(finalAttrs, "version")}`),

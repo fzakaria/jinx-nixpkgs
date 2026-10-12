@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "evolution",
       version: "3.60.2",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evolution/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evolution-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IYpJ+lBoFV29vTWjDRCi8jfHJGX7HQ4Kp4iJ8DnC7Y8=",
         })))),
@@ -119,16 +119,16 @@ export default nix.lambda((args) => (() => {
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "evolution", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "evolution", versionPolicy: "odd-unstable" })))),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         PKG_CONFIG_CAMEL_1_2_CAMEL_PROVIDERDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/evolution-data-server/camel-providers`),
         PKG_CONFIG_LIBEDATASERVERUI_1_2_UIMODULEDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/evolution-data-server/ui-modules`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/evolution",
         description: "Personal information management application that provides integrated mail, calendaring and address book functionality",
         mainProgram: "evolution",

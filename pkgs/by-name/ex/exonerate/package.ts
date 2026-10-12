@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.4.0",
       pname: "exonerate",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.ebi.ac.uk/pub/software/vertebrategenomics/exonerate/exonerate-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0hj0m9xygiqsdxvbg79wq579kbrx1mdrabi2bzqz2zn9qwfjcjgq",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic tool for sequence alignment",
         homepage: "https://www.ebi.ac.uk/about/vertebrate-genomics/software/exonerate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

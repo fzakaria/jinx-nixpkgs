@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_xdist = nix.arg($, "pytest-xdist");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hankel",
       version: "1.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "steven-murray",
           repo: "hankel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_xdist]),
       disabledTests: nix.thunk(() => ["test_nu0"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Ogata's (2005) method for Hankel transforms",
         homepage: "https://github.com/steven-murray/hankel",
         changelog: nix.thunk(() => nix.str`https://github.com/steven-murray/hankel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

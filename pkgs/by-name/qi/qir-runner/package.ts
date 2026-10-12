@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qir-runner",
       version: "0.9.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qir-alliance",
           repo: "qir-runner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libffi, zlib, libxml2, nix.thunk(() => nix.sel(llvmPackages_20, "llvm"))]),
       cargoHash: "sha256-5hPgDUhPiIrsnGl/HjYJYp/5Ih/2dHg4B+DJ4Ho3uUs=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "QIR bytecode runner to assist with QIR development and validation",
         mainProgram: "qir-runner",
         homepage: "https://qir-alliance.github.io/qir-runner",

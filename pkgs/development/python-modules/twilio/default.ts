@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "twilio",
       version: "9.11.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twilio",
           repo: "twilio-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/cluster/test_webhook.py", "tests/cluster/test_cluster.py"]),
       pythonImportsCheck: nix.thunk(() => ["twilio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Twilio API client and TwiML generator",
         homepage: "https://github.com/twilio/twilio-python/",
         changelog: nix.thunk(() => nix.str`https://github.com/twilio/twilio-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

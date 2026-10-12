@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dnote";
       const version = "0.16.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnote",
           repo: "dnote",
           tag: nix.thunk(() => nix.str`cli-v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "# This is not used and compile error\nrm -rf pkg/e2e\n";
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: version,
           src: src,
           pname: nix.thunk(() => nix.str`${pname}-webui`),
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-yq55iO3Svqbjah9HdWfSicJISNEipxUkNDD1KJ7ZUhY=",
         }))));
       const overrideModAttrs = (oldAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       });
       const npmRoot = "pkg/server/assets";
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         DBHost: "localhost",
         DBPort: "5432",
         DBName: "test_db",
@@ -88,11 +88,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "version";
       const doInstallCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple command line notebook for programmers",
         homepage: "https://www.getdnote.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/dnote/dnote/blob/cli-v${version}/CHANGELOG.md`),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

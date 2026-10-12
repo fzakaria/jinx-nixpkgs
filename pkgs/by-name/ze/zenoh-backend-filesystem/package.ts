@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const rocksdb = nix.arg($, "rocksdb");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zenoh-backend-filesystem",
       version: "1.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eclipse-zenoh",
           repo: "zenoh-backend-filesystem",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [bzip2, zstd]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
         ZSTD_SYS_USE_PKG_CONFIG: true,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backend and Storages for zenoh using the file system",
         homepage: "https://github.com/eclipse-zenoh/zenoh-backend-filesystem",
         license: nix.thunk(() => (() => {

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipu7-camera-bins",
       version: "20260629_1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "ipu7-camera-bins",
           owner: "intel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ for pcfile in $out/lib/pkgconfig/*.pc; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IPU firmware and proprietary image processing libraries",
         homepage: "https://github.com/intel/ipu7-camera-bins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "issl")),

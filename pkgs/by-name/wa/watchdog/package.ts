@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "5.16",
       pname: "watchdog",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/watchdog/watchdog-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ecXsnPvAhlRB8jiTgK+i1j6m/0idNqmzjSqi6UGCydE=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CONFIG_FILENAME:=${nix.builtins.placeholder("out")}/etc/watchdog.conf`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software watchdog for Linux",
         homepage: "https://sourceforge.net/projects/watchdog/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

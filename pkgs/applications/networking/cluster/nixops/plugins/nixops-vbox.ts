@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const nixops = nix.arg($, "nixops");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nixops-vbox",
       version: "1.0.0-unstable-2023-08-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nixops-vbox",
           rev: "baa5f09c9ae9aaf639c95192460ab5dcbe83a883",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nixops]),
       pythonImportsCheck: nix.thunk(() => ["nixopsvbox"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NixOps plugin for VirtualBox VMs",
         homepage: "https://github.com/nix-community/nixops-vbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

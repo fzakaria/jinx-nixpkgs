@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-gjWazCDHVPyyKBjgkOL+pkfkxcETemrdtJhOn7pwirM=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([iso8601, os_service_types, requests, stevedore, typing_extensions], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         betamax: nix.thunk(() => [betamax, pyyaml]),
         kerberos: nix.thunk(() => [requests_kerberos]),
         oauth1: nix.thunk(() => [oauthlib]),
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["keystoneauth1"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Authentication Library for OpenStack Identity",
         homepage: "https://github.com/openstack/keystoneauth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

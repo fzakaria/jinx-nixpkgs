@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unhide = nix.arg($, "unhide");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unhide-gui",
       version: "20240510",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "YJesus",
           repo: "Unhide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ makeWrapper "${nix.sel(python3Packages, "python", "interpreter")}" "$out/bin/unh
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Forensic tool to find hidden processes and TCP/UDP ports by rootkits, LKMs or other hiding technique",
         homepage: "https://github.com/YJesus/Unhide",
         changelog: nix.thunk(() => nix.str`https://github.com/YJesus/Unhide/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

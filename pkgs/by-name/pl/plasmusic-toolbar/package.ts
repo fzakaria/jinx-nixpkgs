@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "plasmusic-toolbar",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ccatterina",
           repo: "plasmusic-toolbar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/share/plasma/plasmoids/plasmusic-toolbar\ncp -r src/* $out/share/plasma/plasmoids/plasmusic-toolbar\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "kwindowsystem", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "KDE Plasma widget that shows currently playing song information and provide playback controls",
         homepage: "https://github.com/ccatterina/plasmusic-toolbar",
         changelog: nix.thunk(() => nix.str`https://github.com/ccatterina/plasmusic-toolbar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

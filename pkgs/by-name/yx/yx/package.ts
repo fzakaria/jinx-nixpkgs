@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yx";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomalok",
           repo: "yx",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./0001-Don-t-strip-binary-when-installing.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/tomalok/yx/-/commit/5747ca40f4b0acb56d67fd29a818734d7b19d61a.patch",
             hash: "sha256-0tNtkq1tZ96Ag5EJfUfDao/QxpRB4Jadop3OPBvhnlo=",
           })))),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libyaml]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: yx,
               command: nix.thunk(() => nix.str`${nix.sel(meta, "mainProgram")} -v`),
               version: nix.thunk(() => nix.str`v${nix.sel(yx, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "YAML Data Extraction Tool",
         homepage: "https://gitlab.com/tomalok/yx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "yx",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

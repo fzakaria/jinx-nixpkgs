@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const withRDPLegacyTLSBackend = nix.argOr($, "withRDPLegacyTLSBackend", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const webUi = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "warpgate-web",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\ncp -R dist $out\nrunHook postInstall\n",
         }))));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "warpgate",
         version: "0.29.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "warp-tech",
             repo: "warpgate",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
           })))),
         cargoHash: "sha256-XmFJf0ntat//tFjjQJOBeEeq9Cvdej9IkCfGcnOI6nE=",
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-version.patch"), nix.thunk(() => ({ __proto__: pos$3, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-version.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
         ]),
-        env: nix.thunk(() => ({ __proto__: pos$4, RUSTC_BOOTSTRAP: true, RUSTFLAGS: "--cfg tokio_unstable" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$4, RUSTC_BOOTSTRAP: true, RUSTFLAGS: "--cfg tokio_unstable" })),
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withRDPLegacyTLSBackend, perl)),
         buildFeatures: nix.thunk(() => nix.concat(["postgres", "mysql", "sqlite"], nix.app(nix.sel(lib, "optional"), withRDPLegacyTLSBackend, "rdp-openssl-tls"))),
         preBuild: nix.thunk(() => nix.str`rm -rf .cargo/
@@ -61,16 +61,16 @@ ln -rs "${webUi}" warpgate-web/dist
 `),
         doCheck: false,
         passthru: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           webUi: webUi,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             warpgate: nix.thunk(() => nix.attr(nixosTests, "warpgate")),
           })),
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["--subpackage=webUi"]) })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage=webUi"]) })))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "Smart SSH, HTTPS, MySQL and Postgres bastion that requires no additional client-side software",
           homepage: "https://warpgate.null.page",
           changelog: nix.thunk(() => nix.str`https://github.com/warp-tech/warpgate/releases/tag/v${nix.sel(finalAttrs, "version")}`),

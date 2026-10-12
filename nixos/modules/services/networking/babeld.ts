@@ -41,30 +41,30 @@ export default nix.lambda((args) => (() => {
 `))), nix.app(nix.sel(lib, "concatMapStrings"), interfaceConfig, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "interfaces")))))), nix.lookup(w, "extraConfig"))));
   })());
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         babeld: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the babeld network routing daemon")),
           interfaceDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: null,
               description: "A set describing default parameters for babeld interfaces.\nSee {manpage}`babeld(8)` for options.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "unspecified")))))),
-              example: nix.thunk(() => ({ __proto__: pos$1, type: "tunnel", "split-horizon": true })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$1, type: "tunnel", "split-horizon": true })),
             })))),
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               description: "A set describing babeld interfaces.\nSee {manpage}`babeld(8)` for options.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "unspecified")))))),
               example: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enp0s2: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: "wired",
                   "hello-interval": 5n,
                   "split-horizon": "auto",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Options that will be copied to babeld.conf.\nSee {manpage}`babeld(8)` for details.\n",
@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "babeld", "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           kernel: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             sysctl: nix.thunk(() => nix.update({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               "net.ipv6.conf.all.forwarding": 1n,
               "net.ipv6.conf.all.accept_redirects": 0n,
               "net.ipv4.conf.all.forwarding": 1n,
@@ -96,16 +96,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             babeld: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Babel routing daemon",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "babeld")}/bin/babeld -c ${configFile} -I /run/babeld/babeld.pid -S /var/lib/babeld/state`),
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN"]),
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_ADMIN"]),

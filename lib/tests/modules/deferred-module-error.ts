@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const evalModules = nix.thunk(() => nix.attr(lib, "evalModules"));
   const deferredModule = nix.thunk(() => nix.attr(types, "deferredModule"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
-      deferred: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, type: deferredModule })))),
+      [nix.POS]: pos$4,
+      deferred: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: deferredModule })))),
       result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           default: nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               modules: nix.thunk(() => [nix.thunk(() => nix.sel(config, "deferred"))]),
             }))), "config", "result")),
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       deferred: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return true;

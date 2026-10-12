@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const runtimePaths = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcursor, libxrandr, libxi, libxkbcommon, vulkan_loader, wayland, libGL])))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "servo",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "servo",
           repo: "servo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -118,7 +118,7 @@ substituteInPlace $cargoDepsCopy/*/cc-1.*/src/lib.rs \\
         zlib,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wayland, libx11, libxcb, udev, vulkan_loader])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         UV_PYTHON: nix.thunk(() => nix.sel(customPython, "interpreter")),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=format-security"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
               nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/include/c++/v1`),
@@ -128,12 +128,12 @@ substituteInPlace $cargoDepsCopy/*/cc-1.*/src/lib.rs \\
   --prefix LD_LIBRARY_PATH : ${runtimePaths}
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, servo: nix.thunk(() => nix.attr(nixosTests, "servo")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, servo: nix.thunk(() => nix.attr(nixosTests, "servo")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/servo/servo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Embeddable, independent, memory-safe, modular, parallel web rendering engine",
         homepage: "https://servo.org",

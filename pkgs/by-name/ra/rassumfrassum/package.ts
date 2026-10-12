@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const ty = nix.arg($, "ty");
   const version = "0.3.4";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rassumfrassum",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joaotavora",
           repo: "rassumfrassum",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [basedpyright, ruff, ty]),
       checkPhase: "test/run-all.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Connect an LSP client to multiple LSP servers",
         homepage: "https://github.com/joaotavora/rassumfrassum",
         changelog: nix.thunk(() => nix.str`https://github.com/joaotavora/rassumfrassum/releases/tag/v${version}`),

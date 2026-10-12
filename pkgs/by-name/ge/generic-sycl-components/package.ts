@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gpuTuningTarget = nix.argOr($, "gpuTuningTarget", () => "DEFAULT");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "gpuTuningTarget", gpuTuningTarget, nix.thunk(() => ["DEFAULT", "INTEL_GPU", "NVIDIA_GPU", "AMD_GPU"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ge/generic-sycl-components/package.nix:12:1");
   return nix.app(nix.sel(intelLlvmStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "generic-sycl-components",
       version: "unstable-2025-08-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uxlfoundation",
           repo: "generic-sycl-components",
           rev: "99241128f64b700392e4cfdd047caada024bf7dd",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "TUNING_TARGET", gpuTuningTarget)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SYCL-based BLAS kernels used as the generic BLAS backend for oneMath",
         homepage: "https://github.com/uxlfoundation/generic-sycl-components",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

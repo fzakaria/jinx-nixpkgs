@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.31.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-8wAj2L4Uyl7msbPuq4KRUde72kZK4H3E3VNHkZxYkvk=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [iocapture, mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["argh"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/neithere/argh/blob/v${version}/CHANGES`),
         homepage: "https://github.com/neithere/argh",
         description: "Unobtrusive argparse wrapper with natural syntax",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

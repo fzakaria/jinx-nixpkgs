@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ltspice",
       version: "26.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ltspice.analog.com/download/${nix.sel(finalAttrs, "version")}/LTspice64.msi`),
           hash: "sha256-IQxrgX5kcwhBGWlSzWj9HmkMlzwCou+EsE8k92qU9EY=",
         })))),
@@ -40,7 +40,7 @@ substituteInPlace ./ltspice.sh \\
       installPhase: "runHook preInstall\nmkdir -p $out\ninstall -Dm644 ltspice.png $out/share/icons/hicolor/256x256/apps/ltspice.png\n\ninstall -m755 -d $out/libexec/ltspice\ninstall -m755 *.exe $out/libexec/ltspice\ninstall -m655 *.zip $out/libexec/ltspice\n\ninstall -Dm755 ltspice.sh $out/bin/ltspice\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ltspice",
             desktopName: "LTspice",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -62,7 +62,7 @@ substituteInPlace ./ltspice.sh \\
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SPICE simulator, schematic capture and waveform viewer",
         homepage: "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html",
         changelog: "https://ltspice.analog.com/download/updates.txt",

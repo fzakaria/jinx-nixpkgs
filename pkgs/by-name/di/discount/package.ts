@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.0.2.0",
       pname: "discount",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Orc",
           repo: "discount",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id \"$out/lib/libmarkdown.dylib\" \"$out/lib/libmarkdown.dylib\"\nfor exe in $out/bin/*; do\n  install_name_tool -change libmarkdown.dylib \"$out/lib/libmarkdown.dylib\" \"$exe\"\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of Markdown markup language in C",
         homepage: "http://www.pell.portland.or.us/~orc/Code/discount/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ActivityWatch",
           repo: "aw-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# Fake home folder for tests that write to $HOME\nexport HOME=\"$TMPDIR\"\n";
       const pythonImportsCheck = nix.thunk(() => ["aw_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client library for ActivityWatch",
         homepage: "https://github.com/ActivityWatch/aw-client",
         changelog: nix.thunk(() => nix.str`https://github.com/ActivityWatch/aw-client/releases/tag/v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "aw-client",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

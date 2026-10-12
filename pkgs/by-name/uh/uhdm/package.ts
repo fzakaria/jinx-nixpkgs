@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const capnproto = nix.arg($, "capnproto");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uhdm",
       version: "1.87",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chipsalliance",
           repo: "UHDM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\nmake test\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Universal Hardware Data Model",
         homepage: "https://github.com/chipsalliance/UHDM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pcl",
       version: "1.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PointCloudLibrary",
           repo: "pcl",
           tag: nix.thunk(() => nix.str`pcl-${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "boost-1.89.patch",
             url: "https://github.com/PointCloudLibrary/pcl/commit/99333442ac63971297b4cdd05fab9d2bd2ff57a4.patch",
             hash: "sha256-5vg8VjxoAfEOx9n7Tby1DXe1u4rn+zharkefUovLHv0=",
@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUDA_ARCH_BIN", nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString")))),
         ])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "pcl-", ignoredVersions: "rc" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "pcl-", ignoredVersions: "rc" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pointclouds.org/",
         description: "Open project for 2D/3D image and point cloud processing",
         changelog: nix.thunk(() => nix.str`https://github.com/PointCloudLibrary/pcl/blob/pcl-${nix.sel(finalAttrs, "version")}/CHANGES.md`),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jvstein",
           repo: "bitcoin-prometheus-exporter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })());
       const installPhase = "mkdir -p $out/bin\ncp bitcoind-monitor.py $out/bin/\n\nmkdir -p $out/share/bitcoin-prometheus-exporter\ncp -r dashboard README.md $out/share/bitcoin-prometheus-exporter/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for Bitcoin Core nodes",
         mainProgram: "bitcoind-monitor.py",
         homepage: "https://github.com/jvstein/bitcoin-prometheus-exporter",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

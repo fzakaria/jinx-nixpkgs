@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "1.1.2",
       pname: "apache-felix-remoteshell-bundle",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://apache.proserve.nl/felix/org.apache.felix.shell.remote-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "147zw5ppn98wfl3pr32isyb267xm3gwsvdfdvjr33m9g2v1z69aq",
         })))),

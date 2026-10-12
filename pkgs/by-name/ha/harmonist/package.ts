@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "harmonist",
       version: "1.0.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anaseto",
           repo: "harmonist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stealth coffee-break roguelike game",
         mainProgram: "harmonist",
         longDescription: "Harmonist is a stealth coffee-break roguelike game. The game has a heavy\nfocus on tactical positioning, light and noise mechanisms, making use of\nvarious terrain types and cones of view for monsters. Aiming for a\nreplayable streamlined experience, the game avoids complex inventory\nmanagement and character building, relying on items and player\nadaptability for character progression.\n",

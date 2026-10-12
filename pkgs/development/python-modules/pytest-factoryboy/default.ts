@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-factoryboy",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["docs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Integration of factory_boy into the pytest runner",
         homepage: "https://pytest-factoryboy.readthedocs.io/en/latest/",
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

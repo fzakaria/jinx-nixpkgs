@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gallia",
       version: "2.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fraunhofer-AISEC",
           repo: "gallia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
       nativeCheckInputs: nix.thunk(() => (() => {
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["gallia"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extendable Pentesting Framework for the Automotive Domain",
         homepage: "https://github.com/Fraunhofer-AISEC/gallia",
         changelog: nix.thunk(() => nix.str`https://github.com/Fraunhofer-AISEC/gallia/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

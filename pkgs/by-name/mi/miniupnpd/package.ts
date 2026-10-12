@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const libmnl = nix.arg($, "libmnl");
   const libnftnl = nix.arg($, "libnftnl");
   const scriptBinEnv = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       iptables: nix.thunk(() => [coreutils, which, iproute2, iptables_legacy, gnused, gnugrep, gawk]),
       nftables: nix.thunk(() => [coreutils, which, nftables]),
     }, nix.key(nix.force(firewall))))));
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "miniupnpd";
       const version = "2.3.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://miniupnp.tuxfamily.org/files/miniupnpd-${version}.tar.gz`),
           sha256: "sha256-+cNO02MvtgzSSN1Yl72YR5oQOnVoiwVsovBp5oqzKYc=",
         }))));
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installFlags = nix.thunk(() => ["PREFIX=$(out)", "INSTALLPREFIX=$(out)"]);
       const postFixup = nix.thunk(() => nix.sel({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         iptables: nix.thunk(() => nix.str`for script in $out/etc/miniupnpd/ip{,6}tables_{init,removeall}.sh
 do
   wrapProgram $script --prefix PATH : '${scriptBinEnv}:$PATH'
@@ -77,15 +77,15 @@ done
 `),
       }, nix.key(nix.force(firewall))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "bittorrent-integration": nix.thunk(() => nix.sel(nixosTests, "bittorrent")),
           upnp: nix.thunk(() => nix.attr(nixosTests, "upnp")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://miniupnp.tuxfamily.org/",
         description: "Daemon that implements the UPnP Internet Gateway Device (IGD) specification",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -93,7 +93,7 @@ done
         mainProgram: "miniupnpd",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

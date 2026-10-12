@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => true);
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zeitgeist",
       version: "1.0.4",
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "man"], nix.app(nix.sel(lib, "optional"), pythonSupport, "py"))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "zeitgeist",
           repo: "zeitgeist",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), pythonSupport, nix.thunk(() => nix.str`moveToOutput lib/${nix.sel(python3, "libPrefix")} "$py"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Service which logs the users’s activities and events",
         homepage: "https://zeitgeist.freedesktop.org/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),

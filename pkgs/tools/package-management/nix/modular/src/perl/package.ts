@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const libsodium = nix.arg($, "libsodium");
   return nix.app(nix.sel(perl, "pkgs", "toPerlModule"), nix.thunk(() => nix.app(mkMesonDerivation, (finalAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "nix-perl",
         version: version,
         workDir: nix.path(here, "./."),

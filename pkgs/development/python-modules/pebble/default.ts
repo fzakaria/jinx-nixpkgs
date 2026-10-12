@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pebble",
       version: "5.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noxdafox",
           repo: "pebble",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-mutex.patch",
             url: "https://github.com/noxdafox/pebble/commit/711c98f4193f4006f699e3d245d6855385eb267e.patch",
             hash: "sha256-dCoOvCv1r9YKSsoKyyZ9rXLNhVmopWnXglBrO5be1Bw=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       pythonImportsCheck: nix.thunk(() => ["pebble"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "API to manage threads and processes within an application",
         homepage: "https://github.com/noxdafox/pebble",
         changelog: nix.thunk(() => nix.str`https://github.com/noxdafox/pebble/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

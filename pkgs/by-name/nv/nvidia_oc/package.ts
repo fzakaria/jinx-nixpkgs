@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvidia_oc",
       version: "0.1.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dreaming-Codes",
           repo: "nvidia_oc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple command line tool to overclock Nvidia GPUs using the NVML library on Linux",
         homepage: "https://github.com/Dreaming-Codes/nvidia_oc",
         changelog: nix.thunk(() => nix.str`https://github.com/Dreaming-Codes/nvidia_oc/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       ]));
     const urls_ = nix.thunk(() => (nix.asBool(!nix.eq(url, "")) ? [url] : (nix.asBool(!nix.eq(urls, [])) ? nix.force(urls) : nix.builtins.map(mkJarUrl, repos))));
     const jar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["groupId", "artifactId", "version", "classifier", "repos", "url", "meta"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         urls: urls_,
         name: nix.thunk(() => nix.str`${pname}-${version}.jar`),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         meta: meta,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         installPhase: nix.thunk(() => nix.str`mkdir -p $out/share/java
 ln -s ${jar} $out/share/java/${filename}
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$2, jar: jar })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, jar: jar })),
       })));
   })(), formals$2);
 })(), formals$1);

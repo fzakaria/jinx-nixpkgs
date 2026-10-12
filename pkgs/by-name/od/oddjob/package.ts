@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "oddjob",
       version: "0.34.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pagure.io/oddjob/archive/oddjob-${nix.sel(finalAttrs, "version")}/oddjob-oddjob-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SUOsMH55HtEsk5rX0CXK0apDObTj738FGOaL5xZRnIM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://pagure.io/oddjob/c/f63287a35107385dcb6e04a4c742077c9d1eab86.patch",
             hash: "sha256-2mmw4pJhrIk4/47FM8zKH0dTQJWnntHPNmq8VAUWqJI=",
           })))),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       postConfigure: "substituteInPlace src/oddjobd.c \\\n  --replace \"globals.selinux_enabled\" \"FALSE\"\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, oddjobd: nix.thunk(() => nix.attr(nixosTests, "oddjobd")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, oddjobd: nix.thunk(() => nix.attr(nixosTests, "oddjobd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://pagure.io/oddjob/blob/oddjob-${nix.sel(finalAttrs, "version")}/f/ChangeLog`),
         description: "Odd Job Daemon",
         homepage: "https://pagure.io/oddjob",

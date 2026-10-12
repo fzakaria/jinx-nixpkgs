@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "magic-wormhole-mailbox-server",
       version: "0.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magic-wormhole",
           repo: "magic-wormhole-mailbox-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, treq]),
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["src/wormhole_mailbox_server/test/test_web.py"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "magic-wormhole-mailbox-server": nix.thunk(() => nix.attr(nixosTests, "magic-wormhole-mailbox-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Securely transfer data between computers",
         homepage: "https://github.com/magic-wormhole/magic-wormhole-mailbox-server",
         changelog: nix.thunk(() => nix.str`https://github.com/magic-wormhole/magic-wormhole-mailbox-server/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS.md`),

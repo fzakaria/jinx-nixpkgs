@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libopenmpt = nix.arg($, "libopenmpt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libopenmpt-modplug",
       version: "0.8.9.0-openmpt1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lib.openmpt.org/files/libopenmpt-modplug/libopenmpt-modplug-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-7M4aDuz9sLWCTKuJwnDc5ZWWKVosF8KwQyFez018T/c=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libopenmpt]),
       configureFlags: nix.thunk(() => ["--enable-libmodplug"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libmodplug emulation layer based on libopenmpt",
         homepage: "https://lib.openmpt.org/libopenmpt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -17,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       gtk: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         iconCache: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "services", "xserver", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.xserver.enable")),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "gtk", "iconCache", "enable")), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           extraSetup: nix.thunk(() => nix.str`# For each icon theme directory ...
 find $out/share/icons -exec test -d {} ';' -mindepth 1 -maxdepth 1 -print0 | while read -d $'\\0' themedir
 do

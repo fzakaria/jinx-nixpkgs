@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-interface-synchronization",
       version: "4.5.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NetTech2001",
           repo: "netbox-interface-synchronization",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_interface_synchronization"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_interface_synchronization" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_interface_synchronization" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Netbox plugin to compare and synchronize interfaces between devices and device types",
         homepage: "https://github.com/NetTech2001/netbox-interface-synchronization",
         changelog: nix.thunk(() => nix.str`https://github.com/NetTech2001/netbox-interface-synchronization/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

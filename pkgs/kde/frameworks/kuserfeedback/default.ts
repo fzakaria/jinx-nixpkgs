@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kuserfeedback",
       extraCmakeFlags: nix.thunk(() => ["-DENABLE_CONSOLE=0", "-DENABLE_CLI=0"]),
       extraNativeBuildInputs: nix.thunk(() => [qttools, qtsvg]),

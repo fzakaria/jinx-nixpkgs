@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helm-cm-push";
       const version = "0.11.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chartmuseum",
           repo: "helm-push",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-W7nWiWCLrzevunxYoDAqVbG5LhG+VXCAeI1D78fQQvw=";
       const subPackage = nix.thunk(() => ["cmd/helm-cm-push"]);
       const postPatch = "sed -e '/^hooks:/,+2 d' -i plugin.yaml\n";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const postInstall = "install -Dm644 plugin.yaml $out/helm-cm-push/plugin.yaml\nmv $out/bin $out/helm-cm-push\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Helm plugin to push chart package to ChartMuseum",
         homepage: "https://github.com/chartmuseum/helm-push",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

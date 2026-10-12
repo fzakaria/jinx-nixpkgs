@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "honeytail",
       version: "1.6.0",
       vendorHash: "sha256-LtiiLGLjhbfT49A6Fw5CbSbnmTHMxtcUssr+ayCVrvY=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "honeycombio",
           repo: "honeytail",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-S0hIgNNzF1eNe+XJs+PT7EUIl5oJCXu+B/zQago4sf8=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Agent for ingesting log file data into honeycomb.io and making it available for exploration",
         homepage: "https://honeycomb.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

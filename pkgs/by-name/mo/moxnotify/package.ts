@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "moxnotify",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mox-desktop",
           repo: "moxnotify",
           rev: "6726af08621072e0c95a147cf4ae63ea66c7e857",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libclang, "lib")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(libclang, "lib")}/lib`),
       })),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
@@ -77,7 +77,7 @@ wrapProgram $out/bin/moxctl \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libGL]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Feature-rich hardware-accelerated keyboard driven Wayland notification daemon",
         homepage: "https://github.com/mox-desktop/moxnotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

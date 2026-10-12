@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const self = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ophis",
       version: "2.2-unstable-2024-07-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "michaelcmartin",
           repo: "Ophis",
           rev: "6a5e5a586832e828b598e8162457e673a6c38275",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://michaelcmartin.github.io/Ophis/",
         description: "Cross-assembler for the 6502 series of microprocessors",
         longDescription: "Ophis is an assembler for the 6502 microprocessor - the famous chip used\nin the vast majority of the classic 8-bit computers and consoles. Its\nprimary design goals are code readability and output flexibility - Ophis\nhas successfully been used to create programs for the Nintendo\nEntertainment System, the Atari 2600, and the Commodore 64.\n",

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "quixote",
       version: "3.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+7RMcIG4J8CwyqY37BCaQNJlXgHTAYCda64IAMEdRjQ=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["quixote"]),
       disabledTestPaths: nix.thunk(() => ["quixote/ptl/test/test_ptl.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small and flexible Python Web application framework",
         homepage: "https://pypi.org/project/Quixote/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const libcanberra_gtk3 = nix.arg($, "libcanberra-gtk3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ayatana-webmail",
       version: "26.6.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AyatanaIndicators",
           repo: "ayatana-webmail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,7 +74,7 @@ glib-compile-schemas $out/share/glib-2.0/schemas
 makeWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libcanberra_gtk3]))})
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Webmail notifications and actions for any desktop",
         homepage: "https://github.com/AyatanaIndicators/ayatana-webmail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

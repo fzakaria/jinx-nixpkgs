@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const cmocka = nix.arg($, "cmocka");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tlf",
       version: "1.4.1-unstable-2026-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tlf",
           repo: "tlf",
           rev: "e6385f88ad793043d874b89d56d29bea5dac4e26",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(ncurses5, "out")}/lib/libtinfo.so.5 $out/lib/libtinfo.so.5
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced ham radio logging and contest program",
         longDescription: "TLF is a curses based console mode general logging and contest program for\namateur radio.\n\nIt supports the CQWW, the WPX, the ARRL-DX, the ARRL-FD, the PACC and the\nEU SPRINT shortwave contests (single operator) as well as a LOT MORE basic\ncontests, general QSO and DXpedition mode.\n",
         homepage: "https://tlf.github.io/",

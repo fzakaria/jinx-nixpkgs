@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trufflehog",
       version: "3.99.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trufflesecurity",
           repo: "trufflehog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm $out/bin/{generate,snifftest}\n\nwrapProgram $out/bin/trufflehog --add-flags --no-update\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Find credentials all over the place",
         homepage: "https://github.com/trufflesecurity/trufflehog",
         changelog: nix.thunk(() => nix.str`https://github.com/trufflesecurity/trufflehog/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -59,39 +59,39 @@ export default nix.lambda((args) => (() => {
       const hbase = nix.argOr($_1, "hbase", () => nix.sel(pkgs, "hbase"));
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), null);
       return {
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         name: nix.thunk(() => nix.str`hadoop-${nix.sel(package$, "version")}-hbase`),
         nodes: nix.thunk(() => (() => {
-          const coreSite = nix.thunk(() => ({ __proto__: pos$1, "fs.defaultFS": "hdfs://namenode:8020" }));
-          const defOpts = nix.thunk(() => ({ __proto__: pos$2, enable: true, openFirewall: true }));
+          const coreSite = nix.thunk(() => ({ [nix.POS]: pos$1, "fs.defaultFS": "hdfs://namenode:8020" }));
+          const defOpts = nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewall: true }));
           const zookeeperQuorum = "zookeeper";
           return {
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             zookeeper: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               return {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 services: nix.thunk(() => ({
-                  __proto__: pos$4,
-                  zookeeper: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+                  [nix.POS]: pos$4,
+                  zookeeper: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
                 })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [2181n]) })),
+                  [nix.POS]: pos$6,
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [2181n]) })),
                 })),
               };
             })(), formals$3),
             namenode: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               return {
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 services: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   hadoop: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     hdfs: nix.thunk(() => ({
-                      __proto__: pos$9,
-                      namenode: nix.thunk(() => nix.update(defOpts, { __proto__: pos$8, formatOnInit: true })),
+                      [nix.POS]: pos$9,
+                      namenode: nix.thunk(() => nix.update(defOpts, { [nix.POS]: pos$8, formatOnInit: true })),
                     })),
                     coreSite: coreSite,
                   })),
@@ -101,13 +101,13 @@ export default nix.lambda((args) => (() => {
             datanode: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               return {
-                __proto__: pos$17,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$13, diskSize: 8192n })),
+                [nix.POS]: pos$17,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, diskSize: 8192n })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   hadoop: nix.thunk(() => ({
-                    __proto__: pos$15,
-                    hdfs: nix.thunk(() => ({ __proto__: pos$14, datanode: defOpts })),
+                    [nix.POS]: pos$15,
+                    hdfs: nix.thunk(() => ({ [nix.POS]: pos$14, datanode: defOpts })),
                     coreSite: coreSite,
                   })),
                 })),
@@ -116,16 +116,16 @@ export default nix.lambda((args) => (() => {
             master: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$6);
               return {
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 services: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   hadoop: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     coreSite: coreSite,
                     hbase: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       zookeeperQuorum: zookeeperQuorum,
-                      master: nix.thunk(() => nix.update(defOpts, { __proto__: pos$18, initHDFS: true })),
+                      master: nix.thunk(() => nix.update(defOpts, { [nix.POS]: pos$18, initHDFS: true })),
                     })),
                   })),
                 })),
@@ -134,13 +134,13 @@ export default nix.lambda((args) => (() => {
             regionserver: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$7);
               return {
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 services: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   hadoop: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     coreSite: coreSite,
-                    hbase: nix.thunk(() => ({ __proto__: pos$23, zookeeperQuorum: zookeeperQuorum, regionServer: defOpts })),
+                    hbase: nix.thunk(() => ({ [nix.POS]: pos$23, zookeeperQuorum: zookeeperQuorum, regionServer: defOpts })),
                   })),
                 })),
               };
@@ -148,13 +148,13 @@ export default nix.lambda((args) => (() => {
             thrift: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$8);
               return {
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 services: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   hadoop: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     coreSite: coreSite,
-                    hbase: nix.thunk(() => ({ __proto__: pos$27, zookeeperQuorum: zookeeperQuorum, thrift: defOpts })),
+                    hbase: nix.thunk(() => ({ [nix.POS]: pos$27, zookeeperQuorum: zookeeperQuorum, thrift: defOpts })),
                   })),
                 })),
               };
@@ -162,13 +162,13 @@ export default nix.lambda((args) => (() => {
             rest: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$9);
               return {
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 services: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   hadoop: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     coreSite: coreSite,
-                    hbase: nix.thunk(() => ({ __proto__: pos$31, zookeeperQuorum: zookeeperQuorum, rest: defOpts })),
+                    hbase: nix.thunk(() => ({ [nix.POS]: pos$31, zookeeperQuorum: zookeeperQuorum, rest: defOpts })),
                   })),
                 })),
               };
@@ -209,7 +209,7 @@ assert "${nix.sel(hbase, "version")}" in regionserver.succeed("curl http://rest:
 thrift.wait_for_open_port(9090)
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
             return [nix.thunk(() => nix.lookup(w_1, "illustris"))];

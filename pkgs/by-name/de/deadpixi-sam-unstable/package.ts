@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const libxft = nix.arg($, "libxft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deadpixi-sam-unstable",
       version: "2020-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deadpixi",
           repo: "sam",
           rev: "5d8acb35d78c327d76f00a54857cbd566ed9bc11",
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   --replace "CC=gcc" "CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc" \\
   --replace "RXPATH=/usr/bin/ssh" "RXPATH=ssh"
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-D_DARWIN_C_SOURCE" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-D_DARWIN_C_SOURCE" })),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       buildInputs: nix.thunk(() => [libx11, libxi, libxt, libxft]),
       enableParallelBuilding: false,
       postInstall: "substituteInPlace deadpixi-sam.desktop \\\n  --replace \"accessories-text-editor\" \"$out/share/icons/hicolor/scalable/apps/sam.svg\"\nmkdir -p $out/share/applications\nmkdir -p $out/share/icons/hicolor/scalable/apps\nmv deadpixi-sam.desktop $out/share/applications\nmv sam.svg $out/share/icons/hicolor/scalable/apps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/deadpixi/sam",
         description: "Updated version of the sam text editor",

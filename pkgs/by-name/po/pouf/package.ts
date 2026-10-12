@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pouf",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mothsart",
           repo: "pouf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-cgRf8zpl2hOhaGew4dwzuwdy0+7wSvMtYN3llVi3uYw=",
       postInstall: "make PREFIX=$out copy-data",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI program for produce fake data",
         homepage: "https://github.com/mothsart/pouf",
         changelog: nix.thunk(() => nix.str`https://github.com/mothsart/pouf/releases/tag/${nix.sel(finalAttrs, "version")}`),

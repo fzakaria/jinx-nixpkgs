@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "victor-mono";
       const version = "1.5.6";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rubjo/victor-mono/raw/v${version}/public/VictorMonoAll.zip`),
           stripRoot: false,
           hash: "sha256-PnCCU7PO+XcxUk445sU5xVl8XqdSPJighjtDTqI6qiw=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const outputs = nix.thunk(() => ["out", "webfont"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free programming font with cursive italics and ligatures",
         homepage: "https://rubjo.github.io/victor-mono",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, outputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, outputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

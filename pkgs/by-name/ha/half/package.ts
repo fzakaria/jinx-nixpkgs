@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.2.0",
       pname: "half",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/half/${nix.sel(finalAttrs, "version")}/half-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-ZdGgBMZylFgkvs/XVBnvgBY2EYSHRLY3S4YwXjshpOY=",
           stripRoot: false,
         })))),
       buildCommand: "mkdir -p $out/include $out/share/doc\ncp $src/include/half.hpp               $out/include/\ncp $src/{ChangeLog,LICENSE,README}.txt $out/share/doc/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library for half precision floating point arithmetics",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

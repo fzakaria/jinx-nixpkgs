@@ -18,10 +18,10 @@ export default nix.thunk(() => (() => {
     const escapeVersion = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["."]), nix.thunk(() => ["_"])));
     const getJavaVersion = (v) => nix.sel(nix.builtins.getAttr(nix.thunk(() => nix.str`openjdk${nix.builtins.toString(v)}`), nix.thunk(() => nix.sel(javaPackages, "compiler"))), "headless");
     const packages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (version) => (value) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`papermc-${nix.app(escapeVersion, version)}`),
         value: nix.thunk(() => nix.app(callPackage, nix.path(here, "./derivation.nix"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.attr(value, "url")),
             version: nix.thunk(() => nix.attr(value, "version")),
             hash: nix.thunk(() => nix.attr(value, "hash")),
@@ -29,7 +29,7 @@ export default nix.thunk(() => (() => {
           })))),
       }), versions));
     return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.update(packages, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         papermc: nix.thunk(() => nix.builtins.getAttr(nix.thunk(() => nix.str`papermc-${nix.app(escapeVersion, latestVersion)}`), packages)),
       })));
   })(), formals$1);

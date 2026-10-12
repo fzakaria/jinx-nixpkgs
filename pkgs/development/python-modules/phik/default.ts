@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KaveIO",
           repo: "PhiK",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# import from $out\nrm -r phik\n";
       const disabledTests = nix.thunk(() => ["test_phik_calculation"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Phi_K correlation analyzer library",
         longDescription: "Phi_K is a new and practical correlation coefficient based on several refinements to\nPearson’s hypothesis test of independence of two variables.\n",
         homepage: "https://phik.readthedocs.io/",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

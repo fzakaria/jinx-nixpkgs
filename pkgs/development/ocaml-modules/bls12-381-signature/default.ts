@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bisect_ppx = nix.arg($, "bisect_ppx");
   const integers_stubs_js = nix.arg($, "integers_stubs_js");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bls12-381-signature",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.com/nomadic-labs/cryptography/ocaml-bls12-381-signature/-/archive/${nix.sel(finalAttrs, "version")}/ocaml-bls12-381-signature-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-KaUpAT+BWxmUP5obi4loR9vVUeQmz3p3zG3CBolUuL4=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, bisect_ppx, integers_stubs_js]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of BLS signatures for the pairing-friendly curve BLS12-381",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://gitlab.com/nomadic-labs/cryptography/ocaml-bls12-381-signature",

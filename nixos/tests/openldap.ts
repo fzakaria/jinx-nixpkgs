@@ -79,7 +79,7 @@ olcRootDN: cn=root,dc=example
 olcRootPW: notapassword
 `);
   const ldapClientConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     enable: true,
     loginPam: false,
     nsswitch: false,
@@ -87,36 +87,36 @@ olcRootPW: notapassword
     base: "dc=example",
   }));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "openldap",
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             etc: nix.thunk(() => ({
-              __proto__: pos$3,
-              "openldap/root_password": nix.thunk(() => ({ __proto__: pos$2, text: "notapassword" })),
+              [nix.POS]: pos$3,
+              "openldap/root_password": nix.thunk(() => ({ [nix.POS]: pos$2, text: "notapassword" })),
             })),
           })),
-          users: nix.thunk(() => ({ __proto__: pos$5, ldap: ldapClientConfig })),
+          users: nix.thunk(() => ({ [nix.POS]: pos$5, ldap: ldapClientConfig })),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             openldap: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               enable: true,
               urlList: nix.thunk(() => ["ldapi:///", "ldap://"]),
               settings: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 children: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   "cn=schema": nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     includes: nix.thunk(() => [
                       nix.thunk(() => nix.str`${nix.sel(pkgs_1, "openldap")}/etc/schema/core.ldif`),
                       nix.thunk(() => nix.str`${nix.sel(pkgs_1, "openldap")}/etc/schema/cosine.ldif`),
@@ -125,9 +125,9 @@ olcRootPW: notapassword
                     ]),
                   })),
                   "olcDatabase={0}config": nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     attrs: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       objectClass: nix.thunk(() => ["olcDatabaseConfig"]),
                       olcDatabase: "{0}config",
                       olcRootDN: "cn=root,cn=config",
@@ -135,15 +135,15 @@ olcRootPW: notapassword
                     })),
                   })),
                   "olcDatabase={1}mdb": nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     attrs: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       objectClass: nix.thunk(() => ["olcDatabaseConfig", "olcMdbConfig"]),
                       olcDatabase: "{1}mdb",
                       olcDbDirectory: "/var/lib/openldap/db",
                       olcSuffix: "dc=example",
-                      olcRootDN: nix.thunk(() => ({ __proto__: pos$9, base64: "Y249cm9vdCxkYz1leGFtcGxl" })),
-                      olcRootPW: nix.thunk(() => ({ __proto__: pos$10, path: "/etc/openldap/root_password" })),
+                      olcRootDN: nix.thunk(() => ({ [nix.POS]: pos$9, base64: "Y249cm9vdCxkYz1leGFtcGxl" })),
+                      olcRootPW: nix.thunk(() => ({ [nix.POS]: pos$10, path: "/etc/openldap/root_password" })),
                     })),
                   })),
                 })),
@@ -151,34 +151,34 @@ olcRootPW: notapassword
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             declarativeContents: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   services: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     openldap: nix.thunk(() => ({
-                      __proto__: pos$18,
-                      declarativeContents: nix.thunk(() => ({ __proto__: pos$17, "dc=example": dbContents })),
+                      [nix.POS]: pos$18,
+                      declarativeContents: nix.thunk(() => ({ [nix.POS]: pos$17, "dc=example": dbContents })),
                     })),
                   })),
                 };
               })(), formals$3),
             })),
             mutableConfig: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 return {
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   services: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     openldap: nix.thunk(() => ({
-                      __proto__: pos$23,
-                      declarativeContents: nix.thunk(() => ({ __proto__: pos$22, "dc=example": dbContents })),
+                      [nix.POS]: pos$23,
+                      declarativeContents: nix.thunk(() => ({ [nix.POS]: pos$22, "dc=example": dbContents })),
                       mutableConfig: true,
                     })),
                   })),
@@ -186,20 +186,20 @@ olcRootPW: notapassword
               })(), formals$4),
             })),
             manualConfigDir: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               inheritParentConfig: false,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$5);
                 return {
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   nixpkgs: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     hostPlatform: nix.thunk(() => nix.sel(config, "nixpkgs", "hostPlatform")),
                   })),
-                  users: nix.thunk(() => ({ __proto__: pos$28, ldap: ldapClientConfig })),
+                  users: nix.thunk(() => ({ [nix.POS]: pos$28, ldap: ldapClientConfig })),
                   services: nix.thunk(() => ({
-                    __proto__: pos$30,
-                    openldap: nix.thunk(() => ({ __proto__: pos$29, enable: true, configDir: "/var/db/slapd.d" })),
+                    [nix.POS]: pos$30,
+                    openldap: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true, configDir: "/var/db/slapd.d" })),
                   })),
                 };
               })(), formals$5),

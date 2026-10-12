@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const update_checker = nix.arg($, "update-checker");
   const websocket_client = nix.arg($, "websocket-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "praw",
       version: "7.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "praw-dev",
           repo: "praw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/praw-dev/praw/commit/9edc0bfa62c1878c395d8bc225edfe87e4fc4cd4.patch",
             includes: nix.thunk(() => ["tests/unit/test_reddit.py"]),
             hash: "sha256-QozdHz8WPCsuBgFgx1j0NwFsPFBmq9KhKiW7B5/QmfE=",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/integration"]),
       pythonImportsCheck: nix.thunk(() => ["praw"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Reddit API wrapper",
         homepage: "https://praw.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/praw-dev/praw/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

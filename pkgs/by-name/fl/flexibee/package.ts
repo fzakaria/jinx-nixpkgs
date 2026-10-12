@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flexibee";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.flexibee.eu/download/${majorVersion}/${version_1}/${pname}-${version_1}.tar.gz`),
           sha256: "sha256-WorRyfjWucV8UhAjvuW+22CRzPcz5tjXF7Has4wrLMI=",
         }))));
@@ -35,7 +35,7 @@ wrapProgram $out/bin/flexibee-server --set JAVA_HOME "${jre}"
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client for an accounting economic system",
         homepage: "https://www.flexibee.eu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -43,7 +43,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

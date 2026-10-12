@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "memory_allocator",
           hash: "sha256-Z108kQGduYyXRB3nPVxkiCHlroE/P1TNCYY9R0tI/iY=",
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [meson_python, cython]);
       const propagatedBuildInputs = nix.thunk(() => [cython]);
       const pythonImportsCheck = nix.thunk(() => ["memory_allocator"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extension class to allocate memory easily with cython",
         homepage: "https://github.com/sagemath/memory_allocator/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

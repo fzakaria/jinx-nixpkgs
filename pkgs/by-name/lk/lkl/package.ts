@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const firewallSupport = nix.argOr($, "firewallSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lkl",
       version: "2025-11-13",
       outputs: nix.thunk(() => ["dev", "lib", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lkl",
           repo: "linux",
           rev: "9c51103caa1481493ebbbaf858f016e7f25ab921",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "ln -s $out/bin/lklfuse $out/bin/mount.fuse.lklfuse\n",
       hardeningDisable: nix.thunk(() => ["format", "fortify"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_LINK: "-lgcc_s",
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLoongArch64")), "--no-relax")),
       })),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux kernel as a library",
         longDescription: "LKL (Linux Kernel Library) aims to allow reusing the Linux kernel code as\nextensively as possible with minimal effort and reduced maintenance\noverhead\n",
         homepage: "https://github.com/lkl/linux/",

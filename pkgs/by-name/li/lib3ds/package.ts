@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lib3ds",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://lib3ds.googlecode.com/files/lib3ds-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1qr9arfdkjf7q11xhvxwzmhxqz3nhcjkyb8zzfjpz9jm54q0rc7m",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for managing 3D-Studio Release 3 and 4 \".3DS\" files",
         homepage: "https://lib3ds.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

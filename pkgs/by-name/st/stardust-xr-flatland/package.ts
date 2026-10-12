@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stardust-xr-flatland",
       version: "0.51.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stardustxr",
           repo: "flatland",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-reify-test-signature.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         STARDUST_RES_PREFIXES: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/res`),
       })),
       cargoHash: "sha256-2LT/Szwzs83Poe7BojmUFh9yyUEhSgHmBR5QaO/BE4g=",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Flat window for Stardust XR",
         homepage: "https://stardustxr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

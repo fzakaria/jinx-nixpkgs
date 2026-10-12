@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const tflint_plugins = nix.arg($, "tflint-plugins");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tflint",
       version: "0.64.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terraform-linters",
           repo: "tflint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,22 +35,22 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-o59/JqIywhqKMkcyq/r1XRE9ldk/dE2v3Qj9IXq0G8s=",
       doCheck: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         withPlugins: (plugins) => (() => {
           const actualPlugins = nix.thunk(() => nix.app(plugins, tflint_plugins));
           const pluginDir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "tflint-plugin-dir",
               paths: nix.thunk(() => [actualPlugins]),
             }))));
           return nix.app(runCommand, nix.thunk(() => nix.str`tflint-with-plugins-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [makeWrapper]),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             })), nix.thunk(() => nix.str`makeWrapper ${tflint}/bin/tflint $out/bin/tflint \\
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Terraform linter focused on possible errors, best practices, and so on",
         mainProgram: "tflint",
         homepage: "https://github.com/terraform-linters/tflint",

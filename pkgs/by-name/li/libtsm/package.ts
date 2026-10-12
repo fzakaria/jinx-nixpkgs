@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libtsm",
       version: "4.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kmscon",
           repo: "libtsm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxkbcommon, check]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal-emulator State Machine",
         homepage: "https://www.freedesktop.org/wiki/Software/kmscon/libtsm/",
         changelog: nix.thunk(() => nix.str`https://github.com/kmscon/libtsm/releases/tag/v${nix.sel(finalAttrs, "version")}`),

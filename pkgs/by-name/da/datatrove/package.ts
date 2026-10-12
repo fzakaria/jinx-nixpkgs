@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "0.2.0";
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "datatrove",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "datatrove",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["datatrove"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of platform-agnostic customizable pipeline processing blocks for data processing",
         homepage: "https://github.com/huggingface/datatrove",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/datatrove/releases/tag/v${version}`),

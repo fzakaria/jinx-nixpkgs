@@ -62,24 +62,24 @@ export default nix.lambda((args) => (() => {
   const libsamplerate = nix.arg($, "libsamplerate");
   const withDebug = nix.argOr($, "withDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "moc",
       version: "2.6-alpha3-unstable-2019-09-14",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "svn://svn.daper.net/moc/trunk",
           rev: "3005",
           hash: "sha256-JksJxHQgQ8hPTFtLvEvZuFh2lflDNrEmDTMWWwVnjZQ=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://cygwin.com/cgit/cygwin-packages/moc/plain/Support-for-recent-ffmpeg-change.patch?id=ab70f1306b8416852915be4347003aac3bdc216",
             hash: "sha256-5hLEFBJ+7Nvxn6pNj4bngcg2qJsCzxiuP6yEj+7tvs0=",
             stripLen: 1n,
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://cygwin.com/cgit/cygwin-packages/moc/plain/ffmpeg-7.0.patch?id=ab70f1306b8416852915be4347003aac3bdc216e",
             hash: "sha256-dYw6DNyw61MGfv+GdBz5Dtrr9fVph1tf7vxexWONwF8=",
             stripLen: 1n,
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         "--without-rcc",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Terminal audio player designed to be powerful and easy to use",
         homepage: "http://moc.daper.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

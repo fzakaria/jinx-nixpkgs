@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hiepler",
           repo: "llm-grok",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_httpx, writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["llm_grok"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_grok)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM plugin providing access to Grok models using the xAI API",
         homepage: "https://github.com/Hiepler/llm-grok",
         changelog: nix.thunk(() => nix.str`https://github.com/Hiepler/llm-grok/releases/tag/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

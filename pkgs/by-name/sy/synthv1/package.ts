@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const liblo = nix.arg($, "liblo");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "synthv1",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/synthv1/synthv1-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eoW1Yl/v1LsdvcQen7/LLDt5Q9Yd4kwX3W+CIjQEfYE=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Old-school 4-oscillator subtractive polyphonic synthesizer with stereo fx",
         mainProgram: "synthv1_jack",
         homepage: "https://synthv1.sourceforge.io/",

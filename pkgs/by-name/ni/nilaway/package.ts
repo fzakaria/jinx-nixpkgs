@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nilaway",
       version: "0-unstable-2025-03-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uber-go",
           repo: "nilaway",
           rev: "19305c7c699bd0d370acd26d6769df1d7af8fb29",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       preCheck: "# test all paths\nunset subPackages\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static Analysis tool to detect potential Nil panics in Go code",
         homepage: "https://github.com/uber-go/nilaway",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

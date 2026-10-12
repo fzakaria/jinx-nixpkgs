@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gstreamermm";
       const version = "1.10.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
           sha256: "0q4dx9sncqbwgpzma0zvj6zssc279yl80pn8irb95qypyyggwn5y",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${pname}-${version}.fix-build-against-glib-2.68.patch`),
             url: "https://gitlab.gnome.org/GNOME/gstreamermm/-/commit/37116547fb5f9066978e39b4cf9f79f2154ad425.patch",
             sha256: "sha256-YHtmOiOl4POwas3eWHsew3IyGK7Aq22MweBm3JPwyBM=",
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [glibmm_2_4, nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base"))]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             attrPath: "gst_all_1.gstreamermm",
             packageName: "gstreamermm",
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "C++ interface for GStreamer",
         homepage: "https://gstreamer.freedesktop.org/bindings/cplusplus.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

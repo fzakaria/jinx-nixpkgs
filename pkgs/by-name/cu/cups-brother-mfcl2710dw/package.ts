@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const arches = nix.thunk(() => ["x86_64", "i686"]);
   const runtimeDeps = nix.thunk(() => [ghostscript, file, gnused, gnugrep, coreutils, which]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-brother-mfcl2710dw",
       version: "4.0.0-1",
       nativeBuildInputs: nix.thunk(() => [dpkg, makeWrapper, autoPatchelfHook]),
       buildInputs: nix.thunk(() => [perl]),
       dontUnpack: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103526/mfcl2710dwpdrv-${nix.sel(finalAttrs, "version")}.i386.deb`),
           hash: "sha256-OOTvbCuyxw4k01CTMuBqG2boMN13q5xC7LacaweGmyw=",
         })))),
@@ -69,7 +69,7 @@ ln -s \\
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother MFC-L2710DW printer driver",
         sourceProvenance: nix.thunk(() => (() => {

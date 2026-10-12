@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const linuxHeaders = nix.arg($, "linuxHeaders");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.4",
       pname: "gfxtablet-uinput-driver",
       buildInputs: nix.thunk(() => [linuxHeaders]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rfc2822",
           repo: "GfxTablet",
           rev: nix.thunk(() => nix.str`android-app-${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd driver-uinput",
       installPhase: "mkdir -p \"$out/bin\"\ncp networktablet \"$out/bin\"\nmkdir -p \"$out/share/doc/gfxtablet/\"\ncp ../*.md \"$out/share/doc/gfxtablet/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Uinput driver for Android GfxTablet tablet-as-input-device app",
         homepage: "https://github.com/rfc2822/GfxTablet",
         mainProgram: "networktablet",

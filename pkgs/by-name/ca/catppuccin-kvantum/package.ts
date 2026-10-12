@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       "teal",
       "yellow",
     ]), nix.thunk(() => [accent]), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: color variant`), nix.thunk(() => ["latte", "frappe", "macchiato", "mocha"]), nix.thunk(() => [variant]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: "0-unstable-2025-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "Kvantum",
           rev: "71105d224fef95dd023691303477ce3eea487457",
@@ -49,11 +49,11 @@ cp -a themes/catppuccin-${variant}-${accent} $out/share/Kvantum
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Soothing pastel theme for Kvantum",
         homepage: "https://github.com/catppuccin/Kvantum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

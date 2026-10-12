@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.8.6",
       pname: "dar",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dar/dar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-wO2W/iZwbaytduQE8DOGtgLXd92nm8CGafZaoygwRJY=",
         })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "# Disable html help\nrm -r \"$out\"/share/dar\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://dar.linux.free.fr",
         description: "Disk ARchiver, allows backing up files into indexed archives",
         maintainers: nix.thunk(() => (() => {

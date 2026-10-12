@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
   const provisionState = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "provision_state.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfg, "provision"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         organizations: nix.thunk(() => nix.attr(from, "organizations")),
         users: nix.thunk(() => nix.attr(from, "users")),
       };
@@ -180,45 +180,45 @@ fi
   const organizationSubmodule = nix.thunk(() => nix.app(nix.sel(types, "submodule"), (organizationSubmod) => (() => {
       const org = nix.thunk(() => nix.sel(organizationSubmod, "config", "_module", "args", "name"));
       return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         options: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           present: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Whether to ensure that this organization is present or absent.",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
             })))),
           description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Optional description for the organization.",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             })))),
           buckets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Buckets to provision in this organization.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), (bucketSubmod) => (() => {
                     const bucket = nix.thunk(() => nix.sel(bucketSubmod, "config", "_module", "args", "name"));
                     return {
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       options: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         present: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             description: "Whether to ensure that this bucket is present or absent.",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                           })))),
                         description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             description: "Optional description for the bucket.",
                             default: null,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           })))),
                         retention: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                             default: 0n,
                             description: "The duration in seconds for which the bucket will retain data (0 is infinite).",
@@ -228,17 +228,17 @@ fi
                   })())))),
             })))),
           auths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "API tokens to provision for the user in this organization.",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), (authSubmod) => (() => {
                     const auth = nix.thunk(() => nix.sel(authSubmod, "config", "_module", "args", "name"));
                     return {
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       options: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         id: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             description: "A unique identifier for this authentication token. Since influx doesn't store names for tokens, this will be hashed and appended to the description to identify the token.",
                             readOnly: true,
                             default: nix.thunk(() => nix.builtins.substring(0n, 32n, nix.thunk(() => nix.builtins.hashString("sha256", nix.thunk(() => nix.str`${org}:${auth}`))))),
@@ -246,55 +246,55 @@ fi
                             type: nix.thunk(() => nix.sel(types, "str")),
                           })))),
                         present: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             description: "Whether to ensure that this user is present or absent.",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                           })))),
                         description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             description: "Optional description for the API token.\nNote that the actual token will always be created with a descriptionregardless\nof whether this is given or not. The name is always added plus a unique suffix\nto later identify the token to track whether it has already been created.\n",
                             default: null,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                           })))),
                         tokenFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                             default: null,
                             description: "The token value. If not given, influx will automatically generate one.",
                           })))),
                         operator: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             description: "Grants all permissions in all organizations.",
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                           })))),
                         allAccess: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             description: "Grants all permissions in the associated organization.",
                             default: false,
                             type: nix.thunk(() => nix.sel(types, "bool")),
                           })))),
                         readPermissions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             description: "The read permissions to include for this token. Access is usually granted only\nfor resources in the associated organization.\n\nAvailable permissions are `authorizations`, `buckets`, `dashboards`,\n`orgs`, `tasks`, `telegrafs`, `users`, `variables`, `secrets`, `labels`, `views`,\n`documents`, `notificationRules`, `notificationEndpoints`, `checks`, `dbrp`,\n`annotations`, `sources`, `scrapers`, `notebooks`, `remotes`, `replications`.\n\nRefer to `influx auth create --help` for a full list with descriptions.\n\n`buckets` grants read access to all associated buckets. Use `readBuckets` to define\nmore granular access permissions.\n",
                             default: [],
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), validPermissions)))),
                           })))),
                         writePermissions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             description: "The read permissions to include for this token. Access is usually granted only\nfor resources in the associated organization.\n\nAvailable permissions are `authorizations`, `buckets`, `dashboards`,\n`orgs`, `tasks`, `telegrafs`, `users`, `variables`, `secrets`, `labels`, `views`,\n`documents`, `notificationRules`, `notificationEndpoints`, `checks`, `dbrp`,\n`annotations`, `sources`, `scrapers`, `notebooks`, `remotes`, `replications`.\n\nRefer to `influx auth create --help` for a full list with descriptions.\n\n`buckets` grants write access to all associated buckets. Use `writeBuckets` to define\nmore granular access permissions.\n",
                             default: [],
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "enum"), validPermissions)))),
                           })))),
                         readBuckets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             description: "The organization's buckets which should be allowed to be read",
                             default: [],
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           })))),
                         writeBuckets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             description: "The organization's buckets which should be allowed to be written",
                             default: [],
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
@@ -307,70 +307,70 @@ fi
       };
     })()));
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     options: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       services: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         influxdb2: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the influxdb2 server")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "influxdb2", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: nix.thunk(() => ({})),
               description: "configuration options for influxdb2, see <https://docs.influxdata.com/influxdb/v2.0/reference/config-options> for details.",
               type: nix.thunk(() => nix.sel(format, "type")),
             })))),
           provision: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => nix.app(mkEnableOption, "initial database setup and provisioning")),
             initialSetup: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               organization: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "main",
                   description: "Primary organization name",
                 })))),
               bucket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "example",
                   description: "Primary bucket name",
                 })))),
               username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   default: "admin",
                   description: "Primary username",
                 })))),
               retention: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                   default: 0n,
                   description: "The duration in seconds for which the bucket will retain data (0 is infinite).",
                 })))),
               passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: nix.thunk(() => nix.sel(types, "path")),
                   description: "Password for primary user. Don't use a file from the nix store!",
                 })))),
               tokenFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   type: nix.thunk(() => nix.sel(types, "path")),
                   description: "API Token to set for the admin user. Don't use a file from the nix store!",
                 })))),
             })),
             organizations: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 description: "Organizations to provision.",
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  myorg = {\n    description = \"My organization\";\n    buckets.mybucket = {\n      description = \"My bucket\";\n      retention = 31536000; # 1 year\n    };\n    auths.mytoken = {\n      readBuckets = [\"mybucket\"];\n      tokenFile = \"/run/secrets/mytoken\";\n    };\n  };\n}\n")),
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), organizationSubmodule)),
               })))),
             users: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 description: "Users to provision.",
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  # admin = {}; /* The initialSetup.username will automatically be added. */\n  myuser.passwordFile = \"/run/secrets/myuser_password\";\n}\n")),
@@ -378,17 +378,17 @@ fi
                       const user = nix.thunk(() => nix.sel(userSubmod, "config", "_module", "args", "name"));
                       const org = nix.thunk(() => nix.sel(userSubmod, "config", "org"));
                       return {
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         options: nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           present: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$34,
+                              [nix.POS]: pos$34,
                               description: "Whether to ensure that this user is present or absent.",
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: true,
                             })))),
                           passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$35,
+                              [nix.POS]: pos$35,
                               description: "Password for the user. If unset, the user will not be able to log in until a password is set by an operator! Don't use a file from the nix store!",
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
@@ -402,16 +402,16 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(hasAttr, "bolt-path", nix.thunk(() => nix.sel(cfg, "settings"))))) && nix.asBool(!nix.asBool(nix.app(hasAttr, "engine-path", nix.thunk(() => nix.sel(cfg, "settings"))))))),
             message: "services.influxdb2.config: bolt-path and engine-path should not be set as they are managed by systemd",
           })),
         ], nix.app(flatten, nix.thunk(() => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.sel(cfg, "provision", "organizations")), (orgName) => (org) => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.sel(org, "auths")), (authName) => (auth) => [
                 nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   assertion: nix.thunk(() => nix.eq(1n, nix.app(count, (x) => nix.force(x), nix.thunk(() => [
                       nix.thunk(() => nix.sel(auth, "operator")),
                       nix.thunk(() => nix.sel(auth, "allAccess")),
@@ -422,7 +422,7 @@ fi
                 nix.thunk(() => (() => {
                   const unknownBuckets = nix.thunk(() => nix.app(subtractLists, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(org, "buckets")))), nix.thunk(() => nix.sel(auth, "readBuckets"))));
                   return {
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     assertion: nix.thunk(() => nix.eq(unknownBuckets, [])),
                     message: nix.thunk(() => nix.str`influxdb2: provision.organizations.${orgName}.auths.${authName}: Refers to invalid buckets in readBuckets: ${nix.builtins.toString(unknownBuckets)}`),
                   };
@@ -430,25 +430,25 @@ fi
                 nix.thunk(() => (() => {
                   const unknownBuckets = nix.thunk(() => nix.app(subtractLists, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(org, "buckets")))), nix.thunk(() => nix.sel(auth, "writeBuckets"))));
                   return {
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     assertion: nix.thunk(() => nix.eq(unknownBuckets, [])),
                     message: nix.thunk(() => nix.str`influxdb2: provision.organizations.${orgName}.auths.${authName}: Refers to invalid buckets in writeBuckets: ${nix.builtins.toString(unknownBuckets)}`),
                   };
                 })()),
               ])))))),
         services: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           influxdb2: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             provision: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "provision", "enable")), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 organizations: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "provision", "initialSetup", "organization"), nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     buckets: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.sel(cfg, "provision", "initialSetup", "bucket"), nix.thunk(() => (() => {
                         const from = nix.thunk(() => nix.sel(cfg, "provision", "initialSetup"));
-                        return { __proto__: pos$47, retention: nix.thunk(() => nix.attr(from, "retention")) };
+                        return { [nix.POS]: pos$47, retention: nix.thunk(() => nix.attr(from, "retention")) };
                       })())],
                     ])),
                   }))],
@@ -457,7 +457,7 @@ fi
                   [nix.sel(cfg, "provision", "initialSetup", "username"), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(cfg, "provision", "initialSetup"));
                     return {
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     passwordFile: nix.thunk(() => nix.attr(from, "passwordFile")),
                   };
                   })())],
@@ -466,22 +466,22 @@ fi
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$57,
+          [nix.POS]: pos$57,
           services: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             influxdb2: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               description: "InfluxDB is an open-source, distributed, time series database",
               documentation: nix.thunk(() => ["https://docs.influxdata.com/influxdb/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 INFLUXD_CONFIG_PATH: configFile,
                 ZONEINFO: nix.thunk(() => nix.str`${nix.sel(pkgs, "tzdata")}/share/zoneinfo`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 Type: "exec",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/influxd --bolt-path \${STATE_DIRECTORY}/influxd.bolt --engine-path \${STATE_DIRECTORY}/engine`),
                 StateDirectory: "influxdb2",
@@ -517,16 +517,16 @@ fi
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           extraUsers: nix.thunk(() => ({
-            __proto__: pos$59,
-            influxdb2: nix.thunk(() => ({ __proto__: pos$58, isSystemUser: true, group: "influxdb2" })),
+            [nix.POS]: pos$59,
+            influxdb2: nix.thunk(() => ({ [nix.POS]: pos$58, isSystemUser: true, group: "influxdb2" })),
           })),
-          extraGroups: nix.thunk(() => ({ __proto__: pos$60, influxdb2: nix.thunk(() => ({})) })),
+          extraGroups: nix.thunk(() => ({ [nix.POS]: pos$60, influxdb2: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

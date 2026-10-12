@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const fuse = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(macfuse_stubs) : nix.force(fuse3)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tup",
       version: "0.8",
       outputs: nix.thunk(() => ["bin", "man", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gittup",
           repo: "tup",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ runHook postConfigure
       installPhase: "runHook preInstall\ninstallBin tup\ninstallManPage tup.1\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, file-based build system",
         mainProgram: "tup",
         longDescription: "Tup is a file-based build system for Linux, OSX, and Windows. It inputs a list\nof file changes and a directed acyclic graph (DAG), then processes the DAG to\nexecute the appropriate commands required to update dependent files. Updates are\nperformed with very little overhead since tup implements powerful build\nalgorithms to avoid doing unnecessary work. This means you can stay focused on\nyour project rather than on your build system.\n",

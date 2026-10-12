@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const libmagic = file;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "suricata",
       version: "8.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.openinfosecfoundation.org/download/suricata-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qdRqnI9A6B+KbfPswsWpqOjamFh2KZEI2S2lR8ATuow=",
         })))),
@@ -116,14 +116,14 @@ sed -i 's|${nix.builtins.storeDir}/\\(.\\{8\\}\\)[^-]*-|${nix.builtins.storeDir}
   --replace-fail "/etc/suricata" "${nix.builtins.placeholder("out")}/etc/suricata"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           suricata: nix.thunk(() => nix.attr(nixosTests, "suricata")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free and open source, mature, fast and robust network threat detection engine",
         homepage: "https://suricata.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

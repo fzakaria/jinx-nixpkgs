@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26";
       const outputs = nix.thunk(() => nix.concat(["out", "lib", "dev"], nix.app(nix.sel(lib, "optional"), pythonSupport, "python")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "analogdevicesinc",
           repo: "libiio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +56,7 @@ moveToOutput ${nix.sel(python3, "sitePackages")} "$python"
       const nativeInstallCheckInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pythonImportsCheckHook"))])));
       const pythonImportsCheck = nix.thunk(() => ["iio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/analogdevicesinc/libiio/releases/tag/${nix.sel(src, "tag")}`),
         description: "API for interfacing with the Linux Industrial I/O Subsystem",
         homepage: "https://github.com/analogdevicesinc/libiio",
@@ -68,7 +68,7 @@ moveToOutput ${nix.sel(python3, "sitePackages")} "$python"
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

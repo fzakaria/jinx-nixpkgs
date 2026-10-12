@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kepler",
       version: "1.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Exein-io",
           repo: "kepler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-waV73sR/M6WMkl6GaQGW1ZEIIiiFo3S+rLY2ykmY40Q=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpq, openssl, zstd]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NIST-based CVE lookup store and API powered by Rust",
         homepage: "https://github.com/Exein-io/kepler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

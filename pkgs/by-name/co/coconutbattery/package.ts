@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coconutbattery",
       version: "4.2.0,192",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://coconut-flavour.com/downloads/coconutBattery_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [".", ","]), nix.thunk(() => ["", "_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-pzfg+RAlCbEaBHiU/ZQcBf0Tg0BCfs0UHh62dFQVbz0=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/coconutBattery.app\ncp -R . $out/Applications/coconutBattery.app\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standard for battery reading since 2005",
         longDescription: "With coconutBattery you are always aware of your current battery health.\nIt shows you live information about the battery quality in your Mac, iPhone and iPad.\n",
         homepage: "https://www.coconut-flavour.com/coconutbattery",

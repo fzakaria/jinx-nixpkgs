@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dnd-tools",
       version: "0-unstable-2022-08-01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "savagezen",
           repo: "dnd-tools",
           rev: "faa09f6c01de423c4e592126e24ad929f8a9f164",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/savagezen/dnd-tools/-/commit/0443f3a232056ad67cfb09eb3eadcb6344659198.patch",
             sha256: "00k8rsz2aj4sfag6l313kxbphcb5bjxb6z3aw66h26cpgm4kysp0",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.com/savagezen/dnd-tools",
         description: "Set of interactive command line tools for Dungeons and Dragons 5th Edition",
         mainProgram: "dnd-tools",

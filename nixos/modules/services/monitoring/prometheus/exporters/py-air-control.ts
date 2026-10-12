@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const workingDir = nix.thunk(() => nix.str`/var/lib/${nix.sel(cfg, "stateDir")}`);
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9896n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       deviceHostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           example: "192.168.1.123",
           description: "The hostname of the air purification device from which to scrape the metrics.\n",
         })))),
       protocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "http",
           description: "The protocol to use when communicating with the air purification device.\nAvailable: [http, coap, plain_coap]\n",
         })))),
       stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "prometheus-py-air-control-exporter",
           description: "Directory below `/var/lib` to store runtime data.\nThis directory will be created automatically using systemd's StateDirectory mechanism.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         DynamicUser: false,
         StateDirectory: nix.thunk(() => nix.sel(cfg, "stateDir")),
         WorkingDirectory: workingDir,

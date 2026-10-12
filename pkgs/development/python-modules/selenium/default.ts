@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.40.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SeleniumHQ",
           repo: "selenium",
           tag: nix.thunk(() => nix.add(nix.str`selenium-${version}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "versions", "patch"), version), "0")), "-python"))),
@@ -90,14 +90,14 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), selenium_manager)} $DST_PREFIX/common/li
       ]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "testing-vaultwarden": nix.thunk(() => nix.sel(nixosTests, "vaultwarden")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Bindings for Selenium WebDriver",
         homepage: "https://selenium.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -107,7 +107,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), selenium_manager)} $DST_PREFIX/common/li
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

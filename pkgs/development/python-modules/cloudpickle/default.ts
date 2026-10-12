@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudpipe",
           repo: "cloudpickle",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["cloudpickle"]);
       const disabledTestPaths = nix.thunk(() => ["tests/cloudpickle_test.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/cloudpipe/cloudpickle/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Extended pickling support for Python objects",
         homepage: "https://github.com/cloudpipe/cloudpickle",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

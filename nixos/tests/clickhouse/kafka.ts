@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
   const kafkaNamedCollectionConfig = "<clickhouse>\n  <named_collections>\n    <cluster_1>\n        <!-- ClickHouse Kafka engine parameters -->\n        <kafka_broker_list>kafka:9092</kafka_broker_list>\n        <kafka_topic_list>test_topic</kafka_topic_list>\n        <kafka_group_name>clickhouse</kafka_group_name>\n        <kafka_format>JSONEachRow</kafka_format>\n        <kafka_commit_every_batch>0</kafka_commit_every_batch>\n        <kafka_num_consumers>1</kafka_num_consumers>\n        <kafka_thread_per_consumer>1</kafka_thread_per_consumer>\n\n        <!-- Kafka extended configuration -->\n        <kafka>\n          <debug>all</debug>\n          <auto_offset_reset>earliest</auto_offset_reset>\n        </kafka>\n    </cluster_1>\n  </named_collections>\n</clickhouse>\n";
   const kafkaNamedCollection = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kafka.xml", kafkaNamedCollectionConfig));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: nix.thunk(() => nix.str`clickhouse-${nix.sel(package$, "version")}-kafka`),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -46,44 +46,44 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       clickhouse: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           etc: nix.thunk(() => ({
-            __proto__: pos$3,
-            "clickhouse-server/config.d/kafka.xml": nix.thunk(() => ({ __proto__: pos$2, source: nix.thunk(() => nix.str`${kafkaNamedCollection}`) })),
+            [nix.POS]: pos$3,
+            "clickhouse-server/config.d/kafka.xml": nix.thunk(() => ({ [nix.POS]: pos$2, source: nix.thunk(() => nix.str`${kafkaNamedCollection}`) })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          clickhouse: nix.thunk(() => ({ __proto__: pos$5, enable: true, package: package$ })),
+          [nix.POS]: pos$6,
+          clickhouse: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, package: package$ })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$7, memorySize: 4096n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 4096n })),
       })),
       kafka: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         networking: nix.thunk(() => ({
-          __proto__: pos$10,
-          firewall: nix.thunk(() => ({ __proto__: pos$9, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
+          [nix.POS]: pos$10,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "apacheKafka")),
             nix.thunk(() => nix.sel(pkgs, "jq")),
           ]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           "apache-kafka": nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: true,
             clusterId: "b81s-MuGSwyt_B9_h37wtQ",
             formatLogDirs: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               listeners: nix.thunk(() => ["PLAINTEXT://:9092", "CONTROLLER://:9093"]),
               "listener.security.protocol.map": nix.thunk(() => ["PLAINTEXT:PLAINTEXT", "CONTROLLER:PLAINTEXT"]),
               "controller.quorum.voters": nix.thunk(() => ["1@kafka:9093"]),
@@ -100,16 +100,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "apache-kafka": nix.thunk(() => ({
-              __proto__: pos$16,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$15, StateDirectory: "apache-kafka" })),
+              [nix.POS]: pos$16,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, StateDirectory: "apache-kafka" })),
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$19, memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$19, memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
       })),
     })),
     testScript: nix.thunk(() => (() => {

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caprice32",
       version: "4.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "caprice32",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "ColinPitrat",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/icons/\nmv $out/share/caprice32/resources/freedesktop/caprice32.png $out/share/icons/\nmv $out/share/caprice32/resources/freedesktop/emulators.png $out/share/icons/\n\ndesktop-file-install --dir $out/share/applications \\\n  $out/share/caprice32/resources/freedesktop/caprice32.desktop\n\ndesktop-file-install --dir $out/share/desktop-directories \\\n  $out/share/caprice32/resources/freedesktop/Emulators.directory\n\ninstall -Dm644 $out/share/caprice32/resources/freedesktop/caprice32.menu -t $out/etc/xdg/menus/applications-merged/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Complete emulation of CPC464, CPC664 and CPC6128",
         homepage: "https://github.com/ColinPitrat/caprice32",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

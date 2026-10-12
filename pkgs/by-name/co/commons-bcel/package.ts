@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "6.12.0",
       pname: "commons-bcel",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/bcel/binaries/bcel-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-6dg42j/EwgxIkd416H8P4Pf9abeQUyAjOO4UQCzWl70=",
         })))),
@@ -26,7 +26,7 @@ mkdir -p $out/share/java
 cp bcel-${nix.sel(finalAttrs, "version")}.jar $out/share/java/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://commons.apache.org/proper/commons-bcel/",
         description: "Gives users a convenient way to analyze, create, and manipulate (binary) Java class files",
         sourceProvenance: nix.thunk(() => (() => {

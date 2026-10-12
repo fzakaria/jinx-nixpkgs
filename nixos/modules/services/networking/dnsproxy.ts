@@ -36,24 +36,24 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(yaml, "generate"), "config.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const finalFlags = nix.thunk(() => nix.concat(nix.app(nix.sel(lists, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})), nix.thunk(() => nix.str`--config-path=${configFile}`)), nix.sel(cfg, "flags")));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         dnsproxy: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkEnableOption, "dnsproxy")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "dnsproxy", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(yaml, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  bootstrap = [\n    \"8.8.8.8:53\"\n  ];\n  listen-addrs = [\n    \"0.0.0.0\"\n  ];\n  listen-ports = [\n    53\n  ];\n  upstream = [\n    \"1.1.1.1:53\"\n  ];\n}\n")),
               description: "Contents of the {file}`config.yaml` config file.\nThe `--config-path` argument will only be passed if this set is not empty.\n\nSee <https://github.com/AdguardTeam/dnsproxy/blob/master/config.yaml.dist>.\n",
             })))),
           flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["--upstream=1.1.1.1:53"]),
@@ -63,18 +63,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             dnsproxy: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Simple DNS proxy with DoH, DoT, DoQ and DNSCrypt support",
               after: nix.thunk(() => ["network.target", "nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(escapeShellArgs, finalFlags)}`),
                 Restart: "always",
                 RestartSec: 10n,
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "diogotcorreia"))];

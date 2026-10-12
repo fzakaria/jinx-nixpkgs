@@ -17,33 +17,33 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "hickory-dns",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "adamcstephens"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "doggo"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "hickory-dns": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               zones: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   zone: "example.test",
                   file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "example.test.zone", "$ORIGIN example.test.\n$TTL 3600\n@ IN SOA ns.example.test. hostmaster.example.test. (1 3600 600 86400 3600)\n@ IN NS ns.example.test.\nns IN A 127.0.0.1\nwww IN A 192.0.2.1\n")),
                 })),

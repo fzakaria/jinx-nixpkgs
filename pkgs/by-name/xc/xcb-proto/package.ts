@@ -19,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xcb-proto",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/proto/xcb-proto-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LBus0hEPR5n3TebrtxS5TPb4D7ESMWsSGUgP0iViFIw=",
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config, python3]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
@@ -44,7 +44,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "XML-XCB protocol descriptions used by libxcb for the X11 protocol & extensions",
         homepage: "https://gitlab.freedesktop.org/xorg/proto/xcbproto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "x11")),

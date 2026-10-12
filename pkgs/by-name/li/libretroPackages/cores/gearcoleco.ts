@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "gearcoleco",
       version: "1.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drhelius",
           repo: "Gearcoleco",
           tag: "1.6.6",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       extraNativeBuildInputs: nix.thunk(() => [gitMinimal]),
       postPatch: "# The libretro Makefile writes object files outside sourceRoot.\nchmod -R u+w ../../src ../shared/dependencies/miniz\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ColecoVision emulator core for libretro",
         homepage: "https://github.com/drhelius/Gearcoleco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

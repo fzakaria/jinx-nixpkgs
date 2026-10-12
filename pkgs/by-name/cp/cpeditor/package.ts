@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpeditor",
       version: "7.1.1-unstable-2026-04-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cpeditor",
           repo: "cpeditor",
           rev: "912784abcbfb38d70911c45d15a308c339894cec",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace dist/linux/cpeditor.desktop --replace-fail 'Exec=/usr/bin/cpeditor' "Exec=cpeditor"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IDE specially designed for competitive programming",
         homepage: "https://cpeditor.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

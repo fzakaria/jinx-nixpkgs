@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "akshaynagpal",
           repo: "w2n",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), python)} unit_testing.py
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/akshaynagpal/w2n/releases/tag/${version}`),
         description: "Convert number words (eg. twenty one) to numeric digits (21)",
         homepage: "http://w2n.readthedocs.io/",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "booxter"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

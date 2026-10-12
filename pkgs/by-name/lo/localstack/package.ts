@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "localstack",
       version: "4.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "localstack",
           repo: "localstack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\nexport HOME=$(mktemp -d)\n$out/bin/localstack --version\n\nrunHook postCheck\n",
       postFixup: "rm $out/nix-support/propagated-build-inputs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fully functional local Cloud stack",
         homepage: "https://github.com/localstack/localstack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

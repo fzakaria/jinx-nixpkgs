@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ponymix",
       version: "5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "falconindy",
           repo: "ponymix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       postPatch: "substituteInPlace Makefile --replace \"\\$(DESTDIR)/usr\" \"$out\"",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI PulseAudio Volume Control",
         homepage: "https://github.com/falconindy/ponymix",
         mainProgram: "ponymix",

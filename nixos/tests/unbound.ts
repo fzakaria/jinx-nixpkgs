@@ -85,17 +85,17 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       config: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "knot-dns"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           unbound: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enableRootTrustAnchor: false,
             package: nix.thunk(() => nix.sel(pkgs_1, "unbound-full")),
           })),
@@ -104,64 +104,64 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   const cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=dns.example.local'\nmkdir -p $out\ncp key.pem cert.pem $out\n"));
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     name: "unbound",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "andir"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$65,
+      [nix.POS]: pos$65,
       authoritative: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               eth1: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$8, address: "192.168.0.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$8, address: "192.168.0.1", prefixLength: 24n })),
                     ]))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$10, address: "fd21::1", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$10, address: "fd21::1", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
             firewall: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               allowedTCPPorts: nix.thunk(() => [53n]),
               allowedUDPPorts: nix.thunk(() => [53n]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             unbound: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 server: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   interface: nix.thunk(() => ["192.168.0.1", "fd21::1", "::1", "127.0.0.1"]),
                   "access-control": nix.thunk(() => ["192.168.0.0/24 allow", "fd21::/64 allow", "::1 allow", "127.0.0.0/8 allow"]),
                   "local-data": nix.thunk(() => ["\"example.local. IN A 1.2.3.4\"", "\"example.local. IN AAAA abcd::eeff\""]),
@@ -176,43 +176,43 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               eth1: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$21, address: "192.168.0.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$21, address: "192.168.0.2", prefixLength: 24n })),
                     ]))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$23, address: "fd21::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$23, address: "fd21::2", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
             firewall: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               allowedTCPPorts: nix.thunk(() => [53n, 853n, 443n]),
               allowedUDPPorts: nix.thunk(() => [53n, 853n]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             unbound: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 server: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   interface: nix.thunk(() => [
                     "::1",
                     "127.0.0.1",
@@ -235,7 +235,7 @@ export default nix.lambda((args) => (() => {
                 })),
                 "forward-zone": nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     name: ".",
                     "forward-addr": nix.thunk(() => [
                       nix.thunk(() => nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(nodes, "authoritative", "networking", "interfaces", "eth1", "ipv6", "addresses"))), "address")),
@@ -254,43 +254,43 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               eth1: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$35, address: "192.168.0.3", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$35, address: "192.168.0.3", prefixLength: 24n })),
                     ]))),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$37, address: "fd21::3", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$37, address: "fd21::3", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
             firewall: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               allowedTCPPorts: nix.thunk(() => [53n]),
               allowedUDPPorts: nix.thunk(() => [53n]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             unbound: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 server: nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   interface: nix.thunk(() => ["::1", "127.0.0.1"]),
                   "access-control": nix.thunk(() => ["::1 allow", "127.0.0.0/8 allow"]),
                 })),
@@ -300,29 +300,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             users: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               someuser: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 isSystemUser: true,
                 group: "someuser",
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(config, "users", "users", "unbound", "group"))]),
               })),
-              unauthorizeduser: nix.thunk(() => ({ __proto__: pos$48, isSystemUser: true, group: "unauthorizeduser" })),
+              unauthorizeduser: nix.thunk(() => ({ [nix.POS]: pos$48, isSystemUser: true, group: "unauthorizeduser" })),
             })),
             groups: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               someuser: nix.thunk(() => ({})),
               unauthorizeduser: nix.thunk(() => ({})),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             etc: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               "unbound-extra1.conf": nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 text: nix.thunk(() => nix.str`forward-zone:
 name: "example.local."
 forward-addr: ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(nodes, "resolver", "networking", "interfaces", "eth1", "ipv6", "addresses"))), "address")}
@@ -330,7 +330,7 @@ forward-addr: ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(
 `),
               })),
               "unbound-extra2.conf": nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 text: nix.thunk(() => nix.str`auth-zone:
   name: something.local.
   zonefile: ${nix.app(nix.sel(pkgs, "writeText"), "zone", "something.local. IN A 3.4.5.6\n")}
@@ -345,28 +345,28 @@ forward-addr: ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(
         const lib_1 = nix.arg($_1, "lib");
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$64,
+          [nix.POS]: pos$64,
           imports: nix.thunk(() => [common]),
           networking: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             nameservers: nix.thunk(() => [
               nix.thunk(() => nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(nodes, "resolver", "networking", "interfaces", "eth1", "ipv6", "addresses"))), "address")),
               nix.thunk(() => nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(nodes, "resolver", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address")),
             ]),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               eth1: nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$57, address: "192.168.0.10", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$57, address: "192.168.0.10", prefixLength: 24n })),
                   ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$59, address: "fd21::10", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$59, address: "fd21::10", prefixLength: 64n })),
                   ]),
                 })),
               })),

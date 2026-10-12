@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sns-sdks",
           repo: "python-youtube",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, responses, pytest_cov_stub]);
       const disabledTests = nix.thunk(() => ["test_parse_response"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Python wrapper around for YouTube Data API",
         homepage: "https://github.com/sns-sdks/python-youtube",
         changelog: nix.thunk(() => nix.str`https://github.com/sns-sdks/python-youtube/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

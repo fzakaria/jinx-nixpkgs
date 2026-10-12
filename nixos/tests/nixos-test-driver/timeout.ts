@@ -7,11 +7,11 @@ const pos$1 = nix.positions(here + "/timeout.nix", [["machine", 6, 5]]);
 const pos$2 = nix.positions(here + "/timeout.nix", [["name", 2, 3], ["globalTimeout", 3, 3], ["nodes", 5, 3], ["testScript", 13, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   name: "Test that sleep of 6 seconds fails a timeout of 5 seconds",
   globalTimeout: 5n,
   nodes: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");

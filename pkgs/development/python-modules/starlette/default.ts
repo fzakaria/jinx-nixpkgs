@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kludex",
           repo: "starlette",
           tag: version,
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [anyio]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         full: nix.thunk(() => [itsdangerous, jinja2, python_multipart, pyyaml, httpx, httpx2]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, trio], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["starlette"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, fastapi: fastapi })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, fastapi: fastapi })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/Kludex/starlette/blob/${nix.sel(src, "tag")}/docs/release-notes.md`),
         downloadPage: "https://github.com/Kludex/starlette",
         homepage: "https://www.starlette.io/",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

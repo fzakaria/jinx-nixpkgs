@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "click",
       version: "0.5.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/click",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,13 +50,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-click-fix-Wimplicit-function-declaration.patch",
             url: "https://gitlab.com/ubports/development/core/click/-/commit/8f654978a12e6f9a0b6ff64296ec5565e3ff5cd0.patch",
             hash: "sha256-kio+DdtuagUNYEosyQY3q3H+dJM3cLQRW9wUKUcpUTY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-click-Add-uid_t-and-gid_t-to-the-ctypes-_typemap.patch",
             url: "https://gitlab.com/ubports/development/core/click/-/commit/cbcd23b08b02fa122434e1edd69c2b3dcb6a8793.patch",
             hash: "sha256-QaWRhxO61wAzULVqPLdJrLuBCr3+NhKmQlEPuYq843I=",
@@ -115,11 +115,11 @@ export PYTHON_INSTALL_FLAGS="--prefix=$out"
       preCheck: nix.thunk(() => nix.add("export NIX_CFLAGS_COMPILE+=\" -U_FORTIFY_SOURCE\"\n", "for path in $disabledTestPaths; do\n  rm -v $path\ndone\n")),
       preFixup: "makeWrapperArgs+=(\n  --prefix LD_LIBRARY_PATH : \"$out/lib\"\n)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -127,7 +127,7 @@ export PYTHON_INSTALL_FLAGS="--prefix=$out"
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tool to build click packages, mainly used for Ubuntu Touch",
         homepage: "https://gitlab.com/ubports/development/core/click",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/click/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

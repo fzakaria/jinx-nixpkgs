@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ryzenadj",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FlyGoat",
           repo: "RyzenAdj",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "install -D libryzenadj.so $out/lib/libryzenadj.so\ninstall -D ryzenadj $out/bin/ryzenadj\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adjust power management settings for Ryzen Mobile Processors",
         mainProgram: "ryzenadj",
         homepage: "https://github.com/FlyGoat/RyzenAdj",

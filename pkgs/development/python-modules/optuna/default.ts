@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "optuna",
       version: "4.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "optuna",
           repo: "optuna",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/optuna/optuna/commit/ba57cff4a1990f3943cf250edc32d34e6ddd436d.patch",
             hash: "sha256-SGsZcl+F62JN7LEAfmyanswl/tUZfZv4doh3lS5JSkQ=",
           })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [alembic, colorlog, numpy, packaging, sqlalchemy, tqdm, pyyaml]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         optional: nix.thunk(() => [
           boto3,
           cmaes,
@@ -130,7 +130,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["optuna"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Hyperparameter optimization framework",
         homepage: "https://optuna.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/optuna/optuna/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pydantic-zarr",
       version: "0.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zarr-developers",
           repo: "pydantic-zarr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pydantic_zarr"]),
       nativeCheckInputs: nix.thunk(() => [dask, pytest_examples, pytestCheckHook, xarray]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pydantic models for Zarr",
         homepage: "https://github.com/zarr-developers/pydantic-zarr",
         changelog: nix.thunk(() => nix.str`https://github.com/zarr-developers/pydantic-zarr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

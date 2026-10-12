@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const spdlog = nix.arg($, "spdlog");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vowpal-wabbit",
       version: "9.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VowpalWabbit",
           repo: "vowpal_wabbit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Machine learning system focused on online reinforcement learning",
         homepage: "https://github.com/VowpalWabbit/vowpal_wabbit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

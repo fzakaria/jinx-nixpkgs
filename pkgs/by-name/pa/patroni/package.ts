@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
     "zookeeper",
   ]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "patroni",
       version: "4.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patroni",
           repo: "patroni",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           aws: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "boto3"))]),
           consul: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "consul"))]),
           etcd: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "python-etcd"))]),
@@ -87,12 +87,12 @@ export default nix.lambda((args) => (() => {
       })(), nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, patroni: nix.thunk(() => nix.sel(nixosTests, "patroni")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, patroni: nix.thunk(() => nix.sel(nixosTests, "patroni")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/patroni/patroni/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/releases.rst`),
         description: "Template for PostgreSQL HA with ZooKeeper, etcd or Consul",
         homepage: "https://patroni.readthedocs.io/en/latest/",

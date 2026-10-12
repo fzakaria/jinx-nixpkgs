@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-cffi",
           repo: "cffi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/python-cffi/cffi/releases/tag/v${version}`),
         description: "Foreign Function Interface for Python calling C code",
         downloadPage: "https://github.com/python-cffi/cffi",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "python"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

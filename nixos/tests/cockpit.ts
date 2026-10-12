@@ -28,44 +28,44 @@ export default nix.lambda((args) => (() => {
   const user = "alice";
   const password = "foobar";
   const helloPlugin = nix.thunk(() => nix.update(nix.app(nix.sel(pkgs, "runCommand"), "cockpit-hello-test", nix.thunk(() => ({})), "mkdir -p $out/share/cockpit/hello-test\n\ncat > $out/share/cockpit/hello-test/manifest.json << 'EOF'\n{\n  \"name\": \"hello-test\",\n  \"menu\": {\n    \"index\": {\n      \"label\": \"Hello Test\",\n      \"order\": 100\n    }\n  }\n}\nEOF\n\ncat > $out/share/cockpit/hello-test/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head>\n  <title>Hello Test</title>\n  <meta charset=\"utf-8\">\n  <script src=\"../base1/cockpit.js\"></script>\n</head>\n<body>\n  <h1>Hello Test Plugin</h1>\n  <div id=\"output\">Loading...</div>\n  <script src=\"test.js\"></script>\n</body>\n</html>\nEOF\n\ncat > $out/share/cockpit/hello-test/test.js << 'EOF'\n(function() {\n  var output = document.getElementById(\"output\");\n\n  if (typeof cockpit === \"undefined\") {\n    output.innerText = \"FAILED: cockpit.js not loaded\";\n    return;\n  }\n\n  cockpit.spawn([\"hello\"], { err: \"message\" })\n    .then(function(data) {\n      output.innerText = \"SUCCESS: \" + data;\n    })\n    .catch(function(error) {\n      output.innerText = \"FAILED: \" + (error ? error.message : \"unknown error\");\n    });\n})();\nEOF\n"), {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     passthru: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cockpitPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
     })),
   }));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "cockpit",
     meta: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lucasew"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           security: nix.thunk(() => ({
-            __proto__: pos$5,
-            polkit: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$5,
+            polkit: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             users: nix.thunk(() => nix.attrsDyn({}, [
-              [user, nix.thunk(() => ({ __proto__: pos$6, extraGroups: nix.thunk(() => ["wheel"]) }))],
+              [user, nix.thunk(() => ({ [nix.POS]: pos$6, extraGroups: nix.thunk(() => ["wheel"]) }))],
             ])),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             cockpit: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               port: 7890n,
               openFirewall: true,
@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => (() => {
               const seleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "selenium-script", nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "selenium"))];

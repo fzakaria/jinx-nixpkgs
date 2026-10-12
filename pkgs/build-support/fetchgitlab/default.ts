@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const useFetchGit = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(fetchSubmodules) || nix.asBool(leaveDotGit))) || nix.asBool(deepClone))) || nix.asBool(forceFetchGit))) || nix.asBool(!nix.eq(sparseCheckout, []))));
       const fetcher = nix.thunk(() => (nix.asBool(useFetchGit) ? nix.force(fetchgit) : nix.force(fetchzip)));
       const privateAttrs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), private$, nix.thunk(() => (nix.asBool(!nix.eq(protocol, "https")) ? nix.builtins.throw("private token login is only supported for https") : {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           netrcPhase: nix.thunk(() => nix.add(nix.str`if [ -z "$${varBase}USERNAME" -o -z "$${varBase}PASSWORD" ]; then
   echo "Error: Private fetchFromGitLab requires the nix building process (nix-daemon in multi user mode) to have the ${varBase}USERNAME and ${varBase}PASSWORD env vars set." >&2
   exit 1
@@ -85,7 +85,7 @@ curlOpts="$curlOpts --header @./private-token"
         }))));
       const gitRepoUrl = nix.thunk(() => nix.str`${protocol}://${domain}/${slug}.git`);
       const fetcherArgs = nix.thunk(() => nix.update((nix.asBool(useFetchGit) ? {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         rev: rev,
         deepClone: deepClone,
         tag: tag,
@@ -94,14 +94,14 @@ curlOpts="$curlOpts --header @./private-token"
         leaveDotGit: leaveDotGit,
         url: gitRepoUrl,
       } : {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`${protocol}://${domain}/api/v4/projects/${escapedSlug}/repository/archive.tar.gz?sha=${escapedRevWithTag}`),
-        passthru: nix.thunk(() => ({ __proto__: pos$3, gitRepoUrl: gitRepoUrl })),
-      }), nix.update(privateAttrs, nix.update(passthruAttrs, { __proto__: pos$5, name: name }))));
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, gitRepoUrl: gitRepoUrl })),
+      }), nix.update(privateAttrs, nix.update(passthruAttrs, { [nix.POS]: pos$5, name: name }))));
       return nix.update(nix.app(fetcher, fetcherArgs), {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           homepage: nix.thunk(() => nix.str`${protocol}://${domain}/${slug}/`),
         })),
         tag: tag,

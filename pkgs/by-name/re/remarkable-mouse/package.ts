@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "remarkable-mouse",
       version: "unstable-2024-02-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Evidlo",
           repo: "remarkable_mouse",
           rev: "05142ef37a8b3f9e350156a14c2dec6844ed0ea8",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["remarkable_mouse"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program to use a reMarkable as a graphics tablet",
         homepage: "https://github.com/evidlo/remarkable_mouse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

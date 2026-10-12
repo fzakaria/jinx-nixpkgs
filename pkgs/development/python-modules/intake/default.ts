@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "intake",
       version: "2.0.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intake",
           repo: "intake",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         pyyaml,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         server: nix.thunk(() => [msgpack, python_snappy, tornado]),
         dataframe: nix.thunk(() => [msgpack_numpy, pyarrow]),
         plot: nix.thunk(() => [hvplot, bokeh, panel]),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["intake"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data load and catalog system",
         homepage: "https://github.com/ContinuumIO/intake",
         changelog: nix.thunk(() => nix.str`https://github.com/intake/intake/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/source/changelog.rst`),

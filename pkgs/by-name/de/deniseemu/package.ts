@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "deniseemu",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "piciji",
           repo: "denise",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, udev, libuuid, libxkbcommon, freetype, pulseaudio]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, wrapGAppsHook3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bitbucket.org/piciji/denise",
         downloadPage: "https://sourceforge.net/projects/deniseemu/",
         description: "C64 / Amiga Emulator",

@@ -82,15 +82,15 @@ fi
 nixos-rebuild switch
 `);
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "amazon-init": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable or disable the amazon-init service.\n",
@@ -99,13 +99,13 @@ nixos-rebuild switch
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "amazon-init": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               script: script,
               description: "Reconfigure the system from EC2 userdata on startup",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -113,14 +113,14 @@ nixos-rebuild switch
               requires: nix.thunk(() => ["network-online.target"]),
               path: nix.thunk(() => ["/run/wrappers", "/run/current-system/sw"]),
               restartIfChanged: false,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$5, "X-StopOnRemoval": false })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$6, Type: "oneshot", RemainAfterExit: true })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$5, "X-StopOnRemoval": false })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Type: "oneshot", RemainAfterExit: true })),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "arianvp"))];

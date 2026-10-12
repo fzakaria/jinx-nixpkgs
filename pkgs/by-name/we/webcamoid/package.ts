@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "webcamoid";
       const version = "9.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webcamoid",
           repo: "webcamoid",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config, cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Webcam Capture Software",
         longDescription: "Webcamoid is a full featured and multiplatform webcam suite.",
         homepage: "https://github.com/webcamoid/webcamoid/",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "webcamoid",
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

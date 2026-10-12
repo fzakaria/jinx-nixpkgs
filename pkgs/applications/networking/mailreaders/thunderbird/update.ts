@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "../../browsers/firefox/update.nix"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseUrl: "https://archive.mozilla.org/pub/thunderbird/releases/",
     }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])))));
 })(), formals$1);

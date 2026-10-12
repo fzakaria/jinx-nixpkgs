@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
   const proxyTarget = nix.thunk(() => nix.str`http://${nix.app(bracketed, proxyHost)}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`);
   const redisHost = nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? "127.0.0.1" : nix.sel(cfg, "redis", "host")));
   const commonEnv = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     ROMM_BASE_PATH: nix.thunk(() => nix.sel(cfg, "dataDir")),
     ROMM_HOST: nix.thunk(() => nix.app(bracketed, nix.thunk(() => nix.sel(cfg, "listenAddress")))),
     ROMM_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
@@ -104,21 +104,21 @@ export default nix.lambda((args) => (() => {
     RQ_REDIS_HOST: redisHost,
     RQ_REDIS_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))),
     RQ_REDIS_URL: nix.thunk(() => nix.str`redis://${redisHost}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))}/0`),
-  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "watcher", "enable")), nix.thunk(() => ({ __proto__: pos$2, ENABLE_RESCAN_ON_FILESYSTEM_CHANGE: "true" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-      __proto__: pos$4,
+  }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "watcher", "enable")), nix.thunk(() => ({ [nix.POS]: pos$2, ENABLE_RESCAN_ON_FILESYSTEM_CHANGE: "true" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
+      [nix.POS]: pos$4,
       DB_PASSWD: "peer-auth-unused",
-      DB_QUERY_JSON: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$3, host: "/run/postgresql" })))),
-    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "database", "createLocally"))), nix.thunk(() => ({ __proto__: pos$5, DB_HOST: nix.thunk(() => nix.sel(cfg, "database", "host")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => (() => {
+      DB_QUERY_JSON: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$3, host: "/run/postgresql" })))),
+    }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "database", "createLocally"))), nix.thunk(() => ({ [nix.POS]: pos$5, DB_HOST: nix.thunk(() => nix.sel(cfg, "database", "host")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => (() => {
       const vhost = nix.thunk(() => nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.sel(cfg, "nginx", "virtualHost"))));
       const ssl = nix.thunk(() => (nix.asBool(nix.sel(vhost, "forceSSL")) || nix.asBool(nix.sel(vhost, "onlySSL"))));
       return nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ROMM_BASE_URL: nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), ssl, "s")}://${nix.sel(cfg, "nginx", "virtualHost")}`),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), ssl, nix.thunk(() => ({ __proto__: pos$7, ROMM_SESSION_SECURE_COOKIE: "true" }))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), ssl, nix.thunk(() => ({ [nix.POS]: pos$7, ROMM_SESSION_SECURE_COOKIE: "true" }))));
     })())), nix.sel(cfg, "extraEnvironment")))))));
   const environmentFiles = nix.thunk(() => nix.concat([nix.thunk(() => nix.str`-${authSecretFile}`)], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     User: nix.thunk(() => nix.sel(cfg, "user")),
     Group: nix.thunk(() => nix.sel(cfg, "group")),
     WorkingDirectory: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -134,165 +134,165 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   return {
-    __proto__: pos$73,
+    [nix.POS]: pos$73,
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         romm: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "RomM, a self-hosted ROM manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "romm", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               example: "0.0.0.0",
               description: "Address the RomM API binds to. The frontend and downloads are served\nby the nginx virtual host, not by the API directly.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "Port the RomM API listens on.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "romm",
               description: "User account under which RomM runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "romm",
               description: "Group under which RomM runs.",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/romm",
               description: "Base path for the ROM library and runtime data\n(`${dataDir}/{library,resources,assets,config,cache}`).\n\nThe ROM library location is fixed to `${dataDir}/library` by\nupstream. To use an existing ROM collection stored elsewhere,\nbind-mount it there and make sure it is readable and writable by\n{option}`services.romm.user`.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to create the PostgreSQL database and user locally (peer\nauthentication over the unix socket).\n",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "romm",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "romm",
                 description: "Database user. With {option}`services.romm.database.createLocally`\nthis must equal {option}`services.romm.user`.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "PostgreSQL host. Ignored when\n{option}`services.romm.database.createLocally` is set; the password\nfor a remote database is passed as `DB_PASSWD` via\n{option}`services.romm.environmentFile`.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 5432n,
                 description: "PostgreSQL port.",
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to create a dedicated local Redis instance\n(`services.redis.servers.romm`).\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "Redis host. Ignored when\n{option}`services.romm.redis.createLocally` is set; credentials for\na remote Redis are passed via\n{option}`services.romm.environmentFile` (`REDIS_PASSWORD`, and\n`RQ_REDIS_URL` for the job queue).\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 6379n,
                 description: "Redis port. RomM does not support unix sockets for Redis.\n",
               })))),
           })),
           watcher: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to run the filesystem watcher that rescans the library on changes.",
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to serve RomM through a local nginx virtual host, as\nupstream's container image does. The backend only exposes the API;\nnginx serves the frontend, ROM downloads (`X-Accel-Redirect`,\n`mod_zip`) and the cross-origin isolation headers for the emulator.\nPoint external reverse proxies at this virtual host.\n",
               })))),
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "romm.example.org",
                 description: "Server name of the RomM virtual host.",
               })))),
           })),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Environment file with secrets such as metadata provider credentials\n(`IGDB_CLIENT_ID`, `IGDB_CLIENT_SECRET`, `SCREENSCRAPER_USER`, ...).\n`ROMM_AUTH_SECRET_KEY` may also be set here; when absent, one is\ngenerated and persisted under {option}`services.romm.dataDir`.\n",
             })))),
           extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$30, WEB_CONCURRENCY: "4" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$30, WEB_CONCURRENCY: "4" })),
               description: "Extra environment variables passed to all RomM services. See\n<https://docs.romm.app/latest/Getting-Started/Environment-Variables/>.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))))),
             message: "services.romm.database.user must equal services.romm.user when database.createLocally is enabled.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "name"), nix.sel(cfg, "database", "user"))))),
             message: "services.romm.database.name must equal services.romm.database.user when database.createLocally is enabled.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "romm")), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               }))))],
             [nix.sel(config, "services", "nginx", "user"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
               }))))],
           ])),
@@ -301,15 +301,15 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             settings: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               "10-romm": nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "dataDir"))], nix.builtins.map((dir) => nix.str`${nix.sel(cfg, "dataDir")}/${dir}`, nix.thunk(() => ["assets", "cache", "config", "library", "resources"])))), (_) => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   d: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -318,9 +318,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             romm: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               description: "RomM ROM manager",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-romm.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target")))),
@@ -332,7 +332,7 @@ export default nix.lambda((args) => (() => {
 fi
 `),
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 ExecStartPre: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/romm-migrate`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/romm-startup`),
@@ -341,63 +341,63 @@ fi
               })),
             })),
             "romm-worker": nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               description: "RomM RQ worker",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["romm.service"]),
               requires: nix.thunk(() => ["romm.service"]),
               environment: commonEnv,
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/romm-worker`),
               })),
             })),
             "romm-scheduler": nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               description: "RomM RQ scheduler",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["romm.service"]),
               requires: nix.thunk(() => ["romm.service"]),
               environment: commonEnv,
               serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/romm-scheduler`),
               })),
             })),
             "romm-watcher": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "watcher", "enable")), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 description: "RomM library watcher",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["romm.service"]),
                 requires: nix.thunk(() => ["romm.service"]),
                 environment: commonEnv,
                 serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/romm-watcher ${nix.sel(cfg, "dataDir")}/library`),
                 })),
               })))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             servers: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               romm: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   enable: true,
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                   bind: "127.0.0.1",
@@ -405,7 +405,7 @@ fi
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               enable: true,
               additionalModules: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "nginxModules")), null);
@@ -428,45 +428,45 @@ map $request_uri $romm_coop_header {
 `),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "nginx", "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "frontend")}`),
                   extraConfig: "client_max_body_size 0;\n",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$67,
+                    [nix.POS]: pos$67,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$59,
+                      [nix.POS]: pos$59,
                       tryFiles: "$uri $uri/ /index.html",
                       extraConfig: "# never cache index.html: store paths have epoch mtimes, and\n# heuristic caching would keep serving it across upgrades\nadd_header Cache-Control \"no-cache\";\nadd_header Cross-Origin-Embedder-Policy $romm_coep_header;\nadd_header Cross-Origin-Opener-Policy $romm_coop_header;\n",
                     })),
                     "/assets/romm/resources/": nix.thunk(() => ({
-                      __proto__: pos$60,
+                      [nix.POS]: pos$60,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/resources/`),
                     })),
-                    "/openapi.json": nix.thunk(() => ({ __proto__: pos$61, proxyPass: proxyTarget, recommendedProxySettings: true })),
+                    "/openapi.json": nix.thunk(() => ({ [nix.POS]: pos$61, proxyPass: proxyTarget, recommendedProxySettings: true })),
                     "/api": nix.thunk(() => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       proxyPass: proxyTarget,
                       recommendedProxySettings: true,
                       extraConfig: "# Chunked request bodies can only be relayed unbuffered over\n# HTTP/1.1 (the global recommendedProxySettings used to set this).\nproxy_http_version 1.1;\nproxy_request_buffering off;\nproxy_buffering off;\nproxy_read_timeout 300s;\n",
                     })),
                     "~ ^/(ws|netplay)": nix.thunk(() => ({
-                      __proto__: pos$63,
+                      [nix.POS]: pos$63,
                       proxyPass: proxyTarget,
                       proxyWebsockets: true,
                       recommendedProxySettings: true,
                     })),
                     "/library/": nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/library/`),
                       extraConfig: "internal;",
                     })),
                     "/cache/": nix.thunk(() => ({
-                      __proto__: pos$65,
+                      [nix.POS]: pos$65,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/cache/`),
                       extraConfig: "internal;",
                     })),
                     "/decode": nix.thunk(() => ({
-                      __proto__: pos$66,
+                      [nix.POS]: pos$66,
                       extraConfig: "internal;\njs_content romm_decode.decodeBase64;\n",
                     })),
                   })),
@@ -476,7 +476,7 @@ map $request_uri $romm_coop_header {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

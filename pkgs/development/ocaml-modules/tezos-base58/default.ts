@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tezos-base58";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tarides/tezos-base58/releases/download/${version}/${pname}-${version}.tbz`),
           sha256: "14w2pff5dy6mxnz588pxaf2k8xpkd51sbsys065wr51kbv1f36da",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const duneVersion = "3";
       const propagatedBuildInputs = nix.thunk(() => [zarith, digestif, fmt]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base58 encoding for Tezos",
         homepage: "https://github.com/tarides/tezos-base58/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

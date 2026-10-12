@@ -33,23 +33,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "miriway"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         miriway: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Miriway, a Mir based Wayland compositor. You can manually launch Miriway by\nexecuting \"exec miriway\" on a TTY, or launch it from a display manager. Copy\n/etc/xdg/xdg-miriway/miriway-shell.config to ~/.config/miriway-shell.config\nand /etc/xdg/xdg-miriway/miriway-shell.settings to ~/.config/miriway-shell.settings\nto modify the system-wide configuration on a per-user basis. See <https://github.com/Miriway/Miriway>,\nand \"miriway --help\" for more information")),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Contents of system-wide miriway-shell.config. See Miriway's configuration documentation for details.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "x11-window-title=Miriway (Mir-on-X)\nidle-timeout=600\n",
               example: "idle-timeout=300\nadd-wayland-extensions=all\n\nshell-component=waybar\nshell-component=wbg Pictures/wallpaper\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Contents of system-wide miriway-shell.settings. See Miriway's configuration documentation for details.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "command_ctrl_alt=t:miriway-terminal # Default \"terminal emulator finder\"\n\ncommand_meta=Left:@dock-left\ncommand_meta=Right:@dock-right\ncommand_meta=Space:@toggle-maximized\ncommand_meta=Home:@workspace-begin\ncommand_meta=End:@workspace-end\ncommand_meta=Page_Up:@workspace-up\ncommand_meta=Page_Down:@workspace-down\ncommand_ctrl_alt=BackSpace:@exit\n",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         warnings: nix.thunk(() => (() => {
           const optionsNoLongerInConfig = nix.thunk(() => [
             "ctrl-alt",
@@ -83,7 +83,7 @@ ${nix.app(nix.sel(lib, "strings", "concatStringsSep"), ", ", optionsNoLongerInCo
 `));
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -92,51 +92,51 @@ ${nix.app(nix.sel(lib, "strings", "concatStringsSep"), ", ", optionsNoLongerInCo
             ];
           })()),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "xdg/xdg-miriway/miriway-shell.config": nix.thunk(() => ({ __proto__: pos$6, text: nix.thunk(() => nix.sel(cfg, "config")) })),
-            "xdg/xdg-miriway/miriway-shell.settings": nix.thunk(() => ({ __proto__: pos$7, text: nix.thunk(() => nix.sel(cfg, "settings")) })),
+            [nix.POS]: pos$8,
+            "xdg/xdg-miriway/miriway-shell.config": nix.thunk(() => ({ [nix.POS]: pos$6, text: nix.thunk(() => nix.sel(cfg, "config")) })),
+            "xdg/xdg-miriway/miriway-shell.settings": nix.thunk(() => ({ [nix.POS]: pos$7, text: nix.thunk(() => nix.sel(cfg, "settings")) })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           graphics: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enableDefaultPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           dconf: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           xwayland: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "miriway"))]),
           })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           icons: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: true,
             fallbackCursorThemes: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["DMZ-White"]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];

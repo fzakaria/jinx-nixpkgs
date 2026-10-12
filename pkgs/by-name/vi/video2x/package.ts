@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "video2x",
       version: "6.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "k4yt3x",
           repo: "video2x",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AI-powered video upscaling tool",
         changelog: nix.thunk(() => nix.str`https://github.com/k4yt3x/video2x/releases/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         homepage: "https://github.com/k4yt3x/video2x",

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const version = "4.2.0-20058";
   const buildNumberFn = (ver) => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", ver)));
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Desktop application to synchronize files and folders between the computer and the Synology Drive server",
     homepage: "https://www.synology.com/en-global/dsm/feature/drive",
     sourceProvenance: nix.thunk(() => (() => {
@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
   }));
   const updateScript = nix.path(here, "./update.sh");
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`${baseUrl}/${nix.sel(finalAttrs, "version")}/Ubuntu/Installer/synology-drive-client-${nix.app(buildNumberFn, nix.thunk(() => nix.sel(finalAttrs, "version")))}.x86_64.deb`),
           sha256: "sha256-QwAx/fWhLmVc5c/GuWTZtcvd3rzNvz+mtWYFRsuR+Z0=",
         })))),
@@ -74,15 +74,15 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -av $out/usr/* $out\nrm -rf $out/usr\nrunHook postInstall\n",
       postInstall: "substituteInPlace $out/bin/synology-drive --replace /opt $out/opt\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: updateScript,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           wl: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-wayland`), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [
                 linux,
-                nix.thunk(() => nix.app(nix.sel(xwayland_run, "override"), nix.thunk(() => ({ __proto__: pos$3, withDbus: true })))),
+                nix.thunk(() => nix.app(nix.sel(xwayland_run, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withDbus: true })))),
                 procps,
               ]),
             })), nix.thunk(() => nix.str`export HOME=$TMPDIR
@@ -112,12 +112,12 @@ touch $out
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: nix.thunk(() => nix.str`${baseUrl}/${nix.sel(finalAttrs, "version")}/Mac/Installer/synology-drive-client-${nix.app(buildNumberFn, nix.thunk(() => nix.sel(finalAttrs, "version")))}.dmg`),
           sha256: "sha256-oFkyG1ip3+ff9hhRapD4a/Hj+ZrKcEWudIKr4OMtYJQ=",
         })))),
@@ -125,7 +125,7 @@ touch $out
       postUnpack: "xar -xf 'Install Synology Drive Client.pkg'\ncd synology-drive.installer.pkg\ngunzip -dc Payload | cpio -i\n",
       sourceRoot: ".",
       installPhase: "mkdir -p $out/Applications/\ncp -R 'Synology Drive Client.app' $out/Applications/\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$9, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$9, updateScript: updateScript })),
     })));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(darwin) : nix.force(linux));
 })(), formals$1);

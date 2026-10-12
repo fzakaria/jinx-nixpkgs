@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const num = nix.arg($, "num");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcs-lib",
       version: "0.6",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tcsprojects/tcslib/releases/download/v${nix.sel(finalAttrs, "version")}/tcs-lib-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-DBjdIOUrYbfN3VlTaQMIGezPpOpzv9vtmDmBVYZigSI=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [num]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tcsprojects/tcslib",
         description: "Multi-purpose library for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

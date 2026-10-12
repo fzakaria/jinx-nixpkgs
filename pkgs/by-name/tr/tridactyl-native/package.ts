@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNimPackage = nix.arg($, "buildNimPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNimPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tridactyl-native",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tridactyl",
           repo: "native_messenger",
           rev: "3059abd9fb3f14d598f6c299335c3ebac5bc689a",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       lockFile: nix.path(here, "./lock.json"),
       installPhase: "mkdir -p \"$out/lib/mozilla/native-messaging-hosts\"\nsed -i -e \"s|REPLACE_ME_WITH_SED|$out/bin/native_main|\" \"tridactyl.json\"\ncp tridactyl.json \"$out/lib/mozilla/native-messaging-hosts/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native messenger for Tridactyl, a vim-like Firefox webextension",
         mainProgram: "native_main",
         homepage: "https://github.com/tridactyl/native_messenger",

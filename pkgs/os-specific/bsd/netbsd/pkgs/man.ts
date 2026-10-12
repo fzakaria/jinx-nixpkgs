@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "share/man",
       noCC: true,
       postPatch: "substituteInPlace $COMPONENT_PATH/man0/Makefile --replace \"ps2pdf\" \"echo noop \"\n",

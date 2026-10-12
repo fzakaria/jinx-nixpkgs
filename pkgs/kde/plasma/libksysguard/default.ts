@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libnl = nix.arg($, "libnl");
   const lm_sensors = nix.arg($, "lm_sensors");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libksysguard",
       patches: nix.thunk(() => [nix.path(here, "./helper-path.patch")]),
       extraBuildInputs: nix.thunk(() => [qtwebchannel, qtwebengine, qttools, libpcap, libnl, lm_sensors]),

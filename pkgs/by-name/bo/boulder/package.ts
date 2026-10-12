@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const minica = nix.arg($, "minica");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "boulder",
       version: "0.20260504.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letsencrypt",
           repo: "boulder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -318,11 +318,11 @@ ldflags+=" -X \\"github.com/letsencrypt/boulder/core.BuildTime=$(date -u -d @0)\
       ]),
       postInstall: "for i in $($out/bin/boulder --list); do\n  ln -s $out/bin/boulder $out/bin/$i\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             })))),
@@ -330,7 +330,7 @@ ldflags+=" -X \\"github.com/letsencrypt/boulder/core.BuildTime=$(date -u -d @0)\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/letsencrypt/boulder",
         description: "ACME-based certificate authority, written in Go",
         longDescription: "This is an implementation of an ACME-based CA. The ACME protocol allows\nthe CA to automatically verify that an applicant for a certificate\nactually controls an identifier, and allows domain holders to issue and\nrevoke certificates for their domains. Boulder is the software that runs\nLet's Encrypt.\n",

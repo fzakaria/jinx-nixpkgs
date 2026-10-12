@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const version = nix.argOr($, "version", () => "5.2.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "mirage-ptime",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-ptime/releases/download/v${version}/mirage-ptime-${version}.tbz`),
           hash: "sha256-YOWpJrfQKG9khCwPb5lZXtf+fip4N0B1AAn2Y9zRLyg=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ptime]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "POSIX clock for MirageOS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

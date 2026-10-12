@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const django_filter = nix.arg($, "django-filter");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "drf-standardized-errors",
       version: "0.16.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghazi-git",
           repo: "drf-standardized-errors",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [django, djangorestframework]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_django, django_filter, drf_spectacular]),
-      env: nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
       pythonImportsCheck: nix.thunk(() => ["drf_standardized_errors"]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, openapi: nix.thunk(() => [drf_spectacular, inflection]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, openapi: nix.thunk(() => [drf_spectacular, inflection]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Standardize your DRF API error responses",
         homepage: "https://github.com/ghazi-git/drf-standardized-errors",
         changelog: nix.thunk(() => nix.str`https://github.com/ghazi-git/drf-standardized-errors/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

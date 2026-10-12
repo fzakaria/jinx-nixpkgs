@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libnet = nix.arg($, "libnet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libnids",
       version: "1.24",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/libnids/libnids-1.24.tar.gz",
           sha256: "1cblklfdfxcmy0an6xyyzx4l877xdawhjd28daqfsvrh81mb07k1",
         })))),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpcap, glib, libnet]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Dg_thread_init= -std=gnu17 " })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Dg_thread_init= -std=gnu17 " })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "E-component of Network Intrusion Detection System which emulates the IP stack of Linux 2.0.x",
         homepage: "https://libnids.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

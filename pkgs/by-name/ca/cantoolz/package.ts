@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cantoolz",
       version: "3.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CANToolz",
           repo: "CANToolz",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/CANToolz/CANToolz/commit/9e818946716a744b3c7356f248e24ea650791d1f.patch",
             hash: "sha256-BTQ0Io2RF8WpWlLoYfBj8IhL92FRR8ustGClt28/R8c=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/CANToolz/CANToolz/pull/30/commits/d75574523d3b273c40fb714532c4de27f9e6dd3e.patch",
             sha256: "0g91hywg5q6f2qk1awgklywigclrbhh6a6mwd0kpbkk1wawiiwbc",
           })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_process", "test_server"]),
       pythonImportsCheck: nix.thunk(() => ["cantoolz"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Black-box CAN network analysis framework",
         mainProgram: "cantoolz",
         longDescription: "CANToolz is a framework for analysing CAN networks and devices. It\nprovides multiple modules that can be chained using CANToolz's pipe\nsystem and used by security researchers, automotive/OEM security\ntesters in black-box analysis.\n\nCANToolz can be used for ECU discovery, MitM testing, fuzzing, brute\nforcing, scanning or R&D, testing and validation. More can easily be\nimplemented with a new module.\n",

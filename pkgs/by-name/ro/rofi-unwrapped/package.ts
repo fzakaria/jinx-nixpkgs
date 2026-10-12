@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => true);
   const x11Support = nix.argOr($, "x11Support", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-unwrapped",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davatorium",
           repo: "rofi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Window switcher, run dialog and dmenu replacement",
         homepage: "https://github.com/davatorium/rofi",
         changelog: nix.thunk(() => nix.str`https://github.com/davatorium/rofi/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pyserial = nix.arg($, "pyserial");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylacrosse",
       version: "0.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hthiery",
           repo: "python-lacrosse",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pylacrosse"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for Jeelink LaCrosse",
         mainProgram: "pylacrosse",
         homepage: "https://github.com/hthiery/python-lacrosse",

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "intbitset",
       version: "4.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+C+v4Ly0/noBDZQgmbWoTXIdN8iXU47WMveIliwUEfg=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["intbitset"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C-based extension implementing fast integer bit sets",
         homepage: "https://github.com/inveniosoftware/intbitset",
         changelog: nix.thunk(() => nix.str`https://github.com/inveniosoftware-contrib/intbitset/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

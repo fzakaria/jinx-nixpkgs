@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nzbhydra2";
       const version = "8.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theotherp",
           repo: "nzbhydra2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const mvnHash = "sha256-Z+Y97yd9TQMuTyqtWOOZZ52rgp4KomID/ns0gGG5rvg=";
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         preBuild: nix.thunk(() => nix.str`mvn -nsu "${timestampParameter}" --projects org.nzbhydra:github-release-plugin "-Dmaven.repo.local=$out/.m2" clean install
 `),
         postInstall: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), xmlstarlet)} ed -L -u "/metadata/versioning/lastUpdated" -v "0" $out/.m2/org/nzbhydra/github-release-plugin/maven-metadata-local.xml
@@ -70,15 +70,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), python3)} "$out/bin/nzbhydra2" \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nzbhydra2: nix.thunk(() => nix.attr(nixosTests, "nzbhydra2")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Usenet meta search",
         homepage: "https://github.com/theotherp/nzbhydra2",
         changelog: nix.thunk(() => nix.str`https://github.com/theotherp/nzbhydra2/releases/tag/v${version}`),
@@ -94,7 +94,7 @@ runHook postInstall
         mainProgram: "nzbhydra2",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

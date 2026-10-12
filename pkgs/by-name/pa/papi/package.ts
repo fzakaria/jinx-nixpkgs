@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "7.2.0",
       pname: "papi",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://icl.utk.edu/projects/papi/downloads/papi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-qb/4nM85kV1yngiuCgxqcc4Ou+mEEemi6zyDyNsK85w=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       setSourceRoot: "sourceRoot=$(echo */src)\n",
       doCheck: true,
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://icl.utk.edu/papi/",
         description: "Library providing access to various hardware performance counters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

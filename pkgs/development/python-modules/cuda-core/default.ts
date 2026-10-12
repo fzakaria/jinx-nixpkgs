@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "cuda-core",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NVIDIA",
           repo: "cuda-python",
           tag: nix.thunk(() => nix.str`cuda-core-v${nix.sel(finalAttrs, "version")}`),
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuda_core`),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CUDA_HOME: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "cuda-redist",
             paths: nix.thunk(() => (() => {
               const w = nix.withScope(cudaPackages, null);
@@ -90,24 +90,24 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_rlcompleter_patch.py"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "import-clean-env": nix.thunk(() => nix.app(runCommand, "import-clean-env-cuda-core", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (_) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))])),
               ]),
             })), "python -c 'import cuda.core'\ntouch $out\n")),
         })),
         gpuCheck: nix.thunk(() => nix.app(nix.sel(cuda_core, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Pythonic interface to the CUDA runtime",
         homepage: "https://nvidia.github.io/cuda-python/cuda-core/latest",
         downloadPage: "https://github.com/NVIDIA/cuda-python/tree/main/cuda_core",

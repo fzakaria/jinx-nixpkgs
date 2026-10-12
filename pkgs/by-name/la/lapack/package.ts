@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const version = "3";
   const canonicalExtension = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? (nix.asBool(nix.has(nix.sel(stdenv, "hostPlatform", "extensions"), "sharedLibrary")) ? nix.str`${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}.${version}` : ".a") : nix.force(libraryExtension)));
   const lapackImplementation = nix.thunk(() => nix.app(nix.sel(lib, "getName"), lapackProvider));
-  const lapackProvider$ = nix.thunk(() => (nix.asBool(nix.eq(lapackImplementation, "mkl")) ? nix.force(lapackProvider) : nix.app(nix.sel(lapackProvider, "override"), nix.thunk(() => ({ __proto__: pos$1, blas64: isILP64 })))));
+  const lapackProvider$ = nix.thunk(() => (nix.asBool(nix.eq(lapackImplementation, "mkl")) ? nix.force(lapackProvider) : nix.app(nix.sel(lapackProvider, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, blas64: isILP64 })))));
   nix.assert_((!nix.asBool(isILP64) || nix.asBool((nix.asBool(nix.eq(lapackImplementation, "mkl")) || nix.asBool(nix.sel(lapackProvider$, "blas64"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/la/lapack/package.nix:32:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lapack",
       version: version,
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => nix.update(nix.selOr(lapackProvider$, () => ({}), "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), lapackProvider$)} with just the LAPACK C and FORTRAN ABI`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         isILP64: isILP64,
         provider: lapackProvider$,
         implementation: lapackImplementation,

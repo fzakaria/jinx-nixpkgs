@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   })());
   const data = nix.thunk(() => nix.builtins.import(nix.path(here, "./data.nix")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "protoc-gen-grpc-java",
       version: nix.thunk(() => nix.attr(data, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${nix.sel(finalAttrs, "version")}/protoc-gen-grpc-java-${nix.sel(finalAttrs, "version")}-${hostArch}.exe`),
           hash: nix.thunk(() => nix.selOr(data, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsuported host arch ${hostArch}`)), "hashes", nix.key(nix.force(hostArch)))),
         })))),
@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), [makeWrapper])),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       installPhase: "runHook preInstall\n\ninstall -D $src $out/bin/protoc-gen-grpc-java\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "gRPC Java Codegen Plugin for Protobuf Compiler",
         longDescription: "This generates the Java interfaces out of the service definition from a `.proto` file.\nIt works with the Protobuf Compiler (`protoc`).\n",
         changelog: nix.thunk(() => nix.str`https://github.com/grpc/grpc-java/releases/tag/v${nix.sel(finalAttrs, "version")}`),

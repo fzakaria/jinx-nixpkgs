@@ -43,22 +43,22 @@ const pos$34 = nix.positions(here + "/systemd-networkd-bridge.nix", [["name", 94
 
 export default nix.thunk(() => (() => {
   const commonConf = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     systemd: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "systemd-networkd": nix.thunk(() => ({
-          __proto__: pos$2,
-          environment: nix.thunk(() => ({ __proto__: pos$1, SYSTEMD_LOG_LEVEL: "debug" })),
+          [nix.POS]: pos$2,
+          environment: nix.thunk(() => ({ [nix.POS]: pos$1, SYSTEMD_LOG_LEVEL: "debug" })),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       useNetworkd: true,
       useDHCP: false,
-      firewall: nix.thunk(() => ({ __proto__: pos$5, enable: false })),
+      firewall: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
     })),
   }));
   const generateNodeConf = nix.lambda((args) => (() => {
@@ -71,19 +71,19 @@ export default nix.thunk(() => (() => {
       const pkgs = nix.arg($_1, "pkgs");
       const config = nix.arg($_1, "config");
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         imports: nix.thunk(() => [nix.path(here, "common/user-account.nix"), commonConf]),
-        virtualisation: nix.thunk(() => ({ __proto__: pos$8, vlans: nix.thunk(() => [vlan]) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, vlans: nix.thunk(() => [vlan]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           network: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: true,
             networks: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "30-eth": nix.thunk(() => ({
-                __proto__: pos$10,
-                matchConfig: nix.thunk(() => ({ __proto__: pos$9, Name: "eth1" })),
+                [nix.POS]: pos$10,
+                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$9, Name: "eth1" })),
                 address: nix.thunk(() => [nix.thunk(() => nix.str`10.0.0.${nix.builtins.toString(octet)}/24`)]),
               })),
             })),
@@ -98,32 +98,32 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const config = nix.arg($, "config");
     return {
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       imports: nix.thunk(() => [nix.path(here, "common/user-account.nix"), commonConf]),
-      virtualisation: nix.thunk(() => ({ __proto__: pos$15, vlans: vlans })),
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, vlans: vlans })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         network: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           enable: true,
           netdevs: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "40-br0": nix.thunk(() => ({
-              __proto__: pos$18,
-              netdevConfig: nix.thunk(() => ({ __proto__: pos$16, Kind: "bridge", Name: "br0" })),
-              bridgeConfig: nix.thunk(() => ({ __proto__: pos$17, STP: "yes" })),
+              [nix.POS]: pos$18,
+              netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Kind: "bridge", Name: "br0" })),
+              bridgeConfig: nix.thunk(() => ({ [nix.POS]: pos$17, STP: "yes" })),
             })),
           })),
           networks: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             "30-eth": nix.thunk(() => ({
-              __proto__: pos$22,
-              matchConfig: nix.thunk(() => ({ __proto__: pos$20, Name: "eth*" })),
-              networkConfig: nix.thunk(() => ({ __proto__: pos$21, Bridge: "br0" })),
+              [nix.POS]: pos$22,
+              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$20, Name: "eth*" })),
+              networkConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Bridge: "br0" })),
             })),
             "40-br0": nix.thunk(() => ({
-              __proto__: pos$24,
-              matchConfig: nix.thunk(() => ({ __proto__: pos$23, Name: "br0" })),
+              [nix.POS]: pos$24,
+              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Name: "br0" })),
             })),
           })),
         })),
@@ -134,20 +134,20 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$4);
     const pkgs = nix.arg($, "pkgs");
     return {
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       name: "networkd",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "picnoir"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$33,
-        node1: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ __proto__: pos$30, octet: 1n, vlan: 1n })))),
-        node2: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ __proto__: pos$31, octet: 2n, vlan: 3n })))),
-        node3: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ __proto__: pos$32, octet: 3n, vlan: 6n })))),
+        [nix.POS]: pos$33,
+        node1: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: pos$30, octet: 1n, vlan: 1n })))),
+        node2: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: pos$31, octet: 2n, vlan: 3n })))),
+        node3: nix.thunk(() => nix.app(generateNodeConf, nix.thunk(() => ({ [nix.POS]: pos$32, octet: 3n, vlan: 6n })))),
         sw1: nix.thunk(() => nix.app(generateSwitchConf, nix.thunk(() => [1n, 2n, 4n]))),
         sw2: nix.thunk(() => nix.app(generateSwitchConf, nix.thunk(() => [2n, 3n, 5n]))),
         sw3: nix.thunk(() => nix.app(generateSwitchConf, nix.thunk(() => [4n, 5n, 6n]))),

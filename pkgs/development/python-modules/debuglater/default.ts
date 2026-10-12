@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "debuglater",
       version: "1.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ploomber",
           repo: "debuglater",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [colorama]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, all: nix.thunk(() => [dill]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, all: nix.thunk(() => [dill]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([numpy, pandas, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["debuglater"]),
       disabledTests: nix.thunk(() => ["test_data_structures"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for post-mortem debugging of Python programs",
         homepage: "https://github.com/ploomber/debuglater",
         changelog: nix.thunk(() => nix.str`https://github.com/ploomber/debuglater/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => []);
   const enableAqua = nix.argOr($, "enableAqua", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(tcl, "mkTclDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tk",
       version: nix.thunk(() => nix.sel(tcl, "version")),
       src: src,
@@ -50,10 +50,10 @@ ln -s ${libfile} $out/lib/libtk${nix.sel(stdenv, "hostPlatform", "extensions", "
         const version = nix.thunk(() => nix.attr(tcl, "version"));
         const libPrefix = nix.thunk(() => nix.str`tk${nix.sel(tcl, "release")}`);
         const libdir = nix.thunk(() => nix.str`lib/${libPrefix}`);
-        return { __proto__: pos$1, release, version, libPrefix, libdir };
+        return { [nix.POS]: pos$1, release, version, libPrefix, libdir };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Widget toolkit that provides a library of basic elements for building a GUI in many different programming languages",
         homepage: "https://www.tcl-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

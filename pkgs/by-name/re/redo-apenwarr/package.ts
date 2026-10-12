@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const gnumake42 = nix.arg($, "gnumake42");
   const doCheck = nix.argOr($, "doCheck", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redo-apenwarr",
       version: "0.42d",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
           const repo = "redo";
           const rev = nix.thunk(() => nix.str`${repo}-${nix.sel(finalAttrs, "version")}`);
           const sha256 = "/QIMXpVhVLAIJa3LiOlRKzbUztIWZygkWZUKN4Nrh+M=";
-          return { __proto__: pos$1, owner, repo, rev, sha256 };
+          return { [nix.POS]: pos$1, owner, repo, rev, sha256 };
         })()))),
       postPatch: nix.thunk(() => nix.add("\npatchShebangs minimal/do\n\n", nix.app(nix.sel(lib, "optionalString"), doCheck, nix.thunk(() => nix.str`unset CC CXX
 
@@ -70,7 +70,7 @@ substituteInPlace t/105-sympath/all.do \\
       ]),
       postInstall: "installShellCompletion --bash contrib/bash_completion.d/redo\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smaller, easier, more powerful, and more reliable than make. An implementation of djb's redo",
         homepage: "https://github.com/apenwarr/redo",
         maintainers: nix.thunk(() => (() => {

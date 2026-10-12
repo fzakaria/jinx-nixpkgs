@@ -8,7 +8,7 @@ export default (self) => (super$) => (() => {
   const w = nix.withScope(self, null);
   const w_1 = nix.withScope(super$, w);
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "bootstrapped-pip": nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.lookup(w_1, "callPackage"), nix.path(here, "./python2-modules/bootstrapped-pip"), nix.thunk(() => ({})))))),
     pip: nix.thunk(() => nix.app(nix.lookup(w_1, "callPackage"), nix.path(here, "./python2-modules/pip"), nix.thunk(() => ({})))),
     setuptools: nix.thunk(() => nix.app(nix.lookup(w_1, "callPackage"), nix.path(here, "./python2-modules/setuptools"), nix.thunk(() => ({})))),

@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtpim",
       outputs: nix.thunk(() => ["out", "dev"]),
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       qmakeFlags: nix.thunk(() => ["CONFIG+=git_build"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];

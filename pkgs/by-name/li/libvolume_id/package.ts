@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libvolume_id",
       version: "0.81.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.marcuscom.com/downloads/libvolume_id-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "029z04vdxxsl8gycm9whcljhv6dy4b12ybsxdb99jr251gl1ifs5",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   `),
       postInstall: "\n    rm $out/lib/libvolume_id.so.0\n    cp -f libvolume_id.so.0 $out/lib/\n  ",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "http://www.marcuscom.com/downloads/",

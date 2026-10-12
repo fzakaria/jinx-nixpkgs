@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "additionalFiles",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "flokli"))];
@@ -45,36 +45,36 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => ["x86_64-linux"]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$19,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, useBootLoader: true, useEFIBoot: true })),
+          [nix.POS]: pos$19,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, useBootLoader: true, useEFIBoot: true })),
           boot: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             loader: nix.thunk(() => ({
-              __proto__: pos$4,
-              limine: nix.thunk(() => ({ __proto__: pos$3, enable: true, efiSupport: true })),
+              [nix.POS]: pos$4,
+              limine: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, efiSupport: true })),
               timeout: 0n,
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             withAdditionalFiles: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   boot: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     loader: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       limine: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         additionalFiles: nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           "efi/memtest86/memtest86.efi": nix.thunk(() => nix.str`${nix.sel(pkgs, "memtest86-efi")}/BOOTX64.efi`),
                         })),
                       })),
@@ -84,19 +84,19 @@ export default nix.lambda((args) => (() => {
               })(), formals$3),
             })),
             withAdditionalFilesOther: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 return {
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   boot: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     loader: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       limine: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         additionalFiles: nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           "efi/memtest86/memtest86.efi": nix.thunk(() => nix.str`${nix.builtins.toFile("some-file", "some-content")}`),
                         })),
                       })),

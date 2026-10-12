@@ -27,24 +27,24 @@ export default nix.lambda((args) => (() => {
 exec bash ${nix.path(here, "./attach.sh")} "$@"
 `)));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "breakpoint-hook",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         broken: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         attach: nix.thunk(() => nix.str`${attach}/bin/attach`),
         bashInteractive: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bashInteractive)),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          "can-attach-valid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-can-attach-valid-id.nix"), nix.thunk(() => ({ __proto__: pos$3, attach: attach })))),
-          "cannot-attach-invalid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cannot-attach-invalid-id.nix"), nix.thunk(() => ({ __proto__: pos$4, attach: attach })))),
+          [nix.POS]: pos$5,
+          "can-attach-valid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-can-attach-valid-id.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, attach: attach })))),
+          "cannot-attach-invalid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cannot-attach-invalid-id.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, attach: attach })))),
         })),
       })),
     })), nix.path(here, "./breakpoint-hook.sh"));

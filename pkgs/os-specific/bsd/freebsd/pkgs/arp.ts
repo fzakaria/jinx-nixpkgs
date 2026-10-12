@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libxo = nix.arg($, "libxo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/arp",
       buildInputs: nix.thunk(() => [libxo]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "arp" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "arp" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=arp.ts.map

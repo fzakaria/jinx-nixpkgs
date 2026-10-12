@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ironcalc = nix.arg($, "ironcalc");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ironcalc-docs",
       version: nix.thunk(() => nix.attr(ironcalc, "version")),
       src: nix.thunk(() => nix.attr(ironcalc, "src")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gitMinimal]),
       buildPhase: "runHook preBuild\n\n# Icons are expected in public/\nmkdir -p src/public\ncp -v src/*.svg src/*.png src/public/ || true\n\nnpm run build > tmp 2>&1\nrunHook postBuild\n",
       installPhase: "mkdir -p $out/share/doc/ironcalc\ncp -r src/.vitepress/dist/* $out/share/doc/ironcalc/\n",
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { __proto__: pos$1, description: "Documentation for IronCalc" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$1, description: "Documentation for IronCalc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=docs.ts.map

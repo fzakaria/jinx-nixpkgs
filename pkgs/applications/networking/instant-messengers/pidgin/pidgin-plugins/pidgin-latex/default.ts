@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const version = "1.5.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pidgin-latex",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pidgin-latex/pidgin-latex_${version}.tar.bz2`),
           sha256: "9c850aee90d7e59de834f83e09fa6e3e51b123f06e265ead70957608ada95441",
         })))),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postPatch: "sed -e 's/-Wl,-soname//' -i Makefile\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         wrapArgs: nix.thunk(() => nix.str`--prefix PATH ':' ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [texLive, imagemagick]))}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sourceforge.net/projects/pidgin-latex/",
         description: "LaTeX rendering plugin for Pidgin IM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

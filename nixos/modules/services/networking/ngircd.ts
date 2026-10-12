@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "ngircd"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ngircd.conf",
       text: nix.thunk(() => nix.sel(cfg, "config")),
       preferLocalBuild: true,
@@ -36,16 +36,16 @@ ${nix.sel(cfg, "package")}/sbin/ngircd --config $out --configtest
 `),
     }))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ngircd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the ngircd IRC server")),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "The ngircd configuration (see {manpage}`ngircd.conf(5)`).",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             })))),
@@ -54,17 +54,17 @@ ${nix.sel(cfg, "package")}/sbin/ngircd --config $out --configtest
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             ngircd: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "The ngircd IRC server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/sbin/ngircd --config ${configFile} --nodaemon`),
                 User: "ngircd",
               })),
@@ -72,17 +72,17 @@ ${nix.sel(cfg, "package")}/sbin/ngircd --config $out --configtest
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             ngircd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               isSystemUser: true,
               group: "ngircd",
               description: "ngircd user.",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$12, ngircd: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$12, ngircd: nix.thunk(() => ({})) })),
         })),
       })))),
   };

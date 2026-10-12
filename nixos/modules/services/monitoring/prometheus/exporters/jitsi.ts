@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9700n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "http://localhost:8080/colibri/stats",
           description: "Jitsi Videobridge metrics URL to monitor.\nThis is usually /colibri/stats on port 8080 of the jitsi videobridge host.\n",
         })))),
       interval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "30s",
           example: "1min",
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-jitsi-exporter")}/bin/jitsiexporter \\
   -url ${nix.app(escapeShellArg, nix.thunk(() => nix.sel(cfg, "url")))} \\
   -host ${nix.sel(cfg, "listenAddress")} \\

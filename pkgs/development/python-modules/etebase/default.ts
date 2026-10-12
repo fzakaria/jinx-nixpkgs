@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const pname = "etebase";
       const version = "0.31.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etesync",
           repo: "etebase-py",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-V2mQAYIPyDRQMfT0af2mpKfWXAtnJpRmY5qG1hj2dF4=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -55,21 +55,21 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Use system OpenSSL, which gets security updates.\nsubstituteInPlace Cargo.toml \\\n  --replace ', features = [\"vendored\"]' \"\"\n";
       const pythonImportsCheck = nix.thunk(() => ["etebase"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "etebase-server": nix.thunk(() => nix.attr(nixosTests, "etebase-server")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.etebase.com/",
         description: "Python client library for Etebase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

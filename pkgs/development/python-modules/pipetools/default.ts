@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pipetools",
       version: "1.1.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0101",
           repo: "pipetools",
           rev: "6cba9fadab07a16fd85eed16d5cffc609f84c62b",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["pipetools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library that enables function composition similar to using Unix pipes",
         homepage: "https://0101.github.io/pipetools/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

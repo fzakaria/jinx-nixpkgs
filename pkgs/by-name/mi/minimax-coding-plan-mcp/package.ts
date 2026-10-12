@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "minimax-coding-plan-mcp",
       version: "0-unstable-2026-02-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MiniMax-AI",
           repo: "MiniMax-Coding-Plan-MCP",
           rev: "fbac3b3e56922a1249e00eebe07d9ee68f4768dc",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["minimax_mcp"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MiniMax MCP server for coding-plan users with web search and image understanding",
         homepage: "https://github.com/MiniMax-AI/MiniMax-Coding-Plan-MCP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

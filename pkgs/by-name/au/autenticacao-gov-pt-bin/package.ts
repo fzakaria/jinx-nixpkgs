@@ -43,21 +43,21 @@ export default nix.lambda((args) => (() => {
       const pname = "xerces-c";
       const version = "3.2.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/xerces/c/3/sources/xerces-c-${version}.tar.gz`),
           hash: "sha256-+5b8SbH7iS0eZOU6atqKzPbw5tMM4JN5Vuxo05vXLH4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const configureFlags = nix.thunk(() => ["--disable-static"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Validating XML parser written in a portable subset of C++",
         homepage: "https://xerces.apache.org/xerces-c/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "autenticacao-gov-pt-bin",
       version: "3.15.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/amagovpt/autenticacao.gov/releases/download/v${nix.sel(finalAttrs, "version")}/pteid-mw-${nix.sel(finalAttrs, "version")}.flatpak`),
           hash: "sha256-Npbu1ZL+YW40jWbbLDnZ6gkhm+nHwBAQMCwHFOU03Ok=",
         })))),
@@ -114,7 +114,7 @@ ostree checkout --repo=pteid -U $(cd pteid/objects && echo */*.commit | sed -E "
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             desktopName: "Autenticação.gov",
@@ -135,7 +135,7 @@ ostree checkout --repo=pteid -U $(cd pteid/objects && echo */*.commit | sed -E "
 `),
       preFixup: "find $out/app/lib -type f -name '*.so*' | while read lib; do\n  patchelf --replace-needed libxml-security-c.so.20 libxml-security-c.so.30 \"$lib\"\ndone\nwrapQtApp $out/app/bin/eidguiV2\nautoPatchelf $out/app\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/amagovpt/autenticacao.gov/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Middleware for Electronic Identification in Portugal (with precompiled binaries by AMA)",
         homepage: "https://www.autenticacao.gov.pt/",

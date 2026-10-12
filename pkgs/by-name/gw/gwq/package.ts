@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gwq",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "d-kuro",
           repo: "gwq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd gwq \\\n  --bash <($out/bin/gwq completion bash) \\\n  --fish <($out/bin/gwq completion fish) \\\n  --zsh <($out/bin/gwq completion zsh)\n"))),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git worktree manager with fuzzy finder interface",
         homepage: "https://github.com/d-kuro/gwq",
         changelog: nix.thunk(() => nix.str`https://github.com/d-kuro/gwq/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const hwloc = nix.arg($, "hwloc");
   const cudaPackages = nix.arg($, "cudaPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aws-ofi-nccl",
       version: "1.21.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-ofi-nccl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libfabric=${libfabric}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "This is a plugin which lets EC2 developers use libfabric as network provider while running NCCL applications",
         homepage: "https://github.com/aws/aws-ofi-nccl",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-ofi-nccl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

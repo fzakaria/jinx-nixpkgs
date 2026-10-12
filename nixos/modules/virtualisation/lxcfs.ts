@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "lxc", "lxcfs"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lxc: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           lxcfs: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "This enables LXCFS, a FUSE filesystem for LXC.\nTo use lxcfs in include the following configuration in your\ncontainer configuration:\n```\nvirtualisation.lxc.defaultConfig = \"lxc.include = ${pkgs.lxcfs}/share/lxc/config/common.conf.d/00-lxcfs.conf\";\n```\n",
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             lxcfs: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "FUSE filesystem for LXC",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["lxc.service"]),
               restartIfChanged: false,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/mkdir -p /var/lib/lxcfs`),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "lxcfs")}/bin/lxcfs /var/lib/lxcfs`),
                 ExecStopPost: nix.thunk(() => nix.str`-${nix.sel(pkgs, "fuse3")}/bin/fusermount3 -u /var/lib/lxcfs`),

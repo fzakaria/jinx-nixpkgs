@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "harbor-python",
       version: "1.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Harbor-Systems",
           repo: "harbor-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["harbor"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async local client for Harbor Sleep Cameras",
         homepage: "https://github.com/Harbor-Systems/harbor-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Harbor-Systems/harbor-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

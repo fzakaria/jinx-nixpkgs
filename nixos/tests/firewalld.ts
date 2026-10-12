@@ -25,43 +25,43 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "firewalld",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "prince213"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       walled: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         networking: nix.thunk(() => ({
-          __proto__: pos$3,
-          nftables: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          nftables: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          firewalld: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
-          httpd: nix.thunk(() => ({ __proto__: pos$5, enable: true, adminAddr: "foo@example.org" })),
+          [nix.POS]: pos$6,
+          firewalld: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+          httpd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, adminAddr: "foo@example.org" })),
         })),
       })),
       open: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
-          nftables: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+          [nix.POS]: pos$9,
+          nftables: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           firewalld: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$10, DefaultZone: "trusted" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$10, DefaultZone: "trusted" })),
           })),
-          httpd: nix.thunk(() => ({ __proto__: pos$12, enable: true, adminAddr: "foo@example.org" })),
+          httpd: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true, adminAddr: "foo@example.org" })),
         })),
       })),
     })),

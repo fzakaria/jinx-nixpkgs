@@ -25,37 +25,37 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "ryzen-monitor-ng"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "ryzen-monitor-ng": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "ryzen_monitor_ng, a userspace application for setting and getting Ryzen SMU (System Management Unit) parameters via the ryzen_smu kernel driver.\n\nMonitor power information of Ryzen processors via the PM table of the SMU.\n\nSMU Set and Get for many parameters and CO counts.\n\n<https://github.com/mann1x/ryzen_monitor_ng>\n\nWARNING: Damage cause by use of your AMD processor outside of official AMD specifications or outside of factory settings are not covered under any AMD product warranty and may not be covered by your board or system manufacturer's warranty\n")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ryzen-monitor-ng", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           cpu: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             amd: nix.thunk(() => ({
-              __proto__: pos$6,
-              "ryzen-smu": nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              [nix.POS]: pos$6,
+              "ryzen-smu": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

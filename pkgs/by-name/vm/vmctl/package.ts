@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const getopt = nix.arg($, "getopt");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vmctl",
       version: "1.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SamsungDS",
           repo: "vmctl",
           rev: "8cc71d4350f4f5814ffd7a3091a5c1a9d2e25158",
@@ -58,7 +58,7 @@ cp -r {cmd,common,contrib,lib} $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool focused on NVMe testing in QEMU",
         homepage: "https://github.com/SamsungDS/vmctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fleng",
       version: "23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.call-with-current-continuation.org/fleng/fleng-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-I8ksy3UAah/LTvtNrzjhw5vNUM55ba80ivo4S/r5yHg=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "http://www.call-with-current-continuation.org/fleng/fleng.html",
         description: "Low level concurrent logic programming language descended from Prolog",

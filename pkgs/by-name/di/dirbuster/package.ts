@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const jdk8 = nix.arg($, "jdk8");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dirbuster",
       version: "1.0-RC1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dirbuster/DirBuster%20(jar%20%2B%20lists)/${nix.sel(finalAttrs, "version")}/DirBuster-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-UoEt1NkaLsKux3lr+AB+TZCCshQs2hIo63igT39V68E=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "dirbuster",
             desktopName: "OWASP DirBuster",
             exec: "dirbuster",
@@ -64,7 +64,7 @@ strings com/sittinglittleduck/DirBuster/ImageCreator.class | grep iVBORw0KG | ba
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Brute force directories and files names on web/application servers",
         homepage: "https://wiki.owasp.org/index.php/Category:OWASP_DirBuster_Project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

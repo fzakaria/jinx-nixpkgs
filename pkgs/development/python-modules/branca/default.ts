@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-visualization",
           repo: "branca",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_utilities.py", "tests/test_iframe.py"]);
       const disabledTests = nix.thunk(() => ["test_rendering_utf8_iframe", "test_rendering_figure_notebook"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate complex HTML+JS pages with Python",
         homepage: "https://github.com/python-visualization/branca",
         changelog: nix.thunk(() => nix.str`https://github.com/python-visualization/branca/blob/${nix.sel(src, "tag")}/CHANGES.txt`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

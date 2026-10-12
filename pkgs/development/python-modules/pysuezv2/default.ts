@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jb101010-2",
           repo: "pySuez",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pysuez"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for dealing with water consumption data from Suez",
         homepage: "https://github.com/jb101010-2/pySuez",
         changelog: nix.thunk(() => nix.str`https://github.com/jb101010-2/pySuez/releases/tag/${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

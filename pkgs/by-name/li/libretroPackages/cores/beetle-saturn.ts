@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "mednafen-saturn",
       version: "0-unstable-2026-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "beetle-saturn-libretro",
           rev: "65f05fa66f83e65e33be83aa433d883b4fd9509a",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Mednafen's Saturn core to libretro",
         homepage: "https://github.com/libretro/beetle-saturn-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

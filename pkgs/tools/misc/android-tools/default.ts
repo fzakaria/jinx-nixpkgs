@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "android-tools";
       const version = "37.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/nmeum/android-tools/releases/download/${version}/android-tools-${version}.tar.xz`),
           hash: "sha256-JyXQn4kqOjjlNEKfR6Mh9Y7PajFpyqQskV+yy31Gvg4=",
         }))));
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [protobuf_35, zlib, gtest, brotli, lz4, zstd, libusb1, pcre2, fmt]);
       const propagatedBuildInputs = nix.thunk(() => [pythonEnv]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Android SDK platform tools",
         longDescription: "Android SDK Platform-Tools is a component for the Android SDK. It\nincludes tools that interface with the Android platform, such as adb and\nfastboot. These tools are required for Android app development. They're\nalso needed if you want to unlock your device bootloader and flash it\nwith a new system image.\nCurrently the following tools are supported:\n- adb\n- fastboot\n- mke2fs.android (required by fastboot)\n- simg2img, img2simg, append2simg\n- lpdump, lpmake, lpadd, lpflash, lpunpack\n- mkbootimg, unpack_bootimg, repack_bootimg, avbtool\n- mkdtboimg\n",
         homepage: "https://github.com/nmeum/android-tools",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "android"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

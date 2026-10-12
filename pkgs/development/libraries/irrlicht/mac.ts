@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchzip: fetchzip }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchzip: fetchzip }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "irrlicht-mac",
       version: nix.thunk(() => nix.sel(common, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "quiark",
           repo: "IrrlichtCMake",
           rev: "523a5e6ef84be67c3014f7b822b97acfced536ce",
@@ -40,7 +40,7 @@ chmod -R 777 $sourceRoot
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://irrlicht.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
         description: "Open source high performance realtime 3D engine written in C++",

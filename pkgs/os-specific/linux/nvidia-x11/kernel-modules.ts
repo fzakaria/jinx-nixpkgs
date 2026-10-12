@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const hash = nix.argOr($, "hash", () => null);
   nix.assert_((!nix.asBool(open) || nix.asBool(!nix.eq(hash, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/linux/nvidia-x11/kernel-modules.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`nvidia-${(nix.asBool(open) ? "open" : "kernel-modules")}`),
       version: nix.thunk(() => nix.str`${nix.sel(nvidia_x11, "version")}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => (nix.asBool(open) ? nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "open-gpu-kernel-modules",
           tag: nix.thunk(() => nix.sel(nvidia_x11, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       allowedReferences: [],
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`NVIDIA Linux ${nix.app(nix.sel(lib, "optionalString"), open, "Open ")}GPU Kernel Modules`),
         homepage: nix.thunk(() => (nix.asBool(open) ? "https://github.com/NVIDIA/open-gpu-kernel-modules" : nix.sel(nvidia_x11, "meta", "homepage"))),
         license: nix.thunk(() => (nix.asBool(open) ? (() => {

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "pokemini",
       version: "0-unstable-2026-07-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "PokeMini",
           rev: "132111b76343559860532a1ccc094f93f1ed5650",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Obscure nintendo handheld emulator",
         homepage: "https://github.com/libretro/PokeMini",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

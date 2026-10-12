@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libressl = nix.arg($, "libressl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geomyidae",
       version: "0.99",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`gopher://bitreich.org/9/scm/geomyidae/tag/geomyidae-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QnAUqvyi+b14kIjqnreY6adFl62glRiuX9QiVamR6zw=",
         })))),
       buildInputs: nix.thunk(() => [libressl]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gopher daemon for Linux/BSD",
         mainProgram: "geomyidae",
         homepage: "gopher://bitreich.org/1/scm/geomyidae",

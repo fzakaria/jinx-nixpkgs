@@ -89,34 +89,34 @@ export default nix.lambda((args) => (() => {
       ])));
   })());
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cosmic"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         desktopManager: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           cosmic: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "COSMIC desktop environment")),
-            showExcludedPkgsWarning: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the warning for excluding core packages"), { __proto__: pos$2, default: true })),
+            showExcludedPkgsWarning: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the warning for excluding core packages"), { [nix.POS]: pos$2, default: true })),
             xwayland: nix.thunk(() => ({
-              __proto__: pos$4,
-              enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Xwayland support for the COSMIC compositor"), { __proto__: pos$3, default: true })),
+              [nix.POS]: pos$4,
+              enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Xwayland support for the COSMIC compositor"), { [nix.POS]: pos$3, default: true })),
             })),
           })),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         cosmic: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           excludePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "List of packages to exclude from the COSMIC environment.",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
@@ -126,9 +126,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         environment: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pathsToLink: nix.thunk(() => [
             "/share/backgrounds",
             "/share/cosmic",
@@ -162,66 +162,66 @@ export default nix.lambda((args) => (() => {
               ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "services", "flatpak", "enable")), nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "cosmic-store"))])));
             })())), nix.thunk(() => nix.sel(config, "environment", "cosmic", "excludePackages")))),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             X11_BASE_RULES_XML: nix.thunk(() => nix.str`${nix.sel(config, "services", "xserver", "xkb", "dir")}/rules/base.xml`),
             X11_EXTRA_RULES_XML: nix.thunk(() => nix.str`${nix.sel(config, "services", "xserver", "xkb", "dir")}/rules/base.extras.xml`),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
-          "graphical-desktop": nix.thunk(() => ({ __proto__: pos$14, enable: true })),
-          "accounts-daemon": nix.thunk(() => ({ __proto__: pos$15, enable: true })),
+          [nix.POS]: pos$28,
+          "graphical-desktop": nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+          "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cosmic-session"))]),
           })),
-          libinput: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
-          upower: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
+          libinput: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+          upower: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
           geoclue2: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           acpid: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           avahi: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           gnome: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "gnome-keyring": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
           })),
           gvfs: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           orca: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(notExcluded, nix.thunk(() => nix.sel(pkgs, "orca")))))),
           })),
           "system76-scheduler": nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           switcherooControl: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         xdg: nix.thunk(() => ({
-          __proto__: pos$32,
-          sounds: nix.thunk(() => ({ __proto__: pos$29, enable: true })),
+          [nix.POS]: pos$32,
+          sounds: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
           icons: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             fallbackCursorThemes: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["Cosmic"]))),
           })),
           portal: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: true,
             extraPortals: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
@@ -234,11 +234,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cosmic-session"))]),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           packages: nix.thunk(() => (() => {
             const w_1 = nix.withScope(pkgs, null);
             return [
@@ -249,49 +249,49 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         qt: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           platformTheme: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "qt5ct")),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           dconf: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             enable: true,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cosmic-session"))]),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           polkit: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             enable: true,
             enablePkexecWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
-          rtkit: nix.thunk(() => ({ __proto__: pos$39, enable: true })),
+          rtkit: nix.thunk(() => ({ [nix.POS]: pos$39, enable: true })),
           pam: nix.thunk(() => ({
-            __proto__: pos$41,
-            services: nix.thunk(() => ({ __proto__: pos$40, "cosmic-greeter": nix.thunk(() => ({})) })),
+            [nix.POS]: pos$41,
+            services: nix.thunk(() => ({ [nix.POS]: pos$40, "cosmic-greeter": nix.thunk(() => ({})) })),
           })),
         })),
         hardware: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           bluetooth: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           system76: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             "power-daemon": nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "services", "power-profiles-daemon", "enable"))) && nix.asBool(!nix.asBool(nix.sel(config, "services", "tuned", "enable"))))))),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           networkmanager: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),

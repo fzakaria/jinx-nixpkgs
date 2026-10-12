@@ -58,12 +58,12 @@ export default nix.lambda((args) => (() => {
   const zstandard = nix.arg($, "zstandard");
   const withAmqpRepl = nix.argOr($, "withAmqpRepl", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "celery",
       version: "5.6.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "celery",
           repo: "celery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         vine,
       ], nix.app(nix.sel(lib, "optionals"), withAmqpRepl, nix.thunk(() => [click_repl])))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         arangodb: [],
         auth: nix.thunk(() => [cryptography]),
         azureblockblob: nix.thunk(() => [azure_identity, azure_storage_blob]),
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       pythonImportsCheck: nix.thunk(() => ["celery"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Distributed task queue",
         homepage: "https://github.com/celery/celery/",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/celery/blob/${nix.sel(finalAttrs, "src", "tag")}/Changelog.rst`),

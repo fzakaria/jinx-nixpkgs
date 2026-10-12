@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const metalSupport = nix.argOr($, "metalSupport", () => false);
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     mlxTest: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`run-mlx${nix.app(nix.sel(lib, "optionalString"), metalSupport, "-bin")}-examples`), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildInputs: nix.thunk(() => [mlx]),
         nativeBuildInputs: nix.thunk(() => [python]),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), metalSupport, nix.thunk(() => ({ __proto__: pos$2, __noChroot: true }))))), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), metalSupport, nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -c 'import mlx.core as mx; assert mx.metal.is_available(), "Metal is unavailable"'
+      }, nix.app(nix.sel(lib, "optionalAttrs"), metalSupport, nix.thunk(() => ({ [nix.POS]: pos$2, __noChroot: true }))))), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), metalSupport, nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -c 'import mlx.core as mx; assert mx.metal.is_available(), "Metal is unavailable"'
 `)), nix.str`cp ${src}/examples/python/logistic_regression.py .
 ${nix.sel(python, "interpreter")} logistic_regression.py
 rm logistic_regression.py

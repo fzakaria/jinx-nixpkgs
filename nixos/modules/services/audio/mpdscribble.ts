@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mpdscribble"));
   const mpdCfg = nix.thunk(() => nix.sel(config, "services", "mpd"));
   const endpointUrls = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "last.fm": "http://post.audioscrobbler.com",
     "libre.fm": "http://turtle.libre.fm",
     jamendo: "http://postaudioscrobbler.jamendo.com",
@@ -91,77 +91,77 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
 `)));
   const localMpd = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "host"), "localhost")) || nix.asBool(nix.eq(nix.sel(cfg, "host"), "127.0.0.1"))));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         mpdscribble: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "mpdscribble, an MPD client which submits info about tracks being played to Last.fm (formerly AudioScrobbler)")),
           proxy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "HTTP proxy URL.\n",
             })))),
           verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: 1n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Log level for the mpdscribble daemon.\n",
             })))),
           journalInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: 600n,
               example: 60n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "How often should mpdscribble save the journal file? [seconds]\n",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(mpdCfg, "settings", "bind_to_address"), "any")) ? nix.sel(mpdCfg, "settings", "bind_to_address") : "localhost")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if config.services.mpd.settings.bind_to_address != \"any\"\nthen config.services.mpd.settings.bind_to_address\nelse \"localhost\"\n")),
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Host for the mpdscribble daemon to search for a mpd daemon on.\n",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
-              default: nix.thunk(() => (nix.asBool(localMpd) ? nix.sel(nix.app(nix.sel(lib, "findFirst"), (c) => nix.app(nix.sel(lib, "elem"), "read", nix.thunk(() => nix.sel(c, "permissions"))), nix.thunk(() => ({ __proto__: pos$6, passwordFile: null })), nix.thunk(() => nix.sel(mpdCfg, "credentials"))), "passwordFile") : null)),
+              [nix.POS]: pos$7,
+              default: nix.thunk(() => (nix.asBool(localMpd) ? nix.sel(nix.app(nix.sel(lib, "findFirst"), (c) => nix.app(nix.sel(lib, "elem"), "read", nix.thunk(() => nix.sel(c, "permissions"))), nix.thunk(() => ({ [nix.POS]: pos$6, passwordFile: null })), nix.thunk(() => nix.sel(mpdCfg, "credentials"))), "passwordFile") : null)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "The first password file with read access configured for MPD when using a local instance,\notherwise `null`.\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "File containing the password for the mpd daemon.\nIf there is a local mpd configured using {option}`services.mpd.credentials`\nthe default is automatically set to a matching passwordFile of the local mpd.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => nix.sel(mpdCfg, "settings", "port")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.mpd.settings.port")),
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "Port for the mpdscribble daemon to search for a mpd daemon on.\n",
             })))),
           endpoints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => (() => {
                 const endpoint = nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const name = nix.arg($_1, "name");
                   return {
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     options: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.selOr(endpointUrls, () => "", nix.key(nix.force(name)))),
                           description: "The url endpoint where the scrobble API is listening.",
                         })))),
                       username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Username for the scrobble service.\n",
                         })))),
                       passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           description: "File containing the password, either as MD5SUM or cleartext.",
                         })))),
@@ -172,9 +172,9 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.se
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 "last.fm": nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   username: "foo",
                   passwordFile: "/run/secrets/lastfm_password",
                 })),
@@ -187,18 +187,18 @@ If the endpoint is one of "${nix.app(nix.sel(lib, "concatStringsSep"), "\", \"",
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             mpdscribble: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optional"), localMpd, "mpd.service"))),
               description: "mpdscribble mpd scrobble client",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 DynamicUser: true,
                 StateDirectory: "mpdscribble",
                 RuntimeDirectory: "mpdscribble",

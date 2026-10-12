@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const catch2 = nix.arg($, "catch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "therion",
       version: "6.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "therion",
           repo: "therion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/therion/therion/commit/6c7e3a8e82228db0f2c450b7a26c848809d24010.patch",
             hash: "sha256-sSki7QPDWmmTd3nb97vhuxFm92nfphTrGJM4oJlX39E=",
           })))),
@@ -98,7 +98,7 @@ wrapProgram $out/bin/xtherion \\
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cave surveying software",
         homepage: "https://therion.speleo.sk/",
         changelog: nix.thunk(() => nix.str`https://github.com/therion/therion/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),

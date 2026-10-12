@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "brig",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sahib",
           repo: "brig",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => nix.concat(["-s", "-w"], nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`-X github.com/sahib/brig/version.${n}=${v}`, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           Major: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
           Minor: nix.thunk(() => nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
           Patch: nix.thunk(() => nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd brig \\\n  --bash $src/autocomplete/bash_autocomplete \\\n  --zsh $src/autocomplete/zsh_autocomplete\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "File synchronization on top of IPFS with a git-like interface and a FUSE filesystem",
         longDescription: "brig is a distributed and secure file synchronization tool with a version\ncontrol system. It is based on IPFS, written in Go and will feel familiar\nto git users. Think of it as a swiss army knife for file synchronization\nor as a peer to peer alternative to Dropbox.\n",
         homepage: "https://brig.readthedocs.io",

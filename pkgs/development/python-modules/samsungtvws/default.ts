@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xchwarze",
           repo: "samsung-tv-ws-api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, websocket_client]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => [aiohttp, websockets]),
         encrypted: nix.thunk(() => [cryptography, py3rijndael]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytestCheckHook], nix.concat(nix.sel(optional_dependencies, "async"), nix.sel(optional_dependencies, "encrypted"))));
       const pythonImportsCheck = nix.thunk(() => ["samsungtvws"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Samsung Smart TV WS API wrapper",
         homepage: "https://github.com/xchwarze/samsung-tv-ws-api",
         changelog: nix.thunk(() => nix.str`https://github.com/xchwarze/samsung-tv-ws-api/releases/tag/v${version}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const pypkgs = python3Packages;
   return nix.app(nix.sel(pypkgs, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rubber",
       version: "1.6.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "latex-rubber",
           repo: "rubber",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ popd >/dev/null
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper for LaTeX and friends",
         longDescription: "Rubber is a program whose purpose is to handle all tasks related\nto the compilation of LaTeX documents.  This includes compiling\nthe document itself, of course, enough times so that all\nreferences are defined, and running BibTeX to manage\nbibliographic references.  Automatic execution of dvips to\nproduce PostScript documents is also included, as well as usage\nof pdfLaTeX to produce PDF documents.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

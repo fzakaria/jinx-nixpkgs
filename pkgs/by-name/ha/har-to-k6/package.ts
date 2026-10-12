@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "har-to-k6";
       const version = "0.14.16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grafana",
           repo: "har-to-k6",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Converts LI-HAR and HAR to K6 script",
         homepage: "https://github.com/grafana/har-to-k6",
         changelog: nix.thunk(() => nix.str`https://github.com/grafana/har-to-k6/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

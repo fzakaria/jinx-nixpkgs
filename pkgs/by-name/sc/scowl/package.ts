@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dos2unix = nix.arg($, "dos2unix");
   const singleWordlist = nix.argOr($, "singleWordlist", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scowl",
       version: "2020.12.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "en-wl",
           repo: "wordlist",
           rev: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace scowl/src/Makefile \\\n    --replace g++ c++\n",
       nativeBuildInputs: nix.thunk(() => [unzip, zip, perl, aspell, dos2unix]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), libiconv)),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-narrowing" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-narrowing" })),
       preConfigure: "patchShebangs .\nexport PERL5LIB=\"$PERL5LIB${PERL5LIB:+:}$PWD/varcon\"\n",
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(singleWordlist, null)), "(\ncd scowl/speller\nmake aspell\nmake hunspell\n)\n")),
       enableParallelBuilding: false,
@@ -43,7 +43,7 @@ cd scowl
 ./mk-list ${singleWordlist} > "$out/share/dict/words.txt"
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Spell checker oriented word lists",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

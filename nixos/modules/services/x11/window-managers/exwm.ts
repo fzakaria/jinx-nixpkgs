@@ -31,31 +31,31 @@ export default nix.lambda((args) => (() => {
   const packages = (epkgs) => nix.concat(nix.app(nix.sel(cfg, "extraPackages"), epkgs), [nix.thunk(() => nix.sel(epkgs, "exwm"))]);
   const exwm_emacs = nix.thunk(() => nix.app(nix.sel(cfg, "package", "pkgs", "withPackages"), packages));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "xserver", "windowManager", "exwm", "enableDefaultConfig"]), "The upstream EXWM project no longer provides a default configuration, instead copy (parts of) exwm-config.el to your local config.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         xserver: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             exwm: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "exwm")),
               loadScript: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   default: "(require 'exwm)",
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                   example: "(require 'exwm)\n(exwm-enable)\n",
                   description: "Emacs lisp code to be run after loading the user's init\nfile.\n",
                 })))),
-              package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "Emacs", nix.thunk(() => ({ __proto__: pos$2, default: "emacs", example: nix.thunk(() => ["emacs-gtk"]) })))),
+              package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "Emacs", nix.thunk(() => ({ [nix.POS]: pos$2, default: "emacs", example: nix.thunk(() => ["emacs-gtk"]) })))),
               extraPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))))),
                   default: (epkgs) => [],
                   defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "epkgs: []")),
@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           xserver: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               session: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   name: "exwm",
                   start: nix.thunk(() => nix.str`${exwm_emacs}/bin/emacs -l ${loadScript}
 `),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
             })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$13, systemPackages: nix.thunk(() => [exwm_emacs]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$13, systemPackages: nix.thunk(() => [exwm_emacs]) })),
       })))),
   };
 })(), formals$1);

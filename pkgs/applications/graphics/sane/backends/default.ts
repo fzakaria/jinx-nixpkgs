@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const scanSnapDriversUnfree = nix.argOr($, "scanSnapDriversUnfree", () => false);
   const scanSnapDriversPackage = nix.argOr($, "scanSnapDriversPackage", () => nix.sel(sane_drivers, "epjitsu"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "sane-backends",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sane-project",
           repo: "backends",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,23 +64,23 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/sane-project/backends/-/commit/8acc267d5f4049d8438456821137ae56e91baea9.patch",
             hash: "sha256-IyupDeH1MPvEBnGaUzBbCu106Gp7zXxlPGFAaiiINQI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.com/sane-project/backends/-/commit/fbf80b0fc1d262ed40d4b49dd53c14707083ef60.patch",
             hash: "sha256-9KKTr7p1vCgvGr6hFY83K5gbL7Ilm4Uzc86JIxv+ahI=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.com/sane-project/backends/-/commit/d04d17b456d9847021b6df6eb08a3419a75172cf.patch",
             hash: "sha256-4iAzwA+uh8W+xSpUkZgvShQ71kq/OVJ26pKsD1NwiXs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://gitlab.com/sane-project/backends/-/commit/ebd4d82bd7a6b8c57870dbfb492e4c186cf584d8.patch",
             hash: "sha256-vHtv+OMA0f9JR1ReshTg8IOgcZf7cnV7chitRBBCAg4=",
           })))),
@@ -122,12 +122,12 @@ patch -p1 -i ${nix.path(here, "./sane-desc-cross.patch")}
         ]))),
       postInstall: nix.thunk(() => (() => {
         const compatFirmware = nix.thunk(() => nix.concat(extraFirmware, nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(gt68xxFirmware, null)), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             src: nix.thunk(() => nix.sel(gt68xxFirmware, "fw")),
             name: nix.thunk(() => nix.attr(gt68xxFirmware, "name")),
             backend: "gt68xx",
           }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(snapscanFirmware, null)), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             src: snapscanFirmware,
             name: "your-firmwarefile.bin",
             backend: "snapscan",
@@ -143,11 +143,11 @@ ln -svT ${scanSnapDriversPackage} $out/share/sane/epjitsu
       enableParallelInstalling: false,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
-        tests: nix.thunk(() => ({ __proto__: pos$8, sane: nix.thunk(() => nix.attr(nixosTests, "sane")) })),
+        [nix.POS]: pos$9,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$8, sane: nix.thunk(() => nix.attr(nixosTests, "sane")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "SANE (Scanner Access Now Easy) backends",
         longDescription: "Collection of open-source SANE backends (device drivers).\nSANE is a universal scanner interface providing standardized access to\nany raster image scanner hardware: flatbed scanners, hand-held scanners,\nvideo- and still-cameras, frame-grabbers, etc. For a list of supported\nscanners, see http://www.sane-project.org/sane-backends.html.\n",
         homepage: "http://www.sane-project.org/",

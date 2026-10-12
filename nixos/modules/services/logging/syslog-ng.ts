@@ -42,38 +42,38 @@ ${nix.sel(cfg, "extraConfig")}
     nix.thunk(() => nix.str`--pidfile=${pidFile}`),
   ]);
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "syslog-ng", "serviceName"]), "")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "syslog-ng", "listenToJournal"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "syslog-ng": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the syslog-ng daemon.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "syslogng", nix.thunk(() => ({})))),
           extraModulePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "A list of paths that should be included in syslog-ng's\n`--module-path` option. They should usually\nend in `/lib/syslog-ng`\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Configuration added to the end of `syslog-ng.conf`.\n",
             })))),
           configHeader: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "@version: 4.4\n@include \"scl.conf\"\n",
               description: "The very first lines of the configuration file. Should usually contain\nthe syslog-ng version header.\n",
@@ -82,31 +82,31 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           journald: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             settings: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               Journal: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ForwardToSyslog: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), true)),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "syslog-ng": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "syslog-ng daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "notify",
                 PIDFile: pidFile,
                 StandardOutput: "null",

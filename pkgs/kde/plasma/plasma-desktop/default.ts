@@ -32,20 +32,20 @@ export default nix.lambda((args) => (() => {
   const libwacom = nix.arg($, "libwacom");
   const libxkbfile = nix.arg($, "libxkbfile");
   const ibus = nix.arg($, "ibus");
-  const gsettings_wrapper = nix.thunk(() => nix.app(runCommandLocal, "gsettings-wrapper", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+  const gsettings_wrapper = nix.thunk(() => nix.app(runCommandLocal, "gsettings-wrapper", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${glib}/bin/gsettings $out/bin/gsettings --prefix XDG_DATA_DIRS : ${nix.sel(gsettings_desktop_schemas, "out")}/share/gsettings-schemas/${nix.sel(gsettings_desktop_schemas, "name")}
 `)));
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "plasma-desktop",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./kcm-access.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gsettings: nix.thunk(() => nix.str`${gsettings_wrapper}/bin/gsettings`),
           })))),
         nix.path(here, "./no-discover-shortcut.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./wallpaper-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             wallpapers: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), breeze)}/share/wallpapers`),
           })))),
       ]),

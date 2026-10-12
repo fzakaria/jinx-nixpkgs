@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "chirp",
       version: "0.4.0-unstable-2026-09-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kk7ds",
           repo: "chirp",
           rev: "67f5e10f229769023f83c707b8152355b6d90819",
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -C chirp/locale\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             tagConverter: nix.thunk(() => nix.app(writeShellScript, "chirp-tag-converter.sh", "sed -e 's/^release_//g' -e 's/_/./g'\n")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free, open-source tool for programming your amateur radio",
         homepage: "https://chirp.danplanet.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

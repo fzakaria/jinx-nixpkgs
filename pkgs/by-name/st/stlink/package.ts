@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const withGUI = nix.argOr($, "withGUI", () => false);
-  const libusb1$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(libusb1, "override"), nix.thunk(() => ({ __proto__: pos$1, withStatic: true }))) : nix.force(libusb1)));
+  const libusb1$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(libusb1, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withStatic: true }))) : nix.force(libusb1)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "stlink",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "stlink-org",
           repo: "stlink",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "calloc-argument-order.patch",
             url: "https://github.com/stlink-org/stlink/commit/6a6718b3342b6c5e282a4e33325b9f97908a0692.patch",
             includes: nix.thunk(() => ["src/stlink-lib/chipid.c"]),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSTLINK_UDEV_RULES_DIR=${nix.builtins.placeholder("out")}/lib/udev/rules.d`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "In-circuit debug and programming for ST-Link devices",
         homepage: "https://github.com/stlink-org/stlink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

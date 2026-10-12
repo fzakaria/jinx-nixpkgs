@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "saw-tools",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -31,18 +31,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), [makeWrapper])),
       installPhase: "mkdir -p $out/lib $out/share\n\nmv bin $out/bin\nmv doc $out/share\n\nwrapProgram \"$out/bin/saw\" --prefix PATH : \"$out/bin/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "saw --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools for software verification and analysis",
         homepage: "https://tools.galois.com/saw",
         sourceProvenance: nix.thunk(() => (() => {

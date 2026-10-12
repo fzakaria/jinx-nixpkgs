@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
   const srcOnly = nix.arg($, "srcOnly");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "opensfm",
       version: "0.5.1-unstable-2026-08-17",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mapillary",
           repo: "OpenSfM",
           rev: "36034bb0939fced472b6173d93a4d9bddb570fc0",
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_match_candidates_from_metadata_bow"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_run_all", "test_shot_view_ref_count"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_reconstruction_incremental", "test_reconstruction_triangulation"]))))),
       pythonImportsCheck: nix.thunk(() => ["opensfm"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => ["berlin", "lund"]), (name) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`integration-test-${name}`), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`opensfm-integration-test-${name}`), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })), nix.thunk(() => nix.str`set -euo pipefail
 opensfm --help
@@ -120,12 +120,12 @@ if [[ -s data/camera_models.json && -s data/undistorted/reconstruction.json ]]; 
 fi
 `)))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "maintainers", "pbsds")),

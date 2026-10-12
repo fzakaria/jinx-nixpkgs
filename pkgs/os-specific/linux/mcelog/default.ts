@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcelog",
       version: "212",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andikleen",
           repo: "mcelog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ done
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "prefix=", "DOCDIR=/share/doc"]),
       postInstall: "mkdir -p $out/lib/systemd/system\nsubstitute mcelog.service $out/lib/systemd/system/mcelog.service \\\n  --replace-fail \"/usr/sbin\" \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Log x86 machine checks: memory, IO, and CPU hardware errors",
         mainProgram: "mcelog",
         longDescription: "The mcelog daemon accounts memory and some other errors in various ways\non modern x86 Linux systems. The daemon can be queried and/or execute\ntriggers when configurable error thresholds are exceeded. This is used to\nimplement a range of automatic predictive failure analysis algorithms,\nincluding bad page offlining and automatic cache error handling. All\nerrors are logged to /var/log/mcelog or syslog or the journal.\n",

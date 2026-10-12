@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "megacmd",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meganz",
           repo: "MEGAcmd",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}_Linux`),
@@ -101,14 +101,14 @@ done
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mega-version`),
       versionCheckProgramArg: "-l",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=(\\d+\\.\\d+\\.\\d+)_Linux"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MEGA Command Line Interactive and Scriptable Application",
         homepage: "https://mega.io/cmd",
         changelog: nix.thunk(() => nix.str`https://github.com/meganz/MEGAcmd/blob/${nix.sel(finalAttrs, "src", "tag")}/build/megacmd/megacmd.changes`),

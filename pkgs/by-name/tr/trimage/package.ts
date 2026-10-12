@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [advancecomp, jpegoptim, optipng, pngcrush])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trimage",
       version: "1.0.7-dev",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kilian",
           repo: "Trimage",
           rev: "ad74684272a31eee6af289cc59fd90fd962d2806",
@@ -59,7 +59,7 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/trimage \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform tool for optimizing PNG and JPG files",
         homepage: "https://github.com/Kilian/Trimage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

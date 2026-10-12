@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const kauth = nix.arg($, "kauth");
   const mpv = nix.arg($, "mpv");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kalarm",
       extraCmakeFlags: nix.thunk(() => ["-DENABLE_LIBVLC=0"]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

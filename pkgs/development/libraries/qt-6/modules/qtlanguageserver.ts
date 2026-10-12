@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const qtModule = nix.arg($, "qtModule");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtlanguageserver",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       dontCheckQtModuleVersion: true,

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libexif = nix.arg($, "libexif");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libgdiplus",
       version: "6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.winehq.org",
           owner: "mono",
           repo: "libgdiplus",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./configure-pkg-config.patch")]),
       postPatch: "substituteInPlace Makefile.am \\\n  --replace-fail \"all: update_submodules\" \"all:\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lgif" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lgif" })),
       outputs: nix.thunk(() => ["out", "dev"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/lib/libgdiplus.0.dylib $out/lib/libgdiplus.so\n")),
       checkPhase: "make check -w\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://gitlab.winehq.org/mono/libgdiplus/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Mono library that provides a GDI+-compatible API on non-Windows operating systems",
         homepage: "https://www.mono-project.com/docs/gui/libgdiplus/",

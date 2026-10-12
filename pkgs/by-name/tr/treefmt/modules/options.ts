@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(config, "package"))), "-with-config")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${getName package}-with-config\"")),
           description: "Name to use for the wrapped treefmt package.\n",
         })))),
       runtimeInputs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
           description: "Packages to include on treefmt's PATH.\n",
         })))),
       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "path")),
           apply: (file) => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), file)) ? nix.force(file) : nix.str`${file}`),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "generated from [](#opt-treefmt-settings)")),
           description: "The treefmt config file.\n",
         })))),
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(lib, "types", "package")),
           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.treefmt")),
           description: "The treefmt package to wrap.\n",

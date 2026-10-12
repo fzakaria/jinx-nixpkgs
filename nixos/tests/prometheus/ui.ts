@@ -25,22 +25,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "prometheus-ui",
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       browser: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
+          [nix.POS]: pos$4,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => (() => {
               const prometheusSeleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "prometheus-selenium-script", nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "selenium"))];
@@ -142,27 +142,27 @@ driver.close()
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             firewall: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             prometheus: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
-              globalConfig: nix.thunk(() => ({ __proto__: pos$7, scrape_interval: "2s" })),
+              globalConfig: nix.thunk(() => ({ [nix.POS]: pos$7, scrape_interval: "2s" })),
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   job_name: "prometheus",
                   static_configs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       targets: nix.thunk(() => [
                         nix.thunk(() => nix.str`prometheus:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                       ]),

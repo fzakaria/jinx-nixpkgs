@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pip-audit",
       version: "2.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "pip-audit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "test_virtual_env",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for scanning Python environments for known vulnerabilities",
         homepage: "https://github.com/pypa/pip-audit",
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/pip-audit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

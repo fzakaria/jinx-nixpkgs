@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.2";
       const pname = "angie-console-light";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.angie.software/files/${pname}/${pname}-${version}.tar.gz`),
           hash: "sha256-q27UPgWvOoEXa8Ih3sEFuoO7u5gvLtpoe7ZJYMmZtRc=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/angie-console-light\nmv ./html $out/share/angie-console-light\n\nmkdir -p $doc/share/doc/angie-console-light\nmv ./LICENSE $doc/share/doc/angie-console-light\n\n# Create static gzip and brotli files\nfind -L $out -type f -regextype posix-extended -iregex '.*\\.(html|js|txt)' \\\n  -exec gzip --best --keep --force {} ';' \\\n  -exec brotli --best --keep --no-copy-stat {} ';'\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Console Light is a lightweight, real-time activity monitoring interface",
         homepage: "https://angie.software/en/console/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

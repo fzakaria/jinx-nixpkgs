@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const trace = nix.argOr($, "trace", () => false);
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       config: nix.thunk(() => nix.builtins.import(nix.path(here, "./packages-config.nix"))),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const generateInfo = (path) => (value) => (() => {
     const result = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(path, ["AAAAAASomeThingsFailToEvaluate"])) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isAttrs"), value))))) ? [] : (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value)) ? [
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.app(nix.sel(lib, "showAttrPath"), path)),
         value: nix.thunk(() => nix.attrsDyn({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           meta: nix.thunk(() => nix.attr(value, "meta")),
           name: nix.thunk(() => nix.attr(value, "name")),
           outputName: nix.thunk(() => nix.attr(value, "outputName")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           pname: nix.thunk(() => nix.selOr(value, () => nix.sel(value, "name"), "pname")),
           version: nix.thunk(() => nix.selOr(value, () => "", "version")),
         }, [
-          [(nix.asBool(nix.has(value, "outputs")) ? "outputs" : null), nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (x) => ({ __proto__: pos$2, name: x, value: null }), nix.thunk(() => nix.sel(value, "outputs"))))))],
+          [(nix.asBool(nix.has(value, "outputs")) ? "outputs" : null), nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (x) => ({ [nix.POS]: pos$2, name: x, value: null }), nix.thunk(() => nix.sel(value, "outputs"))))))],
         ])),
       })),
     ] : (nix.asBool(nix.selOr(value, () => false, "recurseForDerivations")) ? nix.app(nix.sel(lib, "pipe"), value, nix.thunk(() => [
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "traceIf"), trace, nix.thunk(() => nix.str`** ${nix.app(nix.sel(lib, "showAttrPath"), path)}`), nix.thunk(() => nix.app(nix.sel(lib, "deepSeq"), result, result)));
   })();
   return nix.app(nix.sel(lib, "strings", "toJSON"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "2",
       packages: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(generateInfo, [], nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), pkgs)))))),
     })));

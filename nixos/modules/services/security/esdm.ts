@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "esdm"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "esdm", "cuseRandomEnable"]), "Use services.esdm.enableLinuxCompatServices instead.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "esdm", "cuseUrandomEnable"]), "Use services.esdm.enableLinuxCompatServices instead.\n")),
@@ -37,15 +37,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "esdm", "verbose"]), "There is no replacement.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         esdm: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ESDM service configuration")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "esdm", nix.thunk(() => ({})))),
           enableLinuxCompatServices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable /dev/random, /dev/urandom and /proc/sys/kernel/random/* userspace wrapper.\n",
@@ -55,33 +55,33 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             systemd: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               services: nix.thunk(() => ({
-                __proto__: pos$7,
-                "esdm-server": nix.thunk(() => ({ __proto__: pos$5, wantedBy: nix.thunk(() => ["basic.target"]) })),
-                "esdm-kernel-seeder": nix.thunk(() => ({ __proto__: pos$6, wantedBy: nix.thunk(() => ["basic.target"]) })),
+                [nix.POS]: pos$7,
+                "esdm-server": nix.thunk(() => ({ [nix.POS]: pos$5, wantedBy: nix.thunk(() => ["basic.target"]) })),
+                "esdm-kernel-seeder": nix.thunk(() => ({ [nix.POS]: pos$6, wantedBy: nix.thunk(() => ["basic.target"]) })),
               })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableLinuxCompatServices")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               systemd: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 targets: nix.thunk(() => ({
-                  __proto__: pos$11,
-                  "esdm-linux-compat": nix.thunk(() => ({ __proto__: pos$10, wantedBy: nix.thunk(() => ["basic.target"]) })),
+                  [nix.POS]: pos$11,
+                  "esdm-linux-compat": nix.thunk(() => ({ [nix.POS]: pos$10, wantedBy: nix.thunk(() => ["basic.target"]) })),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   "esdm-server-suspend": nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     wantedBy: nix.thunk(() => ["sleep.target", "suspend.target", "hibernate.target"]),
                   })),
                   "esdm-server-resume": nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     wantedBy: nix.thunk(() => ["sleep.target", "suspend.target", "hibernate.target"]),
                   })),
                 })),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thillux"))];

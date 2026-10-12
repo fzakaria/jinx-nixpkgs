@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sheldon",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rossmacarthur",
           repo: "sheldon",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sheldon \\\n  --bash <($out/bin/sheldon completions --shell bash) \\\n  --zsh <($out/bin/sheldon completions --shell zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and configurable shell plugin manager",
         homepage: "https://github.com/rossmacarthur/sheldon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

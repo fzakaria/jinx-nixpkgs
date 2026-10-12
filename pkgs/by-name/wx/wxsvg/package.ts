@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wxsvg",
       version: "1.5.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/wxsvg/wxsvg/${nix.sel(finalAttrs, "version")}/wxsvg-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-W/asaDG1S9Ga70jN6PoFctu2PzCu6dUyP2vms/MmU0s=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wxwidgets_3_2, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wxsvg.sourceforge.net/",
         description: "SVG manipulation library built with wxWidgets",
         mainProgram: "svgview",

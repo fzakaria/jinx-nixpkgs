@@ -95,9 +95,9 @@ export default nix.lambda((args) => (() => {
   const group = nix.thunk(() => nix.sel(cfg, "group"));
   const isSecret = (v) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)) && nix.asBool(nix.has(v, "_secret")))) && nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isString"), nix.thunk(() => nix.sel(v, "_secret")))) || nix.asBool(nix.builtins.isPath(nix.thunk(() => nix.sel(v, "_secret")))))));
   const davisEnvVars = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), "=", nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkValueString: (v) => (nix.asBool(nix.builtins.isInt(v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(nix.sel(lib, "isString"), v)) ? nix.str`"${v}"` : (nix.asBool(nix.eq(true, v)) ? "true" : (nix.asBool(nix.eq(false, v)) ? "false" : (nix.asBool(nix.eq(null, v)) ? "" : (nix.asBool(nix.app(isSecret, v)) ? (nix.asBool(nix.app(nix.sel(lib, "isString"), nix.thunk(() => nix.sel(v, "_secret")))) ? nix.builtins.hashString("sha256", nix.thunk(() => nix.sel(v, "_secret"))) : nix.builtins.hashString("sha256", nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(v, "_secret")))))) : nix.builtins.throw(nix.thunk(() => nix.str`unsupported type ${nix.builtins.typeOf(v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`)))))))),
         })))),
     }))));
@@ -112,41 +112,41 @@ export default nix.lambda((args) => (() => {
   const filteredConfig = nix.thunk(() => nix.app(nix.sel(lib, "converge"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.asBool(nix.app(nix.sel(lib, "elem"), v, nix.thunk(() => [nix.thunk(() => ({})), null]))))), nix.thunk(() => nix.sel(cfg, "config"))));
   const davisEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "davis.env", nix.thunk(() => nix.app(davisEnvVars, filteredConfig))));
   return {
-    __proto__: pos$77,
+    [nix.POS]: pos$77,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         davis: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Davis is a caldav and carddav server")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "davis",
               description: "User davis runs as.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "davis",
               description: "Group davis runs as.",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "davis", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/davis",
               description: "Davis data directory.\n",
             })))),
           hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "davis.yourdomain.org",
               description: "Domain of the host to serve davis under. You may want to change it if you\nrun Davis on a different URL than davis.yourdomain.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(lib, "types", "bool")),
                         nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -154,11 +154,11 @@ export default nix.lambda((args) => (() => {
                         nix.thunk(() => nix.sel(lib, "types", "path")),
                         nix.thunk(() => nix.sel(lib, "types", "str")),
                       ]))), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         options: nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           _secret: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                                     nix.thunk(() => nix.sel(lib, "types", "str")),
                                     nix.thunk(() => nix.sel(lib, "types", "path")),
@@ -172,69 +172,69 @@ export default nix.lambda((args) => (() => {
               description: "",
             })))),
           adminLogin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "root",
               description: "Username for the admin account.\n",
             })))),
           adminPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The full path to a file that contains the admin's password. Must be\nreadable by the user.\n",
               example: "/run/secrets/davis-admin-pass",
             })))),
           appSecretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "A file containing the Symfony APP_SECRET - Its value should be a series\nof characters, numbers and symbols chosen randomly and the recommended\nlength is around 32 characters. Can be generated with <code>cat\n/dev/urandom | tr -dc a-zA-Z0-9 | fold -w 48 | head -n 1</code>.\n",
               example: "/run/secrets/davis-appsecret",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             driver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "postgresql", "mysql"]))),
                 default: "sqlite",
                 description: "Database type, required in all circumstances.",
               })))),
             urlFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/secrets/davis-db-url",
                 description: "A file containing the database connection url. If set then it\noverrides all other database settings (except driver). This is\nmandatory if you want to use an external database, that is when\n`services.davis.database.createLocally` is `false`.\n",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "davis",
                 description: "Database name, only used when the database is created locally.",
               })))),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Create the database and database user locally.",
               })))),
           })),
           mail: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             dsn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Mail DSN for sending emails. Mutually exclusive with `services.davis.mail.dsnFile`.",
                 example: "smtp://username:password@example.com:25",
               })))),
             dsnFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "/run/secrets/davis-mail-dsn",
                 description: "A file containing the mail DSN for sending emails.  Mutually exclusive with `servies.davis.mail.dsn`.",
               })))),
             inviteFromAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Email address to send invitations from.",
@@ -242,21 +242,21 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$23, config: config, lib: lib })))), nix.thunk(() => ({})))))))),
+              [nix.POS]: pos$24,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$23, config: config, lib: lib })))), nix.thunk(() => ({})))))))),
               default: nix.thunk(() => ({})),
               example: "{\n  serverAliases = [\n    \"dav.${config.networking.domain}\"\n  ];\n  # To enable encryption and let let's encrypt take care of certificate\n  forceSSL = true;\n  enableACME = true;\n}\n",
               description: "Use this option to customize an nginx virtual host. To disable the nginx set this to null.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
                     nix.thunk(() => nix.sel(lib, "types", "bool")),
                   ]))))),
               default: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -271,7 +271,7 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => (() => {
       const defaultServiceConfig = nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         ReadWritePaths: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
         User: user,
         UMask: 77n,
@@ -300,75 +300,75 @@ export default nix.lambda((args) => (() => {
         WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/`),
       }));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(db, "createLocally")) || nix.asBool(nix.eq(nix.sel(db, "urlFile"), null)))),
               message: "services.davis.database.urlFile must be unset if services.davis.database.createLocally is set true.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               assertion: nix.thunk(() => (nix.asBool(nix.sel(db, "createLocally")) || nix.asBool(!nix.eq(nix.sel(db, "urlFile"), null)))),
               message: "One of services.davis.database.urlFile or services.davis.database.createLocally must be set.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(mail, "dsn"), null)) && nix.asBool(!nix.eq(nix.sel(mail, "dsnFile"), null))))),
               message: "services.davis.mail.dsn and services.davis.mail.dsnFile cannot both be set.",
             })),
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             davis: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               config: nix.thunk(() => nix.update({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 APP_ENV: "prod",
                 APP_CACHE_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/var/cache`),
                 APP_LOG_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/var/log`),
                 LOG_FILE_PATH: "%kernel.logs_dir%/%kernel.environment%.log",
                 DATABASE_DRIVER: nix.thunk(() => nix.sel(db, "driver")),
                 INVITE_FROM_ADDRESS: nix.thunk(() => nix.sel(mail, "inviteFromAddress")),
-                APP_SECRET: nix.thunk(() => ({ __proto__: pos$34, _secret: nix.thunk(() => nix.sel(cfg, "appSecretFile")) })),
+                APP_SECRET: nix.thunk(() => ({ [nix.POS]: pos$34, _secret: nix.thunk(() => nix.sel(cfg, "appSecretFile")) })),
                 ADMIN_LOGIN: nix.thunk(() => nix.sel(cfg, "adminLogin")),
                 ADMIN_PASSWORD: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   _secret: nix.thunk(() => nix.sel(cfg, "adminPasswordFile")),
                 })),
                 APP_TIMEZONE: nix.thunk(() => nix.sel(config, "time", "timeZone")),
                 WEBDAV_ENABLED: false,
                 CALDAV_ENABLED: true,
                 CARDDAV_ENABLED: true,
-              }, nix.update((nix.asBool(!nix.eq(nix.sel(mail, "dsn"), null)) ? { __proto__: pos$37, MAILER_DSN: nix.thunk(() => nix.sel(mail, "dsn")) } : (nix.asBool(!nix.eq(nix.sel(mail, "dsnFile"), null)) ? {
-                __proto__: pos$39,
-                MAILER_DSN: nix.thunk(() => ({ __proto__: pos$38, _secret: nix.thunk(() => nix.sel(mail, "dsnFile")) })),
+              }, nix.update((nix.asBool(!nix.eq(nix.sel(mail, "dsn"), null)) ? { [nix.POS]: pos$37, MAILER_DSN: nix.thunk(() => nix.sel(mail, "dsn")) } : (nix.asBool(!nix.eq(nix.sel(mail, "dsnFile"), null)) ? {
+                [nix.POS]: pos$39,
+                MAILER_DSN: nix.thunk(() => ({ [nix.POS]: pos$38, _secret: nix.thunk(() => nix.sel(mail, "dsnFile")) })),
               } : {})), (nix.asBool(nix.sel(db, "createLocally")) ? {
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 DATABASE_URL: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(db, "driver"), "sqlite")) ? nix.str`sqlite:///${nix.sel(cfg, "dataDir")}/davis.db` : (nix.asBool(pgsqlLocal) ? nix.str`postgres://${user}@localhost/${nix.sel(db, "name")}?host=/run/postgresql` : (nix.asBool(mysqlLocal) ? nix.str`mysql://${user}@localhost/${nix.sel(db, "name")}?socket=/run/mysqld/mysqld.sock` : null)))),
               } : {
-                __proto__: pos$42,
-                DATABASE_URL: nix.thunk(() => ({ __proto__: pos$41, _secret: nix.thunk(() => nix.sel(db, "urlFile")) })),
+                [nix.POS]: pos$42,
+                DATABASE_URL: nix.thunk(() => ({ [nix.POS]: pos$41, _secret: nix.thunk(() => nix.sel(db, "urlFile")) })),
               })))),
             })),
             phpfpm: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               pools: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 davis: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   user: user,
                   group: group,
                   phpOptions: "log_errors = on\n",
                   phpEnv: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     ENV_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
                     APP_CACHE_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/var/cache`),
                     APP_LOG_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/var/log`),
                   })),
                   phpPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "package", "passthru", "php")))),
                   settings: nix.thunk(() => nix.update({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     "listen.mode": "0660",
                     pm: "dynamic",
                     "pm.max_children": 256n,
@@ -376,7 +376,7 @@ export default nix.lambda((args) => (() => {
                     "pm.min_spare_servers": 5n,
                     "pm.max_spare_servers": 20n,
                   }, nix.update((nix.asBool(!nix.eq(nix.sel(cfg, "nginx"), null)) ? {
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                     "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                   } : {}), nix.sel(cfg, "poolConfig")))),
@@ -384,24 +384,24 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nginx"), null)), nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "hostname")}`, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "nginx")),
                       nix.thunk(() => ({
-                        __proto__: pos$55,
+                        [nix.POS]: pos$55,
                         root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public`))),
                         extraConfig: "charset utf-8;\nindex index.php;\n",
                         locations: nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           "/": nix.thunk(() => ({
-                            __proto__: pos$50,
+                            [nix.POS]: pos$50,
                             extraConfig: "try_files $uri $uri/ /index.php$is_args$args;\n",
                           })),
-                          "~* ^/.well-known/(caldav|carddav)$": nix.thunk(() => ({ __proto__: pos$51, extraConfig: "return 302 https://$host/dav/;\n" })),
+                          "~* ^/.well-known/(caldav|carddav)$": nix.thunk(() => ({ [nix.POS]: pos$51, extraConfig: "return 302 https://$host/dav/;\n" })),
                           "~ ^(.+\\.php)(.*)$": nix.thunk(() => ({
-                            __proto__: pos$52,
+                            [nix.POS]: pos$52,
                             extraConfig: nix.thunk(() => nix.str`try_files                $fastcgi_script_name =404;
 include                  ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 include                  ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
@@ -413,52 +413,52 @@ fastcgi_param            X-Forwarded-Proto https;
 fastcgi_param            X-Forwarded-Port $http_x_forwarded_port;
 `),
                           })),
-                          "~ /(\\.ht)": nix.thunk(() => ({ __proto__: pos$53, extraConfig: "deny all;\nreturn 404;\n" })),
+                          "~ /(\\.ht)": nix.thunk(() => ({ [nix.POS]: pos$53, extraConfig: "deny all;\nreturn 404;\n" })),
                         })),
                       })),
                     ])))],
                 ])),
               })))),
             mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), mysqlLocal, nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 enable: true,
                 package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
                 ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(db, "name"))]),
                 ensureUsers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     name: user,
                     ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(db, "name")}.*`, "ALL PRIVILEGES"]])),
                   })),
                 ]),
               })))),
             postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), pgsqlLocal, nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 enable: true,
                 ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(db, "name"))]),
                 ensureUsers: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$59, name: user, ensureDBOwnership: true })),
+                  nix.thunk(() => ({ [nix.POS]: pos$59, name: user, ensureDBOwnership: true })),
                 ]),
               })))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(user, "davis")), nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 davis: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   description: "Davis service user",
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                   isSystemUser: true,
                   home: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 })),
               })))),
-            groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(group, "davis")), nix.thunk(() => ({ __proto__: pos$64, davis: nix.thunk(() => ({})) })))),
+            groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(group, "davis")), nix.thunk(() => ({ [nix.POS]: pos$64, davis: nix.thunk(() => ({})) })))),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               rules: nix.thunk(() => [
                 nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}                            0710 ${user} ${group} - -`),
                 nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")}/var                        0700 ${user} ${group} - -`),
@@ -467,14 +467,14 @@ fastcgi_param            X-Forwarded-Port $http_x_forwarded_port;
               ]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               "davis-env-setup": nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 description: "Setup davis environment",
                 before: nix.thunk(() => ["phpfpm-davis.service", "davis-db-migrate.service"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: nix.thunk(() => nix.concat([
@@ -485,14 +485,14 @@ fastcgi_param            X-Forwarded-Port $http_x_forwarded_port;
                 restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package")), davisEnv]),
               })),
               "davis-db-migrate": nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 description: "Migrate davis database",
                 before: nix.thunk(() => ["phpfpm-davis.service"]),
                 after: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mysqlLocal, "mysql.service"), nix.concat(nix.app(nix.sel(lib, "optional"), pgsqlLocal, "postgresql.target"), ["davis-env-setup.service"]))),
                 requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), mysqlLocal, "mysql.service"), nix.concat(nix.app(nix.sel(lib, "optional"), pgsqlLocal, "postgresql.target"), ["davis-env-setup.service"]))),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   Environment: nix.thunk(() => [
@@ -510,11 +510,11 @@ fastcgi_param            X-Forwarded-Port $http_x_forwarded_port;
                 restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package")), davisEnv]),
               })),
               "phpfpm-davis": nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 after: nix.thunk(() => ["davis-env-setup.service", "davis-db-migrate.service"]),
                 requires: nix.thunk(() => nix.concat(["davis-env-setup.service", "davis-db-migrate.service"], nix.concat(nix.app(nix.sel(lib, "optional"), mysqlLocal, "mysql.service"), nix.app(nix.sel(lib, "optional"), pgsqlLocal, "postgresql.target")))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
                 })),
               })),
@@ -523,7 +523,7 @@ fastcgi_param            X-Forwarded-Port $http_x_forwarded_port;
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$76,
+      [nix.POS]: pos$76,
       doc: nix.path(here, "./davis.md"),
       maintainers: nix.thunk(() => nix.sel(pkgs, "davis", "meta", "maintainers")),
     })),

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jwt-hack",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hahwul",
           repo: "jwt-hack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "JSON Web Token Hack Toolkit",
         homepage: "https://github.com/hahwul/jwt-hack",
         changelog: nix.thunk(() => nix.str`https://github.com/hahwul/jwt-hack/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

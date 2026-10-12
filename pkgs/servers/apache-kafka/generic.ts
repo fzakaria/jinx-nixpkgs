@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.str`${scalaVersion}-${kafkaVersion}`);
         const pname = "apache-kafka";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://apache/kafka/${kafkaVersion}/kafka_${version}.tgz`),
             hash: hash,
           }))));
@@ -66,16 +66,16 @@ done
 chmod +x $out/bin\\/*
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           jre: jre,
           tests: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nixos: nix.thunk(() => nix.sel(nixosTests, "kafka", "base", nix.key(nix.add("kafka_", series)))),
           })),
           updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), seriesFile]),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://kafka.apache.org",
           description: "High-throughput distributed messaging system",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -84,7 +84,7 @@ chmod +x $out/bin\\/*
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version,
           pname,
           src,

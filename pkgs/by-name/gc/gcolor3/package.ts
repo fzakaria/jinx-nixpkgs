@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libportal_gtk3 = nix.arg($, "libportal-gtk3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gcolor3",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "gcolor3",
@@ -42,7 +42,7 @@ substituteInPlace meson.build --replace "dependency(${"\n"}  'libportal'" "depen
 substituteInPlace src/gcolor3-color-selection.c --replace "libportal/portal-gtk3.h" "libportal-gtk3/portal-gtk3.h"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple color chooser written in GTK3",
         mainProgram: "gcolor3",
         homepage: "https://gitlab.gnome.org/World/gcolor3",

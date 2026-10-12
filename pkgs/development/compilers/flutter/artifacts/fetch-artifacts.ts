@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const flutterPlatforms = nix.thunk(() => ["android", "ios", "web", "linux", "windows", "macos", "fuchsia", "universal"]);
   const flutter$ = nix.thunk(() => nix.app(nix.sel(flutter, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       supportedTargetFlutterPlatforms: [],
       flutter: nix.thunk(() => nix.app(nix.sel(flutter, "unwrapped", "override"), nix.thunk(() => ({
-          __proto__: pos$2,
-          flutterTools: nix.thunk(() => nix.app(nix.sel(flutter, "unwrapped", "tools", "override"), nix.thunk(() => ({ __proto__: pos$1, systemPlatform: systemPlatform })))),
+          [nix.POS]: pos$2,
+          flutterTools: nix.thunk(() => nix.app(nix.sel(flutter, "unwrapped", "tools", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, systemPlatform: systemPlatform })))),
         })))),
     }))));
   return nix.app(runCommand, nix.thunk(() => nix.str`flutter-artifacts-${flutterPlatform}-${systemPlatform}`), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       nativeBuildInputs: nix.thunk(() => [lndir, flutter$, unzip]),
       NIX_FLUTTER_TOOLS_VM_OPTIONS: nix.thunk(() => nix.str`--root-certs-file=${cacert}/etc/ssl/certs/ca-bundle.crt`),
       NIX_FLUTTER_OPERATING_SYSTEM: nix.thunk(() => nix.sel({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-linux": "linux",
         "aarch64-linux": "linux",
         "aarch64-darwin": "macos",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       outputHash: hash,
       outputHashMode: "recursive",
       outputHashAlgo: "sha256",
-      passthru: nix.thunk(() => ({ __proto__: pos$5, flutterPlatform: flutterPlatform })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, flutterPlatform: flutterPlatform })),
     })), nix.thunk(() => nix.add(nix.add(nix.add(nix.str`export FLUTTER_ROOT="$NIX_BUILD_TOP"
 lndir -silent '${flutter$}' "$FLUTTER_ROOT"
 rm --recursive --force "$FLUTTER_ROOT/bin/cache"

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const libxaw3d = nix.arg($, "libxaw3d");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xvkbd",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://t-sato.in.coocan.jp/xvkbd/xvkbd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1x5yldv9y99cw5hzzs73ygdn1z80zns9hz0baa355r711zghfbcm",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "# workaround absence of libXt in $DESTDIR location.\nmkdir -p $out/share/X11\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual keyboard for X window system",
         longDescription: "xvkbd is a virtual (graphical) keyboard program for X Window System which provides\nfacility to enter characters onto other clients (software) by clicking on a\nkeyboard displayed on the screen.\n",
         homepage: "http://t-sato.in.coocan.jp/xvkbd",

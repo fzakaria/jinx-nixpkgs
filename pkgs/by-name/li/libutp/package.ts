@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libutp",
       version: "0-unstable-2017-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "transmission",
           repo: "libutp",
           rev: "fda9f4b3db97ccb243fcbed2ce280eb4135d705b",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace \\\n  CMakeLists.txt \\\n  --replace-fail \\\n  \"cmake_minimum_required(VERSION 2.8)\" \\\n  \"cmake_minimum_required(VERSION 3.5)\"\n",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "uTorrent Transport Protocol library",
         homepage: "https://github.com/transmission/libutp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

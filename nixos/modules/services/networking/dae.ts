@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "dae"));
   const assets = nix.thunk(() => nix.sel(cfg, "assets"));
-  const genAssetsDrv = (paths) => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({ __proto__: pos$1, name: "dae-assets", paths: paths })));
+  const genAssetsDrv = (paths) => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "dae-assets", paths: paths })));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -52,17 +52,17 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         dae: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "dae, a Linux high-performance transparent proxy solution based on eBPF")),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "dae", nix.thunk(() => ({})))),
             assets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -78,35 +78,35 @@ export default nix.lambda((args) => (() => {
                 description: "Assets required to run dae.\n",
               })))),
             assetsPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: nix.thunk(() => nix.str`${nix.app(genAssetsDrv, assets)}/share/v2ray`),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "(symlinkJoin {\n    name = \"dae-assets\";\n    paths = assets;\n})/share/v2ray\n")),
                 description: "The path which contains geolocation database.\nThis option will override `assets`.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       options: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "opening {option}`port` in the firewall")),
                         port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "port")),
                             description: "Port to be opened. Consist with field `tproxy_port` in config file.\n",
                           })))),
                       })),
                     })));
                 })()),
-                default: nix.thunk(() => ({ __proto__: pos$8, enable: true, port: 12345n })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, port: 12345n })),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  enable = true;\n  port = 12345;\n}\n")),
                 description: "Open the firewall port.\n",
               })))),
             configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
                 description: "The path of dae config file, end with `.dae`.\n",
               })))),
             config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
                 description: "WARNING: This option will expose store your config unencrypted world-readable in the nix store.\nConfig text for dae.\n\nSee <https://github.com/daeuniverse/dae/blob/main/example.dae>.\n",
               })))),
             disableTxChecksumIpGeneric: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), ""), {
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "See <https://github.com/daeuniverse/dae/issues/43>",
             })),
           };
@@ -133,23 +133,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             dae: nix.thunk(() => (() => {
               const daeBin = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package"))));
               const configPath = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configFile"), null)) ? nix.sel(cfg, "configFile") : nix.app(nix.sel(pkgs, "writeText"), "config.dae", nix.thunk(() => nix.sel(cfg, "config")))));
               const TxChecksumIpGenericWorkaround = nix.thunk(() => (() => {
                 const w = nix.withScope(lib, null);
                 return nix.app(nix.lookup(w, "getExe"), nix.thunk(() => nix.sel(pkgs, "writeShellApplication")), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     name: "disable-tx-checksum-ip-generic",
                     text: nix.thunk(() => (() => {
                       const w_1 = nix.withScope(pkgs, w);
@@ -160,10 +160,10 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.lookup(w_1, "ethtool")))} 
                   })));
               })());
               return {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   LoadCredential: nix.thunk(() => [nix.thunk(() => nix.str`config.dae:${configPath}`)]),
                   ExecStartPre: nix.thunk(() => nix.concat([
                     "",
@@ -183,11 +183,11 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.lookup(w_1, "ethtool")))} 
           })),
         })),
         networking: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall", "enable")), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             firewall: nix.thunk(() => (() => {
               const portToOpen = nix.thunk(() => nix.sel(cfg, "openFirewall", "port"));
               return {
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 allowedTCPPorts: nix.thunk(() => [portToOpen]),
                 allowedUDPPorts: nix.thunk(() => [portToOpen]),
               };
@@ -195,12 +195,12 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.lookup(w_1, "ethtool")))} 
           })))),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(config, "services", "dae", "config"), null)) && nix.asBool(!nix.eq(nix.sel(config, "services", "dae", "configFile"), null))))),
             message: "Option `config` and `configFile` could not be set\nat the same time.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.eq(nix.sel(config, "services", "dae", "config"), null)) && nix.asBool(nix.eq(nix.sel(config, "services", "dae", "configFile"), null))))),
             message: "Either `config` or `configFile` should be set.\n",
           })),

@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
   const openjfx17 = nix.arg($, "openjfx17");
   const openjfx21 = nix.arg($, "openjfx21");
   const openjfx25 = nix.arg($, "openjfx25");
-  const openjfx_jdk = nix.argOr($, "openjfx_jdk", () => nix.selOr({ __proto__: pos$1, "17": openjfx17, "21": openjfx21, "25": openjfx25 }, () => nix.builtins.throw(nix.thunk(() => nix.str`JavaFX is not supported on OpenJDK ${featureVersion}`)), nix.key(nix.force(featureVersion))));
+  const openjfx_jdk = nix.argOr($, "openjfx_jdk", () => nix.selOr({ [nix.POS]: pos$1, "17": openjfx17, "21": openjfx21, "25": openjfx25 }, () => nix.builtins.throw(nix.thunk(() => nix.str`JavaFX is not supported on OpenJDK ${featureVersion}`)), nix.key(nix.force(featureVersion))));
   const enableGtk = nix.argOr($, "enableGtk", () => true);
   const gtk3 = nix.arg($, "gtk3");
   const glib = nix.arg($, "glib");
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
   const temurin_bin_21 = nix.arg($, "temurin-bin-21");
   const temurin_bin_25 = nix.arg($, "temurin-bin-25");
   const jdk_bootstrap = nix.argOr($, "jdk-bootstrap", () => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "8": nix.thunk(() => nix.selOr(temurin_bin_8, () => nix.force(temurin_bin_8), "__spliced", "buildBuild")),
     "11": nix.thunk(() => nix.selOr(temurin_bin_11, () => nix.force(temurin_bin_11), "__spliced", "buildBuild")),
     "17": nix.thunk(() => nix.selOr(temurin_bin_17, () => nix.force(temurin_bin_17), "__spliced", "buildBuild")),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(enableGtk) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), featureVersion, "11")))), "GTK support in OpenJDK requires version 11.x or newer, because earlier versions would depend on GTK 2."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/openjdk/generic.nix:90:1");
   const sourceFile = nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${featureVersion}/source.json`));
   const source = nix.thunk(() => nix.app(nix.sel(nixpkgs_openjdk_updater, "openjdkSource"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       sourceFile: sourceFile,
       featureVersionPrefix: nix.thunk(() => nix.add(tagPrefix, featureVersion)),
     }))));
@@ -103,16 +103,16 @@ export default nix.lambda((args) => (() => {
   const versionSplit = nix.thunk(() => nix.builtins.match(nix.thunk(() => (nix.asBool(atLeast11) ? "(.+)+(.+)" : "(.+)-b(.+)")), version));
   const versionBuild = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionSplit, 1n));
   const architecture = nix.thunk(() => (nix.asBool(atLeast11) ? "" : nix.selOr({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "i686-linux": "i386",
     "x86_64-linux": "amd64",
     "aarch64-linux": "aarch64",
     "powerpc64le-linux": "ppc64le",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")))));
-  const jdk_bootstrap$ = nix.thunk(() => nix.app(nix.sel(jdk_bootstrap, "override"), nix.thunk(() => ({ __proto__: pos$5, gtkSupport: nix.thunk(() => !nix.asBool(headless)) }))));
+  const jdk_bootstrap$ = nix.thunk(() => nix.app(nix.sel(jdk_bootstrap, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, gtkSupport: nix.thunk(() => !nix.asBool(headless)) }))));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "pathExists"), sourceFile)), nix.thunk(() => nix.str`OpenJDK ${featureVersion} is not a supported version`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/openjdk/generic.nix:130:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: nix.thunk(() => nix.add("openjdk", nix.app(nix.sel(lib, "optionalString"), headless, "-headless"))),
       version: version,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(atLeast11)), nix.thunk(() => ["jre"])))),
@@ -130,19 +130,19 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => (nix.asBool(atLeast17) ? nix.path(here, "./17/patches/fix-library-path-jdk17.patch") : (nix.asBool(atLeast11) ? nix.path(here, "./11/patches/fix-library-path-jdk11.patch") : nix.path(here, "./8/patches/fix-library-path-jdk8.patch")))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(atLeast17) && nix.asBool(!nix.asBool(atLeast23)))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://src.fedoraproject.org/rpms/java-openjdk/raw/06c001c7d87f2e9fe4fedeef2d993bcd5d7afa2a/f/rh1673833-remove_removal_of_wformat_during_test_compilation.patch",
               sha256: "082lmc30x64x583vqq00c8y0wqih3y4r0mp1c4bqq36l22qv6b6r",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(featureVersion, "17")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: "https://git.alpinelinux.org/aports/plain/community/openjdk17/FixNullPtrCast.patch?id=41e78a067953e0b13d062d632bae6c4f8028d91c",
               sha256: "sha256-LzmSew51+DyqqGyyMw2fbXeBluCiCYsS1nCjt9hX6zo=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(atLeast11) && nix.asBool(!nix.asBool(atLeast25)))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "gnumake-4.4.1",
               url: "https://github.com/openjdk/jdk/commit/9341d135b855cc208d48e47d30cd90aafa354c36.patch",
               hash: "sha256-Qcm3ZmGCOYLZcskNjj7DYR85R4v07vYvvavrVOYL8vg=",
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       preConfigure: "configureFlags+=(\"--with-jobs=${NIX_BUILD_CORES}\")\n",
       env: nix.thunk(() => nix.update({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         NIX_CFLAGS_COMPILE: nix.thunk(() => (nix.asBool(atLeast17) ? "-Wno-error" : (nix.asBool(atLeast11) ? nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-Wformat"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.eq(featureVersion, "11")))), nix.thunk(() => ["-std=gnu17"]))))) : nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-Wno-error=deprecated-declarations"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => [
               "-fno-lifetime-dse",
               "-fno-delete-null-pointer-checks",
@@ -217,7 +217,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => (nix.asBool(atLeast11) ? "-lgtk-3" : "-lgtk-x11-2.0")),
               "-lgio-2.0",
             ])))))),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(atLeast11)), nix.thunk(() => ({ __proto__: pos$10, DISABLE_HOTSPOT_OS_VERSION_CHECK: "ok" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(atLeast11)), nix.thunk(() => ({ [nix.POS]: pos$10, DISABLE_HOTSPOT_OS_VERSION_CHECK: "ok" }))))),
       versionCheckProgram: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), atLeast23, nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/java`))),
       doCheck: false,
       doInstallCheck: atLeast23,
@@ -240,13 +240,13 @@ printWords "${setJavaClassPath}" > $jre/nix-support/propagated-build-inputs
       postFixup: nix.thunk(() => nix.add("autoPatchelf -- $out\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(atLeast11)), "autoPatchelf -- $jre\n"))),
       disallowedReferences: nix.thunk(() => [jdk_bootstrap$]),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         home: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/lib/openjdk`),
         "jdk-bootstrap": jdk_bootstrap,
         updateScript: nix.thunk(() => nix.attr(source, "updateScript")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), atLeast11, nix.thunk(() => ({ __proto__: pos$12, gtk3: gtk3 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(atLeast23)), nix.thunk(() => ({ __proto__: pos$13, architecture: architecture })))))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), atLeast11, nix.thunk(() => ({ [nix.POS]: pos$12, gtk3: gtk3 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(atLeast23)), nix.thunk(() => ({ [nix.POS]: pos$13, architecture: architecture })))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Open-source Java Development Kit",
         homepage: "https://openjdk.java.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

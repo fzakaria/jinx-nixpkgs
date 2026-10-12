@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dontConfigure = true;
       const dontBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Open source user-first chat platform",
         homepage: "https://revolt.chat/",
         changelog: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/tag/v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       }));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         dontConfigure,
@@ -61,27 +61,27 @@ export default nix.lambda((args) => (() => {
     })())), "overrideAttrs"), (final) => (prev) => (() => {
       const version = nix.thunk(() => nix.attr(prev, "version"));
       return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         src: nix.thunk(() => nix.selOr({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}.AppImage`),
               hash: "sha256-L23Je5p7VmQpOLC+IfmQRk2CKKUm4rNBdsYLvqLTlRY=",
             })))),
           "armv7l-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}-armv7l.AppImage`),
               hash: "sha256-Qwya5tgHjMB8IJi0ueGmkzgQMQu+rlsDoWIVpl6Vj2w=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}-arm64.AppImage`),
               hash: "sha256-VQXyXaL4Ma3peO1duAlyFwkb1CRQ/4DNZhjiAnhms6I=",
             })))),
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
         appimageContents: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             src: nix.thunk(() => nix.attr(final, "src")),
             pname: nix.thunk(() => nix.attr(final, "pname")),
             version: nix.thunk(() => nix.attr(final, "version")),
@@ -107,9 +107,9 @@ runHook postInstall
       } : (() => {
         nix.assert_(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/re/revolt-desktop/package.nix:81:7");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}-universal-mac.zip`),
               hash: "sha256-CpG1LLYYHa9ho4rotDwSS+wNIJ2z0kBPqu70xKEFg+k=",
               stripRoot: false,

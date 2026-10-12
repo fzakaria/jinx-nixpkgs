@@ -19,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const hostPkgs = nix.arg($, "hostPkgs");
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       interactive: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "Tests [can be run interactively](#sec-running-nixos-tests-interactively)\nusing the program in the test derivation's `.driverInteractive` attribute.\n\nWhen they are, the configuration will include anything set in this submodule.\n\nYou can set any top-level test option here.\n\nExample test module:\n\n```nix\n{ config, lib, ... }: {\n\n  nodes.rabbitmq = {\n    services.rabbitmq.enable = true;\n  };\n\n  # When running interactively ...\n  interactive.nodes.rabbitmq = {\n    # ... enable the web ui.\n    services.rabbitmq.managementPlugin.enable = true;\n  };\n}\n```\n\nFor details, see the section about [running tests interactively](#sec-running-nixos-tests-interactively).\n",
           type: moduleType,
           visible: "shallow",
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       interactive: nix.thunk(() => ({
-        __proto__: pos$4,
-        qemu: nix.thunk(() => ({ __proto__: pos$3, package: nix.thunk(() => nix.sel(hostPkgs, "qemu")) })),
+        [nix.POS]: pos$4,
+        qemu: nix.thunk(() => ({ [nix.POS]: pos$3, package: nix.thunk(() => nix.sel(hostPkgs, "qemu")) })),
         extraDriverArgs: nix.thunk(() => ["--interactive"]),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         driverInteractive: nix.thunk(() => nix.sel(config, "interactive", "driver")),
       })),
     })),

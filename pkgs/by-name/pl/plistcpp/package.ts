@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nsplist = nix.arg($, "nsplist");
   const pugixml = nix.arg($, "pugixml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plistcpp",
       version: "0-unstable-2017-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthewbauer",
           repo: "PlistCpp",
           rev: "11615deab3369356a182dabbf5bae30574967264",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost, nsplist, pugixml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: [],
         description: "CPP bindings for Plist",
         homepage: "https://github.com/matthewbauer/PlistCpp",

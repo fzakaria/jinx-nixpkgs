@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla",
           repo: "mozilla-django-oidc",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [djangorestframework]);
       const checkPhase = "runHook preCheck\n\nPYTHONPATH=.:$PYTHONPATH DJANGO_SETTINGS_MODULE=tests.settings django-admin test\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django OpenID Connect library",
         homepage: "https://github.com/mozilla/mozilla-django-oidc",
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla/mozilla-django-oidc/releases/tag/${nix.sel(src, "tag")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

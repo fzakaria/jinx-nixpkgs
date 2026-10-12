@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "karchive",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, qttools]),
       buildInputs: nix.thunk(() => [bzip2, xz, zlib, zstd]),

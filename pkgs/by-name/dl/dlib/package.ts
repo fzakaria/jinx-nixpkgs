@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dlib";
       const version = "20.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davisking",
           repo: "dlib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,9 +72,9 @@ export default nix.lambda((args) => (() => {
           ];
         })())))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "python-dlib": nix.thunk(() => nix.sel(python3Packages, "dlib")),
         })),
         cudaSupport: cudaSupport,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         avxSupport: avxSupport,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General purpose cross-platform C++ machine learning library",
         homepage: "http://www.dlib.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

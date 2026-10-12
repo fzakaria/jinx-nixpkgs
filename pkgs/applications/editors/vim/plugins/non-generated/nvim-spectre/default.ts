@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0-unstable-2025-05-13";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nvim-pack",
       repo: "nvim-spectre",
       rev: "72f56f7585903cd7bf92c665351aa585e150af0f",
       hash: "sha256-WPEizIClDmseDEhomCasLx/zfAMT7lq7ZBnfc/a8CuA=",
     }))));
   const spectre_oxi = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spectre_oxi",
       version: version,
       src: src,
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       preCheck: "mkdir tests/tmp/\n",
       checkFlags: nix.thunk(() => ["--skip=tests::test_replace_simple"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nvim-spectre",
       version: version,
       src: src,
@@ -51,16 +51,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s ${spectre_oxi}/lib/libspectre_oxi.* $out/lua/spectre_oxi.so
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version=branch"]),
             attrPath: "vimPlugins.nvim-spectre.spectre_oxi",
           })))),
         spectre_oxi: spectre_oxi,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/nvim-pack/nvim-spectre/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

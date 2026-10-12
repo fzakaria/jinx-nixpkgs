@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "halcy",
           repo: "Mastodon.py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [blurhash, decorator, python_dateutil, python_magic, requests]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         blurhash: nix.thunk(() => [blurhash]),
         grapheme: nix.thunk(() => [graphemeu]),
         webpush: nix.thunk(() => [http_ece, cryptography]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub, pytest_mock, pytest_vcr, requests_mock], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["mastodon"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/halcy/Mastodon.py/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Python wrapper for the Mastodon API",
         homepage: "https://github.com/halcy/Mastodon.py",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

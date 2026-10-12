@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const imagemagick = nix.arg($, "imagemagick");
-  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jetuml",
       version: "3.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/prmr/JetUML/releases/download/v${nix.sel(finalAttrs, "version")}/JetUML-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-X3mLfK06gQnZ9vzYX1CDw6r6krIuZU9DtujgcferxsM=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, copyDesktopItems, imagemagick]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "jetuml",
             desktopName: "JetUML",
             genericName: "UML Tool",
@@ -60,7 +60,7 @@ makeWrapper ${jdkWithFX}/lib/openjdk/bin/java $out/bin/jetuml \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.jetuml.org/",
         description: "Desktop application for fast UML diagramming",
         mainProgram: "jetuml",

@@ -254,29 +254,29 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$12,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, useBootLoader: true, useEFIBoot: true })),
+      [nix.POS]: pos$12,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, useBootLoader: true, useEFIBoot: true })),
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         loader: nix.thunk(() => ({
-          __proto__: pos$4,
-          "systemd-boot": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
-          efi: nix.thunk(() => ({ __proto__: pos$3, canTouchEfiVariables: true })),
+          [nix.POS]: pos$4,
+          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          efi: nix.thunk(() => ({ [nix.POS]: pos$3, canTouchEfiVariables: true })),
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "efibootmgr"))]),
         etc: nix.thunk(() => ({
-          __proto__: pos$7,
-          "machine-id": nix.thunk(() => ({ __proto__: pos$6, text: "1234567890abcdef1234567890abcdef\n" })),
+          [nix.POS]: pos$7,
+          "machine-id": nix.thunk(() => ({ [nix.POS]: pos$6, text: "1234567890abcdef1234567890abcdef\n" })),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$10,
-        switch: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+        [nix.POS]: pos$10,
+        switch: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
       })),
-      nix: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+      nix: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
     };
   })(), formals$2);
   const commonXbootldr = nix.lambda((args_1) => (() => {
@@ -285,7 +285,7 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     const diskImage = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         config: config,
         lib: lib_1,
         pkgs: pkgs,
@@ -297,35 +297,35 @@ export default nix.lambda((args) => (() => {
         copyChannel: false,
       }))));
     return {
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       imports: nix.thunk(() => [common]),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         useBootLoader: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), false)),
-        directBoot: nix.thunk(() => ({ __proto__: pos$14, enable: false })),
+        directBoot: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
         efi: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           variables: nix.thunk(() => nix.str`${diskImage}/efi-vars.fd`),
         })),
         useDefaultFilesystems: false,
         bootPartition: null,
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$19,
-          "/": nix.thunk(() => ({ __proto__: pos$16, device: "/dev/vda3", fsType: "ext4" })),
-          "/boot": nix.thunk(() => ({ __proto__: pos$17, device: "/dev/vda2", fsType: "vfat", noCheck: true })),
-          "/efi": nix.thunk(() => ({ __proto__: pos$18, device: "/dev/vda1", fsType: "vfat", noCheck: true })),
+          [nix.POS]: pos$19,
+          "/": nix.thunk(() => ({ [nix.POS]: pos$16, device: "/dev/vda3", fsType: "ext4" })),
+          "/boot": nix.thunk(() => ({ [nix.POS]: pos$17, device: "/dev/vda2", fsType: "vfat", noCheck: true })),
+          "/efi": nix.thunk(() => ({ [nix.POS]: pos$18, device: "/dev/vda1", fsType: "vfat", noCheck: true })),
         })),
       })),
       system: nix.thunk(() => ({
-        __proto__: pos$22,
-        build: nix.thunk(() => ({ __proto__: pos$21, diskImage: diskImage })),
+        [nix.POS]: pos$22,
+        build: nix.thunk(() => ({ [nix.POS]: pos$21, diskImage: diskImage })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         loader: nix.thunk(() => ({
-          __proto__: pos$25,
-          "systemd-boot": nix.thunk(() => ({ __proto__: pos$23, enable: true, xbootldrMountPoint: "/boot" })),
-          efi: nix.thunk(() => ({ __proto__: pos$24, efiSysMountPoint: "/efi" })),
+          [nix.POS]: pos$25,
+          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$23, enable: true, xbootldrMountPoint: "/boot" })),
+          efi: nix.thunk(() => ({ [nix.POS]: pos$24, efiSysMountPoint: "/efi" })),
         })),
       })),
     };
@@ -355,36 +355,36 @@ os.environ['NIX_DISK_IMAGE'] = tmp_disk_image.name
     const $_1 = nix.formals(args_1, formals$4);
     const withBootCounting = nix.argOr($_1, "withBootCounting", () => false);
     return nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         name: nix.thunk(() => nix.add("systemd-boot-default-entry", nix.app(nix.sel(lib, "optionalString"), withBootCounting, "-with-boot-counting"))),
         meta: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$5);
             const nodes = nix.arg($_2, "nodes");
             return {
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               imports: nix.thunk(() => [common]),
               system: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 extraDependencies: nix.thunk(() => [
                   nix.thunk(() => nix.sel(nodes, "other_machine", "system", "build", "toplevel")),
                 ]),
               })),
               boot: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$31,
-                    bootCounting: nix.thunk(() => ({ __proto__: pos$30, enable: withBootCounting })),
+                    [nix.POS]: pos$31,
+                    bootCounting: nix.thunk(() => ({ [nix.POS]: pos$30, enable: withBootCounting })),
                   })),
                 })),
               })),
@@ -394,20 +394,20 @@ os.environ['NIX_DISK_IMAGE'] = tmp_disk_image.name
             const $_2 = nix.formals(args_2, formals$6);
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$36,
-                    bootCounting: nix.thunk(() => ({ __proto__: pos$35, enable: withBootCounting })),
+                    [nix.POS]: pos$36,
+                    bootCounting: nix.thunk(() => ({ [nix.POS]: pos$35, enable: withBootCounting })),
                   })),
                 })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
               })),
             };
@@ -448,37 +448,37 @@ check_current_system(orig)
         const $_2 = nix.formals(args_2, formals$9);
         const lib_1 = nix.arg($_2, "lib");
         return {
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           name: nix.thunk(() => nix.add("systemd-boot-garbage-collect-entry", nix.app(nix.sel(lib_1, "optionalString"), withBootCounting, "-with-boot-counting"))),
           meta: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             common: common,
             machine: nix.lambda((args_3) => (() => {
               const $_3 = nix.formals(args_3, formals$10);
               const nodes = nix.arg($_3, "nodes");
               return {
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 imports: nix.thunk(() => [common]),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   loader: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     "systemd-boot": nix.thunk(() => ({
-                      __proto__: pos$46,
-                      bootCounting: nix.thunk(() => ({ __proto__: pos$44, enable: withBootCounting })),
-                      memtest86: nix.thunk(() => ({ __proto__: pos$45, enable: true })),
+                      [nix.POS]: pos$46,
+                      bootCounting: nix.thunk(() => ({ [nix.POS]: pos$44, enable: withBootCounting })),
+                      memtest86: nix.thunk(() => ({ [nix.POS]: pos$45, enable: true })),
                     })),
                   })),
                 })),
                 system: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "common", "system", "build", "toplevel"))]),
                 })),
               };
@@ -509,17 +509,17 @@ check_generation(2)
       })(), formals$9));
   })(), formals$8);
   return {
-    __proto__: pos$199,
+    [nix.POS]: pos$199,
     defaultEntry: nix.thunk(() => nix.app(defaultEntry, nix.thunk(() => ({})))),
     "garbage-collect-entry": nix.thunk(() => nix.app(garbage_collect_entry, nix.thunk(() => ({})))),
     basic: nix.thunk(() => nix.app(runTest, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$12);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           name: "systemd-boot",
           meta: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [
@@ -528,7 +528,7 @@ check_generation(2)
               ];
             })()),
           })),
-          nodes: nix.thunk(() => ({ __proto__: pos$54, machine: common })),
+          nodes: nix.thunk(() => ({ [nix.POS]: pos$54, machine: common })),
           testScript: nix.thunk(() => nix.str`${testScriptPreamble}
 
 machine.start()
@@ -554,18 +554,18 @@ machine.succeed('efibootmgr | grep "Linux Boot Manager"')
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           name: "systemd-boot-secure-boot",
           nodes: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$14);
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 imports: nix.thunk(() => [common]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "sbctl"))]),
                 })),
               };
@@ -595,16 +595,16 @@ assert "Secure Boot: enabled (user)" in machine.succeed("bootctl status")
         const $_1 = nix.formals(args_1, formals$16);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           name: "systemd-boot-xbootldr",
           meta: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "sdht0"))];
             })()),
           })),
-          nodes: nix.thunk(() => ({ __proto__: pos$61, machine: commonXbootldr })),
+          nodes: nix.thunk(() => ({ [nix.POS]: pos$61, machine: commonXbootldr })),
           testScript: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$17);
             const nodes = nix.arg($_2, "nodes");
@@ -635,10 +635,10 @@ machine.succeed('efibootmgr | grep "Linux Boot Manager"')
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           name: "systemd-boot-specialisation",
           meta: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [
@@ -648,35 +648,35 @@ machine.succeed('efibootmgr | grep "Linux Boot Manager"')
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$19);
               const pkgs_1 = nix.arg($_2, "pkgs");
               const lib_2 = nix.arg($_2, "lib");
               return {
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 imports: nix.thunk(() => [common]),
                 specialisation: nix.thunk(() => ({
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   something: nix.thunk(() => ({
-                    __proto__: pos$70,
+                    [nix.POS]: pos$70,
                     configuration: nix.thunk(() => ({
-                      __proto__: pos$69,
+                      [nix.POS]: pos$69,
                       boot: nix.thunk(() => ({
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         loader: nix.thunk(() => ({
-                          __proto__: pos$65,
+                          [nix.POS]: pos$65,
                           "systemd-boot": nix.thunk(() => ({
-                            __proto__: pos$64,
+                            [nix.POS]: pos$64,
                             sortKey: "something",
                             installDeviceTree: nix.thunk(() => nix.sel(pkgs_1, "stdenv", "hostPlatform", "isAarch64")),
                           })),
                         })),
                       })),
                       hardware: nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         deviceTree: nix.thunk(() => ({
-                          __proto__: pos$67,
+                          [nix.POS]: pos$67,
                           name: "dummy.dtb",
                           package: nix.thunk(() => nix.app(nix.sel(lib_2, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "dummy-devicetree-package", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 cp ${nix.sel(pkgs_1, "emptyFile")} $out/dummy.dtb
@@ -707,10 +707,10 @@ ${nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => nix.sel(pkgs, "stden
         const $_1 = nix.formals(args_1, formals$20);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           name: "systemd-boot-fallback",
           meta: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [
@@ -720,19 +720,19 @@ ${nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => nix.sel(pkgs, "stden
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$21);
               const lib_2 = nix.arg($_2, "lib");
               return {
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 imports: nix.thunk(() => [common]),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   loader: nix.thunk(() => ({
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     efi: nix.thunk(() => ({
-                      __proto__: pos$76,
+                      [nix.POS]: pos$76,
                       canTouchEfiVariables: nix.thunk(() => nix.app(nix.sel(lib_2, "mkForce"), false)),
                     })),
                   })),
@@ -762,10 +762,10 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
         const $_1 = nix.formals(args_1, formals$22);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           name: "systemd-boot-update",
           meta: nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [
@@ -774,7 +774,7 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
               ];
             })()),
           })),
-          nodes: nix.thunk(() => ({ __proto__: pos$83, machine: common })),
+          nodes: nix.thunk(() => ({ [nix.POS]: pos$83, machine: common })),
           testScript: "machine.succeed(\"mount -o remount,rw /boot\")\n\ndef switch():\n    # Replace version inside sd-boot with something older. See SD_MAGIC in systemd src/boot/boot.c\n    # Note: the sed replacement has to be length-preserving, because section length matters.\n    machine.succeed(\n      r\"\"\"\n      find /boot -iname '*boot*.efi' -print0 | \\\n      xargs -0 -I '{}' sed -i 's/#### LoaderInfo: systemd-boot [0-9]\\(.*\\) ####/#### LoaderInfo: systemd-boot 0\\1 ####/' '{}'\n      \"\"\"\n    )\n    return machine.succeed(\"/run/current-system/bin/switch-to-configuration boot 2>&1\")\n\noutput = switch()\nassert 'to \"/boot/EFI/systemd/systemd-bootx64.efi\"' in output, \"systemd-boot not copied to to /boot/EFI/systemd/systemd-bootx64.efi\"\nassert 'to \"/boot/EFI/BOOT/BOOTX64.EFI\"' in output, \"systemd-boot not copied to to /boot/EFI/BOOT/BOOTX64.EFI\"\n\nwith subtest(\"Test that updating works with lowercase bootx64.efi\"):\n    machine.succeed(\n        # Move to tmp file name first, otherwise mv complains the new location is the same\n        \"mv /boot/EFI/BOOT/BOOTX64.EFI /boot/EFI/BOOT/bootx64.efi.new\",\n        \"mv /boot/EFI/BOOT/bootx64.efi.new /boot/EFI/BOOT/bootx64.efi\",\n    )\n    output = switch()\n    assert 'to \"/boot/EFI/systemd/systemd-bootx64.efi\"' in output, \"systemd-boot not copied to to /boot/EFI/systemd/systemd-bootx64.efi\"\n    assert 'to \"/boot/EFI/BOOT/BOOTX64.EFI\"' in output, \"systemd-boot not copied to to /boot/EFI/BOOT/BOOTX64.EFI\"\n\nwith subtest(\"Test that switching with an up-to-date bootloader is a no-op\"):\n    output = machine.succeed(\"/run/current-system/bin/switch-to-configuration boot 2>&1\")\n    assert \"same boot loader version in place already\" in output, \"Expected bootctl to skip already-current binary\"\n",
         };
       })(), formals$22))),
@@ -782,27 +782,27 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
         const $_1 = nix.formals(args_1, formals$23);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           name: "systemd-boot-memtest86",
           meta: nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             machine: nix.thunk(() => ({
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$88,
+                  [nix.POS]: pos$88,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$87,
-                    memtest86: nix.thunk(() => ({ __proto__: pos$86, enable: true })),
+                    [nix.POS]: pos$87,
+                    memtest86: nix.thunk(() => ({ [nix.POS]: pos$86, enable: true })),
                   })),
                 })),
               })),
@@ -815,27 +815,27 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
         const $_1 = nix.formals(args_1, formals$24);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$100,
+          [nix.POS]: pos$100,
           name: "systemd-boot-netbootxyz",
           meta: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$99,
+            [nix.POS]: pos$99,
             machine: nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$96,
+                  [nix.POS]: pos$96,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$95,
-                    netbootxyz: nix.thunk(() => ({ __proto__: pos$94, enable: true })),
+                    [nix.POS]: pos$95,
+                    netbootxyz: nix.thunk(() => ({ [nix.POS]: pos$94, enable: true })),
                   })),
                 })),
               })),
@@ -848,29 +848,29 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
         const $_1 = nix.formals(args_1, formals$25);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$108,
+          [nix.POS]: pos$108,
           name: "systemd-boot-edk2-uefi-shell",
           meta: nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "iFreilicht"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$107,
+            [nix.POS]: pos$107,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$26);
               return {
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 imports: nix.thunk(() => [common]),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$105,
+                  [nix.POS]: pos$105,
                   loader: nix.thunk(() => ({
-                    __proto__: pos$104,
+                    [nix.POS]: pos$104,
                     "systemd-boot": nix.thunk(() => ({
-                      __proto__: pos$103,
-                      "edk2-uefi-shell": nix.thunk(() => ({ __proto__: pos$102, enable: true })),
+                      [nix.POS]: pos$103,
+                      "edk2-uefi-shell": nix.thunk(() => ({ [nix.POS]: pos$102, enable: true })),
                     })),
                   })),
                 })),
@@ -884,34 +884,34 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
         const $_1 = nix.formals(args_1, formals$27);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$119,
+          [nix.POS]: pos$119,
           name: "systemd-boot-windows",
           meta: nix.thunk(() => ({
-            __proto__: pos$109,
+            [nix.POS]: pos$109,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "iFreilicht"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$118,
+            [nix.POS]: pos$118,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$28);
               return {
-                __proto__: pos$117,
+                [nix.POS]: pos$117,
                 imports: nix.thunk(() => [common]),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$116,
+                  [nix.POS]: pos$116,
                   loader: nix.thunk(() => ({
-                    __proto__: pos$115,
+                    [nix.POS]: pos$115,
                     "systemd-boot": nix.thunk(() => ({
-                      __proto__: pos$114,
+                      [nix.POS]: pos$114,
                       windows: nix.thunk(() => ({
-                        __proto__: pos$113,
-                        "7": nix.thunk(() => ({ __proto__: pos$110, efiDeviceHandle: "HD0c1", sortKey: "before_all_others" })),
-                        Ten: nix.thunk(() => ({ __proto__: pos$111, efiDeviceHandle: "FS0" })),
+                        [nix.POS]: pos$113,
+                        "7": nix.thunk(() => ({ [nix.POS]: pos$110, efiDeviceHandle: "HD0c1", sortKey: "before_all_others" })),
+                        Ten: nix.thunk(() => ({ [nix.POS]: pos$111, efiDeviceHandle: "FS0" })),
                         "11": nix.thunk(() => ({
-                          __proto__: pos$112,
+                          [nix.POS]: pos$112,
                           title: "Title with-_-punctuation ...?!",
                           efiDeviceHandle: "HD0d4",
                           sortKey: "zzz",
@@ -930,27 +930,27 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
         const $_1 = nix.formals(args_1, formals$29);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$127,
+          [nix.POS]: pos$127,
           name: "systemd-boot-memtest-sortkey",
           meta: nix.thunk(() => ({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             machine: nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$124,
+                [nix.POS]: pos$124,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$123,
+                  [nix.POS]: pos$123,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$122,
-                    memtest86: nix.thunk(() => ({ __proto__: pos$121, enable: true, sortKey: "apple" })),
+                    [nix.POS]: pos$122,
+                    memtest86: nix.thunk(() => ({ [nix.POS]: pos$121, enable: true, sortKey: "apple" })),
                   })),
                 })),
               })),
@@ -963,27 +963,27 @@ machine.fail('efibootmgr | grep "Linux Boot Manager"')
         const $_1 = nix.formals(args_1, formals$30);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$135,
+          [nix.POS]: pos$135,
           name: "systemd-boot-entry-filename-xbootldr",
           meta: nix.thunk(() => ({
-            __proto__: pos$128,
+            [nix.POS]: pos$128,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "sdht0"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$134,
+            [nix.POS]: pos$134,
             machine: nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               imports: nix.thunk(() => [commonXbootldr]),
               boot: nix.thunk(() => ({
-                __proto__: pos$132,
+                [nix.POS]: pos$132,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$131,
+                  [nix.POS]: pos$131,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$130,
-                    memtest86: nix.thunk(() => ({ __proto__: pos$129, enable: true })),
+                    [nix.POS]: pos$130,
+                    memtest86: nix.thunk(() => ({ [nix.POS]: pos$129, enable: true })),
                   })),
                 })),
               })),
@@ -1008,27 +1008,27 @@ machine.succeed("test -e /boot/EFI/memtest86/memtest.efi")
         const $_1 = nix.formals(args_1, formals$32);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$143,
+          [nix.POS]: pos$143,
           name: "systemd-boot-extra-entries",
           meta: nix.thunk(() => ({
-            __proto__: pos$136,
+            [nix.POS]: pos$136,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             machine: nix.thunk(() => ({
-              __proto__: pos$141,
+              [nix.POS]: pos$141,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$140,
+                [nix.POS]: pos$140,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$139,
+                  [nix.POS]: pos$139,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$138,
-                    extraEntries: nix.thunk(() => ({ __proto__: pos$137, "banana.conf": "title banana\n" })),
+                    [nix.POS]: pos$138,
+                    extraEntries: nix.thunk(() => ({ [nix.POS]: pos$137, "banana.conf": "title banana\n" })),
                   })),
                 })),
               })),
@@ -1041,31 +1041,31 @@ machine.succeed("test -e /boot/EFI/memtest86/memtest.efi")
         const $_1 = nix.formals(args_1, formals$33);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$151,
+          [nix.POS]: pos$151,
           name: "systemd-boot-extra-files",
           meta: nix.thunk(() => ({
-            __proto__: pos$144,
+            [nix.POS]: pos$144,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$150,
+            [nix.POS]: pos$150,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$34);
               const pkgs = nix.arg($_2, "pkgs");
               return {
-                __proto__: pos$149,
+                [nix.POS]: pos$149,
                 imports: nix.thunk(() => [common]),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$148,
+                  [nix.POS]: pos$148,
                   loader: nix.thunk(() => ({
-                    __proto__: pos$147,
+                    [nix.POS]: pos$147,
                     "systemd-boot": nix.thunk(() => ({
-                      __proto__: pos$146,
+                      [nix.POS]: pos$146,
                       extraFiles: nix.thunk(() => ({
-                        __proto__: pos$145,
+                        [nix.POS]: pos$145,
                         "efi/fruits/tomato.efi": nix.thunk(() => nix.sel(pkgs, "netbootxyz-efi")),
                       })),
                     })),
@@ -1081,40 +1081,40 @@ machine.succeed("test -e /boot/EFI/memtest86/memtest.efi")
         const $_1 = nix.formals(args_1, formals$35);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$165,
+          [nix.POS]: pos$165,
           name: "systemd-boot-switch-test",
           meta: nix.thunk(() => ({
-            __proto__: pos$152,
+            [nix.POS]: pos$152,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$164,
+            [nix.POS]: pos$164,
             common: common,
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$36);
               const pkgs = nix.arg($_2, "pkgs");
               const nodes = nix.arg($_2, "nodes");
               return {
-                __proto__: pos$158,
+                [nix.POS]: pos$158,
                 imports: nix.thunk(() => [common]),
                 boot: nix.thunk(() => ({
-                  __proto__: pos$156,
+                  [nix.POS]: pos$156,
                   loader: nix.thunk(() => ({
-                    __proto__: pos$155,
+                    [nix.POS]: pos$155,
                     "systemd-boot": nix.thunk(() => ({
-                      __proto__: pos$154,
+                      [nix.POS]: pos$154,
                       extraFiles: nix.thunk(() => ({
-                        __proto__: pos$153,
+                        [nix.POS]: pos$153,
                         "efi/fruits/tomato.efi": nix.thunk(() => nix.sel(pkgs, "netbootxyz-efi")),
                       })),
                     })),
                   })),
                 })),
                 system: nix.thunk(() => ({
-                  __proto__: pos$157,
+                  [nix.POS]: pos$157,
                   extraDependencies: nix.thunk(() => [
                     nix.thunk(() => nix.sel(nodes, "common", "system", "build", "toplevel")),
                     nix.thunk(() => nix.sel(nodes, "with_netbootxyz", "system", "build", "toplevel")),
@@ -1123,15 +1123,15 @@ machine.succeed("test -e /boot/EFI/memtest86/memtest.efi")
               };
             })(), formals$36),
             with_netbootxyz: nix.thunk(() => ({
-              __proto__: pos$163,
+              [nix.POS]: pos$163,
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                __proto__: pos$162,
+                [nix.POS]: pos$162,
                 loader: nix.thunk(() => ({
-                  __proto__: pos$161,
+                  [nix.POS]: pos$161,
                   "systemd-boot": nix.thunk(() => ({
-                    __proto__: pos$160,
-                    netbootxyz: nix.thunk(() => ({ __proto__: pos$159, enable: true })),
+                    [nix.POS]: pos$160,
+                    netbootxyz: nix.thunk(() => ({ [nix.POS]: pos$159, enable: true })),
                   })),
                 })),
               })),
@@ -1173,39 +1173,39 @@ with subtest("simultaneously removing and adding files works"):
       })(), formals$35))),
     bootCounting: nix.thunk(() => (() => {
       const baseConfig = nix.thunk(() => ({
-        __proto__: pos$170,
+        [nix.POS]: pos$170,
         imports: nix.thunk(() => [common]),
         boot: nix.thunk(() => ({
-          __proto__: pos$169,
+          [nix.POS]: pos$169,
           loader: nix.thunk(() => ({
-            __proto__: pos$168,
+            [nix.POS]: pos$168,
             "systemd-boot": nix.thunk(() => ({
-              __proto__: pos$167,
-              bootCounting: nix.thunk(() => ({ __proto__: pos$166, enable: true, tries: 2n })),
+              [nix.POS]: pos$167,
+              bootCounting: nix.thunk(() => ({ [nix.POS]: pos$166, enable: true, tries: 2n })),
             })),
           })),
         })),
       }));
       return nix.app(runTest, nix.thunk(() => ({
-          __proto__: pos$182,
+          [nix.POS]: pos$182,
           name: "systemd-boot-counting",
           meta: nix.thunk(() => ({
-            __proto__: pos$171,
+            [nix.POS]: pos$171,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$181,
+            [nix.POS]: pos$181,
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$38);
               const nodes = nix.arg($_1, "nodes");
               return {
-                __proto__: pos$173,
+                [nix.POS]: pos$173,
                 imports: nix.thunk(() => [baseConfig]),
                 system: nix.thunk(() => ({
-                  __proto__: pos$172,
+                  [nix.POS]: pos$172,
                   extraDependencies: nix.thunk(() => [
                     nix.thunk(() => nix.sel(nodes, "bad_machine", "system", "build", "toplevel")),
                     nix.thunk(() => nix.sel(nodes, "unused_machine", "system", "build", "toplevel")),
@@ -1217,27 +1217,27 @@ with subtest("simultaneously removing and adding files works"):
               const $_1 = nix.formals(args_1, formals$39);
               const pkgs = nix.arg($_1, "pkgs");
               return {
-                __proto__: pos$175,
+                [nix.POS]: pos$175,
                 imports: nix.thunk(() => [baseConfig]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$174,
+                  [nix.POS]: pos$174,
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
                 })),
               };
             })(), formals$39),
             bad_machine: nix.thunk(() => ({
-              __proto__: pos$180,
+              [nix.POS]: pos$180,
               imports: nix.thunk(() => [baseConfig]),
               systemd: nix.thunk(() => ({
-                __proto__: pos$179,
+                [nix.POS]: pos$179,
                 services: nix.thunk(() => ({
-                  __proto__: pos$178,
+                  [nix.POS]: pos$178,
                   failing: nix.thunk(() => ({
-                    __proto__: pos$177,
+                    [nix.POS]: pos$177,
                     script: "exit 1",
                     requiredBy: nix.thunk(() => ["boot-complete.target"]),
                     before: nix.thunk(() => ["boot-complete.target"]),
-                    serviceConfig: nix.thunk(() => ({ __proto__: pos$176, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$176, Type: "oneshot" })),
                   })),
                 })),
               })),
@@ -1314,49 +1314,49 @@ check_generation(3)
     })()),
     bootCountingSpecialisation: nix.thunk(() => (() => {
       const baseConfig = nix.thunk(() => ({
-        __proto__: pos$187,
+        [nix.POS]: pos$187,
         imports: nix.thunk(() => [common]),
         boot: nix.thunk(() => ({
-          __proto__: pos$186,
+          [nix.POS]: pos$186,
           loader: nix.thunk(() => ({
-            __proto__: pos$185,
+            [nix.POS]: pos$185,
             "systemd-boot": nix.thunk(() => ({
-              __proto__: pos$184,
-              bootCounting: nix.thunk(() => ({ __proto__: pos$183, enable: true, tries: 2n })),
+              [nix.POS]: pos$184,
+              bootCounting: nix.thunk(() => ({ [nix.POS]: pos$183, enable: true, tries: 2n })),
             })),
           })),
         })),
       }));
       const specialisationName = "+something+-+that+-+breaks-parsing+-+";
       return nix.app(runTest, nix.thunk(() => ({
-          __proto__: pos$196,
+          [nix.POS]: pos$196,
           name: "systemd-boot-counting-specialisation",
           meta: nix.thunk(() => ({
-            __proto__: pos$188,
+            [nix.POS]: pos$188,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            __proto__: pos$195,
+            [nix.POS]: pos$195,
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$41);
               const nodes = nix.arg($_1, "nodes");
               const lib_1 = nix.arg($_1, "lib");
               return {
-                __proto__: pos$194,
+                [nix.POS]: pos$194,
                 imports: nix.thunk(() => [baseConfig]),
                 specialisation: nix.thunk(() => nix.attrsDyn({}, [
                   [specialisationName, nix.thunk(() => ({
-                    __proto__: pos$193,
+                    [nix.POS]: pos$193,
                     configuration: nix.thunk(() => ({
-                      __proto__: pos$192,
+                      [nix.POS]: pos$192,
                       boot: nix.thunk(() => ({
-                        __proto__: pos$191,
+                        [nix.POS]: pos$191,
                         loader: nix.thunk(() => ({
-                          __proto__: pos$190,
-                          "systemd-boot": nix.thunk(() => ({ __proto__: pos$189, sortKey: "something" })),
+                          [nix.POS]: pos$190,
+                          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$189, sortKey: "something" })),
                         })),
                       })),
                     })),
@@ -1389,8 +1389,8 @@ check_generation(1, 2, specialisation="${specialisationName}")
           })(), formals$42),
         })));
     })()),
-    defaultEntryWithBootCounting: nix.thunk(() => nix.app(defaultEntry, nix.thunk(() => ({ __proto__: pos$197, withBootCounting: true })))),
-    garbageCollectEntryWithBootCounting: nix.thunk(() => nix.app(garbage_collect_entry, nix.thunk(() => ({ __proto__: pos$198, withBootCounting: true })))),
+    defaultEntryWithBootCounting: nix.thunk(() => nix.app(defaultEntry, nix.thunk(() => ({ [nix.POS]: pos$197, withBootCounting: true })))),
+    garbageCollectEntryWithBootCounting: nix.thunk(() => nix.app(garbage_collect_entry, nix.thunk(() => ({ [nix.POS]: pos$198, withBootCounting: true })))),
   };
 })(), formals$1);
 //# sourceMappingURL=systemd-boot.ts.map

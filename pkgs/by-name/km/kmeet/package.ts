@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "kmeet";
       const version = "2.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.storage5.infomaniak.com/meet/kmeet-desktop-${version}-linux-x86_64.AppImage`),
           name: nix.thunk(() => nix.str`kmeet-${version}.AppImage`),
           hash: "sha256-lHbdfaLqn1QG2cfZCu9i0B1PZ3dDWZNi82PstxX29MI=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`mkdir -p "$out/share/applications"
 mkdir -p "$out/share/lib/kmeet"
 cp -r ${contents}/{locales,resources} "$out/share/lib/kmeet"
@@ -34,7 +34,7 @@ substituteInPlace $out/share/applications/kMeet.desktop --replace 'Exec=AppRun' 
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Organise secure online meetings via your web browser, your mobile, your tablet or your computer",
         homepage: "https://www.infomaniak.com/en/apps/download-kmeet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -44,7 +44,7 @@ substituteInPlace $out/share/applications/kMeet.desktop --replace 'Exec=AppRun' 
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         longDescription: "kMeet allows you to organise secure online meetings via your web browser, your mobile, your tablet or your\ncomputer.\n",
       }));
-      return { __proto__: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

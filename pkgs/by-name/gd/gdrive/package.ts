@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gdrive",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prasmussen",
           repo: "gdrive",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-sHNP1YwnZYu0UfgLx5+gxJmesY8Brt7rr9cptlyk9Bk=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/prasmussen/gdrive/pull/585/commits/faa6fc3dc104236900caa75eb22e9ed2e5ecad42.patch",
             hash: "sha256-W8o2ZfhQFJISHfPavjx9sw5UB6xOZ7qRW4L0bHNddS8=",
           })))),
       ]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/prasmussen/gdrive",
         description: "Command line utility for interacting with Google Drive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
   const marlin_calc = nix.arg($, "marlin-calc");
   return (self) => (super$) => (() => {
     const buildPlugin = (args_1) => nix.app(nix.sel(self, "buildPythonPackage"), nix.thunk(() => nix.update(args_1, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: nix.thunk(() => nix.str`octoprint-plugin-${nix.sel(args_1, "pname")}`),
         version: nix.thunk(() => nix.attr(args_1, "version")),
         format: nix.thunk(() => nix.attr(args_1, "format")),
@@ -115,21 +115,21 @@ export default nix.lambda((args) => (() => {
         doCheck: false,
       })));
     return nix.update({
-      __proto__: pos$92,
+      [nix.POS]: pos$92,
       buildPlugin: buildPlugin,
       m86motorsoff: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "m84motorsoff";
           const version = "0.1.0";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               owner: "ntoff",
               repo: "Octoprint-M84MotOff",
               rev: nix.thunk(() => nix.str`v${version}`),
               sha256: "1w6h4hia286lbz2gy33rslq02iypx067yqn413xcipb07ivhvdq7",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Changes the \"Motors off\" button in octoprint's control tab to issue an M84 command to allow compatibility with Repetier firmware Resources",
             homepage: "https://github.com/ntoff/OctoPrint-M84MotOff",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -138,14 +138,14 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
             })()),
           }));
-          return { __proto__: pos$4, pname, version, format, src, meta };
+          return { [nix.POS]: pos$4, pname, version, format, src, meta };
         })()))),
       "abl-expert": nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "abl-expert";
           const version = "0.6";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               domain: "framagit.org",
               owner: "razer",
               repo: "Octoprint_ABL_Expert",
@@ -153,7 +153,7 @@ export default nix.lambda((args) => (() => {
               sha256: "0ij3rvdwya1sbymwm5swlh2j4jagb6fal945g88zrzh5xf26hzjh",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "Marlin auto bed leveling control, mesh correction, and z probe handling",
             homepage: "https://framagit.org/razer/Octoprint_ABL_Expert/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -162,21 +162,21 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "WhittlesJr"))];
             })()),
           }));
-          return { __proto__: pos$7, pname, version, format, src, meta };
+          return { [nix.POS]: pos$7, pname, version, format, src, meta };
         })()))),
       bedlevelvisualizer: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "bedlevelvisualizer";
           const version = "1.1.1";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               owner: "jneilliii",
               repo: "OctoPrint-BedLevelVisualizer",
               rev: version,
               sha256: "sha256-6JcYvYgEmphp5zz4xZi4G0yTo4FCIR6Yh+MXYK7H7+w=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "Displays 3D mesh of bed topography report",
             homepage: "https://github.com/jneilliii/OctoPrint-BedLevelVisualizer",
             license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -185,21 +185,21 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "lovesegfault"))];
             })()),
           }));
-          return { __proto__: pos$10, pname, version, format, src, meta };
+          return { [nix.POS]: pos$10, pname, version, format, src, meta };
         })()))),
       costestimation: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "costestimation";
           const version = "3.4.0";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               owner: "OllisGit",
               repo: "OctoPrint-CostEstimation",
               rev: version,
               sha256: "sha256-04OPa/RpM8WehUmOp195ocsAjAvKdVY7iD5ybzQO7Dg=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             description: "Plugin to display the estimated print cost for the loaded model",
             homepage: "https://github.com/OllisGit/OctoPrint-CostEstimation",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -208,41 +208,41 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
             })()),
           }));
-          return { __proto__: pos$13, pname, version, format, src, meta };
+          return { [nix.POS]: pos$13, pname, version, format, src, meta };
         })()))),
       curaenginelegacy: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "curaenginelegacy";
           const version = "1.1.2";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               owner: "OctoPrint",
               repo: "OctoPrint-CuraEngineLegacy",
               rev: version,
               sha256: "sha256-54siSmzgPlnCRpkpZhXU9theNQ3hqL3j+Ip4Ie2w2vA=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             description: "Plugin for slicing via Cura Legacy from within OctoPrint",
             homepage: "https://github.com/OctoPrint/OctoPrint-CuraEngineLegacy",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: [],
           }));
-          return { __proto__: pos$16, pname, version, format, src, meta };
+          return { [nix.POS]: pos$16, pname, version, format, src, meta };
         })()))),
       displayprogress: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "displayprogress";
           const version = "0.1.3";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               owner: "OctoPrint",
               repo: "OctoPrint-DisplayProgress",
               rev: version,
               sha256: "080prvfwggl4vkzyi369vxh1n8231hrl8a44f399laqah3dn5qw4",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             description: "Displays the job progress on the printer's display",
             homepage: "https://github.com/OctoPrint/OctoPrint-DisplayProgress",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -251,21 +251,21 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
             })()),
           }));
-          return { __proto__: pos$19, pname, version, format, src, meta };
+          return { [nix.POS]: pos$19, pname, version, format, src, meta };
         })()))),
       displaylayerprogress: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "displaylayerprogress";
           const version = "1.26.0";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               owner: "OllisGit",
               repo: "OctoPrint-DisplayLayerProgress",
               rev: version,
               sha256: "sha256-hhHc2SPixZCPJzCP8enMMWNYaYbNZAU0lNSx1B0d++4=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             description: "OctoPrint-Plugin that sends the current progress of a print via M117 command",
             homepage: "https://github.com/OllisGit/OctoPrint-DisplayLayerProgress",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -274,22 +274,22 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "j0hax"))];
             })()),
           }));
-          return { __proto__: pos$22, pname, version, format, src, meta };
+          return { [nix.POS]: pos$22, pname, version, format, src, meta };
         })()))),
       ender3v2tempfix: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           pname: "ender3v2tempfix",
           version: "unstable-2021-04-27",
           format: "setuptools",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               owner: "SimplyPrint",
               repo: "OctoPrint-Creality2xTemperatureReportingFix",
               rev: "2c4183b6a0242a24ebf646d7ac717cd7a2db2bcf",
               sha256: "03bc2zbffw4ksk8if90kxhs3179nbhb4xikp4f0adm3lrnvxkd3s",
             })))),
           meta: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             description: "Fixes the double temperature reporting from the Creality Ender-3 v2 printer",
             homepage: "https://github.com/SimplyPrint/OctoPrint-Creality2xTemperatureReportingFix",
             license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -304,7 +304,7 @@ export default nix.lambda((args) => (() => {
           const version = "1.14.0";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               owner: "OctoPrint",
               repo: "OctoPrint-FirmwareUpdater",
               rev: version,
@@ -315,7 +315,7 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "pyserial"))];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             description: "Printer Firmware Updater",
             homepage: "https://github.com/OctoPrint/OctoPrint-FirmwareUpdater",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -324,21 +324,21 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w_1, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$28, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$28, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       fullscreen: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "fullscreen";
           const version = "0.0.6";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               owner: "BillyBlaze",
               repo: "OctoPrint-FullScreen",
               rev: version,
               sha256: "sha256-Z8twpj+gqgbiWWxNd9I9qflEAln5Obpb3cn34KwSc5A=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             description: "Open webcam in fullscreen mode",
             homepage: "https://github.com/BillyBlaze/OctoPrint-FullScreen",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -347,21 +347,21 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$31, pname, version, format, src, meta };
+          return { [nix.POS]: pos$31, pname, version, format, src, meta };
         })()))),
       gcodeeditor: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "gcodeeditor";
           const version = "0.2.12";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               owner: "ieatacid",
               repo: "OctoPrint-GcodeEditor",
               rev: version,
               sha256: "sha256-1Sk2ri3DKW8q8VJ/scFjpRsz65Pwt8OEURP1k70aydE=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             description: "Edit gcode on OctoPrint",
             homepage: "https://github.com/ieatacid/OctoPrint-GcodeEditor",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -370,21 +370,21 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "WhittlesJr"))];
             })()),
           }));
-          return { __proto__: pos$34, pname, version, format, src, meta };
+          return { [nix.POS]: pos$34, pname, version, format, src, meta };
         })()))),
       marlingcodedocumentation: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "marlingcodedocumentation";
           const version = "0.13.0";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               owner: "costas-basdekis",
               repo: "MarlinGcodeDocumentation",
               rev: nix.thunk(() => nix.str`v${version}`),
               sha256: "sha256-3ay6iCxZk8QkFM/2Y14VTpPoxr6NXq14BFSHofn3q7I=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             description: "Displays GCode documentation for Marlin in the Octoprint terminal command line",
             homepage: "https://github.com/costas-basdekis/MarlinGcodeDocumentation",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -393,14 +393,14 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "lovesegfault"))];
             })()),
           }));
-          return { __proto__: pos$37, pname, version, format, src, meta };
+          return { [nix.POS]: pos$37, pname, version, format, src, meta };
         })()))),
       mqtt: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "mqtt";
           const version = "0.8.16";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               owner: "OctoPrint",
               repo: "OctoPrint-MQTT",
               rev: version,
@@ -411,7 +411,7 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "paho-mqtt"))];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             description: "Publish printer status MQTT",
             homepage: "https://github.com/OctoPrint/OctoPrint-MQTT",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -420,14 +420,14 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w_1, "peterhoeg"))];
             })()),
           }));
-          return { __proto__: pos$40, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$40, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       mqttchambertemperature: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "mqttchambertemperature";
           const version = "0.0.3";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               owner: "synman",
               repo: "OctoPrint-MqttChamberTemperature",
               rev: version,
@@ -438,7 +438,7 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "jsonpath-ng"))];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             description: "Enables Chamber temperature reporting via subscribing to an MQTT topic",
             homepage: "https://github.com/synman/OctoPrint-MqttChamberTemperature",
             license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
@@ -447,21 +447,21 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w_1, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$43, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$43, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       navbartemp: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "navbartemp";
           const version = "0.15";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               owner: "imrahil",
               repo: "OctoPrint-NavbarTemp",
               rev: version,
               sha256: "sha256-ZPpTx+AadRffUb53sZbMUbCZa7xYGQW/5si7UB8mnVI=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             description: "Displays temperatures on navbar",
             homepage: "https://github.com/imrahil/OctoPrint-NavbarTemp",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -470,14 +470,14 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$46, pname, version, format, src, meta };
+          return { [nix.POS]: pos$46, pname, version, format, src, meta };
         })()))),
       obico: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "obico";
           const version = "2.5.0";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               owner: "TheSpaghettiDetective",
               repo: "OctoPrint-Obico",
               rev: version,
@@ -493,7 +493,7 @@ export default nix.lambda((args) => (() => {
             ];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             description: "Monitor Octoprint-connected printers with Obico",
             homepage: "https://www.obico.io/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -502,14 +502,14 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w_1, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$49, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$49, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       octopod: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "octopod";
           const version = "0.3.18";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               owner: "gdombiak",
               repo: "OctoPrint-OctoPod",
               rev: version,
@@ -520,7 +520,7 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "pillow"))];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             description: "OctoPod extension for OctoPrint",
             homepage: "https://github.com/gdombiak/OctoPrint-OctoPod",
             license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -529,14 +529,14 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w_1, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$52, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$52, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       printtimegenius: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "printtimegenius";
           const version = "2.4.0";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               owner: "eyal0",
               repo: "OctoPrint-PrintTimeGenius",
               rev: version,
@@ -554,14 +554,14 @@ rm */analyzers/marlin-calc*
 sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc"@' -i */analyzers/analyze_progress.py
 `);
           const meta = nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             description: "Better print time estimation for OctoPrint",
             homepage: "https://github.com/eyal0/OctoPrint-PrintTimeGenius",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: [],
           }));
           return {
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             pname,
             version,
             format,
@@ -576,7 +576,7 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
           const version = "1.0.8";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               owner: "jneilliii",
               repo: "OctoPrint-PrusaSlicerThumbnails",
               rev: version,
@@ -587,7 +587,7 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
             return [nix.thunk(() => nix.lookup(w, "psutil"))];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             description: "Plugin that extracts thumbnails from uploaded gcode files sliced by PrusaSlicer",
             homepage: "https://github.com/jneilliii/OctoPrint-PrusaSlicerThumbnails",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -596,14 +596,14 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w_1, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$58, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$58, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       psucontrol: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "psucontrol";
           const version = "1.0.6";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               owner: "kantlivelong",
               repo: "OctoPrint-PSUControl",
               rev: version,
@@ -615,14 +615,14 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
           })());
           const preConfigure = "# optional; RPi.GPIO is broken on vanilla kernels\nsed /RPi.GPIO/d -i requirements.txt\n";
           const meta = nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             description: "OctoPrint plugin to control ATX/AUX power supply",
             homepage: "https://github.com/kantlivelong/OctoPrint-PSUControl",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: [],
           }));
           return {
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             pname,
             version,
             format,
@@ -637,7 +637,7 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
           const version = "0.3.16";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               owner: "Renaud11232",
               repo: "OctoPrint-Resource-Monitor",
               rev: version,
@@ -648,7 +648,7 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
             return [nix.thunk(() => nix.lookup(w, "psutil"))];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             description: "Plugin to view the current CPU and RAM usage on your system",
             homepage: "https://github.com/Renaud11232/OctoPrint-Resource-Monitor",
             license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -657,21 +657,21 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w_1, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$64, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$64, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       simpleemergencystop: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "simpleemergencystop";
           const version = "1.0.5";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               owner: "Sebclem",
               repo: "OctoPrint-SimpleEmergencyStop",
               rev: version,
               sha256: "sha256-MbP3cKa9FPElQ/M8ykYh9kVXl8hNvmGiCHDvjgWvm9k=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             description: "Simple plugin that add an emergency stop button on NavBar of OctoPrint",
             homepage: "https://github.com/Sebclem/OctoPrint-SimpleEmergencyStop",
             license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -680,34 +680,34 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w, "WhittlesJr"))];
             })()),
           }));
-          return { __proto__: pos$67, pname, version, format, src, meta };
+          return { [nix.POS]: pos$67, pname, version, format, src, meta };
         })()))),
       stlviewer: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "stlviewer";
           const version = "0.4.2";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               owner: "jneilliii",
               repo: "OctoPrint-STLViewer",
               tag: version,
               sha256: "sha256-S7zjEbyo59OJpa7INCv1o4ybQ+Sy6a3EJ5AJ6wiBe1Y=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             description: "Simple stl viewer tab for OctoPrint",
             homepage: "https://github.com/jneilliii/Octoprint-STLViewer",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: [],
           }));
-          return { __proto__: pos$70, pname, version, format, src, meta };
+          return { [nix.POS]: pos$70, pname, version, format, src, meta };
         })()))),
       telegram: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "telegram";
           const version = "1.6.5";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               owner: "fabianonline",
               repo: "OctoPrint-Telegram",
               rev: version,
@@ -718,7 +718,7 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
             return [nix.thunk(() => nix.lookup(w, "pillow"))];
           })());
           const meta = nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             description: "Plugin to send status messages and receive commands via Telegram messenger",
             homepage: "https://github.com/fabianonline/OctoPrint-Telegram",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -727,21 +727,21 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w_1, "stunkymonkey"))];
             })()),
           }));
-          return { __proto__: pos$73, pname, version, format, src, propagatedBuildInputs, meta };
+          return { [nix.POS]: pos$73, pname, version, format, src, propagatedBuildInputs, meta };
         })()))),
       themeify: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "themeify";
           const version = "1.2.2";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               owner: "Birkbjo",
               repo: "Octoprint-Themeify",
               rev: nix.thunk(() => nix.str`v${version}`),
               sha256: "sha256-om9IUSmxU8y0x8DrodW1EU/pilAN3+PbtYck6KfROEg=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             description: "Beautiful themes for OctoPrint",
             homepage: "https://github.com/birkbjo/OctoPrint-Themeify",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -750,21 +750,21 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w, "lovesegfault"))];
             })()),
           }));
-          return { __proto__: pos$76, pname, version, format, src, meta };
+          return { [nix.POS]: pos$76, pname, version, format, src, meta };
         })()))),
       timelapsepurger: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "firmwareupdater";
           const version = "0.1.4";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               owner: "jneilliii",
               repo: "OctoPrint-TimelapsePurger",
               rev: version,
               sha256: "sha256-XS4m4KByScGTPfVE4kuRLw829gNE2CdM0RyhRqGGxyw=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             description: "Automatically deletes timelapses that are older than configured timeframe",
             homepage: "https://github.com/jneilliii/OctoPrint-TimelapsePurger",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -773,61 +773,61 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w, "tri-ler"))];
             })()),
           }));
-          return { __proto__: pos$79, pname, version, format, src, meta };
+          return { [nix.POS]: pos$79, pname, version, format, src, meta };
         })()))),
       titlestatus: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "titlestatus";
           const version = "0.0.5";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               owner: "MoonshineSG",
               repo: "OctoPrint-TitleStatus",
               rev: version,
               sha256: "10nxjrixg0i6n6x8ghc1ndshm25c97bvkcis5j9kmlkkzs36i2c6",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             description: "Show printers status in window title",
             homepage: "https://github.com/MoonshineSG/OctoPrint-TitleStatus",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: [],
           }));
-          return { __proto__: pos$82, pname, version, format, src, meta };
+          return { [nix.POS]: pos$82, pname, version, format, src, meta };
         })()))),
       touchui: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "touchui";
           const version = "0.3.18";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               owner: "BillyBlaze",
               repo: "OctoPrint-TouchUI",
               rev: version,
               sha256: "sha256-PNDCjY7FhfnwK7Nd86el9ZQ00G4uMANH2Sk080iMYXw=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             description: "Touch friendly interface for a small TFT module or phone for OctoPrint",
             homepage: "https://github.com/BillyBlaze/OctoPrint-TouchUI",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             maintainers: [],
           }));
-          return { __proto__: pos$85, pname, version, format, src, meta };
+          return { [nix.POS]: pos$85, pname, version, format, src, meta };
         })()))),
       octoklipper: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "octoklipper";
           const version = "0.3.8.3";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               owner: "AliceGrey",
               repo: "OctoprintKlipperPlugin",
               rev: version,
               sha256: "sha256-6r5jJDSR0DxlDQ/XWmQgYUgeL1otNNBnwurX7bbcThg=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             description: "Plugin for a better integration of Klipper into OctoPrint",
             homepage: "https://github.com/AliceGrey/OctoprintKlipperPlugin",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -836,21 +836,21 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w, "lovesegfault"))];
             })()),
           }));
-          return { __proto__: pos$88, pname, version, format, src, meta };
+          return { [nix.POS]: pos$88, pname, version, format, src, meta };
         })()))),
       dashboard: nix.thunk(() => nix.app(buildPlugin, nix.thunk(() => (() => {
           const pname = "dashboard";
           const version = "1.18.3";
           const format = "setuptools";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$89,
+              [nix.POS]: pos$89,
               owner: "StefanCohen",
               repo: "OctoPrint-Dashboard",
               rev: version,
               sha256: "sha256-hLHT3Uze/6PlOCEICVZ2ieFTyXgcqCvgHOlIIEquujg=",
             }))));
           const meta = nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             description: "Dashboard for Octoprint",
             homepage: "https://github.com/StefanCohen/OctoPrint-Dashboard",
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -859,10 +859,10 @@ sed 's@"{}.{}".format(binary_base_name, machine)@"${marlin_calc}/bin/marlin-calc
               return [nix.thunk(() => nix.lookup(w, "j0hax"))];
             })()),
           }));
-          return { __proto__: pos$91, pname, version, format, src, meta };
+          return { [nix.POS]: pos$91, pname, version, format, src, meta };
         })()))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$93,
+        [nix.POS]: pos$93,
         octolapse: nix.thunk(() => nix.builtins.throw("octoprint.python.pkgs.octolapse has been removed because it has been marked as broken since at least November 2024.")),
         "octoprint-dashboard": nix.thunk(() => nix.sel(super$, "dashboard")),
       }))));

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "b43-fwcutter",
       version: "019",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bues.ch/b43/fwcutter/b43-fwcutter-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1ki1f5fy3yrw843r697f8mqqdz0pbsbqnvg4yzkhibpn1lqqbsnn",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Firmware extractor for cards supported by the b43 kernel module",
         mainProgram: "b43-fwcutter",
         homepage: "https://wireless.docs.kernel.org/en/latest/en/users/drivers/b43.html",

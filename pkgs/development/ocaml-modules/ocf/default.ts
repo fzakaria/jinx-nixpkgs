@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocf",
       version: "0.9.0",
       patches: nix.path(here, "./yojson.patch"),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "framagit.org",
           owner: "zoggy",
           repo: "ocf",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [yojson]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml library to read and write configuration options in JSON syntax",
         homepage: "https://zoggy.frama.io/ocf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

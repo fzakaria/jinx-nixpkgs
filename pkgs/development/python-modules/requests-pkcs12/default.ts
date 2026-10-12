@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.27";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m-click",
           repo: "requests_pkcs12",
           rev: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["requests_pkcs12"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PKCS#12 support for the Python requests library",
         homepage: "https://github.com/m-click/requests_pkcs12",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lifecycled",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buildkite",
           repo: "lifecycled",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-8IVw/vSrt7u9SgUGML8Q52UQ0XKUivr/TCxz/ncFe7s=",
       postInstall: "mkdir -p $out/lib/systemd/system\nsubstitute init/systemd/lifecycled.unit $out/lib/systemd/system/lifecycled.service \\\n  --replace /usr/bin/lifecycled $out/bin/lifecycled\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daemon for responding to AWS AutoScaling Lifecycle Hooks",
         homepage: "https://github.com/buildkite/lifecycled/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

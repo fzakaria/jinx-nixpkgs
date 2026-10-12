@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const xrdb = nix.arg($, "xrdb");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "posting",
       version: "2.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darrenburns",
           repo: "posting",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         ], nix.concat(nix.sel(nix.lookup(w_1, "httpx"), "optional-dependencies", "brotli"), nix.sel(nix.lookup(w_1, "textual"), "optional-dependencies", "syntax")));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern API client that lives in your terminal",
         mainProgram: "posting",
         homepage: "https://posting.sh/",

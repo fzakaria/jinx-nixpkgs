@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stableVersion = "1.1.6";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlxbf-bootctl",
       version: nix.thunk(() => nix.str`${stableVersion}-unstable-2025-01-16`),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mellanox",
           repo: "mlxbf-bootctl",
           rev: "278160ca8e08251cff5e7989e5a1010bd247a6ae",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -D mlxbf-bootctl $out/bin/mlxbf-bootctl\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control BlueField boot partitions",
         homepage: "https://github.com/Mellanox/mlxbf-bootctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

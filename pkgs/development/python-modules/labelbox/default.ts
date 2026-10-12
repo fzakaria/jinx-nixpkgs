@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "labelbox",
       version: "7.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Labelbox",
           repo: "labelbox-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         pyyaml,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         data: nix.thunk(() => [
           shapely,
           numpy,
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["labelbox"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Platform API for LabelBox",
         homepage: "https://github.com/Labelbox/labelbox-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Labelbox/labelbox-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

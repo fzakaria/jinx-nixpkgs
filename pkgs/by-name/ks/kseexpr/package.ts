@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kseexpr",
       version: "6.0.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "graphics",
           repo: "kseexpr",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qttools")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://invent.kde.org/graphics/kseexpr",
         description: "Embeddable expression evaluation engine",
         maintainers: [],

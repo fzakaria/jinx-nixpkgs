@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const home_assistant_custom_components = nix.arg($, "home-assistant-custom-components");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hass-web-proxy-lib",
       version: "0.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "hass_web_proxy_lib",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-H9C8jwJeR6skvCVn8jeaWqmIL0fmcab+/BQ5SzUIt00=",
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["hass_web_proxy_lib"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           frigate: nix.thunk(() => nix.attr(home_assistant_custom_components, "frigate")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to proxy web traffic through Home Assistant integrations",
         homepage: "https://github.com/dermotduffy/hass-web-proxy-lib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

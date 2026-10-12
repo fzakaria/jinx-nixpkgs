@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zhijian-liu",
           repo: "torchprofile",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, torch, torchvision]);
       const pythonImportsCheck = nix.thunk(() => ["torchprofile"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/zhijian-liu/torchprofile/releases/tag/${nix.sel(src, "tag")}`),
         description: "General and accurate MACs / FLOPs profiler for PyTorch models",
         homepage: "https://github.com/zhijian-liu/torchprofile",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

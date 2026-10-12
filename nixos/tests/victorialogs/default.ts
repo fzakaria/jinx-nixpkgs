@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "local-write": nix.thunk(() => nix.app(runTest, nix.path(here, "./local-write.nix"))),
     "remote-write-with-vlagent": nix.thunk(() => nix.app(runTest, nix.path(here, "./remote-write-with-vlagent.nix"))),
   };

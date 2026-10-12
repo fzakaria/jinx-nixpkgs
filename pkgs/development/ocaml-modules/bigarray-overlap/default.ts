@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bigarray-overlap",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/overlap/releases/download/v${nix.sel(finalAttrs, "version")}/bigarray-overlap-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-L1IKxHAFTjNYg+upJUvyi2Z23bV3U8+1iyLPhK4aZuA=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dinosaure/overlap",
         description: "Minimal library to know that 2 bigarray share physically the same memory or not",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

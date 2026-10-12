@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "serpent",
       version: "2016-03-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "serpent",
           rev: "51ee60857fe53c871fa916ef66fc1b4255bb9433",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\nmv serpent $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler for the Serpent language for Ethereum",
         mainProgram: "serpent",
         longDescription: "Serpent is one of the high-level programming languages used to\nwrite Ethereum contracts. The language, as suggested by its name,\nis designed to be very similar to Python; it is intended to be\nmaximally clean and simple, combining many of the efficiency\nbenefits of a low-level language with ease-of-use in programming\nstyle, and at the same time adding special domain-specific\nfeatures for contract programming.\n",

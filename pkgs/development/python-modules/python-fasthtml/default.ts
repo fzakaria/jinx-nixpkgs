@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pysymbol_llm = nix.argOr($, "pysymbol-llm", () => null);
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "python-fasthtml",
       version: "0.13.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AnswerDotAI",
           repo: "fasthtml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dev: nix.thunk(() => [ipython, lxml, monsterui, pyjwt, pysymbol_llm]),
       })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_get_toaster_with_typehint"]),
       pythonImportsCheck: nix.thunk(() => ["fasthtml"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "The fastest way to create an HTML app",
         homepage: "https://github.com/AnswerDotAI/fasthtml",
         changelog: nix.thunk(() => nix.str`https://github.com/AnswerDotAI/fasthtml/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

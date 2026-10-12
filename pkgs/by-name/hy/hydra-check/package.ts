@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hydra-check",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "hydra-check",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mainCommand: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "hydra-check-test",
               script: "set -e\nif curl hydra.nixos.org > /dev/null; then\n  hydra-check\nelse\n  echo \"no internet access, skipping test\"\nfi\ntouch $out\n",
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), curl, cacert]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Check hydra for the build status of a package",
         homepage: "https://github.com/nix-community/hydra-check",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

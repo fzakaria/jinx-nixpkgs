@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "executablebooks",
           repo: "mdformat-footnote",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [mdformat, mdit_py_plugins]);
       const pythonImportsCheck = nix.thunk(() => ["mdformat_footnote"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Footnote format addition for mdformat",
         homepage: "https://github.com/executablebooks/mdformat-footnote",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/mdformat-footnote/releases/tag/${nix.sel(src, "tag")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

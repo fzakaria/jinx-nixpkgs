@@ -70,27 +70,27 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const enableXWin = nix.argOr($, "enableXWin", () => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))));
   const hdf4_custom = nix.thunk(() => (nix.asBool(!nix.eq(hdf4_forced, null)) ? nix.force(hdf4_forced) : nix.app(nix.sel(hdf4, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       uselibtirpc: enableLibtirpc,
       szipSupport: enableSzip,
       szip: szip,
     })))));
   const hdf5_custom = nix.thunk(() => (nix.asBool(!nix.eq(hdf5_forced, null)) ? nix.force(hdf5_forced) : nix.app(nix.sel(hdf5, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mpiSupport: enableMPI,
       mpi: mpi,
       szipSupport: enableSzip,
       libaec: libaec,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableMPI, nix.thunk(() => ({ __proto__: pos$3, cppSupport: false }))), nix.app(nix.sel(lib, "optionalAttrs"), useHdf5v110Api, nix.thunk(() => ({ __proto__: pos$4, apiVersion: "v110" })))))))));
-  const netcdf_custom = nix.thunk(() => (nix.asBool(!nix.eq(netcdf_forced, null)) ? nix.force(netcdf_forced) : nix.app(nix.sel(netcdf, "override"), nix.thunk(() => ({ __proto__: pos$5, hdf5: hdf5_custom })))));
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableMPI, nix.thunk(() => ({ [nix.POS]: pos$3, cppSupport: false }))), nix.app(nix.sel(lib, "optionalAttrs"), useHdf5v110Api, nix.thunk(() => ({ [nix.POS]: pos$4, apiVersion: "v110" })))))))));
+  const netcdf_custom = nix.thunk(() => (nix.asBool(!nix.eq(netcdf_forced, null)) ? nix.force(netcdf_forced) : nix.app(nix.sel(netcdf, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, hdf5: hdf5_custom })))));
   const enablePlplotDrivers = nix.thunk(() => (nix.asBool(enableWX) || nix.asBool(enableXWin)));
-  const plplot_with_drivers = nix.thunk(() => (nix.asBool(!nix.eq(plplot_forced, null)) ? nix.force(plplot_forced) : nix.app(nix.sel(plplot, "override"), nix.thunk(() => ({ __proto__: pos$6, enableWX: enableWX, enableXWin: enableXWin })))));
+  const plplot_with_drivers = nix.thunk(() => (nix.asBool(!nix.eq(plplot_forced, null)) ? nix.force(plplot_forced) : nix.app(nix.sel(plplot, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, enableWX: enableWX, enableXWin: enableXWin })))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "gnudatalanguage",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "gnudatalanguage",
           repo: "gdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://github.com/gnudatalanguage/gdl/commit/b648a63c5070f38e90167f858a79ba6f01dad1d3.patch?full_index=1",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
             hash: "sha256-lYtAstI21Up4RArf6pXnjiTwJ3Omoisw43Ih1H2Wc0s=",
@@ -163,7 +163,7 @@ echo -e 'set(VERSION "${nix.sel(finalAttrs, "version")}")\\n\\nconfigure_file(\$
         ]))}'")
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         hdf4: hdf4_custom,
         hdf5: hdf5_custom,
         netcdf: netcdf_custom,
@@ -177,7 +177,7 @@ echo -e 'set(VERSION "${nix.sel(finalAttrs, "version")}")\\n\\nconfigure_file(\$
         enableXWin: enableXWin,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Free incremental compiler of IDL",
         longDescription: "GDL (GNU Data Language) is a free/libre/open source incremental compiler\ncompatible with IDL (Interactive Data Language) and to some extent with PV-WAVE.\nGDL is aimed as a drop-in replacement for IDL.\n",
         homepage: "https://github.com/gnudatalanguage/gdl",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.argOr($, "kernel", () => nix.sel(linuxPackages, "kernel"));
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msi-ec-kmods",
       version: "0-unstable-2026-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BeardOverflow",
           repo: "msi-ec",
           rev: "050d4394a6747ebd106ae2f8ddb3a4eebe7c700f",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["modules_install"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel modules for MSI Embedded controller",
         homepage: "https://github.com/BeardOverflow/msi-ec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

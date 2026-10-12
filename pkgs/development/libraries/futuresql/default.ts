@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "futuresql";
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/futuresql/futuresql-${version}.tar.xz`),
           hash: "sha256-5E7Y1alhizynuimD7ZxfdXLm4KWxmflIaINLccy+vUM=",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DQT_MAJOR_VERSION=6"]);
       const dontWrapQtApps = true;
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

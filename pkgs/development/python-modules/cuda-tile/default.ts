@@ -28,23 +28,23 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const cuda_tile = nix.arg($, "cuda-tile");
   const xla = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "openxla",
       repo: "xla",
       rev: "b6f37ab7767f428fd6f993de5e211643d47d4deb",
       hash: "sha256-U4e3k4nm9gB1x5hahXwycWSryBQuxIPmOzVf6kuahY0=",
     }))));
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "cuda-tile",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "NVIDIA",
           repo: "cutile-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
 `)),
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         CUDA_TILE_CMAKE_DLPACK_PATH: dlpack,
         CUDA_TILE_CMAKE_XLA_PATH: xla,
       })),
@@ -62,20 +62,20 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$5, tileiras: [] })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$5, tileiras: [] })),
       pythonImportsCheck: nix.thunk(() => ["cuda.tile"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, torch]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(cuda_tile, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Programming model for writing parallel kernels for NVIDIA GPUs",
         homepage: "https://docs.nvidia.com/cuda/cutile-python/",
         downloadPage: "https://github.com/NVIDIA/cutile-python",

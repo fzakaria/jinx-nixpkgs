@@ -35,53 +35,53 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const test = nix.thunk(() => (() => {
     const nixos = (m) => nix.app(nix.sel(pkgs, "nixos"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         imports: nix.thunk(() => [m]),
         boot: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           loader: nix.thunk(() => ({
-            __proto__: pos$2,
-            grub: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+            [nix.POS]: pos$2,
+            grub: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
           })),
         })),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$5,
-          "/": nix.thunk(() => ({ __proto__: pos$4, device: "bogus", fsType: "bogusfs" })),
+          [nix.POS]: pos$5,
+          "/": nix.thunk(() => ({ [nix.POS]: pos$4, device: "bogus", fsType: "bogusfs" })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         })),
       })));
     const deepSeqId = (a) => nix.builtins.deepSeq(a, a);
     const assertionMessages = (configuration) => nix.app(deepSeqId, nix.thunk(() => nix.app(concatMap, (ass) => nix.app(optionals, nix.thunk(() => !nix.asBool(nix.sel(ass, "assertion"))), nix.thunk(() => [nix.thunk(() => nix.sel(ass, "message"))])), nix.thunk(() => nix.sel(configuration, "config", "assertions")))));
     const flakeContainerOnHostWithoutNix = nix.thunk(() => nix.app(nixos, nix.thunk(() => ({
-        __proto__: pos$12,
-        nix: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+        [nix.POS]: pos$12,
+        nix: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
         containers: nix.thunk(() => ({
-          __proto__: pos$11,
-          foo: nix.thunk(() => ({ __proto__: pos$9, flake: "github:NixOS/fake-repo" })),
-          via_path: nix.thunk(() => ({ __proto__: pos$10, path: "/nix/var/nix/profiles/per-container/foo" })),
+          [nix.POS]: pos$11,
+          foo: nix.thunk(() => ({ [nix.POS]: pos$9, flake: "github:NixOS/fake-repo" })),
+          via_path: nix.thunk(() => ({ [nix.POS]: pos$10, path: "/nix/var/nix/profiles/per-container/foo" })),
         })),
       }))));
     const flakeContainerOnHostWithoutNixDaemon = nix.thunk(() => nix.app(nixos, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         nix: nix.thunk(() => ({
-          __proto__: pos$14,
-          daemon: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+          [nix.POS]: pos$14,
+          daemon: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
         })),
         containers: nix.thunk(() => ({
-          __proto__: pos$17,
-          foo: nix.thunk(() => ({ __proto__: pos$15, flake: "github:NixOS/fake-repo" })),
-          bar: nix.thunk(() => ({ __proto__: pos$16, config: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$17,
+          foo: nix.thunk(() => ({ [nix.POS]: pos$15, flake: "github:NixOS/fake-repo" })),
+          bar: nix.thunk(() => ({ [nix.POS]: pos$16, config: nix.thunk(() => ({})) })),
         })),
       }))));
     const conflictingNetwork = nix.thunk(() => nix.app(nixos, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         containers: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           foo: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             networkNamespace: "/foons",
             interfaces: nix.thunk(() => ["veth67"]),
             config: nix.thunk(() => ({})),
@@ -98,10 +98,10 @@ export default nix.lambda((args) => (() => {
       nix.assert_(nix.eq(nix.app(assertionMessages, conflictingNetwork), [
         "containers.foo.networkNamespace is mutally exclusive to containers.foo.privateNetwork and containers.foo.interfaces.",
       ]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/containers-eval.nix:73:7");
-      return nix.update(nix.sel(pkgs, "emptyFile"), { __proto__: pos$22, details: test });
+      return nix.update(nix.sel(pkgs, "emptyFile"), { [nix.POS]: pos$22, details: test });
     })());
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       nixos,
       deepSeqId,
       assertionMessages,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flink";
       const version = "2.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/flink/${pname}-${version}/${pname}-${version}-bin-scala_2.12.tgz`),
           sha256: "sha256-tShksMQqNjitsIlbl1QqPKggoMPe/ameum5FwvjKSWo=",
         }))));
@@ -37,7 +37,7 @@ env.log.dir: /tmp/flink-logs
 EOF
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed stream processing framework",
         mainProgram: "flink",
         homepage: "https://flink.apache.org",
@@ -57,7 +57,7 @@ EOF
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

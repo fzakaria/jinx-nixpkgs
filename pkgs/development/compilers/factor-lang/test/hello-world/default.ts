@@ -20,22 +20,22 @@ export default nix.lambda((args) => (() => {
   const factorFilter = (file) => nix.app(nix.sel(lib, "lists", "any"), nix.thunk(() => nix.sel(file, "hasExt")), nix.thunk(() => ["factor", "txt"]));
   const version = "0-test";
   const vocab = nix.thunk(() => nix.app(buildFactorVocab, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       pname: "hello",
       src: nix.thunk(() => nix.app(nix.sel(fs, "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "./extra"),
           fileset: nix.thunk(() => nix.app(nix.sel(fs, "difference"), nix.thunk(() => nix.app(nix.sel(fs, "fileFilter"), factorFilter, nix.path(here, "./extra/hello"))), nix.path(here, "./extra/hello/cli"))),
         })))),
       vocabName: "hello",
     }))));
   const app = nix.thunk(() => nix.app(buildFactorApplication, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: "hello-cli",
       src: nix.thunk(() => nix.app(nix.sel(fs, "toSource"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           root: nix.path(here, "./extra"),
           fileset: nix.thunk(() => nix.app(nix.sel(fs, "fileFilter"), factorFilter, nix.path(here, "./extra/hello/cli"))),
         })))),
@@ -44,8 +44,8 @@ export default nix.lambda((args) => (() => {
       extraVocabs: nix.thunk(() => [vocab]),
     }))));
   return nix.app(runCommandLocal, "assert-factor-hello-world", nix.thunk(() => ({
-      __proto__: pos$6,
-      env: nix.thunk(() => ({ __proto__: pos$5, expected: "Hello, Nixpkgs" })),
+      [nix.POS]: pos$6,
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, expected: "Hello, Nixpkgs" })),
     })), nix.thunk(() => nix.str`output="$(${nix.app(nix.sel(lib, "getExe"), app)} --name "Nixpkgs")"
 if [ "$output" != "$expected" ]; then
   echo "FAIL: expected “$expected”; got “$output”" >&2

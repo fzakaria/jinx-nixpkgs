@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const isCross = nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "efitools",
       version: "1.9.2",
       buildInputs: nix.thunk(() => [gnu_efi, openssl]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         sbsigntool,
       ], nix.app(nix.sel(lib, "optionals"), isCross, nix.thunk(() => [efitools])))),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git/snapshot/efitools-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jabgl2pxvfl780yvghq131ylpf82k7banjz0ksjhlm66ik8gb1i",
         })))),
@@ -63,14 +63,14 @@ patchShebangs .
         nix.thunk(() => nix.str`OBJCOPY=${nix.sel(stdenv, "cc", "targetPrefix")}objcopy`),
       ], nix.app(nix.sel(lib, "optionals"), isCross, nix.thunk(() => ["MANPAGES="])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cross-aarch64": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "efitools")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tools for manipulating UEFI secure boot platforms",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/jejb/efitools.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

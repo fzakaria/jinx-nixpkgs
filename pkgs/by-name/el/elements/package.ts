@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => true);
   const withWallet = nix.argOr($, "withWallet", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => (nix.asBool(withGui) ? "elements" : "elementsd")),
       version: "23.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ElementsProject",
           repo: "elements",
           rev: nix.thunk(() => nix.str`elements-${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => nix.concat(["LC_ALL=en_US.UTF-8"], nix.app(nix.sel(lib, "optional"), withGui, nix.thunk(() => nix.str`QT_PLUGIN_PATH=${nix.sel(qt5, "qtbase")}/${nix.sel(qt5, "qtbase", "qtPluginPrefix")}`)))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open Source implementation of advanced blockchain features extending the Bitcoin protocol",
         longDescription: "The Elements blockchain platform is a collection of feature experiments and extensions to the\nBitcoin protocol. This platform enables anyone to build their own businesses or networks\npegged to Bitcoin as a sidechain or run as a standalone blockchain with arbitrary asset\ntokens.\n",
         homepage: "https://www.github.com/ElementsProject/elements",

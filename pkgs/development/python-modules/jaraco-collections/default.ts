@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jaraco_collections",
           version: version,
           hash: "sha256-2rgZcLrW8KtTsgdF8bAdo3km5MD81CUEaqReDY76GO0=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["jaraco.collections"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Models and classes to supplement the stdlib 'collections' module",
         homepage: "https://github.com/jaraco/jaraco.collections",
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/jaraco.collections/blob/v${version}/NEWS.rst`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

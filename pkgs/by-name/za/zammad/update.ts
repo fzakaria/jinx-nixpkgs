@@ -28,13 +28,13 @@ wrapProgram $out/bin/update.sh --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPa
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const buildInputs = nix.thunk(() => [bundix, common_updater_scripts, xidel, jq, nix_prefetch_github, yarn]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: [],
         description: "Utility to generate Nix expressions for Zammad's dependencies",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name,
         installPhase,
         dontUnpack,

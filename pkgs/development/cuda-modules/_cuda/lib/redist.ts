@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     _redistSystemIsSupported: (redistSystem) => (redistSystems) => !nix.eq(nix.app(nix.sel(lib, "findFirst"), (redistSystem$) => (nix.asBool((nix.asBool(nix.eq(redistSystem$, redistSystem)) || nix.asBool(nix.eq(redistSystem$, "linux-all")))) || nix.asBool(nix.eq(redistSystem$, "source"))), null, redistSystems), null),
     getNixSystems: (redistSystem) => (nix.asBool(nix.eq(redistSystem, "linux-x86_64")) ? ["x86_64-linux"] : (nix.asBool((nix.asBool(nix.eq(redistSystem, "linux-sbsa")) || nix.asBool(nix.eq(redistSystem, "linux-aarch64")))) ? ["aarch64-linux"] : (nix.asBool((nix.asBool(nix.eq(redistSystem, "linux-all")) || nix.asBool(nix.eq(redistSystem, "source")))) ? ["aarch64-linux", "x86_64-linux"] : []))),
     _getJetsonMinSbsaCapability: (cudaMajorMinorVersion) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), cudaMajorMinorVersion, "13.2")) ? "8.7" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), cudaMajorMinorVersion, "13.0")) ? "11.0" : "10.1")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     selectManifests: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (version) => (() => {
         const manifest = nix.thunk(() => nix.sel(_cuda, "manifests", nix.key(nix.force(name)), nix.key(nix.force(version))));
         return nix.update(manifest, {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           release_label: nix.thunk(() => nix.selOr(manifest, () => nix.force(version), "release_label")),
         });
       })())),

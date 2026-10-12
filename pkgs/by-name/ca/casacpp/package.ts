@@ -42,17 +42,17 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const mpiSupport = nix.argOr($, "mpiSupport", () => false);
   const casacppPackages = nix.thunk(() => ({
-    __proto__: pos$4,
-    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ __proto__: pos$1, mpi: mpi, enableMpi: mpiSupport })))),
-    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ __proto__: pos$2, mpi: mpi, enableMpi: mpiSupport })))),
-    casacore: nix.thunk(() => nix.app(nix.sel(casacore, "override"), nix.thunk(() => ({ __proto__: pos$3, mpi: mpi, mpiSupport: mpiSupport })))),
+    [nix.POS]: pos$4,
+    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpi: mpi, enableMpi: mpiSupport })))),
+    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi, enableMpi: mpiSupport })))),
+    casacore: nix.thunk(() => nix.app(nix.sel(casacore, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: mpi, mpiSupport: mpiSupport })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "casacpp",
       version: "6.7.5.18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "https://open-bitbucket.nrao.edu/scm/casa/casa6.git",
           rev: nix.thunk(() => nix.str`refs/tags/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-75oIlaNAyu70KWSjz38LoYAvV7RJgzH/X9uBnGpriF4=",
@@ -90,13 +90,13 @@ substituteInPlace CMakeLists.txt \\
         ]))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-casacpp", nix.thunk(() => nix.str`version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -s https://pypi.org/pypi/casatasks/json | ${nix.app(nix.sel(lib, "getExe"), gnugrep)} -oP '"version"\\s*:\\s*"\\K[^"]+' | head -1)
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} casacpp "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "C++ core libraries for radio interferometry data reduction",
         homepage: "https://casa.nrao.edu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

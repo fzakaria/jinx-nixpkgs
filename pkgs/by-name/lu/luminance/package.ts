@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "luminance",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sidevesh",
           repo: "Luminance",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,9 +45,9 @@ substituteInPlace build.sh \\
       postBuild: "./build.sh",
       postInstall: "mv build/app com.sidevesh.Luminance\ninstallBin com.sidevesh.Luminance\n\ninstall -Dm644 install_files/44-backlight-permissions.rules -t $out/lib/udev/rules.d\ninstall -Dm644 install_files/com.sidevesh.Luminance.desktop -t $out/share/applications\ninstall -Dm644 install_files/com.sidevesh.Luminance.gschema.xml -t $out/share/glib-2.0/schemas\n\nglib-compile-schemas $out/share/glib-2.0/schemas\n\nmv icons $out/share/icons\nrm $out/share/icons/com.sidevesh.luminance.Source.svg\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "ddcbc-api": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "ahshabbir",
             repo: "ddcbc-api",
             rev: "f54500284fcfc2f140d5ae01df779f3f47c9b563",
@@ -58,7 +58,7 @@ substituteInPlace build.sh \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ddcutil, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple GTK application to control brightness of displays including external displays supporting DDC/CI",
         homepage: "https://github.com/sidevesh/Luminance",
         changelog: nix.thunk(() => nix.str`https://github.com/sidevesh/Luminance/releases/tag/${nix.sel(finalAttrs, "version")}`),

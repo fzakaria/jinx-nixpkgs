@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "snmpd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       snmpd: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "net-snmp"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          snmpd: nix.thunk(() => ({ __proto__: pos$2, enable: true, configText: "rocommunity public\n" })),
+          [nix.POS]: pos$3,
+          snmpd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, configText: "rocommunity public\n" })),
         })),
       })),
     })),

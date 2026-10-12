@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cielong",
           repo: "pyfx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pyfx"]);
       const disabledTests = nix.thunk(() => ["test_start"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to view JSON in a TUI",
         homepage: "https://github.com/cielong/pyfx",
         changelog: nix.thunk(() => nix.str`https://github.com/cielong/pyfx/releases/tag/${nix.sel(src, "tag")}`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pyfx",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

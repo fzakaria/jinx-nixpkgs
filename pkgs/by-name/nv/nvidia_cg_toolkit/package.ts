@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const date = "April2012";
       const pname = "nvidia-cg-toolkit";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://developer.download.nvidia.com/cg/Cg_${version}/Cg-${version}_${date}_x86_64.tgz`),
           sha256: "e8ff01e6cc38d1b3fd56a083f5860737dbd2f319a39037528fb1a74a89ae9878",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://developer.download.nvidia.com/cg/Cg_${version}/Cg-${version}_${date}_x86.tgz`),
           sha256: "cef3591e436f528852db0e8c145d3842f920e0c89bcfb219c466797cb7b18879",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`nvidia-cg-toolkit does not support platform ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
@@ -42,11 +42,11 @@ mkdir -p "$out/share/doc/$name/"
 cp -v -r local/Cg/* "$out/share/doc/$name/"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://developer.nvidia.com/cg-toolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
       }));
-      return { __proto__: pos$4, version, date, pname, src, installPhase, meta };
+      return { [nix.POS]: pos$4, version, date, pname, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

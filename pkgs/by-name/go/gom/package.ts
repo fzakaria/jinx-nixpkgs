@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gom",
       version: "0.5.6",
       outputs: nix.thunk(() => ["out", "py"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gom/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gom-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "TXpeJoaYyOfkBgPjbp46K3YTOTHOG2N8ETYwFJG1TMM=",
         })))),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gom" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gom" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GObject to SQLite object mapper",
         homepage: "https://gitlab.gnome.org/GNOME/gom",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

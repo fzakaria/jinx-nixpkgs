@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const htmldoc = nix.arg($, "htmldoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "htmldoc",
       version: "1.9.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "michaelrsweet",
           repo: "htmldoc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, cups, libpng, libjpeg]),
       postPatch: "substituteInPlace configure --replace-fail \"-arch x86_64 -arch arm64\" \"\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: htmldoc, command: "htmldoc --version" })))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: htmldoc, command: "htmldoc --version" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Converts HTML files to PostScript and PDF",
         homepage: "https://michaelrsweet.github.io/htmldoc",
         changelog: nix.thunk(() => nix.str`https://github.com/michaelrsweet/htmldoc/releases/tag/v${nix.sel(finalAttrs, "version")}`),

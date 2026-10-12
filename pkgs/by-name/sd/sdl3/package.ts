@@ -79,12 +79,12 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(waylandSupport) || nix.asBool(openglSupport))), "SDL3 requires OpenGL support to enable Wayland"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sd/sdl3/package.nix:66:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(ibusSupport) || nix.asBool(dbusSupport))), "SDL3 requires dbus support to enable ibus"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sd/sdl3/package.nix:69:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "sdl3",
       version: "3.4.16",
       outputs: nix.thunk(() => ["lib", "dev", "out", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsdl-org",
           repo: "SDL",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -144,9 +144,9 @@ substituteInPlace src/dialog/unix/SDL_zenitydialog.c \\
       doCheck: true,
       postInstall: "moveToOutput \"share/installed-tests\" \"$installedTests\"\nmoveToOutput \"libexec/installed-tests\" \"$installedTests\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "debug-text-example": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs$) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "sdl3-debug-text-example",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -158,7 +158,7 @@ substituteInPlace src/dialog/unix/SDL_zenitydialog.c \\
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
               return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
               platforms: nix.thunk(() => nix.attr(from, "platforms")),
               mainProgram: "debug-text",
@@ -168,26 +168,26 @@ substituteInPlace src/dialog/unix/SDL_zenitydialog.c \\
         tests: nix.thunk(() => nix.update(nix.sel(sdl12_compat, "tests"), nix.update(nix.sel(sdl2_compat, "tests"), nix.update((() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "sdl12-compat": sdl12_compat,
           "sdl2-compat": sdl2_compat,
           "sdl3-image": sdl3_image,
           "sdl3-ttf": sdl3_ttf,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
           "debug-text-example": nix.thunk(() => nix.attr(from, "debug-text-example")),
         };
-        })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$6, nixosTest: nix.thunk(() => nix.sel(nixosTests, "sdl3")) }))))))),
+        })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$6, nixosTest: nix.thunk(() => nix.sel(nixosTests, "sdl3")) }))))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(3\\..*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Cross-platform development library",
         homepage: "https://libsdl.org",
         changelog: nix.thunk(() => nix.str`https://github.com/libsdl-org/SDL/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -47,7 +47,7 @@ exec -a "$0" @out@/bin/LogicReinc.BlendFarm  "$@"
       const pname = "blendfarm";
       const version = "1.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LogicReinc",
           repo: "LogicReinc.BlendFarm",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -90,7 +90,7 @@ substituteInPlace $out/bin/blendfarm-nix --subst-var out
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`ln -s ${libgdiplus}/lib/libgdiplus.dylib $out/lib/blendfarm/
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source, cross-platform, stand-alone, Network Renderer for Blender",
         homepage: "https://github.com/LogicReinc/LogicReinc.BlendFarm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -102,7 +102,7 @@ substituteInPlace $out/bin/blendfarm-nix --subst-var out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

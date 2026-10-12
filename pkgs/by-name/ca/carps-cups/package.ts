@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "carps-cups",
       version: "0-unstable-2018-03-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ondrej-zary",
           repo: "carps-cups",
           rev: "18d80d1d6f473dd9132e4b6d8b5c592c74982f17",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "CUPSDIR=\"$out/lib/cups\"\nCUPSDATADIR=\"$out/share/cups\"\n\nmkdir -p \"$CUPSDIR/filter\" \"$CUPSDATADIR/drv\" \"$CUPSDATADIR/usb\"\n\ninstall -s rastertocarps $CUPSDIR/filter\ninstall -m 644 carps.drv $CUPSDATADIR/drv/\ninstall -m 644 carps.usb-quirks $CUPSDATADIR/usb/\n",
       buildInputs: nix.thunk(() => [cups]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CUPS Linux drivers for Canon printers",
         homepage: "https://github.com/ondrej-zary/carps-cups",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

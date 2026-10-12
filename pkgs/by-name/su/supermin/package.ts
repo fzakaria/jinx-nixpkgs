@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ocaml_ng = nix.arg($, "ocaml-ng");
   const glibc = nix.arg($, "glibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "supermin",
       version: "5.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/supermin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-development/supermin-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-0oLIHccG7+pGZIGhOfmwso0sHqagofV912GmvBG5nOI=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "static"))]))),
       postPatch: "patchShebangs src/bin2c.pl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://libguestfs.org/supermin.1.html",
         description: "Tool for creating and building supermin appliances",
         maintainers: nix.thunk(() => (() => {

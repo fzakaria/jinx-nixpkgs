@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const rcloneArch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : "amd64"));
   const rcloneOs = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: packageName,
       exec: packageName,
       icon: packageName,
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
       keywords: nix.thunk(() => ["cloud", "storage", "encrypted"]),
     }))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: packageName,
       version: packageVersion,
       makeCacheWritable: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "FilenCloudDienste",
           repo: packageName,
           rev: nix.thunk(() => nix.str`v${packageVersion}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libicns])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems]))))),
       buildInputs: nix.thunk(() => [pixman, cairo, pango]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
       })),
@@ -155,7 +155,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [desktopItem]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://filen.io/products",
         downloadPage: "https://filen.io/products/desktop",
         description: "Filen Desktop Client",

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flyctl";
       const version = "0.4.111";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "superfly",
           repo: "flyctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n# We do not set trimpath for tests, in case they reference test assets\nexport GOFLAGS=${GOFLAGS//-trimpath/}\n\nbuildGoDir test ./...\n\nrunHook postCheck\n";
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd flyctl \\\n  --bash <($out/bin/flyctl completion bash) \\\n  --fish <($out/bin/flyctl completion fish) \\\n  --zsh <($out/bin/flyctl completion zsh)\nln -s $out/bin/flyctl $out/bin/fly\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: flyctl,
               command: "HOME=$(mktemp -d) flyctl version",
               version: nix.thunk(() => nix.str`v${nix.sel(flyctl, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line tools for fly.io services",
         downloadPage: "https://github.com/superfly/flyctl",
         homepage: "https://fly.io/",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flyctl",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

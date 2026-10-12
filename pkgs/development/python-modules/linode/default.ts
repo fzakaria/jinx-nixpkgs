@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "db3c2a7fab8966d903a63f16c515bff241533e4ef2d746aa7aae4a49bba5e573",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ghickman/linode",
         description: "Thin python wrapper around Linode's API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

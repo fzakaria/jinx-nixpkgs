@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.thunk(() => nix.attr(python3Packages, "docutils"));
   const pygobject3 = nix.thunk(() => nix.attr(python3Packages, "pygobject3"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "arandr",
       version: "0.1.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arandr",
           repo: "arandr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./gzip-timestamp-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "arandr-0.1.11-setuptools-81.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/x11-misc/arandr/files/arandr-0.1.11-setuptools-81.patch",
             hash: "sha256-b9U8b4rdkN5lWDVpv50szaVS0rAZVSy7q6IXNVLvq3A=",
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
         "${gappsWrapperArgs[@]}",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version-regex=(\\d.*)"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex=(\\d.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/arandr/arandr/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),
         description: "Simple visual front end for XRandR",
         homepage: "https://christian.amsuess.com/tools/arandr/",

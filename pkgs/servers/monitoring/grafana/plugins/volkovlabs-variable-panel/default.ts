@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "volkovlabs-variable-panel",
       version: "5.2.0",
       zipHash: "sha256-MzxKOJhDc0qogIPCnhf5bG/GcSzT6RbwYxU81Qj/NO8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Variable panel allows you to have dashboard filters in a separate panel which you can place anywhere on the dashboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

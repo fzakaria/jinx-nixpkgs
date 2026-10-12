@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-compressor",
           repo: "django-appconf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +37,14 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["appconf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Helper class for handling configuration defaults of packaged apps gracefully",
         homepage: "https://django-appconf.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/django-compressor/django-appconf/blob/v${version}/docs/changelog.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

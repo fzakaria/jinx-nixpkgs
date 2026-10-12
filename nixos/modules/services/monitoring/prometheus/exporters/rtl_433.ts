@@ -26,28 +26,28 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "rtl_433"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     port: 9550n,
     extraOpts: nix.thunk(() => (() => {
       const mkMatcherOptionType = (field) => (description) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               options: nix.thunk(() => nix.attrsDyn({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     type: nix.thunk(() => nix.lookup(w, "str")),
                     description: "Name to match.",
                   })))),
                 location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     type: nix.thunk(() => nix.lookup(w, "str")),
                     description: "Location to match.",
                   })))),
               }, [
                 [nix.str`${field}`, nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     type: nix.thunk(() => nix.lookup(w, "int")),
                     description: description,
                   }))))],
@@ -55,38 +55,38 @@ export default nix.lambda((args) => (() => {
             })))));
       })();
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         rtl433Flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: "-C si",
             example: "-C si -R 19",
             description: "Flags passed verbatim to rtl_433 binary.\nHaving `-C si` (the default) is recommended since only Celsius temperatures are parsed.\n",
           })))),
         channels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.app(mkMatcherOptionType, "channel", "Channel to match.")),
             default: [],
             example: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$7, name: "Acurite", channel: 6543n, location: "Kitchen" })),
+              nix.thunk(() => ({ [nix.POS]: pos$7, name: "Acurite", channel: 6543n, location: "Kitchen" })),
             ]),
             description: "List of channel matchers to export.\n",
           })))),
         ids: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(mkMatcherOptionType, "id", "ID to match.")),
             default: [],
             example: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$9, name: "Nexus", id: 1n, location: "Bedroom" })),
+              nix.thunk(() => ({ [nix.POS]: pos$9, name: "Nexus", id: 1n, location: "Bedroom" })),
             ]),
             description: "List of ID matchers to export.\n",
           })))),
       };
     })()),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         SupplementaryGroups: "plugdev",
         PrivateDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
         DeviceAllow: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "char-usb_device rw")),

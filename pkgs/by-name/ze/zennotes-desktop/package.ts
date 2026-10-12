@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const installCli = nix.argOr($, "installCli", () => false);
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "zennotes-desktop",
       version: "2.64.0",
       npmDepsHash: "sha256-y7tEeV9F54LnHWswPyx01zvUxVgNkWWvIXe0qCVh9do=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZenNotes",
           repo: "zennotes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pTUPAzPB2KUzUS7pzxBhwQiVh/rMF5H0nvq3CX4GWfY=",
         })))),
       npmWorkspace: "apps/desktop",
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, copyDesktopItems]),
@@ -64,7 +64,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "zennotes-desktop",
             desktopName: "ZenNotes",
             exec: "zennotes-desktop %U",
@@ -76,11 +76,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Keyboard-first local Markdown notes with Vim motions, diagrams, and MCP integration",
         homepage: "https://zennotes.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ZenNotes/zennotes/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edusong",
       version: "4.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`edusong-${nix.sel(finalAttrs, "version")}`),
           url: "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/eduSong_Unicode.zip",
           hash: "sha256-+wH6I0sOfzytstDNT81LMuqknGQuYekl31e1tYaDvRg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MOE Song font, a Song-style Chinese character typeface",
         longDescription: "A Song-style Chinese character typeface published by the Ministry of Education of the Republic of China (Taiwan). The Song style is also referred to as 宋體, 宋体, sòngtǐ, 明體, 明体, or míngtǐ, in Chinese; 명조체, 明朝體, or myeongjo in Korean; 明朝体, みんちょうたい, or minchōtai in Japanese.\n",
         homepage: "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/edusun.pdf",

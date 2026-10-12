@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libnet = nix.arg($, "libnet");
   const enableAdmin = nix.argOr($, "enableAdmin", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yersinia",
       version: "unstable-2022-11-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomac",
           repo: "yersinia",
           rev: "867b309eced9e02b63412855440cd4f5f7727431",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "yersinia",
             version: "0.8.2",
             debianRevision: "2.3",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableAdmin)), "--disable-admin"))),
       makeFlags: nix.thunk(() => ["LDFLAGS=-lncurses"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Framework for layer 2 attacks",
         mainProgram: "yersinia",
         homepage: "https://github.com/tomac/yersinia",

@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, iproute2, iptables])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "geph5",
       version: "0.2.102",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geph-official",
           repo: "geph5",
           rev: nix.thunk(() => nix.str`geph5-client-v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ substituteInPlace binaries/geph5-client/src/vpn/linux.rs \\
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [openssl, rust_jemalloc_sys_unprefixed, sqlite]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: true,
         LIBSQLITE3_SYS_USE_PKG_CONFIG: "1",
       })),
@@ -68,14 +68,14 @@ substituteInPlace binaries/geph5-client/src/vpn/linux.rs \\
 done
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "geph5-client-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modular Internet censorship circumvention system designed specifically to deal with national filtering",
         homepage: "https://github.com/geph-official/geph5",
         changelog: nix.thunk(() => nix.str`https://github.com/geph-official/geph5/releases/tag/geph5-client-v${nix.sel(finalAttrs, "version")}`),

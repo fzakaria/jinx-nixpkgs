@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2jackrust",
       propagatedBuildInputs: nix.thunk(() => [libjack2, cargo, binutils, gcc, gnumake, openssl, pkg_config]),
     })));

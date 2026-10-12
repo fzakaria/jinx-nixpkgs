@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const simple_io = nix.arg($, "simple-io");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "itree-io",
       repo: "coq-itree-io",
       owner: "Lysxia",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
         const from = nix.thunk(() => nix.sel(lib, "versions"));
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
@@ -32,16 +32,16 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "0.1.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-IFwIj8dxW4jm2gvuUJ8LKZFSJeljp0bsn8fezxY6t2o=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       propagatedBuildInputs: nix.thunk(() => [ITree, simple_io]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Interpret itree in the IO monad of simple-io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

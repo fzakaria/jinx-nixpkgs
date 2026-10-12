@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libnl = nix.arg($, "libnl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vwifi",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Raizo62",
           repo: "vwifi",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ done
 [ $checksRan -gt 0 ] || exit 1
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simulate Wi-Fi (802.11) between Linux Virtual Machines",
         homepage: "https://github.com/Raizo62/vwifi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

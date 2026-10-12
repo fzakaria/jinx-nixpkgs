@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const flavorData = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     browser: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       optStem: "brave",
       fileStem: "brave-browser",
       appIdStem: "com.brave.Browser",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       innerBinary: "brave",
     })),
     origin: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       optStem: "brave-origin",
       fileStem: "brave-origin",
       appIdStem: "com.brave.Origin",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-brave.nix")), nix.thunk(() => nix.update(pkg, fd)))), nix.thunk(() => ({})));
   })();
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     brave: nix.thunk(() => nix.app(mkBrave, nix.path(here, "./packages/brave.nix"))),
     "brave-origin": nix.thunk(() => nix.app(mkBrave, nix.path(here, "./packages/brave-origin.nix"))),
   };

@@ -69,78 +69,78 @@ export default nix.lambda((args) => (() => {
       ], nix.lookup(w_2, "extraOptions"))));
   })());
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         magnetico: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Magnetico, Bittorrent DHT crawler")),
           crawler: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "0.0.0.0",
                 example: "1.2.3.4",
                 description: "Address to be used for indexing DHT nodes.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 0n,
                 description: "Port to be used for indexing DHT nodes.\nThis port should be added to\n{option}`networking.firewall.allowedTCPPorts`.\n",
               })))),
             maxNeighbors: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 1000n,
                 description: "Maximum number of simultaneous neighbors of an indexer.\nBe careful changing this number: high values can very\neasily cause your network to be congested or even crash\nyour router.\n",
               })))),
             maxLeeches: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 200n,
                 description: "Maximum number of simultaneous leeches.\n",
               })))),
             extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra command line arguments to pass to magneticod.\n",
               })))),
           })),
           web: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 example: "1.2.3.4",
                 description: "Address the web interface will listen to.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8080n,
                 description: "Port the web interface will listen to.\n",
               })))),
             credentials: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  myuser = \"$2y$12$YE01LZ8jrbQbx6c0s2hdZO71dSjn2p/O9XsYJpz.5968yCysUgiaG\";\n}\n")),
                 description: "The credentials to access the web interface, in case authentication is\nenabled, in the format `username:hash`. If unset no\nauthentication will be required.\n\nUsernames must start with a lowercase ([a-z]) ASCII character, might\ncontain non-consecutive underscores except at the end, and consists of\nsmall-case a-z characters and digits 0-9.  The\n{command}`htpasswd` tool from the `apacheHttpd`\npackage may be used to generate the hash:\n{command}`htpasswd -bnBC 12 username password`\n\n::: {.warning}\nThe hashes will be stored world-readable in the nix store.\nConsider using the `credentialsFile` option if you\ndon't want this.\n:::\n",
               })))),
             credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "The path to the file holding the credentials to access the web\ninterface. If unset no authentication will be required.\n\nThe file must contain user names and password hashes in the format\n`username:hash`, one for each line.  Usernames must\nstart with a lowecase ([a-z]) ASCII character, might contain\nnon-consecutive underscores except at the end, and consists of\nsmall-case a-z characters and digits 0-9.\nThe {command}`htpasswd` tool from the `apacheHttpd`\npackage may be used to generate the hash:\n{command}`htpasswd -bnBC 12 username password`\n",
               })))),
             extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra command line arguments to pass to magneticow.\n",
@@ -150,43 +150,43 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             magnetico: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Magnetico daemons user",
               group: "magnetico",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$18, magnetico: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$18, magnetico: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             magneticod: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Magnetico DHT crawler",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 User: "magnetico",
                 Restart: "on-failure",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "magnetico")}/bin/magneticod ${crawlerArgs}`),
               })),
             })),
             magneticow: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Magnetico web interface",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "magneticod.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 User: "magnetico",
                 StateDirectory: "magnetico",
                 Restart: "on-failure",
@@ -197,14 +197,14 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "web", "credentialsFile"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "web", "credentials"), {})))),
             message: "The options services.magnetico.web.credentialsFile and\nservices.magnetico.web.credentials are mutually exclusives.\n",
           })),
         ]),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       maintainers: nix.thunk(() => (() => {
         const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_3, "rnhmjoj"))];

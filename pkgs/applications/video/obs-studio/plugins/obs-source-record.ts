@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-source-record";
       const version = "0.4.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exeldro",
           repo: "obs-source-record",
           rev: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [obs_studio]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))),
       }));
       const cmakeFlags = nix.thunk(() => ["-DBUILD_OUT_OF_TREE=On"]);
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OBS Studio plugin to make sources available to record via a filter",
         homepage: "https://github.com/exeldro/obs-source-record",
         maintainers: nix.thunk(() => (() => {
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

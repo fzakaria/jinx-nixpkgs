@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const withSmartmontools = nix.argOr($, "withSmartmontools", () => false);
   const smartmontools = nix.arg($, "smartmontools");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diskwatch",
       version: "0.5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthart1983",
           repo: "diskwatch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       cargoTestFlags: nix.thunk(() => ["--", "--skip=left_right_cycle_all_tabs_without_moving_selections"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Single-host, read-only disk diagnostics TUI",
         homepage: "https://www.netwatchlabs.com/labs/diskwatch",
         changelog: nix.thunk(() => nix.str`https://github.com/matthart1983/diskwatch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keyboard",
       version: "0.13.5-unstable-2023-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boppreh",
           repo: "keyboard",
           rev: "d232de09bda50ecb5211ebcc59b85bc6da6aaa24",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["keyboard"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hook and simulate keyboard events on Windows and Linux",
         homepage: "https://github.com/boppreh/keyboard",
         changelog: "https://github.com/boppreh/keyboard/releases",

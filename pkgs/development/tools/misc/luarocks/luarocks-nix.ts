@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nurl = nix.arg($, "nurl");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(luarocks_bootstrap, "overrideAttrs"), (old) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "luarocks-nix",
       version: "nix_v3.5.0-1-unstable-2026-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "luarocks-nix",
           rev: "3a9f4bff6cdda670f866fb9f755d548a714f680a",
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       patches: [],
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.71";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-btxZ0oQzn1ZpwXihHlg6CduLh8nkerLV7SoFyXzJjVY=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["pytlv"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TLV (tag length lavue) data parser, especially useful for EMV tags parsing",
         homepage: "https://github.com/timgabets/pytlv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

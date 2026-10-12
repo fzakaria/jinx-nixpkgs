@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rathole",
       version: "0.5.0-unstable-2025-07-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rathole-org",
           repo: "rathole",
           rev: "5a9dd6d939744859af322aeff7fd60f7483a68bc",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [openssl]),
       preCheck: "patchShebangs examples/tls/create_self_signed_cert.sh\n(cd examples/tls && chmod +x create_self_signed_cert.sh && ./create_self_signed_cert.sh)\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_BUILD_TIMESTAMP: "0",
         VERGEN_BUILD_SEMVER: nix.thunk(() => nix.sel(finalAttrs, "version")),
         VERGEN_GIT_COMMIT_TIMESTAMP: "0",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
         VERGEN_CARGO_TARGET_TRIPLE: nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, rathole: nix.thunk(() => nix.attr(nixosTests, "rathole")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, rathole: nix.thunk(() => nix.attr(nixosTests, "rathole")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Reverse proxy for NAT traversal",
         homepage: "https://github.com/rathole-org/rathole",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

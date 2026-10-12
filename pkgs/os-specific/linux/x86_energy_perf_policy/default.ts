@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "x86_energy_perf_policy",
       version: nix.thunk(() => nix.sel(kernel, "version")),
       src: nix.thunk(() => nix.sel(kernel, "src")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin $out/share/man/man8\n",
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Set the energy versus performance policy preference bias on recent X86 processors",
         mainProgram: "x86_energy_perf_policy",
         homepage: "https://www.kernel.org/",

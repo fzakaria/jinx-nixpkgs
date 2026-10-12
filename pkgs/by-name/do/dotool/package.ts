@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dotool",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~geb",
           repo: "dotool",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/bin\ncp ./dotoold ./dotoolc $out/bin\nscdoc < doc/dotool.1.scd > doc/dotool.1\ninstallManPage doc/dotool.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command to simulate input anywhere",
         homepage: "https://git.sr.ht/~geb/dotool",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~geb/dotool/tree/${nix.sel(finalAttrs, "version")}/item/CHANGELOG.md`),

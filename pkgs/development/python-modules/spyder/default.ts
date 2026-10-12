@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-eYbtAwq4BHiXS8uBtcjIgvUMpzZsqdVmzgGYZq1rBYM=",
@@ -130,12 +130,12 @@ export default nix.lambda((args) => (() => {
         pyqt6,
       ], nix.sel(python_lsp_server, "optional-dependencies", "all")));
       const doCheck = false;
-      const env = nix.thunk(() => ({ __proto__: pos$2, SPYDER_QT_BINDING: "pyqt6" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SPYDER_QT_BINDING: "pyqt6" }));
       const postInstall = "# Add Python libs to env so Spyder subprocesses\n# created to run compute kernels don't fail with ImportErrors\nwrapProgram $out/bin/spyder --prefix PYTHONPATH : \"$PYTHONPATH\"\n";
       const dontWrapQtApps = true;
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scientific python development environment",
         mainProgram: "spyder",
         longDescription: "Spyder (previously known as Pydee) is a powerful interactive development\nenvironment for the Python language with advanced editing, interactive\ntesting, debugging and introspection features.\n",
@@ -147,7 +147,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

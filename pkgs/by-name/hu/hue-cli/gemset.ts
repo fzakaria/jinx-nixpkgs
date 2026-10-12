@@ -11,14 +11,14 @@ const pos$6 = nix.positions(here + "/gemset.nix", [["groups", 28, 5], ["platform
 const pos$7 = nix.positions(here + "/gemset.nix", [["hue-cli", 2, 3], ["hue-lib", 16, 3], ["json", 27, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   "hue-cli": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dependencies: nix.thunk(() => ["hue-lib", "json"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "10gjf59pamfy2m17fs271d9ffrg1194b1m6vxzn6p7smzry52h9z",
       type: "gem",
@@ -26,12 +26,12 @@ export default nix.thunk(() => ({
     version: "0.1.4",
   })),
   "hue-lib": nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["json"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1pyl8g8gisdhl79gbzvnddqrsbq0lmflzg7n6yi6xrp5b5290shz",
       type: "gem",
@@ -39,11 +39,11 @@ export default nix.thunk(() => ({
     version: "0.7.4",
   })),
   json: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "098m3q2jrx4xbf0knrbmflsynmmb5x9q9b0bzpmj7jmm1cr30mna",
       type: "gem",

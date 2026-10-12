@@ -25,40 +25,40 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "gotify"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gotify", "port"]), nix.thunk(() => ["services", "gotify", "environment", "GOTIFY_SERVER_PORT"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gotify: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Gotify webserver")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gotify-server", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
                   ]))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 GOTIFY_SERVER_PORT: 8080n,
                 GOTIFY_DATABASE_DIALECT: "sqlite3",
               })),
               description: "Config environment variables for the gotify-server.\nSee <https://gotify.net/docs/config> for more details.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Files containing additional config environment variables for gotify-server.\nSecrets should be set in environmentFiles instead of environment.\n",
             })))),
           stateDirectoryName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "gotify-server",
               description: "The name of the directory below {file}`/var/lib` where\ngotify stores its runtime data.\n",
@@ -67,19 +67,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "gotify-server": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               description: "Simple server for sending and receiving messages",
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "environment")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 WorkingDirectory: nix.thunk(() => nix.str`/var/lib/${nix.sel(cfg, "stateDirectoryName")}`),
                 StateDirectory: nix.thunk(() => nix.sel(cfg, "stateDirectoryName")),
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "DCsunset"))];

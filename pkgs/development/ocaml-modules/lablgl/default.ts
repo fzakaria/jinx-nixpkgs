@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-lablgl`);
       const version = "1.07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "garrigue",
           repo: "lablgl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ cp \\
       const postInstall = nix.thunk(() => nix.str`cp ./META $out/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/lablgl
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenGL bindings for ocaml",
         homepage: "http://wwwfun.kurims.kyoto-u.ac.jp/soft/lsl/lablgl.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -65,7 +65,7 @@ cp \\
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.06")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

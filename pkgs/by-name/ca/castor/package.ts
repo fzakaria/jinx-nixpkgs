@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const atk = nix.arg($, "atk");
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "castor",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~julienxx",
           repo: "castor",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "make PREFIX=$out copy-data",
       useNextest: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical client for plain-text protocols written in Rust with GTK. It currently supports the Gemini, Gopher and Finger protocols",
         mainProgram: "castor",
         homepage: "https://sr.ht/~julienxx/Castor",

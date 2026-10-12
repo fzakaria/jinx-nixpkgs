@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pam_ldap",
       version: "0-unstable-2024-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PADL",
           repo: "pam_ldap",
           rev: "656448f091cbeb9efb3ece08e6868e40b8e7b6f8",
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl]),
       buildInputs: nix.thunk(() => [pam, openldap]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pam, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.padl.com/OSS/pam_ldap.html",
         description: "LDAP backend for PAM",
         changelog: "https://github.com/PADL/pam_ldap/blob/master/ChangeLog",

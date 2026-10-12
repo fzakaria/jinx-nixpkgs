@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.0",
       pname: "makerpm",
       installPhase: "mkdir -p $out/bin\ncp makerpm $out/bin\n",
       buildInputs: nix.thunk(() => [zlib, libarchive, openssl]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ivan-tkatchev",
           repo: "makerpm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "089dkbh5705ppyi920rd0ksjc0143xmvnhm8qrx93rsgwc1ggi1y",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ivan-tkatchev/makerpm/",
         description: "Clean, simple RPM packager reimplemented completely from scratch",
         mainProgram: "makerpm",

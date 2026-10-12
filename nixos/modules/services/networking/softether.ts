@@ -44,43 +44,43 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "softether"));
-  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$1, dataDir: nix.thunk(() => nix.attr(cfg, "dataDir")) }))));
+  const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, dataDir: nix.thunk(() => nix.attr(cfg, "dataDir")) }))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         softether: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "SoftEther VPN services")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "softether", nix.thunk(() => ({})))),
           vpnserver: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "SoftEther VPN Server")),
           })),
           vpnbridge: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "SoftEther VPN Bridge")),
           })),
           vpnclient: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "SoftEther VPN Client")),
             up: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                 default: "",
                 description: "Shell commands executed when the Virtual Network Adapter(s) is/are starting.\n",
               })))),
             down: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                 default: "",
                 description: "Shell commands executed when the Virtual Network Adapter(s) is/are shutting down.\n",
               })))),
           })),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/softether",
               description: "Data directory for SoftEther VPN.\n",
@@ -90,17 +90,17 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
-            environment: nix.thunk(() => ({ __proto__: pos$11, systemPackages: nix.thunk(() => [package$]) })),
+            [nix.POS]: pos$16,
+            environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [package$]) })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               services: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 "softether-init": nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   description: "SoftEther VPN services initial task",
                   wantedBy: nix.thunk(() => ["network.target"]),
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$12, Type: "oneshot", RemainAfterExit: false })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Type: "oneshot", RemainAfterExit: false })),
                   script: nix.thunk(() => nix.str`for d in vpnserver vpnbridge vpnclient vpncmd; do
     if ! test -e ${nix.sel(cfg, "dataDir")}/$d; then
         ${nix.sel(pkgs, "coreutils")}/bin/mkdir -m0700 -p ${nix.sel(cfg, "dataDir")}/$d
@@ -115,19 +115,19 @@ ln -s ${package$}${nix.sel(cfg, "dataDir")}/vpncmd/vpncmd ${nix.sel(cfg, "dataDi
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "vpnserver", "enable")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               systemd: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 services: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   vpnserver: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     description: "SoftEther VPN Server",
                     after: nix.thunk(() => ["softether-init.service"]),
                     requires: nix.thunk(() => ["softether-init.service"]),
                     wantedBy: nix.thunk(() => ["network.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       Type: "forking",
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/vpnserver/vpnserver start`),
                       ExecStop: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/vpnserver/vpnserver stop`),
@@ -142,19 +142,19 @@ ln -s ${package$}${nix.sel(cfg, "dataDir")}/vpnserver/vpnserver ${nix.sel(cfg, "
               })),
             })))),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "vpnbridge", "enable")), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               systemd: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 services: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   vpnbridge: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     description: "SoftEther VPN Bridge",
                     after: nix.thunk(() => ["softether-init.service"]),
                     requires: nix.thunk(() => ["softether-init.service"]),
                     wantedBy: nix.thunk(() => ["network.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       Type: "forking",
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/vpnbridge/vpnbridge start`),
                       ExecStop: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/vpnbridge/vpnbridge stop`),
@@ -169,19 +169,19 @@ ln -s ${package$}${nix.sel(cfg, "dataDir")}/vpnbridge/vpnbridge ${nix.sel(cfg, "
               })),
             })))),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "vpnclient", "enable")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               systemd: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 services: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   vpnclient: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     description: "SoftEther VPN Client",
                     after: nix.thunk(() => ["softether-init.service"]),
                     requires: nix.thunk(() => ["softether-init.service"]),
                     wantedBy: nix.thunk(() => ["network.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       Type: "forking",
                       ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/vpnclient/vpnclient start`),
                       ExecStop: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/vpnclient/vpnclient stop`),
@@ -199,7 +199,7 @@ ${nix.sel(cfg, "vpnclient", "down")}
                   })),
                 })),
               })),
-              boot: nix.thunk(() => ({ __proto__: pos$31, kernelModules: nix.thunk(() => ["tun"]) })),
+              boot: nix.thunk(() => ({ [nix.POS]: pos$31, kernelModules: nix.thunk(() => ["tun"]) })),
             })))),
         ]))))),
   };

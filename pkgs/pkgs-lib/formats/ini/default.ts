@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const oneOf = nix.thunk(() => nix.attr(from_1, "oneOf"));
   const str = nix.thunk(() => nix.attr(from_1, "str"));
   const common = nix.thunk(() => (() => {
-    const singleIniAtom = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [bool, int, float, str])))), { __proto__: pos$1, description: "INI atom (null, bool, int, float or string)" }));
+    const singleIniAtom = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [bool, int, float, str])))), { [nix.POS]: pos$1, description: "INI atom (null, bool, int, float or string)" }));
     const iniAtom = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const listsAsDuplicateKeys = nix.arg($_1, "listsAsDuplicateKeys");
@@ -48,22 +48,22 @@ export default nix.lambda((args) => (() => {
       const atomsCoercedToLists = nix.arg($_1, "atomsCoercedToLists");
       const singleIniAtomOr = nix.thunk(() => (nix.asBool(atomsCoercedToLists) ? nix.app(coercedTo, singleIniAtom, singleton) : nix.app(either, singleIniAtom)));
       return (nix.asBool(listsAsDuplicateKeys) ? nix.update(nix.app(singleIniAtomOr, nix.thunk(() => nix.app(listOf, singleIniAtom))), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.add(nix.sel(singleIniAtom, "description"), " or a list of them for duplicate keys")),
       }) : (nix.asBool(!nix.eq(listToValue, null)) ? nix.update(nix.app(singleIniAtomOr, nix.thunk(() => nix.app(nonEmptyListOf, singleIniAtom))), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add(nix.sel(singleIniAtom, "description"), " or a non-empty list of them")),
       }) : nix.force(singleIniAtom)));
     })(), formals$2);
     const iniSection = (atom) => nix.update(nix.app(attrsOf, atom), {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       description: nix.thunk(() => nix.add(nix.add("section of an INI file (attrs of ", nix.sel(atom, "description")), ")")),
     });
     const maybeCoerceList = (listToValue) => (nix.asBool(!nix.eq(listToValue, null)) ? nix.app(mapAttrs, (key) => (val) => (nix.asBool(nix.app(isList, val)) ? nix.app(listToValue, val) : nix.force(val))) : nix.force(id));
     const maybeCoerceAllLists = (listToValue) => (nix.asBool(!nix.eq(listToValue, null)) ? nix.app(mapAttrs, (_) => nix.app(mapAttrs, (key) => (val) => (nix.asBool(nix.app(isList, val)) ? nix.app(listToValue, val) : nix.force(val)))) : nix.force(id));
     const ignoredArgs = nix.thunk(() => ["listToValue", "atomsCoercedToLists"]);
     return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       singleIniAtom,
       iniAtom,
       iniSection,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     common: common,
     format: nix.thunk(() => (() => {
       const ignoredArgs = nix.thunk(() => nix.attr(common, "ignoredArgs"));
@@ -90,15 +90,15 @@ export default nix.lambda((args) => (() => {
         nix.assert_((!nix.asBool(!nix.eq(atomsCoercedToLists, null)) || nix.asBool((nix.asBool(listsAsDuplicateKeys) || nix.asBool(!nix.eq(listToValue, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/pkgs-lib/formats/ini/default.nix:116:5");
         const atomsCoercedToLists$ = nix.thunk(() => (nix.asBool(nix.eq(atomsCoercedToLists, null)) ? false : nix.force(atomsCoercedToLists)));
         const atom = nix.thunk(() => nix.app(iniAtom, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             listsAsDuplicateKeys: listsAsDuplicateKeys,
             listToValue: listToValue,
             atomsCoercedToLists: atomsCoercedToLists$,
           }))));
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(iniSection, atom)))),
-          lib: nix.thunk(() => ({ __proto__: pos$8, types: nix.thunk(() => ({ __proto__: pos$7, atom: atom })) })),
+          lib: nix.thunk(() => ({ [nix.POS]: pos$8, types: nix.thunk(() => ({ [nix.POS]: pos$7, atom: atom })) })),
           generate: (name) => (value) => nix.app(pipe, value, nix.thunk(() => [
               nix.thunk(() => nix.app(maybeCoerceAllLists, listToValue)),
               nix.thunk(() => nix.app(toINI, nix.thunk(() => nix.builtins.removeAttrs(args_2, ignoredArgs)))),

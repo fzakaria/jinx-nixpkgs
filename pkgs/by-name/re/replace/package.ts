@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "replace",
       version: "2.24",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://hpux.connect.org.uk/ftp/hpux/Users/replace-${nix.sel(finalAttrs, "version")}/replace-${nix.sel(finalAttrs, "version")}-src-11.31.tar.gz`),
           sha256: "18hkwhaz25s6209n5mpx9hmkyznlzygqj488p2l7nvp9zrlxb9sf",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin/replace $out/bin/replace-literal",
       patches: nix.thunk(() => [nix.path(here, "./malloc.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to replace verbatim strings",
         homepage: "https://replace.richardlloyd.org.uk/",
         mainProgram: "replace-literal",

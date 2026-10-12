@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const pluginName = nix.thunk(() => nix.str`selendroid-grid-plugin-${version}`);
   const version = "0.17.0";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/selendroid/selendroid/releases/download/${version}/selendroid-standalone-${version}-with-dependencies.jar`),
         sha256: "10lxdsgp711pv8r6dk2aagnbvnn1b25zfqjvz7plc73zqhx1dxvw",
       })))),
     gridPlugin: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=io/selendroid/selendroid-grid-plugin/${version}/${pluginName}.jar`),
         sha256: "1x6cjmp2hpghbgbf8vss0qaj2n4sfl29wp3bc4k1s3hnnpccvz70",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -54,7 +54,7 @@ makeWrapper ${jdk}/bin/java $out/bin/selendroid-selenium \\
   --add-flags "-capabilityMatcher io.selendroid.grid.SelendroidCapabilityMatcher"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://selendroid.io/",
         description: "Test automation for native or hybrid Android apps and the mobile web",
         maintainers: [],

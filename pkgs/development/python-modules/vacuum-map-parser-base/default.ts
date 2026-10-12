@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PiotrMachowski",
           repo: nix.thunk(() => nix.str`Python-package-${pname}`),
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ substituteInPlace pyproject.toml \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["vacuum_map_parser_base"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/PiotrMachowski/Python-package-vacuum-map-parser-base",
         description: "Common code for vacuum map parsers",
         changelog: nix.thunk(() => nix.str`https://github.com/PiotrMachowski/Python-package-vacuum-map-parser-base/releases/tag/${nix.sel(src, "tag")}`),
@@ -45,7 +45,7 @@ substituteInPlace pyproject.toml \\
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

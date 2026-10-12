@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_preset_ja_spacing = nix.arg($, "textlint-rule-preset-ja-spacing");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-preset-ja-spacing",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-ja",
           repo: "textlint-rule-preset-ja-spacing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-M27qhjIHMcKbuPAh523Pi5IB5BD0VWawh84kUyLcKvg=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-AfbYACqYBvfsKzhryQabXQQmera19N/UH67sR5kbihM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarnBuildHook, yarnConfigHook]),
       installPhase: "runHook preInstall\n\nyarn install \\\n  --force \\\n  --frozen-lockfile \\\n  --ignore-engines \\\n  --ignore-platform \\\n  --ignore-scripts \\\n  --no-progress \\\n  --non-interactive \\\n  --offline \\\n  --production=true\n\nmkdir -p $out/lib\ncp -r . $out/lib\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_preset_ja_spacing,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "スペース周りのスタイルを扱うtextlintルールプリセット",
         homepage: "https://github.com/textlint-ja/textlint-rule-preset-ja-spacing",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

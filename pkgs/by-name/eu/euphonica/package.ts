@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "euphonica",
       version: "0.99.7-beta-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "htkhiem",
           repo: "euphonica",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })))),
       mesonBuildType: "release",
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 `),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         libsecret,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "MPD client with delusions of grandeur, made with Rust, GTK and Libadwaita",
         homepage: "https://github.com/htkhiem/euphonica",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

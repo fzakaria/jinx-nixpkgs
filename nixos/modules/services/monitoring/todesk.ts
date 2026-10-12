@@ -21,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "todesk"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         todesk: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ToDesk daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "todesk", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             todeskd: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "ToDesk Daemon Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target", "display-manager.service", "nss-lookup.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/todesk service`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -SIGINT $MAINPID`),

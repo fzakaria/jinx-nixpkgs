@@ -38,24 +38,24 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const cfg = nix.thunk(() => nix.sel(config, "ec2"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.path(here, "../profiles/headless.nix"),
       nix.path(here, "./ec2-data.nix"),
       nix.path(here, "./amazon-init.nix"),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       assertions: [],
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         growPartition: true,
         zfs: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           devNodes: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "zfs", "enable")), "/dev/")),
         })),
         extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "ena"))]),
-        initrd: nix.thunk(() => ({ __proto__: pos$2, availableKernelModules: nix.thunk(() => ["nvme"]) })),
+        initrd: nix.thunk(() => ({ [nix.POS]: pos$2, availableKernelModules: nix.thunk(() => ["nvme"]) })),
         kernelParams: nix.thunk(() => (() => {
           const nvmeTimeout = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "version")), "4.15")) ? "4294967295" : "255"));
           return [
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
         })()),
         blacklistedKernelModules: nix.thunk(() => ["nouveau", "xen_fbfront"]),
         loader: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           grub: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             device: nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) ? "nodev" : "/dev/xvda")),
             efiSupport: nix.thunk(() => nix.sel(cfg, "efi")),
             efiInstallAsRemovable: nix.thunk(() => nix.sel(cfg, "efi")),
@@ -78,39 +78,39 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "/": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "zfs", "enable"))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               device: "/dev/disk/by-label/nixos",
               fsType: "ext4",
               autoResize: true,
             })))))),
-        "/boot": nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) || nix.asBool(nix.sel(cfg, "zfs", "enable")))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$7, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))))),
+        "/boot": nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) || nix.asBool(nix.sel(cfg, "zfs", "enable")))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$7, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))))),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         zfs: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           expandOnBoot: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "zfs", "enable")), "all")),
         })),
-        "amazon-ssm-agent": nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+        "amazon-ssm-agent": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
         openssh: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: true,
-          settings: nix.thunk(() => ({ __proto__: pos$11, PermitRootLogin: "prohibit-password" })),
+          settings: nix.thunk(() => ({ [nix.POS]: pos$11, PermitRootLogin: "prohibit-password" })),
         })),
         udev: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "amazon-ec2-utils"))]),
         })),
-        udisks2: nix.thunk(() => ({ __proto__: pos$14, enable: false })),
+        udisks2: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           "fetch-ec2-metadata": nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             wants: nix.thunk(() => ["network-online.target"]),
             after: nix.thunk(() => ["network-online.target"]),
@@ -128,23 +128,23 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             script: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./ec2-metadata-fetcher.sh"))),
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$16, Type: "oneshot", StandardOutput: "journal+console" })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Type: "oneshot", StandardOutput: "journal+console" })),
           })),
-          "serial-getty@ttyS0": nix.thunk(() => ({ __proto__: pos$18, enable: true })),
+          "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         hostName: nix.thunk(() => nix.app(mkDefault, "")),
         timeServers: nix.thunk(() => ["169.254.169.123"]),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];

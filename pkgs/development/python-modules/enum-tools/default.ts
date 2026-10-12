@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pygments = nix.arg($, "pygments");
   const whey = nix.arg($, "whey");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "enum-tools",
       version: "0.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "enum_tools",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-DRMzXjYdMA3A+P2CyM+ZUUFyRvlnYUT17hdh62kCKOs=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pygments]),
       pythonImportsCheck: nix.thunk(() => ["enum_tools"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to expand Python's enum module",
         homepage: "https://github.com/domdfcoding/enum_tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

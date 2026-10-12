@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nsh",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nuta",
           repo: "nsh",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-kbHNFVu5OIg/eKefhsYRGvlXFduB0aBVflPV9hkM4Ec=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line shell like fish, but POSIX compatible",
         mainProgram: "nsh",
         homepage: "https://github.com/nuta/nsh",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "cafkafk"))];
         })()),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, shellPath: "/bin/nsh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/nsh" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

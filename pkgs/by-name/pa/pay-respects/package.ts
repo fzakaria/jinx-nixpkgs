@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const withRuntimeRules = nix.argOr($, "withRuntimeRules", () => true);
   const withRequestAi = nix.argOr($, "withRequestAi", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pay-respects",
       version: "0.8.8",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iff",
           repo: "pay-respects",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-d3RCjCxJXb5YLai1ZqWKifbb2nLG5j1psuvAorNgFGg=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         _DEF_PR_AI_API_KEY: "",
         _DEF_PR_AI_URL: "",
         _DEF_PR_AI_MODEL: "",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal command correction, alternative to thefuck, written in Rust",
         homepage: "https://codeberg.org/iff/pay-respects",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/iff/pay-respects/src/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const unstable_date = "2026-07-20";
       const version = nix.thunk(() => nix.str`2021.01-unstable-${unstable_date}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openscad",
           repo: "openscad",
           rev: "e4fdec49730103274a4e21c2390b9a12882f01aa",
@@ -143,7 +143,7 @@ export default nix.lambda((args) => (() => {
         "export-svg-fill-only_spec-paths-arcs01",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "3D parametric model compiler (unstable)",
         longDescription: "OpenSCAD is a software for creating solid 3D CAD objects. It is free\nsoftware and available for Linux/UNIX, MS Windows and macOS.\n\nUnlike most free software for creating 3D models (such as the famous\napplication Blender) it does not focus on the artistic aspects of 3D\nmodelling but instead on the CAD aspects. Thus it might be the\napplication you are looking for when you are planning to create 3D models of\nmachine parts but pretty sure is not what you are looking for when you are more\ninterested in creating computer-animated movies.\n",
         homepage: "https://openscad.org/",
@@ -160,7 +160,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "openscad",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         unstable_date,
         version,

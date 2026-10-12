@@ -11,6 +11,6 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const callPackage = nix.arg($, "callPackage");
   const targets = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["aarch64-linux", "x86_64-linux"]), (name) => nix.add(nix.path(here, "./."), nix.str`/${name}.nix`)));
-  return nix.app(callPackage, nix.thunk(() => nix.selOr(targets, () => nix.sel(targets, "x86_64-linux"), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`))), nix.thunk(() => ({ __proto__: pos$1, stdenv: stdenv })));
+  return nix.app(callPackage, nix.thunk(() => nix.selOr(targets, () => nix.sel(targets, "x86_64-linux"), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`))), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

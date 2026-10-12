@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netbox-fms",
       version: "0.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsenecal",
           repo: "netbox-fms",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_fms"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_fms" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_fms" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin for Fiber Management System: fiber cable management, splice planning, and circuit provisioning",
         homepage: "https://jsenecal.github.io/netbox-fms/",
         changelog: nix.thunk(() => nix.str`https://github.com/jsenecal/netbox-fms/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

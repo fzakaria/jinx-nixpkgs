@@ -6,10 +6,10 @@ const pos$1 = nix.positions(here + "/default.nix", [["AEXML", 5, 5], ["ArtifactB
 const pos$2 = nix.positions(here + "/default.nix", [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   workspaceStateFile: nix.path(here, "./workspace-state.json"),
   hashes: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     AEXML: "sha256-6KvO8zT667Td+4qOeYzHbd51hDzFJFrxcVyYr2h5igc=",
     ArtifactBundleGen: "sha256-mSXJiRGFIm2RtzBG8l6s4RJ2BzSbPZKUZIqWM4vDIhc=",
     JSONUtilities: "sha256-jl8XfgoB5IX0qwwDtzcWgK0u3SNG2HfrPoEb2a6/mlA=",

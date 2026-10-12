@@ -16,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-base.nix")]),
     isoImage: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "gnome")),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       desktopManager: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gnome: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           favoriteAppsOverride: "[org.gnome.shell]\nfavorite-apps=[ 'firefox.desktop', 'nixos-manual.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'gparted.desktop' ]\n",
           enable: true,
         })),
       })),
       displayManager: nix.thunk(() => ({
-        __proto__: pos$6,
-        gdm: nix.thunk(() => ({ __proto__: pos$4, enable: true, autoSuspend: false })),
-        autoLogin: nix.thunk(() => ({ __proto__: pos$5, enable: true, user: "nixos" })),
+        [nix.POS]: pos$6,
+        gdm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, autoSuspend: false })),
+        autoLogin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, user: "nixos" })),
       })),
     })),
   };

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "djangorestframework-api-key",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "florimondmanca",
           repo: "djangorestframework-api-key",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["rest_framework_api_key"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API key permissions for Django REST Framework",
         homepage: "https://github.com/florimondmanca/djangorestframework-api-key",
         changelog: nix.thunk(() => nix.str`https://github.com/florimondmanca/djangorestframework-api-key/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

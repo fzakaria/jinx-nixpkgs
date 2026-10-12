@@ -11,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const ccextractor = nix.arg($, "ccextractor");
   return {
-    __proto__: pos$2,
-    server: nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ __proto__: pos$1, ccextractor: ccextractor })))),
+    [nix.POS]: pos$2,
+    server: nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ccextractor: ccextractor })))),
     node: nix.thunk(() => nix.app(callPackage, nix.path(here, "./node.nix"), nix.thunk(() => ({})))),
   };
 })(), formals$1);

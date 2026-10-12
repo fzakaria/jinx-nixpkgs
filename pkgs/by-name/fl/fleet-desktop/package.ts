@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fleet-desktop",
       version: nix.thunk(() => nix.attr(fleet_orbit, "version")),
       src: nix.thunk(() => nix.attr(fleet_orbit, "src")),
       __structuredAttrs: true,
       vendorHash: "sha256-fhACxmzJY0PEQmMbjQxlfQh5ZJ+7a4um0s8xFQq+57w=",
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: "1" })),
       subPackages: nix.thunk(() => ["orbit/cmd/desktop"]),
       goFlags: nix.thunk(() => ["-buildvcs=false"]),
       ldflags: nix.thunk(() => [
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fleet's desktop tray application",
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/orbit-v${nix.sel(fleet_orbit, "version")}`),

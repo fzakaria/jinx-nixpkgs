@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const libresolv = nix.thunk(() => nix.attr(darwin, "libresolv"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onefetch",
       version: "2.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "o2sh",
           repo: "onefetch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "git init\ngit config user.name nixbld\ngit config user.email nixbld@example.com\ngit add .\ngit commit -m test\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd onefetch \\\n  --bash <($out/bin/onefetch --generate bash) \\\n  --fish <($out/bin/onefetch --generate fish) \\\n  --zsh <($out/bin/onefetch --generate zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git repository summary on your terminal",
         homepage: "https://github.com/o2sh/onefetch",
         changelog: nix.thunk(() => nix.str`https://github.com/o2sh/onefetch/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

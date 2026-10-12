@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.sel(python3Packages, "slothy"))), "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       __structuredAttrs: true,
-      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$1, mainProgram: "slothy-cli" })),
+      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$1, mainProgram: "slothy-cli" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

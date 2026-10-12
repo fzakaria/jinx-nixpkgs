@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "20251008";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mborsetti",
           repo: "airportsdata",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["airportsdata"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensive database of location and timezone data for nearly every operational airport",
         homepage: "https://github.com/mborsetti/airportsdata/",
         changelog: nix.thunk(() => nix.str`https://github.com/mborsetti/airportsdata/releases/tag/${nix.sel(src, "tag")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

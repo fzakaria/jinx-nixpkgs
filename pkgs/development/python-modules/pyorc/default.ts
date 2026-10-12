@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "noirello",
           repo: "pyorc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail \\\n    '\"pybind11>2.6.0,<3.0\"' \\\n    '\"pybind11>2.6.0\"'\n";
       const build_system = nix.thunk(() => [pybind11, setuptools]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PYORC_SKIP_ORC_BUILD: "true" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PYORC_SKIP_ORC_BUILD: "true" }));
       const buildInputs = nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "lz4")),
         nix.thunk(() => nix.sel(pkgs, "protobuf")),
@@ -56,7 +56,7 @@ ln -s "${nix.sel(pkgs, "apache-orc", "src")}/examples" "deps/"
       const pythonImportsCheck = nix.thunk(() => ["pyorc"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, nix.thunk(() => nix.sel(pkgs, "apache-orc"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/noirello/pyorc/blob/v${version}/CHANGELOG.rst`),
         description: "Python module for Apache ORC file format",
         homepage: "https://github.com/noirello/pyorc",
@@ -64,7 +64,7 @@ ln -s "${nix.sel(pkgs, "apache-orc", "src")}/examples" "deps/"
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

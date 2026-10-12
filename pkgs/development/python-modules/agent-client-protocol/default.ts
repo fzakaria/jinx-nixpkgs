@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "agent-client-protocol",
       version: "0.12.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agentclientprotocol",
           repo: "python-sdk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [pdm_backend]),
       dependencies: nix.thunk(() => [pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         http: nix.thunk(() => [h2, httpx, websockets]),
         logfire: nix.thunk(() => [opentelemetry_sdk]),
       })),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_spawn_agent_process_roundtrip"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SDK for ACP clients and agents",
         homepage: "https://github.com/agentclientprotocol/python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/agentclientprotocol/python-sdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

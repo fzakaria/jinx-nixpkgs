@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mainsail";
       const version = "2.18.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mainsail-crew",
           repo: "mainsail",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-fQnAVwBME4oJ15sOmZAr4qwxSpA5qqr8zJxEsVVGwSg=";
       const nodejs = nodejs_22;
-      const env = nix.thunk(() => ({ __proto__: pos$2, CYPRESS_INSTALL_BINARY: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CYPRESS_INSTALL_BINARY: 0n }));
       const preConfigure = "# Make the build.zip target do nothing, since we will just copy these files later.\nsed -e 's/\"build.zip\":.*,$/\"build.zip\": \"\",/g' -i package.json\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share\ncp -r ./dist $out/share/mainsail\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web interface for managing and controlling 3D printers with Klipper",
         homepage: "https://docs.mainsail.xyz",
         changelog: nix.thunk(() => nix.str`https://github.com/mainsail-crew/mainsail/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

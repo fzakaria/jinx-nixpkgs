@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "atbr",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
@@ -25,16 +25,16 @@ export default nix.lambda((args) => (() => {
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(range, "8.20", "8.20")),
               out: "8.20.0",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "8.20.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-Okhtq6Gnq4HA3tEZJvf8JBnmk3OKdm6hC1qINmoShmo=",
         })),
       })),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Coq library and tactic for deciding Kleene algebras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       })),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mako",
       version: "1.3.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sqlalchemy",
           repo: "mako",
           tag: nix.thunk(() => nix.str`rel_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools_80]),
       dependencies: nix.thunk(() => [markupsafe]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         babel: nix.thunk(() => [babel]),
         lingua: nix.thunk(() => [lingua]),
       })),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           "test_bytestring_passthru",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/sqlalchemy/mako/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Super-fast templating language",
         mainProgram: "mako-render",

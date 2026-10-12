@@ -46,17 +46,17 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "send"));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         send: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Send, a file sharing web sevice for ffsend.")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "send", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -68,14 +68,14 @@ export default nix.lambda((args) => (() => {
               })()),
               description: "All the available config options and their defaults can be found here: <https://github.com/timvisee/send/blob/master/server/config.js>,\nsome descriptions can found here: <https://github.com/timvisee/send/blob/master/docs/docker.md#environment-variables>\n\nValues under {option}`services.send.environment` will override the predefined values in the Send service.\n  - Time/duration should be in seconds\n  - Filesize values should be in bytes\n",
               example: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 DEFAULT_DOWNLOADS: 1n,
                 DETECT_BASE_URL: true,
                 EXPIRE_TIMES_SECONDS: nix.thunk(() => [300n, 3600n, 86400n, 604800n]),
               })),
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: null,
               description: "Environment file (see {manpage}`systemd.exec(5)` \"EnvironmentFile=\"\nsection for the syntax) passed to the service. This option is the\nrecommended way to pass secrets to Send.\n\nThis is especially important for users using a cloud storage backend.\n\nA list of environment variables recognized by Send can be found here:\n<https://github.com/timvisee/send/blob/master/docs/docker.md>\n",
               example: "/run/secrets/send",
@@ -85,64 +85,64 @@ export default nix.lambda((args) => (() => {
               })()),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "path")),
               readOnly: true,
               default: "/var/lib/send",
               description: "Directory for uploaded files.\nDue to limitations in {option}`systemd.services.send.serviceConfig.DynamicUser`, this item is read only.\n",
             })))),
           baseUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: null,
               description: "Base URL for the Send service.\nLeave it blank to automatically detect the base url.\n",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
               description: "The hostname or IP address for Send to bind to.",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 1443n,
               description: "Port the Send service listens on.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to open firewall ports for send",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to create a local redis automatically.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "send",
                 description: "Name of the redis server.\nOnly used if {option}`services.send.redis.createLocally` is set to true.\n",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 description: "Redis server address.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 6379n,
                 description: "Port of the redis server.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/agenix/send-redis-password",
@@ -153,21 +153,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           send: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             environment: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               DETECT_BASE_URL: nix.thunk(() => nix.eq(nix.sel(cfg, "baseUrl"), null)),
             })),
           })),
           redis: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               servers: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "redis", "name")}`, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   enable: true,
                   bind: "localhost",
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
@@ -177,26 +177,26 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "redis", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "redis", "host"), "localhost")))),
             message: "the redis host must be localhost if services.send.redis.createLocally is set to true",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           firewall: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "port")))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             send: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 Type: "simple",
                 Restart: "always",
                 StateDirectory: "send",
@@ -228,7 +228,7 @@ export default nix.lambda((args) => (() => {
                 UMask: "0077",
               })),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 IP_ADDRESS: nix.thunk(() => nix.sel(cfg, "host")),
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
                 BASE_URL: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "baseUrl"), null)) ? nix.str`http://${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}` : nix.sel(cfg, "baseUrl"))),
@@ -247,7 +247,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];

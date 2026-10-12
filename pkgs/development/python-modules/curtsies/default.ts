@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-ECoP+/lSEk8b4iL9aYnaTsfM4E5J9hMAnl9UrTdhiCU=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [blessed, cwcwidth]);
       const nativeCheckInputs = nix.thunk(() => [pyte, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Curses-like terminal wrapper, with colored strings",
         homepage: "https://github.com/bpython/curtsies",
         changelog: nix.thunk(() => nix.str`https://github.com/bpython/curtsies/blob/v${version}/CHANGELOG.md`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

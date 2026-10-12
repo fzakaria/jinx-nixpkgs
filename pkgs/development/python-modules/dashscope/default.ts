@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dashscope",
           repo: "dashscope-sdk-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         httpx_sse,
         pyyaml,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, tokenizer: nix.thunk(() => [tiktoken]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, tokenizer: nix.thunk(() => [tiktoken]) }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace setup.py \\
   --replace-fail "version=get_version()," "version='${version}',"
 `);
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         "TestWebSocketSyncRequest",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SDK for dashscope",
         homepage: "https://github.com/dashscope/dashscope-sdk-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

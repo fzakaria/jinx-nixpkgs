@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "undertalemodcli";
       const version = "0.9.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UnderminersTeam",
           repo: "UndertaleModTool",
           tag: version,
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_10_0"));
       const executables = nix.thunk(() => ["UndertaleModCli"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://underminersteam.github.io/",
         description: "CLI tool for modding, decompiling and unpacking GameMaker games",
         changelog: nix.thunk(() => nix.str`https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/${version}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "UndertaleModCli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

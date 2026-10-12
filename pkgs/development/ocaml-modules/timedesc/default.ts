@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const timedesc_tzdb = nix.arg($, "timedesc-tzdb");
   const timedesc_tzlocal = nix.arg($, "timedesc-tzlocal");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "timedesc",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/daypack-dev/timere/releases/download/timedesc-${nix.sel(finalAttrs, "version")}/timedesc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-hXdijGY0qu+pLR2XtK/KL9gXvCstbZedo1379lqA1r0=",
         })))),
       sourceRoot: ".",
       propagatedBuildInputs: nix.thunk(() => [angstrom, ptime, seq, timedesc_tzdb, timedesc_tzlocal]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml date time handling library",
         homepage: "https://github.com/daypack-dev/timere",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-/At/57IazatHpYWrlAfKflxPlstoiFddtrDOuR8OEFo=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [easyprocess, path, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["entrypoint2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy to use command-line interface for python modules",
         homepage: "https://github.com/ponty/entrypoint2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         problems: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           matchers: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$1, package: "a", name: "b", handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$1, package: "a", name: "b", handler: "error" })),
           ]),
         })),
       })),
     }))));
-  return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({ __proto__: pos$5, pname: "a", version: "0" })));
+  return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: "a", version: "0" })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

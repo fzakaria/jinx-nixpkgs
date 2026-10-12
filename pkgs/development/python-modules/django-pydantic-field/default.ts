@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "surenkov",
           repo: "django-pydantic-field",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.settings.django_test_settings\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/surenkov/django-pydantic-field/releases/tag/${nix.sel(src, "tag")}`),
         description: "Django JSONField with Pydantic models as a Schema",
         homepage: "https://github.com/surenkov/django-pydantic-field",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

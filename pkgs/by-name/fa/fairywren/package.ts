@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pname = "fairywren";
   const colorVariantList = nix.thunk(() => ["FairyWren_Dark", "FairyWren_Light"]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: colorVariants`), colorVariantList, colorVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: "0-unstable-2026-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FreshDoctor",
           repo: "FairyWren-Icons",
           rev: "fb00858cb2eae522952286f5df9888afe74ccdf5",
@@ -46,11 +46,11 @@ runHook postInstall
 `),
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "FairyWren Icon Set",
         homepage: "https://gitlab.com/FreshDoctor/FairyWren-Icons",
         maintainers: nix.thunk(() => (() => {

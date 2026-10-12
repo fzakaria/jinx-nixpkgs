@@ -50,49 +50,49 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$4,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, emptyDiskImages: nix.thunk(() => [2048n]) })),
-      boot: nix.thunk(() => ({ __proto__: pos$2, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+      [nix.POS]: pos$4,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [2048n]) })),
+      boot: nix.thunk(() => ({ [nix.POS]: pos$2, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
       environment: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "parted"))]),
       })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "sanoid",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "lopsided98"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       source: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           imports: nix.thunk(() => [commonConfig]),
-          networking: nix.thunk(() => ({ __proto__: pos$6, hostId: "daa82e91" })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$6, hostId: "daa82e91" })),
           programs: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             ssh: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               extraConfig: "UserKnownHostsFile=/dev/null\nStrictHostKeyChecking=no\n",
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             sanoid: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               templates: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 test: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   hourly: 12n,
                   daily: 1n,
                   monthly: 1n,
@@ -101,27 +101,27 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               datasets: nix.thunk(() => ({
-                __proto__: pos$13,
-                "pool/sanoid": nix.thunk(() => ({ __proto__: pos$11, use_template: nix.thunk(() => ["test"]) })),
-                "pool/compat": nix.thunk(() => ({ __proto__: pos$12, useTemplate: nix.thunk(() => ["test"]) })),
+                [nix.POS]: pos$13,
+                "pool/sanoid": nix.thunk(() => ({ [nix.POS]: pos$11, use_template: nix.thunk(() => ["test"]) })),
+                "pool/compat": nix.thunk(() => ({ [nix.POS]: pos$12, useTemplate: nix.thunk(() => ["test"]) })),
               })),
               extraArgs: nix.thunk(() => ["--verbose"]),
             })),
             syncoid: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: true,
               sshKey: "/var/lib/syncoid/id_ecdsa",
               commands: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 "pool/sanoid": nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   target: "root@target:pool/sanoid",
                   extraArgs: nix.thunk(() => ["--no-sync-snap", "--create-bookmark"]),
                 })),
-                "pool/syncoid": nix.thunk(() => ({ __proto__: pos$16, target: "root@target:pool/syncoid" })),
-                pool: nix.thunk(() => ({ __proto__: pos$17, target: "root@target:pool/full-pool" })),
+                "pool/syncoid": nix.thunk(() => ({ [nix.POS]: pos$16, target: "root@target:pool/syncoid" })),
+                pool: nix.thunk(() => ({ [nix.POS]: pos$17, target: "root@target:pool/full-pool" })),
                 "pool/compat": nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   target: "root@target:pool/compat",
                   extraArgs: nix.thunk(() => ["--no-sync-snap"]),
                 })),
@@ -133,22 +133,22 @@ export default nix.lambda((args) => (() => {
       target: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           imports: nix.thunk(() => [commonConfig]),
-          networking: nix.thunk(() => ({ __proto__: pos$23, hostId: "dcf39d36" })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$23, hostId: "dcf39d36" })),
           services: nix.thunk(() => ({
-            __proto__: pos$25,
-            openssh: nix.thunk(() => ({ __proto__: pos$24, enable: true })),
+            [nix.POS]: pos$25,
+            openssh: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             users: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               root: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 openssh: nix.thunk(() => ({
-                  __proto__: pos$27,
-                  authorizedKeys: nix.thunk(() => ({ __proto__: pos$26, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: pos$27,
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$26, keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),

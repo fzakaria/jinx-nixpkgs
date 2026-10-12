@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "snphost",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "virtee",
           repo: "snphost",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-wZpb/S0g3KccaPlve3YeVFA9d1BqrtAe7tE2qlisG+M=",
       nativeBuildInputs: nix.thunk(() => [asciidoctor, findutils, installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [curl, openssl, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       postInstall: "installManPage $(find target/x86_64-unknown-linux-gnu/release/build -name \"snphost.1\")\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Administrative utility for SEV-SNP",
         homepage: "https://github.com/virtee/snphost/",
         changelog: nix.thunk(() => nix.str`https://github.com/virtee/snphost/releases/tag/v${nix.sel(finalAttrs, "version")}`),

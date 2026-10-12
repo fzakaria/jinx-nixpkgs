@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "airos",
       version: "0.6.12",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.13")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CoMPaTech",
           repo: "python-airos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aiofiles, aioresponses, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["airos"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ubiquity airOS module(s) for Python 3",
         homepage: "https://github.com/CoMPaTech/python-airos",
         changelog: nix.thunk(() => nix.str`https://github.com/CoMPaTech/python-airos/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

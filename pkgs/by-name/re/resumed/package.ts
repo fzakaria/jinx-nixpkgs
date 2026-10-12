@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "resumed";
       const version = "7.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rbardini",
           repo: "resumed",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-zm4FU/xCFJmsZt4uib+pSiCP023p4mGGiODq4QW0zV0=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight JSON Resume builder, no-frills alternative to resume-cli",
         homepage: "https://github.com/rbardini/resumed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "resumed",
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

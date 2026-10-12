@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   const poppler = nix.arg($, "poppler");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fm",
       version: "0-unstable-2024-01-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "euclio",
           repo: "fm",
           rev: "f1da116fe703a2c3d5bc9450703ecf1a1f1b4fda",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [libadwaita, libpanel, gtksourceview5, poppler]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small, general purpose file manager built with GTK4",
         homepage: "https://github.com/euclio/fm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const cyrus_sasl_xoauth2 = nix.arg($, "cyrus-sasl-xoauth2");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "isync",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/isync/isync",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-l0jL4CzAdFtQGekbywic1Kuihy3ZQi4ozhSEcbJI0t0=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DQPRINTF_BUFF=4000" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DQPRINTF_BUFF=4000" })),
       autoreconfPhase: nix.thunk(() => nix.str`echo "${nix.sel(finalAttrs, "version")}" > VERSION
 ./autogen.sh
 `),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
     --prefix SASL_PATH : "${nix.app(nix.sel(lib, "makeSearchPath"), "lib/sasl2", nix.thunk(() => [cyrus_sasl_xoauth2, nix.thunk(() => nix.sel(cyrus_sasl, "out"))]))}"
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://isync.sourceforge.io",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/isync/isync/ci/v${nix.sel(finalAttrs, "version")}/tree/NEWS`),
         description: "Free IMAP and MailDir mailbox synchronizer",

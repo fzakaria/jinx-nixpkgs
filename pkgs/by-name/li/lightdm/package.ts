@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   nix.assert_(!nix.asBool((nix.asBool(withQt5) && nix.asBool(withQt6))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/lightdm/package.nix:38:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lightdm",
       version: "1.33.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubuntu",
           repo: "lightdm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,12 +86,12 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withQt5, nix.thunk(() => nix.sel(qt5, "qtbase"))), nix.app(nix.sel(lib, "optional"), withQt6, nix.thunk(() => nix.sel(qt6, "qtbase")))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/lightdm/raw/4cf0d2bed8d1c68970b0322ccd5dbbbb7a0b12bc/f/lightdm-1.25.1-disable_dmrc.patch",
             hash: "sha256-NpASGgEhOjxuKME2f7RM2U5JvRRdl0OF5lHnp5aKxxk=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             plymouth: nix.thunk(() => nix.str`${plymouth}/bin/plymouth`),
           })))),
       ]),
@@ -117,12 +117,12 @@ substituteInPlace src/shared-data-manager.c \\
 `),
       postInstall: "rm -rf $out/etc/apparmor.d $out/etc/init $out/etc/pam.d\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$4, lightdm: nix.thunk(() => nix.attr(nixosTests, "lightdm")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, lightdm: nix.thunk(() => nix.attr(nixosTests, "lightdm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/ubuntu/lightdm",
         description: "Cross-desktop display manager",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

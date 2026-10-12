@@ -28,22 +28,22 @@ export default nix.lambda((args) => (() => {
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const plat = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "system"));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: pname,
         versionPrefix: versionPrefix,
         version: version,
         src: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), zipHash)) ? nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: nix.thunk(() => nix.str`${pname}-${versionPrefix}${version}-${plat}.zip`),
             hash: nix.thunk(() => nix.selOr(zipHash, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${plat}`)), nix.key(nix.force(plat)))),
             url: nix.thunk(() => nix.add(nix.str`https://grafana.com/api/plugins/${pname}/versions/${versionPrefix}${version}/download`, nix.selOr({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               "x86_64-linux": "?os=linux&arch=amd64",
               "aarch64-linux": "?os=linux&arch=arm64",
               "aarch64-darwin": "?os=darwin&arch=arm64",
             }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${plat}`)), nix.key(nix.force(plat))))),
           }))) : nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: nix.thunk(() => nix.str`${pname}-${versionPrefix}${version}.zip`),
             hash: zipHash,
             url: nix.thunk(() => nix.str`https://grafana.com/api/plugins/${pname}/versions/${versionPrefix}${version}/download`),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [unzip]),
         installPhase: "cp -R \".\" \"$out\"\nchmod -R a-w \"$out\"\nchmod u+w \"$out\"\n",
         passthru: nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           updateScript: nix.thunk(() => [nix.path(here, "./update-grafana-plugin.sh"), pname]),
         }, passthru)),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           homepage: nix.thunk(() => nix.str`https://grafana.com/grafana/plugins/${pname}`),
         }, meta)),
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["zipHash", "pname", "versionPrefix", "version", "sha256", "meta"])))));

@@ -26,23 +26,23 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const harfbuzz = nix.arg($, "harfbuzz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "silicon",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aloxaf",
           repo: "silicon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lwwbjSXW5uonJNZTAqTK14Ib4QDOD4puxY2CsiJk4/Q=",
         })))),
       cargoHash: "sha256-MpmGLhg00quz4mYkidLofpcZTVwxbgIThg5v2r4HIfs=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       buildInputs: nix.thunk(() => nix.concat([expat, freetype, fira_code, fontconfig, harfbuzz, oniguruma], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcb])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [python3])))),
       preCheck: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create beautiful image of your source code",
         homepage: "https://github.com/Aloxaf/silicon",
         license: nix.thunk(() => (() => {

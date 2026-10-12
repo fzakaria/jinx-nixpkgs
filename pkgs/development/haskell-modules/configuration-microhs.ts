@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const haskellLib = nix.arg($, "haskellLib");
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     base: null,
     bytestring: null,
     deepseq: null,
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     MicroCabal: nix.thunk(() => nix.app(nix.sel(self, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(self, "ghc", "microcabal-stage1", "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "MicroCabal",
         version: nix.thunk(() => nix.sel(self, "ghc", "microcabal-stage1", "version")),
         src: nix.thunk(() => nix.sel(self, "ghc", "microcabal-stage1", "src")),

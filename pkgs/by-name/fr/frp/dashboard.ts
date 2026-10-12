@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const frp = nix.arg($, "frp");
   const builder = (name) => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${name}-dashboard`),
       version: nix.thunk(() => nix.attr(frp, "version")),
       src: nix.thunk(() => nix.attr(frp, "src")),
@@ -21,10 +21,10 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
       npmDepsHash: "sha256-yiQK196bsGijjA9VyWSnWgK9k6o39a098YELOTfyScU",
-      meta: nix.thunk(() => nix.update(nix.sel(frp, "meta"), { __proto__: pos$1, description: "Dashboard for frp" })),
+      meta: nix.thunk(() => nix.update(nix.sel(frp, "meta"), { [nix.POS]: pos$1, description: "Dashboard for frp" })),
     })));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     frpc: nix.thunk(() => nix.app(builder, "frpc")),
     frps: nix.thunk(() => nix.app(builder, "frps")),
   };

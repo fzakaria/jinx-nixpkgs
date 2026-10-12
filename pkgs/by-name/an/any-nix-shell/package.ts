@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "any-nix-shell",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haslersn",
           repo: "any-nix-shell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ wrapProgram $out/bin/any-nix-shell --prefix PATH ":" ${nix.app(nix.sel(lib, "mak
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fish, xonsh and zsh support for nix-shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/haslersn/any-nix-shell",

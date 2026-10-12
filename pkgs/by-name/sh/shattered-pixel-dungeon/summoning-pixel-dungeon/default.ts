@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "summoning-pixel-dungeon";
       const version = "1.2.5a";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TrashboxBobylev",
           repo: "Summoning-Pixel-Dungeon",
           rev: "89ff59e7f42abcc88b7a1f24391f95ddc30f9d29",
@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.path(here, "./disable-git-version.patch"),
             substitutions: nix.thunk(() => ["--subst-var-by", "version", version]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Update-desktop-build-script-for-Gradle-7.0+",
             url: "https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon/commit/5610142126e161cbdc78a07c5d5abfbcd6eaf8a6.patch",
             hash: "sha256-zAiOz/Cu89Y+VmAyLCf7fzq0Mr0sYFZu14sqBZ/XvZU=",
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Upstream patched this in https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon/commit/c8a6fdd57c49fd91bf65be48679ae6a77578ef9f,\n# but the patch fails to apply cleanly. Manually replace the deprecated option instead.\n# FIXME: Remove after next release\nsubstituteInPlace gradle.properties \\\n  --replace-fail \"-XX:MaxPermSize\" \"-XX:MaxMetaspaceSize\"\n";
       const desktopName = "Summoning Pixel Dungeon";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon",
         downloadPage: "https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon/releases",
         description: "Fork of the Shattered Pixel Dungeon roguelike with added summoning mechanics",
       }));
-      return { __proto__: pos$5, pname, version, src, patches, postPatch, desktopName, meta };
+      return { [nix.POS]: pos$5, pname, version, src, patches, postPatch, desktopName, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

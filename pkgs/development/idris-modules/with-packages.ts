@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return (packages) => (() => {
     const paths = nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), packages));
     return nix.app(nix.sel(lib, "appendToName"), "with-packages", nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(idris, "pname")),
           version: nix.thunk(() => nix.attr(idris, "version")),
           paths: nix.thunk(() => nix.concat(paths, [idris])),

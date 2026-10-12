@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const recompileLibc = nix.thunk(() => nix.attr(from, "recompileLibc"));
   const version = "unstable-2024-07-07";
   const rev = "ea3900f6d5e71776c5cfabcabee317652e3a19ee";
-  const arch = nix.thunk(() => nix.sel({ __proto__: pos$1, "i686-linux": "x86", "x86_64-linux": "x86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
-  const tccTarget = nix.thunk(() => nix.sel({ __proto__: pos$2, "i686-linux": "I386", "x86_64-linux": "X86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
+  const arch = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, "i686-linux": "x86", "x86_64-linux": "x86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
+  const tccTarget = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, "i686-linux": "I386", "x86_64-linux": "X86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
   const tarball = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://gitlab.com/janneke/tinycc/-/archive/${rev}/tinycc-${rev}.tar.gz`),
       sha256: "sha256-16JBGJATAWP+lPylOi3+lojpdv0SR5pqyxOV2PiVx0A=",
     }))));
@@ -81,7 +81,7 @@ replace --file tccelf.c --output tccelf.c --match-on "fill_got(s1);" --replace-w
 "
 `)), nix.str`/tinycc-${rev}`));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "Tiny C Compiler's bootstrappable fork",
     homepage: "https://gitlab.com/janneke/tinycc",
     license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -91,11 +91,11 @@ replace --file tccelf.c --output tccelf.c --match-on "fill_got(s1);" --replace-w
   const pname = "tinycc-boot-mes";
   const tinycc_boot_mes = nix.thunk(() => (() => {
     const compiler = nix.thunk(() => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "get-version": (result) => nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-get-version-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${result}/bin/tcc -version
 mkdir \${out}
 `)),
@@ -135,17 +135,17 @@ ${nix.sel(mes, "compiler")}/bin/mes --no-auto-compile -e main ${nix.sel(mes, "sr
   tcc.s
 `)));
     const libs = nix.thunk(() => nix.app(recompileLibc, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname,
         version: version,
         src: src,
         tcc: compiler,
         libtccOptions: nix.thunk(() => nix.add(nix.sel(mes_libc, "CFLAGS"), nix.str` -DTCC_TARGET_${tccTarget}=1`)),
       }))));
-    return { __proto__: pos$9, compiler, libs };
+    return { [nix.POS]: pos$9, compiler, libs };
   })());
   const tinycc_boot0 = nix.thunk(() => nix.app(buildTinyccMes, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "tinycc-boot0",
       src: src,
       version: version,
@@ -155,7 +155,7 @@ ${nix.sel(mes, "compiler")}/bin/mes --no-auto-compile -e main ${nix.sel(mes, "sr
       libtccBuildOptions: nix.thunk(() => ["-D HAVE_LONG_LONG=1", nix.thunk(() => nix.str`-DTCC_TARGET_${tccTarget}=1`)]),
     }))));
   const tinycc_boot1 = nix.thunk(() => nix.app(buildTinyccMes, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "tinycc-boot1",
       src: src,
       version: version,
@@ -165,7 +165,7 @@ ${nix.sel(mes, "compiler")}/bin/mes --no-auto-compile -e main ${nix.sel(mes, "sr
       libtccBuildOptions: nix.thunk(() => ["-D HAVE_LONG_LONG=1", nix.thunk(() => nix.str`-DTCC_TARGET_${tccTarget}=1`)]),
     }))));
   const tinycc_boot2 = nix.thunk(() => nix.app(buildTinyccMes, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "tinycc-boot2",
       src: src,
       version: version,
@@ -184,7 +184,7 @@ ${nix.sel(mes, "compiler")}/bin/mes --no-auto-compile -e main ${nix.sel(mes, "sr
       ]),
     }))));
   const tinycc_boot3 = nix.thunk(() => nix.app(buildTinyccMes, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "tinycc-boot3",
       src: src,
       version: version,
@@ -203,7 +203,7 @@ ${nix.sel(mes, "compiler")}/bin/mes --no-auto-compile -e main ${nix.sel(mes, "sr
       ]),
     }))));
   return nix.app(buildTinyccMes, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "tinycc-bootstrappable",
       src: src,
       version: version,

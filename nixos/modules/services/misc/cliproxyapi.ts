@@ -42,37 +42,37 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const stateDir = "/var/lib/cliproxyapi";
   const configPath = nix.thunk(() => nix.str`${stateDir}/config.yaml`);
-  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ __proto__: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), configPath));
+  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ [nix.POS]: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), configPath));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         cliproxyapi: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CLIProxyAPI")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cliproxyapi", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     server: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 8317n,
                           description: "Port on which CLIProxyAPI listens.",
                         })))),
                     })),
                     oauth: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       "auth-dir": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: stateDir,
                           description: "Directory where OAuth tokens are stored.",
@@ -85,26 +85,26 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for CLIProxyAPI. See the\n[example configuration](https://github.com/router-for-me/CLIProxyAPI/blob/main/config.example.yaml)\nfor available options. Secret values can be loaded from files using\n`._secret = \"/path/to/secret\";`.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/cliproxyapi.env",
               description: "Environment file as defined in {manpage}`systemd.exec(5)`.",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for {option}`services.cliproxyapi.settings.server.port`.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cliproxyapi",
               description: "User account under which CLIProxyAPI runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cliproxyapi",
               description: "Group under which CLIProxyAPI runs.",
@@ -113,34 +113,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "cliproxyapi")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               cliproxyapi: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: stateDir,
                 description: "CLIProxyAPI service user",
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "cliproxyapi")), nix.thunk(() => ({ __proto__: pos$18, cliproxyapi: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "cliproxyapi")), nix.thunk(() => ({ [nix.POS]: pos$18, cliproxyapi: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             cliproxyapi: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Proxy that provides OpenAI/Gemini/Claude/Codex/Grok compatible API interfaces",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => nix.sel(secretsReplacement, "script")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -182,15 +182,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       doc: nix.path(here, "./cliproxyapi.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anish"))]),
     })),

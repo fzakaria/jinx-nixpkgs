@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const squashfs_tools = nix.arg($, "squashfs-tools");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "widevine-cdm",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "lacrosVersion")}-${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(finalAttrs, "widevineInstaller", "rev")))}`),
       lacrosVersion: "120.0.6098.0",
       widevineInstaller: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AsahiLinux",
           repo: "widevine-installer",
           rev: "7a3928fe1342fb07d96f61c2b094e3287588958b",
           sha256: "sha256-XI1y4pVNpXS+jqFs0KyVMrxcULOJ5rADsgvwfLF6e0Y=",
         })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://commondatastorage.googleapis.com/chromeos-localmirror/distfiles/chromeos-lacros-arm64-squash-zstd-${nix.sel(finalAttrs, "lacrosVersion")}`),
           hash: "sha256-OKV8w5da9oZ1oSGbADVPCIkP9Y0MVLaQ3PXS3ZBLFXY=",
         })))),

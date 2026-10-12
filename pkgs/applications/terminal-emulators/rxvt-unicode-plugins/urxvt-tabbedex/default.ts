@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "urxvt-tabbedex";
       const version = "26.16.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mina86",
           repo: "urxvt-tabbedex",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [perl]);
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tabbed plugin for rxvt-unicode with many enhancements (mina86's fork)",
         homepage: "https://github.com/mina86/urxvt-tabbedex",
         maintainers: [],
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

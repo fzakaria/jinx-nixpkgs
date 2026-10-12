@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jpsxdec",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m35",
           repo: "jpsxdec",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "jpsxdec",
             exec: "jpsxdec",
             icon: "jpsxdec",
@@ -60,12 +60,12 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/m35/jpsxdec/blob/${nix.sel(finalAttrs, "src", "rev")}/jpsxdec/doc/CHANGES.txt`),
         description: "Cross-platform PlayStation 1 audio and video converter",
         homepage: "https://jpsxdec.blogspot.com/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             shortName: "jpsxdec",
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/m35/jpsxdec/${nix.sel(finalAttrs, "src", "rev")}/.github/LICENSE.md`),
             free: true,

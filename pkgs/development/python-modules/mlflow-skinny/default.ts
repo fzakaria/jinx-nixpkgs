@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mlflow-skinny",
       version: nix.thunk(() => nix.attr(mlflow, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlflow",
           repo: "mlflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mlflow"]),
       doCheck: false,
       meta: nix.thunk(() => nix.update(nix.sel(mlflow, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight version of MLflow that is designed to minimize package size",
         homepage: "https://github.com/mlflow/mlflow/tree/master/libs/skinny",
         sourceProvenance: nix.thunk(() => (() => {

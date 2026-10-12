@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "alerta"));
   const alertaConf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "alertad.conf",
       text: nix.thunk(() => nix.str`DATABASE_URL = '${nix.sel(cfg, "databaseUrl")}'
 DATABASE_NAME = '${nix.sel(cfg, "databaseName")}'
@@ -54,64 +54,64 @@ ${nix.sel(cfg, "extraConfig")}
 `),
     }))));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         alerta: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "alerta")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5000n,
               description: "Port of Alerta",
             })))),
           bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "Address to bind to. The default is to bind to all addresses",
             })))),
           logDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Location where the logfiles are stored",
               default: "/var/log/alerta",
             })))),
           databaseUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "URL of the MongoDB or PostgreSQL database to connect to",
               default: "mongodb://localhost",
             })))),
           databaseName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Name of the database instance to connect to",
               default: "monitoring",
             })))),
           corsOrigins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "List of URLs that can access the API for Cross-Origin Resource Sharing (CORS)",
               default: nix.thunk(() => ["http://localhost", "http://localhost:5000"]),
             })))),
           authenticationRequired: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether users must authenticate when using the web UI or command-line tool",
               default: false,
             })))),
           signupEnabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to prevent sign-up of new users via the web UI",
               default: true,
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "These lines go into alertad.conf verbatim.",
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
@@ -120,31 +120,31 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             settings: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "10-alerta": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "logDir"), nix.thunk(() => ({
-                  __proto__: pos$15,
-                  d: nix.thunk(() => ({ __proto__: pos$14, user: "alerta", group: "alerta" })),
+                  [nix.POS]: pos$15,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$14, user: "alerta", group: "alerta" })),
                 }))],
               ])),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             alerta: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Alerta Monitoring System",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$18, ALERTA_SVR_CONF_FILE: alertaConf })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$18, ALERTA_SVR_CONF_FILE: alertaConf })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "alerta-server")}/bin/alertad run --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} --host ${nix.sel(cfg, "bind")}`),
                 User: "alerta",
                 Group: "alerta",
@@ -153,23 +153,23 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "alerta"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           users: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             alerta: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "alerta")),
               description: "Alerta user",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             alerta: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "alerta")),
             })),
           })),

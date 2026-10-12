@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "django-vpg",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glitchtip",
           repo: "django-vpg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-OTmiTuEITDXvjfwfMsDsFGB+/RitpixPZkaQsgTccw8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,10 +49,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]),
       dependencies: nix.thunk(() => [django, psycopg]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, async: nix.thunk(() => [django_async_backend]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, async: nix.thunk(() => [django_async_backend]) })),
       pythonImportsCheck: nix.thunk(() => ["django_vpg"]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         VPG_TEST_DSN: "postgres://postgres@127.0.0.1:5432/postgres",
       })),
       preCheck: "rm -r django_vpg\n",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(django, "version"))), "6")), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "async"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rust-powered PostgreSQL driver and Django database backend",
         homepage: "https://gitlab.com/glitchtip/django-vpg/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/django-vpg/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),

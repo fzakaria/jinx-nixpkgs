@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const version = "0.3.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "weechat-matrix",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "poljar",
           repo: "weechat-matrix",
           rev: version,
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://patch-diff.githubusercontent.com/raw/poljar/weechat-matrix/pull/309.patch",
             hash: "sha256-Grdht+TOFvCYRpL7uhPivqL7YzLoNVF3iQNHgbv1Te0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/poljar/weechat-matrix/commit/feae9fda26ea9de98da9cd6733980a203115537e.patch",
             hash: "sha256-MAfxJ85dqz5PNwp/GJdHA2VvXVdWh+Ayx5g0oHiw9rs=",
             includes: nix.thunk(() => ["matrix/config.py"]),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
         attrs,
         logbook,
         pygments,
-        nix.thunk(() => nix.app(nix.sel(matrix_nio, "override"), nix.thunk(() => ({ __proto__: pos$4, withVodozemac: true })))),
+        nix.thunk(() => nix.app(nix.sel(matrix_nio, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withVodozemac: true })))),
         aiohttp,
         requests,
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, scripts: nix.thunk(() => ["matrix.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, scripts: nix.thunk(() => ["matrix.py"]) })),
       dontBuild: true,
       doCheck: false,
       pyproject: false,
@@ -96,7 +96,7 @@ substituteInPlace $out/${nix.sel(python, "sitePackages")}/matrix/server.py --rep
 substituteInPlace $out/${nix.sel(python, "sitePackages")}/matrix/uploads.py --replace-fail \\"matrix_upload\\" \\"$out/bin/matrix_upload\\"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python plugin for Weechat that lets Weechat communicate over the Matrix protocol",
         homepage: "https://github.com/poljar/weechat-matrix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

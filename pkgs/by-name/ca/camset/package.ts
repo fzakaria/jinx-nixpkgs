@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "camset",
       version: "0-unstable-2023-05-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "azeam",
           repo: "camset",
           rev: "b813ba9b1d29f2d46fad268df67bf3615a324f3e",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "camset",
             exec: "camset",
             icon: "camera",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI for Video4Linux adjustments of webcams",
         homepage: "https://github.com/azeam/camset",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

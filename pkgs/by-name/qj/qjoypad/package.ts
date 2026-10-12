@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qjoypad";
       const version = "4.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "panzi",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtx11extras")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program that lets you use gaming devices anywhere",
         longDescription: "A simple Linux/QT program that lets you use your gaming devices\nwhere you want them: in your games! QJoyPad takes input from a\ngamepad or joystick and translates it into key strokes or mouse\nactions, letting you control any XWindows program with your game\ncontroller. This lets you play all those games that for some\nreason don't have joystick support with your joystick. QJoyPad\nalso gives you the advantage of multiple saved layouts so you\ncan have a separate setting for every game, or for every class\nof game! That way you can play your games the way you want, not\nthe way the programmers decided, and you can have the same\nbutton be \"fire\" in every one of your space fighters. QJoyPad\ngives you the freedom and flexibility to really take advantage\nof gaming devices in Linux, and makes the Linux gaming\nexperience just a little bit nicer.\n",
         homepage: "https://github.com/panzi/qjoypad/",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "qjoypad",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

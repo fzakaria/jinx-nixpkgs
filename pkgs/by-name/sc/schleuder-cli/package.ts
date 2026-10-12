@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       ruby: ruby,
       pname: "schleuder-cli",
       gemdir: nix.path(here, "./."),
       installManpages: false,
       exes: nix.thunk(() => ["schleuder-cli"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "schleuder-cli")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool to create and manage schleuder-lists",
         longDescription: "Schleuder-cli enables creating, configuring, and deleting lists,\nsubscriptions, keys, etc. It uses the Schleuder API, provided by\nschleuder-api-daemon (part of Schleuder).\n",
         homepage: "https://schleuder.org",

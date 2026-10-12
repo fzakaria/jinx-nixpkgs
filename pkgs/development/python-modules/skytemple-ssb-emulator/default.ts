@@ -31,25 +31,25 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const range_typed_integers = nix.arg($, "range-typed-integers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "skytemple-ssb-emulator",
       version: "1.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SkyTemple",
           repo: "skytemple-ssb-emulator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-zmLEvE96gkElTggcRG9fZDrJPLOXeNuSk49zXQAB69Y=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MSPqQmC70pq+sEM8zJrrFiz32dorOJxr2G/y2H4EUQI=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n })),
       "build-system": nix.thunk(() => [meson, setuptools, setuptools_rust]),
       buildInputs: nix.thunk(() => [SDL2, alsa_lib, glib, libpcap, soundtouch, zlib]),
       nativeBuildInputs: nix.thunk(() => [
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["skytemple_ssb_emulator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SkyTemple Script Engine Debugger Emulator Backend",
         homepage: "https://github.com/SkyTemple/skytemple-ssb-emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

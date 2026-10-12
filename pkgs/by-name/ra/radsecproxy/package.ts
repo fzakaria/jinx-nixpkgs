@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nettle = nix.arg($, "nettle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "radsecproxy",
       version: "1.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "radsecproxy",
           repo: "radsecproxy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         "--localstatedir=/var",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://radsecproxy.github.io/",
         description: "Generic RADIUS proxy that supports both UDP and TLS (RadSec) RADIUS transports",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

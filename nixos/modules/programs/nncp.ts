@@ -34,23 +34,23 @@ export default nix.lambda((args) => (() => {
   const jsonCfgFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "nncp.json", nix.thunk(() => nix.sel(programCfg, "settings"))));
   const pkg = nix.thunk(() => nix.sel(programCfg, "package"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       programs: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nncp: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "NNCP (Node to Node copy) utilities and configuration")),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "uucp",
               description: "The group under which NNCP files shall be owned.\nAny member of this group may access the secret keys\nof this NNCP node.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nncp", nix.thunk(() => ({})))),
           secrets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
               description: "A list of paths to NNCP configuration files that should not be\nin the Nix store. These files are layered on top of the values at\n[](#opt-programs.nncp.settings).\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               description: nix.thunk(() => nix.str`NNCP configuration, see
 <http://www.nncpgo.org/Configuration.html>.
@@ -76,43 +76,43 @@ At runtime these settings will be overlayed by the contents of
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(programCfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [pkg]),
           etc: nix.thunk(() => ({
-            __proto__: pos$8,
-            "nncp.hjson": nix.thunk(() => ({ __proto__: pos$7, source: nncpCfgFile })),
+            [nix.POS]: pos$8,
+            "nncp.hjson": nix.thunk(() => ({ [nix.POS]: pos$7, source: nncpCfgFile })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           nncp: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             settings: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               spool: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/spool/nncp")),
               log: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/spool/nncp/log")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(programCfg, "settings", "spool")} 0770 root ${nix.sel(programCfg, "group")}`),
               nix.thunk(() => nix.str`f ${nix.sel(programCfg, "settings", "log")} 0770 root ${nix.sel(programCfg, "group")}`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "nncp-config": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               path: nix.thunk(() => [pkg]),
               description: "Generate NNCP configuration",
               wantedBy: nix.thunk(() => ["basic.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$14, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$14, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`umask 127
 rm -f ${nncpCfgFile}
 for f in ${jsonCfgFile} ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "programs", "nncp", "secrets")))}

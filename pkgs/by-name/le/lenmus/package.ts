@@ -31,17 +31,17 @@ export default nix.lambda((args) => (() => {
   const soundfont_fluid = nix.arg($, "soundfont-fluid");
   const openlilylib_fonts = nix.arg($, "openlilylib-fonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lenmus",
       version: "6.0.1-unstable-2025-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lenmus",
           repo: "lenmus",
           rev: "113787fe4d755e7e406b5ea4bd2cfb9eae0e56a3",
           hash: "sha256-tDvSgdeFx5xEjExnDhoXgvuvk7+oEPgbt4DJajckvLc=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace CMakeLists.txt \\
   --replace "/usr" "${nix.builtins.placeholder("out")}"
 sed -i 's/fixup_bundle.*")/")/g' CMakeLists.txt
@@ -71,7 +71,7 @@ ln -s ${soundfont_fluid}/share/soundfonts/FluidR3_GM2-2.sf2 res/sounds/FluidR3_G
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/lenmus.app $out/Applications\nmv $out/Resources $out/Applications/lenmus.app/Contents\nmakeWrapper $out/{Applications/lenmus.app/Contents/MacOS,bin}/lenmus\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Program for learning music",
         longDescription: "LenMus Phonascus is a free open source program (GPL v3) for learning music.\nIt allows you to focus on specific skills and exercises, on both theory and aural training.\nThe different activities can be customized to meet your needs\n",
         homepage: "http://www.lenmus.org/",

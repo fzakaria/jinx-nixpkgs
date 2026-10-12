@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnats",
       version: "3.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nats-io",
           repo: "nats.c",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/libnats.pc.in \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n",
       postFixup: "substituteInPlace $dev/lib/cmake/cnats/cnats-config.cmake \\\n  --replace-fail \"_IMPORT_PREFIX \\\"$out\\\"\" \"_IMPORT_PREFIX \\\"$dev\\\"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C API for the NATS messaging system",
         homepage: "https://github.com/nats-io/nats.c",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

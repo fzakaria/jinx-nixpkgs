@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const utf8cpp = nix.arg($, "utf8cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libebml",
       version: "1.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Matroska-Org",
           repo: "libebml",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, utf8cpp]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=YES", "-DCMAKE_INSTALL_PREFIX="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible Binary Meta Language library",
         homepage: "https://dl.matroska.org/downloads/libebml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

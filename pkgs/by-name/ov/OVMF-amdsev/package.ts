@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const acpica_tools = nix.arg($, "acpica-tools");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(edk2, "mkDerivation"), "OvmfPkg/AmdSev/AmdSevX64.dsc", (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "OVMF-amdsev",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), edk2)),
       outputs: nix.thunk(() => ["out", "fd"]),
@@ -35,12 +35,12 @@ substitute ${nix.path(here, "./61-edk2-ovmf-x64-amdsev.json")} \\
 `),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         firmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "fd")}/FV/OVMF.amdsev.fd`),
         mergedFirmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "fd")}/FV/OVMF.amdsev.fd`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UEFI firmware with AMD SEV, SEV-ES and SEV-SNP support, direct kernel boot only",
         homepage: "https://github.com/tianocore/tianocore.github.io/wiki/OVMF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

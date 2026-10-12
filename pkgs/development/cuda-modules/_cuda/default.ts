@@ -11,17 +11,17 @@ const pos$5 = nix.positions(here + "/default.nix", [["bootstrapData", 16, 3], ["
 export default nix.thunk(() => (() => {
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../../../lib")));
   return nix.app(nix.sel(lib, "fixedPoints", "makeExtensible"), (final) => ({
-      __proto__: pos$5,
-      bootstrapData: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./db/bootstrap")), nix.thunk(() => ({ __proto__: pos$1, lib: lib })))),
+      [nix.POS]: pos$5,
+      bootstrapData: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./db/bootstrap")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib })))),
       db: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./db")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           bootstrapData: nix.thunk(() => nix.attr(final, "bootstrapData")),
           db: nix.thunk(() => nix.attr(final, "db")),
           lib: lib,
         })))),
       extensions: [],
-      manifests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./manifests")), nix.thunk(() => ({ __proto__: pos$3, lib: lib })))),
-      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib")), nix.thunk(() => ({ __proto__: pos$4, _cuda: final, lib: lib })))),
+      manifests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./manifests")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib })))),
+      lib: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib")), nix.thunk(() => ({ [nix.POS]: pos$4, _cuda: final, lib: lib })))),
     }));
 })());
 //# sourceMappingURL=default.ts.map

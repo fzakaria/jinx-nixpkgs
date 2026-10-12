@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spasm-ng",
       version: "0.5-beta.3-unstable-2022-07-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alberthdev",
           repo: "spasm-ng",
           rev: "5f0786d38f064835be674d4b7df42969967bb73c",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 spasm -t $out/bin\ninstall -Dm555 inc/*.inc -t $out/include\n\nrunHook postInstall\n",
       postFixup: "wrapProgram $out/bin/spasm --add-flags \"-I $out/include\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/alberthdev/spasm-ng",
         description: "Z80 assembler with extra features to support development for TI calculators",
         mainProgram: "spasm",

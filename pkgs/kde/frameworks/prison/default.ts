@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qrencode = nix.arg($, "qrencode");
   const libdmtx = nix.arg($, "libdmtx");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "prison",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtmultimedia, qrencode, libdmtx]),
     })));

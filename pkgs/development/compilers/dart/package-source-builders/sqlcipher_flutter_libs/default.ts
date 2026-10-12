@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const artifacts = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (version_1) => (hash) => (() => {
-        const file = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, hash: hash }))));
+        const file = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash }))));
         const url = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "v4_6_1")) ? nix.str`https://storage.googleapis.com/simon-public-euw3/assets/sqlcipher/${version_1}.c` : nix.str`https://fsn1.your-objectstorage.com/simon-public/assets/sqlcipher/${version_1}.c`));
-        return { __proto__: pos$2, file, url };
+        return { [nix.POS]: pos$2, file, url };
       })(), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         v4_10_0: "sha256-3njvCHy8Juj+WE3gXxeQ8+NIl9uHMegVTcZ00/LfKMs=",
         v4_9_0: "sha256-uqvW5BgMjCS0GzeEDeGskb4It0NkWjNUpyXpGlBSIlc=",
         v4_8_0: "sha256-nfYmi9PJlMbLqiFRksOIUXYHgD8LL2AVey9GCUc03Jw=",
@@ -55,11 +55,11 @@ ${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), " || ", (_) => (v) => nix.str
 runHook postInstall
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname,
           version: version_1,
           src: src_1,

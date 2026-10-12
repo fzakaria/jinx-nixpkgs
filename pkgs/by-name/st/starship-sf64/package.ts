@@ -52,16 +52,16 @@ export default nix.lambda((args) => (() => {
   const starship_sf64 = nix.arg($, "starship-sf64");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const dr_libs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "mackron",
       repo: "dr_libs",
       rev: "da35f9d6c7374a95353fd1df1d394d44ab66cf01",
       hash: "sha256-ydFhQ8LTYDBnRTuETtfWwIHZpRciWfqGsZC6SuViEn0=",
     }))));
   const imgui$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ocornut",
           repo: "imgui",
           tag: "v1.91.9b-docking",
@@ -72,28 +72,28 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const libgfxd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "glankk",
       repo: "libgfxd",
       rev: "008f73dca8ebc9151b205959b17773a19c5bd0da",
       hash: "sha256-AmHAa3/cQdh7KAMFOtz5TQpcM6FqO9SppmDpKPTjTt8=",
     }))));
   const prism = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       owner: "KiritoDv",
       repo: "prism-processor",
       rev: "7ae724a6fb7df8cbf547445214a1a848aefef747",
       hash: "sha256-G7koDUxD6PgZWmoJtKTNubDHg6Eoq8I+AxIJR0h3i+A=",
     }))));
   const stb_impl = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "stb_impl.c",
       text: "#define STB_IMAGE_IMPLEMENTATION\n#include \"stb_image.h\"\n",
     }))));
   const stormlib$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           owner: "ladislav-zezula",
           repo: "StormLib",
           tag: "v9.25",
@@ -104,18 +104,18 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const thread_pool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       owner: "bshoshany",
       repo: "thread-pool",
       tag: "v4.1.0",
       hash: "sha256-zhRFEmPYNFLqQCfvdAaG5VBNle9Qm8FepIIIrT9sh88=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "starship-sf64",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           owner: "HarbourMasters",
           repo: "Starship",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,16 +125,16 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./dont-fetch-stb.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./git-deps.patch"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             libgfxd_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 owner: "glankk",
                 repo: "libgfxd",
                 rev: "96fd3b849f38b3a7c7b7f3ff03c5921d328e6cdf",
                 hash: "sha256-dedZuV0BxU6goT+rPvrofYqTz9pTA/f6eQcsvpDWdvQ=",
               })))),
             spdlog_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 owner: "gabime",
                 repo: "spdlog",
                 rev: "7e635fca68d014934b4af8a1cf874f63989352b7",
@@ -211,7 +211,7 @@ install -Dm644 -t $out/share/licenses/starship-sf64/thread_pool ${thread_pool}/L
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             name: "Starship",
             icon: "starship-sf64",
             exec: "starship-sf64",
@@ -222,7 +222,7 @@ install -Dm644 -t $out/share/licenses/starship-sf64/thread_pool ${thread_pool}/L
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         homepage: "https://github.com/HarbourMasters/Starship",
         description: "SF64 PC Port",
         mainProgram: "starship-sf64",

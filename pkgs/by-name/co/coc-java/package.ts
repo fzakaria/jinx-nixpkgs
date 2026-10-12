@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "coc-java",
       version: "1.26.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neoclide",
           repo: "coc-java",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-FF7EAf6SvO1sGMIE8FCS7MbnpVwVUwVg0SVUsX+i7zg=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Java extension for coc.nvim",
         homepage: "https://github.com/neoclide/coc-java",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

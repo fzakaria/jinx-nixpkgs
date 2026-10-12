@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const openssh = nix.arg($, "openssh");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gh",
       version: "2.102.0",
       __structuredAttrs: true,
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cli",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "export SOURCE_DATE_EPOCH=$(cat SOURCE_DATE_EPOCH)\n",
       makeFlags: nix.thunk(() => nix.concat(["bin/gh"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => ["manpages"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GH_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\ninstallBin bin/gh\nwrapProgram $out/bin/gh \\\n  --set-default GH_TELEMETRY false\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installManPage share/man/*/*.[1-9]\n\ninstallShellCompletion --cmd gh \\\n  --bash <($out/bin/gh completion -s bash) \\\n  --fish <($out/bin/gh completion -s fish) \\\n  --zsh <($out/bin/gh completion -s zsh)\n")), "runHook postInstall\n")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GitHub CLI tool",
         homepage: "https://cli.github.com/",
         downloadPage: "https://github.com/cli/cli",

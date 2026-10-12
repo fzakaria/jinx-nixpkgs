@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lttng-tools";
       const version = "2.15.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://lttng.org/files/lttng-tools/${pname}-${version}.tar.bz2`),
           sha256: "sha256-i21Lp64sA299r7tOKXF2d0EQePmp2WGy3HwboWJz6ek=",
         }))));
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [babeltrace2, popt, libuuid, liburcu, lttng_ust, libxml2, kmod]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tracing tools (kernel + user space) for Linux",
         mainProgram: "lttng",
         homepage: "https://lttng.org/",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

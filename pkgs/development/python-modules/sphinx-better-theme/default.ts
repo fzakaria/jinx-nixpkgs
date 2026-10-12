@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "irskep",
           repo: "sphinx-better-theme",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [sphinxHook]);
       const pythonImportsCheck = nix.thunk(() => ["better"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/irskep/sphinx-better-theme",
         description: "Better Sphinx Theme",
         longDescription: "This is a modified version of the default Sphinx theme with the following\ngoals:\n\n1. Remove frivolous colors, especially hard-coded ones\n2. Improve readability by limiting width and using more whitespace\n3. Encourage visual customization through CSS, not themeconf\n4. Use semantic markup\n\nv0.1 meets goals one and two. Goal three is partially complete; it's simple to\nadd your own CSS file without creating a whole new theme.\nyou'd like something changed.\n\nTo use the theme, set ``html_theme_path`` to contain\n``better.better_theme_path``, and set ``html_theme`` to ``'better'``::\n\n    from better import better_theme_path\n    html_theme_path = [better_theme_path]\n    html_theme = 'better'\n",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

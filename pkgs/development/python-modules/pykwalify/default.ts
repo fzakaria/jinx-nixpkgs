@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "pykwalify";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-eWsq0+1MuZuIMItTP7L1WcMPpu+0+p/aETR/SD0kWIQ=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pykwalify-fix-tests-ruamel-yaml-0.18.patch",
             url: "https://github.com/Grokzen/pykwalify/commit/57bb2ba5c28b6928edb3f07ef581a5a807524baf.diff",
             hash: "sha256-XUiebDzFSvNrPpRMoc2lv9m+30cfFh0N0rznMiSdQ/0=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, testfixtures]);
       const pythonImportsCheck = nix.thunk(() => ["pykwalify"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Grokzen/pykwalify",
         description: "YAML/JSON validation library",
         mainProgram: "pykwalify",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         format,
         pname,

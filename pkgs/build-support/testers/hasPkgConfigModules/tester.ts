@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
     const version = nix.argOr($_1, "version", () => nix.selOr(package$, () => null, "version"));
     const versionCheck = nix.argOr($_1, "versionCheck", () => false);
     return nix.app(runCommand, testName, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         buildInputs: nix.thunk(() => [package$]),
         moduleNames: moduleNames,
         version: version,
         versionCheck: versionCheck,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: nix.thunk(() => nix.str`Test whether ${nix.sel(package$, "name")} exposes pkg-config modules ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", moduleNames)}`),
         }, nix.builtins.intersectAttrs(nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             available: nix.thunk(() => nix.builtins.throw("unused")),
             broken: nix.thunk(() => nix.builtins.throw("unused")),
             insecure: nix.thunk(() => nix.builtins.throw("unused")),

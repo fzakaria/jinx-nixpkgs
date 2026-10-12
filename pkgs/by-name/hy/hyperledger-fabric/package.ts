@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyperledger-fabric",
       version: "2.5.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyperledger",
           repo: "fabric",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/hyperledger/fabric/common/metadata.CommitSha=${nix.sel(finalAttrs, "src", "tag")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High-performance, secure, permissioned blockchain network",
         longDescription: "Hyperledger Fabric is an enterprise-grade permissioned distributed ledger\nframework for developing solutions and applications. Its modular and\nversatile design satisfies a broad range of industry use cases. It offers\na unique approach to consensus that enables performance at scale while\npreserving privacy.\n",
         homepage: "https://wiki.hyperledger.org/display/fabric",

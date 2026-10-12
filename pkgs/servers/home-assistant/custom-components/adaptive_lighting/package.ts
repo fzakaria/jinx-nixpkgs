@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "adaptive_lighting";
       const version = "1.32.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "basnijholt",
           repo: "adaptive-lighting",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [ulid_transform]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/basnijholt/adaptive-lighting/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant Adaptive Lighting Plugin - Sun Synchronized Lighting",
         homepage: "https://github.com/basnijholt/adaptive-lighting",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

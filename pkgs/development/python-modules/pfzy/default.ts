@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kazhala",
           repo: "pfzy",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const pythonImportsCheck = nix.thunk(() => ["pfzy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python port of the fzy fuzzy string matching algorithm",
         homepage: "https://github.com/kazhala/pfzy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

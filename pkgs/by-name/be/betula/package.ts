@@ -14,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "betula",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~bouncepaw",
           repo: "betula",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-P7d8qVvZQCkqavgkyJOY5WuwMzg1lURzWKt71XzThpg=",
         })))),
       vendorHash: "sha256-HGjaS2Sqsjk/pilt8wtx5Ect8Y8S5638PWEpXCqeZ6w=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       checkFlags: "-skip=TestTitles|TestHEntries",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Single-user self-hosted bookmarking software",
         mainProgram: "betula",
         homepage: "https://betula.mycorrhiza.wiki/",

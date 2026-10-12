@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   nix.assert_(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/numpy/default.nix:41:1");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "numpy",
       version: "2.5.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numpy",
           repo: "numpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/numpy/numpy/commit/0e1dce62e27f79be9d6552487787a19b7f95cfbf.patch",
             hash: "sha256-mQjf6y/mLSgx9+G70/r9U3VJg5zIrl/6ANQhpP2LGmg=",
           })))),
@@ -104,26 +104,26 @@ ln -s ${nix.builtins.placeholder("out")}/${nix.sel(finalAttrs, "passthru", "core
           "test_multinomial_pvals_float32",
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV64")), nix.thunk(() => ["test_floor_division_errors", "test_unary_spurious_fpexception"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["test_loss_of_precision"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")))), nix.thunk(() => ["test_sq_cases"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(nix.sel(stdenv, "hostPlatform"), "gcc", "arch")), nix.thunk(() => ["test_validate_transcendentals"])))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         blas: nix.thunk(() => nix.sel(blas, "provider")),
         blasImplementation: nix.thunk(() => nix.sel(blas, "implementation")),
         buildConfig: nix.thunk(() => nix.attrsDyn({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           lapack: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             include_dirs: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), lapack)}/include`),
             library_dirs: nix.thunk(() => nix.str`${lapack}/lib`),
             runtime_library_dirs: nix.thunk(() => nix.str`${lapack}/lib`),
           })),
           blas: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             include_dirs: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), blas)}/include`),
             library_dirs: nix.thunk(() => nix.str`${blas}/lib`),
             runtime_library_dirs: nix.thunk(() => nix.str`${blas}/lib`),
           })),
         }, [
           [nix.sel(blas, "implementation"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             include_dirs: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), blas)}/include:${nix.app(nix.sel(lib, "getDev"), lapack)}/include`),
             library_dirs: nix.thunk(() => nix.str`${blas}/lib:${lapack}/lib`),
             runtime_library_dirs: nix.thunk(() => nix.str`${blas}/lib:${lapack}/lib`),
@@ -131,14 +131,14 @@ ln -s ${nix.builtins.placeholder("out")}/${nix.sel(finalAttrs, "passthru", "core
           }))],
         ])),
         cfg: nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "site.cfg",
             text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "buildConfig")))),
           })))),
         coreIncludeInnerDir: nix.thunk(() => nix.str`${nix.sel(python, "sitePackages")}/numpy/_core/include`),
         coreIncludeDir: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/${nix.sel(finalAttrs, "finalPackage", "passthru", "coreIncludeInnerDir")}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           astropy: astropy,
           numba: numba,
           pandas: pandas,
@@ -147,7 +147,7 @@ ln -s ${nix.builtins.placeholder("out")}/${nix.sel(finalAttrs, "passthru", "core
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         changelog: nix.thunk(() => nix.str`https://github.com/numpy/numpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Scientific tools for Python",
         homepage: "https://numpy.org/",

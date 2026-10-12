@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const patchlevel = "4";
   const tutorial4patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://bugs.debian.org/cgi-bin/bugreport.cgi?msg=34;filename=tutorial-part4.map.bspatch;att=1;bug=595448",
       name: "globulation2-tutorial4-map-patch-debian.bspatch",
       sha256: "d3511ac0f822d512c42abd34b3122f2990862d3d0af6ce464ff372f5bd7f35e9",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glob2";
       const version = nix.thunk(() => nix.str`0.9.4.${patchlevel}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://savannah/glob2/${version}/${pname}-${version}.tar.gz`),
           sha256: "1f0l2cqp2g3llhr9jl6jj15k0wb5q8n29vqj99xy4p5hqs78jk8g",
         }))));
@@ -53,22 +53,22 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./header-order.patch"),
         nix.path(here, "./public-buildproject.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://bitbucket.org/giszmo/glob2/commits/c9dc715624318e4fea4abb24e04f0ebdd9cd8d2a/raw",
             sha256: "0017xg5agj3dy0hx71ijdcrxb72bjqv7x6aq7c9zxzyyw0mkxj0k",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://sources.debian.org/data/main/g/glob2/0.9.4.4-11/debian/patches/10_pthread_underlinkage.patch",
             sha256: "sha256-L9POADlkgQbUQEUmx4s3dxXG9tS0w2IefpRGuQNRMI0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://sources.debian.org/data/main/g/glob2/0.9.4.4-11/debian/patches/scons.patch",
             sha256: "sha256-kHuFQCmkCkogqK6vfHKGYeZrMvsdQ7h8B3CcCtjLr50=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://sources.debian.org/data/main/g/glob2/0.9.4.4-11/debian/patches/boost-1.69.patch",
             sha256: "sha256-D7agFR4uyIHxQz690Q8EHPF+rTEoiGUpgkm7r5cL5SI=",
           })))),
@@ -101,7 +101,7 @@ sed -i -e "s@env = Environment()@env = Environment( ENV = os.environ )@" SConstr
         nix.thunk(() => nix.str`DATADIR=${nix.builtins.placeholder("out")}/share/globulation2/glob2`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "RTS without micromanagement",
         mainProgram: "glob2",
         maintainers: nix.thunk(() => (() => {
@@ -113,14 +113,14 @@ sed -i -e "s@env = Environment()@env = Environment( ENV = os.environ )@" SConstr
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))),
       }));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateInfo: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           downloadPage: "http://globulation2.org/wiki/Download_and_Install",
         })),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         src,

@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "funsor",
       version: "0.4.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyro-ppl",
           repo: "funsor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export FUNSOR_BACKEND=torch\n",
       pythonImportsCheck: nix.thunk(() => ["funsor"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Functional tensors for probabilistic programming",
         homepage: "https://funsor.pyro.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/pyro-ppl/funsor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

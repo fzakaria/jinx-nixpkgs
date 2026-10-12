@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         iay: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(mkEnableOption, "iay, a minimalistic shell prompt")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "iay", nix.thunk(() => ({})))),
           minimalPrompt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Use minimal one-liner prompt.",
@@ -46,18 +46,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         programs: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           bash: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             promptInit: nix.thunk(() => nix.str`if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
   PS1='$(iay ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "minimalPrompt")), "-m")})'
 fi
 `),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             promptInit: nix.thunk(() => nix.str`if [[ $TERM != "dumb" && (-z $INSIDE_EMACS || $INSIDE_EMACS == "vterm") ]]; then
   autoload -Uz add-zsh-hook
   _iay_prompt() {
@@ -70,7 +70,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => nix.sel(pkgs, "iay", "meta", "maintainers")),
     })),
   };

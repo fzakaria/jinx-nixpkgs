@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const gencat = nix.arg($, "gencat");
   const include = nix.arg($, "include");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       noLibc: true,
       path: "lib/csu",
       extraPaths: nix.thunk(() => nix.concat(["lib/Makefile.inc", "lib/libc/include/libc_private.h"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.ge(nix.sel(versionData, "major"), 14n)), nix.thunk(() => ["sys/sys/param.h"])))),

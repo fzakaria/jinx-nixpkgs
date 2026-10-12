@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const cachy = nix.arg($, "cachy");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fasttransport",
       version: "0.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AnswerDotAI",
           repo: "fasttransport",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,15 +34,15 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [fastcore, httpx2]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, dev: nix.thunk(() => [cachy]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, dev: nix.thunk(() => [cachy]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fasttransport"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sync and async HTTP transports over httpx2, plus base classes for small REST clients",
         homepage: "https://github.com/AnswerDotAI/fasttransport",
         changelog: nix.thunk(() => nix.str`https://github.com/AnswerDotAI/fasttransport/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

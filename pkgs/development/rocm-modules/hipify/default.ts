@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hipify",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ROCm",
           repo: "HIPIFY",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         zstd,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CXXFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(llvm, "llvm")))}/include -I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(llvm, "clang-unwrapped")))}/include`),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace CMakeLists.txt \\
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
 chmod +x bin/*
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$3, finalAttrs: finalAttrs })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
       })),
       postInstall: "rm $out/bin/hipify-perl\nchmod +x $out/bin/*\nchmod +x $out/libexec/*\npatchShebangs $out/bin/\npatchShebangs $out/libexec/\nln -s $out/{libexec/hipify,bin}/hipify-perl\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Convert CUDA to Portable C++ Code",
         homepage: "https://github.com/ROCm/HIPIFY",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

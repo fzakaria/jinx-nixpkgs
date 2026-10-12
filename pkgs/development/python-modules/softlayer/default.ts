@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const zeep = nix.arg($, "zeep");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "softlayer",
       version: "6.2.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "softlayer",
           repo: "softlayer-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_cf_call_large_dataset"]),
       pythonImportsCheck: nix.thunk(() => ["SoftLayer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python libraries that assist in calling the SoftLayer API",
         homepage: "https://github.com/softlayer/softlayer-python",
         changelog: nix.thunk(() => nix.str`https://github.com/softlayer/softlayer-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

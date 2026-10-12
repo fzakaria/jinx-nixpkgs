@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "paseo",
       version: "0.11.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "getpaseo",
           repo: "paseo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,11 +88,11 @@ makeWrapper ${nix.sel(finalAttrs, "nodejs")}/bin/node $out/bin/paseo \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Orchestrate multiple coding agents from desktop and mobile",
         homepage: "https://github.com/getpaseo/paseo",
         changelog: nix.thunk(() => nix.str`https://github.com/getpaseo/paseo/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

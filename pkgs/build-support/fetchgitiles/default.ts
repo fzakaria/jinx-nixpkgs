@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
       nix.assert_((nix.asBool(nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(tag, null)), nix.thunk(() => nix.eq(rev, null)))) || nix.asBool(nix.builtins.throw("fetchFromGitiles requires one of either `rev` or `tag` to be provided (not both)."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchgitiles/default.nix:16:3");
       const realrev = nix.thunk(() => (nix.asBool(!nix.eq(tag, null)) ? nix.add("refs/tags/", tag) : nix.force(rev)));
       return nix.update(nix.app(fetchzip, nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: name,
           url: nix.thunk(() => nix.str`${url}/+archive/${realrev}.tar.gz`),
           stripRoot: false,
-          meta: nix.thunk(() => ({ __proto__: pos$1, homepage: url })),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["url", "tag", "rev"]))))), { __proto__: pos$3, rev: rev, tag: tag });
+          meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: url })),
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["url", "tag", "rev"]))))), { [nix.POS]: pos$3, rev: rev, tag: tag });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

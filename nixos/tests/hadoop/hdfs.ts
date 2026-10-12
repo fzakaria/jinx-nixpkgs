@@ -27,32 +27,32 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const package$ = nix.arg($, "package");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: nix.thunk(() => nix.str`hadoop-${nix.sel(package$, "version")}-hdfs`),
       nodes: nix.thunk(() => (() => {
         const coreSite = nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "fs.defaultFS": "hdfs://namenode:8020",
           "hadoop.proxyuser.httpfs.groups": "*",
           "hadoop.proxyuser.httpfs.hosts": "*",
         }));
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           namenode: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               services: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   package: package$,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$4,
-                    namenode: nix.thunk(() => ({ __proto__: pos$2, enable: true, openFirewall: true, formatOnInit: true })),
+                    [nix.POS]: pos$4,
+                    namenode: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewall: true, formatOnInit: true })),
                     httpfs: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "3.3")), true)),
                       openFirewall: true,
                     })),
@@ -66,20 +66,20 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$14,
-              virtualisation: nix.thunk(() => ({ __proto__: pos$8, diskSize: 4096n })),
+              [nix.POS]: pos$14,
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: 4096n })),
               services: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   package: package$,
                   hdfs: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     datanode: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       enable: true,
                       openFirewall: true,
-                      dataDirs: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$9, type: "DISK", path: "/tmp/dn1" }))]),
+                      dataDirs: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, type: "DISK", path: "/tmp/dn1" }))]),
                     })),
                   })),
                   coreSite: coreSite,

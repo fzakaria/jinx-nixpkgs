@@ -36,35 +36,35 @@ export default nix.lambda((args) => (() => {
   const defaultGroup = defaultUser;
   const defaultSpaceDir = "/var/lib/silverbullet";
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         silverbullet: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Silverbullet, an open-source, self-hosted, offline-capable Personal Knowledge Management (PKM) web application")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "silverbullet", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open port in the firewall.",
             })))),
           listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Port to listen on.",
             })))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Address or hostname to listen on. Defaults to 127.0.0.1.",
             })))),
           spaceDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: defaultSpaceDir,
               example: "/home/yourUser/silverbullet",
@@ -73,7 +73,7 @@ By default it is located at \`${defaultSpaceDir}\`.
 `),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               example: "yourUser",
@@ -83,7 +83,7 @@ directory is [spaceDir](#opt-services.silverbullet.spaceDir).
 `),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultGroup,
               example: "yourGroup",
@@ -92,14 +92,14 @@ By default, a group named \`${defaultGroup}\` will be created.
 `),
             })))),
           envFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/etc/silverbullet.env",
               description: "File containing extra environment variables. For example:\n\n```\nSB_USER=user:password\nSB_AUTH_TOKEN=abcdefg12345\n```\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--single"]),
@@ -109,18 +109,18 @@ By default, a group named \`${defaultGroup}\` will be created.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             silverbullet: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Silverbullet service",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "simple",
                 User: nix.thunk(() => nix.str`${nix.sel(cfg, "user")}`),
                 Group: nix.thunk(() => nix.str`${nix.sel(cfg, "group")}`),
@@ -134,17 +134,17 @@ By default, a group named \`${defaultGroup}\` will be created.
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listenPort"))]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [defaultUser, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 description: "Silverbullet daemon user",
@@ -156,7 +156,7 @@ By default, a group named \`${defaultGroup}\` will be created.
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aorith"))];

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yodl",
       version: "4.05.00",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fbb-git",
           repo: "yodl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,13 +45,13 @@ substituteInPlace icmake/stdcpp \\
   --replace-fail "printf << \\"    \\" << file << '\\n';" 'printf("    " + file + "\\n");'
 `),
       nativeBuildInputs: nix.thunk(() => [icmake, perl, bash]),
-      env: nix.thunk(() => ({ __proto__: pos$2, TERM: "xterm" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, TERM: "xterm" })),
       buildPhase: "runHook preBuild\n\nCXXFLAGS+=' --std=c++20'\nexport CXXFLAGS\n./build programs\n./build macros\n./build man\n./build html\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n./build install programs\n./build install macros\n./build install man\n# dangling symlinks\nrm $out/share/man/man1/yodl2xml.1\nrm $out/share/man/man1/yodl2txt.1\nrm $out/share/man/man1/yodl2man.1\nrm $out/share/man/man1/yodl2latex.1\nrm $out/share/man/man1/yodl2html.1\nrm $out/share/man/man1/yodl2whatever.1\n./build install manual\n\nrunHook postInstall\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/fbb-git/yodl/-/blob/${nix.sel(finalAttrs, "src", "tag")}/yodl/changelog`),
         description: "Package that implements a pre-document language and tools to process it",
         homepage: "https://fbb-git.gitlab.io/yodl/",

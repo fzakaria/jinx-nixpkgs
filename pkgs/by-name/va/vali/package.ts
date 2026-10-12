@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const json_c = nix.arg($, "json_c");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vali",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "emersion",
           repo: "vali",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [json_c, aml]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A C library and code generator for Varlink",
         mainProgram: "vali",
         homepage: "https://gitlab.freedesktop.org/emersion/vali",

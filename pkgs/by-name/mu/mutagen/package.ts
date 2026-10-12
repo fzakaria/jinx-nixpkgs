@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mutagen";
       const version = "0.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mutagen-io",
           repo: "mutagen",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-RVVUeNfp/HWd3/5uCyaDGw6bXFJvfomhu//829jO+qE=";
       const agents = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`mutagen-agents-${version}`),
           url: nix.thunk(() => nix.str`https://github.com/mutagen-io/mutagen/releases/download/v${version}/mutagen_linux_amd64_v${version}.tar.gz`),
           stripRoot: false,
@@ -53,7 +53,7 @@ installShellCompletion \\
   --zsh mutagen.zsh
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Make remote development work with your local tools",
         homepage: "https://mutagen.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/mutagen-io/mutagen/releases/tag/v${version}`),
@@ -65,7 +65,7 @@ installShellCompletion \\
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

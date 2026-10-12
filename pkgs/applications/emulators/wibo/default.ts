@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "wibo",
       version: "0.6.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "decompals",
           repo: "wibo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: nix.thunk(() => (() => {
         const gc = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "GC_WII_COMPILERS",
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://files.decomp.dev/compilers_20230715.zip",
                 hash: "sha256-IX3byvEUVJB6Rmc+NqO9ZNt1jl95nQpEIqxbHI+uUio=",
                 stripRoot: false,
               })))),
             meta: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             })),
           }))));
@@ -52,7 +52,7 @@ file test.o | grep "ELF 32-bit"
 `));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Quick-and-dirty wrapper to run 32-bit windows EXEs on linux",
         longDescription: "A minimal, low-fuss wrapper that can run really simple command-line\n32-bit Windows binaries on Linux - with less faff and less dependencies\nthan WINE.\n",
         homepage: "https://github.com/decompals/WiBo",

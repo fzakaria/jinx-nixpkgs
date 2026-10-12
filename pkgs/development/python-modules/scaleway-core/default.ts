@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scaleway-core",
       version: "2.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scaleway",
           repo: "scaleway-sdk-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["scaleway_core"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Integrate Scaleway with your Python applications",
         homepage: "https://github.com/scaleway/scaleway-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/scaleway/scaleway-sdk-python/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

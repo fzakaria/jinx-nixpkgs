@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jugla",
           repo: "pyKeyAtome",
           tag: nix.thunk(() => nix.str`V${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pykeyatome"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to get data from Atome Key",
         mainProgram: "pykeyatome",
         homepage: "https://github.com/jugla/pyKeyAtome",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

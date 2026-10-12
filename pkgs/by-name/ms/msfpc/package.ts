@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const inetutils = nix.arg($, "inetutils");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msfpc",
       version: "1.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "g0tmi1k",
           repo: "msfpc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [metasploit, curl, inetutils, openssl]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MSFvenom Payload Creator",
         mainProgram: "msfpc",
         homepage: "https://github.com/g0tmi1k/msfpc",

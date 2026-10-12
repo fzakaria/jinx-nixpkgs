@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ghostunnel",
       version: "1.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghostunnel",
           repo: "ghostunnel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,28 +36,28 @@ export default nix.lambda((args) => (() => {
         "-skip=^TestACMEInitialIssuance",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nixos: nix.thunk(() => nix.sel(nixosTests, "ghostunnel")),
           podman: nix.thunk(() => nix.sel(nixosTests, "podman-tls-ghostunnel")),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           default: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             imports: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./service.nix"), nix.thunk(() => ({})))),
             ]),
             ghostunnel: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "TLS proxy with mutual authentication support for securing non-TLS backend applications",
         homepage: "https://github.com/ghostunnel/ghostunnel#readme",
         changelog: nix.thunk(() => nix.str`https://github.com/ghostunnel/ghostunnel/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

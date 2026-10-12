@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pysocks = nix.arg($, "pysocks");
   const stem = nix.arg($, "stem");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torrequest",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-N0XU6j/9qY16A0Njx4ets3qrd72rQAlKTZNzks1NroI=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["torrequest"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/erdiaker/torrequest",
         description: "Simple Python interface for HTTP(s) requests over Tor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

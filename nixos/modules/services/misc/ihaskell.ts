@@ -27,23 +27,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ihaskell"));
-  const ihaskell = nix.thunk(() => nix.app(nix.sel(pkgs, "ihaskell", "override"), nix.thunk(() => ({ __proto__: pos$1, packages: nix.thunk(() => nix.sel(cfg, "extraPackages")) }))));
+  const ihaskell = nix.thunk(() => nix.app(nix.sel(pkgs, "ihaskell", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, packages: nix.thunk(() => nix.sel(cfg, "extraPackages")) }))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ihaskell: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Autostart an IHaskell notebook service.",
             })))),
           extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "functionTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
               default: (haskellPackages) => [],
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "haskellPackages: []")),
@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           users: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             ihaskell: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               group: nix.thunk(() => nix.sel(config, "users", "groups", "ihaskell", "name")),
               description: "IHaskell user",
               home: "/var/lib/ihaskell",
@@ -69,24 +69,24 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ihaskell: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "ihaskell")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             ihaskell: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "IHaskell notebook instance",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 User: nix.thunk(() => nix.sel(config, "users", "users", "ihaskell", "name")),
                 Group: nix.thunk(() => nix.sel(config, "users", "groups", "ihaskell", "name")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "runtimeShell")} -c "cd $HOME;${ihaskell}/bin/ihaskell-notebook"`),

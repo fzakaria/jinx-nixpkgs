@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
     const ca = nix.arg($_1, "ca");
     const makeSections = (type) => (sections) => nix.app(concatStringsSep, "\n\n", nix.thunk(() => nix.app(mapAttrsToList, (sec) => (attrs) => nix.add(nix.str`${type} ${sec}
 `, nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => nix.str`  ${k}=${v}`, attrs)))), sections)));
-    const setupConf = nix.thunk(() => nix.app(makeSections, "config", nix.thunk(() => ({ __proto__: pos$1, setup: setup }))));
+    const setupConf = nix.thunk(() => nix.app(makeSections, "config", nix.thunk(() => ({ [nix.POS]: pos$1, setup: setup }))));
     const connectionsConf = nix.thunk(() => nix.app(makeSections, "conn", connections));
     const caConf = nix.thunk(() => nix.app(makeSections, "ca", ca));
     return nix.builtins.toFile("ipsec.conf", nix.thunk(() => nix.str`${setupConf}
@@ -83,48 +83,48 @@ ${caConf}
 }
 
 starter {
-  config_file = ${nix.app(ipsecConf, nix.thunk(() => ({ __proto__: pos$2, setup: setup, connections: connections, ca: ca })))}
+  config_file = ${nix.app(ipsecConf, nix.thunk(() => ({ [nix.POS]: pos$2, setup: setup, connections: connections, ca: ca })))}
 }
 `));
   })(), formals$3);
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         strongswan: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(mkEnableOption, "strongSwan")),
           secrets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["/run/keys/ipsec-foo.secret"]),
               description: "A list of paths to IPSec secret files. These\nfiles will be included into the main ipsec.secrets file with\nthe `include` directive. It is safer if these\npaths are absolute.\n",
             })))),
           setup: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$4, cachecrls: "yes", strictcrlpolicy: "yes" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, cachecrls: "yes", strictcrlpolicy: "yes" })),
               description: "A set of options for the ‘config setup’ section of the\n{file}`ipsec.conf` file. Defines general\nconfiguration parameters.\n",
             })))),
           connections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"%default\" = {\n    keyexchange = \"ikev2\";\n    keyingtries = \"1\";\n  };\n  roadwarrior = {\n    auto       = \"add\";\n    leftcert   = \"/run/keys/moonCert.pem\";\n    leftid     = \"@moon.strongswan.org\";\n    leftsubnet = \"10.1.0.0/16\";\n    right      = \"%any\";\n  };\n}\n")),
               description: "A set of connections and their options for the ‘conn xxx’\nsections of the {file}`ipsec.conf` file.\n",
             })))),
           ca: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 strongswan: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   auto: "add",
                   cacert: "/run/keys/strongswanCert.pem",
                   crluri: "http://crl2.strongswan.org/strongswan.crl",
@@ -133,13 +133,13 @@ starter {
               description: "A set of CAs (certification authorities) and their options for\nthe ‘ca xxx’ sections of the {file}`ipsec.conf`\nfile.\n",
             })))),
           managePlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "If set to true, this option will disable automatic plugin loading and\nthen tell strongSwan to enable the plugins specified in the\n{option}`enabledPlugins` option.\n",
             })))),
           enabledPlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "A list of additional plugins to enable if\n{option}`managePlugins` is true.\n",
@@ -150,23 +150,23 @@ starter {
     config: nix.thunk(() => (() => {
       const w = nix.withScope(cfg, null);
       return nix.app(mkIf, nix.thunk(() => nix.lookup(w, "enable")), nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             etc: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "ipsec.secrets": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 text: nix.thunk(() => nix.app(ipsecSecrets, nix.thunk(() => nix.sel(cfg, "secrets")))),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             services: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               strongswan: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: "strongSwan IPSec Service",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => (() => {
@@ -181,9 +181,9 @@ starter {
                 wants: nix.thunk(() => ["network-online.target"]),
                 after: nix.thunk(() => ["network-online.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   STRONGSWAN_CONF: nix.thunk(() => nix.app(strongswanConf, nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       setup: nix.thunk(() => nix.lookup(w, "setup")),
                       connections: nix.thunk(() => nix.lookup(w, "connections")),
                       ca: nix.thunk(() => nix.lookup(w, "ca")),
@@ -193,7 +193,7 @@ starter {
                     })))),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "strongswan")}/sbin/ipsec start --nofork`),
                 })),
                 preStart: "# with 'nopeerdns' setting, ppp writes into this folder\nmkdir -m 700 -p /etc/ppp\n",

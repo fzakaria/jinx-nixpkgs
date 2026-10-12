@@ -28,49 +28,49 @@ export default nix.lambda((args) => (() => {
   const cppo = nix.arg($, "cppo");
   const param = nix.thunk(() => (() => {
     const v6_6 = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "6.6",
       sha256: "sha256-QhuaQ9346a3neoRM4GrOVzjR8fg9ysMZR1VzNgyIQtc=",
       nativeBuildInputs: nix.thunk(() => [cppo]),
       buildInputs: nix.thunk(() => [cppo]),
     }));
     return nix.selOr({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       "4.02": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: "5.0+4.02.0",
         sha256: "16drjk0qafjls8blng69qiv35a84wlafpk16grrg2i3x19p8dlj8",
       })),
       "4.03": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "5.0+4.03.0",
         sha256: "061v1fl5z7z3ywi4ppryrlcywnvnqbsw83ppq72qmkc7ma4603jg",
       })),
       "4.04": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: "unstable-20161114",
         rev: "49c08e2e4ea8fef88692cd1dcc1b38a9133f17ac",
         sha256: "0ywzfkf5brj33nwh49k9if8x8v433ral25f3nbklfc9vqr06zrfl",
       })),
       "4.05": nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: "5.0+4.05.0",
         sha256: "1jvvhk6wnkvm7b9zph309ihsc0hyxfpahmxxrq19vx8c674jsdm4",
       })),
       "4.06": nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version: "5.1+4.06.0",
         sha256: "1ww4cspdpgjjsgiv71s0im5yjkr3544x96wsq1vpdacq7dr7zwiw",
       })),
       "4.07": nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "5.1+4.06.0",
         sha256: "1ww4cspdpgjjsgiv71s0im5yjkr3544x96wsq1vpdacq7dr7zwiw",
       })),
     }, () => nix.force(v6_6), nix.key(nix.sel(ocaml, "meta", "branch")));
   })());
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       owner: "alainfrisch",
       repo: pname,
       rev: nix.thunk(() => nix.selOr(param, () => nix.sel(param, "version"), "rev")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const pname = "ppx_tools";
   const meta = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     description: "Tools for authors of ppx rewriters",
     homepage: "https://www.lexifi.com/ppx_tools",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
     broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")),
   }));
   return (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(param, "version")), "6.0")) ? nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: pname,
       src: src,
       meta: meta,
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.attr(param, "buildInputs")),
       nativeBuildInputs: nix.thunk(() => nix.attr(param, "nativeBuildInputs")),
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${nix.sel(param, "version")}`),
       src: src,
       nativeBuildInputs: nix.thunk(() => [ocaml, findlib]),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       meta: nix.thunk(() => nix.update(meta, (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
-        return { __proto__: pos$12, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: pos$12, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })())),
     }))));
 })(), formals$1);

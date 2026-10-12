@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const pname = "apt-offline";
   const version = "1.8.6";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "rickysarraf",
       repo: "apt-offline",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PnU8vbEY+EpEv8D6Ap/iJqfwOWxpNytT+XDFCFD8XqU=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pyproject: true,
       pname: pname,
       version: version,
@@ -46,7 +46,7 @@ substituteInPlace apt_offline_core/AptOfflineCoreLib.py \\
       pythonImportsCheck: nix.thunk(() => ["apt_offline_core"]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rickysarraf/apt-offline",
         description: "Offline APT package manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

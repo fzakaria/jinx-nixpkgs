@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_wm = nix.arg($, "libxcb-wm");
   const libxcb_cursor = nix.arg($, "libxcb-cursor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dk",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "natemaia",
           repo: "dk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SES=$(out)/share/xsessions"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bitbucket.org/natemaia/dk",
         description: "List based tiling window manager in the vein of dwm, bspwm, and xmonad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "x11")),

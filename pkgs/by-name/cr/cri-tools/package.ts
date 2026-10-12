@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cri-tools",
       version: "1.37.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "cri-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ runHook postBuild
 `),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\nmake install BINDIR=$out/bin\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd crictl \\\n    --$shell <($out/bin/crictl completion $shell)\ndone\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI and validation tools for Kubelet Container Runtime Interface (CRI)",
         homepage: "https://github.com/kubernetes-sigs/cri-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

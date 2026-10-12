@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-23RPeDLm09qQVoumzLyj7is7SokMPW+7xjFC9uTN9bs=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [
         pyside2,
         nix.thunk(() => nix.app(nix.sel(pyqt5, "override"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             withConnectivity: true,
             withMultimedia: true,
             withWebKit: true,
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["qtpy/tests/test_uic.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Abstraction layer for PyQt5/PyQt6/PySide2/PySide6",
         mainProgram: "qtpy",
         homepage: "https://github.com/spyder-ide/qtpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

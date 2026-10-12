@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "keycloak-config-cli",
       version: "6.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adorsys",
           repo: "keycloak-config-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +42,11 @@ makeWrapper ${jre_headless}/bin/java $out/bin/keycloak-config-cli \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/adorsys/keycloak-config-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/adorsys/keycloak-config-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Import YAML/JSON-formatted configuration files into Keycloak",

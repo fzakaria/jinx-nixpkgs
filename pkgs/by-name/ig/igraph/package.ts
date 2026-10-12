@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const xmlto = nix.arg($, "xmlto");
   nix.assert_((nix.asBool((nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64"))) && nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(arpack, "isILP64"))))) && nix.asBool(!nix.asBool(nix.sel(blas, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ig/igraph/package.nix:25:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "igraph",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "igraph",
           repo: "igraph",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,14 +81,14 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add("substituteInPlace $dev/lib/cmake/igraph/igraph-targets.cmake \\\n  --replace-fail \"_IMPORT_PREFIX \\\"$out\\\"\" \"_IMPORT_PREFIX \\\"$dev\\\"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -change libblas.dylib ${blas}/lib/libblas.dylib $out/lib/libigraph.dylib
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           python: nix.thunk(() => nix.sel(python3, "pkgs", "igraph")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C library for complex network analysis and graph theory",
         homepage: "https://igraph.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/igraph/igraph/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

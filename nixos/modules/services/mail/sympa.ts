@@ -115,14 +115,14 @@ export default nix.lambda((args) => (() => {
     "sympa-task.service",
   ]);
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     StateDirectory: "sympa",
     ProtectHome: true,
     ProtectSystem: "full",
     ProtectControlGroups: true,
   }));
   const sympaServiceConfig = (srv) => nix.update({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     Type: "simple",
     Restart: "always",
     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/${srv}.pl --foreground`),
@@ -148,76 +148,76 @@ sympa-owner@${domain}    postmaster@localhost
   const listAliases = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "list_aliases.tt2", "#--- [% list.name %]@[% list.domain %]: list transport map created at [% date %]\n[% list.name %]@[% list.domain %] sympa:[% list.name %]@[% list.domain %]\n[% list.name %]-request@[% list.domain %] sympa:[% list.name %]-request@[% list.domain %]\n[% list.name %]-editor@[% list.domain %] sympa:[% list.name %]-editor@[% list.domain %]\n#[% list.name %]-subscribe@[% list.domain %] sympa:[% list.name %]-subscribe@[%list.domain %]\n[% list.name %]-unsubscribe@[% list.domain %] sympa:[% list.name %]-unsubscribe@[% list.domain %]\n[% list.name %][% return_path_suffix %]@[% list.domain %] sympabounce:[% list.name %]@[% list.domain %]\n"));
   const enabledFiles = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.sel(v, "enable"), nix.thunk(() => nix.sel(cfg, "settingsFile"))));
   return {
-    __proto__: pos$88,
+    [nix.POS]: pos$88,
     options: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         sympa: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Sympa mailing list manager")),
             lang: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "en_US",
                 example: "cs",
                 description: "Default Sympa language.\nSee <https://github.com/sympa-community/sympa/tree/sympa-6.2/po/sympa>\nfor available options.\n",
               })))),
             listMasters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                 example: nix.thunk(() => ["postmaster@sympa.example.org"]),
                 description: "The list of the email addresses of the listmasters\n(users authorized to perform global server commands).\n",
               })))),
             mainDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                 default: null,
                 example: "lists.example.org",
                 description: "Main domain to be used in {file}`sympa.conf`.\nIf `null`, one of the {option}`services.sympa.domains` is chosen for you.\n",
               })))),
             domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const name = nix.arg($_1, "name");
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         options: nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           webHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                               default: null,
                               example: "archive.example.org",
                               description: "Domain part of the web interface URL (no web interface for this domain if `null`).\nDNS record of type A (or AAAA or CNAME) has to exist with this value.\n",
                             })))),
                           webLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$7,
+                              [nix.POS]: pos$7,
                               type: nix.thunk(() => nix.lookup(w, "str")),
                               default: "/",
                               example: "/sympa",
                               description: "URL path part of the web interface.",
                             })))),
                           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
                                     nix.thunk(() => nix.lookup(w, "str")),
                                     nix.thunk(() => nix.lookup(w, "int")),
                                     nix.thunk(() => nix.lookup(w, "bool")),
                                   ]))))),
                               default: nix.thunk(() => ({})),
-                              example: nix.thunk(() => ({ __proto__: pos$8, default_max_list_members: 3n })),
+                              example: nix.thunk(() => ({ [nix.POS]: pos$8, default_max_list_members: 3n })),
                               description: "The {file}`robot.conf` configuration file as key value set.\nSee <https://sympa-community.github.io/gpldoc/man/sympa.conf.5.html>\nfor list of configuration parameters.\n",
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "web", "enable")) && nix.asBool(!nix.eq(nix.sel(config_1, "webHost"), null)))), nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               wwsympa_url: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`https://${nix.sel(config_1, "webHost")}${nix.app(nix.sel(lib, "removeSuffix"), "/", nix.thunk(() => nix.sel(config_1, "webLocation")))}`))),
                             })))),
                         })),
@@ -227,91 +227,91 @@ sympa-owner@${domain}    postmaster@localhost
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"lists.example.org\" = {\n    webHost = \"lists.example.org\";\n    webLocation = \"/\";\n  };\n  \"sympa.example.com\" = {\n    webHost = \"example.com\";\n    webLocation = \"/sympa\";\n  };\n}\n")),
               })))),
             database: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["SQLite", "PostgreSQL", "MySQL"]))),
                   default: "SQLite",
                   example: "MySQL",
                   description: "Database engine to use.",
                 })))),
               host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: null,
                   description: "Database host address.\n\nFor MySQL, use `localhost` to connect using Unix domain socket.\n\nFor PostgreSQL, use path to directory (e.g. {file}`/run/postgresql`)\nto connect using Unix domain socket located in this directory.\n\nUse `null` to fall back on Sympa default, or when using\n{option}`services.sympa.database.createLocally`.\n",
                 })))),
               port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "port")))),
                   default: null,
                   description: "Database port. Use `null` for default port.",
                 })))),
               name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.lookup(w, "str")),
                   default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "SQLite")) ? nix.str`${dataDir}/sympa.sqlite` : "sympa")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if database.type == "SQLite" then "${dataDir}/sympa.sqlite" else "sympa"`))),
                   description: "Database name. When using SQLite this must be an absolute\npath to the database file.\n",
                 })))),
               user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: user,
                   description: "Database user. The system user name is used as a default.",
                 })))),
               passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                   default: null,
                   example: "/run/keys/sympa-dbpassword",
                   description: "A file containing the password for {option}`services.sympa.database.name`.\n",
                 })))),
               createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => nix.lookup(w, "bool")),
                   default: true,
                   description: "Whether to create a local database automatically.",
                 })))),
             })),
             web: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   type: nix.thunk(() => nix.lookup(w, "bool")),
                   default: true,
                   description: "Whether to enable Sympa web interface.",
                 })))),
               server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["nginx", "none"]))),
                   default: "nginx",
                   description: "The webserver used for the Sympa web interface. Set it to `none` if you want to configure it yourself.\nFurther nginx configuration can be done by adapting\n{option}`services.nginx.virtualHosts.«name»`.\n",
                 })))),
               https: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   type: nix.thunk(() => nix.lookup(w, "bool")),
                   default: true,
                   description: "Whether to use HTTPS. When nginx integration is enabled, this option forces SSL and enables ACME.\nPlease note that Sympa web interface always uses https links even when this option is disabled.\n",
                 })))),
               fcgiProcs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "ints"), "positive")),
                   default: 2n,
                   description: "Number of FastCGI processes to fork.",
                 })))),
             })),
             mta: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["postfix", "none"]))),
                   default: "postfix",
                   description: "Mail transfer agent (MTA) integration. Use `none` if you want to configure it yourself.\n\nThe `postfix` integration sets up local Postfix instance that will pass incoming\nmessages from configured domains to Sympa. You still need to configure at least outgoing message\nhandling using e.g. {option}`services.postfix.relayHost`.\n",
                 })))),
             })),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
                       nix.thunk(() => nix.lookup(w, "str")),
                       nix.thunk(() => nix.lookup(w, "int")),
@@ -322,35 +322,35 @@ sympa-owner@${domain}    postmaster@localhost
                 description: "The {file}`sympa.conf` configuration file as key value set.\nSee <https://sympa-community.github.io/gpldoc/man/sympa.conf.5.html>\nfor list of configuration parameters.\n",
               })))),
             settingsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$3);
                       const name = nix.arg($_1, "name");
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         options: nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$31,
+                              [nix.POS]: pos$31,
                               type: nix.thunk(() => nix.lookup(w, "bool")),
                               default: true,
                               description: "Whether this file should be generated. This option allows specific files to be disabled.",
                             })))),
                           text: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$32,
+                              [nix.POS]: pos$32,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "lines")))),
                               description: "Text of the file.",
                             })))),
                           source: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               type: nix.thunk(() => nix.lookup(w, "path")),
                               description: "Path of the source file.",
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           source: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "text"), null)), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`sympa-${nix.app(nix.builtins.baseNameOf, name)}`), nix.thunk(() => nix.sel(config_1, "text")))))))),
                         })),
                       };
@@ -364,13 +364,13 @@ sympa-owner@${domain}    postmaster@localhost
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         services: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           sympa: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             settings: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 domain: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "mainDomain"), null)) ? nix.sel(cfg, "mainDomain") : nix.app(nix.sel(lib, "head"), fqdns))),
                 listmaster: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(cfg, "listMasters")))),
                 lang: nix.thunk(() => nix.sel(cfg, "lang")),
@@ -382,56 +382,56 @@ sympa-owner@${domain}    postmaster@localhost
                 db_name: nix.thunk(() => nix.sel(cfg, "database", "name")),
                 db_user: nix.thunk(() => nix.sel(cfg, "database", "name")),
               }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "host"), null)), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 db_host: nix.thunk(() => nix.sel(cfg, "database", "host")),
-              }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), mysqlLocal, nix.thunk(() => ({ __proto__: pos$43, db_host: "localhost" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), pgsqlLocal, nix.thunk(() => ({ __proto__: pos$44, db_host: "/run/postgresql" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "port"), null)), nix.thunk(() => ({
-                __proto__: pos$45,
+              }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), mysqlLocal, nix.thunk(() => ({ [nix.POS]: pos$43, db_host: "localhost" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), pgsqlLocal, nix.thunk(() => ({ [nix.POS]: pos$44, db_host: "/run/postgresql" }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "port"), null)), nix.thunk(() => ({
+                [nix.POS]: pos$45,
                 db_port: nix.thunk(() => nix.sel(cfg, "database", "port")),
               }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "mta", "type"), "postfix")), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 sendmail_aliases: nix.thunk(() => nix.str`${dataDir}/sympa_transport`),
                 aliases_program: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "services", "postfix", "package")), "postmap")),
                 aliases_db_type: "hash",
               }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "web", "enable")), nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 static_content_path: nix.thunk(() => nix.str`${dataDir}/static_content`),
                 css_path: nix.thunk(() => nix.str`${dataDir}/static_content/css`),
                 pictures_path: nix.thunk(() => nix.str`${dataDir}/static_content/pictures`),
                 mhonarc: nix.thunk(() => nix.str`${nix.sel(pkgs, "perlPackages", "MHonArc")}/bin/mhonarc`),
               })))))))))),
             settingsFile: nix.thunk(() => nix.update({
-              __proto__: pos$51,
-              "virtual.sympa": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$48, source: virtual })))),
-              "transport.sympa": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$49, source: transport })))),
-              "etc/list_aliases.tt2": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ __proto__: pos$50, source: listAliases })))),
+              [nix.POS]: pos$51,
+              "virtual.sympa": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$48, source: virtual })))),
+              "transport.sympa": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$49, source: transport })))),
+              "etc/list_aliases.tt2": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({ [nix.POS]: pos$50, source: listAliases })))),
             }, nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "domains")), (fqdn) => (domain) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`etc/${fqdn}/robot.conf`), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     source: nix.thunk(() => nix.app(robotConfig, fqdn, domain)),
                   })))))))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), usingNginx, true)),
             virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), usingNginx, nix.thunk(() => (() => {
                 const vHosts = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "remove"), null, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_k) => (v) => nix.sel(v, "webHost"), nix.thunk(() => nix.sel(cfg, "domains"))))))));
                 const hostLocations = (host) => nix.builtins.map((v) => nix.sel(v, "webLocation"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => nix.eq(nix.sel(v, "webHost"), host), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "domains")))))));
                 const httpsOpts = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "web", "https")), nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                     enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   }))));
                 return nix.app(nix.sel(lib, "genAttrs"), vHosts, (host) => nix.update({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     locations: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.app(hostLocations, host)), (loc) => ({
-                        __proto__: pos$55,
+                        [nix.POS]: pos$55,
                         extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 
 fastcgi_pass unix:/run/sympa/wwsympa.socket;
 `),
                       })), {
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       "/static-sympa/": nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         alias: nix.thunk(() => nix.str`${dataDir}/static_content/`),
                       })),
                     })),
@@ -439,12 +439,12 @@ fastcgi_pass unix:/run/sympa/wwsympa.socket;
               })()))),
           })),
           postfix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "mta", "type"), "postfix")), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 main: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   recipient_delimiter: "+",
                   virtual_alias_maps: nix.thunk(() => [nix.thunk(() => nix.str`hash:${dataDir}/virtual.sympa`)]),
                   virtual_mailbox_maps: nix.thunk(() => [
@@ -459,9 +459,9 @@ fastcgi_pass unix:/run/sympa/wwsympa.socket;
                   ]),
                 })),
                 master: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   sympa: nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     type: "unix",
                     privileged: true,
                     chroot: false,
@@ -474,7 +474,7 @@ fastcgi_pass unix:/run/sympa/wwsympa.socket;
                     ]),
                   })),
                   sympabounce: nix.thunk(() => ({
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     type: "unix",
                     privileged: true,
                     chroot: false,
@@ -490,37 +490,37 @@ fastcgi_pass unix:/run/sympa/wwsympa.socket;
               })),
             })))),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), mysqlLocal, nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), pgsqlLocal, nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$71, systemPackages: nix.thunk(() => [pkg]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$71, systemPackages: nix.thunk(() => [pkg]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$73,
+          [nix.POS]: pos$73,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               description: "Sympa mailing list manager user",
               group: group,
               home: dataDir,
@@ -532,20 +532,20 @@ fastcgi_pass unix:/run/sympa/wwsympa.socket;
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), user)) && nix.asBool(nix.eq(nix.sel(cfg, "database", "name"), nix.sel(cfg, "database", "user"))))))),
             message: nix.thunk(() => nix.str`services.sympa.database.user must be set to ${user} if services.sympa.database.createLocally is set to true`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "a password cannot be specified if services.sympa.database.createLocally is set to true",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d  ${dataDir}                   0711 ${user} ${group} - -`),
               nix.thunk(() => nix.str`d  ${dataDir}/etc               0700 ${user} ${group} - -`),
@@ -567,9 +567,9 @@ fastcgi_pass unix:/run/sympa/wwsympa.socket;
                 ])))))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             sympa: nix.thunk(() => ({
-              __proto__: pos$77,
+              [nix.POS]: pos$77,
               description: "Sympa mailing list manager",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -592,35 +592,35 @@ ${pkg}/bin/sympa.pl --health_check
 `),
             })),
             "sympa-archive": nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               description: "Sympa mailing list manager (archiving)",
               bindsTo: nix.thunk(() => ["sympa.service"]),
               serviceConfig: nix.thunk(() => nix.app(sympaServiceConfig, "archived")),
             })),
             "sympa-bounce": nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               description: "Sympa mailing list manager (bounce processing)",
               bindsTo: nix.thunk(() => ["sympa.service"]),
               serviceConfig: nix.thunk(() => nix.app(sympaServiceConfig, "bounced")),
             })),
             "sympa-bulk": nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               description: "Sympa mailing list manager (message distribution)",
               bindsTo: nix.thunk(() => ["sympa.service"]),
               serviceConfig: nix.thunk(() => nix.app(sympaServiceConfig, "bulk")),
             })),
             "sympa-task": nix.thunk(() => ({
-              __proto__: pos$81,
+              [nix.POS]: pos$81,
               description: "Sympa mailing list manager (task management)",
               bindsTo: nix.thunk(() => ["sympa.service"]),
               serviceConfig: nix.thunk(() => nix.app(sympaServiceConfig, "task_manager")),
             })),
             wwsympa: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), usingNginx, nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["sympa.service"]),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   Type: "forking",
                   PIDFile: "/run/sympa/wwsympa.pid",
                   Restart: "always",
@@ -640,7 +640,7 @@ ${pkg}/bin/sympa.pl --health_check
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$87,
+      [nix.POS]: pos$87,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sorki"))];

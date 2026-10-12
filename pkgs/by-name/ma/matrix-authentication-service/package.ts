@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "matrix-authentication-service",
       version: "1.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "element-hq",
           repo: "matrix-authentication-service",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-runtime.patch")]),
       cargoHash: "sha256-FtaDF3p4c7Ekhuid12A8s+RhFLCovhHjQyxOVz6oLjE=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sqlite, zstd]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ZSTD_SYS_USE_PKG_CONFIG: true,
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
@@ -90,18 +90,18 @@ export CXX_${buildTargetUnderscore}=$CXX_FOR_BUILD
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "matrix-authentication-service": nix.thunk(() => nix.attr(nixosTests, "matrix-authentication-service")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "OAuth2.0 + OpenID Provider for Matrix Homeservers",
         homepage: "https://github.com/element-hq/matrix-authentication-service",
         changelog: nix.thunk(() => nix.str`https://github.com/element-hq/matrix-authentication-service/releases/tag/v${nix.sel(finalAttrs, "version")}`),

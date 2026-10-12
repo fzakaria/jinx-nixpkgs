@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ham-unstable",
       version: "2025-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kernkonzept",
           repo: "ham",
           rev: "11c8b146f8b11e7f284050fe205ae8afb1715541",
@@ -44,7 +44,7 @@ makeWrapper $out/lib/ham/ham $out/bin/ham --argv0 ham \\
   --prefix PATH : ${openssh}/bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to manage big projects consisting of multiple loosely-coupled git repositories",
         homepage: "https://github.com/kernkonzept/ham",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

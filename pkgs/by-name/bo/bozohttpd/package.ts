@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const luaSupport = nix.argOr($, "luaSupport", () => !nix.asBool(minimal));
   const htpasswdSupport = nix.argOr($, "htpasswdSupport", () => !nix.asBool(minimal));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bozohttpd",
       version: "20240126",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://eterna23.net/bozohttpd/bozohttpd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha512-fr1PnyYAS3wkpmj/npRC3A87UL9LIXw4thlM4GfrtlJbuX5EkWGVJnHJW/EmYp7z+N91dcdRJgdO79l6WJsKpg==",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bmake, groff]),
       nativeCheckInputs: nix.thunk(() => [inetutils, wget]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         COPTS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
             "-D_DEFAULT_SOURCE",
             "-D_GNU_SOURCE",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(cgiSupport)), nix.thunk(() => ["CGITESTS="]))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.eterna23.net/bozohttpd/",
         description: "Bozotic HTTP server; small and secure",
         longDescription: "bozohttpd is a small and secure HTTP version 1.1 server. Its main\nfeature is the lack of features, reducing the code size and improving\nverifiability.\n\nIt supports CGI/1.1, HTTP/1.1, HTTP/1.0, HTTP/0.9, ~user translations,\nvirtual hosting support, as well as multiple IP-based servers on a\nsingle machine. It is capable of servicing pages via the IPv6 protocol.\nIt has SSL support. It has no configuration file by design.\n",

@@ -29,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jamin",
       version: "0.98.9-unstable-2015-01-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/jamin/code",
           rev: "199091a6e3709e2890eaf2c8b4e57c6749776cdc",
           hash: "sha256-wiIBymvpPxY+z/nZi+dH0hXEuhO5FYQjon6VfJaTwC0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sources.debian.org/data/main/j/jamin/0.98.9~git20170111~199091~repack1-3/debian/patches/gcc15.patch",
             hash: "sha256-dH0NI12Xfw9Rl7Iwm4QzDvXIHT7XzBC8Ly0lQOpDD84=",
           })))),
@@ -57,13 +57,13 @@ export default nix.lambda((args) => (() => {
       })())),
       buildInputs: nix.thunk(() => [fftwFloat, gtk3, ladspaPlugins, libjack2, liblo, libxml2]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-fcommon -Wno-error=incompatible-pointer-types",
       })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/jamin --set LADSPA_PATH ${ladspaPlugins}/lib/ladspa
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://jamin.sourceforge.net",
         description: "JACK Audio Mastering interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

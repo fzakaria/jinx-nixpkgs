@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const pyright = nix.arg($, "pyright");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "vscode-pylance",
         publisher: "MS-python",
         version: "2026.3.1",
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       })),
       buildInputs: nix.thunk(() => [pyright]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://marketplace.visualstudio.com/items/ms-python.vscode-pylance/changelog",
         description: "Performant, feature-rich language server for Python in VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance",

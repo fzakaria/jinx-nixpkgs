@@ -12,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const alephone = nix.arg($, "alephone");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marathon-pheonix",
       desktopName: "Marathon-Pheonix",
       version: "1.3",
       zip: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://simplici7y.com/version/file/998/Marathon_Phoenix_1.3.zip",
           hash: "sha256-EicLN54di18sarKyJm2GaEJJIsvaRmlHS/TUiT6YBuQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "35-level single player major Marathon conversion",
         homepage: "http://www.simplici7y.com/items/marathon-phoenix-2",
       })),

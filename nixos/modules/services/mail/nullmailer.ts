@@ -48,89 +48,89 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         nullmailer: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable nullmailer daemon.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nullmailer",
               description: "User to use to run nullmailer-send.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nullmailer",
               description: "Group to use to run nullmailer-send.\n",
             })))),
           setSendmail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to set the system sendmail to nullmailer's.",
             })))),
           remotesFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Path to the `remotes` control file. This file contains a\nlist of remote servers to which to send each message.\n\nSee `man 8 nullmailer-send` for syntax and available\noptions.\n",
             })))),
           config: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             adminaddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "If set, all recipients to users at either \"localhost\" (the literal string)\nor the canonical host name (from the me control attribute) are remapped to this address.\nThis is provided to allow local daemons to be able to send email to\n\"somebody@localhost\" and have it go somewhere sensible instead of being  bounced\nby your relay host. To send to multiple addresses,\nput them all on one line separated by a comma.\n",
               })))),
             allmailfrom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "If set, content will override the envelope sender on all messages.\n",
               })))),
             defaultdomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The content of this attribute is appended to any host name that\ndoes not contain a period (except localhost), including defaulthost\nand idhost. Defaults to the value of the me attribute, if it exists,\notherwise the literal name defauldomain.\n",
               })))),
             defaulthost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The content of this attribute is appended to any address that\nis missing a host name. Defaults to the value of the me control\nattribute, if it exists, otherwise the literal name defaulthost.\n",
               })))),
             doublebounceto: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "If the original sender was empty (the original message was a\ndelivery status or disposition notification), the double bounce\nis sent to the address in this attribute.\n",
               })))),
             helohost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Sets  the  environment variable $HELOHOST which is used by the\nSMTP protocol module to set the parameter given to the HELO command.\nDefaults to the value of the me configuration attribute.\n",
               })))),
             idhost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The content of this attribute is used when building the message-id\nstring for the message. Defaults to the canonicalized value of defaulthost.\n",
               })))),
             maxpause: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "int"))]))));
@@ -139,13 +139,13 @@ export default nix.lambda((args) => (() => {
                 description: "The maximum time to pause between successive queue runs, in seconds.\nDefaults to 24 hours (86400).\n",
               })))),
             me: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The fully-qualifiled host name of the computer running nullmailer.\nDefaults to the literal name me.\n",
               })))),
             pausetime: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "int"))]))));
@@ -154,13 +154,13 @@ export default nix.lambda((args) => (() => {
                 description: "The minimum time to pause between successive queue runs when there\nare messages in the queue, in seconds. Defaults to 1 minute (60).\nEach time this timeout is reached, the timeout is doubled to a\nmaximum of maxpause. After new messages are injected, the timeout\nis reset.  If this is set to 0, nullmailer-send will exit\nimmediately after going through the queue once (one-shot mode).\n",
               })))),
             remotes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "A list of remote servers to which to send each message. Each line\ncontains a remote host name or address followed by an optional\nprotocol string, separated by white space.\n\nSee `man 8 nullmailer-send` for syntax and available\noptions.\n\nWARNING: This is stored world-readable in the nix store. If you need\nto specify any secret credentials here, consider using the\n`remotesFile` option instead.\n",
               })))),
             sendtimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.lookup(w, "int"))]))));
@@ -175,35 +175,35 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "services", "nullmailer"));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "config", "remotes"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "remotesFile"), null)))),
               message: "Only one of `remotesFile` or `config.remotes` may be used at a time.",
             })),
           ]),
           environment: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nullmailer"))]),
             etc: nix.thunk(() => (() => {
               const validAttrs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => !nix.eq(value, null), nix.thunk(() => nix.sel(cfg, "config"))))));
               return nix.update(nix.app(nix.sel(lib, "foldl'"), (as) => (name) => nix.update(as, nix.attrsDyn({}, [
                   [nix.str`nullmailer/${name}`, nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     text: nix.thunk(() => nix.sel(validAttrs, nix.key(nix.force(name)))),
                   }))],
                 ])), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), validAttrs))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "remotesFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$25,
-                  "nullmailer/remotes": nix.thunk(() => ({ __proto__: pos$24, source: nix.thunk(() => nix.sel(cfg, "remotesFile")) })),
+                  [nix.POS]: pos$25,
+                  "nullmailer/remotes": nix.thunk(() => ({ [nix.POS]: pos$24, source: nix.thunk(() => nix.sel(cfg, "remotesFile")) })),
                 }))));
             })()),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "user"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 description: "Nullmailer relay-only mta user",
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
@@ -212,9 +212,9 @@ export default nix.lambda((args) => (() => {
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               rules: nix.thunk(() => [
                 nix.thunk(() => nix.str`d /var/spool/nullmailer - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
                 nix.thunk(() => nix.str`d /var/spool/nullmailer/failed 770 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -223,14 +223,14 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               nullmailer: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 description: "nullmailer",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
                   ExecStartPre: nix.thunk(() => [
@@ -244,11 +244,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             mail: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               sendmailSetuidWrapper: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "setSendmail")), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   program: "sendmail",
                   source: nix.thunk(() => nix.str`${nix.sel(pkgs, "nullmailer")}/bin/sendmail`),
                   owner: nix.thunk(() => nix.sel(cfg, "user")),

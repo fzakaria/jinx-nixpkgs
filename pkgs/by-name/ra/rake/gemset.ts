@@ -7,13 +7,13 @@ const pos$2 = nix.positions(here + "/gemset.nix", [["groups", 3, 5], ["platforms
 const pos$3 = nix.positions(here + "/gemset.nix", [["rake", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   rake: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "17850wcwkgi30p7yqh60960ypn7yibacjjha0av78zaxwvd3ijs6",
       type: "gem",

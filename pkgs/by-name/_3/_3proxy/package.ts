@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "3proxy",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3proxy",
           repo: "3proxy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "rm -fr $out/var\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "_3proxy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tiny free proxy server",
         homepage: "https://github.com/3proxy/3proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "misuzu"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "3proxy", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

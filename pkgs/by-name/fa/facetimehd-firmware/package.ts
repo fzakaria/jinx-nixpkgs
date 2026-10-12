@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
 exit 0
 `)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "facetimehd-firmware",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: dmgUrl,
           sha256: "0s8crlh8rvpanzk1w4z3hich0a3mw0m5xhpcg07bxy02calhpdk1",
           curlOpts: nix.thunk(() => nix.str`-r ${dmgRange}`),
@@ -44,7 +44,7 @@ mkdir -p $out/lib/firmware/facetimehd
 gunzip -c ${firmwareOut}.gz > $out/lib/firmware/facetimehd/${firmwareOut}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "facetimehd firmware",
         homepage: "https://support.apple.com/kb/DL1877",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asdf-transform-schemas",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "asdf_transform_schemas",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-D1D44Jb//S0UucgplZASZu8lsj0N/8MK1Bu6RoUalzI=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["asdf_transform_schemas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ASDF schemas for validating transform tags",
         homepage: "https://github.com/asdf-format/asdf-transform-schemas",
         changelog: nix.thunk(() => nix.str`https://github.com/asdf-format/asdf-transform-schemas/releases/tag/${nix.sel(finalAttrs, "version")}`),

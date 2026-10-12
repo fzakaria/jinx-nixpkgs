@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "seung-lab",
           repo: "connected-components-3d",
           tag: version,
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [cython, numpy, pbr, setuptools]);
       const dependencies = nix.thunk(() => [numpy]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, stack: nix.thunk(() => [fastremap]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, stack: nix.thunk(() => [fastremap]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, scipy], nix.sel(optional_dependencies, "stack")));
       const disabledTests = nix.thunk(() => ["test_connected_components_stack"]);
       const pythonImportsCheck = nix.thunk(() => ["cc3d"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Connected components on discrete and continuous multilabel 3D & 2D images",
         homepage: "https://github.com/seung-lab/connected-components-3d",
         changelog: nix.thunk(() => nix.str`https://github.com/seung-lab/connected-components-3d/releases/tag/${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-interactive-rebase-tool",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MitMaro",
           repo: "git-interactive-rebase-tool",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export GIRT_BUILD_GIT_HASH=${nix.sel(finalAttrs, "version")}`),
       postCheck: "unset GIRT_BUILD_GIT_HASH",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/MitMaro/git-interactive-rebase-tool",
         description: "Native cross platform full feature terminal based sequence editor for git interactive rebase",
         changelog: nix.thunk(() => nix.str`https://github.com/MitMaro/git-interactive-rebase-tool/releases/tag/${nix.sel(finalAttrs, "version")}`),

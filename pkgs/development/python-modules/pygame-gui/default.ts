@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pygame-gui",
       version: "0.6.14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MyreMylar",
           repo: "pygame_gui",
           tag: nix.thunk(() => nix.str`v_${nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_process_event"])))),
       disabledTestPaths: nix.thunk(() => ["tests/test_performance/test_text_performance.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell --pure -i bash -p curl cacert jq nix-update git\nset -xeuo pipefail\n\nversion=$(curl -s https://pypi.org/pypi/pygame-gui/json | jq -r '.info.version')\nnix-update --version \"$version\" python3Packages.pygame-gui\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI system for pygame",
         homepage: "https://github.com/MyreMylar/pygame_gui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

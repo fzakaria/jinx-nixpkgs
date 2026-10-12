@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coda",
       version: "2018-01-25",
       ipkgName: "Coda",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ostera",
           repo: "idris-coda",
           rev: "0d8b29b7b73aa1ea80bf216e5e6dea5e81156e32",
           sha256: "07wps3pyp4ph0vj3640x561gkjkbcdq1if9h6sjjb30924sbdxfg",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Some Idris libraries including nodejs bindings and ISO8601 Date and Time",
         homepage: "https://github.com/ostera/idris-coda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

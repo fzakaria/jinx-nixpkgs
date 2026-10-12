@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emacs-anywhere",
       version: "0-unstable-2025-12-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nohzafk",
           repo: "emacs-anywhere",
           rev: "58fcdd5565a41555092c0801029d46f5f48b7814",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "cp -R EmacsAnywhere.spoon/ $out/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Edit text from any macOS application in Emacs",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

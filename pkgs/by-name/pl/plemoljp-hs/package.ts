@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const plemoljp = nix.arg($, "plemoljp");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plemoljp-hs",
       version: nix.thunk(() => nix.attr(plemoljp, "version")),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/PlemolJP/releases/download/v${nix.sel(finalAttrs, "version")}/PlemolJP_HS_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-ebBPun8CVHBOxs3c9SNHvT8lP1YqUH4DhBLAZk6NOrE=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm444 PlemolJP_HS/*.ttf -t $out/share/fonts/truetype/plemoljp-hs\ninstall -Dm444 PlemolJP35_HS/*.ttf -t $out/share/fonts/truetype/plemoljp-hs-35\ninstall -Dm444 PlemolJPConsole_HS/*.ttf -t $out/share/fonts/truetype/plemoljp-hs-console\ninstall -Dm444 PlemolJP35Console_HS/*.ttf -t $out/share/fonts/truetype/plemoljp-hs-35console\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(plemoljp, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Composite font of IBM Plex Mono, IBM Plex Sans JP and hidden full-width space",
       })),
     }));

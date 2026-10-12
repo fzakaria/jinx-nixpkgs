@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const php = nix.arg($, "php");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kanboard",
       version: "1.2.52",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kanboard",
           repo: "kanboard",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/kanboard/kanboard/commit/928c68aa2b7c00092dd71084d329b912e229f3d1.patch",
             hash: "sha256-K616dTwAsLJAJMqY+DJjebfi6MV5wSICbd1iy6VynlM=",
           })))),
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/kanboard\ncp -rv . $out/share/kanboard\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             kanboard: nix.thunk(() => nix.attr(nixosTests, "kanboard")),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(php, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Kanban project management software",
         homepage: "https://kanboard.org",

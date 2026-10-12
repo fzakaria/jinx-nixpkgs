@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flashprint",
       version: "5.8.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.ishare3d.com/3dapp/public/FlashPrint-5/FlashPrint/flashprint5_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-DVY5XxAz3HPAWMNaGauUop7OWHeFuuRHuVllyJvHqFk=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       qtWrapperArgs: nix.thunk(() => ["--prefix QT_QPA_PLATFORM : xcb"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmv etc usr/* $out\nln -s $out/share/FlashPrint5/FlashPrint $out/bin/flashprint\nsed -i \"/^Exec=/ c Exec=$out/bin/flashprint\" $out/share/applications/FlashPrint5.desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Slicer for the FlashForge 3D printers",
         homepage: "https://www.flashforge.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

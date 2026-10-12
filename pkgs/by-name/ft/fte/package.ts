@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const slang = nix.arg($, "slang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fte",
       version: "0.50.02",
       ftesrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "mirror://sourceforge/fte/fte-20110708-src.zip",
           hash: "sha256-1jEcVC0/DyiQpUpmHDtnIo4nuJS0Fk6frynwFPJUSZ4=",
         })))),
       ftecommon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "mirror://sourceforge/fte/fte-20110708-common.zip",
           hash: "sha256-WEEVeLMZWHZfQtK/Kbeu3Z+RaVXCwZyWkJocA+Akavc=",
         })))),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl, libx11, libxpm, gpm, ncurses, slang]),
       hardeningDisable: nix.thunk(() => ["all"]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-DHAVE_STRLCAT -DHAVE_STRLCPY" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DHAVE_STRLCAT -DHAVE_STRLCPY" })),
       installFlags: nix.thunk(() => ["INSTALL_NONROOT=1"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free text editor for developers",
         homepage: "https://fte.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

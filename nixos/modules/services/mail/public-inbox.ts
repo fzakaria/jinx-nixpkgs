@@ -105,13 +105,13 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "public-inbox"));
   const stateDir = "/var/lib/public-inbox";
-  const gitIni = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "gitIni"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const gitIni = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "gitIni"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const iniAtom = nix.thunk(() => nix.sel(gitIni, "lib", "types", "atom"));
   const useSpamAssassin = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "publicinboxmda", "spamcheck"), "spamc")) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "publicinboxwatch", "spamcheck"), "spamc"))));
   const publicInboxDaemonOptions = (proto) => (defaultPort) => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     args: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
         description: nix.thunk(() => nix.str`Command-line arguments to pass to {manpage}\`public-inbox-${proto}d(1)\`.`),
       })))),
     port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "port")))));
@@ -133,7 +133,7 @@ if you need a more advanced listening.
 `),
       })))),
     cert: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -143,7 +143,7 @@ if you need a more advanced listening.
         description: nix.thunk(() => nix.str`Path to TLS certificate to use for connections to {manpage}\`public-inbox-${proto}d(1)\`.`),
       })))),
     key: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -157,9 +157,9 @@ if you need a more advanced listening.
     const proto = nix.thunk(() => nix.app(nix.lookup(w, "removeSuffix"), "d", srv));
     const needNetwork = nix.thunk(() => (nix.asBool(nix.app(nix.sel(nix.builtins, "hasAttr"), proto, cfg)) && nix.asBool(nix.eq(nix.sel(cfg, nix.key(nix.force(proto)), "port"), null))));
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         Environment: nix.thunk(() => [
           nix.thunk(() => nix.str`PERL_INLINE_DIRECTORY=/run/public-inbox-${srv}/perl-inline`),
         ]),
@@ -206,7 +206,7 @@ if you need a more advanced listening.
         SystemCallArchitectures: "native",
       })),
       confinement: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         enable: true,
         mode: "full-apivfs",
         binSh: nix.thunk(() => nix.str`${nix.sel(pkgs, "dash")}/bin/dash`),
@@ -219,17 +219,17 @@ if you need a more advanced listening.
     };
   })();
   return {
-    __proto__: pos$92,
+    [nix.POS]: pos$92,
     options: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       services: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         "public-inbox": nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the public-inbox mail archiver")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "public-inbox", nix.thunk(() => ({})))),
           path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "package")));
@@ -239,25 +239,25 @@ if you need a more advanced listening.
               description: "Additional packages to place in the path of public-inbox-mda,\npublic-inbox-watch, etc.\n",
             })))),
           inboxes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Inboxes to configure, where attribute names are inbox names.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     return {
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       freeformType: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), iniAtom)),
                       options: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         inboxdir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: nix.thunk(() => nix.str`${stateDir}/inboxes/${name}`),
                             description: "The absolute path to the directory which hosts the public-inbox.",
                           })))),
                         address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -266,20 +266,20 @@ if you need a more advanced listening.
                             description: "The email addresses of the public-inbox.",
                           })))),
                         url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "nonEmptyStr")),
                             example: "https://example.org/lists/example-discuss",
                             description: "URL where this inbox can be accessed over HTTP.",
                           })))),
                         description: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             example: "user/dev discussion of public-inbox itself",
                             description: "User-visible description for the repository.",
                             apply: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`public-inbox-description-${name}`))),
                           })))),
                         newsgroup: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -288,7 +288,7 @@ if you need a more advanced listening.
                             description: "NNTP group name for the inbox.",
                           })))),
                         watch: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -298,7 +298,7 @@ if you need a more advanced listening.
                             example: nix.thunk(() => ["maildir:/path/to/test.example.com.git"]),
                           })))),
                         watchheader: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -308,8 +308,8 @@ if you need a more advanced listening.
                             description: "If specified, {manpage}`public-inbox-watch(1)` will only process\nmail containing a matching header.\n",
                           })))),
                         coderepo: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$19,
-                            type: nix.thunk(() => nix.update(nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), nix.thunk(() => nix.sel(cfg, "settings", "coderepo"))))))), { __proto__: pos$18, description: "list of coderepo names" })),
+                            [nix.POS]: pos$19,
+                            type: nix.thunk(() => nix.update(nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => nix.app(nix.lookup(w, "attrNames"), nix.thunk(() => nix.sel(cfg, "settings", "coderepo"))))))), { [nix.POS]: pos$18, description: "list of coderepo names" })),
                             default: [],
                             description: "Nicknames of a 'coderepo' section associated with the inbox.",
                           })))),
@@ -318,14 +318,14 @@ if you need a more advanced listening.
                   })(), formals$2))))),
             })))),
           imap: nix.thunk(() => nix.update({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the public-inbox IMAP server")),
           }, nix.app(publicInboxDaemonOptions, "imap", 993n))),
           http: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the public-inbox HTTP server")),
             mounts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -336,7 +336,7 @@ if you need a more advanced listening.
               })))),
             args: nix.thunk(() => nix.sel(nix.app(publicInboxDaemonOptions, "http", 80n), "args")),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "port")))));
@@ -347,10 +347,10 @@ if you need a more advanced listening.
               })))),
           })),
           mda: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the public-inbox Mail Delivery Agent")),
             args: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -360,15 +360,15 @@ if you need a more advanced listening.
               })))),
           })),
           postfix: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the integration into Postfix")),
           })),
           nntp: nix.thunk(() => nix.update({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the public-inbox NNTP server")),
           }, nix.app(publicInboxDaemonOptions, "nntp", 563n))),
           spamAssassinRules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -378,28 +378,28 @@ if you need a more advanced listening.
               description: "SpamAssassin configuration specific to public-inbox.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               description: "Settings for the [public-inbox config file](https://public-inbox.org/public-inbox-config.html).\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   freeformType: nix.thunk(() => nix.sel(gitIni, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     publicinbox: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         default: nix.thunk(() => ({})),
                         description: "public inboxes",
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             freeformType: nix.thunk(() => (() => {
                               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [iniAtom, nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), iniAtom))]))));
                             })()),
                             options: nix.thunk(() => ({
-                              __proto__: pos$37,
+                              [nix.POS]: pos$37,
                               css: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$32,
+                                  [nix.POS]: pos$32,
                                   type: nix.thunk(() => (() => {
                                     const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                     return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -408,7 +408,7 @@ if you need a more advanced listening.
                                   description: "The local path name of a CSS file for the PSGI web interface.",
                                 })))),
                               imapserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$33,
+                                  [nix.POS]: pos$33,
                                   type: nix.thunk(() => (() => {
                                     const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                     return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -418,7 +418,7 @@ if you need a more advanced listening.
                                   description: "IMAP URLs to this public-inbox instance",
                                 })))),
                               nntpserver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$34,
+                                  [nix.POS]: pos$34,
                                   type: nix.thunk(() => (() => {
                                     const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                     return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -428,7 +428,7 @@ if you need a more advanced listening.
                                   description: "NNTP URLs to this public-inbox instance",
                                 })))),
                               pop3server: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$35,
+                                  [nix.POS]: pos$35,
                                   type: nix.thunk(() => (() => {
                                     const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                     return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")));
@@ -438,7 +438,7 @@ if you need a more advanced listening.
                                   description: "POP3 URLs to this public-inbox instance",
                                 })))),
                               wwwlisting: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$36,
+                                  [nix.POS]: pos$36,
                                   type: nix.thunk(() => (() => {
                                     const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                                     return nix.app(nix.lookup(w_2, "enum"), nix.thunk(() => ["all", "404", "match=domain"]));
@@ -450,9 +450,9 @@ if you need a more advanced listening.
                           })))),
                       })))),
                     publicinboxmda: nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       spamcheck: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["spamc", "none"]));
@@ -462,9 +462,9 @@ if you need a more advanced listening.
                         })))),
                     })),
                     publicinboxwatch: nix.thunk(() => ({
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       spamcheck: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["spamc", "none"]));
@@ -473,7 +473,7 @@ if you need a more advanced listening.
                           description: "If set to spamc, {manpage}`public-inbox-watch(1)` will filter spam\nusing SpamAssassin.\n",
                         })))),
                       watchspam: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$43,
+                          [nix.POS]: pos$43,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -484,21 +484,21 @@ if you need a more advanced listening.
                         })))),
                     })),
                     coderepo: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         default: nix.thunk(() => ({})),
                         description: "code repositories",
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                              __proto__: pos$48,
+                              [nix.POS]: pos$48,
                               freeformType: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), iniAtom)),
                               options: nix.thunk(() => ({
-                                __proto__: pos$47,
+                                [nix.POS]: pos$47,
                                 cgitUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$45,
+                                    [nix.POS]: pos$45,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                     description: "URL of a cgit instance",
                                   })))),
                                 dir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$46,
+                                    [nix.POS]: pos$46,
                                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                     description: "Path to a git repository",
                                   })))),
@@ -513,37 +513,37 @@ if you need a more advanced listening.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(config, "services", "spamassassin", "enable")) || nix.asBool(!nix.asBool(useSpamAssassin)))),
             message: "public-inbox is configured to use SpamAssassin, but\nservices.spamassassin.enable is false.  If you don't need\nspam checking, set `services.public-inbox.settings.publicinboxmda.spamcheck' and\n`services.public-inbox.settings.publicinboxwatch.spamcheck' to null.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "path"), [])) || nix.asBool(!nix.asBool(useSpamAssassin)))),
             message: "public-inbox is configured to use SpamAssassin, but there is\nno spamc executable in services.public-inbox.path.  If you\ndon't need spam checking, set\n`services.public-inbox.settings.publicinboxmda.spamcheck' and\n`services.public-inbox.settings.publicinboxwatch.spamcheck' to null.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           "public-inbox": nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             settings: nix.thunk(() => nix.app(nix.lookup(w, "filterAttrsRecursive"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 publicinbox: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (n) => (v) => nix.app(nix.builtins.removeAttrs, v, nix.thunk(() => ["description"])), nix.thunk(() => nix.sel(cfg, "inboxes")))),
               })))),
           })),
           postfix: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "postfix", "enable")) && nix.asBool(nix.sel(cfg, "mda", "enable")))), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               settings: nix.thunk(() => ({
-                __proto__: pos$63,
-                main: nix.thunk(() => ({ __proto__: pos$60, "public-inbox_destination_recipient_limit": "1" })),
+                [nix.POS]: pos$63,
+                main: nix.thunk(() => ({ [nix.POS]: pos$60, "public-inbox_destination_recipient_limit": "1" })),
                 master: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   "public-inbox": nix.thunk(() => ({
-                    __proto__: pos$61,
+                    [nix.POS]: pos$61,
                     type: "unix",
                     privileged: true,
                     command: "pipe",
@@ -567,25 +567,25 @@ exec ${nix.sel(cfg, "package")}/bin/public-inbox-mda ${nix.app(nix.lookup(w, "es
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           users: nix.thunk(() => ({
-            __proto__: pos$67,
-            "public-inbox": nix.thunk(() => ({ __proto__: pos$66, home: stateDir, group: "public-inbox", isSystemUser: true })),
+            [nix.POS]: pos$67,
+            "public-inbox": nix.thunk(() => ({ [nix.POS]: pos$66, home: stateDir, group: "public-inbox", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$68, "public-inbox": nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$68, "public-inbox": nix.thunk(() => ({})) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           firewall: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               allowedTCPPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => nix.app(nix.builtins.map, (proto) => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, nix.key(nix.force(proto)), "enable")) && nix.asBool(nix.app(nix.sel(nix.lookup(w, "types"), "port", "check"), nix.thunk(() => nix.sel(cfg, nix.key(nix.force(proto)), "port")))))), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, nix.key(nix.force(proto)), "port"))])), nix.thunk(() => ["imap", "http", "nntp"]))))),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           sockets: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => nix.app(nix.builtins.map, (proto) => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, nix.key(nix.force(proto)), "enable")) && nix.asBool(!nix.eq(nix.sel(cfg, nix.key(nix.force(proto)), "port"), null)))), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`public-inbox-${proto}d`, nix.thunk(() => ({
-                    __proto__: pos$72,
+                    [nix.POS]: pos$72,
                     listenStreams: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, nix.key(nix.force(proto)), "port")))),
                     ]),
@@ -594,30 +594,30 @@ exec ${nix.sel(cfg, "package")}/bin/public-inbox-mda ${nix.app(nix.lookup(w, "es
                 ]))), nix.thunk(() => ["imap", "http", "nntp"]))))),
           services: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "imap", "enable")), nix.thunk(() => ({
-                  __proto__: pos$75,
+                  [nix.POS]: pos$75,
                   "public-inbox-imapd": nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(serviceConfig, "imapd")),
                       nix.thunk(() => ({
-                        __proto__: pos$74,
+                        [nix.POS]: pos$74,
                         after: nix.thunk(() => ["public-inbox-init.service", "public-inbox-watch.service"]),
                         requires: nix.thunk(() => ["public-inbox-init.service"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$73,
+                          [nix.POS]: pos$73,
                           ExecStart: nix.thunk(() => nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/public-inbox-imapd`)], nix.concat(nix.sel(cfg, "imap", "args"), nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "imap", "cert"), null)), nix.thunk(() => ["--cert", nix.thunk(() => nix.sel(cfg, "imap", "cert"))])), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "imap", "key"), null)), nix.thunk(() => ["--key", nix.thunk(() => nix.sel(cfg, "imap", "key"))])))))))),
                         })),
                       })),
                     ]))),
                 })))),
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "http", "enable")), nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   "public-inbox-httpd": nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(serviceConfig, "httpd")),
                       nix.thunk(() => ({
-                        __proto__: pos$77,
+                        [nix.POS]: pos$77,
                         after: nix.thunk(() => ["public-inbox-init.service", "public-inbox-watch.service"]),
                         requires: nix.thunk(() => ["public-inbox-init.service"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$76,
+                          [nix.POS]: pos$76,
                           BindReadOnlyPaths: nix.thunk(() => nix.app(nix.builtins.map, (c) => nix.sel(c, "dir"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "settings", "coderepo")))))),
                           ExecStart: nix.thunk(() => nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/public-inbox-httpd`)], nix.concat(nix.sel(cfg, "http", "args"), [
                               nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "public-inbox.psgi", nix.thunk(() => nix.str`#!${nix.sel(cfg, "package", "fullperl")} -w
@@ -649,32 +649,32 @@ builder {
                     ]))),
                 })))),
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nntp", "enable")), nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   "public-inbox-nntpd": nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(serviceConfig, "nntpd")),
                       nix.thunk(() => ({
-                        __proto__: pos$80,
+                        [nix.POS]: pos$80,
                         after: nix.thunk(() => ["public-inbox-init.service", "public-inbox-watch.service"]),
                         requires: nix.thunk(() => ["public-inbox-init.service"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$79,
+                          [nix.POS]: pos$79,
                           ExecStart: nix.thunk(() => nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/public-inbox-nntpd`)], nix.concat(nix.sel(cfg, "nntp", "args"), nix.concat(nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nntp", "cert"), null)), nix.thunk(() => ["--cert", nix.thunk(() => nix.sel(cfg, "nntp", "cert"))])), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "nntp", "key"), null)), nix.thunk(() => ["--key", nix.thunk(() => nix.sel(cfg, "nntp", "key"))])))))))),
                         })),
                       })),
                     ]))),
                 })))),
               nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.app(nix.lookup(w, "any"), (inbox) => !nix.eq(nix.sel(inbox, "watch"), []), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(cfg, "inboxes")))))) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "publicinboxwatch", "watchspam"), null)))), nix.thunk(() => ({
-                  __proto__: pos$84,
+                  [nix.POS]: pos$84,
                   "public-inbox-watch": nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(serviceConfig, "watch")),
                       nix.thunk(() => ({
-                        __proto__: pos$83,
+                        [nix.POS]: pos$83,
                         path: nix.thunk(() => nix.attr(cfg, "path")),
                         wants: nix.thunk(() => ["public-inbox-init.service"]),
                         requires: nix.thunk(() => nix.concat(["public-inbox-init.service"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "publicinboxwatch", "spamcheck"), "spamc")), "spamassassin.service"))),
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$82,
+                          [nix.POS]: pos$82,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/public-inbox-watch`),
                           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                         })),
@@ -682,13 +682,13 @@ builder {
                     ]))),
                 })))),
               nix.thunk(() => ({
-                __proto__: pos$87,
+                [nix.POS]: pos$87,
                 "public-inbox-init": nix.thunk(() => (() => {
                   const PI_CONFIG = nix.thunk(() => nix.app(nix.sel(gitIni, "generate"), "public-inbox.ini", nix.thunk(() => nix.app(nix.lookup(w, "filterAttrsRecursive"), (n) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "settings"))))));
                   return nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(serviceConfig, "init")),
                       nix.thunk(() => ({
-                        __proto__: pos$86,
+                        [nix.POS]: pos$86,
                         wantedBy: nix.thunk(() => ["multi-user.target"]),
                         restartIfChanged: true,
                         restartTriggers: nix.thunk(() => [PI_CONFIG]),
@@ -727,7 +727,7 @@ if test -d "$GIT_DIR"; then
 fi
 `, nix.thunk(() => nix.sel(cfg, "inboxes"))))))),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$85,
+                          [nix.POS]: pos$85,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           StateDirectory: nix.thunk(() => [
@@ -743,12 +743,12 @@ fi
             ]))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$89,
+          [nix.POS]: pos$89,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$91,
+      [nix.POS]: pos$91,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [

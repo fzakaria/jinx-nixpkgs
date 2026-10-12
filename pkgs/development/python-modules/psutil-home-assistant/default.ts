@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "psutil-home-assistant",
           tag: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [psutil]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/psutil-home-assistant/releases/tag/${version}`),
         description: "Wrapper of psutil that removes reliance on globals",
         homepage: "https://github.com/home-assistant-libs/psutil-home-assistant",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

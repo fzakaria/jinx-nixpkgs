@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((nix.asBool(nix.has(args_2, "version")) || nix.asBool(nix.builtins.throw("mkComposerVendor expects version argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v2/build-composer-vendor.nix:29:5");
     nix.assert_((nix.asBool(nix.has(args_2, "src")) || nix.asBool(nix.builtins.throw("mkComposerVendor expects src argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v2/build-composer-vendor.nix:30:5");
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.sel(args_2, "pname")}-composer-vendor-${nix.sel(args_2, "version")}`),
       dontPatchShebangs: dontPatchShebangs,
       buildInputs: buildInputs,
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: mkComposerVendorOverride,
     })));

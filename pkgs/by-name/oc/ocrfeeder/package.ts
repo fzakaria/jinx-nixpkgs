@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const tesseract4 = nix.arg($, "tesseract4");
   const extraOcrEngines = nix.argOr($, "extraOcrEngines", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocrfeeder",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/ocrfeeder/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ocrfeeder-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-sD0qWUndguJzTw0uy0FIqupFf4OX6dTFvcd+Mz+8Su0=",
         })))),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--set ISO_CODES_DIR "${isocodes}/share/xml/iso-codes")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.gnome.org/GNOME/ocrfeeder",
         description: "Complete Optical Character Recognition and Document Analysis and Recognition program",
         maintainers: nix.thunk(() => (() => {

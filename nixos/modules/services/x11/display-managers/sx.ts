@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "displayManager", "sx"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xserver: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             sx: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Whether to enable the \"sx\" pseudo-display manager, which allows users\nto start manually via the \"sx\" command from a vt shell. The X server\nruns under the user's id, not as root. The user must provide a\n~/.config/sx/sxrc file containing session startup commands, see\n{manpage}`sx(1)`. This is not automatically generated from the desktopManager\nand windowManager settings. sx doesn't have a way to directly set\nX server flags, but it can be done by overriding its xorg-server\ndependency.\n",
               })),
               addAsSession: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Whether to add sx as a display manager session. Keep in mind that sx\nexpects to be run from a TTY, so it may not work in your display\nmanager.\n",
               })),
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sx", nix.thunk(() => ({})))),
@@ -51,26 +51,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             sessionPackages: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "addAsSession")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
           })),
           xserver: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             exportConfiguration: true,
             logFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), null)),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thiagokokada"))];

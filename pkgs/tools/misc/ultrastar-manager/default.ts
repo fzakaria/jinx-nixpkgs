@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
   ]);
   const patchedSrc = nix.thunk(() => (() => {
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "UltraStar-Deluxe",
         repo: "UltraStar-Manager",
         rev: rev,
         sha256: sha256,
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${nix.sel(src, "name")}-patched`),
         src: src,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
@@ -82,7 +82,7 @@ mv * $out
   const patchApplicationPath = (file) => (path) => nix.str`sed -e "s|QCore.*applicationDirPath()|QString(\\"${path}\\")|" -i "${file}"
 `;
   const buildPlugin = (name) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`ultrastar-manager-${name}-plugin-${version}`),
       src: patchedSrc,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
@@ -100,12 +100,12 @@ done
 `),
     })));
   const builtPlugins = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`ultrastar-manager-plugins-${version}`),
       paths: nix.thunk(() => nix.builtins.map(buildPlugin, plugins)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ultrastar-manager",
       version: version,
       src: patchedSrc,
@@ -126,7 +126,7 @@ cd src && qmake && make
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
       buildInputs: buildInputs,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Ultrastar karaoke song manager",
         mainProgram: "UltraStar-Manager",
         homepage: "https://github.com/UltraStar-Deluxe/UltraStar-Manager",

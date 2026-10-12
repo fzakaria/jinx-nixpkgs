@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.36";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-P7ANv+x65t2+ugTiFUf2fzzPx5X8NFYkUM8/K7Gf28c=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-Language Vulkan/GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs",
         mainProgram: "glad",
         homepage: "https://github.com/Dav1dde/glad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

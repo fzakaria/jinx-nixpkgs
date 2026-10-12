@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const tracee = nix.arg($, "tracee");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(tracee, "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-integration")),
       postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`# fix the test to look at nixos paths for running programs
   # --replace-fail '"integration.tes"' '"tracee-integrat"' \\
@@ -50,7 +50,7 @@ mv $GOPATH/tracee-integration/{integration.test,syscaller} $out/bin/
 `),
       doInstallCheck: false,
       outputs: nix.thunk(() => ["out"]),
-      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { __proto__: pos$1, outputsToInstall: nix.thunk(() => ["out"]) })),
+      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$1, outputsToInstall: nix.thunk(() => ["out"]) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=integration-tests.ts.map

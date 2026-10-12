@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/fake-shell.nix", [["system", 2, 3], ["name", 3, 3], ["builder", 4, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     system: nix.thunk(() => nix.builtins.currentSystem),
     name: "fake-shell",
     builder: nix.path(here, "./builder.sh"),

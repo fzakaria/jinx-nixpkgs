@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nanoboyadvance",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nba-emu",
           repo: "NanoBoyAdvance",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cycle-accurate Nintendo Game Boy Advance emulator",
         homepage: "https://nanoboyadvance.eu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses5 = nix.arg($, "ncurses5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rogue",
       version: "5.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://src.fedoraproject.org/repo/pkgs/rogue/rogue${nix.sel(finalAttrs, "version")}-src.tar.gz/033288f46444b06814c81ea69d96e075/rogue${nix.sel(finalAttrs, "version")}-src.tar.gz`),
             nix.thunk(() => nix.str`http://ftp.vim.org/ftp/pub/ftp/os/Linux/distr/slitaz/sources/packages-cooking/r/rogue${nix.sel(finalAttrs, "version")}-src.tar.gz`),
@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
           sha256: "18g81274d0f7sr04p7h7irz0d53j6kd9j1y3zbka1gcqq0gscdvx",
         })))),
       buildInputs: nix.thunk(() => [ncurses5]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Final version of the original Rogue game developed for the UNIX operating system",
         mainProgram: "rogue",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

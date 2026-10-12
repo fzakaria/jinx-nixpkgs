@@ -13,19 +13,19 @@ const pos$6 = nix.positions(here + "/bookorbit.nix", [["name", 3, 3], ["containe
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "bookorbit",
     containers: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           bookorbit: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
             environment: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               JWT_SECRET: "abcdefghijklmnop",
               SETUP_BOOTSTRAP_TOKEN: "abcdefgh",
             })),

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pyopenssl = nix.arg($, "pyopenssl");
   const python_decouple = nix.arg($, "python-decouple");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "homelink-integration-api",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gentex-Corporation",
           repo: "homelink-integration-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["homelink"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API to interact with Homelink cloud for MQTT-enabled smart home platforms",
         homepage: "https://github.com/Gentex-Corporation/homelink-integration-api",
         changelog: nix.thunk(() => nix.str`https://github.com/Gentex-Corporation/homelink-integration-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

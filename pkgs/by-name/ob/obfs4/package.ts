@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "obfs4",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "anti-censorship/pluggable-transports",
@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^lyrebird-(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Circumvents censorship by transforming Tor traffic between clients and bridges",
         longDescription: "Obfs4proxy is a tool that attempts to circumvent censorship by\ntransforming the Tor traffic between the client and the bridge.\nThis way censors, who usually monitor traffic between the client\nand the bridge, will see innocent-looking transformed traffic\ninstead of the actual Tor traffic.  obfs4proxy implements the\nobfsucation protocols obfs2, obfs3, and obfs4.  It is written in\nGo and is compliant with the Tor pluggable transports\nspecification, and its modular architecture allows it to support\nmultiple pluggable transports.\n",
         homepage: "https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/lyrebird",

@@ -23,25 +23,25 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
   const plat = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux_amd64",
     "aarch64-linux": "linux_arm64",
     "armv7l-linux": "linux_armv7",
     "aarch64-darwin": "darwin_arm64",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": "sha256-eO+Pg2ndcs56871NrFOPWy9gFoKZ9poDcDX/IKpIDuw=",
     "aarch64-linux": "sha256-wTQVPXIegws7xXiWELbvwawKraQeEwD6g7ZgmaKaouw=",
     "armv7l-linux": "sha256-JJh5GttKnkIbafl0IoiMcQeEbjIBX2IRB9+jq9c+deE=",
     "aarch64-darwin": "sha256-8X1mVkD4stRy9AFHc9h0HUz07WQ48zL+IXk2i9dFjKQ=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zrok",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/openziti/zrok/releases/download/v${nix.sel(finalAttrs, "version")}/zrok_${nix.sel(finalAttrs, "version")}_${plat}.tar.gz`),
           stripRoot: false,
           hash: hash,
@@ -54,7 +54,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-script", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} $UPDATE_NIX_ATTR_PATH --system x86_64-linux
 latestVersion=$(nix eval --raw --file . $UPDATE_NIX_ATTR_PATH.version)
 if [[ "$latestVersion" == "$UPDATE_NIX_OLD_VERSION" ]]; then
@@ -68,7 +68,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Geo-scale, next-generation sharing platform built on top of OpenZiti",
         homepage: "https://zrok.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

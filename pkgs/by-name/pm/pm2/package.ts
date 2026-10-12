@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pm2";
       const version = "6.0.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unitech",
           repo: "pm2",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-sX3yQ/40rDc1G/ybegICmic7+GuaCsDLcM1X6OD0B1E=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Unitech/pm2/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Node.js production process manager with a built-in load balancer",
         homepage: "https://github.com/Unitech/pm2",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "jeremyschlatter"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -24,21 +24,21 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "appvm"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         appvm: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "This enables AppVMs and related virtualisation settings.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "AppVM user login. Currently only AppVMs are supported for a single user only.\n",
             })))),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           libvirtd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             qemu: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               verbatimConfig: nix.thunk(() => nix.str`namespaces = []
 user = "${nix.sel(cfg, "user")}"
 group = "users"
@@ -63,10 +63,10 @@ remember_owner = 0
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "appvm"))]),
               extraGroups: nix.thunk(() => ["libvirtd"]),
             }))],

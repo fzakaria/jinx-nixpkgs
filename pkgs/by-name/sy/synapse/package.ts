@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const version = "0.2.99.4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "synapse",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/synapse-project/0.3/${nix.sel(finalAttrs, "version")}/+download/synapse-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1g6x9knb4jy1d8zgssjhzkgac583137pibisy9whjs8mckaj4k1j",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, gettext, vala, gobject_introspection]),
       buildInputs: nix.thunk(() => [glib, libnotify, gtk3, libgee, keybinder3, json_glib, zeitgeist]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         longDescription: "Semantic launcher written in Vala that you can use to start applications\nas well as find and access relevant documents and files by making use of\nthe Zeitgeist engine\n",
         description: "Semantic launcher to start applications and find relevant files",
         homepage: "https://launchpad.net/synapse-project",

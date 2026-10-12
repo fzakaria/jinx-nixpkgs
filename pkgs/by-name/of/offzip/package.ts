@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "offzip",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20230419080810/https://aluigi.altervista.org/mytoolz/offzip.zip",
           hash: "sha256-dmYeSdtNvx6FBuyCdiu+q1ExEfgN8fDO8coyJmFrjKY=",
           stripRoot: false,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to unpack the zip data contained in any type of file",
         homepage: "https://aluigi.altervista.org/mytoolz.htm#offzip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

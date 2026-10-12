@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: "appliance-repart-image-verity-store",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -53,35 +53,35 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(config, "image", "repart", "verityStore"));
       const partitionIds = nix.thunk(() => nix.attr(from, "partitionIds"));
       return {
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         imports: nix.thunk(() => [nix.path(here, "../modules/image/repart.nix")]),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), nix.thunk(() => ({})))),
-          directBoot: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+          directBoot: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
           mountHostNixStore: false,
           useEFIBoot: true,
         })),
         fileSystems: nix.thunk(() => ({
-          __proto__: pos$5,
-          "/": nix.thunk(() => ({ __proto__: pos$4, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })),
+          [nix.POS]: pos$5,
+          "/": nix.thunk(() => ({ [nix.POS]: pos$4, fsType: "tmpfs", options: nix.thunk(() => ["mode=0755"]) })),
         })),
         image: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           repart: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: true,
             verityStore: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               ukiPath: nix.thunk(() => nix.str`/EFI/BOOT/BOOT${nix.app(nix.sel(lib_1, "toUpper"), nix.thunk(() => nix.sel(config, "nixpkgs", "hostPlatform", "efiArch")))}.EFI`),
             })),
             name: "appliance-verity-store-image",
             partitions: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(partitionIds, "esp"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 repartConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   Type: "esp",
                   Format: "vfat",
                   SizeMinBytes: nix.thunk(() => (nix.asBool(nix.sel(config, "nixpkgs", "hostPlatform", "isx86_64")) ? "64M" : "96M")),
@@ -91,33 +91,33 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           loader: nix.thunk(() => ({
-            __proto__: pos$12,
-            grub: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+            [nix.POS]: pos$12,
+            grub: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
           })),
           initrd: nix.thunk(() => ({
-            __proto__: pos$14,
-            systemd: nix.thunk(() => ({ __proto__: pos$13, enable: true })),
+            [nix.POS]: pos$14,
+            systemd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$18,
-          image: nix.thunk(() => ({ __proto__: pos$16, id: "nixos-appliance" })),
+          [nix.POS]: pos$18,
+          image: nix.thunk(() => ({ [nix.POS]: pos$16, id: "nixos-appliance" })),
           activationScripts: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             usrbinenv: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "")),
           })),
         })),
       };
     })(), formals$2),
     nodes: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       machine: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         system: nix.thunk(() => ({
-          __proto__: pos$21,
-          image: nix.thunk(() => ({ __proto__: pos$20, version: "1" })),
+          [nix.POS]: pos$21,
+          image: nix.thunk(() => ({ [nix.POS]: pos$20, version: "1" })),
         })),
       })),
       "without-version": nix.thunk(() => ({})),

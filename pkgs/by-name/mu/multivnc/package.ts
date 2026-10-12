@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
   const libepoxy = nix.arg($, "libepoxy");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const libvncserver_patched = nix.thunk(() => nix.app(nix.sel(libvncserver, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibVNC",
           repo: "libvncserver",
           rev: "ef3b57438564f2877148a23055f3f0ffce66df11",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "MultiVNC",
       version: "0.6.0-2024-10-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "bk138",
           repo: "multivnc",
           rev: "89225243412f43ba2903ffeda98af7fe1f8f4975",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./nixpkgs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/bk138/multivnc/commit/002ba7f6b5b88dac3da5c08f99be1f237dcde904.patch",
             hash: "sha256-Qnk7RrUaw9jsaNTbzYqsH0LU8ivT9xX2jfxrES82ArE=",
           })))),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, wrapGAppsHook3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "multivnc",
         description: "Cross-platform Multicast-enabled VNC viewer based on LibVNCClient",
         homepage: "https://github.com/bk138/multivnc",

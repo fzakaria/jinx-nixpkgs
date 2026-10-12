@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const customConfig = nix.argOr($, "customConfig", () => null);
   const configFile = nix.thunk(() => (nix.asBool(!nix.eq(customConfig, null)) ? nix.app(writeText, "config.theme.js", customConfig) : nix.app(writeText, "config.theme.js", "// Default configuration\nNominatim_Config.Nominatim_API_Endpoint='https://127.0.0.1/';\n")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nominatim-ui",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osm-search",
           repo: "nominatim-ui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TliTWDKdIp7Z0uYw5P65i06NQAUNwNymUsSYrihVZFE=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-IqwsXEd9RSJhkA4BONTJT4xYMTyG9+zddIpD47v6AFc=",
         })))),
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ncp --archive dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nominatim: nix.thunk(() => nix.attr(nixosTests, "nominatim")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Debugging user interface for Nominatim geocoder",
         homepage: "https://github.com/osm-search/nominatim-ui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

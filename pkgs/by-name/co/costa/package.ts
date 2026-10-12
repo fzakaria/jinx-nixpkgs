@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const scalapack = nix.arg($, "scalapack");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "COSTA",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eth-cscs",
           repo: "COSTA",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSCALAPACK_ROOT=${scalapack}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed Communication-Optimal Shuffle and Transpose Algorithm",
         homepage: "https://github.com/eth-cscs/COSTA",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

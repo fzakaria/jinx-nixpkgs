@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pytestFlags = nix.thunk(() => ["-pno:cacheprovider"]);
       const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Google Cloud DNS Authenticator plugin for Certbot",
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         src,
         version,

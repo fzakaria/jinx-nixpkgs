@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bashtage",
           repo: "arch",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ ln -s $out/${nix.sel(python, "sitePackages")}/arch arch
       ]);
       const pythonImportsCheck = nix.thunk(() => ["arch"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Autoregressive Conditional Heteroskedasticity (ARCH) and other tools for financial econometrics",
         homepage: "https://github.com/bashtage/arch",
         changelog: nix.thunk(() => nix.str`https://github.com/bashtage/arch/releases/tag/${nix.sel(src, "tag")}`),
@@ -56,7 +56,7 @@ ln -s $out/${nix.sel(python, "sitePackages")}/arch arch
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

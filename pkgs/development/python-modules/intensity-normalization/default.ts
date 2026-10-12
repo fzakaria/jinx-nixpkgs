@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "intensity-normalization",
       version: "4.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "intensity_normalization",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aKOyW5fxNksHTQurrClJGowuq4coDTID2m9KAQI7ZIQ=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests"]),
       pythonImportsCheck: nix.thunk(() => ["intensity_normalization"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jcreinhold/intensity-normalization",
         description: "MRI intensity normalization tools",
         changelog: nix.thunk(() => nix.str`https://github.com/jcreinhold/intensity-normalization/releases/tag/${nix.sel(finalAttrs, "version")}`),

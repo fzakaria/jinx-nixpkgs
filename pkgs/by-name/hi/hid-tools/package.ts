@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hid-tools",
       version: "0.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "libevdev",
           repo: "hid-tools",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"pypandoc_binary\" \"pypandoc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python scripts to manipulate HID data",
         homepage: "https://gitlab.freedesktop.org/libevdev/hid-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

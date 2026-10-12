@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-gcrypt",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "notabug.org",
           owner: "cwebber",
           repo: "guile-gcrypt",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontStrip: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to Libgcrypt for GNU Guile",
         homepage: "https://notabug.org/cwebber/guile-gcrypt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

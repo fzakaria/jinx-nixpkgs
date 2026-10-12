@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "strawberry-graphql",
       version: "0.319.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "strawberry-graphql",
           repo: "strawberry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [cross_web, graphql_core, python_dateutil, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aiohttp: nix.thunk(() => [aiohttp, pytest_aiohttp]),
         asgi: nix.thunk(() => [starlette, python_multipart]),
         "apollo-federation": nix.thunk(() => [protobuf]),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GraphQL library for Python that leverages type annotations",
         homepage: "https://strawberry.rocks",
         changelog: nix.thunk(() => nix.str`https://github.com/strawberry-graphql/strawberry/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

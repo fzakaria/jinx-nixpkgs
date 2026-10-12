@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const dtc = nix.arg($, "dtc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "culvert",
       version: "0.4.0-unstable-2024-10-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amboar",
           repo: "culvert",
           rev: "770a6ed4badec1c6e3079cd9b354d0996d55b326",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dtc]),
       mesonFlags: nix.thunk(() => ["-Db_lto=false"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/amboar/culvert",
         description: "Test and Debug Tool for BMC AHB Interfaces ",
         mainProgram: "culvert",

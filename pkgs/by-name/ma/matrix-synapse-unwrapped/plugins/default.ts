@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "matrix-http-rendezvous-synapse": nix.thunk(() => nix.app(callPackage, nix.path(here, "./rendezvous.nix"), nix.thunk(() => ({})))),
     "matrix-synapse-ldap3": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ldap3.nix"), nix.thunk(() => ({})))),
     "matrix-synapse-mjolnir-antispam": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mjolnir-antispam.nix"), nix.thunk(() => ({})))),

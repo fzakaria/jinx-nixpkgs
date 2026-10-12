@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mjmunger",
           repo: "pwgen_secure",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ substituteInPlace pwgen_secure/rpg.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pwgen_secure"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Secure password generation library to replace pwgen",
         homepage: "https://github.com/mjmunger/pwgen_secure/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +56,7 @@ substituteInPlace pwgen_secure/rpg.py \\
         mainProgram: "spwgen",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zeyple",
       version: "unstable-2021-04-10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "infertux",
           repo: "zeyple",
           rev: "cc125b7b44432542b227887fd7e2701f77fd8ca2",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "gpg"))]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 zeyple/zeyple.py $out/bin/zeyple\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility program to automatically encrypt outgoing emails with GPG",
         homepage: "https://infertux.com/labs/zeyple/",
         maintainers: nix.thunk(() => (() => {

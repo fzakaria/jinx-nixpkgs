@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "librasterlite2",
       version: "1.1.0-beta1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/librasterlite2-sources/librasterlite2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9yhM38B600OjFOSHjfAwCHSwFF2dMxsGOwlrSC5+RPQ=",
         })))),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced library supporting raster handling methods",
         homepage: "https://www.gaia-gis.it/fossil/librasterlite2",
         license: nix.thunk(() => (() => {

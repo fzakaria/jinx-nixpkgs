@@ -47,97 +47,97 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$33,
+      [nix.POS]: pos$33,
       name: "containers-macvlans",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "montag451"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         machine1: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            __proto__: pos$29,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+            [nix.POS]: pos$29,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               macvlans: nix.thunk(() => ({
-                __proto__: pos$4,
-                "mv-eth1-host": nix.thunk(() => ({ __proto__: pos$3, interface: "eth1", mode: "bridge" })),
+                [nix.POS]: pos$4,
+                "mv-eth1-host": nix.thunk(() => ({ [nix.POS]: pos$3, interface: "eth1", mode: "bridge" })),
               })),
               interfaces: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 eth1: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
                   })),
                 })),
                 "mv-eth1-host": nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$7, address: "192.168.1.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: pos$7, address: "192.168.1.1", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
             })),
             containers: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               test1: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 autoStart: true,
                 macvlans: nix.thunk(() => ["eth1"]),
                 config: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   networking: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     interfaces: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       "mv-eth1": nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         ipv4: nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$12, address: containerIp1, prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: pos$12, address: containerIp1, prefixLength: 24n })),
                           ]),
                         })),
                       })),
                     })),
                   })),
-                  nix: nix.thunk(() => ({ __proto__: pos$17, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$17, enable: false })),
                 })),
               })),
               test2: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 autoStart: true,
                 macvlans: nix.thunk(() => ["eth1"]),
                 config: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   networking: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     interfaces: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       "mv-eth1": nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         ipv4: nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$20, address: containerIp2, prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: pos$20, address: containerIp2, prefixLength: 24n })),
                           ]),
                         })),
                       })),
                     })),
                   })),
-                  nix: nix.thunk(() => ({ __proto__: pos$25, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: pos$25, enable: false })),
                 })),
               })),
             })),
@@ -146,8 +146,8 @@ export default nix.thunk(() => (() => {
         machine2: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            __proto__: pos$31,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$30, vlans: nix.thunk(() => [1n]) })),
+            [nix.POS]: pos$31,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$30, vlans: nix.thunk(() => [1n]) })),
           };
         })(), formals$3),
       })),

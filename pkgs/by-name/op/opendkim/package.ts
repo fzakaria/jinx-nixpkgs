@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const unbound = nix.arg($, "unbound");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "opendkim",
       version: "2.11.0-Beta2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trusteddomainproject",
           repo: "OpenDKIM",
           tag: nix.thunk(() => nix.str`rel-opendkim-${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,19 +40,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2020-35766.patch",
             url: "https://github.com/trusteddomainproject/OpenDKIM/commit/520338d25af68cf263b97ba63037e3f5856a10da.patch",
             hash: "sha256-O4a4boa67tj0nqxee6V+u7rd3l3RGaiWE+Mu0ib4DWE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2022-48521.patch",
             url: "https://github.com/trusteddomainproject/OpenDKIM/commit/e67c33e1a08cca793470e6a6ff44082f73f6d222.patch",
             hash: "sha256-QtxiRM+/NDlQhfGB8XNX1M1PtQyXXarawoF+8pTTMVo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-old-style-dkimf_base64_encode_file.patch",
             url: "https://github.com/trusteddomainproject/OpenDKIM/commit/3f0aa0a31c11b9924f826708535071b68c22b731.patch",
             hash: "sha256-nQCBGef2kjs9ZyHwPreNPQYW6jBOBTDhVq9RyeGSN/Y=",
@@ -69,14 +69,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.sel(openssl, "bin")}/bin
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version=unstable", "--version-regex=rel-opendkim-(\\d+)-(\\d+)-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "C library for producing DKIM-aware applications and an open source milter for providing DKIM service",
         homepage: "http://www.opendkim.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

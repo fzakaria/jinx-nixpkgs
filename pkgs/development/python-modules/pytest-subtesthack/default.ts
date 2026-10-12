@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-67UEIDycAf3TedKvp0dofct7HtG+H8DD9Tmy3oEnYgA=",
@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terrible plugin to set up and tear down fixtures within the test function itself",
         homepage: "https://github.com/untitaker/pytest-subtesthack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

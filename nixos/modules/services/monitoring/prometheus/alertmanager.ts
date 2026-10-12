@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "alertmanager"));
   const mkConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "alertmanager.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "configuration"))))));
   const checkedConfig = (file) => (nix.asBool(nix.sel(cfg, "checkConfig")) ? nix.app(nix.sel(pkgs, "runCommand"), "checked-config", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
     })), nix.thunk(() => nix.str`ln -s ${file} $out
 amtool check-config $out
@@ -56,90 +56,90 @@ amtool check-config $out
     nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((peer) => nix.str`--cluster.peer ${peer}:9094`, nix.thunk(() => nix.sel(cfg, "clusterPeers")))))),
   ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "webExternalUrl"), null)), nix.thunk(() => nix.str`--web.external-url ${nix.sel(cfg, "webExternalUrl")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "logFormat"), null)), nix.thunk(() => nix.str`--log.format ${nix.sel(cfg, "logFormat")}`))))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "prometheus", "alertmanager", "user"]), "The alertmanager service is now using systemd's DynamicUser mechanism which obviates a user setting.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "prometheus", "alertmanager", "group"]), "The alertmanager service is now using systemd's DynamicUser mechanism which obviates a group setting.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "prometheus", "alertmanagerURL"]), "Due to incompatibility, the alertmanagerURL option has been removed,\nplease use 'services.prometheus.alertmanagers' instead.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         prometheus: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           alertmanager: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Prometheus Alertmanager")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prometheus-alertmanager", nix.thunk(() => ({})))),
             configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "attrs")))),
                 default: null,
                 description: "Alertmanager configuration as nix attribute set.\n\nThe contents of the resulting config file are processed using envsubst.\n`$` needs to be escaped as `$$` to be preserved.\n",
               })))),
             configText: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
                 default: null,
                 description: "Alertmanager configuration as YAML text. If non-null, this option\ndefines the text that is written to alertmanager.yml. If null, the\ncontents of alertmanager.yml is generated from the structured config\noptions.\n\nThe contents of the resulting config file are processed using envsubst.\n`$` needs to be escaped as `$$` to be preserved.\n",
               })))),
             checkConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Check configuration with `amtool check-config`. The call to `amtool` is\nsubject to sandboxing by Nix.\n\nIf you use credentials stored in external files\n(`environmentFile`, etc),\nthey will not be visible to `amtool`\nand it will report errors, despite a correct configuration.\n",
               })))),
             logFormat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "If set use a syslog logger or JSON logging.\n",
               })))),
             logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["debug", "info", "warn", "error", "fatal"]))),
                 default: "warn",
                 description: "Only log messages with the given severity or above.\n",
               })))),
             webExternalUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The URL under which Alertmanager is externally reachable (for example, if Alertmanager is served via a reverse proxy).\nUsed for generating relative and absolute links back to Alertmanager itself.\nIf the URL has a path portion, it will be used to prefix all HTTP endoints served by Alertmanager.\nIf omitted, relevant URL components will be derived automatically.\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Address to listen on for the web interface and API. Empty string will listen on all interfaces.\n\"localhost\" will listen on 127.0.0.1 (but not ::1).\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 9093n,
                 description: "Port to listen on for the web interface and API.\n",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Open port in firewall for incoming connections.\n",
               })))),
             clusterPeers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Initial peers for HA cluster.\n",
               })))),
             extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "Extra commandline options when launching the Alertmanager.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/root/alertmanager.env",
@@ -151,33 +151,33 @@ amtool check-config $out
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "configuration"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "configText"), null)))),
                 message: nix.thunk(() => nix.add("Can not enable alertmanager without a configuration. ", "Set either the `configuration` or `configText` attribute.")),
               })))),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             networking: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               firewall: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.sel(cfg, "port")))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 alertmanager: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => ["network-online.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     ExecStartPre: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "envsubst")))}/bin/envsubst -i '${alertmanagerYml}' -o '/tmp/alert-manager-substituted.yaml'`),
                     ExecStart: nix.thunk(() => nix.add(nix.str`${nix.sel(cfg, "package")}/bin/alertmanager`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "length"), cmdlineArgs), 0n)), nix.thunk(() => nix.add(" \\\n  ", nix.app(nix.sel(lib, "concatStringsSep"), " \\\n  ", cmdlineArgs)))))),
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),

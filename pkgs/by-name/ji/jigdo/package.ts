@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const db = nix.arg($, "db");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jigdo",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.einval.com/~steve/software/jigdo/download/jigdo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-NvKG2T+mtr94hfSJnJl4lNIdo6YhdlkqwWLZxqhkT54=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext]),
       buildInputs: nix.thunk(() => [bzip2, db, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Download utility that can fetch files from several sources simultaneously",
         homepage: "https://www.einval.com/~steve/software/jigdo/",
         changelog: nix.thunk(() => nix.str`https://git.einval.com/cgi-bin/gitweb.cgi?p=jigdo.git;a=blob;f=changelog;hb=refs/tags/${nix.sel(finalAttrs, "version")}`),

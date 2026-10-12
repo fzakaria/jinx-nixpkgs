@@ -16,29 +16,29 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "geoclue2",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rhendric"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
         location: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           latitude: 12.345,
           longitude: nix.thunk(() => nix.neg(67.89)),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           geoclue2: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             enableDemoAgent: true,
             enableStatic: true,

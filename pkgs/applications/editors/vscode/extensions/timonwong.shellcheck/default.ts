@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const shellcheck = nix.arg($, "shellcheck");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "shellcheck",
         publisher: "timonwong",
         version: "0.40.1",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."shellcheck.executablePath".default = "${shellcheck}/bin/shellcheck"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Integrates ShellCheck into VS Code, a linter for Shell scripts",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck",
         homepage: "https://github.com/vscode-shellcheck/vscode-shellcheck",

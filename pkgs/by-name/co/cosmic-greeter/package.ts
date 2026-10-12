@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const withUpower = nix.argOr($, "withUpower", () => true);
   const withNetworkManager = nix.argOr($, "withNetworkManager", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cosmic-greeter",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pop-os",
           repo: "cosmic-greeter",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ substituteInPlace src/greeter.rs --replace-fail '/usr/bin/orca' '${nix.app(nix.s
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -82,21 +82,21 @@ substituteInPlace src/greeter.rs --replace-fail '/usr/bin/orca' '${nix.app(nix.s
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/pop-os/cosmic-greeter",
         description: "Greeter for the COSMIC Desktop Environment",
         mainProgram: "cosmic-greeter",

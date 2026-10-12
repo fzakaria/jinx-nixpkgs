@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-h+rPnXKYlzol12Fe9X1Hgq6/kTpTK7pLKKN+Nm6XXa8=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [click, pytestCheckHook, six]);
       const pythonImportsCheck = nix.thunk(() => ["click_spinner"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Add support for showwing that command line app is active to Click",
         homepage: "https://github.com/click-contrib/click-spinner",
         changelog: nix.thunk(() => nix.str`https://github.com/click-contrib/click-spinner/releases/tag/v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

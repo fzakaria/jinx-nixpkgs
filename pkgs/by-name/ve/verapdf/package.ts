@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const mvnParameters = nix.thunk(() => nix.add("-pl '!installer' -Dverapdf.timestamp=1980-01-01T00:00:02Z -Dproject.build.outputTimestamp=1980-01-01T00:00:02Z ", nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (id) => nix.str`-Dverapdf.${id}.version=${version}`, nix.thunk(() => ["library", "pdfbox.validation", "validation"]))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "veraPDF",
           repo: "veraPDF-apps",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ install -Dm644 gui/src/main/resources/org/verapdf/gui/images/icon.png $out/share
 `))), "runHook postInstall\n"));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "veraPDF",
               comment: nix.thunk(() => nix.sel(meta, "description")),
               desktopName: "veraPDF",
@@ -66,7 +66,7 @@ install -Dm644 gui/src/main/resources/org/verapdf/gui/images/icon.png $out/share
       const preVersionCheck = nix.thunk(() => nix.str`version=${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.0
 `);
       const meta = nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/veraPDF/veraPDF-library/blob/${nix.sel(src, "tag")}/RELEASENOTES.md`),
         description: "Command line and GUI industry supported PDF/A and PDF/UA Validation",
         homepage: "https://github.com/veraPDF/veraPDF-apps",
@@ -78,9 +78,9 @@ install -Dm644 gui/src/main/resources/org/verapdf/gui/images/icon.png $out/share
           nix.thunk(() => nix.sel(lib, "maintainers", "mohe2015")),
           nix.thunk(() => nix.sel(lib, "maintainers", "kilianar")),
         ]),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withCli) && nix.asBool(!nix.asBool(withGui)))), nix.thunk(() => ({ __proto__: pos$4, mainProgram: "verapdf" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withGui) && nix.asBool(!nix.asBool(withCli)))), nix.thunk(() => ({ __proto__: pos$5, mainProgram: "verapdf-gui" }))))));
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withCli) && nix.asBool(!nix.asBool(withGui)))), nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: "verapdf" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withGui) && nix.asBool(!nix.asBool(withCli)))), nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "verapdf-gui" }))))));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         __structuredAttrs,

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const darktable = nix.arg($, "darktable");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "photoview",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "photoview",
           repo: "photoview",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,15 +56,15 @@ wrapProgram $out/bin/photoview \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [exiftool, darktable, ffmpeg]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Photo gallery for self-hosted personal servers",
         homepage: "https://photoview.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

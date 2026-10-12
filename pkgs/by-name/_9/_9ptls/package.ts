@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const tlsclient = nix.arg($, "tlsclient");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(tlsclient, "src")),
       version: nix.thunk(() => nix.attr(tlsclient, "version")),
       enableParallelBuilding: nix.thunk(() => nix.attr(tlsclient, "enableParallelBuilding")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "SBIN=$(out)/bin"]),
       installTargets: "mount.9ptls.install",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "mount.9ptls mount helper",
         longDescription: "mount.9ptls wraps the v9fs mount type in a dp9ik authenticated\ntls tunnel using tlsclient.\n",
         homepage: "https://git.sr.ht/~moody/tlsclient",

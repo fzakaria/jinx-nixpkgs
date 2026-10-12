@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const libz = nix.arg($, "libz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-absorb",
       version: "0.9.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tummychow",
           repo: "git-absorb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [asciidoc, installShellFiles, which]),
       cargoHash: "sha256-8uCXk5bXn/x4QXbGOROGlWYMSqIv+/7dBGZKbYkLfF4=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n, LIBZ_SYS_STATIC: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n, LIBZ_SYS_STATIC: 0n })),
       nativeCheckInputs: nix.thunk(() => [gitMinimal, pkg_config]),
       buildInputs: nix.thunk(() => [libgit2, libz]),
       postInstall: nix.thunk(() => nix.add("cd Documentation/\nmake\ninstallManPage git-absorb.1\ncd -\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd git-absorb \\\n  --bash <($out/bin/git-absorb --gen-completions bash) \\\n  --fish <($out/bin/git-absorb --gen-completions fish) \\\n  --zsh <($out/bin/git-absorb --gen-completions zsh) \\\n  --nushell <($out/bin/git-absorb --gen-completions nushell)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/tummychow/git-absorb",
         description: "git commit --fixup, but automatic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

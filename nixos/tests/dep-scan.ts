@@ -24,21 +24,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "owasp dep-scan test",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return nix.concat([nix.thunk(() => nix.sel(nix.lookup(w, "maintainers"), "ethancedwards8"))], nix.sel(nix.lookup(w, "teams"), "ngi", "members"));
       })()),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -47,34 +47,34 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
-            "dep-scan-source": nix.thunk(() => ({ __proto__: pos$2, source: nix.thunk(() => nix.sel(pkgs, "dep-scan", "src")) })),
+            [nix.POS]: pos$9,
+            "dep-scan-source": nix.thunk(() => ({ [nix.POS]: pos$2, source: nix.thunk(() => nix.sel(pkgs, "dep-scan", "src")) })),
             "vdb/data.index.vdb6": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   url: "https://huggingface.co/datasets/AppThreat/vdb/resolve/40609f230dd7c83178e054e0219c367b49a2c920/app-2y/data.index.vdb6",
                   hash: "sha256-UyE0xiLT0T4ygBdEvDi4VQW/vxwalN6YV9EJ9RoLYy4=",
                 })))),
             })),
             "vdb/data.vdb6": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   url: "https://huggingface.co/datasets/AppThreat/vdb/resolve/40609f230dd7c83178e054e0219c367b49a2c920/app-2y/data.vdb6",
                   hash: "sha256-k5QIowFD8H/hwaRz1p8RXlFEIrKjnFUtxtZTfD67B+U=",
                 })))),
             })),
             "vdb/vdb.meta": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   url: "https://huggingface.co/datasets/AppThreat/vdb/resolve/40609f230dd7c83178e054e0219c367b49a2c920/app-2y/vdb.meta",
                   hash: "sha256-eQB0dHlNw31sKsRcVUByhIfuIN35+m3VAcBHIfusNPY=",
                 })))),
             })),
           })),
-          variables: nix.thunk(() => ({ __proto__: pos$10, VDB_HOME: "/tmp/vdb", VDB_AGE_HOURS: 999999n })),
+          variables: nix.thunk(() => ({ [nix.POS]: pos$10, VDB_HOME: "/tmp/vdb", VDB_AGE_HOURS: 999999n })),
         })),
       })),
     })),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const jre25_minimal = nix.arg($, "jre25_minimal");
   const jre = nix.thunk(() => nix.app(nix.sel(jre25_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [
         "java.base",
         "java.compiler",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "freerouting",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "freerouting",
           repo: "freerouting",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       gradleBuildTask: "dist",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, jdk25, gradle_9, copyDesktopItems]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -88,7 +88,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: "freerouting",
             icon: "freerouting",
@@ -98,7 +98,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Advanced PCB auto-router",
         homepage: "https://www.freerouting.org",
         changelog: nix.thunk(() => nix.str`https://github.com/freerouting/freerouting/releases/tag/v${nix.sel(finalAttrs, "version")}`),

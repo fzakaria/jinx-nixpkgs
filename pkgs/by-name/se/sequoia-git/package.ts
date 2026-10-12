@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (final) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sequoia-git",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sequoia-pgp",
           repo: "sequoia-git",
           rev: nix.thunk(() => nix.str`v${nix.sel(final, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         installShellFiles,
       ]),
       nativeCheckInputs: nix.thunk(() => [gnupg, gitMinimal, libfaketime]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ASSET_OUT_DIR: "target" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ASSET_OUT_DIR: "target" })),
       postInstall: nix.thunk(() => nix.str`installManPage ${nix.sel(final, "env", "ASSET_OUT_DIR")}/man-pages/*.1
 installShellCompletion --bash ${nix.sel(final, "env", "ASSET_OUT_DIR")}/shell-completions/${nix.sel(final, "meta", "mainProgram")}.bash
 installShellCompletion --zsh ${nix.sel(final, "env", "ASSET_OUT_DIR")}/shell-completions/_${nix.sel(final, "meta", "mainProgram")}
@@ -52,7 +52,7 @@ installShellCompletion --fish ${nix.sel(final, "env", "ASSET_OUT_DIR")}/shell-co
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sequoia-pgp.gitlab.io/sequoia-git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matthiasbeyer"))]),

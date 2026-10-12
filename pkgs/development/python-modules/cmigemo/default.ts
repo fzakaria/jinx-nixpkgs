@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const cmigemo = nix.arg($, "cmigemo");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cmigemo",
       version: "0.1.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cxOqMAf2dgCwZuBKSAXkRFY9FRNB3rMwE1tNzfZERiY=",
@@ -41,7 +41,7 @@ export LD_LIBRARY_PATH="${cmigemo}/lib"
       enabledTestPaths: nix.thunk(() => ["test/"]),
       pythonImportsCheck: nix.thunk(() => ["cmigemo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/mooz/python-cmigemo",
         description: "Pure python binding for C/Migemo",

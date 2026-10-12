@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rahasher",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LeXofLeviafan",
           repo: "RAHasher",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,11 +54,11 @@ EOF
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\ninstall -Dm755 bin*/RAHasher $out/bin/RAHasher\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI utility for verifying ROM checksums with hashing methods used by RetroAchievements",
         longDescription: "RAHasher computes ROM/disc checksums using the same hashing methods as\nRetroAchievements (via the bundled rcheevos library), so you can look\nup or verify RetroAchievements-compatible hashes for your ROM\ncollection from the command line. It's a CLI-friendly derivative of\nRALibretro's built-in hasher, and supports CHD disc images.\n",
         homepage: "https://github.com/LeXofLeviafan/RAHasher",

@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.arg($, "nixpkgs");
   const networkExpr = nix.arg($, "networkExpr");
   const nodes = nix.thunk(() => nix.builtins.mapAttrs((vm) => (module) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       _file: nix.thunk(() => nix.str`${networkExpr}@node-${vm}`),
       imports: nix.thunk(() => [module]),
     }), nix.thunk(() => nix.builtins.import(networkExpr))));
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({ __proto__: pos$2, system: system, config: config }))));
-  const testing = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/lib/testing-python.nix`)), nix.thunk(() => ({ __proto__: pos$3, system: system, pkgs: pkgs }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, config: config }))));
+  const testing = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/lib/testing-python.nix`)), nix.thunk(() => ({ [nix.POS]: pos$3, system: system, pkgs: pkgs }))));
   const interactiveDriver = nix.thunk(() => nix.sel(nix.app(nix.sel(testing, "makeTest"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nodes: nodes,
       name: "network",
       testScript: "start_all(); join_all();",
     }))), "test", "driverInteractive"));
   return nix.app(nix.sel(pkgs, "runCommand"), "nixos-build-vms", nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 ln -s ${interactiveDriver}/bin/nixos-test-driver $out/bin/nixos-test-driver

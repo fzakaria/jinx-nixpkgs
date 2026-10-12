@@ -28,17 +28,17 @@ export default nix.lambda((args) => (() => {
       const pname = "screen-pipe";
       const version = "0.1.48";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "screenpipe",
           repo: "screenpipe",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-rWKRCqWFuPO84C52mMrrS4euD6XdJU8kqZsAz28+vWE=",
         }))));
       const cargoLock = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cpal-0.15.3": "sha256-eKn3tS5QuqbMTwnRAEybvbPZOiKiid7ghGztAmrs9fw=",
           "rusty-tesseract-1.1.10": "sha256-XT74zGn+DetEBUujHm4Soe2iorQcIoUeZbscTv+64hw=",
         })),
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
       const buildInputs = nix.thunk(() => nix.concat([dbus, ffmpeg, oniguruma, openssl, sqlite], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libxcb]))));
       const buildFeatures = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "metal"));
-      const env = nix.thunk(() => ({ __proto__: pos$4, RUSTONIG_SYSTEM_LIBONIG: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, RUSTONIG_SYSTEM_LIBONIG: true }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         broken: true,
         description: "Personalized AI powered by what you've seen, said, or heard",
         homepage: "https://github.com/screenpipe/screenpipe",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "screen-pipe",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

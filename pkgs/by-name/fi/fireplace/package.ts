@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fireplace",
       version: "0-unstable-2020-02-02",
       buildInputs: nix.thunk(() => [ncurses]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 fireplace -t $out/bin\n\nrunHook postInstall\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Wyatt915",
           repo: "fireplace",
           rev: "aa2070b73be9fb177007fc967b066d88a37e3408",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["CC=cc"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cozy fireplace in your terminal",
         homepage: "https://github.com/Wyatt915/fireplace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

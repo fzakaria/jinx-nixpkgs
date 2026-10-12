@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const kubernetes = nix.arg($, "kubernetes");
   const kubernetes$ = nix.thunk(() => nix.app(nix.sel(kubernetes, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       components: nix.thunk(() => ["cmd/kubectl", "cmd/kubectl-convert"]),
     }))));
   return nix.app(nix.sel(kubernetes$, "overrideAttrs"), (_) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kubectl",
       outputs: nix.thunk(() => ["out", "man", "convert"]),
       installPhase: "runHook preInstall\ninstall -D _output/local/go/bin/kubectl -t $out/bin\ninstall -D _output/local/go/bin/kubectl-convert -t $convert/bin\n\ninstallManPage docs/man/man1/kubectl*\n\ninstallShellCompletion --cmd kubectl \\\n  --bash <($out/bin/kubectl completion bash) \\\n  --fish <($out/bin/kubectl completion fish) \\\n  --zsh <($out/bin/kubectl completion zsh)\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(kubernetes, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kubernetes CLI",
         homepage: "https://github.com/kubernetes/kubectl",
         mainProgram: "kubectl",

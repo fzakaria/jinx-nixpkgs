@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "starship",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "starship", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         programs: nix.thunk(() => ({
-          __proto__: pos$6,
-          fish: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
-          zsh: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+          [nix.POS]: pos$6,
+          fish: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          zsh: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           starship: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$4, format: "<starship>" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$4, format: "<starship>" })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => nix.builtins.map((shell) => nix.app(nix.sel(pkgs, "writeScriptBin"), nix.thunk(() => nix.str`expect-${shell}`), nix.thunk(() => nix.str`#!${nix.sel(pkgs, "expect")}/bin/expect -f
 
 spawn env TERM=xterm ${shell} -i

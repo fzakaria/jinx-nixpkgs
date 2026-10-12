@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
 $logevent 225
 `)));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         torque: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mom: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "torque computing node")),
             serverNode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Hostname running pbs server.",
               })))),
@@ -50,17 +50,17 @@ $logevent 225
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "torque"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "torque-mom-init": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [
@@ -75,17 +75,17 @@ pbs_mkdirs -v mom
 hostname > /var/spool/torque/server_name
 cp -v ${momConfig} /var/spool/torque/mom_priv/config
 `),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$7, Type: "oneshot" })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$8, ConditionPathExists: "!/var/spool/torque" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$7, Type: "oneshot" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, ConditionPathExists: "!/var/spool/torque" })),
             })),
             "torque-mom": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               path: nix.thunk(() => [torque]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["torque-mom-init.service"]),
               after: nix.thunk(() => ["torque-mom-init.service", "network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${torque}/bin/pbs_mom`),
                 PIDFile: "/var/spool/torque/mom_priv/mom.lock",

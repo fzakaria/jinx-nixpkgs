@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "widlparser",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plinss",
           repo: "widlparser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["widlparser"]),
       checkPhase: "runHook preCheck\n\npython test.py > test-actual.txt\ndiff -u test-expected.txt test-actual.txt\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stand-alone WebIDL Parser in Python",
         homepage: "https://github.com/plinss/widlparser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

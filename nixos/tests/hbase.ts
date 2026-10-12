@@ -19,33 +19,33 @@ export default nix.lambda((args) => (() => {
   const getPackage = nix.arg($, "getPackage");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: nix.thunk(() => nix.str`hbase-${nix.sel(nix.app(getPackage, pkgs), "version")}-standalone`),
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "illustris"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       hbase: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const package$ = nix.thunk(() => nix.app(getPackage, pkgs_1));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "hbase-standalone": nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               package: package$,
-              settings: nix.thunk(() => ({ __proto__: pos$2, "hbase.unsafe.stream.capability.enforce": "false" })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$2, "hbase.unsafe.stream.capability.enforce": "false" })),
             })),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$5, systemPackages: nix.thunk(() => [package$]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$5, systemPackages: nix.thunk(() => [package$]) })),
         };
       })(), formals$2),
     })),

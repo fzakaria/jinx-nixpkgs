@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "archivemount",
       version: "1b",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~nabijaczleweli",
           repo: "archivemount-ng",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       postPatch: "substituteInPlace Makefile --replace-fail pkg-config \"$PKG_CONFIG\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gateway between FUSE and libarchive: allows mounting of cpio, .tar.gz, .tar.bz2 archives",
         homepage: "https://git.sr.ht/~nabijaczleweli/archivemount-ng",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~nabijaczleweli/archivemount-ng/refs/${nix.sel(finalAttrs, "version")}`),

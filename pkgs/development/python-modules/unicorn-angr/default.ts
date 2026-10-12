@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nmv unicorn unicorn.hidden\npatchShebangs sample_*.py shellcode.py\nsh -e sample_all.sh\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["unicorn"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for Unicorn CPU emulator engine",
         homepage: "https://www.unicorn-engine.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         pyproject,

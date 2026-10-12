@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buzz",
           repo: "volctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : "${libpulseaudio}/lib")
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PulseAudio enabled volume control featuring per-app sliders",
         homepage: "https://buzz.github.io/volctl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -63,7 +63,7 @@ gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : "${libpulseaudio}/lib")
         mainProgram: "volctl",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

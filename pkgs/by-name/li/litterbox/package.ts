@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "litterbox",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.causal.agency/litterbox/snapshot/litterbox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-w4qW7J5CKm+hXHsNNbl9roBslHD14JOe0Nj5WntETqM=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       buildFlags: nix.thunk(() => ["all"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple TLS-only IRC logger",
         homepage: "https://code.causal.agency/june/litterbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

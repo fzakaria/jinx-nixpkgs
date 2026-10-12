@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_fastcgi";
       const version = "2.4.7.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FastCGI-Archives",
           repo: "mod_fastcgi",
           rev: version,
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
 makeFlags="top_dir=${nix.sel(apacheHttpd, "dev")}/share prefix=$out"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/FastCGI-Archives/mod_fastcgi",
         description: "Provide support for the FastCGI protocol",
         longDescription: "mod_fastcgi is a module for the Apache web server that enables\nFastCGI - a standards based protocol for communicating with\napplications that generate dynamic content for web pages. FastCGI\nprovides a superset of CGI functionality, but a subset of the\nfunctionality of programming for a particular web server API.\nNonetheless, the feature set is rich enough for programming\nvirtually any type of web application, but the result is generally\nmore scalable.\n",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, preBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, preBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

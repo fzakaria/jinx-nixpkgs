@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qprint",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.fourmilab.ch/webtools/qprint/qprint-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1701cnb1nl84rmcpxzq11w4cyj4385jh3gx4aqxznwf8a4fwmagz",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "wringer",
       preInstall: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.fourmilab.ch/webtools/qprint/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         description: "Encode and decode Quoted-Printable files",

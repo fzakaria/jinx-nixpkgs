@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "astropy-helpers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, pkg_resources_backport]);
       const pythonImportsCheck = nix.thunk(() => ["astropy_helpers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utilities for building and installing Astropy, Astropy affiliated packages, and their respective documentation",
         homepage: "https://github.com/astropy/astropy-helpers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "smaret"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

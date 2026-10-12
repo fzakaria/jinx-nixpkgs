@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withTTS = nix.argOr($, "withTTS", () => false);
   const speechd_minimal = nix.arg($, "speechd-minimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "blightmud",
       version: "5.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blightmud",
           repo: "blightmud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withTTS, "tts")),
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withTTS) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [speechd_minimal])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib]))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       __darwinAllowLocalNetworking: true,
       checkFlags: nix.thunk(() => (() => {
         const skipList = nix.thunk(() => [
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         return nix.builtins.map((x) => nix.add("--skip=", x), skipList);
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal MUD client written in Rust",
         mainProgram: "blightmud",
         longDescription: "Blightmud is a terminal client for connecting to Multi User Dungeon (MUD)\ngames. It is written in Rust and supports TLS, GMCP, MSDP, MCCP2, tab\ncompletion, text searching and a split view for scrolling. Blightmud can\nbe customized with Lua scripting for aliases, triggers, timers, customized\nstatus bars, and more. Blightmud supports several accessibility features\nincluding an optional built-in text-to-speech engine and a screen reader\nfriendly mode.\n",

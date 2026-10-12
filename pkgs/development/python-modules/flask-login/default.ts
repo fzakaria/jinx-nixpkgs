@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3-unstable-2024-06-18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maxcountryman",
           repo: "flask-login",
           rev: "30675c56b651389d47b47eeb1ad114decb35b8fc",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flask_login"]);
       const nativeCheckInputs = nix.thunk(() => [asgiref, blinker, pytestCheckHook, semantic_version]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/maxcountryman/flask-login/blob/${nix.sel(src, "rev")}/CHANGES.md`),
         description: "User session management for Flask",
         homepage: "https://github.com/maxcountryman/flask-login",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

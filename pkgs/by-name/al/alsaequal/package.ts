@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const caps = nix.arg($, "caps");
   const ladspa_header = nix.arg($, "ladspa-header");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alsaequal",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bassdr",
           repo: "alsaequal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
 `),
       preInstall: "mkdir -p \"$out/lib/alsa-lib\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time adjustable equalizer plugin for ALSA",
         homepage: "https://github.com/bassdr/alsaequal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

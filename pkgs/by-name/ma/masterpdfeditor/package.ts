@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "masterpdfeditor",
       version: "5.9.99",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.sel(attrs, nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const makeUrls = (url) => [url, nix.thunk(() => nix.str`https://web.archive.org/web/${url}`)];
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             urls: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 "x86_64-linux": nix.thunk(() => nix.app(makeUrls, nix.thunk(() => nix.str`https://code-industry.net/public/master-pdf-editor-${nix.sel(finalAttrs, "version")}-qt5.x86_64-qt_include.tar.gz`))),
                 "aarch64-linux": nix.thunk(() => nix.app(makeUrls, nix.thunk(() => nix.str`https://code-industry.net/public/master-pdf-editor-${nix.sel(finalAttrs, "version")}-qt5.arm64.tar.gz`))),
               })))),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "x86_64-linux": "sha256-ksVuJyuImstESVwHUmOUv6aERosg6g5bSsRvPSf5EVM=",
                 "aarch64-linux": "sha256-IxWYzb1assCMBNjj5VZbfuhkzVrMpU5Oz/N+kd4CxHw=",
               })))),
@@ -63,14 +63,14 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nsubstituteInPlace usr/share/applications/net.code-industry.masterpdfeditor5.desktop \\\n  --replace-fail \"Exec=/opt/master-pdf-editor-5/masterpdfeditor5\" \"Exec=masterpdfeditor5\" \\\n  --replace-fail \"Path=/opt/master-pdf-editor-5\" \"Path=$out/share/masterpdfeditor\" \\\n  --replace-fail \"/opt/master-pdf-editor-5/masterpdfeditor5.png\" \"masterpdfeditor5\"\ncp -r usr $out\ninstall -Dm755 masterpdfeditor5 -t $out/share/masterpdfeditor\ncp -r stamps templates lang fonts $out/share/masterpdfeditor\nmkdir $out/bin\nln -s $out/share/masterpdfeditor/masterpdfeditor5 $out/bin/masterpdfeditor5\n\nrunHook postInstall\n",
       preFixup: "patchelf $out/share/masterpdfeditor/masterpdfeditor5 \\\n  --add-needed libsmime3.so\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-masterpdfeditor", nix.thunk(() => nix.str`latestVersion=$(curl -s https://code-industry.net/downloads/ | grep -A1 "fa-linux" | grep -oP 'Version\\s+\\K[\\d.]+' | head -n 1)
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} pkgsCross.gnu64.masterpdfeditor --version $latestVersion
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} pkgsCross.aarch64-multiplatform.masterpdfeditor --ignore-same-version
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Master PDF Editor",
         homepage: "https://code-industry.net/free-pdf-editor/",
         sourceProvenance: nix.thunk(() => (() => {

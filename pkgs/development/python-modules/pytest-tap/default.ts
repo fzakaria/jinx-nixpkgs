@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-tap",
           repo: "pytest-tap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "missing-package-in-wheel.patch",
             url: "https://github.com/python-tap/pytest-tap/commit/056a44a632b1af19d9ba4b5044768bde3dd6a764.patch",
             hash: "sha256-P52NqgXtnO2SthDwVbT+NVPeBNhjGS/8Vsbe/WLCc3A=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_tap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Test Anything Protocol (TAP) reporting plugin for pytest",
         homepage: "https://github.com/python-tap/pytest-tap",
         changelog: nix.thunk(() => nix.str`https://github.com/python-tap/pytest-tap/blob/v${version}/docs/releases.rst`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

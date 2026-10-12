@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
   const webdriver_manager = nix.arg($, "webdriver-manager");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nicegui",
       version: "3.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zauberzeug",
           repo: "nicegui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         watchfiles,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         matplotlib: nix.thunk(() => [matplotlib]),
         native: nix.thunk(() => [pywebview]),
         plotly: nix.thunk(() => [plotly]),
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nicegui"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to create web-based user interfaces",
         homepage: "https://github.com/zauberzeug/nicegui/",
         changelog: nix.thunk(() => nix.str`https://github.com/zauberzeug/nicegui/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

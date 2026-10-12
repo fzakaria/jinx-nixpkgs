@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const core = "np2kai";
       const version = "0-unstable-2026-09-05";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AZO234",
           repo: "NP2kai",
           rev: "5939e0c6d5985c4c08fc70f289a83290e5d3e6f7",
@@ -29,17 +29,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`NP2KAI_HASH=${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types", "-Wno-error=int-conversion"]))),
       }));
       const preBuild = "cd sdl";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Neko Project II kai libretro port",
         homepage: "https://github.com/AZO234/NP2kai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$4, core, version, src, makeFlags, env, preBuild, meta };
+      return { [nix.POS]: pos$4, core, version, src, makeFlags, env, preBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=np2kai.ts.map

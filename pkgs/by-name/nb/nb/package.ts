@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const bashInteractive = nix.arg($, "bashInteractive");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nb",
       version: "7.25.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xwmx",
           repo: "nb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 -t $out/bin nb\nrunHook postInstall\n",
       postInstall: "installShellCompletion --cmd nb etc/nb-completion.{bash,zsh,fish}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "EDITOR=nano nb --version",
             })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line note-taking, bookmarking, archiving, and knowledge base application",
         longDescription: "`nb` creates notes in text-based formats like Markdown, Emacs Org mode,\nand LaTeX, can work with files in any format, can import and export notes\nto many document formats, and can create private, password-protected\nencrypted notes and bookmarks. With `nb`, you can write notes using Vim,\nEmacs, VS Code, Sublime Text, and any other text editor you like. `nb`\nworks in any standard Linux / Unix environment, including macOS and\nWindows via WSL. Optional dependencies can be installed to enhance\nfunctionality, but `nb` works great without them.\n\n`nb` is also a powerful text-based CLI bookmarking system. Page\ninformation is automatically downloaded, compiled, and saved into normal\nMarkdown documents made for humans, so bookmarks are easy to edit just\nlike any other note.\n\n`nb` uses Git in the background to automatically record changes and sync\nnotebooks with remote repositories. `nb` can also be configured to sync\nnotebooks using a general purpose syncing utility like Dropbox so notes\ncan be edited in other apps on any device.\n\n`nb` is designed to be portable, future-focused, and vendor independent,\nproviding a full-featured and intuitive experience within a highly\ncomposable user-centric text interface. The entire program is a single\nwell-tested shell script that can be installed, copied, or curled almost\nanywhere and just work, using progressive enhancement for various\nexperience improvements in more capable environments. `nb` works great\nwhether you have one notebook with just a few notes or dozens of\nnotebooks containing thousands of notes, bookmarks, and other items. `nb`\nmakes it easy to incorporate other tools, writing apps, and workflows.\n`nb` can be used a little, a lot, once in a while, or for just a subset\nof features. `nb` is flexible.\n",
         homepage: "https://xwmx.github.io/nb/",

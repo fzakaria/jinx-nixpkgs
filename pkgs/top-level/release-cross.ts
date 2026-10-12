@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]);
   const scrubJobs = nix.argOr($, "scrubJobs", () => true);
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-    __proto__: pos$2,
-    config: nix.thunk(() => ({ __proto__: pos$1, allowAliases: false, allowUnfree: false, inHydra: true })),
+    [nix.POS]: pos$2,
+    config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false, allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
   const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       supportedSystems: supportedSystems,
       scrubJobs: scrubJobs,
       nixpkgsArgs: nixpkgsArgs,
@@ -85,38 +85,38 @@ export default nix.lambda((args) => (() => {
   const removeAttrs = nix.thunk(() => nix.attr(from_1, "removeAttrs"));
   const nativePlatforms = all;
   const embedded = nix.thunk(() => ({
-    __proto__: pos$5,
-    buildPackages: nix.thunk(() => ({ __proto__: pos$4, binutils: nativePlatforms, gcc: nativePlatforms })),
+    [nix.POS]: pos$5,
+    buildPackages: nix.thunk(() => ({ [nix.POS]: pos$4, binutils: nativePlatforms, gcc: nativePlatforms })),
     libc: nativePlatforms,
   }));
   const common = nix.thunk(() => ({
-    __proto__: pos$8,
-    buildPackages: nix.thunk(() => ({ __proto__: pos$6, binutils: nativePlatforms })),
+    [nix.POS]: pos$8,
+    buildPackages: nix.thunk(() => ({ [nix.POS]: pos$6, binutils: nativePlatforms })),
     gmp: nativePlatforms,
     libc: nativePlatforms,
     nix: nativePlatforms,
-    nixVersions: nix.thunk(() => ({ __proto__: pos$7, git: nativePlatforms })),
+    nixVersions: nix.thunk(() => ({ [nix.POS]: pos$7, git: nativePlatforms })),
     mesa: nativePlatforms,
     rustc: nativePlatforms,
     cargo: nativePlatforms,
     fd: nativePlatforms,
   }));
   const gnuCommon = nix.thunk(() => nix.app(recursiveUpdate, common, nix.thunk(() => ({
-      __proto__: pos$14,
-      buildPackages: nix.thunk(() => ({ __proto__: pos$9, gcc: nativePlatforms })),
+      [nix.POS]: pos$14,
+      buildPackages: nix.thunk(() => ({ [nix.POS]: pos$9, gcc: nativePlatforms })),
       coreutils: nativePlatforms,
       haskell: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         packages: nix.thunk(() => ({
-          __proto__: pos$11,
-          ghcHEAD: nix.thunk(() => ({ __proto__: pos$10, hello: nativePlatforms })),
+          [nix.POS]: pos$11,
+          ghcHEAD: nix.thunk(() => ({ [nix.POS]: pos$10, hello: nativePlatforms })),
         })),
       })),
-      haskellPackages: nix.thunk(() => ({ __proto__: pos$13, hello: nativePlatforms })),
+      haskellPackages: nix.thunk(() => ({ [nix.POS]: pos$13, hello: nativePlatforms })),
     }))));
   const linuxCommon = nix.thunk(() => nix.app(recursiveUpdate, gnuCommon, nix.thunk(() => ({
-      __proto__: pos$16,
-      buildPackages: nix.thunk(() => ({ __proto__: pos$15, gdb: nativePlatforms })),
+      [nix.POS]: pos$16,
+      buildPackages: nix.thunk(() => ({ [nix.POS]: pos$15, gdb: nativePlatforms })),
       bison: nativePlatforms,
       busybox: nativePlatforms,
       dropbear: nativePlatforms,
@@ -125,49 +125,49 @@ export default nix.lambda((args) => (() => {
       patch: nativePlatforms,
     }))));
   const windowsCommon = nix.thunk(() => nix.app(recursiveUpdate, gnuCommon, nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       boehmgc: nativePlatforms,
       libffi: nativePlatforms,
       libtool: nativePlatforms,
       libunistring: nativePlatforms,
-      windows: nix.thunk(() => ({ __proto__: pos$17, pthreads: nativePlatforms })),
+      windows: nix.thunk(() => ({ [nix.POS]: pos$17, pthreads: nativePlatforms })),
     }))));
   const cygwinCommon = nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     hello: nativePlatforms,
-    nixVersions: nix.thunk(() => ({ __proto__: pos$19, git: nativePlatforms })),
+    nixVersions: nix.thunk(() => ({ [nix.POS]: pos$19, git: nativePlatforms })),
   }));
   const wasiCommon = nix.thunk(() => ({
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     gmp: nativePlatforms,
     boehmgc: nativePlatforms,
     hello: nativePlatforms,
     navidromePlugins: nix.thunk(() => nix.app(mapAttrs, (_) => (__1) => nix.force(nativePlatforms), nix.thunk(() => nix.sel(nix.app(pkgsForCross, nix.thunk(() => nix.sel(systems, "examples", "wasi32")), nix.thunk(() => nix.builtins.head(supportedSystems))), "navidromePlugins")))),
     "tree-sitter": nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       builtGrammars: nix.thunk(() => nix.app(mapAttrs, (_) => (__1) => nix.force(nativePlatforms), nix.thunk(() => nix.sel(nix.app(pkgsForCross, nix.thunk(() => nix.sel(systems, "examples", "wasm32-wasip1")), nix.thunk(() => nix.builtins.head(supportedSystems))), "tree-sitter", "builtGrammars")))),
     })),
     zlib: nativePlatforms,
   }));
   const darwinCommon = nix.thunk(() => ({
-    __proto__: pos$24,
-    buildPackages: nix.thunk(() => ({ __proto__: pos$23, binutils: darwin })),
+    [nix.POS]: pos$24,
+    buildPackages: nix.thunk(() => ({ [nix.POS]: pos$23, binutils: darwin })),
   }));
   const rpiCommon = nix.thunk(() => nix.update(linuxCommon, {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     vim: nativePlatforms,
     unzip: nativePlatforms,
     ddrescue: nativePlatforms,
     lynx: nativePlatforms,
     patchelf: nativePlatforms,
-    buildPackages: nix.thunk(() => ({ __proto__: pos$25, binutils: nativePlatforms })),
+    buildPackages: nix.thunk(() => ({ [nix.POS]: pos$25, binutils: nativePlatforms })),
     mpg123: nativePlatforms,
   }));
-  const nixCrossStatic = nix.thunk(() => ({ __proto__: pos$27, nixStatic: linux }));
+  const nixCrossStatic = nix.thunk(() => ({ [nix.POS]: pos$27, nixStatic: linux }));
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     ensureUnaffected: nix.thunk(() => (() => {
-      const crossSystem = nix.thunk(() => ({ __proto__: pos$28, config: "mips64el-apple-windows-gnu", libc: "glibc" }));
+      const crossSystem = nix.thunk(() => ({ [nix.POS]: pos$28, config: "mips64el-apple-windows-gnu", libc: "glibc" }));
       const testEqualOne = (path) => (system) => (() => {
         const f = (path_1) => (crossSystem_1) => (system_1) => nix.builtins.toString(nix.thunk(() => nix.app(getAttrFromPath, path_1, nix.thunk(() => nix.app(pkgsForCross, crossSystem_1, system_1)))));
         return nix.app(assertTrue, nix.thunk(() => nix.eq(nix.app(f, path, null, system), nix.app(f, nix.thunk(() => nix.concat(["buildPackages"], path)), crossSystem, system))));
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
       const testEqual = (path) => (systems_1) => nix.app(forMatchingSystems, systems_1, nix.thunk(() => nix.app(testEqualOne, path)));
       const mapTestEqual = nix.thunk(() => nix.app(mapAttrsRecursive, testEqual));
       return nix.app(mapTestEqual, nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           boehmgc: nativePlatforms,
           libffi: nativePlatforms,
           libiconv: nativePlatforms,
@@ -188,7 +188,7 @@ export default nix.lambda((args) => (() => {
     })()),
     crossIphone64: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "iphone64")), darwinCommon)),
     crossIphone32: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "iphone32")), darwinCommon)),
-    armv5tel: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "armv5tel-multiplatform")), nix.thunk(() => nix.update(linuxCommon, { __proto__: pos$30, ubootSheevaplug: nativePlatforms })))),
+    armv5tel: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "armv5tel-multiplatform")), nix.thunk(() => nix.update(linuxCommon, { [nix.POS]: pos$30, ubootSheevaplug: nativePlatforms })))),
     crossMingw32: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "mingw-msvcrt-i686")), windowsCommon)),
     "cross-mingw-msvcrt-x86_64": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "mingw-msvcrt-x86_64")), windowsCommon)),
     "cross-mingw-ucrt-x86_64": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "mingw-ucrt-x86_64")), windowsCommon)),
@@ -198,18 +198,18 @@ export default nix.lambda((args) => (() => {
     fuloongminipc: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "fuloongminipc")), linuxCommon)),
     "ben-nanonote": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "ben-nanonote")), linuxCommon)),
     ghcjs: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "ghcjs")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         haskell: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           packages: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             "native-bignum": nix.thunk(() => ({
-              __proto__: pos$32,
-              ghcHEAD: nix.thunk(() => ({ __proto__: pos$31, hello: nativePlatforms })),
+              [nix.POS]: pos$32,
+              ghcHEAD: nix.thunk(() => ({ [nix.POS]: pos$31, hello: nativePlatforms })),
             })),
           })),
         })),
-        haskellPackages: nix.thunk(() => ({ __proto__: pos$35, hello: nativePlatforms })),
+        haskellPackages: nix.thunk(() => ({ [nix.POS]: pos$35, hello: nativePlatforms })),
       })))),
     rpi: nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "raspberryPi")), rpiCommon)),
     "rpi-musl": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "muslpi")), rpiCommon)),
@@ -258,16 +258,16 @@ export default nix.lambda((args) => (() => {
     "x86_64-netbsd": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "x86_64-netbsd")), common)),
     "x86_64-openbsd": nix.thunk(() => nix.app(mapTestOnCross, nix.thunk(() => nix.sel(systems, "examples", "x86_64-openbsd")), common)),
     bootstrapTools: nix.thunk(() => (() => {
-      const linuxTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/linux/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ __proto__: pos$37, system: "x86_64-linux" }))));
-      const freebsdTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/freebsd/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ __proto__: pos$38, system: "x86_64-linux" }))));
-      const cygwinTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/cygwin/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ __proto__: pos$39, system: "x86_64-linux" }))));
-      const linuxMeta = nix.thunk(() => ({ __proto__: pos$40, maintainers: [] }));
+      const linuxTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/linux/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ [nix.POS]: pos$37, system: "x86_64-linux" }))));
+      const freebsdTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/freebsd/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ [nix.POS]: pos$38, system: "x86_64-linux" }))));
+      const cygwinTools = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../stdenv/cygwin/make-bootstrap-tools-cross.nix")), nix.thunk(() => ({ [nix.POS]: pos$39, system: "x86_64-linux" }))));
+      const linuxMeta = nix.thunk(() => ({ [nix.POS]: pos$40, maintainers: [] }));
       const freebsdMeta = nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "rhelmot"))]),
       }));
       const cygwinMeta = nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "corngood"))]),
       }));
       const mkBootstrapToolsJob = (meta) => (drv) => (() => {

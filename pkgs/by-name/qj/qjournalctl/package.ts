@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libssh = nix.arg($, "libssh");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qjournalctl",
       version: "0.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pentix",
           repo: "qjournalctl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libssh, nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt-based graphical user interface for systemd's journalctl command",
         mainProgram: "qjournalctl",
         homepage: "https://github.com/pentix/qjournalctl",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const hostIsTarget = nix.arg($, "hostIsTarget");
   const enableChecksum = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(buildIsHost) && nix.asBool(hostIsTarget))) && nix.asBool(langC))) && nix.asBool(langCC))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))));
   return (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => nix.app(nix.sel(lib, "optionalAttrs"), enableChecksum, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         outputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "outputs"), nix.app(nix.sel(lib, "optionals"), enableChecksum, nix.thunk(() => ["checksum"])))),
         preFixupPhases: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "preFixupPhases"), ["postInstallSaveChecksumPhase"])),
         postInstallSaveChecksumPhase: nix.thunk(() => nix.str`mv gcc/build/genchecksum gcc/build/.genchecksum-wrapped

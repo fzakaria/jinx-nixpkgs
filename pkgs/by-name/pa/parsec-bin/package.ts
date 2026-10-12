@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "parsec-bin",
       version: "150_97c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250226223019/https://builds.parsec.app/package/parsec-linux.deb",
           hash: "sha256-8Wkbo6l1NGBPX2QMJszq+u9nLM96tu7WYRTQq6/CzM8=",
         })))),
@@ -88,7 +88,7 @@ runHook postInstall
       dontAutoPatchelf: true,
       fixupPhase: "runHook preFixup\n\nautoPatchelf $out/bin\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://parsec.app/",
         changelog: "https://parsec.app/changelog",
         description: "Remote streaming service client",

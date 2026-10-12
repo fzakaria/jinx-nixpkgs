@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "libvirt"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9177n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       libvirtUri: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "qemu:///system",
           description: "Libvirt URI from which to extract metrics",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "prometheus-libvirt-exporter")))} \\
 --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
 --libvirt.uri ${nix.sel(cfg, "libvirtUri")} ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraFlags")))}

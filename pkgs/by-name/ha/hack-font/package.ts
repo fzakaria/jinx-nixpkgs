@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.003";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/chrissimpkins/Hack/releases/download/v${version}/Hack-v${version}-ttf.zip`),
           hash: "sha256-SxF4kYp9aL/9L9EUniquFadzWt/+PcvhUQOIOvCrFRM=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typeface designed for source code",
         longDescription: "Hack is hand groomed and optically balanced to be a workhorse face for\ncode. It has deep roots in the libre, open source typeface community and\nexpands upon the contributions of the Bitstream Vera & DejaVu projects.\nThe face has been re-designed with a larger glyph set, modifications of\nthe original glyph shapes, and meticulous attention to metrics.\n",
         homepage: "https://sourcefoundry.org/hack/",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, outputs, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, outputs, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

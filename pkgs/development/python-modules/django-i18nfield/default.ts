@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raphaelm",
           repo: "django-i18nfield",
           tag: version,
           hash: "sha256-0r4ICS8E0OFMrR7IoyiFyXBvAkQjSBb0HtEcb31f4Rw=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const nativeCheckInputs = nix.thunk(() => [djangorestframework, html5lib, lxml, pytest_django, pytestCheckHook, pyyaml]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Store internationalized strings in Django models",
         homepage: "https://github.com/raphaelm/django-i18nfield",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

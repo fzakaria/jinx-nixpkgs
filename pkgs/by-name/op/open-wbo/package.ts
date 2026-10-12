@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "open-wbo",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sat-group",
           repo: "open-wbo",
           rev: "f193a3bd802551b13d6424bc1baba6ad35ec6ba6",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["r"]),
       installPhase: "install -Dm0755 open-wbo_release $out/bin/open-wbo\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "State-of-the-art MaxSAT and Pseudo-Boolean solver",
         mainProgram: "open-wbo",

@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apx",
       version: "2.4.5",
       versionConfig: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vanilla-OS",
           repo: "apx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-0Rfj7hrH26R9GHOPPVdCaeb1bfAw9KnPpJYXyiei90U=",
         })))),
       configsSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Vanilla-OS",
           repo: "vanilla-apx-configs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "versionConfig")}`),
@@ -76,7 +76,7 @@ installShellCompletion --cmd apx \\
   --zsh <($out/bin/apx completion zsh)
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-apx", nix.thunk(() => nix.str`set -euo pipefail
     PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, common_updater_scripts]))}:$PATH
 
@@ -91,7 +91,7 @@ nix-update apx
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Vanilla OS package manager",
         longDescription: "Apx is the Vanilla OS package manager that allows you to install packages\nfrom multiple sources inside managed containers without altering the host system.\n\nNote: This package requires Podman to be enabled in your NixOS configuration.\nAdd the following to your configuration.nix:\n\n  virtualisation.podman.enable = true;\n  environment.systemPackages = with pkgs; [ apx ];\n",
         homepage: "https://github.com/Vanilla-OS/apx",

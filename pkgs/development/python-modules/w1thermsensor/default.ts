@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-n7wK4N1mzZtUxtYu17qyuI4UjJh/59UGD0dvkOgcInA=",
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i 's/3\\.5\\.\\*/3.5/' setup.py\n";
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [click]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiofiles]) }));
-      const env = nix.thunk(() => ({ __proto__: pos$3, W1THERMSENSOR_NO_KERNEL_MODULE: 1n }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiofiles]) }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, W1THERMSENSOR_NO_KERNEL_MODULE: 1n }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_mock, pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["w1thermsensor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python interface to 1-Wire temperature sensors",
         mainProgram: "w1thermsensor",
         longDescription: "A Python package and CLI tool to work with w1 temperature sensors like\nDS1822, DS18S20 & DS18B20 on the Raspberry Pi, Beagle Bone and other\ndevices.\n",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

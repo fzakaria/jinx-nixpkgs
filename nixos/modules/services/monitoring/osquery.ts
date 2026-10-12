@@ -42,63 +42,63 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.lookup(w_1, "concatStringsSep"), "/", nix.thunk(() => nix.app(nix.lookup(w_1, "init"), nix.thunk(() => nix.app(nix.lookup(w_1, "splitString"), "/", nix.thunk(() => nix.app(nix.lookup(w_1, "normalizePath"), path)))))));
   })();
   const conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "osquery.conf", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "settings"))))));
-  const flagfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "osquery.flags", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`--${name}=${value}`, nix.thunk(() => nix.update({ __proto__: pos$1, config_path: conf }, nix.sel(cfg, "flags")))))))));
+  const flagfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "osquery.flags", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`--${name}=${value}`, nix.thunk(() => nix.update({ [nix.POS]: pos$1, config_path: conf }, nix.sel(cfg, "flags")))))))));
   const osquery = nix.thunk(() => nix.sel(cfg, "package"));
   const osqueryi = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "osqueryi", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${osquery}/bin/osqueryi $out/bin/osqueryi \\
   --add-flags "--flagfile ${flagfile} --disable-database"
 `)));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         osquery: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "osqueryd daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "osquery", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => ({})),
               description: "Configuration to be written to the osqueryd JSON configuration file.\nTo understand the configuration format, refer to <https://osquery.readthedocs.io/en/stable/deployment/configuration/#configuration-components>.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$4,
-                options: nix.thunk(() => ({ __proto__: pos$3, utc: false })),
+                [nix.POS]: pos$4,
+                options: nix.thunk(() => ({ [nix.POS]: pos$3, utc: false })),
               })),
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
             })))),
           flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               description: "Attribute set of flag names and values to be written to the osqueryd flagfile.\nFor more information, refer to <https://osquery.readthedocs.io/en/stable/installation/cli-flags>.\n",
-              example: nix.thunk(() => ({ __proto__: pos$6, config_refresh: "10" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$6, config_refresh: "10" })),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       database_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           default: "/var/lib/osquery/osquery.db",
                           readOnly: true,
                           description: "Path used for the database file.\n\n::: {.note}\nIf left as the default value, this directory will be automatically created before the\nservice starts, otherwise you are responsible for ensuring the directory exists with\nthe appropriate ownership and permissions.\n",
                           type: nix.thunk(() => nix.lookup(w, "path")),
                         })))),
                       logger_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           default: "/var/log/osquery",
                           readOnly: true,
                           description: "Base directory used for logging.\n\n::: {.note}\nIf left as the default value, this directory will be automatically created before the\nservice starts, otherwise you are responsible for ensuring the directory exists with\nthe appropriate ownership and permissions.\n",
                           type: nix.thunk(() => nix.lookup(w, "path")),
                         })))),
                       pidfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           default: "/run/osquery/osqueryd.pid",
                           readOnly: true,
                           description: "Path used for pid file.",
@@ -112,18 +112,18 @@ makeWrapper ${osquery}/bin/osqueryi $out/bin/osqueryi \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
-        environment: nix.thunk(() => ({ __proto__: pos$16, systemPackages: nix.thunk(() => [osqueryi]) })),
+        [nix.POS]: pos$25,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$16, systemPackages: nix.thunk(() => [osqueryi]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             osqueryd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               after: nix.thunk(() => ["network.target", "syslog.service"]),
               description: "The osquery daemon",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${osquery}/bin/osqueryd --flagfile ${flagfile}`),
                 PIDFile: nix.thunk(() => nix.sel(cfg, "flags", "pidfile")),
                 LogsDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "flags", "logger_path"), "/var/log/osquery")), nix.thunk(() => ["osquery"]))),
@@ -134,13 +134,13 @@ makeWrapper ${osquery}/bin/osqueryi $out/bin/osqueryi \\
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             settings: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "10-osquery": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.app(dirname, nix.thunk(() => nix.sel(cfg, "flags", "pidfile"))), nix.thunk(() => ({
-                  __proto__: pos$21,
-                  d: nix.thunk(() => ({ __proto__: pos$20, user: "root", group: "root", mode: "0755" })),
+                  [nix.POS]: pos$21,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$20, user: "root", group: "root", mode: "0755" })),
                 }))],
               ])),
             })),

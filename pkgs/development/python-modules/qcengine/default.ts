@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.50.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-x218Sq4QOoqTpcSM9TzQydhIn9LthflCuNh/P0stZmU=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["qcengine"]);
       const disabledTestPaths = nix.thunk(() => ["qcengine/tests/test_harness_canonical.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quantum chemistry program executor and IO standardizer (QCSchema) for quantum chemistry",
         homepage: "https://molssi.github.io/QCElemental/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "qcengine",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

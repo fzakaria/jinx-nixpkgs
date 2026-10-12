@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.argOr($, "qt5compat", () => null);
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qqc2-suru-style",
       version: "0.20260619",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/qqc2-suru-style",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +49,11 @@ substituteInPlace CMakeLists.txt \\
       ]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Suru Style for QtQuick Controls 2",
         homepage: "https://gitlab.com/ubports/development/core/qqc2-suru-style",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/qqc2-suru-style/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

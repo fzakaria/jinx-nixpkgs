@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const cohttp_lwt_jsoo = nix.arg($, "cohttp-lwt-jsoo");
   const js_of_ocaml_lwt = nix.arg($, "js_of_ocaml-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gitlab-jsoo",
       version: nix.thunk(() => nix.attr(gitlab, "version")),
       src: nix.thunk(() => nix.attr(gitlab, "src")),
       minimalOCamlVersion: "4.08",
       propagatedBuildInputs: nix.thunk(() => [gitlab, cohttp, cohttp_lwt_jsoo, js_of_ocaml_lwt]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { __proto__: pos$1, description: "Gitlab APIv4 JavaScript library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { [nix.POS]: pos$1, description: "Gitlab APIv4 JavaScript library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jsoo.ts.map

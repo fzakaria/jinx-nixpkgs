@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lg-rs232-tv",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "lg-rs232-tv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [serialx]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         esphome: nix.thunk(() => nix.sel(serialx, "optional-dependencies", "esphome")),
         remote: nix.thunk(() => [aiowebostv]),
       })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["lg_rs232_tv"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Async library to control LG TVs over RS232",
         homepage: "https://github.com/home-assistant-libs/lg-rs232-tv",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/lg-rs232-tv/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

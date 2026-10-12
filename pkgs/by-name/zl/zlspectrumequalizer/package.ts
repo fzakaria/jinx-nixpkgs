@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const simdTarget = nix.argOr($, "simdTarget", () => (nix.asBool(nix.sel(clangStdenv, "hostPlatform", "isAarch64")) ? "NEON" : "SSE2"));
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "simdTarget", simdTarget, nix.thunk(() => ["SSE2", "SSE4", "AVX2", "NEON"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/zl/zlspectrumequalizer/package.nix:34:1");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zlspectrumequalizer",
       version: "0.1.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZL-Audio",
           repo: "ZlSpectrumEqualizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, ninja, pkg_config, python3, writableTmpDirAsHomeHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "sigtool"))])))),
       buildInputs: nix.thunk(() => nix.concat([fontconfig, freetype, lv2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libxcursor, libxext, libxi, libxinerama, libxrandr])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXcursor", "-lXext", "-lXi", "-lXinerama", "-lXrandr"]))),
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         })))),
@@ -60,11 +60,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/{lv2,vst3}\ncp -r \"ZLSpectrumEqualizer_artefacts/Release/LV2/ZL Spectrum Equalizer.lv2\" $out/lib/lv2/\ncp -r \"ZLSpectrumEqualizer_artefacts/Release/VST3/ZL Spectrum Equalizer.vst3\" $out/lib/vst3/\ninstall -Dm755 -t $out/bin \"ZLSpectrumEqualizer_artefacts/Release/Standalone/ZL Spectrum Equalizer\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r ZLSpectrumEqualizer_artefacts/Release/{AU,VST3} $out/\ncp -r ZLSpectrumEqualizer_artefacts/Release/Standalone/* $out/Applications/\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://zl-audio.github.io/plugins/zlspeceq/",
         changelog: nix.thunk(() => nix.str`https://github.com/ZL-Audio/ZlSpectrumEqualizer/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Dynamic spectrum equalizer plugin for VST3, LV2 and standalone",

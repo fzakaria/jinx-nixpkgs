@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3-manifolds",
           repo: "plink",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [tkinter]);
       const pythonImportsCheck = nix.thunk(() => ["plink"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Full featured Tk-based knot and link editor",
         mainProgram: "plink",
         homepage: "https://3-manifolds.github.io/PLink",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

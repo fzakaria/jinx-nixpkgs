@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lintspec",
       version: "0.19.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beeb",
           repo: "lintspec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd lintspec \\\n  --bash <($out/bin/lintspec completions -s bash) \\\n  --fish <($out/bin/lintspec completions -s fish) \\\n  --zsh <($out/bin/lintspec completions -s zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blazingly fast linter for NatSpec comments in Solidity code",
         homepage: "https://github.com/beeb/lintspec",
         changelog: nix.thunk(() => nix.str`https://github.com/beeb/lintspec/releases/tag/v${nix.sel(finalAttrs, "version")}`),

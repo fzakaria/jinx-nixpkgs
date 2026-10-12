@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "jupyterhub"));
   const kernels = nix.thunk(() => nix.app(nix.sel(pkgs, "jupyter-kernel", "create"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       definitions: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "kernels"), null)) ? nix.sel(cfg, "kernels") : nix.sel(pkgs, "jupyter-kernel", "default"))),
     }))));
   const jupyterhubConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "jupyterhub_config.py", nix.thunk(() => nix.str`c.JupyterHub.bind_url = "http://${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}"
@@ -49,42 +49,42 @@ c.SystemdSpawner.environment = {
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "costrouc"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         jupyterhub: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Jupyterhub development server")),
           authentication: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "jupyterhub.auth.PAMAuthenticator",
               description: "Jupyterhub authentication to use\n\nThere are many authenticators available including: oauth, pam,\nldap, kerberos, etc.\n",
             })))),
           spawner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "systemdspawner.SystemdSpawner",
               description: "Jupyterhub spawner to use\n\nThere are many spawners available including: local process,\nsystemd, docker, kubernetes, yarn, batch, etc.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra contents appended to the jupyterhub configuration\n\nJupyterhub configuration is a normal python file using\nTraitlets. <https://jupyterhub.readthedocs.io/en/stable/getting-started/config-basics.html>. The\nbase configuration of this module was designed to have sane\ndefaults for configuration but you can override anything since\nthis is a python file.\n",
               example: "c.SystemdSpawner.mem_limit = '8G'\nc.SystemdSpawner.cpu_limit = 2.0\n",
             })))),
           jupyterhubEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (p) => (() => {
                   const w = nix.withScope(p, null);
@@ -97,7 +97,7 @@ ${nix.sel(cfg, "extraConfig")}
               description: "Python environment to run jupyterhub\n\nCustomizing will affect the packages available in the hub and\nproxy. This will allow packages to be available for the\nextraConfig that you may need. This will not normally need to\nbe changed.\n",
             })))),
           jupyterlabEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (p) => (() => {
                   const w = nix.withScope(p, null);
@@ -110,26 +110,26 @@ ${nix.sel(cfg, "extraConfig")}
               description: "Python environment to run jupyterlab\n\nCustomizing will affect the packages available in the\njupyterlab server and the default kernel provided. This is the\nway to customize the jupyterlab extensions and jupyter\nnotebook extensions. This will not normally need to\nbe changed.\n",
             })))),
           kernels: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../jupyter/kernel-options.nix")), nix.thunk(() => ({ __proto__: pos$8, lib: lib, pkgs: pkgs })))))))))),
+              [nix.POS]: pos$9,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../jupyter/kernel-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$8, lib: lib, pkgs: pkgs })))))))))),
               default: null,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  python3 = let\n    env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [\n            ipykernel\n            pandas\n            scikit-learn\n          ]));\n  in {\n    displayName = \"Python 3 for machine learning\";\n    argv = [\n      \"${env.interpreter}\"\n      \"-m\"\n      \"ipykernel_launcher\"\n      \"-f\"\n      \"{connection_file}\"\n    ];\n    language = \"python\";\n    logo32 = \"${env}/${env.sitePackages}/ipykernel/resources/logo-32x32.png\";\n    logo64 = \"${env}/${env.sitePackages}/ipykernel/resources/logo-64x64.png\";\n  };\n}\n")),
               description: "Declarative kernel config\n\nKernels can be declared in any language that supports and has\nthe required dependencies to communicate with a jupyter server.\nIn python's case, it means that ipykernel package must always be\nincluded in the list of packages of the targeted environment.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8000n,
               description: "Port number Jupyterhub will be listening on\n",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               description: "Bind IP JupyterHub will be listening on\n",
             })))),
           stateDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "jupyterhub",
               description: "Directory for jupyterhub state (token + database)\n",
@@ -139,18 +139,18 @@ ${nix.sel(cfg, "extraConfig")}
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             systemd: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               services: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 jupyterhub: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   description: "Jupyterhub development server",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     Restart: "always",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "jupyterhubEnv")}/bin/jupyterhub --config ${jupyterhubConfig}`),
                     User: "root",

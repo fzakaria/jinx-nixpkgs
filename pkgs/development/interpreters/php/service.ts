@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const cfg = nix.thunk(() => nix.sel(config, "php-fpm"));
     const format = nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({}))));
     const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "php-fpm.conf", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         globalSection: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.asBool(nix.app(nix.sel(lib, "isAttrs"), v)), nix.thunk(() => nix.sel(cfg, "settings")))),
         sections: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => nix.sel(lib, "isAttrs"), nix.thunk(() => nix.sel(cfg, "settings")))),
       }))));
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const name = nix.arg($_2, "name");
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         freeformType: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -63,9 +63,9 @@ export default nix.lambda((args) => (() => {
               ]))));
         })()),
         options: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -78,17 +78,17 @@ export default nix.lambda((args) => (() => {
               description: "The address on which to accept FastCGI requests. Valid syntaxes are: `ip.add.re.ss:port`, `port`, `/path/to/unix/socket`.\n",
             })))),
           pm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["static", "ondemand", "dynamic"]))),
               description: "Choose how the process manager will control the number of child processes.\n\n`static` - the number of child processes is fixed (`pm.max_children`).\n`ondemand` - the processes spawn on demand (when requested, as opposed to `dynamic`, where `pm.start_servers` are started when the service is started).\n`dynamic` - the number of child processes is set dynamically based on the following directives: `pm.max_children`, `pm.start_servers`, pm.min_spare_servers, `pm.max_spare_servers`.\n",
             })))),
           "pm.max_children": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "The number of child processes to be created when `pm` is set to `static` and the maximum\nnumber of child processes to be created when `pm` is set to `dynamic`.\n\nThis option sets the limit on the number of simultaneous requests that will be served.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Unix user of FPM processes.\n",
             })))),
@@ -96,23 +96,23 @@ export default nix.lambda((args) => (() => {
       };
     })(), formals$3);
     return {
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       _class: "service",
       options: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "php-fpm": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "PHP package to use for php-fpm",
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "The PHP package that provided this module.")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "php.buildEnv {\n  extensions =\n    { all, ... }:\n    with all;\n    [\n      imagick\n      opcache\n    ];\n  extraConfig = \"memory_limit=256M\";\n}\n")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -123,9 +123,9 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     log_level: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["alert", "error", "warning", "notice", "debug"]))),
                         default: "notice",
                         description: "Error log level.\n",
@@ -139,13 +139,13 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       config: nix.thunk(() => nix.update({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         "php-fpm": nix.thunk(() => ({
-          __proto__: pos$16,
-          settings: nix.thunk(() => ({ __proto__: pos$15, error_log: "syslog", daemonize: false })),
+          [nix.POS]: pos$16,
+          settings: nix.thunk(() => ({ [nix.POS]: pos$15, error_log: "syslog", daemonize: false })),
         })),
         process: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           argv: nix.thunk(() => [
             nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/php-fpm`),
             "-y",
@@ -153,15 +153,15 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "systemd")), nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           systemd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             service: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               after: nix.thunk(() => ["network.target"]),
               documentation: nix.thunk(() => ["man:php-fpm(8)"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "notify",
                 ExecReload: nix.thunk(() => nix.str`${coreutils}/bin/kill -USR2 $MAINPID`),
                 RuntimeDirectory: "php-fpm",
@@ -171,11 +171,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "finit")), nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           finit: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             service: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               conditions: nix.thunk(() => ["service/syslogd/ready"]),
               reload: nix.thunk(() => nix.str`${coreutils}/bin/kill -USR2 $MAINPID`),
               notify: "systemd",
@@ -183,7 +183,7 @@ export default nix.lambda((args) => (() => {
           })),
         })))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "aanderse"))];

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "experienced-pixel-dungeon";
       const version = "2.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TrashboxBobylev",
           repo: "Experienced-Pixel-Dungeon-Redone",
           tag: nix.thunk(() => nix.str`ExpPD-${version}`),
@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopName = "Experienced Pixel Dungeon";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/TrashboxBobylev/Experienced-Pixel-Dungeon-Redone",
         downloadPage: "https://github.com/TrashboxBobylev/Experienced-Pixel-Dungeon-Redone/releases",
         description: "Fork of the Shattered Pixel Dungeon roguelike without limits on experience and items",
       }));
-      return { __proto__: pos$3, pname, version, src, desktopName, meta };
+      return { [nix.POS]: pos$3, pname, version, src, desktopName, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

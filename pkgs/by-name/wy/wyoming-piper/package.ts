@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const piper_tts = nix.arg($, "piper-tts");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wyoming-piper",
       version: "2.5.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OHF-Voice",
           repo: "wyoming-piper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           http: nix.thunk(() => nix.sel(nix.lookup(w_2, "wyoming"), "optional-dependencies", "http")),
           ja: nix.thunk(() => nix.sel(piper_tts, "optional-dependencies", "ja")),
           web: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "flask"))]),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTestPaths: nix.thunk(() => ["tests/test_piper.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/wyoming-piper/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Wyoming Server for Piper",
         mainProgram: "wyoming-piper",

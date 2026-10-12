@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencore-amr",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/opencore-amr/opencore-amr/opencore-amr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SD60BhCI4rNLNY5HVAtdSVqWzUaONhBQ+uYVsYCdxKE=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/opencore-amr/",
         description: "Library of OpenCORE Framework implementation of Adaptive Multi Rate Narrowband and Wideband (AMR-NB and AMR-WB) speech codec.\n    Library of VisualOn implementation of Adaptive Multi Rate Wideband (AMR-WB)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const boolOrNullToString = (value) => (nix.asBool(nix.eq(value, null)) ? null : (nix.asBool(nix.builtins.isBool(value)) ? nix.app(nix.sel(lib, "boolToString"), value) : nix.builtins.throw("makeDesktopItem: value must be a boolean or null!")));
       const renderList = (key) => (value) => (nix.asBool(!nix.asBool(nix.builtins.isList(value))) ? nix.builtins.throw(nix.thunk(() => nix.str`makeDesktopItem: value for ${key} must be a list!`)) : (nix.asBool(nix.builtins.any((item) => nix.app(nix.sel(lib, "hasInfix"), ";", item), value)) ? nix.builtins.throw(nix.thunk(() => nix.str`makeDesktopItem: values in ${key} list must not contain semicolons!`)) : (nix.asBool(nix.eq(value, [])) ? null : nix.builtins.concatStringsSep(";", value))));
       const mainSection = nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         Type: type,
         Version: "1.5",
         Name: desktopName,
@@ -86,14 +86,14 @@ ${section}
         const name_1 = nix.arg($_2, "name");
         const icon_1 = nix.argOr($_2, "icon", () => null);
         const exec_1 = nix.argOr($_2, "exec", () => null);
-        return { __proto__: pos$2, Name: name_1, Icon: icon_1, Exec: exec_1 };
+        return { [nix.POS]: pos$2, Name: name_1, Icon: icon_1, Exec: exec_1 };
       })(), formals$3);
       const renderAction = (name_1) => (attrs) => nix.app(renderSection, nix.thunk(() => nix.str`Desktop Action ${name_1}`), nix.thunk(() => nix.app(preprocessAction, attrs)));
       const actionsRendered = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), renderAction, actions));
       const extension = nix.thunk(() => (nix.asBool(nix.eq(type, "Directory")) ? "directory" : "desktop"));
       const content = nix.thunk(() => nix.concat([mainSectionRendered], actionsRendered));
       return nix.app(writeTextFile, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: nix.thunk(() => nix.str`${name}.${extension}`),
           destination: nix.thunk(() => nix.str`${destination}/${name}.${extension}`),
           text: nix.thunk(() => nix.builtins.concatStringsSep("\n", content)),

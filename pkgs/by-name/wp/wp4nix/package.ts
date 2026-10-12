@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const subversion = nix.arg($, "subversion");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wp4nix",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.helsinki.tools",
           owner: "helsinki-systems",
           repo: "wp4nix",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix$, subversion]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Packaging helper for Wordpress themes and plugins",
         mainProgram: "wp4nix",
         homepage: "https://git.helsinki.tools/helsinki-systems/wp4nix",

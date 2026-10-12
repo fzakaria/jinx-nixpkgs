@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "compton-conf";
       const version = "0.16.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxqt",
           repo: "compton-conf",
           rev: version,
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "substituteInPlace autostart/CMakeLists.txt \\\n  --replace-fail \"DESTINATION \\\"\\${LXQT_ETC_XDG_DIR}\" \"DESTINATION \\\"etc/xdg\"\n";
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/lxqt/compton-conf",
         description: "GUI configuration tool for compton X composite manager",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

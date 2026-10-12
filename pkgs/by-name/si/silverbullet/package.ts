@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "silverbullet",
       version: "2.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "silverbulletmd",
           repo: "silverbullet",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "silverbullet"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "silverbullet-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           npmDepsHash: "sha256-IALStufO5TwhQbkIgSqwTYcQAL7Q+vmLDjlVYzMTyCA=",
           patches: nix.thunk(() => [
-            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
           ]),
           installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r client_bundle version.json $out/\n\nrunHook postInstall\n",
         })))),
@@ -49,9 +49,9 @@ cp ${nix.sel(finalAttrs, "frontend")}/version.json .
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/silverbulletmd/silverbullet/blob/${nix.sel(finalAttrs, "version")}/docs/CHANGELOG.md`),
         description: "Open-source, self-hosted, offline-capable Personal Knowledge Management (PKM) web application",
         homepage: "https://silverbullet.md",

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-evPL9vF75S8ATkFwzQjh4pLI/aXGXWwoypCb24nXAN8=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pylpsd"]);
       const propagatedBuildInputs = nix.thunk(() => [numpy, scipy]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of the LPSD algorithm for computing power spectral density with logarithmically spaced points",
         homepage: "https://github.com/bleykauf/py-lpsd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

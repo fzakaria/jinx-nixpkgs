@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lamb",
       version: "0-unstable-2025-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tsoding",
           repo: "lamb",
           rev: "50938686d4b8ae929121b62a67243baf72867cde",
@@ -29,8 +29,8 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 ${nix.sel(stdenv, "cc", "targetPrefix")}cc -o lamb lamb.c
@@ -41,7 +41,7 @@ runHook postBuild
       nativeCheckInputs: nix.thunk(() => [gnugrep]),
       checkPhase: "runHook preCheck\n\noutput=\"$(\n  {\n    printf '%s\\n' \\\n      'pair 69 (pair 420 1337)' \\\n      'xs = pair 69 (pair 420 1337)' \\\n      'first xs' \\\n      'second xs' \\\n      'first (second xs)' \\\n      ':q'\n  } | ./lamb ./std.lamb 2>&1\n)\"\n\ngrep -Fq \"RESULT: 69\" <<<\"$output\"\ngrep -Fq \"RESULT: 420\" <<<\"$output\"\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tiny pure functional programming language in C",
         homepage: "https://github.com/tsoding/lamb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

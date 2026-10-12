@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "micheles",
           repo: "decorator",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["tests/test.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/micheles/decorator/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         homepage: "https://github.com/micheles/decorator",
         description: "Better living through Python with decorators",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

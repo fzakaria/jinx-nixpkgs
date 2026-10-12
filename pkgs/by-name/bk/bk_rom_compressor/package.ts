@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rarezip = nix.arg($, "rarezip");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bk_rom_compressor",
       version: "0-unstable-2024-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MittenzHugg",
           repo: "bk_rom_compressor",
           rev: "272180b527b01c0023dc2ab02bdfdfd373670906",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rarezip]),
       cargoHash: "sha256-JxK2S0JTBepT8nTTlBsZlS9+NvL+/rIRPmreX1Kmat4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Banjo-Kazooie rom compressor/decompressor",
         homepage: "https://github.com/MittenzHugg/bk_rom_compressor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

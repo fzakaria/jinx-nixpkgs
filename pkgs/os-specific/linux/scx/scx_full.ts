@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildEnv, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(scx, "rustscheds"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scx_full",
       version: nix.thunk(() => nix.attr(from, "version")),
       paths: nix.thunk(() => [
@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(scx, "rustscheds")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         schedulers: nix.thunk(() => nix.concat(nix.sel(scx, "cscheds", "schedulers"), nix.sel(scx, "rustscheds", "schedulers"))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sched-ext C and Rust userspace schedulers",
         longDescription: "This includes C based schedulers such as scx_central, scx_flatcg,\nscx_pair, scx_qmap, scx_simple, scx_userland and Rust based schedulers\nlike scx_rustland, scx_bpfland, scx_lavd, scx_layered, scx_rlfifo.\n\n::: {.note}\nSched-ext schedulers are only available on kernels version 6.12 or later.\nIt is recommended to use the latest kernel for the best compatibility.\n:::\n",
         homepage: "https://github.com/sched-ext/scx",

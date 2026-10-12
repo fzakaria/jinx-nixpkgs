@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdraco",
           repo: "discovery30303",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--asyncio-mode=auto"]);
       const pythonImportsCheck = nix.thunk(() => ["discovery30303"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module to discover devices that respond on port 30303",
         homepage: "https://github.com/bdraco/discovery30303",
         changelog: nix.thunk(() => nix.str`https://github.com/bdraco/discovery30303/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

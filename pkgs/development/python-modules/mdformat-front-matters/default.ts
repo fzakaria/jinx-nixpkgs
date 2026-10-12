@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mdformat-front-matters",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kyleking",
           repo: "mdformat-front-matters",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mdformat_front_matters"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, typing_extensions]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "mdformat plugin to format YAML, TOML, or JSON front matter",
         homepage: "https://github.com/kyleking/mdformat-front-matters",
         changelog: nix.thunk(() => nix.str`https://github.com/KyleKing/mdformat-front-matters/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

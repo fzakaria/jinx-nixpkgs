@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "woodpecker-webui",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/web`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Woodpecker Continuous Integration server webui",
       })),
     }));

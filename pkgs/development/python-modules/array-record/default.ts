@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const pyShortVersion = nix.thunk(() => nix.str`cp${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);
         return nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: version,
             format: "wheel",
             pname: "array_record",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
             abi: pyShortVersion,
             platform: "manylinux2014_x86_64.manylinux_2_17_x86_64",
             hash: nix.thunk(() => nix.selOr({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               cp311: "sha256-9ABPzOt5YaLMAJACjmij7rkdP1s4wA1gtTP3AE0dP3s=",
               cp312: "sha256-RY9mWN6GyTabI//mTcsxOTqRm5GuLxUUfuK+sgELEio=",
               cp313: "sha256-E98a7Js4r+mJc79f489SP4PKkEsEI9hTGZMIdxRbjyg=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat([absl_py, etils], nix.sel(etils, "optional-dependencies", "epath")));
       const pythonImportsCheck = nix.thunk(() => ["array_record"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "New file format derived from Riegeli, achieving a new frontier of IO efficiency",
         homepage: "https://github.com/google/array_record",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const qtwebengine = nix.arg($, "qtwebengine");
   const cyrus_sasl = nix.arg($, "cyrus_sasl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libksieve",
       extraBuildInputs: nix.thunk(() => [qtwebengine, cyrus_sasl]),
     })));

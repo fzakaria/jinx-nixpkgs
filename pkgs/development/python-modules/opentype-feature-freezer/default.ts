@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.32.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twardoch",
           repo: "fonttools-opentype-feature-freezer",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-uwU9lsTK6XlKwar46DLTzjwtD/zQDJnC+Kq/sVNCNE0=",
         }))));
       const build_system = nix.thunk(() => [hatch_vcs, hatchling]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
       const dependencies = nix.thunk(() => [fonttools]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, biplist]);
       const disabledTestPaths = nix.thunk(() => [
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         "app/OTFeatureFreezer.py",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Permanently \"apply\" OpenType features to fonts, by remapping their Unicode assignments",
         homepage: "https://github.com/twardoch/fonttools-opentype-feature-freezer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

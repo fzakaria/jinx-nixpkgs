@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "factor-lang",
       src: src,
       version: version,
@@ -46,7 +46,7 @@ substituteInPlace extra/terminfo/terminfo.factor \\
       postBuild: "printf \"First build from upstream boot image\\n\" >&2\n./build.sh bootstrap\nprintf \"Rebuild boot image\\n\" >&2\n./factor -script -e='\"unix-x86.64\" USING: system bootstrap.image memory ; make-image save 0 exit'\nprintf \"Second build from local boot image\\n\" >&2\n./build.sh bootstrap\n",
       installPhase: nix.thunk(() => nix.add("runHook preInstall\nmkdir -p $out/lib/factor\ncp -r factor factor.image libfactor.a libfactor-ffi-test.so \\\n    boot.unix-*.image LICENSE.txt README.md basis core extra misc \\\n    $out/lib/factor\n", nix.app(optionalString, nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(finalAttrs, "version")), "0.101")), "# install fuel mode for emacs\nmkdir -p $out/share/emacs/site-lisp\nln -r -s $out/lib/factor/misc/fuel/*.el $out/share/emacs/site-lisp\nrunHook postInstall\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://factorcode.org/",
         description: "Concatenative, stack-based programming language",
         longDescription: "The Factor programming language is a concatenative, stack-based\nprogramming language with high-level features including dynamic types,\nextensible syntax, macros, and garbage collection. On a practical side,\nFactor has a full-featured library, supports many different platforms, and\nhas been extensively documented.\n\nThe implementation is fully compiled for performance, while still\nsupporting interactive development. Factor applications are portable\nbetween all common platforms. Factor can deploy stand-alone applications\non all platforms. Full source code for the Factor project is available\nunder a BSD license.\n",

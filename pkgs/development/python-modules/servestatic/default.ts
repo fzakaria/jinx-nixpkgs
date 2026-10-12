@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_timeout = nix.arg($, "pytest-timeout");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "servestatic",
       version: "4.3.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Archmonger",
           repo: "ServeStatic",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [brotli, django, httpx, pytestCheckHook, pytest_timeout]),
       disabledTests: nix.thunk(() => ["test_modified"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Production-grade Python static file server. Middleware or standalone.",
         homepage: "https://github.com/Archmonger/ServeStatic",
         maintainers: nix.thunk(() => (() => {

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uefi_firmware",
       version: "1.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theopolis",
           repo: "uefi-firmware-parser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["future"]),
       pythonImportsCheck: nix.thunk(() => ["uefi_firmware"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for parsing, extracting, and recreating UEFI firmware volumes",
         homepage: "https://github.com/theopolis/uefi-firmware-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/theopolis/uefi-firmware-parser/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

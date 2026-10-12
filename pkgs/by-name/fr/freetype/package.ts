@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const __flattenIncludeHackHook = nix.arg($, "__flattenIncludeHackHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "freetype",
       version: "2.14.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/freetype/freetype-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-NrxPHMQTM1No7mVsQq/KZcWjmH6HaMwozxG6d154Wl8=",
         })))),
@@ -64,37 +64,37 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./enable-table-validation.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "truetype-shz-limit-heap-buffer-overflow-part1.patch",
             url: "https://gitlab.freedesktop.org/freetype/freetype/-/commit/1803559c4ee407d0bcbf2a67dbe96690cee869d2.patch",
             hash: "sha256-zxtJ2pJz8pNofgYrJ6c8/eZqRvxTotanF2IdU9ckpM4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "truetype-shz-limit-heap-buffer-overflow-part2.patch",
             url: "https://gitlab.freedesktop.org/freetype/freetype/-/commit/7d600a022e1d813e85a8c94ffd395f6135872267.patch",
             hash: "sha256-aHE11C9Cr23D2lqNmTVUDA5E07xxUm+AcYdWJG9zLFs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "truetype-iup-integer-overflow.patch",
             url: "https://gitlab.freedesktop.org/freetype/freetype/-/commit/7974be74d8b5a2fbf99aa88f0461d1f80af51cee.patch",
             hash: "sha256-b5Px0ALsnC5K1+601YioAjCLkLVXNnvTIZ1aQtCeNoQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "truetype-variation-handling-signednes-mismatch.patch",
             url: "https://gitlab.freedesktop.org/freetype/freetype/-/commit/0d45c7f1911bc6db0bf072eea0c8cdccd77bc6b3.patch",
             hash: "sha256-bw/9O86sZQa+vwdgx2MTqxWi6vjMcRTyC42ba9CaZ3I=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "ftobjs-formatting.patch",
             url: "https://gitlab.freedesktop.org/freetype/freetype/-/commit/590b77014bd920d0bdf64c039fddbce89a288b83.patch",
             hash: "sha256-govOzLBzQMAjSKABVFryDnSn2by2f/W9BgGG3o+qSuE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "sub-byte-bitmaps-heap-buffer-over-read.patch",
             url: "https://gitlab.freedesktop.org/freetype/freetype/-/commit/cbe12767ea73d1006edc75fcd61c0b0d2a88f34e.patch",
             hash: "sha256-jMeqY9uX7Ryfdd8icGDT4kEKl6aGRWafSN8GzOhGW7g=",
@@ -103,21 +103,21 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       configureFlags: nix.thunk(() => ["--bindir=$(dev)/bin", "--enable-freetype-config"]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         CC_BUILD: nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc`),
         CFLAGS: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), "-std=gnu99"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), " -D_FILE_OFFSET_BITS=64"))),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))) && nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")))), nix.thunk(() => ({ __proto__: pos$9, RC: "" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))) && nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")))), nix.thunk(() => ({ [nix.POS]: pos$9, RC: "" }))))),
       enableParallelBuilding: true,
       doCheck: true,
       postInstall: nix.thunk(() => nix.add(nix.str`substituteInPlace $dev/bin/freetype-config \\
   --replace ${nix.sel(buildPackages, "pkg-config")} ${nix.sel(pkgsHostHost, "pkg-config")}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW"))), "\nwrapProgram \"$dev/bin/freetype-config\" \\\n  --set PKG_CONFIG_PATH \"$PKG_CONFIG_PATH:$dev/lib/pkgconfig\"\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           cairo: cairo,
           fontforge: fontforge,
           ghostscript: ghostscript,
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Font rendering engine",
         mainProgram: "freetype-config",
         longDescription: "FreeType is a portable and efficient library for rendering fonts. It\nsupports TrueType, Type 1, CFF fonts, and WOFF, PCF, FNT, BDF and PFR\nfonts. It has a bytecode interpreter and has an automatic hinter called\nautofit which can be used instead of hinting instructions included in\nfonts.\n",

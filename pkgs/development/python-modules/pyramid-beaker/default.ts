@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyramid_beaker",
           version: version,
           hash: "sha256-zMUT60z7W0Flfym25rKMor17O/n9qRMGoQKa7pLRz6U=",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const propagatedBuildInputs = nix.thunk(() => [beaker, pyramid]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Beaker session factory backend for Pyramid",
         homepage: "https://docs.pylonsproject.org/projects/pyramid_beaker/en/latest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3Modification")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

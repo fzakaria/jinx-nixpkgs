@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const popt = nix.arg($, "popt");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipvsadm",
       version: "1.31",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/utils/kernel/ipvsadm/ipvsadm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1nyzpv1hx75k9lh0vfxfhc0p2fpqaqb38xpvs8sn88m1nljmw2hs",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`sed -i -e "s|^PATH=.*|PATH=$out/bin:${gnugrep}/bin|" $out/sbin/ipvsadm-{restore,save}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux Virtual Server support programs",
         homepage: "http://www.linuxvirtualserver.org/software/ipvs.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
     "glanceclient\\.tests\\.unit\\.test_ssl\\.TestHTTPSVerifyCert\\..*",
   ]);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "python_glanceclient",
           version: version,
           hash: "sha256-+jNZvIvZPnrryjctr+yOGQA7TB9kSZ4uuCsncdqPpBw=",
@@ -70,7 +70,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["glanceclient"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for the OpenStack Images API",
         homepage: "https://github.com/openstack/python-glanceclient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withQt) || nix.asBool(!nix.eq(nix.sel(libsForQt5, "qtbase"), null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/carla/package.nix:22:1");
   nix.assert_((!nix.asBool(withQt) || nix.asBool(!nix.eq(nix.sel(libsForQt5, "wrapQtAppsHook"), null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/carla/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "carla",
       version: "2.5.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "falkTX",
           repo: "carla",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +81,7 @@ find "$out/share/carla/resources" -maxdepth 1 -type f -not -name "*.py" -print0 
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://kx.studio/Applications:Carla",
         description: "Audio plugin host",
         longDescription: "It currently supports LADSPA (including LRDF), DSSI, LV2, VST2/3\nand AU plugin formats, plus GIG, SF2 and SFZ file support.\nIt uses JACK as the default and preferred audio driver but also\nsupports native drivers like ALSA, DirectSound or CoreAudio.\n",

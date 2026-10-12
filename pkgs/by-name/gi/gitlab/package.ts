@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
   const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json")));
   const version = nix.thunk(() => nix.sel(data, "version"));
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: nix.thunk(() => nix.sel(data, "owner")),
       repo: nix.thunk(() => nix.sel(data, "repo")),
       rev: nix.thunk(() => nix.sel(data, "rev")),
@@ -83,27 +83,27 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./rubyEnv");
       const gemset = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(gemdir, "/gemset.nix"))), src));
       const gemConfig = nix.thunk(() => nix.update(defaultGemConfig, {
-        __proto__: pos$23,
-        gpgme: (attrs) => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [pkg_config]) }),
-        openssl: (attrs) => ({ __proto__: pos$3, buildInputs: nix.thunk(() => [openssl]) }),
+        [nix.POS]: pos$23,
+        gpgme: (attrs) => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [pkg_config]) }),
+        openssl: (attrs) => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [openssl]) }),
         "ruby-magic": (attrs) => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           buildInputs: nix.thunk(() => [file]),
           buildFlags: nix.thunk(() => ["--enable-system-libraries"]),
         }),
         "gitlab-glaz": (attrs) => nix.update({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -125,23 +125,23 @@ export default nix.lambda((args) => (() => {
           preInstall: "export CARGO_HOME=\"$PWD/../.cargo/\"\n",
           postInstall: "find $out -type f -name .rustc_info.json -delete\n",
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV64")), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             postPatch: "substituteInPlace $cargoDepsCopy/source-*/glaz-proto-*/build.rs \\\n  --replace-fail 'protoc_bin_vendored::protoc_bin_path()?' \\\n    'std::path::PathBuf::from(std::env::var(\"PROTOC\")?)'\n",
             PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "protobuf")), "protoc")),
           })))),
         "gitlab-glfm-markdown": (attrs) => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -165,16 +165,16 @@ export default nix.lambda((args) => (() => {
         }),
         gitlab_query_language: (attrs) => (() => {
           const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -199,7 +199,7 @@ export default nix.lambda((args) => (() => {
           const preInstall = "export CARGO_HOME=\"$PWD/../.cargo/\"\n# Unpack\ntar xvf $gempkg\n# Modify\ngzip -d data.tar.gz\nchmod +w data.tar\nmv Cargo.lock ./ext/gitlab_query_language\ntar rf data.tar ./ext/gitlab_query_language/Cargo.lock\n# Repack\ngzip data.tar\ntar -cf $gempkg data.tar.gz metadata.gz\n";
           const postInstall = "find $out -type f -name .rustc_info.json -delete\n";
           return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             cargoDeps,
             postPatch,
             dontBuild,
@@ -209,7 +209,7 @@ export default nix.lambda((args) => (() => {
           };
         })(),
         "prometheus-client-mmap": (attrs) => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           dontBuild: false,
           postPatch: nix.thunk(() => (() => {
             const getconf = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu")) ? nix.sel(stdenv, "cc", "libc") : nix.force(getconf)));
@@ -217,16 +217,16 @@ export default nix.lambda((args) => (() => {
 `;
           })()),
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -248,7 +248,7 @@ export default nix.lambda((args) => (() => {
           postInstall: "find $out -type f -name .rustc_info.json -delete\n",
         }),
         static_holmes: (attrs) => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           nativeBuildInputs: nix.thunk(() => [icu, which, nix.thunk(() => nix.sel(zlib, "dev"))]),
         }),
       }));
@@ -269,7 +269,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${src}/gems`),
       ]);
       return {
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name,
         ruby,
         gemdir,
@@ -281,17 +281,17 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   const assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       pname: "gitlab-assets",
       version: version,
       src: src,
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           yarnLock: nix.thunk(() => nix.add(src, "/yarn.lock")),
           hash: nix.thunk(() => nix.sel(data, "yarn_hash")),
         })))),
       frontendIslandsYarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           yarnLock: nix.thunk(() => nix.add(src, "/ee/frontend_islands/yarn.lock")),
           hash: nix.thunk(() => nix.sel(data, "frontend_islands_yarn_hash")),
         })))),
@@ -308,7 +308,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./Remove-unsupported-database-names.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         GITLAB_LOG_PATH: "log",
         FOSS_ONLY: nix.thunk(() => !nix.asBool(gitlabEnterprise)),
         SKIP_FRONTEND_ISLANDS_BUILD: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(gitlabEnterprise)), "true")),
@@ -320,7 +320,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmv public/assets $out\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       pname: nix.thunk(() => nix.str`gitlab${nix.app(nix.sel(lib, "optionalString"), gitlabEnterprise, "-ee")}`),
       src: src,
       version: version,
@@ -375,7 +375,7 @@ cp ${nix.path(here, "./reset_token.rake")} $out/share/gitlab/lib/tasks/reset_tok
 wrapProgram $out/share/gitlab/scripts/decomposition/generate-loose-foreign-key --set ENABLE_SPRING 0 --add-flags 'runner -e test'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         rubyEnv: rubyEnv,
         assets: assets,
         ruby: nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby")),
@@ -384,25 +384,25 @@ wrapProgram $out/share/gitlab/scripts/decomposition/generate-loose-foreign-key -
         GITLAB_SHELL_VERSION: nix.thunk(() => nix.sel(data, "passthru", "GITLAB_SHELL_VERSION")),
         GITLAB_WORKHORSE_VERSION: nix.thunk(() => nix.sel(data, "passthru", "GITLAB_WORKHORSE_VERSION")),
         gitlabEnv: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           FOSS_ONLY: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => !nix.asBool(gitlabEnterprise)))),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           "nixos-test-passes": nix.thunk(() => nix.sel(nixosTests, "gitlab")),
         })),
       })),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         homepage: "http://www.gitlab.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gitlab"))]),
       }, (nix.asBool(gitlabEnterprise) ? {
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         description: "GitLab Enterprise Edition",
       } : {
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "GitLab Community Edition",
         longDescription: "GitLab Community Edition (CE) is an open source end-to-end software development platform with built-in version control, issue tracking, code review, CI/CD, and more. Self-host GitLab CE on your own servers, in a container, or on a cloud provider.",

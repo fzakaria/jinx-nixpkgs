@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "buttplug-lite",
       version: "2.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "runtime-shady-backroom",
           repo: "buttplug-lite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-XGfHJAlv1B+tFKhLqMWiUaVyCUnyuyVZmYz3wvwITQI=",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "buttplug-lite",
             exec: "buttplug-lite",
             desktopName: "Buttplug Lite",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simplified buttplug.io API for when JSON is infeasible",
         homepage: "https://github.com/runtime-shady-backroom/buttplug-lite",
         changelog: nix.thunk(() => nix.str`https://github.com/runtime-shady-backroom/buttplug-lite/releases/tag/${nix.sel(finalAttrs, "version")}`),

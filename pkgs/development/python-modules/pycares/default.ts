@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const tornado = nix.arg($, "tornado");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pycares",
       version: "5.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-WjwknIMEMmMUOYFfmoGEY0FvKoy9semI54dX3prnUIE=",
@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
       propagatedNativeBuildInputs: nix.thunk(() => [cffi]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, aiodns: aiodns, tornado: tornado })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, aiodns: aiodns, tornado: tornado })),
       })),
       pythonImportsCheck: nix.thunk(() => ["pycares"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python interface for c-ares",
         homepage: "https://github.com/saghul/pycares",
         changelog: nix.thunk(() => nix.str`https://github.com/saghul/pycares/releases/tag/v${nix.sel(finalAttrs, "version")}`),

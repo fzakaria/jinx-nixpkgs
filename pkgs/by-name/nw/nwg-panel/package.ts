@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const libdbusmenu_gtk3 = nix.arg($, "libdbusmenu-gtk3");
   const playerctl = nix.arg($, "playerctl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nwg-panel",
       version: "0.10.15",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nwg-piotr",
           repo: "nwg-panel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nwg-piotr/nwg-panel",
         changelog: nix.thunk(() => nix.str`https://github.com/nwg-piotr/nwg-panel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "GTK3-based panel for Sway window manager",

@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
     return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     generate: (name) => (value) => (package$) => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [
@@ -88,7 +88,7 @@ sed -i $'s|\\'!include |!include \\'|' $out
   })());
   const initrdInterfaceTypes = nix.thunk(() => nix.builtins.map((interface$) => nix.sel(interface$, "link", "kind"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(initrdCfg, "settings", "interfaces"))))));
   const interfaceKernelModules = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     ifb: nix.thunk(() => ["ifb"]),
     ip6tnl: nix.thunk(() => ["ip6tnl"]),
     ipoib: nix.thunk(() => ["ib_ipoib"]),
@@ -119,7 +119,7 @@ sed -i $'s|\\'!include |!include \\'|' $out
     xfrm: nix.thunk(() => ["xfrm_interface"]),
   }));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     after: nix.thunk(() => ["network-pre.target", "systemd-sysusers.service", "systemd-sysctl.service"]),
     before: nix.thunk(() => [
       "network.target",
@@ -129,27 +129,27 @@ sed -i $'s|\\'!include |!include \\'|' $out
     ]),
     conflicts: nix.thunk(() => ["shutdown.target", "initrd-switch-root.target"]),
     wants: nix.thunk(() => ["network.target"]),
-    unitConfig: nix.thunk(() => ({ __proto__: pos$4, DefaultDependencies: "no" })),
+    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$4, DefaultDependencies: "no" })),
   }));
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marcel"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       networking: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         ifstate: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "networking using IfState")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ifstate", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Content of IfState's configuration file. See <https://ifstate.net/2.2/schema/> for details.",
@@ -157,37 +157,37 @@ sed -i $'s|\\'!include |!include \\'|' $out
         })),
       })),
       boot: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         initrd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           network: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             ifstate: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "initrd networking using IfState")),
               allowIfstateToDrasticlyIncreaseInitrdSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "IfState in initrd drastically increases the size of initrd, your boot partition may be too small and/or you may have significantly fewer generations. By setting this option, you acknowledge this fact and keep it in mind when reporting issues.",
                 })))),
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   type: nix.thunk(() => nix.sel(lib, "types", "package")),
-                  default: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$11, withConfigValidation: false })))),
+                  default: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$11, withConfigValidation: false })))),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.ifstate.override { withConfigValidation = false; }")),
                   description: "The initrd IfState package to use.",
                 })))),
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: nix.thunk(() => nix.attr(settingsFormat, "type")),
                   default: nix.thunk(() => ({})),
                   description: "Content of IfState's initrd configuration file. See <https://ifstate.net/2.2/schema/> for details.",
                 })))),
               cleanupSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   type: nix.thunk(() => nix.attr(settingsFormat, "type")),
-                  default: nix.thunk(() => ({ __proto__: pos$14, interfaces: nix.thunk(() => ({})) })),
+                  default: nix.thunk(() => ({ [nix.POS]: pos$14, interfaces: nix.thunk(() => ({})) })),
                   description: "Content of IfState's initrd cleanup configuration file. See <https://ifstate.net/2.0/schema/> for details. This configuration gets applied before systemd switches to stage two. The goal is to deconfigurate the whole network in order to prevent access to services, before the firewall is configured. The stage two IfState configuration will start after the firewall is configured.",
                 })))),
             })),
@@ -197,52 +197,52 @@ sed -i $'s|\\'!include |!include \\'|' $out
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(initrdCfg, "enable")))), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             boot: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               extraModprobeConfig: "options bonding max_bonds=0\noptions dummy numdummies=0\noptions ifb numifbs=0\n",
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "networkmanager", "enable"))),
                 message: "IfState and NetworkManager cannot be used at the same time, as both configure the network in a conflicting manner.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "useDHCP"))),
                 message: "IfState and networking.useDHCP cannot be used at the same time, as both configure the network. Please look into IfState hooks to integrate DHCP: https://codeberg.org/liske/ifstate/issues/111",
               })),
             ]),
             networking: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               useDHCP: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 "ifstate/ifstate.yaml": nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "ifstate.yaml", nix.thunk(() => nix.sel(cfg, "settings")), nix.thunk(() => nix.sel(cfg, "package")))),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               services: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 ifstate: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), commonServiceConfig, nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     description: "IfState",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     path: nix.thunk(() => ["/run/wrappers"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       Type: "oneshot",
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config ${nix.sel(config, "environment", "etc", "ifstate/ifstate.yaml", "source")} apply`),
                       ExecStartPre: nix.thunk(() => nix.str`-${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "udevadm")} settle --timeout=180`),
@@ -253,46 +253,46 @@ sed -i $'s|\\'!include |!include \\'|' $out
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(initrdCfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 assertion: nix.thunk(() => nix.sel(initrdCfg, "allowIfstateToDrasticlyIncreaseInitrdSize")),
                 message: "IfState in initrd drastically increases the size of initrd, your boot partition may be too small and/or you may have significantly fewer generations. By setting boot.initrd.network.initrd.allowIfstateToDrasticlyIncreaseInitrdSize to true, you acknowledge this fact and keep it in mind when reporting issues.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 assertion: nix.thunk(() => nix.sel(cfg, "enable")),
                 message: "If IfState is used in initrd, it should also be used for the stage 2 system (networking.ifstate), as initrd IfState does not clean up the network stack like it was before after execution.",
               })),
               nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 assertion: nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")),
                 message: "IfState only supports systemd stage one. See `boot.initrd.systemd.enable` option.",
               })),
             ]),
             environment: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               etc: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 "ifstate/ifstate.initrd.yaml": nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "ifstate.initrd.yaml", nix.thunk(() => nix.sel(initrdCfg, "settings")), nix.thunk(() => nix.sel(initrdCfg, "package")))),
                 })),
                 "ifstate/ifstate.initrd-cleanup.yaml": nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "ifstate.initrd-cleanup.yaml", nix.thunk(() => nix.sel(initrdCfg, "cleanupSettings")), nix.thunk(() => nix.sel(initrdCfg, "package")))),
                 })),
               })),
             })),
             boot: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               initrd: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 network: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   udhcpc: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                   })),
                 })),
@@ -301,12 +301,12 @@ sed -i $'s|\\'!include |!include \\'|' $out
                   return nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map(enableModule, initrdInterfaceTypes)));
                 })()),
                 systemd: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   storePaths: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "ifstate-closure", nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         info: nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             rootPaths: nix.thunk(() => [
                               nix.thunk(() => nix.sel(initrdCfg, "package")),
                               nix.thunk(() => nix.sel(config, "environment", "etc", "ifstate/ifstate.initrd.yaml", "source")),
@@ -325,16 +325,16 @@ sed -i $'s|\\'!include |!include \\'|' $out
                     "remote-fs.target",
                   ]),
                   services: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     "ifstate-initrd": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), commonServiceConfig, nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         description: "IfState initrd",
                         wantedBy: nix.thunk(() => ["initrd.target"]),
                         path: nix.thunk(() => [
                           nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "package", "util-linux")),
                         ]),
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$45,
+                          [nix.POS]: pos$45,
                           Type: "oneshot",
                           RemainAfterExit: true,
                           ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(initrdCfg, "package")))} --config ${nix.sel(config, "environment", "etc", "ifstate/ifstate.initrd.yaml", "source")} apply`),

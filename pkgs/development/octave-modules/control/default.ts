@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "control";
       const version = "4.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnu-octave",
           repo: "pkg-control",
           tag: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [gfortran, autoreconfHook]);
       const buildInputs = nix.thunk(() => [lapack, blas]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "control-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gnu-octave.github.io/packages/control/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         description: "Computer-Aided Control System Design (CACSD) Tools for GNU Octave, based on the proven SLICOT Library",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

@@ -31,42 +31,42 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "r53-ddns"));
   const pkg = nix.thunk(() => nix.sel(pkgs, "r53-ddns"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "r53-ddns": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "r53-ddyns")),
           interval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "15min",
               description: "How often to update the entry",
             })))),
           zoneID: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The ID of your zone in Route53",
             })))),
           domain: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The name of your domain in Route53",
             })))),
           hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Manually specify the hostname. Otherwise the tool will try to use the name\nreturned by the OS (Call to gethostname)\n",
             })))),
           ttl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               description: "The TTL for the generated record",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "File containing the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY\nin the format of an EnvironmentFile as described by {manpage}`systemd.exec(5)`\n",
             })))),
@@ -74,29 +74,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           timers: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "r53-ddns": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "r53-ddns timer",
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 OnBootSec: nix.thunk(() => nix.sel(cfg, "interval")),
                 OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "interval")),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "r53-ddns": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "r53-ddns service",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.add(nix.add(nix.str`${pkg}/bin/r53-ddns -zone-id ${nix.sel(cfg, "zoneID")} -domain ${nix.sel(cfg, "domain")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hostname"), null)), nix.thunk(() => nix.str` -hostname ${nix.sel(cfg, "hostname")}`))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "ttl"), null)), nix.thunk(() => nix.str` -ttl ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "ttl")))}`)))),
                 EnvironmentFile: nix.thunk(() => nix.str`${nix.sel(cfg, "environmentFile")}`),
                 DynamicUser: true,

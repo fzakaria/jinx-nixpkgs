@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "capitaine-cursors";
       const version = "4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keeferrourke",
           repo: "capitaine-cursors",
           rev: nix.thunk(() => nix.str`r${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "inkscape-1.0-compat",
             url: "https://github.com/keeferrourke/capitaine-cursors/commit/9da0b53e6098ed023c5c24c6ef6bfb1f68a79924.patch",
             sha256: "0lx5i60ahy6a2pir4zzlqn5lqsv6claqg8mv17l1a028h9aha3cv",
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "patchShebangs .\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$3, fontDirectories: [] })))),
+        [nix.POS]: pos$4,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: [] })))),
       }));
       const buildInputs = nix.thunk(() => [inkscape, xcursorgen, bc]);
       const buildPhase = "for variant in dark light ; do\n# https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/emojione/default.nix#L16\n  HOME=\"$NIX_BUILD_ROOT\" ./build.sh --max-dpi xhd --type $variant\ndone\n";
       const installPhase = "install -dm 0755 $out/share/icons\ncp -pr dist/dark $out/share/icons/capitaine-cursors\ncp -pr dist/light $out/share/icons/capitaine-cursors-white\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "X-cursor theme inspired by macOS and based on KDE Breeze",
         homepage: "https://github.com/keeferrourke/capitaine-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

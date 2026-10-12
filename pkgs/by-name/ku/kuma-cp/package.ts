@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const args_1 = args;
   const kuma = nix.arg($, "kuma");
   return nix.app(nix.sel(kuma, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kumactl",
       isFull: false,
       components: nix.thunk(() => ["kumactl"]),

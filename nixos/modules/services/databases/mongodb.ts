@@ -47,76 +47,76 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg_1,
 ${nix.sel(cfg_1, "extraConfig")}
 `));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mongodb", "initialRootPassword"]), "Use services.mongodb.initialRootPasswordFile to securely provide the initial root password.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         mongodb: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the MongoDB server")),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mongodb", nix.thunk(() => ({ __proto__: pos$1, example: "pkgs.mongodb-ce" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mongodb", nix.thunk(() => ({ [nix.POS]: pos$1, example: "pkgs.mongodb-ce" })))),
           mongoshPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "mongosh", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mongodb",
               description: "User account under which MongoDB runs",
             })))),
           bind_ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "IP to bind to",
             })))),
           quiet: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "quieter output",
             })))),
           enableAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable client authentication. Creates a default superuser with username root!",
             })))),
           initialRootPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "Path to the file containing the password for the root user if auth is enabled.",
             })))),
           dbpath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/db/mongodb",
               description: "Location where MongoDB stores its files",
             })))),
           pidFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/run/mongodb.pid",
               description: "Location of MongoDB pid file",
             })))),
           replSetName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "If this instance is part of a replica set, set its name here.\nOtherwise, leave empty to run as single node.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: "storage.journal.enabled: false\n",
               description: "MongoDB extra configuration in YAML format",
             })))),
           initialScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "A file containing MongoDB statements to execute on first startup.\n",
@@ -125,20 +125,20 @@ ${nix.sel(cfg_1, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "mongodb", "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "enableAuth"))) || nix.asBool(!nix.eq(nix.sel(cfg, "initialRootPasswordFile"), null)))),
             message: "`enableAuth` requires `initialRootPasswordFile` to be set.",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             mongodb: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "mongodb")), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 name: "mongodb",
                 isSystemUser: true,
                 group: "mongodb",
@@ -146,21 +146,21 @@ ${nix.sel(cfg_1, "extraConfig")}
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             mongodb: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "mongodb")), nix.thunk(() => ({})))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             mongodb: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "MongoDB server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStart: nix.thunk(() => nix.str`${mongodb}/bin/mongod --config ${nix.app(mongoCnf, cfg)} --fork --pidfilepath ${nix.sel(cfg, "pidFile")}`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 PIDFile: nix.thunk(() => nix.sel(cfg, "pidFile")),
@@ -169,7 +169,7 @@ ${nix.sel(cfg_1, "extraConfig")}
                 PermissionsStartOnly: true,
               })),
               preStart: nix.thunk(() => (() => {
-                const cfg_ = nix.thunk(() => nix.update(cfg, { __proto__: pos$21, enableAuth: false, bind_ip: "127.0.0.1" }));
+                const cfg_ = nix.thunk(() => nix.update(cfg, { [nix.POS]: pos$21, enableAuth: false, bind_ip: "127.0.0.1" }));
                 return nix.add(nix.str`rm ${nix.sel(cfg, "dbpath")}/mongod.lock || true
 if ! test -e ${nix.sel(cfg, "dbpath")}; then
     install -d -m0700 -o ${nix.sel(cfg, "user")} ${nix.sel(cfg, "dbpath")}

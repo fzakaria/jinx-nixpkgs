@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ericw-tools";
       const version = "0.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ericwa",
           repo: "ericw-tools",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ popd
 `);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ericwa/ericw-tools/commit/c9570260fa895dde5a21272d76f9a3b05d59efdd.patch",
             hash: "sha256-dZr2LWuJBAIT//XHXYEz2vhaK2mxtxkSJ4IQla8OXKI=",
           })))),
@@ -46,7 +46,7 @@ popd
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\nfor TOOL in bspinfo bsputil light qbsp vis ; do\n  cp -a $TOOL/$TOOL $out/bin/\ndone\n\ninstallManPage ../man/*.?\n\nmkdir -p $doc/share/doc/ericw-tools\ncp -a ../README.md ../changelog.txt $doc/share/doc/ericw-tools/\n\nrunHook postInstall\n";
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace bspinfo/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace bsputil/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace light/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace qbsp/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace vis/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace man/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://ericwa.github.io/ericw-tools/",
         description: "Map compile tools for Quake and Hexen 2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -57,7 +57,7 @@ popd
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

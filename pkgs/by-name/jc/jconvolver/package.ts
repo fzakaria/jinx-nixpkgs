@@ -33,52 +33,52 @@ export default nix.lambda((args) => (() => {
       const pname = "jconvolver";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/jconvolver-${version}.tar.bz2`),
           sha256: "03fq1rk5wyn32w0aaa9vqijnw9x9i0i7sv4nhsf949bk5lvi2nmc",
         }))));
       const reverbs = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/jconvolver-reverbs.tar.bz2",
           sha256: "127aj211xfqp37c94d9cn0mmwzbjkj3f6br5gr67ckqirvsdkndi",
         }))));
       const weird = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/weird.wav",
           sha256: "14xchdikx5k8zlgwglrqi168vki3n3rwhn73dkbj5qwh2ndrlyrc",
         }))));
       const porihall_sf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "http://legacy.spa.aalto.fi/projects/poririrs/wavs/sndfld.zip",
           sha256: "0z1kmdin3vcy6wmnym9jlfh8hwvci9404hff02cb98iw2slxid42",
         }))));
       const porihall_bd = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "http://legacy.spa.aalto.fi/projects/poririrs/wavs/bin_dfeq.zip",
           sha256: "03m2brfxs851sag4z7kd71h6anv6hj34zcambwib0v1byg8vyplp",
         }))));
       const porihall_c = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "http://legacy.spa.aalto.fi/projects/poririrs/wavs/cardioid.zip",
           sha256: "0ilbfvb2kvg5z6zi0mf2k4n0vgpir3iz5fa53xw92c07fs0cx36w",
         }))));
       const spacenet_hm2 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/hamilton-mausoleum/b-format/hm2_000_bformat_48k.wav",
           sha256: "1icnzfzq3mccbmnvmvh22mw8g8dci4i9h7lgrpmycj58v3gnb1p5",
         }))));
       const spacenet_lyd3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/st-andrews-church/b-format/lyd3_000_bformat_48k.wav",
           sha256: "144cc0i91q5i72lwbxydx3nvxrd12j7clxjhwa2b8sf69ypz58wd",
         }))));
       const spacenet_mh3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/maes-howe/b-format/mh3_000_bformat_48k.wav",
           sha256: "1c6v9jlm88l1sx2383yivycdrs9jqfsfx8cpbkjg19v2x1dfns0b",
         }))));
       const spacenet_minster1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/york-minster/b-format/minster1_bformat_48k.wav",
           sha256: "1cs26pawjkv6qvwhfirfvzh21xvnmx8yh7f4xcr79cxv5c6hhnrw",
         }))));
@@ -120,7 +120,7 @@ done
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "JACK client and audio file convolver with reverb samples",
         homepage: "https://kokkinizita.linuxaudio.org/linuxaudio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -128,7 +128,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname,
         version,
         src,

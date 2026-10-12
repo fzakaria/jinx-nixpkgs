@@ -40,25 +40,25 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const pillow = nix.arg($, "pillow");
   const external = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     avalon: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         owner: "rdkit",
         repo: "ava-formake",
         rev: "AvalonToolkit_2.0.5-pre.3",
         hash: "sha256-2MuFZgRIHXnkV7Nc1da4fa7wDx57VHUtwLthrmjk+5o=",
       })))),
     chemdraw: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         owner: "Glysade",
         repo: "chemdraw",
         tag: "v1.0.10",
         hash: "sha256-ee2Oxvo2d7Yb59lN0zkrbFqy/3rOvVLo6qdS+f23wVQ=",
       })))),
     yaehmop: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             owner: "greglandrum",
             repo: "yaehmop",
             rev: "v2025.03.1",
@@ -67,33 +67,33 @@ export default nix.lambda((args) => (() => {
         postPatch: "substituteInPlace tightbind/CMakeLists.txt \\\n  --replace-fail \\\n    \"cmake_minimum_required(VERSION 3.0)\" \\\n    \"cmake_minimum_required(VERSION 3.5)\"\n",
       })))),
     freesasa: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         owner: "mittinatten",
         repo: "freesasa",
         rev: "2.0.3",
         hash: "sha256-7E+imvfDAJFnXQRWb5hNaSu+Xrf9NXeIKc9fl+o3yHQ=",
       })))),
     "pubchem-align3d": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         owner: "ncbi",
         repo: "pubchem-align3d",
         rev: "daefab3dd0c90ca56da9d3d5e375fe4d651e6be3",
         hash: "sha256-tQB4wqza9rlSoy4Uj9bA99ddawjxGyN9G7DYbcv/Qdo=",
       })))),
     better_enums: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         owner: "aantron",
         repo: "better-enums",
         tag: "0.11.3",
         hash: "sha256-UYldCOkRTySc78oEOJzgoY9h2lB386W/D5Rz3KjVCO8=",
       })))),
     inchi: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         url: "https://github.com/IUPAC-InChI/InChI/releases/download/v1.07.3/INCHI-1-SRC.zip",
         hash: "sha256-TUC2175HifB63EfSsg/ixA3wYzAxsvUnY6ZyNjVR/Fc=",
       })))),
   }));
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$10, enableNumpy: true }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$10, enableNumpy: true }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "rdkit";
       const version = "2025.03.6";
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const versionTag = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             owner: "rdkit",
             repo: "rdkit",
             tag: nix.thunk(() => nix.str`Release_${versionTag}`),
@@ -139,7 +139,7 @@ ln -s ${comic_neue}/share/fonts/truetype/ComicNeue-Regular.ttf Data/Fonts/
 `);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-better-enums.patch"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             better_enums: nix.thunk(() => nix.attr(external, "better_enums")),
           })))),
       ]);
@@ -179,7 +179,7 @@ export PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH"
 `);
       const pythonImportsCheck = nix.thunk(() => ["rdkit", "rdkit.Chem", "rdkit.Chem.AllChem", "rdkit.Chem.rdDetermineBonds"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Open source toolkit for cheminformatics",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -193,7 +193,7 @@ export PYTHONPATH="$out/${nix.sel(python, "sitePackages")}:$PYTHONPATH"
         changelog: nix.thunk(() => nix.str`https://github.com/rdkit/rdkit/releases/tag/${nix.sel(src, "tag")}`),
       }));
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname,
         version,
         pyproject,

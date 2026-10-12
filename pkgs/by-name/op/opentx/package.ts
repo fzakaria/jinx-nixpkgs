@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opentx";
       const version = "2.3.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opentx",
           repo: "opentx",
           rev: nix.thunk(() => nix.str`release/${version}`),
@@ -61,7 +61,7 @@ substituteInPlace companion/src/thirdparty/maxlibqt/src/widgets/CMakeLists.txt \
       ]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenTX Companion transmitter support software",
         longDescription: "OpenTX Companion is used for many different tasks like loading OpenTX\nfirmware to the radio, backing up model settings, editing settings and\nrunning radio simulators.\n",
         mainProgram: nix.thunk(() => nix.add("companion", nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), version))))))),
@@ -74,7 +74,7 @@ substituteInPlace companion/src/thirdparty/maxlibqt/src/widgets/CMakeLists.txt \
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

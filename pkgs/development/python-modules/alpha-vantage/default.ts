@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "alpha-vantage",
       version: "3.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RomelTorres",
           repo: "alpha_vantage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +41,12 @@ cp alpha_vantage/{cryptocurrencies.py,foreignexchange.py,techindicators.py,times
 `),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiohttp, requests]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pandas: nix.thunk(() => [pandas]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pandas: nix.thunk(() => [pandas]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aioresponses, requests_mock, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["alpha_vantage"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module for the Alpha Vantage API",
         homepage: "https://github.com/RomelTorres/alpha_vantage",
         changelog: nix.thunk(() => nix.str`https://github.com/RomelTorres/alpha_vantage/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

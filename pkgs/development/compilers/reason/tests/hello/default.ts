@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helloreason";
       const version = "0.0.1";
       const src = nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
               nix.path(here, "./helloreason.opam"),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const postInstallCheck = nix.thunk(() => nix.str`$out/bin/${pname} | grep -q "Hello From Reason" > /dev/null
 `);
-      const meta = nix.thunk(() => ({ __proto__: pos$2, timeout: 60n }));
+      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 60n }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

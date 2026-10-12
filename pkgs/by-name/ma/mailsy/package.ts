@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mailsy";
       const version = "5.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BalliAsghar",
           repo: "Mailsy",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const postPatch = "substituteInPlace utils/index.js \\\n--replace-fail 'dirname, \"../data/account.json\"' 'process.cwd(), \"account.json\"' \\\n--replace-fail 'dirname, \"../data/email.html\"' 'process.cwd(), \"email.html\"'\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quickly generate a disposable email straight from terminal",
         mainProgram: "mailsy",
         homepage: "https://github.com/BalliAsghar/Mailsy",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_404wolf"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

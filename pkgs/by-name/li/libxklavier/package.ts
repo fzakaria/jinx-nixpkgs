@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const withDoc = nix.argOr($, "withDoc", () => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libxklavier",
       version: "5.4",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.freedesktop.org/archived-projects/libxklavier.git",
           tag: nix.thunk(() => nix.str`libxklavier-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6uzfuVaQlnMMURIke+ZLqL0PhPEmCzx4bFR4+nItPfA=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./honor-XKB_CONFIG_ROOT.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://gitlab.freedesktop.org/archived-projects/libxklavier/-/commit/1387c21a788ec1ea203c8392ea1460fc29d83f70.patch",
               sha256: "sha256-fyWu7sVfDv/ozjhLSLCVsv+iNFawWgJqHUsQHHSkQn4=",
             })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${(nix.asBool(withDoc) ? "--enable-gtk-doc" : "--disable-gtk-doc")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library providing high-level API for X Keyboard Extension known as XKB",
         homepage: "http://freedesktop.org/wiki/Software/LibXklavier",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

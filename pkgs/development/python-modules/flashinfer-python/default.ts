@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flashinfer-python",
       version: "0.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flashinfer-ai",
           repo: "flashinfer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
       })()),
       preConfigure: "export FLASHINFER_ENABLE_AOT=1\nexport TORCH_NVCC_FLAGS=\"--maxrregcount=64\"\nexport MAX_JOBS=\"$NIX_BUILD_CORES\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         FLASHINFER_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(torch, "cudaCapabilities")))),
       })),
       pythonRemoveDeps: nix.thunk(() => ["nvidia-cudnn-frontend", "nvidia-cutlass-dsl"]),
       dependencies: nix.thunk(() => [click, einops, numpy, nvidia_ml_py, requests, tabulate, torch, tqdm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(torch, "cudaSupport"))) || nix.asBool(!nix.asBool(nix.sel(config, "cudaSupport"))))),
         homepage: "https://flashinfer.ai/",
         description: "Library and kernel generator for Large Language Models",

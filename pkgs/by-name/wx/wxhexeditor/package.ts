@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wxhexeditor",
       version: "0.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "wxHexEditor",
           owner: "EUA",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/EUA/wxHexEditor/commit/d0fa3ddc3e9dc9b05f90b650991ef134f74eed01.patch",
             hash: "sha256-0m+dvsPlEoRnc22O73InR+NLPWb5JiSzEwdDmyE4i/E=",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs .",
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["CFLAGS=-std=c17", "OPTFLAGS=-fopenmp"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hex Editor / Disk Editor for Huge Files or Devices",
         longDescription: "This is not an ordinary hex editor, but could work as low level disk editor too.\nIf you have problems with your HDD or partition, you can recover your data from HDD or\nfrom partition via editing sectors in raw hex.\nYou can edit your partition tables or you could recover files from File System by hand\nwith help of wxHexEditor.\nOr you might want to analyze your big binary files, partitions, devices... If you need\na good reverse engineer tool like a good hex editor, you welcome.\nwxHexEditor could edit HDD/SDD disk devices or partitions in raw up to exabyte sizes.\n",
         homepage: "http://www.wxhexeditor.org/",

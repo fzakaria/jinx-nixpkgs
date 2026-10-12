@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pname = "allegro";
       const version = "5.2.11.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liballeg",
           repo: "allegro5",
           rev: version,
@@ -101,11 +101,11 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev"]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Game programming library",
         homepage: "https://liballeg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

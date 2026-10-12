@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powerline-fonts",
       version: "unstable-2018-11-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "powerline",
           repo: "fonts",
           rev: "e80e3eba9091dac0655a0a77472e10f53e754bb0",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nfind . -name '*.otf'    -exec install -Dt $out/share/fonts/opentype {} \\;\nfind . -name '*.ttf'    -exec install -Dt $out/share/fonts/truetype {} \\;\nfind . -name '*.bdf'    -exec install -Dt $out/share/fonts/bdf      {} \\;\nfind . -name '*.pcf.gz' -exec install -Dt $out/share/fonts/pcf      {} \\;\nfind . -name '*.psf.gz' -exec install -Dt $out/share/consolefonts   {} \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/powerline/fonts",
         description: "Patched fonts for Powerline users",
         longDescription: "Pre-patched and adjusted fonts for usage with the Powerline plugin.\n",

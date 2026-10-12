@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const stdenv = clangStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "owl-compositor",
       version: "0-unstable-2021-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owl-compositor",
           repo: "owl",
           rev: "91abf02613cd2ddb97be58b5b6703240320233a0",
@@ -46,7 +46,7 @@ cp ${nix.path(here, "./mac/OwlPreferences.nib")} build/Owl.app/Contents/Resource
       preConfigure: "mkdir -p build\ncd build\n",
       configureScript: "../configure",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "-fobjc-runtime=gnustep-2.0")),
         NIX_LDFLAGS: "-lm",
       })),
@@ -59,7 +59,7 @@ makeWrapper $out/{Applications/Owl.app${nix.app(nix.sel(lib, "optionalString"), 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Portable Wayland compositor in Objective-C",
         homepage: "https://github.com/owl-compositor/owl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

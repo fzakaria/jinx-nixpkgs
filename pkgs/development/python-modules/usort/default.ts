@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const volatile = nix.arg($, "volatile");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "usort",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "usort",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook, volatile]),
       pythonImportsCheck: nix.thunk(() => ["usort"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Safe, minimal import sorting for Python projects",
         homepage: "https://github.com/facebook/usort",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/usort/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

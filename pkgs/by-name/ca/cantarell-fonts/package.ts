@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cantarell-fonts";
       const version = "0.311";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "cantarell-fonts",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         gettext,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/cantarell-fonts/-/blob/${nix.sel(src, "tag")}/NEWS`),
         description: "Default typeface used in the user interface of GNOME since version 3.0",
         homepage: "https://cantarell.gnome.org/",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
       }));
-      return { __proto__: pos$4, pname, version, src, nativeBuildInputs, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, nativeBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://imagej.net/media/icons/imagej.png",
       sha256: "sha256-nU2nWI1wxZB/xlOKsZzdUjj+qiCTjO6GwEKYgZ5Risg=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "imagej",
       version: "153",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://wsr.imagej.net/distros/cross-platform/ij${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-MGuUdUDuW3s/yGC68rHr6xxzmYScUjdXRawDpc1UQqw=",
         })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "ImageJ",
               desktopName: "ImageJ",
               icon: "imagej",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
               exec: "imagej",
             })))),
         ]))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, jre: jre })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, jre: jre })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/java $out/bin\n# Read permisssion suffices for the jar and others.\n# Simple cp shall clear suid bits, if any.\ncp ij.jar $out/share/java\ncp -dR luts macros plugins $out/share\n\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`makeWrapper ${jre}/bin/java $out/bin/imagej \\
   \${gappsWrapperArgs[@]} \\
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${icon} $out/share/icons/hicolor/128x128/apps/imagej.png
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://imagej.nih.gov/ij/",
         description: "Image processing and analysis in Java",
         longDescription: "ImageJ is a public domain Java image processing program\ninspired by NIH Image for the Macintosh.\nIt runs on any computer with a Java 1.4 or later virtual machine.\n",

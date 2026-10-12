@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "fluent-bit"));
   const yamlFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "fluent-bit": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Fluent Bit")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fluent-bit", nix.thunk(() => ({})))),
           configurationFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(yamlFormat, "generate"), "fluent-bit.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "yamlFormat.generate \"fluent-bit.yaml\" cfg.settings")),
@@ -48,25 +48,25 @@ export default nix.lambda((args) => (() => {
               example: "/etc/fluent-bit/fluent-bit.yaml",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(yamlFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "See {option}`configurationFile`.\n\n{option}`configurationFile` takes precedence over {option}`settings`.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$6,
-                service: nix.thunk(() => ({ __proto__: pos$2, grace: 30n })),
+                [nix.POS]: pos$6,
+                service: nix.thunk(() => ({ [nix.POS]: pos$2, grace: 30n })),
                 pipeline: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   inputs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       name: "systemd",
                       systemd_filter: "_SYSTEMD_UNIT=fluent-bit.service",
                     })),
                   ]),
                   outputs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       name: "file",
                       path: "/var/log/fluent-bit",
                       file: "fluent-bit.out",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           graceLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                     nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -89,19 +89,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "fluent-bit": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Fluent Bit",
               after: nix.thunk(() => ["network.target"]),
               requires: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 DynamicUser: true,
                 SupplementaryGroups: "systemd-journal",
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [

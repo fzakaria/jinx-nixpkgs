@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cuda-pathfinder",
       version: "1.8.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "cuda-python",
           tag: nix.thunk(() => nix.str`cuda-pathfinder-v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cuda", "cuda.pathfinder"]),
       nativeCheckInputs: nix.thunk(() => [pytest_mock, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "one-stop solution for locating CUDA components",
         homepage: "https://github.com/NVIDIA/cuda-python/tree/main/cuda_pathfinder",
         changelog: nix.thunk(() => nix.str`https://nvidia.github.io/cuda-python/cuda-pathfinder/${nix.sel(finalAttrs, "version")}/release/${nix.sel(finalAttrs, "version")}-notes.html`),

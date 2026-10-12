@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "webfont-bundler",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rafaelmardojai",
           repo: "webfont-kit-generator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "brotli")),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create @font-face kits easily",
         longDescription: "Webfont Bundler is a simple utility that allows you to generate woff, woff2 and the necessary CSS boilerplate from non-web font formats (otf and ttf).",
         changelog: nix.thunk(() => nix.str`https://github.com/rafaelmardojai/webfont-kit-generator/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tabula-java";
       const version = "1.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tabulapdf",
           repo: "tabula-java",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ makeWrapper ${jre}/bin/java $out/bin/tabula-java \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for extracting tables from PDF files",
         longDescription: "tabula-java is the table extraction engine that powers\nTabula. You can use tabula-java as a command-line tool to\nprogrammatically extract tables from PDFs.\n",
         homepage: "https://tabula.technology/",
@@ -49,7 +49,7 @@ runHook postInstall
         mainProgram: "tabula-java",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

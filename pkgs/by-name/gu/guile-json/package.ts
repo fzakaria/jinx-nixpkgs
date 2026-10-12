@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-json",
       version: "4.7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/guile-json/guile-json-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-OLoEjtKdEvBbMsWy+3pReVxEi0HkA6Kxty/wA1gX84g=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSON Bindings for GNU Guile",
         homepage: "https://savannah.nongnu.org/projects/guile-json",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const datadog_agent = nix.arg($, "datadog-agent");
   return nix.app(nix.sel(datadog_agent, "overrideAttrs"), (attrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "datadog-process-agent",
       meta: nix.thunk(() => nix.update(nix.sel(attrs, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Live process collector for the DataDog Agent v7",
         mainProgram: "process-agent",
         maintainers: [],

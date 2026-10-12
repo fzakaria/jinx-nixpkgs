@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "termpaint",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "termpaint",
           repo: "termpaint",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-meson.build-use-prefix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/termpaint/termpaint/commit/6164fb5ff17fd3d05bf44e942539082aa71a2ff3.patch",
             hash: "sha256-rTI0ZdJ6Q/a7M73igihd+4EZT9l6l+7oHGUnKmB5n0o=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Low level terminal interface library",
         homepage: "https://github.com/termpaint/termpaint",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

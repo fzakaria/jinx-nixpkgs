@@ -21,32 +21,32 @@ export default nix.lambda((args) => (() => {
   const mainPort = "8080";
   const webuiName = "NixOS Test";
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "open-webui",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "shivaraj-bh"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "open-webui": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               host: "",
               package: nix.thunk(() => nix.app(nix.sel(pkgs, "open-webui", "overridePythonAttrs"), (old) => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), nix.sel(pkgs, "open-webui", "optional-dependencies", "all"))),
                 }))),
-              environment: nix.thunk(() => ({ __proto__: pos$3, RAG_EMBEDDING_MODEL: "" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$3, RAG_EMBEDDING_MODEL: "" })),
               environmentFile: nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "writeText"), "test.env", nix.thunk(() => nix.str`WEBUI_NAME="${webuiName}"
 `))),
             })),

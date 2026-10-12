@@ -69,25 +69,25 @@ export default nix.lambda((args) => (() => {
   const esp_proposals = nix.thunk(() => ["aes128gcm128-x25519"]);
   const proposals = nix.thunk(() => ["aes128-sha256-x25519"]);
   return {
-    __proto__: pos$50,
+    [nix.POS]: pos$50,
     name: "strongswan-swanctl",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "basvandijk"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       alice: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$5,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [0n]) })),
+          [nix.POS]: pos$5,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [0n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            dhcpcd: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+            [nix.POS]: pos$4,
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
             defaultGateway: "192.168.0.3",
           })),
         };
@@ -97,18 +97,18 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const strongswan = nix.thunk(() => nix.sel(config, "services", "strongswan-swanctl", "package"));
         return {
-          __proto__: pos$27,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$6, vlans: nix.thunk(() => [0n, 1n]) })),
+          [nix.POS]: pos$27,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, vlans: nix.thunk(() => [0n, 1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$10,
-            dhcpcd: nix.thunk(() => ({ __proto__: pos$7, enable: false })),
+            [nix.POS]: pos$10,
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
             firewall: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               allowedUDPPorts: nix.thunk(() => [4500n, 500n]),
               extraCommands: allowESP,
             })),
             nat: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               internalIPs: nix.thunk(() => [vlan0]),
               internalInterfaces: nix.thunk(() => ["eth1"]),
@@ -116,31 +116,31 @@ export default nix.lambda((args) => (() => {
               externalInterface: "eth2",
             })),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$11, systemPackages: nix.thunk(() => [strongswan]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [strongswan]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "strongswan-swanctl": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               enable: true,
               swanctl: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 connections: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   rw: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     local_addrs: nix.thunk(() => [moonIp]),
                     local: nix.thunk(() => ({
-                      __proto__: pos$13,
-                      main: nix.thunk(() => ({ __proto__: pos$12, auth: "psk" })),
+                      [nix.POS]: pos$13,
+                      main: nix.thunk(() => ({ [nix.POS]: pos$12, auth: "psk" })),
                     })),
                     remote: nix.thunk(() => ({
-                      __proto__: pos$15,
-                      main: nix.thunk(() => ({ __proto__: pos$14, auth: "psk" })),
+                      [nix.POS]: pos$15,
+                      main: nix.thunk(() => ({ [nix.POS]: pos$14, auth: "psk" })),
                     })),
                     children: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       net: nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         local_ts: nix.thunk(() => [vlan0]),
                         updown: nix.thunk(() => nix.str`${strongswan}/libexec/ipsec/_updown iptables`),
                         esp_proposals: esp_proposals,
@@ -151,12 +151,12 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 secrets: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   ike: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     carol: nix.thunk(() => ({
-                      __proto__: pos$21,
-                      id: nix.thunk(() => ({ __proto__: pos$20, main: carolIp })),
+                      [nix.POS]: pos$21,
+                      id: nix.thunk(() => ({ [nix.POS]: pos$20, main: carolIp })),
                       secret: secret,
                     })),
                   })),
@@ -171,39 +171,39 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const strongswan = nix.thunk(() => nix.sel(config, "services", "strongswan-swanctl", "package"));
         return {
-          __proto__: pos$48,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$28, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$48,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$31,
-            dhcpcd: nix.thunk(() => ({ __proto__: pos$29, enable: false })),
-            firewall: nix.thunk(() => ({ __proto__: pos$30, extraCommands: allowESP })),
+            [nix.POS]: pos$31,
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$29, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$30, extraCommands: allowESP })),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$32, systemPackages: nix.thunk(() => [strongswan]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$32, systemPackages: nix.thunk(() => [strongswan]) })),
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             "strongswan-swanctl": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               enable: true,
               swanctl: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 connections: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   home: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     local_addrs: nix.thunk(() => [carolIp]),
                     remote_addrs: nix.thunk(() => [moonIp]),
                     local: nix.thunk(() => ({
-                      __proto__: pos$34,
-                      main: nix.thunk(() => ({ __proto__: pos$33, auth: "psk", id: carolIp })),
+                      [nix.POS]: pos$34,
+                      main: nix.thunk(() => ({ [nix.POS]: pos$33, auth: "psk", id: carolIp })),
                     })),
                     remote: nix.thunk(() => ({
-                      __proto__: pos$36,
-                      main: nix.thunk(() => ({ __proto__: pos$35, auth: "psk", id: moonIp })),
+                      [nix.POS]: pos$36,
+                      main: nix.thunk(() => ({ [nix.POS]: pos$35, auth: "psk", id: moonIp })),
                     })),
                     children: nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       home: nix.thunk(() => ({
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         remote_ts: nix.thunk(() => [vlan0]),
                         start_action: "trap",
                         updown: nix.thunk(() => nix.str`${strongswan}/libexec/ipsec/_updown iptables`),
@@ -215,12 +215,12 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 secrets: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   ike: nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     moon: nix.thunk(() => ({
-                      __proto__: pos$42,
-                      id: nix.thunk(() => ({ __proto__: pos$41, main: moonIp })),
+                      [nix.POS]: pos$42,
+                      id: nix.thunk(() => ({ [nix.POS]: pos$41, main: moonIp })),
                       secret: secret,
                     })),
                   })),

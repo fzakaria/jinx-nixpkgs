@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-agecrypt",
       version: "0-unstable-2024-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vlaci",
           repo: "git-agecrypt",
           rev: "126be86c515466c5878a60561f754a9ab4af6ee8",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, git]),
       buildInputs: nix.thunk(() => [libgit2, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative to git-crypt using age instead of GPG",
         homepage: "https://github.com/vlaci/git-agecrypt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

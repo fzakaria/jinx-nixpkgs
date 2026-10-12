@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-aCJpGPKhVDqjgMqtpcOArlyjj1cpInjFv9O3KJ8axts=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["noneprompt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prompt toolkit for console interaction",
         homepage: "https://github.com/nonebot/noneprompt",
         changelog: nix.thunk(() => nix.str`https://github.com/nonebot/noneprompt/releases/tag/v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "noneprompt",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

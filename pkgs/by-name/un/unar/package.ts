@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const xcbuildHook = nix.arg($, "xcbuildHook");
   const stdenv = clangStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unar",
       version: "1.10.8",
       srcs: nix.thunk(() => [
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
             const name = repo;
             const rev = nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`);
             const hash = "sha256-dmIyxpa3pq4ls4Grp0gy/6ZjcaA7rmobMn4h1inVgns=";
-            return { __proto__: pos$1, owner, repo, name, rev, hash };
+            return { [nix.POS]: pos$1, owner, repo, name, rev, hash };
           })()))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "MacPaw",
             repo: "universal-detector",
             name: "UniversalDetector",
@@ -80,7 +80,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://theunarchiver.com",
         description: "Archive unpacker program",
         longDescription: "The Unarchiver is an archive unpacker program with support for the popular\nzip, RAR, 7z, tar, gzip, bzip2, LZMA, XZ, CAB, MSI, NSIS, EXE, ISO, BIN,\nand split file formats, as well as the old Stuffit, Stuffit X, DiskDouble,\nCompact Pro, Packit, cpio, compress (.Z), ARJ, ARC, PAK, ACE, ZOO, LZH,\nADF, DMS, LZX, PowerPacker, LBR, Squeeze, Crunch, and other old formats.\n",

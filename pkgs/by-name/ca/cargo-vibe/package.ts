@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-vibe",
       version: "0-unstable-2022-12-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Shadlock0133",
           repo: "cargo-vibe",
           rev: "a54d87b080ff7d8b3207f83f8f434b226572f0fe",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([dbus, openssl], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), udev))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cargo x Buttplug.io",
         mainProgram: "cargo-vibe",
         homepage: "https://github.com/shadlock0133/cargo-vibe",

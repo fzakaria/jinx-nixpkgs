@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pname = "coqui-tts-trainer";
   const version = "0.3.2";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idiap",
           repo: "coqui-ai-Trainer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, torchvision]),
       pythonImportsCheck: nix.thunk(() => ["trainer"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General purpose model trainer, as flexible as it gets",
         homepage: "https://github.com/idiap/coqui-ai-Trainer",
         changelog: nix.thunk(() => nix.str`https://github.com/idiap/coqui-ai-Trainer/releases/tag/v${version}`),

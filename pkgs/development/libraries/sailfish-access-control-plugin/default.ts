@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const sailfish_access_control = nix.arg($, "sailfish-access-control");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "sailfish-access-control-plugin",
       version: nix.thunk(() => nix.attr(sailfish_access_control, "version")),
       src: nix.thunk(() => nix.attr(sailfish_access_control, "src")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sailfish_access_control, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "QML interface for sailfish-access-control",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const zope_interface = nix.arg($, "zope-interface");
   const oauthlib = nix.arg($, "oauthlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pyjwt",
       version: "2.14.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpadilla",
           repo: "pyjwt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,16 +37,16 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [sphinxHook, sphinx_rtd_theme, zope_interface]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, crypto: nix.thunk(() => [cryptography]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, crypto: nix.thunk(() => [cryptography]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       disabledTests: nix.thunk(() => ["test_get_jwt_set_sslcontext_default"]),
       pythonImportsCheck: nix.thunk(() => ["jwt"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, oauthlib: oauthlib })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, oauthlib: oauthlib })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/jpadilla/pyjwt/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),
         description: "JSON Web Token implementation in Python",
         homepage: "https://github.com/jpadilla/pyjwt",

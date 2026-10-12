@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const kssd = nix.arg($, "kssd");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kssd",
       version: "2.21-unstable-2024-05-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yhg926",
           repo: "public_kssd",
           rev: "ce96b66dddc2d6c1ce611ad84cdf4c7ba62b4aa5",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "allocate-enough-memory.patch",
             url: "https://github.com/yhg926/public_kssd/commit/b1e66bbcc04687bc3201301cd742a0b26a87cb5d.patch",
             hash: "sha256-yFyJetpsGKeu+H6Oxrmn5ea4ESVtblb3YJDja4JEAEM=",
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: "runHook preInstall\n\ninstall -vD kssd $out/bin/kssd\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "getExe"), kssd)} dist -L ${nix.sel(kssd, "src")}/shuf_file/L3K10.shuf -r ${nix.sel(kssd, "src")}/test_fna/seqs1 -o $out/reference
 ${nix.app(nix.sel(lib, "getExe"), kssd)} dist -L ${nix.sel(kssd, "src")}/shuf_file/L3K10.shuf -o $out/query ${nix.sel(kssd, "src")}/test_fna/seqs2
@@ -52,7 +52,7 @@ ${nix.app(nix.sel(lib, "getExe"), kssd)} dist -r $out/reference -o $out/distout 
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "K-mer substring space decomposition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/yhg926/public_kssd",

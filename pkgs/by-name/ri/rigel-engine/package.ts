@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const buildOpenGLES = nix.argOr($, "buildOpenGLES", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rigel-engine",
       version: "0-unstable-2024-05-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lethal-guitar",
           repo: "RigelEngine",
           rev: "f05996f9b3ad3b3ea5bb818e49e7977636746343",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.10")),
       ], nix.app(nix.sel(lib, "optional"), buildOpenGLES, "-DUSE_GL_ES=ON"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern re-implementation of the classic DOS game Duke Nukem II",
         homepage: "https://github.com/lethal-guitar/RigelEngine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

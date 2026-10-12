@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
       vulkan_loader,
     ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withX11, nix.thunk(() => [libx11, libxcursor, libxi, libxrandr, libxcb])), nix.app(nix.sel(lib, "optionals"), withWayland, nix.thunk(() => [wayland])))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "rio",
       version: "0.5.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raphamorim",
           repo: "rio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,21 +78,21 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=context::test::", "--skip=context::title::test::test_update_title"]),
       postInstall: nix.thunk(() => nix.add("install -D -m 644 misc/rio.desktop -t $out/share/applications\ninstall -D -m 644 misc/logo.svg \\\n                  $out/share/icons/hicolor/scalable/apps/rio.svg\n\ninstall -dm 755 \"$terminfo/share/terminfo\"\ntic -xe xterm-rio,rio -o \"$terminfo/share/terminfo\" misc/rio.terminfo\nmkdir -p $out/nix-support\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n\nscdoc < extra/man/rio.1.scd > rio.1\nscdoc < extra/man/rio.5.scd > rio.5\nscdoc < extra/man/rio-bindings.5.scd > rio-bindings.5\ninstallManPage rio.1 rio.5 rio-bindings.5\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications/\nmv misc/osx/Rio.app/ $out/Applications/\nmkdir $out/Applications/Rio.app/Contents/MacOS/\nln -s $out/bin/rio $out/Applications/Rio.app/Contents/MacOS/\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9.]+)"]),
           })))),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: rio })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: rio })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "rio")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Hardware-accelerated GPU terminal emulator powered by WebGPU",
         homepage: "https://rioterm.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

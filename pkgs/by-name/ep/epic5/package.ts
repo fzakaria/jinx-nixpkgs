@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "epic5",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.epicsol.org/pub/epic/EPIC5-PRODUCTION/epic5-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Y6QRIVwUBAtltdcor/EPdSPVXhcPYpj7AeHPlY150yY=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-ipv6"]),
       nativeBuildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://epicsol.org",
         description: "IRC client that offers a great ircII interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

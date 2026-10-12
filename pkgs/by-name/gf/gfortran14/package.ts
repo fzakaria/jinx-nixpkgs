@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const wrapCC = nix.arg($, "wrapCC");
   const gcc14 = nix.arg($, "gcc14");
   return nix.app(wrapCC, nix.thunk(() => nix.app(nix.sel(gcc14, "cc", "override"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "gfortran",
         langFortran: true,
         langCC: false,

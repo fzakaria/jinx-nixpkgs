@@ -36,21 +36,21 @@ export default nix.lambda((args) => (() => {
   const zstandard = nix.arg($, "zstandard");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gitUpdater = nix.arg($, "gitUpdater");
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$1, enablePython: true, python: python }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "graph-tool",
       version: "3.9",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://downloads.skewed.de/graph-tool/graph-tool-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-gSqzV1yuE91vqtluTZMnl6enGoRICh6su4dPLrr8fGk=",
         })))),
       postPatch: "substituteInPlace configure \\\n  --replace-fail 'tput setaf $1' : \\\n  --replace-fail 'tput sgr0' :\n",
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.app(nix.sel(lib, "withFeatureAs"), true)), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "boost-libdir": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), boost$)}/lib`),
           cgal: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), cgal)),
           "python-module-path": nix.thunk(() => nix.str`$(out)/${nix.sel(python, "sitePackages")}`),
@@ -65,15 +65,15 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["graph_tool.all"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://git.skewed.de/count0/graph-tool",
             "rev-prefix": "release-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python module for manipulation and statistical analysis of graphs",
         homepage: "https://graph-tool.skewed.de",
         changelog: nix.thunk(() => nix.str`https://git.skewed.de/count0/graph-tool/commits/release-${nix.sel(finalAttrs, "version")}`),

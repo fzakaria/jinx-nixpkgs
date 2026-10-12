@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const rev = nix.thunk(() => nix.str`v${version}`);
       const vendorHash = "sha256-9HwyiDD61IXw+VguHDXyG8Oa17TONciD3pUo8ybcANM=";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: rev,
           owner: "flannel-io",
           repo: "flannel",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, flannel: nix.thunk(() => nix.attr(nixosTests, "flannel")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, flannel: nix.thunk(() => nix.attr(nixosTests, "flannel")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Network fabric for containers, designed for Kubernetes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/flannel-io/flannel",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flannel",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

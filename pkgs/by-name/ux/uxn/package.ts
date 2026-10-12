@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uxn",
       version: "1.0-unstable-2025-11-20",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~rabbits",
           repo: "uxn",
           rev: "5dce902ef8d360310d1b9b29084b63c71aabb0fa",
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build.sh --no-run\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -d $out/bin/\ncp bin/uxnasm bin/uxncli bin/uxnemu $out/bin/\ninstall -d $projects/share/uxn/\ncp -r projects $projects/share/uxn/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://wiki.xxiivv.com/site/uxn.html",
         description: "Assembler and emulator for the Uxn stack machine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

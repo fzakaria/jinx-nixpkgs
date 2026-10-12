@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mjpg-streamer",
       version: "1.0.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jacksonliam",
           repo: "mjpg-streamer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd mjpg-streamer-experimental\n",
       postFixup: "patchelf --set-rpath \"$(patchelf --print-rpath $out/bin/mjpg_streamer):$out/lib/mjpg-streamer\" $out/bin/mjpg_streamer\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jacksonliam/mjpg-streamer",
         description: "Takes JPGs from Linux-UVC compatible webcams, filesystem or other input plugins and streams them as M-JPEG via HTTP to webbrowsers, VLC and other software",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

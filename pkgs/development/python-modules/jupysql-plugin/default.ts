@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const jupyterlab = nix.arg($, "jupyterlab");
   const ploomber_core = nix.arg($, "ploomber-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jupysql-plugin",
       version: "0.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jupysql_plugin",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cIXheImO4BL00zn101ZDIzKl2qkIDsTNswZOCs54lNY=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["jupysql_plugin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Better SQL in Jupyter",
         homepage: "https://github.com/ploomber/jupysql-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/ploomber/jupysql-plugin/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

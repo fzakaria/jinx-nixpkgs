@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
   const zabbixConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zabbix.conf.php", nix.thunk(() => nix.str`<?php
 // Zabbix GUI configuration file.
 global $DB;
-$DB['TYPE'] = '${nix.sel({ __proto__: pos$1, mysql: "MYSQL", pgsql: "POSTGRESQL", oracle: "ORACLE" }, nix.key(nix.sel(cfg, "database", "type")))}';
+$DB['TYPE'] = '${nix.sel({ [nix.POS]: pos$1, mysql: "MYSQL", pgsql: "POSTGRESQL", oracle: "ORACLE" }, nix.key(nix.sel(cfg, "database", "type")))}';
 $DB['SERVER'] = '${nix.sel(cfg, "database", "host")}';
 $DB['PORT'] = '${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))}';
 $DB['DATABASE'] = '${nix.sel(cfg, "database", "name")}';
@@ -95,50 +95,50 @@ $IMAGE_FORMAT_DEFAULT = IMAGE_FORMAT_PNG;
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "zabbixWeb", "virtualHost"]), nix.thunk(() => ["services", "zabbixWeb", "httpd", "virtualHost"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         zabbixWeb: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the Zabbix web interface")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, nix.thunk(() => ["zabbix", "web"]), nix.thunk(() => ({})))),
           server: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 description: "The port of the Zabbix server to connect to.",
                 default: 10051n,
               })))),
             address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "The IP address or hostname of the Zabbix server to connect to.",
                 default: "localhost",
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mysql", "pgsql", "oracle"]))),
                 example: "mysql",
                 default: "pgsql",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) ? nix.sel(config, "services", "mysql", "port") : (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "pgsql")) ? nix.sel(config, "services", "postgresql", "settings", "port") : 1521n))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`if config.${nix.sel(opt, "database", "type")} == "mysql" then config.${nix.sel(options, "services", "mysql", "port")}
@@ -148,26 +148,26 @@ else 1521
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "zabbix",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "zabbix",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/keys/zabbix-dbpassword",
                 description: "A file containing the password corresponding to\n{option}`database.user`.\n",
               })))),
             socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/postgresql",
@@ -175,16 +175,16 @@ else 1521
               })))),
           })),
           frontend: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["nginx", "httpd"]))),
               example: "nginx",
               default: "httpd",
               description: "Frontend server to use.",
             })))),
           httpd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/apache-httpd/vhost-options.nix"))))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  hostName = \"zabbix.example.org\";\n  adminAddr = \"webmaster@example.org\";\n  forceSSL = true;\n  enableACME = true;\n}\n")),
                 default: nix.thunk(() => ({})),
@@ -192,15 +192,15 @@ else 1521
               })))),
           })),
           hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "zabbix.local",
               description: "Hostname for either nginx or httpd.",
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix"))))),
                 example: nix.thunk(() => nix.app(literalExpression, "{\n  forceSSL = true;\n  sslCertificateKey = \"/etc/ssl/zabbix.key\";\n  sslCertificate = \"/etc/ssl/zabbix.crt\";\n}\n")),
                 default: nix.thunk(() => ({})),
@@ -208,7 +208,7 @@ else 1521
               })))),
           })),
           poolConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -218,7 +218,7 @@ else 1521
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 pm: "dynamic",
                 "pm.max_children": 32n,
                 "pm.start_servers": 2n,
@@ -229,7 +229,7 @@ else 1521
               description: "Options for the Zabbix PHP pool. See the documentation on `php-fpm.conf` for details on configuration directives.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Additional configuration to be copied verbatim into {file}`zabbix.conf.php`.\n",
@@ -238,19 +238,19 @@ else 1521
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         services: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           zabbixWeb: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             extraConfig: nix.thunk(() => nix.app(optionalString, nix.thunk(() => (nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(config, "system", "stateVersion")), "20.09")) && nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(cfg, "package", "version")), "5.0.0")))), "$DB['DOUBLE_IEEE754'] = 'true';\n")),
           })),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             pools: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               zabbix: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 user: user,
                 group: nix.thunk(() => nix.sel(config, "services", nix.key(nix.sel(cfg, "frontend")), "group")),
                 phpOptions: nix.thunk(() => nix.add(nix.add(nix.str`# https://www.zabbix.com/documentation/current/manual/installation/install
@@ -267,9 +267,9 @@ session.save_path = ${stateDir}/session
 `, nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(config, "time", "timeZone"), null)), nix.thunk(() => nix.str`date.timezone = "${nix.sel(config, "time", "timeZone")}"
 `))), nix.app(optionalString, nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "oracle")), nix.thunk(() => nix.str`extension=${nix.sel(pkgs, "phpPackages", "oci8")}/lib/php/extensions/oci8.so
 `)))),
-                phpEnv: nix.thunk(() => ({ __proto__: pos$26, ZABBIX_CONFIG: nix.thunk(() => nix.str`${zabbixConfig}`) })),
+                phpEnv: nix.thunk(() => ({ [nix.POS]: pos$26, ZABBIX_CONFIG: nix.thunk(() => nix.str`${zabbixConfig}`) })),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   "listen.owner": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "frontend"), "httpd")) ? nix.sel(config, "services", "httpd", "user") : nix.sel(config, "services", "nginx", "user"))),
                   "listen.group": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "frontend"), "httpd")) ? nix.sel(config, "services", "httpd", "group") : nix.sel(config, "services", "nginx", "group"))),
                 }, nix.sel(cfg, "poolConfig"))),
@@ -277,7 +277,7 @@ session.save_path = ${stateDir}/session
             })),
           })),
           httpd: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "frontend"), "httpd")), nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               adminAddr: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "httpd", "virtualHost", "adminAddr")))),
               extraModules: nix.thunk(() => ["proxy_fcgi"]),
@@ -285,7 +285,7 @@ session.save_path = ${stateDir}/session
                 [nix.sel(cfg, "hostname"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "httpd", "virtualHost")),
                     nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       documentRoot: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/zabbix`))),
                       extraConfig: nix.thunk(() => nix.str`<Directory "${nix.sel(cfg, "package")}/share/zabbix">
   <FilesMatch "\\.php$">
@@ -303,23 +303,23 @@ session.save_path = ${stateDir}/session
               ])),
             })))),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "frontend"), "nginx")), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "hostname"), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "nginx", "virtualHost")),
                     nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       root: nix.thunk(() => nix.app(mkForce, nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/zabbix`))),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           index: "index.html index.htm index.php",
                           tryFiles: "$uri $uri/ =404",
                         })),
                         "~ \\.php$": nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           extraConfig: nix.thunk(() => nix.str`fastcgi_pass  unix:${nix.sel(fpm, "socket")};
 fastcgi_index index.php;
 `),
@@ -331,9 +331,9 @@ fastcgi_index index.php;
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             rules: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`d '${stateDir}' 0750 ${user} ${group} - -`)], nix.concat(nix.app(optionals, nix.thunk(() => nix.eq(nix.sel(cfg, "frontend"), "httpd")), nix.thunk(() => [
                 nix.thunk(() => nix.str`d '${stateDir}/session' 0750 ${user} ${nix.sel(config, "services", "httpd", "group")} - -`),
               ])), nix.app(optionals, nix.thunk(() => nix.eq(nix.sel(cfg, "frontend"), "nginx")), nix.thunk(() => [
@@ -342,10 +342,10 @@ fastcgi_index index.php;
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => nix.app(mapAttrs, (name) => nix.force(mkDefault), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 description: "Zabbix daemon user",
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "zabbix")),
                 group: group,
@@ -353,7 +353,7 @@ fastcgi_index index.php;
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [group, nix.thunk(() => nix.app(mapAttrs, (name) => nix.force(mkDefault), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "zabbix")),
               }))))],
           ])),

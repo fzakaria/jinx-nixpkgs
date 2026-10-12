@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const libhandy = nix.arg($, "libhandy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnonograms",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeremypw",
           repo: "gnonograms",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk3, nix.thunk(() => nix.sel(pantheon, "granite")), libgee, libhandy]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nonograms puzzle game",
         mainProgram: "com.github.jeremypw.gnonograms",
         longDescription: "An implementation of the Japanese logic puzzle \"Nonograms\" written in\nVala, allowing the user to:\n* Draw puzzles\n* Generate random puzzles of chosen difficulty\n",

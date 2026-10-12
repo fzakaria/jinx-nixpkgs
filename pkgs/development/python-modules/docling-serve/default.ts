@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
   const withTesserocr = nix.argOr($, "withTesserocr", () => false);
   const withRapidocr = nix.argOr($, "withRapidocr", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "docling-serve",
       version: "1.29.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docling-project",
           repo: "docling-serve",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         websockets,
       ], nix.concat(nix.sel(docling_slim, "optional-dependencies", "standard"), nix.concat(nix.sel(docling_slim, "optional-dependencies", "service-client"), nix.concat(nix.sel(docling_slim, "optional-dependencies", "models-remote"), nix.concat(nix.sel(docling_slim, "optional-dependencies", "format-opendocument"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "rq"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "ray"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "azure"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "gcloudstorage"), nix.concat(nix.sel(docling_jobkit, "optional-dependencies", "gdrive"), nix.concat(nix.sel(fastapi, "optional-dependencies", "standard"), nix.concat(nix.sel(uvicorn, "optional-dependencies", "standard"), nix.concat(nix.app(nix.sel(lib, "optionals"), withUI, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "ui"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withTesserocr, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "tesserocr"))), nix.app(nix.sel(lib, "optionals"), withRapidocr, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "rapidocr")))))))))))))))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ui: nix.thunk(() => [gradio]),
         tesserocr: nix.thunk(() => [tesserocr]),
         easyocr: nix.thunk(() => [easyocr]),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["docling_serve"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Running Docling as an API service",
         homepage: "https://github.com/docling-project/docling-serve",
         changelog: nix.thunk(() => nix.str`https://github.com/docling-project/docling-serve/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

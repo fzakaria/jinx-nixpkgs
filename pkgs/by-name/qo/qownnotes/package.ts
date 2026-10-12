@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const aspell = nix.arg($, "aspell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "qownnotes",
       appname: "QOwnNotes",
       version: "26.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pbek/QOwnNotes/releases/download/v${nix.sel(finalAttrs, "version")}/qownnotes-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RtWspTbUrk3vkN+ZQKp8XACL8d9EEzVX/w3uaLvgsxg=",
         })))),
@@ -73,9 +73,9 @@ mv $out/bin/${nix.sel(finalAttrs, "appname")} $out/bin/${nix.sel(finalAttrs, "pn
 mv $out/bin/${nix.sel(finalAttrs, "pname")}.bin $out/bin/${nix.sel(finalAttrs, "pname")}
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "basic-nixos-module-functionality": nix.thunk(() => nix.sel(nixosTests, "qownnotes")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -83,7 +83,7 @@ mv $out/bin/${nix.sel(finalAttrs, "pname")}.bin $out/bin/${nix.sel(finalAttrs, "
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Plain-text file notepad and todo-list manager with markdown support and Nextcloud/ownCloud integration",
         homepage: "https://www.qownnotes.org/",
         changelog: "https://www.qownnotes.org/changelog.html",

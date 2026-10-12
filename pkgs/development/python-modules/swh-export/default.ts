@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swh-export",
       version: "1.11.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -81,7 +81,7 @@ export TZDIR=${tzdata}/${nix.sel(python, "sitePackages")}/tzdata/zoneinfo
         "test_parallel_journal_processor_masked_origin_visit_statuses",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Software Heritage dataset tools",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-export",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

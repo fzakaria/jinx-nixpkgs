@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_blob",
       version: "0.9.0",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/johnwhitington/ppx_blob/releases/download/${nix.sel(finalAttrs, "version")}/ppx_blob-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-8RXpCl8Qdc7cnZMKuRJx+GcOzk3uENwRR6s5uK+1cOQ=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppxlib]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/johnwhitington/ppx_blob",
         description: "OCaml ppx to include binary data from a file as a string",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

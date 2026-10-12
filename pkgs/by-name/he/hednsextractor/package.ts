@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hednsextractor",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HuntDownProject",
           repo: "HEDnsExtractor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-8yD/yHSqesyS71YeRBv4ARyXyIbTcan7YjBeKBrg0Vc=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool suite for hunting suspicious targets, expose domains and phishing discovery",
         homepage: "https://github.com/HuntDownProject/HEDnsExtractor",
         changelog: nix.thunk(() => nix.str`https://github.com/HuntDownProject/HEDnsExtractor/releases/tag/v${nix.sel(finalAttrs, "version")}`),

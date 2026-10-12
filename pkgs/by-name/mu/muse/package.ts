@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const serd = nix.arg($, "serd");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "muse-sequencer",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "muse-sequencer",
           repo: "muse",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,13 +71,13 @@ export default nix.lambda((args) => (() => {
         sord,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), serd)}/include/serd-0`),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://muse-sequencer.github.io/",
         description: "MIDI/Audio sequencer with recording and editing capabilities",
         longDescription: "MusE is a MIDI/Audio sequencer with recording and editing capabilities\nwritten originally by Werner Schweer now developed and maintained\nby the MusE development team.\n\nMusE aims to be a complete multitrack virtual studio for Linux,\nit is published under the GNU General Public License.\n",

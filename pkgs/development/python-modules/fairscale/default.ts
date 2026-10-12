@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pname = "fairscale";
   const version = "0.4.13";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebookresearch",
           repo: "fairscale",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fairscale"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PyTorch extensions for high performance and large scale training",
         mainProgram: "wgit",
         homepage: "https://github.com/facebookresearch/fairscale",

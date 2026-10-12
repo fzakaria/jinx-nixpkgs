@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
     const hash = nix.argOr($_1, "hash", () => "");
     const md5 = nix.argOr($_1, "md5", () => "");
     return (nix.asBool(!nix.eq(md5, "")) ? nix.builtins.throw(nix.thunk(() => nix.str`fetchnuget does not support md5 anymore, please use 'hash' attribute with SRI hash: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), attrs)}`)) : (nix.asBool((nix.asBool(!nix.eq(sha256, "")) && nix.asBool(!nix.eq(hash, "")))) ? nix.builtins.throw(nix.thunk(() => nix.str`multiple hashes passed to fetchNuGet: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), url)}`)) : nix.app(buildDotnetPackage, nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: url,
             sha256: sha256,
             hash: hash,

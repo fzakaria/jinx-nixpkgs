@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "dcmtk",
       version: "3.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DCMTK",
           repo: "dcmtk",
           tag: nix.thunk(() => nix.str`DCMTK-${nix.sel(finalAttrs, "version")}`),
@@ -38,23 +38,23 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2026-5663.patch",
             url: "https://github.com/DCMTK/dcmtk/commit/edbb085e45788dccaf0e64d71534cfca925784b8.patch",
             hash: "sha256-aSK/G5zI1Zyz0aonxnbWP/W5Ra6xCBYGxgPhM+05LXs=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/med-team/dcmtk/-/raw/debian/3.6.9-4/debian/patches/01_dcmtk_3.6.0-1.patch",
             hash: "sha256-kDEZvPqcF8+PYID24srMoPSBPltmnGiJ67LHsLVcPYM=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://salsa.debian.org/med-team/dcmtk/-/raw/debian/3.6.9-4/debian/patches/07_dont_export_all_executables.patch",
             hash: "sha256-5slFod+S7Yuj0u2CfTUw+MWZYuqQs4hgoGmh3KAUo+c=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://salsa.debian.org/med-team/dcmtk/-/raw/debian/3.6.9-4/debian/patches/remove_version.patch",
             hash: "sha256-jcV2xQzKdNiBgcaFtaxdJpJCCSVOqGIsi/A4iqVM8U8=",
           })))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Collection of libraries and applications implementing large parts of the DICOM standard",
         longDescription: "DCMTK is a collection of libraries and applications implementing large parts of the DICOM standard.\nIt includes software for examining, constructing and converting DICOM image files, handling offline media,\nsending and receiving images over a network connection, as well as demonstrative image storage and worklist servers.\nDCMTK is is written in a mixture of ANSI C and C++.\nIt comes in complete source code and is made available as \"open source\" software.\n",
         homepage: "https://dicom.offis.de/dcmtk",

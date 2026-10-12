@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gtranslator";
       const version = "50.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtranslator/${nix.app(nix.sel(lib, "versions", "major"), version)}/gtranslator-${version}.tar.xz`),
           hash: "sha256-hXtRx49U30JBj/b6nmK4VU338CHLEjOMH8DYW5nJGO8=",
         }))));
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNOME translation making program",
         mainProgram: "gtranslator",
         homepage: "https://gitlab.gnome.org/GNOME/gtranslator",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

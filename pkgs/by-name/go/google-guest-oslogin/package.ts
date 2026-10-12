@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pam = nix.arg($, "pam");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "google-guest-oslogin",
       version: "20260214.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleCloudPlatform",
           repo: "guest-oslogin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# change sudoers dir from /var/google-sudoers.d to /run/google-sudoers.d (managed through systemd-tmpfiles)\nsubstituteInPlace src/oslogin_utils.cc --replace-fail /var/google-sudoers.d /run/google-sudoers.d\n# fix \"User foo not allowed because shell /bin/bash does not exist\"\nsubstituteInPlace src/include/compat.h --replace-fail /bin/bash /run/current-system/sw/bin/bash\n",
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(curl, "dev")), pam, json_c]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(json_c, "dev")}/include/json-c`)]))),
       })),
       makeFlags: nix.thunk(() => [
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "sed -i \"s,/usr/bin/,$out/bin/,g\" $out/etc/systemd/system/google-oslogin-cache.service\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "google-oslogin": nix.thunk(() => nix.attr(nixosTests, "google-oslogin")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/GoogleCloudPlatform/compute-image-packages",
         description: "OS Login Guest Environment for Google Compute Engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

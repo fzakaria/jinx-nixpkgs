@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const metadata = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./meta.json")));
   return (() => {
     const replay_recordreplay = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "replay-recordreplay",
         version: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-recordreplay-(.*).tgz", nix.thunk(() => nix.sel(metadata, "recordreplay", "url")))))),
         nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         postFixup: nix.thunk(() => nix.str`patchelf --set-rpath "$(patchelf --print-rpath $out):${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [openssl]))}" $out
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "RecordReplay internal recording library",
           homepage: "https://www.replay.io/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })),
       }))));
     const replay_io = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "replay-io",
         version: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-gecko-(.*).tar.bz2", nix.thunk(() => nix.sel(metadata, "replay", "url")))))),
         srcs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(metadata, "replay")))),
@@ -79,9 +79,9 @@ makeWrapper $out/opt/replay-io/replay \\
   --set "RECORD_REPLAY_DRIVER" "${replay_recordreplay}"
 runHook postInstall
 `),
-        passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Time Travel Debugger for Web Development",
           longDescription: "Replay allows you to record and replay web applications with familiar browser dev tools.\nYou can access the browser DevTools at any point of the recording, adding new logger\nstatements and inspecting the status of the DOM, variables and the current call stack.\nYour recordings can be shared with other users for collaborative debugging.\n",
           homepage: "https://www.replay.io/",
@@ -96,7 +96,7 @@ runHook postInstall
         })),
       }))));
     const replay_node = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "replay-node",
         version: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-node-(.*)", nix.thunk(() => nix.sel(metadata, "replay-node", "url")))))),
         nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, makeWrapper]),
@@ -119,7 +119,7 @@ ln -s $out/opt/replay-node/node $out/bin/replay-node
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Event-driven I/O framework for the V8 JavaScript engine, patched for replay",
           homepage: "https://github.com/RecordReplay/node",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -132,11 +132,11 @@ runHook postInstall
         })),
       }))));
     const replay_node_cli = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: "replay-node-cli",
         version: nix.thunk(() => nix.add("0.1.7-", nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-node-(.*)", nix.thunk(() => nix.sel(metadata, "replay-node", "url"))))))),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "replayio",
             repo: "replay-node-cli",
             rev: "5269c8b8e7c5c7a9618a68f883d19c11a68be837",
@@ -158,7 +158,7 @@ makeWrapper $out/opt/replay-node-cli/bin/replay-node \\
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           description: "Time Travel Debugger for Web Development - Node Command Line",
           longDescription: "The Replay Node Command Line allows you to record node applications and debug them\nwith familiar browser dev tools.\nYou can access the browser DevTools at any point of the recording, adding new logger\nstatements and inspecting the status of variables and the current call stack.\nYour recordings can be shared with other users for collaborative debugging.\n",
           homepage: "https://www.replay.io/",
@@ -173,7 +173,7 @@ runHook postInstall
         })),
       }))));
     return {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       "replay-recordreplay": replay_recordreplay,
       "replay-io": replay_io,
       "replay-node": replay_node,

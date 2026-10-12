@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libewf-legacy",
       version: "20140816",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libyal/libewf-legacy/releases/download/${nix.sel(finalAttrs, "version")}/libewf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ay0Hj7OGFnm6g5Qv6lHp5gKcN+wuoMN/V0QlbW9wJak=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([zlib, openssl, libuuid], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [bzip2])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Legacy library for support of the Expert Witness Compression Format",
         homepage: "https://sourceforge.net/projects/libewf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

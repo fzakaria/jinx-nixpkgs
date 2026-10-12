@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
       const pname = "pocket-casts";
       const version = "0.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "felicianotech",
           repo: "pocket-casts-desktop-app",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-UjSwIRN8dM/KYAm0jBXnDCX6Qb4I+vbPA5AA8JO3ODo=",
         }))));
       const npmDepsHash = "sha256-uEKU/7BXl54XxLheCewFsSWsatd7bJriD+1+4EKQAlc=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const dontNpmBuild = true;
       const makeCacheWritable = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: pname,
             desktopName: "Pocket Casts",
             genericName: "Podcasts Listener",
@@ -52,7 +52,7 @@ makeWrapper ${electron}/bin/electron $out/bin/pocket-casts \\
   --add-flags $out/lib/node_modules/pocket-casts/main.js
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Pocket Casts webapp, packaged for the Linux Desktop",
         homepage: "https://github.com/felicianotech/pocket-casts-desktop-app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -64,7 +64,7 @@ makeWrapper ${electron}/bin/electron $out/bin/pocket-casts \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

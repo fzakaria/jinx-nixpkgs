@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "logmap",
       version: "0-unstable-2021-12-15",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zhzyker",
           repo: "logmap",
           rev: "5040707b4ae260830072de93ccd6a23615073abf",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\ninstall -vD logmap.py $out/bin/logmap\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for fuzzing Log4j2 jndi injection",
         homepage: "https://github.com/zhzyker/logmap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ride";
       const version = "4.6.4265";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dyalog",
           repo: "ride",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-6Os6aWkgbA6m4JCp3b6UeZ4NC8N+7pwCWkPBc4xXAHY=";
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mk.patch"), nix.thunk(() => ({ __proto__: pos$2, version: version })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mk.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version })))),
         nix.path(here, "./update-nan.patch"),
         nix.path(here, "./bump-yauzl.patch"),
       ]);
@@ -62,7 +62,7 @@ shopt -u globstar
 popd
 `);
       const nativeBuildInputs = nix.thunk(() => nix.concat([zip, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems]))));
-      const env = nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const npmBuildFlags = "self";
       const postConfigure = nix.thunk(() => nix.str`# electron files need to be writable on Darwin
 cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -103,7 +103,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "ride",
             exec: "ride",
             icon: "ride",
@@ -114,7 +114,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/Dyalog/ride/releases/tag/v${version}`),
         description: "Remote IDE for Dyalog APL",
         homepage: "https://github.com/Dyalog/ride",
@@ -130,7 +130,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(electron, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

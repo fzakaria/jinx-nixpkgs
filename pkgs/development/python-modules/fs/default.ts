@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-rpfH1RIT9LcLapWCklMCiQkN46fhWEHhCPvhRPBp0xM=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [setuptools, six, appdirs, pytz]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pyftpdlib, mock, psutil, pytestCheckHook], nix.app(nix.sel(lib, "optionals"), isPyPy, nix.thunk(() => [glibcLocales]))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.utf-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.utf-8" }));
       const preCheck = "HOME=$(mktemp -d)\n";
       const disabledTestPaths = nix.thunk(() => [
         "tests/test_move.py",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["fs"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Filesystem abstraction",
         homepage: "https://github.com/PyFilesystem/pyfilesystem2",
         changelog: nix.thunk(() => nix.str`https://github.com/PyFilesystem/pyfilesystem2/blob/v${version}/CHANGELOG.md`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

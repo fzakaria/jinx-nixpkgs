@@ -51,49 +51,49 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "ax25", "axports"));
   const enabledAxports = nix.thunk(() => nix.app(filterAttrs, (ax25Name) => (cfg_1) => nix.sel(cfg_1, "enable"), cfg));
   const axportsOpts = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       enable: nix.thunk(() => nix.app(mkEnableOption, "Enables the axport interface")),
       package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ax25-tools", nix.thunk(() => ({})))),
       tty: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           example: "/dev/ttyACM0",
           description: "Location of hardware kiss tnc for this interface.\n",
         })))),
       callsign: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           example: "WB6WLV-7",
           description: "The callsign of the physical interface to bind to.\n",
         })))),
       description: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "NixOS managed tnc",
           description: "Free format description of this interface.\n",
         })))),
       baud: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "int")),
           example: 57600n,
           description: "The serial port speed of this interface.\n",
         })))),
       paclen: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 255n,
           description: "Default maximum packet size for this interface.\n",
         })))),
       window: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "int")),
           default: 7n,
           description: "Default window size for this interface.\n",
         })))),
       kissParams: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           example: "-t 300 -l 10 -s 12 -r 80 -f n",
@@ -102,15 +102,15 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         ax25: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           axports: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), axportsOpts)))),
               default: nix.thunk(() => ({})),
               description: "Specification of one or more AX.25 ports.",
@@ -119,41 +119,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(enabledAxports, {})), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         system: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           requiredKernelConfig: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(config, "lib", "kernelConfig", "isEnabled"), "ax25")),
           ]),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           etc: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "ax25/axports": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               text: nix.thunk(() => nix.app(concatStringsSep, "\n", nix.thunk(() => nix.app(mapAttrsToList, (portName) => (portCfg) => nix.str`${portName} ${nix.sel(portCfg, "callsign")} ${nix.builtins.toString(nix.thunk(() => nix.sel(portCfg, "baud")))} ${nix.builtins.toString(nix.thunk(() => nix.sel(portCfg, "paclen")))} ${nix.builtins.toString(nix.thunk(() => nix.sel(portCfg, "window")))} ${nix.sel(portCfg, "description")}`, enabledAxports)))),
               mode: "0644",
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           targets: nix.thunk(() => ({
-            __proto__: pos$19,
-            "ax25-axports": nix.thunk(() => ({ __proto__: pos$18, description: "AX.25 axports group target" })),
+            [nix.POS]: pos$19,
+            "ax25-axports": nix.thunk(() => ({ [nix.POS]: pos$18, description: "AX.25 axports group target" })),
           })),
           services: nix.thunk(() => nix.app(mapAttrs$, (portName) => (portCfg) => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               name: nix.thunk(() => nix.str`ax25-kissattach-${portName}`),
               value: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 description: nix.thunk(() => nix.str`AX.25 KISS attached interface for ${portName}`),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["ax25-axports.target"]),
                 partOf: nix.thunk(() => ["ax25-axports.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   Type: "exec",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(portCfg, "package")}/bin/kissattach ${nix.sel(portCfg, "tty")} ${portName}`),
                 })),

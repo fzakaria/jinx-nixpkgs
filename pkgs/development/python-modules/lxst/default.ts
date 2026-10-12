@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const rns = nix.arg($, "rns");
   const soundcard = nix.arg($, "soundcard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lxst",
       version: "0.5.0",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "lxst",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           format: "wheel",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [audioop_lts, pycodec2, numpy, rns, lxmf, soundcard]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/markqvist/LXST/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Simple and flexible real-time streaming format and delivery protocol for Reticulum",
         homepage: "https://github.com/markqvist/LXST",

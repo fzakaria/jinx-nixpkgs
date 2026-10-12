@@ -34,23 +34,23 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const targetPackages = nix.arg($, "targetPackages");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: "wrap-gapps-hook",
       propagatedBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.app(nix.sel(lib, "optionals"), isGraphical, nix.thunk(() => [gtk3, librsvg])))),
       depsTargetTargetPropagated: nix.thunk(() => (() => {
         nix.assert_((nix.asBool(!nix.asBool(nix.has(targetPackages, "raw"))) || nix.asBool(nix.builtins.throw("wrapGAppsHook3 must be in nativeBuildInputs"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/setup-hooks/wrap-gapps-hook/default.nix:33:5");
         return nix.concat(nix.app(nix.sel(lib, "optionals"), isGraphical, nix.thunk(() => [librsvg, gtk3])), nix.app(nix.sel(lib, "optionals"), withDconf, nix.thunk(() => [nix.thunk(() => nix.sel(dconf, "lib"))])));
       })()),
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         tests: nix.thunk(() => (() => {
           const sample_project = nix.path(here, "./tests/sample-project");
           const testLib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/lib.nix"), nix.thunk(() => ({}))));
           const expectSomeLineContainingYInFileXToMentionZ = nix.thunk(() => nix.attr(testLib, "expectSomeLineContainingYInFileXToMentionZ"));
           return (() => {
             const basic = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 name: "basic",
                 src: sample_project,
                 strictDeps: true,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
                 installFlags: nix.thunk(() => ["bin-foo", "libexec-bar"]),
               }))));
             const basic_multiple_outputs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 name: "basic-multiple-outputs",
                 src: sample_project,
                 outputs: nix.thunk(() => ["out", "lib"]),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
                 postInstall: "mkdir -p $lib\nmv $out/libexec $lib\n# Wrapper will want to append this to XDG_DATA_DIRS, but should not cause a cyclic dependency;\n# i.e. only \"out\" will be wrapped.\nmkdir -p $out/share\n",
               }))));
             const basic_bin_output = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: "basic-bin-output",
                 src: sample_project,
                 outputs: nix.thunk(() => ["bin", "dev", "lib", "out"]),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
                 postInstall: "mkdir -p $lib\nmv $out/libexec $lib\nmkdir -p $bin\nmv $out/bin $bin\n",
               }))));
             const basic_other_outputs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "basic-other-outputs",
                 src: sample_project,
                 outputs: nix.thunk(() => ["dev", "lib", "out"]),
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
                 postInstall: "mkdir -p $lib\nmv $out/libexec $lib\nmkdir -p $dev\nmv $out/bin $dev\n",
               }))));
             const basic_other_outputs_structuredattrs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: "basic-other-outputs-structuredAttrs",
                 __structuredAttrs: true,
                 src: sample_project,
@@ -135,14 +135,14 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `))));
             })());
             const typelib_Mahjong = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 name: "typelib-Mahjong",
                 src: sample_project,
                 strictDeps: true,
                 installFlags: nix.thunk(() => ["typelib-Mahjong"]),
               }))));
             const typelib_user = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 name: "typelib-user",
                 src: sample_project,
                 strictDeps: true,
@@ -157,7 +157,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `));
             })());
             const typelib_Bechamel = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 name: "typelib-Bechamel",
                 outputs: nix.thunk(() => ["out", "lib"]),
                 src: sample_project,
@@ -166,7 +166,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
                 installFlags: nix.thunk(() => ["typelib-Bechamel"]),
               }))));
             const typelib_multiout_user = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 name: "typelib-multiout-user",
                 src: sample_project,
                 strictDeps: true,
@@ -181,7 +181,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `));
             })());
             const typelib_self_user = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 name: "typelib-self-user",
                 src: sample_project,
                 strictDeps: true,
@@ -195,7 +195,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `));
             })());
             return {
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               basic,
               "basic-multiple-outputs": basic_multiple_outputs,
               "basic-bin-output": basic_bin_output,

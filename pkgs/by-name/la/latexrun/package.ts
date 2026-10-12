@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "latexrun",
       version: "0-unstable-2015-11-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aclements",
           repo: "latexrun",
           rev: "38ff6ec2815654513c91f64bdf2a5760c85da26e",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir -p $out/bin\ncp latexrun $out/bin/latexrun\nchmod +x $out/bin/latexrun\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "21st century LaTeX wrapper",
         mainProgram: "latexrun",
         homepage: "https://github.com/aclements/latexrun",

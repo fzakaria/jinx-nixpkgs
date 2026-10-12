@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
   const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), version));
   const unsupported = nix.thunk(() => nix.builtins.throw("Unsupported system"));
   const version = "2.13.0";
-  const cuda_bindings$ = nix.thunk(() => nix.app(nix.sel(cuda_bindings, "override"), nix.thunk(() => ({ __proto__: pos$1, cudaPackages: cudaPackages }))));
+  const cuda_bindings$ = nix.thunk(() => nix.app(nix.sel(cuda_bindings, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaPackages: cudaPackages }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: version,
       __structuredAttrs: true,
       pname: "torch",
@@ -113,9 +113,9 @@ mkdir -p "$cxxdev"
       dontStrip: true,
       pythonImportsCheck: nix.thunk(() => ["torch"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "../tests"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rocmSupport: nix.thunk(() => nix.attr(config, "rocmSupport")),
             cudaSupport: nix.thunk(() => nix.attr(config, "cudaSupport")),
           })))),
@@ -126,7 +126,7 @@ mkdir -p "$cxxdev"
         cudaCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(cudaPackages, "flags", "cudaCapabilities")))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "PyTorch: Tensors and Dynamic neural networks in Python with strong GPU acceleration",
         homepage: "https://pytorch.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/pytorch/releases/tag/v${version}`),
@@ -152,9 +152,9 @@ mkdir -p "$cxxdev"
           ];
         })()),
         problems: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cuda_bindings$, "version")), "13.0.3")), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "unsupported-cuda-version": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               message: nix.thunk(() => nix.str`The cudaPackages used by torch-bin is too old,
 the minimum required cuda-bindings version is 13.0.3, but the current used one is ${nix.sel(cuda_bindings$, "version")}.
 Please override cudaPackages of torch-bin with a more recent version.

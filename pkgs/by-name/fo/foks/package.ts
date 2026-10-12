@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => (nix.asBool(server) ? "foks-server" : "foks"));
   const subPackages = nix.thunk(() => (nix.asBool(server) ? ["server/foks-server"] : ["client/foks"]));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: "0.1.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foks-proj",
           repo: "go-foks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,21 +49,21 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         templ: nix.thunk(() => nix.app(nix.sel(buildPackages, "templ", "overrideAttrs"), (old) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: "templ-foks",
             version: "0.3.833",
             src: nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 hash: "sha256-4K1MpsM3OuamXRYOllDsxxgpMRseFGviC4RJzNA7Cu8=",
               })))),
             vendorHash: "sha256-OPADot7Lkn9IBjFCfbrqs3es3F6QnWNjSOHxONjG4MM=",
           }))),
-        server: nix.thunk(() => nix.app(nix.sel(foks, "override"), nix.thunk(() => ({ __proto__: pos$4, server: true })))),
+        server: nix.thunk(() => nix.app(nix.sel(foks, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, server: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Federated key management and distribution system",
         homepage: "https://foks.pub",
         downloadPage: "https://github.com/foks-proj/go-foks",

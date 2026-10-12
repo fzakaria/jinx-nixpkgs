@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pi-coding-agent",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "earendil-works",
           repo: "pi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-GOh5WG+rRgzoy/yVHY5PoEKJZGQcEGhISrDDJxkP8W4=",
       modelData: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@earendil-works/pi-ai/-/pi-ai-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-bKqzPOxXSA7QLFf+N0KKAwp3zCoGYoFLQ1pc+JMq2Ck=",
         })))),
@@ -63,11 +63,11 @@ tar --extract --gzip --file=${nix.sel(finalAttrs, "modelData")} \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/pi`),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--custom-dep", "modelData"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--custom-dep", "modelData"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Coding agent CLI with read, bash, edit, write tools and session management",
         homepage: "https://pi.dev/",
         downloadPage: "https://www.npmjs.com/package/@earendil-works/pi-coding-agent",

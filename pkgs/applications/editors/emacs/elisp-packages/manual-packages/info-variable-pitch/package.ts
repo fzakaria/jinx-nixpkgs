@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const s = nix.arg($, "s");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "info-variable-pitch",
       version: "0-unstable-2022-06-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kisaragi-hiu",
           repo: "info-variable-pitch",
           rev: "e18e8dfb5dbea304fcf2312eb6cc8a0736e6eda0",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [s]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kisaragi-hiu/info-variable-pitch",
         description: "Like org-variable-pitch but for Info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

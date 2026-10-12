@@ -8,7 +8,7 @@ const pos$1 = nix.positions(here + "/configuration-ghc-9.0.x.nix", [["array", 5,
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return (self) => (super$) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     array: null,
     base: null,
     binary: null,

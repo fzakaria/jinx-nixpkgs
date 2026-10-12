@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moarvm",
       version: "2026.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MoarVM",
           repo: "MoarVM",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ substituteInPlace 3rdparty/dyncall/configure \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VM with adaptive optimization and JIT compilation, built for Rakudo",
         homepage: "https://moarvm.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

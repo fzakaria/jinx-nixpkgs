@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const obs_studio = nix.arg($, "obs-studio");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obs-color-monitor",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "norihiro",
           repo: "obs-color-monitor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir $out/lib $out/share\nmv $out/obs-plugins/64bit $out/lib/obs-plugins\nmv $out/data $out/share/obs\nrm -rf $out/obs-plugins\n",
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Color Monitor plugin for OBS Studio",
         homepage: "https://github.com/norihiro/obs-color-monitor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

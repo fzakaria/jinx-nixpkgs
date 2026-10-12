@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vlan",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.candelatech.com/~greear/vlan/vlan.${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1jjc5f26hj7bk8nkjxsa8znfxcf8pgry2ipnwmj2fr6ky0dhm3rv",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Ouch, the tarball contains pre-compiled binaries.\nmake clean\n",
       installPhase: "mkdir -p $out/sbin\ncp vconfig $out/sbin/\n\nmkdir -p $out/share/man/man8\ncp vconfig.8 $out/share/man/man8/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "User mode programs to enable VLANs on Ethernet devices",
         homepage: "https://www.candelatech.com/~greear/vlan.html",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

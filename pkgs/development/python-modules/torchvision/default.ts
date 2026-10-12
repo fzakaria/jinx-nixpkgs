@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$6,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$6,
       pname: "torchvision",
       version: "0.28.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "pytorch",
           repo: "vision",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
         })())))),
       dependencies: nix.thunk(() => [numpy, pillow, torch, scipy]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         TORCHVISION_INCLUDE: nix.thunk(() => nix.str`${nix.sel(libjpeg_turbo, "dev")}/include/`),
         TORCHVISION_LIBRARY: nix.thunk(() => nix.str`${libjpeg_turbo}/lib/`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)}`),
           FORCE_CUDA: 1n,
         }))))),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest, writableTmpDirAsHomeHook]),
       checkPhase: "py.test test --ignore=test/test_datasets_download.py\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "PyTorch vision library",
         homepage: "https://pytorch.org/vision",
         downloadPage: "https://github.com/pytorch/vision",

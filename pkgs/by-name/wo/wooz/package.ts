@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wooz",
       version: "0-unstable-2025-10-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "negrel",
           repo: "wooz",
           rev: "cd8bc6092462d438f6497c016b7e79115c4b4723",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland, wayland_protocols]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Zoom / magnifier utility for wayland compositors",
         homepage: "https://github.com/negrel/wooz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

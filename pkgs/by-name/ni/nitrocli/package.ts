@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0.4.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nitrocli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "d-e-s-o",
           repo: "nitrocli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-lWFleq9uxoshPMx2mYULCyEar72ZjGfgf0HlRoYfG/M=",
       doCheck: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, USE_SYSTEM_LIBNITROKEY: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, USE_SYSTEM_LIBNITROKEY: 1n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => [libnitrokey]),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd nitrocli \\\n  --bash <($out/bin/shell-complete bash nitrocli) \\\n  --fish <($out/bin/shell-complete fish nitrocli) \\\n  --zsh <($out/bin/shell-complete zsh nitrocli)\n"), "installManPage doc/nitrocli.1\nrm $out/bin/shell-complete\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tool for interacting with Nitrokey devices",
         homepage: "https://github.com/d-e-s-o/nitrocli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

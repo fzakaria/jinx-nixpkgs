@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytest_regressions = nix.arg($, "pytest-regressions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "simple-parsing",
       version: "0.1.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lebrice",
           repo: "SimpleParsing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [docstring_parser, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         toml: nix.thunk(() => [tomli, tomli_w]),
         yaml: nix.thunk(() => [pyyaml]),
       })),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
           "test_pass_invalid_value_to_add_config_path_arg",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple, Elegant, Typed Argument Parsing with argparse",
         changelog: nix.thunk(() => nix.str`https://github.com/lebrice/SimpleParsing/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/lebrice/SimpleParsing",

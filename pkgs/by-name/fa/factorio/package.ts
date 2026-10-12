@@ -94,7 +94,7 @@ dependency. E.g. if you're using NixOS:
 `;
   })(), formals$2);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "factorio",
       desktopName: "Factorio",
       comment: "A game in which you build and maintain factories.",
@@ -121,11 +121,11 @@ dependency. E.g. if you're using NixOS:
     const needsAuth = nix.arg($_1, "needsAuth");
     const candidateHashFilenames = nix.argOr($_1, "candidateHashFilenames", () => []);
     return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       tarDirectory: tarDirectory,
-      src: nix.thunk(() => (nix.asBool(!nix.asBool(needsAuth)) ? nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$2, name: name, url: url, sha256: sha256 }))) : nix.app(nix.sel(lib, "overrideDerivation"), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+      src: nix.thunk(() => (nix.asBool(!nix.asBool(needsAuth)) ? nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$2, name: name, url: url, sha256: sha256 }))) : nix.app(nix.sel(lib, "overrideDerivation"), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
+            [nix.POS]: pos$3,
             name: name,
             url: url,
             sha256: sha256,
@@ -137,14 +137,14 @@ dependency. E.g. if you're using NixOS:
               "token@token",
             ]),
           })))), (prevAttrs) => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           impureEnvVars: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "impureEnvVars"), ["NIX_FACTORIO_USERNAME", "NIX_FACTORIO_TOKEN"])),
           preHook: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(username, "")) && nix.asBool(!nix.eq(token, "")))) ? nix.str`echo -n "${username}" >username
 echo -n "${token}"    >token
 ` : "if [[ -z \"${NIX_FACTORIO_USERNAME}\" || -z \"${NIX_FACTORIO_TOKEN}\" ]]; then\n  # Deliberately failing since username/token was not provided, so we can't fetch.\n  exit 1\nfi\necho -n \"$NIX_FACTORIO_USERNAME\" >username\necho -n \"$NIX_FACTORIO_TOKEN\"    >token\n")),
           failureHook: nix.thunk(() => nix.str`cat <<EOF
 ${nix.app(helpMsg, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               dlName: nix.thunk(() => (nix.asBool(!nix.eq(candidateHashFilenames, [])) ? nix.builtins.head(candidateHashFilenames) : nix.force(name))),
               storeName: name,
             })))}
@@ -159,7 +159,7 @@ EOF
   const base = nix.thunk(() => (() => {
     const w = nix.withScope(actual, null);
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: nix.thunk(() => nix.str`factorio-${(nix.asBool(nix.eq(releaseType, "expansion")) ? "space-age" : nix.force(releaseType))}`),
       version: nix.thunk(() => nix.lookup(w, "version")),
       src: nix.thunk(() => nix.lookup(w, "src")),
@@ -173,13 +173,13 @@ patchelf \\
   $out/bin/factorio
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.path(here, "./update.py"),
         versionsJson: versionsJson_1,
         versions: versions_1,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Game in which you build and maintain factories",
         longDescription: "Factorio is a game in which you build and maintain factories.\n\nYou will be mining resources, researching technologies, building\ninfrastructure, automating production and fighting enemies. Use your\nimagination to design your factory, combine simple elements into\ningenious structures, apply management skills to keep it working and\nfinally protect it from the creatures who don't really like you.\n\nFactorio has been in development since spring of 2012, and reached\nversion 1.0 in mid 2020.\n",
         homepage: "https://www.factorio.com/",
@@ -204,7 +204,7 @@ patchelf \\
   const releases = nix.thunk(() => (() => {
     const headless = base;
     const demo = nix.thunk(() => nix.update(base, {
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [libpulseaudio]),
       libPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
@@ -262,11 +262,11 @@ ln -s ${desktopItem}/share/applications $out/share/
 `)),
     }));
     const alpha = nix.thunk(() => nix.update(demo, {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       installPhase: nix.thunk(() => nix.add(nix.sel(demo, "installPhase"), "cp -a doc-html $out/share/factorio\n")),
     }));
     const expansion = alpha;
-    return { __proto__: pos$12, headless, demo, alpha, expansion };
+    return { [nix.POS]: pos$12, headless, demo, alpha, expansion };
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.sel(releases, nix.key(nix.force(releaseType)))));
 })(), formals$1);

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const nodeSources = nix.thunk(() => nix.app(srcOnly, nodejs_26));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "draupnir",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "the-draupnir-project",
           repo: "Draupnir",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, sqlite, python3], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(cctools, "libtool"))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/the-draupnir-project/Draupnir/commit/4e63164046153c656050c6d0a325c79f1492153a.patch?full_index=1",
             hash: "sha256-dVG0BAE8pATfGdcHvTV8jTC+OQP0gMB7v396MtJlG4o=",
           })))),
@@ -86,15 +86,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs_26)} $out/bin/draupnir \\
 
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           draupnir: nix.thunk(() => nix.attr(nixosTests, "draupnir")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Moderation tool for Matrix",
         homepage: "https://github.com/the-draupnir-project/Draupnir",
         longDescription: "As an all-in-one moderation tool, it can protect your server from\nmalicious invites, spam messages, and whatever else you don't want.\nIn addition to server-level protection, Draupnir is great for communities\nwanting to protect their rooms without having to use their personal\naccounts for moderation.\n\nThe bot by default includes support for bans, redactions, anti-spam,\nserver ACLs, room directory changes, room alias transfers, account\ndeactivation, room shutdown, and more.\n\nA Synapse module is also available to apply the same rulesets the bot\nuses across an entire homeserver.\n",

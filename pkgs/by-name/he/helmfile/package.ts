@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const pluginsDir = nix.argOr($, "pluginsDir", () => null);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "helmfile",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "helmfile",
           repo: "helmfile",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   --set HELM_PLUGINS "${pluginsDir}"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd helmfile \\\n  --bash <($out/bin/helmfile completion bash) \\\n  --fish <($out/bin/helmfile completion fish) \\\n  --zsh <($out/bin/helmfile completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Declarative spec for deploying Helm charts",
         mainProgram: "helmfile",
         longDescription: "Declaratively deploy your Kubernetes manifests, Kustomize configs,\nand charts as Helm releases in one shot.\n",

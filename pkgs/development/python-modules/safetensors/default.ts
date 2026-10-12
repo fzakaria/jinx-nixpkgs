@@ -33,20 +33,20 @@ export default nix.lambda((args) => (() => {
   const fsspec = nix.arg($, "fsspec");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "safetensors",
       version: "0.8.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "safetensors",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jD12fRcQ9mPQVr3M1G5pP9rC3cPE5Eu9m9Ga5N9Tsqg=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/bindings/python`),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })))),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       nativeBuildInputs: nix.thunk(() => [
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           numpy: nix.thunk(() => [numpy]),
           torch: nix.thunk(() => nix.concat(nix.sel(self, "numpy"), [packaging, torch])),
           tensorflow: nix.thunk(() => nix.concat(nix.sel(self, "numpy"), [tensorflow])),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_mlx_comparison.py"])))),
       pythonImportsCheck: nix.thunk(() => ["safetensors"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/huggingface/safetensors",
         description: "Fast (zero-copy) and safe (unlike pickle) format for storing tensors",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/safetensors/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

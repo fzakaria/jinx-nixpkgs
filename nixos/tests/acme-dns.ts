@@ -14,22 +14,22 @@ const pos$8 = nix.positions(here + "/acme-dns.nix", [["machine", 4, 9]]);
 const pos$9 = nix.positions(here + "/acme-dns.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 29, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   name: "acme-dns",
   nodes: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "acme-dns": nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               general: nix.thunk(() => (() => {
                 const domain = "acme-dns.home.arpa";
                 const nsname = domain;
@@ -39,14 +39,14 @@ export default nix.thunk(() => ({
                   nix.thunk(() => nix.str`${domain}. AAAA ::1`),
                   nix.thunk(() => nix.str`${domain}. NS ${domain}.`),
                 ]);
-                return { __proto__: pos$1, domain, nsname, nsadmin, records };
+                return { [nix.POS]: pos$1, domain, nsname, nsadmin, records };
               })()),
-              logconfig: nix.thunk(() => ({ __proto__: pos$2, loglevel: "debug" })),
+              logconfig: nix.thunk(() => ({ [nix.POS]: pos$2, loglevel: "debug" })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [

@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jetbrains-mono",
       version: "2.304",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jetbrains",
           repo: "jetbrainsmono",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SW9d5yVud2BWUJpDOlqYn1E1cqicIHdSZjbXjqOAQGw=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "gftools")), installFonts]),
       buildPhase: "runHook preBuild\ngftools builder sources/config.yaml\nrunHook postBuild\n",
       dontUseNinjaInstall: true,
       outputs: nix.thunk(() => ["out", "webfont"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Typeface made for developers",
         homepage: "https://jetbrains.com/mono/",
         changelog: nix.thunk(() => nix.str`https://github.com/JetBrains/JetBrainsMono/blob/v${nix.sel(finalAttrs, "src", "tag")}/Changelog.md`),

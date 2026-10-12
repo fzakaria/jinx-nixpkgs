@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gpscorrelate",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dfandrich",
           repo: "gpscorrelate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installTargets: nix.thunk(() => ["install", "install-po", "install-desktop-file"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GPS photo correlation tool, to add EXIF geotags",
         longDescription: "Digital cameras are cool. So is GPS. And, EXIF tags are really\ncool too.\n\nWhat happens when you merge the three? You end up with a set of\nphotos taken with a digital camera that are \"stamped\" with the\nlocation at which they were taken.\n\nThe EXIF standard defines a number of tags that are for use with GPS.\n\nA variety of programs exist around the place to match GPS data\nwith digital camera photos, but most of them are Windows or\nMacOS only. Which doesn't really suit me that much. Also, each\none takes the GPS data in a different format.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

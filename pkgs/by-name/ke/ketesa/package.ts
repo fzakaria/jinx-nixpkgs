@@ -25,33 +25,33 @@ export default nix.lambda((args) => (() => {
   const baseUrl = nix.argOr($, "baseUrl", () => null);
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => nix.eq(baseUrl, null)), "The baseUrl parameter is deprecated, please use .withConfig instead"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ke/ketesa/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ketesa",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etkecc",
           repo: "ketesa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LB+e19nyIlXJ4hQJnN+G/eN8khZjj7andVzbeFpAGCg=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-KYDQiMGeY5jwnL4iQBoCHwvbI4bHoQo08/63r6i8K0Q=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarnConfigHook, yarnBuildHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NODE_ENV: "production",
         KETESA_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         withConfig: (config) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
             pname: "ketesa-with-config",
@@ -67,7 +67,7 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Admin UI for Matrix servers, formerly Synapse Admin. Drop-in replacement with extended features, multi-backend support, and visual customization",
         homepage: "https://github.com/etkecc/ketesa",
         changelog: nix.thunk(() => nix.str`https://github.com/etkecc/ketesa/releases/tag/v${nix.sel(finalAttrs, "version")}`),

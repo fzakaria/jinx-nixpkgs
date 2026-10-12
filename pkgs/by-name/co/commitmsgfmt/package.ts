@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const commitmsgfmt = nix.arg($, "commitmsgfmt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "commitmsgfmt",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkjeldsen",
           repo: "commitmsgfmt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,15 +31,15 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Ewn7NCFtl8phC5cFyLWZcGZy4w+huummzeuXFRn64lQ=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: commitmsgfmt, command: "commitmsgfmt -V" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: commitmsgfmt, command: "commitmsgfmt -V" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.com/mkjeldsen/commitmsgfmt",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/mkjeldsen/commitmsgfmt/-/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Formats commit messages better than fmt(1) and Vim",

@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nginx", "tailscaleAuth"));
   const cfgAuth = nix.thunk(() => nix.sel(config, "services", "tailscaleAuth"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["services", "nginx", "tailscaleAuth", "package"]), nix.thunk(() => ["services", "tailscaleAuth", "package"]))),
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["services", "nginx", "tailscaleAuth", "user"]), nix.thunk(() => ["services", "tailscaleAuth", "user"]))),
@@ -46,23 +46,23 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["services", "nginx", "tailscaleAuth", "socketPath"]), nix.thunk(() => ["services", "tailscaleAuth", "socketPath"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nginx: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tailscaleAuth: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(mkEnableOption, "tailscale.nginx-auth, to authenticate nginx users via tailscale")),
             expectedTailnet: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: "",
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 example: "tailnet012345.ts.net",
                 description: "If you want to prevent node sharing from allowing users to access services\nacross tailnets, declare your expected tailnets domain here.\n",
               })))),
             virtualHosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 default: [],
                 description: "A list of nginx virtual hosts to put behind tailscale.nginx-auth\n",
@@ -72,19 +72,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
-          tailscaleAuth: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          [nix.POS]: pos$13,
+          tailscaleAuth: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: true,
             virtualHosts: nix.thunk(() => nix.app(genAttrs, nix.thunk(() => nix.sel(cfg, "virtualHosts")), (vhost) => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   "/auth": nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     extraConfig: nix.thunk(() => nix.str`internal;
 
 proxy_pass http://unix:${nix.sel(cfgAuth, "socketPath")};
@@ -102,7 +102,7 @@ proxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;
 `),
                   })),
                   "/": nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     extraConfig: nix.thunk(() => nix.str`auth_request /auth;
 auth_request_set $auth_user $upstream_http_tailscale_user;
 auth_request_set $auth_name $upstream_http_tailscale_name;
@@ -124,27 +124,27 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(config, "services", "nginx", "user"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfgAuth, "group"))]),
             }))],
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "tailscale-nginx-auth": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               after: nix.thunk(() => ["nginx.service"]),
               wants: nix.thunk(() => ["nginx.service"]),
             })),
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$20, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$20, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=tailscale-auth.ts.map

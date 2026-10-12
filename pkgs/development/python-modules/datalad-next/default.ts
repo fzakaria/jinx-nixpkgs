@@ -34,23 +34,23 @@ export default nix.lambda((args) => (() => {
   const webdavclient3 = nix.arg($, "webdavclient3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "datalad-next",
       version: "1.6.0-unstable-2025-07-04",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "datalad",
           repo: "datalad-next",
           rev: "2d2b1526c1e396964dd3ffdbb37597adefe7682d",
           hash: "sha256-47cRxaxOGzR6hDfiW2hS3MNHp2aP9rxtWNxV+33PPfs=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "1.6.0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "1.6.0" })),
       nativeBuildInputs: nix.thunk(() => [git]),
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [annexremote, datasalad, datalad, humanize, more_itertools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         httpsupport: nix.thunk(() => [requests, requests_toolbelt]),
       })),
       nativeCheckInputs: nix.thunk(() => [
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["datalad_next"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "DataLad extension with a staging area for additional functionality, or for improved performance and user experience",
         changelog: "https://github.com/datalad/datalad-next/blob/main/CHANGELOG.md",
         homepage: "https://github.com/datalad/datalad-next",

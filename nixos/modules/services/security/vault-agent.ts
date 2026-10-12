@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     const pkgName = nix.arg($_1, "pkgName");
     const flavour = nix.argOr($_1, "flavour", () => nix.force(pkgName));
     return nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         default: nix.thunk(() => ({})),
         description: nix.thunk(() => nix.str`Attribute set of ${flavour} instances.
 Creates independent \`${flavour}-\${name}.service\` systemd units for each instance defined here.
@@ -58,32 +58,32 @@ Creates independent \`${flavour}-\${name}.service\` systemd units for each insta
                 const $_2 = nix.formals(args_2, formals$3);
                 const name = nix.arg($_2, "name");
                 return {
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
-                    enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`this ${flavour} instance`)), { __proto__: pos$1, default: true })),
+                    [nix.POS]: pos$8,
+                    enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`this ${flavour} instance`)), { [nix.POS]: pos$1, default: true })),
                     package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, pkgName, nix.thunk(() => ({})))),
                     user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "root",
                         description: "User under which this instance runs.\n",
                       })))),
                     group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "root",
                         description: "Group under which this instance runs.\n",
                       })))),
                     settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               pid_file: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$4,
+                                  [nix.POS]: pos$4,
                                   default: nix.thunk(() => nix.str`/run/${flavour}/${name}.pid`),
                                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                                   description: "Path to use for the pid file.\n",
@@ -117,7 +117,7 @@ Refer to <https://www.hcl2json.com/> if you are unsure how to convert HCL option
     const subcommand = nix.argOr($_1, "subcommand", () => null);
     const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`${name}.json`), nix.thunk(() => nix.sel(instance, "settings"))));
     return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(instance, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: nix.thunk(() => nix.str`${flavour} daemon - ${name}`),
         wantedBy: nix.thunk(() => ["multi-user.target"]),
         after: nix.thunk(() => ["network.target"]),
@@ -125,7 +125,7 @@ Refer to <https://www.hcl2json.com/> if you are unsure how to convert HCL option
         startLimitIntervalSec: 60n,
         startLimitBurst: 3n,
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           User: nix.thunk(() => nix.sel(instance, "user")),
           Group: nix.thunk(() => nix.sel(instance, "group")),
           RuntimeDirectory: flavour,
@@ -138,22 +138,22 @@ Refer to <https://www.hcl2json.com/> if you are unsure how to convert HCL option
       })));
   })(), formals$4);
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         "consul-template": nix.thunk(() => ({
-          __proto__: pos$14,
-          instances: nix.thunk(() => nix.app(commonOptions, nix.thunk(() => ({ __proto__: pos$13, pkgName: "consul-template" })))),
+          [nix.POS]: pos$14,
+          instances: nix.thunk(() => nix.app(commonOptions, nix.thunk(() => ({ [nix.POS]: pos$13, pkgName: "consul-template" })))),
         })),
         "vault-agent": nix.thunk(() => ({
-          __proto__: pos$16,
-          instances: nix.thunk(() => nix.app(commonOptions, nix.thunk(() => ({ __proto__: pos$15, pkgName: "vault", flavour: "vault-agent" })))),
+          [nix.POS]: pos$16,
+          instances: nix.thunk(() => nix.app(commonOptions, nix.thunk(() => ({ [nix.POS]: pos$15, pkgName: "vault", flavour: "vault-agent" })))),
         })),
         "openbao-agent": nix.thunk(() => ({
-          __proto__: pos$18,
-          instances: nix.thunk(() => nix.app(commonOptions, nix.thunk(() => ({ __proto__: pos$17, pkgName: "openbao", flavour: "openbao-agent" })))),
+          [nix.POS]: pos$18,
+          instances: nix.thunk(() => nix.app(commonOptions, nix.thunk(() => ({ [nix.POS]: pos$17, pkgName: "openbao", flavour: "openbao-agent" })))),
         })),
       })),
     })),
@@ -163,11 +163,11 @@ Refer to <https://www.hcl2json.com/> if you are unsure how to convert HCL option
           const subcommand = nix.argOr($_1, "subcommand", () => null);
           const cfg = nix.thunk(() => nix.sel(config, "services", nix.key(nix.force(flavour))));
           return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "instances"), {})), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               systemd: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 services: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (instance) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`${flavour}-${name}`), nix.thunk(() => nix.app(createAgentInstance, nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         name: name,
                         instance: instance,
                         flavour: flavour,
@@ -176,12 +176,12 @@ Refer to <https://www.hcl2json.com/> if you are unsure how to convert HCL option
               })),
             })));
         })(), formals$5), nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$24, flavour: "consul-template" })),
-          nix.thunk(() => ({ __proto__: pos$25, flavour: "vault-agent", subcommand: "agent" })),
-          nix.thunk(() => ({ __proto__: pos$26, flavour: "openbao-agent", subcommand: "agent" })),
+          nix.thunk(() => ({ [nix.POS]: pos$24, flavour: "consul-template" })),
+          nix.thunk(() => ({ [nix.POS]: pos$25, flavour: "vault-agent", subcommand: "agent" })),
+          nix.thunk(() => ({ [nix.POS]: pos$26, flavour: "openbao-agent", subcommand: "agent" })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const tcpip = nix.arg($, "tcpip");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dns-mirage",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
       propagatedBuildInputs: nix.thunk(() => [cstruct, dns, ipaddr, lwt, tcpip]),
       meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Opinionated Domain Name System (DNS) library",
       })),
     })));

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cppunit = nix.arg($, "cppunit");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "librevenge",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libwpd/librevenge/librevenge-${nix.sel(finalAttrs, "version")}/librevenge-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-GerPXOVdf+apkKRRQlic332gx7aHAXl/EzSCy0Txifo=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-werror"]),
       postPatch: "sed -i 's,-DLIBREVENGE_BUILD,\\0 -DBOOST_ERROR_CODE_HEADER_ONLY,g' src/lib/Makefile.in\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Base library for writing document import filters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => (() => {

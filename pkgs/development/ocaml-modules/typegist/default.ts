@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.0";
       const minimalOCamlVersion = "5.5.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/typegist/releases/typegist-${version}.tbz`),
           hash: "sha256-zt37VVZnlxvzw7idYw9v34rNiuJkWG37DqaqkzLDRXI=",
         }))));
       const buildPhase = nix.thunk(() => nix.str`${nix.sel(topkg, "run")} build`);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The essence of OCaml types as values",
         longDescription: "This dynamic type representation can be used to devise generic\ntype-indexed functions — value serializers, generators, differs, editors,\nFFI glue, etc. Any accessible type can be described up to the limits\ndefined by its public interface.\n\nTypegist does not model OCaml’s type language in full detail. It focuses\non a core structural subset decorated with typed-indexed metadata to\nprovide an ergonomic interface for both producers and processors of the\nrepresentation.\n",
         homepage: "https://erratique.ch/software/typegist",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

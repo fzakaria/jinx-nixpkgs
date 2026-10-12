@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "percollate";
       const version = "4.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danburzo",
           repo: "percollate",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const npmInstallFlags = nix.thunk(() => ["--omit=dev"]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
       const postPatch = "substituteInPlace package.json --replace \"git config core.hooksPath .git-hooks\" \"\"\n";
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/percollate \\
   --set PUPPETEER_EXECUTABLE_PATH ${chromium}/bin/chromium
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line tool to turn web pages into readable PDF, EPUB, HTML, or Markdown docs",
         homepage: "https://github.com/danburzo/percollate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "percollate",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

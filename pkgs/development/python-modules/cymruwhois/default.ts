@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JustinAzoff",
           repo: "python-cymruwhois",
           tag: version,
           hash: "sha256-d9m668JYI9mxUycoVWyaDCR7SOca+ebymZxWtgSPWNU=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, CACHE: nix.thunk(() => [python_memcached]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, CACHE: nix.thunk(() => [python_memcached]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cymruwhois"]);
       const disabledTests = nix.thunk(() => ["test_doctest"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_common_lookups.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for the whois.cymru.com service",
         homepage: "https://github.com/JustinAzoff/python-cymruwhois",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

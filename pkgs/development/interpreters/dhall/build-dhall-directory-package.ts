@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
       const file = nix.argOr($_1, "file", () => "package.dhall");
       const document = nix.argOr($_1, "document", () => false);
       return nix.app(buildDhallPackage, nix.thunk(() => nix.update({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           dependencies: dependencies,
           source: source,
           code: nix.thunk(() => nix.str`${src}/${file}`),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), document, nix.thunk(() => ({ __proto__: pos$2, documentationRoot: nix.thunk(() => nix.str`${src}`) }))))));
+        }, nix.app(nix.sel(lib, "optionalAttrs"), document, nix.thunk(() => ({ [nix.POS]: pos$2, documentationRoot: nix.thunk(() => nix.str`${src}`) }))))));
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=build-dhall-directory-package.ts.map

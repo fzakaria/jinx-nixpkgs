@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const pkgsMusl = nix.argOr($, "pkgsMusl", () => ({}));
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "scotch",
       version: "7.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "scotch",
           repo: "scotch",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "mkdir -p $dev/include/scotch\nmv $dev/include/{*metis,metisf}.h $dev/include/scotch\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               moduleNames: nix.thunk(() => ["SCOTCH"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Graph and mesh/hypergraph partitioning, graph clustering, and sparse matrix ordering",
         longDescription: "Scotch is a software package for graph and mesh/hypergraph partitioning, graph clustering,\nand sparse matrix ordering.\n",
         homepage: "http://www.labri.fr/perso/pelegrin/scotch",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "steam-devices-udev-rules",
       version: "1.0.0.61-unstable-2026-06-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ValveSoftware",
           repo: "steam-devices",
           rev: "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60",
@@ -39,11 +39,11 @@ substituteInPlace $out/lib/udev/rules.d/*.rules --replace-warn "/bin/sh" "${bash
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Udev rules list for gaming devices",
         homepage: "https://github.com/ValveSoftware/steam-devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

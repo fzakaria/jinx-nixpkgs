@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const liburing = nix.arg($, "liburing");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "autotier",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "45Drives",
           repo: "autotier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,28 +38,28 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/45Drives/autotier/commit/d447929dc4262f607d87cbc8ad40a54d64f5011a.patch",
             hash: "sha256-0ab8YBgdJMxBHfOgUsgPpyUE1GyhAU3+WCYjYA2pjqo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/45Drives/autotier/commit/fa282f5079ff17c144a7303d64dad0e44681b87f.patch",
             hash: "sha256-+W3RwSe8zJKgZIXOaawHuI6xRzedYIcZundPC8eHuwM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/45Drives/autotier/commit/1f97703f4dfbfe093f5c18c4ee01dcc1c8fe04f3.patch",
             hash: "sha256-3+KOh7JvbujCMbMqnZ5SGopAuOKHitKq6XV6a/jkcog=",
           })))),
       ]),
       postPatch: "# Fix build with boost 1.89+ where boost_system stub library has been removed\nsubstituteInPlace makefile --replace-fail \"-lboost_system\" \"\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$5, EXTRA_CFLAGS: "-std=c++20 -fno-char8_t" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, EXTRA_CFLAGS: "-std=c++20 -fno-char8_t" })),
       buildInputs: nix.thunk(() => [rocksdb, boost, fuse3, lib45d, onetbb, liburing]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
       installPhase: "runHook preInstall\n\n# binaries\ninstallBin dist/from_source/*\n\n# docs\ninstallManPage doc/man/autotier.8\n\n# Completions\ninstallShellCompletion --bash doc/completion/autotier.bash-completion\ninstallShellCompletion --bash doc/completion/autotierfs.bash-completion\n\n# Scripts\ninstallBin script/autotier-init-dirs\n\n# Default config\ninstall -Dm755 -t $out/etc/autotier.conf doc/autotier.conf.template\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/45Drives/autotier",
         description: "Passthrough FUSE filesystem that intelligently moves files between storage tiers based on frequency of use, file age, and tier fullness",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

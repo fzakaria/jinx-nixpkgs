@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "matomo",
       version: "5.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://builds.matomo.org/matomo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KHf4zk2pPrjSAvEN9f0m3jmlekgc8KnZGvXY49vziPs=",
         })))),
@@ -63,9 +63,9 @@ runHook postInstall
       ]),
       postFixup: "pushd $out/share > /dev/null\nfor f in $filesToFix; do\n  if [ -f \"$f\" ]; then\n    length=\"$(wc -c \"$f\" | cut -d' ' -f1)\"\n    hash=\"$(sha256sum \"$f\" | cut -d' ' -f1)\"\n    sed -i \"s:\\\\(\\\"$f\\\"[^(]*(\\\\).*:\\\\1\\\"$length\\\", \\\"$hash\\\"),:g\" config/manifest.inc.php\n  else\n    echo \"INFO(files-to-fix): $f does not exist in this version\"\n  fi\ndone\npopd > /dev/null\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => [
               "--url",
               "https://github.com/matomo-org/matomo",
@@ -73,10 +73,10 @@ runHook postInstall
               "^(\\d+\\.\\d+\\.\\d+)$",
             ]),
           })))),
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$3, matomo: nix.thunk(() => nix.attr(nixosTests, "matomo")) })))),
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$3, matomo: nix.thunk(() => nix.attr(nixosTests, "matomo")) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Real-time web analytics application",
         mainProgram: "matomo-console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

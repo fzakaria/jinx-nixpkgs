@@ -26,22 +26,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const formats = nix.arg($, "formats");
   const baseUrl = nix.argOr($, "baseUrl", () => null);
-  const config = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(baseUrl, null)), nix.thunk(() => ({ __proto__: pos$1, restrictBaseUrl: baseUrl }))));
+  const config = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(baseUrl, null)), nix.thunk(() => ({ [nix.POS]: pos$1, restrictBaseUrl: baseUrl }))));
   const configFormat = nix.thunk(() => nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "synapse-admin-config", config));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "synapse-admin",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Awesome-Technologies",
           repo: "synapse-admin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-D7MlFaI49KSNQ7DPj0iGKJqaQ4s5Y6EksB2U3Z5sJXY=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -52,19 +52,19 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
 `),
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: "yarn-deps",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [yarn_berry]),
           dontInstall: true,
           env: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             YARN_ENABLE_TELEMETRY: 0n,
             NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
           })),
           supportedArchitectures: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               os: nix.thunk(() => ["darwin", "linux"]),
               cpu: nix.thunk(() => ["arm", "arm64", "ia32", "x64"]),
               libc: nix.thunk(() => ["glibc", "musl"]),
@@ -75,7 +75,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
           outputHashMode: "recursive",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn_berry]),
-      env: nix.thunk(() => ({ __proto__: pos$7, NODE_ENV: "production" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$7, NODE_ENV: "production" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace vite.config.ts \\
   --replace-fail "git describe --tags" "echo ${nix.sel(finalAttrs, "version")}"
 `),
@@ -89,11 +89,11 @@ cp ${configFile} $out/config.json
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Admin UI for Synapse Homeservers",
         homepage: "https://github.com/Awesome-Technologies/synapse-admin",
         changelog: nix.thunk(() => nix.str`https://github.com/Awesome-Technologies/synapse-admin/releases/tag/${nix.sel(finalAttrs, "version")}`),

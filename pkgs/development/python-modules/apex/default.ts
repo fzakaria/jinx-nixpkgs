@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const apex = nix.arg($, "apex");
   const cudaPackages = nix.arg($, "cudaPackages");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(torch, "cudaSupport"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$8,
       pname: "apex",
       version: "25.09",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nvidia",
           repo: "apex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,8 +56,8 @@ export default nix.lambda((args) => (() => {
     'version="0.1",' \\
     'version="${nix.sel(finalAttrs, "version")}",'
 `)),
-      env: nix.thunk(() => nix.update({ __proto__: pos$3, APEX_CPP_EXT: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          __proto__: pos$4,
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, APEX_CPP_EXT: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
+          [nix.POS]: pos$4,
           CUDA_HOME: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))), "outPath")),
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(torch, "cudaCapabilities")))}`),
           APEX_CUDA_EXT: 1n,
@@ -105,15 +105,15 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_layer_norm_export_cuda", "test_rms_export_cuda"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(apex, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tools for easy mixed precision and distributed training in Pytorch",
         homepage: "https://github.com/nvidia/apex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

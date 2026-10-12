@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
   const localGpuTargets = nix.argOr($, "localGpuTargets", () => null);
   const ROCM_LIBPATCH_VERSION = nix.thunk(() => nix.attr(rocm_core, "ROCM_LIBPATCH_VERSION"));
   const hipClang = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "hipClang",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvm, "bintools", "bintools")),
@@ -83,14 +83,14 @@ export default nix.lambda((args) => (() => {
   const amdclangxx = nix.thunk(() => nix.app(writeShellScriptBin, "amdclang++", nix.thunk(() => nix.str`exec ${hipClang}/bin/clang++ "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "clr",
       version: "7.2.3",
       outputs: nix.thunk(() => ["out", "icd"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -145,11 +145,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_INCLUDEDIR", "include")),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_LIBDIR", "lib")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, LLVM_DIR: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LLVM_DIR: "" })),
       patches: nix.thunk(() => [
         nix.path(here, "./cmake-find-x11-libgl.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             hash: "sha256-3MsDL+OQg24wH1RDhbao74RuIbzEAmduwla9KOPzQ/M=",
             url: "https://github.com/GZGavinZhao/rocm-systems/commit/039cb23b24d739adb8c0f9de8b550d9f557de031.patch",
             relative: "projects/clr",
@@ -195,7 +195,7 @@ ln -s ${hipClang} $out/llvm
       postFixup: "patchelf --add-rpath \"$out/lib\" \"$out\"/lib/*.so\n",
       disallowedRequisites: nix.thunk(() => [gcc_unwrapped]),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         gpuTargets: nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => [
             "900",
             "906",
@@ -215,17 +215,17 @@ ln -s ${hipClang} $out/llvm
             "1201",
           ]), (target) => nix.str`gfx${target}`)),
         hipClangPath: hipClangPath,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ __proto__: pos$5, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$5, finalAttrs: finalAttrs })))),
         impureTests: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "rocm-smi": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-rocm-smi.nix"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "rocm-smi": rocm_smi,
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          "opencl-cts": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-opencl-cts.nix"), nix.thunk(() => ({ __proto__: pos$7, clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          "opencl-cts": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-opencl-cts.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
           "generic-arch": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-isa-compat.nix"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "generic-arch",
               offloadArches: nix.thunk(() => [
@@ -237,19 +237,19 @@ ln -s ${hipClang} $out/llvm
               ]),
             })))),
           "isa-compat": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-isa-compat.nix"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "isa-compat",
               offloadArches: nix.thunk(() => ["gfx900", "gfx1010", "gfx1030"]),
             })))),
           spirv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-isa-compat.nix"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "spirv",
               offloadArches: nix.thunk(() => ["amdgcnspirv"]),
             })))),
           "hiprtc-type-traits": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-hiprtc-type-traits.nix"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               clr: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               "rocm-smi": rocm_smi,
             })))),
@@ -261,7 +261,7 @@ ln -s ${hipClang} $out/llvm
         })(), formals$2),
         gpuArchSuffix: "",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(localGpuTargets, null)), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           localGpuTargets: localGpuTargets,
           gpuArchSuffix: nix.thunk(() => nix.add("-", nix.builtins.concatStringsSep("-", localGpuTargets))),
           selectGpuTargets: nix.lambda((args_1) => (() => {
@@ -271,7 +271,7 @@ ln -s ${hipClang} $out/llvm
           })(), formals$3),
         }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "AMD Common Language Runtime for hipamd, opencl, and rocclr",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/clr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

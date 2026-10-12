@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prettier-plugin-go-template",
       version: "0.0.15-unstable-2023-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NiklasPor",
           repo: "prettier-plugin-go-template",
           rev: "d91c82e1377b89592ea3365e7e5569688fbc7954",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontNpmPrune: true,
       postInstall: "pushd \"$nodeModulesPath\"\nfind -mindepth 1 -maxdepth 1 -type d -print0 | grep --null-data -Exv \"\\./(ulid|prettier)\" | xargs -0 rm -rfv\npopd\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fixes prettier formatting for go templates",
         mainProgram: "prettier-plugin-go-template",
         homepage: "https://github.com/NiklasPor/prettier-plugin-go-template",

@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildVST3, "VST3")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wildergarden-maim",
       version: "1.1.1-unstable-2026-07-23",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArdenButterfield",
           repo: "Maim",
           rev: "985ed209436d02fb9f805ec983f4ab2c1c37d40a",
@@ -74,7 +74,7 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LAME_LIB", "lib/lame/libmp3lame/.libs/libmp3lame.a")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         NIX_LDFLAGS: "-lX11",
       })),
@@ -89,17 +89,17 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Audio plugin for custom MP3 distortion and digital glitches",
         homepage: "https://github.com/ArdenButterfield/Maim",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mrtnvgr"))]),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ __proto__: pos$6, mainProgram: "Maim" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "Maim" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

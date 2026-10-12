@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const iris = nix.arg($, "iris");
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "iris-named-props",
       owner: "tchajed",
       version: version,
@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.16", "8.19")),
               out: "2023-08-14",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "2023-08-14": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-gu9qOdHO0qJ2B9Y9Vf66q08iNJcfuECJO66fizFB08g=",
           rev: "ca1871dd33649f27257a0fbf94076acc80ecffbc",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [iris]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Named props for Iris",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

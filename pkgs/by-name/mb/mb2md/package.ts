@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
     return [nix.thunk(() => nix.lookup(w, "TimeDate"))];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.20",
       pname: "mb2md",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://batleth.sapienti-sat.org/projects/mb2md/mb2md-${nix.sel(finalAttrs, "version")}.pl.gz`),
           sha256: "0bvkky3c90738h3skd2f1b2yy5xzhl25cbh9w2dy97rs86ssjidg",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --set PERL5LIB "${nix.app(nix.sel(perlPackages, "makePerlPath"), perlDeps)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "mbox to maildir tool",
         mainProgram: "mb2md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

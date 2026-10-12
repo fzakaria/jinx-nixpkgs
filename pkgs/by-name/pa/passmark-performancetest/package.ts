@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20231205092714/https://www.passmark.com/downloads/pt_linux_x64.zip",
       hash: "sha256-q9H+/V4fkSwJJEp+Vs+MPvndi5DInx5MQCzAv965IJg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://web.archive.org/web/20231205092807/https://www.passmark.com/downloads/pt_linux_arm64.zip",
       hash: "sha256-7fmd2fukJ56e0BJFJe3SitGlordyIFbNjIzQv+u6Zuw=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "11.0.1002",
       pname: "passmark-performancetest",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw("Unsupported system for PassMark performance test"), nix.key(nix.sel(stdenv, "system")))))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dmidecode, coreutils, util_linux]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Software tool that allows everybody to quickly assess the performance of their computer and compare it to a number of standard 'baseline' computer systems",
         homepage: "https://www.passmark.com",
         sourceProvenance: nix.thunk(() => (() => {

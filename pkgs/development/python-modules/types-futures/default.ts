@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "types-futures",
       version: "3.3.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-b+jMwsKvfvL92b9z6rbWFwdPCfMK19NzUQtAQ9OcQt4=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for futures",
         homepage: "https://github.com/python/typeshed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

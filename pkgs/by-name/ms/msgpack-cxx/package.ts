@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "msgpack-cxx",
       version: "8.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "msgpack",
           repo: "msgpack-c",
           tag: nix.thunk(() => nix.str`cpp-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [zlib]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MessagePack implementation for C++",
         homepage: "https://github.com/msgpack/msgpack-c",
         changelog: nix.thunk(() => nix.str`https://github.com/msgpack/msgpack-c/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

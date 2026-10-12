@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "betteralign",
       version: "0.14.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dkorunic",
           repo: "betteralign",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "cd \"$out\"\ngit rev-parse HEAD > $out/COMMIT\ngit log -1 --pretty=%cd --date=format:'%Y-%m-%dT%H:%M:%SZ' > $out/SOURCE_DATE\ngit log -1 --pretty=%cd --date=format:'%s' > $out/SOURCE_TIMESTAMP\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       vendorHash: "sha256-GHOHbNFV1ta/VaXsvbrwogfdjXIhSH3kdHLHLSDNkq4=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s -w",
         nix.thunk(() => nix.str`-X main.Version=${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Make your Go programs use less memory (maybe)",
         longDescription: "betteralign is a tool to detect structs that would use less\nmemory if their fields were sorted and optionally sort such fields.\n",
         homepage: "https://github.com/dkorunic/betteralign",

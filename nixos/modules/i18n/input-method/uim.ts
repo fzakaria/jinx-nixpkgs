@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const imcfg = nix.thunk(() => nix.sel(config, "i18n", "inputMethod"));
   const cfg = nix.thunk(() => nix.sel(imcfg, "uim"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       i18n: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         inputMethod: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           uim: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             toolbar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["gtk", "gtk3", "gtk-systray", "gtk3-systray", "qt5"]))),
                 default: "gtk",
                 example: "gtk-systray",
@@ -47,26 +47,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(imcfg, "enable")) && nix.asBool(nix.eq(nix.sel(imcfg, "type"), "uim")))), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         i18n: nix.thunk(() => ({
-          __proto__: pos$7,
-          inputMethod: nix.thunk(() => ({ __proto__: pos$6, package: nix.thunk(() => nix.sel(pkgs, "uim")) })),
+          [nix.POS]: pos$7,
+          inputMethod: nix.thunk(() => ({ [nix.POS]: pos$6, package: nix.thunk(() => nix.sel(pkgs, "uim")) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           variables: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             GTK_IM_MODULE: "uim",
             QT_IM_MODULE: "uim",
             XMODIFIERS: "@im=uim",
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           xserver: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               sessionCommands: nix.thunk(() => nix.str`${nix.sel(pkgs, "uim")}/bin/uim-xim &
 ${nix.sel(pkgs, "uim")}/bin/uim-toolbar-${nix.sel(cfg, "toolbar")} &
 `),

@@ -84,11 +84,11 @@ export default nix.lambda((args) => (() => {
   const mesonBool = nix.thunk(() => nix.attr(lib, "mesonBool"));
   const mesonOption = nix.thunk(() => nix.attr(lib, "mesonOption"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "efl",
       version: "1.28.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.enlightenment.org/rel/libs/efl/efl-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hM9hRfnMgr//aQAFviQ5LI88UvjgD/BNjuo3FCnAlCQ=",
         })))),
@@ -163,7 +163,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       dontDropIconThemeCache: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=gnu17")),
       })),
       mesonFlags: nix.thunk(() => [
@@ -194,12 +194,12 @@ patchelf --add-needed ${libpulseaudio}/lib/libpulse.so $out/lib/libecore_audio.s
 patchelf --add-needed ${nix.sel(libsndfile, "out")}/lib/libsndfile.so $out/lib/libecore_audio.so
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Enlightenment foundation libraries",
         homepage: "https://enlightenment.org/",
         license: nix.thunk(() => (() => {

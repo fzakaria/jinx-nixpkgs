@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nodejs_22 = nix.arg($, "nodejs_22");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gemini-cli",
       version: "0.47.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google-gemini",
           repo: "gemini-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,11 +99,11 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttr
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "AI agent that brings the power of Gemini directly into your terminal",
         homepage: "https://github.com/google-gemini/gemini-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -112,9 +112,9 @@ runHook postInstall
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         problems: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           removal: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             message: "Unpaid tier and Google AI Pro/Ultra users: Gemini CLI was replaced by Antigravity CLI.",
             urls: nix.thunk(() => [
               "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",

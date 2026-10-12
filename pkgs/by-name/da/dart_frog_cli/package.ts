@@ -18,31 +18,31 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dart_frog_cli",
       version: "1.2.14",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dart-frog-dev",
           repo: "dart_frog",
           tag: nix.thunk(() => nix.str`dart_frog_cli-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-B5ET/SwQzYw251Ox/RyuLM27+M//xTehke9JJSD7Gf8=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/dart_frog_cli`),
-      dartEntryPoints: nix.thunk(() => ({ __proto__: pos$2, "bin/dart_frog": "bin/dart_frog.dart" })),
+      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: pos$2, "bin/dart_frog": "bin/dart_frog.dart" })),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       preBuild: "rm pubspec_overrides.yaml\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "dart_frog",
         homepage: "https://dart-frog.dev",
         description: "Command line tools for Dart Frog",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "dart-frog-dev", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         maintainers: nix.thunk(() => (() => {

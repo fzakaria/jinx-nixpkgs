@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const jabcode = nix.arg($, "jabcode");
-  return nix.app(nix.sel(jabcode, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, subproject: "writer" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["jabcode"])))));
+  return nix.app(nix.sel(jabcode, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, subproject: "writer" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["jabcode"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

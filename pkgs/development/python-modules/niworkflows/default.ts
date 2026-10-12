@@ -44,20 +44,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "niworkflows",
       version: "1.14.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nipreps",
           repo: "niworkflows",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-AMUOiIL33kcJtlKT+L5QwcUh8mBBkf80uzOQZFKDauo=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["niworkflows/tests/test_registration.py"]),
       pythonImportsCheck: nix.thunk(() => ["niworkflows"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Common workflows for MRI (anatomical, functional, diffusion, etc.)",
         mainProgram: "niworkflows-boldref",
         homepage: "https://github.com/nipreps/niworkflows",

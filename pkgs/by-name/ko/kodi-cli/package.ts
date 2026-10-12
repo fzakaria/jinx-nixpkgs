@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kodi-cli";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nawar",
           repo: "kodi-cli",
           rev: version,
@@ -36,14 +36,14 @@ cp -a playlist_to_kodi $out/bin
 wrapProgram $out/bin/playlist_to_kodi --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, bash, zenity, jq, youtube_dl]))}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nawar/kodi-cli",
         description: "Kodi/XBMC bash script to send Kodi commands using JSON RPC. It also allows sending YouTube videos to Kodi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pstn"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

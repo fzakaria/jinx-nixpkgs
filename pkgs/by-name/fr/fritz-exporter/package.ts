@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fritz-exporter",
       version: "2.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdreker",
           repo: "fritz_exporter",
           tag: nix.thunk(() => nix.str`fritzexporter-v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })()),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pdreker/fritz_exporter/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Prometheus exporter for Fritz!Box home routers",
         homepage: "https://github.com/pdreker/fritz_exporter",

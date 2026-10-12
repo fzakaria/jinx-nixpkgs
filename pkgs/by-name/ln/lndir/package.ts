@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lndir",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/util/lndir-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GPbWZOUolLfe4NL8mxceDlhWblCR5E+VNfEObZQZEqQ=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [updateAutotoolsGnuConfigScriptsHook]),
       preConfigure: "# removes dependency on xorgproto\n# from commit 466f1d85d21f79237123d74598a3d7f073513685\n# also fix build due to missing import of unistd.h\nexport XPROTO_CFLAGS=\" \"\nexport XPROTO_LIBS=\" \"\nsubstituteInPlace lndir.c \\\n  --replace-fail '<X11/Xos.h>' \"<unistd.h>\" \\\n  --replace-fail '#include <X11/Xfuncproto.h>' \"\" \\\n  --replace-fail '_X_ATTRIBUTE_PRINTF(1,2)' '__attribute__((__format__(__printf__,1,2)))' \\\n  --replace-fail '_X_ATTRIBUTE_PRINTF(2,3)' '__attribute__((__format__(__printf__,2,3)))' \\\n  --replace-fail '_X_NORETURN' '__attribute__((noreturn))'\n\n# supposed to make lndir it work on directories with st_nlink set to 1 (such as on btrfs).\n# from commit 26164c05c5a227462e8f076db6018a4c55fa1412\nsubstituteInPlace lndir.c \\\n  --replace-fail 'n_dirs--;' \"\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -39,7 +39,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Create a shadow directory of symbolic links to another directory tree",
         homepage: "https://gitlab.freedesktop.org/xorg/util/lndir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mitOpenGroup")),

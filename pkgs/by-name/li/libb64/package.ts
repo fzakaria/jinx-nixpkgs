@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "libb64",
       version: "2.0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libb64",
           repo: "libb64",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,31 +31,31 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "parallel-make.patch",
             url: "https://github.com/libb64/libb64/commit/4fe47c052e9123da8f751545deb48be08c3411f6.patch",
             sha256: "18b3np3gpyzimqmk6001riqv5n70wfbclky6zzsrvj5zl1dj4ljf",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "elif.patch",
             url: "https://github.com/libb64/libb64/commit/819e43c8b34261ea3ee694bdc27865a033966083.patch",
             hash: "sha256-r2jI6Q3rWDtArLlkAuyy7vcjsuRvX+2fBd5yk8XOMcc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "size_t.patch",
             url: "https://github.com/libb64/libb64/commit/b5edeafc89853c48fa41a4c16393a1fdc8638ab6.patch",
             hash: "sha256-+bqfOOlT/t0FLQEMHuxW1BxJcx9rk0yYM3wD43mcymo",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "use-proper-function-prototype-for-main.patch",
             url: "https://github.com/libb64/libb64/commit/98eaf510f40e384b32c01ad4bd5c3a697fdd8560.patch",
             hash: "sha256-CGslJUw0og/bBBirLm0J5Q7cf2WW/vniVAkXHlb6lbQ=",
           })))),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "0001-example-Do-not-run-the-tests.patch",
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-support/libb64/libb64/0001-example-Do-not-run-the-tests.patch?id=484e0de1e4ee107f21ae2a5c5f976ed987978baf",
             sha256: "sha256-KTsiIWJe66BKlu/A43FWfW0XAu4E7lWX/RY4NITRrm4=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "mkdir -p $out $out/lib $out/bin $out/include\ncp -r include/* $out/include/\ncp base64/base64 $out/bin/\ncp src/libb64.a src/cencode.o src/cdecode.o $out/lib/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "ANSI C routines for fast base64 encoding/decoding",
         homepage: "https://github.com/libb64/libb64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

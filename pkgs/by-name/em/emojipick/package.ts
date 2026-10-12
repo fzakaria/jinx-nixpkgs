@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const emojipick_font_size = nix.argOr($, "emojipick-font-size", () => "18");
   const boolToInt = (b) => (nix.asBool(b) ? "1" : "0");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "emojipick",
       version: "2021-01-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thingsiplay",
           repo: "emojipick",
           tag: "20210127",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([python3, xclip, libnotify], (nix.asBool(emojipick_use_rofi) ? [rofi] : [dmenu]))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ./emojipick $out/bin\ncp ./emojiget.py $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Get a selection of emojis with dmenu or rofi",
         homepage: "https://github.com/thingsiplay/emojipick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

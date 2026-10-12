@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lact",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ilya-zlobintsev",
           repo: "LACT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkFlags: nix.thunk(() => ["--skip=tests::apply_settings"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isElf")), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
               nix.thunk(() => nix.str`-C link-arg=-Wl,-rpath,${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libdrm, ocl_icd]))}`),
               nix.thunk(() => nix.str`-C link-arg=-Wl,--add-needed,${vulkan_loader}/lib/libvulkan.so`),
@@ -113,12 +113,12 @@ substituteInPlace lact-daemon/src/server/handler.rs \\
 --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libdrm, ocl_icd]))}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, lact: nix.thunk(() => nix.attr(nixosTests, "lact")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, lact: nix.thunk(() => nix.attr(nixosTests, "lact")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Linux GPU Configuration Tool for AMD and NVIDIA",
         homepage: "https://github.com/ilya-zlobintsev/LACT",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

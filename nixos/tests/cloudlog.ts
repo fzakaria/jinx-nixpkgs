@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "cloudlog",
     containers: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          mysql: nix.thunk(() => ({ __proto__: pos$1, package: nix.thunk(() => nix.sel(pkgs, "mariadb")) })),
-          cloudlog: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          mysql: nix.thunk(() => ({ [nix.POS]: pos$1, package: nix.thunk(() => nix.sel(pkgs, "mariadb")) })),
+          cloudlog: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
       })),
     })),

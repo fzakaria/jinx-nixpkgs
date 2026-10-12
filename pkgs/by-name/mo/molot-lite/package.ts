@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "molot-lite",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magnetophon",
           repo: "molot-lite",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["INSTALL_DIR=$out/lib/lv2"]),
       installPhase: "runHook preInstall\nmake install INSTALL_DIR=$out/lib/lv2 -C Molot_Mono_Lite\nmake install INSTALL_DIR=$out/lib/lv2 -C Molot_Stereo_Lite\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stereo and mono audio signal dynamic range compressor in LV2 format",
         homepage: "https://github.com/magnetophon/molot-lite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

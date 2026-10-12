@@ -40,38 +40,38 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "hans"));
   const hansUser = "hans";
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         hans: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           clients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => ({})),
               description: "Each attribute of this option defines a systemd service that\nruns hans. Many or none may be defined.\nThe name of each service is\n`hans-«name»`\nwhere «name» is the name of the\ncorresponding attribute name.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  foo = {\n    server = \"192.0.2.1\";\n    extraConfig = \"-v\";\n  }\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     options: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$1,
+                          [nix.POS]: pos$1,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "IP address of server running hans",
                           example: "192.0.2.1",
                         })))),
                       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "Additional command line parameters",
                           example: "-v",
                         })))),
                       passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "File that contains password",
@@ -80,35 +80,35 @@ export default nix.lambda((args) => (() => {
                   })))))),
             })))),
           server: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "enable hans server",
               })))),
             ip: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "The assigned ip range",
                 example: "198.51.100.0",
               })))),
             respondToSystemPings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Force hans respond to ordinary pings",
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "Additional command line parameters",
                 example: "-v",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 description: "File that contains password",
@@ -118,30 +118,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "server", "enable")) || nix.asBool(!nix.eq(nix.sel(cfg, "clients"), {})))), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         boot: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           kernel: nix.thunk(() => ({
-            __proto__: pos$17,
-            sysctl: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "server", "respondToSystemPings")), nix.thunk(() => ({ __proto__: pos$16, "net.ipv4.icmp_echo_ignore_all": 1n })))),
+            [nix.POS]: pos$17,
+            sysctl: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "server", "respondToSystemPings")), nix.thunk(() => ({ [nix.POS]: pos$16, "net.ipv4.icmp_echo_ignore_all": 1n })))),
           })),
           kernelModules: nix.thunk(() => ["tun"]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => (() => {
             const createHansClientService = (name) => (cfg_1) => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: nix.thunk(() => nix.str`hans client - ${name}`),
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               script: nix.thunk(() => nix.str`${nix.sel(pkgs, "hans")}/bin/hans -f -u ${hansUser} ${nix.sel(cfg_1, "extraConfig")} -c ${nix.sel(cfg_1, "server")} ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg_1, "passwordFile"), "")), nix.thunk(() => nix.str`-p $(cat "${nix.sel(cfg_1, "passwordFile")}")`))}`),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$19, RestartSec: "30s", Restart: "always" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$19, RestartSec: "30s", Restart: "always" })),
             });
             return nix.update(nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`hans-${name}`), nix.thunk(() => nix.app(createHansClientService, name, value))), nix.thunk(() => nix.sel(cfg, "clients"))))), {
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               hans: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "hans, ip over icmp server daemon",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -151,13 +151,13 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [hansUser, nix.thunk(() => ({ __proto__: pos$24, description: "Hans daemon user", isSystemUser: true }))],
+            [hansUser, nix.thunk(() => ({ [nix.POS]: pos$24, description: "Hans daemon user", isSystemUser: true }))],
           ])),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$27, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$27, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=hans.ts.map

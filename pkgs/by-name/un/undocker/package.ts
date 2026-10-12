@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const gnumake = nix.arg($, "gnumake");
   const version = "1.2.3";
   const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://git.jakstys.lt/undocker.git",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-hyP85pYtXxucAliilUt9Y2qnrfPeSjeGsYEFJndJWyA=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "undocker",
       version: version,
       src: src,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -D undocker $out/bin/undocker",
       vendorHash: null,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.jakstys.lt/undocker",
         description: "CLI tool to convert a Docker image to a flattened rootfs tarball",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

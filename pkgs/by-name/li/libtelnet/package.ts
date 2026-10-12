@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libtelnet",
       version: "0.21+45f2d5c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "seanmiddleditch",
           repo: "libtelnet",
           rev: "45f2d5cfcf383312280e61c85b107285fed260cf",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple RFC-compliant TELNET implementation as a C library",
         homepage: "https://github.com/seanmiddleditch/libtelnet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

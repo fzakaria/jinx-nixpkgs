@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const qemu = nix.arg($, "qemu");
   const x11Support = nix.argOr($, "x11Support", () => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAndroid"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))));
-  const sdl3$ = nix.thunk(() => nix.app(nix.sel(sdl3, "override"), nix.thunk(() => ({ __proto__: pos$1, traySupport: false }))));
+  const sdl3$ = nix.thunk(() => nix.app(nix.sel(sdl3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, traySupport: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "sdl2-compat",
       version: "2.32.72",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "libsdl-org",
           repo: "sdl2-compat",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -58,15 +58,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_RPATH", nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [sdl3$]))))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_BUILD_RPATH", nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [sdl3$]))))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, SDL_TESTS_QUICK: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, SDL_TESTS_QUICK: 1n })),
       doCheck: true,
       patches: nix.thunk(() => [nix.path(here, "./find-headers.patch")]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       postFixup: "# allow as a drop in replacement for SDL2\n# Can be removed after treewide switch from pkg-config to pkgconf\nln -s $dev/lib/pkgconfig/sdl2-compat.pc $dev/lib/pkgconfig/sdl2.pc\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           "sdl12-compat": sdl12_compat,
           SDL2_ttf: SDL2_ttf,
@@ -76,14 +76,14 @@ export default nix.lambda((args) => (() => {
           SDL2_mixer: SDL2_mixer,
           SDL2_image: SDL2_image,
           ffmpeg: ffmpeg,
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ __proto__: pos$5, qemu: qemu }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$5, qemu: qemu }))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             extraArgs: nix.thunk(() => ["--version-regex", "release-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "SDL2 compatibility layer that uses SDL3 behind the scenes",
         homepage: "https://libsdl.org",
         changelog: nix.thunk(() => nix.str`https://github.com/libsdl-org/sdl2-compat/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

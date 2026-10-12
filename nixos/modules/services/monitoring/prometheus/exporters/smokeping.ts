@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const goDuration = nix.thunk(() => nix.app(nix.sel(types, "mkOptionType"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(types, "str"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "goDuration",
       description: "Go duration (https://golang.org/pkg/time/#ParseDuration)",
       check: (x) => (nix.asBool(nix.app(nix.sel(types, "str", "check"), x)) && nix.asBool(!nix.eq(nix.builtins.match("(-?[0-9]+(\\.[0-9]+)?(ns|us|µs|ms|s|m|h))+", x), null))),
@@ -34,30 +34,30 @@ export default nix.lambda((args) => (() => {
     };
     })())));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9374n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       telemetryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/metrics",
           description: "Path under which to expose metrics.\n",
         })))),
       pingInterval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: goDuration,
           default: "1s",
           description: "Interval between pings.\n",
         })))),
       buckets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "commas")),
           default: "5e-05,0.0001,0.0002,0.0004,0.0008,0.0016,0.0032,0.0064,0.0128,0.0256,0.0512,0.1024,0.2048,0.4096,0.8192,1.6384,3.2768,6.5536,13.1072,26.2144",
           description: "List of buckets to use for the response duration histogram.\n",
         })))),
       hosts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         AmbientCapabilities: nix.thunk(() => ["CAP_NET_RAW"]),
         CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_RAW"]),
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-smokeping-prober")}/bin/smokeping_prober \\

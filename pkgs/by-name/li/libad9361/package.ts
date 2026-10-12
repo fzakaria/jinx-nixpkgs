@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libiio = nix.arg($, "libiio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libad9361",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "analogdevicesinc",
           repo: "libad9361-iio",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libiio]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Fix iio include path on darwin to match linux\nfor i in test/*.c; do\n  substituteInPlace $i \\\n    --replace 'iio/iio.h' 'iio.h'\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "IIO AD9361 library for filter design and handling, multi-chip sync, etc",
         homepage: "http://analogdevicesinc.github.io/libad9361-iio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

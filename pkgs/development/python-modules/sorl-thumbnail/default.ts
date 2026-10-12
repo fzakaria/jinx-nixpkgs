@@ -21,25 +21,25 @@ export default nix.lambda((args) => (() => {
       const version = "12.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "sorl_thumbnail",
           version: version,
           hash: "sha256-GRuJwn7LQLXCo1VJ1VfRfEhBxq/0ObLhe5OLke6kY7M=",
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const buildInputs = nix.thunk(() => [django]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "sorl.thumbnail.conf.defaults" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "sorl.thumbnail.conf.defaults" }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sorl.thumbnail"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://sorl-thumbnail.readthedocs.org/en/latest/",
         description: "Thumbnails for Django",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/sorl-thumbnail/blob/${version}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

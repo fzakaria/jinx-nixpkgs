@@ -18,29 +18,29 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const tokenFile = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "syncthing-relay-token", "private_token"))));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "syncthing-private-relay",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Sighery"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           syncthing: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             relay: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               providedBy: "nixos-test",
               pools: [],

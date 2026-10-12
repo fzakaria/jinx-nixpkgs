@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
       const pname = "firefox";
       const version = "157.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://mozilla/firefox/releases/${version}/source/firefox-${version}.source.tar.xz`),
           sha512: "c019202b2f87d25b3605bbf7266f3bb4d59745e48536f297d3f00cc3524a1cd2eba416a5a3cd0ecee6b0762d0f35bf3c5fcce286ebc7bc741263bebd0f102858",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://www.firefox.com/en-US/firefox/${version}/releasenotes/`),
         description: "Web browser built from Firefox source tree",
         homepage: "http://www.mozilla.com/en-US/firefox/",
@@ -46,24 +46,24 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         mainProgram: "firefox",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: version,
             product: "firefox",
             update: "*",
             vendor: "mozilla",
           })),
           purlParts: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: "generic",
             spec: nix.thunk(() => nix.str`firefox@${version}`),
           })),
         })),
       }));
-      const tests = nix.thunk(() => ({ __proto__: pos$6, firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")) }));
-      const updateScript = nix.thunk(() => nix.app(callPackage, nix.path(here, "../update.nix"), nix.thunk(() => ({ __proto__: pos$7, attrPath: "firefox-unwrapped" }))));
-      return { __proto__: pos$8, pname, version, src, meta, tests, updateScript };
+      const tests = nix.thunk(() => ({ [nix.POS]: pos$6, firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")) }));
+      const updateScript = nix.thunk(() => nix.app(callPackage, nix.path(here, "../update.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, attrPath: "firefox-unwrapped" }))));
+      return { [nix.POS]: pos$8, pname, version, src, meta, tests, updateScript };
     })()));
 })(), formals$1);
 //# sourceMappingURL=firefox.ts.map

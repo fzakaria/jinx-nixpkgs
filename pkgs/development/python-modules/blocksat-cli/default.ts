@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blockstream",
           repo: "satellite",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["blocksatgui/tests/"]);
       const pythonImportsCheck = nix.thunk(() => ["blocksatcli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blockstream Satellite CLI",
         homepage: "https://github.com/Blockstream/satellite",
         changelog: nix.thunk(() => nix.str`https://github.com/Blockstream/satellite/releases/tag/${nix.sel(src, "tag")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "blocksat-cli",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

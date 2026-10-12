@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withDebug = nix.argOr($, "withDebug", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "webeep-sync",
       version: "1.0.3-unstable-2026-03-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toto04",
           repo: "webeep-sync",
           rev: "eabae4471b32660358c8bf95a985473f145d160a",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         copyDesktopItems,
       ]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           pnpm: pnpm_10,
           fetcherVersion: 3n,
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       patches: nix.thunk(() => [nix.path(here, "./workspace.patch")]),
       preBuild: nix.thunk(() => nix.str`# create the electron archive to be used by electron-packager
 cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -100,7 +100,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             icon: nix.thunk(() => nix.sel(finalAttrs, "pname")),
@@ -110,11 +110,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Keep all your WeBeep files synced on your computer",
         homepage: "https://github.com/toto04/webeep-sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

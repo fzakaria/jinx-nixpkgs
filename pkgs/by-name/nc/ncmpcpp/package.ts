@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const taglibSupport = nix.argOr($, "taglibSupport", () => true);
   const taglib = nix.arg($, "taglib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ncmpcpp",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ncmpcpp",
           repo: "ncmpcpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([boost187, libmpdclient, ncurses, readline, libiconv, icu, curl], nix.concat(nix.app(nix.sel(lib, "optional"), visualizerSupport, fftw), nix.app(nix.sel(lib, "optional"), taglibSupport, taglib)))),
       preConfigure: nix.thunk(() => nix.add("autoreconf -fiv\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# std::result_of was removed in c++20 and unusable for clang16\nsubstituteInPlace ./configure \\\n  --replace-fail \"std=c++20\" \"std=c++17\"\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Featureful ncurses based MPD client inspired by ncmpc",
         homepage: "https://rybczak.net/ncmpcpp/",
         changelog: nix.thunk(() => nix.str`https://github.com/ncmpcpp/ncmpcpp/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

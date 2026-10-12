@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.69";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MarshalX",
           repo: "atproto",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-BA8gnGVR+vgfwgKHBgq+EDcmycYAVBGu/WWDVMI7gkw=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, POETRY_DYNAMIC_VERSIONING_BYPASS: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, POETRY_DYNAMIC_VERSIONING_BYPASS: version }));
       const build_system = nix.thunk(() => [poetry_core, poetry_dynamic_versioning]);
       const dependencies = nix.thunk(() => [
         click,
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
         "atproto_server",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "AT Protocol (Bluesky) SDK for Python",
         homepage: "https://github.com/MarshalX/atproto",
         changelog: nix.thunk(() => nix.str`https://github.com/MarshalX/atproto/blob/v${version}/CHANGES.md`),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

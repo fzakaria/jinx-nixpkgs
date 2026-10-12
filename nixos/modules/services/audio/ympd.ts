@@ -24,31 +24,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "ympd"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ympd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ympd, the MPD Web GUI")),
           webPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: "8080",
               description: "The port where ympd's web interface will be available.",
               example: "ssl://8080:/path/to/ssl-private-key.pem",
             })))),
           mpd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "The host where MPD is listening.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: nix.thunk(() => nix.sel(config, "services", "mpd", "settings", "port")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.mpd.settings.port")),
@@ -60,19 +60,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             ympd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Standalone MPD Web GUI written in C",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ympd")}/bin/ympd \\
   --host ${nix.sel(cfg, "mpd", "host")} \\
   --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "mpd", "port")))} \\

@@ -32,64 +32,64 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const robotsTxt = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cgit-robots.txt", "User-agent: *\nDisallow: /\n"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "cgit",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "schnusch"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             cgit: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               localhost: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 package: nix.thunk(() => nix.app(nix.sel(pkgs, "cgit", "overrideAttrs"), nix.lambda((args_2) => (() => {
                     const $_2 = nix.formals(args_2, formals$3);
                     const postInstall = nix.arg($_2, "postInstall");
                     return {
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       postInstall: nix.thunk(() => nix.str`${postInstall}
 cp ${robotsTxt} "$out/cgit/robots.txt"
 `),
                     };
                   })(), formals$3))),
-                nginx: nix.thunk(() => ({ __proto__: pos$3, location: "/(c)git/" })),
+                nginx: nix.thunk(() => ({ [nix.POS]: pos$3, location: "/(c)git/" })),
                 repos: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  "some-repo": nix.thunk(() => ({ __proto__: pos$4, path: "/tmp/git/some-repo", desc: "some-repo description" })),
+                  [nix.POS]: pos$5,
+                  "some-repo": nix.thunk(() => ({ [nix.POS]: pos$4, path: "/tmp/git/some-repo", desc: "some-repo description" })),
                 })),
-                settings: nix.thunk(() => ({ __proto__: pos$6, readme: nix.thunk(() => [":README.md", ":date.txt"]) })),
-                gitHttpBackend: nix.thunk(() => ({ __proto__: pos$7, checkExportOkFiles: false })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$6, readme: nix.thunk(() => [":README.md", ":date.txt"]) })),
+                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: pos$7, checkExportOkFiles: false })),
               })),
               "check.localhost": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: true,
                 scanPath: "/tmp/git",
-                settings: nix.thunk(() => ({ __proto__: pos$9, "strict-export": "git-daemon-export-ok" })),
-                gitHttpBackend: nix.thunk(() => ({ __proto__: pos$10, checkExportOkFiles: true })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$9, "strict-export": "git-daemon-export-ok" })),
+                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: pos$10, checkExportOkFiles: true })),
               })),
               "no-git-http-backend.localhost": nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 enable: true,
                 scanPath: "/tmp/git",
-                settings: nix.thunk(() => ({ __proto__: pos$12, "strict-export": "git-daemon-export-ok" })),
-                gitHttpBackend: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+                settings: nix.thunk(() => ({ [nix.POS]: pos$12, "strict-export": "git-daemon-export-ok" })),
+                gitHttpBackend: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "git"))]),
           })),
         };

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libdaq",
       version: "3.0.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snort3",
           repo: "libdaq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       autoreconfPhase: "./bootstrap\n",
       postInstall: "# remove build directory (/build/**, or /tmp/nix-build-**) from RPATHs\nfor f in \"$out\"/bin/*; do\n  local nrp=\"$(patchelf --print-rpath \"$f\" | sed -E 's@(:|^)'$NIX_BUILD_TOP'[^:]*:@\\1@g')\"\n  patchelf --set-rpath \"$nrp\" \"$f\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data AcQuisition library (libDAQ), for snort packet I/O",
         homepage: "https://www.snort.org",
         maintainers: nix.thunk(() => (() => {

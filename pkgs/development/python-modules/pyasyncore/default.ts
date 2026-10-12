@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonrob",
           repo: "pyasyncore",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["asyncore"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make asyncore available for Python 3.12 onwards",
         homepage: "https://github.com/simonrob/pyasyncore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

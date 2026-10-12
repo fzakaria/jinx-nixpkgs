@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "datamodel-code-generator",
       version: "0.71.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "koxudaxi",
           repo: "datamodel-code-generator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         pyyaml,
       ]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           debug: nix.thunk(() => [pysnooper]),
           graphql: nix.thunk(() => [graphql_core]),
           http: nix.thunk(() => [httpx]),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["datamodel_code_generator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pydantic model and dataclasses.dataclass generator for easy conversion of JSON, OpenAPI, JSON Schema, and YAML data sources",
         homepage: "https://github.com/koxudaxi/datamodel-code-generator",
         changelog: nix.thunk(() => nix.str`https://github.com/koxudaxi/datamodel-code-generator/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

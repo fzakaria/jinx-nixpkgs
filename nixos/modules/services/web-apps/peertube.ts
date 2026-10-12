@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "production.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   const env = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     NODE_CONFIG_DIR: "/var/lib/peertube/config",
     NODE_ENV: "production",
     NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
     "@setuid",
   ]);
   const cfgService = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     ProtectProc: "invisible",
     UMask: "0027",
     CapabilityBoundingSet: "",
@@ -181,84 +181,84 @@ eval -- "\\$@"
   const nginxCommonHeaders = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.sel(cfg, "localDomain")), "forceSSL")), "add_header Strict-Transport-Security 'max-age=31536000';\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.sel(cfg, "localDomain")), "quic")) && nix.asBool(nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.sel(cfg, "localDomain")), "http3")))), "add_header Alt-Svc 'h3=\":$server_port\"; ma=604800';\n")));
   const nginxCommonHeadersExtra = "add_header Access-Control-Allow-Origin '*';\nadd_header Access-Control-Allow-Methods 'GET, OPTIONS';\nadd_header Access-Control-Allow-Headers 'Range,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';\n";
   return {
-    __proto__: pos$111,
+    [nix.POS]: pos$111,
     options: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       services: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         peertube: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Peertube")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "peertube",
               description: "User account under which Peertube runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "peertube",
               description: "Group under which Peertube runs.",
             })))),
           localDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "peertube.example.com",
               description: "The domain serving your PeerTube instance.",
             })))),
           listenHttp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9000n,
               description: "The port that the local PeerTube web server will listen on.",
             })))),
           listenWeb: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9000n,
               description: "The public-facing port that PeerTube will be accessible at (likely 80 or 443 if running behind a reverse proxy). Clients will try to access PeerTube at this port.",
             })))),
           enableWebHttps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether clients will access your PeerTube instance with HTTPS. Does NOT configure the PeerTube webserver itself to listen for incoming HTTPS connections.",
             })))),
           dataDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/opt/peertube/storage", "/var/cache/peertube"]),
               description: "Allow access to custom data locations.",
             })))),
           serviceEnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/peertube/password-init-root",
               description: "Set environment variables for the service. Mainly useful for setting the initial root password.\nFor example write to file:\nPT_INITIAL_ROOT_PASSWORD=changeme\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const config_1 = nix.arg($_1, "config");
                   return {
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       video_transcription: nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Enable automatic transcription of videos.",
                           })))),
                         engine_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "str")));
@@ -275,15 +275,15 @@ eval -- "\\$@"
               description: "Configuration for peertube.",
             })))),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Configure nginx as a reverse proxy for peertube.",
             })))),
           secrets: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             secretsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/secrets/peertube",
@@ -291,15 +291,15 @@ eval -- "\\$@"
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Configure local PostgreSQL database server for PeerTube.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) ? "/run/postgresql" : null)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "database", "createLocally")}
@@ -310,25 +310,25 @@ else null
                 description: "Database host address or unix socket.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 5432n,
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "peertube",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "peertube",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/peertube/password-postgresql",
@@ -336,15 +336,15 @@ else null
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Configure local Redis server for PeerTube.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))))) ? "127.0.0.1" : null)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "redis", "createLocally")} && !config.${nix.sel(opt, "redis", "enableUnixSocket")}
@@ -354,7 +354,7 @@ else null
                 description: "Redis host.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket")))) ? null : 31638n)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "redis", "createLocally")} && config.${nix.sel(opt, "redis", "enableUnixSocket")}
@@ -364,14 +364,14 @@ else 6379
                 description: "Redis port.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/peertube/password-redis-db",
                 description: "Password for redis database.",
               })))),
             enableUnixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: nix.thunk(() => nix.sel(cfg, "redis", "createLocally")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "redis", "createLocally")}`))),
@@ -379,15 +379,15 @@ else 6379
               })))),
           })),
           smtp: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Configure local Postfix SMTP server for PeerTube.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/peertube/password-smtp",
@@ -399,76 +399,76 @@ else 6379
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$110,
+        [nix.POS]: pos$110,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "serviceEnvironmentFile"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.builtins.storeDir), nix.thunk(() => nix.sel(cfg, "serviceEnvironmentFile"))))))),
             message: "<option>services.peertube.serviceEnvironmentFile</option> points to\na file in the Nix store. You should use a quoted absolute path to\nprevent this.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "secrets", "secretsFile"), null)),
             message: "<option>services.peertube.secrets.secretsFile</option> needs to be set.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket")) && nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "redis", "host"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "redis", "port"), null))))))),
             message: "<option>services.peertube.redis.createLocally</option> and redis network connection (<option>services.peertube.redis.host</option> or <option>services.peertube.redis.port</option>) enabled. Disable either of them.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "redis", "host"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "redis", "port"), null)))))),
             message: "<option>services.peertube.redis.host</option> and <option>services.peertube.redis.port</option> needs to be set if <option>services.peertube.redis.enableUnixSocket</option> is not enabled.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "redis", "passwordFile"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.builtins.storeDir), nix.thunk(() => nix.sel(cfg, "redis", "passwordFile"))))))),
             message: "<option>services.peertube.redis.passwordFile</option> points to\na file in the Nix store. You should use a quoted absolute path to\nprevent this.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.builtins.storeDir), nix.thunk(() => nix.sel(cfg, "database", "passwordFile"))))))),
             message: "<option>services.peertube.database.passwordFile</option> points to\na file in the Nix store. You should use a quoted absolute path to\nprevent this.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "smtp", "passwordFile"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.builtins.storeDir), nix.thunk(() => nix.sel(cfg, "smtp", "passwordFile"))))))),
             message: "<option>services.peertube.smtp.passwordFile</option> points to\na file in the Nix store. You should use a quoted absolute path to\nprevent this.\n",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "cli"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$97,
+          [nix.POS]: pos$97,
           peertube: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$57,
-                  listen: nix.thunk(() => ({ __proto__: pos$47, port: nix.thunk(() => nix.sel(cfg, "listenHttp")) })),
+                  [nix.POS]: pos$57,
+                  listen: nix.thunk(() => ({ [nix.POS]: pos$47, port: nix.thunk(() => nix.sel(cfg, "listenHttp")) })),
                   webserver: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     https: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableWebHttps")) ? true : false)),
                     hostname: nix.thunk(() => nix.str`${nix.sel(cfg, "localDomain")}`),
                     port: nix.thunk(() => nix.sel(cfg, "listenWeb")),
                   })),
                   database: nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     hostname: nix.thunk(() => nix.str`${nix.sel(cfg, "database", "host")}`),
                     port: nix.thunk(() => nix.sel(cfg, "database", "port")),
                     name: nix.thunk(() => nix.str`${nix.sel(cfg, "database", "name")}`),
                     username: nix.thunk(() => nix.str`${nix.sel(cfg, "database", "user")}`),
                   })),
                   redis: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     hostname: nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "host")))}`),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "redis", "port"), null)), nix.thunk(() => nix.sel(cfg, "redis", "port")))),
                   })),
                   storage: nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     tmp: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/peertube/storage/tmp/")),
                     tmp_persistent: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/peertube/storage/tmp_persistent/")),
                     bin: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/peertube/storage/bin/")),
@@ -490,136 +490,136 @@ else 6379
                     uploads: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/var/lib/peertube/storage/uploads/")),
                   })),
                   import: nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     videos: nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       http: nix.thunk(() => ({
-                        __proto__: pos$53,
+                        [nix.POS]: pos$53,
                         youtube_dl_release: nix.thunk(() => ({
-                          __proto__: pos$52,
+                          [nix.POS]: pos$52,
                           python_path: nix.thunk(() => nix.str`${nix.sel(pkgs, "python3")}/bin/python`),
                         })),
                       })),
                     })),
                   })),
                   video_transcription: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     engine: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "whisper-ctranslate2")),
                   })),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "enableUnixSocket")), nix.thunk(() => ({
-                    __proto__: pos$59,
-                    redis: nix.thunk(() => ({ __proto__: pos$58, socket: "/run/redis-peertube/redis.sock" })),
+                    [nix.POS]: pos$59,
+                    redis: nix.thunk(() => ({ [nix.POS]: pos$58, socket: "/run/redis-peertube/redis.sock" })),
                   })))),
               ]))),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               enable: true,
               upstreams: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 peertube: nix.thunk(() => ({
-                  __proto__: pos$62,
+                  [nix.POS]: pos$62,
                   servers: nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenHttp")))}`, nix.thunk(() => ({ __proto__: pos$61, fail_timeout: "0" }))],
+                    [nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenHttp")))}`, nix.thunk(() => ({ [nix.POS]: pos$61, fail_timeout: "0" }))],
                   ])),
                 })),
               })),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "localDomain")}`, nix.thunk(() => ({
-                  __proto__: pos$86,
+                  [nix.POS]: pos$86,
                   root: "/var/lib/peertube/www",
                   locations: nix.thunk(() => ({
-                    __proto__: pos$85,
-                    "/": nix.thunk(() => ({ __proto__: pos$64, tryFiles: "/dev/null @api", priority: 1110n })),
+                    [nix.POS]: pos$85,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$64, tryFiles: "/dev/null @api", priority: 1110n })),
                     "~ ^/api/v1/videos/(upload-resumable|([^/]+/source/replace-resumable))$": nix.thunk(() => ({
-                      __proto__: pos$65,
+                      [nix.POS]: pos$65,
                       tryFiles: "/dev/null @api",
                       priority: 1120n,
                       extraConfig: nix.thunk(() => nix.add("client_max_body_size 0;\nproxy_request_buffering off;\n", nginxCommonHeaders)),
                     })),
                     "~ ^/api/v1/users/[^/]+/imports/import-resumable$": nix.thunk(() => ({
-                      __proto__: pos$66,
+                      [nix.POS]: pos$66,
                       tryFiles: "/dev/null @api",
                       priority: 1130n,
                       extraConfig: nix.thunk(() => nix.add("client_max_body_size 0;\nproxy_request_buffering off;\n", nginxCommonHeaders)),
                     })),
                     "~ ^/api/v1/videos/(upload|([^/]+/studio/edit))$": nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       tryFiles: "/dev/null @api",
                       priority: 1140n,
                       extraConfig: nix.thunk(() => nix.add("limit_except POST HEAD { deny all; }\n\nclient_max_body_size 12G;\nadd_header X-File-Maximum-Size 8G always;\nproxy_request_buffering off;\n", nginxCommonHeaders)),
                     })),
                     "~ ^/api/v1/runners/jobs/[^/]+/(update|success)$": nix.thunk(() => ({
-                      __proto__: pos$68,
+                      [nix.POS]: pos$68,
                       tryFiles: "/dev/null @api",
                       priority: 1150n,
                       extraConfig: nix.thunk(() => nix.add("client_max_body_size 0;\nproxy_request_buffering off;\n", nginxCommonHeaders)),
                     })),
                     "~ ^/api/v1/(videos|video-playlists|video-channels|users/me)": nix.thunk(() => ({
-                      __proto__: pos$69,
+                      [nix.POS]: pos$69,
                       tryFiles: "/dev/null @api",
                       priority: 1160n,
                       extraConfig: nix.thunk(() => nix.add("client_max_body_size 12M;\nadd_header X-File-Maximum-Size 8M always;\n", nginxCommonHeaders)),
                     })),
                     "@api": nix.thunk(() => ({
-                      __proto__: pos$70,
+                      [nix.POS]: pos$70,
                       proxyPass: "http://peertube",
                       priority: 1170n,
                       extraConfig: nix.thunk(() => nix.add("proxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\nproxy_connect_timeout 10m;\n\nproxy_send_timeout 10m;\nproxy_read_timeout 10m;\n\nclient_max_body_size 100k;\nsend_timeout 10m;\n", nginxCommonHeaders)),
                     })),
-                    "/socket.io": nix.thunk(() => ({ __proto__: pos$71, tryFiles: "/dev/null @api_websocket", priority: 1210n })),
+                    "/socket.io": nix.thunk(() => ({ [nix.POS]: pos$71, tryFiles: "/dev/null @api_websocket", priority: 1210n })),
                     "/tracker/socket": nix.thunk(() => ({
-                      __proto__: pos$72,
+                      [nix.POS]: pos$72,
                       tryFiles: "/dev/null @api_websocket",
                       priority: 1220n,
                       extraConfig: "proxy_read_timeout 15m;\n",
                     })),
-                    "~ ^/plugins/[^/]+(/[^/]+)?/ws/": nix.thunk(() => ({ __proto__: pos$73, tryFiles: "/dev/null @api_websocket", priority: 1230n })),
+                    "~ ^/plugins/[^/]+(/[^/]+)?/ws/": nix.thunk(() => ({ [nix.POS]: pos$73, tryFiles: "/dev/null @api_websocket", priority: 1230n })),
                     "@api_websocket": nix.thunk(() => ({
-                      __proto__: pos$74,
+                      [nix.POS]: pos$74,
                       proxyPass: "http://peertube",
                       priority: 1240n,
                       extraConfig: nix.thunk(() => nix.add("proxy_http_version 1.1;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection 'upgrade';\nproxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\n", nginxCommonHeaders)),
                     })),
                     "~ ^/client/(.*\\.(js|css|png|svg|woff2|otf|ttf|woff|eot))$": nix.thunk(() => ({
-                      __proto__: pos$75,
+                      [nix.POS]: pos$75,
                       alias: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/client/dist/$1`),
                       priority: 1320n,
                       extraConfig: nix.thunk(() => nix.add("add_header Cache-Control 'public, max-age=604800, immutable';\n", nginxCommonHeaders)),
                     })),
                     "~ ^/client/(assets/images/(default-playlist\\.jpg|default-avatar-account\\.png|default-avatar-account-48x48\\.png|default-avatar-video-channel\\.png|default-avatar-video-channel-48x48\\.png))$": nix.thunk(() => ({
-                      __proto__: pos$76,
+                      [nix.POS]: pos$76,
                       tryFiles: "/client-overrides/$1 /client/$1 $1",
                       priority: 1320n,
                       extraConfig: nginxCommonHeaders,
                     })),
                     "^~ /download/": nix.thunk(() => ({
-                      __proto__: pos$77,
+                      [nix.POS]: pos$77,
                       proxyPass: "http://peertube",
                       priority: 1410n,
                       extraConfig: nix.thunk(() => nix.add("proxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\nproxy_limit_rate 5M;\n", nginxCommonHeaders)),
                     })),
                     "^~ /static/streaming-playlists/hls/private/": nix.thunk(() => ({
-                      __proto__: pos$78,
+                      [nix.POS]: pos$78,
                       proxyPass: "http://peertube",
                       priority: 1420n,
                       extraConfig: nix.thunk(() => nix.add("proxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\nproxy_limit_rate 5M;\n", nginxCommonHeaders)),
                     })),
                     "^~ /static/web-videos/private/": nix.thunk(() => ({
-                      __proto__: pos$79,
+                      [nix.POS]: pos$79,
                       proxyPass: "http://peertube",
                       priority: 1430n,
                       extraConfig: nix.thunk(() => nix.add("proxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\nproxy_limit_rate 5M;\n", nginxCommonHeaders)),
                     })),
                     "^~ /static/webseed/private/": nix.thunk(() => ({
-                      __proto__: pos$80,
+                      [nix.POS]: pos$80,
                       proxyPass: "http://peertube",
                       priority: 1440n,
                       extraConfig: nix.thunk(() => nix.add("proxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\nproxy_limit_rate 5M;\n", nginxCommonHeaders)),
                     })),
                     "^~ /static/redundancy/": nix.thunk(() => ({
-                      __proto__: pos$81,
+                      [nix.POS]: pos$81,
                       tryFiles: "$uri @api",
                       alias: nix.thunk(() => nix.sel(cfg, "settings", "storage", "redundancy")),
                       priority: 1450n,
@@ -647,7 +647,7 @@ limit_rate_after 5M;
 `),
                     })),
                     "^~ /static/streaming-playlists/": nix.thunk(() => ({
-                      __proto__: pos$82,
+                      [nix.POS]: pos$82,
                       tryFiles: "$uri @api",
                       alias: nix.thunk(() => nix.sel(cfg, "settings", "storage", "streaming_playlists")),
                       priority: 1460n,
@@ -675,7 +675,7 @@ limit_rate_after 5M;
 `),
                     })),
                     "^~ /static/web-videos/": nix.thunk(() => ({
-                      __proto__: pos$83,
+                      [nix.POS]: pos$83,
                       tryFiles: "$uri @api",
                       alias: nix.thunk(() => nix.sel(cfg, "settings", "storage", "web_videos")),
                       priority: 1470n,
@@ -703,7 +703,7 @@ limit_rate_after 5M;
 `),
                     })),
                     "^~ /static/webseed/": nix.thunk(() => ({
-                      __proto__: pos$84,
+                      [nix.POS]: pos$84,
                       tryFiles: "$uri @api",
                       alias: nix.thunk(() => nix.sel(cfg, "settings", "storage", "web_videos")),
                       priority: 1480n,
@@ -734,20 +734,20 @@ limit_rate_after 5M;
                 }))],
               ])),
             })))),
-          postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({ __proto__: pos$88, enable: true })))),
+          postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({ [nix.POS]: pos$88, enable: true })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             servers: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               peertube: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({ __proto__: pos$89, enable: true })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({ [nix.POS]: pos$89, enable: true })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(!nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket"))))), nix.thunk(() => ({
-                      __proto__: pos$90,
+                      [nix.POS]: pos$90,
                       bind: "127.0.0.1",
                       port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                     })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) && nix.asBool(nix.sel(cfg, "redis", "enableUnixSocket")))), nix.thunk(() => ({
-                      __proto__: pos$91,
+                      [nix.POS]: pos$91,
                       unixSocket: "/run/redis-peertube/redis.sock",
                       unixSocketPerm: 660n,
                     })))),
@@ -755,21 +755,21 @@ limit_rate_after 5M;
             })),
           })),
           postfix: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "smtp", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 main: nix.thunk(() => ({
-                  __proto__: pos$94,
+                  [nix.POS]: pos$94,
                   myhostname: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "localDomain")}`))),
                 })),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$104,
+          [nix.POS]: pos$104,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$98,
+            [nix.POS]: pos$98,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '/var/lib/peertube/config' 0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`z '/var/lib/peertube/config' 0700 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -778,9 +778,9 @@ limit_rate_after 5M;
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$103,
+            [nix.POS]: pos$103,
             "peertube-init-db": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$100,
+                [nix.POS]: pos$100,
                 description: "Initialization database for PeerTube daemon",
                 after: nix.thunk(() => ["network.target", "postgresql.target"]),
                 requires: nix.thunk(() => ["postgresql.target"]),
@@ -794,7 +794,7 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
                   return nix.str`${nix.sel(config, "services", "postgresql", "package")}/bin/psql -f ${psqlSetupCommands}`;
                 })()),
                 serviceConfig: nix.thunk(() => nix.update({
-                  __proto__: pos$99,
+                  [nix.POS]: pos$99,
                   Type: "oneshot",
                   WorkingDirectory: nix.thunk(() => nix.sel(cfg, "package")),
                   User: "postgres",
@@ -805,7 +805,7 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
                 }, cfgService)),
               })))),
             peertube: nix.thunk(() => ({
-              __proto__: pos$102,
+              [nix.POS]: pos$102,
               description: "PeerTube daemon",
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-peertube.service"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target", "peertube-init-db.service"]))))),
               requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-peertube.service"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ["postgresql.target", "peertube-init-db.service"])))),
@@ -843,7 +843,7 @@ ln -sf ${nix.sel(cfg, "settings", "storage", "client_overrides")} -T /var/lib/pe
 exec node dist/server
 `),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$101,
+                [nix.POS]: pos$101,
                 Type: "simple",
                 Restart: "always",
                 RestartSec: 20n,
@@ -871,12 +871,12 @@ exec node dist/server
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$109,
+          [nix.POS]: pos$109,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "peertube")), nix.thunk(() => ({
-                  __proto__: pos$106,
+                  [nix.POS]: pos$106,
                   peertube: nix.thunk(() => ({
-                    __proto__: pos$105,
+                    [nix.POS]: pos$105,
                     isSystemUser: true,
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                     home: nix.thunk(() => nix.sel(cfg, "package")),
@@ -889,12 +889,12 @@ exec node dist/server
                   nix.thunk(() => nix.sel(pkgs, "ffmpeg-headless")),
                 ]))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "enableUnixSocket")), nix.thunk(() => nix.attrsDyn({}, [
-                  [nix.sel(config, "services", "peertube", "user"), nix.thunk(() => ({ __proto__: pos$107, extraGroups: nix.thunk(() => ["redis-peertube"]) }))],
+                  [nix.sel(config, "services", "peertube", "user"), nix.thunk(() => ({ [nix.POS]: pos$107, extraGroups: nix.thunk(() => ["redis-peertube"]) }))],
                 ])))),
             ]))),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "group"), nix.thunk(() => ({
-              __proto__: pos$108,
+              [nix.POS]: pos$108,
               members: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => nix.sel(config, "services", "nginx", "user")))),
             }))],
           ])),

@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const log4brains = nix.arg($, "log4brains");
   return nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "log4brains-test-basic-scenario",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 90n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 90n })),
       nativeBuildInputs: nix.thunk(() => [log4brains]),
       script: "log4brains | grep 'Log4brains CLI'\n\nmkdir project && cd project\n\nlog4brains init --defaults\ntest -f docs/adr/index.md\n\nlog4brains adr new --quiet 'Test ADR'\ngrep -r 'Test ADR' docs/adr/ >/dev/null\n\n# Note: Preview is difficult to check (and hence not checked):\n# (1) It requires some timeout for the page to become ready.\n# (2) The signal & process handling is screwed; on kill the\n#     process serving in the background stays alive.\n\nlog4brains build --out www\ntest -f www/index.html\ngrep -r 'Test ADR' www >/dev/null\n\ntouch $out\n",
     })));

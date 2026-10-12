@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const console = nix.arg($, "console");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "console_test",
       version: "1",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
               nix.path(here, "./console_test.opam"),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google-research",
           repo: "torchsde",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest7CheckHook]);
       const disabledTests = nix.thunk(() => ["test_adjoint"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/google-research/torchsde/releases/tag/v${version}`),
         description: "Differentiable SDE solvers with GPU support and efficient sensitivity analysis",
         homepage: "https://github.com/google-research/torchsde",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

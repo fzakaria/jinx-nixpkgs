@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const pyProject = nix.argOr($, "pyProject", () => "");
   const mkDerivation = nix.thunk(() => (nix.asBool(nix.eq(pyProject, "")) ? nix.sel(stdenv, "mkDerivation") : nix.force(buildPythonPackage)));
   return nix.app(mkDerivation, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lgpio",
       version: "0.2.2",
       format: nix.thunk(() => (nix.asBool(nix.eq(pyProject, "")) ? null : "setuptools")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joan2937",
           repo: "lg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-92lLV+EMuJj4Ul89KIFHkpPxVMr/VvKGEocYSW2tFiE=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(pyProject, "PY_LGPIO")), nix.thunk(() => [swig]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(pyProject, "")), nix.thunk(() => nix.str`cd ${pyProject}
 `))),
       postConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(pyProject, "")), "substituteInPlace Makefile \\\n  --replace-fail ldconfig 'echo ldconfig'\n")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CROSS_PREFIX=${nix.sel(stdenv, "cc", "targetPrefix")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Linux C libraries and Python modules for manipulating GPIO",
         homepage: "https://github.com/joan2937/lg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

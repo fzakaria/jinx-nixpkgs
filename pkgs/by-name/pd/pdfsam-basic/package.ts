@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
     "jdk.localedata",
   ]);
   const javafxJmods = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "openjfx-jmods",
       version: nix.thunk(() => nix.attr(openjfx25, "version")),
       dontUnpack: true,
@@ -75,13 +75,13 @@ jmod create "\${jmodArgs[@]}" "$out/lib/openjdk/jmods/${mod}.jmod"
       dontInstall: true,
     }))));
   const jdk25WithJavafx = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(jdk25, "pname")),
       version: nix.thunk(() => nix.attr(jdk25, "version")),
       paths: nix.thunk(() => [jdk25, javafxJmods]),
     }))));
   const jre = nix.thunk(() => nix.app(nix.sel(jre25_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       jdk: jdk25WithJavafx,
       modules: nix.thunk(() => nix.concat(jdkModules, javafxModules)),
     }))));
@@ -89,7 +89,7 @@ jmod create "\${jmodArgs[@]}" "$out/lib/openjdk/jmods/${mod}.jmod"
       const pname = "pdfsam-basic";
       const version = "6.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "torakiki",
           repo: "pdfsam",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -97,11 +97,11 @@ jmod create "\${jmodArgs[@]}" "$out/lib/openjdk/jmods/${mod}.jmod"
         }))));
       const mvnParameters = "-Drelease -Dmaven.test.skip";
       const mvnHash = "sha256-l8ns++RTK69AV2dq8EFPOzhfzhcgYQlF/OUZ0IZ7QII=";
-      const env = nix.thunk(() => ({ __proto__: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         env: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           SOURCE_DATE_EPOCH: nix.thunk(() => nix.attr(env, "SOURCE_DATE_EPOCH")),
         })),
       }));
@@ -142,7 +142,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "PDFsam Basic",
             exec: "pdfsam-basic",
             icon: "pdfsam-basic",
@@ -154,7 +154,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://github.com/torakiki/pdfsam",
         description: "Multi-platform software designed to extract pages, split, merge, mix and rotate PDF files",
         mainProgram: "pdfsam-basic",
@@ -176,7 +176,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         src,

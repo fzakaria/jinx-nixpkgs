@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.17.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elastic",
           repo: "elastic-transport-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/elastic/elastic-transport-python/commit/d749d0be54821e81979888ff34b1451354548863.patch",
             hash: "sha256-FrabqeLn3Sr1sg/lWWYsMPd0CZS/6BZYLnaK66T93BQ=",
           })))),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
         "test_async_transport_httpbin",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Transport classes and utilities shared among Python Elastic client libraries",
         homepage: "https://github.com/elastic/elastic-transport-python",
         changelog: nix.thunk(() => nix.str`https://github.com/elastic/elastic-transport-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

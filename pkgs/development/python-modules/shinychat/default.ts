@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "posit-dev",
           repo: "shinychat",
           tag: nix.thunk(() => nix.str`r/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["shiny"]);
       const dependencies = nix.thunk(() => [htmltools]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         providers: nix.thunk(() => [
           anthropic,
           chatlas,
@@ -88,14 +88,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(shinychat, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(shinychat, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Chat UI component for Shiny",
         homepage: "https://posit-dev.github.io/shinychat",
         downloadPage: "https://github.com/posit-dev/shinychat",
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

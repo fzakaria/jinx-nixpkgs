@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const glibc = nix.arg($, "glibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.1.5",
       pname: "longview",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linode",
           repo: "longview",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ wrapProgram $out/Linode/Longview.pl --prefix PATH : ${perl}/bin:$out/bin \\
  --suffix PERL5LIB : $out --suffix INC : $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.linode.com/longview",
         description: "Collects all of your system-level metrics and sends them to Linode",
         mainProgram: "longview",

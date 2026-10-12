@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "caido-server-auth",
       version: "0.1.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "caido_server_auth",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XuqlS9X4y4QMRK+jHLpiiuzMyEXJZScT7RAodHwxsHA=",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["caido_server_auth"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Authenticate with a Caido instance",
         homepage: "https://github.com/caido-community/sdk-py/tree/main/packages/caido-server-auth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

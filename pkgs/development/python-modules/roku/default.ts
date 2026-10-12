@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "roku";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcarbaugh",
           repo: "python-roku",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest, flask]);
       const pythonImportsCheck = nix.thunk(() => ["roku"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screw remotes. Control your Roku with Python",
         homepage: "https://github.com/jcarbaugh/python-roku",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

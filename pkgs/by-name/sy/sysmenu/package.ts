@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sysmenu",
       version: "0-unstable-2024-06-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "System64fumo",
           repo: "sysmenu",
           rev: "0b891e5d27f286b867d4a0984ee284a3456de851",
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtkmm4, gtk4_layer_shell]),
       installPhase: "runHook preInstall\ninstall -Dm755 sysmenu $out/bin/sysmenu\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple program launcher using GTK4",
         homepage: "https://github.com/System64fumo/sysmenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

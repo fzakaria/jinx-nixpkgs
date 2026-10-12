@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python314-docs-html",
       version: "3.14.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.python.org/ftp/python/doc/3.14.8/python-3.14.8-docs-html.tar.bz2",
           sha256: "sha256-+6/XHOClP7P9hMtWq2YOgTh6iGvT+tqJhkekN7lCxT0=",
         })))),
       installPhase: "mkdir -p $out/share/doc/python314\ncp -R ./ $out/share/doc/python314/html\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "panicgh"))];

@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const emptyFile = nix.arg($, "emptyFile");
   const name = "this-is-a-test";
   const requireFileTest = (requireFile_1) => nix.app(requireFile_1, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       url: "this-is-a-test",
       hash: nix.thunk(() => nix.sel(lib, "fakeHash")),

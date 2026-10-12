@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const lua = luajitPackages;
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "knot-resolver_6",
       version: "6.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://knot-resolver.nic.cz/release/knot-resolver-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hFmbv4iezHiSrqvAiHUzVdYzJjVOWZK1Ol7IIwYiTuY=",
         })))),
@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "logging-level-regression.patch",
             url: "https://gitlab.nic.cz/knot/knot-resolver/-/commit/ec5b6d9f1a0defa5f817bf2d1c53a5df2f2a5e99.diff",
             hash: "sha256-Bde8mIFUjf8aVBFh2TeWZMiw94VGMXkfd1+SvhzhvLo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "musl-build-regression.patch",
             url: "https://gitlab.nic.cz/knot/knot-resolver/-/commit/8c4bd515a0c0da5fbff85038322a2b9f2d077dfd.diff",
             hash: "sha256-+fHQ2pmUGTLiCP+OKb5PobFfQ2nwdEGm+IXbSpK35Ik=",
@@ -94,12 +94,12 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "meson test --print-errorlogs --no-suite snowflake\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         lua: lua,
         finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Caching validating DNS resolver, from .cz domain registry",
         homepage: "https://knot-resolver.cz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

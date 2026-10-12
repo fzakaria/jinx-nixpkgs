@@ -110,13 +110,13 @@ export default nix.lambda((args) => (() => {
   const malloc = nix.thunk(() => (nix.asBool(!nix.eq(optJemalloc, null)) ? nix.force(optJemalloc) : nix.force(optGperftools)));
   const cryptoStr = nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(optNss, null)) && nix.asBool(!nix.eq(optNspr, null)))) ? "nss" : (nix.asBool(!nix.eq(optCryptopp, null)) ? "cryptopp" : "none")));
   const cryptoLibsMap = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     nss: nix.thunk(() => [optNss, optNspr]),
     cryptopp: nix.thunk(() => [optCryptopp]),
     none: [],
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ceph",
       version: nix.thunk(() => nix.attr(ceph_src, "version")),
       src: ceph_src,
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(ceph_python_env, "pkgs", "python")),
         nix.thunk(() => nix.sel(ceph_python_env, "pkgs", "wrapPython")),
         which,
-        nix.thunk(() => nix.app(ensureNewerSourcesHook, nix.thunk(() => ({ __proto__: pos$2, year: "1980" })))),
+        nix.thunk(() => nix.app(ensureNewerSourcesHook, nix.thunk(() => ({ [nix.POS]: pos$2, year: "1980" })))),
         doxygen,
         graphviz,
       ]),
@@ -268,13 +268,13 @@ substituteInPlace $client/bin/.ceph-wrapped --replace-fail $out $client
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => nix.app(ceph_meta, "Distributed storage system")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: nix.thunk(() => nix.attr(ceph_src, "version")),
         overrideScope: overrideScope,
         "arrow-cpp": arrow_cpp,
         pythonEnv: ceph_python_env,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "ceph-multi-node-bluestore": nix.thunk(() => nix.attr(nixosTests, "ceph-multi-node-bluestore")),
           "ceph-multi-node-bluestore-cephfs": nix.thunk(() => nix.attr(nixosTests, "ceph-multi-node-bluestore-cephfs")),
           "ceph-single-node-bluestore": nix.thunk(() => nix.attr(nixosTests, "ceph-single-node-bluestore")),

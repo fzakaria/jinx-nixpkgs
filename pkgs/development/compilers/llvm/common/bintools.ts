@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pname = "llvm-binutils";
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       preferLocalBuild: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         isLLVM: true,
         targetPrefix: targetPrefix,
         llvm: llvm,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(llvm, "meta"));
-        return { __proto__: pos$2, teams: nix.thunk(() => nix.attr(from, "teams")) };
+        return { [nix.POS]: pos$2, teams: nix.thunk(() => nix.attr(from, "teams")) };
       })()),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 for prog in ${lld}/bin/*; do

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const ff_sig = nix.arg($, "ff-sig");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polynomial",
       version: "0.4.0",
       duneVersion: "3",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomadic-labs",
           repo: "cryptography/ocaml-polynomial",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zarith, ff_sig]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Polynomials over finite field",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://gitlab.com/nomadic-labs/ocaml-polynomial",

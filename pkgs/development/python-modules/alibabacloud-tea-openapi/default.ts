@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-tea-openapi",
       version: "0.4.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_tea_openapi",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-2vwyQBcS9bIcEtw9BbqIepGtFW2bSadmInn5/ZBSb7I=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["Tea"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Aliyun Tea OpenAPI Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-tea-openapi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

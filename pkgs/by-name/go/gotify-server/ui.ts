@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const nodejs_slim = nix.arg($, "nodejs-slim");
   const fetchYarnDeps = nix.arg($, "fetchYarnDeps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gotify-ui",
       version: version,
       src: nix.thunk(() => nix.add(src, "/ui")),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-zyPNIrTw5YUOZnuYuD1UTw7Pjy8nDWQwbH5IZXICF0I=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, nodejs_slim]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
       installPhase: "runHook preInstall\n\nmv build $out\n\nrunHook postInstall\n",
     }));
 })(), formals$1);

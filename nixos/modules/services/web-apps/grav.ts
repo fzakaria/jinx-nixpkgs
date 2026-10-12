@@ -72,55 +72,55 @@ done
 `)));
   const systemSettingsYaml = nix.thunk(() => nix.app(nix.sel(yamlFormat, "generate"), "grav-settings.yaml", nix.thunk(() => nix.sel(cfg, "systemSettings"))));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         grav: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "grav")),
           package: nix.thunk(() => (() => {
             const stateVersionAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion"))));
             return nix.update(nix.app(mkPackageOption, pkgs, "grav", nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: nix.thunk(() => (nix.asBool(nix.app(stateVersionAtLeast, "26.11")) ? "grav_2" : "grav")),
               }))), {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if versionAtLeast config.system.stateVersion \"26.11\" then\n  pkgs.grav_2\nelse\n  pkgs.grav\n")),
             });
           })()),
           root: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/grav",
               description: "Root of the application.\n",
             })))),
           pool: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.str`${poolName}`),
               description: "Name of existing phpfpm pool that is used to run web-application.\nIf not specified a pool will be created automatically with\ndefault values.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
               default: "grav",
               description: "Name of the nginx virtualhost to use and setup. If null, do not setup\nany virtualhost.\n",
             })))),
           phpPackage: nix.thunk(() => nix.app(mkPackageOption, pkgs, "php83", nix.thunk(() => ({})))),
           maxUploadSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "128M",
               description: "The upload limit for files. This changes the relevant options in\n{file}`php.ini` and nginx if enabled.\n",
             })))),
           systemSettings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(yamlFormat, "type")),
               default: nix.thunk(() => ({
-                __proto__: pos$8,
-                log: nix.thunk(() => ({ __proto__: pos$7, handler: "syslog" })),
+                [nix.POS]: pos$8,
+                log: nix.thunk(() => ({ [nix.POS]: pos$7, handler: "syslog" })),
               })),
               description: "Settings written to {file}`user/config/system.yaml`.\n",
             })))),
@@ -128,18 +128,18 @@ done
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             pools: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "pool"), nix.str`${poolName}`)), nix.thunk(() => nix.attrsDyn({}, [
                 [poolName, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   user: "grav",
                   group: "grav",
                   phpPackage: nix.thunk(() => nix.app(nix.sel(cfg, "phpPackage", "buildEnv"), nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       extensions: nix.lambda((args_1) => (() => {
                         const $_1 = nix.formals(args_1, formals$2);
                         const all = nix.arg($_1, "all");
@@ -154,10 +154,10 @@ done
                         })());
                       })(), formals$2),
                       extraConfig: nix.thunk(() => nix.app(nix.sel(generators, "toKeyValue"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           mkKeyValue: nix.thunk(() => nix.app(nix.sel(generators, "mkKeyValueDefault"), nix.thunk(() => ({})), " = ")),
                         })), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           output_buffering: "0",
                           short_open_tag: "Off",
                           expose_php: "Off",
@@ -177,7 +177,7 @@ done
                         })))),
                     })))),
                   phpEnv: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     GRAV_ROOT: nix.thunk(() => nix.builtins.toString(servedRoot)),
                     GRAV_SYSTEM_PATH: nix.thunk(() => nix.str`${servedRoot}/system`),
                     GRAV_CACHE_PATH: "/var/cache/grav",
@@ -186,7 +186,7 @@ done
                     GRAV_TMP_PATH: "/var/tmp/grav",
                   })),
                   settings: nix.thunk(() => nix.app(mapAttrs, (name) => nix.force(mkDefault), nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                       "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                       "listen.mode": "0600",
@@ -202,34 +202,34 @@ done
               ])))),
           })),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "virtualHost"), null)), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   root: nix.thunk(() => nix.str`${servedRoot}`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     "= /robots.txt": nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       priority: 100n,
                       extraConfig: "allow all;\naccess_log off;\n",
                     })),
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       priority: 200n,
                       extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", nix.key(nix.sel(cfg, "pool")), "socket")};
 fastcgi_index index.php;
 `),
                     })),
-                    "~* /(\\.git|cache|bin|logs|backup|tests)/.*$": nix.thunk(() => ({ __proto__: pos$22, priority: 300n, extraConfig: "return 403;\n" })),
-                    "~* /(system|vendor)/.*\\.(txt|xml|md|html|htm|shtml|shtm|json|yaml|yml|php|php2|php3|php4|php5|phar|phtml|pl|py|cgi|twig|sh|bat)$": nix.thunk(() => ({ __proto__: pos$23, priority: 300n, extraConfig: "return 403;\n" })),
-                    "~* /user/.*\\.(txt|md|json|yaml|yml|php|php2|php3|php4|php5|phar|phtml|pl|py|cgi|twig|sh|bat)$": nix.thunk(() => ({ __proto__: pos$24, priority: 300n, extraConfig: "return 403;\n" })),
-                    "~ /(LICENSE\\.txt|composer\\.lock|composer\\.json|nginx\\.conf|web\\.config|htaccess\\.txt|\\.htaccess)": nix.thunk(() => ({ __proto__: pos$25, priority: 300n, extraConfig: "return 403;\n" })),
-                    "~ (^|/)\\.": nix.thunk(() => ({ __proto__: pos$26, priority: 300n, extraConfig: "return 403;\n" })),
+                    "~* /(\\.git|cache|bin|logs|backup|tests)/.*$": nix.thunk(() => ({ [nix.POS]: pos$22, priority: 300n, extraConfig: "return 403;\n" })),
+                    "~* /(system|vendor)/.*\\.(txt|xml|md|html|htm|shtml|shtm|json|yaml|yml|php|php2|php3|php4|php5|phar|phtml|pl|py|cgi|twig|sh|bat)$": nix.thunk(() => ({ [nix.POS]: pos$23, priority: 300n, extraConfig: "return 403;\n" })),
+                    "~* /user/.*\\.(txt|md|json|yaml|yml|php|php2|php3|php4|php5|phar|phtml|pl|py|cgi|twig|sh|bat)$": nix.thunk(() => ({ [nix.POS]: pos$24, priority: 300n, extraConfig: "return 403;\n" })),
+                    "~ /(LICENSE\\.txt|composer\\.lock|composer\\.json|nginx\\.conf|web\\.config|htaccess\\.txt|\\.htaccess)": nix.thunk(() => ({ [nix.POS]: pos$25, priority: 300n, extraConfig: "return 403;\n" })),
+                    "~ (^|/)\\.": nix.thunk(() => ({ [nix.POS]: pos$26, priority: 300n, extraConfig: "return 403;\n" })),
                     "/": nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       priority: 400n,
                       index: "index.php",
                       extraConfig: "try_files $uri $uri/ /index.php?$query_string;\n",
@@ -256,9 +256,9 @@ gzip_types application/atom+xml application/javascript application/json applicat
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             rules: nix.thunk(() => (() => {
               const datadir = "/var/lib/grav";
               return nix.concat(nix.builtins.map((dir) => nix.str`d '${dir}' 0750 grav grav - -`, nix.thunk(() => [
@@ -278,10 +278,10 @@ gzip_types application/atom+xml application/javascript application/json applicat
           })),
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`phpfpm-${poolName}`, nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "pool"), nix.str`${poolName}`)), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 restartTriggers: nix.thunk(() => [servedRoot, systemSettingsYaml]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "grav-pre-start", nix.thunk(() => nix.str`function setPermits() {
   chmod -R o-rx "$1"
   chown -R grav:grav "$1"
@@ -314,11 +314,11 @@ setPermits $systemConfigDir
           ])),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           users: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             grav: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               isSystemUser: true,
               description: "Grav service user",
               home: "/var/lib/grav",
@@ -326,9 +326,9 @@ setPermits $systemConfigDir
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             grav: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               members: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "nginx", "user"))]),
             })),
           })),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const xdg = nix.arg($, "xdg");
   const dyn = nix.arg($, "dyn");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dune-rpc",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dune, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library to connect and control a running dune instance",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         maintainers: [],

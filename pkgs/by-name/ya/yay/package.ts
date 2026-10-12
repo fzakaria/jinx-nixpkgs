@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yay",
       version: "12.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Jguer",
           repo: "yay",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Lkqrtb37bq1uwIZ4PzJdSM7QOZ28JMyDx68huxHHuGg=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => [pacman, libarchive]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       checkFlags: nix.thunk(() => (() => {
         const skippedTests = nix.thunk(() => [
           "TestAlpmExecutor",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.add("installManPage doc/yay.8\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --name yay.bash --bash completions/bash\ninstallShellCompletion --name yay.fish --fish completions/fish\ninstallShellCompletion --name _yay --zsh completions/zsh\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AUR Helper written in Go",
         homepage: "https://github.com/Jguer/yay",
         mainProgram: "yay",

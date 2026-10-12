@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const withNode = nix.argOr($, "withNode", () => true);
   const completion = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "dsifford",
       repo: "yarn-completion",
       rev: "v0.17.0",
       hash: "sha256-z7KPXeYPPRuaEPxgY6YqsLt9n8cSsW3n2FhOzVde1HU=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "yarn",
       version: "1.22.22",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/yarnpkg/yarn/releases/download/v${nix.sel(finalAttrs, "version")}/yarn-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-kFa+kmnBerTB7fY/IvfAFy/4LWvrl9lrRHMOUdOZ+Wg=",
         })))),
@@ -46,22 +46,22 @@ ln -s $out/libexec/yarn/bin/yarn.js $out/bin/yarnpkg
 ln -s ${completion}/yarn-completion.bash $out/share/bash-completion/completions/yarn.bash
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withNode, nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/yarnpkg/yarn.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fast, reliable, and secure dependency management for javascript",
         homepage: "https://classic.yarnpkg.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/yarnpkg/yarn/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

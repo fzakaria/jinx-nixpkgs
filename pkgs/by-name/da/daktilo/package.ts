@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "daktilo",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "orhun",
           repo: "daktilo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(unixtools, "script"))]),
       postInstall: "mkdir -p man completions\n\nOUT_DIR=man $out/bin/daktilo-mangen\nOUT_DIR=completions $out/bin/daktilo-completions\n\ninstallManPage man/daktilo.1\ninstallShellCompletion \\\n  completions/daktilo.{bash,fish} \\\n  --zsh completions/_daktilo\n\nrm $out/bin/daktilo-{completions,mangen}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn your keyboard into a typewriter",
         homepage: "https://github.com/orhun/daktilo",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/daktilo/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

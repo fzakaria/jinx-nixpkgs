@@ -31,25 +31,25 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const bazelDepsSha256ByBuildAndHost = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "x86_64-linux": "sha256-61qmnAB80syYhURWYJOiOnoGOtNa1pPkxfznrFScPAo=",
       "aarch64-linux": "sha256-sOIYpp98wJRz3RGvPasyNEJ05W29913Lsm+oi/aq/Ag=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "aarch64-linux": "sha256-MJU4y9Dt9xJWKgw7iKW+9Ur856rMIHeFD5u05s+Q7rQ=",
     })),
   }));
-  const bazelHostConfigName = nix.thunk(() => ({ __proto__: pos$4, "aarch64-linux": "elinux_aarch64" }));
+  const bazelHostConfigName = nix.thunk(() => ({ [nix.POS]: pos$4, "aarch64-linux": "elinux_aarch64" }));
   const bazelDepsSha256ByHost = nix.thunk(() => nix.selOr(bazelDepsSha256ByBuildAndHost, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported build system ${nix.sel(buildPlatform, "system")}`)), nix.key(nix.sel(buildPlatform, "system"))));
   const bazelDepsSha256 = nix.thunk(() => nix.selOr(bazelDepsSha256ByHost, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported host system ${nix.sel(hostPlatform, "system")} with build system ${nix.sel(buildPlatform, "system")}`)), nix.key(nix.sel(hostPlatform, "system"))));
   return nix.app(buildBazelPackage, nix.thunk(() => (() => {
       const pname = "tensorflow-lite";
       const version = "2.13.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "tensorflow",
           repo: "tensorflow",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
         ]))));
       const bazelBuildFlags = nix.thunk(() => ["--cxxopt=--std=c++17"]);
       const buildAttrs = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         installPhase: "mkdir -p $out/{bin,lib}\n\n# copy the libs and binaries into the output dir\ncp ./bazel-bin/tensorflow/lite/c/libtensorflowlite_c.so $out/lib\ncp ./bazel-bin/tensorflow/lite/libtensorflowlite.so $out/lib\ncp ./bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model $out/bin\ncp ./bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model_performance_options $out/bin\n\nfind . -type f -name '*.h' | while read f; do\n  path=\"$out/include/${f/.\\//}\"\n  install -D \"$f\" \"$path\"\n\n  # remove executable bit from headers\n  chmod -x \"$path\"\ndone\n",
       }));
-      const fetchAttrs = nix.thunk(() => ({ __proto__: pos$7, sha256: bazelDepsSha256 }));
+      const fetchAttrs = nix.thunk(() => ({ [nix.POS]: pos$7, sha256: bazelDepsSha256 }));
       const env = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         PYTHON_BIN_PATH: nix.thunk(() => nix.sel(pythonEnv, "interpreter")),
       }));
       const dontAddBazelOpts = true;
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       const dontAddPrefix = true;
       const configurePlatforms = [];
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Open source deep learning framework for on-device inference",
         homepage: "https://www.tensorflow.org/lite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         src,

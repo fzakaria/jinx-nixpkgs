@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pekwm",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pekwm",
           repo: "pekwm",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSH=${runtimeShell}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.pekwm.se/",
         description: "Lightweight window manager",
         longDescription: "pekwm is a window manager that once upon a time was based on the aewm++\nwindow manager, but it has evolved enough that it no longer resembles\naewm++ at all. It has a much expanded feature-set, including window\ngrouping (similar to ion, pwm, or fluxbox), autoproperties, xinerama,\nkeygrabber that supports keychains, and much more.\n\n- Lightweight and Unobtrusive, a window manager shouldn't be noticed.\n- Very configurable, we all work and think in different ways.\n- Automatic properties, for all the lazy people, make things appear as\n  they should when starting applications.\n- Chainable Keygrabber, usability for everyone.\n",

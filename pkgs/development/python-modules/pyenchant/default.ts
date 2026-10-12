@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-glKIJGtd68lDb5GWdlCXTvDVY2RYUCYZ4yLEdvEoOJE=",
@@ -41,13 +41,13 @@ substituteInPlace enchant/_enchant.py                  \\
       })());
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for the Enchant spellchecker",
         homepage: "https://github.com/pyenchant/pyenchant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

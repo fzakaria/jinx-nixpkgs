@@ -25,10 +25,10 @@ export default nix.lambda((args) => (() => {
     const buildPackages = nix.arg($_1, "buildPackages");
     const updateAutotoolsGnuConfigScriptsHook = nix.arg($_1, "updateAutotoolsGnuConfigScriptsHook");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "isl",
         version: version,
-        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, urls: urls, sha256: sha256 })))),
+        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, urls: urls, sha256: sha256 })))),
         patches: patches,
         strictDeps: true,
         depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "0.23")), nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isPE")), "LDFLAGS=-no-undefined")),
         __structuredAttrs: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://libisl.sourceforge.io/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
           description: "Library for manipulating sets and relations of integer points bounded by linear constraints",

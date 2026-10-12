@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const isPy3k = nix.arg($, "isPy3k");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "web-cache",
       version: "1.1.0",
       pyproject: true,
       __structuredAttrs: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "web_cache",
           hash: "sha256-1aEKNMh77/x5S44d7He/a0GYhrnMYLmxDHBoEIcODrU=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["web_cache"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Python key-value storage backed up by sqlite3 database",
         homepage: "https://github.com/desbma/web_cache",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

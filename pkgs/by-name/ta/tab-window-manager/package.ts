@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tab-window-manager",
       version: "1.0.13.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xorg/individual/app/twm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pSU0dVqotJLIhOUvqYi6yEq01UZBlUZ5uarwjjI98sU=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, bison, flex]),
       buildInputs: nix.thunk(() => [xorgproto, libice, libsm, libx11, libxext, libxmu, libxrandr, libxt]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname twm \\
@@ -48,7 +48,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Default Window Manager for the X Window System",
         longDescription: "The Tab Window Manager (twm) is a window manager for the X Window System.\nIt provides titlebars, shaped windows, several forms of icon management, user-defined macro\nfunctions, click-to-type and pointer-driven keyboard focus, and user-specified key and pointer\nbutton bindings.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/twm",

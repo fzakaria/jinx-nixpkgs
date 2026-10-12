@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "weblate-schemas",
       version: "2026.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WeblateOrg",
           repo: "weblate_schemas",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub, fedora_messaging], nix.sel(jsonschema, "optional-dependencies", "format"))),
       pythonImportsCheck: nix.thunk(() => ["weblate_schemas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Schemas used by Weblate",
         homepage: "https://github.com/WeblateOrg/weblate_schemas",
         changelog: nix.thunk(() => nix.str`https://github.com/WeblateOrg/weblate_schemas/blob/${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

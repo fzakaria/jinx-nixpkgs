@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const patchNodeEngine = "substituteInPlace package.json \\\n  --replace-fail '\"node\": \"24.15.0\"' '\"node\": \">=24.15.0\"'\nsubstituteInPlace pnpm-workspace.yaml \\\n  --replace-fail 'engineStrict: true' 'engineStrict: false'\n";
   const ps = nix.thunk(() => nix.sel(python3, "pkgs"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tenstorrent",
       repo: "ttnn-visualizer",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-9ohL+xjiu56gasor8+eKsJPWhoDVD1zxFw60QYbWsHQ=",
     }))));
   const frontendSource = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ttnn-visualizer-frontend-source",
       version: version,
       src: src,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs_24, pnpm_11, pnpmConfigHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CI: "true",
         npm_config_yes: "true",
         pnpm_config_confirm_modules_purge: "false",
@@ -72,7 +72,7 @@ PY
       installPhase: "runHook preInstall\nmkdir -p \"$out\"\ncp -r . \"$out/\"\nrunHook postInstall\n",
     })));
   const ttnnVisualizer = nix.thunk(() => nix.app(nix.sel(ps, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ttnn-visualizer",
       version: version,
       pyproject: true,
@@ -127,11 +127,11 @@ PY
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pythonEnv]))}:$PATH"
 exec ${pythonEnv}/bin/python -m ttnn_visualizer.app "$@"
 `)), "overrideAttrs"), (_) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool for visualizing and analyzing TT-NN model execution",
         homepage: "https://github.com/tenstorrent/ttnn-visualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

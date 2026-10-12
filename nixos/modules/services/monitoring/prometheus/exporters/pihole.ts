@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const mkRemovedOptionModule = nix.thunk(() => nix.attr(lib, "mkRemovedOptionModule"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["interval"]), "This option has been removed.")),
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         options: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           warnings: nix.thunk(() => nix.sel(options, "warnings")),
           assertions: nix.thunk(() => nix.sel(options, "assertions")),
         })),
@@ -42,53 +42,53 @@ export default nix.lambda((args) => (() => {
     ]),
     port: 9617n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       apiToken: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           example: "580a770cb40511eb85290242ac130003580a770cb40511eb85290242ac130003",
           description: "Pi-Hole API token which can be used instead of a password\n",
         })))),
       password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "",
           example: "password",
           description: "The password to login into Pi-Hole. An api token can be used instead.\n",
         })))),
       piholeHostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "pihole",
           example: "127.0.0.1",
           description: "Hostname or address where to find the Pi-Hole webinterface\n",
         })))),
       piholePort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.sel(types, "port")),
           default: 80n,
           example: 443n,
           description: "The port Pi-Hole webinterface is reachable on\n",
         })))),
       protocol: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["http", "https"]))),
           default: "http",
           example: "https",
           description: "The protocol which is used to connect to Pi-Hole\n",
         })))),
       timeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "5s",
           description: "Controls the timeout to connect to a Pi-Hole instance\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-pihole-exporter")}/bin/pihole-exporter \\
   ${nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "apiToken"), "")), nix.thunk(() => nix.str`-pihole_api_token ${nix.sel(cfg, "apiToken")}`))} \\
   -pihole_hostname ${nix.sel(cfg, "piholeHostname")} \\

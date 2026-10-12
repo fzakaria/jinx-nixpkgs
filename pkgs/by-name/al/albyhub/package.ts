@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const barkFfiGo = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bark-ffi-go"), nix.thunk(() => ({}))));
   const ldkNode = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ldk-node"), nix.thunk(() => ({}))));
-  const ldkNodeGo = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ldk-node-go"), nix.thunk(() => ({ __proto__: pos$1, ldkNode: ldkNode }))));
+  const ldkNodeGo = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ldk-node-go"), nix.thunk(() => ({ [nix.POS]: pos$1, ldkNode: ldkNode }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "albyhub",
       version: "1.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "getAlby",
           repo: "hub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ go mod edit -replace gitlab.com/ark-bitcoin/bark-ffi-bindings/golang=./bark-ffi-
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
       ]),
       frontendYarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/frontend/yarn.lock")),
           hash: "sha256-VI4FRe1kzVMqqcZ68nZmZqmXW7FOQMbJ0z8QqZoLYEA=",
         })))),
@@ -83,9 +83,9 @@ popd
         ]))} $out/bin/albyhub
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           startup: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-startup-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME="$TMPDIR"
 export AUTO_LINK_ALBY_ACCOUNT=false
 export WORK_DIR="$TMPDIR/albyhub"
@@ -122,7 +122,7 @@ exit 1
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Control lightning wallets over nostr",
         homepage: "https://github.com/getAlby/hub",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

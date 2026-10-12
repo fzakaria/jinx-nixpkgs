@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const core = "uzem";
       const version = "0-unstable-2026-08-23";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "libretro-uzem",
           rev: "d991ee94547c8294abc1c4cb73d63116aa58b5bc",
@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "substituteInPlace Makefile.libretro \\\n  --replace-fail 'GIT_VERSION := \" $(shell git rev-parse --short HEAD)\"' 'GIT_VERSION ?='\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Uzebox emulator for Libretro",
         homepage: "https://github.com/libretro/libretro-uzem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, core, version, src, makefile, makeFlags, postPatch, meta };
+      return { [nix.POS]: pos$3, core, version, src, makefile, makeFlags, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=uzem.ts.map

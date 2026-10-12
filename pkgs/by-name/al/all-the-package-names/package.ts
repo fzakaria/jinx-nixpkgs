@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "all-the-package-names";
       const version = "2.0.2578";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nice-registry",
           repo: "all-the-package-names",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-8xzyypPgtfxYxPcVIJYLNL0a6EE7L93eISanWqPFGM4=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "List of all the public package names on npm",
         homepage: "https://github.com/nice-registry/all-the-package-names",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "donovanglover"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, npmDepsHash, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

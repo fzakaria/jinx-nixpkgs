@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lkproof",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://mirror.ctan.org/macros/latex/contrib/lkproof.zip",
           sha256: "1qjkjhpc4rm62qxn18r83zdlwnj1wvnkcpdiqlv7w4bakh0gvjly",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "\n    mkdir -p $out/share/texmf-nix/tex/generic/lkproof\n    cp -prd *.sty $out/share/texmf-nix/tex/generic/lkproof\n  ",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Plus")),
       })),

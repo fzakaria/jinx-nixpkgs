@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, openresolv, systemd])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "update-resolv-conf",
       version: "unstable-2017-06-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alfredopalhares",
           repo: "openvpn-update-resolv-conf",
           rev: "43093c2f970bf84cd374e18ec05ac6d9cae444b8",
@@ -37,7 +37,7 @@ for i in $out/libexec/openvpn/*; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script to update your /etc/resolv.conf with DNS settings that come from the received push dhcp-options",
         homepage: "https://github.com/alfredopalhares/openvpn-update-resolv-conf/",
         maintainers: [],

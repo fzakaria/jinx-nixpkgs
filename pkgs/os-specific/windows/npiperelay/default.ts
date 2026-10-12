@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "npiperelay";
       const version = "0.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jstarks",
           repo: "npiperelay",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = null;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Access Windows named pipes from WSL",
         homepage: "https://github.com/jstarks/npiperelay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shlevy"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "windows")),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

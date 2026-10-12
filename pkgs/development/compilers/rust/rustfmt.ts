@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const asNightly = nix.argOr($, "asNightly", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.add("rustfmt", nix.app(nix.sel(lib, "optionalString"), asNightly, "-nightly"))),
       version: nix.thunk(() => nix.attr(rustc, "version")),
       src: nix.thunk(() => nix.attr(rustc, "src")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 install_name_tool -add_rpath "${nix.sel(rustc, "unwrapped")}/lib" "$out/bin/git-rustfmt"
 `))),
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         RUSTC_BOOTSTRAP: 1n,
         CFG_RELEASE: nix.thunk(() => nix.sel(rustc, "version")),
         CFG_RELEASE_CHANNEL: nix.thunk(() => (nix.asBool(asNightly) ? "nightly" : "stable")),
@@ -39,7 +39,7 @@ install_name_tool -add_rpath "${nix.sel(rustc, "unwrapped")}/lib" "$out/bin/git-
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cargo]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for formatting Rust code according to style guidelines",
         homepage: "https://github.com/rust-lang/rustfmt",
         license: nix.thunk(() => (() => {

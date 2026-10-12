@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bundlewrap",
       version: "5.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bundlewrap",
           repo: "bundlewrap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bw`),
       enabledTestPaths: nix.thunk(() => ["tests/unit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bundlewrap.org/",
         description: "Easy, Concise and Decentralized Config management with Python",
         changelog: nix.thunk(() => nix.str`https://github.com/bundlewrap/bundlewrap/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

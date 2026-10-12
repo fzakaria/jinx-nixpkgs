@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vtherm-api",
       version: "0.5.0",
       pyproject: true,
       disabled: nix.thunk(() => !nix.eq(nix.sel(python, "version"), nix.sel(home_assistant, "python3Packages", "python", "version"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jmcollin78",
           repo: "vtherm_api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [home_assistant, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["vtherm_api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jmcollin78/vtherm_api/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "API for Versatile Thermostat Home Assistant integrations",
         homepage: "https://github.com/jmcollin78/vtherm_api",

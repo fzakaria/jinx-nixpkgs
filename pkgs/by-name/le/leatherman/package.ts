@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "leatherman",
       version: "1.12.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "sha256-rfh4JLnLekx9UhyLH6eDJUeItPROmY/Lc6mcWpbGb3s=",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "leatherman",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cmakeFlags: nix.thunk(() => ["-DLEATHERMAN_ENABLE_TESTING=OFF"]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.2.2)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\n\n# boost 1.89 removed the boost_system stub library\nsubstituteInPlace \\\n  curl/CMakeLists.txt \\\n  dynamic_library/CMakeLists.txt \\\n  execution/CMakeLists.txt \\\n  file_util/CMakeLists.txt \\\n  locale/CMakeLists.txt \\\n  logging/CMakeLists.txt \\\n  ruby/CMakeLists.txt \\\n  util/CMakeLists.txt \\\n  windows/CMakeLists.txt \\\n  --replace-fail ' system' \"\"\nsubstituteInPlace tests/CMakeLists.txt --replace-fail 'system ' \"\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost, curl, ruby]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/puppetlabs/leatherman/",
         description: "Collection of C++ and CMake utility libraries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

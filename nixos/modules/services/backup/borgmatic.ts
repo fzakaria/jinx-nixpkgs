@@ -52,34 +52,34 @@ export default nix.lambda((args) => (() => {
   const mysql = nix.thunk(() => nix.sel(config, "services", "mysql", "package"));
   const requireSudo = (s) => (nix.asBool(nix.has(s, "postgresql_databases")) && nix.asBool(nix.app(nix.sel(lib, "any"), (d) => (nix.asBool((nix.asBool(nix.has(d, "username")) && nix.asBool(!nix.asBool(nix.has(d, "password"))))) && nix.asBool(!nix.asBool(nix.has(d, "pg_dump_command")))), nix.thunk(() => nix.sel(s, "postgresql_databases")))));
   const addRequiredBinaries = (s) => nix.update(s, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(s, "postgresql_databases")) && nix.asBool(!nix.eq(nix.sel(s, "postgresql_databases"), [])))), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       postgresql_databases: nix.thunk(() => nix.builtins.map((d) => (() => {
           const as_user = nix.thunk(() => (nix.asBool((nix.asBool(nix.has(d, "username")) && nix.asBool(!nix.asBool(nix.has(d, "password"))))) ? nix.str`${nix.sel(pkgs, "sudo")}/bin/sudo -u ${nix.sel(d, "username")} ` : ""));
           return nix.update({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pg_dump_command: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(d, "name"), "all")) && nix.asBool((nix.asBool(!nix.asBool(nix.has(d, "format"))) || nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(d, "format")))))))) ? nix.str`${as_user}${postgresql}/bin/pg_dumpall` : nix.str`${as_user}${postgresql}/bin/pg_dump`)),
             pg_restore_command: nix.thunk(() => nix.str`${as_user}${postgresql}/bin/pg_restore`),
             psql_command: nix.thunk(() => nix.str`${as_user}${postgresql}/bin/psql`),
           }, d);
         })(), nix.thunk(() => nix.sel(s, "postgresql_databases")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(s, "mariadb_databases")) && nix.asBool(!nix.eq(nix.sel(s, "mariadb_databases"), [])))), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       mariadb_databases: nix.thunk(() => nix.builtins.map((d) => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           mariadb_dump_command: nix.thunk(() => nix.str`${mysql}/bin/mariadb-dump`),
           mariadb_command: nix.thunk(() => nix.str`${mysql}/bin/mariadb`),
         }, d), nix.thunk(() => nix.sel(s, "mariadb_databases")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(s, "mysql_databases")) && nix.asBool(!nix.eq(nix.sel(s, "mysql_databases"), [])))), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       mysql_databases: nix.thunk(() => nix.builtins.map((d) => nix.update({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           mysql_dump_command: nix.thunk(() => nix.str`${mysql}/bin/mysqldump`),
           mysql_command: nix.thunk(() => nix.str`${mysql}/bin/mysql`),
         }, d), nix.thunk(() => nix.sel(s, "mysql_databases")))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(s, "sqlite_databases")) && nix.asBool(!nix.eq(nix.sel(s, "sqlite_databases"), [])))), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       sqlite_databases: nix.thunk(() => nix.builtins.map((d) => nix.update({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           sqlite_command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sqlite")))),
           sqlite_restore_command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sqlite")))),
         }, d), nix.thunk(() => nix.sel(s, "sqlite_databases")))),
@@ -87,16 +87,16 @@ export default nix.lambda((args) => (() => {
   const repository = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         options: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.lookup(w, "str")),
               description: "Path to the repository\n",
             })))),
           label: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.lookup(w, "str")),
               description: "Label to the repository\n",
             })))),
@@ -106,29 +106,29 @@ export default nix.lambda((args) => (() => {
   const cfgType = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
         options: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           source_directories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
               default: [],
               description: "List of source directories and files to backup. Globs and tildes are\nexpanded. Do not backslash spaces in path names.\n",
               example: nix.thunk(() => ["/home", "/etc", "/var/log/syslog*", "/home/user/path with spaces"]),
             })))),
           repositories: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), repository)),
               default: [],
               description: "A required list of local or remote repositories with paths and\noptional labels (which can be used with the --repository flag to\nselect a repository). Tildes are expanded. Multiple repositories are\nbacked up to in sequence. Borg placeholders can be used. See the\noutput of \"borg help placeholders\" for details. See ssh_command for\nSSH options like identity file or port. If systemd service is used,\nthen add local repository paths in the systemd service file to the\nReadWritePaths list.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   path: "ssh://user@backupserver/./sourcehostname.borg",
                   label: "backupserver",
                 })),
-                nix.thunk(() => ({ __proto__: pos$15, path: "/mnt/backup", label: "local" })),
+                nix.thunk(() => ({ [nix.POS]: pos$15, path: "/mnt/backup", label: "local" })),
               ]),
             })))),
         })),
@@ -137,71 +137,71 @@ export default nix.lambda((args) => (() => {
   const cfgfile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.yaml", nix.thunk(() => nix.app(addRequiredBinaries, nix.thunk(() => nix.sel(cfg, "settings"))))));
   const anycfgRequiresSudo = nix.thunk(() => (nix.asBool(nix.app(requireSudo, nix.thunk(() => nix.sel(cfg, "settings")))) || nix.asBool(nix.app(nix.sel(lib, "any"), requireSudo, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "configurations"))))))));
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     options: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         borgmatic: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "borgmatic")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "See <https://torsion.org/borgmatic/docs/reference/configuration/>\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), cfgType)),
             })))),
           configurations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Set of borgmatic configurations, see <https://torsion.org/borgmatic/docs/reference/configuration/>\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), cfgType)),
             })))),
-          enableConfigCheck: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking all configurations during build time"), { __proto__: pos$21, default: true })),
+          enableConfigCheck: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking all configurations during build time"), { [nix.POS]: pos$21, default: true })),
         })),
       })),
     })),
     config: nix.thunk(() => (() => {
       const configFiles = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), null)), nix.thunk(() => ({
-          __proto__: pos$26,
-          "borgmatic/config.yaml": nix.thunk(() => ({ __proto__: pos$25, source: cfgfile })),
+          [nix.POS]: pos$26,
+          "borgmatic/config.yaml": nix.thunk(() => ({ [nix.POS]: pos$25, source: cfgfile })),
         }))), nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`borgmatic.d/${name}.yaml`), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), nix.thunk(() => nix.str`${name}.yaml`), nix.thunk(() => nix.app(addRequiredBinaries, value)))),
           }))), nix.thunk(() => nix.sel(cfg, "configurations")))));
       const borgmaticCheck = (name) => (f) => nix.app(nix.sel(pkgs, "runCommandCC"), nix.thunk(() => nix.str`${name} validation`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs, "borgmatic")}/bin/borgmatic -c ${nix.sel(f, "source")} config validate
 touch $out
 `));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           warnings: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings"), null)) && nix.asBool(nix.has(nix.sel(cfg, "settings"), "location")))), "`services.borgmatic.settings.location` is deprecated, please move your options out of sections to the global scope"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "catAttrs"), "location", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "configurations"))))), [])), "`services.borgmatic.configurations.<name>.location` is deprecated, please move your options out of sections to the global scope")))),
           environment: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "borgmatic"))]),
             etc: configFiles,
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "borgmatic"))]),
             services: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               borgmatic: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
                 serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), anycfgRequiresSudo, nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     NoNewPrivileges: false,
                     CapabilityBoundingSet: "CAP_DAC_READ_SEARCH CAP_NET_RAW CAP_SETUID CAP_SETGID",
                   })))),
               })),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$33,
-              borgmatic: nix.thunk(() => ({ __proto__: pos$32, wantedBy: nix.thunk(() => ["timers.target"]) })),
+              [nix.POS]: pos$33,
+              borgmatic: nix.thunk(() => ({ [nix.POS]: pos$32, wantedBy: nix.thunk(() => ["timers.target"]) })),
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             checks: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableConfigCheck")), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), borgmaticCheck, configFiles)))),
           })),
         })));

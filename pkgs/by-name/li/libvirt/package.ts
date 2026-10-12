@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libvirt";
       const version = "12.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libvirt",
           repo: "libvirt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-meson-patch-in-an-install-prefix-for-building-on-nix.patch"),
       ], nix.app(nix.sel(lib, "optionals"), enableZfs, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-substitute-zfs-and-zpool-commands.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               zfs: nix.thunk(() => nix.str`${zfs}/bin/zfs`),
               zpool: nix.thunk(() => nix.str`${zfs}/bin/zpool`),
             })))),
@@ -146,7 +146,7 @@ substituteInPlace src/libxl/libxl_capabilities.h \\
  --replace-fail /usr/lib/xen ${xen}/libexec/xen
 `))), nix.app(nix.sel(lib, "optionalString"), isLinux, nix.thunk(() => (() => {
           const script = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "virt-secret-init-encryption-sh",
               runtimeInputs: nix.thunk(() => [coreutils, systemd]),
               text: nix.thunk(() => nix.str`exec ${runtimeShell} "$@"`),
@@ -200,7 +200,7 @@ substituteInPlace src/libxl/libxl_capabilities.h \\
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => [gmp, libiconv])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableCeph, nix.thunk(() => [ceph])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableGlusterfs, nix.thunk(() => [glusterfs])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableIscsi, nix.thunk(() => [libiscsi, openiscsi])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableXen, nix.thunk(() => [xen])), nix.app(nix.sel(lib, "optionals"), enableZfs, nix.thunk(() => [zfs]))))))))));
       const preConfigure = nix.thunk(() => (() => {
         const overrides = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           QEMU_BRIDGE_HELPER: "/run/wrappers/bin/qemu-bridge-helper",
           QEMU_PR_HELPER: "/run/libvirt/nix-helpers/qemu-pr-helper",
         }));
@@ -325,7 +325,7 @@ wrapProgram $out/sbin/libvirtd \\
   --prefix PATH : /run/libvirt/nix-emulators:${binPath}
 `))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-libvirt", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 
@@ -337,10 +337,10 @@ update-source-version ${pname} "$libvirtVersion"
 update-source-version python3Packages.libvirt-python "$libvirtVersion"
 update-source-version perlPackages.SysVirt "$sysvirtVersion" --file="pkgs/top-level/perl-packages.nix"
 `))),
-        tests: nix.thunk(() => ({ __proto__: pos$5, libvirtd: nix.thunk(() => nix.sel(nixosTests, "libvirtd")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, libvirtd: nix.thunk(() => nix.sel(nixosTests, "libvirtd")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Toolkit to interact with the virtualization capabilities of recent versions of Linux and other OSes",
         homepage: "https://libvirt.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libvirt/libvirt/-/raw/v${version}/NEWS.rst`),
@@ -356,7 +356,7 @@ update-source-version perlPackages.SysVirt "$sysvirtVersion" --file="pkgs/top-le
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gelasio",
       version: "0-unstable-2025-06-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SorkinType",
           repo: "Gelasio",
           rev: "4d7a1d2c662582095982a3851e50d7f1e034255b",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\ncp fonts/ttf/*.ttf $out/share/fonts/truetype/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Font which is metric-compatible with Microsoft's Georgia",
         longDescription: "Gelasio is an original typeface which is metrics compatible with Microsoft's\nGeorgia in its Regular, Bold, Italic and Bold Italic weights. Interpolated\nMedium, medium Italic, SemiBold and SemiBold Italic have now been added as well.\n",
         homepage: "https://github.com/SorkinType/Gelasio",

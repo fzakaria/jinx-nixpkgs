@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "3.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "quick-lint",
       repo: "quick-lint-js",
       tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.10")),
   ]);
   const quick_lint_js_build_tools = nix.thunk(() => nix.app(nix.sel(buildPackages, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "quick-lint-js-build-tools",
       version: version,
       src: src,
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "quick-lint-js",
       version: version,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/quick-lint/quick-lint-js/commit/a2798b35021f34bc798e2b70ec703075dd5eb7f6.patch",
             hash: "sha256-jEzFFntk94HQPNYLqU1XlwCnhaqt95Kk3TXmfqBGxBc=",
           })))),
@@ -61,9 +61,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, "build-tools": quick_lint_js_build_tools })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "build-tools": quick_lint_js_build_tools })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Find bugs in JavaScript programs",
         mainProgram: "quick-lint-js",
         homepage: "https://quick-lint-js.com",

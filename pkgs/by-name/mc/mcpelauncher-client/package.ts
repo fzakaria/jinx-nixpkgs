@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const xdg_utils = nix.arg($, "xdg-utils");
   const sdl3 = nix.arg($, "sdl3");
-  const curlWithWebsockets = nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$1, websocketSupport: true }))));
+  const curlWithWebsockets = nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, websocketSupport: true }))));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mcpelauncher-client",
       version: "1.7.6-qt6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "minecraft-linux",
           repo: "mcpelauncher-manifest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +82,7 @@ substituteInPlace file-picker/src/file_picker_zenity.cpp \\
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "FETCHCONTENT_FULLY_DISCONNECTED", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_NLOHMANN_JSON_EXT", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
                 hash: "sha256-h8czZ4f5vZqvHkDVQawrQdUeQnWxewu4OONisqlrmmM=",
                 stripRoot: false,
@@ -97,7 +97,7 @@ substituteInPlace file-picker/src/file_picker_zenity.cpp \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_QT_ERROR_UI", withQtErrorWindow)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Unofficial Minecraft Bedrock Edition launcher with CLI",
         homepage: "https://minecraft-linux.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

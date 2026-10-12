@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libharu = nix.arg($, "libharu");
   const asdcplib = nix.arg($, "asdcplib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdcp",
       version: "1.10.63",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.carlh.net/git/libdcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-nT9wSOY/OPNRxpjnp+wblx7Jbx/S0uP7lL68zBK4NFk=",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [asdcplib]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DCP handling library",
         homepage: "https://git.carlh.net/cgit/libdcp",
         downloadPage: "https://git.carlh.net/cgit/libdcp",

@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const werkzeug = nix.arg($, "werkzeug");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cross-web",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usecross",
           repo: "cross-web",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         integrations: nix.thunk(() => [
           fastapi,
           httpx,
@@ -72,9 +72,9 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::starlette.exceptions.StarletteDeprecationWarning"]),
       pythonImportsCheck: nix.thunk(() => ["cross_web"]),
       preCheck: "export PYTHONPATH=\"$PYTHONPATH:$PWD/tests\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$3, DJANGO_SETTINGS_MODULE: "testing._django_settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, DJANGO_SETTINGS_MODULE: "testing._django_settings" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Universal web framework adapter for Python",
         homepage: "https://github.com/usecross/cross-web",
         changelog: nix.thunk(() => nix.str`https://github.com/usecross/cross-web/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

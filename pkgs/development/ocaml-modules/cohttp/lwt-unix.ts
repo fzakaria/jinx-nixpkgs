@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const ounit = nix.arg($, "ounit");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cohttp-lwt-unix",
       version: nix.thunk(() => nix.attr(cohttp_lwt, "version")),
       src: nix.thunk(() => nix.attr(cohttp_lwt, "src")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [ounit, cacert]),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp_lwt, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CoHTTP implementation for Unix and Windows using Lwt",
       })),
     })));

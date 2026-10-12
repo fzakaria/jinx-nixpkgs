@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "benchmark",
       version: "1.7",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Chris00/ocaml-benchmark/releases/download/v${nix.sel(finalAttrs, "version")}/benchmark-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Aij7vJzamNWQfjLeGgENlIp6Il8+Wc9hsahr4eDGs68=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Chris00/ocaml-benchmark",
         description: "Benchmark running times of code",
         longDescription: "This module provides a set of tools to measure the running times of\nyour functions and to easily compare the results.  A statistical test\nis used to determine whether the results truly differ.\n",

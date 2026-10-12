@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jump",
       version: "0.69.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gsamokovarov",
           repo: "jump",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       postInstall: nix.thunk(() => nix.add("installManPage man/j.1 man/jump.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd jump \\\n   --bash <($out/bin/jump shell bash) \\\n   --fish <($out/bin/jump shell fish) \\\n   --zsh <($out/bin/jump shell zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Navigate directories faster by learning your habits",
         longDescription: "Jump integrates with the shell and learns about your\nnavigational habits by keeping track of the directories you visit. It\nstrives to give you the best directory for the shortest search term.\n",
         homepage: "https://github.com/gsamokovarov/jump",

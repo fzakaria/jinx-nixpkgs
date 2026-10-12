@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trousers",
       version: "0.3.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/trousers/trousers/${nix.sel(finalAttrs, "version")}/trousers-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0zy7r9cnr2gvwr2fb1q4fc5xnvx405ymcbrdv7qsqwl3a4zfjnqy",
         })))),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./allow-non-tss-config-file-owner.patch")]),
       configureFlags: nix.thunk(() => ["--disable-usercheck"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DALLOW_NON_TSS_CONFIG_FILE"]))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Trusted computing software stack",
         mainProgram: "tcsd",
         homepage: "https://trousers.sourceforge.net/",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qc71_laptop";
       const version = "0-unstable-2025-01-07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pobrn",
           repo: "qc71_laptop",
           rev: "ebab4af0b2c5b162bb9f27c80cd284c36b8fb7a9",
@@ -37,11 +37,11 @@ install -D qc71_laptop.ko -t $out/lib/modules/${nix.sel(kernel, "modDirVersion")
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Linux driver for QC71 laptop",
         homepage: "https://github.com/pobrn/qc71_laptop/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -55,7 +55,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

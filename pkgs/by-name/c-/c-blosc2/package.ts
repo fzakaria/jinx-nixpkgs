@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zlib_ng = nix.arg($, "zlib-ng");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "c-blosc2",
       version: "2.23.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Blosc",
           repo: "c-blosc2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,19 +48,19 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(static$)),
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               moduleNames: nix.thunk(() => ["Blosc2"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Fast, compressed, persistent binary data store library for C",
         homepage: "https://www.blosc.org",
         changelog: nix.thunk(() => nix.str`https://github.com/Blosc/c-blosc2/releases/tag/v${nix.sel(finalAttrs, "version")}`),

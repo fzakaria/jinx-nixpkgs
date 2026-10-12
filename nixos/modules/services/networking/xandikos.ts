@@ -37,56 +37,56 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xandikos"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         xandikos: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Xandikos CalDAV and CardDAV server")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "xandikos", nix.thunk(() => ({})))),
           address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "localhost",
               description: "The IP address on which Xandikos will listen.\nBy default listens on localhost.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 8080n,
               description: "The port of the Xandikos web application",
             })))),
           routePrefix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/",
               description: "Path to Xandikos.\nUseful when Xandikos is behind a reverse proxy.\n",
             })))),
           extraOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"--autocreate\"\n  \"--defaults\"\n  \"--current-user-principal user\"\n  \"--dump-dav-xml\"\n]\n")),
               description: "Extra command line arguments to pass to xandikos.\n",
             })))),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               description: "Configuration for nginx reverse proxy.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Configure the nginx reverse proxy settings.\n",
                       })))),
                     hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         description: "The hostname use to setup the virtualhost configuration\n",
                       })))),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "_0x4A6F"))];
@@ -105,18 +105,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             systemd: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               services: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 xandikos: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   description: "A Simple Calendar and Contact Server",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     User: "xandikos",
                     Group: "xandikos",
                     DynamicUser: "yes",
@@ -150,19 +150,19 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               services: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "nginx", "hostName")}`, nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       locations: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "address")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))}/`),
                         })),
                       })),

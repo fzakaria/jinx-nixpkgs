@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stratagus";
       const version = "3.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wargus",
           repo: "stratagus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-Wno-error=format-overflow"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Strategy game engine",
         homepage: "https://wargus.github.io/stratagus.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

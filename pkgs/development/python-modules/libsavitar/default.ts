@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const sip4 = nix.arg($, "sip4");
   const distutils = nix.arg($, "distutils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libsavitar",
       version: "4.12.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ultimaker",
           repo: "libSavitar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ substituteInPlace pugixml/CMakeLists.txt \\
       nativeBuildInputs: nix.thunk(() => [cmake, sip4]),
       propagatedBuildInputs: nix.thunk(() => [sip4, distutils]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ implementation of 3mf loading with SIP python bindings",
         homepage: "https://github.com/Ultimaker/libSavitar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

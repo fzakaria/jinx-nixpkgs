@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const geos = nix.arg($, "geos");
   const pname = nix.thunk(() => nix.attr(geos, "pname"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-tests`), nix.thunk(() => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`${geos}/bin/geosop \\
   --explode \\
   --format wkt \\

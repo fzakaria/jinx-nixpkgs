@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const python = nix.arg($, "python");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "python-recursive-pth-loader",
       version: "1.0",
       dontUnpack: true,
@@ -24,7 +24,7 @@ mkdir -p $dst
 cp sitecustomize.* $dst/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Enable recursive processing of pth files anywhere in sys.path",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const domain = "battery_notes";
       const version = "3.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "HA-Battery-Notes",
           tag: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home Assistant integration to provide battery details of devices",
         homepage: "https://github.com/andrew-codechimp/HA-Battery-Notes",
         changelog: nix.thunk(() => nix.str`https://github.com/andrew-codechimp/HA-Battery-Notes/releases/tag/${nix.sel(src, "tag")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, doCheck, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

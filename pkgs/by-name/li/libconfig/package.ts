@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
     return !nix.asBool((nix.asBool(nix.lookup(w, "isWindows")) && nix.asBool(nix.lookup(w, "isStatic"))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libconfig",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hyperrealm.github.io/libconfig/dist/libconfig-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-5Z/7kC3Vcx1dTk+4HTuYlpdhX+q3Lf18MGGBZ7kaQu4=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), "--disable-examples"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck"))), "--disable-tests"))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck"))), nix.thunk(() => ["-DBUILD_TESTS:BOOL=OFF"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://hyperrealm.github.io/libconfig/",
         changelog: nix.thunk(() => nix.str`https://github.com/hyperrealm/libconfig/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "C/C++ library for processing configuration files",

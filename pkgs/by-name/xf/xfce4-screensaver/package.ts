@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pp) => [nix.thunk(() => nix.sel(pp, "pygobject3"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-screensaver",
       version: "4.20.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfce4-screensaver",
@@ -85,11 +85,11 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${xfdesktop}/share")
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "xfce4-screensaver-" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-screensaver-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.xfce.org/apps/xfce4-screensaver",
         description: "Screensaver for Xfce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

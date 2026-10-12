@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const mesa = nix.arg($, "mesa");
   const xinput = nix.arg($, "xinput");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fox",
       version: "1.6.57",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.fox-toolkit.org/pub/fox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "08w98m6wjadraw1pi13igzagly4b2nfa57kdqdnkjfhgkvg1bvv5",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         branch: "1.6",
         description: "C++ based class library for building Graphical User Interfaces",

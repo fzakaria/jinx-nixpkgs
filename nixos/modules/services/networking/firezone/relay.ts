@@ -44,73 +44,73 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "firezone", "relay"));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         firezone: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           relay: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the firezone relay server")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "firezone-relay", nix.thunk(() => ({})))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 example: "My relay",
                 description: "The name of this gateway as shown in firezone",
               })))),
             publicIpv4: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "The public ipv4 address of this relay",
               })))),
             publicIpv6: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "The public ipv6 address of this relay",
               })))),
             openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Opens up the main STUN port and the TURN allocation range.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 3478n,
                 description: "The port to listen on for STUN messages",
               })))),
             lowestPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 49152n,
                 description: "The lowest port to use in TURN allocation",
               })))),
             highestPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 65535n,
                 description: "The highest port to use in TURN allocation",
               })))),
             apiUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^wss://.+/$")),
                 example: "wss://firezone.example.com/api/",
                 description: "The URL of your firezone server's API. This should be the same\nas your server's setting for {option}`services.firezone.server.settings.api.externalUrl`,\nbut with `wss://` instead of `https://`.\n",
               })))),
             tokenFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 example: "/run/secrets/firezone-relay-token",
                 description: "A file containing the firezone relay token. Do not use a nix-store path here\nas it will make the token publicly readable!\n\nThis file will be passed via systemd credentials, it should only be accessible\nby the root user.\n",
               })))),
             logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "info",
                 description: "The log level for the firezone application. See\n[RUST_LOG](https://docs.rs/env_logger/latest/env_logger/#enabling-logging)\nfor the format.\n",
@@ -121,22 +121,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "publicIpv4"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "publicIpv6"), null)))),
             message: "At least one of `services.firezone.relay.publicIpv4` and `services.firezone.relay.publicIpv6` must be set",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             allowedUDPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
             allowedUDPPortRanges: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   from: nix.thunk(() => nix.sel(cfg, "lowestPort")),
                   to: nix.thunk(() => nix.sel(cfg, "highestPort")),
                 })),
@@ -144,11 +144,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "firezone-relay": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "relay service for the Firezone zero-trust access platform",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -165,7 +165,7 @@ export FIREZONE_TOKEN=$(< "$CREDENTIALS_DIRECTORY/firezone-token")
 exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               environment: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 FIREZONE_API_URL: nix.thunk(() => nix.sel(cfg, "apiUrl")),
                 FIREZONE_NAME: nix.thunk(() => nix.sel(cfg, "name")),
                 FIREZONE_TELEMETRY: nix.thunk(() => nix.app(boolToString, nix.thunk(() => nix.sel(cfg, "enableTelemetry")))),
@@ -178,7 +178,7 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
                 LOG_FORMAT: "human",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 Type: "exec",
                 DynamicUser: true,
                 User: "firezone-relay",
@@ -216,7 +216,7 @@ exec ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

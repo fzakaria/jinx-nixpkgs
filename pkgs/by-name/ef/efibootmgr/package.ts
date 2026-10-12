@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const popt = nix.arg($, "popt");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "efibootmgr",
       version: "18",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhboot",
           repo: "efibootmgr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "efibootmgr_fix-editing-nonfinal-entry.patch",
             url: "https://github.com/rhboot/efibootmgr/commit/3eac27c5fccf93d2d6e634d6fe2a76d06708ec6e.diff?full_index=1",
             hash: "sha256-zXkmfW+BYv8jc/dibu0LEni06KyydVjfW/Lug0i+jUw=",
@@ -50,18 +50,18 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Linux user-space application to modify the Intel Extensible Firmware Interface (EFI) Boot Manager",
         homepage: "https://github.com/rhboot/efibootmgr",
         changelog: nix.thunk(() => nix.str`https://github.com/rhboot/efibootmgr/releases/tag/${nix.sel(finalAttrs, "version")}`),

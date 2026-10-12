@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-zaqarclient",
           tag: version,
           hash: "sha256-bxB6f3HgTPeMkMYg+yEzkgHBkXPb6UMuKBo9XC74O/U=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr, setuptools]);
       const nativeBuildInputs = nix.thunk(() => [openstackdocstheme, sphinxHook]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
@@ -57,14 +57,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["zaqarclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/openstack/python-zaqarclient",
         description: "Client library for OpenStack Zaqar API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

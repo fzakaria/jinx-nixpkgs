@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mup",
       version: "7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             "http://www.arkkra.com/ftp/pub/unix/mup72src.tar.gz",
             "https://web.archive.org/web/20250907143445/http://www.arkkra.com/ftp/pub/unix/mup72src.tar.gz",
@@ -39,10 +39,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fltk, libxinerama, libxpm, libjpeg]),
       patches: nix.thunk(() => [nix.path(here, "./ghostscript-permit-file-write.patch")]),
       postPatch: "for f in Makefile.am doc/Makefile.am doc/htmldocs/Makefile.am src/mupmate/Preferences.C; do\n  substituteInPlace $f --replace-fail doc/packages doc\ndone\nsubstituteInPlace src/mupprnt/mupprnt \\\n  --replace-fail 'mup ' $out/bin/mup' '\nsubstituteInPlace src/mupdisp/genfile.c \\\n  --replace-fail '\"mup\"' '\"'$out/bin/mup'\"'\nsubstituteInPlace src/mupmate/Preferences.C \\\n  --replace-fail '\"mup\"' '\"'$out/bin/mup'\"' \\\n  --replace-fail '\"gv\"' '\"xdg-open\"' \\\n  --replace-fail /usr/share/doc $out/share/doc\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.arkkra.com/",
         description: "Music typesetting program (ASCII to PostScript and MIDI)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

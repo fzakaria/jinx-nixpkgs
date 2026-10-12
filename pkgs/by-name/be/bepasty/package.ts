@@ -19,28 +19,28 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   const bepastyPython = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       self: bepastyPython,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "xstatic-bootstrap": nix.thunk(() => nix.app(nix.sel(super$, "xstatic-bootstrap", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "4.5.3.1";
             const src = nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 pname: "XStatic-Bootstrap",
                 version: version,
                 hash: "sha256-z2fSBUN7MlCKiLaafnxbviylqK5xCXORpqb1EOv9KCA=",
               }))));
-            return { __proto__: pos$2, version, src };
+            return { [nix.POS]: pos$2, version, src };
           })())),
         "xstatic-font-awesome": nix.thunk(() => nix.app(nix.sel(super$, "xstatic-font-awesome", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "4.7.0.0";
             const src = nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 version: version,
                 hash: "sha256-4B+0gMqqfHlj3LMyikcA5jG+9gcNsOi2hYFtIg5oX2w=",
               }))));
-            return { __proto__: pos$4, version, src };
+            return { [nix.POS]: pos$4, version, src };
           })())),
       }),
     }))));
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "setuptools-scm"))];
       })());
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: pname,
           version: version,
           hash: "sha256-teazPj+IrgbVeUkWqgWhpIldgfCTbZYJAqn5Q5blcm8=",
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         "src/bepasty/tests/test_website.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/bepasty/bepasty-server",
         description: "Binary pastebin server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

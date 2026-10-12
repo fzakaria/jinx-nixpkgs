@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shards";
       const version = "0.20.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crystal-lang",
           repo: "shards",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const format = "crystal";
       const shardsFile = null;
       const crystalBinaries = nix.thunk(() => ({
-        __proto__: pos$3,
-        shards: nix.thunk(() => ({ __proto__: pos$2, src: "./src/shards.cr" })),
+        [nix.POS]: pos$3,
+        shards: nix.thunk(() => ({ [nix.POS]: pos$2, src: "./src/shards.cr" })),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(crystal, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Dependency manager for the Crystal language",
         mainProgram: "shards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

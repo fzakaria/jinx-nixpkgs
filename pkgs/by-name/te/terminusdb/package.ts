@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
   const tusVersion = "0.0.16";
   const jwt_ioVersion = "1.0.4";
   const tus = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "terminusdb",
       repo: "tus",
       tag: nix.thunk(() => nix.str`v${tusVersion}`),
       hash: "sha256-NQGvDFtGEXhSXIZ7dZ2r13q8hRpYXkA9/NlFKED1ANM=",
     }))));
   const jwt_io = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "terminusdb-labs",
           repo: "jwt_io",
           tag: nix.thunk(() => nix.str`v${jwt_ioVersion}`),
@@ -58,37 +58,37 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/terminusdb-labs/jwt_io/commit/f2c7066fb8a7d4a16c0b5ce8ccb3086270524976.patch?full_index=1",
             hash: "sha256-A/eonL4MhkJ1L0dBoaiITcE0kTWlkFslpPj377WbdnM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/terminusdb-labs/jwt_io/commit/6bd0f2674eefcf80bfd3d1ca465b7af28efdc54e.patch?full_index=1",
             hash: "sha256-EacqYO9ulD6PUxT3gg6PEtQNmwenuKfxdv1a/2IA3wI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://github.com/terminusdb-labs/jwt_io/commit/dbb11e74566e25b7b942c1cbd4742bd485cc6bf5.patch?full_index=1",
             hash: "sha256-BPg28msT3zevNsB4yJeFUai5uW5DgilfESXw32h2gSA=",
           })))),
       ]),
     }))));
   const swi_prologWithDeps = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(swi_prolog, "overrideAttrs"), (finalSwi_prologAttrs) => (previousAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "terminusdb-swi-prolog",
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "nativeBuildInputs"), [pkg_config])),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "buildInputs"), [libjwt])),
     })), "override"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       extraPacks: nix.thunk(() => nix.builtins.map((dep_path) => nix.str`'file://${dep_path}'`, nix.thunk(() => [tus, jwt_io]))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "terminusdb",
       version: "12.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           owner: "terminusdb",
           repo: "terminusdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "src/rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-WymXMJaUKz/IT2gDgQYagin1Sfg1akqCU+mkYUs40Ic=",
@@ -115,10 +115,10 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [swi_prologWithDeps, gmp, mpfr, libmpc]),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         FEATURES: "--features terminusdb-community/use-system-gmp",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           C_INCLUDE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "include", nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "getDev"), gmp)),
               nix.thunk(() => nix.app(nix.sel(lib, "getDev"), mpfr)),
@@ -133,14 +133,14 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       installPhase: "runHook preInstall\ninstallBin terminusdb\ninstallManPage $src/docs/terminusdb.1\n\n# Replace with the Nix store source so schema files are findable\n# at runtime (the build directory no longer exists).\nln --symbolic --force --no-target-directory $src/src $out/share/terminusdb/src\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         tests: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           "upstream-integration": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "In-memory graph database with Git-like versioned data",
         homepage: "https://github.com/terminusdb/terminusdb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

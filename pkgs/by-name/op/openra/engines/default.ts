@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const openRaUpdater = nix.thunk(() => nix.app(callPackage, nix.path(here, "../updater.nix"), nix.thunk(() => ({}))));
-  const buildOpenRAEngine = nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-engine.nix"), nix.thunk(() => ({ __proto__: pos$1, openRaUpdater: openRaUpdater }))));
-  const callPackage$ = (path) => nix.app(callPackage, path, nix.thunk(() => ({ __proto__: pos$2, buildOpenRAEngine: buildOpenRAEngine })));
+  const buildOpenRAEngine = nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-engine.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, openRaUpdater: openRaUpdater }))));
+  const callPackage$ = (path) => nix.app(callPackage, path, nix.thunk(() => ({ [nix.POS]: pos$2, buildOpenRAEngine: buildOpenRAEngine })));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     engines: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       release: nix.thunk(() => nix.app(callPackage$, nix.path(here, "./release"))),
       bleed: nix.thunk(() => nix.app(callPackage$, nix.path(here, "./bleed"))),
     })),

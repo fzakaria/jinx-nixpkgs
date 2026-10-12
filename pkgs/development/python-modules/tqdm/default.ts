@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.68.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GYKclnNjjyoLhhfaTNy5J+gxzYi8/LbnjUKk0a8TFSA=",
@@ -45,10 +45,10 @@ export default nix.lambda((args) => (() => {
       ]);
       const pytestFlags = nix.thunk(() => ["-Wignore::FutureWarning", "-Wignore::DeprecationWarning"]);
       const disabledTests = nix.thunk(() => ["perf"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" }));
       const pythonImportsCheck = nix.thunk(() => ["tqdm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, Extensible Progress Meter",
         mainProgram: "tqdm",
         homepage: "https://github.com/tqdm/tqdm",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

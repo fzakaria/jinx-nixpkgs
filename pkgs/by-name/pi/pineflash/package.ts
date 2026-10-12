@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pineflash",
       version: "0.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Spagett1",
           repo: "pineflash",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
 `)))),
       postInstall: "mkdir -p $out/share/icons/hicolor/128x128/apps\ninstall -D ./assets/Pineflash.desktop -t $out/share/applications\nmagick ./assets/pine64logo.png -resize 128x128 $out/share/icons/hicolor/128x128/apps/pine64logo.png\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI tool to flash IronOS to the Pinecil V1 and V2",
         homepage: "https://github.com/Spagett1/pineflash",
         changelog: nix.thunk(() => nix.str`https://github.com/Spagett1/pineflash/releases/tag/${nix.sel(finalAttrs, "version")}`),

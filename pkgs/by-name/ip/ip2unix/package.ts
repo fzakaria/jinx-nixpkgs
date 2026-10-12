@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const docbook5 = nix.arg($, "docbook5");
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ip2unix",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nixcloud",
           repo: "ip2unix",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "found=0\nfor man in \"$out/share/man/man1\"/ip2unix.1*; do\n  test -s \"$man\" && found=1\ndone\nif [ $found -ne 1 ]; then\n  echo \"ERROR: Manual page hasn't been generated.\" >&2\n  exit 1\nfi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nixcloud/ip2unix",
         description: "Turn IP sockets into Unix domain sockets",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

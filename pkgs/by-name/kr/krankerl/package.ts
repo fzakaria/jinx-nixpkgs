@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "krankerl",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ChristophWurst",
           repo: "krankerl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, dbus, sqlite]),
       nativeCheckInputs: nix.thunk(() => [file]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI helper to manage, package and publish Nextcloud apps",
         mainProgram: "krankerl",
         homepage: "https://github.com/ChristophWurst/krankerl",

@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nipy";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nipy",
           repo: "nipy",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/nipy/nipy/pull/589/commits/76f2aae95dede9b8ac025dc32ce94791904f25e4.patch?full_index=1",
             hash: "sha256-Rnwfx6JKl+nE9wvBGKXFtizjuB4Bl1QDF88CvSZU/RQ=",
           })))),
@@ -47,19 +47,19 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs nipy/_build_utils/cythoner.py\n";
       const build_system = nix.thunk(() => [cython, meson_python, setuptools, ninja, numpy]);
       const dependencies = nix.thunk(() => [nibabel, numpy, scipy, sympy, transforms3d]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, optional: nix.thunk(() => [matplotlib]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, optional: nix.thunk(() => [matplotlib]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "optional")));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nipy", "nipy.testing", "nipy.algorithms"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://nipy.org/nipy",
         description: "Software for structural and functional neuroimaging analysis",
         downloadPage: "https://github.com/nipy/nipy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version,
         pname,
         pyproject,

@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pname = "spinshare";
   const version = "3.32.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/SpinShare/client-next/releases/download/v${version}/SpinShare-${version}-x64.AppImage`),
       hash: "sha256-LJjMel0CsvBf+IgyH7DArj/1oWk/dKpPa1aIED69yeE=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -40,7 +40,7 @@ wrapProgram $out/bin/spinshare \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform custom chart client for Spin Rhythm XD",
         homepage: "https://spinsha.re/client-next",
         downloadPage: "https://github.com/SpinShare/client-next/releases",
@@ -54,6 +54,6 @@ wrapProgram $out/bin/spinshare \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "spinshare",
       })),
-    }))), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$5, strictDeps: true })));
+    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, strictDeps: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

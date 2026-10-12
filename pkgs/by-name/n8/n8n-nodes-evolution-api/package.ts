@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const n8n = nix.arg($, "n8n");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "n8n-nodes-evolution-api",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oriondesign2015",
           repo: "n8n-nodes-evolution-api",
           rev: "9b42ef43ba408c109666ec4e09a2e5622ad2d016",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -44,13 +44,13 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\npnpm run build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/lib/node_modules/n8n-nodes-evolution-api\ncp -r dist package.json $out/lib/node_modules/n8n-nodes-evolution-api/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(n8n, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Evolution API hub for WhatsApp integration with n8n",
         homepage: "https://github.com/oriondesign2015/n8n-nodes-evolution-api",

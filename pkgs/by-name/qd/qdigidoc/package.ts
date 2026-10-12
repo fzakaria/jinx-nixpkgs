@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qdigidoc",
       version: "4.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-eid",
           repo: "DigiDoc4-Client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${opensc}/lib/pkcs11/`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt-based UI for signing and verifying DigiDoc documents",
         mainProgram: "qdigidoc4",
         homepage: "https://www.id.ee/",

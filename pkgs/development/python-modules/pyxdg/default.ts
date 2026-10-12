@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.28";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "xdg",
           repo: "pyxdg",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["xdg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://freedesktop.org/wiki/Software/pyxdg",
         description: "Contains implementations of freedesktop.org standards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

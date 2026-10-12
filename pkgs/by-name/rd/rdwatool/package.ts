@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rdwatool",
       version: "1.2-unstable-2023-11-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p0dalirius",
           repo: "RDWAtool",
           rev: "60b7816f06d155bd3d218b76b69d9419b8a82dbe",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["rdwatool"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to extract information from a Microsoft Remote Desktop Web Access (RDWA) application",
         homepage: "https://github.com/p0dalirius/RDWAtool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

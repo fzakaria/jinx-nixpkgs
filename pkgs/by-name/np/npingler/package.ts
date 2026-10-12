@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const emulatorAvailable = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "npingler",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "9999years",
           repo: "npingler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ installShellCompletion --cmd npingler \\
   --zsh  <(${emulator} $out/bin/npingler util generate-completions zsh)
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nix profile manager for use with npins",
         homepage: "https://github.com/9999years/npingler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +53,7 @@ installShellCompletion --cmd npingler \\
         mainProgram: "npingler",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }));

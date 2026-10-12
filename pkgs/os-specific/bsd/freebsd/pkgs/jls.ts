@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const libjail = nix.arg($, "libjail");
   const libxo = nix.arg($, "libxo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/jls",
       buildInputs: nix.thunk(() => [libjail, libxo]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "jls" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "jls" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jls.ts.map

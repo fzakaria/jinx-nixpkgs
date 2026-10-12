@@ -15,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "materialgram",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "materialgram-unwrapped",
           version: "7.0.5.1",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               owner: "kukuruzka165",
               repo: "materialgram",
               hash: "sha256-OE7TbxFEYzTM2IB7HMokR3a+tsrg4n4cbHmRXPITykI=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: "Telegram Desktop fork with material icons and some improvements",
             longDescription: "Telegram Desktop fork with Material Design and other improvements,\nwhich is based on the Telegram API and the MTProto secure protocol.\n",
             homepage: "https://kukuruzka165.github.io/materialgram/",

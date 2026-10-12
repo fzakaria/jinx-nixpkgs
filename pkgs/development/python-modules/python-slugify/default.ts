@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "un33k",
           repo: "python-slugify",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [text_unidecode]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, unidecode: nix.thunk(() => [unidecode]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, unidecode: nix.thunk(() => [unidecode]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["slugify"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Slugify application that handles Unicode",
         mainProgram: "slugify",
         homepage: "https://github.com/un33k/python-slugify",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

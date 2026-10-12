@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "1.14" : "1.13"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-zarith`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ocaml",
           repo: "Zarith",
           rev: nix.thunk(() => nix.str`release-${version}`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.13": "sha256-CNVKoJeO3fsmWaV/dwnUA8lgI4ZlxR/LKCXpCXUrpSg=",
             "1.14": "sha256-xUrBDr+M8uW2KOy7DZieO/vDgsSOnyBnpOzQDlXJ0oE=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, arbitrary precision OCaml integers",
         homepage: "https://github.com/ocaml/Zarith",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml/Zarith/raw/${nix.sel(finalAttrs, "src", "rev")}/Changes`),

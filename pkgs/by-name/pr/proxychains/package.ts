@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "proxychains",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haad",
           repo: "proxychains",
           rev: nix.thunk(() => nix.str`proxychains-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Suppress compiler warning. Remove it when upstream fix arrives\nsubstituteInPlace Makefile --replace \"-Werror\" \"-Werror -Wno-stringop-truncation\"\n",
       installFlags: nix.thunk(() => ["install-config"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Proxifier for SOCKS proxies",
         homepage: "https://proxychains.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

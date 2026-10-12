@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const buildWebExtension = nix.argOr($, "buildWebExtension", () => false);
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vencord",
       version: "1.15.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vendicated",
           repo: "Vencord",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-deps.patch")]),
       postPatch: "substituteInPlace packages/vencord-types/package.json \\\n  --replace-fail '\"@types/react\": \"18.3.1\"' '\"@types/react\": \"19.1.0\"'\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [git, nodejs, pnpmConfigHook, pnpm]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         VENCORD_REMOTE: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "owner")}/${nix.sel(finalAttrs, "src", "repo")}`),
         VENCORD_HASH: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
       })),
@@ -74,7 +74,7 @@ cp package.json $out # Presence is checked by Vesktop.
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-vencord", nix.thunk(() => nix.str`export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, nix_update]))}:$PATH"
 ghTags=$(curl \${GITHUB_TOKEN:+" -u \\":$GITHUB_TOKEN\\""} "https://api.github.com/repos/Vendicated/Vencord/tags")
 latestTag=$(echo "$ghTags" | jq -r .[0].name)
@@ -86,7 +86,7 @@ exec nix-update --version "$latestTag" "$@"
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [discord, discord_ptb, discord_canary, discord_development]), (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(p, "pname")), nix.thunk(() => nix.sel(p, "tests", "withVencord"))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cutest Discord client mod",
         homepage: "https://github.com/Vendicated/Vencord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

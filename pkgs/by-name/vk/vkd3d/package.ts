@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wine = nix.arg($, "wine");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vkd3d",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.winehq.org",
           owner: "wine",
           repo: "vkd3d",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wine, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.winehq.org/wine/vkd3d",
         description: "Direct3D to Vulkan translation library",
         longDescription: "Vkd3d is a 3D graphics library built on top of Vulkan. It has an API very\nsimilar, but not identical, to Direct3D 12.\n\nVkd3d can be used by projects that target Direct3D 12 as a drop-in\nreplacement at build-time with some modest source modifications.\n\nIf vkd3d is available when building Wine, then Wine will use it to support\nDirect3D 12 applications.\n",

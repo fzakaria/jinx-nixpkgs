@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   })();
   const showMaybePackagePosPre = (prefix) => (pkg) => (nix.asBool((nix.asBool(nix.has(pkg, "meta", "position")) && nix.asBool(nix.app(isString, nix.thunk(() => nix.sel(pkg, "meta", "position")))))) ? nix.str`${prefix}${nix.sel(pkg, "meta", "position")}` : "");
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     addDrvOutputDependencies: nix.thunk(() => nix.attr(nix.builtins, "addDrvOutputDependencies")),
     unsafeDiscardOutputDependency: nix.thunk(() => nix.attr(nix.builtins, "unsafeDiscardOutputDependency")),
     lazyDerivation: nix.lambda((args_1) => (() => {
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       const checked = nix.thunk(() => (nix.asBool(!nix.eq(nix.selOr(derivation, () => null, "type"), "derivation")) ? nix.builtins.throw("lazyDerivation: input must be a derivation.") : (nix.asBool(!nix.eq(nix.sel(derivation, "outputs"), outputs)) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.lazyDerivation: The derivation ${nix.selOr(derivation, () => "<unknown>", "name")} has outputs that don't match the assumed outputs.
 
 Assumed outputs passed to lazyDerivation${nix.app(showMaybeAttrPosPre, ",\n    at ", "outputs", args_2)}:
-    ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$1, multiline: false })), outputs)};
+    ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$1, multiline: false })), outputs)};
 
 Actual outputs of the derivation${nix.app(showMaybePackagePosPre, ",\n    defined at ", derivation)}:
-    ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$2, multiline: false })), nix.thunk(() => nix.sel(derivation, "outputs")))}
+    ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$2, multiline: false })), nix.thunk(() => nix.sel(derivation, "outputs")))}
 
 If the outputs are known ahead of evaluating the derivation,
 then update the lazyDerivation call to match the actual outputs, in the same order.
@@ -56,7 +56,7 @@ If none of the above works for you, replace the lib.lazyDerivation call by the
 expression in the derivation argument.
 `)) : nix.force(derivation))));
       return nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: "derivation",
         outPath: nix.thunk(() => nix.attr(checked, "outPath")),
         outputName: nix.thunk(() => nix.attr(checked, "outputName")),
@@ -71,7 +71,7 @@ expression in the derivation argument.
     warnOnInstantiate: (msg) => (drv) => (() => {
       const drvToWrap = nix.thunk(() => nix.app(removeAttrs, drv, nix.thunk(() => ["meta", "name", "type", "outputName"])));
       return nix.update(drv, nix.update(nix.app(mapAttrs, (_) => nix.app(nix.sel(lib, "warn"), msg), drvToWrap), (nix.asBool((nix.asBool(nix.has(drv, "overrideAttrs")) && nix.asBool(nix.builtins.isFunction(nix.thunk(() => nix.sel(drv, "overrideAttrs")))))) ? {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         overrideAttrs: (x) => nix.app(nix.sel(lib, "derivations", "warnOnInstantiate"), msg, nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), x))),
       } : {})));
     })(),

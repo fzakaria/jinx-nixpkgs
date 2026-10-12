@@ -100,10 +100,10 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const nspr = nix.arg($, "nspr");
   const thrift20 = nix.thunk(() => nix.app(nix.sel(thrift, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "thrift",
           tag: "v0.20.0",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DCMAKE_POLICY_VERSION_MINIMUM=3.10"])),
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "thrift-add-missing-cstdint-include-gcc15.patch",
             url: "https://github.com/apache/thrift/commit/947ad66940cfbadd9b24ba31d892dfc1142dd330.patch",
             hash: "sha256-pWcG6/BepUwc/K6cBs+6d74AWIhZ2/wXvCunb/KyB0s=",
@@ -120,11 +120,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "animeko",
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "open-ani",
           repo: "animeko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -138,7 +138,7 @@ sed -i "s/^package.version=.*/package.version=${nix.sel(finalAttrs, "version")}/
       gradleBuildTask: "createReleaseDistributable",
       gradleUpdateTask: nix.thunk(() => nix.sel(finalAttrs, "gradleBuildTask")),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
@@ -146,7 +146,7 @@ sed -i "s/^package.version=.*/package.version=${nix.sel(finalAttrs, "version")}/
           useBwrap: false,
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         JAVA_HOME: nix.thunk(() => nix.sel(jetbrains, "jdk-21")),
         ANDROID_SDK_HOME: "$(pwd)",
       })),
@@ -241,13 +241,13 @@ rm -r $out/lib/app/resources/lib
 ln -sf ${libvlc}/lib $out/lib/app/resources/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-animeko", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} animeko
 $(nix-build -A animeko.mitmCache.updateScript)
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "One-stop platform for finding, following and watching anime",
         homepage: "https://github.com/open-ani/animeko",
         mainProgram: "Ani",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const polaris_web = nix.arg($, "polaris-web");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "polaris",
       version: "0.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agersant",
           repo: "polaris",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ sed -i $out/Cargo.lock -z \\
         })))),
       cargoHash: "sha256-bVXz/rSfkmdQlAa3B4zamZebpRBOkch6zNOFiyEQBbY=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         POLARIS_WEB_DIR: nix.thunk(() => nix.str`${polaris_web}/share/polaris-web`),
         POLARIS_SWAGGER_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polaris-swagger`),
       })),
@@ -42,12 +42,12 @@ sed -i $out/Cargo.lock -z \\
       preCheck: "# 'Err' value: Os { code: 24, kind: Uncategorized, message: \"Too many open files\" }\nulimit -n 4096\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.sel(nixosTests, "polaris")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Self-host your music collection, and access it from any computer and mobile device",
         longDescription: "Polaris is a FOSS music streaming application, designed to let you enjoy your music collection\nfrom any computer or mobile device. Polaris works by streaming your music directly from your\nown computer, without uploading it to a third-party. There are no  kind of premium version.\nThe only requirement is that your computer stays on while it streams your music!\n",
         homepage: "https://github.com/agersant/polaris",

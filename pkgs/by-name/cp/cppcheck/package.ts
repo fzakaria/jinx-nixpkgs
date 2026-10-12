@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cppcheck",
       version: "2.22.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cppcheck-opensource",
           repo: "cppcheck",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       installCheckPhase: "runHook preInstallCheck\n\necho 'int main() {}' > ./installcheck.cpp\n$out/bin/cppcheck ./installcheck.cpp > /dev/null\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Static analysis tool for C/C++ code",
         longDescription: "Check C/C++ code for memory leaks, mismatching allocation-deallocation,\nbuffer overruns and more.\n",
         homepage: "http://cppcheck.sourceforge.net",

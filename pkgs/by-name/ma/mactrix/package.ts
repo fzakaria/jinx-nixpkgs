@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mactrix";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/viktorstrate/mactrix/releases/download/v${version}/Mactrix.app.zip`),
           hash: "sha256-Y4ydihGSGKNXDatzW/cpJYS1lwjnkIdhVtdr+Y5eaa0=",
         }))));
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [unzip, makeBinaryWrapper]);
       const installPhase = "runHook preInstall\nmkdir -p $out/Applications\ncp -R Mactrix.app $out/Applications/\nmkdir -p $out/bin\nmakeWrapper $out/Applications/Mactrix.app/Contents/MacOS/Mactrix $out/bin/mactrix\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Native Matrix client for macOS",
         longDescription: "A native macOS client for Matrix – an open protocol for decentralised, secure communications.\n\nMactrix is built with Apple's SwiftUI framework to provide seamless native integration with macOS.\nIt leverages the robust matrix-rust-sdk for stability and performance.\n",
         homepage: "https://github.com/viktorstrate/mactrix",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

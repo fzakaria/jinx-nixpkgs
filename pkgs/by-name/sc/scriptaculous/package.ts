@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scriptaculous",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://script.aculo.us/dist/scriptaculous-js-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1xpnk3cq8n07lxd69k5jxh48s21zh41ihq10z4a6lcnk238rp8qz",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "mkdir $out\ncp src/*.js $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of JavaScript libraries to enhance the user interface of web sites",
         longDescription: "script.aculo.us provides you with\neasy-to-use, cross-browser user\ninterface JavaScript libraries to make\nyour web sites and web applications fly.\n",
         homepage: "https://script.aculo.us/",

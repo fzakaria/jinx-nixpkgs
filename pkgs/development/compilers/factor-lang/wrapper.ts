@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
   const runtimeLibs = nix.thunk(() => nix.concat(defaultLibs, nix.concat(extraLibs, nix.concat(binPackages, nix.concat(nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((v) => nix.selOr(v, () => [], "extraLibs"), extraVocabs))), nix.app(optionals, guiSupport, nix.thunk(() => [cairo, freealut, gdk_pixbuf, glib, gtk2_x11, gtkglext, libGL, libGLU, pango])))))));
   const bins = nix.thunk(() => nix.concat(binPackages, nix.concat(defaultBins, nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((v) => nix.selOr(v, () => [], "extraPaths"), extraVocabs))))));
   const vocabTree = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.sel(factor_unwrapped, "pname")}-vocabs`),
       ignoreCollisions: true,
       pathsToLink: nix.thunk(() => nix.builtins.map((r) => nix.str`/lib/factor/${r}`, nix.thunk(() => ["basis", "core", "extra"]))),
       paths: nix.thunk(() => nix.concat([factor_unwrapped], extraVocabs)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`${nix.sel(factor_unwrapped, "pname")}-env`),
       version: nix.thunk(() => nix.attr(factor_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Factor",
             desktopName: "Factor",
             comment: "A practical stack language",
@@ -161,7 +161,7 @@ $out/bin/factor -e='USING: tools.test tools.test.private
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         defaultLibs: defaultLibs,
         defaultBins: defaultBins,
         extraLibs: extraLibs,
@@ -170,9 +170,9 @@ runHook postInstallCheck
         extraVocabs: extraVocabs,
         vocabTree: vocabTree,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test/hello-world")), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               lib: lib,
               runCommandLocal: runCommandLocal,
               buildFactorApplication: buildFactorApplication,
@@ -180,7 +180,7 @@ runHook postInstallCheck
             })))),
         })),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(factor_unwrapped, "meta"), { __proto__: pos$6, mainProgram: "factor" })),
+      meta: nix.thunk(() => nix.update(nix.sel(factor_unwrapped, "meta"), { [nix.POS]: pos$6, mainProgram: "factor" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=wrapper.ts.map

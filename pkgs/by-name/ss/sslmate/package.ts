@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sslmate",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://packages.sslmate.com/other/sslmate-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-yjeK/CjFSjjymriVb41AWy0SSJ5mwPp6T+asyHaeX5E=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.sel(openssl, "bin")}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sslmate.com",
         maintainers: [],
         description: "Easy to buy, deploy, and manage your SSL certs",

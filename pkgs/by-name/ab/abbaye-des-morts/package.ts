@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_image = nix.arg($, "SDL2_image");
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "abbaye-des-morts",
       version: "2.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nevat",
           repo: "abbayedesmorts-gpl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "PLATFORM=mac"))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Makefile \\\n  --replace-fail \"-funswitch-loops\" \"\" \\\n  --replace-fail \"-fgcse-after-reload\" \"\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://locomalito.com/abbaye_des_morts.php",
         description: "Retro arcade video game",
         mainProgram: "abbayev2",

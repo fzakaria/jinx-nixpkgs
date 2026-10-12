@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ytDownloader";
       const version = "4.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aandrew-me",
           repo: "ytDownloader",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [ffmpeg_headless, yt_dlp]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ytDownloader",
             exec: "ytdownloader %U",
             icon: "ytdownloader",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
             startupWMClass: "ytDownloader",
           })))),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const dontNpmBuild = true;
       const patches = nix.thunk(() => [nix.path(here, "./config-dir.patch")]);
       const postPatch = "# Disable auto-updates\nsubstituteInPlace src/preferences.js \\\n  --replace-warn 'const autoUpdateDisabled = getId(\"autoUpdateDisabled\");' 'const autoUpdateDisabled = \"true\";'\n";
@@ -61,7 +61,7 @@ makeWrapper ${electron}/bin/electron $out/bin/ytdownloader \\
 install -Dm444 assets/images/icon.png $out/share/icons/hicolor/512x512/apps/ytdownloader.png
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern GUI video and audio downloader",
         homepage: "https://github.com/aandrew-me/ytDownloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -73,7 +73,7 @@ install -Dm444 assets/images/icon.png $out/share/icons/hicolor/512x512/apps/ytdo
         mainProgram: "ytdownloader",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

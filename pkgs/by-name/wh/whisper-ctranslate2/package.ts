@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "whisper-ctranslate2",
       version: "0.5.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Softcatala",
           repo: "whisper-ctranslate2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,11 +55,11 @@ runHook postCheck
         return !nix.asBool((nix.asBool(nix.lookup(w_2, "isAarch")) && nix.asBool(nix.lookup(w_2, "isLinux"))));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Whisper command line client compatible with original OpenAI client based on CTranslate2",
         homepage: "https://github.com/Softcatala/whisper-ctranslate2",
         changelog: nix.thunk(() => nix.str`https://github.com/Softcatala/whisper-ctranslate2/releases/tag/${nix.sel(finalAttrs, "version")}`),

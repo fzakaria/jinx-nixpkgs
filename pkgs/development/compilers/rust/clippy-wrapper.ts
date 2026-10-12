@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const rustc_unwrapped = nix.arg($, "rustc-unwrapped");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(clippy_unwrapped, "pname")}-wrapper-${nix.sel(clippy_unwrapped, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       preferLocalBuild: true,
       strictDeps: true,
       outputs: nix.thunk(() => nix.attr(clippy_unwrapped, "outputs")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       meta: nix.thunk(() => nix.update(nix.sel(clippy_unwrapped, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`${nix.sel(clippy_unwrapped, "meta", "description")} (wrapper script)`),
         priority: 10n,
       })),

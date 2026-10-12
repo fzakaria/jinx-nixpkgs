@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_httpbin = nix.arg($, "pytest-httpbin");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "requests-random-user-agent",
       version: "2025.01.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DavidWittman",
           repo: "requests-random-user-agent",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "test_request_without_session",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configures the requests library to randomly select a desktop User-Agent",
         homepage: "https://github.com/DavidWittman/requests-random-user-agent",
         changelog: nix.thunk(() => nix.str`https://github.com/DavidWittman/requests-random-user-agent/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

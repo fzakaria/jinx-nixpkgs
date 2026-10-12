@@ -27,34 +27,34 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   const normalizePlugins = (plugins) => (() => {
-    const defaultPlugin = nix.thunk(() => ({ __proto__: pos$1, plugin: null, config: null, optional: false, type: "viml" }));
-    return nix.builtins.map((x) => nix.update(defaultPlugin, (nix.asBool(nix.has(x, "plugin")) ? nix.force(x) : { __proto__: pos$2, plugin: x })), plugins);
+    const defaultPlugin = nix.thunk(() => ({ [nix.POS]: pos$1, plugin: null, config: null, optional: false, type: "viml" }));
+    return nix.builtins.map((x) => nix.update(defaultPlugin, (nix.asBool(nix.has(x, "plugin")) ? nix.force(x) : { [nix.POS]: pos$2, plugin: x })), plugins);
   })();
   const pluginWithConfigType = nix.thunk(() => (() => {
     const w = nix.withScope(lib, null);
     return nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         options: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")))),
               description: "Configuration associated with this plugin. Use the 'type' plugin option to set the language (viml by default).",
               default: null,
               example: "set title",
             })))),
           type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["lua", "viml"]))), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Language used in config. Configurations are aggregated per-language.",
               default: "viml",
             })))),
           optional: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mkEnableOption"), "optional"), {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "Don't load automatically on startup (load with :packadd)",
           })),
           plugin: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "vimPlugins.vim-fugitive")),
               description: "vim plugin",
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "package")), pluginWithConfigType)));
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
           description: "List of vim plugins to install optionally associated with\nconfiguration to be placed in init.vim.\n",
         })))),
       runtimeDeps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           readOnly: true,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -87,32 +87,32 @@ export default nix.lambda((args) => (() => {
           description: "List of derivations required at runtime\n",
         })))),
       pluginAdvisedLua: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           readOnly: true,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
           description: "Recommended configuration set in vim plugins via \".passthru.initLua\".\n",
         })))),
       userPluginViml: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           readOnly: true,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
           description: "The viml config set by the user.\n",
         })))),
       userPluginConfigs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           readOnly: true,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
           description: "The user configurations (viml, lua, ...) set by the user.\n",
         })))),
       pluginPython3Packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           readOnly: true,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "functionTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))))),
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ (ps: [ ps.python-language-server ]) ]")),
           description: "Packages required by the plugins to work with the python3 provider.\n",
         })))),
       luaDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           readOnly: true,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ (lp: [ lp.mpack ]) ]")),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(lib, "mapAttrs"), (_name) => (vals) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(configsOnly, vals))), grouped);
       })());
       return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         pluginAdvisedLua: nix.thunk(() => (() => {
           const op = (acc) => (normalizedPlugin) => nix.concat(acc, nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(nix.sel(normalizedPlugin, "plugin", "passthru"), "initLua")), nix.thunk(() => nix.sel(normalizedPlugin, "plugin", "passthru", "initLua"))));
           return nix.app(nix.sel(lib, "foldl'"), op, [], pluginsNormalized);

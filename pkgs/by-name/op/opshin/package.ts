@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   const python3$ = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       self: python3,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cbor2: nix.thunk(() => nix.sel(prev, "cbor2WithoutCExtensions")),
       }),
     }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.24.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "OpShin",
           repo: "opshin",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple pythonic programming language for Smart Contracts on Cardano",
         homepage: "https://opshin.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "opshin",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

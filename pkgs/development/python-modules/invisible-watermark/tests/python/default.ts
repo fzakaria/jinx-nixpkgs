@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pythonWithPackages = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (_) => [invisible_watermark, opencv4]));
   const pythonInterpreter = nix.thunk(() => nix.sel(pythonWithPackages, "interpreter"));
   const encode = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "encode",
       realBuilder: pythonInterpreter,
       args: nix.thunk(() => [nix.path(here, "./encode.py")]),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       method: method,
     }))));
   const decode = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "decode",
       realBuilder: pythonInterpreter,
       args: nix.thunk(() => [nix.path(here, "./decode.py")]),

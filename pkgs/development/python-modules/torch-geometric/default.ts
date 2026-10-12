@@ -71,13 +71,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torch-geometric",
       version: "2.8.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyg-team",
           repo: "pytorch_geometric",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         benchmark: nix.thunk(() => [matplotlib, networkx, pandas, protobuf, wandb]),
         dev: nix.thunk(() => [ipython, matplotlib_inline, pre_commit, torch_geometric]),
         full: nix.thunk(() => [
@@ -229,7 +229,7 @@ export default nix.lambda((args) => (() => {
           "test/utils/test_scatter.py::test_group_cat[mps]",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test/nn/aggr/test_aggr_utils.py"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graph Neural Network Library for PyTorch",
         homepage: "https://github.com/pyg-team/pytorch_geometric",
         changelog: nix.thunk(() => nix.str`https://github.com/pyg-team/pytorch_geometric/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

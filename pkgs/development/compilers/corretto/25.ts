@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const gradle = gradle_9;
       const version = "25.0.1.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corretto",
           repo: "corretto-25",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [pandoc]);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lib: lib_1,
         stdenv: stdenv_1,
         rsync: rsync_1,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(corretto, "overrideAttrs"), (final) => (prev) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       patches: nix.thunk(() => nix.concat(nix.selOr(prev, () => [], "patches"), [nix.path(here, "./remove_removal_of_wformat_during_test_compilation.patch")])),
     }));
 })(), formals$1);

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ghorg",
       version: "1.11.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gabrie30",
           repo: "ghorg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ghorg \\\n  --bash <($out/bin/ghorg completion bash) \\\n  --fish <($out/bin/ghorg completion fish) \\\n  --zsh <($out/bin/ghorg completion zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quickly clone an entire org/users repositories into one directory",
         longDescription: "ghorg allows you to quickly clone all of an orgs, or users repos into a\nsingle directory. This can be useful in many situations including\n- Searching an orgs/users codebase with ack, silver searcher, grep etc..\n- Bash scripting\n- Creating backups\n- Onboarding\n- Performing Audits\n",
         homepage: "https://github.com/gabrie30/ghorg",

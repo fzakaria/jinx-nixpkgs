@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const bluez = nix.arg($, "bluez");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "redfang",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           group: "kalilinux",
           owner: "packages",
           repo: "redfang",
@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/kalilinux/packages/redfang/-/merge_requests/1.diff",
             sha256: "sha256-oxIrUAucxsBL4+u9zNNe2XXoAd088AEAHcRB/AN7B1M=",
           })))),
         nix.path(here, "./include-pthread.patch"),
       ]),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
       buildInputs: nix.thunk(() => [bluez]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small proof-of-concept application to find non discoverable bluetooth devices",
         homepage: "https://gitlab.com/kalilinux/packages/redfang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

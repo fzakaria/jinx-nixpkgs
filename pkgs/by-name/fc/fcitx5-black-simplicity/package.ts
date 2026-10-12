@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fcitx5-black-simplicity",
       version: "0-unstable-2021-11-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fuzakebito",
           repo: "fcitx5-Black-Simplicity",
           rev: "27e279c4e4f1c2318b19360367a0b9a5ef83efbb",
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\n\nmkdir -pv $out/share/fcitx5/themes/\ncp -rv ./Black-Simplicity/ $out/share/fcitx5/themes/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Monochrome skin that gives a simpler look to fcitx5",
           homepage: "https://github.com/fuzakebito/fcitx5-Black-Simplicity",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "unfree")),

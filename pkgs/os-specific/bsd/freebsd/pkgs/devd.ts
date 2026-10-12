@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const byacc = nix.arg($, "byacc");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "sbin/devd",
       outputs: nix.thunk(() => ["out", "etc", "man", "debug"]),
       buildInputs: nix.thunk(() => [libutil]),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace $BSDSRCDIR/sbin/devd/Makefile --replace-fail /etc $etc/etc\n",
       NIX_CFLAGS_COMPILE: nix.thunk(() => ["-Wno-c++20-extensions", "-Wno-nullability-completeness"]),
       postInstall: "make $makeFlags installconfig\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "devd" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "devd" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=devd.ts.map

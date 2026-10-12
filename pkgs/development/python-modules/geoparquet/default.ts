@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darcy-r",
           repo: "geoparquet-python",
           rev: "b09b12dd0ebc34d73f082c3d97ccb69a889167e3",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["geoparquet"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API between Parquet files and GeoDataFrames for fast input/output of GIS data",
         homepage: "https://github.com/darcy-r/geoparquet-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

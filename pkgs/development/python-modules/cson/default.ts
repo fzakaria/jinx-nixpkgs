@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const speg = nix.arg($, "speg");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cson",
       version: "0.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7owBZvzR9ReJiHGX4+g1Sse++jlvwpcGvOta8l7cngE=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [speg]),
       pythonImportsCheck: nix.thunk(() => ["cson"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python parser for the Coffeescript Object Notation (CSON)",
         homepage: "https://github.com/avakar/pycson",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

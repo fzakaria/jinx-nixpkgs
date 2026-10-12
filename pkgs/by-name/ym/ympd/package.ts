@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const libmpdclient = nix.arg($, "libmpdclient");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ympd",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "notandy",
           repo: "ympd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "1nvb19jd556v2h2bi7w4dcl507p3p8xvjkqfzrcsy7ccy3502brq",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./bump-cmake-version.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libmpdclient, openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/notandy/ympd",
         description: "Standalone MPD Web GUI written in C, utilizing Websockets and Bootstrap/JS",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "siddharthist"))]),

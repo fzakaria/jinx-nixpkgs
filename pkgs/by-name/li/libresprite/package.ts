@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const lua = nix.arg($, "lua");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libresprite",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibreSprite",
           repo: "LibreSprite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,14 +72,14 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "format")),
       postInstall: "src=\"$out/share/libresprite/data/icons\"\nfor size in 16 32 48 64; do\n  dst=\"$out\"/share/icons/hicolor/\"$size\"x\"$size\"\n  install -Dm644 \"$src\"/doc\"$size\".png \"$dst\"/mimetypes/aseprite.png\ndone\n\nif [ -f $out/share/thumbnailers/libresprite.thumbnailer ]; then\n  substituteInPlace $out/share/thumbnailers/libresprite.thumbnailer \\\n    --replace-fail \"TryExec=libresprite-thumbnailer\" \"TryExec=$out/bin/libresprite-thumbnailer\" \\\n    --replace-fail \"Exec=libresprite-thumbnailer\" \"Exec=$out/bin/libresprite-thumbnailer\"\nfi\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "libresprite-can-open-png": nix.thunk(() => nix.sel(nixosTests, "libresprite")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://libresprite.github.io/",
         description: "Animated sprite editor & pixel art tool, fork of Aseprite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   const platformMap = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "darwin-aarch64",
     "aarch64-linux": "linux-aarch64",
     "x86_64-linux": "linux-amd64",
   }));
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "mvnd",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "apache",
           repo: "maven-mvnd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,16 +75,16 @@ installShellCompletion --cmd mvnd \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           tests: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 package: nix.thunk(() => nix.app(runCommand, "mvnd", nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                     nativeBuildInputs: nix.thunk(() => [makeWrapper]),
                   })), nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -95,7 +95,7 @@ makeWrapper ${nix.sel(finalAttrs, "finalPackage")}/bin/mvnd $out/bin/mvnd \\
           })),
         }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Apache Maven Daemon",
         homepage: "https://maven.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   const libterminfo = nix.arg($, "libterminfo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "tools/tic",
       HOSTPROG: "tic",
       buildInputs: compatIfNeeded,

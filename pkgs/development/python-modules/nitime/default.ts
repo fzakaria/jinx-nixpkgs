@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-Esv0iLBlXcBaoYoMpZgt6XAwJgTkYfyS6H69m3U5tv8=",
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_UniformTime_repr"]);
       const pythonImportsCheck = nix.thunk(() => ["nitime"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://nipy.org/nitime",
         description: "Algorithms and containers for time-series analysis in time and spectral domains",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bcdarwin"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

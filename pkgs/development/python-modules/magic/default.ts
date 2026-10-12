@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "file"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       format: "setuptools",
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd python",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python wrapper around libmagic",
         homepage: "http://www.darwinsys.com/file/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

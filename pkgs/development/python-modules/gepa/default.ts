@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gepa",
       version: "0.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gepa-ai",
           repo: "gepa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gepa"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A framework for optimizing textual system components using LLM-based reflection and Pareto-efficient evolutionary search",
         homepage: "https://github.com/gepa-ai/gepa",
         changelog: nix.thunk(() => nix.str`https://github.com/gepa-ai/gepa/releases/tag/v${nix.sel(finalAttrs, "version")}`),

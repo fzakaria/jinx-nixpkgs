@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const cudatoolkit = nix.thunk(() => nix.attr(cudaPackages, "cudatoolkit"));
   const cudnn = nix.thunk(() => nix.attr(cudaPackages, "cudnn"));
   const cudatoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.sel(cudatoolkit, "name")}-unsplit`),
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(cudatoolkit, "out")),
@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
     }))));
   const cudaStub = nix.thunk(() => nix.app(linkFarm, "cuda-stub", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "libcuda.so.1",
         path: nix.thunk(() => nix.str`${cudatoolkit}/lib/stubs/libcuda.so`),
       })),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libtorch-test",
       version: nix.thunk(() => nix.sel(libtorch_bin, "version")),
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [nix.path(here, "./CMakeLists.txt"), nix.path(here, "./test.cpp")]))),
         })))),

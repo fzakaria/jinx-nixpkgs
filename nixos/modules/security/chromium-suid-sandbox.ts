@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "security", "chromiumSuidSandbox"));
   const sandbox = nix.thunk(() => nix.sel(pkgs, "chromium", "sandbox"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       security: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         chromiumSuidSandbox: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to install the Chromium SUID sandbox which is an executable that\nChromium may use in order to achieve sandboxing.\n\nIf you get the error \"The SUID sandbox helper binary was found, but is not\nconfigured correctly.\", turning this on might help.\n\nAlso, if the URL chrome://sandbox tells you that \"You are not adequately\nsandboxed!\", turning this on might resolve the issue.\n",
@@ -38,13 +38,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
-        environment: nix.thunk(() => ({ __proto__: pos$5, systemPackages: nix.thunk(() => [sandbox]) })),
+        [nix.POS]: pos$8,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$5, systemPackages: nix.thunk(() => [sandbox]) })),
         security: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           wrappers: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(sandbox, "passthru", "sandboxExecutableName"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               setuid: true,
               owner: "root",
               group: "root",

@@ -52,80 +52,80 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "udp-over-tcp"));
   const commonOptions = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         description: "Open the appropriate ports in the firewall.\n",
       })))),
     forward: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         type: nix.thunk(() => nix.sel(types, "str")),
         description: "The IP and port to forward all traffic to.\n",
       })))),
     recvBufferSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "ints", "positive")))),
         description: "If given, sets the SO_RCVBUF option on the TCP socket to the given number of bytes.\nChanges the size of the operating system's receive buffer associated with the socket.\n",
         default: null,
       })))),
     sendBufferSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "ints", "positive")))),
         description: "If given, sets the SO_SNDBUF option on the TCP socket to the given number of bytes.\nChanges the size of the operating system's send buffer associated with the socket.\n",
         default: null,
       })))),
     recvTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "ints", "positive")))),
         description: "An application timeout on receiving data from the TCP socket.\n",
         default: null,
       })))),
     fwmark: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "ints", "u32")))),
         description: "If given, sets the SO_MARK option on the TCP socket.\n",
         default: null,
       })))),
     nodelay: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         type: nix.thunk(() => nix.sel(types, "bool")),
         description: "Enables TCP_NODELAY on the TCP socket.\n",
         default: false,
       })))),
   }));
   const tcp2udpSubmodule = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => nix.update(commonOptions, {
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       threads: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "ints", "positive")))),
           description: "Sets the number of worker threads to use.\nThe default value is the number of cores available to the system.\n",
           default: null,
         })))),
       bind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           description: "Which local IP to bind the UDP socket to.\n",
           default: null,
         })))),
     })),
   }));
-  const udp2tcpSubmodule = nix.thunk(() => ({ __proto__: pos$13, options: commonOptions }));
+  const udp2tcpSubmodule = nix.thunk(() => ({ [nix.POS]: pos$13, options: commonOptions }));
   const configToService = (type) => (buildCmdline) => (listen) => (conf) => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: nix.thunk(() => nix.str`${type}-${listen}`),
     value: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       description: nix.thunk(() => nix.str`${type} tunnel from ${listen} to ${nix.sel(conf, "forward")}`),
       after: nix.thunk(() => ["network-online.target"]),
       wants: nix.thunk(() => ["network-online.target"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       reloadIfChanged: true,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         Type: "exec",
         ExecStart: nix.thunk(() => nix.add(nix.str`${nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), type)} `, nix.app(escapeShellArgs, nix.thunk(() => nix.app(buildCmdline, listen, conf))))),
         DynamicUser: true,
@@ -175,23 +175,23 @@ export default nix.lambda((args) => (() => {
   ], nix.app(buildCommonCmdline, listen, conf));
   const getFirewallPorts = (instances) => nix.builtins.map((e) => nix.app(toInt, nix.thunk(() => nix.app(last, nix.thunk(() => nix.app(splitString, ":", e))))), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.app(filterAttrs, (_) => (e) => nix.sel(e, "openFirewall"), instances)))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "udp-over-tcp": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "udp-over-tcp", nix.thunk(() => ({})))),
           tcp2udp: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), tcp2udpSubmodule)))),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"0.0.0.0:443\" = {\n    forward = \"127.0.0.1:51820\";\n    openFirewall = true;\n  };\n  \"0.0.0.0:444\" = {\n    threads = 2;\n    forward = \"127.0.0.1:51821\";\n    bind = \"127.0.0.1\";\n    recvBufferSize = 16384;\n    sendBufferSize = 16384;\n    recvTimeout = 10;\n    fwmark = 1337;\n    nodelay = true;\n  };\n}\n")),
               description: "Mapping of TCP listening ports to UDP forwarding ports or configurations.\n",
               default: nix.thunk(() => ({})),
             })))),
           udp2tcp: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), udp2tcpSubmodule)))),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"0.0.0.0:51820\" = {\n    forward = \"10.0.0.1:443\";\n    openFirewall = true;\n  };\n  \"0.0.0.0:51821\" = {\n    forward = \"10.0.0.1:444\";\n    recvBufferSize = 16384;\n    sendBufferSize = 16384;\n    recvTimeout = 10;\n    fwmark = 1337;\n    nodelay = true;\n  };\n}\n")),
               description: "Mapping of UDP listening ports to TCP forwarding ports or configurations.\n",
@@ -201,22 +201,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       systemd: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => nix.update(nix.app(mapAttrs$, nix.thunk(() => nix.app(configToService, "tcp2udp", buildTcp2udpCmdline)), nix.thunk(() => nix.sel(cfg, "tcp2udp"))), nix.app(mapAttrs$, nix.thunk(() => nix.app(configToService, "udp2tcp", buildUdp2tcpCmdline)), nix.thunk(() => nix.sel(cfg, "udp2tcp"))))),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         firewall: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           allowedTCPPorts: nix.thunk(() => nix.app(getFirewallPorts, nix.thunk(() => nix.sel(cfg, "tcp2udp")))),
           allowedUDPPorts: nix.thunk(() => nix.app(getFirewallPorts, nix.thunk(() => nix.sel(cfg, "udp2tcp")))),
         })),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "timschumi"))];

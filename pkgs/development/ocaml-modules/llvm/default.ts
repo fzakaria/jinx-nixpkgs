@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const ctypes = nix.arg($, "ctypes");
   const version = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), libllvm));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocaml-llvm",
       version: version,
       src: nix.thunk(() => nix.attr(libllvm, "src")),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["ocaml_all"]),
       installFlags: nix.thunk(() => ["-C", "bindings/ocaml"]),
       postInstall: "mkdir -p $OCAMLFIND_DESTDIR/\nmv $out/ocaml $OCAMLFIND_DESTDIR/llvm\nmv $OCAMLFIND_DESTDIR/llvm/META{.llvm,}\nmv $OCAMLFIND_DESTDIR/llvm/stublibs $OCAMLFIND_DESTDIR/stublibs\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, libllvm: libllvm })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, libllvm: libllvm })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libllvm, "meta"));
         const from_1 = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from_1, "platforms")),

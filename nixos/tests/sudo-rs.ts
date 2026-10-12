@@ -46,89 +46,89 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const password = "helloworld";
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     name: "sudo-rs",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "sudo-rs", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           environment: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "faketty"))]),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             groups: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               foobar: nix.thunk(() => ({})),
               barfoo: nix.thunk(() => ({})),
-              baz: nix.thunk(() => ({ __proto__: pos$3, gid: 1337n })),
+              baz: nix.thunk(() => ({ [nix.POS]: pos$3, gid: 1337n })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               test0: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["wheel"]),
               })),
-              test1: nix.thunk(() => ({ __proto__: pos$6, isNormalUser: true, password: password })),
+              test1: nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true, password: password })),
               test2: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["foobar"]),
                 password: password,
               })),
               test3: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["barfoo"]),
               })),
-              test4: nix.thunk(() => ({ __proto__: pos$9, isNormalUser: true, extraGroups: nix.thunk(() => ["baz"]) })),
-              test5: nix.thunk(() => ({ __proto__: pos$10, isNormalUser: true })),
+              test4: nix.thunk(() => ({ [nix.POS]: pos$9, isNormalUser: true, extraGroups: nix.thunk(() => ["baz"]) })),
+              test5: nix.thunk(() => ({ [nix.POS]: pos$10, isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "sudo-rs": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: true,
               wheelNeedsPassword: false,
               extraRules: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$13, users: nix.thunk(() => ["notest1"]), commands: [] })),
+                nix.thunk(() => ({ [nix.POS]: pos$13, users: nix.thunk(() => ["notest1"]), commands: [] })),
                 nix.thunk(() => ({
-                  __proto__: pos$15,
-                  commands: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$14, command: "ALL", options: [] }))]),
+                  [nix.POS]: pos$15,
+                  commands: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$14, command: "ALL", options: [] }))]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   users: nix.thunk(() => ["notest2"]),
-                  commands: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$16, command: "ALL", options: [] }))]),
+                  commands: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$16, command: "ALL", options: [] }))]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   users: nix.thunk(() => ["test1"]),
                   groups: nix.thunk(() => ["foobar"]),
                   commands: nix.thunk(() => ["ALL"]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   groups: nix.thunk(() => ["barfoo", 1337n]),
                   commands: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$19, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$19, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
                   ]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   users: nix.thunk(() => ["test5"]),
                   commands: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$21, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$21, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
                   ]),
                   runAs: "test1:barfoo",
                 })),
@@ -140,27 +140,27 @@ export default nix.lambda((args) => (() => {
       strict: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           environment: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "faketty"))]),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             users: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               admin: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => ["wheel"]),
               })),
-              noadmin: nix.thunk(() => ({ __proto__: pos$28, isNormalUser: true })),
+              noadmin: nix.thunk(() => ({ [nix.POS]: pos$28, isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             "sudo-rs": nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: true,
               wheelNeedsPassword: false,
               execWheelOnly: true,

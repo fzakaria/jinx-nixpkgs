@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const contrib = nix.arg($, "contrib");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tap",
       version: "2017-04-08",
       ipkgName: "TAP",
       idrisDeps: nix.thunk(() => [contrib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ostera",
           repo: "tap-idris",
           rev: "0d019333e1883c1d60e151af1acb02e2b531e72f",
           sha256: "0fhlmmivq9xv89r7plrnhmvay1j7bapz3wh7y8lygwvcrllh9zxs",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple TAP producer and consumer/reporter for Idris",
         homepage: "https://github.com/ostera/tap-idris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

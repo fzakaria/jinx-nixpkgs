@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "figlet",
       version: "2.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`ftp://ftp.figlet.org/pub/figlet/program/unix/figlet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-v4jED9Dwd9qycS9U+NOayVLk6fLhiC8Rlb6eXkJXQX0=",
         })))),
       contributed: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "ftp://ftp.figlet.org/pub/figlet/fonts/contributed.tar.gz",
           hash: "sha256-AyvAoc3IqJeKWgJftBahxb/KJjudeJIY4KD6mElNagQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.alpinelinux.org/aports/plain/main/figlet/musl-fix-cplusplus-decls.patch?h=3.4-stable&id=71776c73a6f04b6f671430f702bcd40b29d48399",
             name: "musl-fix-cplusplus-decls.patch",
             sha256: "sha256-8tg/3rBnjFG2Q4W807+Z0NpTO7VZrontn6qm6fL7QJw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/cmatsuoka/figlet/commit/9a50c1795bc32e5a698b855131ee87c8d7762c9e.patch",
             name: "unistd-on-darwin.patch",
             sha256: "sha256-hyfY87N+yuAwjsBIjpgvcdJ1IbzlR4A2yUJQSzShCRI=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`cp -ar ${nix.sel(finalAttrs, "contributed")}/* $out/share/figlet/`),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Program for making large letters out of ordinary text",
         homepage: "http://www.figlet.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "afl21")),

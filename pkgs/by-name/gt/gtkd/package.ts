@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_base = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base"));
   const gst_plugins_bad = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gtkd",
       version: "3.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gtkd-developers",
           repo: "GtkD",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/gtkd-developers/GtkD/commit/1e41b2da35c7dc2d18b118c632cb07137d048c2b.patch?full_index=1",
             hash: "sha256-8vQntjVrQH1+qHBBkB5PxcgLvucosEEPi43uqlnHe4g=",
           })))),
@@ -156,9 +156,9 @@ substituteInPlace generated/vte/vte/c/functions.d \\
         nix.thunk(() => nix.str`GTKD_VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       postFixup: "for pc in $dev/lib/pkgconfig/*; do\n  substituteInPlace $pc \\\n    --replace \"$out/include\" \"$dev/include\"\ndone\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, dcompiler: dcompiler })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, dcompiler: dcompiler })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "D binding and OO wrapper for GTK",
         homepage: "https://gtkd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

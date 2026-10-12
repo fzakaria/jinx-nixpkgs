@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: "protobuf",
       version: version,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "protocolbuffers",
           repo: "protobuf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,35 +55,35 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["out", "lib", "dev", "proto"]),
       outputChecks: nix.thunk(() => ({
-        __proto__: pos$5,
-        out: nix.thunk(() => ({ __proto__: pos$2, disallowedReferences: nix.thunk(() => ["dev"]) })),
-        lib: nix.thunk(() => ({ __proto__: pos$3, disallowedReferences: nix.thunk(() => ["out", "dev"]) })),
+        [nix.POS]: pos$5,
+        out: nix.thunk(() => ({ [nix.POS]: pos$2, disallowedReferences: nix.thunk(() => ["dev"]) })),
+        lib: nix.thunk(() => ({ [nix.POS]: pos$3, disallowedReferences: nix.thunk(() => ["out", "dev"]) })),
         proto: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           disallowedReferences: nix.thunk(() => ["out", "lib", "dev"]),
         })),
       })),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "22")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               url: "https://github.com/protocolbuffers/protobuf/commit/a7324f88e92bc16b57f3683403b6c993bf68070b.patch",
               hash: "sha256-SmwaUjOjjZulg/wgNmR/F5b8rhYA2wkKAjHIOxjcQdQ=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "29")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: "https://github.com/protocolbuffers/protobuf/commit/0e9d0f6e77280b7a597ebe8361156d6bb1971dca.patch",
               hash: "sha256-rIP+Ft/SWVwh9Oy8y8GSUBgP6CtLCLvGmr6nOqmyHhY=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "30")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "35")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               url: "https://github.com/protocolbuffers/protobuf/commit/211f52431b9ec30d4d4a1c76aafd64bd78d93c43.patch",
               hash: "sha256-2/vc4anc+kH7otfLHfBtW8dRowPyObiXZn0+HtQktak=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "33")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "35")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               url: "https://github.com/protocolbuffers/protobuf/commit/8282f0f8ecf8b847e5964a308e041ba3b049811c.patch",
               hash: "sha256-4c/yLuAd29Cxrz6I9F2Lj02lW2bazIcGb+86uxZY7qA=",
             })))),
@@ -108,33 +108,33 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "29")), nix.thunk(() => ({ __proto__: pos$10, GTEST_DEATH_TEST_STYLE: "threadsafe" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "29")), nix.thunk(() => ({ [nix.POS]: pos$10, GTEST_DEATH_TEST_STYLE: "threadsafe" })))),
       postFixup: "pushd \"$dev\" > /dev/null\n\nfind include -name '*.proto' -print0 | while IFS= read -r -d '' FILE; do\n  mkdir -p \"$proto/$(dirname \"$FILE\")\"\n  mkdir -p \"$out/$(dirname \"$FILE\")\"\n\n  mv \"$FILE\" \"$proto/$FILE\"\n\n  ln -s \"$proto/$FILE\" \"$out/$FILE\"\n  ln -s \"$proto/$FILE\" \"$dev/$FILE\"\ndone\n\npopd > /dev/null\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pythonProtobuf: nix.thunk(() => nix.sel(python3, "pkgs", "protobuf")),
           grpc: grpc,
           celery: nix.thunk(() => nix.attr(from, "celery")),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$11, package: protobuf })))),
-          "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$12, package: protobuf })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$11, package: protobuf })))),
+          "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$12, package: protobuf })))),
         };
         })()),
         "abseil-cpp": abseil_cpp,
         full: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
             return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             name: nix.thunk(() => nix.attr(from, "name")),
             paths: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "all")),
           };
           })()))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         description: "Google's data interchange format",
         longDescription: "Protocol Buffers are a way of encoding structured data in an efficient\nyet extensible format. Google uses Protocol Buffers for almost all of\nits internal RPC protocols and file formats.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

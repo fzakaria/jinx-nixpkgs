@@ -42,57 +42,57 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const version = "469e";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-Linux-amd64.tar.bz2`),
         hash: "sha256-CMgGqjchsZcARaoVitkAUTKdmC6KmjZhFTkA6cy/aww=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-Linux-arm64.tar.bz2`),
         hash: "sha256-TDl4BzsSsEnD/9600nXPx6IxNlDz61uU2wb7/ud8Pjs=",
       })))),
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-Linux-x86.tar.bz2`),
         hash: "sha256-y9bYAW77MOOYJ1elgsaIUygDch7B7HOPwor5s+FdPBQ=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v${version}/OldUnreal-UTPatch${nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-", version)), 0n)}-macOS.dmg`),
         hash: "sha256-trOh9GLktwLfDuz5DWY+8fhHzDaq3KHsbdNSeNCR+g0=",
       })))),
   }));
   const iso1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: "https://archive.org/download/ut-goty/UT_GOTY_CD1.iso",
       hash: "sha256-4YSYTKiPABxd3VIDXXbNZOJm4mx0l1Fhte1yNmx0cE8=",
     }))));
   const iso2 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       url: "https://archive.org/download/ut-goty/UT_GOTY_CD2.iso",
       hash: "sha256-2V2O4c+VVi7gI/1UA17IgT1CdfY9GEdCMiCYbtyNANg=",
     }))));
   const baseGame = nix.thunk(() => nix.app(runCommand, "ut1999-iso1", nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       src: iso1,
       nativeBuildInputs: nix.thunk(() => [libarchive]),
     })), "bsdtar -xvf \"$src\"\nmkdir $out\ncp -r Music Sounds Textures Maps $out\n"));
   const bonusPacks = nix.thunk(() => nix.app(runCommand, "ut1999-iso2", nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       src: iso2,
       nativeBuildInputs: nix.thunk(() => [libarchive]),
     })), "bsdtar -xvf \"$src\"\nmkdir $out\ncp -r System Sounds Textures maps $out\n"));
   const systemDir = nix.thunk(() => nix.selOr({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     "x86_64-linux": "System64",
     "aarch64-linux": "SystemARM64",
     "i686-linux": "System",
     "aarch64-darwin": "System",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "ut1999",
       version: version,
       sourceRoot: ".",
@@ -174,7 +174,7 @@ rm $out/${systemDir}/libmpg123.so* \\
       appendRunpaths: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${systemDir}`)]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "ut1999",
             desktopName: "Unreal Tournament GOTY (1999)",
             exec: "ut1999",
@@ -183,9 +183,9 @@ rm $out/${systemDir}/libmpg123.so* \\
             categories: nix.thunk(() => ["Game"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$12, isos: nix.thunk(() => [iso1, iso2]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$12, isos: nix.thunk(() => [iso1, iso2]) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Unreal Tournament GOTY (1999) with the OldUnreal patch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), srcs)),

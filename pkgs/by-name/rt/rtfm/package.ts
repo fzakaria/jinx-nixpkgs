@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const version = "0.6.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "hugopl",
       repo: "rtfm",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-0yKldVTZdFV1Tj1MUI7TCqF3Ho/D7NOGR9UuLaLUFdo=",
     }))));
   const gtk_doc = nix.thunk(() => (() => {
-    const gtk4$ = nix.thunk(() => nix.app(nix.sel(gtk4, "override"), nix.thunk(() => ({ __proto__: pos$2, x11Support: true }))));
-    const pango$ = nix.thunk(() => nix.app(nix.sel(pango, "override"), nix.thunk(() => ({ __proto__: pos$3, withIntrospection: true }))));
+    const gtk4$ = nix.thunk(() => nix.app(nix.sel(gtk4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, x11Support: true }))));
+    const pango$ = nix.thunk(() => nix.app(nix.sel(pango, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withIntrospection: true }))));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "gtk-doc",
         paths: nix.thunk(() => [
           nix.thunk(() => nix.sel(gtk4$, "devdoc")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(crystal, "buildCrystalPackage"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "rtfm",
       version: version,
       src: src,
@@ -81,12 +81,12 @@ substituteInPlace src/doc2dash/docset_builder.cr \\
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
             nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "rtfm.shardLock", "./shard.lock")),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-lock", nix.thunk(() => nix.str`cd $1; ${nix.app(nix.sel(lib, "getExe"), crystal2nix)}`))),
                 nix.path(here, "./."),
@@ -94,15 +94,15 @@ substituteInPlace src/doc2dash/docset_builder.cr \\
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               command: nix.thunk(() => ["rm", "./shard.lock"]),
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
           ]))),
-        shardLock: nix.thunk(() => nix.app(runCommand, "shard.lock", nix.thunk(() => ({ __proto__: pos$8, src: src })), "cp $src/shard.lock $out\n")),
+        shardLock: nix.thunk(() => nix.app(runCommand, "shard.lock", nix.thunk(() => ({ [nix.POS]: pos$8, src: src })), "cp $src/shard.lock $out\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Dash/docset reader with built in documentation for Crystal and GTK APIs",
         homepage: "https://github.com/hugopl/rtfm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

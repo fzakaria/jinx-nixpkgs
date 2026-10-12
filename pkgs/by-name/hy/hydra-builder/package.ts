@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   const withOtel = nix.argOr($, "withOtel", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "hydra-builder",
       version: nix.thunk(() => nix.attr(hydra, "version")),
       src: nix.thunk(() => nix.attr(hydra, "src")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [protobuf, rust_jemalloc_sys]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Build agent for the Nix-based continuous build system Hydra",
         homepage: "https://github.com/NixOS/hydra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gi_docgen = nix.arg($, "gi-docgen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "eog",
       version: "50.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/eog/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/eog-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-xsKv3+QKg43gxrJkiEqA04jxwu+j9zoV7eCIJMRr4LM=",
         })))),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`# Pull in WebP and JXL support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extraLoaders: nix.thunk(() => [
             libjxl,
             librsvg,
@@ -103,11 +103,11 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "eog" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "eog" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GNOME image viewer",
         homepage: "https://gitlab.gnome.org/GNOME/eog",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/eog/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

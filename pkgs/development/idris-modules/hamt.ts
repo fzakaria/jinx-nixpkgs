@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hamt",
       version: "2016-11-15",
       idrisDeps: nix.thunk(() => [contrib, effects]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bamboo",
           repo: "idris-hamt",
           rev: "e70f3eedddb5ccafea8e386762b8421ba63c495a",
           sha256: "0m2yjr20dxkfmn3nzc68l6vh0rdaw6b637yijwl4c83b5xiac1mi",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris Hash Array Mapped Trie",
         homepage: "https://github.com/bamboo/idris-hamt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

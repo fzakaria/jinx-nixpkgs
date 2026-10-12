@@ -20,9 +20,9 @@ export default nix.lambda((args) => (() => {
   const mesa = nix.arg($, "mesa");
   const buildPackages = nix.arg($, "buildPackages");
   const llvmPackages_22$ = nix.thunk(() => nix.sel(buildPackages, "llvmPackages_22"));
-  const spirv_llvm_translator$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "spirv-llvm-translator", "override"), nix.thunk(() => ({ __proto__: pos$1, llvm: nix.thunk(() => nix.attr(llvmPackages_22$, "llvm")) }))));
+  const spirv_llvm_translator$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "spirv-llvm-translator", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, llvm: nix.thunk(() => nix.attr(llvmPackages_22$, "llvm")) }))));
   const tools = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "mesa-libclc-tools",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvmPackages_22$, "clang-unwrapped")),
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       pathsToLink: nix.thunk(() => ["/bin"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mesa-libclc",
       version: "22.1.8.3",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           domain: "gitlab.freedesktop.org",
           owner: "karolherbst",
           repo: "mesa-libclc",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mesa fork of libclc, for use with Rusticl",
         homepage: "https://gitlab.freedesktop.org/karolherbst/mesa-libclc",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/karolherbst/mesa-libclc/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const enableVorbis = nix.argOr($, "enableVorbis", () => false);
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "timidity",
       version: "2.15.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/timidity/TiMidity++-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Fh/AOVrxa1H3EXrQB8PkNMglowj6Ka1Etibuj5uxyPU=",
         })))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       instruments: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://courses.cs.umbc.edu/pub/midia/instruments.tar.gz",
           sha256: "0lsh9l8l5h46z0y8ybsjd4pf6c22n33jsjvapfv3rjlfnasnqw67",
         })))),
@@ -68,7 +68,7 @@ ${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc -o timidity/calcnewt -lm timidi
 # Remove dependencies of calcnewt so it doesn't try to remake it.
 sed -i 's/^\\(calcnewt\\$(EXEEXT):\\).*/\\1/g' timidity/Makefile
 `),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       postInstall: nix.thunk(() => nix.add(nix.str`mkdir -p $out/share/timidity/;
 cp ${nix.path(here, "./timidity.cfg")} $out/share/timidity/timidity.cfg
 substituteAllInPlace $out/share/timidity/timidity.cfg
@@ -76,9 +76,9 @@ tar --strip-components=1 -xf $instruments -C $out/share/timidity/
 `, "chmod -Rh a+rX $out/share/timidity/\n")),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$4, tests: nix.thunk(() => nix.sel(nixosTests, "timidity")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => nix.sel(nixosTests, "timidity")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://sourceforge.net/projects/timidity/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "Software MIDI renderer",

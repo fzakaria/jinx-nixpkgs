@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const asioVersion = nix.argOr($, "asioVersion", () => "1.38.0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "asio",
       version: asioVersion,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "chriskohlhoff",
           repo: "asio",
           tag: nix.thunk(() => nix.str`asio-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.32.0": "sha256-PBoa4OAOOmHas9wCutjz80rWXc3zGONntb9vTQk3FNY=",
             "1.36.0": "sha256-BhJpE5+t0WXsuQ5CtncU0P8Kf483uFoV+OGlFLc7TpQ=",
             "1.38.0": "sha256-pkSu8XMibmRPMoS3v5hO34oJb077bYc9KWELj3t8D6M=",
@@ -46,18 +46,18 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://think-async.com/Asio",
         description: "Cross-platform C++ library for network and low-level I/O programming",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

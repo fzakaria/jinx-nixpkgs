@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cfripper",
       version: "1.22.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Skyscanner",
           repo: "cfripper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_multiple_resources_with_wildcard_resources_are_detected"]),
       pythonImportsCheck: nix.thunk(() => ["cfripper"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for analysing CloudFormation templates",
         homepage: "https://github.com/Skyscanner/cfripper",
         changelog: nix.thunk(() => nix.str`https://github.com/Skyscanner/cfripper/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

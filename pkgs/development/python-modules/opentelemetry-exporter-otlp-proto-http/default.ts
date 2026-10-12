@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-exporter-otlp-proto-http",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook, responses]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.exporter.otlp.proto.http"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/exporter/opentelemetry-exporter-otlp-proto-http",
         description: "OpenTelemetry Collector Protobuf over HTTP Exporter",
       })),

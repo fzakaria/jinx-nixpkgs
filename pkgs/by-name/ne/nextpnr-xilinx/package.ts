@@ -24,25 +24,25 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const llvmPackages = nix.arg($, "llvmPackages");
   const prjxrayDb = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "openxc7",
       repo: "prjxray-db",
       rev: "381966a746cb4cf4a7f854f0e53caa3bf74fbe62",
       hash: "sha256-tQ1KfYj6kQq3fKBv6PAsqxm9btMNWFd5fT9UzOGMlkE=",
     }))));
   const nextpnrXilinxMeta = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "openxc7",
       repo: "nextpnr-xilinx-meta",
       rev: "491aefcc15be159efc8ad8bff2a1a4b93fe487fe",
       hash: "sha256-oRVFPzdw9ctzT6iQ8YI3Q92LZTIlRPBZvJVjMqvDJQE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nextpnr-xilinx",
       version: "0.8.2-unstable-2026-03-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "openXC7",
           repo: "nextpnr-xilinx",
           rev: "96bb068afdb941e9292509a28b079c14c26ceca6",
@@ -86,11 +86,11 @@ runHook postInstall
 `),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Place and route tool for Xilinx 7-series FPGAs",
         homepage: "https://github.com/openXC7/nextpnr-xilinx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -32,40 +32,40 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const torch = nix.arg($, "torch");
   const qdldl_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "osqp",
       repo: "qdldl",
       tag: "v0.1.8",
       hash: "sha256-qCeOs4UjZLuqlbiLgp6BMxvw4niduCPDOOqFt05zi2E=",
     }))));
   const osqp_src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "osqp",
           repo: "osqp",
           tag: "v1.0.0",
           hash: "sha256-BOAytzJzHcggncQzeDrXwJOq8B3doWERJ6CKIVg1yJY=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-qdldl.patch"), nix.thunk(() => ({ __proto__: pos$3, qdldl_src: qdldl_src })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-qdldl.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, qdldl_src: qdldl_src })))),
       ]),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "osqp",
       version: "1.1.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "osqp",
           repo: "osqp-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xK7ljAwVwsmj84s5yxeU64nwT6N/Ec58aYjiUUOr4Ig=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-osqp.patch"), nix.thunk(() => ({ __proto__: pos$6, osqp_src: osqp_src })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-osqp.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, osqp_src: osqp_src })))),
       ]),
       "build-system": nix.thunk(() => [cmake, ninja, pybind11, scikit_build_core, setuptools_scm]),
       dontUseCmakeConfigure: true,
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         "src/osqp/tests/codegen_vectors_test.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Operator Splitting QP Solver",
         longDescription: "Numerical optimization package for solving problems in the form\n  minimize        0.5 x' P x + q' x\n  subject to      l <= A x <= u\n\nwhere x in R^n is the optimization variable\n",
         homepage: "https://osqp.org/",

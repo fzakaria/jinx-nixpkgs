@@ -36,39 +36,39 @@ export default nix.lambda((args) => (() => {
   const mkAfter = nix.thunk(() => nix.attr(lib, "mkAfter"));
   const mkForce = nix.thunk(() => nix.attr(lib, "mkForce"));
   const pkgs = nix.thunk(() => nix.sel(config, "node", "pkgs"));
-  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/imds-server.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs }))));
+  const imdsServer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/imds-server.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
   const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../maintainers/scripts/ec2/amazon-image.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          __proto__: pos$14,
-          amazonImage: nix.thunk(() => ({ __proto__: pos$2, format: "qcow2" })),
+          [nix.POS]: pos$14,
+          amazonImage: nix.thunk(() => ({ [nix.POS]: pos$2, format: "qcow2" })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             services: nix.thunk(() => ({
-              __proto__: pos$4,
-              "serial-getty@ttyS0": nix.thunk(() => ({ __proto__: pos$3, enable: nix.thunk(() => nix.app(mkForce, false)) })),
+              [nix.POS]: pos$4,
+              "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: pos$3, enable: nix.thunk(() => nix.app(mkForce, false)) })),
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             kernelParams: nix.thunk(() => nix.app(mkAfter, nix.thunk(() => ["console=ttyS0"]))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               eth0: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   addresses: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       address: nix.thunk(() => nix.sel(config, "nodes", "machine", "networking", "primaryIPAddress")),
                       prefixLength: 24n,
                     })),
@@ -78,23 +78,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "socat")),
               imdsServer,
               nix.thunk(() => nix.sel(pkgs, "iptables")),
             ]),
           })),
-          nixpkgs: nix.thunk(() => ({ __proto__: pos$13, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$13, pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
   const image = nix.thunk(() => nix.str`${nix.sel(imageCfg, "system", "build", "amazonImage")}/${nix.sel(imageCfg, "image", "fileName")}`);
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "ec2-image",
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       timeout: 600n,
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {};
@@ -113,11 +113,11 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           programs: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             ssh: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               extraConfig: "Host *\n  PasswordAuthentication no\n  ChallengeResponseAuthentication no\n  HostbasedAuthentication no\n  BatchMode yes\n  PubkeyAuthentication yes\n  StrictHostKeyChecking yes\n",
             })),
           })),

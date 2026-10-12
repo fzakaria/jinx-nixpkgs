@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
   const secret = "1234567890";
   const dnsServerIP = (nodes) => nix.sel(nodes, "dnsserver", "networking", "primaryIPAddress");
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "pangolin",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       acme: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           imports: nix.thunk(() => [nix.path(here, "./common/acme/server")]),
           networking: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nameservers: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => nix.app(dnsServerIP, nodes))]))),
           })),
         };
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           networking: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             firewall: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               allowedTCPPorts: nix.thunk(() => [8055n, 53n]),
               allowedUDPPorts: nix.thunk(() => [53n]),
             })),
@@ -84,15 +84,15 @@ export default nix.lambda((args) => (() => {
             domain: "eu",
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "pebble-challtestsrv": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Pebble ACME challenge test server",
                 wantedBy: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "pebble")), "pebble-challtestsrv")} -dns01 ':53' -defaultIPv6 '' -defaultIPv4 '${nix.sel(nodes, "VPS", "networking", "primaryIPAddress")}'`),
                   AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
                 })),
@@ -105,10 +105,10 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           imports: nix.thunk(() => [nix.path(here, "./common/acme/client")]),
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             domain: domain,
             hosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(nodes, "VPS", "networking", "primaryIPAddress"), nix.thunk(() => [domain, nix.thunk(() => nix.str`pangolin.${domain}`)])],
@@ -116,40 +116,40 @@ export default nix.lambda((args) => (() => {
             nameservers: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [nix.thunk(() => nix.app(dnsServerIP, nodes))]))),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             etc: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               "nixos/secrets/pangolin.env": nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 text: nix.thunk(() => nix.str`SERVER_SECRET=${secret}
 `),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             pangolin: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               enable: true,
               baseDomain: domain,
               letsEncryptEmail: nix.thunk(() => nix.str`pangolin@${domain}`),
               openFirewall: true,
               environmentFile: "/etc/nixos/secrets/pangolin.env",
               settings: nix.thunk(() => ({
-                __proto__: pos$16,
-                flags: nix.thunk(() => ({ __proto__: pos$15, enable_integration_api: true })),
+                [nix.POS]: pos$16,
+                flags: nix.thunk(() => ({ [nix.POS]: pos$15, enable_integration_api: true })),
               })),
             })),
             traefik: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               staticConfigOptions: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 certificatesResolvers: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   letsencrypt: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     acme: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       caServer: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`https://${nix.sel(nodes, "acme", "test-support", "acme", "caDomain")}/dir`))),
                     })),
                   })),

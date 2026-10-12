@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-hostlist",
       version: "2.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.nsc.liu.se/~kent/python-hostlist/python_hostlist-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4aCxjlJaX8pXPLmGJ5nxGz8r07p67HDE7Ni5U0G7ceo=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["hostlist"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for hostlist handling",
         homepage: "https://www.nsc.liu.se/~kent/python-hostlist/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const serpent = nix.arg($, "serpent");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyro5",
       version: "5.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "irmen",
           repo: "Pyro5",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["Socket"])))),
       pythonImportsCheck: nix.thunk(() => ["Pyro5"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed object middleware for Python (RPC)",
         homepage: "https://github.com/irmen/Pyro5",
         changelog: nix.thunk(() => nix.str`https://github.com/irmen/Pyro5/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

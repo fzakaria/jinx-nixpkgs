@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const typescript_5 = nix.arg($, "typescript_5");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "angular-language-server",
       version: "22.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`angular-language-server-${nix.sel(finalAttrs, "version")}.zip`),
           url: nix.thunk(() => nix.str`https://github.com/angular/angular/releases/download/vsix-${nix.sel(finalAttrs, "version")}/ng-template-${nix.sel(finalAttrs, "version")}.vsix`),
           hash: "sha256-/PftUvaE9EjsKRc0TnF0lftOgp5fzKmR+KGhocXEMrk=",
@@ -44,22 +44,22 @@ makeWrapper $out/lib/bin/ngserver $out/bin/ngserver \\
   --add-flags "--tsProbeLocations ${typescript_5}/lib/node_modules/typescript --ngProbeLocations $out/lib/node_modules"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "start-ok": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), angular_language_server)} --stdio --help &> $out
 cat $out | grep "Angular Language Service that implements the Language Server Protocol (LSP)"
 `))),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "update-angular-language-server",
               runtimeInputs: nix.thunk(() => [curl, common_updater_scripts, jq]),
               text: "if [ -z \"${GITHUB_TOKEN:-}\" ]; then\n    echo \"no GITHUB_TOKEN provided - you could meet API request limiting\" >&2\nfi\n\nLATEST_VERSION=$(curl -H \"Accept: application/vnd.github+json\" \\\n    ${GITHUB_TOKEN:+-H \"Authorization: bearer $GITHUB_TOKEN\"} \\\n  -Lsf https://api.github.com/repos/angular/angular/releases | \\\n  jq -r '.[] | select(.tag_name | startswith(\"vsix-\")) | .tag_name' | \\\n  sort | \\\n  tail -n 1 | \\\n  cut -d '\"' -f 2 | \\\n  cut -c 6-)\nupdate-source-version angular-language-server \"$LATEST_VERSION\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "LSP for angular completions, AOT diagnostic, quick info and go to definitions",
         homepage: "https://github.com/angular/angular",
         sourceProvenance: nix.thunk(() => (() => {

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const getopt = nix.arg($, "getopt");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ephemeralpg",
       version: "3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://eradman.com/ephemeralpg/code/ephemeralpg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-IwAIJFW/ahDXGgINi4N9mG3XKw74JXK6+SLxGMZ8tS0=",
         })))),
@@ -30,7 +30,7 @@ PREFIX=$out make install
 wrapProgram $out/bin/pg_tmp --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [postgresql, getopt]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run tests on an isolated, temporary PostgreSQL database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         homepage: "https://eradman.com/ephemeralpg/",

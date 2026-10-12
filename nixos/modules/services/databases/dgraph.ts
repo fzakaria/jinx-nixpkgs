@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "config.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   const dgraphWithNode = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "dgraph", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${nix.sel(cfg, "package")}/bin/dgraph $out/bin/dgraph \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nodejs"))]))}"
 `)));
   const securityOptions = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     NoNewPrivileges: true,
     AmbientCapabilities: "",
     CapabilityBoundingSet: "",
@@ -79,46 +79,46 @@ makeWrapper ${nix.sel(cfg, "package")}/bin/dgraph $out/bin/dgraph \\
     ]),
   }));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         dgraph: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Dgraph native GraphQL database with a graph backend")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dgraph", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               default: nix.thunk(() => ({})),
               description: "Contents of the dgraph config. For more details see <https://dgraph.io/docs/deploy/config>\n",
             })))),
           alpha: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "The host which dgraph alpha will be run on.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 7080n,
                 description: "The port which to run dgraph alpha on.\n",
               })))),
           })),
           zero: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "The host which dgraph zero will be run on.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 5080n,
                 description: "The port which to run dgraph zero on.\n",
@@ -128,31 +128,31 @@ makeWrapper ${nix.sel(cfg, "package")}/bin/dgraph $out/bin/dgraph \\
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           dgraph: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               badger: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 compression: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "zstd:3")),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "dgraph-zero": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Dgraph native GraphQL database with a graph backend. Zero controls node clustering",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 StateDirectory: "dgraph-zero",
                 WorkingDirectory: "/var/lib/dgraph-zero",
                 DynamicUser: true,
@@ -161,13 +161,13 @@ makeWrapper ${nix.sel(cfg, "package")}/bin/dgraph $out/bin/dgraph \\
               }, securityOptions)),
             })),
             "dgraph-alpha": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Dgraph native GraphQL database with a graph backend. Alpha serves data",
               after: nix.thunk(() => ["network.target", "dgraph-zero.service"]),
               requires: nix.thunk(() => ["dgraph-zero.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 StateDirectory: "dgraph-alpha",
                 WorkingDirectory: "/var/lib/dgraph-alpha",
                 DynamicUser: true,
@@ -184,7 +184,7 @@ makeWrapper ${nix.sel(cfg, "package")}/bin/dgraph $out/bin/dgraph \\
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];

@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
   const covers_url = nix.argOr($, "covers_url", () => "https://pics.projectignis.org:2096/pics/cover/{}.jpg");
   const fields_url = nix.argOr($, "fields_url", () => "https://pics.projectignis.org:2096/pics/field/{}.png");
   const pics_url = nix.argOr($, "pics_url", () => "https://pics.projectignis.org:2096/pics/{}.jpg");
-  const archLabel = nix.thunk(() => nix.selOr({ __proto__: pos$1, "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} is an unsupported arch label for edopro`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const archLabel = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} is an unsupported arch label for edopro`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const maintainers = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
     return [
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
   })());
   const deps = nix.thunk(() => nix.builtins.import(nix.path(here, "./deps.nix")));
   const edopro_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "edo9300",
       repo: "edopro",
       rev: nix.thunk(() => nix.sel(deps, "edopro-rev")),
@@ -82,16 +82,16 @@ export default nix.lambda((args) => (() => {
       hash: nix.thunk(() => nix.sel(deps, "edopro-hash")),
     }))));
   const assets = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/ProjectIgnis/edopro-assets/releases/download/${nix.sel(deps, "edopro-version")}/ProjectIgnis-EDOPro-${nix.sel(deps, "edopro-version")}-linux.tar.gz`),
       hash: nix.thunk(() => nix.sel(deps, "assets-hash")),
     }))));
   const irrlicht_edopro = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "irrlicht-edopro",
       version: nix.thunk(() => nix.sel(deps, "irrlicht-version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "edo9300",
           repo: "irrlicht1-8-4",
           rev: nix.thunk(() => nix.sel(deps, "irrlicht-rev")),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(irrlicht, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.attr(from, "description")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         homepage: "https://github.com/edo9300/irrlicht1-8-4",
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
       ])));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "ocgcore-edopro",
         version: nix.thunk(() => nix.sel(deps, "edopro-version")),
         src: edopro_src,
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
         enableParallelBuilding: true,
         buildFlags: nix.thunk(() => ["verbose=true", "config=release", "ocgcoreshared"]),
         makeFlags: nix.thunk(() => ["-C", "build"]),
-        env: nix.thunk(() => ({ __proto__: pos$7, NIX_LDFLAGS: "--unresolved-symbols=report-all" })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$7, NIX_LDFLAGS: "--unresolved-symbols=report-all" })),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 install -Dm644 bin/release/*ocgcore*${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/${ocgcoreName}
@@ -139,7 +139,7 @@ install -Dm644 bin/release/*ocgcore*${nix.sel(stdenv, "hostPlatform", "extension
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           description: "YGOPro script engine",
           homepage: "https://github.com/edo9300/ygopro-core",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -149,7 +149,7 @@ runHook postInstall
       })));
   })());
   const edopro = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "edopro",
       version: nix.thunk(() => nix.sel(deps, "edopro-version")),
       src: edopro_src,
@@ -173,7 +173,7 @@ runHook postInstall
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: "0001-edopro-No-longer-depend-on-fmt-for-localtime.patch",
             url: "https://github.com/edo9300/edopro/commit/c40951ba09f8a8b88d1d4b9b15ca9338da01522c.patch",
             hash: "sha256-wiZRCwSTp9/G97a+zaYjJgmDrc57/5bSBSYur1dcTfA=",
@@ -197,7 +197,7 @@ touch ocgcore/premake5.lua
 `),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         CXXFLAGS: "-include cstdint",
         LDFLAGS: nix.thunk(() => nix.str`-I ${irrlicht_edopro}/include -L ${irrlicht_edopro}/bin`),
       })),
@@ -227,7 +227,7 @@ wrapProgram $out/bin/ygoprodll \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Bleeding-edge automatic duel simulator, a fork of the YGOPro client",
         homepage: "https://projectignis.github.io",
         changelog: "https://github.com/edo9300/edopro/releases",
@@ -256,7 +256,7 @@ runHook postInstall
       ])));
     const wrapperZenityMessageTemplate = nix.thunk(() => nix.app(writeText, "edopro-wrapper-multiple-versions-message.txt.in", "Nixpkgs' EDOPro wrapper has found more than 1 directory in: ${EDOPRO_BASE_DIR}\n\nWe expected the only directory to be: ${EDOPRO_DIR}\n\nThere may have been an update, requiring you to migrate any files you care about from an older version.\n\nExamples include:\n\n- decks/*\n- config/system.conf - which has your client's settings\n- any custom things you may have installed into: fonts, skins, script, sound, ...\n- anything you wish to preserve from: replay, screenshots\n\nOnce you have copied over everything important to ${EDOPRO_DIR}, delete the old version's path.\n"));
     return nix.app(writeShellApplication, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: "edopro",
         runtimeInputs: nix.thunk(() => [envsubst, zenity]),
         text: nix.thunk(() => nix.str`export EDOPRO_VERSION="${nix.sel(deps, "edopro-version")}"
@@ -302,7 +302,7 @@ sed ${assets}/config/io.github.edo9300.EDOPro.desktop.in \\
   >$out/share/applications/io.github.edo9300.EDOPro.desktop
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       pname: "edopro-application",
       version: nix.thunk(() => nix.sel(deps, "edopro-version")),
       paths: nix.thunk(() => [edopro_script, edopro_desktop]),
@@ -315,11 +315,11 @@ sed ${assets}/config/io.github.edo9300.EDOPro.desktop.in \\
       $out/share/icons/hicolor/"$res"/apps/edopro.png
 done
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$15, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$15, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(edopro, "meta"));
         return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "frr-clippy-helper",
       version: frrVersion,
       src: frrSource,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin\ncp lib/clippy $out/bin\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://frrouting.org/",
         description: "FRR routing daemon suite: CLI helper tool clippy",
         longDescription: "This small tool is used to support generating CLI code for FRR. It is split out here,\nto support cross-compiling, because it needs to be compiled with the build system toolchain\nand not the target host one.\n",

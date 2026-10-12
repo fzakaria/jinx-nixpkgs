@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "mkdir -p linuxkpi/dummy/include\n";
       const makeFlags = nix.thunk(() => ["DEBUG_FLAGS=-g", "XARGS_J=xargs-j"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Linux drm driver, ported to FreeBSD",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         path,
         pname,
         version,

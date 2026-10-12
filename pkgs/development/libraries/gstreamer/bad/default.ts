@@ -126,18 +126,18 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_bad = nix.arg($, "gst-plugins-bad");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "gst-plugins-bad",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3FJTg8GLLCZbvmpD1JhlbNkYqqEwqk46vqvNqnQcP/4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
       ]),
@@ -262,7 +262,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "ldac", ldacbtSupport)),
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "webrtcdsp", webrtcAudioProcessingSupport)),
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "isac", webrtcAudioProcessingSupport)),
-      ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({ __proto__: pos$3, mpeghdec: false, tflite: false }))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Ddoc=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))), nix.thunk(() => ["-Dnvcodec=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(gst_plugins_base, "waylandEnabled"))))), nix.thunk(() => ["-Dva=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
+      ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({ [nix.POS]: pos$3, mpeghdec: false, tflite: false }))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Ddoc=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))))), nix.thunk(() => ["-Dnvcodec=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))) || nix.asBool(!nix.asBool(nix.sel(gst_plugins_base, "waylandEnabled"))))), nix.thunk(() => ["-Dva=disabled"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           "-Daja=disabled",
           "-Dchromaprint=disabled",
           "-Dflite=disabled",
@@ -290,16 +290,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          full: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ __proto__: pos$4, enableZbar: true, faacSupport: true, opencvSupport: true })))),
-          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ __proto__: pos$5, enableGplPlugins: false })))),
+          [nix.POS]: pos$6,
+          full: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, enableZbar: true, faacSupport: true, opencvSupport: true })))),
+          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_bad, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableGplPlugins: false })))),
         })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$7, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$7, "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "GStreamer Bad Plugins",
         mainProgram: "gst-transcoder-1.0",
         homepage: "https://gstreamer.freedesktop.org",
@@ -311,7 +311,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

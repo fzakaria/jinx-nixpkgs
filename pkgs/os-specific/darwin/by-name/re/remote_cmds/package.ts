@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "remote_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-SdeF6Jp+KuVTUawJdvpw53qr3gIPEhVzqgQxAau19C0=",
       postPatch: "# Avoid a conflict with the definition in SDK’s headers.\nsed -e '/MAXPKTSIZE/d' -i tftpd/tftp-utils.h\n\n# Avoid a conflict with libedit when building statically\nfor file in tftpd/tftp-file.c tftpd/tftp-file.h tftp/tftp.c tftpd/tftpd.c; do\n  substituteInPlace $file \\\n    --replace-fail read_init read_init_tftpd\ndone\n",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libedit, ncurses]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Remote commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Remote commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

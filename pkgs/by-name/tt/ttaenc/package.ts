@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ttaenc",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tta/ttaenc-${nix.sel(finalAttrs, "version")}-src.tgz`),
           sha256: "sha256-ssnIsBWsxYZPCCoBV/LgnFEX0URTIctheOkltEi+PcY=",
         })))),
@@ -29,7 +29,7 @@ install -dm755 "$out/share/doc/ttaenc"
 install -m644 "ChangeLog-${nix.sel(finalAttrs, "version")}" README "$out/share/doc/ttaenc"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lossless compressor for multichannel 8, 16 and 24 bits audio data, with the ability of password data protection",
         homepage: "https://sourceforge.net/projects/tta/",
         license: nix.thunk(() => (() => {

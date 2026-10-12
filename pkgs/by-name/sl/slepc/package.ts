@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const withExamples = nix.argOr($, "withExamples", () => false);
   const withArpack = nix.argOr($, "withArpack", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const slepcPackages = nix.thunk(() => nix.app(nix.sel(petsc, "petscPackages", "overrideScope"), (final) => (prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pythonSupport: pythonSupport,
       mpiSupport: true,
-      arpack: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(arpack, "override")), nix.thunk(() => ({ __proto__: pos$1, useMpi: true })))),
+      arpack: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(arpack, "override")), nix.thunk(() => ({ [nix.POS]: pos$1, useMpi: true })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "slepc",
       version: "3.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "slepc",
           repo: "slepc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ patchShebangs lib/slepc/bin
       pythonImportsCheck: nix.thunk(() => ["slepc4py"]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Scalable Library for Eigenvalue Problem Computations",
         homepage: "https://slepc.upv.es",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/slepc/slepc/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

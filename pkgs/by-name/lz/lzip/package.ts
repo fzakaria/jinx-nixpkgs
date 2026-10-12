@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lzip",
       version: "1.26",
       outputs: nix.thunk(() => ["out", "man", "info"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/lzip-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZBzzCWFSXL47NAzIg0NsiFTp9QMvRZ9ETeR4K2IeZXI=",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/lzip/lzip.html",
         description: "Lossless data compressor based on the LZMA algorithm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

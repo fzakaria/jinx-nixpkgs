@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const tokenspeed_triton = nix.arg($, "tokenspeed-triton");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tokenspeed-mla",
       version: "0.2.10",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           format: "wheel",
           pname: "tokenspeed_mla",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [apache_tvm_ffi, nvidia_cutlass_dsl, tokenspeed_triton, torch]),
       pythonImportsCheck: nix.thunk(() => ["tokenspeed_mla"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Speed-of-light TokenSpeed MLA kernels for Blackwell SM100 and SM103",
         homepage: "https://github.com/lightseekorg/tokenspeed/tree/main/tokenspeed-mla",
         downloadPage: "https://pypi.org/project/tokenspeed-mla/#files",

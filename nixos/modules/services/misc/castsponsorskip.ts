@@ -23,40 +23,40 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "castsponsorskip"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         castsponsorskip: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "castsponsorskip")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "castsponsorskip", nix.thunk(() => ({})))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "type")),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$1, CSS_SKIP_SPONSORS: false })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$1, CSS_SKIP_SPONSORS: false })),
               description: "Configuration for the service. List of options all options <https://github.com/gabe565/CastSponsorSkip/blob/main/docs/envs.md>.",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             castsponsorskip: nix.thunk(() => (() => {
               const config_1 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => nix.sel(cfg, "config"))), "generate"), "config.yaml", nix.thunk(() => ({}))));
               return {
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Skip YouTube ads and sponsorships on all local Google Cast devices",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   DynamicUser: true,
                   Restart: "always",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --config=${config_1}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wariuccio"))];

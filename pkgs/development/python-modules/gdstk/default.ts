@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const qhull = nix.arg($, "qhull");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gdstk",
       src: nix.thunk(() => nix.attr(libgdstk, "src")),
       version: nix.thunk(() => nix.attr(libgdstk, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [build, cmake, ninja, numpy, scikit_build_core]),
       dependencies: nix.thunk(() => [numpy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         docs: nix.thunk(() => [matplotlib, sphinx, sphinx_inline_tabs, sphinx_rtd_theme]),
       })),
       buildInputs: nix.thunk(() => [zlib, qhull]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libgdstk, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "brmodelo",
       version: "3.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chcandido",
           repo: "brmodelo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,31 +47,31 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-self-closing-element-not-allowed.patch",
             url: "https://github.com/yuuyins/brModelo/commit/0d712b74fd5d29d67be07480ed196da28a77893b.patch",
             hash: "sha256-yy03arE6xetotzyvpToi9o9crg3KnMRn1J70jDUvSXE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-tag-closing.patch",
             url: "https://github.com/yuuyins/brModelo/commit/e8530ff75f024cf6effe0408ed69985405e9709c.patch",
             hash: "sha256-MNuh/ORbaAkB5qDSlA/nPrXN+tqzz4oOglVyEtSangI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fix-bad-use-greater-than.patch",
             url: "https://github.com/yuuyins/brModelo/commit/498a6ef8129daff5a472b318f93c8f7f2897fc7f.patch",
             hash: "sha256-MmAwYUmx38DGRsiSxCWCObtpqxk0ykUQiDSC76bCpFc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "fix-param-errors.patch",
             url: "https://github.com/yuuyins/brModelo/commit/8a508aaba0bcffe13a3f95cff495230beea36bc4.patch",
             hash: "sha256-qME9gZChSMzu1vs9HaosD+snb+jlOrQLY97meNoA8oU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "add-brmodelo-logo-icons-svg.patch",
             url: "https://github.com/yuuyins/brModelo/commit/f260b82b664fad3325bbf3ebd7a15488d496946b.patch",
             hash: "sha256-UhgcWxsHkNFS1GgaRnmlZohjDR8JwHof2cIb3SBetYs=",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook postBuild\nant\nrunHook preBuild\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "brmodelo",
             desktopName: "brModelo",
             genericName: "Entity-relationship diagramming tool",
@@ -125,7 +125,7 @@ runHook postInstall
 `),
       preFixup: "find $out/share/doc/brmodelo/javadoc -name \"*.html\" -exec strip-nondeterminism --type javadoc {} +\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Entity-relationship diagram tool for making conceptual and logical database models",
         homepage: "https://github.com/chcandido/brModelo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

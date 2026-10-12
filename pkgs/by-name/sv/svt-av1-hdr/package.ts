@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const hdr10plus = nix.arg($, "hdr10plus");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "svt-av1-hdr",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juliobbv-p",
           repo: "svt-av1-hdr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       cmakeBuildType: "Release",
-      cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.app(nix.sel(lib, "cmakeOptionType"), nix.thunk(() => nix.builtins.typeOf(v)), n, nix.thunk(() => (nix.asBool(nix.builtins.isBool(v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.builtins.toString(v)))), nix.thunk(() => ({ __proto__: pos$2, LIBDOVI_FOUND: true, LIBHDR10PLUS_RS_FOUND: true })))),
+      cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.app(nix.sel(lib, "cmakeOptionType"), nix.thunk(() => nix.builtins.typeOf(v)), n, nix.thunk(() => (nix.asBool(nix.builtins.isBool(v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.builtins.toString(v)))), nix.thunk(() => ({ [nix.POS]: pos$2, LIBDOVI_FOUND: true, LIBHDR10PLUS_RS_FOUND: true })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [yasm])))),
       buildInputs: nix.thunk(() => nix.concat([libdovi, hdr10plus], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [cpuinfo])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/juliobbv-p/svt-av1-hdr",
         description: "Scalable Video Technology AV1 Encoder and Decoder",
         longDescription: "SVT-AV1-HDR is the Scalable Video Technology for AV1 (SVT-AV1 Encoder)\nwith perceptual enhancements for psychovisually optimal SDR and HDR AV1 encoding.\nThe goal is to create the best encoding implementation for perceptual quality with AV1,\nwith additional optimizations for HDR encoding and content with film grain.\n",

@@ -17,31 +17,31 @@ const pos$9 = nix.positions(here + "/nix-local-store.nix", [["name", 2, 3], ["no
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "nix-local-store",
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nix: nix.thunk(() => ({
-            __proto__: pos$3,
-            daemon: nix.thunk(() => ({ __proto__: pos$1, enable: false })),
+            [nix.POS]: pos$3,
+            daemon: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
             settings: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "experimental-features": nix.thunk(() => ["nix-command"]),
               "log-lines": 26n,
             })),
             enable: true,
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             etc: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               "test.nix": nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 text: nix.thunk(() => nix.str`derivation {
   name = "test";
   builder = "/bin/sh";

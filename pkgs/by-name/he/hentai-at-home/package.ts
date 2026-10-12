@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const javaOpts = nix.argOr($, "javaOpts", () => "-XX:+UseZGC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hentai-at-home",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://repo.e-hentai.org/hath/HentaiAtHome_${nix.sel(finalAttrs, "version")}_src.zip`),
           hash: "sha512-oKyvzHZTPwSTcjsNOQ0LIl6rV+b7JDnuWbYKFogWWkyKcR/xDcNPNhUrKv8QLH6a1AQ2T8DYkxcJYnjhgsaovA==",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [jdk_headless, makeWrapper]),
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, LANG: "en_US.UTF-8" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenvNoCC, "buildPlatform", "libc"), "glibc")), nix.thunk(() => ({
-          __proto__: pos$3,
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, LANG: "en_US.UTF-8" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenvNoCC, "buildPlatform", "libc"), "glibc")), nix.thunk(() => ({
+          [nix.POS]: pos$3,
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${nix.sel(buildPackages, "glibcLocales")}/lib/locale/locale-archive`),
         }))))),
       makeFlags: nix.thunk(() => ["all"]),
@@ -50,7 +50,7 @@ runHook postInstall
       installCheckPhase: "runHook preInstallCheck\n\npushd $(mktemp -d)\n$out/bin/HentaiAtHome\npopd\n\nrunHook postInstallCheck\n",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://ehwiki.org/wiki/Hentai@Home",
         description: "Open-source P2P gallery distribution system which reduces the load on the E-Hentai Galleries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

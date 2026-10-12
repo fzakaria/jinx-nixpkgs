@@ -66,35 +66,35 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "umami"));
   const nonFileSettings = nix.thunk(() => nix.app(filterAttrs, (k) => (_) => !nix.asBool(nix.app(hasSuffix, "_FILE", k)), nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         umami: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(mkEnableOption, "umami")),
           package: nix.thunk(() => nix.update(nix.app(mkPackageOption, pkgs, "umami", nix.thunk(() => ({}))), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             apply: (pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 collectApiEndpoint: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "COLLECT_API_ENDPOINT"), null)), nix.thunk(() => nix.sel(cfg, "settings", "COLLECT_API_ENDPOINT")))),
                 trackerScriptNames: nix.thunk(() => nix.sel(cfg, "settings", "TRACKER_SCRIPT_NAME")),
                 basePath: nix.thunk(() => nix.sel(cfg, "settings", "BASE_PATH")),
               }))),
           })),
           createPostgresqlDatabase: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               example: false,
               description: "Whether to automatically create the database for Umami using PostgreSQL.\nBoth the database name and username will be `umami`, and the connection is\nmade through unix sockets using peer authentication.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "Additional configuration (environment variables) for Umami, see\n<https://umami.is/docs/environment-variables> for supported values.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -104,11 +104,11 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     APP_SECRET_FILE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.update(nix.sel(types, "str"), {
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             check: (it) => (nix.asBool(nix.app(isString, it)) && nix.asBool(nix.app(nix.sel(types, "path", "check"), it))),
                           })))),
                         default: null,
@@ -116,9 +116,9 @@ export default nix.lambda((args) => (() => {
                         description: "A file containing a secure random string. This is used for signing user sessions.\nThe contents of the file are read through systemd credentials, therefore the\nuser running umami does not need permissions to read the file.\nIf you wish to set this to a string instead (not recommended since it will be\nplaced world-readable in the Nix store), you can use the APP_SECRET option.\n",
                       })))),
                     DATABASE_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.update(nix.sel(types, "str"), {
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             check: (it) => (nix.asBool(nix.app(isString, it)) && nix.asBool((nix.asBool(nix.app(hasPrefix, "postgresql://", it)) || nix.asBool(nix.app(hasPrefix, "postgres://", it))))),
                           })))),
                         default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "createPostgresqlDatabase")) ? "postgresql://umami@localhost/umami?host=/run/postgresql" : null)),
@@ -127,9 +127,9 @@ export default nix.lambda((args) => (() => {
                         description: "Connection string for the database. Must start with `postgresql://` or `postgres://`.\n",
                       })))),
                     DATABASE_URL_FILE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.update(nix.sel(types, "str"), {
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             check: (it) => (nix.asBool(nix.app(isString, it)) && nix.asBool(nix.app(nix.sel(types, "path", "check"), it))),
                           })))),
                         default: null,
@@ -137,49 +137,49 @@ export default nix.lambda((args) => (() => {
                         description: "A file containing a connection string for the database. The connection string\nmust start with `postgresql://` or `postgres://`.\nThe contents of the file are read through systemd credentials, therefore the\nuser running umami does not need permissions to read the file.\n",
                       })))),
                     COLLECT_API_ENDPOINT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         default: null,
                         example: "/api/alternate-send",
                         description: "Allows you to send metrics to a location different than the default `/api/send`.\n",
                       })))),
                     TRACKER_SCRIPT_NAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: [],
                         example: nix.thunk(() => ["tracker.js"]),
                         description: "Allows you to assign a custom name to the tracker script different from the default `script.js`.\n",
                       })))),
                     BASE_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "",
                         example: "/analytics",
                         description: "Allows you to host Umami under a subdirectory.\nYou may need to update your reverse proxy settings to correctly handle the BASE_PATH prefix.\n",
                       })))),
                     DISABLE_UPDATES: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         example: false,
                         description: "Disables the check for new versions of Umami.\n",
                       })))),
                     DISABLE_TELEMETRY: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         example: true,
                         description: "Umami collects completely anonymous telemetry data in order help improve the application.\nYou can choose to disable this if you don't want to participate.\n",
                       })))),
                     HOSTNAME: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "127.0.0.1",
                         example: "0.0.0.0",
                         description: "The address to listen on.\n",
                       })))),
                     PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 3000n,
                         example: 3010n,
@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
                 })))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 APP_SECRET_FILE: "/run/secrets/umamiAppSecret",
                 DISABLE_TELEMETRY: true,
               })),
@@ -198,51 +198,51 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => !nix.eq(!nix.eq(nix.sel(cfg, "settings", "APP_SECRET_FILE"), null), nix.has(nix.sel(cfg, "settings"), "APP_SECRET"))),
             message: "One (and only one) of services.umami.settings.APP_SECRET_FILE and services.umami.settings.APP_SECRET must be set.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => !nix.eq(!nix.eq(nix.sel(cfg, "settings", "DATABASE_URL_FILE"), null), !nix.eq(nix.sel(cfg, "settings", "DATABASE_URL"), null))),
             message: "One (and only one) of services.umami.settings.DATABASE_URL_FILE and services.umami.settings.DATABASE_URL must be set.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "createPostgresqlDatabase")) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "DATABASE_URL"), "postgresql://umami@localhost/umami?host=/run/postgresql")))),
             message: "The option config.services.umami.createPostgresqlDatabase is enabled, but config.services.umami.settings.DATABASE_URL has been modified.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertion: nix.thunk(() => !nix.eq(nix.selOr(cfg, () => null, "settings", "DATABASE_TYPE"), "mysql")),
             message: "Umami only supports PostgreSQL as of 3.0.0. Follow migration instructions if you are using MySQL: https://umami.is/docs/guides/migrate-mysql-postgresql",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "createPostgresqlDatabase")), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               enable: true,
               ensureDatabases: nix.thunk(() => ["umami"]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   name: "umami",
                   ensureDBOwnership: true,
-                  ensureClauses: nix.thunk(() => ({ __proto__: pos$28, login: true })),
+                  ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$28, login: true })),
                 })),
               ]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             umami: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               environment: nix.thunk(() => nix.app(mapAttrs, (_) => nix.builtins.toString, nonFileSettings)),
               description: "Umami: a simple, fast, privacy-focused alternative to Google Analytics",
               after: nix.thunk(() => nix.concat(["network.target"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "createPostgresqlDatabase")), "postgresql.service"))),
@@ -254,7 +254,7 @@ ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 Type: "simple",
                 Restart: "on-failure",
                 RestartSec: 3n,
@@ -283,7 +283,7 @@ ${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "diogotcorreia"))];

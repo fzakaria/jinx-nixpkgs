@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libmysqlclient = nix.arg($, "libmysqlclient");
   const libpq = nix.arg($, "libpq");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oidcwarden",
       version: "2026.4.2-1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Timshel",
           repo: "OIDCWarden",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(dbBackend, "mysql")), libmysqlclient), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(dbBackend, "postgresql")), libpq))))),
       buildFeatures: dbBackend,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial Bitwarden-compatible server with OpenID Connect support",
         homepage: "https://github.com/Timshel/OIDCWarden",
         changelog: nix.thunk(() => nix.str`https://github.com/Timshel/OIDCWarden/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

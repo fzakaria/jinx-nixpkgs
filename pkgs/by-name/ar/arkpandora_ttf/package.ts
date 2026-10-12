@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "arkpandora";
       const version = "2.04";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://distcache.FreeBSD.org/ports-distfiles/ttf-arkpandora-${version}.tgz`),
             nix.thunk(() => nix.str`ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/ttf-arkpandora-${version}.tgz`),
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\ncp *.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Font, metrically identical to Arial and Times New Roman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bitstreamVera")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

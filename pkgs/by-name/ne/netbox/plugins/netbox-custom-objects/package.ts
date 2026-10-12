@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-custom-objects",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netboxlabs",
           repo: "netbox-custom-objects",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       dontCheckPythonMetadata: true,
       pythonImportsCheck: nix.thunk(() => ["netbox_custom_objects"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_custom_objects" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_custom_objects" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin to create new object types",
         homepage: "https://github.com/netboxlabs/netbox-custom-objects",
         changelog: nix.thunk(() => nix.str`https://github.com/netboxlabs/netbox-custom-objects/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

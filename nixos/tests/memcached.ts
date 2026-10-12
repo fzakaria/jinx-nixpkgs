@@ -14,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "memcached",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         services: nix.thunk(() => ({
-          __proto__: pos$2,
-          memcached: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+          [nix.POS]: pos$2,
+          memcached: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
         })),
       })),
     })),
     testScript: nix.thunk(() => (() => {
       const testScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "test_memcache", nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "python-memcached"))]),
         })), "import memcache\nc = memcache.Client(['localhost:11211'])\nc.set('key', 'value')\nassert 'value' == c.get('key')\n"));
       return nix.str`machine.start()

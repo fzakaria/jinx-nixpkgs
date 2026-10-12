@@ -10,6 +10,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
   const pkgs = nix.arg($, "pkgs");
-  return nix.builtins.mapAttrs((attr) => (pkg) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pkg, "version")), "2.29pre")) ? nix.app(nix.sel(pkg, "overrideScope"), (finalScope) => (prevScope) => ({ __proto__: pos$1, "aws-sdk-cpp": null })) : nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ __proto__: pos$2, withAWS: false })))), nix.thunk(() => nix.sel(pkgs, "nixVersions")));
+  return nix.builtins.mapAttrs((attr) => (pkg) => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pkg, "version")), "2.29pre")) ? nix.app(nix.sel(pkg, "overrideScope"), (finalScope) => (prevScope) => ({ [nix.POS]: pos$1, "aws-sdk-cpp": null })) : nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withAWS: false })))), nix.thunk(() => nix.sel(pkgs, "nixVersions")));
 })(), formals$1);
 //# sourceMappingURL=nix-for-tests.ts.map

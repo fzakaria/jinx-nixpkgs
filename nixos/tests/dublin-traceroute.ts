@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const routerBase = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$5,
-        virtualisation: nix.thunk(() => ({ __proto__: pos$1, vlans: nix.thunk(() => [2n, 1n]) })),
+        [nix.POS]: pos$5,
+        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [2n, 1n]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$4,
-          nftables: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$4,
+          nftables: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           nat: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             internalIPs: nix.thunk(() => ["192.168.1.0/24"]),
             externalInterface: "eth1",
           })),
@@ -53,45 +53,45 @@ export default nix.lambda((args) => (() => {
       })),
     ])));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "dublin-traceroute",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "baloo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$7, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             defaultGateway: nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(nodes, "router", "networking", "interfaces", "eth2", "ipv4", "addresses"))), "address")),
-            nftables: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+            nftables: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$11,
-            "dublin-traceroute": nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+            [nix.POS]: pos$11,
+            "dublin-traceroute": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
           })),
         };
       })(), formals$2),
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$17,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$13, vlans: nix.thunk(() => [2n, 1n]) })),
+          [nix.POS]: pos$17,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, vlans: nix.thunk(() => [2n, 1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$16,
-            nftables: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+            [nix.POS]: pos$16,
+            nftables: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
             nat: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               internalIPs: nix.thunk(() => ["192.168.1.0/24"]),
               externalInterface: "eth1",
               enable: true,
@@ -102,16 +102,16 @@ export default nix.lambda((args) => (() => {
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          __proto__: pos$24,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$18, vlans: nix.thunk(() => [2n]) })),
+          [nix.POS]: pos$24,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [2n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$20,
-            firewall: nix.thunk(() => ({ __proto__: pos$19, enable: false })),
+            [nix.POS]: pos$20,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$23,
-            httpd: nix.thunk(() => ({ __proto__: pos$21, enable: true, adminAddr: "foo@example.org" })),
-            vsftpd: nix.thunk(() => ({ __proto__: pos$22, enable: true, anonymousUser: true })),
+            [nix.POS]: pos$23,
+            httpd: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true, adminAddr: "foo@example.org" })),
+            vsftpd: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true, anonymousUser: true })),
           })),
         };
       })(), formals$4),

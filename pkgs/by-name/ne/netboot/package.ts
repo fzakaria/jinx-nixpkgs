@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const db4 = nix.arg($, "db4");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netboot",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/netboot/netboot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4HFIsMOW+owsVCOZt5pq2q+oRoS5fAmR/R2sx/dKgCc=",
         })))),
       buildInputs: nix.thunk(() => [bison, lzo, db4]),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       enableParallelBuilding: false,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/nbdbtool`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mini PXE server",
         homepage: "https://netboot.sourceforge.net",
         maintainers: nix.thunk(() => (() => {

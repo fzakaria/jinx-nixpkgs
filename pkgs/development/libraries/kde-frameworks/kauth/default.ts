@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const enablePolkit = nix.argOr($, "enablePolkit", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const polkit_qt = nix.arg($, "polkit-qt");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kauth",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enablePolkit, polkit_qt), [qttools])),

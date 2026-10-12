@@ -34,24 +34,24 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dart = nix.arg($, "dart");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "musicpod",
       version: "2.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubuntu-flutter-community",
           repo: "musicpod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-riBBJXeSsCi3i0+aKnGElIbhQdvkpvIqMdu4FB3veFU=",
         })))),
       customSourceBuilders: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         media_kit_libs_linux: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version = nix.arg($_1, "version");
           const src = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: "media_kit_libs_linux",
               version: version,
               src: src,
@@ -67,7 +67,7 @@ sed -i '/set(PLUGIN_NAME "media_kit_libs_linux_plugin")/i add_custom_target("MIM
           const version = nix.arg($_1, "version");
           const src = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: "media_kit_video",
               version: version,
               src: src,
@@ -92,17 +92,17 @@ install -Dm644 snap/gui/musicpod.desktop -t $out/share/applications
 install -Dm644 snap/gui/musicpod.png -t $out/share/icons/hicolor/256x256/apps
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             nativeBuildInputs: nix.thunk(() => [yq_go]),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "musicpod.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "musicpod.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -115,7 +115,7 @@ install -Dm644 snap/gui/musicpod.png -t $out/share/icons/hicolor/256x256/apps
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Music, radio, television and podcast player",
         homepage: "https://github.com/ubuntu-flutter-community/musicpod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

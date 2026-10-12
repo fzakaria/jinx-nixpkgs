@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const modulesPath = nix.arg($, "modulesPath");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/virtualisation/azure-image.nix`)]),
   };
 })(), formals$1);

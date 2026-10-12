@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "safety-schemas",
       version: "0.0.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "safety_schemas",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BrbSiUZK0VHDrbnoMe6jH5oigNC5vNN1A9uw0D00JfI=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["safety_schemas"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Schemas for Safety CLI",
         homepage: "https://pypi.org/project/safety-schemas/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

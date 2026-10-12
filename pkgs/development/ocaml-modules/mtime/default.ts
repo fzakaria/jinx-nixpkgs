@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const topkg = nix.arg($, "topkg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-mtime`),
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/mtime/releases/mtime-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-+SEKB8Sj6xdWpF+ooyl02bXdrTWDw0AEQv3+LJ1j1jY=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monotonic wall-clock time for OCaml",
         homepage: "https://erratique.ch/software/mtime",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

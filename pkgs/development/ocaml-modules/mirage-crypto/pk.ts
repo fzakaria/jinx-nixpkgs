@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const gmp = nix.arg($, "gmp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-crypto-pk",
       version: nix.thunk(() => nix.attr(mirage_crypto, "version")),
       src: nix.thunk(() => nix.attr(mirage_crypto, "src")),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ohex, ounit2, randomconv]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_crypto, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Simple public-key cryptography for the modern age",
       })),
     })));

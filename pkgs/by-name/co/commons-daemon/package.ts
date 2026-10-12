@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.5.1",
       pname: "commons-daemon",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/daemon/binaries/commons-daemon-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha256-pw+2L45wlKKtN0qKkihfbOyP+m9+kEHGdJ2WsovcxlY=",
         })))),
@@ -26,7 +26,7 @@ mkdir -p $out/share/java
 cp *.jar $out/share/java/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://commons.apache.org/proper/commons-daemon",
         description: "Apache Commons Daemon software is a set of utilities and Java support classes for running Java applications as server processes",
         maintainers: nix.thunk(() => (() => {

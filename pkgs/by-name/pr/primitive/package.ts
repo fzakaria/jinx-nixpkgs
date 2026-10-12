@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "primitive",
       version: "0-unstable-2020-05-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fogleman",
           repo: "primitive",
           rev: "0373c216458be1c4b40655b796a3aefedf8b7d23",
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-I3rhP87QJJxNM9D7JYo3BjG/1PhsDWbnK/NJTf4aqmI=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-modules.patch",
             url: "https://github.com/regularpoe/primitive/commit/2fa9b9f575ac2602e771c5263747bdbb48e9810b.patch",
             hash: "sha256-TX3dGqVuY+qLh9EBg7oNVYWhGuETZHJdjPTroCDyZ74=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reproducing images with geometric primitives",
         homepage: "https://github.com/fogleman/primitive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

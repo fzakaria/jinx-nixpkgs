@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libportal_gtk4 = nix.arg($, "libportal-gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pomodoro-gtk",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idevecore",
           repo: "pomodoro",
           rev: "44b724557539084991f3eb55b9593053a2c73eba",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         libportal_gtk4,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple and intuitive timer application (also named Planytimer)",
         homepage: "https://gitlab.com/idevecore/pomodoro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

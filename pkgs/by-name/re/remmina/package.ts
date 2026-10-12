@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const withVte = nix.argOr($, "withVte", () => true);
   const vte = nix.arg($, "vte");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "remmina",
       version: "1.4.43",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Remmina",
           repo: "Remmina",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         python3,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [fuse3, libappindicator, libdbusmenu_gtk3, wayland])), nix.concat(nix.app(nix.sel(lib, "optionals"), withLibsecret, nix.thunk(() => [libsecret])), nix.concat(nix.app(nix.sel(lib, "optionals"), withWebkitGtk, nix.thunk(() => [webkitgtk_4_1])), nix.app(nix.sel(lib, "optionals"), withVte, nix.thunk(() => [vte]))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -123,7 +123,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://gitlab.com/Remmina/Remmina",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/Remmina/Remmina/-/blob/master/CHANGELOG.md#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "src", "rev")))}`),

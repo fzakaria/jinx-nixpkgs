@@ -23,37 +23,37 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "spice-webdavd"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "spice-webdavd": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the spice guest webdav proxy daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "phodav", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          davfs2: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+          [nix.POS]: pos$6,
+          davfs2: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
           udev: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "spice-webdavd": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "spice-webdav proxy daemon",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/spice-webdavd -p 9843`),
                 Restart: "on-success",

@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const grpcio = nix.arg($, "grpcio");
   const pythonVersionNoDot = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion"))));
   const systemToPlatform = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-linux": "manylinux_2_17_aarch64.manylinux2014_aarch64",
     "x86_64-linux": "manylinux_2_17_x86_64.manylinux2014_x86_64",
     "aarch64-darwin": "macosx_11_0_universal2",
   }));
   const key = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`${pythonVersionNoDot}-darwin` : nix.str`${pythonVersionNoDot}-${nix.sel(stdenv, "hostPlatform", "system")}`));
   const hash = nix.thunk(() => nix.selOr({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "39-x86_64-linux": "sha256-uGbsxSHGfYVzRiy1YEkQMkJi2yPLdSj3fe3adp1WjP0=",
     "310-x86_64-linux": "sha256-1SO/1lpB3aRWisxFlt8K5lwFEOiDXjC4iQRai77L+8E=",
     "311-x86_64-linux": "sha256-99VdM1fAcuiblReWL5I8+H0psCKR00HYZr/wRGT7nd8=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.14";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "clarifai_protocol",
           version: version,
           format: "wheel",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const dontUsePythonImportsCheck = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Clarifai Python Runner Protocol",
         homepage: "https://pypi.org/project/clarifai-protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

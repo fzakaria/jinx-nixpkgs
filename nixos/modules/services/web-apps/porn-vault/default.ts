@@ -37,42 +37,42 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "porn-vault": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Porn-Vault")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "porn-vault", nix.thunk(() => ({})))),
           autoStart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to start porn-vault automatically.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 3000n,
               description: "Which port Porn-Vault will use.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the Porn-Vault port in the firewall.\n",
             })))),
           cmdArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               example: "--generate-missing-image-thumbnails",
               description: "Extra commandline args to pass to porn-vault.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(configFormat, "type")),
               description: "Configuration for Porn-Vault. The attributes are serialized to JSON in config.json.\n\nSee <https://gitlab.com/porn-vault/porn-vault/-/blob/dev/config.example.json>\n",
               default: defaultConfig,
@@ -82,34 +82,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "porn-vault/config.json": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               source: nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "config.json", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             "porn-vault": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Porn-Vault server",
               environment: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 PV_CONFIG_PATH: "/etc/porn-vault/config.json",
                 NODE_ENV: "production",
                 DATABASE_NAME: "production",
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} ${nix.sel(cfg, "cmdArgs")}`),
                 CacheDirectory: "porn-vault",
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_SYS_NICE"]),
@@ -133,15 +133,15 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "luNeder"))]),
     })),
   };

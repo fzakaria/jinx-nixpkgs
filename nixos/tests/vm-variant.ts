@@ -24,36 +24,36 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const evalConfig = nix.thunk(() => nix.builtins.import(nix.path(here, "../lib/eval-config.nix")));
   const nixos = nix.thunk(() => nix.app(evalConfig, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       system: null,
       modules: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$13,
-          system: nix.thunk(() => ({ __proto__: pos$1, stateVersion: "25.05" })),
+          [nix.POS]: pos$13,
+          system: nix.thunk(() => ({ [nix.POS]: pos$1, stateVersion: "25.05" })),
           fileSystems: nix.thunk(() => ({
-            __proto__: pos$3,
-            "/": nix.thunk(() => ({ __proto__: pos$2, device: "/dev/null", fsType: "none" })),
+            [nix.POS]: pos$3,
+            "/": nix.thunk(() => ({ [nix.POS]: pos$2, device: "/dev/null", fsType: "none" })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             loader: nix.thunk(() => ({
-              __proto__: pos$5,
-              grub: nix.thunk(() => ({ __proto__: pos$4, device: "nodev" })),
+              [nix.POS]: pos$5,
+              grub: nix.thunk(() => ({ [nix.POS]: pos$4, device: "nodev" })),
             })),
           })),
           nixpkgs: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             hostPlatform: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             vmVariant: nix.thunk(() => ({
-              __proto__: pos$9,
-              networking: nix.thunk(() => ({ __proto__: pos$8, hostName: "vm" })),
+              [nix.POS]: pos$9,
+              networking: nix.thunk(() => ({ [nix.POS]: pos$8, hostName: "vm" })),
             })),
             vmVariantWithBootLoader: nix.thunk(() => ({
-              __proto__: pos$11,
-              networking: nix.thunk(() => ({ __proto__: pos$10, hostName: "vm-w-bl" })),
+              [nix.POS]: pos$11,
+              networking: nix.thunk(() => ({ [nix.POS]: pos$10, hostName: "vm-w-bl" })),
             })),
           })),
         })),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(nixos, "config", "virtualisation", "vmVariantWithBootLoader", "networking", "hostName"), "vm-w-bl"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/vm-variant.nix:26:1");
   nix.assert_(nix.eq(nix.sel(nixos, "config", "networking", "hostName"), "nixos"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/vm-variant.nix:27:1");
   return nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       name: "nixos-test-vm-variant-drvs",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(nixos, "config", "system", "build")), null);

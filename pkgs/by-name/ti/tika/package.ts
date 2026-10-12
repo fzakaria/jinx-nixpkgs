@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const nixosTests = nix.arg($, "nixosTests");
   const mvnDepsHashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "sha256-ZlGOxVXU63AKzfWeOLGPa2l8v+Rv8Bzr4H/Er62cxk8=",
     "aarch64-linux": "sha256-CrOYBEnp8cVpdF2PrpGQjmdYH8ZKupm9Jf1LVyNoObk=",
     "aarch64-darwin": "sha256-zvvko6wSJoc2cgMLl7XVmypq0vVTirrIpJiEdypPlrU=",
   }));
   const knownMvnDepsHash = nix.thunk(() => nix.selOr(mvnDepsHashes, () => nix.app(nix.sel(lib, "warn"), "This platform doesn't have a default mvnDepsHash value, you'll need to specify it manually", nix.thunk(() => nix.sel(lib, "fakeHash"))), nix.key(nix.sel(stdenv, "system"))));
   const jdk = nix.thunk(() => nix.app(nix.sel(jre17_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       modules: nix.thunk(() => [
         "java.base",
         "java.desktop",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tika";
       const version = "2.9.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "apache",
           repo: "tika",
           tag: version,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "CVE-2025-54988.patch",
             url: "https://github.com/apache/tika/commit/bfee6d5569fe9197c4ea947a96e212825184ca33.patch",
             hash: "sha256-LHM2SafZ85f53mWWSbA4ZQ/QSiDeiwNnzAbLGqGQqPM=",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => (() => {
         const flags = "--add-opens java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED";
         const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([
-            nix.thunk(() => nix.app(runCommand, "jdk-tika", nix.thunk(() => ({ __proto__: pos$5, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${jdk}/bin/java $out/bin/java \\
+            nix.thunk(() => nix.app(runCommand, "jdk-tika", nix.thunk(() => ({ [nix.POS]: pos$5, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${jdk}/bin/java $out/bin/java \\
   --add-flags "${flags}"
 `))),
           ], nix.app(nix.sel(lib, "optionals"), enableOcr, nix.thunk(() => [tesseract]))))));
@@ -96,11 +96,11 @@ runHook postInstall
 `);
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
-        tests: nix.thunk(() => ({ __proto__: pos$6, tika: nix.thunk(() => nix.attr(nixosTests, "tika")) })),
+        [nix.POS]: pos$7,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$6, tika: nix.thunk(() => nix.attr(nixosTests, "tika")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/apache/tika/blob/${nix.sel(src, "rev")}/CHANGES.txt`),
         description: "Toolkit for extracting metadata and text from over a thousand different file types",
         longDescription: "The Apache Tika™ toolkit detects and extracts metadata and text\nfrom over a thousand different file types (such as PPT, XLS, and PDF).\nAll of these file types can be parsed through a single interface,\nmaking Tika useful for search engine indexing, content analysis,\ntranslation, and much more.\n",
@@ -120,7 +120,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const gcr_3 = nix.arg($, "gcr_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pan",
       version: "0.165",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "pan",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg]))})
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK-based Usenet newsreader good at both text and binaries",
         mainProgram: "pan",
         homepage: "http://pan.rebelbase.com",

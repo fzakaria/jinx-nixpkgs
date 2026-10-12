@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mopidy-listenbrainz",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "suaviloquence",
           repo: "mopidy-listenbrainz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(pythonPackages, "setuptools"))]),
       dependencies: nix.thunk(() => [mopidy, nix.thunk(() => nix.sel(pythonPackages, "musicbrainzngs"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/suaviloquence/mopidy-listenbrainz",
         description: "Mopidy extension for recording played tracks and getting recommendations to Listenbrainz, a libre alternative to Last.fm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

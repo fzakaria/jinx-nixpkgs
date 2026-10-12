@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gojq",
       version: "0.12.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "itchyny",
           repo: "gojq",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postInstallCheck: "$out/bin/gojq --help > /dev/null\n$out/bin/gojq --raw-output '.values[1]' <<< '{\"values\":[\"hello\",\"world\"]}' | grep '^world$' > /dev/null\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure Go implementation of jq",
         homepage: "https://github.com/itchyny/gojq",
         changelog: nix.thunk(() => nix.str`https://github.com/itchyny/gojq/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

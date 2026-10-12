@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mpfi";
       const version = "1.5.4";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "mpfi",
           repo: "mpfi",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/mpfi`);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "incorrect-types-corrected.patch",
             url: "https://gitlab.inria.fr/mpfi/mpfi/-/commit/a02e3f9cc10767cc4284a2ef6554f6df85e41982.patch",
             relative: "mpfi",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, texinfo]);
       const buildInputs = nix.thunk(() => [mpfr]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Multiple precision interval arithmetic library based on MPFR",
         homepage: "http://perso.ens-lyon.fr/nathalie.revol/software.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

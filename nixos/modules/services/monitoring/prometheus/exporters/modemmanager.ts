@@ -20,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9539n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       refreshRate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "5s",
           description: "How frequently ModemManager will refresh the extended signal quality\ninformation for each modem. The duration should be specified in seconds\n(\"5s\"), minutes (\"1m\"), or hours (\"1h\").\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SupplementaryGroups: "networkmanager",
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-modemmanager-exporter")}/bin/modemmanager_exporter \\
   -addr ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libglut = nix.arg($, "libglut");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bullet",
       version: "3.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bulletphysics",
           repo: "bullet3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libGLU, libGL, libglut]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bulletphysics/bullet3/commit/d1a4256b3a019117f2bb6cb8c63d6367aaf512e2.patch",
             hash: "sha256-FklMKYw5dKUcR5kZOkqv+KVLcWL/7r/0SAdYolmrn5A=",
           })))),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
           "-DBUILD_BULLET_ROBOTICS_GUI_EXTRA=OFF",
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=argument-outside-range -Wno-error=c++11-narrowing")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Professional free 3D Game Multiphysics Library",
         longDescription: "Bullet 3D Game Multiphysics Library provides state of the art collision\ndetection, soft body and rigid body dynamics.\n",
         homepage: "http://bulletphysics.org",

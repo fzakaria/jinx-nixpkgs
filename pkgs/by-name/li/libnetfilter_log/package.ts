@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libnfnetlink = nix.arg($, "libnfnetlink");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnetfilter_log",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://netfilter.org/projects/libnetfilter_log/files/libnetfilter_log-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1spy9xs41v76kid5ana8n126f3mvgq6fjibbfbj4kn0larbhix73",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [libnfnetlink]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Userspace library providing interface to packets that have been logged by the kernel packet filter",
         longDescription: "libnetfilter_log is a userspace library providing interface to packets\nthat have been logged by the kernel packet filter. It is is part of a\nsystem that deprecates the old syslog/dmesg based packet logging. This\nlibrary has been previously known as libnfnetlink_log.\n",
         homepage: "https://netfilter.org/projects/libnetfilter_log/",

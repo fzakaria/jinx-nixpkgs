@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tacent",
       version: "0.8.18-unstable-2025-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bluescan",
           repo: "tacent",
           rev: "13e08f388681e31a64b6d55c5a4667b7554e3e96",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, libx11, libxcb]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library providing linear algebra and various utility functions",
         longDescription: "A C++ library implementing linear algebra, text and file IO, UTF-N conversions,\ncontainers, image loading/saving, image quantization/filtering, command-line parsing, etc.\n",
         homepage: "https://github.com/bluescan/tacent",

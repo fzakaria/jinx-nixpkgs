@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "secrets-extractor";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Xenios91",
           repo: "Secrets-Extractor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-1NfeFw8v6F00CZe8a3qdk/TrUBNi2wr9PvwIsZzkDSk=";
       const buildInputs = nix.thunk(() => [libpcap]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to check packets for secrets",
         homepage: "https://github.com/Xenios91/Secrets-Extractor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fab"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

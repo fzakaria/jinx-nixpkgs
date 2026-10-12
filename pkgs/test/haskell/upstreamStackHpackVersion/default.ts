@@ -80,7 +80,7 @@ echo "success" > $out
 `);
   const testScriptHash = nix.thunk(() => nix.builtins.hashString("sha256", testScript));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`upstream-stack-hpack-version-test-${nix.sel(stack, "name")}-${nix.sel(hpack, "name")}-${testScriptHash}`),
       outputHash: "sha256-gbK9TqmMjbZlVPvI12N6GmmhMPMx/rcyt1yqtMSGj9U=",
       outputHashMode: "flat",
@@ -95,7 +95,7 @@ echo "success" > $out
 export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
 `, testScript)),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Test that the stack in Nixpkgs uses the same version of Hpack as the upstream stack release",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

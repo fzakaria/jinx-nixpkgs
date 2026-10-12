@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powermanga",
       version: "0.93.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://linux.tlk.fr/games/Powermanga/download/powermanga-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-2nU/zoOQWm2z/Y6mXHDFfWYjYshsQp1saVRBcUT5Q+g=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./bootstrap\n",
       installFlags: nix.thunk(() => ["gamesdir=$(out)/bin", "scoredir=$(TMPDIR)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://linux.tlk.fr/games/Powermanga/",
         downloadPage: "https://linux.tlk.fr/games/Powermanga/download/",
         description: "Arcade 2D shoot-em-up game",

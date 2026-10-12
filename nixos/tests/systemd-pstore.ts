@@ -12,21 +12,21 @@ const pos$7 = nix.positions(here + "/systemd-pstore.nix", [["machine", 4, 9]]);
 const pos$8 = nix.positions(here + "/systemd-pstore.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 10, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   name: "systemd-pstore",
   nodes: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     machine: nix.thunk(() => ({
-      __proto__: pos$6,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, useEFIBoot: true })),
+      [nix.POS]: pos$6,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, useEFIBoot: true })),
       boot: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         initrd: nix.thunk(() => ({
-          __proto__: pos$3,
-          systemd: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
       })),
-      testing: nix.thunk(() => ({ __proto__: pos$5, initrdBackdoor: true })),
+      testing: nix.thunk(() => ({ [nix.POS]: pos$5, initrdBackdoor: true })),
     })),
   })),
   testScript: "machine.switch_root()\nwith subtest(\"pstore API fs is mounted\"):\n  machine.succeed(\"stat /sys/fs/pstore\")\n\nwith subtest(\"systemd-pstore.service doesn't run because nothing crashed\"):\n  output = machine.execute(\"systemctl status systemd-pstore.service\", check_return=False)[1]\n  t.assertIn(\"condition unmet\", output)\n  machine.fail(\"stat /var/lib/systemd/pstore/*/*/dmesg.txt\")\n\nwith subtest(\"systemd-pstore.service saves dmesg.txt files\"):\n  machine.execute(\"echo c > /proc/sysrq-trigger\", check_return=False, check_output=False)\n  machine.wait_for_shutdown()\n  machine.switch_root()\n  machine.wait_for_unit(\"systemd-pstore.service\")\n  machine.succeed(\"stat /var/lib/systemd/pstore/*/*/dmesg.txt\")\n\nwith subtest(\"crashes in initrd can be recovered too\"):\n  machine.succeed(\n    \"rm -r /var/lib/systemd/pstore/*\",\n    \"sync\",\n  )\n  machine.shutdown()\n  machine.execute(\"echo c > /proc/sysrq-trigger\", check_return=False, check_output=False)\n  machine.wait_for_shutdown()\n  machine.switch_root()\n  machine.wait_for_unit(\"systemd-pstore.service\")\n  machine.succeed(\"stat /var/lib/systemd/pstore/*/*/dmesg.txt\")\n",

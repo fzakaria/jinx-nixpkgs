@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fortran-language-server",
       version: "1.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7Dkh7yPX4rULkzfJFxg47YxrCaxuHk+k3TOINHS9T5A=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "$out/bin/fortls --help 1>/dev/null",
       pythonImportsCheck: nix.thunk(() => ["fortls"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FORTRAN Language Server for the Language Server Protocol",
         mainProgram: "fortls",
         homepage: "https://pypi.org/project/fortran-language-server/",

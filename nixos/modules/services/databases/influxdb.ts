@@ -46,46 +46,46 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "influxdb"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         influxdb: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the influxdb server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "influxdb", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "influxdb",
               description: "User account under which influxdb runs",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "influxdb",
               description: "Group under which influxdb runs",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "/var/db/influxdb",
               description: "Data directory for influxd data files.",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: nix.thunk(() => ({})),
               description: "Extra configuration options for influxdb",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   config: nix.thunk(() => (() => {
                     const mkAllOptionDefault = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => nix.sel(lib, "mkOptionDefault")));
                     return {
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       meta: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           "bind-address": ":8088",
                           "commit-timeout": "50ms",
                           dir: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/meta`),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
                           "retention-autocreate": true,
                         })))),
                       data: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           dir: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/data`),
                           "wal-dir": nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/wal`),
                           "max-wal-size": 104857600n,
@@ -104,10 +104,10 @@ export default nix.lambda((args) => (() => {
                           "wal-flush-interval": "10m",
                           "wal-partition-flush-delay": "2s",
                         })))),
-                      cluster: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({ __proto__: pos$6, "shard-writer-timeout": "5s", "write-timeout": "5s" })))),
-                      retention: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({ __proto__: pos$7, enabled: true, "check-interval": "30m" })))),
+                      cluster: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({ [nix.POS]: pos$6, "shard-writer-timeout": "5s", "write-timeout": "5s" })))),
+                      retention: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({ [nix.POS]: pos$7, enabled: true, "check-interval": "30m" })))),
                       http: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           enabled: true,
                           "auth-enabled": false,
                           "bind-address": ":8086",
@@ -117,31 +117,31 @@ export default nix.lambda((args) => (() => {
                           "write-tracing": false,
                         })))),
                       monitor: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           "store-enabled": false,
                           "store-database": "_internal",
                           "store-interval": "10s",
                         })))),
                       admin: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           enabled: true,
                           "bind-address": ":8083",
                           "https-enabled": false,
                         })))),
-                      graphite: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$11, enabled: false }))]))),
-                      udp: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$12, enabled: false }))]))),
+                      graphite: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$11, enabled: false }))]))),
+                      udp: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, enabled: false }))]))),
                       collectd: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             enabled: false,
                             typesdb: nix.thunk(() => nix.str`${nix.sel(pkgs, "collectd-data")}/share/collectd/types.db`),
                             database: "collectd_db",
                             "bind-address": ":25826",
                           })),
                         ]))),
-                      opentsdb: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$14, enabled: false }))]))),
+                      opentsdb: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$14, enabled: false }))]))),
                       continuous_queries: nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           enabled: true,
                           "log-enabled": true,
                           "recompute-previous-n": 2n,
@@ -150,7 +150,7 @@ export default nix.lambda((args) => (() => {
                           "compute-no-more-than": "2m",
                         })))),
                       "hinted-handoff": nix.thunk(() => nix.app(mkAllOptionDefault, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           enabled: true,
                           dir: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/hh`),
                           "max-size": 1073741824n,
@@ -166,24 +166,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "influxdb", "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dataDir")}' 0770 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             influxdb: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "InfluxDB Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/influxd -config "${nix.app(nix.sel(settingsFormat, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings")))}"`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -203,20 +203,20 @@ done
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "influxdb")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               influxdb: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "influxdb")),
                 group: "influxdb",
                 description: "Influxdb daemon user",
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "influxdb")), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               influxdb: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "influxdb")),
               })),
             })))),

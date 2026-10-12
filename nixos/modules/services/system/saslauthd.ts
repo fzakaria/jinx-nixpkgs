@@ -22,23 +22,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "saslauthd"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         saslauthd: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "saslauthd, the Cyrus SASL authentication daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["cyrus_sasl", "bin"]), nix.thunk(() => ({})))),
           mechanism: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "pam",
               description: "Auth mechanism to use",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Configuration to use for Cyrus SASL authentication daemon.",
@@ -47,17 +47,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             saslauthd: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Cyrus SASL authentication daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(cfg, "package")}/sbin/saslauthd saslauthd -a ${nix.sel(cfg, "mechanism")} -O ${nix.app(nix.sel(pkgs, "writeText"), "saslauthd.conf", nix.thunk(() => nix.sel(cfg, "config")))}`),
                 Type: "forking",
                 PIDFile: "/run/saslauthd/saslauthd.pid",

@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flask-admin",
           repo: "flask-admin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [flask, jinja2, markupsafe, werkzeug, wtforms]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sqlalchemy: nix.thunk(() => [flask_sqlalchemy, sqlalchemy]),
         "sqlalchemy-lite": nix.thunk(() => [flask_sqlalchemy_lite]),
         "sqlalchemy-with-utils": nix.thunk(() => nix.concat(nix.sel(optional_dependencies, "sqlalchemy"), [arrow, colour, email_validator, sqlalchemy_citext, sqlalchemy_utils])),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["flask_admin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Admin interface framework for Flask",
         homepage: "https://github.com/flask-admin/flask-admin/",
         changelog: nix.thunk(() => nix.str`https://github.com/flask-admin/flask-admin/releases/tag/v${version}`),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

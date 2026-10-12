@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.06";
       const buildInputs = nix.thunk(() => nix.concat([findlib], (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.7-414")) ? [merlin_lib] : [yojson, csexp, result])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Reads config files for merlin",
         mainProgram: "dot-merlin-reader",
         homepage: "https://github.com/ocaml/merlin",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "hongchangwu"))]),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

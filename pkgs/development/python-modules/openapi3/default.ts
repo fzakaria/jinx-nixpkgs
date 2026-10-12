@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dorthu",
           repo: "openapi3",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/fastapi_test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["openapi3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Dorthu/openapi3/releases/tag/${version}`),
         description: "Python3 OpenAPI 3 Spec Parser",
         homepage: "https://github.com/Dorthu/openapi3",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

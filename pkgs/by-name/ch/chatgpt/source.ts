@@ -6,10 +6,10 @@ const pos$1 = nix.positions(here + "/source.nix", [["url", 4, 5], ["hash", 5, 5]
 const pos$2 = nix.positions(here + "/source.nix", [["version", 2, 3], ["src", 3, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   version: "26.803.81509",
   src: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://persistent.oaistatic.com/codex-app-prod/ChatGPT-darwin-arm64-26.803.81509.zip",
     hash: "sha256-NMfmKWeK1dY6Y57GlKW4O4X04b18Ie4qvP77sEEJW5w=",
   })),

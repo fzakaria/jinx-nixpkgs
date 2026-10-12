@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "udev-gothic",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/udev-gothic/releases/download/v${nix.sel(finalAttrs, "version")}/UDEVGothic_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-x6nM35UM7v4WQn6DINuEgXQmSQ4ysPS4omY9ePDTAhA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Programming font that combines BIZ UD Gothic and JetBrains Mono",
         homepage: "https://github.com/yuru7/udev-gothic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

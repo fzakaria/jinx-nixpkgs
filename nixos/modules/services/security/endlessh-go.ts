@@ -30,41 +30,41 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "endlessh-go"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "endlessh-go": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "endlessh-go service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "endlessh-go", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "0.0.0.0",
               example: "[::]",
               description: "Interface address to bind the endlessh-go daemon to SSH connections.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 2222n,
               example: 22n,
               description: "Specifies on which port the endlessh-go daemon listens for SSH\nconnections.\n\nSetting this to `22` may conflict with {option}`services.openssh`.\n",
             })))),
           prometheus: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Prometheus integration")),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "0.0.0.0",
                 example: "[::]",
                 description: "Interface address to bind the endlessh-go daemon to answer Prometheus\nqueries.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 2112n,
                 example: 9119n,
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           extraOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
               description: "Additional command line options to pass to the endlessh-go daemon.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open a firewall port for the SSH listener.\n",
@@ -91,13 +91,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "endlessh-go": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "SSH tarpit",
               requires: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
                 const capabilities = nix.thunk(() => nix.concat([""], nix.app(nix.sel(lib, "optionals"), needsPrivileges, nix.thunk(() => ["CAP_NET_BIND_SERVICE"]))));
                 const rootDirectory = "/run/endlessh-go";
                 return {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   Restart: "always",
                   ExecStart: nix.thunk(() => (() => {
                     const w = nix.withScope(cfg, null);
@@ -165,9 +165,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             allowedTCPPorts: nix.thunk(() => (() => {
               const w = nix.withScope(cfg, null);
               return nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.lookup(w, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.lookup(w, "port"))]));
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$18, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$18, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=endlessh-go.ts.map

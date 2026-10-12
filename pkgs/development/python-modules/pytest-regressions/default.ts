@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ESSS",
           repo: "pytest-regressions",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const dependencies = nix.thunk(() => [pytest_datadir, pyyaml]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dataframe: nix.thunk(() => [pandas, numpy]),
         image: nix.thunk(() => [numpy, pillow]),
         num: nix.thunk(() => [numpy, pandas]),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")))), nix.thunk(() => ["test_different_data_types", "test_common_case"]))));
       const pythonImportsCheck = nix.thunk(() => ["pytest_regressions", "pytest_regressions.plugin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ESSS/pytest-regressions/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Pytest fixtures to write regression tests",
         longDescription: "pytest-regressions makes it simple to test general data, images,\nfiles, and numeric tables by saving expected data in a data\ndirectory (courtesy of pytest-datadir) that can be used to verify\nthat future runs produce the same data.\n",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cargo-workspaces",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/h7v5Wq7YsNMVzLHw3QQmcknbjARpI7HFPAUGX72wZ0=",
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-eaTLKQdz8Kyee7Bhub/OBueteeQ8jY36g4DgqctrToY=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libssh2, openssl, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBSSH2_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBSSH2_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for managing cargo workspaces and their crates, inspired by lerna",
         longDescription: "A tool that optimizes the workflow around cargo workspaces with\ngit and cargo by providing utilities to version, publish, execute\ncommands and more.\n",
         homepage: "https://github.com/pksunkara/cargo-workspaces",

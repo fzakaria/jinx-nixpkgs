@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pandas-dev",
           repo: "pandas",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, python_dateutil, pytz, tzdata]);
       const optional_dependencies = nix.thunk(() => (() => {
         const extras = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           aws: nix.thunk(() => [s3fs]),
           clipboard: nix.thunk(() => [pyqt5, qtpy]),
           compression: nix.thunk(() => [zstandard]),
@@ -106,16 +106,16 @@ export default nix.lambda((args) => (() => {
           xml: nix.thunk(() => [lxml]),
         }));
         return nix.update(extras, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           all: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), extras)))),
         });
       })());
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          pytest: nix.thunk(() => nix.app(nix.sel(pandas, "overridePythonAttrs"), (_) => ({ __proto__: pos$4, doCheck: true }))),
+          [nix.POS]: pos$5,
+          pytest: nix.thunk(() => nix.app(nix.sel(pandas, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$4, doCheck: true }))),
         })),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([hypothesis, pytest_asyncio, pytest_xdist, pytestCheckHook], nix.concat(nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glibc])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [adv_cmds]))))));
@@ -134,7 +134,7 @@ export PATH=$(pwd):$PATH
 `))));
       const pythonImportsCheck = nix.thunk(() => ["pandas"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: "https://pandas.pydata.org/docs/whatsnew/index.html",
         description: "Powerful data structures for data analysis, time series, and statistics",
         downloadPage: "https://github.com/pandas-dev/pandas",
@@ -147,7 +147,7 @@ export PATH=$(pwd):$PATH
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

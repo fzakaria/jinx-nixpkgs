@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aritim-dark",
       version: "0.7-unstable-2021-12-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Mrcuve0",
           repo: "Aritim-Dark",
           rev: "99cd330a1ab4814260e28f15431e3338a1103668",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir -p $out/share/plasma/desktoptheme\ncp -R KDE/plasmaTheme/Aritim-Dark* $out/share/plasma/desktoptheme\nmkdir -p $out/share/aurorae/themes\ncp -R KDE/auroraeTheme $out/share/aurorae/themes/Aritim-Dark\nmkdir -p $out/share/color-schemes\ncp -R KDE/colorScheme/*.colors $out/share/color-schemes\nmkdir -p $out/share/plasma/look-and-feel\ncp -R KDE/globalTheme $out/share/plasma/look-and-feel/Aritim-Dark\nmkdir -p $out/share/themes\ncp -R GTK $out/share/themes/Aritim-Dark\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dark theme deeply inspired by the Ayu Dark color palette",
         homepage: "https://github.com/Mrcuve0/Aritim-Dark",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

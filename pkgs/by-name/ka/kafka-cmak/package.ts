@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kafka-cmak",
       version: "3.0.0.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yahoo/CMAK/releases/latest/download/cmak-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-jMF1v2WV8ataFkz2VuVXOE6/QV+Kb0KBVRfj8yKdkUQ=",
         })))),
@@ -37,9 +37,9 @@ wrapProgram $out/bin/cmak \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cluster Manager for Apache Kafka, previously known as Kafka Manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

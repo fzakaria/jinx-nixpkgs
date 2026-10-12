@@ -34,39 +34,39 @@ export default nix.lambda((args) => (() => {
   const tree = nix.arg($, "tree");
   const pname = "melange";
   const versionHash = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5")) ? {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "7.0.1-55",
     hash: "sha256:8377c0860da82528ebde16a0133f270c1a03de35036bd44bbd8cfb87070a7afb",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")) ? {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "7.0.1-54",
     hash: "sha256:49bf9d3dd10d0d7f58abe6755a40c246d36b5fbf6b5e189f2c634c47a9de7f33",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.3")) ? {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "7.0.1-53",
     hash: "sha256:25177453269467832be7b6416f1104132265a3309b9098e6b5185b9c0df05150",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")) ? {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: "5.1.0-52",
     hash: "sha256-EGIInGCo3JADYyE4mLw5Fzkm4OB+V9yi2ayV0lVq3v0=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.1")) ? {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     version: "5.1.0-51",
     hash: "sha256-DIF8vZLEKsFf6m5tl1/T6zqjHyKxDMois2h//tDhsJI=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")) ? nix.builtins.throw(nix.thunk(() => nix.str`melange is not available for OCaml ${nix.sel(ocaml, "version")}`)) : {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     version: "5.1.0-414",
     hash: "sha256-Sv1XyOqCNhICTsXzetXh/zqX/tdTupYZ0Q1nZRLfpe0=",
   })))))));
   const version = nix.thunk(() => nix.sel(versionHash, "version"));
   const hash = nix.thunk(() => nix.sel(versionHash, "hash"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: nix.thunk(() => nix.str`https://github.com/melange-re/${pname}/releases/download/${version}/${pname}-${version}.tbz`),
           hash: hash,
         })))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit2]),
       postInstall: "wrapProgram \"$out/bin/melc\" --set MELANGELIB \"$OCAMLFIND_DESTDIR/melange/melange:$OCAMLFIND_DESTDIR/melange/js/melange\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Toolchain to produce JS from Reason/OCaml",
         homepage: "https://melange.re/",
         mainProgram: "melc",

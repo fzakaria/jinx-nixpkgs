@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "userborn",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nikstur",
           repo: "userborn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcrypt]),
       stripAllList: nix.thunk(() => ["bin"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           userborn: nix.thunk(() => nix.attr(nixosTests, "userborn")),
           "userborn-migration": nix.thunk(() => nix.attr(nixosTests, "userborn-migration")),
           "userborn-mutable-users": nix.thunk(() => nix.attr(nixosTests, "userborn-mutable-users")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/nikstur/userborn",
         description: "Declaratively bear (manage) Linux users and groups",
         changelog: nix.thunk(() => nix.str`https://github.com/nikstur/userborn/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

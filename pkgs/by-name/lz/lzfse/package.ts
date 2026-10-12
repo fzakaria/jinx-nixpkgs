@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lzfse",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lzfse",
           repo: "lzfse",
           rev: nix.thunk(() => nix.str`lzfse-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required(VERSION 2.8.6)' \\\n    'cmake_minimum_required(VERSION 3.10)'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/lzfse/lzfse",
         description: "Reference C implementation of the LZFSE compressor",
         longDescription: "This is a reference C implementation of the LZFSE compressor introduced in the Compression library with OS X 10.11 and iOS 9.\nLZFSE is a Lempel-Ziv style data compression algorithm using Finite State Entropy coding.\nIt targets similar compression rates at higher compression and decompression speed compared to deflate using zlib.\n",

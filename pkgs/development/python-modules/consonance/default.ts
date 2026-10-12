@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tgalal",
           repo: "consonance",
           tag: version,
@@ -34,27 +34,27 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-type-error.patch",
             url: "https://github.com/tgalal/consonance/pull/9/commits/92fb78af98a18f0533ec8a286136968174fb0baf.patch",
             hash: "sha256-wVUGxZ4W2zPyrcQPQTc85LcRUtsLbTBVzS10NEolpQY=",
           })))),
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [dissononce, python_axolotl_curve25519, transitions, protobuf]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["tests/test_handshakes_offline.py"]);
       const pythonImportsCheck = nix.thunk(() => ["consonance"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "WhatsApp's handshake implementation using Noise Protocol",
         homepage: "https://github.com/tgalal/consonance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

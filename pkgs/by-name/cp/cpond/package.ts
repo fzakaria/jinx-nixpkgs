@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cpond",
       version: "0-unstable-2025-11-23",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ayuzur",
           repo: "cpond",
           rev: "b6d2827c73080b144ff07a70ec61757baff6a73b",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("substituteInPlace Makefile \\\n  --replace-fail \"gcc\" \"$CC\" \\\n  --replace-fail '$(eflags)$(ncursesw_macros)' '$(eflags) $(ncursesw_macros)'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Makefile \\\n  --replace-fail '-lncursesw' '-lncurses'\n"))),
       installPhase: "mkdir -p $out/bin\ncp cpond $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ayuzur/cpond",
         description: "Procedurally animated fish for your terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -1493,20 +1493,20 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const buildVscodeMarketplaceExtension = nix.thunk(() => nix.attr(vscode_utils, "buildVscodeMarketplaceExtension"));
   const baseExtensions = (self) => nix.app(nix.sel(lib, "mapAttrs"), (_n) => nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$1458,
+      [nix.POS]: pos$1458,
       "13xforever": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "language-x86-64-assembly": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "language-x86-64-assembly",
               publisher: "13xforever",
               version: "3.1.5",
               hash: "sha256-WIhmAZLR2WOSqQF3ozJ/Vr3Rp6HdSK7L23T3h4AVaGM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Cutting edge x86 and x86_64 assembly syntax highlighting",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=13xforever.language-x86-64-assembly",
               homepage: "https://github.com/13xforever/x86_64-assembly-vscode",
@@ -1516,18 +1516,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "1Password": nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "op-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               publisher: "1Password",
               name: "op-vscode",
               version: "1.0.5",
               hash: "sha256-J7vAK2t6fSjm5i6y3+88aO84ipFwekQkJMD7W3EIWrc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               changelog: "https://github.com/1Password/op-vscode/releases",
               description: "VSCode extension that integrates your development workflow with 1Password service",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=1Password.op-vscode",
@@ -1538,18 +1538,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "2gua": nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "rainbow-brackets": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               publisher: "2gua",
               name: "rainbow-brackets",
               version: "0.0.6",
               sha256: "TVBvF/5KQVvWX1uHwZDlmvwGjOO5/lXbgVzB26U8rNQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Visual Studio Code extension providing rainbow brackets",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets",
               homepage: "https://github.com/lcultx/rainbow-brackets",
@@ -1559,35 +1559,35 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "4ops": nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         terraform: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               publisher: "4ops",
               name: "terraform",
               version: "0.2.5",
               hash: "sha256-y5LljxK8V9Fir9EoG8g9N735gISrlMg3czN21qF/KjI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kamadorueda"))]),
             })),
           })))),
       })),
       "42crunch": nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "vscode-openapi": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => (() => {
             const mktplcRef = nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               publisher: "42Crunch",
               name: "vscode-openapi",
               version: "5.9.0",
               hash: "sha256-sUfug0F0OaoMmKEmcHyXQIXcun35MAFVSGAHbx7xK/8=",
             }));
             const meta = nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               changelog: nix.thunk(() => nix.str`https://github.com/42Crunch/vscode-openapi/blob/v${nix.sel(mktplcRef, "version")}/CHANGELOG.md`),
               description: "Visual Studio Code extension with rich support for the OpenAPI Specification (OAS)",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi",
@@ -1595,36 +1595,36 @@ export default nix.lambda((args) => (() => {
               license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "benhiemer"))]),
             }));
-            return { __proto__: pos$19, mktplcRef, meta };
+            return { [nix.POS]: pos$19, mktplcRef, meta };
           })()))),
       })),
       a5huynh: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         "vscode-ron": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               name: "vscode-ron",
               publisher: "a5huynh",
               version: "0.11.0",
               hash: "sha256-xIGOgK/kcdwm8EicAGIac5zPqRxw6ZTRLwteC03NKQ8=",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$22, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$22, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       "aaron-bond": nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         "better-comments": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               name: "better-comments",
               publisher: "aaron-bond",
               version: "3.0.2",
               sha256: "850980f0f5a37f635deb4bf9100baaa83f0b204bbbb25acdb3c96e73778f8197",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               changelog: "https://marketplace.visualstudio.com/items/aaron-bond.better-comments/changelog",
               description: "Improve your code commenting by annotating with alert, informational, TODOs, and more",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments",
@@ -1635,32 +1635,32 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       adpyke: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         codesnap: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               name: "codesnap",
               publisher: "adpyke",
               version: "1.3.4",
               hash: "sha256-dR6qODSTK377OJpmUqG9R85l1sf9fvJJACjrYhSRWgQ=",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$30, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$30, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       adzero: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         "vscode-sievehighlight": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               name: "vscode-sievehighlight",
               publisher: "adzero",
               version: "1.0.8",
               hash: "sha256-bogT5Cshl6Rab5iiXWPwju29XX4PHdbR64J5UFPSlRo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               changelog: "https://marketplace.visualstudio.com/items/adzero.vscode-sievehighlight/changelog",
               description: "Visual Studio Code extension to enable syntax highlight support for Sieve mail filtering language",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=adzero.vscode-sievehighlight",
@@ -1671,32 +1671,32 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       alanz: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         "vscode-hie-server": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               name: "vscode-hie-server",
               publisher: "alanz",
               version: "0.2.1",
               sha256: "sha256-/RA+7OnoR5Nu2bK6dFEL8aZW+CJkTeM0bKG6k5X1g+I=",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$38, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$38, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       albymor: nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         "increment-selection": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               name: "increment-selection",
               publisher: "albymor",
               version: "0.2.0",
               hash: "sha256-iP4c0xLPiTsgD8Q8Kq9jP54HpdnBveKRY31Ro97ROJ8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               description: "Increment, decrement or reverse selection with multiple cursors",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=albymor.increment-selection",
               homepage: "https://github.com/albymor/Increment-Selection",
@@ -1705,60 +1705,60 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       alefragnani: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         bookmarks: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               name: "bookmarks",
               publisher: "alefragnani",
               version: "14.1.1",
               hash: "sha256-oy0SRapLmr8wQhYtmCcE6wkMZUXgvSsje45tEdufw5M=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
             })),
           })))),
         "project-manager": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               name: "project-manager",
               publisher: "alefragnani",
               version: "13.1.0",
               hash: "sha256-6lSEMDI8yagYxuB2Lkjf9nndJ6sGIofn/XL1vghinJM=",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$49, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$49, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       alexdima: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         "copy-relative-path": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               name: "copy-relative-path",
               publisher: "alexdima",
               version: "0.0.2",
               sha256: "06g601n9d6wyyiz659w60phgm011gn9jj5fy0gf5wpi2bljk3vcn",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$53, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$53, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       alexisvt: nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         "flutter-snippets": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               name: "flutter-snippets",
               publisher: "alexisvt",
               version: "3.0.0",
               sha256: "44ac46f826625f0a4aec40f2542f32c161e672ff96f45a548d0bccd9feed04ef",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               changelog: "https://marketplace.visualstudio.com/items/alexisvt.flutter-snippets/changelog",
               description: "Set of helpful widget snippets for day to day Flutter development",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=alexisvt.flutter-snippets",
@@ -1769,44 +1769,44 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       almenon: nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         arepl: nix.thunk(() => nix.app(callPackage, nix.path(here, "./almenon.arepl"), nix.thunk(() => ({})))),
       })),
       alygin: nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         "vscode-tlaplus": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               name: "vscode-tlaplus",
               publisher: "alygin",
               version: "1.5.4",
               sha256: "0mf98244z6wzb0vj6qdm3idgr2sr5086x7ss2khaxlrziif395dx",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$62, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$62, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       amazonwebservices: nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         "amazon-q-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./amazonwebservices.amazon-q-vscode"), nix.thunk(() => ({})))),
       })),
       anthropic: nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         "claude-code": nix.thunk(() => nix.app(callPackage, nix.path(here, "./anthropic.claude-code"), nix.thunk(() => ({})))),
       })),
       angular: nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         "ng-template": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               name: "ng-template",
               publisher: "Angular",
               version: "22.2.0",
               hash: "sha256-IS7GQU7WaSyvecML+5yFyapgDdsusrRfSMQdaAAKSzY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               changelog: "https://marketplace.visualstudio.com/items/Angular.ng-template/changelog",
               description: "Editor services for Angular templates",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Angular.ng-template",
@@ -1817,43 +1817,43 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       antfu: nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         "icons-carbon": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               name: "icons-carbon",
               publisher: "antfu",
               version: "0.2.9",
               hash: "sha256-GSK12dIrtMnz4O77G6Rg/YBGxmlQrm+4+XodM6MbBs0=",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$72, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$72, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
         slidev: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$76,
+            [nix.POS]: pos$76,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               publisher: "antfu",
               name: "slidev",
               version: "52.18.0",
               hash: "sha256-T+g8hXu0j8myRVYRHknYUhFyeo4Jl/9LLVIm3Tkq96o=",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$75, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$75, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       antyos: nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         openscad: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               name: "openscad",
               publisher: "Antyos",
               version: "1.3.2",
               hash: "sha256-1hEUBJW4QNq0ECO9Mwk4OCDxu4VQ+ZvMrj2rRna51Gc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               changelog: "https://marketplace.visualstudio.com/items/Antyos.openscad/changelog",
               description: "OpenSCAD highlighting, snippets, and more for VSCode",
               homepage: "https://github.com/Antyos/vscode-openscad",
@@ -1862,22 +1862,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       anweber: nix.thunk(() => ({
-        __proto__: pos$82,
+        [nix.POS]: pos$82,
         "vscode-httpyac": nix.thunk(() => nix.app(callPackage, nix.path(here, "./anweber.vscode-httpyac"), nix.thunk(() => ({})))),
       })),
       apollographql: nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         "vscode-apollo": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               name: "vscode-apollo",
               publisher: "apollographql",
               version: "2.6.6",
               hash: "sha256-rvLZoLY0P031ZAjeYXNqPVYwRNkCRYUvedosxM51opc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               changelog: "https://marketplace.visualstudio.com/items/apollographql.vscode-apollo/changelog",
               description: "Rich editor support for GraphQL client and server development that seamlessly integrates with the Apollo platform",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo",
@@ -1888,18 +1888,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       arcticicestudio: nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         "nord-visual-studio-code": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               name: "nord-visual-studio-code",
               publisher: "arcticicestudio",
               version: "0.19.0",
               hash: "sha256-awbqFv6YuYI0tzM/QbHRTUl4B2vNUdy52F4nPmv+dRU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$88,
+              [nix.POS]: pos$88,
               description: "Arctic, north-bluish clean and elegant Visual Studio Code theme",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=arcticicestudio.nord-visual-studio-code",
               homepage: "https://github.com/arcticicestudio/nord-visual-studio-code",
@@ -1909,32 +1909,32 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       arjun: nix.thunk(() => ({
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         "swagger-viewer": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               publisher: "Arjun",
               name: "swagger-viewer",
               version: "3.1.2",
               sha256: "1cjvc99x1q5w3i2vnbxrsl5a1dr9gb3s6s9lnwn6mq5db6iz1nlm",
             })),
-            meta: nix.thunk(() => ({ __proto__: pos$92, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: pos$92, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
           })))),
       })),
       arktypeio: nix.thunk(() => ({
-        __proto__: pos$98,
+        [nix.POS]: pos$98,
         arkdark: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               publisher: "arktypeio",
               name: "arkdark",
               version: "6.6.0",
               hash: "sha256-9QsHaH8mXM7D7QE5+xTFrGyxh6MShPF9Wk0hFHpxk8A=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               description: "Syntax highlighting and inline errors for ArkType",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=arktypeio.arkdark",
               homepage: "https://github.com/arktypeio/arktype",
@@ -1947,39 +1947,39 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       arrterian: nix.thunk(() => ({
-        __proto__: pos$102,
+        [nix.POS]: pos$102,
         "nix-env-selector": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$101,
+            [nix.POS]: pos$101,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               name: "nix-env-selector",
               publisher: "arrterian",
               version: "1.3.1",
               hash: "sha256-dV1FkAOZkWgqlk6j6ppQSUz5N3AoGTPgPkep60gGeP8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       asciidoctor: nix.thunk(() => ({
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         "asciidoctor-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./asciidoctor.asciidoctor-vscode"), nix.thunk(() => ({})))),
       })),
       asdine: nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         cue: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$106,
+            [nix.POS]: pos$106,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               name: "cue",
               publisher: "asdine",
               version: "0.3.4",
               hash: "sha256-X+CFRKAZmjzf5dkE/AGd3A/voX/XHfMP5WEt8sJll8U=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$105,
+              [nix.POS]: pos$105,
               description: "Cue language support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=asdine.cue",
               homepage: "https://github.com/asdine/vscode-cue",
@@ -1990,22 +1990,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "astral-sh": nix.thunk(() => ({
-        __proto__: pos$108,
+        [nix.POS]: pos$108,
         ty: nix.thunk(() => nix.app(callPackage, nix.path(here, "./astral-sh.ty"), nix.thunk(() => ({})))),
       })),
       "astro-build": nix.thunk(() => ({
-        __proto__: pos$112,
+        [nix.POS]: pos$112,
         "astro-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$109,
+              [nix.POS]: pos$109,
               name: "astro-vscode",
               publisher: "astro-build",
               version: "2.16.20",
               hash: "sha256-OzySaYlsPGyVtFoCE7mdGoozU0t6ZRYF56G8qczWd6s=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$110,
+              [nix.POS]: pos$110,
               changelog: "https://marketplace.visualstudio.com/items/astro-build.astro-vscode/changelog",
               description: "Astro language support for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode",
@@ -2016,18 +2016,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       asvetliakov: nix.thunk(() => ({
-        __proto__: pos$116,
+        [nix.POS]: pos$116,
         "vscode-neovim": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$115,
+            [nix.POS]: pos$115,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$113,
+              [nix.POS]: pos$113,
               name: "vscode-neovim",
               publisher: "asvetliakov",
               version: "1.20.0",
               hash: "sha256-+A1G+3Qe2yzDslgX3ap3N03woHrqAp5Q5uj1nqVGE7k=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$114,
+              [nix.POS]: pos$114,
               changelog: "https://marketplace.visualstudio.com/items/asvetliakov.vscode-neovim/changelog",
               description: "Vim-mode for VS Code using embedded Neovim",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim",
@@ -2038,18 +2038,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       attilabuti: nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         "brainfuck-syntax": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$119,
+            [nix.POS]: pos$119,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               name: "brainfuck-syntax",
               publisher: "attilabuti",
               version: "0.0.1",
               hash: "sha256-ZcZlHoa2aoCeruMWbUUgfFHsPqyWmd2xFY6AKxJysYE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$118,
+              [nix.POS]: pos$118,
               changelog: "https://marketplace.visualstudio.com/items/attilabuti.brainfuck-syntax/changelog",
               description: "VSCode extension providing syntax highlighting support for Brainfuck",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=attilabuti.brainfuck-syntax",
@@ -2060,47 +2060,47 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       augment: nix.thunk(() => ({
-        __proto__: pos$121,
+        [nix.POS]: pos$121,
         "vscode-augment": nix.thunk(() => nix.app(callPackage, nix.path(here, "./augment.vscode-augment"), nix.thunk(() => ({})))),
       })),
       azdavis: nix.thunk(() => ({
-        __proto__: pos$122,
+        [nix.POS]: pos$122,
         millet: nix.thunk(() => nix.app(callPackage, nix.path(here, "./azdavis.millet"), nix.thunk(() => ({})))),
       })),
       b4dm4n: nix.thunk(() => ({
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         "vscode-nixpkgs-fmt": nix.thunk(() => nix.app(callPackage, nix.path(here, "./b4dm4n.vscode-nixpkgs-fmt"), nix.thunk(() => ({})))),
       })),
       baccata: nix.thunk(() => ({
-        __proto__: pos$127,
+        [nix.POS]: pos$127,
         "scaladex-search": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$126,
+            [nix.POS]: pos$126,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$124,
+              [nix.POS]: pos$124,
               name: "scaladex-search",
               publisher: "baccata",
               version: "0.3.5",
               hash: "sha256-ff4mqEqO07z/pV2U/R4NsFW7czG+5+M/a2x7vv1ly7E=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$125,
+              [nix.POS]: pos$125,
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
       })),
       badochov: nix.thunk(() => ({
-        __proto__: pos$131,
+        [nix.POS]: pos$131,
         "ocaml-formatter": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$130,
+            [nix.POS]: pos$130,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$128,
+              [nix.POS]: pos$128,
               name: "ocaml-formatter",
               publisher: "badochov",
               version: "2.0.5",
               hash: "sha256-D04EJButnam/l4aAv1yNbHlTKMb3x1yrS47+9XjpCLI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$129,
+              [nix.POS]: pos$129,
               description: "VSCode Extension Formatter for OCaml language",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=badochov.ocaml-formatter",
               homepage: "https://github.com/badochov/ocamlformatter-vscode",
@@ -2110,18 +2110,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       ban: nix.thunk(() => ({
-        __proto__: pos$135,
+        [nix.POS]: pos$135,
         spellright: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$134,
+            [nix.POS]: pos$134,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$132,
+              [nix.POS]: pos$132,
               publisher: "ban",
               name: "spellright",
               version: "3.0.154",
               hash: "sha256-vGzmzY78FOS8ZsrT1YpTNOUJprW4rZHVuM83cZz6V+Q=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$133,
+              [nix.POS]: pos$133,
               description: "Visual Studio Code extension for Spellchecker",
               changelog: "https://marketplace.visualstudio.com/items/ban.spellright/changelog",
               homepage: "https://github.com/bartosz-antosik/vscode-spellright",
@@ -2134,18 +2134,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       banacorn: nix.thunk(() => ({
-        __proto__: pos$139,
+        [nix.POS]: pos$139,
         "agda-mode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$138,
+            [nix.POS]: pos$138,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$136,
+              [nix.POS]: pos$136,
               publisher: "banacorn",
               name: "agda-mode",
               version: "0.10.3",
               hash: "sha256-z1s4edXz1Wx29v/iSyxyEae5dygYuMsfawkGBMBeb94=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$137,
+              [nix.POS]: pos$137,
               changelog: "https://marketplace.visualstudio.com/items/banacorn.agda-mode/changelog",
               description: "agda-mode on VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=banacorn.agda-mode",
@@ -2159,18 +2159,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       batisteo: nix.thunk(() => ({
-        __proto__: pos$143,
+        [nix.POS]: pos$143,
         "vscode-django": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$140,
+              [nix.POS]: pos$140,
               publisher: "batisteo",
               name: "vscode-django",
               version: "1.15.0",
               hash: "sha256-WBZsZNcq9OY30uaksfcRmCvHcugemMhsJ6d6/IncR5s=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$141,
+              [nix.POS]: pos$141,
               changelog: "https://marketplace.visualstudio.com/items/batisteo.vscode-django/changelog",
               description: "Django extension for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=batisteo.vscode-django",
@@ -2184,18 +2184,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       bazelbuild: nix.thunk(() => ({
-        __proto__: pos$147,
+        [nix.POS]: pos$147,
         "vscode-bazel": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$146,
+            [nix.POS]: pos$146,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$144,
+              [nix.POS]: pos$144,
               name: "vscode-bazel",
               publisher: "bazelbuild",
               version: "0.15.1",
               sha256: "sha256-mV79c8jq8xU+Yesv7VH1xJQevORvLyYDYPPhTc6tmlI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$145,
+              [nix.POS]: pos$145,
               description: "Bazel support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel",
               homepage: "https://github.com/bazelbuild/vscode-bazel",
@@ -2204,56 +2204,56 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       bbenoist: nix.thunk(() => ({
-        __proto__: pos$151,
+        [nix.POS]: pos$151,
         nix: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$150,
+            [nix.POS]: pos$150,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$148,
+              [nix.POS]: pos$148,
               name: "Nix",
               publisher: "bbenoist",
               version: "1.0.1",
               sha256: "0zd0n9f5z1f0ckzfjr38xw2zzmcxg1gjrava7yahg5cvdcw6l35b",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$149,
+              [nix.POS]: pos$149,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       benfradet: nix.thunk(() => ({
-        __proto__: pos$155,
+        [nix.POS]: pos$155,
         "vscode-unison": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$154,
+            [nix.POS]: pos$154,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$152,
+              [nix.POS]: pos$152,
               name: "vscode-unison",
               publisher: "benfradet",
               version: "0.4.0",
               hash: "sha256-IDM9v+LWckf20xnRTj+ThAFSzVxxDVQaJkwO37UIIhs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$153,
+              [nix.POS]: pos$153,
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
       })),
       betterthantomorrow: nix.thunk(() => ({
-        __proto__: pos$156,
+        [nix.POS]: pos$156,
         calva: nix.thunk(() => nix.app(callPackage, nix.path(here, "./betterthantomorrow.calva"), nix.thunk(() => ({})))),
       })),
       bierner: nix.thunk(() => ({
-        __proto__: pos$184,
+        [nix.POS]: pos$184,
         "comment-tagged-templates": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$159,
+            [nix.POS]: pos$159,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$157,
+              [nix.POS]: pos$157,
               name: "comment-tagged-templates",
               publisher: "bierner",
               version: "0.4.0",
               hash: "sha256-mI2VogA6JVEfFL5B3+Od23//uPmXeqP8Om2AnhCs2Hs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$158,
+              [nix.POS]: pos$158,
               changelog: "https://marketplace.visualstudio.com/items/bierner.comment-tagged-templates/changelog",
               description: "VS Code extension that adds basic syntax highlighting for JavaScript and TypeScript tagged template strings using language identifier comments",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bierner.comment-tagged-templates",
@@ -2263,16 +2263,16 @@ export default nix.lambda((args) => (() => {
           })))),
         "color-info": nix.thunk(() => nix.app(callPackage, nix.path(here, "./bierner.color-info"), nix.thunk(() => ({})))),
         "docs-view": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$162,
+            [nix.POS]: pos$162,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$160,
+              [nix.POS]: pos$160,
               name: "docs-view",
               publisher: "bierner",
               version: "0.1.0",
               hash: "sha256-Y5bQVb0OuhHvpvZPXlJRe17qSN3tzqm8JwS6nO2tG7g=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$161,
+              [nix.POS]: pos$161,
               changelog: "https://marketplace.visualstudio.com/items/bierner.docs-view/changelog",
               description: "VSCode extension that displays documentation in the sidebar or panel",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bierner.docs-view",
@@ -2281,30 +2281,30 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         emojisense: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$165,
+            [nix.POS]: pos$165,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$163,
+              [nix.POS]: pos$163,
               name: "emojisense",
               publisher: "bierner",
               version: "0.10.0",
               hash: "sha256-PD8edYuJu6QHPYIM08kV85LuKh0H0/MIgFmMxSJFK5M=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$164,
+              [nix.POS]: pos$164,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "github-markdown-preview": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$168,
+            [nix.POS]: pos$168,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$166,
+              [nix.POS]: pos$166,
               name: "github-markdown-preview",
               publisher: "bierner",
               version: "0.4.0",
               hash: "sha256-bfj0rrZWVtgNfynap9+kdp8jAef0g9pTozEJwmkzhgU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$167,
+              [nix.POS]: pos$167,
               description: "VSCode extension that changes the markdown preview to support GitHub markdown features",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview",
               homepage: "https://github.com/mjbvz/vscode-github-markdown-preview",
@@ -2313,44 +2313,44 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "markdown-checkbox": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$171,
+            [nix.POS]: pos$171,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$169,
+              [nix.POS]: pos$169,
               name: "markdown-checkbox",
               publisher: "bierner",
               version: "0.4.0",
               hash: "sha256-AoPcdN/67WOzarnF+GIx/nans38Jan8Z5D0StBWIbkk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$170,
+              [nix.POS]: pos$170,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "markdown-emoji": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$174,
+            [nix.POS]: pos$174,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$172,
+              [nix.POS]: pos$172,
               name: "markdown-emoji",
               publisher: "bierner",
               version: "0.3.1",
               hash: "sha256-gfdEwKXLSu54M1gApM1Y1jofAtTdmg5UuBT8f/TUCRA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$173,
+              [nix.POS]: pos$173,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "markdown-footnotes": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$177,
+            [nix.POS]: pos$177,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$175,
+              [nix.POS]: pos$175,
               name: "markdown-footnotes",
               publisher: "bierner",
               version: "0.1.1",
               hash: "sha256-h/Iyk8CKFr0M5ULXbEbjFsqplnlN7F+ZvnUTy1An5t4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$176,
+              [nix.POS]: pos$176,
               changelog: "https://marketplace.visualstudio.com/items/bierner.markdown-footnotes/changelog",
               description: "Adds [^1] footnote syntax support to VS Code's built-in Markdown preview",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bierner.markdown-footnotes",
@@ -2360,16 +2360,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "markdown-mermaid": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$180,
+            [nix.POS]: pos$180,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$178,
+              [nix.POS]: pos$178,
               name: "markdown-mermaid",
               publisher: "bierner",
               version: "1.32.1",
               hash: "sha256-bH8JBZOfj2Km5/tfaiSzrkOl2kOU+XwZcuWOpU9iVEM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$179,
+              [nix.POS]: pos$179,
               changelog: "https://marketplace.visualstudio.com/items/bierner.markdown-mermaid/changelog",
               description: "Adds Mermaid diagram and flowchart support to VS Code's builtin markdown preview",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid",
@@ -2378,16 +2378,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "markdown-preview-github-styles": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$183,
+            [nix.POS]: pos$183,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$181,
+              [nix.POS]: pos$181,
               name: "markdown-preview-github-styles",
               publisher: "bierner",
               version: "2.2.0",
               hash: "sha256-Jg8XpMoSVZA/VpQhLY3bmmG9pb0XL2CRlhlemcWvzSg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$182,
+              [nix.POS]: pos$182,
               changelog: "https://marketplace.visualstudio.com/items/bierner.markdown-preview-github-styles/changelog",
               description: "Changes VS Code's built-in markdown preview to match GitHub's styling",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles",
@@ -2398,22 +2398,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       biomejs: nix.thunk(() => ({
-        __proto__: pos$185,
+        [nix.POS]: pos$185,
         biome: nix.thunk(() => nix.app(callPackage, nix.path(here, "./biomejs.biome"), nix.thunk(() => ({})))),
       })),
       bmalehorn: nix.thunk(() => ({
-        __proto__: pos$189,
+        [nix.POS]: pos$189,
         "vscode-fish": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$188,
+            [nix.POS]: pos$188,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$186,
+              [nix.POS]: pos$186,
               publisher: "bmalehorn",
               name: "vscode-fish",
               version: "1.0.49",
               hash: "sha256-oG0KOvQZ2E5FroXaUT6lGw1zDSQ/bisHLMMkygbGqQE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$187,
+              [nix.POS]: pos$187,
               changelog: "https://marketplace.visualstudio.com/items/bmalehorn.vscode-fish/changelog",
               description: "Fish syntax highlighting and formatting for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bmalehorn.vscode-fish",
@@ -2424,18 +2424,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       bmewburn: nix.thunk(() => ({
-        __proto__: pos$193,
+        [nix.POS]: pos$193,
         "vscode-intelephense-client": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$192,
+            [nix.POS]: pos$192,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$190,
+              [nix.POS]: pos$190,
               name: "vscode-intelephense-client",
               publisher: "bmewburn",
               version: "1.18.5",
               hash: "sha256-yLp7lBWjdH+KtBUlkjLWz5OmAvEQWJFIVCVsBt9BTeE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$191,
+              [nix.POS]: pos$191,
               description: "PHP code intelligence for Visual Studio Code",
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client",
@@ -2444,36 +2444,36 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       bodil: nix.thunk(() => ({
-        __proto__: pos$197,
+        [nix.POS]: pos$197,
         "file-browser": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$196,
+            [nix.POS]: pos$196,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$194,
+              [nix.POS]: pos$194,
               name: "file-browser",
               publisher: "bodil",
               version: "0.2.11",
               hash: "sha256-yPVhhsAUZxnlhj58fXkk+yhxop2q7YJ6X4W9dXGKJfo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$195,
+              [nix.POS]: pos$195,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "blueprint-gtk": nix.thunk(() => nix.app(callPackage, nix.path(here, "./bodil.blueprint-gtk"), nix.thunk(() => ({})))),
       })),
       bradgashler: nix.thunk(() => ({
-        __proto__: pos$201,
+        [nix.POS]: pos$201,
         htmltagwrap: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$200,
+            [nix.POS]: pos$200,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$198,
+              [nix.POS]: pos$198,
               publisher: "bradgashler",
               name: "htmltagwrap",
               version: "1.0.0",
               hash: "sha256-WOMfwxyeDLoSwF0xz9tbntDVrUWycJ4bW0rZjfLSzgM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$199,
+              [nix.POS]: pos$199,
               changelog: "https://github.com/bgashler1/vscode-htmltagwrap/blob/master/CHANGELOG.md",
               description: "VSCode extension for wrapping a text selection in HTML tags",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap",
@@ -2484,18 +2484,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       bradlc: nix.thunk(() => ({
-        __proto__: pos$205,
+        [nix.POS]: pos$205,
         "vscode-tailwindcss": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$204,
+            [nix.POS]: pos$204,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$202,
+              [nix.POS]: pos$202,
               name: "vscode-tailwindcss",
               publisher: "bradlc",
               version: "0.16.0",
               hash: "sha256-1adOWrj7/YAG+8y82NR9RM33lqU6xEkfP8pMc5ctF5c=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$203,
+              [nix.POS]: pos$203,
               changelog: "https://marketplace.visualstudio.com/items/bradlc.vscode-tailwindcss/changelog",
               description: "Tailwind CSS tooling for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss",
@@ -2505,18 +2505,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       brandonkirbyson: nix.thunk(() => ({
-        __proto__: pos$209,
+        [nix.POS]: pos$209,
         "solarized-palenight": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$208,
+            [nix.POS]: pos$208,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$206,
+              [nix.POS]: pos$206,
               name: "solarized-palenight",
               publisher: "BrandonKirbyson",
               version: "1.0.1",
               hash: "sha256-vVbaHSaBX6QzpnYMQlpPsJU1TQYJEBe8jq95muzwN0o=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$207,
+              [nix.POS]: pos$207,
               description: "Solarized-palenight theme for vscode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=BrandonKirbyson.solarized-palenight",
               homepage: "https://github.com/BrandonKirbyson/Solarized-Palenight",
@@ -2526,39 +2526,39 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       brettm12345: nix.thunk(() => ({
-        __proto__: pos$213,
+        [nix.POS]: pos$213,
         "nixfmt-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$212,
+            [nix.POS]: pos$212,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$210,
+              [nix.POS]: pos$210,
               name: "nixfmt-vscode",
               publisher: "brettm12345",
               version: "0.0.1",
               sha256: "07w35c69vk1l6vipnq3qfack36qcszqxn8j3v332bl0w6m02aa7k",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$211,
+              [nix.POS]: pos$211,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
             })),
           })))),
       })),
       budparr: nix.thunk(() => ({
-        __proto__: pos$214,
+        [nix.POS]: pos$214,
         "language-hugo-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./budparr.language-hugo-vscode"), nix.thunk(() => ({})))),
       })),
       bungcip: nix.thunk(() => ({
-        __proto__: pos$218,
+        [nix.POS]: pos$218,
         "better-toml": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$217,
+            [nix.POS]: pos$217,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$215,
+              [nix.POS]: pos$215,
               name: "better-toml",
               publisher: "bungcip",
               version: "0.3.2",
               hash: "sha256-g+LfgjAnSuSj/nSmlPdB0t29kqTmegZB5B1cYzP8kCI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$216,
+              [nix.POS]: pos$216,
               changelog: "https://marketplace.visualstudio.com/items/bungcip.better-toml/changelog",
               description: "Better TOML Language support",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml",
@@ -2569,18 +2569,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       capatech: nix.thunk(() => ({
-        __proto__: pos$222,
+        [nix.POS]: pos$222,
         betacode: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$221,
+            [nix.POS]: pos$221,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$219,
+              [nix.POS]: pos$219,
               name: "betacode",
               publisher: "capatech",
               version: "0.1.10",
               hash: "sha256-Sq+s1dM+gZo73VaGEAX88fgVRAhWklg0LKv+yH46Jfw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$220,
+              [nix.POS]: pos$220,
               description: "VSCode extension for writing polytonic Greek",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Capatech.betacode",
               homepage: "https://github.com/kugland/vscode-extension-betacode",
@@ -2593,18 +2593,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       carrie999: nix.thunk(() => ({
-        __proto__: pos$226,
+        [nix.POS]: pos$226,
         "cyberpunk-2020": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$225,
+            [nix.POS]: pos$225,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$223,
+              [nix.POS]: pos$223,
               name: "cyberpunk-2020",
               publisher: "carrie999",
               version: "0.1.4",
               hash: "sha256-tVbd+j9+90Z07+jGAiT0gylZN9YWHdJmq2sh1wf2oGE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$224,
+              [nix.POS]: pos$224,
               description: "Cyberpunk-inspired colour theme to satisfy your neon dreams",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=carrie999.cyberpunk-2020",
               homepage: "https://github.com/Carrie999/cyberpunk",
@@ -2614,22 +2614,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       castwide: nix.thunk(() => ({
-        __proto__: pos$227,
+        [nix.POS]: pos$227,
         solargraph: nix.thunk(() => nix.app(callPackage, nix.path(here, "./castwide.solargraph"), nix.thunk(() => ({})))),
       })),
       catppuccin: nix.thunk(() => ({
-        __proto__: pos$234,
+        [nix.POS]: pos$234,
         "catppuccin-vsc": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$230,
+            [nix.POS]: pos$230,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$228,
+              [nix.POS]: pos$228,
               name: "catppuccin-vsc",
               publisher: "catppuccin",
               version: "3.19.0",
               hash: "sha256-6/NHZkg37b6RyZIP89FMltSii+7sC5UTfHYFgyYyl4A=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$229,
+              [nix.POS]: pos$229,
               changelog: "https://marketplace.visualstudio.com/items/Catppuccin.catppuccin-vsc/changelog",
               description: "Soothing pastel theme for VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc",
@@ -2639,16 +2639,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "catppuccin-vsc-icons": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$233,
+            [nix.POS]: pos$233,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$231,
+              [nix.POS]: pos$231,
               name: "catppuccin-vsc-icons",
               publisher: "catppuccin",
               version: "1.26.0",
               hash: "sha256-V1ZhNtCouo0EDrblvoZsiMy7BPPSGdOn5SoZl4kA/z0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$232,
+              [nix.POS]: pos$232,
               changelog: "https://marketplace.visualstudio.com/items/Catppuccin.catppuccin-vsc-icons/changelog",
               description: "Soothing pastel icon theme for VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc-icons",
@@ -2659,18 +2659,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       chanhx: nix.thunk(() => ({
-        __proto__: pos$238,
+        [nix.POS]: pos$238,
         crabviz: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$237,
+            [nix.POS]: pos$237,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$235,
+              [nix.POS]: pos$235,
               name: "crabviz",
               publisher: "chanhx",
               version: "0.5.0",
               hash: "sha256-YLNx/9jmHc0HDm/yHquOlMDPmAbpIdd6UZn0JZQVJko=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$236,
+              [nix.POS]: pos$236,
               description: "VSCode extension for generating call graphs based on LSP",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=chanhx.crabviz",
               homepage: "https://github.com/chanhx/crabviz",
@@ -2683,22 +2683,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       charliermarsh: nix.thunk(() => ({
-        __proto__: pos$239,
+        [nix.POS]: pos$239,
         ruff: nix.thunk(() => nix.app(callPackage, nix.path(here, "./charliermarsh.ruff"), nix.thunk(() => ({})))),
       })),
       cameron: nix.thunk(() => ({
-        __proto__: pos$243,
+        [nix.POS]: pos$243,
         "vscode-pytest": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$242,
+            [nix.POS]: pos$242,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$240,
+              [nix.POS]: pos$240,
               name: "vscode-pytest",
               publisher: "Cameron",
               version: "0.1.1",
               hash: "sha256-YU37a0Q+IXusXgwf9doxXLlYiyzkizbPjjdCZFxeDaA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$241,
+              [nix.POS]: pos$241,
               changelog: "https://github.com/cameronmaske/pytest-vscode/blob/master/CHANGELOG.md",
               description: "Visual Studio Code extension that adds IntelliSense support for pytest fixtures",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Cameron.vscode-pytest",
@@ -2708,22 +2708,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       chrischinchilla: nix.thunk(() => ({
-        __proto__: pos$244,
+        [nix.POS]: pos$244,
         "vscode-pandoc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./chrischinchilla.vscode-pandoc"), nix.thunk(() => ({})))),
       })),
       "christian-kohler": nix.thunk(() => ({
-        __proto__: pos$251,
+        [nix.POS]: pos$251,
         "npm-intellisense": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$247,
+            [nix.POS]: pos$247,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$245,
+              [nix.POS]: pos$245,
               name: "npm-intellisense",
               publisher: "christian-kohler",
               version: "1.4.5",
               sha256: "962b851a7cafbd51f34afeb4a0b91e985caff3947e46218a12b448533d8f60ab",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$246,
+              [nix.POS]: pos$246,
               changelog: "https://marketplace.visualstudio.com/items/christian-kohler.npm-intellisense/changelog",
               description: "Visual Studio Code plugin that autocompletes npm modules in import statements",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense",
@@ -2733,16 +2733,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "path-intellisense": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$250,
+            [nix.POS]: pos$250,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$248,
+              [nix.POS]: pos$248,
               name: "path-intellisense",
               publisher: "christian-kohler",
               version: "2.10.0",
               sha256: "sha256-bE32VmzZBsAqgSxdQAK9OoTcTgutGEtgvw6+RaieqRs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$249,
+              [nix.POS]: pos$249,
               description: "Visual Studio Code plugin that autocompletes filenames",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense",
               homepage: "https://github.com/ChristianKohler/PathIntellisense",
@@ -2752,15 +2752,15 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       chenglou92: nix.thunk(() => ({
-        __proto__: pos$252,
+        [nix.POS]: pos$252,
         "rescript-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./chenglou92.rescript-vscode"), nix.thunk(() => ({})))),
       })),
       "chris-hayes": nix.thunk(() => ({
-        __proto__: pos$256,
+        [nix.POS]: pos$256,
         "chatgpt-reborn": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$255,
+            [nix.POS]: pos$255,
             meta: nix.thunk(() => ({
-              __proto__: pos$253,
+              [nix.POS]: pos$253,
               changelog: "https://marketplace.visualstudio.com/items/chris-hayes.chatgpt-reborn/changelog",
               description: "Visual Studio Code extension to support ChatGPT, GPT-3 and Codex conversations",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=chris-hayes.chatgpt-reborn",
@@ -2769,7 +2769,7 @@ export default nix.lambda((args) => (() => {
               maintainers: [],
             })),
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$254,
+              [nix.POS]: pos$254,
               name: "chatgpt-reborn",
               publisher: "chris-hayes",
               version: "3.28.0",
@@ -2778,39 +2778,39 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       claui: nix.thunk(() => ({
-        __proto__: pos$257,
+        [nix.POS]: pos$257,
         packaging: nix.thunk(() => nix.app(callPackage, nix.path(here, "./claui.packaging"), nix.thunk(() => ({})))),
       })),
       cmschuetz12: nix.thunk(() => ({
-        __proto__: pos$261,
+        [nix.POS]: pos$261,
         wal: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$260,
+            [nix.POS]: pos$260,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$258,
+              [nix.POS]: pos$258,
               name: "wal",
               publisher: "cmschuetz12",
               version: "0.1.0",
               sha256: "0q089jnzqzhjfnv0vlb5kf747s3mgz64r7q3zscl66zb2pz5q4zd",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$259,
+              [nix.POS]: pos$259,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       coder: nix.thunk(() => ({
-        __proto__: pos$265,
+        [nix.POS]: pos$265,
         "coder-remote": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$264,
+            [nix.POS]: pos$264,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$262,
+              [nix.POS]: pos$262,
               name: "coder-remote",
               publisher: "coder",
               version: "1.16.4",
               hash: "sha256-uQrtTY+iKljPuRhH5Jg4Aro3pZKm3z4xtcWNTclyn/w=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$263,
+              [nix.POS]: pos$263,
               description: "Extension for Visual Studio Code to open any Coder workspace in VS Code with a single click",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=coder.coder-remote",
               homepage: "https://github.com/coder/vscode-coder",
@@ -2820,35 +2820,35 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       codezombiech: nix.thunk(() => ({
-        __proto__: pos$269,
+        [nix.POS]: pos$269,
         gitignore: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$268,
+            [nix.POS]: pos$268,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$266,
+              [nix.POS]: pos$266,
               name: "gitignore",
               publisher: "codezombiech",
               version: "0.10.0",
               hash: "sha256-WTKVHrhBeAocP+stskFsSFtd0aR3u1TTEMYtdxj1tlY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$267,
+              [nix.POS]: pos$267,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       w88975: nix.thunk(() => ({
-        __proto__: pos$273,
+        [nix.POS]: pos$273,
         "code-translate": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$272,
+            [nix.POS]: pos$272,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$270,
+              [nix.POS]: pos$270,
               name: "code-translate",
               publisher: "w88975",
               version: "1.0.20",
               hash: "sha256-blqLK7S+RmEoyr9zktS5/SNC0GeSXnNpbhltyajoAfw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$271,
+              [nix.POS]: pos$271,
               description: "Visual Studio Code extension to provide purely hover translation",
               longDescription: "Code Translate is a purely hover translation extension\n- Non-intrusive display of translation results: perfectly integrated with VS Code code analysis.\n- Powerful word splitting capabilities: supports various forms of word splitting such as camel case and underscore.\n- Rich local vocabulary: includes 3.4+ million offline words, supporting various rare words.\n- Based on a rich local vocabulary: Code Translate has super-fast query speed, with each word typically queried in less than 10ms.\n- Multi-platform support: supports both the desktop version and online version of VS Code, and the plugin can be used on both versions.\n",
               homepage: "https://github.com/w88975/code-translate-vscode",
@@ -2862,18 +2862,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       colejcummins: nix.thunk(() => ({
-        __proto__: pos$277,
+        [nix.POS]: pos$277,
         "llvm-syntax-highlighting": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$276,
+            [nix.POS]: pos$276,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$274,
+              [nix.POS]: pos$274,
               name: "llvm-syntax-highlighting",
               publisher: "colejcummins",
               version: "0.0.3",
               hash: "sha256-D5zLp3ruq0F9UFT9emgOBDLr1tya2Vw52VvCc40TtV0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$275,
+              [nix.POS]: pos$275,
               description: "Lightweight syntax highlighting for LLVM IR",
               homepage: "https://github.com/colejcummins/llvm-syntax-highlighting",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=colejcummins.llvm-syntax-highlighting",
@@ -2883,48 +2883,48 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       congyiwu: nix.thunk(() => ({
-        __proto__: pos$278,
+        [nix.POS]: pos$278,
         "vscode-jupytext": nix.thunk(() => nix.app(callPackage, nix.path(here, "./congyiwu.vscode-jupytext"), nix.thunk(() => ({})))),
       })),
       contextmapper: nix.thunk(() => ({
-        __proto__: pos$279,
+        [nix.POS]: pos$279,
         "context-mapper-vscode-extension": nix.thunk(() => nix.app(callPackage, nix.path(here, "./contextmapper.context-mapper-vscode-extension"), nix.thunk(() => ({})))),
       })),
       continue: nix.thunk(() => ({
-        __proto__: pos$280,
+        [nix.POS]: pos$280,
         continue: nix.thunk(() => nix.app(callPackage, nix.path(here, "./continue.continue"), nix.thunk(() => ({})))),
       })),
       coolbear: nix.thunk(() => ({
-        __proto__: pos$284,
+        [nix.POS]: pos$284,
         "systemd-unit-file": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$283,
+            [nix.POS]: pos$283,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$281,
+              [nix.POS]: pos$281,
               publisher: "coolbear",
               name: "systemd-unit-file",
               version: "1.0.6",
               sha256: "0sc0zsdnxi4wfdlmaqwb6k2qc21dgwx6ipvri36x7agk7m8m4736",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$282,
+              [nix.POS]: pos$282,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kamadorueda"))]),
             })),
           })))),
       })),
       csharpier: nix.thunk(() => ({
-        __proto__: pos$288,
+        [nix.POS]: pos$288,
         "csharpier-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$287,
+            [nix.POS]: pos$287,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$285,
+              [nix.POS]: pos$285,
               name: "csharpier-vscode",
               publisher: "csharpier",
               version: "11.0.1",
               hash: "sha256-2yHlrJ6Q4M0Y5IUAmm87gJQBzhCbfM61qNTD//lk8HY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$286,
+              [nix.POS]: pos$286,
               changelog: "https://marketplace.visualstudio.com/items/csharpier.csharpier-vscode/changelog",
               description: "CSharpier code formatter for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=csharpier.csharpier-vscode",
@@ -2935,18 +2935,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       cuelangorg: nix.thunk(() => ({
-        __proto__: pos$292,
+        [nix.POS]: pos$292,
         "vscode-cue": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$291,
+            [nix.POS]: pos$291,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$289,
+              [nix.POS]: pos$289,
               name: "vscode-cue",
               publisher: "cuelangorg",
               version: "0.0.21",
               hash: "sha256-aSyTgGZt9AMZopmPLHb3Mc2RxUGZH87eMtOPX8DlgWQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$290,
+              [nix.POS]: pos$290,
               description: "The official CUE extension for VS Code, providing syntax highlighting and language server integration (LSP)",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=cuelangorg.vscode-cue",
               homepage: "https://github.com/cue-lang/vscode-cue",
@@ -2956,18 +2956,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       cweijan: nix.thunk(() => ({
-        __proto__: pos$299,
+        [nix.POS]: pos$299,
         "dbclient-jdbc": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$295,
+            [nix.POS]: pos$295,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$293,
+              [nix.POS]: pos$293,
               name: "dbclient-jdbc",
               publisher: "cweijan",
               version: "1.4.6",
               hash: "sha256-989egeJlpJ2AfZra9VSQDQ8e+nQCa2sfoUeti674ecA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$294,
+              [nix.POS]: pos$294,
               description: "JDBC Adapter For Database Client",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=cweijan.dbclient-jdbc",
               homepage: "https://github.com/database-client/jdbc-adapter-server",
@@ -2976,16 +2976,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "vscode-database-client2": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$298,
+            [nix.POS]: pos$298,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$296,
+              [nix.POS]: pos$296,
               name: "vscode-database-client2",
               publisher: "cweijan",
               version: "9.0.2",
               hash: "sha256-RCjtYpGDEjFkKvTspvgopccNVvMt1imeAGHZYRsle/Q=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$297,
+              [nix.POS]: pos$297,
               description: "Database Client For Visual Studio Code",
               homepage: "https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2993,18 +2993,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       danielgavin: nix.thunk(() => ({
-        __proto__: pos$303,
+        [nix.POS]: pos$303,
         ols: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$302,
+            [nix.POS]: pos$302,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$300,
+              [nix.POS]: pos$300,
               publisher: "DanielGavin",
               name: "ols",
               version: "0.1.47",
               hash: "sha256-qv+rMLcLTTw0zCDd87v2om96N8GhokrePdqXgRYWRe0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$301,
+              [nix.POS]: pos$301,
               description: "Visual Studio Code extension for Odin language",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=DanielGavin.ols",
               homepage: "https://github.com/DanielGavin/ols",
@@ -3013,18 +3013,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       danielsanmedium: nix.thunk(() => ({
-        __proto__: pos$307,
+        [nix.POS]: pos$307,
         dscodegpt: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$306,
+            [nix.POS]: pos$306,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$304,
+              [nix.POS]: pos$304,
               publisher: "DanielSanMedium",
               name: "dscodegpt",
               version: "3.24.76",
               hash: "sha256-8HwYwCtROlU8txNVREr45Jx1tpCI2a50uHfAb6iT7V8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$305,
+              [nix.POS]: pos$305,
               changelog: "https://marketplace.visualstudio.com/items/DanielSanMedium.dscodegpt/changelog",
               description: "Easily connect to AI providers using their official APIs in VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=DanielSanMedium.dscodegpt",
@@ -3035,67 +3035,67 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "daohong-emilio": nix.thunk(() => ({
-        __proto__: pos$311,
+        [nix.POS]: pos$311,
         yash: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$310,
+            [nix.POS]: pos$310,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$308,
+              [nix.POS]: pos$308,
               publisher: "daohong-emilio",
               name: "yash",
               version: "0.3.1",
               hash: "sha256-DentLM/XT7b7O4vptVcja9E8pQjiDPOLilo8wjTH0IE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$309,
+              [nix.POS]: pos$309,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kamadorueda"))]),
             })),
           })))),
       })),
       "dart-code": nix.thunk(() => ({
-        __proto__: pos$318,
+        [nix.POS]: pos$318,
         "dart-code": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$314,
+            [nix.POS]: pos$314,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$312,
+              [nix.POS]: pos$312,
               name: "dart-code",
               publisher: "dart-code",
               version: "3.138.0",
               hash: "sha256-5RBxwQpuQQreBJXBP8+XcK8RQupKIBaS7f2q8drFWBo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$313,
+              [nix.POS]: pos$313,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         flutter: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$317,
+            [nix.POS]: pos$317,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$315,
+              [nix.POS]: pos$315,
               name: "flutter",
               publisher: "dart-code",
               version: "3.138.0",
               hash: "sha256-FkaUKApoN6e8ET2o/71GVhyNWdZ34t6fqEzlraH7QBc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$316,
+              [nix.POS]: pos$316,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       databricks: nix.thunk(() => ({
-        __proto__: pos$322,
+        [nix.POS]: pos$322,
         databricks: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$321,
+            [nix.POS]: pos$321,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$319,
+              [nix.POS]: pos$319,
               name: "databricks",
               publisher: "databricks",
               version: "2.19.0",
               hash: "sha256-hW0Q0gnAanWZ4IuF/AY5uypvHZ5YDjvFnJzGn4Hd7V8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$320,
+              [nix.POS]: pos$320,
               changelog: "https://marketplace.visualstudio.com/items/databricks.databricks/changelog",
               description: "Databricks extension for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=databricks.databricks",
@@ -3106,18 +3106,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       davidanson: nix.thunk(() => ({
-        __proto__: pos$326,
+        [nix.POS]: pos$326,
         "vscode-markdownlint": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$325,
+            [nix.POS]: pos$325,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$323,
+              [nix.POS]: pos$323,
               name: "vscode-markdownlint",
               publisher: "DavidAnson",
               version: "0.62.1",
               hash: "sha256-zR0pWpxWTTxeAEfX49vlhaTPc2YZxcJCv62abriPtRg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$324,
+              [nix.POS]: pos$324,
               changelog: "https://marketplace.visualstudio.com/items/DavidAnson.vscode-markdownlint/changelog",
               description: "Markdown linting and style checking for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint",
@@ -3128,18 +3128,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       davidlday: nix.thunk(() => ({
-        __proto__: pos$330,
+        [nix.POS]: pos$330,
         "languagetool-linter": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$329,
+            [nix.POS]: pos$329,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$327,
+              [nix.POS]: pos$327,
               name: "languagetool-linter",
               publisher: "davidlday",
               version: "0.25.8",
               hash: "sha256-ddDxe0ZJgQjDUAKAQyboHEi0ZeVBeGE4Zx2peRbBGFA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$328,
+              [nix.POS]: pos$328,
               description: "LanguageTool integration for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=davidlday.languagetool-linter",
               homepage: "https://github.com/davidlday/vscode-languagetool-linter",
@@ -3149,29 +3149,29 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       dbaeumer: nix.thunk(() => ({
-        __proto__: pos$331,
+        [nix.POS]: pos$331,
         "vscode-eslint": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dbaeumer.vscode-eslint"), nix.thunk(() => ({})))),
       })),
       dendron: nix.thunk(() => ({
-        __proto__: pos$332,
+        [nix.POS]: pos$332,
         "adjust-heading-level": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dendron.adjust-heading-level"), nix.thunk(() => ({})))),
         dendron: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dendron.dendron"), nix.thunk(() => ({})))),
         "dendron-paste-image": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dendron.dendron-paste-image"), nix.thunk(() => ({})))),
         "dendron-snippet-maker": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dendron.dendron-snippet-maker"), nix.thunk(() => ({})))),
       })),
       denoland: nix.thunk(() => ({
-        __proto__: pos$336,
+        [nix.POS]: pos$336,
         "vscode-deno": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$335,
+            [nix.POS]: pos$335,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$333,
+              [nix.POS]: pos$333,
               publisher: "denoland",
               name: "vscode-deno",
               version: "3.53.1",
               hash: "sha256-9OGG/ZvqzRzTQ6ERT0fKBkGwx1+zwD2FUWr9Hp1wLK0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$334,
+              [nix.POS]: pos$334,
               changelog: "https://marketplace.visualstudio.com/items/denoland.vscode-deno/changelog",
               description: "Language server client for Deno",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno",
@@ -3182,53 +3182,53 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       detachhead: nix.thunk(() => ({
-        __proto__: pos$337,
+        [nix.POS]: pos$337,
         basedpyright: nix.thunk(() => nix.app(callPackage, nix.path(here, "./detachhead.basedpyright"), nix.thunk(() => ({})))),
       })),
       dhall: nix.thunk(() => ({
-        __proto__: pos$344,
+        [nix.POS]: pos$344,
         "dhall-lang": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$340,
+            [nix.POS]: pos$340,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$338,
+              [nix.POS]: pos$338,
               name: "dhall-lang",
               publisher: "dhall",
               version: "0.0.4",
               sha256: "0sa04srhqmngmw71slnrapi2xay0arj42j4gkan8i11n7bfi1xpf",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$339,
+              [nix.POS]: pos$339,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "vscode-dhall-lsp-server": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$343,
+            [nix.POS]: pos$343,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$341,
+              [nix.POS]: pos$341,
               name: "vscode-dhall-lsp-server",
               publisher: "dhall",
               version: "0.0.4",
               sha256: "1zin7s827bpf9yvzpxpr5n6mv0b5rhh3civsqzmj52mdq365d2js",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$342,
+              [nix.POS]: pos$342,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       dhedgecock: nix.thunk(() => ({
-        __proto__: pos$348,
+        [nix.POS]: pos$348,
         "radical-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$347,
+            [nix.POS]: pos$347,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$345,
+              [nix.POS]: pos$345,
               name: "radical-vscode",
               publisher: "dhedgecock",
               version: "3.3.1",
               hash: "sha256-VvFQovuE+I0lqXU9fHrmk7nWMpuuWafqm9Acwb0+QYg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$346,
+              [nix.POS]: pos$346,
               changelog: "https://marketplace.visualstudio.com/items/dhedgecock.radical-vscode/changelog",
               description: "Dark theme for radical hacking inspired by retro futuristic design",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=dhedgecock.radical-vscode",
@@ -3239,18 +3239,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       discloud: nix.thunk(() => ({
-        __proto__: pos$352,
+        [nix.POS]: pos$352,
         discloud: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$351,
+            [nix.POS]: pos$351,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$349,
+              [nix.POS]: pos$349,
               publisher: "discloud",
               name: "discloud",
               version: "2.29.14",
               hash: "sha256-u/Up1H2yaRLq6LtNnth9E8+gTy+Gdh2O8Bh1FEu/JtY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$350,
+              [nix.POS]: pos$350,
               changelog: "https://marketplace.visualstudio.com/items/discloud.discloud/changelog",
               description: "Visual Studio Code extension for hosting and managing applications on Discloud",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=discloud.discloud",
@@ -3261,35 +3261,35 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       disneystreaming: nix.thunk(() => ({
-        __proto__: pos$356,
+        [nix.POS]: pos$356,
         smithy: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$355,
+            [nix.POS]: pos$355,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$353,
+              [nix.POS]: pos$353,
               publisher: "disneystreaming",
               name: "smithy",
               version: "0.0.14",
               hash: "sha256-dnHaJRlFd535Gi3T1+0YBOnytmf2W15Vta5H6HhzYZI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$354,
+              [nix.POS]: pos$354,
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
       })),
       divyanshuagrawal: nix.thunk(() => ({
-        __proto__: pos$360,
+        [nix.POS]: pos$360,
         "competitive-programming-helper": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$359,
+            [nix.POS]: pos$359,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$357,
+              [nix.POS]: pos$357,
               name: "competitive-programming-helper",
               publisher: "DivyanshuAgrawal",
               version: "2026.9.1789578855",
               hash: "sha256-9WQ+FvOTMB/jiPbmp9qE2i7yubRS4czskJJIvKvtEyM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$358,
+              [nix.POS]: pos$358,
               changelog: "https://marketplace.visualstudio.com/items/DivyanshuAgrawal.competitive-programming-helper/changelog",
               description: "Makes judging, compiling, and downloading problems for competitive programming easy. Also supports auto-submit for a few sites",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=DivyanshuAgrawal.competitive-programming-helper",
@@ -3300,22 +3300,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       docker: nix.thunk(() => ({
-        __proto__: pos$361,
+        [nix.POS]: pos$361,
         docker: nix.thunk(() => nix.app(callPackage, nix.path(here, "./docker.docker"), nix.thunk(() => ({})))),
       })),
       donjayamanne: nix.thunk(() => ({
-        __proto__: pos$365,
+        [nix.POS]: pos$365,
         githistory: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$364,
+            [nix.POS]: pos$364,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$362,
+              [nix.POS]: pos$362,
               name: "githistory",
               publisher: "donjayamanne",
               version: "0.6.20",
               hash: "sha256-nEdYS9/cMS4dcbFje23a47QBZr9eDK3dvtkFWqA+OHU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$363,
+              [nix.POS]: pos$363,
               changelog: "https://marketplace.visualstudio.com/items/donjayamanne.githistory/changelog",
               description: "View git log, file history, compare branches or commits",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory",
@@ -3326,18 +3326,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       dotenv: nix.thunk(() => ({
-        __proto__: pos$369,
+        [nix.POS]: pos$369,
         "dotenv-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$368,
+            [nix.POS]: pos$368,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$366,
+              [nix.POS]: pos$366,
               name: "dotenv-vscode",
               publisher: "dotenv",
               version: "1.5.8",
               hash: "sha256-rfBvCh/HWL5tL0HXnAWzCIo3zGAjbgeGYNRwwlYiJTk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$367,
+              [nix.POS]: pos$367,
               changelog: "https://marketplace.visualstudio.com/items/dotenv.dotenv-vscode/changelog",
               description: "Official Dotenv extension for VSCode. Offers syntax highlighting, auto-cloaking, auto-completion, in-code secret peeking, and optionally dotenv-vault",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=dotenv.dotenv-vscode",
@@ -3347,18 +3347,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       dotjoshjohnson: nix.thunk(() => ({
-        __proto__: pos$373,
+        [nix.POS]: pos$373,
         xml: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$372,
+            [nix.POS]: pos$372,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$370,
+              [nix.POS]: pos$370,
               name: "xml",
               publisher: "dotjoshjohnson",
               version: "2.5.1",
               sha256: "1v4x6yhzny1f8f4jzm4g7vqmqg5bqchyx4n25mkgvw2xp6yls037",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$371,
+              [nix.POS]: pos$371,
               description: "XML Tools",
               homepage: "https://github.com/DotJoshJohnson/vscode-xml",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -3366,18 +3366,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "dracula-theme": nix.thunk(() => ({
-        __proto__: pos$377,
+        [nix.POS]: pos$377,
         "theme-dracula": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$376,
+            [nix.POS]: pos$376,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$374,
+              [nix.POS]: pos$374,
               name: "theme-dracula",
               publisher: "dracula-theme",
               version: "2.25.1",
               hash: "sha256-ijGbdiqbDQmZYVqZCx2X4W7KRNV3UDddWvz+9x/vfcA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$375,
+              [nix.POS]: pos$375,
               changelog: "https://marketplace.visualstudio.com/items/dracula-theme.theme-dracula/changelog",
               description: "Dark theme for many editors, shells, and more",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula",
@@ -3387,18 +3387,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       drblury: nix.thunk(() => ({
-        __proto__: pos$381,
+        [nix.POS]: pos$381,
         "protobuf-vsc": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$380,
+            [nix.POS]: pos$380,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$378,
+              [nix.POS]: pos$378,
               name: "protobuf-vsc",
               publisher: "DrBlury",
               version: "1.6.15",
               hash: "sha256-KWWjDiINAJljQnKzwqyJMZc6ZCOx4/Wq+4fNAn0v2CI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$379,
+              [nix.POS]: pos$379,
               description: "Comprehensive Protocol Buffers support with syntax highlighting, IntelliSense, diagnostics and formatting",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=DrBlury.protobuf-vsc",
               homepage: "https://github.com/DrBlury/protobuf-vsc-extension",
@@ -3407,22 +3407,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       eamodio: nix.thunk(() => ({
-        __proto__: pos$382,
+        [nix.POS]: pos$382,
         gitlens: nix.thunk(() => nix.app(callPackage, nix.path(here, "./eamodio.gitlens"), nix.thunk(() => ({})))),
       })),
       earthly: nix.thunk(() => ({
-        __proto__: pos$386,
+        [nix.POS]: pos$386,
         "earthfile-syntax-highlighting": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$385,
+            [nix.POS]: pos$385,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$383,
+              [nix.POS]: pos$383,
               name: "earthfile-syntax-highlighting",
               publisher: "earthly",
               version: "0.0.16",
               sha256: "c54d6fd4d2f503a1031be92ff118b5eb1b997907511734e730e08b1a90a6960f",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$384,
+              [nix.POS]: pos$384,
               changelog: "https://marketplace.visualstudio.com/items/earthly.earthfile-syntax-highlighting/changelog",
               description: "Syntax highlighting for Earthly build Earthfiles",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=earthly.earthfile-syntax-highlighting",
@@ -3433,18 +3433,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       ecmel: nix.thunk(() => ({
-        __proto__: pos$390,
+        [nix.POS]: pos$390,
         "vscode-html-css": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$389,
+            [nix.POS]: pos$389,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$387,
+              [nix.POS]: pos$387,
               name: "vscode-html-css",
               publisher: "ecmel",
               version: "2.0.14",
               hash: "sha256-0IAwX/KPh1CKCQENcztDnCkbYDWipO09zl3Qcb1RPfA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$388,
+              [nix.POS]: pos$388,
               changelog: "https://marketplace.visualstudio.com/items/ecmel.vscode-html-css/changelog",
               description: "CSS Intellisense for HTML",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css",
@@ -3455,18 +3455,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       editorconfig: nix.thunk(() => ({
-        __proto__: pos$394,
+        [nix.POS]: pos$394,
         editorconfig: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$393,
+            [nix.POS]: pos$393,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$391,
+              [nix.POS]: pos$391,
               publisher: "editorconfig",
               name: "editorconfig",
               version: "0.18.2",
               hash: "sha256-y8A3D/IEvBbYSj7mgwU2/AQ1WFb6DolasGThoDz8uEo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$392,
+              [nix.POS]: pos$392,
               changelog: "https://marketplace.visualstudio.com/items/EditorConfig.EditorConfig/changelog",
               description: "EditorConfig Support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig",
@@ -3477,52 +3477,52 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       edonet: nix.thunk(() => ({
-        __proto__: pos$398,
+        [nix.POS]: pos$398,
         "vscode-command-runner": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$397,
+            [nix.POS]: pos$397,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$395,
+              [nix.POS]: pos$395,
               name: "vscode-command-runner",
               publisher: "edonet",
               version: "0.0.124",
               hash: "sha256-a59xTFbLoy13V4DUqd7vIJWcJ9+eoBM0SOo51rR1r+Y=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$396,
+              [nix.POS]: pos$396,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       eg2: nix.thunk(() => ({
-        __proto__: pos$402,
+        [nix.POS]: pos$402,
         "vscode-npm-script": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$401,
+            [nix.POS]: pos$401,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$399,
+              [nix.POS]: pos$399,
               name: "vscode-npm-script",
               publisher: "eg2",
               version: "0.3.29",
               hash: "sha256-k6DtmhYBj7mg8SUU3pg+ezRzWvhiECqYQVj9LDhhV4I=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$400,
+              [nix.POS]: pos$400,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       egirlcatnip: nix.thunk(() => ({
-        __proto__: pos$406,
+        [nix.POS]: pos$406,
         "adwaita-github-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$405,
+            [nix.POS]: pos$405,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$403,
+              [nix.POS]: pos$403,
               name: "adwaita-github-theme",
               publisher: "egirlcatnip",
               version: "1.0.6",
               hash: "sha256-6xooF8petGLn8Zlh8rCXG2RJdAcdt8t8GPwhfgc5Gxs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$404,
+              [nix.POS]: pos$404,
               description: "Adwaita VS Code theme with GitHub syntax highlighting",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=egirlcatnip.adwaita-github-theme",
               homepage: "https://github.com/egirlcatnip/adwaita-github-theme",
@@ -3535,22 +3535,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "elijah-potter": nix.thunk(() => ({
-        __proto__: pos$407,
+        [nix.POS]: pos$407,
         harper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./elijah-potter.harper"), nix.thunk(() => ({})))),
       })),
       "elixir-lsp": nix.thunk(() => ({
-        __proto__: pos$411,
+        [nix.POS]: pos$411,
         "vscode-elixir-ls": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$410,
+            [nix.POS]: pos$410,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$408,
+              [nix.POS]: pos$408,
               name: "elixir-ls",
               publisher: "JakeBecker",
               version: "0.31.1",
               hash: "sha256-eF0OGWpiu5aDiFp8MFP7j2r2+3QCPb1q93gWg7L/Xzc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$409,
+              [nix.POS]: pos$409,
               changelog: "https://marketplace.visualstudio.com/items/JakeBecker.elixir-ls/changelog",
               description: "Elixir support with debugger, autocomplete, and more. Powered by ElixirLS",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=JakeBecker.elixir-ls",
@@ -3561,18 +3561,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       elmtooling: nix.thunk(() => ({
-        __proto__: pos$415,
+        [nix.POS]: pos$415,
         "elm-ls-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$414,
+            [nix.POS]: pos$414,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$412,
+              [nix.POS]: pos$412,
               name: "elm-ls-vscode",
               publisher: "Elmtooling",
               version: "2.8.0",
               hash: "sha256-81tHgNjYc0LJjsgsQfo5xyh20k/i3PKcgYp9GZTvwfs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$413,
+              [nix.POS]: pos$413,
               changelog: "https://marketplace.visualstudio.com/items/Elmtooling.elm-ls-vscode/changelog",
               description: "Elm language server",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Elmtooling.elm-ls-vscode",
@@ -3583,35 +3583,35 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       emmanuelbeziat: nix.thunk(() => ({
-        __proto__: pos$419,
+        [nix.POS]: pos$419,
         "vscode-great-icons": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$418,
+            [nix.POS]: pos$418,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$416,
+              [nix.POS]: pos$416,
               name: "vscode-great-icons",
               publisher: "emmanuelbeziat",
               version: "2.1.121",
               hash: "sha256-5PAOxy+9KnATEf7BlrAV8cE+xFvfQVSyv7Dov9mqWI0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$417,
+              [nix.POS]: pos$417,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       emroussel: nix.thunk(() => ({
-        __proto__: pos$423,
+        [nix.POS]: pos$423,
         "atomize-atom-one-dark-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$422,
+            [nix.POS]: pos$422,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$420,
+              [nix.POS]: pos$420,
               name: "atomize-atom-one-dark-theme",
               publisher: "emroussel",
               version: "2.0.2",
               hash: "sha256-GwuFtBVj0Z2rHryst/7cegskvZIMPsrAH12+K942+JA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$421,
+              [nix.POS]: pos$421,
               changelog: "https://marketplace.visualstudio.com/items/emroussel.atomize-atom-one-dark-theme/changelog",
               description: "Detailed and accurate Atom One Dark theme for VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=emroussel.atomize-atom-one-dark-theme",
@@ -3621,18 +3621,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       enkia: nix.thunk(() => ({
-        __proto__: pos$427,
+        [nix.POS]: pos$427,
         "tokyo-night": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$426,
+            [nix.POS]: pos$426,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$424,
+              [nix.POS]: pos$424,
               name: "tokyo-night",
               publisher: "enkia",
               version: "1.1.2",
               hash: "sha256-oW0bkLKimpcjzxTb/yjShagjyVTUFEg198oPbY5J2hM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$425,
+              [nix.POS]: pos$425,
               changelog: "https://marketplace.visualstudio.com/items/enkia.tokyo-night/changelog",
               description: "Clean Visual Studio Code theme that celebrates the lights of Downtown Tokyo at night",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=enkia.tokyo-night",
@@ -3642,15 +3642,15 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       esbenp: nix.thunk(() => ({
-        __proto__: pos$428,
+        [nix.POS]: pos$428,
         "prettier-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./esbenp.prettier-vscode"), nix.thunk(() => ({})))),
       })),
       ethansk: nix.thunk(() => ({
-        __proto__: pos$431,
+        [nix.POS]: pos$431,
         "restore-terminals": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$430,
+            [nix.POS]: pos$430,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$429,
+              [nix.POS]: pos$429,
               name: "restore-terminals",
               publisher: "ethansk",
               version: "1.1.8",
@@ -3659,26 +3659,26 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       teamtype: nix.thunk(() => ({
-        __proto__: pos$432,
+        [nix.POS]: pos$432,
         teamtype: nix.thunk(() => nix.app(callPackage, nix.path(here, "./teamtype.teamtype"), nix.thunk(() => ({})))),
       })),
       eugleo: nix.thunk(() => ({
-        __proto__: pos$433,
+        [nix.POS]: pos$433,
         "magic-racket": nix.thunk(() => nix.app(callPackage, nix.path(here, "./eugleo.magic-racket"), nix.thunk(() => ({})))),
       })),
       ExiaHuang: nix.thunk(() => ({
-        __proto__: pos$437,
+        [nix.POS]: pos$437,
         dictionary: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$436,
+            [nix.POS]: pos$436,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$434,
+              [nix.POS]: pos$434,
               publisher: "ExiaHuang",
               name: "dictionary",
               version: "0.0.2",
               hash: "sha256-caNcbDTB/F2mdlGpfIfJv13lzY5Wwj7p7r8dAte9+3A=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$435,
+              [nix.POS]: pos$435,
               description: "Visual Studio Code extension of using chinese-english dictionary in right-click menu",
               homepage: "https://github.com/exiahuang/fanyi-vscode",
               changelog: "https://marketplace.visualstudio.com/items/ExiaHuang.dictionary/changelog",
@@ -3691,18 +3691,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       ExodiusStudios: nix.thunk(() => ({
-        __proto__: pos$441,
+        [nix.POS]: pos$441,
         "comment-anchors": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$440,
+            [nix.POS]: pos$440,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$438,
+              [nix.POS]: pos$438,
               publisher: "ExodiusStudios",
               name: "comment-anchors",
               version: "1.10.4",
               hash: "sha256-FvfjPpQsgCsnY1BylhLCM/qDQChf9/iTr3cKkCGfMVI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$439,
+              [nix.POS]: pos$439,
               description: "Place anchor tags within comments for easy file and workspace navigation.",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=exodiusstudios.comment-anchors",
               homepage: "https://github.com/StarlaneStudios/vscode-comment-anchors",
@@ -3715,18 +3715,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       fabiospampinato: nix.thunk(() => ({
-        __proto__: pos$445,
+        [nix.POS]: pos$445,
         "vscode-open-in-github": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$444,
+            [nix.POS]: pos$444,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$442,
+              [nix.POS]: pos$442,
               name: "vscode-open-in-github",
               publisher: "fabiospampinato",
               version: "2.4.0",
               hash: "sha256-7jHU8sW6nBVumry3DjgM+CNOvm/oZCGBMzrat4lRAtg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$443,
+              [nix.POS]: pos$443,
               changelog: "https://marketplace.visualstudio.com/items/fabiospampinato.vscode-open-in-github/changelog",
               description: "VS Code extension to open the current project or file in github.com",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-open-in-github",
@@ -3737,11 +3737,11 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "file-icons": nix.thunk(() => ({
-        __proto__: pos$449,
+        [nix.POS]: pos$449,
         "file-icons": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$448,
+            [nix.POS]: pos$448,
             meta: nix.thunk(() => ({
-              __proto__: pos$446,
+              [nix.POS]: pos$446,
               changelog: "https://marketplace.visualstudio.com/items/file-icons.file-icons/changelog",
               description: "File-specific icons in VSCode for improved visual grepping",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=file-icons.file-icons",
@@ -3750,7 +3750,7 @@ export default nix.lambda((args) => (() => {
               maintainers: [],
             })),
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$447,
+              [nix.POS]: pos$447,
               name: "file-icons",
               publisher: "file-icons",
               version: "1.1.0",
@@ -3759,18 +3759,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "fill-labs": nix.thunk(() => ({
-        __proto__: pos$453,
+        [nix.POS]: pos$453,
         dependi: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$452,
+            [nix.POS]: pos$452,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$450,
+              [nix.POS]: pos$450,
               name: "dependi",
               publisher: "fill-labs",
               version: "1.20.0",
               hash: "sha256-XVB6wsjvQvYNz8fymmUIZKQmprwqDf9aQskjjFe2qAk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$451,
+              [nix.POS]: pos$451,
               changelog: "https://marketplace.visualstudio.com/items/fill-labs.dependi/changelog",
               description: "VSCode extension for managing dependencies and address vulnerabilities in Rust, Go, JavaScript, and Python projects",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=fill-labs.dependi",
@@ -3781,18 +3781,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "firefox-devtools": nix.thunk(() => ({
-        __proto__: pos$457,
+        [nix.POS]: pos$457,
         "vscode-firefox-debug": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$456,
+            [nix.POS]: pos$456,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$454,
+              [nix.POS]: pos$454,
               publisher: "firefox-devtools",
               name: "vscode-firefox-debug",
               version: "2.15.0",
               hash: "sha256-hBj0V42k32dj2gvsNStUBNZEG7iRYxeDMbuA15AYQqk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$455,
+              [nix.POS]: pos$455,
               changelog: "https://marketplace.visualstudio.com/items/firefox-devtools.vscode-firefox-debug/changelog",
               description: "Visual Studio Code extension for debugging web applications and browser extensions in Firefox",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug",
@@ -3803,18 +3803,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       firsttris: nix.thunk(() => ({
-        __proto__: pos$461,
+        [nix.POS]: pos$461,
         "vscode-jest-runner": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$460,
+            [nix.POS]: pos$460,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$458,
+              [nix.POS]: pos$458,
               name: "vscode-jest-runner",
               publisher: "firsttris",
               version: "0.4.149",
               hash: "sha256-bGDU3/5Pysagt8aoEJJH6VVvR4Oy8IU12AmaAvnKnY8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$459,
+              [nix.POS]: pos$459,
               description: "Simple way to run or debug a single (or multiple) tests from context-menu",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner",
               homepage: "https://github.com/firsttris/vscode-jest-runner",
@@ -3824,18 +3824,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       foam: nix.thunk(() => ({
-        __proto__: pos$465,
+        [nix.POS]: pos$465,
         "foam-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$464,
+            [nix.POS]: pos$464,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$462,
+              [nix.POS]: pos$462,
               name: "foam-vscode",
               publisher: "foam",
               version: "0.46.0",
               hash: "sha256-DUPUUSZX1lfC604BIaRKKlci0Eh0u2xyyLFclVjFacI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$463,
+              [nix.POS]: pos$463,
               changelog: "https://marketplace.visualstudio.com/items/foam.foam-vscode/changelog",
               description: "Personal knowledge management and sharing system for VSCode ",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=foam.foam-vscode",
@@ -3846,63 +3846,63 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       formulahendry: nix.thunk(() => ({
-        __proto__: pos$475,
+        [nix.POS]: pos$475,
         "auto-close-tag": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$468,
+            [nix.POS]: pos$468,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$466,
+              [nix.POS]: pos$466,
               name: "auto-close-tag",
               publisher: "formulahendry",
               version: "0.5.15",
               hash: "sha256-8lRdNGa7Shhmko8lhKxexNj4mkGEwPihBrsQrm5a1kA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$467,
+              [nix.POS]: pos$467,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "auto-rename-tag": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$471,
+            [nix.POS]: pos$471,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$469,
+              [nix.POS]: pos$469,
               name: "auto-rename-tag",
               publisher: "formulahendry",
               version: "0.1.10",
               hash: "sha256-uXqWebxnDwaUVLFG6MUh4bZ7jw5d2rTHRm5NoR2n0Vs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$470,
+              [nix.POS]: pos$470,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "code-runner": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$474,
+            [nix.POS]: pos$474,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$472,
+              [nix.POS]: pos$472,
               name: "code-runner",
               publisher: "formulahendry",
               version: "0.12.2",
               hash: "sha256-TI5K6n3QfJwgFz5xhpdZ+yzi9VuYGcSzdBckZ68DsUQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$473,
+              [nix.POS]: pos$473,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "fortran-lang": nix.thunk(() => ({
-        __proto__: pos$479,
+        [nix.POS]: pos$479,
         "linter-gfortran": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$478,
+            [nix.POS]: pos$478,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$476,
+              [nix.POS]: pos$476,
               name: "linter-gfortran",
               publisher: "fortran-lang",
               version: "4.0.0",
               hash: "sha256-T9vhLrCMOmoXsVW9O/siwA/eAZagZoKsvinpWgIuAE0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$477,
+              [nix.POS]: pos$477,
               changelog: "https://marketplace.visualstudio.com/items/fortran-lang.linter-gfortran/changelog",
               description: "Fortran language support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=fortran-lang.linter-gfortran",
@@ -3913,15 +3913,15 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       foxundermoon: nix.thunk(() => ({
-        __proto__: pos$480,
+        [nix.POS]: pos$480,
         "shell-format": nix.thunk(() => nix.app(callPackage, nix.path(here, "./foxundermoon.shell-format"), nix.thunk(() => ({})))),
       })),
       freebroccolo: nix.thunk(() => ({
-        __proto__: pos$484,
+        [nix.POS]: pos$484,
         reasonml: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$483,
+            [nix.POS]: pos$483,
             meta: nix.thunk(() => ({
-              __proto__: pos$481,
+              [nix.POS]: pos$481,
               changelog: "https://marketplace.visualstudio.com/items/freebroccolo.reasonml/changelog",
               description: "Reason support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=freebroccolo.reasonml",
@@ -3930,7 +3930,7 @@ export default nix.lambda((args) => (() => {
               maintainers: [],
             })),
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$482,
+              [nix.POS]: pos$482,
               name: "reasonml",
               publisher: "freebroccolo",
               version: "1.0.38",
@@ -3939,22 +3939,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       fstarlang: nix.thunk(() => ({
-        __proto__: pos$485,
+        [nix.POS]: pos$485,
         "fstar-vscode-assistant": nix.thunk(() => nix.app(callPackage, nix.path(here, "./fstarlang.fstar-vscode-assistant"), nix.thunk(() => ({})))),
       })),
       funkyremi: nix.thunk(() => ({
-        __proto__: pos$489,
+        [nix.POS]: pos$489,
         "vscode-google-translate": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$488,
+            [nix.POS]: pos$488,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$486,
+              [nix.POS]: pos$486,
               publisher: "funkyremi",
               name: "vscode-google-translate",
               version: "1.5.0",
               hash: "sha256-t6USs2mZE3g802BRwP56eH/Wj/cyAcA+h/V+++NtHnA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$487,
+              [nix.POS]: pos$487,
               description: "Visual Studio Code extension using google translation to helping you quickly translate text right in your code rocket",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=funkyremi.vscode-google-translate",
               homepage: "https://github.com/funkyremi/vscode-google-translate.git",
@@ -3968,18 +3968,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       garlicbreadcleric: nix.thunk(() => ({
-        __proto__: pos$493,
+        [nix.POS]: pos$493,
         "pandoc-markdown-syntax": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$492,
+            [nix.POS]: pos$492,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$490,
+              [nix.POS]: pos$490,
               name: "pandoc-markdown-syntax",
               publisher: "garlicbreadcleric",
               version: "0.0.2",
               hash: "sha256-YAMH5smLyBuoTdlxSCTPyMIKOWTSIdf2MQVZuOO2V1w=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$491,
+              [nix.POS]: pos$491,
               description: "VSCode extension that adds syntax highlighting for Pandoc-flavored Markdown",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=garlicbreadcleric.pandoc-markdown-syntax",
               homepage: "https://github.com/garlicbreadcleric/vscode-pandoc-markdown",
@@ -3989,18 +3989,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       geequlim: nix.thunk(() => ({
-        __proto__: pos$497,
+        [nix.POS]: pos$497,
         "godot-tools": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$496,
+            [nix.POS]: pos$496,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$494,
+              [nix.POS]: pos$494,
               name: "godot-tools",
               publisher: "geequlim",
               version: "2.7.1",
               hash: "sha256-TNCMSmZdBXxAHkcFLpTDkCzaXNO4yvkCfQ8Xrb9gquo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$495,
+              [nix.POS]: pos$495,
               description: "VS Code extension for game development with Godot Engine and GDScript",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools",
               homepage: "https://github.com/godotengine/godot-vscode-plugin",
@@ -4013,18 +4013,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       gencer: nix.thunk(() => ({
-        __proto__: pos$501,
+        [nix.POS]: pos$501,
         "html-slim-scss-css-class-completion": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$500,
+            [nix.POS]: pos$500,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$498,
+              [nix.POS]: pos$498,
               name: "html-slim-scss-css-class-completion",
               publisher: "gencer",
               version: "1.7.8",
               sha256: "18qws35qvnl0ahk5sxh4mzkw0ib788y1l97ijmpjszs0cd4bfsa6",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$499,
+              [nix.POS]: pos$499,
               description: "VSCode extension for SCSS",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=gencer.html-slim-scss-css-class-completion",
               homepage: "https://github.com/gencer/SCSS-Everywhere",
@@ -4034,11 +4034,11 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       genieai: nix.thunk(() => ({
-        __proto__: pos$505,
+        [nix.POS]: pos$505,
         "chatgpt-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$504,
+            [nix.POS]: pos$504,
             meta: nix.thunk(() => ({
-              __proto__: pos$502,
+              [nix.POS]: pos$502,
               changelog: "https://marketplace.visualstudio.com/items/genieai.chatgpt-vscode/changelog",
               description: "Visual Studio Code extension to support ChatGPT, GPT-3 and Codex conversations",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode",
@@ -4047,7 +4047,7 @@ export default nix.lambda((args) => (() => {
               maintainers: [],
             })),
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$503,
+              [nix.POS]: pos$503,
               name: "chatgpt-vscode",
               publisher: "genieai",
               version: "0.0.13",
@@ -4056,11 +4056,11 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       ginfuru: nix.thunk(() => ({
-        __proto__: pos$509,
+        [nix.POS]: pos$509,
         "better-solarized": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$508,
+            [nix.POS]: pos$508,
             meta: nix.thunk(() => ({
-              __proto__: pos$506,
+              [nix.POS]: pos$506,
               changelog: "https://marketplace.visualstudio.com/items/ginfuru.ginfuru-better-solarized-dark-theme/changelog",
               description: "A Better Solarized theme for Visual Studio Code include light and dark versions",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ginfuru.ginfuru-better-solarized-dark-theme",
@@ -4069,7 +4069,7 @@ export default nix.lambda((args) => (() => {
               maintainers: [],
             })),
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$507,
+              [nix.POS]: pos$507,
               name: "ginfuru-better-solarized-dark-theme",
               publisher: "ginfuru",
               version: "0.10.9",
@@ -4078,18 +4078,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       github: nix.thunk(() => ({
-        __proto__: pos$522,
+        [nix.POS]: pos$522,
         codespaces: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$512,
+            [nix.POS]: pos$512,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$510,
+              [nix.POS]: pos$510,
               publisher: "github",
               name: "codespaces",
               version: "1.18.16",
               hash: "sha256-5TEMMAy9t54WSnfWWHMNHTYbwGieMIG6fCETm3YASHs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$511,
+              [nix.POS]: pos$511,
               description: "VSCode extensions that provides cloud-hosted development environments for any activity",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces",
               homepage: "https://github.com/features/codespaces",
@@ -4100,16 +4100,16 @@ export default nix.lambda((args) => (() => {
         copilot: nix.thunk(() => nix.app(callPackage, nix.path(here, "./github.copilot"), nix.thunk(() => ({})))),
         "copilot-chat": nix.thunk(() => nix.app(callPackage, nix.path(here, "./github.copilot-chat"), nix.thunk(() => ({})))),
         "github-vscode-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$515,
+            [nix.POS]: pos$515,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$513,
+              [nix.POS]: pos$513,
               name: "github-vscode-theme",
               publisher: "github",
               version: "6.3.5",
               hash: "sha256-dOadoYBPcYrpzmqOpJwG+/nPwTfJtlsOFDU3FctdR0o=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$514,
+              [nix.POS]: pos$514,
               description: "GitHub theme for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme",
               homepage: "https://github.com/primer/github-vscode-theme",
@@ -4118,16 +4118,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "vscode-github-actions": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$518,
+            [nix.POS]: pos$518,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$516,
+              [nix.POS]: pos$516,
               name: "vscode-github-actions",
               publisher: "github",
               version: "0.32.3",
               hash: "sha256-BYRiFiyynU0iNB2RLBXc+iGUd0sekvww/LoabKPJGr0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$517,
+              [nix.POS]: pos$517,
               description: "Visual Studio Code extension for GitHub Actions workflows and runs for github.com hosted repositories",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=github.vscode-github-actions",
               homepage: "https://github.com/github/vscode-github-actions",
@@ -4136,33 +4136,33 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "vscode-pull-request-github": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$521,
+            [nix.POS]: pos$521,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$519,
+              [nix.POS]: pos$519,
               publisher: "github",
               name: "vscode-pull-request-github",
               version: "0.162.0",
               hash: "sha256-MoL6nM4Gvq9x0GohvryQYlFlg/I3cPX9RYztCObitAs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$520,
+              [nix.POS]: pos$520,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       gitlab: nix.thunk(() => ({
-        __proto__: pos$526,
+        [nix.POS]: pos$526,
         "gitlab-workflow": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$525,
+            [nix.POS]: pos$525,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$523,
+              [nix.POS]: pos$523,
               name: "gitlab-workflow",
               publisher: "gitlab",
               version: "6.92.0",
               hash: "sha256-DR0g4aHAWePu46IHNPvxrFDBHoYmHMmiEm4z4AvB4mQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$524,
+              [nix.POS]: pos$524,
               description: "GitLab extension for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=gitlab.gitlab-workflow",
               homepage: "https://gitlab.com/gitlab-org/gitlab-vscode-extension#readme",
@@ -4172,18 +4172,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       gleam: nix.thunk(() => ({
-        __proto__: pos$530,
+        [nix.POS]: pos$530,
         gleam: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$529,
+            [nix.POS]: pos$529,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$527,
+              [nix.POS]: pos$527,
               name: "gleam",
               publisher: "gleam",
               version: "2.13.0",
               hash: "sha256-eCiBbdKMeXcRS4kyI2rH1iAT0CmQmo2SybeW+Y7FRio=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$528,
+              [nix.POS]: pos$528,
               description: "Support for the Gleam programming language",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Gleam.gleam",
               homepage: "https://github.com/gleam-lang/vscode-gleam#readme",
@@ -4193,18 +4193,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       golang: nix.thunk(() => ({
-        __proto__: pos$534,
+        [nix.POS]: pos$534,
         go: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$533,
+            [nix.POS]: pos$533,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$531,
+              [nix.POS]: pos$531,
               name: "Go",
               publisher: "golang",
               version: "0.56.1",
               hash: "sha256-RTZdpdEoTzUYspSfIYSB8envYiGz2Zmi4wgsy7Yeh0s=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$532,
+              [nix.POS]: pos$532,
               changelog: "https://marketplace.visualstudio.com/items/golang.Go/changelog",
               description: "Go extension for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=golang.Go",
@@ -4214,30 +4214,30 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       google: nix.thunk(() => ({
-        __proto__: pos$535,
+        [nix.POS]: pos$535,
         colab: nix.thunk(() => nix.app(callPackage, nix.path(here, "./google.colab"), nix.thunk(() => ({})))),
       })),
       Google: nix.thunk(() => ({
-        __proto__: pos$536,
+        [nix.POS]: pos$536,
         "gemini-cli-vscode-ide-companion": nix.thunk(() => nix.app(callPackage, nix.path(here, "./Google.gemini-cli-vscode-ide-companion"), nix.thunk(() => ({})))),
       })),
       gplane: nix.thunk(() => ({
-        __proto__: pos$537,
+        [nix.POS]: pos$537,
         "wasm-language-tools": nix.thunk(() => nix.app(callPackage, nix.path(here, "./gplane.wasm-language-tools"), nix.thunk(() => ({})))),
       })),
       grafana: nix.thunk(() => ({
-        __proto__: pos$541,
+        [nix.POS]: pos$541,
         "grafana-alloy": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$540,
+            [nix.POS]: pos$540,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$538,
+              [nix.POS]: pos$538,
               name: "grafana-alloy",
               publisher: "grafana",
               version: "0.2.0",
               hash: "sha256-XcoiEDCPp6GzYQDhJArZBEWxSnZrSTHofIyLFegsbh0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$539,
+              [nix.POS]: pos$539,
               changelog: "https://github.com/grafana/vscode-alloy/releases",
               description: "Grafana Alloy support for VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=grafana.grafana-alloy",
@@ -4246,18 +4246,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       grapecity: nix.thunk(() => ({
-        __proto__: pos$545,
+        [nix.POS]: pos$545,
         "gc-excelviewer": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$544,
+            [nix.POS]: pos$544,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$542,
+              [nix.POS]: pos$542,
               name: "gc-excelviewer",
               publisher: "grapecity",
               version: "4.2.66",
               hash: "sha256-EFy5GjkgV5puELTzNat+30WC224PLDQJmJeBILc1Fvo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$543,
+              [nix.POS]: pos$543,
               description: "Edit Excel spreadsheets and CSV files in Visual Studio Code and VS Code for the Web",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=grapecity.gc-excelviewer",
               homepage: "https://github.com/jjuback/gc-excelviewer",
@@ -4267,18 +4267,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       graphql: nix.thunk(() => ({
-        __proto__: pos$552,
+        [nix.POS]: pos$552,
         "vscode-graphql": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$548,
+            [nix.POS]: pos$548,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$546,
+              [nix.POS]: pos$546,
               name: "vscode-graphql",
               publisher: "GraphQL",
               version: "0.13.4",
               hash: "sha256-zPc+jNbXfuXMWXxbKhaOpjgDu96jg5C+CCQ3HXEQ7fw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$547,
+              [nix.POS]: pos$547,
               description: "GraphQL extension for VSCode built with the aim to tightly integrate the GraphQL Ecosystem with VSCode for an awesome developer experience",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql",
               homepage: "https://github.com/graphql/graphiql/tree/main/packages/vscode-graphql",
@@ -4287,16 +4287,16 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         "vscode-graphql-syntax": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$551,
+            [nix.POS]: pos$551,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$549,
+              [nix.POS]: pos$549,
               name: "vscode-graphql-syntax",
               publisher: "GraphQL",
               version: "1.3.13",
               hash: "sha256-hGiqdkR1INLf29KLrZmxbFUILO8bA0pgjALQzskbn2Q=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$550,
+              [nix.POS]: pos$550,
               description: "Adds full GraphQL syntax highlighting and language support such as bracket matching",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql-syntax",
               homepage: "https://github.com/graphql/graphiql/tree/main/packages/vscode-graphql-syntax",
@@ -4306,18 +4306,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       griimick: nix.thunk(() => ({
-        __proto__: pos$556,
+        [nix.POS]: pos$556,
         vhs: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$555,
+            [nix.POS]: pos$555,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$553,
+              [nix.POS]: pos$553,
               name: "vhs",
               publisher: "griimick",
               version: "0.0.4",
               hash: "sha256-zAy8o5d2pK5ra/dbwoLgPAQAYfRQtUYQjisWYgIhsXA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$554,
+              [nix.POS]: pos$554,
               description: "Visual Studio Code extension providing syntax support for VHS .tape files",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=griimick.vhs",
               homepage: "https://github.com/griimick/vscode-vhs",
@@ -4327,22 +4327,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       gruntfuggly: nix.thunk(() => ({
-        __proto__: pos$557,
+        [nix.POS]: pos$557,
         "todo-tree": nix.thunk(() => nix.app(callPackage, nix.path(here, "./gruntfuggly.todo-tree"), nix.thunk(() => ({})))),
       })),
       hars: nix.thunk(() => ({
-        __proto__: pos$561,
+        [nix.POS]: pos$561,
         cppsnippets: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$560,
+            [nix.POS]: pos$560,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$558,
+              [nix.POS]: pos$558,
               name: "cppsnippets",
               publisher: "hars",
               version: "0.0.15",
               hash: "sha256-KXdEKcxPclbD22aKGAKSmdpVBZP2IpQRaKfc2LDsL0U=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$559,
+              [nix.POS]: pos$559,
               description: "Code snippets for C/C++",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=hars.CppSnippets",
               homepage: "https://github.com/one-harsh/vscode-cpp-snippets",
@@ -4352,18 +4352,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       hashicorp: nix.thunk(() => ({
-        __proto__: pos$565,
+        [nix.POS]: pos$565,
         hcl: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$564,
+            [nix.POS]: pos$564,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$562,
+              [nix.POS]: pos$562,
               name: "HCL",
               publisher: "HashiCorp",
               version: "0.6.0",
               hash: "sha256-Za2ODrsHR/y0X/FOhVEtbg6bNs439G6rlBHW84EZS60=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$563,
+              [nix.POS]: pos$563,
               description: "HashiCorp HCL syntax",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=HashiCorp.HCL",
               homepage: "https://github.com/hashicorp/vscode-hcl",
@@ -4374,35 +4374,35 @@ export default nix.lambda((args) => (() => {
         terraform: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hashicorp.terraform"), nix.thunk(() => ({})))),
       })),
       haskell: nix.thunk(() => ({
-        __proto__: pos$569,
+        [nix.POS]: pos$569,
         haskell: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$568,
+            [nix.POS]: pos$568,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$566,
+              [nix.POS]: pos$566,
               publisher: "haskell",
               name: "haskell",
               version: "2.8.1",
               hash: "sha256-mAlEy5a83BRhUhA22AKheP6PPpfbrdGT6HsTKbFwJYs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$567,
+              [nix.POS]: pos$567,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       hbenl: nix.thunk(() => ({
-        __proto__: pos$573,
+        [nix.POS]: pos$573,
         "vscode-test-explorer": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$572,
+            [nix.POS]: pos$572,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$570,
+              [nix.POS]: pos$570,
               name: "vscode-test-explorer",
               publisher: "hbenl",
               version: "2.22.1",
               hash: "sha256-+vW/ZpOQXI7rDUAdWfNOb2sAGQQEolXjSMl2tc/Of8M=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$571,
+              [nix.POS]: pos$571,
               changelog: "https://github.com/hbenl/vscode-test-explorer/blob/master/CHANGELOG.md",
               description: "Visual Studio Code extension that runs your tests in the sidebar",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer",
@@ -4412,18 +4412,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       hediet: nix.thunk(() => ({
-        __proto__: pos$577,
+        [nix.POS]: pos$577,
         "vscode-drawio": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$576,
+            [nix.POS]: pos$576,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$574,
+              [nix.POS]: pos$574,
               name: "vscode-drawio",
               publisher: "hediet",
               version: "1.15.0",
               hash: "sha256-4tRtVxdDYAtkgMu0rpgDnTNqfN4j7JoIpAWYUcfJVRA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$575,
+              [nix.POS]: pos$575,
               description: "This unofficial extension integrates Draw.io into VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio",
               homepage: "https://github.com/hediet/vscode-drawio",
@@ -4433,18 +4433,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       hirse: nix.thunk(() => ({
-        __proto__: pos$581,
+        [nix.POS]: pos$581,
         "vscode-ungit": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$580,
+            [nix.POS]: pos$580,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$578,
+              [nix.POS]: pos$578,
               name: "vscode-ungit",
               publisher: "hirse",
               version: "2.5.2",
               hash: "sha256-0CFYL6rBecB8rNnk4IAtg03ZPdSJ9qxwnVdhdQedxsQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$579,
+              [nix.POS]: pos$579,
               description: "Ungit in Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Hirse.vscode-ungit",
               homepage: "https://github.com/hirse/vscode-ungit",
@@ -4454,18 +4454,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       hiukky: nix.thunk(() => ({
-        __proto__: pos$585,
+        [nix.POS]: pos$585,
         flate: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$584,
+            [nix.POS]: pos$584,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$582,
+              [nix.POS]: pos$582,
               name: "flate",
               publisher: "hiukky",
               version: "0.7.0",
               hash: "sha256-6ouYQk7mHCJdGrcutM1EXolJAT7/Sp1hi+Bu0983GKw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$583,
+              [nix.POS]: pos$583,
               description: "Colorful dark themes for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=hiukky.flate",
               homepage: "https://github.com/hiukky/flate",
@@ -4475,56 +4475,56 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       hookyqr: nix.thunk(() => ({
-        __proto__: pos$589,
+        [nix.POS]: pos$589,
         beautify: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$588,
+            [nix.POS]: pos$588,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$586,
+              [nix.POS]: pos$586,
               name: "beautify",
               publisher: "HookyQR",
               version: "1.5.0",
               sha256: "1c0kfavdwgwham92xrh0gnyxkrl9qlkpv39l1yhrldn8vd10fj5i",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$587,
+              [nix.POS]: pos$587,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       huacnlee: nix.thunk(() => ({
-        __proto__: pos$590,
+        [nix.POS]: pos$590,
         autocorrect: nix.thunk(() => nix.app(callPackage, nix.path(here, "./huacnlee.autocorrect"), nix.thunk(() => ({})))),
       })),
       humao: nix.thunk(() => ({
-        __proto__: pos$594,
+        [nix.POS]: pos$594,
         "rest-client": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$593,
+            [nix.POS]: pos$593,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$591,
+              [nix.POS]: pos$591,
               publisher: "humao",
               name: "rest-client",
               version: "0.25.1",
               hash: "sha256-DSzZ9wGB0IVK8gYOzLLbT03WX3xSmR/IUVZkDzcczKc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$592,
+              [nix.POS]: pos$592,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       huytd: nix.thunk(() => ({
-        __proto__: pos$598,
+        [nix.POS]: pos$598,
         "nord-light": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$597,
+            [nix.POS]: pos$597,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$595,
+              [nix.POS]: pos$595,
               name: "nord-light",
               publisher: "huytd",
               version: "0.1.1",
               hash: "sha256-q2GG3j5j3CLGF02J7/plywKLkhUmm2Gn3MiSVmiZ+48=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$596,
+              [nix.POS]: pos$596,
               description: "Light theme for VSCode based on the Nord color palette",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=huytd.nord-light",
@@ -4534,35 +4534,35 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       ibm: nix.thunk(() => ({
-        __proto__: pos$602,
+        [nix.POS]: pos$602,
         "output-colorizer": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$601,
+            [nix.POS]: pos$601,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$599,
+              [nix.POS]: pos$599,
               name: "output-colorizer",
               publisher: "IBM",
               version: "0.1.2",
               sha256: "0i9kpnlk3naycc7k8gmcxas3s06d67wxr3nnyv5hxmsnsx5sfvb7",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$600,
+              [nix.POS]: pos$600,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       iciclesoft: nix.thunk(() => ({
-        __proto__: pos$606,
+        [nix.POS]: pos$606,
         workspacesort: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$605,
+            [nix.POS]: pos$605,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$603,
+              [nix.POS]: pos$603,
               name: "workspacesort",
               publisher: "iciclesoft",
               version: "1.6.2",
               hash: "sha256-ZsjBgoTr4LGQW0kn+CtbdLwpPHmlYl5LKhwXIzcPe2o=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$604,
+              [nix.POS]: pos$604,
               changelog: "https://marketplace.visualstudio.com/items/iciclesoft.workspacesort/changelog",
               description: "Sort workspace-folders alphabetically rather than in chronological order",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=iciclesoft.workspacesort",
@@ -4573,18 +4573,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       iliazeus: nix.thunk(() => ({
-        __proto__: pos$610,
+        [nix.POS]: pos$610,
         "vscode-ansi": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$609,
+            [nix.POS]: pos$609,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$607,
+              [nix.POS]: pos$607,
               name: "vscode-ansi",
               publisher: "iliazeus",
               version: "1.1.7",
               hash: "sha256-3/rsYq+HZgRW2Vd91ZW9rkXWUTUFzG/mCWD0pm++WA4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$608,
+              [nix.POS]: pos$608,
               description: "ANSI color styling for text documents",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=iliazeus.vscode-ansi",
               homepage: "https://github.com/iliazeus/vscode-ansi",
@@ -4593,18 +4593,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       illixion: nix.thunk(() => ({
-        __proto__: pos$614,
+        [nix.POS]: pos$614,
         "vscode-vibrancy-continued": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$613,
+            [nix.POS]: pos$613,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$611,
+              [nix.POS]: pos$611,
               name: "vscode-vibrancy-continued",
               publisher: "illixion",
               version: "1.4.0",
               hash: "sha256-o0/aEgRIaiz5lDm6XY1g+koAP1s28mXUnbm60eu8h+c=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$612,
+              [nix.POS]: pos$612,
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=illixion.vscode-vibrancy-continued",
               changelog: "https://marketplace.visualstudio.com/items/illixion.vscode-vibrancy-continued/changelog",
               homepage: "https://github.com/illixion/vscode-vibrancy-continued#readme",
@@ -4618,22 +4618,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       inferrinizzard: nix.thunk(() => ({
-        __proto__: pos$615,
+        [nix.POS]: pos$615,
         "prettier-sql-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./inferrinizzard.prettier-sql-vscode"), nix.thunk(() => ({})))),
       })),
       intellsmi: nix.thunk(() => ({
-        __proto__: pos$619,
+        [nix.POS]: pos$619,
         "comment-translate": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$618,
+            [nix.POS]: pos$618,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$616,
+              [nix.POS]: pos$616,
               publisher: "intellsmi",
               name: "comment-translate",
               version: "3.1.0",
               hash: "sha256-hn3G2arNr3LWMOeMLkRdR/GTWobeczaIzGI59x9/oK8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$617,
+              [nix.POS]: pos$617,
               description: "Visual Studio Code extension to translate the comments for computer language",
               longDescription: "This plugin uses the Google Translate API to translate comments for the VSCode programming language.\n",
               homepage: "https://github.com/intellism/vscode-comment-translate/blob/HEAD/doc/README.md",
@@ -4648,18 +4648,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       ionic: nix.thunk(() => ({
-        __proto__: pos$623,
+        [nix.POS]: pos$623,
         ionic: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$622,
+            [nix.POS]: pos$622,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$620,
+              [nix.POS]: pos$620,
               name: "ionic",
               publisher: "ionic",
               version: "1.105.0",
               hash: "sha256-wUYX7TmCyzKGPnl7LycfxN5axCGzq/T2/+XnSdPJJEI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$621,
+              [nix.POS]: pos$621,
               description: "Official VSCode extension for Ionic and Capacitor development",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ionic.ionic",
               homepage: "https://github.com/ionic-team/vscode-ionic",
@@ -4672,18 +4672,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       ionide: nix.thunk(() => ({
-        __proto__: pos$627,
+        [nix.POS]: pos$627,
         "ionide-fsharp": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$626,
+            [nix.POS]: pos$626,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$624,
+              [nix.POS]: pos$624,
               name: "Ionide-fsharp",
               publisher: "Ionide",
               version: "7.31.1",
               hash: "sha256-phVmMpcg3t08IeUgEOzdFPhW9Z/4XjbzmM9j17ra+uo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$625,
+              [nix.POS]: pos$625,
               changelog: "https://marketplace.visualstudio.com/items/Ionide.Ionide-fsharp/changelog",
               description: "Enhanced F# Language Features for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp",
@@ -4694,18 +4694,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       irongeek: nix.thunk(() => ({
-        __proto__: pos$631,
+        [nix.POS]: pos$631,
         "vscode-env": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$630,
+            [nix.POS]: pos$630,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$628,
+              [nix.POS]: pos$628,
               name: "vscode-env",
               publisher: "irongeek",
               version: "0.1.0",
               hash: "sha256-URq90lOFtPCNfSIl2NUwihwRQyqgDysGmBc3NG7o7vk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$629,
+              [nix.POS]: pos$629,
               description: "Adds formatting and syntax highlighting support for env files (.env) to Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=IronGeek.vscode-env",
               homepage: "https://github.com/IronGeek/vscode-env.git",
@@ -4715,11 +4715,11 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jackmacwindows: nix.thunk(() => ({
-        __proto__: pos$635,
+        [nix.POS]: pos$635,
         "vscode-computercraft": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$634,
+            [nix.POS]: pos$634,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$632,
+              [nix.POS]: pos$632,
               name: "vscode-computercraft",
               publisher: "jackmacwindows",
               version: "1.1.1",
@@ -4727,7 +4727,7 @@ export default nix.lambda((args) => (() => {
             })),
             postInstall: "# Remove superflouous images to reduce closure size\nrm $out/$installPrefix/images/*.gif\n",
             meta: nix.thunk(() => ({
-              __proto__: pos$633,
+              [nix.POS]: pos$633,
               changelog: "https://marketplace.visualstudio.com/items/jackmacwindows.vscode-computercraft/changelog",
               description: "Visual Studio Code extension for ComputerCraft and CC: Tweaked auto-completion",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jackmacwindows.vscode-computercraft",
@@ -4742,22 +4742,22 @@ export default nix.lambda((args) => (() => {
         "craftos-pc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./jackmacwindows.craftos-pc"), nix.thunk(() => ({})))),
       })),
       jacobdufault: nix.thunk(() => ({
-        __proto__: pos$636,
+        [nix.POS]: pos$636,
         "fuzzy-search": nix.thunk(() => nix.app(callPackage, nix.path(here, "./jacobdufault.fuzzy-search"), nix.thunk(() => ({})))),
       })),
       jacqueslucke: nix.thunk(() => ({
-        __proto__: pos$640,
+        [nix.POS]: pos$640,
         "gcov-viewer": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$639,
+            [nix.POS]: pos$639,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$637,
+              [nix.POS]: pos$637,
               name: "gcov-viewer",
               publisher: "JacquesLucke",
               version: "0.6.0",
               hash: "sha256-iKaBN2af0Zqu6qsS9A85+7Jjwd9NueE/XCRkexAfB1Q=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$638,
+              [nix.POS]: pos$638,
               changelog: "https://marketplace.visualstudio.com/items/JacquesLucke.gcov-viewer/changelog",
               description: "Decorate C/C++ source files with code coverage information generated by gcov",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer",
@@ -4768,26 +4768,26 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jakestanger: nix.thunk(() => ({
-        __proto__: pos$641,
+        [nix.POS]: pos$641,
         corn: nix.thunk(() => nix.app(callPackage, nix.path(here, "./jakestanger.corn"), nix.thunk(() => ({})))),
       })),
       "james-yu": nix.thunk(() => ({
-        __proto__: pos$642,
+        [nix.POS]: pos$642,
         "latex-workshop": nix.thunk(() => nix.app(callPackage, nix.path(here, "./james-yu.latex-workshop"), nix.thunk(() => ({})))),
       })),
       jamesyang999: nix.thunk(() => ({
-        __proto__: pos$646,
+        [nix.POS]: pos$646,
         "vscode-emacs-minimum": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$645,
+            [nix.POS]: pos$645,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$643,
+              [nix.POS]: pos$643,
               name: "vscode-emacs-minimum",
               publisher: "jamesyang999",
               version: "1.1.1",
               hash: "sha256-qxnAhT2UGTQmPw9XmdBdx0F0NNLAaU1/ES9jiqiRrGI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$644,
+              [nix.POS]: pos$644,
               description: "Minimal emacs key bindings for VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jamesyang999.vscode-emacs-minimum",
               homepage: "https://github.com/futurist/vscode-emacs-minimum",
@@ -4796,18 +4796,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       "janet-lang": nix.thunk(() => ({
-        __proto__: pos$650,
+        [nix.POS]: pos$650,
         "vscode-janet": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$649,
+            [nix.POS]: pos$649,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$647,
+              [nix.POS]: pos$647,
               name: "vscode-janet",
               publisher: "janet-lang",
               version: "0.0.2",
               hash: "sha256-oj0e++z2BtadIXOnTlocIIHliYweZ1iyrV08DwatfLI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$648,
+              [nix.POS]: pos$648,
               description: "Janet language support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=janet-lang.vscode-janet",
               homepage: "https://github.com/janet-lang/vscode-janet",
@@ -4817,22 +4817,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jasew: nix.thunk(() => ({
-        __proto__: pos$651,
+        [nix.POS]: pos$651,
         anki: nix.thunk(() => nix.app(callPackage, nix.path(here, "./jasew.anki"), nix.thunk(() => ({})))),
       })),
       jbockle: nix.thunk(() => ({
-        __proto__: pos$655,
+        [nix.POS]: pos$655,
         "jbockle-format-files": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$654,
+            [nix.POS]: pos$654,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$652,
+              [nix.POS]: pos$652,
               name: "jbockle-format-files",
               publisher: "jbockle",
               version: "3.4.0",
               hash: "sha256-BHw+T2EPdQq/wOD5kzvSln5SBFTYUXip8QDjnAGBfFY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$653,
+              [nix.POS]: pos$653,
               description: "VSCode extension to formats all files in the current workspace",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jbockle.jbockle-format-files",
               homepage: "https://github.com/jbockle/format-files",
@@ -4842,18 +4842,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jdinhlife: nix.thunk(() => ({
-        __proto__: pos$659,
+        [nix.POS]: pos$659,
         gruvbox: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$658,
+            [nix.POS]: pos$658,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$656,
+              [nix.POS]: pos$656,
               name: "gruvbox",
               publisher: "jdinhlife",
               version: "1.29.1",
               hash: "sha256-FGZx/R3hLgYlC2BdQkcJ+puQtgNYm2iPbJJJmjEzLS0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$657,
+              [nix.POS]: pos$657,
               changelog: "https://marketplace.visualstudio.com/items/jdinhlife.gruvbox/changelog",
               description: "Port of Gruvbox theme to VS Code editor",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox",
@@ -4864,22 +4864,22 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jebbs: nix.thunk(() => ({
-        __proto__: pos$660,
+        [nix.POS]: pos$660,
         plantuml: nix.thunk(() => nix.app(callPackage, nix.path(here, "./jebbs.plantuml"), nix.thunk(() => ({})))),
       })),
       "jeff-hykin": nix.thunk(() => ({
-        __proto__: pos$664,
+        [nix.POS]: pos$664,
         "better-nix-syntax": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$663,
+            [nix.POS]: pos$663,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$661,
+              [nix.POS]: pos$661,
               publisher: "jeff-hykin",
               name: "better-nix-syntax",
               version: "2.3.0",
               hash: "sha256-Zb4RFs2qkSMeQKkNXk4brrZBDiRK4e08taOOgdRWQEk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$662,
+              [nix.POS]: pos$662,
               description: "Visual Studio Code extension providing Nix Syntax highlighting",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-nix-syntax",
               homepage: "https://github.com/jeff-hykin/better-nix-syntax",
@@ -4889,18 +4889,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jellyedwards: nix.thunk(() => ({
-        __proto__: pos$668,
+        [nix.POS]: pos$668,
         gitsweep: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$667,
+            [nix.POS]: pos$667,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$665,
+              [nix.POS]: pos$665,
               publisher: "jellyedwards",
               name: "gitsweep",
               version: "1.0.0",
               hash: "sha256-XBD8rN6E/0GjZ3zXgR45MN9v4PYrEXBSzN7+CcLrRsg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$666,
+              [nix.POS]: pos$666,
               changelog: "https://marketplace.visualstudio.com/items/jellyedwards.gitsweep/changelog",
               description: "VS Code extension which allows you to easily exclude modified or new files so they don't get committed accidentally",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jellyedwards.gitsweep",
@@ -4911,18 +4911,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jetmartin: nix.thunk(() => ({
-        __proto__: pos$672,
+        [nix.POS]: pos$672,
         bats: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$671,
+            [nix.POS]: pos$671,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$669,
+              [nix.POS]: pos$669,
               name: "bats",
               publisher: "jetmartin",
               version: "0.1.10",
               hash: "sha256-WD1YTRgzSVElixnNGtg6mMlcLCIaI6IBb+uh4cfzuBs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$670,
+              [nix.POS]: pos$670,
               changelog: "https://marketplace.visualstudio.com/items/jetmartin.bats/changelog",
               description: "VSCode extension for full language support for the Bats (Bash Automated Testing System) testing framework",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jetmartin.bats",
@@ -4933,40 +4933,40 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jjk: nix.thunk(() => ({
-        __proto__: pos$673,
+        [nix.POS]: pos$673,
         jjk: nix.thunk(() => nix.app(callPackage, nix.path(here, "./jjk.jjk"), nix.thunk(() => ({})))),
       })),
       jkillian: nix.thunk(() => ({
-        __proto__: pos$677,
+        [nix.POS]: pos$677,
         "custom-local-formatters": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$676,
+            [nix.POS]: pos$676,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$674,
+              [nix.POS]: pos$674,
               publisher: "jkillian",
               name: "custom-local-formatters",
               version: "0.1.1",
               hash: "sha256-Yxui136wK+C5d0h79nXpGQ+lEclmne8XNNxDgUEG6kM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$675,
+              [nix.POS]: pos$675,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kamadorueda"))]),
             })),
           })))),
       })),
       jnoortheen: nix.thunk(() => ({
-        __proto__: pos$681,
+        [nix.POS]: pos$681,
         "nix-ide": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$680,
+            [nix.POS]: pos$680,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$678,
+              [nix.POS]: pos$678,
               publisher: "jnoortheen",
               name: "nix-ide",
               version: "0.5.13",
               hash: "sha256-0pMMnYFX+Ghs42Tvfcv9QqwhrEhCjIa7+6xJ51Fa0Dk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$679,
+              [nix.POS]: pos$679,
               changelog: "https://marketplace.visualstudio.com/items/jnoortheen.nix-ide/changelog",
               description: "Nix language support with formatting and error report",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide",
@@ -4977,57 +4977,57 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jock: nix.thunk(() => ({
-        __proto__: pos$685,
+        [nix.POS]: pos$685,
         svg: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$684,
+            [nix.POS]: pos$684,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$682,
+              [nix.POS]: pos$682,
               name: "svg",
               publisher: "jock",
               version: "1.5.4",
               hash: "sha256-LZLKUmYSnlgypLXKFOGezMepV10t35unpEnCMaLRjeU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$683,
+              [nix.POS]: pos$683,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       johnpapa: nix.thunk(() => ({
-        __proto__: pos$689,
+        [nix.POS]: pos$689,
         "vscode-peacock": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$688,
+            [nix.POS]: pos$688,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$686,
+              [nix.POS]: pos$686,
               name: "vscode-peacock",
               publisher: "johnpapa",
               version: "4.2.3",
               sha256: "sha256-SVjuWjvQogtT74QRDxGJVvlXU035VMWtLiDz395URRE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$687,
+              [nix.POS]: pos$687,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         winteriscoming: nix.thunk(() => nix.app(callPackage, nix.path(here, "./johnpapa.winteriscoming"), nix.thunk(() => ({})))),
       })),
       joshmu: nix.thunk(() => ({
-        __proto__: pos$690,
+        [nix.POS]: pos$690,
         periscope: nix.thunk(() => nix.app(callPackage, nix.path(here, "./joshmu.periscope"), nix.thunk(() => ({})))),
       })),
       jgclark: nix.thunk(() => ({
-        __proto__: pos$694,
+        [nix.POS]: pos$694,
         "vscode-todo-highlight": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$693,
+            [nix.POS]: pos$693,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$691,
+              [nix.POS]: pos$691,
               name: "vscode-todo-highlight",
               publisher: "jgclark",
               version: "2.2.5",
               hash: "sha256-YJb0wojBdEPt/FWp+pNkAtPubVlyKdW0h2sh28/Ymmk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$692,
+              [nix.POS]: pos$692,
               changelog: "https://marketplace.visualstudio.com/items/wayou.vscode-todo-highlight/changelog",
               description: "Highlight TODOs, FIXMEs, and any keywords, annotations...",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jgclark.vscode-todo-highlight",
@@ -5037,17 +5037,17 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       jroesch: nix.thunk(() => ({
-        __proto__: pos$698,
+        [nix.POS]: pos$698,
         lean: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => (() => {
             const mktplcRef = nix.thunk(() => ({
-              __proto__: pos$695,
+              [nix.POS]: pos$695,
               name: "lean",
               publisher: "jroesch",
               version: "0.16.60",
               hash: "sha256-z0mOnbqpKMH5d78jAMgDIgO+5sk4xHOWAfa4kzXYISs=",
             }));
             const meta = nix.thunk(() => ({
-              __proto__: pos$696,
+              [nix.POS]: pos$696,
               changelog: nix.thunk(() => nix.str`https://github.com/leanprover/vscode-lean/blob/v${nix.sel(mktplcRef, "version")}/README.md#release-notes`),
               description: "Lean 3 language support for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=jroesch.lean",
@@ -5058,22 +5058,22 @@ export default nix.lambda((args) => (() => {
                 return [nix.thunk(() => nix.lookup(w, "dotlambda"))];
               })()),
             }));
-            return { __proto__: pos$697, mktplcRef, meta };
+            return { [nix.POS]: pos$697, mktplcRef, meta };
           })()))),
       })),
       julialang: nix.thunk(() => ({
-        __proto__: pos$702,
+        [nix.POS]: pos$702,
         "language-julia": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$701,
+            [nix.POS]: pos$701,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$699,
+              [nix.POS]: pos$699,
               name: "language-julia",
               publisher: "julialang",
               version: "1.243.2",
               hash: "sha256-907pr/y67bDKpKs1Sxk+XV7xUL8+e3jYW0tkHNWUEUs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$700,
+              [nix.POS]: pos$700,
               changelog: "https://marketplace.visualstudio.com/items/julialang.language-julia/changelog",
               description: "Visual Studio Code extension for Julia programming language",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=julialang.language-julia",
@@ -5083,35 +5083,35 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       justusadam: nix.thunk(() => ({
-        __proto__: pos$706,
+        [nix.POS]: pos$706,
         "language-haskell": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$705,
+            [nix.POS]: pos$705,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$703,
+              [nix.POS]: pos$703,
               publisher: "justusadam",
               name: "language-haskell",
               version: "3.6.0",
               hash: "sha256-rZXRzPmu7IYmyRWANtpJp3wp0r/RwB7eGHEJa7hBvoQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$704,
+              [nix.POS]: pos$704,
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           })))),
       })),
       "k--kato": nix.thunk(() => ({
-        __proto__: pos$710,
+        [nix.POS]: pos$710,
         "intellij-idea-keybindings": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$709,
+            [nix.POS]: pos$709,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$707,
+              [nix.POS]: pos$707,
               name: "intellij-idea-keybindings",
               publisher: "k--kato",
               version: "1.7.8",
               hash: "sha256-771I7W5jrYVtN25N4jnKudPqhlX1ohGP5dI1vUciYXs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$708,
+              [nix.POS]: pos$708,
               changelog: "https://marketplace.visualstudio.com/items/k--kato.intellij-idea-keybindings/changelog",
               description: "Visual Studio Code extension for IntelliJ IDEA keybindings",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings",
@@ -5122,18 +5122,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       kahole: nix.thunk(() => ({
-        __proto__: pos$714,
+        [nix.POS]: pos$714,
         magit: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$713,
+            [nix.POS]: pos$713,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$711,
+              [nix.POS]: pos$711,
               name: "magit",
               publisher: "kahole",
               version: "0.6.70",
               hash: "sha256-j/AyPp9pHocM9KXPKxsdCVTNiEHwZ7kWXymiHpv+ZmY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$712,
+              [nix.POS]: pos$712,
               changelog: "https://marketplace.visualstudio.com/items/kahole.magit/changelog",
               description: "Magit for VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=kahole.magit",
@@ -5144,18 +5144,18 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       kalebpace: nix.thunk(() => ({
-        __proto__: pos$718,
+        [nix.POS]: pos$718,
         "balena-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$717,
+            [nix.POS]: pos$717,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$715,
+              [nix.POS]: pos$715,
               name: "balena-vscode",
               publisher: "kalebpace",
               version: "0.1.3",
               hash: "sha256-CecEv19nEtnMe0KlCMNBM9ZAjbAVgPNUcZ6cBxHw44M=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$716,
+              [nix.POS]: pos$716,
               changelog: "https://marketplace.visualstudio.com/items/kalebpace.balena-vscode/changelog",
               description: "VS Code extension for integration with Balena",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=kalebpace.balena-vscode",
@@ -5166,52 +5166,52 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       kamadorueda: nix.thunk(() => ({
-        __proto__: pos$719,
+        [nix.POS]: pos$719,
         alejandra: nix.thunk(() => nix.app(callPackage, nix.path(here, "./kamadorueda.alejandra"), nix.thunk(() => ({})))),
       })),
       kamikillerto: nix.thunk(() => ({
-        __proto__: pos$723,
+        [nix.POS]: pos$723,
         "vscode-colorize": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$722,
+            [nix.POS]: pos$722,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$720,
+              [nix.POS]: pos$720,
               name: "vscode-colorize",
               publisher: "kamikillerto",
               version: "0.17.1",
               sha256: "sha256-JygJj2oZSOqklwfqMr+zwOYmaDp+3mh+jWMNOx6ccms=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$721,
+              [nix.POS]: pos$721,
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
       })),
       karunamurti: nix.thunk(() => ({
-        __proto__: pos$727,
+        [nix.POS]: pos$727,
         haml: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$726,
+            [nix.POS]: pos$726,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$724,
+              [nix.POS]: pos$724,
               name: "haml",
               publisher: "karunamurti",
               version: "1.4.1",
               sha256: "123cwfajakkg2pr0z4v289fzzlhwbxx9dvb5bjc32l3pzvbhq4gv",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$725,
+              [nix.POS]: pos$725,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       kddejong: nix.thunk(() => ({
-        __proto__: pos$731,
+        [nix.POS]: pos$731,
         "vscode-cfn-lint": nix.thunk(() => (() => {
           const cfn_lint = nix.thunk(() => nix.attr(python3Packages, "cfn-lint"));
           const pydot = nix.thunk(() => nix.attr(python3Packages, "pydot"));
           return nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-              __proto__: pos$730,
+              [nix.POS]: pos$730,
               mktplcRef: nix.thunk(() => ({
-                __proto__: pos$728,
+                [nix.POS]: pos$728,
                 name: "vscode-cfn-lint",
                 publisher: "kddejong",
                 version: "0.27.0",
@@ -5223,7 +5223,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/bin/cfn-lint"' package.json | sponge package.json
 `),
               meta: nix.thunk(() => ({
-                __proto__: pos$729,
+                [nix.POS]: pos$729,
                 description: "CloudFormation Linter IDE integration, autocompletion, and documentation",
                 homepage: "https://github.com/aws-cloudformation/cfn-lint-visual-studio-code",
                 license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -5233,22 +5233,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
         })()),
       })),
       kilocode: nix.thunk(() => ({
-        __proto__: pos$732,
+        [nix.POS]: pos$732,
         "kilo-code": nix.thunk(() => nix.app(callPackage, nix.path(here, "./kilocode.kilo-code"), nix.thunk(() => ({})))),
       })),
       kravets: nix.thunk(() => ({
-        __proto__: pos$736,
+        [nix.POS]: pos$736,
         "vscode-publint": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$735,
+            [nix.POS]: pos$735,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$733,
+              [nix.POS]: pos$733,
               name: "vscode-publint",
               publisher: "Kravets",
               version: "0.1.0",
               hash: "sha256-GfIbQajdBpC0i8x7YlKYgpBwweWop4OBUU7dIDi9Yvk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$734,
+              [nix.POS]: pos$734,
               changelog: "https://marketplace.visualstudio.com/items/Kravets.vscode-publint/changelog",
               description: "Lint packaging errors in VS Code with publint",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Kravets.vscode-publint",
@@ -5259,35 +5259,35 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       kubukoz: nix.thunk(() => ({
-        __proto__: pos$740,
+        [nix.POS]: pos$740,
         "nickel-syntax": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$739,
+            [nix.POS]: pos$739,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$737,
+              [nix.POS]: pos$737,
               name: "nickel-syntax",
               publisher: "kubukoz",
               version: "0.0.2",
               hash: "sha256-ffPZd717Y2OF4d9MWE6zKwcsGWS90ZJvhWkqP831tVM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$738,
+              [nix.POS]: pos$738,
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
       })),
       lapo: nix.thunk(() => ({
-        __proto__: pos$744,
+        [nix.POS]: pos$744,
         asn1js: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$743,
+            [nix.POS]: pos$743,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$741,
+              [nix.POS]: pos$741,
               name: "asn1js",
               publisher: "lapo",
               version: "0.2.2",
               hash: "sha256-U1mvxDqyNbTalKgxtCLxLOMT3ZxVGC2KXWW47khtQKA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$742,
+              [nix.POS]: pos$742,
               description: "Decode ASN.1 content inside VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=lapo.asn1js",
               homepage: "https://github.com/lapo-luchini/vscode-asn1js",
@@ -5300,22 +5300,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       leanprover: nix.thunk(() => ({
-        __proto__: pos$745,
+        [nix.POS]: pos$745,
         lean4: nix.thunk(() => nix.app(callPackage, nix.path(here, "./leanprover.lean4"), nix.thunk(() => ({})))),
       })),
       leonardssh: nix.thunk(() => ({
-        __proto__: pos$749,
+        [nix.POS]: pos$749,
         vscord: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$748,
+            [nix.POS]: pos$748,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$746,
+              [nix.POS]: pos$746,
               name: "vscord",
               publisher: "leonardssh",
               version: "5.3.9",
               hash: "sha256-DZlIlxFEI4h5304771yZgQt6FiNVCqgzlH2qe1B1Riw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$747,
+              [nix.POS]: pos$747,
               description: "Highly customizable Discord Rich Presence extension for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=leonardssh.vscord",
               homepage: "https://github.com/leonardssh/vscord",
@@ -5325,23 +5325,23 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       "llvm-org": nix.thunk(() => ({
-        __proto__: pos$750,
+        [nix.POS]: pos$750,
         "lldb-vscode": nix.thunk(() => nix.sel(llvmPackages, "lldb")),
       })),
       "llvm-vs-code-extensions": nix.thunk(() => ({
-        __proto__: pos$754,
+        [nix.POS]: pos$754,
         "lldb-dap": nix.thunk(() => nix.app(callPackage, nix.path(here, "./llvm-vs-code-extensions.lldb-dap"), nix.thunk(() => ({})))),
         "vscode-clangd": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$753,
+            [nix.POS]: pos$753,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$751,
+              [nix.POS]: pos$751,
               publisher: "llvm-vs-code-extensions",
               name: "vscode-clangd",
               version: "0.6.0",
               hash: "sha256-hmoAPCp0BKB3z6z2Ai0w45RDE9v3BYupmu2A5y5OM50=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$752,
+              [nix.POS]: pos$752,
               description: "C/C++ completion, navigation, and insights",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd",
               homepage: "https://github.com/clangd/vscode-clangd",
@@ -5352,35 +5352,35 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       lokalise: nix.thunk(() => ({
-        __proto__: pos$758,
+        [nix.POS]: pos$758,
         "i18n-ally": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$757,
+            [nix.POS]: pos$757,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$755,
+              [nix.POS]: pos$755,
               name: "i18n-ally",
               publisher: "Lokalise",
               version: "2.13.1",
               hash: "sha256-Qraxg8FrMnBqbvR6ww3cJPFauY5zqe8P2hANqE1z95c=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$756,
+              [nix.POS]: pos$756,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "ltex-plus": nix.thunk(() => ({
-        __proto__: pos$762,
+        [nix.POS]: pos$762,
         "vscode-ltex-plus": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$761,
+            [nix.POS]: pos$761,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$759,
+              [nix.POS]: pos$759,
               name: "vscode-ltex-plus",
               publisher: "ltex-plus",
               version: "15.7.1",
               hash: "sha256-wOwOD/rsUdwGJ24n6NkH1XY5Hf4T6LE34nFDOteubLY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$760,
+              [nix.POS]: pos$760,
               description: "VS Code extension for grammar/spell checking using LanguageTool with support for LaTeX, Markdown, and others",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus",
               homepage: "https://github.com/ltex-plus/vscode-ltex-plus",
@@ -5393,18 +5393,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       lucperkins: nix.thunk(() => ({
-        __proto__: pos$766,
+        [nix.POS]: pos$766,
         "vrl-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$765,
+            [nix.POS]: pos$765,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$763,
+              [nix.POS]: pos$763,
               publisher: "lucperkins",
               name: "vrl-vscode",
               version: "0.1.4",
               hash: "sha256-xcGa43iPwUR6spOJGTmmWA1dOMNMQEdiuhMZPYZ+dTU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$764,
+              [nix.POS]: pos$764,
               description: "VS Code extension for Vector Remap Language (VRL)",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=lucperkins.vrl-vscode",
               homepage: "https://github.com/lucperkins/vrl-vscode",
@@ -5414,60 +5414,60 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       "mads-hartmann": nix.thunk(() => ({
-        __proto__: pos$767,
+        [nix.POS]: pos$767,
         "bash-ide-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mads-hartmann.bash-ide-vscode"), nix.thunk(() => ({})))),
       })),
       "marp-team": nix.thunk(() => ({
-        __proto__: pos$771,
+        [nix.POS]: pos$771,
         "marp-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$770,
+            [nix.POS]: pos$770,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$768,
+              [nix.POS]: pos$768,
               name: "marp-vscode",
               publisher: "marp-team",
               version: "3.5.1",
               hash: "sha256-t8ozV99HBHLiVMYMxh8bJ2QzMd/2PEeEDpzvqHavwPw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$769,
+              [nix.POS]: pos$769,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       marus25: nix.thunk(() => ({
-        __proto__: pos$772,
+        [nix.POS]: pos$772,
         "cortex-debug": nix.thunk(() => nix.app(callPackage, nix.path(here, "./marus25.cortex-debug"), nix.thunk(() => ({})))),
       })),
       matangover: nix.thunk(() => ({
-        __proto__: pos$776,
+        [nix.POS]: pos$776,
         mypy: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$775,
+            [nix.POS]: pos$775,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$773,
+              [nix.POS]: pos$773,
               publisher: "matangover",
               name: "mypy",
               version: "0.4.2",
               hash: "sha256-T0H2JGr1WgSgXbf3aLvjKK0OOh9O+eg9YLs/ydblb9U=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$774,
+              [nix.POS]: pos$774,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       mathiasfrohlich: nix.thunk(() => ({
-        __proto__: pos$780,
+        [nix.POS]: pos$780,
         kotlin: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$779,
+            [nix.POS]: pos$779,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$777,
+              [nix.POS]: pos$777,
               name: "Kotlin",
               publisher: "mathiasfrohlich",
               version: "1.7.1",
               hash: "sha256-MuAlX6cdYMLYRX2sLnaxWzdNPcZ4G0Fdf04fmnzQKH4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$778,
+              [nix.POS]: pos$778,
               description: "Kotlin language support for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=mathiasfrohlich.Kotlin",
               homepage: "https://github.com/mathiasfrohlich/vscode-kotlin",
@@ -5477,18 +5477,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       matthewpi: nix.thunk(() => ({
-        __proto__: pos$784,
+        [nix.POS]: pos$784,
         "caddyfile-support": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$783,
+            [nix.POS]: pos$783,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$781,
+              [nix.POS]: pos$781,
               name: "caddyfile-support",
               publisher: "matthewpi",
               version: "0.4.0",
               hash: "sha256-J4O112VM3Ullyy39ZLw9ieBxVCJQ6yBxdiKtvXyOULo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$782,
+              [nix.POS]: pos$782,
               description: "Rich Caddyfile support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=matthewpi.caddyfile-support",
               homepage: "https://github.com/caddyserver/vscode-caddyfile",
@@ -5499,18 +5499,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       mattn: nix.thunk(() => ({
-        __proto__: pos$788,
+        [nix.POS]: pos$788,
         lisp: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$787,
+            [nix.POS]: pos$787,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$785,
+              [nix.POS]: pos$785,
               name: "lisp",
               publisher: "mattn",
               version: "0.1.12",
               hash: "sha256-x6aFrcX0YElEFEr0qA669/LPlab15npmXd5Q585pIEw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$786,
+              [nix.POS]: pos$786,
               description: "Lisp syntax for vscode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=mattn.lisp",
               homepage: "https://github.com/mattn/vscode-lisp",
@@ -5521,18 +5521,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       maximedenes: nix.thunk(() => ({
-        __proto__: pos$792,
+        [nix.POS]: pos$792,
         vscoq: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$791,
+            [nix.POS]: pos$791,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$789,
+              [nix.POS]: pos$789,
               publisher: "maximedenes",
               name: "vscoq",
               version: "2.2.6",
               hash: "sha256-QBUTOFhdksHGkpYqgQIF2u+WodYH5PmMMvGFHwEEEIk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$790,
+              [nix.POS]: pos$790,
               description: "VsCoq is an extension for Visual Studio Code (VS Code) and VSCodium with support for the Coq Proof Assistant",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=maximedenes.vscoq",
               homepage: "https://github.com/coq-community/vscoq",
@@ -5542,18 +5542,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       mechatroner: nix.thunk(() => ({
-        __proto__: pos$796,
+        [nix.POS]: pos$796,
         "rainbow-csv": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$795,
+            [nix.POS]: pos$795,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$793,
+              [nix.POS]: pos$793,
               name: "rainbow-csv",
               publisher: "mechatroner",
               version: "3.24.1",
               hash: "sha256-xZpK6pJNXnxudauzJihEi9VASRXi89+hn7vfF33qRgY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$794,
+              [nix.POS]: pos$794,
               changelog: "https://marketplace.visualstudio.com/items/mechatroner.rainbow-csv/changelog",
               description: "Rainbow syntax highlighting for CSV and TSV files in Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemname=mechatroner.rainbow-csv",
@@ -5563,18 +5563,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       meganrogge: nix.thunk(() => ({
-        __proto__: pos$800,
+        [nix.POS]: pos$800,
         "template-string-converter": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$799,
+            [nix.POS]: pos$799,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$797,
+              [nix.POS]: pos$797,
               name: "template-string-converter",
               publisher: "meganrogge",
               version: "0.6.1",
               hash: "sha256-w0ppzh0m/9Hw3BPJbAKsNcMStdzoH9ODf3zweRcCG5k=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$798,
+              [nix.POS]: pos$798,
               changelog: "https://marketplace.visualstudio.com/items/meganrogge.template-string-converter/changelog",
               description: "VS Code extension to autocorrect from quotes to backticks",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=meganrogge.template-string-converter",
@@ -5585,18 +5585,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       mesonbuild: nix.thunk(() => ({
-        __proto__: pos$804,
+        [nix.POS]: pos$804,
         mesonbuild: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$803,
+            [nix.POS]: pos$803,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$801,
+              [nix.POS]: pos$801,
               publisher: "mesonbuild",
               name: "mesonbuild",
               version: "1.28.2",
               hash: "sha256-Wb3cfATe8pc+LftmKyFj3q6kmdTHUMtoIHlChKKeEoU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$802,
+              [nix.POS]: pos$802,
               changelog: "https://marketplace.visualstudio.com/items/mesonbuild.mesonbuild/changelog",
               description: "Meson language support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=mesonbuild.mesonbuild",
@@ -5610,87 +5610,87 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       mhutchie: nix.thunk(() => ({
-        __proto__: pos$808,
+        [nix.POS]: pos$808,
         "git-graph": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$807,
+            [nix.POS]: pos$807,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$805,
+              [nix.POS]: pos$805,
               name: "git-graph",
               publisher: "mhutchie",
               version: "1.30.0",
               hash: "sha256-sHeaMMr5hmQ0kAFZxxMiRk6f0mfjkg2XMnA4Gf+DHwA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$806,
+              [nix.POS]: pos$806,
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             })),
           })))),
       })),
       miguelsolorio: nix.thunk(() => ({
-        __proto__: pos$809,
+        [nix.POS]: pos$809,
         "fluent-icons": nix.thunk(() => nix.app(callPackage, nix.path(here, "./miguelsolorio.fluent-icons"), nix.thunk(() => ({})))),
         "min-theme": nix.thunk(() => nix.app(callPackage, nix.path(here, "./miguelsolorio.min-theme"), nix.thunk(() => ({})))),
       })),
       mikestead: nix.thunk(() => ({
-        __proto__: pos$813,
+        [nix.POS]: pos$813,
         dotenv: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$812,
+            [nix.POS]: pos$812,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$810,
+              [nix.POS]: pos$810,
               name: "dotenv",
               publisher: "mikestead",
               version: "1.0.1",
               hash: "sha256-dieCzNOIcZiTGu4Mv5zYlG7jLhaEsJR05qbzzzQ7RWc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$811,
+              [nix.POS]: pos$811,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       mishkinf: nix.thunk(() => ({
-        __proto__: pos$817,
+        [nix.POS]: pos$817,
         "goto-next-previous-member": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$816,
+            [nix.POS]: pos$816,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$814,
+              [nix.POS]: pos$814,
               name: "goto-next-previous-member",
               publisher: "mishkinf",
               version: "0.0.10",
               sha256: "sha256-mRPWEU/M5uhiDUl9KwQi6w5hfzIZxKMhO48ssVfICoQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$815,
+              [nix.POS]: pos$815,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       mkhl: nix.thunk(() => ({
-        __proto__: pos$818,
+        [nix.POS]: pos$818,
         direnv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mkhl.direnv"), nix.thunk(() => ({})))),
         shfmt: nix.thunk(() => nix.app(callPackage, nix.path(here, "./mkhl.shfmt"), nix.thunk(() => ({})))),
       })),
       mongodb: nix.thunk(() => ({
-        __proto__: pos$819,
+        [nix.POS]: pos$819,
         "mongodb-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mongodb.mongodb-vscode"), nix.thunk(() => ({})))),
       })),
       motivesoft: nix.thunk(() => ({
-        __proto__: pos$820,
+        [nix.POS]: pos$820,
         "vscode-man-page-syntax": nix.thunk(() => nix.app(callPackage, nix.path(here, "./motivesoft.vscode-man-page-syntax"), nix.thunk(() => ({})))),
       })),
       moshfeu: nix.thunk(() => ({
-        __proto__: pos$824,
+        [nix.POS]: pos$824,
         "compare-folders": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$823,
+            [nix.POS]: pos$823,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$821,
+              [nix.POS]: pos$821,
               name: "compare-folders",
               publisher: "moshfeu",
               version: "0.30.0",
               hash: "sha256-XBMHEk5iRW6n9fjDUbD8c/FFGNRttrnV0tH1qUphXYo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$822,
+              [nix.POS]: pos$822,
               changelog: "https://github.com/moshfeu/vscode-compare-folders/releases",
               description: "Extension allows you to compare folders, show the diffs in a list and present diff in a split view side by side",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=moshfeu.compare-folders",
@@ -5700,20 +5700,20 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       "ms-azuretools": nix.thunk(() => ({
-        __proto__: pos$828,
+        [nix.POS]: pos$828,
         "vscode-bicep": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-azuretools.vscode-bicep"), nix.thunk(() => ({})))),
         "vscode-containers": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-azuretools.vscode-containers"), nix.thunk(() => ({})))),
         "vscode-docker": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$827,
+            [nix.POS]: pos$827,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$825,
+              [nix.POS]: pos$825,
               publisher: "ms-azuretools",
               name: "vscode-docker",
               version: "2.0.0",
               hash: "sha256-Yxysekp9nC91g7M5oXppOF+Rf4Jf/PD+X3inmdVfVmo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$826,
+              [nix.POS]: pos$826,
               description: "Docker Extension for Visual Studio Code",
               homepage: "https://github.com/microsoft/vscode-docker",
               changelog: "https://marketplace.visualstudio.com/items/ms-azuretools.vscode-docker/changelog",
@@ -5723,20 +5723,20 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
       })),
       "ms-ceintl": nix.thunk(() => nix.app(callPackage, nix.path(here, "./language-packs.nix"), nix.thunk(() => ({})))),
       "ms-dotnettools": nix.thunk(() => ({
-        __proto__: pos$839,
+        [nix.POS]: pos$839,
         csdevkit: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-dotnettools.csdevkit"), nix.thunk(() => ({})))),
         csharp: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-dotnettools.csharp"), nix.thunk(() => ({})))),
         "vscode-dotnet-runtime": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$831,
+            [nix.POS]: pos$831,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$829,
+              [nix.POS]: pos$829,
               name: "vscode-dotnet-runtime",
               publisher: "ms-dotnettools",
               version: "3.1.0",
               hash: "sha256-jmdf/l82dEMNY+KNLcBatA82yElOlUnnnTmV1yGxP1o=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$830,
+              [nix.POS]: pos$830,
               changelog: "https://marketplace.visualstudio.com/items/ms-dotnettools.vscode-dotnet-runtime/changelog",
               description: "Provides a way for other Visual Studio Code extensions to install local versions of .NET SDK/Runtime",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime",
@@ -5746,28 +5746,28 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
             })),
           })))),
         "vscodeintellicode-csharp": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$838,
+            [nix.POS]: pos$838,
             mktplcRef: nix.thunk(() => (() => {
               const sources = nix.thunk(() => ({
-                __proto__: pos$835,
+                [nix.POS]: pos$835,
                 "x86_64-linux": nix.thunk(() => ({
-                  __proto__: pos$832,
+                  [nix.POS]: pos$832,
                   arch: "linux-x64",
                   hash: "sha256-pmA7BNwyHiaU93j61/MyrBV5kH0DlW+7BA6HNlKGnso=",
                 })),
                 "aarch64-linux": nix.thunk(() => ({
-                  __proto__: pos$833,
+                  [nix.POS]: pos$833,
                   arch: "linux-arm64",
                   hash: "sha256-pnQP1OKr3NJgUuXzO1InYqGA49OuMFn2iEf8wpl4PqM=",
                 })),
                 "aarch64-darwin": nix.thunk(() => ({
-                  __proto__: pos$834,
+                  [nix.POS]: pos$834,
                   arch: "darwin-arm64",
                   hash: "sha256-8XIeK5AIFKQaK5YMNSRqxr5p72zXb7ZLPq6PbeWO864=",
                 })),
               }));
               return nix.update({
-                __proto__: pos$836,
+                [nix.POS]: pos$836,
                 name: "vscodeintellicode-csharp",
                 publisher: "ms-dotnettools",
                 version: "2.2.3",
@@ -5779,7 +5779,7 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
               zlib,
             ]),
             meta: nix.thunk(() => ({
-              __proto__: pos$837,
+              [nix.POS]: pos$837,
               changelog: "https://marketplace.visualstudio.com/items/ms-dotnettools.vscodeintellicode-csharp/changelog",
               description: "AI-assisted development features for C# in Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscodeintellicode-csharp",
@@ -5791,28 +5791,28 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       "ms-kubernetes-tools": nix.thunk(() => ({
-        __proto__: pos$843,
+        [nix.POS]: pos$843,
         "vscode-kubernetes-tools": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$842,
+            [nix.POS]: pos$842,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$840,
+              [nix.POS]: pos$840,
               name: "vscode-kubernetes-tools",
               publisher: "ms-kubernetes-tools",
               version: "1.4.0",
               hash: "sha256-t64OF+rxTphnWr1BNUYxG0/W+gAP8dziARpQK8FIzU4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$841,
+              [nix.POS]: pos$841,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "ms-pyright": nix.thunk(() => ({
-        __proto__: pos$844,
+        [nix.POS]: pos$844,
         pyright: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-pyright.pyright"), nix.thunk(() => ({})))),
       })),
       "ms-python": nix.thunk(() => ({
-        __proto__: pos$845,
+        [nix.POS]: pos$845,
         "black-formatter": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-python.black-formatter"), nix.thunk(() => ({})))),
         flake8: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-python.flake8"), nix.thunk(() => ({})))),
         isort: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-python.isort"), nix.thunk(() => ({})))),
@@ -5824,18 +5824,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
         "vscode-python-envs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-python.vscode-python-envs"), nix.thunk(() => ({})))),
       })),
       "ms-toolsai": nix.thunk(() => ({
-        __proto__: pos$861,
+        [nix.POS]: pos$861,
         datawrangler: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$848,
+            [nix.POS]: pos$848,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$846,
+              [nix.POS]: pos$846,
               name: "datawrangler",
               publisher: "ms-toolsai",
               version: "1.24.2",
               hash: "sha256-mQGb+usJpu0v9FjtiW9srhljYFVzSVsO8REy3WHjnTI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$847,
+              [nix.POS]: pos$847,
               description: "Data viewing, cleaning and preparation for tabular datasets",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler",
               homepage: "https://github.com/microsoft/vscode-data-wrangler",
@@ -5845,104 +5845,104 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
         jupyter: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-toolsai.jupyter"), nix.thunk(() => ({})))),
         "jupyter-keymap": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$851,
+            [nix.POS]: pos$851,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$849,
+              [nix.POS]: pos$849,
               name: "jupyter-keymap",
               publisher: "ms-toolsai",
               version: "1.1.2",
               hash: "sha256-9BLyBZzZ0Z6QQ05QSxFJYNZmZDc5O3eYkCxe/UsmKws=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$850,
+              [nix.POS]: pos$850,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "jupyter-renderers": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$854,
+            [nix.POS]: pos$854,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$852,
+              [nix.POS]: pos$852,
               publisher: "ms-toolsai",
               name: "jupyter-renderers",
               version: "1.3.0",
               hash: "sha256-GBqHvXikCgLGW7Xm05Iq1xqs8j9H9k9c8iASsAjA87I=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$853,
+              [nix.POS]: pos$853,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "vscode-jupyter-cell-tags": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$857,
+            [nix.POS]: pos$857,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$855,
+              [nix.POS]: pos$855,
               publisher: "ms-toolsai",
               name: "vscode-jupyter-cell-tags",
               version: "0.1.9",
               hash: "sha256-XODbFbOr2kBTzFc0JtjiDUcCDBX1Hd4uajlil7mhqPY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$856,
+              [nix.POS]: pos$856,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "vscode-jupyter-slideshow": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$860,
+            [nix.POS]: pos$860,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$858,
+              [nix.POS]: pos$858,
               publisher: "ms-toolsai",
               name: "vscode-jupyter-slideshow",
               version: "0.1.6",
               hash: "sha256-fnsMrrcYdz6BzUWMd9pAOQGTjmtEbQeoVYG20VWxCsM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$859,
+              [nix.POS]: pos$859,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "ms-vscode": nix.thunk(() => ({
-        __proto__: pos$886,
+        [nix.POS]: pos$886,
         anycode: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$864,
+            [nix.POS]: pos$864,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$862,
+              [nix.POS]: pos$862,
               name: "anycode",
               publisher: "ms-vscode",
               version: "0.0.74",
               hash: "sha256-rTWAOvIsrl0DSqxoQy5eU6EREJovU1oRMC8/2Q6x4Hk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$863,
+              [nix.POS]: pos$863,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "cmake-tools": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$867,
+            [nix.POS]: pos$867,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$865,
+              [nix.POS]: pos$865,
               publisher: "ms-vscode",
               name: "cmake-tools",
               version: "1.23.52",
               hash: "sha256-LfYoKiiaETtlq4Jqe1bd5WaS5nBoci9K6BugZjgY2Ho=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$866,
+              [nix.POS]: pos$866,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         cpptools: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vscode.cpptools"), nix.thunk(() => ({})))),
         "cpptools-extension-pack": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$870,
+            [nix.POS]: pos$870,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$868,
+              [nix.POS]: pos$868,
               name: "cpptools-extension-pack",
               publisher: "ms-vscode",
               version: "1.5.1",
               hash: "sha256-5jmv/CnuAMwG8asvW2iW8j837ldnLZ3rJSQbNsNvN0M=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$869,
+              [nix.POS]: pos$869,
               description: "Popular extensions for C++ development in Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack",
               homepage: "https://github.com/microsoft/vscode-cpptools",
@@ -5953,30 +5953,30 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
         "js-debug": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vscode.js-debug"), nix.thunk(() => ({})))),
         "js-debug-companion": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vscode.js-debug-companion"), nix.thunk(() => ({})))),
         hexeditor: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$873,
+            [nix.POS]: pos$873,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$871,
+              [nix.POS]: pos$871,
               publisher: "ms-vscode",
               name: "hexeditor",
               version: "1.11.1",
               hash: "sha256-RB5YOp30tfMEzGyXpOwPIHzXqZlRGc+pXiJ3foego7Y=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$872,
+              [nix.POS]: pos$872,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "live-server": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$876,
+            [nix.POS]: pos$876,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$874,
+              [nix.POS]: pos$874,
               name: "live-server",
               publisher: "ms-vscode",
               version: "0.5.2024091601",
               hash: "sha256-cwntFW5McTAcFs0f+vTlLpZffz3ApYGxu0ctJ2X6EuY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$875,
+              [nix.POS]: pos$875,
               description: "Launch a development local Server with live reload feature for static & dynamic pages",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server",
               homepage: "https://github.com/microsoft/vscode-livepreview",
@@ -5984,30 +5984,30 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
             })),
           })))),
         "makefile-tools": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$879,
+            [nix.POS]: pos$879,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$877,
+              [nix.POS]: pos$877,
               publisher: "ms-vscode",
               name: "makefile-tools",
               version: "0.12.17",
               hash: "sha256-chHyYzKNEpyYMQX14pbQ/d9WKC+1QWtm8iKe6M8ZWWI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$878,
+              [nix.POS]: pos$878,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         powershell: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$882,
+            [nix.POS]: pos$882,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$880,
+              [nix.POS]: pos$880,
               name: "PowerShell",
               publisher: "ms-vscode",
               version: "2025.4.0",
               hash: "sha256-RY7vRbYRDj2YZ9I5Q7hDykqdDZbRZy21rRVrwXj2soM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$881,
+              [nix.POS]: pos$881,
               description: "Visual Studio Code extension for PowerShell language support",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell",
               homepage: "https://github.com/PowerShell/vscode-powershell",
@@ -6017,16 +6017,16 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
         "remote-explorer": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vscode.remote-explorer"), nix.thunk(() => ({})))),
         "test-adapter-converter": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$885,
+            [nix.POS]: pos$885,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$883,
+              [nix.POS]: pos$883,
               name: "test-adapter-converter",
               publisher: "ms-vscode",
               version: "0.2.1",
               hash: "sha256-gyyl379atZLgtabbeo26xspdPjLvNud3cZ6kEmAbAjU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$884,
+              [nix.POS]: pos$884,
               description: "Visual Studio Code extension that converts from the Test Explorer UI API into native VS Code testing",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.test-adapter-converter",
               homepage: "https://github.com/microsoft/vscode-test-adapter-converter",
@@ -6037,18 +6037,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
         "vscode-speech": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vscode.vscode-speech"), nix.thunk(() => ({})))),
       })),
       "ms-vscode-remote": nix.thunk(() => ({
-        __proto__: pos$896,
+        [nix.POS]: pos$896,
         "remote-containers": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$889,
+            [nix.POS]: pos$889,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$887,
+              [nix.POS]: pos$887,
               name: "remote-containers",
               publisher: "ms-vscode-remote",
               version: "0.469.0",
               hash: "sha256-kvmQlazS+Zuubx67b8kvy4P8U3b5WQqRd/GCxW+0gsI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$888,
+              [nix.POS]: pos$888,
               description: "Open any folder or repository inside a Docker container",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers",
               homepage: "https://code.visualstudio.com/docs/devcontainers/containers",
@@ -6058,16 +6058,16 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
         "remote-ssh": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vscode-remote.remote-ssh"), nix.thunk(() => ({})))),
         "remote-ssh-edit": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$892,
+            [nix.POS]: pos$892,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$890,
+              [nix.POS]: pos$890,
               name: "remote-ssh-edit",
               publisher: "ms-vscode-remote",
               version: "0.87.0",
               hash: "sha256-yeX6RAJl07d+SuYyGQFLZNcUzVKAsmPFyTKEn+y3GuM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$891,
+              [nix.POS]: pos$891,
               description: "Visual Studio Code extension that complements the Remote SSH extension with syntax colorization, keyword intellisense, and simple snippets when editing SSH configuration files",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh-edit",
               homepage: "https://code.visualstudio.com/docs/remote/ssh",
@@ -6076,16 +6076,16 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
             })),
           })))),
         "remote-wsl": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$895,
+            [nix.POS]: pos$895,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$893,
+              [nix.POS]: pos$893,
               name: "remote-wsl",
               publisher: "ms-vscode-remote",
               version: "0.104.3",
               hash: "sha256-IlNBcrgJ2qkbJtNOonZGkuJHYL8Ho7EVb2HlbMimxK8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$894,
+              [nix.POS]: pos$894,
               changelog: "https://marketplace.visualstudio.com/items/ms-vscode-remote.remote-wsl/changelog",
               description: "Windows Subsystem for Linux support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl",
@@ -6097,26 +6097,26 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
         "vscode-remote-extensionpack": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vscode-remote.vscode-remote-extensionpack"), nix.thunk(() => ({})))),
       })),
       "ms-vsliveshare": nix.thunk(() => ({
-        __proto__: pos$897,
+        [nix.POS]: pos$897,
         vsliveshare: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-vsliveshare.vsliveshare"), nix.thunk(() => ({})))),
       })),
       "ms-windows-ai-studio": nix.thunk(() => ({
-        __proto__: pos$898,
+        [nix.POS]: pos$898,
         "windows-ai-studio": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ms-windows-ai-studio.windows-ai-studio"), nix.thunk(() => ({})))),
       })),
       "mshr-h": nix.thunk(() => ({
-        __proto__: pos$902,
+        [nix.POS]: pos$902,
         veriloghdl: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$901,
+            [nix.POS]: pos$901,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$899,
+              [nix.POS]: pos$899,
               name: "veriloghdl",
               publisher: "mshr-h",
               version: "1.29.0",
               hash: "sha256-/VIAT9nnDG52Jzh+j0E038NSjoLCXZSVRSvGWXOeuuY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$900,
+              [nix.POS]: pos$900,
               changelog: "https://marketplace.visualstudio.com/items/mshr-h.VerilogHDL/changelog",
               description: "Visual Studio Code extension for supporting Verilog-HDL, SystemVerilog, Bluespec and SystemVerilog",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=mshr-h.VerilogHDL",
@@ -6127,32 +6127,32 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       mskelton: nix.thunk(() => ({
-        __proto__: pos$909,
+        [nix.POS]: pos$909,
         "one-dark-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$905,
+            [nix.POS]: pos$905,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$903,
+              [nix.POS]: pos$903,
               name: "one-dark-theme",
               publisher: "mskelton",
               version: "1.14.3",
               hash: "sha256-AYOX6I1R34HdNNdY9LpLkM/JHm/f1h+Q9HTtEnKMhdU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$904,
+              [nix.POS]: pos$904,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "npm-outdated": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$908,
+            [nix.POS]: pos$908,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$906,
+              [nix.POS]: pos$906,
               name: "npm-outdated",
               publisher: "mskelton",
               version: "2.2.0",
               hash: "sha256-kHItIlTW+PIVXrLgzdGAoPeR6sWKuKl/QyJ5+TIv3/E=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$907,
+              [nix.POS]: pos$907,
               changelog: "https://marketplace.visualstudio.com/items/mskelton.npm-outdated/changelog",
               description: "Shows which packages are outdated in an npm project",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=mskelton.npm-outdated",
@@ -6162,43 +6162,43 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       mvllow: nix.thunk(() => ({
-        __proto__: pos$913,
+        [nix.POS]: pos$913,
         "rose-pine": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$912,
+            [nix.POS]: pos$912,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$910,
+              [nix.POS]: pos$910,
               publisher: "mvllow",
               name: "rose-pine",
               version: "2.15.2",
               hash: "sha256-5jXlCFk/86BL1yojTRuhRzS3XqcwcCpl/gmApcTdlBw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$911,
+              [nix.POS]: pos$911,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "myriad-dreamin": nix.thunk(() => ({
-        __proto__: pos$914,
+        [nix.POS]: pos$914,
         tinymist: nix.thunk(() => nix.app(callPackage, nix.path(here, "./myriad-dreamin.tinymist"), nix.thunk(() => ({})))),
       })),
       natqe: nix.thunk(() => ({
-        __proto__: pos$915,
+        [nix.POS]: pos$915,
         reload: nix.thunk(() => nix.app(callPackage, nix.path(here, "./natqe.reload"), nix.thunk(() => ({})))),
       })),
       naumovs: nix.thunk(() => ({
-        __proto__: pos$922,
+        [nix.POS]: pos$922,
         "color-highlight": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$918,
+            [nix.POS]: pos$918,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$916,
+              [nix.POS]: pos$916,
               name: "color-highlight",
               publisher: "naumovs",
               version: "2.8.0",
               hash: "sha256-mT2P1lEdW66YkDRN6fi0rmmvvyBfXiJjAUHns8a8ipE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$917,
+              [nix.POS]: pos$917,
               changelog: "https://marketplace.visualstudio.com/items/naumovs.color-highlight/changelog",
               description: "Highlight web colors in your editor",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight",
@@ -6208,16 +6208,16 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
             })),
           })))),
         "theme-oceanicnext": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$921,
+            [nix.POS]: pos$921,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$919,
+              [nix.POS]: pos$919,
               name: "theme-oceanicnext",
               publisher: "naumovs",
               version: "0.0.4",
               hash: "sha256-romhWL3s0NVZ3kptSNT4/X9WkgakgNNfFElaBCo6jj4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$920,
+              [nix.POS]: pos$920,
               description: "Oceanic Next theme for VSCode + dimmed bg version for better looking UI",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=naumovs.theme-oceanicnext",
               homepage: "https://github.com/voronianski/oceanic-next-color-scheme",
@@ -6227,22 +6227,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       ndonfris: nix.thunk(() => ({
-        __proto__: pos$923,
+        [nix.POS]: pos$923,
         "fish-lsp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ndonfris.fish-lsp"), nix.thunk(() => ({})))),
       })),
       nefrob: nix.thunk(() => ({
-        __proto__: pos$927,
+        [nix.POS]: pos$927,
         "vscode-just-syntax": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$926,
+            [nix.POS]: pos$926,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$924,
+              [nix.POS]: pos$924,
               name: "vscode-just-syntax",
               publisher: "nefrob",
               version: "0.10.2",
               hash: "sha256-F7H9f24TjB3JtWLVICYwRTjxa+GTOpYN7IzSlU1audo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$925,
+              [nix.POS]: pos$925,
               changelog: "https://marketplace.visualstudio.com/items/nefrob.vscode-just-syntax/changelog",
               description: "Justfile syntax support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=nefrob.vscode-just-syntax",
@@ -6253,26 +6253,26 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       nhoizey: nix.thunk(() => ({
-        __proto__: pos$928,
+        [nix.POS]: pos$928,
         gremlins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./nhoizey.gremlins"), nix.thunk(() => ({})))),
       })),
       nimlang: nix.thunk(() => ({
-        __proto__: pos$929,
+        [nix.POS]: pos$929,
         nimlang: nix.thunk(() => nix.app(callPackage, nix.path(here, "./nimlang.nimlang"), nix.thunk(() => ({})))),
       })),
       njpwerner: nix.thunk(() => ({
-        __proto__: pos$933,
+        [nix.POS]: pos$933,
         autodocstring: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$932,
+            [nix.POS]: pos$932,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$930,
+              [nix.POS]: pos$930,
               name: "autodocstring",
               publisher: "njpwerner",
               version: "0.6.1",
               hash: "sha256-NI0cbjsZPW8n6qRTRKoqznSDhLZRUguP7Sa/d0feeoc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$931,
+              [nix.POS]: pos$931,
               changelog: "https://marketplace.visualstudio.com/items/njpwerner.autodocstring/changelog",
               description: "Generates python docstrings automatically",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring",
@@ -6283,22 +6283,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       nomicfoundation: nix.thunk(() => ({
-        __proto__: pos$934,
+        [nix.POS]: pos$934,
         "hardhat-solidity": nix.thunk(() => nix.app(callPackage, nix.path(here, "./nomicfoundation.hardhat-solidity"), nix.thunk(() => ({})))),
       })),
       nonylene: nix.thunk(() => ({
-        __proto__: pos$938,
+        [nix.POS]: pos$938,
         "dark-molokai-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$937,
+            [nix.POS]: pos$937,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$935,
+              [nix.POS]: pos$935,
               name: "dark-molokai-theme",
               publisher: "nonylene",
               version: "1.0.10",
               hash: "sha256-YBYlcf6TUPEQvmhL7mYfN59itKQvtWt9003/Bup15eg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$936,
+              [nix.POS]: pos$936,
               changelog: "https://marketplace.visualstudio.com/items/nonylene.dark-molokai-theme/changelog",
               description: "Theme inspired by VSCode default dark theme, monokai theme and Vim Molokai theme",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=nonylene.dark-molokai-theme",
@@ -6309,18 +6309,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       nur: nix.thunk(() => ({
-        __proto__: pos$942,
+        [nix.POS]: pos$942,
         "just-black": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$941,
+            [nix.POS]: pos$941,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$939,
+              [nix.POS]: pos$939,
               name: "just-black",
               publisher: "nur",
               version: "4.0.2",
               hash: "sha256-gfUavJXIgbNLYJNVrDeEIrpbKkgXs0YJNNb5P4480M0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$940,
+              [nix.POS]: pos$940,
               description: "Dark theme designed specifically for syntax highlighting",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=nur.just-black",
               homepage: "https://github.com/nurmohammed840/extension.vsix/tree/Just-Black",
@@ -6330,19 +6330,19 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       nsd: nix.thunk(() => ({
-        __proto__: pos$943,
+        [nix.POS]: pos$943,
         "vscode-epics": nix.thunk(() => nix.app(callPackage, nix.path(here, "./nsd.vscode-epics"), nix.thunk(() => ({})))),
       })),
       ocamlpro: nix.thunk(() => ({
-        __proto__: pos$944,
+        [nix.POS]: pos$944,
         superbol: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ocamlpro.superbol"), nix.thunk(() => ({})))),
       })),
       ocamllabs: nix.thunk(() => ({
-        __proto__: pos$948,
+        [nix.POS]: pos$948,
         "ocaml-platform": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$947,
+            [nix.POS]: pos$947,
             meta: nix.thunk(() => ({
-              __proto__: pos$945,
+              [nix.POS]: pos$945,
               changelog: "https://marketplace.visualstudio.com/items/ocamllabs.ocaml-platform/changelog",
               description: "Official OCaml Support from OCamlLabs",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ocamllabs.ocaml-platform",
@@ -6351,7 +6351,7 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ratsclub"))]),
             })),
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$946,
+              [nix.POS]: pos$946,
               name: "ocaml-platform",
               publisher: "ocamllabs",
               version: "2.4.0",
@@ -6360,35 +6360,35 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       octref: nix.thunk(() => ({
-        __proto__: pos$952,
+        [nix.POS]: pos$952,
         vetur: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$951,
+            [nix.POS]: pos$951,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$949,
+              [nix.POS]: pos$949,
               name: "vetur",
               publisher: "octref",
               version: "0.37.3",
               hash: "sha256-3hi1LOZto5AYaomB9ihkAt4j/mhkCDJ8Jqa16piwHIQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$950,
+              [nix.POS]: pos$950,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       oderwat: nix.thunk(() => ({
-        __proto__: pos$956,
+        [nix.POS]: pos$956,
         "indent-rainbow": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$955,
+            [nix.POS]: pos$955,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$953,
+              [nix.POS]: pos$953,
               name: "indent-rainbow",
               publisher: "oderwat",
               version: "8.3.1",
               hash: "sha256-dOicya0B2sriTcDSdCyhtp0Mcx5b6TUaFKVb0YU3jUc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$954,
+              [nix.POS]: pos$954,
               description: "Makes indentation easier to read",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow",
               homepage: "https://github.com/oderwat/vscode-indent-rainbow",
@@ -6398,42 +6398,42 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       "oliver-ni": nix.thunk(() => ({
-        __proto__: pos$957,
+        [nix.POS]: pos$957,
         "scheme-fmt": nix.thunk(() => nix.app(callPackage, nix.path(here, "./oliver-ni.scheme-fmt"), nix.thunk(() => ({})))),
       })),
       oops418: nix.thunk(() => ({
-        __proto__: pos$958,
+        [nix.POS]: pos$958,
         "nix-env-picker": nix.thunk(() => nix.app(callPackage, nix.path(here, "./oops418.nix-env-picker"), nix.thunk(() => ({})))),
       })),
       oracle: nix.thunk(() => ({
-        __proto__: pos$959,
+        [nix.POS]: pos$959,
         "oracle-java": nix.thunk(() => nix.app(callPackage, nix.path(here, "./oracle.oracle-java"), nix.thunk(() => ({})))),
       })),
       oxc: nix.thunk(() => ({
-        __proto__: pos$960,
+        [nix.POS]: pos$960,
         "oxc-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./oxc.oxc-vscode"), nix.thunk(() => ({})))),
       })),
       pflannery: nix.thunk(() => ({
-        __proto__: pos$961,
+        [nix.POS]: pos$961,
         "vscode-versionlens": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pflannery.vscode-versionlens"), nix.thunk(() => ({})))),
       })),
       "ph-hawkins": nix.thunk(() => ({
-        __proto__: pos$962,
+        [nix.POS]: pos$962,
         "arc-plus": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ph-hawkins.arc-plus"), nix.thunk(() => ({})))),
       })),
       phind: nix.thunk(() => ({
-        __proto__: pos$966,
+        [nix.POS]: pos$966,
         phind: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$965,
+            [nix.POS]: pos$965,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$963,
+              [nix.POS]: pos$963,
               name: "phind",
               publisher: "phind",
               version: "0.25.4",
               hash: "sha256-qiUjDPJ35RZA4JYwFpQ//zwh9TKJ4RMtZmIzm3uThC0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$964,
+              [nix.POS]: pos$964,
               description: "Using Phind AI service to provide answers based on the code context",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=phind.phind",
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -6442,18 +6442,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       phoenixframework: nix.thunk(() => ({
-        __proto__: pos$970,
+        [nix.POS]: pos$970,
         phoenix: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$969,
+            [nix.POS]: pos$969,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$967,
+              [nix.POS]: pos$967,
               name: "phoenix",
               publisher: "phoenixframework",
               version: "0.1.3",
               hash: "sha256-UuGqYLz/4lc5WngrRLkAbEXnOW5pvTlDhHO0aB+LRgk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$968,
+              [nix.POS]: pos$968,
               description: "Syntax highlighting support for HEEx / Phoenix templates",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=phoenixframework.phoenix",
               homepage: "https://github.com/phoenixframework/vscode-phoenix",
@@ -6463,18 +6463,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       piousdeer: nix.thunk(() => ({
-        __proto__: pos$974,
+        [nix.POS]: pos$974,
         "adwaita-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$973,
+            [nix.POS]: pos$973,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$971,
+              [nix.POS]: pos$971,
               name: "adwaita-theme",
               publisher: "piousdeer",
               version: "1.1.0",
               hash: "sha256-tKpKLUcc33YrgDS95PJu22ngxhwjqeVMC1Mhhy+IPGE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$972,
+              [nix.POS]: pos$972,
               description: "Theme for the GNOME desktop",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=piousdeer.adwaita-theme",
               homepage: "https://github.com/piousdeer/vscode-adwaita",
@@ -6484,40 +6484,40 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       pkief: nix.thunk(() => ({
-        __proto__: pos$978,
+        [nix.POS]: pos$978,
         "material-icon-theme": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pkief.material-icon-theme"), nix.thunk(() => ({})))),
         "material-product-icons": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$977,
+            [nix.POS]: pos$977,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$975,
+              [nix.POS]: pos$975,
               name: "material-product-icons",
               publisher: "PKief",
               version: "1.7.1",
               hash: "sha256-knYRG4j8cU6frLXSpwvaSyE+EWFd1ne/ctYa5kqp5bw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$976,
+              [nix.POS]: pos$976,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       platformio: nix.thunk(() => ({
-        __proto__: pos$979,
+        [nix.POS]: pos$979,
         "platformio-vscode-ide": nix.thunk(() => nix.app(callPackage, nix.path(here, "./platformio.platformio-vscode-ide"), nix.thunk(() => ({})))),
       })),
       pollywoggames: nix.thunk(() => ({
-        __proto__: pos$983,
+        [nix.POS]: pos$983,
         "pico8-ls": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$982,
+            [nix.POS]: pos$982,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$980,
+              [nix.POS]: pos$980,
               name: "pico8-ls",
               publisher: "PollywogGames",
               version: "0.7.0",
               hash: "sha256-2e28Z4o76f0G52fzqHNqFnBk88426cRfUyiaW1jmeMc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$981,
+              [nix.POS]: pos$981,
               changelog: "https://marketplace.visualstudio.com/items/PollywogGames.pico8-ls/changelog",
               description: "VSCode extension for full language support for the PICO-8 dialect of Lua",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=PollywogGames.pico8-ls",
@@ -6528,34 +6528,34 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       posit: nix.thunk(() => ({
-        __proto__: pos$984,
+        [nix.POS]: pos$984,
         "air-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./posit.air-vscode"), nix.thunk(() => ({})))),
       })),
       prettier: nix.thunk(() => ({
-        __proto__: pos$985,
+        [nix.POS]: pos$985,
         "prettier-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./prettier.prettier-vscode"), nix.thunk(() => ({})))),
       })),
       prince781: nix.thunk(() => ({
-        __proto__: pos$986,
+        [nix.POS]: pos$986,
         vala: nix.thunk(() => nix.app(callPackage, nix.path(here, "./prince781.vala"), nix.thunk(() => ({})))),
       })),
       pranaygp: nix.thunk(() => ({
-        __proto__: pos$987,
+        [nix.POS]: pos$987,
         "vscode-css-peek": nix.thunk(() => nix.app(callPackage, nix.path(here, "./pranaygp.vscode-css-peek"), nix.thunk(() => ({})))),
       })),
       prisma: nix.thunk(() => ({
-        __proto__: pos$991,
+        [nix.POS]: pos$991,
         prisma: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$990,
+            [nix.POS]: pos$990,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$988,
+              [nix.POS]: pos$988,
               name: "prisma",
               publisher: "Prisma",
               version: "31.12.10",
               hash: "sha256-2046raHx9ZV/yrHzY3dMDsOIGCL0R6jgaisFDa9Z5Tk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$989,
+              [nix.POS]: pos$989,
               changelog: "https://marketplace.visualstudio.com/items/Prisma.prisma/changelog",
               description: "VSCode extension for syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Prisma.prisma",
@@ -6566,22 +6566,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       pylyzer: nix.thunk(() => ({
-        __proto__: pos$992,
+        [nix.POS]: pos$992,
         pylyzer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./pylyzer.pylyzer"), nix.thunk(() => ({})))),
       })),
       pythagoratechnologies: nix.thunk(() => ({
-        __proto__: pos$996,
+        [nix.POS]: pos$996,
         "gpt-pilot-vs-code": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$995,
+            [nix.POS]: pos$995,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$993,
+              [nix.POS]: pos$993,
               name: "gpt-pilot-vs-code",
               publisher: "PythagoraTechnologies",
               version: "0.2.32",
               hash: "sha256-7wwvx1uvx2sJymCR/VYppyjDTmcF1eGJSvXTiND2fQs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$994,
+              [nix.POS]: pos$994,
               changelog: "https://marketplace.visualstudio.com/items/PythagoraTechnologies.gpt-pilot-vs-code/changelog",
               description: "VSCode extension for assisting the developer to code, debug, build applications using LLMs/AI",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=PythagoraTechnologies.gpt-pilot-vs-code",
@@ -6592,22 +6592,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       quarto: nix.thunk(() => ({
-        __proto__: pos$997,
+        [nix.POS]: pos$997,
         quarto: nix.thunk(() => nix.app(callPackage, nix.path(here, "./quarto.quarto"), nix.thunk(() => ({})))),
       })),
       quicktype: nix.thunk(() => ({
-        __proto__: pos$1001,
+        [nix.POS]: pos$1001,
         quicktype: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1000,
+            [nix.POS]: pos$1000,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$998,
+              [nix.POS]: pos$998,
               name: "quicktype",
               publisher: "quicktype",
               version: "23.0.170",
               hash: "sha256-lK50+WXPXHgqryhlsMb+65yoebX0Rh3PNKmlUjfwlOc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$999,
+              [nix.POS]: pos$999,
               description: "Infer types from sample JSON data",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype",
               homepage: "https://github.com/glideapps/quicktype",
@@ -6616,39 +6616,39 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       rangav: nix.thunk(() => ({
-        __proto__: pos$1002,
+        [nix.POS]: pos$1002,
         "vscode-thunder-client": nix.thunk(() => nix.app(callPackage, nix.path(here, "./rangav.vscode-thunder-client"), nix.thunk(() => ({})))),
       })),
       rebornix: nix.thunk(() => ({
-        __proto__: pos$1006,
+        [nix.POS]: pos$1006,
         ruby: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1005,
+            [nix.POS]: pos$1005,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1003,
+              [nix.POS]: pos$1003,
               name: "ruby",
               publisher: "rebornix",
               version: "0.28.1",
               hash: "sha256-HAUdv+2T+neJ5aCGiQ37pCO6x6r57HIUnLm4apg9L50=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1004,
+              [nix.POS]: pos$1004,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       redhat: nix.thunk(() => ({
-        __proto__: pos$1016,
+        [nix.POS]: pos$1016,
         ansible: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1009,
+            [nix.POS]: pos$1009,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1007,
+              [nix.POS]: pos$1007,
               name: "ansible",
               publisher: "redhat",
               version: "26.8.2",
               hash: "sha256-69TLPGdKdkzUHL0km9SrlYjZWDYCV+r2yRaK+8zaFPo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1008,
+              [nix.POS]: pos$1008,
               description: "Ansible language support",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=redhat.ansible",
               homepage: "https://github.com/ansible/vscode-ansible",
@@ -6657,9 +6657,9 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
             })),
           })))),
         java: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1012,
+            [nix.POS]: pos$1012,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1010,
+              [nix.POS]: pos$1010,
               publisher: "redhat",
               name: "java",
               version: "1.56.0",
@@ -6667,7 +6667,7 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
             })),
             buildInputs: nix.thunk(() => [jdk]),
             meta: nix.thunk(() => ({
-              __proto__: pos$1011,
+              [nix.POS]: pos$1011,
               description: "Java language support for VS Code via the Eclipse JDT Language Server",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=redhat.java",
               homepage: "https://github.com/redhat-developer/vscode-java",
@@ -6679,16 +6679,16 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
         "vscode-xml": nix.thunk(() => nix.app(callPackage, nix.path(here, "./redhat.vscode-xml"), nix.thunk(() => ({})))),
         "vscode-yaml": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1015,
+            [nix.POS]: pos$1015,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1013,
+              [nix.POS]: pos$1013,
               publisher: "redhat",
               name: "vscode-yaml",
               version: "1.24.0",
               hash: "sha256-Bmh1gxKn+mvtolnKWmhJ2QxdUZ32QV7b4kbBNeBtcWg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1014,
+              [nix.POS]: pos$1014,
               description: "YAML Language Support by Red Hat, with built-in Kubernetes syntax support",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml",
               homepage: "https://github.com/redhat-developer/vscode-yaml",
@@ -6698,27 +6698,27 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       reditorsupport: nix.thunk(() => ({
-        __proto__: pos$1017,
+        [nix.POS]: pos$1017,
         r: nix.thunk(() => nix.app(callPackage, nix.path(here, "./reditorsupport.r"), nix.thunk(() => ({})))),
         "r-syntax": nix.thunk(() => nix.app(callPackage, nix.path(here, "./reditorsupport.r-syntax"), nix.thunk(() => ({})))),
       })),
       "release-candidate": nix.thunk(() => ({
-        __proto__: pos$1018,
+        [nix.POS]: pos$1018,
         "vscode-scheme-repl": nix.thunk(() => nix.app(callPackage, nix.path(here, "./release-candidate.vscode-scheme-repl"), nix.thunk(() => ({})))),
       })),
       reloadedextensions: nix.thunk(() => ({
-        __proto__: pos$1022,
+        [nix.POS]: pos$1022,
         "reloaded-cpp": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1021,
+            [nix.POS]: pos$1021,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1019,
+              [nix.POS]: pos$1019,
               name: "reloaded-cpp",
               publisher: "reloadedextensions",
               version: "0.1.9",
               hash: "sha256-KQiSD18W9NnsqhRt+XM3ko70u4zX4enn3OpMt0ebViU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1020,
+              [nix.POS]: pos$1020,
               description: "C/C++ must-have highlighter that understands many coding styles and APIs. Use with 'Reloaded Themes' extension",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=reloadedextensions.reloaded-cpp",
               homepage: "https://github.com/kobalicek/reloaded-cpp",
@@ -6728,56 +6728,56 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       rioj7: nix.thunk(() => ({
-        __proto__: pos$1026,
+        [nix.POS]: pos$1026,
         commandonallfiles: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1025,
+            [nix.POS]: pos$1025,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1023,
+              [nix.POS]: pos$1023,
               name: "commandOnAllFiles",
               publisher: "rioj7",
               version: "0.5.1",
               hash: "sha256-sv42eRZV32KW51KVadzlrScHQ6snNkBDTzAJ8BDtAvU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1024,
+              [nix.POS]: pos$1024,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       ritwickdey: nix.thunk(() => ({
-        __proto__: pos$1030,
+        [nix.POS]: pos$1030,
         liveserver: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1029,
+            [nix.POS]: pos$1029,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1027,
+              [nix.POS]: pos$1027,
               name: "liveserver",
               publisher: "ritwickdey",
               version: "5.7.10",
               hash: "sha256-D474GdTCAH8b+zuO+1M+cnluKfBv7mAMdtH7F777W5U=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1028,
+              [nix.POS]: pos$1028,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       robocorp: nix.thunk(() => ({
-        __proto__: pos$1031,
+        [nix.POS]: pos$1031,
         "robotframework-lsp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./robocorp.robotframework-lsp"), nix.thunk(() => ({})))),
       })),
       "rocq-prover": nix.thunk(() => ({
-        __proto__: pos$1035,
+        [nix.POS]: pos$1035,
         vsrocq: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1034,
+            [nix.POS]: pos$1034,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1032,
+              [nix.POS]: pos$1032,
               publisher: "rocq-prover",
               name: "vsrocq",
               version: "2.5.0",
               hash: "sha256-05YrIKtZRmEjs+QSzsCyIxajRmSLgoCkNUDti+w97Fw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1033,
+              [nix.POS]: pos$1033,
               description: "VsRocq is an extension for Visual Studio Code with support for the Rocq Prover",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=rocq-prover.vsrocq",
               homepage: "https://github.com/rocq-prover/vsrocq",
@@ -6787,39 +6787,39 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       roman: nix.thunk(() => ({
-        __proto__: pos$1039,
+        [nix.POS]: pos$1039,
         "ayu-next": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1038,
+            [nix.POS]: pos$1038,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1036,
+              [nix.POS]: pos$1036,
               name: "ayu-next",
               publisher: "roman",
               version: "1.2.15",
               hash: "sha256-gGEjb9BrvFmKhAxRUmN3YWx7VZqlUp6w7m4r46DPn50=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1037,
+              [nix.POS]: pos$1037,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       rooveterinaryinc: nix.thunk(() => ({
-        __proto__: pos$1040,
+        [nix.POS]: pos$1040,
         "roo-cline": nix.thunk(() => nix.app(callPackage, nix.path(here, "./rooveterinaryinc.roo-cline"), nix.thunk(() => ({})))),
       })),
       RoweWilsonFrederiskHolme: nix.thunk(() => ({
-        __proto__: pos$1044,
+        [nix.POS]: pos$1044,
         wikitext: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1043,
+            [nix.POS]: pos$1043,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1041,
+              [nix.POS]: pos$1041,
               name: "wikitext",
               publisher: "RoweWilsonFrederiskHolme",
               version: "4.0.6",
               hash: "sha256-qclCSVLvdU6TYQxKxdrHWZRfBSjzEblA4zgDqxEuFXo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1042,
+              [nix.POS]: pos$1042,
               description: "Extension that helps users view and write MediaWiki's Wikitext files",
               longDescription: "With this extension, you can more easily discover your grammatical problems\nthrough the marked and styled text. The plugin is based on MediaWiki's\nWikitext standard, but the rules are somewhat stricter, which helps users\nwrite text that is easier to read and maintain.\n",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=RoweWilsonFrederiskHolme.wikitext",
@@ -6830,77 +6830,77 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       rubbersheep: nix.thunk(() => ({
-        __proto__: pos$1048,
+        [nix.POS]: pos$1048,
         gi: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1047,
+            [nix.POS]: pos$1047,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1045,
+              [nix.POS]: pos$1045,
               name: "gi",
               publisher: "rubbersheep",
               version: "0.2.11",
               sha256: "0j9k6wm959sziky7fh55awspzidxrrxsdbpz1d79s5lr5r19rs6j",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1046,
+              [nix.POS]: pos$1046,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       rubymaniac: nix.thunk(() => ({
-        __proto__: pos$1052,
+        [nix.POS]: pos$1052,
         "vscode-paste-and-indent": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1051,
+            [nix.POS]: pos$1051,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1049,
+              [nix.POS]: pos$1049,
               name: "vscode-paste-and-indent",
               publisher: "Rubymaniac",
               version: "0.0.8",
               sha256: "0fqwcvwq37ndms6vky8jjv0zliy6fpfkh8d9raq8hkinfxq6klgl",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1050,
+              [nix.POS]: pos$1050,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "rust-lang": nix.thunk(() => ({
-        __proto__: pos$1053,
+        [nix.POS]: pos$1053,
         "rust-analyzer": nix.thunk(() => nix.app(callPackage, nix.path(here, "./rust-lang.rust-analyzer"), nix.thunk(() => ({})))),
       })),
       ryu1kn: nix.thunk(() => ({
-        __proto__: pos$1057,
+        [nix.POS]: pos$1057,
         "partial-diff": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1056,
+            [nix.POS]: pos$1056,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1054,
+              [nix.POS]: pos$1054,
               name: "partial-diff",
               publisher: "ryu1kn",
               version: "1.4.6",
               sha256: "sha256-yp0w/atuZUSSVEaRLhpnX4NmrYCGwzFjEgzncRpEoNA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1055,
+              [nix.POS]: pos$1055,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       saoudrizwan: nix.thunk(() => ({
-        __proto__: pos$1058,
+        [nix.POS]: pos$1058,
         "claude-dev": nix.thunk(() => nix.app(callPackage, nix.path(here, "./saoudrizwan.claude-dev"), nix.thunk(() => ({})))),
       })),
       sainnhe: nix.thunk(() => ({
-        __proto__: pos$1062,
+        [nix.POS]: pos$1062,
         "gruvbox-material": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1061,
+            [nix.POS]: pos$1061,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1059,
+              [nix.POS]: pos$1059,
               name: "gruvbox-material",
               publisher: "sainnhe",
               version: "6.5.2",
               hash: "sha256-D+SZEQQwjZeuyENOYBJGn8tqS3cJiWbEkmEqhNRY/i4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1060,
+              [nix.POS]: pos$1060,
               changelog: "https://marketplace.visualstudio.com/items/sainnhe.gruvbox-material/changelog",
               description: "Gruvbox Material theme VSCode extension with Material palette",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=sainnhe.gruvbox-material",
@@ -6914,18 +6914,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       samuelcolvin: nix.thunk(() => ({
-        __proto__: pos$1066,
+        [nix.POS]: pos$1066,
         jinjahtml: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1065,
+            [nix.POS]: pos$1065,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1063,
+              [nix.POS]: pos$1063,
               name: "jinjahtml",
               publisher: "samuelcolvin",
               version: "0.20.0",
               sha256: "c000cbdc090b7d3d8df62a3c87a5d881c78aca5b490b3e591d9841d788a9aa93",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1064,
+              [nix.POS]: pos$1064,
               description: "Syntax highlighting for jinja(2) including HTML, Markdown, YAML, Ruby and LaTeX templates",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=samuelcolvin.jinjahtml",
               homepage: "https://github.com/samuelcolvin/jinjahtml-vscode",
@@ -6936,18 +6936,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       sanaajani: nix.thunk(() => ({
-        __proto__: pos$1070,
+        [nix.POS]: pos$1070,
         taskrunnercode: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1069,
+            [nix.POS]: pos$1069,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1067,
+              [nix.POS]: pos$1067,
               name: "taskrunnercode",
               publisher: "sanaajani",
               version: "0.3.0",
               sha256: "NVGMM9ugmYZNCWhNmclcGuVJPhJ9h4q2G6nNzVUEpes=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1068,
+              [nix.POS]: pos$1068,
               description: "Extension to view and run tasks from Explorer pane",
               longDescription: "This extension adds an additional \"Task Runner\" view in your Explorer Pane\nto visualize and individually run the auto-detected or configured tasks\nin your project.\n",
               homepage: "https://github.com/sana-ajani/taskrunner-code",
@@ -6957,18 +6957,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       sas: nix.thunk(() => ({
-        __proto__: pos$1074,
+        [nix.POS]: pos$1074,
         "sas-lsp": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1073,
+            [nix.POS]: pos$1073,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1071,
+              [nix.POS]: pos$1071,
               name: "sas-lsp",
               publisher: "SAS",
               version: "1.21.0",
               hash: "sha256-bQQ+bRMsm1F8kiNqudWOp8Tmtmp6aMBtznaPOfCjV6g=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1072,
+              [nix.POS]: pos$1072,
               changelog: "https://marketplace.visualstudio.com/items/SAS.sas-lsp/changelog",
               description: "Official SAS Language Extension",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=SAS.sas-lsp",
@@ -6979,51 +6979,51 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       "scala-lang": nix.thunk(() => ({
-        __proto__: pos$1078,
+        [nix.POS]: pos$1078,
         scala: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1077,
+            [nix.POS]: pos$1077,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1075,
+              [nix.POS]: pos$1075,
               name: "scala",
               publisher: "scala-lang",
               version: "0.5.10",
               hash: "sha256-hGJbu/tRt1Du/OYuui7z/CINlMug/SlUQjPNy8Rvkxg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1076,
+              [nix.POS]: pos$1076,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       scalameta: nix.thunk(() => ({
-        __proto__: pos$1082,
+        [nix.POS]: pos$1082,
         metals: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1081,
+            [nix.POS]: pos$1081,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1079,
+              [nix.POS]: pos$1079,
               name: "metals",
               publisher: "scalameta",
               version: "1.67.0",
               hash: "sha256-THrd3Yix0gohTo/cshy9ZYZysA+xCGLx4KJHFk4zmCM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1080,
+              [nix.POS]: pos$1080,
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           })))),
       })),
       sdras: nix.thunk(() => ({
-        __proto__: pos$1086,
+        [nix.POS]: pos$1086,
         "night-owl": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => (() => {
             const mktplcRef = nix.thunk(() => ({
-              __proto__: pos$1083,
+              [nix.POS]: pos$1083,
               name: "night-owl",
               publisher: "sdras",
               version: "2.1.1",
               hash: "sha256-mTvnUw/018p/1lJTje9rZ1JJXq4NiaI0d4UnRthnZtg=",
             }));
             const meta = nix.thunk(() => ({
-              __proto__: pos$1084,
+              [nix.POS]: pos$1084,
               changelog: nix.thunk(() => nix.str`https://github.com/sdras/night-owl-vscode-theme/blob/main/CHANGELOG.md#${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(mktplcRef, "version")))}`),
               description: "Visual Studio Code theme named Light Owl for daytime usage",
               longDescription: "A VS Code theme for the night owls out there. Now introducing\nLight Owl theme for daytime usage. Decisions were based\non meaningful contrast for reading comprehension and for\noptimal razzle dazzle.\n",
@@ -7032,22 +7032,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pladypus"))]),
             }));
-            return { __proto__: pos$1085, mktplcRef, meta };
+            return { [nix.POS]: pos$1085, mktplcRef, meta };
           })()))),
       })),
       seatonjiang: nix.thunk(() => ({
-        __proto__: pos$1090,
+        [nix.POS]: pos$1090,
         "gitmoji-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1089,
+            [nix.POS]: pos$1089,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1087,
+              [nix.POS]: pos$1087,
               publisher: "seatonjiang",
               name: "gitmoji-vscode",
               version: "2026.3.6",
               hash: "sha256-9SeXoMbZFjRL4vXoior76WaLmgnxfrDa3X4zXu/RMaI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1088,
+              [nix.POS]: pos$1088,
               changelog: "https://marketplace.visualstudio.com/items/seatonjiang.gitmoji-vscode/changelog",
               description: "Gitmoji tool for git commit messages in VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=seatonjiang.gitmoji-vscode",
@@ -7058,54 +7058,54 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       serayuzgur: nix.thunk(() => ({
-        __proto__: pos$1094,
+        [nix.POS]: pos$1094,
         crates: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1093,
+            [nix.POS]: pos$1093,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1091,
+              [nix.POS]: pos$1091,
               name: "crates",
               publisher: "serayuzgur",
               version: "0.6.7",
               hash: "sha256-FVZxMZ0QpCKLD0vX7LPvBywZgQ4kptjnCW9jCefwgJo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1092,
+              [nix.POS]: pos$1092,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: [],
             })),
           })))),
       })),
       shardulm94: nix.thunk(() => ({
-        __proto__: pos$1098,
+        [nix.POS]: pos$1098,
         "trailing-spaces": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1097,
+            [nix.POS]: pos$1097,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1095,
+              [nix.POS]: pos$1095,
               publisher: "shardulm94",
               name: "trailing-spaces",
               version: "0.4.4",
               hash: "sha256-L2WM021Jyyovy8KElkIspXc0MdHC9APsbPdX5hK4CIM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1096,
+              [nix.POS]: pos$1096,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kamadorueda"))]),
             })),
           })))),
       })),
       shd101wyy: nix.thunk(() => ({
-        __proto__: pos$1102,
+        [nix.POS]: pos$1102,
         "markdown-preview-enhanced": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1101,
+            [nix.POS]: pos$1101,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1099,
+              [nix.POS]: pos$1099,
               publisher: "shd101wyy",
               name: "markdown-preview-enhanced",
               version: "0.8.39",
               hash: "sha256-bRFEb6YtLFOTe9K1Y0vyfQDTgYVa6udy2CU2wz4Ht3w=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1100,
+              [nix.POS]: pos$1100,
               description: "Provides a live preview of markdown using either markdown-it or pandoc",
               longDescription: "Markdown Preview Enhanced is an extension that provides you with\nmany useful functionalities such as automatic scroll sync, math\ntypesetting, mermaid, PlantUML, pandoc, PDF export, code chunk,\npresentation writer, etc. A lot of its ideas are inspired by\nMarkdown Preview Plus and RStudio Markdown.\n",
               homepage: "https://github.com/shd101wyy/vscode-markdown-preview-enhanced",
@@ -7115,53 +7115,53 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       shopify: nix.thunk(() => ({
-        __proto__: pos$1106,
+        [nix.POS]: pos$1106,
         "ruby-lsp": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1105,
+            [nix.POS]: pos$1105,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1103,
+              [nix.POS]: pos$1103,
               publisher: "shopify",
               name: "ruby-lsp",
               version: "0.10.6",
               hash: "sha256-5yEfTSgcSv9SQILOu7hyfNcK+m5IBHKpLDjXXwOZb/I=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1104,
+              [nix.POS]: pos$1104,
               description: "VS Code plugin for connecting with the Ruby LSP",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       shyykoserhiy: nix.thunk(() => ({
-        __proto__: pos$1110,
+        [nix.POS]: pos$1110,
         "vscode-spotify": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1109,
+            [nix.POS]: pos$1109,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1107,
+              [nix.POS]: pos$1107,
               name: "vscode-spotify",
               publisher: "shyykoserhiy",
               version: "3.2.1",
               sha256: "14d68rcnjx4a20r0ps9g2aycv5myyhks5lpfz0syr2rxr4kd1vh6",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1108,
+              [nix.POS]: pos$1108,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       signageos: nix.thunk(() => ({
-        __proto__: pos$1114,
+        [nix.POS]: pos$1114,
         "signageos-vscode-sops": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1113,
+            [nix.POS]: pos$1113,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1111,
+              [nix.POS]: pos$1111,
               name: "signageos-vscode-sops",
               publisher: "signageos",
               version: "0.9.4",
               hash: "sha256-SH+hmxFQAXcL0MP9WToGmvdBjn/l2TWxF/YL30FwXes=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1112,
+              [nix.POS]: pos$1112,
               changelog: "https://marketplace.visualstudio.com/items/signageos.signageos-vscode-sops/changelog",
               description: "Visual Studio Code extension for SOPS support",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=signageos.signageos-vscode-sops",
@@ -7172,18 +7172,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       silofy: nix.thunk(() => ({
-        __proto__: pos$1118,
+        [nix.POS]: pos$1118,
         hackthebox: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1117,
+            [nix.POS]: pos$1117,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1115,
+              [nix.POS]: pos$1115,
               name: "hackthebox",
               publisher: "silofy",
               version: "0.2.9",
               hash: "sha256-WSPuEh+osu0DpXgPAzMU5Fw0Sh8sZFst7kx26s2BsyQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1116,
+              [nix.POS]: pos$1116,
               changelog: "https://marketplace.visualstudio.com/items/silofy.hackthebox/changelog",
               description: "Visual Studio Code theme built for hackers by hackers",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=silofy.hackthebox",
@@ -7194,18 +7194,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       skellock: nix.thunk(() => ({
-        __proto__: pos$1122,
+        [nix.POS]: pos$1122,
         just: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1121,
+            [nix.POS]: pos$1121,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1119,
+              [nix.POS]: pos$1119,
               name: "just",
               publisher: "skellock",
               version: "2.0.0",
               hash: "sha256-FOp/dcW0+07rADEpUMzx+SGYjhvE4IhcCOqUQ38yCN4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1120,
+              [nix.POS]: pos$1120,
               changelog: "https://github.com/skellock/vscode-just/blob/master/CHANGELOG.md",
               description: "Provides syntax and recipe launcher for Just scripts",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=skellock.just",
@@ -7216,52 +7216,52 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       skyapps: nix.thunk(() => ({
-        __proto__: pos$1126,
+        [nix.POS]: pos$1126,
         "fish-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1125,
+            [nix.POS]: pos$1125,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1123,
+              [nix.POS]: pos$1123,
               name: "fish-vscode",
               publisher: "skyapps",
               version: "0.2.1",
               sha256: "0y1ivymn81ranmir25zk83kdjpjwcqpnc9r3jwfykjd9x0jib2hl",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1124,
+              [nix.POS]: pos$1124,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       slevesque: nix.thunk(() => ({
-        __proto__: pos$1130,
+        [nix.POS]: pos$1130,
         "vscode-multiclip": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1129,
+            [nix.POS]: pos$1129,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1127,
+              [nix.POS]: pos$1127,
               name: "vscode-multiclip",
               publisher: "slevesque",
               version: "0.1.5",
               sha256: "1cg8dqj7f10fj9i0g6mi3jbyk61rs6rvg9aq28575rr52yfjc9f9",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1128,
+              [nix.POS]: pos$1128,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       smcpeak: nix.thunk(() => ({
-        __proto__: pos$1134,
+        [nix.POS]: pos$1134,
         "default-keys-windows": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1133,
+            [nix.POS]: pos$1133,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1131,
+              [nix.POS]: pos$1131,
               name: "default-keys-windows",
               publisher: "smcpeak",
               version: "1.0.0",
               hash: "sha256-bS7HnO2avXkSwXmuZ0oe2Sj/q3YYLOV4ldaAak9w9RY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1132,
+              [nix.POS]: pos$1132,
               changelog: "https://github.com/smcpeak/vscode-default-keys-windows/blob/master/CHANGELOG.md",
               description: "VSCode extension that provides default Windows keybindings on any platform",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=smcpeak.default-keys-windows",
@@ -7272,56 +7272,56 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       sonarsource: nix.thunk(() => ({
-        __proto__: pos$1138,
+        [nix.POS]: pos$1138,
         "sonarlint-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1137,
+            [nix.POS]: pos$1137,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1135,
+              [nix.POS]: pos$1135,
               publisher: "sonarsource",
               name: "sonarlint-vscode",
               version: "5.3.0",
               hash: "sha256-ic1/RhQdkY0WbHkLiw618Rg2jblkYKjprS8w98I7Pgc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1136,
+              [nix.POS]: pos$1136,
               license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
             })),
           })))),
       })),
       sourcery: nix.thunk(() => ({
-        __proto__: pos$1139,
+        [nix.POS]: pos$1139,
         sourcery: nix.thunk(() => nix.app(callPackage, nix.path(here, "./sourcery.sourcery"), nix.thunk(() => ({})))),
       })),
       spywhere: nix.thunk(() => ({
-        __proto__: pos$1143,
+        [nix.POS]: pos$1143,
         guides: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1142,
+            [nix.POS]: pos$1142,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1140,
+              [nix.POS]: pos$1140,
               name: "guides",
               publisher: "spywhere",
               version: "0.9.3",
               sha256: "1kvsj085w1xax6fg0kvsj1cizqh86i0pkzpwi0sbfvmcq21i6ghn",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1141,
+              [nix.POS]: pos$1141,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       sswg: nix.thunk(() => ({
-        __proto__: pos$1147,
+        [nix.POS]: pos$1147,
         "swift-lang": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1146,
+            [nix.POS]: pos$1146,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1144,
+              [nix.POS]: pos$1144,
               publisher: "sswg",
               name: "swift-lang",
               version: "1.12.0",
               hash: "sha256-Dzf8mJCDWT2pHPJcTywEqnki8aVsMO92+wLQ4fjHzb8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1145,
+              [nix.POS]: pos$1145,
               changelog: "https://marketplace.visualstudio.com/items/sswg.swift-lang/changelog",
               description: "Swift Language Support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang",
@@ -7332,18 +7332,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       stefanjarina: nix.thunk(() => ({
-        __proto__: pos$1151,
+        [nix.POS]: pos$1151,
         "vscode-eex-snippets": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1150,
+            [nix.POS]: pos$1150,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1148,
+              [nix.POS]: pos$1148,
               name: "vscode-eex-snippets",
               publisher: "stefanjarina",
               version: "0.0.8",
               sha256: "0j8pmrs1lk138vhqx594pzxvrma4yl3jh7ihqm2kgh0cwnkbj36m",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1149,
+              [nix.POS]: pos$1149,
               description: "VSCode extension for Elixir EEx and HTML (EEx) code snippets",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=stefanjarina.vscode-eex-snippets",
               homepage: "https://github.com/stefanjarina/vscode-eex-snippets",
@@ -7353,18 +7353,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       stephlin: nix.thunk(() => ({
-        __proto__: pos$1155,
+        [nix.POS]: pos$1155,
         "vscode-tmux-keybinding": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1154,
+            [nix.POS]: pos$1154,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1152,
+              [nix.POS]: pos$1152,
               name: "vscode-tmux-keybinding",
               publisher: "stephlin",
               version: "1.0.0",
               hash: "sha256-ZV5iyZ8pkTG9RPGObFtGbU5Iq7w/cDlUMuOVskg/39g=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1153,
+              [nix.POS]: pos$1153,
               changelog: "https://marketplace.visualstudio.com/items/stephlin.vscode-tmux-keybinding/changelog",
               description: "Simple extension for tmux behavior in vscode terminal",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=stephlin.vscode-tmux-keybinding",
@@ -7375,18 +7375,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       stkb: nix.thunk(() => ({
-        __proto__: pos$1159,
+        [nix.POS]: pos$1159,
         rewrap: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1158,
+            [nix.POS]: pos$1158,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1156,
+              [nix.POS]: pos$1156,
               publisher: "stkb",
               name: "rewrap",
               version: "17.8.0",
               hash: "sha256-9t1lpVbpcmhLamN/0ZWNEWD812S6tXG6aK3/ALJCJvg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1157,
+              [nix.POS]: pos$1157,
               changelog: "https://github.com/stkb/Rewrap/blob/master/CHANGELOG.md",
               description: "Hard word wrapping for comments and other text at a given column",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=stkb.rewrap",
@@ -7397,18 +7397,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       streetsidesoftware: nix.thunk(() => ({
-        __proto__: pos$1163,
+        [nix.POS]: pos$1163,
         "code-spell-checker": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1162,
+            [nix.POS]: pos$1162,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1160,
+              [nix.POS]: pos$1160,
               publisher: "streetsidesoftware",
               name: "code-spell-checker",
               version: "4.9.3",
               hash: "sha256-8MfXeGFCeKhxa3Z/YISz60N6ZmGHRJde3X/y4I6Totw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1161,
+              [nix.POS]: pos$1161,
               changelog: "https://marketplace.visualstudio.com/items/streetsidesoftware.code-spell-checker/changelog",
               description: "Spelling checker for source code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker",
@@ -7421,18 +7421,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
         "code-spell-checker-german": nix.thunk(() => nix.app(callPackage, nix.path(here, "./streetsidesoftware.code-spell-checker-german"), nix.thunk(() => ({})))),
       })),
       "styled-components": nix.thunk(() => ({
-        __proto__: pos$1167,
+        [nix.POS]: pos$1167,
         "vscode-styled-components": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1166,
+            [nix.POS]: pos$1166,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1164,
+              [nix.POS]: pos$1164,
               name: "vscode-styled-components",
               publisher: "styled-components",
               version: "1.7.8",
               hash: "sha256-VoLAjBcAizTxd+BHwXoNSlSxqXno3PjVxaickLCtnsw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1165,
+              [nix.POS]: pos$1165,
               changelog: "https://marketplace.visualstudio.com/items/styled-components.vscode-styled-components/changelog",
               description: "Syntax highlighting and IntelliSense for styled-components",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components",
@@ -7442,18 +7442,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       stylelint: nix.thunk(() => ({
-        __proto__: pos$1171,
+        [nix.POS]: pos$1171,
         "vscode-stylelint": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1170,
+            [nix.POS]: pos$1170,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1168,
+              [nix.POS]: pos$1168,
               name: "vscode-stylelint",
               publisher: "stylelint",
               version: "2.2.1",
               hash: "sha256-VnJ2OZe2KPo/QfZquxDZ3SMQncRWnAHBTTtfdJVBlpo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1169,
+              [nix.POS]: pos$1169,
               description: "Official Stylelint extension for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint",
               homepage: "https://github.com/stylelint/vscode-stylelint",
@@ -7463,22 +7463,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       sumneko: nix.thunk(() => ({
-        __proto__: pos$1172,
+        [nix.POS]: pos$1172,
         lua: nix.thunk(() => nix.app(callPackage, nix.path(here, "./sumneko.lua"), nix.thunk(() => ({})))),
       })),
       supermaven: nix.thunk(() => ({
-        __proto__: pos$1176,
+        [nix.POS]: pos$1176,
         supermaven: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1175,
+            [nix.POS]: pos$1175,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1173,
+              [nix.POS]: pos$1173,
               hash: "sha256-/fZungx+wdtKo80KCGZa4WfHMTT6Imb5MBgQ8gAGhfQ=",
               name: "supermaven",
               publisher: "supermaven",
               version: "1.1.12",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1174,
+              [nix.POS]: pos$1174,
               changelog: "https://marketplace.visualstudio.com/items/supermaven.supermaven/changelog",
               description: "Visual Studio Code extension for code completion suggestions",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=supermaven.supermaven",
@@ -7490,18 +7490,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       svelte: nix.thunk(() => ({
-        __proto__: pos$1180,
+        [nix.POS]: pos$1180,
         "svelte-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1179,
+            [nix.POS]: pos$1179,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1177,
+              [nix.POS]: pos$1177,
               name: "svelte-vscode",
               publisher: "svelte",
               version: "110.3.1",
               hash: "sha256-C3lJ7MO6GTJIotBa71vQN/L6A8iWZ9viYNniT6I2DMQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1178,
+              [nix.POS]: pos$1178,
               changelog: "https://github.com/sveltejs/language-tools/releases",
               description: "Svelte language support for VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode",
@@ -7512,18 +7512,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       svsool: nix.thunk(() => ({
-        __proto__: pos$1184,
+        [nix.POS]: pos$1184,
         "markdown-memo": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1183,
+            [nix.POS]: pos$1183,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1181,
+              [nix.POS]: pos$1181,
               name: "markdown-memo",
               publisher: "svsool",
               version: "0.3.19",
               hash: "sha256-JRM9Tm7yql7dKXOdpTwBVR/gx/nwvM7qqrCNlV2i1uI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1182,
+              [nix.POS]: pos$1182,
               changelog: "https://marketplace.visualstudio.com/items/svsool.markdown-memo/changelog",
               description: "Markdown knowledge base with bidirectional [[link]]s built on top of VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=svsool.markdown-memo",
@@ -7534,39 +7534,39 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       sysdig: nix.thunk(() => ({
-        __proto__: pos$1185,
+        [nix.POS]: pos$1185,
         "sysdig-vscode-ext": nix.thunk(() => nix.app(callPackage, nix.path(here, "./sysdig.sysdig-vscode-ext"), nix.thunk(() => ({})))),
       })),
       tabnine: nix.thunk(() => ({
-        __proto__: pos$1189,
+        [nix.POS]: pos$1189,
         "tabnine-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1188,
+            [nix.POS]: pos$1188,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1186,
+              [nix.POS]: pos$1186,
               name: "tabnine-vscode",
               publisher: "tabnine",
               version: "3.335.0",
               hash: "sha256-+OPNX/mo29ZGOBnfi9sPSxKEiDHBZ8UFlbhjtC6E1VM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1187,
+              [nix.POS]: pos$1187,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       tailscale: nix.thunk(() => ({
-        __proto__: pos$1193,
+        [nix.POS]: pos$1193,
         "vscode-tailscale": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1192,
+            [nix.POS]: pos$1192,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1190,
+              [nix.POS]: pos$1190,
               name: "vscode-tailscale",
               publisher: "tailscale",
               version: "1.1.0",
               sha256: "sha256-kDvA4Yw+iFoBwHKrmQCwrPZRRSDvDyxTFc1Z1vAJwc0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1191,
+              [nix.POS]: pos$1191,
               changelog: "https://marketplace.visualstudio.com/items/tailscale.vscode-tailscale/changelog",
               description: "VSCode extension to share a port over the internet with Tailscale Funnel",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Tailscale.vscode-tailscale",
@@ -7577,35 +7577,35 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       takayama: nix.thunk(() => ({
-        __proto__: pos$1197,
+        [nix.POS]: pos$1197,
         "vscode-qq": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1196,
+            [nix.POS]: pos$1196,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1194,
+              [nix.POS]: pos$1194,
               publisher: "takayama",
               name: "vscode-qq",
               version: "1.4.2",
               hash: "sha256-koeiFXUFI/i8EGCRDTym62m7JER18J9MKZpbAozr0Ng=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1195,
+              [nix.POS]: pos$1195,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
             })),
           })))),
       })),
       tal7aouy: nix.thunk(() => ({
-        __proto__: pos$1201,
+        [nix.POS]: pos$1201,
         icons: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1200,
+            [nix.POS]: pos$1200,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1198,
+              [nix.POS]: pos$1198,
               name: "icons",
               publisher: "tal7aouy",
               version: "3.8.0",
               hash: "sha256-PdhNFyVUWcOfli/ZlT+6TmtWrV31fBP1E1Vd4QWOY+A=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1199,
+              [nix.POS]: pos$1199,
               description: "Icons for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=tal7aouy.icons",
               homepage: "https://github.com/tal7aouy/vscode-icons",
@@ -7615,35 +7615,35 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       tamasfe: nix.thunk(() => ({
-        __proto__: pos$1205,
+        [nix.POS]: pos$1205,
         "even-better-toml": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1204,
+            [nix.POS]: pos$1204,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1202,
+              [nix.POS]: pos$1202,
               publisher: "tamasfe",
               name: "even-better-toml",
               version: "0.21.2",
               hash: "sha256-IbjWavQoXu4x4hpEkvkhqzbf/NhZpn8RFdKTAnRlCAg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1203,
+              [nix.POS]: pos$1203,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "tauri-apps": nix.thunk(() => ({
-        __proto__: pos$1209,
+        [nix.POS]: pos$1209,
         "tauri-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1208,
+            [nix.POS]: pos$1208,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1206,
+              [nix.POS]: pos$1206,
               name: "tauri-vscode",
               publisher: "tauri-apps",
               version: "0.2.9",
               hash: "sha256-ySfsmKAReKTLl6lHax2fnPu9paQ2pBSEMUoeGtGJelA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1207,
+              [nix.POS]: pos$1207,
               description: "Enhances the experience of Tauri apps development",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode",
               homepage: "https://github.com/tauri-apps/tauri-vscode",
@@ -7652,18 +7652,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       teabyii: nix.thunk(() => ({
-        __proto__: pos$1213,
+        [nix.POS]: pos$1213,
         ayu: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1212,
+            [nix.POS]: pos$1212,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1210,
+              [nix.POS]: pos$1210,
               name: "ayu",
               publisher: "teabyii",
               version: "1.1.12",
               sha256: "sha256-pwLvik3GRMLyr6GeTmZh1MrkgH1MgbyoembNmQxg4I0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1211,
+              [nix.POS]: pos$1211,
               description: "Simple theme with bright colors and comes in three versions — dark, light and mirage for all day long comfortable work",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=teabyii.ayu",
               homepage: "https://github.com/ayu-theme/vscode-ayu",
@@ -7672,18 +7672,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       techtheawesome: nix.thunk(() => ({
-        __proto__: pos$1217,
+        [nix.POS]: pos$1217,
         "rust-yew": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1216,
+            [nix.POS]: pos$1216,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1214,
+              [nix.POS]: pos$1214,
               name: "rust-yew",
               publisher: "techtheawesome",
               version: "0.2.3",
               hash: "sha256-JEFNYSyGCsmsiJ89R4fWy/cUU6pDW1HA2P1Sr90QJHU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1215,
+              [nix.POS]: pos$1215,
               description: "VSCode extension that provides some language features for Yew's html macro syntax",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=TechTheAwesome.rust-yew",
               homepage: "https://github.com/TechTheAwesome/code-yew-server",
@@ -7693,30 +7693,30 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       tecosaur: nix.thunk(() => ({
-        __proto__: pos$1218,
+        [nix.POS]: pos$1218,
         "latex-utilities": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tecosaur.latex-utilities"), nix.thunk(() => ({})))),
       })),
       tekumara: nix.thunk(() => ({
-        __proto__: pos$1219,
+        [nix.POS]: pos$1219,
         "typos-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tekumara.typos-vscode"), nix.thunk(() => ({})))),
       })),
       "teros-technology": nix.thunk(() => ({
-        __proto__: pos$1220,
+        [nix.POS]: pos$1220,
         teroshdl: nix.thunk(() => nix.app(callPackage, nix.path(here, "./teros-technology-teroshdl"), nix.thunk(() => ({})))),
       })),
       theangryepicbanana: nix.thunk(() => ({
-        __proto__: pos$1224,
+        [nix.POS]: pos$1224,
         "language-pascal": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1223,
+            [nix.POS]: pos$1223,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1221,
+              [nix.POS]: pos$1221,
               name: "language-pascal",
               publisher: "theangryepicbanana",
               version: "0.1.6",
               sha256: "096wwmwpas21f03pbbz40rvc792xzpl5qqddzbry41glxpzywy6b",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1222,
+              [nix.POS]: pos$1222,
               description: "VSCode extension for high-quality Pascal highlighting",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=theangryepicbanana.language-pascal",
               homepage: "https://github.com/ALANVF/vscode-pascal-magic",
@@ -7726,35 +7726,35 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       thenuprojectcontributors: nix.thunk(() => ({
-        __proto__: pos$1228,
+        [nix.POS]: pos$1228,
         "vscode-nushell-lang": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1227,
+            [nix.POS]: pos$1227,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1225,
+              [nix.POS]: pos$1225,
               publisher: "thenuprojectcontributors",
               name: "vscode-nushell-lang",
               version: "2.0.5",
               hash: "sha256-358QR9JcLWbqEb0xPv1P42a+emibOEEFRtelkBPPJgc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1226,
+              [nix.POS]: pos$1226,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       thorerik: nix.thunk(() => ({
-        __proto__: pos$1232,
+        [nix.POS]: pos$1232,
         "hacker-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1231,
+            [nix.POS]: pos$1231,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1229,
+              [nix.POS]: pos$1229,
               name: "hacker-theme",
               publisher: "thorerik",
               version: "3.0.1",
               hash: "sha256-Ugk9kTJxW1kbD+X6PF96WBc1k7x4KaGu5WbCYPGQ3qE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1230,
+              [nix.POS]: pos$1230,
               changelog: "https://marketplace.visualstudio.com/items/thorerik.hacker-theme/changelog",
               description: "Perfect theme for writing IP tracers in Visual Basic and reverse-proxying a UNIX-system firewall",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=thorerik.hacker-theme",
@@ -7765,35 +7765,35 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       tiehuis: nix.thunk(() => ({
-        __proto__: pos$1236,
+        [nix.POS]: pos$1236,
         zig: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1235,
+            [nix.POS]: pos$1235,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1233,
+              [nix.POS]: pos$1233,
               name: "zig",
               publisher: "tiehuis",
               version: "0.2.6",
               hash: "sha256-s0UMY0DzEufEF+pizYeH4MKYOiiJ6z05gYHvfpaS4zA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1234,
+              [nix.POS]: pos$1234,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "tim-koehler": nix.thunk(() => ({
-        __proto__: pos$1240,
+        [nix.POS]: pos$1240,
         "helm-intellisense": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1239,
+            [nix.POS]: pos$1239,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1237,
+              [nix.POS]: pos$1237,
               name: "helm-intellisense",
               publisher: "Tim-Koehler",
               version: "0.15.0",
               hash: "sha256-Tl0X2jtgTsjf2tvyAJLGxEGrmLXACYWWErcDJuQYg+o=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1238,
+              [nix.POS]: pos$1238,
               description: "Extension to help writing Helm-Templates by providing intellisense",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Tim-Koehler.helm-intellisense",
               homepage: "https://github.com/tim-koehler/Helm-Intellisense",
@@ -7802,47 +7802,47 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       timonwong: nix.thunk(() => ({
-        __proto__: pos$1241,
+        [nix.POS]: pos$1241,
         shellcheck: nix.thunk(() => nix.app(callPackage, nix.path(here, "./timonwong.shellcheck"), nix.thunk(() => ({})))),
       })),
       tobiasalthoff: nix.thunk(() => ({
-        __proto__: pos$1245,
+        [nix.POS]: pos$1245,
         "atom-material-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1244,
+            [nix.POS]: pos$1244,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1242,
+              [nix.POS]: pos$1242,
               name: "atom-material-theme",
               publisher: "tobiasalthoff",
               version: "1.10.9",
               hash: "sha256-EdU0FMkaQpwhOpPRC+HGIxcrt7kSN+l4+mSgIwogB/I=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1243,
+              [nix.POS]: pos$1243,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       tboby: nix.thunk(() => ({
-        __proto__: pos$1246,
+        [nix.POS]: pos$1246,
         "cwtools-vscode": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tboby.cwtools-vscode"), nix.thunk(() => ({})))),
       })),
       "tombi-toml": nix.thunk(() => ({
-        __proto__: pos$1247,
+        [nix.POS]: pos$1247,
         tombi: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tombi-toml.tombi"), nix.thunk(() => ({})))),
       })),
       tomoki1207: nix.thunk(() => ({
-        __proto__: pos$1251,
+        [nix.POS]: pos$1251,
         pdf: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1250,
+            [nix.POS]: pos$1250,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1248,
+              [nix.POS]: pos$1248,
               name: "pdf",
               publisher: "tomoki1207",
               version: "1.2.2",
               hash: "sha256-i3Rlizbw4RtPkiEsodRJEB3AUzoqI95ohyqZ0ksROps=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1249,
+              [nix.POS]: pos$1249,
               description: "Show PDF preview in VSCode",
               homepage: "https://github.com/tomoki1207/vscode-pdfviewer",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -7850,18 +7850,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       tomblind: nix.thunk(() => ({
-        __proto__: pos$1255,
+        [nix.POS]: pos$1255,
         "local-lua-debugger-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1254,
+            [nix.POS]: pos$1254,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1252,
+              [nix.POS]: pos$1252,
               name: "local-lua-debugger-vscode",
               publisher: "tomblind",
               version: "0.3.3",
               hash: "sha256-7uZHbhOa/GT9F7+xikaxuQXIGzre1q1uWTWaTJhi2UA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1253,
+              [nix.POS]: pos$1253,
               changelog: "https://github.com/tomblind/local-lua-debugger-vscode/blob/master/CHANGELOG.md",
               description: "Simple Lua debugger for Visual Studio Code which requires no additional dependencies",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=tomblind.local-lua-debugger-vscode",
@@ -7871,18 +7871,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       tsandall: nix.thunk(() => ({
-        __proto__: pos$1259,
+        [nix.POS]: pos$1259,
         opa: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1258,
+            [nix.POS]: pos$1258,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1256,
+              [nix.POS]: pos$1256,
               name: "opa",
               publisher: "tsandall",
               version: "0.26.0",
               hash: "sha256-8ZbXlmvg6ZpWAuxzN3nr3Oy0Lu0xOEgbKG9rb8I8m1Q=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1257,
+              [nix.POS]: pos$1257,
               changelog: "https://github.com/open-policy-agent/vscode-opa/blob/master/CHANGELOG.md",
               description: "Extension for VS Code which provides support for OPA",
               homepage: "https://github.com/open-policy-agent/vscode-opa",
@@ -7892,22 +7892,22 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       tsyesika: nix.thunk(() => ({
-        __proto__: pos$1260,
+        [nix.POS]: pos$1260,
         "guile-scheme-enhanced": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tsyesika.guile-scheme-enhanced"), nix.thunk(() => ({})))),
       })),
       tuttieee: nix.thunk(() => ({
-        __proto__: pos$1264,
+        [nix.POS]: pos$1264,
         "emacs-mcx": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1263,
+            [nix.POS]: pos$1263,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1261,
+              [nix.POS]: pos$1261,
               name: "emacs-mcx",
               publisher: "tuttieee",
               version: "0.111.3",
               hash: "sha256-yMiEvC7zCVnBSSo+HvK9m7RbD6Bmv7zwKabOtlsEXjE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1262,
+              [nix.POS]: pos$1262,
               changelog: "https://github.com/whitphx/vscode-emacs-mcx/blob/main/CHANGELOG.md",
               description: "Awesome Emacs Keymap - VSCode emacs keybinding with multi cursor support",
               homepage: "https://github.com/whitphx/vscode-emacs-mcx",
@@ -7916,18 +7916,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       twpayne: nix.thunk(() => ({
-        __proto__: pos$1268,
+        [nix.POS]: pos$1268,
         "vscode-testscript": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1267,
+            [nix.POS]: pos$1267,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1265,
+              [nix.POS]: pos$1265,
               name: "vscode-testscript",
               publisher: "twpayne",
               version: "0.0.7",
               hash: "sha256-M7uowipFpEVqY6foLbOLMB0AI+DrXj/h25+EceiwlMw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1266,
+              [nix.POS]: pos$1266,
               description: "Syntax highlighting support for testscript",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=twpayne.vscode-testscript",
               homepage: "https://github.com/twpayne/vscode-testscript",
@@ -7936,56 +7936,56 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       twxs: nix.thunk(() => ({
-        __proto__: pos$1272,
+        [nix.POS]: pos$1272,
         cmake: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1271,
+            [nix.POS]: pos$1271,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1269,
+              [nix.POS]: pos$1269,
               publisher: "twxs",
               name: "cmake",
               version: "0.0.17",
               hash: "sha256-CFiva1AO/oHpszbpd7lLtDzbv1Yi55yQOQPP/kCTH4Y=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1270,
+              [nix.POS]: pos$1270,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       tyriar: nix.thunk(() => ({
-        __proto__: pos$1276,
+        [nix.POS]: pos$1276,
         "sort-lines": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1275,
+            [nix.POS]: pos$1275,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1273,
+              [nix.POS]: pos$1273,
               name: "sort-lines",
               publisher: "Tyriar",
               version: "1.12.0",
               hash: "sha256-/uzwBLQMmp5zuoE0fWG2m7Ix8k33LQG2uaF0NVQt7sk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1274,
+              [nix.POS]: pos$1274,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       ufo5260987423: nix.thunk(() => ({
-        __proto__: pos$1277,
+        [nix.POS]: pos$1277,
         "magic-scheme": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ufo5260987423.magic-scheme"), nix.thunk(() => ({})))),
       })),
       "uiua-lang": nix.thunk(() => ({
-        __proto__: pos$1281,
+        [nix.POS]: pos$1281,
         "uiua-vscode": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1280,
+            [nix.POS]: pos$1280,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1278,
+              [nix.POS]: pos$1278,
               name: "uiua-vscode",
               publisher: "uiua-lang",
               version: "0.0.70",
               hash: "sha256-chp6chYUg3HzWm68NfSs3B8obSJxPSCjFHMwBK31ps4=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1279,
+              [nix.POS]: pos$1279,
               description: "VSCode language extension for Uiua",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=uiua-lang.uiua-vscode",
               homepage: "https://github.com/uiua-lang/uiua-vscode",
@@ -8001,11 +8001,11 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       uloco: nix.thunk(() => ({
-        __proto__: pos$1285,
+        [nix.POS]: pos$1285,
         "theme-bluloco-light": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1284,
+            [nix.POS]: pos$1284,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1282,
+              [nix.POS]: pos$1282,
               name: "theme-bluloco-light",
               publisher: "uloco",
               version: "3.10.0",
@@ -8013,7 +8013,7 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
             })),
             postInstall: "rm -r $out/share/vscode/extensions/uloco.theme-bluloco-light/screenshots\n",
             meta: nix.thunk(() => ({
-              __proto__: pos$1283,
+              [nix.POS]: pos$1283,
               description: "Fancy but yet sophisticated light designer color scheme / theme for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=uloco.theme-bluloco-light",
               homepage: "https://github.com/uloco/theme-bluloco-light",
@@ -8022,18 +8022,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       unifiedjs: nix.thunk(() => ({
-        __proto__: pos$1289,
+        [nix.POS]: pos$1289,
         "vscode-mdx": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1288,
+            [nix.POS]: pos$1288,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1286,
+              [nix.POS]: pos$1286,
               name: "vscode-mdx",
               publisher: "unifiedjs",
               version: "1.8.18",
               hash: "sha256-93Cf4TH56UXdtJy4FtRf5lmjltzIDxnr7Q9yY0iqSps=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1287,
+              [nix.POS]: pos$1287,
               changelog: "https://marketplace.visualstudio.com/items/unifiedjs.vscode-mdx/changelog",
               description: "VSCode language support for MDX",
               downloadPage: "https://github.com/mdx-js/mdx-analyzer",
@@ -8043,18 +8043,18 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       usernamehw: nix.thunk(() => ({
-        __proto__: pos$1293,
+        [nix.POS]: pos$1293,
         errorlens: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1292,
+            [nix.POS]: pos$1292,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1290,
+              [nix.POS]: pos$1290,
               name: "errorlens",
               publisher: "usernamehw",
               version: "3.29.0",
               hash: "sha256-kK9Axp2tMUGZ/04VtL5hzg35zvnRIjHpnmCJt9OhHQ8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1291,
+              [nix.POS]: pos$1291,
               changelog: "https://marketplace.visualstudio.com/items/usernamehw.errorlens/changelog",
               description: "Visual Studio Code extension that improves highlighting of errors, warnings and other language diagnostics",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens",
@@ -8065,20 +8065,20 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
           })))),
       })),
       vadimcn: nix.thunk(() => ({
-        __proto__: pos$1294,
+        [nix.POS]: pos$1294,
         "vscode-lldb": nix.thunk(() => nix.app(callPackage, nix.path(here, "./vadimcn.vscode-lldb"), nix.thunk(() => ({})))),
       })),
       valentjn: nix.thunk(() => ({
-        __proto__: pos$1299,
+        [nix.POS]: pos$1299,
         "vscode-ltex": nix.thunk(() => nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => (() => {
             const mktplcRef = nix.thunk(() => ({
-              __proto__: pos$1295,
+              [nix.POS]: pos$1295,
               name: "vscode-ltex",
               publisher: "valentjn",
               version: "13.1.0",
             }));
             const vsix = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$1296,
+                [nix.POS]: pos$1296,
                 name: nix.thunk(() => nix.str`${nix.sel(mktplcRef, "publisher")}-${nix.sel(mktplcRef, "name")}.vsix`),
                 url: nix.thunk(() => nix.str`https://github.com/valentjn/vscode-ltex/releases/download/${nix.sel(mktplcRef, "version")}/vscode-ltex-${nix.sel(mktplcRef, "version")}-offline-linux-x64.vsix`),
                 sha256: "1nlrijjwc35n1xgb5lgnr4yvlgfcxd0vdj93ip8lv2xi8x1ni5f6",
@@ -8089,12 +8089,12 @@ jq '.contributes.configuration.properties."cfnLint.path".default = "${cfn_lint}/
 jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' package.json | sponge package.json
 `);
             const meta = nix.thunk(() => ({
-              __proto__: pos$1297,
+              [nix.POS]: pos$1297,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
               maintainers: [],
             }));
             return {
-              __proto__: pos$1298,
+              [nix.POS]: pos$1298,
               mktplcRef,
               vsix,
               nativeBuildInputs,
@@ -8105,57 +8105,57 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })()))),
       })),
       viktorqvarfordt: nix.thunk(() => ({
-        __proto__: pos$1303,
+        [nix.POS]: pos$1303,
         "vscode-pitch-black-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1302,
+            [nix.POS]: pos$1302,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1300,
+              [nix.POS]: pos$1300,
               name: "vscode-pitch-black-theme",
               publisher: "ViktorQvarfordt",
               version: "1.3.0",
               hash: "sha256-1JDm/cWNWwxa1gNsHIM/DIvqjXsO++hAf0mkjvKyi4g=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1301,
+              [nix.POS]: pos$1301,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: [],
             })),
           })))),
       })),
       vincaslt: nix.thunk(() => ({
-        __proto__: pos$1307,
+        [nix.POS]: pos$1307,
         "highlight-matching-tag": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1306,
+            [nix.POS]: pos$1306,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1304,
+              [nix.POS]: pos$1304,
               name: "highlight-matching-tag",
               publisher: "vincaslt",
               version: "0.11.0",
               hash: "sha256-PxngjprSpWtD2ZDZfh+gOnZ+fVk5rvgGdZFxqbE21CY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1305,
+              [nix.POS]: pos$1305,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       visualjj: nix.thunk(() => ({
-        __proto__: pos$1308,
+        [nix.POS]: pos$1308,
         visualjj: nix.thunk(() => nix.app(callPackage, nix.path(here, "./visualjj.visualjj"), nix.thunk(() => ({})))),
       })),
       visualstudioexptteam: nix.thunk(() => ({
-        __proto__: pos$1315,
+        [nix.POS]: pos$1315,
         "intellicode-api-usage-examples": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1311,
+            [nix.POS]: pos$1311,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1309,
+              [nix.POS]: pos$1309,
               name: "intellicode-api-usage-examples",
               publisher: "VisualStudioExptTeam",
               version: "0.2.9",
               hash: "sha256-8xBD+WLBaxYt8v3+8lvV2SiqV89iE4jeQod2kH7LNHU=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1310,
+              [nix.POS]: pos$1310,
               description: "See relevant code examples from GitHub for over 100K different APIs right in your editor",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.intellicode-api-usage-examples",
               homepage: "https://github.com/MicrosoftDocs/intellicode",
@@ -8164,16 +8164,16 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
             })),
           })))),
         vscodeintellicode: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1314,
+            [nix.POS]: pos$1314,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1312,
+              [nix.POS]: pos$1312,
               name: "vscodeintellicode",
               publisher: "VisualStudioExptTeam",
               version: "1.3.2",
               hash: "sha256-2zexyX1YKD5jgtsvDx7/z3luh5We71ys+XRlVcNywfs=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1313,
+              [nix.POS]: pos$1313,
               description: "AI-assisted development",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode",
               homepage: "https://github.com/MicrosoftDocs/intellicode",
@@ -8183,18 +8183,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       visualstudiotoolsforunity: nix.thunk(() => ({
-        __proto__: pos$1319,
+        [nix.POS]: pos$1319,
         vstuc: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1318,
+            [nix.POS]: pos$1318,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1316,
+              [nix.POS]: pos$1316,
               name: "vstuc",
               publisher: "VisualStudioToolsForUnity",
               version: "1.3.2",
               hash: "sha256-yEpkJB67ZuotioT6FghPoRfsCI4yfok14A6acfk+rr0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1317,
+              [nix.POS]: pos$1317,
               description: "Integrates Visual Studio Code for Unity",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc",
               homepage: "https://github.com/MicrosoftDocs/vscode-dotnettools",
@@ -8204,18 +8204,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       vitaliymaz: nix.thunk(() => ({
-        __proto__: pos$1323,
+        [nix.POS]: pos$1323,
         "vscode-svg-previewer": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1322,
+            [nix.POS]: pos$1322,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1320,
+              [nix.POS]: pos$1320,
               name: "vscode-svg-previewer",
               publisher: "vitaliymaz",
               version: "0.7.0",
               hash: "sha256-iX+Js2Pqz1gLDwrihuYtDwQG4ek7GiOhL3M0j3jHF/Y=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1321,
+              [nix.POS]: pos$1321,
               changelog: "https://marketplace.visualstudio.com/items/vitaliymaz.vscode-svg-previewer/changelog",
               description: "Preview SVGs in VS Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=vitaliymaz.vscode-svg-previewer",
@@ -8226,22 +8226,22 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       vitest: nix.thunk(() => ({
-        __proto__: pos$1324,
+        [nix.POS]: pos$1324,
         explorer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./vitest.explorer"), nix.thunk(() => ({})))),
       })),
       vlanguage: nix.thunk(() => ({
-        __proto__: pos$1328,
+        [nix.POS]: pos$1328,
         "vscode-vlang": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1327,
+            [nix.POS]: pos$1327,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1325,
+              [nix.POS]: pos$1325,
               name: "vscode-vlang",
               publisher: "vlanguage",
               version: "0.2.1",
               hash: "sha256-puVCi2AcB4BAbbM28ItOCmoD/iZlZCcmQn3b23VypHk=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1326,
+              [nix.POS]: pos$1326,
               description: "V language support (syntax highlighting, formatter, snippets) for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=vlanguage.vscode-vlang",
               homepage: "https://github.com/vlang/vscode-vlang",
@@ -8251,18 +8251,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       vscjava: nix.thunk(() => ({
-        __proto__: pos$1350,
+        [nix.POS]: pos$1350,
         "vscode-gradle": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1331,
+            [nix.POS]: pos$1331,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1329,
+              [nix.POS]: pos$1329,
               name: "vscode-gradle",
               publisher: "vscjava",
               version: "3.18.0",
               hash: "sha256-ybMejIJER9HHVh1z+tazgvQ0UIa8eKoJBb7JOLU1Kpw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1330,
+              [nix.POS]: pos$1330,
               changelog: "https://marketplace.visualstudio.com/items/vscjava.vscode-gradle/changelog",
               description: "Visual Studio Code extension for Gradle build tool",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle",
@@ -8275,58 +8275,58 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
             })),
           })))),
         "vscode-java-debug": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1334,
+            [nix.POS]: pos$1334,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1332,
+              [nix.POS]: pos$1332,
               publisher: "vscjava",
               name: "vscode-java-debug",
               version: "0.59.0",
               hash: "sha256-5Zc/zXY6mE6k1uV2RMz49f5sqoDA5YnylAPwDJrOOSA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1333,
+              [nix.POS]: pos$1333,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "vscode-java-dependency": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1337,
+            [nix.POS]: pos$1337,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1335,
+              [nix.POS]: pos$1335,
               publisher: "vscjava",
               name: "vscode-java-dependency",
               version: "0.27.5",
               hash: "sha256-epLCQeNIZkwM8U/dKQ1dIAlWVKts2AlJivhSuJHXy2o=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1336,
+              [nix.POS]: pos$1336,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "vscode-java-test": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1340,
+            [nix.POS]: pos$1340,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1338,
+              [nix.POS]: pos$1338,
               publisher: "vscjava",
               name: "vscode-java-test",
               version: "0.45.0",
               hash: "sha256-6GEuijuVilhJ73isdrZPzD+xhZjRDXYQNCgcSBoyIdo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1339,
+              [nix.POS]: pos$1339,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "vscode-java-pack": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1343,
+            [nix.POS]: pos$1343,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1341,
+              [nix.POS]: pos$1341,
               name: "vscode-java-pack",
               publisher: "vscjava",
               version: "0.31.1",
               hash: "sha256-SfrsL27uQyrtsNyqZe0q5Fv5sHMwRvBZ+iS6/JIpFVo=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1342,
+              [nix.POS]: pos$1342,
               description: "Popular extensions for Java development that provides Java IntelliSense, debugging, testing, Maven/Gradle support, project management and more",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack",
               homepage: "https://github.com/Microsoft/vscode-java-pack",
@@ -8335,99 +8335,99 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
             })),
           })))),
         "vscode-maven": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1346,
+            [nix.POS]: pos$1346,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1344,
+              [nix.POS]: pos$1344,
               publisher: "vscjava",
               name: "vscode-maven",
               version: "0.45.3",
               hash: "sha256-LR0vfQ5P81uIJPoY0CuieyjjePMwJo75TDMCpZwi80g=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1345,
+              [nix.POS]: pos$1345,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         "vscode-spring-initializr": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1349,
+            [nix.POS]: pos$1349,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1347,
+              [nix.POS]: pos$1347,
               name: "vscode-spring-initializr",
               publisher: "vscjava",
               version: "0.12.0",
               hash: "sha256-q2++9C01okq5pFdmKKc3ZSr0G4XTAchpEmBMqZm3q7Y=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1348,
+              [nix.POS]: pos$1348,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       "vscode-icons-team": nix.thunk(() => ({
-        __proto__: pos$1351,
+        [nix.POS]: pos$1351,
         "vscode-icons": nix.thunk(() => nix.app(callPackage, nix.path(here, "./vscode-icons-team.vscode-icons"), nix.thunk(() => ({})))),
       })),
       vscodevim: nix.thunk(() => ({
-        __proto__: pos$1355,
+        [nix.POS]: pos$1355,
         vim: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1354,
+            [nix.POS]: pos$1354,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1352,
+              [nix.POS]: pos$1352,
               name: "vim",
               publisher: "vscodevim",
               version: "1.32.4",
               hash: "sha256-+hyJZinWsa6U+s0fdrx2wUi6tOV3FNKf8O1qMMZEdkQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1353,
+              [nix.POS]: pos$1353,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       vspacecode: nix.thunk(() => ({
-        __proto__: pos$1362,
+        [nix.POS]: pos$1362,
         vspacecode: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1358,
+            [nix.POS]: pos$1358,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1356,
+              [nix.POS]: pos$1356,
               name: "vspacecode",
               publisher: "VSpaceCode",
               version: "0.10.20",
               hash: "sha256-UlEuCvsGgtKl1IaRuMn5ODm4NDe8NTbaMN8c476Z0g0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1357,
+              [nix.POS]: pos$1357,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
         whichkey: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1361,
+            [nix.POS]: pos$1361,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1359,
+              [nix.POS]: pos$1359,
               name: "whichkey",
               publisher: "VSpaceCode",
               version: "0.11.4",
               hash: "sha256-mgvI/8Y3naw3Zmud73UYcAEKz6B0Q4tf+0uL3UWcAD0=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1360,
+              [nix.POS]: pos$1360,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       vue: nix.thunk(() => ({
-        __proto__: pos$1369,
+        [nix.POS]: pos$1369,
         volar: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1365,
+            [nix.POS]: pos$1365,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1363,
+              [nix.POS]: pos$1363,
               name: "volar",
               publisher: "Vue",
               version: "3.3.12",
               hash: "sha256-IYQNPJFGOMHffDogLZ5VtYWw52h6zRPt3YL+fvgtXrQ=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1364,
+              [nix.POS]: pos$1364,
               changelog: "https://github.com/vuejs/language-tools/blob/master/CHANGELOG.md",
               description: "Official Vue VSCode extension",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Vue.volar",
@@ -8436,16 +8436,16 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
             })),
           })))),
         "vscode-typescript-vue-plugin": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1368,
+            [nix.POS]: pos$1368,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1366,
+              [nix.POS]: pos$1366,
               name: "vscode-typescript-vue-plugin",
               publisher: "Vue",
               version: "1.8.27",
               hash: "sha256-ym1+WPKBcn4h9lqSFVehfiDoGUEviOSEVXVLhHcYvfc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1367,
+              [nix.POS]: pos$1367,
               changelog: "https://marketplace.visualstudio.com/items/Vue.vscode-typescript-vue-plugin/changelog",
               description: "Vue VSCode extension for TypeScript",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin",
@@ -8455,18 +8455,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       vytautassurvila: nix.thunk(() => ({
-        __proto__: pos$1373,
+        [nix.POS]: pos$1373,
         "csharp-ls": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1372,
+            [nix.POS]: pos$1372,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1370,
+              [nix.POS]: pos$1370,
               name: "csharp-ls",
               publisher: "vytautassurvila",
               version: "0.0.36",
               hash: "sha256-WQB6GJewHBMz9bphrJ65IZTg75kkWuBvIvA+Co9aX04=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1371,
+              [nix.POS]: pos$1371,
               changelog: "https://github.com/vytautassurvila/vscode-csharp-ls/blob/master/CHANGELOG.md",
               description: "Visual Studio Code Extension - C# LSP client for csharp-language-server",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=vytautassurvila.csharp-ls",
@@ -8476,18 +8476,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       waderyan: nix.thunk(() => ({
-        __proto__: pos$1377,
+        [nix.POS]: pos$1377,
         gitblame: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1376,
+            [nix.POS]: pos$1376,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1374,
+              [nix.POS]: pos$1374,
               name: "gitblame",
               publisher: "waderyan",
               version: "13.1.0",
               sha256: "sha256-32ohvlIV7ogX+hGgcrCyHrv2hKWSpi+YuRMv0SGDYYA=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1375,
+              [nix.POS]: pos$1375,
               changelog: "https://marketplace.visualstudio.com/items/waderyan.gitblame/changelog",
               description: "Visual Studio Code Extension - See Git Blame info in status bar",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame",
@@ -8497,77 +8497,77 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       wakatime: nix.thunk(() => ({
-        __proto__: pos$1378,
+        [nix.POS]: pos$1378,
         "vscode-wakatime": nix.thunk(() => nix.app(callPackage, nix.path(here, "./WakaTime.vscode-wakatime"), nix.thunk(() => ({})))),
       })),
       "wgsl-analyzer": nix.thunk(() => ({
-        __proto__: pos$1379,
+        [nix.POS]: pos$1379,
         "wgsl-analyzer": nix.thunk(() => nix.app(callPackage, nix.path(here, "./wgsl-analyzer.wgsl-analyzer"), nix.thunk(() => ({})))),
       })),
       wholroyd: nix.thunk(() => ({
-        __proto__: pos$1383,
+        [nix.POS]: pos$1383,
         jinja: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1382,
+            [nix.POS]: pos$1382,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1380,
+              [nix.POS]: pos$1380,
               name: "jinja",
               publisher: "wholroyd",
               version: "0.0.8",
               sha256: "1ln9gly5bb7nvbziilnay4q448h9npdh7sd9xy277122h0qawkci",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1381,
+              [nix.POS]: pos$1381,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       wingrunr21: nix.thunk(() => ({
-        __proto__: pos$1387,
+        [nix.POS]: pos$1387,
         "vscode-ruby": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1386,
+            [nix.POS]: pos$1386,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1384,
+              [nix.POS]: pos$1384,
               name: "vscode-ruby",
               publisher: "wingrunr21",
               version: "0.28.0",
               hash: "sha256-H3f1+c31x+lgCzhgTb0uLg9Bdn3pZyJGPPwfpCYrS70=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1385,
+              [nix.POS]: pos$1385,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       wix: nix.thunk(() => ({
-        __proto__: pos$1391,
+        [nix.POS]: pos$1391,
         "vscode-import-cost": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1390,
+            [nix.POS]: pos$1390,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1388,
+              [nix.POS]: pos$1388,
               name: "vscode-import-cost",
               publisher: "wix",
               version: "3.3.0",
               sha256: "0wl8vl8n0avd6nbfmis0lnlqlyh4yp3cca6kvjzgw5xxdc5bl38r",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1389,
+              [nix.POS]: pos$1389,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       wmaurer: nix.thunk(() => ({
-        __proto__: pos$1395,
+        [nix.POS]: pos$1395,
         "change-case": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1394,
+            [nix.POS]: pos$1394,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1392,
+              [nix.POS]: pos$1392,
               name: "change-case",
               publisher: "wmaurer",
               version: "1.0.0",
               hash: "sha256-tN/jlG2PzuiCeERpgQvdqDoa3UgrUaM7fKHv6KFqujc=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1393,
+              [nix.POS]: pos$1393,
               description: "VSCode extension for quickly changing the case (camelCase, CONSTANT_CASE, snake_case, etc) of the current selection or current word",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case",
               homepage: "https://github.com/wmaurer/vscode-change-case",
@@ -8576,18 +8576,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       woberg: nix.thunk(() => ({
-        __proto__: pos$1399,
+        [nix.POS]: pos$1399,
         "godot-dotnet-tools": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1398,
+            [nix.POS]: pos$1398,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1396,
+              [nix.POS]: pos$1396,
               publisher: "woberg",
               name: "godot-dotnet-tools",
               version: "0.5.1",
               hash: "sha256-qZdQiW1RvzUR5+5QlVdMPBY82IOPUPs3GNOl6bOhnWM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1397,
+              [nix.POS]: pos$1397,
               description: "VSCode extension for Godot 4 Mono supporting C# language",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=woberg.godot-dotnet-tools",
               homepage: "https://github.com/williamoberg/godot-dotnet-tools",
@@ -8596,53 +8596,53 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       xadillax: nix.thunk(() => ({
-        __proto__: pos$1403,
+        [nix.POS]: pos$1403,
         viml: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1402,
+            [nix.POS]: pos$1402,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1400,
+              [nix.POS]: pos$1400,
               name: "viml",
               publisher: "xadillax",
               version: "2.2.0",
               hash: "sha256-WNwTWJ3fDdIc9gsfOdtAd6Rg3xH0sbs6ONo7fKjtJuI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1401,
+              [nix.POS]: pos$1401,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       xaver: nix.thunk(() => ({
-        __proto__: pos$1407,
+        [nix.POS]: pos$1407,
         "clang-format": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1406,
+            [nix.POS]: pos$1406,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1404,
+              [nix.POS]: pos$1404,
               name: "clang-format",
               publisher: "xaver",
               version: "1.9.0",
               sha256: "abd0ef9176eff864f278c548c944032b8f4d8ec97d9ac6e7383d60c92e258c2f",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1405,
+              [nix.POS]: pos$1405,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "zeratax"))]),
             })),
           })))),
       })),
       xdebug: nix.thunk(() => ({
-        __proto__: pos$1411,
+        [nix.POS]: pos$1411,
         "php-debug": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1410,
+            [nix.POS]: pos$1410,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1408,
+              [nix.POS]: pos$1408,
               name: "php-debug",
               publisher: "xdebug",
               version: "1.40.2",
               hash: "sha256-F2MZk/6AAIOi/ImmeCyL9Yp5YDrSAd3/YNm1m6I0XV8=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1409,
+              [nix.POS]: pos$1409,
               description: "PHP Debug Adapter",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               homepage: "https://github.com/xdebug/vscode-php-debug",
@@ -8653,35 +8653,35 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       xyz: nix.thunk(() => ({
-        __proto__: pos$1415,
+        [nix.POS]: pos$1415,
         "local-history": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1414,
+            [nix.POS]: pos$1414,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1412,
+              [nix.POS]: pos$1412,
               name: "local-history",
               publisher: "xyz",
               version: "1.8.1",
               sha256: "1mfmnbdv76nvwg4xs3rgsqbxk8hw9zr1b61har9c3pbk9r4cay7v",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1413,
+              [nix.POS]: pos$1413,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       yoavbls: nix.thunk(() => ({
-        __proto__: pos$1419,
+        [nix.POS]: pos$1419,
         "pretty-ts-errors": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1418,
+            [nix.POS]: pos$1418,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1416,
+              [nix.POS]: pos$1416,
               name: "pretty-ts-errors",
               publisher: "yoavbls",
               version: "0.8.7",
               hash: "sha256-ofh19dkK+b1+eqr5g4opoLg3a06C/qqC0HVws28jI/A=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1417,
+              [nix.POS]: pos$1417,
               description: "Make TypeScript errors prettier and human-readable in VSCode",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors",
               homepage: "https://github.com/yoavbls/pretty-ts-errors",
@@ -8691,30 +8691,30 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       yoshi47: nix.thunk(() => ({
-        __proto__: pos$1420,
+        [nix.POS]: pos$1420,
         "selection-path-copier": nix.thunk(() => nix.app(callPackage, nix.path(here, "./yoshi47.selection-path-copier"), nix.thunk(() => ({})))),
       })),
       yy0931: nix.thunk(() => ({
-        __proto__: pos$1421,
+        [nix.POS]: pos$1421,
         "vscode-sqlite3-editor": nix.thunk(() => nix.app(callPackage, nix.path(here, "./yy0931.vscode-sqlite3-editor"), nix.thunk(() => ({})))),
       })),
       yzane: nix.thunk(() => ({
-        __proto__: pos$1422,
+        [nix.POS]: pos$1422,
         "markdown-pdf": nix.thunk(() => nix.app(callPackage, nix.path(here, "./yzane.markdown-pdf"), nix.thunk(() => ({})))),
       })),
       yzhang: nix.thunk(() => ({
-        __proto__: pos$1429,
+        [nix.POS]: pos$1429,
         "dictionary-completion": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1425,
+            [nix.POS]: pos$1425,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1423,
+              [nix.POS]: pos$1423,
               publisher: "yzhang",
               name: "dictionary-completion",
               version: "1.3.1",
               hash: "sha256-sin2kTx7aXFPhtraKUjsowuV8Z2z237RIePL4F/JiPM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1424,
+              [nix.POS]: pos$1424,
               description: "Visual Studio Code extension to help user easily finish long words ",
               longDescription: "Dictionary completion allows user to get a list of keywords, based off of the current word at the cursor.\nThis is useful if you are typing a long word (e.g. acknowledgeable) and don't want to finish typing or don't remember the Spelling\n",
               homepage: "https://github.com/yzhang-gh/vscode-dic-completion#readme",
@@ -8728,16 +8728,16 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
             })),
           })))),
         "markdown-all-in-one": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1428,
+            [nix.POS]: pos$1428,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1426,
+              [nix.POS]: pos$1426,
               name: "markdown-all-in-one",
               publisher: "yzhang",
               version: "3.6.3",
               sha256: "sha256-xJhbFQSX1DDDp8iE/R8ep+1t5IRusBkvjHcNmvjrboM=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1427,
+              [nix.POS]: pos$1427,
               description: "All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one",
               homepage: "https://github.com/yzhang-gh/vscode-markdown",
@@ -8747,18 +8747,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       zaaack: nix.thunk(() => ({
-        __proto__: pos$1433,
+        [nix.POS]: pos$1433,
         "markdown-editor": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1432,
+            [nix.POS]: pos$1432,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1430,
+              [nix.POS]: pos$1430,
               name: "markdown-editor",
               publisher: "zaaack",
               version: "0.1.21",
               hash: "sha256-P3AmPOq8G10JO8fhpHvvoh3VOFtJFyKF7JteFLkHmCE=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1431,
+              [nix.POS]: pos$1431,
               description: "Visual Studio Code extension for WYSIWYG markdown editing",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor",
               homepage: "https://github.com/zaaack/vscode-markdown-editor",
@@ -8768,18 +8768,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       zainchen: nix.thunk(() => ({
-        __proto__: pos$1437,
+        [nix.POS]: pos$1437,
         json: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1436,
+            [nix.POS]: pos$1436,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1434,
+              [nix.POS]: pos$1434,
               name: "json",
               publisher: "ZainChen",
               version: "2.0.2",
               hash: "sha256-nC3Q8KuCtn/jg1j/NaAxWGvnKe/ykrPm2PUjfsJz8aI=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1435,
+              [nix.POS]: pos$1435,
               changelog: "https://marketplace.visualstudio.com/items/ZainChen.json/changelog",
               description: "Visual Studio Code extension for JSON support",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ZainChen.json",
@@ -8789,18 +8789,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       zguolee: nix.thunk(() => ({
-        __proto__: pos$1441,
+        [nix.POS]: pos$1441,
         "tabler-icons": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1440,
+            [nix.POS]: pos$1440,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1438,
+              [nix.POS]: pos$1438,
               name: "tabler-icons",
               publisher: "zguolee",
               version: "0.4.2",
               hash: "sha256-2PKMyK8XYIjuoD1InrNaWZTP29LcPYetP8pmXRK/zYg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1439,
+              [nix.POS]: pos$1439,
               description: "Tabler product icon theme for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=zguolee.tabler-icons",
               homepage: "https://github.com/zguolee/vscode-tabler-icons",
@@ -8810,35 +8810,35 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       zhuangtongfa: nix.thunk(() => ({
-        __proto__: pos$1445,
+        [nix.POS]: pos$1445,
         "material-theme": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1444,
+            [nix.POS]: pos$1444,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1442,
+              [nix.POS]: pos$1442,
               name: "material-theme",
               publisher: "zhuangtongfa",
               version: "3.19.0",
               sha256: "sha256-K0eXeAEn4s3YZHJJU9jxtytNQTgaGwvd3fBUsZiKfPw=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1443,
+              [nix.POS]: pos$1443,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
       zhwu95: nix.thunk(() => ({
-        __proto__: pos$1449,
+        [nix.POS]: pos$1449,
         riscv: nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1448,
+            [nix.POS]: pos$1448,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1446,
+              [nix.POS]: pos$1446,
               name: "riscv",
               publisher: "zhwu95",
               version: "0.0.8",
               hash: "sha256-PXaHSEXoN0ZboHIoDg37tZ+Gv6xFXP4wGBS3YS/53TY=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1447,
+              [nix.POS]: pos$1447,
               description: "Basic RISC-V colorization and snippets support",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=zhwu95.riscv",
               homepage: "https://github.com/zhuanhao-wu/vscode-riscv-support",
@@ -8848,18 +8848,18 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       ziglang: nix.thunk(() => ({
-        __proto__: pos$1453,
+        [nix.POS]: pos$1453,
         "vscode-zig": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1452,
+            [nix.POS]: pos$1452,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1450,
+              [nix.POS]: pos$1450,
               name: "vscode-zig",
               publisher: "ziglang",
               version: "0.6.19",
               hash: "sha256-kdoks0da6+uofzvN5lulkDAVihSS7xoF/Q6Fo5yzQbg=",
             })),
             meta: nix.thunk(() => ({
-              __proto__: pos$1451,
+              [nix.POS]: pos$1451,
               changelog: "https://marketplace.visualstudio.com/items/ziglang.vscode-zig/changelog",
               description: "Zig support for Visual Studio Code",
               downloadPage: "https://marketplace.visualstudio.com/items?itemName=ziglang.vscode-zig",
@@ -8870,11 +8870,11 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
           })))),
       })),
       zxh404: nix.thunk(() => ({
-        __proto__: pos$1457,
+        [nix.POS]: pos$1457,
         "vscode-proto3": nix.thunk(() => nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-            __proto__: pos$1456,
+            [nix.POS]: pos$1456,
             mktplcRef: nix.thunk(() => ({
-              __proto__: pos$1454,
+              [nix.POS]: pos$1454,
               name: "vscode-proto3",
               publisher: "zxh404",
               version: "0.5.5",
@@ -8885,67 +8885,67 @@ jq '.contributes.configuration.properties."ltex.java.path".default = "${jdk}"' p
 jq '.contributes.configuration.properties.protoc.properties.path.default = "${protobuf}/bin/protoc"' package.json | sponge package.json
 `),
             meta: nix.thunk(() => ({
-              __proto__: pos$1455,
+              [nix.POS]: pos$1455,
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           })))),
       })),
     })));
   const aliases = (super$) => ({
-    __proto__: pos$1471,
+    [nix.POS]: pos$1471,
     _13xforever: nix.thunk(() => nix.builtins.throw("_13xforever is deprecated in favor of 13xforever")),
     _1Password: nix.thunk(() => nix.builtins.throw("_1Password is deprecated in favor of 1Password")),
     _2gua: nix.thunk(() => nix.builtins.throw("_2gua is deprecated in favor of 2gua")),
     _4ops: nix.thunk(() => nix.builtins.throw("_4ops is deprecated in favor of 4ops")),
     Arjun: nix.thunk(() => ({
-      __proto__: pos$1459,
+      [nix.POS]: pos$1459,
       "swagger-viewer": nix.thunk(() => nix.builtins.throw("Arjun.swagger-viewer is deprecated in favor of arjun.swagger-viewer")),
     })),
     dendron: nix.thunk(() => ({
-      __proto__: pos$1460,
+      [nix.POS]: pos$1460,
       "dendron-markdown-preview-enhanced": nix.thunk(() => nix.builtins.throw("dendron.dendron-markdown-preview-enhanced has been removed from the VSCode marketplace.")),
     })),
     equinusocio: nix.thunk(() => ({
-      __proto__: pos$1461,
+      [nix.POS]: pos$1461,
       "vsc-material-theme": nix.thunk(() => nix.builtins.throw("'equinusocio.vsc-material-theme' has been removed due to security concerns. The extension contained potentially malicious code and was taken down.")),
       "vsc-material-theme-icons": nix.thunk(() => nix.builtins.throw("'equinusocio.vsc-material-theme-icons' has been removed due to security concerns. The extension contained potentially malicious code and was taken down.")),
     })),
     influxdata: nix.thunk(() => ({
-      __proto__: pos$1462,
+      [nix.POS]: pos$1462,
       flux: nix.thunk(() => nix.builtins.throw("'influxdata.flux' has been removed due to being unmaintained upstream")),
     })),
     jakebecker: nix.thunk(() => ({
-      __proto__: pos$1463,
+      [nix.POS]: pos$1463,
       "elixir-ls": nix.thunk(() => nix.builtins.throw("jakebecker.elixir-ls is deprecated in favor of elixir-lsp.vscode-elixir-ls")),
     })),
     jpoissonnier: nix.thunk(() => ({
-      __proto__: pos$1464,
+      [nix.POS]: pos$1464,
       "vscode-styled-components": nix.thunk(() => nix.builtins.throw("jpoissonnier.vscode-styled-components is deprecated in favor of styled-components.vscode-styled-components")),
     })),
     matklad: nix.thunk(() => ({
-      __proto__: pos$1465,
+      [nix.POS]: pos$1465,
       "rust-analyzer": nix.thunk(() => nix.builtins.throw("matklad.rust-analyzer is deprecated in favor of rust-lang.rust-analyzer")),
     })),
     mgt19937: nix.thunk(() => ({
-      __proto__: pos$1466,
+      [nix.POS]: pos$1466,
       "typst-preview": nix.thunk(() => nix.builtins.throw("The features of 'typst-preview' have been consolidated to 'tinymist', an all-in-one language server for typst")),
     })),
     "ms-vscode": nix.thunk(() => ({
-      __proto__: pos$1467,
+      [nix.POS]: pos$1467,
       go: nix.thunk(() => nix.builtins.throw("ms-vscode.go is deprecated in favor of golang.go")),
       PowerShell: nix.thunk(() => nix.builtins.throw("ms-vscode.PowerShell is deprecated in favor of super.ms-vscode.powershell")),
       "theme-tomorrowkit": nix.thunk(() => nix.builtins.throw("ms-vscode.theme-tomorrowkit is deprecated")),
     })),
     richie5um2: nix.thunk(() => ({
-      __proto__: pos$1468,
+      [nix.POS]: pos$1468,
       "snake-trail": nix.thunk(() => nix.builtins.throw("richie5um2.snake-trail is deprecated")),
     })),
     rioj7: nix.thunk(() => ({
-      __proto__: pos$1469,
+      [nix.POS]: pos$1469,
       commandOnAllFiles: nix.thunk(() => nix.builtins.throw("rioj7.commandOnAllFiles is deprecated in favor of rioj7.commandonallfiles")),
     })),
     WakaTime: nix.thunk(() => ({
-      __proto__: pos$1470,
+      [nix.POS]: pos$1470,
       "vscode-wakatime": nix.thunk(() => nix.builtins.throw("WakaTime.vscode-wakatime is deprecated in favor of wakatime.vscode-wakatime")),
     })),
   });

@@ -41,16 +41,16 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const zlib = nix.arg($, "zlib");
   const dpdk$ = nix.thunk(() => nix.app(nix.sel(dpdk, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mesonFlags: nix.thunk(() => nix.concat(nix.sel(old, "mesonFlags"), ["-Denable_driver_sdk=true"])),
     })));
   const osRelease = nix.thunk(() => nix.app(writeText, "os-release", "ID=nixos"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vpp",
       version: "26.02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "FDio",
           repo: "vpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,11 +80,11 @@ substituteInPlace pkg/CMakeLists.txt \\
       strictDeps: true,
       patches: nix.thunk(() => nix.concat([nix.path(here, "./use-dynamic-libs.patch")], nix.app(nix.sel(lib, "optional"), enableAfXdpSkbMode, nix.path(here, "./xdp-skb-mode.patch")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast, scalable layer 2-4 multi-platform network stack running in user space",
         homepage: nix.thunk(() => nix.str`https://s3-docs.fd.io/vpp/${nix.sel(finalAttrs, "version")}/`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

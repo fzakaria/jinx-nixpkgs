@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "framework-laptop-kmod",
       version: "0-unstable-2024-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DHowett",
           repo: "framework-laptop-kmod",
           rev: "6164bc3dec24b6bb2806eedd269df6a170bcc930",
@@ -36,11 +36,11 @@ install -D framework_laptop.ko -t $out/lib/modules/${nix.sel(kernel, "modDirVers
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Kernel module that exposes the Framework Laptop (13, 16)'s battery charge limit and LEDs to userspace",
         homepage: "https://github.com/DHowett/framework-laptop-kmod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

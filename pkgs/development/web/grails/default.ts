@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "grails";
       const version = "7.0.0-M3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/grails/grails-core/releases/download/v${version}/grails-${version}.zip`),
           sha256: "sha256-BM3fxmf86o+Ob63bE9aSCBh2MlkIS4AsYj7CZr/PVWU=",
         }))));
@@ -40,7 +40,7 @@ sed -i -e '2iJAVA_HOME=${nix.sel(jdk, "home")}' "$out"/bin/grails
 `))));
       const preferLocalBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Full stack, web application framework for the JVM",
         mainProgram: "grails",
         longDescription: "Grails is an Open Source, full stack, web application framework for the\nJVM. It takes advantage of the Groovy programming language and convention\nover configuration to provide a productive and stream-lined development\nexperience.\n",
@@ -54,7 +54,7 @@ sed -i -e '2iJAVA_HOME=${nix.sel(jdk, "home")}' "$out"/bin/grails
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

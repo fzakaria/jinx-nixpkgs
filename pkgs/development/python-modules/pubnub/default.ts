@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pubnub",
       version: "10.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pubnub",
           repo: "python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_subscribe", "test_handshaking"]),
       pythonImportsCheck: nix.thunk(() => ["pubnub"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python-based APIs for PubNub",
         homepage: "https://github.com/pubnub/python",
         changelog: nix.thunk(() => nix.str`https://github.com/pubnub/python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

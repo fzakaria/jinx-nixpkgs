@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pname = "mathpix-snipping-tool";
   const version = "03.00.0138";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.mathpix.com/linux/Mathpix_Snipping_Tool-x86_64.v${version}.AppImage`),
       sha256: "sha256-29iLdrWxqLL7uRfHae8Mq+w9yaGtM9Y5vRLzYESgzBs=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +35,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
 wrapProgram $out/bin/${pname} --set QT_QPA_PLATFORM xcb
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCR tool to convert pictures to LaTeX",
         homepage: "https://mathpix.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

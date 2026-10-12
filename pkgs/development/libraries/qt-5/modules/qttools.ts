@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qttools",
       outputs: nix.thunk(() => ["out", "dev", "bin"]),
       buildInputs: nix.thunk(() => (() => {
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./qttools-QT_HOST_DATA-refs.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             qtbaseDev: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), qtbase)),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./qttools-libclang-main-header.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libclangDev: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
           })))),
       ]),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "bin/qdistancefieldgenerator",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["bin/macdeployqt"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.eq(qtdeclarative, null)))), nix.thunk(() => nix.str`-DNIXPKGS_QMLIMPORTSCANNER="${nix.sel(qtdeclarative, "dev")}/bin/qmlimportscanner"`))),
       })),
       setupHook: nix.path(here, "../hooks/qttools-setup-hook.sh"),

@@ -41,44 +41,44 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "rsshub"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         rsshub: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "RSSHub service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rsshub", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the firewall for the specified port.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     LISTEN_INADDR_ANY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Listen to any address",
                         apply: (x) => (nix.asBool(x) ? "1" : "0"),
                       })))),
                     PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 1200n,
                         description: "Listen on port.",
                         apply: nix.builtins.toString,
                       })))),
                     NO_LOGFILES: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: true,
                         description: "Print logs into stderr.",
@@ -91,29 +91,29 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables for RSSHub.\nSee <https://docs.rsshub.app/deploy/config> for available options.\n",
             })))),
           secretFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ config.sops.secrets.rsshub.path ]\n")),
               description: "Environment variables stored in files for secrets.\nSee <https://docs.rsshub.app/deploy/config> for available options.\n",
             })))),
           redis: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Redis for RSSHub")),
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Create and use a local Redis instance. Sets `services.redis.servers.rsshub`.",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "The Redis host.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 6379n,
                 description: "The Redis port.",
@@ -123,42 +123,42 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           redis: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             servers: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               rsshub: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "enable")) && nix.asBool(nix.sel(cfg, "redis", "createLocally")))), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   enable: true,
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                 })))),
             })),
           })),
           rsshub: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "enable")), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 CACHE_TYPE: "redis",
                 REDIS_URL: nix.thunk(() => nix.str`redis://${nix.sel(cfg, "redis", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))}`),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rsshub: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "RSSHub - Everything is RSSible",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "enable")) && nix.asBool(nix.sel(cfg, "redis", "createLocally")))), "redis-rsshub.service")),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "enable")) && nix.asBool(nix.sel(cfg, "redis", "createLocally")))), "redis-rsshub.service")),
               environment: nix.thunk(() => nix.sel(cfg, "settings")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Type: "simple",
                 User: "rsshub",
                 Group: "rsshub",
@@ -180,9 +180,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           firewall: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.sel(cfg, "settings", "PORT")))),
               ]))),
@@ -190,7 +190,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "vonfry"))];

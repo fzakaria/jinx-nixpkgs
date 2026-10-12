@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withPkcs11 = nix.argOr($, "withPkcs11", () => true);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nebula",
       version: "1.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slackhq",
           repo: "nebula",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,21 +34,21 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withPkcs11, "pkcs11")),
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.Build=${nix.sel(finalAttrs, "version")}`)]),
       checkFlags: nix.thunk(() => nix.concat(["-v"], nix.app(nix.sel(lib, "optionals"), withPkcs11, nix.thunk(() => ["-tags", "pkcs11"])))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withPkcs11)), nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withPkcs11)), nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "nebula"));
           return {
-          __proto__: pos$4,
-          e2e: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (prev) => ({ __proto__: pos$3, subPackages: [], postCheck: "make e2ev\n" }))),
+          [nix.POS]: pos$4,
+          e2e: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (prev) => ({ [nix.POS]: pos$3, subPackages: [], postCheck: "make e2ev\n" }))),
           connectivity: nix.thunk(() => nix.attr(from, "connectivity")),
           reload: nix.thunk(() => nix.attr(from, "reload")),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Overlay networking tool with a focus on performance, simplicity and security",
         longDescription: "Nebula is a scalable overlay networking tool with a focus on performance,\nsimplicity and security. It lets you seamlessly connect computers\nanywhere in the world. Nebula is portable, and runs on Linux, OSX, and\nWindows. (Also: keep this quiet, but we have an early prototype running\non iOS). It can be used to connect a small number of computers, but is\nalso able to connect tens of thousands of computers.\n\nNebula incorporates a number of existing concepts like encryption,\nsecurity groups, certificates, and tunneling, and each of those\nindividual pieces existed before Nebula in various forms. What makes\nNebula different to existing offerings is that it brings all of these\nideas together, resulting in a sum that is greater than its individual\nparts.\n",
         homepage: "https://github.com/slackhq/nebula",

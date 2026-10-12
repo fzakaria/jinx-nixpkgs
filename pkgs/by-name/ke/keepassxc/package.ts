@@ -45,25 +45,25 @@ export default nix.lambda((args) => (() => {
   const withKeePassYubiKey = nix.argOr($, "withKeePassYubiKey", () => true);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "keepassxc",
       version: "2.7.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "keepassxreboot",
           repo: "keepassxc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-eg8jRaSJdRBpEOHQ8E3jXcdwRzsnyq6r4RLyltdpIB8=",
         })))),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-old-style-cast",
               "-Wno-error",
               nix.thunk(() => nix.str`-D__BIG_ENDIAN__=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")) ? "1" : "0")}`),
             ]))),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-rpath", nix.thunk(() => nix.str`${libargon2}/lib`)]))),
         }))))),
       patches: nix.thunk(() => [nix.path(here, "./darwin-remove-macdeployqt.patch")]),
@@ -132,15 +132,15 @@ substituteAll "${nix.path(here, "./chromium-native-messaging-host.json")}" "$out
           nix.thunk(() => nix.app(darwinMinVersionHook, "12.3")),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libusb1])), nix.app(nix.sel(lib, "optionals"), withKeePassX11, nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtx11extras"))])))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           keepassxc: nix.thunk(() => nix.attr(nixosTests, "keepassxc")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Offline password manager with many features",
         longDescription: "A community fork of KeePassX, which is itself a port of KeePass Password Safe.\nThe goal is to extend and improve KeePassX with new features and bugfixes,\nto provide a feature-rich, fully cross-platform and modern open-source password manager.\nAccessible via native cross-platform GUI, CLI, has browser integration\nusing the KeePassXC Browser Extension (https://github.com/keepassxreboot/keepassxc-browser)\n",
         homepage: "https://keepassxc.org/",

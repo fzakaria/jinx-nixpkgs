@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const oniguruma = nix.arg($, "oniguruma");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hired",
       version: "0.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sidju",
           repo: "hired",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-nWc3vcqYbJnjYLjKyZQBFR7tSaPaSu0+TvOIBAKKtnQ=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [oniguruma]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern take on ed, the standard Unix editor",
         homepage: "https://github.com/sidju/hired",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

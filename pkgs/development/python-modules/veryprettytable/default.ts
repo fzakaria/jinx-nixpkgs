@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const colorama = nix.arg($, "colorama");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "veryprettytable",
       version: "0.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-bkym/Iisrl3hPzf/fYsTCwPJ+ttJR9Eriwybjr6LOcw=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [termcolor, colorama]),
       pythonImportsCheck: nix.thunk(() => ["veryprettytable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Python library for easily displaying tabular data in a visually appealing ASCII table format",
         homepage: "https://github.com/smeggingsmegger/VeryPrettyTable",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

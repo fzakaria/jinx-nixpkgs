@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bombadillo",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tildegit.org/sloum/bombadillo.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-FjU9AyRAdGFr1bVpkmj5STkbzCXvpxOaOj7WNQJq7A0=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "installManPage bombadillo.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Non-web client for the terminal, supporting Gopher, Gemini and more",
         mainProgram: "bombadillo",
         homepage: "https://bombadillo.colorfield.space/",

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcast-receiver";
       const version = "2.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.futo.org",
           owner: "videostreaming",
           repo: "fcast",
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/receivers/electron`);
       const makeCacheWritable = true;
       const npmDepsHash = "sha256-EgNpKOjpv7QMsmcVGEpU81UIi/z4vA1S8xXmespx6Ew=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fcast-receiver",
             desktopName: "FCast Receiver",
             genericName: "Media Streaming Receiver",
@@ -53,7 +53,7 @@ makeWrapper ${electron}/bin/electron $out/bin/fcast-receiver \\
   --add-flags $out/lib/node_modules/fcast-receiver/dist/bundle.js
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "FCast Receiver, an open-source media streaming receiver",
         longDescription: "FCast Receiver is a receiver for an open-source media streaming protocol, FCast, an alternative to Chromecast and AirPlay.\n",
         homepage: "https://fcast.org/",
@@ -66,7 +66,7 @@ makeWrapper ${electron}/bin/electron $out/bin/fcast-receiver \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

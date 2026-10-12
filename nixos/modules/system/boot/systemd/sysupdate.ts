@@ -39,64 +39,64 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const utils = nix.arg($, "utils");
   const cfg = nix.thunk(() => nix.sel(config, "systemd", "sysupdate"));
-  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listToValue: nix.builtins.toString }))));
+  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listToValue: nix.builtins.toString }))));
   const sysupdateTransfers = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`sysupdate.d/${name}.transfer`),
       value: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         source: nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`${name}.transfer`), value)),
       })),
     }), nix.thunk(() => nix.sel(cfg, "transfers"))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       systemd: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         sysupdate: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd-sysupdate"), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             description: "Atomically update the host OS, container images, portable service\nimages or other sources.\n\nIf enabled, updates are triggered in regular intervals via a\n`systemd.timer` unit.\n\nPlease see {manpage}`systemd-sysupdate(8)` for more details.\n",
           })),
           timerConfig: nix.thunk(() => nix.update(nix.sel(utils, "systemdUtils", "unitOptions", "timerOptions", "options", "timerConfig"), {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: nix.thunk(() => ({})),
             description: "The timer configuration for performing the update.\n\nBy default, the upstream configuration is used:\n<https://github.com/systemd/systemd/blob/main/units/systemd-sysupdate.timer>\n",
           })),
           reboot: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "automatically rebooting after an update"), {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Whether to automatically reboot after an update.\n\nIf set to `true`, the system will automatically reboot via a\n`systemd.timer` unit but only after a new version was installed.\n\nThis uses a unit completely separate from the one performing the\nupdate because it is typically advisable to download updates\nregularly while the system is up, but delay reboots until the\nappropriate time (i.e. typically at night).\n\nSet this to `false` if you do not want to reboot after an update. This\nis useful when you update a container image or another source where\nrebooting is not necessary in order to finalize the update.\n",
             })),
             timerConfig: nix.thunk(() => nix.update(nix.sel(utils, "systemdUtils", "unitOptions", "timerOptions", "options", "timerConfig"), {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               description: "The timer configuration for rebooting after an update.\n\nBy default, the upstream configuration is used:\n<https://github.com/systemd/systemd/blob/main/units/systemd-sysupdate-reboot.timer>\n",
             })),
           })),
           transfers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.sel(format, "type")));
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "10-uki": nix.thunk(() => ({
-                  __proto__: pos$12,
-                  Transfer: nix.thunk(() => ({ __proto__: pos$9, ProtectVersion: "%A" })),
+                  [nix.POS]: pos$12,
+                  Transfer: nix.thunk(() => ({ [nix.POS]: pos$9, ProtectVersion: "%A" })),
                   Source: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     Type: "url-file",
                     Path: "https://download.example.com/",
                     MatchPattern: nix.thunk(() => ["nixos_@v+@l-@d.efi", "nixos_@v+@l.efi", "nixos_@v.efi"]),
                   })),
                   Target: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     Type: "regular-file",
                     Path: "/EFI/Linux",
                     PathRelativeTo: "boot",
@@ -114,16 +114,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => nix.sel(config, "systemd", "package", "withSysupdate")),
             message: "Cannot enable systemd-sysupdate with systemd package not built with sysupdate support",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           additionalUpstreamSystemUnits: nix.thunk(() => [
             "systemd-sysupdate.service",
             "systemd-sysupdate.timer",
@@ -132,31 +132,31 @@ export default nix.lambda((args) => (() => {
             "systemd-sysupdated.service",
           ]),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "systemd-sysupdated": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               aliases: nix.thunk(() => ["dbus-org.freedesktop.sysupdate1.service"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnupgMinimal"))]),
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "systemd-sysupdate": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => nix.sel(cfg, "timerConfig")),
             })),
             "systemd-sysupdate-reboot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "reboot", "enable")), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => nix.sel(cfg, "reboot", "timerConfig")),
               })))),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$25, etc: sysupdateTransfers })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$25, etc: sysupdateTransfers })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

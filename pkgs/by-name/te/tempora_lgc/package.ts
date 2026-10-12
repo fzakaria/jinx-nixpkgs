@@ -17,29 +17,29 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const srcs = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode-bold-italic.otf",
         sha256: "1yfbi62j6gjmzglxz29m6x6lxqpxghcqjjh916qn8in74ba5v0gq",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode-bold.otf",
         sha256: "0bfbl1h9h1022km2rg1zwl9lpabhnwdsvzdp0bwmf0wbm62550cp",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode-italic.otf",
         sha256: "10m9j4bvr6c4zp691wxm4hvzhph2zlfsxk1nmbsb9vn1i6vfgz04",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode.otf",
         sha256: "0iwa8wyydcpjss6d1jy4jibqxpvzph4vmaxwwmndpsqy1fz64y9i",
       })))),
   ]);
   const nativeBuildInputs = [];
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       name: "tempora-lgc",
       nativeBuildInputs: nativeBuildInputs,
       srcs: srcs,
@@ -50,7 +50,7 @@ cp ${nix.builtins.toString(srcs)} "$out/share/fonts/opentype/public"
       outputHashMode: "recursive",
       outputHash: "1kwj31cjgdirqvh6bxs4fnvvr1ppaz6z8w40kvhkivgs69jglmzw",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tempora font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

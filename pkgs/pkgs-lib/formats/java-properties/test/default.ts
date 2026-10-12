@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const mapAttrs = nix.thunk(() => nix.attr(lib, "mapAttrs"));
   const javaProperties = nix.thunk(() => nix.app(nix.sel(formats, "javaProperties"), nix.thunk(() => ({}))));
   const input = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     foo: "bar",
     "empty value": "",
     "typical.dot.syntax": "com.sun.awt",
@@ -47,7 +47,7 @@ value
     "الجبر": "أكثر من مجرد أرقام",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`pkgs.formats.javaProperties-test-${nix.sel(jdk, "name")}`),
       nativeBuildInputs: nix.thunk(() => [jdk, glibcLocales]),
       __structuredAttrs: true,
@@ -60,7 +60,7 @@ ${value}
 
 `, input)))))),
       src: nix.thunk(() => nix.app(nix.sel(lib, "sources", "sourceByGlobs"), nix.path(here, "./."), nix.thunk(() => ["**/*.java"]))),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "en_US.UTF-8" })),
       buildPhase: "javac Main.java\n",
       doCheck: true,
       checkPhase: "cat -v $properties\njava Main $properties >actual\ndiff -U3 <(printf \"%s\" \"$expected\") actual\n",

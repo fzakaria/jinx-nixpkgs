@@ -16,27 +16,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "aurral",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hougo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             aurral: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
-              environment: nix.thunk(() => ({ __proto__: pos$2, DOWNLOAD_FOLDER: "/var/lib/aurral-downloads" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$2, DOWNLOAD_FOLDER: "/var/lib/aurral-downloads" })),
             })),
           })),
         };

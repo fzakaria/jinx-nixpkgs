@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mklittlefs",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "earlephilhower",
           repo: "mklittlefs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `),
       makeFlags: nix.thunk(() => ["BUILD_CONFIG_NAME=-nixos"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CPPFLAGS: nix.thunk(() => nix.add("-DLFS_NAME_MAX=255", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Wno-error=vla-cxx-extension"))),
       })),
       enableParallelBuilding: true,
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to build and unpack littlefs images",
         homepage: "https://github.com/earlephilhower/mklittlefs",
         changelog: nix.thunk(() => nix.str`https://github.com/earlephilhower/mklittlefs/releases/tag/${nix.sel(finalAttrs, "version")}`),

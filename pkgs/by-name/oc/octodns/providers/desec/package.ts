@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rootshell-labs",
           repo: "octodns-desec",
           tag: version,
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [octodns, requests]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, OCTODNS_RELEASE: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, OCTODNS_RELEASE: 1n }));
       const pythonImportsCheck = nix.thunk(() => ["octodns_desec"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "deSEC DNS provider for octoDNS",
         homepage: "https://github.com/rootshell-labs/octodns-desec",
         changelog: nix.thunk(() => nix.str`https://github.com/rootshell-labs/octodns-desec/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "octodns"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const cyrus_sasl = nix.arg($, "cyrus_sasl");
   const openldap = nix.arg($, "openldap");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kldap",
       extraBuildInputs: nix.thunk(() => [cyrus_sasl, openldap]),
     })));

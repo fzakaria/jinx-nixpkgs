@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pname = "bloomrpc";
   const version = "1.5.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/uw-labs/${pname}/releases/download/${version}/BloomRPC-${version}.AppImage`),
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
       hash: "sha512-PebdYDpcplPN5y3mRu1mG6CXenYfYvBXNLgIGEr7ZgKnR5pIaOfJNORSNYSdagdGDb/B1sxuKfX4+4f2cqgb6Q==",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       src: src,
       version: version,
@@ -35,7 +35,7 @@ substituteInPlace $out/share/applications/${pname}.desktop \\
   --replace 'Exec=AppRun' 'Exec=${pname}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI Client for GRPC Services",
         longDescription: "Inspired by Postman and GraphQL Playground BloomRPC aims to provide the simplest\nand most efficient developer experience for exploring and querying your GRPC services.\n",
         homepage: "https://github.com/uw-labs/bloomrpc",

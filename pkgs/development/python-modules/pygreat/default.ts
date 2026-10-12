@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greatscottgadgets",
           repo: "libgreat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pygreat"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for talking with libGreat devices",
         homepage: "https://github.com/greatscottgadgets/libgreat/",
         changelog: nix.thunk(() => nix.str`https://github.com/greatscottgadgets/libgreat/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

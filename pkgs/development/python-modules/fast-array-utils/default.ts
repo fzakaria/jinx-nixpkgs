@@ -36,22 +36,22 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fast-array-utils",
       version: "1.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scverse",
           repo: "fast-array-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9tB8cV3i9WPbdLeS5/FmQzLu8rk/jRVtUZ35X/XSCx8=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, MIN_REQS_OFFLINE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, MIN_REQS_OFFLINE: "1" })),
       "build-system": nix.thunk(() => [hatch_docstring_description, hatch_fancy_pypi_readme, hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [numpy]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           accel: nix.thunk(() => [numba]),
           dask: nix.thunk(() => [dask]),
           doc: nix.thunk(() => [furo, pytest, sphinx]),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         "fast_array_utils",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast array utilities",
         homepage: "https://icb-fast-array-utils.readthedocs-hosted.com",
         changelog: nix.thunk(() => nix.str`https://github.com/scverse/fast-array-utils/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

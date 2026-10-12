@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nspr = nix.arg($, "nspr");
   const mandoc = nix.arg($, "mandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pesign",
       version: "116",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhboot",
           repo: "pesign",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rhboot/pesign/commit/1f9e2fa0b4d872fdd01ca3ba81b04dfb1211a187.patch?full_index=1",
             hash: "sha256-viVM4Z0jAEAWC3EdJVHcWe21aQskH5XE85lOd6Xd/qU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/rhboot/pesign/commit/419d63a8b6434f94b57730bb8a58a32a0bb199aa.patch?full_index=1",
             hash: "sha256-/o0QknZ1IDFwmsQAt1IENx7tr8WRNJS3wl84cHzprzA=",
           })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["INSTALLROOT=$(out)"]),
       postInstall: "mv $out/usr/bin $out/bin\nmv $out/usr/share $out/share\n\nrm -rf $out/usr\nrm -rf $out/etc\nrm -rf $out/run\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Signing tools for PE-COFF binaries. Compliant with the PE and Authenticode specifications",
         homepage: "https://github.com/rhboot/pesign",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

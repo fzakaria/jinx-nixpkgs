@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const bundlerEnv = nix.arg($, "bundlerEnv");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ __proto__: pos$1, name: "uniscribe", gemdir: nix.path(here, "./.") }))));
+  const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "uniscribe", gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uniscribe",
       version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "uniscribe", "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
 makeWrapper ${rubyEnv}/bin/uniscribe $out/bin/uniscribe
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "uniscribe")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Explains Unicode characters/code points: Displays their name, category, and shows compositions",
         mainProgram: "uniscribe",
         homepage: "https://github.com/janlelis/uniscribe",

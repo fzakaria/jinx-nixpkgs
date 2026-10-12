@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const sexpp = nix.arg($, "sexpp");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rnp",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rnpgp",
           repo: "rnp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`echo "v${nix.sel(finalAttrs, "version")}" > version.txt
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rnpgp/rnp",
         description: "High performance C++ OpenPGP library, fully compliant to RFC 4880",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

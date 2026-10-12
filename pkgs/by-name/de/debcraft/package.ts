@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const help2man = nix.arg($, "help2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "debcraft",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "debcraft",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace debcraft.sh --replace-fail \\\n  'DEBCRAFT_LIB_DIR=\"/usr/share/debcraft\"' \\\n  \"DEBCRAFT_LIB_DIR=\\\"$out/share/debcraft\\\"\"\n\n# their Makefile installs in DESTDIR/usr for some reason\nsubstituteInPlace Makefile --replace-fail '$(DESTDIR)/usr' '$(DESTDIR)'\n",
       preBuild: "# the makefile runs help2man on the script, which needs it to be executable\n# (and the shebang would need to be patched later anyways)\npatchShebangs debcraft.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy, fast and secure way to build Debian packages",
         homepage: "https://salsa.debian.org/debian/debcraft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "types-lxml",
       version: "2026.01.01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abelcheung",
           repo: "types-lxml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [pdm_backend]),
       dependencies: nix.thunk(() => [cssselect, beautifulsoup4, types_html5lib, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mypy: nix.thunk(() => [mypy]),
         pyright: nix.thunk(() => [pyright]),
       })),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
         "test_index_arg_bad_1",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Complete lxml external type annotation",
         homepage: "https://github.com/abelcheung/types-lxml",
         changelog: nix.thunk(() => nix.str`https://github.com/abelcheung/types-lxml/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

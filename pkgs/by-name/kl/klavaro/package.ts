@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const intltool = nix.arg($, "intltool");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "klavaro",
       version: "3.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/klavaro/klavaro-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-hxh+SdMBxRDmlkCYzbYSEmvwMNKodf15nq3K0+rlbas=",
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for f in \"$out\"/bin/*; do\n  if isELF \"$f\"; then\n    patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$f\"\n  fi\ndone\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free touch typing tutor program",
         mainProgram: "klavaro",
         homepage: "http://klavaro.sourceforge.net/",

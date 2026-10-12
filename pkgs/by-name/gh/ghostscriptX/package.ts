@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["cupsSupport", 6, 3], ["x11
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ghostscript = nix.arg($, "ghostscript");
-  return nix.app(nix.sel(ghostscript, "override"), nix.thunk(() => ({ __proto__: pos$1, cupsSupport: true, x11Support: true })));
+  return nix.app(nix.sel(ghostscript, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cupsSupport: true, x11Support: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

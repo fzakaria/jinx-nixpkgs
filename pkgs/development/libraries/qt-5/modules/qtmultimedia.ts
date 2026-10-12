@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const wayland = nix.arg($, "wayland");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qtmultimedia",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       })()),
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       qmakeFlags: nix.thunk(() => ["GST_VERSION=1.0"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$1, NIX_LDFLAGS: "-lobjc" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_LDFLAGS: "-lobjc" })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=qtmultimedia.ts.map

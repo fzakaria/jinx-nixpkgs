@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "goread",
       version: "1.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TypicalAM",
           repo: "goread",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2C/PejWCwLdWu9n2hpbm3u/UrD56JCJqG+A7xnn/bP4=",
         })))),
       vendorHash: "sha256-3H2n/VsJHZ/69YR6P38B36mFz85cNHaTtT9N0YQOVew=",
-      env: nix.thunk(() => ({ __proto__: pos$2, TEST_OFFLINE_ONLY: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, TEST_OFFLINE_ONLY: 1n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Beautiful program to read your RSS/Atom feeds right in the terminal",
         homepage: "https://github.com/TypicalAM/goread",
         changelog: nix.thunk(() => nix.str`https://github.com/TypicalAM/goread/releases/tag/v${nix.sel(finalAttrs, "version")}`),

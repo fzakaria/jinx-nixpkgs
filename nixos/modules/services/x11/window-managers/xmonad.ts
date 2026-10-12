@@ -44,18 +44,18 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(self, "xmonad-contrib")),
       nix.thunk(() => nix.sel(self, "xmonad-extras")),
     ])));
-  const xmonad_vanilla = nix.thunk(() => nix.app(nix.sel(pkgs, "xmonad-with-packages", "override"), nix.thunk(() => ({ __proto__: pos$1, ghcWithPackages: ghcWithPackages, packages: packages }))));
+  const xmonad_vanilla = nix.thunk(() => nix.app(nix.sel(pkgs, "xmonad-with-packages", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ghcWithPackages: ghcWithPackages, packages: packages }))));
   const xmonad_config = nix.thunk(() => (() => {
     const xmonadAndPackages = (self) => nix.concat([nix.thunk(() => nix.sel(self, "xmonad"))], nix.app(packages, self));
     const xmonadEnv = nix.thunk(() => nix.app(ghcWithPackages, xmonadAndPackages));
     const configured = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeHaskellBin"), "xmonad", nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ghc: nix.thunk(() => nix.sel(cfg, "haskellPackages", "ghc")),
         libraries: nix.thunk(() => nix.app(xmonadAndPackages, nix.thunk(() => nix.sel(cfg, "haskellPackages")))),
         ghcArgs: nix.thunk(() => nix.attr(cfg, "ghcArgs")),
       })), nix.thunk(() => nix.sel(cfg, "config"))));
     return nix.app(nix.sel(pkgs, "runCommand"), "xmonad", nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         preferLocalBuild: true,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
       })), nix.thunk(() => nix.add(nix.add(nix.str`install -D ${xmonadEnv}/share/man/man1/xmonad.1.gz $out/share/man/man1/xmonad.1.gz
@@ -66,9 +66,9 @@ makeWrapper ${configured}/bin/xmonad $out/bin/xmonad \\
   })());
   const xmonad = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "config"), null)) ? nix.force(xmonad_config) : nix.force(xmonad_vanilla)));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     meta: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [
@@ -80,18 +80,18 @@ makeWrapper ${configured}/bin/xmonad $out/bin/xmonad \\
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         xserver: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             xmonad: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "xmonad")),
               haskellPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   default: nix.thunk(() => nix.sel(pkgs, "haskellPackages")),
                   defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.haskellPackages")),
                   example: nix.thunk(() => nix.app(literalExpression, "pkgs.haskell.packages.ghc910")),
@@ -99,7 +99,7 @@ makeWrapper ${configured}/bin/xmonad $out/bin/xmonad \\
                   description: "haskellPackages used to build Xmonad and other packages.\nThis can be used to change the GHC version used to build\nXmonad and the packages listed in\n{var}`extraPackages`.\n",
                 })))),
               extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))))),
                   default: (self) => [],
                   defaultText: nix.thunk(() => nix.app(literalExpression, "self: []")),
@@ -107,13 +107,13 @@ makeWrapper ${configured}/bin/xmonad $out/bin/xmonad \\
                   description: "Extra packages available to ghc when rebuilding Xmonad. The\nvalue must be a function which receives the attrset defined\nin {var}`haskellPackages` as the sole argument.\n",
                 })))),
               enableContribAndExtras: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   default: false,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   description: "Enable xmonad-{contrib,extras} in Xmonad.",
                 })))),
               config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   default: null,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
@@ -123,13 +123,13 @@ makeWrapper ${configured}/bin/xmonad $out/bin/xmonad \\
                   example: "import XMonad\nimport XMonad.Util.EZConfig (additionalKeys)\nimport Control.Monad (when)\nimport Text.Printf (printf)\nimport System.Posix.Process (executeFile)\nimport System.Info (arch,os)\nimport System.Environment (getArgs)\nimport System.FilePath ((</>))\n\ncompiledConfig = printf \"xmonad-%s-%s\" arch os\n\nmyConfig = defaultConfig\n  { modMask = mod4Mask -- Use Super instead of Alt\n  , terminal = \"urxvt\" }\n  `additionalKeys`\n  [ ( (mod4Mask,xK_r), compileRestart True)\n  , ( (mod4Mask,xK_q), restart \"xmonad\" True ) ]\n\ncompileRestart resume = do\n  dirs  <- asks directories\n  whenX (recompile dirs True) $ do\n    when resume writeStateToFile\n    catchIO\n        ( do\n            args <- getArgs\n            executeFile (cacheDir dirs </> compiledConfig) False args Nothing\n        )\n\nmain = getDirectories >>= launch myConfig\n\n--------------------------------------------\n{- For versions before 0.17.0 use this instead -}\n--------------------------------------------\n-- compileRestart resume =\n--   whenX (recompile True) $\n--     when resume writeStateToFile\n--       *> catchIO\n--         ( do\n--             dir <- getXMonadDataDir\n--             args <- getArgs\n--             executeFile (dir </> compiledConfig) False args Nothing\n--         )\n--\n-- main = launch myConfig\n--------------------------------------------\n\n",
                 })))),
               enableConfiguredRecompile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   default: false,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   description: "Enable recompilation even if {option}`config` is set to a\nnon-null value. This adds the necessary Haskell dependencies (GHC with\npackages) to the xmonad binary's environment.\n",
                 })))),
               xmonadCliArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   default: [],
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
@@ -138,7 +138,7 @@ makeWrapper ${configured}/bin/xmonad $out/bin/xmonad \\
                   description: "Command line arguments passed to the xmonad binary.\n",
                 })))),
               ghcArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   default: [],
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
@@ -152,16 +152,16 @@ makeWrapper ${configured}/bin/xmonad $out/bin/xmonad \\
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           xserver: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               session: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   name: "xmonad",
                   start: nix.thunk(() => nix.str`systemd-cat -t xmonad -- ${xmonad}/bin/xmonad ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "xmonadCliArgs")))} &
 waitPID=$!
@@ -171,7 +171,7 @@ waitPID=$!
             })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$21, systemPackages: nix.thunk(() => [xmonad]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$21, systemPackages: nix.thunk(() => [xmonad]) })),
       })))),
   };
 })(), formals$1);

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "pvr.hts";
       const version = "21.2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-pvr",
           repo: "pvr.hts",
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -28,20 +28,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/kodi-pvr/pvr.hts/commit/b8fb7f6cbe9e3e9ea2737dc465a70fb4bb0951eb.patch?full_index=1",
             hash: "sha256-GgdEQUwwebQVjsEJAX9V7NRe954HCNMggNUcik8j+lU=",
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kodi-pvr/pvr.hts",
         description: "Kodi's Tvheadend HTSP client addon",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$4, pname, namespace, version, src, patches, meta };
+      return { [nix.POS]: pos$4, pname, namespace, version, src, patches, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

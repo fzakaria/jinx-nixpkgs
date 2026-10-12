@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "3.5.3";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "xdebug",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xdebug",
           repo: "xdebug",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       zendExtension: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/xdebug/xdebug/releases/tag/${version}`),
         description: "Provides functions for function traces and profiling",
         homepage: "https://xdebug.org/",

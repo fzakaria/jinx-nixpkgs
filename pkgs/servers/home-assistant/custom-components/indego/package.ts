@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "indego";
       const version = "6.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sander1988",
           repo: "Indego",
           tag: version,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [pyindego]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bosch Indego lawn mower component",
         changelog: nix.thunk(() => nix.str`https://github.com/sander1988/Indego/releases/tag/${version}`),
         homepage: "https://github.com/sander1988/Indego",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "hexa"))];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const dropNullValues = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (value) => !nix.eq(value, null)));
   const commonServiceSettings = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     DynamicUser: true,
     User: "tlsrpt",
     Restart: "always",
@@ -110,56 +110,56 @@ export default nix.lambda((args) => (() => {
     SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged @resources"]),
   }));
   const collectdConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "tlsrpt-collectd.cfg", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       tlsrpt_collectd: nix.thunk(() => nix.app(dropNullValues, nix.thunk(() => nix.sel(cfg, "collectd", "settings")))),
     }))));
   const fetcherConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "tlsrpt-fetcher.cfg", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       tlsrpt_fetcher: nix.thunk(() => nix.app(dropNullValues, nix.thunk(() => nix.sel(cfg, "fetcher", "settings")))),
     }))));
   const reportdConfigFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "tlsrpt-reportd.cfg", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       tlsrpt_reportd: nix.thunk(() => nix.app(dropNullValues, nix.thunk(() => nix.sel(cfg, "reportd", "settings")))),
     }))));
   return {
-    __proto__: pos$65,
+    [nix.POS]: pos$65,
     options: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       services: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         tlsrpt: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the TLSRPT services")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "tlsrpt-reporter", nix.thunk(() => ({})))),
           collectd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       storage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "sqlite:///var/lib/tlsrpt/collectd.sqlite",
                           description: "Storage backend definition.\n",
                         })))),
                       socketname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(types, "path")),
                           default: "/run/tlsrpt/collectd.sock",
                           description: "Path at which the UNIX socket will be created.\n",
                         })))),
                       socketmode: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "0220",
                           description: "Permissions on the UNIX socket.\n",
                         })))),
                       log_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warning", "error", "critical"]))),
                           default: "info",
                           description: "Level of log messages to emit.\n",
@@ -170,7 +170,7 @@ export default nix.lambda((args) => (() => {
                 description: "Flags from {manpage}`tlsrpt-collectd(1)` as key-value pairs.\n",
               })))),
             extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -180,23 +180,23 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           fetcher: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       storage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: nix.thunk(() => nix.sel(config, "services", "tlsrpt", "collectd", "settings", "storage")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.tlsrpt.collectd.settings.storage\n")),
                           description: "Path to the collectd sqlite database.\n",
                         })))),
                       log_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warning", "error", "critical"]))),
                           default: "info",
                           description: "Level of log messages to emit.\n",
@@ -208,47 +208,47 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           reportd: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       dbname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "/var/lib/tlsrpt/reportd.sqlite",
                           description: "Path to the sqlite database.\n",
                         })))),
                       fetchers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "tlsrpt-fetcher")),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.getExe' cfg.package \"tlsrpt-fetcher\"\n")),
                           description: "Comma-separated list of fetcher programs that retrieve collectd data.\n",
                         })))),
                       log_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["debug", "info", "warning", "error", "critical"]))),
                           default: "info",
                           description: "Level of log messages to emit.\n",
                         })))),
                       organization_name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "ACME Corp.",
                           description: "Name of the organization sending out the reports.\n",
                         })))),
                       contact_info: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "smtp-tls-reporting@example.com",
                           description: "Contact information embedded into the reports.\n",
                         })))),
                       http_script: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -258,13 +258,13 @@ export default nix.lambda((args) => (() => {
                           description: "Call to an HTTPS client, that accepts the URL on the commandline and the request body from stdin.\n",
                         })))),
                       sender_address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           example: "noreply@example.com",
                           description: "Sender address used for reports.\n",
                         })))),
                       sendmail_script: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(types, null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -279,7 +279,7 @@ export default nix.lambda((args) => (() => {
                 description: "Flags from {manpage}`tlsrpt-reportd(1)` as key-value pairs.\n",
               })))),
             extraFlags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -289,7 +289,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           configurePostfix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to configure permissions to allow integration with Postfix.\n",
@@ -299,22 +299,22 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(config, "services", "postfix", "enable")))) && nix.asBool(nix.sel(cfg, "configurePostfix")))), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             users: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               users: nix.thunk(() => ({
-                __proto__: pos$38,
-                postfix: nix.thunk(() => ({ __proto__: pos$37, extraGroups: nix.thunk(() => ["tlsrpt"]) })),
+                [nix.POS]: pos$38,
+                postfix: nix.thunk(() => ({ [nix.POS]: pos$37, extraGroups: nix.thunk(() => ["tlsrpt"]) })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               postfix: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   main: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     smtp_tlsrpt_enable: true,
                     smtp_tlsrpt_socket_name: nix.thunk(() => nix.sel(cfg, "collectd", "settings", "socketname")),
                   })),
@@ -322,13 +322,13 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               services: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 "tlsrpt-reportd": nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     ReadWritePaths: nix.thunk(() => ["/var/lib/postfix/queue/maildrop"]),
                     SupplementaryGroups: nix.thunk(() => ["postdrop"]),
                   })),
@@ -337,36 +337,36 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             environment: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               etc: nix.thunk(() => ({
-                __proto__: pos$52,
-                "tlsrpt/collectd.cfg": nix.thunk(() => ({ __proto__: pos$49, source: collectdConfigFile })),
-                "tlsrpt/fetcher.cfg": nix.thunk(() => ({ __proto__: pos$50, source: fetcherConfigFile })),
-                "tlsrpt/reportd.cfg": nix.thunk(() => ({ __proto__: pos$51, source: reportdConfigFile })),
+                [nix.POS]: pos$52,
+                "tlsrpt/collectd.cfg": nix.thunk(() => ({ [nix.POS]: pos$49, source: collectdConfigFile })),
+                "tlsrpt/fetcher.cfg": nix.thunk(() => ({ [nix.POS]: pos$50, source: fetcherConfigFile })),
+                "tlsrpt/reportd.cfg": nix.thunk(() => ({ [nix.POS]: pos$51, source: reportdConfigFile })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               users: nix.thunk(() => ({
-                __proto__: pos$55,
-                tlsrpt: nix.thunk(() => ({ __proto__: pos$54, isSystemUser: true, group: "tlsrpt" })),
+                [nix.POS]: pos$55,
+                tlsrpt: nix.thunk(() => ({ [nix.POS]: pos$54, isSystemUser: true, group: "tlsrpt" })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$56, tlsrpt: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$56, tlsrpt: nix.thunk(() => ({})) })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               services: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 "tlsrpt-collectd": nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   description: "TLSRPT datagram collector",
                   documentation: nix.thunk(() => ["man:tlsrpt-collectd(1)"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   restartTriggers: nix.thunk(() => [collectdConfigFile]),
                   serviceConfig: nix.thunk(() => nix.update(commonServiceSettings, {
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "tlsrpt-collectd")),
                       ], nix.sel(cfg, "collectd", "extraFlags"))))),
@@ -379,13 +379,13 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "tlsrpt-reportd": nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   description: "TLSRPT report generator",
                   documentation: nix.thunk(() => ["man:tlsrpt-reportd(1)"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   restartTriggers: nix.thunk(() => [reportdConfigFile]),
                   serviceConfig: nix.thunk(() => nix.update(commonServiceSettings, {
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     ExecStart: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
                         nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "tlsrpt-reportd")),
                       ], nix.sel(cfg, "reportd", "extraFlags"))))),

@@ -168,9 +168,9 @@ export default nix.lambda((args) => (() => {
   const mkBinName = (client) => (name) => (nix.asBool((nix.asBool(nix.eq(nix.sel(client, "bin", "suffix"), "")) || nix.asBool(nix.eq(nix.sel(client, "bin", "suffix"), "netbird")))) ? nix.force(name) : nix.str`${name}-${nix.sel(client, "bin", "suffix")}`);
   const nixosConfig = config;
   return {
-    __proto__: pos$104,
+    [nix.POS]: pos$104,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "nazarewk"))];
@@ -181,22 +181,22 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkAliasOptionModule, nix.thunk(() => ["services", "netbird", "tunnels"]), nix.thunk(() => ["services", "netbird", "clients"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       services: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         netbird: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: bool,
               default: false,
               description: "Enables backward-compatible NetBird client service.\n\nThis is strictly equivalent to:\n\n```nix\nservices.netbird.clients.default = {\n  port = 51820;\n  name = \"netbird\";\n  interface = \"wt0\";\n  hardened = false;\n};\n```\n",
             })))),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "netbird", nix.thunk(() => ({})))),
           ui: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: bool,
                 default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "services", "displayManager", "sessionPackages"), [])) || nix.asBool(nix.sel(config, "services", "xserver", "enable")))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.displayManager.sessionPackages != [ ] || config.services.xserver.enable\n")),
@@ -205,82 +205,82 @@ export default nix.lambda((args) => (() => {
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "netbird-ui", nix.thunk(() => ({})))),
           })),
           useRoutingFeatures: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["none", "client", "server", "both"]))),
               default: "none",
               example: "server",
               description: "Enables settings required for NetBird's routing features: Network Resources, Network Routes & Exit Nodes.\n\nWhen set to `client` or `both`, reverse path filtering will be set to loose instead of strict.\nWhen set to `server` or `both`, IP forwarding will be enabled.\n",
             })))),
           clients: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     const config_1 = nix.arg($_1, "config");
                     const client = config_1;
                     return {
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       options: nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: port,
                             example: nix.thunk(() => nix.app(literalExpression, "51820")),
                             description: "Port the NetBird client listens on.\n",
                           })))),
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             type: str,
                             default: name,
                             description: "Primary name for use (as a suffix) in:\n- systemd service name,\n- hardened user name and group,\n- [systemd `*Directory=`](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#RuntimeDirectory=) names,\n- desktop application identification,\n",
                           })))),
                         "dns-resolver": nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$8,
+                              [nix.POS]: pos$8,
                               type: nix.thunk(() => nix.app(nullOr, str)),
                               default: null,
                               example: "127.0.0.123",
                               description: "An explicit address that NetBird will serve `*.netbird.cloud.` (usually) entries on.\n\nNetBird serves DNS on it's own (dynamic) client address by default.\n",
                             })))),
                           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$9,
+                              [nix.POS]: pos$9,
                               type: port,
                               default: 53n,
                               description: "A port to serve DNS entries on when `dns-resolver.address` is enabled.\n",
                             })))),
                         })),
                         interface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: str,
                             default: nix.thunk(() => nix.str`nb-${nix.sel(client, "name")}`),
                             description: "Name of the network interface managed by this client.\n",
                             apply: (iface) => nix.app(nix.sel(lib, "throwIfNot"), nix.thunk(() => nix.le(nix.builtins.stringLength(iface), 15n)), "Network interface name must be 15 characters or less", iface),
                           })))),
                         environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             type: nix.thunk(() => nix.app(attrsOf, str)),
                             defaultText: nix.thunk(() => nix.app(literalExpression, "{\n  NB_STATE_DIR = client.dir.state;\n  NB_CONFIG = \"${client.dir.state}/config.json\";\n  NB_DAEMON_ADDR = \"unix://${client.dir.runtime}/sock\";\n  NB_INTERFACE_NAME = client.interface;\n  NB_LOG_FILE = mkOptionDefault \"console\";\n  NB_LOG_LEVEL = client.logLevel;\n  NB_SERVICE = client.service.name;\n  NB_WIREGUARD_PORT = toString client.port;\n} // optionalAttrs (client.dns-resolver.address != null) {\n  NB_DNS_RESOLVER_ADDRESS = \"${client.dns-resolver.address}:${toString client.dns-resolver.port}\";\n}\n")),
                             description: "Environment for the netbird service, used to pass configuration options.\n",
                           })))),
                         autoStart: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: bool,
                             default: true,
                             description: "Start the service with the system.\n\nAs of 2024-02-13 it is not possible to start a NetBird client daemon without immediately\nconnecting to the network, but it is [planned for a near future](https://github.com/netbirdio/netbird/projects/2#card-91718018).\n",
                           })))),
                         login: nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           enable: nix.thunk(() => nix.app(mkEnableOption, "automated login for NetBird client")),
                           setupKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$14,
+                              [nix.POS]: pos$14,
                               type: nix.thunk(() => nix.app(nullOr, str)),
                               default: null,
                               example: "/run/secrets/netbird-priv/setup-key",
                               description: "A Setup Key file path used for automated login of the machine.\n",
                             })))),
                           systemdDependencies: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$15,
+                              [nix.POS]: pos$15,
                               type: nix.thunk(() => nix.app(listOf, str)),
                               default: [],
                               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"sops-install-secrets.service\" ]\n")),
@@ -288,19 +288,19 @@ export default nix.lambda((args) => (() => {
                             })))),
                         })),
                         openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$17,
+                            [nix.POS]: pos$17,
                             type: bool,
                             default: true,
                             description: "Opens up firewall `port` for communication between NetBird peers directly over LAN or public IP,\nwithout using (internet-hosted) TURN servers as intermediaries.\n",
                           })))),
                         openInternalFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: bool,
                             default: true,
                             description: "Opens up internal firewall ports for the NetBird's network interface.\n",
                           })))),
                         hardened: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: bool,
                             default: true,
                             description: nix.thunk(() => nix.str`Hardened service:
@@ -319,15 +319,15 @@ Known security features that are not (yet) integrated into the module:
 `),
                           })))),
                         logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["panic", "fatal", "error", "warn", "warning", "info", "debug", "trace"]))),
                             default: "info",
                             description: "Log level of the NetBird daemon.",
                           })))),
                         ui: nix.thunk(() => ({
-                          __proto__: pos$22,
+                          [nix.POS]: pos$22,
                           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               type: bool,
                               default: nix.thunk(() => nix.sel(nixosConfig, "services", "netbird", "ui", "enable")),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "client.ui.enable")),
@@ -335,16 +335,16 @@ Known security features that are not (yet) integrated into the module:
                             })))),
                         })),
                         wrapper: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             type: package$,
                             internal: true,
                             default: nix.thunk(() => (() => {
                               const makeWrapperArgs = nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (key) => (value) => ["--set-default", key, value], nix.thunk(() => nix.sel(client, "environment"))))));
                               const mkBin = nix.thunk(() => nix.app(mkBinName, client));
                               return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                                  __proto__: pos$24,
+                                  [nix.POS]: pos$24,
                                   name: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "name")}-wrapper-${nix.sel(client, "name")}`),
-                                  meta: nix.thunk(() => ({ __proto__: pos$23, mainProgram: nix.thunk(() => nix.app(mkBin, "netbird")) })),
+                                  meta: nix.thunk(() => ({ [nix.POS]: pos$23, mainProgram: nix.thunk(() => nix.app(mkBin, "netbird")) })),
                                   nativeBuildInputs: nix.thunk(() => (() => {
                                     const w = nix.withScope(pkgs, null);
                                     return [nix.thunk(() => nix.lookup(w, "makeWrapper"))];
@@ -370,7 +370,7 @@ substitute ${nix.sel(cfg, "ui", "package")}/share/applications/netbird.desktop \
                             })()),
                           })))),
                         config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$26,
+                            [nix.POS]: pos$26,
                             type: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
                             defaultText: nix.thunk(() => nix.app(literalExpression, "{\n  DisableAutoConnect = !client.autoStart;\n  WgIface = client.interface;\n  WgPort = client.port;\n} // optionalAttrs (client.dns-resolver.address != null) {\n  CustomDNSAddress = \"${client.dns-resolver.address}:${toString client.dns-resolver.port}\";\n}\n")),
                             description: nix.thunk(() => nix.str`Additional configuration that exists before the first start and
@@ -391,60 +391,60 @@ or inspect existing file for a complete list of available configurations.
 `),
                           })))),
                         suffixedName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$27,
+                            [nix.POS]: pos$27,
                             type: str,
                             default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(client, "name"), "netbird")) ? nix.str`netbird-${nix.sel(client, "name")}` : nix.sel(client, "name"))),
                             description: "A systemd service name to use (without `.service` suffix).\n",
                           })))),
                         dir: nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           baseName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               type: str,
                               default: nix.thunk(() => nix.sel(client, "suffixedName")),
                               description: "A systemd service name to use (without `.service` suffix).\n",
                             })))),
                           state: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               type: path,
                               default: nix.thunk(() => nix.str`/var/lib/${nix.sel(client, "dir", "baseName")}`),
                               description: "A state directory used by NetBird client to store {file}`config.json`, {file}`state.json` & {file}`resolv.conf`.\n",
                             })))),
                           runtime: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$30,
+                              [nix.POS]: pos$30,
                               type: path,
                               default: nix.thunk(() => nix.str`/var/run/${nix.sel(client, "dir", "baseName")}`),
                               description: "A runtime directory used by NetBird client.\n",
                             })))),
                         })),
                         service: nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$32,
+                              [nix.POS]: pos$32,
                               type: str,
                               default: nix.thunk(() => nix.sel(client, "suffixedName")),
                               description: "A systemd service name to use (without `.service` suffix).\n",
                             })))),
                         })),
                         user: nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$34,
+                              [nix.POS]: pos$34,
                               type: str,
                               default: nix.thunk(() => nix.sel(client, "suffixedName")),
                               description: "A system user name for this client instance.\n",
                             })))),
                           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$35,
+                              [nix.POS]: pos$35,
                               type: str,
                               default: nix.thunk(() => nix.sel(client, "suffixedName")),
                               description: "A system group name for this client instance.\n",
                             })))),
                         })),
                         bin: nix.thunk(() => ({
-                          __proto__: pos$38,
+                          [nix.POS]: pos$38,
                           suffix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$37,
+                              [nix.POS]: pos$37,
                               type: str,
                               default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(client, "name"), "netbird")) ? nix.sel(client, "name") : "")),
                               description: "A system group name for this client instance.\n",
@@ -452,9 +452,9 @@ or inspect existing file for a complete list of available configurations.
                         })),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         environment: nix.thunk(() => nix.update({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           NB_STATE_DIR: nix.thunk(() => nix.sel(client, "dir", "state")),
                           NB_CONFIG: nix.thunk(() => nix.str`${nix.sel(client, "dir", "state")}/config.json`),
                           NB_DAEMON_ADDR: nix.thunk(() => nix.str`unix://${nix.sel(client, "dir", "runtime")}/sock`),
@@ -464,16 +464,16 @@ or inspect existing file for a complete list of available configurations.
                           NB_SERVICE: nix.thunk(() => nix.sel(client, "service", "name")),
                           NB_WIREGUARD_PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(client, "port")))),
                         }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(client, "dns-resolver", "address"), null)), nix.thunk(() => ({
-                            __proto__: pos$41,
+                            [nix.POS]: pos$41,
                             NB_DNS_RESOLVER_ADDRESS: nix.thunk(() => nix.str`${nix.sel(client, "dns-resolver", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(client, "dns-resolver", "port")))}`),
                           }))))),
                         config: nix.thunk(() => nix.update({
-                          __proto__: pos$42,
+                          [nix.POS]: pos$42,
                           DisableAutoConnect: nix.thunk(() => !nix.asBool(nix.sel(client, "autoStart"))),
                           WgIface: nix.thunk(() => nix.sel(client, "interface")),
                           WgPort: nix.thunk(() => nix.sel(client, "port")),
                         }, nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(client, "dns-resolver", "address"), null)), nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             CustomDNSAddress: nix.thunk(() => nix.str`${nix.sel(client, "dns-resolver", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(client, "dns-resolver", "port")))}`),
                           }))))),
                       })),
@@ -488,15 +488,15 @@ or inspect existing file for a complete list of available configurations.
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             services: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               netbird: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 clients: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   default: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     port: nix.thunk(() => nix.app(mkDefault, 51820n)),
                     interface: nix.thunk(() => nix.app(mkDefault, "wt0")),
                     name: nix.thunk(() => nix.app(mkDefault, "netbird")),
@@ -507,89 +507,89 @@ or inspect existing file for a complete list of available configurations.
             })),
           })))),
         nix.thunk(() => ({
-          __proto__: pos$79,
+          [nix.POS]: pos$79,
           boot: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             extraModulePackages: nix.thunk(() => nix.app(optional, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "clients"), {})) && nix.asBool(nix.app(versionOlder, nix.thunk(() => nix.sel(kernel, "version")), "5.6")))), nix.thunk(() => nix.sel(kernelPackages, "wireguard")))),
             kernel: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               sysctl: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "server")) || nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "both")))), nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   "net.ipv4.conf.all.forwarding": nix.thunk(() => nix.app(mkOverride, 97n, true)),
                   "net.ipv6.conf.all.forwarding": nix.thunk(() => nix.app(mkOverride, 97n, true)),
                 })))),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             systemPackages: nix.thunk(() => nix.app(toClientList, (client) => nix.sel(client, "wrapper"))),
             etc: nix.thunk(() => nix.app(toClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.str`${nix.sel(client, "dir", "baseName")}/config.d/50-nixos.json`), nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(client, "config")))),
                   mode: "0444",
                 }))))),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$65,
+            [nix.POS]: pos$65,
             dhcpcd: nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               denyInterfaces: nix.thunk(() => nix.app(toClientList, (client) => nix.sel(client, "interface"))),
             })),
             networkmanager: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               unmanaged: nix.thunk(() => nix.app(toClientList, (client) => nix.str`interface-name:${nix.sel(client, "interface")}`)),
             })),
             firewall: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               allowedUDPPorts: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(toClientList, (client) => nix.app(optional, nix.thunk(() => nix.sel(client, "openFirewall")), nix.thunk(() => nix.sel(client, "port"))))))),
               checkReversePath: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "client")) || nix.asBool(nix.eq(nix.sel(cfg, "useRoutingFeatures"), "both")))), "loose")),
               interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "networking", "firewall", "backend"), "firewalld")), nix.thunk(() => nix.app(listToAttrs, nix.thunk(() => nix.app(toClientList, (client) => ({
-                      __proto__: pos$63,
+                      [nix.POS]: pos$63,
                       name: nix.thunk(() => nix.sel(client, "interface")),
                       value: nix.thunk(() => ({
-                        __proto__: pos$62,
+                        [nix.POS]: pos$62,
                         allowedUDPPorts: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(client, "openInternalFirewall")), nix.thunk(() => [5353n, 22054n]))),
                       })),
                     }))))))),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             firewalld: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               zones: nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 netbird: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   interfaces: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(cfg, "clients")), nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (client) => nix.sel(client, "openFirewall"))),
                       nix.thunk(() => nix.sel(lib, "attrValues")),
                       nix.thunk(() => nix.app(nix.builtins.map, (client) => nix.sel(client, "interface"))),
                     ]))),
-                  ports: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$66, protocol: "udp", port: 5353n }))]),
+                  ports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$66, protocol: "udp", port: 5353n }))]),
                 })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             network: nix.thunk(() => ({
-              __proto__: pos$74,
+              [nix.POS]: pos$74,
               networks: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "networking", "useNetworkd")), nix.thunk(() => nix.app(toClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.str`50-netbird-${nix.sel(client, "interface")}`), nix.thunk(() => ({
-                      __proto__: pos$73,
-                      matchConfig: nix.thunk(() => ({ __proto__: pos$71, Name: nix.thunk(() => nix.sel(client, "interface")) })),
-                      linkConfig: nix.thunk(() => ({ __proto__: pos$72, Unmanaged: true, ActivationPolicy: "manual" })),
+                      [nix.POS]: pos$73,
+                      matchConfig: nix.thunk(() => ({ [nix.POS]: pos$71, Name: nix.thunk(() => nix.sel(client, "interface")) })),
+                      linkConfig: nix.thunk(() => ({ [nix.POS]: pos$72, Unmanaged: true, ActivationPolicy: "manual" })),
                     }))))))),
             })),
             services: nix.thunk(() => nix.app(toClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "service", "name")), nix.thunk(() => ({
-                  __proto__: pos$77,
+                  [nix.POS]: pos$77,
                   description: "A WireGuard-based mesh network that connects your devices into a single private network",
                   documentation: nix.thunk(() => ["https://netbird.io/docs/"]),
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "shadow"))], nix.app(optionals, nix.thunk(() => !nix.asBool(nix.sel(config, "services", "resolved", "enable"))), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openresolv"))])))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$75,
+                    [nix.POS]: pos$75,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(client, "wrapper")))} service run`),
                     Restart: "always",
                     RuntimeDirectory: nix.thunk(() => nix.sel(client, "dir", "baseName")),
@@ -599,19 +599,19 @@ or inspect existing file for a complete list of available configurations.
                     StateDirectoryMode: "0700",
                     WorkingDirectory: nix.thunk(() => nix.sel(client, "dir", "state")),
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$76, StartLimitInterval: 5n, StartLimitBurst: 10n })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$76, StartLimitInterval: 5n, StartLimitBurst: 10n })),
                   stopIfChanged: false,
                 }))))),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$85,
+          [nix.POS]: pos$85,
           systemd: nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             services: nix.thunk(() => nix.app(toClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "service", "name")), nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   environment: nix.thunk(() => ({
-                    __proto__: pos$80,
+                    [nix.POS]: pos$80,
                     SYSTEMD_UNIT: nix.thunk(() => nix.sel(client, "service", "name")),
                   })),
                   path: nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(config, "networking", "nftables", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nftables"))])), nix.app(optionals, nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "nftables", "enable"))), nix.thunk(() => [
@@ -621,29 +621,29 @@ or inspect existing file for a complete list of available configurations.
                 }))))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$84,
-            users: nix.thunk(() => nix.app(toHardenedClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "user", "name")), nix.thunk(() => ({ __proto__: pos$83, extraGroups: nix.thunk(() => ["systemd-journal"]) }))))),
+            [nix.POS]: pos$84,
+            users: nix.thunk(() => nix.app(toHardenedClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "user", "name")), nix.thunk(() => ({ [nix.POS]: pos$83, extraGroups: nix.thunk(() => ["systemd-journal"]) }))))),
           })),
         })),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(hardenedClients, {})), nix.thunk(() => ({
-            __proto__: pos$95,
+            [nix.POS]: pos$95,
             users: nix.thunk(() => ({
-              __proto__: pos$87,
+              [nix.POS]: pos$87,
               groups: nix.thunk(() => nix.app(toHardenedClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "user", "group")), nix.thunk(() => ({}))))),
               users: nix.thunk(() => nix.app(toHardenedClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "user", "name")), nix.thunk(() => ({
-                    __proto__: pos$86,
+                    [nix.POS]: pos$86,
                     isSystemUser: true,
                     home: nix.thunk(() => nix.sel(client, "dir", "state")),
                     group: nix.thunk(() => nix.sel(client, "user", "group")),
                   }))))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$92,
+              [nix.POS]: pos$92,
               services: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                   nix.thunk(() => nix.app(toHardenedClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "service", "name")), nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(client, "hardened")), nix.thunk(() => ({
-                          __proto__: pos$89,
+                          [nix.POS]: pos$89,
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$88,
+                            [nix.POS]: pos$88,
                             RuntimeDirectoryMode: "0750",
                             User: nix.thunk(() => nix.sel(client, "user", "name")),
                             Group: nix.thunk(() => nix.sel(client, "user", "group")),
@@ -655,9 +655,9 @@ or inspect existing file for a complete list of available configurations.
                           })),
                         }))))))),
                   nix.thunk(() => nix.app(toHardenedClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.str`${nix.sel(client, "service", "name")}-login`), nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(client, "hardened")), nix.thunk(() => ({
-                          __proto__: pos$91,
+                          [nix.POS]: pos$91,
                           serviceConfig: nix.thunk(() => ({
-                            __proto__: pos$90,
+                            [nix.POS]: pos$90,
                             User: nix.thunk(() => nix.sel(client, "user", "name")),
                             Group: nix.thunk(() => nix.sel(client, "user", "group")),
                             RemoveIPC: true,
@@ -669,9 +669,9 @@ or inspect existing file for a complete list of available configurations.
                 ]))),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$94,
+              [nix.POS]: pos$94,
               polkit: nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 extraConfig: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "services", "resolved", "enable")), nix.thunk(() => nix.str`// systemd-resolved access for NetBird clients
 polkit.addRule(function(action, subject) {
   var actions = [
@@ -692,25 +692,25 @@ polkit.addRule(function(action, subject) {
             })),
           })))),
         nix.thunk(() => ({
-          __proto__: pos$100,
+          [nix.POS]: pos$100,
           systemd: nix.thunk(() => ({
-            __proto__: pos$99,
+            [nix.POS]: pos$99,
             services: nix.thunk(() => nix.app(pipe, nix.thunk(() => nix.sel(cfg, "clients")), nix.thunk(() => [
                 nix.thunk(() => nix.app(filterAttrs, (_) => (client) => nix.sel(client, "login", "enable"))),
                 nix.thunk(() => nix.app(mapAttrs$, (_) => (client) => nix.app(nameValuePair, nix.thunk(() => nix.str`${nix.sel(client, "service", "name")}-login`), nix.thunk(() => ({
-                      __proto__: pos$98,
+                      [nix.POS]: pos$98,
                       after: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(client, "service", "name")}.service`)], nix.sel(client, "login", "systemdDependencies"))),
                       requires: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.sel(client, "service", "name")}.service`)], nix.sel(client, "login", "systemdDependencies"))),
                       wantedBy: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(client, "service", "name")}.service`)]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$96,
+                        [nix.POS]: pos$96,
                         Type: "oneshot",
                         RemainAfterExit: true,
                         LoadCredential: nix.thunk(() => [
                           nix.thunk(() => nix.str`setup-key:${nix.sel(client, "login", "setupKeyFile")}`),
                         ]),
                       })),
-                      environment: nix.thunk(() => ({ __proto__: pos$97, NB_SETUP_KEY_FILE: "%d/setup-key" })),
+                      environment: nix.thunk(() => ({ [nix.POS]: pos$97, NB_SETUP_KEY_FILE: "%d/setup-key" })),
                       script: nix.thunk(() => nix.str`set -x
 
 get_status() {
@@ -738,11 +738,11 @@ main "$@"
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$103,
+          [nix.POS]: pos$103,
           systemd: nix.thunk(() => ({
-            __proto__: pos$102,
+            [nix.POS]: pos$102,
             services: nix.thunk(() => nix.app(toClientAttrs, (client) => nix.app(nameValuePair, nix.thunk(() => nix.sel(client, "service", "name")), nix.thunk(() => ({
-                  __proto__: pos$101,
+                  [nix.POS]: pos$101,
                   preStart: nix.thunk(() => nix.str`set -eEuo pipefail
 ${nix.app(optionalString, nix.thunk(() => (nix.asBool(nix.eq(nix.sel(client, "logLevel"), "trace")) || nix.asBool(nix.eq(nix.sel(client, "logLevel"), "debug")))), "set -x")}
 

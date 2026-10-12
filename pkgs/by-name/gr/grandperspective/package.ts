@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "3.6",
       pname: "grandperspective",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           url: nix.thunk(() => nix.str`mirror://sourceforge/grandperspectiv/GrandPerspective-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.dmg`),
           hash: "sha256-DSdtaf5GN1PSIt8GTGrMUuaVI2C+ANKi78E1cxVrYTE=",
@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "mkdir -p \"$out/Applications/GrandPerspective.app\" \"$out/bin\"\ncp -R . \"$out/Applications/GrandPerspective.app\"\nmakeWrapper \"$out/Applications/GrandPerspective.app/Contents/MacOS/GrandPerspective\" \"$out/bin/grandperspective\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "grandperspective-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, gnugrep, common_updater_scripts]),
               text: "url=\"https://sourceforge.net/p/grandperspectiv/documentation/ci/master/tree/CHANGES.txt?format=raw\"\nversion=$(curl -s \"$url\" | grep -oP 'Version \\K[0-9.]+(?=,)' | head -n 1)\nupdate-source-version grandperspective \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source macOS application to analyze disk usage",
         longDescription: "GrandPerspective is a small utility application for macOS that graphically shows the disk usage within a file\nsystem. It can help you to manage your disk, as you can easily spot which files and folders take up the most\nspace. It uses a so called tree map for visualisation. Each file is shown as a rectangle with an area proportional to\nthe file's size. Files in the same folder appear together, but their placement is otherwise arbitrary.\n",
         mainProgram: "grandperspective",

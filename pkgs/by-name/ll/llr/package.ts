@@ -15,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "llr",
       version: "4.0.7b3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://jpenne.free.fr/llr4/llr${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}src.zip`),
           hash: "sha256-U6Mjpcq5Kdkx2f6tVQNBldsN4JiKXZqbil1Lg3Q5Asw=",
         })))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu11" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu11" })),
       postPatch: "substituteInPlace lprime.c \\\n  --replace-fail \"_chdir (buf)\" \"0/* _chdir (buf) */\"\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -39,7 +39,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm755 llr64 $out/bin/llr\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Primality proving program for numbers of the form N = k*b^n +/- 1, (k < b^n)",
         homepage: "http://jpenne.free.fr/index2.html",
         maintainers: nix.thunk(() => (() => {

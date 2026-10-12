@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const luaPackages = nix.arg($, "luaPackages");
   return (f) => (() => {
     const packages = nix.thunk(() => nix.app(f, luaPackages));
-    return nix.app(nix.sel(buildEnv, "override"), nix.thunk(() => ({ __proto__: pos$1, extraLibs: packages })));
+    return nix.app(nix.sel(buildEnv, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraLibs: packages })));
   })();
 })(), formals$1);
 //# sourceMappingURL=with-packages.ts.map

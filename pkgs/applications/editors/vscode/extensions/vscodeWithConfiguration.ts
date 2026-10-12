@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const nixExtsDrvs = nix.thunk(() => nix.app(extensionsFromVscodeMarketplace, nixExtensions));
     const mutExtsDrvs = nix.thunk(() => nix.app(extensionsFromVscodeMarketplace, mutableExtensions));
     const mutableExtsPaths = nix.thunk(() => nix.app(nix.sel(lib, "forEach"), mutExtsDrvs, (e) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         origin: nix.thunk(() => nix.str`${e}/share/vscode/extensions/${nix.sel(e, "vscodeExtUniqueId")}`),
         target: nix.thunk(() => nix.str`${vscodeExtsFolderName}/${nix.sel(e, "vscodeExtUniqueId")}-${nix.sel(nix.app(nix.sel(lib, "findSingle"), (ext) => nix.eq(nix.str`${nix.sel(ext, "publisher")}.${nix.sel(ext, "name")}`, nix.sel(e, "vscodeExtUniqueId")), "", "m", mutableExtensions), "version")}`),
       })));

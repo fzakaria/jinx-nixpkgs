@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "key";
       const version = "3.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KeYProject",
           repo: "key",
           tag: nix.thunk(() => nix.str`KeY-${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [jdk, gradle, makeWrapper, copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "KeY",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
             icon: "key",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Science"]),
           })))),
       ]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const doCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
       const nativeCheckInputs = nix.thunk(() => [z3]);
@@ -69,7 +69,7 @@ runHook postInstall
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const versionCheckProgramArg = "--show-properties";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Java formal verification tool",
         homepage: "https://www.key-project.org",
         changelog: "https://keyproject.github.io/key-docs/changelog/",
@@ -86,7 +86,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(jdk, "meta", "platforms")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

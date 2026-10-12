@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tagger";
       const version = "2024.6.0-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NickvisionApps",
           repo: "Tagger",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const executables = nix.thunk(() => ["NickvisionTagger.GNOME"]);
       const postInstall = "substituteInPlace NickvisionTagger.Shared/Linux/org.nickvision.tagger.desktop.in --replace '@EXEC@' \"NickvisionTagger.GNOME\"\ninstall -Dm444 NickvisionTagger.Shared/Resources/org.nickvision.tagger.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm444 NickvisionTagger.Shared/Resources/org.nickvision.tagger-symbolic.svg -t $out/share/icons/hicolor/symbolic/apps/\ninstall -Dm444 NickvisionTagger.Shared/Linux/org.nickvision.tagger.desktop.in -T $out/share/applications/org.nickvision.tagger.desktop\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy-to-use music tag (metadata) editor",
         homepage: "https://github.com/NickvisionApps/Tagger",
         mainProgram: "NickvisionTagger.GNOME",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

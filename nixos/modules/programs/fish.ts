@@ -87,10 +87,10 @@ export default nix.lambda((args) => (() => {
   const fishAbbrs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`abbr -a ${k} -- ${nix.app(nix.sel(lib, "escapeShellArg"), v)}`, nix.thunk(() => nix.sel(cfg, "shellAbbrs"))))));
   const fishAliases = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`alias ${k} ${nix.app(nix.sel(lib, "escapeShellArg"), v)}`, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => !nix.eq(v, null), nix.thunk(() => nix.sel(cfg, "shellAliases"))))))));
   const fishFunctions = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`fish/functions/${name}.fish`),
       value: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         source: nix.thunk(() => (() => {
           const body = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isPath"), value)) ? nix.app(nix.sel(lib, "readFile"), value) : nix.force(value)));
           return nix.app(indentFishFile, nix.thunk(() => nix.str`${name}.fish`), nix.thunk(() => nix.str`function ${name}
@@ -104,7 +104,7 @@ end
   const envLoginShellInit = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "loginShellInit", nix.thunk(() => nix.sel(cfge, "loginShellInit"))));
   const envInteractiveShellInit = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "interactiveShellInit", nix.thunk(() => nix.sel(cfge, "interactiveShellInit"))));
   const indentFishFile = (name) => (text) => nix.app(nix.sel(pkgs, "runCommandLocal"), name, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
       strictDeps: true,
       text: text,
@@ -115,62 +115,62 @@ fenv source /etc/fish/foreign-env/${file} > /dev/null
 set -e fish_function_path[1]
 `);
   const babelfishTranslate = (path) => (name) => nix.app(nix.sel(pkgs, "runCommandLocal"), nix.thunk(() => nix.str`${name}.fish`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "babelfish"))]),
     })), nix.thunk(() => nix.str`exec -a ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "babelfish")))} babelfish < ${path} > $out;`));
   return {
-    __proto__: pos$73,
+    [nix.POS]: pos$73,
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       programs: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         fish: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: false,
               description: "Whether to configure fish as an interactive shell.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fish", nix.thunk(() => ({})))),
           useBabelfish: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, the configured environment will be translated to native fish using [babelfish](https://github.com/bouk/babelfish).\nOtherwise, [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env) will be used.\n",
             })))),
-          generateCompletions: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "generating completion files from man pages"), { __proto__: pos$7, default: true, example: false })),
+          generateCompletions: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "generating completion files from man pages"), { [nix.POS]: pos$7, default: true, example: false })),
           extraCompletionPackages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.users.users.alice.packages")),
               description: "Additional packages to generate completions from, if {option}`programs.fish.generateCompletions` is enabled.\n",
             })))),
           vendor: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             config: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Whether fish should source configuration snippets provided by other packages.\n",
                 })))),
             })),
             completions: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Whether fish should use completion files provided by other packages.\n",
                 })))),
             })),
             functions: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Whether fish should autoload fish functions provided by other packages.\n",
@@ -178,9 +178,9 @@ set -e fish_function_path[1]
             })),
           })),
           shellAbbrs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$16, gco: "git checkout", npu: "nix-prefetch-url" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$16, gco: "git checkout", npu: "nix-prefetch-url" })),
               description: "Set of fish abbreviations.\n",
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -188,7 +188,7 @@ set -e fish_function_path[1]
               })()),
             })))),
           shellAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: nix.thunk(() => ({})),
               description: "Set of aliases for fish shell, which overrides {option}`environment.shellAliases`.\nSee {option}`environment.shellAliases` for an option format description.\n",
               type: nix.thunk(() => (() => {
@@ -197,28 +197,28 @@ set -e fish_function_path[1]
               })()),
             })))),
           shellFunctions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "A set of fish functions, with the attribute name being the function name. Function names cannot be reserved\nwords or have spaces. These are elements of fish syntax or builtin commands which are essential for the\noperations of the shell.\n\nSee the documentation for [fish functions](https://fishshell.com/docs/current/cmds/function.html) for further information.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$22,
-                ll: nix.thunk(() => ({ __proto__: pos$19, body: "ls -l $argv" })),
+                [nix.POS]: pos$22,
+                ll: nix.thunk(() => ({ [nix.POS]: pos$19, body: "ls -l $argv" })),
                 mcd: nix.thunk(() => ({
-                  __proto__: pos$21,
-                  modifiers: nix.thunk(() => ({ __proto__: pos$20, description: "Create a directory and set CWD" })),
+                  [nix.POS]: pos$21,
+                  modifiers: nix.thunk(() => ({ [nix.POS]: pos$20, description: "Create a directory and set CWD" })),
                   body: "command mkdir $argv\nif test $status = 0\n  switch $argv[(count $argv)]\n    case '-*'\n\n    case '*'\n      cd $argv[(count $argv)]\n      return\n  end\nend\n",
                 })),
               })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     options: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       body: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "The function body. You may provide a path or a string containing the fish function body.\n",
                         })))),
                       modifiers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
                           default: nix.thunk(() => ({})),
                           defaultText: "input for 'lib.cli.toCommandLine'",
@@ -228,25 +228,25 @@ set -e fish_function_path[1]
                   })))))),
             })))),
           shellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               default: "",
               description: "Shell script code called during fish shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           loginShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               default: "",
               description: "Shell script code called during fish login shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           interactiveShellInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               default: "",
               description: "Shell script code called during interactive fish shell initialisation.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             })))),
           promptInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               default: "",
               description: "Shell script code used to initialise fish prompt.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
@@ -255,11 +255,11 @@ set -e fish_function_path[1]
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         programs: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           fish: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             shellAliases: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfge, "shellAliases")))),
             interactiveShellInit: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "generateCompletions")), "# add completions generated by NixOS to $fish_complete_path\nbegin\n  # joins with null byte to accommodate all characters in paths, then respectively gets all paths before (exclusive) / after (inclusive) the first one including \"generated_completions\",\n  # splits by null byte, and then removes all empty lines produced by using 'string'\n  set -l prev (string join0 $fish_complete_path | string match --regex \"^.*?(?=\\x00[^\\x00]*generated_completions.*)\" | string split0 | string match -er \".\")\n  set -l post (string join0 $fish_complete_path | string match --regex \"[^\\x00]*generated_completions.*\" | string split0 | string match -er \".\")\n  set fish_complete_path $prev \"/etc/fish/generated_completions\" $post\nend\n"), nix.str`# prevent fish from generating completions on first run
 if not test -d $__fish_user_data_dir/generated_completions
@@ -269,11 +269,11 @@ end
           })),
         })),
         documentation: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           man: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             cache: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               generateAtRuntime: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             })),
@@ -281,42 +281,42 @@ end
         })),
         environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useBabelfish")), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   "fish/setEnvironment.fish": nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     source: nix.thunk(() => nix.app(babelfishTranslate, nix.thunk(() => nix.sel(config, "system", "build", "setEnvironment")), "setEnvironment")),
                   })),
                   "fish/shellInit.fish": nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     source: nix.thunk(() => nix.app(babelfishTranslate, envShellInit, "shellInit")),
                   })),
                   "fish/loginShellInit.fish": nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     source: nix.thunk(() => nix.app(babelfishTranslate, envLoginShellInit, "loginShellInit")),
                   })),
                   "fish/interactiveShellInit.fish": nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     source: nix.thunk(() => nix.app(babelfishTranslate, envInteractiveShellInit, "interactiveShellInit")),
                   })),
                 })),
               })))),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "useBabelfish"))), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$49,
-                  "fish/foreign-env/shellInit": nix.thunk(() => ({ __proto__: pos$46, source: envShellInit })),
-                  "fish/foreign-env/loginShellInit": nix.thunk(() => ({ __proto__: pos$47, source: envLoginShellInit })),
-                  "fish/foreign-env/interactiveShellInit": nix.thunk(() => ({ __proto__: pos$48, source: envInteractiveShellInit })),
+                  [nix.POS]: pos$49,
+                  "fish/foreign-env/shellInit": nix.thunk(() => ({ [nix.POS]: pos$46, source: envShellInit })),
+                  "fish/foreign-env/loginShellInit": nix.thunk(() => ({ [nix.POS]: pos$47, source: envLoginShellInit })),
+                  "fish/foreign-env/interactiveShellInit": nix.thunk(() => ({ [nix.POS]: pos$48, source: envInteractiveShellInit })),
                 })),
               })))),
             nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               etc: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 "fish/nixos-env-preinit.fish": nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   source: nix.thunk(() => (nix.asBool(nix.sel(cfg, "useBabelfish")) ? nix.app(indentFishFile, "nixos-env-preinit.fish", "# source the NixOS environment config\nif [ -z \"$__NIXOS_SET_ENVIRONMENT_DONE\" ]\n  source /etc/fish/setEnvironment.fish\nend\n") : nix.app(indentFishFile, "nixos-env-preinit.fish", nix.thunk(() => nix.str`# This happens before embedded:config.fish sets fish_function_path, so it is currently
 # unset. We set it and then completely erase it, leaving its configuration to embedded:config.fish
 set fish_function_path ${nix.sel(pkgs, "fishPlugins", "foreign-env")}/share/fish/vendor_functions.d
@@ -333,11 +333,11 @@ set -e fish_function_path
               })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               etc: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 "fish/config.fish": nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   source: nix.thunk(() => nix.app(indentFishFile, "config.fish", nix.thunk(() => nix.str`# /etc/fish/config.fish: DO NOT EDIT -- this file has been generated automatically.
 
 # if we haven't sourced the general config, do it
@@ -387,12 +387,12 @@ end
               })),
             })),
             nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   name: nix.thunk(() => nix.str`fish/functions/${name}.fish`),
                   value: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     source: nix.thunk(() => (() => {
                       const modifiers = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(value, "modifiers"))));
                       return nix.app(indentFishFile, nix.thunk(() => nix.str`${name}.fish`), nix.thunk(() => nix.str`function ${name} ${modifiers}
@@ -404,14 +404,14 @@ end
                 }), nix.thunk(() => nix.sel(cfg, "shellFunctions")))),
             })),
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "generateCompletions")), nix.thunk(() => ({
-                __proto__: pos$67,
+                [nix.POS]: pos$67,
                 etc: nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   "fish/generated_completions": nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     source: nix.thunk(() => (() => {
                       const generator = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "fish_completion-generator", nix.thunk(() => ({
-                          __proto__: pos$60,
+                          [nix.POS]: pos$60,
                           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                         })), "mkdir -p $out\nfish --no-config -c 'status get-file tools/create_manpage_completions.py' \\\n  > $out/create_manpage_completions.py\n"));
                       const generateCompletions = (package$) => nix.app(nix.sel(pkgs, "runCommandLocal"), nix.thunk(() => (() => {
@@ -422,10 +422,10 @@ end
                           const storeLength = nix.thunk(() => nix.add(nix.app(stringLength, storeDir), 34n));
                           const pathName = nix.thunk(() => nix.app(substring, storeLength, nix.thunk(() => nix.sub(nix.app(stringLength, package$), storeLength)), package$));
                           return nix.add(nix.selOr(package$, () => nix.force(pathName), "name"), "_fish-completions");
-                        })()), nix.thunk(() => nix.update({ __proto__: pos$61, package: package$ }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(package$, "meta", "priority")), nix.thunk(() => ({
-                            __proto__: pos$63,
+                        })()), nix.thunk(() => nix.update({ [nix.POS]: pos$61, package: package$ }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(package$, "meta", "priority")), nix.thunk(() => ({
+                            [nix.POS]: pos$63,
                             meta: nix.thunk(() => ({
-                              __proto__: pos$62,
+                              [nix.POS]: pos$62,
                               priority: nix.thunk(() => nix.sel(package$, "meta", "priority")),
                             })),
                           }))))), nix.thunk(() => nix.str`mkdir -p $out
@@ -452,7 +452,7 @@ done
 `));
                       const packages = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(config, "documentation", "enable")) && nix.asBool(nix.sel(config, "documentation", "nixos", "enable")))) && nix.asBool(nix.sel(config, "documentation", "man", "enable")))) ? nix.builtins.filter((pkg) => !nix.eq(pkg, nix.sel(config, "system", "build", "manual", "nixos-configuration-reference-manpage")), nix.thunk(() => nix.concat(nix.sel(cfge, "systemPackages"), nix.sel(cfg, "extraCompletionPackages")))) : nix.concat(nix.sel(cfge, "systemPackages"), nix.sel(cfg, "extraCompletionPackages"))));
                       return nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           name: "system_fish-completions",
                           ignoreCollisions: true,
                           paths: nix.thunk(() => nix.builtins.map(generateCompletions, packages)),
@@ -462,15 +462,15 @@ done
                 })),
               })))),
             nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               pathsToLink: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "vendor", "config", "enable")), "/share/fish/vendor_conf.d"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "vendor", "completions", "enable")), "/share/fish/vendor_completions.d"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "vendor", "functions", "enable")), "/share/fish/vendor_functions.d")))),
             })),
             nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               shells: nix.thunk(() => [
                 "/run/current-system/sw/bin/fish",
                 nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -479,7 +479,7 @@ done
           ]))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

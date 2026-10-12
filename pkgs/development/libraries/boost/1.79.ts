@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, (() => {
       const version = "1.79.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://sourceforge/boost/boost_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tar.bz2`),
             nix.thunk(() => nix.str`https://boostorg.jfrog.io/artifactory/main/release/${version}/source/boost_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tar.bz2`),
           ]),
           sha256: "475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39",
         }))));
-      return { __proto__: pos$2, version, src };
+      return { [nix.POS]: pos$2, version, src };
     })())));
 })(), formals$1);
 //# sourceMappingURL=1.79.ts.map

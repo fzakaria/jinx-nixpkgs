@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.39.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rnag",
           repo: "dataclass-wizard",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dotenv: nix.thunk(() => [python_dotenv]),
         timedelta: nix.thunk(() => [pytimeparse]),
         toml: nix.thunk(() => [tomli_w]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const pythonImportsCheck = nix.thunk(() => ["dataclass_wizard"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wizarding tools for interacting with the Python dataclasses module",
         homepage: "https://github.com/rnag/dataclass-wizard",
         changelog: nix.thunk(() => nix.str`https://github.com/rnag/dataclass-wizard/releases/tag/${nix.sel(src, "tag")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wiz",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

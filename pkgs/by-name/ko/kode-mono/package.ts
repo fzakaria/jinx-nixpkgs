@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kode-mono",
       version: "1.207",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/isaozler/kode-mono/releases/download/${nix.sel(finalAttrs, "version")}/kode-mono-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-C1RM61qUEdX81t26nYCa2tnFq3tKR1DSZ8I3FUIbFiQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Custom-designed typeface explicitly created for the developer community",
         homepage: "https://kodemono.com/",
         changelog: "https://github.com/isaozler/kode-mono/blob/main/CHANGELOG.md",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GLNIpZuM3yuCnPyjBa8KjdaL5cFK8InluuY+LTCrimc=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["rjpl"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for interacting with the Rejseplanen API",
         homepage: "https://github.com/tomatpasser/python-rejseplanen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

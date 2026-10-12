@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-backgroundremoval";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "occ-ai",
           repo: "obs-backgroundremoval",
           tag: version,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OBS plugin to replace the background in portrait images and video",
         homepage: "https://github.com/occ-ai/obs-backgroundremoval",
         maintainers: nix.thunk(() => (() => {
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hsphfpd",
       version: "2020-12-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pali",
           repo: "hsphfpd-prototype",
           rev: "d294d064879591e9570ca3f444fa3eee2f269df8",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bluetooth HSP/HFP daemon",
         homepage: "https://github.com/pali/hsphfpd-prototype",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),

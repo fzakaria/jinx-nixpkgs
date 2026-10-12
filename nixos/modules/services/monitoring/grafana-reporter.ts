@@ -27,49 +27,49 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "grafana_reporter"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         grafana_reporter: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "grafana_reporter")),
           grafana: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             protocol: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 description: "Grafana protocol.",
                 default: "http",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["http", "https"]))),
               })))),
             addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Grafana address.",
                 default: "127.0.0.1",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "Grafana port.",
                 default: 3000n,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
               })))),
           })),
           addr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "Listening address.",
               default: "127.0.0.1",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               description: "Listening port.",
               default: 8686n,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
             })))),
           templateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Optional template directory to use custom tex templates",
               default: nix.thunk(() => nix.sel(pkgs, "grafana_reporter")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.grafana_reporter")),
@@ -79,13 +79,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             grafana_reporter: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Grafana Reporter Service Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.str`-templates ${nix.sel(cfg, "templateDir")}`),
                   ])));
                 return {
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "grafana-reporter")}/bin/grafana-reporter ${args_1}`),
                 };
               })()),

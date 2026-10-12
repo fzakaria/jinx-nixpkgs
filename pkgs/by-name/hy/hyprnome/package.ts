@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hyprnome",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "donovanglover",
           repo: "hyprnome",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GZn7qS1J6QSanWdy17sMBbwJ77iMij2jKRgPdrjt6tM=",
         })))),
       cargoHash: "sha256-qCexb8D0iN3BWOz5L45mR5n9x0nqAh8MHHTp9QTHSOg=",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTFLAGS: "--cap-lints warn" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cap-lints warn" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage target/man/hyprnome.1\n\ninstallShellCompletion --cmd hyprnome \\\n  --bash target/completions/hyprnome.bash \\\n  --fish target/completions/hyprnome.fish \\\n  --zsh target/completions/_hyprnome\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNOME-like workspace switching in Hyprland",
         homepage: "https://github.com/donovanglover/hyprnome",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

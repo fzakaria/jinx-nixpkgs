@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gxml",
       version: "0.20.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gxml",
@@ -46,11 +46,11 @@ substituteInPlace gxml/gxml.pc.in \\
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides a GObject API for manipulating XML and a Serializable framework from GObject to XML",
         homepage: "https://gitlab.gnome.org/GNOME/gxml",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gxml/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

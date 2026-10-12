@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const vector = nix.arg($, "vector");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fastjet",
       version: "3.5.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-hep",
           repo: "fastjet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => [swig]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       dependencies: nix.thunk(() => [awkward, numpy, vector]),
       pythonImportsCheck: nix.thunk(() => ["fastjet"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Jet-finding in the Scikit-HEP ecosystem",
         homepage: "https://github.com/scikit-hep/fastjet",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-hep/fastjet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

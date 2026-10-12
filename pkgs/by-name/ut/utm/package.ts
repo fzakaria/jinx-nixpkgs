@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "utm",
       version: "4.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/utmapp/UTM/releases/download/v${nix.sel(finalAttrs, "version")}/UTM.dmg`),
           hash: "sha256-qENck8+1+Lv+6ksTTPrRrGa2djK3XkOMY7GorgQ77w4=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nmkdir -p $out/bin\nfor bin in $out/Applications/UTM.app/Contents/MacOS/*; do\n  # Symlinking `UTM` doesn't work; seems to look for files in the wrong\n  # place\n  makeWrapper $bin \"$out/bin/$(basename $bin)\"\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Full featured system emulator and virtual machine host for iOS and macOS",
         longDescription: "UTM is a full featured system emulator and virtual machine host for iOS\nand macOS. It is based off of QEMU. In short, it allows you to run\nWindows, Linux, and more on your Mac, iPhone, and iPad.\n\nFeatures:\n  - Full system emulation (MMU, devices, etc) using QEMU\n  - 30+ processors supported including x86_64, ARM64, and RISC-V\n  - VGA graphics mode using SPICE and QXL\n  - Text terminal mode\n  - USB devices\n  - JIT based acceleration using QEMU TCG\n  - Frontend designed from scratch for macOS 11 and iOS 11+ using the\n    latest and greatest APIs\n  - Create, manage, run VMs directly from your device\n  - Hardware accelerated virtualization using Hypervisor.framework and\n    QEMU\n  - Boot macOS guests with Virtualization.framework on macOS 12+\n\nSee https://docs.getutm.app/ for more information.\n",
         homepage: "https://mac.getutm.app/",

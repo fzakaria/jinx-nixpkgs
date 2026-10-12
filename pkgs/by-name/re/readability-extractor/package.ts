@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "readability-extractor";
       const version = "0.0.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArchiveBox",
           repo: "readability-extractor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const npmDepsHash = "sha256-F5lOGkhFlFVB8zTxrebWsPWRNfHgZ4Y2DqKED/z5riw=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/ArchiveBox/readability-extractor",
         description: "JavaScript wrapper around Mozilla Readability for ArchiveBox to call as a oneshot CLI to extract article text",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "readability-extractor",
       }));
-      return { __proto__: pos$3, pname, version, src, dontNpmBuild, npmDepsHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontNpmBuild, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

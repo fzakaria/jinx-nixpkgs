@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "enry",
       version: "1.3.0",
       commitSha: "f10711437bfbb25b15506eb69dde24bb7decd222",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "go-enry",
           repo: "enry",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-enry", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq nix-prefetch-github gnused\n\nset -eu -o pipefail\n\nlatest_tag=\"$(curl -sS https://api.github.com/repos/go-enry/enry/releases/latest | jq -r '.tag_name')\"\nprefetch_output=\"$(nix-prefetch-github --rev \"$latest_tag\" go-enry enry)\"\ncommit_sha=\"$(jq -r '.rev' <<< \"$prefetch_output\")\"\nsource_hash=\"$(jq -r '.hash' <<< \"$prefetch_output\")\"\n\nnixfile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" enry).file\" | tr -d '\"')\"\nsed -i \"$nixfile\" \\\n  -e \"s|version = \\\".*\\\";|version = \\\"${latest_tag#v}\\\";|\" \\\n  -e \"s|commitSha = \\\".*\\\"; # matches version|commitSha = \\\"$commit_sha\\\"; # matches version|\" \\\n  -e \"s|hash = \\\"sha256-.*\\\";|hash = \\\"$source_hash\\\";|\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Programming language detector based on go-enry/go-enry/v2 library",
         mainProgram: "enry",
         homepage: "https://github.com/go-enry/enry",

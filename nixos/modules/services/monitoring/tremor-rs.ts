@@ -36,61 +36,61 @@ export default nix.lambda((args) => (() => {
   const loggerSettingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const loggerConfigFile = nix.thunk(() => nix.app(nix.sel(loggerSettingsFormat, "generate"), "logger.yaml", nix.thunk(() => nix.sel(cfg, "loggerSettings"))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "tremor-rs": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tremor event- or stream-processing system")),
           troyFileList: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "List of troy files to load.",
             })))),
           tremorLibDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "",
               description: "Directory where to find /lib containing tremor script files",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "The host tremor should be listening on",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 9898n,
               description: "the port tremor should be listening on",
             })))),
           loggerSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Tremor logger configuration",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.sel(loggerSettingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 refresh_rate: "30 seconds",
                 appenders: nix.thunk(() => ({
-                  __proto__: pos$6,
-                  stdout: nix.thunk(() => ({ __proto__: pos$5, kind: "console" })),
+                  [nix.POS]: pos$6,
+                  stdout: nix.thunk(() => ({ [nix.POS]: pos$5, kind: "console" })),
                 })),
-                root: nix.thunk(() => ({ __proto__: pos$7, level: "warn", appenders: nix.thunk(() => ["stdout"]) })),
+                root: nix.thunk(() => ({ [nix.POS]: pos$7, level: "warn", appenders: nix.thunk(() => ["stdout"]) })),
                 loggers: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   tremor_runtime: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     level: "debug",
                     appenders: nix.thunk(() => ["stdout"]),
                     additive: false,
                   })),
                   tremor: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     level: "debug",
                     appenders: nix.thunk(() => ["stdout"]),
                     additive: false,
@@ -103,27 +103,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tremor-rs"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "tremor-rs": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Tremor event- or stream-processing system",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 TREMOR_PATH: nix.thunk(() => nix.str`${nix.sel(pkgs, "tremor-rs")}/lib:${nix.sel(cfg, "tremorLibDir")}`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "tremor-rs")}/bin/tremor --logger-config ${loggerConfigFile} server run ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "troyFileList")))} --api-host ${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 DynamicUser: true,
                 Restart: "always",

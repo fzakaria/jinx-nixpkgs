@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const version = "1.3.2";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "catppuccin-catwalk",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catppuccin",
           repo: "catwalk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isElf")))),
       installCheckPhase: "runHook preInstallCheck\nreadelf -a $out/bin/catwalk | grep -F 'Shared library: [libwebp.so'\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/catppuccin/toolbox/tree/main/catwalk",
         description: "CLI for Catppuccin that takes in four showcase images and displays them all at once",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

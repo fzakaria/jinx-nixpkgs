@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xe-guest-utilities",
       version: "10.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xenserver",
           repo: "xe-guest-utilities",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmake RELEASE=nixpkgs\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dt \"$out\"/bin build/stage/usr/{,s}bin/*\ninstall -Dt \"$out\"/etc/udev/rules.d build/stage/etc/udev/rules.d/*\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XenServer guest utilities",
         homepage: "https://github.com/xenserver/xe-guest-utilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

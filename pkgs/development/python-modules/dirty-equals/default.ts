@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytz = nix.arg($, "pytz");
   const dirty_equals = nix.thunk(() => nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dirty-equals",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samuelcolvin",
           repo: "dirty-equals",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pytz]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(dirty_equals, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(dirty_equals, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       nativeCheckInputs: nix.thunk(() => [pydantic, pytest_examples, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["dirty_equals"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Module for doing dirty (but extremely useful) things with equals",
         homepage: "https://github.com/samuelcolvin/dirty-equals",
         changelog: nix.thunk(() => nix.str`https://github.com/samuelcolvin/dirty-equals/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

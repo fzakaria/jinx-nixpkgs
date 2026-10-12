@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "golint",
       version: "0-unstable-2020-12-08",
       __structuredAttrs: true,
       allowGoReference: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://go.googlesource.com/lint",
           rev: "83fdc39ff7b56453e3793356bcff3070b9b96445",
           hash: "sha256-g4Z9PREOxGoN7n/XhutawsITBznJlbz6StXeDYvOQ1c=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-dPadFoymYu2Uw2AXZfbaBfxsN8IWMuK1TrcknHco3Bo=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://golang.org",
         description: "Linter for Go source code",
         mainProgram: "golint",

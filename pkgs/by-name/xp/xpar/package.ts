@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nasm = nix.arg($, "nasm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xpar",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iczelia",
           repo: "xpar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export RANLIB="${nix.sel(stdenv, "cc", "targetPrefix")}gcc-ranlib"
 `))),
       configureFlags: nix.thunk(() => nix.concat(["--disable-arch-native", "--enable-lto"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "--enable-x86-64"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "--enable-aarch64")))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Error/erasure code system guarding data integrity",
         homepage: "https://github.com/iczelia/xpar",
         changelog: nix.thunk(() => nix.str`https://github.com/iczelia/xpar/blob/${nix.sel(finalAttrs, "version")}/NEWS`),

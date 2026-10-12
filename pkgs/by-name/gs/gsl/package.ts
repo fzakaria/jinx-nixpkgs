@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gsl",
       version: "2.8",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gsl/gsl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-apnu7RVjLGNUiVsd1ULtWoVcDxXZrRMmxv4rLJ5CMZA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/macports/macports-ports/raw/90be777d2ce451d3c23783cb2be0efab9732e4d0/math/gsl/files/patch-fix-linking.diff",
             extraPrefix: "",
             hash: "sha256-lweYndIxcM5+4ckIUubkD9XbJbqkfdK+y9c3aRzmq0M=",
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "11")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) ? "MACOSX_DEPLOYMENT_TARGET=10.16\n" : null)),
       postInstall: "moveToOutput bin/gsl-config \"$dev\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "-mno-fma")),
       })),
       doCheck: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GNU Scientific Library, a large numerical library",
         homepage: "https://www.gnu.org/software/gsl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "i810switch",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www16.plala.or.jp/mano-a-mano/i810switch/i810switch-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1xSEDjsU4fqcQyxL4ARLfACNkE3s4NYRVUZVuXnK1MM=",
         })))),
@@ -32,11 +32,11 @@ substituteInPlace i810switch.c \\
 `),
       installPhase: "\n    runHook preInstall\n\n    install -Dm755 -t $out/bin i810switch i810rotate\n\n    installManPage i810switch.1.gz i810rotate.1.gz\n\n    runHook postInstall\n  ",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for switching between the LCD and external VGA display on Intel graphics cards",
         homepage: "http://www16.plala.or.jp/mano-a-mano/i810switch.html",
         maintainers: [],

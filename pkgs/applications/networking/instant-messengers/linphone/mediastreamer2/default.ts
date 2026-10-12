@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const srtp = nix.arg($, "srtp");
   return nix.app(mkLinphoneDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mediastreamer2",
       dontWrapQtApps: true,
       patches: nix.thunk(() => [nix.path(here, "./plugins_dir.patch")]),
@@ -64,9 +64,9 @@ export default nix.lambda((args) => (() => {
         "-DENABLE_STRICT=NO",
         "-DENABLE_UNIT_TESTS=NO",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$1, NIX_LDFLAGS: "-lXext" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_LDFLAGS: "-lXext" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Powerful and lightweight streaming engine specialized for voice/video telephony applications. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

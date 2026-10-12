@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "composer-phar",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/composer/composer/releases/download/${nix.sel(finalAttrs, "version")}/composer.phar`),
           hash: pharHash,
         })))),
@@ -46,7 +46,7 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd composer \\\n  --bash <($out/bin/composer completion bash)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/composer/composer/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Dependency Manager for PHP, shipped from the PHAR file",
         homepage: "https://getcomposer.org/",

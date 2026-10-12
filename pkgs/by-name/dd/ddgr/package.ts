@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.2",
       pname: "ddgr",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jarun",
           repo: "ddgr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postInstall: "installShellCompletion --bash --name ddgr.bash auto-completion/bash/ddgr-completion.bash\ninstallShellCompletion --fish auto-completion/fish/ddgr.fish\ninstallShellCompletion --zsh auto-completion/zsh/_ddgr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jarun/ddgr",
         description: "Search DuckDuckGo from the terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

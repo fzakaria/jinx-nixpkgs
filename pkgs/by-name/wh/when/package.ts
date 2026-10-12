@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "when",
       version: "1.1.45",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "when",
           owner: "ben-crowell",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "pod2man $src/when when.1\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 when $out/bin/when\ninstallManPage when.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extremely simple personal calendar program",
         homepage: "https://www.lightandmatter.com/when/when.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

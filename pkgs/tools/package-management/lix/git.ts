@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = nix.thunk(() => nix.str`2.96.0-pre-20260408_${nix.builtins.substring(0n, 12n, nix.thunk(() => nix.sel(src, "rev")))}`);
     const src = nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         domain: "git.lix.systems",
         owner: "lix-project",
         repo: "lix",
@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-bONRPjhk5OZdnkQZexZNJzlvwIPg31Gy7fNiwGoX3BQ=",
       }))));
     const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`lix-${version}`),
         src: src,
         hash: "sha256-a5XtutX+NS4wOqxeqbscWZMs99teKick5+cQfbCRGxQ=",
       }))));
-    return { __proto__: pos$3, version, src, cargoDeps };
+    return { [nix.POS]: pos$3, version, src, cargoDeps };
   })();
 })(), formals$1);
 //# sourceMappingURL=git.ts.map

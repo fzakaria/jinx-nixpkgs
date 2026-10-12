@@ -24,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const gdb = nix.arg($, "gdb");
   const dwz = nix.arg($, "dwz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "debugedit",
       version: "5.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://sourceware.org/git/debugedit.git",
           tag: nix.thunk(() => nix.str`debugedit-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6SOw5t9Hnb9Picx18LwqLwaPieueO6mXl8/vGnU+81E=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://sourceware.org/git/?p=debugedit.git;a=commitdiff_plain;h=c011f478dca2c89d52958a8999b99663d14db85d",
             hash: "sha256-fOjXKA3U1YM+ZMieLhWiXdJj79IJ+iFNH0x+Asn/EMY=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "patchShebangs scripts/find-debuginfo.in\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides programs and scripts for creating debuginfo and source file distributions, collect build-ids and rewrite source paths in DWARF data for debugging, tracing and profiling",
         homepage: "https://sourceware.org/debugedit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

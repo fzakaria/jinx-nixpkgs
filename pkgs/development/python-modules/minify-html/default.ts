@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "minify_html",
           hash: "sha256-Q5mFMO9TdwHwA6jpCLdW147/MDyGsEGpWFXikFGLp5w=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })());
       const pythonImportsCheck = nix.thunk(() => ["minify_html"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extremely fast and smart HTML + JS + CSS minifier",
         homepage: "https://github.com/wilsonzlin/minify-html/tree/master/minify-html-python",
         changelog: nix.thunk(() => nix.str`https://github.com/wilsonzlin/minify-html/blob/v${version}/CHANGELOG.md`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

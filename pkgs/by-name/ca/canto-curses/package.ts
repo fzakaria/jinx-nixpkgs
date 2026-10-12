@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const canto_daemon = nix.arg($, "canto-daemon");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.9.9",
       pyproject: true,
       pname: "canto-curses",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "themoken",
           repo: "canto-curses",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/canto-curses/-/raw/6daa56bc5baebb2444c368a8208666ef484a6fc0/fix-build.patch",
             hash: "sha256-2TMNmwjUAGyenSDqxfI+U2hNeDZaj2CivfTfpX7CKgY=",
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline, ncurses, canto_daemon]),
       propagatedBuildInputs: nix.thunk(() => [canto_daemon]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ncurses-based console Atom/RSS feed reader",
         mainProgram: "canto-curses",
         longDescription: "Canto is an Atom/RSS feed reader for the console that is meant to be\nquick, concise, and colorful. It's meant to allow you to crank through\nfeeds like you've never cranked before by providing a minimal, yet\ninformation packed interface. No navigating menus. No dense blocks of\nunreadable white text. An interface with almost infinite customization\nand extensibility using the excellent Python programming language.\n",

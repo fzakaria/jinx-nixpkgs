@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   const genFinalSettings = (inst) => nix.app(nix.sel(nix.lookup(w, "attrsets"), "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, {}), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "attrsets"), "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(inst, "settings"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         instance_name: nix.thunk(() => nix.attr(from, "instance_name")),
         hostname: nix.thunk(() => nix.attr(from, "hostname")),
         ipv4: nix.thunk(() => nix.attr(from, "ipv4")),
@@ -65,28 +65,28 @@ export default nix.lambda((args) => (() => {
         network_identity: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(inst, "settings"));
           return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           network_name: nix.thunk(() => nix.attr(from_1, "network_name")),
           network_secret: nix.thunk(() => nix.attr(from_1, "network_secret")),
         };
         })()),
-        peer: nix.thunk(() => nix.app(nix.builtins.map, (p) => ({ __proto__: pos$2, uri: p }), nix.thunk(() => nix.sel(inst, "settings", "peers")))),
+        peer: nix.thunk(() => nix.app(nix.builtins.map, (p) => ({ [nix.POS]: pos$2, uri: p }), nix.thunk(() => nix.sel(inst, "settings", "peers")))),
       };
       })(), nix.sel(inst, "extraSettings"))))));
   const genConfigFile = (name) => (inst) => (nix.asBool(nix.eq(nix.sel(inst, "configFile"), null)) ? nix.app(nix.sel(settingsFormat, "generate"), nix.thunk(() => nix.str`easytier-${name}.toml`), nix.thunk(() => nix.app(genFinalSettings, inst))) : nix.sel(inst, "configFile"));
   const activeInsts = nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (_) => (inst) => nix.sel(inst, "enable"), nix.thunk(() => nix.sel(cfg, "instances"))));
   const settingsModule = (name) => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       instance_name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           default: name,
           description: "Identify different instances on same host",
         })))),
       hostname: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
           description: "Hostname shown in peer list and web console.",
         })))),
       network_name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
           description: "EasyTier network name.",
         })))),
       network_secret: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
           description: "EasyTier network credential used for verification and\nencryption. It can also be set in environmentFile.\n",
         })))),
       ipv4: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -123,13 +123,13 @@ export default nix.lambda((args) => (() => {
           example: "10.144.144.1/24",
         })))),
       dhcp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "Automatically determine the IPv4 address of this peer based on\nexisting peers on network.\n",
         })))),
       listeners: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
           description: "Listener addresses to accept connections from other peers.\nValid format is: `<proto>://<addr>:<port>`, where the protocol\ncan be `tcp`, `udp`, `ring`, `wg`, `ws`, `wss`.\n",
         })))),
       peers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -153,17 +153,17 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       options: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: "Enable the instance.",
           })))),
         configServer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
             example: "udp://example.com:22020/myusername",
           })))),
         configFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
             description: "Path to easytier config file. Setting this option will\noverride `settings` and `extraSettings` of this instance.\n",
           })))),
         environmentFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -192,21 +192,21 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[\n  /path/to/.env\n  /path/to/.env.secret\n]\n")),
           })))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(settingsModule, name)))),
             default: nix.thunk(() => ({})),
             description: nix.thunk(() => nix.str`Settings to generate {file}\`easytier-${name}.toml\`
 `),
           })))),
         extraSettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.sel(settingsFormat, "type")),
             default: nix.thunk(() => ({})),
             description: nix.thunk(() => nix.str`Extra settings to add to {file}\`easytier-${name}.toml\`.
 `),
           })))),
         extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -218,33 +218,33 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$40,
+    [nix.POS]: pos$40,
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         easytier: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "EasyTier daemon")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "easytier", nix.thunk(() => ({})))),
           allowSystemForward: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Allow the system to forward packets from easytier. Useful when\n`proxy_forward_by_system` enabled.\n")),
           instances: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "EasyTier instances.\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), instanceModule)))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   network_name: "easytier",
                   network_secret: "easytier",
                   ipv4: "10.144.144.1/24",
                   peers: nix.thunk(() => ["tcp://public.easytier.cn:11010", "wss://example.com:443"]),
                 })),
                 extraSettings: nix.thunk(() => ({
-                  __proto__: pos$25,
-                  flags: nix.thunk(() => ({ __proto__: pos$24, dev_name: "tun1" })),
+                  [nix.POS]: pos$25,
+                  flags: nix.thunk(() => ({ [nix.POS]: pos$24, dev_name: "tun1" })),
                 })),
               })),
             })))),
@@ -252,17 +252,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         environment: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs'"), (name) => (inst) => (() => {
               const configFile = nix.thunk(() => nix.app(genConfigFile, name, inst));
               return nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`easytier-${name}`), nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   description: nix.thunk(() => nix.str`EasyTier Daemon - ${name}`),
                   wants: nix.thunk(() => ["network-online.target", "nss-lookup.target"]),
                   after: nix.thunk(() => ["network-online.target", "nss-lookup.target"]),
@@ -277,7 +277,7 @@ export default nix.lambda((args) => (() => {
                   })()),
                   restartTriggers: nix.thunk(() => nix.concat(nix.sel(inst, "environmentFiles"), nix.app(nix.lookup(w, "optionals"), nix.thunk(() => nix.eq(nix.sel(inst, "configServer"), null)), nix.thunk(() => [configFile])))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     Type: "simple",
                     Restart: "on-failure",
                     EnvironmentFile: nix.thunk(() => nix.sel(inst, "environmentFiles")),
@@ -293,11 +293,11 @@ export default nix.lambda((args) => (() => {
             })(), activeInsts)),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           kernel: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             sysctl: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "allowSystemForward")), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 "net.ipv4.conf.all.forwarding": nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 97n, true)),
                 "net.ipv6.conf.all.forwarding": nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 97n, true)),
               })))),
@@ -305,7 +305,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "ltrump"))];

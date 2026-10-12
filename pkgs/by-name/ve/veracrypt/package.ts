@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "veracrypt",
       version: "1.26.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "veracrypt",
           repo: "VeraCrypt",
           tag: nix.thunk(() => nix.str`VeraCrypt_${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ext2: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext2`),
             ext3: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext3`),
             ext4: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext4`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "install -Dm 755 Main/veracrypt \"$out/bin/veracrypt\"\ninstall -Dm 444 Resources/Icons/VeraCrypt-256x256.xpm \"$out/share/pixmaps/veracrypt.xpm\"\ninstall -Dm 444 License.txt -t \"$out/share/doc/veracrypt/\"\ninstall -d $out/share/applications\nsubstitute Setup/Linux/veracrypt.desktop $out/share/applications/veracrypt.desktop \\\n  --replace-fail \"Exec=/usr/bin/veracrypt\" \"Exec=$out/bin/veracrypt\" \\\n  --replace-fail \"Icon=veracrypt\" \"Icon=veracrypt.xpm\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free Open-Source filesystem on-the-fly encryption",
         homepage: "https://www.veracrypt.fr/",
         license: nix.thunk(() => (() => {

@@ -23,9 +23,9 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w_1, "isx86_64")) ? "1jfsng5n3phw5rqpkid9m5j7m7zgj5bifh7swvba7f97y6imdaax" : "15y6r5w306pcq4g1rn9f7vf70f3a7qhq237ngaf0wxh2nr0aamxp");
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.sundtek.de/media/netinst/${platform}/installer.tar.gz`),
           sha256: sha256,
         })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sundtek MediaTV driver",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "simonvandel"))]),
         sourceProvenance: nix.thunk(() => (() => {

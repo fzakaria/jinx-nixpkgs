@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPy3k;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Nevow",
           version: version,
           sha256: "afb6ba85a5351953578c018fcdb9dfbd62f29a8d46c58bc9652bc000a27223f3",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [twisted]);
       const checkPhase = "trial formless nevow\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nevow, a web application construction kit for Python",
         longDescription: "Nevow - Pronounced as the French \"nouveau\", or \"noo-voh\", Nevow\nis a web application construction kit written in Python.  It is\ndesigned to allow the programmer to express as much of the view\nlogic as desired in Python, and includes a pure Python XML\nexpression syntax named stan to facilitate this.  However it\nalso provides rich support for designer-edited templates, using\na very small XML attribute language to provide bi-directional\ntemplate manipulation capability.\n\nNevow also includes formless, a declarative syntax for\nspecifying the types of method parameters and exposing these\nmethods to the web.  Forms can be rendered automatically, and\nform posts will be validated and input coerced, rendering error\npages if appropriate.  Once a form post has validated\nsuccessfully, the method will be called with the coerced values.\n",
         homepage: "https://github.com/twisted/nevow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "MBdistortion",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magnetophon",
           repo: "MBdistortion",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/magnetophon/MBdistortion/commit/10e35084b88c559f1b63760cf40fd5ef5a6745a5.patch",
             sha256: "0hwjl3rzvn3id0sr0qs8f37jdmr915mdan8miaf78ra0ir3wnk76",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "faust2jaqt -time -vec -t 99999 MBdistortion.dsp\nfaust2lv2 -time -vec -gui -t 99999 MBdistortion.dsp\n",
       installPhase: "mkdir -p $out/bin\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\nmkdir -p $out/lib/lv2\ncp -r MBdistortion.lv2/ $out/lib/lv2\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mid-side multiband distortion for jack and lv2",
         homepage: "https://github.com/magnetophon/MBdistortion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

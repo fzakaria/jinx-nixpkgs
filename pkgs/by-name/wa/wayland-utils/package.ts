@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wayland-utils",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/wayland/wayland-utils/-/releases/${nix.sel(finalAttrs, "version")}/downloads/wayland-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-o50OZWF8auGG12jCI/VwYKOkNfb58C0DB0+UUxO/zw0=",
         })))),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, ninja, wayland_scanner]),
       buildInputs: nix.thunk(() => [libdrm, wayland, wayland_protocols]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.freedesktop.org/wayland/wayland-utils.git",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Wayland utilities (wayland-info)",
         longDescription: "A collection of Wayland related utilities:\n- wayland-info: A utility for displaying information about the Wayland\n  protocols supported by a Wayland compositor.\n",
         homepage: "https://gitlab.freedesktop.org/wayland/wayland-utils",

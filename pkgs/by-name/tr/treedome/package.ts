@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "treedome",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://codeberg.org/solver-orgz/treedome",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-qa87pgNHGRhP1G4TEFHYrkiJ9AHWG7PUdgxEF4X9EM8=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Rg65BiHQF7bBBCtc5F+gY31yhcuI0+IDfxr3pFmxT+w=",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-Q0xsi1xymQne6qN0oxm4YkaDLnGL17iuj70CTdQlxzM=",
         })))),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "src-tauri",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postFixup: "wrapProgram \"$out/bin/treedome\" \\\n  --set WEBKIT_DISABLE_COMPOSITING_MODE 1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Local-first, encrypted, note taking application organized in tree-like structures",
         homepage: "https://codeberg.org/solver-orgz/treedome",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

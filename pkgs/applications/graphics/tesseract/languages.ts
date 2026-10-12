@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
       const all = nix.argOr($_1, "all", () => null);
       const languages = nix.argOr($_1, "languages", () => ({}));
       const tessdataSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tesseract-ocr",
           repo: "tessdata",
           rev: tessdataRev,
           hash: tessdata,
         }))));
       const languageFile = (lang) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/tesseract-ocr/tessdata/raw/${tessdataRev}/${lang}.traineddata`),
           hash: hash,
         })));
       return nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         all: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "all",
             buildCommand: nix.thunk(() => nix.str`mkdir $out
 cd ${tessdataSrc}
@@ -55,12 +55,12 @@ cp *.traineddata $out
       }, nix.app(nix.sel(lib, "mapAttrs"), languageFile, languages));
     })(), formals$2);
     const v3 = nix.thunk(() => nix.app(makeLanguages, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tessdataRev: "3cf1e2df1fe1d1da29295c9ef0983796c7958b7d",
         tessdata: "sha256-591NFrPdZ9orB9PtxKqsukh6aAq5DDO8yJ19W/Ywi+w=",
         all: "sha256-FuIGfE0bNPvB8ip6cL8GRl0U9T7oD6sx+38CaGyCRno=",
         languages: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           afr: "sha256-birhlXVhETYI4SYipFROA0xGpJtvnEqjEVGlSPy3upU=",
           amh: "sha256-BJ73M3RYuc7ZuLBLr52GLilxdA9mUhXkUK9vPXDTbPE=",
           ara: "sha256-IcmKr3rroicawMxKNj02TYBmSdfLC8q4XUuaOF9JZFo=",
@@ -171,12 +171,12 @@ cp *.traineddata $out
         })),
       }))));
     const v4 = nix.thunk(() => nix.app(makeLanguages, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tessdataRev: "4.1.0",
         tessdata: "sha256-70bp4prs1zUbSzQmcqd7v736cyYWv8oNNbmZXypik5I=",
         all: "sha256-hk+DjoVWf7RW9S+Gu9XUX8aWYYsL5dU5c6jLSKJp+MY=",
         languages: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           afr: "sha256-XsQc6+0/SheO6dcuERKsmko4p7DdyvsSZtVdne1FLqk=",
           amh: "sha256-QIoWQufDlggA/5P5SyxmwSdQZhgXqIyFq/OULrtvO1Q=",
           ara: "sha256-IAWXZ3i7wU/Fak6o1DxggIR67ucvzCIBSI8kDayhXFs=",
@@ -308,7 +308,7 @@ cp *.traineddata $out
           yor: "sha256-m35CeoAKh2Rg8CDVaDgCkuIm1i/4pOutieZZUSJTgx8=",
         })),
       }))));
-    return { __proto__: pos$9, makeLanguages, v3, v4 };
+    return { [nix.POS]: pos$9, makeLanguages, v3, v4 };
   })();
 })(), formals$1);
 //# sourceMappingURL=languages.ts.map

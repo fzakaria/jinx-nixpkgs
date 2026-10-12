@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const typing_inspection = nix.arg($, "typing-inspection");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pydantic-ai-slim",
       version: "2.54.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pydantic",
           repo: "pydantic-ai",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,16 +53,16 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pydantic_ai"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "pydantic-ai-updater",
               runtimeInputs: nix.thunk(() => [nix_update]),
               text: "nix-update --build --commit python3Packages.genai-prices\nnix-update --build --commit python3Packages.pydantic-graph\nnix-update --build python3Packages.pydantic-ai-slim\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/pydantic-ai/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "GenAI Agent Framework, the Pydantic way",
         homepage: "https://github.com/pydantic/pydantic-ai",

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.0.31";
   const pname = "torchbench";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-EBZzcnRT50KREIOPrr/OZTJ4639ZUEejcelh3QSBcZ8=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["torchbench"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easily benchmark machine learning models in PyTorch",
         homepage: "https://github.com/paperswithcode/torchbench",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const toShellVars = nix.thunk(() => nix.attr(lib, "toShellVars"));
   const warn = nix.thunk(() => nix.attr(lib, "warn"));
   const nixpkgsVersion = nix.thunk(() => nix.sel(lib, "trivial", "release"));
-  const mirrors = nix.thunk(() => nix.update(nix.builtins.import(nix.path(here, "./mirrors.nix")), { __proto__: pos$1, hashedMirrors: hashedMirrors }));
+  const mirrors = nix.thunk(() => nix.update(nix.builtins.import(nix.path(here, "./mirrors.nix")), { [nix.POS]: pos$1, hashedMirrors: hashedMirrors }));
   const mirrorsListFile = nix.thunk(() => (() => {
     const mirrorsPrefixed = nix.thunk(() => nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.add("_mirror_", n)), v), mirrors));
     return nix.app(toFile, "mirrors-list", nix.thunk(() => nix.app(toShellVars, mirrorsPrefixed)));
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
   })()));
   const impureEnvVars = nix.thunk(() => nix.concat(nix.sel(lib, "fetchers", "proxyImpureEnvVars"), nix.concat(["NIX_CURL_FLAGS", "NIX_HASHED_MIRRORS", "NIX_CONNECT_TIMEOUT"], nix.builtins.map((site) => nix.str`NIX_MIRRORS_${site}`, sites))));
   return nix.update(nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["url", "derivationArgs", "sha1", "sha256", "sha512"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -100,11 +100,11 @@ export default nix.lambda((args) => (() => {
         const derivationArgs = nix.argOr($_1, "derivationArgs", () => ({}));
         const preRewriteUrls = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(urls, [])) && nix.asBool(!nix.eq(url, "")))) ? (nix.asBool(nix.app(isString, url)) ? [url] : nix.builtins.throw(nix.thunk(() => nix.str`\`url\` is not a string: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls)}`))) : (nix.asBool((nix.asBool(!nix.eq(urls, [])) && nix.asBool(nix.eq(url, "")))) ? (nix.asBool(nix.app(isList, urls)) ? nix.force(urls) : nix.builtins.throw(nix.thunk(() => nix.str`\`urls\` is not a list: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls)}`))) : nix.builtins.throw(nix.thunk(() => nix.str`fetchurl requires either \`url\` or \`urls\` to be set: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), args_2)}`)))));
         const urls_ = nix.thunk(() => nix.app(rewriteAllUrls, preRewriteUrls));
-        const hash_ = nix.thunk(() => (nix.asBool(nix.gt(nix.app(length, nix.thunk(() => nix.app(filter, (s) => !nix.eq(s, ""), nix.thunk(() => [hash, outputHash, sha1, sha256, sha512])))), 1n)) ? nix.builtins.throw(nix.thunk(() => nix.str`multiple hashes passed to fetchurl: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls_)}`)) : (nix.asBool(!nix.eq(hash, "")) ? { __proto__: pos$2, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(outputHash, "")) ? (nix.asBool(!nix.eq(outputHashAlgo, "")) ? { __proto__: pos$3, outputHashAlgo: outputHashAlgo, outputHash: outputHash } : nix.builtins.throw(nix.thunk(() => nix.str`fetchurl was passed outputHash without outputHashAlgo: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls_)}`))) : (nix.asBool(!nix.eq(sha512, "")) ? { __proto__: pos$4, outputHashAlgo: "sha512", outputHash: sha512 } : (nix.asBool(!nix.eq(sha256, "")) ? { __proto__: pos$5, outputHashAlgo: "sha256", outputHash: sha256 } : (nix.asBool(!nix.eq(sha1, "")) ? { __proto__: pos$6, outputHashAlgo: "sha1", outputHash: sha1 } : (nix.asBool(!nix.eq(cacert, null)) ? { __proto__: pos$7, outputHashAlgo: null, outputHash: fakeHash } : nix.builtins.throw(nix.thunk(() => nix.str`fetchurl requires a hash for fixed-output derivation: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls_)}`))))))))));
+        const hash_ = nix.thunk(() => (nix.asBool(nix.gt(nix.app(length, nix.thunk(() => nix.app(filter, (s) => !nix.eq(s, ""), nix.thunk(() => [hash, outputHash, sha1, sha256, sha512])))), 1n)) ? nix.builtins.throw(nix.thunk(() => nix.str`multiple hashes passed to fetchurl: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls_)}`)) : (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$2, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(outputHash, "")) ? (nix.asBool(!nix.eq(outputHashAlgo, "")) ? { [nix.POS]: pos$3, outputHashAlgo: outputHashAlgo, outputHash: outputHash } : nix.builtins.throw(nix.thunk(() => nix.str`fetchurl was passed outputHash without outputHashAlgo: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls_)}`))) : (nix.asBool(!nix.eq(sha512, "")) ? { [nix.POS]: pos$4, outputHashAlgo: "sha512", outputHash: sha512 } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: pos$5, outputHashAlgo: "sha256", outputHash: sha256 } : (nix.asBool(!nix.eq(sha1, "")) ? { [nix.POS]: pos$6, outputHashAlgo: "sha1", outputHash: sha1 } : (nix.asBool(!nix.eq(cacert, null)) ? { [nix.POS]: pos$7, outputHashAlgo: null, outputHash: fakeHash } : nix.builtins.throw(nix.thunk(() => nix.str`fetchurl requires a hash for fixed-output derivation: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), urls_)}`))))))))));
         const finalHashHasColon = nix.thunk(() => !nix.eq(nix.app(match, ".*:.*", nix.thunk(() => nix.sel(finalAttrs, "hash"))), null));
         const finalHashColonMatch = nix.thunk(() => nix.app(match, "([^:]+)[:](.*)", nix.thunk(() => nix.sel(finalAttrs, "hash"))));
         return nix.update(derivationArgs, {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           __structuredAttrs: true,
           name: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.selOr(finalAttrs, () => null, "pname"), null)) && nix.asBool(!nix.eq(nix.selOr(finalAttrs, () => null, "version"), null)))) ? nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}` : (nix.asBool(showURLs) ? "urls" : (nix.asBool(!nix.eq(name, null)) ? nix.force(name) : nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(head, urls_))))))))),
           builder: nix.path(here, "./builder.sh"),
@@ -116,13 +116,13 @@ export default nix.lambda((args) => (() => {
           outputHashAlgo: nix.thunk(() => (nix.asBool(finalHashHasColon) ? nix.app(head, finalHashColonMatch) : null)),
           outputHash: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(finalAttrs, "hash"), "")) ? nix.force(fakeHash) : (nix.asBool(finalHashHasColon) ? nix.app(elemAt, finalHashColonMatch, 1n) : nix.sel(finalAttrs, "hash")))),
           env: nix.thunk(() => nix.update({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             SSL_CERT_FILE: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.sel(hash_, "outputHash"), "")) || nix.asBool(nix.eq(nix.sel(hash_, "outputHash"), fakeSha256)))) || nix.asBool(nix.eq(nix.sel(hash_, "outputHash"), fakeSha512)))) || nix.asBool(nix.eq(nix.sel(hash_, "outputHash"), fakeHash)))) || nix.asBool(!nix.eq(netrcPhase, null)))) ? nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt` : "/no-cert-file.crt")),
           }, nix.selOr(derivationArgs, () => ({}), "env"))),
           outputHashMode: nix.thunk(() => (nix.asBool((nix.asBool(recursiveHash) || nix.asBool(executable))) ? "recursive" : "flat")),
           curlOpts: nix.thunk(() => (nix.asBool(nix.app(isList, curlOpts)) ? nix.app(warn, nix.thunk(() => (() => {
               const url_1 = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.head(urls_))));
-              const curlOptsRepresentation = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ __proto__: pos$9, multiline: false })), curlOpts));
+              const curlOptsRepresentation = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({ [nix.POS]: pos$9, multiline: false })), curlOpts));
               const curlOptsAsStringRepresentation = nix.thunk(() => nix.app(nix.sel(lib, "strings", "escapeNixString"), nix.thunk(() => nix.builtins.toString(curlOpts))));
               const curlOptsListElementsRepresentation = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", nix.thunk(() => nix.sel(lib, "strings", "escapeNixString")), curlOpts));
               return nix.str`fetchurl for ${url_1}: curlOpts is a list (${curlOptsRepresentation}), which is not supported anymore.
@@ -143,13 +143,13 @@ export default nix.lambda((args) => (() => {
           preferLocalBuild: preferLocalBuild,
           meta: meta,
           passthru: nix.thunk(() => nix.update({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             url: url,
             resolvedUrl: nix.thunk(() => nix.app(head, nix.thunk(() => nix.app(resolveUrl, url)))),
           }, passthru)),
         });
       })(), formals$2),
       inheritFunctionArgs: false,
-    }))), { __proto__: pos$13, resolveUrl: resolveUrl });
+    }))), { [nix.POS]: pos$13, resolveUrl: resolveUrl });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

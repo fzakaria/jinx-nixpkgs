@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wleave",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AMNatty",
           repo: "wleave",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/config.rs \\\n  --replace-fail \"/etc/wleave\" \"$out/etc/wleave\"\n\nsubstituteInPlace layout.json \\\n  --replace-fail \"/usr/share/wleave\" \"$out/share/wleave\"\n",
       postInstall: "install -Dm644 -t \"$out/etc/wleave\" {\"style.css\",\"layout.json\"}\ninstall -Dm644 -t \"$out/share/wleave/icons\" icons/*\n\n# Man pages are currently broken due to upstream scdoc syntax errors.\n# Disable generation until upstream fixes them.\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wayland-native logout script written in GTK4",
         homepage: "https://github.com/AMNatty/wleave",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

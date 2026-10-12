@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "textual_autocomplete",
           version: version,
           hash: "sha256-K6Lw12e+RIDsrLPksTDPBzQOAzw1APxCT+2RJdJ6RYY=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["textual", "typing_extensions"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library that provides autocomplete capabilities to textual",
         homepage: "https://github.com/darrenburns/textual-autocomplete",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

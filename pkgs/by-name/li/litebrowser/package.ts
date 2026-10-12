@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const gumbo = nix.arg($, "gumbo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "litebrowser",
       version: "0-unstable-2024-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "litehtml",
           repo: "litebrowser-linux",
           rev: "8130cf50af90e07d201d43b934b5a57f7ed4e68d",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DEXTERNAL_GUMBO=ON"]),
       installPhase: "runHook preInstall\ninstall -Dm755 litebrowser $out/bin/litebrowser\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.sel(stdenv, "cc", "isClang")),
         description: "Simple browser based on the litehtml engine",
         mainProgram: "litebrowser",

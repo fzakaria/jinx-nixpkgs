@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "peacock",
       version: "8.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "thepeacockproject",
           repo: "Peacock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8Z2UXz/4ecQruy20RykgSXBm3JjMqZH6KVBVCXRzAI4=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -83,13 +83,13 @@ runHook postInstall
 `),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-O1F/OaVipYyJOIIeNcOEghxTjGYNg8Ba0KMQMnW09EQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Server replacement for the HITMAN™ World of Assassination trilogy",
         homepage: "https://thepeacockproject.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/thepeacockproject/Peacock/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

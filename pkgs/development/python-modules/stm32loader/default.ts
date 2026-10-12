@@ -25,25 +25,25 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-QTLSEjdJtDH4GCamnKHN5pEjW41rRtAMXxyZZMM5K3w=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/florisla/stm32loader/commit/96f59b2984b0d0371b2da0360d6e8d94d0b39a68.patch?full_index=1",
             hash: "sha256-JUEjQWOnzeMA1OELS214OR7+MYUkCKN5lxwsmRoFbfo=",
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [flit_core]);
       const propagatedBuildInputs = nix.thunk(() => [progress, pyserial]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, hex: nix.thunk(() => [intelhex]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, hex: nix.thunk(() => [intelhex]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Flash firmware to STM32 microcontrollers in Python",
         mainProgram: "stm32loader",
         homepage: "https://github.com/florisla/stm32loader",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

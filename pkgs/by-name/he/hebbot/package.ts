@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hebbot",
       version: "2.1-unstable-2024-09-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haecker-felix",
           repo: "hebbot",
           rev: "4c7152a3ce88ecfbac06f823abd4fd849e0c30d1",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, cmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [autoconf, automake])))),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: 1n,
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Matrix bot which can generate \"This Week in X\" like blog posts ",
         homepage: "https://github.com/haecker-felix/hebbot",
         changelog: "https://github.com/haecker-felix/hebbot/releases/tag/v2.1",

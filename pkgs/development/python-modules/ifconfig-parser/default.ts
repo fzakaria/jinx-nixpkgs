@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ifconfig-parser",
       version: "0.0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KnightWhoSayNi",
           repo: "ifconfig-parser",
           rev: "4921ac9d6be6244b062d082c164f5a5e69522478",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "export PYTHONPATH=$PYTHONPATH:$(pwd)/ifconfigparser:$(pwd)/ifconfigparser/tests\npython -m unittest -v test_ifconfig_parser.TestIfconfigParser\n",
       pythonImportsCheck: nix.thunk(() => ["ifconfigparser"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for parsing raw output of ifconfig",
         homepage: "https://github.com/KnightWhoSayNi/ifconfig-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

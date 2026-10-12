@@ -19,30 +19,30 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   const variants = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     bonum: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       displayName: "Bonum",
       version: "1.005",
       sha256: "1b6x7siypyxp1lhq7xxdqafwbn6p2p3xm3jb38q999sv8cgslxz8",
       outputHash: "1zjaxkzidqmxakh9d61n0by9mi8hrmir45jppjj6hzwhm3rvknff",
     })),
     pagella: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       displayName: "Pagella",
       version: "1.632",
       sha256: "0f4cgq9w0lc1fbcbfqiv19mdhivbsscl13jmb0ln685641ci2sjr",
       outputHash: "0wz2n1dpx9b8a0qgqy8vl712fxhi87mhcda281xaad62chndwf6k",
     })),
     schola: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       displayName: "Schola",
       version: "1.533",
       sha256: "0caqgkz7gz700h5a1mai0gq8hv7skrgs5nnrs1f7zw1mb9g53ya9",
       outputHash: "0jk4bpxki95a9lmfj4cgpnv1jwlkh8qixbkf498n1x7hkaz03f5n",
     })),
     termes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       displayName: "Termes",
       version: "1.543",
       sha256: "10ayqfpryfn1l35hy0vwyjzw3a6mfsnzgf78vsnccgk2gz1g9vhz",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`tex-gyre-${variant}-math`);
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: nix.thunk(() => nix.str`https://www.gust.org.pl/projects/e-foundry/tg-math/download/texgyre${variant}-math-${dotless_version}.zip`),
             sha256: sha256,
           }))));
@@ -71,7 +71,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version_1}    doc/*.txt
         const outputHashMode = "recursive";
         const outputHash_1 = outputHash;
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           longDescription: nix.thunk(() => nix.str`TeX Gyre ${displayName} Math is a math companion for the TeX Gyre
 ${displayName} family of fonts (see
 http://www.gust.org.pl/projects/e-foundry/tex-gyre/) in the OpenType format.
@@ -85,7 +85,7 @@ http://www.gust.org.pl/projects/e-foundry/tex-gyre/) in the OpenType format.
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           version: version_1,
           src,

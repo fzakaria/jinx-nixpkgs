@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const dhallToNix = (code) => (() => {
     const file = nix.thunk(() => nix.app(writeText, "dhall-expression", code));
     const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "dhall-compiled.nix",
         buildCommand: nix.thunk(() => nix.str`dhall-to-nix <<< "${file}" > $out
 `),

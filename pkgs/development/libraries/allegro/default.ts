@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "allegro";
       const version = "4.4.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/liballeg/allegro5/releases/download/${version}/allegro-${version}.tar.gz`),
           sha256: "1m6lz35nk07dli26kkwz3wa50jsrxs1kb6w1nj14a911l34xn6gc",
         }))));
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const hardeningDisable = nix.thunk(() => ["format"]);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_SKIP_RPATH=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Game programming library",
         homepage: "https://liballeg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "giftware")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

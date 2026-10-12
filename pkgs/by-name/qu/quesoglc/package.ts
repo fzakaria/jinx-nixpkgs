@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fribidi = nix.arg($, "fribidi");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quesoglc",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/quesoglc/quesoglc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-VP7y7mhRct80TQb/RpmkQRQ7h6vtDVFFJK3E+JukyTE=",
         })))),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
         "ac_cv_func_memcmp_working=yes",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free implementation of the OpenGL Character Renderer",
         longDescription: "QuesoGLC is a free (as in free speech) implementation of the OpenGL\nCharacter Renderer (GLC). QuesoGLC is based on the FreeType library,\nprovides Unicode support and is designed to be easily ported to any\nplatform that supports both FreeType and the OpenGL API.\n",
         homepage: "https://quesoglc.sourceforge.net/",

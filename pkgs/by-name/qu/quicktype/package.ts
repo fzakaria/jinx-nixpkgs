@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "quicktype";
       const version = "23.0.105";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glideapps",
           repo: "quicktype",
           rev: "0b5924db1d3858d6f4abe5923cce53b2f4e581aa",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-RA4HVQfB/ge1aIKl9HiUT7vUM5n+Ro6N2D6xj1dgSu8=";
       const postInstall = "mv packages/ $out/lib/node_modules/quicktype/\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: quicktype })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: quicktype })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Generate types and converters from JSON, Schema, and GraphQL",
         homepage: "https://quicktype.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "quicktype",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

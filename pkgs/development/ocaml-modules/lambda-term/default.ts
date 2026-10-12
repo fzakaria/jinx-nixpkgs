@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const uucp = nix.arg($, "uucp");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lambda-term",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocaml-community",
           repo: "lambda-term",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [zed, lwt_react, mew_vi, uucp, logs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal manipulation library for OCaml",
         longDescription: "Lambda-term is a cross-platform library for\nmanipulating the terminal. It provides an abstraction for keys,\nmouse events, colors, as well as a set of widgets to write\ncurses-like applications.\n\nThe main objective of lambda-term is to provide a higher level\nfunctional interface to terminal manipulation than, for example,\nncurses, by providing a native OCaml interface instead of bindings to\na C library.\n\nLambda-term integrates with zed to provide text edition facilities in\nconsole applications.\n",
         homepage: "https://github.com/ocaml-community/lambda-term",

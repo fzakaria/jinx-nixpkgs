@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const sqlite = nix.argOr($, "sqlite", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hostapd",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://w1.fi/releases/hostapd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-9DUCVhwoukerd+GOGpc9BzYcaMyLFBeOYZvVeWtw6r0=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libnl, openssl, sqlite]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/openwrt/openwrt/eefed841b05c3cd4c65a78b50ce0934d879e6acf/package/network/services/hostapd/patches/300-noscan.patch",
             sha256: "08p5frxhpq1rp2nczkscapwwl8g9nc4fazhjpxic5bcbssc3sb00",
           })))),
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin",
       postInstall: "install -vD hostapd.8 -t $man/share/man/man8\ninstall -vD hostapd_cli.1 -t $man/share/man/man1\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           wpa_supplicant: nix.thunk(() => nix.attr(nixosTests, "wpa_supplicant")),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://w1.fi/hostapd/",
         description: "User space daemon for access point and authentication servers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

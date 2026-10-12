@@ -19,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const gradle = nix.arg($, "gradle");
   const ghidraPlatformName = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "linux_x86_64",
     "aarch64-linux": "linux_x86_64",
     "aarch64-darwin": "mac_arm_64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} is an unsupported platform`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const z3_lib = nix.thunk(() => nix.app(nix.sel(z3, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       javaBindings: true,
       jdk: nix.thunk(() => nix.sel(gradle, "jdk")),
     }))));
   const self = nix.thunk(() => nix.app(buildGhidraExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kaiju",
       version: "260608",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "CERTCC",
           repo: "kaiju",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,9 +47,9 @@ mkdir -p os/${ghidraPlatformName}
 cp ${nix.app(nix.sel(lib, "getOutput"), "java", z3_lib)}/lib/* os/${ghidraPlatformName}
 `),
       gradleFlags: nix.thunk(() => ["-PKAIJU_SKIP_Z3_BUILD=true"]),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$4, pkg: self, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$4, pkg: self, data: nix.path(here, "./deps.json") })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Java implementation of some features of the CERT Pharos Binary Analysis Framework for Ghidra",
         homepage: "https://github.com/CERTCC/kaiju",
         downloadPage: nix.thunk(() => nix.str`https://github.com/CERTCC/kaiju/releases/tag/${nix.sel(finalAttrs, "version")}`),

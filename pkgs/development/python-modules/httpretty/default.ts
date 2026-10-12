@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "20de0e5dd5a18292d36d928cc3d6e52f8b2ac73daec40d41eb62dee154933b68",
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/bugfixes", "tests/functional", "tests/pyopenssl"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://httpretty.readthedocs.org/",
         description: "HTTP client request mocking tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-template",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-src`),
           owner: "jonringer",
           repo: "nix-template",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd nix-template \\\n  --bash <($out/bin/nix-template completions bash) \\\n  --fish <($out/bin/nix-template completions fish) \\\n  --zsh <($out/bin/nix-template completions zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Make creating nix expressions easy",
         homepage: "https://github.com/jonringer/nix-template/",
         changelog: nix.thunk(() => nix.str`https://github.com/jonringer/nix-template/releases/tag/v${nix.sel(finalAttrs, "version")}`),

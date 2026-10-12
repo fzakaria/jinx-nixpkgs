@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LedgerHQ",
           repo: "ledgerctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "protoc --python_out=. --pyi_out=. ledgerwallet/proto/*.proto\n";
       const pythonImportsCheck = nix.thunk(() => ["ledgerwallet"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/LedgerHQ/ledgerctl",
         description: "Library to control Ledger devices",
         mainProgram: "ledgerctl",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

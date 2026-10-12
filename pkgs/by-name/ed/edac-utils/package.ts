@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const dmidecode = nix.arg($, "dmidecode");
   const kmod = nix.arg($, "kmod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "edac-utils",
       version: "0.18-unstable-2023-01-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grondo",
           repo: "edac-utils",
           rev: "8fdc1d40e30f65737fef6c3ddcd1d2cd769f6277",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`sbindir=${nix.builtins.placeholder("out")}/bin`)]),
       postInstall: "rm -r \"$out\"/etc/init.d\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/grondo/edac-utils",
         description: "Handles the reporting of hardware-related memory errors",
         mainProgram: "edac-util",

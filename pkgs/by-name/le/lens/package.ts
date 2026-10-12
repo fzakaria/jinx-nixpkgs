@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const pname = "lens-desktop";
   const version = "2026.10.51501";
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://api.k8slens.dev/binaries/Lens-${version}-latest.x86_64.AppImage`),
       hash: "sha512-NSCV9zkwhhpy3P1QB//OqFmZO7cfIMotosSwQyKacQUrOo6hcjPKetbXN1Nr5rIPdbeKdQGphArO5T/vY7NaCg==",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://api.k8slens.dev/binaries/Lens-${version}-latest-arm64.dmg`),
       hash: "sha512-Rl+rlJXUlgo84MWxBj6p4J/6se/5z9elU+g4iszAqgeJAqb5Onm7ASHUoCqSYdCJLFuttt7gBiVpOWqROCbW5w==",
     })),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
     })())));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     description: "Kubernetes IDE",
     homepage: "https://k8slens.dev/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "lens")),
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
   }));
   const updateScript = nix.path(here, "./update.sh");
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       updateScript: updateScript,
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,

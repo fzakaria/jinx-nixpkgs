@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const gluten = nix.arg($, "gluten");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "gluten-lwt",
       doCheck: nix.thunk(() => nix.attr(gluten, "doCheck")),
       meta: nix.thunk(() => nix.attr(gluten, "meta")),

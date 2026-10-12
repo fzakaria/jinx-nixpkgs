@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const makeExtensible = nix.thunk(() => nix.attr(lib, "makeExtensible"));
   const makePackageSet = nix.thunk(() => nix.attr(haskellLib, "makePackageSet"));
   const haskellPackages = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), makePackageSet, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "package-set": initialPackages,
       stdenv: stdenv,
       haskellLib: haskellLib,
@@ -46,18 +46,18 @@ export default nix.lambda((args) => (() => {
       buildHaskellPackages: buildHaskellPackages,
     }))));
   const platformConfigurations = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch")), nix.thunk(() => [
-      nix.thunk(() => nix.app(configurationArm, nix.thunk(() => ({ __proto__: pos$2, pkgs: pkgs, haskellLib: haskellLib })))),
+      nix.thunk(() => nix.app(configurationArm, nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, haskellLib: haskellLib })))),
     ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
-      nix.thunk(() => nix.app(configurationDarwin, nix.thunk(() => ({ __proto__: pos$3, pkgs: pkgs, haskellLib: haskellLib })))),
+      nix.thunk(() => nix.app(configurationDarwin, nix.thunk(() => ({ [nix.POS]: pos$3, pkgs: pkgs, haskellLib: haskellLib })))),
     ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [
-      nix.thunk(() => nix.app(configurationWindows, nix.thunk(() => ({ __proto__: pos$4, pkgs: pkgs, haskellLib: haskellLib })))),
+      nix.thunk(() => nix.app(configurationWindows, nix.thunk(() => ({ [nix.POS]: pos$4, pkgs: pkgs, haskellLib: haskellLib })))),
     ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGhcjs")), nix.thunk(() => [
-      nix.thunk(() => nix.app(configurationJS, nix.thunk(() => ({ __proto__: pos$5, pkgs: pkgs, haskellLib: haskellLib })))),
+      nix.thunk(() => nix.app(configurationJS, nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: pkgs, haskellLib: haskellLib })))),
     ]))))));
   const extensions = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => nix.concat([
-      nix.thunk(() => nix.app(nonHackagePackages, nix.thunk(() => ({ __proto__: pos$6, pkgs: pkgs, haskellLib: haskellLib })))),
-      nix.thunk(() => nix.app(configurationNix, nix.thunk(() => ({ __proto__: pos$7, pkgs: pkgs, haskellLib: haskellLib })))),
-      nix.thunk(() => nix.app(configurationCommon, nix.thunk(() => ({ __proto__: pos$8, pkgs: pkgs, haskellLib: haskellLib })))),
+      nix.thunk(() => nix.app(nonHackagePackages, nix.thunk(() => ({ [nix.POS]: pos$6, pkgs: pkgs, haskellLib: haskellLib })))),
+      nix.thunk(() => nix.app(configurationNix, nix.thunk(() => ({ [nix.POS]: pos$7, pkgs: pkgs, haskellLib: haskellLib })))),
+      nix.thunk(() => nix.app(configurationCommon, nix.thunk(() => ({ [nix.POS]: pos$8, pkgs: pkgs, haskellLib: haskellLib })))),
     ], nix.concat(platformConfigurations, [compilerConfig, packageSetConfig, overrides])))));
   const extensible_self = nix.thunk(() => nix.app(makeExtensible, nix.thunk(() => nix.app(extends$, extensions, haskellPackages))));
   return nix.force(extensible_self);

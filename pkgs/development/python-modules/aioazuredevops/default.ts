@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timmo001",
           repo: "aioazuredevops",
           tag: version,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--snapshot-update"]);
       const pythonImportsCheck = nix.thunk(() => ["aioazuredevops"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/timmo001/aioazuredevops/releases/tag/${version}`),
         description: "Get data from the Azure DevOps API",
         homepage: "https://github.com/timmo001/aioazuredevops",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

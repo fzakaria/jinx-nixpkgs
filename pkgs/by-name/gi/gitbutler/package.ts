@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const dart_sass = nix.arg($, "dart-sass");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gitbutler",
       version: "0.19.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitbutlerapp",
           repo: "gitbutler",
           tag: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ substituteInPlace apps/desktop/src/lib/backend/tauri.ts \\
 `),
       cargoHash: "sha256-7dF865YPcVp/g6PUs5QRaU3wZ0UmlAgaPGhHsIjIZPY=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -115,7 +115,7 @@ substituteInPlace apps/desktop/src/lib/backend/tauri.ts \\
           "track_directory_changes_after_rename",
         ])))))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         TRIPLE_OVERRIDE: nix.thunk(() => nix.sel(rust, "envVars", "rustHostPlatformSpec")),
         COREPACK_ENABLE_STRICT: 0n,
         RUSTFLAGS: "--cfg tokio_unstable",
@@ -133,14 +133,14 @@ pnpm build:desktop -- --mode production
 `),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeBinaryWrapper $out/Applications/GitButler.app/Contents/MacOS/gitbutler-tauri $out/bin/gitbutler-tauri\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "desktop-file-edit \\\n  --set-comment \"A Git client for simultaneous branches on top of your existing workflow.\" \\\n  --set-key=\"Keywords\" --set-value=\"git;\" \\\n  --set-key=\"StartupWMClass\" --set-value=\"GitButler\" \\\n  $out/share/applications/GitButler.desktop\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "release/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Git client for simultaneous branches on top of your existing workflow",
         homepage: "https://gitbutler.com",
         changelog: nix.thunk(() => nix.str`https://github.com/gitbutlerapp/gitbutler/releases/tag/release/${nix.sel(finalAttrs, "version")}`),

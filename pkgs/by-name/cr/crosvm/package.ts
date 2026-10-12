@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "crosvm",
       version: "0-unstable-2026-08-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://chromium.googlesource.com/chromiumos/platform/crosvm",
           rev: "b4a952843aea56f36b1cdccea3cc3b92edc078b8",
           hash: "sha256-yQZ+Sf/pRScIGERyA8J4V9ukCwD0bjbi2QIhIzUHQwA=",
@@ -62,28 +62,28 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "patchShebangs third_party/minijail/tools/*.py\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CROSVM_USE_SYSTEM_MINIGBM: true,
         CROSVM_USE_SYSTEM_VIRGLRENDERER: true,
       })),
       buildFeatures: nix.thunk(() => ["virgl_renderer"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-crosvm.sh", nix.thunk(() => nix.str`set -ue
 ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: "https://chromium.googlesource.com/crosvm/crosvm.git",
                 hardcodeZeroVersion: true,
               })))))}
 exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip
 `))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "crosvm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Secure virtual machine monitor for KVM",
         homepage: "https://crosvm.dev/",
         mainProgram: "crosvm",

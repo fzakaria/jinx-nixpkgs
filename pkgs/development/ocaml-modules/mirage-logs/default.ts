@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mirage-logs",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-logs/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-logs-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-ptt9/Dr9h+W3j/9SAHpWvKZnIgeuBn5oxj72kxiSZ1A=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mirage reporter for the Logs library",
         homepage: "https://github.com/mirage/mirage-logs",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/mirage-logs/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

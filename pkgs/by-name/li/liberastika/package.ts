@@ -16,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "liberastika";
       const version = "1.1.5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/lib-ka/liberastika-ttf-${version}.zip`),
           stripRoot: false,
           hash: "sha256-woUpOmxhj6eEw7PKJ8EyRcs3ORj0gCZhxHP5a5dy5z0=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/truetype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Liberation Sans fork with improved cyrillic support",
         homepage: "https://sourceforge.net/projects/lib-ka/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

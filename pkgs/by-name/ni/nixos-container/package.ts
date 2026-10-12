@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const path = nix.arg($, "path");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "nixos-container",
       dir: "bin",
       isExecutable: true,
       src: nix.path(here, "./nixos-container.pl"),
       replacements: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         perl: nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => [
             nix.thunk(() => nix.sel(p, "FileSlurp")),
             nix.thunk(() => nix.sel(p, "IPCRun")),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
         "util-linux": util_linux,
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "containers-imperative": nix.thunk(() => nix.attr(nixosTests, "containers-imperative")),
           "containers-ip": nix.thunk(() => nix.attr(nixosTests, "containers-ip")),
           "containers-tmpfs": nix.thunk(() => nix.attr(nixosTests, "containers-tmpfs")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   --fish ${nix.path(here, "./nixos-container-completion.fish")}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "nixos-container",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libvgm = nix.arg($, "libvgm");
   const inih = nix.arg($, "inih");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vgmplay-libvgm",
       version: "0.52.0-unstable-2026-10-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ValleyBell",
           repo: "vgmplay-libvgm",
           rev: "cad006c8606165e13411713c06b6846a00f6c4de",
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [zlib, libvgm, inih]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://github.com/ValleyBell/vgmplay-libvgm.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/ValleyBell/vgmplay-libvgm.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "vgmplay",
         homepage: "https://github.com/ValleyBell/vgmplay-libvgm",
         description: "New VGMPlay, based on libvgm",

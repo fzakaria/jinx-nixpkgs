@@ -9,13 +9,13 @@ const pos$4 = nix.positions(here + "/gemset.nix", [["dependencies", 13, 5], ["gr
 const pos$5 = nix.positions(here + "/gemset.nix", [["plist", 2, 3], ["sublime_syntax_convertor", 12, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   plist: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0hlaf4b3d8grxm9fqbnam5gwd55wvghl0jyzjd1hc5hirhklaynk",
       type: "gem",
@@ -23,12 +23,12 @@ export default nix.thunk(() => ({
     version: "3.7.2",
   })),
   sublime_syntax_convertor: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["plist"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0gg65xls9rl9df37njja5f7y6mm1cbnf9yafyy3j7cnkcszif43a",
       type: "gem",

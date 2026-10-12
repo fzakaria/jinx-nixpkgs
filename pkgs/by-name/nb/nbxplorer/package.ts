@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nbxplorer";
       const version = "2.6.17";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "btcpayserver",
           repo: "NBXplorer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_10_0"));
       const postFixup = "mv $out/bin/{NBXplorer,nbxplorer} || :\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimalist UTXO tracker for HD Cryptocurrency Wallets",
         homepage: "https://github.com/btcpayserver/NBXplorer",
         maintainers: nix.thunk(() => (() => {
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nbxplorer",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

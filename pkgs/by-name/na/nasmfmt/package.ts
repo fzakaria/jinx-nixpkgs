@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nasmfmt",
       version: "unstable-2022-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yamnikov-oleg",
           repo: "nasmfmt",
           rev: "127dbe8e72376c67d7dff89010ccfb49fc7b533e",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "go mod init github.com/yamnikov-oleg/nasmfmt\n",
       ldflags: nix.thunk(() => ["-s"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Formatter for NASM source files",
         mainProgram: "nasmfmt",
         homepage: "https://github.com/yamnikov-oleg/nasmfmt",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dhex",
       version: "0.69",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.dettus.net/dhex/dhex_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "06y4lrp29f2fh303ijk1xhspa1d4x4dm6hnyw3dd8szi3k6hnwsj",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\nmkdir -p $out/share/man/man5\n\ncp dhex $out/bin\ncp dhex.1 $out/share/man/man1\ncp dhexrc.5 $out/share/man/man5\ncp dhex_markers.5 $out/share/man/man5\ncp dhex_searchlog.5 $out/share/man/man5\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Themeable hex editor with diff mode",
         homepage: "http://www.dettus.net/dhex/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const zig = zig_0_15;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rivercarro",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~novakane",
           repo: "rivercarro",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~novakane/rivercarro",
         description: "Layout generator for river Wayland compositor, fork of rivertile",
         longDescription: "A slightly modified version of rivertile layout generator for river.\n\nCompared to rivertile, rivercarro adds:\n- Monocle layout, views will takes all the usable area on the screen.\n- Gaps instead of padding around views or layout area.\n- Modify gaps size at runtime.\n- Smart gaps, if there is only one view, gaps will be disable.\n- Limit the width of the usable area of the screen.\n",

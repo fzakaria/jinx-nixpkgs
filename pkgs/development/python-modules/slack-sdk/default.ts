@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const websocket_client = nix.arg($, "websocket-client");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "slack-sdk",
       version: "3.45.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "slackapi",
           repo: "python-slack-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         optional: nix.thunk(() => [aiodns, aiohttp, boto3, sqlalchemy, websocket_client, websockets]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aiosqlite, moto, pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Slack Developer Kit for Python",
         homepage: "https://slack.dev/python-slack-sdk/",
         changelog: nix.thunk(() => nix.str`https://github.com/slackapi/python-slack-sdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

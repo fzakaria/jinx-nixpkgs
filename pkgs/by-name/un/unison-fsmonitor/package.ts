@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unison-fsmonitor";
       const version = "0.3.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "autozimu",
           repo: "unison-fsmonitor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-N3l18MM5DqgDKzl6qAXUibaHgQKvAQFvZuuzgb3eAPE=";
       const checkFlags = nix.thunk(() => ["--skip=test_follow_link"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/autozimu/unison-fsmonitor",
         description: "fsmonitor implementation for darwin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         mainProgram: "unison-fsmonitor",
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, checkFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, checkFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

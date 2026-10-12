@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`grpc-google-iam-v1-v${version}`),
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["google.iam", "google.iam.v1"]);
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "grpc-google-iam-v1-v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "grpc-google-iam-v1-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GRPC library for the google-iam-v1 service",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/grpc-google-iam-v1",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/grpc-google-iam-v1/CHANGELOG.md`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

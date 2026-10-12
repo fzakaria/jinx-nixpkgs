@@ -32,40 +32,40 @@ const pos$27 = nix.positions(here + "/versions.nix", [["kicadVersion", 49, 5], [
 const pos$28 = nix.positions(here + "/versions.nix", [["kicad", 4, 3], ["kicad-testing", 26, 3], ["kicad-unstable", 48, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$28,
+  [nix.POS]: pos$28,
   kicad: nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     kicadVersion: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "10.0.6",
       src: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         rev: "e757247bdec054f139487cc5c63ce6a5e76f7432",
         sha256: "0x9376x4nigqnx4d82qixz41p779svjdsgkxv6l0kmn3snvwbcgk",
       })),
     })),
     libVersion: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "10.0.6",
       libSources: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         symbols: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rev: "a496b9e6752ef1a44e3711409f39d080d74519a0",
           sha256: "0ynmi6qg5cac37vn0q986vh2a560ab8vb24yg7bfbkyj8b5xk353",
         })),
         templates: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           rev: "46d7ee8fe0c19837672c33c3747c2fe87eaae853",
           sha256: "0zs29zn8qjgxv0w1vyr8yxmj02m8752zagn4vcraqgik46dwg2id",
         })),
         footprints: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           rev: "e0779daea58396261bd88a84b2b126eff8b90794",
           sha256: "11hhdk8g7hsm50817x7204lzm1qpjpfjr82gyrnhdshnnzd0hbf7",
         })),
         packages3d: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           rev: "125f0268659a530ec6b78fec645f86228f09aae7",
           sha256: "1mkcf6yn64pqjk51srnv5cidcji0hrx8nfh0q5zyc4ca7p7984li",
         })),
@@ -73,38 +73,38 @@ export default nix.thunk(() => ({
     })),
   })),
   "kicad-testing": nix.thunk(() => ({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     kicadVersion: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       version: "10.0-2026-08-14",
       src: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         rev: "29b1e0f34f2fefcaebe6f53103390e6a79f0646f",
         sha256: "12hnm0kwxf1m6z0xflh75swkfbwvykkasmv3a2n0bhqgl9snafbp",
       })),
     })),
     libVersion: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       version: "10.0-2026-08-14",
       libSources: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         symbols: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           rev: "94d8f4635e3ce67695aae0ee16d983d32346feaf",
           sha256: "12w7qbqm9wk6b7d8ljdd46afskkqc2aanh8fyf36frwqy1mjfx87",
         })),
         templates: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           rev: "cafa8b3ef4735f830212299da26629e9bcd62c02",
           sha256: "0zs29zn8qjgxv0w1vyr8yxmj02m8752zagn4vcraqgik46dwg2id",
         })),
         footprints: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           rev: "a2d01395d25f14158f2ca0b17adcc8fcb45fe443",
           sha256: "0jr9q1yrlxbb796wrsrnlplb2a05k3z0g1m1dn3c87cf9ffmlaz0",
         })),
         packages3d: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           rev: "67538dca1b8583dec9bd2a45d4eeced6fa287923",
           sha256: "1gqqi91g1yynfgmxl5l34g1rg3gjksl54xd1zsgp4kvyi5w50b3r",
         })),
@@ -112,38 +112,38 @@ export default nix.thunk(() => ({
     })),
   })),
   "kicad-unstable": nix.thunk(() => ({
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     kicadVersion: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       version: "2026-07-22",
       src: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         rev: "6e8e92d84aae47e19af95340c0ce10e040970015",
         sha256: "091q9hk69pn2n6mibdm3729kpr14pi5ya7iw1nss53r59j5c15y8",
       })),
     })),
     libVersion: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       version: "2026-07-22",
       libSources: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         symbols: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           rev: "60d2dc9981920ee40eb5caa4dc01b23f713beca7",
           sha256: "12w7qbqm9wk6b7d8ljdd46afskkqc2aanh8fyf36frwqy1mjfx87",
         })),
         templates: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           rev: "3ed4538b0f965d821df63a5fffc4441e723cfe7f",
           sha256: "0zs29zn8qjgxv0w1vyr8yxmj02m8752zagn4vcraqgik46dwg2id",
         })),
         footprints: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           rev: "2c7f07017725b44b98f30849e1b83e29fed43718",
           sha256: "0jr9q1yrlxbb796wrsrnlplb2a05k3z0g1m1dn3c87cf9ffmlaz0",
         })),
         packages3d: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           rev: "e9fd30d7cee55a427d26db7aa9ac635e4a5599df",
           sha256: "1gqqi91g1yynfgmxl5l34g1rg3gjksl54xd1zsgp4kvyi5w50b3r",
         })),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ecopcr",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.metabarcoding.org/obitools/ecopcr/-/archive/ecopcr_v${nix.sel(finalAttrs, "version")}/ecopcr-ecopcr_v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ssvWpi7HuuRRAkpqqrX3ijLuBqM3QsrmrG+t7/m6fZA=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd src\n",
       installPhase: "mkdir -p $out/bin\ncp -v ecoPCR $out/bin\ncp -v ecogrep $out/bin\ncp -v ecofind $out/bin\ncp -v ../tools/ecoPCRFormat.py $out/bin/ecoPCRFormat\nchmod a+x $out/bin/ecoPCRFormat\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Electronic PCR software tool",
         longDescription: "ecoPCR is an electronic PCR software developed by the LECA. It\nhelps you estimate Barcode primers quality. In conjunction with\nOBITools, you can postprocess ecoPCR output to compute barcode\ncoverage and barcode specificity. New barcode primers can be\ndeveloped using the ecoPrimers software.\n",
         homepage: "https://git.metabarcoding.org/obitools/ecopcr/wikis/home",

@@ -27,55 +27,55 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "nix"));
   const nixPackage = nix.thunk(() => nix.sel(cfg, "package", "out"));
   const commonNixDaemonConfig = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     path: nix.thunk(() => [nixPackage, nix.thunk(() => nix.sel(config, "programs", "ssh", "package"))]),
     environment: nix.thunk(() => nix.update(nix.sel(cfg, "envVars"), nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       CURL_CA_BUNDLE: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
     }, nix.sel(config, "networking", "proxy", "envVars")))),
     serviceConfig: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       CPUSchedulingPolicy: nix.thunk(() => nix.sel(cfg, "daemonCPUSchedPolicy")),
       IOSchedulingClass: nix.thunk(() => nix.sel(cfg, "daemonIOSchedClass")),
       IOSchedulingPriority: nix.thunk(() => nix.sel(cfg, "daemonIOSchedPriority")),
     })),
   }));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "daemon", "enable")) && nix.asBool(nix.eq(nix.sel(nixPackage, "pname"), "lix")))), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             assertion: nix.thunk(() => nix.sel(cfg, "enable")),
             message: "Enabling the Lix Daemon requires also enabling Nix (config.nix.enable = true).\n",
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           kernelModules: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             tun: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nixPackage]),
-          tmpfiles: nix.thunk(() => ({ __proto__: pos$7, packages: nix.thunk(() => [nixPackage]) })),
+          tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$7, packages: nix.thunk(() => [nixPackage]) })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$9,
-            "nix-daemon": nix.thunk(() => ({ __proto__: pos$8, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            [nix.POS]: pos$9,
+            "nix-daemon": nix.thunk(() => ({ [nix.POS]: pos$8, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "nix-daemon@": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 commonNixDaemonConfig,
-                nix.thunk(() => ({ __proto__: pos$10, restartIfChanged: false })),
+                nix.thunk(() => ({ [nix.POS]: pos$10, restartIfChanged: false })),
               ]))),
             "nix-daemon": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 commonNixDaemonConfig,
                 nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   restartTriggers: nix.thunk(() => [
                     nix.thunk(() => nix.sel(config, "environment", "etc", "nix/nix.conf", "source")),
                   ]),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           sessionVariables: nix.thunk(() => nix.sel(cfg, "envVars")),
         })),
       })))),

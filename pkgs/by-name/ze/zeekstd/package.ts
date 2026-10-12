@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zeekstd",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rorosen",
           repo: "zeekstd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-cli`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-zeekstd", nix.thunk(() => nix.str`latestVersion=$(curl \${GITHUB_TOKEN:+-u ":$GITHUB_TOKEN"} --fail --silent https://api.github.com/repos/rorosen/zeekstd/releases/latest | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output .tag_name | sed -E 's/^v([0-9.]+)-cli$/\\1/')
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} zeekstd --version $latestVersion
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI tool that works with the zstd seekable format",
         homepage: "https://github.com/rorosen/zeekstd",
         changelog: nix.thunk(() => nix.str`https://github.com/rorosen/zeekstd/releases/tag/v${nix.sel(finalAttrs, "version")}-cli`),

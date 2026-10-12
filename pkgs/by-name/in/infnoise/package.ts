@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "infnoise",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leetronics",
           repo: "infnoise",
           rev: "19bb69894724d87b32b7b9b86022bb4b26c919f8",
@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/leetronics/infnoise/commit/04d52a975bf78d2aff2bb4c176c286715e1948ba.patch",
             sha256: "sha256-vtPAR6gCyny9UP+U6/7X8CPEUuMDl7RIyICIwiaWyfc=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         GIT_COMMIT: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
         GIT_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         GIT_DATE: "2023-02-14",
@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd software\nsubstituteInPlace init_scripts/infnoise.service --replace \"/usr/local\" \"$out\"\n",
       postInstall: "make -C tools\n# 2e6cfbe made findlongest executable, but it's a C file\nchmod -x tools/*.c\nfind ./tools/ -executable -type f -exec \\\n  sh -c \"install -Dm755 {} $out/bin/infnoise-\\$(basename {})\" \\;\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/leetronics/infnoise",
         description: "Driver for the Infinite Noise TRNG",
         longDescription: "The Infinite Noise TRNG is a USB key hardware true random number generator.\nIt can either provide rng for userland applications, or provide rng for the OS entropy.\n",

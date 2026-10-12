@@ -52,12 +52,12 @@ export default nix.lambda((args) => (() => {
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "appstream",
       version: "1.1.3",
       outputs: nix.thunk(() => ["out", "dev", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ximion",
           repo: "appstream",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             libstemmer_includedir: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), libstemmer)}/include`),
           })))),
         nix.path(here, "./installed-tests-path.patch"),
@@ -111,18 +111,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gir", withIntrospection)),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withSystemd)), nix.thunk(() => ["-Dsystemd=false"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "appstream")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Software metadata handling library",
         longDescription: "AppStream is a cross-distro effort for building Software-Center applications\nand enhancing metadata provided by software components.  It provides\nspecifications for meta-information which is shipped by upstream projects and\ncan be consumed by other software.\n",
         homepage: "https://www.freedesktop.org/wiki/Distributions/AppStream/",

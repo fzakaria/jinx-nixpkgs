@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "regex-cli",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ytI1C2QRUfInIChwtSaHze7VJnP9UIcO93e2wjz2/I0=",
         })))),
       cargoHash: "sha256-7fPoH6I8Okz8Oby45MIDdKBkbPgUPsaXd6XS3r3cRO8=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line tool for debugging, ad hoc benchmarking and generating regular expressions",
         mainProgram: "regex-cli",
         homepage: "https://github.com/rust-lang/regex/tree/master/regex-cli",

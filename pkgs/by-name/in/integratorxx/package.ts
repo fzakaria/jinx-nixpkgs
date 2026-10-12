@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "integratorxx",
       version: "0-unstable-2025-09-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wavefunction91",
           repo: "IntegratorXX",
           rev: "1369be58d7a3235dac36d75dd964fef058830622",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [catch2_3]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reusable DFT Grids for the Masses",
         homepage: "https://github.com/wavefunction91/IntegratorXX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

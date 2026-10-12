@@ -83,10 +83,10 @@ export default nix.lambda((args) => (() => {
   const env = nix.thunk(() => (() => {
     const HOME = "/var/lib/radicle";
     const RAD_HOME = HOME;
-    return { __proto__: pos$1, HOME, RAD_HOME };
+    return { [nix.POS]: pos$1, HOME, RAD_HOME };
   })());
   const credentials = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     privateKey: "dev.radicle.node.secret",
     privateKeyPassphrase: "dev.radicle.node.passphrase",
   }));
@@ -101,9 +101,9 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linu
   ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "rad")} "$@"
 `)));
   const commonServiceConfig = (serviceName) => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     environment: nix.thunk(() => nix.update(env, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       RUST_LOG: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "info")),
     })),
     path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gitMinimal"))]),
@@ -113,7 +113,7 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linu
     wantedBy: nix.thunk(() => ["multi-user.target"]),
     serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           BindReadOnlyPaths: nix.thunk(() => [
             nix.thunk(() => nix.str`${nix.sel(cfg, "configFile")}:${nix.sel(env, "RAD_HOME")}/config.json`),
             nix.thunk(() => nix.str`${(nix.asBool(nix.app(nix.sel(lib, "types", "path", "check"), nix.thunk(() => nix.sel(cfg, "publicKey")))) ? nix.sel(cfg, "publicKey") : nix.app(nix.sel(pkgs, "writeText"), "radicle.pub", nix.thunk(() => nix.sel(cfg, "publicKey"))))}:${nix.sel(env, "RAD_HOME")}/keys/radicle.pub`),
@@ -126,7 +126,7 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linu
           WorkingDirectory: nix.thunk(() => nix.sel(env, "HOME")),
         })),
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           BindReadOnlyPaths: nix.thunk(() => ["-/etc/resolv.conf", "/run/systemd"]),
           AmbientCapabilities: "",
           CapabilityBoundingSet: "",
@@ -166,7 +166,7 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linu
         })),
       ]))),
     confinement: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       enable: true,
       mode: "full-apivfs",
       packages: nix.thunk(() => [
@@ -179,17 +179,17 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "util-linu
     })),
   });
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         radicle: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Radicle Seed Node")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "radicle-node", nix.thunk(() => ({})))),
           privateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "str")))));
@@ -206,7 +206,7 @@ Refer to the systemd-creds documentation for more details <https://systemd.io/CR
 `),
             })))),
           privateKeyPassphrase: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -225,7 +225,7 @@ Refer to the systemd-creds documentation for more details <https://systemd.io/CR
 `),
             })))),
           publicKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.lookup(w, "str")));
@@ -233,23 +233,23 @@ Refer to the systemd-creds documentation for more details <https://systemd.io/CR
               description: "An SSH public key (as an absolute file path or directly as a string),\nusually generated by `rad auth`.\n\nMake sure to not include a comment if your key comes with a comment.\n",
             })))),
           node: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "[::]",
                 example: "127.0.0.1",
                 description: "The IP address on which `radicle-node` listens.",
               })))),
             listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8776n,
                 description: "The port on which `radicle-node` listens.",
               })))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening the firewall for `radicle-node`")),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -259,11 +259,11 @@ Refer to the systemd-creds documentation for more details <https://systemd.io/CR
               })))),
           })),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               internal: true,
               default: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(json, "generate"), "config.json", nix.thunk(() => nix.sel(cfg, "settings"))), "overrideAttrs"), (previousAttrs) => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   preferLocalBuild: true,
                   buildCommand: nix.thunk(() => nix.add(nix.sel(previousAttrs, "buildCommand"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "checkConfig")), nix.thunk(() => nix.str`ln -s $out config.json
 install -D -m 644 /dev/stdin keys/radicle.pub <<<"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBgFMhajUng+Rjj/sCFXI9PzG8BQjru2n7JgUVF1Kbv5 snakeoil"
@@ -278,45 +278,45 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
 `)))),
                 }))),
             })))),
-          checkConfig: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking the {file}`config.json` file resulting from {option}`services.radicle.settings`"), { __proto__: pos$17, default: true })),
+          checkConfig: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "checking the {file}`config.json` file resulting from {option}`services.radicle.settings`"), { [nix.POS]: pos$17, default: true })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "See <https://radicle.network/nodes/iris.radicle.network/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/tree/radicle/src/node/config.rs#L275>\n",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  web.pinned.repositories = [\n    \"rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5\" # heartwood\n    \"rad:z3trNYnLWS11cJWC6BbxDs5niGo82\" # rips\n  ];\n}\n")),
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$18, freeformType: nix.thunk(() => nix.sel(json, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$18, freeformType: nix.thunk(() => nix.sel(json, "type")) })))),
             })))),
           httpd: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Radicle HTTP gateway to radicle-node")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "radicle-httpd", nix.thunk(() => ({})))),
             listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "The IP address on which `radicle-httpd` listens.",
               })))),
             listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8080n,
                 description: "The port on which `radicle-httpd` listens.",
               })))),
             aliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "Alias and RID pairs to shorten git clone commands for repositories.",
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  heartwood = \"rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5\";\n}\n")),
               })))),
             nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ __proto__: pos$23, config: config, lib: lib })))), nix.thunk(() => ({
-                        __proto__: pos$26,
+                [nix.POS]: pos$27,
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../web-servers/nginx/vhost-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$23, config: config, lib: lib })))), nix.thunk(() => ({
+                        [nix.POS]: pos$26,
                         options: nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           serverName: nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             default: nix.thunk(() => nix.str`radicle-${nix.sel(config, "networking", "hostName")}.${nix.sel(config, "networking", "domain")}`),
                             defaultText: "radicle-${config.networking.hostName}.${config.networking.domain}",
                           })),
@@ -327,7 +327,7 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
                 description: "With this option, you can customize an nginx virtual host which already has sensible defaults for `radicle-httpd`.\nSet to `{}` if you do not need any customization to the virtual host.\nIf enabled, then by default, the {option}`serverName` is\n`radicle-${config.networking.hostName}.${config.networking.domain}`,\nTLS is active, and certificates are acquired via ACME.\nIf this is set to null (the default), no nginx virtual host will be configured.\n",
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -341,19 +341,19 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             systemd: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               services: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 "radicle-node": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(commonServiceConfig, "radicle-node")),
                     nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       description: "Radicle Node",
                       documentation: nix.thunk(() => ["man:radicle-node(1)"]),
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "radicle-node")} --force --listen ${nix.sel(cfg, "node", "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "node", "listenPort")))} ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "node", "extraArgs")))}`),
                         Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "on-failure")),
                         RestartSec: "30",
@@ -363,34 +363,34 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
                         SystemCallFilter: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["@timer"]))),
                       })),
                       confinement: nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                       })),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$39,
+                      [nix.POS]: pos$39,
                       serviceConfig: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "privateKey"), null)) ? {
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         ImportCredential: nix.thunk(() => [nix.thunk(() => nix.sel(credentials, "privateKey"))]),
                       } : (nix.asBool(nix.app(nix.sel(lib, "types", "path", "check"), nix.thunk(() => nix.sel(cfg, "privateKey")))) ? {
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         LoadCredential: nix.thunk(() => [
                           nix.thunk(() => nix.str`${nix.sel(credentials, "privateKey")}:${nix.sel(cfg, "privateKey")}`),
                         ]),
                       } : {
-                        __proto__: pos$38,
+                        [nix.POS]: pos$38,
                         ImportCredential: nix.thunk(() => [
                           nix.thunk(() => nix.str`${nix.sel(cfg, "privateKey")}:${nix.sel(credentials, "privateKey")}`),
                         ]),
                       }))),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       serviceConfig: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "privateKeyPassphrase"), null)) ? {
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         ImportCredential: nix.thunk(() => [nix.thunk(() => nix.sel(credentials, "privateKeyPassphrase"))]),
                       } : {
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         ImportCredential: nix.thunk(() => [
                           nix.thunk(() => nix.str`${nix.sel(cfg, "privateKeyPassphrase")}:${nix.sel(credentials, "privateKeyPassphrase")}`),
                         ]),
@@ -399,44 +399,44 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
                   ]))),
               })),
             })),
-            environment: nix.thunk(() => ({ __proto__: pos$45, systemPackages: nix.thunk(() => [rad_system]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$45, systemPackages: nix.thunk(() => [rad_system]) })),
             networking: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "node", "openFirewall")), nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "node", "listenPort"))]),
                 })))),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               users: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 radicle: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   description: "Radicle",
                   group: "radicle",
                   home: nix.thunk(() => nix.sel(env, "HOME")),
                   isSystemUser: true,
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$50, radicle: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$50, radicle: nix.thunk(() => ({})) })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "httpd", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$57,
+                    [nix.POS]: pos$57,
                     services: nix.thunk(() => ({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       "radicle-httpd": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                           nix.thunk(() => nix.app(commonServiceConfig, "radicle-httpd")),
                           nix.thunk(() => ({
-                            __proto__: pos$55,
+                            [nix.POS]: pos$55,
                             description: "Radicle HTTP gateway to radicle-node",
                             documentation: nix.thunk(() => ["man:radicle-httpd(1)"]),
                             serviceConfig: nix.thunk(() => ({
-                              __proto__: pos$53,
+                              [nix.POS]: pos$53,
                               ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                                   nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "httpd", "package")), "radicle-httpd")),
                                   nix.thunk(() => nix.str`--listen=${nix.sel(cfg, "httpd", "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "httpd", "listenPort")))}`),
@@ -449,7 +449,7 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
                               SystemCallFilter: nix.thunk(() => nix.app(nix.sel(lib, "mkAfter"), nix.thunk(() => ["@timer"]))),
                             })),
                             confinement: nix.thunk(() => ({
-                              __proto__: pos$54,
+                              [nix.POS]: pos$54,
                               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "httpd", "package"))]),
                             })),
                           })),
@@ -458,22 +458,22 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
                   })),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "httpd", "nginx"), null)), nix.thunk(() => ({
-                    __proto__: pos$67,
+                    [nix.POS]: pos$67,
                     services: nix.thunk(() => ({
-                      __proto__: pos$66,
+                      [nix.POS]: pos$66,
                       nginx: nix.thunk(() => ({
-                        __proto__: pos$62,
+                        [nix.POS]: pos$62,
                         virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.sel(cfg, "httpd", "nginx", "serverName"), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                               nix.thunk(() => nix.sel(cfg, "httpd", "nginx")),
                               nix.thunk(() => ({
-                                __proto__: pos$61,
+                                [nix.POS]: pos$61,
                                 forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                                 enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                                 locations: nix.thunk(() => ({
-                                  __proto__: pos$60,
+                                  [nix.POS]: pos$60,
                                   "/": nix.thunk(() => ({
-                                    __proto__: pos$59,
+                                    [nix.POS]: pos$59,
                                     proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "httpd", "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "httpd", "listenPort")))}`),
                                     recommendedProxySettings: true,
                                   })),
@@ -483,11 +483,11 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
                         ])),
                       })),
                       radicle: nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         settings: nix.thunk(() => ({
-                          __proto__: pos$64,
+                          [nix.POS]: pos$64,
                           node: nix.thunk(() => ({
-                            __proto__: pos$63,
+                            [nix.POS]: pos$63,
                             alias: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "httpd", "nginx", "serverName")))),
                             externalAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [
                                 nix.thunk(() => nix.str`${nix.sel(cfg, "httpd", "nginx", "serverName")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "node", "listenPort")))}`),
@@ -500,7 +500,7 @@ ${nix.app(nix.sel(lib, "getExe'"), buildPackage, "rad")} config >/dev/null || {
               ]))))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "radicle"))]),
     })),
   };

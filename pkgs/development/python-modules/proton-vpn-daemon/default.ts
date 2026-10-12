@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProtonVPN",
           repo: "proton-vpn-daemon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["proton.vpn.daemon", "proton.vpn.daemon.split_tunneling"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daemons for Proton VPN Linux client",
         homepage: "https://github.com/ProtonVPN/proton-vpn-daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

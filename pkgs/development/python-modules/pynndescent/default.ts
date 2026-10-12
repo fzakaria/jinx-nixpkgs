@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pynndescent",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lmcinnes",
           repo: "pynndescent",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_seuclidean", "test_binary_check", "test_sparse_binary_check"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nearest Neighbor Descent",
         homepage: "https://github.com/lmcinnes/pynndescent",
         changelog: nix.thunk(() => nix.str`https://github.com/lmcinnes/pynndescent/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

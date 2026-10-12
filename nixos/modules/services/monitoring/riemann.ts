@@ -39,21 +39,21 @@ exec ${nix.sel(pkgs, "jdk")}/bin/java ${nix.app(nix.sel(lib, "concatStringsSep")
   riemann.bin ${nix.sel(cfg, "configFile")}
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         riemann: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Riemann network monitoring daemon")),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Contents of the Riemann configuration file. For more complicated\nconfig you should use configFile.\n",
             })))),
           configFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")));
@@ -62,12 +62,12 @@ exec ${nix.sel(pkgs, "jdk")}/bin/java ${nix.app(nix.sel(lib, "concatStringsSep")
               description: "Extra files containing Riemann configuration. These files will be\nloaded at runtime by Riemann (with Clojure's\n`load-file` function) at the end of the\nconfiguration if you use the config option, this is ignored if you\nuse configFile.\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "A Riemann config file. Any files in the same directory as this file\nwill be added to the classpath by Riemann.\n",
             })))),
           extraClasspathEntries: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -76,7 +76,7 @@ exec ${nix.sel(pkgs, "jdk")}/bin/java ${nix.app(nix.sel(lib, "concatStringsSep")
               description: "Extra entries added to the Java classpath when running Riemann.\n",
             })))),
           extraJavaOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -88,20 +88,20 @@ exec ${nix.sel(pkgs, "jdk")}/bin/java ${nix.app(nix.sel(lib, "concatStringsSep")
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         users: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           groups: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             riemann: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "riemann")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             riemann: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "riemann daemon user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "riemann")),
               group: "riemann",
@@ -109,22 +109,22 @@ exec ${nix.sel(pkgs, "jdk")}/bin/java ${nix.app(nix.sel(lib, "concatStringsSep")
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           riemann: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "riemann-config.clj", riemannConfig)))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             riemann: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "inetutils"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 User: "riemann",
                 ExecStart: nix.thunk(() => nix.str`${launcher}/bin/riemann`),
                 LimitNOFILE: 65536n,

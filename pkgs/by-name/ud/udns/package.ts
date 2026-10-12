@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "udns",
       version: "0.6",
       configurePhase: "./configure --enable-ipv6",
       buildPhase: "make staticlib sharedlib rblcheck_s dnsget_s",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.corpit.ru/mjt/udns/udns-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-aWotDVGNqYXZdaZeEdFm8/V829HUI3aguFMH9JYBxug=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmkdir -p $out/include\nmkdir -p $out/lib\nmkdir -p $out/share/man/man1\nmkdir -p $out/share/man/man3\ncp dnsget_s $out/bin/dnsget\ncp rblcheck_s $out/bin/rblcheck\ncp udns.h $out/include/\ncp libudns.a $out/lib/\ncp libudns.so.0 $out/lib/\nln -rs $out/lib/libudns.so.0 $out/lib/libudns.so\ncp dnsget.1 rblcheck.1 $out/share/man/man1\ncp udns.3 $out/share/man/man3\nrunHook postInstall\n",
       outputDevdoc: "out",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.corpit.ru/mjt/udns.html",
         description: "Async-capable DNS stub resolver library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

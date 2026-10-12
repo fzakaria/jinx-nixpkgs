@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Morfessor",
           version: version,
           sha256: "bb3beac234341724c5f640f65803071f62373a50dba854d5a398567f9aefbab2",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["morfessor/test/*"]);
       const pythonImportsCheck = nix.thunk(() => ["morfessor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for unsupervised and semi-supervised morphological segmentation",
         homepage: "https://github.com/aalto-speech/morfessor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

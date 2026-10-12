@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stashcat",
       version: "6.55.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://deb.stashcat.com/repo01/dists/stashcat-dc/main/binary-amd64/stashcat-dc/${nix.sel(finalAttrs, "pname")}_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha512-acXuy4Qlpda58oyN/W8+AU/CnjFtGmySFwbkftWo4CxgTAZu/tXhgN//4/IvMJ11wvMrlzDKcFwowVCrccxOPQ==",
         })))),
@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
       ]),
       unpackPhase: "runHook preUnpack\ndpkg-deb --fsys-tarfile $src | tar --extract\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{share,opt,bin}\ncp -r usr/share/* $out/share/\ncp -r opt/* $out/opt/\n\nln -s $out/opt/Stashcat/stashcat $out/bin/stashcat\n\nsubstituteInPlace $out/share/applications/stashcat.desktop \\\n  --replace-fail \"Exec=/opt/Stashcat/stashcat %U\" \"Exec=$out/opt/Stashcat/stashcat %U\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Stashcat Desktop Messenger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),

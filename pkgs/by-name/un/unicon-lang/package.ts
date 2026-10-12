@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unicon-lang",
       version: "13.2-unstable-2025-06-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uniconproject",
           repo: "unicon",
           rev: "cf3b53b9578a004a52146a7adadc2a9409426624",
@@ -43,7 +43,7 @@ substituteInPlace tests/Makedefs --replace-fail "/bin/echo" "${coreutils}/bin/ec
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n$out/bin/unicon -version\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very high level, goal-directed, object-oriented, general purpose applications language",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

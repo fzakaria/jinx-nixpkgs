@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_aiohttp = nix.arg($, "pytest-aiohttp");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gatus-api",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TN-1",
           repo: "gatus-api",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gatus_api"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Asynchronous Python client for the Gatus API",
         homepage: "https://github.com/TN-1/gatus-api",
         changelog: nix.thunk(() => nix.str`https://github.com/TN-1/gatus-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

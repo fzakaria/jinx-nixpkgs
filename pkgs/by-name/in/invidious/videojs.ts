@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const invidious = nix.arg($, "invidious");
   const versions = nix.arg($, "versions");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "videojs",
       src: nix.thunk(() => nix.attr(invidious, "src")),
       builder: nix.path(here, "./videojs.sh"),

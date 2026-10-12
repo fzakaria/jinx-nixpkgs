@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const more_itertools = nix.arg($, "more-itertools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "class-doc",
       version: "0.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danields761",
           repo: "class-doc",
           rev: "9b122d85ce667d096ebee75a49350bbdbd48686d",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "poetry-to-poetry-core.patch",
             url: "https://github.com/danields761/class-doc/commit/03b224ad0a6190c30e4932fa2ccd4a7f0c5c4b5d.patch",
             hash: "sha256-shWPRaZkvtJ1Ae17aCOm6eLs905jxwq84SWOrChEs7M=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["class_doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Extract attributes docstrings defined in various ways",
         homepage: "https://github.com/danields761/class-doc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

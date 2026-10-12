@@ -23,38 +23,38 @@ export default nix.lambda((args) => (() => {
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     port: 9433n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       knotLibraryPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           example: nix.thunk(() => nix.app(literalExpression, "\"${pkgs.knot-dns.out}/lib/libknot.so\"")),
           description: "Path to the library of `knot-dns`.\n",
         })))),
       knotSocketPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/run/knot/knot.sock",
           description: "Socket path of {manpage}`knotd(8)`.\n",
         })))),
       knotSocketTimeout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(types, "ints", "positive")),
           default: 2000n,
           description: "Timeout in seconds.\n",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       path: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "procps"))];
       })()),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-knot-exporter")}/bin/knot-exporter \\
   --web-listen-addr ${nix.sel(cfg, "listenAddress")} \\
   --web-listen-port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

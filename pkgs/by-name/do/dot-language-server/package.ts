@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dot-language-server";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nikeee",
           repo: "dot-language-server",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-spskj0vqfR9GoQeKyfLsQgRp6JasZeVLCVBt6wZiSP8=";
       const npmBuildScript = "compile";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server for the DOT language",
         mainProgram: "dot-language-server",
         homepage: "https://github.com/nikeee/dot-language-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, npmBuildScript, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, npmBuildScript, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

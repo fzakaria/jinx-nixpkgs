@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "NuSMV",
       version: "2.7.0",
       src: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
         return nix.app(fetchurl, nix.thunk(() => (nix.asBool((nix.asBool(nix.lookup(w, "isx86_64")) && nix.asBool(nix.lookup(w, "isLinux")))) ? {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://nusmv.fbk.eu/distrib/${nix.sel(finalAttrs, "version")}/NuSMV-${nix.sel(finalAttrs, "version")}-linux64.tar.xz`),
             sha256: "019d1pa5aw58n11is1024hs8d520b3pp2iyix78vp04yv7wd42l8",
           } : (nix.asBool((nix.asBool(nix.lookup(w, "isx86_64")) && nix.asBool(nix.lookup(w, "isDarwin")))) ? {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://nusmv.fbk.eu/distrib/${nix.sel(finalAttrs, "version")}/NuSMV-${nix.sel(finalAttrs, "version")}-macos-universal.tar.xz`),
             sha256: "098wllv4yx284qv9nsi8kd5pgh10cr1hig01a1p2rxgfmrki52wm",
           } : nix.app(nix.builtins.throw, "only linux and mac x86_64 are currently supported")))));
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       installPhase: "install -m755 -D bin/NuSMV $out/bin/NuSMV\ninstall -m755 -D bin/ltl2smv $out/bin/ltl2smv\ncp -r include $out/include\ncp -r lib $out/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "New symbolic model checker for the analysis of synchronous finite-state and infinite-state systems",
         homepage: "https://nusmv.fbk.eu/",
         maintainers: nix.thunk(() => (() => {

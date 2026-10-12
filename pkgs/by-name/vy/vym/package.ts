@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.thunk(() => nix.attr(qt5, "qtsvg"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt5, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vym",
       version: "2.9.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "insilmaril",
           repo: "vym",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0000-fix-zip-paths.diff"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             zipPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), zip)}`),
             unzipPath: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), unzip)}`),
           })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.insilmaril.de/vym/",
         description: "Mind-mapping software",
         longDescription: "VYM (View Your Mind) is a tool to generate and manipulate maps which show\nyour thoughts. Such maps can help you to improve your creativity and\neffectivity. You can use them for time management, to organize tasks, to\nget an overview over complex contexts, to sort your ideas etc.\n\nMaps can be drawn by hand on paper or a flip chart and help to structure\nyour thoughts. While a tree like structure like shown on this page can be\ndrawn by hand or any drawing software vym offers much more features to\nwork with such maps.\n",

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_instrumentation = nix.arg($, "llama-index-instrumentation");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-workflows",
       version: "2.25.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_workflows",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8aapDMwrgY4/2w+WYN6zQBmww/U1M+nOyzVAiCtSf0k=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [eval_type_backport, llama_index_instrumentation, pydantic]),
       pythonImportsCheck: nix.thunk(() => ["workflows"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Event-driven, async-first, step-based way to control the execution flow of AI applications like Agents",
         homepage: "https://pypi.org/project/llama-index-workflows/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

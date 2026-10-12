@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
     const stdenv_2 = stdenv_1;
     const upstream_info_1 = upstream_info;
     const mkChromiumDerivation = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         chromiumVersionAtLeast: chromiumVersionAtLeast,
         versionRange: versionRange,
         proprietaryCodecs: proprietaryCodecs,
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
         gnChromium: nix.thunk(() => nix.app(nix.sel(buildPackages, "gn", "override"), nix.thunk(() => nix.sel(upstream_info_1, "deps", "gn")))),
       }))));
     const browser = nix.thunk(() => nix.app(callPackage, nix.path(here, "./browser.nix"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         chromiumVersionAtLeast: chromiumVersionAtLeast,
         enableWideVine: enableWideVine,
         ungoogled: ungoogled,
       }))));
     const ungoogled_chromium = nix.thunk(() => nix.app(nix.sel(pkgsBuildBuild, "callPackage"), nix.path(here, "./ungoogled.nix"), nix.thunk(() => ({}))));
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       stdenv: stdenv_2,
       "upstream-info": upstream_info_1,
       mkChromiumDerivation,
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
   const sandboxExecutableName = nix.thunk(() => nix.sel(chromium, "browser", "passthru", "sandboxExecutableName"));
   const chromiumWV = nix.thunk(() => (() => {
     const browser = nix.thunk(() => nix.sel(chromium, "browser"));
-    return (nix.asBool(enableWideVine) ? nix.app(runCommand, nix.thunk(() => nix.add(nix.sel(browser, "name"), "-wv")), nix.thunk(() => ({ __proto__: pos$4, version: nix.thunk(() => nix.sel(browser, "version")) })), nix.thunk(() => nix.str`mkdir -p $out
+    return (nix.asBool(enableWideVine) ? nix.app(runCommand, nix.thunk(() => nix.add(nix.sel(browser, "name"), "-wv")), nix.thunk(() => ({ [nix.POS]: pos$4, version: nix.thunk(() => nix.sel(browser, "version")) })), nix.thunk(() => nix.str`mkdir -p $out
 cp -a ${browser}/* $out/
 chmod u+w $out/libexec/chromium
 cp -a ${widevine_cdm}/share/google/chrome/WidevineCdm $out/libexec/chromium/
@@ -88,7 +88,7 @@ cp -a ${widevine_cdm}/share/google/chrome/WidevineCdm $out/libexec/chromium/
       const from = nix.thunk(() => nix.sel(chromium, "browser"));
       const from_1 = nix.thunk(() => nix.sel(chromium, "browser"));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), ungoogled, "ungoogled-"), "chromium")),
       version: nix.thunk(() => nix.attr(from, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, ed]),
@@ -145,7 +145,7 @@ done
       packageName: nix.thunk(() => nix.attr(from_1, "packageName")),
       meta: nix.thunk(() => nix.sel(chromium, "browser", "meta")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "upstream-info": nix.thunk(() => nix.attr(chromium, "upstream-info")),
         browser: nix.thunk(() => nix.attr(chromium, "browser")),
         mkDerivation: nix.thunk(() => nix.sel(chromium, "mkChromiumDerivation")),

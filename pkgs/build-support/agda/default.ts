@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
     const pname = nix.thunk(() => nix.str`${nix.sel(Agda, "meta", "mainProgram")}WithPackages`);
     const version = nix.thunk(() => nix.sel(Agda, "version"));
     return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         passthru: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           unwrapped: Agda,
           withPackages: withPackages,
           libraryFile: libraryFile,
           tests: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             agda: nix.thunk(() => nix.attr(nixosTests, "agda")),
             allPackages: nix.thunk(() => nix.app(withPackages, nix.thunk(() => nix.app(filter, nix.thunk(() => nix.sel(self, "lib", "isUnbrokenAgdaPackage")), nix.thunk(() => nix.app(attrValues, self)))))),
           })),
@@ -78,7 +78,7 @@ if [ -e ${nix.app(nix.sel(lib, "getExe'"), Agda, "agda-mode")} ]; then
 fi
 `));
   })(), formals$2);
-  const withPackages = (arg) => (nix.asBool(nix.app(isAttrs, arg)) ? nix.app(withPackages$, arg) : nix.app(withPackages$, nix.thunk(() => ({ __proto__: pos$4, pkgs: arg }))));
+  const withPackages = (arg) => (nix.asBool(nix.app(isAttrs, arg)) ? nix.app(withPackages$, arg) : nix.app(withPackages$, nix.thunk(() => ({ [nix.POS]: pos$4, pkgs: arg }))));
   const extensions = nix.thunk(() => [
     "agda",
     "agda-lib",
@@ -104,7 +104,7 @@ fi
     const extraExtensions = nix.argOr($_1, "extraExtensions", () => []);
     const agdaWithPkgs = nix.thunk(() => nix.app(withPackages, nix.thunk(() => nix.app(filter, (p) => nix.has(p, "isAgdaDerivation"), buildInputs))));
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       libraryName: libraryName,
       libraryFile: libraryFile,
       isAgdaDerivation: true,
@@ -119,21 +119,21 @@ find \\( ${nix.app(concatMapStringsSep, " -or ", (p) => nix.str`-name '*.${p}'`,
 runHook postInstall
 `)),
       env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         LC_ALL: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "C.UTF-8")),
       })),
       meta: nix.thunk(() => (nix.asBool(nix.selOr(meta, () => false, "broken")) ? nix.update(meta, {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         hydraPlatforms: nix.thunk(() => nix.sel(platforms, "none")),
       }) : nix.force(meta))),
       passthru: nix.thunk(() => nix.update(passthru, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => nix.update(nix.selOr(passthru, () => ({}), "tests"), nix.app(filterAttrs, (name) => (pkg) => (nix.asBool(nix.app(nix.sel(self, "lib", "isUnbrokenAgdaPackage"), pkg)) && nix.asBool(nix.app(elem, pname, nix.thunk(() => nix.builtins.map((pkg_1) => nix.sel(pkg_1, "pname"), nix.thunk(() => nix.sel(pkg, "buildInputs"))))))), self))),
       })),
     };
   })(), formals$3);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     mkDerivation: (args_1) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_1, nix.app(defaults, args_1)))),
     mkLibraryFile: mkLibraryFile,
     withPackages: withPackages,

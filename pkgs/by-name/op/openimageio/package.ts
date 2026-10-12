@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openimageio",
       version: "3.1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AcademySoftwareFoundation",
           repo: "OpenImageIO",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "substituteInPlace $dev/lib/cmake/OpenImageIO/OpenImageIOTargets-*.cmake \\\n  --replace \"\\${_IMPORT_PREFIX}/lib/lib\" \"$out/lib/lib\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://openimageio.org",
         description: "Library and tools for reading and writing images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tsutsu3",
           repo: "linkify-it-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["linkify_it"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Links recognition library with full unicode support",
         homepage: "https://github.com/tsutsu3/linkify-it-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

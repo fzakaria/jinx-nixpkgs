@@ -25,34 +25,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xl2tpd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "xl2tpd, the Layer 2 Tunnelling Protocol Daemon")),
           serverIp: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The server-side IP address.",
               default: "10.125.125.1",
             })))),
           clientIpRange: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "The range from which client IPs are drawn.",
               default: "10.125.125.2-11",
             })))),
           extraXl2tpOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Adds extra lines to the xl2tpd configuration file.",
               default: "",
             })))),
           extraPppdOptions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "Adds extra lines to the pppd options file.",
               default: "",
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "xl2tpd", "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             xl2tpd: nix.thunk(() => (() => {
               const cfg = nix.thunk(() => nix.sel(config, "services", "xl2tpd"));
               const xl2tpd_conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "xl2tpd.conf", nix.thunk(() => nix.str`[global]
@@ -105,7 +105,7 @@ lcp-echo-failure 4
 ${nix.sel(cfg, "extraPppdOptions")}
 `)));
               const xl2tpd_ppp_wrapped = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "xl2tpd-ppp-wrapped",
                   nativeBuildInputs: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(pkgs, w);
@@ -123,7 +123,7 @@ makeWrapper ${nix.sel(pkgs, "xl2tpd")}/bin/xl2tpd $out/bin/xl2tpd \\
 `),
                 }))));
               return {
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: "xl2tpd server",
                 requires: nix.thunk(() => ["network-online.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -141,7 +141,7 @@ EOF
 install -m 701 -o root -g root -d /run/xl2tpd
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   ExecStart: nix.thunk(() => nix.str`${xl2tpd_ppp_wrapped}/bin/xl2tpd -D -c ${xl2tpd_conf} -s /etc/xl2tpd/l2tp-secrets -p /run/xl2tpd/pid -C /run/xl2tpd/control`),
                   KillMode: "process",
                   Restart: "on-success",

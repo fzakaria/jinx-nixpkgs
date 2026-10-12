@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nxc-rs",
       version: "0.4.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thrive-spectrexq",
           repo: "nxc-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBSQLITE3_SYS_USE_PKG_CONFIG: true,
         ZSTD_SYS_USE_PKG_CONFIG: true,
       })),
       checkFlagsArray: nix.thunk(() => ["--skip=providers::tests::test_provider_debug_redacts_keys"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Network Execution Toolkit",
         homepage: "https://github.com/thrive-spectrexq/nxc-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/thrive-spectrexq/nxc-rs/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

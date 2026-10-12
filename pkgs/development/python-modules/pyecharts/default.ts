@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const simplejson = nix.arg($, "simplejson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyecharts",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyecharts",
           repo: "pyecharts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [jinja2, prettytable, simplejson]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, images: nix.thunk(() => [pillow]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, images: nix.thunk(() => [pillow]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([numpy, pandas, pytestCheckHook, requests], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["pyecharts"]),
       disabledTests: nix.thunk(() => nix.concat(["test_render_embed_js", "test_display_javascript_v2", "test_lines3d_base"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_wordcloud_encode_image_to_base64_os_error"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Echarts Plotting Library",
         homepage: "https://github.com/pyecharts/pyecharts",
         changelog: nix.thunk(() => nix.str`https://github.com/pyecharts/pyecharts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

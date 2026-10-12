@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pciutils = nix.arg($, "pciutils");
   const libraspberrypi = nix.arg($, "libraspberrypi");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raspberrypi-eeprom",
       version: "2026.09.25-2712",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raspberrypi",
           repo: "rpi-eeprom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ for i in rpi-eeprom-update rpi-eeprom-config; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Installation scripts and binaries for the closed sourced Raspberry Pi 4 and 5 bootloader EEPROMs",
         homepage: "https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-boot-eeprom",
         license: nix.thunk(() => (() => {

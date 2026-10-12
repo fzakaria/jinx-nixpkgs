@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const hasDndSupport = nix.argOr($, "hasDndSupport", () => (nix.asBool(x11Support) && nix.asBool(pynputSupport)));
   const enableDragAndDrop = nix.argOr($, "enableDragAndDrop", () => false);
   return nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => (nix.asBool(enableDragAndDrop) && nix.asBool(!nix.asBool(hasDndSupport)))), "Drag and drop support is only available for linux with xorg.", nix.thunk(() => nix.sel(python3Packages, "buildPythonApplication")), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuifimanager",
       version: "5.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GiorgosXou",
           repo: "TUIFIManager",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["TUIFIManager"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform terminal-based termux-oriented file manager",
         longDescription: "A cross-platform terminal-based termux-oriented file manager (and component),\nmeant to be used with a Uni-Curses project or as is. This project is mainly an\nattempt to get more attention to the Uni-Curses project.\n",
         homepage: "https://github.com/GiorgosXou/TUIFIManager",

@@ -44,51 +44,51 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
     const qemu_common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/qemu-common.nix")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         lib: nix.thunk(() => nix.attr(pkgs, "lib")),
         stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
       }))));
     const vlanIfs = nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, nix.thunk(() => nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.sel(config, "virtualisation", "vlans"))))));
     return {
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       environment: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iptables"))]),
       })),
-      virtualisation: nix.thunk(() => ({ __proto__: pos$3, vlans: nix.thunk(() => [1n, 2n, 3n]) })),
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, vlans: nix.thunk(() => [1n, 2n, 3n]) })),
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         kernel: nix.thunk(() => ({
-          __proto__: pos$5,
-          sysctl: nix.thunk(() => ({ __proto__: pos$4, "net.ipv6.conf.all.forwarding": true })),
+          [nix.POS]: pos$5,
+          sysctl: nix.thunk(() => ({ [nix.POS]: pos$4, "net.ipv6.conf.all.forwarding": true })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         useDHCP: false,
         useNetworkd: networkd,
         firewall: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           checkReversePath: true,
           allowedUDPPorts: nix.thunk(() => [547n]),
         })),
         interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "forEach"), vlanIfs, (n) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`eth${nix.builtins.toString(n)}`), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   ipv4: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     addresses: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         address: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(n)}.1`),
                         prefixLength: 24n,
                       })),
                     ]),
                   })),
                   ipv6: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     addresses: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         address: nix.thunk(() => nix.str`fd00:1234:5678:${nix.builtins.toString(n)}::1`),
                         prefixLength: 64n,
                       })),
@@ -97,16 +97,16 @@ export default nix.lambda((args) => (() => {
                 }))))))))),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         kea: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           dhcp4: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "interfaces-config": nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 interfaces: nix.thunk(() => nix.builtins.map((n) => nix.str`eth${nix.builtins.toString(n)}`, vlanIfs)),
                 "dhcp-socket-type": "raw",
                 "service-sockets-require-all": true,
@@ -114,30 +114,30 @@ export default nix.lambda((args) => (() => {
                 "service-sockets-retry-wait-time": 2500n,
               })),
               subnet4: nix.thunk(() => nix.builtins.map((n) => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   id: n,
                   subnet: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(n)}.0/24`),
                   pools: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       pool: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(n)}.3 - 192.168.${nix.builtins.toString(n)}.254`),
                     })),
                   ]),
                   "option-data": nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       data: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(n)}.1`),
                       name: "routers",
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       data: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(n)}.1`),
                       name: "domain-name-servers",
                     })),
                   ]),
                   reservations: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       "hw-address": nix.thunk(() => nix.app(nix.sel(qemu_common, "qemuNicMac"), n, 1n)),
                       hostname: nix.thunk(() => nix.str`client${nix.builtins.toString(n)}`),
                       "ip-address": nix.thunk(() => nix.str`192.168.${nix.builtins.toString(n)}.2`),
@@ -147,25 +147,25 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           dhcp6: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "interfaces-config": nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 interfaces: nix.thunk(() => nix.builtins.map((n) => nix.str`eth${nix.builtins.toString(n)}`, vlanIfs)),
                 "service-sockets-require-all": true,
                 "service-sockets-max-retries": 5n,
                 "service-sockets-retry-wait-time": 2500n,
               })),
               subnet6: nix.thunk(() => nix.builtins.map((n) => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   id: n,
                   subnet: nix.thunk(() => nix.str`fd00:1234:5678:${nix.builtins.toString(n)}::/64`),
                   interface: nix.thunk(() => nix.str`eth${nix.builtins.toString(n)}`),
                   pools: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       pool: nix.thunk(() => nix.str`fd00:1234:5678:${nix.builtins.toString(n)}::2-fd00:1234:5678:${nix.builtins.toString(n)}::2`),
                     })),
                   ]),
@@ -174,7 +174,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         radvd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: true,
           config: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "concatMapStrings")), vlanIfs, (n) => nix.str`interface eth${nix.builtins.toString(n)} {
   AdvSendAdvert on;

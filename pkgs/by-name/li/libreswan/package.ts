@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libreswan";
       const version = "5.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.libreswan.org/libreswan-${version}.tar.gz`),
           hash: "sha256-ew+Qyag7OtlrQw2FSVB062JlmQJMlzeJwbC2z/Ay7hA=",
         }))));
@@ -126,15 +126,15 @@ sed -e '0,/^$/{s||export PATH=${binPath}:${nix.builtins.placeholder("out")}/bin:
     -i $hooks
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           libreswan: nix.thunk(() => nix.attr(nixosTests, "libreswan")),
           "libreswan-nat": nix.thunk(() => nix.attr(nixosTests, "libreswan-nat")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://libreswan.org",
         description: "Free software implementation of the VPN protocol based on IPSec and the Internet Key Exchange",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
@@ -152,7 +152,7 @@ sed -e '0,/^$/{s||export PATH=${binPath}:${nix.builtins.placeholder("out")}/bin:
         mainProgram: "ipsec",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

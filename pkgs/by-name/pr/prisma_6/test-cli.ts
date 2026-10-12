@@ -17,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const prismaMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(prisma_6, "version"))));
   const enginesMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(prisma_engines_6, "version"))));
   return nix.app(runCommand, "prisma-cli-tests", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [prisma_6, sqlite_interactive, openssl]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`mkdir $out
 cd $out
 

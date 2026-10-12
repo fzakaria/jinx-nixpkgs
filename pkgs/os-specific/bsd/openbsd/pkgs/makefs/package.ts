@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "usr.sbin/makefs",
       extraPaths: nix.thunk(() => ["sys/sys", "sys/ufs", "sys/msdosfs", "sys/dev"]),
       patches: nix.thunk(() => [nix.path(here, "./compat.patch")]),
       preBuild: "mkdir -p $BSDSRCDIR/usr.sbin/makefs/include\nln -s $BSDSRCDIR $BSDSRCDIR/usr.sbin/makefs/include/bsdroot\nexport NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE -I$BSDSRCDIR/usr.sbin/makefs/include\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

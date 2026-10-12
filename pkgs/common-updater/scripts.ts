@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "common-updater-scripts",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, nix.thunk(() => nix.sel(python3Packages, "wrapPython"))]),
       pythonPath: nix.thunk(() => [

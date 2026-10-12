@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "0-unstable-2025-10-23";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "euclio",
       repo: "vim-markdown-composer",
       rev: "4f53f1c6e41c8fb916c50b50e18284d923f0f3cd",
       sha256: "sha256-QODj8J2d2Qo8/B0rv5HthSidZcBgY11oNKwT8jCO6kI=",
     }))));
   const vim_markdown_composer_bin = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "vim-markdown-composer-bin",
       src: src,
       version: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vim-markdown-composer",
       version: version,
       src: src,
@@ -44,16 +44,16 @@ export default nix.lambda((args) => (() => {
   "'${vim_markdown_composer_bin}/bin/markdown-composer'"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version=branch"]),
             attrPath: "vimPlugins.vim-markdown-composer.vim-markdown-composer-bin",
           })))),
         "vim-markdown-composer-bin": vim_markdown_composer_bin,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "(Neo)vim plugin for asynchronous Markdown previews",
         homepage: "https://github.com/euclio/vim-markdown-composer/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

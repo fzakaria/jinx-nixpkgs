@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const types_pytz = nix.arg($, "types-pytz");
   const types_deprecated = nix.arg($, "types-deprecated");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swh-model",
       version: "8.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
           "swh/model/tests/test_from_disk.py::DirectoryToObjects::test_exclude_trailing",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of the Data model of the Software Heritage project, used to archive source code artifacts",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-model",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const read_edid = nix.arg($, "read-edid");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i2c-tools",
       version: "4.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/snapshot/i2c-tools-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Zm83gxdZH2XQCc/Dihp7vumF9WAvKgt6OORns5Mua7M=",
         })))),
@@ -34,7 +34,7 @@ substituteInPlace stub/i2c-stub-from-dump \\
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "rm -rf $out/include/linux/i2c-dev.h # conflics with kernel headers\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of I2C tools for Linux",
         homepage: "https://i2c.wiki.kernel.org/index.php/I2C_Tools",
         license: nix.thunk(() => (() => {

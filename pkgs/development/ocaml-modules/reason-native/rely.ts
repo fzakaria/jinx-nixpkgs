@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const pastel = nix.arg($, "pastel");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: src,
       pname: "rely",
       version: "4.0.0-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [re, cli, file_context_printer, pastel]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Jest-inspired testing framework for native OCaml/Reason",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/rely",
         homepage: "https://reason-native.com/docs/rely/",

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocb";
       const version = "0.155.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-telemetry",
           repo: "opentelemetry-collector",
           rev: nix.thunk(() => nix.str`cmd/builder/v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/cmd/builder`);
       const vendorHash = "sha256-SeLEg/xwSEr3uPZbjlLFny+OpfovcmKVD6BxCgoosz8=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         "-s",
         "-w",
@@ -35,10 +35,10 @@ export default nix.lambda((args) => (() => {
       const checkFlags = nix.thunk(() => [
         "-skip TestGenerateAndCompile|TestReplaceStatementsAreComplete|TestVersioning|TestRunInit",
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
       const postInstall = "mv $out/bin/builder $out/bin/ocb\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "OpenTelemetry Collector",
         homepage: "https://github.com/open-telemetry/opentelemetry-collector.git",
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/opentelemetry-collector/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ocb",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

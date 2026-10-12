@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "findutils",
       version: "4.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/findutils/findutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-v9GcsGzHHzNS1WfpAoTYzawCrIl3S76t8LUzsMEUMv0=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "--localstatedir=/var/cache",
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D__nonnull\\(params\\)="]))),
         })))),
       postInstall: "moveToOutput bin/locate $locate\nmoveToOutput bin/updatedb $locate\n",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "bionic")), "fortify")),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.gnu.org/software/findutils/",
         changelog: nix.thunk(() => nix.str`https://cgit.git.savannah.gnu.org/cgit/findutils.git/tree/NEWS?h=v${nix.sel(finalAttrs, "version")}`),
         description: "GNU Find Utilities, the basic directory searching utilities of the GNU operating system",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mdaniels5757"))]),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

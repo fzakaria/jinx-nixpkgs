@@ -31,16 +31,16 @@ export default nix.lambda((args) => (() => {
   const version = "2.3.0";
   const code = "XZrYdRJZLS6RF4kf6Jy6GFr4jqkc4S34Rlgy";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://api.pcloud.com/getpubzip?code=${code}&filename=pcloud-${version}.zip`),
       hash: "sha256-aeZHTtqw7ml8k1GZt013WG3GFVXfIzGhEDdBKMkzpj4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.str`${src}/pCloud.AppImage`),
@@ -104,7 +104,7 @@ EOF
 chmod +x bin/pcloud
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Secure and simple to use cloud storage for your files; pCloud Drive, Electron Edition",
         homepage: "https://www.pcloud.com/",
         changelog: "https://www.pcloud.com/release-notes/linux.html",

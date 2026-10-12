@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const enableFma = nix.argOr($, "enableFma", () => nix.sel(stdenv, "hostPlatform", "fmaSupport"));
   const enableAvx512 = nix.argOr($, "enableAvx512", () => nix.sel(stdenv, "hostPlatform", "avx512Support"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srsran",
       version: "25_10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "srsran",
           repo: "srsRAN_4G",
           tag: nix.thunk(() => nix.str`release_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), "rm $out/lib/*.a\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.srslte.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/srsran/srsRAN_4G/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open-source 4G software radio suite, including complete LTE UE, eNodeB and EPC applications",

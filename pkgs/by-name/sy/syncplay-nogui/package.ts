@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["enableGUI", 6, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const syncplay = nix.arg($, "syncplay");
-  return nix.app(nix.sel(syncplay, "override"), nix.thunk(() => ({ __proto__: pos$1, enableGUI: false })));
+  return nix.app(nix.sel(syncplay, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGUI: false })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

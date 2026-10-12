@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rpm2targz",
       version: "2021.03.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev.gentoo.org/~vapier/dist/rpm2targz-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rcV+o9V2wWKznqSW2rA8xgnpQ02kpK4te6mYvLRC5vQ=",
         })))),
@@ -39,7 +39,7 @@ sed -i -e '2iexport PATH="${nix.app(nix.sel(lib, "makeBinPath"), shdeps)}"' rpm2
       })()),
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert a .rpm file to a .tar.gz archive",
         homepage: "http://slackware.com/config/packages.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd1")),

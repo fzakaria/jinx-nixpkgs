@@ -22,9 +22,9 @@ export default nix.lambda((args) => (() => {
     const fromImage = nix.argOr($_1, "fromImage", () => null);
     const debug = nix.argOr($_1, "debug", () => false);
     return nix.app(runCommand, "layers.json", nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         __structuredAttrs: true,
-        exportReferencesGraph: nix.thunk(() => ({ __proto__: pos$1, graph: closureRoots })),
+        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, graph: closureRoots })),
         fromImage: fromImage,
         maxLayers: maxLayers,
         nativeBuildInputs: nix.thunk(() => [jq, python3]),

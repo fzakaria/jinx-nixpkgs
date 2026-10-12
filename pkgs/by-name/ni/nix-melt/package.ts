@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-melt",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "nix-melt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-OTKK0d4yCTiK5GTw+LKagutRbok/zKqLkeOtInJ2L64=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GEN_ARTIFACTS: "artifacts" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts" })),
       postInstall: "installManPage artifacts/nix-melt.1\ninstallShellCompletion artifacts/nix-melt.{bash,fish} --zsh artifacts/_nix-melt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ranger-like flake.lock viewer",
         mainProgram: "nix-melt",
         homepage: "https://github.com/nix-community/nix-melt",

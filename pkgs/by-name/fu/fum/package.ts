@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libgcc = nix.arg($, "libgcc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fum",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qxb3",
           repo: "fum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, dbus, libgcc]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fully ricable tui-based music client",
         homepage: "https://github.com/qxb3/fum",
         changelog: nix.thunk(() => nix.str`https://github.com/qxb3/fum/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-darabonba-signature-util",
       version: "0.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_darabonba_signature_util",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-cdebKuZZV7z79pnO2JT9p4KzL5Y18WFmNVM+WpDV/rA=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_darabonba_signature_util"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Darabonba Signature Util Library for Alibaba Cloud Python SDK",
         homepage: "https://github.com/aliyun/darabonba-crypto-util",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allisson",
           repo: "python-simple-rest-client",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_decorators.py"]);
       const pythonImportsCheck = nix.thunk(() => ["simple_rest_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple REST client for Python",
         homepage: "https://github.com/allisson/python-simple-rest-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

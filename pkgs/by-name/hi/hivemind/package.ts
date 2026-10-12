@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hivemind",
       version: "1.1.0",
       postPatch: nix.thunk(() => nix.str`substituteInPlace process.go --replace \\"/bin/sh\\" \\"${runtimeShell}\\"
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DarthSim",
           repo: "hivemind",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-KweFhT8Zueg45Q/vw3kNET35hB+0WbUPfz0FYaAiIA8=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/DarthSim/",
         description: "Process manager for Procfile-based applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

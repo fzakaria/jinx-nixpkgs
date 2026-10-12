@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.25";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/pysvn/pysvn/V${version}/pysvn-${version}.tar.gz`),
           hash: "sha256-M9LzUr/6FZSUWFQdGM6Ew1/ySE5C/Q7cNXi+jGa+JdY=",
         }))));
@@ -62,7 +62,7 @@ mv -v ../Docs $out/share/doc/pysvn-${version}
 rm -v $out/share/doc/pysvn-${version}/generate_cpp_docs_from_html_docs.py
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for Subversion",
         homepage: "https://pysvn.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -73,7 +73,7 @@ rm -v $out/share/doc/pysvn-${version}/generate_cpp_docs_from_html_docs.py
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

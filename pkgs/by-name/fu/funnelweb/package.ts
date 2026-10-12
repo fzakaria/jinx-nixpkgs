@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "funnelweb",
       version: "3.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.ross.net/funnelweb/download/funnelweb_v320/funnelweb_v320_source.tar.gz",
           sha256: "0zqhys0j9gabrd12mnk8ibblpc8dal4kbl8vnhxmdlplsdpwn4wg",
         })))),
@@ -27,7 +27,7 @@ ${nix.sel(stdenv, "cc")}/bin/cc -D__linux__ -o fw *.c
 `),
       installPhase: "install -d $out/bin\ninstall fw $out/bin/fw\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: "3.20",
         description: "Simple, reliable literate-programming macro preprocessor",
         mainProgram: "fw",

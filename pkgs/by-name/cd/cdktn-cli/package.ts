@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "cdktn-cli",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-constructs",
           repo: "cdk-terrain",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["cdktn-cli..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
           pnpm: pnpm_10,
         })))),
       "hcl2json-go-modules": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "cdktn-hcl2json-go-modules",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,10 +63,10 @@ export default nix.lambda((args) => (() => {
           vendorHash: "sha256-OiKPq0CHkOxJaFzgsaNJ02tasvHtHWylmaPRPayJob4=",
           proxyVendor: true,
           doCheck: false,
-          env: nix.thunk(() => ({ __proto__: pos$3, GOWORK: "off" })),
+          env: nix.thunk(() => ({ [nix.POS]: pos$3, GOWORK: "off" })),
         }))), "goModules")),
       "hcltools-go-modules": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: "cdktn-hcltools-go-modules",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
           vendorHash: "sha256-orGxkYEQVtTKvXb7/FD/CLwqSINgBQFTF5arbR0xAvE=",
           proxyVendor: true,
           doCheck: false,
-          env: nix.thunk(() => ({ __proto__: pos$5, GOWORK: "off" })),
+          env: nix.thunk(() => ({ [nix.POS]: pos$5, GOWORK: "off" })),
         }))), "goModules")),
       pnpmInstallFlags: nix.thunk(() => ["--shamefully-hoist"]),
       strictDeps: true,
@@ -123,14 +123,14 @@ remove-references-to -t ${go} \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([\\d.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "CDK for Terraform CLI",
         homepage: "https://cdktn.io",
         changelog: nix.thunk(() => nix.str`https://github.com/open-constructs/cdk-terrain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

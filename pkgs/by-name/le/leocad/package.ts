@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const libGL = nix.arg($, "libGL");
   const parts = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20250709230715/https://library.ldraw.org/library/updates/complete.zip",
       hash: "sha256-Uy7YYE7LdcmgEGbt6DlljS3QCQxjcviLApFuu1p9GZ8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "leocad",
       version: "25.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "leozide",
           repo: "leocad",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, libGL]),
       propagatedBuildInputs: nix.thunk(() => [povray]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./povray.patch"), nix.thunk(() => ({ __proto__: pos$3, povray: povray })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./povray.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, povray: povray })))),
       ]),
       qmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`INSTALL_PREFIX=${nix.builtins.placeholder("out")}`),
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set-default LEOCAD_LIB ${parts}`)]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`env QT_QPA_PLATFORM=minimal ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
             })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "CAD program for creating virtual LEGO models",
         mainProgram: "leocad",
         homepage: "https://www.leocad.org/",

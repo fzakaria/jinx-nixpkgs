@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gpgme",
       version: "2.2.0",
       outputs: nix.thunk(() => ["out", "dev", "info"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnupg/gpgme/gpgme-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-cWDoDoTa/QDZVshIkcUzu3qxampU++FXSy86zwSWl3s=",
         })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libassuan-prefix=${nix.sel(libassuan, "dev")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--disable-gpg-test"])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), "-D_FILE_OFFSET_BITS=64")))),
       })),
       enableParallelBuilding: true,
@@ -63,12 +63,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkFlags: nix.thunk(() => ["-C", "tests"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           gpa: gpa,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://gnupg.org/software/gpgme/index.html",
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpgme/browse/master/NEWS;gpgme-${nix.sel(finalAttrs, "version")}?as=remarkup`),
         description: "Library for making GnuPG easier to use",

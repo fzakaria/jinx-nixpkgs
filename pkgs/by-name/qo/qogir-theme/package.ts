@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2025-08-17";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "qogir-theme",
           rev: version,
@@ -53,11 +53,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flat Design theme for GTK based desktop environments",
         homepage: "https://github.com/vinceliuice/Qogir-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -65,7 +65,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version,
         src,

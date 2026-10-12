@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const onetbb = nix.arg($, "onetbb");
   const rootSrc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iEDA-src",
       version: "0.1.0-unstable-2025-12-23",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitee.com/oscc-project/iEDA",
           rev: "59662dcd768165f3957003522cb929d42b252023",
           sha256: "sha256-LaFGp9U7K+HmvHW1XK6HyUB/WM5O3y/tngul+cdbCP4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Emin017/iEDA/commit/e5f3ce024965df5e1d400b6a1d7f8b5b307a4bf3.patch",
             hash: "sha256-YJnY+r9A887WT0a/H/Zf++r1PpD7t567NpkesDmIsD0=",
           })))),
@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "cp -r . $out\n",
     }))));
-  const rustpkgs = nix.thunk(() => nix.app(callPackages, nix.path(here, "./rustpkgs.nix"), nix.thunk(() => ({ __proto__: pos$4, rootSrc: rootSrc }))));
+  const rustpkgs = nix.thunk(() => nix.app(callPackages, nix.path(here, "./rustpkgs.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, rootSrc: rootSrc }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "iEDA",
       version: nix.thunk(() => nix.sel(rootSrc, "version")),
       src: rootSrc,
@@ -101,9 +101,9 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       enableParallelBuilding: true,
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Open-source EDA infracstructure and tools from Netlist to GDS for ASIC design",
         homepage: "https://gitee.com/oscc-project/iEDA",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mulan-psl2")),

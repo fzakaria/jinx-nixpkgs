@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.19a0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-qBoG9FAJs0oZrQ0jShtPZfZPmyUZD30MGXDUfMl5bQk=",
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["peacasso"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "UI tool to help you generate art (and experiment) with multimodal (text, image) AI models (stable diffusion)",
         homepage: "https://github.com/victordibia/peacasso",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "peacasso",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

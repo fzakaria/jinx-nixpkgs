@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "monero-ecosystem",
           repo: "monero-python",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pycryptodomex, pynacl, pysocks, requests, six, varint]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, responses]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Comprehensive Python module for handling Monero",
         homepage: "https://github.com/monero-ecosystem/monero-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

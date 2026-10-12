@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const caqti = nix.arg($, "caqti");
   const postgresql = nix.arg($, "postgresql");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "caqti-driver-postgresql",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       propagatedBuildInputs: nix.thunk(() => [caqti, postgresql]),
       meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "PostgreSQL driver for Caqti based on C bindings",
       })),
     })));

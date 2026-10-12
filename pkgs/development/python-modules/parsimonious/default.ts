@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-4IA3fZiVe+7AU1gNOK5U/N98Rw+3hnC6S/i1+dXK0qk=",
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py \\\n  --replace \"regex>=2022.3.15\" \"regex\"\n";
       const pythonImportsCheck = nix.thunk(() => ["parsimonious", "parsimonious.grammar", "parsimonious.nodes"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Arbitrary-lookahead parser",
         homepage: "https://github.com/erikrose/parsimonious",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

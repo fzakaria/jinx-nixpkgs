@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "silenthound",
       version: "0-unstable-2022-12-14",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "layer8secure",
           repo: "SilentHound",
           rev: "f04746aaca29e377c8badcbd6d8f6584deb9e919",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -vD $pname.py $out/bin/$pname\n\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to enumerate an Active Directory Domain",
         homepage: "https://github.com/layer8secure/SilentHound",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

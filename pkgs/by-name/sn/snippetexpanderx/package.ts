@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const snippetexpanderd = nix.arg($, "snippetexpanderd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       src: nix.thunk(() => nix.attr(snippetexpanderd, "src")),
       version: nix.thunk(() => nix.attr(snippetexpanderd, "version")),
       pname: "snippetexpanderx",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall -m555 snippetexpanderx $out/bin/\ninstallManPage snippetexpanderx.1\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Your little expandable text snippet helper auto expander daemon",
         homepage: "https://snippetexpander.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

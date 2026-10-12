@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oittaa",
           repo: "uuid6-python",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["uuid6"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/oittaa/uuid6-python/releases/tag/${nix.sel(src, "tag")}`),
         description: "New time-based UUID formats which are suited for use as a database key",
         homepage: "https://github.com/oittaa/uuid6-python",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

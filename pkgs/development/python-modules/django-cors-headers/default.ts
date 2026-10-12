@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adamchainz",
           repo: "django-cors-headers",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["corsheaders"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Django app for handling server Cross-Origin Resource Sharing (CORS) headers",
         homepage: "https://github.com/OttoYiu/django-cors-headers",
         changelog: nix.thunk(() => nix.str`https://github.com/adamchainz/django-cors-headers/blob/${version}/CHANGELOG.rst`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const electron = electron_41;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "solidtime-desktop",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "solidtime-io",
           repo: "solidtime-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([copyDesktopItems], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcodebuild, desktopToDarwinBundle])))),
       npmDepsHash: "sha256-EwtCA94ezhq36ooVvQWd4ThtxqWSOe7cr28V1thet2o=",
       patches: nix.thunk(() => [nix.path(here, "./missing-hashes.patch")]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       preBuild: nix.thunk(() => nix.str`export npm_config_nodedir="${nix.sel(electron, "headers")}"
 export npm_config_target="${nix.sel(electron, "version")}"
 
@@ -54,7 +54,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/solidtime-desk
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "solidtime-desktop",
             exec: "solidtime-desktop %U",
             icon: "solidtime-desktop",
@@ -66,7 +66,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/solidtime-desk
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern open-source time-tracking app",
         homepage: "https://github.com/solidtime-io/solidtime-desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/solidtime-io/solidtime-desktop/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

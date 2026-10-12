@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const pname = "outfox";
       const version = "0.5.0-pre043";
       const src = nix.thunk(() => nix.selOr({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/TeamRizu/OutFox/releases/download/OF5.0.0-043/OutFox-alpha-0.5.0-pre-043-Final-24.04-amd64-current-date-20250907.tar.gz",
             hash: "sha256-1YN3YCcSluHBUpNRQdh0pJ9R9hTHKBuTSULTKL28OO0=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/TeamRizu/OutFox/releases/download/OF5.0.0-043/OutFox-alpha-0.5.0-pre-043-Final-RaspberryPi-debian12-arm64-aarch64-current-date-20250927.tar.gz",
             hash: "sha256-/E4Keh1J3iytqaq0ziJy9F1mRR3mPbjlGto1Dbct3JM=",
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, makeWrapper]);
       const buildInputs = nix.thunk(() => [alsa_lib, freetype, libjack2, libglvnd, libpulseaudio, openldap]);
       const desktop = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "project-outfox",
           desktopName: "Project OutFox",
           genericName: "Rhythm game engine",
@@ -58,7 +58,7 @@ ln -s ${desktop}/share/applications/project-outfox.desktop $out/share/applicatio
 makeWrapper $out/share/OutFox/OutFox $out/bin/OutFox --argv0
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Rhythm game engine forked from StepMania",
         homepage: "https://projectoutfox.com",
         changelog: "https://github.com/TeamRizu/OutFox/releases/tag/OF5.0.0-043",
@@ -75,7 +75,7 @@ makeWrapper $out/share/OutFox/OutFox $out/bin/OutFox --argv0
         mainProgram: "OutFox",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

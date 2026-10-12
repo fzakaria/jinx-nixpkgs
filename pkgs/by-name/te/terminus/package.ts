@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const php = nix.arg($, "php");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       strictDeps: true,
       pname: "terminus",
       version: "4.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pantheon-systems",
           repo: "terminus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-rMzUiL3UO2RYZ8Rzu5war6iIBwdGBV+BvM75ygrRJHA=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Standalone utility for performing operations on the Pantheon Platform",
         homepage: "https://github.com/pantheon-systems/terminus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

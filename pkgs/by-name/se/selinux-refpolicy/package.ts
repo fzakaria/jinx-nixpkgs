@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const policyVersion = nix.argOr($, "policyVersion", () => null);
   const moduleVersion = nix.argOr($, "moduleVersion", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "selinux-refpolicy",
       version: "2.20250923",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SELinuxProject",
           repo: "refpolicy",
           tag: nix.thunk(() => nix.str`RELEASE_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}_${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(semodule_utils, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SELinux Reference Policy v2",
         homepage: "http://userspace.selinuxproject.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

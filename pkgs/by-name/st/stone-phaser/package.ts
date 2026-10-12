@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stone-phaser",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpcima",
           repo: "stone-phaser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patch -d dpf -p 1 -i \"$src/resources/patch/DPF-bypass.patch\"\npatchShebangs ./dpf/utils/generate-ttl.sh\n\n# Fix gcc-13 build failure due to missing includes\nsed -e '1i #include <cstdint>' -i plugins/stone-phaser/ui/Color.h\n",
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://github.com/jpcima/stone-phaser",
         description: "Classic analog phaser effect, made with DPF and Faust",

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "portaudio",
       version: "190700_20210406",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://files.portaudio.com/archives/pa_stable_v${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1vrdrd42jsnffh6rq8ap2c6fr4g9fcld89z649fs06bwqx1bzvs7",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libjack2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib])))),
       configureFlags: nix.thunk(() => ["--disable-mac-universal", "--enable-cxx"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=nullability-inferred-on-nested-type -Wno-error=nullability-completeness-on-arrays -Wno-error=implicit-const-int-float-conversion")),
       })),
       enableParallelBuilding: false,
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
 sed -i "s|-lasound|-L${nix.sel(alsa_lib, "out")}/lib -lasound|" "$out/lib/pkgconfig/"*.pc
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cp include/pa_mac_core.h $out/include/pa_mac_core.h\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Portable cross-platform Audio API",
         homepage: "https://www.portaudio.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, api_version: 19n })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, api_version: 19n })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

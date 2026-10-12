@@ -2125,11 +2125,11 @@ export default nix.thunk(() => [
   nix.path(here, "./virtualisation/xe-guest-utilities.nix"),
   nix.path(here, "./virtualisation/xen-dom0.nix"),
   nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     documentation: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nixos: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         extraModules: nix.thunk(() => [
           nix.path(here, "./virtualisation/qemu-vm.nix"),
           nix.path(here, "./image/repart.nix"),

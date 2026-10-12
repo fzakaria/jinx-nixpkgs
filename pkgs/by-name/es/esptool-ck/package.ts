@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "esptool-ck",
       version: "0.4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "igrr",
           repo: "esptool-ck",
           rev: "0.4.13",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`VERSION=${nix.sel(finalAttrs, "version")}`)]),
       installPhase: "mkdir -p $out/bin\ncp esptool $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ESP8266/ESP32 build helper tool",
         homepage: "https://github.com/igrr/esptool-ck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

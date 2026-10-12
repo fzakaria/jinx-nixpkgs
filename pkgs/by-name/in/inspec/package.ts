@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const inspec = nix.arg($, "inspec");
   const testers = nix.arg($, "testers");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "inspec",
       gemdir: nix.path(here, "./."),
       ruby: ruby_3_4,
       exes: nix.thunk(() => ["inspec"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "inspec")),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "inspec"));
               return {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: inspec,
               command: "inspec version",
               version: nix.thunk(() => nix.attr(from, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source testing framework for infrastructure with a human- and machine-readable language for specifying compliance, security and policy requirements",
         homepage: "https://inspec.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const optionalDepsPath = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withPngcrush, pngcrush), nix.concat(nix.app(nix.sel(lib, "optional"), withPngout, pngout), nix.concat(nix.app(nix.sel(lib, "optional"), withAdvpng, advancecomp), nix.concat(nix.app(nix.sel(lib, "optional"), withOptipng, optipng), nix.concat(nix.app(nix.sel(lib, "optional"), withPngquant, pngquant), nix.concat(nix.app(nix.sel(lib, "optional"), withOxipng, oxipng), nix.concat(nix.app(nix.sel(lib, "optional"), withJhead, jhead), nix.concat(nix.app(nix.sel(lib, "optional"), withJpegoptim, jpegoptim), nix.concat(nix.app(nix.sel(lib, "optional"), withJpegrecompress, jpeg_archive), nix.concat(nix.app(nix.sel(lib, "optional"), withJpegtran, libjpeg), nix.concat(nix.app(nix.sel(lib, "optional"), withGifsicle, gifsicle), nix.app(nix.sel(lib, "optional"), withSvgo, svgo)))))))))))));
   const disabledWorkersFlags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withPngcrush)), "--no-pngcrush"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withPngout)), "--no-pngout"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withAdvpng)), "--no-advpng"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withOptipng)), "--no-optipng"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withPngquant)), "--no-pngquant"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withOxipng)), "--no-oxipng"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withJhead)), "--no-jhead"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withJpegoptim)), "--no-jpegoptim"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withJpegrecompress)), "--no-jpegrecompress"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withJpegtran)), "--no-jpegtran"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGifsicle)), "--no-gifsicle"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withSvgo)), "--no-svgo")))))))))))));
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "image_optim",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["image_optim"]),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
   --add-flags "${nix.app(nix.sel(lib, "concatStringsSep"), " ", disabledWorkersFlags)}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "image_optim")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optimize images using multiple utilities",
         longDescription: "Command line tool and ruby interface to optimize (lossless compress,\noptionally lossy) jpeg, png, gif and svg images using external utilities\n(advpng, gifsicle, jhead, jpeg-recompress, jpegoptim, jpegrescan,\njpegtran, optipng, oxipng, pngcrush, pngout, pngquant, svgo)\n",
         homepage: "https://github.com/toy/image_optim",

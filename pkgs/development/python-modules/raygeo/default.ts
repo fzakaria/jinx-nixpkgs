@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.53.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-J+K+dj+72RLkV2DQgbGMQanf23HdQnHfBYkTRnC9F5w=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [msgpack, numpy]);
       const nativeCheckInputs = nix.thunk(() => [pycairo, pytestCheckHook]);
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$3, fontDirectories: nix.thunk(() => [dejavu_fonts]) })))),
+        [nix.POS]: pos$4,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [dejavu_fonts]) })))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["raygeo"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance 2D/3D geometry library backed by Rust",
         homepage: "https://github.com/barebaric/raygeo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

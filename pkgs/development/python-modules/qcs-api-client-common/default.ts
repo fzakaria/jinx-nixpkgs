@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rigetti",
           repo: "qcs-api-client-rust",
           tag: nix.thunk(() => nix.str`common/v${version}`),
           hash: "sha256-ksB71Vd9PbKAHll2Y5VrCspsyUyhXwthHl2yVl6MQ7U=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytest_mock, pytestCheckHook, syrupy]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_refresh_interceptor"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/qcs-api-client-rust/blob/${nix.sel(src, "tag")}/qcs-api-client-common/CHANGELOG-py.md`),
         description: "Contains core QCS client functionality and middleware implementations",
         homepage: "https://github.com/rigetti/qcs-api-client-rust/tree/main/qcs-api-client-common",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

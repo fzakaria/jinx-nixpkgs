@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const lrzsz = nix.arg($, "lrzsz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xmodem",
       version: "0.4.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tehmaze",
           repo: "xmodem",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "pytest\n",
       pythonImportsCheck: nix.thunk(() => ["xmodem"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure python implementation of the XMODEM protocol",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

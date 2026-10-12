@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hpp2plantuml",
       version: "0.8.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "thibaultmarin",
           repo: "hpp2plantuml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTests: nix.thunk(() => ["test_list_entries", "test_full_files", "test_main_function"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert C++ header files to PlantUML",
         homepage: "https://github.com/thibaultmarin/hpp2plantuml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

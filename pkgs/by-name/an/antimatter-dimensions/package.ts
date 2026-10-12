@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antimatter-dimensions";
       const version = "0-unstable-2026-07-17";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IvarK",
           repo: "AntimatterDimensionsSourceCode",
           rev: "5409e320cecef96a917cca1dfb68f1f183e499ca",
@@ -55,7 +55,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "antimatter-dimensions",
             exec: "antimatter-dimensions",
             icon: "antimatter-dimensions",
@@ -66,13 +66,13 @@ runHook postInstall
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/IvarK/AntimatterDimensionsSourceCode",
         description: "Idle incremental game with multiple prestige layers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -85,7 +85,7 @@ runHook postInstall
       };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

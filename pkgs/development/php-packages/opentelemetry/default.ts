@@ -18,17 +18,17 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pname = "opentelemetry";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-telemetry",
           repo: "opentelemetry-php-instrumentation",
           rev: version_1,
           hash: "sha256-5ixWposR7ES2UN4fapCTizQgqHzcbdCHTgXjFAzlxyM=",
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/ext`);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-parentheses-equality" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-parentheses-equality" }));
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/opentelemetry-php-instrumentation/releases/tag/${version_1}`),
         description: "OpenTelemetry PHP auto-instrumentation extension",
         homepage: "https://opentelemetry.io/",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: version_1,
         pname,
         src,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "biblesync",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karlkleinpaste",
           repo: "biblesync",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, cmake]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), libuuid), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), gettext))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wiki.crosswire.org/BibleSync",
         description: "Multicast protocol to Bible software shared conavigation",
         longDescription: "BibleSync is a multicast protocol to support Bible software shared\nco-navigation. It uses LAN multicast in either a personal/small team\nmutual navigation motif or in a classroom environment where there are\nSpeakers plus the Audience. The library implementing the protocol is a\nsingle C++ class providing a complete yet minimal public interface to\nsupport mode setting, setup for packet reception, transmit on local\nnavigation, and handling of incoming packets.\n",

@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const gcc = nix.arg($, "gcc");
   const testSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "unslothai",
       repo: "unsloth",
       rev: "cb78f0e83dc2d61fb1571b6e904eb2f064510d63",
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
       postFetch: "mv $out/tests $TMPDIR/tests\nrm -rf $out/*\nmv $TMPDIR/tests $out/tests\n",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "unsloth",
       version: "2026.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "unsloth",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-35+IMV/WHVi0iGnOxtfSZNKo0+0ZlNVlbNtA5tXw9sE=",
@@ -93,17 +93,17 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       dontUsePythonImportsCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => (() => {
-          const cuda = nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({ __proto__: pos$3, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })), nix.thunk(() => ({
-              __proto__: pos$6,
+          const cuda = nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })), nix.thunk(() => ({
+              [nix.POS]: pos$6,
               libraries: (ps) => [
                 nix.thunk(() => nix.sel(ps, "unsloth")),
                 nix.thunk(() => nix.sel(ps, "unsloth-zoo")),
               ],
               gpuCheckArgs: nix.thunk(() => ({
-                __proto__: pos$5,
-                meta: nix.thunk(() => ({ __proto__: pos$4, broken: true })),
+                [nix.POS]: pos$5,
+                meta: nix.thunk(() => ({ [nix.POS]: pos$4, broken: true })),
               })),
             })), nix.thunk(() => nix.str`import os, sys, runpy
 
@@ -119,11 +119,11 @@ runpy.run_path(
 )
 `)));
           const qlora_train_and_merge = cuda;
-          return { __proto__: pos$7, cuda, "qlora-train-and-merge": qlora_train_and_merge };
+          return { [nix.POS]: pos$7, cuda, "qlora-train-and-merge": qlora_train_and_merge };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Finetune Llama 3.3, DeepSeek-R1 & Reasoning LLMs 2x faster with 70% less memory",
         homepage: "https://github.com/unslothai/unsloth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robotpy",
           repo: "cxxheaderparser",
           tag: version,
@@ -35,7 +35,7 @@ echo "__version__ = '${version}'" > cxxheaderparser/version.py
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cxxheaderparser"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern pure Python C++ header parser",
         homepage: "https://github.com/robotpy/cxxheaderparser",
         changelog: nix.thunk(() => nix.str`https://github.com/robotpy/cxxheaderparser/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ echo "__version__ = '${version}'" > cxxheaderparser/version.py
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

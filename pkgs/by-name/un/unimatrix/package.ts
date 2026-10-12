@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unimatrix",
       version: "0-unstable-2026-05-20",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "will8211",
           repo: "unimatrix",
           rev: "dff519f972103f91384f360f270614184de8aa92",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python script to simulate the display from \"The Matrix\" in terminal",
         homepage: "https://github.com/will8211/unimatrix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buriy",
           repo: "python-readability",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [chardet, cssselect, lxml, lxml_html_clean]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, timeout_decorator]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast python port of arc90's readability tool",
         homepage: "https://github.com/buriy/python-readability",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

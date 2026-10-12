@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "weaviate",
           repo: "weaviate-python-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["weaviate"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python native client for easy interaction with a Weaviate instance",
         homepage: "https://github.com/weaviate/weaviate-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/weaviate/weaviate-python-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

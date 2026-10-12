@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colinodell",
           repo: "python-qnapstats",
           tag: version,
@@ -43,7 +43,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["qnapstats"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/colinodell/python-qnapstats/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python API for obtaining QNAP NAS system stats",
         homepage: "https://github.com/colinodell/python-qnapstats",
@@ -54,7 +54,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

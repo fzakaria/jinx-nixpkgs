@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const llvm = nix.arg($, "llvm");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "milu-nightly",
       version: "2016-05-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yuejia",
           repo: "Milu",
           rev: "b5f2521859c0319d321ad3c1ad793b826ab5f6e1",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preBuild: "mkdir -p $out/bin\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-incompatible-pointer-types",
             "-Wno-implicit-function-declaration",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })),
       dontInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Higher Order Mutation Testing Tool for C and C++ programs",
         homepage: "https://github.com/yuejia/Milu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -61,12 +61,12 @@ export default nix.lambda((args) => (() => {
   const sentencepiece = nix.arg($, "sentencepiece");
   const hf_xet = nix.arg($, "hf-xet");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "transformers",
       version: "4.57.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "huggingface",
           repo: "transformers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         const audio = nix.thunk(() => [librosa, phonemizer]);
         const vision = nix.thunk(() => [pillow]);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           agents: nix.thunk(() => [diffusers, accelerate, datasets, torch, sentencepiece, opencv4, pillow]),
           ja: [],
           sklearn: nix.thunk(() => [scikit_learn]),
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["transformers"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(huggingface_hub, "version")), "1.0")),
         homepage: "https://github.com/huggingface/transformers",
         description: "Natural Language Processing for TensorFlow 2.0 and PyTorch",

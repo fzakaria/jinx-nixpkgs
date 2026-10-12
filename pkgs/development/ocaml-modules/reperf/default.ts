@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const printbox_text = nix.arg($, "printbox-text");
   const reason = nix.arg($, "reason");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "reperf",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bryphe",
           repo: "reperf",
           rev: "68ef2f96899c09e6ac7d929b0375f7a806aee067",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [printbox_text]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native Reason + JSOO cross-platform performance benchmarking tools",
         longDescription: "Inspired by the core_bench tools from Janestreet.\n\nreperf helps with:\n* Timing: time spent in a code block\n* Call count: frequency of code-path calls\n* Allocations: code-block impact to garbage collector\n\nSupports benchmarks, which are test cases that exercise performance scenarios.\nOutputs a JSON performance report, and compare it with previous iterations - and fail if a regression is detected.\n",
         homepage: "https://github.com/bryphe/reperf",

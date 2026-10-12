@@ -32,61 +32,61 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const keyfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "luks-keyfile", "MIGHAoGBAJ4rGTSo/ldyjQypd0kuS7k2OSsmQYzMH6TNj3nQ/vIUjDn7fqa3slt2\ngV6EK3TmTbGc4tzC1v4SWx2m+2Bjdtn4Fs4wiBwn1lbRdC6i5ZYCqasTWIntWn+6\nFllUkMD5oqjOR/YcboxG8Z3B5sJuvTP9llsF+gnuveWih9dpbBr7AgEC\n"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     name: "systemd-initrd-luks-keyfile",
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             emptyDiskImages: nix.thunk(() => [512n]),
             useBootLoader: true,
             mountHostNixStore: true,
             useEFIBoot: true,
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             loader: nix.thunk(() => ({
-              __proto__: pos$3,
-              "systemd-boot": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+              [nix.POS]: pos$3,
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             })),
             initrd: nix.thunk(() => ({
-              __proto__: pos$5,
-              systemd: nix.thunk(() => ({ __proto__: pos$4, enable: true, emergencyAccess: true })),
+              [nix.POS]: pos$5,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, emergencyAccess: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "cryptsetup"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "boot-luks": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               configuration: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 boot: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   initrd: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     luks: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                          __proto__: pos$9,
-                          cryptroot: nix.thunk(() => ({ __proto__: pos$8, device: "/dev/vdb", keyFile: "/etc/cryptroot.key" })),
+                          [nix.POS]: pos$9,
+                          cryptroot: nix.thunk(() => ({ [nix.POS]: pos$8, device: "/dev/vdb", keyFile: "/etc/cryptroot.key" })),
                         })))),
                     })),
-                    secrets: nix.thunk(() => ({ __proto__: pos$11, "/etc/cryptroot.key": keyfile })),
+                    secrets: nix.thunk(() => ({ [nix.POS]: pos$11, "/etc/cryptroot.key": keyfile })),
                   })),
                 })),
-                virtualisation: nix.thunk(() => ({ __proto__: pos$14, rootDevice: "/dev/mapper/cryptroot" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, rootDevice: "/dev/mapper/cryptroot" })),
               })),
             })),
           })),

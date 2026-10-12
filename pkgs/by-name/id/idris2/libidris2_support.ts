@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const idris2_src = nix.arg($, "idris2-src");
   const idris2_version = nix.arg($, "idris2-version");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libidris2_support",
       version: idris2_version,
       src: idris2_src,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 mv "$out/idris2-${nix.sel(finalAttrs, "version")}/support" "$out/share"
 rm -rf $out/idris2-${nix.sel(finalAttrs, "version")}
 `),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Runtime library for Idris2" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Runtime library for Idris2" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=libidris2_support.ts.map

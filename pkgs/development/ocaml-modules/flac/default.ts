@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const ogg = nix.arg($, "ogg");
   const flac = nix.arg($, "flac");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "flac",
       version: nix.thunk(() => nix.attr(ogg, "version")),
       src: nix.thunk(() => nix.attr(ogg, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ogg, nix.thunk(() => nix.sel(flac, "dev"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/savonet/ocaml-flac",
         description: "Bindings for flac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

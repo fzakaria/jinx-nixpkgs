@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "instant-space-switcher",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jurplel/InstantSpaceSwitcher/releases/download/v${nix.sel(finalAttrs, "version")}/InstantSpaceSwitcher-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-48DH2Hu/XhLPr8jP2ArmLJLFbJmIupkrlqlFOsNnL7g=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native instant workspace switching on macOS. No more waiting for animations",
         homepage: "https://github.com/jurplel/InstantSpaceSwitcher",
         changelog: nix.thunk(() => nix.str`https://github.com/jurplel/InstantSpaceSwitcher/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -21,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "universal-macos" : nix.sel(stdenvNoCC, "hostPlatform", "system")));
   const hash = nix.thunk(() => nix.builtins.getAttr(platform, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       "universal-macos": "sha256-kvTRqAZ1kX9ojZdto5sRxPm/sUU8dRGb31GKszr5KTo=",
       "x86_64-linux": "sha256-fuNmpCZ/0cV+AuOLeG5RvBxFd/hGYrx005QJWCihPpY=",
       "aarch64-linux": "sha256-4mSFOvgoz7d14iKWl6B6jYwkEz1Yud8Apt9yT/E7ynY=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tigerbeetle",
       version: "0.17.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/tigerbeetle/tigerbeetle/releases/download/${nix.sel(finalAttrs, "version")}/tigerbeetle-${platform}.zip`),
           hash: hash,
         })))),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp $src/tigerbeetle $out/bin/tigerbeetle\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: tigerbeetle, command: "tigerbeetle version" })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: tigerbeetle, command: "tigerbeetle version" })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://tigerbeetle.com/",
         description: "Financial accounting database designed to be distributed and fast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

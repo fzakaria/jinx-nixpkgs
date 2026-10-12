@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const cargoDeps = nix.arg($_1, "cargoDeps");
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "wasm-bindgen-cli",
         version: version,
         src: src,
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
         nativeCheckInputs: nix.thunk(() => [nodejs_latest]),
         doCheck: false,
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://wasm-bindgen.github.io/wasm-bindgen/",
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

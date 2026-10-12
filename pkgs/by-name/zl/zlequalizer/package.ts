@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const simdTarget = nix.argOr($, "simdTarget", () => (nix.asBool(nix.sel(clangStdenv, "hostPlatform", "isAarch64")) ? "NEON" : "SSE2"));
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "simdTarget", simdTarget, nix.thunk(() => ["SSE2", "SSE4", "AVX2", "NEON"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/zl/zlequalizer/package.nix:40:1");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zlequalizer",
       version: "1.4.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ZL-Audio",
           repo: "ZLEqualizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           libxkbcommon,
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXi", "-lXcursor", "-lXinerama", "-lXrandr"]))),
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         })))),
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/{lv2,vst3}\nmkdir -p $out/bin/\ncp -r \"ZLEqualizer_artefacts/Release/LV2/ZL Equalizer 2.lv2\" $out/lib/lv2/\ncp -r \"ZLEqualizer_artefacts/Release/VST3/ZL Equalizer 2.vst3\" $out/lib/vst3/\ninstall -Dm755 \"ZLEqualizer_artefacts/Release/Standalone/ZL Equalizer 2\" $out/bin/\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r ZLEqualizer_artefacts/Release/{AU,VST3} $out/\ncp -r ZLEqualizer_artefacts/Release/Standalone/* $out/Applications/\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://zl-audio.github.io/plugins/zlequalizer2/",
         changelog: nix.thunk(() => nix.str`https://github.com/ZL-Audio/ZLEqualizer/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Versatile equalizer plugin for VST3, LV2 and standalone",

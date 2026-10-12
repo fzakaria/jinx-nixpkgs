@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const httplib2 = nix.arg($, "httplib2");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plantuml",
       version: "0.3.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dougn",
           repo: "python-plantuml",
           rev: "93e1aac25b17d896b0d05d0a1aa352c7bd11dd31",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["plantuml"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python interface to a plantuml web service instead of having to run java locally",
         homepage: "https://github.com/dougn/python-plantuml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

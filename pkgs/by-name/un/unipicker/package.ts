@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fzf = nix.arg($, "fzf");
   const xclip = nix.arg($, "xclip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unipicker",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jeremija",
           repo: "unipicker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ substituteInPlace unipickerrc \\
         nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI utility for searching unicode characters by description and optionally copying them to clipboard",
         homepage: "https://github.com/jeremija/unipicker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

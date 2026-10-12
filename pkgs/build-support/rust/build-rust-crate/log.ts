@@ -20,7 +20,7 @@ echo $echo_args $start_escape"$@"$reset
 `;
   const echo_conditional_colored_body = (colors) => (start_escape) => (nix.asBool(nix.eq(colors, "always")) ? nix.app(echo_colored_body, start_escape) : "echo \"$@\"");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     echo_colored: (colors) => nix.str`echo_colored() {
   ${nix.app(echo_conditional_colored_body, colors, "\\033[0;1;32m")}
 }

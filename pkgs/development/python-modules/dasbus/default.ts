@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dasbus",
       version: "unstable-11-10-2022",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rhinstaller",
           repo: "dasbus",
           rev: "64b6b4d9e37cd7e0cbf4a7bf75faa7cdbd01086d",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dbus, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/lib_dbus.py", "tests/test_dbus.py", "tests/test_unix.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/rhinstaller/dasbus",
         description: "DBus library in Python3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

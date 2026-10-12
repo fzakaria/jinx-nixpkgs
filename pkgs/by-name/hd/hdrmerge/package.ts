@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hdrmerge",
       version: "0.5.0-unstable-2025-04-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcelaya",
           repo: "hdrmerge",
           rev: "3bbe43771ba15b899151721bc14aa57e86b60f2f",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "HDRMerge",
             genericName: "HDR raw image merge",
             desktopName: "HDRMerge",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm444 ../data/images/icon.png $out/share/icons/hicolor/128x128/apps/hdrmerge.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jcelaya/hdrmerge",
         description: "Combines two or more raw images into an HDR",
         mainProgram: "hdrmerge",

@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
     const lua5_3 = nix.arg($_1, "lua5_3");
     const fake_mysql_config = nix.thunk(() => nix.app(nix.sel(buildPackages, "writeShellScriptBin"), "mysql_config", "if [ \"$1\" == \"--include\" ]; then\n  \"$PKG_CONFIG\" --cflags mysqlclient\nelif [ \"$1\" == \"--libs\" ]; then\n  \"$PKG_CONFIG\" --libs mysqlclient\nelse\n  echo \"fake_mysql_config: unsupported option: $1\" >&2\n  exit 1\nfi\n"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "dovecot",
         version: version,
         nativeBuildInputs: nix.thunk(() => nix.concat([flex, bison, perl, pkg_config, autoreconfHook], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => [rpcsvc_proto])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withMySQL) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "2.4")))), fake_mysql_config)))),
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(cyrus_sasl, "dev")),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.4")), nix.thunk(() => [xapian])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [systemdLibs, pam, libcap, inotify_tools])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), libtirpc), nix.concat(nix.app(nix.sel(lib, "optional"), withApparmor, libapparmor), nix.concat(nix.app(nix.sel(lib, "optional"), withLDAP, openldap), nix.concat(nix.app(nix.sel(lib, "optional"), withPCRE2, pcre2), nix.concat(nix.app(nix.sel(lib, "optional"), withUnwind, libunwind), nix.concat(nix.app(nix.sel(lib, "optional"), withMySQL, libmysqlclient), nix.concat(nix.app(nix.sel(lib, "optional"), withPgSQL, libpq), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, sqlite), nix.app(nix.sel(lib, "optional"), withLua, lua5_3))))))))))))),
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://dovecot.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/dovecot-${nix.sel(finalAttrs, "version")}.tar.gz`),
             hash: hash,
           })))),
         enableParallelBuilding: true,
         env: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
           LUA_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withLua, nix.thunk(() => nix.str`${nix.sel(lua5_3, "pkgs", "json")}/share/lua/${nix.sel(lua5_3, "luaversion")}/?.lua`))),
         })),
@@ -150,7 +150,7 @@ sed '/test_password_scheme("CRYPT"/d' -i ${filePath}
         doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit"))))),
         strictDeps: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "https://dovecot.org/",
           description: "Open source IMAP and POP3 email server written with security primarily in mind",
           license: nix.thunk(() => (() => {
@@ -177,10 +177,10 @@ sed '/test_password_scheme("CRYPT"/d' -i ${filePath}
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         })),
         passthru: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           dovecot_pigeonhole: dovecot_pigeonhole,
           tests: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "opensmtpd-interaction": nix.thunk(() => nix.sel(nixosTests, "opensmtpd")),
             dovecot: nix.thunk(() => nix.attr(nixosTests, "dovecot")),
           })),

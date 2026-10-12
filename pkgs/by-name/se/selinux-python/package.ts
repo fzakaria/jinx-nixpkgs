@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "selinux-python",
       version: "3.10",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/selinux-python-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-nQpbafL7zOjlzNjg8X1W9x5gBadWOG+Ps2wx+UJBkaI=",
         })))),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsepol, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SELinux policy core utilities written in Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/SELinuxProject/selinux",

@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gpgme = nix.arg($, "gpgme");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kgpg",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [gpgme]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kgpg" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kgpg" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

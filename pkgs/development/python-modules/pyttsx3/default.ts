@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.99";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           format: "wheel",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Offline text-to-speech synthesis library",
         homepage: "https://github.com/nateshmbhat/pyttsx3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ethindp"))]),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

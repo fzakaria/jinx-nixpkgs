@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nota";
       const version = "1.0-unstable-2023-03-01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pouyakary",
           repo: "Nota",
           rev: "3548b864e5aa30ffbf1704a79dbb3bd3aab813be",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const maintainers = [];
       const mainProgram = "nota";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         src,

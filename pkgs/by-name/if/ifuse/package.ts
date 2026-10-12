@@ -19,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const usbmuxd = nix.arg($, "usbmuxd");
   const libimobiledevice = nix.arg($, "libimobiledevice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ifuse",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "ifuse",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-STMELfxbWf2W6NKKqBxgbQLZpYXv9N0cDLgHho5PRYM=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, VER: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, VER: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [fuse3, usbmuxd, libimobiledevice]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/libimobiledevice/ifuse",
         description: "Fuse filesystem implementation to access the contents of iOS devices",
         longDescription: "Mount directories of an iOS device locally using fuse. By default the media\ndirectory is mounted, options allow to also mount the sandbox container of an\napp, an app's documents folder or even the root filesystem on jailbroken\ndevices.\n",

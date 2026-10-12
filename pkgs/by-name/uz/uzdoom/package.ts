@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "uzdoom",
       version: "5.0.3",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UZDoom",
           repo: "UZDoom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -82,7 +82,7 @@ makeWrapper $out/share/games/uzdoom/uzdoom $out/bin/uzdoom \\
   --set LD_LIBRARY_PATH ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader]))}
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern, feature-rich source port for the classic game DOOM",
         longDescription: "UZDoom is a feature centric port for all Doom engine games, based on\nGZDoom, adding an advanced renderer and powerful scripting capabilities\n",
         homepage: "https://zdoom.org",

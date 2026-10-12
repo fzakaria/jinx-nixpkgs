@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const isPy3k = nix.arg($, "isPy3k");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "baseline",
       version: "1.2.1",
       pyproject: true,
       __structuredAttrs: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmgass",
           repo: "baseline",
           rev: "95a0b71806ed16310eb0f27bc48aa5e21f731423",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["baseline"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy String Baseline",
         mainProgram: "baseline",
         longDescription: "This tool streamlines creation and maintenance of tests which compare\nstring output against a baseline.\n",

@@ -51,19 +51,19 @@ export default nix.lambda((args) => (() => {
       const pname = "d3-flame-graph-templates";
       const version = "4.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/d3-flame-graph/-/d3-flame-graph-${version}.tgz`),
           sha256: "sha256-W5/Vh5jarXUV224aIiTB2TnBFYT3naEIcG2945QjY8Q=",
         }))));
       const installPhase = "install -D -m 0755 -t $out/share/d3-flame-graph/ ./dist/templates/*\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "perf-linux",
       version: nix.thunk(() => nix.attr(linux_latest, "version")),
       src: nix.thunk(() => nix.attr(linux_latest, "src")),
@@ -123,7 +123,7 @@ patchShebangs pmu-events/jevents.py
         libpfm,
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemtap_unwrapped)), systemtap_unwrapped), nix.concat(nix.app(nix.sel(lib, "optional"), withZstd, zstd), nix.concat(nix.app(nix.sel(lib, "optional"), withLibcap, libcap), nix.app(nix.sel(lib, "optionals"), withPython, nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=cpp",
             "-Wno-error=bool-compare",
@@ -144,7 +144,7 @@ wrapProgram $out/bin/perf \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(linux_latest, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://perf.wiki.kernel.org/",
         description: "Linux tools to profile with performance counters",
         mainProgram: "perf",

@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const withMkvtoolnix = nix.argOr($, "withMkvtoolnix", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), true, nix.thunk(() => [withAom, withRav1e, withSvtav1, withVpx, withX264, withX265]))), "At least one encoder is required!"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/av/av1an/package.nix:30:1");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "av1an",
       version: nix.thunk(() => nix.attr(av1an_unwrapped, "version")),
       paths: nix.thunk(() => [av1an_unwrapped]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => (() => {
         const runtimePrograms = nix.thunk(() => nix.concat([
           vapoursynth,
-          nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$1, withVmaf: withVmaf })))),
+          nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withVmaf: withVmaf })))),
         ], nix.concat(nix.app(nix.sel(lib, "optional"), withAom, libaom), nix.concat(nix.app(nix.sel(lib, "optional"), withMkvtoolnix, mkvtoolnix_cli), nix.concat(nix.app(nix.sel(lib, "optional"), withRav1e, rav1e), nix.concat(nix.app(nix.sel(lib, "optional"), withSvtav1, svt_av1), nix.concat(nix.app(nix.sel(lib, "optional"), withVmaf, libvmaf), nix.concat(nix.app(nix.sel(lib, "optional"), withVpx, libvpx), nix.concat(nix.app(nix.sel(lib, "optional"), withX264, x264), nix.app(nix.sel(lib, "optional"), withX265, x265))))))))));
         return nix.str`wrapProgram $out/bin/av1an \\
   --prefix LD_LIBRARY_PATH : ${vapoursynth}/lib \\
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: av1an,
               version: nix.thunk(() => nix.attr(av1an_unwrapped, "version")),
             })))),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(av1an_unwrapped, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

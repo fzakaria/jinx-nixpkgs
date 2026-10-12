@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
   const wakeups = nix.thunk(() => nix.app(mapAttrs$, (n) => (v) => nix.app(nameValuePair, nix.thunk(() => nix.str`wakeup.${n}`), nix.thunk(() => nix.app(filterAttrs, (_) => (v_1) => !nix.eq(v_1, null), v))), nix.thunk(() => nix.sel(cfg, "wakeups"))));
   const hasCheck = (class$) => !nix.eq(nix.app(filterAttrs, (n) => (v) => (nix.asBool(nix.sel(v, "enabled")) && nix.asBool(nix.eq((nix.asBool(nix.eq(nix.sel(v, "class"), null)) ? nix.force(n) : nix.sel(v, "class")), class$))), nix.thunk(() => nix.sel(cfg, "checks"))), {});
   const dependenciesForChecks = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     Ping: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iputils"))]),
     Smb: nix.thunk(() => nix.sel(pkgs, "samba")),
     XIdleTime: nix.thunk(() => [
@@ -63,16 +63,16 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(pkgs, "sudo")),
     ]),
   }));
-  const autosuspend_conf = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "autosuspend.conf", nix.thunk(() => nix.update({ __proto__: pos$2, general: nix.thunk(() => nix.sel(cfg, "settings")) }, nix.update(checks, wakeups)))));
+  const autosuspend_conf = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "autosuspend.conf", nix.thunk(() => nix.update({ [nix.POS]: pos$2, general: nix.thunk(() => nix.sel(cfg, "settings")) }, nix.update(checks, wakeups)))));
   const autosuspend = nix.thunk(() => nix.sel(cfg, "package"));
   const checkType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type", "nestedTypes", "elemType")),
       options: nix.thunk(() => ({
-        __proto__: pos$5,
-        enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "this activity check"), { __proto__: pos$3, default: true })),
+        [nix.POS]: pos$5,
+        enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "this activity check"), { [nix.POS]: pos$3, default: true })),
         class: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: null,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
@@ -101,13 +101,13 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const wakeupType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       freeformType: nix.thunk(() => nix.sel(settingsFormat, "type", "nestedTypes", "elemType")),
       options: nix.thunk(() => ({
-        __proto__: pos$9,
-        enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "this wake-up check"), { __proto__: pos$7, default: true })),
+        [nix.POS]: pos$9,
+        enabled: nix.thunk(() => nix.update(nix.app(mkEnableOption, "this wake-up check"), { [nix.POS]: pos$7, default: true })),
         class: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             default: null,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
@@ -126,24 +126,24 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         autosuspend: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the autosuspend daemon")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "autosuspend", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type", "nestedTypes", "elemType")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     suspend_cmd: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         default: "systemctl suspend",
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
@@ -152,7 +152,7 @@ export default nix.lambda((args) => (() => {
                         description: "The command to execute in case the host shall be suspended. This line can contain\nadditional command line arguments to the command to execute.\n",
                       })))),
                     wakeup_cmd: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         default: "sh -c 'echo 0 > /sys/class/rtc/rtc0/wakealarm && echo {timestamp:.0f} > /sys/class/rtc/rtc0/wakealarm' ",
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
@@ -167,7 +167,7 @@ export default nix.lambda((args) => (() => {
               description: "Configuration for autosuspend, see\n<https://autosuspend.readthedocs.io/en/latest/configuration_file.html#general-configuration>\nfor supported values.\n",
             })))),
           checks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -177,7 +177,7 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(literalExpression, "{\n  # Basic activity check configuration.\n  # The check class name is derived from the section header (Ping in this case).\n  # Remember to enable desired checks. They are disabled by default.\n  Ping = {\n    hosts = \"192.168.0.7\";\n  };\n\n  # This check is disabled.\n  Smb.enabled = false;\n\n  # Example for a custom check name.\n  # This will use the Users check with the custom name RemoteUsers.\n  # Custom names are necessary in case a check class is used multiple times.\n  # Custom names can also be used for clarification.\n  RemoteUsers = {\n    class = \"Users\";\n    name = \".*\";\n    terminal = \".*\";\n    host = \"[0-9].*\";\n  };\n\n  # Here the Users activity check is used again with different settings and a different name\n  LocalUsers = {\n    class = \"Users\";\n    name = \".*\";\n    terminal = \".*\";\n    host = \"localhost\";\n  };\n}\n")),
             })))),
           wakeups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
@@ -190,27 +190,27 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "checks"), {})),
             message: "`services.autosuspend.checks` must contain at least one activity check.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             autosuspend: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "A daemon to suspend your server in case of inactivity",
               documentation: nix.thunk(() => ["https://autosuspend.readthedocs.io/en/latest/systemd_integration.html"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.app(filterAttrs, (n) => (_) => nix.app(hasCheck, n), dependenciesForChecks)))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 ExecStart: nix.thunk(() => nix.str`${autosuspend}/bin/autosuspend --logging ${autosuspend}/etc/autosuspend-logging.conf daemon --config ${autosuspend_conf}`),
               })),
             })),
@@ -218,7 +218,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [

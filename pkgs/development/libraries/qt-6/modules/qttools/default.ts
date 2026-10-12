@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const withClang = nix.argOr($, "withClang", () => false);
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "qttools",
       postPatch: "substituteInPlace \\\n  src/qdoc/catch/CMakeLists.txt \\\n  src/qdoc/catch_generators/CMakeLists.txt \\\n  src/qdoc/catch_conversions/CMakeLists.txt \\\n  --replace '${CMAKE_INSTALL_INCLUDEDIR}' \"$out/include\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-DNIX_OUTPUT_OUT="${nix.builtins.placeholder("out")}"`),
           ]))),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const hex = nix.arg($, "hex");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bls12-381",
       version: "6.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomadic-labs",
           repo: "cryptography/ocaml-bls12-381",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://nomadic-labs.gitlab.io/cryptography/ocaml-bls12-381/bls12-381/",
         description: "Implementation of BLS12-381 and some cryptographic primitives built on top of it",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const selectedExtensions = nix.thunk(() => nix.concat(extensions, nix.app(nix.sel(lib, "optionals"), useDefaultExtensions, nix.thunk(() => [folder_color_switcher, nemo_emblems, nemo_fileroller, nemo_python]))));
   const nemoPythonExtensionsDeps = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (x) => nix.selOr(x, () => [], "nemoPythonExtensionDeps"), selectedExtensions));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`nemo-with-extensions-${nix.sel(nemo, "version")}`),
       paths: nix.thunk(() => nix.concat([nemo], selectedExtensions)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

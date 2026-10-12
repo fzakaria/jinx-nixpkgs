@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const ppx_optcomp = nix.arg($, "ppx_optcomp");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "earlybird",
       version: "1.3.6",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hackwaly",
           repo: "ocamlearlybird",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
         ppx_optcomp,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/hackwaly/ocamlearlybird",
         description: "OCaml debug adapter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

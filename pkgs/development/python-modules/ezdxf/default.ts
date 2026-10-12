@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ezdxf";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozman",
           repo: "ezdxf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))])));
       const dependencies = nix.thunk(() => nix.concat([pyparsing, typing_extensions, numpy, fonttools], nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(qt6, "qtbase"))], nix.sel(optional_dependencies, "draw"))))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         draw: nix.thunk(() => [pyside6, matplotlib, pymupdf, pillow]),
         draw5: nix.thunk(() => [pyqt5, matplotlib, pymupdf, pillow]),
       }));
@@ -59,15 +59,15 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.str`ln -s "${librecad}/${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Applications/LibreCAD.app/Contents/Resources" : "share/librecad")}/fonts" fonts/librecad
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "rev-prefix": "v",
             allowedVersions: "^[0-9]+\\.[0-9]+\\.[0-9]+$",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python package to read and write DXF drawings (interface to the DXF file format)",
         mainProgram: "ezdxf",
         homepage: "https://ezdxf.mozman.at/",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         version,
         pname,
         pyproject,

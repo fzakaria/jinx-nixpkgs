@@ -7,11 +7,11 @@ const pos$2 = nix.positions(here + "/skip-typecheck.nix", [["machine", 14, 9]]);
 const pos$3 = nix.positions(here + "/skip-typecheck.nix", [["name", 7, 3], ["meta", 8, 3], ["skipTypeCheck", 12, 3], ["nodes", 14, 3], ["testScript", 16, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   name: "skip-typecheck",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   skipTypeCheck: true,
-  nodes: nix.thunk(() => ({ __proto__: pos$2, machine: nix.thunk(() => ({})) })),
+  nodes: nix.thunk(() => ({ [nix.POS]: pos$2, machine: nix.thunk(() => ({})) })),
   testScript: "start_all()\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.shutdown()\n",
 }));
 //# sourceMappingURL=skip-typecheck.ts.map

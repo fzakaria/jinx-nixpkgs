@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "int")),
         nix.thunk(() => nix.lookup(w, "bool")),
       ])), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "davmail config type (str, int, bool or attribute set thereof)",
     });
   })());
@@ -52,22 +52,22 @@ export default nix.lambda((args) => (() => {
     })(), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), attrs)));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "davmail.properties", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(linesForAttrs, nix.thunk(() => nix.sel(cfg, "config"))))))));
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         davmail: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "davmail, an MS Exchange gateway")),
           url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Outlook Web Access URL to access the exchange server, i.e. the base webmail URL.",
               example: "https://outlook.office365.com/EWS/Exchange.asmx",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: configType,
               default: nix.thunk(() => ({})),
               description: "Davmail configuration. Refer to\n<http://davmail.sourceforge.net/serversetup.html>\nand <http://davmail.sourceforge.net/advanced.html>\nfor details on supported values.\n",
@@ -77,15 +77,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         services: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           davmail: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             config: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               davmail: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   server: true,
                   disableUpdateCheck: true,
                   logFilePath: "/var/log/davmail/davmail.log",
@@ -99,20 +99,20 @@ export default nix.lambda((args) => (() => {
                   smtpPort: 1025n,
                 })))),
               log4j: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 logger: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   davmail: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "WARN")),
                   httpclient: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     wire: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "WARN")),
                   })),
                   org: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     apache: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       commons: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         httpclient: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "WARN")),
                       })),
                     })),
@@ -124,16 +124,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             davmail: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "DavMail POP/IMAP/SMTP Exchange Gateway",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "davmail")}/bin/davmail ${configFile}`),
                 Restart: "on-failure",
@@ -169,7 +169,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "davmail"))]),
         })),
       })))),

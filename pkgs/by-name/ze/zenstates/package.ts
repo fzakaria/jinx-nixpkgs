@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zenstates",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "r4m0n",
           repo: "ZenStates-Linux",
           rev: "0bc27f4740e382f2a2896dc1dabfec1d0ac96818",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "mkdir -p $out/bin\ncp $src/zenstates.py $out/bin/zenstates\nchmod +x $out/bin/zenstates\npatchShebangs --build $out/bin/zenstates\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux utility for Ryzen processors and motherboards",
         mainProgram: "zenstates",
         homepage: "https://github.com/r4m0n/ZenStates-Linux",

@@ -35,18 +35,18 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ashpd-demo",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bilelmoussaoui",
           repo: "ashpd",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-demo`),
           hash: "sha256-0IGqA8PM6I2p4/MrptkdSWIZThMoeaMsdMc6tVTI2MU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ashpd-demo`),
           hash: "sha256-kUEzVBk8dKXCQdHFJJS633CBG1F57TIxJg1xApMwzbI=",
         })))),
@@ -74,15 +74,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "cd ashpd-demo\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => (() => {
           const updateSource = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.sel(finalAttrs, "src", "gitRepoUrl")),
               "rev-suffix": "-demo",
             }))));
           const updateLockfile = nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -96,7 +96,7 @@ update-source-version ashpd-demo --ignore-same-version --source-key=cargoDeps.ve
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool for playing with XDG desktop portals",
         mainProgram: "ashpd-demo",
         homepage: "https://github.com/bilelmoussaoui/ashpd/tree/master/ashpd-demo",

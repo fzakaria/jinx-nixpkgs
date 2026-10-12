@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const tests = nix.thunk(() => ({
-    __proto__: pos$2,
-    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ __proto__: pos$1, sparkPackage: nix.thunk(() => nix.sel(pkgs, "spark")) })))),
+    [nix.POS]: pos$2,
+    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ [nix.POS]: pos$1, sparkPackage: nix.thunk(() => nix.sel(pkgs, "spark")) })))),
   }));
   const testsForPackage = (args_1) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       sparkCluster: nix.thunk(() => nix.app(testSparkCluster, args_1)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         override: (args$) => nix.app(testsForPackage, nix.thunk(() => nix.update(args_1, args$))),
       })),
     })));
@@ -44,25 +44,25 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const sparkPackage = nix.arg($_1, "sparkPackage");
     return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         name: "spark",
         nodes: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           worker: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const nodes = nix.arg($_2, "nodes");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               services: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 spark: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   package: sparkPackage,
-                  worker: nix.thunk(() => ({ __proto__: pos$5, enable: true, master: "master:7077" })),
+                  worker: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, master: "master:7077" })),
                 })),
               })),
-              virtualisation: nix.thunk(() => ({ __proto__: pos$8, memorySize: 2048n })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, memorySize: 2048n })),
             };
           })(), formals$3),
           master: nix.lambda((args_2) => (() => {
@@ -70,18 +70,18 @@ export default nix.lambda((args) => (() => {
             const config = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               services: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 spark: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   package: sparkPackage,
-                  master: nix.thunk(() => ({ __proto__: pos$10, enable: true, bind: "0.0.0.0" })),
+                  master: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, bind: "0.0.0.0" })),
                 })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$14,
-                firewall: nix.thunk(() => ({ __proto__: pos$13, allowedTCPPorts: nix.thunk(() => [22n, 7077n, 8080n]) })),
+                [nix.POS]: pos$14,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [22n, 7077n, 8080n]) })),
               })),
             };
           })(), formals$4),

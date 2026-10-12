@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sly";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kra-mo",
           repo: "Sly",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const postInstall = "install -Dm0644 packaging/linux/page.kramo.Sly.svg $out/share/icons/hicolor/scalable/apps/page.kramo.Sly.svg\ninstall -Dm0644 packaging/linux/page.kramo.Sly.desktop $out/share/applications/sly.desktop\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nativeBuildInputs: nix.thunk(() => [yq]),
             src: nix.thunk(() => nix.attr(sly, "src")),
           })), "cat $src/pubspec.lock | yq > $out\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
             nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "sly.pubspecSource", nix.path(here, "./pubspec.lock.json"))),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Friendly image editor",
         homepage: "https://github.com/kra-mo/Sly",
         mainProgram: "sly",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

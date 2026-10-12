@@ -88,7 +88,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
   const baseSystem = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => nix.update((() => {
       const from = nix.thunk(() => nix.sel(config, "system"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`nixos-system-${nix.sel(config, "system", "name")}-${nix.sel(config, "system", "nixos", "label")}`),
       preferLocalBuild: true,
       allowSubstitutes: false,
@@ -97,32 +97,32 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
       nixosLabel: nix.thunk(() => nix.sel(config, "system", "nixos", "label")),
       extraDependencies: nix.thunk(() => nix.attr(from, "extraDependencies")),
     };
-    })(), nix.update(nix.sel(config, "system", "systemBuilderArgs"), { __proto__: pos$2, __structuredAttrs: true })))));
+    })(), nix.update(nix.sel(config, "system", "systemBuilderArgs"), { [nix.POS]: pos$2, __structuredAttrs: true })))));
   const baseSystemAssertWarn = nix.thunk(() => nix.app(nix.sel(lib, "asserts", "checkAssertWarn"), nix.thunk(() => nix.sel(config, "assertions")), nix.thunk(() => nix.sel(config, "warnings")), baseSystem));
   const system = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.sel(config, "system", "replaceDependencies"));
     const replacements = nix.thunk(() => nix.attr(from, "replacements"));
     const cutoffPackages = nix.thunk(() => nix.attr(from, "cutoffPackages"));
     return (nix.asBool(nix.eq(replacements, [])) ? nix.force(baseSystemAssertWarn) : nix.app(nix.sel(pkgs, "replaceDependencies", "override"), nix.thunk(() => ({
-        __proto__: pos$4,
-        replaceDirectDependencies: nix.thunk(() => nix.app(nix.sel(pkgs, "replaceDirectDependencies", "override"), nix.thunk(() => ({ __proto__: pos$3, nix: nix.thunk(() => nix.sel(config, "nix", "package")) })))),
+        [nix.POS]: pos$4,
+        replaceDirectDependencies: nix.thunk(() => nix.app(nix.sel(pkgs, "replaceDirectDependencies", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => nix.sel(config, "nix", "package")) })))),
       })), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         drv: baseSystemAssertWarn,
         replacements: replacements,
         cutoffPackages: cutoffPackages,
       }))));
   })());
   const systemWithBuildDeps = nix.thunk(() => nix.app(nix.sel(system, "overrideAttrs"), (o) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       systemBuildClosure: nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           rootPaths: nix.thunk(() => [nix.thunk(() => nix.sel(system, "drvPath"))]),
         })))),
       buildCommand: nix.thunk(() => nix.add(nix.sel(o, "buildCommand"), "ln -sn $systemBuildClosure $out/build-closure\n")),
     })));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     imports: nix.thunk(() => [
       nix.path(here, "../build.nix"),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["nesting", "clone"]), "Use `specialisation.«name» = { inheritParentConfig = true; configuration = { ... }; }` instead.")),
@@ -132,21 +132,21 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["system", "extraSystemBuilderCmds"]), nix.thunk(() => ["system", "systemBuilderCommands"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       system: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         boot: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           loader: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 internal: true,
                 default: "",
                 description: "Id string of the used bootloader.\n",
               })))),
             kernelFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 internal: true,
                 default: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "kernel", "target")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.boot.kernelPackages.kernel.target")),
@@ -154,7 +154,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
                 description: "Name of the kernel file to be passed to the bootloader.\n",
               })))),
             initrdFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 internal: true,
                 default: "initrd",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
@@ -163,76 +163,76 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
           })),
         })),
         build: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           toplevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
               readOnly: true,
               description: "This option contains the store path that typically represents a NixOS system.\n\nYou can read this path in a custom deployment tool for example.\n",
             })))),
         })),
         copySystemConfiguration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "If enabled, copies the NixOS configuration file\n(usually {file}`/etc/nixos/configuration.nix`)\nand symlinks it from the resulting system\n(getting to {file}`/run/current-system/configuration.nix`).\nNote that only this single file is copied, even if it imports others.\nWarning: This feature cannot be used when the system is configured by a flake\n",
           })))),
         systemBuilderCommands: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             internal: true,
             default: "",
             description: "This code will be added to the builder creating the system store path.\n",
           })))),
         systemBuilderArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "unspecified")))),
             internal: true,
             default: nix.thunk(() => ({})),
             description: "`lib.mkDerivation` attributes that will be passed to the top level system builder.\n",
           })))),
         forbiddenDependenciesRegexes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             default: [],
             example: nix.thunk(() => ["-dev$"]),
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "POSIX Extended Regular Expressions that match store paths that\nshould not appear in the system closure, with the exception of {option}`system.extraDependencies`, which is not checked.\n",
           })))),
         extraDependencies: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "pathInStore")))),
             default: [],
             description: "A list of paths that should be included in the system\nclosure but generally not visible to users.\n\nThis option has also been used for build-time checks, but the\n`system.checks` option is more appropriate for that purpose as checks\nshould not leave a trace in the built system configuration.\n",
           })))),
         checks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
             default: [],
             description: "Packages that are added as dependencies of the system's build, usually\nfor the purpose of validating some part of the configuration.\n\nUnlike `system.extraDependencies`, these store paths do not\nbecome part of the built system configuration.\n",
           })))),
         replaceDependencies: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           replacements: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ ({ oldDependency = pkgs.openssl; newDependency = pkgs.callPackage /path/to/openssl { }; }) ]")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     return {
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       imports: nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["original"]), nix.thunk(() => ["oldDependency"]))),
                         nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["replacement"]), nix.thunk(() => ["newDependency"]))),
                       ]),
                       options: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         oldDependency: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
                             description: "The original package to override.",
                           })))),
                         newDependency: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")),
                             description: "The replacement package.",
                           })))),
@@ -244,7 +244,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
                   const oldDependency = nix.arg($_1, "oldDependency");
                   const newDependency = nix.arg($_1, "newDependency");
                   return {
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     oldDependency: oldDependency,
                     newDependency: newDependency,
                   };
@@ -252,7 +252,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
               description: "List of packages to override without doing a full rebuild.\nThe original derivation and replacement derivation must have the same\nname length, and ideally should have close-to-identical directory layout.\n",
             })))),
           cutoffPackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               default: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "boot", "initrd", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "initialRamdisk"))]))),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "lib.optionals config.boot.initrd.enable [ config.system.build.initialRamdisk ]")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
@@ -260,14 +260,14 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
             })))),
         })),
         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config, "networking", "hostName"), "")) ? "unnamed" : nix.sel(config, "networking", "hostName"))),
             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if config.networking.hostName == \"\"\nthen \"unnamed\"\nelse config.networking.hostName;\n")),
             description: "The name of the system used in the {option}`system.build.toplevel` derivation.\n\nThat derivation has the following name:\n`\"nixos-system-${config.system.name}-${config.system.nixos.label}\"`\n",
           })))),
         includeBuildDependencies: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Whether to include the build closure of the whole system in\nits runtime closure.  This can be useful for making changes\nfully offline, as it includes all sources, patches, and\nintermediate outputs required to build all the derivations\nthat the system depends on.\n\nNote that this includes _all_ the derivations, down from the\nincluded applications to their sources, the compilers used to\nbuild them, and even the bootstrap compiler used to compile\nthe compilers. This increases the size of the system and the\ntime needed to download its dependencies drastically: a\nminimal configuration with no extra services enabled grows\nfrom ~670MiB in size to 13.5GiB, and takes proportionally\nlonger to download.\n",
@@ -275,16 +275,16 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           assertion: nix.thunk(() => (!nix.asBool(nix.sel(config, "system", "copySystemConfiguration")) || nix.asBool(!nix.asBool(nix.sel(lib, "inPureEvalMode"))))),
           message: "system.copySystemConfiguration is not supported with flakes",
         })),
       ]),
       system: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         systemBuilderCommands: nix.thunk(() => nix.add(nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "system", "copySystemConfiguration")), nix.thunk(() => nix.str`ln -s '${nix.app(nix.builtins.import, nix.path(here, "../../../lib/from-env.nix"), "NIXOS_CONFIG", nix.builtins.findFile(nix.builtins.nixPath, "nixos-config"))}' \\
   "$out/configuration.nix"
 `)), nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(config, "system", "forbiddenDependenciesRegexes"), [])), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.builtins.map, (regex) => nix.str`if [[ ${regex} != "" && -n $closureInfo ]]; then
@@ -295,25 +295,25 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "boot
 fi
 `, nix.thunk(() => nix.sel(config, "system", "forbiddenDependenciesRegexes"))))))))),
         systemBuilderArgs: nix.thunk(() => nix.update({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           installBootLoader: nix.thunk(() => nix.sel(config, "system", "build", "installBootLoader")),
           distroId: nix.thunk(() => nix.sel(config, "system", "nixos", "distroId")),
           preSwitchCheck: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "system", "preSwitchChecks"), {})), nix.thunk(() => nix.sel(config, "system", "preSwitchChecksScript")))),
           passedChecks: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), " ", nix.thunk(() => nix.sel(config, "system", "checks")))),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "i18n", "glibcLocales"), null)), nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             localeArchive: nix.thunk(() => nix.str`${nix.sel(config, "i18n", "glibcLocales")}/lib/locale/locale-archive`),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config, "system", "forbiddenDependenciesRegexes"), [])), nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             closureInfo: nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 rootPaths: nix.thunk(() => [
-                  nix.thunk(() => nix.app(nix.sel(config, "system", "build", "toplevel", "overrideAttrs"), (_) => ({ __proto__: pos$36, extraDependencies: [], closureInfo: null }))),
+                  nix.thunk(() => nix.app(nix.sel(config, "system", "build", "toplevel", "overrideAttrs"), (_) => ({ [nix.POS]: pos$36, extraDependencies: [], closureInfo: null }))),
                 ]),
               })))),
           })))))),
         build: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           toplevel: nix.thunk(() => (nix.asBool(nix.sel(config, "system", "includeBuildDependencies")) ? nix.force(systemWithBuildDeps) : nix.force(system))),
         })),
       })),

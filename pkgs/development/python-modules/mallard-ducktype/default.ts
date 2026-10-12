@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "projectmallard",
           repo: "mallard-ducktype",
           tag: version,
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\npushd tests\n./runtests\npopd\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["mallard"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser for the lightweight Ducktype syntax for Mallard",
         homepage: "https://github.com/projectmallard/mallard-ducktype",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

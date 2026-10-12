@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pname = "nbexec";
   const version = "0.2.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsvine",
           repo: "nbexec",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nbexec"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dead-simple tool for executing Jupyter notebooks from the command line",
         mainProgram: "nbexec",
         homepage: "https://github.com/jsvine/nbexec",

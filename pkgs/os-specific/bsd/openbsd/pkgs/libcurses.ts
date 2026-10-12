@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libcurses",
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`AWK=${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "gawk")))}/bin/awk`),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-big-picture",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "git-big-picture",
           repo: "git-big-picture",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, graphviz]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for visualization of Git repositories",
         homepage: "https://github.com/git-big-picture/git-big-picture",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

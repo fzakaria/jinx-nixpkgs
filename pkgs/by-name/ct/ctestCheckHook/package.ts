@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const cmake = nix.arg($, "cmake");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "ctestCheckHook",
       propagatedBuildInputs: nix.thunk(() => [cmake]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./ctest-check-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

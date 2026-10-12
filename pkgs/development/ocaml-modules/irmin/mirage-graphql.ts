@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const uri = nix.arg($, "uri");
   const git = nix.arg($, "git");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "irmin-mirage-graphql",
       version: nix.thunk(() => nix.attr(irmin_mirage, "version")),
       src: nix.thunk(() => nix.attr(irmin_mirage, "src")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flask-compress";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "colour-science",
           repo: "flask-compress",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flask_compress"]);
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools_scm[toml]<8\" \"setuptools_scm\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compress responses in your Flask app with gzip, deflate or brotli",
         homepage: "https://github.com/colour-science/flask-compress",
         changelog: nix.thunk(() => nix.str`https://github.com/colour-science/flask-compress/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

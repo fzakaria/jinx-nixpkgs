@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kloak",
       version: "0.9.1-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Whonix",
           repo: "kloak",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libevdev, libsodium, libinput, wayland, libxkbcommon]),
       installPhase: "runHook preInstall\n\ninstall -D kloak $out/bin/kloak\n\nronn --roff man/kloak.8.ronn\ninstallManPage man/kloak.8\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Privacy tool for anonymizing keyboard and mouse use",
         homepage: "https://github.com/Whonix/kloak",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

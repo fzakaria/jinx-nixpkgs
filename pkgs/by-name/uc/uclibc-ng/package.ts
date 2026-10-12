@@ -35,11 +35,11 @@ UCLIBC_HAS_THREADS_NATIVE y
 KERNEL_HEADERS "${linuxHeaders}/include"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.selOr(stdenv, () => "", "hostPlatform", "gcc", "float"), "soft")), "UCLIBC_HAS_FPU n\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isEabi")), "CONFIG_ARM_EABI y\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLittleEndian")), "ARCH_WANTS_BIG_ENDIAN n\nARCH_BIG_ENDIAN n\nARCH_WANTS_LITTLE_ENDIAN y\nARCH_LITTLE_ENDIAN y\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isBigEndian")), "ARCH_WANTS_BIG_ENDIAN y\nARCH_BIG_ENDIAN y\nARCH_WANTS_LITTLE_ENDIAN n\nARCH_LITTLE_ENDIAN n\n")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "uclibc-ng",
       version: "1.0.59",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.uclibc-ng.org/releases/${nix.sel(finalAttrs, "version")}/uClibc-ng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hsbxWXG/sUFWhQ8uNpBtrFpp33s+aIIW0a6gnS21QXQ=",
         })))),
@@ -72,16 +72,16 @@ sed -i s@/lib/@$out/lib/@g $out/lib/libc.so $out/lib/libpthread.so || true
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         libiconv: libiconvReal,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://git.uclibc-ng.org/git/uclibc-ng.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://uclibc-ng.org",
         description: "Embedded C library",
         longDescription: "uClibc-ng is a small C library for developing embedded Linux systems. It\nis much smaller than the GNU C Library, but nearly all applications\nsupported by glibc also work perfectly with uClibc-ng.\n\nPorting applications from glibc to uClibc-ng typically involves just\nrecompiling the source code. uClibc-ng supports shared libraries and\nthreading. It currently runs on standard Linux and MMU-less (also known as\nuClinux) systems with support for Aarch64, Alpha, ARC, ARM, AVR32,\nBlackfin, CRIS, C-Sky, C6X, FR-V, H8/300, HPPA, i386, IA64, KVX, LM32,\nM68K/Coldfire, Metag, Microblaze, MIPS, MIPS64, NDS32, NIOS2, OpenRISC,\nPowerPC, RISCV64, Sparc, Sparc64, SuperH, Tile, X86_64 and XTENSA\nprocessors. Alpha, FR-V, HPPA, IA64, LM32, NIOS2, Tile and Sparc64 are\nexperimental and need more testing.\n",

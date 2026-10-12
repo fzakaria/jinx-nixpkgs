@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vhba",
       version: "20260313",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdemu/vhba-module-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-KTADv12dwrOG2w0F9ZXFVINVpTXW38Bv03n9mLsZAXQ=",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       ])),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-vhba-module", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Fetch the latest version from the SourceForge RSS feed for vhba-module\nnewVersion=\"$(curl -s \"https://sourceforge.net/projects/cdemu/rss?path=/vhba-module\" | pcre2grep -o1 'vhba-module-([0-9.]+)\\.tar\\.xz' | head -n 1)\"\n\nupdate-source-version linuxPackages.vhba \"$newVersion\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Provides a Virtual (SCSI) HBA",
         homepage: "https://cdemu.sourceforge.io/about/vhba/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

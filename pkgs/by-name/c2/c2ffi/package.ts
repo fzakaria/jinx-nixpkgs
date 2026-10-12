@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const c2ffiBranch = "llvm-21.1.0";
   const llvmPackages = llvmPackages_21;
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`c2ffi-${c2ffiBranch}`),
       version: "0-unstable-2026-01-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rpav",
           repo: "c2ffi",
           rev: "f52a6c90651cd5f2f5239b67b41fb9a7e4de1f2e",
           hash: "sha256-9PUTuRmTuycHN1L4p9jiJnrymnD1EBctzHXeAJwzulY=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rpav/c2ffi.git",
             branch: c2ffiBranch,
             hardcodeZeroVersion: true,
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       installCheckPhase: "$out/bin/c2ffi --help 2>&1 >/dev/null\n",
-      env: nix.thunk(() => ({ __proto__: pos$4, CXXFLAGS: "-fno-rtti" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CXXFLAGS: "-fno-rtti" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/rpav/c2ffi",
         description: "LLVM based tool for extracting definitions from C, C++, and Objective C header files for use with foreign function call interfaces",
         mainProgram: "c2ffi",

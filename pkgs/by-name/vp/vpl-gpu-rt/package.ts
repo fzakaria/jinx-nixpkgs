@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const libva = nix.arg($, "libva");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vpl-gpu-rt",
       version: "26.3.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "intel",
           repo: "vpl-gpu-rt",
           rev: nix.thunk(() => nix.str`intel-onevpl-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libdrm, libva]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "oneAPI Video Processing Library Intel GPU implementation",
         homepage: "https://github.com/intel/vpl-gpu-rt",
         changelog: nix.thunk(() => nix.str`https://github.com/intel/vpl-gpu-rt/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

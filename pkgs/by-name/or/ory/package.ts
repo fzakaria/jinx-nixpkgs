@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ory",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ory",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X=github.com/ory/cli/buildinfo.Version=v${nix.sel(finalAttrs, "version")}`),
         nix.thunk(() => nix.str`-X=github.com/ory/cli/buildinfo.GitHash=${nix.sel(finalAttrs, "src", "rev")}`),
@@ -42,7 +42,7 @@ installShellCompletion --cmd ory \\
   --zsh <($out/bin/ory completion zsh)
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for Ory",
         mainProgram: "ory",
         homepage: "https://www.ory.sh/cli",

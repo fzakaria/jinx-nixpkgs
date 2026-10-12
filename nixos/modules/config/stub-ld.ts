@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "environment", "stub-ld"));
   const message = "NixOS cannot run dynamically linked executables intended for generic\nlinux environments out of the box. For more information, see:\nhttps://nix.dev/permalink/stub-ld\n";
   const stub_ld_for = (pkgsArg) => (messageArg) => nix.app(nix.sel(pkgsArg, "pkgsStatic", "runCommandCC"), "stub-ld", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgsArg, "unixtools", "xxd"))]),
       messageArg: messageArg,
     })), "printf \"%s\" \"$messageArg\" | xxd -i -n message >main.c\ncat <<EOF >>main.c\n#include <stdio.h>\nint main(int argc, char * argv[]) {\n  fprintf(stderr, \"Could not start dynamically linked executable: %s\\n\", argv[0]);\n  fwrite(message, sizeof(unsigned char), message_len, stderr);\n  return 127; // matches behavior of bash and zsh without a loader. fish uses 139\n}\nEOF\n$CC -Os main.c -o $out\n");
   const stub_ld = nix.thunk(() => nix.app(stub_ld_for, pkgs, message));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       environment: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "stub-ld": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               example: false,
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
-        environment: nix.thunk(() => ({ __proto__: pos$6, ldso: nix.thunk(() => nix.app(mkDefault, stub_ld)) })),
+        [nix.POS]: pos$7,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$6, ldso: nix.thunk(() => nix.app(mkDefault, stub_ld)) })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tejing"))];

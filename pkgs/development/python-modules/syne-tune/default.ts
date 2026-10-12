@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "syne-tune",
       version: "0.16.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "syne-tune",
           repo: "syne-tune",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Large scale asynchronous hyperparameter and architecture optimization library",
         homepage: "https://github.com/syne-tune/syne-tune",
         changelog: nix.thunk(() => nix.str`https://github.com/syne-tune/syne-tune/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

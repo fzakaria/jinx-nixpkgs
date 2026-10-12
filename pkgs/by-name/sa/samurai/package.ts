@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "samurai",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "michaelforney",
           repo: "samurai",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,20 +32,20 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2021-30218.patch",
             url: "https://github.com/michaelforney/samurai/commit/e84b6d99c85043fa1ba54851ee500540ec206918.patch",
             sha256: "sha256-hyndwj6st4rwOJ35Iu0qL12dR5E6CBvsulvR27PYKMw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "CVE-2021-30219.patch",
             url: "https://github.com/michaelforney/samurai/commit/d2af3bc375e2a77139c3a28d6128c60cd8d08655.patch",
             sha256: "sha256-rcdwKjHeq5Oaga9wezdHSg/7ljkynfbnkBc2ciMW5so=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Ninja-compatible build tool written in C",
         longDescription: "samurai is a ninja-compatible build tool with a focus on simplicity,\nspeed, and portability.\n\nIt is written in C99, requires various POSIX.1-2008 interfaces, and\nnowadays implements ninja build language through version 1.9.0 except for\nMicrosoft (R) Visual C++ (TM) dependency handling (deps = msvc).\n\nIt is feature-complete (but not bug-compatible) and supports most of the\nsame options as ninja, using the same format for .ninja_log and\n.ninja_deps as the original ninja tool, currently version 5 and 4\nrespectively.\n",
         homepage: "https://github.com/michaelforney/samurai",

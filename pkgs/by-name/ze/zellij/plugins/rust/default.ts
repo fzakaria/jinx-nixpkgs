@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pkgs$ = nix.thunk(() => nix.sel(pkgsCross, "wasm32-wasip1"));
   const call = (name) => nix.app(override, nix.thunk(() => nix.app(nix.sel(pkgs$, "callPackage"), nix.thunk(() => nix.add(root, nix.str`/${name}`)), nix.thunk(() => ({})))));
   const override = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs$, "lld"))])),
       env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         RUSTFLAGS: nix.thunk(() => nix.add(nix.selOr(old, () => "", "env", "RUSTFLAGS"), " -C linker=wasm-ld")),
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.selOr(old, () => nix.sel(lib, "platforms", "linux"), "meta", "platforms")),
       })),
     }));

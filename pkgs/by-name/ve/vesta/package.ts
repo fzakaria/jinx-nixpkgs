@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vesta",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kvesta",
           repo: "vesta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       checkFlags: nix.thunk(() => ["-skip=TestPythonMatch"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static analysis of vulnerabilities, Docker and Kubernetes cluster configuration",
         homepage: "https://github.com/kvesta/vesta",
         changelog: nix.thunk(() => nix.str`https://github.com/kvesta/vesta/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

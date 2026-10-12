@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "marker",
       version: "2023.05.02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fabiocolacio",
           repo: "Marker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`meson rewrite kwargs set project / version '${nix.sel(finalAttrs, "version")}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fabiocolacio.github.io/Marker/",
         description: "Markdown editor for the Linux desktop made with GTK3",
         maintainers: nix.thunk(() => (() => {

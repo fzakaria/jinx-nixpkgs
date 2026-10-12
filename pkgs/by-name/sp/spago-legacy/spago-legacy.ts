@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
   const yaml = nix.arg($, "yaml");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "spago-legacy",
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/purescript/spago-legacy.git",
           sha256: "18p9cic1y9b2v12np4b5sd82rz5njxh8f1vgqs4gwm6xjccmszmr",
           rev: "2790261c28f59940f192c56f3b8245b3ae8b798d",

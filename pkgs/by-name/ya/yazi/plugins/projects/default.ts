@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "projects.yazi",
       version: "0-unstable-2026-09-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MasouShizuka",
           repo: "projects.yazi",
           rev: "181ebafba6320244ffd132f0e234b2a523b5ee00",
           hash: "sha256-pe1ygeaKtSRUkWhxpq3VMoVFUmqBbEGbO2dTbio6bcw=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin that adds the functionality to save and load projects",
         homepage: "https://github.com/MasouShizuka/projects.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

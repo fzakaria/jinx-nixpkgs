@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const scikitSupport = nix.argOr($, "scikitSupport", () => false);
   const scikit_learn = nix.arg($, "scikit-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nengo",
       version: "4.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nengo",
           repo: "nengo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nengo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for creating and simulating large-scale brain models",
         homepage: "https://nengo.ai/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

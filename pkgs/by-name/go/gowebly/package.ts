@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const pname = "gowebly";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gowebly",
           repo: "gowebly",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-/MB8YuqeZUb9P6RPO2sgwtYShaNkEFckiVBtnHRPkc4=",
         }))));
       const vendorHash = "sha256-8i1o0Dn4xJ1P3CrYDW0X8epiIpjmIac6gENBYi/bmQo=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/gowebly \\
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "doctor";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI tool to create web applications with Go backend",
         longDescription: "A CLI tool that makes it easy to create web applications\nwith Go on the backend, using htmx, hyperscript or Alpine.js,\nand the most popular CSS frameworks on the frontend.\n",
         homepage: "https://gowebly.org",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

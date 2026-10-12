@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildFHSEnv, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kingstvis",
       version: "3.6.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://res.kingst.site/kfs/KingstVIS_v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-41tIOUaPOkyLAowf0M+hnZC6b5wVKVAD/DTjnE7nbOQ=",
         })))),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
 `),
       runScript: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/KingstVIS`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kingst Virtual Instruments Studio, software for logic analyzers",
         homepage: "http://www.qdkingst.com/",
         sourceProvenance: nix.thunk(() => (() => {

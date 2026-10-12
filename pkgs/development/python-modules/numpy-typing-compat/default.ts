@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "numpy-typing-compat",
       version: "20260602.2.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "numpy_typing_compat",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GIWmeOmiRWSDntXRcRwAMXNft95/C17YjVUOXUWo1Pk=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [numpy]),
       pythonImportsCheck: nix.thunk(() => ["numpy_typing_compat"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Static typing compatibility layer for older versions of NumPy",
         homepage: "https://pypi.org/project/numpy-typing-compat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

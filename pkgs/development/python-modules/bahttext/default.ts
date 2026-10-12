@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bahttext",
       version: "1.0.2-unstable-2020-05-31",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sekz",
           repo: "bahttext",
           rev: "5dc3a6e9056a81cefb199c49ca69f9a7a9fa835b",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["bahttext"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Convert currency numbers to Thai Baht text",
         homepage: "https://github.com/sekz/bahttext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

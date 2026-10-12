@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "coroot-node-agent",
       version: "1.36.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coroot",
           repo: "coroot-node-agent",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-qnmKY7pYkvVj0WOa3xm3Uxg7zZ3Y41USzf5Gdf+gHTM=",
       buildInputs: nix.thunk(() => [systemdLibs]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CGO_CFLAGS: nix.thunk(() => nix.str`-I ${systemdLibs}/include`),
       })),
       ldflags: nix.thunk(() => [
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X 'github.com/coroot/coroot-node-agent/flags.Version=${nix.sel(finalAttrs, "version")}'`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Prometheus exporter based on eBPF",
         homepage: "https://github.com/coroot/coroot-node-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

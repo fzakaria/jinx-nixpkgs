@@ -85,12 +85,12 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mysql"));
   const isMariaDB = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(cfg, "package"))), nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(pkgs, "mariadb")))));
   const mysqldOptions = nix.thunk(() => nix.str`--user=${nix.sel(cfg, "user")} --datadir=${nix.sel(cfg, "dataDir")} --basedir=${nix.sel(cfg, "package")}`);
-  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ __proto__: pos$1, listsAsDuplicateKeys: true }))));
+  const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "my.cnf", nix.thunk(() => nix.sel(cfg, "settings"))));
   const generateClusterAddressExpr = "if (config.services.mysql.galeraCluster.nodeAddresses == [ ]) then\n  \"\"\nelse\n  \"gcomm://${builtins.concatStringsSep \\\",\\\" config.services.mysql.galeraCluster.nodeAddresses}\"\n  + lib.optionalString (config.services.mysql.galeraCluster.clusterPassword != \"\")\n    \"?gmcast.seg=1:${config.services.mysql.galeraCluster.clusterPassword}\"\n";
   const generateClusterAddress = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "galeraCluster", "nodeAddresses"), [])) ? "" : nix.add(nix.str`gcomm://${nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(cfg, "galeraCluster", "nodeAddresses")))}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "galeraCluster", "clusterPassword"), "")), nix.thunk(() => nix.str`?gmcast.seg=1:${nix.sel(cfg, "galeraCluster", "clusterPassword")}`)))));
   return {
-    __proto__: pos$73,
+    [nix.POS]: pos$73,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mysql", "pidDir"]), "Don't wait for pidfiles, describe dependencies through systemd.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mysql", "rootPassword"]), "Use socket authentication or set the password outside of the nix store.")),
@@ -99,39 +99,39 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "mysql", "port"]), "Use services.mysql.settings.mysqld.port instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       services: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         mysql: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MySQL server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.mariadb")),
               description: "Which MySQL derivation to use. MariaDB packages are supported too.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mysql",
               description: "User account under which MySQL runs.\n\n::: {.note}\nIf left as the default value this user will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the MySQL service starts.\n:::\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mysql",
               description: "Group account under which MySQL runs.\n\n::: {.note}\nIf left as the default value this group will automatically be created\non system activation, otherwise you are responsible for\nensuring the user exists before the MySQL service starts.\n:::\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "17.09")) ? "/var/lib/mysql" : "/var/mysql")),
               example: "/var/lib/mysql",
               description: "The data directory for MySQL.\n\n::: {.note}\nIf left as the default value of `/var/lib/mysql` this directory will automatically be created before the MySQL\nserver starts, otherwise you are responsible for ensuring the directory exists with appropriate ownership and permissions.\n:::\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: configFile,
               defaultText: "A configuration file automatically generated by NixOS.\n",
@@ -139,25 +139,25 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"my.cnf\" ''\n  [mysqld]\n  datadir = /var/lib/mysql\n  bind-address = 127.0.0.1\n  port = 3336\n\n  !includedir /etc/mysql/conf.d/\n'';\n")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "MySQL configuration. Refer to\n<https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html>,\n<https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html>,\nand <https://mariadb.com/kb/en/server-system-variables/>\nfor details on supported values.\n\n::: {.note}\nMySQL configuration options such as `--quick` should be treated as\nboolean options and provided values such as `true`, `false`,\n`1`, or `0`. See the provided example below.\n:::\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  mysqld = {\n    key_buffer_size = \"6G\";\n    table_cache = 1600;\n    log-error = \"/var/log/mysql_err.log\";\n    plugin-load-add = [ \"server_audit\" \"ed25519=auth_ed25519\" ];\n  };\n  mysqldump = {\n    quick = true;\n    max_allowed_packet = \"16M\";\n  };\n}\n")),
             })))),
           initialDatabases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "The name of the database to create.\n",
                         })))),
                       schema: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                           default: null,
                           description: "The initial schema of the database; if null (the default),\nan empty database is created.\n",
@@ -169,31 +169,31 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  { name = \"foodatabase\"; schema = ./foodatabase.sql; }\n  { name = \"bardatabase\"; }\n]\n")),
             })))),
           initialScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "A file containing SQL statements to be executed on the first startup. Can be used for granting certain permissions on the database. Run as superuser.",
             })))),
           ensureDatabases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Ensures that the specified databases exist.\nThis option will never delete existing databases, especially not when the value of this\noption is changed. This means that databases created once through this option or\notherwise have to be removed manually.\n",
               example: nix.thunk(() => ["nextcloud", "matomo"]),
             })))),
           ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Name of the user to ensure.\n",
                         })))),
                       ensurePermissions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => ({})),
                           description: "Permissions to ensure for the user, specified as attribute set.\nThe attribute names specify the database and tables to grant the permissions for,\nseparated by a dot. You may use wildcards here.\nThe attribute values specfiy the permissions to grant.\nYou may specify one or multiple comma-separated SQL privileges here.\n\nFor more information on how to specify the target\nand on which privileges exist, see the\n[GRANT syntax](https://mariadb.com/kb/en/library/grant/).\nThe attributes are used as `GRANT ${attrName} ON ${attrValue}`.\n",
@@ -206,82 +206,82 @@ export default nix.lambda((args) => (() => {
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  {\n    name = \"nextcloud\";\n    ensurePermissions = {\n      \"nextcloud.*\" = \"ALL PRIVILEGES\";\n    };\n  }\n  {\n    name = \"backup\";\n    ensurePermissions = {\n      \"*.*\" = \"SELECT, LOCK TABLES\";\n    };\n  }\n]\n")),
             })))),
           secureSuperUserByDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to automatically secure the root@localhost user with auth_socket authentication.\n\n::: {.note}\nWhen enabled (default), the module will ensure root@localhost uses socket authentication,\npreventing any local user from connecting as root without proper credentials.\n:::\n",
             })))),
           replication: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             role: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["master", "slave", "none"]))),
                 default: "none",
                 description: "Role of the MySQL server instance.",
               })))),
             serverId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 1n,
                 description: "Id of the MySQL server instance. This number must be unique for each instance.",
               })))),
             masterHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Hostname of the MySQL master server.",
               })))),
             slaveHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Hostname of the MySQL slave server.",
               })))),
             masterUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Username of the MySQL replication user.",
               })))),
             masterPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Password of the MySQL replication user.",
               })))),
             masterPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 3306n,
                 description: "Port number on which the MySQL master server runs.",
               })))),
           })),
           galeraCluster: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MariaDB Galera Cluster")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.sel(lib, "types", "package")),
                 description: "The MariaDB Galera package that provides the shared library 'libgalera_smm.so' required for cluster functionality.",
                 default: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.mariadb-galera")),
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The logical name of the Galera cluster. All nodes in the same cluster must use the same name.",
                 default: "galera",
               })))),
             sstMethod: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["rsync", "mariabackup"]))),
                 description: "Method for the initial state transfer (wsrep_sst_method) when a node joins the cluster. Be aware that rsync needs SSH keys to be generated and authorized on all nodes!",
                 default: "rsync",
                 example: "mariabackup",
               })))),
             localName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "The unique name that identifies this particular node within the cluster. Each node must have a different name.",
                 example: "node1",
               })))),
             localAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "IP address or hostname of this node that will be used for cluster communication. Must be reachable by all other nodes.",
                 example: "1.2.3.4",
@@ -289,21 +289,21 @@ export default nix.lambda((args) => (() => {
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.mysql.galeraCluster.localName")),
               })))),
             nodeAddresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "IP addresses or hostnames of all nodes in the cluster, including this node. This is used to construct the default clusterAddress connection string.",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\"10.0.0.10\" \"10.0.0.20\" \"10.0.0.30\"]")),
                 default: [],
               })))),
             clusterPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Optional password for securing cluster communications. If provided, it will be used in the clusterAddress for authentication between nodes.",
                 example: "SomePassword",
                 default: "",
               })))),
             clusterAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Full Galera cluster connection string. If nodeAddresses is set, this will be auto-generated, but you can override it with a custom value. Format is typically 'gcomm://node1,node2,node3' with optional parameters.",
                 example: "gcomm://10.0.0.10,10.0.0.20,10.0.0.30?gmcast.seg=1:SomePassword",
@@ -315,58 +315,58 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "galeraCluster", "enable"))) || nix.asBool(isMariaDB))),
             message: "'services.mysql.galeraCluster.enable' expect services.mysql.package to be an mariadb variant",
           })),
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(isMariaDB)) || nix.asBool(nix.eq(nix.sel(cfg, "secureSuperUserByDefault"), true)))),
             message: "'services.mysql.secureSuperUserByDefault' has no effect on MariaDB (which is already secure by default)",
           })),
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "galeraCluster", "enable")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "galeraCluster", "localAddress"), "")) && nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "galeraCluster", "nodeAddresses"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "galeraCluster", "clusterAddress"), "")))))),
               message: "mariadb galera cluster is enabled but the localAddress and (nodeAddresses or clusterAddress) are not set",
             })),
             nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "galeraCluster", "clusterPassword"), "")) || nix.asBool(nix.eq(nix.sel(cfg, "galeraCluster", "clusterAddress"), "")))),
               message: "mariadb galera clusterPassword is set but overwritten by clusterAddress",
             })),
             nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "galeraCluster", "nodeAddresses"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "galeraCluster", "clusterAddress"), "")))),
               message: "When services.mysql.galeraCluster.clusterAddress is set, setting services.mysql.galeraCluster.nodeAddresses is redundant and will be overwritten by clusterAddress. Choose one approach.",
             })),
           ])))),
         services: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           mysql: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             settings: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               mysqld: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     datadir: nix.thunk(() => nix.sel(cfg, "dataDir")),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 3306n)),
                   })),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "replication", "role"), "master")) || nix.asBool(nix.eq(nix.sel(cfg, "replication", "role"), "slave")))), nix.thunk(() => ({
-                      __proto__: pos$47,
+                      [nix.POS]: pos$47,
                       "log-bin": nix.thunk(() => nix.str`mysql-bin-${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "replication", "serverId")))}`),
                       "log-bin-index": nix.thunk(() => nix.str`mysql-bin-${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "replication", "serverId")))}.index`),
                       "relay-log": "mysql-relay-bin",
                       "server-id": nix.thunk(() => nix.sel(cfg, "replication", "serverId")),
                       "binlog-ignore-db": nix.thunk(() => ["information_schema", "performance_schema", "mysql"]),
                     })))),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isMariaDB)), nix.thunk(() => ({ __proto__: pos$48, "plugin-load-add": nix.thunk(() => ["auth_socket.so"]) })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isMariaDB)), nix.thunk(() => ({ [nix.POS]: pos$48, "plugin-load-add": nix.thunk(() => ["auth_socket.so"]) })))),
                   nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "galeraCluster", "enable")), nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       enforce_storage_engine: "InnoDB",
                       default_storage_engine: "InnoDB",
                       "binlog-format": "ROW",
@@ -374,7 +374,7 @@ export default nix.lambda((args) => (() => {
                     })))),
                 ]))),
               galera: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "galeraCluster", "enable")), nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   wsrep_on: "ON",
                   wsrep_debug: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "NONE")),
                   wsrep_retry_autocommit: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "3")),
@@ -392,50 +392,50 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "mysql")), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               mysql: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 description: "MySQL server user",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "mysql")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "mysql")), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               mysql: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "mysql")),
               })),
             })))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$60,
-            "my.cnf": nix.thunk(() => ({ __proto__: pos$59, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
+            [nix.POS]: pos$60,
+            "my.cnf": nix.thunk(() => ({ [nix.POS]: pos$59, source: nix.thunk(() => nix.sel(cfg, "configFile")) })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$62,
+            [nix.POS]: pos$62,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${nix.sel(cfg, "dataDir")} 0755 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             mysql: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               description: "MySQL Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "configFile"))]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 RequiresMountsFor: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
               path: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "hostname-debian"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "galeraCluster", "enable")), nix.thunk(() => [
@@ -585,7 +585,7 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (user) => nix.str`( echo "CREATE USE
               })()),
               serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     Type: "notify",
                     Restart: "on-abnormal",
                     RestartSec: "5s",
@@ -612,22 +612,22 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (user) => nix.str`( echo "CREATE USE
                     PrivateMounts: true,
                     SystemCallArchitectures: "native",
                   })),
-                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/mysql")), nix.thunk(() => ({ __proto__: pos$65, StateDirectory: "mysql", StateDirectoryMode: "0700" })))),
+                  nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/mysql")), nix.thunk(() => ({ [nix.POS]: pos$65, StateDirectory: "mysql", StateDirectoryMode: "0700" })))),
                 ]))),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$70,
+          [nix.POS]: pos$70,
           firewall: nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "galeraCluster", "enable")), nix.thunk(() => [3306n, 4567n, 4568n, 4444n]))),
             allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "galeraCluster", "enable")), nix.thunk(() => [4567n]))),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$72,
+      [nix.POS]: pos$72,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "_6543"))]),
     })),
   };

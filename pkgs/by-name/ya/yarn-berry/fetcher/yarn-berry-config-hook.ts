@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const diffutils = nix.arg($, "diffutils");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "yarn-berry-config-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         diff: nix.thunk(() => nix.str`${diffutils}/bin/diff`),
         yarn_offline: nix.thunk(() => nix.str`${yarn_berry_offline}/bin/yarn`),
         nodeSrc: nix.thunk(() => nix.app(srcOnly, nodejs)),
         nodeGyp: nix.thunk(() => nix.str`${nodejs}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Install nodejs dependencies from an offline yarn cache produced by fetchYarnDeps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "lomiri-thumbnailer",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-thumbnailer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -116,7 +116,7 @@ substituteInPlace plugins/Lomiri/Thumbnailer*/CMakeLists.txt \\
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       preCheck: nix.thunk(() => nix.str`# Fontconfig warnings breaks some tests
-export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))}
+export FONTCONFIG_FILE=${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))}
 export HOME=$TMPDIR
 
 # Some tests need Qt plugins
@@ -130,18 +130,18 @@ export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.
 )
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(nixosTests, "lomiri-gallery-app"));
             return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "format-mp4": nix.thunk(() => nix.attr(from, "format-mp4")),
             "format-gif": nix.thunk(() => nix.attr(from, "format-gif")),
             "format-bmp": nix.thunk(() => nix.attr(from, "format-bmp")),
@@ -153,7 +153,7 @@ export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "D-Bus service for out of process thumbnailing",
         mainProgram: "lomiri-thumbnailer-admin",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-thumbnailer",

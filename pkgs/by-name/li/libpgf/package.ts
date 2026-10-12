@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const dos2unix = nix.arg($, "dos2unix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libpgf",
       version: "7.21.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libpgf/libpgf/${nix.sel(finalAttrs, "version")}/libpgf.zip`),
           hash: "sha256-TAWIuikijfyeTRetZWoMMdB/FeGAR7ZjNssVxUevlVg=",
         })))),
       postPatch: "find . -type f | xargs dos2unix\nmv README.txt README\n",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, dos2unix]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.libpgf.org/",
         description: "Progressive Graphics Format",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

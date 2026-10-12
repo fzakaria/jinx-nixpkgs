@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-VN62vj2A8tn6A7fwOYgwJM3r2xSFGokKEmUNetb+xWg=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -r msprime\n";
       const pythonImportsCheck = nix.thunk(() => ["msprime"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simulate genealogical trees and genomic sequence data using population genetic models",
         homepage: "https://github.com/tskit-dev/msprime",
         changelog: nix.thunk(() => nix.str`https://github.com/tskit-dev/msprime/blob/${version}/CHANGELOG.md`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

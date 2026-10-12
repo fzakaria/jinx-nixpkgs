@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "picoloop",
       version: "0.77e",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "picoloop",
           owner: "yoyz",
           rev: nix.thunk(() => nix.str`picoloop-${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/picoloop`),
       makeFlags: nix.thunk(() => ["-f Makefile.PatternPlayer_debian_RtAudio_sdl20"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
           ]))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace SDL_GUI.cpp \\\n--replace \"\\\"font.ttf\\\"\" \"\\\"$out/share/font.ttf\\\"\" \\\n--replace \"\\\"font.bmp\\\"\" \"\\\"$out/share/font.bmp\\\"\"\n",
       installPhase: "mkdir -p $out/{bin,share}\ncp PatternPlayer_debian_RtAudio_sdl20 $out/bin/picoloop\ncp {font.*,LICENSE} $out/share\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Synth and a stepsequencer (a clone of the famous nanoloop)",
         homepage: "https://github.com/yoyz/picoloop",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

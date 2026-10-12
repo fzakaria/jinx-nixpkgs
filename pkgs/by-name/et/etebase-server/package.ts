@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "etebase-server",
       version: "0.14.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "etesync",
           repo: "server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,17 +53,17 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "mkdir -p $out/bin $out/lib\ncp manage.py $out/bin/etebase-server\nwrapProgram $out/bin/etebase-server --prefix PYTHONPATH : \"$PYTHONPATH\"\nchmod +x $out/bin/etebase-server\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         python: python3,
         pythonPath: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "propagatedBuildInputs")))),
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "etebase-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/etesync/server",
         description: "Etebase (EteSync 2.0) server so you can run your own",
         mainProgram: "etebase-server",

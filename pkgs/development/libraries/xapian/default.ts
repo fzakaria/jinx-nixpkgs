@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const xapian_omega = nix.arg($, "xapian-omega");
   const generic = (version) => (hash) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "xapian",
       version: version,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: version,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mu: mu,
           "xapian-omega": xapian_omega,
           Xapian: nix.thunk(() => nix.attr(perlPackages, "Xapian")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://oligarchy.co.uk/xapian/${version}/xapian-core-${version}.tar.xz`),
           hash: hash,
         })))),
@@ -49,10 +49,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       enableParallelBuilding: true,
       doCheck: true,
-      env: nix.thunk(() => nix.update({ __proto__: pos$4, AUTOMATED_TESTING: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_COMPILE: "-fpermissive" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$4, AUTOMATED_TESTING: true }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-fpermissive" }))))),
       postConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace config.h \\\n  --replace \"#define HAVE___EXP10 1\" \"#undef HAVE___EXP10\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Search engine library",
         homepage: "https://xapian.org/",
         changelog: nix.thunk(() => nix.str`https://xapian.org/docs/xapian-core-${version}/NEWS`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     xapian_1_4: nix.thunk(() => nix.app(generic, "1.4.31", "sha256-/s9gnqLv3IpkvjaXFarHMzNqEfdICmVFJElkrmvICBE=")),
   };
 })(), formals$1);

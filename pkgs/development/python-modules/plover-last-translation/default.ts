@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const plover = nix.arg($, "plover");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plover-last-translation",
       version: "0.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nsmarkop",
           repo: "plover_last_translation",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [plover]),
       pythonImportsCheck: nix.thunk(() => ["plover_last_translation"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugins for Plover to repeat output",
         homepage: "https://github.com/nsmarkop/plover_last_translation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

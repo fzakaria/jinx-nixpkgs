@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const websocket_client = nix.arg($, "websocket-client");
   const websockets = nix.arg($, "websockets");
-  const cose_0_9_dev8 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cose, "override"), nix.thunk(() => ({ __proto__: pos$1, cbor2: cbor2 }))), "overridePythonAttrs"), (old) => (() => {
+  const cose_0_9_dev8 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cose, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cbor2: cbor2 }))), "overridePythonAttrs"), (old) => (() => {
       const version = "0.9.dev8";
       const src = nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-/jwq2C2nvHInsgPG4jZCr+XsvlUJdYewAkasrUPVaHM=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["cose"]);
-      return { __proto__: pos$3, version, src, pythonImportsCheck };
+      return { [nix.POS]: pos$3, version, src, pythonImportsCheck };
     })()));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "pycardano";
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "Python-Cardano",
           repo: "pycardano",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["ogmios", "websockets"]);
       const pythonImportsCheck = nix.thunk(() => ["pycardano"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lightweight Cardano library in Python",
         homepage: "https://github.com/Python-Cardano/pycardano",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(cbor2, "withCExtensions")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

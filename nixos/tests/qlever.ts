@@ -17,26 +17,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const olympics_qleverfile = nix.thunk(() => nix.str`${nix.sel(pkgs, "qlever-control", "src")}/src/qlever/Qleverfiles/Qleverfile.olympics`);
   const olympics_dataset = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/wallscope/olympics-rdf/raw/54483d539082641d48e1d49873662b3af628ca4d/data/olympics-nt-nodup.zip",
       hash: "sha256-dY28CQKaMDUUw/pw+p9yX0EtJOnbAAplodMFaedL1B8=",
     }))));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "Basic QLever test",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           environment: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [

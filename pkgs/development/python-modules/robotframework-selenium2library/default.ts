@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "robotframework-selenium2library";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "2a8e942b0788b16ded253039008b34d2b46199283461b294f0f41a579c70fda7",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const propagatedBuildInputs = nix.thunk(() => [robotframework_seleniumlibrary]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Web testing library for Robot Framework",
         homepage: "https://github.com/robotframework/Selenium2Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         format,
         pname,

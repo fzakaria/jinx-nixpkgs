@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mcmtroffaes",
           repo: "sphinxcontrib-bibtex",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-tests-docutils-0.22.diff",
             url: "https://github.com/mcmtroffaes/sphinxcontrib-bibtex/commit/20781600dad48fdfee91353c821597690bfe5f54.diff?full_index=1",
             hash: "sha256-Ia/ng3yUfhLueEB/n+CW51w/UWfzRhrv/5//Mq2OJ0M=",
@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sphinxcontrib.bibtex"]);
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sphinx extension for BibTeX style citations",
         homepage: "https://github.com/mcmtroffaes/sphinxcontrib-bibtex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

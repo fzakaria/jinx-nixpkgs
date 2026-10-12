@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "Wakapi",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       wakapiPsql: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             wakapi: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
-                server: nix.thunk(() => ({ __proto__: pos$1, port: 3000n })),
+                [nix.POS]: pos$3,
+                server: nix.thunk(() => ({ [nix.POS]: pos$1, port: 3000n })),
                 db: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   dialect: "postgres",
                   host: "/run/postgresql",
                   port: 5432n,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
                   user: "wakapi",
                 })),
               })),
-              database: nix.thunk(() => ({ __proto__: pos$4, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$4, createLocally: true })),
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "env", "WAKAPI_PASSWORD_SALT=NpqCY7eY7fMoIWYmPx5mAgr6YoSlXSuI\n")),
               ]),
@@ -64,16 +64,16 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             wakapi: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
-                server: nix.thunk(() => ({ __proto__: pos$8, port: 3001n })),
-                db: nix.thunk(() => ({ __proto__: pos$9, dialect: "sqlite3", name: "wakapi", user: "wakapi" })),
+                [nix.POS]: pos$10,
+                server: nix.thunk(() => ({ [nix.POS]: pos$8, port: 3001n })),
+                db: nix.thunk(() => ({ [nix.POS]: pos$9, dialect: "sqlite3", name: "wakapi", user: "wakapi" })),
               })),
               environmentFiles: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "env", "WAKAPI_PASSWORD_SALT=NpqCY7eY7fMoIWYmPx5mAgr6YoSlXSuI\n")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "with subtest(\"Test Wakapi with postgresql backend\"):\n  wakapiPsql.start()\n  wakapiPsql.wait_for_unit(\"wakapi.service\")\n  wakapiPsql.wait_for_open_port(3000)\n  wakapiPsql.succeed(\"curl --fail http://localhost:3000\")\n\nwith subtest(\"Test Wakapi with sqlite3 backend\"):\n  wakapiSqlite.start()\n  wakapiSqlite.wait_for_unit(\"wakapi.service\")\n  wakapiSqlite.wait_for_open_port(3001)\n  wakapiSqlite.succeed(\"curl --fail http://localhost:3001\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "NotAShelf"))]),
     })),
   };

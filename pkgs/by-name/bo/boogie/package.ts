@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Boogie";
       const version = "3.5.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "boogie-org",
           repo: "boogie",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/boogie ${nix.path(here, "./install-check-file.bpl")}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Intermediate verification language",
         changelog: nix.thunk(() => nix.str`https://github.com/boogie-org/boogie/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/boogie-org/boogie",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

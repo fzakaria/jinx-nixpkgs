@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(pkgs, null);
   const pyEnv = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "python3"), "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "nixpkgs-plugin-update"))]));
   return nix.app(nix.lookup(w, "mkShell"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       packages: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bash")),
         pyEnv,

@@ -34,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const rtree = nix.arg($, "rtree");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "geopandas",
       version: "1.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geopandas",
           repo: "geopandas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [packaging, pandas, pyogrio, pyproj, shapely]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         all: nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(folium, "overridePythonAttrs"), (prevAttrs) => ({ __proto__: pos$2, doCheck: false }))),
+          nix.thunk(() => nix.app(nix.sel(folium, "overridePythonAttrs"), (prevAttrs) => ({ [nix.POS]: pos$2, doCheck: false }))),
           geoalchemy2,
           geopy,
-          nix.thunk(() => nix.app(nix.sel(mapclassify, "overridePythonAttrs"), (prevAttrs) => ({ __proto__: pos$3, doCheck: false }))),
+          nix.thunk(() => nix.app(nix.sel(mapclassify, "overridePythonAttrs"), (prevAttrs) => ({ [nix.POS]: pos$3, doCheck: false }))),
           matplotlib,
           psycopg,
           pyarrow,
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["geopandas"]),
       pythonImportsCheck: nix.thunk(() => ["geopandas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python geospatial data analysis framework",
         homepage: "https://geopandas.org",
         changelog: nix.thunk(() => nix.str`https://github.com/geopandas/geopandas/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

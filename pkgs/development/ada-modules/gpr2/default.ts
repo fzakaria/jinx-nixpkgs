@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gpr2";
       const version = "25.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/AdaCore/gpr/releases/download/v${version}/gpr2-with-gprconfig_kb-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.tgz`),
           sha512: "70fe0fcf541f6d3d90a34cab1638bbc0283dcd765c000406e0cfb73bae1817b30ddfe73f3672247a97c6b6bfc41900bc96a4440ca0c660f9c2f7b9d3cc8f8dcf",
         }))));
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(gpr2kbdir, null)), "touch .build/kb/{*.adb,*.ads,collect_kb}\n"));
       const propagatedBuildInputs = nix.thunk(() => [xmlada, gnatcoll_gmp, gnatcoll_core, gnatcoll_iconv]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for analyzing the GNAT Project (GPR) files",
         homepage: "https://github.com/AdaCore/gpr",
         license: nix.thunk(() => (() => {
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(gnat, "version")), "14")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

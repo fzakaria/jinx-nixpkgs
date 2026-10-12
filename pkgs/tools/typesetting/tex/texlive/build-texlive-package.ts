@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
     const extraNativeBuildInputs = nix.argOr($_1, "extraNativeBuildInputs", () => []);
     const name = nix.thunk(() => nix.str`${pname}-${version}${extraVersion}`);
     const meta = nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       license: nix.thunk(() => nix.builtins.map((x) => nix.sel(lib, "licenses", nix.key(nix.force(x))), license)),
       outputsToInstall: [],
       longDescription: nix.thunk(() => nix.str`This package cannot be installed or used directly. Please use \`texlive.withPackages (ps: [ ps.${nix.app(nix.sel(lib, "strings", "escapeNixIdentifier"), pname)} ])\`.
@@ -84,11 +84,11 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xworld21"))];
       })()),
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "shortdesc")), nix.thunk(() => ({ __proto__: pos$2, description: nix.thunk(() => nix.sel(args_2, "shortdesc")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasCatalogue, nix.thunk(() => ({
-        __proto__: pos$3,
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "shortdesc")), nix.thunk(() => ({ [nix.POS]: pos$2, description: nix.thunk(() => nix.sel(args_2, "shortdesc")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasCatalogue, nix.thunk(() => ({
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.str`https://ctan.org/pkg/${catalogue}`),
-      }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(mainProgram, null)), nix.thunk(() => ({ __proto__: pos$4, mainProgram: mainProgram }))), nix.app(nix.sel(lib, "optionalAttrs"), hasJar, nix.thunk(() => ({
-        __proto__: pos$5,
+      }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(mainProgram, null)), nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: mainProgram }))), nix.app(nix.sel(lib, "optionalAttrs"), hasJar, nix.thunk(() => ({
+        [nix.POS]: pos$5,
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }))))))));
     const mainProgram = nix.thunk(() => nix.selOr(args_2, () => (nix.asBool(nix.eq(nix.builtins.length(nix.thunk(() => nix.selOr(args_2, () => [], "binfiles"))), 1n)) ? nix.builtins.head(nix.thunk(() => nix.sel(args_2, "binfiles"))) : null), "mainProgram"));
@@ -98,34 +98,34 @@ export default nix.lambda((args) => (() => {
     const outputs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), hasBinfiles, "out"), nix.concat(nix.app(nix.sel(lib, "optional"), hasRunfiles, "tex"), nix.concat(nix.app(nix.sel(lib, "optional"), hasDocfiles, "texdoc"), nix.concat(nix.app(nix.sel(lib, "optional"), hasSource, "texsource"), nix.concat(nix.app(nix.sel(lib, "optional"), hasTlpkg, "tlpkg"), nix.concat(nix.app(nix.sel(lib, "optional"), hasManpages, "man"), nix.app(nix.sel(lib, "optional"), hasInfo, "info"))))))));
     const outputDrvs = nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), outputs, containers));
     const passthru = nix.thunk(() => nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       revision: nix.thunk(() => nix.add(nix.builtins.toString(revision), extraRevision)),
       version: nix.thunk(() => nix.add(version, extraVersion)),
       outputSpecified: true,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "deps")), nix.thunk(() => ({ __proto__: pos$7, tlDeps: nix.thunk(() => nix.sel(args_2, "deps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "fontMaps")), nix.thunk(() => ({ __proto__: pos$8, fontMaps: nix.thunk(() => nix.attr(args_2, "fontMaps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "formats")), nix.thunk(() => ({ __proto__: pos$9, formats: nix.thunk(() => nix.attr(args_2, "formats")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "hyphenPatterns")), nix.thunk(() => ({
-        __proto__: pos$10,
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "deps")), nix.thunk(() => ({ [nix.POS]: pos$7, tlDeps: nix.thunk(() => nix.sel(args_2, "deps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "fontMaps")), nix.thunk(() => ({ [nix.POS]: pos$8, fontMaps: nix.thunk(() => nix.attr(args_2, "fontMaps")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "formats")), nix.thunk(() => ({ [nix.POS]: pos$9, formats: nix.thunk(() => nix.attr(args_2, "formats")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "hyphenPatterns")), nix.thunk(() => ({
+        [nix.POS]: pos$10,
         hyphenPatterns: nix.thunk(() => nix.attr(args_2, "hyphenPatterns")),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_2, "postactionScript")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         postactionScript: nix.thunk(() => nix.attr(args_2, "postactionScript")),
       }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), hasSource, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         texsource: nix.thunk(() => nix.attr(containers, "texsource")),
-      }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(hasRunfiles)), nix.thunk(() => ({ __proto__: pos$13, tex: fakeTeX })))))))))));
+      }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(hasRunfiles)), nix.thunk(() => ({ [nix.POS]: pos$13, tex: fakeTeX })))))))))));
     const mkContainer = (tlType) => (tlOutputName) => (sha512_1) => (() => {
       const fixedHash = nix.thunk(() => nix.selOr(fixedHashes, () => null, nix.key(nix.force(tlType))));
       const urlName = nix.thunk(() => nix.add(pname, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(tlType, "run")) && nix.asBool(!nix.eq(tlType, "tlpkg")))), nix.thunk(() => nix.str`.${tlType}`))));
       const urls = nix.thunk(() => nix.builtins.map((up) => nix.str`${up}/archive/${urlName}.r${nix.builtins.toString(revision)}.tar.xz`, mirrors));
       const container = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-${tlOutputName}`), nix.thunk(() => nix.update({
-          __proto__: pos$15,
-          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$14, urls: urls, sha512: sha512_1 })))),
+          [nix.POS]: pos$15,
+          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$14, urls: urls, sha512: sha512_1 })))),
           passthru: passthru,
           meta: meta,
           stripPrefix: stripPrefix,
           tlOutputName: tlOutputName,
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(fixedHash, null)), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             outputHash: fixedHash,
             outputHashAlgo: "sha256",
             outputHashMode: "recursive",
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
       return nix.update(nix.builtins.removeAttrs(container, nix.thunk(() => ["out"])), outputDrvs);
     })();
     const extToInput = nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       jar: jre_headless,
       lua: nix.thunk(() => nix.sel(texliveBinaries, "luatex")),
       py: python3,
@@ -143,16 +143,16 @@ export default nix.lambda((args) => (() => {
       texlua: nix.thunk(() => nix.sel(texliveBinaries, "luatex")),
       tlu: nix.thunk(() => nix.sel(texliveBinaries, "luatex")),
     }));
-    const fakeTeX = nix.thunk(() => nix.update(passthru, nix.update({ __proto__: pos$18, meta: meta, tlOutputName: "tex", build: build }, outputDrvs)));
+    const fakeTeX = nix.thunk(() => nix.update(passthru, nix.update({ [nix.POS]: pos$18, meta: meta, tlOutputName: "tex", build: build }, outputDrvs)));
     const containers = nix.thunk(() => (() => {
       const tex = nix.thunk(() => nix.app(mkContainer, "run", "tex", nix.thunk(() => nix.sel(sha512, "run"))));
       const texdoc = nix.thunk(() => nix.app(mkContainer, "doc", "texdoc", nix.thunk(() => nix.sel(sha512, "doc"))));
       const texsource = nix.thunk(() => nix.app(mkContainer, "source", "texsource", nix.thunk(() => nix.sel(sha512, "source"))));
       const tlpkg = nix.thunk(() => nix.app(mkContainer, "tlpkg", "tlpkg", nix.thunk(() => nix.sel(sha512, "run"))));
       const out = nix.thunk(() => nix.update(nix.app(runCommand, nix.thunk(() => nix.str`${name}`), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           meta: meta,
-          passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$19, tlOutputName: "out" })),
+          passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$19, tlOutputName: "out" })),
           buildInputs: nix.thunk(() => (() => {
             const outName = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname));
             return nix.concat([
@@ -172,26 +172,26 @@ export default nix.lambda((args) => (() => {
 ${nix.selOr(args_2, () => "", "postFixup")}
 `)), outputDrvs));
       const man = nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-man`), nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             meta: meta,
             texdoc: texdoc,
-            passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$21, tlOutputName: "man" })),
+            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$21, tlOutputName: "man" })),
           })), "mkdir -p \"$out\"/share\nln -s {\"$texdoc\"/doc,\"$out\"/share}/man\n")), nix.thunk(() => ["out"])), outputDrvs));
       const info = nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-info`), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             meta: meta,
             texdoc: texdoc,
-            passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$23, tlOutputName: "info" })),
+            passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$23, tlOutputName: "info" })),
           })), "mkdir -p \"$out\"/share\nln -s {\"$texdoc\"/doc,\"$out\"/share}/info\n")), nix.thunk(() => ["out"])), outputDrvs));
-      return { __proto__: pos$25, tex, texdoc, texsource, tlpkg, out, man, info };
+      return { [nix.POS]: pos$25, tex, texdoc, texsource, tlpkg, out, man, info };
     })());
     const build = nix.thunk(() => nix.app(runCommand, name, nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         __structuredAttrs: true,
         meta: meta,
         outputDrvs: outputDrvs,
         outputs: nix.thunk(() => (nix.asBool(!nix.eq(outputs, [])) ? nix.force(outputs) : ["out"])),
-        passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(passthru, nix.thunk(() => ["outputSpecified"])), { __proto__: pos$26, build: build })),
+        passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(passthru, nix.thunk(() => ["outputSpecified"])), { [nix.POS]: pos$26, build: build })),
         preHook: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(hasBinfiles)) && nix.asBool(!nix.eq(outputs, [])))), nix.thunk(() => nix.str`export out="\${${nix.builtins.head(outputs)}-}"
 `))),
       })), "for outputName in ${!outputs[@]} ; do\n  if [[ -n ${outputDrvs[$outputName]} ]] ; then\n    ln -s \"${outputDrvs[$outputName]}\" \"${outputs[$outputName]}\"\n  else\n    touch \"${outputs[$outputName]}\"\n  fi\ndone\n"));

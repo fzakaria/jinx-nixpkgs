@@ -29,23 +29,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "psd"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         psd: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.lookup(w, "bool")),
                 default: false,
                 description: "Whether to enable the Profile Sync daemon.\n",
               })))),
             resyncTimer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "1h",
                 example: "1h 30min",
@@ -56,15 +56,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           user: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               psd: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 description: "Profile Sync daemon",
                 wants: nix.thunk(() => ["psd-resync.service"]),
@@ -80,9 +80,9 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.lookup(w, "profile-sync-daemon")),
                   ];
                 })()),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$6, RequiresMountsFor: nix.thunk(() => ["/home/"]) })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$6, RequiresMountsFor: nix.thunk(() => ["/home/"]) })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   Type: "oneshot",
                   RemainAfterExit: "yes",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "profile-sync-daemon")}/bin/profile-sync-daemon sync`),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "psd-resync": nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: true,
                 description: "Timed profile resync",
                 after: nix.thunk(() => ["psd.service"]),
@@ -109,20 +109,20 @@ export default nix.lambda((args) => (() => {
                   ];
                 })()),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "profile-sync-daemon")}/bin/profile-sync-daemon resync`),
                 })),
               })),
             })),
             timers: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "psd-resync": nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: nix.thunk(() => nix.str`Timer for profile sync daemon - ${nix.sel(cfg, "resyncTimer")}`),
                 partOf: nix.thunk(() => ["psd-resync.service", "psd.service"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   OnUnitActiveSec: nix.thunk(() => nix.str`${nix.sel(cfg, "resyncTimer")}`),
                 })),
               })),

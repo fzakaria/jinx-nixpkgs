@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clj-kondo",
       version: "2026.08.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/clj-kondo/clj-kondo/releases/download/v${nix.sel(finalAttrs, "version")}/clj-kondo-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           sha256: "sha256-iElpFiQzzKwbYKi7gIRXc81C38ix3s4vvuEwcP0gos0=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linter for Clojure code that sparks joy",
         homepage: "https://github.com/clj-kondo/clj-kondo",
         sourceProvenance: nix.thunk(() => (() => {

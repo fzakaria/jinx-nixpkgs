@@ -77,9 +77,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$66,
+    [nix.POS]: pos$66,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hexa"))];
@@ -87,75 +87,75 @@ export default nix.lambda((args) => (() => {
     })),
     name: "kea",
     containers: nix.thunk(() => ({
-      __proto__: pos$65,
+      [nix.POS]: pos$65,
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$29,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$29,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, allowedUDPPorts: nix.thunk(() => [67n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedUDPPorts: nix.thunk(() => [67n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$23,
-            resolved: nix.thunk(() => ({ __proto__: pos$5, enable: false })),
+            [nix.POS]: pos$23,
+            resolved: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
             kea: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               dhcp4: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   "valid-lifetime": 3600n,
                   "renew-timer": 900n,
                   "rebind-timer": 1800n,
                   "lease-database": nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     type: "memfile",
                     persist: true,
                     name: "/var/lib/kea/dhcp4.leases",
                   })),
                   "control-socket": nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     "socket-type": "unix",
                     "socket-name": "/run/kea/dhcp4.sock",
                   })),
                   "interfaces-config": nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     "dhcp-socket-type": "raw",
                     interfaces: nix.thunk(() => ["eth1"]),
                   })),
                   subnet4: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       id: 1n,
                       subnet: "10.0.0.0/29",
-                      pools: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$9, pool: "10.0.0.3 - 10.0.0.3" }))]),
+                      pools: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, pool: "10.0.0.3 - 10.0.0.3" }))]),
                     })),
                   ]),
-                  "dhcp-ddns": nix.thunk(() => ({ __proto__: pos$11, "enable-updates": true })),
+                  "dhcp-ddns": nix.thunk(() => ({ [nix.POS]: pos$11, "enable-updates": true })),
                   "ddns-send-updates": true,
                   "ddns-qualifying-suffix": "lan.nixos.test.",
                 })),
               })),
               "dhcp-ddns": nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   "forward-ddns": nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     "ddns-domains": nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         name: "lan.nixos.test.",
                         "key-name": "",
                         "dns-servers": nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$14, "ip-address": "10.0.0.2", port: 53n })),
+                          nix.thunk(() => ({ [nix.POS]: pos$14, "ip-address": "10.0.0.2", port: 53n })),
                         ]),
                       })),
                     ]),
@@ -164,11 +164,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             prometheus: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               exporters: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 kea: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   enable: true,
                   controlSocketPaths: nix.thunk(() => [
                     nix.thunk(() => nix.sel(config, "services", "kea", "dhcp4", "settings", "control-socket", "socket-name")),
@@ -178,16 +178,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             network: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               networks: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "01-eth1": nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$24, Address: "10.0.0.1/29" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$24, Address: "10.0.0.1/29" })),
                 })),
               })),
             })),
@@ -199,38 +199,38 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$52,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$30, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$52,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$30, vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$31, allowedUDPPorts: nix.thunk(() => [53n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedUDPPorts: nix.thunk(() => [53n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$46,
-            resolved: nix.thunk(() => ({ __proto__: pos$33, enable: false })),
+            [nix.POS]: pos$46,
+            resolved: nix.thunk(() => ({ [nix.POS]: pos$33, enable: false })),
             knot: nix.thunk(() => (() => {
               const zone = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "lan.nixos.test.zone", "@ SOA ns.nixos.test nox.nixos.test 0 86400 7200 3600000 172800\n@ NS nameserver\nnameserver A 10.0.0.3\nrouter A 10.0.0.1\n"));
-              const zonesDir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({ __proto__: pos$34, name: "knot-zones", paths: nix.thunk(() => [zone]) }))));
+              const zonesDir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({ [nix.POS]: pos$34, name: "knot-zones", paths: nix.thunk(() => [zone]) }))));
               return {
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 enable: true,
                 extraArgs: nix.thunk(() => ["-v"]),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$44,
-                  server: nix.thunk(() => ({ __proto__: pos$35, listen: nix.thunk(() => ["0.0.0.0@53"]) })),
+                  [nix.POS]: pos$44,
+                  server: nix.thunk(() => ({ [nix.POS]: pos$35, listen: nix.thunk(() => ["0.0.0.0@53"]) })),
                   log: nix.thunk(() => ({
-                    __proto__: pos$37,
-                    syslog: nix.thunk(() => ({ __proto__: pos$36, any: "info" })),
+                    [nix.POS]: pos$37,
+                    syslog: nix.thunk(() => ({ [nix.POS]: pos$36, any: "info" })),
                   })),
                   acl: nix.thunk(() => ({
-                    __proto__: pos$39,
-                    dhcp_ddns: nix.thunk(() => ({ __proto__: pos$38, address: "10.0.0.1", action: "update" })),
+                    [nix.POS]: pos$39,
+                    dhcp_ddns: nix.thunk(() => ({ [nix.POS]: pos$38, address: "10.0.0.1", action: "update" })),
                   })),
                   template: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     default: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       storage: zonesDir,
                       "zonefile-sync": "-1",
                       "zonefile-load": "difference-no-serial",
@@ -238,9 +238,9 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   zone: nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     "lan.nixos.test": nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       file: "lan.nixos.test.zone",
                       acl: nix.thunk(() => ["dhcp_ddns"]),
                     })),
@@ -250,16 +250,16 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             network: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               enable: true,
               networks: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 "01-eth1": nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ __proto__: pos$47, Address: "10.0.0.2/29" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$47, Address: "10.0.0.2/29" })),
                 })),
               })),
             })),
@@ -271,30 +271,30 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$64,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$53, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: pos$64,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$53, vlans: nix.thunk(() => [1n]) })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             services: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               "systemd-networkd": nix.thunk(() => ({
-                __proto__: pos$55,
-                environment: nix.thunk(() => ({ __proto__: pos$54, SYSTEMD_LOG_LEVEL: "debug" })),
+                [nix.POS]: pos$55,
+                environment: nix.thunk(() => ({ [nix.POS]: pos$54, SYSTEMD_LOG_LEVEL: "debug" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$59,
-            resolved: nix.thunk(() => ({ __proto__: pos$58, enable: false })),
+            [nix.POS]: pos$59,
+            resolved: nix.thunk(() => ({ [nix.POS]: pos$58, enable: false })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$60, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$60, enable: false })),
             interfaces: nix.thunk(() => ({
-              __proto__: pos$62,
-              eth1: nix.thunk(() => ({ __proto__: pos$61, useDHCP: true })),
+              [nix.POS]: pos$62,
+              eth1: nix.thunk(() => ({ [nix.POS]: pos$61, useDHCP: true })),
             })),
           })),
         };

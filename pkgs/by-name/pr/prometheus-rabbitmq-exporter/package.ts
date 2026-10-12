@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rabbitmq_exporter";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kbudde",
           repo: "rabbitmq_exporter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const checkFlags = nix.thunk(() => ["-skip=TestWholeApp|TestExporter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for RabbitMQ",
         mainProgram: "rabbitmq_exporter",
         homepage: "https://github.com/kbudde/rabbitmq_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, ldflags, checkFlags, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, ldflags, checkFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

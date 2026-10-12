@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "klipper";
       const version = "0.13.0-unstable-2026-09-28";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Klipper3d",
           repo: "klipper",
           rev: "7bc4d09465d31cd30fc0822e8d0abe02cc8c547f",
@@ -103,15 +103,15 @@ chmod 755 "$out/bin/klipper-canbus-query"
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.sel(meta, "homepage")),
             tagPrefix: "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Klipper 3D printer firmware",
         mainProgram: "klippy",
         homepage: "https://github.com/Klipper3d/klipper",
@@ -127,7 +127,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

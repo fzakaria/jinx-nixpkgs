@@ -55,49 +55,49 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(from, "str"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "netbird", "server", "coturn"));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         netbird: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           server: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             coturn: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(mkEnableOption, "a Coturn server for Netbird, will also open the firewall on the configured range")),
               useAcmeCertificates: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: bool,
                   default: false,
                   description: "Whether to use ACME certificates corresponding to the given domain for the server.\n",
                 })))),
               domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: str,
                   description: "The domain under which the coturn server runs.",
                 })))),
               user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: str,
                   default: "netbird",
                   description: "The username used by netbird to connect to the coturn server.\n",
                 })))),
               password: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.app(nullOr, str)),
                   default: null,
                   description: "The password of the user used by netbird to connect to the coturn server.\nBe advised this will be world readable in the nix store.\n",
                 })))),
               passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.app(nullOr, path)),
                   default: null,
                   description: "The path to a file containing the password of the user used by netbird to connect to the coturn server.\n",
                 })))),
               openPorts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(listOf, port)),
                   default: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(config, "services", "coturn")), null);
@@ -118,18 +118,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 assertion: nix.thunk(() => !nix.eq(nix.eq(nix.sel(cfg, "password"), null), nix.eq(nix.sel(cfg, "passwordFile"), null))),
                 message: "Exactly one of `password` or `passwordFile` must be given for the coturn setup.",
               })),
             ]),
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               coturn: nix.thunk(() => nix.update({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 enable: true,
                 realm: nix.thunk(() => nix.sel(cfg, "domain")),
                 "lt-cred-mech": true,
@@ -138,22 +138,22 @@ export default nix.lambda((args) => (() => {
 user=${nix.sel(cfg, "user")}:${(nix.asBool(!nix.eq(nix.sel(cfg, "password"), null)) ? nix.sel(cfg, "password") : "@password@")}
 no-software-attribute
 `),
-              }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "useAcmeCertificates")), nix.thunk(() => ({ __proto__: pos$14, cert: "@cert@", pkey: "@pkey@" }))))),
+              }, nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "useAcmeCertificates")), nix.thunk(() => ({ [nix.POS]: pos$14, cert: "@cert@", pkey: "@pkey@" }))))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               services: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 coturn: nix.thunk(() => (() => {
                   const dir = nix.thunk(() => nix.sel(config, "security", "acme", "certs", nix.key(nix.sel(cfg, "domain")), "directory"));
                   const preStart$ = nix.thunk(() => nix.add(nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "passwordFile"), null)), nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "replace-secret")))} @password@ ${nix.sel(cfg, "passwordFile")} /run/coturn/turnserver.cfg
 `)), nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "useAcmeCertificates")), nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "replace-secret")))} @cert@ <(echo -n "$CREDENTIALS_DIRECTORY/cert.pem") /run/coturn/turnserver.cfg
 ${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "replace-secret")))} @pkey@ <(echo -n "$CREDENTIALS_DIRECTORY/pkey.pem") /run/coturn/turnserver.cfg
 `))));
-                  return nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(preStart$, "")), nix.thunk(() => ({ __proto__: pos$16, preStart: nix.thunk(() => nix.app(mkAfter, preStart$)) }))), nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "useAcmeCertificates")), nix.thunk(() => ({
-                      __proto__: pos$18,
+                  return nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(preStart$, "")), nix.thunk(() => ({ [nix.POS]: pos$16, preStart: nix.thunk(() => nix.app(mkAfter, preStart$)) }))), nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "useAcmeCertificates")), nix.thunk(() => ({
+                      [nix.POS]: pos$18,
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         LoadCredential: nix.thunk(() => [
                           nix.thunk(() => nix.str`cert.pem:${dir}/fullchain.pem`),
                           nix.thunk(() => nix.str`pkey.pem:${dir}/key.pem`),
@@ -164,25 +164,25 @@ ${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "replace-secret")))} @pkey@ <(ec
               })),
             })),
             security: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               acme: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 certs: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "useAcmeCertificates")), nix.thunk(() => nix.attrsDyn({}, [
-                    [nix.sel(cfg, "domain"), nix.thunk(() => ({ __proto__: pos$21, postRun: "systemctl restart coturn.service\n" }))],
+                    [nix.sel(cfg, "domain"), nix.thunk(() => ({ [nix.POS]: pos$21, postRun: "systemctl restart coturn.service\n" }))],
                   ])))),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               firewall: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 allowedUDPPorts: nix.thunk(() => nix.sel(cfg, "openPorts")),
                 allowedTCPPorts: nix.thunk(() => nix.sel(cfg, "openPorts")),
                 allowedUDPPortRanges: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(config, "services", "coturn")), null);
                   return [
                     nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       from: nix.thunk(() => nix.lookup(w, "min-port")),
                       to: nix.thunk(() => nix.lookup(w, "max-port")),
                     })),

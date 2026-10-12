@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdht",
       version: "0.28",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jech",
           repo: "dht",
           tag: nix.thunk(() => nix.str`dht-${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n$CC $NIX_CFLAGS_COMPILE -fPIC -Wall -c -o dht.o dht.c\n$CC -shared -Wl,-soname,libdht.so.0 -o libdht.so.0 dht.o\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm755 libdht.so.0 $out/lib/libdht.so.0\nln -s libdht.so.0 $out/lib/libdht.so\ninstall -Dm644 dht.h $out/include/dht/dht.h\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "BitTorrent DHT library",
         homepage: "https://www.irif.fr/~jch/software/bittorrent/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

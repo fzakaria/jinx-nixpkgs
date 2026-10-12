@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netbox-cable-labels",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsenecal",
           repo: "netbox-cable-labels",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_cable_labels"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_cable_labels" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_cable_labels" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin for automated label generated based on a user defined template",
         homepage: "https://github.com/jsenecal/netbox-cable-labels",
         changelog: nix.thunk(() => nix.str`https://github.com/jsenecal/netbox-cable-labels/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

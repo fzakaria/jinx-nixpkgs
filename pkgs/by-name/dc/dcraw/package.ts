@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dcraw";
       const version = "9.28.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.dechifro.org/dcraw/archive/dcraw-${version}.tar.gz`),
           sha256: "1fdl3xa1fbm71xzc3760rsjkvf0x5jdjrvdzyg2l9ka24vdc7418",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "substituteInPlace install \\\n  --replace 'prefix=/usr/local' 'prefix=$out' \\\n  --replace gcc '$CC' \\\n  --replace '-ljasper' '-DNO_JASPER=1'\n";
       const buildPhase = "mkdir -p $out/bin\nsh -e install\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.dechifro.org/dcraw/",
         description: "Decoder for many camera raw picture formats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

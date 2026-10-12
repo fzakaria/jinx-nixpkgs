@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const opencl_headers = nix.arg($, "opencl-headers");
   const ocl_icd = nix.arg($, "ocl-icd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vapoursynth-nnedi3cl",
       version: "8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HomeOfVapourSynthEvolution",
           repo: "VapourSynth-NNEDI3CL",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, vapoursynth, ocl_icd, opencl_headers]),
       postPatch: "substituteInPlace meson.build \\\n  --replace-fail \"vapoursynth_dep.get_pkgconfig_variable('libdir')\" \"get_option('libdir')\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Filter for VapourSynth",
         homepage: "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-NNEDI3CL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

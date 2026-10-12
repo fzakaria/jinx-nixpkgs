@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const qtmacextras = nix.arg($, "qtmacextras");
   const libdbusmenu_qt5 = nix.arg($, "libdbusmenu-qt5");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "knotifications",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, qttools]),
       buildInputs: nix.thunk(() => nix.concat([

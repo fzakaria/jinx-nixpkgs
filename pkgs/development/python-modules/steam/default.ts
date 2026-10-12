@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ValvePython",
           repo: "steam",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         cachetools,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for interacting with Steam",
         homepage: "https://github.com/ValvePython/steam",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

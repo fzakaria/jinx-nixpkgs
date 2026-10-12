@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moreheaders",
       version: "0.40",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openresty",
           repo: "headers-more-nginx-module",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-4oddjLXtJyDmxCa2ocBtNAeKWXxI38I9eHeFVw9/ANc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set, add, and clear arbitrary output headers",
         homepage: "https://github.com/openresty/headers-more-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

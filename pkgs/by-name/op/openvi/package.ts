@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openvi",
       version: "7.7.32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "johnsonjh",
           repo: "OpenVi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/johnsonjh/OpenVi/commit/67c76961f512bfe95616fe25b32928db0aab9326.patch",
             hash: "sha256-GOair/unxROEPvtTekGuKacKwOctPyoRdvilqdVLjrY=",
             excludes: nix.thunk(() => ["ChangeLog"]),
@@ -41,12 +41,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([perl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [ncurses])))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "PAWK=awk", "IUSGR=$(USER)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), ncurses)}/lib -lncursesw`))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/johnsonjh/OpenVi",
         description: "Portable OpenBSD vi for UNIX systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

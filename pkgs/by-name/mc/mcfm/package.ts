@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const gccStdenv = nix.arg($, "gccStdenv");
   const lhapdf = nix.arg($, "lhapdf");
   const stdenv = gccStdenv;
-  const lhapdf$ = nix.thunk(() => nix.app(nix.sel(lhapdf, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: gccStdenv, python3: null }))));
+  const lhapdf$ = nix.thunk(() => nix.app(nix.sel(lhapdf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: gccStdenv, python3: null }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "MCFM",
       version: "10.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://mcfm.fnal.gov/downloads/MCFM-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3Dg4KoILb0XhgGkzItDh/1opCtYrrIvtbuALYqPUvE8=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lhapdf$]),
       cmakeFlags: nix.thunk(() => ["-Duse_external_lhapdf=ON", "-Duse_internal_lhapdf=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Monte Carlo for FeMtobarn processes",
         homepage: "https://mcfm.fnal.gov",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   const useSwift = nix.argOr($, "useSwift", () => true);
-  const swift_corelibs_libdispatch_no_overlay = nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ __proto__: pos$1, useSwift: false }))));
+  const swift_corelibs_libdispatch_no_overlay = nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, useSwift: false }))));
   const swift_corelibs_libdispatch_no_overlay_lib = nix.thunk(() => (nix.asBool(useSwift) ? nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "getLib"), swift_corelibs_libdispatch_no_overlay))) : nix.builtins.placeholder("out")));
   const swift_corelibs_libdispatch_no_overlay_dev = nix.thunk(() => (nix.asBool(useSwift) ? nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), swift_corelibs_libdispatch_no_overlay))) : nix.builtins.placeholder("dev")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`swift-corelibs-libdispatch${nix.app(nix.sel(lib, "optionalString"), useSwift, "-swift-overlay")}`),
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-corelibs-libdispatch"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "swiftlang",
           repo: "swift-corelibs-libdispatch",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/0001-gnu-install-dirs.patch"),
         nix.path(here, "./patches/0002-Don-t-include-sys-cdefs-on-Musl.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/swiftlang/swift-corelibs-libdispatch/commit/38872e2d44d66d2fb94186988509defc734888a5.patch?full_index=1",
             hash: "sha256-BXTv79ej93CBrHtEzHDu+3WkIfzEctwyqBoPkNQQkAA=",
           })))),
@@ -88,7 +88,7 @@ patchelf --add-rpath ${swift_corelibs_libdispatch_no_overlay_lib}/lib "$dylib"
 `))))))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Grand Central Dispatch",
         homepage: "https://github.com/swiftlang/swift-corelibs-libdispatch",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "freebsd"), nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "windows")))),

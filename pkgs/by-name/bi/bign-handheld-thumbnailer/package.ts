@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "bign-handheld-thumbnailer",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MateusRodCosta",
           repo: "bign-handheld-thumbnailer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RlqwAd1L5r3IQEQe1jY4oFKy615w5N1nB74V6DFTbxw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib]),
       mesonFlags: nix.thunk(() => ["-Dupdate_mime_database=false"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: bign_handheld_thumbnailer,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(glib, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Thumbnailer for Nintendo handheld systems (Nintendo DS and 3DS) roms and files",
         homepage: "https://github.com/MateusRodCosta/bign-handheld-thumbnailer",
         changelog: nix.thunk(() => nix.str`https://github.com/MateusRodCosta/bign-handheld-thumbnailer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$5,
-      virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: 1024n })),
+      [nix.POS]: pos$5,
+      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 1024n })),
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         saunafs: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           master: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
             openFirewall: true,
             exports: nix.thunk(() => ["* / rw,alldirs,maproot=0:0"]),
@@ -67,40 +67,40 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         emptyDiskImages: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             size: 4096n,
             driveConfig: nix.thunk(() => ({
-              __proto__: pos$7,
-              deviceExtraOpts: nix.thunk(() => ({ __proto__: pos$6, serial: "data" })),
+              [nix.POS]: pos$7,
+              deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$6, serial: "data" })),
             })),
           })),
         ]),
       })),
       fileSystems: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkVMOverride"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "/data": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             device: "/dev/disk/by-id/virtio-data",
             fsType: "ext4",
             autoFormat: true,
           })),
         })))),
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         saunafs: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           masterHost: "master",
           chunkserver: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             openFirewall: true,
             enable: true,
             hdds: nix.thunk(() => ["/data"]),
-            settings: nix.thunk(() => ({ __proto__: pos$12, HDD_LEAVE_SPACE_DEFAULT: "100M" })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$12, HDD_LEAVE_SPACE_DEFAULT: "100M" })),
           })),
         })),
       })),
@@ -110,13 +110,13 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         saunafs: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           masterHost: "master",
-          metalogger: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+          metalogger: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
         })),
       })),
     };
@@ -126,20 +126,20 @@ export default nix.lambda((args) => (() => {
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib_1 = nix.arg($_1, "lib");
     return {
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       services: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         saunafs: nix.thunk(() => ({
-          __proto__: pos$22,
-          client: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
+          [nix.POS]: pos$22,
+          client: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$26,
-        network: nix.thunk(() => ({ __proto__: pos$24, enable: true })),
+        [nix.POS]: pos$26,
+        network: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
         mounts: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             requires: nix.thunk(() => ["network-online.target"]),
             after: nix.thunk(() => ["network-online.target"]),
             wantedBy: nix.thunk(() => ["remote-fs.target"]),
@@ -149,18 +149,18 @@ export default nix.lambda((args) => (() => {
           })),
         ]),
       })),
-      networking: nix.thunk(() => ({ __proto__: pos$27, useDHCP: false, useNetworkd: true })),
+      networking: nix.thunk(() => ({ [nix.POS]: pos$27, useDHCP: false, useNetworkd: true })),
     };
   })(), formals$5);
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     name: "saunafs",
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       master: master,
       metalogger: metalogger,
       chunkserver1: chunkserver,

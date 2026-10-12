@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1eaade76d8036e1cb79e944b75874bfe5ee4046a571c0724564e1721565c73fd",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["onetimepad"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hacky implementation of one-time pad",
         mainProgram: "onetimepad",
         homepage: "https://jailuthra.in/onetimepad",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaraco",
           repo: "zipp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,21 +36,21 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [func_timeout, jaraco_itertools]);
       const pythonImportsCheck = nix.thunk(() => ["zipp"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(zipp, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          check: nix.thunk(() => nix.app(nix.sel(zipp, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Pathlib-compatible object wrapper for zip files",
         homepage: "https://github.com/jaraco/zipp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

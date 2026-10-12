@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const enableHO = nix.argOr($, "enableHO", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eprover",
       version: "3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://wwwlehre.dhbw-stuttgart.de/~sschulz/WORK/E_DOWNLOAD/V_${nix.sel(finalAttrs, "version")}/E.tgz`),
           hash: "sha256-B0yOX8MGJHY0HOeQ/RWtgATTIta2YnhEvSdoqIML1K4=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`makeFlagsArray+=(CC="${nix.sel(stdenv, "cc", "targetPrefix")}cc" AR="${nix.sel(stdenv, "cc", "targetPrefix")}ar rcs")
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automated theorem prover for full first-order logic with equality",
         homepage: "http://www.eprover.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "xfdashboard",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfdashboard",
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.xfce.org/apps/xfdashboard/-/commit/7452a7074dfc36c5af42c4105aadaac8656c2f60.patch",
             hash: "sha256-u0djTProV3On0uutg89Q+psgmVGJS768KwiYxZ7dhrE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.xfce.org/apps/xfdashboard/-/commit/20f23e62576d186fada6688af3bb05bc7f223f44.patch",
             hash: "sha256-C2oIBi9tfoQF123Ez3YbFUs8vX2DeYdr3BDc85ExTgQ=",
           })))),
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
         xfconf,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "xfdashboard-" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "xfdashboard-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "GNOME shell like dashboard",
         homepage: "https://gitlab.xfce.org/apps/xfdashboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sorted-grep",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/sgrep/sgrep-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-3F7cXrZnB38YwE1sHYm/CIGKmG+1c0QU+Pk3Y53a0T4=",
         })))),
@@ -32,7 +32,7 @@ runHook postBuild
       installCheckPhase: "runHook preInstallCheck\n\nset +o pipefail\n$out/bin/sgrep 2>&1 | grep ^Usage:\n\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sgrep.sourceforge.net/",
         description: "Sgrep (sorted grep) searches sorted input files for lines that match a search key",
         mainProgram: "sgrep",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const ppp = nix.arg($, "ppp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xl2tpd",
       version: "1.3.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xelerance",
           repo: "xl2tpd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
 `),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -std=gnu17",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         description: "Layer 2 Tunnelling Protocol Daemon (RFC 2661)",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

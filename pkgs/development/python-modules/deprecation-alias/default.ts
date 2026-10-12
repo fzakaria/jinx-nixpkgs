@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "deprecation_alias",
           version: version,
           hash: "sha256-pY0udEkceDTp0xh4jaYCcvovga64FLQFWkupCgpBdA8=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_requirements_txt]);
       const dependencies = nix.thunk(() => [deprecation, packaging]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper around ‘deprecation’ providing support for deprecated aliases",
         homepage: "https://github.com/domdfcoding/deprecation-alias",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

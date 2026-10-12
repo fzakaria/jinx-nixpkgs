@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromForgejo = nix.arg($, "fetchFromForgejo");
   const src = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./src.json")));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     packageVersion: nix.thunk(() => nix.attr(src, "packageVersion")),
     source: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => nix.update(nix.sel(src, "source"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         domain: "librewolf.dev",
         owner: "librewolf",
         repo: "source",
       })))),
     firefox: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.update(nix.sel(src, "firefox"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`mirror://mozilla/firefox/releases/${nix.sel(src, "firefox", "version")}/source/firefox-${nix.sel(src, "firefox", "version")}.source.tar.xz`),
       })))),
   };

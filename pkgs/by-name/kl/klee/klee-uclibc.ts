@@ -27,22 +27,22 @@ export default nix.lambda((args) => (() => {
   const extraKleeuClibcConfig = nix.argOr($, "extraKleeuClibcConfig", () => ({}));
   const localeSrcBase = "uClibc-locale-030818.tgz";
   const localeSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`http://www.uclibc.org/downloads/${localeSrcBase}`),
       sha256: "xDYr4xijjxjZjcz0YtItlbq5LwVUi7k/ZSmP6a+uvVc=",
     }))));
   const resolvedExtraKleeuClibcConfig = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`${name}=${value}`, nix.thunk(() => nix.update(extraKleeuClibcConfig, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       UCLIBC_DOWNLOAD_PREGENERATED_LOCALE_DATA: "n",
       RUNTIME_PREFIX: "/",
       DEVEL_PREFIX: "/",
     }))));
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "klee-uclibc",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "klee",
           repo: "klee-uclibc",
           rev: nix.thunk(() => nix.str`klee_uclibc_v${nix.sel(finalAttrs, "version")}`),
@@ -83,14 +83,14 @@ done
       makeFlags: nix.thunk(() => ["HAVE_DOT_CONFIG=y"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d\\.\\d)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Modified version of uClibc for KLEE",
         longDescription: "klee-uclibc is a bitcode build of uClibc meant for compatibility with the\nKLEE symbolic virtual machine.\n",
         homepage: "https://github.com/klee/klee-uclibc",

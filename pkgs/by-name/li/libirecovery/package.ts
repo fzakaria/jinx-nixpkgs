@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libimobiledevice_glue = nix.arg($, "libimobiledevice-glue");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libirecovery",
       version: "1.3.1-unstable-2026-08-23",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libimobiledevice",
           repo: "libirecovery",
           rev: "95dec3aa25b1e30654ca107eb971971f6a216520",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "--with-udevrule=OWNER=\"root\",GROUP=\"myusergroup\",MODE=\"0660\"",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library and utility to talk to iBoot/iBSS via USB on Mac OS X, Windows, and Linux",
         longDescription: "libirecovery is a cross-platform library which implements communication to\niBoot/iBSS found on Apple's iOS devices via USB. A command-line utility is also\nprovided.\n",
         homepage: "https://github.com/libimobiledevice/libirecovery",

@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gagit",
       version: "4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://gitweb.gentoo.org/proj/gagit.git/snapshot/gagit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-V8qLZu2dpbUbpHZ5AH7Zr6HcgujjnWw9DFLF4K57RCc=",
         })))),
       __structuredAttrs: true,
       strictDeps: true,
       solutions: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         default: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           scripts: nix.thunk(() => ["bin/gagit"]),
           interpreter: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
           inputs: nix.thunk(() => [coreutils, git]),
-          keep: nix.thunk(() => ({ __proto__: pos$2, $editor: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: pos$2, $editor: true })),
           execer: nix.thunk(() => [nix.thunk(() => nix.str`cannot:${nix.app(nix.sel(lib, "getExe"), git)}`)]),
         })),
       })),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Gentoo AGit workflow tool",
         homepage: "https://gitweb.gentoo.org/proj/gagit.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

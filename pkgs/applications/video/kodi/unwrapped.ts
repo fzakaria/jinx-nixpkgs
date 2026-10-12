@@ -161,38 +161,38 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(usbSupport) || nix.asBool(!nix.asBool(udevSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/video/kodi/unwrapped.nix:138:1");
   nix.assert_((nix.asBool((nix.asBool(gbmSupport) || nix.asBool(waylandSupport))) || nix.asBool(x11Support)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/video/kodi/unwrapped.nix:139:1");
   const libdvdcss = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "xbmc",
       repo: "libdvdcss",
       rev: "1.4.3-Next-Nexus-Alpha2-2",
       sha256: "sha256-CJMGH50mNAkovccNcol5ArF3zUnZKfbVB9EXyQgu5k4=",
     }))));
   const libdvdnav = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "xbmc",
       repo: "libdvdnav",
       rev: "6.1.1-Next-Nexus-Alpha2-2",
       sha256: "sha256-m8SCjOokVbwJ7eVfYKHap1pQjVbI+BXaoxhGZQIg0+k=",
     }))));
   const libdvdread = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "xbmc",
       repo: "libdvdread",
       rev: "6.1.3-Next-Nexus-Alpha2-2",
       sha256: "sha256-AphBQhXud+a6wm52zjzC5biz53NnqWdgpL2QDt2ZuXc=",
     }))));
   const groovy = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: "mirror://apache/groovy/4.0.16/distribution/apache-groovy-binary-4.0.16.zip",
       sha256: "sha256-OfZBiMVrhw6VqHRHCSC7ZV3FiZ26n4+F8hsskk+L6yU=",
     }))));
   const apache_commons_lang = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: "mirror://apache/commons/lang/binaries/commons-lang3-3.14.0-bin.zip",
       sha512: "sha512-eKF1IQ6PDtifb4pMHWQ2SYHIh0HbMi3qpc92lfbOo3uSsFJVR3n7JD0AdzrG17tLJQA4z5PGDhwyYw0rLeLsXw==",
     }))));
   const apache_commons_text = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: "mirror://apache/commons/text/binaries/commons-text-1.11.0-bin.zip",
       sha512: "sha512-P2IvnrHSYRF70LllTMI8aev43h2oe8lq6rrMYw450PEhEa7OuuCjh1Krnc/A4OqENUcidVAAX5dK1RAsZHh8Dg==",
     }))));
@@ -209,7 +209,7 @@ export default nix.lambda((args) => (() => {
           const zlib_1 = nix.arg($_1, "zlib");
           const pkg_config_1 = nix.arg($_1, "pkg-config");
           return nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), "-build-tool-texture-packer")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -217,11 +217,11 @@ export default nix.lambda((args) => (() => {
               nativeBuildInputs: nix.thunk(() => [pkg_config_1, cmake_1]),
               buildInputs: nix.thunk(() => [giflib_1, libjpeg_1, libpng_1, lzo_1, zlib_1]),
               env: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isWindows"))), "-DTARGET_POSIX")),
               })),
               preConfigure: "cmakeFlagsArray+=(-DKODI_SOURCE_DIR=$src -DCMAKE_MODULE_PATH=$src/cmake/modules)\n",
-              meta: nix.thunk(() => ({ __proto__: pos$8, mainProgram: "TexturePacker" })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$8, mainProgram: "TexturePacker" })),
             })));
         })(), formals$2), nix.thunk(() => ({}))));
       const jsonSchemaBuilder = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.lambda((args_1) => (() => {
@@ -229,22 +229,22 @@ export default nix.lambda((args) => (() => {
           const stdenv_1 = nix.arg($_1, "stdenv");
           const cmake_1 = nix.arg($_1, "cmake");
           return nix.app(nix.sel(stdenv_1, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), "-build-tool-json-schema-builder")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/tools/depends/native/JsonSchemaBuilder/src`),
               nativeBuildInputs: nix.thunk(() => [cmake_1]),
-              meta: nix.thunk(() => ({ __proto__: pos$10, mainProgram: "JsonSchemaBuilder" })),
+              meta: nix.thunk(() => ({ [nix.POS]: pos$10, mainProgram: "JsonSchemaBuilder" })),
             })));
         })(), formals$3), nix.thunk(() => ({}))));
       return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: "kodi",
         version: "21.3",
         kodiReleaseName: "Omega",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             owner: "xbmc",
             repo: "xbmc",
             rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "kodiReleaseName")}`),
@@ -252,7 +252,7 @@ export default nix.lambda((args) => (() => {
           })))),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               name: "texturepacker-giflib-6.patch",
               url: "https://github.com/xbmc/xbmc/commit/29492cbd20d4c90a9c00a30ab525d4d0e81a968b.patch",
               hash: "sha256-WNaODPCtRfn30jVU5HbBnAO2Vl/MQp2CYmKOTTyDGZI=",
@@ -439,13 +439,13 @@ substituteInPlace $out/share/xsessions/kodi.desktop \\
         doInstallCheck: true,
         installCheckPhase: "$out/bin/kodi --version",
         passthru: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pythonPackages: python3Packages,
           ffmpeg: ffmpeg,
           kodi: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           description: "Media center",
           homepage: "https://kodi.tv/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

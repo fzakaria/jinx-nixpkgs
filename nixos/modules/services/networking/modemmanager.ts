@@ -33,39 +33,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "networking", "modemmanager"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
     })),
     options: nix.thunk(() => (() => {
       const w = nix.withScope(lib, null);
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         networking: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           modemmanager: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to use ModemManager to manage modem devices.\nThis is usually used by some higher layer manager such as NetworkManager\nbut can be used standalone especially if using a modem for non-IP\nconnectivity (e.g. GPS).\n",
               })))),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "modemmanager", nix.thunk(() => ({})))),
             fccUnlockScripts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       options: nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         id: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             description: "vid:pid of either the PCI or USB vendor and product ID",
                           })))),
                         path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                             description: "Path to the unlock script",
                           })))),
@@ -80,18 +80,18 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
-          etc: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((e) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`ModemManager/fcc-unlock.d/${nix.sel(e, "id")}`), nix.thunk(() => ({ __proto__: pos$11, source: nix.thunk(() => nix.sel(e, "path")) }))), nix.thunk(() => nix.sel(cfg, "fccUnlockScripts")))))),
+          [nix.POS]: pos$12,
+          etc: nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((e) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`ModemManager/fcc-unlock.d/${nix.sel(e, "id")}`), nix.thunk(() => ({ [nix.POS]: pos$11, source: nix.thunk(() => nix.sel(e, "path")) }))), nix.thunk(() => nix.sel(cfg, "fccUnlockScripts")))))),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             ModemManager: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               aliases: nix.thunk(() => ["dbus-org.freedesktop.ModemManager1.service"]),
               path: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "fccUnlockScripts"), [])), nix.thunk(() => (() => {
                   const w_1 = nix.withScope(pkgs, null);
@@ -107,21 +107,21 @@ export default nix.lambda((args) => (() => {
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           polkit: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             enable: true,
             extraConfig: "polkit.addRule(function(action, subject) {\n  if (\n    subject.isInGroup(\"networkmanager\")\n    && action.id.indexOf(\"org.freedesktop.ModemManager\") == 0\n    )\n      { return polkit.Result.YES; }\n});\n",
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           dbus: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),

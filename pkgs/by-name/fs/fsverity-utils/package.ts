@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const enableManpages = nix.argOr($, "enableManpages", () => false);
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fsverity-utils",
       version: "1.7",
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev"], nix.app(nix.sel(lib, "optional"), enableManpages, "man"))),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/fs/fsverity/fsverity-utils.git/snapshot/fsverity-utils-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-c8dillkgGh41elo/a5EqGQIrS4TZeDLsYkmyNke6koc=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), enableManpages, "install-man"))),
       postInstall: "mkdir -p $lib\nmv $out/lib $lib/lib\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.kernel.org/doc/html/latest/filesystems/fsverity.html#userspace-utility",
         changelog: "https://git.kernel.org/pub/scm/fs/fsverity/fsverity-utils.git/tree/NEWS.md",
         description: "Set of userspace utilities for fs-verity",

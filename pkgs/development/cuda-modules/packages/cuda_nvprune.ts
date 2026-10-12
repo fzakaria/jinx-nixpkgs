@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_nvprune",
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Prune host object files and libraries to only contain device code for the specified targets",
         longDescription: "`nvprune` prunes host object files and libraries to only contain device code for the specified targets.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-binary-utilities#nvprune",

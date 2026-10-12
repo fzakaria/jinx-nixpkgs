@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "click-repl",
       version: "0.3.0-unstable-2026-03-26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "click-contrib",
           repo: "click-repl",
           rev: "b84191aec21b407b3cb3374ff1ab000887d38f29",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [click, prompt_toolkit, typing_extensions]),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/click-contrib/click-repl",
         description: "Subcommand REPL for click apps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

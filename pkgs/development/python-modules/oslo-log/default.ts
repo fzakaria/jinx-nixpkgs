@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const version = "8.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "oslo.log",
           tag: version,
           hash: "sha256-teESuCQg8fxCWPMUWTTYyBIGSn9m916Uoy3UkWArVVs=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [
         debtcollector,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["oslo_log"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "oslo.log library",
         mainProgram: "convert-json",
         homepage: "https://github.com/openstack/oslo.log",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

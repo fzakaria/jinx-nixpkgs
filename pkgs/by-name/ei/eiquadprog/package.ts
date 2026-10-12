@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eiquadprog",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stack-of-tasks",
           repo: "eiquadprog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [boost]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ reimplementation of eiquadprog",
         homepage: "https://github.com/stack-of-tasks/eiquadprog",
         changelog: nix.thunk(() => nix.str`https://github.com/stack-of-tasks/eiquadprog/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

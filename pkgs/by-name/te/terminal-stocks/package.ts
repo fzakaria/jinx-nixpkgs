@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "terminal-stocks";
       const version = "1.0.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shweshi",
           repo: "terminal-stocks",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-TAS7iPWXXLaDosM31WYpeXC2Gz01fucoFu7llwBHmxc=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal based application that provides stock price information",
         homepage: "https://github.com/shweshi/terminal-stocks",
         maintainers: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "terminal-stocks",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

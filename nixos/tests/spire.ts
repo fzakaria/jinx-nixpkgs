@@ -91,38 +91,38 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       environment: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         variables: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           SPIFFE_ENDPOINT_SOCKET: nix.thunk(() => nix.sel(config, "services", "spire", "agent", "settings", "agent", "socket_path")),
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         credentials: nix.thunk(() => ({
-          __proto__: pos$4,
-          "spire.trust_bundle": nix.thunk(() => ({ __proto__: pos$3, source: "./trust_bundle" })),
+          [nix.POS]: pos$4,
+          "spire.trust_bundle": nix.thunk(() => ({ [nix.POS]: pos$3, source: "./trust_bundle" })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           "spire-agent": nix.thunk(() => ({
-            __proto__: pos$7,
-            serviceConfig: nix.thunk(() => ({ __proto__: pos$6, ImportCredential: nix.thunk(() => ["spire.trust_bundle"]) })),
+            [nix.POS]: pos$7,
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, ImportCredential: nix.thunk(() => ["spire.trust_bundle"]) })),
           })),
         })),
       })),
       users: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
-          workload: nix.thunk(() => ({ __proto__: pos$10, isNormalUser: true, group: "workload" })),
+          [nix.POS]: pos$11,
+          workload: nix.thunk(() => ({ [nix.POS]: pos$10, isNormalUser: true, group: "workload" })),
         })),
-        groups: nix.thunk(() => ({ __proto__: pos$12, workload: nix.thunk(() => ({})) })),
+        groups: nix.thunk(() => ({ [nix.POS]: pos$12, workload: nix.thunk(() => ({})) })),
       })),
     };
   })(), formals$2);
@@ -131,13 +131,13 @@ export default nix.lambda((args) => (() => {
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib = nix.arg($_1, "lib");
     return {
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       imports: nix.thunk(() => [agent]),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         useEFIBoot: true,
         tpm: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           enable: true,
           provisioning: nix.thunk(() => nix.str`export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "openssl")),
@@ -165,39 +165,39 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
         })),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "spire-tpm-plugin"))]),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         spire: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           agent: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               agent: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 trust_domain: trustDomain,
                 server_address: nix.thunk(() => nix.str`server.${trustDomain}`),
                 trust_bundle_format: "pem",
                 trust_bundle_path: "$CREDENTIALS_DIRECTORY/spire.trust_bundle",
               })),
               plugins: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 KeyManager: nix.thunk(() => ({
-                  __proto__: pos$20,
-                  memory: nix.thunk(() => ({ __proto__: pos$19, plugin_data: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$20,
+                  memory: nix.thunk(() => ({ [nix.POS]: pos$19, plugin_data: nix.thunk(() => ({})) })),
                 })),
                 NodeAttestor: nix.thunk(() => ({
-                  __proto__: pos$22,
-                  tpm: nix.thunk(() => ({ __proto__: pos$21, plugin_data: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$22,
+                  tpm: nix.thunk(() => ({ [nix.POS]: pos$21, plugin_data: nix.thunk(() => ({})) })),
                 })),
                 WorkloadAttestor: nix.thunk(() => ({
-                  __proto__: pos$25,
-                  systemd: nix.thunk(() => ({ __proto__: pos$23, plugin_data: nix.thunk(() => ({})) })),
-                  unix: nix.thunk(() => ({ __proto__: pos$24, plugin_data: nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$25,
+                  systemd: nix.thunk(() => ({ [nix.POS]: pos$23, plugin_data: nix.thunk(() => ({})) })),
+                  unix: nix.thunk(() => ({ [nix.POS]: pos$24, plugin_data: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
@@ -207,57 +207,57 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
     };
   })(), formals$3);
   return {
-    __proto__: pos$74,
+    [nix.POS]: pos$74,
     name: "spire",
     nodes: nix.thunk(() => ({
-      __proto__: pos$73,
+      [nix.POS]: pos$73,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$51,
-          networking: nix.thunk(() => ({ __proto__: pos$32, domain: trustDomain })),
+          [nix.POS]: pos$51,
+          networking: nix.thunk(() => ({ [nix.POS]: pos$32, domain: trustDomain })),
           environment: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             etc: nix.thunk(() => ({
-              __proto__: pos$34,
-              "spire/server/certs/tpm-ca.crt": nix.thunk(() => ({ __proto__: pos$33, source: nix.path(here, "./tpm-ek/ca.crt") })),
+              [nix.POS]: pos$34,
+              "spire/server/certs/tpm-ca.crt": nix.thunk(() => ({ [nix.POS]: pos$33, source: nix.path(here, "./tpm-ek/ca.crt") })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             spire: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               server: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 enable: true,
                 openFirewall: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$47,
-                  server: nix.thunk(() => ({ __proto__: pos$36, trust_domain: trustDomain })),
+                  [nix.POS]: pos$47,
+                  server: nix.thunk(() => ({ [nix.POS]: pos$36, trust_domain: trustDomain })),
                   plugins: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     KeyManager: nix.thunk(() => ({
-                      __proto__: pos$38,
-                      memory: nix.thunk(() => ({ __proto__: pos$37, plugin_data: nix.thunk(() => ({})) })),
+                      [nix.POS]: pos$38,
+                      memory: nix.thunk(() => ({ [nix.POS]: pos$37, plugin_data: nix.thunk(() => ({})) })),
                     })),
                     DataStore: nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       sql: nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         plugin_data: nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           database_type: "sqlite3",
                           connection_string: "$STATE_DIRECTORY/datastore.sqlite3",
                         })),
                       })),
                     })),
                     NodeAttestor: nix.thunk(() => ({
-                      __proto__: pos$45,
-                      join_token: nix.thunk(() => ({ __proto__: pos$42, plugin_data: nix.thunk(() => ({})) })),
+                      [nix.POS]: pos$45,
+                      join_token: nix.thunk(() => ({ [nix.POS]: pos$42, plugin_data: nix.thunk(() => ({})) })),
                       tpm: nix.thunk(() => ({
-                        __proto__: pos$44,
-                        plugin_data: nix.thunk(() => ({ __proto__: pos$43, ca_path: "/etc/spire/server/certs" })),
+                        [nix.POS]: pos$44,
+                        plugin_data: nix.thunk(() => ({ [nix.POS]: pos$43, ca_path: "/etc/spire/server/certs" })),
                       })),
                     })),
                   })),
@@ -268,36 +268,36 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
         };
       })(), formals$4),
       agent: nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         imports: nix.thunk(() => [agent]),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           credentials: nix.thunk(() => ({
-            __proto__: pos$53,
-            "spire.join_token": nix.thunk(() => ({ __proto__: pos$52, source: "./join_token" })),
+            [nix.POS]: pos$53,
+            "spire.join_token": nix.thunk(() => ({ [nix.POS]: pos$52, source: "./join_token" })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           services: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             "spire-agent": nix.thunk(() => ({
-              __proto__: pos$56,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$55, ImportCredential: nix.thunk(() => ["spire.join_token"]) })),
+              [nix.POS]: pos$56,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$55, ImportCredential: nix.thunk(() => ["spire.join_token"]) })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           spire: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             agent: nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$68,
+                [nix.POS]: pos$68,
                 agent: nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   trust_domain: trustDomain,
                   server_address: nix.thunk(() => nix.str`server.${trustDomain}`),
                   join_token_file: "$CREDENTIALS_DIRECTORY/spire.join_token",
@@ -305,19 +305,19 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
                   trust_bundle_path: "$CREDENTIALS_DIRECTORY/spire.trust_bundle",
                 })),
                 plugins: nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   KeyManager: nix.thunk(() => ({
-                    __proto__: pos$61,
-                    memory: nix.thunk(() => ({ __proto__: pos$60, plugin_data: nix.thunk(() => ({})) })),
+                    [nix.POS]: pos$61,
+                    memory: nix.thunk(() => ({ [nix.POS]: pos$60, plugin_data: nix.thunk(() => ({})) })),
                   })),
                   NodeAttestor: nix.thunk(() => ({
-                    __proto__: pos$63,
-                    join_token: nix.thunk(() => ({ __proto__: pos$62, plugin_data: nix.thunk(() => ({})) })),
+                    [nix.POS]: pos$63,
+                    join_token: nix.thunk(() => ({ [nix.POS]: pos$62, plugin_data: nix.thunk(() => ({})) })),
                   })),
                   WorkloadAttestor: nix.thunk(() => ({
-                    __proto__: pos$66,
-                    systemd: nix.thunk(() => ({ __proto__: pos$64, plugin_data: nix.thunk(() => ({})) })),
-                    unix: nix.thunk(() => ({ __proto__: pos$65, plugin_data: nix.thunk(() => ({})) })),
+                    [nix.POS]: pos$66,
+                    systemd: nix.thunk(() => ({ [nix.POS]: pos$64, plugin_data: nix.thunk(() => ({})) })),
+                    unix: nix.thunk(() => ({ [nix.POS]: pos$65, plugin_data: nix.thunk(() => ({})) })),
                   })),
                 })),
               })),

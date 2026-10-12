@@ -64,43 +64,43 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.eq(stem, "default")) ? nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.dirOf(nix.thunk(() => nix.sel(p, "file"))))) : nix.force(stem));
   })();
   const optionsDoc = nix.thunk(() => nix.app(nix.sel(buildPackages, "nixosOptionsDoc"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       options: options,
       revision: revision,
       baseOptionsJSON: baseOptionsJSON,
       warningsAreErrors: warningsAreErrors,
       transformOptions: (opt) => nix.update(opt, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         declarations: nix.thunk(() => nix.builtins.map(stripAnyPrefixes, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     }))));
   const nixos_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib")), nix.thunk(() => ({}))));
   const testOptionsDoc = nix.thunk(() => (() => {
     const eval$ = nix.thunk(() => nix.app(nix.sel(nixos_lib, "evalTest"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         config: nix.thunk(() => ({
-          __proto__: pos$4,
-          node: nix.thunk(() => ({ __proto__: pos$3, type: nix.thunk(() => nix.sel(types, "deferredModule")) })),
+          [nix.POS]: pos$4,
+          node: nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(types, "deferredModule")) })),
           hostPkgs: pkgs,
         })),
         options: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           _module: nix.thunk(() => ({
-            __proto__: pos$6,
-            args: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$5, internal: true })))),
+            [nix.POS]: pos$6,
+            args: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, internal: true })))),
           })),
         })),
       }))));
     return nix.app(nix.sel(buildPackages, "nixosOptionsDoc"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         options: nix.thunk(() => nix.attr(eval$, "options")),
         revision: revision,
         transformOptions: (opt) => nix.update(opt, {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           declarations: nix.thunk(() => nix.builtins.map((decl) => (nix.asBool(nix.app(hasPrefix, nix.thunk(() => nix.builtins.toString(nix.path(here, "../../.."))), nix.thunk(() => nix.builtins.toString(decl)))) ? (() => {
               const subpath = nix.thunk(() => nix.app(removePrefix, "/", nix.thunk(() => nix.app(removePrefix, nix.thunk(() => nix.builtins.toString(nix.path(here, "../../.."))), nix.thunk(() => nix.builtins.toString(decl))))));
               return {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 url: nix.thunk(() => nix.str`https://github.com/NixOS/nixpkgs/blob/master/${subpath}`),
                 name: subpath,
               };
@@ -146,37 +146,37 @@ substituteInPlace ./development/modular-services.md \\
 `);
   const portableServiceOptions = nix.thunk(() => nix.app(nix.sel(buildPackages, "nixosOptionsDoc"), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.app(evalModules, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           modules: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "importService"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 pkgs: nix.thunk(() => nix.builtins.throw("nixos docs / portableServiceOptions: Do not reference pkgs in docs")),
               })))),
           ]),
         }))));
       return {
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       options: nix.thunk(() => nix.attr(from_1, "options")),
       revision: revision,
       warningsAreErrors: warningsAreErrors,
       transformOptions: (opt) => nix.update(opt, {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         declarations: nix.thunk(() => nix.builtins.map(stripAnyPrefixes, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     };
     })())));
   const systemdServiceOptions = nix.thunk(() => nix.app(nix.sel(buildPackages, "nixosOptionsDoc"), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.app(evalModules, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           modules: nix.thunk(() => [nix.path(here, "../../modules/system/service/systemd/service.nix")]),
         }))));
       return {
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       options: nix.thunk(() => nix.attr(from_1, "options")),
       revision: revision,
       warningsAreErrors: warningsAreErrors,
       transformOptions: (opt) => nix.update(opt, {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         declarations: nix.thunk(() => nix.builtins.map(stripAnyPrefixes, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     };
@@ -186,10 +186,10 @@ substituteInPlace ./development/modular-services.md \\
     const optionsNix = nix.thunk(() => nix.attr(optionsDoc, "optionsNix"));
     const optionsDocBook = nix.thunk(() => nix.attr(optionsDoc, "optionsDocBook"));
     const manualHTML = nix.thunk(() => nix.app(runCommand, "nixos-manual-html", nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "nixos-render-docs"))]),
         inputs: nix.thunk(() => nix.app(sourceFilesBySuffices, nix.path(here, "./."), nix.thunk(() => [".md"]))),
-        meta: nix.thunk(() => ({ __proto__: pos$19, description: "The NixOS manual in HTML format" })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$19, description: "The NixOS manual in HTML format" })),
         allowedReferences: nix.thunk(() => ["out"]),
       })), nix.thunk(() => nix.str`# Generate the HTML manual.
 dst=$out/${nix.sel(common, "outputPath")}
@@ -230,7 +230,7 @@ echo "doc manual $dst" >> $out/nix-support/hydra-build-products
     const manual = manualHTML;
     const manualHTMLIndex = nix.thunk(() => nix.str`${manualHTML}/${nix.sel(common, "outputPath")}/${nix.sel(common, "indexPath")}`);
     const manualEpub = nix.thunk(() => nix.app(runCommand, "nixos-manual-epub", nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(buildPackages, "libxml2", "bin")),
           nix.thunk(() => nix.sel(buildPackages, "libxslt", "bin")),
@@ -279,7 +279,7 @@ mkdir -p $out/nix-support
 echo "doc-epub manual $manual" >> $out/nix-support/hydra-build-products
 `)));
     const nixos_configuration_reference_manpage = nix.thunk(() => nix.app(runCommand, "nixos-configuration-reference-manpage", nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(buildPackages, "installShellFiles")),
           nix.thunk(() => nix.sel(buildPackages, "nixos-render-docs")),
@@ -294,7 +294,7 @@ nixos-render-docs -j $NIX_BUILD_CORES options manpage \\
 compressManPages $out
 `)));
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       optionsJSON,
       optionsNix,
       optionsDocBook,

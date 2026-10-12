@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const mosquitto = nix.arg($, "mosquitto");
   const netcat_gnu = nix.arg($, "netcat-gnu");
   const idl_serial = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "idl-serial",
       version: "0-unstable-2023-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nanomq",
           repo: "idl-serial",
           rev: "cf63cb2c4fbe2ecfba569979b89e20e1190b5ed4",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify3"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "nanomq",
       version: "0.25.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "nanomq",
           repo: "nanomq",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,15 +84,15 @@ export default nix.lambda((args) => (() => {
       ]),
       installCheckPhase: "runHook preInstallCheck\n\n(\n  cd ..\n\n  # effectively distable this test because it is slow\n  echo > .github/scripts/fuzzy_test.txt\n\n  # even with the correct paho-mqtt version these tests fail, suggesting\n  # websocket support is indeed broken\n  substituteInPlace .github/scripts/test.py \\\n    --replace 'ws_test()' '#ws_test()' \\\n    --replace 'ws_v5_test()' '#ws_v5_test()'\n\n  PATH=\"$PATH:$out/bin\" python .github/scripts/test.py\n)\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          withInstallChecks: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ __proto__: pos$4, doInstallCheck: true }))),
+          [nix.POS]: pos$5,
+          withInstallChecks: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, doInstallCheck: true }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Ultra-lightweight and blazing-fast MQTT broker for IoT edge",
         homepage: "https://nanomq.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

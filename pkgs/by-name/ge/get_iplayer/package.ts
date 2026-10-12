@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "get_iplayer";
       const version = "3.36";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "get-iplayer",
           repo: "get_iplayer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -55,11 +55,11 @@ install -Dm444 get_iplayer.1 -t $out/share/man/man1
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: get_iplayer,
               command: "HOME=$(mktemp -d) get_iplayer --help",
               version: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +67,7 @@ runHook postInstall
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Downloads TV and radio programmes from BBC iPlayer and BBC Sounds",
         mainProgram: "get_iplayer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -79,7 +79,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

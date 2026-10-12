@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/providers.nix", [["abc_radio_network", 24, 
 const pos$2 = nix.positions(here + "/providers.nix", [["version", 4, 3], ["builtins", 5, 3], ["providers", 23, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   version: "2.10.5",
   builtins: nix.thunk(() => [
     "builtin",
@@ -27,7 +27,7 @@ export default nix.thunk(() => ({
     "wikipedia",
   ]),
   providers: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     abc_radio_network: (ps) => [],
     acoustid_lookup: (ps) => (() => {
       const w = nix.withScope(ps, null);

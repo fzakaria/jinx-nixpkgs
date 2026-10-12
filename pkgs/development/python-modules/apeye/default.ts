@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "apeye",
           hash: "sha256-FOpUL61onjv9vaIYmjVKSQjpCu5L+EwVq3XWhFPXajY=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [apeye_core, domdf_python_tools, platformdirs, requests]);
       const pythonImportsCheck = nix.thunk(() => ["apeye"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Handy tools for working with URLs and APIs",
         homepage: "https://github.com/domdfcoding/apeye",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

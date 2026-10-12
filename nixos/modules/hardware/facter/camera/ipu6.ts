@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const isMeteorLake = nix.thunk(() => nix.app(isCpuGeneration, 6n, nix.thunk(() => [170n, 171n, 172n])));
   const devices = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./ipu6-devices.json")))));
   const isCameraSupported = nix.thunk(() => (() => {
-    const default$ = nix.thunk(() => ({ __proto__: pos$1, value: 0n }));
+    const default$ = nix.thunk(() => ({ [nix.POS]: pos$1, value: 0n }));
     return nix.app(nix.sel(lib, "any"), nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const base_class = nix.argOr($_1, "base_class", () => nix.force(default$));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         const device = nix.argOr($_1, "device", () => nix.force(default$));
         const sub_device = nix.argOr($_1, "sub_device", () => nix.force(default$));
         const revision = nix.argOr($_1, "revision", () => nix.force(default$));
-        const bus_type = nix.argOr($_1, "bus_type", () => ({ __proto__: pos$2, name: "" }));
+        const bus_type = nix.argOr($_1, "bus_type", () => ({ [nix.POS]: pos$2, name: "" }));
         const baseClassHex = nix.thunk(() => nix.app(nix.sel(facterLib, "toZeroPaddedHex"), nix.thunk(() => nix.sel(base_class, "value"))));
         const subClassHex = nix.thunk(() => nix.app(nix.sel(facterLib, "toZeroPaddedHex"), nix.thunk(() => nix.sel(sub_class, "value"))));
         const vendorHex = nix.thunk(() => nix.app(nix.sel(facterLib, "toZeroPaddedHex"), nix.thunk(() => nix.sel(vendor, "value"))));
@@ -55,24 +55,24 @@ export default nix.lambda((args) => (() => {
       })(), formals$2));
   })());
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       hardware: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         facter: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           detected: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             camera: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               ipu6: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 enable: nix.thunk(() => (() => {
                   const cameraSupported = nix.thunk(() => (nix.asBool(nix.app(isCameraSupported, nix.thunk(() => nix.selOr(report, () => [], "hardware", "unknown")))) || nix.asBool(nix.app(isCameraSupported, nix.thunk(() => nix.selOr(report, () => [], "hardware", "pci"))))));
                   const cpuSupported = nix.thunk(() => nix.app(nix.sel(lib, "any"), (generation) => nix.force(generation), nix.thunk(() => [isTigerLake, isAdlerLake, isRaptorLake, isMeteorLake])));
                   return nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "webcams using ipu6 from Intel"), {
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     default: nix.thunk(() => (nix.asBool(cameraSupported) && nix.asBool(cpuSupported))),
                     defaultText: "hardware dependent",
                   });
@@ -84,11 +84,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       hardware: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         ipu6: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(detected, "camera", "ipu6", "enable")), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             platform: nix.thunk(() => (nix.asBool(isTigerLake) ? "ipu6" : (nix.asBool((nix.asBool(isAdlerLake) || nix.asBool(isRaptorLake))) ? "ipu6ep" : (nix.asBool(isMeteorLake) ? "ipu6epmtl" : nix.builtins.throw("Unexpected CPU generation for ipu6 detected."))))),
           })))),

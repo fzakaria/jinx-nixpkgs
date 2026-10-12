@@ -24,10 +24,10 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gfortran = nix.arg($, "gfortran");
   const old_openfst = nix.thunk(() => nix.app(nix.sel(openfst, "overrideAttrs"), (prev) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "kag-unstable-2022-05-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kkm000",
           repo: "openfst",
           rev: "0bca6e76d24647427356dc242b0adbf3b5f1a8d9",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kaldi";
       const version = "kag-v2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "daanzu",
           repo: "kaldi-fork-active-grammar",
           rev: version,
@@ -67,7 +67,7 @@ patchelf \\
   $out/lib/*
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Speech Recognition Toolkit",
         homepage: "https://kaldi-asr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -75,7 +75,7 @@ patchelf \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

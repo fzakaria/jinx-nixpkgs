@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "farbfeld",
       version: "4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/farbfeld/farbfeld-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ap7rcngffhdd57jw9j22arzkbrhwh0zpxhwbdfwl8fixlhmkpy7",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/2ff" --prefix PATH : "${file}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Suckless image format with conversion tools",
         homepage: "https://tools.suckless.org/farbfeld/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

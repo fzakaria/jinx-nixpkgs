@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "celery",
           repo: "billiard",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["billiard"]);
       const disabledTests = nix.thunk(() => ["test_on_ready_counter_is_synchronized"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python multiprocessing fork with improvements and bugfixes",
         homepage: "https://github.com/celery/billiard",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/billiard/blob/${nix.sel(src, "tag")}/CHANGES.txt`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

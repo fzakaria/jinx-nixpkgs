@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const bcc = nix.arg($, "bcc");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sockdump",
       version: "0-unstable-2023-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mechpen",
           repo: "sockdump",
           rev: "d40ec77e960d021861220bc14a273c5dcad13160",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       pyproject: false,
       installPhase: "install -D sockdump.py $out/bin/sockdump",
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dump unix domain socket traffic with bpf",
         mainProgram: "sockdump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "humanity-icon-theme";
       const version = "0.6.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/ubuntu/+archive/primary/+files/humanity-icon-theme_${version}.tar.xz`),
           sha256: "sha256-AyHl4zMyFE2/5Cui3Y/SB1yEUuyafDdybFPrafo4Ki0=",
         }))));
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dontCheckForBrokenSymlinks = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/icons\ncp -a Humanity* $out/share/icons\nrm $out/share/icons/*/{AUTHORS,CONTRIBUTORS,COPYING}\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Humanity icons from Ubuntu",
         homepage: "https://launchpad.net/humanity/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

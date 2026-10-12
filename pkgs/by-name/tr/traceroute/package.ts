@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "traceroute",
       version: "2.1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/traceroute/traceroute-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-nM75zbnXqY/3+/k/eevQ5IiBZktSXEsjKg/Ox9y5214=",
         })))),
       makeFlags: nix.thunk(() => ["prefix=$(out)", "LDFLAGS=-lm", "env=yes"]),
       preConfigure: "sed -i 's@LIBS := \\(.*\\) -lm \\(.*\\)@LIBS := \\1 \\2@' Make.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tracks the route taken by packets over an IP network",
         homepage: "https://traceroute.sourceforge.net/",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/projects/traceroute/files/traceroute/traceroute-${nix.sel(finalAttrs, "version")}/`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kageurufu",
           repo: "cancelobject-preprocessor",
           tag: version,
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "sed -i \"/^addopts/d\" pyproject.toml\n\ncat >> pyproject.toml << EOF\n[build-system]\nrequires = [\"poetry-core\"]\nbuild-backend = \"poetry.core.masonry.api\"\nEOF\n";
       const build_system = nix.thunk(() => [poetry_core]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, shapely: nix.thunk(() => [shapely]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, shapely: nix.thunk(() => [shapely]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["preprocess_cancellation"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Klipper GCode Preprocessor for Object Cancellation",
         homepage: "https://github.com/kageurufu/cancelobject-preprocessor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

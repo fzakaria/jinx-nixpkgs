@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dua",
       version: "2.45.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Byron",
           repo: "dua-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# TODO: Upstream also provides Elvish and PowerShell completions,\n# but `installShellCompletion` only has support for Bash, Zsh and Fish at the moment.\n  installShellCompletion --cmd dua \\\n    --bash <($out/bin/dua completions bash) \\\n    --fish <($out/bin/dua completions fish) \\\n    --zsh  <($out/bin/dua completions zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to conveniently learn about the disk usage of directories",
         homepage: "https://github.com/Byron/dua-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/Byron/dua-cli/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

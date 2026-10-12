@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const remctl_c = nix.arg($, "remctl-c");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       format: "setuptools",
       meta: nix.thunk(() => nix.attr(remctl_c, "meta")),
       pname: nix.thunk(() => nix.attr(remctl_c, "pname")),

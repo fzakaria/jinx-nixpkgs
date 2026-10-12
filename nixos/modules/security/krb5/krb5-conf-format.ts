@@ -68,22 +68,22 @@ export default nix.lambda((args) => (() => {
       })());
       const type = nix.thunk(() => (() => {
         const aclEntry = nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             options: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               principal: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: str,
                   description: "Which principal the rule applies to",
                 })))),
               access: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.app(coercedTo, str, singleton, nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(enum$, nix.thunk(() => ["all", "add", "cpw", "delete", "get-keys", "get", "list", "modify"]))))))),
                   default: "all",
                   description: "The changes the principal is allowed to make.\n\n:::{.important}\nThe \"all\" permission does not imply the \"get-keys\" permission. This\nis consistent with the behavior of both MIT Kerberos and Heimdal.\n:::\n\n:::{.warning}\nValue \"all\" is allowed as a list member only if it appears alone\nor accompanied by \"get-keys\". Any other combination involving\n\"all\" will raise an exception.\n:::\n",
                 })))),
               target: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: str,
                   default: "*",
                   description: "The principals that 'access' applies to.",
@@ -94,16 +94,16 @@ export default nix.lambda((args) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const name = nix.arg($_2, "name");
             return {
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               freeformType: sectionType,
               options: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 acl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     type: nix.thunk(() => nix.app(listOf, aclEntry)),
                     default: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$6, principal: "*/admin", access: "all" })),
-                      nix.thunk(() => ({ __proto__: pos$7, principal: "admin", access: "all" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$6, principal: "*/admin", access: "all" })),
+                      nix.thunk(() => ({ [nix.POS]: pos$7, principal: "admin", access: "all" })),
                     ]),
                     description: "The privileges granted to a user.\n",
                   })))),
@@ -111,32 +111,32 @@ export default nix.lambda((args) => (() => {
             };
           })(), formals$3)));
         return nix.app(submodule, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             freeformType: nix.thunk(() => nix.app(attrsOf, sectionType)),
             options: nix.thunk(() => nix.update({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               include: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   default: [],
                   description: "Files to include in the Kerberos configuration.\n",
                   type: nix.thunk(() => nix.app(coercedTo, path, singleton, nix.thunk(() => nix.app(listOf, path)))),
                 })))),
               includedir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   default: [],
                   description: "Directories containing files to include in the Kerberos configuration.\n",
                   type: nix.thunk(() => nix.app(coercedTo, path, singleton, nix.thunk(() => nix.app(listOf, path)))),
                 })))),
               module: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   default: [],
                   description: "Modules to obtain Kerberos configuration from.\n",
                   type: nix.thunk(() => nix.app(coercedTo, path, singleton, nix.thunk(() => nix.app(listOf, path)))),
                 })))),
             }, nix.app(nix.sel(lib, "optionalAttrs"), enableKdcACLEntries, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 realms: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     type: nix.thunk(() => nix.app(attrsOf, realm)),
                     description: "The realm(s) to serve keys for.\n",
                   })))),
@@ -173,7 +173,7 @@ ${nix.app(indent, nix.thunk(() => nix.app(concatStringsSep, "\n", nix.thunk(() =
         return (name) => (value) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.str`${nix.app(formatToplevel, value)}
 `));
       })());
-      return { __proto__: pos$18, sectionType, type, generate };
+      return { [nix.POS]: pos$18, sectionType, type, generate };
     })();
   })(), formals$2);
 })(), formals$1);

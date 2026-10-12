@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pulseaudio = nix.arg($, "pulseaudio");
   const libdbusmenu_gtk3 = nix.arg($, "libdbusmenu-gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wf-shell",
       version: "0.10.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WayfireWM",
           repo: "wf-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayfire, alsa_lib, gtkmm3, gtk_layer_shell, pulseaudio, libdbusmenu_gtk3]),
       mesonFlags: nix.thunk(() => ["--sysconfdir /etc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/WayfireWM/wf-shell",
         description: "GTK3-based panel for Wayfire",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

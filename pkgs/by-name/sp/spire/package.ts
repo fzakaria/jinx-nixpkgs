@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const openssl = nix.arg($, "openssl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "spire",
       version: "1.15.3",
       outputs: nix.thunk(() => ["out", "agent", "server", "oidc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spiffe",
           repo: "spire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +60,11 @@ done
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, spire: nix.thunk(() => nix.attr(nixosTests, "spire")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, spire: nix.thunk(() => nix.attr(nixosTests, "spire")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SPIFFE Runtime Environment",
         homepage: "https://spiffe.io/",
         downloadPage: "https://github.com/spiffe/spire",

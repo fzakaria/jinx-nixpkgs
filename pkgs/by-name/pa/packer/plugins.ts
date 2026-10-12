@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const packages = nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
           directory: nix.path(here, "./plugins"),
         }))));
       return nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mkPackerPlugin: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extra/mk-packer-plugin.nix"), nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "mapAttrs'"), (name) => (pkg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "packer-plugin-", name)), pkg), packages));
     })());

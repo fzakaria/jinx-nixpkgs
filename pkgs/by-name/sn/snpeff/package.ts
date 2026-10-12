@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snpeff",
       version: "4.3t",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/snpeff/snpEff_v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_core.zip`),
           sha256: "0i12mv93bfv8xjwc3rs2x73d6hkvi7kgbbbx3ry984l3ly4p6nnm",
         })))),
@@ -38,7 +38,7 @@ ln -s $out/bin/snpeff $out/bin/snpEff
 ln -s $out/bin/snpsift $out/bin/snpSift
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Genetic variant annotation and effect prediction toolbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         homepage: "https://snpeff.sourceforge.net/",

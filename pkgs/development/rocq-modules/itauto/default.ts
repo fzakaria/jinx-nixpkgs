@@ -30,48 +30,48 @@ export default nix.lambda((args) => (() => {
   const dune = nix.arg($, "dune");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "itauto",
       owner: "fbesson",
       domain: "gitlab.inria.fr",
       release: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "8.20.0": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-LYKGbI3O6yw6CiTJNUGL11PT4q4o+gJK1kQgKQL0/Hk=",
         })),
         "8.19.0": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-xKWCF4dYvvlJUVGCZcR2RLCG55vlGzu2GN30MeRvVD4=",
         })),
         "8.18.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256-4mDDnKTeYrf27uRMkydQxO7j2tfgTFXOREW474d40eo=",
         })),
         "8.17.0": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256-fgdnKchNT1Hyrq14gU8KWYnlSfg3qlsSw5A4+RoA26w=",
         })),
         "8.16.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256-4zAUYGlw/pBcLPv2GroIduIlvbfi1+Vy+TdY8KLCqO4=",
         })),
         "8.15.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256:10qpv4nx1p0wm9sas47yzsg9z22dhvizszfa21yff08a8fr0igya",
         })),
         "8.14.0": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256:1k6pqhv4dwpkwg81f2rlfg40wh070ks1gy9r0ravm2zhsbxqcfc9",
         })),
         "8.13+no": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-gXoxtLcHPoyjJkt7WqvzfCMCQlh6kL2KtCGe3N6RC/A=",
         })),
       })),
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$10, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$10, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")), "8.20.0")),
@@ -91,15 +91,15 @@ export default nix.lambda((args) => (() => {
       })()),
       enableParallelBuilding: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           suite: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Reflexive SAT solver parameterised by a leaf tactic and Nelson-Oppen support",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -108,10 +108,10 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       })),
     }))), "overrideAttrs"), (o) => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(o, "version"), "dev")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(o, "version")), "8.16")))), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(coq, "ocamlPackages", "findlib"))])),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(o, "version"), "dev")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(o, "version")), "8.18")))), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         nativeBuildInputs: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(coq, "ocamlPackages")), null);
           return [

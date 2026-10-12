@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libmatchbox",
       version: "1.14",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [libice, libjpeg, libpng, libx11, libxext, libxft, pango]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.yoctoproject.org/libmatchbox/snapshot/libmatchbox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1b66jl178pkwmswf1gqcyrpy15rll1znz38n07l9b3ybga13w31d",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library of the matchbox X window manager",
         homepage: "http://matchbox-project.org/",
         license: nix.thunk(() => (() => {

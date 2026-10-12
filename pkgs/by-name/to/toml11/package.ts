@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "toml11",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ToruNiina",
           repo: "toml11",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "literal-operator-whitespace.patch",
             url: "https://patch-diff.githubusercontent.com/raw/ToruNiina/toml11/pull/285.patch",
             hash: "sha256-LZPr/cY6BZXC6/rBIAMCcqEdnhJs1AvbrPjpHF76uKg=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [doctest, nlohmann_json]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ToruNiina/toml11/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/content.en/docs/changelog/_index.md`),
         homepage: "https://github.com/ToruNiina/toml11",
         description: "TOML for Modern C++",

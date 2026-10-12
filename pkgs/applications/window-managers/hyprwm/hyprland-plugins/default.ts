@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const hyprland = nix.arg($, "hyprland");
   const mkHyprlandPlugin = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       constructDrv: nix.thunk(() => nix.sel(topLevelArgs, "hyprland", "stdenv", "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         const buildInputs = nix.argOr($_1, "buildInputs", () => []);
         const hyprland_1 = nix.argOr($_1, "hyprland", () => nix.sel(topLevelArgs, "hyprland"));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${pluginName}`),
           nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nativeBuildInputs)),
           buildInputs: nix.thunk(() => nix.concat([hyprland_1], nix.concat(nix.sel(hyprland_1, "buildInputs"), buildInputs))),
           meta: nix.thunk(() => nix.update(nix.sel(args_2, "meta"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: nix.thunk(() => nix.selOr(args_2, () => "", "meta", "description")),
             longDescription: nix.thunk(() => nix.add(nix.selOr(args_2, () => "", "meta", "longDescription"), "\n\nPlugins can be installed via a plugin entry in the Hyprland NixOS or Home Manager options.")),
             platforms: nix.thunk(() => nix.selOr(args_2, () => nix.selOr(hyprland_1, () => [], "meta", "platforms"), "meta", "platforms")),
@@ -54,48 +54,48 @@ export default nix.lambda((args) => (() => {
     }))));
   const plugins = nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         hy3: nix.thunk(() => nix.builtins.import(nix.path(here, "./hy3.nix"))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "hypr-darkwindow": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-darkwindow.nix"))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "hypr-dynamic-cursors": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-dynamic-cursors.nix"))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         hyprfocus: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprfocus.nix"))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         hyprgrass: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprgrass.nix"))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         hyprspace: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprspace.nix"))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         hyprsplit: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprsplit.nix"))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         hyprtasking: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprtasking.nix"))),
       })),
       nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprland-plugins.nix"))),
       nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         imgborders: nix.thunk(() => nix.builtins.import(nix.path(here, "./imgborders.nix"))),
       })),
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hycov: nix.thunk(() => nix.builtins.throw("hyprlandPlugins.hycov has been removed because it has been marked as broken since September 2024.")),
           hyprscroller: nix.thunk(() => nix.builtins.throw("hyprlandPlugins.hyprscroller has been removed as the upstream project is deprecated. Consider using `hyprlandPlugins.hyprscrolling`.")),
         })))),
     ])));
-  return nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (plugin) => nix.app(callPackage, plugin, nix.thunk(() => ({ __proto__: pos$14, mkHyprlandPlugin: mkHyprlandPlugin }))), plugins), { __proto__: pos$15, mkHyprlandPlugin: mkHyprlandPlugin });
+  return nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (plugin) => nix.app(callPackage, plugin, nix.thunk(() => ({ [nix.POS]: pos$14, mkHyprlandPlugin: mkHyprlandPlugin }))), plugins), { [nix.POS]: pos$15, mkHyprlandPlugin: mkHyprlandPlugin });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

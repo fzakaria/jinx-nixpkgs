@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const redis = nix.arg($, "redis");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "redis-lwt",
       version: nix.thunk(() => nix.attr(redis, "version")),
       src: nix.thunk(() => nix.attr(redis, "src")),
       propagatedBuildInputs: nix.thunk(() => [redis, lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(redis, "meta"), { __proto__: pos$1, description: "Redis client (Lwt interface)" })),
+      meta: nix.thunk(() => nix.update(nix.sel(redis, "meta"), { [nix.POS]: pos$1, description: "Redis client (Lwt interface)" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

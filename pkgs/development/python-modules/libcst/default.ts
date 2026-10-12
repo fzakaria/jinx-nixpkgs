@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Instagram",
           repo: "LibCST",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-AJm3grS+I/NXZ8ame4rmHPOxRHGO0Ofo35RtSDO2tyI=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -66,15 +66,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(libcst, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$3, doCheck: true })))),
+          [nix.POS]: pos$4,
+          pytest: nix.thunk(() => nix.app(nix.sel(libcst, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["libcst"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Concrete Syntax Tree (CST) parser and serializer library for Python",
         homepage: "https://github.com/Instagram/LibCST",
         changelog: nix.thunk(() => nix.str`https://github.com/Instagram/LibCST/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

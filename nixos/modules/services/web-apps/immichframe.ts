@@ -40,49 +40,49 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const mkEnableOption = nix.thunk(() => nix.attr(lib, "mkEnableOption"));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         immichframe: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkEnableOption, "ImmichFrame")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "immichframe", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 3000n,
               description: "The port that ImmichFrame will listen on.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     Accounts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$6,
+                              [nix.POS]: pos$6,
                               freeformType: nix.thunk(() => nix.sel(format, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$5,
+                                [nix.POS]: pos$5,
                                 ImmichServerUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$2,
+                                    [nix.POS]: pos$2,
                                     type: nix.thunk(() => nix.sel(types, "str")),
                                     example: "http://photos.example.com",
                                     description: "The URL of your Immich server.",
                                   })))),
                                 ApiKey: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$3,
+                                    [nix.POS]: pos$3,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                                     default: null,
                                     description: "API key to talk to the Immich server.\nWarning: it will be world-readable in /nix/store.\nConsider using {option}`ApiKeyFile` instead.\n\nSee\n<https://immichframe.online/docs/getting-started/configuration#api-key-permissions>\nfor details on what permissions this key needs.\n",
                                   })))),
                                 ApiKeyFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$4,
+                                    [nix.POS]: pos$4,
                                     type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "externalPath")))),
                                     default: null,
                                     description: "File containing an API key to talk to the Immich server.\n\nSee\n<https://immichframe.online/docs/getting-started/configuration#api-key-permissions>\nfor details on what permissions this key needs.\n",
@@ -100,40 +100,40 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (account) => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(nix.sel(account, "ApiKey"), null)), nix.thunk(() => nix.eq(nix.sel(account, "ApiKeyFile"), null)))),
             message: nix.thunk(() => nix.str`Exactly one of {option}\`services.immichframe.settings.Accounts[${nix.builtins.toString(i)}].ApiKey\` and {option}\`services.immichframe.settings.Accounts[${nix.builtins.toString(i)}].ApiKeyFile\` must be specified`),
           }), nix.thunk(() => nix.sel(cfg, "settings", "Accounts")))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             immichframe: nix.thunk(() => (() => {
               const accountsWithApiKeyFiles = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (account) => !nix.eq(nix.sel(account, "ApiKeyFile"), null), nix.thunk(() => nix.sel(cfg, "settings", "Accounts"))));
               const apiKeyFileToId = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (index) => (account) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(account, "ApiKeyFile")), nix.thunk(() => nix.str`api-key-${nix.builtins.toString(index)}`)), accountsWithApiKeyFiles))));
               const settingsPatchWithCredentialPaths = nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 Accounts: nix.thunk(() => nix.builtins.map((account) => nix.update(account, (nix.asBool(!nix.eq(nix.sel(account, "ApiKeyFile"), null)) ? {
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     ApiKeyFile: nix.thunk(() => nix.str`/run/credentials/${nix.sel(config, "systemd", "services", "immichframe", "name")}/${nix.sel(apiKeyFileToId, nix.key(nix.sel(account, "ApiKeyFile")))}`),
                   } : {})), nix.thunk(() => nix.sel(cfg, "settings", "Accounts")))),
               }));
               const settingsWithFixedSecretPaths = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "settings")), settingsPatchWithCredentialPaths));
               return {
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Display your photos from Immich as a digital photo frame",
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   IMMICHFRAME_CONFIG_PATH: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "Config", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ln -s ${nix.app(nix.sel(format, "generate"), "Settings.json", settingsWithFixedSecretPaths)} $out/Settings.json
 `))),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --urls=http://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                   LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrsStringSep"), ":", (apiKeyFile) => (id) => nix.str`${id}:${apiKeyFile}`, apiKeyFileToId)),
                   DynamicUser: true,
@@ -171,7 +171,7 @@ ln -s ${nix.app(nix.sel(format, "generate"), "Settings.json", settingsWithFixedS
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jfly"))];

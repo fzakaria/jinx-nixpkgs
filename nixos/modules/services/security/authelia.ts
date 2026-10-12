@@ -69,70 +69,70 @@ export default nix.lambda((args) => (() => {
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         options: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Authelia instance")),
           name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: name,
               description: "Name is used as a suffix for the service name, user, and group.\nBy default it takes the value you use for `<instance>` in:\n{option}`services.authelia.instances.<instance>`\n\nWhen set to the empty string `\"\"`, the service name, user, and group\nwill be just `authelia` without a suffix.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "authelia", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if name == \"\" then \"authelia\" else \"authelia-${name}\"\n")),
               description: "The name of the user for this authelia instance.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if name == \"\" then \"authelia\" else \"authelia-${name}\"\n")),
               description: "The name of the group for this authelia instance.",
             })))),
           secrets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "It is recommended you keep your secrets separate from the configuration.\nIt's especially important to keep the raw secrets out of your nix configuration,\nas the values will be preserved in your nix store.\nThis attribute allows you to configure the location of secret files to be loaded at runtime.\n\n<https://www.authelia.com/configuration/methods/secrets/>\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     manual: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         default: false,
                         example: true,
                         description: "Configuring authelia's secret files via the secrets attribute set\nis intended to be convenient and help catch cases where values are required\nto run at all.\nIf a user wants to set these values themselves and bypass the validation they can set this value to true.\n",
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                       })))),
                     jwtSecretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "externalPath")))),
                         default: null,
                         description: "Path to your JWT secret used during identity verificaton.\n",
                       })))),
                     oidcIssuerPrivateKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "externalPath")))),
                         default: null,
                         description: "Path to your private key file used to encrypt OIDC JWTs.\n",
                       })))),
                     oidcHmacSecretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "externalPath")))),
                         default: null,
                         description: "Path to your HMAC secret used to sign OIDC JWTs.\n",
                       })))),
                     sessionSecretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "externalPath")))),
                         default: null,
                         description: "Path to your session secret. Only used when redis is used as session storage.\n",
                       })))),
                     storageEncryptionKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "externalPath")))),
                         default: null,
                         description: "Path to your storage encryption key.\n",
@@ -141,39 +141,39 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           environmentVariables: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               description: "Additional environment variables to provide to authelia.\nIf you are providing secrets please consider the options under {option}`services.authelia.<instance>.secrets`\nor make sure you use the `_FILE` suffix.\nIf you provide the raw secret rather than the location of a secret file that secret will be preserved in the nix store.\nFor more details: <https://www.authelia.com/configuration/methods/secrets/>\n",
               default: nix.thunk(() => ({})),
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               description: "Your Authelia config.yml as a Nix attribute set.\nThere are several values that are defined and documented in nix such as `default_2fa_method`,\nbut additional items can also be included.\n\n<https://github.com/authelia/authelia/blob/master/config.template.yml>\n",
               default: nix.thunk(() => ({})),
               example: "{\n  theme = \"light\";\n  default_2fa_method = \"totp\";\n  log.level = \"debug\";\n  server.disable_healthcheck = true;\n}\n",
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     theme: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["light", "dark", "grey", "auto"]))),
                         default: "light",
                         example: "dark",
                         description: "The theme to display.",
                       })))),
                     default_2fa_method: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["", "totp", "webauthn", "mobile_push"]))),
                         default: "",
                         example: "webauthn",
                         description: "Default 2FA method for new users and fallback for preferred but disabled methods.\n",
                       })))),
                     server: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                           default: "tcp://:9091/",
                           example: "unix:///var/run/authelia.sock?path=authelia&umask=0117",
@@ -181,30 +181,30 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     log: nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       level: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["trace", "debug", "info", "warn", "error"]))),
                           default: "debug",
                           example: "info",
                           description: "Level of verbosity for logs.",
                         })))),
                       format: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["json", "text"]))),
                           default: "json",
                           example: "text",
                           description: "Format the logs are written as.",
                         })))),
                       file_path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$20,
+                          [nix.POS]: pos$20,
                           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "externalPath")))),
                           default: null,
                           example: "/var/log/authelia/authelia.log",
                           description: "File path where the logs will be written. If not set logs are written to stdout.",
                         })))),
                       keep_stdout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                           default: false,
                           example: true,
@@ -212,18 +212,18 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     telemetry: nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       metrics: nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         enabled: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$23,
+                            [nix.POS]: pos$23,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: false,
                             example: true,
                             description: "Enable Metrics.",
                           })))),
                         address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             default: "tcp://127.0.0.1:9959",
                             example: "tcp://0.0.0.0:8888",
@@ -235,7 +235,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           settingsFiles: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               example: nix.thunk(() => [
@@ -247,7 +247,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         config: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(autheliaName, nix.thunk(() => nix.sel(config_1, "name")))))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(autheliaName, nix.thunk(() => nix.sel(config_1, "name")))))),
         })),
@@ -256,23 +256,23 @@ export default nix.lambda((args) => (() => {
   })());
   const removeAttrByPath = (set) => (pathList) => nix.app(nix.sel(lib, "updateManyAttrsByPath"), nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         path: nix.thunk(() => nix.app(nix.sel(lib, "init"), pathList)),
         update: (old) => nix.app(nix.sel(lib, "removeAttrs"), old, nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "last"), pathList))])),
       })),
     ]), set);
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       services: nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         authelia: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           instances: nix.thunk(() => (() => {
             const w_1 = nix.withScope(lib, null);
             return nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), autheliaOpts)))),
                 description: "Multi-domain protection currently requires multiple instances of Authelia.\nIf you don't require multiple instances of Authelia you can define just the one.\n\n<https://www.authelia.com/roadmap/active/multi-domain-protection/>\n",
@@ -294,7 +294,7 @@ export default nix.lambda((args) => (() => {
               oidcJwksConfigFile,
             ]))))}`);
         const envSecretsMap = nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE: "jwtSecretFile",
           AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: "storageEncryptionKeyFile",
           AUTHELIA_SESSION_SECRET_FILE: "sessionSecretFile",
@@ -302,17 +302,17 @@ export default nix.lambda((args) => (() => {
         }));
         const nonNullEnvSecretsMap = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(nix.sel(instance, "secrets", nix.key(nix.force(v))), null), envSecretsMap));
         return {
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           description: "Authelia authentication and authorization server",
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           after: nix.thunk(() => ["network-online.target"]),
           wants: nix.thunk(() => ["network-online.target"]),
           environment: nix.thunk(() => nix.update({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             X_AUTHELIA_CONFIG_FILTERS: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(oidcJwksConfigFile, [])), "template")),
           }, nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.str`%d/${v}`, nonNullEnvSecretsMap), nix.sel(instance, "environmentVariables")))),
           serviceConfig: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             User: nix.thunk(() => nix.sel(instance, "user")),
             Group: nix.thunk(() => nix.sel(instance, "group")),
             ExecStartPre: nix.thunk(() => nix.str`${execCommand} ${configArg} validate-config`),
@@ -360,13 +360,13 @@ export default nix.lambda((args) => (() => {
         };
       })();
       const mkInstanceUsersConfig = (instance) => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         groups: nix.thunk(() => nix.attrsDyn({}, [
           [nix.app(autheliaName, nix.thunk(() => nix.sel(instance, "name"))), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(instance, "group"), nix.app(autheliaName, nix.thunk(() => nix.sel(instance, "name"))))), nix.thunk(() => ({}))))],
         ])),
         users: nix.thunk(() => nix.attrsDyn({}, [
           [nix.app(autheliaName, nix.thunk(() => nix.sel(instance, "name"))), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(instance, "user"), nix.app(autheliaName, nix.thunk(() => nix.sel(instance, "name"))))), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(instance, "group")),
             }))))],
@@ -374,10 +374,10 @@ export default nix.lambda((args) => (() => {
       });
       const enabledInstances = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (instance) => nix.sel(instance, "enable"), nix.thunk(() => nix.sel(cfg, "instances"))));
       return {
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), enabledInstances, (name) => (instance) => [
               nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 assertion: nix.thunk(() => (nix.asBool(nix.sel(instance, "secrets", "manual")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(instance, "secrets", "jwtSecretFile"), null)) && nix.asBool(!nix.eq(nix.sel(instance, "secrets", "storageEncryptionKeyFile"), null)))))),
                 message: nix.thunk(() => nix.str`Authelia requires a JWT Secret and a Storage Encryption Key to work.
 Either set them like so:
@@ -390,7 +390,7 @@ Do not include raw secrets in nix settings.
               })),
             ])))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => nix.builtins.map((instance) => nix.attrsDyn({}, [
                 [nix.app(autheliaName, nix.thunk(() => nix.sel(instance, "name"))), nix.thunk(() => nix.app(mkInstanceServiceConfig, instance))],
               ]), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), enabledInstances)))))),
@@ -399,7 +399,7 @@ Do not include raw secrets in nix settings.
       };
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

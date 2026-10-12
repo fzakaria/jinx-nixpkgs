@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paperlike-go",
       version: "0-unstable-2021-03-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leoluk",
           repo: "paperlike-go",
           rev: "bd658d88ea9a3b21e1b301b96253abab7cf56d79",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-OfTeJd3VS/WoUpyPY7XfQZWLrvS+vqPPgeL2Hd0HtgI=",
       subPackages: nix.thunk(() => ["cmd/paperlike-cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux Go library and CLI utility to control a Dasung Paperlike display via I2C DDC",
         homepage: "https://github.com/leoluk/paperlike-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

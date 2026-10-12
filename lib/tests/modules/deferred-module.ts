@@ -40,26 +40,26 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(types, "str"));
   const enum$ = nix.thunk(() => nix.attr(types, "enum"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           _file: "generic.nix",
           options: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nodes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(lazyAttrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       imports: nix.thunk(() => [nix.thunk(() => nix.sel(config, "default"))]),
                     })))))),
                 default: nix.thunk(() => ({})),
               })))),
             default: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: deferredModule,
                 default: nix.thunk(() => ({})),
                 description: "Module that is included in all nodes.\n",
@@ -68,57 +68,57 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         _file: "default-1.nix",
         default: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             options: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               settingsDict: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.app(lazyAttrsOf, str)),
                   default: nix.thunk(() => ({})),
                 })))),
-              bottom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$7, type: nix.thunk(() => nix.app(enum$, [])) })))),
+              bottom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.app(enum$, [])) })))),
             })),
           };
         })(), formals$3),
       })),
       nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         _file: "default-a-is-b.nix",
         default: nix.path(here, "./define-settingsDict-a-is-b.nix"),
       })),
       nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         _file: "nodes-foo.nix",
         nodes: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           foo: nix.thunk(() => ({
-            __proto__: pos$13,
-            settingsDict: nix.thunk(() => ({ __proto__: pos$12, b: "beta" })),
+            [nix.POS]: pos$13,
+            settingsDict: nix.thunk(() => ({ [nix.POS]: pos$12, b: "beta" })),
           })),
         })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         _file: "the-file-that-contains-the-bad-config.nix",
-        default: nix.thunk(() => ({ __proto__: pos$16, bottom: "bogus" })),
+        default: nix.thunk(() => ({ [nix.POS]: pos$16, bottom: "bogus" })),
       })),
       nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         _file: "nodes-foo-c-is-a.nix",
         nodes: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           foo: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$4);
             const config = nix.arg($_1, "config");
             return {
-              __proto__: pos$19,
-              settingsDict: nix.thunk(() => ({ __proto__: pos$18, c: nix.thunk(() => nix.sel(config, "settingsDict", "a")) })),
+              [nix.POS]: pos$19,
+              settingsDict: nix.thunk(() => ({ [nix.POS]: pos$18, c: nix.thunk(() => nix.sel(config, "settingsDict", "a")) })),
             };
           })(), formals$4),
         })),

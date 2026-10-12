@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.arg($, "docutils");
   const isQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sddm-unwrapped",
       version: "0.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sddm",
           repo: "sddm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./sddm-ignore-config-mtime.patch"),
         nix.path(here, "./sddm-default-session.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "sddm-fix-cmake-4.patch",
             url: "https://github.com/sddm/sddm/commit/228778c2b4b7e26db1e1d69fe484ed75c5791c3a.patch",
             hash: "sha256-Okt9LeZBhTDhP7NKBexWAZhkK6N6j9dFkAEgpidSnzE=",
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# remove empty scripts\nrm \"$out/share/sddm/scripts/Xsetup\" \"$out/share/sddm/scripts/Xstop\"\nfor f in $out/share/sddm/themes/**/theme.conf ; do\n  substituteInPlace $f \\\n    --replace 'background=' \"background=$(dirname $f)/\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, sddm: nix.thunk(() => nix.attr(nixosTests, "sddm")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, sddm: nix.thunk(() => nix.attr(nixosTests, "sddm")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "QML based X11 display manager",
         homepage: "https://github.com/sddm/sddm",
         maintainers: nix.thunk(() => (() => {

@@ -33,65 +33,65 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "niri"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         niri: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Niri, a scrollable-tiling Wayland compositor")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "niri", nix.thunk(() => ({})))),
-          useNautilus: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Nautilus as file-chooser for xdg-desktop-portal-gnome"), { __proto__: pos$1, default: true })),
+          useNautilus: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Nautilus as file-chooser for xdg-desktop-portal-gnome"), { [nix.POS]: pos$1, default: true })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             environment: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               dbus: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 packages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "useNautilus")), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nautilus"))]))),
               })),
               displayManager: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 sessionPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "niri")),
               })),
               gnome: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 "gnome-keyring": nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               user: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 services: nix.thunk(() => ({
-                  __proto__: pos$12,
-                  niri: nix.thunk(() => ({ __proto__: pos$11, restartIfChanged: false, enableDefaultPath: false })),
+                  [nix.POS]: pos$12,
+                  niri: nix.thunk(() => ({ [nix.POS]: pos$11, restartIfChanged: false, enableDefaultPath: false })),
                 })),
               })),
             })),
             xdg: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               portal: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 config: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   niri: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     default: nix.thunk(() => ["gnome", "gtk"]),
                     "org.freedesktop.impl.portal.Access": "gtk",
                     "org.freedesktop.impl.portal.FileChooser": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "useNautilus"))), "gtk")),
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wayland-session.nix")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               lib: lib,
               pkgs: pkgs,
               enableWlrPortal: false,
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "exiftags";
       const version = "1.01";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://johnst.org/sw/exiftags/exiftags-${version}.tar.gz`),
           sha256: "194ifl6hybx2a5x8jhlh9i56k3qfc6p2l72z0ii1b7v0bzg48myr",
         }))));
       const patchPhase = "sed -i -e s@/usr/local@$out@ Makefile\n\nsubstituteInPlace makers.h \\\n  --replace-fail \"void (*propfun)();\" \"void (*propfun)(struct exifprop *, struct exiftags *);\" \\\n  --replace-fail \"struct ifd *(*ifdfun)();\" \"struct ifd *(*ifdfun)(u_int32_t, struct tiffmeta *);\"\nsubstituteInPlace canon.c \\\n  --replace-fail \"int (*valfun)()\" \"int (*valfun)(struct exifprop *, struct exifprop *, unsigned char *, struct exiftags *)\"\n";
       const preInstall = "mkdir -p $out/bin $out/man/man1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://johnst.org/sw/exiftags/",
         description: "Displays EXIF data from JPEG files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         knownVulnerabilities: nix.thunk(() => ["CVE-2023-50671", "CVE-2024-42851"]),
       }));
-      return { __proto__: pos$3, pname, version, src, patchPhase, preInstall, meta };
+      return { [nix.POS]: pos$3, pname, version, src, patchPhase, preInstall, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

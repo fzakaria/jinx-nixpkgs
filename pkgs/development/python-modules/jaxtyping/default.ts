@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const tensorflow = nix.arg($, "tensorflow");
   const jaxtyping = nix.arg($, "jaxtyping");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "jaxtyping",
       version: "0.3.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "patrick-kidger",
           repo: "jaxtyping",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([cloudpickle, equinox, ipython, jax, jaxlib, pytestCheckHook, torch], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [tensorflow])))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(jaxtyping, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: false, catchConflicts: false })))),
+          [nix.POS]: pos$3,
+          check: nix.thunk(() => nix.app(nix.sel(jaxtyping, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: false, catchConflicts: false })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Type annotations and runtime checking for JAX arrays and PyTrees",
         homepage: "https://github.com/patrick-kidger/jaxtyping",
         changelog: nix.thunk(() => nix.str`https://github.com/patrick-kidger/jaxtyping/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

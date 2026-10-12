@@ -32,39 +32,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const key = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "key", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs, "openssl")}/bin/openssl rand 32 > $out`)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     name: "spiped",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             caddy: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 apps: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   http: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     servers: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       default: nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         listen: nix.thunk(() => [":80"]),
                         routes: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             handle: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$2,
+                                [nix.POS]: pos$2,
                                 body: "hello world",
                                 handler: "static_response",
                                 status_code: 200n,
@@ -79,19 +79,19 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             spiped: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               config: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 server: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   source: "localhost:8080",
                   target: "localhost:80",
                   keyfile: key,
                   decrypt: true,
                 })),
                 client: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   source: "localhost:8081",
                   target: "localhost:8080",
                   keyfile: key,
@@ -101,16 +101,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             services: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "spiped@server": nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 overrideStrategy: "asDropin",
               })),
               "spiped@client": nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 overrideStrategy: "asDropin",
               })),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "otfcc";
       const version = "0.10.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "caryll",
           repo: "otfcc",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/bin\ncp bin/release-*/otfcc* $out/bin/\n";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Optimized OpenType builder and inspector",
         homepage: "https://github.com/caryll/otfcc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

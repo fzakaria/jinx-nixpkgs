@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const typeguard = nix.arg($, "typeguard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "padne",
       version: "0.3",
       pyproject: true,
       dontUseCmakeConfigure: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "atx",
           repo: "padne",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,12 +77,12 @@ export default nix.lambda((args) => (() => {
       preCheck: "# remove src module, so tests use the installed module, instead\nmv padne _padne\n",
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_basic_rectangle_distance_map"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pygerber: nix.thunk(() => nix.app(nix.sel(pygerber, "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             version: "2.4.3-unstable-2026-03-20",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "Argmaster",
                 repo: "pygerber",
                 rev: "5446d44d424897e1b1a68c48c160ed9b4e828f44",
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "KiCad-focused Power Delivery Network Simulator",
         longDescription: "Padne is a KiCad-native power delivery network analysis tool.\n\nIt uses the finite element method in order to simulate the voltage drop\ninduced by DC currents on printed circuit boards.\n\nThis allows easy identification of resistive bottlenecks, design of high\ncurrent distribution networks or implementing complex heating elements.\n",
         homepage: "https://github.com/atx/padne",

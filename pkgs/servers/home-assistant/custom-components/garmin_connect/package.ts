@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "garmin_connect";
       const version = "3.0.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cyberjunky",
           repo: "home-assistant-garmin_connect",
           tag: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [ha_garmin]);
       const ignoreVersionRequirement = nix.thunk(() => ["ha-garmin"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/cyberjunky/home-assistant-garmin_connect/releases/tag/${nix.sel(src, "tag")}`),
         description: "Garmin Connect integration allows you to expose data from Garmin Connect to Home Assistant",
         homepage: "https://github.com/cyberjunky/home-assistant-garmin_connect",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

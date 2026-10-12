@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "51682acefda6f29eaaf9f37815edbfdd48ef0e9f1509419eceafe7b440eddc6e",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [spidev]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for BME280 sensor through spidev",
         mainProgram: "bme280spi",
         homepage: "https://github.com/Kuzj/bme280spi",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

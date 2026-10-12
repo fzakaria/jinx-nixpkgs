@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const unzip = nix.arg($, "unzip");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/logisim-evolution/logisim-evolution/raw/9e0afa3cd6a8bfa75dab61830822cde83c70bb4b/artwork/logisim-evolution-icon.svg",
       hash: "sha256-DNRimhNFt6jLdjqv7o2cNz38K6XnevxD0rGymym3xBs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "logisim-evolution",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/logisim-evolution/logisim-evolution/releases/download/v${nix.sel(finalAttrs, "version")}/logisim-evolution-${nix.sel(finalAttrs, "version")}-all.jar`),
           hash: "sha256-/mOGoyF6WRvMMRpO2knh9Do4m0md09D29A80T8hfJXc=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, copyDesktopItems, unzip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [desktopToDarwinBundle])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "logisim-evolution",
             desktopName: "Logisim-evolution",
             exec: "logisim-evolution",
@@ -56,7 +56,7 @@ install -Dm444 ${icon} $out/share/icons/hicolor/scalable/apps/logisim-evolution.
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/logisim-evolution/logisim-evolution/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/logisim-evolution/logisim-evolution",
         description: "Digital logic designer and simulator",

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const stb = nix.arg($, "stb");
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyperhdr",
       version: "21.0.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awawa-dev",
           repo: "HyperHDR",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         xz,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Highly optimized open source ambient lighting implementation based on modern digital video and audio stream analysis for Windows, macOS and Linux (x86 and Raspberry Pi / ARM",
         homepage: "https://github.com/awawa-dev/HyperHDR",
         changelog: nix.thunk(() => nix.str`https://github.com/awawa-dev/HyperHDR/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

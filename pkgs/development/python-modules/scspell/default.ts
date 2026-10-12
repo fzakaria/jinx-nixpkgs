@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "scspell",
       version: "2.3.0-unstable-2025-04-06",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "myint",
           repo: "scspell",
           rev: "df550351f255c572c1a74852d233c83bbfbd49fb",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preVersionCheck: "export version=2.3",
       pythonImportsCheck: nix.thunk(() => ["scspell"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Spell checker for source code",
         homepage: "https://github.com/myint/scspell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

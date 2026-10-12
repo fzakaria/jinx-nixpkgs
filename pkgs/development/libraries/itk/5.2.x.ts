@@ -8,6 +8,6 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gen
     const version = "5.2.1";
     const tag = nix.thunk(() => nix.str`v${version}`);
     const sourceSha256 = "sha256-KaVe9FMGm4ZVMpwAT12fA67T0qZS3ZueiI8z85+xSwE=";
-    return { __proto__: pos$1, version, tag, sourceSha256 };
+    return { [nix.POS]: pos$1, version, tag, sourceSha256 };
   })())));
 //# sourceMappingURL=5.2.x.ts.map

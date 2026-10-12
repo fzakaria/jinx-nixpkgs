@@ -39,7 +39,7 @@ if (( "\${NIX_DEBUG:-0}" >= 1 )); then
 fi
 exec ${microhs}/bin/mhs "\${args[@]}"
 `)));
-    return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(microhs, "name")}-wrapped`), nix.thunk(() => ({ __proto__: pos$1, passthru: nix.thunk(() => nix.attr(microhs, "passthru")) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+    return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(microhs, "name")}-wrapped`), nix.thunk(() => ({ [nix.POS]: pos$1, passthru: nix.thunk(() => nix.attr(microhs, "passthru")) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 cp -rs ${microhs}/bin/* $out/bin/
 rm $out/bin/mhs 2>/dev/null || true
 cp ${wrapper} $out/bin/mhs

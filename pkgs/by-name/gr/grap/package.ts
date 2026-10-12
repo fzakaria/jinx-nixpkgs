@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeShellWrapper = nix.arg($, "makeShellWrapper");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "grap",
       version: "1.3.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "QuoSecGmbH",
           repo: "grap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ substituteInPlace pygrap.py \\
   --replace-fail "imp." "importlib."
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Define and match graph patterns within binaries",
         longDescription: "grap takes patterns and binary files, uses a Casptone-based disassembler to obtain the control flow graphs from the binaries, then matches the patterns against them.\n\nPatterns are user-defined graphs with instruction conditions (\"opcode is xor and arg1 is eax\") and repetition conditions (3 identical instructions, basic blocks...).\n",
         homepage: "https://github.com/QuoSecGmbH/grap/",

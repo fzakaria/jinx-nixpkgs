@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gotify-server",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gotify",
           repo: "server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       buildInputs: nix.thunk(() => [sqlite]),
       ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         })))),
       preConfigure: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "ui")} ui/build
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nixos: nix.thunk(() => nix.sel(nixosTests, "gotify-server")),
         })),
       })),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "-X main.BuildDate=unknown",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple server for sending and receiving messages in real-time per WebSocket",
         homepage: "https://gotify.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

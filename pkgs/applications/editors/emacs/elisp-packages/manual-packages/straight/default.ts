@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const lib = nix.arg($, "lib");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "straight",
       version: "0-unstable-2025-11-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "radian-software",
           repo: "straight.el",
           rev: "4b6289f42a4da0c1bae694ba918b43c72daf0330",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [git]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/radian-software/straight.el",
         description: "Next-generation, purely functional package manager for the Emacs hacker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

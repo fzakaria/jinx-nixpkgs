@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hdos",
       version: "8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.hdos.dev/launcher/v${nix.sel(finalAttrs, "version")}/hdos-launcher.jar`),
           hash: "sha256-00ddeR+ov6Tjrn+pscXoao4C0ek/iP9Hdlgq946pL8A=",
         })))),
       dontUnpack: true,
       desktop: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "HDOS",
           type: "Application",
           exec: "hdos",
           icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://raw.githubusercontent.com/flathub/dev.hdos.HDOS/8e17cbecb06548fde2c023032e89ddf30befeabc/dev.hdos.HDOS.png",
               hash: "sha256-pqLNJ0g7GCPotgEPfw2ZZOqapaCRAsJxB09INp6Y6gM=",
             })))),
@@ -53,9 +53,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), openjdk11)} $out/bin/hdos \\
 runHook postInstall
 `),
       desktopItems: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "desktop"))]),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High Detail Old School Runescape Client",
         homepage: "https://hdos.dev",
         changelog: "https://hdos.dev/changelog",

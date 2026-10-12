@@ -47,29 +47,29 @@ export default nix.lambda((args) => (() => {
   const typeOf = nix.thunk(() => nix.attr(nix.builtins, "typeOf"));
   const hashString = nix.thunk(() => nix.attr(nix.builtins, "hashString"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "geoip-updater"]), "services.geoip-updater has been removed, use services.geoipupdate instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         geoipupdate: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "periodic downloading of GeoIP databases using geoipupdate\n")),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "weekly",
               description: "Update the GeoIP databases at this time / interval.\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  AccountID = 200001;\n  DatabaseDirectory = \"/var/lib/GeoIP\";\n  LicenseKey = { _secret = \"/run/keys/maxmind_license_key\"; };\n  Proxy = \"10.0.0.10:8888\";\n  ProxyUserPassword = { _secret = \"/run/keys/proxy_pass\"; };\n}\n")),
               description: "geoipupdate configuration options. See\n<https://github.com/maxmind/geoipupdate/blob/main/doc/GeoIP.conf.md>\nfor a full list of available options.\n\nSettings containing secret data should be set to an\nattribute set containing the attribute\n`_secret` - a string pointing to a file\ncontaining the value the option should be set to. See the\nexample to get a better picture of this: in the resulting\n{file}`GeoIP.conf` file, the\n`ProxyUserPassword` key will be set to the\ncontents of the\n{file}`/run/keys/proxy_pass` file.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     const type = nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -80,14 +80,14 @@ export default nix.lambda((args) => (() => {
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), type, nix.thunk(() => nix.app(nix.lookup(w, "listOf"), type)))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     AccountID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         description: "Your MaxMind account ID.\n",
                       })))),
                     EditionIDs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "str")), nix.thunk(() => nix.lookup(w_1, "int")))));
@@ -96,16 +96,16 @@ export default nix.lambda((args) => (() => {
                         description: "List of database edition IDs. This includes new string\nIDs like `GeoIP2-City` and old\nnumeric IDs like `106`.\n",
                       })))),
                     LicenseKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "path")), nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.lookup(w_1, "path")))));
                         })()),
                         description: "A file containing the MaxMind license key.\n\nAlways handled as a secret whether the value is\nwrapped in a `{ _secret = ...; }`\nattrset or not (refer to [](#opt-services.geoipupdate.settings) for\ndetails).\n",
-                        apply: (x) => (nix.asBool(nix.app(isAttrs, x)) ? nix.force(x) : { __proto__: pos$4, _secret: x }),
+                        apply: (x) => (nix.asBool(nix.app(isAttrs, x)) ? nix.force(x) : { [nix.POS]: pos$4, _secret: x }),
                       })))),
                     DatabaseDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/GeoIP",
                         example: "/run/GeoIP",
@@ -118,21 +118,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           geoipupdate: nix.thunk(() => ({
-            __proto__: pos$14,
-            settings: nix.thunk(() => ({ __proto__: pos$13, LockFile: "/run/geoipupdate/.lock" })),
+            [nix.POS]: pos$14,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$13, LockFile: "/run/geoipupdate/.lock" })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "geoipupdate-create-db-dir": nix.thunk(() => ({
-              __proto__: pos$17,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$16, Type: "oneshot" })),
+              [nix.POS]: pos$17,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`set -o errexit -o pipefail -o nounset -o errtrace
 shopt -s inherit_errexit
 
@@ -141,7 +141,7 @@ chmod 0755 ${nix.sel(cfg, "settings", "DatabaseDirectory")}
 `),
             })),
             geoipupdate: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "GeoIP Updater",
               requires: nix.thunk(() => ["geoipupdate-create-db-dir.service"]),
               after: nix.thunk(() => [
@@ -153,14 +153,14 @@ chmod 0755 ${nix.sel(cfg, "settings", "DatabaseDirectory")}
               wants: nix.thunk(() => ["network-online.target"]),
               startAt: nix.thunk(() => nix.sel(cfg, "interval")),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 ExecStartPre: nix.thunk(() => (() => {
                   const isSecret = (v) => (nix.asBool((nix.asBool(nix.app(isAttrs, v)) && nix.asBool(nix.has(v, "_secret")))) && nix.asBool(nix.app(isString, nix.thunk(() => nix.sel(v, "_secret")))));
                   const geoipupdateKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "generators", "mkKeyValueDefault")), " ", nix.thunk(() => (() => {
                           const mkValueString = (v) => (nix.asBool(nix.app(isInt, v)) ? nix.builtins.toString(v) : (nix.asBool(nix.app(isString, v)) ? nix.force(v) : (nix.asBool(nix.eq(true, v)) ? "1" : (nix.asBool(nix.eq(false, v)) ? "0" : (nix.asBool(nix.app(isList, v)) ? nix.app(nix.sel(lib, "concatMapStringsSep"), " ", mkValueString, v) : (nix.asBool(nix.app(isSecret, v)) ? nix.app(hashString, "sha256", nix.thunk(() => nix.sel(v, "_secret"))) : nix.builtins.throw(nix.thunk(() => nix.str`unsupported type ${nix.app(typeOf, v)}: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), v)}`))))))));
-                          return { __proto__: pos$18, mkValueString };
+                          return { [nix.POS]: pos$18, mkValueString };
                         })()))),
                     }))));
                   const secretPaths = nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "_secret", nix.thunk(() => nix.app(nix.sel(lib, "collect"), isSecret, nix.thunk(() => nix.sel(cfg, "settings"))))));
@@ -212,21 +212,21 @@ ${secretReplacements}
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "geoipupdate-initial-run": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               wantedBy: nix.thunk(() => ["timers.target"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 ConditionPathExists: nix.thunk(() => nix.str`!${nix.sel(cfg, "settings", "DatabaseDirectory")}`),
               })),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$24, Unit: "geoipupdate.service", OnActiveSec: 0n })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$24, Unit: "geoipupdate.service", OnActiveSec: 0n })),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "talyz"))]),
     })),
   };

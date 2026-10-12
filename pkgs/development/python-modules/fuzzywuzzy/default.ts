@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const levenshtein = nix.arg($, "levenshtein");
   const pycodestyle = nix.arg($, "pycodestyle");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fuzzywuzzy",
       version: "0.18.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "fuzzywuzzy",
           sha256: "1s00zn75y2dkxgnbw8kl8dw4p1mc77cv78fwfa4yb0274s96w0a5",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pycodestyle]),
       pythonImportsCheck: nix.thunk(() => ["fuzzywuzzy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fuzzy string matching for Python",
         homepage: "https://github.com/seatgeek/fuzzywuzzy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

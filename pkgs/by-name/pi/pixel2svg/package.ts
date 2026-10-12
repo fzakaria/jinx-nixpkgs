@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pixel2svg",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://static.florian-berger.de/pixel2svg-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-aqcTTmZKcdRdVd8GGz5cuaQ4gjPapVJNtiiZu22TZgQ=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://florian-berger.de/en/software/pixel2svg/",
         description: "Converts pixel art to SVG - pixel by pixel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

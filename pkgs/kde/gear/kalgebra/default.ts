@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const readline = nix.arg($, "readline");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kalgebra",
       extraBuildInputs: nix.thunk(() => [qtsvg, qtwebengine, ncurses, readline]),
     })));

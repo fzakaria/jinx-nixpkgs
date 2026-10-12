@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "code-server",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
-            "code-server": nix.thunk(() => ({ __proto__: pos$1, enable: true, auth: "none" })),
+            [nix.POS]: pos$2,
+            "code-server": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, auth: "none" })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"code-server.service\")\nmachine.wait_for_open_port(4444)\nmachine.succeed(\"curl -k --fail http://localhost:4444\", timeout=10)\n",
-    meta: nix.thunk(() => ({ __proto__: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=code-server.ts.map

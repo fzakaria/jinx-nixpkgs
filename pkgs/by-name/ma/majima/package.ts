@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "majima",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~wq",
           repo: "majima",
           rev: "630427fcd158ccbaafe8bc3f7368fa8577b03548",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-I0txA41rmTZ3AHllRVsJzmZXbrm5+GSdd08EatxKCzk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate random usernames quickly and in various formats",
         homepage: "https://majima.matte.fyi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

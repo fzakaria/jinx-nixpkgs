@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2sndfile",
       propagatedBuildInputs: nix.thunk(() => [flac, lame, libmpg123, libogg, libopus, libsndfile, libvorbis]),
     })));

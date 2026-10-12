@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const ocaml_ng = nix.arg($, "ocaml-ng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libbap",
       version: "master-2022-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BinaryAnalysisPlatform",
           repo: "bap-bindings",
           rev: "4d324dd794f8e022e8eddecbb2ae2e7b28173947",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preInstall: "mkdir -p $out/lib\nmkdir -p $out/include\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/binaryanalysisplatform/bap-bindings",
         description: "C library for interacting with BAP",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "maurer"))]),

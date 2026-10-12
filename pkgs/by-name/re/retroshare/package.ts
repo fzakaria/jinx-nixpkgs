@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "retroshare";
       const version = "0.6.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RetroShare",
           repo: "RetroShare",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./no-submodules.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/RetroShare/libretroshare/commit/f1b89c4f87d77714571b4135c301bf0429096a20.patch?full_index=1",
             hash: "sha256-UiZMsUFaOZTLj/dx1rLr5bTR1CQ6nt2+IygQdvwJqwc=",
             stripLen: 1n,
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Build libsam3 as C, not C++. No, I have no idea why it tries to\n# do that, either.\nsubstituteInPlace libretroshare/src/libretroshare.pro \\\n  --replace-fail \\\n    \"LIBSAM3_MAKE_PARAMS =\" \\\n    \"LIBSAM3_MAKE_PARAMS = CC=$CC AR=$AR\"\n\n# openpgpsdk uses 'bool' as a variable name, which became a C23 keyword.\n# Rename it to avoid compile errors with GCC 14+ which defaults to c23.\nsubstituteInPlace openpgpsdk/src/openpgpsdk/packet-print.c \\\n  --replace-fail \\\n    \"static void print_boolean(const char *name, unsigned char bool)\" \\\n    \"static void print_boolean(const char *name, unsigned char bool_val)\" \\\n  --replace-fail \"    if(bool)\" \"    if(bool_val)\"\n# The C source inconsistently uses 'limited_read (bool,' (with a space) on line 1600\nsubstituteInPlace openpgpsdk/src/openpgpsdk/packet-parse.c \\\n  --replace-fail \"unsigned char bool[1]=\" 'unsigned char bool_val[1]=' \\\n  --replace-fail \"limited_read(bool,\" \"limited_read(bool_val,\" \\\n  --replace-fail \"limited_read (bool,\" \"limited_read (bool_val,\" \\\n  --replace-fail \"!!bool[0]\" \"!!bool_val[0]\"\n\n# Update cmake version for supportlibs to fix build with newer cmake\nsubstituteInPlace supportlibs/udp-discovery-cpp/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const postInstall = "# BT DHT bootstrap\ncp libbitdht/src/bitdht/bdboot.txt $out/share/retroshare\n\nsubstituteInPlace $out/share/applications/retroshare.desktop \\\n  --replace-fail \"/usr/bin/retroshare\" \"retroshare\" \\\n  --replace-fail \"/usr/share/pixmaps/retroshare.xpm\" \"retroshare\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Decentralized peer to peer chat application",
         homepage: "https://retroshare.cc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

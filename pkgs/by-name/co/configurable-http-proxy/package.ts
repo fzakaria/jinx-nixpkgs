@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "configurable-http-proxy";
       const version = "4.5.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyterhub",
           repo: "configurable-http-proxy",
           tag: version,
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-3HzVI7L1BH9PEBcb7CWWRQqWdSlWiCTo0qqnlSHGn7Y=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/configurable-http-proxy/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Configurable-on-the-fly HTTP Proxy",
         homepage: "https://github.com/jupyterhub/configurable-http-proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         mainProgram: "configurable-http-proxy",
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

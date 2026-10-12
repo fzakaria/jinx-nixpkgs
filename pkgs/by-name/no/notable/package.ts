@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.8.4";
   const sha256 = "0rvz8zwsi62kiq89pv8n2wh9h5yb030kvdr1vf65xwqkhqcrzrby";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/notable/notable/releases/download/v${version}/Notable-${version}.AppImage`),
       sha256: sha256,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -47,7 +47,7 @@ wrapProgram "$out/bin/notable" \\
   --add-flags "--disable-seccomp-filter-sandbox"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Markdown-based note-taking app that doesn't suck",
         homepage: "https://github.com/notable/notable",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

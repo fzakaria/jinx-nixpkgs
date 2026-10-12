@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "napi-rs-cli",
       version: "2.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@napi-rs/cli/-/cli-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-DeqH3pEtGZoKEBz5G0RfDO9LWHGMKL2OiWS1uWk4v44=",
         })))),
@@ -37,7 +37,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tools for napi-rs",
         mainProgram: "napi",
         homepage: "https://napi.rs",

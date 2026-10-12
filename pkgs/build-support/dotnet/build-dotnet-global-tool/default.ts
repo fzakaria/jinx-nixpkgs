@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const executables = nix.argOr($_1, "executables", () => nix.force(pname));
       const dotnet_runtime = nix.argOr($_1, "dotnet-runtime", () => nix.force(dotnet_sdk));
       const nupkg = nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nugetName,
           version: version,
           sha256: nugetSha256,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           installable: true,
         }))));
       return nix.update(args_2, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         "dotnet-runtime": dotnet_runtime,
@@ -55,7 +55,7 @@ find $out -name '.nupkg.metadata' -delete
 
 runHook postInstall
 `),
-        passthru: nix.thunk(() => nix.update({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh"), nupkg: nupkg }, nix.selOr(args_2, () => ({}), "passthru"))),
+        passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh"), nupkg: nupkg }, nix.selOr(args_2, () => ({}), "passthru"))),
       });
     })(), formals$2), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), fnOrAttrs)) ? nix.app(fnOrAttrs, finalAttrs) : nix.force(fnOrAttrs)))));
 })(), formals$1);

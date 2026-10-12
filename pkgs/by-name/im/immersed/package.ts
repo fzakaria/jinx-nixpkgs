@@ -23,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const pname = "immersed";
   const version = "11.0.0";
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.force(fetchurl), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       "x86_64-linux": nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://web.archive.org/web/20260306043741/https://static.immersed.com/dl/Immersed-x86_64.AppImage",
         hash: "sha256-GbckZ/WK+7/PFQvTfUwwePtufPKVwIwSPh+Bo/cG7ko=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://web.archive.org/web/20260306043741/https://static.immersed.com/dl/Immersed-aarch64.AppImage",
         hash: "sha256-3BokV30y6QRjE94K7JQ6iIuQw1t+h3BKZY+nEFGTVHI=",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: "https://web.archive.org/web/20260306043741/https://static.immersed.com/dl/Immersed.dmg",
         hash: "sha256-L5nrkchXD1NIQCknYHVhBWbVJVkkHvKaDjuk9qiY340=",
       })),
     }))));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     description: "VR coworking platform",
     homepage: "https://immersed.com",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w_1, "binaryNativeCode"))];
     })()),
   }));
-  return nix.update((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ __proto__: pos$6, pname: pname, version: version, src: src, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ __proto__: pos$7, pname: pname, version: version, src: src, meta: meta })))), {
-    __proto__: pos$9,
-    passthru: nix.thunk(() => ({ __proto__: pos$8, sources: sources })),
+  return nix.update((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, src: src, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: pname, version: version, src: src, meta: meta })))), {
+    [nix.POS]: pos$9,
+    passthru: nix.thunk(() => ({ [nix.POS]: pos$8, sources: sources })),
   });
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

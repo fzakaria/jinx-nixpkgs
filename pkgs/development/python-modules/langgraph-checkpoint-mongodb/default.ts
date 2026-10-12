@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const langchain_mongodb = nix.arg($, "langchain-mongodb");
   const pymongo = nix.arg($, "pymongo");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "langgraph-checkpoint-mongodb",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langchain-mongodb",
           tag: nix.thunk(() => nix.str`libs/langgraph-checkpoint-mongodb/v${nix.sel(finalAttrs, "version")}`),
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/unit_tests"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "rev-prefix": "libs/langgraph-checkpoint-mongodb/v",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       pythonImportsCheck: nix.thunk(() => ["langgraph.checkpoint.mongodb"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Integrations between MongoDB, Atlas, LangChain, and LangGraph",
         homepage: "https://github.com/langchain-ai/langchain-mongodb/tree/main/libs/langgraph-checkpoint-mongodb",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain-mongodb/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

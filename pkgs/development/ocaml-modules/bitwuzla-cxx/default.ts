@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const version = "0.8.2";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bitwuzla-cxx",
       version: version,
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/bitwuzla/ocaml-bitwuzla/releases/download/${version}/bitwuzla-cxx-${version}.tbz`),
           hash: "sha256-cfYQBY/Nwf9XyK5clRPxf6ejqNRn/GugVFMKBm3BEME=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [zarith]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml binding for the SMT solver Bitwuzla C++ API",
         homepage: "https://bitwuzla.github.io/",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/bitwuzla/ocaml-bitwuzla/refs/tags/${version}/CHANGES.md`),

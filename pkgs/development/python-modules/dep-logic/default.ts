@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const packaging = nix.arg($, "packaging");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dep-logic",
       version: "0.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pdm-project",
           repo: "dep-logic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["dep_logic"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/pdm-project/dep-logic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python dependency specifications supporting logical operations",
         homepage: "https://github.com/pdm-project/dep-logic",

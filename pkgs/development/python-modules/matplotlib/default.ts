@@ -57,17 +57,17 @@ export default nix.lambda((args) => (() => {
   const sage = nix.arg($, "sage");
   const interactive = nix.thunk(() => (nix.asBool((nix.asBool(enableTk) || nix.asBool(enableGtk3))) || nix.asBool(enableQt)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "3.11.1",
       pname: "matplotlib",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aWR9tXRpQceT1uRFpM00kyP/uH2cyVjCrYSmWbSDLTA=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, XDG_RUNTIME_DIR: "/tmp" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, XDG_RUNTIME_DIR: "/tmp" })),
       postPatch: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), isPyPy, "substituteInPlace tools/generate_matplotlibrc.py \\\n  --replace-fail \"/usr/bin/env python3\" \"/usr/bin/env pypy3\"\n"), "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools_scm>=7,<10\" setuptools_scm\n\npatchShebangs tools\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(interactive))), nix.thunk(() => nix.str`# fix paths to libraries in dlopen calls (headless detection)
 substituteInPlace src/_c_internal_utils.cpp \\
   --replace-fail libX11.so.6 ${libx11}/lib/libX11.so.6 \\
@@ -89,13 +89,13 @@ substituteInPlace src/_c_internal_utils.cpp \\
         python_dateutil,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableGtk3, nix.thunk(() => [pycairo, pygobject3])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableQt, nix.thunk(() => [pyqt5])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableWebagg, nix.thunk(() => [tornado])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableNbagg, nix.thunk(() => [ipykernel])), nix.app(nix.sel(lib, "optionals"), enableTk, nix.thunk(() => [tkinter])))))))),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "system-freetype": true,
           "system-qhull": true,
           "system-libraqm": true,
           b_lto: false,
         })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$5, tests: nix.thunk(() => ({ __proto__: pos$4, sage: sage })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, tests: nix.thunk(() => ({ [nix.POS]: pos$4, sage: sage })) })),
       pythonImportsCheck: nix.thunk(() => ["matplotlib"]),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
@@ -111,7 +111,7 @@ cp \\
 cd $out
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python plotting library, making publication quality plots",
         homepage: "https://matplotlib.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/matplotlib/matplotlib/releases/tag/v${nix.sel(finalAttrs, "version")}`),

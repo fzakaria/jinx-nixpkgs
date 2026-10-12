@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const prompt_toolkit = nix.arg($, "prompt-toolkit");
   const pygments = nix.arg($, "pygments");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pypager",
       version: "3.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prompt-toolkit",
           repo: "pypager",
           rev: "0255d59a14ffba81c3842ef570c96c8dfee91e8e",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pypager"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure Python pager (like \"more\" and \"less\")",
         homepage: "https://github.com/prompt-toolkit/pypager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const librandombytes = nix.arg($, "librandombytes");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libcpucycles",
       version: "20260105",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cpucycles.cr.yp.to/libcpucycles-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-hWmMLBadM/E/kF8D/cTjU+G0f2HTkZQlKoIWsgzAFj0=",
         })))),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       configurePlatforms: nix.thunk(() => nix.attr(librandombytes, "configurePlatforms")),
       env: nix.thunk(() => nix.attr(librandombytes, "env")),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id \"$out/lib/libcpucycles.1.dylib\" \"$out/lib/libcpucycles.1.dylib\"\ninstall_name_tool -change \"libcpucycles.1.dylib\" \"$out/lib/libcpucycles.1.dylib\" \"$out/bin/cpucycles-info\"\n")),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(librandombytes, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://cpucycles.cr.yp.to/",
         description: "Microlibrary for counting CPU cycles",
         changelog: "https://cpucycles.cr.yp.to/download.html",

@@ -22,9 +22,9 @@ export default nix.lambda((args) => (() => {
   const manImplementations = nix.thunk(() => ["mandoc", "man-db"]);
   const machineNames = nix.thunk(() => nix.builtins.map(machineSafe, manImplementations));
   const makeConfig = (useImpl) => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     environment: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       systemPackages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "man-pages")),
         nix.thunk(() => nix.sel(pkgs, "openssl")),
@@ -32,30 +32,30 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     documentation: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       enable: true,
       nixos: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
       })),
-      dev: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
-      man: nix.thunk(() => nix.update({ __proto__: pos$4, enable: true, generateCaches: true }, nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((impl) => ({
-            __proto__: pos$6,
+      dev: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+      man: nix.thunk(() => nix.update({ [nix.POS]: pos$4, enable: true, generateCaches: true }, nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((impl) => ({
+            [nix.POS]: pos$6,
             name: impl,
-            value: nix.thunk(() => ({ __proto__: pos$5, enable: nix.thunk(() => nix.eq(useImpl, impl)) })),
+            value: nix.thunk(() => ({ [nix.POS]: pos$5, enable: nix.thunk(() => nix.eq(useImpl, impl)) })),
           }), manImplementations))))),
     })),
   });
   const machineSafe = nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["-"]), nix.thunk(() => ["_"])));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: "man",
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
     })),
     nodes: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((i) => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: nix.thunk(() => nix.app(machineSafe, i)),
           value: nix.thunk(() => nix.app(makeConfig, i)),
         }), manImplementations)))),

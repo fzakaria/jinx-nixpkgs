@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p1c2u",
           repo: "jsonschema-path",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jsonschema_path"]);
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytestCheckHook, responses]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/p1c2u/jsonschema-path/releases/tag/${version}`),
         description: "JSONSchema Spec with object-oriented paths",
         homepage: "https://github.com/p1c2u/jsonschema-path",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

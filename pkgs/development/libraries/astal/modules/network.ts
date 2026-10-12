@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const networkmanager = nix.arg($, "networkmanager");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "network",
       buildInputs: nix.thunk(() => [networkmanager]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for NetworkManager" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for NetworkManager" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=network.ts.map

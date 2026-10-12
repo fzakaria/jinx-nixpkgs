@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
       const pname = "asdf";
       const version = "3.3.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://common-lisp.net/project/asdf/archives/asdf-${version}.tar.gz`),
           sha256: "sha256-NkjvNlLqJnBAfOxC9ECTtmuS5K+0v5ZXOw2xt8l7vgk=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/clasp-developers/asdf/compare/fe6e3ab741c71ecebc8503e20637d4c940326421..615771b3d0ee6ebb158134769e88ba421c2ea7d1.diff",
             hash: "sha256-jrv/vH4uxLVvaCK4UicNzIePQ12lscA0auwgTMb4QwI=",
           })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make build/asdf.lisp\nmake -C doc asdf.info asdf.html\n";
       const installPhase = "mkdir -p \"$out\"/lib/common-lisp/asdf/\nmkdir -p \"$out\"/share/doc/asdf/\ncp -r ./* \"$out\"/lib/common-lisp/asdf/\ncp -r doc/* \"$out\"/share/doc/asdf/\nln -s  \"$out\"/lib/common-lisp/{asdf/uiop,uiop}\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standard software-system definition library for Common Lisp",
         homepage: "https://asdf.common-lisp.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

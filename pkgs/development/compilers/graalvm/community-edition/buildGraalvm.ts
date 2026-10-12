@@ -75,7 +75,7 @@ chmod +x $out/bin/${nix.sel(stdenv, "hostPlatform", "system")}-musl-gcc
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), useMusl, nix.thunk(() => [musl_gcc])), [nix.thunk(() => nix.sel(stdenv, "cc"))]))));
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([cups], nix.app(nix.sel(lib, "optionals"), gtkSupport, nix.thunk(() => [cairo, glib, gtk3]))))));
   const graalvm_ce = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graalvm-ce",
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
 
@@ -187,12 +187,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBoo
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         home: graalvm_ce,
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "graalvm-ce"]),
       }, nix.selOr(args_1, () => ({}), "passhtru"))),
       meta: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.graalvm.org/",
         description: "High-Performance Polyglot VM",
         license: nix.thunk(() => (() => {

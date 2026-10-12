@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libgit2 = nix.arg($, "libgit2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "l2md",
       version: "0-unstable-2021-10-27",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/dborkman/l2md.git/snapshot/l2md-9db252bc1716ebaf0abd3a47a59ea78e4e6253d6.tar.gz",
           sha256: "sha256-H/leDUwQM55akyXsmTnI2YsnG4i1KQtf4bBt1fizy8E=",
         })))),
       buildInputs: nix.thunk(() => [libgit2]),
       installPhase: "mkdir -p $out/bin\ncp l2md $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert public-inbox archives to maildir messages",
         mainProgram: "l2md",
         longDescription: "Quick and dirty hack to import lore.kernel.org list archives via git,\nto export them in maildir format or through a pipe, and to keep them\nperiodically synced.\n",

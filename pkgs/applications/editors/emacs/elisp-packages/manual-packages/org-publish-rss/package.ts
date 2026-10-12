@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "org-publish-rss",
       version: "0-unstable-2026-01-09",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           vc: "git",
           owner: "~taingram",
           repo: "org-publish-rss",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-OPAyTLcYSKYqCcO6DP0yfoNYsIZzOwhZ0u9YcE4+TFU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Automatically generate RSS feeds for org-publish projects",
         homepage: "https://git.sr.ht/~taingram/org-publish-rss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

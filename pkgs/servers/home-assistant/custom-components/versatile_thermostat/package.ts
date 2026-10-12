@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const domain = "versatile_thermostat";
       const version = "10.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: domain,
           tag: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [numpy, scipy, vtherm_api]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "(Alpha|Beta|alpha|beta).*" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(Alpha|Beta|alpha|beta).*" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/jmcollin78/versatile_thermostat/releases/tag/${version}`),
         description: "Full-featured thermostat",
         homepage: "https://github.com/jmcollin78/versatile_thermostat",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$5, owner, domain, version, src, dependencies, passthru, meta };
+      return { [nix.POS]: pos$5, owner, domain, version, src, dependencies, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

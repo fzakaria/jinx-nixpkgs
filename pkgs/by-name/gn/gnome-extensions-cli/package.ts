@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-extensions-cli",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "gnome_extensions_cli",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5OL0ma17rXA+USDATVQXO3ORWDAwoGB3x85BSIsRapY=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["gnome_extensions_cli"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/essembeh/gnome-extensions-cli",
         description: "Command line tool to manage your GNOME Shell extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

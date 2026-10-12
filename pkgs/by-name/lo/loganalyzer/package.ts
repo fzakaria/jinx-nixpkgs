@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "loganalyzer";
       const version = "23.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pbek",
           repo: "loganalyzer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that helps you to analyze your log files by reducing the content with patterns you define",
         homepage: "https://github.com/pbek/loganalyzer",
         changelog: "https://github.com/pbek/loganalyzer/blob/develop/CHANGELOG.md",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

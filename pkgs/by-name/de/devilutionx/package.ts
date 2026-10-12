@@ -34,22 +34,22 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const smpq = nix.arg($, "smpq");
   const asio = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/diasurgical/asio/archive/4bcf552fcea3e1ae555dde2ab33bc9fa6770da4d.tar.gz",
       sha256: "sha256-AFBy5OFsAzxZsiI4DirIHh+VjFkdalEhN9OGqhC0Cvc=",
     }))));
   const libmpq = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/diasurgical/libmpq/archive/b78d66c6fee6a501cc9b95d8556a129c68841b05.tar.gz",
       sha256: "sha256-NIzZwr6cBn38uKLWzW+Uet5QiOFUPB5dsf3FsS22ruo=",
     }))));
   const libsmackerdec = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://github.com/diasurgical/libsmackerdec/archive/91e732bb6953489077430572f43fc802bf2c75b2.tar.gz",
       sha256: "sha256-5WXjfvGuT4hG2cnCS4YbxW/c4tek7OR95EjgCqkEi4c=",
     }))));
   const libzt = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "diasurgical",
       repo: "libzt",
       fetchSubmodules: true,
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       sha256: "sha256-/A77ZM4s+br1hYa0OBdjXcWXUXYG+GiEYcW8VB+UJHo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "devilutionx",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "diasurgical",
           repo: "devilutionX",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -94,7 +94,7 @@ substituteInPlace Source/init.cpp \\
         simpleini,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/diasurgical/devilutionX",
         description: "Diablo build for modern operating systems",
         mainProgram: "devilutionx",

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ocp-index",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/OCamlPro/ocp-index/releases/download/${nix.sel(finalAttrs, "version")}/ocp-index-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256:59adbd99a9c88106dcf23bc0e3424a00f840fcedee4e4b644eaf0385ada3f911",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner, re]),
       propagatedBuildInputs: nix.thunk(() => [ocp_indent]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.typerex.org/ocp-index.html",
         description: "Simple and light-weight documentation extractor for OCaml",
         changelog: nix.thunk(() => nix.str`https://github.com/OCamlPro/ocp-index/raw/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

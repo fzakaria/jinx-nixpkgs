@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(ps, "ytmusicapi")),
   ]);
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "audiotube",
       extraNativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(ps, "pybind11"))]),
       extraBuildInputs: nix.thunk(() => nix.concat([
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       qtWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix PYTHONPATH : ${nix.app(nix.sel(ps, "makePythonPath"), pythonDeps)}`),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "audiotube" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "audiotube" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

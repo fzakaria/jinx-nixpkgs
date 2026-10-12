@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? nix.force(stdenv) : nix.sel(llvmPackages, "stdenv")));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "shiboken6",
       version: nix.thunk(() => nix.attr(shiboken6_generator, "version")),
       src: nix.thunk(() => nix.attr(shiboken6_generator, "src")),
@@ -45,7 +45,7 @@ cp -r shiboken6.egg-info $out/${nix.sel(python, "sitePackages")}/
 `),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Generator for the pyside6 Qt bindings - Python library",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

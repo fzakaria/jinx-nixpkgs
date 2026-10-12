@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const withDocs = nix.argOr($, "withDocs", () => true);
   const withMan = nix.argOr($, "withMan", () => true);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "autosuspend",
       version: "11.3.0",
       pyproject: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["doc"])), nix.app(nix.sel(lib, "optionals"), withMan, nix.thunk(() => ["man"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "languitar",
           repo: "autosuspend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         docs: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
           return [
@@ -85,14 +85,14 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTests: nix.thunk(() => ["test_smoke", "test_multiple_sessions"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           autosuspend: nix.thunk(() => nix.attr(nixosTests, "autosuspend")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Daemon to automatically suspend and wake up a system",
         homepage: "https://autosuspend.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/languitar/autosuspend/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

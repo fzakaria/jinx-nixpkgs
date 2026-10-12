@@ -33,31 +33,31 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const inlangModules = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "plugin-message-format-index.js",
         url: "https://cdn.jsdelivr.net/npm/@inlang/plugin-message-format@4/dist/index.js",
         hash: "sha256-IOyECYVo8YqD2jYePrrfWGImn6M1FQzJvVDXmaSP31c=",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "plugin-m-function-matcher-index.js",
         url: "https://cdn.jsdelivr.net/npm/@inlang/plugin-m-function-matcher@2/dist/index.js",
         hash: "sha256-hYYvYwV5O1a/2a/lNosJbmP7Kuqzi3eZwFFRe+NJnAs=",
       })))),
   ]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "gale",
       version: "1.22.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Kesomannen",
           repo: "gale",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RaRImkh9lxNYVEjZVGY2iAwhk85qKVZzKg4GnffWDWo=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -86,11 +86,11 @@ substituteInPlace project.inlang/settings.json ${nix.app(nix.sel(lib, "concatMap
       ]),
       buildInputs: nix.thunk(() => [glib_networking, libsoup_3, openssl, webkitgtk_4_1]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Lightweight Thunderstore client",
         homepage: "https://github.com/Kesomannen/gale",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

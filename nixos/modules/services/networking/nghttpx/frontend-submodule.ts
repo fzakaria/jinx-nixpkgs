@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./server-options.nix"))))), nix.thunk(() => nix.sel(lib, "types", "path")))),
-          example: nix.thunk(() => ({ __proto__: pos$1, host: "127.0.0.1", port: 8888n })),
-          default: nix.thunk(() => ({ __proto__: pos$2, host: "127.0.0.1", port: 80n })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$1, host: "127.0.0.1", port: 8888n })),
+          default: nix.thunk(() => ({ [nix.POS]: pos$2, host: "127.0.0.1", port: 80n })),
           description: "Frontend server interface binding specification as either a\nhost:port pair or a unix domain docket.\n\nNB: a host of \"*\" listens on all interfaces and includes IPv6\naddresses.\n",
         })))),
       params: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.builtins.import(nix.path(here, "./frontend-params-submodule.nix"))))))),
-          example: nix.thunk(() => ({ __proto__: pos$4, tls: "tls" })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$4, tls: "tls" })),
           default: null,
           description: "Parameters to configure a backend.\n",
         })))),

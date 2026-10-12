@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "wooting-udev-rules",
       version: "0-unstable-2024-11-20",
       src: nix.thunk(() => [nix.path(here, "./wooting.rules")]),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "install -Dpm644 $src $out/lib/udev/rules.d/70-wooting.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://help.wooting.io/article/147-configuring-device-access-for-wootility-under-linux-udev-rules",
         description: "udev rules that give NixOS permission to communicate with Wooting keyboards",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

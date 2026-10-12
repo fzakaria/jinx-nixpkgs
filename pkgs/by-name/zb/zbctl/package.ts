@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zbctl",
       version: "8.4.19",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenvNoCC, "hostPlatform", "system"), "x86_64-darwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/camunda/zeebe/releases/download/${nix.sel(finalAttrs, "version")}/zbctl.darwin`),
           hash: "sha256-RuZX9TWuXBxxegLw0La0l9/6zh96V/2trJvZUoCvTKk=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenvNoCC, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/camunda/zeebe/releases/download/${nix.sel(finalAttrs, "version")}/zbctl`),
           hash: "sha256-NTJqmcOzpOzHjrtOHBU2J3u0f7sESBeZMbb8kx3zR38=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`))))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 $src $out/bin/zbctl\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command line interface to interact with Camunda 8 and Zeebe",
         homepage: "https://docs.camunda.io/docs/apis-clients/cli-client/",
         downloadPage: "https://github.com/camunda/zeebe/releases",

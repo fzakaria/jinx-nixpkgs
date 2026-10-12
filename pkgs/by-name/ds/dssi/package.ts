@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dssi",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/dssi/dssi/${nix.sel(finalAttrs, "version")}/dssi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0kl1hzhb7cykzkrqcqgq1dk4xcgrcxv0jja251aq4z4l783jpj7j",
         })))),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         libice,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin SDK for virtual instruments",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

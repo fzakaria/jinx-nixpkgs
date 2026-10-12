@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "utox";
       const version = "0.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "uTox",
           repo: "uTox",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const nativeCheckInputs = nix.thunk(() => [check]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight Tox client",
         mainProgram: "utox",
         homepage: "https://github.com/uTox/uTox",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

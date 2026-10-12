@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lightdm-mobile-greeter",
       version: "2022-10-30",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.raatty.club",
           owner: "raatty",
           repo: "lightdm-mobile-greeter",
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       postInstall: "mkdir -p $out/share/xgreeters\nsubstitute lightdm-mobile-greeter.desktop \\\n  $out/share/xgreeters/lightdm-mobile-greeter.desktop \\\n  --replace lightdm-mobile-greeter $out/bin/lightdm-mobile-greeter\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-mobile-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               path: nix.thunk(() => nix.str`${lightdm_mobile_greeter}/share/xgreeters/lightdm-mobile-greeter.desktop`),
               name: "lightdm-mobile-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Simple log in screen for use on touch screens",
         homepage: "https://git.raatty.club/raatty/lightdm-mobile-greeter",
         maintainers: [],

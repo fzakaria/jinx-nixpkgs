@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.47.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pappasam",
           repo: "jedi-language-server",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_publish_diagnostics_on_change", "test_publish_diagnostics_on_save"])));
       const pythonImportsCheck = nix.thunk(() => ["jedi_language_server"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language Server for the latest version(s) of Jedi",
         mainProgram: "jedi-language-server",
         homepage: "https://github.com/pappasam/jedi-language-server",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

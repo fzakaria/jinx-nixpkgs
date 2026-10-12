@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const hatch_vcs = nix.arg($, "hatch-vcs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "astropy-iers-data",
       version: "0.2026.6.22.1.23.34",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astropy",
           repo: "astropy-iers-data",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["astropy_iers_data"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/astropy-iers-data/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "IERS data maintained by @astrofrog and astropy.utils.iers maintainers",
         homepage: "https://github.com/astropy/astropy-iers-data",

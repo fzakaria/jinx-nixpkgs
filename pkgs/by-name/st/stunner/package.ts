@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.0.12";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "stunner",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaxxstorm",
           repo: "stunner",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-tO61UBZxPBg6oFKOuMjPSb4EHZ9wPAyBsdQZb7DLdw0=",
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X=main.Version=${version}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Detect your NAT quickly and easily, and that's the bottom line",
         longDescription: "Stunner is a small Go CLI tool that sends STUN Binding Requests to\nmultiple Tailscale DERP servers (or any STUN servers you specify) and\nreports the resulting NAT classification. This helps you determine\nwhether you're behind a Full Cone, Symmetric NAT, Restricted, or\notherwise, by analyzing how multiple STUN servers perceive your external\nIP/port mapping.\n",
         homepage: "https://github.com/jaxxstorm/stunner",

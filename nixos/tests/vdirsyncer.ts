@@ -49,47 +49,47 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const radicale_calendars = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     type: "caldav",
     url: "http://localhost:5232/",
     username: "alice",
     password: "password",
   }));
   const radicale_contacts = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     type: "carddav",
     url: "http://localhost:5232/",
     username: "alice",
     password: "password",
   }));
   const xandikos_calendars = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     type: "caldav",
     url: "http://localhost:8080/user/calendars",
   }));
   const xandikos_contacts = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     type: "carddav",
     url: "http://localhost:8080/user/contacts",
   }));
-  const local_calendars = nix.thunk(() => ({ __proto__: pos$5, type: "filesystem", path: "~/calendars", fileext: ".ics" }));
-  const local_contacts = nix.thunk(() => ({ __proto__: pos$6, type: "filesystem", path: "~/contacts", fileext: ".vcf" }));
+  const local_calendars = nix.thunk(() => ({ [nix.POS]: pos$5, type: "filesystem", path: "~/calendars", fileext: ".ics" }));
+  const local_contacts = nix.thunk(() => ({ [nix.POS]: pos$6, type: "filesystem", path: "~/contacts", fileext: ".vcf" }));
   const mkPairs = (a) => (b) => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     calendars: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       a: nix.thunk(() => nix.str`${a}_calendars`),
       b: nix.thunk(() => nix.str`${b}_calendars`),
       collections: nix.thunk(() => ["from a", "from b"]),
     })),
     contacts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       a: nix.thunk(() => nix.str`${a}_contacts`),
       b: nix.thunk(() => nix.str`${b}_contacts`),
       collections: nix.thunk(() => ["from a", "from b"]),
     })),
   });
-  const mkRadicaleProps = (tag) => nix.app(nix.sel(pkgs, "writeText"), "Radicale.props", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$10, tag: tag })))));
+  const mkRadicaleProps = (tag) => nix.app(nix.sel(pkgs, "writeText"), "Radicale.props", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$10, tag: tag })))));
   const writeLines = (name) => (eol) => (lines) => nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (l) => nix.str`${l}${eol}`, lines)));
   const prodid = "-//NixOS test//EN";
   const dtstamp = "20231129T194743Z";
@@ -114,14 +114,14 @@ export default nix.lambda((args) => (() => {
       ]));
   })(), formals$2);
   const foo_ics = nix.thunk(() => nix.app(writeICS, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       uid: "foo",
       summary: "Epochalypse",
       dtstart: "19700101T000000Z",
       dtend: "20380119T031407Z",
     }))));
   const bar_ics = nix.thunk(() => nix.app(writeICS, nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       uid: "bar",
       summary: "One Billion Seconds",
       dtstart: "19700101T000000Z",
@@ -144,62 +144,62 @@ export default nix.lambda((args) => (() => {
       ]));
   })(), formals$3);
   const foo_vcf = nix.thunk(() => nix.app(writeVCF, nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       uid: "foo",
       name: "Doe;John;;;",
       displayName: "John Doe",
       email: "john.doe@example.org",
     }))));
   const bar_vcf = nix.thunk(() => nix.app(writeVCF, nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       uid: "bar",
       name: "Doe;Jane;;;",
       displayName: "Jane Doe",
       email: "jane.doe@example.org",
     }))));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     name: "vdirsyncer",
     meta: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "schnusch"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       machine: nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           radicale: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
-              auth: nix.thunk(() => ({ __proto__: pos$16, type: "none" })),
+              [nix.POS]: pos$17,
+              auth: nix.thunk(() => ({ [nix.POS]: pos$16, type: "none" })),
             })),
           })),
           xandikos: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: true,
             extraOptions: nix.thunk(() => ["--autocreate"]),
           })),
           vdirsyncer: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             enable: true,
             jobs: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               alice: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 user: "alice",
                 group: "users",
                 config: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   statusPath: "/home/alice/.vdirsyncer",
                   storages: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     local_calendars: local_calendars,
                     local_contacts: local_contacts,
                     radicale_calendars: radicale_calendars,
@@ -210,14 +210,14 @@ export default nix.lambda((args) => (() => {
                 forceDiscover: true,
               })),
               bob: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 user: "bob",
                 group: "users",
                 config: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   statusPath: "/home/bob/.vdirsyncer",
                   storages: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     local_calendars: local_calendars,
                     local_contacts: local_contacts,
                     xandikos_calendars: xandikos_calendars,
@@ -228,11 +228,11 @@ export default nix.lambda((args) => (() => {
                 forceDiscover: true,
               })),
               remote: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 config: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   storages: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     radicale_calendars: radicale_calendars,
                     radicale_contacts: radicale_contacts,
                     xandikos_calendars: xandikos_calendars,
@@ -246,11 +246,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           users: nix.thunk(() => ({
-            __proto__: pos$34,
-            alice: nix.thunk(() => ({ __proto__: pos$32, isNormalUser: true })),
-            bob: nix.thunk(() => ({ __proto__: pos$33, isNormalUser: true })),
+            [nix.POS]: pos$34,
+            alice: nix.thunk(() => ({ [nix.POS]: pos$32, isNormalUser: true })),
+            bob: nix.thunk(() => ({ [nix.POS]: pos$33, isNormalUser: true })),
           })),
         })),
       })),

@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const mirror1 = nix.arg($, "mirror1");
   const mirror2 = nix.arg($, "mirror2");
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     "matrix-01": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         hash: "sha256-AHur5ZIDZTFRrO2GV0ieXrffq4KUiGWiZ59pv0fUtEQ=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/SNAP/amazon0312.tar.gz`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-02": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         hash: "sha256-0rSxaN4lQcdaCLsvlgicG70FXUxXeERPiEmQ4MzbRdE=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Muite/Chebyshev4.tar.gz`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-03": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         hash: "sha256-hDzDWDUnHEyFedX/tMNq83ZH8uWyM4xtZYUUAD3rizo=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/FEMLAB/sme3Dc.tar.gz`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-04": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         hash: "sha256-GmN2yOt/MoX01rKe05aTyB3ypUP4YbQGOITZ0BqPmC0=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Williams/webbase-1M.tar.gz`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-05": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         hash: "sha256-gQNjfVyWzNM9RwImJGhkhahRmZz74LzDs1oijL7mI7k=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Williams/mac_econ_fwd500.tar.gz`),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-06": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         hash: "sha256-87cdZjntNcTuz5BtO59irhcuRbPllWSbhCEX3Td02qc=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Williams/mc2depi.tar.gz`),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-07": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         hash: "sha256-WRamuJX3D8Tm+k0q67RjUDG3DeNAxhKiaPkk5afY5eU=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Bova/rma10.tar.gz`),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-08": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         hash: "sha256-5dhkm293Mc3lzakKxHy5W5XIn4Rw+gihVh7gyrjEHXo=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/JGD_BIBD/bibd_22_8.tar.gz`),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-09": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         hash: "sha256-czjLWCjXAjZCk5TGYHaEkwSAzQu3TQ3QyB6eNKR4G88=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Hamm/scircuit.tar.gz`),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-10": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         hash: "sha256-bYuLnJViAIcIejAkh69/bsNAVIDU4wfTLtD+nmHd6FM=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Sandia/ASIC_320k.tar.gz`),
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-11": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         hash: "sha256-aDwn8P1khYjo2Agbq5m9ZBInJUxf/knJNvyptt0fak0=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/GHS_psdef/bmwcra_1.tar.gz`),
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-12": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         hash: "sha256-8OJqA/byhlAZd869TPUzZFdsOiwOoRGfKyhM+RMjXoY=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/HB/nos1.tar.gz`),
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-13": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         hash: "sha256-FS0rKqmg+uHwsM/yGfQLBdd7LH/rUrdutkNGBD/Mh1I=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/HB/nos2.tar.gz`),
@@ -141,7 +141,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-14": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         hash: "sha256-DANnlrNJikrI7Pst9vRedtbuxepyHmCIu2yhltc4Qcs=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/HB/nos3.tar.gz`),
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-15": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         hash: "sha256-21mUgqjWGUfYgiWwSrKh9vH8Vdt3xzcefmqYNYRpxiY=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/HB/nos4.tar.gz`),
@@ -157,7 +157,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-16": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         hash: "sha256-FOuXvGqBBFNkVS6cexmkluret54hCfCOdK+DOZllE4c=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/HB/nos5.tar.gz`),
@@ -165,7 +165,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-17": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         hash: "sha256-+7NI1rA/qQxYPpjXKHvAaCZ+LSaAJ4xuJvMRMBEUYxg=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/HB/nos6.tar.gz`),
@@ -173,7 +173,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-18": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         hash: "sha256-q3NxJjbwGGcFiQ9nhWfUKgZmdVwCfPmgQoqy0AqOsNc=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/HB/nos7.tar.gz`),
@@ -181,7 +181,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-19": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         hash: "sha256-0GAN6qmVfD+tprIigzuUUUwm5KVhkN9X65wMEvFltDY=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/DNVS/shipsec1.tar.gz`),
@@ -189,7 +189,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-20": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         hash: "sha256-f28Du/Urxsiq5NkRmRO10Zz9vvGRjEchquzHzbZpZ7U=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Cote/mplate.tar.gz`),
@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-21": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         hash: "sha256-O+Wy0NfCU1hVUOfNR1dJpvDHLBwwa301IRJDrQJnhak=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Bai/qc2534.tar.gz`),
@@ -205,7 +205,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-22": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         hash: "sha256-oxMnt8U5Cf1ILWcBdU6W9jdSMMm+U6bIVl8nm3n3+OA=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Chevron/Chevron2.tar.gz`),
@@ -213,7 +213,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-23": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         hash: "sha256-MFD9BxFI/3IS7yatW121BAI04fbqrXpgYDT5UKjeKcU=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Chevron/Chevron3.tar.gz`),
@@ -221,7 +221,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     "matrix-24": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         hash: "sha256-ikS8O51pe1nt3BNyhvfvqCbVL0+bg/da9bqGqeBDkTg=",
         urls: nix.thunk(() => [
           nix.thunk(() => nix.str`${mirror1}/Chevron/Chevron4.tar.gz`),

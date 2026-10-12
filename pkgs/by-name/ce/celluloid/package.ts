@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const yt_dlp = nix.arg($, "yt-dlp");
   const youtubeSupport = nix.argOr($, "youtubeSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "celluloid",
       version: "0.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "celluloid-player",
           repo: "celluloid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/celluloid-player/celluloid",
         description: "Simple GTK frontend for the mpv video player",
         longDescription: "Celluloid (formerly GNOME MPV) is a simple GTK+ frontend for mpv.\nCelluloid interacts with mpv via the client API exported by libmpv,\nallowing access to mpv's powerful playback capabilities.\n",

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const oscrypto = nix.arg($, "oscrypto");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "certvalidator",
       version: "0.11.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wbond",
           repo: "certvalidator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "# Tests are run with a custom executor/loader\n# The regex to skip specific tests relies on negative lookahead of regular expressions\n# We're skipping the few tests that rely on the network, fetching CRLs, OCSP or remote certificates\npython -c 'import dev.tests; dev.tests.run(\"^(?!.*test_(basic_certificate_validator_tls|fetch|revocation|build_path)).*$\")'\n",
       pythonImportsCheck: nix.thunk(() => ["certvalidator"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/wbond/certvalidator",
         description: "Validates X.509 certificates and paths",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

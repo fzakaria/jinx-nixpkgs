@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const enableThirdPartyCopy = nix.argOr($, "enableThirdPartyCopy", () => false);
   const boolToUpper = (b) => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), b)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "0.8.10",
       pname: nix.thunk(() => nix.add("davix", nix.app(nix.sel(lib, "optionalString"), enableThirdPartyCopy, "-copy"))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, python3]),
       buildInputs: nix.thunk(() => nix.concat([curl, libxml2, openssl, rapidjson, zlib], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), libuuid), nix.app(nix.sel(lib, "optional"), enableThirdPartyCopy, gsoap)))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cern-fts",
           repo: "davix",
           tag: nix.thunk(() => nix.str`R_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/cern-fts/davix/commit/687d424c9f87888c94d96f3ea010de11ef70cd23.patch",
             hash: "sha256-FNXOQrY0gsMK+D4jwbJmYyEqD3lFui0giXUd+Rr0jLk=",
           })))),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-lz" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lz" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Toolkit for Http-based file management",
         longDescription: "Davix is a toolkit designed for file\n    operations with Http based protocols (WebDav, Amazon S3, ...).\n    Davix provides an API and a set of command line tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

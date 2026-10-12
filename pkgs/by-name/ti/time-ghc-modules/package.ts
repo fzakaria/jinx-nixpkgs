@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "time-ghc-modules",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codedownio",
           repo: "time-ghc-modules",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ninstall -m 444 ./dist/index.html $out/lib\ninstall ./scripts/process $out/lib\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Analyze GHC .dump-timings files",
         mainProgram: "time-ghc-modules",
         homepage: "https://github.com/codedownio/time-ghc-modules",

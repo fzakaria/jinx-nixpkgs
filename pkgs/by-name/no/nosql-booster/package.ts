@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "nosql-booster";
   const version = "8.1.9";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://s3.nosqlbooster.com/download/releasesv8/nosqlbooster4mongo-${version}.AppImage`),
       sha256: "sha256-ZJdCHOodJel7Apb//s96vrf1Ruml/NLUMQ9eFFR9tfU=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     homepage: "https://nosqlbooster.com/",
     description: "GUI tool for MongoDB Server",
     changelog: "https://nosqlbooster.com/blog/announcing-nosqlbooster-81/#version-819",
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux"]),
     mainProgram: "nosql-booster",
   }));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,

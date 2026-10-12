@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mboot",
       version: "0-unstable-2022-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "osm0sis",
           repo: "mboot",
           rev: "39f59a4f1b6a754c8953172fb80cb2ea1221ed20",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\ninstall -Dm555 mboot -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/osm0sis/mboot",
         description: "Tool to pack and unpack Intel Android boot files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

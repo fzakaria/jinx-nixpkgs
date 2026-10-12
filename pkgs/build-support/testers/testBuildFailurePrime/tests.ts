@@ -28,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "attrsets"));
   const recurseIntoAttrs = nix.thunk(() => nix.attr(from, "recurseIntoAttrs"));
   const final = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     "doc-example": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         drv: nix.thunk(() => nix.app(runCommand, "doc-example", nix.thunk(() => ({})), "echo ok-ish >\"$out\"\necho failing though\nexit 3\n")),
         expectedBuilderExitCode: 3n,
         expectedBuilderLogEntries: nix.thunk(() => ["failing though"]),
         script: "grep --silent -F 'ok-ish' \"$failed/result\"\n",
       })))),
     happy: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         drv: nix.thunk(() => nix.app(runCommand, "happy", nix.thunk(() => ({})), "echo ok-ish >$out\n\necho failing though\necho also stderr 1>&2\necho 'line\\nwith-\\bbackslashes'\nprintf \"incomplete line - no newline\"\n\nexit 3\n")),
         expectedBuilderExitCode: 3n,
         expectedBuilderLogEntries: nix.thunk(() => [
@@ -50,21 +50,21 @@ export default nix.lambda((args) => (() => {
       })))),
     happyStructuredAttrs: nix.thunk(() => nix.app(overrideStructuredAttrs, true, nix.thunk(() => nix.sel(final, "happy")))),
     helloDoesNotFail: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         drv: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), hello)),
         expectedBuilderLogEntries: nix.thunk(() => ["testBuildFailure: The builder did not fail, but a failure was expected"]),
       })))),
     multiOutput: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$5,
-        drv: nix.thunk(() => nix.app(runCommand, "multiOutput", nix.thunk(() => ({ __proto__: pos$4, outputs: nix.thunk(() => ["dev", "doc", "out"]) })), "echo i am failing\nexit 1\n")),
+        [nix.POS]: pos$5,
+        drv: nix.thunk(() => nix.app(runCommand, "multiOutput", nix.thunk(() => ({ [nix.POS]: pos$4, outputs: nix.thunk(() => ["dev", "doc", "out"]) })), "echo i am failing\nexit 1\n")),
         expectedBuilderLogEntries: nix.thunk(() => ["i am failing"]),
         script: "# Checking our note that dev is the default output\necho $failed/_ | grep -- '-dev/_' >/dev/null\necho 'All good.'\n",
       })))),
     multiOutputStructuredAttrs: nix.thunk(() => nix.app(overrideStructuredAttrs, true, nix.thunk(() => nix.sel(final, "multiOutput")))),
     sideEffects: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         drv: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "fail-with-side-effects",
             src: emptyDirectory,
             postHook: "echo touching side-effect...\n# Assert that the side-effect doesn't exist yet...\n# We're checking that this hook isn't run by expect-failure.sh\nif [[ -e side-effect ]]; then\n  echo \"side-effect already exists\"\n  exit 1\nfi\ntouch side-effect\n",
@@ -75,9 +75,9 @@ export default nix.lambda((args) => (() => {
       })))),
     sideEffectsStructuredAttrs: nix.thunk(() => nix.app(overrideStructuredAttrs, true, nix.thunk(() => nix.sel(final, "sideEffects")))),
     exitCodeNegativeTest: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         drv: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             drv: nix.thunk(() => nix.app(runCommand, "exit-code", nix.thunk(() => ({})), "exit 3")),
           })))),
         expectedBuilderLogEntries: nix.thunk(() => [
@@ -86,9 +86,9 @@ export default nix.lambda((args) => (() => {
       })))),
     exitCodeNegativeTestStructuredAttrs: nix.thunk(() => nix.app(overrideStructuredAttrs, true, nix.thunk(() => nix.sel(final, "exitCodeNegativeTest")))),
     logNegativeTest: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         drv: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             drv: nix.thunk(() => nix.app(runCommand, "exit-code", nix.thunk(() => ({})), "nixLog \"apples\"\nexit 3\n")),
             expectedBuilderExitCode: 3n,
             expectedBuilderLogEntries: nix.thunk(() => ["bees"]),

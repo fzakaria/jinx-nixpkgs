@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(config, "nixops"));
   const enableDeprecatedAutoLuks = nix.thunk(() => nix.attr(from, "enableDeprecatedAutoLuks"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nixops: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         enableDeprecatedAutoLuks: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the deprecated NixOps AutoLuks module")),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           assertion: nix.thunk(() => (nix.asBool(hasAutoLuksConfig) ? (nix.asBool(hasAutoLuksConfig) && nix.asBool(enableDeprecatedAutoLuks)) : true)),
           message: "⚠️  !!! WARNING !!! ⚠️\n\n  NixOps autoLuks is deprecated. The feature was never widely used and the maintenance did outgrow the benefit.\n  If you still want to use the module:\n    a) Please raise your voice in the issue tracking usage of the module:\n       https://github.com/NixOS/nixpkgs/issues/62211\n    b) make sure you set the `_netdev` option for each of the file\n       systems referring to block devices provided by the autoLuks module.\n\n       ⚠️ If you do not set the option your system will not boot anymore! ⚠️\n\n        {\n          fileSystems.\"/secret\" = { options = [ \"_netdev\" ]; };\n        }\n\n    b) set the option >nixops.enableDeprecatedAutoLuks = true< to remove this error.\n\n\n  For more details read through the following resources:\n    - https://github.com/NixOS/nixops/pull/1156\n    - https://github.com/NixOS/nixpkgs/issues/47550\n    - https://github.com/NixOS/nixpkgs/issues/62211\n    - https://github.com/NixOS/nixpkgs/pull/61321\n",
         })),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docker",
           repo: "docker-py",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [packaging, requests, urllib3]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ssh: nix.thunk(() => [paramiko]),
         tls: [],
         websockets: nix.thunk(() => [websocket_client]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["api_test", "stream_response", "socket_file"])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/docker/docker-py/releases/tag/${version}`),
         description: "API client for docker written in Python",
         homepage: "https://github.com/docker/docker-py",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

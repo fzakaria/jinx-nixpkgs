@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const mandoc = nix.arg($, "mandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libopensmtpd",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://imperialat.at/releases/libopensmtpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-zdbV4RpwY/kmXaQ6QjCcZGVUuLaLA5gsqEctvisIphM=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [mandoc]),
       makeFlags: nix.thunk(() => ["-f Makefile.gnu", "DESTDIR=$(out)", "LOCALBASE="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for creating OpenSMTPD filters",
         homepage: "http://imperialat.at/dev/libopensmtpd/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

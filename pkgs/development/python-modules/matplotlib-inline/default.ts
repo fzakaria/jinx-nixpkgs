@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipython",
           repo: "matplotlib-inline",
           tag: version,
@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = [];
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ipython: ipython })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ipython: ipython })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Matplotlib Inline Back-end for IPython and Jupyter",
         homepage: "https://github.com/ipython/matplotlib-inline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

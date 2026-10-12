@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rtaudio = nix.arg($, "rtaudio");
   const rtmidi = nix.arg($, "rtmidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "opl3bankeditor",
       version: "1.5.1-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Wohlstand",
           repo: "opl3bankeditor",
           rev: "64e4a013e3f8d612cfbc08595e09e0f3329bab16",
@@ -60,11 +60,11 @@ install_name_tool -change {,${nix.sel(qt6Packages, "qwt")}/lib/}libqwt.6.dylib "
 ln -s "$out/Applications/OPL3 Bank Editor.app/Contents/MacOS/OPL3 Bank Editor" $out/bin/opl3_bank_editor
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "opl3_bank_editor",
         description: "Small cross-platform editor of the OPL3 FM banks of different formats",
         homepage: "https://github.com/Wohlstand/opl3bankeditor",

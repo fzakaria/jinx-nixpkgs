@@ -33,21 +33,21 @@ export default nix.lambda((args) => (() => {
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   const cmakeFeature = nix.thunk(() => nix.attr(lib, "cmakeFeature"));
   const minja_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "google",
       repo: "minja",
       rev: "3e4c61c616eda133cfb1e440fc7a14bf1729bbee",
       hash: "sha256-aqOpLNB7XiY/W2gDRtnAqx37gMhHMRCJQmcX24vGIxA=",
     }))));
   const safetensors_h_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "hsnyder",
       repo: "safetensors.h",
       rev: "974a85d7dfd6e010558353226638bb26d6b9d756",
       hash: "sha256-sBgm4panHB9X2RghC3Qi0wEL0k9uUz+h60pfxTGZ0BA=",
     }))));
   const gguflib_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "Lourdle",
       repo: "gguf-tools",
       rev: "bac796ada809ac293e685db59b075971181cb008",
@@ -55,20 +55,20 @@ export default nix.lambda((args) => (() => {
     }))));
   const python = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "pybind11"))]));
   const archName = nix.thunk(() => nix.sel({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-linux": "aarch64",
     "riscv64-linux": "riscv64",
     "x86_64-linux": "intel64",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "openvino-genai",
       version: "2026.4.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.sel(openvino, "version")), nix.thunk(() => nix.sel(finalAttrs, "version"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openvino-genai/package.nix:63:5");
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "openvinotoolkit",
             repo: "openvino.genai",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -160,11 +160,11 @@ runHook postCheck
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Generative AI inference pipeline library built on OpenVINO Runtime",
         longDescription: "OpenVINO GenAI provides a high-level C++ and Python API for running large\nlanguage models and other generative AI workloads using OpenVINO Runtime as\nthe inference backend. It supports continuous batching, speculative decoding,\nand a range of text, image, and speech generation pipelines.\n",
         homepage: "https://github.com/openvinotoolkit/openvino.genai",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   const usei686VirtualglLib = nix.argOr($, "usei686VirtualglLib", () => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "virtualgl",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), virtualglLib)),
       paths: nix.thunk(() => [virtualglLib]),
@@ -39,7 +39,7 @@ wrapProgram $out/bin/vglrun \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(virtualglLib, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.attr(from, "license")),
       };

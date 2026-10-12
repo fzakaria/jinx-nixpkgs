@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.path(here, "./2bwm.nix"),
       nix.path(here, "./berry.nix"),
@@ -65,32 +65,32 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "./none.nix"),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xserver: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             session: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 internal: true,
                 default: [],
-                example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, name: "wmii", start: "..." }))]),
+                example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, name: "wmii", start: "..." }))]),
                 description: "Internal option used to add some common line to window manager\nscripts before forwarding the value to the\n`displayManager`.\n",
-                apply: nix.thunk(() => nix.app(nix.builtins.map, (d) => nix.update(d, { __proto__: pos$2, manage: "window" }))),
+                apply: nix.thunk(() => nix.app(nix.builtins.map, (d) => nix.update(d, { [nix.POS]: pos$2, manage: "window" }))),
               })))),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         xserver: nix.thunk(() => ({
-          __proto__: pos$9,
-          displayManager: nix.thunk(() => ({ __proto__: pos$8, session: nix.thunk(() => nix.sel(cfg, "session")) })),
+          [nix.POS]: pos$9,
+          displayManager: nix.thunk(() => ({ [nix.POS]: pos$8, session: nix.thunk(() => nix.sel(cfg, "session")) })),
         })),
       })),
     })),

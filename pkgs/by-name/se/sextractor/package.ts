@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const cfitsio = nix.arg($, "cfitsio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sextractor",
       version: "2.28.2-unstable-2026-03-11",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astromatic",
           repo: "sextractor",
           rev: "1fd40628fec352b8ca394dee111696299bddfcb6",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openblas, fftwFloat, cfitsio]),
       configureFlags: nix.thunk(() => ["--enable-openblas"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract catalogs of sources from astronomical images",
         homepage: "https://www.astromatic.net/software/sextractor/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

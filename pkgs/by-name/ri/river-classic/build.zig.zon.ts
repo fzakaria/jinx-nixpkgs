@@ -23,57 +23,57 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "aro-0.0.0-JSD1Qi7QNgDnfcrdEJf82v3o6MhZySjYVrtdfEf3E4Se",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/Vexu/arocc",
             rev: "5f5a050569a95ecc40a426f0c3666ae7ef987ede",
             hash: "sha256-f8Z0SXWx5Uia2TCMB5SUpcO8+xUnaWk32Oknva7xcxw=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "pixman-0.3.0-LClMnz2VAAAs7QSCGwLimV5VUYx0JFnX5xWU6HwtMuDX",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://codeberg.org/ifreund/zig-pixman/archive/v0.3.0.tar.gz",
             hash: "sha256-8tA4auo5FEI4IPnomV6bkpQHUe302tQtorFQZ1l14NU=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "translate_c-0.0.0-Q_BUWvP1BgCjAk6PWv5286tOlvzD9-X-NkuTzh0KxY0Q",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://codeberg.org/ziglang/translate-c/",
             rev: "7a1a9fdc4ab00835748a6657ecbb835e3d5d45f7",
             hash: "sha256-zdZ/it+/yNGfszHLqpXpi20Gkwm8fduMMs1/l9oaje8=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "wayland-0.6.0-lQa1kqz8AQADQmdNJsNhLoNHcnEGEUjrOaPV-dtEnEmX",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://codeberg.org/ifreund/zig-wayland/archive/v0.6.0.tar.gz",
             hash: "sha256-3m/ITNhZUJ/5uD/Tqm+0uZSktGoYgWF5oldOqOCUkIE=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "wlroots-0.20.1-jmOlcqNVBAB3uB5oqBTzpRlwu-FmMyyZMVAWCe5kmcSt",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: "https://codeberg.org/ifreund/zig-wlroots/archive/v0.20.1.tar.gz",
             hash: "sha256-cfzHJ2ziiCkMyNlIo6I9o/NjaZGrsv22hq41WYwCnpk=",
           })))),
       })),
       nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: "xkbcommon-0.3.0-VDqIe3K9AQB2fG5ZeRcMC9i7kfrp5m2rWgLrmdNn9azr",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             url: "https://codeberg.org/ifreund/zig-xkbcommon/archive/v0.3.0.tar.gz",
             hash: "sha256-e5bPEfxl4SQf0cqccLt/py1KOW1+Q1+kWZUEXBbh9oQ=",
           })))),

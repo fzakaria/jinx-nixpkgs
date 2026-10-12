@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const wandb = nix.arg($, "wandb");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rsl-rl-lib",
       version: "5.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leggedrobotics",
           repo: "rsl_rl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
         torch,
         torchvision,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, wandb: nix.thunk(() => [wandb]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, wandb: nix.thunk(() => [wandb]) })),
       pythonImportsCheck: nix.thunk(() => ["rsl_rl"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and simple implementation of learning algorithms for robotics",
         homepage: "https://github.com/leggedrobotics/rsl_rl",
         changelog: nix.thunk(() => nix.str`https://github.com/leggedrobotics/rsl_rl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

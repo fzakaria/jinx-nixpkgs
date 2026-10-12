@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const chess = nix.arg($, "chess");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "maia3",
       version: "0.1.0-unstable-2026-05-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CSSLab",
           repo: "maia3",
           rev: "1e13597c42d4858b7cfd7cfdae01e297263364b2",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [huggingface_hub, numpy, chess, torch]),
       pythonImportsCheck: nix.thunk(() => ["maia3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Inference tools for Maia3 chess models",
         homepage: "https://github.com/CSSLab/maia3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

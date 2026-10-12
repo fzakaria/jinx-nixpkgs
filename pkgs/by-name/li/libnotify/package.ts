@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.8";
       const outputs = nix.thunk(() => ["out", "man", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libnotify/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libnotify-${version}.tar.xz`),
           hash: "sha256-I0IO9hncLLWuutYT9II6L6QcB+Wh0FYo1A9uxLNb/d0=",
         }))));
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([meson, ninja, pkg_config, libxslt, docbook_xsl_ns, glib], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => [gobject_introspection]))));
       const propagatedBuildInputs = nix.thunk(() => [gdk_pixbuf, glib]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library that sends desktop notifications to a notification daemon",
         homepage: "https://gitlab.gnome.org/GNOME/libnotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         outputs,

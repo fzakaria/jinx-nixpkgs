@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const evdev_proto = nix.arg($, "evdev-proto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libdecor",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "libdecor",
           repo: "libdecor",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wayland_scanner]),
       buildInputs: nix.thunk(() => nix.concat([wayland, wayland_protocols, cairo, dbus, pango, gtk3], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), evdev_proto))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.freedesktop.org/libdecor/libdecor",
         description: "Client-side decorations library for Wayland clients",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

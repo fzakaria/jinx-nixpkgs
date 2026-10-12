@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       namePrefix: nix.thunk(() => ["coq", "mathcomp"]),
       pname: "abel",
       owner: "math-comp",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -39,21 +39,21 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "1.2.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-M1q6WIPBsayHde2hwlTxylH169hcTs3OuFsEkM0e3yc=",
         })),
         "1.2.0": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           hash: "sha256:1picd4m85ipj22j3b84cv8ab3330radzrhd6kp0gpxq14dhv02c2",
         })),
         "1.1.2": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           hash: "sha256:0565w713z1cwxvvdlqws2z5lgdys8lddf0vpwfdj7bpd7pq9hwxg",
         })),
         "1.0.0": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hash: "sha256:190jd8hb8anqsvr9ysr514pm5sh8qhw4030ddykvwxx9d9q6rbp3",
         })),
       })),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mathcomp_real_closed,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Abel - Galois and Abel - Ruffini Theorems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cohencyril"))]),

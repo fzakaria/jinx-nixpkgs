@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-deadlinks",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deadlinks",
           repo: "cargo-deadlinks",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         "--skip=cli_args::it_passes_arguments_through_to_cargo",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ["--skip=simple_project::it_checks_okay_project_correctly"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cargo subcommand to check rust documentation for broken links",
         homepage: "https://github.com/deadlinks/cargo-deadlinks",
         changelog: nix.thunk(() => nix.str`https://github.com/deadlinks/cargo-deadlinks/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

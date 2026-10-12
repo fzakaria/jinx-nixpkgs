@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "hyprwhspr-rs"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "hyprwhspr-rs": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(mkEnableOption, "hyprwhspr-rs")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "hyprwhspr-rs", nix.thunk(() => ({})))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "/path/to/hyprwhspr_secret_file",
@@ -45,21 +45,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           user: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             services: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               "hyprwhspr-rs": nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Native speech-to-text voice dictation for Hyprland",
                 after: nix.thunk(() => ["graphical-session.target", "pipewire.service"]),
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                   Restart: "on-failure",
                   LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),

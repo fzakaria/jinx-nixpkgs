@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const slurp = nix.arg($, "slurp");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hyprprop",
       version: "0.1-unstable-2026-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "contrib",
           rev: "918f266dddae39fa4184a1b8bf51ec5381cf29f7",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => (() => {
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "hyprprop",
             exec: "hyprprop",
             desktopName: "Hyprprop",
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
         return [desktopItem];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Xprop replacement for Hyprland",
         homepage: "https://github.com/hyprwm/contrib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

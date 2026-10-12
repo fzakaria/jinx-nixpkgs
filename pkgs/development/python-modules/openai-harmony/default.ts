@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openai",
           repo: "harmony",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-CaEldCrjBkjwsVeTzpiAFl/llAnUwJGTlU8Pt8YTV1E=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]);
       const dependencies = nix.thunk(() => [pydantic]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, demo: nix.thunk(() => [fastapi, uvicorn]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, demo: nix.thunk(() => [fastapi, uvicorn]) }));
       const pythonImportsCheck = nix.thunk(() => ["openai_harmony"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Renderer for the harmony response format to be used with gpt-oss",
         homepage: "https://github.com/openai/harmony",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

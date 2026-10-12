@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "phoenixd",
       version: "0.9.2",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "aarch64-darwin": "macos-arm64",
             "x86_64-linux": "linux-x64",
             "aarch64-linux": "linux-arm64",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/ACINQ/phoenixd/releases/download/v${nix.sel(finalAttrs, "version")}/phoenixd-${nix.sel(finalAttrs, "version")}-${suffix}.zip`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "aarch64-darwin": "sha256-FfAYa4XW3339z7Qa/zNuWmT2aw6cgGgg5ZeNaa0rLk4=",
                 "x86_64-linux": "sha256-yMpNOAEUqmnz/0DsD45jJxjxwSUqAgGNHqBcVBmW2VI=",
                 "aarch64-linux": "sha256-7hm3AMb56nJzk6oR3JkWEBEaWw58TeGCSda9qhiOz+k=",
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([unzip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libgcc, libxcrypt_legacy, zlib]))),
       installPhase: "runHook preInstall\n\ninstall -Dm0755 phoenix-cli $out/bin/phoenix-cli\ninstall -Dm0755 phoenixd $out/bin/phoenixd\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Server equivalent of the popular Phoenix wallet for mobile",
         homepage: "https://phoenix.acinq.co/server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

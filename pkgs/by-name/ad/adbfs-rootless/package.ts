@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fuse = nix.arg($, "fuse");
   const android_tools = nix.arg($, "android-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "adbfs-rootless",
       version: "0-unstable-2023-03-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spion",
           repo: "adbfs-rootless",
           rev: "fd56381af4dc9ae2f09b904c295686871a46ed0f",
@@ -36,7 +36,7 @@ substituteInPlace adbfs.cpp \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mount Android phones on Linux with adb, no root required",
         mainProgram: "adbfs",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

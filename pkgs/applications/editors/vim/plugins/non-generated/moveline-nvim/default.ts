@@ -19,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0.3.1-unstable-2023-07-06";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "willothy",
       repo: "moveline.nvim",
       rev: "570603637be8af20e97b91cf554fef29cab73ca6",
       hash: "sha256-hq/n48JC1EgJbmb6b/1jQ8MNhbcsJD3wIYaKE1UiU30=",
     }))));
   const moveline_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       src: src,
       version: version,
       pname: "moveline-lib",
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       src: src,
       version: version,
       pname: "moveline-nvim",
@@ -51,7 +51,7 @@ ln -s ${moveline_lib}/lib/libmoveline${ext} lua/moveline.so
       })()),
       nvimRequireCheck: "moveline",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Neovim plugin for moving lines up and down",
         homepage: "https://github.com/willothy/moveline.nvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

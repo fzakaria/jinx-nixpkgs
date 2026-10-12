@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "muon",
       version: "2019-11-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nickmqb",
           repo: "muon",
           rev: "6d3a5054ae75b0e5a0ae633cf8cbc3e2a054f8b3",
@@ -31,7 +31,7 @@ ${nix.sel(stdenv, "cc", "targetPrefix")}cc -o $out/bin/mu-unwrapped bootstrap/mu
 `),
       installPhase: "makeWrapper $out/bin/mu-unwrapped $out/bin/mu \\\n  --add-flags $out/share/mu/lib/core.mu\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern low-level programming language",
         homepage: "https://github.com/nickmqb/muon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

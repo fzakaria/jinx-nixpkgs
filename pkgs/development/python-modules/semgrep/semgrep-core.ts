@@ -15,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const patchelf = nix.arg($, "patchelf");
   const unzip = nix.arg($, "unzip");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "semgrep-core",
       version: nix.thunk(() => nix.attr(common, "version")),
       __structuredAttrs: true,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const data = nix.thunk(() => nix.selOr(common, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), "core", nix.key(nix.force(system))));
         const python = nix.thunk(() => nix.sel(common, "pythonWheelTag"));
         return nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "semgrep",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             format: "wheel",
@@ -61,7 +61,7 @@ runHook postInstall
   $out/bin/semgrep-core
 `))),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add(nix.sel(common, "meta", "description"), " - core binary")),
         mainProgram: "semgrep-core",
         sourceProvenance: nix.thunk(() => (() => {

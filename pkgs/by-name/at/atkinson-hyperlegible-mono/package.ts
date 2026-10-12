@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atkinson-hyperlegible-mono",
       version: "2.001-unstable-2024-11-20",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "atkinson-hyperlegible-next-mono",
           rev: "154d50362016cc3e873eb21d242cd0772384c8f9",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "New (2024) monospace sibling family to Atkinson Hyperlegible Next",
         homepage: "https://www.brailleinstitute.org/freefont/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

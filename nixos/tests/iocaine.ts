@@ -24,52 +24,52 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "iocaine",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "poz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       iocaine_default: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          iocaine: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          iocaine: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
       })),
       reverse_proxy_integration: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           iocaine: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               server: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 main: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   bind: "/run/iocaine/iocaine.socket",
                   "unix-socket-access": "group",
                   mode: "http",
-                  use: nix.thunk(() => ({ __proto__: pos$5, "handler-from": "default" })),
+                  use: nix.thunk(() => ({ [nix.POS]: pos$5, "handler-from": "default" })),
                 })),
               })),
-              handler: nix.thunk(() => ({ __proto__: pos$8, default: nix.thunk(() => ({})) })),
+              handler: nix.thunk(() => ({ [nix.POS]: pos$8, default: nix.thunk(() => ({})) })),
             })),
           })),
           caddy: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: true,
             globalConfig: "http_port 8080\nhttps_port 8081\n",
           })),
-          nginx: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+          nginx: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
         })),
       })),
     })),

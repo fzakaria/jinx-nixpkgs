@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
 </ns2:repository>
 `;
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildInputs: buildInputs,
         pname: nix.thunk(() => nix.str`android-sdk-${nix.app(nix.sel(lib, "concatMapStringsSep"), "-", (package$) => nix.sel(package$, "name"), sortedPackages)}`),
         version: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "-", (package$) => nix.sel(package$, "revision"), sortedPackages)),

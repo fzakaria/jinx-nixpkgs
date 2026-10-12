@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const xwayland = nix.argOr($, "xwayland", () => null);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cage",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cage-kiosk",
           repo: "cage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(wlroots_0_20, "enableXWayland")), nix.thunk(() => nix.str`wrapProgram $out/bin/cage --prefix PATH : "${xwayland}/bin"
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "basic-nixos-module-functionality": nix.thunk(() => nix.sel(nixosTests, "cage")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Wayland kiosk that runs a single, maximized application",
         homepage: "https://www.hjdskes.nl/projects/cage/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

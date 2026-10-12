@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-nd98gv2jro4k3s2hM47eZuHJmIPbk3Edj7lB6qLYwoI=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, watchmedo: nix.thunk(() => [pyyaml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, watchmedo: nix.thunk(() => [pyyaml]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([flaky, pytest_cov_stub, pytest_timeout, pytestCheckHook], nix.concat(nix.sel(optional_dependencies, "watchmedo"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [eventlet])))));
       const disabledTestPaths = nix.thunk(() => nix.concat([
         "tests/test_emitter.py::test_create_wrong_encoding",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         ]))))));
       const pythonImportsCheck = nix.thunk(() => ["watchdog"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python API and shell utilities to monitor file system events",
         mainProgram: "watchmedo",
         homepage: "https://github.com/gorakhargosh/watchdog",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

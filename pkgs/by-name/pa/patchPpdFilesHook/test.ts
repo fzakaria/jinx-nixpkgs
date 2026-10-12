@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "meta"));
   const getExe$ = nix.thunk(() => nix.attr(from, "getExe'"));
   const input = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./test.ppd"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       keep: "cmp",
       patch: "cmp",
       pathkeep: "/bin/cmp",
       pathpatch: "/bin/cmp",
     }))));
   const output = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./test.ppd"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       keep: "cmp",
       patch: nix.thunk(() => nix.app(getExe$, diffutils, "cmp")),
       pathkeep: "/bin/cmp",
       pathpatch: nix.thunk(() => nix.app(getExe$, diffutils, "cmp")),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(patchPpdFilesHook, "name")}-test`),
       buildInputs: nix.thunk(() => [diffutils]),
       nativeBuildInputs: nix.thunk(() => [diffutils, patchPpdFilesHook]),

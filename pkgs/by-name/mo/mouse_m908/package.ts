@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mouse_m908",
       version: "3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dokutan",
           repo: "mouse_m908",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin \\\n  $out/share/doc \\\n  $out/share/doc/mouse_m908 \\\n  $out/lib/udev/rules.d\n\ncp mouse_m908 $out/bin/mouse_m908\ncp mouse_m908.rules $out/lib/udev/rules.d\ncp examples/* $out/share/doc/mouse_m908\ncp README.md $out/share/doc/mouse_m908\ncp keymap.md $out/share/doc/mouse_m908\ninstallManPage mouse_m908.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/dokutan/mouse_m908",
         description: "Control various Redragon gaming mice from Linux, BSD and Haiku",
         mainProgram: "mouse_m908",

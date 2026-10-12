@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const cudaOlder = nix.arg($, "cudaOlder");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libcudla",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "stubs"]),
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(["libnvcudla.so"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaOlder, "12")), nix.thunk(() => ["libcuda.so.1", "libnvdla_runtime.so"])))),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: "Only Xavier (7.2) and Orin (8.7) Jetson devices are supported",
           assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["7.2", "8.7"]), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities"))), [])),
         })),

@@ -48,54 +48,54 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$37,
+    [nix.POS]: pos$37,
     name: "miracle-wm",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           imports: nix.thunk(() => [
             nix.path(here, "./common/auto.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, memorySize: 2047n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2047n })),
           "test-support": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$4,
-              auto: nix.thunk(() => ({ __proto__: pos$3, enable: true, user: "alice" })),
+              [nix.POS]: pos$4,
+              auto: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, user: "alice" })),
             })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$9,
-            ydotool: nix.thunk(() => ({ __proto__: pos$6, enable: true })),
+            [nix.POS]: pos$9,
+            ydotool: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
             wayland: nix.thunk(() => ({
-              __proto__: pos$8,
-              "miracle-wm": nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+              [nix.POS]: pos$8,
+              "miracle-wm": nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$12,
-            xserver: nix.thunk(() => ({ __proto__: pos$10, enable: true })),
+            [nix.POS]: pos$12,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
             displayManager: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "miracle-wm")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               rules: nix.thunk(() => (() => {
                 const testConfig = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "generate"), "miracle-wm.yaml", nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     terminal: "env WINIT_UNIX_BACKEND=x11 WAYLAND_DISPLAY= alacritty",
                     startup_apps: nix.thunk(() => [
-                      nix.thunk(() => ({ __proto__: pos$13, command: "foot", restart_on_death: false })),
+                      nix.thunk(() => ({ [nix.POS]: pos$13, command: "foot", restart_on_death: false })),
                     ]),
                   }))));
                 return [
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             shellAliases: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               "test-wayland": "wayland-info | tee /tmp/test-wayland.out && touch /tmp/test-wayland-exit-ok",
               "test-x11": "glinfo | tee /tmp/test-x11.out && touch /tmp/test-x11-exit-ok",
             })),
@@ -122,43 +122,43 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             etc: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               "xdg/foot/foot.ini": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))), "generate"), "foot.ini", nix.thunk(() => ({
-                    __proto__: pos$20,
-                    main: nix.thunk(() => ({ __proto__: pos$18, font: "inconsolata:size=16" })),
+                    [nix.POS]: pos$20,
+                    main: nix.thunk(() => ({ [nix.POS]: pos$18, font: "inconsolata:size=16" })),
                     colors: nix.thunk(() => (() => {
                       const foreground = "000000";
                       const background = "ffffff";
                       const regular2 = foreground;
-                      return { __proto__: pos$19, foreground, background, regular2 };
+                      return { [nix.POS]: pos$19, foreground, background, regular2 };
                     })()),
                   })))),
               })),
               "xdg/alacritty/alacritty.toml": nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))), "generate"), "alacritty.toml", nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     font: nix.thunk(() => (() => {
-                      const normal = nix.thunk(() => ({ __proto__: pos$22, family: "Inconsolata" }));
-                      const bold = nix.thunk(() => ({ __proto__: pos$23, family: nix.thunk(() => nix.sel(normal, "family")) }));
-                      const italic = nix.thunk(() => ({ __proto__: pos$24, family: nix.thunk(() => nix.sel(normal, "family")) }));
-                      const bold_italic = nix.thunk(() => ({ __proto__: pos$25, family: nix.thunk(() => nix.sel(normal, "family")) }));
+                      const normal = nix.thunk(() => ({ [nix.POS]: pos$22, family: "Inconsolata" }));
+                      const bold = nix.thunk(() => ({ [nix.POS]: pos$23, family: nix.thunk(() => nix.sel(normal, "family")) }));
+                      const italic = nix.thunk(() => ({ [nix.POS]: pos$24, family: nix.thunk(() => nix.sel(normal, "family")) }));
+                      const bold_italic = nix.thunk(() => ({ [nix.POS]: pos$25, family: nix.thunk(() => nix.sel(normal, "family")) }));
                       const size = 16n;
-                      return { __proto__: pos$26, normal, bold, italic, bold_italic, size };
+                      return { [nix.POS]: pos$26, normal, bold, italic, bold_italic, size };
                     })()),
                     colors: nix.thunk(() => (() => {
-                      const primary = nix.thunk(() => ({ __proto__: pos$27, foreground: "0x000000", background: "0xffffff" }));
-                      const normal = nix.thunk(() => ({ __proto__: pos$28, green: nix.thunk(() => nix.sel(primary, "foreground")) }));
-                      return { __proto__: pos$29, primary, normal };
+                      const primary = nix.thunk(() => ({ [nix.POS]: pos$27, foreground: "0x000000", background: "0xffffff" }));
+                      const normal = nix.thunk(() => ({ [nix.POS]: pos$28, green: nix.thunk(() => nix.sel(primary, "foreground")) }));
+                      return { [nix.POS]: pos$29, primary, normal };
                     })()),
                   })))),
               })),
             })),
           })),
           fonts: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "inconsolata"))]),
           })),
         };

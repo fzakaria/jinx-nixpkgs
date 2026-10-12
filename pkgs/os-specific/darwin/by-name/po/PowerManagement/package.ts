@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const iokitUser = nix.thunk(() => nix.app(sourceRelease, "IOKitUser"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "file_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/IOKit/pwr_mgt" \\
   '${iokitUser}/pwr_mgt.subproj/IOPMLibPrivate.h' \\
@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       releaseName: "PowerManagement",
       xcodeHash: "sha256-8dASJnzc7yZ4LNbanNjWuCoJunxAz/7R1Ulj/zOrkkI=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, description: "Contains the Darwin caffeinate command" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Contains the Darwin caffeinate command" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

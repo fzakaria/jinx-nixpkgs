@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "calibre-web",
       version: "0.6.27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "janeczku",
           repo: "calibre-web",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         comics: nix.thunk(() => (() => {
           const w_1 = nix.withScope(python3Packages, null);
           return [
@@ -150,15 +150,15 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")))),
       pythonImportsCheck: nix.thunk(() => ["calibreweb"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "calibre-web": nix.thunk(() => nix.attr(nixosTests, "calibre-web")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Web app for browsing, reading and downloading eBooks stored in a Calibre database",
         homepage: "https://github.com/janeczku/calibre-web",
         changelog: nix.thunk(() => nix.str`https://github.com/janeczku/calibre-web/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

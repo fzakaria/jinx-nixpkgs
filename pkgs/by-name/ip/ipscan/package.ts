@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipscan",
       version: "3.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/angryip/ipscan/releases/download/${nix.sel(finalAttrs, "version")}/ipscan_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-RLdlcrtpWcO4z7cKSN+y9UJzMBtnli2mAvuJSXCMoJU=",
         })))),
@@ -43,7 +43,7 @@ substituteInPlace $out/share/applications/ipscan.desktop --replace-fail "Exec=sh
 install -D usr/share/pixmaps/ipscan.png -t $out/share/icons/hicolor/128x128/apps
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Angry IP Scanner - fast and friendly network scanner",
         mainProgram: "ipscan",
         homepage: "https://angryip.org",

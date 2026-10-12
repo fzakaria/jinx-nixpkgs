@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const withDocumentation = nix.argOr($, "withDocumentation", () => true);
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "lomiri-content-hub",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/lomiri-content-hub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out", "dev", "examples"], nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => ["doc"])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-lomiri-content-hub-Fix-compatibility-with-gtest-1.18.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-content-hub/-/commit/518229b4a08aeab9953dc3f885d156188f2eb5aa.patch",
             hash: "sha256-3nrlm/zBGwDCJSRqkH0y3evvmsJpGk+uNJxJD6O8Efg=",
@@ -118,18 +118,18 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.concat([qtdec
       preFixup: "for exampleExe in lomiri-content-hub-test-{importer,exporter,sharer}; do\n  moveToOutput bin/$exampleExe $examples\n  moveToOutput share/applications/$exampleExe.desktop $examples\ndone\nmoveToOutput share/icons $examples\nmoveToOutput share/lomiri-content-hub/peers $examples\n",
       postFixup: "for exampleBin in $examples/bin/*; do\n  wrapGApp $exampleBin\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             vm: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-appinteractions")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Content sharing/picking service for the Lomiri desktop",
         longDescription: "lomiri-content-hub is a mediation service to let applications share content between them,\neven if they are not running at the same time.\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-content-hub",

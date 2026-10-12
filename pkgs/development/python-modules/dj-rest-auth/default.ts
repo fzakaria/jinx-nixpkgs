@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_django = nix.arg($, "pytest-django");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dj-rest-auth",
       version: "7.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iMerica",
           repo: "dj-rest-auth",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [django]),
       dependencies: nix.thunk(() => [djangorestframework]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         with_social: nix.thunk(() => nix.concat([django_allauth], nix.sel(django_allauth, "optional-dependencies", "socialaccount"))),
         with_mfa: nix.thunk(() => [pyotp]),
       })),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
         responses,
         unittest_xml_reporting,
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
-      env: nix.thunk(() => ({ __proto__: pos$3, DJANGO_SETTINGS_MODULE: "dj_rest_auth.tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, DJANGO_SETTINGS_MODULE: "dj_rest_auth.tests.settings" })),
       preCheck: nix.thunk(() => nix.str`# Make tests module available for the checkPhase
 export PYTHONPATH=$out/${nix.sel(python, "sitePackages")}/dj_rest_auth:$PYTHONPATH
 `),
       disabledTests: nix.thunk(() => ["TestSocialLoginSerializer"]),
       pythonImportsCheck: nix.thunk(() => ["dj_rest_auth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Authentication for Django Rest Framework",
         homepage: "https://github.com/iMerica/dj-rest-auth",
         changelog: nix.thunk(() => nix.str`https://github.com/iMerica/dj-rest-auth/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

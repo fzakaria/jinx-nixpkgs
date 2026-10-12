@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nvimpager",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lucc",
           repo: "nvimpager",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ substituteInPlace nvimpager --replace-fail ':-nvim' ':-${nix.app(nix.sel(lib, "g
 `),
       postFixup: "patchShebangs --update --host $out/bin/nvimpager\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Use neovim as pager",
         longDescription: "Use neovim as a pager to view manpages, diffs, etc with nvim's syntax\nhighlighting.  Includes a cat mode to print highlighted files to stdout\nand a ansi esc mode to highlight ansi escape sequences in neovim.\n",
         homepage: "https://github.com/lucc/nvimpager",

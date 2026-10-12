@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fastapi-sso",
       version: "0.22.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomasvotava",
           repo: "fastapi-sso",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["fastapi_sso"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FastAPI plugin to enable SSO to most common providers (such as Facebook login, Google login and login via Microsoft Office 365 Account",
         homepage: "https://github.com/tomasvotava/fastapi-sso",
         changelog: nix.thunk(() => nix.str`https://github.com/tomasvotava/fastapi-sso/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

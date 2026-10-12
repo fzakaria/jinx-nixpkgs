@@ -20,24 +20,24 @@ export default nix.thunk(() => (() => {
     const lib = nix.arg($, "lib");
     const php = nix.arg($, "php");
     return {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: nix.thunk(() => nix.str`php-${nix.sel(php, "version")}-httpd-pcre-jit-test`),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "php", "members")),
       })),
       containers: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$5,
-            time: nix.thunk(() => ({ __proto__: pos$2, timeZone: "UTC" })),
+            [nix.POS]: pos$5,
+            time: nix.thunk(() => ({ [nix.POS]: pos$2, timeZone: "UTC" })),
             services: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               httpd: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: true,
                 adminAddr: "please@dont.contact",
                 phpPackage: php,

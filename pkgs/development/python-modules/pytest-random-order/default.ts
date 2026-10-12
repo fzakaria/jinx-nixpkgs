@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jbasko",
           repo: "pytest-random-order",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [py, pytest_xdist, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["random_order"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jbasko/pytest-random-order",
         description: "Randomise the order of tests with some control over the randomness",
         changelog: nix.thunk(() => nix.str`https://github.com/jbasko/pytest-random-order/releases/tag/v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

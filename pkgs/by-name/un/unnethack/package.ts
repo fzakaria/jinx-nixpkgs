@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const lua5_4 = nix.arg($, "lua5_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "unnethack",
       version: "6.0.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "UnNetHack",
           repo: "UnNetHack",
           rev: "c8c1a467bb114fc7cb9967d20ebf389e11e1e7fd",
@@ -62,7 +62,7 @@ EOF
 chmod +x $out/bin/unnethack
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of NetHack",
         mainProgram: "unnethack",
         homepage: "https://unnethack.wordpress.com/",

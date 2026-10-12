@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const xrootd = nix.arg($, "xrootd");
   const gsoap = nix.arg($, "gsoap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "gfal2",
       version: "2.23.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cern-fts",
           repo: "gfal2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-tape-endpoint-info-aggregate.patch")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         enablePluginStatus: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           dcap: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
           file: true,
           gridftp: false,
@@ -61,17 +61,17 @@ export default nix.lambda((args) => (() => {
           xrootd: true,
         })),
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((pluginName) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`gfal2-${pluginName}`), nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), {
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     enablePluginStatus: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.eq(n, pluginName), nix.thunk(() => nix.sel(previousAttrs, "passthru", "enablePluginStatus")))),
                   })),
                 })))), nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "getAttr")), nix.thunk(() => nix.sel(finalAttrs, "passthru", "enablePluginStatus")))), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "enablePluginStatus"))))))))), {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "gfal2-minimal": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               passthru: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enablePluginStatus: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => false, nix.thunk(() => nix.sel(previousAttrs, "passthru", "enablePluginStatus")))),
               })),
             }))),
@@ -118,7 +118,7 @@ done
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       checkInputs: nix.thunk(() => [gtest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Multi-protocol data management library by CERN",
         longDescription: "GFAL (Grid File Access Library )\nis a C library providing an abstraction layer of\nthe grid storage system complexity.\nThe complexity of the grid is hidden from the client side\nbehind a simple common POSIX API.\n",
         homepage: "https://github.com/cern-fts/gfal2",

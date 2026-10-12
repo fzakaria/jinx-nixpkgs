@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       system: nix.thunk(() => nix.attr(from, "system")),
       name: "bootstrap-tools",
       builder: nix.thunk(() => nix.str`${unpack}/bin/bash`),

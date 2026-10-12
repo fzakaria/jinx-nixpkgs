@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jenisys",
           repo: "parse_type",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["parse_type"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simplifies to build parse types based on the parse module",
         homepage: "https://github.com/jenisys/parse_type",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

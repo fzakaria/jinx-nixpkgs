@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const codeName = "swan-lake";
   const openjdk = openjdk21_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ballerina",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dist.ballerina.io/downloads/${version}/ballerina-${version}-${codeName}.zip`),
           hash: "sha256-te7ZW9CISAg0ahkFBBWW2Q6pkB9jXGNBDHw6slX2V/E=",
         })))),
@@ -40,9 +40,9 @@ runHook postInstall
       preFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/bal --set JAVA_HOME ${openjdk}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           smokeTest: nix.thunk(() => (() => {
             const helloWorld = nix.thunk(() => nix.app(writeText, "hello-world.bal", "import ballerina/io;\npublic function main() {\n  io:println(\"Hello, World!\");\n}\n"));
             return nix.app(runCommand, nix.thunk(() => nix.str`ballerina-${version}-smoketest`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${ballerina}/bin/bal run ${helloWorld} >$out
@@ -54,7 +54,7 @@ read result <$out
         updateScript: nix.thunk(() => nix.app(writeScript, "update-ballerina", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl pcre2\nset -euo pipefail\n\nversion=\"$(curl -s https://ballerina.io/downloads/ |\n  pcre2grep -o '(?<=swan-lake-)\\d+(?:\\.\\d+)+(?=)')\"\n\nupdate-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source programming language for the cloud",
         mainProgram: "bal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

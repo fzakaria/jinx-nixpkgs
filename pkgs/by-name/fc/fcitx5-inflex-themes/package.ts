@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const jdupes = nix.arg($, "jdupes");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fcitx5-inflex-themes",
       version: "0-unstable-2024-11-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanweiya",
           repo: "fcitx5-inflex-themes",
           rev: "86d0a36eae2145de38d9c8bcfcb59f3b5ab6cb37",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [jdupes]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fcitx5/themes\ncp -r *inflex* $out/share/fcitx5/themes\njdupes --quiet --link-soft --recurse $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Aesthetic, modern fcitx5 theme featuring sharp-edged rectangle design",
         homepage: "https://github.com/sanweiya/fcitx5-inflex-themes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

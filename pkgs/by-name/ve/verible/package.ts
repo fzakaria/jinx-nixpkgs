@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "6d7a78e3bb927a52e3e2a5087729f9136d35c084",
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
   const GIT_DATE = "2026-08-16";
   const GIT_VERSION = "v0.0-4148-g1ea007ec";
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "verible",
-      env: nix.thunk(() => nix.update(nix.attrsDyn({ __proto__: pos$2, GIT_DATE: GIT_DATE, GIT_VERSION: GIT_VERSION }, [
+      env: nix.thunk(() => nix.update(nix.attrsDyn({ [nix.POS]: pos$2, GIT_DATE: GIT_DATE, GIT_VERSION: GIT_VERSION }, [
         [(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "NIX_CFLAGS_COMPILE" : null), "-mmacos-version-min=10.15"],
-      ]), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))))),
+      ]), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))))),
       version: nix.thunk(() => nix.builtins.concatStringsSep(".", nix.thunk(() => nix.app(nix.sel(lib, "take"), 3n, nix.thunk(() => nix.app(nix.sel(lib, "drop"), 1n, nix.thunk(() => nix.builtins.splitVersion(GIT_VERSION)))))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "chipsalliance",
           repo: "verible",
           tag: GIT_VERSION,
@@ -56,10 +56,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`file://${registry}`),
       ]),
       fetchAttrs: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         preInstall: nix.thunk(() => nix.add("rm -rf $bazelOut/external/rules_shell~~sh_configure~local_config_shell\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "find $bazelOut/external/abseil-cpp~ -type f -name BUILD.bazel -exec sed -i -e 's/\"layering_check\",//g' {} \\;\n"))),
         hash: nix.thunk(() => nix.selOr({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "aarch64-linux": "sha256-1jEiJJycHZ2LybV13AUCXjUbUTY1ZhH09aG9oVzOEto=",
           "x86_64-linux": "sha256-RXji3oV9ccUfje8+i73w7dox9e4wZH3KADJ+YecFgL4=",
           "aarch64-darwin": "sha256-mQM82RlRIyLRZeo5vQh+Bm7W+1eCmwj9yEYRe9blJFg=",
@@ -74,11 +74,11 @@ export default nix.lambda((args) => (() => {
       bazelTestTargets: nix.thunk(() => ["//..."]),
       bazelTestFlags: nix.thunk(() => ["-c opt"]),
       buildAttrs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         installPhase: "mkdir -p \"$out/bin\"\n.github/bin/simple-install.sh \"$out/bin\"\n",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Suite of SystemVerilog developer tools. Including a style-linter, indexer, formatter, and language server",
         homepage: "https://github.com/chipsalliance/verible",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

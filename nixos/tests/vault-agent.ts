@@ -25,39 +25,39 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "vault-agent",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "vault-agent": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               instances: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 example: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     vault: nix.thunk(() => ({
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       address: nix.thunk(() => nix.sel(config, "environment", "variables", "VAULT_ADDR")),
                     })),
                     auto_auth: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         method: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: "token_file",
                             config: nix.thunk(() => ({
-                              __proto__: pos$2,
+                              [nix.POS]: pos$2,
                               token_file_path: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "vault-token", nix.thunk(() => nix.sel(config, "environment", "variables", "VAULT_TOKEN")))),
                             })),
                           })),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
                     ]),
                     template: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         contents: "{{- with secret \"secret/example\" }}\n{{ .Data.data.key }}\"\n{{- end }}\n",
                         perms: "0600",
                         destination: "/example",
@@ -77,16 +77,16 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             vault: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               dev: true,
               devRootTokenID: nix.thunk(() => nix.sel(config, "environment", "variables", "VAULT_TOKEN")),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "vault"))]),
-            variables: nix.thunk(() => ({ __proto__: pos$12, VAULT_ADDR: "http://localhost:8200", VAULT_TOKEN: "root" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$12, VAULT_ADDR: "http://localhost:8200", VAULT_TOKEN: "root" })),
           })),
         };
       })(), formals$2),

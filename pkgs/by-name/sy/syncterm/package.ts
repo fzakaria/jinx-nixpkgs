@@ -22,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "syncterm",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/syncterm/syncterm-${nix.sel(finalAttrs, "version")}-src.tgz`),
           hash: "sha256-eeOuQ9OfmKWSJo/0AJQJTaYqpYe1uSXmt0WdZqXRHUk=",
         })))),
       postPatch: "cd src/syncterm",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-DHAS_INTTYPES_H",
             "-DXPDEV_DONT_DEFINE_INTTYPES",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([ncurses, SDL2], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib))),
       runtimeDependencies: nix.thunk(() => [ncurses, SDL2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),
         homepage: "https://syncterm.bbsdev.net/",
         description: "BBS terminal emulator",

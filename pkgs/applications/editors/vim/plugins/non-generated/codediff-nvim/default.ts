@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "codediff.nvim";
       const version = "4.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "esmuellert",
           repo: "codediff.nvim",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,18 +41,18 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`ln -s ${nix.sel(stdenv, "cc", "cc", "lib")}/lib/libgomp.so.1 $out/libgomp.so.1
 `)));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "VSCode-style side-by-side diff rendering with two-tier highlighting (line + character level)",
         homepage: "https://github.com/esmuellert/codediff.nvim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

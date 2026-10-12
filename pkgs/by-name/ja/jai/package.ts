@@ -23,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.str`0.${minor}.${patch}`);
   const zipName = nix.thunk(() => nix.str`jai-beta-${minor}-${patch}.zip`);
   const jai = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "jai",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           message: nix.thunk(() => nix.str`The language is not yet public. If you are in the closed beta, download the zip file and run the following command:
   nix-store --add-fixed sha256 ${zipName}
 `),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildCommand: "unzip $src -d $out",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Powerful language to write efficient reliable software in simple ways",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
     mainProgram: "jai",
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       meta: meta,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "zlib"))],
       runScript: nix.thunk(() => nix.str`${jai}/jai/bin/jai-linux`),
-    }))) : nix.app(runCommand, "jai", nix.thunk(() => ({ __proto__: pos$5, meta: meta, pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/bin
+    }))) : nix.app(runCommand, "jai", nix.thunk(() => ({ [nix.POS]: pos$5, meta: meta, pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/bin
 ln -s ${jai}/jai/bin/jai-macos $out/bin/jai
 `)));
 })(), formals$1);

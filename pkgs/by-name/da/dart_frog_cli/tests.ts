@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const testPkgName = "my_frog_project";
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     usage: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "dart-frog-usage-test",
         buildInputs: nix.thunk(() => [dart_frog_cli]),
         script: "export HOME=$TMPDIR\ndart_frog --help > output.txt\nif grep -q \"Usage: dart_frog\" output.txt; then\n  echo \"Usage check passed ✅\"\n  touch $out\nelse\n  echo \"Usage check failed ❌\"\n  exit 1\nfi\n",
       })))),
     "create-project": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "dart-frog-create-test",
         buildInputs: nix.thunk(() => [dart_frog_cli, dart]),
         script: nix.thunk(() => nix.str`export HOME=$TMPDIR

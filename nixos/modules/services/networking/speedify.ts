@@ -25,15 +25,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "speedify"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         speedify: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "This option enables Speedify daemon.\nThis sets {option}`networking.firewall.checkReversePath` to \"loose\", which might be undesirable for security.\n",
@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
-        boot: nix.thunk(() => ({ __proto__: pos$5, kernelModules: nix.thunk(() => ["tun"]) })),
+        [nix.POS]: pos$12,
+        boot: nix.thunk(() => ({ [nix.POS]: pos$5, kernelModules: nix.thunk(() => ["tun"]) })),
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
-          firewall: nix.thunk(() => ({ __proto__: pos$6, checkReversePath: "loose" })),
+          [nix.POS]: pos$7,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$6, checkReversePath: "loose" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             speedify: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Speedify Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network.target", "network-online.target"]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(pkgs, "nettools")),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/speedify/SpeedifyStartup.sh`),
                 ExecStop: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/speedify/SpeedifyShutdown.sh`),
                 Restart: "on-failure",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zahrun"))];

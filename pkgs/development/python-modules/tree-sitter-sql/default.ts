@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const tree_sitter = nix.arg($, "tree-sitter");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tree-sitter-sql",
       version: "0.3.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/DerekStride/tree-sitter-sql/releases/download/v${nix.sel(finalAttrs, "version")}/tree-sitter-sql-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qXoyTq6cge1o9uFiubM/iRH8ZELKopUOV8SY4kYNE4c=",
         })))),
       sourceRoot: ".",
       "build-system": nix.thunk(() => [setuptools]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, core: nix.thunk(() => [tree_sitter]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, core: nix.thunk(() => [tree_sitter]) })),
       pythonImportsCheck: nix.thunk(() => ["tree_sitter_sql"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, tree_sitter]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sql grammar for tree-sitter",
         homepage: "https://github.com/DerekStride/tree-sitter-sql",
         changelog: nix.thunk(() => nix.str`https://github.com/DerekStride/tree-sitter-sql/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -22,9 +22,9 @@ export default nix.lambda((args) => (() => {
   const rev = "933c5491db00c703d5d8264fdabd5a5b10aff96f";
   const hash = "sha256-o6Wpso8GSlQH39GpH3IXZyrVhdP8pEYFxLDq9a7yHX0=";
   return nix.app(linkFarm, "tor-proxy-hook-tests", nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       fetchgit: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "fetchgit-tor-source",
           url: nix.thunk(() => nix.str`http://${domain}/tpo/core/tor`),
           rev: rev,
@@ -32,21 +32,21 @@ export default nix.lambda((args) => (() => {
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tor, "proxyHook"))]),
         })))),
       fetchzip: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "fetchzip-tor-source",
           url: nix.thunk(() => nix.str`http://${domain}/tpo/core/tor/-/archive/${rev}/tor-${rev}.zip`),
           hash: hash,
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tor, "proxyHook"))]),
         })))),
       fetchurl: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "fetchurl-tor-source",
           url: nix.thunk(() => nix.str`http://${domain}/tpo/core/tor/-/raw/${rev}/Cargo.lock`),
           hash: "sha256-oX4WbsscLADgJ5o+czpueyAih7ic0u4lZQs7y1vMA3A=",
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tor, "proxyHook"))]),
         })))),
       fetchFromGitLab: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "gitlab-tor-source",
           protocol: "http",
           owner: "tpo/core",

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fpath = nix.arg($, "fpath");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "directories",
       version: "0.7",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "directories",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [fpath]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/OCamlPro/directories",
         description: "OCaml library that provides configuration, cache and data paths (and more!) following the suitable conventions on Linux, macOS and Windows",
         longDescription: "directories is an OCaml library that provides configuration, cache and\ndata paths (and more!) following the suitable conventions on Linux, macOS\nand Windows. It is inspired by similar libraries for other languages such\nas directories-jvm.\n\nThe following conventions are used: XDG Base Directory Specification and\nxdg-user-dirs on Linux, Known Folders on Windows, Standard Directories on\nmacOS.\n",

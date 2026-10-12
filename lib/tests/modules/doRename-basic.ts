@@ -15,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "doRename"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           from: nix.thunk(() => ["a", "b"]),
           to: nix.thunk(() => ["c", "d", "e"]),
           warn: true,
@@ -27,16 +27,16 @@ export default nix.lambda((args) => (() => {
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       c: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         d: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           e: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
         })),
       })),
     })),
-    config: nix.thunk(() => ({ __proto__: pos$6, a: nix.thunk(() => ({ __proto__: pos$5, b: 1234n })) })),
+    config: nix.thunk(() => ({ [nix.POS]: pos$6, a: nix.thunk(() => ({ [nix.POS]: pos$5, b: 1234n })) })),
   };
 })(), formals$1);
 //# sourceMappingURL=doRename-basic.ts.map

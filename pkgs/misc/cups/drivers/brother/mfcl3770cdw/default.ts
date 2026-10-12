@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const model = "mfcl3770cdw";
   const version = "1.0.2-0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103935/${model}pdrv-${version}.i386.deb`),
       sha256: "09fhbzhpjymhkwxqyxzv24b06ybmajr6872yp7pri39595mhrvay",
     }))));
   const reldir = nix.thunk(() => nix.str`opt/brother/Printers/${model}/`);
   return (() => {
     const driver = nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         src: src,
         version: version,
         pname: nix.thunk(() => nix.str`${model}drv`),
@@ -52,7 +52,7 @@ patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \\
   $dir/lpd/brmfcl3770cdwfilter
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: nix.thunk(() => nix.str`Brother ${nix.app(nix.sel(lib, "strings", "toUpper"), model)} driver`),
           homepage: "http://www.brother.com/",
           sourceProvenance: nix.thunk(() => (() => {
@@ -65,7 +65,7 @@ patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \\
         })),
       }))));
     const cupswrapper = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: version,
         src: src,
         pname: nix.thunk(() => nix.str`${model}cupswrapper`),
@@ -85,7 +85,7 @@ ln $dir/cupswrapper/brother_lpdwrapper_${model} $out/lib/cups/filter
 ln $dir/cupswrapper/brother_${model}_printer_en.ppd $out/share/cups/model
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: nix.thunk(() => nix.str`Brother ${nix.app(nix.sel(lib, "strings", "toUpper"), model)} CUPS wrapper driver`),
           homepage: "http://www.brother.com/",
           sourceProvenance: nix.thunk(() => (() => {
@@ -97,7 +97,7 @@ ln $dir/cupswrapper/brother_${model}_printer_en.ppd $out/share/cups/model
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "steveej"))]),
         })),
       }))));
-    return { __proto__: pos$6, driver, cupswrapper };
+    return { [nix.POS]: pos$6, driver, cupswrapper };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

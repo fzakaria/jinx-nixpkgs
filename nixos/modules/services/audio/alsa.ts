@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         const byDriver = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.eq(nix.sel(v, "driver"), drv)));
         const ids = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.sel(v, "id"), nix.thunk(() => nix.app(byDriver, nix.thunk(() => nix.sel(cfg, "cardAliases"))))));
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           driver: drv,
           names: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), ids)),
           ids: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), ids)),
@@ -98,18 +98,18 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "forEach"), options, (i) => nix.str`options ${nix.sel(i, "driver")} index=${nix.app(toList, nix.thunk(() => nix.sel(i, "ids")))} id=${nix.app(toList, nix.thunk(() => nix.sel(i, "names")))}`);
   })());
   const pluginsPath = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "alsa-with-plugins",
       paths: nix.thunk(() => nix.sel(cfg, "plugins")),
     }))));
   const alsaVariables = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     ALSA_AUDIO_OUT: nix.thunk(() => nix.sel(cfg, "defaultDevice", "playback")),
     ALSA_AUDIO_IN: nix.thunk(() => nix.sel(cfg, "defaultDevice", "capture")),
     ALSA_PLUGIN_DIR: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "plugins"), [])), nix.thunk(() => nix.str`${pluginsPath}/lib/alsa-lib`))),
   }));
   return {
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["sound", "enable"]), "The option was heavily overloaded and can be removed from most configurations.\nTo specifically configure the user space part of ALSA, see `hardware.alsa`.\n")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["sound", "mediaKeys"]), "The media keys can be configured with any hotkey daemon (that better\nintegrates with your desktop setup). To continue using the actkbd daemon\n(which was used up to NixOS 24.05), add these lines to your configuration:\n\n  services.actkbd.enable = true;\n  services.actkbd.bindings = [\n    # Mute\n    { keys = [ 113 ]; events = [ \"key\" ];\n      command = \"${pkgs.alsa-utils}/bin/amixer -q set Master toggle\";\n    }\n    # Volume down\n    { keys = [ 114 ]; events = [ \"key\" \"rep\" ];\n      command = \"${pkgs.alsa-utils}/bin/amixer -q set Master 1- unmute\";\n    }\n    # Volume up\n    { keys = [ 115 ]; events = [ \"key\" \"rep\" ];\n      command = \"${pkgs.alsa-utils}/bin/amixer -q set Master 1+ unmute\";\n    }\n    # Mic Mute\n    { keys = [ 190 ]; events = [ \"key\" ];\n      command = \"${pkgs.alsa-utils}/bin/amixer -q set Capture toggle\";\n    }\n  ];\n")),
@@ -117,13 +117,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["sound", "extraConfig"]), nix.thunk(() => ["hardware", "alsa", "config"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       hardware: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         alsa: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to set up the user space part of the Advanced Linux Sound Architecture (ALSA)\n\n::: {.warning}\nEnable this option only if you want to use ALSA as your main sound system,\nnot if you're using a sound server (e.g. PulseAudio or Pipewire).\n:::\n",
@@ -131,29 +131,29 @@ export default nix.lambda((args) => (() => {
           enableOSSEmulation: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the OSS emulation")),
           enableBluetooth: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Bluetooth audio support via BlueALSA")),
           enableRecorder: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to set up a loopback device that continuously records and\nallows to play back audio from the computer.\n\nThe loopback device is named `pcm.recorder`, audio can be saved\nby capturing from this device as with any microphone.\n\n::: {.note}\nBy default the output is duplicated to the recorder assuming stereo\naudio, for a more complex layout you have to override the pcm.splitter\ndevice using `hardware.alsa.config`.\nSee the generated /etc/asound.conf for its definition.\n:::\n",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.bluez-alsa ]")),
               description: "List of ALSA plugins to be added to the search path.\n",
             })))),
           defaultDevice: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             playback: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "dmix:CARD=1,DEV=0",
                 description: "The default playback device.\nLeave empty to let ALSA pick the default automatically.\n\n::: {.note}\nThe device can be changed at runtime by setting the ALSA_AUDIO_OUT\nenvironment variables (but only before starting a program).\n:::\n",
               })))),
             capture: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "",
                 example: "dsnoop:CARD=0,DEV=2",
@@ -161,31 +161,31 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           controls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: null,
                           description: "Name of the control, as it appears in `alsamixer`.\nIf null it will be the same as the softvol device name.\n",
                         })))),
                       device: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "default",
                           description: "Name of the PCM device to control (slave).\n",
                         })))),
                       card: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "default",
                           description: "Name of the PCM card to control (slave).\n",
                         })))),
                       maxVolume: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "float")),
                           default: 0.0,
                           description: "The maximum volume in dB.\n",
@@ -197,18 +197,18 @@ export default nix.lambda((args) => (() => {
               description: "Virtual volume controls (softvols) to add to a sound card.\nThese can be used to control the volume of specific applications\nor a digital output device (HDMI video card).\n",
             })))),
           cardAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     options: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       driver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "Name of the kernel module that provides the card.\n",
                         })))),
                       id: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: "default",
                           description: "The ID of the sound card\n",
@@ -220,21 +220,21 @@ export default nix.lambda((args) => (() => {
               description: "Assign custom names and reorder the sound cards.\n\n::: {.note}\nYou can find the card ids by looking at `/proc/asound/cards`.\n:::\n",
             })))),
           deviceAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  hdmi1 = \"hw:CARD=videocard,DEV=5\";\n  hdmi2 = \"hw:CARD=videocard,DEV=6\";\n}\n")),
               description: "Assign custom names to sound cards.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "# Send audio to a remote host via SSH\npcm.remote {\n  @args [ HOSTNAME ]\n  @args.HOSTNAME { type string }\n  type file\n  format raw\n  slave.pcm pcm.null\n  file {\n    @func concat\n    strings [\n      \"| ${lib.getExec pkgs.openssh} -C \"\n      $HOSTNAME\n      \" aplay -f %f -c %c -r %r -\"\n    ]\n  }\n}\n")),
               description: "The content of the system-wide ALSA configuration (/etc/asound.conf).\n\nDocumentation of the configuration language and examples can be found\nin the unofficial ALSA wiki: <https://alsa.opensrc.org/Asoundrc>\n",
             })))),
           enablePersistence: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.hardware.alsa.enable")),
               default: nix.thunk(() => nix.sel(config, "hardware", "alsa", "enable")),
@@ -245,16 +245,16 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             services: nix.thunk(() => ({
-              __proto__: pos$30,
-              pipewire: nix.thunk(() => ({ __proto__: pos$28, enable: false })),
-              pulseaudio: nix.thunk(() => ({ __proto__: pos$29, enable: false })),
+              [nix.POS]: pos$30,
+              pipewire: nix.thunk(() => ({ [nix.POS]: pos$28, enable: false })),
+              pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$29, enable: false })),
             })),
             hardware: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               alsa: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 config: nix.thunk(() => (() => {
                   const conf = nix.thunk(() => [
                     "pcm.!default fromenv\n\n# Read the capture and playback device from\n# the ALSA_AUDIO_IN, ALSA_AUDIO_OUT variables\npcm.fromenv {\n  type asym\n  playback.pcm {\n    type plug\n    slave.pcm {\n      @func getenv\n      vars [ ALSA_AUDIO_OUT ]\n      default pcm.sysdefault\n    }\n  }\n  capture.pcm {\n    type plug\n    slave.pcm {\n      @func getenv\n      vars [ ALSA_AUDIO_IN ]\n      default pcm.sysdefault\n    }\n  }\n}\n",
@@ -265,35 +265,35 @@ export default nix.lambda((args) => (() => {
                   return nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "flatten"), conf)))));
                 })()),
                 cardAliases: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableRecorder")), nix.thunk(() => ({
-                    __proto__: pos$32,
-                    loopback: nix.thunk(() => ({ __proto__: pos$31, driver: "snd_aloop", id: 2n })),
+                    [nix.POS]: pos$32,
+                    loopback: nix.thunk(() => ({ [nix.POS]: pos$31, driver: "snd_aloop", id: 2n })),
                   })))),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               sessionVariables: alsaVariables,
               etc: nix.thunk(() => ({
-                __proto__: pos$36,
-                "asound.conf": nix.thunk(() => ({ __proto__: pos$35, text: nix.thunk(() => nix.sel(cfg, "config")) })),
+                [nix.POS]: pos$36,
+                "asound.conf": nix.thunk(() => ({ [nix.POS]: pos$35, text: nix.thunk(() => nix.sel(cfg, "config")) })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "alsa-utils"))]),
             })),
-            systemd: nix.thunk(() => ({ __proto__: pos$38, globalEnvironment: alsaVariables })),
+            systemd: nix.thunk(() => ({ [nix.POS]: pos$38, globalEnvironment: alsaVariables })),
             boot: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               kernelModules: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableOSSEmulation")), nix.thunk(() => ["snd_pcm_oss", "snd_mixer_oss"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableRecorder")), nix.thunk(() => ["snd_aloop"]))))),
               extraModprobeConfig: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", cardsConfig)),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) && nix.asBool(nix.sel(cfg, "enableBluetooth")))), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             users: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               users: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 bluealsa: nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   description: "BlueALSA daemons user",
                   isSystemUser: true,
                   group: "audio",
@@ -301,38 +301,38 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               etc: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 "alsa/conf.d/20-bluealsa.conf": nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   source: nix.thunk(() => nix.str`${nix.sel(pkgs, "bluez-alsa")}/etc/alsa/conf.d/20-bluealsa.conf`),
                 })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bluez-alsa"))]),
             })),
             hardware: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               alsa: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 plugins: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bluez-alsa"))]),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "bluez-alsa"))]),
               services: nix.thunk(() => ({
-                __proto__: pos$50,
-                bluealsa: nix.thunk(() => ({ __proto__: pos$49, wantedBy: nix.thunk(() => ["bluetooth.target"]) })),
+                [nix.POS]: pos$50,
+                bluealsa: nix.thunk(() => ({ [nix.POS]: pos$49, wantedBy: nix.thunk(() => ["bluetooth.target"]) })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "alsa", "enablePersistence")), nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             services: nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               udev: nix.thunk(() => ({
-                __proto__: pos$53,
+                [nix.POS]: pos$53,
                 extraRules: nix.thunk(() => nix.str`ACTION=="add", SUBSYSTEM=="sound", KERNEL=="controlC*", KERNELS!="card*", GOTO="alsa_restore_go"
 GOTO="alsa_restore_end"
 
@@ -344,21 +344,21 @@ LABEL="alsa_restore_end"
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               services: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 "alsa-store": nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   description: "Store Sound Card State",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   restartIfChanged: false,
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$55,
+                    [nix.POS]: pos$55,
                     RequiresMountsFor: "/var/lib/alsa",
                     ConditionVirtualization: "!systemd-nspawn",
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     Type: "oneshot",
                     RemainAfterExit: true,
                     StateDirectory: "alsa",
@@ -372,7 +372,7 @@ LABEL="alsa_restore_end"
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$61,
+      [nix.POS]: pos$61,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];

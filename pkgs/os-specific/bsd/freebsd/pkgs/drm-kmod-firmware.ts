@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add(nix.add("drm-kmod-firmware", nix.app(nix.sel(lib, "optionalString"), withAmd, "-amd")), nix.app(nix.sel(lib, "optionalString"), withIntel, "-intel")));
       const version = "20250109";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freebsd",
           repo: "drm-kmod-firmware",
           rev: version,
@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
       const KMODDIR = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/kernel`);
       const makeFlags = nix.thunk(() => ["DEBUG_FLAGS=-g", "XARGS_J=xargs-j"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GPU firmware for FreeBSD drm-kmod",
         license: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withAmd, nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware"))), nix.app(nix.sel(lib, "optional"), withIntel, nix.thunk(() => nix.sel(lib, "licenses", "unfree"))))),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryFirmware"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         path,
         pname,
         version,

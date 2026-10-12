@@ -20,37 +20,37 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     services: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       omnom: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         enable: true,
         openFirewall: true,
         port: 9090n,
         settings: nix.thunk(() => ({
-          __proto__: pos$3,
-          app: nix.thunk(() => ({ __proto__: pos$1, disable_signup: false, results_per_page: 50n })),
+          [nix.POS]: pos$3,
+          app: nix.thunk(() => ({ [nix.POS]: pos$1, disable_signup: false, results_per_page: 50n })),
           server: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             address: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "omnom", "port")))}`),
           })),
         })),
       })),
     })),
     programs: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       firefox: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         enable: true,
         package: nix.thunk(() => nix.app(nix.sel(pkgs, "wrapFirefox"), nix.thunk(() => nix.sel(pkgs, "librewolf-unwrapped")), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             nixExtensions: nix.thunk(() => [
               nix.thunk(() => (() => {
                 const extid = "{f0bca7ce-0cda-41dc-9ea8-126a50fed280}";
                 return nix.app(nix.sel(pkgs, "runCommand"), "omnom", nix.thunk(() => ({
-                    __proto__: pos$7,
-                    passthru: nix.thunk(() => ({ __proto__: pos$6, extid: extid })),
+                    [nix.POS]: pos$7,
+                    passthru: nix.thunk(() => ({ [nix.POS]: pos$6, extid: extid })),
                   })), nix.thunk(() => nix.str`mkdir -p $out
 cp ${nix.sel(pkgs, "omnom")}/share/addons/omnom_ext_firefox.zip $out/${extid}.xpi
 `));

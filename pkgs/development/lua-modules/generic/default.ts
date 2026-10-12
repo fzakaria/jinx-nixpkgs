@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const propagatedBuildInputs = nix.argOr($_1, "propagatedBuildInputs", () => []);
     const makeFlags = nix.argOr($_1, "makeFlags", () => []);
     return nix.app(toLuaModule, nix.thunk(() => nix.app(nix.sel(lua, "stdenv", "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`lua${nix.sel(lua, "luaversion")}-`, nix.sel(attrs, "pname")), "-"), nix.sel(attrs, "version"))),
           makeFlags: nix.thunk(() => nix.concat([
             "PREFIX=$(out)",

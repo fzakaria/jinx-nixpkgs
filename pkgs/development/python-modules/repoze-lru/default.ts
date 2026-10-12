@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "repoze.lru",
           version: version,
           hash: "sha256-BCmnXhk4Dk7VDAaU4mrIgZtOp4Ue4fx1g8hXLbgK/3c=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["repoze.lru"]);
       const pythonNamespaces = nix.thunk(() => ["repoze"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny LRU cache implementation and decorator",
         homepage: "http://www.repoze.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/repoze/repoze.lru/blob/${version}/CHANGES.rst`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

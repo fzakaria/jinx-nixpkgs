@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const liblscp = nix.arg($, "liblscp");
   const libgig = nix.arg($, "libgig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qsampler",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/qsampler/qsampler-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-z6TlPsiccyYvr/DqUX+r6mLYHLkctvVD/ihzt8SLRkY=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libgig]))}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://qsampler.sourceforge.io",
         description: "LinuxSampler GUI front-end application",
         mainProgram: "qsampler",

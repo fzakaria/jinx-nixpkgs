@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python = python3;
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pdfding",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrmn",
           repo: "PdfDing",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python, "pkgs", "pyprojectVersionPatchHook")),
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         e2e: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
           return [
@@ -110,7 +110,7 @@ done \\
 echo "VERSION = '${nix.sel(finalAttrs, "version")}'" > pdfding/core/settings/version.py;
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PDFDING_OUT_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}/pdfding`),
       })),
       makeWrapperArgs: nix.thunk(() => [
@@ -158,14 +158,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python, "p
       postCheck: "# come out of the pdfding directory\npopd\n\nunset DATA_DIR\n\n# remove dev.py\nrm $PDFDING_OUT_DIR/core/settings/dev.py\n",
       pythonImportsCheck: nix.thunk(() => ["pdfding"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         python: python,
         tests: nix.thunk(() => nix.sel(nixosTests, "pdfding")),
         frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({})))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://codeberg.org/mrmn/PdfDing/src/commit/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Selfhosted PDF manager, viewer and editor offering a seamless user experience on multiple devices",
         downloadPage: "https://codeberg.org/mrmn/PdfDing",

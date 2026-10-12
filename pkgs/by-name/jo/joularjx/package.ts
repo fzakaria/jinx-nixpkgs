@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "joularjx";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joular",
           repo: "joularjx",
           rev: version,
@@ -35,7 +35,7 @@ makeWrapper ${jre}/bin/java $out/bin/joularjx \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Java-based agent for software power monitoring at the source code level",
         homepage: "https://github.com/joular/joularjx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -46,7 +46,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

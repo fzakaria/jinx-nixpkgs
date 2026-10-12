@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "guzzle_sphinx_theme",
           version: version,
           hash: "sha256-m4wWOcNDwCw/PbffZg3fb1M7VFTukqX3sC7apXP+0+Y=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["guzzle_sphinx_theme"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx theme used by Guzzle: http://guzzlephp.org",
         homepage: "https://github.com/guzzle/guzzle_sphinx_theme/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

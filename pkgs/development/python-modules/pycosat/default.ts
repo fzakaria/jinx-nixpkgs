@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           extension: "zip",
           sha256: "4c99874946a7e939bb941bbb019dd2c20e6068e3107c91366e7779c69d70e0ed",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings to picosat SAT solver",
         homepage: "https://github.com/ContinuumIO/pycosat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

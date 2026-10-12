@@ -19,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const gnum4 = nix.arg($, "gnum4");
   const version = "1.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ppl",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirror.metanet.ch/sage/spkg/upstream/ppl/ppl-${version}.tar.bz2`),
           sha256: "1wgxcbgmijgk11df43aiqfzv31r3bkxmgb4yl68g21194q60nird",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "clang5-support.patch",
             url: "https://raw.githubusercontent.com/sagemath/sage/9.2/build/pkgs/ppl/patches/clang5-support.patch",
             sha256: "1zj90hm25pkgvk4jlkfzh18ak9b98217gbidl3731fdccbw6hr87",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parma Polyhedra Library",
         longDescription: "The Parma Polyhedra Library (PPL) provides numerical abstractions\nespecially targeted at applications in the field of analysis and\nverification of complex systems.  These abstractions include convex\npolyhedra, defined as the intersection of a finite number of (open or\nclosed) halfspaces, each described by a linear inequality (strict or\nnon-strict) with rational coefficients; some special classes of\npolyhedra shapes that offer interesting complexity/precision tradeoffs;\nand grids which represent regularly spaced points that satisfy a set of\nlinear congruence relations.  The library also supports finite\npowersets and products of (any kind of) polyhedra and grids and a mixed\ninteger linear programming problem solver using an exact-arithmetic\nversion of the simplex algorithm.\n",
         homepage: "http://bugseng.com/products/ppl/",

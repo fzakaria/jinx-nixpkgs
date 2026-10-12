@@ -22,23 +22,23 @@ export default nix.lambda((args) => (() => {
   const ___build_type = nix.argOr($, "___build-type", () => "csm");
   nix.assert_(nix.app(nix.sel(lib, "elem"), ___build_type, nix.thunk(() => ["coreboot", "csm", "qemu"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/se/seabios/package.nix:12:1");
   const biosfile = nix.thunk(() => nix.sel({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     coreboot: "bios.bin.elf",
     csm: "Csm16.bin",
     qemu: "bios.bin",
   }, nix.key(nix.force(___build_type))));
   const configuration_string = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     coreboot: "CONFIG_COREBOOT",
     csm: "CONFIG_CSM",
     qemu: "CONFIG_QEMU",
   }, nix.key(nix.force(___build_type))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "seabios",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://git.seabios.org/seabios.git",
           rev: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-eDQpl8Mf30p9WRvsNW192ISfBnEtMCdsWjUbWMXWmWw=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify", "pic", "stackprotector"]),
       postConfigure: nix.thunk(() => (() => {
         const config = nix.thunk(() => nix.app(writeText, "config.txt", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               CONFIG_PERMIT_UNALIGNED_PCIROM: "y",
               CONFIG_QEMU_HARDWARE: "y",
             }, [[nix.str`${configuration_string}`, "y"]]))))));
@@ -70,12 +70,12 @@ install -Dm644 out/${biosfile} -t $out/share/seabios/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "build-type": ___build_type,
         firmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/seabios/${biosfile}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://www.seabios.org",
         description: "Open source implementation of a 16bit x86 BIOS",
         longDescription: "SeaBIOS is an open source implementation of a 16bit x86 BIOS.\nIt can run in an emulator or it can run natively on x86 hardware with the\nuse of coreboot.\n",

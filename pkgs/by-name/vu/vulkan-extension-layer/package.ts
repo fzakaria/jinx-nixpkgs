@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vulkan-extension-layer",
       version: "1.4.357.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "Vulkan-ExtensionLayer",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTS=false"]),
       preFixup: "for f in \"$out\"/share/vulkan/explicit_layer.d/*.json \"$out\"/share/vulkan/implicit_layer.d/*.json; do\n  jq <\"$f\" >tmp.json \".layer.library_path = \\\"$out/lib/\\\" + .layer.library_path\"\n  mv tmp.json \"$f\"\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Layers providing Vulkan features when native support is unavailable",
         homepage: "https://github.com/KhronosGroup/Vulkan-ExtensionLayer/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

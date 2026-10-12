@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const filtered = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "fileset")), null);
       return (path) => nix.app(nix.lookup(w, "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fileset: nix.thunk(() => nix.app(nix.lookup(w, "difference"), nix.thunk(() => nix.app(nix.lookup(w, "gitTracked"), path)), nix.thunk(() => nix.app(nix.lookup(w, "unions"), nix.thunk(() => [
                 nix.thunk(() => nix.add(path, nix.path("", "/.github"))),
                 nix.thunk(() => nix.add(path, nix.path("", "/ci"))),
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
     const filteredBase = nix.thunk(() => nix.app(filtered, base));
     const filteredHead = nix.thunk(() => nix.app(filtered, head));
     return nix.app(runCommand, "nixpkgs-vet", nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => [nixpkgs_vet]),
-        env: nix.thunk(() => ({ __proto__: pos$2, NIXPKGS_VET_NIX_PACKAGE: nix$ })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$2, NIXPKGS_VET_NIX_PACKAGE: nix$ })),
       })), nix.thunk(() => nix.str`export NIX_STORE_DIR=$(mktemp -d)
 export NIX_STATE_DIR=$(mktemp -d)
 $NIXPKGS_VET_NIX_PACKAGE/bin/nix-store --init

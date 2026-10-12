@@ -94,7 +94,7 @@ wrapGApp $out/bin/${pname_1}
         const postInstall = nix.thunk(() => (nix.asBool(nix.eq(pname_1, "gammastep")) ? "substituteInPlace $out/share/applications/gammastep.desktop \\\n  --replace 'Exec=gammastep' \"Exec=$out/bin/gammastep\"\nsubstituteInPlace $out/share/applications/gammastep-indicator.desktop \\\n  --replace 'Exec=gammastep-indicator' \"Exec=$out/bin/gammastep-indicator\"\n" : "substituteInPlace $out/share/applications/redshift.desktop \\\n  --replace 'Exec=redshift' \"Exec=$out/bin/redshift\"\nsubstituteInPlace $out/share/applications/redshift-gtk.desktop \\\n  --replace 'Exec=redshift-gtk' \"Exec=$out/bin/redshift-gtk\"\n"));
         const enableParallelBuilding = true;
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname_1,
           version: version_1,
           src: src_1,
@@ -119,14 +119,14 @@ wrapGApp $out/bin/${pname_1}
         const pname = "redshift";
         const version = "1.12";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "sharpbracket",
             repo: "redshift",
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: "12cb4gaqkybp4bkkns8pam378izr2mwhr2iy04wkprs2v92j7bz6",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Screen color temperature manager",
           longDescription: "Redshift adjusts the color temperature according to the position\nof the sun. A different color temperature is set during night and\ndaytime. During twilight and early morning, the color temperature\ntransitions smoothly from night to daytime temperature to allow\nyour eyes to slowly adapt. At night the color temperature should\nbe set to match the lamps in your room.\n",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -135,20 +135,20 @@ wrapGApp $out/bin/${pname_1}
           mainProgram: "redshift",
           maintainers: [],
         }));
-        return { __proto__: pos$4, pname, version, src, meta };
+        return { [nix.POS]: pos$4, pname, version, src, meta };
       })())));
     const gammastep = nix.thunk(() => nix.app(mkRedshift, nix.thunk(() => (() => {
         const pname = "gammastep";
         const version = "2.0.11";
         const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             owner: "chinstrap",
             repo: "gammastep",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-c8JpQLHHLYuzSC9bdymzRTF6dNqOLwYqgwUOpKcgAEU=",
           }))));
         const meta = nix.thunk(() => nix.update(nix.sel(redshift, "meta"), {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           longDescription: nix.thunk(() => nix.add("Gammastep", nix.app(nix.sel(lib, "removePrefix"), "Redshift", nix.thunk(() => nix.sel(redshift, "meta", "longDescription"))))),
           homepage: "https://gitlab.com/chinstrap/gammastep",
           mainProgram: "gammastep",
@@ -157,9 +157,9 @@ wrapGApp $out/bin/${pname_1}
             return nix.concat([nix.thunk(() => nix.lookup(w, "acidbong"))], nix.sel(redshift, "meta", "maintainers"));
           })()),
         }));
-        return { __proto__: pos$7, pname, version, src, meta };
+        return { [nix.POS]: pos$7, pname, version, src, meta };
       })())));
-    return { __proto__: pos$8, redshift, gammastep };
+    return { [nix.POS]: pos$8, redshift, gammastep };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

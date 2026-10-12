@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const dmarcTestReport = nix.thunk(() => nix.builtins.fetchurl(nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "dmarc-test-report",
       url: "https://github.com/domainaware/parsedmarc/raw/f45ab94e0608088e0433557608d9f4e9517d3afe/samples/aggregate/estadocuenta1.infonacot.gob.mx!example.com!1536853302!1536939702!2940.xml.zip",
       sha256: "0dq64cj49711kbja27pjl2hy0d3azrjxg91kqrh40x46fkn1dwkx",
@@ -97,49 +97,49 @@ with smtplib.SMTP('localhost') as server:
     server.quit()
 `));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     localMail: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "parsedmarc-local-mail",
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "talyz"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           parsedmarc: nix.lambda((args_2) => (() => {
             const $_1 = nix.formals(args_2, formals$2);
             const nodes = nix.arg($_1, "nodes");
             return {
-              __proto__: pos$11,
-              virtualisation: nix.thunk(() => ({ __proto__: pos$3, memorySize: 2048n })),
+              [nix.POS]: pos$11,
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2048n })),
               services: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 postfix: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   enableSubmission: true,
                   enableSubmissions: true,
                   submissionsOptions: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     smtpd_sasl_auth_enable: "yes",
                     smtpd_client_restrictions: "permit",
                   })),
                 })),
                 parsedmarc: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   enable: true,
                   provision: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     geoIp: false,
-                    localMail: nix.thunk(() => ({ __proto__: pos$6, enable: true, hostname: "localhost" })),
+                    localMail: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, hostname: "localhost" })),
                   })),
                 })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.app(sendEmail, "dmarc@localhost")),
                   nix.thunk(() => nix.sel(pkgs, "jq")),
@@ -180,46 +180,46 @@ parsedmarc.wait_until_succeeds(
       const mailDomain = nix.thunk(() => nix.sel(certs, "domain"));
       const parsedmarcDomain = "parsedmarc.fake.domain";
       return nix.app(makeTest, nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           name: "parsedmarc-external-mail",
           meta: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return {
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "talyz"))]),
             };
           })()),
           nodes: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             parsedmarc: nix.lambda((args_2) => (() => {
               const $_1 = nix.formals(args_2, formals$4);
               const nodes = nix.arg($_1, "nodes");
               return {
-                __proto__: pos$25,
-                virtualisation: nix.thunk(() => ({ __proto__: pos$15, memorySize: 2048n })),
+                [nix.POS]: pos$25,
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, memorySize: 2048n })),
                 security: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   pki: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${parsedmarcDomain}
 ${nix.sel(nodes, "mail", "networking", "primaryIPAddress")} ${mailDomain}
 `),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   parsedmarc: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     enable: true,
-                    provision: nix.thunk(() => ({ __proto__: pos$19, geoIp: false })),
+                    provision: nix.thunk(() => ({ [nix.POS]: pos$19, geoIp: false })),
                     settings: nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       imap: nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         host: mailDomain,
                         port: 993n,
                         ssl: true,
@@ -230,7 +230,7 @@ ${nix.sel(nodes, "mail", "networking", "primaryIPAddress")} ${mailDomain}
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
                 })),
               };
@@ -239,19 +239,19 @@ ${nix.sel(nodes, "mail", "networking", "primaryIPAddress")} ${mailDomain}
               const $_1 = nix.formals(args_2, formals$5);
               const nodes = nix.arg($_1, "nodes");
               return {
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
                 networking: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${mailDomain}
 ${nix.sel(nodes, "parsedmarc", "networking", "primaryIPAddress")} ${parsedmarcDomain}
 `),
-                  firewall: nix.thunk(() => ({ __proto__: pos$26, allowedTCPPorts: nix.thunk(() => [993n]) })),
+                  firewall: nix.thunk(() => ({ [nix.POS]: pos$26, allowedTCPPorts: nix.thunk(() => [993n]) })),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   dovecot2: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     enable: true,
                     protocols: nix.thunk(() => ["imap"]),
                     sslCACert: nix.thunk(() => nix.str`${nix.sel(certs, "ca", "cert")}`),
@@ -259,24 +259,24 @@ ${nix.sel(nodes, "parsedmarc", "networking", "primaryIPAddress")} ${parsedmarcDo
                     sslServerKey: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(mailDomain)), "key")}`),
                   })),
                   postfix: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     enable: true,
                     origin: mailDomain,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$30,
-                      main: nix.thunk(() => ({ __proto__: pos$29, myhostname: mailDomain, mydestination: mailDomain })),
+                      [nix.POS]: pos$30,
+                      main: nix.thunk(() => ({ [nix.POS]: pos$29, myhostname: mailDomain, mydestination: mailDomain })),
                     })),
                     enableSubmission: true,
                     enableSubmissions: true,
                     submissionsOptions: nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       smtpd_sasl_auth_enable: "yes",
                       smtpd_client_restrictions: "permit",
                     })),
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   systemPackages: nix.thunk(() => [
                     nix.thunk(() => nix.app(sendEmail, nix.thunk(() => nix.str`alice@${mailDomain}`))),
                   ]),

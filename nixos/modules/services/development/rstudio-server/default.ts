@@ -42,45 +42,45 @@ ${nix.sel(cfg, "rserverExtraConfig")}
   const rsession_conf = nix.thunk(() => nix.builtins.toFile("rsession.conf", nix.thunk(() => nix.str`${nix.sel(cfg, "rsessionExtraConfig")}
 `)));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jbedo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "rstudio-server": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "RStudio server")),
           serverWorkingDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/rstudio-server",
               description: "Default working directory for server (server-working-dir in rserver.conf).\n",
             })))),
           listenAddr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Address to listen on (www-address in rserver.conf).\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rstudio-server", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               example: "rstudioServerWrapper.override { packages = [ pkgs.rPackages.ggplot2 ]; }",
             })))),
           rserverExtraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Extra contents for rserver.conf.\n",
             })))),
           rsessionExtraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Extra contents for resssion.conf.\n",
@@ -89,19 +89,19 @@ ${nix.sel(cfg, "rserverExtraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "rstudio-server": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Rstudio server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartTriggers: nix.thunk(() => [rserver_conf, rsession_conf]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 Restart: "on-failure",
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/rserver`),
@@ -112,30 +112,30 @@ ${nix.sel(cfg, "rserverExtraConfig")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           etc: nix.thunk(() => ({
-            __proto__: pos$17,
-            "rstudio/rserver.conf": nix.thunk(() => ({ __proto__: pos$14, source: rserver_conf })),
-            "rstudio/rsession.conf": nix.thunk(() => ({ __proto__: pos$15, source: rsession_conf })),
-            "pam.d/rstudio": nix.thunk(() => ({ __proto__: pos$16, source: "/etc/pam.d/login" })),
+            [nix.POS]: pos$17,
+            "rstudio/rserver.conf": nix.thunk(() => ({ [nix.POS]: pos$14, source: rserver_conf })),
+            "rstudio/rsession.conf": nix.thunk(() => ({ [nix.POS]: pos$15, source: rsession_conf })),
+            "pam.d/rstudio": nix.thunk(() => ({ [nix.POS]: pos$16, source: "/etc/pam.d/login" })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "rstudio-server": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "rstudio-server")),
               description: "rstudio-server",
               group: "rstudio-server",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "rstudio-server": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "rstudio-server")),
             })),
           })),

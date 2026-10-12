@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "ccache",
       version: "4.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ccache",
           repo: "ccache",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-objdump-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             objdump: nix.thunk(() => nix.str`${nix.sel(binutils, "bintools")}/bin/${nix.sel(binutils, "targetPrefix")}objdump`),
           })))),
       ]),
@@ -64,22 +64,22 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [doctest]),
       disabledTests: nix.thunk(() => nix.concat(["test.fileclone", "test.trim_dir"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test.basedir", "test.multi_arch", "test.nocpp2"])))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         links: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const unwrappedCC = nix.arg($_1, "unwrappedCC");
           const extraConfig = nix.arg($_1, "extraConfig");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               pname: "ccache-links",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               passthru: nix.thunk(() => nix.update({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 isClang: nix.thunk(() => nix.selOr(unwrappedCC, () => false, "isClang")),
                 isGNU: nix.thunk(() => nix.selOr(unwrappedCC, () => false, "isGNU")),
                 isCcache: true,
               }, nix.builtins.intersectAttrs(nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   hardeningUnsupportedFlagsByTargetPlatform: null,
                   hardeningUnsupportedFlags: null,
                 })), unwrappedCC))),
@@ -118,7 +118,7 @@ done
               meta: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(unwrappedCC, "meta"));
                 return {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
               };
               })()),
@@ -127,7 +127,7 @@ done
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Compiler cache for fast recompilation of C/C++ code",
         homepage: "https://ccache.dev",
         downloadPage: "https://ccache.dev/download.html",

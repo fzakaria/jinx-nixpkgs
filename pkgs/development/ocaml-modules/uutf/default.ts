@@ -21,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const uchar = nix.arg($, "uchar");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "1.0.4" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.03")) ? "1.0.3" : nix.builtins.throw(nix.thunk(() => nix.str`uutf is not available with OCaml ${nix.sel(ocaml, "version")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "uutf",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/uutf/releases/uutf-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "1.0.3": "sha256-h3KlYT0ecCmM4U3zMkGjaF8h5O9r20zwP+mF+x7KBWg=",
             "1.0.4": "sha256-p6V45q+RSaiJThjjtHWchWWTemnGyaznowu/BIRhnKg=",
           }, nix.key(nix.str`${version}`))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Non-blocking streaming Unicode codec for OCaml",
         homepage: "https://erratique.ch/software/uutf",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/dbuenzli/uutf/refs/tags/v${version}/CHANGES.md`),

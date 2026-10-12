@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtmultimedia = nix.arg($, "qtmultimedia");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kclock",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qtmultimedia, wayland_protocols]),

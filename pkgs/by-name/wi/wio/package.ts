@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wio",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Rubo",
           repo: "wio",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,19 +54,19 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=maybe-uninitialized" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=maybe-uninitialized" })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/wio \\
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [alacritty, cage]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providedSessions: nix.thunk(() => ["wio"]),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/Rubo3/wio",
         description: "Wayland compositor similar to Plan 9's rio",
         longDescription: "Wio is a Wayland compositor for Linux and FreeBSD which has a similar look\nand feel to plan9's rio.\n",

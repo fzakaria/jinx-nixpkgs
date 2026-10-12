@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const dbus_java = nix.arg($, "dbus_java");
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "disnix-web-service",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svanderburg",
           repo: "DisnixWebService",
           rev: nix.thunk(() => nix.str`DisnixWebService-${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/svanderburg/DisnixWebService/commit/cee99c6af744b5dda16728a70ebd2800f61871a0.patch",
             hash: "sha256-4rSEN8AwivUXUCIUYFBRIoE19jVDv+Vpgakmy8fR06A=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [ant, jdk, xmlstarlet]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
         AXIS2_LIB: nix.thunk(() => nix.str`${axis2}/lib`),
         AXIS2_WEBAPP: nix.thunk(() => nix.str`${axis2}/webapps/axis2`),
@@ -57,7 +57,7 @@ substituteInPlace scripts/disnix-soap-client \\
       buildPhase: "runHook preBuild\nant\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nant install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SOAP interface and client for Disnix",
         mainProgram: "disnix-soap-client",
         homepage: "https://github.com/svanderburg/DisnixWebService",

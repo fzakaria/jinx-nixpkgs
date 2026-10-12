@@ -51,73 +51,73 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const finalPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "overridePythonAttrs"), (oldAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       dependencies: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "dependencies"), nix.concat(nix.sel(cfg, "package", "optional-dependencies", "webrtc"), nix.app(optionals, nix.thunk(() => nix.sel(cfg, "vad", "enable")), nix.thunk(() => nix.sel(cfg, "package", "optional-dependencies", "silerovad")))))),
     })));
   return {
-    __proto__: pos$29,
-    meta: nix.thunk(() => ({ __proto__: pos$2, buildDocsInSandbox: false })),
+    [nix.POS]: pos$29,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$2, buildDocsInSandbox: false })),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         wyoming: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           satellite: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return {
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: nix.thunk(() => nix.app(mkEnableOption, "Wyoming Satellite")),
               package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "wyoming-satellite", nix.thunk(() => ({})))),
               user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.lookup(w, "str")),
                   example: "alice",
                   description: "User to run wyoming-satellite under.\n",
                 })))),
               group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.lookup(w, "str")),
                   default: "users",
                   description: "Group to run wyoming-satellite under.\n",
                 })))),
               uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.lookup(w, "str")),
                   default: "tcp://0.0.0.0:10700",
                   description: "URI where wyoming-satellite will bind its socket.\n",
                 })))),
               name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.lookup(w, "str")),
                   default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
                   defaultText: nix.thunk(() => nix.app(literalExpression, "config.networking.hostName\n")),
                   description: "Name of the satellite.\n",
                 })))),
               area: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: null,
                   example: "Kitchen",
                   description: "Area to the satellite.\n",
                 })))),
               microphone: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 command: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     type: nix.thunk(() => nix.lookup(w, "str")),
                     default: "arecord -r 16000 -c 1 -f S16_LE -t raw",
                     description: "Program to run for audio input.\n",
                   })))),
                 autoGain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ints"), "between"), 0n, 31n)),
                     default: 5n,
                     example: 15n,
                     description: "Automatic gain control in dbFS, with 31 being the loudest value. Set to 0 to disable.\n",
                   })))),
                 noiseSuppression: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "ints"), "between"), 0n, 4n)),
                     default: 2n,
                     example: 3n,
@@ -125,40 +125,40 @@ export default nix.lambda((args) => (() => {
                   })))),
               })),
               sound: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 command: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                     default: "aplay -r 22050 -c 1 -f S16_LE -t raw",
                     description: "Program to run for sound output.\n",
                   })))),
               })),
               sounds: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 awake: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                     default: null,
                     description: "Path to audio file in WAV format to play when wake word is detected.\n",
                   })))),
                 done: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                     default: null,
                     description: "Path to audio file in WAV format to play when voice command recording has ended.\n",
                   })))),
               })),
               vad: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     type: nix.thunk(() => nix.lookup(w, "bool")),
                     default: true,
                     description: "Whether to enable voice activity detection.\n\nEnabling will result in only streaming audio, when speech gets\ndetected.\n",
                   })))),
               })),
               extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                   default: [],
                   description: "Extra arguments to pass to the executable.\n\nCheck `wyoming-satellite --help` for possible options.\n",
@@ -169,13 +169,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "wyoming-satellite": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Wyoming Satellite",
               after: nix.thunk(() => ["network-online.target", "sound.target"]),
               wants: nix.thunk(() => ["network-online.target", "sound.target"]),
@@ -199,7 +199,7 @@ ${nix.app(escapeShellArgs, nix.thunk(() => nix.concat([
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 CapabilityBoundingSet: "",

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const vcdimager = nix.arg($, "vcdimager");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "k3b",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : /run/wrappers/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cdrdao, cdrtools, dvdplusrwtools, libburn, normalize, sox, vcdimager, flac]))}`),
         nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [cdparanoia, libdvdcss]))}`),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "k3b" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "k3b" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

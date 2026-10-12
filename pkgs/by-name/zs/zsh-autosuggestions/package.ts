@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-autosuggestions",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsh-users",
           repo: "zsh-autosuggestions",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "install -D zsh-autosuggestions.plugin.zsh \\\n  $out/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh\ninstall -D zsh-autosuggestions.zsh \\\n  $out/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh\nln -s $out/share/zsh/plugins/zsh-autosuggestions \\\n  $out/share/zsh-autosuggestions\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fish shell autosuggestions for Zsh",
         homepage: "https://github.com/zsh-users/zsh-autosuggestions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

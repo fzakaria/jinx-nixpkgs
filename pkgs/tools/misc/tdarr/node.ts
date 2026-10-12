@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const ccextractor = nix.arg($, "ccextractor");
   return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "tdarr-node",
       component: "node",
       hashes: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         linux_x64: "sha256-F7P0DZ4J10cgwbME1qcWYnJcMlcsALJ+z6u/eVTv5g0=",
         linux_arm64: "sha256-oKapd+SjpercZecXCjojbsjHem5oWxctycj/woD0Bwc=",
         darwin_x64: "sha256-RmRngSwtU5ZMlE8yPy+Am6DzMmuiFihbeIk1yn/85Gc=",

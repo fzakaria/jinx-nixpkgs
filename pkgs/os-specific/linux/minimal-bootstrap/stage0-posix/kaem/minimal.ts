@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const platforms = nix.arg($, "platforms");
   const stage0Arch = nix.arg($, "stage0Arch");
   return nix.app(derivationWithMeta, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       pname: "kaem-minimal",
       builder: hex0,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.builtins.placeholder("out")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "First stage minimal scriptable build tool for bootstrapping",
         homepage: "https://github.com/oriansj/stage0-posix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

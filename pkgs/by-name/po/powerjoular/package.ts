@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gnat = nix.arg($, "gnat");
   const gprbuild = nix.arg($, "gprbuild");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powerjoular",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joular",
           repo: "powerjoular",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ngprbuild\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp obj/powerjoular $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI software to monitor the power consumption of software and hardware components",
         homepage: "https://github.com/joular/powerjoular",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "julienmalka"))]),

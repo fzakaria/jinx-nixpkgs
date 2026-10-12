@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const cudaAtLeast = nix.arg($, "cudaAtLeast");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "cuda_cudart",
       outputs: nix.thunk(() => ["out"]),
@@ -48,7 +48,7 @@ unset -v path
 `)),
       postInstall: "pushd \"${!outputStubs:?}/lib/stubs\" >/dev/null\nif [[ -f libcuda.so && ! -f libcuda.so.1 ]]; then\n  nixLog \"creating versioned symlink for libcuda.so stub\"\n  ln -srv libcuda.so libcuda.so.1\nfi\npopd >/dev/null\n",
       disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getBin"), cuda_nvcc))]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "CUDA Runtime" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "CUDA Runtime" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=cuda_cudart.ts.map

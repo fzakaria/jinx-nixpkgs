@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
   const debugLvl = nix.argOr($, "debugLvl", () => "0");
   const version = "3.2.0-1";
   const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102692/hl2260dlpr-${version}.i386.deb`),
       hash: "sha256-R+cM2SKc/MP6keo3PUrKXPC6a2dEQQdBunrpNtAHlH0=",
     }))));
   const cupsdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102693/hl2260dcupswrapper-${version}.i386.deb`),
       hash: "sha256-k6+ulZVoFTpEY6WJ9TO9Rzp2c4dwPqL3NY5/XYJpvOc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cups-brother-hl2260d",
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, dpkg]),
@@ -90,7 +90,7 @@ wrapProgram $out/opt/brother/Printers/HL2260D/lpd/filter_HL2260D \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript, which]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.brother.com/",
         description: "Brother HL-2260D printer driver",
         sourceProvenance: nix.thunk(() => (() => {

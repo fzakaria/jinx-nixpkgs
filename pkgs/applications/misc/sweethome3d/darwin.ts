@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const patches = nix.arg($, "patches");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       version: version,
       src: src,

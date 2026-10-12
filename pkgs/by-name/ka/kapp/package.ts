@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kapp = nix.arg($, "kapp");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kapp",
       version: "0.66.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "carvel-dev",
           repo: "kapp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,21 +32,21 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       subPackages: nix.thunk(() => ["cmd/kapp"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X carvel.dev/kapp/pkg/kapp/version.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "for shell in bash fish zsh; do\n  $out/bin/kapp completion $shell > kapp.$shell\n  installShellCompletion kapp.$shell\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: kapp })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: kapp })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI tool that encourages Kubernetes users to manage bulk resources with an application abstraction for grouping",
         homepage: "https://carvel.dev/kapp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

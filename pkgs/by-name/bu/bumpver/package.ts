@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const mercurial = nix.arg($, "mercurial");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bumpver",
       version: "2026.1132",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-gLIjwj/Km8ndVpt6RGgJSdNL7iOnOIYNmps28avjsOA=",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pytestCheckHook")), git, mercurial]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bump version numbers in project files",
         homepage: "https://pypi.org/project/bumpver/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const mold = nix.arg($, "mold");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gfold",
       version: "2026.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nickgerace",
           repo: "gfold",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-N7dgB0yzL5JSdQOAhNL9pnCSpV/Mo0Phe6ljwipLD/8=",
       nativeBuildInputs: nix.thunk(() => [mold]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: gfold,
               command: "gfold --version",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CLI tool to help keep track of your Git repositories, written in Rust",
         homepage: "https://github.com/nickgerace/gfold",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

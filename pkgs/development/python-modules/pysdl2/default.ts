@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pysdl2",
       version: "0.9.17-unstable-2025-11-18",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "py-sdl",
           repo: "py-sdl2",
           rev: "3d0672135fab3ca58e2f00c0a76b7b25cb818784",
@@ -41,20 +41,20 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./PySDL2-dll.patch"), nix.thunk(() => nix.update(nix.builtins.mapAttrs((_) => (pkg) => nix.str`${pkg}/lib/lib${nix.sel(pkg, "pname")}${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               SDL2_ttf: SDL2_ttf,
               SDL2_image: SDL2_image,
               SDL2_gfx: SDL2_gfx,
               SDL2_mixer: SDL2_mixer,
             }))), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             SDL2: nix.thunk(() => nix.app((pkg) => nix.str`${pkg}/lib/libSDL2${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`, SDL2)),
           })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       buildInputs: nix.thunk(() => [SDL2, SDL2_ttf, SDL2_image, SDL2_gfx, SDL2_mixer]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         SDL_VIDEODRIVER: "dummy",
         SDL_AUDIODRIVER: "dummy",
         SDL_RENDER_DRIVER: "software",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         "test_SDL_GetSetWindowMouseRect",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/py-sdl/py-sdl2/compare/0.9.17..${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Wrapper around the SDL2 library and as such similar to the discontinued PySDL project",
         homepage: "https://github.com/py-sdl/py-sdl2",

@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "vacask",
       version: "0.3.3",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arpadbuermen",
           repo: "VACASK",
           tag: nix.thunk(() => nix.str`_${nix.sel(finalAttrs, "version")}`),
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [openvaf, pyEnv]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Analog circuit simulator",
         longDescription: "VACASK is a Verilog-A Circuit Analysis Kernel - an analog circuit\nsimulator with a device library built from Verilog-A modules.\n",
         homepage: "https://codeberg.org/arpadbuermen/VACASK",

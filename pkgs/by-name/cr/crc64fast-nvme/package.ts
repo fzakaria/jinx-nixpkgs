@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "crc64fast-nvme",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awesomized",
           repo: "crc64fast-nvme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,10 +26,10 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: nix.thunk(() => nix.str`cp -L ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postInstall: "mv $out/bin/build_table $out/bin/pclmulqdq_build_table\ninstall -Dm644 crc64fast_nvme.h -t $out/include/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SIMD accelerated carryless-multiplication CRC-64/NVME checksum computation (based on Intel's PCLMULQDQ paper)",
         homepage: "https://github.com/awesomized/crc64fast-nvme",
         mainProgram: "crc_64_nvme_checksum",

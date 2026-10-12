@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const offlineCacheHash = nix.arg($_1, "offlineCacheHash");
     return (() => {
       const src = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "grist-enterprise-src",
           version: version,
           src: gristSrc,
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
           outputHashMode: "recursive",
         })));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${src}/ext/yarn.lock`),
           hash: offlineCacheHash,
         }))));
-      return { __proto__: pos$3, src, offlineCache };
+      return { [nix.POS]: pos$3, src, offlineCache };
     })();
   })(), formals$2);
 })(), formals$1);

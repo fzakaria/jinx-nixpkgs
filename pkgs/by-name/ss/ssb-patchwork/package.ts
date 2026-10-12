@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const version = "3.18.1";
   const name = nix.thunk(() => nix.str`Patchwork-${version}`);
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/ssbc/patchwork/releases/download/v${version}/${name}.AppImage`),
       sha256: "F8n6LLbgkg3z55lSY60T+pn2lra8aPt6Ztepw1gf2rI=",
     }))));
-  const binary = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
-  const appimage_contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$3, pname: pname, version: version, src: src }))));
+  const binary = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimage_contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "ssb-patchwork",
       exec: nix.thunk(() => nix.str`${binary}/bin/ssb-patchwork`),
       icon: "ssb-patchwork",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Network"]),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       pname: "patchwork",
       paths: nix.thunk(() => [binary]),
@@ -47,7 +47,7 @@ install -D ${appimage_contents}/ssb-patchwork.png -t $out/share/icons/hicolor/51
 cp ${desktopItem}/share/applications/* $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Decentralized messaging and sharing app built on top of Secure Scuttlebutt (SSB)",
         longDescription: "sea-slang for gossip - a scuttlebutt is basically a watercooler on a ship.\n",
         homepage: "https://www.scuttlebutt.nz/",

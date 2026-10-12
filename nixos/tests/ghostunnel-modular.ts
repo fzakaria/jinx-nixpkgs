@@ -33,33 +33,33 @@ export default nix.lambda((args) => (() => {
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     _class: "nixosTest",
     name: "ghostunnel",
     nodes: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       backend: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             nginx: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 backend: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir $out\necho hi >$out/hi.txt\n")),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$6,
-            firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$6,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$2),
@@ -67,16 +67,16 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           system: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "ghostunnel-plain-old": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ghostunnel", "services", "default"))]),
                 ghostunnel: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   listen: "0.0.0.0:443",
                   cert: "/root/service-cert.pem",
                   key: "/root/service-key.pem",
@@ -86,10 +86,10 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "ghostunnel-client-cert": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ghostunnel", "services", "default"))]),
                 ghostunnel: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   listen: "0.0.0.0:1443",
                   cert: "/root/service-cert.pem",
                   key: "/root/service-key.pem",
@@ -102,8 +102,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [443n, 1443n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [443n, 1443n]) })),
           })),
         };
       })(), formals$3),
@@ -111,9 +111,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           environment: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };
@@ -180,7 +180,7 @@ client.succeed("bash -c 'diff <(curl -v --no-progress-meter --cert /root/client-
 client.fail("bash -c 'diff <(curl -v --no-progress-meter --cacert /root/ca.pem https://service:1443/hi.txt) <(echo hi)'")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "roberth"))];

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "direvent",
       version: "5.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/direvent/direvent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-DhbAtLPm92c+m08x2BqwEjatIvg1OFEvOy9Y+flv3Lc=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Directory event monitoring daemon",
         mainProgram: "direvent",
         homepage: "https://www.gnu.org.ua/software/direvent/",

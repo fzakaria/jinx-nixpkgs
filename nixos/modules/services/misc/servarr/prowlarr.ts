@@ -31,26 +31,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "prowlarr"));
-  const servarr = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings-options.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, pkgs: pkgs }))));
+  const servarr = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings-options.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, pkgs: pkgs }))));
   const isCustomDataDir = nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/prowlarr"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         prowlarr: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Prowlarr, an indexer manager/proxy for Torrent trackers and Usenet indexers")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/prowlarr",
               description: "The directory where Prowlarr stores its data files.\n\nNote: A bind mount will be used to mount the directory at the expected location\nif a different value than `/var/lib/prowlarr` is used.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "prowlarr", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the Prowlarr web interface.",
@@ -61,19 +61,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             prowlarr: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "Prowlarr",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => nix.update(nix.app(nix.sel(servarr, "mkServarrSettingsEnvVars"), "PROWLARR", nix.thunk(() => nix.sel(cfg, "settings"))), { __proto__: pos$7, HOME: "/var/empty" })),
+              environment: nix.thunk(() => nix.update(nix.app(nix.sel(servarr, "mkServarrSettingsEnvVars"), "PROWLARR", nix.thunk(() => nix.sel(cfg, "settings"))), { [nix.POS]: pos$7, HOME: "/var/empty" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 Type: "simple",
                 DynamicUser: true,
                 StateDirectory: "prowlarr",
@@ -82,25 +82,25 @@ export default nix.lambda((args) => (() => {
                 Restart: "on-failure",
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
               })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "10-prowlarr": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                  __proto__: pos$13,
-                  d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isCustomDataDir, nix.thunk(() => ({ __proto__: pos$12, user: "root", group: "root", mode: "0700" })))),
+                  [nix.POS]: pos$13,
+                  d: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isCustomDataDir, nix.thunk(() => ({ [nix.POS]: pos$12, user: "root", group: "root", mode: "0700" })))),
                 }))],
               ])),
             })),
           })),
           mounts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), isCustomDataDir, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               what: nix.thunk(() => nix.sel(cfg, "dataDir")),
               where: "/var/lib/private/prowlarr",
               options: "bind",
@@ -108,9 +108,9 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "server", "port"))]),
             })))),
         })),

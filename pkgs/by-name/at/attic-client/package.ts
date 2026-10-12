@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const needNixInclude = nix.thunk(() => nix.app(nix.sel(lib, "elem"), "attic-client", crates));
   const nix$ = nix.thunk(() => nix.sel(nixVersions, "nix_2_34"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "attic",
       version: "0-unstable-2026-07-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zhaofengli",
           repo: "attic",
           rev: "7a19204df10d606c5070e6bb72615c3461900c05",
@@ -42,19 +42,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), needNixInclude, nix$), [boost])),
       cargoBuildFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (c) => nix.str`-p ${c} `, crates)),
       cargoHash: "sha256-UGgM78QEWJ2QgbQhxEI+yLYXH6T4ey+1oenPTMlJ3GU=",
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, ATTIC_DISTRIBUTOR: "nixpkgs" }, nix.app(nix.sel(lib, "optionalAttrs"), needNixInclude, nix.thunk(() => ({
-          __proto__: pos$3,
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, ATTIC_DISTRIBUTOR: "nixpkgs" }, nix.app(nix.sel(lib, "optionalAttrs"), needNixInclude, nix.thunk(() => ({
+          [nix.POS]: pos$3,
           NIX_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix$)}/include`),
         }))))),
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "if [[ -f $out/bin/attic ]]; then\n  installShellCompletion --cmd attic \\\n    --bash <($out/bin/attic gen-completions bash) \\\n    --zsh <($out/bin/attic gen-completions zsh) \\\n    --fish <($out/bin/attic gen-completions fish)\nfi\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$4, atticd: nix.thunk(() => nix.attr(nixosTests, "atticd")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, atticd: nix.thunk(() => nix.attr(nixosTests, "atticd")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Multi-tenant Nix Binary Cache",
         homepage: "https://github.com/zhaofengli/attic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

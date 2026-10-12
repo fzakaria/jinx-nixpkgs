@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const comfyui = nix.arg($, "comfyui");
   const funchookVersion = "1.1.3";
   const funchook = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kubo",
       repo: "funchook",
       tag: nix.thunk(() => nix.str`v${funchookVersion}`),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-u/RXMNyKL6L7p5gEFnAQTErPXXGKXv74jbYlBbG0Wy4=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "comfy-aimdo",
       version: "0.5.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Comfy-Org",
           repo: "comfy-aimdo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ chmod -R +w build
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AI model dynamic offloader for ComfyUI",
         homepage: "https://github.com/Comfy-Org/comfy-aimdo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

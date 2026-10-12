@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => [unzip, dos2unix]);
         const unpackPhase = "mkdir rainloop\nunzip -q -d rainloop $src\n";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/RainLoop/rainloop-webmail/releases/download/v${version}/rainloop-${edition}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(edition, "")), "-")}${version}.zip`),
             sha256: sha256,
           }))));
@@ -56,7 +56,7 @@ mkdir $out/data
 chmod 700 $out/data
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Simple, modern & fast web-based email client",
           homepage: "https://www.rainloop.net",
           downloadPage: "https://github.com/RainLoop/rainloop-webmail/releases",
@@ -68,7 +68,7 @@ chmod 700 $out/data
           maintainers: [],
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname,
           version,
           nativeBuildInputs,
@@ -84,14 +84,14 @@ chmod 700 $out/data
       })()));
   })(), formals$2);
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     "rainloop-community": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         edition: "community",
         sha256: "sha256-25ScQ2OwSKAuqg8GomqDhpebhzQZjCk57h6MxUNiymc=",
       })))),
     "rainloop-standard": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         edition: "",
         sha256: "sha256-aYCwqFqhJEeakn4R0MUDGcSp+M47JbbCrbYaML8aeSs=",
       })))),

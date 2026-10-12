@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl2720dwcupswrapper";
       const version = "3.2.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101802/${pname}-${version}.i386.deb`),
           sha256: "6d131926ce22c51b1854d2b91e426cc7ecbf5d6dabd698ef51a417090e35c598",
         }))));
@@ -52,7 +52,7 @@ ln $dir/cupswrapper/brother_lpdwrapper_MFCL2720DW $out/lib/cups/filter
 ln $dir/cupswrapper/brother-MFCL2720DW-cups-en.ppd $out/share/cups/model
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-L2720DW CUPS wrapper driver",
         homepage: "http://www.brother.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -60,7 +60,7 @@ ln $dir/cupswrapper/brother-MFCL2720DW-cups-en.ppd $out/share/cups/model
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xeji"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

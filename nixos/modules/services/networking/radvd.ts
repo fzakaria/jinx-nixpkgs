@@ -29,29 +29,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "radvd"));
   const confFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "radvd.conf", nix.thunk(() => nix.sel(cfg, "config"))));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         radvd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the Router Advertisement Daemon\n({command}`radvd`), which provides link-local\nadvertisements of IPv6 router addresses and prefixes using\nthe Neighbor Discovery Protocol (NDP).  This enables\nstateless address autoconfiguration in IPv6 clients on the\nnetwork.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "radvd", nix.thunk(() => ({})))),
           debugLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 0n, 5n)),
               default: 0n,
               example: 5n,
               description: "The debugging level is an integer in the range from 1 to 5,\nfrom quiet to very verbose. A debugging level of 0 completely\nturns off debugging.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               example: "interface eth0 {\n  AdvSendAdvert on;\n  prefix 2001:db8:1234:5678::/64 { };\n};\n",
               description: "The contents of the radvd configuration file.\n",
@@ -60,31 +60,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         users: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           users: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             radvd: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               isSystemUser: true,
               group: "radvd",
               description: "Router Advertisement Daemon User",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$9, radvd: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$9, radvd: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             radvd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "IPv6 Router Advertisement Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(cfg, "package")}/bin/radvd radvd -n -u radvd -d ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "debugLevel")))} -C ${confFile}`),
                 Restart: "always",
               })),

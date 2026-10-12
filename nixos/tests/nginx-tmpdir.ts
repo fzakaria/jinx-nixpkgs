@@ -24,42 +24,42 @@ export default nix.thunk(() => (() => {
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: "nginx-tmpdir",
       nodes: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             environment: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               etc: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 "tmpfiles.d/nginx-uploads.conf": nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   text: nix.thunk(() => nix.str`d ${dst_dir} 0755 nginx nginx 1d`),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$5,
-              tmpfiles: nix.thunk(() => ({ __proto__: pos$4, rules: nix.thunk(() => ["q /tmp 1777 root root 1min"]) })),
+              [nix.POS]: pos$5,
+              tmpfiles: nix.thunk(() => ({ [nix.POS]: pos$4, rules: nix.thunk(() => ["q /tmp 1777 root root 1min"]) })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               nginx: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   localhost: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       "~ ^/upload/([0-9a-zA-Z-.]*)$": nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         extraConfig: nix.thunk(() => nix.str`alias ${dst_dir}/$1;
 client_body_in_file_only clean;
 dav_methods PUT;

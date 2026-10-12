@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ukmm",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NiceneNerd",
           repo: "ukmm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, wrapGAppsHook3, copyDesktopItems]),
       buildInputs: nix.thunk(() => [libglvnd, libxkbcommon, openssl]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "--push-state",
             "--no-as-needed",
@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
         "--skip=bnp::test_convert",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: "install -Dm444 assets/ukmm.png  $out/share/icons/hicolor/256x256/apps/ukmm.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "ukmm",
             exec: "ukmm %u",
             mimeTypes: nix.thunk(() => ["x-scheme-handler/bcml"]),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "New mod manager for The Legend of Zelda: Breath of the Wild",
         homepage: "https://github.com/NiceneNerd/ukmm",
         changelog: nix.thunk(() => nix.str`https://github.com/NiceneNerd/ukmm/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

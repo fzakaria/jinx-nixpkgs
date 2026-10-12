@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "protoc-gen-go-ttrpc",
       version: "1.2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "containerd",
           repo: "ttrpc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,10 +27,10 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       vendorHash: "sha256-fDq1lYp1JB5CQUOQcM1KCO0W1d37u3x22MSJCzUCYdE=",
       subPackages: nix.thunk(() => ["cmd/protoc-gen-go-ttrpc", "cmd/protoc-gen-gogottrpc"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GRPC for low-memory environments",
         homepage: "https://github.com/containerd/ttrpc",
         changelog: nix.thunk(() => nix.str`https://github.com/containerd/ttrpc/releases/tag/v${nix.sel(finalAttrs, "version")}`),

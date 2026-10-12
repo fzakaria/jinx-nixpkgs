@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "license-plist",
       version: "3.27.9",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mono0926/LicensePlist/releases/download/${nix.sel(finalAttrs, "version")}/portable_licenseplist.zip`),
           hash: "sha256-L8/ymkMR+QDajW0qSeX4iEj+qubuJhhQ9nPXO3cUu/k=",
           stripRoot: false,
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "License list generator for iOS application dependencies",
         homepage: "https://github.com/mono0926/LicensePlist",
         changelog: nix.thunk(() => nix.str`https://github.com/mono0926/LicensePlist/releases/tag/${nix.sel(finalAttrs, "version")}`),

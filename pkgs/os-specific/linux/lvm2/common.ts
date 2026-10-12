@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const __structuredAttrs = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://mirrors.kernel.org/sourceware/lvm2/LVM2.${version_1}.tgz`),
               nix.thunk(() => nix.str`ftp://sourceware.org/pub/lvm2/LVM2.${version_1}.tgz`),
@@ -101,7 +101,7 @@ substituteInPlace scripts/blk_availability_systemd_red_hat.service.in \\
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-blkdeactivate.patch"), nix.thunk(() => (() => {
               const optionalTool = (cond) => (pkg) => (nix.asBool(cond) ? nix.force(pkg) : "/run/current-system/sw");
               return {
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 coreutils: coreutils,
                 util_linux: nix.thunk(() => nix.app(optionalTool, enableUtilLinux, util_linux)),
                 mdadm: nix.thunk(() => nix.app(optionalTool, enableMdadm, mdadm)),
@@ -131,31 +131,31 @@ make -C libdm install_pkgconfig
         const outputs = nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(onlyLib)), nix.thunk(() => ["dev", "man", "scripts"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(onlyLib)) && nix.asBool(!nix.asBool(enableCmdlib)))), nix.thunk(() => ["bin", "lib"])))));
         const postInstall = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(onlyLib)), "moveToOutput bin/fsadm $scripts\nmoveToOutput bin/blkdeactivate $scripts\nmoveToOutput bin/lvmdump $scripts\nmoveToOutput bin/lvm_import_vdo $scripts\nmoveToOutput bin/lvmpersist $scripts\nmoveToOutput libexec/lvresize_fs_helper $scripts\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableCmdlib)), "moveToOutput lib/libdevmapper.so $lib\n")));
         const outputChecks = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))) && nix.asBool(!nix.asBool(enableVDO)))), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             out: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
             })),
             lib: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               disallowedRequisites: nix.thunk(() => [bash, bashNonInteractive]),
             })),
           }))));
         const passthru = nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           tests: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             installer: nix.thunk(() => nix.sel(nixosTests, "installer", "lvm")),
             lvm2: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(nixosTests, "lvm2")))),
             "lvm2-fhs-env": nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 name: "lvm2-fhs-env-test",
                 targetPkgs: (p) => [nix.thunk(() => nix.sel(p, "lvm2"))],
               })))),
           })),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           changelog: nix.thunk(() => nix.str`https://gitlab.com/lvmteam/lvm2/-/blob/v${nix.app(nix.sel(lib, "replaceString"), ".", "_", version_1)}/WHATS_NEW`),
           homepage: "http://sourceware.org/lvm2/",
           description: "Tools to support Logical Volume Management (LVM) on Linux",
@@ -177,7 +177,7 @@ make -C libdm install_pkgconfig
           })()),
         }));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           pname,
           version: version_1,
           __structuredAttrs,

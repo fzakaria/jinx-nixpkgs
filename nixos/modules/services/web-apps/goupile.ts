@@ -41,41 +41,41 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "goupile"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         goupile: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Goupile server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "goupile", nix.thunk(() => ({})))),
           enableSandbox: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable the sandbox option.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     HTTP: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       Port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$2,
+                          [nix.POS]: pos$2,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 8889n,
                           description: "The port goupile runs on",
                         })))),
                     })),
                     Data: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       RootDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/goupile",
                           description: "Goupile's data directory.",
@@ -88,12 +88,12 @@ export default nix.lambda((args) => (() => {
               description: "The options for `systemd.services.goupile` in ini format.\n\nThe configuration options available can be found here\nhttps://github.com/Koromix/rygel/blob/goupile/3.11.1/src/goupile/server/admin.cc#L41\n",
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The configuration file to be passed to goupile server.\n\nBy default the configuration file is created from `services.goupile.settings`.\n",
             })))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "fqdnOrHostName")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.fqdnOrHostName")),
@@ -104,19 +104,19 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               nginx: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "hostName"), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       "/": nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "HTTP", "Port")))}`),
                       })),
                     })),
@@ -126,30 +126,30 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             services: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               goupile: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 configFile: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "goupile.ini", nix.thunk(() => nix.sel(cfg, "settings")))),
               })),
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             systemd: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               services: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 goupile: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   wants: nix.thunk(() => ["network-online.target"]),
                   after: nix.thunk(() => ["network-online.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   documentation: nix.thunk(() => ["https://goupile.org/en"]),
                   description: "Goupile eCRF",
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} \\
   ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableSandbox")), "--sandbox")} \\
   -C ${nix.sel(cfg, "configFile")}
@@ -200,7 +200,7 @@ export default nix.lambda((args) => (() => {
           })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

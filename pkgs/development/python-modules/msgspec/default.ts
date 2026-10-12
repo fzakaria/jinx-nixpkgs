@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcrist",
           repo: "msgspec",
           tag: version,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-msgspec-Fix-backing-type-declaration-of-Ext.code.patch",
             url: "https://github.com/msgspec/msgspec/commit/c24bc7025cbf153edc7d32256ea1279f49f422ea.patch",
             hash: "sha256-JypmnX55s+wbWzBDsZjsQbkqpE6Cg61GpJ9lSvNrAgY=",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         dev: nix.thunk(() => nix.concat([coverage, mypy, pre_commit, pyright], nix.concat(nix.sel(optional_dependencies, "doc"), nix.sel(optional_dependencies, "test")))),
         doc: nix.thunk(() => [furo, ipython, sphinx, sphinx_copybutton, sphinx_design]),
         test: nix.thunk(() => nix.concat([attrs, msgpack, pytest], nix.concat(nix.sel(optional_dependencies, "yaml"), nix.sel(optional_dependencies, "toml")))),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const pythonImportsCheck = nix.thunk(() => ["msgspec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Module to handle JSON/MessagePack",
         homepage: "https://github.com/jcrist/msgspec",
         changelog: nix.thunk(() => nix.str`https://github.com/jcrist/msgspec/releases/tag/${nix.sel(src, "tag")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

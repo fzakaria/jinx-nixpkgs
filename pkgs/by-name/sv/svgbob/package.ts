@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "svgbob",
       version: "0.7.6",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           crateName: "svgbob_cli",
           hash: "sha256-mPF6GcsXl/Bcri9d8SS21+/sjssT4//ktwC620NrEUg=",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-ObUAN+1ZHqYjWLZe/HGwTOgGbOVCdqY27kZ2zTj0Mu0=",
       postInstall: "mv $out/bin/svgbob_cli $out/bin/svgbob\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert your ascii diagram scribbles into happy little SVG",
         homepage: "https://github.com/ivanceras/svgbob",
         changelog: nix.thunk(() => nix.str`https://github.com/ivanceras/svgbob/raw/${nix.sel(finalAttrs, "version")}/Changelog.md`),

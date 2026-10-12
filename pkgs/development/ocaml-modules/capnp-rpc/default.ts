@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const stdint = nix.arg($, "stdint");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "capnp-rpc",
       version: "2.1.2-unstable-2026-09-13",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mirage",
           repo: "capnp-rpc",
           rev: "256ad12f21931f04eb88ad4d5cc966b7829bd906",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cap'n Proto RPC library for OCaml",
         homepage: "https://github.com/mirage/capnp-rpc",
         changelog: nix.thunk(() => nix.str`https://github.com/mirage/capnp-rpc/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

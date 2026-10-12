@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const version = "unstable-2025-12-03";
   const rev = "cb41cbfe717e4c00d7bb70035cda5ee5f0ff9341";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://repo.or.cz/tinycc.git/snapshot/${rev}.tar.gz`),
       hash: "sha256-MRuqq3TKcfIahtUWdhAcYhqDiGPkAjS8UTMsDE+/jGU=",
     }))));
-  const tccTarget = nix.thunk(() => nix.sel({ __proto__: pos$2, "i686-linux": "I386", "x86_64-linux": "X86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
+  const tccTarget = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, "i686-linux": "I386", "x86_64-linux": "X86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
   const patches = nix.thunk(() => [nix.path(here, "./static-link.patch")]);
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Small, fast, and embeddable C compiler and interpreter",
     homepage: "https://repo.or.cz/w/tinycc.git",
     license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
   }));
   const tinycc_musl = nix.thunk(() => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       meta: meta,
@@ -136,16 +136,16 @@ install -D tcc-musl $out/bin/tcc
 install -Dm444 libtcc1.a $out/lib/libtcc1.a
 `)));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     compiler: nix.thunk(() => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}-compiler`), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: pname,
         version: version,
         meta: meta,
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "hello-world": (result) => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-simple-program-${version}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`cat <<EOF >> test.c
 #include <stdio.h>
 int main() {
@@ -161,7 +161,7 @@ mkdir $out
           "tinycc-musl": tinycc_musl,
         })),
       })), nix.thunk(() => nix.str`install -D ${tinycc_musl}/bin/tcc $out/bin/tcc`))),
-    libs: nix.thunk(() => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}-libs`), nix.thunk(() => ({ __proto__: pos$8, pname: pname, version: version, meta: meta })), nix.thunk(() => nix.str`mkdir $out
+    libs: nix.thunk(() => nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}-libs`), nix.thunk(() => ({ [nix.POS]: pos$8, pname: pname, version: version, meta: meta })), nix.thunk(() => nix.str`mkdir $out
 cp -r ${musl}/* $out
 chmod +w $out/lib/libtcc1.a
 cp ${tinycc_musl}/lib/libtcc1.a $out/lib/libtcc1.a

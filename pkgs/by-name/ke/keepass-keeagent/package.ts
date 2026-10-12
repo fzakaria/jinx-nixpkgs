@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "0.12.0";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "keeagent",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://lechnology.com/wp-content/uploads/2020/05/KeeAgent_v0.12.0.zip",
           sha256: "0fcfbj3yikiv3dmp69236h9r3c416amdq849kn131w1129gb68xd",
           stripRoot: false,
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KeePass plugin to allow other programs to access SSH keys stored in a KeePass database for authentication",
         homepage: "http://lechnology.com/software/keeagent",
         platforms: nix.thunk(() => (() => {
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $pluginFilename $out/lib/dotnet/keepass/$pluginFilename\n",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

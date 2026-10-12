@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ithc";
       const version = "unstable-2022-06-07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quo",
           repo: "ithc-linux",
           rev: "5af2a2213d2f3d944b19ec7ccdb96f16d56adddb",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL_MOD_PATH=${nix.builtins.placeholder("out")}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux driver for Intel Touch Host Controller",
         homepage: "https://github.com/quo/ithc-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(kernel, "kernelOlder"), "5.9")) || nix.asBool(nix.app(nix.sel(kernel, "kernelAtLeast"), "6.10")))),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -29,42 +29,42 @@ export default nix.lambda((args) => (() => {
   const pname = "proxmox-backup-client";
   const version = "4.2.0";
   const proxmox_backup_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "git://git.proxmox.com/git/proxmox-backup.git",
       rev: "035c449897fafc228c8bbf3a5b5ba38564478ac7",
       name: "proxmox-backup",
       hash: "sha256-tfZXmMWQrP0MiBC1uuSenGaghqHi4ljky6T2KtLcjhk=",
     }))));
   const proxmox_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "git://git.proxmox.com/git/proxmox.git",
       rev: "22c4d5ecbfce6eb2fd566181e0b7d23ac2df4f0c",
       name: "proxmox",
       hash: "sha256-rYaLx6Lorry+NkEmc6/xARMY6ZgdnIaCLJqRA0Mnf8o=",
     }))));
   const proxmox_fuse_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "git://git.proxmox.com/git/proxmox-fuse.git",
       rev: "258788a3d66f7a77040a480170fff9890d4939aa",
       name: "proxmox-fuse",
       hash: "sha256-deEPxhg2uyswBYjgYrXcAEBByJ/4ptX7I9y0R3AAFA0=",
     }))));
   const proxmox_pxar_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: "git://git.proxmox.com/git/pxar.git",
       rev: "091a8a382d0d6fc71025351fb35c51b1f3b0074d",
       name: "pxar",
       hash: "sha256-9SFlrz6nuVby6iQ2ELVaioZu2pcs90tSuyzLCWJlcrA=",
     }))));
   const proxmox_pathpatterns_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       url: "git://git.proxmox.com/git/pathpatterns.git",
       rev: "42e5e96e30297da878a4d4b3a7fa52b65c1be0ab",
       name: "pathpatterns",
       hash: "sha256-U8EhTg/2iuArQvUNGNYrgVYn1T/jnxxqSKJxfsCMAjs=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       srcs: nix.thunk(() => [
@@ -97,7 +97,7 @@ echo '!<arch>' >.dep-stubs/libcrypt.a
 `),
       postInstall: "installManPage docs/output/man/proxmox-backup-client.1\ninstallShellCompletion --cmd proxmox-backup-client \\\n  --bash debian/proxmox-backup-client.bc \\\n  --zsh zsh-completions/_proxmox-backup-client\n\ninstallManPage docs/output/man/pxar.1\ninstallShellCompletion --cmd pxar \\\n  --bash debian/pxar.bc \\\n  --zsh zsh-completions/_pxar\n",
       cargoLock: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         lockFileContents: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./Cargo.lock"))),
       })),
       cargoBuildFlags: nix.thunk(() => [
@@ -108,7 +108,7 @@ echo '!<arch>' >.dep-stubs/libcrypt.a
         "--bin=pxar",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-L.dep-stubs"]))),
         REPOID: "",
       })),
@@ -124,7 +124,7 @@ echo '!<arch>' >.dep-stubs/libcrypt.a
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Command line client for Proxmox Backup Server",
         homepage: "https://pbs.proxmox.com/docs/backup-client.html",
         changelog: nix.thunk(() => nix.str`https://git.proxmox.com/?p=proxmox-backup.git;a=blob;f=debian/changelog;hb=${nix.sel(proxmox_backup_src, "rev")}`),

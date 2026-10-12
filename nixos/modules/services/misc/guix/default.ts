@@ -77,12 +77,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "guix"));
   const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stateDir: nix.thunk(() => nix.attr(cfg, "stateDir")),
       storeDir: nix.thunk(() => nix.attr(cfg, "storeDir")),
     }))));
   const guixBuildUser = (id) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     name: nix.thunk(() => nix.str`guixbuilder${nix.builtins.toString(id)}`),
     group: nix.thunk(() => nix.sel(cfg, "group")),
     extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "group"))]),
@@ -90,16 +90,16 @@ export default nix.lambda((args) => (() => {
     description: nix.thunk(() => nix.str`Guix build user ${nix.builtins.toString(id)}`),
     isSystemUser: true,
   });
-  const guixBuildUsers = (numberOfUsers) => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((user) => ({ __proto__: pos$3, name: nix.thunk(() => nix.sel(user, "name")), value: user }), nix.thunk(() => nix.builtins.genList(guixBuildUser, numberOfUsers)))));
+  const guixBuildUsers = (numberOfUsers) => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((user) => ({ [nix.POS]: pos$3, name: nix.thunk(() => nix.sel(user, "name")), value: user }), nix.thunk(() => nix.builtins.genList(guixBuildUser, numberOfUsers)))));
   const guixUserProfiles = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "current-guix": "${XDG_CONFIG_HOME}/guix/current",
     "guix-home": "$HOME/.guix-home/profile",
     "guix-profile": "$HOME/.guix-profile",
   }));
   const guixProfiles = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), guixUserProfiles));
   const serviceEnv = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     GUIX_LOCPATH: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/guix/profiles/per-user/root/guix-profile/lib/locale`),
     LC_ALL: "C.UTF-8",
   }));
@@ -110,33 +110,33 @@ done
 install -Dm0600 ./acl "$out"
 `)));
   return {
-    __proto__: pos$66,
-    meta: nix.thunk(() => ({ __proto__: pos$6, maintainers: [] })),
+    [nix.POS]: pos$66,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$6, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         guix: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Guix build daemon service")),
             group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "guixbuild",
                 example: "guixbuild",
                 description: "The group of the Guix build user pool.\n",
               })))),
             nrBuildUsers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
                 description: "Number of Guix build users to be used in the build pool.\n",
                 default: 10n,
                 example: 20n,
               })))),
             extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -146,26 +146,26 @@ install -Dm0600 ./acl "$out"
                 description: "Extra flags to pass to the Guix daemon service.\n",
               })))),
             package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "guix", nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 extraDescription: "It should contain {command}`guix-daemon` and {command}`guix`\nexecutable.\n",
               })))),
             storeDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/gnu/store",
                 description: "The store directory where the Guix service will serve to/from. Take\nnote Guix cannot take advantage of substitutes if you set it something\nother than {file}`/gnu/store` since most of the cached builds are\nassumed to be in there.\n\n::: {.warning}\nThis will also recompile all packages because the normal cache no\nlonger applies.\n:::\n",
               })))),
             stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: "/var",
                 description: "The state directory where Guix service will store its data such as its\nuser-specific profiles, cache, and state files.\n\n::: {.warning}\nChanging it to something other than the default will rebuild the\npackage.\n:::\n",
                 example: "/gnu/var",
               })))),
             substituters: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               urls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -179,7 +179,7 @@ install -Dm0600 ./acl "$out"
                   description: "A list of substitute servers' URLs for the Guix daemon to download\nsubstitutes from.\n",
                 })))),
               authorizedKeys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -195,30 +195,30 @@ install -Dm0600 ./acl "$out"
                 })))),
             })),
             publish: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "substitute server for your Guix store directory")),
               generateKeyPair: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Whether to generate signing keys in {file}`/etc/guix` which are\nrequired to initialize a substitute server. Otherwise,\n`--public-key=$FILE` and `--private-key=$FILE` can be passed in\n{option}`services.guix.publish.extraArgs`.\n",
                   default: true,
                   example: false,
                 })))),
               port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                   default: 8181n,
                   example: 8200n,
                   description: "Port of the substitute server to listen on.\n",
                 })))),
               user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "guix-publish",
                   description: "Name of the user to change once the server is up.\n",
                 })))),
               extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -229,10 +229,10 @@ install -Dm0600 ./acl "$out"
                 })))),
             })),
             gc: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "automatic garbage collection service for Guix")),
               extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   type: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                     return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -242,7 +242,7 @@ install -Dm0600 ./acl "$out"
                   example: nix.thunk(() => ["--delete-generations=1m", "--free-space=10G", "--optimize"]),
                 })))),
               dates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "03:15",
                   example: "weekly",
@@ -255,46 +255,46 @@ install -Dm0600 ./acl "$out"
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             environment: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               systemPackages: nix.thunk(() => [package$]),
               etc: nix.thunk(() => ({
-                __proto__: pos$28,
-                "guix/acl": nix.thunk(() => ({ __proto__: pos$27, source: aclFile })),
+                [nix.POS]: pos$28,
+                "guix/acl": nix.thunk(() => ({ [nix.POS]: pos$27, source: aclFile })),
               })),
               sessionVariables: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 GUIX_LOCPATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "lib/locale", guixProfiles)),
               })),
               profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), guixProfiles)),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               users: nix.thunk(() => nix.app(guixBuildUsers, nix.thunk(() => nix.sel(cfg, "nrBuildUsers")))),
               groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               avahi: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 publish: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   userServices: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               services: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 "guix-daemon": nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   environment: nix.thunk(() => nix.update(serviceEnv, nix.sel(config, "networking", "proxy", "envVars"))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     OOMPolicy: "continue",
                     RemainAfterExit: "yes",
                     Restart: "always",
@@ -306,7 +306,7 @@ install -Dm0600 ./acl "$out"
 `),
                   })),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     RequiresMountsFor: nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "storeDir")),
                       nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -316,16 +316,16 @@ install -Dm0600 ./acl "$out"
                 })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 "guix-daemon": nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   description: "Guix daemon socket",
                   before: nix.thunk(() => ["multi-user.target"]),
                   listenStreams: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/guix/daemon-socket/socket`),
                   ]),
                   unitConfig: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     RequiresMountsFor: nix.thunk(() => [
                       nix.thunk(() => nix.sel(cfg, "storeDir")),
                       nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -336,24 +336,24 @@ install -Dm0600 ./acl "$out"
               })),
               mounts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   description: "Guix read-only store directory",
                   before: nix.thunk(() => ["guix-daemon.service"]),
                   what: nix.thunk(() => nix.sel(cfg, "storeDir")),
                   where: nix.thunk(() => nix.sel(cfg, "storeDir")),
                   type: "none",
                   options: "bind,ro",
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$42, DefaultDependencies: false })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$42, DefaultDependencies: false })),
                   wantedBy: nix.thunk(() => ["guix-daemon.service"]),
                 })),
               ]),
             })),
             system: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               userActivationScripts: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 "guix-activate-user-profiles": nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   text: nix.thunk(() => (() => {
                     const guixProfile = (profile) => nix.str`${nix.sel(cfg, "stateDir")}/guix/profiles/per-user/\${USER}/${profile}`;
                     const linkProfile = (profile) => (location) => (() => {
@@ -381,13 +381,13 @@ ${nix.app(linkProfile, "guix-home", "$HOME/.guix-home")}
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "publish", "enable")), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               systemd: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 services: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   "guix-publish": nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     description: "Guix remote store",
                     environment: serviceEnv,
                     requires: nix.thunk(() => ["guix-daemon.service"]),
@@ -401,7 +401,7 @@ ${nix.app(linkProfile, "guix-home", "$HOME/.guix-home")}
   }
 `))),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       Restart: "always",
                       RestartSec: 10n,
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), package$, "guix")} publish \\
@@ -425,31 +425,31 @@ ${nix.app(linkProfile, "guix-home", "$HOME/.guix-home")}
                 })),
               })),
               users: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 users: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   "guix-publish": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "publish", "user"), "guix-publish")), nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       description: "Guix publish user",
                       group: nix.thunk(() => nix.sel(config, "users", "groups", "guix-publish", "name")),
                       isSystemUser: true,
                     })))),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$55, "guix-publish": nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$55, "guix-publish": nix.thunk(() => ({})) })),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gc", "enable")), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               systemd: nix.thunk(() => ({
-                __proto__: pos$64,
+                [nix.POS]: pos$64,
                 services: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   "guix-gc": nix.thunk(() => ({
-                    __proto__: pos$59,
+                    [nix.POS]: pos$59,
                     description: "Guix garbage collection",
                     startAt: nix.thunk(() => nix.sel(cfg, "gc", "dates")),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$58,
+                      [nix.POS]: pos$58,
                       Type: "oneshot",
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), package$, "guix")} gc ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "gc", "extraArgs")))}`),
                       PrivateDevices: true,
@@ -462,10 +462,10 @@ ${nix.app(linkProfile, "guix-home", "$HOME/.guix-home")}
                   })),
                 })),
                 timers: nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   "guix-gc": nix.thunk(() => ({
-                    __proto__: pos$62,
-                    timerConfig: nix.thunk(() => ({ __proto__: pos$61, Persistent: true })),
+                    [nix.POS]: pos$62,
+                    timerConfig: nix.thunk(() => ({ [nix.POS]: pos$61, Persistent: true })),
                   })),
                 })),
               })),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const imake = nix.arg($, "imake");
   const gccmakedep = nix.arg($, "gccmakedep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xlife",
       version: "6.7.5",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://svn.code.sf.net/p/xlife-cal/xlife/trunk",
           rev: "365",
           sha256: "1gadlcp32s179kd7ypxr8cymd6s060p6z4c2vnx94i8bmiw3nn8h",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "install -Dm755 xlife -t $out/bin\ninstall -Dm755 lifeconv -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://litwr2.atspace.eu/xlife.php",
         description: "Conway's Game of Life and other cellular automata, for X",
         license: nix.thunk(() => nix.sel(lib, "licenses", "hpndSellVariant")),

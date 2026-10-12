@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agateblue",
           repo: "django-dynamic-preferences",
           tag: version,
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [persisting_theory]);
       const nativeCheckInputs = nix.thunk(() => [djangorestframework, pytestCheckHook, pytest_django]);
       const pythonImportsCheck = nix.thunk(() => ["dynamic_preferences"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS: "tests.settings" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dynamic global and instance settings for your django project",
         changelog: nix.thunk(() => nix.str`https://github.com/agateblue/django-dynamic-preferences/blob/${version}/HISTORY.rst`),
         homepage: "https://github.com/agateblue/django-dynamic-preferences",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

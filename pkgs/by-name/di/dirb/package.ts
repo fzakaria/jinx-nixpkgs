@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const major = "2";
   const minor = "22";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dirb",
       version: nix.thunk(() => nix.str`${major}.${minor}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/dirb/${nix.sel(finalAttrs, "version")}/dirb${major}${minor}.tar.gz`),
           sha256: "0b7wc2gvgnyp54rxf1n9arn6ymrvdb633v6b3ah138hw4gg8lx7k",
         })))),
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl]),
       unpackPhase: "tar -xf $src\nfind . -exec chmod +x \"{}\" \";\"\nexport sourceRoot=\"dirb222\"\n",
       postPatch: "sed -i \"s#/usr#$out#\" src/dirb.c\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       postInstall: "mkdir -p $out/share/{dirb,wordlists}\ncp -r wordlists/ $out/share/dirb/\nln -s $out/share/dirb/wordlists/ $out/share/wordlists/dirb\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Web content scanner",
         homepage: "https://dirb.sourceforge.net/",
         maintainers: nix.thunk(() => (() => {

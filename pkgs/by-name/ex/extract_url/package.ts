@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(perlPackages, "HTMLParser")),
   ], nix.concat(nix.app(nix.sel(lib, "optional"), cursesSupport, nix.thunk(() => nix.sel(perlPackages, "CursesUI"))), nix.app(nix.sel(lib, "optional"), uriFindSupport, nix.thunk(() => nix.sel(perlPackages, "URIFind"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "extract_url",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "m3m0ryh0l3",
           repo: "extracturl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --set PERL5LIB "${nix.app(nix.sel(perlPackages, "makeFullPerlPath"), perlDeps)}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.memoryhole.net/~kyle/extract_url/",
         description: "Extracts URLs from MIME messages or plain text",
         mainProgram: "extract_url",

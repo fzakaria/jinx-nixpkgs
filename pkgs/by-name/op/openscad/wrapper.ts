@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "isFunction"), f)), nix.thunk(() => nix.str`openscad.withPackages: Expected \`f\` to be callable (e.g., 'ps: [ ps.bosl2 ]'), but received a ${nix.app(nix.sel(lib, "typeOf"), f)}.`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openscad/wrapper.nix:12:1");
     const selectedPackages = nix.thunk(() => nix.app(f, openscadPackages));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${nix.sel(openscad, "pname")}-with-packages-${nix.sel(openscad, "version")}`),
         paths: nix.thunk(() => [openscad]),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -29,7 +29,7 @@ makeWrapper ${openscad}/bin/openscad $out/bin/openscad \\
   --set OPENSCADPATH ${nix.app(nix.sel(lib, "makeSearchPath"), "share/openscad/libraries", selectedPackages)}
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           unwrapped: openscad,
           withPackages: nix.thunk(() => nix.sel(openscad, "withPackages")),
         })),

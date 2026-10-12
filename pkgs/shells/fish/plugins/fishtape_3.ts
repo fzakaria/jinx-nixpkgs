@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fishtape";
       const version = "3.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorgebucaran",
           repo: "fishtape",
           rev: version,
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const checkFunctionDirs = nix.thunk(() => ["./functions"]);
       const checkPhase = "fishtape tests/*.fish\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "100% pure-Fish test runner",
         homepage: "https://github.com/jorgebucaran/fishtape",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "euxane"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, checkFunctionDirs, checkPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, checkFunctionDirs, checkPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=fishtape_3.ts.map

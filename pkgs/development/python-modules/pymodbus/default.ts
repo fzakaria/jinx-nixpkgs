@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const sqlalchemy = nix.arg($, "sqlalchemy");
   const twisted = nix.arg($, "twisted");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pymodbus",
       version: "3.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pymodbus-dev",
           repo: "pymodbus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         repl: nix.thunk(() => [pymodbus_repl]),
         serial: nix.thunk(() => [pyserial]),
         simulator: nix.thunk(() => [aiohttp]),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_connected"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(aiohttp, "version")), "3.9.0")), nix.thunk(() => ["test_split_serial_packet", "test_serial_poll", "test_simulator"])))),
       disabledTestPaths: nix.thunk(() => ["examples/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python implementation of the Modbus protocol",
         longDescription: "Pymodbus is a full Modbus protocol implementation using twisted,\ntorndo or asyncio for its asynchronous communications core. It can\nalso be used without any third party dependencies if a more\nlightweight project is needed.\n",
         homepage: "https://github.com/pymodbus-dev/pymodbus",

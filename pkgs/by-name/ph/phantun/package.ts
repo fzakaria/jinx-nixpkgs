@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phantun",
       version: "0.8.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dndx",
           repo: "phantun",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postVersionCheck: nix.thunk(() => nix.str`"$out/bin/phantun_server" --version | grep -F "${nix.sel(finalAttrs, "version")}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight and fast UDP to TCP obfuscator",
         homepage: "https://github.com/dndx/phantun",
         changelog: nix.thunk(() => nix.str`https://github.com/dndx/phantun/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -42,28 +42,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "snapraid"));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["snapraid"]), nix.thunk(() => ["services", "snapraid"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         snapraid: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "SnapRAID")),
             dataDisks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$1, d1: "/mnt/disk1/", d2: "/mnt/disk2/", d3: "/mnt/disk3/" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$1, d1: "/mnt/disk1/", d2: "/mnt/disk2/", d3: "/mnt/disk3/" })),
                 description: "SnapRAID data disks.",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             parityFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: [],
                 example: nix.thunk(() => [
                   "/mnt/diskp/snapraid.parity",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             contentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 default: [],
                 example: nix.thunk(() => [
                   "/var/snapraid.content",
@@ -88,23 +88,23 @@ export default nix.lambda((args) => (() => {
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             exclude: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 default: [],
                 example: nix.thunk(() => ["*.unrecoverable", "/tmp/", "/lost+found/"]),
                 description: "SnapRAID exclude directives.",
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             touchBeforeSync: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: true,
                 example: false,
                 description: "Whether {command}`snapraid touch` should be run before {command}`snapraid sync`.",
                 type: nix.thunk(() => nix.lookup(w, "bool")),
               })))),
             sync: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   default: "01:00",
                   example: "daily",
                   description: "How often to run {command}`snapraid sync`.",
@@ -112,23 +112,23 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             scrub: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   default: "Mon *-*-* 02:00:00",
                   example: "weekly",
                   description: "How often to run {command}`snapraid scrub`.",
                   type: nix.thunk(() => nix.lookup(w, "str")),
                 })))),
               plan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   default: 8n,
                   example: 5n,
                   description: "Percent of the array that should be checked by {command}`snapraid scrub`.",
                   type: nix.thunk(() => nix.lookup(w, "int")),
                 })))),
               olderThan: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   default: 10n,
                   example: 20n,
                   description: "Number of days since data was last scrubbed before it can be scrubbed again.",
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: "",
                 example: "nohidden\nblocksize 256\nhashsize 16\nautosave 500\npool /pool\n",
                 description: "Extra config options for SnapRAID.",
@@ -150,29 +150,29 @@ export default nix.lambda((args) => (() => {
       const nParity = nix.thunk(() => nix.builtins.length(nix.thunk(() => nix.sel(cfg, "parityFiles"))));
       const mkPrepend = (pre) => (s) => nix.add(pre, s);
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               assertion: nix.thunk(() => nix.le(nParity, 6n)),
               message: "You can have no more than six SnapRAID parity files.",
             })),
             nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               assertion: nix.thunk(() => nix.ge(nix.builtins.length(nix.thunk(() => nix.sel(cfg, "contentFiles"))), nix.add(nParity, 1n))),
               message: "There must be at least one SnapRAID content file for each SnapRAID parity file plus one.",
             })),
           ]),
           environment: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "snapraid"))];
             })()),
             etc: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               "snapraid.conf": nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 text: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(cfg, null);
                   const prependData = nix.thunk(() => nix.app(mkPrepend, "data "));
@@ -184,17 +184,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             services: nix.thunk(() => (() => {
               const w = nix.withScope(cfg, null);
               return {
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 "snapraid-scrub": nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   description: "Scrub the SnapRAID array",
                   startAt: nix.thunk(() => nix.sel(nix.lookup(w, "scrub"), "interval")),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "snapraid")}/bin/snapraid scrub -p ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(nix.lookup(w, "scrub"), "plan")))} -o ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(nix.lookup(w, "scrub"), "olderThan")))}`),
                     Nice: 19n,
@@ -226,14 +226,14 @@ export default nix.lambda((args) => (() => {
                       return nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.lookup(w, "dataDisks"))), contentDirs)));
                     })()),
                   })),
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$23, After: "snapraid-sync.service" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$23, After: "snapraid-sync.service" })),
                 })),
                 "snapraid-sync": nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   description: "Synchronize the state of the SnapRAID array",
                   startAt: nix.thunk(() => nix.sel(nix.lookup(w, "sync"), "interval")),
                   serviceConfig: nix.thunk(() => nix.update({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "snapraid")}/bin/snapraid sync`),
                     Nice: 19n,
@@ -265,7 +265,7 @@ export default nix.lambda((args) => (() => {
                       return nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.lookup(w, "dataDisks"))), nix.concat(splitParityFiles, contentDirs))));
                     })()),
                   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.lookup(w, "touchBeforeSync")), nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "snapraid")}/bin/snapraid touch`),
                     }))))),
                 })),

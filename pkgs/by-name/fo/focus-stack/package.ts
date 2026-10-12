@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const opencv = nix.arg($, "opencv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "focus-stack",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PetteriAimonen",
           repo: "focus-stack",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [opencv]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and easy focus stacking",
         homepage: "https://github.com/PetteriAimonen/focus-stack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

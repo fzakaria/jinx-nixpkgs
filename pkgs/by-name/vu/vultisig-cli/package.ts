@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const substitute = nix.arg($, "substitute");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vultisig-cli",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "vultisig",
           repo: "vultisig-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IFEses2Gs0HdgXVMpNYA6y7PtnMMDVLSoAuyi3a+ZgE=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -43,7 +43,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-e5sNNDJVYY4PgbpYtrzxzOL+rtYq1ZwOYglJvZ6OKzo=",
@@ -54,7 +54,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         nix.thunk(() => nix.sel(yarn_berry, "yarnBerryConfigHook")),
         makeWrapper,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: "runHook preBuild\n\n# Build shared workspace packages (core/chain, core/mpc, core/config, lib/utils)\nYARN_IGNORE_PATH=1 yarn build:shared\n\n# Build workspace dependencies needed by the CLI at runtime (SDK must come first)\nYARN_IGNORE_PATH=1 yarn workspace @vultisig/sdk build:platform:node\nYARN_IGNORE_PATH=1 yarn workspace @vultisig/sdk build:types\nYARN_IGNORE_PATH=1 yarn workspace @vultisig/rujira build\nYARN_IGNORE_PATH=1 yarn workspace @vultisig/cli build\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -86,7 +86,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/vultisig \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line wallet for Vultisig - multi-chain MPC wallet management",
         homepage: "https://vultisig.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

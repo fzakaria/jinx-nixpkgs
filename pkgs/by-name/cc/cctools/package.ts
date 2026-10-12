@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   const xnu = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "xnu-src",
       owner: "apple-oss-distributions",
       repo: "xnu",
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-uHmAOm6k9ZXWfyqHiDSpm+tZqUbERlr6rXSJ4xNACkM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`${targetPrefix}cctools`),
       version: "1010.6",
       outputs: nix.thunk(() => ["out", "dev", "man", "gas", "libtool"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "apple-oss-distributions",
           repo: "cctools",
           rev: nix.thunk(() => nix.str`cctools-${nix.sel(finalAttrs, "version")}`),
@@ -126,12 +126,12 @@ ln -s "$libtool/bin/${targetPrefix}libtool" "$out/bin/${targetPrefix}libtool"
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         targetPrefix: targetPrefix,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "cctools-" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "cctools-" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Classic linker for Darwin",
         homepage: "https://opensource.apple.com/releases/",
         license: nix.thunk(() => (() => {

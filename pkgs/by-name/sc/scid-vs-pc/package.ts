@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scid-vs-pc",
       version: "4.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/scidvspc/scid_vs_pc-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-aWN1w46dOW7VMACs8huvUsACtk3ggIS6BZ51BM9k+VM=",
         })))),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/applications\ncp $desktopItem/share/applications/* $out/share/applications/\n\ninstall -D icons/scid.png \"$out\"/share/icons/hicolor/128x128/apps/scid.png\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "scid-vs-pc",
           desktopName: "Scid vs. PC",
           genericName: "Chess Database",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           categories: nix.thunk(() => ["Game", "BoardGame"]),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Chess database with play and training functionality",
         homepage: "https://scidvspc.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

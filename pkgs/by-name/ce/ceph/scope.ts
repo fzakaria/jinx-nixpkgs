@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "ceph-rocksdb": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocksdb.nix"), nix.thunk(() => ({})))),
       "ceph-python": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const boost187 = nix.arg($_1, "boost187");
           const ceph_python = nix.arg($_1, "ceph-python");
-          return nix.app(nix.sel(boost187, "override"), nix.thunk(() => ({ __proto__: pos$1, enablePython: true, python: ceph_python })));
+          return nix.app(nix.sel(boost187, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: ceph_python })));
         })(), formals$3), nix.thunk(() => ({})))),
       "ceph-meta": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./meta.nix"), nix.thunk(() => ({})))),
       "ceph-src": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./src.nix"), nix.thunk(() => ({})))),

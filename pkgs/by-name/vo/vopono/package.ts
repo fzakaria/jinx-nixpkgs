@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vopono",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hYrA6A0pB8WW+/Q3gaBKBQ4pJp7kNvt+nRh66l14SRg=",
         })))),
       cargoHash: "sha256-vCHYYUXLhVZq09GPEBEtyumgJEMPqDTKuv7HIY65ToM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run applications through VPN connections in network namespaces",
         homepage: "https://github.com/jamesmcm/vopono",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tuhi",
       version: "0.6",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tuhiproject",
           repo: "tuhi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace meson_install.sh \\\n  --replace \"/usr/bin/env sh\" \"sh\"\n",
       postFixup: "wrapPythonProgramsIn $out/libexec \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DBus daemon to access Wacom SmartPad devices",
         mainProgram: "tuhi",
         homepage: "https://github.com/tuhiproject/tuhi",

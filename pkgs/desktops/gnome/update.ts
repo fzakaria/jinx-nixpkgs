@@ -92,7 +92,7 @@ report = [
 print(json.dumps(report))
 `)));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "gnome-update-script",
       command: nix.thunk(() => nix.concat([updateScript, attrPath, packageName, packageVersion, versionPolicy], upperBound)),
       supportedFeatures: nix.thunk(() => ["commit"]),

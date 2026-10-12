@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const sounddevice = nix.arg($, "sounddevice");
   const textual_image = nix.arg($, "textual-image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sendspin",
       version: "7.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sendspin",
           repo: "sendspin-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
         sounddevice,
         textual_image,
       ], nix.sel(aiosendspin, "optional-dependencies", "server"))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cast: nix.thunk(() => [pychromecast]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cast: nix.thunk(() => [pychromecast]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sendspin"]),
       disabledTests: nix.thunk(() => ["test_multi_worker_starts_and_serves_status"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Synchronized audio player for Sendspin servers",
         homepage: "https://github.com/Sendspin/sendspin-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/Sendspin/sendspin-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

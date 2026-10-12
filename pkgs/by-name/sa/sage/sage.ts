@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const withDoc = nix.arg($, "withDoc");
   const requireSageTests = nix.arg($, "requireSageTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: nix.thunk(() => nix.sel(finalAttrs, "src", "version")),
       pname: "sage",
       src: nix.thunk(() => nix.sel(sage_with_env, "env", "lib", "src")),
@@ -39,15 +39,15 @@ makeWrapper "${sage_with_env}/bin/sage" "$out/bin/sage" \\
       doInstallCheck: withDoc,
       installCheckPhase: "export HOME=\"$TMPDIR/sage-home\"\nmkdir -p \"$HOME\"\n\"$out/bin/sage\" -c 'browse_sage_doc._open(\"reference\", testing=True)'\n",
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: sage_tests,
-        quicktest: nix.thunk(() => nix.app(nix.sel(sage_tests, "override"), nix.thunk(() => ({ __proto__: pos$1, longTests: false, timeLimit: 600n })))),
+        quicktest: nix.thunk(() => nix.app(nix.sel(sage_tests, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, longTests: false, timeLimit: 600n })))),
         lib: nix.thunk(() => nix.sel(sage_with_env, "env", "lib")),
         "with-env": sage_with_env,
         kernelspec: jupyter_kernel_definition,
-      }, nix.app(nix.sel(lib, "optionalAttrs"), withDoc, nix.thunk(() => ({ __proto__: pos$3, doc: sagedoc }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), withDoc, nix.thunk(() => ({ [nix.POS]: pos$3, doc: sagedoc }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open Source Mathematics Software, free alternative to Magma, Maple, Mathematica, and Matlab",
         mainProgram: "sage",
         homepage: "https://www.sagemath.org",

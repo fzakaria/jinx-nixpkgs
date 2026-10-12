@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const pname = "pythonnet";
   const version = "3.0.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "pythonnet",
       repo: "pythonnet",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3LBrV/cQrXFKMFE1rCalDsPZ3rOY7RczqXoryMoVi14=",
     }))));
   const dotnet_build = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: src,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-sdk": dotnet_sdk_10,
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -70,11 +70,11 @@ substituteInPlace tests/conftest.py \\
       pytestFlags: nix.thunk(() => ["--runtime=coreclr"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, psutil]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "fetch-deps": nix.thunk(() => nix.sel(dotnet_build, "fetch-deps")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: ".NET integration for Python",
         homepage: "https://pythonnet.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/pythonnet/pythonnet/releases/tag/${nix.sel(src, "tag")}`),

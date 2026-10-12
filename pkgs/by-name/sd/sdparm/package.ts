@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sdparm",
       version: "1.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sg.danny.cz/sg/p/sdparm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-xMnvr9vrZi4vlxJwfsSQkyvU0BC7ESmueplSZUburb4=",
         })))),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://sg.danny.cz/sg/sdparm.html",
         description: "Utility to access SCSI device parameters",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

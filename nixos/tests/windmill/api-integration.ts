@@ -25,47 +25,47 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "windmill-api",
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       windmill: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$13,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$1, memorySize: 2048n })),
+          [nix.POS]: pos$13,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 2048n })),
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [8001n]) })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [8001n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             windmill: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               serverPort: 8001n,
-              database: nix.thunk(() => ({ __proto__: pos$4, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$4, createLocally: true })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "windmill-worker": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   FORCE_NUGET_CONFIG: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<configuration>\n  <packageSources>\n      <clear />\n  </packageSources>\n</configuration>\n",
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "integration-test", nix.thunk(() => ({ __proto__: pos$11, flakeIgnore: nix.thunk(() => ["E265", "E501"]) })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./api-integration.py"))))),
+              nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "integration-test", nix.thunk(() => ({ [nix.POS]: pos$11, flakeIgnore: nix.thunk(() => ["E265", "E501"]) })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./api-integration.py"))))),
             ]),
           })),
         };

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libao = nix.arg($, "libao");
   const speechd_minimal = nix.arg($, "speechd-minimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rhvoice",
       version: "1.18.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RHVoice",
           repo: "RHVoice",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ensureNewerSourcesForZipFilesHook, pkg_config, scons]),
       buildInputs: nix.thunk(() => [glibmm_2_4, libpulseaudio, libao, speechd_minimal]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free and open source speech synthesizer for Russian language and others",
         homepage: "https://github.com/Olga-Yakovleva/RHVoice/wiki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

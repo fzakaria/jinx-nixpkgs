@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lnch",
       version: "0-unstable-2021-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oem",
           repo: "lnch",
           rev: "56b5e256b46c002821bef3b9c1b6f68b9dbb4207",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/oem/lnch",
         description: "Launches a process and moves it out of the process group",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

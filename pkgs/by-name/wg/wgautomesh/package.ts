@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wgautomesh",
       version: "unstable-20240524",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.deuxfleurs.fr",
           owner: "Deuxfleurs",
           repo: "wgautomesh",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Lshj8L880gGLi5xY1H/7twrL3YHolqloOfXeckGw/VE=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple utility to help connect wireguard nodes together in a full mesh topology",
         homepage: "https://git.deuxfleurs.fr/Deuxfleurs/wgautomesh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -19,32 +19,32 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           options: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             meta: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               foo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 })))),
             })),
             result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 default: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(config, "meta", "foo")))),
               })))),
           })),
         };
       })(), formals$2),
       nix.thunk(() => ({
-        __proto__: pos$7,
-        meta: nix.thunk(() => ({ __proto__: pos$6, foo: nix.thunk(() => ["one", "two"]) })),
+        [nix.POS]: pos$7,
+        meta: nix.thunk(() => ({ [nix.POS]: pos$6, foo: nix.thunk(() => ["one", "two"]) })),
       })),
     ]),
   };

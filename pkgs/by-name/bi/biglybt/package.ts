@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "biglybt",
       version: "4.1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/BiglySoftware/BiglyBT/releases/download/v${nix.sel(finalAttrs, "version")}/GitHub_BiglyBT_unix.tar.gz`),
           hash: "sha256-P9CscKANZUZd49tPelT8fZVVaf5P5CKnq5eAbE7H6eU=",
         })))),
@@ -53,14 +53,14 @@ ln -s $out/share/biglybt/biglybt $out/bin/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^(v[0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/BiglySoftware/BiglyBT/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "BitTorrent client based on the Azureus that supports I2P darknet for privacy",
         downloadPage: "https://github.com/BiglySoftware/BiglyBT",

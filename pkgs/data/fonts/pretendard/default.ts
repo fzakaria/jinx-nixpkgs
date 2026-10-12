@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
     const typeface = nix.arg($_1, "typeface");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/orioncactus/pretendard/releases/download/v${version}/${typeface}-${version}.zip`),
             stripRoot: false,
             hash: hash,
           })))),
         installPhase: "runHook preInstall\n\ninstall -Dm644 public/static/*.otf -t $out/share/fonts/opentype\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/orioncactus/pretendard",
           description: "Alternative font to system-ui for all platforms",
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -49,27 +49,27 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     pretendard: nix.thunk(() => nix.app(mkPretendard, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "pretendard",
         typeface: "Pretendard",
         hash: "sha256-n7RQApffpL/8ojHcZbdxyanl9Tlc8HP8kxLFBdArUfY=",
       })))),
     "pretendard-gov": nix.thunk(() => nix.app(mkPretendard, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "pretendard-gov",
         typeface: "PretendardGOV",
         hash: "sha256-qoDUBOmrk6WPKQgnapThfKC01xWup+HN82hcoIjEe0M=",
       })))),
     "pretendard-jp": nix.thunk(() => nix.app(mkPretendard, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "pretendard-jp",
         typeface: "PretendardJP",
         hash: "sha256-1nTk1LPoRSfSDgDuGWkcs6RRIY4ZOqDBPMsxezMos6Q=",
       })))),
     "pretendard-std": nix.thunk(() => nix.app(mkPretendard, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "pretendard-std",
         typeface: "PretendardStd",
         hash: "sha256-gkYqqxSICmSIrBuPRzBaOlGGM/rJU1z7FiFvu9RhK5s=",

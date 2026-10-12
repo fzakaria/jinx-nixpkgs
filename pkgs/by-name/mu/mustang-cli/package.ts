@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => ["java.base", "java.desktop", "java.logging"]),
       jdk: jdk_headless,
     }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "2.26.0",
       pname: "mustang-cli",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ZUGFeRD",
           repo: "mustangproject",
           tag: nix.thunk(() => nix.str`core-${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +50,11 @@ makeWrapper ${jre}/bin/java $out/bin/mustang-cli \\
   --add-flags "-jar $out/share/Mustang-CLI/Mustang-CLI.jar"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version-regex=core-(.*)"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex=core-(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "mustang-cli",
         description: "Open Source Java e-Invoicing library, validator and tool (Factur-X/ZUGFeRD, UNCEFACT/CII XRechnung)",
         homepage: "https://www.mustangproject.org",

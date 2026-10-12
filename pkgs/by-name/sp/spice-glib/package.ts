@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
   const withGtk = nix.argOr($, "withGtk", () => false);
   const withPolkit = nix.argOr($, "withPolkit", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       strictDeps: true,
       pname: nix.thunk(() => (nix.asBool(withGtk) ? "spice-gtk" : "spice-glib")),
       version: "0.43",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "spice",
           repo: "spice-gtk",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withPolkit, nix.thunk(() => [polkit, acl])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libcap_ng, libepoxy])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGtk, nix.thunk(() => [gtk3])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withGtk) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [wayland_protocols]))))))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polkit-1/actions`),
       })),
       mesonFlags: nix.thunk(() => nix.concat([
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Dcoroutine=gthread"])))),
       postPatch: nix.thunk(() => nix.add("# get rid of absolute path to helper in store so we can use a setuid wrapper\nsubstituteInPlace src/usb-acl-helper.c \\\n  --replace-fail 'ACL_HELPER_PATH\"/' '\"'\n# don't try to setcap/suid in a nix builder\nsubstituteInPlace src/meson.build \\\n  --replace-fail \"meson.add_install_script('../build-aux/setcap-or-suid',\" \\\n  \"# meson.add_install_script('../build-aux/setcap-or-suid',\"\n\npatchShebangs subprojects/keycodemapdb/tools/keymap-gen\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# drm/drm_fourcc.h is a Linux kernel uAPI header; only one constant is used\nsubstituteInPlace src/channel-display.c --replace-fail \\\n  '#include <drm/drm_fourcc.h>' \\\n  '#define DRM_FORMAT_MOD_INVALID 0x00ffffffffffffffULL'\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: nix.thunk(() => nix.add("SPICE Glib client library", nix.app(nix.sel(lib, "optionalString"), withGtk, " with GTK+3 widget"))),
         longDescription: nix.thunk(() => (nix.asBool(withGtk) ? "spice-glib provides support for Glib apps to interact with the SPICE\nprotocol and spice-gtk itself provides a GTK 3 SPICE widget.\nThe package features glib-based objects for SPICE protocol parsing and a GTK widget\nfor embedding the SPICE display into other applications such as virt-manager.\nPython bindings are available too.\nThis package is also available without the GTK+3 widget, use 'spice-glib' for this.\n" : "spice-glib provides support for Glib apps to interact with the SPICE\nprotocol. It features glib-based objects for SPICE protocol parsing.\nPython bindings are available too.\nThis package is also available with a GTK+3 widget, use 'spice-gtk' for this.\n")),
         homepage: "https://www.spice-space.org/",

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pgbouncer-exporter";
       const version = "0.12.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus-community",
           repo: "pgbouncer_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-wKb5/phioGYLthgFVlh0OkVzJyPynAl2G9v89550k6M=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for PgBouncer",
         mainProgram: "pgbouncer_exporter",
         homepage: "https://github.com/prometheus-community/pgbouncer_exporter",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

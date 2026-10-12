@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const gtk_layer_shell = nix.arg($, "gtk-layer-shell");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "discover-overlay",
       version: "0.7.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trigg",
           repo: "Discover",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace discover_overlay/image_getter.py \\\n  --replace-fail /usr $out\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yet another discord overlay for linux",
         homepage: "https://github.com/trigg/Discover",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

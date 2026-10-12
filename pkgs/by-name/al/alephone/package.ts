@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const asio = nix.arg($, "asio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       outputs: nix.thunk(() => ["out", "icons"]),
       pname: "alephone",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (() => {
             const date = "20250829";
             return nix.str`https://github.com/Aleph-One-Marathon/alephone/releases/download/release-${date}/AlephOne-${date}.tar.bz2`;
@@ -87,11 +87,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mkdir $icons\nicotool -x -i 5 -o $icons Resources/Windows/*.ico\npushd $icons\nfor x in *_5_48x48x32.png; do\n  mv $x ${x%_5_48x48x32.png}.png\ndone\npopd\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -104,10 +104,10 @@ export default nix.lambda((args) => (() => {
           const meta = nix.arg($_1, "meta");
           const icon = nix.argOr($_1, "icon", () => nix.add(nix.sel(finalAttrs, "finalPackage", "icons"), "/alephone.png"));
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               version: version,
               desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   name: desktopName,
                   exec: "alephone",
                   genericName: "alephone",
@@ -127,9 +127,9 @@ makeWrapper ${nix.sel(finalAttrs, "finalPackage")}/bin/alephone $out/bin/alephon
   --add-flags $out/data/alephone
 `),
             }, nix.update(extraArgs, {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "finalPackage", "meta"), nix.update({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
                 mainProgram: "alephone",
                 hydraPlatforms: [],
@@ -138,7 +138,7 @@ makeWrapper ${nix.sel(finalAttrs, "finalPackage")}/bin/alephone $out/bin/alephon
         })(), formals$2),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Aleph One is the open source continuation of Bungie’s Marathon 2 game engine",
         mainProgram: "alephone",
         homepage: "https://alephone.lhowon.org/",

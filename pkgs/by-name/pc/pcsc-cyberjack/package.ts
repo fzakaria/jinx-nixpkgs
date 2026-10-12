@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const suffix = "SP17";
   const tarBall = nix.thunk(() => nix.str`${version}final.${suffix}`);
   const udevFile = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://src.fedoraproject.org/rpms/pcsc-cyberjack/raw/a32e58b6e3d124a1fc28648b01a0d62013d96aa1/f/libifd-cyberjack6.udev",
       hash: "sha256-JnPc8xqCcbbriEeCjFCL/nQsXLg47NIuniba7vVtj2Y=",
     }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pcsc-cyberjack";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://support.reiner-sct.de/downloads/LINUX/V${version_1}_${suffix}/pcsc-cyberjack-${tarBall}.tar.bz2`),
           sha256: "sha256-8ajhXbOkJosNecMqdhlbNNeVGLuJFoVEPiUzEfnp0wo=",
         }))));
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config]);
       const buildInputs = nix.thunk(() => [libusb1, pcsclite]);
       const enableParallelBuilding = true;
-      const env = nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=narrowing" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=narrowing" }));
       const configureFlags = nix.thunk(() => [
         nix.thunk(() => nix.str`--with-usbdropdir=${nix.builtins.placeholder("out")}/pcsc/drivers`),
         nix.thunk(() => nix.str`--bindir=${nix.builtins.placeholder("tools")}/bin`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${udevFile} $out/lib/udev/rules.d/93-cyberjack.rules
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "REINER SCT cyberJack USB chipcard reader user space driver",
         mainProgram: "cjflash",
         homepage: "https://www.reiner-sct.com/",
@@ -62,7 +62,7 @@ install -Dm644 ${udevFile} $out/lib/udev/rules.d/93-cyberjack.rules
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src,

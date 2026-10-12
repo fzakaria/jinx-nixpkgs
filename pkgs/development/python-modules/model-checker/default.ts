@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const z3_solver = nix.arg($, "z3-solver");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "model-checker",
       version: "1.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "model_checker",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jEOonA3kmJSW6INkUo4NVzg2Kv4V78QPEJdItYhQ31k=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["model_checker"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hyperintensional theorem prover for counterfactual conditionals and modal operators",
         homepage: "https://pypi.org/project/model-checker/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

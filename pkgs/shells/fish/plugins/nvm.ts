@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "nvm";
       const version = "2.2.17";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jorgebucaran",
           repo: "nvm.fish",
           tag: version,
           hash: "sha256-BNnoP9gLQuZQt/0SOOsZaYOexNN2K7PKWT/paS0BJJY=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Node.js version manager you'll adore, crafted just for Fish",
         homepage: "https://github.com/jorgebucaran/nvm.fish",
         changelog: nix.thunk(() => nix.str`https://github.com/jorgebucaran/nvm.fish/releases/tag/${version}/CHANGELOG.md`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pta2002"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=nvm.ts.map

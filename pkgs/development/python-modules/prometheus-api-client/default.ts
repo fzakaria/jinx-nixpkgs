@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "4n4nd",
           repo: "prometheus-api-client-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_prometheus_connect.py"]);
       const pythonImportsCheck = nix.thunk(() => ["prometheus_api_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for the Prometheus HTTP API",
         longDescription: "The prometheus-api-client library consists of multiple modules which\nassist in connecting to a Prometheus host, fetching the required metrics\nand performing various aggregation operations on the time series data.\n",
         homepage: "https://github.com/4n4nd/prometheus-api-client-python",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

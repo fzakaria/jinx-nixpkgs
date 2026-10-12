@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "docuum",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "h7x4"))]),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
-          docker: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           docuum: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             threshold: "5 MB",
             keep: nix.thunk(() => ["^keep-me:"]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
     testScript: nix.thunk(() => (() => {
       const imageSizeKb = nix.thunk(() => nix.mul(2n, 1024n));
       const mkTestImage = (name) => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: name,
           tag: "test",
           copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`docuum-test-data-${name}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
@@ -56,7 +56,7 @@ dd if=/dev/zero of=$out/data bs=1024 count=${nix.builtins.toString(imageSizeKb)}
 `))),
         })));
       const images = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         keepMe: nix.thunk(() => nix.app(mkTestImage, "keep-me")),
         old: nix.thunk(() => nix.app(mkTestImage, "old-image")),
         new: nix.thunk(() => nix.app(mkTestImage, "new-image")),

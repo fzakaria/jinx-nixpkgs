@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diamond",
       version: "2.2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bbuchfink",
           repo: "diamond",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [sqlite, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Accelerated BLAST compatible local sequence aligner",
         mainProgram: "diamond",
         longDescription: "DIAMOND is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data. The key features are:\n- Pairwise alignment of proteins and translated DNA at 100x-10,000x speed of BLAST.\n- Frameshift alignments for long read analysis.\n- Low resource requirements and suitable for running on standard desktops or laptops.\n- Various output formats, including BLAST pairwise, tabular and XML, as well as taxonomic classification.\n\nWhen using the tool in published research, please cite:\n- Buchfink B, Reuter K, Drost HG, \"Sensitive protein alignments at tree-of-life scale using DIAMOND\", Nature Methods 18, 366–368 (2021). doi:10.1038/s41592-021-01101-x\n",

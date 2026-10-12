@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libimagequant = nix.arg($, "libimagequant");
   const luajit = nix.arg($, "luajit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cwal",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nitinbhat972",
           repo: "cwal",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\ncc nob.c -o nob\n./nob build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n./nob install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Blazing-fast pywal-like color palette generator written in C",
         homepage: "https://github.com/nitinbhat972/cwal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

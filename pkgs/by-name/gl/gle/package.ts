@@ -27,21 +27,21 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libGLU, libGL, libglut, libx11, libxt, libxmu, libxi, libxext]);
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linas",
           repo: "glextrusion",
           tag: nix.thunk(() => nix.str`${pname}-${version}`),
           sha256: "sha256-yvCu0EOwxOMN6upeHX+C2sIz1YVjjB/320g+Mf24S6g=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tubing and extrusion library",
         homepage: "https://www.linas.org/gle/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$3, pname, version, buildInputs, nativeBuildInputs, src, meta };
+      return { [nix.POS]: pos$3, pname, version, buildInputs, nativeBuildInputs, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

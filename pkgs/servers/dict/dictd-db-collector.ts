@@ -74,7 +74,7 @@ for j in ${nix.builtins.toString(link_arguments)}; do
 done
 `);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "dictd-dbs",
         nativeBuildInputs: nix.thunk(() => [libfaketime]),
         buildInputs: nix.thunk(() => [dict]),

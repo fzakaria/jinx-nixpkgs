@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gcstar",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kerenoc",
           repo: "GCstar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "XMLParser")),
         ];
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
       installPhase: "runHook preInstall\n\ncd gcstar\nperl install --text --prefix=$out\n\nrunHook postInstall\n",
       postFixup: "wrapProgram $out/bin/gcstar --prefix PERL5LIB : $PERL5LIB\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.com/Kerenoc/GCstar",
         description: "Manage your collections of movies, games, books, music and more",
         mainProgram: "gcstar",

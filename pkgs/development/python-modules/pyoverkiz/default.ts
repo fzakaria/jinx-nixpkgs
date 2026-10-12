@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const warrant_lite = nix.arg($, "warrant-lite");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyoverkiz",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iMicknl",
           repo: "python-overkiz-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, attrs, backoff, cattrs]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, nexity: nix.thunk(() => [boto3, warrant_lite]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, nexity: nix.thunk(() => [boto3, warrant_lite]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pyoverkiz"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to interact with the Somfy TaHoma API or other OverKiz APIs",
         homepage: "https://github.com/iMicknl/python-overkiz-api",
         changelog: nix.thunk(() => nix.str`https://github.com/iMicknl/python-overkiz-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

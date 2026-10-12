@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mid2key",
       version: "1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dnschneid",
           repo: "mid2key",
           rev: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "make",
       installPhase: "mkdir -p $out/bin && mv mid2key $out/bin",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://code.google.com/p/mid2key/",
         description: "Simple tool which maps midi notes to simulated keystrokes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

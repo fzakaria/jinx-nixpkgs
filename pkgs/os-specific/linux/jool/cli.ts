@@ -19,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libnl = nix.arg($, "libnl");
   const iptables = nix.arg($, "iptables");
-  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchFromGitHub: fetchFromGitHub }))));
+  const sourceAttrs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./source.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jool-cli",
       version: nix.thunk(() => nix.sel(sourceAttrs, "version")),
       src: nix.thunk(() => nix.sel(sourceAttrs, "src")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["-C", "src/usr"]),
       prePatch: "sed -e 's%^XTABLES_SO_DIR = .*%XTABLES_SO_DIR = '\"$out\"'/lib/xtables%g' -i src/usr/iptables/Makefile\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jool: nix.thunk(() => nix.attr(nixosTests, "jool")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.jool.mx/",
         description: "Fairly compliant SIIT and Stateful NAT64 for Linux - CLI tools",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

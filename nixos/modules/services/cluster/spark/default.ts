@@ -46,102 +46,102 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "spark"));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         spark: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           master: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Spark master service")),
             bind: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Address the spark master binds to.",
                 default: "127.0.0.1",
                 example: "0.0.0.0",
               })))),
             restartIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Automatically restart master service on config change.\nThis can be set to false to defer restarts on clusters running critical applications.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
                 default: true,
               })))),
             extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "Extra environment variables to pass to spark master. See spark-standalone documentation.",
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   SPARK_MASTER_WEBUI_PORT: 8181n,
                   SPARK_MASTER_OPTS: "-Dspark.deploy.defaultCores=5",
                 })),
               })))),
           })),
           worker: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Spark worker service")),
             workDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 description: "Spark worker work dir.",
                 default: "/var/lib/spark",
               })))),
             master: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Address of the spark master.",
                 default: "127.0.0.1:7077",
               })))),
             restartIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "Automatically restart worker service on config change.\nThis can be set to false to defer restarts on clusters running critical applications.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
                 default: true,
               })))),
             extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "Extra environment variables to pass to spark worker.",
                 default: nix.thunk(() => ({})),
-                example: nix.thunk(() => ({ __proto__: pos$9, SPARK_WORKER_CORES: 5n, SPARK_WORKER_MEMORY: "2g" })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$9, SPARK_WORKER_CORES: 5n, SPARK_WORKER_MEMORY: "2g" })),
               })))),
           })),
           confDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Spark configuration directory. Spark will use the configuration files (spark-defaults.conf, spark-env.sh, log4j.properties, etc) from this directory.",
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/conf`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${package}/conf\"")),
             })))),
           logDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Spark log directory.",
               default: "/var/log/spark",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "spark", nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               example: "spark.overrideAttrs (super: rec {\n  pname = \"spark\";\n  version = \"2.4.4\";\n\n  src = pkgs.fetchzip {\n    url    = \"mirror://apache/spark/\"${pname}-${version}/${pname}-${version}-bin-without-hadoop.tgz\";\n    sha256 = \"1a9w5k0207fysgpxx6db3a00fs5hdc2ncx99x4ccy2s0v5ndc66g\";\n  };\n})\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "worker", "enable")) || nix.asBool(nix.sel(cfg, "master", "enable")))), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             "spark-master": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "master", "enable")), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 path: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs, null);
                   return [
@@ -155,13 +155,13 @@ export default nix.lambda((args) => (() => {
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 restartIfChanged: nix.thunk(() => nix.sel(cfg, "master", "restartIfChanged")),
                 environment: nix.thunk(() => nix.update(nix.sel(cfg, "master", "extraEnvironment"), {
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   SPARK_MASTER_HOST: nix.thunk(() => nix.sel(cfg, "master", "bind")),
                   SPARK_CONF_DIR: nix.thunk(() => nix.sel(cfg, "confDir")),
                   SPARK_LOG_DIR: nix.thunk(() => nix.sel(cfg, "logDir")),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   Type: "forking",
                   User: "spark",
                   Group: "spark",
@@ -171,10 +171,10 @@ export default nix.lambda((args) => (() => {
                   TimeoutSec: 300n,
                   Restart: "always",
                 })),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$21, StartLimitBurst: 10n })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$21, StartLimitBurst: 10n })),
               })))),
             "spark-worker": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "worker", "enable")), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 path: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs, null);
                   return [
@@ -189,14 +189,14 @@ export default nix.lambda((args) => (() => {
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 restartIfChanged: nix.thunk(() => nix.sel(cfg, "worker", "restartIfChanged")),
                 environment: nix.thunk(() => nix.update(nix.sel(cfg, "worker", "extraEnvironment"), {
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   SPARK_MASTER: nix.thunk(() => nix.sel(cfg, "worker", "master")),
                   SPARK_CONF_DIR: nix.thunk(() => nix.sel(cfg, "confDir")),
                   SPARK_LOG_DIR: nix.thunk(() => nix.sel(cfg, "logDir")),
                   SPARK_WORKER_DIR: nix.thunk(() => nix.sel(cfg, "worker", "workDir")),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   Type: "forking",
                   User: "spark",
                   WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/`),
@@ -205,11 +205,11 @@ export default nix.lambda((args) => (() => {
                   TimeoutSec: 300n,
                   Restart: "always",
                 })),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$25, StartLimitBurst: 10n })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$25, StartLimitBurst: 10n })),
               })))),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "worker", "workDir")}' - spark spark - -`),
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "logDir")}' - spark spark - -`),
@@ -217,17 +217,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             spark: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "spark user.",
               group: "spark",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$32, spark: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$32, spark: nix.thunk(() => ({})) })),
         })),
       })))),
   };

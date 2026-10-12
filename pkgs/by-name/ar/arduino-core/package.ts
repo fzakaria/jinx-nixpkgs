@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const arduino_core_unwrapped = nix.arg($, "arduino-core-unwrapped");
   const withGui = nix.argOr($, "withGui", () => false);
   const withTeensyduino = nix.argOr($, "withTeensyduino", () => false);
-  const arduino_unwrapped = nix.thunk(() => nix.app(nix.sel(arduino_core_unwrapped, "override"), nix.thunk(() => ({ __proto__: pos$1, withGui: withGui, withTeensyduino: withTeensyduino }))));
+  const arduino_unwrapped = nix.thunk(() => nix.app(nix.sel(arduino_core_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withGui: withGui, withTeensyduino: withTeensyduino }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "arduino",
       version: nix.thunk(() => nix.attr(arduino_core_unwrapped, "version")),
       targetPkgs: (pkgs) => (() => {

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.17.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "netapp_ontap",
           version: version,
           hash: "sha256-bzDGsKCEH3oszuz4OKnOg7WTMQTnJAGh7POmGhRCyzc=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["netapp_ontap"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for working with ONTAP's REST APIs simply in Python",
         homepage: "https://library.netapp.com/ecmdocs/ECMLP3331665/html/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ontap-cli",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

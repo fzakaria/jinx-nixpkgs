@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const godot3_headless = nix.arg($, "godot3-headless");
   return nix.app(nix.sel(godot3_headless, "overrideAttrs"), (self) => (base) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "godot3-debug-server",
       godotBuildDescription: "debug server",
       shouldBuildTools: false,

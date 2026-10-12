@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const warnAfterVersion = (ver) => (pkg) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), ver, nix.thunk(() => nix.sel(super$, nix.key(nix.sel(pkg, "pname")), "version")))), nix.thunk(() => nix.str`override for haskell.packages.ghc912.${nix.sel(pkg, "pname")} may no longer be needed`), pkg);
     const w = nix.withScope(haskellLib, null);
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       array: null,
       base: null,
       binary: null,
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       cborg: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.sel(super$, "cborg")))),
       serialise: nix.thunk(() => nix.app(nix.lookup(w, "doJailbreak"), nix.thunk(() => nix.app(nix.lookup(w, "appendPatches"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 name: "serialise-no-old-time.patch",
                 url: "https://github.com/well-typed/cborg/commit/308afc2795062f847171463958e5e1bbd9c03381.patch",
                 hash: "sha256-Gutu9c+houcwAvq2Z+ZQUQbNK+u+OCJRZfKBtx8/V4c=",

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "keifu",
       version: "0.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "trasta298",
           repo: "keifu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-qS9kSj7SaDtKJx3Zv5u4Xe0q0fzkRWbVv0fHSyjxVYc=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([libgit2, openssl, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/keifu \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gitMinimal]))}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "A TUI tool to visualize Git commit graphs with branch genealogy",
         homepage: "https://github.com/trasta298/keifu",
         changelog: nix.thunk(() => nix.str`https://github.com/trasta298/keifu/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   return (() => {
     const gcc_meta = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gcc"))]),
     }));
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const release_version_1 = nix.thunk(() => nix.selOr(args_1, () => nix.sel(original, "version"), "version"));
       const version_1 = nix.thunk(() => nix.sel(gitRelease, "rev-version"));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         original,
         release_version: release_version_1,
         version: version_1,
@@ -42,23 +42,23 @@ export default nix.lambda((args) => (() => {
       const release_version_1 = nix.thunk(() => nix.selOr(args_1, () => nix.sel(original, "version"), "version"));
       const version_1 = nix.thunk(() => (nix.asBool(nix.has(original, "candidate")) ? nix.str`${release_version_1}-${nix.sel(original, "candidate")}` : nix.force(release_version_1)));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         original,
         release_version: release_version_1,
         version: version_1,
       };
     })()));
     const monorepoSrc = nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc$, null)) ? nix.force(monorepoSrc$) : (nix.asBool(!nix.eq(gitRelease, null)) ? nix.app(fetchgit, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         url: "https://gcc.gnu.org/git/gcc.git",
         rev: nix.thunk(() => nix.attr(gitRelease, "rev")),
         hash: nix.thunk(() => nix.sel(releaseInfo, "original", "sha256")),
       }))) : nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: nix.thunk(() => nix.str`mirror://gcc/releases/gcc-${nix.sel(releaseInfo, "version")}/gcc-${nix.sel(releaseInfo, "version")}.tar.xz`),
         hash: nix.thunk(() => nix.sel(releaseInfo, "original", "sha256")),
       }))))));
-    return { __proto__: pos$6, gcc_meta, releaseInfo, monorepoSrc };
+    return { [nix.POS]: pos$6, gcc_meta, releaseInfo, monorepoSrc };
   })();
 })(), formals$1);
 //# sourceMappingURL=common-let.ts.map

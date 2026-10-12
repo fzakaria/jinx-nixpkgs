@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liblockfile",
       version: "1.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/libl/liblockfile/liblockfile_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "sha256-bpN/NlCvq0qsGY80i4mxykLtzrF/trsJGPZCFDzP0V4=",
         })))),
       preConfigure: "sed -i -e 's/ -g [^ ]* / /' Makefile.in\n",
       preInstall: "mkdir -p $out/{bin,lib,include,man} $out/man/man{1,3}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shared library with NFS-safe locking functions",
         mainProgram: "dotlockfile",
         homepage: "http://packages.debian.org/unstable/libs/liblockfile1",

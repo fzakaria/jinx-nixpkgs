@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.7.8",
       pname: "taktuk",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, perl]),
       buildInputs: nix.thunk(() => [perl]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.inria.fr",
           owner: "taktuk",
           repo: "taktuk",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`substituteInPlace ./taktuk --replace-fail "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "perl")))}" "/usr/bin/env perl"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient, large scale, parallel remote execution of commands",
         mainProgram: "taktuk",
         longDescription: "TakTuk allows one to execute commands in parallel on a potentially large set\nof remote nodes (using ssh to connect to each node). It is typically used\ninside high performance computing clusters and grids. It uses an adaptive\nalgorithm to efficiently distribute the work and sets up an interconnection\nnetwork to transport commands and perform I/Os multiplexing. It doesn't\nrequire any specific software on the nodes thanks to a self-propagation\nalgorithm.",

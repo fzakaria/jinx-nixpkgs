@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "worktrunk",
       version: "0.74.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "max-sixty",
           repo: "worktrunk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Py/zcsUHT9IGjRDbTntwTaQ9G60auZKVD9G/16bRFuI=",
       cargoBuildFlags: nix.thunk(() => ["--package=worktrunk"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, VERGEN_IDEMPOTENT: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, VERGEN_IDEMPOTENT: "1" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, installAgentSkills, writableTmpDirAsHomeHook]),
       dontInstallAgentSkills: true,
       postInstall: nix.thunk(() => nix.add("installSkill skills/worktrunk worktrunk\ninstallSkill skills/wt-switch-create worktrunk\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd wt \\\n  --bash <($out/bin/wt config shell completions bash) \\\n  --fish <($out/bin/wt config shell completions fish) \\\n  --nushell <($out/bin/wt config shell completions nu) \\\n  --zsh <($out/bin/wt config shell completions zsh)\n"))),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Git worktree manager for parallel AI agent workflows",
         longDescription: "worktrunk wraps git worktree with a simpler interface and integrates with\nAI coding tools like Claude Code, Cursor, and Aider.\n",
         homepage: "https://worktrunk.dev/",

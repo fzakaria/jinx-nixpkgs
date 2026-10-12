@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const meta = nix.argOr($_1, "meta", () => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       platforms: nix.thunk(() => nix.selOr(ocaml, () => [], "meta", "platforms")),
     }));
     const minimumOCamlVersion = nix.argOr($_1, "minimumOCamlVersion", () => null);
     const createFindlibDestdir = nix.argOr($_1, "createFindlibDestdir", () => true);
     const dontStrip = nix.argOr($_1, "dontStrip", () => true);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_2, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`),
         nativeBuildInputs: nix.thunk(() => nix.concat([ocaml, findlib, ocamlbuild, ocaml_oasis], nativeBuildInputs)),
         createFindlibDestdir: createFindlibDestdir,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         checkPhase: "runHook preCheck\nocaml setup.ml -test\nrunHook postCheck\n",
         installPhase: "runHook preInstall\nmkdir -p $out\nocaml setup.ml -install\nrunHook postInstall\n",
         meta: nix.thunk(() => nix.update(nix.sel(args_2, "meta"), {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           broken: nix.thunk(() => (nix.asBool(nix.has(args_2, "minimumOCamlVersion")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), nix.thunk(() => nix.sel(args_2, "minimumOCamlVersion")))))),
         })),
       })));

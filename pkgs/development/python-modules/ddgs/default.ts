@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ddgs",
       version: "9.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deedy5",
           repo: "ddgs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [click, lxml, primp]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         api: nix.thunk(() => [fastapi, uvicorn]),
         mcp: nix.thunk(() => [mcp]),
         dht: nix.thunk(() => [fastapi, uvicorn, trio]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       pythonImportsCheck: nix.thunk(() => ["ddgs"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "A metasearch library that aggregates results from diverse web search services",
         mainProgram: "ddgs",
         homepage: "https://github.com/deedy5/ddgs",

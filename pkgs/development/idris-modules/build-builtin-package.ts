@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const idris = nix.arg($, "idris");
   const build_idris_package = nix.arg($, "build-idris-package");
   return (pname) => (deps) => nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: nix.thunk(() => nix.attr(idris, "version")),
       src: nix.thunk(() => nix.attr(idris, "src")),
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       postUnpack: nix.thunk(() => nix.str`sourceRoot=$sourceRoot/libs/${pname}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(idris, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`${pname} builtin Idris library`),
       })),
     })));

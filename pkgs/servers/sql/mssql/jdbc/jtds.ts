@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jtds";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/jtds/${version}/${pname}-${version}-dist.zip`),
           sha256: "sha256-eV0P8QdjfuHXzYssH8yHhynuH0Clg7MAece2Up3S9M0",
         }))));
@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/share/java\ncp jtds-*.jar $out/share/java/jtds-jdbc.jar\n";
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure Java (type 4) JDBC 3.0 driver for Microsoft SQL Server",
         homepage: "https://jtds.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

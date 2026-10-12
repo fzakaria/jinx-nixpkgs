@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "graphite-web",
       version: "1.1.10-unstable-2025-02-24",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "graphite-project",
           repo: "graphite-web",
           rev: "49c28e2015d605ad9ec93524f7076dd924a4731a",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         whisper,
       ]),
       pythonRelaxDeps: nix.thunk(() => ["django", "django-tagging"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GRAPHITE_NO_PREFIX: "True", REDIS_HOST: "127.0.0.1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GRAPHITE_NO_PREFIX: "True", REDIS_HOST: "127.0.0.1" })),
       nativeCheckInputs: nix.thunk(() => [mock, redis, rrdtool, writableTmpDirAsHomeHook]),
       preCheck: nix.thunk(() => nix.str`${nix.sel(pkgs, "valkey")}/bin/redis-server &
 REDIS_PID=$!
@@ -81,14 +81,14 @@ runHook postCheck
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["graphite"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           graphite: nix.thunk(() => nix.attr(nixosTests, "graphite")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Enterprise scalable realtime graphing",
         homepage: "http://graphiteapp.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

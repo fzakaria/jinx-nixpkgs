@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const skawarePackages = nix.arg($, "skawarePackages");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mdevd",
       version: "0.1.8.2",
       sha256: "sha256-zhrgFJtqV6NPYIIY/WGBqmqmgTXKwvTZMbW0F7By4kQ=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "mdev-compatible Linux hotplug manager daemon",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

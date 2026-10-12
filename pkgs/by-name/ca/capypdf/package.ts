@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const darwinMinVersionHook = nix.arg($, "darwinMinVersionHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "capypdf",
       version: "0.21.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jpakkane",
           repo: "capypdf",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([freetype, lcms2, libpng, libjpeg, libtiff, zlib], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(darwinMinVersionHook, "13.3"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fully color managed PDF generation library",
         homepage: "https://github.com/jpakkane/capypdf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

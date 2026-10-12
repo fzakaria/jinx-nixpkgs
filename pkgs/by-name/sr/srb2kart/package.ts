@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "srb2kart",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "STJr",
           repo: "Kart-Public",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       assets: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "srb2kart-data",
           url: nix.thunk(() => nix.str`https://github.com/STJr/Kart-Public/releases/download/v${nix.sel(finalAttrs, "version")}/AssetsLinuxOnly.zip`),
           hash: "sha256-yaVdsQUnyobjSbmemeBEyu35GeZCX1ylTRcjcbDuIu4=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, nasm, makeWrapper, copyDesktopItems]),
       buildInputs: nix.thunk(() => [curl, game_music_emu, libpng, SDL2, SDL2_mixer, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DSRB2_ASSET_DIRECTORY=${nix.sel(finalAttrs, "assets")}`),
         nix.thunk(() => nix.str`-DGME_INCLUDE_DIR=${game_music_emu}/include`),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
             const startupWMClass = ".srb2kart-wrapped";
             const categories = nix.thunk(() => ["Game"]);
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name,
               exec,
               icon,
@@ -89,7 +89,7 @@ wrapProgram $out/bin/srb2kart \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Classic styled kart racer",
         homepage: "https://mb.srb2.org/threads/srb2kart.25868/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

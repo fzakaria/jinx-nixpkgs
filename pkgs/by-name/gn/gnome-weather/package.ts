@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const typescript_5 = nix.arg($, "typescript_5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnome-weather",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-weather/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-weather-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-V951eGBfkfmrQAVRznc423UFvIj0KjPHDOenAWf9tRM=",
         })))),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# The .service file is not wrapped with the correct environment\n# so misses GIR files when started. By re-pointing from the gjs\n# entry point to the wrapped binary we get back to a wrapped\n# binary.\nsubstituteInPlace \"data/org.gnome.Weather.service.in\" \\\n    --replace-fail \"Exec=@DATA_DIR@/@APP_ID@\" \"Exec=$out/bin/gnome-weather\"\n\nchmod +x meson_post_install.py\npatchShebangs meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gnome-weather" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-weather" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://apps.gnome.org/Weather/",
         description: "Access current weather conditions and forecasts",
         mainProgram: "gnome-weather",

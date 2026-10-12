@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "scotty",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~phw",
           repo: "scotty",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         })))),
       modPostBuild: "substituteInPlace vendor/modernc.org/libc/honnef.co/go/netdb/netdb.go \\\n  --replace-fail '!os.IsNotExist(err)' '!os.IsNotExist(err) && !os.IsPermission(err)'\n",
       vendorHash: "sha256-AfCSp/f8jAy1a6PyYHMErmOOgADXTfliJPQgyNLhVFo=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LC_ALL: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "C.UTF-8" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               command: "LC_ALL='C.UTF-8' scotty --version",
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Transfers your listens between various music listen tracking and streaming services",
         homepage: "https://git.sr.ht/~phw/scotty",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~phw/scotty/refs/v${nix.sel(finalAttrs, "version")}`),

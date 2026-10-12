@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.46.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "jsonschema_rs",
           hash: "sha256-hX434HWi2fbyPepYpVmlW2Y9OHmiUhcABLVpBz2rHvM=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -55,11 +55,11 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
       const pythonImportsCheck = nix.thunk(() => ["jsonschema_rs"]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-performance JSON Schema validator for Python",
         homepage: "https://github.com/Stranger6667/jsonschema/tree/master/crates/jsonschema-py",
         changelog: nix.thunk(() => nix.str`https://github.com/Stranger6667/jsonschema/blob/python-v${version}/crates/jsonschema-py/CHANGELOG.md`),
@@ -73,7 +73,7 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

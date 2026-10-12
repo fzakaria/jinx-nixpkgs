@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const description = nix.arg($_1, "description");
     const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${name}-env`),
         paths: nix.thunk(() => nix.concat([yquake2], games)),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: name,
         version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), yquake2)),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
@@ -42,7 +42,7 @@ makeWrapper ${env}/bin/yq2ded $out/bin/yq2ded-${nix.sel(game, "title")} \\
 runHook postInstall
 `)),
         desktopItems: nix.thunk(() => nix.builtins.map((game) => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.sel(game, "id")),
               exec: nix.thunk(() => nix.sel(game, "title")),
               icon: "yamagi-quake2",
@@ -50,7 +50,7 @@ runHook postInstall
               comment: nix.thunk(() => nix.sel(game, "description")),
               categories: nix.thunk(() => ["Game", "Shooter"]),
             }))), games)),
-        meta: nix.thunk(() => ({ __proto__: pos$3, description: description })),
+        meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: description })),
       })));
   })(), formals$2);
 })(), formals$1);

@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const setuptools_gettext = nix.thunk(() => nix.attr(python3Packages, "setuptools-gettext"));
   const importlib_metadata = nix.thunk(() => nix.attr(python3Packages, "importlib-metadata"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "devede",
       version: "4.22.1",
       pyproject: true,
       namePrefix: "",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rastersoft",
           repo: "devedeng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,9 +66,9 @@ export default nix.lambda((args) => (() => {
 `)))),
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "DVD Creator for Linux",
         mainProgram: "devede_ng",
         homepage: "https://www.rastersoft.com/programas/devede.html",

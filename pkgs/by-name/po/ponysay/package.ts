@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ponysay",
       version: "3.0.3-unstable-2021-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "erkin",
           repo: "ponysay",
           rev: "8a2c71416e70e4e7b0931917ebfd6479f51ddf9a",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       python3: python3,
       installPhase: "runHook preInstall\n\nfind -type f -name \"*.py\" | xargs sed -i \"s@/usr/bin/env python3@$python3/bin/python3@g\"\nsubstituteInPlace setup.py --replace \\\n    \"fileout.write(('#!/usr/bin/env %s\\n' % env).encode('utf-8'))\" \\\n    \"fileout.write(('#!%s/bin/%s\\n' % (os.environ['python3'], env)).encode('utf-8'))\"\nsubstituteInPlace src/balloon.py --replace-fail \\\n    $'\\'\\'\\'\\n        Constructor' \\\n    $'r\\'\\'\\'\\n        Constructor'\npython3 setup.py --prefix=$out --freedom=partial install \\\n    --with-shared-cache=$out/share/ponysay \\\n    --with-bash\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cowsay reimplementation for ponies",
         homepage: "https://github.com/erkin/ponysay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rusty-diceware",
       version: "0.5.10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kakafarm",
           repo: "rusty-diceware",
           rev: "53975f17f5f575720d724035bd715dd2dd75986d",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-TCNHtDz7dgUx5lBwwIs67mnQcAZ5Xknc6otpl8zRaVc=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Commandline diceware, with or without dice, written in Rustlang",
         homepage: "https://codeberg.org/kakafarm/rusty-diceware",
         changelog: "https://codeberg.org/kakafarm/rusty-diceware/src/branch/master/CHANGELOG.md",

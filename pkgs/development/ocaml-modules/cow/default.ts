@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const omd = nix.arg($, "omd");
   const ezjsonm = nix.arg($, "ezjsonm");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.5.0",
       pname: "cow",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-cow/releases/download/v${nix.sel(finalAttrs, "version")}/cow-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-8rNK+5oWUbi91gXvdz/66YQu5+iXp0Co8wk0Isv6b9Y=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Caml on the Web",
         longDescription: "Writing web-applications requires a lot of skills: HTML, XML, JSON and\nMarkdown, to name but a few! This library provides OCaml combinators\nfor these web formats.\n",
         homepage: "https://mirage.github.io/ocaml-cow/",

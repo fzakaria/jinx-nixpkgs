@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_42 = nix.arg($, "docbook_xml_dtd_42");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "wayland",
       version: "1.26.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`https://gitlab.freedesktop.org/wayland/wayland/-/releases/${nix.lookup(w, "version")}/downloads/${nix.lookup(w, "pname")}-${nix.lookup(w, "version")}.tar.xz`;
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       depsBuildBuild: nix.thunk(() => [pkg_config]),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja, wayland_scanner], nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(graphviz_nox, "override"), nix.thunk(() => ({ __proto__: pos$2, pango: null })))),
+          nix.thunk(() => nix.app(nix.sel(graphviz_nox, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pango: null })))),
           doxygen,
           libxslt,
           xmlto,
@@ -67,17 +67,17 @@ export default nix.lambda((args) => (() => {
         ])))),
       buildInputs: nix.thunk(() => nix.concat([libffi], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => [epoll_shim])), nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => [docbook_xsl, docbook_xml_dtd_45, docbook_xml_dtd_42]))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Core Wayland window system code and protocol",
         longDescription: "Wayland is a project to define a protocol for a compositor to talk to its\nclients as well as a library implementation of the protocol.\nThe wayland protocol is essentially only about input handling and buffer\nmanagement, but also handles drag and drop, selections, window management\nand other interactions that must go through the compositor (but not\nrendering).\n",
         homepage: "https://wayland.freedesktop.org/",

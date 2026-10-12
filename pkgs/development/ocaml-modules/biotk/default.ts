@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const uri = nix.arg($, "uri");
   const vg = nix.arg($, "vg");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "biotk",
       version: "0.3",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pveber/biotk/releases/download/v${nix.sel(finalAttrs, "version")}/biotk-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-9eRd3qYteUxu/xNEUER/DHodr6cTCuPtSKr38x32gig=",
         })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         vg,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Toolkit for bioinformatics in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),
       })),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "readthedocs",
           repo: "sphinx-notfound-page",
           tag: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["notfound"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx extension to create a custom 404 page with absolute URLs hardcoded",
         homepage: "https://github.com/readthedocs/sphinx-notfound-page",
         changelog: nix.thunk(() => nix.str`https://github.com/readthedocs/sphinx-notfound-page/blob/${version}/CHANGELOG.rst`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

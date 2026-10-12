@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libpam = nix.arg($, "libpam");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "lib/libbsm",
       extraPaths: nix.thunk(() => ["contrib/openbsm"]),
       buildInputs: nix.thunk(() => [libpam]),

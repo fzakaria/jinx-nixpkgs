@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const ubootTools = nix.arg($, "ubootTools");
   const unpackelf = nix.arg($, "unpackelf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "android-image-kitchen",
       version: "0-unstable-2025-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SebaUbuntu",
           repo: "AIK-Linux-mirror",
           rev: "1c1411bd685bbc5fb4112484af2ad07cb6807f30",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unpack & repack Android boot files",
         homepage: "https://github.com/SebaUbuntu/AIK-Linux-mirror",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

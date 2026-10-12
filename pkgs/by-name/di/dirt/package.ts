@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const liblo = nix.arg($, "liblo");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dirt",
       version: "0-unstable-2025-03-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "Dirt",
           owner: "tidalcycles",
           rev: "4edc6192da3508fecb9f2e26bb0370cdeb6c4166",
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i \"s|./samples|$out/share/dirt/samples|\" dirt.c\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       postInstall: "mkdir -p $out/share/dirt/\ncp -r samples $out/share/dirt/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unimpressive thingie for playing bits of samples with some level of accuracy",
         homepage: "https://github.com/tidalcycles/Dirt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

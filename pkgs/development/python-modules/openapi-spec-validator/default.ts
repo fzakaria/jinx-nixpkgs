@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-openapi",
           repo: "openapi-spec-validator",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_default_valid", "test_urllib_valid", "test_valid"]);
       const pythonImportsCheck = nix.thunk(() => ["openapi_spec_validator", "openapi_spec_validator.readers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/p1c2u/openapi-spec-validator/releases/tag/${nix.sel(src, "tag")}`),
         description: "Validates OpenAPI Specs against the OpenAPI 2.0 (aka Swagger) and OpenAPI 3.0.0 specification",
         mainProgram: "openapi-spec-validator",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "epson_projector",
           version: version,
           hash: "sha256-/9Nc3xOxnXFfTsS8s83MXTkVAhqLwrKnmfR/E87s+Bk=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         "epson_projector.projector_tcp",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Epson projector support for Python",
         homepage: "https://github.com/pszafer/epson_projector",
         changelog: nix.thunk(() => nix.str`https://github.com/pszafer/epson_projector/releases/tag/v.${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

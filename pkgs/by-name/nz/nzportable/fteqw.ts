@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nzp-fteqw",
       version: "0-unstable-2025-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nzp-team",
           repo: "fteqw",
           rev: "f68a2b547d2dc4bf6886b922baa1bff487cc5038",
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nazi Zombies: Portable's fork of Spike's FTEQW engine/client",
         longDescription: "This package contains only the FTEQW engine, and none of the assets used in NZ:P.\nPlease use the `nzportable` package for an out-of-the-box NZ:P experience.\n\nFTEQW supports several graphics options.\nYou can specify those graphics option by overriding the FTEQW package, like this:\n```nix\n  nzp-fteqw.override {\n    enableVulkan = true;\n  }\n```\nAnd in the game, you need to run `setrenderer <renderer>` to change the current renderer.\n\nSupported graphics options are as follows:\n- `enableEGL`: Enable the OpenGL ES renderer (`egl`). Enabled by default.\n- `enableVulkan`: Enable the Vulkan renderer (`xvk`). Enabled by default.\n- `enableWayland`: Enable native Wayland support, instead of using X11.\n  Adds up to two renderers, based on whether EGL and Vulkan are installed: `wlgl` and `wlvk`.\n  Seems to be currently broken and currently not enabled by default.\n",
         homepage: "https://github.com/nzp-team/fteqw",

@@ -10,12 +10,12 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const skawarePackages = nix.arg($, "skawarePackages");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "skalibs",
       version: "2.10.0.3",
       sha256: "0ka6n5rnxd5sn5lycarf596d5wlak5s535zqqlz0rnhdcnpb105p",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Set of general-purpose C programming libraries",
       })),
       outputs: nix.thunk(() => ["lib", "dev", "doc", "out"]),

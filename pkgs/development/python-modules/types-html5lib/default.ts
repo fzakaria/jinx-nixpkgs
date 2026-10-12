@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.11.20260518";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types_html5lib",
           version: version,
           hash: "sha256-TzPAh8sRGdZcTIDspDI8K1Afnq+K+WFri3Mu1Njq6Po=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["html5lib-stubs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Typing stubs for html5lib",
         homepage: "https://pypi.org/project/types-html5lib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

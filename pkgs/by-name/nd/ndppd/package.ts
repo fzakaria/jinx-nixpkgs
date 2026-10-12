@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ndppd",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DanielAdolfsson",
           repo: "ndppd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace Makefile --replace /bin/gzip gzip\n",
       postInstall: "mkdir -p $out/etc\ncp ndppd.conf-dist $out/etc/ndppd.conf\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, ndppd: nix.thunk(() => nix.attr(nixosTests, "ndppd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ndppd: nix.thunk(() => nix.attr(nixosTests, "ndppd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Daemon that proxies NDP (Neighbor Discovery Protocol) messages between interfaces",
         homepage: "https://github.com/DanielAdolfsson/ndppd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

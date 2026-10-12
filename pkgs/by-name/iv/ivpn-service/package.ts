@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const liboqs = nix.arg($, "liboqs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ivpn-service",
       version: "3.15.15",
       buildInputs: nix.thunk(() => [wirelesstools, liboqs]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ivpn",
           repo: "desktop-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +86,7 @@ wrapProgram "$out/bin/ivpn-service" \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables, gawk, util_linux, iproute2]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official IVPN Desktop app service daemon",
         homepage: "https://www.ivpn.net/apps",
         changelog: nix.thunk(() => nix.str`https://github.com/ivpn/desktop-app/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "auto-editor";
       const version = "31.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WyattBlue",
           repo: "auto-editor",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const lockFile = nix.path(here, "./lock.json");
       const buildInputs = nix.thunk(() => nix.concat([ffmpeg_full, lame, libopus, x264, dav1d, zlib], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), alsa_lib)));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         DISABLE_HEVC: "1",
         DISABLE_WHISPER: "1",
         DISABLE_VPX: "1",
@@ -54,7 +54,7 @@ substituteInPlace ae.nimble \\
       const nativeCheckInputs = nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3Packages, "av"))]);
       const postInstall = "mv $out/bin/main $out/bin/auto-editor\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/WyattBlue/auto-editor/releases/tag/${nix.sel(src, "tag")}`),
         description: "Command line application for automatically editing video and audio by analyzing a variety of methods, most notably audio loudness",
         homepage: "https://auto-editor.com/",
@@ -70,7 +70,7 @@ substituteInPlace ae.nimble \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

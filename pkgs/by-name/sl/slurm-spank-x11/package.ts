@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const slurm = nix.arg($, "slurm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "slurm-spank-x11",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hautreux",
           repo: "slurm-spank-x11",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./backward-compat.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -44,7 +44,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/lib\ninstall -m 755 slurm-spank-x11 $out/bin\ninstall -m 755 x11.so $out/lib\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/hautreux/slurm-spank-x11",
         description: "Plugin for SLURM to allow for interactive X11 sessions",
         mainProgram: "slurm-spank-x11",

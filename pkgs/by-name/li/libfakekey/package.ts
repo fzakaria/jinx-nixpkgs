@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libfakekey",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.yoctoproject.org/libfakekey",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-QNJlxZ9uNwNgFWm9qRJdPfusx7dXHZajjFH7wDhpgcs=",
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       configureScript: "./autogen.sh",
       nativeBuildInputs: nix.thunk(() => [automake, autoconf, pkg_config, libtool]),
       buildInputs: nix.thunk(() => [libx11, libxi, libxtst, xorgproto]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lX11" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "X virtual keyboard library",
         homepage: "https://www.yoctoproject.org/tools-resources/projects/matchbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

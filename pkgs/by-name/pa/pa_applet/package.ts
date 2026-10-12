@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const xf86_input_evdev = nix.arg($, "xf86-input-evdev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pa-applet",
       version: "0-unstable-2012-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fernandotcl",
           repo: "pa-applet",
           rev: "005f192df9ba6d2e6491f9aac650be42906b135a",
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoconf, automake]),
       buildInputs: nix.thunk(() => [gtk3, libpulseaudio, glibc, libnotify, libx11, xf86_input_evdev]),
       preConfigure: "./autogen.sh\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       postInstall: "",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "",
         homepage: "https://github.com/fernandotcl/pa-applet",
         mainProgram: "pa-applet",

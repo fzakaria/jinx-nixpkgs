@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MatsNl",
           repo: "pyatag",
           tag: version,
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [aiohttp]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyatag", "pyatag.discovery"]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python module to talk to Atag One",
         homepage: "https://github.com/MatsNl/pyatag",
         changelog: nix.thunk(() => nix.str`https://github.com/MatsNl/pyatag/releases/tag/${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

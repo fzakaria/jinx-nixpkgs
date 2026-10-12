@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "calamares-nixos-extensions",
       version: "0.3.23",
       src: nix.path(here, "./src"),
@@ -28,7 +28,7 @@ substituteInPlace $out/etc/calamares/modules/locale.conf --replace-fail @glibcLo
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Calamares modules for NixOS",
         homepage: "https://github.com/NixOS/calamares-nixos-extensions",
         license: nix.thunk(() => (() => {

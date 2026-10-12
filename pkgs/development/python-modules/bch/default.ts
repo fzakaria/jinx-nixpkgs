@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const paho_mqtt = nix.arg($, "paho-mqtt");
   const pyaml = nix.arg($, "pyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bch",
       version: "1.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hardwario",
           repo: "bch-control-tool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["bch"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hardwario/bch-control-tool",
         description: "HARDWARIO Hub Control Tool",
         mainProgram: "bch",

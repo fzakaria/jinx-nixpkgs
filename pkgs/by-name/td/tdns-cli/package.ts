@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tdns-cli",
       version: "0.0.5-unstable-2026-02-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rotty",
           repo: "tdns-cli",
           rev: "404ba636e031ff6101da633d3a572b1b075c0f37",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-G6YVZf2TxtIvEEeUtHWDITQfUayhEjS2QtXNSsvwg2M=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DNS tool that aims to replace dig and nsupdate",
         homepage: "https://github.com/rotty/tdns-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

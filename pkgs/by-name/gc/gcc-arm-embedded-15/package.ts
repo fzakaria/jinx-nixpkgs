@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   const platform = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "darwin-arm64",
     "aarch64-linux": "aarch64",
     "x86_64-linux": "x86_64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gcc-arm-embedded",
       version: "15.3.rel2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/gnu-toolchain/${nix.sel(finalAttrs, "version")}/arm-gnu-toolchain-${nix.sel(finalAttrs, "version")}-${platform}-arm-none-eabi.tar.xz`),
           sha256: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-darwin": "b6ccf805aa4fb8c50406256f99cf802385894b86c0cb6c0185dc0e2b5f8288b9",
             "aarch64-linux": "9fc9e6baedf2b6779bd39ce4cc458d3529e200bc92bebe28be18f8942a456ad8",
             "x86_64-linux": "0662b2f01e0cd8b951fd110911d339c35b05998c68a12b3530bbbb4bf6c7874e",
@@ -57,9 +57,9 @@ export default nix.lambda((args) => (() => {
           ]))} "$f" || true
 done
 `))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Pre-built GNU toolchain from ARM Cortex-M & Cortex-R processors",
         homepage: "https://developer.arm.com/open-source/gnu-toolchain/gnu-rm",
         license: nix.thunk(() => (() => {

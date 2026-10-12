@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const wafHook = nix.arg($, "wafHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blockhash",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "commonsmachinery",
           repo: "blockhash",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [imagemagick]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/commonsmachinery/blockhash",
         description: "This is a perceptual image hash calculation tool based on algorithm\ndescribed in Block Mean Value Based Image Perceptual Hashing by Bian Yang,\nFan Gu and Xiamu Niu.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

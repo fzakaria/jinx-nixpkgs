@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "minecraft-server"));
   const eulaFile = nix.thunk(() => nix.builtins.toFile("eula.txt", "# eula.txt managed by NixOS Configuration\neula=true\n"));
-  const whitelistFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "whitelist.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => ({ __proto__: pos$1, name: n, uuid: v }), nix.thunk(() => nix.sel(cfg, "whitelist"))))))));
+  const whitelistFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "whitelist.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => ({ [nix.POS]: pos$1, name: n, uuid: v }), nix.thunk(() => nix.sel(cfg, "whitelist"))))))));
   const cfgToString = (v) => (nix.asBool(nix.builtins.isBool(v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.builtins.toString(v));
   const serverPropertiesFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "server.properties", nix.thunk(() => nix.add("# server.properties managed by NixOS configuration\n", nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n}=${nix.app(cfgToString, v)}`, nix.thunk(() => nix.sel(cfg, "serverProperties")))))))));
   const stopScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "minecraft-server-stop", nix.thunk(() => nix.str`echo stop > ${nix.sel(config, "systemd", "sockets", "minecraft-server", "socketConfig", "ListenFIFO")}
@@ -58,47 +58,47 @@ done
   const rconPort = nix.thunk(() => (nix.asBool(nix.selOr(cfg, () => false, "serverProperties", "enable-rcon")) ? nix.selOr(cfg, () => 25575n, "serverProperties", "rcon.port") : null));
   const queryPort = nix.thunk(() => (nix.asBool(nix.selOr(cfg, () => false, "serverProperties", "enable-query")) ? nix.selOr(cfg, () => 25565n, "serverProperties", "query.port") : null));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         "minecraft-server": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, start a Minecraft Server. The server\ndata will be loaded from and saved to\n{option}`services.minecraft-server.dataDir`.\n",
             })))),
           declarative: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use a declarative Minecraft server configuration.\nOnly if set to `true`, the options\n{option}`services.minecraft-server.whitelist` and\n{option}`services.minecraft-server.serverProperties` will be\napplied.\n",
             })))),
           eula: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether you agree to [Mojangs EULA](https://www.minecraft.net/eula).\nThis option must be set to `true` to run Minecraft server.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/minecraft",
               description: "Directory to store Minecraft database and other state/data files.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open ports in the firewall for the server.\n",
             })))),
           whitelist: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => (() => {
-                const minecraftUUID = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"), { __proto__: pos$7, description: "Minecraft UUID" }));
+                const minecraftUUID = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "types", "strMatching"), "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"), { [nix.POS]: pos$7, description: "Minecraft UUID" }));
                 return nix.app(nix.sel(lib, "types", "attrsOf"), minecraftUUID);
               })()),
               default: nix.thunk(() => ({})),
@@ -106,7 +106,7 @@ done
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  username1 = \"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\";\n  username2 = \"yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy\";\n};\n")),
             })))),
           serverProperties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -119,9 +119,9 @@ done
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  server-port = 43000;\n  difficulty = 3;\n  gamemode = 1;\n  max-players = 5;\n  motd = \"NixOS Minecraft server!\";\n  white-list = true;\n  enable-rcon = true;\n  \"rcon.password\" = \"hunter2\";\n}\n")),
               description: "Minecraft server properties for the server.properties file. Only has\nan effect when {option}`services.minecraft-server.declarative`\nis set to `true`. See\n<https://minecraft.wiki/w/Server.properties#Java_Edition>\nfor documentation on these values.\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "minecraft-server", nix.thunk(() => ({ __proto__: pos$10, example: "pkgs.minecraft-server_1_12_2" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "minecraft-server", nix.thunk(() => ({ [nix.POS]: pos$10, example: "pkgs.minecraft-server_1_12_2" })))),
           jvmOpts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
               default: "-Xmx2048M -Xms2048M",
               example: nix.thunk(() => nix.add(nix.add("-Xms4092M -Xmx4092M -XX:+UseG1GC -XX:+CMSIncrementalPacing ", "-XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=2 "), "-XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10")),
@@ -131,13 +131,13 @@ done
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           users: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             minecraft: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Minecraft server service user",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               createHome: true,
@@ -145,17 +145,17 @@ done
               group: "minecraft",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$17, minecraft: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$17, minecraft: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           sockets: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "minecraft-server": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               bindsTo: nix.thunk(() => ["minecraft-server.service"]),
               socketConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 ListenFIFO: "/run/minecraft-server.stdin",
                 SocketMode: "0660",
                 SocketUser: "minecraft",
@@ -166,15 +166,15 @@ done
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "minecraft-server": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Minecraft Server Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["minecraft-server.socket"]),
               after: nix.thunk(() => ["network.target", "minecraft-server.socket"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/minecraft-server ${nix.sel(cfg, "jvmOpts")}`),
                 ExecStop: nix.thunk(() => nix.str`${stopScript} $MAINPID`),
                 Restart: "always",
@@ -230,20 +230,20 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => (nix.asBool(nix.sel(cfg, "declarative")) ? {
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               allowedUDPPorts: nix.thunk(() => [serverPort]),
               allowedTCPPorts: nix.thunk(() => nix.concat([serverPort], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(queryPort, null)), queryPort), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(rconPort, null)), rconPort)))),
             } : {
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               allowedUDPPorts: nix.thunk(() => [defaultServerPort]),
               allowedTCPPorts: nix.thunk(() => [defaultServerPort]),
             })))),
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => nix.sel(cfg, "eula")),
             message: nix.thunk(() => nix.add(nix.add("You must agree to Mojangs EULA to run minecraft-server.", " Read https://account.mojang.com/documents/minecraft_eula and"), " set `services.minecraft-server.eula` to `true` if you agree.")),
           })),

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? "64" : "32"));
   const hashes = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./hashes-legacy.json")))));
   const fetchSource = (name) => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://smlnj.cs.uchicago.edu/dist/working/${version}/${name}`),
       hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(name)))),
     })));
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "asdl.tgz",
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "smlnj",
       version: version,
       sources: sources,
@@ -59,9 +59,9 @@ export default nix.lambda((args) => (() => {
       buildPhase: nix.thunk(() => nix.str`./config/install.sh -default ${arch}
 `),
       installPhase: "mkdir -pv $out\ncp -rv bin lib $out\n\ncd $out/bin\nfor i in *; do\n  sed -i \"2iSMLNJ_HOME=$out/\" $i\ndone\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update-legacy.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update-legacy.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Standard ML of New Jersey, a compiler",
         homepage: "https://smlnj.org",
         downloadPage: nix.thunk(() => nix.str`https://smlnj.org/dist/working/${version}/install.html`),

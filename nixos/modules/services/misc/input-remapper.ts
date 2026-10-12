@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cfg = nix.thunk(() => nix.sel(config, "services", "input-remapper"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "input-remapper": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "input-remapper, an easy to use tool to change the mapping of your input device buttons")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "input-remapper", nix.thunk(() => ({})))),
           enableUdevRules: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "udev rules added by input-remapper to handle hotplugged devices. Currently disabled by default due to <https://github.com/sezanzeb/input-remapper/issues/140>")),
           serviceWantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: nix.thunk(() => ["graphical.target"]),
               example: nix.thunk(() => ["multi-user.target"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -46,33 +46,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           udev: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableUdevRules")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
           })),
           dbus: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
-            "input-remapper": nix.thunk(() => ({ __proto__: pos$8, wantedBy: nix.thunk(() => nix.sel(cfg, "serviceWantedBy")) })),
+            [nix.POS]: pos$9,
+            "input-remapper": nix.thunk(() => ({ [nix.POS]: pos$8, wantedBy: nix.thunk(() => nix.sel(cfg, "serviceWantedBy")) })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "LunNova"))];

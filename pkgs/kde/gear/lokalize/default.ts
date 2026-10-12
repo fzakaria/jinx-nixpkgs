@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const kddockwidgets = nix.arg($, "kddockwidgets");
   const hunspell = nix.arg($, "hunspell");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "lokalize",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [kddockwidgets, hunspell]),

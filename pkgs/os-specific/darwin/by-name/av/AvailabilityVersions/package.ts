@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.thunk(() => nix.attr(buildPackages, "python3"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   return nix.app(mkAppleDerivation, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "AvailabilityVersions",
       patches: nix.thunk(() => [
         nix.path(here, "./patches/0001-Support-setting-an-upper-bound-on-versions.patch"),
@@ -93,7 +93,7 @@ patchShebangs "$out/bin"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Generates Darwin Availability headers",
         mainProgram: "gen-headers",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

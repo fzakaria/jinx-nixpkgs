@@ -11,15 +11,15 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-dependency",
       version: "0.1.0",
       src: nix.path(here, "./package"),
       cargoLock: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lockFile: nix.path(here, "./package/Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "rand-0.8.3": "0ya2hia3cn31qa8894s3av2s8j5bjwb6yq92k0jsnlx7jid0jwqa",
         })),
       })),

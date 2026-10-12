@@ -41,28 +41,28 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "chhoto-url"));
   const environment = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => (nix.asBool(nix.eq(value, true)) ? "True" : (nix.asBool(nix.eq(value, false)) ? "False" : nix.builtins.toString(value))), nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         "chhoto-url": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Chhoto URL")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "chhoto-url", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Configuration of Chhoto URL.\nSee <https://github.com/SinTan1729/chhoto-url/blob/main/docs/INSTALLATION.md#configuration-options> for a list of options.\n",
-              example: nix.thunk(() => ({ __proto__: pos$2, port: 4567n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, port: 4567n })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -72,90 +72,90 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     db_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         description: "The path of the sqlite database.",
                         default: "/var/lib/chhoto-url/urls.sqlite",
                       })))),
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         description: "The port to listen on.",
                         example: 4567n,
                       })))),
                     cache_control_header: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         description: "The Cache-Control header to send.",
                         default: null,
                         example: "no-cache, private",
                       })))),
                     disable_frontend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Whether to disable the frontend.",
                         default: false,
                       })))),
                     public_mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Whether to enable public mode.",
                         default: false,
                         apply: (x) => (nix.asBool(x) ? "Enable" : "Disable"),
                       })))),
                     public_mode_expiry_delay: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")))),
                         description: "The maximum expiry delay in seconds to force in public mode.",
                         default: null,
                         example: 3600n,
                       })))),
                     redirect_method: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["TEMPORARY", "PERMANENT"]))),
                         description: "The redirect method to use.",
                         default: "PERMANENT",
                       })))),
                     hash_algorithm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Argon2"]))))),
                         description: "The hash algorithm to use for passwords and API keys.\nSet to `null` if you want to provide these secrets as plaintext.\n",
                         default: null,
                       })))),
                     site_url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         description: "The URL under which Chhoto URL is externally reachable.",
                         default: null,
                       })))),
                     slug_style: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Pair", "UID"]))),
                         description: "The slug style to use for auto-generated URLs.",
                         default: "Pair",
                       })))),
                     slug_length: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "addCheck"), nix.thunk(() => nix.sel(lib, "types", "int")), (x) => nix.ge(x, 4n))),
                         description: "The length of auto-generated slugs.",
                         default: 8n,
                       })))),
                     try_longer_slugs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Whether to try a longer UID upon collision.",
                         default: false,
                       })))),
                     allow_capital_letters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         description: "Whether to allow capital letters in slugs.",
                         default: false,
                       })))),
                     custom_landing_directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                         description: "The path of a directory which contains a custom landing page.",
                         default: null,
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/secrets/chhoto-url.env"]),
@@ -174,17 +174,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         systemd: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "chhoto-url": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: environment,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: "chhoto-url",
                 Group: "chhoto-url",
                 DynamicUser: true,

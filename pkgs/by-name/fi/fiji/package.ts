@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fiji",
       version: "20250514-1117",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.imagej.net/fiji/archive/${nix.sel(finalAttrs, "version")}/fiji-nojre.zip`),
           sha256: "sha256-6rBL0KyrV8BRbvufXbAGhmnPgqXMyIESVHmV7CkH26g=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fiji",
             exec: "fiji %F",
             tryExec: "fiji",
@@ -77,7 +77,7 @@ ln $out/fiji/images/icon.png $out/share/icons/hicolor/256x256/apps/fiji.png
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://imagej.net/software/fiji/",
         description: "Batteries-included distribution of ImageJ2, bundling a lot of plugins which facilitate scientific image analysis",
         mainProgram: "fiji",

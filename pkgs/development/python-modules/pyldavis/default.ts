@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bmabey",
           repo: "pyLDAvis",
           rev: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [funcy, jinja2, joblib, ipython, numpy, pandas, scikit_learn, scipy]);
       const pythonImportsCheck = nix.thunk(() => ["pyLDAvis", "pyLDAvis.gensim_models"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bmabey/pyLDAvis",
         description: "Python library for interactive topic model visualization",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

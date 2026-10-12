@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const spellcheckSupport = nix.argOr($, "spellcheckSupport", () => true);
   const enchant = nix.arg($, "enchant");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "profanity",
       version: "0.18.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "profanity-im",
           repo: "profanity",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [cmocka]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://profanity-im.github.io",
         description: "Console based XMPP client",
         mainProgram: "profanity",

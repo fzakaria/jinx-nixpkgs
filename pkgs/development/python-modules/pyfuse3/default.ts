@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libfuse",
           repo: "pyfuse3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_listdir"]);
       const pythonImportsCheck = nix.thunk(() => ["pyfuse3", "pyfuse3.asyncio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python 3 bindings for libfuse 3 with async I/O support",
         homepage: "https://github.com/libfuse/pyfuse3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

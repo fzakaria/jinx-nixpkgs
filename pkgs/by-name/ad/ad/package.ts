@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ad",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sminez",
           repo: "ad",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adaptable text editor",
         longDescription: "ad (pronounced A.D.) is an attempt at combining a modal\nediting interface of likes of vi and kakoune with the\napproach to extensibility of Plan9's Acme. Inside\nof ad text is something you can execute as well as edit.\n\nIt is primarily intended as playground for experimenting\nwith implementing various text editor features and\ncurrently is not at all optimised or feature complete\nenough for use as your main text editor.\n",
         homepage: "https://github.com/sminez/ad",

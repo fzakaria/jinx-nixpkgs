@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "grafana-metricsdrilldown-app",
       version: "2.5.1",
       zipHash: "sha256-vsrDbQhRkAHZayBFCVM7zu9bMji+I7XO+AxZL6y0TaU=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Queryless experience for browsing Prometheus-compatible metrics. Quickly find related metrics without writing PromQL queries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "marcel"))]),

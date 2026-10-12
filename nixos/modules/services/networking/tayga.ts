@@ -67,16 +67,16 @@ wkpf-strict ${nix.app(nix.lookup(w, "boolToYesNo"), nix.thunk(() => nix.sel(cfg,
   const addrOpts = (v) => (() => {
     nix.assert_((nix.asBool(nix.eq(v, 4n)) || nix.asBool(nix.eq(v, 6n))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/services/networking/tayga.nix:36:5");
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       options: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: nix.thunk(() => nix.str`IPv${nix.app(nix.builtins.toString, v)} address.`),
           })))),
         prefixLength: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "ints", "between"), 0n, nix.thunk(() => (nix.asBool(nix.eq(v, 4n)) ? 32n : 128n)))),
             description: nix.thunk(() => nix.str`Subnet mask of the interface, specified as the number of
 bits in the prefix ("${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}").
@@ -86,25 +86,25 @@ bits in the prefix ("${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}").
     };
   })();
   const versionOpts = (v) => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       router: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: nix.thunk(() => nix.str`The IPv${nix.app(nix.builtins.toString, v)} address of the router.`),
           })))),
       })),
       address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
           default: null,
           description: nix.thunk(() => nix.str`The source IPv${nix.app(nix.builtins.toString, v)} address of the TAYGA server.`),
         })))),
       pool: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => nix.app(addrOpts, v)))));
@@ -114,55 +114,55 @@ bits in the prefix ("${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}").
     })),
   });
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       services: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         tayga: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Tayga")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "tayga", nix.thunk(() => ({})))),
           ipv4: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(versionOpts, 4n)))),
               description: "IPv4-specific configuration.",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  address = \"192.0.2.0\";\n  router = {\n    address = \"192.0.2.1\";\n  };\n  pool = {\n    address = \"192.0.2.1\";\n    prefixLength = 24;\n  };\n}\n")),
             })))),
           ipv6: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(versionOpts, 6n)))),
               description: "IPv6-specific configuration.",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  address = \"2001:db8::1\";\n  router = {\n    address = \"64:ff9b::1\";\n  };\n  pool = {\n    address = \"64:ff9b::\";\n    prefixLength = 96;\n  };\n}\n")),
             })))),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/var/lib/tayga",
               description: "Directory for persistent data.",
             })))),
           tunDevice: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nat64",
               description: "Name of the nat64 tun device.",
             })))),
           mappings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ({})),
               description: "Static IPv4 -> IPv6 host mappings.",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"192.168.5.42\" = \"2001:db8:1:4444::1\";\n  \"192.168.5.43\" = \"2001:db8:1:4444::2\";\n  \"192.168.255.2\" = \"2001:db8:1:569::143\";\n}\n")),
             })))),
           log: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Packet errors to log (drop, reject, icmp, self)",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"drop\" \"reject\" \"icmp\" \"self\" ]\n")),
             })))),
           wkpfStrict: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable restrictions on the use of the well-known prefix (64:ff9b::/96) - prevents translation of non-global IPv4 ranges when using the well-known prefix. Must be enabled for RFC 6052 compatibility.",
@@ -171,27 +171,27 @@ bits in the prefix ("${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}").
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => nix.app(nix.lookup(w, "allUnique"), nix.thunk(() => nix.app(nix.lookup(w, "attrValues"), nix.thunk(() => nix.sel(cfg, "mappings")))))),
             message: "Neither the IPv4 nor the IPv6 addresses must be entered twice in the mappings.",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           interfaces: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "tunDevice")}`, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               virtual: true,
               virtualType: "tun",
               virtualOwner: null,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 addresses: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     address: nix.thunk(() => nix.sel(cfg, "ipv4", "router", "address")),
                     prefixLength: 32n,
                   })),
@@ -199,10 +199,10 @@ bits in the prefix ("${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}").
                 routes: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "ipv4", "pool"))]),
               })),
               ipv6: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 addresses: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     address: nix.thunk(() => nix.sel(cfg, "ipv6", "router", "address")),
                     prefixLength: 128n,
                   })),
@@ -213,24 +213,24 @@ bits in the prefix ("${(nix.asBool(nix.eq(v, 4n)) ? "24" : "64")}").
           ])),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           etc: nix.thunk(() => ({
-            __proto__: pos$29,
-            "tayga.conf": nix.thunk(() => ({ __proto__: pos$28, source: configFile })),
+            [nix.POS]: pos$29,
+            "tayga.conf": nix.thunk(() => ({ [nix.POS]: pos$28, source: configFile })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             tayga: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               description: "Stateless NAT64 implementation",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               reloadTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/tayga -d --nodetach --config /etc/tayga.conf`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -SIGHUP $MAINPID`),
                 Restart: "always",

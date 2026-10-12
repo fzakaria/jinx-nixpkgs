@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.add(nix.add(versionMajor, "."), versionMinor));
   const removeDots = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""])));
   const src_doc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`http://www.inchi-trust.org/download/${nix.app(removeDots, version)}/INCHI-1-DOC.zip`),
       sha256: "1kyda09i9p89xfq90ninwi7w13k1w3ljpl4gqdhpfhi5g8fgxx7f",
     }))));
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inchi";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`http://www.inchi-trust.org/download/${nix.app(removeDots, version_1)}/INCHI-1-SRC.zip`),
           sha256: "1zbygqn0443p0gxwr4kx3m1bkqaj8x9hrpch3s41py7jq08f6x28",
         }))));
@@ -58,7 +58,7 @@ runHook postInstall
 install -m 644 INCHI-1-DOC/*.pdf $doc/share
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.inchi-trust.org/",
         description: "IUPAC International Chemical Identifier library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -68,7 +68,7 @@ install -m 644 INCHI-1-DOC/*.pdf $doc/share
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version: version_1,
         src,

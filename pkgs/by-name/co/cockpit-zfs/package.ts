@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const yarn_berry = nix.arg($, "yarn-berry");
   const zfs = nix.arg($, "zfs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cockpit-zfs",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "45Drives",
           repo: "cockpit-zfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-nm3iHf9Rm5JFKzH0HAvglkQPFIV6Fl1e9WvNdqevTug=",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "offlineCache"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         cockpitPath: nix.thunk(() => [
           acl,
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         YARN_ENABLE_SCRIPTS: "0",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
       })),
@@ -145,7 +145,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cockpit plugin for ZFS management by 45Drives",
         homepage: "https://github.com/45Drives/cockpit-zfs",
         changelog: nix.thunk(() => nix.str`https://github.com/45Drives/cockpit-zfs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

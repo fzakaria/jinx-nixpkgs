@@ -11,6 +11,6 @@ export default nix.lambda((args) => (() => {
   const maxima = nix.arg($, "maxima");
   const ecl = nix.arg($, "ecl");
   const lisp_compiler = nix.argOr($, "lisp-compiler", () => nix.force(ecl));
-  return nix.app(nix.sel(maxima, "override"), nix.thunk(() => nix.update({ __proto__: pos$1, "lisp-compiler": lisp_compiler }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["maxima", "ecl", "lisp-compiler"])))));
+  return nix.app(nix.sel(maxima, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, "lisp-compiler": lisp_compiler }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["maxima", "ecl", "lisp-compiler"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

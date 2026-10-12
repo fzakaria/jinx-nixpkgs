@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const kind = nix.arg($, "kind");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "kind",
       version: "0.32.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "kubernetes-sigs",
           repo: "kind",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./kernel-module-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/kubernetes-sigs/kind/commit/9a24e6c1ae3d59f8de052ee5c3842820450a369a.patch",
             hash: "sha256-BP2Ub8b1GA7V0CGvhcoGuHRm7u+IMRTmN3mDc2rePnY=",
           })))),
@@ -45,19 +45,19 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-tRpylYpEGF6XqtBl7ESYlXKEEAt+Jws4x4VlUVW8SNI=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kind \\\n  --bash <($out/bin/kind completion bash) \\\n  --fish <($out/bin/kind completion fish) \\\n  --zsh <($out/bin/kind completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$4, package: kind })))),
+          [nix.POS]: pos$5,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: kind })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Kubernetes IN Docker - local clusters for testing Kubernetes",
         homepage: "https://github.com/kubernetes-sigs/kind",
         maintainers: nix.thunk(() => (() => {

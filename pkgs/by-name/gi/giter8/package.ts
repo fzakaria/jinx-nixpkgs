@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pname = "giter8";
   const version = "0.18.0";
   const deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${pname}-deps-${version}`),
       buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${coursier}/bin/cs fetch org.foundweekends.giter8:giter8_2.13:${version} > deps
@@ -35,7 +35,7 @@ cp $(< deps) $out/share/java/
       outputHash: "sha256-MrFuyktyXADZ8lh/vzpVNi12IbKjM/Q8P7X8EE4KFNo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       strictDeps: true,
@@ -51,23 +51,23 @@ makeWrapper ${jre}/bin/java $out/bin/g8 \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "g8 --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "A command line tool to apply templates defined on GitHub",
         homepage: "https://www.foundweekends.org/giter8/",
         sourceProvenance: nix.thunk(() => (() => {

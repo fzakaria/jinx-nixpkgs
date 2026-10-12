@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lib45d",
       version: "0.3.6-unstable-2024-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "45Drives",
           repo: "lib45d",
           rev: "a607e278182a3184c004c45c215aa22c15d6941d",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./stringstream.patch")]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/lib dist/shared/lib45d.so\n\nmkdir -p $out/include/45d\ncp -f -r src/incl/45d/* $out/include/45d/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/45Drives/lib45d",
         description: "45Drives C++ Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

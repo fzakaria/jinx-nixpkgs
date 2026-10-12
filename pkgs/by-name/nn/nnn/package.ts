@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withNerdIcons) || nix.asBool((nix.asBool(!nix.asBool(withIcons)) && nix.asBool(!nix.asBool(withEmojis))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/nn/nnn/package.nix:26:1");
   nix.assert_((!nix.asBool(withEmojis) || nix.asBool((nix.asBool(!nix.asBool(withIcons)) && nix.asBool(!nix.asBool(withNerdIcons))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/nn/nnn/package.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nnn",
       version: "5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jarun",
           repo: "nnn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([readline, ncurses], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), musl_fts), nix.app(nix.sel(lib, "optional"), withPcre, pcre2)))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${musl_fts}/include`),
           NIX_LDFLAGS: "-lfts",
         })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "install-desktop"]),
       postInstall: "installShellCompletion --bash --name nnn.bash misc/auto-completion/bash/nnn-completion.bash\ninstallShellCompletion --fish misc/auto-completion/fish/nnn.fish\ninstallShellCompletion --zsh misc/auto-completion/zsh/_nnn\n\ncp -r plugins $out/share\ncp -r misc/quitcd $out/share/quitcd\n\nwrapProgram $out/bin/nnn --prefix PATH : \"$binPath\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small ncurses-based file browser forked from noice",
         homepage: "https://github.com/jarun/nnn",
         changelog: nix.thunk(() => nix.str`https://github.com/jarun/nnn/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

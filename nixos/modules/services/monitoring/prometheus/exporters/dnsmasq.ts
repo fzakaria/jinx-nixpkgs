@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const escapeShellArg = nix.thunk(() => nix.attr(lib, "escapeShellArg"));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     port: 9153n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       dnsmasqListenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "localhost:53",
           description: "Address on which dnsmasq listens.\n",
         })))),
       leasesPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/var/lib/dnsmasq/dnsmasq.leases",
           example: "/var/lib/misc/dnsmasq.leases",
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-dnsmasq-exporter")}/bin/dnsmasq_exporter \\
   --listen ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
   --dnsmasq ${nix.sel(cfg, "dnsmasqListenAddress")} \\

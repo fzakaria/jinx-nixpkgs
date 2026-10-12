@@ -43,38 +43,38 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nextcloud", "notify_push"));
   const cfgN = nix.thunk(() => nix.sel(config, "services", "nextcloud"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         nextcloud: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           notify_push: nix.thunk(() => nix.update({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Notify push")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nextcloud-notify_push", nix.thunk(() => ({})))),
             socketPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/run/nextcloud-notify_push/sock",
                 description: "Socket path to use for notify_push",
               })))),
             logLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["error", "warn", "info", "debug", "trace"]))),
                 default: "error",
                 description: "Log level",
               })))),
             nextcloudUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfgN, "https")), "s")}://${nix.sel(cfgN, "hostName")}`),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"http${lib.optionalString config.services.nextcloud.https \"s\"}://${config.services.nextcloud.hostName}\"")),
                 description: "Configure the nextcloud URL notify_push tries to connect to.",
               })))),
             bendDomainToLocalhost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to add an entry to `/etc/hosts` for the configured nextcloud domain to point to `localhost` and add `localhost `to nextcloud's `trusted_proxies` config option.\n\nThis is useful when nextcloud's domain is not a static IP address and when the reverse proxy cannot be bypassed because the backend connection is done via unix socket.\n",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
               "dbport",
               "dbtableprefix",
             ]), (opt) => nix.update(nix.sel(options, "services", "nextcloud", "config", nix.key(nix.force(opt))), {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => nix.sel(config, "services", "nextcloud", "config", nix.key(nix.force(opt)))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.services.nextcloud.config.${opt}`))),
             })))),
@@ -96,20 +96,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => !nix.eq(nix.sel(config, "services", "nextcloud", "config", "dbtype"), "sqlite")),
             message: "notify_push only supports Nextcloud's with either a Postgres or MariaDB database, not sqlite.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "nextcloud-notify_push": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Push daemon for Nextcloud clients",
               documentation: nix.thunk(() => ["https://github.com/nextcloud/notify_push"]),
               after: nix.thunk(() => [
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
               requires: nix.thunk(() => ["nextcloud-setup.service", "phpfpm-nextcloud.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 NEXTCLOUD_URL: nix.thunk(() => nix.sel(cfg, "nextcloudUrl")),
                 SOCKET_PATH: nix.thunk(() => nix.sel(cfg, "socketPath")),
                 DATABASE_PREFIX: nix.thunk(() => nix.sel(cfg, "dbtableprefix")),
@@ -143,7 +143,7 @@ exec ${nix.sel(cfg, "package")}/bin/notify_push '${nix.sel(cfgN, "datadir")}/con
 `);
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 User: "nextcloud",
                 Group: "nextcloud",
                 RuntimeDirectory: nix.thunk(() => ["nextcloud-notify_push"]),
@@ -154,12 +154,12 @@ exec ${nix.sel(cfg, "package")}/bin/notify_push '${nix.sel(cfgN, "datadir")}/con
               })),
             })),
             "nextcloud-notify_push_setup": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requiredBy: nix.thunk(() => ["nextcloud-notify_push.service"]),
               after: nix.thunk(() => ["nextcloud-notify_push.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "oneshot",
                 User: "nextcloud",
                 Group: "nextcloud",
@@ -169,29 +169,29 @@ exec ${nix.sel(cfg, "package")}/bin/notify_push '${nix.sel(cfgN, "datadir")}/con
                 Restart: "on-failure",
                 RestartSec: "5s",
               })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$15, StartLimitIntervalSec: 30n, StartLimitBurst: 5n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$15, StartLimitIntervalSec: 30n, StartLimitBurst: 5n })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           hosts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "bendDomainToLocalhost")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "127.0.0.1": nix.thunk(() => [nix.thunk(() => nix.sel(cfgN, "hostName"))]),
               "::1": nix.thunk(() => [nix.thunk(() => nix.sel(cfgN, "hostName"))]),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           nginx: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfgN, "hostName"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 locations: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "^~ /push/": nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(cfg, "socketPath")}`),
                     proxyWebsockets: true,
                     recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -202,16 +202,16 @@ exec ${nix.sel(cfg, "package")}/bin/notify_push '${nix.sel(cfgN, "datadir")}/con
             ])),
           })),
           nextcloud: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             extraApps: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "services", "nextcloud", "package", "packages", "apps"));
               return {
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               notify_push: nix.thunk(() => nix.attr(from, "notify_push")),
             };
             })()),
             settings: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               trusted_proxies: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "bendDomainToLocalhost")), nix.thunk(() => ["127.0.0.1", "::1"]))),
             })),
           })),

@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           const scriptName = nix.thunk(() => nix.selOr(nix.selOr(args_3, () => ({}), "passthru"), () => (nix.asBool(nix.has(args_3, "scriptPath")) ? nix.app(fileName, nix.thunk(() => nix.sel(args_3, "scriptPath"))) : nix.str`${strippedName}.lua`), "scriptName"));
           const scriptPath = nix.thunk(() => nix.selOr(args_3, () => nix.str`./${scriptName}`, "scriptPath"));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             dontBuild: true,
             preferLocalBuild: true,
             patchFlags: nix.thunk(() => ["--no-backup-if-mismatch", "-p1"]),
@@ -65,8 +65,8 @@ fi
 
 runHook postInstall
 `),
-            passthru: nix.thunk(() => nix.update({ __proto__: pos$1, scriptName: scriptName }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(runtime_dependencies, [])), nix.thunk(() => ({
-                __proto__: pos$2,
+            passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$1, scriptName: scriptName }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(runtime_dependencies, [])), nix.thunk(() => ({
+                [nix.POS]: pos$2,
                 extraWrapperArgs: nix.thunk(() => nix.concat([
                   "--prefix",
                   "PATH",
@@ -75,12 +75,12 @@ runHook postInstall
                 ], nix.selOr(args_3, () => [], "passthru", "extraWrapperArgs"))),
               }))))),
             meta: nix.thunk(() => nix.update({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             }, (() => {
               const pos = nix.thunk(() => (nix.asBool(nix.has(nix.selOr(args_3, () => ({}), "meta"), "description")) ? nix.builtins.unsafeGetAttrPos("description", nix.thunk(() => nix.sel(args_3, "meta"))) : nix.builtins.unsafeGetAttrPos("pname", args_3)));
               return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(pos, null)), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   position: nix.thunk(() => nix.str`${nix.sel(pos, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(pos, "line")))}`),
                 })));
             })())),

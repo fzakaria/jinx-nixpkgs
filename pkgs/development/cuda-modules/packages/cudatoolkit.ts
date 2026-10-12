@@ -61,22 +61,22 @@ export default nix.lambda((args) => (() => {
       const version = cudaMajorMinorVersion;
       const paths = nix.thunk(() => nix.builtins.concatMap(getAllOutputs, allPackages));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         cc: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "cudaPackages.cudatoolkit is deprecated, refer to the manual and use splayed packages instead", nix.thunk(() => nix.sel(backendStdenv, "cc")))),
         lib: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pname: pname,
             version: version,
             paths: nix.thunk(() => nix.builtins.map((p) => nix.app(nix.sel(lib, "getLib"), p), allPackages)),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wrapper substituting the deprecated runfile-based CUDA installation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "nvidiaCudaRedist")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cuda"))]),
       }));
-      return { __proto__: pos$4, pname, version, paths, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, paths, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=cudatoolkit.ts.map

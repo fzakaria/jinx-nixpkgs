@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, default: 1n })))),
+      [nix.POS]: pos$2,
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, default: 1n })))),
     })),
     imports: nix.thunk(() => [
-      nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./importApply-function.nix"), nix.thunk(() => ({ __proto__: pos$3, foo: "abc" })))),
+      nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./importApply-function.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, foo: "abc" })))),
     ]),
   };
 })(), formals$1);

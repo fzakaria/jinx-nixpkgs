@@ -36,49 +36,49 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "webdav-server-rs"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const settings = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       server: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         uid: nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "uid")),
         gid: nix.thunk(() => nix.sel(config, "users", "groups", nix.key(nix.str`${nix.sel(cfg, "group")}`), "gid")),
       })),
     })), nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "webdav-server-rs": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "WebDAV server")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "webdav",
               description: "User to run under when setuid is not enabled.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "webdav",
               description: "Group to run under when setuid is not enabled.",
             })))),
           debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable debug mode.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               description: "Attrset that is converted and passed as config file. Available\noptions can be found at\n[here](https://github.com/miquels/webdav-server-rs/blob/master/webdav-server.toml).\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  server.listen = [ \"0.0.0.0:4918\" \"[::]:4918\" ];\n  accounts = {\n    auth-type = \"htpasswd.default\";\n    acct-type = \"unix\";\n  };\n  htpasswd.default = {\n    htpasswd = \"/etc/htpasswd\";\n  };\n  location = [\n    {\n      route = [ \"/public/*path\" ];\n      directory = \"/srv/public\";\n      handler = \"filesystem\";\n      methods = [ \"webdav-ro\" ];\n      autoindex = true;\n      auth = \"false\";\n    }\n    {\n      route = [ \"/user/:user/*path\" ];\n      directory = \"~\";\n      handler = \"filesystem\";\n      methods = [ \"webdav-rw\" ];\n      autoindex = true;\n      auth = \"true\";\n      setuid = true;\n    }\n  ];\n}\n")),
             })))),
           configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: nix.thunk(() => nix.app(nix.sel(format, "generate"), "webdav-server.toml", settings)),
               defaultText: "Config file generated from services.webdav-server-rs.settings",
@@ -89,49 +89,49 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfg, "user")), nix.thunk(() => nix.sel(config, "users", "users")))) && nix.asBool(!nix.eq(nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "uid"), null)))),
             message: nix.thunk(() => nix.str`users.users.${nix.sel(cfg, "user")} and users.users.${nix.sel(cfg, "user")}.uid must be defined.`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), nix.thunk(() => nix.sel(cfg, "group")), nix.thunk(() => nix.sel(config, "users", "groups")))) && nix.asBool(!nix.eq(nix.sel(config, "users", "groups", nix.key(nix.str`${nix.sel(cfg, "group")}`), "gid"), null)))),
             message: nix.thunk(() => nix.str`users.groups.${nix.sel(cfg, "group")} and users.groups.${nix.sel(cfg, "group")}.gid must be defined.`),
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "webdav")), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               webdav: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "WebDAV user",
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "webdav")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "webdav")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               webdav: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "webdav")),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "webdav-server-rs": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "WebDAV server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "webdav-server-rs")}/bin/webdav-server ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "debug")), "--debug")} -c ${nix.sel(cfg, "configFile")}`),
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_SETUID", "CAP_SETGID"]),
                 NoExecPaths: nix.thunk(() => ["/"]),
@@ -151,7 +151,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pmy"))];

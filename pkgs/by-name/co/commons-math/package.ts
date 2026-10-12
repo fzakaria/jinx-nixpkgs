@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.6.1",
       pname: "commons-math",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/commons/math/binaries/commons-math3-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           sha256: "0x4nx5pngv2n4ga11c1s4w2mf6cwydwkgs7da6wwvcjraw57bhkz",
         })))),
@@ -26,7 +26,7 @@ mkdir -p $out/share/java
 cp *.jar $out/share/java/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://commons.apache.org/proper/commons-math/",
         description: "Library of lightweight, self-contained mathematics and statistics components",
         maintainers: [],

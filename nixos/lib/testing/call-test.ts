@@ -22,22 +22,22 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.eq(p, null)) ? nix.force(default$) : nix.add(nix.add(nix.add(nix.add(nix.sel(p, "file"), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(p, "line")))), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(p, "column")))));
   })();
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
-      result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$1, internal: true, default: config })))),
+      [nix.POS]: pos$2,
+      result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, internal: true, default: config })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         extend: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const args_2 = args_1;
           const modules = nix.arg($_1, "modules");
           const specialArgs = nix.argOr($_1, "specialArgs", () => ({}));
           return nix.sel(nix.app(extendModules, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               specialArgs: specialArgs,
               modules: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "setDefaultModuleLocation"), nix.thunk(() => nix.app(unsafeGetAttrPosStringOr, "<test.extend module>", "modules", args_2)))), modules)),
             }))), "config", "test");

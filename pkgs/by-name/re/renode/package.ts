@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
   const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_10_0"));
   const resources = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "renode",
       repo: "renode-resources",
       rev: "14b80cde0a136b684f316eb7f6a31aeaae0684bf",
@@ -52,10 +52,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "construct")),
         nix.thunk(() => nix.lookup(w, "pyelftools")),
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "robotframework"), "overridePythonAttrs"), (oldAttrs) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             version: "6.1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "robotframework",
                 repo: "robotframework",
                 rev: "v6.1",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
               })))),
             patches: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   name: "python3.13-support.patch",
                   url: "https://github.com/robotframework/robotframework/commit/921e352556dc8538b72de1e693e2a244d420a26d.patch",
                   hash: "sha256-aSaror26x4kVkLVetPEbrJG4H1zstHsNWqmwqOys3zo=",
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "renode",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "renode",
           repo: "renode",
           rev: "ab721d88e135a1bcb8ed2ecc5a38f51cbe61fdd2",
@@ -177,9 +177,9 @@ makeWrapper "$out/lib/renode/renode-test" "$out/bin/renode-test" \\
 `),
       postFixup: "mv $out/bin/Renode $out/bin/renode\n",
       executables: nix.thunk(() => ["Renode"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/renode/renode/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),
         description: "Virtual development framework for complex embedded systems",
         downloadPage: "https://github.com/renode/renode",

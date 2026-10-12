@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "infrared-protocols",
       version: "9.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "infrared-protocols",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["infrared_protocols"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/infrared-protocols/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Library to decode and encode infrared signals",
         homepage: "https://github.com/home-assistant-libs/infrared-protocols",

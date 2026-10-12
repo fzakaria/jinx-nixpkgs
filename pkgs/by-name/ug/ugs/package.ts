@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const fetchzip = nix.arg($, "fetchzip");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "ugs",
       exec: "ugs",
       comment: "A cross-platform G-Code sender for GRBL, Smoothieware, TinyG and G2core.",
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ugs",
       version: "2.1.24",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/winder/Universal-G-Code-Sender/releases/download/v${nix.sel(finalAttrs, "version")}/UniversalGcodeSender.zip`),
           hash: "sha256-YDoH2romuozMWDBhZu5vW+XHHzqLJi3qYedQX2gzsGM=",
         })))),
@@ -46,7 +46,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [desktopItem]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform G-Code sender for GRBL, Smoothieware, TinyG and G2core",
         homepage: "https://github.com/winder/Universal-G-Code-Sender",
         maintainers: nix.thunk(() => (() => {

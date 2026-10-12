@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ibus-typing-booster";
       const version = "2.30.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mike-fabian",
           repo: "ibus-typing-booster",
           rev: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const preFixup = nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : "${m17n_lib}/lib")
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mike-fabian.github.io/ibus-typing-booster/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         description: "Completion input method for faster typing",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         isIbusEngine: true,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

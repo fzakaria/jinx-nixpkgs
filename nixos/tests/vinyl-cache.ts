@@ -33,49 +33,49 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.thunk(() => nix.sel(config, "node", "pkgs"));
   const testPath = nix.thunk(() => nix.sel(pkgs, "hello"));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "vinyl",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
         nix.thunk(() => nix.sel(lib, "maintainers", "osnyx")),
       ]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       vinyl: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            "nix-serve": nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$8,
+            "nix-serve": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             "vinyl-cache": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               package: package$,
               enable: true,
               enableFileLogging: true,
               listen: nix.thunk(() => nix.concat([
-                nix.thunk(() => ({ __proto__: pos$3, address: "0.0.0.0", port: 80n, proto: "HTTP" })),
+                nix.thunk(() => ({ [nix.POS]: pos$3, address: "0.0.0.0", port: 80n, proto: "HTTP" })),
                 nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   name: "proxyport",
                   address: "0.0.0.0",
                   port: 8080n,
                   proto: "PROXY",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   address: "/var/run/vinyld/client.http.sock",
                   user: "vinyl-cache",
                   group: "vinyl-cache",
                   mode: "660",
                 })),
-              ], nix.app(nix.sel(lib_1, "optionals"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "7.3")), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, address: "@asdf" }))])))),
+              ], nix.app(nix.sel(lib_1, "optionals"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "7.3")), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, address: "@asdf" }))])))),
               config: nix.thunk(() => nix.str`vcl 4.1;
 
 backend nix-serve {
@@ -85,16 +85,16 @@ backend nix-serve {
 `),
             })),
           })),
-          nix: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+          nix: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
           networking: nix.thunk(() => ({
-            __proto__: pos$11,
-            firewall: nix.thunk(() => ({ __proto__: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$11,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
-          system: nix.thunk(() => ({ __proto__: pos$12, extraDependencies: nix.thunk(() => [testPath]) })),
+          system: nix.thunk(() => ({ [nix.POS]: pos$12, extraDependencies: nix.thunk(() => [testPath]) })),
           assertions: nix.thunk(() => (() => {
             const cmdline = nix.thunk(() => nix.sel(config_1, "systemd", "services", "vinyl-cache", "serviceConfig", "ExecStart"));
             return nix.builtins.map((pattern) => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 assertion: nix.thunk(() => nix.app(nix.sel(lib_1, "hasInfix"), pattern, cmdline)),
                 message: nix.thunk(() => nix.str`Address argument \`${pattern}\` missing in commandline \`${cmdline}\`.`),
               }), nix.thunk(() => nix.concat([
@@ -109,11 +109,11 @@ backend nix-serve {
         const $_1 = nix.formals(args_1, formals$3);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           nix: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             settings: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               "require-sigs": false,
               substituters: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ["http://vinyl"]))),
             })),

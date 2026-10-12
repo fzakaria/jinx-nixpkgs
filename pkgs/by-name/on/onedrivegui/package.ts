@@ -36,7 +36,7 @@ setup(
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bpozdena",
           repo: "OneDriveGUI",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -67,7 +67,7 @@ setup(
       const doCheck = false;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "OneDriveGUI",
             exec: "onedrivegui",
             desktopName: "OneDriveGUI",
@@ -96,11 +96,11 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/onedri
   --add-flags $out/${nix.sel(python3Packages, "python", "sitePackages")}/OneDriveGUI.py
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/bpozdena/OneDriveGUI",
         description: "Simple GUI for Linux OneDrive Client, with multi-account support",
         mainProgram: "onedrivegui",
@@ -112,7 +112,7 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/onedri
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         pyproject,

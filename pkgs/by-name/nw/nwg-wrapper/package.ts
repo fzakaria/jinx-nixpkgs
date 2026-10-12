@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nwg-piotr",
           repo: "nwg-wrapper",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["nwg_wrapper"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper to display a script output or a text file content on the desktop in sway or other wlroots-based compositors",
         mainProgram: "nwg-wrapper",
         homepage: "https://github.com/nwg-piotr/nwg-wrapper/",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

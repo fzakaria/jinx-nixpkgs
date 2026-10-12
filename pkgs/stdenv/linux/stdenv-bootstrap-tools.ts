@@ -38,9 +38,9 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withLibnsl = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "stdenv-bootstrap-tools",
-      meta: nix.thunk(() => ({ __proto__: pos$1, schedulingPriority: 200n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, schedulingPriority: 200n })),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(buildPackages, "nukeReferences")),
         nix.thunk(() => nix.sel(buildPackages, "cpio")),
@@ -177,9 +177,9 @@ nuke-refs $out/on-server/busybox
 `)),
       allowedReferences: [],
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         bootstrapFiles: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           busybox: nix.thunk(() => nix.app(runCommand, "busybox", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp ${nix.sel(finalAttrs, "finalPackage")}/on-server/busybox $out`))),
           bootstrapTools: nix.thunk(() => nix.app(runCommand, "bootstrap-tools.tar.xz", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp ${nix.sel(finalAttrs, "finalPackage")}/on-server/bootstrap-tools.tar.xz $out`))),
         })),

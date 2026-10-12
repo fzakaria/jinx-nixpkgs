@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libpq = nix.arg($, "libpq");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pgtcl",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flightaware",
           repo: "Pgtcl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libpq]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PG_CONFIG: nix.thunk(() => nix.str`${nix.sel(libpq, "pg_config")}/bin/pg_config`),
       })),
       tclRequiresCheck: nix.thunk(() => ["Pgtcl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tcl client side interface to PostgreSQL",
         homepage: "https://flightaware.github.io/Pgtcl/",
         changelog: nix.thunk(() => nix.str`https://github.com/flightaware/Pgtcl/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

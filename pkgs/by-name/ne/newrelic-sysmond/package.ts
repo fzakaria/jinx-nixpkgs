@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "newrelic-sysmond";
       const version = "2.3.0.132";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.newrelic.com/server_monitor/archive/${version}/newrelic-sysmond-${version}-linux.tar.gz`),
           sha256: "0cdvffdsadfahfn1779zjfawz6l77awab3g9mw43vsba1568jh4f",
         }))));
       const installPhase = "mkdir -p $out/bin\ninstall -v -m755 daemon/nrsysmond.x64 $out/bin/nrsysmond\npatchelf --set-interpreter \"$(cat $NIX_CC/nix-support/dynamic-linker)\" \\\n  $out/bin/nrsysmond\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "System-wide monitoring for newrelic",
         homepage: "https://newrelic.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -13,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const mkKops = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mkkops.nix"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     mkKops: mkKops,
     kops_1_31: nix.thunk(() => nix.app(mkKops, (finalAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: "1.31.0",
         sha256: "sha256-q9megrNXXKJ/YqP/fjPHh8Oji4dPK5M3HLHa+ufwRAM=",
         rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       }))),
     kops_1_32: nix.thunk(() => nix.app(mkKops, (finalAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         version: "1.32.1",
         sha256: "sha256-nQKeTDajtUffPBhPrPuaJ+1XWgLDUltwDQDZHkylys4=",
         rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       }))),
     kops_1_33: nix.thunk(() => nix.app(mkKops, (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: "1.33.0",
         sha256: "sha256-VnnKWcU83yqsKW54Q1tr99/Ln8ppMyB7GLl70rUFGDY=",
         rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),

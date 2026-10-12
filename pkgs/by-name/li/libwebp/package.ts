@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const libwebp = nix.arg($, "libwebp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libwebp",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webmproject",
           repo: "libwebp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-libwebp-Fix-endianness-with-CMake.patch",
             url: "https://github.com/webmproject/libwebp/commit/0e5f4ee3deaba5c4381877764005d981f652791f.patch",
             hash: "sha256-VNiLv1y3cjSDCNen9KxqbdrldI6EhshTSnsq8g9x8HA=",
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), openglSupport, nix.thunk(() => [libglut, libGL, libGLU])), nix.concat(nix.app(nix.sel(lib, "optionals"), pngSupport, nix.thunk(() => [libpng])), nix.concat(nix.app(nix.sel(lib, "optionals"), jpegSupport, nix.thunk(() => [libjpeg])), nix.concat(nix.app(nix.sel(lib, "optionals"), tiffSupport, nix.thunk(() => [libtiff])), nix.app(nix.sel(lib, "optionals"), gifSupport, nix.thunk(() => [giflib])))))))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           gd: gd,
           graphicsmagick: graphicsmagick,
           imagemagick: imagemagick,
@@ -92,12 +92,12 @@ export default nix.lambda((args) => (() => {
           pillow: nix.thunk(() => nix.attr(from, "pillow")),
           imread: nix.thunk(() => nix.attr(from, "imread")),
           "haskell-webp": nix.thunk(() => nix.sel(haskellPackages, "webp")),
-          "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$3, package: libwebp })))),
+          "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$3, package: libwebp })))),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tools and library for the WebP image format",
         homepage: "https://developers.google.com/speed/webp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

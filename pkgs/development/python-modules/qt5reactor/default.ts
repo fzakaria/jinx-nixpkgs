@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "c3470a8a25d9a339f9ca6243502a9b2277f181d772b7acbff551d5bc363b7572",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_twisted, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["qt5reactor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Twisted Qt Integration",
         homepage: "https://github.com/twisted/qt5reactor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

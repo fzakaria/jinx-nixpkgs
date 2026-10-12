@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const withPostgresAdapter = nix.argOr($, "withPostgresAdapter", () => true);
   const withBigQueryAdapter = nix.argOr($, "withBigQueryAdapter", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "harlequin",
       version: "2.16.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tconbeer",
           repo: "harlequin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["harlequin", "harlequin_duckdb", "harlequin_sqlite", "harlequin_vscode"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeCheckInputs: nix.thunk(() => (() => {
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/functional_tests/", "tests/unit_tests/test_publish_artifacts.py"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SQL IDE for Your Terminal",
         homepage: "https://harlequin.sh",
         changelog: nix.thunk(() => nix.str`https://github.com/tconbeer/harlequin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

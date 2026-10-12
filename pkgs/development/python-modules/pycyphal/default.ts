@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.24.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenCyphal",
           repo: "pycyphal",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["numpy"]);
       const dependencies = nix.thunk(() => [numpy, nunavut]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "transport-can-pythoncan": nix.thunk(() => nix.concat([python_can], nix.sel(python_can, "optional-dependencies", "serial"))),
         "transport-serial": nix.thunk(() => [cobs, pyserial]),
         "transport-udp": nix.thunk(() => [libpcap]),
@@ -72,7 +72,7 @@ export PYTHONPATH="$(pwd)/.dsdl_compiled:$PYTHONPATH"
         ])));
       const pythonImportsCheck = nix.thunk(() => ["pycyphal"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Full-featured implementation of the Cyphal protocol stack in Python",
         longDescription: "Cyphal is an open technology for real-time intravehicular distributed computing and communication based on modern networking standards (Ethernet, CAN FD, etc.).\n",
         homepage: "https://opencyphal.org/",
@@ -84,7 +84,7 @@ export PYTHONPATH="$(pwd)/.dsdl_compiled:$PYTHONPATH"
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

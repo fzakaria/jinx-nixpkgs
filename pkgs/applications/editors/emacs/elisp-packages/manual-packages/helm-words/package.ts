@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const helm = nix.arg($, "helm");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "helm-words",
       version: "0-unstable-2019-03-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emacsmirror",
           repo: "helm-words",
           rev: "e6387ece1940a06695b9d910de3d90252efb8d29",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [dictionary, helm]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/emacsmirror/helm-words",
         description: "Helm extension for looking up words in dictionaries and thesauri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

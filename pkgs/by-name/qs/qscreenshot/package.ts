@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "qscreenshot",
       version: "unstable-2021-10-18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/qscreenshot/code",
           rev: "e340f06ae2f1a92a353eaa68e103d1c840adc12d",
           sha256: "0mdiwn74vngiyazr3lq72f3jnv5zw8wyd2dw6rik6dbrvfs69jig",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace qScreenshot/{CMakeLists.txt,cmake/modules/version.cmake} \\\n  --replace-fail \"cmake_minimum_required( VERSION 3.2.0 )\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple creation and editing of screenshots",
         mainProgram: "qScreenshot",
         homepage: "https://sourceforge.net/projects/qscreenshot/",

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "systemd"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     port: 9558n,
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-systemd-exporter")}/bin/systemd_exporter \\
   --web.listen-address ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} ${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(cfg, "extraFlags")))}
 `),

@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
   const libsRev = "0.20.0";
   const libsHash = "sha256-G5MMVNceNa1y7CczfoaRBektc//uUN6ijmcTMnnKMRA=";
   const valijson = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "tristanpenman",
       repo: "valijson",
       rev: "v1.0.2",
       hash: "sha256-wvFdjsDtKH7CpbEpQjzWtLC4RVOU9+D2rSK0Xo1cJqo=",
     }))));
   const driver = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "falcosecurity",
       repo: "libs",
       rev: "8.0.0+driver",
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = "0.40.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "sysdig",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "draios",
           repo: "sysdig",
           tag: version,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [bpftools, elfutils, libbpf, clang, gcc])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(kernel, null)), nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")))))),
       hardeningDisable: nix.thunk(() => ["pic", "zerocallusedregs"]),
       postUnpack: nix.thunk(() => nix.str`cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "falcosecurity",
           repo: "libs",
           rev: libsRev,
@@ -119,7 +119,7 @@ cmakeFlagsArray+=(
         nix.thunk(() => nix.str`-DUTHASH_INCLUDE=${uthash}/include`),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_BUNDLED_FALCOSECURITY_LIBS", true)),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(kernel, null)), "-DBUILD_DRIVER=OFF"))),
-      env: nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       preConfigure: nix.thunk(() => nix.add(nix.str`if ! grep -q "${libsRev}" cmake/modules/falcosecurity-libs.cmake; then
   echo "falcosecurity-libs checksum needs to be updated!"
   exit 1
@@ -145,7 +145,7 @@ else
 fi
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tracepoint-based system tracing tool for Linux (with clients for other OSes)",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

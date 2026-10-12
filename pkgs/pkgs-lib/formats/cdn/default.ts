@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "types"));
   const serializableValueWith = nix.thunk(() => nix.attr(from, "serializableValueWith"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        __proto__: pos$3,
-        type: nix.thunk(() => nix.app(serializableValueWith, nix.thunk(() => ({ __proto__: pos$1, typeName: "CDN" })))),
+        [nix.POS]: pos$3,
+        type: nix.thunk(() => nix.app(serializableValueWith, nix.thunk(() => ({ [nix.POS]: pos$1, typeName: "CDN" })))),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const runCommand = nix.arg($_2, "runCommand");
             const json2cdn = nix.arg($_2, "json2cdn");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 nativeBuildInputs: nix.thunk(() => [json2cdn]),
                 value: nix.thunk(() => nix.app(toJSON, value)),
                 preferLocalBuild: true,

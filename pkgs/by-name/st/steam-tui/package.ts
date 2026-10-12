@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "steam-tui";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dmadisetti",
           repo: "steam-tui",
           rev: version,
@@ -43,11 +43,11 @@ chmod +x $out/bin/steam-tui
 `);
       const checkFlags = nix.thunk(() => ["--skip=impure"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}/lib/pkgconfig`),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rust TUI client for steamcmd",
         homepage: "https://github.com/dmadisetti/steam-tui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -59,7 +59,7 @@ chmod +x $out/bin/steam-tui
         mainProgram: "steam-tui",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

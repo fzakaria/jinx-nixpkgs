@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const menhir = nix.arg($, "menhir");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opam-file-format",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml/opam-file-format/releases/download/${nix.sel(finalAttrs, "version")}/opam-file-format-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SrU1Cw3L1EwFmrDFnYE2jzSvdwccDmXYHGpbm/ql6Ck=",
         })))),
       nativeBuildInputs: nix.thunk(() => [menhir]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Parser and printer for the opam file syntax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => (() => {

@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const pname = "v2raya";
   const version = "2.2.7.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "v2rayA",
       repo: "v2rayA",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,29 +40,29 @@ export default nix.lambda((args) => (() => {
       postFetch: "sed -i -e 's/npmmirror/yarnpkg/g' $out/gui/yarn.lock",
     }))));
   const web = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/gui`),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${src}/gui/yarn.lock`),
           hash: "sha256-g+hI9n+nfXAcuEpjvDDaHg/DfjtNusOaw3S6kC1QDn4=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         OUTPUT_DIR: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, nodejs]),
     }))));
   const assetsDir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "assets",
       paths: nix.thunk(() => [v2ray_geoip, v2ray_domain_list_community]),
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       src: src,
@@ -87,12 +87,12 @@ wrapProgram $out/bin/v2rayA \\
   --prefix XDG_DATA_DIRS ":" ${assetsDir}/share
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         web: web,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Linux web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel",
         homepage: "https://github.com/v2rayA/v2rayA",
         mainProgram: "v2rayA",

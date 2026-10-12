@@ -9,6 +9,6 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const udpipe1 = nix.arg($, "udpipe1");
-  return nix.app(runCommand, "udpipe1-test-run", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [udpipe1]) })), "diff -U3 --color=auto <(udpipe --version|head -n1) <(echo 'UDPipe version 1.3.1 (using UniLib 3.3.1,')\ntouch $out\n");
+  return nix.app(runCommand, "udpipe1-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [udpipe1]) })), "diff -U3 --color=auto <(udpipe --version|head -n1) <(echo 'UDPipe version 1.3.1 (using UniLib 3.3.1,')\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

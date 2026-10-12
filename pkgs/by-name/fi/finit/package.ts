@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const plymouth = nix.arg($, "plymouth");
   const plymouthSupport = nix.argOr($, "plymouthSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "finit",
       version: "5.0-rc1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "finit-project",
           repo: "finit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +70,7 @@ substituteInPlace keventd/builtin.c \\
         nix.thunk(() => nix.str`dbuspolicydir=${nix.builtins.placeholder("out")}/etc/dbus-1/system.d`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-D_PATH_LOGIN="${shadow}/bin/login"`),
             nix.thunk(() => nix.str`-DSYSCTL_PATH="${sysctl}/bin/sysctl"`),
@@ -80,7 +80,7 @@ substituteInPlace keventd/builtin.c \\
             ])))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast init for Linux",
         mainProgram: "initctl",
         homepage: "https://troglobit.com/projects/finit/",

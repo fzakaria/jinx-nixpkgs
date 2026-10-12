@@ -43,74 +43,74 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "octoprint"));
   const baseConfig = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       plugins: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         curalegacy: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           cura_engine: nix.thunk(() => nix.str`${nix.sel(pkgs, "curaengine_stable")}/bin/CuraEngine`),
         })),
       })),
-      server: nix.thunk(() => ({ __proto__: pos$3, port: nix.thunk(() => nix.sel(cfg, "port")) })),
+      server: nix.thunk(() => ({ [nix.POS]: pos$3, port: nix.thunk(() => nix.sel(cfg, "port")) })),
       webcam: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ffmpeg: nix.thunk(() => nix.str`${nix.sel(pkgs, "ffmpeg-headless", "bin")}/bin/ffmpeg`),
       })),
     })), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "host"), null)), nix.thunk(() => ({
-        __proto__: pos$7,
-        server: nix.thunk(() => ({ __proto__: pos$6, host: nix.thunk(() => nix.sel(cfg, "host")) })),
+        [nix.POS]: pos$7,
+        server: nix.thunk(() => ({ [nix.POS]: pos$6, host: nix.thunk(() => nix.sel(cfg, "host")) })),
       }))))));
   const fullConfig = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(cfg, "extraConfig")), baseConfig));
   const cfgUpdate = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "octoprint-config.yaml", nix.thunk(() => nix.builtins.toJSON(fullConfig))));
   const pluginsEnv = nix.thunk(() => nix.app(nix.sel(cfg, "package", "python", "withPackages"), (ps) => nix.concat([nix.thunk(() => nix.sel(ps, "octoprint"))], nix.app(nix.sel(cfg, "plugins"), ps))));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         octoprint: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "octoprint", nix.thunk(() => ({})))),
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "OctoPrint, web interface for 3D printers")),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Host to bind OctoPrint to.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 5000n,
               description: "Port to bind OctoPrint to.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for OctoPrint.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "octoprint",
               description: "User for the daemon.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "octoprint",
               description: "Group for the daemon.",
             })))),
           stateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/octoprint",
               description: "State directory of the daemon.",
             })))),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "functionTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
               default: (plugins) => [],
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "plugins: []")),
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
               description: "Additional plugins to be used. Available plugins are passed through the plugins input.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               description: "Extra options which are added to OctoPrint's YAML configuration file.",
@@ -127,38 +127,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "octoprint")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               octoprint: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "octoprint")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "octoprint")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               octoprint: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "octoprint")),
               })),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "stateDir")}' - ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               "a /dev/vchiq - - - - u:octoprint:rw",
             ]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             octoprint: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "OctoPrint, web interface for 3D printers",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -172,7 +172,7 @@ else
 fi
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 ExecStart: nix.thunk(() => nix.str`${pluginsEnv}/bin/octoprint serve -b ${nix.sel(cfg, "stateDir")}`),
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -182,9 +182,9 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           firewall: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "port"))]))),
           })),
         })),

@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "4923f4d1e78be15f19f03a608fb34ba9cb71bf5205de3c9fe7461c49078167a7",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [pillow]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Eases the transition from PIL to Pillow for Python packages",
         homepage: "https://github.com/beanbaginc/pillowfight",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

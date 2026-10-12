@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "connman-notify",
       version: "2019-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wavexx",
           repo: "connman-notify",
           rev: "24b10a51721b54d932f4cd61ef2756423768c015",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: false,
       installPhase: "install -D -t $out/bin connman-notify\ninstall -D -t $out/share/doc README.rst\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop notification integration for connman",
         mainProgram: "connman-notify",
         homepage: "https://gitlab.com/wavexx/connman-notify",

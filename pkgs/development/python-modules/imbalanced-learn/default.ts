@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scikit-learn-contrib",
           repo: "imbalanced-learn",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [joblib, numpy, scikit_learn, scipy, threadpoolctl, sklearn_compat]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, optional: nix.thunk(() => [keras, pandas, tensorflow]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, optional: nix.thunk(() => [keras, pandas, tensorflow]) }));
       const pythonImportsCheck = nix.thunk(() => ["imblearn"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pandas]);
       const preCheck = nix.thunk(() => nix.str`export HOME=$TMPDIR
@@ -54,7 +54,7 @@ cd $out/${nix.sel(python, "sitePackages")}
         "imblearn/utils/tests/test_min_dependencies.py",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library offering a number of re-sampling techniques commonly used in datasets showing strong between-class imbalance",
         homepage: "https://github.com/scikit-learn-contrib/imbalanced-learn",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-learn-contrib/imbalanced-learn/releases/tag/${nix.sel(src, "tag")}`),
@@ -68,7 +68,7 @@ cd $out/${nix.sel(python, "sitePackages")}
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

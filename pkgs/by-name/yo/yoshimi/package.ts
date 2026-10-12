@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libpthread_stubs = nix.arg($, "libpthread-stubs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yoshimi",
       version: "2.3.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yoshimi",
           repo: "yoshimi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DFLTK_MATH_LIBRARY=${nix.sel(stdenv, "cc", "libc")}/lib/libm.so`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High quality software synthesizer based on ZynAddSubFX",
         longDescription: "Yoshimi delivers the same synthesizer capabilities as\nZynAddSubFX along with very good Jack and Alsa midi/audio\nfunctionality on Linux\n",
         homepage: "https://yoshimi.github.io/",

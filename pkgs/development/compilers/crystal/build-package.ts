@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_(nix.builtins.elem(format, nix.thunk(() => ["make", "crystal", "shards"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/crystal/build-package.nix:36:1");
     const mkDerivationArgs = nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => ["format", "installManPages", "lockFile", "shardsFile", "crystalBinaries"])));
     const crystalLib = nix.thunk(() => nix.app(linkFarm, "crystal-lib", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: name,
           path: nix.thunk(() => (nix.asBool(nix.builtins.hasAttr("url", value)) ? nix.app(fetchgit, value) : nix.app(fetchFromGitHub, value))),
         }), nix.thunk(() => nix.builtins.import(shardsFile))))));
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.selOr(attrs, () => nix.force(defaultOptions), "options")))),
       ]))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(mkDerivationArgs, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         configurePhase: nix.thunk(() => nix.selOr(args_2, () => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(["runHook preConfigure"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(lockFile, null)), nix.thunk(() => nix.str`cp ${lockFile} ./shard.lock`)), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(shardsFile, null)), nix.thunk(() => [
                 "test -e lib || mkdir lib",
                 nix.thunk(() => (nix.asBool(copyShardDeps) ? nix.str`for d in ${crystalLib}/*; do cp -r $d/ lib/; done; chmod -R +w lib/` : nix.str`for d in ${crystalLib}/*; do ln -s $d lib/; done`)),
                 "cp shard.lock lib/.shards.info",
               ])), ["runHook postConfigure"]))))), "configurePhase")),
         env: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           CRFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", defaultOptions)),
           PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
         }, nix.selOr(args_2, () => ({}), "env"))),
@@ -82,7 +82,7 @@ done
         doInstallCheck: nix.thunk(() => nix.selOr(args_2, () => true, "doInstallCheck")),
         installCheckPhase: nix.thunk(() => nix.selOr(args_2, () => "runHook preInstallCheck\n\nfor f in $out/bin/*; do\n  if [[ $f == *.dwarf ]]; then\n    continue\n  fi\n  $f --help > /dev/null\ndone\n\nrunHook postInstallCheck\n", "installCheckPhase")),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           platforms: nix.thunk(() => nix.sel(crystal, "meta", "platforms")),
         }, nix.selOr(args_2, () => ({}), "meta"))),
       })));

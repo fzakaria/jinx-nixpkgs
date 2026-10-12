@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
   const defaultAuthBackend = "local";
   const dataDir = "/var/lib/nipap";
   const defaultServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     WorkingDirectory: dataDir,
     User: nix.thunk(() => nix.sel(cfg, "user")),
     Group: nix.thunk(() => nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "group")),
@@ -94,63 +94,63 @@ export default nix.lambda((args) => (() => {
   }));
   const escapedHost = (host) => (nix.asBool(nix.app(nix.sel(lib, "hasInfix"), ":", host)) ? nix.str`[${host}]` : nix.force(host));
   return {
-    __proto__: pos$69,
+    [nix.POS]: pos$69,
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         nipap: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "global Neat IP Address Planner (NIPAP) configuration")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "User to use for running NIPAP services.",
               default: defaultUser,
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Configuration options to set in /etc/nipap/nipap.conf.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.sel(iniFmt, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     nipapd: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "::1",
                           description: "IP address to bind nipapd to.",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 1337n,
                           description: "Port to bind nipapd to.",
                         })))),
                       foreground: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Remain in foreground rather than forking to background.",
                         })))),
                       debug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Enable debug logging.",
                         })))),
                       db_host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "",
                           description: "PostgreSQL host to connect to. Empty means use UNIX socket.",
                         })))),
                       db_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.sel(cfg, "user")),
                           defaultText: defaultUser,
@@ -158,15 +158,15 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     auth: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       default_backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: defaultAuthBackend,
                           description: "Name of auth backend to use by default.",
                         })))),
                       auth_cache_timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.sel(lib, "types", "int")),
                           default: 3600n,
                           description: "Seconds to store cached auth entries for.",
@@ -176,25 +176,25 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           authBackendSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "auth.backends options to set in /etc/nipap/nipap.conf.\n",
               default: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${defaultAuthBackend}`, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: "SqliteAuth",
                   db_path: nix.thunk(() => nix.str`${dataDir}/local_auth.db`),
                 }))],
               ])),
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$17, freeformType: nix.thunk(() => nix.sel(iniFmt, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$17, freeformType: nix.thunk(() => nix.sel(iniFmt, "type")) })))),
             })))),
           nipapd: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nipapd server")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nipap", nix.thunk(() => ({})))),
             database: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: true,
                   description: "Create a nipap database automatically.",
@@ -202,42 +202,42 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           "nipap-www": nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nipap-www server")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nipap-www", nix.thunk(() => ({})))),
             xmlrpcURIFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Path to file containing XMLRPC URI for use by web UI - this is a secret, since it contains auth credentials. If null, it will be initialized assuming that the auth database is local.",
               })))),
             workers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 4n,
                 description: "Number of worker processes for Gunicorn to fork.",
               })))),
             umask: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "0",
                 description: "umask for files written by Gunicorn, including UNIX socket.",
               })))),
             unixSocket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Path to UNIX socket to bind to.",
                 example: "/run/nipap/nipap-www.sock",
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "::",
                 description: "Host to bind to.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: 21337n,
                 description: "Port to bind to.",
@@ -248,79 +248,79 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             systemd: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d '${dataDir}' - ${nix.sel(cfg, "user")} ${nix.sel(config, "users", "users", nix.key(nix.str`${nix.sel(cfg, "user")}`), "group")} - -`),
                 ]),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               etc: nix.thunk(() => ({
-                __proto__: pos$35,
-                "nipap/nipap.conf": nix.thunk(() => ({ __proto__: pos$34, source: configFile })),
+                [nix.POS]: pos$35,
+                "nipap/nipap.conf": nix.thunk(() => ({ [nix.POS]: pos$34, source: configFile })),
               })),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "nipapd", "package"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               nipap: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (value) => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     name: nix.thunk(() => nix.str`auth.backends.${name}`),
                     value: value,
                   }), nix.thunk(() => nix.sel(cfg, "authBackendSettings")))),
                 nipapd: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
                 "nipap-www": nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
               })),
             })),
           })),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), defaultUser)), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               users: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 users: nix.thunk(() => nix.attrsDyn({}, [
-                  [nix.str`${defaultUser}`, nix.thunk(() => ({ __proto__: pos$43, isSystemUser: true, group: defaultUser, home: dataDir }))],
+                  [nix.str`${defaultUser}`, nix.thunk(() => ({ [nix.POS]: pos$43, isSystemUser: true, group: defaultUser, home: dataDir }))],
                 ])),
                 groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${defaultUser}`, nix.thunk(() => ({}))]])),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "nipapd", "enable")) && nix.asBool(nix.sel(cfg, "nipapd", "database", "createLocally")))), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               services: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 postgresql: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   enable: true,
                   extensions: (ps) => (() => {
                     const w = nix.withScope(ps, null);
                     return [nix.thunk(() => nix.lookup(w, "ip4r"))];
                   })(),
                   ensureUsers: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$46, name: nix.thunk(() => nix.sel(cfg, "user")) })),
+                    nix.thunk(() => ({ [nix.POS]: pos$46, name: nix.thunk(() => nix.sel(cfg, "user")) })),
                   ]),
                   ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "settings", "nipapd", "db_name"))]),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 services: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   postgresql: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$49,
+                      [nix.POS]: pos$49,
                       ExecStartPost: nix.thunk(() => (() => {
                         const sqlFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nipapd-setup.sql", nix.thunk(() => nix.str`CREATE EXTENSION IF NOT EXISTS ip4r;
 
@@ -338,15 +338,15 @@ ALTER DATABASE "${nix.sel(cfg, "settings", "nipapd", "db_name")}" OWNER TO "${ni
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nipapd", "enable")), nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               systemd: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 services: nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   nipapd: nix.thunk(() => (() => {
                     const pkg = nix.thunk(() => nix.sel(cfg, "nipapd", "package"));
                     return {
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       description: "Neat IP Address Planner",
                       after: nix.thunk(() => nix.concat(["network.target", "systemd-tmpfiles-setup.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "nipapd", "db_host"), "")), "postgresql.target"))),
                       requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "settings", "nipapd", "db_host"), "")), "postgresql.target")),
@@ -357,7 +357,7 @@ ${pkg}/bin/nipap-passwd create-database >/dev/null 2>&1
 ${pkg}/bin/nipap-passwd upgrade-database >/dev/null 2>&1
 `))),
                       serviceConfig: nix.thunk(() => nix.update(defaultServiceConfig, {
-                        __proto__: pos$54,
+                        [nix.POS]: pos$54,
                         KillSignal: "SIGINT",
                         ExecStart: nix.thunk(() => nix.str`${pkg}/bin/nipapd \\
   --auto-install-db \\
@@ -372,36 +372,36 @@ ${pkg}/bin/nipap-passwd upgrade-database >/dev/null 2>&1
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nipap-www", "enable")), nix.thunk(() => ({
-              __proto__: pos$67,
+              [nix.POS]: pos$67,
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "nipap-www", "xmlrpcURIFile"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "auth", "default_backend"), defaultAuthBackend)))),
                   message: "If no XMLRPC URI secret file is specified, then the default auth backend must be in use to automatically generate credentials.",
                 })),
               ]),
               services: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 nipap: nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$60,
+                    [nix.POS]: pos$60,
                     www: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({})))),
                   })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$66,
+                [nix.POS]: pos$66,
                 services: nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   "nipap-www": nix.thunk(() => (() => {
                     const pkg = nix.thunk(() => nix.sel(cfg, "nipap-www", "package"));
                     return {
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       description: "Neat IP Address Planner web server",
                       after: nix.thunk(() => nix.concat(["network.target", "systemd-tmpfiles-setup.service"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "nipapd", "enable")), "nipapd.service"))),
                       wantedBy: nix.thunk(() => ["multi-user.target"]),
-                      environment: nix.thunk(() => ({ __proto__: pos$63, PYTHONPATH: nix.thunk(() => nix.sel(pkg, "pythonPath")) })),
+                      environment: nix.thunk(() => ({ [nix.POS]: pos$63, PYTHONPATH: nix.thunk(() => nix.sel(pkg, "pythonPath")) })),
                       serviceConfig: defaultServiceConfig,
                       script: nix.thunk(() => (() => {
                         const bind = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "nipap-www", "unixSocket"), null)) ? nix.str`unix:${nix.sel(cfg, "nipap-www", "unixSocket")}` : nix.str`${nix.app(escapedHost, nix.thunk(() => nix.sel(cfg, "nipap-www", "host")))}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "nipap-www", "port")))}`));
@@ -438,7 +438,7 @@ exec "${nix.sel(pkg, "gunicorn")}/bin/gunicorn" \\
             })))),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$68,
+      [nix.POS]: pos$68,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lukegb"))];

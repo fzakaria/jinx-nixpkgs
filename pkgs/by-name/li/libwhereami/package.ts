@@ -18,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const leatherman = nix.arg($, "leatherman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libwhereami",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "05fc28dri2h858kxbvldk5b6wd5is3fjcdsiqj3nxf95i66bb3xp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "libwhereami",
           owner: "puppetlabs",
         })))),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.2.2)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\n\n# boost 1.89 removed the boost_system stub library\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  'list(APPEND BOOST_COMPONENTS filesystem regex system thread)' \\\n  'list(APPEND BOOST_COMPONENTS filesystem regex thread)'\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost, curl, leatherman]),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Library to report hypervisor information from inside a VM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

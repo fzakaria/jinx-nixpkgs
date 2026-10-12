@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const iana_etc = nix.arg($, "iana-etc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scip",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scip-code",
           repo: "scip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-9oBoNTCPT/7wJbL0Z4S7JSmEqVI2JIeJUCmhpdBr/QI=",
       subPackages: nix.thunk(() => ["cmd/scip"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
       ldflags: nix.thunk(() => ["-s", "-X=main.Reproducible=true"]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(libredirect, "hook"))]))),
       __darwinAllowLocalNetworking: true,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "SCIP Code Intelligence Protocol CLI",
         mainProgram: "scip",
         homepage: "https://github.com/scip-code/scip",

@@ -32,27 +32,27 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "django_mailman3",
           version: version,
           hash: "sha256-+ZFrJpy5xdW6Yde/XEvxoAN8+TSQdiI0PfjZ7bHG0Rs=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "django-5.2.patch",
             url: "https://gitlab.com/mailman/django-mailman3/-/commit/465c1ffc77556bb8a80a678f53a40f16b9766cc6.patch",
             excludes: nix.thunk(() => [".gitlab-ci.yml", "README.rst"]),
             hash: "sha256-gSFczuNLlMclqixOu6ElS0BewUTGyhP6RXtE/waLzyo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "allauth-64-1.patch",
             url: "https://gitlab.com/mailman/django-mailman3/-/commit/96f3f3bf0c718395ccd1b0d539a40d627522a9c4.patch",
             hash: "sha256-xgQu70DkbPz+ULRFgKeJTbx/Tq2PLEyGgrncf26ChA4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "allauth-64-2.patch",
             url: "https://gitlab.com/mailman/django-mailman3/-/commit/cfdacb9195ce266e5ae23307b31304898369f696.patch",
             hash: "sha256-6mwGSw31Q0+APwdGFe0JE0gBigdo453HZZ6JApqgtTE=",
@@ -65,11 +65,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export DJANGO_SETTINGS_MODULE=django_mailman3.tests.settings_test\n";
       const pythonImportsCheck = nix.thunk(() => ["django_mailman3"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
-        tests: nix.thunk(() => ({ __proto__: pos$5, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
+        [nix.POS]: pos$6,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$5, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Django library for Mailman UIs",
         homepage: "https://gitlab.com/mailman/django-mailman3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "5.3")),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,

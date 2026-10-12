@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "SQLAlchemy-i18n",
           version: version,
           hash: "sha256-3jM3ZIOlgcoUIY2PV6EURmxfcrZ0qVg5tsRWSm5neW8=",
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_i18n"]);
       const nativeCheckInputs = nix.thunk(() => [postgresql, postgresqlTestHook, psycopg2, pytestCheckHook]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PGDATABASE: "sqlalchemy_i18n_test",
         postgresqlEnableTCP: 1n,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kvesteri/sqlalchemy-i18n",
         description: "Internationalization extension for SQLAlchemy models",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(sqlalchemy, "version")), "2")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-babel",
           repo: "flask-babel",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/python-babel/flask-babel/pull/242/commits/999735d825ee2f94701da29bcf819ad70ee03499.patch",
             hash: "sha256-vhP/aSWaWpy1sVOJAcrLHJN/yrB+McWO9pkXDI9GeQ4=",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flask_babel"]);
       const checkInputs = nix.thunk(() => [pytest_mock, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/python-babel/flask-babel/releases/tag/v${version}`),
         description: "Adds i18n/l10n support to Flask applications",
         longDescription: "Implements i18n and l10n support for Flask.\nThis is based on the Python babel module as well as pytz both of which are\ninstalled automatically for you if you install this library.\n",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/python-babel/flask-babel",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

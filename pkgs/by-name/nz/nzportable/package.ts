@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     ])));
   const version = nix.thunk(() => nix.str`2.0.0-indev+${dateString}`);
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "nzportable",
       text: nix.thunk(() => nix.str`runDir=\${XDG_DATA_HOME:-$HOME/.local/share}/nzportable
 data=${nix.sel(assets, "pc")}
@@ -59,11 +59,11 @@ fi
 exec ${nix.app(nix.sel(lib, "getExe"), fteqw)} -basedir "$runDir" "$@"
 `),
       derivationArgs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "nzportable",
         version: version,
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
           assets: assets,
           quakec: quakec,
@@ -73,7 +73,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), fteqw)} -basedir "$runDir" "$@"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(fteqw, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Call of Duty: Zombies demake, powered by various Quake sourceports (PC version)",
         homepage: "https://docs.nzp.gay",

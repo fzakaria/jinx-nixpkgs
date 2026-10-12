@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const k8sVersion = "v1.36.2";
   const k8sDefsJson = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/${k8sVersion}-standalone/_definitions.json`),
       hash: "sha256-qemM3GqwmYDyO16Yel8R0OwfyDgYfvuS80fM847Y/WU=",
     }))));
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "telepresence2";
       const version = "2.31.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "telepresenceio",
           repo: "telepresence",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [jq]);
       const buildInputs = nix.thunk(() => [
-        nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(macfuse_stubs, "override"), nix.thunk(() => ({ __proto__: pos$3, isFuse3: false }))) : nix.force(fuse3))),
+        nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(macfuse_stubs, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, isFuse3: false }))) : nix.force(fuse3))),
       ]);
       const tags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["fuse3"])));
       const preBuild = nix.thunk(() => nix.str`mkdir -p charts/telepresence-oss
 cp ${k8sDefsJson} charts/telepresence-oss/k8s-defs.json
 `);
       const vendorHash = "sha256-5kqdZS5+1cp+DXb/zi4Yc7A38yZPZaOUvOccPKYjP98=";
-      const env = nix.thunk(() => ({ __proto__: pos$4, GOEXPERIMENT: "jsonv2" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, GOEXPERIMENT: "jsonv2" }));
       const ldflags = nix.thunk(() => [
         "-s",
         "-w",
@@ -65,11 +65,11 @@ cp ${k8sDefsJson} charts/telepresence-oss/k8s-defs.json
 `)));
       const subPackages = nix.thunk(() => ["cmd/telepresence"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "k8s-version-matches": nix.thunk(() => nix.app(runCommand, "telepresence2-k8s-version-test", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [gnugrep, gnused, gawk]),
             })), nix.thunk(() => nix.str`# ref: https://github.com/telepresenceio/telepresence/blob/7a2b9f553fb51ef252df957916c7b831bd65c1ce/build-aux/main.mk#L545
 actual_version=$(grep 'k8s.io/client-go' ${src}/go.mod | awk '{print $2}' | sed -e 's/v0\\./v1./')
@@ -88,7 +88,7 @@ echo "PASS: k8s version $actual_version matches" | tee $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")),
         description: "Local development against a remote Kubernetes or OpenShift cluster",
         homepage: "https://telepresence.io",
@@ -105,7 +105,7 @@ echo "PASS: k8s version $actual_version matches" | tee $out
         mainProgram: "telepresence",
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

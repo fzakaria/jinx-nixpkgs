@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libgit2 = nix.arg($, "libgit2");
   return nix.app(nix.sel(libgit2, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "romkatv_libgit2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "romkatv",
           repo: "libgit2",
           rev: "tag-2ecf33948a4df9ef45a66c68b8ef24a5e60eaac6",

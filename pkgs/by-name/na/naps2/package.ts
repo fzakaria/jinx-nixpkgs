@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "naps2";
       const version = "8.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cyanfish",
           repo: "naps2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +61,7 @@ case "${nix.sel(stdenv, "hostPlatform", "system")}" in
 esac
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scan documents to PDF and more, as simply as possible",
         homepage: "https://www.naps2.com",
         changelog: "https://github.com/cyanfish/naps2/blob/master/CHANGELOG.md",
@@ -77,7 +77,7 @@ esac
         mainProgram: "naps2",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

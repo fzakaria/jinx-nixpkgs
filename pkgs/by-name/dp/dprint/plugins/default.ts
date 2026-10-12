@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
     const license = nix.argOr($_1, "license", () => nix.sel(lib, "licenses", "mit"));
     const maintainers = nix.argOr($_1, "maintainers", () => [nix.thunk(() => nix.sel(lib, "maintainers", "phanirithvij"))]);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
-        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$1, url: url, hash: hash })))),
+        src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash })))),
         dontUnpack: true,
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: description,
           license: license,
           maintainers: maintainers,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nativeInstallCheckInputs: nix.thunk(() => [dprint, writableTmpDirAsHomeHook]),
         installCheckPhase: "runHook preInstallCheck\n\nmkdir empty && cd empty\ndprint check --allow-no-files --config-discovery=false --plugins \"$out/plugin.wasm\"\n\nrunHook postInstallCheck\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           updateScript: nix.path(here, "./update-plugins.py"),
           initConfig: initConfig,
           updateUrl: updateUrl,
@@ -59,10 +59,10 @@ export default nix.lambda((args) => (() => {
   const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
   const removeSuffix = nix.thunk(() => nix.attr(lib, "removeSuffix"));
   const files = nix.thunk(() => nix.app(filterAttrs, (name) => (type) => (nix.asBool((nix.asBool(nix.eq(type, "regular")) && nix.asBool(!nix.eq(name, "default.nix")))) && nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", name))), nix.thunk(() => nix.builtins.readDir(nix.path(here, "./.")))));
-  const plugins = nix.thunk(() => nix.app(mapAttrs$, (name) => (_) => nix.app(nameValuePair, nix.thunk(() => nix.app(removeSuffix, ".nix", name)), nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${name}`))), nix.thunk(() => ({ __proto__: pos$5, mkDprintPlugin: mkDprintPlugin }))))), files));
+  const plugins = nix.thunk(() => nix.app(mapAttrs$, (name) => (_) => nix.app(nameValuePair, nix.thunk(() => nix.app(removeSuffix, ".nix", name)), nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/${name}`))), nix.thunk(() => ({ [nix.POS]: pos$5, mkDprintPlugin: mkDprintPlugin }))))), files));
   const getPluginList = (cb) => nix.builtins.map((p) => nix.str`${p}/plugin.wasm`, nix.thunk(() => nix.app(cb, plugins)));
   return nix.update(plugins, {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     mkDprintPlugin: mkDprintPlugin,
     getPluginList: getPluginList,
   });

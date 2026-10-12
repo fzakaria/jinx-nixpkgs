@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const sniglet = nix.arg($, "sniglet");
   const sorts_mill_goudy = nix.arg($, "sorts-mill-goudy");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "league-of-moveable-type",
       paths: nix.thunk(() => [
         the_neue_black,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         sorts_mill_goudy,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Font Collection by The League of Moveable Type",
         longDescription: "We're done with the tired old fontstacks of yesteryear. The web\nis no longer limited, and now it's time to raise our standards.\nSince 2009, The League has given only the most well-made, free &\nopen-source, @font-face ready fonts.\n",
         homepage: "https://www.theleagueofmoveabletype.com/",

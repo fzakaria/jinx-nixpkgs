@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "live",
       version: "0-unstable-2018-11-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arut",
           repo: "nginx-live-module",
           rev: "5e4a1e3a718e65e5206c24eba00d42b0d1c4b7dd",
           hash: "sha256-n4ZEnl84smKF138WtBTakmDXfcdQCfEJqvGDsgiF9s4=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "HTTP live module",
         homepage: "https://github.com/arut/nginx-live-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

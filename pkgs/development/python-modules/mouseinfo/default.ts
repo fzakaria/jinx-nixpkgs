@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python_xlib = nix.arg($, "python-xlib");
   const pillow = nix.arg($, "pillow");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mouseinfo",
       version: "0.1.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "asweigart",
           repo: "mouseinfo",
           rev: "1876ad5cd311b4352d46bc64a12edfb4da49974e",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       propagatedBuildInputs: nix.thunk(() => [pyperclip, python_xlib, pillow]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Application to display XY position and RGB color information for the pixel currently under the mouse. Works on Python 2 and 3",
         homepage: "https://github.com/asweigart/mouseinfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

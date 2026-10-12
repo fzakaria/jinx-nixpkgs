@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "3.2.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "koka-lang",
       repo: "koka",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const kklib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kklib",
       version: version,
       src: nix.thunk(() => nix.str`${src}/kklib`),
@@ -45,7 +45,7 @@ cp -a ../../kklib \${!outputDev}/share/koka/v${version}
     nix.thunk(() => nix.sel(pkgsHostTarget, "cmake")),
   ]);
   return nix.app(nix.sel(haskellPackages, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "koka",
       version: version,
       src: src,

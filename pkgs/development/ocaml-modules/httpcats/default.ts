@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const digestif = nix.arg($, "digestif");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httpcats",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/httpcats/releases/download/v${nix.sel(finalAttrs, "version")}/httpcats-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-4H7Mbtmunb9a4k9//MQ5NX034+/idIxNTg3K1zLqNxI=",
         })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [logs, fmt, mirage_crypto_rng, alcotest, digestif]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/robur-coop/httpcats/",
         description: "A simple HTTP client / server using h1, h2, and miou",
         changelog: nix.thunk(() => nix.str`https://github.com/robur-coop/httpcats/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

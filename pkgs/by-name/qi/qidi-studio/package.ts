@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pname = "qidi-studio";
   const version = "2.07.02.60";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/QIDITECH/QIDIStudio/releases/download/v${version}/QIDIStudio_v0${version}_Ubuntu24.AppImage`),
       hash: "sha256-1H0rLI3V8W1I+KIbolQg/Wat9WsACMy1RIdyU0s8seg=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -40,7 +40,7 @@ wrapProgram "$out/bin/qidi-studio" \\
   --set-default WEBKIT_DISABLE_DMABUF_RENDERER 0
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Slicer for QIDI 3D Printers, based on Bambu Studio",
         longDescription: "QIDI Studio is a professional 3D printer slicing software, which is perfectly compatible with all printers and 3D printing filaments of QIDI Technology.\nMulti-platform support, simple interface, easy to use, complete functions, easy to learn 3D printing.\n",
         homepage: "https://github.com/QIDITECH/QIDIStudio",

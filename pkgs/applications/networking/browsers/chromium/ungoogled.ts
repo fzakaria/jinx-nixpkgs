@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
     const rev = nix.arg($_1, "rev");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "ungoogled-chromium",
         version: rev,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "ungoogled-software",
             repo: "ungoogled-chromium",
             rev: rev,

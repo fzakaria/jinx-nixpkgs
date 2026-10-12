@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const dsmSysCli = nix.argOr($, "dsmSysCli", () => "/etc/tsm-client/cli.dsm.sys");
   const dsmSysApi = nix.argOr($, "dsmSysApi", () => "/etc/tsm-client/api.dsm.sys");
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     homepage: "https://www.ibm.com/products/storage-protect",
     downloadPage: "https://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/StorageSoftware/IBM+Spectrum+Protect",
     platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -51,9 +51,9 @@ export default nix.lambda((args) => (() => {
     longDescription: "IBM Storage Protect (Tivoli Storage Manager) provides\na single point of control for backup and recovery.\nThis package contains the client software, that is,\na command line client and linkable libraries.\n\nNote that the software requires a system-wide\nclient system-options file (commonly named \"dsm.sys\").\nThis package allows to use separate files for\nthe command-line interface and for the linkable API.\nThe location of those files can\nbe provided as build parameters.\n",
   }));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     tests: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "test-cli": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cli.nix"), nix.thunk(() => ({})))),
       "test-gui": nix.thunk(() => nix.sel(nixosTests, "tsm-client-gui")),
     })),
@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
     return nix.str`https://public.dhe.ibm.com/storage/tivoli-storage-management/${(nix.asBool(nix.eq(fixup, "0")) ? "maintenance" : "patches")}/client/v${major}r${minor}/Linux/LinuxX86/BA/v${major}${minor}${patch}/${version}-TIV-TSMBAC-LinuxX86.tar`;
   })();
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tsm-client-unwrapped",
       version: "8.2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.app(mkSrcUrl, nix.thunk(() => nix.sel(finalAttrs, "version")))),
           hash: "sha512-nxfwYyQ3jlwZxgfiXN5APb2lr+UlJgYX5IFUZxExuZbS518qQHMWFR+4BJEgMmsdIIg2Ic9QVXA+p89z4dJspA==",
         })))),
@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
     })));
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([acl, gnugrep, procps], nix.app(nix.sel(lib, "optional"), enableGui, jdk)))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "tsm-client",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
-      meta: nix.thunk(() => nix.update(meta, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), enableGui, nix.thunk(() => ({ __proto__: pos$6, mainProgram: "dsmj" }))))),
-      passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$7, unwrapped: unwrapped })),
+      meta: nix.thunk(() => nix.update(meta, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), enableGui, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "dsmj" }))))),
+      passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$7, unwrapped: unwrapped })),
       paths: nix.thunk(() => [unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       pathsToLink: nix.thunk(() => [

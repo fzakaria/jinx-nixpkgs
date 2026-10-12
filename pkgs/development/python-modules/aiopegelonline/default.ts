@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiopegelonline",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mib1185",
           repo: "aiopegelonline",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aiopegelonline"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to retrieve data from PEGELONLINE",
         homepage: "https://github.com/mib1185/aiopegelonline",
         changelog: nix.thunk(() => nix.str`https://github.com/mib1185/aiopegelonline/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

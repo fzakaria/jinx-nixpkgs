@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const flac = nix.arg($, "flac");
   const libogg = nix.arg($, "libogg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asc",
       version: "2.6.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ValHaris",
           repo: "asc-hq",
           rev: "fa3bca082a5cea2b35812349f99b877f0113aef0",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         libsigcxx_2_0,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Turn based strategy game",
         longDescription: "Advanced Strategic Command is a free, turn based strategy game. It is\ndesigned in the tradition of the Battle Isle series from Bluebyte and is\ncurrently available for Windows and Linux.\n",
         homepage: "https://www.asc-hq.org/",

@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rusty-psn";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RainbowCookie32",
           repo: "rusty-psn",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.add(nix.str`patchelf --set-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), buildInputs)}" $out/bin/rusty-psn
 `, nix.app(nix.sel(lib, "optionalString"), withGui, "mv $out/bin/rusty-psn $out/bin/rusty-psn-gui\n")));
       const desktopItem = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "rusty-psn",
             desktopName: "rusty-psn",
             exec: "rusty-psn-gui",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
           }))))));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [desktopItem])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple tool to grab updates for PS3 games, directly from Sony's servers using their updates API",
         homepage: "https://github.com/RainbowCookie32/rusty-psn/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: nix.thunk(() => (nix.asBool(withGui) ? "rusty-psn-gui" : "rusty-psn")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

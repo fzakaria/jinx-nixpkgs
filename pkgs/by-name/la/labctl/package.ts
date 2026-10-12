@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "labctl",
       version: "0.0.22-unstable-2024-05-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "labctl",
           repo: "labctl",
           rev: "1a8b11402def10819d36b9f7f44e82612ef22674",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "local INSTALL=\"$out/bin/labctl\"\ninstallShellCompletion --cmd labctl \\\n  --bash <(echo \"complete -C $INSTALL labctl\") \\\n  --zsh <(echo \"complete -o nospace -C $INSTALL labctl\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of helper tools for network engineers, while configuring and experimenting with their own network labs",
         homepage: "https://labctl.net",
         changelog: "https://github.com/labctl/labctl/releases",

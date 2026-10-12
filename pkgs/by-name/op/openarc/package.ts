@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openarc",
       version: "1.3.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flowerysong",
           repo: "OpenARC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [jansson, libidn2, libmilter, openssl]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBIND_8_COMPAT")),
       })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/openarc-keygen \\
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "substituteInPlace test/test_config.py \\\n  --replace-fail \"def test_config_requiresafekeys\" \"def disabled_test_config_requiresafekeys\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/flowerysong/OpenARC",
         description: "Open source library and filter for adding Authenticated Received Chain (ARC) support (RFC 8617) to email messages",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

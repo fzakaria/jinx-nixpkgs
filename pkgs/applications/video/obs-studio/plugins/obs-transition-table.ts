@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const obs_studio = nix.arg($, "obs-studio");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obs-transition-table",
       version: "0.2.7-unstable-2024-11-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "exeldro",
           repo: "obs-transition-table",
           rev: "976fe236dac7082b6c953f950fcb9e50495ce624",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for OBS Studio to add a Transition Table to the tools menu",
         homepage: "https://github.com/exeldro/obs-transition-table",
         maintainers: nix.thunk(() => (() => {

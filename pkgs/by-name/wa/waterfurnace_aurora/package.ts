@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "waterfurnace_aurora",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => [
@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
         "web_aid_tool",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "waterfurnace_aurora")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for communication with WaterFurnace Aurora control systems",
         homepage: "https://github.com/ccutrer/waterfurnace_aurora",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

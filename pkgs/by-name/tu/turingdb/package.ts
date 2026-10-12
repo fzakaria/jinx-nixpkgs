@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.arg($, "cudaPackages");
   const turingstdenv = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(llvmPackages_20, "stdenv") : (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv))));
   return nix.app(nix.sel(turingstdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "turingdb",
       version: "1.33",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "turing-db",
           repo: "turingdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +98,7 @@ done
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High performance in-memory column-oriented graph database engine",
         longDescription: "TuringDB is a high-performance in-memory column-oriented graph\ndatabase engine designed for analytical and read-intensive workloads.\n",
         homepage: "https://turingdb.ai",

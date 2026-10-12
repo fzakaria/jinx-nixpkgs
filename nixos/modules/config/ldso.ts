@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const libDir32 = "lib";
   const ldsoBasename32 = "ld-linux.so.2";
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       environment: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ldso: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: null,
             description: "The executable to link into the normal FHS location of the ELF loader.\n",
           })))),
         ldso32: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
             default: null,
             description: "The executable to link into the normal FHS location of the 32-bit ELF loader.\n\nThis currently only works on x86_64 architectures.\n",
@@ -49,18 +49,18 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       assertions: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           assertion: nix.thunk(() => (nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(config, "environment", "ldso32")))) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")))),
           message: "Option environment.ldso32 currently only works on x86_64.",
         })),
       ]),
       systemd: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tmpfiles: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           rules: nix.thunk(() => nix.concat((nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(config, "environment", "ldso")))) ? [nix.thunk(() => nix.str`r /${libDir}/${ldsoBasename} - - - - -`)] : [
             nix.thunk(() => nix.str`d /${libDir} 0755 root root - -`),
             nix.thunk(() => nix.str`L+ /${libDir}/${ldsoBasename} - - - - ${nix.sel(config, "environment", "ldso")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tejing"))];

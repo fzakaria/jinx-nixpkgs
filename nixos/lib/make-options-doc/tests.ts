@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const eval$ = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       modules: nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           options: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             foo: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               bar: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     type: nix.thunk(() => nix.sel(types, "bool")),
                     default: false,
                     description: "Enable the foo bar feature.\n",
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
         })),
       ]),
     }))));
-  const doc = nix.thunk(() => nix.app(nixosOptionsDoc, nix.thunk(() => ({ __proto__: pos$7, options: nix.thunk(() => nix.attr(eval$, "options")) }))));
+  const doc = nix.thunk(() => nix.app(nixosOptionsDoc, nix.thunk(() => ({ [nix.POS]: pos$7, options: nix.thunk(() => nix.attr(eval$, "options")) }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     commonMark: nix.thunk(() => nix.app(runCommand, "test-nixosOptionsDoc-commonMark", nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         commonMarkDefault: nix.thunk(() => nix.sel(doc, "optionsCommonMark")),
         commonMarkAnchors: nix.thunk(() => nix.app(nix.sel(doc, "optionsCommonMark", "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             extraArgs: nix.thunk(() => ["--anchor-prefix", "my-opt-", "--anchor-style", "legacy"]),
           })))),
       })), "env | grep ^commonMark | sed -e 's/=/ = /'\n(\n  set -x\n  grep -F 'foo\\.bar\\.enable' $commonMarkDefault >/dev/null\n  grep -F '{#my-opt-foo.bar.enable}' $commonMarkAnchors >/dev/null\n)\ntouch $out\n")),

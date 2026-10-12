@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "slang";
       const version = "2.3.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.jedsoft.org/releases/slang/${pname}-${version}.tar.bz2`),
           sha256: "sha256-+RRQVK4TGXPGEgjqgkhtXdEOPFza0jt8SgYXdDyPWhg=",
         }))));
@@ -48,7 +48,7 @@ sed -i -e "s|-ltermcap|-lncurses|" ./configure
       const enableParallelBuilding = true;
       const postInstall = "find \"$out\"/lib/ -name '*.so' -exec chmod +x \"{}\" \\;\nsed '/^Libs:/s/$/ -lncurses/' -i \"$dev\"/lib/pkgconfig/slang.pc\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-slang", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -61,7 +61,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small, embeddable multi-platform programming library",
         longDescription: "S-Lang is an interpreted language that was designed from the start to be\neasily embedded into a program to provide it with a powerful extension\nlanguage. Examples of programs that use S-Lang as an extension language\ninclude the jed text editor and the slrn newsreader. Although S-Lang does\nnot exist as a separate application, it is distributed with a quite\ncapable program called slsh (\"slang-shell\") that embeds the interpreter\nand allows one to execute S-Lang scripts, or simply experiment with S-Lang\nat an interactive prompt. Many of the the examples in this document are\npresented in the context of one of the above applications.\n\nS-Lang is also a programmer's library that permits a programmer to develop\nsophisticated platform-independent software. In addition to providing the\nS-Lang interpreter, the library provides facilities for screen management,\nkeymaps, low-level terminal I/O, etc. However, this document is concerned\nonly with the extension language and does not address these other features\nof the S-Lang library. For information about the other components of the\nlibrary, the reader is referred to the S-Lang Library C Programmer's\nGuide.\n",
         homepage: "http://www.jedsoft.org/slang/",
@@ -71,7 +71,7 @@ update-source-version ${pname} "$new_version"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const w = nix.withScope(ocamlPackages, null);
   return nix.app(nix.lookup(w, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jackline",
       version: "0.1.0-unstable-2024-10-21",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hannesm",
           repo: "jackline",
           rev: "cf6b26e37e37b0b48be9fd2e74fc563375f757f0",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "ppx_sexp_conv")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/hannesm/jackline",
         description: "Minimalistic secure XMPP client in OCaml",
         mainProgram: "jackline",

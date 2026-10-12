@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const waylandSupport = nix.argOr($, "waylandSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "1.16.2",
       pname: "tigervnc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TigerVNC",
           repo: "tigervnc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ source_top="$(pwd)"
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_WAYLAND", waylandSupport)),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-bounds"]))),
       })),
       postBuild: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -Wno-error=int-to-pointer-cast -Wno-error=pointer-to-int-cast"
@@ -150,11 +150,11 @@ wrapProgram $out/bin/vncserver \\
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, gettext, autoconf, automake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.concat([font_util, libtool, makeWrapper, util_macros, zlib], nix.concat(nix.sel(xorg_server, "nativeBuildInputs"), nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland_scanner])))))))),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(xorg_server, "propagatedBuildInputs")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, tigervnc: nix.thunk(() => nix.sel(nixosTests, "tigervnc")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, tigervnc: nix.thunk(() => nix.sel(nixosTests, "tigervnc")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://tigervnc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "Fork of tightVNC, made in cooperation with VirtualGL",

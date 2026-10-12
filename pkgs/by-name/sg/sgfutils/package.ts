@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const makeFontsConf = nix.arg($, "makeFontsConf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sgfutils",
       version: "0.25-unstable-2017-11-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yangboz",
           repo: "sgfutils",
           rev: "11ab171c46cc16cc71ac6fc901d38ea88d6532a4",
@@ -36,10 +36,10 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp sgf sgfsplit sgfvarsplit sgfstrip sgfinfo sgfmerge sgftf \\\n  sgfcheck sgfdb sgfdbinfo sgfcharset sgfcmp sgfx \\\n  ngf2sgf nip2sgf nk2sgf gib2sgf sgftopng ugi2sgf \\\n  $out/bin\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/sgftopng \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick]))} \\
-  --set-default FONTCONFIG_FILE ${nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$2, fontDirectories: [] })))}
+  --set-default FONTCONFIG_FILE ${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://homepages.cwi.nl/~aeb/go/sgfutils/html/sgfutils.html",
         description: "Command line utilities that help working with SGF files",

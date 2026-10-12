@@ -89,12 +89,12 @@ export default nix.lambda((args) => (() => {
   const withSELinuxModule = nix.argOr($, "withSELinuxModule", () => false);
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "flatpak",
       version: "1.18.4",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), withDocbookDocs, nix.thunk(() => ["doc"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGtkDoc, nix.thunk(() => ["devdoc"])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "doCheck")), "installedTests"), nix.app(nix.sel(lib, "optional"), withMan, "man")))))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flatpak/flatpak/releases/download/${nix.sel(finalAttrs, "version")}/flatpak-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uJmnoAxI0sYmy47DP+VWcgs3bCWAXXIiQwwP3KTGrI0=",
         })))),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(finalAttrs, "passthru", "icon-validator-patch")),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               coreutils: coreutils,
               gettext: gettext,
               gtk3: gtk3,
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), withP11Kit, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               p11kit: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), p11_kit)),
             })))),
         ]))))),
@@ -185,16 +185,16 @@ wrapProgram $out/share/flatpak/triggers/mime-database.trigger --prefix PATH : ${
       doCheck: false,
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         "icon-validator-patch": nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-icon-validation.patch"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "cross-aarch64": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "flatpak")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "validate-icon": nix.thunk(() => nix.app(runCommand, "test-icon-validation", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/libexec/flatpak-validate-icon \\
@@ -204,14 +204,14 @@ wrapProgram $out/share/flatpak/triggers/mime-database.trigger --prefix PATH : ${
 grep format=png "$out"
 `))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Linux application sandboxing and distribution framework",
         homepage: "https://flatpak.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/flatpak/flatpak/releases/tag/${nix.sel(finalAttrs, "version")}`),

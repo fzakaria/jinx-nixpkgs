@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "sqlcipher3";
   const version = "0.6.3";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-/Lt4RmPSEhNWPz+9o5L/tfnXuE3/A9PRFL5rtUM4oa4=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sqlcipher, openssl]),
       pythonImportsCheck: nix.thunk(() => ["sqlcipher3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "sqlcipher3",
         homepage: "https://github.com/coleifer/sqlcipher3",
         description: "Python 3 bindings for SQLCipher",

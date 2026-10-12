@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matrix-org",
           repo: "mjolnir",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["mjolnir"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AntiSpam / Banlist plugin to be used with mjolnir",
         longDescription: "Primarily meant to block invites from undesired homeservers/users,\nMjolnir's Synapse module is a way to interpret ban lists and apply\nthem to your entire homeserver.\n",
         homepage: "https://github.com/matrix-org/mjolnir/blob/main/docs/synapse_module.md",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

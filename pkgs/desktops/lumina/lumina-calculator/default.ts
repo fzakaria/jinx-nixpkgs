@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lumina-calculator";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lumina-desktop",
           repo: "lumina-calculator",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LRELEASE=${nix.app(nix.sel(lib, "getDev"), qttools)}/bin/lrelease`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scientific calculator for the Lumina Desktop",
         mainProgram: "lumina-calculator",
         homepage: "https://github.com/lumina-desktop/lumina-calculator",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lumina"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

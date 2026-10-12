@@ -32,10 +32,10 @@ profile hello ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "h
 }
 `);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "apparmor",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -45,29 +45,29 @@ profile hello ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "h
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           security: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             apparmor: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), true)),
               policies: nix.thunk(() => ({
-                __proto__: pos$5,
-                hello: nix.thunk(() => ({ __proto__: pos$2, state: "enforce", profile: helloProfileContents })),
-                sl: nix.thunk(() => ({ __proto__: pos$3, state: "complain", path: nix.path(here, "./sl_profile") })),
+                [nix.POS]: pos$5,
+                hello: nix.thunk(() => ({ [nix.POS]: pos$2, state: "enforce", profile: helloProfileContents })),
+                sl: nix.thunk(() => ({ [nix.POS]: pos$3, state: "complain", path: nix.path(here, "./sl_profile") })),
                 hexdump: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   state: "enforce",
                   profile: "abi <abi/4.0>,\ninclude <tunables/global>\nprofile hexdump /nix/store/*/bin/hexdump {\n  include <abstractions/base>\n  deny /tmp/** r,\n}\n",
                 })),
               })),
               includes: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "abstractions/base": "/nix/store/*/bin/** mr,\n/nix/store/*/lib/** mr,\n/nix/store/** r,\n",
               })),
             })),
@@ -95,8 +95,8 @@ with subtest("AppArmor securityfs is mounted"):
 # 4. Using \`diff\` against the expected output.
 with subtest("apparmorRulesFromClosure"):
     machine.succeed(
-        "${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "diffutils")), "diff")} -u ${nix.app(nix.sel(pkgs, "writeText"), "expected.rules", nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./makeExpectedPolicies.nix")), nix.thunk(() => ({ __proto__: pos$11, pkgs: pkgs })))))} ${nix.app(nix.sel(pkgs, "runCommand"), "actual.rules", nix.thunk(() => ({ __proto__: pos$12, preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "gnused")))} -e 's:^${nix.builtins.storeDir}/[^,/-]*-\\([^/, ]*\\):\\1 \\0:' ${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({
-            __proto__: pos$13,
+        "${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "diffutils")), "diff")} -u ${nix.app(nix.sel(pkgs, "writeText"), "expected.rules", nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./makeExpectedPolicies.nix")), nix.thunk(() => ({ [nix.POS]: pos$11, pkgs: pkgs })))))} ${nix.app(nix.sel(pkgs, "runCommand"), "actual.rules", nix.thunk(() => ({ [nix.POS]: pos$12, preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "gnused")))} -e 's:^${nix.builtins.storeDir}/[^,/-]*-\\([^/, ]*\\):\\1 \\0:' ${nix.app(nix.sel(pkgs, "apparmorRulesFromClosure"), nix.thunk(() => ({
+            [nix.POS]: pos$13,
             name: "ping",
             additionalRules: nix.thunk(() => ["$path/foo/** x"]),
           })), nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libcap"))]))} |
@@ -110,10 +110,10 @@ with subtest("apparmorProfileStates"):
     machine.succeed("${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "diffutils")), "diff")} -u \\
       <(${nix.app(getExe$, nix.thunk(() => nix.sel(pkgs, "apparmor-bin-utils")), "aa-status")} --json | ${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "jq")))} --sort-keys . ) \\
       <(${nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "jq")))} --sort-keys . ${nix.app(nix.sel(pkgs, "writers", "writeJSON"), "expectedStates.json", nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           version: "2",
           processes: nix.thunk(() => ({})),
-          profiles: nix.thunk(() => ({ __proto__: pos$14, hexdump: "enforce", hello: "enforce", sl: "complain" })),
+          profiles: nix.thunk(() => ({ [nix.POS]: pos$14, hexdump: "enforce", hello: "enforce", sl: "complain" })),
         })))})")
 
 # Test apparmor profile files in /etc/apparmor.d/<name> to be either a correct symlink (sl) or have the right file contents (hello)

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fishbang",
       version: "0-unstable-2025-01-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BrewingWeasel",
           repo: "fishbang",
           rev: "f8d2721ac5508dbda54a666ebf12f1492c478277",
           hash: "sha256-VHtjt3Xobvs0DTXJ1mFU8i84EEsNQv3yqbhjs7c1mNE=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bash bang commands for fish",
         homepage: "https://github.com/BrewingWeasel/fishbang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

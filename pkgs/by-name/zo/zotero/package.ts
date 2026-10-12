@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const pname = "zotero";
   const version = "10.0.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "zotero",
       repo: "zotero",
       tag: version,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-vevcTBWo4o2K7ibg+FOetx07EyH3k1V2I43UF2tQrRU=",
     }))));
   const pdf_js = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "zotero-pdf-js",
       version: version,
       nodejs: nodejs,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const epub_js = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zotero-epub-js",
       version: version,
       nodejs: nodejs,
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const pdf_reader = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zotero-pdf-reader",
       version: version,
       nodejs: nodejs,
@@ -104,7 +104,7 @@ cp -r ${src}/chrome/locale/en-US/zotero/* locales/en-US/
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const document_worker = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zotero-document-worker",
       version: version,
       nodejs: nodejs,
@@ -115,7 +115,7 @@ cp -r ${src}/chrome/locale/en-US/zotero/* locales/en-US/
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   const note_editor = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zotero-note-editor",
       version: version,
       nodejs: nodejs,
@@ -129,7 +129,7 @@ cp -r ${src}/chrome/locale/en-US/zotero/* locales/en-US/
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r . $out\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: pname,
       version: version,
       src: src,
@@ -186,12 +186,12 @@ runHook postBuild
 `);
       })()),
       doCheck: doCheck,
-      env: nix.thunk(() => ({ __proto__: pos$7, ZOTERO_TEST: doCheck })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$7, ZOTERO_TEST: doCheck })),
       nativeCheckInputs: nix.thunk(() => [xvfb_run]),
       checkPhase: "runHook preCheck\n\nCI=true xvfb-run test/runtests.sh\n\nrunHook postCheck\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             name: "zotero",
             exec: "zotero -url %U",
             icon: "zotero",
@@ -208,15 +208,15 @@ runHook postBuild
 `))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nmakeWrapper $out/Applications/Zotero.app/Contents/MacOS/zotero $out/bin/zotero\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         tests: nix.thunk(() => ({
-          __proto__: pos$10,
-          "build-with-checks": nix.thunk(() => nix.app(nix.sel(zotero, "override"), nix.thunk(() => ({ __proto__: pos$9, doCheck: true })))),
+          [nix.POS]: pos$10,
+          "build-with-checks": nix.thunk(() => nix.app(nix.sel(zotero, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, doCheck: true })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         homepage: "https://www.zotero.org",
         description: "Collect, organize, cite, and share your research sources",
         changelog: "https://www.zotero.org/support/changelog",

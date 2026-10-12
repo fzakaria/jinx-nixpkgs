@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const discord_development = nix.arg($, "discord-development");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "moonlight",
       version: "2026.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moonlight-mod",
           repo: "moonlight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-g1wlpbUlGwE3Chrry89gJX2+3+jY/jyXYwiAWAfoHlA=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NODE_ENV: "production",
         MOONLIGHT_BRANCH: "stable",
         MOONLIGHT_VERSION: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")} (nixpkgs)`),
@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [discord, discord_ptb, discord_canary, discord_development]), (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(p, "pname")), nix.thunk(() => nix.sel(p, "tests", "withMoonlight"))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Discord client modification, focused on enhancing user and developer experience",
         longDescription: "Moonlight is a ***passion project***—yet another Discord client mod—focused on providing a decent user\nand developer experience. Heavily inspired by hh3 (a private client mod) and the projects before it, namely EndPwn.\nAll core code is original or used with permission from their respective authors where not copyleft.\n",
         homepage: "https://moonlight-mod.github.io",

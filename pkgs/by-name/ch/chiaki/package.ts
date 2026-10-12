@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nanopb = nix.arg($, "nanopb");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "chiaki",
       version: "2.2.0-unstable-2026-01-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.sr.ht/~thestr4ng3r/chiaki",
           rev: "ab55cf4c95f7723faae08a546fbe14e0f6bddf45",
           fetchSubmodules: true,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installCheckPhase: "$out/bin/chiaki --help",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~thestr4ng3r/chiaki",
         description: "Free and Open Source PlayStation Remote Play Client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

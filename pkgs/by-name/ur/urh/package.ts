@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const USRPSupport = nix.argOr($, "USRPSupport", () => false);
   const uhd = nix.arg($, "uhd");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "urh",
       version: "2.9.8-unstable-2025-07-31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jopohl",
           repo: "urh",
           rev: "4979a5c94d7c0c728fa2ff3fda8f564e6ed6c7b4",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "urh",
             exec: "urh",
             icon: "urh",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 data/icons/appicon.png $out/share/icons/hicolor/512x512/apps/urh.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/jopohl/urh",
         description: "Universal Radio Hacker: investigate wireless protocols like a boss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

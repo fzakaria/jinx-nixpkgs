@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "arc-plus",
         publisher: "ph-hawkins",
         version: "1.0.2",
         hash: "sha256-kI8UHo16PbOSLXBG9du4Ceb+aorVGGOH17Vg6ufy/D0=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UI theme based on the Arc GTK theme while also retaining some elements of the default VS Code theme",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ph-hawkins.arc-plus",
         homepage: "https://github.com/phil-harmoniq/arc-plus",

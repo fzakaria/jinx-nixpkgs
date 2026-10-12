@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hyperpotamus";
       const version = "0.39.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pmarkert",
           repo: "hyperpotamus",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-cH0VEhs4q13gnFKQmmu8fXjueBu/u7xtySE6HTm+bik=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "YAML based HTTP script processing engine",
         homepage: "https://github.com/pmarkert/hyperpotamus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "onny"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

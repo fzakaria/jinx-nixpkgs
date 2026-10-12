@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxmu = nix.arg($, "libxmu");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtkglext",
       version: "unstable-2019-12-19",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "Archive",
           repo: "gtkglext",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk2, libGLU, libGL, pango, libx11, libxmu]),
       preConfigure: "NOCONFIGURE=1 ./autogen.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://projects.gnome.org/gtkglext/",
         description: "GtkGLExt, an OpenGL extension to GTK",
         longDescription: "GtkGLExt is an OpenGL extension to GTK. It provides additional GDK\nobjects which support OpenGL rendering in GTK and GtkWidget API\nadd-ons to make GTK widgets OpenGL-capable.  In contrast to Janne\nLöf's GtkGLArea, GtkGLExt provides a GtkWidget API that enables\nOpenGL drawing for standard and custom GTK widgets.\n",

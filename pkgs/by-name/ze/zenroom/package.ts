@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const isMusl = nix.thunk(() => nix.attr(from, "isMusl"));
   const isUnix = nix.thunk(() => nix.attr(from, "isUnix"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zenroom",
       version: "5.38.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dyne",
           repo: "Zenroom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(!nix.asBool(isMusl)))), nix.thunk(() => ["linux-lib", "linux-exe"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isMusl))), nix.thunk(() => ["musl"])), nix.concat(nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => ["osx-lib", "osx-exe"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(isUnix) && nix.asBool(!nix.asBool(isLinux)))) && nix.asBool(!nix.asBool(isDarwin)))), nix.thunk(() => ["posix-lib", "posix-exe"]))))))),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PREFIX: "",
         DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
@@ -71,15 +71,15 @@ export default nix.lambda((args) => (() => {
       checkTarget: nix.thunk(() => nix.add("check", nix.app(nix.sel(lib, "optionalString"), isDarwin, "-osx"))),
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isDarwin, "# on darwin, we're using GNU base64\nsubstituteInPlace test/zencode/cookbook_{hash_pdf,ecdh_encrypt_json}.bats \\\n  --replace-fail \\\n    'cmd_base64=\"base64 -b 0\"' \\\n    'cmd_base64=\"base64 -w 0\"'\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             zenroom: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "No-code cryptographic virtual machine",
         longDescription: "Zenroom is a tiny, portable, and fully isolated crypto VM for building\nprivacy-preserving applications, smart contracts, and secure data\nworkflows.\n",
         homepage: "https://github.com/dyne/Zenroom",

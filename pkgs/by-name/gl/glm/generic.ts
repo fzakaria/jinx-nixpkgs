@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.path(here, "./1001-glm-Fix-packing-on-BE.patch")])));
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "11")))) ? "-fno-ipa-modref" : (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "-Wno-error" : ""))),
       }));
       const cmakeFlags = nix.thunk(() => [
@@ -42,7 +42,7 @@ cp -rv ../doc/api $doc/share/doc/glm/html
 cp -v ../doc/manual.pdf $doc/share/doc/glm
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/g-truc/glm/releases/tag/${nix.sel(src_1, "tag")}`),
         description: "OpenGL Mathematics library for C++",
         longDescription: "OpenGL Mathematics (GLM) is a header only C++ mathematics library for\ngraphics software based on the OpenGL Shading Language (GLSL)\nspecification and released under the MIT license.\n",
@@ -56,7 +56,7 @@ cp -v ../doc/manual.pdf $doc/share/doc/glm
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src: src_1,

@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => "1.7.1");
   const sourceSha256 = nix.argOr($, "sourceSha256", () => "051mv6f13c8y13c1iv3279k1hhzpz4fm9sfczhgp9sim2bjdj055");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pmidi",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pmidi/${version}/pmidi-${version}.tar.gz`),
           sha256: sourceSha256,
         })))),
       buildInputs: nix.thunk(() => [alsa_lib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.parabola.me.uk/alsa/pmidi.html",
         description: "Straightforward command line program to play midi files through the ALSA sequencer",
         maintainers: [],

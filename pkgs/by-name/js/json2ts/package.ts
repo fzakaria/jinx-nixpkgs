@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const jq = nix.arg($, "jq");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "json2ts",
       version: "15.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bcherny",
           repo: "json-schema-to-typescript",
           rev: "118d6a8e7a5a9397d1d390ce297f127ae674a623",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-kLKau4SBxI9bMAd7X8/FQfCza2sYl/+0bg2LQcOQIJo=",
       postConfigure: "jq '.compilerOptions.forceConsistentCasingInFileNames = false' tsconfig.json > temp.json\nmv temp.json tsconfig.json\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "json2ts",
         description: "Compile JSON Schema to TypeScript type declarations",
         homepage: "https://github.com/bcherny/json-schema-to-typescript",

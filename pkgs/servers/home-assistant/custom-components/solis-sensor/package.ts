@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const domain = "solis";
       const version = "4.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hultenvp",
           repo: "solis-sensor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [aiofiles]);
       const dontCheckManifest = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Home Assistant integration for the SolisCloud PV Monitoring portal via SolisCloud API",
         changelog: nix.thunk(() => nix.str`https://github.com/hultenvp/solis-sensor/releases/tag/v${version}`),
         homepage: "https://github.com/hultenvp/solis-sensor",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         owner,
         domain,
         version,

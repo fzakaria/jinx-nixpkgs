@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const rpds_py = nix.arg($, "rpds-py");
   const toml = nix.arg($, "toml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netutils",
       version: "1.19.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "networktocode",
           repo: "netutils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [jsonschema]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         optionals: nix.thunk(() => [jinja2, jsonschema, napalm, rpds_py]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pyyaml, toml], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "test_encrypt_cisco_type5",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library that is a collection of objects for common network automation tasks",
         homepage: "https://github.com/networktocode/netutils",
         changelog: nix.thunk(() => nix.str`https://github.com/networktocode/netutils/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

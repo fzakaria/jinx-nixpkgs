@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const plasma_workspace = nix.arg($, "plasma-workspace");
   const qtstyleplugin_kvantum = nix.arg($, "qtstyleplugin-kvantum");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "koi",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baduhai",
           repo: "Koi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ substituteInPlace src/plugins/kvantumstyle.cpp \\
       nativeBuildInputs: nix.thunk(() => [cmake, wrapQtAppsHook]),
       buildInputs: nix.thunk(() => [kconfig, kcoreaddons, kwidgetsaddons]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scheduling LIGHT/DARK Theme Converter for the KDE Plasma Desktop",
         longDescription: "Koi is a program designed to provide the KDE Plasma Desktop functionality to automatically switch between light and dark themes. Koi is under semi-active development, and while it is stable enough to use daily, expect bugs. Koi is designed to be used with Plasma, and while some features may function under different desktop environments, they are unlikely to work and untested.\n\nFeatures:\n\n- Toggle between light and dark presets based on time\n- Change Plasma style\n- Change Qt colour scheme\n- Change Icon theme\n- Change GTK theme\n- Change wallpaper\n- Hide application to system tray\n- Toggle between LIGHT/DARK themes by clicking mouse wheel\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

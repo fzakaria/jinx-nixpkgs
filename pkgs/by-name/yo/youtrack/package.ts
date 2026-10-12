@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const statePath = nix.argOr($, "statePath", () => "/var/lib/youtrack");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "youtrack",
       version: "2026.2.17765",
       src: nix.thunk(() => nix.app(nix.sel(dockerTools, "exportImage"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           diskSize: 8192n,
           fromImage: nix.thunk(() => nix.app(nix.sel(dockerTools, "pullImage"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               imageName: "jetbrains/youtrack",
               arch: "amd64",
               imageDigest: "sha256:54d25c6f100330cc43cc60219846711eed5e598bad11ce3611c42756b5ba197a",
@@ -53,9 +53,9 @@ ln -s ${statePath}/logs $out/logs
 ln -s ${statePath}/temp $out/temp
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Issue tracking and project management tool for developers",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "leona"))]),
         sourceProvenance: nix.thunk(() => (() => {

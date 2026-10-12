@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "limesuite";
       const version = "23.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "myriadrf",
           repo: "LimeSuite",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/myriadrf/LimeSuite/commit/4e5ad459d50c922267a008e5cecb3efdbff31f09.patch",
             hash: "sha256-OASki3bISJvV7wjMz0pBT3kO5RvJ5BnymiF6ruHkCJ8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/myriadrf/LimeSuite/commit/524cd2e548b11084e6f739b2dfe0f958c2e30354.patch",
             hash: "sha256-wxwhFjXcIgBMTJoJ6efdtyttxMFZviCTXtEb2qFX9yU=",
           })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const postInstall = "install -Dm444 -t $out/lib/udev/rules.d ../udev-rules/64-limesuite.rules\ninstall -Dm444 -t $out/share/limesuite bin/Release/lms7suite_mcu/*\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Driver and GUI for LMS7002M-based SDR platforms",
         homepage: "https://github.com/myriadrf/LimeSuite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => nix.sel(lib, "platforms", "darwin")))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

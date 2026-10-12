@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add("go2tv", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withGui)), "-lite")));
       const version = "2.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexballas",
           repo: "go2tv",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-tabupT5OF1BzMWuSNPEe7G6DF/PJWZ7WeRLNHefYvP0=";
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, CGO_CFLAGS_ALLOW: "-fno-strict-overflow" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_CFLAGS_ALLOW: "-fno-strict-overflow" }));
       const buildInputs = nix.thunk(() => [
         libx11,
         libxcursor,
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => [nix.thunk(() => nix.str`cmd/${pname}`)]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cast media files to UPnP/DLNA Media Renderers and Smart TVs",
         homepage: "https://github.com/alexballas/go2tv",
         changelog: nix.thunk(() => nix.str`https://github.com/alexballas/go2tv/releases/tag/v${version}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: pname,
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

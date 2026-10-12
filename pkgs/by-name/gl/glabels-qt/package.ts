@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const qrencode = nix.arg($, "qrencode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glabels-qt",
       version: "3.99-unstable-2026-05-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "j-evins",
           repo: "glabels-qt",
           tag: "3.99-master638",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qttools")), qrencode]),
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GLabels Label Designer (Qt/C++)",
         homepage: "https://github.com/j-evins/glabels-qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

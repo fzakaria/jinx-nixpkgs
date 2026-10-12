@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "14.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "pytradfri",
           tag: version,
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pydantic]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiocoap, dtlssocket]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiocoap, dtlssocket]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.sel(optional_dependencies, "async")));
       const pythonImportsCheck = nix.thunk(() => ["pytradfri"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python package to communicate with the IKEA Trådfri ZigBee Gateway",
         homepage: "https://github.com/home-assistant-libs/pytradfri",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/pytradfri/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

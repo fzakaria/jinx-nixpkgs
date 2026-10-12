@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const color = nix.argOr($, "color", () => null);
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "papirus-icon-theme",
       version: "20260801",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PapirusDevelopmentTeam",
           repo: "papirus-icon-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,11 +47,11 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pixel perfect icon theme for Linux",
         homepage: "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

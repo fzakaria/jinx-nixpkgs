@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const gradle = gradle_8;
       const version = "17.0.17.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corretto",
           repo: "corretto-17",
           rev: version,
           hash: "sha256-Z8+g5jXjcWNTYU9Xvze7scu348okMauGMhSZwX1sS9w=",
         }))));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         lib: lib_1,
         stdenv: stdenv_1,
         rsync: rsync_1,
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(corretto, "overrideAttrs"), (final) => (prev) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.alpinelinux.org/aports/plain/community/openjdk17/FixNullPtrCast.patch?id=41e78a067953e0b13d062d632bae6c4f8028d91c",
             sha256: "sha256-LzmSew51+DyqqGyyMw2fbXeBluCiCYsS1nCjt9hX6zo=",
           })))), nix.thunk(() => nix.selOr(prev, () => [], "patches"))), [nix.path(here, "./corretto17-gradle8.patch")])),

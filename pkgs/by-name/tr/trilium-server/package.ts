@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const version = "0.106.0";
   const serverSource_x64 = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: nix.thunk(() => nix.str`https://github.com/TriliumNext/Trilium/releases/download/v${version}/TriliumNotes-Server-v${version}-linux-x64.tar.xz`),
     hash: "sha256-xpOijrhtKJLjBVPY/ZoXH01y5cdvAt0/szX2vUdrauw=",
   }));
   const serverSource_arm64 = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: nix.thunk(() => nix.str`https://github.com/TriliumNext/Trilium/releases/download/v${version}/TriliumNotes-Server-v${version}-linux-arm64.tar.xz`),
     hash: "sha256-di+BwgYiHIpqxSN0TKy7KWk2lq1/F7Bf81hfPSl9jxw=",
   }));
   const serverSource = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? nix.force(serverSource_x64) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? nix.force(serverSource_arm64) : nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "config")} not supported by trilium-server`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trilium-server",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, serverSource)),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/share/trilium-server\"\n\ncp -r ./* \"$out/share/trilium-server/\"\n\n# Unused musl prebuilds confuse autoPatchelfHook (glibc-only).\nrm -f \"$out/share/trilium-server/node_modules/better-sqlite3/prebuilds\"/linuxmusl-*.node\n\nmakeWrapper \"$out/share/trilium-server/node/bin/node\" \"$out/bin/trilium-server\" \\\n  --chdir \"$out/share/trilium-server\" \\\n  --add-flags \"main.mjs\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hierarchical note taking application with focus on building large personal knowledge bases",
         homepage: "https://github.com/TriliumNext/Trilium",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

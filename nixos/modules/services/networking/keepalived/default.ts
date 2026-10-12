@@ -117,156 +117,156 @@ ${nix.sel(cfg, "extraConfig")}
 `, vrrpInstances))));
   const virtualIpLine = (ip) => nix.add(nix.add(nix.add(nix.add(nix.sel(ip, "addr"), nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.app(notNullOrEmpty, nix.thunk(() => nix.sel(ip, "brd")))), nix.thunk(() => nix.str` brd ${nix.sel(ip, "brd")}`))), nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.app(notNullOrEmpty, nix.thunk(() => nix.sel(ip, "dev")))), nix.thunk(() => nix.str` dev ${nix.sel(ip, "dev")}`))), nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.app(notNullOrEmpty, nix.thunk(() => nix.sel(ip, "scope")))), nix.thunk(() => nix.str` scope ${nix.sel(ip, "scope")}`))), nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.app(notNullOrEmpty, nix.thunk(() => nix.sel(ip, "label")))), nix.thunk(() => nix.str` label ${nix.sel(ip, "label")}`)));
   const notNullOrEmpty = (s) => !nix.asBool((nix.asBool(nix.eq(s, null)) || nix.asBool(nix.eq(s, ""))));
-  const vrrpScripts = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (config_1) => nix.update({ __proto__: pos$1, name: name }, config_1), nix.thunk(() => nix.sel(cfg, "vrrpScripts"))));
-  const vrrpInstances = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (iName) => (iConfig) => nix.update({ __proto__: pos$2, name: iName }, iConfig), nix.thunk(() => nix.sel(cfg, "vrrpInstances"))));
+  const vrrpScripts = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (config_1) => nix.update({ [nix.POS]: pos$1, name: name }, config_1), nix.thunk(() => nix.sel(cfg, "vrrpScripts"))));
+  const vrrpInstances = nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (iName) => (iConfig) => nix.update({ [nix.POS]: pos$2, name: iName }, iConfig), nix.thunk(() => nix.sel(cfg, "vrrpInstances"))));
   const vrrpInstanceAssertions = (i) => nix.concat([
     nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       assertion: nix.thunk(() => !nix.eq(nix.sel(i, "interface"), "")),
       message: nix.thunk(() => nix.str`services.keepalived.vrrpInstances.${nix.sel(i, "name")}.interface option cannot be empty.`),
     })),
     nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       assertion: nix.thunk(() => (nix.asBool(nix.ge(nix.sel(i, "virtualRouterId"), 0n)) && nix.asBool(nix.le(nix.sel(i, "virtualRouterId"), 255n)))),
       message: nix.thunk(() => nix.str`services.keepalived.vrrpInstances.${nix.sel(i, "name")}.virtualRouterId must be an integer between 0..255.`),
     })),
     nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       assertion: nix.thunk(() => (nix.asBool(nix.ge(nix.sel(i, "priority"), 0n)) && nix.asBool(nix.le(nix.sel(i, "priority"), 255n)))),
       message: nix.thunk(() => nix.str`services.keepalived.vrrpInstances.${nix.sel(i, "name")}.priority must be an integer between 0..255.`),
     })),
     nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(i, "vmacInterface"), null)) || nix.asBool(nix.sel(i, "useVmac")))),
       message: nix.thunk(() => nix.str`services.keepalived.vrrpInstances.${nix.sel(i, "name")}.vmacInterface has no effect when services.keepalived.vrrpInstances.${nix.sel(i, "name")}.useVmac is not set.`),
     })),
     nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(i, "vmacXmitBase"))) || nix.asBool(nix.sel(i, "useVmac")))),
       message: nix.thunk(() => nix.str`services.keepalived.vrrpInstances.${nix.sel(i, "name")}.vmacXmitBase has no effect when services.keepalived.vrrpInstances.${nix.sel(i, "name")}.useVmac is not set.`),
     })),
   ], nix.concat(nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.app(virtualIpAssertions, nix.thunk(() => nix.sel(i, "name")))), nix.thunk(() => nix.sel(i, "virtualIps"))))), nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.app(vrrpScriptAssertion, nix.thunk(() => nix.sel(i, "name")))), nix.thunk(() => nix.sel(i, "trackScripts")))))));
   const virtualIpAssertions = (vrrpName) => (ip) => [
     nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       assertion: nix.thunk(() => !nix.eq(nix.sel(ip, "addr"), "")),
       message: nix.thunk(() => nix.str`The 'addr' option for an services.keepalived.vrrpInstances.${vrrpName}.virtualIps entry cannot be empty.`),
     })),
   ];
   const vrrpScriptAssertion = (vrrpName) => (scriptName) => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     assertion: nix.thunk(() => nix.app(nix.sel(nix.builtins, "hasAttr"), scriptName, nix.thunk(() => nix.sel(cfg, "vrrpScripts")))),
     message: nix.thunk(() => nix.str`services.keepalived.vrrpInstances.${vrrpName} trackscript ${scriptName} is not defined in services.keepalived.vrrpScripts.`),
   });
   const pidFile = "/run/keepalived.pid";
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raitobezarius"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         keepalived: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable Keepalived.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "keepalived", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to automatically allow VRRP and AH packets in the firewall.\n",
             })))),
           enableScriptSecurity: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Don't run scripts configured to be run as root if any part of the path is writable by a non-root user.\n",
             })))),
           snmp: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Whether to enable the builtin AgentX subagent.\n",
               })))),
             socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Socket to use for connecting to SNMP master agent. If this value is\nset to null, keepalived's default will be used, which is\nunix:/var/agentx/master, unless using a network namespace, when the\ndefault is udp:localhost:705.\n",
               })))),
             enableKeepalived: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable SNMP handling of vrrp element of KEEPALIVED MIB.\n",
               })))),
             enableChecker: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable SNMP handling of checker element of KEEPALIVED MIB.\n",
               })))),
             enableRfc: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable SNMP handling of RFC2787 and RFC6527 VRRP MIBs.\n",
               })))),
             enableRfcV2: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable SNMP handling of RFC2787 VRRP MIB.\n",
               })))),
             enableRfcV3: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable SNMP handling of RFC6527 VRRP MIB.\n",
               })))),
             enableTraps: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable SNMP traps.\n",
               })))),
           })),
           vrrpScripts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vrrp-script-options.nix"), nix.thunk(() => ({ __proto__: pos$23, lib: lib })))))))),
+              [nix.POS]: pos$24,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vrrp-script-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$23, lib: lib })))))))),
               default: nix.thunk(() => ({})),
               description: "Declarative vrrp script config",
             })))),
           vrrpInstances: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
-              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vrrp-instance-options.nix"), nix.thunk(() => ({ __proto__: pos$25, lib: lib })))))))),
+              [nix.POS]: pos$26,
+              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./vrrp-instance-options.nix"), nix.thunk(() => ({ [nix.POS]: pos$25, lib: lib })))))))),
               default: nix.thunk(() => ({})),
               description: "Declarative vhost config",
             })))),
           extraGlobalDefs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Extra lines to be added verbatim to the 'global_defs' block of the\nconfiguration file\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Extra lines to be added verbatim to the configuration file.\n",
             })))),
           secretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/keys/keepalived.env",
@@ -276,43 +276,43 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         assertions: nix.thunk(() => nix.app(nix.lookup(w, "flatten"), nix.thunk(() => nix.app(nix.builtins.map, vrrpInstanceAssertions, vrrpInstances)))),
         networking: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "nftables", "enable")) ? {
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               extraInputRules: "meta l4proto vrrp counter accept comment \"services.keepalived.openFirewall\"\nmeta l4proto ah counter accept comment \"services.keepalived.openFirewall\"\n",
             } : {
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               extraCommands: "# Allow VRRP and AH packets\nip46tables -A nixos-fw -p vrrp -m comment --comment \"services.keepalived.openFirewall\" -j ACCEPT\nip46tables -A nixos-fw -p ah -m comment --comment \"services.keepalived.openFirewall\" -j ACCEPT\n",
               extraStopCommands: "ip46tables -D nixos-fw -p vrrp -m comment --comment \"services.keepalived.openFirewall\" -j ACCEPT\nip46tables -D nixos-fw -p ah -m comment --comment \"services.keepalived.openFirewall\" -j ACCEPT\n",
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           timers: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "keepalived-boot-delay": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Keepalive Daemon delay to avoid instant transition to MASTER state",
               after: nix.thunk(() => ["network.target", "network-online.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$36, OnActiveSec: "5s", Unit: "keepalived.service" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$36, OnActiveSec: "5s", Unit: "keepalived.service" })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             keepalived: nix.thunk(() => (() => {
               const finalConfigFile = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "secretFile"), null)) ? nix.force(keepalivedConf) : "/run/keepalived/keepalived.conf"));
               return {
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "Keepalive Daemon (LVS and VRRP)",
                 after: nix.thunk(() => ["network.target", "network-online.target"]),
                 wants: nix.thunk(() => ["network-online.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   Type: "forking",
                   PIDFile: pidFile,
                   KillMode: "process",

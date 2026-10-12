@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "turn-rs",
       version: "4.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mycrl",
           repo: "turn-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [protobuf]),
       nativeCheckInputs: nix.thunk(() => [coturn]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         COTURN_UCLIENT_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), coturn, "turnutils_uclient")),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/turn-server`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "turn-rs")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "turn-rs")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Pure rust implemented turn server",
         homepage: "https://github.com/mycrl/turn-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/mycrl/turn-rs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -110,7 +110,7 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver"));
   const knownVideoDriverPackages = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "xf86-video-amdgpu": nix.thunk(() => nix.attr(pkgs, "xf86-video-amdgpu")),
     "xf86-video-apm": nix.thunk(() => nix.attr(pkgs, "xf86-video-apm")),
     "xf86-video-ark": nix.thunk(() => nix.attr(pkgs, "xf86-video-ark")),
@@ -151,32 +151,32 @@ export default nix.lambda((args) => (() => {
   }));
   const removeDriverPrefix = nix.thunk(() => nix.app(nix.lookup(w, "removePrefix"), "xf86-video-"));
   const videoDrivers = nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mapAttrs'"), (name) => (value) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.app(removeDriverPrefix, nix.thunk(() => nix.sel(value, "pname")))),
-      value: nix.thunk(() => ({ __proto__: pos$2, modules: nix.thunk(() => [value]) })),
+      value: nix.thunk(() => ({ [nix.POS]: pos$2, modules: nix.thunk(() => [value]) })),
     }), knownVideoDriverPackages), nix.update(videoDriverAliases, videoDriverOverrides)));
   const videoDriverOverrides = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     vbox: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       driverName: "vboxvideo",
       modules: nix.thunk(() => [nix.thunk(() => nix.sel(knownVideoDriverPackages, "xf86-video-vbox"))]),
     })),
   }));
   const videoDriverAliases = nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     virtualbox: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       modules: nix.thunk(() => [nix.thunk(() => nix.sel(knownVideoDriverPackages, "xf86-video-vbox"))]),
       driverName: "vboxvideo",
     })),
     vboxvideo: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       modules: nix.thunk(() => [nix.thunk(() => nix.sel(knownVideoDriverPackages, "xf86-video-vbox"))]),
       driverName: "vboxvideo",
     })),
     radeon: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       modules: nix.thunk(() => [nix.thunk(() => nix.sel(knownVideoDriverPackages, "xf86-video-ati"))]),
       driverName: "ati",
     })),
@@ -187,21 +187,21 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(pkgs, "font-adobe-75dpi")),
   ]));
   const xrandrOptions = nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     output: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
         example: "DVI-0",
         description: "The output name of the monitor, as shown by\n{manpage}`xrandr(1)` invoked without arguments.\n",
       })))),
     primary: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
         default: false,
         description: "Whether this head is treated as the primary monitor,\n",
       })))),
     monitorConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
         default: "",
         example: "DisplaySize 408 306\nOption \"DPMS\" \"false\"\n",
@@ -210,7 +210,7 @@ export default nix.lambda((args) => (() => {
   }));
   const xrandrHeads = nix.thunk(() => (() => {
     const mkHead = (num) => (config_1) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       name: nix.thunk(() => nix.str`multihead${nix.app(nix.builtins.toString, num)}`),
       config: config_1,
     });
@@ -223,7 +223,7 @@ export default nix.lambda((args) => (() => {
   })());
   const xrandrMonitorSections = nix.thunk(() => (() => {
     const mkMonitor = (previous) => (current) => nix.concat(nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: nix.thunk(() => nix.attr(current, "name")),
         value: nix.thunk(() => nix.str`Section "Monitor"
   Identifier "${nix.sel(current, "name")}"
@@ -238,7 +238,7 @@ EndSection
     return nix.app(nix.lookup(w, "concatMapStrings"), nix.thunk(() => nix.app(nix.lookup(w, "getAttr"), "value")), monitors);
   })());
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "xserver.conf", nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       fontpath: nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "fontPath"), null)), nix.thunk(() => nix.str`FontPath "${nix.sel(cfg, "fontPath")}"`))),
       config: nix.thunk(() => nix.attr(cfg, "config")),
       preferLocalBuild: true,
@@ -268,14 +268,14 @@ echo "$config" >> $out
       const size = nix.thunk(() => nix.mul(2.39583, nix.sel(cfg, "dpi")));
       const sizeString = nix.thunk(() => nix.app(nix.sel(nix.builtins, "head"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "split"), "\\.", nix.thunk(() => nix.app(nix.builtins.toString, size))))));
       return {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         postInstall: nix.thunk(() => nix.str`alias='cursor -xfree86-cursor-medium-r-normal--0-${sizeString}-0-0-p-0-adobe-fontspecific'
 echo "$alias" > $out/share/fonts/X11/Type1/fonts.alias
 `),
       };
     })()));
   return {
-    __proto__: pos$97,
+    [nix.POS]: pos$97,
     imports: nix.thunk(() => [
       nix.path(here, "./display-managers/default.nix"),
       nix.path(here, "./window-managers/default.nix"),
@@ -285,31 +285,31 @@ echo "$alias" > $out/share/fonts/X11/Type1/fonts.alias
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "xserver", "useXFS"]), "Use services.xserver.fontPath instead of useXFS")),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "xserver", "useGlamor"]), "Option services.xserver.useGlamor was removed because it is unnecessary. Drivers that uses Glamor will use it automatically.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           sinceRelease: 2311n,
           from: nix.thunk(() => ["services", "xserver", "layout"]),
           to: nix.thunk(() => ["services", "xserver", "xkb", "layout"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           sinceRelease: 2311n,
           from: nix.thunk(() => ["services", "xserver", "xkbModel"]),
           to: nix.thunk(() => ["services", "xserver", "xkb", "model"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           sinceRelease: 2311n,
           from: nix.thunk(() => ["services", "xserver", "xkbOptions"]),
           to: nix.thunk(() => ["services", "xserver", "xkb", "options"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           sinceRelease: 2311n,
           from: nix.thunk(() => ["services", "xserver", "xkbVariant"]),
           to: nix.thunk(() => ["services", "xserver", "xkb", "variant"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           sinceRelease: 2311n,
           from: nix.thunk(() => ["services", "xserver", "xkbDir"]),
           to: nix.thunk(() => ["services", "xserver", "xkb", "dir"]),
@@ -317,153 +317,153 @@ echo "$alias" > $out/share/fonts/X11/Type1/fonts.alias
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "xserver", "tty"]), "'services.xserver.tty' was removed because it was ineffective.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$76,
+      [nix.POS]: pos$76,
       services: nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         xserver: nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the X server.\n",
             })))),
           autorun: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to start the X server automatically.\n",
             })))),
           excludePackages: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.xterm ]")),
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))),
               description: "Which X11 packages to exclude from the default environment",
             })))),
           exportConfiguration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to symlink the X server configuration under\n{file}`/etc/X11/xorg.conf`.\n",
             })))),
           enableTCP: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to allow the X server to accept TCP connections.\n",
             })))),
           autoRepeatDelay: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: null,
               description: "Sets the autorepeat delay (length of time in milliseconds that a key must be depressed before autorepeat starts).\n",
             })))),
           autoRepeatInterval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: null,
               description: "Sets the autorepeat interval (length of time in milliseconds that should elapse between autorepeat-generated keystrokes).\n",
             })))),
           inputClassSections: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ ''\n    Identifier      \"Trackpoint Wheel Emulation\"\n    MatchProduct    \"ThinkPad USB Keyboard with TrackPoint\"\n    Option          \"EmulateWheel\"          \"true\"\n    Option          \"EmulateWheelButton\"    \"2\"\n    Option          \"Emulate3Buttons\"       \"false\"\n  ''\n]\n")),
               description: "Content of additional InputClass sections of the X server configuration file.",
             })))),
           modules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ pkgs.xf86-input-wacom ]")),
               description: "Packages to be added to the module search path of the X server.",
             })))),
           resolutions: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               default: [],
               example: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$32, x: 1600n, y: 1200n })),
-                nix.thunk(() => ({ __proto__: pos$33, x: 1024n, y: 786n })),
+                nix.thunk(() => ({ [nix.POS]: pos$32, x: 1600n, y: 1200n })),
+                nix.thunk(() => ({ [nix.POS]: pos$33, x: 1024n, y: 786n })),
               ]),
               description: "The screen resolutions for the X server.  The first element\nis the default resolution.  If this list is empty, the X\nserver will automatically configure the resolution.\n",
             })))),
           videoDrivers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["modesetting", "fbdev"]),
               example: nix.thunk(() => ["nvidia", "amdgpu"]),
               relatedPackages: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (value) => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   path: nix.thunk(() => [name]),
                   title: nix.thunk(() => nix.app(removeDriverPrefix, nix.thunk(() => nix.sel(value, "pname")))),
                 }), knownVideoDriverPackages)),
               description: "The names of the video drivers the configuration\nsupports. They will be tried in order until one that\nsupports your card is found.\nDon't combine those with \"incompatible\" OpenGL implementations,\ne.g. free ones (mesa-based) with proprietary ones.\n\nFor unfree \"nvidia*\", the supported GPU lists are on\nhttps://www.nvidia.com/object/unix.html\n",
             })))),
           videoDriver: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "i810",
               description: "The name of the video driver for your graphics card.  This\noption is obsolete; please set the\n{option}`services.xserver.videoDrivers` instead.\n",
             })))),
           drivers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               internal: true,
               description: "A list of attribute sets specifying drivers to be loaded by\nthe X11 server. This module will create a Device section in\nthe Xorg config for every driver listed here, along with a\nScreen section if the driver's {option}`display` attribute is\n`true`. If such configuration sections should not be created,\nuse {options}`services.xserver.externallyConfiguredDrivers`\ninstead.\n\nUsers should not add drivers to this option but should instead\nadd drivers to {option}`services.xserver.videoDrivers`.\n",
             })))),
           externallyConfiguredDrivers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               internal: true,
               default: [],
               description: "A list of externally configured drivers (by name). Modules that\nmanually configure their drivers should add said drivers to this\nlist to let this module know that the driver has been configured.\n",
             })))),
           dpi: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: null,
               description: "Force global DPI resolution to use for X server. It's recommended to\nuse this only when DPI is detected incorrectly; also consider using\n`Monitor` section in configuration file instead.\n",
             })))),
           updateDbusEnvironment: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to update the DBus activation environment after launching the\ndesktop manager.\n",
             })))),
           xkb: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             layout: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "us",
                 description: "X keyboard layout, or multiple keyboard layouts separated by commas.\n",
               })))),
             model: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "pc104",
                 example: "presario",
                 description: "X keyboard model.\n",
               })))),
             options: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "commas")),
                 default: "terminate:ctrl_alt_bksp",
                 example: "grp:caps_toggle,grp_led:scroll",
                 description: "X keyboard options; layout switching goes here.\n",
               })))),
             variant: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "",
                 example: "colemak",
                 description: "X keyboard variant.\n",
               })))),
             dir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: nix.thunk(() => nix.str`${nix.sel(pkgs, "xkeyboard_config")}/etc/X11/xkb`),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.xkeyboard_config}/etc/X11/xkb\"")),
@@ -471,33 +471,33 @@ echo "$alias" > $out/share/fonts/X11/Type1/fonts.alias
               })))),
           })),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               description: "The contents of the configuration file of the X server\n({file}`xorg.conf`).\n\nThis option is set by multiple modules, and the configs are\nconcatenated together.\n\nIn Xorg configs the last config entries take precedence,\nso you may want to use `lib.mkAfter` on this option\nto override NixOS's defaults.\n",
             })))),
           filesSection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "FontPath \"/path/to/my/fonts\"",
               description: "Contents of the first `Files` section of the X server configuration file.",
             })))),
           deviceSection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "VideoRAM 131072",
               description: "Contents of the first Device section of the X server configuration file.",
             })))),
           screenSection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "Option \"RandRRotation\" \"on\"\n",
               description: "Contents of the first Screen section of the X server configuration file.",
             })))),
           monitorSection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "HorizSync 28-49",
@@ -505,118 +505,118 @@ echo "$alias" > $out/share/fonts/X11/Type1/fonts.alias
             })))),
           enableTearFree: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "the TearFree option in the first Device section")),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Additional contents (sections) included in the X server configuration file",
             })))),
           xrandrHeads: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               default: [],
               example: nix.thunk(() => [
                 "HDMI-0",
-                nix.thunk(() => ({ __proto__: pos$54, output: "DVI-0", primary: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$54, output: "DVI-0", primary: true })),
                 nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   output: "DVI-1",
                   monitorConfig: "Option \"Rotate\" \"left\"",
                 })),
               ]),
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
-                return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "str")), (output) => ({ __proto__: pos$56, output: output }), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({ __proto__: pos$57, options: xrandrOptions })))))));
+                return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "str")), (output) => ({ [nix.POS]: pos$56, output: output }), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$57, options: xrandrOptions })))))));
               })()),
               apply: (heads) => (() => {
                 const hasPrimary = nix.thunk(() => nix.app(nix.lookup(w, "any"), (x) => nix.sel(x, "primary"), heads));
-                const firstPrimary = nix.thunk(() => nix.update(nix.app(nix.lookup(w, "head"), heads), { __proto__: pos$58, primary: true }));
+                const firstPrimary = nix.thunk(() => nix.update(nix.app(nix.lookup(w, "head"), heads), { [nix.POS]: pos$58, primary: true }));
                 const newHeads = nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "singleton"), firstPrimary), nix.app(nix.lookup(w, "tail"), heads)));
                 return (nix.asBool((nix.asBool(!nix.eq(heads, [])) && nix.asBool(!nix.asBool(hasPrimary)))) ? nix.force(newHeads) : nix.force(heads));
               })(),
               description: "Multiple monitor configuration, just specify a list of XRandR\noutputs. The individual elements should be either simple strings or\nan attribute set of output options.\n\nIf the element is a string, it is denoting the physical output for a\nmonitor, if it's an attribute set, you must at least provide the\n{option}`output` option.\n\nThe monitors will be mapped from left to right in the order of the\nlist.\n\nBy default, the first monitor will be set as the primary monitor if\nnone of the elements contain an option that has set\n{option}`primary` to `true`.\n\n::: {.note}\nOnly one monitor is allowed to be primary.\n:::\n\nBe careful using this option with multiple graphic adapters or with\ndrivers that have poor support for XRandR, unexpected things might\nhappen with those.\n",
             })))),
           serverFlagsSection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               default: "",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               example: "Option \"BlankTime\" \"0\"\nOption \"StandbyTime\" \"0\"\nOption \"SuspendTime\" \"0\"\nOption \"OffTime\" \"0\"\n",
               description: "Contents of the ServerFlags section of the X server configuration file.",
             })))),
           moduleSection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "SubSection \"extmod\"\nEndSubsection\n",
               description: "Contents of the Module section of the X server configuration file.",
             })))),
           serverLayoutSection: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "Option \"AIGLX\" \"true\"\n",
               description: "Contents of the ServerLayout section of the X server configuration file.",
             })))),
           extraDisplaySettings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "Virtual 2048 2048",
               description: "Lines to be added to every Display subsection of the Screen section.",
             })))),
           defaultDepth: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 0n,
               example: 8n,
               description: "Default colour depth.",
             })))),
           fontPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "unix/:7100",
               description: "Set the X server FontPath. Defaults to null, which\nmeans the compiled in defaults will be used. See\nman xorg.conf for details.\n",
             })))),
           display: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: 0n,
               description: "Display number for the X server.",
             })))),
           virtualScreen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "attrs")))),
               default: null,
-              example: nix.thunk(() => ({ __proto__: pos$67, x: 2048n, y: 2048n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$67, x: 2048n, y: 2048n })),
               description: "Virtual screen size for Xrandr.\n",
             })))),
           logFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: "/dev/null",
               example: "/var/log/Xorg.0.log",
               description: "Controls the file Xorg logs to.\n\nThe default of `/dev/null` is set so that systemd services (like `displayManagers`) only log to the journal and don't create their own log files.\n\nSetting this to `null` will not pass the `-logfile` argument to Xorg which allows it to log to its default logfile locations instead (see `man Xorg`). You probably only want this behaviour when running Xorg manually (e.g. via `startx`).\n",
             })))),
           verbose: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: 3n,
               example: 7n,
               description: "Controls verbosity of X logging.\n",
             })))),
           enableCtrlAltBackspace: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the DontZap option, which binds Ctrl+Alt+Backspace\nto forcefully kill X. This can lead to data loss and is disabled\nby default.\n",
             })))),
           terminateOnReset: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Whether to terminate X upon server reset.\n",
             })))),
           upscaleDefaultCursor: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Upscale the default X cursor to be more visible on high-density displays.\nRequires `config.services.xserver.dpi` to be set.\n",
@@ -625,15 +625,15 @@ echo "$alias" > $out/share/fonts/X11/Type1/fonts.alias
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$95,
+        [nix.POS]: pos$95,
         services: nix.thunk(() => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           xserver: nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$78,
+              [nix.POS]: pos$78,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 enable: nix.thunk(() => (() => {
                   const dmConf = nix.thunk(() => nix.sel(cfg, "displayManager"));
                   const default$ = nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(config, "services", "displayManager", "gdm", "enable")) || nix.asBool(nix.sel(config, "services", "displayManager", "sddm", "enable")))) || nix.asBool(nix.sel(dmConf, "xpra", "enable")))) || nix.asBool(nix.sel(dmConf, "sx", "enable")))) || nix.asBool(nix.sel(dmConf, "startx", "enable")))) || nix.asBool(nix.sel(config, "services", "greetd", "enable")))) || nix.asBool(nix.sel(config, "services", "displayManager", "ly", "enable")))) || nix.asBool(nix.sel(config, "services", "displayManager", "lemurs", "enable")))) || nix.asBool(nix.sel(config, "services", "displayManager", "plasma-login-manager", "enable")))));
@@ -647,7 +647,7 @@ echo "$alias" > $out/share/fonts/X11/Type1/fonts.alias
               ], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "display"), null)), nix.thunk(() => nix.str`:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "display")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dpi"), null)), nix.thunk(() => nix.str`-dpi ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "dpi")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "logFile"), null)), nix.thunk(() => nix.str`-logfile ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "logFile")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "verbose"), null)), nix.thunk(() => nix.str`-verbose ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "verbose")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableTCP"))), "-nolisten tcp"), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "autoRepeatDelay"), null)), nix.thunk(() => nix.str`-ardelay ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "autoRepeatDelay")))}`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "autoRepeatInterval"), null)), nix.thunk(() => nix.str`-arinterval ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "autoRepeatInterval")))}`)), nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(cfg, "terminateOnReset")), "-terminate")))))))))),
             })),
             videoDrivers: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "videoDriver"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "videoDriver"))]))),
-            drivers: nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "concatMap")), nix.thunk(() => nix.sel(cfg, "videoDrivers")), (name) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(videoDrivers, nix.key(nix.force(name)))), nix.thunk(() => nix.update({ __proto__: pos$79, name: name, modules: [], driverName: name, display: true }, nix.sel(videoDrivers, nix.key(nix.force(name)))))))),
+            drivers: nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "concatMap")), nix.thunk(() => nix.sel(cfg, "videoDrivers")), (name) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(videoDrivers, nix.key(nix.force(name)))), nix.thunk(() => nix.update({ [nix.POS]: pos$79, name: name, modules: [], driverName: name, display: true }, nix.sel(videoDrivers, nix.key(nix.force(name)))))))),
             modules: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "concatLists"), nix.thunk(() => nix.app(nix.lookup(w, "catAttrs"), "modules", nix.thunk(() => nix.sel(cfg, "drivers"))))), [
               nix.thunk(() => nix.sel(pkgs, "xorg-server", "out")),
               nix.thunk(() => nix.sel(pkgs, "xf86-input-evdev", "out")),
@@ -727,43 +727,43 @@ ${nix.sel(cfg, "extraConfig")}
 `),
           })),
           displayManager: nix.thunk(() => ({
-            __proto__: pos$82,
-            generic: nix.thunk(() => ({ __proto__: pos$81, preStart: "rm -f /tmp/.X0-lock\n" })),
+            [nix.POS]: pos$82,
+            generic: nix.thunk(() => ({ [nix.POS]: pos$81, preStart: "rm -f /tmp/.X0-lock\n" })),
           })),
         })),
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => (() => {
             const primaryHeads = nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => nix.sel(x, "primary"), nix.thunk(() => nix.sel(cfg, "xrandrHeads"))));
             return {
-              __proto__: pos$84,
+              [nix.POS]: pos$84,
               assertion: nix.thunk(() => nix.lt(nix.app(nix.lookup(w, "length"), primaryHeads), 2n)),
               message: nix.thunk(() => nix.add(nix.add(nix.add("Only one head is allowed to be primary in ", "‘services.xserver.xrandrHeads’, but there are "), nix.str`${nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.lookup(w, "length"), primaryHeads)))} heads set to primary: `), nix.app(nix.lookup(w, "concatMapStringsSep"), ", ", (x) => nix.sel(x, "output"), primaryHeads))),
             };
           })()),
           nix.thunk(() => ({
-            __proto__: pos$85,
+            [nix.POS]: pos$85,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "upscaleDefaultCursor")) || nix.asBool(!nix.eq(nix.sel(cfg, "dpi"), null)))),
             message: "Specify `config.services.xserver.dpi` to upscale the default cursor.",
           })),
         ], nix.app(nix.builtins.map, (driver) => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             assertion: nix.thunk(() => nix.app(nix.sel(nix.builtins, "elem"), driver, nix.thunk(() => nix.concat(nix.app(nix.sel(nix.builtins, "catAttrs"), "name", nix.thunk(() => nix.sel(cfg, "drivers"))), nix.sel(cfg, "externallyConfiguredDrivers"))))),
             message: nix.thunk(() => nix.str`Unknown X11 driver ‘${driver}’ specified in \`services.xserver.videoDrivers\`.`),
           }), nix.thunk(() => nix.sel(cfg, "videoDrivers"))))),
         environment: nix.thunk(() => ({
-          __proto__: pos$91,
+          [nix.POS]: pos$91,
           etc: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "exportConfiguration")), nix.thunk(() => ({
-              __proto__: pos$89,
-              "X11/xorg.conf": nix.thunk(() => ({ __proto__: pos$87, source: nix.thunk(() => nix.str`${configFile}`) })),
+              [nix.POS]: pos$89,
+              "X11/xorg.conf": nix.thunk(() => ({ [nix.POS]: pos$87, source: nix.thunk(() => nix.str`${configFile}`) })),
               "X11/xkb": nix.thunk(() => ({
-                __proto__: pos$88,
+                [nix.POS]: pos$88,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "xkb", "dir")}`),
               })),
             }))), (() => {
             const cfgPath = "X11/xorg.conf.d/10-evdev.conf";
             return nix.attrsDyn({}, [
               [cfgPath, nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 source: nix.thunk(() => nix.add(nix.add(nix.sel(pkgs, "xf86-input-evdev", "out"), "/share/"), cfgPath)),
               }))],
             ]);
@@ -786,11 +786,11 @@ ${nix.sel(cfg, "extraConfig")}
           pathsToLink: nix.thunk(() => ["/share/X11"]),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$93,
+          [nix.POS]: pos$93,
           checks: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "xkb-validated", nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(cfg, "xkb"));
                 return {
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 dir: nix.thunk(() => nix.attr(from, "dir")),
                 model: nix.thunk(() => nix.attr(from, "model")),
                 layout: nix.thunk(() => nix.attr(from, "layout")),
@@ -808,7 +808,7 @@ touch "$out"
 `))))),
         })),
         fonts: nix.thunk(() => ({
-          __proto__: pos$94,
+          [nix.POS]: pos$94,
           packages: nix.thunk(() => [
             nix.thunk(() => (nix.asBool(nix.sel(cfg, "upscaleDefaultCursor")) ? nix.force(fontcursormisc_hidpi) : nix.sel(pkgs, "font-cursor-misc"))),
             nix.thunk(() => nix.sel(pkgs, "font-misc-misc")),
@@ -816,7 +816,7 @@ touch "$out"
           ]),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$96, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$96, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=xserver.ts.map

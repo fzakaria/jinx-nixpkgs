@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tabby-agent",
       version: "0.32.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TabbyML",
           repo: "tabby",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm --filter=tabby-agent build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp -r ./clients/tabby-agent/dist $out/dist\nln -s $out/dist/node/index.js $out/bin/tabby-agent\nchmod +x $out/bin/tabby-agent\n\nrunHook postInstall\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-idEByCnQmqpnvni0RahZ7qEa0C/0zVPRFv0jaj3BcnM=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/TabbyML/tabby",
         changelog: nix.thunk(() => nix.str`https://github.com/TabbyML/tabby/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Language server used to communicate with Tabby server",

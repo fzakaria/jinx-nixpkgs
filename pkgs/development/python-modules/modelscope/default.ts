@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "modelscope",
       version: "1.39.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "modelscope",
           repo: "modelscope",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["modelscope"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bring the notion of Model-as-a-Service to life",
         homepage: "https://github.com/modelscope/modelscope",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

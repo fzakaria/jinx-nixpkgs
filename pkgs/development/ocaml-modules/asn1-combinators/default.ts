@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       minimalOCamlVersion: "4.13.0",
       pname: "asn1-combinators",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirleft/ocaml-asn1-combinators/releases/download/v${nix.sel(finalAttrs, "version")}/asn1-combinators-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-9NFZqL2nw7GGpIAUSOh5zO0TZ5nGiuxR+zc85OEoSxE=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, ohex]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirleft/ocaml-asn1-combinators",
         changelog: nix.thunk(() => nix.str`https://github.com/mirleft/ocaml-asn1-combinators/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Combinators for expressing ASN.1 grammars in OCaml",

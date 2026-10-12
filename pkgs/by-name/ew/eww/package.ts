@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libdbusmenu_gtk3 = nix.arg($, "libdbusmenu-gtk3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eww",
       version: "0.6.0-unstable-2026-07-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elkowar",
           repo: "eww",
           rev: "48f5aa8b379adf29da0b0bb9ca04164f65d8bdaa",
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd eww \\\n  --bash <($out/bin/eww shell-completions --shell bash) \\\n  --fish <($out/bin/eww shell-completions --shell fish) \\\n  --zsh <($out/bin/eww shell-completions --shell zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Widget system made in Rust to create widgets for any WM",
         longDescription: "Eww (ElKowar's Wacky Widgets) is a widget system made in Rust which lets\nyou create your own widgets similarly to how you can in AwesomeWM.\nThe key difference: It is independent of your window manager!\nIt can be configured in yuck and themed using CSS, is very easy\nto customize and provides all the flexibility you need!\n",
         homepage: "https://github.com/elkowar/eww",

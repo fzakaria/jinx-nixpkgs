@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "toml-0.3.2-YDcxkrdYAQB8b9k1q_sp51jt2ymgGLmOX_BD4kQi53Eo",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "https://github.com/lepton9/zig-toml",
             rev: "8a9b79dde56ac1fc38960ed9c482efb9ff88a6a8",
             hash: "sha256-LAE/l049Bvh3VKT7XrTYEdj+Ekg3JWO2op37ec58sFU=",

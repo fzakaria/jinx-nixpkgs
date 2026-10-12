@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "slimserver";
       const version = "9.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LMS-Community",
           repo: "slimserver",
           tag: version,
@@ -102,18 +102,18 @@ ln -s $out/slimserver.pl $out/bin/slimserver
 `);
       const outputs = nix.thunk(() => ["out"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           slimserver: nix.thunk(() => nix.attr(nixosTests, "slimserver")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "(9\\.[0-9.]+)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://lyrion.org/",
         changelog: nix.thunk(() => nix.str`https://lyrion.org/getting-started/changelog-lms${nix.app(nix.sel(lib, "versions", "major"), version)}`),
         description: "Lyrion Music Server (formerly Logitech Media Server) is open-source server software which controls a wide range of Squeezebox audio players",
@@ -129,7 +129,7 @@ ln -s $out/slimserver.pl $out/bin/slimserver
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

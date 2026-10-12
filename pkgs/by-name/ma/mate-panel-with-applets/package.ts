@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       mate_utils,
     ]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(mate_panel, "pname")}-with-applets`),
       version: nix.thunk(() => nix.attr(mate_panel, "version")),
       outputs: nix.thunk(() => nix.attr(mate_panel, "outputs")),

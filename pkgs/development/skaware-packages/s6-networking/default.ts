@@ -20,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const libressl = nix.arg($, "libressl");
   const bearssl = nix.arg($, "bearssl");
   const sslSupportEnabled = nix.thunk(() => !nix.eq(sslSupport, false));
-  const sslLibs = nix.thunk(() => ({ __proto__: pos$1, libressl: libressl, bearssl: bearssl }));
+  const sslLibs = nix.thunk(() => ({ [nix.POS]: pos$1, libressl: libressl, bearssl: bearssl }));
   nix.assert_((!nix.asBool(sslSupportEnabled) || nix.asBool(nix.has(sslLibs, nix.key(nix.force(sslSupport))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/skaware-packages/s6-networking/default.nix:24:1");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "s6-networking",
       version: "2.8.0.1",
       sha256: "sha256-bwEcM7oFhs5Y/u4M+FSgsIfpCC/b0kq7eGFIRjgw80E=",
       manpages: nix.thunk(() => nix.app(nix.sel(skawarePackages, "buildManPages"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "s6-networking-man-pages",
           version: "2.7.2.1.4",
           sha256: "sha256-N5BXi21JEgF3X5FKg5SzKNKfzYS5uTRqbUvbsrEZ2xg=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Suite of small networking utilities for Unix systems",
       })),
       outputs: nix.thunk(() => ["bin", "lib", "dev", "doc", "out"]),

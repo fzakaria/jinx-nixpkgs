@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.bin/locale",
       buildInputs: nix.thunk(() => [libsbuf]),
       extraPaths: nix.thunk(() => ["lib/libc/locale"]),

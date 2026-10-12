@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "proksi",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luizfonseca",
           repo: "proksi",
           tag: nix.thunk(() => nix.str`proksi-v${nix.sel(finalAttrs, "version")}`),
@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
         "--skip=services::discovery::test::test_domain_addr",
         "--skip=config::tests::",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true, ZSTD_SYS_USE_PKG_CONFIG: true })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=proksi-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Batteries-included CDN, reverse proxy and Load Balancer using Cloudflare Pingora",
         homepage: "https://github.com/luizfonseca/proksi",
         changelog: nix.thunk(() => nix.str`https://github.com/luizfonseca/proksi/blob/proksi-v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

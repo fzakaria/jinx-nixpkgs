@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hash_extender",
       version: "0-unstable-2020-03-24",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iagox86",
           repo: "hash_extender",
           rev: "cb8aaee49f93e9c0d2f03eb3cafb429c9eed723d",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-15.patch",
             url: "https://github.com/iagox86/hash_extender/commit/84d8d70eb10bcbe4dea2cf5a41d246d59a389e61.patch",
             hash: "sha256-LCzv4FK+4WoJBYYUYB+zsC6358ZpTOxbE91W/1pFe6U=",
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./hash_extender --test\n\nrunHook postCheck\n",
       hardeningDisable: nix.thunk(() => ["fortify3"]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp hash_extender $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to automate hash length extension attacks",
         mainProgram: "hash_extender",
         homepage: "https://github.com/iagox86/hash_extender",

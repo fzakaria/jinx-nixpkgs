@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kind2",
       version: "0.3.10",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-X2sjfYrSSym289jDJV3hNmcwyQCMnrabmGCUKD5wfdY=",
         })))),
       cargoHash: "sha256-G6UW8m/6D+hgRRceMPYFI+k4D7Ui6sDUDzI5IVWvVyc=",
       postPatch: "substituteInPlace src/main.rs \\\n  --replace-fail \"#![feature(panic_info_message)]\" \"\"\nsubstituteInPlace src/main.rs \\\n  --replace-fail \"e.message().unwrap()\" \"e.payload()\"\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Functional programming language and proof assistant",
         mainProgram: "kind2",
         homepage: "https://github.com/higherorderco/kind",

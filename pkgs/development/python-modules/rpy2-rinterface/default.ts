@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rpy2-rinterface";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://pypi/${nix.builtins.substring(0n, 1n, pname)}/${pname}/${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname)}-${version}.tar.gz`),
           hash: "sha256-qcwTQc5ctN8dxnxA3Dss4Mr6znIVvUJi/g7QEZWKM2k=",
         }))));
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "test_parse_error_when_evaluting",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rpy2.github.io/",
         description: "Python interface to R",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pyproject,
         pname,

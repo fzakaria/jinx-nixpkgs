@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "galatia-sil";
       const version = "2.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/galatia/GalatiaSIL-${version}.zip`),
           hash: "sha256-7kXnTC5vpUOjcT40oNW6e32zFGejlWJq1J+p+5DiAos=",
         }))));
@@ -28,7 +28,7 @@ install -Dm644 $downloadedFile OFL.txt OFL-FAQ.txt FONTLOG.txt -t $out/share/doc
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://software.sil.org/galatia",
         description: "Font designed to support Biblical Polytonic Greek",
         longDescription: "Galatia SIL, designed to support Biblical Polytonic Greek, is a Unicode 3.1 font released under the SIL Open Font License. The font supports precomposed characters rather than decomposed characters. Thus, you must use a keyboard that outputs NFC encoding (precomposed).\n",
@@ -36,7 +36,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kmein"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

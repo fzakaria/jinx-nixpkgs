@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
       const w = nix.withScope(ps, null);
       return [nix.thunk(() => nix.lookup(w, "numpy"))];
     })()));
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ __proto__: pos$1, enablePython: true, python: python }))));
-  const cgal$ = nix.thunk(() => nix.app(nix.sel(cgal, "override"), nix.thunk(() => ({ __proto__: pos$2, boost: boost$ }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python }))));
+  const cgal$ = nix.thunk(() => nix.app(nix.sel(cgal, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, boost: boost$ }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gplates",
       version: "2.6.0-47",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "GPlates",
           repo: "GPlates",
           tag: nix.thunk(() => nix.str`GPlates-${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Desktop software for the interactive visualisation of plate-tectonics",
         mainProgram: "gplates",
         homepage: "https://www.gplates.org",

@@ -112,7 +112,7 @@ env.UPDATE_STATSFILE /var/lib/munin/munin-update.stats
 ${nix.sel(nodeCfg, "extraPluginConfig")}
 `)));
   const pluginConfDir = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "munin-plugin-conf.d",
       buildCommand: nix.thunk(() => nix.str`mkdir $out
 ln -s ${pluginConf} $out/nixos-config
@@ -133,7 +133,7 @@ ${nix.sel(pkgs, "findutils")}/bin/find . -type f -exec ${nix.sel(pkgs, "gnused")
   \\%\${NIX_STORE}/%! s,(/usr)?/s?bin/,/run/current-system/sw/bin/,g
 " '{}' '+'
 `));
-  const extraPluginDir = nix.thunk(() => nix.app(internAndFixPlugins, "munin-extra-plugins.d", internOnePlugin, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (k) => (v) => ({ __proto__: pos$2, name: k, path: v }), nix.thunk(() => nix.sel(nodeCfg, "extraPlugins"))))));
+  const extraPluginDir = nix.thunk(() => nix.app(internAndFixPlugins, "munin-extra-plugins.d", internOnePlugin, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (k) => (v) => ({ [nix.POS]: pos$2, name: k, path: v }), nix.thunk(() => nix.sel(nodeCfg, "extraPlugins"))))));
   const extraAutoPluginDir = nix.thunk(() => nix.app(internAndFixPlugins, "munin-extra-auto-plugins.d", internManyPlugins, nix.thunk(() => nix.sel(nodeCfg, "extraAutoPlugins"))));
   const customStaticDir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "munin-custom-static-data", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp -a "${nix.sel(pkgs, "munin")}/etc/opt/munin/static" "$out"
 cd "$out"
@@ -142,34 +142,34 @@ echo "${nix.sel(cronCfg, "extraCSS")}" >> style.css
 echo "${nix.sel(cronCfg, "extraCSS")}" >> style-new.css
 `)));
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       services: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         "munin-node": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable Munin Node agent. Munin node listens on 0.0.0.0 and\nby default accepts connections only from 127.0.0.1 for security reasons.\n\nSee <https://guide.munin-monitoring.org/en/latest/architecture/index.html>.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "{file}`munin-node.conf` extra configuration. See\n<https://guide.munin-monitoring.org/en/latest/reference/munin-node.conf.html>\n",
             })))),
           extraPluginConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "{file}`plugin-conf.d` extra plugin configuration. See\n<https://guide.munin-monitoring.org/en/latest/plugin/use.html>\n",
               example: "[fail2ban_*]\nuser root\n",
             })))),
           extraPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -179,7 +179,7 @@ echo "${nix.sel(cronCfg, "extraCSS")}" >> style-new.css
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  zfs_usage_bigpool = /src/munin-contrib/plugins/zfs/zfs_usage_;\n  zfs_usage_smallpool = /src/munin-contrib/plugins/zfs/zfs_usage_;\n  zfs_list = /src/munin-contrib/plugins/zfs/zfs_list;\n};\n")),
             })))),
           extraAutoPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: [],
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -189,7 +189,7 @@ echo "${nix.sel(cronCfg, "extraCSS")}" >> style-new.css
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  /src/munin-contrib/plugins/zfs\n  /src/munin-contrib/plugins/ssh\n];\n")),
             })))),
           disabledPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ["munin_stats"]),
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -200,29 +200,29 @@ echo "${nix.sel(cronCfg, "extraCSS")}" >> style-new.css
             })))),
         })),
         "munin-cron": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable munin-cron. Takes care of all heavy lifting to collect data from\nnodes and draws graphs to html. Runs munin-update, munin-limits,\nmunin-graphs and munin-html in that order.\n\nHTML output is in {file}`/var/www/munin/`, configure your\nfavourite webserver to serve static files.\n",
             })))),
           extraGlobalConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "{file}`munin.conf` extra global configuration.\nSee <https://guide.munin-monitoring.org/en/latest/reference/munin.conf.html>.\nUseful to setup notifications, see\n<https://guide.munin-monitoring.org/en/latest/tutorial/alert.html>\n",
               example: "contact.email.command mail -s \"Munin notification for ${var:host}\" someone@example.com\n",
             })))),
           hosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Definitions of hosts of nodes to collect data from. Needs at least one\nhost for cron to succeed. See\n<https://guide.munin-monitoring.org/en/latest/reference/munin.conf.html>\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "''\n  [${config.networking.hostName}]\n  address localhost\n''\n")),
             })))),
           extraCSS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Custom styling for the HTML that munin-cron generates. This will be\nappended to the CSS files used by munin-cron and will thus take\nprecedence over the builtin styles.\n",
@@ -233,17 +233,17 @@ echo "${nix.sel(cronCfg, "extraCSS")}" >> style-new.css
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(nodeCfg, "enable")) || nix.asBool(nix.sel(cronCfg, "enable")))), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             environment: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "munin"))]),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               users: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 munin: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   description: "Munin monitoring user",
                   group: "munin",
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "munin")),
@@ -251,22 +251,22 @@ echo "${nix.sel(cronCfg, "extraCSS")}" >> style-new.css
                 })),
               })),
               groups: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 munin: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "munin")),
                 })),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(nodeCfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             systemd: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               services: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 "munin-node": nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   description: "Munin Node",
                   after: nix.thunk(() => ["network.target"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -280,7 +280,7 @@ echo "${nix.sel(cronCfg, "extraCSS")}" >> style-new.css
                     ];
                   })()),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     MUNIN_LIBDIR: nix.thunk(() => nix.str`${nix.sel(pkgs, "munin")}/lib`),
                     MUNIN_PLUGSTATE: "/run/munin",
                     MUNIN_LOGDIR: "/var/log/munin",
@@ -306,20 +306,20 @@ rm -f ${nix.builtins.toString(nix.thunk(() => nix.sel(nodeCfg, "disabledPlugins"
 `))}
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "munin")}/sbin/munin-node --config ${nodeConf} --servicedir /etc/munin/plugins/ --sconfdir=${pluginConfDir}`),
                   })),
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   "10-munin": nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     "/run/munin": nix.thunk(() => ({
-                      __proto__: pos$29,
-                      d: nix.thunk(() => ({ __proto__: pos$28, mode: "0755", user: "munin", group: "munin" })),
+                      [nix.POS]: pos$29,
+                      d: nix.thunk(() => ({ [nix.POS]: pos$28, mode: "0755", user: "munin", group: "munin" })),
                     })),
                   })),
                 })),
@@ -327,30 +327,30 @@ rm -f ${nix.builtins.toString(nix.thunk(() => nix.sel(nodeCfg, "disabledPlugins"
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cronCfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             fonts: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dejavu_fonts"))]),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$51,
+              [nix.POS]: pos$51,
               timers: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 "munin-cron": nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   description: "batch Munin master programs",
                   wantedBy: nix.thunk(() => ["timers.target"]),
-                  timerConfig: nix.thunk(() => ({ __proto__: pos$36, OnCalendar: "*:0/5" })),
+                  timerConfig: nix.thunk(() => ({ [nix.POS]: pos$36, OnCalendar: "*:0/5" })),
                 })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 "munin-cron": nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   description: "batch Munin master programs",
-                  unitConfig: nix.thunk(() => ({ __proto__: pos$39, Documentation: "man:munin-cron(8)" })),
+                  unitConfig: nix.thunk(() => ({ [nix.POS]: pos$39, Documentation: "man:munin-cron(8)" })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     Type: "oneshot",
                     User: "munin",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "munin")}/bin/munin-cron --config ${muninConf}`),
@@ -358,17 +358,17 @@ rm -f ${nix.builtins.toString(nix.thunk(() => nix.sel(nodeCfg, "disabledPlugins"
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   "20-munin": nix.thunk(() => (() => {
-                    const defaultConfig = nix.thunk(() => ({ __proto__: pos$43, mode: "0755", user: "munin", group: "munin" }));
+                    const defaultConfig = nix.thunk(() => ({ [nix.POS]: pos$43, mode: "0755", user: "munin", group: "munin" }));
                     return {
-                      __proto__: pos$48,
-                      "/run/munin": nix.thunk(() => ({ __proto__: pos$44, d: defaultConfig })),
-                      "/var/log/munin": nix.thunk(() => ({ __proto__: pos$45, d: defaultConfig })),
-                      "/var/www/munin": nix.thunk(() => ({ __proto__: pos$46, d: defaultConfig })),
-                      "/var/lib/munin": nix.thunk(() => ({ __proto__: pos$47, d: defaultConfig })),
+                      [nix.POS]: pos$48,
+                      "/run/munin": nix.thunk(() => ({ [nix.POS]: pos$44, d: defaultConfig })),
+                      "/var/log/munin": nix.thunk(() => ({ [nix.POS]: pos$45, d: defaultConfig })),
+                      "/var/www/munin": nix.thunk(() => ({ [nix.POS]: pos$46, d: defaultConfig })),
+                      "/var/lib/munin": nix.thunk(() => ({ [nix.POS]: pos$47, d: defaultConfig })),
                     };
                   })()),
                 })),

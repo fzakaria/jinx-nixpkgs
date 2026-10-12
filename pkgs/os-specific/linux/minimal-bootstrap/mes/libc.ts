@@ -20,7 +20,7 @@ export default nix.thunk(() => (() => {
     const pname = "mes-libc";
     const from = nix.thunk(() => nix.sel(mes, "compiler"));
     const version = nix.thunk(() => nix.attr(from, "version"));
-    const arch = nix.thunk(() => nix.sel({ __proto__: pos$1, "i686-linux": "x86", "x86_64-linux": "x86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
+    const arch = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, "i686-linux": "x86", "x86_64-linux": "x86_64" }, nix.key(nix.sel(buildPlatform, "system"))));
     const sources = nix.thunk(() => nix.sel(sourcesJson, nix.key(nix.str`${arch}.linux.gcc`)));
     const libtcc1_SOURCES = nix.thunk(() => nix.attr(sources, "libtcc1_SOURCES"));
     const libc_gnu1_SOURCES = nix.thunk(() => nix.attr(sources, "libc_gnu1_SOURCES"));
@@ -28,13 +28,13 @@ export default nix.thunk(() => (() => {
     const firstLibc = nix.thunk(() => nix.add(nix.add(libc_gnu1_SOURCES, " "), nix.path(here, "./ldexpl.c")));
     const lastLibc = libc_gnu2_SOURCES;
     return nix.app(nix.sel(kaem, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
         extraPath: nix.thunk(() => nix.str`${ln_boot}/bin`),
-        passthru: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=c11" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=c11" })),
         meta: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Mes C Library",
           homepage: "https://www.gnu.org/software/mes",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

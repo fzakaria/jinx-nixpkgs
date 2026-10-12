@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libmysqlclient = nix.arg($, "libmysqlclient");
   const mariadb = nix.arg($, "mariadb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drogon",
       version: "1.9.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drogonframework",
           repo: "drogon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "(\n  cd ..\n  PATH=$PATH:$out/bin $SHELL test.sh\n)\n",
       doInstallCheck: nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/drogonframework/drogon",
         description: "C++14/17 based HTTP web application framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

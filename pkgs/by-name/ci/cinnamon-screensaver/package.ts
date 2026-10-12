@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const iso_flags_png_320x240 = nix.arg($, "iso-flags-png-320x240");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cinnamon-screensaver",
       version: "6.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "cinnamon-screensaver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,7 +98,7 @@ gappsWrapperArgs+=(
 `),
       postFixup: "# Shared objects can't be wrapped.\nmv $out/libexec/cinnamon-screensaver/{.libcscreensaver.so-wrapped,libcscreensaver.so}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/linuxmint/cinnamon-screensaver",
         description: "Cinnamon screen locker and screensaver program",
         license: nix.thunk(() => [

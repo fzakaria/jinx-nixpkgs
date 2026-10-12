@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const indilib = nix.arg($, "indilib");
   const indi_with_drivers = nix.arg($, "indi-with-drivers");
   return nix.app(nix.sel(indi_with_drivers, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "indi-full-nonfree",
       version: nix.thunk(() => nix.attr(indilib, "version")),
       extraDrivers: nix.thunk(() => nix.builtins.filter((attrs) => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), attrs), nix.thunk(() => nix.builtins.attrValues(indi_3rdparty)))),

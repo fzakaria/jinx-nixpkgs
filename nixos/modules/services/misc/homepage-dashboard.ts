@@ -64,80 +64,80 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "homepage-dashboard"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkChangedOptionModule"), nix.thunk(() => ["services", "homepage-dashboard", "environmentFile"]), nix.thunk(() => ["services", "homepage-dashboard", "environmentFiles"]), (config_1) => [
           nix.thunk(() => nix.sel(config_1, "services", "homepage-dashboard", "environmentFile")),
         ])),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       services: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         "homepage-dashboard": nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Homepage Dashboard, a highly customizable application dashboard")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "homepage-dashboard", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for Homepage.",
             })))),
           listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8082n,
               description: "Port for Homepage to bind to.",
             })))),
           allowedHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost:8082,127.0.0.1:8082",
               example: "example.com",
               description: "Hosts that homepage-dashboard will be running under.\nYou will want to change this in order to acess homepage from anything other than localhost.\nsee the upsream documentation:\n\n<https://gethomepage.dev/installation/#homepage_allowed_hosts>\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "A list of paths to environment files that contain environment variables to pass\nto the homepage-dashboard service, for the purpose of passing secrets to\nthe service.\n\nSee the upstream documentation:\n\n<https://gethomepage.dev/installation/docker/#using-environment-secrets>\n",
               default: [],
             })))),
           customCSS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Custom CSS for styling Homepage.\n\nSee <https://gethomepage.dev/configs/custom-css-js/>.\n",
               default: "",
             })))),
           customJS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Custom Javascript for Homepage.\n\nSee <https://gethomepage.dev/configs/custom-css-js/>.\n",
               default: "",
             })))),
           bookmarks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Homepage bookmarks configuration.\n\nSee <https://gethomepage.dev/configs/bookmarks/>.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   Developer: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       Github: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$7, abbr: "GH", href: "https://github.com/" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$7, abbr: "GH", href: "https://github.com/" })),
                       ]),
                     })),
                   ]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   Entertainment: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       YouTube: nix.thunk(() => [
-                        nix.thunk(() => ({ __proto__: pos$10, abbr: "YT", href: "https://youtube.com/" })),
+                        nix.thunk(() => ({ [nix.POS]: pos$10, abbr: "YT", href: "https://youtube.com/" })),
                       ]),
                     })),
                   ]),
@@ -146,17 +146,17 @@ export default nix.lambda((args) => (() => {
               default: [],
             })))),
           services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Homepage services configuration.\n\nSee <https://gethomepage.dev/configs/services/>.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   "My First Group": nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$15,
+                      [nix.POS]: pos$15,
                       "My First Service": nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         href: "http://localhost/",
                         description: "Homepage is awesome",
                       })),
@@ -164,12 +164,12 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "My Second Group": nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       "My Second Service": nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         href: "http://localhost/",
                         description: "Homepage is the best",
                       })),
@@ -180,41 +180,41 @@ export default nix.lambda((args) => (() => {
               default: [],
             })))),
           widgets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Homepage widgets configuration.\n\nSee <https://gethomepage.dev/widgets/>.\n",
               example: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$22,
-                  resources: nix.thunk(() => ({ __proto__: pos$21, cpu: true, memory: true, disk: "/" })),
+                  [nix.POS]: pos$22,
+                  resources: nix.thunk(() => ({ [nix.POS]: pos$21, cpu: true, memory: true, disk: "/" })),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$24,
-                  search: nix.thunk(() => ({ __proto__: pos$23, provider: "duckduckgo", target: "_blank" })),
+                  [nix.POS]: pos$24,
+                  search: nix.thunk(() => ({ [nix.POS]: pos$23, provider: "duckduckgo", target: "_blank" })),
                 })),
               ]),
               default: [],
             })))),
           kubernetes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Homepage kubernetes configuration.\n\nSee <https://gethomepage.dev/configs/kubernetes/>.\n",
               default: nix.thunk(() => ({})),
             })))),
           docker: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Homepage docker configuration.\n\nSee <https://gethomepage.dev/configs/docker/>.\n",
               default: nix.thunk(() => ({})),
             })))),
           proxmox: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Homepage proxmox configuration.\n\nSee <https://gethomepage.dev/configs/proxmox/>.\n",
               default: nix.thunk(() => ({})),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.attr(settingsFormat, "type")),
               description: "Homepage settings.\n\nSee <https://gethomepage.dev/configs/settings/>.\n",
               default: nix.thunk(() => ({})),
@@ -223,54 +223,54 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         environment: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           etc: nix.thunk(() => ({
-            __proto__: pos$42,
-            "homepage-dashboard/custom.css": nix.thunk(() => ({ __proto__: pos$33, text: nix.thunk(() => nix.sel(cfg, "customCSS")) })),
-            "homepage-dashboard/custom.js": nix.thunk(() => ({ __proto__: pos$34, text: nix.thunk(() => nix.sel(cfg, "customJS")) })),
+            [nix.POS]: pos$42,
+            "homepage-dashboard/custom.css": nix.thunk(() => ({ [nix.POS]: pos$33, text: nix.thunk(() => nix.sel(cfg, "customCSS")) })),
+            "homepage-dashboard/custom.js": nix.thunk(() => ({ [nix.POS]: pos$34, text: nix.thunk(() => nix.sel(cfg, "customJS")) })),
             "homepage-dashboard/bookmarks.yaml": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "bookmarks.yaml", nix.thunk(() => nix.sel(cfg, "bookmarks")))),
             })),
             "homepage-dashboard/docker.yaml": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "docker.yaml", nix.thunk(() => nix.sel(cfg, "docker")))),
             })),
             "homepage-dashboard/kubernetes.yaml": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "kubernetes.yaml", nix.thunk(() => nix.sel(cfg, "kubernetes")))),
             })),
             "homepage-dashboard/services.yaml": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "services.yaml", nix.thunk(() => nix.sel(cfg, "services")))),
             })),
             "homepage-dashboard/settings.yaml": nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "settings.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
             "homepage-dashboard/widgets.yaml": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "widgets.yaml", nix.thunk(() => nix.sel(cfg, "widgets")))),
             })),
             "homepage-dashboard/proxmox.yaml": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "proxmox.yaml", nix.thunk(() => nix.sel(cfg, "proxmox")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           services: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             "homepage-dashboard": nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               description: "Homepage Dashboard",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 HOMEPAGE_CONFIG_DIR: "/etc/homepage-dashboard",
                 NIXPKGS_HOMEPAGE_CACHE_DIR: "/var/cache/homepage-dashboard",
                 PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenPort")))),
@@ -278,7 +278,7 @@ export default nix.lambda((args) => (() => {
                 HOMEPAGE_ALLOWED_HOSTS: nix.thunk(() => nix.sel(cfg, "allowedHosts")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 Type: "simple",
                 EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
                 StateDirectory: "homepage-dashboard",
@@ -320,9 +320,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listenPort"))]),
             })))),
         })),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const rtaudio = nix.arg($, "rtaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wfview",
       version: "2.23",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eliggett",
           repo: "wfview",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./remove-hard-encodings.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/Cryolitia/wfview/-/commit/b26c898c219df8935dcb85969465ed995f64d875.patch",
             hash: "sha256-KXWz6gdaPewq+RLhhkZT3CYz6yqbVXMubAUfabhgqX0=",
           })))),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "qmake")),
         ];
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$3, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, LANG: "C.UTF-8" })),
       qmakeFlags: nix.thunk(() => ["wfview.pro"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -pv $out/Applications\nmv -v \"$out/bin/wfview.app\" $out/Applications\n\n# wrap executable to $out/bin\nmakeWrapper \"$out/Applications/wfview.app/Contents/MacOS/wfview\" \"$out/bin/wfview\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open-source software for the control of modern Icom radios",
         homepage: "https://wfview.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

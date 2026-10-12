@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const openapi_python_client = nix.arg($, "openapi-python-client");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "openapi-python-client",
       version: "0.29.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           owner: "openapi-generators",
           repo: "openapi-python-client",
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["ruff"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# see: https://github.com/fastapi/typer/blob/5889cf82f4ed925f92e6b0750bf1b1ed9ee672f3/typer/completion.py#L54\n# otherwise shellingham throws exception on darwin\nexport _TYPER_COMPLETE_TEST_DISABLE_SHELL_DETECTION=1\ninstallShellCompletion --cmd openapi-python-client \\\n  --bash <($out/bin/openapi-python-client --show-completion bash) \\\n  --fish <($out/bin/openapi-python-client --show-completion fish) \\\n  --zsh <($out/bin/openapi-python-client --show-completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: openapi_python_client })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: openapi_python_client })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Generate modern Python clients from OpenAPI",
         homepage: "https://github.com/openapi-generators/openapi-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/openapi-generators/openapi-python-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

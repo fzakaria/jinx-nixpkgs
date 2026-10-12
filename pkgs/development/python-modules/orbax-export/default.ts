@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const orbax_export = nix.arg($, "orbax-export");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "orbax-export",
       version: "0.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "orbax_export",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-VE7vVk4qbxfNEbEWf+vjSLe3z1bZV13plKM9VhPdVoo=",
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "cd orbax/export\nrm -rf ./**/__init__.py\nrm -rf typing\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(orbax_export, "overridePythonAttrs"), nix.thunk(() => ({ __proto__: pos$2, doCheck: true })))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(orbax_export, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Serialization library for JAX users, enabling the exporting of JAX models to the TensorFlow SavedModel format",
         homepage: "https://github.com/google/orbax/tree/main/export",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

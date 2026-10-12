@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elf-dissector",
       version: "0.0.1-unstable-2025-11-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "invent.kde.org",
           owner: "sdk",
           repo: "elf-dissector",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         libdwarf,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://invent.kde.org/sdk/elf-dissector",
         description: "Tools for inspecting, analyzing and optimizing ELF files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

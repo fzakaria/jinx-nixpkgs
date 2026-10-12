@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(deployAndroidPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       package: package$,
       os: os,
       arch: arch,

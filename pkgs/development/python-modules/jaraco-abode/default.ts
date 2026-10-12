@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jaraco",
           repo: "jaraco.abode",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "test_camera_capture_no_control_URLs",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jaraco/jaraco.abode/blob/${nix.sel(src, "tag")}/NEWS.rst`),
         homepage: "https://github.com/jaraco/jaraco.abode",
         description: "Library interfacing to the Abode home security system",
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

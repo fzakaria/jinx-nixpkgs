@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const poppler = nix.arg($, "poppler");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kitsas",
       version: "5.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "artoh",
           repo: "kitupiikki",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => ["../kitsas/kitsas.pro"]),
       installPhase: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv kitsas.app $out/Applications\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "install -Dm755 kitsas -t $out/bin\ninstall -Dm644 ../kitsas.svg -t $out/share/icons/hicolor/scalable/apps\ninstall -Dm644 ../kitsas.png -t $out/share/icons/hicolor/256x256/apps\ninstall -Dm644 ../kitsas.desktop -t $out/share/applications\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/artoh/kitupiikki/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Accounting tool suitable for Finnish associations and small business",
         homepage: "https://github.com/artoh/kitupiikki",

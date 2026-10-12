@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libredirect = nix.arg($, "libredirect");
   const debugLvl = nix.argOr($, "debugLvl", () => "0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-brother-dcpt720dw",
       version: "3.5.0-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf105179/dcpt720dwpdrv-${nix.sel(finalAttrs, "version")}.i386.deb`),
           hash: "sha256-ToUFGnHxd6rnLdfhdDGzhvsgFJukEAVzlm79hmkSV3E=",
         })))),
@@ -87,7 +87,7 @@ ln -s "$out/opt/brother/Printers/dcpt720dw/cupswrapper/brother_dcpt720dw_printer
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother DCP-T720DW printer driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => (() => {

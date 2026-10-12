@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "typeddep",
       version: "1.3.3.7",
       format: "setuptools",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [nix.path(here, "./setup.py"), nix.path(here, "./typeddep")]))),
         })))),

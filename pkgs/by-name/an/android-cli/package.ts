@@ -20,27 +20,27 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "1.0.15498356";
   const platformData = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://dl.google.com/android/cli/${version}/linux_x86_64/android-cli`),
       hash: "sha256-TmwLwLKqnMCxWwtX8m50KflmisfeG3PjZsBs7z9vccU=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://dl.google.com/android/cli/${version}/darwin_arm64/android-cli`),
       hash: "sha256-E3PC0Ivf6MoYRQu56dSD/49LI8DJZhXL27/o6daH0Sg=",
     })),
   }));
   const systemData = nix.thunk(() => nix.selOr(platformData, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "android-cli",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "android-cli",
           url: nix.thunk(() => nix.sel(systemData, "url")),
           hash: nix.thunk(() => nix.sel(systemData, "hash")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Android Command-Line Tool (CLI) by Google",
           homepage: "https://developer.android.com/tools/agents/android-cli",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "unfree")),

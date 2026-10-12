@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bieniu",
           repo: "brother",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytest_asyncio, pytest_error_for_skips, pytestCheckHook, syrupy_6]);
       const pythonImportsCheck = nix.thunk(() => ["brother"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for getting data from Brother laser and inkjet printers via SNMP",
         homepage: "https://github.com/bieniu/brother",
         changelog: nix.thunk(() => nix.str`https://github.com/bieniu/brother/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

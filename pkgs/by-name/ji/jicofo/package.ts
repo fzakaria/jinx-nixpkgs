@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jicofo",
       version: "1.0-1189",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.jitsi.org/stable/jicofo_${nix.sel(finalAttrs, "version")}-1_all.deb`),
           hash: "sha256-c6YQT/okrB/PZmD7jHPte+qWpevfKqnXm4oAtTVjm7s=",
         })))),
@@ -40,15 +40,15 @@ ln -s $out/share/jicofo/jicofo.sh $out/bin/jicofo
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "single-node-smoke-test": nix.thunk(() => nix.sel(nixosTests, "jitsi-meet")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Server side focus component used in Jitsi Meet conferences",
         mainProgram: "jicofo",
         longDescription: "JItsi COnference FOcus is a server side focus component used in Jitsi Meet conferences.\n",

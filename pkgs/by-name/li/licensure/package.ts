@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const gitls = nix.arg($, "gitls");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "licensure",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chasinglogic",
           repo: "licensure",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, git, gitls]),
       checkFlags: nix.thunk(() => ["--skip=test_get_project_files"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "FOSS License management tool for your projects",
         homepage: "https://github.com/chasinglogic/licensure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

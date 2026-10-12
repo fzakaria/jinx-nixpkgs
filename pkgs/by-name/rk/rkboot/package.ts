@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rkbin = nix.arg($, "rkbin");
   const qemu = nix.arg($, "qemu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rkboot",
       src: nix.thunk(() => nix.attr(rkbin, "src")),
       version: nix.thunk(() => nix.attr(rkbin, "version")),
@@ -28,7 +28,7 @@ done
 `),
       installPhase: "mkdir -p $out\nif [ -z \"$(ls -A rkboot)\" ]; then\n  echo \"Error: The 'rkboot' directory is empty.\"\n  exit 1\nelse\n  mv rkboot $out/bin\nfi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Rockchip proprietary SPL bootloader blobs",
         homepage: "https://github.com/rockchip-linux/rkbin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const version = "3.2.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netatop",
       version: version,
       name: nix.thunk(() => nix.str`netatop-${nix.sel(kernel, "version")}-${version}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.atoptool.nl/download/netatop-${version}.tar.gz`),
           hash: "sha256-UIqJd809HN1nWHoTwl46QUZHtI+S0c44/BOLWRSuo/Y=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-paths.patch"),
         nix.path(here, "./fix-makefile-install.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/netatop_kernel_6.15.patch?h=netatop-dkms&id=e5da6fa4fee5499c3e437cdd34281dd2b200508f",
             hash: "sha256-JyNQNyDJQkM/hLpb/hp3Sw2tMA8XnYogduGDFqTQ3nQ=",
           })))),
@@ -50,7 +50,7 @@ kmod=${kmod} substituteAllInPlace netatop.service
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc")}/bin/cc`),
       ])),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Network monitoring module for atop",
         mainProgram: "netatopd",
         homepage: "https://www.atoptool.nl/downloadnetatop.php",

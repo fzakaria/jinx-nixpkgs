@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     port: 9435n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       names: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: [],
           example: nix.thunk(() => ["timers"]),
@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         AmbientCapabilities: nix.thunk(() => ["CAP_BPF", "CAP_DAC_READ_SEARCH", "CAP_PERFMON"]),
         CapabilityBoundingSet: nix.thunk(() => ["CAP_BPF", "CAP_DAC_READ_SEARCH", "CAP_PERFMON"]),
         ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "prometheus-ebpf-exporter")}/bin/ebpf_exporter \\

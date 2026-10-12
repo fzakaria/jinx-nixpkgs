@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LudovicRousseau",
           repo: "pyscard",
           tag: version,
@@ -39,7 +39,7 @@ substituteInPlace src/smartcard/scard/winscarddll.c \\
             "${nix.app(nix.sel(lib, "getLib"), pcsclite)}/lib/libpcsclite${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}"
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Smartcard library for python",
         homepage: "https://pyscard.sourceforge.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/LudovicRousseau/pyscard/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +50,7 @@ substituteInPlace src/smartcard/scard/winscarddll.c \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

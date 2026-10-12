@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const seatd = nix.arg($, "seatd");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "srm-cuarzo",
       version: "0.13.0-1",
       rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       hash: "sha256-5BwLqAZdfO5vyEMPZImaxymvLoNuu6bOiOkvR8JERxg=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.attr(finalAttrs, "rev")),
           hash: nix.thunk(() => nix.attr(finalAttrs, "hash")),
           owner: "CuarzoSoftware",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       preConfigure: "# The root meson.build file is in src/\ncd src\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Rendering Manager",
         homepage: "https://github.com/CuarzoSoftware/SRM",
         maintainers: [],

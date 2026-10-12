@@ -17,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "02c1b1405c38d3c370b085fb952dd8bea3fadcee6411ad99f312cc129c536d8f",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./default-iv.patch")]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure-Python AES",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/ricmoo/pyaes",
       }));
-      return { __proto__: pos$3, pname, version, format, src, patches, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, patches, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

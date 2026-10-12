@@ -41,19 +41,19 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gmic",
       version: "3.7.6",
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GreycLab",
           repo: "gmic",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hewDoraw6DCmj1EryZrODFDqzbKI2RhgRuXAop+pg7c=",
         })))),
       gmic_stdlib: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "gmic_stdlib_community.h",
           url: nix.thunk(() => nix.str`https://gmic.eu/gmic_stdlib_community${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.h`),
           hash: "sha256-ek8w9uCp4ey5zT8Y1+yM9gXtzigNINOQ0XW6kT6Zj5Q=",
@@ -86,8 +86,8 @@ export default nix.lambda((args) => (() => {
   '${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "gmic")))}'
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, cimg: cimg, "gmic-qt": gmic_qt })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, cimg: cimg, "gmic-qt": gmic_qt })),
         updateScript: nix.thunk(() => nix.app(writeShellScript, "gmic-update-script", nix.thunk(() => nix.str`set -o errexit
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, coreutils, curl, gnugrep, gnused, jq]))}
 
@@ -107,7 +107,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gmic.eu/",
         description: "Open and full-featured framework for image processing",
         mainProgram: "gmic",

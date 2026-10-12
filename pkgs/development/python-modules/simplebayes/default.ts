@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const isPy3k = nix.arg($, "isPy3k");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "simplebayes",
       version: "1.5.8",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "simplebayes",
           owner: "hickeroar",
           rev: "1.5.7",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mock, unittestCheckHook]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isPy3k, "sed -i -e 's/open *(\\([^)]*\\))/open(\\1, encoding=\"utf-8\")/' setup.py\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Memory-based naive bayesian text classifier",
         homepage: "https://github.com/hickeroar/simplebayes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

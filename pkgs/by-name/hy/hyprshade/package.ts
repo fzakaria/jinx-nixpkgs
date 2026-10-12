@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hyprland = nix.arg($, "hyprland");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprshade",
       version: "5.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "loqusion",
           repo: "hyprshade",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [hyprland]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/loqusion/hyprshade",
         description: "Hyprland shade configuration tool",
         mainProgram: "hyprshade",

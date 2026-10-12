@@ -14,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const sssd = nix.arg($, "sssd");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
-  const sssdForPython = nix.thunk(() => nix.app(nix.sel(sssd, "override"), nix.thunk(() => ({ __proto__: pos$1, python3: python }))));
+  const sssdForPython = nix.thunk(() => nix.app(nix.sel(sssd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sss",
       version: nix.thunk(() => nix.attr(sssdForPython, "version")),
       pyproject: false,
@@ -38,7 +38,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sssd, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for SSSD (System Security Services Daemon)",
         longDescription: "This package provides Python bindings for SSSD including:\n- sssd: SSSD Python utilities module\n- pysss: Core Python module for SSSD operations\n- pysss_murmur: MurmurHash implementation\n- pysss_nss_idmap: NSS ID mapping functionality\n- pyhbac: HBAC (Host-Based Access Control) module\n- SSSDConfig: Configuration management module\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

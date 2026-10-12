@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const poetry_core = nix.arg($, "poetry-core");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pyrate-limiter",
       version: "2.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vutran1710",
           repo: "PyrateLimiter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       pythonImportsCheck: nix.thunk(() => ["pyrate_limiter"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Rate-Limiter using Leaky-Bucket Algorimth Family",
         homepage: "https://github.com/vutran1710/PyrateLimiter",
         changelog: nix.thunk(() => nix.str`https://github.com/vutran1710/PyrateLimiter/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

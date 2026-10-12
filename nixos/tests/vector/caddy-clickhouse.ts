@@ -48,33 +48,33 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "vector-caddy-clickhouse",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       caddy: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             caddy: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "http://caddy": nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   extraConfig: "encode gzip\n\nfile_server\nroot /srv\n",
                   logFormat: nix.thunk(() => nix.str`
                   output file ${nix.sel(config, "services", "caddy", "logDir")}/access-caddy.log {
@@ -85,31 +85,31 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             vector: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 sources: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   "caddy-log": nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: "file",
                     include: nix.thunk(() => ["/var/log/caddy/*.log"]),
                   })),
                 })),
                 transforms: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   caddy_logs_timestamp: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     type: "remap",
                     inputs: nix.thunk(() => ["caddy-log"]),
                     source: ".tmp_timestamp, err = parse_json!(.message).ts * 1000000\n\nif err != null {\n  log(\"Unable to parse ts value: \" + err, level: \"error\")\n} else {\n  .timestamp = from_unix_timestamp!(to_int!(.tmp_timestamp), unit: \"microseconds\")\n}\n\ndel(.tmp_timestamp)\n",
                   })),
                 })),
                 sinks: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   vector_sink: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     type: "vector",
                     inputs: nix.thunk(() => ["caddy_logs_timestamp"]),
                     address: "clickhouse:6000",
@@ -119,12 +119,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               vector: nix.thunk(() => ({
-                __proto__: pos$17,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$16, SupplementaryGroups: nix.thunk(() => ["caddy"]) })),
+                [nix.POS]: pos$17,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$16, SupplementaryGroups: nix.thunk(() => ["caddy"]) })),
               })),
             })),
           })),
@@ -135,9 +135,9 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           environment: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
         };
@@ -147,27 +147,27 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$34,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$23, memorySize: 4096n })),
+          [nix.POS]: pos$34,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$23, memorySize: 4096n })),
           networking: nix.thunk(() => ({
-            __proto__: pos$25,
-            firewall: nix.thunk(() => ({ __proto__: pos$24, allowedTCPPorts: nix.thunk(() => [6000n]) })),
+            [nix.POS]: pos$25,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$24, allowedTCPPorts: nix.thunk(() => [6000n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             vector: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 sources: nix.thunk(() => ({
-                  __proto__: pos$27,
-                  vector_source: nix.thunk(() => ({ __proto__: pos$26, type: "vector", address: "[::]:6000" })),
+                  [nix.POS]: pos$27,
+                  vector_source: nix.thunk(() => ({ [nix.POS]: pos$26, type: "vector", address: "[::]:6000" })),
                 })),
                 sinks: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   clickhouse: nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     type: "clickhouse",
                     inputs: nix.thunk(() => ["vector_source"]),
                     endpoint: "http://localhost:8123",
@@ -179,7 +179,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
             })),
-            clickhouse: nix.thunk(() => ({ __proto__: pos$32, enable: true })),
+            clickhouse: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
           })),
         };
       })(), formals$4),

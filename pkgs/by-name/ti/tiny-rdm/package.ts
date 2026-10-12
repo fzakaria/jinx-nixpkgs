@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "tiny-rdm",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tiny-craft",
           repo: "tiny-rdm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,10 +41,10 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace frontend/src/App.vue \\\n  --replace-fail \"prefStore.autoCheckUpdate\" \"false\"\n",
       vendorHash: "sha256-DaD/NM1ZNVt0X/CJuaGfHqeS9ySTWFd0y5bzog6Yn+E=",
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CGO_ENABLED: 1n,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/frontend`),
             hash: "sha256-DUYUk4OK5UWDanSR5hSVDYloYX4fYD41omYThzi/700=",
           })))),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nwails build -m -trimpath -devtools -tags webkit2_41 -o tiny-rdm\n\nrunHook postBuild\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "tiny-rdm",
             exec: "tiny-rdm %U",
             icon: "tiny-rdm",
@@ -80,13 +80,13 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "env"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         npmDeps: nix.thunk(() => nix.attr(from, "npmDeps")),
         updateScript: nix.thunk(() => nix.app(writeScript, "update-tiny-rdm", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p bash nix nix-update common-updater-scripts\nset -eou pipefail\nversion=$(nix eval --log-format raw --raw --file default.nix tiny-rdm.version)\nnix-update tiny-rdm || true\nlatestVersion=$(nix eval --log-format raw --raw --file default.nix tiny-rdm.version)\nif [[ \"$latestVersion\" == \"$version\" ]]; then\n  exit 0\nfi\nupdate-source-version tiny-rdm \"$latestVersion\" --source-key=npmDeps --ignore-same-version\nnix-update tiny-rdm --version skip\n")),
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Modern, colorful, super lightweight Redis GUI client",
         homepage: "https://github.com/tiny-craft/tiny-rdm",
         mainProgram: "tiny-rdm",

@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const libdvdread = nix.arg($, "libdvdread");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lsdvd",
       version: "0.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lsdvd/lsdvd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1274d54jgca1prx106iyir7200aflr70bnb1kawndlmcckcmnb3x",
         })))),
       buildInputs: nix.thunk(() => [libdvdread]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sourceforge.net/projects/lsdvd/",
         description: "Display information about audio, video, and subtitle tracks on a DVD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

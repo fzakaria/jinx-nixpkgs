@@ -47,14 +47,14 @@ export default nix.lambda((args) => (() => {
     const cudaPackagesUnversionedName = "cudaPackages";
     const cudaPackagesMajorVersionedName = nix.thunk(() => nix.app(mkVersionedName, cudaPackagesUnversionedName, cudaMajorVersion));
     const cudaPackagesMajorMinorVersionedName = nix.thunk(() => nix.app(mkVersionedName, cudaPackagesUnversionedName, cudaMajorMinorVersion));
-    return (nix.asBool((nix.asBool(nix.eq(nix.sel(pkgs, nix.key(nix.force(cudaPackagesMajorMinorVersionedName)), "manifests"), nix.sel(pkgs, nix.key(nix.force(cudaPackagesMajorVersionedName)), "manifests"))) && nix.asBool(nix.eq(nix.sel(pkgs, nix.key(nix.force(cudaPackagesMajorMinorVersionedName)), "manifests"), nix.sel(pkgs, nix.key(cudaPackagesUnversionedName), "manifests"))))) ? nix.force(pkgs) : nix.app(nix.sel(pkgs, "extend"), (final) => (_) => nix.attrsDyn({ __proto__: pos$1, recurseForDerivations: false }, [
+    return (nix.asBool((nix.asBool(nix.eq(nix.sel(pkgs, nix.key(nix.force(cudaPackagesMajorMinorVersionedName)), "manifests"), nix.sel(pkgs, nix.key(nix.force(cudaPackagesMajorVersionedName)), "manifests"))) && nix.asBool(nix.eq(nix.sel(pkgs, nix.key(nix.force(cudaPackagesMajorMinorVersionedName)), "manifests"), nix.sel(pkgs, nix.key(cudaPackagesUnversionedName), "manifests"))))) ? nix.force(pkgs) : nix.app(nix.sel(pkgs, "extend"), (final) => (_) => nix.attrsDyn({ [nix.POS]: pos$1, recurseForDerivations: false }, [
         [nix.force(cudaPackagesMajorMinorVersionedName), cudaPackages],
         [nix.force(cudaPackagesMajorVersionedName), nix.thunk(() => nix.sel(final, nix.key(nix.force(cudaPackagesMajorMinorVersionedName))))],
         [cudaPackagesUnversionedName, nix.thunk(() => nix.sel(final, nix.key(nix.force(cudaPackagesMajorVersionedName))))],
       ])));
   })());
   const cudaPackagesFixedPoint = (finalCudaPackages) => nix.update({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     cudaMajorMinorPatchVersion: cudaMajorMinorPatchVersion,
     cudaMajorMinorVersion: cudaMajorMinorVersion,
     cudaMajorVersion: cudaMajorVersion,
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
     cudaAtLeast: nix.thunk(() => nix.app(versionAtLeast, cudaMajorMinorVersion)),
     manifests: manifests,
     backendStdenv: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./backendStdenv")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         _cuda: _cuda,
         config: config,
         cudaMajorMinorVersion: cudaMajorMinorVersion,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         stdenvAdapters: nix.thunk(() => nix.attr(pkgs, "stdenvAdapters")),
       })))),
     buildRedist: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./buildRedist")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         _cuda: _cuda,
         lib: lib,
         autoAddDriverRunpath: nix.thunk(() => nix.attr(pkgs, "autoAddDriverRunpath")),
@@ -99,32 +99,32 @@ export default nix.lambda((args) => (() => {
         const from_7 = nix.thunk(() => nix.sel(finalCudaPackages, "backendStdenv"));
         const from_8 = nix.thunk(() => nix.sel(_cuda, "db"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cudaCapabilities: nix.thunk(() => nix.attr(from_7, "cudaCapabilities")),
         cudaForwardCompat: nix.thunk(() => nix.attr(from_7, "cudaForwardCompat")),
         cudaCapabilityToInfo: nix.thunk(() => nix.attr(from_8, "cudaCapabilityToInfo")),
       };
       })())), {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       dropDots: dropDots,
       cudaComputeCapabilityToName: (cudaCapability) => nix.sel(_cuda, "db", "cudaCapabilityToInfo", nix.key(nix.force(cudaCapability)), "archName"),
       dropDot: dropDots,
       isJetsonBuild: nix.thunk(() => nix.sel(finalCudaPackages, "backendStdenv", "hasJetsonCudaCapability")),
     })),
   }, nix.app(packagesFromDirectoryRecursive, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       callPackage: nix.thunk(() => nix.attr(finalCudaPackages, "callPackage")),
       directory: nix.path(here, "./packages"),
     }))));
   const composedExtensions = nix.thunk(() => nix.app(composeManyExtensions, nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), nix.thunk(() => ({ __proto__: pos$8, lib: lib })))),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), nix.thunk(() => ({ [nix.POS]: pos$8, lib: lib })))),
       ])), nix.sel(_cuda, "extensions")))));
   const cudaPackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       splicePackages: nix.thunk(() => nix.sel(pkgs$, "splicePackages")),
       newScope: nix.thunk(() => nix.sel(pkgs$, "newScope")),
     })), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       otherSplices: nix.thunk(() => nix.app(nix.sel(pkgs$, "generateSplicesForMkScope"), nix.thunk(() => ["cudaPackages"]))),
       f: nix.thunk(() => nix.app(extends$, composedExtensions, cudaPackagesFixedPoint)),
     }))));

@@ -15,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   const asciidoc = nix.arg($, "asciidoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cc1541",
       version: "4.2",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ptv_claus",
           repo: "cc1541",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-+9ri3fUmxLHXxq9vNMjeNXfHula3PZpjewHO6z7pIhc=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, ENABLE_MAN: false })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ENABLE_MAN: false })),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       nativeBuildInputs: nix.thunk(() => [asciidoc]),
       doInstallCheck: true,
       checkPhase: "runHook preCheck\n\nmake test\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool for creating Commodore 1541 Floppy disk images in D64, D71 or D81 format",
         homepage: "https://bitbucket.org/ptv_claus/cc1541/src/master/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

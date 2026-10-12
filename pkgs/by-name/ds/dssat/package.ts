@@ -21,23 +21,23 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const dos2unix = nix.arg($, "dos2unix");
   const dataRepo = nix.argOr($, "dataRepo", () => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "DSSAT",
       repo: "dssat-csm-data",
       rev: "v4.8.2.8",
       hash: "sha256-hbSBKEvdSd1lfbemfp4Lk4/JcGMXGVjm1x7P7lmmuA0=",
     }))));
   const charLimitPatch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/DSSAT/dssat-csm-os/pull/417/commits/9215012a297c074f392b5e7eb90b8c20495f13f7.patch",
       hash: "sha256-WwJR5lnWtR3aYWZmk8pBC0/qaRqY0UrWHIaYp2ajImE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dssat",
       version: "4.8.2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "DSSAT",
           repo: "dssat-csm-os",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ cp -r ${dataRepo}/* $out/share/dssat/Data/
 makeWrapper $out/share/dssat/dscsm048 $out/bin/dscsm048
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/DSSAT/dssat-csm-os",
         description: "Cropping System Model",
         mainProgram: "dscsm048",

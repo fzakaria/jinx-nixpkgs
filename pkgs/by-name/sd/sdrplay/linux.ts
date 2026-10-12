@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = "source";
       const dontBuild = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         majorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version_1)),
         majorMinorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)),
       }));
@@ -48,7 +48,7 @@ cp -r inc/* $out/include/
 awk 'index($0, "cat > /etc/udev/rules.d/66-sdrplay.rules"){flag=1; next} /EOF/{flag=0} flag' install_lib.sh > $out/lib/udev/rules.d/66-sdrplay.rules
 `);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname_1,
         version: version_1,
         src: src_1,

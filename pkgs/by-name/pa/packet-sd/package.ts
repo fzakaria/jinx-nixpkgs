@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "prometheus-packet-sd",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "packethost",
           repo: "prometheus-packet-sd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,17 +30,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/packethost/prometheus-packet-sd/commit/bf0ed3a1da4d0f797bd29e4a1857ac65a1d04750.patch",
             hash: "sha256-ZLV9lyqZxpIQ1Cmzy/nY/85b4QWF5Ou0XcdrZXxck2E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/packethost/prometheus-packet-sd/commit/a0afc2a4c3f49dc234d0d2c4901df25b4110b3ec.patch",
             hash: "sha256-M5133+r77z21/Ulnbz+9sGbbuY5UpU1+22iY464UVAU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/packethost/prometheus-packet-sd/commit/41977f11b449677497a93456c499916c68e56334.patch",
             hash: "sha256-ffXxbwatKBw7G1fdmsZaT7WX4OmYFMJnueL/kEKc1VE=",
           })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       subPackages: nix.thunk(() => ["."]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Prometheus service discovery for Equinix Metal",
         homepage: "https://github.com/packethost/prometheus-packet-sd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

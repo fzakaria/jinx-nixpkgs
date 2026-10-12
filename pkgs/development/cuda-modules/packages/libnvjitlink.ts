@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const cudaAtLeast = nix.arg($, "cudaAtLeast");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "libnvjitlink",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "include", "lib", "static"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "12.2")), nix.thunk(() => ["stubs"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "APIs which can be used at runtime to link together GPU device code",
         homepage: "https://docs.nvidia.com/cuda/nvjitlink",
       })),

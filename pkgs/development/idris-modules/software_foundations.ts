@@ -14,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const pruviloj = nix.arg($, "pruviloj");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "software_foundations",
       version: "2017-11-04",
       idrisDeps: nix.thunk(() => [pruviloj]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "idris-hackers",
           repo: "software-foundations",
           rev: "eaa63d1a572c78e7ce68d27fd49ffdc01457e720",
           sha256: "1rkjm0x79n1r3ah041a5bik7sc3rvqs42a2c3g139hlg5xd028xf",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Code for Software Foundations in Idris",
         homepage: "https://github.com/idris-hackers/software-foundations",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

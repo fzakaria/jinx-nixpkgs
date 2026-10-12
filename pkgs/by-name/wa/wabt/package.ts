@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wabt",
       version: "1.0.41",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "WebAssembly",
           repo: "wabt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCMAKE_PROJECT_VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "WebAssembly Binary Toolkit",
         longDescription: "WABT (pronounced \"wabbit\") is a suite of tools for WebAssembly, including:\n * wat2wasm: translate from WebAssembly text format to the WebAssembly\n   binary format\n * wasm2wat: the inverse of wat2wasm, translate from the binary format\n   back to the text format (also known as a .wat)\n * wasm-objdump: print information about a wasm binary. Similar to\n   objdump.\n * wasm-interp: decode and run a WebAssembly binary file using a\n   stack-based interpreter\n * wat-desugar: parse .wat text form as supported by the spec interpreter\n   (s-expressions, flat syntax, or mixed) and print \"canonical\" flat\n   format\n * wasm2c: convert a WebAssembly binary file to a C source and header\n",
         homepage: "https://github.com/WebAssembly/wabt",

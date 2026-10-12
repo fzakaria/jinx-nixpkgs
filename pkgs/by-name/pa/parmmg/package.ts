@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const vtk = nix.arg($, "vtk");
   const withVtk = nix.argOr($, "withVtk", () => true);
   const testers = nix.arg($, "testers");
-  const vtk_mpi = nix.thunk(() => nix.app(nix.sel(vtk, "override"), nix.thunk(() => ({ __proto__: pos$1, mpiSupport: true }))));
+  const vtk_mpi = nix.thunk(() => nix.app(nix.sel(vtk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpiSupport: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "parmmg",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "MmgTools",
           repo: "ParMmg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/MmgTools/ParMmg/commit/a9551c502c58a1f8a109fb17d8f45cb9370f8fc6.patch?full_index=1",
             hash: "sha256-i0KwzseffeI9UYIYuyNYmdF9eTZ+nQQfSI6ukSowIYs=",
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mpi,
         metis,
         scotch,
-        nix.thunk(() => nix.app(nix.sel(mmg, "override"), nix.thunk(() => ({ __proto__: pos$4, withVtk: withVtk, vtk: vtk_mpi })))),
+        nix.thunk(() => nix.app(nix.sel(mmg, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withVtk: withVtk, vtk: vtk_mpi })))),
       ], nix.app(nix.sel(lib, "optional"), withVtk, vtk_mpi))),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
@@ -66,18 +66,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_VTK", withVtk)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               moduleNames: nix.thunk(() => ["ParMmg"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Distributed parallelization of 3D volume mesh adaptation",
         homepage: "http://www.mmgtools.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

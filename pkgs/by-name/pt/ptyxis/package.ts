@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libportal_gtk4 = nix.arg($, "libportal-gtk4");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ptyxis",
       version: "50.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "chergert",
           repo: "ptyxis",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook4, desktop_file_utils]),
       buildInputs: nix.thunk(() => [libadwaita, json_glib, vte_gtk4, libportal_gtk4, pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal for GNOME with first-class support for containers",
         homepage: "https://gitlab.gnome.org/chergert/ptyxis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

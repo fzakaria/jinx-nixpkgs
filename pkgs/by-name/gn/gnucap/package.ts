@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const termcap = nix.arg($, "termcap");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnucap",
       version: "20260729",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://https.git.savannah.gnu.org/git/gnucap.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-l9FA/7Kl8MgbrbWMQPplo5ohvKcNeriJEgLzZrUTEw8=",
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "installManPage man/*\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           verilog: nix.thunk(() => nix.app(runCommand, "gnucap-verilog-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo "attach mgsim" | ${nix.app(nix.sel(finalAttrs, "finalPackage", "withPlugins"), (p) => [nix.thunk(() => nix.sel(p, "verilog"))])}/bin/gnucap -a msgsim > $out
 cat $out | grep "verilog: already installed"
 `))),
@@ -54,7 +54,7 @@ done
 ${nix.app(nix.sel(lib, "getExe"), gnucap)}
 `)));
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-with-plugins`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               propagatedBuildInputs: selectedPlugins,
@@ -67,7 +67,7 @@ cp ${wrapper} $out/bin/gnucap
         })(),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Gnu Circuit Analysis Package",
         longDescription: "Gnucap is a modern general purpose circuit simulator with several advantages over Spice derivatives.\nIt performs nonlinear dc and transient analyses, fourier analysis, and ac analysis.\n",
         homepage: "http://www.gnucap.org/",

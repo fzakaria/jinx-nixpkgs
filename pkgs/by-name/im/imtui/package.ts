@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "imtui";
       const version = "1.0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ggerganov",
           repo: "imtui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ chmod -R u+w third-party/imgui
         "-DIMTUI_INSTALL_IMGUI_HEADERS:BOOL=OFF",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Immediate mode text-based user interface library",
         longDescription: "ImTui is an immediate mode text-based user interface library. Supports 256\nANSI colors and mouse/keyboard input.\n",
         homepage: "https://imtui.ggerganov.com",
@@ -56,7 +56,7 @@ chmod -R u+w third-party/imgui
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

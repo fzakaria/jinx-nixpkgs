@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "faba-icon-theme";
       const version = "4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snwh",
           repo: "faba-icon-theme",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const postPatch = "patchShebangs meson/post_install.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sexy and modern icon theme with Tango influences",
         homepage: "https://snwh.org/moka",
         license: nix.thunk(() => (() => {
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

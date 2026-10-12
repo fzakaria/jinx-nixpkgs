@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "zstd",
       version: "1.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "facebook",
           repo: "zstd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ sed -i \\
   tests/playTests.sh
 `))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (value) => nix.str`-DZSTD_${name}:BOOL=${(nix.asBool(value) ? "ON" : "OFF")}`, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           BUILD_SHARED: nix.thunk(() => !nix.asBool(static$)),
           BUILD_STATIC: enableStatic,
           BUILD_CONTRIB: buildContrib,
@@ -89,27 +89,27 @@ substituteInPlace ../programs/zstdless \\
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "for link in unzstd zstdcat zstdmt; do\n  ln -sf zstd.exe $bin/bin/$link\ndone\n")),
       outputs: nix.thunk(() => nix.concat(["bin", "dev"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isUnix")), "man"), ["out"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           libarchive: libarchive,
           rocksdb: rocksdb,
           "arrow-cpp": arrow_cpp,
-          libzip: nix.thunk(() => nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ __proto__: pos$3, withZstd: true })))),
-          curl: nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$4, zstdSupport: true })))),
+          libzip: nix.thunk(() => nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withZstd: true })))),
+          curl: nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, zstdSupport: true })))),
           "python-zstd": nix.thunk(() => nix.sel(python3Packages, "zstd")),
           "haskell-zstd": nix.thunk(() => nix.sel(haskellPackages, "zstd")),
           "haskell-hs-zstd": nix.thunk(() => nix.sel(haskellPackages, "hs-zstd")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Zstandard real-time compression algorithm",
         longDescription: "Zstd, short for Zstandard, is a fast lossless compression algorithm,\ntargeting real-time compression scenarios at zlib-level compression\nratio. Zstd can also offer stronger compression ratio at the cost of\ncompression speed. Speed/ratio trade-off is configurable by small\nincrement, to fit different situations. Note however that decompression\nspeed is preserved and remain roughly the same at all settings, a\nproperty shared by most LZ compression algorithms, such as zlib.\n",
         homepage: "https://facebook.github.io/zstd/",

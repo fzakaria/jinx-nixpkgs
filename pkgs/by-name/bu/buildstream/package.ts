@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const enableBuildstreamPlugins = nix.argOr($, "enableBuildstreamPlugins", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "buildstream",
       version: "2.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "buildstream",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,15 +69,15 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd bst \\\n  --bash src/buildstream/data/bst \\\n  --zsh src/buildstream/data/zsh/_bst\n",
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bst`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, ignoredVersions: "dev" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "dev" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.sel(nixosTests, "buildstream")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/apache/buildstream/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Powerful software integration tool",
         downloadPage: "https://buildstream.build/install.html",

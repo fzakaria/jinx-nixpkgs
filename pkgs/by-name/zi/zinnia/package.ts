@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zinnia",
       version: "2016-08-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "taku910",
           repo: "zinnia",
           rev: "fd74d8c8680bb3df8692279151ea6339ab68e32b",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/zinnia`),
       patches: nix.thunk(() => [nix.path(here, "./remove-random-shuffle-usage.patch")]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Online hand recognition system with machine learning",
         homepage: "http://taku910.github.io/zinnia/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

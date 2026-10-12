@@ -21,28 +21,28 @@ export default nix.lambda((args) => (() => {
   const mainPort = 11434n;
   const altPort = 11435n;
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "ollama",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       cpu: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            ollama: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            ollama: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
         };
       })(), formals$2),
       altAddress: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            ollama: nix.thunk(() => ({ __proto__: pos$5, enable: true, port: altPort })),
+            [nix.POS]: pos$6,
+            ollama: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, port: altPort })),
           })),
         };
       })(), formals$3),

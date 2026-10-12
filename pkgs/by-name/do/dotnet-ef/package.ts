@@ -12,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "dotnet-ef",
       version: "10.0.9",
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")),
       nugetHash: "sha256-RqYc9rMfGI88Xo/kNMYbqzbfv4iyTFTk/I/RFLIJ3XM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Tools to help with design-time development tasks",
         longDescription: "The Entity Framework Core tools help with design-time development tasks.\nThey're primarily used to manage Migrations and to scaffold a DbContext and entity types by reverse engineering the schema of a database.\n",
         downloadPage: "https://www.nuget.org/packages/dotnet-ef",

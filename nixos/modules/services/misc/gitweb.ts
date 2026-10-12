@@ -38,36 +38,36 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "gitweb"));
   const cfgNginx = nix.thunk(() => nix.sel(config, "services", "gitweb", "nginx"));
-  const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "gitweb", "override"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "gitwebTheme")), nix.thunk(() => ({ __proto__: pos$1, gitwebTheme: true }))))));
+  const package$ = nix.thunk(() => nix.app(nix.sel(pkgs, "gitweb", "override"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "gitwebTheme")), nix.thunk(() => ({ [nix.POS]: pos$1, gitwebTheme: true }))))));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         gitweb: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           projectroot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "/srv/git",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to git projects (bare repositories) that should be served by\ngitweb. Must not end with a slash.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "Verbatim configuration text appended to the generated gitweb.conf file.\n",
               example: "$feature{'highlight'}{'default'} = [1];\n$feature{'ctags'}{'default'} = [1];\n$feature{'avatar'}{'default'} = ['gravatar'];\n",
             })))),
           gitwebTheme: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Use an alternative theme for gitweb, strongly inspired by GitHub.\n",
             })))),
           gitwebConfigFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "gitweb.conf", nix.thunk(() => nix.str`# path to git projects (<project>.git)
 $projectroot = "${nix.sel(cfg, "projectroot")}";
 $highlight_bin = "${nix.sel(pkgs, "highlight")}/bin/highlight";
@@ -79,33 +79,33 @@ ${nix.sel(cfg, "extraConfig")}
               internal: true,
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 default: false,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 description: "If true, enable gitweb in nginx.\n",
               })))),
             location: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: "/gitweb",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Location to serve gitweb on.\n",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 default: "nginx",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Existing user that the CGI process will belong to. (Default almost surely will do.)\n",
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 default: "nginx",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Group that the CGI process will belong to. (Set to `config.services.gitolite.group` if you are using gitolite.)\n",
               })))),
             virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: "_",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "VirtualHost to serve gitweb on. Default is catch-all.\n",
@@ -122,18 +122,18 @@ ${nix.sel(cfg, "extraConfig")}
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "nginx", "gitweb", "virtualHost"]), nix.thunk(() => ["services", "gitweb", "nginx", "virtualHost"]))),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfgNginx, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             gitweb: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: "GitWeb service",
               script: nix.thunk(() => nix.str`${package$}/gitweb.cgi --fastcgi --nproc=1`),
-              environment: nix.thunk(() => ({ __proto__: pos$15, FCGI_SOCKET_PATH: "/run/gitweb/gitweb.sock" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$15, FCGI_SOCKET_PATH: "/run/gitweb/gitweb.sock" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 User: nix.thunk(() => nix.sel(cfgNginx, "user")),
                 Group: nix.thunk(() => nix.sel(cfgNginx, "group")),
                 RuntimeDirectory: nix.thunk(() => ["gitweb"]),
@@ -143,16 +143,16 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           nginx: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfgNginx, "virtualHost"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 locations: nix.thunk(() => nix.attrsDyn({}, [
-                  [nix.str`${nix.sel(cfgNginx, "location")}/static/`, nix.thunk(() => ({ __proto__: pos$20, alias: nix.thunk(() => nix.str`${package$}/static/`) }))],
+                  [nix.str`${nix.sel(cfgNginx, "location")}/static/`, nix.thunk(() => ({ [nix.POS]: pos$20, alias: nix.thunk(() => nix.str`${package$}/static/`) }))],
                   [nix.str`${nix.sel(cfgNginx, "location")}/`, nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_param GITWEB_CONFIG ${nix.sel(cfg, "gitwebConfigFile")};
 fastcgi_pass unix:/run/gitweb/gitweb.sock;
@@ -164,7 +164,7 @@ fastcgi_pass unix:/run/gitweb/gitweb.sock;
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$26, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$26, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=gitweb.ts.map

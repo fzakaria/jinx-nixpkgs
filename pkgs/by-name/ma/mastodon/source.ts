@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => []);
   const version = "4.7.3";
   return nix.app(applyPatches, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mastodon",
           repo: "mastodon",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-cKLjdk5FWcM4e5bh2P0W2UDP+9CKI6FgHH9vDnjg2xQ=",
           passthru: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             version: version,
             yarnHash: "sha256-PTyRdKzbDTjXtIWuaFK1zY3Q1ThTXTdoit+ZUKL7mGE=",
             yarnMissingHashes: nix.path(here, "./missing-hashes.json"),

@@ -9,11 +9,11 @@ const pos$4 = nix.positions(here + "/gemset.nix", [["source", 11, 5], ["version"
 const pos$5 = nix.positions(here + "/gemset.nix", [["json", 2, 3], ["watson-ruby", 10, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   json: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "01v6jjpvh3gnq6sgllpfqahlgxzj50ailwhj9b3cd20hi2dx0vxp",
       type: "gem",
@@ -21,9 +21,9 @@ export default nix.thunk(() => ({
     version: "2.1.0",
   })),
   "watson-ruby": nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1d5m29nr0i030q8ygmbapwri5ndcg2q6lf8a15bk79lfcp9xyj9w",
       type: "gem",

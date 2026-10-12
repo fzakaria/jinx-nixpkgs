@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "cachix-agent"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -40,40 +40,40 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "cachix-agent": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Cachix Deploy Agent: <https://docs.cachix.org/deploy/>")),
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Agent name, usually same as the hostname",
               default: nix.thunk(() => nix.sel(config, "networking", "hostName")),
               defaultText: "config.networking.hostName",
             })))),
           verbose: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Enable verbose output",
               default: false,
             })))),
           profile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Profile name, defaults to 'system' (NixOS).",
             })))),
           host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Cachix uri to use.",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cachix", nix.thunk(() => ({})))),
           credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/etc/cachix-agent.token",
               description: "Required file that needs to contain CACHIX_AGENT_TOKEN=...\n",
@@ -82,22 +82,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "cachix-agent": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Cachix Deploy Agent",
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(config, "nix", "package"))]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$10, USER: "root" })),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$11, "X-StopOnRemoval": false })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$10, USER: "root" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, "X-StopOnRemoval": false })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 KillMode: "process",
                 Restart: "always",
                 RestartSec: 5n,

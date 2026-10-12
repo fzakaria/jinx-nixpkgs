@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const libzim = nix.arg($, "libzim");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "slobdict",
       version: "1.2.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MuntashirAkon",
           repo: "SlobDict",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,12 +74,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "chmod +x $out/bin/slobdict\n\nmkdir -p $out/share/gnome-shell/extensions/slobdict@muntashir.dev\ncp -r ../gnome-extension/slobdict@muntashir.dev/schemas $out/share/gnome-shell/extensions/slobdict@muntashir.dev\ncp ../gnome-extension/slobdict@muntashir.dev/{extension.js,metadata.json} $out/share/gnome-shell/extensions/slobdict@muntashir.dev\n",
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extensionPortalSlug: "slobdict",
         extensionUuid: "slobdict@muntashir.dev",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/MuntashirAkon/SlobDict",
         description: "Modern, lightweight GTK 4 dictionary app",
         mainProgram: "slobdict",

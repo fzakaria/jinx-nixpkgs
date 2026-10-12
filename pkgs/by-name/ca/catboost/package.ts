@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "catboost",
       version: "1.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "catboost",
           repo: "catboost",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ done
           nix.thunk(() => nix.sel(cudaPackages, "libcublas")),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PROGRAM_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         CUDAHOSTCXX: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/cc`))),
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-fuse-ld=lld")),
@@ -96,11 +96,11 @@ install -Dm444 catboost/libs/train_interface/libcatboost${nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "High-performance library for gradient boosting on decision trees",
         longDescription: "A fast, scalable, high performance Gradient Boosting on Decision Trees\nlibrary, used for ranking, classification, regression and other machine\nlearning tasks for Python, R, Java, C++. Supports computation on CPU and GPU.\n",
         changelog: nix.thunk(() => nix.str`https://github.com/catboost/catboost/releases/tag/v${nix.sel(finalAttrs, "version")}`),

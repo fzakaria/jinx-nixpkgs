@@ -7,16 +7,16 @@ const pos$2 = nix.positions(here + "/shards.nix", [["owner", 9, 5], ["repo", 10,
 const pos$3 = nix.positions(here + "/shards.nix", [["fifo", 2, 3], ["rsub", 8, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   fifo: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     owner: "alexherbo2",
     repo: "fifo.cr",
     rev: "37a2cc2718af0f8a1c50071106d7a5ca3a0d3da2",
     sha256: "0syh2819dzsfb562z645sajfh7xplhh3mxdachjnzlsdfqkxw85r",
   })),
   rsub: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     owner: "alexherbo2",
     repo: "rsub.cr",
     rev: "43c6b9836ee281328bccfdf8c669bab26448e3b3",

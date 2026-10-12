@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pydoe = nix.arg($, "pydoe");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pwlf",
       version: "2.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cjekel",
           repo: "piecewise_linear_fit_py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pwlf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fit piecewise linear data for a specified number of line segments",
         homepage: "https://jekel.me/piecewise_linear_fit_py/",
         changelog: nix.thunk(() => nix.str`https://github.com/cjekel/piecewise_linear_fit_py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -9,13 +9,13 @@ const pos$4 = nix.positions(here + "/gemset.nix", [["dependencies", 13, 5], ["gr
 const pos$5 = nix.positions(here + "/gemset.nix", [["comp_tree", 2, 3], ["drake", 12, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   comp_tree: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0dj9lkfxcczn67l1j12dcxswrfxxd1zgxa344zk6vqs2gwwhy9m9",
       type: "gem",
@@ -23,12 +23,12 @@ export default nix.thunk(() => ({
     version: "1.1.3",
   })),
   drake: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     dependencies: nix.thunk(() => ["comp_tree"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "09gkmdshwdmdnkdxi03dv4rk1dip0wdv6dx14wscrmi0jyk86yag",
       type: "gem",

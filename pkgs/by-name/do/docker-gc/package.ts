@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "docker-gc",
       version: "0.1.0-unstable-2015-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spotify",
           repo: "docker-gc",
           rev: "b0cc52aa3da2e2ac0080794e0be6e674b1f063fc",
@@ -38,7 +38,7 @@ wrapProgram $out/bin/docker-gc \\
     --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [docker, coreutils, procps, gnused, findutils, gnugrep]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Docker garbage collection of containers and images",
         mainProgram: "docker-gc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

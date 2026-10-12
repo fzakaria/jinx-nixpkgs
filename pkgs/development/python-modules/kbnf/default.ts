@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dan-wanna-M",
           repo: "kbnf",
           rev: nix.thunk(() => nix.str`v${version}-python`),
@@ -31,20 +31,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
-      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
+      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
       const build_system = nix.thunk(() => [
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]);
       const dependencies = nix.thunk(() => [numpy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         efficient_logits_mask: nix.thunk(() => [triton]),
         torch: nix.thunk(() => [torch]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["kbnf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast constrained decoding engine based on context free grammar",
         homepage: "https://pypi.org/project/kbnf/",
         license: nix.thunk(() => (() => {
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nickw444",
           repo: "nessclient",
           tag: version,
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [justbackoff, pyserial_asyncio_fast]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nessclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python implementation/abstraction of the Ness D8x/D16x Serial Interface ASCII protocol",
         homepage: "https://github.com/nickw444/nessclient",
         changelog: nix.thunk(() => nix.str`https://github.com/nickw444/nessclient/releases/tag/${nix.sel(src, "tag")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ness-cli",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

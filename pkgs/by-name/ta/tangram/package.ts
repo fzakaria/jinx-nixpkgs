@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tangram",
       version: "3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sonnyp",
           repo: "Tangram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "gstreamer")),
           nix.thunk(() => nix.lookup(w, "gst-libav")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
           nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
         ];
       })())),
@@ -86,11 +86,11 @@ substituteInPlace src/bin.js troll/gjspack/bin/gjspack \\
 `),
       preFixup: "sed -e '2iimports.package._findEffectiveEntryPointName = () => \"re.sonny.Tangram\"' \\\n  -i $out/bin/re.sonny.Tangram\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Run web apps on your desktop",
         mainProgram: "re.sonny.Tangram",
         homepage: "https://github.com/sonnyp/Tangram",

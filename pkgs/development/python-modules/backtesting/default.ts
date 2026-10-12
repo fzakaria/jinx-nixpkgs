@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-c4od7ij8U98u2jXqLy0aHDfdugHfFCI/yeh9gKHvvC4=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, pandas, bokeh]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backtest trading strategies in Python",
         homepage: "https://kernc.github.io/backtesting.py/",
         changelog: nix.thunk(() => nix.str`https://github.com/kernc/backtesting.py/blob/${version}/CHANGELOG.md`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

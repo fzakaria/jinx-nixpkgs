@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtkspell",
       version: "3.0.10",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gtkspell/gtkspell3-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0cjp6xdcnzh6kka42w9g0w2ihqjlq8yl8hjm9wsfnixk6qwgch5h",
         })))),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [enchant]),
       configureFlags: nix.thunk(() => ["--enable-introspection", "--enable-vala"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gtkspell.sourceforge.net/",
         description: "Word-processor-style highlighting GtkTextView widget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

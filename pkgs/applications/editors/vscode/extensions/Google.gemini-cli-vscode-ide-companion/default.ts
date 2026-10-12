@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const vsce = nix.arg($, "vsce");
   const gemini_cli = nix.arg($, "gemini-cli");
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gemini-cli-vscode-ide-companion",
       version: nix.thunk(() => nix.attr(gemini_cli, "version")),
       vscodeExtPublisher: "Google",
       vscodeExtName: "gemini-cli-vscode-ide-companion",
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: nix.thunk(() => nix.app(nix.sel(gemini_cli, "overrideAttrs"), (oldAttrs) => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "gemini-cli-vscode-ide-companion-vsix",
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.vsix`),
           installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -41,7 +41,7 @@ runHook postInstall
 `),
         }))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Enable Gemini CLI with direct access to your IDE workspace",
         homepage: "https://github.com/google-gemini/gemini-cli",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Google.gemini-cli-vscode-ide-companion",
@@ -51,9 +51,9 @@ runHook postInstall
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         problems: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           removal: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             message: "Unpaid tier and Google AI Pro/Ultra users: Gemini CLI was replaced by Antigravity CLI.",
             urls: nix.thunk(() => [
               "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",

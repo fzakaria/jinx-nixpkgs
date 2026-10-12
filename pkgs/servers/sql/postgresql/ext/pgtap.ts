@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const which = nix.arg($, "which");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pgtap",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theory",
           repo: "pgtap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
         which,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           extension: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "pgtap-test",
               dontUnpack: true,
               doCheck: true,
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Unit testing framework for PostgreSQL",
         longDescription: "pgTAP is a unit testing framework for PostgreSQL written in PL/pgSQL and PL/SQL.\nIt includes a comprehensive collection of TAP-emitting assertion functions,\nas well as the ability to integrate with other TAP-emitting test frameworks.\nIt can also be used in the xUnit testing style.\n",
         maintainers: [],

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wayprompt",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~leon_plickat",
           repo: "wayprompt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       postFixup: "substituteInPlace $out/bin/wayprompt-ssh-askpass \\\n  --replace-fail wayprompt $out/bin/wayprompt\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~leon_plickat/wayprompt",
         description: "Multi-purpose (password-)prompt tool for Wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -379,12 +379,12 @@ export default nix.lambda((args) => (() => {
   const types_aiobotocore_xray = nix.arg($, "types-aiobotocore-xray");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "types-aiobotocore",
       version: "3.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "types_aiobotocore",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-x+0IC23EFM3U41j03usOtz3Msb/VObLce5QiYYq3Bgg=",
@@ -392,7 +392,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [botocore_stubs, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         accessanalyzer: nix.thunk(() => [types_aiobotocore_accessanalyzer]),
         account: nix.thunk(() => [types_aiobotocore_account]),
         acm: nix.thunk(() => [types_aiobotocore_acm]),
@@ -1125,7 +1125,7 @@ export default nix.lambda((args) => (() => {
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Type annotations for aiobotocore generated with mypy-boto3-builder",
         homepage: "https://pypi.org/project/types-aiobotocore/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

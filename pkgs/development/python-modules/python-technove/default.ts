@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const python_backoff = nix.arg($, "python-backoff");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-technove",
       version: "2.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Moustachauve",
           repo: "pytechnove",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["technove"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to interact with TechnoVE local device API",
         homepage: "https://github.com/Moustachauve/pytechnove",
         changelog: nix.thunk(() => nix.str`https://github.com/Moustachauve/pytechnove/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

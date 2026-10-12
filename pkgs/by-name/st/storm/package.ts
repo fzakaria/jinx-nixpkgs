@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const extraJars = nix.argOr($, "extraJars", () => []);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "apache-storm",
       version: "2.8.3",
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/storm/${nix.sel(finalAttrs, "name")}/${nix.sel(finalAttrs, "name")}.tar.gz`),
           hash: "sha256-W7a/4vJgGhiAxk0l+1jY+38Mpz8WOLodhlW6l6nQHEc=",
         })))),
@@ -73,18 +73,18 @@ ${nix.app(nix.sel(lib, "concatMapStrings"), (jar) => nix.str`ln -s ${jar};
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "storm version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://storm.apache.org/",
         description: "Distributed realtime computation system",
         sourceProvenance: nix.thunk(() => (() => {

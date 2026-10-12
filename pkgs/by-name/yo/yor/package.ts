@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yor",
       version: "0.1.200",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bridgecrewio",
           repo: "yor",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ EOF
 `),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible auto-tagger for your IaC files. The ultimate way to link entities in the cloud back to the codified resource which created it",
         homepage: "https://github.com/bridgecrewio/yor",
         changelog: nix.thunk(() => nix.str`https://github.com/bridgecrewio/yor/releases/tag/${nix.sel(finalAttrs, "version")}`),

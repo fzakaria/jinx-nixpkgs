@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zix",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drobilla",
           repo: "zix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dbenchmarks=disabled", "-Ddocs=disabled"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight C99 portability and data structure library",
         homepage: "https://gitlab.com/drobilla/zix",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/drobilla/zix/-/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

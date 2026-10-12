@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(git, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       svnSupport: nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))),
       guiSupport: true,
       sendEmailSupport: nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))),

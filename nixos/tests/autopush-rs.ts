@@ -28,42 +28,42 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     _class: "nixosTest",
     name: "autopush-rs",
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             redis: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               servers: nix.thunk(() => ({
-                __proto__: pos$3,
-                "autopush-rs": nix.thunk(() => ({ __proto__: pos$2, enable: true, port: 6000n })),
+                [nix.POS]: pos$3,
+                "autopush-rs": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: 6000n })),
               })),
             })),
           })),
           system: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               "autopush-autoconnect": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "autopush-rs", "services", "autoconnect"))]),
                 autoconnect: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     crypto_key: "[fZQX8jgdESUYFTYfWw3Dv5RRMuwYJPPaaPcbUgHM69Q=]",
                     db_dsn: nix.thunk(() => nix.str`redis://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "redis", "servers", "autopush-rs", "port")))}`),
                     port: 8000n,
@@ -71,12 +71,12 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "autopush-autoendpoint": nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "autopush-rs", "services", "autoendpoint"))]),
                 autoendpoint: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     crypto_key: "[fZQX8jgdESUYFTYfWw3Dv5RRMuwYJPPaaPcbUgHM69Q=]",
                     auth_keys: "[fZQX8jgdESUYFTYfWw3Dv5RRMuwYJPPaaPcbUgHM69Q=]",
                     db_dsn: nix.thunk(() => nix.str`redis://localhost:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "redis", "servers", "autopush-rs", "port")))}`),
@@ -87,15 +87,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [8080n, 8000n]) })),
+            [nix.POS]: pos$15,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [8080n, 8000n]) })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.wait_for_unit(\"autopush-autoconnect.service\")\nmachine.wait_for_unit(\"autopush-autoendpoint.service\")\nmachine.wait_for_open_port(8080)\nmachine.wait_for_open_port(8000)\nmachine.succeed(\"curl -s -f http://localhost:8080/health\")\nmachine.succeed(\"curl -s -f http://localhost:8000/health\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zimward"))];

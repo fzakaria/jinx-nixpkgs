@@ -37,20 +37,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mace-torch",
       version: "0.3.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acesuit",
           repo: "mace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-sJ/3c7kPe99vkliixUMqqQi2OiL3CCUdlcgpDZ/PUHA=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CI: true })),
       pythonRelaxDeps: nix.thunk(() => ["e3nn"]),
       dependencies: nix.thunk(() => [
         ase,
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
         "test_run_train_soft_freeze",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_mace", "test_mace_compile_stress"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and accurate machine learning interatomic potentials with higher order equivariant message passing",
         homepage: "https://github.com/acesuit/mace",
         changelog: nix.thunk(() => nix.str`https://github.com/acesuit/mace/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

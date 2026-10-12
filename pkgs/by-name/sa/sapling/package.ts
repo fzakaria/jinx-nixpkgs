@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const enableMinimal = nix.argOr($, "enableMinimal", () => false);
   const version = "0.2.20250521-115337+25ed6ac4";
   const myCargoSetupHook = nix.thunk(() => nix.app(nix.sel(rustPlatform, "cargoSetupHook", "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cargoConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.sel(old, "cargoConfig")))),
     })));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "facebook",
       repo: "sapling",
       tag: version,
@@ -50,12 +50,12 @@ export default nix.lambda((args) => (() => {
     }))));
   const addonsSrc = nix.thunk(() => nix.str`${src}/addons`);
   const yarnOfflineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       yarnLock: nix.thunk(() => nix.str`${addonsSrc}/yarn.lock`),
       sha256: "sha256-9l4lSzFTF5rSByO388tosJCxOb65Nnua6HaDD7F62No=",
     }))));
   const isl = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sapling-isl",
       src: addonsSrc,
       version: version,
@@ -81,17 +81,17 @@ runHook postBuild
       installPhase: "runHook preInstall\n\nmkdir -p $out\ninstall isl-dist.tar.xz $out/isl-dist.tar.xz\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(python312Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       format: "setuptools",
       pname: "sapling",
       src: src,
       version: version,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/eden/scm`),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           lockFile: nix.path(here, "./Cargo.lock"),
           outputHashes: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "abomonation-0.7.3+smallvec1": "sha256-AxEXR6GC8gHjycIPOfoViP7KceM29p2ZISIt4iwJzvM=",
             "cloned-0.1.0": "sha256-026OKsszbF2aPWpA8JBc6KwZHxEqwnKIluzDjO/opgc=",
             "fb303_core-0.0.0": "sha256-IJKAWgBLrLnWItw6UTNdwjuTDO6dUfqyKsVv2aW6Kyo=",
@@ -118,7 +118,7 @@ substituteInPlace lib/config/loader/src/builtin_static/core.rs \\
       nativeBuildInputs: nix.thunk(() => nix.concat([curl, pkg_config, myCargoSetupHook, cargo, rustc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [gettext])))),
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curl, libiconv])))),
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         HGNAME: "sl",
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libclang)}/lib`),
         SAPLING_OSS_BUILD: "true",
@@ -132,9 +132,9 @@ substituteInPlace lib/config/loader/src/builtin_static/core.rs \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$8, isl: isl, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, isl: isl, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Scalable, User-Friendly Source Control System",
         homepage: "https://sapling-scm.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

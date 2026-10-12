@@ -23,13 +23,13 @@ export default nix.thunk(() => (() => {
     const overrides = nix.argOr($, "overrides", () => (x) => (y) => ({}));
     const self = nix.thunk(() => nix.update(packages, nix.app(overrides, self, packages)));
     const packages = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       meck: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "meck",
           version: "0.8.13",
           src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               pkg: "meck",
               version: "0.8.13",
               sha256: "sha256-008BPBVttRrVfMVWiRuXIOahwd9f4uFa+ZnITWzr6xo=",

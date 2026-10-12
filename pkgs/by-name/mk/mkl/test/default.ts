@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const execution = nix.argOr($, "execution", () => "seq");
   const linkType = nix.thunk(() => (nix.asBool(enableStatic) ? "static" : "dynamic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mkl-test",
       version: nix.thunk(() => nix.sel(mkl, "version")),
       unpackPhase: nix.thunk(() => nix.str`cp ${nix.path(here, "./test.c")} test.c
 `),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(mkl, "override"), nix.thunk(() => ({ __proto__: pos$1, enableStatic: enableStatic })))),
+        nix.thunk(() => nix.app(nix.sel(mkl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableStatic: enableStatic })))),
       ]),
       doCheck: true,
       buildPhase: nix.thunk(() => nix.str`# Check regular Nix build.

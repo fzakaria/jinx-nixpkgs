@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "corerad",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mdlayher",
           repo: "corerad",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
 ldflags+=" -X github.com/mdlayher/corerad/internal/build.linkTimestamp=$(<.gittagtime)"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, corerad: nix.thunk(() => nix.attr(nixosTests, "corerad")) })),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, corerad: nix.thunk(() => nix.attr(nixosTests, "corerad")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/mdlayher/corerad",
         description: "Extensible and observable IPv6 NDP RA daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

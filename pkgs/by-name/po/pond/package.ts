@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pond",
       version: "0-unstable-2025-01-03",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alice-lefebvre",
           repo: "pond",
           rev: "6f7620940d896a1717e764da0b4b41c96362ac8d",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"gcc\" \"$CC\" \\\n  --replace-fail \"-lcurses\" \"-lncurses\"\n",
       installPhase: "runHook preInstall;\ninstall -m555 -Dt $out/bin bin/pond\nrunHook postInstall;\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.com/alice-lefebvre/pond",
         description: "Software that simulates a little pond",
         mainProgram: "pond",

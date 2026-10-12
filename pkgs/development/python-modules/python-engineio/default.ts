@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.13.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "miguelgrinberg",
           repo: "python-engineio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [simple_websocket]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         client: nix.thunk(() => [requests, websocket_client]),
         asyncio_client: nix.thunk(() => [aiohttp]),
       }));
@@ -59,7 +59,7 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
       const disabledTests = nix.thunk(() => ["test_async_mode_eventlet", "test_logger"]);
       const pythonImportsCheck = nix.thunk(() => ["engineio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python based Engine.IO client and server",
         longDescription: "Engine.IO is a lightweight transport protocol that enables real-time\nbidirectional event-based communication between clients and a server.\n",
         homepage: "https://github.com/miguelgrinberg/python-engineio/",
@@ -71,7 +71,7 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

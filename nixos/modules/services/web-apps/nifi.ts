@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nifi"));
   const opt = nix.thunk(() => nix.sel(options, "services", "nifi"));
   const env = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     NIFI_OVERRIDE_NIFIENV: "true",
     NIFI_HOME: "/var/lib/nifi",
     NIFI_PID_DIR: "/run/nifi",
@@ -63,35 +63,35 @@ source "${envFile}"
 eval -- "\\$@"
 `)));
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         nifi: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Apache NiFi")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nifi", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nifi",
               description: "User account where Apache NiFi runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nifi",
               description: "Group account where Apache NiFi runs.",
             })))),
           enableHTTPS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable HTTPS protocol. Don`t use in production.",
             })))),
           listenHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableHTTPS")) ? "0.0.0.0" : "127.0.0.1")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "enableHTTPS")}
@@ -101,7 +101,7 @@ else "127.0.0.1"
               description: "Bind to an ip for Apache NiFi web-ui.",
             })))),
           listenPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableHTTPS")) ? 8443n : 8080n)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "enableHTTPS")}
@@ -111,7 +111,7 @@ else "8000"
               description: "Bind to a port for Apache NiFi web-ui.",
             })))),
           proxyHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableHTTPS")) ? "0.0.0.0" : null)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "enableHTTPS")}
@@ -121,7 +121,7 @@ else null
               description: "Allow requests from a specific host.",
             })))),
           proxyPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableHTTPS")) ? 8443n : null)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "enableHTTPS")}
@@ -131,27 +131,27 @@ else null
               description: "Allow requests from a specific port.",
             })))),
           initUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Initial user account for Apache NiFi. Username must be at least 4 characters.",
             })))),
           initPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/nifi/password-nifi",
               description: "nitial password for Apache NiFi. Password must be at least 12 characters.",
             })))),
           initJavaHeapSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               example: 1024n,
               description: "Set the initial heap size for the JVM in MB.",
             })))),
           maxJavaHeapSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               example: 2048n,
@@ -161,61 +161,61 @@ else null
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "initUser"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "initPasswordFile"), null)))),
             message: "<option>services.nifi.initUser</option> needs to be set if <option>services.nifi.initPasswordFile</option> enabled.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "initUser"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "initPasswordFile"), null)))),
             message: "<option>services.nifi.initPasswordFile</option> needs to be set if <option>services.nifi.initUser</option> enabled.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "proxyHost"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "proxyPort"), null)))),
             message: "<option>services.nifi.proxyPort</option> needs to be set if <option>services.nifi.proxyHost</option> value specified.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "proxyHost"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "proxyPort"), null)))),
             message: "<option>services.nifi.proxyHost</option> needs to be set if <option>services.nifi.proxyPort</option> value specified.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "initJavaHeapSize"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "maxJavaHeapSize"), null)))),
             message: "<option>services.nifi.maxJavaHeapSize</option> needs to be set if <option>services.nifi.initJavaHeapSize</option> value specified.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "initJavaHeapSize"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "maxJavaHeapSize"), null)))),
             message: "<option>services.nifi.initJavaHeapSize</option> needs to be set if <option>services.nifi.maxJavaHeapSize</option> value specified.\n",
           })),
         ]),
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(cfg, "enableHTTPS"), false)), "Please do not disable HTTPS mode in production. In this mode, access to the nifi is opened without authentication.\n")),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             settings: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               "10-nifi": nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 "/var/lib/nifi/conf": nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   d: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0750",
                   })),
                 })),
                 "/var/lib/nifi/lib": nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   "L+": nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     argument: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib`),
                   })),
                 })),
@@ -223,16 +223,16 @@ else null
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             nifi: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "Apache NiFi",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: env,
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gawk"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 Type: "forking",
                 PIDFile: "/run/nifi/nifi.pid",
                 ExecStartPre: nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "nifi-pre-start.sh", nix.thunk(() => nix.str`#!/bin/sh
@@ -335,12 +335,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(nix
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "nifi")), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   nifi: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     group: nix.thunk(() => nix.sel(cfg, "group")),
                     isSystemUser: true,
                     home: nix.thunk(() => nix.sel(cfg, "package")),
@@ -348,7 +348,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(nix
                 })))),
               nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "setAttrByPath"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user")), "packages"]), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package")), nifiEnv]))),
             ]))),
-          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nifi")), nix.thunk(() => ({ __proto__: pos$35, nifi: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "nifi")), nix.thunk(() => ({ [nix.POS]: pos$35, nifi: nix.thunk(() => ({})) })))),
         })),
       })))),
   };

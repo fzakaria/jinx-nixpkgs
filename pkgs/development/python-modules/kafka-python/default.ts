@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kafka-python",
       version: "3.0.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dpkp",
           repo: "kafka-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         benchmarks: nix.thunk(() => [pyperf]),
         crc32c: nix.thunk(() => [crc32c]),
         lz4: nix.thunk(() => [lz4]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_mock, pytest_timeout, pytestCheckHook, xxhash], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/dpkp/kafka-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),
         description: "Pure Python client for Apache Kafka",
         homepage: "https://github.com/dpkp/kafka-python",

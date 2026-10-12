@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pixman = nix.arg($, "pixman");
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hyprgraphics",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hyprwm",
           repo: "hyprgraphics",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
       cmakeBuildType: "RelWithDebInfo",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/hyprwm/hyprgraphics",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/hyprgraphics/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Cpp graphics library for Hypr* ecosystem",

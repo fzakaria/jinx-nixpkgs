@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "file_read_backwards",
           version: version,
           hash: "sha256-VHjTBeuuquj+PGWFok38MmIXAiRFCsyTITmPDSbN0Qk=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["file_read_backwards"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Memory efficient way of reading files line-by-line from the end of file",
         homepage: "https://github.com/RobinNil/file_read_backwards",
         changelog: nix.thunk(() => nix.str`https://github.com/RobinNil/file_read_backwards/blob/v${version}/HISTORY.rst`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

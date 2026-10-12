@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`firezone-server-${mixReleaseName_1}`);
       const version = "0-unstable-2025-08-31";
       const src = nix.thunk(() => nix.str`${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firezone",
           repo: "firezone",
           rev: "f86719db19b848ab757995361032c1f2b7927d13",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
         })))}/elixir`);
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           pnpm: pnpm_10,
@@ -60,21 +60,21 @@ EOF
       const nativeBuildInputs = nix.thunk(() => [pnpmConfigHook, pnpm_10, nodejs]);
       const mixReleaseName_1 = mixReleaseName;
       const mixFodDeps = nix.thunk(() => nix.app(nix.sel(beam27Packages, "fetchMixDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`mix-deps-${pname}-${version}`),
           src: src,
           version: version,
           hash: "sha256-h3l7HK9dxNmkHWfJyCOCXmCvFOK+mZtmszhRv0zxqoo=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           firezone: nix.thunk(() => nix.attr(nixosTests, "firezone")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Backend server for the Firezone zero-trust access platform",
         homepage: "https://github.com/firezone/firezone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),
@@ -89,7 +89,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

@@ -49,19 +49,19 @@ export default nix.lambda((args) => (() => {
   const pname = "hplip";
   const version = "3.26.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://sourceforge/hplip/hplip-${version}.tar.gz`),
       hash: "sha256-ucYSUnVPNbSiNzlsqJYeez4MVtt21mpnEre/PjDmlGM=",
     }))));
   const plugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://developers.hp.com/sites/default/files/2026-05/hplip-${version}-plugin.run`),
       curlOptsList: nix.thunk(() => ["--user-agent", "Mozilla/5.0 Gecko/20100101 Firefox/150.0"]),
       hash: "sha256-GZ94+K9/NolNcYDpCQljziVQp17HAfikujdmWpdG/fA=",
     }))));
-  const hplipState = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hplip.state"), nix.thunk(() => ({ __proto__: pos$3, version: version }))));
+  const hplipState = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hplip.state"), nix.thunk(() => ({ [nix.POS]: pos$3, version: version }))));
   const hplipPlatforms = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "i686-linux": "x86_32",
     "x86_64-linux": "x86_64",
     "armv6l-linux": "arm32",
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
   const hplipArch = nix.thunk(() => nix.selOr(hplipPlatforms, () => nix.builtins.throw(nix.thunk(() => nix.str`HPLIP not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const pluginArches = nix.thunk(() => ["x86_32", "x86_64", "arm32", "arm64"]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       pyproject: false,
@@ -120,12 +120,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./hplip-3.20.11-nixos-cups-ppd-search-path.patch"),
         nix.path(here, "./gcc-compatability.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://web.archive.org/web/20230226174550/https://sources.debian.org/data/main/h/hplip/3.22.10+dfsg0-1/debian/patches/0028-Remove-ImageProcessor-binary-installs.patch",
             hash: "sha256-tNYccuwrcx5WCe7ULk8r8J6MVcUytGspiW64zAvO0qI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://launchpadlibrarian.net/800485629/hplip-no-urlopener.patch",
             hash: "sha256-LCd43WnwPo6SBjcxGI3bVryWedDeyKXc9tCF16edDK4=",
           })))),
@@ -186,7 +186,7 @@ echo 'AUTOMAKE_OPTIONS = foreign' >> Makefile.am
       enableParallelBuilding: true,
       enableParallelInstalling: false,
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         CUPS_DATADIR: nix.thunk(() => nix.str`${cups}/share/cups`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-int",
@@ -271,7 +271,7 @@ remove-references-to -t ${nix.sel(stdenv, "cc", "cc")} $(readlink -f $out/lib/*.
         "lib/sane",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Print, scan and fax HP drivers for Linux",
         homepage: "https://developers.hp.com/hp-linux-imaging-and-printing",
         downloadPage: "https://sourceforge.net/projects/hplip/files/hplip/",

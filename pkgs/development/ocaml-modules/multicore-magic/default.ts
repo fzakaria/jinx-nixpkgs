@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const domain_shims = nix.arg($, "domain_shims");
   const js_of_ocaml = nix.arg($, "js_of_ocaml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "multicore-magic",
       version: "2.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/multicore-magic/releases/download/${nix.sel(finalAttrs, "version")}/multicore-magic-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-jY1wqCOq4c4EMDgIQqqIHErIONJFyvJ+0P8ld1CHF18=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, domain_shims]),
       nativeCheckInputs: nix.thunk(() => [nodejs_slim, js_of_ocaml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Low-level multicore utilities for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         homepage: "https://github.com/ocaml-multicore/multicore-magic",

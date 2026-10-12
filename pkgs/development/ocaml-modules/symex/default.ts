@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const prelude = nix.arg($, "prelude");
   const smtml = nix.arg($, "smtml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "symex",
       version: "0.2",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocamlpro",
           repo: "symex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [fmt, prelude, smtml]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Primitives to write symbolic execution engines",
         homepage: "https://github.com/ocamlpro/symex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

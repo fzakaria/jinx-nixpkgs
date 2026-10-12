@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "sphinxcontrib_confluencebuilder",
           version: version,
           hash: "sha256-gC0GnwncJ3MPrWrdzz537ihhbJN5uHl/opLnUmcM+RE=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sphinxcontrib.confluencebuilder"]);
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Confluence builder for sphinx",
         homepage: "https://github.com/sphinx-contrib/confluencebuilder",
         changelog: nix.thunk(() => nix.str`https://github.com/sphinx-contrib/confluencebuilder/blob/v${version}/CHANGES.rst`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sphinx-build-confluence",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

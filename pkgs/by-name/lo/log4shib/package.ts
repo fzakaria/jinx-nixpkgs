@@ -17,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "log4shib",
       version: "1.0.9",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Shibboleth",
           repo: "cpp-log4shib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-PcIkn8LuB4zdYiV0LDM+pzDxeWdS1PiXQox2bGhhORs=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=c++11" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++11" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Forked version of log4cpp that has been created for the Shibboleth project",
         mainProgram: "log4shib-config",
         maintainers: nix.thunk(() => (() => {

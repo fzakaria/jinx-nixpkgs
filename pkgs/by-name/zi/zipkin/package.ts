@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "1.28.1",
       pname: "zipkin-server",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=io/zipkin/java/zipkin-server/${nix.sel(finalAttrs, "version")}/zipkin-server-${nix.sel(finalAttrs, "version")}-exec.jar`),
           sha256: "02369fkv0kbl1isq6y26fh2zj5wxv3zck522m5wypsjlcfcw2apa",
         })))),
@@ -31,7 +31,7 @@ makeWrapper ${jre}/bin/java $out/bin/zipkin-server \\
   --add-flags "-cp $out/share/java/zipkin-server-${nix.sel(finalAttrs, "version")}-exec.jar org.springframework.boot.loader.JarLauncher"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Distributed tracing system",
         homepage: "https://zipkin.io/",
         sourceProvenance: nix.thunk(() => (() => {

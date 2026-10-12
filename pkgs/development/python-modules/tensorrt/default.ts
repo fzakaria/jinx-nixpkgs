@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const from_2 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const parsed = nix.thunk(() => nix.attr(from_2, "parsed"));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${nix.sel(cudaPackages, "cudaNamePrefix")}-${pname}`),
       version: version,
       disabled: nix.thunk(() => nix.app(pythonAtLeast, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "11.1")) ? "3.14" : "3.15")))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "tensorrt"))]),
       pythonImportsCheck: nix.thunk(() => ["tensorrt"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Python bindings for TensorRT, a high-performance deep learning interface",
         badPlatforms: nix.thunk(() => nix.attr(meta, "badPlatforms")),
         broken: nix.thunk(() => nix.attr(meta, "broken")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hexgui",
       version: "0.10-unstable-2024-11-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "selinger",
           repo: "hexgui",
           rev: "444408f4411a4f13cbd90ac670f1dd344d35a948",
@@ -33,7 +33,7 @@ mv bin lib $out
 wrapProgram $out/bin/hexgui --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jdk]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI for the board game Hex",
         mainProgram: "hexgui",
         homepage: "https://github.com/selinger/hexgui",

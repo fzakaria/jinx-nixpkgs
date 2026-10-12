@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromTangled = nix.arg($, "fetchFromTangled");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       __structuredAttrs: true,
       pname: "sessiond-hooks",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           did: "did:plc:vj3bxta3i3cp26nn46yideoh",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-X2ePs10hjZNOcHAJuN4J5KeBQaW24E2jMRq0biNdY3E=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--locked", "-p", "sessiond-hooks"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Launch and supervise per-user session hooks with sessiond",
         homepage: "https://tangled.org/r0chd.pl/sessiond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

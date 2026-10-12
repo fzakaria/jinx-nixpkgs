@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const check = nix.arg($, "check");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wwcd",
       version: "unstable-2022-02-05",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~bitfehler",
           repo: "wwcd",
           rev: "cdf70bb18dc60c66c074d4810cb37b9e697811e5",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, check]),
       autoreconfFlags: nix.thunk(() => ["-if"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "What would cron do? Read crontab entries from stdin and print time of next execution(s)",
         homepage: "https://git.sr.ht/~bitfehler/wwcd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

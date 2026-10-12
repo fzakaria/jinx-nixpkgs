@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "piqi-ocaml";
       const name = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alavrik",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const createFindlibDestdir = true;
       const installPhase = "runHook preInstall\nDESTDIR=$out make install\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Universal schema language and a collection of tools built around it. These are the ocaml bindings",
         homepage: "https://github.com/alavrik/piqi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "piqic-ocaml",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         name,

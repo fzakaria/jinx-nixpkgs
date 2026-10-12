@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   nix.assert_((!nix.asBool(enableNLS) || nix.asBool(!nix.eq(libnatspec, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/zi/zip/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "zip",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`ftp://ftp.info-zip.org/pub/infozip/src/zip${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tgz`),
             "https://src.fedoraproject.org/repo/pkgs/zip/zip30.tar.gz/7b74551e63f8ee6aab6fbc86676c0d37/zip30.tar.gz",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-implicit-declarations.patch"),
         nix.path(here, "./fix-time.h-not-included.patch"),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "16",
@@ -58,37 +58,37 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-C966AdPV5E44cJ1L28iFvmXq3frjNiW6PoHiOOusS04=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/zip/files/zip-3.0-pic.patch?id=d37d095fc7a2a9e4a8e904a7bf0f597fe99df85a",
             hash: "sha256-OXgC9KqiOpH/o/bSabt3LqtoT/xifqfkvpLLPfPz+1c=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/zip/files/zip-3.0-no-crypt.patch?id=d37d095fc7a2a9e4a8e904a7bf0f597fe99df85a",
             hash: "sha256-9bwV+uKST828PcRVbICs8xwz9jcIPk26gxLBbiEeta4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/zip/files/zip-3.0-format-security.patch?id=d37d095fc7a2a9e4a8e904a7bf0f597fe99df85a",
             hash: "sha256-YmGKivZ0iFCFmPjVYuOv9D8Y0xG2QnWOpas8gMgoQ3M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/zip/files/zip-3.0-exec-stack.patch?id=d37d095fc7a2a9e4a8e904a7bf0f597fe99df85a",
             hash: "sha256-akJFY+zGijPWCwaAL/xxCN4wQpVFBHkLMo2HowrSn/M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/zip/files/zip-3.0-build.patch?id=d37d095fc7a2a9e4a8e904a7bf0f597fe99df85a",
             hash: "sha256-MiupD7W+sxiRTsB5viKAiI4QeqtZC6VttfJktdt1ucI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-arch/zip/files/zip-3.0-zipnote-freeze.patch?id=d37d095fc7a2a9e4a8e904a7bf0f597fe99df85a",
             hash: "sha256-EVr7YS3IytnCRjAYUlkg05GA/kaAY9NRFG7uDt0QLAY=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "16",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-Hgy0yrBuSX2XWN1PNASQbjiXfyzSScwHQ+o0fv6Sgs4=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "16",
@@ -106,7 +106,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(enableNLS) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin"))))), nix.thunk(() => [nix.path(here, "./natspec-gentoo.patch.bz2")])))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enableNLS, libnatspec), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), libiconv))),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Compressor/archiver for creating and modifying zipfiles",
         homepage: "http://www.info-zip.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

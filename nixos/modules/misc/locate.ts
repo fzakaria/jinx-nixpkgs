@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const isMLocate = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "mlocate", nix.thunk(() => nix.sel(cfg, "package", "name"))));
   const isPLocate = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "plocate", nix.thunk(() => nix.sel(cfg, "package", "name"))));
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "locate", "period"]), nix.thunk(() => ["services", "locate", "interval"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "locate", "locate"]), nix.thunk(() => ["services", "locate", "package"]))),
@@ -55,39 +55,39 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "locate", "localuser"]), "The services.locate.localuser option has been removed because support for findutils locate has been removed.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         locate: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "If enabled, NixOS will periodically update the database of\nfiles used by the {command}`locate` command.\n",
             })))),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["plocate"]), nix.thunk(() => ({ __proto__: pos$2, example: "mlocate" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["plocate"]), nix.thunk(() => ({ [nix.POS]: pos$2, example: "mlocate" })))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "02:15",
               example: "hourly",
               description: "Update the locate database at this interval. Updates by\ndefault at 2:15 AM every day.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n\nTo disable automatic updates, set to `\"never\"`\nand run {command}`updatedb` manually.\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra flags to pass to {command}`updatedb`.\n",
             })))),
           output: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "externalPath")),
               default: "/var/cache/locatedb",
               description: "The database file to build.\n",
             })))),
           pruneFS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => [
                 "afs",
@@ -171,7 +171,7 @@ export default nix.lambda((args) => (() => {
               description: "Which filesystem types to exclude from indexing\n",
             })))),
           prunePaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => [
                 "/tmp",
@@ -186,14 +186,14 @@ export default nix.lambda((args) => (() => {
               description: "Which paths to exclude from indexing\n",
             })))),
           pruneNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => [".bzr", ".cache", ".git", ".hg", ".svn"]),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "`[ \".bzr\" \".cache\" \".git\" \".hg\" \".svn\" ]`, if\nsupported by the locate implementation (i.e. mlocate or plocate).\n")),
               description: "Directory components which should exclude paths containing them from indexing\n",
             })))),
           pruneBindMounts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether not to index bind mounts\n",
@@ -202,47 +202,47 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         users: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isMLocate, nix.thunk(() => ({ __proto__: pos$13, mlocate: nix.thunk(() => ({})) })))),
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isPLocate, nix.thunk(() => ({ __proto__: pos$14, plocate: nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isMLocate, nix.thunk(() => ({ [nix.POS]: pos$13, mlocate: nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isPLocate, nix.thunk(() => ({ [nix.POS]: pos$14, plocate: nix.thunk(() => ({})) })))),
             ]))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           wrappers: nix.thunk(() => (() => {
             const common = nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               owner: "root",
               permissions: "u+rx,g+x,o+x",
               setgid: true,
               setuid: false,
             }));
             const mlocate = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isMLocate, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 group: "mlocate",
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/locate`),
               }))));
             const plocate = nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isPLocate, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 group: "plocate",
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/plocate`),
               }))));
             return {
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               locate: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [common, mlocate, plocate]))),
               plocate: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), isPLocate, nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [common, plocate]))))),
             };
           })()),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           etc: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             "updatedb.conf": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               text: nix.thunk(() => nix.str`PRUNEFS="${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "pruneFS")))}"
 PRUNENAMES="${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "pruneNames")))}"
 PRUNEPATHS="${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "prunePaths")))}"
@@ -253,14 +253,14 @@ PRUNE_BIND_MOUNTS="${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => nix.se
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           services: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             "update-locatedb": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Update Locate Database",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ExecStart: nix.thunk(() => (() => {
                   const toFlags = (x) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, nix.key(nix.force(x))), [])), nix.thunk(() => [
                       nix.thunk(() => nix.str`--${nix.app(nix.sel(lib, "toLower"), x)}`),
@@ -300,14 +300,14 @@ PRUNE_BIND_MOUNTS="${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => nix.se
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "update-locatedb": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "interval"), "never")), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 description: "Update timer for locate database",
                 partOf: nix.thunk(() => ["update-locatedb.service"]),
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "interval")),
                   Persistent: true,
                 })),
@@ -316,7 +316,7 @@ PRUNE_BIND_MOUNTS="${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => nix.se
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "SuperSandro2000"))];

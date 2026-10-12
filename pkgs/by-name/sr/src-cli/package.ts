@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "src-cli";
       const version = "8.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sourcegraph",
           repo: "src-cli",
           rev: version,
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/sourcegraph/src-cli/internal/version.BuildTag=${version}`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: src_cli, command: "src version -client-only" })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: src_cli, command: "src version -client-only" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Sourcegraph CLI",
         homepage: "https://github.com/sourcegraph/src-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/sourcegraph/src-cli/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "src",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

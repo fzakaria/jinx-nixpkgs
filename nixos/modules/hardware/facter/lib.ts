@@ -28,7 +28,7 @@ export default (lib) => (() => {
     return (nix.asBool(nix.eq(len, 1n)) ? nix.str`000${hex}` : (nix.asBool(nix.eq(len, 2n)) ? nix.str`00${hex}` : (nix.asBool(nix.eq(len, 3n)) ? nix.str`0${hex}` : nix.force(hex))));
   })();
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     hasCpu: hasCpu,
     collectDrivers: collectDrivers,
     toZeroPaddedHex: toZeroPaddedHex,

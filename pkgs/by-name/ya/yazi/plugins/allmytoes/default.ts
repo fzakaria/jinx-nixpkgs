@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "allmytoes.yazi",
       version: "0-unstable-2025-11-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sonico98",
           repo: "allmytoes.yazi",
           rev: "acdc53be76434a82218eed8e1fda5512971bf3cc",
           hash: "sha256-zZ9L0FrcxFvSuDJwi6VHQXDT7b/sM4DhZ3LPi/i9tig=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate freedesktop-compatible thumbnails while using yazi",
         homepage: "https://github.com/Sonico98/allmytoes.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

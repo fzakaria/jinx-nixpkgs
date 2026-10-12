@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "undetected-chromedriver",
       version: nix.thunk(() => nix.attr(chromedriver, "version")),
       nativeBuildInputs: nix.thunk(() => [
@@ -41,17 +41,17 @@ EOF
 install -D -m 0555 chromedriver $out/bin/undetected-chromedriver
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(chromedriver, "meta"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Custom Selenium ChromeDriver that passes all bot mitigation systems",
         homepage: "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
         mainProgram: "undetected-chromedriver",

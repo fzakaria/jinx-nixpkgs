@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NetApp",
           repo: "recline",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pudb, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["recline"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "This library helps you quickly implement an interactive command-based application",
         homepage: "https://github.com/NetApp/recline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

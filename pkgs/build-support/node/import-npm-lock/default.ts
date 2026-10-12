@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool(nix.eq(mUrl, null)) ? (() => {
         nix.assert_(!nix.eq(npmRoot, null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/node/import-npm-lock/default.nix:47:17");
         return {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           outPath: nix.thunk(() => nix.add(npmRoot, nix.str`/${nix.sel(module, "resolved")}`)),
         };
       })() : (nix.asBool((nix.asBool(nix.eq(scheme, "http")) || nix.asBool(nix.eq(scheme, "https")))) ? nix.app(fetchurl, nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.sel(module, "resolved")),
           hash: nix.thunk(() => nix.sel(module, "integrity")),
         }, fetcherOpts))) : (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "git", nix.thunk(() => nix.sel(module, "resolved")))) ? (() => {
@@ -66,16 +66,16 @@ export default nix.lambda((args) => (() => {
         const urlParts = nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "#", url));
         const commit = nix.thunk(() => (nix.asBool(nix.eq(nix.builtins.length(urlParts), 2n)) ? nix.app(elemAt, urlParts, 1n) : null));
         return nix.builtins.fetchGit(nix.thunk(() => nix.update({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`${scheme}://${nix.app(elemAt, urlParts, 0n)}`),
-          }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(commit, null)), nix.thunk(() => ({ __proto__: pos$4, rev: commit }))), fetcherOpts))));
+          }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(commit, null)), nix.thunk(() => ({ [nix.POS]: pos$4, rev: commit }))), fetcherOpts))));
       })() : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported URL scheme: ${scheme}`)))));
     })() : null);
   })(), formals$2);
   const cleanModule = nix.thunk(() => nix.app(nix.sel(lib, "flip"), removeAttrs, nix.thunk(() => ["link", "funding"])));
   const hooks = nix.thunk(() => nix.app(callPackages, nix.path(here, "./hooks"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(lib, "fix"), (self) => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       importNpmLock: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const npmRoot = nix.argOr($_1, "npmRoot", () => null);
@@ -87,34 +87,34 @@ export default nix.lambda((args) => (() => {
         const packageSourceOverrides = nix.argOr($_1, "packageSourceOverrides", () => ({}));
         const mapLockDependencies = nix.thunk(() => nix.app(mapAttrs, (name) => (version_1) => (nix.asBool((nix.asBool(nix.app(isDistTag, version_1)) || nix.asBool(!nix.eq(nix.app(matchGitHubReference, version_1), null)))) ? nix.sel(packageLock$, "packages", nix.key(nix.str`node_modules/${name}`), "version") : nix.force(version_1))));
         const packageLock$ = nix.thunk(() => nix.update(packageLock, {
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           packages: nix.thunk(() => nix.app(mapAttrs, (modulePath) => (module) => (() => {
               const src = nix.thunk(() => nix.selOr(packageSourceOverrides, () => nix.app(fetchModule, nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     module: module,
                     npmRoot: npmRoot,
                     fetcherOpts: nix.thunk(() => nix.selOr(fetcherOpts, () => ({}), nix.key(nix.force(modulePath)))),
                   }))), nix.key(nix.force(modulePath))));
-              return nix.update(nix.app(cleanModule, module), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(src, null)), nix.thunk(() => ({ __proto__: pos$6, resolved: nix.thunk(() => nix.str`file:${src}`) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(module, "dependencies")), nix.thunk(() => ({
-                  __proto__: pos$7,
+              return nix.update(nix.app(cleanModule, module), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(src, null)), nix.thunk(() => ({ [nix.POS]: pos$6, resolved: nix.thunk(() => nix.str`file:${src}`) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(module, "dependencies")), nix.thunk(() => ({
+                  [nix.POS]: pos$7,
                   dependencies: nix.thunk(() => nix.app(mapLockDependencies, nix.thunk(() => nix.sel(module, "dependencies")))),
                 }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(module, "optionalDependencies")), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   optionalDependencies: nix.thunk(() => nix.app(mapLockDependencies, nix.thunk(() => nix.sel(module, "optionalDependencies")))),
                 }))))));
             })(), nix.thunk(() => nix.sel(packageLock, "packages")))),
         }));
         const mapPackageDependencies = nix.thunk(() => nix.app(mapAttrs, (name) => (_) => nix.sel(packageLock$, "packages", nix.key(nix.str`node_modules/${name}`), "resolved")));
         const packageJSON$ = nix.thunk(() => nix.update(package$, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(package$, "dependencies")), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             dependencies: nix.thunk(() => nix.app(mapPackageDependencies, nix.thunk(() => nix.sel(package$, "dependencies")))),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(package$, "devDependencies")), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             devDependencies: nix.thunk(() => nix.app(mapPackageDependencies, nix.thunk(() => nix.sel(package$, "devDependencies")))),
           }))))));
         const pname_1 = nix.thunk(() => nix.selOr(package$, () => "unknown", "name"));
         return nix.app(runCommand, nix.thunk(() => nix.str`${pname_1}-${version}-sources`), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pname: pname_1,
             version: version,
             package: nix.thunk(() => nix.app(toJSON, packageJSON$)),
@@ -131,12 +131,12 @@ export default nix.lambda((args) => (() => {
         const derivationArgs = nix.argOr($_1, "derivationArgs", () => ({}));
         const __structuredAttrs = nix.thunk(() => !nix.asBool(nix.has(derivationArgs, "passAsFile")));
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             pname: nix.thunk(() => nix.selOr(derivationArgs, () => nix.str`${nix.app(getName, package$)}-node-modules`, "pname")),
             version: nix.thunk(() => nix.app(nix.selOr(derivationArgs, () => getVersion, "version"), package$)),
             dontUnpack: true,
             npmDeps: nix.thunk(() => nix.app(nix.sel(self, "importNpmLock"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 npmRoot: npmRoot,
                 package: package$,
                 packageLock: packageLock,
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
             packageLock: nix.thunk(() => nix.app(toJSON, packageLock)),
             installPhase: "runHook preInstall\nmkdir $out\ncp package.json $out/\ncp package-lock.json $out/\n[[ -d node_modules ]] && mv node_modules $out/\nrunHook postInstall\n",
           }, nix.update(derivationArgs, nix.update({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             nativeBuildInputs: nix.thunk(() => nix.concat([
               nodejs,
               nix.thunk(() => nix.sel(nodejs, "passthru", "python")),
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
             postPatch: nix.thunk(() => nix.add((nix.asBool(__structuredAttrs) ? "printf \"%s\" \"$package\" > package.json\nprintf \"%s\" \"$packageLock\" > package-lock.json\n" : "cp --no-preserve=mode \"$packagePath\" package.json\ncp --no-preserve=mode \"$packageLockPath\" package-lock.json\n"), nix.selOr(derivationArgs, () => "", "postPatch"))),
             __structuredAttrs: __structuredAttrs,
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(__structuredAttrs)), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               passAsFile: nix.thunk(() => nix.concat(["package", "packageLock"], nix.sel(derivationArgs, "passAsFile"))),
             }))))))));
       })(), formals$4),

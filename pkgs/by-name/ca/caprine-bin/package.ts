@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pname = "caprine";
   const version = "2.59.1";
   const metaCommon = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Elegant Facebook Messenger desktop app",
     homepage: "https://sindresorhus.com/caprine",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -32,28 +32,28 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const x86_64_appimage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-appimage.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       sha256: "sha256-stMv4KQoWPmK5jcfdhamC27Rb51zjbeEn40u6YUvXz4=",
     }))));
   const x86_64_dmg = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-dmg.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       sha256: "sha256-WMT4yrLjDSMsI/lFbYODu3/0whcF+++4ShoChfMyLfQ=",
     }))));
   return nix.app(nix.sel((nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.force(x86_64_dmg) : nix.force(x86_64_appimage)), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "x86_64-appimage": x86_64_appimage,
         "x86_64-dmg": x86_64_dmg,
       })),
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.concat(nix.sel(x86_64_appimage, "meta", "platforms"), nix.sel(x86_64_dmg, "meta", "platforms"))),
         mainProgram: "caprine",
       })),

@@ -23,30 +23,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     config: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
-        xserver: nix.thunk(() => ({ __proto__: pos$1, enable: true, videoDrivers: [] })),
-        displayManager: nix.thunk(() => ({ __proto__: pos$3, gdm: nix.thunk(() => ({ __proto__: pos$2, enable: true })) })),
+        [nix.POS]: pos$4,
+        xserver: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, videoDrivers: [] })),
+        displayManager: nix.thunk(() => ({ [nix.POS]: pos$3, gdm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         sockets: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "terminal-server": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "Terminal Server Socket",
             wantedBy: nix.thunk(() => ["sockets.target"]),
             before: nix.thunk(() => ["multi-user.target"]),
-            socketConfig: nix.thunk(() => ({ __proto__: pos$5, Accept: true, ListenStream: 5900n })),
+            socketConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Accept: true, ListenStream: 5900n })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "terminal-server@": nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             description: "Terminal Server",
             path: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "xorg-server", "out")),
@@ -60,9 +60,9 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(pkgs, "util-linux")),
               nix.thunk(() => nix.sel(pkgs, "bash")),
             ]),
-            environment: nix.thunk(() => ({ __proto__: pos$8, FD_GEOM: "1024x786x24", FD_XDMCP_IF: "127.0.0.1" })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$8, FD_GEOM: "1024x786x24", FD_XDMCP_IF: "127.0.0.1" })),
             serviceConfig: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               StandardInput: "socket",
               StandardOutput: "socket",
               StandardError: "journal",

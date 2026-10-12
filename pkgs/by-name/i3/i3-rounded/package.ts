@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const version = "4.21.1";
   return nix.app(nix.sel(i3, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3-rounded",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LinoBigatti",
           repo: "i3-rounded",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "buildInputs"), [pcre2])),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fork of i3-gaps that adds rounding to window corners",
         homepage: "https://github.com/LinoBigatti/i3-rounded",
         maintainers: nix.thunk(() => (() => {

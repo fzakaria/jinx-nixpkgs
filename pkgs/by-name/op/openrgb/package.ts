@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openrgb",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenRGB",
           repo: "OpenRGB",
           tag: nix.thunk(() => nix.str`release_${nix.sel(finalAttrs, "version")}`),
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`QT_TOOL.lrelease.binary=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(qt6Packages, "qttools")))}/bin/lrelease`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         withPlugins: (plugins) => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
             pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), "-with-plugins")),
@@ -94,7 +94,7 @@ fi
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source RGB lighting control",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/OpenRGB/OpenRGB/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://openrgb.org",

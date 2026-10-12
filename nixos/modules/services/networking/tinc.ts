@@ -69,9 +69,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "tinc"));
   const mkValueString = (value) => (nix.asBool(nix.eq(value, true)) ? "yes" : (nix.asBool(nix.eq(value, false)) ? "no" : nix.app(nix.sel(nix.lookup(w, "generators"), "mkValueStringDefault"), nix.thunk(() => ({})), value)));
   const toTincConf = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       listsAsDuplicateKeys: true,
-      mkKeyValue: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$1, mkValueString: mkValueString })), "=")),
+      mkKeyValue: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "generators"), "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$1, mkValueString: mkValueString })), "=")),
     }))));
   const tincConfType = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -83,16 +83,16 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), valueType, nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), valueType)))));
   })());
   const addressSubmodule = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "The external IP address or hostname where the host can be reached.",
         })))),
       port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
           default: null,
           description: "The port where the host can be reached.\n\nIf no port is specified, the default Port is used.\n",
@@ -100,16 +100,16 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const subnetSubmodule = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       address: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           description: "The subnet of this host.\n\nSubnets can either be single MAC, IPv4 or IPv6 addresses, in which case\na subnet consisting of only that single address is assumed, or they can\nbe a IPv4 or IPv6 network address with a prefix length.\n\nIPv4 subnets are notated like 192.168.1.0/24, IPv6 subnets are notated\nlike fec0:0:0:1::/64. MAC addresses are notated like 0:1a:2b:3c:4d:5e.\n\nNote that subnets like 192.168.1.1/24 are invalid.\n",
         })))),
       prefixLength: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
             return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "ints"), "between"), 0n, 128n)));
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
           description: "The prefix length of the subnet.\n\nIf null, a subnet consisting of only that single address is assumed.\n\nThis conforms to standard CIDR notation as described in RFC1519.\n",
         })))),
       weight: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "unsigned")),
           default: 10n,
           description: "Indicates the priority over identical Subnets owned by different nodes.\n\nLower values indicate higher priority. Packets will be sent to the\nnode with the highest priority, unless that node is not reachable, in\nwhich case the node with the next highest priority will be tried, and\nso on.\n",
@@ -129,38 +129,38 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       options: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         addresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), addressSubmodule)))),
             default: [],
             description: "The external address where the host can be reached. This will set this\nhost's {option}`settings.Address` option.\n\nThis variable is only required if you want to connect to this host.\n",
           })))),
         subnets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), subnetSubmodule)))),
             default: [],
             description: "The subnets which this tinc daemon will serve. This will set this\nhost's {option}`settings.Subnet` option.\n\nTinc tries to look up which other daemon it should send a packet to by\nsearching the appropriate subnet. If the packet matches a subnet, it\nwill be sent to the daemon who has this subnet in his host\nconfiguration file.\n",
           })))),
         rsaPublicKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "",
             description: "Legacy RSA public key of the host in PEM format, including start and\nend markers.\n\nThis will be appended as-is in the host's configuration file.\n\nThe ed25519 public key can be specified using the\n{option}`settings.Ed25519PublicKey` option instead.\n",
           })))),
         settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             default: nix.thunk(() => ({})),
-            type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({ __proto__: pos$15, freeformType: tincConfType })))),
+            type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({ [nix.POS]: pos$15, freeformType: tincConfType })))),
             description: "Configuration for this host.\n\nSee <https://tinc-vpn.org/documentation-1.1/Host-configuration-variables.html>\nfor supported values.\n",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         settings: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           Address: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(nix.builtins.map, (address) => nix.str`${nix.sel(address, "address")} ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(address, "port")))}`, nix.thunk(() => nix.sel(config_1, "addresses")))))),
           Subnet: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(nix.builtins.map, (subnet) => (nix.asBool(nix.eq(nix.sel(subnet, "prefixLength"), null)) ? nix.str`${nix.sel(subnet, "address")}#${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(subnet, "weight")))}` : nix.str`${nix.sel(subnet, "address")}/${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(subnet, "prefixLength")))}#${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(subnet, "weight")))}`), nix.thunk(() => nix.sel(config_1, "subnets")))))),
         })),
@@ -168,15 +168,15 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         tinc: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           networks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -184,92 +184,92 @@ export default nix.lambda((args) => (() => {
                       const $_1 = nix.formals(args_1, formals$3);
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$37,
+                        [nix.POS]: pos$37,
                         options: nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           extraConfig: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$21,
+                              [nix.POS]: pos$21,
                               default: "",
                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "lines")),
                               description: "Extra lines to add to the tinc service configuration file.\n\nNote that using the declarative {option}`service.tinc.networks.<name>.settings`\noption is preferred.\n",
                             })))),
                           name: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$22,
+                              [nix.POS]: pos$22,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                               description: "The name of the node which is used as an identifier when communicating\nwith the remote nodes in the mesh. If null then the hostname of the system\nis used to derive a name (note that tinc may replace non-alphanumeric characters in\nhostnames by underscores).\n",
                             })))),
                           ed25519PrivateKeyFile: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$23,
+                              [nix.POS]: pos$23,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "path")))),
                               description: "Path of the private ed25519 keyfile.\n",
                             })))),
                           rsaPrivateKeyFile: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "path")))),
                               description: "Path of the private RSA keyfile.\n",
                             })))),
                           debugLevel: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$25,
+                              [nix.POS]: pos$25,
                               default: 0n,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "ints", "between"), 0n, 5n)),
                               description: "The amount of debugging information to add to the log. 0 means little\nlogging while 5 is the most logging. {command}`man tincd` for\nmore details.\n",
                             })))),
                           hosts: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$26,
+                              [nix.POS]: pos$26,
                               default: nix.thunk(() => ({})),
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "lines")))),
                               description: "The name of the host in the network as well as the configuration for that host.\nThis name should only contain alphanumerics and underscores.\n\nNote that using the declarative {option}`service.tinc.networks.<name>.hostSettings`\noption is preferred.\n",
                             })))),
                           hostSettings: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$27,
+                              [nix.POS]: pos$27,
                               default: nix.thunk(() => ({})),
                               example: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), "{\n  host1 = {\n    addresses = [\n      { address = \"192.168.1.42\"; }\n      { address = \"192.168.1.42\"; port = 1655; }\n    ];\n    subnets = [ { address = \"10.0.0.42\"; } ];\n    rsaPublicKey = \"...\";\n    settings = {\n      Ed25519PublicKey = \"...\";\n    };\n  };\n  host2 = {\n    subnets = [ { address = \"10.0.1.0\"; prefixLength = 24; weight = 2; } ];\n    rsaPublicKey = \"...\";\n    settings = {\n      Compression = 10;\n    };\n  };\n}\n")),
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "submodule"), hostSubmodule)))),
                               description: "The name of the host in the network as well as the configuration for that host.\nThis name should only contain alphanumerics and underscores.\n",
                             })))),
                           interfaceType: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$28,
+                              [nix.POS]: pos$28,
                               default: "tun",
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "enum"), nix.thunk(() => ["tun", "tap"]))),
                               description: "The type of virtual interface used for the network connection.\n",
                             })))),
                           listenAddress: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$29,
+                              [nix.POS]: pos$29,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                               description: "The ip address to listen on for incoming connections.\n",
                             })))),
                           bindToAddress: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$30,
+                              [nix.POS]: pos$30,
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")))),
                               description: "The ip address to bind to (both listen on and send packets from).\n",
                             })))),
                           package: nix.thunk(() => nix.app(nix.lookup(w_2, "mkPackageOption"), pkgs, "tinc_pre", nix.thunk(() => ({})))),
                           chroot: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$31,
+                              [nix.POS]: pos$31,
                               default: false,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "bool")),
                               description: "Change process root directory to the directory where the config file is located (/etc/tinc/netname/), for added security.\nThe chroot is performed after all the initialization is done, after writing pid files and opening network sockets.\n\nNote that this currently breaks dns resolution and tinc can't run scripts anymore (such as tinc-down or host-up), unless it is setup to be runnable inside chroot environment.\n",
                             })))),
                           settings: nix.thunk(() => nix.app(nix.lookup(w_2, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$33,
+                              [nix.POS]: pos$33,
                               default: nix.thunk(() => ({})),
-                              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "submodule"), nix.thunk(() => ({ __proto__: pos$32, freeformType: tincConfType })))),
+                              type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "types"), "submodule"), nix.thunk(() => ({ [nix.POS]: pos$32, freeformType: tincConfType })))),
                               example: nix.thunk(() => nix.app(nix.lookup(w_2, "literalExpression"), "{\n  Interface = \"custom.interface\";\n  DirectOnly = true;\n  Mode = \"switch\";\n}\n")),
                               description: "Configuration of the Tinc daemon for this network.\n\nSee <https://tinc-vpn.org/documentation-1.1/Main-configuration-variables.html>\nfor supported values.\n",
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           hosts: nix.thunk(() => nix.app(nix.lookup(w_2, "mapAttrs"), (hostname) => (host) => nix.str`${nix.app(toTincConf, nix.thunk(() => nix.sel(host, "settings")))}
 ${nix.sel(host, "rsaPublicKey")}
 `, nix.thunk(() => nix.sel(config_1, "hostSettings")))),
                           settings: nix.thunk(() => ({
-                            __proto__: pos$35,
+                            [nix.POS]: pos$35,
                             DeviceType: nix.thunk(() => nix.app(nix.lookup(w_2, "mkDefault"), nix.thunk(() => nix.sel(config_1, "interfaceType")))),
                             Name: nix.thunk(() => nix.app(nix.lookup(w_2, "mkDefault"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config_1, "name"), null)) ? "$HOST" : nix.sel(config_1, "name"))))),
                             Ed25519PrivateKeyFile: nix.thunk(() => nix.app(nix.lookup(w_2, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "ed25519PrivateKeyFile"), null)), nix.thunk(() => nix.app(nix.lookup(w_2, "mkDefault"), nix.thunk(() => nix.sel(config_1, "ed25519PrivateKeyFile")))))),
@@ -288,27 +288,27 @@ ${nix.sel(host, "rsaPublicKey")}
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "networks"), {})), nix.thunk(() => (() => {
         const etcConfig = nix.thunk(() => nix.app(nix.lookup(w, "foldr"), (a) => (b) => nix.update(a, b), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "mapAttrsToList")), nix.thunk(() => nix.sel(cfg, "networks")), (network) => (data) => nix.update(nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "mapAttrs'")), nix.thunk(() => nix.sel(data, "hosts")), (host) => (text) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`tinc/${network}/hosts/${host}`), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   mode: "0644",
                   user: nix.thunk(() => nix.str`tinc-${network}`),
                   text: text,
                 })))), nix.attrsDyn({}, [
               [nix.str`tinc/${network}/tinc.conf`, nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 mode: "0444",
-                text: nix.thunk(() => nix.str`${nix.app(toTincConf, nix.thunk(() => nix.update({ __proto__: pos$43, Interface: nix.thunk(() => nix.str`tinc.${network}`) }, nix.sel(data, "settings"))))}
+                text: nix.thunk(() => nix.str`${nix.app(toTincConf, nix.thunk(() => nix.update({ [nix.POS]: pos$43, Interface: nix.thunk(() => nix.str`tinc.${network}`) }, nix.sel(data, "settings"))))}
 ${nix.sel(data, "extraConfig")}
 `),
               }))],
             ]))))));
         return {
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           environment: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             etc: etcConfig,
             systemPackages: nix.thunk(() => (() => {
               const cli_wrappers = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   name: "tinc-cli-wrappers",
                   nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
                   buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -322,11 +322,11 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
             })()),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             services: nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "networks")), (network) => (data) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`tinc.${network}`), nix.thunk(() => (() => {
                   const version = nix.thunk(() => nix.app(nix.lookup(w, "getVersion"), nix.thunk(() => nix.sel(data, "package"))));
                   return {
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     description: nix.thunk(() => nix.str`Tinc Daemon - ${network}`),
                     documentation: nix.thunk(() => ["info:tinc", "man:tincd(8)"]),
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -334,7 +334,7 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
                     reloadTriggers: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(nix.lookup(w, "versionAtLeast"), version, "1.1pre")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), etcConfig))]))),
                     restartTriggers: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.app(nix.lookup(w, "versionOlder"), version, "1.1pre")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), etcConfig))]))),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$47,
+                      [nix.POS]: pos$47,
                       Type: "simple",
                       Restart: "always",
                       RestartSec: "3",
@@ -362,9 +362,9 @@ fi
                 })())))),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             users: nix.thunk(() => nix.app(nix.lookup(w, "flip"), nix.thunk(() => nix.lookup(w, "mapAttrs'")), nix.thunk(() => nix.sel(cfg, "networks")), (network) => (_) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`tinc-${network}`), nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   description: nix.thunk(() => nix.str`Tinc daemon user for ${network}`),
                   isSystemUser: true,
                   group: nix.thunk(() => nix.str`tinc-${network}`),
@@ -374,7 +374,7 @@ fi
         };
       })()))),
     meta: nix.thunk(() => ({
-      __proto__: pos$53,
+      [nix.POS]: pos$53,
       maintainers: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [

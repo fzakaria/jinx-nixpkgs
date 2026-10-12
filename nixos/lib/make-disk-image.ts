@@ -55,9 +55,9 @@ export default nix.lambda((args) => (() => {
   const format$ = format;
   const format_1 = nix.thunk(() => (nix.asBool(nix.eq(format$, "qcow2-compressed")) ? "qcow2" : nix.force(format$)));
   const compress = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(format$, "qcow2-compressed")), "-c"));
-  const filename = nix.thunk(() => nix.add(nix.str`${baseName}.`, nix.selOr({ __proto__: pos$1, qcow2: "qcow2", vdi: "vdi", vpc: "vhd", raw: "img" }, () => nix.force(format_1), nix.key(nix.force(format_1)))));
+  const filename = nix.thunk(() => nix.add(nix.str`${baseName}.`, nix.selOr({ [nix.POS]: pos$1, qcow2: "qcow2", vdi: "vdi", vpc: "vhd", raw: "img" }, () => nix.force(format_1), nix.key(nix.force(format_1)))));
   const rootPartition = nix.thunk(() => nix.sel({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     legacy: "1",
     "legacy+boot": "2",
     "legacy+gpt": "2",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
     hybrid: "3",
   }, nix.key(nix.force(partitionTableType))));
   const partitionDiskScript = nix.thunk(() => nix.sel({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     legacy: "parted --script $diskImage -- \\\n  mklabel msdos \\\n  mkpart primary ext4 1MiB 100% \\\n  print\n",
     "legacy+boot": "parted --script $diskImage -- \\\n  mklabel msdos \\\n  mkpart primary fat32 1MiB $bootSizeMiB \\\n  set 1 boot on \\\n  mkpart primary ext4 $bootSizeMiB 100% \\\n  print\n",
     "legacy+gpt": nix.thunk(() => nix.str`parted --script $diskImage -- \\
@@ -171,7 +171,7 @@ echo -n ${nix.sel(config, "system", "nixos", "versionSuffix")} > $out/nixos/.ver
   const basePaths = nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))], nix.app(nix.sel(lib, "optional"), copyChannel, channelSources)));
   const additionalPaths$ = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), basePaths, additionalPaths));
   const closureInfo = nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       rootPaths: nix.thunk(() => nix.concat(basePaths, additionalPaths$)),
     }))));
   const blockSize = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.mul(4n, 1024n))));
@@ -343,7 +343,7 @@ chmod 0644 $efiVars
 echo "file ${format_1}-image $out/${filename}" >> $out/nix-support/hydra-build-products
 `);
   const buildImage = nix.thunk(() => nix.app(nix.sel(pkgs, "vmTools", "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         preVM: nix.thunk(() => nix.add(prepareImage, nix.app(nix.sel(lib, "optionalString"), touchEFIVars, createEFIVars))),
         buildInputs: nix.thunk(() => (() => {
           const w_1 = nix.withScope(pkgs, null);

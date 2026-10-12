@@ -78,12 +78,12 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "vivaldi";
       const version = "8.2.4133.83";
-      const suffix = nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+      const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-1_${suffix}.deb`),
           hash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "aarch64-linux": "sha256-V9/QmggzB032MHuNNpsTog2Urgv/jvnlO3oGZqQASvw=",
             "x86_64-linux": "sha256-O9VbOMwgTnbBizK3nhmqOWz65efBhwGHiWcobs1bGTI=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -186,9 +186,9 @@ wrapProgram "$out/bin/vivaldi" \\
   \${qtWrapperArgs[@]}
 `, nix.app(nix.sel(lib, "optionalString"), enableWidevine, nix.thunk(() => nix.str`ln -sf ${widevine_cdm}/share/google/chrome/WidevineCdm $out/opt/vivaldi/WidevineCdm
 `))), "runHook postInstall\n"));
-      const passthru = nix.thunk(() => ({ __proto__: pos$4, updateScript: nix.path(here, "./update-vivaldi.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update-vivaldi.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Browser for our Friends, powerful and personal",
         homepage: "https://vivaldi.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -208,7 +208,7 @@ wrapProgram "$out/bin/vivaldi" \\
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         suffix,

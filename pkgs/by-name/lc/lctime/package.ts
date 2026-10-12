@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const ngspice = nix.arg($, "ngspice");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "lctime",
       version: "0.0.28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "librecell",
           repo: "lctime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         debug: nix.thunk(() => (() => {
           const w_2 = nix.withScope(python3Packages, null);
           return [nix.thunk(() => nix.lookup(w_2, "matplotlib"))];
@@ -69,9 +69,9 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["lctime"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(runCommand, "lctime-tests", nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             nativeBuildInputs: nix.thunk(() => [lctime, ngspice, writableTmpDirAsHomeHook]),
           })), nix.thunk(() => nix.str`cd "$HOME"
 
@@ -83,7 +83,7 @@ mkdir -p $out
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Characterization tool for CMOS digital standard-cells",
         homepage: "https://codeberg.org/librecell/lctime",
         license: nix.thunk(() => (() => {

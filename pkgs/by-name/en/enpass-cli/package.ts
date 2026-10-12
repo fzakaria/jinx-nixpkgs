@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "enpass-cli",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HazCod",
           repo: "enpass-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-U9tnzok21yCFPDZprsvqq0NaO07qPS0L+IgVtF2hpvM=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlcipher]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "1" })),
       postInstall: "mv $out/bin/enpasscli $out/bin/enpass-cli\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line client for Enpass password manager",
         mainProgram: "enpass-cli",
         homepage: "https://github.com/HazCod/enpass-cli",

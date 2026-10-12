@@ -328,9 +328,9 @@ export default nix.lambda((args) => (() => {
   const w_2 = nix.withScope(nix.thunk(() => nix.sel(utils, "systemdUtils", "network", "units")), w_1);
   const w_3 = nix.withScope(lib, w_2);
   const check = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     global: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       sectionNetwork: nix.thunk(() => nix.app(nix.lookup(w_3, "checkUnitConfig"), "Network", nix.thunk(() => [
           nix.thunk(() => nix.app(nix.lookup(w_3, "assertOnlyFields"), nix.thunk(() => [
               "SpeedMeter",
@@ -379,7 +379,7 @@ export default nix.lambda((args) => (() => {
         ]))),
     })),
     link: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       sectionLink: nix.thunk(() => nix.app(nix.lookup(w_3, "checkUnitConfig"), "Link", nix.thunk(() => [
           nix.thunk(() => nix.app(nix.lookup(w_3, "assertOnlyFields"), nix.thunk(() => [
               "Description",
@@ -592,7 +592,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.lookup(w_3, "assertValueOneOf"), "Flags", nix.thunk(() => ["private", "vepa", "bridge"]))),
       ]);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sectionNetdev: nix.thunk(() => nix.app(nix.lookup(w_3, "checkUnitConfig"), "Netdev", nix.thunk(() => [
             nix.thunk(() => nix.app(nix.lookup(w_3, "assertOnlyFields"), nix.thunk(() => ["Description", "Name", "Kind", "MTUBytes", "MACAddress"]))),
             nix.thunk(() => nix.app(nix.lookup(w_3, "assertHasField"), "Name")),
@@ -1070,7 +1070,7 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     network: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       sectionLink: nix.thunk(() => nix.app(nix.lookup(w_3, "checkUnitConfig"), "Link", nix.thunk(() => [
           nix.thunk(() => nix.app(nix.lookup(w_3, "assertOnlyFields"), nix.thunk(() => [
               "MACAddress",
@@ -2114,63 +2114,63 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const commonNetworkOptions = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         default: true,
         type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "bool")),
         description: "Whether to manage network configuration using {command}`systemd-network`.\n\nThis also enables {option}`systemd.network.enable`.\n",
       })))),
     matchConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$7, Name: "eth0" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$7, Name: "eth0" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))),
         description: "Each attribute in this set specifies an option in the\n`[Match]` section of the unit.  See\n{manpage}`systemd.link(5)`\n{manpage}`systemd.netdev(5)`\n{manpage}`systemd.network(5)`\nfor details.\n",
       })))),
     extraConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         default: "",
         type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "lines")),
         description: "Extra configuration append to unit",
       })))),
   }));
   const networkdOptions = nix.thunk(() => ({
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     networkConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$11, SpeedMeter: true, ManageForeignRoutingPolicyRules: false })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$11, SpeedMeter: true, ManageForeignRoutingPolicyRules: false })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "global", "sectionNetwork")))),
         description: "Each attribute in this set specifies an option in the\n`[Network]` section of the networkd config.\nSee {manpage}`networkd.conf(5)` for details.\n",
       })))),
     dhcpV4Config: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$13, DUIDType: "vendor" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$13, DUIDType: "vendor" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "global", "sectionDHCPv4")))),
         description: "Each attribute in this set specifies an option in the\n`[DHCPv4]` section of the networkd config.\nSee {manpage}`networkd.conf(5)` for details.\n",
       })))),
     dhcpV6Config: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$15, DUIDType: "vendor" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$15, DUIDType: "vendor" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "global", "sectionDHCPv6")))),
         description: "Each attribute in this set specifies an option in the\n`[DHCPv6]` section of the networkd config.\nSee {manpage}`networkd.conf(5)` for details.\n",
       })))),
   }));
   const linkOptions = nix.thunk(() => nix.update(commonNetworkOptions, {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         default: true,
         type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "bool")),
         description: "Whether to enable this .link unit. It's handled by udev no matter if {command}`systemd-networkd` is enabled or not\n",
       })))),
     linkConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$19, MACAddress: "00:ff:ee:aa:cc:dd" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$19, MACAddress: "00:ff:ee:aa:cc:dd" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "link", "sectionLink")))),
         description: "Each attribute in this set specifies an option in the\n`[Link]` section of the unit.  See\n{manpage}`systemd.link(5)` for details.\n",
       })))),
@@ -2178,7 +2178,7 @@ export default nix.lambda((args) => (() => {
   const mkSubsectionType = (oldKey) => (checkF) => (() => {
     const type = nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), checkF));
     return nix.update(type, {
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       merge: (loc) => (defs) => (() => {
         const final = nix.thunk(() => nix.app(nix.sel(type, "merge"), loc, defs));
         return (nix.asBool(nix.has(final, nix.key(nix.force(oldKey)))) ? nix.app(nix.lookup(w_3, "warn"), nix.thunk(() => nix.str`Using '${oldKey}' is deprecated! Move all attributes inside one level up and remove it.`), nix.thunk(() => nix.sel(final, nix.key(nix.force(oldKey))))) : nix.force(final));
@@ -2186,87 +2186,87 @@ export default nix.lambda((args) => (() => {
     });
   })();
   const netdevOptions = nix.thunk(() => nix.update(commonNetworkOptions, {
-    __proto__: pos$84,
+    [nix.POS]: pos$84,
     netdevConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$24,
-        example: nix.thunk(() => ({ __proto__: pos$23, Name: "mybridge", Kind: "bridge" })),
+        [nix.POS]: pos$24,
+        example: nix.thunk(() => ({ [nix.POS]: pos$23, Name: "mybridge", Kind: "bridge" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionNetdev")))),
         description: "Each attribute in this set specifies an option in the\n`[Netdev]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     bridgeConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$25, STP: true })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$25, STP: true })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionBridge")))),
         description: "Each attribute in this set specifies an option in the\n`[Bridge]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     vlanConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$27, Id: 4n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$27, Id: 4n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionVLAN")))),
         description: "Each attribute in this set specifies an option in the\n`[VLAN]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     macvlanConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$29, Mode: "private" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$29, Mode: "private" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionMACVLAN")))),
         description: "Each attribute in this set specifies an option in the\n`[MACVLAN]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     macvtapConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$31, Mode: "private" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$31, Mode: "private" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionMACVTAP")))),
         description: "Each attribute in this set specifies an option in the `[MACVTAP]` section of the unit.\nSee {manpage}`systemd.netdev(5)` for details.\n",
       })))),
     ipvlanConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$33, Mode: "L2", Flags: "private" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$33, Mode: "L2", Flags: "private" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionIPVLAN")))),
         description: "Each attribute in this set specifies an option in the `[IPVLAN]` section of the unit.\nSee {manpage}`systemd.netdev(5)` for details.\n",
       })))),
     ipvtapConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$35, Mode: "L3", Flags: "vepa" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$35, Mode: "L3", Flags: "vepa" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionIPVTAP")))),
         description: "Each attribute in this set specifies an option in the `[IPVTAP]` section of the unit.\nSee {manpage}`systemd.netdev(5)` for details.\n",
       })))),
     vxlanConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         default: nix.thunk(() => ({})),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionVXLAN")))),
         description: "Each attribute in this set specifies an option in the\n`[VXLAN]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     geneveConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$38, Id: 1n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$38, Id: 1n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionGENEVE")))),
         description: "Each attribute in this set specifies an option in the\n`[GENEVE]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     hsrConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$40, Ports: nix.thunk(() => ["eth1", "eth2"]) })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$40, Ports: nix.thunk(() => ["eth1", "eth2"]) })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionHSR")))),
         description: "Each attribute in this set specifies an option in the\n`[HSR]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     bareUDPConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$42, DestinationPort: 1234n, EtherType: "ipv4" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$42, DestinationPort: 1234n, EtherType: "ipv4" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionBareUDP")))),
         description: "Each attribute in this set specifies an option in the\n`[BareUDP]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     l2tpConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           TunnelId: 10n,
           PeerTunnelId: 12n,
           Local: "static",
@@ -2277,93 +2277,93 @@ export default nix.lambda((args) => (() => {
         description: "Each attribute in this set specifies an option in the\n`[L2TP]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     l2tpSessions: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$46, SessionId: 25n, PeerSessionId: 26n, Name: "l2tp-sess" })),
+          nix.thunk(() => ({ [nix.POS]: pos$46, SessionId: 25n, PeerSessionId: 26n, Name: "l2tp-sess" })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "l2tpSessionConfig", nix.thunk(() => nix.sel(check, "netdev", "sectionL2TPSession")))))),
         description: "Each item in this array specifies an option in the\n`[L2TPSession]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     macsecConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$48, Port: 1234n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$48, Port: 1234n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionMACsec")))),
         description: "Each attribute in this set specifies an option in the\n`[MACsec]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     macsecReceiveChannels: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$50, Port: 1234n, MACAddress: "ab:cd:de:ef:ab:cd" })),
+          nix.thunk(() => ({ [nix.POS]: pos$50, Port: 1234n, MACAddress: "ab:cd:de:ef:ab:cd" })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "macsecReceiveConfig", nix.thunk(() => nix.sel(check, "netdev", "sectionMACsecReceiveChannel")))))),
         description: "Each item in this array specifies an option in the\n`[MACsecReceiveChannel]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     macsecTransmitAssociations: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$52, Activate: true }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$52, Activate: true }))]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "TransmitAssociationConfig", nix.thunk(() => nix.sel(check, "netdev", "sectionMACsecTransmitAssociation")))))),
         description: "Each item in this array specifies an option in the\n`[MACsecTransmitAssociation]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     macsecReceiveAssociations: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$54, Port: 1234n, MACAddress: "ab:cd:de:ef:ab:cd" })),
+          nix.thunk(() => ({ [nix.POS]: pos$54, Port: 1234n, MACAddress: "ab:cd:de:ef:ab:cd" })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "ReceiveAssociationConfig", nix.thunk(() => nix.sel(check, "netdev", "sectionMACsecReceiveAssociation")))))),
         description: "Each item in this array specifies an option in the\n`[MACsecReceiveAssociation]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     tunnelConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$56, Remote: "192.168.1.1" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$56, Remote: "192.168.1.1" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionTunnel")))),
         description: "Each attribute in this set specifies an option in the\n`[Tunnel]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     fooOverUDPConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$58, Port: 9001n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$58, Port: 9001n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionFooOverUDP")))),
         description: "Each attribute in this set specifies an option in the\n`[FooOverUDP]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     peerConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$60, Name: "veth2" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$60, Name: "veth2" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionPeer")))),
         description: "Each attribute in this set specifies an option in the\n`[Peer]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     vxcanConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$62, Peer: "vxcanpeer" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$62, Peer: "vxcanpeer" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionVXCAN")))),
         description: "Each attribute in this set specifies an option in the\n`[VXCAN]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     tunConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$64, User: "openvpn" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$64, User: "openvpn" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionTun")))),
         description: "Each attribute in this set specifies an option in the\n`[Tun]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     tapConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$66, User: "openvpn" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$66, User: "openvpn" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionTap")))),
         description: "Each attribute in this set specifies an option in the\n`[Tap]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     wireguardConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$69,
+        [nix.POS]: pos$69,
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           PrivateKeyFile: "/etc/wireguard/secret.key",
           ListenPort: 51820n,
           FirewallMark: 42n,
@@ -2372,11 +2372,11 @@ export default nix.lambda((args) => (() => {
         description: "Each attribute in this set specifies an option in the\n`[WireGuard]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\nUse `PrivateKeyFile` instead of\n`PrivateKey`: the nix store is\nworld-readable.\n",
       })))),
     wireguardPeers: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         default: [],
         example: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             Endpoint: "192.168.1.1:51820",
             PublicKey: "27s0OvaBBdHoJYkH9osZpjpgSOVNw+RaKfboT/Sfq0g=",
             PresharedKeyFile: "/etc/wireguard/psk.key",
@@ -2388,84 +2388,84 @@ export default nix.lambda((args) => (() => {
         description: "Each item in this array specifies an option in the\n`[WireGuardPeer]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\nUse `PresharedKeyFile` instead of\n`PresharedKey`: the nix store is\nworld-readable.\n",
       })))),
     bondConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$72, Mode: "802.3ad" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$72, Mode: "802.3ad" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionBond")))),
         description: "Each attribute in this set specifies an option in the\n`[Bond]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     xfrmConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$75,
+        [nix.POS]: pos$75,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$74, InterfaceId: 1n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$74, InterfaceId: 1n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionXfrm")))),
         description: "Each attribute in this set specifies an option in the\n`[Xfrm]` section of the unit.  See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     vrfConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$76, Table: 2342n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$76, Table: 2342n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionVRF")))),
         description: "Each attribute in this set specifies an option in the\n`[VRF]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\nA detailed explanation about how VRFs work can be found in the\n[kernel docs](https://www.kernel.org/doc/Documentation/networking/vrf.txt).\n",
       })))),
     batmanAdvancedConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$78, GatewayMode: "server", RoutingAlgorithm: "batman-v" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$78, GatewayMode: "server", RoutingAlgorithm: "batman-v" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionBatmanAdvanced")))),
         description: "Each attribute in this set specifies an option in the\n`[BatmanAdvanced]` section of the unit. See\n{manpage}`systemd.netdev(5)` for details.\n",
       })))),
     ipoibConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$81,
+        [nix.POS]: pos$81,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$80, PartitionKey: 1n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$80, PartitionKey: 1n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionIPoIB")))),
         description: "Each attribute in this set specifies an option in the `[IPoIB]` section of the unit.\nSee {manpage}`systemd.netdev(5)` for details.\n",
       })))),
     wlanConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$82, PhysicalDevice: 0n, Type: "station" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$82, PhysicalDevice: 0n, Type: "station" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "netdev", "sectionWLAN")))),
         description: "Each attribute in this set specifies an option in the `[WLAN]` section of the unit.\nSee {manpage}`systemd.netdev(5)` for details.\n",
       })))),
   }));
   const networkOptions = nix.thunk(() => nix.update(commonNetworkOptions, {
-    __proto__: pos$211,
+    [nix.POS]: pos$211,
     linkConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$86,
+        [nix.POS]: pos$86,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$85, Unmanaged: true })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$85, Unmanaged: true })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionLink")))),
         description: "Each attribute in this set specifies an option in the\n`[Link]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     sriovConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$87, VirtualFunction: 1n, VLANId: 1n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$87, VirtualFunction: 1n, VLANId: 1n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionSR-IOV")))),
         description: "Each attribute in this set specifies an option in the\n`[SR-IOV]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     networkConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$89, Description: "My Network" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$89, Description: "My Network" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionNetwork")))),
         description: "Each attribute in this set specifies an option in the\n`[Network]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     addresses: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$92,
+        [nix.POS]: pos$92,
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$91, Address: "192.168.0.100/24" }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$91, Address: "192.168.0.100/24" }))]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "addressConfig", nix.thunk(() => nix.sel(check, "network", "sectionAddress")))))),
         description: "A list of `[Address]` sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     neighbors: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$94,
+        [nix.POS]: pos$94,
         default: [],
         example: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             Address: "192.168.0.100/24",
             LinkLayerAddress: "aa:bb:cc:dd:ee:ff",
           })),
@@ -2474,139 +2474,139 @@ export default nix.lambda((args) => (() => {
         description: "A list of `[Neighbor]` sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     ipv6AddressLabels: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$96,
+        [nix.POS]: pos$96,
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$95, Label: 0n, Prefix: "3fff::/20" }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$95, Label: 0n, Prefix: "3fff::/20" }))]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "ipv6AddressLabelConfig", nix.thunk(() => nix.sel(check, "network", "sectionIPv6AddressLabel")))))),
         description: "A list of `[IPv6AddressLabel]` sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     routingPolicyRules: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$98,
+        [nix.POS]: pos$98,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$97, Table: 10n, IncomingInterface: "eth1", Family: "both" })),
+          nix.thunk(() => ({ [nix.POS]: pos$97, Table: 10n, IncomingInterface: "eth1", Family: "both" })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "routingPolicyRuleConfig", nix.thunk(() => nix.sel(check, "network", "sectionRoutingPolicyRule")))))),
         description: "A list of routing policy rules sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     nextHops: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$100,
+        [nix.POS]: pos$100,
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$99, Id: 10n, Gateway: "192.168.1.1" }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$99, Id: 10n, Gateway: "192.168.1.1" }))]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "nextHopConfig", nix.thunk(() => nix.sel(check, "network", "sectionNextHop")))))),
         description: "A list of NextHop sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     routes: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$102,
+        [nix.POS]: pos$102,
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$101, Gateway: "192.168.0.1" }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$101, Gateway: "192.168.0.1" }))]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "routeConfig", nix.thunk(() => nix.sel(check, "network", "sectionRoute")))))),
         description: "A list of route sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     dhcpConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         visible: false,
         apply: (_) => nix.app(nix.builtins.throw, "The option `systemd.network.networks.*.dhcpConfig` can no longer be used since it's been removed. Please use `systemd.network.networks.*.dhcpV4Config` instead."),
       })))),
     dhcpV4Config: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$105,
+        [nix.POS]: pos$105,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$104, UseDNS: true, UseRoutes: true })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$104, UseDNS: true, UseRoutes: true })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionDHCPv4")))),
         description: "Each attribute in this set specifies an option in the\n`[DHCPv4]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     dhcpV6Config: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$107,
+        [nix.POS]: pos$107,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$106, UseDNS: true })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$106, UseDNS: true })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionDHCPv6")))),
         description: "Each attribute in this set specifies an option in the\n`[DHCPv6]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     dhcpPrefixDelegationConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$108, SubnetId: "auto", Announce: true })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$108, SubnetId: "auto", Announce: true })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionDHCPPrefixDelegation")))),
         description: "Each attribute in this set specifies an option in the\n`[DHCPPrefixDelegation]` section of the unit. See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     ipv6AcceptRAConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$111,
+        [nix.POS]: pos$111,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$110, UseDNS: true, DHCPv6Client: "always" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$110, UseDNS: true, DHCPv6Client: "always" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionIPv6AcceptRA")))),
         description: "Each attribute in this set specifies an option in the\n`[IPv6AcceptRA]` section of the unit. See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     dhcpServerConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$113,
+        [nix.POS]: pos$113,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$112, PoolOffset: 50n, EmitDNS: false })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$112, PoolOffset: 50n, EmitDNS: false })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionDHCPServer")))),
         description: "Each attribute in this set specifies an option in the\n`[DHCPServer]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     dhcpServerStaticLeases: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$115,
+        [nix.POS]: pos$115,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$114, MACAddress: "65:43:4a:5b:d8:5f", Address: "192.168.1.42" })),
+          nix.thunk(() => ({ [nix.POS]: pos$114, MACAddress: "65:43:4a:5b:d8:5f", Address: "192.168.1.42" })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "dhcpServerStaticLeaseConfig", nix.thunk(() => nix.sel(check, "network", "sectionDHCPServerStaticLease")))))),
         description: "A list of DHCPServerStaticLease sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     dhcpV6PrefixDelegationConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$116,
+        [nix.POS]: pos$116,
         visible: false,
         apply: (_) => nix.app(nix.builtins.throw, "The option `systemd.network.networks.<name>.dhcpV6PrefixDelegationConfig` has been renamed to `systemd.network.networks.<name>.dhcpPrefixDelegationConfig`."),
       })))),
     ipv6PrefixDelegationConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$117,
+        [nix.POS]: pos$117,
         visible: false,
         apply: (_) => nix.app(nix.builtins.throw, "The option `systemd.network.networks.*.ipv6PrefixDelegationConfig` has been replaced by `systemd.network.networks.*.ipv6SendRAConfig`."),
       })))),
     ipv6SendRAConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$118, EmitDNS: true, Managed: true, OtherInformation: true })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$118, EmitDNS: true, Managed: true, OtherInformation: true })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionIPv6SendRA")))),
         description: "Each attribute in this set specifies an option in the\n`[IPv6SendRA]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     ipv6Prefixes: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$121,
+        [nix.POS]: pos$121,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$120, AddressAutoconfiguration: true, OnLink: true })),
+          nix.thunk(() => ({ [nix.POS]: pos$120, AddressAutoconfiguration: true, OnLink: true })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "ipv6PrefixConfig", nix.thunk(() => nix.sel(check, "network", "sectionIPv6Prefix")))))),
         description: "A list of ipv6Prefix sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     ipv6RoutePrefixes: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$123,
+        [nix.POS]: pos$123,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$122, Route: "fd00::/64", LifetimeSec: 3600n })),
+          nix.thunk(() => ({ [nix.POS]: pos$122, Route: "fd00::/64", LifetimeSec: 3600n })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "ipv6RoutePrefixConfig", nix.thunk(() => nix.sel(check, "network", "sectionIPv6RoutePrefix")))))),
         description: "A list of ipv6RoutePrefix sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     ipv6PREF64Prefixes: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$125,
+        [nix.POS]: pos$125,
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$124, Prefix: "64:ff9b::/96" }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$124, Prefix: "64:ff9b::/96" }))]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "ipv6PREF64PrefixConfig", nix.thunk(() => nix.sel(check, "network", "sectionIPv6PREF64Prefix")))))),
         description: "A list of IPv6PREF64Prefix sections to be added to the unit. See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     bridgeConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$127,
+        [nix.POS]: pos$127,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$126, MulticastFlood: false, Cost: 20n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$126, MulticastFlood: false, Cost: 20n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionBridge")))),
         description: "Each attribute in this set specifies an option in the\n`[Bridge]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     bridgeFDBs: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$129,
+        [nix.POS]: pos$129,
         default: [],
         example: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$128,
+            [nix.POS]: pos$128,
             MACAddress: "90:e2:ba:43:fc:71",
             Destination: "192.168.100.4",
             VNI: 3600n,
@@ -2616,117 +2616,117 @@ export default nix.lambda((args) => (() => {
         description: "A list of BridgeFDB sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     bridgeMDBs: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$131,
+        [nix.POS]: pos$131,
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$130, MulticastGroupAddress: "ff02::1:2:3:4", VLANId: 10n })),
+          nix.thunk(() => ({ [nix.POS]: pos$130, MulticastGroupAddress: "ff02::1:2:3:4", VLANId: 10n })),
         ]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "bridgeMDBConfig", nix.thunk(() => nix.sel(check, "network", "sectionBridgeMDB")))))),
         description: "A list of BridgeMDB sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     lldpConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$133,
+        [nix.POS]: pos$133,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$132, MUDURL: "https://things.example.org/product_abc123/v5" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$132, MUDURL: "https://things.example.org/product_abc123/v5" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionLLDP")))),
         description: "Each attribute in this set specifies an option in the\n`[LLDP]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     canConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$134,
+        [nix.POS]: pos$134,
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({})),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionCAN")))),
         description: "Each attribute in this set specifies an option in the\n`[CAN]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     ipoIBConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$135,
+        [nix.POS]: pos$135,
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({})),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionIPoIB")))),
         description: "Each attribute in this set specifies an option in the\n`[IPoIB]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     qdiscConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$137,
+        [nix.POS]: pos$137,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$136, Parent: "ingress" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$136, Parent: "ingress" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionQDisc")))),
         description: "Each attribute in this set specifies an option in the\n`[QDisc]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     networkEmulatorConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$139,
+        [nix.POS]: pos$139,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$138, Parent: "ingress", DelaySec: "20msec" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$138, Parent: "ingress", DelaySec: "20msec" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionNetworkEmulator")))),
         description: "Each attribute in this set specifies an option in the\n`[NetworkEmulator]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     tokenBucketFilterConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$141,
+        [nix.POS]: pos$141,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$140, Parent: "ingress", Rate: "100k" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$140, Parent: "ingress", Rate: "100k" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionTokenBucketFilter")))),
         description: "Each attribute in this set specifies an option in the\n`[TokenBucketFilter]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     pieConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$143,
+        [nix.POS]: pos$143,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$142, Parent: "ingress", PacketLimit: "3847" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$142, Parent: "ingress", PacketLimit: "3847" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionPIE")))),
         description: "Each attribute in this set specifies an option in the\n`[PIE]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     flowQueuePIEConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$145,
+        [nix.POS]: pos$145,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$144, Parent: "ingress", PacketLimit: "3847" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$144, Parent: "ingress", PacketLimit: "3847" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionFlowQueuePIE")))),
         description: "Each attribute in this set specifies an option in the\n`[FlowQueuePIE]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     stochasticFairBlueConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$147,
+        [nix.POS]: pos$147,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$146, Parent: "ingress", PacketLimit: "3847" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$146, Parent: "ingress", PacketLimit: "3847" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionStochasticFairBlue")))),
         description: "Each attribute in this set specifies an option in the\n`[StochasticFairBlue]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     stochasticFairnessQueueingConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$149,
+        [nix.POS]: pos$149,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$148, Parent: "ingress", PerturbPeriodSec: "30" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$148, Parent: "ingress", PerturbPeriodSec: "30" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionStochasticFairnessQueueing")))),
         description: "Each attribute in this set specifies an option in the\n`[StochasticFairnessQueueing]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     bfifoConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$151,
+        [nix.POS]: pos$151,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$150, Parent: "ingress", LimitBytes: "20K" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$150, Parent: "ingress", LimitBytes: "20K" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionBFIFO")))),
         description: "Each attribute in this set specifies an option in the\n`[BFIFO]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     pfifoConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$153,
+        [nix.POS]: pos$153,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$152, Parent: "ingress", PacketLimit: "300" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$152, Parent: "ingress", PacketLimit: "300" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionPFIFO")))),
         description: "Each attribute in this set specifies an option in the\n`[PFIFO]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     pfifoHeadDropConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$155,
+        [nix.POS]: pos$155,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$154, Parent: "ingress", PacketLimit: "300" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$154, Parent: "ingress", PacketLimit: "300" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionPFIFOHeadDrop")))),
         description: "Each attribute in this set specifies an option in the\n`[PFIFOHeadDrop]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     pfifoFastConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$157,
+        [nix.POS]: pos$157,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$156, Parent: "ingress" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$156, Parent: "ingress" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionPFIFOFast")))),
         description: "Each attribute in this set specifies an option in the\n`[PFIFOFast]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     cakeConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$159,
+        [nix.POS]: pos$159,
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({
-          __proto__: pos$158,
+          [nix.POS]: pos$158,
           Bandwidth: "40M",
           OverheadBytes: 8n,
           CompensationMode: "ptm",
@@ -2735,31 +2735,31 @@ export default nix.lambda((args) => (() => {
         description: "Each attribute in this set specifies an option in the\n`[CAKE]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     controlledDelayConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$161,
+        [nix.POS]: pos$161,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$160, Parent: "ingress", TargetSec: "20msec" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$160, Parent: "ingress", TargetSec: "20msec" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionControlledDelay")))),
         description: "Each attribute in this set specifies an option in the\n`[ControlledDelay]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     deficitRoundRobinSchedulerConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$163,
+        [nix.POS]: pos$163,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$162, Parent: "root" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$162, Parent: "root" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionDeficitRoundRobinScheduler")))),
         description: "Each attribute in this set specifies an option in the\n`[DeficitRoundRobinScheduler]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     deficitRoundRobinSchedulerClassConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$165,
+        [nix.POS]: pos$165,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$164, Parent: "root", QuantumBytes: "300k" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$164, Parent: "root", QuantumBytes: "300k" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionDeficitRoundRobinSchedulerClass")))),
         description: "Each attribute in this set specifies an option in the\n`[DeficitRoundRobinSchedulerClass]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     enhancedTransmissionSelectionConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$167,
+        [nix.POS]: pos$167,
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({
-          __proto__: pos$166,
+          [nix.POS]: pos$166,
           Parent: "root",
           QuantumBytes: "300k",
           Bands: 3n,
@@ -2769,10 +2769,10 @@ export default nix.lambda((args) => (() => {
         description: "Each attribute in this set specifies an option in the\n`[EnhancedTransmissionSelection]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     genericRandomEarlyDetectionConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$169,
+        [nix.POS]: pos$169,
         default: nix.thunk(() => ({})),
         example: nix.thunk(() => ({
-          __proto__: pos$168,
+          [nix.POS]: pos$168,
           Parent: "root",
           VirtualQueues: 5n,
           DefaultVirtualQueue: 3n,
@@ -2781,187 +2781,187 @@ export default nix.lambda((args) => (() => {
         description: "Each attribute in this set specifies an option in the\n`[GenericRandomEarlyDetection]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     fairQueueingControlledDelayConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$171,
+        [nix.POS]: pos$171,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$170, Parent: "root", Flows: 5n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$170, Parent: "root", Flows: 5n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionFairQueueingControlledDelay")))),
         description: "Each attribute in this set specifies an option in the\n`[FairQueueingControlledDelay]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     fairQueueingConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$173,
+        [nix.POS]: pos$173,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$172, Parent: "root", FlowLimit: 5n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$172, Parent: "root", FlowLimit: 5n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionFairQueueing")))),
         description: "Each attribute in this set specifies an option in the\n`[FairQueueing]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     trivialLinkEqualizerConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$175,
+        [nix.POS]: pos$175,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$174, Parent: "root", Id: 0n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$174, Parent: "root", Id: 0n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionTrivialLinkEqualizer")))),
         description: "Each attribute in this set specifies an option in the\n`[TrivialLinkEqualizer]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     hierarchyTokenBucketConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$177,
+        [nix.POS]: pos$177,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$176, Parent: "root" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$176, Parent: "root" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionHierarchyTokenBucket")))),
         description: "Each attribute in this set specifies an option in the\n`[HierarchyTokenBucket]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     hierarchyTokenBucketClassConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$179,
+        [nix.POS]: pos$179,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$178, Parent: "root", Rate: "10M" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$178, Parent: "root", Rate: "10M" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionHierarchyTokenBucketClass")))),
         description: "Each attribute in this set specifies an option in the\n`[HierarchyTokenBucketClass]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     classfulMultiQueueingConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$181,
+        [nix.POS]: pos$181,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$180, Parent: "root" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$180, Parent: "root" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionClassfulMultiQueueing")))),
         description: "Each attribute in this set specifies an option in the\n`[ClassfulMultiQueueing]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     bandMultiQueueingConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$183,
+        [nix.POS]: pos$183,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$182, Parent: "root" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$182, Parent: "root" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionBandMultiQueueing")))),
         description: "Each attribute in this set specifies an option in the\n`[BandMultiQueueing]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     heavyHitterFilterConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$185,
+        [nix.POS]: pos$185,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$184, Parent: "root", PacketLimit: 10000n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$184, Parent: "root", PacketLimit: 10000n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionHeavyHitterFilter")))),
         description: "Each attribute in this set specifies an option in the\n`[HeavyHitterFilter]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     quickFairQueueingConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$187,
+        [nix.POS]: pos$187,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$186, Parent: "root" })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$186, Parent: "root" })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionQuickFairQueueing")))),
         description: "Each attribute in this set specifies an option in the\n`[QuickFairQueueing]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     quickFairQueueingConfigClass: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$189,
+        [nix.POS]: pos$189,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$188, Parent: "root", Weight: 133n })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$188, Parent: "root", Weight: 133n })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionQuickFairQueueingClass")))),
         description: "Each attribute in this set specifies an option in the\n`[QuickFairQueueingClass]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     bridgeVLANs: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$191,
+        [nix.POS]: pos$191,
         default: [],
-        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$190, VLAN: "10-20" }))]),
+        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$190, VLAN: "10-20" }))]),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.app(mkSubsectionType, "bridgeVLANConfig", nix.thunk(() => nix.sel(check, "network", "sectionBridgeVLAN")))))),
         description: "A list of BridgeVLAN sections to be added to the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     mobileNetworkConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$193,
+        [nix.POS]: pos$193,
         default: nix.thunk(() => ({})),
-        example: nix.thunk(() => ({ __proto__: pos$192, APN: "access-point-name", AllowRoaming: false })),
+        example: nix.thunk(() => ({ [nix.POS]: pos$192, APN: "access-point-name", AllowRoaming: false })),
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "addCheck"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "attrsOf"), nix.thunk(() => nix.lookup(w_3, "unitOption")))), nix.thunk(() => nix.sel(check, "network", "sectionMobileNetwork")))),
         description: "Each attribute in this set specifies an option in the\n`[MobileNetwork]` section of the unit.  See\n{manpage}`systemd.network(5)` for details.\n",
       })))),
     name: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$194,
+        [nix.POS]: pos$194,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         default: null,
         description: "The name of the network interface to match against.\n",
       })))),
     DHCP: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$195,
+        [nix.POS]: pos$195,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         default: null,
         description: "Whether to enable DHCP on the interfaces matched.\n",
       })))),
     domains: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$196,
+        [nix.POS]: pos$196,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))))),
         default: null,
         description: "A list of domains to pass to the network config.\n",
       })))),
     address: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$197,
+        [nix.POS]: pos$197,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of addresses to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     gateway: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$198,
+        [nix.POS]: pos$198,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of gateways to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     dns: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$199,
+        [nix.POS]: pos$199,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of dns servers to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     ntp: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$200,
+        [nix.POS]: pos$200,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of ntp servers to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     bridge: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$201,
+        [nix.POS]: pos$201,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of bridge interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     bond: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$202,
+        [nix.POS]: pos$202,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of bond interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     vrf: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$203,
+        [nix.POS]: pos$203,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of vrf interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     vlan: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$204,
+        [nix.POS]: pos$204,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of vlan interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     macvlan: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$205,
+        [nix.POS]: pos$205,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of macvlan interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     ipvlan: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$206,
+        [nix.POS]: pos$206,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of ipvlan interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     macvtap: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$207,
+        [nix.POS]: pos$207,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of macvtap interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     vxlan: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$208,
+        [nix.POS]: pos$208,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of vxlan interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     tunnel: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$209,
+        [nix.POS]: pos$209,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of tunnel interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
       })))),
     xfrm: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$210,
+        [nix.POS]: pos$210,
         default: [],
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "str")))),
         description: "A list of xfrm interfaces to be added to the network section of the\nunit.  See {manpage}`systemd.network(5)` for details.\n",
@@ -2971,12 +2971,12 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$216,
+      [nix.POS]: pos$216,
       config: nix.thunk(() => ({
-        __proto__: pos$215,
-        matchConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config_1, "name"), null)), nix.thunk(() => ({ __proto__: pos$212, Name: nix.thunk(() => nix.sel(config_1, "name")) })))),
-        networkConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_3, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config_1, "DHCP"), null)), nix.thunk(() => ({ __proto__: pos$213, DHCP: nix.thunk(() => nix.sel(config_1, "DHCP")) }))), nix.app(nix.lookup(w_3, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config_1, "domains"), null)), nix.thunk(() => ({
-            __proto__: pos$214,
+        [nix.POS]: pos$215,
+        matchConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config_1, "name"), null)), nix.thunk(() => ({ [nix.POS]: pos$212, Name: nix.thunk(() => nix.sel(config_1, "name")) })))),
+        networkConfig: nix.thunk(() => nix.update(nix.app(nix.lookup(w_3, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config_1, "DHCP"), null)), nix.thunk(() => ({ [nix.POS]: pos$213, DHCP: nix.thunk(() => nix.sel(config_1, "DHCP")) }))), nix.app(nix.lookup(w_3, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config_1, "domains"), null)), nix.thunk(() => ({
+            [nix.POS]: pos$214,
             Domains: nix.thunk(() => nix.app(nix.lookup(w_3, "concatStringsSep"), " ", nix.thunk(() => nix.sel(config_1, "domains")))),
           }))))),
       })),
@@ -2986,13 +2986,13 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$223,
+      [nix.POS]: pos$223,
       options: nix.thunk(() => ({
-        __proto__: pos$220,
+        [nix.POS]: pos$220,
         routeTables: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$218,
+            [nix.POS]: pos$218,
             default: nix.thunk(() => ({})),
-            example: nix.thunk(() => ({ __proto__: pos$217, foo: 27n })),
+            example: nix.thunk(() => ({ [nix.POS]: pos$217, foo: 27n })),
             type: nix.thunk(() => (() => {
               const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
               return nix.app(nix.lookup(w_4, "attrsOf"), nix.thunk(() => nix.lookup(w_4, "int")));
@@ -3000,7 +3000,7 @@ export default nix.lambda((args) => (() => {
             description: "Defines route table names as an attrset of name to number.\nSee {manpage}`networkd.conf(5)` for details.\n",
           })))),
         addRouteTablesToIPRoute2: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$219,
+            [nix.POS]: pos$219,
             default: true,
             example: false,
             type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "bool")),
@@ -3008,16 +3008,16 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$222,
+        [nix.POS]: pos$222,
         networkConfig: nix.thunk(() => nix.app(nix.lookup(w_3, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(config_1, "routeTables"), {})), nix.thunk(() => ({
-            __proto__: pos$221,
+            [nix.POS]: pos$221,
             RouteTable: nix.thunk(() => nix.app(nix.lookup(w_3, "mapAttrsToList"), (name) => (number) => nix.str`${name}:${nix.app(nix.builtins.toString, number)}`, nix.thunk(() => nix.sel(config_1, "routeTables")))),
           })))),
       })),
     };
   })(), formals$3);
   const renderConfig = (def) => ({
-    __proto__: pos$224,
+    [nix.POS]: pos$224,
     text: nix.thunk(() => nix.add(nix.add(nix.str`[Network]
 ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "networkConfig")))}
 `, nix.app(nix.lookup(w_3, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(def, "dhcpV4Config"), {})), nix.thunk(() => nix.str`[DHCPv4]
@@ -3027,69 +3027,69 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
 `)))),
   });
   const mkUnitFiles = (prefix) => (cfg) => nix.app(nix.lookup(w_3, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (name) => ({
-        __proto__: pos$226,
+        [nix.POS]: pos$226,
         name: nix.thunk(() => nix.str`${prefix}systemd/network/${name}`),
         value: nix.thunk(() => ({
-          __proto__: pos$225,
+          [nix.POS]: pos$225,
           source: nix.thunk(() => nix.str`${nix.sel(cfg, "units", nix.key(nix.force(name)), "unit")}/${name}`),
         })),
       }), nix.thunk(() => nix.app(nix.lookup(w_3, "attrNames"), nix.thunk(() => nix.sel(cfg, "units")))))));
   const commonOptions = (visible) => ({
-    __proto__: pos$246,
+    [nix.POS]: pos$246,
     enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$227,
+        [nix.POS]: pos$227,
         default: false,
         type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "bool")),
         description: "Whether to enable networkd or not.\n",
       })))),
     links: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$229,
+        [nix.POS]: pos$229,
         default: nix.thunk(() => ({})),
         visible: visible,
         type: nix.thunk(() => (() => {
           const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
-          return nix.app(nix.lookup(w_4, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$228, options: linkOptions }))]))));
+          return nix.app(nix.lookup(w_4, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$228, options: linkOptions }))]))));
         })()),
         description: "Definition of systemd network links.",
       })))),
     netdevs: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$231,
+        [nix.POS]: pos$231,
         default: nix.thunk(() => ({})),
         visible: visible,
         type: nix.thunk(() => (() => {
           const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
-          return nix.app(nix.lookup(w_4, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$230, options: netdevOptions }))]))));
+          return nix.app(nix.lookup(w_4, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$230, options: netdevOptions }))]))));
         })()),
         description: "Definition of systemd network devices.",
       })))),
     networks: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$233,
+        [nix.POS]: pos$233,
         default: nix.thunk(() => ({})),
         visible: visible,
         type: nix.thunk(() => (() => {
           const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
           return nix.app(nix.lookup(w_4, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$232, options: networkOptions })),
+                nix.thunk(() => ({ [nix.POS]: pos$232, options: networkOptions })),
                 networkConfig,
               ]))));
         })()),
         description: "Definition of systemd networks.",
       })))),
     config: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$235,
+        [nix.POS]: pos$235,
         default: nix.thunk(() => ({})),
         visible: visible,
         type: nix.thunk(() => (() => {
           const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
           return nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$234, options: networkdOptions })),
+              nix.thunk(() => ({ [nix.POS]: pos$234, options: networkdOptions })),
               networkdConfig,
             ]));
         })()),
         description: "Definition of global systemd network config.",
       })))),
     units: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$239,
+        [nix.POS]: pos$239,
         description: "Definition of networkd units.",
         default: nix.thunk(() => ({})),
         internal: true,
@@ -3100,10 +3100,10 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
                 const name = nix.arg($_1, "name");
                 const config_1 = nix.arg($_1, "config");
                 return {
-                  __proto__: pos$238,
-                  options: nix.thunk(() => nix.app(nix.lookup(w_4, "mapAttrs"), (_) => (x) => nix.update(x, { __proto__: pos$236, internal: true }), nix.thunk(() => nix.lookup(w_4, "concreteUnitOptions")))),
+                  [nix.POS]: pos$238,
+                  options: nix.thunk(() => nix.app(nix.lookup(w_4, "mapAttrs"), (_) => (x) => nix.update(x, { [nix.POS]: pos$236, internal: true }), nix.thunk(() => nix.lookup(w_4, "concreteUnitOptions")))),
                   config: nix.thunk(() => ({
-                    __proto__: pos$237,
+                    [nix.POS]: pos$237,
                     unit: nix.thunk(() => nix.app(nix.lookup(w_4, "mkDefault"), nix.thunk(() => nix.app(nix.lookup(w_4, "makeUnit"), name, config_1)))),
                   })),
                 };
@@ -3111,23 +3111,23 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
         })()),
       })))),
     "wait-online": nix.thunk(() => ({
-      __proto__: pos$245,
+      [nix.POS]: pos$245,
       enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$240,
+          [nix.POS]: pos$240,
           type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "bool")),
           default: true,
           example: false,
           description: "Whether to enable the systemd-networkd-wait-online service.\n\nsystemd-networkd-wait-online can timeout and fail if there are no network interfaces\navailable for it to manage. When systemd-networkd is enabled but a different service is\nresponsible for managing the system's internet connection (for example, NetworkManager or\nconnman are used to manage WiFi connections), this service is unnecessary and can be\ndisabled.\n",
         })))),
       anyInterface: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$241,
+          [nix.POS]: pos$241,
           description: "Whether to consider the network online when any interface is online, as opposed to all of them.\nThis is useful on portable machines with a wired and a wireless interface, for example.\n\nThis is on by default if {option}`networking.useDHCP` is enabled.\n",
           type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "bool")),
           defaultText: "config.networking.useDHCP",
           default: nix.thunk(() => nix.sel(config, "networking", "useDHCP")),
         })))),
       ignoredInterfaces: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$242,
+          [nix.POS]: pos$242,
           description: "Network interfaces to be ignored when deciding if the system is online.\n",
           type: nix.thunk(() => (() => {
             const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
@@ -3137,14 +3137,14 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
           example: nix.thunk(() => ["wg0"]),
         })))),
       timeout: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$243,
+          [nix.POS]: pos$243,
           description: "Time to wait for the network to come online, in seconds. Set to 0 to disable.\n",
           type: nix.thunk(() => nix.sel(nix.lookup(w_3, "types"), "ints", "unsigned")),
           default: 120n,
           example: 0n,
         })))),
       extraArgs: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$244,
+          [nix.POS]: pos$244,
           description: "Extra command-line arguments to pass to systemd-networkd-wait-online.\nThese also affect per-interface `systemd-network-wait-online@` services.\n\nSee {manpage}`systemd-networkd-wait-online.service(8)` for all available options.\n",
           type: nix.thunk(() => (() => {
             const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
@@ -3157,20 +3157,20 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
   const commonConfig = (config_1) => (() => {
     const cfg = nix.thunk(() => nix.sel(config_1, "systemd", "network"));
     const mkUnit = (f) => (def) => ({
-      __proto__: pos$247,
+      [nix.POS]: pos$247,
       enable: nix.thunk(() => nix.attr(def, "enable")),
       text: nix.thunk(() => nix.app(f, def)),
     });
     return nix.app(nix.lookup(w_3, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$251,
+          [nix.POS]: pos$251,
           systemd: nix.thunk(() => ({
-            __proto__: pos$250,
+            [nix.POS]: pos$250,
             network: nix.thunk(() => ({
-              __proto__: pos$249,
+              [nix.POS]: pos$249,
               units: nix.thunk(() => nix.app(nix.lookup(w_3, "mapAttrs'"), (n) => (v) => nix.app(nix.lookup(w_3, "nameValuePair"), nix.thunk(() => nix.str`${n}.link`), nix.thunk(() => nix.app(mkUnit, nix.thunk(() => nix.lookup(w_3, "linkToUnit")), v))), nix.thunk(() => nix.sel(cfg, "links")))),
               "wait-online": nix.thunk(() => ({
-                __proto__: pos$248,
+                [nix.POS]: pos$248,
                 extraArgs: nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`--timeout=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "wait-online", "timeout")))}`),
                 ], nix.concat(nix.app(nix.lookup(w_3, "optional"), nix.thunk(() => nix.sel(cfg, "wait-online", "anyInterface")), "--any"), nix.app(nix.builtins.map, (i) => nix.str`--ignore=${i}`, nix.thunk(() => nix.sel(cfg, "wait-online", "ignoredInterfaces")))))),
@@ -3179,27 +3179,27 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
           })),
         })),
         nix.thunk(() => nix.app(nix.lookup(w_3, "mkIf"), nix.thunk(() => nix.sel(config_1, "systemd", "network", "enable")), nix.thunk(() => ({
-            __proto__: pos$261,
+            [nix.POS]: pos$261,
             systemd: nix.thunk(() => ({
-              __proto__: pos$260,
+              [nix.POS]: pos$260,
               network: nix.thunk(() => ({
-                __proto__: pos$252,
+                [nix.POS]: pos$252,
                 units: nix.thunk(() => nix.update(nix.app(nix.lookup(w_3, "mapAttrs'"), (n) => (v) => nix.app(nix.lookup(w_3, "nameValuePair"), nix.thunk(() => nix.str`${n}.netdev`), nix.thunk(() => nix.app(mkUnit, nix.thunk(() => nix.lookup(w_3, "netdevToUnit")), v))), nix.thunk(() => nix.sel(cfg, "netdevs"))), nix.app(nix.lookup(w_3, "mapAttrs'"), (n) => (v) => nix.app(nix.lookup(w_3, "nameValuePair"), nix.thunk(() => nix.str`${n}.network`), nix.thunk(() => nix.app(mkUnit, nix.thunk(() => nix.lookup(w_3, "networkToUnit")), v))), nix.thunk(() => nix.sel(cfg, "networks"))))),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$254,
-                "systemd-networkd": nix.thunk(() => ({ __proto__: pos$253, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+                [nix.POS]: pos$254,
+                "systemd-networkd": nix.thunk(() => ({ [nix.POS]: pos$253, wantedBy: nix.thunk(() => ["sockets.target"]) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$259,
+                [nix.POS]: pos$259,
                 "systemd-networkd-wait-online": nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(cfg, "wait-online"));
                   return {
-                  __proto__: pos$256,
+                  [nix.POS]: pos$256,
                   enable: nix.thunk(() => nix.attr(from, "enable")),
                   wantedBy: nix.thunk(() => ["network-online.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$255,
+                    [nix.POS]: pos$255,
                     ExecStart: nix.thunk(() => [
                       "",
                       nix.thunk(() => nix.str`${nix.sel(config_1, "systemd", "package")}/lib/systemd/systemd-networkd-wait-online ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "wait-online", "extraArgs")))}`),
@@ -3208,9 +3208,9 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
                 };
                 })()),
                 "systemd-networkd-wait-online@": nix.thunk(() => ({
-                  __proto__: pos$258,
+                  [nix.POS]: pos$258,
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$257,
+                    [nix.POS]: pos$257,
                     ExecStart: nix.thunk(() => [
                       "",
                       nix.thunk(() => nix.str`${nix.sel(config_1, "systemd", "package")}/lib/systemd/systemd-networkd-wait-online -i %i ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(cfg, "wait-online", "extraArgs")))}`),
@@ -3228,20 +3228,20 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
     return nix.app(nix.lookup(w_3, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(commonConfig, config)),
         nix.thunk(() => ({
-          __proto__: pos$263,
-          environment: nix.thunk(() => ({ __proto__: pos$262, etc: unitFiles })),
+          [nix.POS]: pos$263,
+          environment: nix.thunk(() => ({ [nix.POS]: pos$262, etc: unitFiles })),
         })),
         nix.thunk(() => nix.app(nix.lookup(w_3, "mkIf"), nix.thunk(() => nix.sel(config, "systemd", "network", "enable")), nix.thunk(() => ({
-            __proto__: pos$278,
+            [nix.POS]: pos$278,
             users: nix.thunk(() => ({
-              __proto__: pos$266,
+              [nix.POS]: pos$266,
               users: nix.thunk(() => ({
-                __proto__: pos$265,
-                "systemd-network": nix.thunk(() => ({ __proto__: pos$264, group: "systemd-network" })),
+                [nix.POS]: pos$265,
+                "systemd-network": nix.thunk(() => ({ [nix.POS]: pos$264, group: "systemd-network" })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$271,
+              [nix.POS]: pos$271,
               additionalUpstreamSystemUnits: nix.thunk(() => [
                 "systemd-networkd-wait-online.service",
                 "systemd-networkd-wait-online@.service",
@@ -3253,18 +3253,18 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
                 "systemd-networkd-persistent-storage.service",
               ]),
               sockets: nix.thunk(() => ({
-                __proto__: pos$268,
-                "systemd-networkd-varlink-metrics": nix.thunk(() => ({ __proto__: pos$267, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+                [nix.POS]: pos$268,
+                "systemd-networkd-varlink-metrics": nix.thunk(() => ({ [nix.POS]: pos$267, wantedBy: nix.thunk(() => ["sockets.target"]) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$270,
+                [nix.POS]: pos$270,
                 "systemd-networkd": nix.thunk(() => (() => {
                   const isReloadableUnitFileName = (unitFileName) => nix.app(nix.sel(nix.lookup(w_3, "strings"), "hasSuffix"), ".network", unitFileName);
                   const reloadableUnitFiles = nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "attrsets"), "filterAttrs"), (k) => (v) => nix.app(isReloadableUnitFileName, k), unitFiles));
                   const nonReloadableUnitFiles = nix.thunk(() => nix.app(nix.sel(nix.lookup(w_3, "attrsets"), "filterAttrs"), (k) => (v) => !nix.asBool(nix.app(isReloadableUnitFileName, k)), unitFiles));
                   const unitFileSources = (unitFiles_1) => nix.app(nix.builtins.map, (x) => nix.sel(x, "source"), nix.thunk(() => nix.app(nix.lookup(w_3, "attrValues"), unitFiles_1)));
                   return {
-                    __proto__: pos$269,
+                    [nix.POS]: pos$269,
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     reloadTriggers: nix.thunk(() => nix.app(unitFileSources, reloadableUnitFiles)),
                     restartTriggers: nix.thunk(() => nix.concat(nix.app(unitFileSources, nonReloadableUnitFiles), [
@@ -3278,16 +3278,16 @@ ${nix.app(nix.lookup(w_3, "attrsToSection"), nix.thunk(() => nix.sel(def, "dhcpV
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$273,
+              [nix.POS]: pos$273,
               etc: nix.thunk(() => ({
-                __proto__: pos$272,
+                [nix.POS]: pos$272,
                 "systemd/networkd.conf": nix.thunk(() => nix.app(renderConfig, nix.thunk(() => nix.sel(cfg, "config")))),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$275,
+              [nix.POS]: pos$275,
               iproute2: nix.thunk(() => nix.app(nix.lookup(w_3, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "config", "addRouteTablesToIPRoute2")) && nix.asBool(!nix.eq(nix.sel(cfg, "config", "routeTables"), {})))), nix.thunk(() => ({
-                  __proto__: pos$274,
+                  [nix.POS]: pos$274,
                   enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkDefault"), true)),
                   rttablesExtraConfig: nix.thunk(() => nix.str`
 # Extra tables defined in NixOS systemd.networkd.config.routeTables.
@@ -3296,9 +3296,9 @@ ${nix.app(nix.lookup(w_3, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix
                 })))),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$277,
+              [nix.POS]: pos$277,
               resolved: nix.thunk(() => ({
-                __proto__: pos$276,
+                [nix.POS]: pos$276,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkDefault"), true)),
               })),
             })),
@@ -3306,27 +3306,27 @@ ${nix.app(nix.lookup(w_3, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix
       ]));
   })());
   const stage1Options = nix.thunk(() => ({
-    __proto__: pos$288,
+    [nix.POS]: pos$288,
     options: nix.thunk(() => ({
-      __proto__: pos$287,
+      [nix.POS]: pos$287,
       boot: nix.thunk(() => ({
-        __proto__: pos$286,
+        [nix.POS]: pos$286,
         initrd: nix.thunk(() => ({
-          __proto__: pos$285,
+          [nix.POS]: pos$285,
           systemd: nix.thunk(() => ({
-            __proto__: pos$284,
+            [nix.POS]: pos$284,
             network: nix.thunk(() => ({
-              __proto__: pos$283,
+              [nix.POS]: pos$283,
               networks: nix.thunk(() => nix.app(nix.lookup(w_3, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$282,
+                  [nix.POS]: pos$282,
                   type: nix.thunk(() => (() => {
                     const w_4 = nix.withScope(nix.thunk(() => nix.lookup(w_3, "types")), w_3);
                     return nix.app(nix.lookup(w_4, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_4, "submodule"), nix.thunk(() => ({
-                          __proto__: pos$281,
+                          [nix.POS]: pos$281,
                           config: nix.thunk(() => nix.app(nix.lookup(w_4, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "network", "flushBeforeStage2")), nix.thunk(() => ({
-                              __proto__: pos$280,
+                              [nix.POS]: pos$280,
                               networkConfig: nix.thunk(() => ({
-                                __proto__: pos$279,
+                                [nix.POS]: pos$279,
                                 KeepConfiguration: nix.thunk(() => nix.app(nix.lookup(w_4, "mkDefault"), false)),
                               })),
                             })))),
@@ -3344,11 +3344,11 @@ ${nix.app(nix.lookup(w_3, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix
     return nix.app(nix.lookup(w_3, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(commonConfig, nix.thunk(() => nix.sel(config, "boot", "initrd")))),
         nix.thunk(() => ({
-          __proto__: pos$291,
+          [nix.POS]: pos$291,
           systemd: nix.thunk(() => ({
-            __proto__: pos$290,
+            [nix.POS]: pos$290,
             network: nix.thunk(() => ({
-              __proto__: pos$289,
+              [nix.POS]: pos$289,
               enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkDefault"), nix.thunk(() => nix.sel(config, "boot", "initrd", "network", "enable")))),
               units: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => nix.app(nix.lookup(w_3, "hasSuffix"), ".link", n), nix.thunk(() => nix.sel(config, "systemd", "network", "units")))),
             })),
@@ -3359,11 +3359,11 @@ ${nix.app(nix.lookup(w_3, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix
           })),
         })),
         nix.thunk(() => nix.app(nix.lookup(w_3, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$302,
+            [nix.POS]: pos$302,
             systemd: nix.thunk(() => ({
-              __proto__: pos$301,
+              [nix.POS]: pos$301,
               dbus: nix.thunk(() => ({
-                __proto__: pos$292,
+                [nix.POS]: pos$292,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_3, "mkDefault"), true)),
               })),
               additionalUpstreamUnits: nix.thunk(() => [
@@ -3382,20 +3382,20 @@ ${nix.app(nix.lookup(w_3, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix
                 "remote-fs-pre.target",
                 "remote-fs.target",
               ]),
-              users: nix.thunk(() => ({ __proto__: pos$293, "systemd-network": nix.thunk(() => ({})) })),
-              groups: nix.thunk(() => ({ __proto__: pos$294, "systemd-network": nix.thunk(() => ({})) })),
+              users: nix.thunk(() => ({ [nix.POS]: pos$293, "systemd-network": nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$294, "systemd-network": nix.thunk(() => ({})) })),
               contents: nix.thunk(() => ({
-                __proto__: pos$295,
+                [nix.POS]: pos$295,
                 "/etc/systemd/networkd.conf": nix.thunk(() => nix.app(renderConfig, nix.thunk(() => nix.sel(cfg, "config")))),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$298,
-                "systemd-networkd": nix.thunk(() => ({ __proto__: pos$296, wantedBy: nix.thunk(() => ["initrd.target"]) })),
-                "systemd-network-generator": nix.thunk(() => ({ __proto__: pos$297, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
+                [nix.POS]: pos$298,
+                "systemd-networkd": nix.thunk(() => ({ [nix.POS]: pos$296, wantedBy: nix.thunk(() => ["initrd.target"]) })),
+                "systemd-network-generator": nix.thunk(() => ({ [nix.POS]: pos$297, wantedBy: nix.thunk(() => ["sysinit.target"]) })),
               })),
               sockets: nix.thunk(() => ({
-                __proto__: pos$300,
-                "systemd-networkd": nix.thunk(() => ({ __proto__: pos$299, wantedBy: nix.thunk(() => ["initrd.target"]) })),
+                [nix.POS]: pos$300,
+                "systemd-networkd": nix.thunk(() => ({ [nix.POS]: pos$299, wantedBy: nix.thunk(() => ["initrd.target"]) })),
               })),
               storePaths: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/lib/systemd/systemd-networkd`),
@@ -3408,17 +3408,17 @@ ${nix.app(nix.lookup(w_3, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix
       ]));
   })());
   return {
-    __proto__: pos$311,
+    [nix.POS]: pos$311,
     imports: nix.thunk(() => [stage1Options]),
     options: nix.thunk(() => ({
-      __proto__: pos$307,
-      systemd: nix.thunk(() => ({ __proto__: pos$303, network: nix.thunk(() => nix.app(commonOptions, true)) })),
+      [nix.POS]: pos$307,
+      systemd: nix.thunk(() => ({ [nix.POS]: pos$303, network: nix.thunk(() => nix.app(commonOptions, true)) })),
       boot: nix.thunk(() => ({
-        __proto__: pos$306,
+        [nix.POS]: pos$306,
         initrd: nix.thunk(() => ({
-          __proto__: pos$305,
+          [nix.POS]: pos$305,
           systemd: nix.thunk(() => ({
-            __proto__: pos$304,
+            [nix.POS]: pos$304,
             network: nix.thunk(() => nix.app(commonOptions, "shallow")),
           })),
         })),
@@ -3427,15 +3427,15 @@ ${nix.app(nix.lookup(w_3, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix
     config: nix.thunk(() => nix.app(nix.lookup(w_3, "mkMerge"), nix.thunk(() => [
         stage2Config,
         nix.thunk(() => nix.app(nix.lookup(w_3, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "enable")), nix.thunk(() => ({
-            __proto__: pos$310,
+            [nix.POS]: pos$310,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$308,
+                [nix.POS]: pos$308,
                 assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "boot", "initrd", "network", "udhcpc", "enable"))) && nix.asBool(nix.eq(nix.sel(config, "boot", "initrd", "network", "udhcpc", "extraArgs"), [])))),
                 message: "systemd stage 1 networking does not support 'boot.initrd.network.udhcpc'. Configure\nDHCP with 'networking.*' options or with 'boot.initrd.systemd.network' options.\n",
               })),
             ]),
-            boot: nix.thunk(() => ({ __proto__: pos$309, initrd: stage1Config })),
+            boot: nix.thunk(() => ({ [nix.POS]: pos$309, initrd: stage1Config })),
           })))),
       ]))),
   };

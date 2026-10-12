@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const swiftpm = nix.arg($, "swiftpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "swift-test-differentiation",
       src: nix.path(here, "./src"),
       strictDeps: true,

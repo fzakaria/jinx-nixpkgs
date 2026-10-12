@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const integratorxx = nix.arg($, "integratorxx");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openorbitaloptimizer",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "susilehtola",
           repo: "openorbitaloptimizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [integratorxx, nlohmann_json]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Common orbital optimisation algorithms for quantum chemistry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         homepage: "https://github.com/susilehtola/OpenOrbitalOptimizer",

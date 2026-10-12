@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-asyncio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir $testout\ncp -R tests $testout/tests\n";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["pytest_asyncio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library for testing asyncio code with pytest",
         homepage: "https://github.com/pytest-dev/pytest-asyncio",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-asyncio/blob/${nix.sel(src, "tag")}/docs/reference/changelog.rst`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

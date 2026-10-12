@@ -7,15 +7,15 @@ const pos$2 = nix.positions(here + "/snakeoil-keys.nix", [["privateKey", 10, 5],
 const pos$3 = nix.positions(here + "/snakeoil-keys.nix", [["presharedKey", 2, 3], ["peer0", 4, 3], ["peer1", 9, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$3,
+  [nix.POS]: pos$3,
   presharedKey: "7myEJlGAWLTg83y7Py29pp7REQBVmZfI4xcawjcZpjg=",
   peer0: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     privateKey: "OPuVRS2T0/AtHDp3PXkNuLQYDiqJaBEEnYe42BSnJnQ=",
     publicKey: "IujkG119YPr2cVQzJkSLYCdjpHIDjvr/qH1w1tdKswY=",
   })),
   peer1: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     privateKey: "uO8JVo/sanx2DOM0L9GUEtzKZ82RGkRnYgpaYc7iXmg=",
     publicKey: "Ks9yRJIi/0vYgRmn14mIOQRwkcUGBujYINbMpik2SBI=\n",
   })),

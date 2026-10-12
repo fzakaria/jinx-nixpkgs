@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "telepathy-qt";
       const version = "0.9.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-qt/telepathy-qt-${version}.tar.gz`),
           sha256: "bf8e2a09060addb80475a4938105b9b41d9e6837999b7a00e5351783857e18ad",
         }))));
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Telepathy Qt bindings",
         homepage: "https://telepathy.freedesktop.org/components/telepathy-qt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "networking-ts-cxx",
       version: "2019-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chriskohlhoff",
           repo: "networking-ts-impl",
           rev: "c97570e7ceef436581be3c138868a19ad96e025b",
@@ -28,7 +28,7 @@ cp -r include $out/
 substituteAll ${nix.path(here, "./networking_ts.pc.in")} $out/lib/pkgconfig/networking_ts.pc
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Experimental implementation of the C++ Networking Technical Specification",
         homepage: "https://github.com/chriskohlhoff/networking-ts-impl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

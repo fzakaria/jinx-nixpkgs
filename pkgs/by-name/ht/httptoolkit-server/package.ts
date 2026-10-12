@@ -27,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const plog = nix.arg($, "plog");
   const nodejs = nodejs_24;
-  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, nodejs: nodejs }))));
+  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
   const version = "1.27.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "httptoolkit",
       repo: "httptoolkit-server",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-t7Rxh8BuzfhdBfMGMNWUV/xMtbhgw0yU9t97LbdKB9o=",
     }))));
   const overridesNodeModules = nix.thunk(() => nix.app(buildNpmPackage$, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "httptoolkit-server-overrides-node-modules",
       version: version,
       src: src,
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -r node_modules $out/node_modules\n",
     }))));
   const nodeDatachannel = nix.thunk(() => nix.app(buildNpmPackage$, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "node-datachannel",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "murat-dogan",
           repo: "node-datachannel",
           tag: nix.thunk(() => nix.str`v${nix.sel(nodeDatachannel, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libdatachannel, openssl, plog]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nodejs}/include/node`),
         CXXFLAGS: "-include stdexcept",
       })),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 build/Release/*.node -t $out/build/Release\nrunHook postInstall\n",
     }))));
   return nix.app(buildNpmPackage$, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "httptoolkit-server",
       version: version,
       src: src,
@@ -121,9 +121,9 @@ makeWrapper $out/share/httptoolkit-server/bin/run $out/bin/httptoolkit-server \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$7, nodeDatachannel: nodeDatachannel })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, nodeDatachannel: nodeDatachannel })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Backend for HTTP Toolkit",
         homepage: "https://httptoolkit.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

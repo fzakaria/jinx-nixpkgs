@@ -37,7 +37,7 @@ const pos$32 = nix.positions(here + "/versions.nix", [["version", 225, 5], ["lan
 
 export default nix.thunk(() => [
   nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "15.0.1",
     lang: "en",
     language: "English",
@@ -45,7 +45,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15.0.1_LIN.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "15.0.1",
     lang: "en",
     language: "English",
@@ -53,7 +53,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15.0.1.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     version: "15.0.0",
     lang: "en",
     language: "English",
@@ -61,7 +61,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15_LIN.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     version: "15.0.0",
     lang: "en",
     language: "English",
@@ -69,7 +69,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_15.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     version: "14.3.0",
     lang: "en",
     language: "English",
@@ -77,7 +77,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.3.0_LIN.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     version: "14.3.0",
     lang: "en",
     language: "English",
@@ -85,7 +85,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.3.0_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     version: "14.2.1",
     lang: "en",
     language: "English",
@@ -93,7 +93,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.1_LIN.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     version: "14.2.1",
     lang: "en",
     language: "English",
@@ -101,7 +101,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.1_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     version: "14.2.0",
     lang: "en",
     language: "English",
@@ -109,7 +109,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.0_LIN.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     version: "14.2.0",
     lang: "en",
     language: "English",
@@ -117,7 +117,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.2.0_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     version: "14.1.0",
     lang: "en",
     language: "English",
@@ -125,7 +125,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.1.0_LIN.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     version: "14.1.0",
     lang: "en",
     language: "English",
@@ -133,7 +133,7 @@ export default nix.thunk(() => [
     installer: "Wolfram_14.1.0_LIN_Bndl.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     version: "14.0.0",
     lang: "en",
     language: "English",
@@ -141,7 +141,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_14.0.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     version: "14.0.0",
     lang: "en",
     language: "English",
@@ -149,7 +149,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_14.0.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     version: "13.3.1",
     lang: "en",
     language: "English",
@@ -157,7 +157,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     version: "13.3.1",
     lang: "en",
     language: "English",
@@ -165,7 +165,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.1_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     version: "13.3.0",
     lang: "en",
     language: "English",
@@ -173,7 +173,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     version: "13.3.0",
     lang: "en",
     language: "English",
@@ -181,7 +181,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.3.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     version: "13.2.1",
     lang: "en",
     language: "English",
@@ -189,7 +189,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     version: "13.2.1",
     lang: "en",
     language: "English",
@@ -197,7 +197,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.1_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     version: "13.2.0",
     lang: "en",
     language: "English",
@@ -205,7 +205,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     version: "13.2.0",
     lang: "en",
     language: "English",
@@ -213,7 +213,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.2.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     version: "13.1.0",
     lang: "en",
     language: "English",
@@ -221,7 +221,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.1.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     version: "13.1.0",
     lang: "en",
     language: "English",
@@ -229,7 +229,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.1.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     version: "13.0.1",
     lang: "en",
     language: "English",
@@ -237,7 +237,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.0.1_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     version: "13.0.0",
     lang: "en",
     language: "English",
@@ -245,7 +245,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_13.0.0_BNDL_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     version: "12.3.1",
     lang: "en",
     language: "English",
@@ -253,7 +253,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.3.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     version: "12.3.0",
     lang: "en",
     language: "English",
@@ -261,7 +261,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.3.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     version: "12.2.0",
     lang: "en",
     language: "English",
@@ -269,7 +269,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.2.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     version: "12.1.1",
     lang: "en",
     language: "English",
@@ -277,7 +277,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.1.1_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     version: "12.1.0",
     lang: "en",
     language: "English",
@@ -285,7 +285,7 @@ export default nix.thunk(() => [
     installer: "Mathematica_12.1.0_LINUX.sh",
   })),
   nix.thunk(() => ({
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     version: "12.0.0",
     lang: "en",
     language: "English",

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rasbt",
           repo: "watermark",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [ipython, importlib_metadata]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, gpu: nix.thunk(() => [py3nvml]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, gpu: nix.thunk(() => [py3nvml]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["watermark"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "IPython extension for printing date and timestamps, version numbers, and hardware information",
         homepage: "https://github.com/rasbt/watermark",
         changelog: nix.thunk(() => nix.str`https://github.com/rasbt/watermark/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

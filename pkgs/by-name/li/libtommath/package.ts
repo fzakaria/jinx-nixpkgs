@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libtommath",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/libtom/libtommath/releases/download/v${nix.sel(finalAttrs, "version")}/ltm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-KWJy2TQ1mRMI63NgdgDANLVYgHoH6CnnURQuZcz6nQg=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./force_mp_set_double.patch")]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace makefile.shared \\
   --replace-fail glibtool libtool \\
-  --replace-fail libtool "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(libtool, "override"), nix.thunk(() => ({ __proto__: pos$2, stdenv: stdenv })))))}"
+  --replace-fail libtool "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(libtool, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: stdenv })))))}"
 substituteInPlace makefile_include.mk \\
   --replace-fail "gcc" "${nix.sel(stdenv, "cc", "targetPrefix")}cc"
 `),
@@ -38,7 +38,7 @@ substituteInPlace makefile_include.mk \\
       makefile: "makefile.shared",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.libtom.net/LibTomMath/",
         description: "Library for integer-based number-theoretic applications",
         license: nix.thunk(() => (() => {

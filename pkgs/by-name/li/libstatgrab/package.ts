@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const withSaidar = nix.argOr($, "withSaidar", () => true);
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libstatgrab",
       version: "0.92.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.i-scream.org/pub/i-scream/libstatgrab/libstatgrab-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-VoiqSmhVR9cXSoo3PqnY7pJ+dm48wwK97jRSPCxdbBE=",
         })))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withSaidar, ncurses)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.i-scream.org/libstatgrab/",
         description: "Library that provides cross platforms access to statistics about the running system",
         maintainers: [],

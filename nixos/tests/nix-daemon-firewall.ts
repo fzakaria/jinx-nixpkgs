@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const hashes = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     a: "sha256-ypeBEsobvcr6wjGzmiPcTaeG7/gUfE5yuYB3ha/uSLs=",
     b: "sha256-PiPoFgA5WUoziU9lZOGxNIu9egCI1CxKy3PurtWcAJ0=",
     c: "sha256-Ln0sA6lQeuJl7PW1NWiFpTOTogKdJBOUmXJloaJa78Y=",
@@ -97,25 +97,25 @@ export default nix.lambda((args) => (() => {
 `));
   })(), formals$2);
   const publicFetcher = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "public",
       url: "http://1.0.0.1/a",
       hash: nix.thunk(() => nix.sel(hashes, "a")),
     }))));
   const privateFetcher = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "private",
       url: "http://192.168.0.1/b",
       hash: nix.thunk(() => nix.sel(hashes, "b")),
     }))));
   const publicFetcherOtherPort = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "public",
       url: "http://192.168.0.1:81/c",
       hash: nix.thunk(() => nix.sel(hashes, "c")),
     }))));
   const localhostFetcher = nix.thunk(() => nix.app(mkFetcher, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "localhost",
       url: "http://127.0.0.1/a",
       hash: nix.thunk(() => nix.sel(hashes, "a")),
@@ -134,24 +134,24 @@ export default nix.lambda((args) => (() => {
 }
 `)));
   const baseNixSystem = (ipSuffix) => ({
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     networking: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       useDHCP: false,
       interfaces: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         eth1: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           ipv4: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             addresses: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 address: nix.thunk(() => nix.str`192.168.0.${nix.builtins.toString(ipSuffix)}`),
                 prefixLength: 24n,
               })),
               nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 address: nix.thunk(() => nix.str`1.0.0.${nix.builtins.toString(ipSuffix)}`),
                 prefixLength: 24n,
               })),
@@ -159,40 +159,40 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })),
-      nftables: nix.thunk(() => ({ __proto__: pos$11, enable: true, flushRuleset: false })),
+      nftables: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, flushRuleset: false })),
     })),
     nix: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       settings: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
         "extra-sandbox-paths": nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "pkgsStatic", "busybox")}`)]),
       })),
       enable: true,
     })),
     environment: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       etc: nix.thunk(() => ({
-        __proto__: pos$20,
-        "fetch-public.nix": nix.thunk(() => ({ __proto__: pos$15, source: publicFetcher })),
-        "fetch-private.nix": nix.thunk(() => ({ __proto__: pos$16, source: privateFetcher })),
-        "fetch-public-other-port.nix": nix.thunk(() => ({ __proto__: pos$17, source: publicFetcherOtherPort })),
-        "fetch-localhost.nix": nix.thunk(() => ({ __proto__: pos$18, source: localhostFetcher })),
-        "resolver.nix": nix.thunk(() => ({ __proto__: pos$19, source: resolver })),
+        [nix.POS]: pos$20,
+        "fetch-public.nix": nix.thunk(() => ({ [nix.POS]: pos$15, source: publicFetcher })),
+        "fetch-private.nix": nix.thunk(() => ({ [nix.POS]: pos$16, source: privateFetcher })),
+        "fetch-public-other-port.nix": nix.thunk(() => ({ [nix.POS]: pos$17, source: publicFetcherOtherPort })),
+        "fetch-localhost.nix": nix.thunk(() => ({ [nix.POS]: pos$18, source: localhostFetcher })),
+        "resolver.nix": nix.thunk(() => ({ [nix.POS]: pos$19, source: resolver })),
       })),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       nginx: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         enable: true,
         virtualHosts: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           default: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             locations: nix.thunk(() => ({
-              __proto__: pos$23,
-              "/a": nix.thunk(() => ({ __proto__: pos$22, return: "200 \"a\"" })),
+              [nix.POS]: pos$23,
+              "/a": nix.thunk(() => ({ [nix.POS]: pos$22, return: "200 \"a\"" })),
             })),
           })),
         })),
@@ -200,99 +200,99 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     name: "nix-daemon-firewall",
     meta: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "das_j"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       httpServer: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           nginx: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               default: nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 listen: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$30, addr: "0.0.0.0", port: 80n })),
-                  nix.thunk(() => ({ __proto__: pos$31, addr: "0.0.0.0", port: 81n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$30, addr: "0.0.0.0", port: 80n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$31, addr: "0.0.0.0", port: 81n })),
                 ]),
                 locations: nix.thunk(() => ({
-                  __proto__: pos$35,
-                  "/a": nix.thunk(() => ({ __proto__: pos$32, return: "200 \"a\"" })),
-                  "/b": nix.thunk(() => ({ __proto__: pos$33, return: "200 \"b\"" })),
-                  "/c": nix.thunk(() => ({ __proto__: pos$34, return: "200 \"c\"" })),
+                  [nix.POS]: pos$35,
+                  "/a": nix.thunk(() => ({ [nix.POS]: pos$32, return: "200 \"a\"" })),
+                  "/b": nix.thunk(() => ({ [nix.POS]: pos$33, return: "200 \"b\"" })),
+                  "/c": nix.thunk(() => ({ [nix.POS]: pos$34, return: "200 \"c\"" })),
                 })),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             eth1: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$40, address: "192.168.0.1", prefixLength: 24n })),
-                  nix.thunk(() => ({ __proto__: pos$41, address: "1.0.0.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$40, address: "192.168.0.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$41, address: "1.0.0.1", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ __proto__: pos$45, allowedTCPPorts: nix.thunk(() => [80n, 81n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$45, allowedTCPPorts: nix.thunk(() => [80n, 81n]) })),
         })),
       })),
       unfirewalled: nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 2n))]),
       })),
       everythingAllowed: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 3n))]),
         nix: nix.thunk(() => ({
-          __proto__: pos$50,
-          firewall: nix.thunk(() => ({ __proto__: pos$49, enable: true, allowLoopback: true, allowNonTCPUDP: true })),
+          [nix.POS]: pos$50,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$49, enable: true, allowLoopback: true, allowNonTCPUDP: true })),
         })),
       })),
       noLocalNets: nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 4n))]),
         nix: nix.thunk(() => ({
-          __proto__: pos$53,
-          firewall: nix.thunk(() => ({ __proto__: pos$52, enable: true, allowPrivateNetworks: false })),
+          [nix.POS]: pos$53,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$52, enable: true, allowPrivateNetworks: false })),
         })),
       })),
       onlyPort80: nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 5n))]),
         nix: nix.thunk(() => ({
-          __proto__: pos$56,
-          firewall: nix.thunk(() => ({ __proto__: pos$55, enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: pos$56,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$55, enable: true, allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
       })),
       resolved: nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         imports: nix.thunk(() => [nix.thunk(() => nix.app(baseNixSystem, 6n))]),
         nix: nix.thunk(() => ({
-          __proto__: pos$59,
-          firewall: nix.thunk(() => ({ __proto__: pos$58, enable: true })),
+          [nix.POS]: pos$59,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$58, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$61,
-          resolved: nix.thunk(() => ({ __proto__: pos$60, enable: true })),
+          [nix.POS]: pos$61,
+          resolved: nix.thunk(() => ({ [nix.POS]: pos$60, enable: true })),
         })),
       })),
     })),

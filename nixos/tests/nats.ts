@@ -28,10 +28,10 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       name: "nats",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "c0deaddict"))];
@@ -42,9 +42,9 @@ export default nix.thunk(() => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "natscli"))];
@@ -53,27 +53,27 @@ export default nix.thunk(() => (() => {
           };
         })(), formals$2);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           server: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               networking: nix.thunk(() => ({
-                __proto__: pos$5,
-                firewall: nix.thunk(() => ({ __proto__: pos$4, allowedTCPPorts: nix.thunk(() => [port]) })),
+                [nix.POS]: pos$5,
+                firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [port]) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 nats: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   port: port,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     authorization: nix.thunk(() => ({
-                      __proto__: pos$7,
-                      users: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$6, user: username, password: password }))]),
+                      [nix.POS]: pos$7,
+                      users: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, user: username, password: password }))]),
                     })),
                   })),
                 })),

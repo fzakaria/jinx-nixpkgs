@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
   const vcrpy = nix.arg($, "vcrpy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "crewai",
       version: "1.15.18",
       pyproject: true,
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
         tomli,
         tomli_w,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$1, litellm: nix.thunk(() => [litellm]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, litellm: nix.thunk(() => [litellm]) })),
       pythonImportsCheck: nix.thunk(() => ["crewai"]),
       disabledTestPaths: nix.thunk(() => [
         "tests/test_crew.py",
@@ -477,14 +477,14 @@ export default nix.lambda((args) => (() => {
       ]),
       pytestFlags: nix.thunk(() => ["--override-ini=addopts="]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "^([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Framework for orchestrating role-playing, autonomous AI agents",
         homepage: "https://github.com/crewAIInc/crewAI",
         changelog: nix.thunk(() => nix.str`https://github.com/crewAIInc/crewAI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

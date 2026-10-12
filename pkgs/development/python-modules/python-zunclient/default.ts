@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const version = "5.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openstack",
           repo: "python-zunclient",
           tag: version,
           hash: "sha256-Ps4V05obkbiy4dbPBOff3WQ1d502Ie303jAmtatNOdc=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr, setuptools]);
       const nativeBuildInputs = nix.thunk(() => [openstackdocstheme, sphinxHook]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run -e <(echo \"\n  zunclient.tests.unit.test_shell.ShellTest.test_main_endpoint_internal\n  zunclient.tests.unit.test_shell.ShellTest.test_main_endpoint_public\n  zunclient.tests.unit.test_shell.ShellTest.test_main_env_region\n  zunclient.tests.unit.test_shell.ShellTest.test_main_no_region\n  zunclient.tests.unit.test_shell.ShellTest.test_main_option_region\n  zunclient.tests.unit.test_shell.ShellTestKeystoneV3.test_main_endpoint_internal\n  zunclient.tests.unit.test_shell.ShellTestKeystoneV3.test_main_endpoint_public\n  zunclient.tests.unit.test_shell.ShellTestKeystoneV3.test_main_env_region\n  zunclient.tests.unit.test_shell.ShellTestKeystoneV3.test_main_no_region\n  zunclient.tests.unit.test_shell.ShellTestKeystoneV3.test_main_option_region\n\")\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["zunclient"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/openstack/python-zunclient",
         description: "Client library for OpenStack Zun API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

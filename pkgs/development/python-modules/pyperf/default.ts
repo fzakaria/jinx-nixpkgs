@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-3ZPM/aeSFHJSk+lfH6bgDLSmStzxMmA5SG1OH5HKqmI=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "pyperf/tests/", "-v"]);
       const pythonImportsCheck = nix.thunk(() => ["pyperf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to generate and modify perf",
         mainProgram: "pyperf",
         homepage: "https://pyperf.readthedocs.io/",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

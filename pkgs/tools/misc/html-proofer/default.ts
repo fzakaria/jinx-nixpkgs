@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
       const ruby_1 = ruby;
       const gemdir = nix.path(here, "./.");
       const passthru = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to validate HTML files",
         homepage: "https://github.com/gjtorikian/html-proofer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "htmlproofer",
       }));
-      return { __proto__: pos$3, pname, version, ruby: ruby_1, gemdir, passthru, meta };
+      return { [nix.POS]: pos$3, pname, version, ruby: ruby_1, gemdir, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

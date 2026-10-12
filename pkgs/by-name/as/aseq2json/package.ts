@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const json_glib = nix.arg($, "json-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aseq2json",
       version: "0-unstable-2018-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "midi-dump-tools",
           rev: "8572e6313a0d7ec95492dcab04a46c5dd30ef33a",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, glib, json_glib]),
       installPhase: "install -D --target-directory \"$out/bin\" aseq2json\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Listens for MIDI events on the Alsa sequencer and outputs as JSON to stdout",
         mainProgram: "aseq2json",
         homepage: "https://github.com/google/midi-dump-tools",

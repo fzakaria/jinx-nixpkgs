@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const source = nix.thunk(() => nix.app(writeText, "hello.inko", "import std.process (sleep)\nimport std.stdio (Stdout)\nimport std.sync (Channel)\nimport std.time (Duration)\n\ntype async Printer {\n  fn async print(message: String, channel: uni Channel[Nil]) {\n    let _ = Stdout.new.print(message)\n\n    channel.send(nil)\n  }\n}\n\ntype async Main {\n  fn async main {\n    let channel = Channel.new\n\n    Printer().print('Hello', recover channel.clone)\n    Printer().print('world', recover channel.clone)\n\n    sleep(Duration.from_millis(500))\n\n    channel.receive\n    channel.receive\n  }\n}\n"));
   return nix.app(runCommand, "inko-test", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
     })), nix.thunk(() => nix.str`${inko}/bin/inko run ${source} > $out
 cat $out | grep -q Hello

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const pango = nix.arg($, "pango");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "geteduroam",
       version: "0.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geteduroam",
           repo: "linux-app",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,9 +59,9 @@ cp -r cmd/geteduroam-gui/resources/share $out/
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/geteduroam-gui`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         libraryPath: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "eduroam-gui-puregotk-lib",
             paths: nix.thunk(() => [
               cairo,
@@ -75,7 +75,7 @@ cp -r cmd/geteduroam-gui/resources/share $out/
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GUI client to configure eduroam",
         homepage: "https://eduroam.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

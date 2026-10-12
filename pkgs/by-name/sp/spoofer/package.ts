@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spoofer",
       version: "1.4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.caida.org/projects/spoofer/downloads/spoofer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-n3B2yAckbcm2kyv5QzBGh4nvKa0S/+EbGCxe0eyWG1U=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.caida.org/projects/spoofer",
         description: "Assess and report on deployment of source address validation",
         longDescription: "Spoofer is a new client-server system for Windows, MacOS, and\nUNIX-like systems that periodically tests a network's ability to\nboth send and receive packets with forged source IP addresses\n(spoofed packets). This can be used to produce reports and\nvisualizations to inform operators, response teams, and policy\nanalysts. The system measures different types of forged\naddresses, including private and neighboring addresses.  The\ntest results allows to analyze characteristics of networks\ndeploying source address validation (e.g., network location,\nbusiness type).\n",

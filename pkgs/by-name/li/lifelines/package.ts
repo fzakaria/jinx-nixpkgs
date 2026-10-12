@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lifelines",
       version: "0-unstable-2025-01-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lifelines",
           repo: "lifelines",
           rev: "fbc92b6585e5f642c59a5317a0f4d4573f51b2d6",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison]),
       postPatch: "mkdir -p m4\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Genealogy tool with ncurses interface",
         homepage: "https://lifelines.github.io/lifelines/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

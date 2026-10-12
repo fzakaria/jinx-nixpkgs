@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "cpu-energy-meter": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "CPU Energy Meter")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cpu-energy-meter", nix.thunk(() => ({})))),
         })),
@@ -37,19 +37,19 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "programs", "cpu-energy-meter"));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hardware: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             cpu: nix.thunk(() => ({
-              __proto__: pos$6,
-              x86: nix.thunk(() => ({ __proto__: pos$5, msr: nix.thunk(() => ({ __proto__: pos$4, enable: true })) })),
+              [nix.POS]: pos$6,
+              x86: nix.thunk(() => ({ [nix.POS]: pos$5, msr: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })) })),
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             wrappers: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "package", "meta", "mainProgram"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 owner: "nobody",
                 group: nix.thunk(() => nix.sel(config, "hardware", "cpu", "x86", "msr", "group")),
                 source: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lorenzleutgeb"))];

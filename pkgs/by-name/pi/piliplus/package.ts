@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const description = "Third-party Bilibili client developed in Flutter";
   const version = "2.1.0";
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "piliplus",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bggRGjQaUbCoE",
           repo: "PiliPlus",
           rev: nix.thunk(() => nix.attr(srcInfo, "rev")),
@@ -53,7 +53,7 @@ EOL
       postInstall: "declare -A sizes=(\n  [mdpi]=128\n  [hdpi]=192\n  [xhdpi]=256\n  [xxhdpi]=384\n  [xxxhdpi]=512\n)\nfor var in \"${!sizes[@]}\"; do\n  width=${sizes[$var]}\n  install -Dm644 \"android/app/src/main/res/drawable-$var/splash.png\" \\\n    \"$out/share/icons/hicolor/${width}x$width/apps/piliplus.png\"\ndone\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "piliplus",
             exec: "piliplus",
             icon: "piliplus",
@@ -62,9 +62,9 @@ EOL
             comment: description,
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.rb") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.rb") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: description,
         homepage: "https://github.com/bggRGjQaUbCoE/PiliPlus",
         changelog: nix.thunk(() => nix.str`https://github.com/bggRGjQaUbCoE/PiliPlus/releases/tag/${version}`),

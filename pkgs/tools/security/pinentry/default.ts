@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const withLibsecret = nix.argOr($, "withLibsecret", () => true);
   const libsecret = nix.arg($, "libsecret");
   const flavorInfo = nix.thunk(() => ({
-    __proto__: pos$7,
-    tty: nix.thunk(() => ({ __proto__: pos$1, flag: "tty" })),
-    curses: nix.thunk(() => ({ __proto__: pos$2, flag: "curses", buildInputs: nix.thunk(() => [ncurses]) })),
+    [nix.POS]: pos$7,
+    tty: nix.thunk(() => ({ [nix.POS]: pos$1, flag: "tty" })),
+    curses: nix.thunk(() => ({ [nix.POS]: pos$2, flag: "curses", buildInputs: nix.thunk(() => [ncurses]) })),
     gnome3: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       flag: "gnome3",
       buildInputs: nix.thunk(() => [gcr_3]),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3]),
     })),
     qt5: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       flag: "qt5",
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(libsForQt5, "qtbase")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook"))]),
     })),
     qt: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       flag: "qt",
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
     })),
-    emacs: nix.thunk(() => ({ __proto__: pos$6, flag: "emacs" })),
+    emacs: nix.thunk(() => ({ [nix.POS]: pos$6, flag: "emacs" })),
   }));
   const buildPinentry = (pinentryExtraPname) => (buildFlavors) => (() => {
     const enableFeaturePinentry = (f) => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), f, buildFlavors)), nix.thunk(() => nix.add("pinentry-", nix.sel(flavorInfo, nix.key(nix.force(f)), "flag"))));
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`pinentry-${pinentryExtraPname}`);
         const version = "1.3.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: nix.thunk(() => nix.str`mirror://gnupg/pinentry/pinentry-${version}.tar.bz2`),
             hash: "sha256-jphu2IVhtNpunv4MVPpMqJIwNcmSZN8LBGRJfF+5Tp4=",
           }))));
@@ -90,9 +90,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), withLibsecret, "libsecret")),
         ], nix.builtins.map(enableFeaturePinentry, nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), flavorInfo)))));
         const postInstall = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "gnome3", buildFlavors)), "wrapGApp $out/bin/pinentry-gnome3\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "qt5", buildFlavors)), "wrapQtApp $out/bin/pinentry-qt5\nln -sf $out/bin/pinentry-qt5 $out/bin/pinentry-qt\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "qt", buildFlavors)), "wrapQtApp $out/bin/pinentry-qt\n")));
-        const passthru = nix.thunk(() => ({ __proto__: pos$9, flavors: buildFlavors }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: pos$9, flavors: buildFlavors }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           homepage: "https://gnupg.org/software/pinentry/index.html",
           description: "GnuPG’s interface to passphrase input",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
           mainProgram: "pinentry",
         }));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           pname,
           version,
           src,
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
       })()));
   })();
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     "pinentry-curses": nix.thunk(() => nix.app(buildPinentry, "curses", nix.thunk(() => ["curses", "tty"]))),
     "pinentry-emacs": nix.thunk(() => nix.app(buildPinentry, "emacs", nix.thunk(() => ["emacs", "curses", "tty"]))),
     "pinentry-gnome3": nix.thunk(() => nix.app(buildPinentry, "gnome3", nix.thunk(() => ["gnome3", "curses", "tty"]))),

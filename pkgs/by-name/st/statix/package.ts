@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const withJson = nix.argOr($, "withJson", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "statix",
       version: "0.5.8-unstable-2026-07-17",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "molybdenumsoftware",
           repo: "statix",
           rev: "52530001bdbc8e94aae0d406a929c7ad7f09d9d1",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-E3/G8kVHFexNebkDXtDR5rucGRfmpUw6/At1/DDgBdQ=",
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withJson, "json")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lints and suggestions for the nix programming language",
         homepage: "https://github.com/molybdenumsoftware/statix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

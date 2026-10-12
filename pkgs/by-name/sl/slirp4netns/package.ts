@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libslirp = nix.arg($, "libslirp");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "slirp4netns",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rootless-containers",
           repo: "slirp4netns",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/rootless-containers/slirp4netns",
         description: "User-mode networking for unprivileged network namespaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

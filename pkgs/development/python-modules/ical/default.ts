@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ical",
       version: "14.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allenporter",
           repo: "ical",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [python_dateutil, tzdata, pydantic]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, async: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiohttp]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         emoji,
         freezegun,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["ical"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for handling iCalendar",
         homepage: "https://github.com/allenporter/ical",
         changelog: nix.thunk(() => nix.str`https://github.com/allenporter/ical/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

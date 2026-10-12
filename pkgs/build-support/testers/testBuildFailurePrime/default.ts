@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const expectedBuilderLogEntries = nix.argOr($_1, "expectedBuilderLogEntries", () => []);
       const script = nix.argOr($_1, "script", () => "");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           __structuredAttrs: true,
           strictDeps: true,
           name: name,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           script: script,
           buildCommandPath: nix.path(here, "./build-command.sh"),
           meta: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Wrapper around testers.testBuildFailure to simplify common use cases",
             maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "connorbaker"))]),
           })),

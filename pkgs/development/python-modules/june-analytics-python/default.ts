@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const backoff = nix.arg($, "backoff");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "june-analytics-python",
       version: "2.3.0-unstable-2022-07-26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "juneHQ",
           repo: "analytics-python",
           rev: "462b523a617fbadc016ace45e6eec5762a8ae45f",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       unittestFlagsArray: nix.thunk(() => ["june"]),
       pythonImportsCheck: nix.thunk(() => ["june"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hassle-free way to integrate analytics into any python application",
         homepage: "https://github.com/juneHQ/analytics-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

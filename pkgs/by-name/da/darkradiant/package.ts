@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const buildPlugins = nix.argOr($, "buildPlugins", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "darkradiant",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "codereader",
           repo: "DarkRadiant",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace radiantcore/CMakeLists.txt \\\n  --replace-fail \"\\$ORIGIN/..\" \"$out/lib/darkradiant\"\n",
       postInstall: "installManPage ../man/darkradiant.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source level editor for Doom 3 and The Dark Mod",
         homepage: "https://github.com/codereader/DarkRadiant",
         changelog: "https://github.com/codereader/DarkRadiant/releases",

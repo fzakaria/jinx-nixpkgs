@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sentence_stream = nix.arg($, "sentence-stream");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "sfortis",
       domain: "openai_tts",
       version: "3.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "openai_tts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [sentence_stream]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Custom TTS component for Home Assistant. Utilizes the OpenAI speech engine or any compatible endpoint to deliver high-quality speech",
         longDescription: "OpenAI TTS for Home Assistant depends on ffmpeg component, example how to setup in NixOS `configuration.nix`:\n\n```\n{ pkgs, ... }:\n{\n  services.home-assistant = {\n    customComponents = [ pkgs.home-assistant-custom-components.openai-tts ];\n    extraComponents = [ \"ffmpeg\" ];\n  };\n}\n```\n",
         homepage: "https://github.com/sfortis/openai_tts",

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const isString = nix.thunk(() => nix.attr(lib, "isString"));
   const readFile = nix.thunk(() => nix.attr(lib, "readFile"));
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     pathExists: nix.thunk(() => nix.attr(nix.builtins, "pathExists")),
     readFile: nix.thunk(() => nix.attr(nix.builtins, "readFile")),
     isBool: nix.thunk(() => nix.attr(nix.builtins, "isBool")),
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
     })(),
     info: (msg) => nix.app(nix.builtins.trace, nix.thunk(() => nix.str`INFO: ${msg}`)),
     showWarnings: (warnings) => (res) => nix.app(foldr, warn, res, warnings),
-    setFunctionArgs: (f) => (args_1) => ({ __proto__: pos$1, __functor: (self) => nix.force(f), __functionArgs: args_1 }),
+    setFunctionArgs: (f) => (args_1) => ({ [nix.POS]: pos$1, __functor: (self) => nix.force(f), __functionArgs: args_1 }),
     functionArgs: nix.thunk(() => (() => {
       const functionArgs_1 = nix.thunk(() => nix.builtins.functionArgs);
       return (f) => (nix.asBool(nix.has(f, "__functor")) ? nix.selOr(f, () => nix.app(functionArgs_1, nix.thunk(() => nix.app(nix.sel(f, "__functor"), f))), "__functionArgs") : nix.app(functionArgs_1, f));
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
     })()),
     mirrorFunctionArgs: (f) => (() => {
       const fArgs = nix.thunk(() => nix.app(functionArgs, f));
-      return (g) => ({ __proto__: pos$2, __functor: (self) => nix.force(g), __functionArgs: fArgs });
+      return (g) => ({ [nix.POS]: pos$2, __functor: (self) => nix.force(g), __functionArgs: fArgs });
     })(),
     toFunction: (v) => (nix.asBool(nix.app(isFunction, v)) ? nix.force(v) : (k) => nix.force(v)),
     fromHexString: (str) => (() => {
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
     })(),
     toHexString: nix.thunk(() => (() => {
       const hexDigits = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "10": "A",
         "11": "B",
         "12": "C",

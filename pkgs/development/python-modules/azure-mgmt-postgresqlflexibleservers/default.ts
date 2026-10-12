@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.0b1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_postgresqlflexibleservers",
           version: version,
           hash: "sha256-Vo1/vuxAAgVznCppDZCTygNFAMl5uopc3QbiEeFbLv8=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [azure_common, azure_mgmt_core, isodate, msrest, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["azure.mgmt.postgresqlflexibleservers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure Postgresqlflexibleservers Management Client Library for Python",
         homepage: "https://pypi.org/project/azure-mgmt-postgresqlflexibleservers/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

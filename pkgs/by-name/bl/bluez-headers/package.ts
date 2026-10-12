@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const bluez = nix.arg($, "bluez");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bluez-headers",
       version: "5.87",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/bluetooth/bluez-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Jr3PLOvXMQxvWYhQYGsDfvDFFf5mCOvFTSLFDEwys18=",
         })))),
@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "mkdir -p $out/include/\ncp -rv lib/* \"$out/include/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, bluez: bluez })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, bluez: bluez })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://bluez.github.io/",
         description: "Official Linux Bluetooth protocol stack",
         changelog: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/bluetooth/bluez.git/tree/ChangeLog?h=${nix.sel(finalAttrs, "version")}`),

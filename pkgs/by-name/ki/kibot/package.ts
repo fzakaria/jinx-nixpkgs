@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const libraries = nix.thunk(() => nix.sel(kicad, "libraries"));
   const template_dir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "KiCad_template_dir",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(libraries, null);
@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kibot",
       version: "1.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "INTI-CMNB",
           repo: "KiBot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,15 +75,15 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "find $out -name '*.pyc' -delete\nfind $out -name '__pycache__' -type d -exec rm -r {} +\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=v(\\d.\\d.\\d)"]),
           })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Tool for generating fabrication and documentation files for KiCad",
         homepage: "https://github.com/INTI-CMNB/KiBot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

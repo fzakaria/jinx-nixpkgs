@@ -20,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const xclip = nix.arg($, "xclip");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "resvg-py",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "baseplate-admin",
           repo: "resvg-py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-MhHcI39CcaMP7a96jlMno+8/qs2tcmptEAXFQayRF18=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +49,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["resvg_py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/baseplate-admin/resvg-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "High level wrapper of resvg for python",
         homepage: "https://github.com/baseplate-admin/resvg-py",

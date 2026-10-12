@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: nix.thunk(() => nix.add("muon", nix.app(nix.sel(lib, "optionalString"), embedSamurai, "-embedded-samurai"))),
       version: "0.7.0",
       srcs: nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => nix.selOr(v, () => true, "use"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcsAttrs")))))),
@@ -112,11 +112,11 @@ runHook postBuild
       checkPhase: "runHook preCheck\n\n./stage-2/muon -C stage-2 test -d dots -S -j$NIX_BUILD_CORES\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\nstage-2/muon -C stage-2 install\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         srcsAttrs: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "muon-src": nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "muon-src",
               owner: "~lattis",
               repo: "muon",
@@ -124,35 +124,35 @@ runHook postBuild
               hash: "sha256-OJvduSTJSSVWMynDP2DnMMqEirQjsvTIGXNYatGHdd4=",
             })))),
           "meson-docs": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "meson-docs",
               repo: "meson-docs",
               owner: "muon-build",
               rev: "589bc119dfc06bb678fb1688488e508ec51a87b8",
               hash: "sha256-5Pq5KB+aLL3IUrhBX/LZl5lT8ghyk1MTxRlq8OlKSBw=",
-              passthru: nix.thunk(() => ({ __proto__: pos$2, use: buildDocs })),
+              passthru: nix.thunk(() => ({ [nix.POS]: pos$2, use: buildDocs })),
             })))),
           "meson-tests": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "meson-tests",
               repo: "meson-tests",
               owner: "muon-build",
               rev: "38483b8cf5eb4f6e9df7a78d786ec111e0d6eb5d",
               hash: "sha256-zBr1tytfLVi4VKEtNJZ46+zDPviQOwLAaI8SPHIyb0A=",
               passthru: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 use: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
               })),
             })))),
         })),
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
-          test: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(muon, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$7, pname: "muon-tests" }))), "override"), nix.thunk(() => ({ __proto__: pos$8, buildDocs: false, embedSamurai: true, runTests: true })))),
+          [nix.POS]: pos$9,
+          test: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(muon, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: "muon-tests" }))), "override"), nix.thunk(() => ({ [nix.POS]: pos$8, buildDocs: false, embedSamurai: true, runTests: true })))),
         })),
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         homepage: "https://muon.build",
         description: "Implementation of the meson build system in C99",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xcruiser",
       version: "0.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/xcruiser/xcruiser/xcruiser-${nix.sel(finalAttrs, "version")}/xcruiser-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1r8whva38xizqdh7jmn6wcmfmsndc67pkw22wzfzr6rq0vf6hywi",
         })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "XCruiser",
             exec: "xcruiser",
             desktopName: "XCruiser",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Filesystem visualization utility",
         longDescription: "XCruiser, formerly known as XCruise, is a filesystem visualization utility.\nIt constructs a virtually 3-D formed universe from a directory\ntree and allows you to \"cruise\" within a visualized filesystem.\n",
         homepage: "https://xcruiser.sourceforge.net/",

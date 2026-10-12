@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "20.10.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hjacobs",
           repo: "python-clickclick",
           rev: version,
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["clickclick"]);
       const disabledTests = nix.thunk(() => ["test_choice_default", "test_cli"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Click command line utilities",
         homepage: "https://codeberg.org/hjacobs/python-clickclick/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

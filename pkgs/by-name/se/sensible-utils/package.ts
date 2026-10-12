@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sensible-utils",
       version: "0.0.26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "sensible-utils",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "mkdir -p $out/bin\n\ncp sensible-browser sensible-editor sensible-pager sensible-terminal $out/bin/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of utilities used by programs to sensibly select and spawn an appropriate browser, editor, or pager",
         longDescription: "The specific utilities included are:\n- sensible-browser\n- sensible-editor\n- sensible-pager\n",
         homepage: "https://salsa.debian.org/debian/sensible-utils",

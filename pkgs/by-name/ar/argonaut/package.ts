@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "argonaut",
       version: "2.17.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darksworm",
           repo: "argonaut",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "mv $out/bin/app $out/bin/argonaut\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Keyboard-first terminal UI for Argo CD",
         homepage: "https://github.com/darksworm/argonaut",
         changelog: nix.thunk(() => nix.str`https://github.com/darksworm/argonaut/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const rpathLibs = nix.thunk(() => nix.concat([expat, fontconfig, freetype], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libGL, libx11, libxcursor, libxi, libxxf86vm, libxcb, libxkbcommon, wayland]))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`alacritty${nix.app(nix.sel(lib, "optionalString"), withGraphics, "-graphics")}`),
       version: "0.17.0",
       src: nix.thunk(() => (nix.asBool(!nix.asBool(withGraphics)) ? nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alacritty",
           repo: "alacritty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iZtCH2DrSs6o3AG2koI2TyC3116aMlawHFkCd0TYhas=",
         }))) : nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ayosec",
           repo: "alacritty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-graphics`),
@@ -78,9 +78,9 @@ patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $o
 `), "installShellCompletion --zsh extra/completions/_alacritty\ninstallShellCompletion --bash extra/completions/alacritty.bash\ninstallShellCompletion --fish extra/completions/alacritty.fish\n\ninstall -dm 755 \"$out/share/man/man1\"\ninstall -dm 755 \"$out/share/man/man5\"\n\nscdoc < extra/man/alacritty.1.scd | gzip -c > $out/share/man/man1/alacritty.1.gz\nscdoc < extra/man/alacritty-msg.1.scd | gzip -c > $out/share/man/man1/alacritty-msg.1.gz\nscdoc < extra/man/alacritty.5.scd | gzip -c > $out/share/man/man5/alacritty.5.gz\nscdoc < extra/man/alacritty-bindings.5.scd | gzip -c > $out/share/man/man5/alacritty-bindings.5.gz\n\ninstall -dm 755 \"$terminfo/share/terminfo/a/\"\ntic -xe alacritty,alacritty-direct -o \"$terminfo/share/terminfo\" extra/alacritty.info\nmkdir -p $out/nix-support\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n")),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "alacritty")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -88,7 +88,7 @@ patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $o
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform, GPU-accelerated terminal emulator",
         homepage: nix.thunk(() => (nix.asBool(!nix.asBool(withGraphics)) ? "https://github.com/alacritty/alacritty" : "https://github.com/ayosec/alacritty")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

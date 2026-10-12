@@ -23,38 +23,38 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     name: "uwsgi",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             users: nix.thunk(() => ({
-              __proto__: pos$3,
-              hello: nix.thunk(() => ({ __proto__: pos$2, isSystemUser: true, group: "hello" })),
+              [nix.POS]: pos$3,
+              hello: nix.thunk(() => ({ [nix.POS]: pos$2, isSystemUser: true, group: "hello" })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$4, hello: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$4, hello: nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             uwsgi: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: true,
               plugins: nix.thunk(() => ["python3", "php"]),
               capabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
               instance: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: "emperor",
                 vassals: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   hello: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     type: "normal",
                     "immediate-uid": "hello",
                     "immediate-gid": "hello",
@@ -78,7 +78,7 @@ def whoami():
 `))),
                   })),
                   php: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     type: "normal",
                     master: true,
                     workers: 2n,

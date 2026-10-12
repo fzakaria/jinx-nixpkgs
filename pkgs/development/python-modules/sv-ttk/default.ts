@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const tkinter = nix.arg($, "tkinter");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sv-ttk",
       version: "2.6.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "sv_ttk",
           hash: "sha256-R1idXiA5jPQE6DYvJPPtSPODDNCs4FbYM1T6Jdjk/kg=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [tkinter]),
       pythonImportsCheck: nix.thunk(() => ["sv_ttk"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gorgeous theme for Tkinter/ttk, based on the Sun Valley visual style",
         homepage: "https://github.com/rdbende/Sun-Valley-ttk-theme",
         changelog: nix.thunk(() => nix.str`https://github.com/rdbende/Sun-Valley-ttk-theme/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kakulukia",
           repo: "pypugjs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["pypugjs/testsuite"]);
       const pythonImportsCheck = nix.thunk(() => ["pypugjs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PugJS syntax template adapter for Django, Jinja2, Mako and Tornado templates",
         mainProgram: "pypugjs",
         homepage: "https://github.com/kakulukia/pypugjs",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

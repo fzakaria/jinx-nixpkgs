@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
   const logdir = "/var/log/asterisk";
   const defaultConfFiles = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(cfg, "confFiles")))), nix.thunk(() => nix.sel(cfg, "useTheseDefaultConfFiles"))));
   const allConfFiles = nix.thunk(() => nix.update({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "asterisk.conf": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       text: nix.thunk(() => nix.str`[directories]
 astetcdir => /etc/asterisk
 astmoddir => ${nix.sel(cfg, "package")}/lib/asterisk/modules
@@ -61,45 +61,45 @@ astsbindir => ${nix.sel(cfg, "package")}/sbin
 ${nix.sel(cfg, "extraConfig")}
 `),
     })),
-    "modules.conf": nix.thunk(() => ({ __proto__: pos$2, text: "[modules]\nautoload=yes\n" })),
+    "modules.conf": nix.thunk(() => ({ [nix.POS]: pos$2, text: "[modules]\nautoload=yes\n" })),
     "logger.conf": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       text: "[general]\n\n[logfiles]\nsyslog.local0 => notice,warning,error\n",
     })),
-  }, nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (text) => ({ __proto__: pos$5, text: text }), nix.thunk(() => nix.sel(cfg, "confFiles"))), nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((x) => nix.app(nix.sel(lib, "nameValuePair"), x, nix.thunk(() => ({
-          __proto__: pos$6,
+  }, nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (text) => ({ [nix.POS]: pos$5, text: text }), nix.thunk(() => nix.sel(cfg, "confFiles"))), nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((x) => nix.app(nix.sel(lib, "nameValuePair"), x, nix.thunk(() => ({
+          [nix.POS]: pos$6,
           source: nix.thunk(() => nix.add(nix.add(nix.sel(cfg, "package"), "/etc/asterisk/"), x)),
         }))), defaultConfFiles))))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         asterisk: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the Asterisk PBX server.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               example: "[options]\nverbose=3\ndebug=3\n",
               description: "Extra configuration options appended to the default\n{file}`asterisk.conf` file.\n",
             })))),
           confFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"extensions.conf\" = ''\n    [tests]\n    ; Dial 100 for \"hello, world\"\n    exten => 100,1,Answer()\n    same  =>     n,Wait(1)\n    same  =>     n,Playback(hello-world)\n    same  =>     n,Hangup()\n\n    [softphones]\n    include => tests\n\n    [unauthorized]\n  '';\n  \"sip.conf\" = ''\n    [general]\n    allowguest=no              ; Require authentication\n    context=unauthorized       ; Send unauthorized users to /dev/null\n    srvlookup=no               ; Don't do DNS lookup\n    udpbindaddr=0.0.0.0        ; Listen on all interfaces\n    nat=force_rport,comedia    ; Assume device is behind NAT\n\n    [softphone](!)\n    type=friend                ; Match on username first, IP second\n    context=softphones         ; Send to softphones context in\n                               ; extensions.conf file\n    host=dynamic               ; Device will register with asterisk\n    disallow=all               ; Manually specify codecs to allow\n    allow=g722\n    allow=ulaw\n    allow=alaw\n\n    [myphone](softphone)\n    secret=GhoshevFew          ; Change this password!\n  '';\n  \"logger.conf\" = ''\n    [general]\n\n    [logfiles]\n    ; Add debug output to log\n    syslog.local0 => notice,warning,error,debug\n  '';\n}\n")),
               description: "Sets the content of config files (typically ending with\n`.conf`) in the Asterisk configuration directory.\n\nNote that if you want to change {file}`asterisk.conf`, it\nis preferable to use the {option}`services.asterisk.extraConfig`\noption over this option. If `\"asterisk.conf\"` is\nspecified with the {option}`confFiles` option (not recommended),\nyou must be prepared to set your own `astetcdir`\npath.\n\nSee\n<https://www.asterisk.org/community/documentation/>\nfor more examples of what is possible here.\n",
             })))),
           useTheseDefaultConfFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => [
                 "ari.conf",
                 "acl.conf",
@@ -133,7 +133,7 @@ ${nix.sel(cfg, "extraConfig")}
               description: "Sets these config files to the default content. The default value for\n          this option contains all necesscary files to avoid errors at startup.\n          This does not override settings via {option}`services.asterisk.confFiles`.\n",
             })))),
           extraArguments: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["-vvvddd", "-e", "1024"]),
@@ -144,18 +144,18 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`asterisk/${name}`), value), allConfFiles)),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             asterisk: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               name: asteriskUser,
               group: asteriskGroup,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "asterisk")),
@@ -164,20 +164,20 @@ ${nix.sel(cfg, "extraConfig")}
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             asterisk: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: asteriskGroup,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "asterisk")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             asterisk: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Asterisk PBX server\n",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               restartIfChanged: false,
@@ -193,7 +193,7 @@ for d in '${varlibdir}' '${spooldir}' '${logdir}'; do
 done
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 ExecStart: nix.thunk(() => (() => {
                   const argString = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(cfg, "extraArguments"))));
                   return nix.str`${nix.sel(cfg, "package")}/bin/asterisk -U ${asteriskUser} -C /etc/asterisk/asterisk.conf ${argString} -F`;

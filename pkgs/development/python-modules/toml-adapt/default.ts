@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firefly-cpp",
           repo: "toml-adapt",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["toml_adapt"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Command-line interface for manipulating toml files",
         homepage: "https://github.com/firefly-cpp/toml-adapt",
         changelog: nix.thunk(() => nix.str`https://github.com/firefly-cpp/toml-adapt/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "toml-adapt",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

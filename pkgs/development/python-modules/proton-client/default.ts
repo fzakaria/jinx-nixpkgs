@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ProtonMail",
           repo: "proton-python-client",
           rev: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-OpenSSL-path-fix.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             openssl: nix.thunk(() => nix.sel(openssl, "out")),
             ext: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
           })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_modulus_verification", "test_compute_v", "test_generate_v", "test_srp"]);
       const pythonImportsCheck = nix.thunk(() => ["proton"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python Proton client module",
         homepage: "https://github.com/ProtonMail/proton-python-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

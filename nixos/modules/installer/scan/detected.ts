@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-        __proto__: pos$2,
-        hardware: nix.thunk(() => ({ __proto__: pos$1, enableRedistributableFirmware: true })),
+        [nix.POS]: pos$2,
+        hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableRedistributableFirmware: true })),
       })))),
   };
 })(), formals$1);

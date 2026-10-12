@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hilbish",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sammy-ette",
           repo: "Hilbish",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p \"$out/share/hilbish\"\n\ncp .hilbishrc.lua $out/share/hilbish/\ncp -r docs -t $out/share/hilbish/\ncp -r libs -t $out/share/hilbish/\ncp -r nature $out/share/hilbish/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive Unix-like shell written in Go",
         mainProgram: "hilbish",
         changelog: nix.thunk(() => nix.str`https://github.com/sammy-ette/Hilbish/releases/tag/v${nix.sel(finalAttrs, "version")}`),

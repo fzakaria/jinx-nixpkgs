@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const jdk21 = nix.arg($, "jdk21");
   const libbluray = nix.arg($, "libbluray");
   return nix.app(nix.sel(libbluray, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withAACS: true,
       withBDplus: true,
       withJava: nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), jdk21)),

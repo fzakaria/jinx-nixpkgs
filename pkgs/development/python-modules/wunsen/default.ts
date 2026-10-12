@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cakimpei",
           repo: "wunsen",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "tests"]);
       const pythonImportsCheck = nix.thunk(() => ["wunsen"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transliterate/transcribe other languages into Thai Topics",
         homepage: "https://github.com/cakimpei/wunsen",
         changelog: nix.thunk(() => nix.str`https://github.com/cakimpei/wunsen/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

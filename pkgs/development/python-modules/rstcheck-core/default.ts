@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rstcheck-core",
       version: "1.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rstcheck",
           repo: "rstcheck-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-strict-prototypes")),
       })),
       dependencies: nix.thunk(() => [docutils, pydantic]),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_include_directive_error_without_sphinx"]),
       pythonImportsCheck: nix.thunk(() => ["rstcheck_core"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for checking syntax of reStructuredText",
         homepage: "https://github.com/rstcheck/rstcheck-core",
         changelog: nix.thunk(() => nix.str`https://github.com/rstcheck/rstcheck-core/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

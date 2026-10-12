@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const mdit_py_plugins = nix.arg($, "mdit-py-plugins");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pytest-markdown-docs",
       version: "0.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "modal-com",
           repo: "pytest-markdown-docs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pytest_markdown_docs"]),
       nativeCheckInputs: nix.thunk(() => [mdit_py_plugins, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Run pytest on markdown code fence blocks",
         homepage: "https://github.com/modal-com/pytest-markdown-docs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

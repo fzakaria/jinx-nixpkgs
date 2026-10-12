@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lm_sensors = nix.arg($, "lm_sensors");
   const libnl = nix.arg($, "libnl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ksystemstats",
       patches: nix.thunk(() => [nix.path(here, "./helper-path.patch")]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

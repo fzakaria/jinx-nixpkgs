@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "environment", "freetds"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       environment: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         freetds: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => ({})),
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{ MYDATABASE = ''\n    host = 10.0.2.100\n    port = 1433\n    tds version = 7.2\n  '';\n}\n")),
@@ -35,19 +35,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.gt(nix.builtins.length(nix.thunk(() => nix.builtins.attrNames(cfg))), 0n)), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           variables: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             FREETDSCONF: "/etc/freetds.conf",
             FREETDS: "/etc/freetds.conf",
             SYBASE: nix.thunk(() => nix.str`${nix.sel(pkgs, "freetds")}`),
           })),
           etc: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "freetds.conf": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               text: nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`[${name}]
 ${value}
 `, cfg)))),

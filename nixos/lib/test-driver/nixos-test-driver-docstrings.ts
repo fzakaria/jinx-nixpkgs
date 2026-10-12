@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const python3 = nix.arg($, "python3");
-  const env = nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [python3]) }));
+  const env = nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [python3]) }));
   return nix.app(runCommand, "nixos-test-driver-docstrings", env, nix.thunk(() => nix.str`mkdir $out
 python3 ${nix.path(here, "./src/extract-docstrings.py")} ${nix.path(here, "./src/test_driver/machine/__init__.py")} \\
   > $out/machine-methods.md

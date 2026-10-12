@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "display"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doc: nix.path(here, "./display.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -50,15 +50,15 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       hardware: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         display: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           edid: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.force(nix.lookup(w, "bool"));
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
                 description: "Enables handling of EDID files\n",
               })))),
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "package")));
@@ -77,15 +77,15 @@ export default nix.lambda((args) => (() => {
                 description: "List of packages containing EDID binary files at `$out/lib/firmware/edid`.\nSuch files will be available for use in `drm.edid_firmware` kernel\nparameter as `edid/<filename>`.\n\nYou can craft one directly here or use sibling options `linuxhw` and `modelines`.\n",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (pkgs.runCommand \"edid-custom\" {} ''\n    mkdir -p \"$out/lib/firmware/edid\"\n    base64 -d > \"$out/lib/firmware/edid/custom1.bin\" <<'EOF'\n    <insert your base64 encoded EDID file here `base64 < /sys/class/drm/card0-.../edid`>\n    EOF\n  '')\n]\n")),
                 apply: (list) => (nix.asBool(nix.eq(list, [])) ? null : nix.update(nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     name: "firmware-edid",
                     paths: list,
                     pathsToLink: nix.thunk(() => ["/lib/firmware/edid"]),
                     ignoreCollisions: true,
-                  }))), { __proto__: pos$4, compressFirmware: false })),
+                  }))), { [nix.POS]: pos$4, compressFirmware: false })),
               })))),
             linuxhw: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))));
@@ -93,10 +93,10 @@ export default nix.lambda((args) => (() => {
                 default: nix.thunk(() => ({})),
                 description: "Exposes EDID files from users-sourced database at <https://github.com/linuxhw/EDID>\n\nAttribute names will be mapped to EDID filenames `<NAME>.bin`.\n\nAttribute values are lists of `awk` regexp patterns that (together) must match\nexactly one line in either of:\n- [AnalogDisplay.md](https://raw.githubusercontent.com/linuxhw/EDID/master/AnalogDisplay.md)\n- [DigitalDisplay.md](https://raw.githubusercontent.com/linuxhw/EDID/master/DigitalDisplay.md)\n\nThere is no universal way of locating your device config, but here are some practical tips:\n1. locate your device:\n  - find your model number (second column)\n  - locate manufacturer (first column) and go through the list manually\n2. narrow down results using other columns until there is only one left:\n  - `Name` column\n  - production date (`Made` column)\n  - resolution `Res`\n  - screen diagonal (`Inch` column)\n  - as a last resort use `ID` from the last column\n",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  PG278Q_2014 = [ \"PG278Q\" \"2014\" ];\n}\n")),
-                apply: (displays) => (nix.asBool(nix.eq(displays, {})) ? null : nix.app(nix.sel(pkgs, "linuxhw-edid-fetcher", "override"), nix.thunk(() => ({ __proto__: pos$6, displays: displays })))),
+                apply: (displays) => (nix.asBool(nix.eq(displays, {})) ? null : nix.app(nix.sel(pkgs, "linuxhw-edid-fetcher", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, displays: displays })))),
               })))),
             modelines: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -105,9 +105,9 @@ export default nix.lambda((args) => (() => {
                 description: "Attribute set of XFree86 Modelines automatically converted\nand exposed as `edid/<name>.bin` files in initrd.\nSee for more information:\n- <https://en.wikipedia.org/wiki/XFree86_Modeline>\n",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"PG278Q_60\" = \"    241.50   2560 2608 2640 2720   1440 1443 1448 1481   -hsync +vsync\";\n  \"PG278Q_120\" = \"   497.75   2560 2608 2640 2720   1440 1443 1448 1525   +hsync -vsync\";\n  \"U2711_60\" = \"     241.50   2560 2600 2632 2720   1440 1443 1448 1481   -hsync +vsync\";\n}\n")),
                 apply: (modelines) => (nix.asBool(nix.eq(modelines, {})) ? null : nix.app(nix.sel(pkgs, "edid-generator", "overrideAttrs"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     clean: true,
-                    passthru: nix.thunk(() => ({ __proto__: pos$8, config: modelines })),
+                    passthru: nix.thunk(() => ({ [nix.POS]: pos$8, config: modelines })),
                     modelines: nix.thunk(() => nix.app(nix.sel(lib, "trivial", "pipe"), modelines, nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(nix.sel(lib, "throwIfNot"), nix.thunk(() => nix.le(nix.builtins.stringLength(name), 12n)), "Modeline name must be 12 characters or less", nix.thunk(() => nix.str`Modeline "${name}" ${value}`)))),
                         nix.thunk(() => nix.app(nix.builtins.map, (line) => nix.str`${line}
@@ -118,13 +118,13 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           outputs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     options: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       edid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
                           description: "An EDID filename to be used for configured display, as in `edid/<filename>`.\nSee for more information:\n- `hardware.display.edid.packages`\n- <https://wiki.archlinux.org/title/Kernel_mode_setting#Forcing_modes_and_EDID>\n",
                         })))),
                       mode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -153,19 +153,19 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           hardware: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             display: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               edid: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 packages: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "edid", "modelines"), null)), nix.thunk(() => nix.sel(cfg, "edid", "modelines"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "edid", "linuxhw"), null)), nix.thunk(() => nix.sel(cfg, "edid", "linuxhw"))))),
               })),
             })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             kernelParams: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "trivial", "pipe"), nix.thunk(() => nix.sel(cfg, "outputs")), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (spec) => !nix.eq(nix.sel(spec, "mode"), null))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (output) => (spec) => nix.str`video=${output}:${nix.sel(spec, "mode")}`)),
@@ -178,13 +178,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "edid", "packages"), null)), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             services: nix.thunk(() => ({
-              __proto__: pos$26,
-              udev: nix.thunk(() => ({ __proto__: pos$25, enable: true })),
+              [nix.POS]: pos$26,
+              udev: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
             })),
             hardware: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               firmware: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "edid", "packages"))]),
             })),
           })))),

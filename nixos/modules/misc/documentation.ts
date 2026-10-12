@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
   const docModules = nix.thunk(() => (() => {
     const p = nix.thunk(() => nix.app(partition, canCacheDocs, nix.thunk(() => nix.concat(baseModules, nix.sel(cfg, "nixos", "extraModules")))));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lazy: nix.thunk(() => nix.sel(p, "right")),
       eager: nix.thunk(() => nix.concat(nix.sel(p, "wrong"), nix.app(optionals, nix.thunk(() => nix.sel(cfg, "nixos", "includeAllModules")), nix.thunk(() => nix.concat(extraModules, modules))))),
     };
@@ -111,16 +111,16 @@ export default nix.lambda((args) => (() => {
       const checkRedirects = nix.thunk(() => nix.sel(cfg, "nixos", "checkRedirects"));
       const options_1 = nix.thunk(() => (() => {
         const scrubbedEval = nix.thunk(() => nix.app(evalModules, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             modules: nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                __proto__: pos$3,
-                _module: nix.thunk(() => ({ __proto__: pos$2, check: false })),
+                [nix.POS]: pos$3,
+                _module: nix.thunk(() => ({ [nix.POS]: pos$2, check: false })),
               })),
             ], nix.sel(docModules, "eager"))),
             class: "nixos",
             specialArgs: nix.thunk(() => nix.update(specialArgs, {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pkgs: nix.thunk(() => nix.app(scrubDerivations, "pkgs", pkgs_1)),
               options: allOpts,
               modulesPath: modulesPath,
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
             const wholeName = nix.thunk(() => nix.str`${namePrefix}.${name}`);
             const guard = nix.thunk(() => nix.app(warn, nix.thunk(() => nix.str`Attempt to evaluate package ${wholeName} in option documentation; this is not supported and will eventually be an error. Use \`mkPackageOption{,MD}\` or \`literalExpression\` instead.`)));
             return (nix.asBool(nix.app(isAttrs, value)) ? nix.update(nix.app(scrubDerivations, wholeName, value), nix.app(optionalAttrs, nix.thunk(() => nix.app(isDerivation, value)), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 outPath: nix.thunk(() => nix.app(guard, nix.thunk(() => nix.str`\${${wholeName}}`))),
                 drvPath: nix.thunk(() => nix.app(guard, nix.thunk(() => nix.sel(value, "drvPath")))),
               })))) : nix.force(value));
@@ -142,7 +142,7 @@ export default nix.lambda((args) => (() => {
         const filter = nix.thunk(() => nix.app(nix.builtins.filterSource, (n) => (t) => (nix.asBool((nix.asBool(nix.app(cleanSourceFilter, n, t)) && nix.asBool((!nix.asBool(nix.eq(t, "directory")) || nix.asBool(!nix.eq(nix.builtins.baseNameOf(n), "tests")))))) && nix.asBool((!nix.asBool(nix.eq(t, "file")) || nix.asBool(nix.app(hasSuffix, ".nix", n)))))));
         const prefixRegex = nix.thunk(() => nix.add(nix.add("^", nix.app(nix.sel(lib, "strings", "escapeRegex"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(pkgs_1, "path")))))), "($|/(modules|nixos|lib)($|/.*))"));
         const filteredModules = nix.thunk(() => nix.builtins.path(nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "source",
             path: nix.thunk(() => nix.attr(pkgs_1, "path")),
             filter: (n) => (t) => (nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.builtins.match(prefixRegex, n), null)) && nix.asBool(nix.app(cleanSourceFilter, n, t)))) && nix.asBool((!nix.asBool(nix.eq(t, "directory")) || nix.asBool(!nix.eq(nix.builtins.baseNameOf(n), "tests")))))) && nix.asBool((!nix.asBool(nix.eq(t, "file")) || nix.asBool(nix.app(hasSuffix, ".nix", n))))),
@@ -151,12 +151,12 @@ export default nix.lambda((args) => (() => {
             const libPath = nix.thunk(() => nix.add(filteredModules, "/lib"));
             const pkgsLibPath = nix.thunk(() => nix.app(filter, nix.thunk(() => nix.add(nix.sel(pkgs_1, "path"), "/pkgs/pkgs-lib"))));
             const nixosPath = nix.thunk(() => nix.add(filteredModules, "/nixos"));
-            const env = nix.thunk(() => ({ __proto__: pos$8, NIX_ABORT_ON_WARN: warningsAreErrors }));
+            const env = nix.thunk(() => ({ [nix.POS]: pos$8, NIX_ABORT_ON_WARN: warningsAreErrors }));
             const modules_1 = nix.thunk(() => nix.add(nix.add("[ ", nix.app(concatMapStringsSep, " ", (p) => nix.str`"${nix.app(removePrefix, nix.thunk(() => nix.str`${modulesPath}/`), nix.thunk(() => nix.builtins.toString(p)))}"`, nix.thunk(() => nix.sel(docModules, "lazy")))), " ]"));
             const disallowedReferences = nix.thunk(() => [filteredModules, pkgsLibPath]);
             const __structuredAttrs = true;
             return {
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               libPath,
               pkgsLibPath,
               nixosPath,
@@ -198,7 +198,7 @@ ${nix.sel(pkgs_1, "buildPackages", "nix")}/bin/nix-instantiate \\
       const from = nix.thunk(() => nix.sel(cfg, "nixos", "options"));
       const warningsAreErrors = nix.thunk(() => nix.attr(from, "warningsAreErrors"));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pkgs: pkgs_1,
         config: config_1,
         version,
@@ -227,7 +227,7 @@ fi
 exec "$browser" ${nix.sel(manual, "manualHTMLIndex")}
 `)));
     const desktopItem = nix.thunk(() => nix.app(nix.sel(pkgs, "makeDesktopItem"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "nixos-manual",
         desktopName: "NixOS Manual",
         genericName: "System Manual",
@@ -237,13 +237,13 @@ exec "$browser" ${nix.sel(manual, "manualHTMLIndex")}
         categories: nix.thunk(() => ["System"]),
       }))));
     return nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: "nixos-help",
         paths: nix.thunk(() => [helpScript, desktopItem]),
       })));
   })());
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     imports: nix.thunk(() => [
       nix.path(here, "./man-db.nix"),
       nix.path(here, "./mandoc.nix"),
@@ -258,33 +258,33 @@ exec "$browser" ${nix.sel(manual, "manualHTMLIndex")}
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["documentation", "nixos", "options", "allowDocBook"]), "DocBook option documentation is no longer supported")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       documentation: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             type: nix.thunk(() => nix.sel(types, "bool")),
             default: true,
             description: "Whether to install documentation of packages from\n{option}`environment.systemPackages` into the generated system path.\n\nSee \"Multiple-output packages\" chapter in the nixpkgs manual for more info.\n",
           })))),
         man: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to install manual pages.\nThis also includes `man` outputs.\n",
             })))),
           cache: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to generate the manual page index caches.\nThis allows searching for a page or\nkeyword using utilities like {manpage}`apropos(1)`\nand the `-k` option of\n{manpage}`man(1)`.\n",
               })))),
             generateAtRuntime: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether to generate the manual page index caches at runtime using\na systemd service.\n\n::: {.note}\nThis is currently only supported by the man-db module.\n:::\n",
@@ -292,76 +292,76 @@ exec "$browser" ${nix.sel(manual, "manualHTMLIndex")}
           })),
         })),
         info: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to install info pages and the {command}`info` command.\nThis also includes \"info\" outputs.\n",
             })))),
         })),
         doc: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to install documentation distributed in packages' `/share/doc`.\nUsually plain text and/or HTML.\nThis also includes \"doc\" outputs.\n",
             })))),
         })),
         dev: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether to install documentation targeted at developers.\n* This includes man pages targeted at developers if {option}`documentation.man.enable` is\n  set (this also includes \"devman\" outputs).\n* This includes info pages targeted at developers if {option}`documentation.info.enable`\n  is set (this also includes \"devinfo\" outputs).\n* This includes other pages targeted at developers if {option}`documentation.doc.enable`\n  is set (this also includes \"devdoc\" outputs).\n",
             })))),
         })),
         nixos: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to install NixOS's own documentation.\n\n- This includes man pages like\n  {manpage}`configuration.nix(5)` if {option}`documentation.man.enable` is\n  set.\n- This includes the HTML manual and the {command}`nixos-help` command if\n  {option}`documentation.doc.enable` is set.\n",
             })))),
           extraModules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "raw")))),
               default: [],
               description: "Modules for which to show options even when not imported.\n",
             })))),
           options: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             splitBuild: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to split the option docs build into a cacheable and an uncacheable part.\nSplitting the build can substantially decrease the amount of time needed to build\nthe manual, but some user modules may be incompatible with this splitting.\n",
               })))),
             warningsAreErrors: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Treat warning emitted during the option documentation build (eg for missing option\ndescriptions) as errors.\n",
               })))),
           })),
           includeAllModules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether the generated NixOS's documentation should include documentation for all\nthe options from all the NixOS modules included in the current\n`configuration.nix`. Disabling this will make the manual\ngenerator to ignore options defined outside of `baseModules`.\n",
             })))),
           extraModuleSources: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "path")), nix.thunk(() => nix.sel(types, "str")))))),
               default: [],
               description: "Which extra NixOS module paths the generated NixOS's documentation should strip\nfrom options.\n",
               example: nix.thunk(() => nix.app(literalExpression, "# e.g. with options from modules in ${pkgs.customModules}/nix:\n[ pkgs.customModules ]\n")),
             })))),
           checkRedirects: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Check redirects for manualHTML.\n",
@@ -371,27 +371,27 @@ exec "$browser" ${nix.sel(manual, "manualHTMLIndex")}
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "man", "man-db", "enable")) && nix.asBool(nix.sel(cfg, "man", "mandoc", "enable"))))),
                 message: "man-db and mandoc can't be used as the default man page viewer at the same time!\n",
               })),
             ]),
           })),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "man", "enable")), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               environment: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 pathsToLink: nix.thunk(() => ["/share/man"]),
                 extraOutputsToInstall: nix.thunk(() => nix.concat(["man"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "dev", "enable")), "devman"))),
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "info", "enable")), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               environment: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "texinfoInteractive"))]),
                 pathsToLink: nix.thunk(() => ["/share/info"]),
                 extraOutputsToInstall: nix.thunk(() => nix.concat(["info"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "dev", "enable")), "devinfo"))),
@@ -405,21 +405,21 @@ fi
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "doc", "enable")), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               environment: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 pathsToLink: nix.thunk(() => ["/share/doc", "/share/gtk-doc", "/share/devhelp"]),
                 extraOutputsToInstall: nix.thunk(() => nix.concat(["doc"], nix.app(optional, nix.thunk(() => nix.sel(cfg, "dev", "enable")), "devdoc"))),
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "nixos", "enable")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               system: nix.thunk(() => ({
-                __proto__: pos$45,
-                build: nix.thunk(() => ({ __proto__: pos$44, manual: manual })),
+                [nix.POS]: pos$45,
+                build: nix.thunk(() => ({ [nix.POS]: pos$44, manual: manual })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 systemPackages: nix.thunk(() => nix.concat([], nix.concat(nix.app(optional, nix.thunk(() => nix.sel(cfg, "man", "enable")), nix.thunk(() => nix.sel(manual, "nixos-configuration-reference-manpage"))), nix.app(optionals, nix.thunk(() => nix.sel(cfg, "doc", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(manual, "manualHTML")), nixos_help]))))),
               })),
             })))),

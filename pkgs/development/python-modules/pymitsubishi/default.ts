@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pymitsubishi",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pymitsubishi",
           repo: "pymitsubishi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ grep -qF 'version = "${nix.sel(finalAttrs, "version")}"' pyproject.toml
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pymitsubishi"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for controlling and monitoring Mitsubishi MAC-577IF-2E air conditioners",
         homepage: "https://github.com/pymitsubishi/pymitsubishi",
         changelog: nix.thunk(() => nix.str`https://github.com/pymitsubishi/pymitsubishi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const faust = nix.arg($, "faust");
   const csound = nix.arg($, "csound");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       baseName: "faust2csound",
       propagatedBuildInputs: nix.thunk(() => [csound]),
       preFixup: nix.thunk(() => nix.str`NIX_CFLAGS_COMPILE="$(printf '%s' "$NIX_CFLAGS_COMPILE" | sed 's%${csound}/include%${csound}/include/csound%')"

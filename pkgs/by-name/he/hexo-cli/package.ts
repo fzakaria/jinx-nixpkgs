@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hexo-cli";
       const version = "4.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hexojs",
           repo: "hexo-cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-VCHG1YMPRwEBbwgscSv6V+fTNVRpsCxWeyO8co4Zy6k=";
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ncp -r bin/ dist/ node_modules/ package.json $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line interface for Hexo",
         mainProgram: "hexo",
         homepage: "https://hexo.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

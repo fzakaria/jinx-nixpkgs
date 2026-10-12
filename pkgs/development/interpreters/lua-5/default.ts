@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
         const overrides = nix.arg($_2, "overrides");
         const callPackage_1 = nix.arg($_2, "callPackage");
         const makeScopeWithSplicing$ = nix.arg($_2, "makeScopeWithSplicing'");
-        const luaPackagesFun = nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../../../top-level/lua-packages.nix"), nix.thunk(() => ({ __proto__: pos$1, lua: self }))));
+        const luaPackagesFun = nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../../../top-level/lua-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, lua: self }))));
         const generatedPackages = nix.thunk(() => (nix.asBool(nix.builtins.pathExists(nix.path(here, "../../lua-modules/generated-packages.nix"))) ? (final) => (prev) => nix.app(callPackage_1, nix.path(here, "../../lua-modules/generated-packages.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             callPackage: nix.thunk(() => nix.attr(final, "callPackage")),
           })), final, prev) : (final) => (prev) => ({})));
         const overriddenPackages = nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../../lua-modules/overrides.nix"), nix.thunk(() => ({}))));
         const otherSplices = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           selfBuildBuild: nix.thunk(() => nix.sel(luaOnBuildForBuild, "pkgs")),
           selfBuildHost: nix.thunk(() => nix.sel(luaOnBuildForHost, "pkgs")),
           selfBuildTarget: nix.thunk(() => nix.sel(luaOnBuildForTarget, "pkgs")),
@@ -72,37 +72,37 @@ export default nix.lambda((args) => (() => {
         }));
         const extensions = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => [generatedPackages, overriddenPackages, overrides])));
         return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             otherSplices: otherSplices,
             f: nix.thunk(() => nix.app(nix.sel(lib, "extends"), extensions, luaPackagesFun)),
           })));
-      })(), formals$3), nix.thunk(() => ({ __proto__: pos$5, overrides: packageOverrides, lua: self }))));
+      })(), formals$3), nix.thunk(() => ({ [nix.POS]: pos$5, overrides: packageOverrides, lua: self }))));
     return (() => {
       const buildEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           lua: self,
           makeWrapper: makeBinaryWrapper,
           requiredLuaModules: nix.thunk(() => nix.attr(luaPackages, "requiredLuaModules")),
         }))));
-      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ __proto__: pos$7, buildEnv: buildEnv, luaPackages: luaPackages }))));
+      const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ [nix.POS]: pos$7, buildEnv: buildEnv, luaPackages: luaPackages }))));
       const pkgs = luaPackages;
       const interpreter = nix.thunk(() => nix.str`${self}/bin/${executable_1}`);
       const executable_1 = executable;
       const luaversion_1 = luaversion;
-      const luaOnBuild = nix.thunk(() => nix.app(nix.sel(luaOnBuildForHost_1, "override"), nix.thunk(() => ({ __proto__: pos$8, packageOverrides: packageOverrides, self: luaOnBuild }))));
+      const luaOnBuild = nix.thunk(() => nix.app(nix.sel(luaOnBuildForHost_1, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, packageOverrides: packageOverrides, self: luaOnBuild }))));
       const luaOnBuildForBuild_1 = luaOnBuildForBuild;
       const luaOnBuildForHost_1 = luaOnBuildForHost;
       const luaOnBuildForTarget_1 = luaOnBuildForTarget;
       const luaOnHostForHost_1 = luaOnHostForHost;
       const luaOnTargetForTarget_1 = luaOnTargetForTarget;
       const tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           lua: self,
           wrapLua: nix.thunk(() => nix.attr(luaPackages, "wrapLua")),
         }))));
       const luaAttr_1 = luaAttr;
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         buildEnv,
         withPackages,
         pkgs,
@@ -122,7 +122,7 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return (() => {
     const lua5_5 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./interpreter.nix"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         self: lua5_5,
         version: "5.5.1",
         hash: "sha256-HEtAaNZwYfKiIxrStUIud6zqFIfqmJD2Mgr2FPQ3Pc4=",
@@ -130,9 +130,9 @@ export default nix.lambda((args) => (() => {
         passthruFun: passthruFun,
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.path(here, "./5.5.darwin.patch"))),
       }))));
-    const lua5_5_compat = nix.thunk(() => nix.app(nix.sel(lua5_5, "override"), nix.thunk(() => ({ __proto__: pos$12, self: lua5_5_compat, compat: true }))));
+    const lua5_5_compat = nix.thunk(() => nix.app(nix.sel(lua5_5, "override"), nix.thunk(() => ({ [nix.POS]: pos$12, self: lua5_5_compat, compat: true }))));
     const lua5_4 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./interpreter.nix"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         self: lua5_4,
         version: "5.4.7",
         hash: "sha256-n79eKO+GxphY9tPTTszDLpEcGii0Eg/z6EqqcM+/HjA=",
@@ -140,9 +140,9 @@ export default nix.lambda((args) => (() => {
         passthruFun: passthruFun,
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.path(here, "./5.4.darwin.patch"))),
       }))));
-    const lua5_4_compat = nix.thunk(() => nix.app(nix.sel(lua5_4, "override"), nix.thunk(() => ({ __proto__: pos$14, self: lua5_4_compat, compat: true }))));
+    const lua5_4_compat = nix.thunk(() => nix.app(nix.sel(lua5_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$14, self: lua5_4_compat, compat: true }))));
     const lua5_3 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./interpreter.nix"), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         self: lua5_3,
         version: "5.3.6",
         hash: "0q3d8qhd7p0b7a4mh9g7fxqksqfs6mr1nav74vq26qvkp2dxcpzw",
@@ -150,9 +150,9 @@ export default nix.lambda((args) => (() => {
         passthruFun: passthruFun,
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./5.2.darwin.patch")]))),
       }))));
-    const lua5_3_compat = nix.thunk(() => nix.app(nix.sel(lua5_3, "override"), nix.thunk(() => ({ __proto__: pos$16, self: lua5_3_compat, compat: true }))));
+    const lua5_3_compat = nix.thunk(() => nix.app(nix.sel(lua5_3, "override"), nix.thunk(() => ({ [nix.POS]: pos$16, self: lua5_3_compat, compat: true }))));
     const lua5_2 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./interpreter.nix"), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         self: lua5_2,
         version: "5.2.4",
         hash: "0jwznq0l8qg9wh5grwg07b5cy3lzngvl5m2nl1ikp6vqssmf9qmr",
@@ -160,9 +160,9 @@ export default nix.lambda((args) => (() => {
         passthruFun: passthruFun,
         patches: nix.thunk(() => nix.concat([nix.path(here, "./CVE-2022-28805.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.path(here, "./5.2.darwin.patch")))),
       }))));
-    const lua5_2_compat = nix.thunk(() => nix.app(nix.sel(lua5_2, "override"), nix.thunk(() => ({ __proto__: pos$18, self: lua5_2_compat, compat: true }))));
+    const lua5_2_compat = nix.thunk(() => nix.app(nix.sel(lua5_2, "override"), nix.thunk(() => ({ [nix.POS]: pos$18, self: lua5_2_compat, compat: true }))));
     const lua5_1 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./interpreter.nix"), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         self: lua5_1,
         version: "5.1.5",
         hash: "2640fc56a795f29d28ef15e13c34a47e223960b0240e8cb0a82d9b0738695333",
@@ -171,7 +171,7 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.path(here, "./5.1.darwin.patch")), [nix.path(here, "./CVE-2014-5461.patch")])),
       }))));
     const luajit_2_0 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/2.0.nix")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         self: luajit_2_0,
         callPackage: callPackage,
         fetchFromGitHub: fetchFromGitHub,
@@ -179,14 +179,14 @@ export default nix.lambda((args) => (() => {
         passthruFun: passthruFun,
       }))));
     const luajit_2_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/2.1.nix")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         self: luajit_2_1,
         callPackage: callPackage,
         fetchFromGitHub: fetchFromGitHub,
         passthruFun: passthruFun,
       }))));
     const luajit_openresty = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../luajit/openresty.nix")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         self: luajit_openresty,
         callPackage: callPackage,
         fetchFromGitHub: fetchFromGitHub,
@@ -196,7 +196,7 @@ export default nix.lambda((args) => (() => {
         passthruFun: passthruFun,
       }))));
     return {
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       lua5_5,
       lua5_5_compat,
       lua5_4,

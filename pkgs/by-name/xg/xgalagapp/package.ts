@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxpm = nix.arg($, "libxpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xgalaga++",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://marc.mongenet.ch/OSS/XGalaga/xgalaga++_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-yNtLuYCMHLvQAVM7CDGPardrh3q27TE9l31qhUbMf8k=",
         })))),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/man\nmv xgalaga++ $out/bin\nmv xgalaga++.6x $out/share/man\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://marc.mongenet.ch/OSS/XGalaga/",
         description: "XGalaga++ is a classic single screen vertical shoot ’em up. It is inspired by XGalaga and reuses most of its sprites",
         mainProgram: "xgalaga++",

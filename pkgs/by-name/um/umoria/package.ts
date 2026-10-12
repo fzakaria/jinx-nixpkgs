@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "umoria";
       const version = "5.7.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dungeons-of-moria",
           repo: "umoria",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,25 +34,25 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-13.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/71dad4103b5c8f3e1f7723eb14d14425755e7ba5.patch",
             hash: "sha256-5Ka3NTe0sJk6kReG+1hwZPEuB3R+Nn+2zxUXuOG7hm0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "clang.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/f294e5880cd21d25c11eee820d629f4ff504ad10.patch",
             hash: "sha256-se8G4n8codXA9gznyIy337IFyznLnpCY7KA6UryZDls=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "clang-p2.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/bf513b05dc34405665a8dd1386292cd70307dce0.patch",
             hash: "sha256-FXj5Y4G0gnXheXC2bmRbIx3a1IixJ/aGfRMxl2S/vqM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "clang-crash.patch",
             url: "https://github.com/dungeons-of-moria/umoria/commit/d073e8f867c49bb04a02c1995dd3efb0c5cc07e7.patch",
             hash: "sha256-4uwO8fe4M5jt0IM0z6MjO8UaEezweMA5L+pusel4VUU=",
@@ -97,7 +97,7 @@ chmod +x $out/bin/umoria
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://umoria.org/",
         description: "Dungeons of Moria - the original roguelike",
         mainProgram: "umoria",
@@ -114,7 +114,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

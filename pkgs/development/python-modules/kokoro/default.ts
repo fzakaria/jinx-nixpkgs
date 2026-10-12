@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kokoro",
       version: "0-unstable-2025-06-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hexgrad",
           repo: "kokoro",
           rev: "2668b2e279d0f94977995230e523b0183763f30e",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_different_window_sizes", "test_stft_reconstruction"]),
       pythonImportsCheck: nix.thunk(() => ["kokoro"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-weight TTS model with 82 million parameters",
         homepage: "https://github.com/hexgrad/kokoro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

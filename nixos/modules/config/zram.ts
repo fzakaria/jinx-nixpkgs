@@ -29,34 +29,34 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "zramSwap"));
   const devices = nix.thunk(() => nix.builtins.map((nr) => nix.str`zram${nix.builtins.toString(nr)}`, nix.thunk(() => nix.app(nix.sel(lib, "range"), 0n, nix.thunk(() => nix.sub(nix.sel(cfg, "swapDevices"), 1n))))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["zramSwap", "numDevices"]), "Using ZRAM devices as general purpose ephemeral block devices is no longer supported")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       zramSwap: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             default: false,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             description: "Enable in-memory compressed devices and swap space provided by the zram\nkernel module.\nSee [\n  https://www.kernel.org/doc/Documentation/blockdev/zram.txt\n](https://www.kernel.org/doc/Documentation/blockdev/zram.txt).\n",
           })))),
         swapDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: 1n,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             description: "Number of zram devices to be used as swap, recommended is 1.\n",
           })))),
         memoryPercent: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             default: 50n,
             type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
             description: "Maximum total amount of memory that can be stored in the zram swap devices\n(as a percentage of your total memory). Defaults to 1/2 of your total\nRAM. Run `zramctl` to check how good memory is compressed.\nThis doesn't define how much memory will be used by the zram swap devices.\n",
           })))),
         memoryMax: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: null,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -65,13 +65,13 @@ export default nix.lambda((args) => (() => {
             description: "Maximum total amount of memory (in bytes) that can be stored in the zram\nswap devices. If set, the smaller one of this option and memoryPercent would\nbe used.\nThis doesn't define how much memory will be used by the zram swap devices.\n",
           })))),
         priority: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: 5n,
             type: nix.thunk(() => nix.sel(lib, "types", "int")),
             description: "Priority of the zram swap devices. It should be a number higher than\nthe priority of your disk-based swap devices (so that the system will\nfill the zram swap devices before falling back to disk swap).\n",
           })))),
         algorithm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             default: "zstd",
             example: "lz4",
             type: nix.thunk(() => (() => {
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
             description: "Compression algorithm. `lzo` has good compression,\nbut is slow. `lz4` has bad compression, but is fast.\n`zstd` is both good compression and fast, but requires newer kernel.\nYou can check what other algorithms are supported by your zram device with\n{command}`cat /sys/class/block/zram*/comp_algorithm`\n",
           })))),
         writebackDevice: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             default: null,
             example: "/dev/zvol/tarta-zoot/swap-writeback",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
@@ -90,31 +90,31 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "writebackDevice"), null)) || nix.asBool(nix.le(nix.sel(cfg, "swapDevices"), 1n)))),
             message: "A single writeback device cannot be shared among multiple zram devices",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           "zram-generator": nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: true,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((dev) => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   name: dev,
                   value: nix.thunk(() => (() => {
                     const size = nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "memoryPercent")))} / 100 * ram`);
                     return nix.update({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       "zram-size": nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "memoryMax"), null)) ? nix.str`min(${size}, ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "memoryMax")))} / 1024 / 1024)` : nix.force(size))),
                       "compression-algorithm": nix.thunk(() => nix.sel(cfg, "algorithm")),
                       "swap-priority": nix.thunk(() => nix.sel(cfg, "priority")),
                     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "writebackDevice"), null)), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         "writeback-device": nix.thunk(() => nix.sel(cfg, "writebackDevice")),
                       }))));
                   })()),

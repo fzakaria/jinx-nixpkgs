@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "codebase-memory-mcp",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DeusData",
           repo: "codebase-memory-mcp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-install-update.diff")]),
       postPatch: "substituteInPlace Makefile.cbm \\\n  --replace-fail \"npm ci &&\" \"\"\n\npatchShebangs scripts/embed-frontend.sh\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${nix.sel(finalAttrs, "npmRoot")}`),
           hash: "sha256-W3cajM1XXy19EgGSJyXsd00KncAm7v4afnnnHXIqlhc=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -Dm755 build/c/codebase-memory-mcp $out/bin/codebase-memory-mcp\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/DeusData/codebase-memory-mcp",
         description: "High-performance C11 MCP server that indexes codebases into a persistent knowledge graph",
         mainProgram: "codebase-memory-mcp",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intervaltree";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "sha256-8/fouut911ufem0zzz7BACWYSo5m4wFtU35SEwxzz+I=",
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const preCheck = "rm -rf build\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Editable interval tree data structure for Python 2 and 3",
         homepage: "https://github.com/chaimleib/intervaltree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bennofs"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

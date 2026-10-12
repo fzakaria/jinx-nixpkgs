@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     mkServarrSettingsOptions: (name) => (port) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))), "type")),
             options: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               update: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 mechanism: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     type: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["external", "builtIn", "script"]))));
@@ -42,25 +42,25 @@ export default nix.lambda((args) => (() => {
                     default: "external",
                   })))),
                 automatically: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     description: "Automatically download and install updates.",
                     default: false,
                   })))),
               })),
               server: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     type: nix.thunk(() => nix.sel(lib, "types", "port")),
                     description: "Port Number",
                     default: port,
                   })))),
               })),
               log: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 analyticsEnabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     description: "Send Anonymous Usage Data",
                     default: false,
@@ -86,7 +86,7 @@ For secrets use [](#opt-services.${name}.environmentFiles).
 `),
       }))),
     mkServarrEnvironmentFiles: (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
         default: [],
         description: nix.thunk(() => nix.str`Environment file to pass secret configuration values.
@@ -96,7 +96,7 @@ Please consult the documentation at the [wiki](https://wiki.servarr.com/useful-t
       }))),
     mkServarrSettingsEnvVars: (name) => (settings) => nix.app(nix.sel(lib, "pipe"), settings, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (value) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               name: nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.str`${name}__${nix.app(nix.sel(lib, "concatStringsSep"), "__", path)}`))),
               value: nix.thunk(() => nix.builtins.toString(nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : nix.force(value))))),
             }))))),

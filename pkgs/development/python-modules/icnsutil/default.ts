@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "relikd",
           repo: "icnsutil",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ ${nix.sel(python, "interpreter")} tests/test_cli.py
 `);
       const pythonImportsCheck = nix.thunk(() => ["icnsutil"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Create and extract .icns files",
         homepage: "https://github.com/relikd/icnsutil",
         changelog: nix.thunk(() => nix.str`https://github.com/relikd/icnsutil/releases/tag/v${version}`),
@@ -42,7 +42,7 @@ ${nix.sel(python, "interpreter")} tests/test_cli.py
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "loki-tool",
       version: "0-unstable-2016-06-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "djrbliss",
           repo: "loki",
           rev: "784e86f981b7b1c30bd0d6b401f071e47e738eb8",
@@ -31,7 +31,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm555 loki_tool -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/djrbliss/loki",
         description: "Tool for custom firmware on AT&T/Verizon Samsung and LG devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

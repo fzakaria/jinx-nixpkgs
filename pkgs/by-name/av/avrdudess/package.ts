@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "avrdudess",
       version: "2.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ZakKemble/AVRDUDESS/releases/download/v${nix.sel(finalAttrs, "version")}/AVRDUDESS-${nix.sel(finalAttrs, "version")}-portable.zip`),
           hash: "sha256-t89iSLjbb7eIQIwB0oEXhNHnzpTEHJhS0P53kOVJ3qY=",
         })))),
@@ -53,7 +53,7 @@ chmod a+x "$out/bin/"*
 runHook postBuild
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI for AVRDUDE (AVR microcontroller programmer)",
         homepage: "https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/",
         changelog: nix.thunk(() => nix.str`https://github.com/ZakKemble/AVRDUDESS/blob/v${nix.sel(finalAttrs, "version")}/Changelog.txt`),

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "authres",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-k9G5la184h5i22SfNhBIEl3WAiVjoK6KI5CUZfH9Jbc=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(python, "interpreter")} -m authres
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Email Authentication-Results Headers generation and parsing for Python/Python3",
         longDescription: "Python module that implements various internet RFC's: 5451/7001/7601\nAuthentication-Results Headers generation and parsing for\nPython/Python3.\n",
         homepage: "https://launchpad.net/authentication-results-python",

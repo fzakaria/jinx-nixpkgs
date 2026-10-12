@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const itk = nix.arg($, "itk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "elastix",
       version: "5.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SuperElastix",
           repo: "elastix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkPhase: "runHook preCheck\nctest -E \"(COMPARE_IM|COMPARE_TP)\"\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://elastix.dev",
         description: "Image registration toolkit based on ITK",
         changelog: nix.thunk(() => nix.str`https://github.com/SuperElastix/elastix/releases/tag/${nix.sel(finalAttrs, "version")}`),

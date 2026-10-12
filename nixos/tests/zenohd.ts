@@ -32,24 +32,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "zenohd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             firewall: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               allowedTCPPorts: nix.thunk(() => [
                 7447n,
                 nix.thunk(() => nix.sel(config, "services", "zenohd", "settings", "plugins", "mqtt", "port")),
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             zenohd: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs_1, null);
@@ -77,27 +77,27 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               settings: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 plugins: nix.thunk(() => ({
-                  __proto__: pos$14,
-                  mqtt: nix.thunk(() => ({ __proto__: pos$4, port: 1883n, allow: ".*" })),
-                  webserver: nix.thunk(() => ({ __proto__: pos$5, http_port: 8000n })),
+                  [nix.POS]: pos$14,
+                  mqtt: nix.thunk(() => ({ [nix.POS]: pos$4, port: 1883n, allow: ".*" })),
+                  webserver: nix.thunk(() => ({ [nix.POS]: pos$5, http_port: 8000n })),
                   storage_manager: nix.thunk(() => ({
-                    __proto__: pos$13,
-                    volumes: nix.thunk(() => ({ __proto__: pos$6, fs: nix.thunk(() => ({})), rocksdb: nix.thunk(() => ({})) })),
+                    [nix.POS]: pos$13,
+                    volumes: nix.thunk(() => ({ [nix.POS]: pos$6, fs: nix.thunk(() => ({})), rocksdb: nix.thunk(() => ({})) })),
                     storages: nix.thunk(() => ({
-                      __proto__: pos$12,
-                      mem: nix.thunk(() => ({ __proto__: pos$7, key_expr: "mem/**", volume: "memory" })),
+                      [nix.POS]: pos$12,
+                      mem: nix.thunk(() => ({ [nix.POS]: pos$7, key_expr: "mem/**", volume: "memory" })),
                       fs: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         key_expr: "fs/**",
-                        volume: nix.thunk(() => ({ __proto__: pos$8, id: "fs", dir: "zenoh-fs", strip_prefix: "fs" })),
+                        volume: nix.thunk(() => ({ [nix.POS]: pos$8, id: "fs", dir: "zenoh-fs", strip_prefix: "fs" })),
                       })),
                       rocksdb: nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         key_expr: "rocksdb/**",
                         volume: nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           id: "rocksdb",
                           dir: "zenoh-rocksdb",
                           strip_prefix: "rocksdb",
@@ -113,9 +113,9 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       client: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mosquitto"))]),
         })),
       })),

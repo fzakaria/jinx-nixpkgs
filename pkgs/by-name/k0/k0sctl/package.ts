@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "k0sctl";
       const version = "0.33.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "k0sproject",
           repo: "k0sctl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
 done
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: k0sctl,
               command: "k0sctl version",
               version: nix.thunk(() => nix.str`version: (devel)
@@ -58,7 +58,7 @@ commit: v${version}
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Bootstrapping and management tool for k0s clusters",
         homepage: "https://k0sproject.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/k0sproject/k0sctl/releases/tag/v${version}`),
@@ -73,7 +73,7 @@ commit: v${version}
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

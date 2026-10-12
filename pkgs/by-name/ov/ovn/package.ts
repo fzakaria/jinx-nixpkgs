@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const tcpdump = nix.arg($, "tcpdump");
   const withOpensslConfigureFlag = nix.thunk(() => nix.str`--with-openssl=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(openssl, "dev")))}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ovn",
       version: "26.09.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ovn-org",
           repo: "ovn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,16 +94,16 @@ ln -s ${openvswitch}/share/openvswitch/scripts/ovs-lib $out/share/openvswitch/sc
 wrapProgram $out/share/ovn/scripts/ovn-ctl \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openvswitch, gawk, coreutils, gnugrep, gnused]))}
 `),
-      env: nix.thunk(() => ({ __proto__: pos$2, SKIP_UNSTABLE: "yes" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, SKIP_UNSTABLE: "yes" })),
       preCheck: "export TESTSUITEFLAGS=\"-j$NIX_BUILD_CORES\"\n# allow rechecks to retry flaky tests\nexport RECHECK=yes\n\n# hack to stop tests from trying to read /etc/resolv.conf\nexport OVS_RESOLV_CONF=\"$PWD/resolv.conf\"\ntouch $OVS_RESOLV_CONF\n\npatchShebangs --build tests/scapy-server.py\n",
       checkPhase: "runHook preCheck\n\nif ! make check; then\n  echo \"Some tests failed. Collecting logs for analysis...\"\n  find tests/testsuite.dir -type f -exec echo \"==== Contents of {} ====\" \\; -exec cat {} \\;\n  exit 1\nfi\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$3, ovn: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, ovn: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open Virtual Network",
         longDescription: "OVN (Open Virtual Network) is a series of daemons that translates virtual network configuration into OpenFlow, and installs them into Open vSwitch.\n",
         homepage: "https://www.ovn.org",

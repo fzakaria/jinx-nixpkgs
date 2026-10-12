@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ronn = nix.arg($, "ronn");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipp-usb",
       version: "0.9.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openprinting",
           repo: "ipp-usb",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "# to accommodate the makefile\ncp $out/bin/ipp-usb .\nmake install DESTDIR=$out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Daemon to use the IPP everywhere protocol with USB printers",
         mainProgram: "ipp-usb",
         homepage: "https://github.com/OpenPrinting/ipp-usb",

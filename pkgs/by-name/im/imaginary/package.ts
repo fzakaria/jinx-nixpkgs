@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const vips = nix.arg($, "vips");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "imaginary",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h2non",
           repo: "imaginary",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "return-width-and-height-of-generated-images.patch",
             url: "https://github.com/h2non/imaginary/commit/cfbf8d724cd326e835dfcb01e7224397c46037d3.patch",
             hash: "sha256-TwZ5WU5g9LXrenpfY52jYsc6KsEt2fjDq7cPz6ILlhA=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://fly.io/docs/app-guides/run-a-global-image-service",
         changelog: nix.thunk(() => nix.str`https://github.com/h2non/imaginary/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Fast, simple, scalable, Docker-ready HTTP microservice for high-level image processing",

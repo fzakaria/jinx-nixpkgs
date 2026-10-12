@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/define-module-check.nix", [["check", 2, 11]
 const pos$2 = nix.positions(here + "/define-module-check.nix", [["_module", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  _module: nix.thunk(() => ({ __proto__: pos$1, check: false })),
+  [nix.POS]: pos$2,
+  _module: nix.thunk(() => ({ [nix.POS]: pos$1, check: false })),
 }));
 //# sourceMappingURL=define-module-check.ts.map

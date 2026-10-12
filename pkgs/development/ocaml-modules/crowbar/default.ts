@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const uunf = nix.arg($, "uunf");
   const uucp = nix.arg($, "uucp");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crowbar",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stedolan",
           repo: "crowbar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [calendar, fpath, pprint, uutf, uunf, uucp]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Property fuzzing for OCaml",
         homepage: "https://github.com/stedolan/crowbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aranym",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aranym",
           repo: "aranym",
           rev: nix.thunk(() => nix.str`ARANYM_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libGLU, libx11, SDL2]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://aranym.github.io",
         description: "Atari Running on Any Machine",
         longDescription: "ARAnyM is a software virtual machine (similar to VirtualBox or Bochs)\ndesigned and developed for running 32-bit Atari ST/TT/Falcon operating\nsystems (TOS, FreeMiNT, MagiC and Linux-m68k) and TOS/GEM applications on\nany kind of hardware - be it an IBM clone (read it as \"PC\" :-), an Apple,\nan Unix server, a graphics workstation or even a portable computer.\n\nARAnyM is not meant as an emulator of Atari Falcon (even though it has a\nrather high Falcon software compatibility and includes most of Falcon\ncustom chips including VIDEL and DSP). ARAnyM is better in the sense that\nit's not tied to specification of an existing Atari machine so we were\nfree to select the most complete CPU (68040 with MMU) and FPU (68882), add\nloads of RAM (up to 4 GB), host accelerated graphics (even with OpenGL)\nand direct access to various host resources including sound, disk drives,\noptical storage devices (CD/DVD-ROMs), parallel port and more.\n",

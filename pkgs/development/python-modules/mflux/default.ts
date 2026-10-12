@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mflux",
       version: "0.15.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "filipstrand",
           repo: "mflux",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         "test_real_vae_tiling_compatibility",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_depth_pro_generation"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MLX native implementations of state-of-the-art generative image models",
         homepage: "https://github.com/filipstrand/mflux",
         changelog: nix.thunk(() => nix.str`https://github.com/filipstrand/mflux/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

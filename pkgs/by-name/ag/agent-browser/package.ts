@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_11;
   const version = "0.38.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "vercel-labs",
       repo: "agent-browser",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PNIQvTMYqcu8hS1TOiXJtVEYTmFJdRv1nu0T5nG3MlE=",
     }))));
   const dashboard = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agent-browser-dashboard",
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook]),
       __darwinAllowLocalNetworking: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "agent-browser-dashboard",
           version: version,
           src: src,
@@ -67,7 +67,7 @@ cp "${geist_font}/share/fonts/opentype/Geist-Regular.otf" \\
       installPhase: "runHook preInstall\ncp -r packages/dashboard/out $out\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "agent-browser",
       version: version,
       src: src,
@@ -85,12 +85,12 @@ cp -r ${dashboard} source/packages/dashboard/out
       __darwinAllowLocalNetworking: true,
       postInstall: "cp -r ../skills $out/skills\ncp -r ../skill-data $out/skill-data\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         dashboard: dashboard,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "dashboard"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "dashboard"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Headless browser automation CLI for AI agents",
         homepage: "https://github.com/vercel-labs/agent-browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

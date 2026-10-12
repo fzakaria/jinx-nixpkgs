@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const pname = "90secondportraits";
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "http://tangramgames.dk/img/thumb/90secondportraits.png",
       sha256: "13k6cq8s7jw77j81xfa5ri41445m778q6iqbfplhwdpja03c6faw",
     }))));
   const desktopItems = nix.thunk(() => [
     nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "90secondportraits",
         exec: pname,
         icon: icon,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const desktopItems_1 = desktopItems;
       const version = "1.01b";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "SimonLarsen",
           repo: "90-Second-Portraits",
           tag: version,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/SimonLarsen/90-Second-Portraits/commit/0ae7ba046f14cef9857fd6c05d9072455097441f.patch?full_index=true",
             hash: "sha256-/C4gqzwHQqZCuTA/m6WX8mvTxmLxOcHRItVLA3bty3Y=",
           })))),
@@ -69,7 +69,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/90secondportraits 
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Silly speed painting game",
         homepage: "https://github.com/SimonLarsen/90-Second-Portraits",
         mainProgram: "90secondportraits",
@@ -87,7 +87,7 @@ runHook postInstall
         downloadPage: "http://tangramgames.dk/games/90secondportraits",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: pname_1,
         desktopItems: desktopItems_1,
         version,

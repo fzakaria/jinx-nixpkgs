@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liblbfgs",
       version: "1.10",
       configureFlags: nix.thunk(() => ["--enable-sse2"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/downloads/chokkan/liblbfgs/liblbfgs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1kv8d289rbz38wrpswx5dkhr2yh4fg4h6sszkp3fawxm09sann21",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),
         description: "Library of Limited-memory Broyden-Fletcher-Goldfarb-Shanno (L-BFGS)",
         homepage: "http://www.chokkan.org/software/liblbfgs/",

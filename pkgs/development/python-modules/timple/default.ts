@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theOehrly",
           repo: "timple",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_mpl_default_functionality"]);
       const disabledTestPaths = nix.thunk(() => ["timple/tests/test_timple.py"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/theOehrly/timple/releases/tag/v${version}`),
         description: "Extended functionality for plotting timedelta-like values with Matplotlib",
         homepage: "https://github.com/theOehrly/timple",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

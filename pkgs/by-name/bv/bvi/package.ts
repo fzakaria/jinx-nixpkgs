@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bvi",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/bvi/bvi-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           sha256: "sha256-ZUBxaho7K5cRY1EI2hSya66kiIgdSmghIcC927prdMs=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hex editor with vim style keybindings",
         homepage: "https://bvi.sourceforge.net/download.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

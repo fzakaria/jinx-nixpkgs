@@ -158,68 +158,68 @@ export default nix.lambda((args) => (() => {
   const flattenAttrSet = (key) => (keyName) => (value) => nix.app(nameValuePair, key, nix.thunk(() => nix.builtins.map((it) => nix.update(nix.attrsDyn({}, [[nix.str`${keyName}`, nix.thunk(() => nix.sel(it, "name"))]]), nix.sel(it, "value")), nix.thunk(() => nix.app(attrsToList, value)))));
   const renameOptions = (parent) => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "toCamelCase"), nix.thunk(() => nix.str`${parent}_${name}`))), value), nix.thunk(() => nix.sel(cfg, "settings", nix.key(nix.str`${parent}`))));
   const brandingModule = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     appName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: str,
         default: "Webmail",
         description: "App name displayed in the UI, browser tab title, and PWA manifest.",
       })))),
   }));
   return {
-    __proto__: pos$121,
+    [nix.POS]: pos$121,
     options: nix.thunk(() => ({
-      __proto__: pos$89,
+      [nix.POS]: pos$89,
       services: nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         bulwark: nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Bulwark, a modern, self-hosted webmail client for Stalwart Mail Server.")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "bulwark", nix.thunk(() => ({})))),
           hostname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: str,
               default: "::",
               description: "Hostname the server binds to.",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: port,
               default: 3000n,
               description: "Port the server listens on.",
             })))),
           settings_data_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: str,
               default: "/var/lib/bulwark/settings",
               description: "Directory for storing encrypted settings files.",
             })))),
           admin_state_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: str,
               default: "/var/lib/bulwark/admin-state",
               description: "State dir - runtime mutations. Holds admin-state.json (login timestamps),\naudit.log, and the bootstrap setup token. Always read-write.\n",
             })))),
           version_check_data_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: str,
               default: "/var/lib/bulwark/version-check",
               description: "Version check dir - necessary to perform version checks.\n",
             })))),
           updateCheck: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: bool,
                         default: true,
                         description: "Whether to enable update checks",
                       })))),
                     url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nullOr, str)),
                         description: "Override the endpoint it checks. Takes priority over the on-disk state file.",
                       })))),
@@ -230,19 +230,19 @@ export default nix.lambda((args) => (() => {
               description: "The app periodically checks for new releases and shows a notice",
             })))),
           telemetry: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: bool,
                         default: false,
                         description: "Anonymous instance telemetry is OPT-IN and disabled by default. Enabling it\nhelps us understand how Bulwark is used so we can make the product better.\nHeartbeats contain no PII: version, platform, bucketed account counts, and\nfeature toggles only - never email addresses, hostnames, or IPs. See\nhttps://bulwarkmail.org/docs/legal/privacy/telemetry for the full schema.\n",
                       })))),
                     data_dir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: str,
                         default: "/var/lib/bulwark/telemetry",
                         description: "Directory for telemetry state: instance id, consent, login HMACs.",
@@ -254,28 +254,28 @@ export default nix.lambda((args) => (() => {
               description: "Anonymous Telemetry",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$52,
+                  [nix.POS]: pos$52,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     jmapServerUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.app(nullOr, str)),
                         description: "URL of your JMAP-compatible mail server (required unless `settings.allowCustomJmapEndpoint` is set).",
                       })))),
                     jmapServers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                              __proto__: pos$23,
+                              [nix.POS]: pos$23,
                               freeformType: nix.thunk(() => nix.sel(format, "type")),
                               options: nix.thunk(() => ({
-                                __proto__: pos$22,
-                                label: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$19, type: str, description: "Server label" })))),
-                                url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$20, type: str, description: "JMAP URL" })))),
+                                [nix.POS]: pos$22,
+                                label: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$19, type: str, description: "Server label" })))),
+                                url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$20, type: str, description: "JMAP URL" })))),
                                 domains: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$21,
+                                    [nix.POS]: pos$21,
                                     type: nix.thunk(() => nix.app(listOf, str)),
                                     description: "Email domains",
                                   })))),
@@ -285,76 +285,76 @@ export default nix.lambda((args) => (() => {
                         description: "Allow users to connect to multiple JMAP servers.",
                       })))),
                     jmapServerAutoPickByDomain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         type: bool,
                         default: false,
                         description: "When users type their email, automatically select the matching server from `settings.jmapServers`.",
                       })))),
                     allowCustomJmapEndpoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         type: bool,
                         default: false,
                         description: "Allow users to specify a custom JMAP server URL on the login form.\nWhen enabled, a \"JMAP Server\" field appears on the login page.\nUsers can connect to any JMAP-compatible server.\n",
                       })))),
                     stalwartFeaturesEnabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         type: bool,
                         default: true,
                         description: "Enable Stalwart-specific features (password change, sieve filters, etc.).\nSet to `false` to disable if using a non-Stalwart JMAP server.\n",
                       })))),
                     oauth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$39,
+                        [nix.POS]: pos$39,
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$38,
+                            [nix.POS]: pos$38,
                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                             options: nix.thunk(() => ({
-                              __proto__: pos$37,
+                              [nix.POS]: pos$37,
                               enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$28,
+                                  [nix.POS]: pos$28,
                                   type: bool,
                                   default: false,
                                   description: "Set to `true` to use OAuth instead of basic JMAP authentication.",
                                 })))),
                               only: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$29,
+                                  [nix.POS]: pos$29,
                                   type: bool,
                                   default: false,
                                   description: "Set to `true` to only allow OAuth login (hides username/password form).",
                                 })))),
                               clientId: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$30,
+                                  [nix.POS]: pos$30,
                                   type: str,
                                   description: "OAuth client ID registered with your identity provider.",
                                 })))),
                               clientSecretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$31,
+                                  [nix.POS]: pos$31,
                                   type: nix.thunk(() => nix.app(nullOr, str)),
                                   description: "Path to a file containing the OAuth client secret (server-side only, never exposed to the browser).",
                                 })))),
                               issuerUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$32,
+                                  [nix.POS]: pos$32,
                                   type: str,
                                   description: "OpenID Connect issuer URL for discovery.",
                                 })))),
                               authorizeUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$33,
+                                  [nix.POS]: pos$33,
                                   type: nix.thunk(() => nix.app(nullOr, str)),
                                   description: "Overrides only the user-facing authorize endpoint (e.g. a per-brand login\nhost). Discovery, token exchange and refresh keep using `settings.oauth.issuerUrl`.\nLeave unset to use the authorization_endpoint from discovery.\n",
                                 })))),
                               scopes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$34,
+                                  [nix.POS]: pos$34,
                                   type: str,
                                   default: "openid email profile",
                                   description: "OpenID Connect scopes.",
                                 })))),
                               extraScopes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$35,
+                                  [nix.POS]: pos$35,
                                   type: str,
                                   default: "",
                                   description: "Additional OpenID Connect scopes (urn:ietf:params:oauth:...).",
                                 })))),
                               allowPrivateEndpoints: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                  __proto__: pos$36,
+                                  [nix.POS]: pos$36,
                                   type: bool,
                                   default: false,
                                   description: "Allow OAuth discovery to resolve to private (RFC-1918 / loopback) addresses.\nOff by default as an SSRF guard. Enable for split-DNS deployments where the\nOAuth issuer's public hostname resolves to an internal IP from this server.\n",
@@ -366,44 +366,44 @@ export default nix.lambda((args) => (() => {
                         description: "OAuth / OpenID Connect. Options are prefixed with `oauth` and the `oauth` submodule is flattened, so `oauth.clientId` turns to `oauthClientId`.",
                       })))),
                     autoSsoEnabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$40,
+                        [nix.POS]: pos$40,
                         type: bool,
                         default: false,
                         description: "Automatically redirect to SSO provider on load.",
                       })))),
                     sessionSecretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         type: nix.thunk(() => nix.app(nullOr, str)),
                         description: "Path to a file containing the secret key for encrypting \"Remember me\" sessions and settings sync data.\nRequired for both \"Remember me\" and settings sync features.\nGenerate with: openssl rand -base64 32\n",
                       })))),
                     settingsSyncEnabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$42,
+                        [nix.POS]: pos$42,
                         type: bool,
                         default: false,
                         description: "Enable server-side settings persistence (requires `settings.sessionSecretFile`).\nWhen enabled, user settings are encrypted and stored on the server,\nallowing them to sync across browsers and devices.\n",
                       })))),
                     stalwartAdminAccess: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$43,
+                        [nix.POS]: pos$43,
                         type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["auto", "password", "off"]))),
                         default: "auto",
                         description: "What a Stalwart admin account grants in the Bulwark admin dashboard.\n\nauto     - Stalwart admins see the admin shield and are signed into /admin without the Bulwark admin password.\npassword - Stalwart admins see the shield, but must enter the Bulwark admin password.\noff      - Stalwart admin status is ignored: no shield, and /admin is reachable only via /admin/login with the admin password.\n",
                       })))),
                     logFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["text", "json"]))),
                         default: "text",
                         description: "Log format: `text` (colored, human-readable) or `json` (structured, for log aggregation)",
                       })))),
                     logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["error", "warn", "info", "debug"]))),
                         default: "info",
                         description: "Log level: `error`, `warn`, `info`, or `debug`",
                       })))),
                     branding: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             freeformType: nix.thunk(() => nix.sel(format, "type")),
                             options: brandingModule,
                           })))),
@@ -411,9 +411,9 @@ export default nix.lambda((args) => (() => {
                         description: "Branding configuration. Check [the example env configuration](https://github.com/bulwarkmail/webmail/blob/1.8.1/.env.example#L191), keys are written in camel case.",
                       })))),
                     domainBranding: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                              __proto__: pos$48,
+                              [nix.POS]: pos$48,
                               freeformType: nix.thunk(() => nix.sel(format, "type")),
                               options: brandingModule,
                             })))))),
@@ -421,7 +421,7 @@ export default nix.lambda((args) => (() => {
                         description: "When you serve the webmail on multiple hostnames, each hostname can override\na subset of branding fields. Unset fields fall back to the global values.\nMatch is on the request's Host (or X-Forwarded-Host) header.\n\nUse \"*.\" to match any subdomain (e.g. \"*.example.com\"\nmatches mail.example.com and any deeper subdomain, but NOT example.com).\nExact matches always win over wildcards; the longest wildcard suffix wins\namong multiple wildcard matches.\n",
                       })))),
                     extensionDirectoryUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         type: str,
                         default: "https://extensions.bulwarkmail.org",
                         description: "URL of the BulwarkMail extension directory for the admin marketplace.",
@@ -432,25 +432,25 @@ export default nix.lambda((args) => (() => {
               description: "Bulwark configuration. Check [the example env configuration](https://github.com/bulwarkmail/webmail/blob/1.8.1/.env.example) for more configuration options, keys are written in camel case. ",
             })))),
           admin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       passwordHashFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$54,
+                          [nix.POS]: pos$54,
                           type: str,
                           description: "File containing the admin password hash\n\nGenerate with\n```\nSALT=$(openssl rand -hex 32)\nHASH64=$(openssl kdf \\\n  -kdfopt pass:\"YOUR-PASSWORD\" \\\n  -kdfopt hexsalt:$SALT \\\n  -keylen 64 -kdfopt n:16384 -kdfopt r:8 -kdfopt p:1 \\\n  -binary SCRYPT | base64)\nSALT64=$(echo $SALT | xxd -r -p | base64)\n\necho \"\\$scrypt\\$N=16384,r=8,p=1\\$$SALT64\\$$HASH64\"\n```\n",
                         })))),
                       sessionTTL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$55,
+                          [nix.POS]: pos$55,
                           type: int,
                           default: 3600n,
                           description: "Admin session lifetime in seconds",
                         })))),
                       trustedProxyDepth: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$56,
+                          [nix.POS]: pos$56,
                           type: int,
                           default: 1n,
                           description: "Number of `X-Forwarded-For` hops to trust when resolving the client IP for admin sessions and audit logs.",
@@ -461,16 +461,16 @@ export default nix.lambda((args) => (() => {
               description: "Bulwark Admin configuration",
             })))),
           policies: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$77,
+                    [nix.POS]: pos$77,
                     features: nix.thunk(() => (() => {
-                      const feature = (description) => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$60, type: bool, default: true, description: description })));
+                      const feature = (description) => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$60, type: bool, default: true, description: description })));
                       return {
-                        __proto__: pos$61,
+                        [nix.POS]: pos$61,
                         pluginsEnabled: nix.thunk(() => nix.app(feature, "Allow the plugin system to load and run plugins for users.")),
                         requirePluginApproval: nix.thunk(() => nix.app(feature, "User-uploaded plugins must be approved by an admin before they can be enabled.")),
                         themesEnabled: nix.thunk(() => nix.app(feature, "Allow users to select and apply themes.")),
@@ -494,19 +494,19 @@ export default nix.lambda((args) => (() => {
                     })()),
                     restrictions: nix.thunk(() => (() => {
                       const restricted = (description) => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$66,
+                          [nix.POS]: pos$66,
                           type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                              __proto__: pos$65,
+                              [nix.POS]: pos$65,
                               options: nix.thunk(() => ({
-                                __proto__: pos$64,
+                                [nix.POS]: pos$64,
                                 locked: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$62,
+                                    [nix.POS]: pos$62,
                                     type: bool,
                                     default: false,
                                     description: "Whether this option is locked.",
                                   })))),
                                 hidden: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                    __proto__: pos$63,
+                                    [nix.POS]: pos$63,
                                     type: bool,
                                     default: false,
                                     description: "Whether this option is hidden.",
@@ -517,7 +517,7 @@ export default nix.lambda((args) => (() => {
                           description: description,
                         })));
                       return {
-                        __proto__: pos$67,
+                        [nix.POS]: pos$67,
                         fontSize: nix.thunk(() => nix.app(restricted, "Appearance: Font Size")),
                         density: nix.thunk(() => nix.app(restricted, "Appearance: Density")),
                         animationsEnabled: nix.thunk(() => nix.app(restricted, "Appearance: Animations")),
@@ -538,13 +538,13 @@ export default nix.lambda((args) => (() => {
                       };
                     })()),
                     pushRelayUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         type: str,
                         default: "",
                         description: "Override the Web Push relay URL shown in user notification settings.",
                       })))),
                     pushRelayUrlLocked: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         type: bool,
                         default: false,
                         description: "Whether the Web Push relay URL is locked.",
@@ -560,41 +560,41 @@ export default nix.lambda((args) => (() => {
                         "builtin-aurora-glass",
                       ]);
                       return {
-                        __proto__: pos$73,
+                        [nix.POS]: pos$73,
                         disabledBuiltinThemes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$70,
+                            [nix.POS]: pos$70,
                             type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(enum$, builtinThemes)))),
                             default: [],
                             description: "Disabled builtin Themes",
                           })))),
                         disabledThemes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$71,
+                            [nix.POS]: pos$71,
                             type: nix.thunk(() => nix.app(listOf, str)),
                             default: [],
                             description: "Disabled Themes",
                           })))),
                         defaultThemeId: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$72,
+                            [nix.POS]: pos$72,
                             type: nix.thunk(() => nix.app(nullOr, nix.thunk(() => nix.app(enum$, builtinThemes)))),
                             description: "Theme applied when users have not chosen one.",
                           })))),
                       };
                     })()),
                     forceEnabledPlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$74,
+                        [nix.POS]: pos$74,
                         type: nix.thunk(() => nix.app(listOf, str)),
                         default: nix.thunk(() => nix.builtins.map((plugin) => nix.sel(plugin, "package", "pluginName"), nix.thunk(() => nix.app(filter, (plugin) => nix.sel(plugin, "forceEnabled"), nix.thunk(() => nix.sel(cfg, "plugins")))))),
                         defaultText: nix.thunk(() => nix.app(literalExpression, "map (plugin: plugin.package.pluginName) (\n  filter (plugin: plugin.forceEnabled) config.services.bulwark.plugins\n);\n")),
                         description: "Force-enabled Plugins",
                       })))),
                     approvedPlugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$75,
+                        [nix.POS]: pos$75,
                         type: nix.thunk(() => nix.app(listOf, str)),
                         default: [],
                         description: "Approved Plugins",
                       })))),
                     forceEnabledThemes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$76,
+                        [nix.POS]: pos$76,
                         type: nix.thunk(() => nix.app(listOf, str)),
                         default: [],
                         description: "Force-enabled Themes",
@@ -605,21 +605,21 @@ export default nix.lambda((args) => (() => {
               description: "Bulwark Policy configuration",
             })))),
           plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$86,
+              [nix.POS]: pos$86,
               type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                    __proto__: pos$85,
+                    [nix.POS]: pos$85,
                     options: nix.thunk(() => ({
-                      __proto__: pos$84,
-                      package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ __proto__: pos$80, type: package$, description: "Plugin package" })))),
+                      [nix.POS]: pos$84,
+                      package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$80, type: package$, description: "Plugin package" })))),
                       forceEnabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$81,
+                          [nix.POS]: pos$81,
                           type: bool,
                           default: false,
                           description: "Whether this plugin is force-enabled (users cannot disable).",
                         })))),
                       config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$83,
-                          type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({ __proto__: pos$82, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+                          [nix.POS]: pos$83,
+                          type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({ [nix.POS]: pos$82, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
                           default: nix.thunk(() => ({})),
                           description: "Plugin configuration",
                         })))),
@@ -633,49 +633,49 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$90,
+            [nix.POS]: pos$90,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "settings", "jmapServerUrl"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "settings", "allowCustomJmapEndpoint"), true)))),
             message: "<option>services.bulwark.settings.jmapServerUrl</option> needs to be set when <option>services.bulwark.settings.allowCustomJmapEndpoint</option> is `false`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "settingsSyncEnabled"), false)) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "sessionSecretFile"), null)))),
             message: "<option>services.bulwark.settings.sessionSecretFile</option> needs to be set when <option>services.bulwark.settingsSyncEnabled</option> is `true`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$92,
+            [nix.POS]: pos$92,
             assertion: nix.thunk(() => !nix.asBool(nix.app(elem, nix.thunk(() => nix.sel(cfg, "policies", "themePolicy", "defaultThemeId")), nix.thunk(() => nix.sel(cfg, "policies", "themePolicy", "disabledBuiltinThemes"))))),
             message: "The default theme specified in <option>services.bulwark.policies.themePolicy.defaultThemeId</option> cannot be disabled via <option>services.bulwark.policies.themePolicy.disabledBuiltinThemes</option>.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$93,
+            [nix.POS]: pos$93,
             assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "lists", "intersectLists"), nix.thunk(() => nix.sel(cfg, "policies", "themePolicy", "disabledThemes")), nix.thunk(() => nix.sel(cfg, "policies", "forceEnabledThemes"))), [])),
             message: "The themes disabled via <option>services.bulwark.policies.themePolicy.disabledThemes</option> cannot be enabled at the same time through <option>services.bulwark.policies.forceEnabledThemes</option>.\n",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$97,
+          [nix.POS]: pos$97,
           users: nix.thunk(() => ({
-            __proto__: pos$95,
-            bulwark: nix.thunk(() => ({ __proto__: pos$94, isSystemUser: true, group: "bulwark" })),
+            [nix.POS]: pos$95,
+            bulwark: nix.thunk(() => ({ [nix.POS]: pos$94, isSystemUser: true, group: "bulwark" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$96, bulwark: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$96, bulwark: nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$118,
+          [nix.POS]: pos$118,
           services: nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             bulwark: nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               description: "bulwark service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$98,
+                [nix.POS]: pos$98,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                 User: "bulwark",
                 Group: "bulwark",
@@ -710,55 +710,55 @@ export default nix.lambda((args) => (() => {
                 SystemCallFilter: nix.thunk(() => ["@system-service"]),
               })),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 ADMIN_CONFIG_DIR: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "bulwark-admin-config-dir", nix.thunk(() => nix.concat([
                       nix.thunk(() => ({
-                        __proto__: pos$100,
+                        [nix.POS]: pos$100,
                         name: "config.json",
-                        path: nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.json", nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => (nix.asBool(nix.eq(name, "jmapServers")) ? nix.app(flattenAttrSet, name, "id", value) : (nix.asBool(nix.eq(name, "domainBranding")) ? nix.app(flattenAttrSet, name, "host", value) : nix.app(nameValuePair, name, value))), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.update(nix.sel(cfg, "settings", "branding"), nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "settings", "oauth", "enabled")), nix.thunk(() => nix.app(renameOptions, "oauth")))))), nix.thunk(() => ["branding", "oauth"])))), { __proto__: pos$99, setupComplete: true })))),
+                        path: nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.json", nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs'"), (name) => (value) => (nix.asBool(nix.eq(name, "jmapServers")) ? nix.app(flattenAttrSet, name, "id", value) : (nix.asBool(nix.eq(name, "domainBranding")) ? nix.app(flattenAttrSet, name, "host", value) : nix.app(nameValuePair, name, value))), nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.update(nix.sel(cfg, "settings"), nix.update(nix.sel(cfg, "settings", "branding"), nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "settings", "oauth", "enabled")), nix.thunk(() => nix.app(renameOptions, "oauth")))))), nix.thunk(() => ["branding", "oauth"])))), { [nix.POS]: pos$99, setupComplete: true })))),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$103,
+                        [nix.POS]: pos$103,
                         name: "policy.json",
                         path: nix.thunk(() => nix.app(nix.sel(format, "generate"), "policy.json", nix.thunk(() => nix.app(recursiveUpdate, nix.thunk(() => nix.sel(cfg, "policies")), nix.thunk(() => ({
-                              __proto__: pos$102,
-                              features: nix.thunk(() => ({ __proto__: pos$101, pluginsUploadEnabled: false, userThemesEnabled: false })),
+                              [nix.POS]: pos$102,
+                              features: nix.thunk(() => ({ [nix.POS]: pos$101, pluginsUploadEnabled: false, userThemesEnabled: false })),
                             })))))),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$108,
+                        [nix.POS]: pos$108,
                         name: "plugins",
                         path: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "bulwark-plugins", nix.thunk(() => nix.concat([
                               nix.thunk(() => ({
-                                __proto__: pos$106,
+                                [nix.POS]: pos$106,
                                 name: "registry.json",
                                 path: nix.thunk(() => nix.app(nix.sel(format, "generate"), "registry.json", nix.thunk(() => ({
-                                    __proto__: pos$105,
+                                    [nix.POS]: pos$105,
                                     plugins: nix.thunk(() => nix.builtins.map((plugin) => nix.update(nix.app(nix.sel(trivial, "importJSON"), nix.thunk(() => nix.str`${nix.sel(plugin, "package", "outPath")}/manifest.json`)), {
-                                        __proto__: pos$104,
+                                        [nix.POS]: pos$104,
                                         enabled: true,
                                         forceEnabled: nix.thunk(() => nix.sel(plugin, "forceEnabled")),
                                       }), nix.thunk(() => nix.sel(cfg, "plugins")))),
                                   })))),
                               })),
                             ], nix.builtins.map((plugin) => ({
-                                __proto__: pos$107,
+                                [nix.POS]: pos$107,
                                 name: nix.thunk(() => nix.str`${nix.sel(plugin, "package", "pluginName")}.js`),
                                 path: nix.thunk(() => nix.str`${nix.sel(plugin, "package", "outPath")}/index.js`),
                               }), nix.thunk(() => nix.sel(cfg, "plugins"))))))))),
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$110,
+                        [nix.POS]: pos$110,
                         name: "plugin-config",
                         path: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "bulwark-plugin-config", nix.thunk(() => nix.builtins.map((plugin) => ({
-                                __proto__: pos$109,
+                                [nix.POS]: pos$109,
                                 name: nix.thunk(() => nix.str`${nix.sel(plugin, "package", "pluginName")}.json`),
                                 path: nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`${nix.sel(plugin, "package", "pluginName")}.json`), nix.thunk(() => nix.sel(plugin, "config")))),
                               }), nix.thunk(() => nix.app(filter, (plugin) => !nix.eq(nix.sel(plugin, "config"), {}), nix.thunk(() => nix.sel(cfg, "plugins")))))))))),
                       })),
                     ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "admin"), null)), nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$111,
+                          [nix.POS]: pos$111,
                           name: "admin.json",
                           path: nix.thunk(() => nix.app(nix.sel(format, "generate"), "admin.json", nix.thunk(() => nix.sel(cfg, "admin")))),
                         })),
@@ -772,14 +772,14 @@ export default nix.lambda((args) => (() => {
                 BULWARK_UPDATE_CHECK: nix.thunk(() => (nix.asBool(nix.sel(cfg, "updateCheck", "enabled")) ? "on" : "off")),
                 BULWARK_TELEMETRY: nix.thunk(() => (nix.asBool(nix.sel(cfg, "telemetry", "enabled")) ? "on" : "off")),
               }, nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "settings", "settingsSyncEnabled")), nix.thunk(() => ({
-                  __proto__: pos$113,
+                  [nix.POS]: pos$113,
                   SETTINGS_DATA_DIR: nix.thunk(() => nix.sel(cfg, "settings_data_dir")),
                 }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(cfg, "admin"), null)), nix.thunk(() => ({
-                  __proto__: pos$114,
+                  [nix.POS]: pos$114,
                   ADMIN_SESSION_TTL: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "admin", "sessionTTL")))),
                   TRUSTED_PROXY_DEPTH: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "admin", "trustedProxyDepth")))),
                 }))), nix.app(optionalAttrs, nix.thunk(() => nix.sel(cfg, "updateCheck", "enabled")), nix.thunk(() => ({
-                  __proto__: pos$115,
+                  [nix.POS]: pos$115,
                   BULWARK_UPDATE_CHECK_URL: nix.thunk(() => nix.sel(cfg, "updateCheck", "url")),
                 }))))))),
             })),
@@ -787,7 +787,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$120,
+      [nix.POS]: pos$120,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Cameo007"))];

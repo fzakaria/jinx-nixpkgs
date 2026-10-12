@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const makeGaugePlugin = nix.arg($, "makeGaugePlugin");
   return nix.app(makeGaugePlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "screenshot",
       data: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json"))),
       repo: "getgauge/gauge_screenshot",
       releasePrefix: "screenshot-",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Gauge plugin to take screenshots",
         homepage: "https://github.com/getgauge/gauge_screenshot/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

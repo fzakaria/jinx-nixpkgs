@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "powerlevel9k",
       version: "2017-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Powerlevel9k",
           repo: "powerlevel9k",
           rev: "87acc51acab3ed4fd33cda2386abed6f98c80720",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "install -D powerlevel9k.zsh-theme --target-directory=$out/share/zsh/themes/powerlevel9k\ninstall -D functions/* --target-directory=$out/share/zsh/themes/powerlevel9k/functions\nln -s $out/share/zsh/themes/powerlevel9k $out/share/zsh-powerlevel9k\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Beautiful theme for zsh",
         longDescription: "To make use of this derivation, use\n`programs.zsh.promptInit = \"source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme\";`\n",
         homepage: "https://github.com/Powerlevel9k/powerlevel9k",

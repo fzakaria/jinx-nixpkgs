@@ -24,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "create_ap"));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create_ap.conf", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         create_ap: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "setting up wifi hotspots using create_ap")),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
               description: "Configuration for `create_ap`.\nSee [upstream example configuration](https://raw.githubusercontent.com/lakinduakash/linux-wifi-hotspot/master/src/scripts/create_ap.conf)\nfor supported values.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 INTERNET_IFACE: "eth0",
                 WIFI_IFACE: "wlan0",
                 SSID: "My Wifi Hotspot",
@@ -56,19 +56,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             create_ap: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               description: "Create AP Service",
               after: nix.thunk(() => ["network.target"]),
               restartTriggers: nix.thunk(() => [configFile]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "linux-wifi-hotspot")}/bin/create_ap --config ${configFile}`),
                 KillSignal: "SIGINT",
                 Restart: "on-failure",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];

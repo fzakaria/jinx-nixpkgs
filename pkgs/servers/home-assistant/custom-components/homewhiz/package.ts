@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const bidict = nix.arg($, "bidict");
   const dacite = nix.arg($, "dacite");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "home-assistant-HomeWhiz",
       domain: "homewhiz",
       version: "0.5.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-HomeWhiz",
           repo: "home-assistant-HomeWhiz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dependencies: nix.thunk(() => [aiohttp, awsiotsdk, bidict, bleak, bleak_retry_connector, dacite]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-HomeWhiz/home-assistant-HomeWhiz/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Home Assistant custom component for devices that can connect to HomeWhiz mobile app (Beko, Grundig, Arcelik)",
         homepage: "https://github.com/home-assistant-HomeWhiz/home-assistant-HomeWhiz",

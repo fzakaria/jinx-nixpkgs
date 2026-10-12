@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mate-settings-daemon",
       version: "1.28.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-settings-daemon-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "TtfNraqkyZ7//AKCuEEXA7t24HLEHEtXmJ+MW0BhGjo=",
         })))),
@@ -58,22 +58,22 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), pulseaudioSupport, libpulseaudio))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), pulseaudioSupport, "--enable-pulse")),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       enableParallelBuilding: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.mate-desktop.org/mate-settings-daemon",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "MATE settings daemon",
         homepage: "https://github.com/mate-desktop/mate-settings-daemon",
         license: nix.thunk(() => (() => {

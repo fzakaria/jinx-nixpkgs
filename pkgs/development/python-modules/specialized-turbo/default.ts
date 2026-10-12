@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "specialized-turbo",
       version: "0.8.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JamieMagee",
           repo: "specialized-turbo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [bleak, cryptography]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cloud: nix.thunk(() => [httpx]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cloud: nix.thunk(() => [httpx]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "cloud"))),
       pythonImportsCheck: nix.thunk(() => ["specialized_turbo"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for communicating with Specialized Turbo e-bikes over Bluetooth Low Energy",
         homepage: "https://github.com/JamieMagee/specialized-turbo",
         changelog: nix.thunk(() => nix.str`https://github.com/JamieMagee/specialized-turbo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

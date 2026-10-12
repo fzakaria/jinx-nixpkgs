@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "giara",
       version: "1.1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "giara",
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "substituteInPlace meson_post_install.py \\\n  --replace \"gtk-update-icon-cache\" \"gtk4-update-icon-cache\"\n# blueprint-compiler expects \"profile\" to be a string.\nsubstituteInPlace data/ui/headerbar.blp \\\n  --replace \"item { custom: profile; }\" 'item { custom: \"profile\"; }'\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reddit app, built with Python, GTK and Handy; Created with mobile Linux in mind",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

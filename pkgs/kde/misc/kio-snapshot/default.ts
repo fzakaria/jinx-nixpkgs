@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
       const pname = "kio-snapshot";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/kio-snapshot/kio-snapshot-${version}.tar.xz`),
           hash: "sha256-RxPQxgsYa+8LwPmSCTyLriRz03gIro1zF5qyVxzop9I=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [pkg_config]);
       const extraBuildInputs = nix.thunk(() => [btrfs_progs]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "i-love-lean"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

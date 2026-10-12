@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const systemdLibs = nix.arg($, "systemdLibs");
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ __proto__: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "node-problem-detector",
       version: "1.36.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "kubernetes",
           repo: "node-problem-detector",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X k8s.io/node-problem-detector/pkg/version.version=v${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Various problem detectors running on the Kubernetes nodes",
         homepage: "https://github.com/kubernetes/node-problem-detector",
         changelog: nix.thunk(() => nix.str`https://github.com/kubernetes/node-problem-detector/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const repo = "datadog-agent";
   const goPackagePath = nix.thunk(() => nix.str`github.com/${owner}/${repo}`);
   const version = "7.75.0";
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ __proto__: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: owner,
       repo: repo,
       tag: version,
       hash: "sha256-oj4LFQiaEeSHcSx0Bar4vU7w/8gi0fgBGSAUjaD4SFc=",
     }))));
   const rtloader = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "datadog-agent-rtloader",
       src: nix.thunk(() => nix.str`${src}/rtloader`),
       version: version,
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([rtloader], nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => [systemdLibs$]))));
       const proxyVendor = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${python}/lib/pkgconfig`),
       }));
       const tags = nix.thunk(() => nix.concat(["ec2", "kubelet", "python", "process", "log", "secrets", "zlib"], nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["systemd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withDocker, nix.thunk(() => ["docker"])), extraTags))));
@@ -90,14 +90,14 @@ cp -R $src/cmd/agent/dist/{checks,utils,config.py} $out/${nix.sel(python, "siteP
 wrapProgram "$out/bin/agent" \\
   --set PYTHONPATH "$out/${nix.sel(python, "sitePackages")}"`, nix.app(nix.sel(lib, "optionalString"), withSystemd, nix.thunk(() => nix.str` --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), systemdLibs$)), rtloader]))}`))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$5, package: datadog_agent, command: "agent version" })))),
+          [nix.POS]: pos$6,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: datadog_agent, command: "agent version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Event collector for the DataDog analysis service\n-- v6 new golang implementation.\n",
         homepage: "https://www.datadoghq.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -107,7 +107,7 @@ wrapProgram "$out/bin/agent" \\
         })()),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         src: src_1,
         version: version_1,

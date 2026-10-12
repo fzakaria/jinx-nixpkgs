@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "markdownlint-cli2",
       version: "0.23.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DavidAnson",
           repo: "markdownlint-cli2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,19 +35,19 @@ ln -s ${nix.path(here, "./package-lock.json")} package-lock.json
 `),
       dontNpmBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           smoke: nix.thunk(() => nix.app(runCommand, "markdownlint-cli2-test", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`markdownlint-cli2 ${nix.sel(finalAttrs, "finalPackage")}/lib/node_modules/markdownlint-cli2/CHANGELOG.md > $out
 `))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/DavidAnson/markdownlint-cli2/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Fast, flexible, configuration-based command-line interface for linting Markdown/CommonMark files with the markdownlint library",
         homepage: "https://github.com/DavidAnson/markdownlint-cli2",

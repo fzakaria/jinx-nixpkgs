@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tocpdf",
       version: "0.3.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kszenes",
           repo: "tocPDF",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_read_toc"]),
       pythonImportsCheck: nix.thunk(() => ["tocPDF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatic CLI tool for generating outline of PDFs based on the table of contents",
         homepage: "https://github.com/kszenes/tocPDF",
         changelog: nix.thunk(() => nix.str`https://github.com/kszenes/tocPDF/releases/tag/v${nix.sel(finalAttrs, "version")}`),

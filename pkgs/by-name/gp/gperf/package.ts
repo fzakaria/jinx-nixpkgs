@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gperf",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/gperf/gperf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-/Yfgq6fkOuBUg3r9bNTbA6PyaT3rNhkIXm7Z2NlgStg=",
         })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Perfect hash function generator",
         longDescription: "GNU gperf is a perfect hash function generator.  For a given\nlist of strings, it produces a hash function and hash table, in\nform of C or C++ code, for looking up a value depending on the\ninput string.  The hash function is perfect, which means that\nthe hash table has no collisions, and the hash table lookup\nneeds a single string comparison only.\n\nGNU gperf is highly customizable.  There are options for\ngenerating C or C++ code, for emitting switch statements or\nnested ifs instead of a hash table, and for tuning the algorithm\nemployed by gperf.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xclip = nix.arg($, "xclip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gitui",
       version: "0.28.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitui-org",
           repo: "gitui",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), xclip), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))))),
       postPatch: "# The cargo config overrides linkers for some targets, breaking the build\n# on e.g. `aarch64-linux`. These overrides are not required in the Nix\n# environment: delete them.\nrm .cargo/config.toml\n\n# build script tries to get version information from git\nrm build.rs\nsubstituteInPlace Cargo.toml --replace-fail 'build = \"build.rs\"' \"\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         GITUI_BUILD_NAME: nix.thunk(() => nix.sel(finalAttrs, "version")),
         OPENSSL_NO_VENDOR: 1n,
       })),
       checkFlags: nix.thunk(() => ["--skip=keys::key_config::tests::test_symbolic_links"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/gitui-org/gitui/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Blazing fast terminal-ui for Git written in Rust",
         homepage: "https://github.com/gitui-org/gitui",

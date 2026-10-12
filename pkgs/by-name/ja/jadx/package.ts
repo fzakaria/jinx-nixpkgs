@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jadx",
       version: "1.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skylot",
           repo: "jadx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./nix-build.patch")]),
       nativeBuildInputs: nix.thunk(() => nix.concat([gradle, jdk, librsvg, makeBinaryWrapper, copyDesktopItems], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [desktopToDarwinBundle])))),
       __darwinAllowLocalNetworking: true,
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ __proto__: pos$2, pname: "jadx", data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "jadx", data: nix.path(here, "./deps.json") })))),
       preBuild: nix.thunk(() => nix.str`export JADX_VERSION=${nix.sel(finalAttrs, "version")}`),
       gradleBuildTask: "pack",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -66,7 +66,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "jadx",
             desktopName: "JADX",
             exec: "jadx-gui",
@@ -76,7 +76,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/skylot/jadx/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Dex to Java decompiler",
         homepage: "https://github.com/skylot/jadx",

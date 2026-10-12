@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const fetchzip = nix.arg($, "fetchzip");
   const useFetchGitArgsDefault = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     deepClone: false,
     fetchSubmodules: false,
     fetchLFS: false,
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
     rootDir: "",
     sparseCheckout: null,
   }));
-  const useFetchGitArgsDefaultNullable = nix.thunk(() => ({ __proto__: pos$2, leaveDotGit: false, sparseCheckout: [] }));
+  const useFetchGitArgsDefaultNullable = nix.thunk(() => ({ [nix.POS]: pos$2, leaveDotGit: false, sparseCheckout: [] }));
   const useFetchGitargsDefaultNonNull = nix.thunk(() => nix.update(useFetchGitArgsDefault, useFetchGitArgsDefaultNullable));
   const excludeUseFetchGitArgNames = nix.thunk(() => ["forceFetchGit"]);
   const faUseFetchGit = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (__1) => true, useFetchGitArgsDefault));
   const adjustFunctionArgs = (f) => nix.app(nix.sel(lib, "setFunctionArgs"), f, nix.thunk(() => nix.update(faUseFetchGit, nix.app(nix.sel(lib, "functionArgs"), f))));
   const decorate = (f) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(adjustFunctionArgs, f)));
-  const fetchzip_1 = nix.thunk(() => (nix.asBool(nix.has(nix.sel(args_1, "fetchzip"), "override")) ? nix.app(nix.sel(args_1, "fetchzip", "override"), nix.thunk(() => ({ __proto__: pos$3, withUnzip: false }))) : nix.sel(args_1, "fetchzip")));
+  const fetchzip_1 = nix.thunk(() => (nix.asBool(nix.has(nix.sel(args_1, "fetchzip"), "override")) ? nix.app(nix.sel(args_1, "fetchzip", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withUnzip: false }))) : nix.sel(args_1, "fetchzip")));
   return nix.app(decorate, nix.lambda((args_2) => (() => {
       const $_1 = nix.formals(args_2, formals$2);
       const args_3 = args_2;
@@ -58,43 +58,43 @@ export default nix.lambda((args) => (() => {
       const position = nix.thunk(() => (nix.asBool(!nix.eq(nix.selOr(args_3, () => null, "meta", "description"), null)) ? nix.builtins.unsafeGetAttrPos("description", nix.thunk(() => nix.sel(args_3, "meta"))) : (nix.asBool(!nix.eq(tag, null)) ? nix.builtins.unsafeGetAttrPos("tag", args_3) : nix.builtins.unsafeGetAttrPos("rev", args_3))));
       const baseUrl = nix.thunk(() => nix.str`https://${domain}/${did}`);
       const newMeta = nix.thunk(() => nix.update(meta, nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.selOr(meta, () => nix.force(baseUrl), "homepage")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(position, null)), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           position: nix.thunk(() => nix.str`${nix.sel(position, "file")}:${nix.builtins.toString(nix.thunk(() => nix.sel(position, "line")))}`),
         }))))));
       const passthruAttrs = nix.thunk(() => nix.builtins.removeAttrs(args_3, nix.thunk(() => nix.concat(["domain", "did", "tag", "rev", "fetchSubmodules", "forceFetchGit"], (nix.asBool(useFetchGit) ? nix.force(excludeUseFetchGitArgNames) : nix.app(nix.sel(lib, "attrNames"), faUseFetchGit))))));
       const fetcher = nix.thunk(() => (nix.asBool(useFetchGit) ? nix.force(fetchgit) : nix.force(fetchzip_1)));
       const fetcherArgs = (finalAttrs) => nix.update(passthruAttrs, nix.update((nix.asBool(useFetchGit) ? nix.update(useFetchGitArgsWDPassing, {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tag: tag,
         rev: rev,
         url: baseUrl,
         passthru: passthru,
-        derivationArgs: nix.thunk(() => ({ __proto__: pos$6, domain: domain, did: did })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$6, domain: domain, did: did })),
       }) : (() => {
         const revWithTag = nix.thunk(() => nix.sel(finalAttrs, "rev"));
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           url: nix.thunk(() => nix.str`${baseUrl}/archive/${revWithTag}`),
           extension: "tar.gz",
           derivationArgs: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             domain: domain,
             did: did,
             tag: tag,
             rev: nix.thunk(() => nix.app(nix.sel(fetchgit, "getRevWithTag"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 tag: nix.thunk(() => nix.attr(finalAttrs, "tag")),
                 rev: nix.thunk(() => nix.sel(finalAttrs, "revCustom")),
               })))),
             revCustom: rev,
           })),
-          passthru: nix.thunk(() => nix.update({ __proto__: pos$10, gitRepoUrl: baseUrl }, passthru)),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$10, gitRepoUrl: baseUrl }, passthru)),
         };
       })()), {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: nix.thunk(() => nix.selOr(args_3, () => nix.app(repoRevToNameMaybe, nix.thunk(() => nix.sel(finalAttrs, "did")), nix.thunk(() => nix.app(nix.sel(lib, "revOrTag"), nix.thunk(() => nix.sel(finalAttrs, "revCustom")), nix.thunk(() => nix.sel(finalAttrs, "tag")))), "tangled"), "name")),
         meta: newMeta,
       }));

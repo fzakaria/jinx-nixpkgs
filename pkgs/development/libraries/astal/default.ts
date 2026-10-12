@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const wireplumber = nix.arg($, "wireplumber");
   return (self) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     source: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./source.nix"), nix.thunk(() => ({})))),
     buildAstalModule: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./buildAstalModule.nix"), nix.thunk(() => ({})))),
     apps: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/apps.nix"), nix.thunk(() => ({})))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     quarrel: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/quarrel.nix"), nix.thunk(() => ({})))),
     river: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/river.nix"), nix.thunk(() => ({})))),
     tray: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/tray.nix"), nix.thunk(() => ({})))),
-    wireplumber: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/wireplumber.nix"), nix.thunk(() => ({ __proto__: pos$1, wireplumber: wireplumber })))),
+    wireplumber: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/wireplumber.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, wireplumber: wireplumber })))),
     wl: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/wl.nix"), nix.thunk(() => ({})))),
   });
 })(), formals$1);

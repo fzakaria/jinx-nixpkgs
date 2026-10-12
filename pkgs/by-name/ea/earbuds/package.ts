@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "earbuds",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JojiiOfficial",
           repo: "LiveBudsCli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd earbuds \\\n  --bash <($out/bin/earbuds --generate bash) \\\n  --fish <($out/bin/earbuds --generate fish) \\\n  --zsh <($out/bin/earbuds --generate zsh)\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Free CLI tool to control your Galaxy Buds",
         homepage: "https://github.com/JojiiOfficial/LiveBudsCli",
         changelog: "https://github.com/JojiiOfficial/LiveBudsCli/releases",

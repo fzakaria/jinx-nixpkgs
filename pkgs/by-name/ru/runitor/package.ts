@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "runitor",
       version: "1.4.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bdd",
           repo: "runitor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://bdd.fi/x/runitor",
         description: "Command runner with healthchecks.io integration",
         longDescription: "Runitor runs the supplied command, captures its output, and based on its exit\ncode reports successful or failed execution to https://healthchecks.io or your\nprivate instance.\n\nHealthchecks.io is a web service for monitoring periodic tasks. It's like a\ndead man's switch for your cron jobs. You get alerted if they don't run on time\nor terminate with a failure.\n",

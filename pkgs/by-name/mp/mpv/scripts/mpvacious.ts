@@ -22,15 +22,15 @@ export default nix.lambda((args) => (() => {
       const pname = "mpvacious";
       const version = "26.1.26.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Ajatt-Tools",
           repo: "mpvacious",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-I0h9tf1pwCkWPn/6t2mxhe4MPx6GsPR+F5F29NAgdXI=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         scriptName: "mpvacious",
       }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace utils/forvo.lua \\
@@ -42,7 +42,7 @@ substituteInPlace platform/nix.lua \\
 `);
       const installPhase = "runHook preInstall\nmake PREFIX=$out/share/mpv install\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Adds mpv keybindings to create Anki cards from movies and TV shows",
         homepage: "https://github.com/Ajatt-Tools/mpvacious",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -52,7 +52,7 @@ substituteInPlace platform/nix.lua \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

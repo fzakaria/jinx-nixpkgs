@@ -28,21 +28,21 @@ export default nix.lambda((args) => (() => {
   const invalidDependencies = nix.arg($, "invalidDependencies");
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       fetchegg: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pname = nix.arg($_1, "pname");
         const version_1 = nix.arg($_1, "version");
         const sha256 = nix.arg($_1, "sha256");
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             sha256: sha256,
             url: nix.thunk(() => nix.str`https://code.call-cc.org/egg-tarballs/${majorVersion}/${pname}/${pname}-${version_1}.tar.gz`),
           })));
       })(), formals$2),
-      eggDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./eggDerivation.nix"), nix.thunk(() => ({ __proto__: pos$2, overridesFile: overridesFile })))),
+      eggDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./eggDerivation.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, overridesFile: overridesFile })))),
       chicken: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./chicken.nix"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: version,
           hash: hash,
           binaryVersion: binaryVersion,
@@ -56,17 +56,17 @@ export default nix.lambda((args) => (() => {
               const dependencies = nix.arg($_1, "dependencies");
               const license = nix.arg($_1, "license");
               return nix.app(nix.sel(self, "eggDerivation"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   pname: pname,
                   version: version_1,
-                  src: nix.thunk(() => nix.app(nix.sel(self, "fetchegg"), nix.thunk(() => nix.update(eggData, { __proto__: pos$4, pname: pname })))),
+                  src: nix.thunk(() => nix.app(nix.sel(self, "fetchegg"), nix.thunk(() => nix.update(eggData, { [nix.POS]: pos$4, pname: pname })))),
                   buildInputs: nix.thunk(() => nix.builtins.map((x) => nix.sel(eggself, nix.key(nix.force(x))), nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), invalidDependencies, dependencies)))),
                   meta: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     homepage: nix.thunk(() => nix.str`https://wiki.call-cc.org/eggref/${majorVersion}/${pname}`),
                     description: synopsis,
                     license: nix.thunk(() => nix.selOr(nix.update(nix.sel(lib, "licenses"), {
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       agpl: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
                       artistic: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
                       bsd: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

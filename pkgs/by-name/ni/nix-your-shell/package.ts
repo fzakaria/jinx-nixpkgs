@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nix_your_shell = nix.arg($, "nix-your-shell");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nix-your-shell",
       version: "1.4.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MercuryTechnologies",
           repo: "nix-your-shell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-SyWD5TJbCxrFtAV2W4XcO1Rnfp3Ygab66UDBFDuSzJk=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "generate-config": (shell) => nix.app(runCommand, "nix-your-shell-config", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_your_shell)} ${nix.app(nix.sel(lib, "escapeShellArg"), shell)} >> "$out"
 `)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "nix-your-shell",
         description: "`nix` and `nix-shell` wrapper for shells other than `bash`",
         homepage: "https://github.com/MercuryTechnologies/nix-your-shell",

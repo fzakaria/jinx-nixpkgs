@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`harfbuzz${nix.app(nix.sel(lib, "optionalString"), withIcu, "-icu")}`),
       version: "13.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/harfbuzz/harfbuzz/releases/download/${nix.sel(finalAttrs, "version")}/harfbuzz-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZpXaPrfhvgqjCS/k2BQzoztH9FGSWcdZ1ynjqaVcFCk=",
         })))),
@@ -89,22 +89,22 @@ ln -s {'${nix.sel(harfbuzz, "out")}',"$out"}/lib/libharfbuzz.0.dylib
 `))}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           gimp: gimp,
           gtk3: gtk3,
           gtk4: gtk4,
           mapnik: mapnik,
           qtbase: nix.thunk(() => nix.attr(qt5, "qtbase")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "OpenType text shaping engine",
         homepage: "https://harfbuzz.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/harfbuzz/harfbuzz/raw/${nix.sel(finalAttrs, "version")}/NEWS`),

@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-branchless",
       version: "0.11.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arxanas",
           repo: "git-branchless",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-V769kYbmUe6JtVoo83ejxUsegyiBh07tMYPVhJiFNgs=",
         })))),
       cargoHash: "sha256-5uygCOzPNqHjKJfq2LFTfaRT/N++/AY/PwlBJ8j8QwM=",
-      env: nix.thunk(() => ({ __proto__: pos$2, LIBGIT2_NO_VENDOR: 1n, LIBZ_SYS_STATIC: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n, LIBZ_SYS_STATIC: 0n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [ncurses, libgit2, libz, openssl, sqlite]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (() => {
@@ -55,7 +55,7 @@ export TEST_GIT_EXEC_PATH=$(${git}/bin/git --exec-path)
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Suite of tools to help you visualize, navigate, manipulate, and repair your commit history",
         homepage: "https://github.com/arxanas/git-branchless",
         license: nix.thunk(() => [

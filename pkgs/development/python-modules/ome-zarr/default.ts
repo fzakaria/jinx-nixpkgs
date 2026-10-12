@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const ome_zarr_models = nix.arg($, "ome-zarr-models");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ome-zarr",
       version: "0.18.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ome",
           repo: "ome-zarr-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         "ome_zarr.utils",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of next-generation file format (NGFF) specifications for storing bioimaging data in the cloud",
         homepage: "https://pypi.org/project/ome-zarr",
         changelog: nix.thunk(() => nix.str`https://github.com/ome/ome-zarr-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

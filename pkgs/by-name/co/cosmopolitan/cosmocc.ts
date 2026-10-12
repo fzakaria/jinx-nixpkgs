@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "3.9.2";
   const cosmocc_zip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/jart/cosmopolitan/releases/download/${version}/cosmocc-${version}.zip`),
       sha256: "sha256-9P8Tr2X80wnz8c/QQnWZb7f3KkiXcmYoqMnPcy6FAZM=",
     }))));
   const cosmocc = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`cosmocc-${nix.sel(cosmopolitan, "version")}`), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cosmocc",
       version: nix.thunk(() => nix.attr(cosmopolitan, "version")),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          cc: nix.thunk(() => nix.app(runCommand, "c-test", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`${cosmocc}/bin/cosmocc ${nix.path(here, "./hello.c")}
+          [nix.POS]: pos$3,
+          cc: nix.thunk(() => nix.app(runCommand, "c-test", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`${cosmocc}/bin/cosmocc ${nix.path(here, "./hello.c")}
 ./a.out > $out
 `))),
         })),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(cosmopolitan, "meta"), { __proto__: pos$5, description: "Compilers for Cosmopolitan C/C++ programs" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cosmopolitan, "meta"), { [nix.POS]: pos$5, description: "Compilers for Cosmopolitan C/C++ programs" })),
     })), nix.thunk(() => nix.str`mkdir -p $out
 unzip -qo ${cosmocc_zip} -d $out
 `)));

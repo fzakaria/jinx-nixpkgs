@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const db = nix.arg($, "db");
   const expat = nix.arg($, "expat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "log4cxx",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/logging/log4cxx/${nix.sel(finalAttrs, "version")}/apache-log4cxx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uUP/FwOT5M44GrTEkUOWEnv01E+4vR8OXvhFPzxNNkw=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxml2, cppunit, boost, apr, aprutil, db, expat]),
       nativeBuildInputs: nix.thunk(() => [libtool, cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://logging.apache.org/log4cxx/index.html",
         description: "Logging framework for C++ patterned after Apache log4j",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

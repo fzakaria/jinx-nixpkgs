@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sshs = nix.arg($, "sshs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sshs",
       version: "4.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quantumsheep",
           repo: "sshs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-SpiJ0WUDmxoqoVbuRh/Kzu3urvhdsm/UZdJdrJ3pP/g=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: sshs })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sshs })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Terminal user interface for SSH",
         homepage: "https://github.com/quantumsheep/sshs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const snakemake = nix.arg($, "snakemake");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snakemake-storage-plugin-s3",
       version: "0.3.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snakemake",
           repo: "snakemake-storage-plugin-s3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       disabledTests: nix.thunk(() => ["test_storage", "test_group_workflow", "test_simple_workflow"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snakemake storage plugin for S3 API storage (AWS S3, MinIO, etc.)",
         homepage: "https://github.com/snakemake/snakemake-storage-plugin-s3",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-storage-plugin-s3/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

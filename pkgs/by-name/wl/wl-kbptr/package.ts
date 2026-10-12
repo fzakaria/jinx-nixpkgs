@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wl-kbptr",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moverest",
           repo: "wl-kbptr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dopencv=enabled"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/moverest/wl-kbptr",
         description: "Control the mouse pointer with the keyboard on Wayland",
         changelog: nix.thunk(() => nix.str`https://github.com/moverest/wl-kbptr/releases/tag/v${nix.sel(finalAttrs, "version")}`),

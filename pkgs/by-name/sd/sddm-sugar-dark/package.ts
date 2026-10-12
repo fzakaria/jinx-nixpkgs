@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const themeConfig = nix.argOr($, "themeConfig", () => null);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sddm-sugar-dark",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MarianArlt",
           repo: "sddm-sugar-dark",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtgraphicaleffects", "out"))]),
       installPhase: nix.thunk(() => (() => {
         const iniFormat = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))));
-        const configFile = nix.thunk(() => nix.app(nix.sel(iniFormat, "generate"), "", nix.thunk(() => ({ __proto__: pos$2, General: themeConfig }))));
+        const configFile = nix.thunk(() => nix.app(nix.sel(iniFormat, "generate"), "", nix.thunk(() => ({ [nix.POS]: pos$2, General: themeConfig }))));
         const basePath = "$out/share/sddm/themes/sugar-dark";
         return nix.add(nix.str`mkdir -p ${basePath}
 cp -r $src/* ${basePath}
@@ -39,7 +39,7 @@ cp -r $src/* ${basePath}
 `)));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Dark SDDM theme from the sugar family",
         homepage: "https://github.com/MarianArlt/sddm-sugar-dark",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

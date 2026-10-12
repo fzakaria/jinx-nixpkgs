@@ -23,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const npmHooks = nix.arg($, "npmHooks");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "whatsapp",
       version: "1.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dagmoller",
           repo: "whatsapp-electron",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hz3pBudNFJprEZpT53UnsQtWRoiWXco+HnVZtunor2c=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./icon.patch")]),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems])))),
-      env: nix.thunk(() => ({ __proto__: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 npm install
@@ -63,7 +63,7 @@ runHook postBuild
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "com.github.dagmoller.whatsapp-electron",
             exec: "whatsapp-electron %u",
             icon: "whatsapp",
@@ -73,7 +73,7 @@ runHook postBuild
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Electron wrapper around Whatsapp",
         homepage: "https://github.com/dagmoller/whatsapp-electron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

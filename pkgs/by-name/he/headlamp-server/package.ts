@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "headlamp-server",
       version: "0.43.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kubernetes-sigs",
           repo: "headlamp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd"]),
       postInstall: "mv $out/bin/cmd $out/bin/headlamp-server\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeShellScript, "headlamp-update", nix.thunk(() => nix.str`set -euo pipefail
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} headlamp-server
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip --no-src headlamp-frontend
@@ -46,7 +46,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip --no-src headlamp
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "An easy-to-use and extensible Kubernetes web UI",
         homepage: "https://headlamp.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/kubernetes-sigs/headlamp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

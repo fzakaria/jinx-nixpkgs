@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gumbo = nix.arg($, "gumbo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "litehtml",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "litehtml",
           repo: "litehtml",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gumbo]),
       cmakeFlags: nix.thunk(() => ["-DEXTERNAL_GUMBO=ON", "-DLITEHTML_BUILD_TESTING=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast and lightweight HTML/CSS rendering engine",
         homepage: "http://www.litehtml.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

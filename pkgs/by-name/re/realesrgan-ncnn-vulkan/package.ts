@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Real-ESRGAN-ncnn-vulkan";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xinntao",
           repo: "Real-ESRGAN-ncnn-vulkan",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/src`);
       const models = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-ubuntu.zip",
           stripRoot: false,
           sha256: "sha256-1YiPzv1eGnHrazJFRvl37+C1F2xnoEbN0UQYkxLT+JQ=",
@@ -53,7 +53,7 @@ cp -r ${models}/models $out/share
 `);
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf $out/bin/realesrgan-ncnn-vulkan --add-needed libvulkan.so\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NCNN implementation of Real-ESRGAN. Real-ESRGAN aims at developing Practical Algorithms for General Image Restoration",
         homepage: "https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +68,7 @@ cp -r ${models}/models $out/share
         mainProgram: "realesrgan-ncnn-vulkan",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

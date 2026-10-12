@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const wrapFish = nix.arg($, "wrapFish");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["checkPlugins", "checkFunctionDirs"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         const checkPhase = nix.argOr($_1, "checkPhase", () => "");
         const doCheck = nix.argOr($_1, "doCheck", () => !nix.eq(checkPhase, ""));
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: name,
           unpackPhase: unpackPhase,
           configurePhase: configurePhase,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           doCheck: doCheck,
           nativeCheckInputs: nix.thunk(() => nix.concat([
             writableTmpDirAsHomeHook,
-            nix.thunk(() => nix.app(wrapFish, nix.thunk(() => ({ __proto__: pos$1, pluginPkgs: checkPlugins, functionDirs: checkFunctionDirs })))),
+            nix.thunk(() => nix.app(wrapFish, nix.thunk(() => ({ [nix.POS]: pos$1, pluginPkgs: checkPlugins, functionDirs: checkFunctionDirs })))),
           ], nativeCheckInputs)),
           checkPhase: nix.thunk(() => nix.str`fish "${nix.app(writeScript, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "name")}-test`), checkPhase)}"
 `),

@@ -55,16 +55,16 @@ export default nix.lambda((args) => (() => {
   const pstoedit = nix.arg($, "pstoedit");
   const python3 = nix.arg($, "python3");
   const fonts = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "ghostscript-fonts",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: "mirror://sourceforge/gs-fonts/ghostscript-fonts-std-8.11.tar.gz",
             hash: "sha256-DrbzVhGfLkmyVjIQhS4X9X+dzFdV81Cmmkag1kGgxAE=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "mirror://gnu/ghostscript/gnu-gs-fonts-other-6.0.tar.gz",
             hash: "sha256-gUbMzEaZ/p2rhBRGvdFwOfR2nJA+zrVECRiLkgdUqrM=",
           })))),
@@ -72,11 +72,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir \"$out\"\nmv -v * \"$out/\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: nix.thunk(() => nix.str`ghostscript${nix.app(nix.sel(lib, "optionalString"), x11Support, "-with-X")}`),
       version: "10.08.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ghostscript-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-wgSSvI67lsh/ouUqCSbhzajN6V1mFF4BiscT/tXaOM8=",
         })))),
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./urw-font-files.patch"),
         nix.path(here, "./doc-no-ref.diff"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: "https://salsa.debian.org/debian/ghostscript/-/raw/01e895fea033cc35054d1b68010de9818fa4a8fc/debian/patches/2010_add_build_timestamp_setting.patch",
             hash: "sha256-XTKkFKzMR2QpcS1YqoxzJnyuGk/l/Y2jdevsmbMtCXA=",
           })))),
@@ -144,11 +144,11 @@ ln -s "$fonts/share/fonts" "$out/share/ghostscript/fonts"
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/gs --version\n$out/bin/gsx --version\npushd examples\nfor f in *.{ps,eps,pdf}; do\n  echo \"Rendering $f\"\n  $out/bin/gs \\\n    -dNOPAUSE \\\n    -dBATCH \\\n    -sDEVICE=bitcmyk \\\n    -sOutputFile=/dev/null \\\n    -r600 \\\n    -dBufferSpace=100000 \\\n    $f\ndone\npopd # examples\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           "test-corpus-render": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-corpus-render.nix"), nix.thunk(() => ({})))),
           graphicsmagick: graphicsmagick,
           imagemagick: imagemagick,
@@ -160,7 +160,7 @@ ln -s "$fonts/share/fonts" "$out/share/ghostscript/fonts"
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://www.ghostscript.com/",
         changelog: nix.thunk(() => nix.str`https://ghostscript.readthedocs.io/en/gs${nix.sel(finalAttrs, "version")}/News.html`),
         description: "PostScript interpreter (mainline version)",

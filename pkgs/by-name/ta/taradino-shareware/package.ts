@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["buildShareware", 1, 35]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const taradino = nix.arg($, "taradino");
-  return nix.app(nix.sel(taradino, "override"), nix.thunk(() => ({ __proto__: pos$1, buildShareware: true })));
+  return nix.app(nix.sel(taradino, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, buildShareware: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

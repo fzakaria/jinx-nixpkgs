@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "pydocstyle",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python312-compat.patch",
             url: "https://github.com/PyCQA/pydocstyle/commit/306c7c8f2d863bdc098a65d2dadbd4703b9b16d5.patch",
             hash: "sha256-bqnoLz1owzDpFqlZn8z4Z+RzKCYBsI0PqqeOtjLxnMo=",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   --replace 'version = "0.0.0-dev"' 'version = "${version}"'
 `);
       const propagatedBuildInputs = nix.thunk(() => [snowballstemmer]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, toml: nix.thunk(() => [tomli]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, toml: nix.thunk(() => [tomli]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "toml")));
       const disabledTestPaths = nix.thunk(() => ["src/tests/test_integration.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python docstring style checker",
         mainProgram: "pydocstyle",
         homepage: "https://github.com/PyCQA/pydocstyle",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

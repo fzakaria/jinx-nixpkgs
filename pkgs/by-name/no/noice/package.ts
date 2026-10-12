@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "noice";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "git://git.2f30.org/noice.git",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "0975j4m93s9a21pazwdzn4gqhkngwq7q6ghp0q8a75r6c4fb7aar",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["LDLIBS=-lncurses"]);
       const installFlags = nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small ncurses-based file browser",
         homepage: "https://git.2f30.org/noice/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "noice",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

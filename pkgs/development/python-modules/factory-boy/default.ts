@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "factory_boy",
           version: version,
           hash: "sha256-hmhi0iYSjfrH8rQWAofomdr1TyYSd4Mn3QPQ4ssePQM=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["examples/flask_alchemy/test_demoapp.py"]);
       const pythonImportsCheck = nix.thunk(() => ["factory"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package to create factories for complex objects",
         homepage: "https://github.com/rbarrois/factory_boy",
         changelog: nix.thunk(() => nix.str`https://github.com/FactoryBoy/factory_boy/blob/${version}/docs/changelog.rst`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

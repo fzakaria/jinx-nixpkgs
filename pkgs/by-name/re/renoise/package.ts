@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const releasePath = nix.argOr($, "releasePath", () => null);
   const platforms = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       archSuffix: "x86_64",
       hash: "sha256-RfOhcllmwX3Cy6ywIYjIC+kUX6rXkd+PM9wKj+fCuts=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       archSuffix: "arm64",
       hash: "sha256-1bo7/srdQ5M5mzXpL76Bkt1Gt9EhbW8ktLLPvOcFu5U=",
     })),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "system"))));
         const urlVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://files.renoise.com/demo/Renoise_${urlVersion}_Demo_Linux_${nix.sel(platform, "archSuffix")}.tar.gz`),
               nix.thunk(() => nix.str`https://files.renoise.com/demo/archive/Renoise_${urlVersion}_Demo_Linux_${nix.sel(platform, "archSuffix")}.tar.gz`),
@@ -108,11 +108,11 @@ substituteInPlace $out/share/applications/renoise.desktop \\
   --replace Exec=renoise Exec=$out/bin/renoise
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-renoise", "#!/usr/bin/env nix-shell\n#!nix-shell -I nixpkgs=./. -i bash -p curl htmlq common-updater-scripts\nset -euo pipefail\n\nnew_version=\"$(\n  curl 'https://files.renoise.com/demo/' \\\n    | htmlq a --text \\\n    | grep -E '^Renoise_([0-9]+_?)+_Demo_Linux_x86_64\\.tar\\.gz$' \\\n    | grep -Eo '[0-9]+(_[0-9]+)*' \\\n    | head -n1 \\\n    | tr _ .\n)\"\nhash_x86_64=\"$(nix-prefetch-url \"https://files.renoise.com/demo/Renoise_$(echo \"$new_version\" | tr . _)_Demo_Linux_x86_64.tar.gz\")\"\nhash_arm64=\"$( nix-prefetch-url \"https://files.renoise.com/demo/Renoise_$(echo \"$new_version\" | tr . _)_Demo_Linux_arm64.tar.gz\")\"\nsri_x86_64=\"$(nix --extra-experimental-features nix-command hash to-sri --type sha256 \"$hash_x86_64\")\"\nsri_arm64=\"$( nix --extra-experimental-features nix-command hash to-sri --type sha256 \"$hash_arm64\")\"\nupdate-source-version renoise \"$new_version\" \"$sri_x86_64\" --system=\"x86_64-linux\"  --ignore-same-version\nupdate-source-version renoise \"$new_version\" \"$sri_arm64\"  --system=\"aarch64-linux\" --ignore-same-version\n")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Modern tracker-based DAW",
         homepage: "https://www.renoise.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -128,7 +128,7 @@ substituteInPlace $out/share/applications/renoise.desktop \\
         mainProgram: "renoise",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

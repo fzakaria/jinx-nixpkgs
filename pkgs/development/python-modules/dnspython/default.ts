@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-GB08aZZFLLEYnEBGxhWZuEpahuCZVi/9530mmE/ybQ8=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         doh: nix.thunk(() => [httpx, h2, httpcore]),
         idna: nix.thunk(() => [idna]),
         dnssec: nix.thunk(() => [cryptography]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export NO_INTERNET=1\n";
       const pythonImportsCheck = nix.thunk(() => ["dns"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "DNS toolkit for Python",
         homepage: "https://www.dnspython.org",
         changelog: nix.thunk(() => nix.str`https://github.com/rthalley/dnspython/blob/v${version}/doc/whatsnew.rst`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

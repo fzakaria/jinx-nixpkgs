@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const robotstatuschecker = nix.arg($, "robotstatuschecker");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "robotframework-seleniumlibrary",
       version: "6.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robotframework",
           repo: "SeleniumLibrary",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "mkdir utest/output_dir\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/robotframework/SeleniumLibrary/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/SeleniumLibrary-${nix.sel(finalAttrs, "version")}.rst`),
         description: "Web testing library for Robot Framework",
         homepage: "https://github.com/robotframework/SeleniumLibrary",

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "beluga";
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Beluga-lang",
           repo: "Beluga",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const postInstall = "mkdir -p $out/share/emacs/site-lisp/beluga/\ncp -r tools/beluga-mode.el $out/share/emacs/site-lisp/beluga\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Functional language for reasoning about formal systems",
         homepage: "https://github.com/Beluga-lang/Beluga",
         changelog: nix.thunk(() => nix.str`https://github.com/Beluga-lang/Beluga/releases/tag/v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

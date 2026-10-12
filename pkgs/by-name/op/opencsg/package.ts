@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencsg",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.opencsg.org/OpenCSG-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-WsXfc7GtM0DdZwX/kOAJ8alGu5U2whwiY6b5dCZWZMA=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D ../copying.txt \"$out/share/doc/opencsg/copying.txt\"\n",
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "app=$out/Applications/opencsgexample.app/Contents/MacOS/opencsgexample\ninstall_name_tool -change \\\n  $(otool -L $app | awk '/opencsg.+dylib/ { print $1 }') \\\n  $(otool -D $out/lib/libopencsg.dylib | tail -n 1) \\\n  $app\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Constructive Solid Geometry library",
         mainProgram: "opencsgexample",
         homepage: "http://www.opencsg.org/",

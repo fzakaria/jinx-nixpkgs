@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fox-it",
           repo: "dissect.thumbcache",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["dissect.thumbcache"]);
       const disabledTests = nix.thunk(() => ["windows", "test_index_type"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dissect module implementing a parser for the Windows thumbcache",
         homepage: "https://github.com/fox-it/dissect.thumbcache",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.thumbcache/releases/tag/${nix.sel(src, "tag")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const buildInputs = nix.argOr($, "buildInputs", () => []);
   const rebuildscriptName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "build_linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "build_macos" : nix.builtins.throw(nix.thunk(() => nix.str`Don't know how to rebuild FamiStudio's vendored ${depname} for ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`famistudio-nativedep-${depname}`),
       version: version,
       src: src,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const hidapi = nix.arg($, "hidapi");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "headsetcontrol",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Sapd",
           repo: "HeadsetControl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [hidapi]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sidetone and Battery status for Logitech G930, G533, G633, G933 SteelSeries Arctis 7/PRO 2019 and Corsair VOID (Pro)",
         longDescription: "A tool to control certain aspects of USB-connected headsets on Linux. Currently,\nsupport is provided for adjusting sidetone, getting battery state, controlling\nLEDs, and setting the inactive time.\n",
         homepage: "https://github.com/Sapd/HeadsetControl",

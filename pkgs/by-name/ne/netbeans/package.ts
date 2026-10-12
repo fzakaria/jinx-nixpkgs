@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const version = "31";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "netbeans",
       exec: "netbeans",
       comment: "Integrated Development Environment",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       icon: "netbeans",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netbeans",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://apache/netbeans/netbeans/${version}/netbeans-${version}-bin.zip`),
           hash: "sha256-HV8+tA9YjFot8ZVpvJ2Z/Q+AKO654Iv8jInGgsOhtfs=",
         })))),
@@ -77,7 +77,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       buildInputs: nix.thunk(() => [perl, libicns, imagemagick]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Integrated development environment for Java, C, C++ and PHP",
         homepage: "https://netbeans.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

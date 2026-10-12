@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((!nix.asBool(withAudit) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/networking/openssh/common.nix:53:1");
     nix.assert_((!nix.asBool(withFIDO) || nix.asBool(withSecurityKey)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/networking/openssh/common.nix:56:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: pname,
         version: version,
         src: src,
@@ -80,8 +80,8 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => (nix.asBool(linkOpenssl) ? nix.force(openssl) : nix.force(libxcrypt))),
         ], nix.concat(nix.app(nix.sel(lib, "optional"), withFIDO, libfido2), nix.concat(nix.app(nix.sel(lib, "optional"), withKerberos, krb5), nix.concat(nix.app(nix.sel(lib, "optional"), withLdns, ldns), nix.concat(nix.app(nix.sel(lib, "optional"), withPAM, pam), nix.concat(nix.app(nix.sel(lib, "optional"), withSelinux, libselinux), nix.app(nix.sel(lib, "optionals"), withAudit, nix.thunk(() => [audit, libcap_ng])))))))))),
         preConfigure: "# Setting LD causes `configure' and `make' to disagree about which linker\n# to use: `configure' wants `gcc', but `make' wants `ld'.\nunset LD\n",
-        env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), isNixos, nix.thunk(() => ({ __proto__: pos$1, PATH_PASSWD_PROG: "/run/wrappers/bin/passwd" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({
-            __proto__: pos$2,
+        env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), isNixos, nix.thunk(() => ({ [nix.POS]: pos$1, PATH_PASSWD_PROG: "/run/wrappers/bin/passwd" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({
+            [nix.POS]: pos$2,
             NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withKerberos, "-lkeyutils"), nix.concat(nix.app(nix.sel(lib, "optional"), withLdns, "-lcrypto"), nix.app(nix.sel(lib, "optionals"), withAudit, nix.thunk(() => ["-laudit", "-lcap-ng"]))))))),
           }))))),
         configureFlags: nix.thunk(() => nix.concat([
@@ -154,29 +154,29 @@ substituteInPlace regress/test-exec.sh \\
         doInstallCheck: true,
         installCheckPhase: "for binary in ssh sshd; do\n  $out/bin/$binary -V 2>&1 | grep -P \"$(printf '^OpenSSH_\\\\Q%s\\\\E,' \"$version\")\"\ndone\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           withKerberos: withKerberos,
           tests: nix.thunk(() => (() => {
             const withThisSsh = (test) => nix.app(nix.sel(test, "extendNixOS"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 module: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   services: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     openssh: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       package: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
                     })),
                   })),
                 })),
               })));
             return {
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "borgbackup-integration": nix.thunk(() => nix.app(withThisSsh, nix.thunk(() => nix.sel(nixosTests, "borgbackup")))),
               nixosTest: nix.thunk(() => nix.app(withThisSsh, nix.thunk(() => nix.sel(nixosTests, "openssh")))),
               "initrd-network-openssh": nix.thunk(() => nix.app(withThisSsh, nix.thunk(() => nix.sel(nixosTests, "initrd-network-ssh")))),
               openssh: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   pname: nix.thunk(() => nix.add(nix.sel(previousAttrs, "pname"), "-test")),
                   doCheck: true,
                 }))),
@@ -184,7 +184,7 @@ substituteInPlace regress/test-exec.sh \\
           })()),
         })),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: nix.thunk(() => nix.str`Implementation of the SSH protocol${extraDesc}`),
           homepage: "https://www.openssh.com/",
           changelog: "https://www.openssh.com/releasenotes.html",
@@ -194,7 +194,7 @@ substituteInPlace regress/test-exec.sh \\
           teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
           mainProgram: "ssh",
           identifiers: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "openbsd", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           })),
         }, extraMeta)),

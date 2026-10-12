@@ -17,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const mkCoqDerivation = nix.arg($, "mkCoqDerivation");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "coq-tactical",
       owner: "tchajed",
       version: version,
-      displayVersion: nix.thunk(() => ({ __proto__: pos$1, "coq-tactical": (v) => nix.str`unstable-${v}` })),
+      displayVersion: nix.thunk(() => ({ [nix.POS]: pos$1, "coq-tactical": (v) => nix.str`unstable-${v}` })),
       defaultVersion: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.20")),
               out: "2022-02-15",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "2022-02-15": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           rev: "7c26f9a017395c240845184dfed23489d29dbae5",
           hash: "sha256-SNoQzGYw5tuabHUDwMAyUsAa/WNoYjmyR85b7a0hVl4=",
         })),
@@ -45,7 +45,7 @@ mkdir -p $COQLIB/user-contrib/Tactical
 cp -pR src/* $COQLIB/user-contrib/Tactical
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library of Coq proof automation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

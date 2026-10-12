@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blocksruntime",
       version: "0-unstable-2017-10-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mackyle",
           repo: "blocksruntime",
           rev: "9cc93ae2b58676c23fd02cf0c686fa15b7a3ff81",
@@ -34,7 +34,7 @@ runHook postInstall
       checkPhase: "runHook preCheck\n./checktests\nrunHook postCheck\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Installs the BlocksRuntime library from the compiler-rt",
         homepage: "https://github.com/mackyle/blocksruntime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

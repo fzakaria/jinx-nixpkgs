@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Skim";
       const version = "1.7.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`Skim-${version}.dmg`),
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/skim-app/Skim/Skim-${version}/Skim-${version}.dmg`),
           hash: "sha256-0IfdLeH6RPxf4OZWnNltN7tvvZWbWDQaMCmazd4UUi4=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\nmkdir -p $out/Applications $out/bin\ncp -R Skim.app $out/Applications\nfor app in displayline skimnotes skimpdf; do\n  makeWrapper $out/Applications/Skim.app/Contents/SharedSupport/$app $out/bin/$app\ndone\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PDF reader and note-taker for macOS",
         homepage: "https://skim-app.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

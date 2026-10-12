@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const sqlite_utils = nix.arg($, "sqlite-utils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlite-migrate",
       version: "0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "sqlite-migrate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sqlite_migrate"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple database migration system for SQLite, based on sqlite-utils",
         homepage: "https://github.com/simonw/sqlite-migrate",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/sqlite-migrate/releases/tag/${nix.sel(finalAttrs, "version")}`),

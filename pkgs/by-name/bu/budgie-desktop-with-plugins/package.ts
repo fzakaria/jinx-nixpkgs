@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const budgie_desktop = nix.arg($, "budgie-desktop");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${nix.sel(budgie_desktop, "pname")}-with-plugins`),
       version: nix.thunk(() => nix.attr(budgie_desktop, "version")),
       src: null,
@@ -43,7 +43,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(budgie_desktop, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

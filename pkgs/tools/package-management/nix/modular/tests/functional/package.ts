@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const test_daemon = nix.argOr($, "test-daemon", () => null);
   return nix.app(mkMesonDerivation, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       workDir: nix.path(here, "./."),
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja, pkg_config, jq, git, mercurial], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [busybox_sandbox_shell, util_linux])), [nix_cli]))),
       buildInputs: nix.thunk(() => [nix_store, nix_expr]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(test_daemon, null)), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           NIX_DAEMON_PACKAGE: test_daemon,
           _NIX_TEST_CLIENT_VERSION: nix.thunk(() => nix.sel(nix_cli, "version")),
         })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "mkdir $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }));

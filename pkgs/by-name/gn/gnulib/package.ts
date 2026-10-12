@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gnulib",
       version: "20241001",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.savannah.gnu.org/git/gnulib.git",
           rev: "0a01f6737dc5666c730bdfe6a038da53a4156cc2",
           hash: "sha256-kbmXnXXoaTPGwjUJvnHWCQFS2KGQ9fsjIyloNmkKdc4=",
@@ -35,16 +35,16 @@ substituteInPlace build-aux/{prefix-gnulib-mk,useless-if-before-free,update-copy
       installPhase: "mkdir -p $out/bin\ncp -r * $out/\nln -s $out/lib $out/include\nln -s $out/gnulib-tool $out/bin/\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         patches: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "memcpy-fix": nix.path(here, "./memcpy-fix.patch"),
           "memcpy-fix-backport-250512": nix.path(here, "./memcpy-fix-backport-250512.patch"),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Central location for code to be shared among GNU packages",
         homepage: "https://www.gnu.org/software/gnulib/",
         changelog: "https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob;f=ChangeLog",

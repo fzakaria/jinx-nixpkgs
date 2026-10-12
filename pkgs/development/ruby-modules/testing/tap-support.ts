@@ -8,7 +8,7 @@ const pos$2 = nix.positions(here + "/tap-support.nix", [["output", 19, 3]]);
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.builtins, null);
-  const withIndexes = (list) => nix.app(nix.lookup(w, "genList"), (idx) => nix.update(nix.app(nix.lookup(w, "elemAt"), list, idx), { __proto__: pos$1, index: idx }), nix.thunk(() => nix.app(nix.lookup(w, "length"), list)));
+  const withIndexes = (list) => nix.app(nix.lookup(w, "genList"), (idx) => nix.update(nix.app(nix.lookup(w, "elemAt"), list, idx), { [nix.POS]: pos$1, index: idx }), nix.thunk(() => nix.app(nix.lookup(w, "length"), list)));
   const testLine = (report) => nix.add(nix.add(nix.str`${nix.app(okStr, report)} ${nix.app(nix.builtins.toString, nix.thunk(() => nix.add(nix.sel(report, "index"), 1n)))} ${nix.sel(report, "description")}`, nix.app(testDirective, report)), nix.app(testYaml, report));
   const testDirective = (report) => "";
   const testYaml = (report) => "";
@@ -18,7 +18,7 @@ export default nix.thunk(() => (() => {
     return (nix.asBool(nix.eq(result, "pass")) ? "ok" : "not ok");
   })(), formals$1);
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     output: (reports) => nix.add(nix.add(nix.str`TAP version 13
 1..${nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.lookup(w, "length"), reports)))}`, nix.app(nix.lookup(w, "foldl'"), (l) => (r) => nix.add(nix.add(l, "\n"), r), "", nix.thunk(() => nix.app(nix.builtins.map, testLine, nix.thunk(() => nix.app(withIndexes, reports)))))), nix.str`
 # Finished at ${nix.app(nix.builtins.toString, nix.thunk(() => nix.lookup(w, "currentTime")))}

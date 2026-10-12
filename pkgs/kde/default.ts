@@ -25,27 +25,27 @@ export default nix.lambda((args) => (() => {
   const zxing_cpp = nix.arg($, "zxing-cpp");
   const allPackages = (self) => (() => {
     const frameworks = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./frameworks")), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
     const gear = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gear")), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
     const plasma = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plasma")), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
       }))));
     const sets = nix.thunk(() => ["frameworks", "gear", "plasma"]);
     const loadUrls = (set) => nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.add(nix.path(here, "./generated/sources"), nix.str`/${set}.json`)));
     const allUrls = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), nix.thunk(() => nix.builtins.map(loadUrls, sets))));
     const sources = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.update(nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.attr(v, "url")),
           hash: nix.thunk(() => nix.attr(v, "hash")),
-        }))), { __proto__: pos$5, version: nix.thunk(() => nix.attr(v, "version")) }), allUrls));
+        }))), { [nix.POS]: pos$5, version: nix.thunk(() => nix.attr(v, "version")) }), allUrls));
     return nix.update(qt6Packages, nix.update(frameworks, nix.update(gear, nix.update(plasma, {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       sources: sources,
       frameworks: frameworks,
       gear: gear,
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
     }))));
   })();
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "kdePackages")),
       f: allPackages,
     })));

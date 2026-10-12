@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const geojson = nix.arg($, "geojson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "agate-sql",
       version: "0.7.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wireservice",
           repo: "agate-sql",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["agatesql"]),
       disabledTests: nix.thunk(() => ["test_to_sql_create_statement_with_dialects"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Adds SQL read/write support to agate",
         homepage: "https://github.com/wireservice/agate-sql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

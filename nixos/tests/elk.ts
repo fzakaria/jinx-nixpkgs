@@ -40,66 +40,66 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const esUrl = "http://localhost:9200";
   const mkElkTest = (name) => (elk) => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       name: name,
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "basvandijk"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         one: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           const lib_1 = nix.arg($_1, "lib");
           return {
-            __proto__: pos$24,
-            virtualisation: nix.thunk(() => ({ __proto__: pos$3, memorySize: 3000n })),
+            [nix.POS]: pos$24,
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 3000n })),
             environment: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               journalbeat: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: nix.thunk(() => nix.has(elk, "journalbeat")),
                 package: nix.thunk(() => nix.sel(elk, "journalbeat")),
                 extraConfig: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOptionDefault"), "logging:\n  to_syslog: true\n  level: warning\n  metrics.enabled: false\noutput.elasticsearch:\n  hosts: [ \"127.0.0.1:9200\" ]\njournalbeat.inputs:\n- paths: []\n  seek: cursor\n")),
               })),
               filebeat: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 enable: nix.thunk(() => nix.has(elk, "filebeat")),
                 package: nix.thunk(() => nix.sel(elk, "filebeat")),
                 inputs: nix.thunk(() => ({
-                  __proto__: pos$8,
-                  journald: nix.thunk(() => ({ __proto__: pos$6, id: "everything" })),
+                  [nix.POS]: pos$8,
+                  journald: nix.thunk(() => ({ [nix.POS]: pos$6, id: "everything" })),
                   log: nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     enabled: true,
                     paths: nix.thunk(() => ["/var/lib/filebeat/test"]),
                   })),
                 })),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$10,
-                  logging: nix.thunk(() => ({ __proto__: pos$9, level: "info" })),
+                  [nix.POS]: pos$10,
+                  logging: nix.thunk(() => ({ [nix.POS]: pos$9, level: "info" })),
                 })),
               })),
               metricbeat: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 enable: true,
                 package: nix.thunk(() => nix.sel(elk, "metricbeat")),
                 modules: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   system: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     metricsets: nix.thunk(() => [
                       "cpu",
                       "load",
@@ -114,22 +114,22 @@ export default nix.lambda((args) => (() => {
                     period: "5s",
                     processes: nix.thunk(() => [".*"]),
                     cpu: nix.thunk(() => ({
-                      __proto__: pos$12,
+                      [nix.POS]: pos$12,
                       metrics: nix.thunk(() => ["percentages", "normalized_percentages"]),
                     })),
-                    core: nix.thunk(() => ({ __proto__: pos$13, metrics: nix.thunk(() => ["percentages"]) })),
+                    core: nix.thunk(() => ({ [nix.POS]: pos$13, metrics: nix.thunk(() => ["percentages"]) })),
                   })),
                 })),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   output: nix.thunk(() => ({
-                    __proto__: pos$17,
-                    elasticsearch: nix.thunk(() => ({ __proto__: pos$16, hosts: nix.thunk(() => ["127.0.0.1:9200"]) })),
+                    [nix.POS]: pos$17,
+                    elasticsearch: nix.thunk(() => ({ [nix.POS]: pos$16, hosts: nix.thunk(() => ["127.0.0.1:9200"]) })),
                   })),
                 })),
               })),
               logstash: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: true,
                 package: nix.thunk(() => nix.sel(elk, "logstash")),
                 inputConfig: "exec { command => \"echo -n flowers\" interval => 1 type => \"test\" }\nexec { command => \"echo -n dragons\" interval => 1 type => \"test\" }\n",
@@ -144,12 +144,12 @@ elasticsearch {
 `),
               })),
               elasticsearch: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 enable: true,
                 package: nix.thunk(() => nix.sel(elk, "elasticsearch")),
               })),
               "elasticsearch-curator": nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 enable: nix.thunk(() => nix.has(elk, "elasticsearch-curator")),
                 actionYAML: "---\nactions:\n  1:\n    action: delete_indices\n    description: >-\n      Delete indices older than 1 second (based on index name), for logstash-\n      prefixed indices. Ignore the error if the filter does not result in an\n      actionable list of indices (ignore_empty_list) and exit cleanly.\n    options:\n      allow_ilm_indices: true\n      ignore_empty_list: True\n      disable_action: False\n    filters:\n    - filtertype: pattern\n      kind: prefix\n      value: logstash-\n    - filtertype: age\n      source: name\n      direction: older\n      timestring: '%Y.%m.%d'\n      unit: seconds\n      unit_count: 1\n",
               })),
@@ -157,7 +157,7 @@ elasticsearch {
           };
         })(), formals$2),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$26, elkPackages: elk })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$26, elkPackages: elk })),
       testScript: nix.thunk(() => (() => {
         const valueObject = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(elk, "elasticsearch", "version")), "7")), ".value"));
         return nix.add(nix.add(nix.add(nix.str`import json
@@ -235,13 +235,13 @@ with subtest("Logstash messages arive in elasticsearch"):
     )
 `)));
       })()),
-    })), nix.thunk(() => ({ __proto__: pos$28, pkgs: pkgs, system: system })));
+    })), nix.thunk(() => ({ [nix.POS]: pos$28, pkgs: pkgs, system: system })));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     unfree: nix.thunk(() => nix.app(nix.sel(lib, "dontRecurseIntoAttrs"), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         "ELK-7": nix.thunk(() => nix.app(mkElkTest, "elk-7", nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             elasticsearch: nix.thunk(() => nix.sel(pkgs, "elasticsearch7")),
             logstash: nix.thunk(() => nix.sel(pkgs, "logstash7")),
             filebeat: nix.thunk(() => nix.sel(pkgs, "filebeat7")),

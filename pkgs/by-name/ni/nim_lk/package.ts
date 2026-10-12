@@ -19,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nimUnwrapped = nix.thunk(() => nix.sel(nim, "passthru", "nim"));
   return nix.app(buildNimSbom, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~ehmry",
           repo: "nim_lk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nimUnwrapped, nix_prefetch, nix_prefetch_git]))}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate Nix specific lock files for Nim packages",
         homepage: "https://git.sr.ht/~ehmry/nim_lk",
         mainProgram: "nim_lk",

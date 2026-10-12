@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const version = "6.18.0";
   const psalm_phar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/vimeo/psalm/releases/download/${version}/psalm.phar`),
       hash: "sha256-I3Yqogy3ge9Apfar6lqcilCgDvh4HNp8qRJLFE6ghAI=",
     }))));
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "psalm",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "vimeo",
           repo: "psalm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ cp composer.lock $out
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/vimeo/psalm/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Static analysis tool for finding errors in PHP applications",
         homepage: "https://github.com/vimeo/psalm",

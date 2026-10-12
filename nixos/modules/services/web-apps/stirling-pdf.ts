@@ -24,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "stirling-pdf"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "stirling-pdf": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the stirling-pdf service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "stirling-pdf", nix.thunk(() => ({})))),
           environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
                   ]))))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 SERVER_PORT: 8080n,
                 INSTALL_BOOK_AND_ADVANCED_HTML_OPS: true,
               })),
               description: "Environment variables for the stirling-pdf app.\nSee <https://github.com/Stirling-Tools/Stirling-PDF#customisation> for available options.\n",
             })))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Files containing additional environment variables to pass to Stirling PDF.\nSecrets should be added in environmentFiles instead of environment.\n",
@@ -58,13 +58,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "stirling-pdf": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => (nix.asBool(nix.builtins.isBool(v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.builtins.toString(v)), nix.thunk(() => nix.sel(cfg, "environment")))),
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
               })()),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 BindReadOnlyPaths: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(pkgs, "tesseract")}/share/tessdata:/usr/share/tessdata`),
                 ]),
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

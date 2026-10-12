@@ -55,155 +55,155 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "cloudflare-ddns"));
   const formatList = (l) => nix.app(nix.sel(lib, "concatStringsSep"), ",", l);
   return {
-    __proto__: pos$43,
+    [nix.POS]: pos$43,
     options: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       services: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         "cloudflare-ddns": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Cloudflare Dynamic DNS service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cloudflare-ddns", nix.thunk(() => ({})))),
           credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Path to a file containing the Cloudflare API authentication token.\nThe file content should be in the format `CLOUDFLARE_API_TOKEN=YOUR_SECRET_TOKEN`.\nThe service user needs read access to this file.\nEnsure permissions are secure (e.g., `0400` or `0440`) and ownership is appropriate\nUsing `CLOUDFLARE_API_TOKEN` is preferred over the deprecated `CF_API_TOKEN`.\n",
               example: "/run/secrets/cloudflare-ddns-token",
             })))),
           domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of domain names (FQDNs) to manage. Wildcards like `*.example.com` are supported.\nThese domains will be managed for both IPv4 and IPv6 unless overridden by\n`ip4Domains` or `ip6Domains`, or if the respective providers are disabled.\nThis corresponds to the `DOMAINS` environment variable.\n",
               example: nix.thunk(() => ["home.example.com", "*.dynamic.example.org"]),
             })))),
           ip4Domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "Explicit list of domains to manage only for IPv4. If set, overrides `domains` for IPv4.\nCorresponds to the `IP4_DOMAINS` environment variable.\n",
               example: nix.thunk(() => ["ipv4.example.com"]),
             })))),
           ip6Domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "Explicit list of domains to manage only for IPv6. If set, overrides `domains` for IPv6.\nCorresponds to the `IP6_DOMAINS` environment variable.\n",
               example: nix.thunk(() => ["ipv6.example.com"]),
             })))),
           wafLists: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "List of WAF IP Lists to manage, in the format `account-id/list-name`.\n(Experimental feature as of cloudflare-ddns 1.14.0).\n",
               example: nix.thunk(() => ["YOUR_ACCOUNT_ID/allowed_dynamic_ips"]),
             })))),
           provider: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             ipv4: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "cloudflare.trace",
                 description: "IP detection provider for IPv4. Common values: `cloudflare.trace`, `cloudflare.doh`, `local`, `url:URL`, `none`.\nUse `none` to disable IPv4 updates.\nSee cloudflare-ddns documentation for all options.\n",
               })))),
             ipv6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "cloudflare.trace",
                 description: "IP detection provider for IPv6. Common values: `cloudflare.trace`, `cloudflare.doh`, `local`, `url:URL`, `none`.\nUse `none` to disable IPv6 updates.\nSee cloudflare-ddns documentation for all options.\n",
               })))),
           })),
           updateCron: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "@every 5m",
               description: "Cron expression for how often to check and update IPs.\nUse \"@once\" to run only once and then exit.\n",
               example: "@hourly",
             })))),
           updateOnStart: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to perform an update check immediately on service start.",
             })))),
           deleteOnStop: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to delete the managed DNS records and clear WAF lists when the service is stopped gracefully.\nWarning: Setting this to true with `updateCron = \"@once\"` will cause immediate deletion.\n",
             })))),
           cacheExpiration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "6h",
               description: "Duration for which API responses (like Zone ID, Record IDs) are cached.\nUses Go's duration format (e.g., \"6h\", \"1h30m\").\n",
             })))),
           ttl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
               default: 1n,
               description: "Time To Live (TTL) for the DNS records in seconds.\nMust be 1 (for automatic) or between 30 and 86400.\n",
             })))),
           proxied: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "false",
               description: "Whether the managed DNS records should be proxied through Cloudflare ('orange cloud').\nAccepts boolean values (`true`, `false`) or a domain expression.\nSee cloudflare-ddns documentation for expression syntax (e.g., \"is(a.com) || sub(b.org)\").\n",
               example: "true",
             })))),
           recordComment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Comment to add to managed DNS records.",
             })))),
           wafListDescription: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "Description for managed WAF lists (used when creating or verifying lists).",
             })))),
           detectionTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "5s",
               description: "Timeout for detecting the public IP address.",
             })))),
           updateTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "30s",
               description: "Timeout for updating records via the Cloudflare API.",
             })))),
           healthchecks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "URL for Healthchecks.io monitoring endpoint (optional).",
               example: "https://hc-ping.com/your-uuid",
             })))),
           uptimeKuma: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "URL for Uptime Kuma push monitor endpoint (optional).",
               example: "https://status.example.com/api/push/tag?status=up&msg=OK&ping=",
             })))),
           shoutrrr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
               default: null,
               description: "List of Shoutrrr notification service URLs (optional).",
               example: nix.thunk(() => ["discord://token@id", "gotify://host/token"]),
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cloudflare-ddns",
               description: "User account under which the service runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "cloudflare-ddns",
               description: "Group under which the service runs.",
@@ -212,34 +212,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "ttl"), 1n)) || nix.asBool((nix.asBool(nix.ge(nix.sel(cfg, "ttl"), 30n)) && nix.asBool(nix.le(nix.sel(cfg, "ttl"), 86400n)))))),
             message: "services.cloudflare-ddns.ttl must be 1 or between 30 and 86400",
           })),
           nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "updateCron"), "@once")) || nix.asBool(!nix.asBool(nix.sel(cfg, "deleteOnStop"))))),
             message: "services.cloudflare-ddns.deleteOnStop cannot be true when updateCron is \"@once\"",
           })),
           nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "domains"), [])) || nix.asBool(!nix.eq(nix.sel(cfg, "ip4Domains"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "ip6Domains"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "wafLists"), [])))),
             message: "services.cloudflare-ddns requires at least one domain (domains, ip4Domains, ip6Domains) or WAF list (wafLists) to be specified",
           })),
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "provider", "ipv4"), "none")) || nix.asBool(!nix.eq(nix.sel(cfg, "provider", "ipv6"), "none")))),
             message: "services.cloudflare-ddns requires at least one provider (ipv4 or ipv6) to be enabled (not 'none')",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               description: "Cloudflare DDNS service user",
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -249,16 +249,16 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             settings: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               "cloudflare-ddns": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`/var/lib/${nix.sel(cfg, "user")}`, nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   d: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     mode: "0750",
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -268,15 +268,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             "cloudflare-ddns": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "Cloudflare Dynamic DNS Client Service (favonia)",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 WorkingDirectory: nix.thunk(() => nix.str`/var/lib/${nix.sel(cfg, "user")}`),
@@ -327,7 +327,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "shokerplz"))];

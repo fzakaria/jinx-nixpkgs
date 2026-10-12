@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const byacc = nix.arg($, "byacc");
   const gencat = nix.arg($, "gencat");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "bins",
       path: "bin",
       extraPaths: nix.thunk(() => [

@@ -26,32 +26,32 @@ export default nix.lambda((args) => (() => {
   const pytest_trio = nix.arg($, "pytest-trio");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const nng = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nanomsg",
       repo: "nng",
       tag: "v1.6.0",
       hash: "sha256-Kq8QxPU6SiTk0Ev2IJoktSPjVOlAS4/e1PQvw2+e8UA=",
     }))));
   const mbedtls = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "ARMmbed",
       repo: "mbedtls",
       tag: "v3.5.1",
       hash: "sha256-HxsHcGbSExp1aG5yMR/J3kPL4zqnmNoN5T5wfV3APaw=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pynng",
       version: "0.8.1-unstable-2025-05-14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "codypiersall",
           repo: "pynng",
           rev: "2179328f8a858bbb3e177f66ac132bde4a5aa859",
           hash: "sha256-TxIVcqc+4bro+krc1AWgLdZKGGuQ2D6kybHnv5z1oHg=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$4, SETUPTOOLS_SCM_PRETEND_VERSION: "0.8.1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, SETUPTOOLS_SCM_PRETEND_VERSION: "0.8.1" })),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       preBuild: nix.thunk(() => nix.str`cp -r ${mbedtls} mbedtls
@@ -63,7 +63,7 @@ chmod -R +w nng
       dependencies: nix.thunk(() => [cffi, sniffio, pytest, trio, pytest_trio, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["pynng"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python bindings for Nanomsg Next Generation",
         homepage: "https://github.com/codypiersall/pynng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

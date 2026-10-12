@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const withApron = nix.argOr($, "withApron", () => true);
   const withZeroMQ = nix.argOr($, "withZeroMQ", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "frama-c",
       version: "33.0",
       slang: "Arsenic",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://frama-c.com/download/frama-c-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "slang")}.tar.gz`),
           hash: "sha256-QGqEwwyNFEVrUoE179Yz2AR2s5wWbkUrP3EsnQw9Cjo=",
         })))),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible and collaborative platform dedicated to source-code analysis of C software",
         longDescription: "Frama-C is an open-source extensible and collaborative platform\ndedicated to source-code analysis of C software. The Frama-C\nanalyzers assist you in various source-code-related activities,\nfrom the navigation through unfamiliar projects up to the\ncertification of critical software.\n",
         homepage: "https://www.frama-c.com/index.html",

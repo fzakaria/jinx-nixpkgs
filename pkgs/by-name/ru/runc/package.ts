@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "runc",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opencontainers",
           repo: "runc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,16 +50,16 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm755 runc $out/bin/runc\ninstallManPage man/*/*.[1-9]\nwrapProgram $out/bin/runc \\\n  --prefix PATH : /run/current-system/systemd/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")),
           docker: nix.thunk(() => nix.attr(nixosTests, "docker")),
           podman: nix.thunk(() => nix.attr(nixosTests, "podman")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/opencontainers/runc",
         description: "CLI tool for spawning and running containers according to the OCI specification",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

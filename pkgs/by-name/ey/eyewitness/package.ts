@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const geckodriver = nix.arg($, "geckodriver");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eye-witness",
       version: "20230525.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redsiege",
           repo: "EyeWitness",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ makeWrapper "${nix.sel(python3Packages, "python", "interpreter")}" "$out/bin/eye
 runHook postFixup
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Take screenshots of websites, and identify admin interfaces",
         homepage: "https://github.com/redsiege/EyeWitness",
         changelog: nix.thunk(() => nix.str`https://github.com/redsiege/EyeWitness/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

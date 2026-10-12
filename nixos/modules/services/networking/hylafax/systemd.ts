@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "cli"));
   const toCommandLine = nix.thunk(() => nix.attr(from, "toCommandLine"));
   const optionFormat = (optionName) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     option: nix.thunk(() => nix.str`-${optionName}`),
     sep: null,
     explicitBool: false,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
   const mapModems = nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "modems"))))));
   const mkSpoolCmd = (prefix) => (program) => (posArg) => (options) => (() => {
     const start = nix.thunk(() => nix.str`${prefix}${nix.sel(cfg, "package")}/spool/bin/${program}`);
-    const optionsList = nix.thunk(() => nix.app(toCommandLine, optionFormat, nix.thunk(() => nix.update({ __proto__: pos$2, q: nix.thunk(() => nix.sel(cfg, "spoolAreaPath")) }, options))));
+    const optionsList = nix.thunk(() => nix.app(toCommandLine, optionFormat, nix.thunk(() => nix.update({ [nix.POS]: pos$2, q: nix.thunk(() => nix.sel(cfg, "spoolAreaPath")) }, options))));
     const posArgList = nix.thunk(() => nix.app(optional, nix.thunk(() => !nix.eq(posArg, null)), posArg));
     return nix.str`${start} ${nix.app(escapeShellArgs, nix.thunk(() => nix.concat(optionsList, posArgList)))}`;
   })();
@@ -85,10 +85,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(lib, "concatLists")),
       ])));
     const include = nix.thunk(() => nix.app(mkLines, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         Include: nix.thunk(() => nix.selOr(conf, () => [], "Include")),
       }))));
-    const other = nix.thunk(() => nix.app(mkLines, nix.thunk(() => nix.update(conf, { __proto__: pos$4, Include: [] }))));
+    const other = nix.thunk(() => nix.app(mkLines, nix.thunk(() => nix.update(conf, { [nix.POS]: pos$4, Include: [] }))));
     return nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`hylafax-config${name}`), nix.thunk(() => nix.app(concatLines, nix.thunk(() => nix.concat(include, other)))));
   })();
   const globalConfigPath = nix.thunk(() => nix.app(mkConfigFile, "", nix.thunk(() => nix.sel(cfg, "faxqConfig"))));
@@ -113,15 +113,15 @@ ln \\
   "$out/config.${name}"
 `;
     })(), formals$3);
-    return nix.app(nix.sel(pkgs, "runCommand"), "hylafax-config-modems", nix.thunk(() => ({ __proto__: pos$5, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir --parents "$out/" ${nix.app(concatLines, nix.thunk(() => nix.app(mapModems, mkLine)))}`));
+    return nix.app(nix.sel(pkgs, "runCommand"), "hylafax-config-modems", nix.thunk(() => ({ [nix.POS]: pos$5, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir --parents "$out/" ${nix.app(concatLines, nix.thunk(() => nix.app(mapModems, mkLine)))}`));
   })());
   const setupSpoolScript = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       name: "hylafax-setup-spool.sh",
       src: nix.path(here, "./spool.sh"),
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         faxuser: "uucp",
         faxgroup: "uucp",
         lockPath: "/var/lock",
@@ -134,60 +134,60 @@ ln \\
       })),
     }))));
   const waitFaxqScript = nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       name: "hylafax-faxq-wait-start.sh",
       src: nix.path(here, "./faxq-wait.sh"),
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         timeoutSec: nix.thunk(() => nix.builtins.toString(10n)),
         spoolAreaPath: nix.thunk(() => nix.attr(cfg, "spoolAreaPath")),
         runtimeShell: nix.thunk(() => nix.attr(pkgs, "runtimeShell")),
       })),
     }))));
   const sockets = nix.thunk(() => ({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     "hylafax-hfaxd": nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       description: "HylaFAX server socket",
       documentation: nix.thunk(() => ["man:hfaxd(8)"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       listenStreams: nix.thunk(() => ["127.0.0.1:4559"]),
-      socketConfig: nix.thunk(() => ({ __proto__: pos$10, FreeBind: true, Accept: true })),
+      socketConfig: nix.thunk(() => ({ [nix.POS]: pos$10, FreeBind: true, Accept: true })),
     })),
   }));
   const paths = nix.thunk(() => ({
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     "hylafax-faxq": nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       description: "HylaFAX queue manager sendq watch",
       documentation: nix.thunk(() => ["man:faxq(8)", "man:sendq(5)"]),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       pathConfig: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         PathExistsGlob: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(cfg, "spoolAreaPath")}/sendq/q*`)]),
       })),
     })),
   }));
   const timers = nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
       nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "faxcron", "enable", "frequency"), null)), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           "hylafax-faxcron": nix.thunk(() => ({
-            __proto__: pos$17,
-            timerConfig: nix.thunk(() => ({ __proto__: pos$16, Persistent: true })),
+            [nix.POS]: pos$17,
+            timerConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Persistent: true })),
           })),
         })))),
       nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "faxqclean", "enable", "frequency"), null)), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           "hylafax-faxqclean": nix.thunk(() => ({
-            __proto__: pos$20,
-            timerConfig: nix.thunk(() => ({ __proto__: pos$19, Persistent: true })),
+            [nix.POS]: pos$20,
+            timerConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Persistent: true })),
           })),
         })))),
     ])));
   const hardenService = nix.thunk(() => (() => {
     const hardening = nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       PrivateDevices: true,
       PrivateNetwork: true,
       PrivateTmp: true,
@@ -200,12 +200,12 @@ ln \\
     }));
     const filter = (key) => (value) => (nix.asBool(!nix.eq(value, null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasAttr"), key, hardening))));
     const apply = (service) => nix.app(nix.sel(lib, "filterAttrs"), filter, nix.thunk(() => nix.update(hardening, nix.selOr(service, () => ({}), "serviceConfig"))));
-    return (service) => nix.update(service, { __proto__: pos$23, serviceConfig: nix.thunk(() => nix.app(apply, service)) });
+    return (service) => nix.update(service, { [nix.POS]: pos$23, serviceConfig: nix.thunk(() => nix.app(apply, service)) });
   })());
   const services = nix.thunk(() => ({
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     "hylafax-spool": nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       description: "HylaFAX spool area preparation",
       documentation: nix.thunk(() => ["man:hylafax-server(4)"]),
       script: nix.thunk(() => nix.str`${setupSpoolScript}
@@ -218,18 +218,18 @@ then
 fi
 `),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         ExecStop: nix.thunk(() => nix.str`${setupSpoolScript}`),
         RemainAfterExit: true,
         Type: "oneshot",
       })),
       unitConfig: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "spoolAreaPath"))]),
       })),
     })),
     "hylafax-faxq": nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       description: "HylaFAX queue manager",
       documentation: nix.thunk(() => ["man:faxq(8)"]),
       requires: nix.thunk(() => ["hylafax-spool.service"]),
@@ -241,7 +241,7 @@ fi
         })(), formals$4))),
       wantedBy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "autostart")), nix.thunk(() => ["multi-user.target"]))),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$27,
+        [nix.POS]: pos$27,
         Type: "forking",
         ExecStart: nix.thunk(() => nix.app(mkSpoolCmd, "", "faxq", null, nix.thunk(() => ({})))),
         ExecStartPost: nix.thunk(() => [nix.thunk(() => nix.str`${waitFaxqScript}`)]),
@@ -251,21 +251,21 @@ fi
       })),
     })),
     "hylafax-hfaxd@": nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       description: "HylaFAX server",
       documentation: nix.thunk(() => ["man:hfaxd(8)"]),
       after: nix.thunk(() => ["hylafax-faxq.service"]),
       requires: nix.thunk(() => ["hylafax-faxq.service"]),
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         StandardInput: "socket",
         StandardOutput: "socket",
-        ExecStart: nix.thunk(() => nix.app(mkSpoolCmd, "", "hfaxd", null, nix.thunk(() => ({ __proto__: pos$29, d: true, I: true })))),
+        ExecStart: nix.thunk(() => nix.app(mkSpoolCmd, "", "hfaxd", null, nix.thunk(() => ({ [nix.POS]: pos$29, d: true, I: true })))),
         PrivateDevices: null,
         PrivateNetwork: null,
       })),
       unitConfig: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "userAccessFile"))]),
       })),
     })),
@@ -277,16 +277,16 @@ fi
       const wantedBy = nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "faxcron", "enable", "spoolInit")), requires));
       const startAt = nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "faxcron", "enable", "frequency"), null)), nix.thunk(() => nix.sel(cfg, "faxcron", "enable", "frequency"))));
       const serviceConfig = nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         ExecStart: nix.thunk(() => nix.app(mkSpoolCmd, "", "faxcron", null, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             info: nix.thunk(() => nix.sel(cfg, "faxcron", "infoDays")),
             log: nix.thunk(() => nix.sel(cfg, "faxcron", "logDays")),
             rcv: nix.thunk(() => nix.sel(cfg, "faxcron", "rcvDays")),
           })))),
       }));
       return {
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         description,
         documentation,
         after,
@@ -304,9 +304,9 @@ fi
       const wantedBy = nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "faxqclean", "enable", "spoolInit")), requires));
       const startAt = nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "faxqclean", "enable", "frequency"), null)), nix.thunk(() => nix.sel(cfg, "faxqclean", "enable", "frequency"))));
       const serviceConfig = nix.thunk(() => ({
-        __proto__: pos$37,
+        [nix.POS]: pos$37,
         ExecStart: nix.thunk(() => nix.app(mkSpoolCmd, "", "faxqclean", null, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             v: true,
             a: nix.thunk(() => !nix.eq(nix.sel(cfg, "faxqclean", "archiving"), "never")),
             A: nix.thunk(() => nix.eq(nix.sel(cfg, "faxqclean", "archiving"), "always")),
@@ -315,7 +315,7 @@ fi
           })))),
       }));
       return {
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         description,
         documentation,
         after,
@@ -337,12 +337,12 @@ fi
         const after = nix.thunk(() => nix.concat(bindsTo, requires));
         const before = nix.thunk(() => ["hylafax-faxq.service", "getty.target"]);
         const unitConfig = nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           StopWhenUnneeded: true,
           AssertFileNotEmpty: nix.thunk(() => nix.str`${nix.sel(cfg, "spoolAreaPath")}/etc/config.%I`),
         }));
         const serviceConfig = nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           UtmpIdentifier: "%I",
           TTYPath: "/dev/%I",
           Restart: "always",
@@ -354,7 +354,7 @@ fi
           RestrictRealtime: null,
         }));
         return {
-          __proto__: pos$42,
+          [nix.POS]: pos$42,
           description,
           documentation,
           bindsTo,
@@ -368,11 +368,11 @@ fi
   })(), formals$5);
   const modemServices = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(mapModems, mkFaxgettyService))));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     config: nix.thunk(() => ({
-      __proto__: pos$44,
+      [nix.POS]: pos$44,
       systemd: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           sockets: sockets,
           timers: timers,
           paths: paths,

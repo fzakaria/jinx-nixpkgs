@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
       const pname = "clockify";
       const version = "2.3.2.2633";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250419021523/https://clockify.me/downloads/Clockify_Setup.AppImage",
           hash: "sha256-cQP1QkF2uWGsCjYjVdxPFLL8atAjT6rPQbPqeNX0QqQ=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
         return nix.str`install -Dm 444 ${appimageContents}/clockify.desktop -t $out/share/applications
 install -Dm 444 ${appimageContents}/clockify.png -t $out/share/icons
 
@@ -31,7 +31,7 @@ substituteInPlace $out/share/applications/clockify.desktop \\
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free time tracker and timesheet app that lets you track work hours across projects",
         homepage: "https://clockify.me",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -39,7 +39,7 @@ substituteInPlace $out/share/applications/clockify.desktop \\
         mainProgram: "clockify",
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
-      return { __proto__: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

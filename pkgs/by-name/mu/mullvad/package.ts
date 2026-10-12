@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mullvad",
       version: "2026.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mullvad",
           repo: "mullvadvpn-app",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
               return ["-p", target, "--bin", binary];
             })(), targets)));
         return nix.app(makeTargets, nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$2, target: "mullvad-cli", binary: "mullvad" })),
+            nix.thunk(() => ({ [nix.POS]: pos$2, target: "mullvad-cli", binary: "mullvad" })),
             "mullvad-daemon",
             "mullvad-setup",
             "mullvad-problem-report",
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, hasMullvadDaemon: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, hasMullvadDaemon: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Mullvad VPN daemon and command-line interface",
         longDescription: "**NOTE:** This package does not contain the Mullvad VPN graphical interface. The GUI to manage the Mullvad daemon is available on `pkgs.mullvad-vpn`.",
         homepage: "https://mullvad.net/",

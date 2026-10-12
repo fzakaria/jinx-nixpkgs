@@ -27,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const withBridgePatch = nix.argOr($, "withBridgePatch", () => true);
   const withLinuxPatch = nix.argOr($, "withLinuxPatch", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "balatro",
       version: "1.0.1o",
       src: nix.thunk(() => (nix.asBool(!nix.eq(overriddenSrc, null)) ? nix.force(overriddenSrc) : nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "Balatro.exe",
           url: "https://store.steampowered.com/app/2379780/Balatro/",
           message: "You must own Balatro in order to install it with Nix.  The Steam,\nGoogle Play, and Xbox PC versions are supported.\n\n- If you have the Steam version, you can use Balatro.exe.  Find it in\n\n  ~/.local/share/Steam/steamapps/common/Balatro/\n\n  and run\n\n  nix-store --add-fixed sha256 Balatro.exe\n\n- If you have the Google Play version, you'll need to pull base.apk from\n  your device:\n\n  adb shell pm path com.playstack.balatro.android\n  adb pull ( path from above )/base.apk ~/Downloads/com.playstack.balatro.android.apk\n\n  and add it to /nix/store:\n\n  nix-prefetch-url file:///home/deck/Downloads/com.playstack.balatro.android.apk\n\n- If you have the Xbox PC version, you can do the same with Assets.zip.\n\nIf you've used nix-prefetch-url to add it to your store, you'll need to\npass the resulting path to override:\n\n  balatro.override {\n    overriddenSrc = /nix/store/g44bp7ymc7qlkfv5f03b55cgs1wdmkzl-com.playstack.balatro.android.apk;\n  }\n",
           hash: "sha256-DXX+FkrM8zEnNNSzesmHiN0V8Ljk+buLf5DE5Z3pP0c=",
         }))))),
       srcIcon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "balatro.png",
           url: "https://play-lh.googleusercontent.com/RSPv_SMlA3Lun8VHaJD7xCBQg29eCJR9sNJtZNJGlybVs8byYVLz4WnohrbLScC9srg",
           hash: "sha256-GoStvXBYI8x5b8T0wwH5D5C3Kahu0ssCyOM8MoLxy8Q=",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "balatro",
             desktopName: "Balatro",
             exec: "balatro",
@@ -114,7 +114,7 @@ makeWrapper $out/share/Balatro $out/bin/balatro ${nix.app(nix.sel(lib, "optional
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Poker roguelike",
         longDescription: "Balatro is a hypnotically satisfying deckbuilder where you play illegal poker hands,\ndiscover game-changing jokers, and trigger adrenaline-pumping, outrageous combos.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

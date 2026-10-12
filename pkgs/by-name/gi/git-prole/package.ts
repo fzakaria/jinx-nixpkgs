@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
   const version = "0.5.3";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "git-prole",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "9999years",
           repo: "git-prole",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ installShellCompletion --cmd git-prole \\
   --zsh <(${emulator} $out/bin/git-prole completions zsh)
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/9999years/git-prole",
         changelog: nix.thunk(() => nix.str`https://github.com/9999years/git-prole/releases/tag/v${version}`),
         description: "`git-worktree(1)` manager",
@@ -57,7 +57,7 @@ installShellCompletion --cmd git-prole \\
         mainProgram: "git-prole",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     })));

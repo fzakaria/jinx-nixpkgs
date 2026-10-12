@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "textlint-rule-diacritics";
       const version = "1.0.0-unstable-2023-01-05";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sapegin",
           repo: "textlint-rule-diacritics",
           rev: "07977d866aa6ce514bc6ed3a1087b2bb5869bfb4",
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const dontCheckForBrokenSymlinks = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rule: textlint_rule_diacritics,
             testFile: nix.path(here, "./test.md"),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Textlint rule to check correct usage of diacritics",
         homepage: "https://github.com/sapegin/textlint-rule-diacritics?tab=readme-ov-file",
         changelog: nix.thunk(() => nix.str`https://github.com/sapegin/textlint-rule-diacritics/releases/tag/${nix.sel(src, "rev")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

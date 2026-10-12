@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           hash: "sha256-+49Yb+rZ3CzFnwEpwj5xrcMUVBiYOJtCk9YeZ15IM/U=",
           owner: "timbertson",
           repo: "nix-update-source",
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [nix_prefetch_scripts]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fetch: (path) => (() => {
           const fetchers = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             fetchgit: nix.thunk(() => nix.attr(pkgs, "fetchgit")),
             fetchurl: nix.thunk(() => nix.attr(pkgs, "fetchurl")),
             fetchFromGitHub: nix.thunk(() => nix.attr(pkgs, "fetchFromGitHub")),
@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
           const fetchFn = nix.thunk(() => nix.builtins.getAttr(nix.thunk(() => nix.sel(json, "fetch", "fn")), fetchers));
           const src_1 = nix.thunk(() => nix.app(fetchFn, nix.thunk(() => nix.sel(json, "fetch", "args"))));
           return nix.update(json, nix.update(nix.sel(json, "fetch"), {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             src: src_1,
-            overrideSrc: (drv) => nix.app(nix.sel(lib, "overrideDerivation"), drv, (orig) => ({ __proto__: pos$3, src: src_1 })),
+            overrideSrc: (drv) => nix.app(nix.sel(lib, "overrideDerivation"), drv, (orig) => ({ [nix.POS]: pos$3, src: src_1 })),
           }));
         })(),
         updateScript: nix.thunk(() => [
@@ -69,7 +69,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         ]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/timbertson/nix-update-source",
         description: "Utility to automate updating of nix derivation sources",
         maintainers: nix.thunk(() => (() => {
@@ -80,7 +80,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         mainProgram: "nix-update-source",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         format,

@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const dash = (before) => (after) => (nix.asBool(nix.eq(after, "")) ? nix.force(before) : (nix.asBool(nix.eq(before, "")) ? nix.force(after) : nix.str`${before}-${after}`));
   const makeNixosEtcFiles = (prefix) => (service) => (() => {
     const serviceConfigData = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => (cfg) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => (() => {
           nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), "/etc/system-services", nix.thunk(() => nix.sel(cfg, "path"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/system/service/systemd/system.nix:36:11");
           return nix.app(nix.sel(lib, "removePrefix"), "/etc/", nix.thunk(() => nix.sel(cfg, "path")));
         })()),
         value: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.attr(cfg, "enable")),
           source: nix.thunk(() => nix.attr(cfg, "source")),
         })),
@@ -49,27 +49,27 @@ export default nix.lambda((args) => (() => {
   const makeUnits = (unitType) => (prefix) => (service) => nix.update(nix.app(concatMapAttrs, (unitName) => (unitModule) => nix.attrsDyn({}, [
       [nix.str`${nix.app(dash, prefix, unitName)}`, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
-        return { __proto__: pos$3, imports: nix.thunk(() => [unitModule]) };
+        return { [nix.POS]: pos$3, imports: nix.thunk(() => [unitModule]) };
       })(), formals$2)],
     ]), nix.thunk(() => nix.sel(service, "systemd", nix.key(nix.force(unitType))))), nix.app(concatMapAttrs, (subServiceName) => (subService) => nix.app(makeUnits, unitType, nix.thunk(() => nix.app(dash, prefix, subServiceName)), subService), nix.thunk(() => nix.sel(service, "services"))));
   const modularServiceConfiguration = nix.thunk(() => nix.app(nix.sel(portable_lib, "configure"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       serviceManagerPkgs: pkgs,
       extraRootModules: nix.thunk(() => [nix.path(here, "./service.nix"), nix.path(here, "./config-data-path.nix")]),
       extraRootSpecialArgs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         systemdPackage: nix.thunk(() => nix.sel(config, "systemd", "package")),
       })),
     }))));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     _class: "nixos",
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       system: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "A collection of NixOS [modular services](https://nixos.org/manual/nixos/unstable/#modular-services) that are configured as systemd services.\n",
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(modularServiceConfiguration, "serviceSubmodule")))),
             default: nix.thunk(() => ({})),
@@ -78,16 +78,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       assertions: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (name) => (cfg) => nix.app(nix.sel(portable_lib, "getAssertions"), nix.thunk(() => nix.concat(nix.sel(options, "system", "services", "loc"), [name])), cfg), nix.thunk(() => nix.sel(config, "system", "services")))))),
       warnings: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(mapAttrsToList, (name) => (cfg) => nix.app(nix.sel(portable_lib, "getWarnings"), nix.thunk(() => nix.concat(nix.sel(options, "system", "services", "loc"), [name])), cfg), nix.thunk(() => nix.sel(config, "system", "services")))))),
       systemd: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => nix.app(concatMapAttrs, (serviceName) => (topLevelService) => nix.app(makeUnits, "services", serviceName, topLevelService), nix.thunk(() => nix.sel(config, "system", "services")))),
         sockets: nix.thunk(() => nix.app(concatMapAttrs, (serviceName) => (topLevelService) => nix.app(makeUnits, "sockets", serviceName, topLevelService), nix.thunk(() => nix.sel(config, "system", "services")))),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         etc: nix.thunk(() => nix.app(concatMapAttrs, (serviceName) => (topLevelService) => nix.app(makeNixosEtcFiles, serviceName, topLevelService), nix.thunk(() => nix.sel(config, "system", "services")))),
       })),
     })),

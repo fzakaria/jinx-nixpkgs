@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libcompiler_rt = nix.arg($, "libcompiler_rt");
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libcMinimal",
       path: "lib/libc",
       extraPaths: nix.thunk(() => nix.concat([
@@ -63,7 +63,7 @@ substituteInPlace $BSDSRCDIR/include/paths.h --replace '/usr/share/i18n' '${i18n
       postInstall: "make -C $BSDSRCDIR/lib/libc_nonshared $makeFlags install\n",
       alwaysKeepStatic: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         MK_TESTS: "no",
         MK_SYMVER: "yes",
         MK_SSP: "yes",

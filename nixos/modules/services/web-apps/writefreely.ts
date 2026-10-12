@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.thunk(() => nix.attr(pkgs, "sqlite"));
   const openssl = nix.thunk(() => nix.attr(pkgs, "openssl"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       mkKeyValue: (key) => (value) => (() => {
         const value$ = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => (nix.asBool(nix.builtins.isBool(value)) ? (nix.asBool(nix.eq(value, true)) ? "true" : "false") : nix.app(toString, value)))));
         return nix.str`${key} = ${value$}`;
@@ -103,18 +103,18 @@ export default nix.lambda((args) => (() => {
   const isMysqlLocal = nix.thunk(() => (nix.asBool(isMysql) && nix.asBool(nix.eq(nix.sel(cfg, "database", "createLocally"), true))));
   const hostProtocol = nix.thunk(() => (nix.asBool(nix.sel(cfg, "acme", "enable")) ? "https" : "http"));
   const settings = nix.thunk(() => nix.update(nix.sel(cfg, "settings"), {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     app: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "app"), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       host: nix.thunk(() => nix.selOr(cfg, () => nix.str`${hostProtocol}://${nix.sel(cfg, "host")}`, "settings", "app", "host")),
     })),
     database: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "sqlite3")) ? {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       type: "sqlite3",
       filename: nix.thunk(() => nix.selOr(cfg, () => "writefreely.db", "settings", "database", "filename")),
       database: nix.thunk(() => nix.sel(cfg, "database", "name")),
     } : {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       type: "mysql",
       username: nix.thunk(() => nix.sel(cfg, "database", "user")),
       password: "#dbpass#",
@@ -124,7 +124,7 @@ export default nix.lambda((args) => (() => {
       tls: nix.thunk(() => nix.sel(cfg, "database", "tls")),
     })),
     server: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "server"), {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       bind: nix.thunk(() => nix.selOr(cfg, () => "localhost", "settings", "server", "bind")),
       gopher_port: nix.thunk(() => nix.selOr(cfg, () => 0n, "settings", "server", "gopher_port")),
       autocert: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "nginx", "enable"))) && nix.asBool(nix.sel(cfg, "acme", "enable")))),
@@ -133,13 +133,13 @@ export default nix.lambda((args) => (() => {
       pages_parent_dir: nix.thunk(() => nix.selOr(cfg, () => nix.sel(cfg, "package", "src"), "settings", "server", "pages_parent_dir")),
       keys_parent_dir: nix.thunk(() => nix.selOr(cfg, () => nix.sel(cfg, "stateDir"), "settings", "server", "keys_parent_dir")),
     })),
-    email: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "email"), { __proto__: pos$6, smtp_password: "#smtppass#" })),
+    email: nix.thunk(() => nix.update(nix.selOr(cfg, () => ({}), "settings", "email"), { [nix.POS]: pos$6, smtp_password: "#smtppass#" })),
   }));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.ini", settings));
   const assets = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cfg, "package"));
       return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "writefreely-assets",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -189,62 +189,62 @@ ${text}
 ${text}
 `));
   return {
-    __proto__: pos$71,
+    [nix.POS]: pos$71,
     options: nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       services: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         writefreely: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Writefreely, build a digital writing community")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "writefreely", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/writefreely",
               description: "The state directory where keys and data are stored.",
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "writefreely",
               description: "User under which Writefreely is ran.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "writefreely",
               description: "Group under which Writefreely is ran.",
             })))),
           host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               description: "The public host name to serve.",
               example: "example.com",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: nix.thunk(() => ({})),
               description: "Writefreely configuration ({file}`config.ini`). Refer to\n<https://writefreely.org/docs/latest/admin/config>\nfor details.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     app: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       theme: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "write",
                           description: "The theme to apply.",
                         })))),
                     })),
                     server: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "nginx", "enable")) ? 18080n : 80n)),
                           defaultText: "80",
@@ -255,73 +255,73 @@ ${text}
                 })))),
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlite3", "mysql"]))),
                 default: "sqlite3",
                 description: "The database provider to use.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "writefreely",
                 description: "The name of the database to store data in.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) ? "writefreely" : null)),
                 defaultText: "writefreely",
                 description: "The database user to connect as.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: "The file to load the database password from.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 description: "The database host to connect to.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 3306n,
                 description: "The port used when connecting to the database host.",
               })))),
             tls: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether or not TLS should be used for the database connection.",
               })))),
             migrate: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether or not to automatically run migrations on startup.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "When {option}`services.writefreely.database.type` is set to\n`\"mysql\"`, this option will enable the MySQL service locally.\n",
               })))),
           })),
           admin: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 description: "The name of the first admin user.",
                 default: null,
               })))),
             initialPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(types, "path")),
                 description: "Path to a file containing the initial password for the admin user.\nIf not provided, the default password will be set to `nixos`.\n",
                 default: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "default-admin-pass", "nixos")),
@@ -329,33 +329,33 @@ ${text}
               })))),
           })),
           email: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             smtpPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 description: "The file to load the password for the smtp email server.",
               })))),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether or not to enable and configure nginx as a proxy for WriteFreely.",
               })))),
             forceSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether or not to force the use of SSL.",
               })))),
           })),
           acme: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Whether or not to automatically fetch and configure SSL certs.",
@@ -365,48 +365,48 @@ ${text}
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "host"), "")),
             message: "services.writefreely.host must be set",
           })),
           nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertion: nix.thunk(() => (!nix.asBool(isMysqlLocal) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "services.writefreely.database.passwordFile must be set if services.writefreely.database.createLocally is set to true",
           })),
           nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             assertion: nix.thunk(() => (!nix.asBool(isSqlite) || nix.asBool(!nix.asBool(nix.sel(cfg, "database", "createLocally"))))),
             message: "services.writefreely.database.createLocally has no use when services.writefreely.database.type is set to sqlite3",
           })),
         ]),
         users: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           users: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "writefreely")), nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               writefreely: nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 home: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "writefreely")), nix.thunk(() => ({ __proto__: pos$48, writefreely: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "writefreely")), nix.thunk(() => ({ [nix.POS]: pos$48, writefreely: nix.thunk(() => ({})) })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             settings: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               "10-writefreely": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "stateDir"), nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   d: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                     mode: "0750",
@@ -416,14 +416,14 @@ ${text}
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             writefreely: nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(optional, isSqlite, "writefreely-sqlite-init.service"), nix.concat(nix.app(optional, isMysql, "writefreely-mysql-init.service"), nix.app(optional, isMysqlLocal, "mysql.service"))))),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [openssl]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$54,
+                [nix.POS]: pos$54,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -445,10 +445,10 @@ fi
 `),
             })),
             "writefreely-sqlite-init": nix.thunk(() => nix.app(mkIf, isSqlite, nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$56,
+                  [nix.POS]: pos$56,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -475,11 +475,11 @@ ${createAdmin}
                 })()),
               })))),
             "writefreely-mysql-init": nix.thunk(() => nix.app(mkIf, isMysql, nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => nix.app(optional, isMysqlLocal, "mysql.service")),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$58,
+                  [nix.POS]: pos$58,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -515,33 +515,33 @@ ${createAdmin}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           mysql: nix.thunk(() => nix.app(mkIf, isMysqlLocal, nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               enable: true,
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$63,
+                  [nix.POS]: pos$63,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
-                  ensurePermissions: nix.thunk(() => nix.attrsDyn({ __proto__: pos$62, "*.*": "CREATE USER, RELOAD" }, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
+                  ensurePermissions: nix.thunk(() => nix.attrsDyn({ [nix.POS]: pos$62, "*.*": "CREATE USER, RELOAD" }, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               enable: true,
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "host")}`, nix.thunk(() => ({
-                  __proto__: pos$67,
+                  [nix.POS]: pos$67,
                   enableACME: nix.thunk(() => nix.sel(cfg, "acme", "enable")),
                   forceSSL: nix.thunk(() => nix.sel(cfg, "nginx", "forceSSL")),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$66,
+                    [nix.POS]: pos$66,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$65,
+                      [nix.POS]: pos$65,
                       proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.app(toString, nix.thunk(() => nix.sel(settings, "server", "port")))}`),
                     })),
                   })),

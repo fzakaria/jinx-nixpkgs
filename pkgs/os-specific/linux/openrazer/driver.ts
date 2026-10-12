@@ -17,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const util_linux = nix.arg($, "util-linux");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../development/python-modules/openrazer/common.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../development/python-modules/openrazer/common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openrazer",
       version: nix.thunk(() => nix.str`${nix.sel(common, "version")}-${nix.sel(kernel, "version")}`),
       nativeBuildInputs: nix.thunk(() => nix.concat([udevCheckHook], nix.sel(kernel, "moduleBuildDependencies"))),
@@ -49,7 +49,7 @@ runHook postInstall
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Entirely open source Linux driver that allows you to manage your Razer peripherals on GNU/Linux",
         mainProgram: "razer_mount",
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "4.19")),

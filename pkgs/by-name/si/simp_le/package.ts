@@ -21,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const bash = nix.arg($, "bash");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       self: python,
       packageOverrides: (self) => (super$) => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         certbot: nix.thunk(() => nix.app(nix.sel(super$, "certbot", "overridePythonAttrs"), nix.thunk(() => (() => {
             const version = "3.1.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 owner: "certbot",
                 repo: "certbot",
                 tag: nix.thunk(() => nix.str`v${version}`),
                 hash: "sha256-lYGJgUNDzX+bE64GJ+djdKR+DXmhpcNbFJrAEnP86yQ=",
               }))));
-            return { __proto__: pos$2, version, src };
+            return { [nix.POS]: pos$2, version, src };
           })()))),
         josepy: nix.thunk(() => nix.app(nix.sel(super$, "josepy", "overridePythonAttrs"), (old) => (() => {
             const version = "1.15.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 owner: "certbot",
                 repo: "josepy",
                 tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.lookup(w, "cryptography")),
               ];
             })());
-            return { __proto__: pos$4, version, src, dependencies };
+            return { [nix.POS]: pos$4, version, src, dependencies };
           })())),
       }),
     }))));
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: pname,
           version: version,
           hash: "sha256-p6+OF8MuAzcdTV4/CvZpjGaOrg7xcNuEddk7yC2sXIE=",
@@ -88,7 +88,7 @@ substituteInPlace simp_le.py \\
       })());
       const checkPhase = "runHook preCheck\n$out/bin/simp_le --test\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/zenhack/simp_le",
         description: "Simple Let's Encrypt client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -99,7 +99,7 @@ substituteInPlace simp_le.py \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         pyproject,

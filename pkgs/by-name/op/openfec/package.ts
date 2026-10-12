@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openfec",
       version: "1.4.2.12",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/roc-streaming/openfec/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KOP3LqCZHdEgm+XhzBdNxnJipGC4gpvA57T7mIeSyaE=",
         })))),
@@ -45,15 +45,15 @@ install -D -m755 -t $out/lib ../bin/Release/libopenfec${so}
 `);
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/roc-streaming/openfec.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Application-level Forward Erasure Correction codes",
         homepage: "https://github.com/roc-streaming/openfec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),

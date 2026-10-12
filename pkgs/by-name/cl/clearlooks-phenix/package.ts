@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "7.1",
       pname: "clearlooks-phenix",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jpfleury/clearlooks-phenix/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-UJgKPoNcpBkIxITAIn3INsANJn/hD8l9NCr/entbZx8=",
         })))),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/share/themes/Clearlooks-Phenix\ncp -r . $out/share/themes/Clearlooks-Phenix/\n",
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK3 port of the Clearlooks theme",
         longDescription: "The Clearlooks-Phénix project aims at creating a GTK3 port of Clearlooks,\nthe default theme for Gnome 2. Style is also included for GTK2, Unity and\nfor Metacity, Openbox and Xfwm4 window managers.\n",
         homepage: "https://github.com/jpfleury/clearlooks-phenix",

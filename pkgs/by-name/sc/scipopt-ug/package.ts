@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const scipVersion = "10.0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/scipopt/scip/releases/download/v${scipVersion}/scipoptsuite-${scipVersion}.tgz`),
           hash: "sha256-U5tbgGCzUkDL/22RwQLQmvCjSAhxehJe0P5rwNupW6Q=",
         }))));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [scipopt_scip, mpi, zlib, gmp]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "pmeinhold"))];
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://ug.zib.de",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         scipVersion,

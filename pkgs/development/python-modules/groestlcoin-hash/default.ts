@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "groestlcoin-hash",
       version: "1.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "groestlcoin_hash",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Maj2+kwZ21JYw8c8BxtxcCECyBW6hitgFdnkt17OIx4=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonImportsCheck: nix.thunk(() => ["groestlcoin_hash"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bindings for groestl key derivation function library used in Groestlcoin",
         homepage: "https://github.com/Groestlcoin/groestlcoin-hash-python",
         maintainers: nix.thunk(() => (() => {

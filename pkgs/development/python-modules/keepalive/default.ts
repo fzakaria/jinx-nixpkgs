@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-PGuW+QYqWnYCLwydQenvVVLYCxyt1PzMG/jxg7odHsE=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-use_2to3.patch",
             url: "https://github.com/wikier/keepalive/commit/64393f6c5bf9c69d946b584fd664dd4df72604e6.patch",
             hash: "sha256-/G1eEt8a4Qz7x5oQnDZZD/PIQwo9+oPZoy9OrXGHvR4=",
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP handler for `urllib` that supports HTTP 1.1 and keepalive",
         homepage: "https://github.com/wikier/keepalive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       }));
-      return { __proto__: pos$4, pname, version, format, src, patches, doCheck, meta };
+      return { [nix.POS]: pos$4, pname, version, format, src, patches, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -163,7 +163,7 @@ export default nix.lambda((args) => (() => {
     const readmeFile = nix.arg($_1, "readmeFile");
     const dictFileName = nix.arg($_1, "dictFileName");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: pname,
         installPhase: nix.thunk(() => nix.str`runHook preInstall
 # hunspell dicts
@@ -192,14 +192,14 @@ runHook postInstall
         const pname = nix.thunk(() => nix.str`hunspell-dict-${shortName}-rla`);
         const readmeFile = "README.txt";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             owner: "sbosio",
             repo: "rla-es",
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: "sha256-oGnxOGHzDogzUMZESydIxRTbq9Dmd03flwHx16AK1yk=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: nix.thunk(() => nix.str`Hunspell dictionary for ${shortDescription} from rla`),
           homepage: "https://github.com/sbosio/rla-es",
           license: nix.thunk(() => (() => {
@@ -230,7 +230,7 @@ unzip ${dictFileName_1}.zip \\
   ${dictFileName_1}.dic ${dictFileName_1}.aff ${readmeFile}
 `);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           dictFileName: dictFileName_1,
           version,
           pname,
@@ -256,12 +256,12 @@ unzip ${dictFileName_1}.zip \\
         const _name = nix.thunk(() => nix.str`ooo_swedish_dict_${_version}`);
         const readmeFile = "LICENSE_en_US.txt";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`https://extensions.libreoffice.org/extensions/swedish-spelling-dictionary-den-stora-svenska-ordlistan/${version}/@@download/file/${_name}.oxt`),
             sha256: "b982881cc75f5c4af1199535bd4735ee476bdc48edf63e3f05fb4f715654a7bc",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           longDescription: "Svensk ordlista baserad på DSSO (den stora svenska ordlistan) och Göran\nAnderssons (goran@init.se) arbete med denna. Ordlistan hämtas från\nLibreOffice då dsso.se inte längre verkar vara med oss.\n",
           description: nix.thunk(() => nix.str`Hunspell dictionary for ${shortDescription} from LibreOffice`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -284,7 +284,7 @@ install -dm755 "$out/share/doc"
 install -m644 ${readmeFile} $out/share/doc/${pname}.txt
 `);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           dictFileName: dictFileName_1,
           version,
           _version,
@@ -313,12 +313,12 @@ install -m644 ${readmeFile} $out/share/doc/${pname}.txt
         const pname = nix.thunk(() => nix.str`hunspell-dict-${shortName}-dicollecte`);
         const readmeFile = "README_dict_fr.txt";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             url: nix.thunk(() => nix.str`http://www.dicollecte.org/download/fr/hunspell-french-dictionaries-v${version}.zip`),
             sha256: "0ca7084jm7zb1ikwzh1frvpb97jn27i7a5d48288h2qlfp068ik0",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           longDescription: longDescription,
           description: nix.thunk(() => nix.str`Hunspell dictionary for ${shortDescription} from Dicollecte`),
           homepage: "https://www.dicollecte.org/home.php?prj=fr",
@@ -339,7 +339,7 @@ install -m644 ${readmeFile} $out/share/doc/${pname}.txt
 done
 `)));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           dictFileName: dictFileName_1,
           version,
           pname,
@@ -369,7 +369,7 @@ done
         const srcReadmeFile = nix.thunk(() => nix.add(nix.add("README_", srcFileName_1), ".txt"));
         const readmeFile = nix.thunk(() => nix.add(nix.add("README_", dictFileName_1), ".txt"));
         const meta = nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           description: nix.thunk(() => nix.str`Hunspell dictionary for ${shortDescription} from Wordlist`),
           homepage: "http://wordlist.aspell.net/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -388,7 +388,7 @@ mv ${srcFileName_1}.aff ${dictFileName_1}.aff || true
 mv ${srcReadmeFile} ${readmeFile}         || true
 `);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           src: src_1,
           srcFileName: srcFileName_1,
           dictFileName: dictFileName_1,
@@ -417,7 +417,7 @@ mv ${srcReadmeFile} ${readmeFile}         || true
         const pname = nix.thunk(() => nix.str`hunspell-dict-${shortName}-linguistico`);
         const readmeFile = nix.thunk(() => nix.add(dictFileName_1, "_README.txt"));
         const meta = nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           description: nix.thunk(() => nix.str`Hunspell dictionary for ${shortDescription}`),
           homepage: "https://sourceforge.net/projects/linguistico/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -435,7 +435,7 @@ sed '/^\\/$/d' -i ${dictFileName_1}.dic
         const unpackCmd = nix.thunk(() => nix.str`unzip $src ${dictFileName_1}.dic ${dictFileName_1}.aff ${readmeFile}
 `);
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           src: src_1,
           dictFileName: dictFileName_1,
           version,
@@ -457,7 +457,7 @@ sed '/^\\/$/d' -i ${dictFileName_1}.dic
     const longDescription = nix.arg($_1, "longDescription");
     const dictFileName = nix.arg($_1, "dictFileName");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: nix.thunk(() => nix.str`hunspell-dict-${shortName}-xuxen`),
         version: "5-2015.11.10",
         srcs: srcs,
@@ -473,7 +473,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.dic" "$out/share/myspell/dicts/"
 ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           homepage: "https://xuxen.eus/",
           description: shortDescription,
           longDescription: longDescription,
@@ -495,7 +495,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
         const pname = nix.thunk(() => nix.str`hunspell-dict-${shortName}-j3e`);
         const version = "20161207";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             url: nix.thunk(() => nix.str`https://j3e.de/ispell/igerman98/dict/igerman98-${version}.tar.bz2`),
             sha256: "1a3055hp2bc4q4nlg3gmg0147p3a1zlfnc65xiv2v9pyql1nya8p",
           }))));
@@ -513,7 +513,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.dic" "$out/share/myspell/dicts/"
 ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           homepage: "https://www.j3e.de/ispell/igerman98/index_en.html",
           description: shortDescription,
           license: nix.thunk(() => (() => {
@@ -530,7 +530,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           pname,
           version,
           src,
@@ -555,7 +555,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
         const dictFileName_1 = dictFileName;
         const readmeFile_1 = readmeFile;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             owner: "LibreOffice",
             repo: "dictionaries",
             rev: nix.thunk(() => nix.str`libreoffice-${version}`),
@@ -564,7 +564,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
         const buildPhase = nix.thunk(() => nix.str`cp -a ${sourceRoot}/* .
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           homepage: "https://wiki.documentfoundation.org/Development/Dictionaries",
           description: nix.thunk(() => nix.str`Hunspell dictionary for ${shortDescription} from LibreOffice`),
           license: license,
@@ -575,7 +575,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           pname,
           version,
           dictFileName: dictFileName_1,
@@ -588,285 +588,285 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
   })(), formals$10);
   return (() => {
     const en_us = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         shortName: "en-us",
         shortDescription: "English (United States)",
         srcFileName: "en_US",
         dictFileName: "en_US",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_US-2026.02.25.zip",
             hash: "sha256-rI5zMQ6VHYjFLCzyulTOrKNPhIaoFjCsinXcX5MRefk=",
           })))),
       }))));
     const en_US = en_us;
     const en_us_large = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         shortName: "en-us-large",
         shortDescription: "English (United States) Large",
         srcFileName: "en_US-large",
         dictFileName: "en_US",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_US-large-2026.02.25.zip",
             hash: "sha256-BqtaKhLCkDPxAJiNOwpeU9ytQL8kc8y3gnBhnR2pkyE=",
           })))),
       }))));
     const en_US_large = en_us_large;
     const en_ca = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         shortName: "en-ca",
         shortDescription: "English (Canada)",
         srcFileName: "en_CA",
         dictFileName: "en_CA",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_CA-2026.02.25.zip",
             hash: "sha256-Kf4AUECMNWFPIr6oQzi0JWliyJ9e8l2sUDgyW8uG9CQ=",
           })))),
       }))));
     const en_CA = en_ca;
     const en_ca_large = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         shortName: "en-ca-large",
         shortDescription: "English (Canada) Large",
         srcFileName: "en_CA-large",
         dictFileName: "en_CA",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_CA-large-2026.02.25.zip",
             hash: "sha256-tLe/SniF3hw1+hs6poMXIJr6WPBNYOigfhJGk0hcWeM=",
           })))),
       }))));
     const en_CA_large = en_ca_large;
     const en_au = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         shortName: "en-au",
         shortDescription: "English (Australia)",
         srcFileName: "en_AU",
         dictFileName: "en_AU",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_AU-2026.02.25.zip",
             hash: "sha256-+FRxWTuXRPZCmMAtB/ti1Ykmv4H7XkVS4rrGRb+kAeA=",
           })))),
       }))));
     const en_AU = en_au;
     const en_au_large = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         shortName: "en-au-large",
         shortDescription: "English (Australia) Large",
         srcFileName: "en_AU-large",
         dictFileName: "en_AU",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_AU-large-2026.02.25.zip",
             hash: "sha256-RqJliD0dAciJtxc7ocq64MqRWqQD1qL5PO5MxmEIfbQ=",
           })))),
       }))));
     const en_AU_large = en_au_large;
     const en_gb_ise = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         shortName: "en-gb-ise",
         shortDescription: "English (United Kingdom, 'ise' ending)",
         srcFileName: "en_GB-ise",
         dictFileName: "en_GB",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_GB-ise-2026.02.25.zip",
             hash: "sha256-1vu5GueCTFL7AvdNe8LNkJLxMPrsYPQjJqWUN/pyR6M=",
           })))),
       }))));
     const en_GB_ise = en_gb_ise;
     const en_gb_ize = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         shortName: "en-gb-ize",
         shortDescription: "English (United Kingdom, 'ize' ending)",
         srcFileName: "en_GB-ize",
         dictFileName: "en_GB",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_GB-ize-2026.02.25.zip",
             hash: "sha256-xb3ZL8HiHadQOTn+QTnzbyjwHBisNeL8kLUmobe/sJk=",
           })))),
       }))));
     const en_GB_ize = en_gb_ize;
     const en_gb_large = nix.thunk(() => nix.app(mkDictFromWordlist, nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         shortName: "en-gb-large",
         shortDescription: "English (United Kingdom) Large",
         srcFileName: "en_GB-large",
         dictFileName: "en_GB",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             url: "mirror://sourceforge/wordlist/speller/2026.02.25/hunspell-en_GB-large-2026.02.25.zip",
             hash: "sha256-cEpJQ4o6nU8RzXbbQzprIwuc6HcO4T+ihwAFLEUX3cE=",
           })))),
       }))));
     const en_GB_large = en_gb_large;
     const es_any = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         shortName: "es-any",
         shortDescription: "Spanish (any variant)",
         dictFileName: "es_ANY",
       }))));
     const es_ANY = es_any;
     const es_ar = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         shortName: "es-ar",
         shortDescription: "Spanish (Argentina)",
         dictFileName: "es_AR",
       }))));
     const es_AR = es_ar;
     const es_bo = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         shortName: "es-bo",
         shortDescription: "Spanish (Bolivia)",
         dictFileName: "es_BO",
       }))));
     const es_BO = es_bo;
     const es_cl = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         shortName: "es-cl",
         shortDescription: "Spanish (Chile)",
         dictFileName: "es_CL",
       }))));
     const es_CL = es_cl;
     const es_co = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         shortName: "es-co",
         shortDescription: "Spanish (Colombia)",
         dictFileName: "es_CO",
       }))));
     const es_CO = es_co;
     const es_cr = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         shortName: "es-cr",
         shortDescription: "Spanish (Costa Rica)",
         dictFileName: "es_CR",
       }))));
     const es_CR = es_cr;
     const es_cu = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         shortName: "es-cu",
         shortDescription: "Spanish (Cuba)",
         dictFileName: "es_CU",
       }))));
     const es_CU = es_cu;
     const es_do = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$48,
+        [nix.POS]: pos$48,
         shortName: "es-do",
         shortDescription: "Spanish (Dominican Republic)",
         dictFileName: "es_DO",
       }))));
     const es_DO = es_do;
     const es_ec = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         shortName: "es-ec",
         shortDescription: "Spanish (Ecuador)",
         dictFileName: "es_EC",
       }))));
     const es_EC = es_ec;
     const es_es = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         shortName: "es-es",
         shortDescription: "Spanish (Spain)",
         dictFileName: "es_ES",
       }))));
     const es_ES = es_es;
     const es_gt = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         shortName: "es-gt",
         shortDescription: "Spanish (Guatemala)",
         dictFileName: "es_GT",
       }))));
     const es_GT = es_gt;
     const es_hn = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         shortName: "es-hn",
         shortDescription: "Spanish (Honduras)",
         dictFileName: "es_HN",
       }))));
     const es_HN = es_hn;
     const es_mx = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         shortName: "es-mx",
         shortDescription: "Spanish (Mexico)",
         dictFileName: "es_MX",
       }))));
     const es_MX = es_mx;
     const es_ni = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         shortName: "es-ni",
         shortDescription: "Spanish (Nicaragua)",
         dictFileName: "es_NI",
       }))));
     const es_NI = es_ni;
     const es_pa = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         shortName: "es-pa",
         shortDescription: "Spanish (Panama)",
         dictFileName: "es_PA",
       }))));
     const es_PA = es_pa;
     const es_pe = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$56,
+        [nix.POS]: pos$56,
         shortName: "es-pe",
         shortDescription: "Spanish (Peru)",
         dictFileName: "es_PE",
       }))));
     const es_PE = es_pe;
     const es_pr = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         shortName: "es-pr",
         shortDescription: "Spanish (Puerto Rico)",
         dictFileName: "es_PR",
       }))));
     const es_PR = es_pr;
     const es_py = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$58,
+        [nix.POS]: pos$58,
         shortName: "es-py",
         shortDescription: "Spanish (Paraguay)",
         dictFileName: "es_PY",
       }))));
     const es_PY = es_py;
     const es_sv = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         shortName: "es-sv",
         shortDescription: "Spanish (El Salvador)",
         dictFileName: "es_SV",
       }))));
     const es_SV = es_sv;
     const es_uy = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         shortName: "es-uy",
         shortDescription: "Spanish (Uruguay)",
         dictFileName: "es_UY",
       }))));
     const es_UY = es_uy;
     const es_ve = nix.thunk(() => nix.app(mkDictFromRla, nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         shortName: "es-ve",
         shortDescription: "Spanish (Venezuela)",
         dictFileName: "es_VE",
       }))));
     const es_VE = es_ve;
     const fr_any = nix.thunk(() => nix.app(mkDictFromDicollecte, nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         shortName: "fr-any",
         dictFileName: "fr-toutesvariantes",
         shortDescription: "French (any variant)",
         longDescription: "Ce dictionnaire contient les nouvelles et les anciennes graphies des\nmots concernés par la réforme de 1990.\n",
       }))));
     const fr_classique = nix.thunk(() => nix.app(mkDictFromDicollecte, nix.thunk(() => ({
-        __proto__: pos$63,
+        [nix.POS]: pos$63,
         shortName: "fr-classique",
         dictFileName: "fr-classique",
         shortDescription: "French (classic)",
         longDescription: "Ce dictionnaire est une extension du dictionnaire «Moderne» et propose\nen sus des graphies alternatives, parfois encore très usitées, parfois\ntombées en désuétude.\n",
       }))));
     const fr_moderne = nix.thunk(() => nix.app(mkDictFromDicollecte, nix.thunk(() => ({
-        __proto__: pos$64,
+        [nix.POS]: pos$64,
         shortName: "fr-moderne",
         dictFileName: "fr-moderne",
         shortDescription: "French (modern)",
@@ -874,38 +874,38 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
         isDefault: true,
       }))));
     const fr_reforme1990 = nix.thunk(() => nix.app(mkDictFromDicollecte, nix.thunk(() => ({
-        __proto__: pos$65,
+        [nix.POS]: pos$65,
         shortName: "fr-reforme1990",
         dictFileName: "fr-reforme1990",
         shortDescription: "French (1990 reform)",
         longDescription: "Ce dictionnaire ne connaît que les graphies nouvelles des mots concernés\npar la réforme de 1990.\n",
       }))));
     const it_it = nix.thunk(() => nix.app(mkDictFromLinguistico, nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         shortName: "it-it",
         dictFileName: "it_IT",
         shortDescription: "Hunspell dictionary for 'Italian (Italy)' from Linguistico",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             url: "mirror://sourceforge/linguistico/italiano_2_4_2007_09_01.zip",
             sha256: "0m9frz75fx456bczknay5i446gdcp1smm48lc0qfwzhz0j3zcdrd",
           })))),
       }))));
     const it_IT = it_it;
     const eu_es = nix.thunk(() => nix.app(mkDictFromXuxen, nix.thunk(() => ({
-        __proto__: pos$70,
+        [nix.POS]: pos$70,
         shortName: "eu-es",
         dictFileName: "eu_ES",
         shortDescription: "Basque (Xuxen 5)",
         longDescription: "Itxura berritzeaz gain, testuak zuzentzen laguntzeko zenbait hobekuntza\negin dira Xuxen.eus-en. Lexikoari dagokionez, 18645 sarrera berri erantsi\nditugu, eta proposamenak egiteko sistema ere aldatu dugu. Esate baterako,\ngaizki idatzitako hitz baten inguruko proposamenak eskuratzeko, euskaraz\nidaztean egiten ditugun akats arruntenak hartu dira kontuan. Sistemak\nematen dituen proposamenak ordenatzeko, berriz, aipatutako irizpidea\nerabiltzeaz gain, Internetetik automatikoki eskuratutako euskarazko corpus\nbateko datuen arabera ordenatu daitezke emaitzak. Erabiltzaileak horrela\nordenatu nahi baditu proposamenak, hautatu egin behar du aukera hori\ntestu-kutxaren azpian dituen aukeren artean. Interesgarria da proposamenak\nordenatzeko irizpide hori, hala sistemak formarik erabilienak proposatuko\nbaitizkigu gutxiago erabiltzen direnen aurretik.\n",
         srcs: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               url: "http://xuxen.eus/static/hunspell/eu_ES.aff",
               sha256: "12w2j6phzas2rdzc7f20jnk93sm59m2zzfdgxv6p8nvcvbrkmc02",
             })))),
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               url: "http://xuxen.eus/static/hunspell/eu_ES.dic",
               sha256: "0lw193jr7ldvln5x5z9p21rz1by46h0say9whfcw2kxs9vprd5b3",
             })))),
@@ -913,7 +913,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
       }))));
     const eu_ES = eu_es;
     const hu_hu = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$71,
+        [nix.POS]: pos$71,
         shortName: "hu-hu",
         dictFileName: "hu_HU",
         shortDescription: "Hungarian (Hungary)",
@@ -927,14 +927,14 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
       }))));
     const hu_HU = hu_hu;
     const sv_se = nix.thunk(() => nix.app(mkDictFromDSSO, nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         shortName: "sv-se",
         dictFileName: "sv_SE",
         shortDescription: "Swedish (Sweden)",
       }))));
     const sv_SE = sv_se;
     const sv_fi = nix.thunk(() => nix.app(mkDictFromDSSO, nix.thunk(() => ({
-        __proto__: pos$73,
+        [nix.POS]: pos$73,
         shortName: "sv-fi",
         dictFileName: "sv_FI",
         shortDescription: "Swedish (Finland)",
@@ -945,7 +945,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
         const name = pname;
         const version = "20030606";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             url: nix.thunk(() => nix.str`http://www.meso.ee/~jjpp/speller/ispell-et_${version}.tar.gz`),
             sha256: "sha256-MVfKekzq2RKZONsz2Ey/xSRlh2bln46YO5UdGNkFdxk=",
           }))));
@@ -955,7 +955,7 @@ ln -sv "$out/share/hunspell/${dictFileName}.aff" "$out/share/myspell/dicts/"
 mv latin-1/${dictFileName}.aff ./
 `);
         return {
-          __proto__: pos$75,
+          [nix.POS]: pos$75,
           pname,
           name,
           version,
@@ -967,21 +967,21 @@ mv latin-1/${dictFileName}.aff ./
       })())));
     const et_EE = et_ee;
     const de_de = nix.thunk(() => nix.app(mkDictFromJ3e, nix.thunk(() => ({
-        __proto__: pos$76,
+        [nix.POS]: pos$76,
         shortName: "de-de",
         shortDescription: "German (Germany)",
         dictFileName: "de_DE",
       }))));
     const de_DE = de_de;
     const de_at = nix.thunk(() => nix.app(mkDictFromJ3e, nix.thunk(() => ({
-        __proto__: pos$77,
+        [nix.POS]: pos$77,
         shortName: "de-at",
         shortDescription: "German (Austria)",
         dictFileName: "de_AT",
       }))));
     const de_AT = de_at;
     const de_ch = nix.thunk(() => nix.app(mkDictFromJ3e, nix.thunk(() => ({
-        __proto__: pos$78,
+        [nix.POS]: pos$78,
         shortName: "de-ch",
         shortDescription: "German (Switzerland)",
         dictFileName: "de_CH",
@@ -992,7 +992,7 @@ mv latin-1/${dictFileName}.aff ./
         const version = "6.5.3";
         const _version = "1727974630";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$79,
+            [nix.POS]: pos$79,
             url: nix.thunk(() => nix.str`https://extensions.libreoffice.org/assets/downloads/521/${_version}/dict-uk_UA-${version}.oxt`),
             hash: "sha256-c957WHJqaf/M2QrE2H3aIDAWGoQDnDl0na7sd+kUXNI=",
           }))));
@@ -1002,7 +1002,7 @@ mv latin-1/${dictFileName}.aff ./
         const unpackCmd = nix.thunk(() => nix.str`unzip $src ${dictFileName}/{${dictFileName}.dic,${dictFileName}.aff,${readmeFile}}
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$80,
+          [nix.POS]: pos$80,
           description: "Hunspell dictionary for Ukrainian (Ukraine) from LibreOffice",
           homepage: "https://extensions.libreoffice.org/extensions/ukrainian-spelling-dictionary-and-thesaurus/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -1013,7 +1013,7 @@ mv latin-1/${dictFileName}.aff ./
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           pname,
           version,
           _version,
@@ -1030,7 +1030,7 @@ mv latin-1/${dictFileName}.aff ./
         const pname = "hunspell-dict-uz-uz";
         const version = "0.1.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$82,
+            [nix.POS]: pos$82,
             owner: "uzbek-net",
             repo: "uz-hunspell",
             tag: version,
@@ -1040,7 +1040,7 @@ mv latin-1/${dictFileName}.aff ./
         const dictFileName = "uz_UZ";
         const readmeFile = "README.md";
         const meta = nix.thunk(() => ({
-          __proto__: pos$83,
+          [nix.POS]: pos$83,
           description: "Hunspell dictionary for Uzbek",
           homepage: "https://github.com/uzbek-net/uz-hunspell",
           license: nix.thunk(() => (() => {
@@ -1058,7 +1058,7 @@ mv latin-1/${dictFileName}.aff ./
           })()),
         }));
         return {
-          __proto__: pos$84,
+          [nix.POS]: pos$84,
           pname,
           version,
           src,
@@ -1070,7 +1070,7 @@ mv latin-1/${dictFileName}.aff ./
       })())));
     const uz_UZ = uz_uz;
     const ru_ru = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$85,
+        [nix.POS]: pos$85,
         shortName: "ru-ru",
         dictFileName: "ru_RU",
         shortDescription: "Russian (Russian)",
@@ -1084,11 +1084,11 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const ru_RU = ru_ru;
     const ru_ru_mozilla = nix.thunk(() => nix.app(mkDict, nix.thunk(() => ({
-        __proto__: pos$88,
+        [nix.POS]: pos$88,
         pname: "hunspell-dict-ru-ru-mozilla",
         version: "0-unstable-2026-05-30",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$86,
+            [nix.POS]: pos$86,
             owner: "Goudron",
             repo: "ru-spelling-dictionary",
             rev: "43cc600462d8681bc6e92d1afb29874e2902ea9b",
@@ -1097,7 +1097,7 @@ mv latin-1/${dictFileName}.aff ./
         dictFileName: "ru_RU",
         readmeFile: "README.md",
         meta: nix.thunk(() => ({
-          __proto__: pos$87,
+          [nix.POS]: pos$87,
           description: "Hunspell dictionary for Russian, updated version as used in Mozilla products",
           homepage: "https://github.com/Goudron/ru-spelling-dictionary",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -1105,7 +1105,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const ru_RU_mozilla = ru_ru_mozilla;
     const cs_cz = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$89,
+        [nix.POS]: pos$89,
         shortName: "cs-cz",
         dictFileName: "cs_CZ",
         shortDescription: "Czech (Czechia)",
@@ -1114,7 +1114,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const cs_CZ = cs_cz;
     const sk_sk = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$90,
+        [nix.POS]: pos$90,
         shortName: "sk-sk",
         dictFileName: "sk_SK",
         shortDescription: "Slovak (Slovakia)",
@@ -1133,7 +1133,7 @@ mv latin-1/${dictFileName}.aff ./
         const pname = "hunspell-dict-da-dk";
         const version = "2.5.189";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             url: nix.thunk(() => nix.str`https://stavekontrolden.dk/dictionaries/da_DK/da_DK-${version}.oxt`),
             sha256: "sha256:0i1cw0nfg24b0sg2yc3q7315ng5vc5245nvh0l1cndkn2c9z4978",
           }))));
@@ -1145,7 +1145,7 @@ mv latin-1/${dictFileName}.aff ./
         const unpackCmd = nix.thunk(() => nix.str`unzip $src ${dictFileName}.dic ${dictFileName}.aff ${readmeFile} -d ${dictFileName}
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           description: "Hunspell dictionary for Danish (Denmark) from Stavekontrolden",
           homepage: "https://github.com/jeppebundsgaard/stavekontrolden",
           license: nix.thunk(() => (() => {
@@ -1162,7 +1162,7 @@ mv latin-1/${dictFileName}.aff ./
           })()),
         }));
         return {
-          __proto__: pos$93,
+          [nix.POS]: pos$93,
           pname,
           version,
           src,
@@ -1180,7 +1180,7 @@ mv latin-1/${dictFileName}.aff ./
         const pname = "hunspell-dict-nl-nl";
         const version = "2.20.19";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             owner: "OpenTaal",
             repo: "opentaal-hunspell",
             rev: version,
@@ -1190,7 +1190,7 @@ mv latin-1/${dictFileName}.aff ./
         const dictFileName = "nl_NL";
         const readmeFile = "README.md";
         const meta = nix.thunk(() => ({
-          __proto__: pos$95,
+          [nix.POS]: pos$95,
           description: "Hunspell dictionary for Dutch (Netherlands) from OpenTaal",
           homepage: "https://www.opentaal.org/",
           license: nix.thunk(() => (() => {
@@ -1206,7 +1206,7 @@ mv latin-1/${dictFileName}.aff ./
           })()),
         }));
         return {
-          __proto__: pos$96,
+          [nix.POS]: pos$96,
           pname,
           version,
           src,
@@ -1218,7 +1218,7 @@ mv latin-1/${dictFileName}.aff ./
       })())));
     const nl_NL = nl_nl;
     const he_il = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$97,
+        [nix.POS]: pos$97,
         shortName: "he-il",
         dictFileName: "he_IL",
         shortDescription: "Hebrew (Israel)",
@@ -1227,20 +1227,20 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const he_IL = he_il;
     const th_th = nix.thunk(() => nix.app(mkDict, nix.thunk(() => ({
-        __proto__: pos$100,
+        [nix.POS]: pos$100,
         pname: "hunspell-dict-th-th",
         version: "0-unstable-2025-12-29",
         dictFileName: "th_TH",
         readmeFile: "README.md",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$98,
+            [nix.POS]: pos$98,
             owner: "SyafiqHadzir",
             repo: "Hunspell-TH",
             rev: "a23b0521438f2735dc73efaee61391c6106ae196",
             sha256: "sha256-fRHtglTVoUgeQ8v/+pBWxfk+EgZv/uAt9Ka6tK1GJgA=",
           })))),
         meta: nix.thunk(() => ({
-          __proto__: pos$99,
+          [nix.POS]: pos$99,
           description: "Hunspell dictionary for Central Thai (Thailand)",
           homepage: "https://github.com/SyafiqHadzir/Hunspell-TH",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -1253,7 +1253,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const th_TH = th_th;
     const id_id = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$101,
+        [nix.POS]: pos$101,
         shortName: "id-id",
         dictFileName: "id_ID",
         sourceRoot: "id",
@@ -1269,7 +1269,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const id_ID = id_id;
     const hr_hr = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$102,
+        [nix.POS]: pos$102,
         shortName: "hr-hr",
         dictFileName: "hr_HR",
         shortDescription: "Croatian (Croatia)",
@@ -1285,7 +1285,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const hr_HR = hr_hr;
     const nb_no = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$103,
+        [nix.POS]: pos$103,
         shortName: "nb-no",
         dictFileName: "nb_NO",
         sourceRoot: "no",
@@ -1295,7 +1295,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const nb_NO = nb_no;
     const nn_no = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$104,
+        [nix.POS]: pos$104,
         shortName: "nn-no",
         dictFileName: "nn_NO",
         sourceRoot: "no",
@@ -1310,13 +1310,13 @@ mv latin-1/${dictFileName}.aff ./
         const dictFileName = "tok";
         const readmeFile = "README.en.adoc";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             url: nix.thunk(() => nix.str`https://github.com/somasis/hunspell-tok/releases/download/${version}/hunspell-tok-${version}.tar.gz`),
             sha256: "sha256-RiAODKXPUeIcf8IFcU6Tacehq5S8GYuPTuxEiN2CXD0=",
           }))));
         const dontBuild = true;
         const meta = nix.thunk(() => ({
-          __proto__: pos$106,
+          [nix.POS]: pos$106,
           description: "Hunspell dictionary for Toki Pona",
           homepage: "https://github.com/somasis/hunspell-tok",
           license: nix.thunk(() => (() => {
@@ -1335,7 +1335,7 @@ mv latin-1/${dictFileName}.aff ./
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          __proto__: pos$107,
+          [nix.POS]: pos$107,
           pname,
           version,
           dictFileName,
@@ -1346,7 +1346,7 @@ mv latin-1/${dictFileName}.aff ./
         };
       })())));
     const pl_pl = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$108,
+        [nix.POS]: pos$108,
         shortName: "pl-pl",
         dictFileName: "pl_PL",
         shortDescription: "Polish (Poland)",
@@ -1364,7 +1364,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const pl_PL = pl_pl;
     const pt_br = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$109,
+        [nix.POS]: pos$109,
         shortName: "pt-br",
         dictFileName: "pt_BR",
         shortDescription: "Portuguese (Brazil)",
@@ -1373,7 +1373,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const pt_BR = pt_br;
     const pt_pt = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$110,
+        [nix.POS]: pos$110,
         shortName: "pt-pt",
         dictFileName: "pt_PT",
         shortDescription: "Portuguese (Portugal)",
@@ -1389,13 +1389,13 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const pt_PT = pt_pt;
     const fa_ir = nix.thunk(() => nix.app(mkDict, nix.thunk(() => ({
-        __proto__: pos$113,
+        [nix.POS]: pos$113,
         pname: "hunspell-dict-fa-ir",
         version: "experimental-2022-09-04",
         dictFileName: "fa-IR",
         readmeFile: "README.md",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$111,
+            [nix.POS]: pos$111,
             owner: "b00f",
             repo: "lilak",
             rev: "1a80a8e5c9377ac424d29ef20be894e250bc9765",
@@ -1404,7 +1404,7 @@ mv latin-1/${dictFileName}.aff ./
         nativeBuildInputs: nix.thunk(() => [python3]),
         buildPhase: "runHook preBuild\nmkdir build\n(cd src && python3 lilak.py)\nmv build/* ./\n# remove timestamp from file\nsed -i 's/^\\(## *File Version[^,]*\\),.*/\\1/' fa-IR.aff\nrunHook postBuild\n",
         meta: nix.thunk(() => ({
-          __proto__: pos$112,
+          [nix.POS]: pos$112,
           description: "Hunspell dictionary for Persian (Iran)",
           homepage: "https://github.com/b00f/lilak",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -1425,7 +1425,7 @@ mv latin-1/${dictFileName}.aff ./
         const shortDescription = "Romanian (Romania)";
         const readmeFile = "README";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$114,
+            [nix.POS]: pos$114,
             url: nix.thunk(() => nix.str`mirror://sourceforge/rospell/${fileName}`),
             hash: "sha256-fxKNZOoGyeZxHDCxGMCv7vsBTY8zyS2szfRVq6LQRRk=",
           }))));
@@ -1433,7 +1433,7 @@ mv latin-1/${dictFileName}.aff ./
         const unpackCmd = nix.thunk(() => nix.str`unzip $src ${dictFileName}.aff ${dictFileName}.dic ${readmeFile} -d ${dictFileName}
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$115,
+          [nix.POS]: pos$115,
           description: nix.thunk(() => nix.str`Hunspell dictionary for ${shortDescription} from rospell`),
           homepage: "https://sourceforge.net/projects/rospell/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -1443,7 +1443,7 @@ mv latin-1/${dictFileName}.aff ./
           })()),
         }));
         return {
-          __proto__: pos$116,
+          [nix.POS]: pos$116,
           pname,
           version,
           shortName,
@@ -1459,11 +1459,11 @@ mv latin-1/${dictFileName}.aff ./
       })())));
     const ro_RO = ro_ro;
     const tr_tr = nix.thunk(() => nix.app(mkDict, nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         pname: "hunspell-dict-tr-tr",
         version: "1.1.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$117,
+            [nix.POS]: pos$117,
             owner: "tdd-ai",
             repo: "hunspell-tr",
             rev: "7302eca5f3652fe7ae3d3ec06c44697c97342b4e",
@@ -1472,7 +1472,7 @@ mv latin-1/${dictFileName}.aff ./
         dictFileName: "tr_TR",
         readmeFile: "README.md",
         meta: nix.thunk(() => ({
-          __proto__: pos$118,
+          [nix.POS]: pos$118,
           description: "Hunspell dictionary for Turkish (Turkey) from tdd-ai",
           homepage: "https://github.com/tdd-ai/hunspell-tr/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -1485,7 +1485,7 @@ mv latin-1/${dictFileName}.aff ./
       }))));
     const tr_TR = tr_tr;
     const el_gr = nix.thunk(() => nix.app(mkDictFromLibreOffice, nix.thunk(() => ({
-        __proto__: pos$120,
+        [nix.POS]: pos$120,
         shortName: "el-gr",
         dictFileName: "el_GR",
         shortDescription: "Greek (Greece)",
@@ -1504,7 +1504,7 @@ mv latin-1/${dictFileName}.aff ./
         const pname = "hunspell-dict-ko-kr";
         const version = "0.7.94";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$121,
+            [nix.POS]: pos$121,
             owner: "spellcheck-ko",
             repo: "hunspell-dict-ko",
             rev: version,
@@ -1517,7 +1517,7 @@ mv latin-1/${dictFileName}.aff ./
         ]);
         const preInstall = "mv ko.aff ko_KR.aff\nmv ko.dic ko_KR.dic\n";
         const meta = nix.thunk(() => ({
-          __proto__: pos$122,
+          [nix.POS]: pos$122,
           description: "Hunspell dictionary for Korean (South Korea)",
           homepage: "https://github.com/spellcheck-ko/hunspell-dict-ko",
           license: nix.thunk(() => (() => {
@@ -1534,7 +1534,7 @@ mv latin-1/${dictFileName}.aff ./
           })()),
         }));
         return {
-          __proto__: pos$123,
+          [nix.POS]: pos$123,
           pname,
           version,
           src,
@@ -1550,7 +1550,7 @@ mv latin-1/${dictFileName}.aff ./
         const pname = "hunspell-dict-cy-gb";
         const version = "25.03";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             owner: "techiaith",
             repo: "hunspell-cy",
             tag: version,
@@ -1560,7 +1560,7 @@ mv latin-1/${dictFileName}.aff ./
         const dictFileName = "cy_GB";
         const readmeFile = "README.md";
         const meta = nix.thunk(() => ({
-          __proto__: pos$125,
+          [nix.POS]: pos$125,
           description: "Hunspell dictionary for Welsh (Cymraeg)",
           homepage: "https://github.com/techiaith/hunspell-cy",
           license: nix.thunk(() => (() => {
@@ -1573,7 +1573,7 @@ mv latin-1/${dictFileName}.aff ./
           })()),
         }));
         return {
-          __proto__: pos$126,
+          [nix.POS]: pos$126,
           pname,
           version,
           src,
@@ -1585,7 +1585,7 @@ mv latin-1/${dictFileName}.aff ./
       })())));
     const cy_GB = cy_gb;
     return {
-      __proto__: pos$127,
+      [nix.POS]: pos$127,
       en_US,
       "en-us": en_us,
       "en_US-large": en_US_large,

@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-crontab",
       version: "3.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "doctormo",
           repo: "python-crontab",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["crontab"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for crontab",
         longDescription: "Crontab module for reading and writing crontab files\nand accessing the system cron automatically and simply using a direct API.\n",
         homepage: "https://gitlab.com/doctormo/python-crontab/",

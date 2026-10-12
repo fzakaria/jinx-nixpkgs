@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "evtest",
       version: "1.36",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libxml2]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "libevdev",
           repo: "evtest",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
           sha256: "sha256-M7AGcHklErfRIOu64+OU397OFuqkAn4dqZxx7sDfklc=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple tool for input event debugging",
         homepage: "https://gitlab.freedesktop.org/libevdev/evtest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

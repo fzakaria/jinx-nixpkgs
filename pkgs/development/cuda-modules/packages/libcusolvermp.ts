@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const cusolvermpAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const cusolvermpOlder = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         redistName: "cusolvermp",
         pname: "libcusolvermp",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
           const minCudaCapability = nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13.0")) ? "7.5" : "7.0"));
           return [
             nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp for CUDA ${cudaMajorVersion} supports CUDA compute capabilities ${minCudaCapability} and newer`, nix.str` (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), minCudaCapability)), cudaCapabilities)),
             })),
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               message: "cuSOLVERMp requires NCCL, which is unavailable for this platform",
               assertion: nix.thunk(() => nix.sel(nccl, "meta", "available")),
             })),
@@ -52,23 +52,23 @@ export default nix.lambda((args) => (() => {
         })()),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp releases since 0.9.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require cuBLASMp 0.9.1 or newer (found ${nix.sel(libcublasmp, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusolvermpAtLeast, "0.9")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(libcublasmp, "version")), "0.9.1")))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp releases since 0.9.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require NCCL 2.29.2 or newer (found ${nix.sel(nccl, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusolvermpAtLeast, "0.9")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nccl, "version")), "2.29.2")))),
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp releases before 0.9.0 (found ${nix.sel(finalAttrs, "version")}) under-report device workspace sizes`, nix.str` when used with cuSOLVER from CUDA 13.2 Update 1 and newer (found ${cudaMajorMinorPatchVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusolvermpOlder, "0.9")) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), cudaMajorMinorPatchVersion, "13.2.1")))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "High-performance, distributed-memory, GPU-accelerated library that provides tools for solving dense linear systems and eigenvalue problems",
           longDescription: "The NVIDIA cuSOLVERMp library is a high-performance, distributed-memory, GPU-accelerated library that provides\ntools for solving dense linear systems and eigenvalue problems.\n",
           homepage: "https://developer.nvidia.com/cusolver",

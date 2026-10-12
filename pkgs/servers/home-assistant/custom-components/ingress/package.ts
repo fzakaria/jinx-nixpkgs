@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const domain = "ingress";
       const version = "1.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: owner,
           repo: "hass_ingress",
           tag: version,
           hash: "sha256-YLrt1EGU8749cuqZP/Eu+A30M35fpFQcjgosAd36a8c=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/lovelylain/hass_ingress/releases/tag/${nix.sel(src, "tag")}`),
         description: "Add additional ingress panels to your Home Assistant frontend",
         homepage: "https://github.com/lovelylain/hass_ingress",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "David-Kopczynski"))];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

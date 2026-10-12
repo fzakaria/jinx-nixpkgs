@@ -26,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "samira",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsnli",
           repo: "Samira",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SZg4N9fm4+p2vROCx7BLdphHeWlFkQrjQETObwPP8H0=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-l6lgJsrBtnxdWFJUhm2ftrRA8yBw47EY0QA4xNYhG6c=",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib_networking, libayatana_appindicator, openssl, webkitgtk_4_1]),
       preFixup: "mkdir -p $out/share/lib\ncp $src/assets/libsteam_api.so $out/share/lib\n\ngappsWrapperArgs+=(\n  --prefix LD_LIBRARY_PATH : \"$out/share/lib\"\n)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Steam Achievement Manager for Linux",
         homepage: "https://github.com/jsnli/Samira",
         changelog: nix.thunk(() => nix.str`https://github.com/jsnli/Samira/releases/tag/v${nix.sel(finalAttrs, "version")}`),

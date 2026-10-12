@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const rustup = nix.arg($, "rustup");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cargo-dist",
       version: "0.33.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "axodotdev",
           repo: "cargo-dist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,17 +38,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2, xz, zstd]),
       nativeCheckInputs: nix.thunk(() => [git, rustup, cacert]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ZSTD_SYS_USE_PKG_CONFIG: true,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
       postPatch: "rm cargo-dist/tests/cli-tests.rs cargo-dist/tests/integration-tests.rs\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool for building final distributable artifacts and uploading them to an archive",
         mainProgram: "dist",
         homepage: "https://github.com/axodotdev/cargo-dist",

@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
   const name = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "21.03")) ? "hedgedoc" : "codimd"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -76,28 +76,28 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "hedgedoc", "workDir"]), "This option has been removed in favor of systemd managing the state directory.\n\nIf you have set this option without specifying `services.hedgedoc.settings.uploadsPath`,\nplease move these files to `/var/lib/hedgedoc/uploads`, or set the option to point\nat the correct location.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         hedgedoc: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hedgedoc", nix.thunk(() => ({})))),
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the HedgeDoc Markdown Editor")),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to configure nginx as a reverse proxy.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
                         description: "Domain to use for website.\n\nThis is useful if you are trying to run hedgedoc behind\na reverse proxy.\n",
                       })))),
                     urlPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
                         description: "URL path for the website.\n\nThis is useful if you are hosting hedgedoc on a path like\n`www.example.com/hedgedoc`\n",
                       })))),
                     host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -126,14 +126,14 @@ export default nix.lambda((args) => (() => {
                         description: "Address to listen on.\n",
                       })))),
                     port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 3000n,
                         example: 80n,
                         description: "Port to listen on.\n",
                       })))),
                     path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -143,14 +143,14 @@ export default nix.lambda((args) => (() => {
                         description: "Path to UNIX domain socket to listen on\n\n::: {.note}\n  If specified, {option}`host` and {option}`port` will be ignored.\n:::\n",
                       })))),
                     protocolUseSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         example: true,
                         description: "Use `https://` for all links.\n\nThis is useful if you are trying to run hedgedoc behind\na reverse proxy.\n\n::: {.note}\n  Only applied if {option}`domain` is set.\n:::\n",
                       })))),
                     allowOrigin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => (() => {
                           const w = nix.withScope(types, null);
                           return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -164,10 +164,10 @@ export default nix.lambda((args) => (() => {
                         description: "List of domains to whitelist.\n",
                       })))),
                     db: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(types, "attrs")),
                         default: nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           dialect: "sqlite",
                           storage: nix.thunk(() => nix.str`/var/lib/${name}/db.sqlite`),
                         })),
@@ -176,20 +176,20 @@ export default nix.lambda((args) => (() => {
                         description: "Specify the configuration for sequelize.\nHedgeDoc supports `mysql`, `postgres`, `sqlite` and `mssql`.\nSee <https://sequelize.readthedocs.io/en/v3/> for more information.\n\n::: {.note}\nThe relevant parts will be overridden if you set {option}`dbURL`.\n:::\n\n::: {.note}\nThe `sqlite` backend only supports paths under `/var/lib/hedgedoc`.\n:::\n",
                       })))),
                     useSSL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Enable to use SSL server.\n\n::: {.note}\n  This will also enable {option}`protocolUseSSL`.\n\n  It will also require you to set the following:\n\n  - {option}`sslKeyPath`\n  - {option}`sslCertPath`\n  - {option}`sslCAPath`\n  - {option}`dhParamPath`\n:::\n",
                       })))),
                     uploadsPath: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: nix.thunk(() => nix.str`/var/lib/${name}/uploads`),
                         defaultText: "/var/lib/hedgedoc/uploads",
                         description: "Directory for storing uploaded images.\n",
                       })))),
                     allowGravatar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         example: true,
@@ -200,7 +200,7 @@ export default nix.lambda((args) => (() => {
               description: "HedgeDoc configuration, see\n<https://docs.hedgedoc.org/configuration/>\nfor documentation.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -213,16 +213,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.force(name), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$24,
-            nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({ __proto__: pos$22, extraGroups: nix.thunk(() => ["hedgedoc"]) })))),
+            [nix.POS]: pos$24,
+            nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({ [nix.POS]: pos$22, extraGroups: nix.thunk(() => ["hedgedoc"]) })))),
           }, [
             [nix.force(name), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "HedgeDoc service user",
               group: name,
               isSystemUser: true,
@@ -230,11 +230,11 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           hedgedoc: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             settings: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               defaultNotePath: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/hedgedoc/public/default.md`))),
               docsPath: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/hedgedoc/public/docs`))),
               path: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), "/run/hedgedoc/hedgedoc.sock")),
@@ -242,28 +242,28 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               enable: true,
               upstreams: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 hedgedoc: nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   servers: nix.thunk(() => nix.attrsDyn({}, [[nix.str`unix:${nix.sel(cfg, "settings", "path")}`, nix.thunk(() => ({}))]])),
                 })),
               })),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "settings", "domain")}`, nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   forceSSL: true,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       proxyPass: "http://hedgedoc",
                       recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                     })),
                     "/socket.io/": nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       proxyPass: "http://hedgedoc",
                       proxyWebsockets: true,
                       recommendedProxySettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
@@ -274,17 +274,17 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             hedgedoc: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "HedgeDoc Service",
               documentation: nix.thunk(() => ["https://docs.hedgedoc.org/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               preStart: nix.thunk(() => (() => {
-                const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "hedgedoc-config.json", nix.thunk(() => ({ __proto__: pos$36, production: nix.thunk(() => nix.sel(cfg, "settings")) }))));
+                const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "hedgedoc-config.json", nix.thunk(() => ({ [nix.POS]: pos$36, production: nix.thunk(() => nix.sel(cfg, "settings")) }))));
                 return nix.str`${nix.sel(pkgs, "envsubst")}/bin/envsubst \\
   -o /run/${name}/config.json \\
   -i ${configFile}
@@ -292,7 +292,7 @@ ${nix.sel(pkgs, "coreutils")}/bin/mkdir -p ${nix.sel(cfg, "settings", "uploadsPa
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 User: name,
                 Group: name,
                 Restart: "always",

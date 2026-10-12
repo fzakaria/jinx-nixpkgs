@@ -15,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prover9",
       version: "2009-11A",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.cs.unm.edu/~mccune/mace4/download/LADR-2009-11A.tar.gz",
           hash: "sha256-wyvtWAcADAtxYcJ25Q2coK8MskjfLBr/svb8AkcbUdA=",
         })))),
       hardeningDisable: nix.thunk(() => ["format"]),
       postPatch: "RM=$(type -tp rm)\nMV=$(type -tp mv)\nCP=$(type -tp cp)\nfor f in Makefile */Makefile; do\n  substituteInPlace $f --replace-quiet \"/bin/rm\" \"$RM\" \\\n    --replace-quiet \"/bin/mv\" \"$MV\" \\\n    --replace-quiet \"/bin/cp\" \"$CP\";\ndone\n",
       buildFlags: nix.thunk(() => ["all"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
       doCheck: true,
       checkPhase: "runHook preCheck\n\nmake test1\nmake test2\nmake test3\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nfor f in mace4 prover9 fof-prover9 autosketches4 newauto newsax ladr_to_tptp tptp_to_ladr; do\n  install -Dm555 bin/$f $out/bin/$f;\ndone\ninstall -Dm644 -t $out/share/man/man1 manpages/*.1\nrunHook postInstall\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.cs.unm.edu/~mccune/mace4/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         description: "Automated theorem prover for first-order and equational logic",

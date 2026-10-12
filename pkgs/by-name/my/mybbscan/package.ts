@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "0xB9",
           repo: "MyBBscan",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/mybbscan \\
   --add-flags "$out/share/mybbscan/scan.py"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scans plugins directory for possible vulnerable plugins",
         homepage: "https://github.com/0xB9/MyBBscan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -56,7 +56,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/mybbscan \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

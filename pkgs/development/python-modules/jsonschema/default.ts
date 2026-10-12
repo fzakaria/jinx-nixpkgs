@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-DCZwfi762Kob/Ft84XDz/MwuSRj/hZibqf+p+ssr4yY=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_fancy_pypi_readme, hatch_vcs, hatchling]);
       const dependencies = nix.thunk(() => [attrs, jsonpath_ng, jsonschema_specifications, referencing, rpds_py]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         format: nix.thunk(() => [
           fqdn,
           idna,
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pip, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["jsonschema"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of JSON Schema validation",
         homepage: "https://github.com/python-jsonschema/jsonschema",
         changelog: nix.thunk(() => nix.str`https://github.com/python-jsonschema/jsonschema/blob/v${version}/CHANGELOG.rst`),
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jsonschema",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

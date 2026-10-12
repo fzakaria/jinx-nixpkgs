@@ -17,27 +17,27 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "slinktool",
       version: "4.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EarthScope",
           repo: "slinktool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4UUvjlSqtBTiO200pb4FEFXEvUAmA4OlegrgF4wZII4=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       installPhase: "runHook preInstall\n\ninstall -D slinktool $out/bin/slinktool\n\nrunHook postInstall\n",
       versionCheckProgramArg: "-V",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "SeedLink client for data stream inspection, data collection and server testing",
         homepage: "https://github.com/EarthScope/slinktool",
         changelog: nix.thunk(() => nix.str`https://github.com/EarthScope/slinktool/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

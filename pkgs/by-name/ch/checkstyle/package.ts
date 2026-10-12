@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const maven = nix.arg($, "maven");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "14.0.0",
       pname: "checkstyle",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "checkstyle",
           repo: "checkstyle",
           tag: nix.thunk(() => nix.str`checkstyle-${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +42,13 @@ makeWrapper ${jre}/bin/java $out/bin/checkstyle \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Checks Java source against a coding standard",
         mainProgram: "checkstyle",
         longDescription: "checkstyle is a development tool to help programmers write Java code that\nadheres to a coding standard. By default it supports the Sun Code\nConventions, but is highly configurable.\n",

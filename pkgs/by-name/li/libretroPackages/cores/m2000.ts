@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "m2000",
       version: "0-unstable-2026-08-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "p2000t",
           repo: "M2000",
           rev: "da0b8cbef2007c907f5db2166847c3209643865d",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "source/src/libretro",
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Philips P2000T emulator core for libretro",
         homepage: "https://github.com/p2000t/M2000",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

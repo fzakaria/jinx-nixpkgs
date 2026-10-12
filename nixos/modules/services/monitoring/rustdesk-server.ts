@@ -44,25 +44,25 @@ export default nix.lambda((args) => (() => {
   const TCPPorts = nix.thunk(() => [21115n, 21116n, 21117n, 21118n, 21119n]);
   const UDPPorts = nix.thunk(() => [21116n]);
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "rustdesk-server", "relayIP"]), "This option has been replaced by services.rustdesk-server.signal.relayHosts")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "rustdesk-server", "extraRelayArgs"]), nix.thunk(() => ["services", "rustdesk-server", "relay", "extraArgs"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "rustdesk-server", "extraSignalArgs"]), nix.thunk(() => ["services", "rustdesk-server", "signal", "extraArgs"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "rustdesk-server": nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "RustDesk, a remote access and remote control software, allowing maintenance of computers and other devices")),
             package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "rustdesk-server", nix.thunk(() => ({})))),
             openFirewall: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                 default: false,
                 description: nix.thunk(() => nix.str`Open the connection ports.
@@ -71,21 +71,21 @@ UDP (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(n
 `),
               })))),
             signal: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to enable the RustDesk signal server.\n",
                 })))),
               relayHosts: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                   default: [],
                   description: "The relay server IP addresses or DNS names of the RustDesk relay.\n",
                 })))),
               extraArgs: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                   default: [],
                   example: nix.thunk(() => ["-k", "_"]),
@@ -93,15 +93,15 @@ UDP (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(n
                 })))),
             })),
             relay: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                   default: true,
                   description: "Whether to enable the RustDesk relay server.\n",
                 })))),
               extraArgs: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                   default: [],
                   example: nix.thunk(() => ["-k", "_"]),
@@ -115,11 +115,11 @@ UDP (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(n
     config: nix.thunk(() => (() => {
       const cfg = nix.thunk(() => nix.sel(config, "services", "rustdesk-server"));
       const serviceDefaults = nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         enable: true,
         requiredBy: nix.thunk(() => ["rustdesk.target"]),
         serviceConfig: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           Slice: "system-rustdesk.slice",
           User: "rustdesk",
           Group: "rustdesk",
@@ -144,42 +144,42 @@ UDP (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(n
         })),
       }));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             users: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               rustdesk: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 description: "System user for RustDesk",
                 isSystemUser: true,
                 group: "rustdesk",
               })),
             })),
-            groups: nix.thunk(() => ({ __proto__: pos$16, rustdesk: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: pos$16, rustdesk: nix.thunk(() => ({})) })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             firewall: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), TCPPorts)),
               allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), UDPPorts)),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             slices: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "system-rustdesk": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 enable: true,
                 description: "RustDesk Remote Desktop Slice",
               })),
             })),
             targets: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               rustdesk: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 enable: true,
                 description: "Target designed to group RustDesk Signal & RustDesk Relay",
                 after: nix.thunk(() => ["network.target"]),
@@ -187,15 +187,15 @@ UDP (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(n
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               "rustdesk-signal": nix.thunk(() => (() => {
                 const relayArg = nix.thunk(() => nix.builtins.concatStringsSep(":", nix.thunk(() => nix.sel(cfg, "signal", "relayHosts"))));
                 return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "signal", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       serviceDefaults,
                       nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         serviceConfig: nix.thunk(() => ({
-                          __proto__: pos$24,
+                          [nix.POS]: pos$24,
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/hbbs --relay-servers ${relayArg} ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "signal", "extraArgs")))}`),
                         })),
                       })),
@@ -204,9 +204,9 @@ UDP (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(n
               "rustdesk-relay": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "relay", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     serviceDefaults,
                     nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       serviceConfig: nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/hbbr ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "relay", "extraArgs")))}`),
                       })),
                     })),
@@ -216,7 +216,7 @@ UDP (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(n
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ppom"))];

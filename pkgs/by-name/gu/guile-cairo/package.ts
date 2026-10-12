@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const guile_lib = nix.arg($, "guile-lib");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-cairo",
       version: "1.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/guile-cairo/guile-cairo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YjLU3Cxb2dMxE5s7AfQ0PD4fucp4mDYaaZIGcwlBoHs=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [guile_lib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/guile-cairo/",
         description: "Cairo bindings for GNU Guile",
         longDescription: "Guile-Cairo wraps the Cairo graphics library for Guile Scheme.\n\nGuile-Cairo is complete, wrapping almost all of the Cairo API.  It is API\nstable, providing a firm base on which to do graphics work.  Finally, and\nimportantly, it is pleasant to use.  You get a powerful and well\nmaintained graphics library with all of the benefits of Scheme: memory\nmanagement, exceptions, macros, and a dynamic programming environment.\n",

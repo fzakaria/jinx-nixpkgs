@@ -74,39 +74,39 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "mqtt2influxdb"));
   const filterNull = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (n) => (v) => !nix.eq(v, null)));
   const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))), "generate"), "mqtt2influxdb.config.yaml", nix.thunk(() => nix.app(filterNull, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mqtt: nix.thunk(() => nix.attr(cfg, "mqtt")),
         influxdb: nix.thunk(() => nix.attr(cfg, "influxdb")),
         points: nix.thunk(() => nix.builtins.map(filterNull, nix.thunk(() => nix.sel(cfg, "points")))),
       }))))));
   const pointType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       options: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         measurement: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "Name of the measurement",
           })))),
         topic: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             description: "MQTT topic to subscribe to.",
           })))),
         fields: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 options: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       type: nix.thunk(() => nix.sel(lib, "types", "str")),
                       default: "$.payload",
                       description: "Value to be picked up",
                     })))),
                   type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       type: nix.thunk(() => (() => {
                         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
             description: "Field selector.",
           })))),
         tags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
               return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -131,95 +131,95 @@ export default nix.lambda((args) => (() => {
     }))));
   const defaultPoints = nix.thunk(() => [
     nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       measurement: "temperature",
       topic: "node/+/thermometer/+/temperature",
-      fields: nix.thunk(() => ({ __proto__: pos$12, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$13, id: "$.topic[1]", channel: "$.topic[3]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$12, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$13, id: "$.topic[1]", channel: "$.topic[3]" })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       measurement: "relative-humidity",
       topic: "node/+/hygrometer/+/relative-humidity",
-      fields: nix.thunk(() => ({ __proto__: pos$15, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$16, id: "$.topic[1]", channel: "$.topic[3]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$15, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$16, id: "$.topic[1]", channel: "$.topic[3]" })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       measurement: "illuminance",
       topic: "node/+/lux-meter/0:0/illuminance",
-      fields: nix.thunk(() => ({ __proto__: pos$18, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$19, id: "$.topic[1]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$18, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$19, id: "$.topic[1]" })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       measurement: "pressure",
       topic: "node/+/barometer/0:0/pressure",
-      fields: nix.thunk(() => ({ __proto__: pos$21, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$22, id: "$.topic[1]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$21, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$22, id: "$.topic[1]" })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       measurement: "co2",
       topic: "node/+/co2-meter/-/concentration",
-      fields: nix.thunk(() => ({ __proto__: pos$24, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$25, id: "$.topic[1]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$24, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$25, id: "$.topic[1]" })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       measurement: "voltage",
       topic: "node/+/battery/+/voltage",
-      fields: nix.thunk(() => ({ __proto__: pos$27, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$28, id: "$.topic[1]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$27, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$28, id: "$.topic[1]" })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       measurement: "button",
       topic: "node/+/push-button/+/event-count",
-      fields: nix.thunk(() => ({ __proto__: pos$30, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$31, id: "$.topic[1]", channel: "$.topic[3]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$30, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$31, id: "$.topic[1]", channel: "$.topic[3]" })),
     })),
     nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       measurement: "tvoc",
       topic: "node/+/voc-lp-sensor/0:0/tvoc",
-      fields: nix.thunk(() => ({ __proto__: pos$33, value: "$.payload" })),
-      tags: nix.thunk(() => ({ __proto__: pos$34, id: "$.topic[1]" })),
+      fields: nix.thunk(() => ({ [nix.POS]: pos$33, value: "$.payload" })),
+      tags: nix.thunk(() => ({ [nix.POS]: pos$34, id: "$.topic[1]" })),
     })),
   ]);
   return {
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     options: nix.thunk(() => ({
-      __proto__: pos$56,
+      [nix.POS]: pos$56,
       services: nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         mqtt2influxdb: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "BigClown MQTT to InfluxDB bridge")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["python3Packages", "mqtt2influxdb"]), nix.thunk(() => ({})))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               example: nix.thunk(() => ["/run/keys/mqtt2influxdb.env"]),
               description: "File to load as environment file. Environment variables from this file\nwill be interpolated into the config file using envsubst with this\nsyntax: `$ENVIRONMENT` or `${VARIABLE}`.\nThis is useful to avoid putting secrets into the nix store.\n",
             })))),
           mqtt: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "Host where MQTT server is running.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 1883n,
                 description: "MQTT server port.",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -228,7 +228,7 @@ export default nix.lambda((args) => (() => {
                 description: "Username used to connect to the MQTT server.",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -237,7 +237,7 @@ export default nix.lambda((args) => (() => {
                 description: "MQTT password.\n\nIt is highly suggested to use here replacement through\nenvironmentFiles as otherwise the password is put world readable to\nthe store.\n",
               })))),
             cafile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -246,7 +246,7 @@ export default nix.lambda((args) => (() => {
                 description: "Certification Authority file for MQTT",
               })))),
             certfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -255,7 +255,7 @@ export default nix.lambda((args) => (() => {
                 description: "Certificate file for MQTT",
               })))),
             keyfile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -265,26 +265,26 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           influxdb: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "127.0.0.1",
                 description: "Host where InfluxDB server is running.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 8086n,
                 description: "InfluxDB server port",
               })))),
             database: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Name of the InfluxDB database.",
               })))),
             username: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -293,7 +293,7 @@ export default nix.lambda((args) => (() => {
                 description: "Username for InfluxDB login.",
               })))),
             password: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -302,20 +302,20 @@ export default nix.lambda((args) => (() => {
                 description: "Password for InfluxDB login.\n\nIt is highly suggested to use here replacement through\nenvironmentFiles as otherwise the password is put world readable to\nthe store.\n",
               })))),
             ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Use SSL to connect to the InfluxDB server.",
               })))),
             verify_ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Verify SSL certificate when connecting to the InfluxDB server.",
               })))),
           })),
           points: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), pointType)),
               default: defaultPoints,
               description: "Points to bridge from MQTT to InfluxDB.",
@@ -324,21 +324,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         systemd: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           services: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             "bigclown-mqtt2influxdb": nix.thunk(() => (() => {
               const envConfig = nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFiles"), []));
               const finalConfig = nix.thunk(() => (nix.asBool(envConfig) ? "$RUNTIME_DIRECTORY/mqtt2influxdb.config.yaml" : nix.force(configFile)));
               return {
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 description: "BigClown MQTT to InfluxDB bridge",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "mosquitto", "enable")), nix.thunk(() => ["mosquitto.service"]))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "environmentFiles")),
                   ExecStartPre: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), envConfig, nix.thunk(() => nix.str`${nix.sel(pkgs, "envsubst")}/bin/envsubst -i '${configFile}' -o "${finalConfig}"`))),
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -dc ${finalConfig}`),

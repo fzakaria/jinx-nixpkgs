@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const qcheck_core = nix.arg($, "qcheck-core");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bwd",
       version: "2.3.0",
       minimalOCamlVersion: "4.12",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RedPRL",
           repo: "ocaml-bwd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [qcheck_core]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backward Lists",
         homepage: "https://github.com/RedPRL/ocaml-bwd",
         changelog: nix.thunk(() => nix.str`https://github.com/RedPRL/ocaml-bwd/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.markdown`),

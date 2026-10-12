@@ -12,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const pdal = nix.arg($, "pdal");
   const pname = nix.thunk(() => nix.attr(pdal, "pname"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-tests`), nix.thunk(() => ({
-      __proto__: pos$2,
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      [nix.POS]: pos$2,
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`${pdal}/bin/pdal --drivers
 touch $out
 `));

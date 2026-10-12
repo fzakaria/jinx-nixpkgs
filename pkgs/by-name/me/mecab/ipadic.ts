@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const mecab_nodic = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodic.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mecab-ipadic",
       version: "2.7.0-20070801",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "taku910",
           repo: "mecab",
           rev: "2fd29256c6d5e1b10211cac838069ee9ede8c77a",

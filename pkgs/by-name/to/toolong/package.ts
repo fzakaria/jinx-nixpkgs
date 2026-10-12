@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const toolong = nix.arg($, "toolong");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "toolong",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Textualize",
           repo: "toolong",
           rev: "5aa22ee878026f46d4d265905c4e1df4d37842ae",
@@ -43,18 +43,18 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       patches: nix.thunk(() => [nix.path(here, "./0001-log-view.patch")]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: toolong,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), toolong)} --version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Terminal application to view, tail, merge, and search log files (plus JSONL)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/textualize/toolong",

@@ -31,20 +31,20 @@ export default nix.lambda((args) => (() => {
           const meta = nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(mpv_unwrapped, "meta"));
             return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             license: nix.thunk(() => nix.attr(from, "license")),
             homepage: nix.thunk(() => nix.str`https://github.com/mpv-player/mpv/blob/v${version}/${srcPath}`),
           };
           })());
-          return { __proto__: pos$2, src, version, pname, dontUnpack, scriptPath, meta };
+          return { [nix.POS]: pos$2, src, version, pname, dontUnpack, scriptPath, meta };
         })()), args_1)));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(mkBuiltin, name))), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         acompressor: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           meta: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: "Script to toggle and control ffmpeg's dynamic range compression filter",
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -53,23 +53,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         autocrop: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           meta: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "This script uses the lavfi cropdetect filter to automatically insert a crop filter with appropriate parameters for the currently playing video",
           })),
         })),
         autodeint: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           meta: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "This script uses the lavfi idet filter to automatically insert the appropriate deinterlacing filter based on a short section of the currently playing video",
           })),
         })),
         autoload: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           meta: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             description: "This script automatically loads playlist entries before and after the currently played file",
             maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dawidsowa"))]),
           })),

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const format = "pyproject";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awslabs",
           repo: "s3-connector-for-pytorch",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/s3torchconnectorclient`);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: src,
           sourceRoot: sourceRoot,
           hash: "sha256-xYfBnyZM43FNxPnnP6a45ZLCCve/B3713RNmgG0LNBc=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
 `);
       const dontUseCmakeConfigure = true;
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CFLAGS: "-Wno-stringop-overflow -Wno-array-bounds -Wno-restrict",
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: "1",
       }));
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Low-level S3 client for PyTorch data loading",
           homepage: "https://github.com/awslabs/s3-connector-for-pytorch",
           changelog: nix.thunk(() => nix.str`https://github.com/awslabs/s3-connector-for-pytorch/releases/tag/v${version}`),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         format,

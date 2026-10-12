@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const gtk_layer_shell = nix.arg($, "gtk-layer-shell");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sc-controller",
       version: "0.7.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "C0rn3j",
           repo: "sc-controller",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +63,7 @@ substituteInPlace scc/uinput.py --replace /usr/include ${linuxHeaders}/include
 substituteInPlace scc/device_monitor.py --replace "find_library('bluetooth')" "'libbluetooth.so.3'"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, libxext, libxfixes, libusb1, udev, bluez]))),
       })),
       preFixup: "gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : \"$LD_LIBRARY_PATH\")\n",
@@ -71,7 +71,7 @@ substituteInPlace scc/device_monitor.py --replace "find_library('bluetooth')" "'
       preCheck: "# Fix for tests not finding native libraries\nln -s build/lib.*/*.so -t .\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/C0rn3j/sc-controller",
         description: "User-mode driver and GUI for Steam Controller and other controllers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

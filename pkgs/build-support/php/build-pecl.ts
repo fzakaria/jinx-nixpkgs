@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
     const postPhpize = nix.argOr($_1, "postPhpize", () => "");
     const makeFlags = nix.argOr($_1, "makeFlags", () => []);
     const src = nix.argOr($_1, "src", () => nix.app(fetchurl, nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://pecl.php.net/get/${pname}-${version}.tgz`),
       }, nix.app(nix.sel(lib, "filterAttrs"), (attrName) => (_) => nix.app(nix.sel(lib, "elem"), attrName, nix.thunk(() => ["sha256", "hash"])), args_2)))));
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_2, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => nix.str`php-${pname}-${version}`),
         extensionName: pname,
         src: src,
@@ -48,7 +48,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (dep) => nix.str`mkdir -p e
 `),
         checkPhase: "NO_INTERACTON=yes make test",
         passthru: nix.thunk(() => nix.update(passthru, {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           isPhpExtension: true,
           updateScript: nix.thunk(() => nix.selOr(passthru, () => nix.app(nix_update_script, nix.thunk(() => ({}))), "updateScript")),
         })),

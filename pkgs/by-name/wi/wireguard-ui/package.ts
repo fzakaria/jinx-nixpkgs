@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "wireguard-ui",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ngoduykhanh",
           repo: "wireguard-ui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ngoduykhanh/wireguard-ui/commit/2fdafd34ca6c8f7f1415a3a1d89498bb575a7171.patch?full_index=1",
             hash: "sha256-nq/TX+TKDB29NcPQ3pLWD0jcXubULuwqisn9IcEW8B8=",
           })))),
       ]),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-ps/GtdtDKA3y5o1GZpRG+z08lSzk8d9zgxb95kjr/gc=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "# This is what prepare_assets.sh do.\nexport HOME=$(mktemp -d)\nyarn config --offline set yarn-offline-mirror \"$offlineCache\"\nfixup-yarn-lock yarn.lock\nyarn --offline install\n\nmkdir -p \"./assets/dist/js\" \"./assets/dist/css\" && \\\ncp -r \"./node_modules/admin-lte/dist/js/adminlte.min.js\" \"./assets/dist/js/adminlte.min.js\" && \\\ncp -r \"./node_modules/admin-lte/dist/css/adminlte.min.css\" \"./assets/dist/css/adminlte.min.css\"\n\ncp -r \"./custom\" \"./assets\"\n\nmkdir -p \"./assets/plugins\" && \\\ncp -r \"./node_modules/admin-lte/plugins/jquery\" \\\n\"./node_modules/admin-lte/plugins/fontawesome-free\" \\\n\"./node_modules/admin-lte/plugins/bootstrap\" \\\n\"./node_modules/admin-lte/plugins/icheck-bootstrap\" \\\n\"./node_modules/admin-lte/plugins/toastr\" \\\n\"./node_modules/admin-lte/plugins/jquery-validation\" \\\n\"./node_modules/admin-lte/plugins/select2\" \\\n\"./node_modules/jquery-tags-input\" \\\n\"./assets/plugins/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Web user interface to manage your WireGuard setup",
         changelog: nix.thunk(() => nix.str`https://github.com/ngoduykhanh/wireguard-ui/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/ngoduykhanh/wireguard-ui",

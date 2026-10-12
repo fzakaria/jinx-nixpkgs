@@ -32,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "langgraph-prebuilt",
       version: "1.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langgraph",
           tag: nix.thunk(() => nix.str`prebuilt==${nix.sel(finalAttrs, "version")}`),
@@ -68,12 +68,12 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::pytest.PytestDeprecationWarning", "-Wignore::DeprecationWarning"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_react_agent.py", "tests/conftest.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "prebuilt==", ignoredVersions: "a|b|dev|rc" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "prebuilt==", ignoredVersions: "a|b|dev|rc" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prebuilt agents add-on for Langgraph. Should always be bundled with langgraph",
         homepage: "https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langgraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

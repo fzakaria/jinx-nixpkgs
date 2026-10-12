@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const amd_ucodegen = nix.arg($, "amd-ucodegen");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "amd-ucodegen-test-platomav",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "platomav",
           repo: "CPUMicrocodes",
           rev: "dfc37d654cbe294acb0ec0274763321507dd7838",

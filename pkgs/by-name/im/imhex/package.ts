@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const version = "1.38.1";
   const patterns_version = "1.38.1";
   const patterns_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`ImHex-Patterns-source-${patterns_version}`),
       owner: "WerWolv",
       repo: "ImHex-Patterns",
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-MqQHzR5lKWhQI6pIX1kbAPDVG18UrMJM45mtIe/ggJE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "imhex",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`ImHex-source-${version}`),
           fetchSubmodules: true,
           owner: "WerWolv",
@@ -95,17 +95,17 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_NAME_DIR", "@executable_path/../Frameworks")),
         ])))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       postPatch: nix.thunk(() => nix.add(nix.str`# Link patterns source into location expected by cmake when IMHEX_OFFLINE_BUILD is set
 ln -s ${patterns_src} ImHex-Patterns
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace cmake/modules/PostprocessBundle.cmake \\\n  --replace-fail \"fixup_bundle\" \"#fixup_bundle\"\n"))),
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "# without this imhex is not able to find pattern files\nwrapProgram $out/bin/imhex --prefix XDG_DATA_DIRS : $out/share\n" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv $out/imhex.app $out/Applications\nmakeWrapper \"$out/Applications/imhex.app/Contents/MacOS/imhex\" \"$out/bin/imhex\"\n" : nix.builtins.throw("Unsupported system")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM",
         homepage: "https://github.com/WerWolv/ImHex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tinywl",
       version: nix.thunk(() => nix.attr(wlroots, "version")),
       src: nix.thunk(() => nix.attr(wlroots, "src")),
@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["-C", "tinywl"]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tinywl/tinywl $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => ({ __proto__: pos$1, tinywl: nix.thunk(() => nix.attr(nixosTests, "tinywl")) })),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, tinywl: nix.thunk(() => nix.attr(nixosTests, "tinywl")) })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wlroots, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.freedesktop.org/wlroots/wlroots/tree/master/tinywl",
         description: "A \"minimum viable product\" Wayland compositor based on wlroots",
         maintainers: nix.thunk(() => (() => {

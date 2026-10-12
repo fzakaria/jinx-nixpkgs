@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "jam",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://swarm.workshop.perforce.com/downloads/guest/perforce_software/jam/jam-${nix.sel(finalAttrs, "version")}.tar`),
           hash: "sha256-rOayJ8GpmFk0/RPJwK5Pf/RBccbe2Lg7s9p15u/cs6c=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`CC=${nix.sel(buildPackages, "stdenv", "cc", "targetPrefix")}cc`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LOCATE_TARGET: "bin.unix", NIX_CFLAGS_COMPILE: "-std=c89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LOCATE_TARGET: "bin.unix", NIX_CFLAGS_COMPILE: "-std=c89" })),
       enableParallelBuilding: true,
       strictDeps: true,
       preConfigure: "export AR=\"$AR rc\"\n",
@@ -64,16 +64,16 @@ install -Dm644 -t \${!outputDoc}/share/doc/jam-${nix.sel(finalAttrs, "version")}
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "jam -v",
             })))),
           os: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "name")}-os`),
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "echo 'echo $(OS) ;' > Jamfile\nos=$(jam -d0)\n[[ $os != UNKNOWN* ]] && touch $out\n",
@@ -81,7 +81,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://swarm.workshop.perforce.com/projects/perforce_software-jam",
         description: "Just Another Make",
         longDescription: "Jam is a program construction tool, like make(1).\n\nJam recursively builds target files from source files, using dependency\ninformation and updating actions expressed in the Jambase file, which is\nwritten in jam's own interpreted language. The default Jambase is compiled\ninto jam and provides a boilerplate for common use, relying on a\nuser-provide file \"Jamfile\" to enumerate actual targets and sources.\n",

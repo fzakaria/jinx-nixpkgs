@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-ecosystem",
           repo: "python-connect-box",
           tag: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["connect_box"]);
       const pytestFlags = nix.thunk(() => ["--vcr-record=none", "-Wignore::DeprecationWarning"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interact with a Compal CH7465LG cable modem/router",
         longDescription: "Python Client for interacting with the cable modem/router Compal\nCH7465LG which is provided under different names by various ISP\nin Europe, e.g., UPC Connect Box (CH), Irish Virgin Media Super\nHub 3.0 (IE), Ziggo Connectbox (NL) or Unitymedia Connect Box (DE).\n",
         homepage: "https://github.com/home-assistant-ecosystem/python-connect-box",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

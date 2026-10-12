@@ -18,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ember-cli",
       version: "5.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ember-cli",
           repo: "ember-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xkMsPE+iweIV14m4kE4ytEp4uHMJW6gr+n9oJblr4VQ=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-QgT2JFvMupJo+pJc13n2lmHMZkROJRJWoozCho3E6+c=",
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnInstallHook, nodejs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ember-cli/ember-cli",
         description: "Ember.js command line utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

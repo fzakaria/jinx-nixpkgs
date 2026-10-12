@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const glibc = nix.arg($, "glibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "statserial",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ibiblio.org/pub/Linux/system/serial/statserial-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0rrrmxfba5yn836zlgmr8g9xnrpash7cjs7lk2m44ac50vakpks0",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses, glibc]),
       installPhase: "mkdir -p $out/bin\ncp statserial $out/bin\n\nmkdir -p $out/share/man/man1\ncp statserial.1 $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://sites.google.com/site/tranter/software",
         description: "Display serial port modem status lines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

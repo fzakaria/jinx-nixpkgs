@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const pname = "hannom";
       const version = "2005";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/vietunicode/hannom/hannom%20v${version}/hannomH.zip`),
           stripRoot: false,
           hash: "sha256-Oh8V72tYvVA6Sk0f9UTIkRQYjdUbEB/fmCSaRYfyoP8=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "UNICODE Han Nom Font Set",
         longDescription: "The true type fonts HAN NOM A and HAN NOM B have been developed by Chan\nNguyen Do Quoc Bao (Germany), To Minh Tam (USA) and Ni sinh Thien Vien Vien\nChieu (Vietnam). Their work got started in 2001, completed in 2003, and\npublicized in 2005. These two true type fonts can be used with WIN-2000 or\nWIN-XP and Office XP or Office 2003 to display Han and Nom characters with\ncode points by the Unicode Standard. Two sets of true type fonts are\navailable with high and low resolutions.\n",
         homepage: "https://vietunicode.sourceforge.net/fonts/fonts_hannom.html",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

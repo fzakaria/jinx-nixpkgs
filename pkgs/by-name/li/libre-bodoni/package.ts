@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libre-bodoni";
       const version = "2.000";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "impallari",
           repo: "Libre-Bodoni",
           rev: "995a40e8d6b95411d660cbc5bb3f726ffd080c7d",
@@ -30,7 +30,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version} README.md FONTLOG.txt
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bodoni fonts adapted for today's web requirements",
         longDescription: "The Libre Bodoni fonts are based on the 19th century Morris Fuller\nBenton's ATF design, but specifically adapted for today's web\nrequirements.\n\nThey are a perfect choice for everything related to elegance, style,\nluxury and fashion.\n\nLibre Bodoni currently features four styles: Regular, Italic, Bold and\nBold Italic.\n",
         homepage: "https://github.com/impallari/Libre-Bodoni",
@@ -38,7 +38,7 @@ runHook postInstall
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

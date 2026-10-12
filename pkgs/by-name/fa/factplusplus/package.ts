@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "factplusplus",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dtsarkov",
           repo: "factplusplus",
           rev: nix.thunk(() => nix.str`Release-${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nsed -i 's/OS = MACOSX/OS = LINUX/g' Makefile.include\nprintf '%s\\n%s\\n' '#include <iostream>' \"$(cat Kernel/AtomicDecomposer.cpp)\" > Kernel/AtomicDecomposer.cpp\n\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 FaCT++.{C,JNI,KE,Kernel}/obj/*.{so,o} -t $out/lib/\ninstall -Dm755 FaCT++/obj/FaCT++ -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tableaux-based reasoner for expressive Description Logics (DL)",
         homepage: "http://owl.cs.manchester.ac.uk/tools/fact/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mgttlinger"))]),

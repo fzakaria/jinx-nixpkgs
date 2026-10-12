@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const clojureToolsBabashka = nix.argOr($, "clojureToolsBabashka", () => nix.app(callPackage, nix.path(here, "./clojure-tools.nix"), nix.thunk(() => ({}))));
   const jdkBabashka = nix.argOr($, "jdkBabashka", () => nix.sel(clojureToolsBabashka, "jdk"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "babashka",
       version: nix.thunk(() => nix.attr(babashka_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(babashka_unwrapped, "meta")),
@@ -43,7 +43,7 @@ export CLJ_CONFIG="$TMP/.clojure"
 $out/bin/bb clojure --version | grep -wF '${nix.sel(clojureToolsBabashka, "version")}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         unwrapped: babashka_unwrapped,
         "clojure-tools": clojureToolsBabashka,
       })),

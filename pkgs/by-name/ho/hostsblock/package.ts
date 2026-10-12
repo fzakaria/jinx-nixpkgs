@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
     ".bp.blogspot.com",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hostsblock",
       version: "20161213",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gaenserich",
           repo: "hostsblock",
           rev: "91cacbdfbfb5e7ae9ba3babf8de41e135270c310",
@@ -81,7 +81,7 @@ install -Dm644 systemd/hostsblock.service $out/share/dbus-1/system-services
 install -Dm644 systemd/hostsblock.timer $out/share/dbus-1/system-services
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ad- and malware-blocking script for Linux",
         homepage: "http://gaenserich.github.io/hostsblock/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

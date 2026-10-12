@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const tomli = nix.arg($, "tomli");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crewai-core",
       version: "1.15.18",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crewAIInc",
           repo: "crewAI",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests"]),
       pytestFlags: nix.thunk(() => ["--confcutdir=tests", "--override-ini=addopts="]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shared utilities for CrewAI (version, paths, user-data, telemetry, printer)",
         homepage: "https://github.com/crewAIInc/crewAI/tree/main/lib/crewai-core",
         changelog: nix.thunk(() => nix.str`https://github.com/crewAIInc/crewAI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

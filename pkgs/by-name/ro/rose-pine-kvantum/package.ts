@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rose-pine-kvantum",
       version: "0-unstable-2025-04-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rose-pine",
           repo: "kvantum",
           rev: "48edf9e2d772b166ed50af3e182a19196e5d3fe6",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/Kvantum/themes\nfor i in $(find . -iname \"*.tar.gz\"); do\n    tar -xf $i -C $out/share/Kvantum/themes\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kvantum-themes based on Rose Pine",
         homepage: "https://github.com/rose-pine/kvantum",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

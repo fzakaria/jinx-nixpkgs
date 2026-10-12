@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const fpath = nix.arg($, "fpath");
   const randomconv = nix.arg($, "randomconv");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "letsencrypt-app",
       src: nix.thunk(() => nix.attr(letsencrypt, "src")),
       version: nix.thunk(() => nix.attr(letsencrypt, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         randomconv,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(letsencrypt, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "ACME client implementation of the ACME protocol (RFC 8555) for OCaml",
         mainProgram: "oacmel",
       })),

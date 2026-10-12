@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "meta",
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: product,
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook), extraNativeBuildInputs))),
       buildInputs: nix.thunk(() => nix.concat([
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\n\nmkdir -p \"$out\"\n\ntar xf \"$src\" -C \"$out\" --strip-components=1\n\n# Sanity check\nif [ ! -d \"$out/bin\" ]; then\n  echo \"The `bin` is directory missing after extracting the graalvm\"\n  echo \"tarball, please compare the directory structure of the\"\n  echo \"tarball with what happens in the unpackPhase (in particular\"\n  echo \"with regards to the `--strip-components` flag).\"\n  exit 1\nfi\n\nrunHook postUnpack\n",
       dontStrip: true,
       passthru: nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), product]),
       }, nix.selOr(args_1, () => ({}), "passhtru"))),
       meta: nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(graalvm_ce, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         sourceProvenance: nix.thunk(() => nix.attr(from, "sourceProvenance")),

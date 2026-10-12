@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "luit",
       version: "20250912",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://invisible-mirror.net/archives/luit/luit-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-RpWAYOZvNby4pRuiLaHBPXJtKKhsHPUgURvPeRS+854=",
         })))),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libiconv]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-luit", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts\n\nversion=\"$(list-directory-versions --pname luit | sort | tail -n1)\"\n\nupdate-source-version luit \"$version\"\n")),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Filter between an arbitrary application and a UTF-8 terminal emulator converting the output and input between the locale's encoding and UTF-8",
         homepage: "https://invisible-island.net/luit/",
         license: nix.thunk(() => (() => {

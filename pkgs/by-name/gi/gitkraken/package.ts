@@ -72,21 +72,21 @@ export default nix.lambda((args) => (() => {
   const version = "12.4.1";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://api.gitkraken.dev/releases/production/linux/x64/${version}/gitkraken-amd64.tar.gz`),
         hash: "sha256-vudaXmTqCdRzkVzw3MyzfGSGGM9xfDO0Wims0vxM4yw=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://api.gitkraken.dev/releases/production/darwin/arm64/${version}/GitKraken-v${version}.zip`),
         hash: "sha256-T2AlXHW1eQvlJ7zFndg0sy4X4fITdPhTePk27utYAe0=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     homepage: "https://www.gitkraken.com/git-client",
     description: "Simplifying Git for any OS",
     sourceProvenance: nix.thunk(() => (() => {
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
     })()),
     mainProgram: "gitkraken",
   }));
-  const passthru = nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -161,7 +161,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "gitkraken",
             exec: "gitkraken",
             icon: "gitkraken",
@@ -175,7 +175,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [
         copyDesktopItems,
         nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
           })))),
       ]);
@@ -219,7 +219,7 @@ makeWrapper $out/share/${pname_1}/gitkraken $out/bin/gitkraken \\
   "\${gappsWrapperArgs[@]}"
 `);
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -238,7 +238,7 @@ makeWrapper $out/share/${pname_1}/gitkraken $out/bin/gitkraken \\
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       src: src,

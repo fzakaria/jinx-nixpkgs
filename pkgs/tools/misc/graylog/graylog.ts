@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`graylog_${nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)}`);
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://packages.graylog2.org/releases/graylog/graylog-${version_1}.tgz`),
             hash: hash,
           }))));
@@ -43,12 +43,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [systemdLibs]))}`),
         ]);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$3,
-          tests: nix.thunk(() => ({ __proto__: pos$2, graylog: nix.thunk(() => nix.attr(nixosTests, "graylog")) })),
+          [nix.POS]: pos$3,
+          tests: nix.thunk(() => ({ [nix.POS]: pos$2, graylog: nix.thunk(() => nix.attr(nixosTests, "graylog")) })),
         }));
         const installPhase = nix.thunk(() => nix.add(nix.add("mkdir -p $out\ncp -r {graylog.jar,bin,plugin} $out\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version_1, "4.3")), "cp -r lib $out\n")), "wrapProgram $out/bin/graylogctl $makeWrapperArgs\n"));
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Open source log management solution",
           homepage: "https://www.graylog.org/",
           sourceProvenance: nix.thunk(() => (() => {
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         }));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           pname,
           version: version_1,
           src,

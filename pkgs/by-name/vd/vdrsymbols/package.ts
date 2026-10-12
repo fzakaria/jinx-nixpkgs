@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "vdrsymbols";
       const version = "20100612";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://andreas.vdr-developer.org/fonts/download/vdrsymbols-ttf-${version}.tgz`),
           hash: "sha256-YxB+JcDkta5are+OQyP/WKDL0vllgn0m26bU9mQ3C/Q=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm444 -t \"$out/share/fonts/truetype\" *.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DejaVu fonts with additional symbols used by VDR",
         homepage: "http://andreas.vdr-developer.org/fonts/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

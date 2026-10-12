@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "balatro-mod-manager",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skyline69",
           repo: "balatro-mod-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-cazd6Cns87cjwBORQIsAD5rBes7eTGCAz7bytZO+TsQ=",
         })))),
       nodeModules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: nix.thunk(() => nix.selOr({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "x86_64-linux": "sha256-SQCF05uuJg16Il7SvCXlzkm64wJyPfNzVqfgDj7YldI=",
             "aarch64-linux": "sha256-YobKPWe+0StlyJkYEeUmNzYAinGwR042HWpdwWOCt6Q=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -74,7 +74,7 @@ patchShebangs --build node_modules
 `),
       postInstall: "for size in 32 128 512; do\n  install -Dm644 src-tauri/icons/\"$size\"x\"$size\".png $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/balatro-mod-manager.png\ndone\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "A mod manager for the game Balatro",
         homepage: "https://balatro-mod-manager.dasguney.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

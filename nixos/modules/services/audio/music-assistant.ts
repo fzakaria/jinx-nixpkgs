@@ -42,33 +42,33 @@ export default nix.lambda((args) => (() => {
   const enum$ = nix.thunk(() => nix.attr(types, "enum"));
   const str = nix.thunk(() => nix.attr(types, "str"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "music-assistant"));
-  const finalPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$1, providers: nix.thunk(() => nix.attr(cfg, "providers")) }))));
+  const finalPackage = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, providers: nix.thunk(() => nix.attr(cfg, "providers")) }))));
   return {
-    __proto__: pos$22,
-    meta: nix.thunk(() => ({ __proto__: pos$2, buildDocsInSandbox: false })),
+    [nix.POS]: pos$22,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$2, buildDocsInSandbox: false })),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "music-assistant": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Music Assistant")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "music-assistant", nix.thunk(() => ({})))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(listOf, str)),
               default: nix.thunk(() => ["--config", "/var/lib/music-assistant"]),
               example: nix.thunk(() => ["--log-level", "DEBUG"]),
               description: "List of extra options to pass to the music-assistant executable.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: bool,
               default: false,
               description: "Whether to open required ports for the configured providers.\nCurrently airplay and sendspin need port to be opened to function.\n",
             })))),
           providers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(listOf, nix.thunk(() => nix.app(enum$, nix.thunk(() => nix.sel(cfg, "package", "providerNames")))))),
               default: [],
               example: nix.thunk(() => ["opensubsonic", "snapcast"]),
@@ -78,42 +78,42 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               allowedTCPPorts: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "enable")), 8097n), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "airplay", nix.thunk(() => nix.sel(cfg, "providers")))), 7000n), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "sendspin", nix.thunk(() => nix.sel(cfg, "providers")))), 8927n), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "snapcast", nix.thunk(() => nix.sel(cfg, "providers")))), 1780n), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "squeezelite", nix.thunk(() => nix.sel(cfg, "providers")))), nix.thunk(() => [3483n, 9000n, 9090n]))))))),
               allowedUDPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "squeezelite", nix.thunk(() => nix.sel(cfg, "providers")))), nix.thunk(() => [3483n]))),
-              allowedUDPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "airplay", nix.thunk(() => nix.sel(cfg, "providers")))), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$9, from: 32768n, to: 65535n }))]))),
+              allowedUDPPortRanges: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "airplay", nix.thunk(() => nix.sel(cfg, "providers")))), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, from: 32768n, to: 65535n }))]))),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           avahi: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "airplay_receiver", nix.thunk(() => nix.sel(cfg, "providers")))), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
               openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), true)),
-              publish: nix.thunk(() => ({ __proto__: pos$12, enable: true, userServices: true })),
+              publish: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true, userServices: true })),
             })))),
           "music-assistant": nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             providers: nix.thunk(() => nix.sel(cfg, "package", "providersBuiltins")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "music-assistant": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "Music Assistant",
               documentation: nix.thunk(() => ["https://music-assistant.io"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 HOME: "/var/lib/music-assistant",
                 PYTHONPATH: nix.thunk(() => nix.sel(finalPackage, "pythonPath")),
               })),
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
                   ]))))))));
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
                   ], nix.sel(cfg, "extraOptions"))))),

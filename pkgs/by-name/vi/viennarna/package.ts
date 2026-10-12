@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "viennarna";
       const version = "2.7.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.tbi.univie.ac.at/RNA/download/sourcecode/2_7_x/ViennaRNA-${version}.tar.gz`),
           hash: "sha256-GrX0pPdvyFoiQ1RgiORfXYXy16VsxlbpabAFzOm/q18=",
         }))));
@@ -34,7 +34,7 @@ find ./src/dlib-19.24 -type d -exec chmod +w {} \\;
       const buildInputs = nix.thunk(() => [gsl, mpfr, perl, python3]);
       const configureFlags = nix.thunk(() => ["--with-cluster", "--with-kinwalker"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prediction and comparison of RNA secondary structures",
         homepage: "https://www.tbi.univie.ac.at/RNA/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -45,7 +45,7 @@ find ./src/dlib-19.24 -type d -exec chmod +w {} \\;
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

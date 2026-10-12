@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mf2py",
       version: "2.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microformats",
           repo: "mf2py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [lxml, mock, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mf2py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microformats2 parser written in Python",
         homepage: "https://microformats.org/wiki/mf2py",
         changelog: nix.thunk(() => nix.str`https://github.com/microformats/mf2py/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

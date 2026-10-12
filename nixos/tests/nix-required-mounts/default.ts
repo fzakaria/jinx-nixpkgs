@@ -28,35 +28,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "nix-required-mounts",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "SomeoneSerge"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
-          virtualisation: nix.thunk(() => ({ __proto__: pos$2, writableStore: true })),
+          [nix.POS]: pos$16,
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, writableStore: true })),
           system: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraDependencies: nix.thunk(() => [
               nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs_1, "runCommand"), "deps", nix.thunk(() => ({})), "mkdir $out"), "inputDerivation")),
             ]),
           })),
           nix: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             nixPath: nix.thunk(() => [nix.thunk(() => nix.str`nixpkgs=${nix.path(here, "../../..")}`)]),
             settings: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               "system-features": nix.thunk(() => ["supported-feature"]),
               "experimental-features": nix.thunk(() => ["nix-command"]),
@@ -64,19 +64,19 @@ export default nix.lambda((args) => (() => {
             enable: true,
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "nix-required-mounts": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               allowedPatterns: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "supported-feature": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   onFeatures: nix.thunk(() => ["supported-feature"]),
                   paths: nix.thunk(() => [
                     "/supported-feature-files",
                     nix.thunk(() => ({
-                      __proto__: pos$6,
+                      [nix.POS]: pos$6,
                       host: "/usr/lib/imaginary-fhs-drivers",
                       guest: "/run/opengl-driver/lib",
                     })),
@@ -87,16 +87,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             users: nix.thunk(() => ({
-              __proto__: pos$12,
-              person: nix.thunk(() => ({ __proto__: pos$11, isNormalUser: true })),
+              [nix.POS]: pos$12,
+              person: nix.thunk(() => ({ [nix.POS]: pos$11, isNormalUser: true })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             tmpfiles: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               rules: nix.thunk(() => [
                 "d /supported-feature-files 0755 person users -",
                 "f /usr/lib/libcuda.so 0444 root root - fakeContent",

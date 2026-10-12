@@ -56,17 +56,17 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "gnome-flashback",
       version: "3.58.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-flashback/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-flashback-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qqI+cEJHfnQfJCebRoudIK9OwZXuQ7PTEs2q+E2YwyE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             tecla: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), tecla)),
           })))),
       ]),
@@ -95,14 +95,14 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_LIBGNOME_PANEL_LAYOUTSDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/gnome-panel/layouts`),
         PKG_CONFIG_LIBGNOME_PANEL_MODULESDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/gnome-panel/modules`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             packageName: "gnome-flashback",
             versionPolicy: "odd-unstable",
           })))),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
           const wmLabel = nix.arg($_1, "wmLabel");
           const wmCommand = nix.arg($_1, "wmCommand");
           return nix.app(writeTextFile, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: nix.thunk(() => nix.str`gnome-flashback-${wmName}-wm`),
               destination: nix.thunk(() => nix.str`/share/applications/${wmName}.desktop`),
               text: nix.thunk(() => nix.str`[Desktop Entry]
@@ -133,7 +133,7 @@ X-GNOME-Autostart-Notify=false
           const wmName = nix.arg($_1, "wmName");
           const wmLabel = nix.arg($_1, "wmLabel");
           return nix.app(writeTextFile, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: nix.thunk(() => nix.str`gnome-flashback-${wmName}-gnome-session`),
               destination: nix.thunk(() => nix.str`/share/gnome-session/sessions/gnome-flashback-${wmName}.session`),
               text: nix.thunk(() => nix.str`[GNOME Session]
@@ -147,7 +147,7 @@ Name=GNOME Flashback (${wmLabel})
           const wmLabel = nix.arg($_1, "wmLabel");
           const wmCommand = nix.arg($_1, "wmCommand");
           return nix.update(nix.app(writeTextFile, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: nix.thunk(() => nix.str`gnome-flashback-${wmName}-xsession`),
               destination: nix.thunk(() => nix.str`/share/xsessions/gnome-flashback-${wmName}.desktop`),
               text: nix.thunk(() => nix.str`[Desktop Entry]
@@ -159,7 +159,7 @@ Type=Application
 DesktopNames=GNOME-Flashback;GNOME;
 `),
             }))), {
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             providedSessions: nix.thunk(() => [nix.thunk(() => nix.str`gnome-flashback-${wmName}`)]),
           });
         })(), formals$4),
@@ -193,12 +193,12 @@ substitute ${metacity}/lib/systemd/user/metacity.service \\
 `)))));
         })(), formals$5),
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "gnome-flashback": nix.thunk(() => nix.attr(nixosTests, "gnome-flashback")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "GNOME 2.x-like session for GNOME 3",
         mainProgram: "gnome-flashback",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-flashback",

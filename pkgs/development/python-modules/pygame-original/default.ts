@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pygame",
           repo: "pygame",
           tag: version,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-dependency-finding.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             buildinputs_include: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.builtins.concatMap((dep) => [
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/`),
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/include`),
@@ -77,14 +77,14 @@ export default nix.lambda((args) => (() => {
         libx11,
         portmidi,
         SDL2,
-        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ __proto__: pos$3, enableSTB: false })))),
+        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableSTB: false })))),
         SDL2_mixer,
         SDL2_ttf,
       ]);
       const preConfigure = nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} buildconfig/config.py
 `);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         }))));
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
@@ -103,7 +103,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["pygame"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python library for games (original distribution)",
         homepage: "https://www.pygame.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pygame/pygame/releases/tag/${nix.sel(src, "tag")}`),
@@ -116,7 +116,7 @@ runHook postCheck
         broken: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

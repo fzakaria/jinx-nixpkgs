@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     additionalFiles: nix.thunk(() => nix.app(runTest, nix.path(here, "./additional-files.nix"))),
     bios: nix.thunk(() => nix.app(runTest, nix.path(here, "./bios.nix"))),
     checksum: nix.thunk(() => nix.app(runTest, nix.path(here, "./checksum.nix"))),

@@ -20,17 +20,17 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isStatic")) && nix.asBool(!nix.asBool(nix.lookup(w, "isDarwin"))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libev",
       version: "4.33",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dist.schmorp.de/libev/Attic/libev-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1sjs4324is7fp21an4aas2z4dwsvs6z4xwrmp72vwpq1s6wbfzjh",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/21a6f0f5829384117dfc1ed11ad67954562ef7d6/devel/libev/files/patch-ev.c",
             hash: "sha256-jaeJuCYM/U2ZNbbyA/7YOKvo0lj7Dc9L3LNJfZwcaw0=",
             extraPrefix: "",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(static$)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin")))), "LDFLAGS+=-no-undefined"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(static$)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))), nix.thunk(() => ["LDFLAGS+=-no-undefined", "LDFLAGS+=-lws2_32"])))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High-performance event loop/event model with lots of features",
         homepage: "https://software.schmorp.de/pkg/libev.html",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

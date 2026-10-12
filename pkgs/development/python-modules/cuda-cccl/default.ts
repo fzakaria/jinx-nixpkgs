@@ -34,16 +34,16 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "cuda-cccl",
       version: "1.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "NVIDIA",
           repo: "cccl",
           tag: nix.thunk(() => nix.str`python-${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python/cuda_cccl`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-nvidia-libs-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             libcudart: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
             libnvjitlink: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "libnvjitlink")))),
             libnvrtc: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvrtc")))),
@@ -87,19 +87,19 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=python-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "CUDA Core Compute Libraries for Python",
         homepage: "https://github.com/NVIDIA/cccl/tree/main/python/cuda_cccl",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/cccl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

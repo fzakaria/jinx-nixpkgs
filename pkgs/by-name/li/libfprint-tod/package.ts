@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.argOr($_1, "mesonFlags", () => []);
       const version = "1.94.9+tod1";
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "libfprint-tod",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             domain: "gitlab.freedesktop.org",
             owner: "3v1n0",
             repo: "libfprint",
@@ -43,7 +43,7 @@ patchShebangs \\
   ./tests/*.sh
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://gitlab.freedesktop.org/3v1n0/libfprint",
           description: "Library designed to make it easy to add support for consumer fingerprint readers, with support for loaded drivers",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const uctodata = nix.arg($, "uctodata");
   const frog = nix.arg($, "frog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ucto",
       version: "0.36",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LanguageMachines",
           repo: "ucto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,15 +62,15 @@ for f in ${uctodata}/share/ucto/*; do
 done;
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ __proto__: pos$3, frog: frog })))),
+          [nix.POS]: pos$4,
+          reverseDependencies: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, frog: frog })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Rule-based tokenizer for natural language",
         mainProgram: "ucto",
         homepage: "https://languagemachines.github.io/ucto/",

@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const kdotool = nix.arg($, "kdotool");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mouser",
       version: "3.7.3",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TomBadash",
           repo: "Mouser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,7 +89,7 @@ EOF
 `))), "--add-flags \"$out/share/mouser/main_qml.py\"\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper $out/bin/mouser $out/Applications/Mouser.app/Contents/MacOS/Mouser\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "mouser",
               desktopName: "Mouser",
               comment: "Logitech mouse remapper",
@@ -102,11 +102,11 @@ EOF
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight local alternative to Logitech Options+ for remapping HID++ mice",
         longDescription: "Mouser is a fully-local, open-source alternative to Logitech Options+ for\nremapping Logitech HID++ mice (MX Master / MX Anywhere families and other\nLogitech devices). It supports per-application profiles, DPI / Smart Shift\ncontrol, scroll direction inversion, and gesture-button swipes.\n\nOn NixOS, add the package to `services.udev.packages` so the bundled\n`69-mouser-logitech.rules` is loaded and the active local session can access\n`/dev/hidraw*`, `/dev/input/event*`, and `/dev/uinput` without root.\n",
         homepage: "https://github.com/TomBadash/Mouser",

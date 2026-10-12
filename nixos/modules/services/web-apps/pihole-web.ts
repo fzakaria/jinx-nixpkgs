@@ -33,45 +33,45 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "pihole-web"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "pihole-web": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Pi-hole dashboard")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "pihole-web", nix.thunk(() => ({})))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Domain name for the website.",
               default: "pi.hole",
             })))),
           ports: nix.thunk(() => (() => {
             const portType = nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 options: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       type: nix.thunk(() => nix.sel(lib, "types", "port")),
                       description: "Port to bind",
                     })))),
                   optional: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                       default: false,
                       description: "Skip the port if it cannot be bound",
                     })))),
                   redirectSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                       default: false,
                       description: "Redirect from this port to the first configured SSL port",
                     })))),
                   ssl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                       default: false,
                       description: "Serve SSL on the port",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
                 })),
               }))));
             return nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                       nix.thunk(() => nix.sel(lib, "types", "port")),
                       nix.thunk(() => nix.sel(lib, "types", "str")),
@@ -102,29 +102,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           etc: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             "pihole/versions": nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               text: nix.thunk(() => nix.str`WEB_VERSION=${nix.sel(cfg, "package", "src", "tag")}`),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           "pihole-ftl": nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             settings: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               webserver: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 domain: nix.thunk(() => nix.sel(cfg, "hostName")),
                 port: nix.thunk(() => nix.sel(cfg, "ports")),
                 paths: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   webroot: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/`),
                   webhome: "/",
                 })),
@@ -134,7 +134,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       doc: nix.path(here, "./pihole-web.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

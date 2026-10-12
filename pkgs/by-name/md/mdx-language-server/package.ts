@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mdx-language-server";
       const version = "0.5.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@mdx-js/language-server/-/language-server-${version}.tgz`),
           hash: "sha256-8ef9dVVsH5yTva9ymY+EAZTz6FOZ7Zgu9kOv1wLaK4w=",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-IONV1wxETazDaXzYfqiYrM+A8c36VcnlzTj3lmxA9ug=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server for MDX",
         homepage: "https://github.com/mdx-js/mdx-analyzer/tree/main/packages/language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/mdx-js/mdx-analyzer/blob/@mdx-js/language-server@${version}/packages/language-server/CHANGELOG.md`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mdx-language-server",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

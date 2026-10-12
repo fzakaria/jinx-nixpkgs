@@ -97,11 +97,11 @@ export default nix.lambda((args) => (() => {
   const cfgApi = nix.thunk(() => nix.sel(config, "services", "ente", "api"));
   const cfgWeb = nix.thunk(() => nix.sel(config, "services", "ente", "web"));
   const webPackage = (enteApp) => nix.app(nix.sel(cfgWeb, "package", "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       enteApp: enteApp,
       enteMainUrl: nix.thunk(() => nix.str`https://${nix.sel(cfgWeb, "domains", "photos")}`),
       extraBuildEnv: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NEXT_PUBLIC_ENTE_ENDPOINT: nix.thunk(() => nix.str`https://${nix.sel(cfgWeb, "domains", "api")}`),
         NEXT_PUBLIC_ENTE_ALBUMS_ENDPOINT: nix.thunk(() => nix.str`https://${nix.sel(cfgWeb, "domains", "albums")}`),
         NEXT_TELEMETRY_DISABLED: "1",
@@ -112,45 +112,45 @@ export default nix.lambda((args) => (() => {
   const dataDir = "/var/lib/ente";
   const yamlFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$75,
+    [nix.POS]: pos$75,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         ente: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           web: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Ente web frontend (Photos, Albums)")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ente-web", nix.thunk(() => ({})))),
             domains: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               api: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "api.ente.example.com",
                   description: "The domain under which the api is served. This will NOT serve the api itself,\nbut is a required setting to host the frontends! This will automatically be set\nfor you if you enable both the api server and web frontends.\n",
                 })))),
               accounts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "accounts.ente.example.com",
                   description: "The domain under which the accounts frontend will be served.",
                 })))),
               cast: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "cast.ente.example.com",
                   description: "The domain under which the cast frontend will be served.",
                 })))),
               albums: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "albums.ente.example.com",
                   description: "The domain under which the albums frontend will be served.",
                 })))),
               photos: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   type: nix.thunk(() => nix.sel(types, "str")),
                   example: "photos.ente.example.com",
                   description: "The domain under which the photos frontend will be served.",
@@ -158,82 +158,82 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           api: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             enable: nix.thunk(() => nix.app(mkEnableOption, "Museum (API server for ente.io)")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "museum", nix.thunk(() => ({})))),
             nginx: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               enable: nix.thunk(() => nix.app(mkEnableOption, "nginx proxy for the API server")),
             })),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: defaultUser,
                 description: "User under which museum runs. If you set this option you must make sure the user exists.",
               })))),
             group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: defaultGroup,
                 description: "Group under which museum runs. If you set this option you must make sure the group exists.",
               })))),
             domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 example: "api.ente.example.com",
                 description: "The domain under which the api will be served.",
               })))),
             enableLocalDB: nix.thunk(() => nix.app(mkEnableOption, "the automatic creation of a local postgres database for museum.")),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 description: "Museum yaml configuration. Refer to upstream [local.yaml](https://github.com/ente-io/ente/blob/main/server/configurations/local.yaml) for more information.\nYou can specify secret values in this configuration by setting `somevalue._secret = \"/path/to/file\"` instead of setting `somevalue` directly.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     freeformType: nix.thunk(() => nix.sel(yamlFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       apps: nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         "public-albums": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$14,
+                            [nix.POS]: pos$14,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "https://albums.ente.io",
                             description: "If you're running a self hosted instance and wish to serve public links,\nset this to the URL where your albums web app is running.\n",
                           })))),
                         cast: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "https://cast.ente.io",
                             description: "Set this to the URL where your cast page is running.\nThis is for browser and chromecast casting support.\n",
                           })))),
                         accounts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$16,
+                            [nix.POS]: pos$16,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "https://accounts.ente.io",
                             description: "Set this to the URL where your accounts page is running.\nThis is primarily for passkey support.\n",
                           })))),
                       })),
                       db: nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$18,
+                            [nix.POS]: pos$18,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             description: "The database host",
                           })))),
                         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$19,
+                            [nix.POS]: pos$19,
                             type: nix.thunk(() => nix.sel(types, "port")),
                             default: 5432n,
                             description: "The database port",
                           })))),
                         name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             description: "The database name",
                           })))),
                         user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             type: nix.thunk(() => nix.sel(types, "str")),
                             description: "The database user",
                           })))),
@@ -247,33 +247,33 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfgApi, "enable")), nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             services: nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfgApi, "enableLocalDB")), nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   enable: true,
                   ensureUsers: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$30, name: "ente", ensureDBOwnership: true })),
+                    nix.thunk(() => ({ [nix.POS]: pos$30, name: "ente", ensureDBOwnership: true })),
                   ]),
                   ensureDatabases: nix.thunk(() => ["ente"]),
                 })))),
               ente: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 web: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   domains: nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     api: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfgWeb, "enable")), nix.thunk(() => nix.sel(cfgApi, "domain")))),
                   })),
                 })),
                 api: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$35,
+                    [nix.POS]: pos$35,
                     "log-file": nix.thunk(() => nix.app(mkDefault, "")),
                     db: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfgApi, "enableLocalDB")), nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         host: "/run/postgresql",
                         port: 5432n,
                         name: "ente",
@@ -283,23 +283,23 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfgApi, "nginx", "enable")), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   enable: true,
                   upstreams: nix.thunk(() => ({
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     museum: nix.thunk(() => ({
-                      __proto__: pos$39,
-                      servers: nix.thunk(() => ({ __proto__: pos$38, "localhost:8080": nix.thunk(() => ({})) })),
+                      [nix.POS]: pos$39,
+                      servers: nix.thunk(() => ({ [nix.POS]: pos$38, "localhost:8080": nix.thunk(() => ({})) })),
                       extraConfig: "zone museum 64k;\nkeepalive 20;\n",
                     })),
                   })),
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.sel(cfgApi, "domain"), nix.thunk(() => ({
-                      __proto__: pos$43,
+                      [nix.POS]: pos$43,
                       forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$42,
-                        "/": nix.thunk(() => ({ __proto__: pos$41, proxyPass: "http://museum" })),
+                        [nix.POS]: pos$42,
+                        "/": nix.thunk(() => ({ [nix.POS]: pos$41, proxyPass: "http://museum" })),
                       })),
                       extraConfig: "client_max_body_size 4M;\n",
                     }))],
@@ -307,11 +307,11 @@ export default nix.lambda((args) => (() => {
                 })))),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$50,
+              [nix.POS]: pos$50,
               services: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 ente: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   description: "Ente.io Museum API Server",
                   after: nix.thunk(() => nix.concat(["network.target"], nix.app(optional, nix.thunk(() => nix.sel(cfgApi, "enableLocalDB")), "postgresql.service"))),
                   requires: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(cfgApi, "enableLocalDB")), "postgresql.service")),
@@ -323,7 +323,7 @@ ${nix.app(nix.sel(utils, "genJqSecretsReplacementSnippet"), nix.thunk(() => nix.
 ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     ExecStart: nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(cfgApi, "package")))),
                     Type: "simple",
                     Restart: "on-failure",
@@ -367,15 +367,15 @@ ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
                     WorkingDirectory: dataDir,
                     RuntimeDirectory: "ente",
                   })),
-                  environment: nix.thunk(() => ({ __proto__: pos$47, ENVIRONMENT: "local", GIN_MODE: "release" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: pos$47, ENVIRONMENT: "local", GIN_MODE: "release" })),
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfgApi, "user"), defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
                   [defaultUser, nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     description: "ente.io museum service user",
                     group: nix.thunk(() => nix.attr(cfgApi, "group")),
                     isSystemUser: true,
@@ -386,23 +386,23 @@ ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
             })),
           })))),
         nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfgWeb, "enable")), nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             services: nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               ente: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 api: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   settings: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfgApi, "enable")), nix.thunk(() => ({
-                      __proto__: pos$56,
+                      [nix.POS]: pos$56,
                       apps: nix.thunk(() => ({
-                        __proto__: pos$54,
+                        [nix.POS]: pos$54,
                         accounts: nix.thunk(() => nix.str`https://${nix.sel(cfgWeb, "domains", "accounts")}`),
                         cast: nix.thunk(() => nix.str`https://${nix.sel(cfgWeb, "domains", "cast")}`),
                         "public-albums": nix.thunk(() => nix.str`https://${nix.sel(cfgWeb, "domains", "albums")}`),
                       })),
                       webauthn: nix.thunk(() => ({
-                        __proto__: pos$55,
+                        [nix.POS]: pos$55,
                         rpid: nix.thunk(() => nix.sel(cfgWeb, "domains", "accounts")),
                         rporigins: nix.thunk(() => [nix.thunk(() => nix.str`https://${nix.sel(cfgWeb, "domains", "accounts")}`)]),
                       })),
@@ -412,16 +412,16 @@ ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
               nginx: nix.thunk(() => (() => {
                 const domainFor = (app) => nix.sel(cfgWeb, "domains", nix.key(nix.force(app)));
                 return {
-                  __proto__: pos$71,
+                  [nix.POS]: pos$71,
                   enable: true,
                   virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.app(domainFor, "accounts"), nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$59,
+                          [nix.POS]: pos$59,
                           root: nix.thunk(() => nix.app(webPackage, "accounts")),
                           tryFiles: "$uri $uri.html /index.html",
                           extraConfig: nix.thunk(() => nix.str`add_header Access-Control-Allow-Origin 'https://${nix.sel(cfgWeb, "domains", "api")}';
@@ -430,12 +430,12 @@ ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
                       })),
                     }))],
                     [nix.app(domainFor, "cast"), nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$62,
+                          [nix.POS]: pos$62,
                           root: nix.thunk(() => nix.app(webPackage, "cast")),
                           tryFiles: "$uri $uri.html /index.html",
                           extraConfig: nix.thunk(() => nix.str`add_header Access-Control-Allow-Origin 'https://${nix.sel(cfgWeb, "domains", "api")}';
@@ -444,12 +444,12 @@ ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
                       })),
                     }))],
                     [nix.app(domainFor, "albums"), nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$65,
+                          [nix.POS]: pos$65,
                           root: nix.thunk(() => nix.app(webPackage, "albums")),
                           tryFiles: "$uri $uri.html /index.html",
                           extraConfig: nix.thunk(() => nix.str`add_header Access-Control-Allow-Origin 'https://${nix.sel(cfgWeb, "domains", "api")}';
@@ -458,12 +458,12 @@ ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
                       })),
                     }))],
                     [nix.app(domainFor, "photos"), nix.thunk(() => ({
-                      __proto__: pos$70,
+                      [nix.POS]: pos$70,
                       forceSSL: nix.thunk(() => nix.app(mkDefault, true)),
                       locations: nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         "/": nix.thunk(() => ({
-                          __proto__: pos$68,
+                          [nix.POS]: pos$68,
                           root: nix.thunk(() => nix.app(webPackage, "photos")),
                           tryFiles: "$uri $uri.html /index.html",
                           extraConfig: nix.thunk(() => nix.str`add_header Access-Control-Allow-Origin 'https://${nix.sel(cfgWeb, "domains", "api")}';
@@ -478,7 +478,7 @@ ln -sTf /run/ente/local.yaml ${dataDir}/configurations/local.yaml
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$74,
+      [nix.POS]: pos$74,
       doc: nix.path(here, "./ente.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

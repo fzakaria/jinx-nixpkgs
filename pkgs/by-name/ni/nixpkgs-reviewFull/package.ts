@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nixpkgs_review = nix.arg($, "nixpkgs-review");
   return nix.app(nix.sel(nixpkgs_review, "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       withSandboxSupport: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       withNom: true,
       withDelta: true,

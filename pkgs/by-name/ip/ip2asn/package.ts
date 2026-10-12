@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ip2asn",
       version: "0.1.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "x123",
           repo: "ip2asn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-fYg0aIU8usueMg6cMWUcwMIFCinHdm6H7k9ywZGYfg8=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       cargoBuildFlags: nix.thunk(() => ["-p", "ip2asn-cli"]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI tool for mapping IP addresses to Autonomous System information",
         homepage: "https://github.com/x123/ip2asn/tree/master/ip2asn-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/x123/ip2asn/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

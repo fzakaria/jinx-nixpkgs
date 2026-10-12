@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nixosTests = nix.arg($, "nixosTests");
   const buildNodeModules = (finalAttrs) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,13 +55,13 @@ runHook postBuild
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "zerobyte",
       version: "0.43.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "nicotsx",
           repo: "zerobyte",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +69,7 @@ runHook postBuild
         })))),
       nativeBuildInputs: nix.thunk(() => [bun, makeBinaryWrapper, nodejs, writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         VITE_APP_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         VITE_RESTIC_VERSION: nix.thunk(() => nix.sel(restic, "version")),
         VITE_RCLONE_VERSION: nix.thunk(() => nix.sel(rclone, "version")),
@@ -107,19 +107,19 @@ cp -R LICENSES $out/share/doc/zerobyte/LICENSES
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         node_modules: nix.thunk(() => nix.app(buildNodeModules, finalAttrs)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           zerobyte: nix.thunk(() => nix.attr(nixosTests, "zerobyte")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Backup automation for self-hosters, built on top of restic",
         homepage: "https://github.com/nicotsx/zerobyte",
         changelog: nix.thunk(() => nix.str`https://github.com/nicotsx/zerobyte/releases/tag/v${nix.sel(finalAttrs, "version")}`),

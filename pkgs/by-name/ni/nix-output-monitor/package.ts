@@ -17,8 +17,8 @@ export default nix.lambda((args) => (() => {
   const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const overrides = nix.thunk(() => ({
-    __proto__: pos$2,
-    passthru: nix.thunk(() => ({ __proto__: pos$1, updateScript: nix.path(here, "./update.sh") })),
+    [nix.POS]: pos$2,
+    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
     testTargets: nix.thunk(() => ["unit-tests", "doc-tests"]),
     buildTools: nix.thunk(() => [installShellFiles]),
     postInstall: "ln -s nom \"$out/bin/nom-build\"\nln -s nom \"$out/bin/nom-shell\"\nchmod a+x $out/bin/nom-build\ninstallShellCompletion completions/*\n",

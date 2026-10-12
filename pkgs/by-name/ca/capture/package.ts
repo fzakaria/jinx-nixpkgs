@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "capture-unstable",
       version: "2019-03-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "buhman",
           repo: "capture",
           rev: "80dd9e7195aad5c132badef610f19509f3935b24",
@@ -34,7 +34,7 @@ wrapProgram $out/bin/capture \\
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [slop, ffmpeg]))}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "No bullshit screen capture tool",
         homepage: "https://github.com/buhman/capture",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ar1a"))]),

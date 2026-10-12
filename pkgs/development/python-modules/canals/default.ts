@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deepset-ai",
           repo: "canals",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatchling]);
       const propagatedBuildInputs = nix.thunk(() => [networkx, requests, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         docs: nix.thunk(() => [mkdocs_material, mkdocs_mermaid2_plugin, mkdocstrings]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_draw_pygraphviz"]);
       const pythonImportsCheck = nix.thunk(() => ["canals"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Component orchestration engine",
         homepage: "https://github.com/deepset-ai/canals",
         changelog: nix.thunk(() => nix.str`https://github.com/deepset-ai/canals/releases/tag/v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

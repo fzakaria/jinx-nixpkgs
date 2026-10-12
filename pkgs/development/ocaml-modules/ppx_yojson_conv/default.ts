@@ -18,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36.0")) ? "0.17.1" : "0.15.1"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ppx_yojson_conv",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "janestreet",
           repo: "ppx_yojson_conv",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.15.1": "sha256-lSOUSMVgsRiArEhFTKpAj2yFBPbtaIc/SxdPA+24xXs=",
             "0.17.1": "sha256-QI2uN1/KeyDxdk6oxPt48lDir55Kkgx2BX6wKCY59LI=",
           }, nix.key(nix.str`${version}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [ppx_js_style, ppx_yojson_conv_lib, ppxlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PPX syntax extension that generates code for converting OCaml types to and from Yojson",
         homepage: "https://github.com/janestreet/ppx_yojson_conv",
         maintainers: nix.thunk(() => (() => {

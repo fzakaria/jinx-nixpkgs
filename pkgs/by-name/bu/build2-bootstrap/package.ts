@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "build2-bootstrap",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.build2.org/${nix.sel(finalAttrs, "version")}/build2-toolchain-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pfPqudRSK8InBImVk91scBM0mhuMNyeMiyMhBz4l/xY=",
         })))),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   --subst-var-by isTargetDarwin '${nix.builtins.toString(nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isDarwin")))}'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         configSharedStatic: (enableShared) => (enableStatic) => (nix.asBool((nix.asBool(enableShared) && nix.asBool(enableStatic))) ? "both" : (nix.asBool(enableShared) ? "shared" : (nix.asBool(enableStatic) ? "static" : nix.builtins.throw("neither shared nor static libraries requested")))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.build2.org/",
         description: "Bootstrap for the 'build2' package, you most likely want to use that one",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

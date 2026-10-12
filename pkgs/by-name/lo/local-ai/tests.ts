@@ -75,12 +75,12 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       imports: nix.thunk(() => [nix.path(here, "./module.nix")]),
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "local-ai": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: true,
           package: self,
           threads: nix.thunk(() => nix.sel(config, "virtualisation", "cores")),
@@ -92,22 +92,22 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(self, "lib"));
   const genModels = nix.thunk(() => nix.attr(from, "genModels"));
   return nix.update({
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         package: self,
         version: nix.thunk(() => nix.add("v", nix.sel(self, "version"))),
         command: "local-ai --help",
       })))),
     health: nix.thunk(() => nix.app(nix.sel(testers, "runNixOSTest"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: nix.thunk(() => nix.add(nix.sel(self, "name"), "-health")),
         nodes: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           machine: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             imports: nix.thunk(() => [common_config]),
-            virtualisation: nix.thunk(() => ({ __proto__: pos$5, memorySize: 2048n })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, memorySize: 2048n })),
           })),
         })),
         testScript: nix.thunk(() => (() => {
@@ -125,16 +125,16 @@ machine.copy_from_machine("metrics.json")
         })()),
       })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(self, "features", "with_cublas"))) && nix.asBool(!nix.asBool(nix.sel(self, "features", "with_clblas"))))) && nix.asBool(!nix.asBool(nix.sel(self, "features", "with_vulkan"))))), nix.thunk(() => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       "llamacpp-embeddings": nix.thunk(() => (() => {
         const model = "embedding";
         const model_configs = nix.thunk(() => nix.attrsDyn({}, [
           [model, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             parameters: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   url: "https://huggingface.co/hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF/resolve/main/llama-3.2-1b-instruct-q4_k_m.gguf",
                   sha256: "1d0e9419ec4e12aef73ccf4ffd122703e94c48344a96bc7c5f0f2772c2152ce3",
                 })))),
@@ -145,29 +145,29 @@ machine.copy_from_machine("metrics.json")
         ]));
         const models = nix.thunk(() => nix.app(genModels, model_configs));
         const requests = nix.thunk(() => ({
-          __proto__: pos$14,
-          request: nix.thunk(() => ({ __proto__: pos$13, model: model, input: "Your text string goes here" })),
+          [nix.POS]: pos$14,
+          request: nix.thunk(() => ({ [nix.POS]: pos$13, model: model, input: "Your text string goes here" })),
         }));
         return nix.app(nix.sel(testers, "runNixOSTest"), nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             name: nix.thunk(() => nix.add(nix.sel(self, "name"), "-llamacpp-embeddings")),
             nodes: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               machine: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 imports: nix.thunk(() => [common_config]),
                 virtualisation: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   cores: 2n,
                   memorySize: nix.thunk(() => nix.mul(3n, 4096n)),
                 })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$17,
-                  "local-ai": nix.thunk(() => ({ __proto__: pos$16, models: models })),
+                  [nix.POS]: pos$17,
+                  "local-ai": nix.thunk(() => ({ [nix.POS]: pos$16, models: models })),
                 })),
               })),
             })),
-            passthru: nix.thunk(() => ({ __proto__: pos$20, models: models, requests: requests })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$20, models: models, requests: requests })),
             testScript: nix.thunk(() => (() => {
               const port = "8080";
               return nix.str`machine.wait_for_open_port(${port})
@@ -192,9 +192,9 @@ machine.copy_from_machine("metrics.json")
             const context_size = nix.thunk(() => nix.mul(16n, 1024n));
             const backend = "llama-cpp";
             const parameters = nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   url: "https://huggingface.co/lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf",
                   sha256: "f2be3e1a239c12c9f3f01a962b11fb2807f8032fdb63b0a5502ea42ddef55e44",
                 })))),
@@ -207,53 +207,53 @@ machine.copy_from_machine("metrics.json")
             }));
             const stopwords = nix.thunk(() => ["<|eot_id|>"]);
             const template = nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               chat_message: nix.thunk(() => nix.str`<|start_header_id|>{{.RoleName}}<|end_header_id|>
 
 {{.Content}}${nix.builtins.head(stopwords)}`),
               chat: "{{.Input}}<|start_header_id|>assistant<|end_header_id|>",
               completion: "{{.Input}}",
             }));
-            return { __proto__: pos$25, context_size, backend, parameters, stopwords, template };
+            return { [nix.POS]: pos$25, context_size, backend, parameters, stopwords, template };
           })())],
         ]));
         const models = nix.thunk(() => nix.app(genModels, model_configs));
         const requests = nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           "chat-completions": nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             model: model,
-            messages: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$26, role: "user", content: "1 + 2 = ?" }))]),
+            messages: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$26, role: "user", content: "1 + 2 = ?" }))]),
           })),
           "edit-completions": nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             model: model,
             instruction: "rephrase",
             input: "Black cat jumped out of the window",
             max_tokens: 50n,
           })),
           completions: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             model: model,
             prompt: "A long time ago in a galaxy far, far away",
           })),
         }));
         return nix.app(nix.sel(testers, "runNixOSTest"), nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             name: nix.thunk(() => nix.add(nix.sel(self, "name"), "-llama")),
             nodes: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               machine: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 imports: nix.thunk(() => [common_config]),
-                virtualisation: nix.thunk(() => ({ __proto__: pos$31, cores: 4n, memorySize: 8192n })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$31, cores: 4n, memorySize: 8192n })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$33,
-                  "local-ai": nix.thunk(() => ({ __proto__: pos$32, models: models, parallelRequests: 2n })),
+                  [nix.POS]: pos$33,
+                  "local-ai": nix.thunk(() => ({ [nix.POS]: pos$32, models: models, parallelRequests: 2n })),
                 })),
               })),
             })),
-            passthru: nix.thunk(() => ({ __proto__: pos$36, models: models, requests: requests })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$36, models: models, requests: requests })),
             testScript: nix.thunk(() => (() => {
               const port = "8080";
               return nix.str`machine.wait_for_open_port(${port})
@@ -282,38 +282,38 @@ machine.copy_from_machine("metrics.json")
           })));
       })()),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(self, "features", "with_tts")) && nix.asBool(!nix.asBool(nix.sel(self, "features", "with_cublas"))))) && nix.asBool(!nix.asBool(nix.sel(self, "features", "with_clblas"))))), nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       tts: nix.thunk(() => (() => {
         const model_stt = "whisper-en";
         const model_configs = nix.thunk(() => nix.attrsDyn({}, [
           [model_stt, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             backend: "whisper",
             parameters: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   url: "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.en-q5_1.bin",
                   hash: "sha256-x3xXZvHO8JtrfUfyG1Rsvd1BV4hrO11tT3CekeZsfCs=",
                 })))),
             })),
           }))],
           [model_tts, nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             backend: "piper",
-            parameters: nix.thunk(() => ({ __proto__: pos$42, model: "en-us-danny-low.onnx" })),
+            parameters: nix.thunk(() => ({ [nix.POS]: pos$42, model: "en-us-danny-low.onnx" })),
           }))],
         ]));
         const model_tts = "piper-en";
         const models = nix.thunk(() => (() => {
           const models_1 = nix.thunk(() => nix.app(genModels, model_configs));
           return nix.app(symlinkJoin, nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               name: nix.thunk(() => nix.attr(models_1, "name")),
               paths: nix.thunk(() => [
                 models_1,
                 nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     url: "https://github.com/rhasspy/piper/releases/download/v0.0.2/voice-en-us-danny-low.tar.gz",
                     hash: "sha256-5wf+6H5HeQY0qgdqnAG1vSqtjIFM9lXH53OgouuPm0M=",
                     stripRoot: false,
@@ -322,25 +322,25 @@ machine.copy_from_machine("metrics.json")
             })));
         })());
         const requests = nix.thunk(() => ({
-          __proto__: pos$47,
-          request: nix.thunk(() => ({ __proto__: pos$46, model: model_tts, input: "Hello, how are you?" })),
+          [nix.POS]: pos$47,
+          request: nix.thunk(() => ({ [nix.POS]: pos$46, model: model_tts, input: "Hello, how are you?" })),
         }));
         return nix.app(nix.sel(testers, "runNixOSTest"), nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             name: nix.thunk(() => nix.add(nix.sel(self, "name"), "-tts")),
             nodes: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               machine: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 imports: nix.thunk(() => [common_config]),
-                virtualisation: nix.thunk(() => ({ __proto__: pos$48, cores: 2n })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$48, cores: 2n })),
                 services: nix.thunk(() => ({
-                  __proto__: pos$50,
-                  "local-ai": nix.thunk(() => ({ __proto__: pos$49, models: models })),
+                  [nix.POS]: pos$50,
+                  "local-ai": nix.thunk(() => ({ [nix.POS]: pos$49, models: models })),
                 })),
               })),
             })),
-            passthru: nix.thunk(() => ({ __proto__: pos$53, models: models, requests: requests })),
+            passthru: nix.thunk(() => ({ [nix.POS]: pos$53, models: models, requests: requests })),
             testScript: nix.thunk(() => (() => {
               const port = "8080";
               return nix.str`machine.wait_for_open_port(${port})

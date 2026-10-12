@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "termplotlib";
       const version = "0.3.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nschloe",
           repo: "termplotlib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [numpy]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gnuplot-subprocess.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gnuplot: nix.thunk(() => nix.str`${nix.sel(gnuplot, "out")}/bin/gnuplot`),
           })))),
       ]);
       const disabledTests = nix.thunk(() => ["test_plot", "test_nolabel"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Matplotlib for your terminal",
         homepage: "https://github.com/nschloe/termplotlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

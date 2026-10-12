@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "qtscrcpy",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "barry-ran",
           repo: "QtScrcpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-UZgAFptVC67IXYdxTEmB18fJlFdaOrYrQY4JmdGEJXE=",
           fetchSubmodules: true,
         }))), "overrideAttrs"), (_) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           GIT_CONFIG_COUNT: 1n,
           GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
           GIT_CONFIG_VALUE_0: "git@github.com:",
@@ -70,13 +70,13 @@ substituteInPlace QtScrcpy/sndcpy/sndcpy.sh \\
         ];
       })())),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=sign-compare"]))),
       })),
       installPhase: "runHook preInstall\n\npushd ../output/x64/Release\n  install -Dm755 QtScrcpy -t $out/bin\n  install -Dm755 sndcpy.sh -t $out/share/qtscrcpy\n  install -Dm644 sndcpy.apk -t $out/share/qtscrcpy\npopd\n\nmkdir -p $out/share/icons/hicolor/512x512/apps\nmagick ../QtScrcpy/res/image/tray/logo.png -resize 512x512 $out/share/icons/hicolor/512x512/apps/qtscrcpy.png\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "QtScrcpy",
             exec: "QtScrcpy %U",
             icon: "qtscrcpy",
@@ -91,7 +91,7 @@ substituteInPlace QtScrcpy/sndcpy/sndcpy.sh \\
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Android real-time display control software",
         homepage: "https://github.com/barry-ran/QtScrcpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

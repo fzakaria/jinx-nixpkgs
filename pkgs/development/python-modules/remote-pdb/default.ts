@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ionelmc",
           repo: "python-remote-pdb",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-/7RysJOJigU4coC6d/Ob2lrtw8u8nLZI8wBk4oEEY3g=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Remote vanilla PDB (over TCP sockets)",
         homepage: "https://github.com/ionelmc/python-remote-pdb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

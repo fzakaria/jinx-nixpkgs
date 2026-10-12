@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const shell = nix.arg($, "shell");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: nix.thunk(() => nix.app(runCommand, "mojo-bin-version", nix.thunk(() => ({})), nix.thunk(() => nix.str`export HOME=$TMPDIR
 ${finalPackage}/bin/mojo --version | grep -F '${nix.sel(finalPackage, "version")}'
 touch $out
@@ -60,7 +60,7 @@ grep -F '%tid.x' "$ptx"
 
 touch $out
 `))),
-    "driver-runpath": nix.thunk(() => nix.app(runCommand, "mojo-bin-driver-runpath", nix.thunk(() => ({ __proto__: pos$1, nativeBuildInputs: nix.thunk(() => [patchelf]) })), nix.thunk(() => nix.str`elfCount=0
+    "driver-runpath": nix.thunk(() => nix.app(runCommand, "mojo-bin-driver-runpath", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [patchelf]) })), nix.thunk(() => nix.str`elfCount=0
 find ${finalPackage} -type f -print0 > files
 while IFS= read -r -d "" file; do
   if rpath=$(patchelf --print-rpath "$file" 2>/dev/null); then

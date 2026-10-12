@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const withNetSnmp = nix.argOr($, "withNetSnmp", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "keepalived",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "acassen",
           repo: "keepalived",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => nix.concat([file, libmnl, libnftnl, libnl, openssl], nix.app(nix.sel(lib, "optionals"), withNetSnmp, nix.thunk(() => [net_snmp])))),
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "keepalived")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "keepalived")) })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       configureFlags: nix.thunk(() => nix.concat(["--enable-sha1"], nix.app(nix.sel(lib, "optionals"), withNetSnmp, nix.thunk(() => ["--enable-snmp"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://keepalived.org",
         description: "Routing software written in C",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

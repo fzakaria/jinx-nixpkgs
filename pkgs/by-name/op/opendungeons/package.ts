@@ -25,16 +25,16 @@ export default nix.lambda((args) => (() => {
   const sfml_2 = nix.arg($, "sfml_2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const ogre$ = nix.thunk(() => nix.app(nix.sel(ogre_13, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), ["-DOGRE_RESOURCEMANAGER_STRICT=0"])),
     })));
-  const cegui$ = nix.thunk(() => nix.app(nix.sel(cegui, "override"), nix.thunk(() => ({ __proto__: pos$2, ogre: ogre$ }))));
+  const cegui$ = nix.thunk(() => nix.app(nix.sel(cegui, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, ogre: ogre$ }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "opendungeons",
       version: "0-unstable-2024-07-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "paroj",
           repo: "OpenDungeons",
           rev: "2574db9fbe99aeb6a058b7a27bc191da37978c95",
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OD_TREAT_WARNINGS_AS_ERRORS", false)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source, real time strategy game sharing game elements with the Dungeon Keeper series and Evil Genius",
         mainProgram: "opendungeons",
         homepage: "https://opendungeons.github.io",

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const vim = nix.arg($, "vim");
   const extraPythonPackages = nix.argOr($, "extraPythonPackages", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "astroid",
       version: "0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "astroidmail",
           repo: "astroid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/astroidmail/astroid/commit/b84962a7920aaa9b0cc4a85a0c9fd1802495b1bc.patch",
             hash: "sha256-QO5hoWscSMcxWLjPn/NT2MaIKrgMvTJeutitm4GaKZY=",
           })))),
@@ -89,7 +89,7 @@ substituteInPlace src/plugin/gir_main.c \\
       })()),
       preFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\ngappsWrapperArgs+=(\n  --prefix PYTHONPATH : \"$program_PYTHONPATH\"\n)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://astroidmail.github.io/",
         description: "GTK frontend to the notmuch mail system",
         mainProgram: "astroid",

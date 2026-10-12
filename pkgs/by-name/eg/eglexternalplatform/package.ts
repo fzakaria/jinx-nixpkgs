@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "eglexternalplatform",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVIDIA",
           repo: "eglexternalplatform",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "jq")))),
           sponge: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "moreutils")), "sponge")),
         })))),
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "EGL External Platform interface",
         homepage: "https://github.com/NVIDIA/eglexternalplatform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

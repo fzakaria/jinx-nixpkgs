@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const yarn_berry = yarn_berry_4;
   const electron = electron_42;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "rocketchat-desktop",
       version: "4.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "RocketChat",
           repo: "Rocket.Chat.Electron",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-6QA7dPuE70CLx7OD4s/a26Iya+L2Tx4yZ0cIsDjJPyY=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -56,7 +56,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-NR0HJj8yHYaiDr8yhcoHxFHiO3zIJLXEMbG+gfBaMEY=",
@@ -75,7 +75,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       buildInputs: nix.thunk(() => [vips]),
       postPatch: "# Avoid downloading a changing file during the `rollup` build\nsubstituteInPlace rollup.config.mjs \\\n  --replace-fail 'downloadSupportedVersions(),' \"\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         PUPPETEER_SKIP_DOWNLOAD: "1",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         ELECTRON_OVERRIDE_DIST_PATH: nix.thunk(() => nix.sel(electron, "dist")),
@@ -101,7 +101,7 @@ runHook postBuild
       checkPhase: "yarn test",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: "Application",
             categories: nix.thunk(() => ["GNOME", "GTK", "Network", "InstantMessaging"]),
             name: "rocketchat-desktop",
@@ -134,11 +134,11 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' $out/bin/rocketchat-d
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Official Desktop client for Rocket.Chat",
         mainProgram: "rocketchat-desktop",
         homepage: "https://github.com/RocketChat/Rocket.Chat.Electron",

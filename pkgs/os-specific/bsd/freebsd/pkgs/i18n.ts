@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkcsmapper = nix.arg($, "mkcsmapper");
   const mkesdb = nix.arg($, "mkesdb");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "share/i18n",
       noLibc: true,
       extraNativeBuildInputs: nix.thunk(() => [mkcsmapper, mkesdb]),

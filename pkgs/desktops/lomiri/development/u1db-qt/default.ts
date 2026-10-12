@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qttools = nix.arg($, "qttools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "u1db-qt",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/u1db-qt",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "doc", "examples"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-u1db-qt-Use-BUILD_TESTING.patch",
             url: "https://gitlab.com/ubports/development/core/u1db-qt/-/commit/df5d526df26c056d54bfa532a3a3fa025d655690.patch",
             hash: "sha256-CILMcvqXrTbEL/N2Tic4IsKLnTtmFJ2QbV3r4PsQ5t0=",
@@ -67,15 +67,15 @@ export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbas
       preCheck: "export QT_QPA_PLATFORM=minimal\n",
       postInstall: "# Example seems unmaintained & depends on old things\n# (unity-icon-theme, QtWebKit, Ubuntu namespace compat in LUITK)\n# With an uneducated attempt at porting it to QtWebView, only displays blank window. Just throw it away.\nrm -r $out/share/applications\n\nmoveToOutput share/u1db-qt/qtcreator $dev\nmoveToOutput share/u1db-qt/examples $examples\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Qt5 binding and QtQuick2 plugin for U1DB",
         homepage: "https://gitlab.com/ubports/development/core/u1db-qt",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/u1db-qt/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

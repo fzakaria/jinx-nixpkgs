@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "torchlensmaker",
       version: "0.0.14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "victorpoughon",
           repo: "torchlensmaker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["torchlensmaker"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, onnxruntime, onnxscript]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
         pyEnv: nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
           })())),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for modeling and designing optical systems",
         longDescription: "Torch Lens Maker is an open-source Python library for differentiable\ngeometric optics based on [PyTorch](https://pytorch.org/).\n\nThe goal of the project is to be able to design complex real-world\noptical systems (lenses, mirrors, etc.) using modern computer code and\nstate-of-the art numerical optimization.\n",
         homepage: "https://github.com/victorpoughon/torchlensmaker",

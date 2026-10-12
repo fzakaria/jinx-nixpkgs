@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const netcdfSupport = nix.argOr($, "netcdfSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hdf",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HDFGroup",
           repo: "hdf4",
           tag: nix.thunk(() => nix.str`hdf${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       postInstall: "moveToOutput lib/libhdf4.settings \"$dev\"\nmoveToOutput bin \"$bin\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         uselibtirpc: uselibtirpc,
         libtirpc: libtirpc,
         szipSupport: szipSupport,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         jdk: jdk,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Data model, library, and file format for storing and managing data",
         homepage: "https://support.hdfgroup.org/products/hdf4/",
         maintainers: [],

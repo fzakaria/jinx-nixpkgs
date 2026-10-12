@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "noip",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dmej8g5cpdyqd.cloudfront.net/downloads/noip-duc_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-e50Wv0dF4/8zp/z2Xp9x4YYWIbAcQ8U8OXoNAE/1ADA=",
         })))),
       cargoHash: "sha256-IX1VrUvix50fFW9Pr6VxrpIhBBTkUuoNH+lXnA41I/4=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic DNS daemon for no-ip accounts",
         homepage: "http://noip.com/download?page=linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

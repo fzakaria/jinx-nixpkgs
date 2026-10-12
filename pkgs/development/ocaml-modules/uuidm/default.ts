@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const cmdliner_1 = nix.arg($, "cmdliner_1");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")) ? "0.9.10" : "0.9.8"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: version,
       pname: "uuidm",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/uuidm/releases/uuidm-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "0.9.10": "sha256-kWVZSofWMyky5nAuxoh1xNhwMKZ2qUahL3Dh27J36Vc=",
             "0.9.8": "sha256-/GZbkJVDQu1UY8SliK282kUWAVMfOnpQadUlRT/tJrM=",
           }, nix.key(nix.str`${version}`))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OCaml module implementing 128 bits universally unique identifiers version 3, 5 (name based with MD5, SHA-1 hashing) and 4 (random based) according to RFC 4122",
         homepage: "https://erratique.ch/software/uuidm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const version = "7.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IdentityPython",
           repo: "pysaml2",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-DDs0jWONZ78995p7bbyIyZTWHnCI93SsbECqyeo0se8=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-xmlsec1-path.patch"), nix.thunk(() => ({ __proto__: pos$2, xmlsec: xmlsec })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-xmlsec1-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, xmlsec: xmlsec })))),
         nix.path(here, "./replace-pyopenssl-with-cryptography.patch"),
       ]);
       const postPatch = "# Fix failing tests on systems with 32bit time_t\nsed -i 's/2999\\(-.*T\\)/2029\\1/g' tests/*.xml\n";
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [cryptography, defusedxml, requests, xmlschema]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         s2repoze: nix.thunk(() => [paste, repoze_who, zope_interface]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pyasn1, pymongo, pytestCheckHook, python_dateutil, responses]);
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["saml2"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(xmlschema, "version")), "4.2.0")),
         description: "Python implementation of SAML Version 2 Standard",
         homepage: "https://github.com/IdentityPython/pysaml2",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

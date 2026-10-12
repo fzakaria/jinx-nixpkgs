@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hubble";
       const version = "1.20.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cilium",
           repo: "hubble",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "version";
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd hubble \\\n  --bash <($out/bin/hubble completion bash) \\\n  --fish <($out/bin/hubble completion fish) \\\n  --zsh <($out/bin/hubble completion zsh)\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network, Service & Security Observability for Kubernetes using eBPF",
         homepage: "https://github.com/cilium/hubble/",
         changelog: nix.thunk(() => nix.str`https://github.com/cilium/hubble/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hubble",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -32,23 +32,23 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const bazelPackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/bazelPackage.nix"), nix.thunk(() => ({}))));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "722299976c97e5191045c8016b7c8532189fc3f6",
       sha256: "sha256-hi5BKI94am2LCXD93GBeT0gsODxGeSsd0OrhTwpNAgM=",
     }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "bazelbuild",
       repo: "examples",
       rev: "9d6a2e67d29b8b6208d22d70cb22880345bb6803",
       sha256: "sha256-NQqXsmX7hyTqLINkz1rnavx15jQTdIKpotw42rGc5mc=",
     }))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     java: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         src: src,
         registry: registry,
         sourceRoot: "source/java-tutorial",
@@ -60,16 +60,16 @@ export default nix.lambda((args) => (() => {
           "--tool_java_runtime_version=local_jdk_21",
         ]),
         env: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           JAVA_HOME: nix.thunk(() => nix.sel(jdk_headless, "home")),
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_8, "version")),
         })),
         installPhase: "mkdir $out\ncp bazel-bin/ProjectRunner.jar $out/\n",
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools)),
         bazelRepoCacheFOD: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           outputHash: nix.thunk(() => nix.sel({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "aarch64-darwin": "sha256-FwHsg9P65Eu/n8PV7UW90bvBNG+U67zizRy6Krk32Yg=",
             "aarch64-linux": "sha256-W8h2tCIauGnEvPpXje19bZUE/izHaCQ0Wj4nMaP3nkc=",
             "x86_64-linux": "sha256-VBckTQAK5qeyi2ublk+Dcga5O5XZg3bfHR6Yaw6vSp0=",
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     cpp: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         src: src,
         registry: registry,
         sourceRoot: "source/cpp-tutorial/stage3",
@@ -89,13 +89,13 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools)),
         commandArgs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--host_cxxopt=-xc++", "--cxxopt=-xc++"]))),
         env: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_8, "version")),
         })),
         bazelRepoCacheFOD: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           outputHash: nix.thunk(() => nix.sel({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "aarch64-darwin": "sha256-l6qJU0zGIKl12TYYsG5b+upswUA0hGE+VtQ9QnKpBh8=",
             "aarch64-linux": "sha256-l6qJU0zGIKl12TYYsG5b+upswUA0hGE+VtQ9QnKpBh8=",
             "x86_64-linux": "sha256-l6qJU0zGIKl12TYYsG5b+upswUA0hGE+VtQ9QnKpBh8=",
@@ -104,7 +104,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     rust: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         src: src,
         registry: registry,
         sourceRoot: "source/rust-examples/01-hello-world",
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         targets: nix.thunk(() => ["//:bin"]),
         bazel: bazel_8,
         env: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_8, "version")),
         })),
         installPhase: "mkdir $out\ncp bazel-bin/bin $out/hello-world\n",
@@ -120,9 +120,9 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools)),
         autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["librustc_driver-*.so"]),
         bazelVendorDepsFOD: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           outputHash: nix.thunk(() => nix.sel({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "aarch64-darwin": "sha256-50cAS1okGT1Mq3+TNLk2dk6OdBOAF2LdcskcYuVNOSY=",
             "aarch64-linux": "sha256-2Oia7+2nzLrWeo/bK/5L7du5Y30DY+S0jit6e1ixJXw=",
             "x86_64-linux": "sha256-kBnSlFRfYsotZTRMrTNhk8/106+BLzwuU6MIRXlD1jE=",

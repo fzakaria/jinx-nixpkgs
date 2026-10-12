@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "man-pages",
       version: "6.19",
       outputs: nix.thunk(() => ["man", "out"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kernel/linux/docs/man-pages/man-pages-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-iKfEKtLgPYuW3HLZXkUfLYdf8PQxA6jrisgkITO9ywU=",
         })))),
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# If not provided externally, the makefile will attempt to determine the\n# date and time of the release from the Git repository log, which is not\n# available in the distributed tarball. We therefore supply it from\n# $SOURCE_DATE_EPOCH, which is based on the most recent modification time\n# of all source files. Cf.\n# nixpkgs/pkgs/build-support/setup-hooks/set-source-date-epoch-to-latest.sh\nexport DISTDATE=\"$(date --utc --date=\"@$SOURCE_DATE_EPOCH\")\"\n",
       installCheckPhase: "runHook preInstallCheck\n\n# Check for a few well-known man pages\nfor page in ldd write printf null hosts random ld.so; do\n  man -M \"$man/share/man\" -P cat \"$page\" >/dev/null\ndone\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, man: nix.thunk(() => nix.attr(nixosTests, "man")) })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://www.kernel.org/pub/linux/docs/man-pages/" })))),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, man: nix.thunk(() => nix.attr(nixosTests, "man")) })),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://www.kernel.org/pub/linux/docs/man-pages/" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Linux development manual pages",
         longDescription: "This package provides the manual pages in its \"man\" output,\nand various utility programs in its \"out\" output.\n\nOnly the \"man\" output is installed by default.\n",
         homepage: "https://www.kernel.org/doc/man-pages/",

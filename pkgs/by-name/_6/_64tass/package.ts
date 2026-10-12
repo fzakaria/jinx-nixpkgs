@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "64tass",
       version: "1.60.3243",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/tass64/64tass-${nix.sel(finalAttrs, "version")}-src.zip`),
           hash: "sha256-73/MoQqqM966xtN4D8F85HZSw/gEpcFQ2JiH3k6vI+4=",
         })))),
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tass64.sourceforge.net/",
         description: "Multi pass optimizing macro assembler for the 65xx series of processors",
         license: nix.thunk(() => [

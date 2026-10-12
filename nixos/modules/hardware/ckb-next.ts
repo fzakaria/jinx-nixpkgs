@@ -23,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "ckb-next"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "ckb", "enable"]), nix.thunk(() => ["hardware", "ckb-next", "enable"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "ckb", "package"]), nix.thunk(() => ["hardware", "ckb-next", "package"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "ckb-next": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the Corsair keyboard/mouse driver")),
           gid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
               default: null,
               example: 100n,
@@ -47,21 +47,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           services: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "ckb-next": nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Corsair Keyboards and Mice Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/ckb-next-daemon ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "gid"), null)), nix.thunk(() => nix.str`--gid=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "gid")))}`))}`),
                 Restart: "on-failure",
               })),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$11, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$11, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=ckb-next.ts.map

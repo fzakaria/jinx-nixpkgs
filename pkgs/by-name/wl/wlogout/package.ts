@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const withGtkLayerShell = nix.argOr($, "withGtkLayerShell", () => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wlogout",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArtsyMacaw",
           repo: "wlogout",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace style.css \\\n  --replace \"/usr/share/wlogout\" \"$out/share/wlogout\"\n\nsubstituteInPlace main.c \\\n  --replace \"/etc/wlogout\" \"$out/etc/wlogout\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/ArtsyMacaw/wlogout",
         description: "Wayland based logout menu",
         changelog: nix.thunk(() => nix.str`https://github.com/ArtsyMacaw/wlogout/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

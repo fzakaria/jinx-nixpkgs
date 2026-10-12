@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const pname = "monosat";
   const version = "1.8.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "sambayless",
       repo: "monosat",
       tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://github.com/sambayless/monosat/commit/a5079711d0df0451f9840f3a41248e56dbb03967.patch",
         sha256: "1p2y0jw8hb9c90nbffhn86k1dxd6f6hk5v70dfmpzka3y6g1ksal",
       })))),
   ]);
   const commonPostPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), "substituteInPlace src/monosat/Main.cc \\\n  --replace-fail 'defined(__linux__)' '0'\n"));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "SMT solver for Monotonic Theories",
     mainProgram: "monosat",
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
     broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
   }));
   const core = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_SKIP_BUILD_RPATH", true)),
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), includeJava, "mkdir -p $out/share/java\ncp monosat.jar $out/share/java\n")),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, python: python })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, python: python })),
     }))));
   const python = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
     const cython = nix.arg($_1, "cython");
     const pytestCheckHook = nix.arg($_1, "pytestCheckHook");
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pyproject: true,
         pname: pname,
         version: version,
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         meta: meta,
         "build-system": nix.thunk(() => [setuptools, cython]),
         buildInputs: nix.thunk(() => [core]),
-        env: nix.thunk(() => ({ __proto__: pos$6, MONOSAT_CYTHON: true })),
+        env: nix.thunk(() => ({ [nix.POS]: pos$6, MONOSAT_CYTHON: true })),
         postPatch: nix.thunk(() => nix.add(nix.add(commonPostPatch, "substituteInPlace src/monosat/api/python/monosat/monosat_p.pyx \\\n  --replace-fail '(int, long)' 'int' \\\n  --replace-fail '(int,long)' 'int'\ncd src/monosat/api/python\n"), nix.str`substituteInPlace setup.py \\
   --replace-fail 'library_dir = "../../../../"' 'library_dir = "${core}/lib/"'
 `)),

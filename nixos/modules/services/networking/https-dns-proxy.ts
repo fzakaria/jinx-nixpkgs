@@ -39,31 +39,31 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "https-dns-proxy"));
   const providers = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     cloudflare: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       ips: nix.thunk(() => ["1.1.1.1", "1.0.0.1"]),
       url: "https://cloudflare-dns.com/dns-query",
     })),
     google: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       ips: nix.thunk(() => ["8.8.8.8", "8.8.4.4"]),
       url: "https://dns.google/dns-query",
     })),
     quad9: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       ips: nix.thunk(() => ["9.9.9.9", "149.112.112.112"]),
       url: "https://dns.quad9.net/dns-query",
     })),
     opendns: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       ips: nix.thunk(() => ["208.67.222.222", "208.67.220.220"]),
       url: "https://doh.opendns.com/dns-query",
     })),
     custom: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cfg, "provider"));
       return {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       ips: nix.thunk(() => nix.attr(from, "ips")),
       url: nix.thunk(() => nix.attr(from, "url")),
     };
@@ -77,37 +77,37 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(providers, nix.key(nix.str`${nix.sel(cfg, "provider", "kind")}`), "url")),
     ])));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "peterhoeg"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         "https-dns-proxy": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(mkEnableOption, "https-dns-proxy daemon")),
           address: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "The address on which to listen",
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "127.0.0.1",
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "The port on which to listen",
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 5053n,
             })))),
           provider: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             kind: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 description: nix.thunk(() => nix.str`The upstream provider to use or custom in case you do not trust any of
 the predefined providers or just want to use your own.
 
@@ -124,24 +124,24 @@ bootstrap IP addresses as well as the resolver https URL.
                 default: defaultProvider,
               })))),
             ips: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "The custom provider IPs",
                 type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               })))),
             url: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 description: "The custom provider URL",
                 type: nix.thunk(() => nix.sel(types, "str")),
               })))),
           })),
           preferIPv4: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "https_dns_proxy will by default use IPv6 and fail if it is not available.\nTo play it safe, we choose IPv4.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
             })))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Additional arguments to pass to the process.",
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: nix.thunk(() => ["-v"]),
@@ -150,13 +150,13 @@ bootstrap IP addresses as well as the resolver https URL.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "https-dns-proxy": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "DNS to DNS over HTTPS (DoH) proxy",
               requires: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -164,7 +164,7 @@ bootstrap IP addresses as well as the resolver https URL.
               before: nix.thunk(() => ["nss-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 Type: "exec",
                 DynamicUser: true,
                 ProtectHome: "tmpfs",

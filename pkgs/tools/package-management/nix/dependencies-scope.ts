@@ -14,8 +14,8 @@ export default nix.lambda((args) => (() => {
   const splicePackages = nix.arg($, "splicePackages");
   const callPackage = nix.arg($, "callPackage");
   const otherSplices = nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => ["nixDependencies"])));
-  return nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({ __proto__: pos$1, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
-      __proto__: pos$2,
+  return nix.app(nix.sel(lib, "makeScopeWithSplicing'"), nix.thunk(() => ({ [nix.POS]: pos$1, splicePackages: splicePackages, newScope: newScope })), nix.thunk(() => ({
+      [nix.POS]: pos$2,
       otherSplices: otherSplices,
       f: nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./dependencies.nix"), nix.thunk(() => ({}))), "scopeFunction")),
     })));

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neomutt",
           repo: "lsp-tree-sitter",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["lsp_tree_sitter"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to create language servers",
         homepage: "https://github.com/neomutt/lsp-tree-sitter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

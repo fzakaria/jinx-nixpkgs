@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const release = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./sources.json")))));
   const systemSources = nix.thunk(() => nix.sel(release, "systems", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const fetchWheel = (source) => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.attr(source, "url")),
       hash: nix.thunk(() => nix.attr(source, "hash")),
     })));
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mojo-bin",
       version: nix.thunk(() => nix.attr(release, "version")),
       strictDeps: true,
@@ -146,9 +146,9 @@ wrapProgram "$out/bin/mojo" \\
   --prefix PATH : "$out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc"))]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./tests.nix")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
             patchelf: patchelf,
@@ -157,7 +157,7 @@ wrapProgram "$out/bin/mojo" \\
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Programming language and developer toolchain for heterogeneous computing",
         longDescription: "The prebuilt Linux toolchain requires an x86-64-v3 processor on x86_64,\nor an ARM Neoverse N1 processor or newer on aarch64. It includes the MAX\ncore runtime needed for accelerator compilation, but not MAX's optional\ndistributed multi-GPU SHMEM support.\n",
         homepage: "https://www.modular.com/mojo",

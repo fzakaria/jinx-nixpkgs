@@ -13,14 +13,14 @@ const pos$8 = nix.positions(here + "/gemset.nix", [["dependencies", 37, 5], ["gr
 const pos$9 = nix.positions(here + "/gemset.nix", [["cddlc", 2, 3], ["neatjson", 16, 3], ["polyglot", 26, 3], ["treetop", 36, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$9,
+  [nix.POS]: pos$9,
   cddlc: nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dependencies: nix.thunk(() => ["neatjson", "treetop"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1s3fbgd5yqgji162zsmlwnva1v1r3zc1qiyv6im7karv5f08r8m3",
       type: "gem",
@@ -28,11 +28,11 @@ export default nix.thunk(() => ({
     version: "0.4.2",
   })),
   neatjson: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0wm1lq8yl6rzysh3wg6fa55w5534k6ppiz0qb7jyvdy582mk5i0s",
       type: "gem",
@@ -40,11 +40,11 @@ export default nix.thunk(() => ({
     version: "0.10.5",
   })),
   polyglot: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1bqnxwyip623d8pr29rg6m8r0hdg08fpr2yb74f46rn1wgsnxmjr",
       type: "gem",
@@ -52,12 +52,12 @@ export default nix.thunk(() => ({
     version: "0.3.5",
   })),
   treetop: nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     dependencies: nix.thunk(() => ["polyglot"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1m5fqy7vq6y7bgxmw7jmk7y6pla83m16p7lb41lbqgg53j8x2cds",
       type: "gem",

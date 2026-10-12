@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const itk = nix.arg($, "itk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "c3d",
       version: "1.4.1-unstable-2024-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyushkevich",
           repo: "c3d",
           rev: "9e6174153ab87eae014f5b802413478c8fbc9a1a",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [itk]),
       cmakeFlags: nix.thunk(() => ["-DCONVERT3D_USE_ITK_REMOTE_MODULES=OFF"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pyushkevich/c3d",
         description: "Medical imaging processing tool",
         maintainers: nix.thunk(() => (() => {

@@ -33,23 +33,23 @@ export default nix.lambda((args) => (() => {
   const dune_site = nix.arg($, "dune-site");
   const eio_main = nix.arg($, "eio_main");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "piaf",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/piaf/releases/download/${nix.sel(finalAttrs, "version")}/piaf-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-B/qQCaUvrqrm2GEW51AH9SebGFx7x8laq5RV8hBzcPs=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(eio_main, "version")), "1.4")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/anmonteiro/piaf/commit/5b2f44683fb7eabdb78f43848c9e0a448e741fc3.patch",
               includes: nix.thunk(() => ["lib/*.ml"]),
               hash: "sha256-/Y3OQtqoA4DCgs3Ai2EPCipMb/xSwDAN7+6MTFoHKXI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/anmonteiro/piaf/commit/b8f5e94deea6e653025c37131bbf6833dc4c4c85.patch",
               includes: nix.thunk(() => ["lib/*.ml"]),
               hash: "sha256-gazYJFlM9OeuixpJnLwANZj/DVqdc8vacd1a6v35SpM=",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [alcotest, dune_site, eio_main]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "HTTP library with HTTP/2 support written entirely in OCaml",
         homepage: "https://github.com/anmonteiro/piaf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

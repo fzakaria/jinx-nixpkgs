@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv = clangStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rethinkdb",
       version: "2.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.rethinkdb.com/repository/raw/dist/rethinkdb-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-UJEjdgK2KDDbLLParKarNGMjI3QeZxDC8N5NhPRCcR8=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" "${nix.sel(python3Packages, "rethinkdb")}/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source distributed database built with love",
         mainProgram: "rethinkdb",
         longDescription: "RethinkDB is built to store JSON documents, and scale to\nmultiple machines with very little effort. It has a pleasant\nquery language that supports really useful queries like table\njoins and group by, and is easy to setup and learn.\n",

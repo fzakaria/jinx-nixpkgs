@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const libepoxy = nix.arg($, "libepoxy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sushi",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/sushi/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/sushi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qyUXeQjVzMWFaHaageubTzIwZ4bmxzYYGT6/YaEn7gA=",
         })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         libepoxy,
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ __proto__: pos$2, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
       ]),
@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "for file in $out/libexec/org.gnome.NautilusPreviewer\ndo\n  sed -e $\"2iimports.package._findEffectiveEntryPointName = () => \\'$(basename $file)\\' \" \\\n    -i $file\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "sushi" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "sushi" })))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/sushi",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/sushi/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Quick previewer for Nautilus",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "liquidprompt",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "liquidprompt",
           repo: "liquidprompt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs tools/*.sh\n",
       installPhase: "runHook preInstall\n\ninstall -D -m 0444 liquidprompt $out/bin/liquidprompt\n\ninstall -D -m 0444 liquidprompt.plugin.zsh \\\n  $out/share/zsh/plugins/liquidprompt/liquidprompt.plugin.zsh\ninstall -D -m 0444 liquidprompt \\\n  $out/share/zsh/plugins/liquidprompt/liquidprompt\n\n# generate default config file\nmkdir -p $out/share/doc/liquidprompt\ntools/config-from-doc.sh --verbose > $out/share/doc/liquidprompt/liquidpromptrc-dist\n\nmkdir -p $out/share/liquidprompt\ncp -a themes $out/share/liquidprompt/\n\nmkdir -p $out/share/liquidprompt/contrib\ncp -a contrib/presets $out/share/liquidprompt/contrib/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Full-featured & carefully designed adaptive prompt for Bash & Zsh",
         homepage: "https://github.com/liquidprompt/liquidprompt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

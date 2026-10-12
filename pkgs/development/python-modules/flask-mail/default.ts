@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const flask = nix.arg($, "flask");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flask-mail",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pallets-eco",
           repo: "flask-mail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_unicode_sender_tuple", "test_unicode_sender"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flask extension providing simple email sending capabilities",
         homepage: "https://github.com/pallets-eco/flask-mail",
         changelog: nix.thunk(() => nix.str`https://github.com/pallets-eco/flask-mail/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.md`),

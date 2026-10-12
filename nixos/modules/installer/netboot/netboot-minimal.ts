@@ -15,30 +15,30 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     imports: nix.thunk(() => [
       nix.path(here, "./netboot-base.nix"),
       nix.path(here, "../../profiles/minimal.nix"),
     ]),
     documentation: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       man: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, true)),
       })),
     })),
     hardware: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       enableRedistributableFirmware: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 70n, false)),
     })),
     system: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       extraDependencies: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 70n, [])),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       networkmanager: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 500n, false)),
       })),
     })),

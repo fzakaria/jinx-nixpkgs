@@ -9,14 +9,14 @@ const pos$4 = nix.positions(here + "/gemset.nix", [["groups", 16, 5], ["platform
 const pos$5 = nix.positions(here + "/gemset.nix", [["schleuder-cli", 2, 3], ["thor", 15, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$5,
+  [nix.POS]: pos$5,
   "schleuder-cli": nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dependencies: nix.thunk(() => ["thor"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fetchSubmodules: false,
       rev: "fd010d28b1503504056e714e03abf043b64794ea",
       sha256: "1r8ayi0d00c14q40247rwjf5s5n3dsy9d9blhf5jzm3kddzpwnbx",
@@ -26,11 +26,11 @@ export default nix.thunk(() => ({
     version: "0.2.0",
   })),
   thor: nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1vq1fjp45az9hfp6fxljhdrkv75cvbab1jfrwcw738pnsiqk8zps",
       type: "gem",

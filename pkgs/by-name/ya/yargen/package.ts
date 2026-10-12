@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yargen",
       version: "0.23.4",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Neo23x0",
           repo: "yarGen",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-built-in-scandir.patch",
             url: "https://github.com/Neo23x0/yarGen/commit/cae14ac8efeb5536885792cae99d1d0f7fb6fde3.patch",
             sha256: "0z6925r7n1iysld5c8li5nkm1dbxg8j7pn0626a4vic525vf8ndl",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "use-cwd-for-abspath.patch",
             url: "https://github.com/Neo23x0/yarGen/commit/441dafb702149f5728c2c6736fc08741a46deb26.patch",
             sha256: "lNp3oC2BM7tBzN4AetvPr+xJLz6KkZxQmsldeZaxJQU=",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Generator for YARA rules",
         mainProgram: "yarGen.py",
         homepage: "https://github.com/Neo23x0/yarGen",

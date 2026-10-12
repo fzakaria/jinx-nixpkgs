@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gem-unstable",
       version: "2023-07-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "umlaeute",
           repo: "Gem",
           rev: "4ec12eef8716822c68f7c02a5a94668d2427037d",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, file, pkg_config]),
       buildInputs: nix.thunk(() => [puredata, libGL, libGLU, glew, libglut, libv4l, libx11]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphics Environment for Multimedia",
         homepage: "http://puredata.info/downloads/gem",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

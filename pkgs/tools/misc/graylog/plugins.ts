@@ -86,12 +86,12 @@ export default nix.lambda((args) => (() => {
 cp $src $out/bin/${pluginName}-${version}.jar
 `);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(a, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         installPhase: installPhase,
         dontUnpack: true,
         nativeBuildInputs: nix.thunk(() => [unzip]),
         meta: nix.thunk(() => nix.update(nix.sel(a, "meta"), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           platforms: nix.thunk(() => nix.sel(graylogPackage, "meta", "platforms")),
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(sourceTypes, null);
@@ -101,61 +101,61 @@ cp $src $out/bin/${pluginName}-${version}.jar
       })));
   })(), formals$2);
   return {
-    __proto__: pos$63,
+    [nix.POS]: pos$63,
     aggregates: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-aggregates";
         const pluginName = "graylog-plugin-aggregates";
         const version = "2.4.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => nix.str`https://github.com/cvtienhoven/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1c48almnjr0b6nvzagnb9yddqbcjs7yhrd5yc5fx9q7w3vxi50zp",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           homepage: "https://github.com/cvtienhoven/graylog-plugin-aggregates",
           description: "Plugin that enables users to execute term searches and get notified when the given criteria are met",
         }));
-        return { __proto__: pos$5, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$5, pname, pluginName, version, src, meta };
       })()))),
     auth_sso: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-auth-sso";
         const pluginName = "graylog-plugin-auth-sso";
         const version = "3.3.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             url: nix.thunk(() => nix.str`https://github.com/Graylog2/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1g47hlld8vzicd47b5i9n2816rbrhv18vjq8gp765c7mdg4a2jn8",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           homepage: "https://github.com/Graylog2/graylog-plugin-auth-sso",
           description: "SSO support for Graylog through trusted HTTP headers set by load balancers or authentication proxies",
         }));
-        return { __proto__: pos$8, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$8, pname, pluginName, version, src, meta };
       })()))),
     dnsresolver: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-dnsresolver";
         const pluginName = "graylog-plugin-dnsresolver";
         const version = "1.2.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "0djlyd4w4mrrqfbrs20j1xw0fygqsb81snz437v9bf80avmcyzg1",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           homepage: "https://github.com/graylog-labs/graylog-plugin-dnsresolver",
           description: "Message filter plugin can be used to do DNS lookups for the source field in Graylog messages",
         }));
-        return { __proto__: pos$11, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$11, pname, pluginName, version, src, meta };
       })()))),
     "enterprise-integrations": nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-enterprise-integrations";
         const pluginName = "graylog-plugin-enterprise-integrations";
         const version = "3.3.9";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             url: nix.thunk(() => nix.str`https://downloads.graylog.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-${version}.tgz`),
             sha256: "0yr2lmf50w8qw5amimmym6y4jxga4d7s7cbiqs5sqzvipgsknbwj",
           }))));
@@ -164,35 +164,35 @@ tar --strip-components=2 -xf $src
 cp ${pluginName}-${version}.jar $out/bin/${pluginName}-${version}.jar
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           homepage: "https://docs.graylog.org/en/3.3/pages/integrations.html#enterprise",
           description: "Integrations are tools that help Graylog work with external systems (unfree enterprise integrations)",
           license: nix.thunk(() => nix.sel(licenses, "unfree")),
         }));
-        return { __proto__: pos$14, pname, pluginName, version, src, installPhase, meta };
+        return { [nix.POS]: pos$14, pname, pluginName, version, src, installPhase, meta };
       })()))),
     "filter-messagesize": nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-filter-messagesize";
         const pluginName = "graylog-plugin-filter-messagesize";
         const version = "0.0.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1vx62yikd6d3lbwsfiyf9j6kx8drvn4xhffwv27fw5jzhfqr61ji",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           homepage: "https://github.com/graylog-labs/graylog-plugin-filter-messagesize",
           description: "Prints out all messages that have an estimated size crossing a configured threshold during processing",
         }));
-        return { __proto__: pos$17, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$17, pname, pluginName, version, src, meta };
       })()))),
     integrations: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-integrations";
         const pluginName = "graylog-plugin-integrations";
         const version = "3.3.9";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             url: nix.thunk(() => nix.str`https://downloads.graylog.org/releases/graylog-integrations/graylog-integrations-plugins-${version}.tgz`),
             sha256: "0q858ffmkinngyqqsaszcrx93zc4fg43ny0xb7vm0p4wd48hjyqc",
           }))));
@@ -201,237 +201,237 @@ tar --strip-components=2 -xf $src
 cp ${pluginName}-${version}.jar $out/bin/${pluginName}-${version}.jar
 `);
         const meta = nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           homepage: "https://github.com/Graylog2/graylog-plugin-integrations",
           description: "Collection of open source Graylog integrations that will be released together",
         }));
-        return { __proto__: pos$20, pname, pluginName, version, src, installPhase, meta };
+        return { [nix.POS]: pos$20, pname, pluginName, version, src, installPhase, meta };
       })()))),
     "internal-logs": nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-internal-logs";
         const pluginName = "graylog-plugin-internal-logs";
         const version = "2.4.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1jyy0wkjapv3xv5q957xxv2pcnd4n1yivkvkvg6cx7kv1ip75xwc",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           homepage: "https://github.com/graylog-labs/graylog-plugin-internal-logs",
           description: "Graylog plugin to record internal logs of Graylog efficiently instead of sending them over the network",
         }));
-        return { __proto__: pos$23, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$23, pname, pluginName, version, src, meta };
       })()))),
     ipanonymizer: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-ipanonymizer";
         const pluginName = "graylog-plugin-ipanonymizer";
         const version = "1.1.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "0hd66751hp97ddkn29s1cmjmc2h1nrp431bq7d2wq16iyxxlygri",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           homepage: "https://github.com/graylog-labs/graylog-plugin-ipanonymizer",
           description: "Graylog-server plugin that replaces the last octet of IP addresses in messages with xxx",
         }));
-        return { __proto__: pos$26, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$26, pname, pluginName, version, src, meta };
       })()))),
     jabber: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-jabber";
         const pluginName = "graylog-plugin-jabber";
         const version = "2.4.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "0zy27q8y0bv7i5nypsfxad4yiw121sbwzd194jsz2w08jhk3skl5",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           homepage: "https://github.com/graylog-labs/graylog-plugin-jabber",
           description: "Jabber Alarmcallback Plugin for Graylog",
         }));
-        return { __proto__: pos$29, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$29, pname, pluginName, version, src, meta };
       })()))),
     metrics: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-metrics";
         const pluginName = "graylog-plugin-metrics";
         const version = "1.3.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1v1yzmqp43kxigh3fymdwki7pn21sk2ym3kk4nn4qv4zzkhz59vp",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           homepage: "https://github.com/graylog-labs/graylog-plugin-metrics",
           description: "Output plugin for integrating Graphite, Ganglia and StatsD with Graylog",
         }));
-        return { __proto__: pos$32, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$32, pname, pluginName, version, src, meta };
       })()))),
     "mongodb-profiler": nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-mongodb-profiler";
         const pluginName = "graylog-plugin-mongodb-profiler";
         const version = "2.0.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1hadxyawdz234lal3dq5cy3zppl7ixxviw96iallyav83xyi23i8",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           homepage: "https://github.com/graylog-labs/graylog-plugin-mongodb-profiler",
           description: "Graylog input plugin that reads MongoDB profiler data",
         }));
-        return { __proto__: pos$35, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$35, pname, pluginName, version, src, meta };
       })()))),
     pagerduty: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-pagerduty";
         const pluginName = "graylog-plugin-pagerduty";
         const version = "2.0.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "0xhcwfwn7c77giwjilv7k7aijnj9azrjbjgd0r3p6wdrw970f27r",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           homepage: "https://github.com/graylog-labs/graylog-plugin-pagerduty",
           description: "Alarm callback plugin for integrating PagerDuty into Graylog",
         }));
-        return { __proto__: pos$38, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$38, pname, pluginName, version, src, meta };
       })()))),
     redis: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-redis";
         const pluginName = "graylog-plugin-redis";
         const version = "0.1.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "0dfgh6w293ssagas5y0ixwn0vf54i5iv61r5p2q0rbv2da6xvhbw",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           homepage: "https://github.com/graylog-labs/graylog-plugin-redis",
           description: "Redis plugin for Graylog",
         }));
-        return { __proto__: pos$41, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$41, pname, pluginName, version, src, meta };
       })()))),
     slack: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-slack";
         const pluginName = "graylog-plugin-slack";
         const version = "3.1.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "067p8g94b007gypwyyi8vb6qhwdanpk8ah57abik54vv14jxg94k",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           homepage: "https://github.com/graylog-labs/graylog-plugin-slack",
           description: "Can notify Slack or Mattermost channels about triggered alerts in Graylog (Alarm Callback)",
         }));
-        return { __proto__: pos$44, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$44, pname, pluginName, version, src, meta };
       })()))),
     smseagle: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-smseagle";
         const pluginName = "graylog-plugin-smseagle";
         const version = "1.0.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             url: nix.thunk(() => nix.str`https://bitbucket.org/proximus/smseagle-graylog/raw/b99cfc349aafc7c94d4c2503f7c3c0bde67684d1/jar/${pluginName}-${version}.jar`),
             sha256: "sha256-rvvftzPskXRGs1Z9dvd/wFbQoIoNtEQIFxMIpSuuvf0=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           homepage: "https://bitbucket.org/proximus/smseagle-graylog/",
           description: "Alert/notification callback plugin for integrating the SMSEagle into Graylog",
           license: nix.thunk(() => nix.sel(licenses, "gpl3Only")),
         }));
-        return { __proto__: pos$47, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$47, pname, pluginName, version, src, meta };
       })()))),
     snmp: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-snmp";
         const pluginName = "graylog-plugin-snmp";
         const version = "0.3.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1hkaklwzcsvqq45b98chwqxqdgnnbj4dg68agsll13yq4zx37qpp",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           homepage: "https://github.com/graylog-labs/graylog-plugin-snmp",
           description: "Graylog plugin to receive SNMP traps",
         }));
-        return { __proto__: pos$50, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$50, pname, pluginName, version, src, meta };
       })()))),
     spaceweather: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-spaceweather";
         const pluginName = "graylog-plugin-spaceweather";
         const version = "1.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/spaceweather-input.jar`),
             sha256: "1mwqy3fhyy4zdwyrzvbr565xwf96xs9d3l70l0khmrm848xf8wz4",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           homepage: "https://github.com/graylog-labs/graylog-plugin-spaceweather",
           description: "Correlate proton density to the response time of your app and the ion temperature to your exception rate",
         }));
-        return { __proto__: pos$53, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$53, pname, pluginName, version, src, meta };
       })()))),
     splunk: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-splunk";
         const pluginName = "graylog-plugin-splunk";
         const version = "0.5.0-rc.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "sha256-EwF/Dc8GmMJBTxH9xGZizUIMTGSPedT4bprorN6X9Os=",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           homepage: "https://github.com/graylog-labs/graylog-plugin-splunk",
           description: "Graylog output plugin that forwards one or more streams of data to Splunk via TCP",
           license: nix.thunk(() => nix.sel(licenses, "gpl3Only")),
         }));
-        return { __proto__: pos$56, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$56, pname, pluginName, version, src, meta };
       })()))),
     twiliosms: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-twiliosms";
         const pluginName = "graylog-plugin-twiliosms";
         const version = "1.0.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "0kwfv1zfj0fmxh9i6413bcsaxrn1vdwrzb6dphvg3dx27wxn1j1a",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           homepage: "https://github.com/graylog-labs/graylog-plugin-twiliosms",
           description: "Alarm callback plugin for integrating the Twilio SMS API into Graylog",
         }));
-        return { __proto__: pos$59, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$59, pname, pluginName, version, src, meta };
       })()))),
     twitter: nix.thunk(() => nix.app(glPlugin, nix.thunk(() => (() => {
         const pname = "graylog-twitter";
         const pluginName = "graylog-plugin-twitter";
         const version = "2.0.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             url: nix.thunk(() => nix.str`https://github.com/graylog-labs/${pluginName}/releases/download/${version}/${pluginName}-${version}.jar`),
             sha256: "1pi34swy9nzq35a823zzvqrjhb6wsg302z31vk2y656sw6ljjxyh",
           }))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           homepage: "https://github.com/graylog-labs/graylog-plugin-twitter",
           description: "Graylog input plugin that reads Twitter messages based on keywords in realtime",
         }));
-        return { __proto__: pos$62, pname, pluginName, version, src, meta };
+        return { [nix.POS]: pos$62, pname, pluginName, version, src, meta };
       })()))),
   };
 })(), formals$1);

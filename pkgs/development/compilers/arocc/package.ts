@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "arocc",
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [zig]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         zig: zig,
         isArocc: true,
-        wrapped: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({ __proto__: pos$1, cc: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        wrapped: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({ [nix.POS]: pos$1, cc: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
         stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(finalAttrs, "passthru", "wrapped")))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C compiler written in Zig",
         homepage: "http://aro.vexu.eu/",
         license: nix.thunk(() => (() => {

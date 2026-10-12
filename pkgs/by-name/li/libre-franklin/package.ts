@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libre-franklin";
       const version = "1.014";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "impallari",
           repo: "Libre-Franklin",
           rev: "006293f34c47bd752fdcf91807510bc3f91a0bd3",
@@ -30,14 +30,14 @@ install -m444 -Dt $out/share/doc/${pname}-${version} README.md FONTLOG.txt
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Reinterpretation and expansion based on the 1912 Morris Fuller Benton’s classic",
         homepage: "https://github.com/impallari/Libre-Franklin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

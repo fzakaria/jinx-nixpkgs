@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "comedilib",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Linux-Comedi",
           repo: "comedilib",
           tag: nix.thunk(() => nix.str`r${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       outputs: nix.thunk(() => ["out", "dev", "man", "doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux Control and Measurement Device Interface Library",
         homepage: "https://github.com/Linux-Comedi/comedilib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

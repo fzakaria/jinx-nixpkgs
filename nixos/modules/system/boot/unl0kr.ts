@@ -31,31 +31,31 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "unl0kr"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       boot: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         initrd: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           unl0kr: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "unl0kr in initrd"), {
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Whether to enable the unl0kr on-screen keyboard in initrd to unlock LUKS.",
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "buffybox", nix.thunk(() => ({})))),
             allowVendorDrivers: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "load optional drivers"), {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Whether to load additional drivers for certain vendors (I.E: Wacom, Intel, etc.)",
             })),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Configuration for `unl0kr`.\n\nSee `unl0kr.conf(5)` for supported values.\n\nAlternatively, visit `https://gitlab.postmarketos.org/postmarketOS/buffybox/-/blob/3.2.0/unl0kr/unl0kr.conf`\n",
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  general.animations = true;\n  general.backend = \"drm\";\n  theme = {\n    default = \"pmos-dark\";\n    alternate = \"pmos-light\";\n  };\n}\n")),
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   })))),
               })))),
@@ -64,9 +64,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "hustlerone"))];
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable")))),
             message: "boot.initrd.unl0kr is only supported with boot.initrd.systemd.",
           })),
@@ -86,9 +86,9 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "plymouth", "enable")), nix.thunk(() => ["Upstream clearly intends unl0kr to not run with Plymouth. Good luck"]))),
           ]))),
         boot: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           initrd: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             availableKernelModules: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => [
                 "hid-multitouch",
                 "hid-generic",
@@ -101,11 +101,11 @@ export default nix.lambda((args) => (() => {
                 "psmouse",
               ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "allowVendorDrivers")), nix.thunk(() => ["intel_lpss_pci", "elo", "wacom"])))),
             systemd: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               contents: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "/etc/unl0kr.conf": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "unl0kr.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
                 })),
               })),
@@ -121,8 +121,8 @@ export default nix.lambda((args) => (() => {
               })()),
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               paths: nix.thunk(() => ({
-                __proto__: pos$14,
-                "unl0kr-agent": nix.thunk(() => ({ __proto__: pos$13, wantedBy: nix.thunk(() => ["local-fs-pre.target"]) })),
+                [nix.POS]: pos$14,
+                "unl0kr-agent": nix.thunk(() => ({ [nix.POS]: pos$13, wantedBy: nix.thunk(() => ["local-fs-pre.target"]) })),
               })),
             })),
           })),

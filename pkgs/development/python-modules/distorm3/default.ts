@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gdabah",
           repo: "distorm",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["distorm3"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Disassembler library for x86/AMD64",
         homepage: "https://github.com/gdabah/distorm",
         changelog: nix.thunk(() => nix.str`https://github.com/gdabah/distorm/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

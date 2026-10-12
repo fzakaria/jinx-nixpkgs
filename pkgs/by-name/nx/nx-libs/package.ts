@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const gccmakedep = nix.arg($, "gccmakedep");
   const libtirpc = nix.arg($, "libtirpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nx-libs",
       version: "3.5.99.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ArcticaProject",
           repo: "nx-libs",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "binutils-2.36.patch",
             url: "https://github.com/ArcticaProject/nx-libs/commit/605a266911b50ababbb3f8a8b224efb42743379c.patch",
             sha256: "sha256-kk5ms3i0PrHL74I4OlsqDrdDcCJ0us03cQcBy4zjAoQ=",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         libtirpc,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`)]))),
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ltirpc"]))),
         PREFIX: "",
@@ -91,7 +91,7 @@ ln -s libNX_X11.so.6.3.0
       preConfigure: "# binutils 2.37 fix\n# https://github.com/ArcticaProject/nx-libs/issues/1003\nsubstituteInPlace nx-X11/config/cf/Imake.tmpl --replace \"clq\" \"cq\"\n",
       installPhase: "make DESTDIR=\"$out\" install\n# See:\n# - https://salsa.debian.org/debian-remote-team/nx-libs/blob/bcc152100617dc59156015a36603a15db530a64f/debian/rules#L66-72\n# - https://github.com/ArcticaProject/nx-libs/issues/652\npatchelf --remove-needed \"libX11.so.6\" $out/bin/nxagent\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "NX X server based on Xnest",
         homepage: "https://github.com/ArcticaProject/nx-libs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

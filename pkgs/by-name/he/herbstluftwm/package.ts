@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "herbstluftwm",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://herbstluftwm.org/tarballs/herbstluftwm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-stRgCQnlvs5a1jgY37MLsZ/SrJ9ShHsaenStQEBxgQU=",
         })))),
@@ -66,17 +66,17 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./test-path-environment.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/herbstluftwm/herbstluftwm/commit/8678168c7a3307b1271e94974e062799e745ab40.patch",
             hash: "sha256-uI6ErfDitT2Tw0txx4lMSBn/jjiiyL4Qw6AJa/CTh1E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/herbstluftwm/herbstluftwm/commit/1a6e8ee24eac671569f54bfec22ab47ff285a52c.patch",
             hash: "sha256-srulWJQ9zTR4Kdxo40AdHND4nexDe2PDSR69yWsOpVA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/herbstluftwm/herbstluftwm/commit/8ff75588a750704ae06ad59b843eb88138c95653.patch",
             hash: "sha256-mrViVcW3jZes1QMn5It0t2WfLfwl/WNF6k9yz1fm/Gs=",
           })))),
@@ -112,14 +112,14 @@ substituteInPlace tests/test_herbstluftwm.py --replace "/usr/bin/env bash" ${run
       enabledTestPaths: nix.thunk(() => ["../tests"]),
       disabledTests: nix.thunk(() => ["test_autostart", "test_wmexec_to_other", "test_rules"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           herbstluftwm: nix.thunk(() => nix.sel(nixosTests, "herbstluftwm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Manual tiling window manager for X",
         homepage: "https://herbstluftwm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

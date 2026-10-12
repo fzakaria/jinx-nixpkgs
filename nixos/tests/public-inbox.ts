@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const orga = "example";
   const domain = nix.thunk(() => nix.str`${orga}.localdomain`);
   const tls_cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCert", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), nix.thunk(() => nix.str`openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -days 36500 \\
   -subj '/CN=machine.${domain}'
@@ -53,17 +53,17 @@ install -D -t $out key.pem cert.pem
 `)));
   const gitRepositories = nix.thunk(() => ["repo1", "repo2"]);
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     name: "public-inbox",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "julm"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -72,65 +72,65 @@ install -D -t $out key.pem cert.pem
         const from = nix.thunk(() => nix.sel(config, "services"));
         const public_inbox = nix.thunk(() => nix.attr(from, "public-inbox"));
         return {
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             diskSize: nix.thunk(() => nix.mul(1n, 1024n)),
             memorySize: nix.thunk(() => nix.mul(1n, 1024n)),
           })),
-          networking: nix.thunk(() => ({ __proto__: pos$4, domain: domain })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$4, domain: domain })),
           security: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pki: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${tls_cert}/cert.pem`)]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "public-inbox": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
-              postfix: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+              postfix: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
               openFirewall: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 publicinbox: nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   css: nix.thunk(() => [nix.thunk(() => nix.str`href=https://machine.${domain}/style/light.css`)]),
                   nntpserver: nix.thunk(() => [nix.thunk(() => nix.str`nntps://machine.${domain}`)]),
                   wwwlisting: "match=domain",
                 })),
                 coderepo: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((repositoryName) => nix.app(nix.sel(lib, "nameValuePair"), repositoryName, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         dir: nix.thunk(() => nix.str`/var/lib/public-inbox/repositories/${repositoryName}.git`),
                         cgitUrl: nix.thunk(() => nix.str`https://git.${domain}/${repositoryName}.git`),
                       }))), gitRepositories)))),
               })),
-              mda: nix.thunk(() => ({ __proto__: pos$11, enable: true, args: nix.thunk(() => ["--no-precheck"]) })),
+              mda: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, args: nix.thunk(() => ["--no-precheck"]) })),
               http: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 enable: true,
                 port: "/run/public-inbox-http.sock",
                 args: nix.thunk(() => ["-W0"]),
                 mounts: nix.thunk(() => [nix.thunk(() => nix.str`https://machine.${domain}/inbox`)]),
               })),
               nntp: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 enable: true,
                 args: nix.thunk(() => ["-W0"]),
                 cert: nix.thunk(() => nix.str`${tls_cert}/cert.pem`),
                 key: nix.thunk(() => nix.str`${tls_cert}/key.pem`),
               })),
               imap: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 enable: true,
                 args: nix.thunk(() => ["-W0"]),
                 cert: nix.thunk(() => nix.str`${tls_cert}/cert.pem`),
                 key: nix.thunk(() => nix.str`${tls_cert}/key.pem`),
               })),
               inboxes: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), gitRepositories, (repo) => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     address: nix.thunk(() => [nix.thunk(() => nix.str`${repo}@${domain}`)]),
                     description: nix.thunk(() => nix.str`${repo}@${domain} :
 discussions about ${repo}.
@@ -139,12 +139,12 @@ discussions about ${repo}.
                     newsgroup: nix.thunk(() => nix.str`inbox.comp.${orga}.${repo}`),
                     coderepo: nix.thunk(() => [repo]),
                   }))), nix.thunk(() => ({
-                  __proto__: pos$17,
-                  repo2: nix.thunk(() => ({ __proto__: pos$16, hide: nix.thunk(() => ["imap", "manifest", "www"]) })),
+                  [nix.POS]: pos$17,
+                  repo2: nix.thunk(() => ({ [nix.POS]: pos$16, hide: nix.thunk(() => ["imap", "manifest", "www"]) })),
                 })))),
             })),
             nginx: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               enable: true,
               recommendedGzipSettings: true,
               recommendedOptimisation: true,
@@ -152,20 +152,20 @@ discussions about ${repo}.
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`machine.${domain}`, nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   forceSSL: true,
                   sslCertificate: nix.thunk(() => nix.str`${tls_cert}/cert.pem`),
                   sslCertificateKey: nix.thunk(() => nix.str`${tls_cert}/key.pem`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$23,
-                    "/": nix.thunk(() => ({ __proto__: pos$19, return: "302 /inbox" })),
-                    "= /inbox": nix.thunk(() => ({ __proto__: pos$20, return: "302 /inbox/" })),
+                    [nix.POS]: pos$23,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$19, return: "302 /inbox" })),
+                    "= /inbox": nix.thunk(() => ({ [nix.POS]: pos$20, return: "302 /inbox/" })),
                     "/inbox": nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       proxyPass: nix.thunk(() => nix.str`http://unix:${nix.sel(public_inbox, "http", "port")}:/inbox`),
                     })),
                     "= /style/light.css": nix.thunk(() => ({
-                      __proto__: pos$22,
+                      [nix.POS]: pos$22,
                       alias: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "light.css", "* { background:#fff; color:#000 }\n\na { color:#00f; text-decoration:none }\na:visited { color:#808 }\n\n*.q { color:#008 }\n\n*.add { color:#060 }\n*.del {color:#900 }\n*.head { color:#000 }\n*.hunk { color:#960 }\n\n.hl.num { color:#f30 } /* number */\n.hl.esc { color:#f0f } /* escape character */\n.hl.str { color:#f30 } /* string */\n.hl.ppc { color:#c3c } /* preprocessor */\n.hl.pps { color:#f30 } /* preprocessor string */\n.hl.slc { color:#099 } /* single-line comment */\n.hl.com { color:#099 } /* multi-line comment */\n/* .hl.opt { color:#ccc } */ /* operator */\n/* .hl.ipl { color:#ccc } */ /* interpolation */\n\n/* keyword groups kw[a-z] */\n.hl.kwa { color:#f90 }\n.hl.kwb { color:#060 }\n.hl.kwc { color:#f90 }\n/* .hl.kwd { color:#ccc } */\n")),
                     })),
                   })),
@@ -173,17 +173,17 @@ discussions about ${repo}.
               ])),
             })),
             postfix: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               enable: true,
               setSendmail: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$27,
-                main: nix.thunk(() => ({ __proto__: pos$26, recipient_delimiter: "+" })),
+                [nix.POS]: pos$27,
+                main: nix.thunk(() => ({ [nix.POS]: pos$26, recipient_delimiter: "+" })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "gitMinimal")),
               nix.thunk(() => nix.sel(pkgs_1, "mailutils")),

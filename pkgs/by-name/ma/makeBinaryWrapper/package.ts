@@ -19,15 +19,15 @@ export default nix.lambda((args) => (() => {
   const cc = nix.argOr($, "cc", () => nix.sel(targetPackages, "stdenv", "cc"));
   const sanitizers = nix.argOr($, "sanitizers", () => []);
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "make-binary-wrapper-hook",
       propagatedBuildInputs: nix.thunk(() => [dieHook]),
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cc: nix.thunk(() => nix.str`${cc}/bin/${nix.sel(cc, "targetPrefix")}cc ${nix.add(nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.builtins.map((s) => nix.str`-fsanitize=${s}`, sanitizers))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(cc, "isClang")) && nix.asBool(!nix.asBool(nix.sel(cc, "stdenv", "hostPlatform", "isDarwin"))))), nix.thunk(() => nix.str`--ld-path=${nix.sel(cc, "targetPrefix")}ld`)))}`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extractCmd: nix.thunk(() => (() => {
           const bintools = nix.thunk(() => nix.sel(targetPackages, "gnuStdenv", "cc", "bintools"));
           return nix.app(writeShellScript, "extract-binary-wrapper-cmd", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), bintools, nix.thunk(() => nix.str`${nix.sel(bintools, "targetPrefix")}strings`))} -dw "$1" | sed -n '/^makeCWrapper/,/^$/ p'
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
         tests: nix.thunk(() => nix.sel(tests, "makeBinaryWrapper")),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./make-binary-wrapper.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

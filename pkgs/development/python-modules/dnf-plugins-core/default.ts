@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const outputs = nix.thunk(() => ["out", "man"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rpm-software-management",
           repo: "dnf-plugins-core",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/rpm-software-management/dnf-plugins-core/commit/1f5d725d857b61760174dd09165e885dd63762c5.patch?full_index=1",
             hash: "sha256-dI6tVokgenb4aaLH5YuG3EZ1Ehgf/NwwPprcDWcHt2Q=",
           })))),
@@ -100,7 +100,7 @@ done
         nix.thunk(() => nix.str`--add-flags "--setopt=pluginpath=$out/${nix.sel(python, "sitePackages")}/dnf-plugins"`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Core plugins to use with DNF package manager",
         homepage: "https://github.com/rpm-software-management/dnf-plugins-core",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/dnf-plugins-core/releases/tag/${version}`),
@@ -111,7 +111,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -60,13 +60,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "crawl4ai",
       version: "0.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unclecode",
           repo: "crawl4ai",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [
           nltk,
           pypdf,
@@ -229,7 +229,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["crawl4ai"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM Friendly Web Crawler & Scraper",
         homepage: "https://github.com/unclecode/crawl4ai",
         changelog: nix.thunk(() => nix.str`https://github.com/unclecode/crawl4ai/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

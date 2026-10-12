@@ -78,74 +78,74 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(config
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(config_1, "type"), "remote")), nix.thunk(() => nix.str`resource = "${nix.sel(config_1, "resource")}"`))}
 `, nix.thunk(() => nix.sel(cfg, "transports"))))));
   return {
-    __proto__: pos$42,
+    [nix.POS]: pos$42,
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         icingaweb2: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           modules: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             monitoring: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return {
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$1,
+                    [nix.POS]: pos$1,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: true,
                     description: "Whether to enable the icingaweb2 monitoring module.",
                   })))),
                 generalConfig: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   mutable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       type: nix.thunk(() => nix.lookup(w_1, "bool")),
                       default: false,
                       description: "Make config.ini of the monitoring module mutable (e.g. via the web interface).",
                     })))),
                   protectedVars: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       type: nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
                       default: nix.thunk(() => ["*pw*", "*pass*", "community"]),
                       description: "List of string patterns for custom variables which should be excluded from user’s view.",
                     })))),
                 })),
                 mutableBackends: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: false,
                     description: "Make backends.ini of the monitoring module mutable (e.g. via the web interface).",
                   })))),
                 backends: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     default: nix.thunk(() => ({
-                      __proto__: pos$7,
-                      icinga: nix.thunk(() => ({ __proto__: pos$6, resource: "icinga_ido" })),
+                      [nix.POS]: pos$7,
+                      icinga: nix.thunk(() => ({ [nix.POS]: pos$6, resource: "icinga_ido" })),
                     })),
                     description: "Monitoring backends to define",
                     type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$2);
                           const name = nix.arg($_1, "name");
                           return {
-                            __proto__: pos$12,
+                            [nix.POS]: pos$12,
                             options: nix.thunk(() => ({
-                              __proto__: pos$11,
+                              [nix.POS]: pos$11,
                               name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$8,
+                                  [nix.POS]: pos$8,
                                   visible: false,
                                   default: name,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "Name of this backend",
                                 })))),
                               resource: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$9,
+                                  [nix.POS]: pos$9,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "Name of the IDO resource",
                                 })))),
                               disabled: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$10,
+                                  [nix.POS]: pos$10,
                                   type: nix.thunk(() => nix.lookup(w_1, "bool")),
                                   default: false,
                                   description: "Disable this backend",
@@ -155,69 +155,69 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(config
                         })(), formals$2))))),
                   })))),
                 mutableTransports: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     type: nix.thunk(() => nix.lookup(w_1, "bool")),
                     default: true,
                     description: "Make commandtransports.ini of the monitoring module mutable (e.g. via the web interface).",
                   })))),
                 transports: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     default: nix.thunk(() => ({})),
                     description: "Command transports to define",
                     type: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.lambda((args_1) => (() => {
                           const $_1 = nix.formals(args_1, formals$3);
                           const name = nix.arg($_1, "name");
                           return {
-                            __proto__: pos$25,
+                            [nix.POS]: pos$25,
                             options: nix.thunk(() => ({
-                              __proto__: pos$24,
+                              [nix.POS]: pos$24,
                               name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$15,
+                                  [nix.POS]: pos$15,
                                   visible: false,
                                   default: name,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "Name of this transport",
                                 })))),
                               type: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$16,
+                                  [nix.POS]: pos$16,
                                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["api", "local", "remote"]))),
                                   default: "api",
                                   description: "Type of  this transport",
                                 })))),
                               instance: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$17,
+                                  [nix.POS]: pos$17,
                                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                                   default: null,
                                   description: "Assign a icinga instance to this transport",
                                 })))),
                               path: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$18,
+                                  [nix.POS]: pos$18,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "Path to the socket for local or remote transports",
                                 })))),
                               host: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$19,
+                                  [nix.POS]: pos$19,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "Host for the api or remote transport",
                                 })))),
                               port: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$20,
+                                  [nix.POS]: pos$20,
                                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                                   default: null,
                                   description: "Port to connect to for the api or remote transport",
                                 })))),
                               username: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "Username for the api or remote transport",
                                 })))),
                               password: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$22,
+                                  [nix.POS]: pos$22,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "Password for the api transport",
                                 })))),
                               resource: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$23,
+                                  [nix.POS]: pos$23,
                                   type: nix.thunk(() => nix.lookup(w_1, "str")),
                                   description: "SSH identity resource for the remote transport",
                                 })))),
@@ -232,24 +232,24 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(config
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(config, "services", "icingaweb2", "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         environment: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             "icingaweb2/enabledModules/monitoring": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "icingaweb2")}/modules/monitoring`),
             })),
           }, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "generalConfig", "mutable"))), nix.thunk(() => ({
-              __proto__: pos$35,
-              "icingaweb2/modules/monitoring/config.ini": nix.thunk(() => ({ __proto__: pos$34, text: configIni })),
+              [nix.POS]: pos$35,
+              "icingaweb2/modules/monitoring/config.ini": nix.thunk(() => ({ [nix.POS]: pos$34, text: configIni })),
             }))), nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "mutableBackends"))), nix.thunk(() => ({
-              __proto__: pos$37,
-              "icingaweb2/modules/monitoring/backends.ini": nix.thunk(() => ({ __proto__: pos$36, text: backendsIni })),
+              [nix.POS]: pos$37,
+              "icingaweb2/modules/monitoring/backends.ini": nix.thunk(() => ({ [nix.POS]: pos$36, text: backendsIni })),
             }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "mutableTransports"))), nix.thunk(() => ({
-              __proto__: pos$39,
-              "icingaweb2/modules/monitoring/commandtransports.ini": nix.thunk(() => ({ __proto__: pos$38, text: transportsIni })),
+              [nix.POS]: pos$39,
+              "icingaweb2/modules/monitoring/commandtransports.ini": nix.thunk(() => ({ [nix.POS]: pos$38, text: transportsIni })),
             }))))))),
         })),
       })))),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const puredata = nix.arg($, "puredata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zexy",
       version: "2.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.iem.at",
           owner: "pd",
           repo: "zexy",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [puredata]),
       makeFlags: nix.thunk(() => ["PDLIBDIR=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Swiss army knife for puredata",
         homepage: "https://git.iem.at/pd/zexy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

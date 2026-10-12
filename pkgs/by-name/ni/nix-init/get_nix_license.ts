@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const warn = nix.thunk(() => nix.attr(lib, "warn"));
   const licenseMap = nix.thunk(() => nix.app(flip, concatMapAttrs, licenses, (k) => (v) => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(nix.has(v, "spdxId")) && nix.asBool(!nix.asBool(nix.sel(v, "deprecated"))))), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(v, "spdxId"), k]])))));
   const deprecatedAliases = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "AGPL-3.0": "agpl3Only",
     "BSD-2-Clause-FreeBSD": "bsd2WithViews",
     "BSD-2-Clause-NetBSD": "bsd2",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     "LGPL-3.0+": "lgpl3Plus",
   }));
   const lints = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "deprecated licenses": nix.thunk(() => nix.app(intersectLists, nix.thunk(() => nix.app(attrNames, licenseMap)), nix.thunk(() => nix.app(attrNames, deprecatedAliases)))),
     "invalid aliases": nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.app(filterAttrs, (_) => (v) => nix.selOr(licenses, () => true, nix.key(nix.force(v)), "deprecated"), deprecatedAliases)))),
   }));

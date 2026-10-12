@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const hex = nix.arg($, "hex");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ezjsonm",
       version: "1.3.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/ezjsonm/releases/download/v${nix.sel(finalAttrs, "version")}/ezjsonm-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CGM+Dw52eoroGTXKfnTxaTuFp5xFAtVo7t/1Fw8M13s=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [jsonm, hex, sexplib0]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easy interface on top of the Jsonm library",
         homepage: "https://github.com/mirage/ezjsonm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

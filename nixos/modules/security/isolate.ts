@@ -48,7 +48,7 @@ restricted_init=${(nix.asBool(nix.sel(cfg, "restrictedInit")) ? "1" : "0")}
 ${nix.sel(cfg, "extraConfig")}
 `)));
   const isolate = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`isolate-wrapped-${nix.sel(pkgs, "isolate", "version")}`),
       paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "isolate"))]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
@@ -60,59 +60,59 @@ wrapProgram $out/bin/isolate-cg-keeper \\
 `),
     }))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       security: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         isolate: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Sandbox for securely executing untrusted programs\n")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "isolate-unwrapped", nix.thunk(() => ({})))),
           boxRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/var/lib/isolate/boxes",
               description: "All sandboxes are created under this directory.\nTo avoid symlink attacks, this directory and all its ancestors\nmust be writeable only by root.\n",
             })))),
           lockRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "path")),
               default: "/run/isolate/locks",
               description: "Directory where lock files are created.\n",
             })))),
           cgRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "auto:/run/isolate/cgroup",
               description: "Control group which subgroups are placed under.\nEither an explicit path to a subdirectory in cgroupfs, or \"auto:file\" to read\nthe path from \"file\", where it is put by `isolate-cg-helper`.\n",
             })))),
           firstUid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1000n, 65533n)),
               default: 60000n,
               description: "Start of block of UIDs reserved for sandboxes.\n",
             })))),
           firstGid: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1000n, 65533n)),
               default: 60000n,
               description: "Start of block of GIDs reserved for sandboxes.\n",
             })))),
           numBoxes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 1000n, 65533n)),
               default: 1000n,
               description: "Number of UIDs and GIDs to reserve, starting from\n{option}`firstUid` and {option}`firstGid`.\n",
             })))),
           restrictedInit: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "If true, only root can create sandboxes.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               description: "Extra configuration to append to the configuration file.\n",
@@ -121,19 +121,19 @@ wrapProgram $out/bin/isolate-cg-keeper \\
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
-        environment: nix.thunk(() => ({ __proto__: pos$13, systemPackages: nix.thunk(() => [isolate]) })),
+        [nix.POS]: pos$20,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$13, systemPackages: nix.thunk(() => [isolate]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             isolate: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Isolate control group hierarchy daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               documentation: nix.thunk(() => ["man:isolate(1)"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${isolate}/bin/isolate-cg-keeper`),
                 Slice: "isolate.slice",
@@ -142,13 +142,13 @@ wrapProgram $out/bin/isolate-cg-keeper \\
             })),
           })),
           slices: nix.thunk(() => ({
-            __proto__: pos$18,
-            isolate: nix.thunk(() => ({ __proto__: pos$17, description: "Isolate Sandbox Slice" })),
+            [nix.POS]: pos$18,
+            isolate: nix.thunk(() => ({ [nix.POS]: pos$17, description: "Isolate Sandbox Slice" })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "virchau13"))];

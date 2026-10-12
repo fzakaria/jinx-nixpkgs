@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "flashgbx",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "FlashGBX",
           owner: "lesserkuma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "flashgbx",
             desktopName: "FlashGBX UI",
             icon: "flashgbx",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(nix.lookup(w, "stdenv"), "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI for reading and writing GB and GBA cartridges with the GBxCart RW",
         homepage: "https://github.com/lesserkuma/FlashGBX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

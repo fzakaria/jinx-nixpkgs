@@ -81,11 +81,11 @@ export default nix.lambda((args) => (() => {
   const remmina = nix.arg($, "remmina");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "freerdp",
       version: "3.32.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FreeRDP",
           repo: "FreeRDP",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -149,7 +149,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_LIBDIR", "lib")),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "DOCBOOKXSL_DIR", nix.thunk(() => nix.str`${docbook_xsl_nons}/xml/xsl/docbook`))),
       ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           BUILD_TESTING: false,
           CHANNEL_RDPEWA: true,
           CHANNEL_RDPEWA_CLIENT: true,
@@ -170,28 +170,28 @@ export default nix.lambda((args) => (() => {
           WITH_WEBVIEW: false,
           WITH_VAAPI: false,
         }, nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.force(value), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             WITH_X11: nix.thunk(() => !nix.asBool(withWaylandSupport)),
             WITH_WAYLAND: withWaylandSupport,
           })))))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SDL_USE_COMPILED_RESOURCES", false)),
         ]))))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-include AudioToolbox/AudioToolbox.h"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=incompatible-function-pointer-types"])))))),
       })),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withWaylandSupport) && nix.asBool(withSDL2))), "wrapProgram $out/bin/sdl2-freerdp \\\n  --set SDL_VIDEODRIVER wayland\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "gnome-remote-desktop": gnome_remote_desktop,
           remmina: remmina,
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Remote Desktop Protocol Client",
         longDescription: "FreeRDP is a client-side implementation of the Remote Desktop Protocol (RDP)\nfollowing the Microsoft Open Specifications.\n",
         changelog: nix.thunk(() => nix.str`https://github.com/FreeRDP/FreeRDP/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

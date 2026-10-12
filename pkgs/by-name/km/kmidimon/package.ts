@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kmidimon",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pedrolcl",
           repo: "kmidimon",
           tag: nix.thunk(() => nix.str`RELEASE_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         alsa_lib,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Drumstick MIDI Monitor",
         longDescription: "Drumstick MIDI Monitor logs MIDI events coming from MIDI external ports or\napplications via the ALSA sequencer, and from SMF (Standard MIDI files) or\nWRK (Cakewalk/Sonar) files. It is especially useful for debugging MIDI\nsoftware or your MIDI setup.\n",
         homepage: "https://github.com/pedrolcl/kmidimon",

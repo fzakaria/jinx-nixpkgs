@@ -34,19 +34,19 @@ export default nix.lambda((args) => (() => {
   const withMinecraftPatch = nix.argOr($, "withMinecraftPatch", () => false);
   const version = "3.4";
   const minecraftPatches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "BoyOrigin",
       repo: "glfw-wayland",
       rev: "f62b4ae8f93149fd754cadecd51d8b1a07d20522",
       hash: "sha256-kvWP34rOD4HSTvnKb33nvVquTGZoqP8/l+8XQ0h3b7Y=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.str`glfw${nix.app(nix.sel(lib, "optionalString"), withMinecraftPatch, "-minecraft")}`),
       version: version,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "glfw",
           repo: "GLFW",
           rev: version,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", true)),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-D_GLFW_GLX_LIBRARY="${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libGLX.so.0"`),
               nix.thunk(() => nix.str`-D_GLFW_EGL_LIBRARY="${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libEGL.so.1"`),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi-platform library for creating OpenGL contexts and managing input, including keyboard, mouse, joystick and time",
         homepage: "https://www.glfw.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

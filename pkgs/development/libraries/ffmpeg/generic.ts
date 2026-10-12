@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const hash = nix.argOr($, "hash", () => "");
   const source = nix.argOr($, "source", () => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://git.ffmpeg.org/ffmpeg.git",
       rev: nix.thunk(() => nix.str`n${version}`),
       hash: hash,
@@ -361,7 +361,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(buildSwscale) || nix.asBool(buildAvutil)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/ffmpeg/generic.nix:431:1");
   nix.assert_((!nix.asBool((nix.asBool((nix.asBool((nix.asBool(withCuda) || nix.asBool(withCuvid))) || nix.asBool(withNvdec))) || nix.asBool(withNvenc))) || nix.asBool(withNvcodec)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/ffmpeg/generic.nix:434:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: nix.thunk(() => nix.add("ffmpeg", nix.app(optionalString, nix.thunk(() => !nix.eq(ffmpegVariant, "small")), nix.thunk(() => nix.str`-${ffmpegVariant}`)))),
       version: version,
       src: source,
@@ -372,54 +372,54 @@ substituteInPlace doc/filters.texi \\
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "8.1")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")))), "substituteInPlace tests/fate/vcodec.mak \\\n  --replace-fail \\\n    'FATE_VCODEC_SCALE-$(call ENCDEC, FFVHUFF, AVI) += ffvhuff444 ffvhuff420p12 ffvhuff422p10left ffvhuff444p16' \\\n    'FATE_VCODEC_SCALE-$(call ENCDEC, FFVHUFF, AVI) += ffvhuff444 ffvhuff422p10left ffvhuff444p16'\n"))),
       patches: nix.thunk(() => nix.concat([], nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "rename_iszero",
               url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/b27ae2c0b704e83f950980102bc3f12f9ec17cb0",
               hash: "sha256-l1t4LcUDSW757diNu69NzvjenW5Mxb5aYtXz64Yl9gs=",
             })))),
         ])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "5.1")), nix.thunk(() => [nix.path(here, "./nvccflags-cpp14.patch")])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "8.1.2")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://salsa.debian.org/multimedia-team/ffmpeg/-/raw/d52aea25bc9123bfaf61f7a7e5a0d9da01c8788d/debian/patches/0001-swscale-loongarch-fix-buffer-underflow-in-yuv2plane1.patch",
               hash: "sha256-QRkb7z4Btyd9ZgV/1hh6Fb87IhkygFgVDqQdloXKL6Q=",
             })))),
         ])), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "7.0")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "7.1.4")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "unbreak-hardcoded-tables.patch",
               url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/1d47ae65bf6df91246cbe25c997b25947f7a4d1d",
               hash: "sha256-ulB5BujAkoRJ8VHou64Th3E94z6m+l6v9DpG7/9nYsM=",
             })))),
         ])), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "7.1.1")) && nix.asBool(!nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "5")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "texinfo-7.1.patch",
               url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/4d9cdf82ee36a7da4f065821c86165fe565aeac2",
               hash: "sha256-BZsq1WI6OgtkCQE8koQu0CNcb5c8WgTu/LzQzu6ZLuo=",
             })))),
         ])), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "7")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "binutils-2-43-compat.patch",
               url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/654bd47716c4f36719fb0f3f7fd8386d5ed0b916",
               hash: "sha256-OLiQHKBNp2p63ZmzBBI4GEGz3WSSP+rMd8ITfZSVRgY=",
             })))),
         ])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "7.1.1")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: "https://gitlab.archlinux.org/archlinux/packaging/packages/ffmpeg/-/raw/a02c1a15706ea832c0d52a4d66be8fb29499801a/add-av_stream_get_first_dts-for-chromium.patch",
               hash: "sha256-DbH6ieJwDwTjKOdQ04xvRcSLeeLP2Z2qEmqeo8HsPr4=",
             })))),
         ])), nix.concat(nix.app(optionals, nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "7.1.2")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "unbreak-svt-av1-3.0.0.patch",
               url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/d1ed5c06e3edc5f2b5f3664c80121fa55b0baa95",
               hash: "sha256-2NVkIhQVS1UQJVYuDdeH+ZvWYKVbtwW9Myu5gx7JnbA=",
             })))),
         ])), nix.app(optionals, nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "6")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "7.1.4")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "svt-av1-4.0.0-compat.patch",
               url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/a5d4c398b411a00ac09d8fe3b66117222323844c",
               hash: "sha256-peIXXU5+5DRQc3Xdpz5V+xIN7Vohs0Dlal6mHiMryXc=",
@@ -640,7 +640,7 @@ substituteInPlace doc/filters.texi \\
         ])), nix.concat(nix.app(optionals, withVdpau, nix.thunk(() => [libvdpau])), nix.concat(nix.app(optionals, withVidStab, nix.thunk(() => [vid_stab])), nix.concat(nix.app(optionals, withVmaf, nix.thunk(() => [libvmaf])), nix.concat(nix.app(optionals, withVoAmrwbenc, nix.thunk(() => [vo_amrwbenc])), nix.concat(nix.app(optionals, withVorbis, nix.thunk(() => [libvorbis])), nix.concat(nix.app(optionals, withVpl, nix.thunk(() => [libvpl])), nix.concat(nix.app(optionals, withVpx, nix.thunk(() => [libvpx])), nix.concat(nix.app(optionals, withVulkan, nix.thunk(() => [vulkan_headers, vulkan_loader])), nix.concat(nix.app(optionals, withVvenc, nix.thunk(() => [vvenc])), nix.concat(nix.app(optionals, withWebp, nix.thunk(() => [libwebp])), nix.concat(nix.app(optionals, withWhisper, nix.thunk(() => [whisper_cpp])), nix.concat(nix.app(optionals, withX264, nix.thunk(() => [x264])), nix.concat(nix.app(optionals, withX265, nix.thunk(() => [x265])), nix.concat(nix.app(optionals, withXavs, nix.thunk(() => [xavs])), nix.concat(nix.app(optionals, withXavs2, nix.thunk(() => [xavs2])), nix.concat(nix.app(optionals, withXcb, nix.thunk(() => [libxcb])), nix.concat(nix.app(optionals, withXevd, nix.thunk(() => [xevd])), nix.concat(nix.app(optionals, withXeve, nix.thunk(() => [xeve])), nix.concat(nix.app(optionals, withXlib, nix.thunk(() => [libx11, libxv, libxext])), nix.concat(nix.app(optionals, withXml2, nix.thunk(() => [libxml2])), nix.concat(nix.app(optionals, withXvid, nix.thunk(() => [xvidcore])), nix.concat(nix.app(optionals, withZimg, nix.thunk(() => [zimg])), nix.concat(nix.app(optionals, withZlib, nix.thunk(() => [zlib])), nix.concat(nix.app(optionals, withZmq, nix.thunk(() => [zeromq])), nix.app(optionals, withZvbi, nix.thunk(() => [zvbi]))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))),
       buildFlags: nix.thunk(() => nix.concat(["all"], nix.app(optional, buildQtFaststart, "tools/qt-faststart"))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types", "-Wno-error=int-conversion"]))),
         })))),
       doCheck: nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))) && nix.asBool(!nix.asBool(withShaderc)))),
@@ -663,14 +663,14 @@ addDriverRunpath ${nix.builtins.placeholder("lib")}/lib/libavutil.so
       })()),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         tests: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         description: "Complete, cross-platform solution to record, convert and stream audio and video",
         homepage: "https://www.ffmpeg.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/FFmpeg/FFmpeg/blob/n${version}/Changelog`),
@@ -693,12 +693,12 @@ addDriverRunpath ${nix.builtins.placeholder("lib")}/lib/libavutil.so
         })()),
         mainProgram: "ffmpeg",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$14,
-          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "ffmpeg", nix.thunk(() => nix.sel(finalAttrs, "version"))), { __proto__: pos$13, product: "ffmpeg" })),
+          [nix.POS]: pos$14,
+          cpeParts: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "ffmpeg", nix.thunk(() => nix.sel(finalAttrs, "version"))), { [nix.POS]: pos$13, product: "ffmpeg" })),
         })),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), withCudaLLVM, nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         hardeningDisable: nix.thunk(() => ["pacret", "shadowstack", "zerocallusedregs"]),
       })))));
 })(), formals$1);

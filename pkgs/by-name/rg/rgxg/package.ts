@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rgxg",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/rgxg/rgxg/releases/download/v${nix.sel(finalAttrs, "version")}/rgxg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "050jxc3qhfrm9fdbzd67hlsqlp4qk1fa20q1g2v919sh7s6v77si",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library and a command-line tool to generate (extended) regular expressions",
         mainProgram: "rgxg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

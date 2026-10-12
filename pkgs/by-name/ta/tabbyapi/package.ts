@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "tabbyapi",
       version: "0-unstable-2026-09-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theroyallab",
           repo: "tabbyAPI",
           rev: "be74bf0a00bcb3a518e6feb7606f150c189be637",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           dev: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "ruff"))]),
           extras: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "infinity-emb")),
@@ -88,12 +88,12 @@ cp -r sampler_overrides $out/share/tabbyapi/
   --add-flags "$out/${nix.sel(python3Packages, "python", "sitePackages")}/main.py"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         cudaSupport: nix.thunk(() => nix.sel(python3Packages, "torch", "cudaSupport")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Official API server for Exllama",
         homepage: "https://github.com/theroyallab/tabbyAPI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const libmysqlclient = nix.arg($, "libmysqlclient");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opensmtpd-table-mysql",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenSMTPD",
           repo: "table-mysql",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "sh bootstrap\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.opensmtpd.org/",
         description: "MySQL or MariaDB tables for the OpenSMTPD mail server",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenSMTPD/table-mysql/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rioxarray",
       version: "0.23.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "corteva",
           repo: "rioxarray",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_clip_geojson", "test_open_rasterio_mask_chunk_clip"])))),
       pythonImportsCheck: nix.thunk(() => ["rioxarray"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Geospatial xarray extension powered by rasterio",
         homepage: "https://corteva.github.io/rioxarray/",
         changelog: nix.thunk(() => nix.str`https://github.com/corteva/rioxarray/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sdat2img",
       version: "0-unstable-2021-11-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "sdat2img",
           owner: "xpirt",
           rev: "b432c988a412c06ff24d196132e354712fc18929",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pyproject: false,
       installPhase: "install -D $src/sdat2img.py $out/bin/sdat2img\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert sparse Android data image (.dat) into filesystem ext4 image (.img)",
         homepage: "https://github.com/xpirt/sdat2img",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

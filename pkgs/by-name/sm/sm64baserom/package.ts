@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const region = nix.argOr($, "region", () => "us");
   const showRegionMessage = nix.argOr($, "showRegionMessage", () => true);
   const file = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`baserom.${region}.z64`),
       message: nix.thunk(() => nix.str`This nix expression requires that baserom.${region}.z64 is
 already part of the store. To get this file you can dump your Super Mario 64 cartridge's contents
@@ -22,7 +22,7 @@ and add it to the nix store with nix-store --add-fixed sha256 <FILE>.
 ${(nix.asBool(showRegionMessage) ? "Note that if you are not using a US baserom, you must overwrite the \"region\" attribute with either \"eu\" or \"jp\"." : "")}
 `),
       sha256: nix.thunk(() => nix.sel({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         us: "17ce077343c6133f8c9f2d6d6d9a4ab62c8cd2aa57c40aea1f490b4c8bb21d91",
         eu: "c792e5ebcba34c8d98c0c44cf29747c8ee67e7b907fcc77887f9ff2523f80572",
         jp: "9cf7a80db321b07a8d461fe536c02c87b7412433953891cdec9191bfad2db317",
@@ -32,7 +32,7 @@ ${(nix.asBool(showRegionMessage) ? "Note that if you are not using a US baserom,
 ln -s ${file} $out/${nix.sel(file, "name")}
 `)));
   return nix.update(result, {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     romPath: nix.thunk(() => nix.str`${nix.sel(result, "outPath")}/${nix.sel(file, "name")}`),
   });
 })(), formals$1);

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pname = "quantulum3";
   const version = "0.10.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: pname,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nielstron",
           repo: "quantulum3",
           rev: "9dafd76d3586aa5ea1b96164d86c73037e827294",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["quantulum3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for unit extraction - fork of quantulum for python3",
         mainProgram: "quantulum3-training",
         homepage: "https://github.com/nielstron/quantulum3",

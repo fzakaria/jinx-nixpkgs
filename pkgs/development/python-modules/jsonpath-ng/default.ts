@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pypropject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h2non",
           repo: "jsonpath-ng",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["jsonpath_ng"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JSONPath implementation",
         homepage: "https://github.com/h2non/jsonpath-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/h2non/jsonpath-ng/blob/v${version}/History.md`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jsonpath_ng",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

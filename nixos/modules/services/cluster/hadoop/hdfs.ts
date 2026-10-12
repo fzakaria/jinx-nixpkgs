@@ -66,23 +66,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "hadoop"));
-  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ __proto__: pos$1, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
+  const hadoopConf = nix.thunk(() => nix.str`${nix.app(nix.builtins.import(nix.path(here, "./conf.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, cfg: cfg, pkgs: pkgs, lib: lib })))}/`);
   const hadoopServiceOption = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const serviceName = nix.arg($_1, "serviceName");
     const firewallOption = nix.argOr($_1, "firewallOption", () => true);
     const extraOpts = nix.argOr($_1, "extraOpts", () => null);
     return nix.update({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), serviceName)),
       restartIfChanged: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           description: "Automatically restart the service on config change.\nThis can be set to false to defer restarts on clusters running critical applications.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
           default: false,
         })))),
       extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
           example: nix.thunk(() => ["-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=8010"]),
         })))),
       extraEnv: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
             return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -101,9 +101,9 @@ export default nix.lambda((args) => (() => {
           description: nix.thunk(() => nix.str`Extra environment variables for ${serviceName}`),
         })))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), firewallOption, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: nix.thunk(() => nix.str`Open firewall ports for ${serviceName}.`),
@@ -122,19 +122,19 @@ export default nix.lambda((args) => (() => {
     const extraConfig = nix.argOr($_1, "extraConfig", () => ({}));
     return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(serviceOptions, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             systemd: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               services: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`hdfs-${nix.app(nix.sel(lib, "toLower"), name)}`, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   description: description,
                   preStart: preStart,
                   environment: nix.thunk(() => nix.update(environment, nix.sel(serviceOptions, "extraEnv"))),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   restartIfChanged: nix.thunk(() => nix.attr(serviceOptions, "restartIfChanged")),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     User: User,
                     SyslogIdentifier: nix.thunk(() => nix.str`hdfs-${nix.app(nix.sel(lib, "toLower"), name)}`),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/hdfs --config ${hadoopConf} ${nix.app(nix.sel(lib, "toLower"), name)} ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(serviceOptions, "extraFlags")))}`),
@@ -144,16 +144,16 @@ export default nix.lambda((args) => (() => {
               ])),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               hadoop: nix.thunk(() => ({
-                __proto__: pos$12,
-                gatewayRole: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+                [nix.POS]: pos$12,
+                gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               firewall: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.builtins.hasAttr("openFirewall", serviceOptions)) && nix.asBool(nix.sel(serviceOptions, "openFirewall")))), allowedTCPPorts)),
               })),
             })),
@@ -162,43 +162,43 @@ export default nix.lambda((args) => (() => {
         ]))));
   })(), formals$3);
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       services: nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         hadoop: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           hdfs: nix.thunk(() => ({
-            __proto__: pos$32,
-            namenode: nix.thunk(() => nix.update(nix.app(hadoopServiceOption, nix.thunk(() => ({ __proto__: pos$17, serviceName: "HDFS NameNode" }))), {
-              __proto__: pos$19,
+            [nix.POS]: pos$32,
+            namenode: nix.thunk(() => nix.update(nix.app(hadoopServiceOption, nix.thunk(() => ({ [nix.POS]: pos$17, serviceName: "HDFS NameNode" }))), {
+              [nix.POS]: pos$19,
               formatOnInit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                   default: false,
                   description: "Format HDFS namenode on first start. This is useful for quickly spinning up\nephemeral HDFS clusters with a single namenode.\nFor HA clusters, initialization involves multiple steps across multiple nodes.\nFollow this guide to initialize an HA cluster manually:\n<https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html>\n",
                 })))),
             })),
-            datanode: nix.thunk(() => nix.update(nix.app(hadoopServiceOption, nix.thunk(() => ({ __proto__: pos$20, serviceName: "HDFS DataNode" }))), {
-              __proto__: pos$26,
+            datanode: nix.thunk(() => nix.update(nix.app(hadoopServiceOption, nix.thunk(() => ({ [nix.POS]: pos$20, serviceName: "HDFS DataNode" }))), {
+              [nix.POS]: pos$26,
               dataDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   default: null,
                   description: "Tier and path definitions for datanode storage.",
                   type: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             options: nix.thunk(() => ({
-                              __proto__: pos$23,
+                              [nix.POS]: pos$23,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$21,
+                                  [nix.POS]: pos$21,
                                   type: nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["SSD", "DISK", "ARCHIVE", "RAM_DISK"]))),
                                   description: "Storage types ([SSD]/[DISK]/[ARCHIVE]/[RAM_DISK]) for HDFS storage policies.\n",
                                 })))),
                               path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                  __proto__: pos$22,
+                                  [nix.POS]: pos$22,
                                   type: nix.thunk(() => nix.lookup(w, "path")),
                                   example: nix.thunk(() => ["/var/lib/hadoop/hdfs/dn"]),
                                   description: "Determines where on the local filesystem a data node should store its blocks.",
@@ -208,16 +208,16 @@ export default nix.lambda((args) => (() => {
                   })()),
                 })))),
             })),
-            journalnode: nix.thunk(() => nix.app(hadoopServiceOption, nix.thunk(() => ({ __proto__: pos$27, serviceName: "HDFS JournalNode" })))),
+            journalnode: nix.thunk(() => nix.app(hadoopServiceOption, nix.thunk(() => ({ [nix.POS]: pos$27, serviceName: "HDFS JournalNode" })))),
             zkfc: nix.thunk(() => nix.app(hadoopServiceOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 serviceName: "HDFS ZooKeeper failover controller",
                 firewallOption: false,
               })))),
-            httpfs: nix.thunk(() => nix.update(nix.app(hadoopServiceOption, nix.thunk(() => ({ __proto__: pos$29, serviceName: "HDFS JournalNode" }))), {
-              __proto__: pos$31,
+            httpfs: nix.thunk(() => nix.update(nix.app(hadoopServiceOption, nix.thunk(() => ({ [nix.POS]: pos$29, serviceName: "HDFS JournalNode" }))), {
+              [nix.POS]: pos$31,
               tempPath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: nix.thunk(() => nix.sel(lib, "types", "path")),
                   default: "/tmp/hadoop/httpfs",
                   description: "HTTPFS_TEMP path used by HTTPFS",
@@ -229,23 +229,23 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(hadoopServiceConfig, nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             name: "NameNode",
             allowedTCPPorts: nix.thunk(() => [9870n, 8020n, 8022n, 8019n]),
             preStart: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hdfs", "namenode", "formatOnInit")), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/hdfs --config ${hadoopConf} namenode -format -nonInteractive || true`))),
           })))),
         nix.thunk(() => nix.app(hadoopServiceConfig, nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             name: "DataNode",
             allowedTCPPorts: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "3")) ? [9864n, 9866n, 9867n] : [50075n, 50010n, 50020n])),
             extraConfig: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               services: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 hadoop: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   hdfsSiteInternal: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     "dfs.datanode.data.dir": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "hdfs", "datanode", "dataDirs"), null)), nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ",", (x) => nix.add(nix.add(nix.add("[", nix.sel(x, "type")), "]file://"), nix.sel(x, "path")), nix.thunk(() => nix.sel(cfg, "hdfs", "datanode", "dataDirs")))))),
                   })),
                 })),
@@ -253,20 +253,20 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(hadoopServiceConfig, nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             name: "JournalNode",
             allowedTCPPorts: nix.thunk(() => [8480n, 8485n]),
           })))),
         nix.thunk(() => nix.app(hadoopServiceConfig, nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             name: "zkfc",
             description: "Hadoop HDFS ZooKeeper failover controller",
           })))),
         nix.thunk(() => nix.app(hadoopServiceConfig, nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             name: "HTTPFS",
             environment: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               HTTPFS_TEMP: nix.thunk(() => nix.sel(cfg, "hdfs", "httpfs", "tempPath")),
             })),
             preStart: "mkdir -p $HTTPFS_TEMP",
@@ -274,13 +274,13 @@ export default nix.lambda((args) => (() => {
             allowedTCPPorts: nix.thunk(() => [14000n]),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "gatewayRole", "enable")), nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             users: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               users: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 hdfs: nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   description: "Hadoop HDFS user",
                   group: "hadoop",
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "hdfs")),
@@ -289,13 +289,13 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "hdfs", "httpfs", "enable")), nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             users: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               users: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 httpfs: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   description: "Hadoop HTTPFS user",
                   group: "hadoop",
                   isSystemUser: true,

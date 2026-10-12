@@ -38,23 +38,23 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "gophernicus"));
   const opt = nix.thunk(() => nix.sel(options, "services", "gophernicus"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         gophernicus: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "gophernicus, a modern gopher daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "gophernicus", nix.thunk(() => ({})))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "A DNS-resolvable domain pointing to this machine or a reverse proxy redirecting here.",
               example: "gopher.example.com",
             })))),
           path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               description: "Packages with content in {file}`/bin` that should be available to gophernicus.\n\nThis will be provided as {env}`PATH` to both gophermaps, cgi scripts and filters.\n",
               default: nix.thunk(() => (() => {
@@ -71,74 +71,74 @@ export default nix.lambda((args) => (() => {
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "with pkgs; [\n  coreutils\n  gnused\n  whoami\n  bash\n  php\n  perl\n]\n")),
             })))),
           filters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "pathInStore")))),
               description: "Executables that should be registered as preprocessing filters.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  # Files with the `.txt` extension should be preprocessed with `my-filter`\n  txt = pkgs.writeShellScript \"my-filter\" ''\n    echo \"To whom it may concern...\"\n    # First argument is the path of the file being filtered\n    cat \"$1\"\n    echo \"Best regards, server owner\"\n  '';\n  # Files with the `.php` extension should automatically be rendered by php\n  php = \"${pkgs.php}/bin/php\";\n}\n")),
             })))),
           rootDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "The directory which contains the root of your gopher content.\n\nNote that you might want to disable {option}`services.gophernicus.enableDefaultRootIndex` if you are\nmodifying the contents of your root directory.\n",
               default: "/var/lib/gophernicus/gopher",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.symlinkJoin {\n  name = \"gophernicus-root-dir\";\n  paths = [\n    (pkgs.writeTextDir \"gophermap\" ''\n      iHello!\n\n      1Misc\\tmisc\n    '')\n    (pkgs.writeTextDir \"misc/info.txt\" ''\n      World\n    '')\n  ];\n}\n")),
             })))),
           enableDefaultRootIndex: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to enable the example gophermap shipped with gophernicus as the default root index.",
               default: true,
               example: false,
             })))),
           enableUserDirs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to host content from {file}`~/public_gopher` in user home directories.",
               default: true,
               example: false,
             })))),
           listenStreams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               description: "Which sockets to bind to.\n\nSee {option}`systemd.sockets.«name».listenStreams`.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["127.0.0.1:70"]),
               example: nix.thunk(() => ["/run/gophernicus/gophernicus.sock"]),
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Extra commandline arguments to pass to {command}`gophernicus`.\n\nSee {manpage}`gophernicus(8)` for available arguments.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$8, u: "gopher_stuff", w: 80n, np: true, nx: true })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$8, u: "gopher_stuff", w: 80n, np: true, nx: true })),
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$14,
-          gophernicus: nix.thunk(() => ({ __proto__: pos$13, path: nix.thunk(() => nix.sel(opt, "path", "default")) })),
+          [nix.POS]: pos$14,
+          gophernicus: nix.thunk(() => ({ [nix.POS]: pos$13, path: nix.thunk(() => nix.sel(opt, "path", "default")) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           sockets: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             gophernicus: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               wantedBy: nix.thunk(() => ["sockets.target"]),
               listenStreams: nix.thunk(() => nix.concat([""], nix.sel(cfg, "listenStreams"))),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             "gophernicus@": nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               documentation: nix.thunk(() => ["man:gophernicus(8)"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 DynamicUser: true,
                 User: "gophernicus",
                 Group: "gophernicus",
@@ -146,7 +146,7 @@ export default nix.lambda((args) => (() => {
                 RuntimeDirectory: nix.thunk(() => ["gophernicus/bin"]),
                 BindReadOnlyPaths: nix.thunk(() => (() => {
                   const binDir = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       name: "gophernicus-bin",
                       paths: nix.thunk(() => nix.sel(cfg, "path")),
                       stripPrefix: "/bin",
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
                 })()),
                 ExecStart: nix.thunk(() => (() => {
                   const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => nix.update({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       r: "/var/lib/gophernicus/gopher",
                       h: nix.thunk(() => nix.sel(cfg, "domain")),
                       f: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "filters"), {})) ? nix.app(nix.sel(pkgs, "linkFarm"), "gophernicus-filters", nix.thunk(() => nix.sel(cfg, "filters"))) : null)),
@@ -200,7 +200,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

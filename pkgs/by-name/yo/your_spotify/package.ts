@@ -25,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "your_spotify_server",
       version: "1.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yooooomi",
           repo: "your_spotify",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-0XGq4UVaNN1gTJLta0o9DnQwGwJ+S7HlGFY6DPAdGKY=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,22 +59,22 @@ makeWrapper ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(ni
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         client: nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             pnpmDeps: nix.thunk(() => nix.attr(finalAttrs, "pnpmDeps")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           your_spotify: nix.thunk(() => nix.attr(nixosTests, "your_spotify")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/Yooooomi/your_spotify",
         changelog: nix.thunk(() => nix.str`https://github.com/Yooooomi/your_spotify/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Self-hosted application that tracks what you listen and offers you a dashboard to explore statistics about it",

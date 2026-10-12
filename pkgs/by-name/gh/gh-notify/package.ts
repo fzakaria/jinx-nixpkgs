@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const bat = nix.arg($, "bat");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([gh, gnugrep, fzf, python3], nix.concat(nix.app(nix.sel(lib, "optional"), withBat, bat), nix.app(nix.sel(lib, "optional"), withDelta, delta))))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gh-notify",
       version: "0-unstable-2024-08-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meiji163",
           repo: "gh-notify",
           rev: "556df2eecdc0f838244a012759da0b76bcfeb2e7",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram "$out/bin/gh-notify" --prefix PATH : "${binPath}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/meiji163/gh-notify",
         description: "GitHub CLI extension to display GitHub notifications",
         maintainers: nix.thunk(() => (() => {

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "satty",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Satty-org",
           repo: "Satty",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dt $out/share/icons/hicolor/scalable/apps/ assets/satty.svg\n\ninstallShellCompletion --cmd satty \\\n  --bash completions/satty.bash \\\n  --fish completions/satty.fish \\\n  --zsh completions/_satty\n",
       desktopItems: nix.thunk(() => ["satty.desktop"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screenshot annotation tool inspired by Swappy and Flameshot",
         homepage: "https://github.com/Satty-org/Satty",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

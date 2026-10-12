@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const camomile = nix.arg($, "camomile");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gettext-camomile",
       src: nix.thunk(() => nix.attr(ocaml_gettext, "src")),
       version: nix.thunk(() => nix.attr(ocaml_gettext, "version")),
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(ocaml_gettext, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Internationalization library using camomile (i18n)",
       })),
     })));

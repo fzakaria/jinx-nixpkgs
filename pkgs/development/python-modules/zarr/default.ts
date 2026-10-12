@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tomlkit = nix.arg($, "tomlkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zarr",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zarr-developers",
           repo: "zarr-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +49,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [donfig, numcodecs, google_crc32c, numpy, packaging, typing_extensions]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           remote: nix.thunk(() => [fsspec, obstore]),
           gpu: nix.thunk(() => [cupy]),
           cli: nix.thunk(() => [typer]),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["zarr"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Implementation of chunked, compressed, N-dimensional arrays for Python",
         homepage: "https://github.com/zarr-developers/zarr",
         changelog: nix.thunk(() => nix.str`https://github.com/zarr-developers/zarr-python/releases/tag/v${nix.sel(finalAttrs, "version")}`),

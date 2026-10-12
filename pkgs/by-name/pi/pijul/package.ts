@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const gitImportSupport = nix.argOr($, "gitImportSupport", () => true);
   const libgit2 = nix.argOr($, "libgit2", () => null);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       __structuredAttrs: true,
       pname: "pijul",
       version: "1.0.0-beta.24",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           hash: "sha256-6rw9dizgwcIjsXd07H0rpb/AGd+9HBiMn5/XWhMutlc=",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), gitImportSupport, "git")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd pijul \\\n  --bash <($out/bin/pijul completion bash) \\\n  --fish <($out/bin/pijul completion fish) \\\n  --zsh <($out/bin/pijul completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Distributed version control system",
         homepage: "https://pijul.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

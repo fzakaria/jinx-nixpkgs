@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const cowsay = nix.arg($, "cowsay");
   const replaceVars = nix.arg($, "replaceVars");
   const mkEpkg = (pname) => (src) => (melpaBuild) => nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: pname,
       src: src,
       version: "0.1.0",
       turnCompilationWarningToError: true,
     })));
   return nix.app(runCommand, "test-emacs-withPackages-wrapper", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(emacs, "pkgs", "withPackages"), (epkgs) => [
             nix.thunk(() => nix.sel(epkgs, "dash")),
             nix.thunk(() => nix.sel(epkgs, "flx-ido")),
             nix.thunk(() => nix.app(mkEpkg, "with-packages", nix.thunk(() => nix.app(replaceVars, nix.path(here, "./with-packages.el"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
                 })))), nix.thunk(() => nix.sel(epkgs, "melpaBuild")))),
             nix.thunk(() => nix.app(mkEpkg, "early-default", nix.path(here, "./early-default.el"), nix.thunk(() => nix.sel(epkgs, "melpaBuild")))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
           ])),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         INFOPATH: "/fake-info-dir1:/fake-info-dir2",
         EMACS_TEST_VERBOSE: 1n,
       })),

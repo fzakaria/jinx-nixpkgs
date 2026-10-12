@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtwebengine = nix.arg($, "qtwebengine");
   return nix.app(qtModule, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "qtwebview",
       propagatedBuildInputs: nix.thunk(() => nix.concat([qtdeclarative], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [qtwebengine])))),
     })));

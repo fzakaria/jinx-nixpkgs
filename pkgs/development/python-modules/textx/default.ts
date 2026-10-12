@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textx",
           repo: "textx",
           tag: version,
@@ -54,11 +54,11 @@ cp -r tests $testout/tests
       const pythonImportsCheck = nix.thunk(() => ["textx"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           textxTests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               "textx-data-dsl": textx_data_dsl,
               "textx-example-project": textx_example_project,
               "textx-flow-codegen": textx_flow_codegen,
@@ -68,7 +68,7 @@ cp -r tests $testout/tests
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/textX/textX/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Domain-specific languages and parsers in Python",
         mainProgram: "textx",
@@ -77,7 +77,7 @@ cp -r tests $testout/tests
         maintainers: [],
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,
@@ -104,7 +104,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -112,7 +112,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         pyproject,
@@ -136,7 +136,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -144,7 +144,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         pyproject,
@@ -168,7 +168,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -176,7 +176,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname,
         version,
         pyproject,
@@ -200,7 +200,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -208,7 +208,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname,
         version,
         pyproject,
@@ -232,7 +232,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX sub-command for testing",
@@ -240,7 +240,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname,
         version,
         pyproject,

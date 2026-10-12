@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pwdsphinx",
       version: "2.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stef",
           repo: "pwdsphinx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ $out/bin/sphinx init || true
 `),
       pythonImportsCheck: nix.thunk(() => ["pwdsphinx"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Native backend for web-extensions for Sphinx-based password storage",
         homepage: "https://www.ctrlc.hu/~stef/blog/posts/sphinx.html",
         downloadPage: "https://github.com/stef/pwdsphinx",

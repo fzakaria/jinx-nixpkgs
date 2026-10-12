@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "whitebophir"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         whitebophir: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "whitebophir, an online collaborative whiteboard server (persistent state will be maintained under {file}`/var/lib/whitebophir`)")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "whitebophir", nix.thunk(() => ({})))),
           listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "0.0.0.0",
               description: "Address to listen on (use 0.0.0.0 to allow access from any address).",
             })))),
           port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
               default: 5001n,
               description: "Port to bind to.",
@@ -49,24 +49,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             whitebophir: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               description: "Whitebophir Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 PORT: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "port")))),
                 HOST: nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "listenAddress")))),
                 WBO_HISTORY_DIR: "/var/lib/whitebophir",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/whitebophir`),
                 Restart: "always",

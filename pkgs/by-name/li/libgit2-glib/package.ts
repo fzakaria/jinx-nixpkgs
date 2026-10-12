@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libgit2-glib",
       version: "1.2.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgit2-glib/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgit2-glib-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "l0I6d5ACs76HUcdfnXkEnfzMo2FqJhWfwWJIZ3K6eF8=",
         })))),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dgtk_doc=true"]),
       postPatch: "chmod +x meson_python_compile.py\npatchShebangs meson_python_compile.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "libgit2-glib", versionPolicy: "none" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libgit2-glib", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Glib wrapper library around the libgit2 git access library",
         homepage: "https://gitlab.gnome.org/GNOME/libgit2-glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

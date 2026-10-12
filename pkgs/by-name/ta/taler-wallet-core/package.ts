@@ -32,35 +32,35 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const zip = nix.arg($, "zip");
   const nodeSources = nix.thunk(() => nix.app(srcOnly, nodejs_slim_24));
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ __proto__: pos$1, "nodejs-slim": nodejs_slim_24 }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_24 }))));
   const esbuild$ = nix.thunk(() => nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, (() => {
           const version = "0.19.9";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               owner: "evanw",
               repo: "esbuild",
               rev: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-GiQTB/P+7uVGZfUaeM7S/5lGvfHlTl/cFt7XbNfE0qw=",
             }))));
           const vendorHash = "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=";
-          return { __proto__: pos$3, version, src, vendorHash };
+          return { [nix.POS]: pos$3, version, src, vendorHash };
         })()))),
     }))));
   const customPython = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "setuptools"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "taler-wallet-core",
       version: "1.5.10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: "https://git-www.taler.net/taler-typescript-core.git",
           rev: "3816d089724c513299b62b20bdb88d94d5be67f5",
           hash: "sha256-/KxB4uBbJbnFUPAc6a++bfTwl2CM1ZYjxPTDYwRh21Q=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -96,11 +96,11 @@ done
 `),
       postFixup: "# else it fails to find the python interpreter\npatchShebangs --build $out/bin/taler-helper-sqlite3\n",
       env: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://git-www.taler.net/taler-typescript-core.git",
         description: "CLI wallet for GNU Taler written in TypeScript and Anastasis Web UI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

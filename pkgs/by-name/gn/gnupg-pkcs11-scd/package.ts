@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnupg-pkcs11-scd",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/alonbl/gnupg-pkcs11-scd/releases/download/gnupg-pkcs11-scd-${nix.sel(finalAttrs, "version")}/gnupg-pkcs11-scd-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-lUeH5WLys9kpQhLDLdDYGizTesolDmaFAC0ok7uVkIc=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-libgcrypt-prefix=${nix.sel(libgcrypt, "dev")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/alonbl/gnupg-pkcs11-scd/blob/gnupg-pkcs11-scd-${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "Smart-card daemon to enable the use of PKCS#11 tokens with GnuPG",
         mainProgram: "gnupg-pkcs11-scd",

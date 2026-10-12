@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const setuptools = nix.arg($, "setuptools");
   const pog = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "metthal",
       repo: "pog",
       rev: "b09bbf9cea573ee62aab7eccda896e37961d16cd",
       hash: "sha256-El4WA92t2O/L4wUqH6Xj8w+ANtb6liRwafDhqn8jxjQ=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "yaramod",
       version: "4.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "avast",
           repo: "yaramod",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +53,12 @@ substituteInPlace deps/pog/deps/fmt/fmt/CMakeLists.txt \\
       buildInputs: nix.thunk(() => [libxcrypt]),
       nativeBuildInputs: nix.thunk(() => [cmake, pog]),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ __proto__: pos$3, ENV_YARAMOD_BUILD_WITH_UNIT_TESTS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ENV_YARAMOD_BUILD_WITH_UNIT_TESTS: true })),
       nativeCheckInputs: nix.thunk(() => [gtest, pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["tests/"]),
       pythonImportsCheck: nix.thunk(() => ["yaramod"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Parsing of YARA rules into AST and building new rulesets in C++",
         homepage: "https://github.com/avast/yaramod",
         changelog: nix.thunk(() => nix.str`https://github.com/avast/yaramod/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

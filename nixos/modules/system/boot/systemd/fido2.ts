@@ -24,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       boot: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         initrd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             fido2: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd FIDO2 support"), {
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 default: nix.thunk(() => nix.sel(cfg, "package", "withFido2")),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.boot.initrd.systemd.package.withFido2")),
               })),
@@ -46,15 +46,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "fido2", "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         boot: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           initrd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               udev: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 packages: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "udev-fido2", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/lib/udev/rules.d/
 cp ${nix.sel(cfg, "package")}/lib/udev/rules.d/60-fido-id.rules $out/lib/udev/rules.d/60-fido-id.rules
@@ -63,7 +63,7 @@ cp ${nix.sel(cfg, "package")}/lib/udev/rules.d/60-fido-id.rules $out/lib/udev/ru
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               storePaths: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/udev/fido_id`),
                 nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/cryptsetup/libcryptsetup-token-systemd-fido2.so`),

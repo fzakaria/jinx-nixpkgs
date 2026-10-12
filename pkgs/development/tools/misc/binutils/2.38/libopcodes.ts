@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const libiberty = nix.arg($, "libiberty");
   const libbfd_2_38 = nix.arg($, "libbfd_2_38");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libopcodes",
       version: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "version")),
       src: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "src")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library from binutils for manipulating machine code",
         homepage: "https://www.gnu.org/software/binutils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "ef661775b5722d7b00f67fc229104317d35637a4fb4434bf2c005afdf1da4d09",
@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "tests"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/sphinx-doc/sphinx-testing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         description: "Testing utility classes and functions for Sphinx extensions",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

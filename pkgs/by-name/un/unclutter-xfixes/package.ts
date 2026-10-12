@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl = nix.arg($, "docbook_xsl");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unclutter-xfixes",
       version: "1.6-unstable-2024-11-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Airblader",
           repo: "unclutter-xfixes",
           rev: "0eb7a8f4365c05d09db048bd1a45f8943c1d5da3",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Rewrite of unclutter using the X11 Xfixes extension",
         homepage: "https://github.com/Airblader/unclutter-xfixes",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

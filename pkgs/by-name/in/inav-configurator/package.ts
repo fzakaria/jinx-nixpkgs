@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
       const pname = "inav-configurator";
       const version = "9.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/iNavFlight/inav-configurator/releases/download/${version}/INAV-Configurator_linux_x64_${version}.zip`),
           sha256: "sha256-n56QE0ZJ2slL0WZbnBl2pEgAUoDMuh467gWt+eRwa9c=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://raw.githubusercontent.com/iNavFlight/inav-configurator/bf3fc89e6df51ecb83a386cd000eebf16859879e/images/inav_icon_128.png",
           sha256: "1i844dzzc5s5cr4vfpi6k2kdn8jiqq2n6c0fjqvsp4wdidwjahzw",
         }))));
@@ -52,7 +52,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: pname,
             exec: pname,
             icon: pname,
@@ -62,7 +62,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "INav flight control system configuration tool",
         mainProgram: "inav-configurator",
         longDescription: "A crossplatform configuration tool for the iNav flight control system.\nVarious types of aircraft are supported by the tool and by iNav, e.g.\nquadcopters, hexacopters, octocopters and fixed-wing aircraft.\n",
@@ -83,7 +83,7 @@ runHook postInstall
         knownVulnerabilities: nix.thunk(() => ["Uses Electron 38.7.2, EOL on 28-Jan-2026, with several known CVEs."]),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

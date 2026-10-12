@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lrcget";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tranxuanthang",
           repo: "lrcget",
           tag: version,
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-qyIvUbEBImJfVaxILtLN88KREgUk45zRdxbdZ1A6vc0=";
       const forceGitDeps = true;
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: nix.thunk(() => nix.str`lrcget-${version}-npm-deps`),
           src: src,
           forceGitDeps: forceGitDeps,
@@ -69,26 +69,26 @@ export default nix.lambda((args) => (() => {
           const filename = nix.arg($_1, "filename");
           const hash = nix.arg($_1, "hash");
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             filename: filename,
             language: language,
             source: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: nix.thunk(() => nix.str`https://lindera.dev/${filename}`),
                 hash: hash,
               })))),
           };
         })(), formals$2);
         const dictionaries = nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           "lindera-ko-dic": nix.thunk(() => nix.app(dict, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               language: "Korean",
               filename: "mecab-ko-dic-2.1.1-20180720.tar.gz",
               hash: "sha256-cCztIcYWfp2a68Z0q17lSvWNREOXXylA030FZ8AgWRo=",
             })))),
           "lindera-unidic": nix.thunk(() => nix.app(dict, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               language: "Japanese",
               filename: "unidic-mecab-2.1.2.tar.gz",
               hash: "sha256-JKx1/k5E2XO1XmWEfDX6Suwtt6QaB7ScoSUUbbn8EYk=",
@@ -114,11 +114,11 @@ echo "Lindera cache prepared at $${dictCacheVarName}"
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \"$out/Applications/LRCGET.app/Contents/MacOS/LRCGET\" \"$out/bin/LRCGET\"\n"));
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "gappsWrapperArgs+=(\n  # WEBKIT_DISABLE_COMPOSITING_MODE essential in NVIDIA + compositor https://github.com/NixOS/nixpkgs/issues/212064#issuecomment-1400202079\n  --set WEBKIT_DISABLE_COMPOSITING_MODE 1\n)\n"));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Utility for mass-downloading LRC synced lyrics for your offline music library",
         homepage: "https://github.com/tranxuanthang/lrcget",
         changelog: nix.thunk(() => nix.str`https://github.com/tranxuanthang/lrcget/releases/tag/${version}`),
@@ -137,7 +137,7 @@ echo "Lindera cache prepared at $${dictCacheVarName}"
         })()),
       }));
       return {
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname,
         version,
         src,

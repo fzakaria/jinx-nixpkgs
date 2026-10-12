@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ags-slc",
           repo: "localzone",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["localzone"]);
       const postPatch = "# Fix tests with dnspython 2.8.0\n# https://github.com/ags-slc/localzone/pull/6\nsubstituteInPlace tests/test_models.py \\\n  --replace-fail 'raises((AttributeError, DNSSyntaxError))' 'raises((AttributeError, DNSSyntaxError, ValueError))'\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple DNS library for managing zone files",
         homepage: "https://localzone.iomaestro.com",
         changelog: nix.thunk(() => nix.str`https://github.com/ags-slc/localzone/blob/v${version}/CHANGELOG.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

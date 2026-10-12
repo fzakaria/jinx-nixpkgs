@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const tfk8s = nix.arg($, "tfk8s");
   return nix.app(runCommandCC, "tfk8s-test-sample1", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       buildInputs: nix.thunk(() => [tfk8s]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
     })), nix.thunk(() => nix.str`cmp <(${tfk8s}/bin/tfk8s -f ${nix.path(here, "./input.yaml")}) ${nix.path(here, "./output.tf")} > $out
 `));
 })(), formals$1);

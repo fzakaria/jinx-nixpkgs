@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "conduit.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -56,100 +56,100 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       services: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         "matrix-conduit": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "matrix-conduit")),
           extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "Extra Environment variables to pass to the conduit server.",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$2, RUST_BACKTRACE: "yes" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, RUST_BACKTRACE: "yes" })),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "matrix-conduit", nix.thunk(() => ({})))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/matrix-conduit.env",
               description: "Path to a file containing sensitive environment as described in {manpage}`systemd.exec(5).\nSome variables that can be considered secrets are:\n\n- CONDUIT_JWT_SECRET:\n  The secret used to enable JWT login. Without it a 400 error will be returned.\n\n- CONDUIT_TURN_SECRET:\n  The TURN secret\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     global: nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       server_name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: "example.com",
                           description: "The server_name is the name of this server. It is used as a suffix for user # and room ids.",
                         })))),
                       port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "port")),
                           default: 6167n,
                           description: "The port Conduit will be running on. You need to set up a reverse proxy in your web server (e.g. apache or nginx), so all requests to /_matrix on port 443 and 8448 will be forwarded to the Conduit instance running on this port",
                         })))),
                       max_request_size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                           default: 20000000n,
                           description: "Max request size in bytes. Don't forget to also change it in the proxy.",
                         })))),
                       allow_registration: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether new users can register on this server.",
                         })))),
                       allow_encryption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether new encrypted rooms can be created. Note: existing rooms will continue to work.",
                         })))),
                       allow_federation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$10,
+                          [nix.POS]: pos$10,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: true,
                           description: "Whether this server federates with other servers.\n",
                         })))),
                       trusted_servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           default: nix.thunk(() => ["matrix.org"]),
                           description: "Servers trusted with signing server keys.",
                         })))),
                       address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "::1",
                           description: "Address to listen on for connections by the reverse proxy/tls terminator.",
                         })))),
                       database_path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: "/var/lib/matrix-conduit/",
                           readOnly: true,
                           description: "Path to the conduit database, the directory where conduit will save its data.\nNote that due to using the DynamicUser feature of systemd, this value should not be changed\nand is set to be read only.\n",
                         })))),
                       database_backend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "rocksdb"]))),
                           default: "sqlite",
                           example: "rocksdb",
                           description: "The database backend for the service. Switching it on an existing\ninstance will require manual migration of data.\n",
                         })))),
                       allow_check_for_updates: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                           default: false,
                           description: "Whether to allow Conduit to automatically contact\n<https://conduit.rs> hourly to check for important Conduit news.\n\nDisabled by default because nixpkgs handles updates.\n",
@@ -164,24 +164,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             conduit: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "Conduit Matrix Server",
               documentation: nix.thunk(() => ["https://gitlab.com/famedly/conduit/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$23, CONDUIT_CONFIG: configFile })),
+                  nix.thunk(() => ({ [nix.POS]: pos$23, CONDUIT_CONFIG: configFile })),
                   nix.thunk(() => nix.sel(cfg, "extraEnvironment")),
                 ]))),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 DynamicUser: true,
                 User: "conduit",
                 LockPersonality: true,
@@ -207,10 +207,10 @@ export default nix.lambda((args) => (() => {
                 RestartSec: 10n,
                 UMask: "077",
               }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   EnvironmentFile: nix.thunk(() => nix.sel(cfg, "secretFile")),
                 }))))),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$26, StartLimitBurst: 5n })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$26, StartLimitBurst: 5n })),
             })),
           })),
         })),

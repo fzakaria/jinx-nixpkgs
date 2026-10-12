@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "geoclock",
       version: "1.0.0",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-s23e9shdEnCnyr/LI0MioTW3vkoDZPIwWwJhyFUO7o4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-7mApZj3Ksy8Av0W+0+UZQCkH281bSBd4xo8/7JowmHs=",
       cargoDepsName: "geoclock",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Displays time as calculated by your longitude",
         homepage: "https://github.com/FGRCL/geoclock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

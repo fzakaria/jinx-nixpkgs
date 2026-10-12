@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.8";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gugarosa",
           repo: "opytimark",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://patch-diff.githubusercontent.com/raw/gugarosa/opytimark/pull/2.patch",
             hash: "sha256-r/oCKI9Q1nuCZDGHx7UW8j523sFe4EFmguMOJTs/LOU=",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_year", "test_decorator", "test_loader", "cec_benchmark"]);
       const pythonImportsCheck = nix.thunk(() => ["opytimark"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library consisting of optimization benchmarking functions",
         homepage: "https://github.com/gugarosa/opytimark",
         changelog: nix.thunk(() => nix.str`https://github.com/gugarosa/opytimark/releases/tag/v${version}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

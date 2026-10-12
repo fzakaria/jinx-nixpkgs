@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aio-wattwaechter",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SmartCircuits-GmbH",
           repo: "WattWaechter-PyPI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aio_wattwaechter"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Async Python client for the WattWächter smart meter API",
         homepage: "https://github.com/SmartCircuits-GmbH/WattWaechter-PyPI",
         changelog: nix.thunk(() => nix.str`https://github.com/SmartCircuits-GmbH/WattWaechter-PyPI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

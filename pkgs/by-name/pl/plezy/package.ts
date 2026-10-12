@@ -43,14 +43,14 @@ export default nix.lambda((args) => (() => {
   const pname = "plezy";
   const version = "2.22.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "edde746",
       repo: "plezy",
       tag: version,
       hash: "sha256-UPjZMmXpow8VUakRm3IsN52I3bZrdk1h8kyNkbIEHn4=",
     }))));
   const simdutf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://github.com/simdutf/simdutf/releases/download/v6.4.2/singleheader.zip",
       hash: "sha256-n+TW9RVySlXI3oj+5EY+CJChq+ImfNoTxLXSRdWAOeY=",
     }))));
@@ -59,7 +59,7 @@ ln -s ${nix.sel(zlib, "dev")}/include $out/include
 ln -s ${zlib}/lib $out/lib
 `)));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Modern cross-platform Emby, Plex & Jellyfin client built with Flutter",
     homepage: "https://github.com/edde746/plezy",
     changelog: nix.thunk(() => nix.str`https://github.com/edde746/plezy/releases/tag/${version}`),
@@ -84,8 +84,8 @@ ln -s ${zlib}/lib $out/lib
       const version_1 = version;
       const src_1 = src;
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))), nix.thunk(() => ({
-          __proto__: pos$5,
-          sdks: nix.thunk(() => ({ __proto__: pos$4, dart: ">=3.12.0 <4.0.0" })),
+          [nix.POS]: pos$5,
+          sdks: nix.thunk(() => ({ [nix.POS]: pos$4, dart: ">=3.12.0 <4.0.0" })),
         }))));
       const gitHashes = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json")));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => [nix.path(here, "./aarch64-linux.patch")])));
@@ -102,7 +102,7 @@ ln -s ${zlib}/lib $out/lib
         jdk,
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         ZLIB_ROOT: zlib_root,
         JAVA_HOME: nix.thunk(() => nix.str`${jdk}/lib/openjdk`),
       }));
@@ -112,7 +112,7 @@ ln -s ${zlib}/lib $out/lib
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "plezy",
             exec: "plezy",
             icon: "plezy",
@@ -122,10 +122,10 @@ ln -s ${zlib}/lib $out/lib
           })))),
       ]);
       const postInstall = "install -Dm644 assets/plezy.png $out/share/icons/hicolor/128x128/apps/plezy.png\nfor size in 16 24 32 48 64 256 512; do\n  mkdir -p $out/share/icons/hicolor/${size}x${size}/apps\n  convert assets/plezy.png -resize ${size}x${size} $out/share/icons/hicolor/${size}x${size}/apps/plezy.png\ndone\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$8, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$8, updateScript: nix.path(here, "./update.sh") }));
       const meta_1 = meta;
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -143,12 +143,12 @@ ln -s ${zlib}/lib $out/lib
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: pname,
       version: version,
-      passthru: nix.thunk(() => ({ __proto__: pos$10, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$10, updateScript: nix.path(here, "./update.sh") })),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           url: nix.thunk(() => nix.str`https://github.com/edde746/plezy/releases/download/${version}/plezy-macos.dmg`),
           hash: "sha256-4YAoKfRybEjjj4vW53tUTq3r4XOI9y0M3T409/8tcg8=",
         })))),

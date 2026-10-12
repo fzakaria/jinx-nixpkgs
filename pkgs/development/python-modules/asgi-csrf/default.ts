@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "asgi-csrf",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [asgi_lifespan, httpx, pytest_asyncio, pytestCheckHook, starlette]);
       const pythonImportsCheck = nix.thunk(() => ["asgi_csrf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(python_multipart, "version")), "0.0.26")),
         description: "ASGI middleware for protecting against CSRF attacks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ris"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

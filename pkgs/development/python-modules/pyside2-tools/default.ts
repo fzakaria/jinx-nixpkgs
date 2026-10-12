@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const shiboken2 = nix.arg($, "shiboken2");
   const pyside2 = nix.arg($, "pyside2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "pyside2-tools",
       version: nix.thunk(() => nix.attr(pyside2, "version")),
       src: nix.thunk(() => nix.attr(pyside2, "src")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm $out/bin/pyside_tool.py\n\nfor tool in uic rcc; do\n  makeWrapper \"$(command -v $tool)\" $out/bin/pyside2-$tool --add-flags \"-g python\"\ndone\n",
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "PySide2 development tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         homepage: "https://wiki.qt.io/Qt_for_Python",

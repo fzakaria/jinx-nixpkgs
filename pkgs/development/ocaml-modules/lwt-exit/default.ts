@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const ptime = nix.arg($, "ptime");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lwt-exit",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomadic-labs",
           repo: "lwt-exit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [lwt, ptime]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Opinionated clean-exit and signal-handling library for Lwt programs",
         homepage: "https://gitlab.com/nomadic-labs/lwt-exit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

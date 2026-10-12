@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const go_task = nix.arg($, "go-task");
   const gotestsum = nix.arg($, "gotestsum");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "go-mockery",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vektra",
           repo: "mockery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X github.com/vektra/mockery/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/internal/logging.SemVer=v${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n, GOWORK: "off" })),
       subPackages: nix.thunk(() => ["."]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook, go_task, gotestsum]),
       __darwinAllowLocalNetworking: true,
@@ -52,7 +52,7 @@ runHook postCheck
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mockery`),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/vektra/mockery",
         description: "Mock code autogenerator for Golang",
         maintainers: nix.thunk(() => (() => {

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const lzlib = nix.arg($, "lzlib");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plzip",
       version: "1.13",
       outputs: nix.thunk(() => ["out", "man", "info"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/plzip/plzip-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-f+AUG3Lq8ITYKq07FLOk2W3/C97698OJ91XYlIs2N8g=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.nongnu.org/lzip/plzip.html",
         description: "Massively parallel lossless data compressor based on the lzlib compression library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

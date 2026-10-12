@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const pname = "bazecor";
   const version = "1.10.0";
   const src = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Dygmalab/Bazecor/releases/download/v${version}/Bazecor-${version}-x64.AppImage`),
           hash: "sha256-tdkuZ7YIdHetdLi5EUk9HMvW0mW0Oqsb28xseises2Q=",
         })))),
       postExtract: "substituteInPlace \\\n  $out/usr/lib/bazecor/resources/app/.webpack/main/index.js \\\n  --replace-fail \\\n    't.checkUdev=()=>{try{if(l.default.existsSync(f))return l.default.readFileSync(f,\"utf-8\").trim()===h.trim()}catch(e){d.default.error(e)}return!1}' \\\n    't.checkUdev=()=>{return 1}'\n",
     }))));
   return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -47,7 +47,7 @@ substituteInPlace $out/share/applications/Bazecor.desktop \\
   --replace-fail 'Exec=Bazecor' 'Exec=bazecor'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Graphical configurator for Dygma Products",
         homepage: "https://github.com/Dygmalab/Bazecor",
         changelog: nix.thunk(() => nix.str`https://github.com/Dygmalab/Bazecor/releases/tag/v${version}`),

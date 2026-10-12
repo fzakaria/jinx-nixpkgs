@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twspace-crawler";
       const version = "1.12.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HitomaruKonpaku",
           repo: "twspace-crawler",
           rev: "7875e534b257d4ba5a0cf8179a4772c87005fee6",
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-2fsYeSZYzadLmikUJbuHE4XMAp38jTZvtRo9xgaZVzg=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Script to monitor & download Twitter Spaces 24/7",
         homepage: "https://github.com/HitomaruKonpaku/twspace-crawler",
         changelog: nix.thunk(() => nix.str`https://github.com/HitomaruKonpaku/twspace-crawler/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "twspace-crawler",
       }));
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coltrane",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["coltrane"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "coltrane")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pedrozath/coltrane",
         description: "Music calculation library/CLI",
         longDescription: "coltrane allows to search for Notes, Chords, Scales for\nguitar, bass, piano and ukelele\n",

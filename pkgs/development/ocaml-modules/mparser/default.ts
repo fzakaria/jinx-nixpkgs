@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mparser",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "murmour",
           repo: "mparser",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-fUJMLy1Yn+y79mqDF0VwtrOi8z9jKBOjZk+QbMJOQZo=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple monadic parser combinator OCaml library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         homepage: "https://github.com/murmour/mparser",

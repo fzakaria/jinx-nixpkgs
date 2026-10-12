@@ -50,57 +50,57 @@ export default nix.lambda((args) => (() => {
       return nix.str`${key}=${quotedValueString}`;
     })();
   })(), formals$2);
-  const msrKernelParam = nix.thunk(() => nix.app(kernelParam, nix.thunk(() => ({ __proto__: pos$1, module: "msr" }))));
+  const msrKernelParam = nix.thunk(() => nix.app(kernelParam, nix.thunk(() => ({ [nix.POS]: pos$1, module: "msr" }))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       hardware: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         cpu: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           x86: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             msr: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "options")), null);
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
               return {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the `msr` (Model-Specific Registers) kernel module and configure `udev` rules for its devices (usually `/dev/cpu/*/msr`)")),
                 owner: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     type: nix.thunk(() => nix.lookup(w_1, "str")),
                     default: "root",
                     example: "alice",
                     description: nix.thunk(() => nix.str`Owner ${set}`),
                   })))),
                 group: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     type: nix.thunk(() => nix.lookup(w_1, "str")),
                     default: defaultGroup,
                     example: "users",
                     description: nix.thunk(() => nix.str`Group ${set}`),
                   })))),
                 mode: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     type: nix.thunk(() => nix.lookup(w_1, "str")),
                     default: "0640",
                     example: "0660",
                     description: nix.thunk(() => nix.str`Mode ${set}`),
                   })))),
                 settings: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     type: nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         freeformType: nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
                               nix.thunk(() => nix.lookup(w_1, "bool")),
                               nix.thunk(() => nix.lookup(w_1, "int")),
                               nix.thunk(() => nix.lookup(w_1, "str")),
                             ]))))),
                         options: nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           "allow-writes": nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["on", "off"]))))),
                               default: null,
                               description: "Whether to allow writes to MSRs (`\"on\"`) or not (`\"off\"`).",
@@ -117,41 +117,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => nix.app(hasAttr, nix.thunk(() => nix.sel(cfg, "owner")), nix.thunk(() => nix.sel(config, "users", "users")))),
             message: nix.thunk(() => nix.str`Owner '${nix.sel(cfg, "owner")}' set in \`${nix.sel(opt, "owner")}\` is not configured via \`${nix.sel(options, "users", "users")}."${nix.sel(cfg, "owner")}"\`.`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (nix.asBool(isDefaultGroup) || nix.asBool(nix.app(hasAttr, nix.thunk(() => nix.sel(cfg, "group")), nix.thunk(() => nix.sel(config, "users", "groups")))))),
             message: nix.thunk(() => nix.str`Group '${nix.sel(cfg, "group")}' set in \`${nix.sel(opt, "group")}\` is not configured via \`${nix.sel(options, "users", "groups")}."${nix.sel(cfg, "group")}"\`.`),
           })),
         ]),
         boot: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           kernelModules: nix.thunk(() => ["msr"]),
           kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), msrKernelParam, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (value) => !nix.eq(value, null), nix.thunk(() => nix.sel(cfg, "settings")))))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "group"), nix.thunk(() => nix.app(mkIf, isDefaultGroup, nix.thunk(() => ({}))))],
           ])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           udev: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             extraRules: nix.thunk(() => nix.str`SUBSYSTEM=="msr", OWNER="${nix.sel(cfg, "owner")}", GROUP="${nix.sel(cfg, "group")}", MODE="${nix.sel(cfg, "mode")}"
 `),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lorenzleutgeb"))];

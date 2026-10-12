@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.27";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CATIA-Systems",
           repo: "FMPy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,12 +56,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-gui-override-Qt6-libexec-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             qt6libexec: nix.thunk(() => nix.str`${nix.sel(qt6, "qtbase")}/libexec/`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-sundials-override-shared-object-paths.patch"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(fmpy, "passthru"));
-            return { __proto__: pos$3, cvode: nix.thunk(() => nix.attr(from, "cvode")) };
+            return { [nix.POS]: pos$3, cvode: nix.thunk(() => nix.attr(from, "cvode")) };
           })()))),
         nix.path(here, "./0003-remoting-client-create-lockfile-with-explicit-r-w.patch"),
       ]);
@@ -92,11 +92,11 @@ cmake --build remoting/linux64 --config Release
       ]);
       const nativeCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         cvode: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(sundials, "overrideAttrs"), (prev) => (() => {
             const version_1 = "5.3.0";
             const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 owner: "LLNL",
                 repo: "sundials",
                 tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -104,7 +104,7 @@ cmake --build remoting/linux64 --config Release
               }))));
             const postPatch_1 = "substituteInPlace config/SundialsPOSIXTimers.cmake \\\n  --replace-fail \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.0.2)\" \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10)\"\n";
             const cmakeFlags = nix.thunk(() => nix.concat(nix.sel(prev, "cmakeFlags"), nix.app(nix.sel(lib, "mapAttrsToList"), (option) => (enable) => nix.app(nix.sel(lib, "cmakeBool"), option, enable), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 BUILD_CVODE: true,
                 BUILD_CVODES: false,
                 BUILD_ARKODE: false,
@@ -115,7 +115,7 @@ cmake --build remoting/linux64 --config Release
               })))));
             const postFixup = "pushd $out/lib\nfor so in *.so; do\n  ln --verbose --symbolic $so ${so#lib}\ndone\npopd\n";
             return {
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               version: version_1,
               src: src_1,
               postPatch: postPatch_1,
@@ -123,17 +123,17 @@ cmake --build remoting/linux64 --config Release
               postFixup,
             };
           })()), "override"), nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             lapackSupport: false,
             lapack: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               isILP64: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")),
             })),
             blas: lapack,
             kluSupport: false,
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           "simulate-reference-fmus": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-simulate-reference-fmus`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 # NB(find ! -name): Clocks.fmu is marked TODO upstream and is of a
 # FMI type that FMPy doesn't support currently (ModelExchange)
@@ -149,7 +149,7 @@ done
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Simulate Functional Mockup Units (FMUs) in Python",
         homepage: "https://github.com/CATIA-Systems/FMPy",
@@ -162,7 +162,7 @@ done
         mainProgram: "fmpy",
       }));
       return {
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname,
         version,
         pyproject,

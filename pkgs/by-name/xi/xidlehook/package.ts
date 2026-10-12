@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xidlehook",
       version: "0.10.0",
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jD91mZM2",
           repo: "xidlehook",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
 patchelf --set-rpath "$RPATH:${libpulseaudio}/lib" $out/bin/xidlehook
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "xautolock rewrite in Rust, with a few extra features",
         homepage: "https://github.com/jD91mZM2/xidlehook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

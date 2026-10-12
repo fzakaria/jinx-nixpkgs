@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "avro-tools",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/org/apache/avro/avro-tools/${nix.sel(finalAttrs, "version")}/avro-tools-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-+OTQ2UWFLcL5HDv4j33LjKvADg/ClbuS6JPlSUXggIU=",
         })))),
@@ -35,7 +35,7 @@ makeWrapper ${jre}/bin/java $out/bin/avro-tools \\
 --add-flags "-jar $out/libexec/avro-tools/avro-tools.jar"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://avro.apache.org/",
         description: "Avro command-line tools and utilities",
         mainProgram: "avro-tools",

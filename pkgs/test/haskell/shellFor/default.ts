@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const cabal_install = nix.arg($, "cabal-install");
   return nix.app(nix.sel(nix.app(nix.sel(haskellPackages, "shellFor"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       packages: (p) => [
         nix.thunk(() => nix.sel(p, "constraints")),
         nix.thunk(() => nix.sel(p, "cereal")),
       ],
       extraDependencies: (p) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         libraryHaskellDepends: nix.thunk(() => [nix.thunk(() => nix.sel(p, "conduit"))]),
       }),
       nativeBuildInputs: nix.thunk(() => [cabal_install]),
@@ -36,7 +36,7 @@ cp ${nix.app(writeText, "cabal.project", "packages: constraints cereal")} cabal.
       buildPhase: "export HOME=$(mktemp -d)\nmkdir -p $HOME/.cabal\ntouch $HOME/.cabal/config\n\n# Check that the extraDependencies.libraryHaskellDepends arg is correctly\n# picked up. This uses ghci to interpret a small Haskell program that uses\n# a package from extraDependencies.\nghci <<EOF\n:set -XOverloadedStrings\n:m + Conduit\nrunResourceT $ connect (yield \"done\") (sinkFile \"outfile\")\nEOF\n\nif [[ \"done\" != \"$(cat outfile)\" ]]; then\n  echo \"ERROR: extraDependencies appear not to be available in the environment\"\n  exit 1\nfi\n\n# Check packages arg\ncabal v2-build --offline --verbose constraints cereal --ghc-options=\"-O0 -j$NIX_BUILD_CORES\"\n",
       installPhase: "touch $out\n",
     }))), "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       meta: nix.thunk(() => (() => {
         const oldMeta = nix.thunk(() => nix.selOr(oldAttrs, () => ({}), "meta"));
         const oldMaintainers = nix.thunk(() => nix.selOr(oldMeta, () => [], "maintainers"));
@@ -48,7 +48,7 @@ cp ${nix.app(writeText, "cabal.project", "packages: constraints cereal")} cabal.
         return nix.update(oldMeta, (() => {
           const from = nix.thunk(() => nix.sel(cabal_install, "meta"));
           return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           maintainers: allMaintainers,
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
         };

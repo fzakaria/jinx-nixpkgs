@@ -37,69 +37,69 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const common = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     services: nix.thunk(() => ({
-      __proto__: pos$2,
-      userborn: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+      [nix.POS]: pos$2,
+      userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       initrd: nix.thunk(() => ({
-        __proto__: pos$4,
-        systemd: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+        [nix.POS]: pos$4,
+        systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
       })),
     })),
-    networking: nix.thunk(() => ({ __proto__: pos$6, useNetworkd: true })),
+    networking: nix.thunk(() => ({ [nix.POS]: pos$6, useNetworkd: true })),
     system: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       etc: nix.thunk(() => ({
-        __proto__: pos$8,
-        overlay: nix.thunk(() => ({ __proto__: pos$7, enable: true, mutable: false })),
+        [nix.POS]: pos$8,
+        overlay: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, mutable: false })),
       })),
     })),
   }));
   const users = nix.thunk(() => ({
-    __proto__: pos$15,
-    alice: nix.thunk(() => ({ __proto__: pos$11, isNormalUser: true })),
+    [nix.POS]: pos$15,
+    alice: nix.thunk(() => ({ [nix.POS]: pos$11, isNormalUser: true })),
     explicit: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       isNormalUser: true,
-      subUidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$12, startUid: 700000n, count: 65536n }))]),
-      subGidRanges: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$13, startGid: 700000n, count: 65536n }))]),
+      subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, startUid: 700000n, count: 65536n }))]),
+      subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, startGid: 700000n, count: 65536n }))]),
     })),
   }));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     name: "userborn-subids-immutable-etc",
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rvdp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           imports: nix.thunk(() => [common]),
-          users: nix.thunk(() => ({ __proto__: pos$17, users: users })),
+          users: nix.thunk(() => ({ [nix.POS]: pos$17, users: users })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "with-bob": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               inheritParentConfig: false,
               configuration: nix.thunk(() => ({
-                __proto__: pos$22,
-                nixpkgs: nix.thunk(() => ({ __proto__: pos$18, pkgs: pkgs })),
+                [nix.POS]: pos$22,
+                nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$18, pkgs: pkgs })),
                 imports: nix.thunk(() => [common]),
                 users: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   users: nix.thunk(() => nix.update(users, {
-                    __proto__: pos$20,
-                    bob: nix.thunk(() => ({ __proto__: pos$19, isNormalUser: true })),
+                    [nix.POS]: pos$20,
+                    bob: nix.thunk(() => ({ [nix.POS]: pos$19, isNormalUser: true })),
                   })),
                 })),
               })),

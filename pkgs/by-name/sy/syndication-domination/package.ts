@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const enablePython = nix.argOr($, "enablePython", () => false);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "syndication-domination",
       version: "1.0-unstable-2023-03-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gabmus",
           repo: "syndication-domination",
           rev: "75920321062d682437f3fb0319dad227d8b18f6c",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "PYTHON_BINDINGS", enablePython)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RSS/Atom parser written in C++ with Python binding",
         homepage: "https://gitlab.com/gabmus/syndication-domination",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

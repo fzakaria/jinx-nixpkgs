@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "betterdisplay",
       version: "4.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/waydabber/BetterDisplay/releases/download/v${nix.sel(finalAttrs, "version")}/BetterDisplay-v${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-I0Ei9+TsbmsA6iFD1CwScgrU7OO9mL3fl3/uvCYS4JI=",
         })))),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Unlock your displays on your Mac! Flexible HiDPI scaling, XDR/HDR extra brightness, virtual screens, DDC control, extra dimming, PIP/streaming, EDID override and lots more",
         homepage: "https://betterdisplay.pro/",
         changelog: nix.thunk(() => nix.str`https://github.com/waydabber/BetterDisplay/releases/tag/v${nix.sel(finalAttrs, "version")}`),

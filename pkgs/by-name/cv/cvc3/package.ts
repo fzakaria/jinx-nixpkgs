@@ -19,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const gmp = nix.arg($, "gmp");
   const perl = nix.arg($, "perl");
-  const gmp$ = nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), gmp, (_) => ({ __proto__: pos$1, dontDisableStatic: true })));
+  const gmp$ = nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), gmp, (_) => ({ [nix.POS]: pos$1, dontDisableStatic: true })));
   const stdenv = gccStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cvc3",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://cs.nyu.edu/acsys/cvc3/releases/${nix.sel(finalAttrs, "version")}/cvc3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1VsdYAbPusP21MCGlkVYkCw+0O+masSZz7IZPz7krPc=",
         })))),
@@ -45,7 +45,7 @@ for f in parsePL parseLisp parsesmtlib parsesmtlib2 ; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Prover for satisfiability modulo theory (SMT)",
         mainProgram: "cvc3",
         maintainers: nix.thunk(() => (() => {
@@ -57,9 +57,9 @@ done
         homepage: "https://cs.nyu.edu/acsys/cvc3/index.html",
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateInfo: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           downloadPage: "https://cs.nyu.edu/acsys/cvc3/download.html",
         })),
       })),

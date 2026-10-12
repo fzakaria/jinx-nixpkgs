@@ -25,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   const setupHookDarwin = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "darwin-avr-gcc-hook",
       substitutions: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         darwinSuffixSalt: nix.thunk(() => nix.sel(stdenv, "cc", "suffixSalt")),
         avrSuffixSalt: nix.thunk(() => nix.sel(avrgcc, "suffixSalt")),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     })), nix.path(here, "./setup-hook-darwin.sh")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "simavr";
       const version = "1.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "buserror",
           repo: "simavr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkTarget = "-C tests run_tests";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Lean and mean Atmel AVR simulator",
         mainProgram: "simavr",
         homepage: "https://github.com/buserror/simavr",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const runtimePath = nix.thunk(() => nix.app(makeBinPath, nix.thunk(() => nix.concat(nix.app(optional, tiffSupport, libraw), nix.app(optionals, jpgSupport, nix.thunk(() => [graphicsmagick, exiftool]))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "megapixels",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "megapixels-org",
           repo: "Megapixels",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
 `))),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK4 camera application that knows how to deal with the media request api",
         homepage: "https://gitlab.com/megapixels-org/Megapixels",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/megapixels-org/Megapixels/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),

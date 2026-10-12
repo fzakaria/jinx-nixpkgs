@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cloudflare-exporter";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lablabs",
           repo: "cloudflare-exporter",
           tag: nix.thunk(() => nix.str`cloudflare-exporter-${version}`),
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-v8qw4Cofw0vOrEg5oo9YtRabXMrjpQ+tI4l+A43JllA=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex", "cloudflare-exporter-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus Cloudflare Exporter",
         mainProgram: "cloudflare-exporter",
         homepage: "https://github.com/lablabs/cloudflare-exporter",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jrfonseca",
           repo: "xdot.py",
           rev: version,
@@ -49,14 +49,14 @@ xvfb-run -s '-screen 0 800x600x24' ${nix.sel(python, "interpreter")} test.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Interactive viewer for graphs written in Graphviz's dot",
         mainProgram: "xdot",
         homepage: "https://github.com/jrfonseca/xdot.py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

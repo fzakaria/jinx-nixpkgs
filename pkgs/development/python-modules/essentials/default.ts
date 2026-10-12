@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Neoteroi",
           repo: "essentials",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_stopwatch", "test_stopwatch_with_context_manager"])));
       const pythonImportsCheck = nix.thunk(() => ["essentials"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Neoteroi/essentials",
         description: "General purpose classes and functions",
         changelog: nix.thunk(() => nix.str`https://github.com/Neoteroi/essentials/releases/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-top";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "ocaml-top",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [lablgtk3_sourceview3, ocp_index]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.typerex.org/ocaml-top.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         description: "Simple cross-platform OCaml code editor built for top-level evaluation",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "vbgl"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

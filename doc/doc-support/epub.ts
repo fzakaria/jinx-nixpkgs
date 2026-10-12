@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const zip = nix.arg($, "zip");
   return nix.app(runCommand, "manual.epub", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [libxslt, zip]),
       epub: nix.thunk(() => nix.str`<book xmlns="http://docbook.org/ns/docbook"
       xmlns:xlink="http://www.w3.org/1999/xlink"

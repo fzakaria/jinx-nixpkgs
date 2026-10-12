@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const luaSupport = nix.argOr($, "luaSupport", () => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   const lua5_3 = nix.arg($, "lua5_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apk-tools",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.alpinelinux.org",
           owner: "alpine",
           repo: "apk-tools",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gitlab.alpinelinux.org/alpine/apk-tools",
         description: "Alpine Package Keeper",
         maintainers: [],

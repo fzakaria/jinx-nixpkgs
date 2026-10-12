@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ttf2pt1",
       version: "3.4.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ttf2pt1/ttf2pt1-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1l718n4k4widx49xz7qrj4mybzb8q67kp2jw7f47604ips4654mf",
         })))),
@@ -39,14 +39,14 @@ makeFlags="INSTDIR=$out OWNER=\`id -u\`"
       patches: nix.thunk(() => [
         nix.path(here, "./gentoo-makefile.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/ttf2pt1/raw/070de5269475785d27ae7996513bee12cb9a0f53/f/ttf2pt1-c99.patch",
             hash: "sha256-7+RnExqxED+fUJSj3opfYi0eQ5zqswOZnKjQMvlF020=",
           })))),
         nix.path(here, "./ttf2pt1-gcc14.patch"),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "True Type to Postscript Type 3 converter, fpdf",
         homepage: "https://ttf2pt1.sourceforge.net/index.html",
         license: nix.thunk(() => (() => {
@@ -54,7 +54,7 @@ makeFlags="INSTDIR=$out OWNER=\`id -u\`"
           return [
             nix.thunk(() => nix.lookup(w, "gpl2Plus")),
             nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 shortName: "ttf2pt1",
                 fullName: "ttf2pt1 License",
                 url: "https://git.altlinux.org/gears/t/ttf2pt1.git?p=ttf2pt1.git;a=blob;f=ttf2pt1/COPYRIGHT;h=75e8f38e5a7638ee7d23892c86442ddcc35f4761;hb=f3cdb9f16159edf8115dc81520be9af791e846b2",

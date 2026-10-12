@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "llama-index-instrumentation",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_instrumentation",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-sYXE4op/MomcJ2ScwuLX1UJn+i/wzUPL4rUhK66Y/jo=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [deprecated, pydantic]),
       pythonImportsCheck: nix.thunk(() => ["llama_index_instrumentation"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Support for instrumentation in LlamaIndex applications",
         homepage: "https://pypi.org/project/llama-index-instrumentation/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

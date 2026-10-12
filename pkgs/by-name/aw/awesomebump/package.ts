@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const version = "5.1";
   const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://github.com/kmkolasinski/AwesomeBump.git",
       rev: nix.thunk(() => nix.str`Winx32v${version}`),
       sha256: "1c8b9jki0v8kzkvsvyv7q1w3s7j40br6ph15hh2xi0a1mpwckq56",
       fetchSubmodules: true,
     }))));
   const qtnproperty = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "qtnproperty",
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/Sources/utils/QtnProperty`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D bin-linux/QtnPEG $out/bin/QtnPEG\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "awesomebump",
       version: version,
       src: src,
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "d=$out/libexec/AwesomeBump\n\nmkdir -p $d\ncp -vr workdir/`cat workdir/current`/bin/AwesomeBump $d/\ncp -prd Bin/Configs Bin/Core $d/\n\n# AwesomeBump expects to find Core and Configs in its current directory.\nmakeQtWrapper $d/AwesomeBump $out/bin/AwesomeBump \\\n    --chdir \"$d\"\n",
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/kmkolasinski/AwesomeBump",
         description: "Program to generate normal, height, specular or ambient occlusion textures from a single image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

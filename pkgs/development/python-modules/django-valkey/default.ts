@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-commons",
           repo: "django-valkey",
           tag: version,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, valkey]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         brotli: nix.thunk(() => [brotli]),
         libvalkey: nix.thunk(() => [libvalkey]),
         lz4: nix.thunk(() => [lz4]),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Valkey backend for django",
         homepage: "https://github.com/django-commons/django-valkey",
         changelog: nix.thunk(() => nix.str`https://github.com/django-commons/django-valkey/releases/tag/${version}`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

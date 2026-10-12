@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const jre = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), jdk11_headless)) ? nix.force(jdk11_headless) : nix.force(jdk17_headless)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zookeeper",
       version: "3.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/zookeeper/zookeeper-${nix.sel(finalAttrs, "version")}/apache-zookeeper-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           hash: "sha512-uqHCHdpNVyOPynUeT6K78dr/mihhKxJeSX3M1cGI7mRJ4veZR+R0wt1NGZknidTTayexui/rgMKwxF598OIqqA==",
         })))),
@@ -49,12 +49,12 @@ chmod -x $out/bin/zkEnv.sh
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "zookeeper")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "zookeeper")) })),
         jre: jre,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://zookeeper.apache.org",
         description: "Apache Zookeeper",
         changelog: nix.thunk(() => nix.str`https://zookeeper.apache.org/doc/r${nix.sel(finalAttrs, "version")}/releasenotes.html`),

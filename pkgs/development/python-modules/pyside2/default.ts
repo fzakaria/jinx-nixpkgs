@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyside2";
       const version = "5.15.17";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.qt.io/official_releases/QtForPython/pyside2/PySide2-${version}-src/pyside-setup-opensource-src-${version}.tar.xz`),
           hash: "sha256-hKSzKPamAjW4cXrVIriKe2AAWSYMV6IYntAFEJ8kxSc=",
         }))));
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DPYTHON_EXECUTABLE=${nix.sel(python, "interpreter")}`),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(qt5, "qtdeclarative", "dev")}/include/QtQuick/${nix.sel(qt5, "qtdeclarative", "version")}/QtQuick`),
       }));
       const nativeBuildInputs = nix.thunk(() => [
@@ -90,7 +90,7 @@ ${nix.sel(python, "pythonOnBuildForHost", "interpreter")} setup.py egg_info --bu
 cp -r PySide2.egg-info $out/${nix.sel(python, "sitePackages")}/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LGPL-licensed Python bindings for Qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "https://wiki.qt.io/Qt_for_Python",
@@ -99,7 +99,7 @@ cp -r PySide2.egg-info $out/${nix.sel(python, "sitePackages")}/
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

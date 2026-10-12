@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crytic",
           repo: "pyevmasm",
           rev: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [future]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ethereum Virtual Machine (EVM) assembler and disassembler",
         mainProgram: "evmasm",
         homepage: "https://github.com/crytic/pyevmasm",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

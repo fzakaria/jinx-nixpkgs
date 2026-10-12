@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libb2 = nix.arg($, "libb2");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtkhash",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "gtkhash",
           owner: "gtkhash",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, glib, openssl, nettle, libb2, libgcrypt]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform desktop utility for computing message digests or checksums",
         homepage: "https://gtkhash.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

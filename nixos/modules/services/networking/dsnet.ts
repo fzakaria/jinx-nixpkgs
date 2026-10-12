@@ -35,73 +35,73 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const patchFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "dsnet-patch.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         dsnet: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dsnet, a centralised Wireguard VPN manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dsnet", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     ExternalHostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "vpn.example.com",
                         description: "The hostname that clients should use to connect to this server.\nThis is used to generate the client configuration files.\n\nThis is preferred over ExternalIP, as it allows for IPv4 and\nIPv6, as well as enabling the ability tp change IP.\n",
                       })))),
                     ExternalIP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "192.0.2.1",
                         description: "The external IP address of the server. This is used to generate\nthe client configuration files for when an ExternalHostname is not set.\n\nLeaving this empty will cause dsnet to use the IP address of\nwhat looks like the WAN interface.\n",
                       })))),
                     ExternalIP6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "2001:db8::1",
                         description: "The external IPv6 address of the server. This is used to generate\nthe client configuration files for when an ExternalHostname is\nnot set. Used in preference to ExternalIP.\n\nLeaving this empty will cause dsnet to use the IP address of\nwhat looks like the WAN interface.\n",
                       })))),
                     Network: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "172.18.0.0/24",
                         description: "The IPv4 network that the server will use to allocate IPs on the network.\nLeave this empty to let dsnet choose a network.\n",
                       })))),
                     Network6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "2001:db8::1/64",
                         description: "The IPv6 network that the server will use to allocate IPs on the\nnetwork.\nLeave this empty to let dsnet choose a network.\n",
                       })))),
                     IP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "172.18.0.1",
                         description: "The IPv4 address that the server will use on the network.\nLeave this empty to let dsnet choose an address.\n",
                       })))),
                     IP6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "2001:db8::1",
                         description: "The IPv6 address that the server will use on the network\nLeave this empty to let dsnet choose an address.\n",
                       })))),
                     Networks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                         default: null,
                         example: nix.thunk(() => ["0.0.0.0/0", "192.168.0.0/24"]),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
               default: nix.thunk(() => ({})),
               description: "The settings to use for dsnet. This will be converted to a JSON\nobject that will be passed to dsnet as a patch, using the patch\ncommand when the service is started. See the dsnet documentation for\nmore information on the additional options.\n\nNote that the resulting /etc/dsnetconfg.json is more of a database\nthan it is a configuration file. It is therefore recommended that\nsystem specific values are configured here, rather than the full\nconfiguration including peers.\n\nPeers may be managed via the dsnet add/remove commands, negating the\nneed to manage key material and cumbersom configuration with nix. If\nyou want peer configuration in nix, you may as well use the regular\nwireguard module.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExternalHostname: "vpn.example.com",
                 ExternalIP: "127.0.0.1",
                 ExternalIP6: "",
@@ -129,17 +129,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             dsnet: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               description: "dsnet VPN Management",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -148,7 +148,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} patch < ${patchFile}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} up`),
                 ExecStop: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} down`),
                 Type: "oneshot",

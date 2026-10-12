@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: src,
       version: version,
       pname: "photoprism-frontend",
@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
       npmWorkspace: "frontend",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r assets $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://photoprism.app",
         description: "Photoprism's frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const astring = nix.arg($, "astring");
   const irmin_test = nix.arg($, "irmin-test");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       minimalOCamlVersion: "4.12",
       pname: "irmin-pack",
       version: nix.thunk(() => nix.attr(irmin, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [astring, alcotest, alcotest_lwt, irmin_test]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Irmin backend which stores values in a pack file",
         mainProgram: "irmin_fsck",
       })),

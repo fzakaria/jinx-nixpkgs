@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return (attrs) => (() => {
     const argsToOverride = (args_1) => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`${nix.selOr(args_1, () => nix.str`${nix.sel(args_1, "pname")}-${nix.sel(args_1, "version")}`, "name")}-source`),
       outputs: nix.thunk(() => ["out"]),
       phases: nix.thunk(() => ["unpackPhase", "patchPhase", "installPhase"]),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       outputMan: "out",
       outputDevman: "out",
       outputInfo: "out",
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), nix.thunk(() => nix.selOr(args_1, () => null, "outputChecks")))), nix.thunk(() => ({ __proto__: pos$2, outputChecks: nix.thunk(() => ({})) }))));
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), nix.thunk(() => nix.selOr(args_1, () => null, "outputChecks")))), nix.thunk(() => ({ [nix.POS]: pos$2, outputChecks: nix.thunk(() => ({})) }))));
     return (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), attrs)) && nix.asBool(nix.has(attrs, "overrideAttrs")))) ? nix.app(nix.sel(attrs, "overrideAttrs"), (_finalAttrs) => (prevAttrs) => nix.app(argsToOverride, prevAttrs)) : (() => {
       const args_1 = nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), attrs)), "srcOnly: derivations not created by a variant of stdenv.mkDerivation are not supported. Code relying on behaviour of srcOnly with non-stdenv derivations may break in the future.", nix.thunk(() => nix.selOr(attrs, () => nix.force(attrs), "drvAttrs"))));
       const stdenv = nix.thunk(() => nix.selOr(args_1, () => nix.app(nix.sel(lib, "warn"), "srcOnly: stdenv not provided, using stdenvNoCC", stdenvNoCC), "stdenv"));

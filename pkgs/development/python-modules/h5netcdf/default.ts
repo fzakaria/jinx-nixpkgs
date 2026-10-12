@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h5netcdf",
           repo: "h5netcdf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [netcdf, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["h5netcdf"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pythonic interface to netCDF4 via h5py",
         homepage: "https://github.com/shoyer/h5netcdf",
         changelog: nix.thunk(() => nix.str`https://github.com/h5netcdf/h5netcdf/releases/tag/${nix.sel(src, "tag")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

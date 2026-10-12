@@ -22,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_period_in_list_item = nix.arg($, "textlint-rule-period-in-list-item");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "textlint-rule-period-in-list-item",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-rule",
           repo: "textlint-rule-period-in-list-item",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hAkueH5q5s0kmvKZiOrCxtfmoHtHH0U8cVLhQ7eoqT0=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-4tVTR/Wpcr/nJrBhqV3AowwcUiFNiuohyKn6yQvorvc=",
         })))),
@@ -42,15 +42,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn --offline build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nrm -r test\nmkdir -p $out/lib/node_modules/textlint-rule-period-in-list-item\ncp -r . $out/lib/node_modules/textlint-rule-period-in-list-item/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rule: textlint_rule_period_in_list_item,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Textlint rule that check with or without period in list item",
         homepage: "https://github.com/textlint-rule/textlint-rule-period-in-list-item",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-rule/textlint-rule-period-in-list-item/releases/tag/v${nix.sel(finalAttrs, "version")}`),

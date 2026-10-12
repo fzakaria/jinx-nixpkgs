@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const enableSCP = nix.argOr($, "enableSCP", () => false);
   const sftpPath = nix.argOr($, "sftpPath", () => "/run/current-system/sw/libexec/sftp-server");
   const dflags = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     SFTPSERVER_PATH: sftpPath,
     DROPBEAR_PATH_SSH_PROGRAM: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/dbclient`),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dropbear",
       version: "2026.94",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mkj",
           repo: "dropbear",
           tag: nix.thunk(() => nix.str`DROPBEAR_${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./pass-path.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), dflags)), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.builtins.map, (name) => nix.str`-D${name}=\\"${nix.sel(dflags, nix.key(nix.force(name)))}\\"`)),
             nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, libxcrypt]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableSCP, "ln -rs $out/bin/scp $out/bin/dbscp\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Small memory footprint ssh server/client suitable for memory-constrained environments",
         longDescription: "Dropbear is particularly useful for \"embedded\"-type Linux (or other Unix) systems, such as wireless routers.\n\n## Features\n\n* Implements X11 forwarding, and authentication-agent forwarding for OpenSSH clients\n* Can run from inetd or standalone\n* Compatible with OpenSSH ~/.ssh/authorized_keys public key authentication\n* Multi-hop mode uses SSH TCP forwarding to tunnel through multiple SSH hosts in a single command:\n\n```shell\ndbclient user1@hop1,user2@hop2,destination\n```\n",
         homepage: "https://matt.ucc.asn.au/dropbear/dropbear.html",

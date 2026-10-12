@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "microsoft-gsl",
       version: "4.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Microsoft",
           repo: "GSL",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,10 +29,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [gtest]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=c++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++17" })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C++ Core Guideline support library",
         longDescription: "The Guideline Support Library (GSL) contains functions and types that are suggested for\nuse by the C++ Core Guidelines maintained by the Standard C++ Foundation.\nThis package contains Microsoft's implementation of GSL.\n",
         homepage: "https://github.com/Microsoft/GSL",

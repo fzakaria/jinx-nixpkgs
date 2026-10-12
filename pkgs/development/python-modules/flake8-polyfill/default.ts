@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1nlf1mkqw856vi6782qcglqhaacb23khk9wkcgn55npnjxshhjz4",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mock, pep8, pytestCheckHook]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "skip-tests.patch",
             url: "https://github.com/PyCQA/flake8-polyfill/commit/3cf414350e82ceb835ca2edbd5d5967d33e9ff35.patch",
             sha256: "mElZafodq8dF3wLO/LOqwFb7eLMsPLlEjNSu5AWqets=",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Failed: [pytest] section in setup.cfg files is no longer supported, change to [tool:pytest] instead.\nsubstituteInPlace setup.cfg \\\n  --replace-fail pytest 'tool:pytest'\n";
       const pythonImportsCheck = nix.thunk(() => ["flake8_polyfill"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://gitlab.com/pycqa/flake8-polyfill",
         description: "Polyfill package for Flake8 plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

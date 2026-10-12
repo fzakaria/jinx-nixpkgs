@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../../../../..")), nix.thunk(() => ({}))));
   const w = nix.withScope(pkgs, null);
   return nix.app(nix.lookup(w, "mkShell"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       inputsFrom: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../update-shell.nix"), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../../update-shell.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs })))),
       ]),
       packages: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "nix-prefetch-github")),

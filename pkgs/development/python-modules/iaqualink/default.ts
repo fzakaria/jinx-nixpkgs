@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const typer = nix.arg($, "typer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iaqualink",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flz",
           repo: "iaqualink-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => nix.concat([httpx, httpx_retries], nix.sel(httpx, "optional-dependencies", "http2"))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [pyyaml, typer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [pyyaml, typer]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_cov_stub, pytestCheckHook, respx, typer], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["iaqualink"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for Jandy iAqualink",
         homepage: "https://github.com/flz/iaqualink-py",
         changelog: nix.thunk(() => nix.str`https://github.com/flz/iaqualink-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

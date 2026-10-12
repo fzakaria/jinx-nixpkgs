@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ppx_deriving_rpc",
       version: nix.thunk(() => nix.attr(rpclib, "version")),
       src: nix.thunk(() => nix.attr(rpclib, "src")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, yojson]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/mirage/ocaml-rpc",
         description: "Ppx deriver for ocaml-rpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

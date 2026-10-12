@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const tango_idl = nix.arg($, "tango-idl");
   const zeromq = nix.arg($, "zeromq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tango-cpp",
       version: "10.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tango-controls",
           repo: "cppTango",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
         libjpeg,
         omniorb,
         openssl,
-        nix.thunk(() => nix.app(nix.sel(opentelemetry_cpp, "override"), nix.thunk(() => ({ __proto__: pos$2, enableGrpc: true, enableHttp: true })))),
+        nix.thunk(() => nix.app(nix.sel(opentelemetry_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableGrpc: true, enableHttp: true })))),
         protobuf,
         zeromq,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tango Distributed Control System - C++ library",
         homepage: "https://gitlab.com/tango-controls/cppTango",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tango-controls/cppTango/-/blob/${nix.sel(finalAttrs, "version")}/RELEASE_NOTES.md`),

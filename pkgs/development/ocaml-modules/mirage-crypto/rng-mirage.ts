@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const ohex = nix.arg($, "ohex");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mirage-crypto-rng-mirage",
       version: nix.thunk(() => nix.attr(mirage_crypto_rng, "version")),
       src: nix.thunk(() => nix.attr(mirage_crypto_rng, "src")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         lwt,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_crypto_rng, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Entropy collection for a cryptographically secure PRNG",
       })),
     })));

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const network = nix.arg($, "network");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "iserv-proxy",
       version: "9.3-unstable-2026-04-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stable-haskell",
           repo: "iserv-proxy",
           rev: "3f7b2815307c20a0dfd816bdf4a39ab86af3e0d4",

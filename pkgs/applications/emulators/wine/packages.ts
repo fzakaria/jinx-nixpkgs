@@ -45,9 +45,9 @@ export default nix.lambda((args) => (() => {
       "replaceVars",
     ])));
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     wine32: nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "callPackage"), nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: "wine",
         version: version,
         patches: patches,
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       })))),
     wine64: nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "wine64",
         version: version,
         patches: patches,
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wine",
       })))),
     wineWow: nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "wine-wow",
         version: version,
         patches: patches,
@@ -98,7 +98,7 @@ export default nix.lambda((args) => (() => {
         })()),
         monos: nix.thunk(() => [mono]),
         buildScript: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./builder-wow.sh"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pkgconfig64remove: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "lib/pkgconfig", nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "glib")),
                 nix.thunk(() => nix.sel(pkgs, "gst_all_1", "gstreamer")),
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wine",
       })))),
     wineWow64: nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "wine-wow64",
         version: version,
         patches: patches,

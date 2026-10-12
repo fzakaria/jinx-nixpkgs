@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "msopenh264",
       buildInputs: nix.thunk(() => [mediastreamer2, openh264]),
       installPhase: "mkdir -p $out/lib/mediastreamer/plugins\ncp lib/mediastreamer2/plugins/libmsopenh264.so $out/lib/mediastreamer/plugins/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "H.264 encoder/decoder plugin for mediastreamer2. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

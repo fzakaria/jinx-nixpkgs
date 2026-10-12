@@ -23,44 +23,44 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9141n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       paths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           description: "List of paths to search for SSL certificates.\n",
         })))),
       excludePaths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           description: "List of paths to exclute from searching for SSL certificates.\n",
           default: [],
         })))),
       includeGlobs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           description: "List files matching a pattern to include. Uses Go blob pattern.\n",
           default: [],
         })))),
       excludeGlobs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           description: "List files matching a pattern to include. Uses Go blob pattern.\n",
           default: [],
         })))),
       user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(types, "str")),
           description: "User owning the certs.\n",
           default: "acme",
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         User: nix.thunk(() => nix.sel(cfg, "user")),
         ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "prometheus-node-cert-exporter")))} \\
   --listen ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "listenAddress")))}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\

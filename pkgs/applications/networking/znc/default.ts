@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const withDebug = nix.argOr($, "withDebug", () => false);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "znc",
       version: "1.10.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://znc.in/releases/archive/znc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aPP2ZBtIDAQQEMVZbhI0BD4FyRN+2gYjOEUBdgMJX1s=",
         })))),
@@ -53,14 +53,14 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withIPv6)), nix.thunk(() => ["--disable-ipv6"])), nix.app(nix.sel(lib, "optionals"), withDebug, nix.thunk(() => ["--enable-debug"]))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Advanced IRC bouncer",
         homepage: "https://wiki.znc.in/ZNC",
         maintainers: [],

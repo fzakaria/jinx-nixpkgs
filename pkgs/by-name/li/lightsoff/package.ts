@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightsoff";
       const version = "50.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/lightsoff/${nix.app(nix.sel(lib, "versions", "major"), version)}/lightsoff-${version}.tar.xz`),
           hash: "sha256-uqDBdDHoXu7eXmSfUxYvcLTrHnx6bxak7KowJ7ZTFXg=",
         }))));
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [glib, gtk4, libadwaita]);
       const postPatch = "chmod +x build-aux/meson_post_install.py\npatchShebangs build-aux/meson_post_install.py\nsubstituteInPlace build-aux/meson_post_install.py \\\n  --replace-fail \"gtk-update-icon-cache\" \"gtk4-update-icon-cache\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "lightsoff" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "lightsoff" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/lightsoff",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/lightsoff/-/blob/${version}/NEWS?ref_type=tags`),
         description: "Puzzle game, where the objective is to turn off all of the tiles on the board",
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

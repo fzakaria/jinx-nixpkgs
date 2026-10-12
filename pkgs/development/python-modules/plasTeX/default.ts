@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const jinja2 = nix.arg($, "jinja2");
   const unidecode = nix.arg($, "unidecode");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plasTeX",
       version: "3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "plastex",
           owner: "plastex",
           rev: "193747318f7ebadd19eaaa1e9996da42a31a2697",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [typing_extensions, pillow, jinja2, unidecode]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package to convert LaTeX markup to DOM",
         homepage: "https://plastex.github.io/plastex/",
         maintainers: nix.thunk(() => (() => {

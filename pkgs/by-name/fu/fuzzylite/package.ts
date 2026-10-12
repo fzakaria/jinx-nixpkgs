@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const useFloat = nix.argOr($, "useFloat", () => false);
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fuzzylite",
       version: "6.0-unstable-2025-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fuzzylite",
           repo: "fuzzylite",
           rev: "fe62b61ad0e301fbd8868d5fc3d76d7590c59636",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DFL_USE_FLOAT:BOOL=${(nix.asBool(useFloat) ? "ON" : "OFF")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fuzzy logic control library in C++",
         mainProgram: "fuzzylite",
         homepage: "https://fuzzylite.com",

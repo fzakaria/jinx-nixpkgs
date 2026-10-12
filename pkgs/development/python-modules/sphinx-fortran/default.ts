@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sphinx-fortran",
       version: "unstable-2022-03-02",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VACUMM",
           repo: "sphinx-fortran",
           rev: "394ae990b43ed43fcff8beb048632f5e99794264",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fortran domain and autodoc extensions to Sphinx",
         homepage: "http://sphinx-fortran.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),

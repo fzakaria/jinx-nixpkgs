@@ -28,31 +28,31 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     name: "kerberos_server-mit",
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const libs = nix.arg($_1, "libs");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             kerberos_server: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 realms: nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   "FOO.BAR": nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     acl: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         principal: "admin",
                         access: nix.thunk(() => ["add", "cpw"]),
                       })),
@@ -63,26 +63,26 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             krb5: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "krb5")),
               settings: nix.thunk(() => ({
-                __proto__: pos$10,
-                libdefaults: nix.thunk(() => ({ __proto__: pos$7, default_realm: "FOO.BAR" })),
+                [nix.POS]: pos$10,
+                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$7, default_realm: "FOO.BAR" })),
                 realms: nix.thunk(() => ({
-                  __proto__: pos$9,
-                  "FOO.BAR": nix.thunk(() => ({ __proto__: pos$8, admin_server: "machine", kdc: "machine" })),
+                  [nix.POS]: pos$9,
+                  "FOO.BAR": nix.thunk(() => ({ [nix.POS]: pos$8, admin_server: "machine", kdc: "machine" })),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             extraUsers: nix.thunk(() => ({
-              __proto__: pos$14,
-              alice: nix.thunk(() => ({ __proto__: pos$13, isNormalUser: true })),
+              [nix.POS]: pos$14,
+              alice: nix.thunk(() => ({ [nix.POS]: pos$13, isNormalUser: true })),
             })),
           })),
         };
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.succeed(\n    \"kdb5_util create -s -r FOO.BAR -P master_key\",\n    \"systemctl restart kadmind.service kdc.service\",\n)\n\nfor unit in [\"kadmind\", \"kdc\"]:\n    machine.wait_for_unit(f\"{unit}.service\")\n\nmachine.succeed(\n    \"kadmin.local add_principal -pw admin_pw admin\",\n    \"kadmin -p admin -w admin_pw addprinc -pw alice_pw alice\",\n    \"echo alice_pw | sudo -u alice kinit\",\n)\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "dblsaiko"))]),
     })),
   };

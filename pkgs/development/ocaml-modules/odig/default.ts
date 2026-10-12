@@ -18,20 +18,20 @@ export default nix.lambda((args) => (() => {
       const pname = "odig";
       const version = "0.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://erratique.ch/software/odig/releases/odig-${version}.tbz`),
           hash: "sha256-uyiJXYKNGGb2FIRW0CDyB7QW9e4FI0+zVfkE7kNjtuE=",
         }))));
       const buildInputs = nix.thunk(() => [cmdliner, b0]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lookup documentation of installed OCaml packages",
         longDescription: "odig is a command line tool to lookup documentation of installed OCaml\npackages. It shows package metadata, readmes, change logs, licenses,\ncross-referenced `odoc` API documentation and manuals.\n",
         homepage: "https://erratique.ch/software/odig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Julow"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

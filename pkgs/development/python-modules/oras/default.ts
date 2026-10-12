@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oras",
       version: "0.2.42",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oras-project",
           repo: "oras-py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["oras"]),
       disabledTests: nix.thunk(() => ["test_get_many_tags", "test_ssl"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ORAS Python SDK",
         homepage: "https://github.com/oras-project/oras-py",
         changelog: nix.thunk(() => nix.str`https://github.com/oras-project/oras-py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

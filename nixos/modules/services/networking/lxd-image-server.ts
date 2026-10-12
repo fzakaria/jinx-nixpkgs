@@ -47,32 +47,32 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const location = "/var/www/simplestreams";
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         "lxd-image-server": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "lxd-image-server")),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Group assigned to the user and the webroot directory.",
               default: "nginx",
               example: "www-data",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(format, "type")),
               description: "Configuration for lxd-image-server.\n\nExample see <https://github.com/Avature/lxd-image-server/blob/master/config.toml>.\n",
               default: nix.thunk(() => ({})),
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nginx")),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 description: "Domain to use for nginx virtual host.",
                 example: "images.example.org",
@@ -83,13 +83,13 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             users: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               users: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 "lxd-image-server": nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   isSystemUser: true,
                   group: nix.thunk(() => nix.sel(cfg, "group")),
                 })),
@@ -97,23 +97,23 @@ export default nix.lambda((args) => (() => {
               groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               etc: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 "lxd-image-server/config.toml": nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "config.toml", nix.thunk(() => nix.sel(cfg, "settings")))),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               logrotate: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   "lxd-image-server": nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     files: "/var/log/lxd-image-server/lxd-image-server.log",
                     frequency: "daily",
                     rotate: 21n,
@@ -126,17 +126,17 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d /var/www/simplestreams 0755 lxd-image-server ${nix.sel(cfg, "group")}`),
                 ]),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 "lxd-image-server": nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   description: "LXD Image Server",
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.sel(config, "environment", "etc", "lxd-image-server/config.toml", "source")),
                   ]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     User: "lxd-image-server",
                     Group: nix.thunk(() => nix.sel(cfg, "group")),
                     DynamicUser: true,
@@ -160,33 +160,33 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enable")), nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             services: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               nginx: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${nix.sel(cfg, "nginx", "domain")}`, nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     forceSSL: true,
                     enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                     root: location,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$29,
-                      "/streams/v1/": nix.thunk(() => ({ __proto__: pos$24, index: "index.json" })),
+                      [nix.POS]: pos$29,
+                      "/streams/v1/": nix.thunk(() => ({ [nix.POS]: pos$24, index: "index.json" })),
                       "~ \\.json$": nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         extraConfig: "add_header Content-Type application/json;\n",
                       })),
                       "~ \\.tar.xz$": nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         extraConfig: "add_header Content-Type application/octet-stream;\n",
                       })),
                       "~ \\.tar.gz$": nix.thunk(() => ({
-                        __proto__: pos$27,
+                        [nix.POS]: pos$27,
                         extraConfig: "add_header Content-Type application/octet-stream;\n",
                       })),
-                      "~ ^/(images/)?$": nix.thunk(() => ({ __proto__: pos$28, return: "403" })),
+                      "~ ^/(images/)?$": nix.thunk(() => ({ [nix.POS]: pos$28, return: "403" })),
                     })),
                   }))],
                 ])),

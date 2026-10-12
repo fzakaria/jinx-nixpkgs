@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const maven = nix.arg($, "maven");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "digital",
       version: "0.31",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hneemann",
           repo: "Digital",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: "Application",
             name: "digital",
             desktopName: "Digital",
@@ -66,7 +66,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/hneemann/Digital",
         description: "Digital logic designer and circuit simulator",
         changelog: nix.thunk(() => nix.str`https://github.com/hneemann/Digital/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

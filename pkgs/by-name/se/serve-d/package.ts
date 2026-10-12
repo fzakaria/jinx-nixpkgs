@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "serve-d";
       const version = "0.7.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Pure-D",
           repo: "serve-d",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const installPhase = "runHook preInstall\ninstall -Dm755 serve-d -t $out/bin\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/Pure-D/serve-d/releases/tag/${nix.sel(src, "rev")}`),
         description: "D LSP server (dlang language server protocol server)",
         homepage: "https://github.com/Pure-D/serve-d",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

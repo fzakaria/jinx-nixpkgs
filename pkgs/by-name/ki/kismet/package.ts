@@ -44,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const withSensors = nix.argOr($, "withSensors", () => false);
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kismet",
       version: "2025-09-R1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kismetwireless",
           repo: "kismet",
           tag: nix.thunk(() => nix.str`kismet-${nix.sel(finalAttrs, "version")}`),
@@ -88,15 +88,15 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--disable-wifi-coconut"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withNetworkManager)), nix.thunk(() => ["--disable-libnm"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withPython)), nix.thunk(() => ["--disable-python-tools"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withSensors)), nix.thunk(() => ["--disable-lmsensors"])))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, kismet: nix.thunk(() => nix.sel(nixosTests, "kismet")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, kismet: nix.thunk(() => nix.sel(nixosTests, "kismet")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex", "^kismet-(\\d+-\\d+-.+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wireless network sniffer",
         homepage: "https://www.kismetwireless.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

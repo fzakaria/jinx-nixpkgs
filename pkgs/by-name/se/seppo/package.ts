@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const ocaml_crunch = nix.arg($, "ocaml-crunch");
   const seppo = nix.arg($, "seppo");
   const lib = nix.arg($, "lib");
-  const mcdb = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "callPackage"), nix.path(here, "./mcdb.nix"), nix.thunk(() => ({ __proto__: pos$1, seppo: seppo }))));
+  const mcdb = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "callPackage"), nix.path(here, "./mcdb.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, seppo: seppo }))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "seppo",
       version: "0-unstable-2025-08-07",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "seppo",
           repo: "seppo",
           rev: "d927311cae64883fe2b88f5a1c7e17c8cc525bad",
           hash: "sha256-Lb2w0mRNNamCltAwdxOyAYh02wkN7yKJGBzqBIPKE8k=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, GIT_SHA: nix.thunk(() => nix.sel(seppo, "src", "rev")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, GIT_SHA: nix.thunk(() => nix.sel(seppo, "src", "rev")) })),
       postPatch: "sed -i 's/-static/\"\"/' bin/gen_flags.sh\n",
       nativeBuildInputs: nix.thunk(() => [ocaml_crunch]),
       buildInputs: nix.thunk(() => (() => {
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://seppo.mro.name",
         description: "Personal Social Web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "foss.heptapod.net",
           owner: "tryton",
           repo: "python-sql",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["sql"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to write SQL queries in a pythonic way",
         homepage: "https://foss.heptapod.net/tryton/python-sql",
         changelog: nix.thunk(() => nix.str`https://foss.heptapod.net/tryton/python-sql/-/blob/${nix.sel(src, "tag")}/CHANGELOG`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

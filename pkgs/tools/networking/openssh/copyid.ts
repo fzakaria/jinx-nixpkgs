@@ -12,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const openssh = nix.arg($, "openssh");
   return nix.app(runCommand, nix.thunk(() => nix.str`ssh-copy-id-${nix.sel(openssh, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ssh-copy-id",
       version: nix.thunk(() => nix.attr(openssh, "version")),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => nix.update(nix.sel(openssh, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Tool to copy SSH public keys to a remote machine",
         priority: nix.thunk(() => nix.sub(nix.selOr(openssh, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

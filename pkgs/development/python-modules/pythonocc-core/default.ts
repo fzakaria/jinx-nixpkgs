@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const rapidjson = nix.arg($, "rapidjson");
   const swig = nix.arg($, "swig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pythonocc-core",
       version: "7.9.0-unstable-2025-12-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tpaviot",
           repo: "pythonocc-core",
           rev: "2f8f1a7d99312e8b3e81d0bb2adab9b1e717d37b",
@@ -58,9 +58,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DPYTHONOCC_INSTALL_DIRECTORY=${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}/OCC`),
         "-DPYTHONOCC_MESHDS_NUMPY=on",
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper for the OpenCASCADE 3D modeling kernel",
         homepage: "https://github.com/tpaviot/pythonocc-core",
         changelog: nix.thunk(() => nix.str`https://github.com/tpaviot/pythonocc-core/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

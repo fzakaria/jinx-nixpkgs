@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnome-terminal",
       version: "3.60.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-terminal/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-terminal-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uNrz8IVFFyxNKIVzP3IDYasDSepmm5kkXu1K0W7T3ig=",
         })))),
@@ -77,19 +77,19 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs \\\n  data/icons/meson_updateiconcache.py \\\n  data/meson_desktopfile.py \\\n  data/meson_metainfofile.py \\\n  src/meson_compileschemas.py\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: "gnome-terminal",
             versionPolicy: "odd-unstable",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "gnome-terminal")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GNOME Terminal Emulator",
         mainProgram: "gnome-terminal",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-terminal",

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zlog",
       version: "1.2.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HardySimpson",
           repo: "zlog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/HardySimpson/zlog/commit/3715879775f725260aeda14f94887bbc7a007e29.patch?full_index=1",
             hash: "sha256-RCI+jZauSO0O0ETjs0nUd4CC2wLLVsjH8iuOmIgWhck=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reliable, high-performance, thread safe, flexible, clear-model, pure C logging library",
         homepage: "https://hardysimpson.github.io/zlog/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

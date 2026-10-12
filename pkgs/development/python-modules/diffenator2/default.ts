@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const youseedee = nix.arg($, "youseedee");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "diffenator2",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "diffenator2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7c9/D3uiHysvB2XCjlgm5ll71efLDgcQARXyKeGt5D0=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       pythonRelaxDeps: nix.thunk(() => ["protobuf", "python-bidi", "youseedee", "unicodedata2"]),
       "build-system": nix.thunk(() => [poetry_core, poetry_dynamic_versioning]),
       dependencies: nix.thunk(() => [
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_font.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Font comparison tool that will not stop until your fonts are exhaustively compared",
         homepage: "https://github.com/googlefonts/diffenator2",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/diffenator2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

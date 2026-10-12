@@ -23,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       environment: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         enableDebugInfo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             description: "Some NixOS packages provide debug symbols. However, these are\nnot included in the system closure by default to save disk\nspace. Enabling this option causes the debug symbols to appear\nin {file}`/run/current-system/sw/lib/debug/.build-id`,\nwhere tools such as {command}`gdb` can find them.\nIf you need debug symbols for a package that doesn't\nprovide them by default, you can enable them as follows:\n\n    nixpkgs.config.packageOverrides = pkgs: {\n      hello = pkgs.hello.overrideAttrs (oldAttrs: {\n        separateDebugInfo = true;\n      });\n    };\n",
           })))),
         debuginfodServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             description: "List of urls of debuginfod servers for tools like {command}`gdb` and {command}`valgrind` to use.\n\nUnrelated to {option}`environment.enableDebugInfo`.\n",
@@ -44,30 +44,30 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "environment", "enableDebugInfo")), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             environment: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               extraOutputsToInstall: nix.thunk(() => ["debug"]),
               variables: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 NIX_DEBUG_INFO_DIRS: nix.thunk(() => ["/run/current-system/sw/lib/debug"]),
               })),
             })),
           })))),
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "environment", "debuginfodServers"), [])), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             environment: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               variables: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 DEBUGINFOD_URLS: nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), " ", nix.thunk(() => nix.sel(config, "environment", "debuginfodServers")))),
               })),
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "elfutils")))),
               ]),
               etc: nix.thunk(() => ({
-                __proto__: pos$10,
-                "gdb/gdbinit.d/nixseparatedebuginfod2.gdb": nix.thunk(() => ({ __proto__: pos$9, text: "set debuginfod enabled on" })),
+                [nix.POS]: pos$10,
+                "gdb/gdbinit.d/nixseparatedebuginfod2.gdb": nix.thunk(() => ({ [nix.POS]: pos$9, text: "set debuginfod enabled on" })),
               })),
             })),
           })))),

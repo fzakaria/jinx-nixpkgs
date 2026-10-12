@@ -58,63 +58,63 @@ draw-user-backgrounds=${nix.app(nix.lookup(w, "boolToString"), nix.thunk(() => n
 ${nix.sel(cfg, "extraConfig")}
 `)));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     options: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       services: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         xserver: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           displayManager: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             lightdm: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               greeters: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 slick: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "lightdm-slick-greeter as the lightdm greeter")),
                   theme: nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gnome-themes-extra", nix.thunk(() => ({})))),
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$1,
+                        [nix.POS]: pos$1,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Adwaita",
                         description: "Name of the theme to use for the lightdm-slick-greeter.\n",
                       })))),
                   })),
                   iconTheme: nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "adwaita-icon-theme", nix.thunk(() => ({})))),
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Adwaita",
                         description: "Name of the icon theme to use for the lightdm-slick-greeter.\n",
                       })))),
                   })),
                   font: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "ubuntu-classic", nix.thunk(() => ({})))),
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Ubuntu 11",
                         description: "Name of the font to use.\n",
                       })))),
                   })),
                   cursorTheme: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "adwaita-icon-theme", nix.thunk(() => ({})))),
                     name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "Adwaita",
                         description: "Name of the cursor theme to use for the lightdm-slick-greeter.\n",
                       })))),
                     size: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
                         default: 24n,
                         description: "Size of the cursor theme to use for the lightdm-slick-greeter.\n",
@@ -122,7 +122,7 @@ ${nix.sel(cfg, "extraConfig")}
                   })),
                   "draw-user-backgrounds": nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "draw user backgrounds")),
                   extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                       default: "",
                       description: "Extra configuration that should be put in the lightdm-slick-greeter.conf\nconfiguration file.\n",
@@ -135,21 +135,21 @@ ${nix.sel(cfg, "extraConfig")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(ldmcfg, "enable")) && nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         services: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           xserver: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             displayManager: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               lightdm: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 greeters: nix.thunk(() => ({
-                  __proto__: pos$19,
-                  gtk: nix.thunk(() => ({ __proto__: pos$18, enable: false })),
+                  [nix.POS]: pos$19,
+                  gtk: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
                 })),
                 greeter: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     package: nix.thunk(() => nix.sel(pkgs, "lightdm-slick-greeter", "xgreeters")),
                     name: "lightdm-slick-greeter",
                   })))),
@@ -158,14 +158,14 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           systemPackages: nix.thunk(() => [cursors, icons, theme]),
           etc: nix.thunk(() => ({
-            __proto__: pos$26,
-            "lightdm/slick-greeter.conf": nix.thunk(() => ({ __proto__: pos$25, source: slickGreeterConf })),
+            [nix.POS]: pos$26,
+            "lightdm/slick-greeter.conf": nix.thunk(() => ({ [nix.POS]: pos$25, source: slickGreeterConf })),
           })),
         })),
-        fonts: nix.thunk(() => ({ __proto__: pos$28, packages: nix.thunk(() => [font]) })),
+        fonts: nix.thunk(() => ({ [nix.POS]: pos$28, packages: nix.thunk(() => [font]) })),
       })))),
   };
 })(), formals$1);

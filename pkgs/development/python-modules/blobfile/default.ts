@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pycryptodomex = nix.arg($, "pycryptodomex");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "blobfile",
       version: "3.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "christopher-hesse",
           repo: "blobfile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["blobfile"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read Google Cloud Storage, Azure Blobs, and local paths with the same interface",
         homepage: "https://github.com/christopher-hesse/blobfile",
         changelog: nix.thunk(() => nix.str`https://github.com/christopher-hesse/blobfile/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

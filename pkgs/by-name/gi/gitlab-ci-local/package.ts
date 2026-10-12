@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const pname = "gitlab-ci-local";
   const version = "4.76.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "firecow",
       repo: "gitlab-ci-local",
       rev: version,
       hash: "sha256-K03nw+8SNnqm4ouOIa3ejUmcsUdVzdGn2jMZY5bKVOI=",
     }))));
   const node_modules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.str`${pname}-node_modules`),
       version: version,
       src: src,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -84,15 +84,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs_slim)} $out/bin/gitlab-ci-l
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         node_modules: node_modules,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--custom-dep", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Run gitlab pipelines locally as shell executor or docker executor",
         mainProgram: "gitlab-ci-local",
         longDescription: "Tired of pushing to test your .gitlab-ci.yml?\nRun gitlab pipelines locally as shell executor or docker executor.\nGet rid of all those dev specific shell scripts and make files.\n",

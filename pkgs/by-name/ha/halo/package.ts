@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const temurin_jre_bin = nix.arg($, "temurin-jre-bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "halo",
       version: "2.26.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/halo-dev/halo/releases/download/v${nix.sel(finalAttrs, "version")}/halo-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-eh1uoIAOiUBnKquZpzKLe9lSDil2dxaVlDKABKQZkbw=",
         })))),
@@ -58,7 +58,7 @@ makeWrapper ${temurin_jre_bin}/bin/java $out/bin/halo \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.halo.run",
         description: "Self-hosted dynamic blogging program",
         maintainers: nix.thunk(() => (() => {

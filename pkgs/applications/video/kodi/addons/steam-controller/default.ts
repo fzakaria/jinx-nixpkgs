@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = namespace;
       const version = "20.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-game",
           repo: namespace,
           rev: "b3174673c6feb34325975b6c007581c39bf3e4a5",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const extraBuildInputs = nix.thunk(() => [libusb1]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Binary addon for steam controller",
         homepage: "https://github.com/kodi-game/peripheral.steamcontroller",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
-      return { __proto__: pos$3, pname, namespace, version, src, extraBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, namespace, version, src, extraBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

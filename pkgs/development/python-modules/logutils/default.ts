@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-vAWKJdXCCUYfE04fA8q2N9ZqelzMEuWT21b7snmJmoI=",
@@ -39,14 +39,14 @@ substituteInPlace tests/test_redis.py \\
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/test_redis.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["tests/test_dictconfig.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["logutils"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Logging utilities",
         homepage: "https://bitbucket.org/vinay.sajip/logutils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

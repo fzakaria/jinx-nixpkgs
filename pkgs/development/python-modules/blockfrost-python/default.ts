@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blockfrost",
           repo: "blockfrost-python",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "blockfrost-python-fix-version",
             url: "https://github.com/blockfrost/blockfrost-python/commit/02fdc67ff6d1333c0855e740114585852bbfa0bc.patch?full_index=1",
             hash: "sha256-070tnWxOnVNsCYXmBFo39JUgQDqphdpqx3A9OIuC94U=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [requests]);
       const pythonImportsCheck = nix.thunk(() => ["blockfrost"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python SDK for the Blockfrost.io API",
         homepage: "https://github.com/blockfrost/blockfrost-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

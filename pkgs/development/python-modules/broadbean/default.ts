@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-v+Ov6mlSnaJG98ooA9AhPGJflrFafKQoO5wi+PxcZVw=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_points"]);
       const pythonImportsCheck = nix.thunk(() => ["broadbean"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://qcodes.github.io/broadbean",
         description: "Library for making pulses that can be leveraged with QCoDeS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

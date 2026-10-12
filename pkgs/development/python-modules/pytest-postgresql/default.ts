@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbfixtures",
           repo: "pytest-postgresql",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pytest_postgresql", "pytest_postgresql.executor"]);
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pypi.org/project/pytest-postgresql/",
         description: "Pytest plugin that enables you to test code on a temporary PostgreSQL database",
         changelog: nix.thunk(() => nix.str`https://github.com/dbfixtures/pytest-postgresql/blob/v${version}/CHANGES.rst`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

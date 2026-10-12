@@ -25,28 +25,28 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const tableVer = "20240108";
   const table = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/table-${tableVer}.tar.zst`),
       hash: "sha256-Pp2HsEo5PxMXI0csjqqGDdI8N4o9T2qQBVE7KpWzYUs=",
     }))));
   const arpaVer = "20260629";
   const arpa = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/lm_sc.arpa-${arpaVer}.tar.zst`),
       hash: "sha256-BoCDM7kXPlN0zyy1r8EtCPViW/mrtTZInKw3b8BfLn8=",
     }))));
   const dictVer = "20260703";
   const dict = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/dict-${dictVer}.tar.zst`),
       hash: "sha256-xobKtt+JZMSNWW9X0gW6wx/HKHCwaoMBfkRQPfjAlpc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libime",
       version: "1.1.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "fcitx",
           repo: "libime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +65,7 @@ ln -s ${dict} data/$(stripHash ${dict})
       ]),
       buildInputs: nix.thunk(() => [zstd, boost, fcitx5]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Library to support generic input method implementation",
         homepage: "https://github.com/fcitx/libime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

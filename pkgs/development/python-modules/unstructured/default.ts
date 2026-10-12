@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
   const grpcio = nix.arg($, "grpcio");
   const version = "0.18.31";
   const nltkData = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "nltk_data",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(nltk_data, null);
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Unstructured-IO",
           repo: "unstructured",
           tag: version_1,
@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
         const xlsx = nix.thunk(() => [et_xmlfile, networkx, numpy, openpyxl, pandas, xlrd]);
         const huggingface = nix.thunk(() => [langdetect, sacremoses, sentencepiece, torch, transformers]);
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "all-docs": all_docs,
           csv,
           docx,
@@ -227,7 +227,7 @@ export default nix.lambda((args) => (() => {
         grpcio,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Open source libraries and APIs to build custom preprocessing pipelines for labeling, training, or production machine learning pipelines",
         mainProgram: "unstructured-ingest",
         homepage: "https://github.com/Unstructured-IO/unstructured",
@@ -239,7 +239,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         pyproject,

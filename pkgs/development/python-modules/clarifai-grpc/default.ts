@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clarifai-grpc",
       version: "12.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Clarifai",
           repo: "clarifai-python-grpc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["clarifai_grpc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Clarifai gRPC API Client",
         homepage: "https://github.com/Clarifai/clarifai-python-grpc",
         changelog: nix.thunk(() => nix.str`https://github.com/Clarifai/clarifai-python-grpc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

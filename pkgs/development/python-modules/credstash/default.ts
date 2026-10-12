@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fugue",
           repo: "credstash",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/fugue/credstash/commit/9c02ee43ed6e37596cafbca2fe80c532ec19d2d8.patch",
             hash: "sha256-dlybrpfLK+PqwWWhH9iXgXHYysZGmcZAFGWNOwsG0xA=",
           })))),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["integration_tests/test_credstash_lib.py", "tests/key_service_test.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Utility for managing secrets in the cloud using AWS KMS and DynamoDB",
         homepage: "https://github.com/LuminalOSS/credstash",
         changelog: nix.thunk(() => nix.str`https://github.com/fugue/credstash/releases/tag/v${version}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "credstash",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const simpleini = nix.arg($, "simpleini");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "li-ri",
       version: "3.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "petitlapin",
           repo: "Li-Ri",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LIRI_DATA_DIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/Li-ri/`))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/petitlapin/Li-Ri",
         description: "Drive a toy wood engine and collect all the coaches to win",
         maintainers: nix.thunk(() => (() => {

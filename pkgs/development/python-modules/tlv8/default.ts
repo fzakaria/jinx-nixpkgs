@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tlv8",
       version: "0.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jlusiardi",
           repo: "tlv8_python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-opython_files=*_test.py *_tests.py"]),
       pythonImportsCheck: nix.thunk(() => ["tlv8"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Type-Length-Value8 (TLV8) for Python",
         longDescription: "Python module to handle type-length-value (TLV) encoded data 8-bit type, 8-bit length, and N-byte\nvalue as described within the Apple HomeKit Accessory Protocol Specification Non-Commercial Version\nRelease R2.\n",
         homepage: "https://github.com/jlusiardi/tlv8_python",

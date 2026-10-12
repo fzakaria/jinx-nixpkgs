@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const uwimap = nix.arg($, "uwimap");
   const version = "1.0.3";
   return nix.app(buildPecl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: version,
       pname: "imap",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "php",
           repo: "pecl-mail-imap",
           rev: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PHP extension for checking the spelling of a word",
         homepage: "https://pecl.php.net/package/imap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

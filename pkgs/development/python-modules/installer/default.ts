@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pypa",
           repo: "installer",
           rev: version,
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [flit_core]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pytest: nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.str`${pname}-pytest`),
               version: version,
               pyproject: false,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Low-level library for installing a Python package from a wheel distribution",
         homepage: "https://github.com/pypa/installer",
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/installer/blob/${nix.sel(src, "rev")}/docs/changelog.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "python"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

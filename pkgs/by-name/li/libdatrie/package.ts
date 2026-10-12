@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2019-12-20";
       const outputs = nix.thunk(() => ["bin", "out", "lib", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tlwg",
           repo: "libdatrie",
           rev: "d1db08ac1c76f54ba23d63665437473788c999f3",
@@ -37,7 +37,7 @@ sed -i "5iAC_INIT(${pname},${version},[${reports}])" configure.ac
       })());
       const postInstall = "installManPage man/trietool.1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://linux.thai.net/~thep/datrie/datrie.html",
         description: "This is an implementation of double-array structure for representing trie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -46,7 +46,7 @@ sed -i "5iAC_INIT(${pname},${version},[${reports}])" configure.ac
         pkgConfigModules: nix.thunk(() => ["datrie-0.2"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

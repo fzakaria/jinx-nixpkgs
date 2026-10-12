@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "myst_nb",
           hash: "sha256-3zzUaA9Rpa9nP9RrOLVivjVZrvFHXpBu0PLmbkWHzks=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["myst_nb", "myst_nb.sphinx_ext"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Jupyter Notebook Sphinx reader built on top of the MyST markdown parser",
         homepage: "https://github.com/executablebooks/MyST-NB",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/MyST-NB/raw/v${version}/CHANGELOG.md`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

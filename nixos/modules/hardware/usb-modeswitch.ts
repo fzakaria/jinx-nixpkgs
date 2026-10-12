@@ -22,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hardware: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "usb-modeswitch": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable this option to support certain USB WLAN and WWAN adapters.\n\nThese network adapters initial present themselves as Flash Drives containing their drivers.\nThis option enables automatic switching to the networking mode.\n",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["hardware", "usbWwan"]), nix.thunk(() => ["hardware", "usb-modeswitch"]))),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "hardware", "usb-modeswitch", "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           udev: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "usb-modeswitch-data"))];
@@ -54,18 +54,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           packages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "usb-modeswitch"))];
           })()),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           etc: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "usb_modeswitch.d": nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "usb-modeswitch-data")}/share/usb_modeswitch`),
             })),
           })),

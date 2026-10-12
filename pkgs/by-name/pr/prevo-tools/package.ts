@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prevo-tools",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bpeel",
           repo: "prevodb",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bpeel/prevodb/commit/38474b47d0ab8ef5451997b87493f0677b8b8358.patch",
             hash: "sha256-mGHwnN4TT3jiandaN+6uNttKMg0OjV9yKLSuVn3F0CA=",
           })))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, expat]),
       postInstall: "installShellCompletion --bash src/prevo-completion\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI tools for the offline version of the Esperanto dictionary Reta Vortaro",
         longDescription: "PReVo is the \"portable\" ReVo, i.e., the offline version\nof the Esperanto dictionary Reta Vortaro.\n\nThis package provides the command line application prevo to query a local\nReVo database, as well as the command line tool revodb to create such a\ndatabase for this application or for the Android app of the same name.\n",
         homepage: "https://github.com/bpeel/prevodb",

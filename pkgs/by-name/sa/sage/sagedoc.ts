@@ -63,7 +63,7 @@ grep -PRl "#.*(optional|needs).*sagemath_doc_html" ${src}/src/sage{,_docbuild} |
   xargs ${sage_with_env}/bin/sage -t --optional=sage,sagemath_doc_html
 `);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version,
         pname,
         src,

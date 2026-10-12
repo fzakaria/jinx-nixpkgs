@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dsearch",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AvengeMedia",
           repo: "danksearch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "install -Dm744 ./assets/dsearch.service $out/lib/systemd/user/dsearch.service\nsubstituteInPlace $out/lib/systemd/user/dsearch.service \\\n  --replace-fail /usr/local/bin/dsearch $out/bin/dsearch\n\ninstallShellCompletion --cmd dsearch \\\n  --bash <($out/bin/dsearch completion bash) \\\n  --fish <($out/bin/dsearch completion fish) \\\n  --zsh <($out/bin/dsearch completion zsh)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, configurable filesystem search with fuzzy matching",
         homepage: "https://github.com/AvengeMedia/danksearch",
         changelog: nix.thunk(() => nix.str`https://github.com/AvengeMedia/danksearch/releases/tag/v${nix.sel(finalAttrs, "version")}`),

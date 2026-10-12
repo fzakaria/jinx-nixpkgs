@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const libxxf86vm = nix.arg($, "libxxf86vm");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kgamma",
       extraBuildInputs: nix.thunk(() => [libxxf86vm]),
     })));

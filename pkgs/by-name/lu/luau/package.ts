@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "luau",
       version: "0.738",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luau-lang",
           repo: "luau",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./Luau.UnitTest\n./Luau.Conformance\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, small, safe, gradually typed embeddable scripting language derived from Lua",
         homepage: "https://luau-lang.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/luau-lang/luau/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -36,49 +36,49 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "rustfs"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marcel"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         rustfs: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "RustFS Object Storage Server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rustfs", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "rustfs",
               description: "The user RustFS should run as.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "rustfs",
               description: "The group RustFS should run as.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => ({})),
               description: "Options for RustFS configuration. Refer to\n<https://docs.rustfs.com/installation/linux/single-node-single-disk.html#_5-configure-environment-variables>\nfor details on supported values.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  RUSTFS_CONSOLE_ENABLE = \"true\";\n  RUSTFS_VOLUMES = \"/mnt/rustfs\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                         nix.thunk(() => nix.sel(lib, "types", "str")),
                         nix.thunk(() => nix.sel(lib, "types", "int")),
                       ]))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     RUSTFS_VOLUMES: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "path")),
                         default: "/var/lib/rustfs",
                         description: "The directory where RustFS stores it's data.",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
                 })))),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Path to environment file containing secrets like RUSTFS_ACCESS_KEY or RUSTFS_SECRET_KEY.",
             })))),
@@ -95,30 +95,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "RUSTFS_ACCESS_KEY"))),
             message: "RUSTFS_ACCESS_KEY must not be set in services.rustfs.settings. Use environmentFile instead.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "RUSTFS_SECRET_KEY"))),
             message: "RUSTFS_SECRET_KEY must not be set in services.rustfs.settings. Use environmentFile instead.",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             settings: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               "10-rustfs": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "settings", "RUSTFS_VOLUMES"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   d: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
@@ -127,9 +127,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             rustfs: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "RustFS Object Storage Server",
               documentation: nix.thunk(() => ["https://rustfs.com/docs/"]),
               after: nix.thunk(() => ["network-online.target"]),
@@ -138,7 +138,7 @@ export default nix.lambda((args) => (() => {
               environment: nix.thunk(() => nix.sel(cfg, "settings")),
               preStart: "if [ -z \"$RUSTFS_ACCESS_KEY\" ] || [ -z \"$RUSTFS_SECRET_KEY\" ]; then\n  echo \"RustFS uses well-known default values for RUSTFS_ACCESS_KEY and RUSTFS_SECRET_KEY,\"\n  echo \"please configure them using services.rustfs.environmentFile.\"\n  exit 1\nfi\n",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 Type: "notify",
                 NotifyAccess: "main",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -169,10 +169,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               isSystemUser: true,
               group: nix.thunk(() => nix.attr(cfg, "group")),
             }))],

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hoppet",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hoppet.hepforge.org/downloads/hoppet-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0j7437rh4xxbfzmkjr22ry34xm266gijzj6mvrq193fcsfzipzdz",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preConfigure: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Higher Order Perturbative Parton Evolution Toolkit",
         mainProgram: "hoppet-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

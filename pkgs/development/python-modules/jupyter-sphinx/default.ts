@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter",
           repo: "jupyter-sphinx",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,21 +35,21 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [hatchling]);
       const propagatedBuildInputs = nix.thunk(() => [ipykernel, ipython, ipywidgets, nbconvert, nbformat, sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["jupyter_sphinx"]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, JUPYTER_PLATFORM_DIRS: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, JUPYTER_PLATFORM_DIRS: 1n }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_builder_priority"]);
       const pytestFlags = nix.thunk(() => ["-Wignore::sphinx.deprecation.RemovedInSphinx11Warning"]);
       const preCheck = "export HOME=$TMPDIR\n";
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Jupyter Sphinx Extensions",
         homepage: "https://github.com/jupyter/jupyter-sphinx/",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/jupyter-sphinx/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

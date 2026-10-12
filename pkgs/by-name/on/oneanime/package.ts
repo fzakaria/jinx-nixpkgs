@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dart = nix.arg($, "dart");
   const libopencc = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libopencc",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Predidit",
           repo: "open_chinese_convert_bridge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,21 +56,21 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\ngo build -buildmode=c-shared -o libopencc.so\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D --mode=0644 libopencc.so --target-directory $out/lib\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Predidit/open_chinese_convert_bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       })),
     })));
   const version = "1.4.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       owner: "Predidit",
       repo: "oneAnime",
       tag: version,
       hash: "sha256-p5o+DtHeZx5S8mxzLrPFEhpKxuprZNnXsJtj1+Mi2BI=",
     }))));
   return nix.app(nix.sel(flutter347, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       pname: "oneanime",
       version: version,
       src: src,
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json"))),
       customSourceBuilders: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         media_kit_libs_linux: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
@@ -95,7 +95,7 @@ sed -i '/set(PLUGIN_NAME "media_kit_libs_linux_plugin")/i add_custom_target("MIM
 `);
               const installPhase = "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n";
               return {
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 pname,
                 version: version_2,
                 src: src_2,
@@ -122,7 +122,7 @@ sed -i '/if(MEDIA_KIT_LIBS_AVAILABLE)/i \\
 `);
               const installPhase = "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n";
               return {
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 pname,
                 version: version_2,
                 src: src_2,
@@ -143,13 +143,13 @@ desktop-file-edit oneAnime.desktop \\
 install -D --mode=0644 oneAnime.desktop --target-directory $out/share/applications
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$11,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ __proto__: pos$8, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: pos$11,
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$8, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "oneanime.pubspecSource", nix.path(here, "./pubspec.lock.json")), { __proto__: pos$9, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "oneanime.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$9, supportedFeatures: [] })),
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -162,7 +162,7 @@ install -D --mode=0644 oneAnime.desktop --target-directory $out/share/applicatio
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         description: "Anime1 third-party client with bullet screen",
         homepage: "https://github.com/Predidit/oneAnime",
         mainProgram: "oneanime",

@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hue-plus",
       version: "1.4.5",
       pyproject: true,
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kusti8",
           repo: "hue-plus",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       makeWrapperArgs: nix.thunk(() => ["${qtWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kusti8/hue-plus",
         description: "Windows and Linux driver in Python for the NZXT Hue+",
         longDescription: "A cross-platform driver in Python for the NZXT Hue+. Supports all functionality except FPS, CPU, and GPU lighting.\n",

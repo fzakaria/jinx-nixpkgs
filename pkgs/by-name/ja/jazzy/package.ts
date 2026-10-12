@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jazzy",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["jazzy"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "jazzy")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command-line utility that generates documentation for Swift or Objective-C",
         homepage: "https://github.com/realm/jazzy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

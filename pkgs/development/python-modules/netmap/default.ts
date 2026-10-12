@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netmap",
       version: "0.7.0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "python-nmap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nmap-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nmap: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nmap)}/bin/nmap`),
           })))),
       ]),
@@ -43,7 +43,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["nmap"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python class to use nmap and access scan results from python3",
         homepage: "https://github.com/home-assistant-libs/python-nmap",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/python-nmap/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG`),

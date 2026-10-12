@@ -43,20 +43,20 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const curlWithGnuTls = nix.arg($, "curlWithGnuTls");
   const srcs = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator_2.1.2_linux_amd64.deb",
       hash: "sha256-q5s1wErlsBaWX+fQUVB7W1out7XA+FBZKUwQBNK+mqA=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator_2.1.2_arm64.deb",
       hash: "sha256-I7yklSKHwgHm4QNEVLX4O5eXaoS2+SxLMJJjA3aTFCM=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zepp-simulator",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(srcs, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -126,7 +126,7 @@ runHook postInstall
 `),
       postFixup: "patchelf \\\n  --replace-needed libsasl2.so.2 libsasl2.so.3 \\\n  $out/opt/simulator/resources/firmware/qemu_linux/qemu-system-arm\nchmod +x $out/opt/simulator/resources/firmware/qemu_linux/qemu-system-arm\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Zepp OS Simulator",
         homepage: "https://developer.zepp.com/os/home",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

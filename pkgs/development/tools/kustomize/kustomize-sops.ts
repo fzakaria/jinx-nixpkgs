@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kustomize-sops";
       const version = "4.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "viaduct-ai",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/bin\nmkdir -p $out/lib/viaduct.ai/v1/ksops/\nmkdir -p $out/lib/viaduct.ai/v1/ksops-exec/\nmv $GOPATH/bin/kustomize-sops $out/bin/ksops\nln -s $out/bin/ksops $out/lib/viaduct.ai/v1/ksops-exec/ksops-exec\nln -s $out/bin/ksops $out/lib/viaduct.ai/v1/ksops/ksops\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible Kustomize Plugin for SOPS Encrypted Resource",
         longDescription: "KSOPS can be used to decrypt any Kubernetes resource, but is most commonly\nused to decrypt encrypted Kubernetes Secrets and ConfigMaps.\n",
         homepage: "https://github.com/viaduct-ai/kustomize-sops",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

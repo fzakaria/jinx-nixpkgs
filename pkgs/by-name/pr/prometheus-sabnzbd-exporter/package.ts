@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.80";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "msroest",
           repo: "sabnzbd_exporter",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       })());
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp sabnzbd_exporter.py $out/bin/\n\nmkdir -p $out/share/sabnzbd_exporter\ncp examples/* $out/share/sabnzbd_exporter/\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, sabnzbd: nix.thunk(() => nix.attr(from, "sabnzbd")) };
+          return { [nix.POS]: pos$2, sabnzbd: nix.thunk(() => nix.attr(from, "sabnzbd")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for sabnzbd",
         homepage: "https://github.com/msroest/sabnzbd_exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sabnzbd_exporter.py",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const simpleCss = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kevquirk",
       repo: "simple.css",
       rev: "ba4af949057d489331759e0118de596222e0f5b7",
       hash: "sha256-rihjNW1gf0k7DI8x+vaFUR4ehI3gXDV9zWV3DGSg4y8=",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "searchix",
       version: "0.4.10",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "alinnow",
           repo: "searchix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-TveAe1aUYLUQuZQXCBYYFx0d0+Ql+IxFn9C9cFNsRAw=",
       overrideModAttrs: (old) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         postBuild: nix.thunk(() => nix.str`patch -p0 < ${nix.path(here, "./darwin-sandbox-fix.patch")}
 `),
       }),
@@ -56,11 +56,11 @@ cp ${simpleCss}/simple.css frontend/static/base.css
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Search tool for options and packages in the NixOS ecosystem",
         homepage: "https://searchix.ovh/",
         downloadPage: "https://codeberg.org/alinnow/searchix",

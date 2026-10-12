@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "2.11.10",
       pname: "coinutils",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coin-or",
           repo: "CoinUtils",
           rev: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/coin-or/CoinUtils/commit/1700ed92c2bc1562aabe65dee3b4885bd5c87fb9.patch",
             stripLen: 1n,
             extraPrefix: "CoinUtils/",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl20")),
         homepage: "https://github.com/coin-or/CoinUtils",
         description: "Collection of classes and helper functions that are generally useful to multiple COIN-OR projects",

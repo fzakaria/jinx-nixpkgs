@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sixpair",
       version: "unstable-2007-04-18",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "http://www.pabr.org/sixlinux/sixpair.c",
           sha256: "1b0a3k7gs544cbji7n29jxlrsscwfx6s1r2sgwdl6hmkc1l9gagr",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cc -o sixpair sixpair.c -lusb\n",
       installPhase: "mkdir -p $out/bin\ncp sixpair $out/bin/sixpair\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pair with SIXAXIS controllers over USB",
         longDescription: "This command-line utility searches USB buses for SIXAXIS controllers and tells them to connect to a new Bluetooth master.\n",
         homepage: "http://www.pabr.org/sixlinux/",

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tangara-companion",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haileys",
           repo: "tangara-companion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdk_pixbuf, glib, graphene, gtk4, libadwaita, pango, udev]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "tangara-companion",
             desktopName: "Tangara Companion",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 $src/data/assets/icon.svg $out/share/icons/hicolor/scalable/apps/tangara-companion.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Companion app for Cool Tech Zone Tangara",
         mainProgram: "tangara-companion",
         homepage: "https://github.com/haileys/tangara-companion",

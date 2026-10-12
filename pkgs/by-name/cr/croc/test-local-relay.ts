@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const croc = nix.arg($, "croc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "croc-test-local-relay",
       nativeBuildInputs: nix.thunk(() => [croc]),
       buildCommand: "HOME=\"$(mktemp -d)\"\n# start a local relay\ncroc relay --ports 11111,11112 &\n\nexport CROC_SECRET=\"sN3nx4hGLeihmn8G\"\n\n# start sender in background\nMSG=\"See you later, alligator!\"\ncroc --relay localhost:11111 send --code correct-horse-battery-staple --text \"$MSG\" &\n\n# wait for things to settle\nsleep 1\nMSG2=$(croc --relay localhost:11111 --yes correct-horse-battery-staple)\n\n# compare\n[ \"$MSG\" = \"$MSG2\" ] && touch $out\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         timeout: 300n,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       })),

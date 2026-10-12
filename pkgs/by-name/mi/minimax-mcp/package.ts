@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "minimax-mcp",
       version: "0-unstable-2026-03-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MiniMax-AI",
           repo: "MiniMax-MCP",
           rev: "1a53cf1",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["minimax_mcp"]),
       dontCheckRuntimeDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MiniMax MCP Server for text-to-speech, voice cloning, image and video generation",
         longDescription: "A Model Context Protocol (MCP) server for MiniMax that enables\ntext-to-speech, voice cloning, image generation, and video generation\ncapabilities. Works with MCP clients like Claude Desktop, Cursor, and OpenCode.\n",
         homepage: "https://github.com/MiniMax-AI/MiniMax-MCP",

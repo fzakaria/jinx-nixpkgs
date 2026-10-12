@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_randomly = nix.arg($, "pytest-randomly");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "django-test-migrations",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wemake-services",
           repo: "django-test-migrations",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_call_pytest_setup_plan", "test_pytest_markers"]),
       pythonImportsCheck: nix.thunk(() => ["django_test_migrations"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Test django schema and data migrations, including migrations' order and best practices",
         homepage: "https://github.com/wemake-services/django-test-migrations",
         changelog: nix.thunk(() => nix.str`https://github.com/wemake-services/django-test-migrations/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

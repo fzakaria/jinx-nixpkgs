@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const version = "0.22.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gir",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gtk-rs",
           repo: "gir",
           rev: version,
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-5FXw78dQJRkBVCn4hhU7+0kZ4pIYDsMAHwH5WrVwxuI=",
       postPatch: "rm build.rs\nsed -i '/build = \"build\\.rs\"/d' Cargo.toml\necho \"pub const VERSION: &str = \\\"$version\\\";\" > src/gir_version.rs\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to generate rust bindings and user API for glib-based libraries",
         homepage: "https://github.com/gtk-rs/gir/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

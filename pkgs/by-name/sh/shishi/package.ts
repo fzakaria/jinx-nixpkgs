@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withFeature = nix.thunk(() => nix.attr(lib, "withFeature"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "shishi",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/shishi/shishi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lXmP/RLdAaT4jgMR7gPKSibly05ekFmkDk/E2fKRfpI=",
         })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(enableFeature, true, "arcfour")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBIND_8_COMPAT")),
             nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "-Dcrc32=shishi_gnulib_crc32")),
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
 `)),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, static: nix.thunk(() => nix.sel(pkgsStatic, "shishi")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, static: nix.thunk(() => nix.sel(pkgsStatic, "shishi")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.gnu.org/software/shishi/",
         description: "Implementation of the Kerberos 5 network security system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const tuxclocker_plugins = nix.arg($, "tuxclocker-plugins");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "tuxclocker-nvidia-plugin",
       src: nix.thunk(() => nix.attr(tuxclocker_plugins, "src")),
       version: nix.thunk(() => nix.attr(tuxclocker_plugins, "version")),

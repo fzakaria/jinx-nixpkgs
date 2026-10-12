@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const goreleaser = nix.arg($, "goreleaser");
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "goreleaser",
       version: "2.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goreleaser",
           repo: "goreleaser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +52,11 @@ installShellCompletion --cmd goreleaser \\
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: goreleaser,
               command: "goreleaser -v",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -64,7 +64,7 @@ installShellCompletion --cmd goreleaser \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Deliver Go binaries as fast and easily as possible",
         homepage: "https://goreleaser.com",
         maintainers: nix.thunk(() => (() => {

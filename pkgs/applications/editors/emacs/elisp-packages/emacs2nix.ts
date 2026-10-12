@@ -8,7 +8,7 @@ const pos$2 = nix.positions(here + "/emacs2nix.nix", [["packages", 14, 3], ["EMA
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
   const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nix-community",
       repo: "emacs2nix",
       rev: "9458961fc433a6c4cd91e7763f0aa1ef15f7b4aa",
@@ -16,7 +16,7 @@ export default nix.thunk(() => (() => {
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       packages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "bash")),
         nix.thunk(() => nix.sel(pkgs, "nixfmt")),

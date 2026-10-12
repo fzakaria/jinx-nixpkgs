@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const packageName = "webdev";
   const packageDir = nix.thunk(() => nix.builtins.toString(nix.path(here, "./.")));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       runtimeInputs: nix.thunk(() => [common_updater_scripts, nix_update, yq_go, dart, nix$]),
       text: nix.thunk(() => nix.str`pname="\${UPDATE_NIX_PNAME:-${packageName}}"

@@ -15,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   const dconf2nix = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "justStaticExecutables"), nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (oldAttrs) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "gvolpe"))])),
       }), nix.thunk(() => nix.sel(haskellPackages, "dconf2nix"))))));
   return nix.app(nix.sel(dconf2nix, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => nix.app(runCommand, "dconf2nix-tests", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [dconf2nix]) })), "dconf2nix > $out\n")),
+        tests: nix.thunk(() => nix.app(runCommand, "dconf2nix-tests", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [dconf2nix]) })), "dconf2nix > $out\n")),
       })),
     }));
 })(), formals$1);

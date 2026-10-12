@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const older = nix.arg($, "older");
   const sample_data = nix.arg($, "sample-data");
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(older, "11.0")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       default: nix.thunk(() => nix.app(mkTester, "sample_char_rnn", nix.thunk(() => [
           "sample_char_rnn",
           nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/char-rnn")}`),

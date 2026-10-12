@@ -25,30 +25,30 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "envision"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         envision: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "envision")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "envision", nix.thunk(() => ({})))),
-          openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the default ports in the firewall for the WiVRn server"), { __proto__: pos$1, default: true })),
+          openFirewall: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the default ports in the firewall for the WiVRn server"), { [nix.POS]: pos$1, default: true })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           avahi: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: true,
-            publish: nix.thunk(() => ({ __proto__: pos$5, enable: true, userServices: true })),
+            publish: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, userServices: true })),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enable: true,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
@@ -57,20 +57,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               allowedTCPPorts: nix.thunk(() => [9757n]),
               allowedUDPPorts: nix.thunk(() => [9757n]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => nix.sel(pkgs, "envision", "meta", "maintainers")),
     })),
   };

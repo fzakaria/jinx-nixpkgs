@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const lib = nix.arg($, "lib");
   const mkOCITest = (backend) => nix.app(runTest, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: nix.thunk(() => nix.str`cntr-${backend}`),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -47,20 +47,20 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             environment: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cntr"))]),
             })),
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "oci-containers": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 backend: backend,
                 containers: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   nginx: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     image: "nginx-container",
                     imageStream: nix.thunk(() => nix.sel(pkgs, "dockerTools", "examples", "nginxStream")),
                     ports: nix.thunk(() => ["8181:80"]),
@@ -85,10 +85,10 @@ assert "nginx" in result, f"expected nginx version: {result}"
 `),
     })));
   const mkContainersTest = nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: "cntr-containers",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -98,20 +98,20 @@ assert "nginx" in result, f"expected nginx version: {result}"
         })()),
       })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             environment: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cntr"))]),
             })),
             containers: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               test: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 autoStart: true,
                 privateNetwork: true,
                 hostAddress: "172.16.0.1",
@@ -120,9 +120,9 @@ assert "nginx" in result, f"expected nginx version: {result}"
                   const $_2 = nix.formals(args_2, formals$4);
                   const pkgs_1 = nix.arg($_2, "pkgs");
                   return {
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     environment: nix.thunk(() => ({
-                      __proto__: pos$11,
+                      [nix.POS]: pos$11,
                       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "iputils"))]),
                     })),
                   };
@@ -134,6 +134,6 @@ assert "nginx" in result, f"expected nginx version: {result}"
       })),
       testScript: "machine.start()\nmachine.wait_for_unit(\"container@test.service\")\n# Test attach: container fs is mounted at /var/lib/cntr/\n# Writing to /var/lib/cntr/tmp/foo creates /tmp/foo in the container\nmachine.succeed(\"cntr attach test touch /var/lib/cntr/tmp/cntr-attach-test\")\n# Verify both that exec works and that the file from attach exists in container's /tmp\nmachine.succeed(\"cntr exec test -- test -f /tmp/cntr-attach-test\")\nmachine.succeed(\"cntr exec test -- /run/current-system/sw/bin/ping -c1 172.16.0.1\")\n",
     }))));
-  return nix.update({ __proto__: pos$18, "nixos-container": mkContainersTest }, nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["docker", "podman"]), mkOCITest));
+  return nix.update({ [nix.POS]: pos$18, "nixos-container": mkContainersTest }, nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["docker", "podman"]), mkOCITest));
 })(), formals$1);
 //# sourceMappingURL=cntr.ts.map

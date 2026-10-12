@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const typescript_5 = nix.arg($, "typescript_5");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "imgbrd-grabber",
       version: "7.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bionus",
           repo: "imgbrd-grabber",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +67,7 @@ ln -sf ${nix.sel(catch2, "src")} tests/src/
       postInstall: "# move the binaries to the share/Grabber folder so\n# some relative links can be resolved (e.g. settings.ini)\nmv $out/bin/* $out/share/Grabber/\n\ncd ../..\n# run the package.sh with $out/share/Grabber as the $APP_DIR\nsh ./scripts/package.sh $out/share/Grabber\n\n# add symlinks for the binaries to $out/bin\nln -s $out/share/Grabber/Grabber $out/bin/Grabber\nln -s $out/share/Grabber/Grabber-cli $out/bin/Grabber-cli\n",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very customizable imageboard/booru downloader with powerful filenaming features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://bionus.github.io/imgbrd-grabber/",

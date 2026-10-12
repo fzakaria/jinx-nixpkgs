@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const path = nix.arg($, "path");
   const gitMinimal = nix.arg($, "gitMinimal");
   const nixpkgs = nix.thunk(() => nix.app(nix.sel(lib, "cleanSource"), path));
-  const unitResult = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./unit.nix")), nix.thunk(() => ({ __proto__: pos$1, lib: lib }))));
+  const unitResult = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./unit.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(unitResult, [])), nix.thunk(() => nix.str`problems/unit.nix failing: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), unitResult)}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/problems/default.nix:13:1");
   return nix.app(nix.sel(lib, "mapAttrs"), (name) => (_) => (() => {
       const nixFile = nix.thunk(() => nix.str`${nix.add(nix.path(here, "./cases"), nix.str`/${name}/default.nix`)}`);
-      const result = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`test-problems-${name}`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [removeReferencesTo]) })), nix.thunk(() => nix.str`export NIX_STATE_DIR=$(mktemp -d)
+      const result = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`test-problems-${name}`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [removeReferencesTo]) })), nix.thunk(() => nix.str`export NIX_STATE_DIR=$(mktemp -d)
 mkdir $out
 
 

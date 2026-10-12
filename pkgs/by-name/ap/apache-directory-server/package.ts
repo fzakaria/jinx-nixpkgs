@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdk11 = nix.arg($, "jdk11");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apache-directory-server",
       version: "2.0.0.AM26",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/directory/apacheds/dist/${nix.sel(finalAttrs, "version")}/apacheds-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-36kDvfSy5rt/3+nivEFTepnIKf6sX0NTgPRm28M+1v4=",
         })))),
@@ -31,7 +31,7 @@ makeWrapper ${jdk11}/bin/java $out/bin/apache-directory-server \\
   --add-flags "-classpath $classpath org.apache.directory.server.UberjarMain"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extensible and embeddable directory server",
         mainProgram: "apache-directory-server",
         homepage: "https://directory.apache.org/apacheds/",

@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sla",
       version: "0-unstable-2015-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goldenclone",
           repo: "nginx-sla",
           rev: "7778f0125974befbc83751d0e1cadb2dcea57601",
           sha256: "1x5hm6r0dkm02ffny8kjd7mmq8przyd9amg2qvy5700x6lb63pbs",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implements a collection of augmented statistics based on HTTP-codes and upstreams response time",
         homepage: "https://github.com/goldenclone/nginx-sla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

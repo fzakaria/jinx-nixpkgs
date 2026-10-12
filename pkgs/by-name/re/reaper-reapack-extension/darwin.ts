@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://codeberg.org/cfillion/reapack/releases/download/v${nix.sel(finalAttrs, "version")}/reaper_reapack-arm64.dylib`),
           hash: "sha256-x2cPOy5AW5A31JsZQaTYw3Yv/zJs7MDFisT67KFx8Hs=",
         })))),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openxr-loader",
       version: "1.1.62",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KhronosGroup",
           repo: "OpenXR-SDK-Source",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/loader/openxr.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "mkdir -p \"$layers/share\"\nmv \"$out/share/openxr\" \"$layers/share\"\n# Use absolute paths in manifests so no LD_LIBRARY_PATH shenanigans are necessary\nfor file in \"$layers/share/openxr/1/api_layers/explicit.d/\"*; do\n    substituteInPlace \"$file\" --replace '\"library_path\": \"lib' \"\\\"library_path\\\": \\\"$layers/lib/lib\"\ndone\nmkdir -p \"$layers/lib\"\nmv \"$out/lib/libXrApiLayer\"* \"$layers/lib\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Khronos OpenXR loader",
         homepage: "https://www.khronos.org/openxr",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

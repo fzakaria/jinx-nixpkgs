@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const uritemplate = nix.arg($, "uritemplate");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-api-python-client",
       version: "2.192.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "google-api-python-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [google_auth, google_auth_httplib2, google_api_core, httplib2, uritemplate]),
       pythonImportsCheck: nix.thunk(() => ["googleapiclient"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official Python client library for Google's discovery based APIs",
         longDescription: "These client libraries are officially supported by Google. However, the\nlibraries are considered complete and are in maintenance mode. This means\nthat we will address critical bugs and security issues but will not add\nany new features.\n",
         homepage: "https://github.com/google/google-api-python-client",

@@ -59,38 +59,38 @@ export default nix.lambda((args) => (() => {
   const escapeString = nix.thunk(() => nix.app(escape, nix.thunk(() => ["\"", "\\"])));
   const formatValue = (value) => (nix.asBool(nix.eq(true, value)) ? "1" : (nix.asBool(nix.eq(false, value)) ? "0" : (nix.asBool(nix.builtins.isString(value)) ? nix.str`"${nix.app(escapeString, value)}"` : nix.builtins.toString(value))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "davfs2.conf", nix.thunk(() => nix.app(toINIWithGlobalSection, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mkSectionName: escapeString,
         mkKeyValue: (k) => (v) => nix.str`${k} ${nix.app(formatValue, v)}`,
       })), nix.thunk(() => nix.sel(cfg, "settings"))))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "davfs2", "extraConfig"]), "The option extraConfig got removed, please migrate to\nservices.davfs2.settings instead.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         davfs2: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "davfs2")),
           davUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: str,
               default: "davfs2",
               description: "When invoked by root the mount.davfs daemon will run as this user.\nValue must be given as name, not as numerical id.\n",
             })))),
           davGroup: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: str,
               default: "davfs2",
               description: "The group of the running mount.davfs daemon. Ordinary users must be\nmember of this group in order to mount a davfs2 file system. Value must\nbe given as name, not as numerical id.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => (() => {
                     const valueTypes = nix.thunk(() => [bool, int, str]);
                     return nix.app(attrsOf, nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(oneOf, nix.thunk(() => nix.concat(valueTypes, [
@@ -106,23 +106,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "davfs2"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
-            "davfs2/davfs2.conf": nix.thunk(() => ({ __proto__: pos$9, source: configFile })),
+            [nix.POS]: pos$10,
+            "davfs2/davfs2.conf": nix.thunk(() => ({ [nix.POS]: pos$9, source: configFile })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           davfs2: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             settings: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               globalSection: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 dav_user: nix.thunk(() => nix.sel(cfg, "davUser")),
                 dav_group: nix.thunk(() => nix.sel(cfg, "davGroup")),
               })),
@@ -130,18 +130,18 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           groups: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "davGroup"), "davfs2")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               davfs2: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "davfs2")),
               })),
             })))),
           users: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.eq(nix.sel(cfg, "davUser"), "davfs2")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               davfs2: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 createHome: false,
                 group: nix.thunk(() => nix.sel(cfg, "davGroup")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "davfs2")),
@@ -150,11 +150,11 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "mount.davfs": nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               program: "mount.davfs",
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "davfs2")}/bin/mount.davfs`),
               owner: "root",
@@ -163,7 +163,7 @@ export default nix.lambda((args) => (() => {
               permissions: "u+rx,g+x",
             })),
             "umount.davfs": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               program: "umount.davfs",
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "davfs2")}/bin/umount.davfs`),
               owner: "root",

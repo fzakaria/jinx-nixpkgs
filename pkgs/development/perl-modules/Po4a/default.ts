@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "po4a";
       const version = "0.74";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mquinson/po4a/releases/download/v${version}/po4a-${version}.tar.gz`),
           hash: "sha256-JfwyPyuje71Iw68Ov0mVJkSw5GgmH5hjPpEhmoOP58I=",
         }))));
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]));
       const buildInputs = nix.thunk(() => [bash]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LC_ALL: "en_US.UTF-8",
         SGML_CATALOG_FILES: nix.thunk(() => nix.str`${docbook_xml_dtd_45}/xml/dtd/docbook/catalog.xml`),
       }));
@@ -92,13 +92,13 @@ for f in $out/bin/*; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tools for helping translation of documentation",
         homepage: "https://po4a.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const libuuid = nix.arg($, "libuuid");
   const libtpms = nix.arg($, "libtpms");
-  const procpsWithoutSystemd = nix.thunk(() => nix.app(nix.sel(procps, "override"), nix.thunk(() => ({ __proto__: pos$1, withSystemd: false }))));
+  const procpsWithoutSystemd = nix.thunk(() => nix.app(nix.sel(procps, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withSystemd: false }))));
   const procps_pkg = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(procpsWithoutSystemd) : nix.force(procps)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tpm2-tss",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tpm2-software",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,7 +89,7 @@ EOF
       doInstallCheck: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit"))))),
       installCheckTarget: "check",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "OSS implementation of the TCG TPM2 Software Stack (TSS2)",
         homepage: "https://github.com/tpm2-software/tpm2-tss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

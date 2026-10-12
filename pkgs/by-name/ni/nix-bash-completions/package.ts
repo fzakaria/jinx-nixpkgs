@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "0.6.8",
       pname: "nix-bash-completions",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hedning",
           repo: "nix-bash-completions",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/hedning/nix-bash-completions/pull/28/commits/ef2055aa28754fa9e009bbfebc1491972e4f4e67.patch",
             hash: "sha256-TRkHrk7bX7DX0COzzYR+1pgTqLy7J55BcejNjRwthII=",
           })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\n\ncommands=$(\n  function complete() { shift 2; echo \"$@\"; }\n  shopt -s extglob\n  source _nix\n)\ninstall -Dm444 -t $out/share/bash-completion/completions _nix\ncd $out/share/bash-completion/completions\nfor c in $commands; do\n  ln -s _nix $c\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/hedning/nix-bash-completions",
         description: "Bash completions for Nix, NixOS, and NixOps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

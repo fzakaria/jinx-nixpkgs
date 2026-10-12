@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const autoconf269 = nix.arg($, "autoconf269");
   return nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => nix.update(args_1, {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "5.3.28",
       sha256: "0a1n5hbl7027fbz5lm0vp0zzfp1hmxnz14wx3zl9563h83br5ag0",
       extraPatches: nix.thunk(() => [

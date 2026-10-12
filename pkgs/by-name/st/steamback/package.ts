@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "steamback",
       version: "0.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-hvMPSxIfwwQqo80JCpYhcbVY4kXs5jWtjjafVSMrw6o=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n$out/bin/steamback --help\n\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["steamback", "steamback.gui", "steamback.test", "steamback.util"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Decky plugin to add versioned save-game snapshots to Steam-cloud enabled games",
         mainProgram: "steamback",
         homepage: "https://github.com/geeksville/steamback",

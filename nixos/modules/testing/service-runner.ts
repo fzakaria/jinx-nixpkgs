@@ -119,26 +119,26 @@ exit($mainRes & 127 ? 255 : $mainRes << 8);
     const config = nix.arg($_1, "config");
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       options: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         runner: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             internal: true,
             description: "A script that runs the service outside of systemd,\nuseful for testing or for using NixOS services outside\nof NixOS.\n",
           })))),
       })),
-      config: nix.thunk(() => ({ __proto__: pos$3, runner: nix.thunk(() => nix.app(makeScript, name, config)) })),
+      config: nix.thunk(() => ({ [nix.POS]: pos$3, runner: nix.thunk(() => nix.app(makeScript, name, config)) })),
     };
   })(), formals$2);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       systemd: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
               return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), opts)));

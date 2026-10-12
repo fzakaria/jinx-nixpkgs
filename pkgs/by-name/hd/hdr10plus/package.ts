@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(buildPackages, "rust", "envVars"));
   const setEnv = nix.thunk(() => nix.attr(from, "setEnv"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "hdr10plus",
       version: "2.1.4",
@@ -66,11 +66,11 @@ ${setEnv} cargo cinstall "\${cargoCFlags[@]}" "\${cargoCBuildFlags[@]}"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
-        tests: nix.thunk(() => ({ __proto__: pos$1, hdr10plus_tool: hdr10plus_tool })),
+        [nix.POS]: pos$2,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$1, hdr10plus_tool: hdr10plus_tool })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to work with HDR10+ in HEVC files",
         homepage: "https://github.com/quietvoid/hdr10plus_tool",
         changelog: nix.thunk(() => nix.str`https://github.com/quietvoid/hdr10plus_tool/releases/tag/${nix.sel(hdr10plus_tool, "version")}`),

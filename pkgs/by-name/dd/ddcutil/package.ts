@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const acl = nix.arg($, "acl");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ddcutil",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.ddcutil.com/tarballs/ddcutil-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GaxmBM8Rd7pWZm+KaCWB5x6Jc70Gx8jc8DNnTkqqpkg=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.ddcutil.com/",
         description: "Query and change Linux monitor settings using DDC/CI and USB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

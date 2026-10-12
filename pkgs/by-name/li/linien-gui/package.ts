@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Graphical user interface of the Linien spectroscopy lock application",
         mainProgram: "linien",
         homepage: "https://github.com/linien-org/linien/tree/develop/linien-gui",
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         pyproject,
         src,

@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cytoscape",
       version: "3.10.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/cytoscape/cytoscape/releases/download/${nix.sel(finalAttrs, "version")}/cytoscape-unix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-gHCU97AfBzo4r+F+Fc5lHd+kQtj/NsoCNipAhv5O7sE=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gen_vmoptions_to_homedir.patch"), nix.thunk(() => ({ __proto__: pos$2, coreutils: coreutils })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gen_vmoptions_to_homedir.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, coreutils: coreutils })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [openjdk17]),
@@ -43,7 +43,7 @@ wrapProgram $out/share/cytoscape.sh \\
 chmod +x $out/bin/cytoscape
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://www.cytoscape.org",
         description: "General platform for complex network analysis and visualization",
         mainProgram: "cytoscape",

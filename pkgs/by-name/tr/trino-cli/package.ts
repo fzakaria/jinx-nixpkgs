@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const jarfilename = nix.thunk(() => nix.str`${pname}-${version}-executable.jar`);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://maven/io/trino/${pname}/${version}/${jarfilename}`),
           sha256: "sha256-/k6cf7VpzWdnOvoWIpRfYwjh5ZvbglQZNSuAiHZhdXs=",
         }))));
@@ -35,7 +35,7 @@ makeWrapper ${jre_headless}/bin/java $out/bin/trino \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Trino CLI provides a terminal-based, interactive shell for running queries",
         mainProgram: "trino",
         homepage: "https://github.com/trinodb/trino",
@@ -49,7 +49,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         jarfilename,

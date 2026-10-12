@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "brother_ql_next",
           version: version,
           hash: "sha256-NTw5hlMJRoABvbteyCYF0Kopc9AjNyuwLSB+zS3RYRQ=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [attrs, click, jsons, packbits, pillow, pyusb]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package for the raster language protocol of the Brother QL series label printers",
         longDescription: "Python package for the raster language protocol of the Brother QL series label printers\n(QL-500, QL-550, QL-570, QL-700, QL-710W, QL-720NW, QL-800, QL-820NWB, QL-1050 and more)\n",
         homepage: "https://github.com/LunarEclipse363/brother_ql_next",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "brother_ql",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

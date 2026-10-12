@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "pytest-parallel";
   const version = "0.1.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kevlened",
           repo: "pytest-parallel",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [tblib, pytest, py]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pytest plugin for parallel and concurrent testing",
         homepage: "https://github.com/kevlened/pytest-parallelt",
         changelog: nix.thunk(() => nix.str`https://github.com/kevlened/pytest-parallel/releases/tag/${version}`),

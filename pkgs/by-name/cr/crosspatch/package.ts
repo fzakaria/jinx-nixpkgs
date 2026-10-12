@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const name = "crosspatch";
   const version = "1.1.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "nockcs",
       repo: "CrossPatch",
       hash: "sha256-Ux+tLP5Hv8ecnuITMqLiuX0YtF2ENZ7ezi2gNKfuNcM=",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       const pname = "crosspatch-parser";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/tools/CrossPatchParser`);
       const nugetDeps = nix.path(here, "./dependencies.json");
-      const meta = nix.thunk(() => ({ __proto__: pos$2, mainProgram: "CrossPatchParser" }));
+      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "CrossPatchParser" }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version_1,
         src: src_1,
         pname,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: version,
       src: src,
       pname: name,
@@ -70,9 +70,9 @@ mkdir -p "$out/bin"
 makeWrapper "${nix.app(nix.sel(lib, "getExe"), python)}" "$out/bin/crosspatch" --add-flag "$out/src/CrossPatch.py"
 runHook postBuild
 `),
-      desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({ __proto__: pos$4, name: name, desktopName: "CrossPatch", exec: "crosspatch" })))))),
+      desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({ [nix.POS]: pos$4, name: name, desktopName: "CrossPatch", exec: "crosspatch" })))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         mainProgram: "crosspatch",
         description: "A mod Manager for Sonic Racing: CrossWorlds",
         homepage: "https://github.com/nockcs/CrossPatch",

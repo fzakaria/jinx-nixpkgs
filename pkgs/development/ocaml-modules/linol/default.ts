@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const trace = nix.arg($, "trace");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "linol",
       version: "0.11",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c-cube",
           repo: "linol",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/c-cube/linol/commit/cf50e29c358ece3a417cb47bf7d17b06b6219d65.patch?full_index=1",
             hash: "sha256-oguHTX20Jr7IatCN1mQZ1JfuX1bN1Fz7trJb8yyNzZM=",
           })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [logs, ppx_yojson_conv_lib, trace, uutf]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LSP server library",
         homepage: "https://github.com/c-cube/linol",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/c-cube/linol/refs/tags/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

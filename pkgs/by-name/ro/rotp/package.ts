@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "remnants-of-the-precursors",
       version: "1.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rayfowler",
           repo: "rotp-public",
           rev: "e3726fc22c2c44316306c50c79779e3da1c4c140",
@@ -43,7 +43,7 @@ makeWrapper ${jre}/bin/java $out/bin/rotp \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source modernization of the 1993 classic \"Master of Orion\", written in Java",
         homepage: "https://github.com/rayfowler/rotp-public",
         license: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ runHook postInstall
             nix.thunk(() => nix.lookup(w, "gpl3Only")),
             nix.thunk(() => nix.lookup(w, "asl20")),
             nix.thunk(() => nix.app(nix.lookup(w, "mkLicense"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 shortName: "planetGenerator",
                 free: true,
                 url: "http://hjemmesider.diku.dk/~torbenm/Planet",

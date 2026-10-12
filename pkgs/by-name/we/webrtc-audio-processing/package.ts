@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "webrtc-audio-processing",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "pulseaudio",
           repo: "webrtc-audio-processing",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-15-compat.patch",
             url: "https://gitlab.freedesktop.org/pulseaudio/webrtc-audio-processing/-/commit/e9c78dc4712fa6362b0c839ad57b6b46dce1ba83.diff",
             hash: "sha256-QXOtya7RA0UTV9VK4qpql5D8QcOKAn6qURZvPpWT+vg=",
@@ -47,22 +47,22 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ __proto__: pos$3, cxxStandard: "17" })))),
+        nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cxxStandard: "17" })))),
       ]),
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))), "-Dneon=disabled"), nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), "-Dinline-sse=false"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://www.freedesktop.org/software/pulseaudio/webrtc-audio-processing",
         description: "More Linux packaging friendly copy of the AudioProcessing module from the WebRTC project",
         pkgConfigModules: nix.thunk(() => ["webrtc-audio-processing-2"]),

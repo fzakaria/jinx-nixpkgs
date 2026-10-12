@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nwg-look",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nwg-piotr",
           repo: "nwg-look",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [glib, cairo, xcur2png, nix.thunk(() => nix.sel(libx11, "dev")), zlib, gtk3]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
       postInstall: "mkdir -p $out/share/nwg-look/langs\ncp stuff/main.glade $out/share/nwg-look/\ncp langs/* $out/share/nwg-look/langs\ninstall -D -m 644 stuff/nwg-look.desktop -t $out/share/applications\ninstall -D -m 644 stuff/nwg-look.svg -t $out/share/icons/hicolor/scalable/apps\n",
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(
   --prefix PATH : "${nix.sel(glib, "bin")}/bin"
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/nwg-piotr/nwg-look",
         description: "GTK settings editor, designed to work properly in wlroots-based Wayland environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

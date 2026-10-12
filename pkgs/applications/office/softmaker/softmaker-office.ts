@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const fetchurl = nix.arg($, "fetchurl");
   const officeVersion = nix.argOr($, "officeVersion", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "1234",
     edition: "2024",
     hash: "sha256-oIO/p52ASIU0qjQqxp/l9GVrUK+LQNQxX1wKheKHT3w=",
@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
       const pname = "softmaker-office";
       const suiteName = "SoftMaker Office";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: nix.thunk(() => nix.attr(officeVersion, "hash")),
           url: nix.thunk(() => nix.str`https://www.softmaker.net/down/softmaker-office-${edition}-${version}-amd64.tgz`),
         }))));
       const archive = nix.thunk(() => nix.str`office${edition}.tar.lzma`);
-      return { __proto__: pos$3, version, edition, pname, suiteName, src, archive };
+      return { [nix.POS]: pos$3, version, edition, pname, suiteName, src, archive };
     })())));
 })(), formals$1);
 //# sourceMappingURL=softmaker-office.ts.map

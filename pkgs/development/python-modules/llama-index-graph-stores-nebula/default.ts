@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "llama_index_graph_stores_nebula",
           version: version,
           hash: "sha256-XTW6XrAbWx8DZgoEoOL2rP2WNuQqQO+hcCWpQSj98ks=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [llama_index_core, nebula3_python]);
       const pythonImportsCheck = nix.thunk(() => ["llama_index.graph_stores.nebula"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "LlamaIndex Graph Store Integration for Nebula",
         homepage: "https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/graph_stores/llama-index-graph-stores-nebula",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

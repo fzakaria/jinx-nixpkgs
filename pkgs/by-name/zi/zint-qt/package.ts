@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withGUI = nix.argOr($, "withGUI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`zint${nix.app(nix.sel(lib, "optionalString"), withGUI, "-qt")}`),
       version: "2.16.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zint",
           repo: "zint",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGUI, "install -Dm644 -t $out/share/applications $src/zint-qt.desktop\ninstall -Dm644 -t $out/share/icons/hicolor/48x48/apps $src/zint-qt.png\ninstall -Dm644 -t $out/share/icons/hicolor/scalable/apps $src/frontend_qt/images/scalable/zint-qt.svg\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Barcode generating tool and library",
         longDescription: nix.thunk(() => nix.str`The Zint project aims to provide a complete cross-platform open source
 barcode generating solution. The package currently consists of "${nix.app(nix.sel(lib, "optionalString"), withGUI, "a Qt based GUI, ")}

@@ -14,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const hockeypuck = nix.arg($, "hockeypuck");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hockeypuck-web",
       version: nix.thunk(() => nix.attr(hockeypuck, "version")),
       src: nix.thunk(() => nix.attr(hockeypuck, "src")),
       dontBuild: true,
       installPhase: "mkdir -p $out/share/\n\ncp -vr contrib/webroot $out/share/\ncp -vr contrib/templates $out/share/\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$1, tests: nix.thunk(() => nix.sel(nixosTests, "hockeypuck")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, tests: nix.thunk(() => nix.sel(nixosTests, "hockeypuck")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenPGP Key Server web resources",
         homepage: "https://github.com/hockeypuck/hockeypuck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unixodbc = nix.arg($, "unixodbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       __structuredAttrs: true,
       pname: "duckdb-odbc",
       version: "1.5.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "duckdb",
           repo: "duckdb-odbc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +40,13 @@ install -Dm755 libduckdb_odbc${nix.sel(stdenv, "hostPlatform", "extensions", "sh
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         fancyName: "DuckDB",
         driver: nix.thunk(() => nix.str`lib/libduckdb_odbc${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          "isql-query": nix.thunk(() => nix.app(runCommand, "duckdb-odbc-isql-query", nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [unixodbc]) })), nix.thunk(() => nix.str`export ODBCSYSINI=$PWD
+          [nix.POS]: pos$3,
+          "isql-query": nix.thunk(() => nix.app(runCommand, "duckdb-odbc-isql-query", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [unixodbc]) })), nix.thunk(() => nix.str`export ODBCSYSINI=$PWD
 printf '[DuckDB]\\nDriver = %s/${nix.sel(finalAttrs, "passthru", "driver")}\\n' \\
   ${nix.sel(finalAttrs, "finalPackage")} > odbcinst.ini
 echo "select 41+1 as answer;" \\
@@ -57,7 +57,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://duckdb.org/docs/current/clients/odbc/overview",
         description: "ODBC driver for DuckDB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

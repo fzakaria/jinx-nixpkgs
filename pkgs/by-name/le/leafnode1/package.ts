@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "leafnode",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/leafnode/leafnode/${nix.sel(finalAttrs, "version")}/leafnode-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-tGfOcyH2F6IeglfY00u199eKusnn6HeqD7or3Oz3ed4=",
         })))),
       configureFlags: nix.thunk(() => ["--with-ipv6"]),
       buildInputs: nix.thunk(() => [pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://leafnode.sourceforge.io/index.shtml",
         description: "Implementation of a store & forward NNTP proxy, stable release",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

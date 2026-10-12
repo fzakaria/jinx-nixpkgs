@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libftdi1 = nix.arg($, "libftdi1");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fujprog",
       version: "4.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kost",
           repo: "fujprog",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [libftdi1, libusb_compat_0_1]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "JTAG programmer for the ULX3S and ULX2S open hardware FPGA development boards",
         mainProgram: "fujprog",
         homepage: "https://github.com/kost/fujprog",

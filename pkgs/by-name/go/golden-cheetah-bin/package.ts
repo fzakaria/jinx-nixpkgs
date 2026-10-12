@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pname = "golden-cheetah";
   const version = "3.8";
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     description: "Performance software for cyclists, runners and triathletes. This version includes the API Tokens for e.g. Strava",
     homepage: "https://github.com/GoldenCheetah/GoldenCheetah",
     changelog: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/tag/v${version}`),
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const passthru = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         extraArgs: nix.thunk(() => nix.concat([
           "--url=https://github.com/GoldenCheetah/GoldenCheetah",
           "--version-regex=v([0-9\\.]*)",
@@ -55,13 +55,13 @@ export default nix.lambda((args) => (() => {
     linux: linux,
   }));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       meta: meta,
       passthru: passthru,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/download/v${version}/GoldenCheetah_v${nix.builtins.substring(0n, 7n, version)}_arm64.dmg`),
           hash: "sha256-mOdaYtdqR4O5IpPuZ40gng64/WtNKHVU7H86EYMk4LM=",
         })))),
@@ -70,13 +70,13 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p \"$out/Applications/GoldenCheetah.app\"\ncp -r * \"$out/Applications/GoldenCheetah.app/\"\nmakeWrapper \"$out/Applications/GoldenCheetah.app/Contents/MacOS/GoldenCheetah\" \"$out/bin/GoldenCheetah\"\nrunHook postInstall\n",
     }))));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: version,
       meta: meta,
       passthru: passthru,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/download/v${version}/GoldenCheetah_v${nix.builtins.substring(0n, 7n, version)}_x64.AppImage`),
           hash: "sha256-qOluTrvyUEQ89B/brIKJKlZxVkZRVpswCysNW7VJFy0=",
         })))),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgs, "libusb-compat-0_1")),
       ],
       appimageContents: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),

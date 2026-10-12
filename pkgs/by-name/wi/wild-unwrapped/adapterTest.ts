@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const hello = nix.arg($, "hello");
   const taplo = nix.arg($, "taplo");
   const gccWrapper = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.attr(gcc, "name")),
       dontUnpack: true,
       dontConfigure: true,
@@ -52,7 +52,7 @@ runHook postBuild
 `),
     }))));
   const gppWrapper = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       dontUnpack: true,
       dontConfigure: true,
       dontInstall: true,
@@ -70,8 +70,8 @@ runHook postBuild
     const command = nix.thunk(() => nix.str`$READELF -p .comment ${nix.app(nix.sel(lib, "getExe"), helloWild)}`);
     const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
     return nix.app(runCommandCC, nix.thunk(() => nix.str`wild-${name}-test`), nix.thunk(() => ({
-        __proto__: pos$4,
-        passthru: nix.thunk(() => ({ __proto__: pos$3, helloWild: helloWild })),
+        [nix.POS]: pos$4,
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, helloWild: helloWild })),
       })), nix.thunk(() => nix.str`echo "Testing running the 'hello' binary which should be linked with 'wild'" >&2
 ${emulator} ${nix.app(nix.sel(lib, "getExe"), helloWild)}
 
@@ -96,9 +96,9 @@ fi
 `));
   })();
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     testWild: nix.thunk(() => nix.app(nix.sel(wild_unwrapped, "overrideAttrs"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "wild-tests",
         doCheck: true,
         doInstallCheck: false,
@@ -123,15 +123,15 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
 `),
         installPhase: "touch $out",
       })))),
-    adapterGcc: nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (_) => ({ __proto__: pos$6, stdenv: nix.thunk(() => nix.app(useWildLinker, gccStdenv)) }))))),
+    adapterGcc: nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (_) => ({ [nix.POS]: pos$6, stdenv: nix.thunk(() => nix.app(useWildLinker, gccStdenv)) }))))),
     "adapter-llvm": nix.thunk(() => nix.app(helloTest, "adapter-llvm", nix.thunk(() => nix.app(nix.sel(hello, "override"), (_) => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           stdenv: nix.thunk(() => nix.app(useWildLinker, clangStdenv)),
         }))))),
     "adapter-rust": nix.thunk(() => nix.app(helloTest, "adapter-rust", nix.thunk(() => nix.app(nix.sel(fd, "override"), (_) => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               rustc: rustc,
               cargo: cargo,
               stdenv: nix.thunk(() => nix.app(useWildLinker, stdenv)),

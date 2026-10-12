@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? nix.force(gcc14Stdenv) : nix.force(stdenv)), "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libpqxx",
       version: "7.10.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jtv",
           repo: "libpqxx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/jtv/libpqxx/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "C++ library to access PostgreSQL databases",
         downloadPage: "https://github.com/jtv/libpqxx",

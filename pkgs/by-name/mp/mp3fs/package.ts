@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mp3fs",
       version: "1.1.1-unstable-2023-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "khenriks",
           repo: "mp3fs",
           rev: "cd2ca80eb3912ff8385e6d537df10d9a768a3a96",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "Enable fuse3 support.patch",
             url: "https://github.com/khenriks/mp3fs/commit/6e1326de4a19b236eef88b89599755adf394526f.patch?full_index=1",
             hash: "sha256-V2HZy0jiXAHGAjre+QtCdGev7maWJ8hW3F2e/87CEKA=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [flac, fuse3, lame, libid3tag, libvorbis, zlib]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "FUSE file system that transparently transcodes to MP3",
         longDescription: "A read-only FUSE filesystem which transcodes between audio formats\n(currently FLAC and Ogg Vorbis to MP3) on the fly when opened and read.\nThis can let you use a FLAC or Ogg Vorbis collection with software\nand/or hardware which only understands the MP3 format, or transcode\nfiles through simple drag-and-drop in a file browser.\n",
         homepage: "https://khenriks.github.io/mp3fs/",

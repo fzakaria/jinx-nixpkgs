@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const lua = nix.arg($, "lua");
   const wxsqlite3 = nix.arg($, "wxsqlite3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "money-manager-ex",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moneymanagerex",
           repo: "moneymanagerex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       cmakeFlags: nix.thunk(() => ["-DWXSQLITE3_HAVE_CODEC=1"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-deprecated-copy", "-Wno-old-style-cast", "-Wno-unused-parameter"]))))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/mmex.app $out/Applications\nmakeWrapper $out/{Applications/mmex.app/Contents/MacOS,bin}/mmex\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Easy-to-use personal finance software",
         homepage: "https://www.moneymanagerex.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

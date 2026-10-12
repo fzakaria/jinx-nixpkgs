@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dsview",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DreamSourceLab",
           repo: "DSView",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./install.patch"), nix.path(here, "./cmake4.patch")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(libsForQt5, "qtwayland"))))),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GUI program for supporting various instruments from DreamSourceLab, including logic analyzer, oscilloscope, etc",
         mainProgram: "DSView",
         homepage: "https://www.dreamsourcelab.com/",

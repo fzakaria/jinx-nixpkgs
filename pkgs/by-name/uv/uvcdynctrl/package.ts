@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.3.0",
       pname: "uvcdynctrl",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cshorler",
           repo: "webcam-tools",
           rev: "bee2ef3c9e350fd859f08cd0e6745871e5f55cb9",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace libwebcam/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace uvcdynctrl/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple interface for devices supported by the linux UVC driver",
         homepage: "https://guvcview.sourceforge.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

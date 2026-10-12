@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-netgear-plus",
       version: "0.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "foxey",
           repo: "py-netgear-plus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["py_netgear_plus"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/foxey/py-netgear-plus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python Library for NETGEAR Plus Switches",
         homepage: "https://github.com/foxey/py-netgear-plus",

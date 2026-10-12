@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cowsay",
       version: "3.8.4",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cowsay-org",
           repo: "cowsay",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +36,19 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       postInstall: "wrapProgram $out/bin/cowsay \\\n  --suffix COWPATH : $out/share/cowsay/cows\n\n# Replace the cowthink symlink with a Perl wrapper that sets $0 correctly\n# This is necessary because exec -a doesn't work for Perl scripts\nrm $out/bin/cowthink\ncat > $out/bin/cowthink << EOF\n#!/usr/bin/env perl\n\\$0 = \"cowthink\";\n\\$ENV{COWPATH} = \"\\$ENV{COWPATH}\" . (\\$ENV{COWPATH} ? \":\" : \"\") . \"$out/share/cowsay/cows\";\ndo \"$out/bin/.cowsay-wrapped\";\nEOF\nchmod +x $out/bin/cowthink\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "cowsay --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Program which generates ASCII pictures of a cow with a message",
         homepage: "https://cowsay.diamonds",
         changelog: nix.thunk(() => nix.str`https://github.com/cowsay-org/cowsay/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pytest-aio",
       version: "2.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "klen",
           repo: "pytest-aio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       buildInputs: nix.thunk(() => [pytest]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         curio: nix.thunk(() => [curio_compat]),
         trio: nix.thunk(() => [trio]),
         uvloop: nix.thunk(() => [uvloop]),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([anyio, hypothesis, pytestCheckHook], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => [trio_asyncio])), nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")))))))),
       pythonImportsCheck: nix.thunk(() => ["pytest_aio"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pytest plugin for aiohttp support",
         homepage: "https://github.com/klen/pytest-aio",
         changelog: nix.thunk(() => nix.str`https://github.com/klen/pytest-aio/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

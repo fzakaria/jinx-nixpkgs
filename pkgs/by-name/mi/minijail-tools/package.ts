@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const minijail = nix.arg($, "minijail");
   const targetClang = nix.thunk(() => nix.sel(pkgsBuildTarget, "targetPackages", "clangStdenv", "cc"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pyproject: true,
       pname: "minijail-tools",
       version: nix.thunk(() => nix.attr(minijail, "version")),
@@ -34,7 +34,7 @@ ${nix.sel(python3, "pythonOnBuildForHost", "interpreter")} tools/generate_consta
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(minijail, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://android.googlesource.com/platform/external/minijail/+/refs/heads/master/tools/",
         description: "Set of tools for minijail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

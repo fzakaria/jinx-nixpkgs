@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const from = nix.thunk(() => nix.sel(self, "mathlib", "passthru"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lean4: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/lean-modules/lean4"), nix.thunk(() => ({})))),
       buildLakePackage: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../build-support/lake"), nix.thunk(() => ({})))),
       batteries: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/lean-modules/batteries"), nix.thunk(() => ({})))),

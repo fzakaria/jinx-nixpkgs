@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "approval-utilities",
       version: nix.thunk(() => nix.attr(approvaltests, "version")),
       src: nix.thunk(() => nix.attr(approvaltests, "src")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["approval_utilities"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Utilities for your production code that work well with approvaltests",
         homepage: "https://github.com/approvals/ApprovalTests.Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fsv";
       const version = "3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jabl",
           repo: "fsv",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, pkg_config]);
       const buildInputs = nix.thunk(() => [cglm, gtk3, libepoxy, libGLU]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp src/fsv $out/bin/fsv\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "File system visualizer in cyberspace",
         longDescription: "fsv (pronounced eff-ess-vee) is a file system visualizer in cyberspace.\nIt lays out files and directories in three dimensions, geometrically\nrepresenting the file system hierarchy to allow visual overview\nand analysis. fsv can visualize a modest home directory, a workstation's\nhard drive, or any arbitrarily large collection of files, limited only\nby the host computer's memory and graphics hardware.\n",
         homepage: "https://github.com/jabl/fsv",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fsv",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -9,17 +9,17 @@ const pos$3 = nix.positions(here + "/busybox.nix", [["machine", 5, 5]]);
 const pos$4 = nix.positions(here + "/busybox.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 15, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$4,
+  [nix.POS]: pos$4,
   name: "Test that basic tests work when busybox is installed",
   nodes: nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         environment: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "busybox"))]),
         })),
       };

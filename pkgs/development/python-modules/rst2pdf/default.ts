@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.105";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-hX6HQQFOxQFfegCq+13Mu1Y3jvTB2lWoKNRLz1/zrNs=",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
 installManPage rst2pdf.1
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert reStructured Text to PDF via ReportLab",
         mainProgram: "rst2pdf",
         homepage: "https://rst2pdf.org/",
@@ -68,7 +68,7 @@ installManPage rst2pdf.1
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

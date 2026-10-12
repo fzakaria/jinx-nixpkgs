@@ -36,33 +36,33 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "lomiri-system-settings-standalone",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
-            xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$6,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
             printing: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
-              "cups-pdf": nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+              "cups-pdf": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
             })),
-            upower: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+            upower: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lomiri")), null);
               return [
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.lookup(w, "lomiri-system-settings")),
               ];
             })()),
-            variables: nix.thunk(() => ({ __proto__: pos$7, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$7, UITK_ICON_THEME: "suru" })),
           })),
-          i18n: nix.thunk(() => ({ __proto__: pos$9, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: pos$9, supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
@@ -86,71 +86,71 @@ export default nix.lambda((args) => (() => {
     enableOCR: true,
     testScript: nix.thunk(() => (() => {
       const settingsPages = nix.thunk(() => [
-        nix.thunk(() => ({ __proto__: pos$13, name: "wifi", type: "internal", element: "networks" })),
+        nix.thunk(() => ({ [nix.POS]: pos$13, name: "wifi", type: "internal", element: "networks" })),
         nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: "bluetooth",
           type: "internal",
           element: "discoverable|None detected",
         })),
         nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: "vpn",
           type: "internal",
           element: "Add|Manual|Configuration",
           skipOCR: true,
         })),
         nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           name: "appearance",
           type: "internal",
           element: "Background image|blur effects",
         })),
         nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: "desktop",
           type: "internal",
           element: "workspaces|Icon size",
         })),
         nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: "sound",
           type: "internal",
           element: "Silent Mode|Message sound",
         })),
         nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: "language",
           type: "internal",
           element: "Display language|External keyboard",
         })),
         nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           name: "notification",
           type: "internal",
           element: "Apps that notify",
         })),
-        nix.thunk(() => ({ __proto__: pos$21, name: "gestures", type: "internal", element: "Edge drag" })),
+        nix.thunk(() => ({ [nix.POS]: pos$21, name: "gestures", type: "internal", element: "Edge drag" })),
         nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           name: "printing",
           type: "internal",
           element: "Configured printers|no printers configured",
         })),
         nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           name: "mouse",
           type: "internal",
           element: "Cursor speed|Wheel scrolling speed",
         })),
         nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           name: "timedate",
           type: "internal",
           element: "Time zone|Set the time and date",
         })),
         nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           name: "security-privacy",
           type: "internal",
           element: "Locking|unlocking|permissions",

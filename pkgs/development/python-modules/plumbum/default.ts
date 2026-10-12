@@ -31,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "plumbum",
       version: "2.0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tomerfiliba",
           repo: "plumbum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/tomerfiliba/plumbum/commit/217a22f361ea590c77da5f73d1387fe8a57fd742.patch",
             hash: "sha256-Cp01aeTkJS5wy6ZZs95suzKV/HKziy1YIQtk4jYT2Gg=",
           })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace plumbum/lib.py \\\n  --replace-fail \\\n    'r\"\\s*(\\d+)\\s+(\\d+)\"' \\\n    'r\"\\s*(\\d+)\\s+(-?\\d+)\"'\n")),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, ssh: nix.thunk(() => [paramiko]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, ssh: nix.thunk(() => [paramiko]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         mount,
         openssh,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pytestFlags: nix.thunk(() => ["--deselect=tests/test_local.py::TestLocalMachine::test_local"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Module Shell Combinators",
         changelog: nix.thunk(() => nix.str`https://github.com/tomerfiliba/plumbum/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/tomerfiliba/plumbum",

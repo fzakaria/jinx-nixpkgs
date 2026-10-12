@@ -40,74 +40,74 @@ export default nix.lambda((args) => (() => {
   const json = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(json, "generate"), "ServerSettings", nix.thunk(() => nix.update(defaultConfig, nix.sel(cfg, "serverConfig")))));
   const defaultConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     Port: 15000n,
     BroadcastPort: 16342n,
     BypassScriptUpdate: false,
     BasicSecurityPassword: null,
   }));
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gador"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         blendfarm: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Blendfarm, a render farm management software for Blender")),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "blendfarm", nix.thunk(() => ({})))),
             openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "allowing blendfarm network access through the firewall")),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 description: "User under which blendfarm runs.",
                 default: "blendfarm",
                 type: nix.thunk(() => nix.lookup(w, "str")),
               })))),
             group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 description: "Group under which blendfarm runs.",
                 default: "blendfarm",
                 type: nix.thunk(() => nix.lookup(w, "str")),
               })))),
             basicSecurityPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Path to the password file the client needs to connect to the server.\n      The password must not contain a forward slash.",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
               })))),
             blenderPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "blender", nix.thunk(() => ({})))),
             serverConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 description: "Server configuration",
                 default: defaultConfig,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "anything")))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       Port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           description: "Default port blendfarm server listens on.",
                           default: 15000n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                         })))),
                       BroadcastPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           description: "Default port blendfarm server advertises itself on.",
                           default: 16342n,
                           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                         })))),
                       BypassScriptUpdate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           description: "Prevents blendfarm from replacing the .py self-generated scripts.",
                           default: false,
                           type: nix.thunk(() => nix.lookup(w, "bool")),
@@ -120,25 +120,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "serverConfig", "Port"))]),
               allowedUDPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "serverConfig", "BroadcastPort"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           services: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "blendfarm-server": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -156,7 +156,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "blenderPac
 sed -i "s/null/\\"$BLENDFARM_PASSWORD\\"/g" ServerSettings
 `)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/LogicReinc.BlendFarm.Server`),
                 DynamicUser: true,
                 LogsDirectory: "blendfarm",
@@ -189,12 +189,12 @@ sed -i "s/null/\\"$BLENDFARM_PASSWORD\\"/g" ServerSettings
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           users: nix.thunk(() => ({
-            __proto__: pos$23,
-            blendfarm: nix.thunk(() => ({ __proto__: pos$22, isSystemUser: true, group: "blendfarm" })),
+            [nix.POS]: pos$23,
+            blendfarm: nix.thunk(() => ({ [nix.POS]: pos$22, isSystemUser: true, group: "blendfarm" })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$24, blendfarm: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$24, blendfarm: nix.thunk(() => ({})) })),
         })),
       })))),
   };

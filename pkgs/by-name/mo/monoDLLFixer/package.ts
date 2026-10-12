@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "mono-dll-fixer",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       dllFixer: nix.path(here, "./dll-fixer.pl"),

@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(nix.eq(lineEditingLibrary, "readline")) || nix.asBool(readlineSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rc/rc/package.nix:32:1");
   nix.assert_((!nix.asBool(nix.eq(lineEditingLibrary, "editline")) || nix.asBool(editlineSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/rc/rc/package.nix:33:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "rc",
       version: "1.7.4-unstable-2025-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rakitzis",
           repo: "rc",
           rev: "2bab312ea11cb77d2654a731357842971c0b5d18",
@@ -63,17 +63,17 @@ EOF
       buildFlags: nix.thunk(() => nix.concat(["all"], nix.app(nix.sel(lib, "optionals"), historySupport, nix.thunk(() => ["history"])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), historySupport, "installManPage history.1\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         shellPath: "/bin/rc",
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           static: nix.thunk(() => nix.sel(pkgsStatic, "rc")),
-          readline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ __proto__: pos$2, readlineSupport: true, lineEditingLibrary: "readline" })))))),
-          editline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ __proto__: pos$3, editlineSupport: true, lineEditingLibrary: "editline" })))))),
+          readline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, readlineSupport: true, lineEditingLibrary: "readline" })))))),
+          editline: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.app(nix.sel(rc, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, editlineSupport: true, lineEditingLibrary: "editline" })))))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/rakitzis/rc",
         description: "Plan 9 shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

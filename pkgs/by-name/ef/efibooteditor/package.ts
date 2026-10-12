@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "efibooteditor",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Neverous",
           repo: "efibooteditor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ substituteInPlace misc/EFIBootEditor.desktop \\
     'sh -c "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY efibooteditor"'
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LANG: "C.UTF8",
         BUILD_VERSION: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       })),
@@ -55,7 +55,7 @@ substituteInPlace misc/EFIBootEditor.desktop \\
       doCheck: true,
       checkPhase: "runHook preCheck\n\nctest --output-on-failure\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Boot Editor for (U)EFI based systems",
         homepage: "https://github.com/Neverous/efibooteditor",
         changelog: nix.thunk(() => nix.str`https://github.com/Neverous/efibooteditor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

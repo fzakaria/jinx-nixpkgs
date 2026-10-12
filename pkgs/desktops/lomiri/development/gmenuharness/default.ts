@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gmenuharness",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ubports",
           repo: "development/core/gmenuharness",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,15 +53,15 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       checkPhase: "runHook preCheck\n\ndbus-test-runner -t make -p test -p \"${enableParallelChecking:+-j $NIX_BUILD_CORES}\"\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to test GMenuModel structures",
         homepage: "https://gitlab.com/ubports/development/core/gmenuharness",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

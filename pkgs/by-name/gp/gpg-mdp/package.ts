@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gpg-mdp",
       version: "0.7.5",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://tamentis.com/projects/mdp/",
         changelog: nix.thunk(() => nix.str`https://github.com/tamentis/mdp/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "Manage your passwords with GnuPG and a text editor",
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tamentis",
           repo: "mdp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ substituteInPlace ./mdp.1 \\
 `),
       postFixup: "ln -s $out/bin/mdp $out/bin/gpg-mdp\nln -s $out/share/man/man1/mdp.1.gz $out/share/man/man1/gpg-mdp.1.gz\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }));

@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libccp4";
       const version = "8.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.ccp4.ac.uk/opensource/libccp4-${version}.tar.gz`),
           hash: "sha256-y4E66GYSoIZjKd6rfO6W6sVz2BvlskA0HUD5rVMi/y0=",
         }))));
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [hdf5, gsl]);
       const configureFlags = nix.thunk(() => ["FFLAGS=-fallow-argument-mismatch"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DNIX_PROVIDED_SYMOP_FILE="${nix.builtins.placeholder("out")}/share/ccp4/syminfo.lib"`),
       }));
       const patches = nix.thunk(() => [nix.path(here, "./libccp4-use-hardcoded-syminfo-lib.patch")]);
       const postPatch = nix.thunk(() => (() => {
         const mesonPatch = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://wrapdb.mesonbuild.com/v2/libccp4c_8.0.0-1/get_patch#somefile.zip",
             hash: "sha256-ohskfKh+972Pl56KtwAeWwHtAaAFNpCzz5vZBAI/vdU=",
           }))));
@@ -91,7 +91,7 @@ substituteInPlace ccp4/library_utils.c \\
 `;
       })());
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,
@@ -106,16 +106,16 @@ substituteInPlace ccp4/library_utils.c \\
   const mosflm = nix.thunk(() => (() => {
     const version = "7.4.0";
     const src = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         url: nix.thunk(() => nix.str`https://www.mrc-lmb.cam.ac.uk/harry/imosflm/ver${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}/downloads/imosflm-${version}-osx-64.zip`),
         hash: "sha256-0sXgA3zSIjhy9+zTiv+K/51yZsIgGorMtKVjdRjW+AM=",
       }))) : nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         url: nix.thunk(() => nix.str`https://www.mrc-lmb.cam.ac.uk/harry/imosflm/ver${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}/downloads/imosflm-${version}-linux-64.zip`),
         hash: "sha256-2we0K09W31LKgn9SHLGti50EA/zhbX+CWWuQGCSKW18=",
       })))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "mosflm",
         version: version,
         src: src,
@@ -131,44 +131,44 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const pname = "xgandalf";
       const version = "8a63600ec778b155031adc3c151424aaced6a0cc";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/thomas.white/xgandalf/-/archive/${version}/xgandalf-${version}.tar.gz`),
           hash: "sha256-UhFbpv+4qMwxEQIJpVpMzSg46P0vm0dkEyJDzxVu6XY=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, pkg_config, ninja]);
       const buildInputs = nix.thunk(() => [eigen]);
-      return { __proto__: pos$9, pname, version, src, nativeBuildInputs, buildInputs };
+      return { [nix.POS]: pos$9, pname, version, src, nativeBuildInputs, buildInputs };
     })())));
   const pinkIndexer = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "pinkindexer";
       const version = "85f3883f8c1fe98a03e5f3d371f2da4fee97894e";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/thomas.white/pinkindexer/-/archive/${version}/pinkindexer-${version}.tar.gz`),
           hash: "sha256-W4COYdeESP0S2KhB2UdaJSbxNiFm5yyapKkmICDtP0A=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, pkg_config, ninja]);
       const buildInputs = nix.thunk(() => [eigen]);
-      return { __proto__: pos$11, pname, version, src, nativeBuildInputs, buildInputs };
+      return { [nix.POS]: pos$11, pname, version, src, nativeBuildInputs, buildInputs };
     })())));
   const fdip = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "fdip";
       const version = "631792e90ed2c3e226dce77bf97917305293ac66";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/thomas.white/fdip/-/archive/${version}/fdip-${version}.tar.gz`),
           hash: "sha256-nnvOPl35NgtJ13fgWWAuVhtWT/JOk2DyYmBgI0ojZ2o=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, pkg_config]);
       const buildInputs = nix.thunk(() => [eigen]);
-      return { __proto__: pos$13, pname, version, src, nativeBuildInputs, buildInputs };
+      return { [nix.POS]: pos$13, pname, version, src, nativeBuildInputs, buildInputs };
     })())));
   const hdf5_external_filter_plugins = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       pname: "HDF5-External-Filter-Plugins",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           owner: "nexusformat",
           repo: "HDF5-External-Filter-Plugins",
           rev: "49e3b65eca772bca77af13ba047d8b577673afba",
@@ -176,7 +176,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             url: "https://github.com/spanezz/HDF5-External-Filter-Plugins/commit/6b337fe36da97a3ef72354393687ce3386c0709d.patch",
             hash: "sha256-wnBEdL/MjEyRHPwaVtuhzY+DW1AFeaUQUmIXh+JaRHo=",
           })))),
@@ -194,7 +194,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const pname = "millepede-ii";
       const version = "04-13-06";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/claus.kleinwort/millepede-ii/-/archive/V${version}/millepede-ii-V${version}.tar.gz`),
           hash: "sha256-aFoo8AGBsUEN2u3AmnSpTqJ6JeNV6j9vkAFTZ34I+sI=",
         }))));
@@ -202,7 +202,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const buildInputs = nix.thunk(() => [zlib]);
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       return {
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         pname,
         version,
         src,
@@ -215,7 +215,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const pname = "crystfel";
       const version = "0.13.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           url: nix.thunk(() => nix.str`https://www.desy.de/~twhite/crystfel/crystfel-${version}.tar.gz`),
           sha256: "sha256-6Fz7W8kRKlaTmnL+21t20UgkTjr3oC08IOzAGOseaQU=",
         }))));
@@ -244,7 +244,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
 done
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         description: "Data processing for serial crystallography",
         longDescription: "CrystFEL is a suite of programs for processing (and simulating) Bragg diffraction data from \"serial crystallography\" experiments, often (but not always) performed using an X-ray Free-Electron Laser. Compared to rotation data, some of the particular characteristics of such data which call for a specialised software suite are:\n\n- The sliced, rather than integrated, measurement of intensity data. Many, if not all reflections are partially integrated.\n- Many patterns (thousands) are required - high throughput is needed.\n- The crystal orientations in each pattern are random and uncorrelated.\n- Merging into lower symmetry point groups may require the resolution of indexing ambiguities.",
         homepage: "https://www.desy.de/~twhite/crystfel/",
@@ -258,7 +258,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         pname,
         version,
         src,

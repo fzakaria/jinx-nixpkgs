@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const lightyear = nix.arg($, "lightyear");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tlhydra",
       version: "2017-13-26",
       idrisDeps: nix.thunk(() => [effects, contrib, lightyear]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Termina1",
           repo: "tlhydra",
           rev: "3fc9049447d9560fe16f4d36a2f2996494ac2b33",
           sha256: "1y3gcbc1ypv00vwa0w3v0n6ckf7gnz26xsfmgnidsaxzff3y0ymh",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idris parser and serializer/deserealizer for TL language",
         homepage: "https://github.com/Termina1/tlhydra",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pyqt5 = nix.arg($, "pyqt5");
   const matplotlib = nix.arg($, "matplotlib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "curvefitgui",
       version: "0-unstable-2021-08-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "moosepy",
           repo: "curvefitgui",
           rev: "5f1e7f3b95cd77d10bd8183c9a501e47ff94fad7",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [numpy, scipy, pyqt5, matplotlib]),
       pythonImportsCheck: nix.thunk(() => ["curvefitgui"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical interface to the non-linear curvefit function scipy.optimise.curve_fit",
         homepage: "https://github.com/moosepy/curvefitgui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

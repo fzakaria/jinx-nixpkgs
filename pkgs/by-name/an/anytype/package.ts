@@ -36,26 +36,26 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "anytype",
       version: "0.57.3",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anyproto",
           repo: "anytype-ts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-rUx/49WovQ0QgNAn4ARdZ4ojersPdqfCYvJNHrKJ7wI=",
         })))),
       locales: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "anyproto",
           repo: "l10n-anytype-ts",
           rev: "d1e183cf139ba3d73f86f0839a7c1f09c2141758",
           hash: "sha256-xEQqF+v+YOwYtJpPUoanIRklLyv1YEq5y5XXQmYPg3Y=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
           outputHashMode: "recursive",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NODE_OPTIONS: "--max-old-space-size=8192",
       })),
@@ -163,7 +163,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "anytype",
             exec: "anytype %U",
             icon: "anytype",
@@ -174,9 +174,9 @@ runHook postInstall
             startupWMClass: "anytype",
           })))),
       ]),
-      passthru: nix.thunk(() => ({ __proto__: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "P2P note-taking tool",
         homepage: "https://anytype.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/anyproto/anytype-ts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

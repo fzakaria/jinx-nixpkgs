@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-NNnTcSX+K8zU+sj1QBd13h7aEXN9VqltJMNWCuhgZ6I=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, hypothesis]);
       const pythonImportsCheck = nix.thunk(() => ["hs_dbus_signature"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Hypothesis Strategy for Generating Arbitrary DBus Signatures",
         homepage: "https://github.com/stratis-storage/hs-dbus-signature",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

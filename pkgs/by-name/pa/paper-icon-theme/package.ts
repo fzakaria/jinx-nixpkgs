@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const jdupes = nix.arg($, "jdupes");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paper-icon-theme",
       version: "unstable-2020-03-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "snwh",
           repo: "paper-icon-theme",
           rev: "aa3e8af7a1f0831a51fd7e638a4acb077a1e5188",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       dontRewriteSymlinks: true,
       postInstall: "# The cache for Paper-Mono-Dark is missing\ngtk-update-icon-cache \"$out\"/share/icons/Paper-Mono-Dark;\n\n# replace duplicate files with symlinks\njdupes -l -r $out/share/icons\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern icon theme designed around bold colours and simple geometric shapes",
         homepage: "https://snwh.org/paper",
         license: nix.thunk(() => (() => {

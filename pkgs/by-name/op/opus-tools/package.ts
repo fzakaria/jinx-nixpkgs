@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libopusenc = nix.arg($, "libopusenc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opus-tools",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xiph.org",
           owner: "xiph",
           repo: "opus-tools",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/opusenc`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools to work with opus encoded audio streams",
         homepage: "https://www.opus-codec.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

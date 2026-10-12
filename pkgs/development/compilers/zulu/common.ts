@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const ffmpeg = nix.arg($, "ffmpeg");
   const dist = nix.thunk(() => nix.selOr(dists, () => nix.builtins.head(nix.thunk(() => nix.builtins.attrValues(dists))), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
-  const arch = nix.thunk(() => nix.selOr({ __proto__: pos$1, aarch64: "aarch64", x86_64: "x64" }, () => "unsupported", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))));
-  const platform = nix.thunk(() => nix.selOr({ __proto__: pos$2, darwin: "macosx", linux: "linux" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, aarch64: "aarch64", x86_64: "x64" }, () => "unsupported", nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))));
+  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, darwin: "macosx", linux: "linux" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))));
   const runtimeDependencies = nix.thunk(() => nix.concat([cups], nix.concat(nix.app(nix.sel(lib, "optionals"), gtkSupport, nix.thunk(() => [cairo, glib, gtk3])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(gtkSupport) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(dist, "jdkVersion")), "17")))), nix.thunk(() => [gtk2])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(enableJavaFX))), nix.thunk(() => [nix.thunk(() => nix.sel(ffmpeg, "lib"))]))))));
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), runtimeDependencies));
   const jce_policies = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://web.archive.org/web/20211126120343/http://cdn.azul.com/zcek/bin/ZuluJCEPolicies.zip",
       hash: "sha256-gCGii4ysQbRPFCH9IQoKCCL8r4jWLS5wo1sv9iioZ1o=",
     }))));
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const strictDeps = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: nix.thunk(() => nix.str`https://cdn.azul.com/zulu/bin/zulu${nix.sel(dist, "zuluVersion")}-${javaPackage}${nix.sel(dist, "jdkVersion")}-${platform}_${arch}.tar.gz`),
           hash: nix.thunk(() => nix.attr(dist, "hash")),
           curlOpts: "-H Referer:https://www.azul.com/downloads/zulu/",
@@ -119,24 +119,24 @@ for bin in $( find "$out" -executable -type f -not -name jspawnhelper ); do
 done
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "find \"$out\" -name libfontmanager.so -exec \\\n  patchelf --add-needed libfontconfig.so {} \\;\n")));
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -nsf $bundle/Contents/Home/man $out/share/man\n"));
-      const passthru = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), isJdk8, nix.thunk(() => ({ __proto__: pos$5, jre: jdk }))), nix.update({
-        __proto__: pos$8,
+      const passthru = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), isJdk8, nix.thunk(() => ({ [nix.POS]: pos$5, jre: jdk }))), nix.update({
+        [nix.POS]: pos$8,
         home: jdk,
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               package: jdk,
               command: "java -version",
               version: nix.thunk(() => nix.str`openjdk version \\""${(nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "8")) ? "1.8" : nix.app(nix.sel(lib, "versions", "major"), version))}"`),
             })))),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           bundle: nix.thunk(() => nix.str`${jdk}/Library/Java/JavaVirtualMachines/zulu-${nix.app(nix.sel(lib, "versions", "major"), version)}.jdk`),
         }))))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Certified builds of OpenJDK",
         longDescription: "Certified builds of OpenJDK that can be deployed across multiple\noperating systems, containers, hypervisors and Cloud platforms.\n",
         homepage: "https://www.azul.com/products/zulu/",
@@ -153,7 +153,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname,
         version,
         __structuredAttrs,

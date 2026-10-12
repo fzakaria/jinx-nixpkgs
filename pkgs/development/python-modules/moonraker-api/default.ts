@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cmroche",
           repo: "moonraker-api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ substituteInPlace setup.py \\
       const nativeCheckInputs = nix.thunk(() => [pytest_aiohttp, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["moonraker_api"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API for the Moonraker API",
         homepage: "https://github.com/cmroche/moonraker-api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -45,7 +45,7 @@ substituteInPlace setup.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

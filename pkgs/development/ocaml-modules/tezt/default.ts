@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.0";
       const minimalOCamlVersion = "4.13";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nomadic-labs",
           repo: "tezt",
           tag: version,
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [clap, ezjsonm, lwt, re]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Test framework for unit tests, integration tests, and regression tests",
         homepage: "https://gitlab.com/nomadic-labs/tezt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lwt, "version")), "6.0.0")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [findlib, lambda_term, xdg, zed, logs]);
       const minimalOCamlVersion = "4.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-community/utop/releases/download/${version}/utop-${version}.tbz`),
           hash: "sha256-FOGTkf+LGMFbARc3TU0PxXIAUJV72AKYZQVkuJT6hdo=",
         }))));
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => (() => {
         const path = "etc/utop/env";
         const runtime = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "utop-runtime-env",
             version: version,
             buildInputs: nix.thunk(() => nix.concat([findlib], propagatedBuildInputs)),
@@ -65,7 +65,7 @@ done
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Universal toplevel for OCaml",
         longDescription: "utop is an improved toplevel for OCaml. It can run in a terminal or in Emacs. It supports line edition, history, real-time and context sensitive completion, colors, and more.\n\nIt integrates with the tuareg mode in Emacs.\n",
         homepage: "https://github.com/ocaml-community/utop",
@@ -75,7 +75,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gal_bolle"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         propagatedBuildInputs,

@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const gtk_sharp_3_0 = nix.arg($, "gtk-sharp-3_0");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => (() => {
         const postfix = nix.thunk(() => (nix.asBool(monoSupport) ? "sharp" : "gtk3"));
         return nix.str`libappindicator-${postfix}`;
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       version: "12.10.1+20.10.20200706.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/ubuntu/+source/libappindicator",
           rev: "fe25e53bc7e39cd59ad6b3270cd7a6a9c78c4f44",
           sha256: "0xjvbl4gn7ra2fs6gn2g9s787kzb5cg9hv79iqsz949rxh4iw32d",
@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
         "localstatedir=${TMPDIR}",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Library to allow applications to export a menu into the Unity Menu bar",
         homepage: "https://launchpad.net/libappindicator",
         license: nix.thunk(() => (() => {

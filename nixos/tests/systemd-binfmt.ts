@@ -35,25 +35,25 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const expectArgv0 = (xpkgs) => nix.app(nix.sel(xpkgs, "runCommandCC"), "expect-argv0", nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "expect-argv0.c", "#include <stdio.h>\n#include <string.h>\n\nint main(int argc, char **argv) {\n  fprintf(stderr, \"Our argv[0] is %s\\n\", argv[0]);\n\n  if (strcmp(argv[0], argv[1])) {\n    fprintf(stderr, \"ERROR: argv[0] is %s, should be %s\\n\", argv[0], argv[1]);\n    return 1;\n  }\n\n  return 0;\n}\n")),
     })), "$CC -o $out $src\n");
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     basic: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "systemd-binfmt",
         nodes: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           machine: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             boot: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               binfmt: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 emulatedSystems: nix.thunk(() => ["armv7l-linux", "aarch64-linux"]),
               })),
             })),
@@ -75,15 +75,15 @@ assert "world" in machine.succeed(
         })()),
       })))),
     preserveArgvZero: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "systemd-binfmt-preserve-argv0",
         nodes: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           machine: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             boot: nix.thunk(() => ({
-              __proto__: pos$10,
-              binfmt: nix.thunk(() => ({ __proto__: pos$9, emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
+              [nix.POS]: pos$10,
+              binfmt: nix.thunk(() => ({ [nix.POS]: pos$9, emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
             })),
           })),
         })),
@@ -95,15 +95,15 @@ machine.succeed("exec -a meow ${testAarch64} meow")
         })()),
       })))),
     ldPreload: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         name: "systemd-binfmt-ld-preload",
         nodes: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           machine: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             boot: nix.thunk(() => ({
-              __proto__: pos$15,
-              binfmt: nix.thunk(() => ({ __proto__: pos$14, emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
+              [nix.POS]: pos$15,
+              binfmt: nix.thunk(() => ({ [nix.POS]: pos$14, emulatedSystems: nix.thunk(() => ["aarch64-linux"]) })),
             })),
           })),
         })),
@@ -119,27 +119,27 @@ assert "error" not in machine.succeed(
         })()),
       })))),
     chroot: nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: "systemd-binfmt-chroot",
         nodes: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib = nix.arg($_1, "lib");
             const config_1 = nix.arg($_1, "config");
             return {
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               boot: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 binfmt: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   emulatedSystems: nix.thunk(() => ["aarch64-linux", "wasm32-wasip1"]),
                   preferStaticEmulators: true,
                 })),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScriptBin"), "test-chroot", nix.thunk(() => nix.str`set -euo pipefail
 mkdir -p /tmp/chroot
@@ -152,7 +152,7 @@ echo 42 | chroot /tmp/chroot /yaml2json | grep 42
               })),
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   assertion: nix.thunk(() => nix.eq(nix.sel(config_1, "nix", "settings", "extra-sandbox-paths"), [])),
                   message: "Using binfmt_misc with static emulators, nix.settings.extra-sandbox-paths should be empty",
                 })),

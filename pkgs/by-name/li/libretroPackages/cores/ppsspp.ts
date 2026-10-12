@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const snappy = nix.arg($, "snappy");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "ppsspp",
       version: "0-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hrydgard",
           repo: "ppsspp",
           rev: "7c18ad3d1e2e32b26901d1779bccaee41269bc5a",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postBuild: "cd lib",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PPSSPP libretro port",
         homepage: "https://github.com/hrydgard/ppsspp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greatscottgadgets",
           repo: "luna-soc",
           tag: version,
@@ -42,7 +42,7 @@ substituteInPlace luna_soc/gateware/vendor/amaranth_soc/csr/reg.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["luna_soc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/greatscottgadgets/luna-soc/releases/tag/${nix.sel(src, "tag")}`),
         description: "Amaranth HDL library for building USB-capable SoC designs",
         homepage: "https://github.com/greatscottgadgets/luna-soc",
@@ -53,7 +53,7 @@ substituteInPlace luna_soc/gateware/vendor/amaranth_soc/csr/reg.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

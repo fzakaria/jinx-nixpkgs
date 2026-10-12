@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "thc-hydra";
       const version = "9.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vanhauser-thc",
           repo: "thc-hydra",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
       })());
       const buildInputs = nix.thunk(() => [zlib, openssl, ncurses, libidn, pcre2, libssh, libmysqlclient, libpq, samba]);
       const enableParallelBuilding = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, DATADIR: nix.thunk(() => nix.str`/share/${pname}`) }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DATADIR: nix.thunk(() => nix.str`/share/${pname}`) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Very fast network logon cracker which support many different services",
         homepage: "https://github.com/vanhauser-thc/thc-hydra",
         changelog: nix.thunk(() => nix.str`https://github.com/vanhauser-thc/thc-hydra/raw/v${version}/CHANGES`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

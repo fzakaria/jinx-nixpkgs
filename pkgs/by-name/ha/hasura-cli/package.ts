@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hasura",
       version: "2.50.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hasura",
           repo: "graphql-engine",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/{bash-completion/completions,zsh/site-functions}\n\nexport HOME=$PWD\n$out/bin/hasura completion bash > $out/share/bash-completion/completions/hasura\n$out/bin/hasura completion zsh > $out/share/zsh/site-functions/_hasura\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.hasura.io",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lassulus"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

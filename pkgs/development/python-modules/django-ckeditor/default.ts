@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.7.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-ckeditor",
           repo: "django-ckeditor",
           tag: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [django, django_js_asset, pillow]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "ckeditor_demo.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "ckeditor_demo.settings" }));
       const checkInputs = nix.thunk(() => [django_extensions, selenium]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 ${nix.sel(python, "interpreter")} -m django test
@@ -41,7 +41,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["ckeditor"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Django admin CKEditor integration",
         homepage: "https://github.com/django-ckeditor/django-ckeditor",
         changelog: nix.thunk(() => nix.str`https://github.com/django-ckeditor/django-ckeditor/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -55,7 +55,7 @@ runHook postCheck
         ]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

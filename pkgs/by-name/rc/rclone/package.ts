@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const librclone = nix.arg($, "librclone");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rclone",
       version: "1.75.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rclone",
           repo: "rclone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3HkOymYmr3JFG/Cs8GKHImRioQaHbiI3MEJR1ZPhbu8=",
       subPackages: nix.thunk(() => ["."]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeWrapper]),
-      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableCmount, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(macfuse_stubs, "override"), nix.thunk(() => ({ __proto__: pos$2, isFuse3: false }))) : nix.force(fuse3))))),
+      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableCmount, nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(macfuse_stubs, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, isFuse3: false }))) : nix.force(fuse3))))),
       tags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["fuse3"])), nix.app(nix.sel(lib, "optionals"), enableCmount, nix.thunk(() => ["cmount"])))),
       ldflags: nix.thunk(() => [
         "-s",
@@ -68,12 +68,12 @@ ln -s $out/bin/rclone $out/bin/mount.rclone
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, librclone: librclone })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, librclone: librclone })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line program to sync files and directories to and from major cloud storage",
         homepage: "https://rclone.org",
         changelog: nix.thunk(() => nix.str`https://github.com/rclone/rclone/blob/v${nix.sel(finalAttrs, "version")}/docs/content/changelog.md`),

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const libz = nix.arg($, "libz");
   const portaudio = nix.arg($, "portaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "magicq",
       version: "1.9.7.3",
       src_version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://secure.chamsys.co.uk/downloads/v${nix.sel(finalAttrs, "src_version")}/magicq_ubuntu_v${nix.sel(finalAttrs, "src_version")}.deb`),
           hash: "sha256-FsVSt9iIhwL/wI2XYmKJrA7800wFQ2qJ/uF3bbMLw0Q=",
         })))),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "mkdir $out/bin\nmakeWrapper $out/opt/magicq/bin/mqqt $out/bin/magicq \\\n--chdir $out/opt/magicq\nwrapQtApp $out/bin/magicq\nsed \"s|@out@|$out|g\" -i $out/share/applications/magicq.desktop\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "magicq",
             desktopName: "MagicQ by ChamSys Ltd.",
             genericName: "MagicQ",
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "MagicQ Lighting Console Software",
         homepage: "https://chamsyslighting.com/product/magicq-software/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

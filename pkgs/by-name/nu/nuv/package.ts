@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const version = "3.0.1-beta.2405292059";
   const pname = "nuv";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nuvolaris",
           repo: "nuv",
           rev: version,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => (() => {
         const nuv_bin = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "nuv-bin",
             paths: nix.thunk(() => [coreutils, kubectl, eksctl, kind, k3sup]),
           }))));
@@ -60,14 +60,14 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$3, version: version })))),
+          [nix.POS]: pos$4,
+          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, version: version })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://nuvolaris.io/",
         description: "CLI tool for running tasks using the Nuvolaris serverless engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

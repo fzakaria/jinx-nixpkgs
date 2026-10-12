@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const pname = "pana";
       const version = "0.23.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dart-lang",
           repo: "pana",
           tag: version,
           hash: "sha256-J3c/aB2yRt4tRqKEaB8gMry7lSzF3R6M1kXZ10aFC3Q=",
         }))));
-      const dartEntryPoints = nix.thunk(() => ({ __proto__: pos$2, "bin/pana": "bin/pana.dart" }));
+      const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: pos$2, "bin/pana": "bin/pana.dart" }));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = nix.thunk(() => nix.str`# 1. Create a directory in the store to hold the license text files
@@ -48,12 +48,12 @@ wrapProgram $out/bin/pana \\
   --add-flags "--dart-sdk ${dart} --flutter-sdk ${flutter} --license-data $out/share/pana/spdx-licenses"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mainProgram: "pana",
         homepage: "https://pub.dev/packages/pana",
         description: "Package ANAlysis for Dart",
@@ -65,13 +65,13 @@ wrapProgram $out/bin/pana \\
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => (() => {
             const versionSplit = nix.thunk(() => nix.app(nix.sel(lib, "split"), "\\+", version));
             const versionPart = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionSplit, 0n));
             const updatePart = nix.thunk(() => (nix.asBool(nix.gt(nix.app(nix.sel(lib, "count"), (x) => nix.app(nix.sel(lib, "isList"), x), versionSplit), 0n)) ? nix.app(nix.sel(lib, "elemAt"), versionSplit, 2n) : "*"));
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               vendor: "dart-lang",
               product: "pana",
               version: versionPart,
@@ -85,7 +85,7 @@ wrapProgram $out/bin/pana \\
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

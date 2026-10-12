@@ -137,7 +137,7 @@ ${dbOwnershipStmt}
   })();
   const validateUserClauses = nix.thunk(() => (() => {
     const validationScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "validate-postgresql-clauses", nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "pglast"))]),
       })), "import sys\nfrom pglast import parse_sql\n\n\ndef validate_sql(username, sql):\n    if not sql:\n        return True\n\n    try:\n        parse_sql(sql)\n        print(f\"Valid SQL for user {username}\")\n        return True\n    except Exception as e:\n        print(f\"Invalid SQL for user {username}:\", file=sys.stderr)\n        print(f\"  {sql}\", file=sys.stderr)\n        print(f\"  Error: {e}\", file=sys.stderr)\n        return False\n\n\nif __name__ == \"__main__\":\n    username = sys.argv[1]\n    sql = sys.argv[2]\n    sys.exit(0 if validate_sql(username, sql) else 1)\n"));
     return nix.app(nix.sel(pkgs, "runCommand"), "postgresql-user-clauses-check", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(concatMapStrings, (user) => (() => {
@@ -150,7 +150,7 @@ touch $out
 `));
   })());
   return {
-    __proto__: pos$64,
+    [nix.POS]: pos$64,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "postgresql", "extraConfig"]), "Use services.postgresql.settings instead.")),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "postgresql", "recoveryConfig"]), "PostgreSQL v12+ doesn't support recovery.conf.")),
@@ -159,22 +159,22 @@ touch $out
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "postgresql", "extraPlugins"]), nix.thunk(() => ["services", "postgresql", "extensions"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       services: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         postgresql: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           enable: nix.thunk(() => nix.app(mkEnableOption, "PostgreSQL Server")),
           enableJIT: nix.thunk(() => nix.app(mkEnableOption, "JIT support")),
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "package")),
               example: nix.thunk(() => nix.app(literalExpression, "pkgs.postgresql_15")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "if versionAtLeast config.system.stateVersion \"26.11\" then\n  pkgs.postgresql_18\nelse if versionAtLeast config.system.stateVersion \"25.11\" then\n  pkgs.postgresql_17\nelse if versionAtLeast config.system.stateVersion \"24.11\" then\n  pkgs.postgresql_16\nelse if versionAtLeast config.system.stateVersion \"23.11\" then\n  pkgs.postgresql_15\nelse\n  pkgs.postgresql_14\n")),
               description: "The package being used by postgresql.\n",
             })))),
           finalPackage: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "package")),
               readOnly: true,
               default: nix.thunk(() => (() => {
@@ -186,17 +186,17 @@ touch $out
               description: "The postgresql package that will effectively be used in the system.\nIt consists of the base package with plugins applied to it.\n",
             })))),
           systemCallFilter: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
-              type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "bool")), (enable) => ({ __proto__: pos$4, enable: enable }), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
+              [nix.POS]: pos$8,
+              type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "bool")), (enable) => ({ [nix.POS]: pos$4, enable: enable }), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$2);
                       const name = nix.arg($_1, "name");
                       return {
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         options: nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           enable: nix.thunk(() => nix.app(mkEnableOption, nix.thunk(() => nix.str`${name} in postgresql's syscall filter`))),
                           priority: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$5,
+                              [nix.POS]: pos$5,
                               default: nix.thunk(() => (nix.asBool(nix.app(hasPrefix, "@", name)) ? 500n : (nix.asBool(nix.app(hasPrefix, "~@", name)) ? 1000n : 1500n))),
                               defaultText: nix.thunk(() => nix.app(literalExpression, "if hasPrefix \"@\" name then 500 else if hasPrefix \"~@\" name then 1000 else 1500\n")),
                               type: nix.thunk(() => nix.sel(types, "int")),
@@ -209,33 +209,33 @@ touch $out
               description: "Configures the syscall filter for `postgresql.service`. The keys are\ndeclarations for `SystemCallFilter` as described in {manpage}`systemd.exec(5)`.\n\nThe value is a boolean: `true` adds the attribute name to the syscall filter-set,\n`false` doesn't. This is done to allow downstream configurations to turn off\nrestrictions made here. E.g. with\n\n```nix\n{\n  services.postgresql.systemCallFilter.\"~@resources\" = false;\n}\n```\n\nit's possible to remove the restriction on `@resources` (keep in mind that\n`@system-service` implies `@resources`).\n\nAs described in the section for [](#opt-services.postgresql.systemCallFilter._name_.priority),\nthe ordering matters. Hence, it's also possible to specify customizations with\n\n```nix\n{\n  services.postgresql.systemCallFilter = {\n    \"foobar\" = { enable = true; priority = 23; };\n  };\n}\n```\n\n[](#opt-services.postgresql.systemCallFilter._name_.enable) is the flag whether\nor not it will be added to the `SystemCallFilter` of `postgresql.service`.\n\nSettings with a higher priority are added after filter settings with a lower\npriority. Hence, syscall groups with a higher priority can discard declarations\nwith a lower priority.\n\nBy default, syscall groups (i.e. attribute names starting with `@`) are added\n_before_ negated groups (i.e. `~@` as prefix) _before_ syscall names\nand negations.\n",
             })))),
           checkConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Check the syntax of the configuration file at compile time",
             })))),
           dataDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(types, "path")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "\"/var/lib/postgresql/${config.services.postgresql.package.psqlSchema}\"")),
               example: "/var/lib/postgresql/15",
               description: "The data directory for PostgreSQL. If left as the default value\nthis directory will automatically be created before the PostgreSQL server starts, otherwise\nthe sysadmin is responsible for ensuring the directory exists with appropriate ownership\nand permissions.\n",
             })))),
           authentication: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               description: "Defines how users authenticate themselves to the server. See the\n[PostgreSQL documentation for pg_hba.conf](https://www.postgresql.org/docs/current/auth-pg-hba-conf.html)\nfor details on the expected format of this option. By default,\npeer based authentication will be used for users connecting\nvia the Unix socket, and md5 password authentication will be\nused for users connecting via TCP. Any added rules will be\ninserted above the default rules. If you'd like to replace the\ndefault rules entirely, you can use `lib.mkForce` in your\nmodule.\n",
             })))),
           identMap: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(types, "lines")),
               default: "",
               example: "map-name-0 system-username-0 database-username-0\nmap-name-1 system-username-1 database-username-1\n",
               description: "Defines the mapping from system users to database users.\n\nSee the [auth doc](https://postgresql.org/docs/current/auth-username-maps.html).\n\nThere is a default map \"postgres\" which is used for local peer authentication\nas the postgres superuser role.\nFor example, to allow the root user to login as the postgres superuser, add:\n\n```\npostgres root postgres\n```\n",
             })))),
           initdbArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -245,43 +245,43 @@ touch $out
               description: "Additional arguments passed to `initdb` during data dir\ninitialisation.\n",
             })))),
           initialScript: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: nix.thunk(() => nix.app(literalExpression, "pkgs.writeText \"init-sql-script\" ''\n  alter user postgres with password 'myPassword';\n'';")),
               description: "A file containing SQL statements to execute on first startup.\n",
             })))),
           ensureDatabases: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               description: "Ensures that the specified databases exist.\nThis option will never delete existing databases, especially not when the value of this\noption is changed. This means that databases created once through this option or\notherwise have to be removed manually.\n",
               example: nix.thunk(() => ["gitea", "nextcloud"]),
             })))),
           ensureUsers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$21,
+                    [nix.POS]: pos$21,
                     options: nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Name of the user to ensure.\n",
                         })))),
                       ensureDBOwnership: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Grants the user ownership to a database with the same name.\nThis database must be defined manually in\n[](#opt-services.postgresql.ensureDatabases).\n",
                         })))),
                       ensureClauses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           description: "An attrset of clauses to grant to the user. Under the hood this uses the\n[ALTER USER syntax](https://www.postgresql.org/docs/current/sql-alteruser.html) for each attrName where\nthe attrValue is true in the attrSet:\n`ALTER USER user.name WITH attrName`\n",
                           example: nix.thunk(() => nix.app(literalExpression, "{\n  superuser = true;\n  createrole = true;\n  createdb = true;\n  connection_limit = 5;\n\n  # SCRAM-SHA-256 hashed password for \"password\"\n  # Generate hashes using PostgreSQL or a dedicated script rather than storing passwords in plain text.\n  password = \"SCRAM-SHA-256$4096:SZEJF5Si4QZ6l4fedrZZWQ==$6u3PWVcz+dts+NdpByPIjKa4CaSnoXGG3M2vpo76bVU=:WSZ0iGUCmVtKYVvNX0pFOp/60IgsdJ+90Y67Eun+QE0=\";\n}\n")),
                           default: nix.thunk(() => ({})),
                           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                              __proto__: pos$18,
+                              [nix.POS]: pos$18,
                               freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                                     nix.thunk(() => nix.sel(types, "str")),
                                     nix.thunk(() => nix.sel(types, "int")),
@@ -296,13 +296,13 @@ touch $out
               example: nix.thunk(() => nix.app(literalExpression, "[\n  {\n    name = \"nextcloud\";\n  }\n  {\n    name = \"superuser\";\n    ensureDBOwnership = true;\n  }\n]\n")),
             })))),
           enableTCPIP: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Whether PostgreSQL should listen on all network interfaces.\nIf disabled, the database can only be accessed via its Unix\ndomain socket or via TCP connections to localhost.\n",
             })))),
           extensions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")))), (path) => (_ignorePg) => nix.force(path), nix.thunk(() => nix.app(nix.lookup(w, "functionTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")))))));
@@ -312,11 +312,11 @@ touch $out
               description: "List of PostgreSQL extensions to install.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.lookup(w, "bool")),
                           nix.thunk(() => nix.lookup(w, "float")),
@@ -324,23 +324,23 @@ touch $out
                           nix.thunk(() => nix.lookup(w, "str")),
                         ]))))),
                     options: nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       shared_preload_libraries: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))), nix.thunk(() => nix.app(concatStringsSep, ",")), nix.thunk(() => nix.lookup(w, "commas")))))),
                           default: null,
                           example: nix.thunk(() => nix.app(literalExpression, "[ \"auto_explain\" \"anon\" ]")),
                           description: "List of libraries to be preloaded.\n",
                         })))),
                       log_line_prefix: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$26,
+                          [nix.POS]: pos$26,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "[%p] ",
                           example: "%m [%p] ",
                           description: "A printf-style string that is output at the beginning of each log line.\nUpstream default is `'%m [%p] '`, i.e. it includes the timestamp. We do\nnot include the timestamp, because journal has it anyway.\n",
                         })))),
                       port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 5432n,
                           description: "The port on which PostgreSQL listens.\n",
@@ -353,7 +353,7 @@ touch $out
               example: nix.thunk(() => nix.app(literalExpression, "{\n  log_connections = true;\n  log_statement = \"all\";\n  logging_collector = true;\n  log_disconnections = true;\n  log_destination = lib.mkForce \"syslog\";\n}\n")),
             })))),
           superUser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "postgres",
               internal: true,
@@ -364,7 +364,7 @@ touch $out
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$62,
+        [nix.POS]: pos$62,
         warnings: nix.thunk(() => (() => {
           const unstableState = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "beta", nix.thunk(() => nix.sel(cfg, "package", "version")))) ? "in beta" : (nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "rc", nix.thunk(() => nix.sel(cfg, "package", "version")))) ? "a release candidate" : null)));
           return nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(unstableState, null)), nix.thunk(() => nix.str`PostgreSQL ${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(cfg, "package", "version")))} is currently ${unstableState}, and is not advised for use in production environments.`));
@@ -374,7 +374,7 @@ touch $out
             const name = nix.arg($_1, "name");
             const ensureDBOwnership = nix.arg($_1, "ensureDBOwnership");
             return {
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               assertion: nix.thunk(() => (!nix.asBool(ensureDBOwnership) || nix.asBool(nix.app(elem, name, nix.thunk(() => nix.sel(cfg, "ensureDatabases")))))),
               message: nix.thunk(() => nix.str`For each database user defined with \`services.postgresql.ensureUsers\` and
 \`ensureDBOwnership = true;\`, a database with the same name must be defined
@@ -385,11 +385,11 @@ Offender: ${name} has not been found among databases.
             };
           })(), formals$3), nix.thunk(() => nix.sel(cfg, "ensureUsers")))),
         services: nix.thunk(() => ({
-          __proto__: pos$40,
+          [nix.POS]: pos$40,
           postgresql: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             settings: nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               hba_file: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "pg_hba.conf", nix.thunk(() => nix.sel(cfg, "authentication")))}`),
               ident_file: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "pg_ident.conf", nix.thunk(() => nix.sel(cfg, "identMap")))}`),
               log_destination: "stderr",
@@ -416,21 +416,21 @@ See also https://endoflife.date/postgresql
             identMap: nix.thunk(() => nix.app(mkAfter, "postgres postgres postgres\n")),
             systemCallFilter: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(const$, mkDefault)), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     "@system-service": true,
                     "~@privileged": true,
                     "~@resources": true,
                   })))),
-                nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(any, extensionInstalled, nix.thunk(() => ["citus"]))), nix.thunk(() => ({ __proto__: pos$38, getpriority: true, setpriority: true })))),
+                nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(any, extensionInstalled, nix.thunk(() => ["citus"]))), nix.thunk(() => ({ [nix.POS]: pos$38, getpriority: true, setpriority: true })))),
               ]))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           users: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             postgres: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               name: "postgres",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "postgres")),
               group: "postgres",
@@ -440,42 +440,42 @@ See also https://endoflife.date/postgresql
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             postgres: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "postgres")),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
           pathsToLink: nix.thunk(() => ["/share/postgresql"]),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           checks: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "checkConfig")) && nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform"), nix.sel(pkgs, "stdenv", "buildPlatform"))))), configFileCheck), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "ensureUsers"), [])) && nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform"), nix.sel(pkgs, "stdenv", "buildPlatform"))))), validateUserClauses))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$61,
+          [nix.POS]: pos$61,
           targets: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               description: "PostgreSQL",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requires: nix.thunk(() => ["postgresql.service", "postgresql-setup.service"]),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             postgresql: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               description: "PostgreSQL Server",
               after: nix.thunk(() => ["network.target"]),
               wants: nix.thunk(() => ["postgresql.target"]),
               partOf: nix.thunk(() => ["postgresql.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$50, PGDATA: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$50, PGDATA: nix.thunk(() => nix.sel(cfg, "dataDir")) })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
               preStart: nix.thunk(() => nix.str`if ! test -e ${nix.sel(cfg, "dataDir")}/PG_VERSION; then
   # Cleanup the data directory.
@@ -492,7 +492,7 @@ ln -sfn "${configFile}/postgresql.conf" "${nix.sel(cfg, "dataDir")}/postgresql.c
 `),
               serviceConfig: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
                     User: "postgres",
                     Group: "postgres",
@@ -528,7 +528,7 @@ ln -sfn "${configFile}/postgresql.conf" "${nix.sel(cfg, "dataDir")}/postgresql.c
                     RestrictSUIDSGID: true,
                     SystemCallArchitectures: "native",
                     SystemCallFilter: nix.thunk(() => nix.app(pipe, nix.thunk(() => nix.sel(cfg, "systemCallFilter")), nix.thunk(() => [
-                        nix.thunk(() => nix.app(mapAttrsToList, (name) => (v) => nix.update(v, { __proto__: pos$51, name: name }))),
+                        nix.thunk(() => nix.app(mapAttrsToList, (name) => (v) => nix.update(v, { [nix.POS]: pos$51, name: name }))),
                         nix.thunk(() => nix.app(filter, nix.thunk(() => nix.app(getAttr, "enable")))),
                         sortProperties,
                         nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.app(getAttr, "name")))),
@@ -536,11 +536,11 @@ ln -sfn "${configFile}/postgresql.conf" "${nix.sel(cfg, "dataDir")}/postgresql.c
                     UMask: nix.thunk(() => (nix.asBool(groupAccessAvailable) ? "0027" : "0077")),
                   })),
                   nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "dataDir"), nix.str`/var/lib/postgresql/${nix.sel(cfg, "package", "psqlSchema")}`)), nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       ReadWritePaths: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
                     })))),
                   nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), nix.str`/var/lib/postgresql/${nix.sel(cfg, "package", "psqlSchema")}`)), nix.thunk(() => ({
-                      __proto__: pos$54,
+                      [nix.POS]: pos$54,
                       StateDirectory: nix.thunk(() => nix.str`postgresql postgresql/${nix.sel(cfg, "package", "psqlSchema")}`),
                       StateDirectoryMode: nix.thunk(() => (nix.asBool(groupAccessAvailable) ? "0750" : "0700")),
                     })))),
@@ -551,7 +551,7 @@ ln -sfn "${configFile}/postgresql.conf" "${nix.sel(cfg, "dataDir")}/postgresql.c
                 const maxTries = 5n;
                 const bufferSec = 5n;
                 return {
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   RequiresMountsFor: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}`),
                   StartLimitIntervalSec: nix.thunk(() => nix.add(nix.mul(TimeoutSec, maxTries), bufferSec)),
                   StartLimitBurst: maxTries,
@@ -559,12 +559,12 @@ ln -sfn "${configFile}/postgresql.conf" "${nix.sel(cfg, "dataDir")}/postgresql.c
               })()),
             })),
             "postgresql-setup": nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               description: "PostgreSQL Setup Scripts",
               requires: nix.thunk(() => ["postgresql.service"]),
               after: nix.thunk(() => ["postgresql.service"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 User: "postgres",
                 Group: "postgres",
                 Type: "oneshot",
@@ -572,7 +572,7 @@ ln -sfn "${configFile}/postgresql.conf" "${nix.sel(cfg, "dataDir")}/postgresql.c
               })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "finalPackage"))]),
               environment: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 PGPORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "port")))),
               })),
               script: nix.thunk(() => nix.add(nix.add(nix.str`# If we're in standby mode, don't perform any setup
@@ -608,7 +608,7 @@ fi
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       doc: nix.path(here, "./postgresql.md"),
       maintainers: nix.thunk(() => nix.sel(pkgs, "postgresql", "meta", "maintainers")),
     })),

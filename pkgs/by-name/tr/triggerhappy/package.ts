@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "triggerhappy",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wertarbyte",
           repo: "triggerhappy",
           rev: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "BINDIR=$(out)/bin"]),
       postInstall: "install -D -m 644 -t \"$out/etc/triggerhappy/triggers.d\" \"triggerhappy.conf.examples\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight hotkey daemon",
         longDescription: "Triggerhappy is a hotkey daemon developed with small and embedded systems in\nmind, e.g. linux based routers. It attaches to the input device files and\ninterprets the event data received and executes scripts configured in its\nconfiguration.\n",
         homepage: "https://github.com/wertarbyte/triggerhappy/",

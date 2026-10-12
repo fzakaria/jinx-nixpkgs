@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const symlinkJoin = nix.arg($, "symlinkJoin");
   return (final) => (prev) => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     corePlugins: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "core-vim-plugins",
         version: "0",
         paths: nix.thunk(() => (() => {
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "Collection of popular vim plugins (for internal testing purposes)",
         })),
       })))),

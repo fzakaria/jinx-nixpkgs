@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const linkFarm = nix.arg($, "linkFarm");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["derivationArgs", "selector"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -30,23 +30,23 @@ export default nix.lambda((args) => (() => {
         const plugins = nix.thunk(() => nix.app(selector, packerPlugins));
         const pluginFarm = nix.thunk(() => nix.app(linkFarm, "packer-plugins", nix.thunk(() => nix.builtins.concatMap((p) => [
               nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 name: nix.thunk(() => nix.sel(p, "pluginPath")),
                 path: nix.thunk(() => nix.str`${p}/bin/${nix.sel(p, "meta", "mainProgram")}`),
               })),
               nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 name: nix.thunk(() => nix.str`${nix.sel(p, "pluginPath")}_SHA256SUM`),
                 path: nix.thunk(() => nix.str`${p}/bin/${nix.sel(p, "meta", "mainProgram")}_SHA256SUM`),
               })),
             ], plugins))));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: name,
           nativeBuildInputs: nativeBuildInputs,
           __structuredAttrs: true,
           strictDeps: true,
-          meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "packer" })),
+          meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "packer" })),
           dontUnpack: true,
           buildCommand: nix.thunk(() => nix.str`makeWrapper "${packer}/bin/packer" "$out/bin/packer" \\
   --set PACKER_PLUGIN_PATH "${pluginFarm}"

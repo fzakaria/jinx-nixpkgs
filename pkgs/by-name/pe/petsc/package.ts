@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withHypre) || nix.asBool(mpiSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pe/petsc/package.nix:72:1");
   nix.assert_((!nix.asBool(withSuperLuDist) || nix.asBool(mpiSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pe/petsc/package.nix:73:1");
   const petscPackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mpi: mpi,
       python3Packages: python3Packages,
       mpiSupport: mpiSupport,
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       blas: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(blas, "override")), nix.thunk(() => ({})))),
       lapack: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(lapack, "override")), nix.thunk(() => ({})))),
       hdf5: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(hdf5, "override")), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fortran: gfortran,
           cppSupport: nix.thunk(() => !nix.asBool(mpiSupport)),
         })))),
@@ -107,11 +107,11 @@ export default nix.lambda((args) => (() => {
       suitesparse: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(suitesparse, "override")), nix.thunk(() => ({})))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "petsc",
       version: "3.25.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-atNPjeL59fJqPMJ4LVS2goh1riyA3ewwMynUA+YPVd4=",
         })))),
@@ -181,26 +181,26 @@ substituteInPlace config/BuildSystem/config/packages/petsc4py.py \\
       unittestFlagsArray: nix.thunk(() => ["-s", "src/binding/petsc4py/test", "-v"]),
       pythonImportsCheck: nix.thunk(() => ["petsc4py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         mpiSupport: mpiSupport,
         pythonSupport: pythonSupport,
         fortranSupport: fortranSupport,
         petscPackages: nix.thunk(() => nix.app(nix.sel(petscPackages, "overrideScope"), (final) => (prev) => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             petsc: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           }))),
         tests: nix.thunk(() => nix.update({
-          __proto__: pos$6,
-          serial: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ __proto__: pos$5, mpiSupport: false })))),
+          [nix.POS]: pos$6,
+          serial: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, mpiSupport: false })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$9,
-            fullDeps: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ __proto__: pos$7, withFullDeps: true, withParmetis: false })))),
-            mpich: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ __proto__: pos$8, mpi: mpich })))),
+            [nix.POS]: pos$9,
+            fullDeps: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, withFullDeps: true, withParmetis: false })))),
+            mpich: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, mpi: mpich })))),
           }))))),
       })),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Portable Extensible Toolkit for Scientific computation",
         homepage: "https://petsc.org/release/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

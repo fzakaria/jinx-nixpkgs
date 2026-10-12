@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-z68HBsU9J6oe8+YL4OOQiMYQRs3TZUDM+e2ssqo6BFI=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "numpy-v2-compat.patch",
             url: "https://github.com/portugueslab/flammkuchen/commit/c523ea78e10facd98d4893f045249c68bae17940.patch?full_index=1",
             hash: "sha256-/goNkiEBrcprywQYf2oKvGbu5j12hmalPuB45wNNt+I=",
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, scipy, tables]);
       const nativeCheckInputs = nix.thunk(() => [pandas, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/portugueslab/flammkuchen",
         description: "Flexible HDF5 saving/loading library forked from deepdish (University of Chicago) and maintained by the Portugues lab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

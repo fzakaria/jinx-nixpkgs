@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "bundix";
       const version = "2.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nix-community",
           repo: "bundix",
           tag: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
             --set GEM_PATH "${bundler}/${nix.sel(bundler, "ruby", "gemPath")}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Creates Nix packages from Gemfiles",
         longDescription: "This is a tool that converts Gemfile.lock files to nix expressions.\n\nThe output is then usable by the bundlerEnv derivation to list all the\ndependencies of a ruby package.\n",
         homepage: "https://github.com/nix-community/bundix",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ruby,
         name,
         gemName,

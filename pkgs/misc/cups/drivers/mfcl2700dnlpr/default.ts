@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl2700dnlpr";
       const version = "3.2.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102085/${pname}-${version}.i386.deb`),
           sha256: "170qdzxlqikzvv2wphvfb37m19mn13az4aj88md87ka3rl5knk4m",
         }))));
@@ -48,7 +48,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/brprintconflsr3
 patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother MFC-L2700DN LPR driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -60,7 +60,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
         platforms: nix.thunk(() => ["i686-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

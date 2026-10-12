@@ -33,62 +33,62 @@ const pos$28 = nix.positions(here + "/initrd.nix", [["name", 14, 3], ["nodes", 1
 
 export default nix.thunk(() => (() => {
   const mkIfStateConfig = (id) => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     enable: true,
     settings: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       interfaces: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         eth1: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           addresses: nix.thunk(() => [nix.thunk(() => nix.str`2001:0db8::${nix.builtins.toString(id)}/64`)]),
-          link: nix.thunk(() => ({ __proto__: pos$1, state: "up", kind: "physical" })),
+          link: nix.thunk(() => ({ [nix.POS]: pos$1, state: "up", kind: "physical" })),
         })),
       })),
     })),
   });
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     name: "ifstate-initrd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       server: nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$8,
-          interfaces: nix.thunk(() => ({ __proto__: pos$7, eth1: nix.thunk(() => ({ __proto__: pos$6, vlan: 1n })) })),
+          [nix.POS]: pos$8,
+          interfaces: nix.thunk(() => ({ [nix.POS]: pos$7, eth1: nix.thunk(() => ({ [nix.POS]: pos$6, vlan: 1n })) })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           ifstate: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: true,
-            settings: nix.thunk(() => ({ __proto__: pos$9, interfaces: nix.thunk(() => ({})) })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$9, interfaces: nix.thunk(() => ({})) })),
           })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           initrd: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             kernelModules: nix.thunk(() => ["virtio_net"]),
             network: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               enable: true,
-              ifstate: nix.thunk(() => nix.update(nix.app(mkIfStateConfig, 1n), { __proto__: pos$12, allowIfstateToDrasticlyIncreaseInitrdSize: true })),
+              ifstate: nix.thunk(() => nix.update(nix.app(mkIfStateConfig, 1n), { [nix.POS]: pos$12, allowIfstateToDrasticlyIncreaseInitrdSize: true })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
-              network: nix.thunk(() => ({ __proto__: pos$14, enable: false })),
+              network: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
               services: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 "boot-blocker": nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   before: nix.thunk(() => ["initrd.target"]),
                   wantedBy: nix.thunk(() => ["initrd.target"]),
                   script: "sleep infinity",
-                  serviceConfig: nix.thunk(() => ({ __proto__: pos$15, Type: "oneshot" })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Type: "oneshot" })),
                 })),
               })),
             })),
@@ -96,13 +96,13 @@ export default nix.thunk(() => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$24,
-          interfaces: nix.thunk(() => ({ __proto__: pos$23, eth1: nix.thunk(() => ({ __proto__: pos$22, vlan: 1n })) })),
+          [nix.POS]: pos$24,
+          interfaces: nix.thunk(() => ({ [nix.POS]: pos$23, eth1: nix.thunk(() => ({ [nix.POS]: pos$22, vlan: 1n })) })),
         })),
-        networking: nix.thunk(() => ({ __proto__: pos$25, ifstate: nix.thunk(() => nix.app(mkIfStateConfig, 2n)) })),
+        networking: nix.thunk(() => ({ [nix.POS]: pos$25, ifstate: nix.thunk(() => nix.app(mkIfStateConfig, 2n)) })),
       })),
     })),
     testScript: "start_all()\nclient.wait_for_unit(\"network.target\")\n\n# try to ping the server from the client\nclient.wait_until_succeeds(\"ping -c 1 2001:0db8::1\")\n",

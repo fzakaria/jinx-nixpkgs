@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/pysolfc/PySolFC-${version}.tar.xz`),
           hash: "sha256-jijrrWhj80n/XFKMFLptDZCsclIhdJHiTrX6CGjVju8=",
         }))));
@@ -39,13 +39,13 @@ export default nix.lambda((args) => (() => {
           const pname_1 = "pysol-cardsets";
           const version_1 = "3.1";
           const src_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`mirror://sourceforge/pysolfc/PySolFC-Cardsets-${version_1}.tar.bz2`),
               hash: "sha256-NyCnMlMZ6d5+IiyG4cVn/zlDlArLJSs0dIqZiD7Nv4M=",
             }))));
           const installPhase = "runHook preInstall\ncp -r $src $out\nrunHook postInstall\n";
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname_1,
             version: version_1,
             src: src_1,
@@ -56,13 +56,13 @@ export default nix.lambda((args) => (() => {
           const pname_1 = "pysol-music";
           const version_1 = "4.50";
           const src_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               url: nix.thunk(() => nix.str`mirror://sourceforge/pysolfc/pysol-music-${version_1}.tar.xz`),
               hash: "sha256-sOl5U98aIorrQHJRy34s0HHaSW8hMUE7q84FMQAj5Yg=",
             }))));
           const installPhase = "runHook preInstall\ncp -r $src $out\nrunHook postInstall\n";
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pname: pname_1,
             version: version_1,
             src: src_1,
@@ -90,27 +90,27 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir $out/share/PySolFC/cardsets\ncp -r $cardsets/* $out/share/PySolFC/cardsets\ncp -r $music/data/music $out/share/PySolFC\n";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => nix.builtins.map((updater) => nix.sel(updater, "command"), nix.thunk(() => [
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   url: "https://github.com/shlomif/PySolFC.git",
                   "rev-prefix": "pysolfc-",
                 })))),
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   url: "https://github.com/shlomif/PySolFC-CardSets.git",
                   attrPath: "pysolfc.cardsets",
                 })))),
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   url: "https://github.com/shlomif/pysol-music.git",
                   attrPath: "pysolfc.music",
                 })))),
             ]))))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: "Collection of more than 1000 solitaire card games",
         mainProgram: "pysol.py",
         homepage: "https://pysolfc.sourceforge.io",
@@ -118,7 +118,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname,
         version,
         format,

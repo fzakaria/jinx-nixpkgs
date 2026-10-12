@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "filebrowser_safe",
           version: version,
           sha256: "499c5dbd9e112dfc436cae7713b2fb664a59015021f6c9d131e3b7980aeb5c94",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [django]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Snapshot of django-filebrowser for the Mezzanine CMS",
         longDescription: "filebrowser-safe was created to provide a snapshot of the\nFileBrowser asset manager for Django, to be referenced as a\ndependency for the Mezzanine CMS for Django.\n",
         homepage: "https://github.com/stephenmcd/filebrowser-safe",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, buildInputs, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

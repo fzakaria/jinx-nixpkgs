@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.19.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PetterS",
           repo: "quickjs",
           tag: version,
@@ -45,7 +45,7 @@ ln -s ${nix.app(srcOnly, quickjs)} upstream-quickjs
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["quickjs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper around the quickjs C library",
         homepage: "https://github.com/PetterS/quickjs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +55,7 @@ ln -s ${nix.app(srcOnly, quickjs)} upstream-quickjs
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

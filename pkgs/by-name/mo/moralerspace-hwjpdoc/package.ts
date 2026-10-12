@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const moralerspace = nix.arg($, "moralerspace");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "moralerspace-hwjpdoc",
       version: nix.thunk(() => nix.attr(moralerspace, "version")),
       meta: nix.thunk(() => nix.attr(moralerspace, "meta")),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/yuru7/moralerspace/releases/download/v${nix.sel(finalAttrs, "version")}/MoralerspaceHWJPDOC_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-t8dp+SwndHxBA5YE2TYTWP6x3MgczbMXQ6oNvMD0ycU=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/moralerspace-hwjpdoc\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.attr(moralerspace, "updateScript")),
       })),
     }));

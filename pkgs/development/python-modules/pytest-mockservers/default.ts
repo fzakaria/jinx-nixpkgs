@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Gr1N",
           repo: "pytest-mockservers",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "use-poetry-core.patch",
             url: "https://github.com/Gr1N/pytest-mockservers/commit/c7731186a4e12851ab1c15ab56e652bb48ed59c4.patch",
             hash: "sha256-/5X3xjJwt2gs3t6f/6n1QZ+CTBq/5+cQE+MgNWyz+Hs=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_udp_server_factory"]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_mockservers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of fixtures to test your requests to HTTP/UDP servers",
         homepage: "https://github.com/Gr1N/pytest-mockservers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

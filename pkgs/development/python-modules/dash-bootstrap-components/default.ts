@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "dash_bootstrap_components",
           hash: "sha256-wyBsCSN3S7xqbdqngiuNmqUyaw08HnzXlcyXUCX+JIQ=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dash_bootstrap_components"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bootstrap components for Plotly Dash",
         homepage: "https://github.com/facultyai/dash-bootstrap-components",
         changelog: nix.thunk(() => nix.str`https://github.com/facultyai/dash-bootstrap-components/releases/tag/${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

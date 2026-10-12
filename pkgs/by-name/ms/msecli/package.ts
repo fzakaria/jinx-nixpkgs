@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pname = "msecli";
   const version = "10.01.012024.00";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://web.archive.org/web/20240916144249/https://www.micron.com/content/dam/micron/global/public/products/software/storage-executive-software/msecli/msecli-linux.run",
       hash: "sha256-IszdD/9fAh+JA26bSR1roXSo8LDU/rf4CuRI3HjU1xc=",
     }))));
-  const buildEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ __proto__: pos$2, pname: "msecli-buildEnv", version: version }))));
+  const buildEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ [nix.POS]: pos$2, pname: "msecli-buildEnv", version: version }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -48,7 +48,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp -v bin/msecli $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Micron Storage Executive CLI",
         homepage: "https://www.micron.com/sales-support/downloads/software-drivers/storage-executive-software",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

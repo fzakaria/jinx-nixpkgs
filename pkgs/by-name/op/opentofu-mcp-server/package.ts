@@ -22,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "opentofu-mcp-server",
       version: "1.0.0-unstable-2026-09-04",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "opentofu",
           repo: "opentofu-mcp-server",
           rev: "2ab816e75f0176fc764b67b12c9fd61cadd45d3b",
           hash: "sha256-sar4OB4FS47zzfF2zn5sWsSDWavWCDRzCAnCQnRtpzI=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,11 +54,11 @@ makeWrapper ${nodejs}/bin/node $out/bin/opentofu-mcp-server \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "OpenTofu MCP server for accessing the OpenTofu Registry",
         homepage: "https://github.com/opentofu/opentofu-mcp-server",
         changelog: "https://github.com/opentofu/opentofu-mcp-server/commits/main",

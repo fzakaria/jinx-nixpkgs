@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "garnet";
       const version = "2.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "garnet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "sdk_8_0")),
             ])));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           packages: nix.thunk(() => nix.attr(from, "packages")),
           targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
         };
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       const dotnetBuildFlags = nix.thunk(() => ["-f", "net10.0"]);
       const dotnetInstallFlags = dotnetBuildFlags;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Remote cache-store from Microsoft Research",
         longDescription: "A remote cache-store that offers strong performance, scalability,\nstorage, recovery, cluster sharding, key migration, replication features,\nand compatibility with existing Redis clients\n",
         homepage: "https://microsoft.github.io/garnet/",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "GarnetServer",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

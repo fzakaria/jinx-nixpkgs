@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [zlib])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rustup",
       version: "1.29.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rust-lang",
           repo: "rustup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       checkFeatures: nix.thunk(() => ["test"]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(runCommand, "0001-dynamically-patchelf-binaries.patch", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               CC: nix.thunk(() => nix.sel(stdenv, "cc")),
               patchelf: patchelf,
               libPath: nix.thunk(() => nix.str`${libPath}`),
@@ -113,7 +113,7 @@ chmod +x $out/nix-support/ld-wrapper.sh
       env: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "cc", "bintools"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         expandResponseParams: nix.thunk(() => nix.attr(from, "expandResponseParams")),
         shell: nix.thunk(() => nix.attr(from, "shell")),
         suffixSalt: nix.thunk(() => nix.attr(from, "suffixSalt")),
@@ -123,7 +123,7 @@ chmod +x $out/nix-support/ld-wrapper.sh
       };
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Rust toolchain installer",
         homepage: "https://www.rustup.rs/",
         changelog: nix.thunk(() => nix.str`https://github.com/rust-lang/rustup/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

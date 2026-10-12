@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "deadbeef",
       version: "1.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DeaDBeeF-Player",
           repo: "deadbeef",
           fetchSubmodules: true,
@@ -79,14 +79,14 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => nix.concat([
         jansson,
-        nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ __proto__: pos$2, useSwift: false })))),
+        nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useSwift: false })))),
         gtk3,
         gsettings_desktop_schemas,
       ], nix.concat(nix.app(optionals, vorbisSupport, nix.thunk(() => [libvorbis])), nix.concat(nix.app(optionals, mp123Support, nix.thunk(() => [libmad])), nix.concat(nix.app(optionals, flacSupport, nix.thunk(() => [flac])), nix.concat(nix.app(optionals, wavSupport, nix.thunk(() => [libsndfile])), nix.concat(nix.app(optionals, cdaSupport, nix.thunk(() => [libcdio, libcddb])), nix.concat(nix.app(optionals, aacSupport, nix.thunk(() => [faad2])), nix.concat(nix.app(optionals, opusSupport, nix.thunk(() => [opusfile])), nix.concat(nix.app(optionals, zipSupport, nix.thunk(() => [libzip])), nix.concat(nix.app(optionals, ffmpegSupport, nix.thunk(() => [ffmpeg])), nix.concat(nix.app(optionals, apeSupport, nix.thunk(() => [yasm])), nix.concat(nix.app(optionals, artworkSupport, nix.thunk(() => [imlib2])), nix.concat(nix.app(optionals, hotkeysSupport, nix.thunk(() => [libx11])), nix.concat(nix.app(optionals, osdSupport, nix.thunk(() => [dbus])), nix.concat(nix.app(optionals, alsaSupport, nix.thunk(() => [alsa_lib])), nix.concat(nix.app(optionals, pulseSupport, nix.thunk(() => [libpulseaudio])), nix.concat(nix.app(optionals, pipewireSupport, nix.thunk(() => [pipewire])), nix.concat(nix.app(optionals, resamplerSupport, nix.thunk(() => [libsamplerate])), nix.concat(nix.app(optionals, overloadSupport, nix.thunk(() => [zlib])), nix.concat(nix.app(optionals, wavpackSupport, nix.thunk(() => [wavpack])), nix.app(optionals, remoteSupport, nix.thunk(() => [curl]))))))))))))))))))))))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, intltool, libtool, pkg_config, wrapGAppsHook3]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ultimate Music Player for GNU/Linux",
         mainProgram: "deadbeef",
         homepage: "http://deadbeef.sourceforge.net/",

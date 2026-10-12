@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const bridgeVersion = "1.0.45-rc1";
   const bridge = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => (() => {
         const platformDir = nix.thunk(() => nix.selOr({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           "x86_64-linux": "linux_x86_64",
           "aarch64-linux": "linux_arm64",
           "aarch64-darwin": "macos_arm64",
@@ -48,18 +48,18 @@ export default nix.lambda((args) => (() => {
         return nix.str`https://nexa-model-hub-bucket.s3.us-west-1.amazonaws.com/public/nexasdk/v${bridgeVersion}/${platformDir}/nexasdk-bridge.zip`;
       })()),
       hash: nix.thunk(() => nix.selOr({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "x86_64-linux": "sha256-bvULCeGXNd8Alu7V32M5Me23Rh6of6L7hdPYrkOlxB0=",
         "aarch64-linux": "sha256-KaHNmq776FtE4tF8jROV43QIyUNaYz/V1kkgMwwjcBo=",
         "aarch64-darwin": "sha256-QVh5HutaB/BfCYRgwXdtMVWtDcYzfL9N9qW2GhcK2aY=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nexa",
       version: "0.2.73",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "qualcomm",
           repo: "GenieX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/nexa-cli", "cmd/nexa-launcher"]),
       preBuild: nix.thunk(() => nix.str`unzip ${bridge} -d build
 `),
-      env: nix.thunk(() => ({ __proto__: pos$5, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: "1" })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -141,7 +141,7 @@ if [[ -n "$remaining" ]]; then
 fi
 `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Nexa AI SDK CLI for model management, inference, and server operations",
         homepage: "https://github.com/qualcomm/GenieX",
         changelog: nix.thunk(() => nix.str`https://github.com/qualcomm/GenieX/releases/tag/v${nix.sel(finalAttrs, "version")}`),

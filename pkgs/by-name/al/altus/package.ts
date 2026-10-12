@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const pname = "altus";
   const version = "5.8.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`altus-${version}.AppImage`),
       url: nix.thunk(() => nix.str`https://github.com/amanharwara/altus/releases/download/${version}/Altus-${version}.AppImage`),
       hash: "sha256-FSyXs9thTQ5T5bvCfg/+QXBZMIOyoijAw0dUsvLRGH8=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -37,7 +37,7 @@ wrapProgram "$out/bin/altus" \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client for WhatsApp Web with themes, notifications and multiple accounts support",
         homepage: "https://github.com/amanharwara/altus",
         changelog: nix.thunk(() => nix.str`https://github.com/amanharwara/altus/releases/tag/v${version}`),

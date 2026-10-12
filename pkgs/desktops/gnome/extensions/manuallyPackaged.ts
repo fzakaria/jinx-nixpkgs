@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "arcmenu@arcmenu.com": nix.thunk(() => nix.app(callPackage, nix.path(here, "./arcmenu"), nix.thunk(() => ({})))),
     "argos@pew.worldwidemann.com": nix.thunk(() => nix.app(callPackage, nix.path(here, "./argos"), nix.thunk(() => ({})))),
     "EasyScreenCast@iacopodeenosee.gmail.com": nix.thunk(() => nix.app(callPackage, nix.path(here, "./EasyScreenCast"), nix.thunk(() => ({})))),

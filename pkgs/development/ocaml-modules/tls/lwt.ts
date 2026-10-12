@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const mirage_crypto_rng = nix.arg($, "mirage-crypto-rng");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "tls-lwt",
       src: nix.thunk(() => nix.attr(tls, "src")),
       meta: nix.thunk(() => nix.attr(tls, "meta")),

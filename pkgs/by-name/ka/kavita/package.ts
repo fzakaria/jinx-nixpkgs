@@ -21,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "kavita",
       version: "0.9.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kareadita",
           repo: "kavita",
           rev: "d77d956b9551227d8be2ee488b08f14aa3a341e5",
           hash: "sha256-f0qGURiegUypD0XKZi43vJbA4KQ8OjZ6kWYg8fh1rPU=",
         })))),
       backend: nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "kavita-backend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,7 +48,7 @@ substituteInPlace Kavita.Server/Startup.cs Kavita.Services/LocalizationService.c
           "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_10_0")),
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "kavita-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,12 +61,12 @@ substituteInPlace Kavita.Server/Startup.cs Kavita.Services/LocalizationService.c
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/lib/kavita\nln -s $backend/lib/kavita-backend $out/lib/kavita/backend\nln -s $frontend/lib/node_modules/kavita-webui/dist $out/lib/kavita/frontend\nln -s $backend/bin/Kavita.Server $out/bin/kavita\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, kavita: nix.thunk(() => nix.attr(nixosTests, "kavita")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, kavita: nix.thunk(() => nix.attr(nixosTests, "kavita")) })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Fast, feature rich, cross platform reading server",
         homepage: "https://kavitareader.com",
         changelog: nix.thunk(() => nix.str`https://github.com/kareadita/kavita/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

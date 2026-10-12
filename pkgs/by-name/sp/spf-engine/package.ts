@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spf-engine",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://launchpad.net/spf-engine/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/${nix.sel(finalAttrs, "version")}/+download/spf-engine-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HUuMxYFCqItLFgMSnrkwfmJWqgFGyI1RWgmljb+jkWk=",
         })))),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["spf_engine", "spf_engine.milter_spf", "spf_engine.policyd_spf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://launchpad.net/spf-engine/",
         description: "Postfix policy engine for Sender Policy Framework (SPF) checking",
         maintainers: [],

@@ -54,43 +54,43 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     name: "db-rest",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marie"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       database: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         networking: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             eth1: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$2, address: "192.168.2.10", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.2.10", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ __proto__: pos$6, allowedTCPPorts: nix.thunk(() => [31638n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [31638n]) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           redis: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             servers: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "db-rest": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 bind: "0.0.0.0",
                 requirePass: "choochoo",
@@ -104,38 +104,38 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           environment: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             etc: nix.thunk(() => ({
-              __proto__: pos$14,
-              "db-rest/password-redis-db": nix.thunk(() => ({ __proto__: pos$13, text: "choochoo\n" })),
+              [nix.POS]: pos$14,
+              "db-rest/password-redis-db": nix.thunk(() => ({ [nix.POS]: pos$13, text: "choochoo\n" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               eth1: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$16, address: "192.168.2.11", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$16, address: "192.168.2.11", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$20, allowedTCPPorts: nix.thunk(() => [3000n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$20, allowedTCPPorts: nix.thunk(() => [3000n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             "db-rest": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               enable: true,
               host: "0.0.0.0",
               redis: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 enable: true,
                 createLocally: false,
                 host: "192.168.2.10",
@@ -151,50 +151,50 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           networking: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               eth1: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$26, address: "192.168.2.12", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$26, address: "192.168.2.12", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$30, allowedTCPPorts: nix.thunk(() => [3000n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$30, allowedTCPPorts: nix.thunk(() => [3000n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             "db-rest": nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               enable: true,
               host: "0.0.0.0",
-              redis: nix.thunk(() => ({ __proto__: pos$32, enable: true, createLocally: true })),
+              redis: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true, createLocally: true })),
             })),
           })),
         };
       })(), formals$3),
       client: nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         environment: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           interfaces: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             eth1: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               ipv4: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$37, address: "192.168.2.13", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: pos$37, address: "192.168.2.13", prefixLength: 24n })),
                 ]),
               })),
             })),

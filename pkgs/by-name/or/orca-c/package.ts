@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const portmidi = nix.arg($, "portmidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "orca-c",
       version: "unstable-2021-02-13",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.sr.ht/~rabbits/orca",
           rev: "5ba56ca67baae3db140f8b7a2b2fc46bbac5602f",
           sha256: "sha256-bbIH0kyHRTcMGXV3WdBQIH1br0FyIzKKL88wqpGZ0NY=",
@@ -32,7 +32,7 @@ sed -i tool \\
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall build/orca $out/bin/orca\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Esoteric programming language designed to quickly create procedural sequencers",
         homepage: "https://git.sr.ht/~rabbits/orca",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

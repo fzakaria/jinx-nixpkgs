@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const buildCLAP = nix.argOr($, "buildCLAP", () => true);
   const buildStandalone = nix.argOr($, "buildStandalone", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "surge-xt",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "surge-synthesizer",
           repo: "surge",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "passthru", "rev-prefix")}${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./clap-option.diff")]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers",
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
@@ -69,18 +69,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SURGE_BUILD_CLAP", buildCLAP)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "rev-prefix": "release_xt_",
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru"));
             return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "rev-prefix": nix.thunk(() => nix.attr(from, "rev-prefix")),
           };
           })()))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "LV2, VST3 & CLAP synthesizer plug-in (previously released as Vember Audio Surge)",
         homepage: "https://surge-synthesizer.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const vendorHash_1 = vendorHash;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "linkerd",
             repo: "linkerd2",
             rev: nix.thunk(() => nix.str`${channel}-${version_1}`),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
         const installCheckPhase = nix.thunk(() => nix.str`$out/bin/linkerd version --client | grep ${nix.sel(src, "rev")} > /dev/null
 `);
         const passthru = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           updateScript: nix.thunk(() => nix.add(nix.path(here, "./."), nix.str`/update-${channel}.sh`)),
         }));
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "Simple Kubernetes service mesh that improves security, observability and reliability",
           mainProgram: "linkerd",
           downloadPage: "https://github.com/linkerd/linkerd2/",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           maintainers: [],
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version: version_1,
           vendorHash: vendorHash_1,

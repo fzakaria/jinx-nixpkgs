@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   return (version) => (hashes) => (() => {
     const pname = "electron-chromedriver";
     const meta = nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       homepage: "https://www.electronjs.org/",
       description: "WebDriver server for running Selenium tests on Chrome",
       longDescription: "WebDriver is an open source tool for automated testing of webapps across\nmany browsers. It provides capabilities for navigating to web pages, user\ninput, JavaScript execution, and more. ChromeDriver is a standalone\nserver that implements the W3C WebDriver standard. This is\nan unofficial build of ChromeDriver compiled by the Electronjs\nproject.\n",
@@ -42,12 +42,12 @@ export default nix.lambda((args) => (() => {
       mainProgram: "chromedriver",
     }));
     const fetcher = (vers) => (tag) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/electron/electron/releases/download/v${vers}/chromedriver-v${vers}-${tag}.zip`),
         sha256: hash,
       })));
     const tags = nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       "x86_64-linux": "linux-x64",
       "aarch64-linux": "linux-arm64",
       "armv7l-linux": "linux-armv7l",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
     }));
     const get = (as) => (platform) => nix.selOr(as, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(platform, "system")}`)), nix.key(nix.sel(platform, "system")));
     const common = (platform) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       meta: meta,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
     });
     const linux = nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, unzip]),
       dontUnpack: true,
       dontBuild: true,
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
     }));
     const darwin = nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       nativeBuildInputs: nix.thunk(() => [unzip]),
       dontUnpack: true,
       dontBuild: true,

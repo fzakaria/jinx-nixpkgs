@@ -17,28 +17,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     name: "krill",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stepbrobd"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       machine: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         services: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           krill: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               admin_token: "krill-nixos-test",
               bgp_riswhois_enabled: false,
               testbed: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 ta_aia: "rsync://krill.test/ta/ta.cer",
                 ta_uri: "https://krill.test/ta/ta.cer",
                 rrdp_base_uri: "https://krill.test/rrdp/",

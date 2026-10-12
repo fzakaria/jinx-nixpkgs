@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "http-message-signatures",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyauth",
           repo: "http-message-signatures",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["test/test.py"]),
       pythonImportsCheck: nix.thunk(() => ["http_message_signatures"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Requests authentication module for HTTP Signature",
         homepage: "https://github.com/pyauth/http-message-signatures",
         changelog: nix.thunk(() => nix.str`https://github.com/pyauth/http-message-signatures/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

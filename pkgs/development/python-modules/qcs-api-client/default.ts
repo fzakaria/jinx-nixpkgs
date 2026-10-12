@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rigetti",
           repo: "qcs-api-client-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "switch-to-poetry-core.patch",
             url: "https://github.com/rigetti/qcs-api-client-python/commit/32f0b3c7070a65f4edf5b2552648d88435469e44.patch",
             hash: "sha256-mOc+Q/5cmwPziojtxeEMWWHSDvqvzZlNRbPtOSeTinQ=",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => !nix.asBool(nix.app(pythonAtLeast, "3.11")));
       const pythonImportsCheck = nix.thunk(() => ["qcs_api_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for accessing the Rigetti QCS API",
         homepage: "https://qcs-api-client-python.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/qcs-api-client-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

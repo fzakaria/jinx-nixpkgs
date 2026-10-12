@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libz = nix.arg($, "libz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cargo-bazel",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-KWcxZxzDbiBfBpr37M6HoqHMCYXq6sTVxU9KR3PIiJc=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-wNsGggyKL6CyldPsNADwGKm3HGfxQwjCCOdgzWcAx4g=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Part of the `crate_universe` collection of tools which use Cargo to generate build targets for Bazel",
         mainProgram: "cargo-bazel",
         homepage: "https://github.com/bazelbuild/rules_rust",

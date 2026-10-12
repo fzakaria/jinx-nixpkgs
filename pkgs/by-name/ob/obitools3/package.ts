@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obitools3",
       version: "3.0.1b11",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.metabarcoding.org/obitools/obitools3/repository/v${nix.sel(finalAttrs, "version")}/archive.tar.gz`),
           sha256: "1x7a0nrr9agg1pfgq8i1j8r1p6c0jpyxsv196ylix1dd2iivmas1",
         })))),
@@ -33,7 +33,7 @@ export NIX_CFLAGS_COMPILE="-L $out/${nix.sel(python3, "sitePackages")} $NIX_CFLA
       dontConfigure: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Management of analyses and data in DNA metabarcoding",
         mainProgram: "obi",
         homepage: "https://git.metabarcoding.org/obitools/obitools3",

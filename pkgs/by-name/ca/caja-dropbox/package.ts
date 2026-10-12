@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const dropboxd = nix.thunk(() => nix.str`${dropbox}/bin/dropbox`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "caja-dropbox",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/caja-dropbox-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "t0w4qZQlS9PPfLxxK8LsdRagypQqpleFJs29aqYgGWM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
       ]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [
@@ -54,16 +54,16 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-caja-extension-dir=$$out/lib/caja/extensions-2.0"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.mate-desktop.org/caja-dropbox",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Dropbox extension for Caja file manager",
         homepage: "https://github.com/mate-desktop/caja-dropbox",
         license: nix.thunk(() => (() => {

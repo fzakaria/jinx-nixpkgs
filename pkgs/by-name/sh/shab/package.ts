@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.0.0";
   const shab = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "shab",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zimbatm",
           repo: "shab",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       checkPhase: "./test.sh\n",
       installPhase: "mkdir -p $out/bin\ncp ./shab $out/bin/shab\n",
       installCheckPhase: "[[ \"$(echo 'Hello $entity' | entity=world $out/bin/shab)\" == 'Hello world' ]]\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, render: render, renderText: renderText })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, render: render, renderText: renderText })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bash templating language",
         mainProgram: "shab",
         homepage: "https://github.com/zimbatm/shab",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const render = (shabScript) => (parameters) => (() => {
-    const extraParams = nix.thunk(() => ({ __proto__: pos$5, shabScript: shabScript }));
+    const extraParams = nix.thunk(() => ({ [nix.POS]: pos$5, shabScript: shabScript }));
     return nix.app(runCommand, "out", nix.thunk(() => nix.update(parameters, extraParams)), nix.thunk(() => nix.str`${shab}/bin/shab "$shabScript" >$out
 `));
   })();

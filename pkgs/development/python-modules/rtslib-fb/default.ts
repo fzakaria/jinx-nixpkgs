@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-iscsi",
           repo: "rtslib-fb",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyudev]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python object API for managing the Linux LIO kernel target",
         homepage: "https://github.com/open-iscsi/rtslib-fb",
         changelog: nix.thunk(() => nix.str`https://github.com/open-iscsi/rtslib-fb/releases/tag/${nix.sel(src, "tag")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "targetctl",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

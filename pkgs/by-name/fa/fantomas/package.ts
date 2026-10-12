@@ -11,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "fantomas",
       version: "7.0.3",
       nugetHash: "sha256-0XlfV7SxXPDnk/CjkUesJSaH0cxlNHJ+Jj86zNUhkNA=",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "F# source code formatter",
         homepage: "https://github.com/fsprojects/fantomas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

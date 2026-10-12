@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const canRun = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   const lychee = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/lychee${nix.sel(stdenv, "hostPlatform", "extensions", "executable")}`);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lychee",
       version: "0.24.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lycheeverse",
           repo: "lychee",
           tag: nix.thunk(() => nix.str`lychee-v${nix.sel(finalAttrs, "version")}`),
@@ -63,9 +63,9 @@ installShellCompletion --cmd lychee \\
         "--skip=formatters::response::color::tests::test_format_response_with_ok_status",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ok: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/ok.nix"), nix.thunk(() => ({})))),
           fail: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/fail.nix"), nix.thunk(() => ({})))),
           "fail-emptyDirectory": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/fail-emptyDirectory.nix"), nix.thunk(() => ({})))),
@@ -74,7 +74,7 @@ installShellCompletion --cmd lychee \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast, async, stream-based link checker written in Rust",
         homepage: "https://github.com/lycheeverse/lychee",
         downloadPage: nix.thunk(() => nix.str`https://github.com/lycheeverse/lychee/releases/tag/lychee-v${nix.sel(finalAttrs, "version")}`),

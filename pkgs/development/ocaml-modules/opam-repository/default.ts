@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const patch = nix.arg($, "patch");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "opam-repository",
       src: nix.thunk(() => nix.attr(opam_format, "src")),
       version: nix.thunk(() => nix.attr(opam_format, "version")),
       propagatedBuildInputs: nix.thunk(() => [opam_format, patch]),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       meta: nix.thunk(() => nix.update(nix.sel(opam_format, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "OPAM repository and remote sources handling, including curl/wget, rsync, git, mercurial, darcs backends",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

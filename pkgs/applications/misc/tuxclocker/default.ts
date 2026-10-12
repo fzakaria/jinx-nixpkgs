@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const tuxclocker_without_unfree = nix.arg($, "tuxclocker-without-unfree");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tuxclocker",
       version: "1.5.1-unstable-2026-08-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Lurkki14",
           repo: "tuxclocker",
           fetchSubmodules: true,
@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
 `),
       mesonFlags: nix.thunk(() => ["-Dplugins=false"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, "tuxclocker-without-unfree": tuxclocker_without_unfree })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tuxclocker-without-unfree": tuxclocker_without_unfree })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Qt overclocking tool for GNU/Linux",
         homepage: "https://github.com/Lurkki14/tuxclocker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

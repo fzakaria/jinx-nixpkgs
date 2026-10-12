@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const system = nix.thunk(() => nix.sel(config, "nodes", "machine", "nixpkgs", "hostPlatform", "system"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       params: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to enable nix on host and containers - we test both variants",
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
@@ -43,49 +43,49 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       name: "nested",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "sorki"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           const makeNested = (subConf) => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             containers: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               nested: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 autoStart: true,
                 privateNetwork: true,
                 config: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   imports: nix.thunk(() => [subConf]),
                   nix: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     enable: nix.thunk(() => nix.sel(config, "params", "nix")),
-                    settings: nix.thunk(() => ({ __proto__: pos$5, substitute: false })),
+                    settings: nix.thunk(() => ({ [nix.POS]: pos$5, substitute: false })),
                   })),
                 })),
               })),
             })),
-            nix: nix.thunk(() => ({ __proto__: pos$10, enable: nix.thunk(() => nix.sel(config, "params", "nix")) })),
+            nix: nix.thunk(() => ({ [nix.POS]: pos$10, enable: nix.thunk(() => nix.sel(config, "params", "nix")) })),
           });
           return {
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             imports: nix.thunk(() => [
               nix.thunk(() => nix.app(makeNested, nix.thunk(() => nix.app(makeNested, nix.thunk(() => ({})))))),
             ]),
             nix: nix.thunk(() => ({
-              __proto__: pos$13,
-              settings: nix.thunk(() => ({ __proto__: pos$12, substitute: false })),
+              [nix.POS]: pos$13,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$12, substitute: false })),
             })),
           };
         })(), formals$2),

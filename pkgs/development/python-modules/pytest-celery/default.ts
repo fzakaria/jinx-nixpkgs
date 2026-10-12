@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "celery",
           repo: "pytest-celery",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const dependencies = nix.thunk(() => [debugpy, docker, kombu, psutil, pytest_docker_tools, tenacity]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         all: nix.thunk(() => [redis, python_memcached, boto3, botocore, urllib3]),
         redis: nix.thunk(() => [redis]),
         memcached: nix.thunk(() => [python_memcached]),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pytest plugin to enable celery.contrib.pytest",
         homepage: "https://github.com/celery/pytest-celery",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/pytest-celery/blob/${nix.sel(src, "tag")}/Changelog.rst`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

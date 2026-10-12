@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sepandhaghighi",
           repo: "pycm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Remove a trivial dependency on the author's `art` Python ASCII art library\nrm pycm/__main__.py\nsubstituteInPlace setup.py \\\n  --replace-fail '=get_requires()' '=[]'\n";
       const pythonImportsCheck = nix.thunk(() => ["pycm"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiclass confusion matrix library",
         homepage: "https://pycm.io",
         changelog: nix.thunk(() => nix.str`https://github.com/sepandhaghighi/pycm/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

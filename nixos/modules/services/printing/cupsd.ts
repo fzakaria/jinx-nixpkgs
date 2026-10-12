@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "printing"));
   const cups = nix.thunk(() => nix.sel(cfg, "package"));
   const polkitEnabled = nix.thunk(() => nix.sel(config, "security", "polkit", "enable"));
-  const additionalBackends = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "additional-cups-backends", nix.thunk(() => ({ __proto__: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const additionalBackends = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "additional-cups-backends", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 if [ ! -e ${nix.sel(cups, "out")}/lib/cups/backend/smb ]; then
   mkdir -p $out/lib/cups/backend
   ln -sv ${nix.sel(pkgs, "samba")}/bin/smbspool $out/lib/cups/backend/smb
@@ -87,7 +87,7 @@ if [ ! -e ${nix.sel(cups, "out")}/lib/cups/backend/https ]; then
 fi
 `)));
   const bindir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "cups-progs",
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.sel(cups, "out")),
@@ -101,7 +101,7 @@ fi
       ignoreCollisions: true,
     }))));
   const writeConf = (name) => (text) => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: name,
       text: text,
       destination: nix.thunk(() => nix.str`/etc/cups/${name}`),
@@ -145,7 +145,7 @@ ${nix.sel(cfg, "extraConf")}
 `)));
   const browsedFile = nix.thunk(() => nix.app(writeConf, "cups-browsed.conf", nix.thunk(() => nix.sel(cfg, "browsedConf"))));
   const rootdir = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "cups-progs",
       paths: nix.thunk(() => nix.concat([
         cupsFilesFile,
@@ -165,7 +165,7 @@ ${nix.sel(cfg, "extraConf")}
     return nix.app(nix.builtins.map, (address) => nix.app(nix.sel(nix.lookup(w, "strings"), "toInt"), nix.thunk(() => nix.app(extractPort, address))), addresses);
   })();
   return {
-    __proto__: pos$57,
+    [nix.POS]: pos$57,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkChangedOptionModule"), nix.thunk(() => ["services", "printing", "gutenprint"]), nix.thunk(() => ["services", "printing", "drivers"]), (config_1) => (() => {
           const enabled = nix.thunk(() => nix.app(nix.lookup(w, "getAttrFromPath"), nix.thunk(() => ["services", "printing", "gutenprint"]), config_1));
@@ -175,39 +175,39 @@ ${nix.sel(cfg, "extraConf")}
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "printing", "cupsdConf"]), "")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       services: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         printing: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable printing support through the CUPS daemon.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cups", nix.thunk(() => ({})))),
           stateless: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "If set, all state directories relating to CUPS will be removed on\nstartup of the service.\n",
             })))),
           startWhenNeeded: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "If set, CUPS is socket-activated; that is,\ninstead of having it permanently running as a daemon,\nsystemd will start it on the first incoming connection.\n",
             })))),
           listenAddresses: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["localhost:631"]),
               example: nix.thunk(() => ["*:631"]),
               description: "A list of addresses and ports on which to listen.\n",
             })))),
           allowFrom: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["localhost"]),
               example: nix.thunk(() => ["all"]),
@@ -215,67 +215,67 @@ ${nix.sel(cfg, "extraConf")}
               description: "From which hosts to allow unconditional access.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to open the firewall for TCP ports specified in\nlistenAddresses option.\n",
             })))),
           bindirCmds: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               internal: true,
               default: "",
               description: "Additional commands executed while creating the directory\ncontaining the CUPS server binaries.\n",
             })))),
           defaultShared: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Specifies whether local printers are shared by default.\n",
             })))),
           browsing: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Specifies whether shared printers are advertised.\n",
             })))),
           webInterface: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Specifies whether the web interface is enabled.\n",
             })))),
           logLevel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "info",
               example: "debug",
               description: "Specifies the cupsd logging verbosity.\n",
             })))),
           extraFilesConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Extra contents of the configuration file of the CUPS daemon\n({file}`cups-files.conf`).\n",
             })))),
           extraConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "BrowsePoll cups.example.com\nMaxCopies 42\n",
               description: "Extra contents of the configuration file of the CUPS daemon\n({file}`cupsd.conf`).\n",
             })))),
           clientConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "ServerName server.example.com\nEncryption Never\n",
               description: "The contents of the client configuration.\n({file}`client.conf`)\n",
             })))),
           browsed: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: nix.thunk(() => nix.sel(config, "services", "avahi", "enable")),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.services.avahi.enable")),
@@ -284,27 +284,27 @@ ${nix.sel(cfg, "extraConf")}
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cups-browsed", nix.thunk(() => ({})))),
           })),
           browsedConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               example: "BrowsePoll cups.example.com\n",
               description: "The contents of the configuration. file of the CUPS Browsed daemon\n({file}`cups-browsed.conf`)\n",
             })))),
           snmpConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "Address @LOCAL\n",
               description: "The contents of {file}`/etc/cups/snmp.conf`. See \"man\ncups-snmp.conf\" for a complete description.\n",
             })))),
           drivers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with pkgs; [ gutenprint hplip splix ]")),
               description: "CUPS drivers to use. Drivers provided by CUPS, cups-filters,\nGhostscript and Samba are added unconditionally. If this list contains\nGutenprint (i.e. a derivation with\n`meta.isGutenprint = true`) the PPD files in\n{file}`/var/lib/cups/ppd` will be updated automatically\nto avoid errors due to incompatible versions.\n",
             })))),
           tempDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: "/tmp",
               example: "/tmp/cups",
@@ -314,41 +314,41 @@ ${nix.sel(cfg, "extraConf")}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "services", "printing", "enable")), nix.thunk(() => ({
-        __proto__: pos$55,
+        [nix.POS]: pos$55,
         users: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           users: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             cups: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "cups")),
               group: "lp",
               description: "CUPS printing services",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$30, lpadmin: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$30, lpadmin: nix.thunk(() => ({})) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cups, "out")), xdg_utils], nix.app(nix.lookup(w, "optional"), polkitEnabled, cups_pk_helper))),
           etc: nix.thunk(() => ({
-            __proto__: pos$33,
-            cups: nix.thunk(() => ({ __proto__: pos$32, source: "/var/lib/cups" })),
+            [nix.POS]: pos$33,
+            cups: nix.thunk(() => ({ [nix.POS]: pos$32, source: "/var/lib/cups" })),
           })),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             CUPS_DATADIR: nix.thunk(() => nix.str`${bindir}/share/cups`),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           dbus: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             packages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cups, "out"))], nix.app(nix.lookup(w, "optional"), polkitEnabled, cups_pk_helper))),
           })),
-          udev: nix.thunk(() => ({ __proto__: pos$37, packages: nix.thunk(() => nix.sel(cfg, "drivers")) })),
+          udev: nix.thunk(() => ({ [nix.POS]: pos$37, packages: nix.thunk(() => nix.sel(cfg, "drivers")) })),
           printing: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             extraConf: nix.thunk(() => nix.str`DefaultAuthType Basic
 
 <Location />
@@ -393,32 +393,32 @@ ${nix.sel(cfg, "extraConf")}
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           polkit: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), polkitEnabled, "polkit.addRule(function(action, subject) {\n    if (action.id == \"org.opensuse.cupspkhelper.mechanism.all-edit\" &&\n        subject.isInGroup(\"wheel\")){\n        return polkit.Result.YES;\n    }\n});\n")),
           })),
           pam: nix.thunk(() => ({
-            __proto__: pos$42,
-            services: nix.thunk(() => ({ __proto__: pos$41, cups: nix.thunk(() => ({})) })),
+            [nix.POS]: pos$42,
+            services: nix.thunk(() => ({ [nix.POS]: pos$41, cups: nix.thunk(() => ({})) })),
           })),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$44, blacklistedKernelModules: nix.thunk(() => ["usblp"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$44, blacklistedKernelModules: nix.thunk(() => ["usblp"]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cups, "out"))]),
           sockets: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             cups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "startWhenNeeded")), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 listenStreams: nix.thunk(() => nix.concat(["", "/run/cups/cups.sock"], nix.app(nix.builtins.map, (x) => nix.app(nix.lookup(w, "replaceStrings"), nix.thunk(() => ["localhost"]), nix.thunk(() => ["127.0.0.1"]), nix.thunk(() => nix.app(nix.lookup(w, "removePrefix"), "*:", x))), nix.thunk(() => nix.sel(cfg, "listenAddresses"))))),
               })))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             cups: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               wantedBy: nix.thunk(() => nix.app(nix.lookup(w, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "startWhenNeeded"))), nix.thunk(() => ["multi-user.target"]))),
               wants: nix.thunk(() => ["network.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -459,10 +459,10 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.app(containsGuten
 fi
 `))}
 `)),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$47, PrivateTmp: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$47, PrivateTmp: true })),
             })),
             "cups-browsed": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "browsed", "enable")), nix.thunk(() => ({
-                __proto__: pos$50,
+                [nix.POS]: pos$50,
                 description: "CUPS Remote Printer Discovery",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => nix.concat(["avahi-daemon.service"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "startWhenNeeded"))), "cups.service"))),
@@ -471,7 +471,7 @@ fi
                 after: nix.thunk(() => nix.concat(["avahi-daemon.service"], nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "startWhenNeeded"))), "cups.service"))),
                 path: nix.thunk(() => [cups]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "browsed", "package")}/bin/cups-browsed`),
                 })),
                 restartTriggers: nix.thunk(() => [browsedFile]),
@@ -479,14 +479,14 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           firewall: nix.thunk(() => (() => {
             const listenPorts = nix.thunk(() => nix.app(parsePorts, nix.thunk(() => nix.sel(cfg, "listenAddresses"))));
-            return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ __proto__: pos$53, allowedTCPPorts: listenPorts })));
+            return nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({ [nix.POS]: pos$53, allowedTCPPorts: listenPorts })));
           })()),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$56, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$56, maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=cupsd.ts.map

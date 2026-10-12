@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pynacl = nix.arg($, "pynacl");
   const authres = nix.arg($, "authres");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dkimpy",
       version: "1.1.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-tfYPtHu/XY12LxNLzqDDiOumtJg0KmgqIfFoZUUJS3c=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["dkim"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DKIM + ARC email signing/verification tools + Python module",
         longDescription: "Python module that implements DKIM (DomainKeys Identified Mail) email\nsigning and verification. It also provides a number of convenient tools\nfor command line signing and verification, as well as generating new DKIM\nrecords. This version also supports the experimental Authenticated\nReceived Chain (ARC) protocol.\n",
         homepage: "https://launchpad.net/dkimpy",

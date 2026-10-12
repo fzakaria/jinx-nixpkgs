@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const useVariableFont = nix.argOr($, "useVariableFont", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fira-code",
       version: "6.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tonsky/FiraCode/releases/download/${nix.sel(finalAttrs, "version")}/Fira_Code_v${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-UHOwZL9WpCHk6vZaqI/XfkZogKgycs5lWg1p0XdQt0A=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`cd ${nix.app(nix.sel(lib, "optionalString"), useVariableFont, "variable_")}ttf`),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/tonsky/FiraCode",
         description: "Monospace font with programming ligatures",
         longDescription: "Fira Code is a monospace font extending the Fira Mono font with\na set of ligatures for common programming multi-character\ncombinations.\n",

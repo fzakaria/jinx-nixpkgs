@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "tinyauth",
       version: "5.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinyauthapp",
           repo: "tinyauth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-gkFKt/IoN29lw9laqxHmDK77E9hCkdEv7oIEg83sfgY=",
       subPackages: nix.thunk(() => ["cmd/tinyauth"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -49,13 +49,13 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "frontend")}/dist internal/assets/dist
 `),
       frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname: "tinyauth-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [nodejs_slim, pnpmConfigHook, pnpmBuildHook, pnpm_11]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,15 +68,15 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\nmkdir -p $out/dist\ncp -r frontend/dist $out\n\nrunHook postInstall\n",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           tinyauth: nix.thunk(() => nix.attr(nixosTests, "tinyauth")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Simple authentication middleware for web apps",
         homepage: "https://tinyauth.app",
         changelog: nix.thunk(() => nix.str`https://github.com/tinyauthapp/tinyauth/releases/tag/v${nix.sel(finalAttrs, "version")}`),

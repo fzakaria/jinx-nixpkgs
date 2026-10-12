@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kokkos",
       version: "5.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kokkos",
           repo: "kokkos",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs .\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "C++ Performance Portability Programming EcoSystem",
         homepage: "https://github.com/kokkos/kokkos",
         changelog: nix.thunk(() => nix.str`https://github.com/kokkos/kokkos/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

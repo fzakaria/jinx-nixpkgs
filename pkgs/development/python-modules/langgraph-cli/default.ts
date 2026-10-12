@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const docker_compose = nix.arg($, "docker-compose");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "langgraph-cli",
       version: "0.4.31",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langgraph",
           tag: nix.thunk(() => nix.str`cli==${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [click, httpx, langgraph_sdk, pathspec, python_dotenv]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         inmem: nix.thunk(() => [langgraph, langgraph_runtime_inmem, python_dotenv]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_mock, pytestCheckHook, docker_compose], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
@@ -66,12 +66,12 @@ export default nix.lambda((args) => (() => {
         "test_build_command_shows_wolfi_warning",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "cli==", ignoredVersions: "a|b|dev|rc" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "cli==", ignoredVersions: "a|b|dev|rc" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Official CLI for LangGraph API",
         homepage: "https://github.com/langchain-ai/langgraph/tree/main/libs/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langgraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

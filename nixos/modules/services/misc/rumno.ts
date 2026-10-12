@@ -25,24 +25,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "rumno"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "imalison"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         rumno: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "rumno visual pop-up notification manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rumno", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["--verbose", "--config", "/etc/rumno/config.toml"]),
@@ -52,21 +52,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           user: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               rumno: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Rumno visual pop-up notification manager",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
                 after: nix.thunk(() => ["graphical-session-pre.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   Type: "dbus",
                   BusName: "de.rumno.v1",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/rumno daemon --foreground ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
                   PassEnvironment: nix.thunk(() => ["DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"]),
                 })),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   GTK_THEME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "")),
                 })),
               })),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

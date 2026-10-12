@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zita_alsa_pcmi = nix.arg($, "zita-alsa-pcmi");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zita-ajbridge",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-ajbridge-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-vCZONrpNcVw07H3W4xfNHtS7ikZWmA1rIgDi+gEFuzw=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "MANDIR=$(out)/share/man/man1"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Connect additional ALSA devices to JACK",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyradio",
       version: "0.9.3.11.31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "coderholic",
           repo: "pyradio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "$out/bin/pyradio --help\n",
       postInstall: "installManPage *.1\n\ninstall -Dm644 $src/devel/pyradio.desktop \\\n  \"$out/share/applications/pyradio.desktop\"\n\ninstall -Dm644 \"$src/pyradio/icons/pyradio.png\" \\\n  \"$out/share/icons/hicolor/512x512/apps/pyradio.png\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/coderholic/pyradio",
         description: "Curses based internet radio player",
         mainProgram: "pyradio",

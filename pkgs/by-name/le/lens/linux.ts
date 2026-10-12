@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const updateScript = nix.arg($, "updateScript");
   const appimageTools = nix.arg($, "appimageTools");
   const makeWrapper = nix.arg($, "makeWrapper");
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$1, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
       meta: meta,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: updateScript })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       extraInstallCommands: nix.thunk(() => nix.str`wrapProgram $out/bin/${pname} \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"

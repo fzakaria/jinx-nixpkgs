@@ -20,43 +20,43 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = 59126n;
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "marytts",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pluiedev"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           networking: nix.thunk(() => ({
-            __proto__: pos$3,
-            firewall: nix.thunk(() => ({ __proto__: pos$2, enable: false })),
+            [nix.POS]: pos$3,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
             useDHCP: false,
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             marytts: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               port: port,
               voices: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     url: "https://github.com/marytts/voice-bits1-hsmm/releases/download/v5.2/voice-bits1-hsmm-5.2.zip",
                     hash: "sha256-1nK+qZxjumMev7z5lgKr660NCKH5FDwvZ9sw/YYYeaA=",
                   })))),
               ]),
               userDictionaries: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     name: "userdict-en_US.txt",
                     destination: "/userdict-en_US.txt",
                     text: "amogus | @ - ' m @U - g @ s\nNixpkgs | n I k s - ' p { - k @ - dZ @ s\n",

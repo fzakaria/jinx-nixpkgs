@@ -40,12 +40,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bugwarrior",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GothenburgBitFactory",
           repo: "bugwarrior",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         taskw,
       ], nix.sel(pydantic, "optional-dependencies", "email"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         bts: nix.thunk(() => [debianbts]),
         bugzilla: nix.thunk(() => [python_bugzilla]),
         gmail: nix.thunk(() => [google_api_python_client, google_auth_oauthlib]),
@@ -93,7 +93,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_docs_build_without_warning", "test_manpage_build_without_warning"])))),
       pythonImportsCheck: nix.thunk(() => ["bugwarrior"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/GothenburgBitFactory/bugwarrior",
         description: "Sync github, bitbucket, bugzilla, and trac issues with taskwarrior",
         changelog: nix.thunk(() => nix.str`https://github.com/GothenburgBitFactory/bugwarrior/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

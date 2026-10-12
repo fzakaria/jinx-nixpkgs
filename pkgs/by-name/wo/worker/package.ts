@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "worker",
       version: "5.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.boomerangsworld.de/cms/worker/downloads/worker-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7w8Kpi1dzBZjHKzEwavPR/4Qwo+wl2FejSCDdORjALY=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.boomerangsworld.de/cms/worker/index.html",
         description: "Advanced orthodox file manager",
         longDescription: "Worker is a two-pane file manager for the X Window System on UN*X. The\ndirectories and files are shown in two independent panels supporting a lot\nof advanced file manipulation features. The main focus is to make managing\nfiles easy with full keyboard control, also assisting in finding files and\ndirectories by using history of accessed directories, live filtering, and\naccess to commands by using the keyboard.\n",

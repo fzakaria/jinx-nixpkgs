@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dex2jar",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pxb1988/dex2jar/releases/download/v${nix.sel(finalAttrs, "version")}/dex-tools-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-7nxF6zwdJHSmFF2NRH5lGnNqItlmS209O+WlqBfdojo=",
         })))),
@@ -37,7 +37,7 @@ for i in $f/*.sh; do
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/pxb1988/dex2jar",
         description: "Tools to work with android .dex and java .class files",
         maintainers: nix.thunk(() => (() => {

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jensengroup",
           repo: "propka",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python-3.14.patch",
             url: "https://github.com/jensengroup/propka/commit/5eb80b7836b2e71b37598d2c7fa06ed8141ff6fd.patch",
             hash: "sha256-tuhUfc7SGjdGxAPcsbrwOyqgTesg7k+FruJjY05YOUs=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["propka"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Predictor of the pKa values of ionizable groups in proteins and protein-ligand complexes based in the 3D structure",
         mainProgram: "propka3",
         homepage: "https://github.com/jensengroup/propka",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

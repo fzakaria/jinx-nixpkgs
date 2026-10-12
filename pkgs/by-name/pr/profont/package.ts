@@ -15,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "profont",
       version: "2019-11",
       src: nix.thunk(() => nix.add(nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://tobiasjung.name/downloadfile.php?file=profont-x11.zip",
           sha256: "12dbm87wvcpmn7nzgzwlk45cybp091diara8blqm6129ps27z6kb",
           stripRoot: false,
         }))), "/profont-x11")),
       srcOtb: nix.thunk(() => nix.add(nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://tobiasjung.name/downloadfile.php?file=profont-otb.zip",
           sha256: "18rfhfqrsj3510by0w1a7ak5as6r2cxh8xv02xc1y30mfa6g24x6",
           stripRoot: false,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "mkdir -p \"$out/share/fonts/misc\"\nfor f in *.pcf; do\n  gzip -n -9 -c \"$f\" > \"$out/share/fonts/misc/$f.gz\"\ndone\ninstall -D -m 644 LICENSE -t \"$out/share/doc/$pname\"\ninstall -D -m 644 \"$srcOtb/profontn.otb\" -t $out/share/fonts/misc\nmkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://tobiasjung.name/profont/",
         description: "Monospaced font created to be a most readable font for programming",
         maintainers: nix.thunk(() => (() => {

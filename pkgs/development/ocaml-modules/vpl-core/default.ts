@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5";
       const minimalOCamlVersion = "4.07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VERIMAG-Polyhedra",
           repo: "vpl",
           rev: version,
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [zarith]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Verified Polyhedra Library",
         homepage: "https://amarechal.gitlab.io/home/projects/vpl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

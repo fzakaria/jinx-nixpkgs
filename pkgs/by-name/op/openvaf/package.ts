@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   const llvmPackages = nix.arg($, "llvmPackages");
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$5,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(llvmPackages, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$5,
       pname: "openvaf",
       version: "24.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "OpenVAF",
           repo: "OpenVAF-Reloaded",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}mob`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["--package", "openvaf-driver"]),
       hardeningDisable: nix.thunk(() => ["pic", "zerocallusedregs"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Verilog-A compiler",
         homepage: "https://github.com/OpenVAF/OpenVAF-Reloaded",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenVAF/OpenVAF-Reloaded/releases/tag/v${nix.sel(finalAttrs, "version")}mob`),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasmatube",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtquick3d, qtsvg, mpv_unwrapped]),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [yt_dlp]))),
       ]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "plasmatube" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "plasmatube" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

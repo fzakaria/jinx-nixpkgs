@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-+S7A0y3WvRFd3sTjMjRz68C2gq1Yxqynjr/Z5tGqV3c=",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["lazy"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lazy attributes for Python objects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://github.com/stefanholek/lazy",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

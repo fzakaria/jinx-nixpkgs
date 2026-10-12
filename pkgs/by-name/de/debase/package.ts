@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "debase";
       const version = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "toasterllc",
           repo: "debase",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ runHook postInstall
         nix.thunk(() => nix.str`ARCHS=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "system")}`))))}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "TUI for drag-and-drop manipulation of git commits",
         homepage: "https://toaster.llc/debase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -51,7 +51,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

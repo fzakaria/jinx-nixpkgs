@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const options = nix.arg($, "options");
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(lib, "types", "package")),
           description: "The wrapped treefmt package.\n",
           readOnly: true,
@@ -31,28 +31,28 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       result: nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), (finalAttrs) => (() => {
           const from = nix.thunk(() => nix.sel(config, "package"));
           return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           pname: nix.thunk(() => nix.sel(config, "name")),
           meta: nix.thunk(() => nix.attr(from, "meta")),
           version: nix.thunk(() => nix.attr(from, "version")),
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeBinaryWrapper"))]),
           paths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "package"))]),
           env: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             configFile: nix.thunk(() => nix.attr(config, "configFile")),
             binPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(config, "runtimeInputs")))),
           })),
           passthru: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             runtimeInputs: nix.thunk(() => nix.attr(config, "runtimeInputs")),
             config: config,
             options: options,
             check: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../check-wrapper.nix"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 wrapper: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),

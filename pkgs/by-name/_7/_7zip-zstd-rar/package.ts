@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["enableUnfree", 5, 3]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const _7zip_zstd = nix.arg($, "_7zip-zstd");
-  return nix.app(nix.sel(_7zip_zstd, "override"), nix.thunk(() => ({ __proto__: pos$1, enableUnfree: true })));
+  return nix.app(nix.sel(_7zip_zstd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableUnfree: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

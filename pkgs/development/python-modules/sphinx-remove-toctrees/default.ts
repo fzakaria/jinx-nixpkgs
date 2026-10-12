@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0.post1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "sphinx_remove_toctrees",
           version: version,
           hash: "sha256-SAjR7fFRwG7/bSw5Iux+vJ/Tqhdi3hsuFnSjf1rJzi0=",
@@ -33,21 +33,21 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [sphinx]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         code_style: nix.thunk(() => [pre_commit]),
         docs: nix.thunk(() => [ipython, myst_parser, sphinx_book_theme]),
         tests: nix.thunk(() => [ipython, myst_parser, pytest, sphinx_book_theme]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["sphinx_remove_toctrees"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reduce your documentation build size by selectively removing toctrees from pages",
         homepage: "https://pypi.org/project/sphinx-remove-toctrees/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

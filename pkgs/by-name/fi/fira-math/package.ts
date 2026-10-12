@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const date = "2023-10-09";
   const version = nix.thunk(() => nix.str`0.3.4-unstable-${date}`);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firamath",
           repo: "firamath",
           rev: "4bd85bc943eb6a194cfc090f7e194aa27d8f8419",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildPhase: "runHook preBuild\n\npython scripts/build.py\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Math font with Unicode math support based on FiraSans and FiraGO",
         homepage: "https://github.com/firamath/firamath",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

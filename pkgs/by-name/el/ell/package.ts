@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const sysctl = nix.arg($, "sysctl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ell",
       version: "0.83",
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.kernel.org/pub/scm/libs/ell/ell.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RhT36DWIdEpe6WmA7spBt/0peBj4cpy1Qe64/SRBmPs=",
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dbus, sysctl]),
       enableParallelBuilding: true,
       enableParallelChecking: false,
-      env: nix.thunk(() => ({ __proto__: pos$2, XFAIL_TESTS: "unit/test-hwdb" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, XFAIL_TESTS: "unit/test-hwdb" })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://git.kernel.org/pub/scm/libs/ell/ell.git" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://git.kernel.org/pub/scm/libs/ell/ell.git" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://git.kernel.org/pub/scm/libs/ell/ell.git",
         description: "Embedded Linux Library",
         longDescription: "The Embedded Linux* Library (ELL) provides core, low-level functionality for system daemons. It typically has no dependencies other than the Linux kernel, C standard library, and libdl (for dynamic linking). While ELL is designed to be efficient and compact enough for use on embedded Linux platforms, it is not limited to resource-constrained systems.\n",

@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const twisted = nix.arg($, "twisted");
   const daemontools = nix.arg($, "daemontools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eliot",
       version: "1.18.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "itamarst",
           repo: "eliot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["eliot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Logging library that tells you why it happened",
         homepage: "https://eliot.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/itamarst/eliot/blob/${nix.sel(finalAttrs, "version")}/docs/source/news.rst`),

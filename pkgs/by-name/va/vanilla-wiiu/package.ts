@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vanilla-wiiu",
       version: "0-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vanilla-wiiu",
           repo: "vanilla",
           rev: "786e70914ff5edcc6e989fcb237fb04f78eb3151",
@@ -68,9 +68,9 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-sdl2-include.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-drc-hostap.patch"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             hostap: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 owner: "vanilla-wiiu",
                 repo: "drc-hostap",
                 rev: "a2f705daa143791180754100194c91714f7e8801",
@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Software clone of the Wii U gamepad",
         homepage: "https://github.com/vanilla-wiiu/vanilla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

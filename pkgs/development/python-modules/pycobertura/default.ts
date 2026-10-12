@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aconrad",
           repo: "pycobertura",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pycobertura"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cobertura coverage parser that can diff reports and show coverage progress",
         homepage: "https://github.com/aconrad/pycobertura",
         changelog: nix.thunk(() => nix.str`https://github.com/aconrad/pycobertura/blob/${version}/CHANGES.md`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pycobertura",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

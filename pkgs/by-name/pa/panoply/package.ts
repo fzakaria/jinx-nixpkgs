@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "panoply";
       const version = "5.10.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.giss.nasa.gov/tools/panoply/download/PanoplyJ-${version}.tgz`),
           hash: "sha256-prO8DSyGrnQRJQHXwbynPOcZEQZOZGPGk0MnLC2uHNg=",
         }))));
@@ -38,7 +38,7 @@ wrapProgram "$out/bin/panoply" --prefix PATH : "${jre}/bin"
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "netCDF, HDF and GRIB Data Viewer",
         homepage: "https://www.giss.nasa.gov/tools/panoply",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -46,7 +46,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         mainProgram: "panoply",
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bisonc++";
       const version = "6.04.00";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fbb-git",
           repo: "bisoncpp",
           rev: "6.04.00",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [yodl, icmake, flexcpp]);
       const setSourceRoot = "sourceRoot=\"$(echo */bisonc++)\"\n";
       const gpl = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
           sha256: "sha256:0hq6i0dm4420825fdm0lnnppbil6z67ls67n5kgjcd912dszjxw1",
         }))));
@@ -46,7 +46,7 @@ done
       const buildPhase = "./build program\n./build man\n./build manual\n";
       const installPhase = "./build install x\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parser generator like bison, but it generates C++ code",
         mainProgram: "bisonc++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -58,7 +58,7 @@ done
         homepage: "https://fbb-git.gitlab.io/bisoncpp/",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

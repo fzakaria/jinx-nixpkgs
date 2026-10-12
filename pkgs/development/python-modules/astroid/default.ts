@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pylint = nix.arg($, "pylint");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "astroid",
       version: "4.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "astroid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_identify_old_namespace_package_protocol"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_raw_building.py"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, pylint: pylint })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pylint: pylint })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/PyCQA/astroid/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),
         description: "Abstract syntax tree for Python with inference support",
         homepage: "https://github.com/PyCQA/astroid",

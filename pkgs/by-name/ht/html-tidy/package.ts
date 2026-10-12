@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const html_tidy = nix.arg($, "html-tidy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "html-tidy",
       version: "5.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "htacg",
           repo: "tidy-html5",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-vzVWQodwzi3GvC9IcSQniYBsbkJV20iZanF33A0Gpe0=",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/htacg/tidy-html5/commit/e9aa038bd06bd8197a0dc049380bc2945ff55b29.diff",
           sha256: "sha256-Q2GjinNBWLL+HXUtslzDJ7CJSTflckbjweiSMCnIVwg=",
         })))),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, libxslt], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), html_tidy))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["-DHOST_TIDY=tidy"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTML validator and `tidier'",
         longDescription: "HTML Tidy is a command-line tool and C library that can be\nused to validate and fix HTML data.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "libpng")),

@@ -27,32 +27,32 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const sysuserPassword = "$y$j9T$3aiOV/8CADAK22OK2QT3/0$67OKd50Z4qTaZ8c/eRWHLIM.o3ujtC1.n9ysmJfv639";
   const common = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     services: nix.thunk(() => ({
-      __proto__: pos$2,
-      userborn: nix.thunk(() => ({ __proto__: pos$1, enable: true, static: true })),
+      [nix.POS]: pos$2,
+      userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, static: true })),
     })),
     boot: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       initrd: nix.thunk(() => ({
-        __proto__: pos$4,
-        systemd: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+        [nix.POS]: pos$4,
+        systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
       })),
     })),
-    networking: nix.thunk(() => ({ __proto__: pos$6, useNetworkd: true })),
+    networking: nix.thunk(() => ({ [nix.POS]: pos$6, useNetworkd: true })),
     system: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       etc: nix.thunk(() => ({
-        __proto__: pos$8,
-        overlay: nix.thunk(() => ({ __proto__: pos$7, enable: true, mutable: false })),
+        [nix.POS]: pos$8,
+        overlay: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, mutable: false })),
       })),
     })),
   }));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "userborn-static",
     meta: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -62,18 +62,18 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           imports: nix.thunk(() => [common]),
           users: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             users: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               sysuser: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 uid: 1337n,
                 isSystemUser: true,
                 group: "wheel",

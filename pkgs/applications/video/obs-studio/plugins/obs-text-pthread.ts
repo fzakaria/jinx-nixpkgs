@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-text-pthread";
       const version = "2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "norihiro",
           repo: "obs-text-pthread",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rich text source plugin for OBS Studio",
         homepage: "https://github.com/norihiro/obs-text-pthread",
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

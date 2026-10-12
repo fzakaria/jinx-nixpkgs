@@ -35,40 +35,40 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "perses"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configPath = "/run/perses/config.yaml";
-  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ __proto__: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), configPath));
+  const secretsReplacement = nix.thunk(() => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => ({ [nix.POS]: pos$1, loadCredential: true })), nix.thunk(() => nix.sel(cfg, "settings")), configPath));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         perses: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "perses")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "perses", nix.thunk(() => ({})))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
               description: "Perses Web interface port.\n",
             })))),
           listenAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "",
               description: "Address to listen on. Empty string will listen on all interfaces.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               description: "Perses settings. See <https://perses.dev/perses/docs/configuration/configuration/> for available options.\nYou can specify secret values in this configuration by setting `somevalue._secret = \"/path/to/file\"` instead of setting `somevalue` directly.\n",
               default: nix.thunk(() => ({})),
             })))),
           extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
               example: nix.thunk(() => ["-web.telemetry-path=/metrics"]),
@@ -78,13 +78,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             perses: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "Perses Daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["networking.target"]),
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
                 const SystemCallArchitectures = "native";
                 const UMask = "0027";
                 return {
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   ExecStart,
                   User,
                   DynamicUser,
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

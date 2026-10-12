@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "extism-cli",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "extism",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "local INSTALL=\"$out/bin/extism\"\ninstallShellCompletion --cmd extism \\\n  --bash <($out/bin/extism completion bash) \\\n  --fish <($out/bin/extism completion fish) \\\n  --zsh <($out/bin/extism completion zsh)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extism CLI is used to manage Extism installations",
         homepage: "https://github.com/extism/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

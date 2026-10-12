@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const withOtel = nix.argOr($, "withOtel", () => true);
   const nameSuffix = nix.argOr($, "nameSuffix", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`icinga2${nameSuffix}`),
       version: "2.16.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "icinga",
           repo: "icinga2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,11 +103,11 @@ icinga2Bin=$out/lib/icinga2/sbin/icinga2
 patchelf --set-rpath $out/lib/icinga2:$(patchelf --print-rpath $icinga2Bin) $icinga2Bin
 `))}
 `),
-      vim: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`vim-icinga2-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ __proto__: pos$2, pname: "vim-icinga2" })), nix.thunk(() => nix.str`mkdir -p $out/share/vim-plugins
+      vim: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`vim-icinga2-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "vim-icinga2" })), nix.thunk(() => nix.str`mkdir -p $out/share/vim-plugins
 cp -r "${nix.sel(finalAttrs, "src")}/tools/syntax/vim" $out/share/vim-plugins/icinga2
 `))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source monitoring system",
         homepage: "https://www.icinga.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -36,29 +36,29 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "automx2"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         automx2: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "automx2")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["python3Packages", "automx2"]), nix.thunk(() => ({})))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "example.com",
               description: "E-Mail-Domain for which mail client autoconfig/autoconfigure should be set up.\nThe `autoconfig` and `autodiscover` subdomains are automatically prepended and set up with ACME.\nThe names of those domains are hardcoded in the mail clients and are not configurable.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 4243n,
               description: "Port used by automx2.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.attr(format, "type")),
               description: "Bootstrap json to populate database.\nSee [docs](https://rseichter.github.io/automx2/#_sqlite) for details.\n",
             })))),
@@ -66,26 +66,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           nginx: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`autoconfig.${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enableACME: true,
                 forceSSL: true,
                 serverAliases: nix.thunk(() => [nix.thunk(() => nix.str`autodiscover.${nix.sel(cfg, "domain")}`)]),
                 locations: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   "/": nix.thunk(() => ({
-                    __proto__: pos$7,
+                    [nix.POS]: pos$7,
                     proxyPass: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}/`),
                   })),
                   "/initdb": nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     extraConfig: "# Limit access to clients connecting from localhost\nallow 127.0.0.1;\ndeny all;\n",
                   })),
                 })),
@@ -94,24 +94,24 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             automx2: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               after: nix.thunk(() => ["network.target"]),
               postStart: nix.thunk(() => nix.str`sleep 3
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -X POST --json @${nix.app(nix.sel(format, "generate"), "automx2.json", nix.thunk(() => nix.sel(cfg, "settings")))} http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}/initdb/
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 Environment: nix.thunk(() => [
                   nix.thunk(() => nix.str`AUTOMX2_CONF=${nix.app(nix.sel(pkgs, "writeText"), "automx2-conf", "[automx2]\nloglevel = WARNING\ndb_uri = sqlite:///:memory:\nproxy_count = 1\n")}`),
                   "FLASK_APP=automx2.server:app",
                   "FLASK_CONFIG=production",
                 ]),
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "python3", "buildEnv", "override"), nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     extraLibs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                   })))}/bin/flask run --host=127.0.0.1 --port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 Restart: "always",
@@ -120,7 +120,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -X PO
                 WorkingDirectory: "/var/lib/automx2",
               })),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 Description: "MUA configuration service",
                 Documentation: "https://rseichter.github.io/automx2/",
               })),
@@ -129,11 +129,11 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))} -X PO
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
-          groups: nix.thunk(() => ({ __proto__: pos$19, automx2: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$22,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, automx2: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$21,
-            automx2: nix.thunk(() => ({ __proto__: pos$20, group: "automx2", isSystemUser: true })),
+            [nix.POS]: pos$21,
+            automx2: nix.thunk(() => ({ [nix.POS]: pos$20, group: "automx2", isSystemUser: true })),
           })),
         })),
       })))),

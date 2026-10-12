@@ -131,7 +131,7 @@ find -type f -exec sh -c '
     })();
     const gitignoreRecursiveSource = nix.thunk(() => nix.app(gitignoreFilterRecursiveSource, (_) => (__1) => true));
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       filterPattern,
       gitignoreToPatterns,
       gitignoreFilter,

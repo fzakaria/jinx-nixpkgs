@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jsoncpp = nix.arg($, "jsoncpp");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "med",
       version: "3.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "allencch",
           repo: "med",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "find . -type f -exec sed -i \"s|/opt/med|$out/share/med|g\" {} +\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI game memory scanner and editor",
         homepage: "https://github.com/allencch/med",
         changelog: nix.thunk(() => nix.str`https://github.com/allencch/med/releases/tag/${nix.sel(finalAttrs, "version")}`),

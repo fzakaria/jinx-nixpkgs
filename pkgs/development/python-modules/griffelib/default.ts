@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const mkdocstrings = nix.arg($, "mkdocstrings");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "griffelib",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkdocstrings",
           repo: "griffe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/griffelib`),
       "build-system": nix.thunk(() => [hatchling, pdm_backend, uv_dynamic_versioning]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, pypi: nix.thunk(() => [pip, platformdirs, wheel]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pypi: nix.thunk(() => [pip, platformdirs, wheel]) })),
       pythonImportsCheck: nix.thunk(() => ["griffe"]),
       nativeCheckInputs: nix.thunk(() => [griffe, jsonschema, mkdocstrings, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_api.py", "tests/test_git.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocstrings/griffe/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API",
         homepage: "https://github.com/mkdocstrings/griffe",

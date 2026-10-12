@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alecthomas",
           repo: "voluptuous",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["voluptuous"]);
       const enabledTestPaths = nix.thunk(() => ["voluptuous/tests/"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python data validation library",
         downloadPage: "https://github.com/alecthomas/voluptuous",
         homepage: "http://alecthomas.github.io/voluptuous/",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

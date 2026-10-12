@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "premake5",
       version: "5.0.0-beta8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "premake",
           repo: "premake-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libuuid], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [readline])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-premake5-Fix-filters-using-alias-value.patch",
             url: "https://github.com/premake/premake-core/commit/d01097bb38da6855beeef7158b8b04ab1e63249b.patch",
             hash: "sha256-ZGhNUoXZbbW9ioFnAgPwypYhepoChtWF1SOCxs1WLj8=",
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
   -f Bootstrap.mak linux
 `)),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       installPhase: "install -Dm755 bin/release/premake5 $out/bin/premake5\n",
       premake_cmd: "premake5",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://premake.github.io",
         description: "Simple build configuration and project generation tool using lua",
         mainProgram: "premake5",

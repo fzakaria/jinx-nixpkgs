@@ -12,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const attrName = nix.arg($, "attrName");
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(python3Packages, nix.key(nix.force(attrName)), "name")}-libstdcxx-test`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "withPackages"), (ps) => [
-            nix.thunk(() => nix.app(nix.sel(ps, nix.key(nix.force(attrName)), "override"), nix.thunk(() => ({ __proto__: pos$1, enableCuda: true })))),
+            nix.thunk(() => nix.app(nix.sel(ps, nix.key(nix.force(attrName)), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableCuda: true })))),
             nix.thunk(() => nix.sel(ps, "scikit-image")),
           ])),
       ]),

@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const rulesRev = "r1916528";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://apache/spamassassin/source/Mail-${pname}-${version}.tar.bz2`),
           hash: "sha256-l3XtdVnoPsPmwD7bK+j/x/FcxAX7E+hcFI6wvxkXIag=",
         }))));
       const defaultRulesSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://apache/spamassassin/source/Mail-${pname}-rules-${version}.${rulesRev}.tgz`),
           hash: "sha256-OB6t/H5RPl9zU4m3gXPeWvRx89Bv5quPEpY0pmRLS/Q=",
         }))));
@@ -121,7 +121,7 @@ for n in "$out/bin/"*; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://spamassassin.apache.org/",
         description: "Open-Source Spam Filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -135,7 +135,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         rulesRev,

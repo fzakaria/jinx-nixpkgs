@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sing-geoip";
       const version = "20240312";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SagerNet",
           repo: "sing-geoip",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
 cat ${nix.path(here, "./main.go")} >> main.go
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GeoIP data for sing-box",
         homepage: "https://github.com/SagerNet/sing-geoip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -42,10 +42,10 @@ cat ${nix.path(here, "./main.go")} >> main.go
         })()),
         mainProgram: "sing-geoip",
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, postPatch, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, postPatch, meta };
     })())));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.attr(generator, "pname")),
       version: nix.thunk(() => nix.attr(dbip_country_lite, "version")),
       dontUnpack: true,
@@ -57,10 +57,10 @@ sing-geoip ${nix.sel(dbip_country_lite, "mmdb")}
 runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm644 rule-set/* -t $out/share/sing-box/rule-set\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$4, generator: generator })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, generator: generator })),
       meta: nix.thunk(() => nix.update(nix.sel(generator, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(dbip_country_lite, "meta"));
-        return { __proto__: pos$5, license: nix.thunk(() => nix.attr(from, "license")) };
+        return { [nix.POS]: pos$5, license: nix.thunk(() => nix.attr(from, "license")) };
       })())),
     })));
 })(), formals$1);

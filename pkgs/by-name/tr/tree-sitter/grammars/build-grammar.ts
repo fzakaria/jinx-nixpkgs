@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
     const parserOutput = nix.thunk(() => (nix.asBool(isWasi) ? "parser.wasm" : "parser"));
     const exportSymbol = nix.thunk(() => nix.str`tree_sitter_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), language)}`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: nix.thunk(() => nix.str`tree-sitter-${language}`),
         version: version,
         src: src,
         __structuredAttrs: true,
         nativeBuildInputs: nix.thunk(() => nix.concat([jq], nix.app(nix.sel(lib, "optionals"), generate, nix.thunk(() => [nodejs, tree_sitter])))),
         env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Isrc", nix.thunk(() => (nix.asBool(isWasi) ? "-Os" : "-O2"))], nix.app(nix.sel(lib, "optionals"), isWasi, nix.thunk(() => ["-fvisibility=hidden"])))))),
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Isrc", nix.thunk(() => (nix.asBool(isWasi) ? "-Os" : "-O2"))], nix.app(nix.sel(lib, "optionals"), isWasi, nix.thunk(() => ["-fvisibility=hidden"])))))),
           language: language,
@@ -102,14 +102,14 @@ fi
 runHook postInstall
 `),
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: nix.thunk(() => nix.str`Tree-sitter grammar for ${language}`),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(src, "meta", "homepage")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
           }))), meta))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(args_2, "location")) && nix.asBool(!nix.eq(nix.sel(args_2, "location"), null)))), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           setSourceRoot: nix.thunk(() => nix.str`sourceRoot=$(echo */${nix.sel(args_2, "location")})`),
         }))), nix.builtins.removeAttrs(args_2, nix.thunk(() => ["generate", "excludeBrokenTreeSitterJson", "meta", "language", "env"]))))));
   })(), formals$2);

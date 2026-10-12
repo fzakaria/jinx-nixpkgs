@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const stdenv_1 = nix.thunk(() => (nix.asBool(nix.sel(args_1, "stdenv", "cc", "isGNU")) ? nix.force(gcc14Stdenv) : nix.sel(args_1, "stdenv")));
   return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "procmail",
       version: "3.24",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/BuGlessRB/procmail/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "UU6kMzOXg+ld+TIeeUdx5Ih7mCOsVf2yRpcCz2m9OYk=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./reproducible.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "clang-16.patch",
             url: "https://github.com/BuGlessRB/procmail/commit/8cfd570fd14c8fb9983859767ab1851bfd064b64.patch",
             hash: "sha256-CaQeDKwF0hNOrxioBj7EzkCdJdsq44KwkfA9s8xK88g=",
@@ -46,7 +46,7 @@ _locktst() { ${nix.app(nix.sel(stdenv_1, "hostPlatform", "emulator"), buildPacka
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv_1, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv_1, "hostPlatform"))))), nix.thunk(() => ["bins"]))),
       installTargets: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv_1, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv_1, "hostPlatform"))))), nix.thunk(() => ["install.bin"]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Mail processing and filtering utility",
         homepage: "https://github.com/BuGlessRB/procmail/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

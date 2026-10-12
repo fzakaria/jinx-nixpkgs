@@ -26,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const cfg = nix.thunk(() => nix.sel(config, "programs", "skim"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["programs", "skim", "fuzzyCompletion"]), "programs.skim.fuzzyCompletion has been removed. Completions are now included in the package itself.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         skim: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "skim fuzzy finder")),
           keybindings: nix.thunk(() => nix.app(mkEnableOption, "skim keybindings")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "skim", nix.thunk(() => ({})))),
@@ -43,25 +43,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           bash: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             interactiveShellInit: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "keybindings")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/skim/key-bindings.bash
 `))),
           })),
           zsh: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             interactiveShellInit: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "keybindings")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/skim/key-bindings.zsh
 `))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             interactiveShellInit: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "keybindings")), nix.thunk(() => nix.str`source ${nix.sel(cfg, "package")}/share/skim/key-bindings.fish && skim_key_bindings
 `))),
           })),

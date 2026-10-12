@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const zbar = nix.arg($, "zbar");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gnome-frog",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TenderOwl",
           repo: "Frog",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://getfrog.app/",
         description: "Intuitive text extraction tool (OCR) for GNOME desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

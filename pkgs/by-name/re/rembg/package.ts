@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withCli", 3, 71]]);
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
-  return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "rembg", "override"), nix.thunk(() => ({ __proto__: pos$1, withCli: true })))));
+  return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "rembg", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCli: true })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

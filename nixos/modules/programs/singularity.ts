@@ -33,39 +33,39 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "singularity"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       programs: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         singularity: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "singularity"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "Whether to install Singularity/Apptainer with system-level overriding such as SUID support.\n",
           })),
-          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "singularity", nix.thunk(() => ({ __proto__: pos$2, example: "apptainer" })))),
+          package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "singularity", nix.thunk(() => ({ [nix.POS]: pos$2, example: "apptainer" })))),
           packageOverriden: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: null,
               description: "This option provides access to the overridden result of `programs.singularity.package`.\n\nFor example, the following configuration makes all the Nixpkgs packages use the overridden `singularity`:\n```Nix\n{ config, lib, pkgs, ... }:\n{\n  nixpkgs.overlays = [\n    (final: prev: {\n      _singularity-orig = prev.singularity;\n      singularity = config.programs.singularity.packageOverriden;\n    })\n  ];\n  programs.singularity.enable = true;\n  programs.singularity.package = pkgs._singularity-orig;\n}\n```\n\nUse `lib.mkForce` to forcefully specify the overridden package.\n",
             })))),
           enableExternalLocalStateDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               example: false,
               description: "Whether to use top-level directories as LOCALSTATEDIR\ninstead of the store path ones.\nThis affects the SESSIONDIR of Apptainer/Singularity.\nIf set to true, the SESSIONDIR will become\n`/var/lib/${projectName}/mnt/session`.\n",
             })))),
           enableFakeroot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable the `--fakeroot` support of Singularity/Apptainer.\n\nThis option is deprecated and has no effect.\n`--fakeroot` support is enabled automatically,\nas `systemBinPaths = [ \"/run/wrappers/bin\" ]` is always specified.\n",
             })))),
           enableSuid: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => !nix.eq(nix.sel(cfg, "package", "projectName"), "apptainer")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.singularity.package.projectName != \"apptainer\"")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
               description: "Whether to enable the SUID support of Singularity/Apptainer.\n",
             })))),
           systemBinPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "(Extra) system-wide /**/bin paths\nfor Apptainer/Singularity to find command-line utilities in.\n\n`\"/run/wrappers/bin\"` is included by default to make\nutilities with SUID bit set available to Apptainer/Singularity.\nUse `lib.mkForce` to shadow the default values.\n",
@@ -82,16 +82,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         programs: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           singularity: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             packageOverriden: nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => nix.update({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 systemBinPaths: nix.thunk(() => nix.sel(cfg, "systemBinPaths")),
-              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableExternalLocalStateDir")), nix.thunk(() => ({ __proto__: pos$12, externalLocalStateDir: "/var/lib" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableSuid")), nix.thunk(() => ({
-                  __proto__: pos$13,
+              }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableExternalLocalStateDir")), nix.thunk(() => ({ [nix.POS]: pos$12, externalLocalStateDir: "/var/lib" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableSuid")), nix.thunk(() => ({
+                  [nix.POS]: pos$13,
                   enableSuid: true,
                   starterSuidPath: nix.thunk(() => nix.str`/run/wrappers/bin/${nix.sel(cfg, "package", "projectName")}-suid`),
                 })))))))),
@@ -99,14 +99,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "packageOverriden"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           wrappers: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${nix.sel(cfg, "packageOverriden", "projectName")}-suid`, nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableSuid")), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 setuid: true,
                 owner: "root",
                 group: "root",
@@ -115,9 +115,9 @@ export default nix.lambda((args) => (() => {
           ])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             rules: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableExternalLocalStateDir")), nix.thunk(() => [
                 nix.thunk(() => nix.str`d /var/lib/${nix.sel(cfg, "packageOverriden", "projectName")}/mnt/session 0770 root root -`),
               ]))),

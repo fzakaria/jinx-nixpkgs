@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wired",
       version: "0.10.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Toqozz",
           repo: "wired-notify",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${libxkbcommon}/lib
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight notification daemon written in Rust",
         homepage: "https://github.com/Toqozz/wired-notify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

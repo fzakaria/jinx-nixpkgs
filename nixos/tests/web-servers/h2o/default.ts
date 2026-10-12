@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runTest = nix.arg($, "runTest");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       basic: nix.thunk(() => nix.app(runTest, nix.path(here, "./basic.nix"))),
       mruby: nix.thunk(() => nix.app(runTest, nix.path(here, "./mruby.nix"))),
       "tls-recommendations": nix.thunk(() => nix.app(runTest, nix.path(here, "./tls-recommendations.nix"))),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-lsp",
           repo: "python-lsp-jsonrpc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["pylsp_jsonrpc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python server implementation of the JSON RPC 2.0 protocol",
         homepage: "https://github.com/python-lsp/python-lsp-jsonrpc",
         changelog: nix.thunk(() => nix.str`https://github.com/python-lsp/python-lsp-jsonrpc/blob/v${version}/CHANGELOG.md`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

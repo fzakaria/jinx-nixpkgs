@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tweag-credential-helper",
       version: "0.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tweag",
           repo: "credential-helper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7Aja88JAhBIL5m1I7GEVjHnVA1rAoAr/7JN8GVQ90w8=",
         })))),
       vendorHash: "sha256-LVXHCRgRop2wdNU/NG5FFVYf5iiQRSPoRSX7B7r2tuI=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/credential-helper"]),
       postInstall: "mv $out/bin/credential-helper $out/bin/tweag-credential-helper",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Credential helper framework and agent for Bazel and similar tools implementing the credential-helper spec",
         homepage: "https://github.com/tweag/credential-helper",
         changelog: nix.thunk(() => nix.str`https://github.com/tweag/credential-helper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

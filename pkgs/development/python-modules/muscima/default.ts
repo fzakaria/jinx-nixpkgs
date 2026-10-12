@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const rev = "9a016380625927f385e699664026c90356557850";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "muscima",
       version: "unstable-2023-04-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hajicj",
           repo: "muscima",
           rev: rev,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["test/test_dataset.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for working with the MUSCIMA++ dataset of handwritten music notation",
         homepage: "https://github.com/hajicj/muscima",
         changelog: nix.thunk(() => nix.str`https://github.com/hajicj/muscima/blob/${rev}/CHANGES.md`),

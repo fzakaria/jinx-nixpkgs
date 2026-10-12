@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "strings"));
   const optionalString = nix.thunk(() => nix.attr(from, "optionalString"));
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.str`c3c${nix.app(optionalString, debug, "-debug")}`),
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "c3lang",
           repo: "c3c",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ substituteInPlace CMakeLists.txt \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compiler for the C3 language",
         homepage: "https://github.com/c3lang/c3c",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

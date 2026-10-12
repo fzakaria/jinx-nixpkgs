@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "2.8.0";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ytcc",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woefe",
           repo: "ytcc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installManPage doc/ytcc.1\ninstallShellCompletion --cmd ytcc \\\n  --bash scripts/completions/bash/ytcc.completion.sh \\\n  --fish scripts/completions/fish/ytcc.fish \\\n  --zsh scripts/completions/zsh/_ytcc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command Line tool to keep track of your favourite YouTube channels without signing up for a Google account",
         homepage: "https://github.com/woefe/ytcc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libdvdread = nix.arg($, "libdvdread");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libdvdnav",
       version: "6.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://get.videolan.org/libdvdnav/${nix.sel(finalAttrs, "version")}/libdvdnav-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-wZGnR1lH0yP/doDPksD7G+gjdwGIXzdlbGTQTpjRjUg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libdvdread]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://dvdnav.mplayerhq.hu/",
         description: "Library that implements DVD navigation features such as DVD menus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "wmertens"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, libdvdread: libdvdread })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, libdvdread: libdvdread })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

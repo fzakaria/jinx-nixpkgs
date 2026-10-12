@@ -88,10 +88,10 @@ export default nix.lambda((args) => (() => {
   const defaultSecretKeyBaseFile = nix.thunk(() => nix.str`${dataDir}/secrets/secret-key-base`);
   const needsGenCredentialsUnit = nix.thunk(() => nix.eq(nix.sel(cfg, "secretKeyBaseFile"), null));
   const credentials = nix.thunk(() => nix.update({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     SECRET_KEY_BASE: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), defaultSecretKeyBaseFile, nix.thunk(() => nix.sel(cfg, "secretKeyBaseFile")))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       DATABASE_PASSWORD: nix.thunk(() => nix.sel(cfg, "database", "passwordFile")),
     })))));
   const loadCredentialsIntoEnv = nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (_) => nix.str`export ${name}="$(systemd-creds cat ${name})"`, credentials));
@@ -100,14 +100,14 @@ export default nix.lambda((args) => (() => {
   const isDatabaseUnixSocket = nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "/", nix.thunk(() => nix.sel(cfg, "database", "host"))));
   const databaseUrl = nix.thunk(() => nix.str`postgresql://${nix.app(nix.sel(lib, "strings", "escapeURL"), nix.thunk(() => nix.sel(cfg, "database", "user")))}:$DATABASE_PASSWORD@${nix.app(nix.sel(lib, "strings", "escapeURL"), nix.thunk(() => nix.sel(cfg, "database", "host")))}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(isDatabaseUnixSocket)) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "port"), null)))), nix.thunk(() => nix.str`:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))}`))}/${nix.app(nix.sel(lib, "strings", "escapeURL"), nix.thunk(() => nix.sel(cfg, "database", "name")))}`);
   const redisEnv = nix.thunk(() => (nix.asBool(isRedisUnixSocket) ? {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     REDIS_URL: nix.thunk(() => nix.str`unix://${nix.sel(cfg, "redis", "host")}`),
   } : {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     REDIS_URL: nix.thunk(() => nix.str`redis://${nix.sel(cfg, "redis", "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "redis", "port")))}`),
   }));
   const greenlight_rake = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       name: "greenlight-rake",
       text: nix.thunk(() => (() => {
         const command = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "greenlight-rake-unwrapped", nix.thunk(() => nix.str`${loadCredentialsIntoEnv}
@@ -136,7 +136,7 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", 
       })()),
     }))));
   const defaultServiceConfig = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     User: nix.thunk(() => nix.sel(cfg, "user")),
     Group: nix.thunk(() => nix.sel(cfg, "group")),
     WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/greenlight`),
@@ -179,56 +179,56 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", 
       ]))),
   }));
   return {
-    __proto__: pos$68,
+    [nix.POS]: pos$68,
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         greenlight: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Greenlight web interface for BigBlueButton")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "greenlight", nix.thunk(() => ({})))),
           database: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "Whether to configure a local PostgreSQL server and database for Greenlight.\nThe connection is performed via Unix sockets.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "/run/postgresql",
                 example: "127.0.0.1",
                 description: "Hostname or address of the postgresql server. If an absolute path is given here, it will be interpreted as a unix socket path.",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                 default: 5432n,
                 description: "Port of the postgresql server.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "greenlight",
                 description: "The name of the Greenlight database.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "greenlight",
                 description: "The database user for Greenlight.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/greenlight-db-password",
@@ -237,9 +237,9 @@ exec ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", 
               })))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: nix.thunk(() => nix.str`Whether to configure a local Redis server for Greenlight.
 The connection is performed via Unix sockets by default,
 but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")}\` and {option}\`${nix.sel(opt, "redis", "port")}\`.
@@ -248,41 +248,41 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
                 default: true,
               })))),
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: "The redis host Greenlight will connect to.",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "redis", "createLocally")) ? nix.sel(config, "services", "redis", "servers", "greenlight", "unixSocket") : null)),
                 defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.redis.servers.greenlight.unixSocket")),
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 description: "The port of the redis server Greenlight will connect to. Set to zero to disable TCP and use Unix sockets instead.",
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 0n,
               })))),
           })),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               description: "Configure nginx as a reverse proxy for Greenlight.\nAlternatively you can configure a reverse-proxy of your choice to serve specific\npaths. Take a look at Greenlight's provided reverse proxy configurations at\n`https://github.com/bigbluebutton/greenlight/blob/master/greenlight-v3.nginx`.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               description: "User under which Greenlight runs. If it is set to \"greenlight\",\nthat user will be created, otherwise it should be set to the\nname of a user created elsewhere.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "greenlight",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               description: "Group under which Greenlight runs.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "greenlight",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(lib, "types", "str")),
                           nix.thunk(() => nix.sel(lib, "types", "bool")),
@@ -291,21 +291,21 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
                           nix.thunk(() => nix.sel(lib, "types", "path")),
                         ]))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     URL_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "localhost",
                         description: "Hostname to use",
                       })))),
                     PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 6346n,
                         description: "Port for the puma daemon to bind to.",
                       })))),
                     BINDING: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "Address for the puma daemon to bind to.",
@@ -316,7 +316,7 @@ but that can be changed by configuring {option}\`${nix.sel(opt, "redis", "host")
               description: "Extra configuration options to append or override.\nFor available and default option values see\n[upstream configuration file](https://github.com/bigbluebutton/greenlight/blob/master/sample.env).\n",
             })))),
           secretKeyBaseFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: nix.thunk(() => nix.str`Path to file containing the secret key base.
 The content of the file will be sourced into {env}\`SECRET_KEY_BASE\` environment
 variable. The secret has a minimum length requirement of 64 bytes.
@@ -336,41 +336,41 @@ with a new secret key base.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$67,
+        [nix.POS]: pos$67,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(isRedisUnixSocket)) || nix.asBool(!nix.eq(nix.sel(cfg, "redis", "port"), 0n)))),
             message: "`services.greenlight.redis.port` needs to be configured if `services.greenlight.redis.host` is not a unix socket.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(!nix.asBool(isDatabaseUnixSocket)) || nix.asBool(!nix.eq(nix.sel(cfg, "database", "port"), null)))),
             message: "`services.greenlight.database.port` needs to be configured if `services.greenlight.database.host` is not a unix socket.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)) || nix.asBool(!nix.asBool(isDatabaseUnixSocket)))),
             message: "`services.greenlight.database.passwordFile` has no effect when `services.greenlight.database.host`\nis a unix socket, since local socket connections normally authenticate via peer/ident, not a password.\nEither point `database.host` at a TCP address, or drop `passwordFile`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "passwordFile"), null))))),
             message: "`services.greenlight.database.passwordFile` is set, but `database.createLocally` is also enabled.\nThe PostgreSQL role created via `ensureUsers` has no password configured, so authentication would\nfail. Either disable `database.createLocally` and use an external database, or configure the local\nrole's password yourself (e.g. via `services.postgresql.initialScript`) and keep it in sync with\n`passwordFile`.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(isDatabaseUnixSocket))) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))))),
             message: "services.greenlight.database.user must equal services.greenlight.user when\nservices.greenlight.database.createLocally is true and services.greenlight.database.host\nis a unix socket, since the local PostgreSQL connection authenticates via peer auth\n(OS user must match the Postgres role name).\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$54,
+          [nix.POS]: pos$54,
           greenlight: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   RAILS_ENV: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "production")),
                   RAILS_ROOT: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/greenlight`),
                   BUNDLE_WITHOUT: "development:test",
@@ -380,11 +380,11 @@ with a new secret key base.
               ]))),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             servers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 greenlight: nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   enable: true,
                   port: nix.thunk(() => nix.sel(cfg, "redis", "port")),
                   bind: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isRedisUnixSocket)), nix.thunk(() => nix.sel(cfg, "redis", "host")))),
@@ -392,11 +392,11 @@ with a new secret key base.
               })))),
           })),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               enable: true,
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
@@ -404,7 +404,7 @@ with a new secret key base.
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "settings", "URL_HOST")}`, nix.thunk(() => (() => {
@@ -416,38 +416,38 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_set_header X-Forwarded-Proto $scheme;
 `);
                   return {
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/greenlight/public`),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$51,
-                      "/": nix.thunk(() => ({ __proto__: pos$44, tryFiles: "$uri @greenlight" })),
+                      [nix.POS]: pos$51,
+                      "/": nix.thunk(() => ({ [nix.POS]: pos$44, tryFiles: "$uri @greenlight" })),
                       "@greenlight": nix.thunk(() => ({
-                        __proto__: pos$45,
+                        [nix.POS]: pos$45,
                         proxyPass: nix.thunk(() => nix.str`http://${listeningAddress}`),
                         extraConfig: bbbProxyHeaders,
                       })),
                       "/cable": nix.thunk(() => ({
-                        __proto__: pos$46,
+                        [nix.POS]: pos$46,
                         proxyPass: nix.thunk(() => nix.str`http://${listeningAddress}`),
                         extraConfig: nix.thunk(() => nix.add(bbbProxyHeaders, "proxy_set_header Connection \"upgrade\";\nproxy_set_header Upgrade $http_upgrade;\n")),
                       })),
                       "@bbb-fe": nix.thunk(() => ({
-                        __proto__: pos$47,
+                        [nix.POS]: pos$47,
                         proxyPass: nix.thunk(() => nix.str`http://${listeningAddress}`),
                         extraConfig: nix.thunk(() => nix.add(bbbProxyHeaders, "proxy_set_header Connection \"\";\nproxy_buffer_size 128k;\nproxy_buffers 4 256k;\nproxy_busy_buffers_size 256k;\n")),
                       })),
                       "~ '/api/v1/rooms/\\w{3}-\\w{3}-\\w{3}-\\w{3}\\.json$'": nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         proxyPass: nix.thunk(() => nix.str`http://${listeningAddress}`),
                         extraConfig: nix.thunk(() => nix.add(bbbProxyHeaders, "proxy_set_header Connection \"\";\nclient_max_body_size 31m;\n")),
                       })),
                       "~ '/api/v1/users/\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}\\.json$'": nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         proxyPass: nix.thunk(() => nix.str`http://${listeningAddress}`),
                         extraConfig: nix.thunk(() => nix.add(bbbProxyHeaders, "proxy_set_header Connection \"\";\nclient_max_body_size 4m;\n")),
                       })),
                       "~ /api/v1/admin/site_settings/BrandingImage\\.json$": nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         proxyPass: nix.thunk(() => nix.str`http://${listeningAddress}`),
                         extraConfig: nix.thunk(() => nix.add(bbbProxyHeaders, "proxy_set_header Connection \"\";\nclient_max_body_size 4m;\n")),
                       })),
@@ -458,21 +458,21 @@ proxy_set_header X-Forwarded-Proto $scheme;
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           services: nix.thunk(() => ({
-            __proto__: pos$61,
+            [nix.POS]: pos$61,
             "greenlight-init-credentials": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), needsGenCredentialsUnit, nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 script: nix.thunk(() => nix.str`if ! test -f ${defaultSecretKeyBaseFile}; then
   ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", "rubyEnv")), "bundle")} exec rails secret > ${defaultSecretKeyBaseFile}
 fi
 `),
-                serviceConfig: nix.thunk(() => nix.update({ __proto__: pos$55, Type: "oneshot", SyslogIdentifier: "greenlight-init-dirs" }, defaultServiceConfig)),
+                serviceConfig: nix.thunk(() => nix.update({ [nix.POS]: pos$55, Type: "oneshot", SyslogIdentifier: "greenlight-init-dirs" }, defaultServiceConfig)),
                 environment: configEnv,
                 after: nix.thunk(() => ["network.target"]),
               })))),
             "greenlight-seeder": nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               script: nix.thunk(() => nix.str`set -o pipefail -o nounset
 shopt -s inherit_errexit
 ${loadCredentialsIntoEnv}
@@ -495,7 +495,7 @@ elif [[ $version != ${nix.sel(cfg, "package", "version")} ]]; then
 fi
 `),
               serviceConfig: nix.thunk(() => nix.update({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 LoadCredential: loadCredentials,
@@ -507,7 +507,7 @@ fi
               requires: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), needsGenCredentialsUnit, "greenlight-init-credentials.service"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-greenlight.service")))),
             })),
             "greenlight-web": nix.thunk(() => ({
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               script: nix.thunk(() => nix.str`${loadCredentialsIntoEnv}
 
 export DATABASE_PASSWORD="\${DATABASE_PASSWORD:-}"
@@ -515,7 +515,7 @@ export DATABASE_URL="${databaseUrl}"
 
 ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", "rubyEnv")), "bundle")} exec rails server -u puma
 `),
-              serviceConfig: nix.thunk(() => nix.update({ __proto__: pos$59, LoadCredential: loadCredentials }, defaultServiceConfig)),
+              serviceConfig: nix.thunk(() => nix.update({ [nix.POS]: pos$59, LoadCredential: loadCredentials }, defaultServiceConfig)),
               environment: configEnv,
               bindsTo: nix.thunk(() => ["greenlight-seeder.service"]),
               after: nix.thunk(() => nix.concat(["greenlight-seeder.service"], nix.concat(nix.app(nix.sel(lib, "optional"), needsGenCredentialsUnit, "greenlight-init-credentials.service"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), "postgresql.target"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "redis", "createLocally")), "redis-greenlight.service"))))),
@@ -525,11 +525,11 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", "ruby
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "greenlight")), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               greenlight: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 isSystemUser: true,
                 home: nix.thunk(() => nix.sel(cfg, "package")),
                 group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -537,7 +537,7 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package", "ruby
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "greenlight")), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])))),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$66, systemPackages: nix.thunk(() => [greenlight_rake]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$66, systemPackages: nix.thunk(() => [greenlight_rake]) })),
       })))),
   };
 })(), formals$1);

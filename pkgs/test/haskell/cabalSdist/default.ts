@@ -22,33 +22,33 @@ export default nix.lambda((args) => (() => {
       const hercules_ci_cnix_store = nix.thunk(() => nix.app(nix.sel(haskellPackages, "buildFromCabalSdist"), nix.thunk(() => nix.sel(haskellPackages, "hercules-ci-cnix-store"))));
       const localFromCabalSdist = nix.thunk(() => nix.app(nix.sel(haskellPackages, "buildFromCabalSdist"), localRaw));
       const assumptionLocalHasDirectReference = nix.thunk(() => nix.app(runCommand, "localHasDirectReference", nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           drvPath: nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.sel(localRaw, "drvPath")))),
         })), nix.thunk(() => nix.str`grep ${nix.sel(localRaw, "src")} $drvPath >/dev/null
 touch $out
 `)));
       const localHasNoDirectReference = nix.thunk(() => nix.app(runCommand, "localHasNoDirectReference", nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           drvPath: nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.sel(localFromCabalSdist, "drvPath")))),
         })), nix.thunk(() => nix.str`grep -v ${nix.sel(localRaw, "src")} $drvPath >/dev/null
 touch $out
 `)));
       const localPatchedFromCabalSdist = nix.thunk(() => nix.app(nix.sel(haskellPackages, "buildFromCabalSdist"), localPatched));
       const patchRespected = nix.thunk(() => nix.app(runCommand, "patchRespected", nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           nativeBuildInputs: nix.thunk(() => [localPatchedFromCabalSdist]),
         })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), localPatchedFromCabalSdist)} | grep "Patched" >/dev/null
 touch $out
 `)));
       const localPatchedFromSdist = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "buildFromSdist"), localPatched));
       const patchRespectedSdist = nix.thunk(() => nix.app(runCommand, "patchRespectedSdist", nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           nativeBuildInputs: nix.thunk(() => [localPatchedFromSdist]),
         })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), localPatchedFromSdist)} | grep "Patched" >/dev/null
 touch $out
 `)));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         helloFromCabalSdist,
         "hercules-ci-cnix-store": hercules_ci_cnix_store,
         localFromCabalSdist,

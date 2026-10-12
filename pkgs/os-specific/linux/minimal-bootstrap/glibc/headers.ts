@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pname = "glibc-headers";
   const version = "2.44";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/libc/glibc-${version}.tar.xz`),
       hash: "sha256-N/YA8r7zxegwAUcFlWiyouQKetbMxlzpQlVtSUKcxmc=",
     }))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         xz,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "The GNU C Library",
         homepage: "https://www.gnu.org/software/libc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

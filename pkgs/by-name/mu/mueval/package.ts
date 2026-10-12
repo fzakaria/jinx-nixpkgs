@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "mueval"));
       return {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mueval",
       version: nix.thunk(() => nix.attr(from, "version")),
       mueval: nix.thunk(() => nix.attr(haskellPackages, "mueval")),
@@ -39,8 +39,8 @@ makeWrapper $mueval/bin/mueval $out/bin/mueval \\
 
 runHook postBuild
 `),
-      passthru: nix.thunk(() => ({ __proto__: pos$1, defaultPkgs: defaultPkgs })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, mainProgram: "mueval" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, defaultPkgs: defaultPkgs })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "mueval" })),
     };
     })()));
 })(), formals$1);

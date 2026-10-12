@@ -31,13 +31,13 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
       const $_1 = nix.formals(args_1, formals$2);
       const pkgs_1 = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           fileSystems: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             "/data": nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               device: nix.thunk(() => (nix.asBool(nix.eq(version, 4n)) ? "server:/" : "server:/data")),
               fsType: "nfs",
               options: nix.thunk(() => [nix.thunk(() => nix.str`vers=${nix.builtins.toString(version)}`)]),
@@ -45,34 +45,34 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$5,
-          firewall: nix.thunk(() => ({ __proto__: pos$4, enable: false })),
+          [nix.POS]: pos$5,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
         })),
       };
     })(), formals$2);
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       name: nix.thunk(() => nix.str`nfsv${nix.builtins.toString(version)}-simple`),
-      meta: nix.thunk(() => ({ __proto__: pos$7, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$7, maintainers: [] })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         client1: client,
         client2: client,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               nfs: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 server: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   enable: true,
                   exports: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     "/data": nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       "192.168.1.0/255.255.255.0": nix.thunk(() => ["rw", "no_root_squash", "no_subtree_check", "fsid=0"]),
                     })),
                   })),
@@ -81,8 +81,8 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$14,
-              firewall: nix.thunk(() => ({ __proto__: pos$13, enable: false })),
+              [nix.POS]: pos$14,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
             })),
           };
         })(), formals$3),

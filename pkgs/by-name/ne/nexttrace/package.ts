@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nexttrace",
       version: "1.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nxtrace",
           repo: "NTrace-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/bin/NTrace-core $out/bin/nexttrace\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source visual route tracking CLI tool",
         homepage: "https://www.nxtrace.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

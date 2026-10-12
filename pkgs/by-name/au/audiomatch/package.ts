@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audiomatch";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unmade",
           repo: "audiomatch",
           tag: version,
@@ -37,7 +37,7 @@ substituteInPlace src/audiomatch/fingerprints.py \\
       ]);
       const nativeCheckInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/unmade/audiomatch",
         description: "A small command-line tool to find similar audio files",
         changelog: nix.thunk(() => nix.str`https://github.com/unmade/audiomatch/releases/tag/${version}`),
@@ -50,7 +50,7 @@ substituteInPlace src/audiomatch/fingerprints.py \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         pyproject,

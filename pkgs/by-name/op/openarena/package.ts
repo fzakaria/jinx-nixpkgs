@@ -36,17 +36,17 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nixosTests = nix.arg($, "nixosTests");
   const openarena_maps = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "openarena-maps",
       url: "https://download.tuxfamily.org/openarena/rel/088/openarena-0.8.8.zip",
       hash: "sha256-Rup1n14k9sKcyVFYzFqPYV+BEBCnUNwpnFsnyGrhl20=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "openarena",
       version: "0-unstable-2023-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "openarena-source",
           owner: "OpenArena",
           repo: "engine",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/OpenArena/engine/commit/f2b424bd332e90a1e2592edd21c62bdb8cd05214.patch",
             hash: "sha256-legiXLtZAeG2t1esiBa37qkAgxPJVM7JLhjpxGUmWCo=",
           })))),
@@ -78,7 +78,7 @@ ln -s ${openarena_maps}/missionpack $out/share/openarena/missionpack
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "OpenArena",
             exec: "openarena",
             icon: "openarena",
@@ -88,14 +88,14 @@ ln -s ${openarena_maps}/missionpack $out/share/openarena/missionpack
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           openarena: nix.thunk(() => nix.attr(nixosTests, "openarena")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fast-paced 3D first-person shooter, similar to id Software Inc.'s Quake III Arena",
         homepage: "http://openarena.ws/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

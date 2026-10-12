@@ -22,41 +22,41 @@ export default nix.lambda((args) => (() => {
   const type = nix.arg($, "type");
   const cfg = nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", nix.key(nix.str`exportarr-${type}`)));
   const exportarrEnvironment = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "environment"))), {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     PORT: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))),
     URL: nix.thunk(() => nix.sel(cfg, "url")),
     API_KEY_FILE: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "apiKeyFile"), null)), "%d/api-key")),
   }));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     port: 9708n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "str")),
           default: "http://127.0.0.1",
           description: "The full URL to Sonarr, Radarr, or Lidarr.\n",
         })))),
       apiKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
           default: null,
           description: "File containing the api-key.\n",
         })))),
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "exportarr", nix.thunk(() => ({})))),
       environment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: nix.thunk(() => ({})),
           description: "See [the configuration guide](https://github.com/onedr0p/exportarr#configuration) for available options.\n",
-          example: nix.thunk(() => ({ __proto__: pos$4, PROWLARR__BACKFILL: true })),
+          example: nix.thunk(() => ({ [nix.POS]: pos$4, PROWLARR__BACKFILL: true })),
         })))),
     })),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         LoadCredential: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "apiKeyFile"), null)), nix.thunk(() => nix.str`api-key:${nix.sel(cfg, "apiKeyFile")}`))),
         ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/exportarr ${type} "$@"`),
         ProcSubset: "pid",

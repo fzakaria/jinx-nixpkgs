@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const usb_devices = nix.arg($, "usb-devices");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bluetooth-auto-recovery",
       version: "1.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bluetooth-Devices",
           repo: "bluetooth-auto-recovery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["bluetooth_auto_recovery"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for recovering Bluetooth adapters",
         homepage: "https://github.com/Bluetooth-Devices/bluetooth-auto-recovery",
         changelog: nix.thunk(() => nix.str`https://github.com/Bluetooth-Devices/bluetooth-auto-recovery/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

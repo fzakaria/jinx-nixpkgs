@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tone";
       const version = "0.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sandreas",
           repo: "tone",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sandreas/tone",
         description: "Cross platform utility to dump and modify audio metadata for a wide variety of formats",
         changelog: nix.thunk(() => nix.str`https://github.com/sandreas/tone/releases/tag/v${version}`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tone",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

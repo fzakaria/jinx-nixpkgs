@@ -13,24 +13,24 @@ const pos$7 = nix.positions(here + "/systemd-user-settings.nix", [["machine", 7,
 const pos$8 = nix.positions(here + "/systemd-user-settings.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 7, 3], ["testScript", 16, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$8,
+  [nix.POS]: pos$8,
   name: "systemd-user-settings",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   nodes: nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const lib = nix.arg($, "lib");
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         systemd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           user: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             settings: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               Manager: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 DefaultTimeoutStartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "60")),
                 DefaultEnvironment: "FOO=bar",
               })),

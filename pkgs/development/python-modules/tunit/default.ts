@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const types_pyyaml = nix.arg($, "types-pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tunit",
       version: "1.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "massultidev",
           repo: "tunit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         json: nix.thunk(() => [json_handler_registry]),
         yaml: nix.thunk(() => [pyyaml, types_pyyaml]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["tunit"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for time unit types",
         homepage: "https://bitbucket.org/massultidev/tunit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

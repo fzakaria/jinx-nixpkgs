@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "reqable",
       version: "3.2.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/reqable/reqable-app/releases/download/${nix.sel(finalAttrs, "version")}/reqable-app-linux-x86_64.deb`),
           hash: "sha256-qZx5TX+3yi42WbnSIwwHrv97LnkJKI3rry1J2838wxo=",
         })))),
@@ -69,11 +69,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapper $out/share/reqable/reqable $out/bin/reqable \\\n  --prefix LD_LIBRARY_PATH : $out/share/reqable/lib \\\n  ${gappsWrapperArgs[@]}\n\nrm -r $out/share/pixmaps\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Generation API debugging and testing one-stop solution",
         homepage: "https://reqable.com",
         downloadPage: "https://github.com/reqable/reqable-app/releases",

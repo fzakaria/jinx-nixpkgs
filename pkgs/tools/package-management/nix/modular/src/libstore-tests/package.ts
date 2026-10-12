@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const filesetToSource = nix.arg($, "filesetToSource");
   return nix.app(mkMesonExecutable, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nix-store-tests",
       version: version,
       workDir: nix.path(here, "./."),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       mesonFlags: [],
       excludedTestPatterns: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2.31")), nix.thunk(() => ["nix_api_util_context.nix_store_real_path_binary_cache"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           run: nix.thunk(() => (() => {
             const data = nix.thunk(() => nix.app(filesetToSource, nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 root: nix.path(here, "../.."),
                 fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
                     nix.path(here, "./data"),
@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
                   ]))),
               }))));
             return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-run`), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 meta: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))),
                 })),
                 nativeBuildInputs: nix.thunk(() => nix.concat([writableTmpDirAsHomeHook], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "2.34pre")), nix.thunk(() => nix.app(nix.sel(lib, "getBin"), openssl))))),
@@ -66,7 +66,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
         mainProgram: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), nix.sel(stdenv, "hostPlatform", "extensions", "executable"))),
       })),

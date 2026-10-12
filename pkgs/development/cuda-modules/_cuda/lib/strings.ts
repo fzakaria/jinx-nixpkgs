@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cudaLib = nix.thunk(() => nix.sel(_cuda, "lib"));
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     dotsToUnderscores: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]))),
     dropDots: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]))),
     formatCapabilities: nix.lambda((args_1) => (() => {
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat(base, nix.app(nix.sel(lib, "optionals"), cudaForwardCompat, nix.thunk(() => [forward])));
       })());
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         cudaCapabilities: cudaCapabilities,
         cudaForwardCompat: cudaForwardCompat,
         gencode: gencode,

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xfce4-genmon-plugin",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-genmon-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-genmon-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-B3GXkR2E5boi57uJXObAONu9jo4AZ+1vTkhQK3FnooI=",
         })))),
@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [libxfce4util, libxfce4ui, xfce4_panel, xfconf, glib, gtk3]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-genmon-plugin",
             "rev-prefix": "xfce4-genmon-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin",
         description: "Generic monitor plugin for the Xfce panel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libu2f-emu",
       version: "0-unstable-2020-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Agnoctopus",
           repo: "libu2f-emu",
           rev: "d1c4b9c2e1c42e8931033912c8b609521f2a7756",
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       postPatch: "# Upstream meson.build uses error() instead of warning() for missing\n# doxygen/dot, which fails the configure.\nsubstituteInPlace meson.build \\\n  --replace-fail \"error('Skip doc:\" \"warning('Skip doc:\" \\\n  --replace-fail \"error('Skip dot in doc:\" \"warning('Skip dot in doc:\"\n\n# Fix header guard typo: TRANSaCTION_H -> TRANSACTION_H\nsubstituteInPlace src/usb/transaction.h \\\n  --replace-fail \"define TRANSaCTION_H\" \"define TRANSACTION_H\"\n",
       mesonFlags: nix.thunk(() => ["--warnlevel=2"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Universal 2nd Factor (U2F) Emulation C Library",
         homepage: "https://github.com/Agnoctopus/libu2f-emu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

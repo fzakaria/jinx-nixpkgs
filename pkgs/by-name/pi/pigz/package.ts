@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pigz",
       version: "2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "madler",
           repo: "pigz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [which, ncompress]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 pigz \"$out/bin/pigz\"\nln -s pigz \"$out/bin/unpigz\"\ninstall -Dm755 pigz.1 \"$man/share/man/man1/pigz.1\"\nln -s pigz.1 \"$man/share/man/man1/unpigz.1\"\ninstall -Dm755 pigz.pdf \"$doc/share/doc/pigz/pigz.pdf\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.zlib.net/pigz/",
         description: "Parallel implementation of gzip for multi-core machines",
         mainProgram: "pigz",

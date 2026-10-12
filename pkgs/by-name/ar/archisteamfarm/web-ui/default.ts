@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "asf-ui";
       const version = "2b36125533f41e624b2fdcdec44f37ad60c7daaa";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JustArchiNET",
           repo: "ASF-ui",
           rev: version,
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(archisteamfarm, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official web interface for ASF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/JustArchiNET/ASF-ui",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
       };
       })());
-      return { __proto__: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

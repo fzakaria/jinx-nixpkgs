@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const mktestdocs = nix.arg($, "mktestdocs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tantivy",
       version: "0.26.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quickwit-oss",
           repo: "tantivy-py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-yxRwN4rR9RQKvXxPcg1bTOfmtt9bV4y8dMn54qKuUi8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zstd"))]),
-      env: nix.thunk(() => ({ __proto__: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, ZSTD_SYS_USE_PKG_CONFIG: true })),
       pythonImportsCheck: nix.thunk(() => ["tantivy"]),
       preCheck: "rm -rf tantivy\n",
       nativeCheckInputs: nix.thunk(() => [mktestdocs, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Official Python bindings for the Tantivy search engine",
         homepage: "https://pypi.org/project/tantivy",
         changelog: nix.thunk(() => nix.str`https://github.com/quickwit-oss/tantivy-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "veikk-linux-driver-gui",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jlam55555",
           repo: "veikk-linux-driver-gui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make all clean\n",
       installPhase: "mkdir -p $out/bin\ncp veikk-linux-driver-gui $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Configuration tool for the VEIKK Linux driver",
         homepage: "https://github.com/jlam55555/veikk-linux-driver-gui/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

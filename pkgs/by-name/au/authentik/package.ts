@@ -58,14 +58,14 @@ export default nix.lambda((args) => (() => {
   const version = "2026.5.6";
   const cargoPackageFlags = nix.thunk(() => ["--package", "authentik"]);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "goauthentik",
       repo: "authentik",
       tag: nix.thunk(() => nix.str`version/${version}`),
       hash: "sha256-/HdXzjjvuSW7zjbCNJKm3Fj8gvIwfrDf8mOYev0yuIg=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Authentication glue you need",
     changelog: nix.thunk(() => nix.str`https://github.com/goauthentik/authentik/releases/tag/version%2F${version}`),
     homepage: "https://goauthentik.io/",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const client_go = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "authentik-client-go",
       version: version,
       src: src,
@@ -101,7 +101,7 @@ runHook postBuild
       installPhase: "runHook preInstall\n\ncd $out\nrm -rf test\nrm -f go.mod go.sum\nrm -f .travis.yml git_push.sh\n\nrunHook postInstall\n",
     }))));
   const client_ts = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "authentik-client-ts",
       version: version,
       src: src,
@@ -124,7 +124,7 @@ runHook postBuild
 `),
     }))));
   const website_deps = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "authentik-website-deps",
       src: src,
       version: version,
@@ -142,7 +142,7 @@ runHook postBuild
       dontPatchShebangs: true,
     }))));
   const website = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "authentik-website",
       src: src,
       version: version,
@@ -168,14 +168,14 @@ runHook postBuild
       installPhase: "mkdir $out\ncp -r api/build $out/help\n",
     }))));
   const webui_deps = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "authentik-webui-deps",
       src: src,
       version: version,
       meta: meta,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/web`),
       outputHash: nix.thunk(() => nix.selOr({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "aarch64-linux": "sha256-ZdfDKrrcVpNImY8cYa9CPEwI7tuaoPn3kM6MXGGio2U=",
         "x86_64-linux": "sha256-p6xjAinU2Isl/uYgoJuacqHN7jBnbWam40J6AQudbtQ=",
       }, () => nix.builtins.throw("authentik-webui-deps: unsupported host platform"), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
@@ -187,7 +187,7 @@ runHook postBuild
       dontPatchShebangs: true,
     }))));
   const webui = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "authentik-webui",
       src: src,
       version: version,
@@ -226,13 +226,13 @@ runHook postBuild
       npmInstallFlags: nix.thunk(() => ["--include=dev", "--ignore-scripts"]),
     }))));
   const python = nix.thunk(() => nix.app(nix.sel(python314, "override"), nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       self: python,
       packageOverrides: (final) => (prev) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         django: nix.thunk(() => nix.sel(final, "django_5")),
         "ak-guardian": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             pname: "ak-guardian",
             version: version,
             src: src,
@@ -256,7 +256,7 @@ runHook postBuild
             })()),
           })))),
         "django-channels-postgres": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             pname: "django-channels-postgres",
             version: version,
             src: src,
@@ -285,7 +285,7 @@ runHook postBuild
             })()),
           })))),
         "django-dramatiq-postgres": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pname: "django-dramatiq-postgres",
             version: version,
             src: src,
@@ -315,7 +315,7 @@ runHook postBuild
             })()),
           })))),
         "django-postgres-cache": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             pname: "django-postgres-cache",
             version: version,
             src: src,
@@ -339,7 +339,7 @@ runHook postBuild
             })()),
           })))),
         "authentik-django": nix.thunk(() => nix.app(nix.sel(final, "buildPythonPackage"), nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             pname: "authentik",
             version: version,
             src: src,
@@ -446,8 +446,8 @@ ln -s $out/${nix.sel(prev, "python", "sitePackages")}/lifecycle $out/lifecycle
     }))));
   const from = nix.thunk(() => nix.sel(python, "pkgs"));
   const authentik_django = nix.thunk(() => nix.attr(from, "authentik-django"));
-  const worker = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ __proto__: pos$17, stdenv: clangStdenv })), nix.thunk(() => ({
-      __proto__: pos$19,
+  const worker = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$17, stdenv: clangStdenv })), nix.thunk(() => ({
+      [nix.POS]: pos$19,
       pname: "authentik-worker",
       version: version,
       src: src,
@@ -456,14 +456,14 @@ ln -s $out/${nix.sel(prev, "python", "sitePackages")}/lifecycle $out/lifecycle
       nativeBuildInputs: nix.thunk(() => [cmake, go, perl]),
       buildInputs: nix.thunk(() => [python]),
       env: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         PYO3_PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python)),
         RUSTFLAGS: "--cfg tokio_unstable",
       })),
       cargoBuildFlags: cargoPackageFlags,
       doCheck: false,
     }))));
-  const apiGoVendorHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({ __proto__: pos$20, name: "authentik-api-go-vendor-hook" })), nix.thunk(() => nix.app(writeShellScript, "authentik-api-go-vendor-hook", nix.thunk(() => nix.str`authentikApiGoVendorHook() {
+  const apiGoVendorHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({ [nix.POS]: pos$20, name: "authentik-api-go-vendor-hook" })), nix.thunk(() => nix.app(writeShellScript, "authentik-api-go-vendor-hook", nix.thunk(() => nix.str`authentikApiGoVendorHook() {
   chmod -R +w packages/client-go
   rm -rf packages/client-go
   cp -r ${client_go} packages/client-go
@@ -478,7 +478,7 @@ if [ -z \${outputHash-} ]; then
 fi
 `)))));
   const proxy = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       pname: "authentik-proxy",
       version: version,
       src: src,
@@ -491,14 +491,14 @@ substituteInPlace internal/web/static.go \\
   --replace-fail './web' "${authentik_django}/web"
 `),
       nativeBuildInputs: nix.thunk(() => [apiGoVendorHook]),
-      env: nix.thunk(() => ({ __proto__: pos$21, CGO_ENABLED: 0n })),
-      overrideModAttrs: nix.thunk(() => ({ __proto__: pos$22, postPatch: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$21, CGO_ENABLED: 0n })),
+      overrideModAttrs: nix.thunk(() => ({ [nix.POS]: pos$22, postPatch: "" })),
       vendorHash: "sha256-EVDOZ4USaJoIBDB8mM4ZSBfsSc1d/NOm1Qv/hUJ+8f4=",
       postInstall: "mv $out/bin/server $out/bin/authentik-server\nln -s authentik-server $out/bin/authentik\n",
       subPackages: nix.thunk(() => ["cmd/server"]),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       pname: "authentik",
       src: src,
       version: version,
@@ -520,18 +520,18 @@ wrapProgram $out/bin/ak \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         proxy: proxy,
         worker: worker,
         apiGoVendorHook: apiGoVendorHook,
         outposts: nix.thunk(() => nix.app(callPackages, nix.path(here, "./outposts.nix"), nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             vendorHash: nix.thunk(() => nix.attr(proxy, "vendorHash")),
             apiGoVendorHook: apiGoVendorHook,
           })))),
       })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      meta: nix.thunk(() => nix.update(meta, { __proto__: pos$26, mainProgram: "ak" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$26, mainProgram: "ak" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

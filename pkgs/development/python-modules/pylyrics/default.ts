@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const beautifulsoup4 = nix.arg($, "beautifulsoup4");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pylyrics",
       version: "1.1.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "PyLyrics",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "zip",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["PyLyrics"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pythonic Implementation of lyrics.wikia.com for getting lyrics of songs",
         homepage: "https://github.com/geekpradd/PyLyrics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

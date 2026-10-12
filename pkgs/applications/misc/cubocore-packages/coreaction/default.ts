@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libcprime = nix.arg($, "libcprime");
   const libcsys = nix.arg($, "libcsys");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "coreaction",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cubocore/coreapps",
           repo: "coreaction",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         libcsys,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Side bar for showing widgets from the C Suite",
         mainProgram: "coreaction",
         homepage: "https://gitlab.com/cubocore/coreapps/coreaction",

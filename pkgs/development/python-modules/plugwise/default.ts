@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plugwise",
       version: "1.14.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plugwise",
           repo: "python-plugwise",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["plugwise"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module for Plugwise Smiles, Stretch and USB stick",
         homepage: "https://github.com/plugwise/python-plugwise",
         changelog: nix.thunk(() => nix.str`https://github.com/plugwise/python-plugwise/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

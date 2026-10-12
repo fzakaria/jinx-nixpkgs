@@ -37,9 +37,9 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "zigbee2mqtt.yaml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hexa"))];
@@ -49,21 +49,21 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "zigbee2mqtt", "config"]), "The option services.zigbee2mqtt.config was renamed to services.zigbee2mqtt.settings.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         zigbee2mqtt: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "zigbee2mqtt service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "zigbee2mqtt", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Zigbee2mqtt data directory",
               default: "/var/lib/zigbee2mqtt",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(format, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  homeassistant.enabled = config.services.home-assistant.enable;\n  permit_join = true;\n  serial = {\n    port = \"/dev/ttyACM1\";\n  };\n}\n")),
@@ -73,25 +73,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           zigbee2mqtt: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             settings: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               homeassistant: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "services", "home-assistant", "enable")))),
               })),
               permit_join: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
               mqtt: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 base_topic: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "zigbee2mqtt")),
                 server: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "mqtt://localhost:1883")),
               })),
               serial: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/dev/ttyACM0")),
               })),
               devices: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "devices.yaml")),
@@ -100,20 +100,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             zigbee2mqtt: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Zigbee2mqtt Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ZIGBEE2MQTT_DATA: nix.thunk(() => nix.sel(cfg, "dataDir")),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ExecStartPre: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "cp")} --no-preserve=mode ${configFile} '${nix.sel(cfg, "dataDir")}/configuration.yaml'`),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/zigbee2mqtt`),
                 User: "zigbee2mqtt",
@@ -157,11 +157,11 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             zigbee2mqtt: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               createHome: true,
               group: "zigbee2mqtt",
@@ -169,9 +169,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             zigbee2mqtt: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "zigbee2mqtt")),
             })),
           })),

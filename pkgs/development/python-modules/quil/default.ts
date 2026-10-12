@@ -22,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.35.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rigetti",
           repo: "quil-rs",
           tag: nix.thunk(() => nix.str`quil-rs/v${version}`),
           hash: "sha256-QWW8+cup81eyedDTU3jgslNanaj0+D2jI5XQMS3ZUIo=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, syrupy]);
       const pytestFlags = nix.thunk(() => ["quil-rs/tests_py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/quil-rs/blob/${nix.sel(src, "tag")}/quil-rs/CHANGELOG.md`),
         description: "Python package for building and parsing Quil programs",
         homepage: "https://github.com/rigetti/quil-rs/tree/main/quil-py",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "brill",
       version: "4.000.073",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://web.archive.org/web/20250719162541/https://brill.com/fileasset/The_Brill_Typeface_Package_v_4_0.zip",
           hash: "sha256-ugmEIkeBzD/4C9wkVfbctEtnzI8Kw+YD6KGcbk4BAf4=",
           stripRoot: false,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       installPhase: "runHook preInstall\n\ninstall -Dm644 *agreement.pdf -t $out/share/licenses/brill\ninstall -Dm644 *use.pdf       -t $out/share/doc/brill\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "In-house serif typeface for the publishing house Brill, designed by John Hudson; free for non-commercial use",
         longDescription: "Brill has “a neo-classical design geared towards optimum legibility”.\n\nAccording to designer John Hudson (Tiro Typeworks):\n“the mostly vertical contrast axis and expansion stroke model of the Brill types were chosen because they favour the mirrored letters of the International Phonetic Association alphabet. There is an inherent stability in this style that makes it more easily adaptable to a wide variety of shapes than, for instance, a renaissance style type with an oblique axis and broad-nib modelling.\nTechnically, the Brill fonts have to be able to legibly display any combination of the supported characters that might be encountered in text, including sequences of combining diacritic marks above and below letters, and to be able to do so in typographically sophisticated ways involving smallcaps etc. The OpenType Layout programming in the fonts includes smart contextual rules affecting the shape, spacing and mark positioning of characters. The idea is that users will be able to throw pretty much any text at these fonts and get back a legible and aesthetically pleasing display.’\n",
         homepage: "https://brill.com/page/BrillFont/brill-typeface",

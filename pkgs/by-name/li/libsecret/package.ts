@@ -46,18 +46,18 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   nix.assert_((!nix.asBool(abrmdSupport) || nix.asBool(withTpm2Tss)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libsecret/package.nix:35:1");
   const tpm_emu = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "tpm-emu",
       runtimeInputs: nix.thunk(() => [dbus, tpm2_abrmd]),
       text: "coproc {\n  # Monitor session bus for name acquisition\n  dbus-monitor \"type='signal',interface='org.freedesktop.DBus',member='NameAcquired',arg0='com.intel.tss2.Tabrmd'\"\n}\n\n# Discard initial dbus-monitor output\nwhile read -r -t 0.1 -u \"${COPROC[0]}\"; do :; done\n\ntpm2-abrmd \\\n  --tcti=libtpms \\\n  --allow-root \\\n  --flush-all \\\n  --session &\n\n# Terminate tpm2-abrmd on exit\n# shellcheck disable=SC2064 # immediate expansion intended\ntrap \"kill '$!'\" EXIT\n\n# Wait for daemon to become available to avoid spurious test failures\nread -r -t 60 -u \"${COPROC[0]}\"\nkill \"$COPROC_PID\"\n\nTCTI=\"tabrmd:bus_type=session\" \"$@\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "libsecret",
       version: "0.21.7",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libsecret/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libsecret-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-a0UuR1BZCitWF63EACbyjS9JA94V8SUOHRxAv9aO1V4=",
         })))),
@@ -115,18 +115,18 @@ export LD_LIBRARY_PATH+=":${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk((
       postCheck: "# This is test-only so it won’t be overwritten during installation.\nrm \"$out/lib/libmock-service.so\"\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "libsecret", versionPolicy: "none" })))),
+        [nix.POS]: pos$7,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "libsecret", versionPolicy: "none" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
-          "libsecret-tpm2": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ __proto__: pos$4, withTpm2Tss: true, abrmdSupport: false })))),
-          "libsecret-tpm2-abrmd": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ __proto__: pos$5, withTpm2Tss: true, abrmdSupport: true })))),
+          [nix.POS]: pos$6,
+          "libsecret-tpm2": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withTpm2Tss: true, abrmdSupport: false })))),
+          "libsecret-tpm2-abrmd": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, withTpm2Tss: true, abrmdSupport: true })))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(glib, "meta"));
         return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Library for storing and retrieving passwords and other secrets",
         homepage: "https://gitlab.gnome.org/GNOME/libsecret",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

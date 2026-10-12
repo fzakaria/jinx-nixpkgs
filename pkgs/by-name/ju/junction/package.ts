@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libportal_gtk4 = nix.arg($, "libportal-gtk4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "junction",
       version: "1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sonnyp",
           repo: "junction",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +61,11 @@ substituteInPlace troll/gjspack/bin/gjspack --replace "/usr/bin/env -S gjs" "${g
 `),
       postInstall: "# autoPatchShebangs does not like \"/usr/bin/env -S <environment-setting> gjs -m\"\nsed -i \"1s|.*|#!/usr/bin/gjs -m|\" $out/bin/re.sonny.Junction\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         mainProgram: "re.sonny.Junction",
         description: "Choose the application to open files and links",
         homepage: "https://apps.gnome.org/Junction/",

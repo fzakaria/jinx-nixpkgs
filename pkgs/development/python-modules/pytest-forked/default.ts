@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pytest-dev",
           repo: "pytest-forked",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pytest8-compat.patch",
             url: "https://github.com/pytest-dev/pytest-forked/commit/b2742322d39ebda97d5170922520f3bb9c73f614.patch",
             hash: "sha256-tTRW0p3tOotQMtjjJ6RUKdynsAnKRz0RAV8gAUHiNNA=",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.app(pythonAtLeast, "3.12")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) ? ["test_xfail"] : null));
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-forked/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
         description: "Run tests in isolated forked subprocesses",
         homepage: "https://github.com/pytest-dev/pytest-forked",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

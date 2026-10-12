@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bash-git-prompt",
       version: "2.7.1-unstable-2025-04-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "magicmonty",
           repo: "bash-git-prompt",
           rev: "e733ada3e93fd9fdb6e9d1890e38e6e523522da7",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "runHook preInstall\n\nmkdir -p $out\n\n# Copy all shell scripts\ncp *.sh $out/\n\n# Copy fish script\ncp *.fish $out/\n\n# Copy themes directory\ncp -r themes $out/\n\n# Copy documentation\ncp README.md $out/\ncp LICENSE.txt $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Informative, fancy bash prompt for Git users",
         homepage: "https://github.com/magicmonty/bash-git-prompt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

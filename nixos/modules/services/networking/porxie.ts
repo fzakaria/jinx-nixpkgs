@@ -42,128 +42,128 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "porxie"));
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         porxie: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Porxie, an ATProto blob proxy for secure content delivery")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "porxie", nix.thunk(() => ({})))),
           environmentFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "Files to load environment variables from. Use for secrets such as\n{env}`PORXIE_SERVER_ADMIN_PASSWORD` and {env}`PORXIE_POLICY_REQUEST_HEADERS`.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: nix.thunk(() => ({})),
               description: "Configuration for Porxie as environment variables. See the\n[README](https://codeberg.org/Blooym/porxie/src/branch/main/README.md)\nfor detailed information about application configuration.\n\nSecrets such as {option}`settings.PORXIE_SERVER_ADMIN_PASSWORD` should be set via\n{option}`environmentFiles` rather than here, as values set here will\nbe readable in the Nix store.\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                           nix.thunk(() => nix.sel(lib, "types", "str")),
                           nix.thunk(() => nix.sel(lib, "types", "bool")),
                           nix.thunk(() => nix.sel(lib, "types", "int")),
                         ]))))))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     PORXIE_SERVER_ADDRESS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "ip:127.0.0.1:6314",
                         description: "Address to bind the server to.\n\nUse the `ip:` prefix for an IP address (e.g. `ip:127.0.0.1:6314`), or on UNIX\nsystems, the `unix:` prefix for a UNIX socket path (e.g. `unix:/run/porxie/porxie.sock`).\n",
                       })))),
                     PORXIE_SERVER_ADMIN_PASSWORD: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Admin password for authenticating privileged requests.\n\nAuthenticated requests always expect the username `admin` as per specification.\n\nWhen not set, authenticated endpoints will be unavailable.\n\nShould be set via {option}`environmentFiles` rather than directly.\n",
                       })))),
                     PORXIE_BLOB_ALLOWED_MIMETYPES: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                         default: null,
                         apply: (v) => (nix.asBool(!nix.eq(v, null)) ? nix.app(nix.sel(lib, "concatStringsSep"), ",", v) : null),
                         description: "Blob mimetypes that can be served. Wildcards are supported \"*/*\", \"image/*\", etc.\n\nValidation is done loosely via content sniffing. Further validation can be done by a layer\nabove this proxy, such as an image transformation service. When inference fails, the blob's\ntype falls back to `application/octet-stream`. When that type is allowed, blobs failing\ninference can still be served.\n",
                       })))),
                     PORXIE_BLOB_MAX_SIZE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Maximum blob size that can be served.\n\nThis value cannot be set higher than the system's total memory.\n",
                       })))),
                     PORXIE_BLOB_CACHE_HEADER: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "The Cache-Control header value to send alongside blob responses.\n\nThis does not affect internal cache lifetimes, only how downstream clients such as CDNs\nand browsers are instructed to cache responses.\n",
                       })))),
                     PORXIE_BLOB_PROCESSING_TIMEOUT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Maximum duration a blob can be processed by this server before aborting.",
                       })))),
                     PORXIE_BLOB_HTTP_TIMEOUT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Maximum duration before blob fetch requests are timed out.",
                       })))),
                     PORXIE_IDENTITY_PLC_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "URL of the PLC instance used for `did:plc` lookups.",
                       })))),
                     PORXIE_CACHE_ALLOCATION: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Total memory allocation for the internal cache.\n\nBlobs are cached using an LFU policy. The most frequently requested blobs are kept longest when the cache reaches maximum size.\n\nFor production deployments, a CDN or caching layer in front of this server is\nrecommended for lower latency and better global availability.\n\nThe minimum value is 8mb and the maximum is the system's total memory.\n",
                       })))),
                     PORXIE_CACHE_BLOB_TTI: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "How long blobs can be idle in the cache before expiring.",
                       })))),
                     PORXIE_CACHE_OWNERSHIP_TTL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "How long blob ownership can be cached before expiring.",
                       })))),
                     PORXIE_CACHE_POLICY_TTL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "How long policy decisions can be cached before expiring.",
                       })))),
                     PORXIE_CACHE_IDENTITY_TTL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "How long identity lookups (DID resolution, etc.) can be cached before expiring.",
                       })))),
                     PORXIE_POLICY_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "Policy service URL that DID+CID pairs will be checked against.\n\nRequests are sent via XRPC to `<url>/xrpc/dev.blooym.porxie.getBlobPolicy`.\n",
                       })))),
                     PORXIE_POLICY_REQUEST_HEADERS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                         default: null,
                         apply: (v) => (nix.asBool(!nix.eq(v, null)) ? nix.app(nix.sel(lib, "concatStringsSep"), "|", v) : null),
                         description: "Headers sent alongside requests to the policy service.\n\nEach header must be in the format `Name: value`.\n\nAs pipes are used as a delimiter, they cannot be contained in headers.\n\nShould be set via {option}`environmentFiles` for sensitive values such as API keys.\n",
                       })))),
                     PORXIE_POLICY_FAIL_OPEN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$17,
+                        [nix.POS]: pos$17,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
                         default: null,
                         apply: (v) => (nix.asBool(!nix.eq(v, null)) ? nix.app(nix.sel(lib, "boolToString"), v) : null),
@@ -176,26 +176,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "settings", "PORXIE_POLICY_REQUEST_HEADERS"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "PORXIE_POLICY_FAIL_OPEN"), null)))) || nix.asBool(!nix.eq(nix.sel(cfg, "settings", "PORXIE_POLICY_URL"), null)))),
             message: "services.porxie: PORXIE_POLICY_URL must be set when using any other policy options",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             porxie: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               description: "Porxie - ATProto blob proxy",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 User: "porxie",
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))),
@@ -236,7 +236,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "blooym"))];

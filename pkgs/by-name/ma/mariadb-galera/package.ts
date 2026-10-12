@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mariadb-galera",
       version: "26.4.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mariadb-corporation",
           repo: "galera",
           tag: nix.thunk(() => nix.str`release_${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# make sure bundled asio cannot be used, but leave behind license, because it gets installed\nrm -r asio/{asio,asio.hpp}\n",
       postInstall: "# for backwards compatibility\nmkdir $out/lib/galera\nln -s $out/lib/libgalera_smm.so $out/lib/galera/libgalera_smm.so\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "mariadb-galera": nix.thunk(() => nix.attr(nixosTests, "mariadb-galera")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Galera 3 wsrep provider library",
         mainProgram: "garbd",
         homepage: "https://galeracluster.com/",

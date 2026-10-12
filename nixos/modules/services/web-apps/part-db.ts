@@ -80,53 +80,53 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   return {
-    __proto__: pos$62,
+    [nix.POS]: pos$62,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felbinger"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         "part-db": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(mkEnableOption, "PartDB")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "part-db", nix.thunk(() => ({})))),
           phpPackage: nix.thunk(() => nix.update(nix.app(mkPackageOption, pkgs, "php", nix.thunk(() => ({}))), {
-            __proto__: pos$3,
-            apply: (pkg_1) => nix.app(nix.sel(pkg_1, "buildEnv"), nix.thunk(() => ({ __proto__: pos$2, extraConfig: "memory_limit = 256M;\n" }))),
+            [nix.POS]: pos$3,
+            apply: (pkg_1) => nix.app(nix.sel(pkg_1, "buildEnv"), nix.thunk(() => ({ [nix.POS]: pos$2, extraConfig: "memory_limit = 256M;\n" }))),
           })),
           enableNginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to enable nginx or not. If enabled, an nginx virtual host will\nbe created for access to part-db. If not enabled, then you may use\n`${config.services.part-db.package}/public` as your document root in\nwhichever webserver you wish to setup.\n",
             })))),
           enablePostgresql: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: true,
               description: "Whether to configure the postgresql database for part-db. If enabled,\na database and user will be created for part-db.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost",
               description: "The virtualHost at which you wish part-db to be served.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               default: null,
               example: "/run/secrets/part-db.env",
               description: "Path to a file containing extra Part-DB environment variables in dotenv\nformat. This can be used for secrets such as `APP_SECRET` without\nputting them in the Nix store.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -137,12 +137,12 @@ export default nix.lambda((args) => (() => {
               description: "Options for the PartDB PHP pool. See the documentation on <literal>php-fpm.conf</literal>\nfor details on configuration directives.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               default: nix.thunk(() => ({})),
               description: "Options for part-db configuration. Refer to\n<https://github.com/Part-DB/Part-DB-server/blob/master/.env> for\ndetails on supported values. All <option>_FILE values supported by\nupstream are supported here.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  DATABASE_URL = \"postgresql://db_user@localhost/db_name?serverVersion=16.6&charset=utf8&host=/var/run/postgresql\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -152,9 +152,9 @@ export default nix.lambda((args) => (() => {
                         ]));
                     })()))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     DATABASE_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.str`postgresql://part-db@localhost/part-db?serverVersion=${nix.sel(config, "services", "postgresql", "package", "version")}&host=/run/postgresql`),
                         defaultText: "postgresql://part-db@localhost/part-db?serverVersion=${config.services.postgresql.package.version}&host=/run/postgresql",
@@ -167,29 +167,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$61,
+        [nix.POS]: pos$61,
         users: nix.thunk(() => ({
-          __proto__: pos$19,
-          groups: nix.thunk(() => ({ __proto__: pos$16, "part-db": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$19,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$16, "part-db": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$18,
-            "part-db": nix.thunk(() => ({ __proto__: pos$17, group: "part-db", isSystemUser: true })),
+            [nix.POS]: pos$18,
+            "part-db": nix.thunk(() => ({ [nix.POS]: pos$17, group: "part-db", isSystemUser: true })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             pools: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               "part-db": nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 user: "part-db",
                 group: "part-db",
                 phpPackage: nix.thunk(() => nix.sel(cfg, "phpPackage")),
                 phpOptions: "log_errors = on\n",
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "listen.mode": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "0660")),
                   "listen.owner": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "part-db")),
                   "listen.group": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "part-db")),
@@ -204,37 +204,37 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           "part-db": nix.thunk(() => ({
-            __proto__: pos$25,
-            settings: nix.thunk(() => ({ __proto__: pos$24, APP_SHARE_DIR: "/var/lib/part-db/share" })),
+            [nix.POS]: pos$25,
+            settings: nix.thunk(() => ({ [nix.POS]: pos$24, APP_SHARE_DIR: "/var/lib/part-db/share" })),
           })),
           postgresql: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enablePostgresql")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$26, name: "part-db", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$26, name: "part-db", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["part-db"]),
             })))),
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               enable: true,
               recommendedTlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedOptimisation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   root: nix.thunk(() => nix.str`${pkg}/public`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$28,
+                      [nix.POS]: pos$28,
                       tryFiles: "$uri $uri/ /index.php$is_args$args",
                       index: "index.php",
                       extraConfig: "add_header Content-Security-Policy \"default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; sandbox;\" always;\nadd_header X-Content-Type-Options \"nosniff\" always;\nsendfile off;\n",
                     })),
                     "= /index.php": nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
 fastcgi_param DOCUMENT_ROOT $realpath_root;
@@ -243,10 +243,10 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "part-db", "s
 internal;
 `),
                     })),
-                    "~ \\.php$": nix.thunk(() => ({ __proto__: pos$30, return: "404" })),
-                    "~* ^/media/.*\\.(php[3-8]?|phar|phtml|pht|phps)$": nix.thunk(() => ({ __proto__: pos$31, return: "403" })),
+                    "~ \\.php$": nix.thunk(() => ({ [nix.POS]: pos$30, return: "404" })),
+                    "~* ^/media/.*\\.(php[3-8]?|phar|phtml|pht|phps)$": nix.thunk(() => ({ [nix.POS]: pos$31, return: "403" })),
                     "~* \\.svg$": nix.thunk(() => ({
-                      __proto__: pos$32,
+                      [nix.POS]: pos$32,
                       extraConfig: "add_header Content-Security-Policy \"default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; sandbox;\" always;\nadd_header X-Content-Type-Options \"nosniff\" always;\n",
                     })),
                   })),
@@ -255,27 +255,27 @@ internal;
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$60,
+          [nix.POS]: pos$60,
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "part-db-setup": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               before: nix.thunk(() => ["part-db-migrate.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$37, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$37, Type: "oneshot", RemainAfterExit: true })),
               restartTriggers: nix.thunk(() => [envFile]),
               script: nix.thunk(() => nix.add(nix.str`install -Dm0600 -o part-db -g part-db ${envFile} /var/lib/part-db/env.local
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.str`cat ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "environmentFile")))} >> /var/lib/part-db/env.local
 `)))),
             })),
             "part-db-migrate": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               before: nix.thunk(() => ["phpfpm-part-db.service"]),
               after: nix.thunk(() => ["postgresql.target", "part-db-setup.service"]),
               requires: nix.thunk(() => ["postgresql.target", "part-db-setup.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "phpPackage")))} ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "console")} doctrine:migrations:migrate --no-interaction`),
                 Type: "oneshot",
                 RemainAfterExit: true,
@@ -284,7 +284,7 @@ internal;
               restartTriggers: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
             })),
             "phpfpm-part-db": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               after: nix.thunk(() => ["part-db-migrate.service"]),
               requires: nix.thunk(() => ["part-db-migrate.service", "postgresql.target"]),
               postStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "acl")), "setfacl")} -m 'u:${nix.sel(config, "services", "nginx", "user")}:rw' ${nix.sel(config, "services", "phpfpm", "pools", "part-db", "socket")}
@@ -292,38 +292,38 @@ internal;
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$59,
+            [nix.POS]: pos$59,
             settings: nix.thunk(() => ({
-              __proto__: pos$58,
+              [nix.POS]: pos$58,
               "part-db": nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 "/var/cache/part-db/": nix.thunk(() => ({
-                  __proto__: pos$44,
-                  d: nix.thunk(() => ({ __proto__: pos$43, mode: "0750", user: "part-db", group: "part-db" })),
+                  [nix.POS]: pos$44,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$43, mode: "0750", user: "part-db", group: "part-db" })),
                 })),
                 "/var/lib/part-db/": nix.thunk(() => ({
-                  __proto__: pos$46,
-                  d: nix.thunk(() => ({ __proto__: pos$45, mode: "0755", user: "part-db", group: "part-db" })),
+                  [nix.POS]: pos$46,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$45, mode: "0755", user: "part-db", group: "part-db" })),
                 })),
                 "/var/lib/part-db/public/": nix.thunk(() => ({
-                  __proto__: pos$48,
-                  d: nix.thunk(() => ({ __proto__: pos$47, mode: "0755", user: "part-db", group: "part-db" })),
+                  [nix.POS]: pos$48,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$47, mode: "0755", user: "part-db", group: "part-db" })),
                 })),
                 "/var/lib/part-db/public/media/": nix.thunk(() => ({
-                  __proto__: pos$50,
-                  d: nix.thunk(() => ({ __proto__: pos$49, mode: "0755", user: "part-db", group: "part-db" })),
+                  [nix.POS]: pos$50,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$49, mode: "0755", user: "part-db", group: "part-db" })),
                 })),
                 "/var/lib/part-db/uploads/": nix.thunk(() => ({
-                  __proto__: pos$52,
-                  d: nix.thunk(() => ({ __proto__: pos$51, mode: "0750", user: "part-db", group: "part-db" })),
+                  [nix.POS]: pos$52,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$51, mode: "0750", user: "part-db", group: "part-db" })),
                 })),
                 "/var/lib/part-db/share/": nix.thunk(() => ({
-                  __proto__: pos$54,
-                  d: nix.thunk(() => ({ __proto__: pos$53, mode: "0750", user: "part-db", group: "part-db" })),
+                  [nix.POS]: pos$54,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$53, mode: "0750", user: "part-db", group: "part-db" })),
                 })),
                 "/var/log/part-db/": nix.thunk(() => ({
-                  __proto__: pos$56,
-                  d: nix.thunk(() => ({ __proto__: pos$55, mode: "0750", user: "part-db", group: "part-db" })),
+                  [nix.POS]: pos$56,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$55, mode: "0750", user: "part-db", group: "part-db" })),
                 })),
               })),
             })),

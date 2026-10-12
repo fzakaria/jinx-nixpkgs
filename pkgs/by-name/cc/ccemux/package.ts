@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const rev = "989cfe52a0458b991e0a7d87edec81d3fef472ac";
   const baseUrl = nix.thunk(() => nix.str`https://emux.cc/versions/${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}/CCEmuX`);
   const jar = nix.thunk(() => (nix.asBool(useCCTweaked) ? nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`${baseUrl}-cct.jar`),
       hash: "sha256-nna5KRp6jVLkbWKOHGtQqaPr3Zl05mVkCf/8X9C5lRY=",
     }))) : nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`${baseUrl}-cc.jar`),
       hash: "sha256-2Z38O6z7OrHKe8GdLnexin749uJzQaCZglS+SwVD5YE=",
     })))));
   const desktopIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/CCEmuX/CCEmuX/raw/${rev}/src/main/resources/img/icon.png`),
       hash: "sha256-gqWURXaOFD/4aZnjmgtKb0T33NbrOdyRTMmLmV42q+4=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "CCEmuX",
       exec: "ccemux",
       icon: desktopIcon,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Emulator"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ccemux",
       version: version,
       src: jar,
@@ -68,7 +68,7 @@ makeWrapper ${jre}/bin/java $out/bin/ccemux \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modular ComputerCraft emulator",
         homepage: "https://github.com/CCEmuX/CCEmuX",
         sourceProvenance: nix.thunk(() => (() => {

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcp-server-fetch",
       version: "2026.8.31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "modelcontextprotocol",
           repo: "servers",
           rev: "f4244583a6af9425633e433a3eec000d23f4e011",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mcp_server_fetch"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/modelcontextprotocol/servers/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Model Context Protocol server providing tools to fetch and convert web content for usage by LLMs",
         homepage: "https://github.com/modelcontextprotocol/servers",

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoLatestModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "sshwifty",
       version: "0.4.11-beta-release",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nirui",
           repo: "sshwifty",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,12 +36,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       overrideModAttrs: (oldAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-NnRQStZooSS87GyeRc7gls/9EMPdndr/OkHFFHt46HQ=",
         })))),
@@ -55,18 +55,18 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           sshwifty: nix.thunk(() => nix.attr(nixosTests, "sshwifty")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version=unstable", "--version-regex=^([0-9.]+(?!.+-prebuild).+$)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "WebSSH & WebTelnet client",
         homepage: "https://github.com/nirui/sshwifty",
         changelog: nix.thunk(() => nix.str`https://github.com/nirui/sshwifty/releases/tag/${nix.sel(finalAttrs, "version")}`),

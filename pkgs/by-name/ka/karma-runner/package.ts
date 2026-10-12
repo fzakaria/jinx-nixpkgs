@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
       const pname = "karma";
       const version = "6.4.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "karma-runner",
           repo: "karma",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-RfEmzUMzgOY6YG0MBheCgwmwOU3C5G8hybH40gLmsr4=",
         }))));
       const npmDepsHash = "sha256-bGtiGLwr9Bmi3Jx2DImpyLhPnxUo7q6YcMCxoxqOkGY=";
-      const env = nix.thunk(() => ({ __proto__: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Spectacular Test Runner for JavaScript",
         homepage: "http://karma-runner.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mbr",
           repo: "simplekv",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["simplekv"]);
       const disabledTests = nix.thunk(() => ["test_concurrent_mkdir"]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         amazon: nix.thunk(() => [boto3]),
         azure: nix.thunk(() => [azure_storage_blob]),
         google: nix.thunk(() => [google_cloud_storage]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         git: nix.thunk(() => [dulwich]),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple key-value store for binary data",
         homepage: "https://github.com/mbr/simplekv",
         changelog: nix.thunk(() => nix.str`https://github.com/mbr/simplekv/releases/tag/${version}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

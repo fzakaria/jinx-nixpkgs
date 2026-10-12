@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/agda"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "haskellPackages"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         Agda: Agda_1,
         self: self,
         ghcWithPackages: nix.thunk(() => nix.attr(from_1, "ghcWithPackages")),
@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
     const mkLibraryFile = nix.thunk(() => nix.attr(from, "mkLibraryFile"));
     const mkDerivation = nix.thunk(() => nix.attr(from, "mkDerivation"));
     return nix.update({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mkLibraryFile: mkLibraryFile,
       mkDerivation: mkDerivation,
-      lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => nix.app(nix.builtins.import(nix.path(here, "../build-support/agda/lib.nix")), nix.thunk(() => ({ __proto__: pos$2, lib: prev }))))),
+      lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => nix.app(nix.builtins.import(nix.path(here, "../build-support/agda/lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: prev }))))),
       agda: nix.thunk(() => nix.app(withPackages, [])),
       "standard-library": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/standard-library"), nix.thunk(() => ({})))),
       "iowa-stdlib": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/iowa-stdlib"), nix.thunk(() => ({})))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       _1lab: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/1lab"), nix.thunk(() => ({})))),
       generics: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/generics"), nix.thunk(() => ({})))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         generic: nix.thunk(() => nix.builtins.throw("agdaPackages.generic has been removed because it is unmaintained upstream and has been marked as broken since 2021. Consider using agdaPackages.generics instead.")),
       }))));
   })();

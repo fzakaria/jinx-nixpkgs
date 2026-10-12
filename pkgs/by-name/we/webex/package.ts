@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const pname = "webex";
       const version = "46.8.0.35631";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://binaries.webex.com/WebexDesktop-Ubuntu-2004-Gold/20260810210901/Webex_ubuntu.7z",
           sha256: "7e61e7e1278bc37290f8460a8712d92efbd4a48549030d6dc166bf7b00bee3c7",
         }))));
@@ -144,7 +144,7 @@ done
 `);
       const installPhase = "mkdir -p \"$out/bin\" \"$out/share/applications\"\ncp -r opt \"$out\"\n\nln -s \"$out/opt/Webex/bin/CiscoCollabHost\" \"$out/bin/webex\"\nchmod +x $out/bin/webex\n\nmv \"$out/opt/Webex/bin/webex.desktop\" \"$out/share/applications/webex.desktop\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "webex-update-script", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 set -eou pipefail;
@@ -160,7 +160,7 @@ update-source-version ${pname} "$version" "$hash" "$url" --file=./pkgs/by-name/w
 `))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "All-in-one app to call, meet, message, and get work done",
         homepage: "https://webex.com/",
         downloadPage: "https://www.webex.com/downloads.html",
@@ -172,7 +172,7 @@ update-source-version ${pname} "$version" "$hash" "$url" --file=./pkgs/by-name/w
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

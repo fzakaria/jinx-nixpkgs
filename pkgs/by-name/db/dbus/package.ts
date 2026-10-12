@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const libsm = nix.arg($, "libsm");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dbus",
       version: "1.16.2",
       outputs: nix.thunk(() => ["out", "dev", "lib", "doc", "man"]),
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dbus.freedesktop.org/releases/dbus/dbus-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-C6KhpLFq/nvOssB+nOmajCw1COXewpDbtkM4S9a+t+I=",
         })))),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat([expat], nix.concat(nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libx11, libice, libsm])), nix.concat(nix.app(nix.sel(lib, "optional"), enableSystemd, systemdMinimal), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [audit, libapparmor, libcap_ng])))))),
       __darwinAllowLocalNetworking: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lcap-ng" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lcap-ng" })))),
       mesonFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--libexecdir=${nix.builtins.placeholder("out")}/libexec`),
         "--datadir=/etc",
@@ -102,11 +102,11 @@ systemctl = '${systemdMinimal}/bin/systemctl'
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# For some reason, only these binaries reference the dylib by rpath instead of by an absolute install name.\nfor exe in bin/dbus-daemon bin/dbus-run-session libexec/dbus-daemon-launch-helper; do\n  install_name_tool \"$out/$exe\" \\\n    -change \"@rpath/libdbus-1.3.dylib\" \"$lib/lib/libdbus-1.3.dylib\"\ndone\n")),
       postFixup: "# It's executed from $lib by absolute path\nmoveToOutput bin/dbus-launch \"$lib\"\nln -s \"$lib/bin/dbus-launch\" \"$out/bin/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "dbus-launch": nix.thunk(() => nix.str`${nix.sel(dbus, "lib")}/bin/dbus-launch`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Simple interprocess messaging system",
         homepage: "https://www.freedesktop.org/wiki/Software/dbus/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/dbus/dbus/-/blob/dbus-${nix.sel(finalAttrs, "version")}/NEWS`),
@@ -114,7 +114,7 @@ systemctl = '${systemdMinimal}/bin/systemctl'
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "freedesktop", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

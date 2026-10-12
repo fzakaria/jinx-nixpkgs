@@ -135,7 +135,7 @@ ln -s "${nix.sel(cfg, "package", "jack")}/lib" "$out/lib/pipewire"
   const extraConfigPkg = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "pipewire-extra-config", nix.thunk(() => nix.app(concatMapAttrs, (location) => (config_1) => nix.app(mapAttrs$, (name) => (value) => nix.app(nameValuePair, nix.thunk(() => nix.str`share/pipewire/${location}.conf.d/${name}.conf`), nix.thunk(() => nix.app(nix.sel(json, "generate"), name, value))), config_1), nix.thunk(() => (() => {
         const from_6 = nix.thunk(() => nix.sel(cfg, "extraConfig"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pipewire: nix.thunk(() => nix.attr(from_6, "pipewire")),
         client: nix.thunk(() => nix.attr(from_6, "client")),
         jack: nix.thunk(() => nix.attr(from_6, "jack")),
@@ -143,55 +143,55 @@ ln -s "${nix.sel(cfg, "package", "jack")}/lib" "$out/lib/pipewire"
       };
       })())))));
   const configs = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "pipewire-configs",
       paths: nix.thunk(() => nix.concat(configPackages, nix.concat([extraConfigPkg], nix.app(optionals, nix.thunk(() => nix.sel(cfg, "wireplumber", "enable")), nix.thunk(() => nix.sel(cfg, "wireplumber", "configPackages")))))),
       pathsToLink: nix.thunk(() => ["/share/pipewire"]),
     }))));
   const requiredLv2Packages = nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(concatMap, (p) => nix.app(attrByPath, nix.thunk(() => ["passthru", "requiredLv2Packages"]), [], p), configPackages))));
   const lv2Plugins = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "pipewire-lv2-plugins",
       paths: nix.thunk(() => nix.concat(nix.sel(cfg, "extraLv2Packages"), requiredLv2Packages)),
       pathsToLink: nix.thunk(() => ["/lib/lv2"]),
     }))));
   const requiredLadspaPackages = nix.thunk(() => nix.app(flatten, nix.thunk(() => nix.app(concatMap, (p) => nix.app(attrByPath, nix.thunk(() => ["passthru", "requiredLadspaPackages"]), [], p), configPackages))));
   const ladspaPlugins = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "pipewire-ladspa-plugins",
       paths: nix.thunk(() => nix.concat(nix.sel(cfg, "extraLadspaPackages"), requiredLadspaPackages)),
       pathsToLink: nix.thunk(() => ["/lib/ladspa"]),
     }))));
   const pluginsEnv = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     LV2_PATH: nix.thunk(() => nix.str`${lv2Plugins}/lib/lv2`),
     LADSPA_PATH: nix.thunk(() => nix.str`${ladspaPlugins}/lib/ladspa`),
   }));
   return {
-    __proto__: pos$83,
+    [nix.POS]: pos$83,
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(teams, "freedesktop"))]),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "k900"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       services: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         pipewire: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           enable: nix.thunk(() => nix.app(mkEnableOption, "PipeWire service")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "pipewire", nix.thunk(() => ({})))),
           socketActivation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: true,
               type: bool,
               description: "Automatically run PipeWire when connections are made to the PipeWire socket.\n",
             })))),
           audio: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: bool,
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "alsa", "enable")) || nix.asBool(nix.sel(cfg, "jack", "enable")))) || nix.asBool(nix.sel(cfg, "pulse", "enable")))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.services.pipewire.alsa.enable || config.services.pipewire.jack.enable || config.services.pipewire.pulse.enable")),
@@ -199,90 +199,90 @@ ln -s "${nix.sel(cfg, "package", "jack")}/lib" "$out/lib/pipewire"
               })))),
           })),
           alsa: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enable: nix.thunk(() => nix.app(mkEnableOption, "ALSA support")),
             support32Bit: nix.thunk(() => nix.app(mkEnableOption, "32-bit ALSA support on 64-bit systems")),
           })),
           jack: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(mkEnableOption, "JACK audio emulation")),
           })),
           raopOpenFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: bool,
               default: false,
               description: "Opens UDP/6001-6002, required by RAOP/Airplay for timing and control data.\n",
             })))),
           pulse: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(mkEnableOption, "PulseAudio server emulation")),
           })),
           systemWide: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: bool,
               default: false,
               description: "If true, a system-wide PipeWire service and socket is enabled\nallowing all users in the \"pipewire\" group to use it simultaneously.\nIf false, then user units are used instead, restricting access to\nonly one user.\n\nEnabling system-wide PipeWire is however not recommended and disabled\nby default according to\nhttps://github.com/PipeWire/pipewire/blob/0.3.11/NEWS#L14-L16\n",
             })))),
           extraConfig: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             pipewire: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.sel(json, "type")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$19,
+                  [nix.POS]: pos$19,
                   "10-clock-rate": nix.thunk(() => ({
-                    __proto__: pos$16,
-                    "context.properties": nix.thunk(() => ({ __proto__: pos$15, "default.clock.rate": 44100n })),
+                    [nix.POS]: pos$16,
+                    "context.properties": nix.thunk(() => ({ [nix.POS]: pos$15, "default.clock.rate": 44100n })),
                   })),
                   "11-no-upmixing": nix.thunk(() => ({
-                    __proto__: pos$18,
-                    "stream.properties": nix.thunk(() => ({ __proto__: pos$17, "channelmix.upmix": false })),
+                    [nix.POS]: pos$18,
+                    "stream.properties": nix.thunk(() => ({ [nix.POS]: pos$17, "channelmix.upmix": false })),
                   })),
                 })),
                 description: "Additional configuration for the PipeWire server.\n\nEvery item in this attrset becomes a separate drop-in file in `/etc/pipewire/pipewire.conf.d`.\n\nSee `man pipewire.conf` for details, and [the PipeWire wiki][wiki] for examples.\n\nSee also:\n- [PipeWire wiki - virtual devices][wiki-virtual-device] for creating virtual devices or remapping channels\n- [PipeWire wiki - filter-chain][wiki-filter-chain] for creating more complex processing pipelines\n- [PipeWire wiki - network][wiki-network] for streaming audio over a network\n\n[wiki]: https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-PipeWire\n[wiki-virtual-device]: https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Virtual-Devices\n[wiki-filter-chain]: https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Filter-Chain\n[wiki-network]: https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Network\n",
               })))),
             client: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.sel(json, "type")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   "10-no-resample": nix.thunk(() => ({
-                    __proto__: pos$22,
-                    "stream.properties": nix.thunk(() => ({ __proto__: pos$21, "resample.disable": true })),
+                    [nix.POS]: pos$22,
+                    "stream.properties": nix.thunk(() => ({ [nix.POS]: pos$21, "resample.disable": true })),
                   })),
                 })),
                 description: "Additional configuration for the PipeWire client library, used by most applications.\n\nEvery item in this attrset becomes a separate drop-in file in `/etc/pipewire/client.conf.d`.\n\nSee the [PipeWire wiki][wiki] for examples.\n\n[wiki]: https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-client\n",
               })))),
             jack: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.sel(json, "type")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   "20-hide-midi": nix.thunk(() => ({
-                    __proto__: pos$26,
-                    "jack.properties": nix.thunk(() => ({ __proto__: pos$25, "jack.show-midi": false })),
+                    [nix.POS]: pos$26,
+                    "jack.properties": nix.thunk(() => ({ [nix.POS]: pos$25, "jack.show-midi": false })),
                   })),
                 })),
                 description: "Additional configuration for the PipeWire JACK server and client library.\n\nEvery item in this attrset becomes a separate drop-in file in `/etc/pipewire/jack.conf.d`.\n\nSee the [PipeWire wiki][wiki] for examples.\n\n[wiki]: https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK\n",
               })))),
             "pipewire-pulse": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.sel(json, "type")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   "15-force-s16-info": nix.thunk(() => ({
-                    __proto__: pos$32,
+                    [nix.POS]: pos$32,
                     "pulse.rules": nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$31,
+                        [nix.POS]: pos$31,
                         matches: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$29, "application.process.binary": "my-broken-app" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$29, "application.process.binary": "my-broken-app" })),
                         ]),
-                        actions: nix.thunk(() => ({ __proto__: pos$30, quirks: nix.thunk(() => ["force-s16-info"]) })),
+                        actions: nix.thunk(() => ({ [nix.POS]: pos$30, quirks: nix.thunk(() => ["force-s16-info"]) })),
                       })),
                     ]),
                   })),
@@ -291,21 +291,21 @@ ln -s "${nix.sel(cfg, "package", "jack")}/lib" "$out/lib/pipewire"
               })))),
           })),
           configPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(listOf, package$)),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[\n  (pkgs.writeTextDir \"share/pipewire/pipewire.conf.d/10-loopback.conf\" ''\n    context.modules = [\n    {   name = libpipewire-module-loopback\n        args = {\n          node.description = \"Scarlett Focusrite Line 1\"\n          capture.props = {\n              audio.position = [ FL ]\n              stream.dont-remix = true\n              node.target = \"alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7ZD17C24495BC-00.analog-stereo\"\n              node.passive = true\n          }\n          playback.props = {\n              node.name = \"SF_mono_in_1\"\n              media.class = \"Audio/Source\"\n              audio.position = [ MONO ]\n          }\n        }\n    }\n    ]\n  '')\n]\n")),
               description: "List of packages that provide PipeWire configuration, in the form of\n`share/pipewire/*/*.conf` files.\n\nLV2/LADSPA dependencies will be picked up from config packages automatically\nvia `passthru.requiredLv2Packages`/`passthru.requiredLadspaPackages`.\n",
             })))),
           extraLv2Packages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.app(listOf, package$)),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.lsp-plugins ]")),
               description: "List of packages that provide LV2 plugins in `lib/lv2` that should\nbe made available to PipeWire for [filter chains][wiki-filter-chain].\n\nConfig packages have their required LV2 plugins added automatically,\nso they don't need to be specified here. Config packages need to set\n`passthru.requiredLv2Packages` for this to work.\n\n[wiki-filter-chain]: https://docs.pipewire.org/page_module_filter_chain.html\n",
             })))),
           extraLadspaPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.app(listOf, package$)),
               default: [],
               example: nix.thunk(() => nix.app(literalExpression, "[ pkgs.noisetorch-ladspa ]")),
@@ -320,36 +320,36 @@ ln -s "${nix.sel(cfg, "package", "jack")}/lib" "$out/lib/pipewire"
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "pipewire", "extraConfig", "client-rt"]), "`services.pipewire.extraConfig.client-rt` is no longer applicable, as `client-rt.conf` has been\nremoved upstream. Please move your customizations to `services.pipewire.extraConfig.client`.\n")),
     ]),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$82,
+        [nix.POS]: pos$82,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "audio", "enable")) || nix.asBool(!nix.asBool(nix.sel(config, "services", "pulseaudio", "enable"))))),
             message: "Using PipeWire as the sound server conflicts with PulseAudio. This option requires `services.pulseaudio.enable` to be set to false",
           })),
           nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "jack", "enable")) || nix.asBool(!nix.asBool(nix.sel(config, "services", "jack", "jackd", "enable"))))),
             message: "PipeWire based JACK emulation doesn't use the JACK service. This option requires `services.jack.jackd.enable` to be set to false",
           })),
           nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "alsa", "enable")) || nix.asBool(nix.sel(cfg, "pulse", "enable")))) || nix.asBool(nix.sel(cfg, "audio", "enable")))),
             message: "Using PipeWire's ALSA/PulseAudio compatibility layers requires running PipeWire as the sound server. Either set `services.pipewire.audio.enable` to true to enable audio support, or set both `services.pipewire.pulse.enable` and `services.pipewire.alsa.enable` to false to use pipewire exclusively for the compositor.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             assertion: nix.thunk(() => nix.eq(nix.app(length, nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.app(filterAttrs, (name) => (value) => (nix.asBool(nix.app(inPipewireDirectory, name)) || nix.asBool(nix.eq(name, "pipewire"))), nix.thunk(() => nix.sel(config, "environment", "etc"))))))), 1n)),
             message: "Using `environment.etc.\"pipewire<...>\"` directly is no longer supported. Use `services.pipewire.extraConfig` or `services.pipewire.configPackages` instead.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "package"))], nix.app(optional, nix.thunk(() => nix.sel(cfg, "jack", "enable")), jack_libs))),
           etc: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             "alsa/conf.d/49-pipewire-modules.conf": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "alsa", "enable")), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 text: nix.thunk(() => nix.str`pcm_type.pipewire {
   libs.native = ${nix.sel(cfg, "package")}/lib/alsa-lib/libasound_module_pcm_pipewire.so ;
   ${nix.app(optionalString, enable32BitAlsaPlugins, nix.thunk(() => nix.str`libs.32Bit = ${nix.sel(pkgs, "pkgsi686Linux", "pipewire")}/lib/alsa-lib/libasound_module_pcm_pipewire.so ;`))}
@@ -361,118 +361,118 @@ ctl_type.pipewire {
 `),
               })))),
             "alsa/conf.d/50-pipewire.conf": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "alsa", "enable")), nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/alsa/alsa.conf.d/50-pipewire.conf`),
               })))),
             "alsa/conf.d/99-pipewire-default.conf": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "alsa", "enable")), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/alsa/alsa.conf.d/99-pipewire-default.conf`),
               })))),
             pipewire: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               source: nix.thunk(() => nix.str`${configs}/share/pipewire`),
             })),
           })),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             LD_LIBRARY_PATH: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "jack", "enable")), nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(cfg, "package", "jack")}/lib`)]))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$67,
+          [nix.POS]: pos$67,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$55,
+            [nix.POS]: pos$55,
             pipewire: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               bindsTo: nix.thunk(() => ["dbus.service"]),
               enable: nix.thunk(() => nix.sel(cfg, "systemWide")),
               environment: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "systemWide")), pluginsEnv)),
             })),
             "pipewire-pulse": nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "pulse", "enable")) && nix.asBool(nix.sel(cfg, "systemWide")))),
             })),
           })),
           user: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             services: nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               pipewire: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 bindsTo: nix.thunk(() => ["dbus.service"]),
                 enable: nix.thunk(() => !nix.asBool(nix.sel(cfg, "systemWide"))),
                 environment: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "systemWide"))), pluginsEnv)),
               })),
-              "filter-chain": nix.thunk(() => ({ __proto__: pos$57, environment: pluginsEnv })),
+              "filter-chain": nix.thunk(() => ({ [nix.POS]: pos$57, environment: pluginsEnv })),
               "pipewire-pulse": nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "pulse", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "systemWide"))))),
               })),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               pipewire: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 enable: nix.thunk(() => !nix.asBool(nix.sel(cfg, "systemWide"))),
                 wantedBy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ["sockets.target"]))),
               })),
               "pipewire-pulse": nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "pulse", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "systemWide"))))),
                 wantedBy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ["sockets.target"]))),
               })),
             })),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$66,
+            [nix.POS]: pos$66,
             pipewire: nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               enable: nix.thunk(() => nix.sel(cfg, "systemWide")),
               wantedBy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ["sockets.target"]))),
             })),
             "pipewire-pulse": nix.thunk(() => ({
-              __proto__: pos$65,
+              [nix.POS]: pos$65,
               enable: nix.thunk(() => (nix.asBool(nix.sel(cfg, "pulse", "enable")) && nix.asBool(nix.sel(cfg, "systemWide")))),
               wantedBy: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "socketActivation")), nix.thunk(() => ["sockets.target"]))),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$69,
+          [nix.POS]: pos$69,
           udev: nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           firewall: nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             allowedUDPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "raopOpenFirewall")), nix.thunk(() => [6001n, 6002n]))),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           pam: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             loginLimits: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$72,
+                [nix.POS]: pos$72,
                 domain: "@pipewire",
                 item: "rtprio",
                 type: "-",
                 value: 95n,
               })),
               nix.thunk(() => ({
-                __proto__: pos$73,
+                [nix.POS]: pos$73,
                 domain: "@pipewire",
                 item: "nice",
                 type: "-",
                 value: nix.thunk(() => nix.neg(19n)),
               })),
               nix.thunk(() => ({
-                __proto__: pos$74,
+                [nix.POS]: pos$74,
                 domain: "@pipewire",
                 item: "memlock",
                 type: "-",
@@ -482,11 +482,11 @@ ctl_type.pipewire {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$81,
+          [nix.POS]: pos$81,
           users: nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             pipewire: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "systemWide")), nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "pipewire")),
                 group: "pipewire",
                 extraGroups: nix.thunk(() => nix.concat(["audio", "video"], nix.app(optional, nix.thunk(() => nix.sel(config, "security", "rtkit", "enable")), "rtkit"))),
@@ -497,9 +497,9 @@ ctl_type.pipewire {
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$80,
+            [nix.POS]: pos$80,
             pipewire: nix.thunk(() => ({
-              __proto__: pos$79,
+              [nix.POS]: pos$79,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "pipewire")),
             })),
           })),

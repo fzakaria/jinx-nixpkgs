@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "coc-pairs",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neoclide",
           repo: "coc-pairs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,9 +26,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./package-lock-fix.patch")]),
       npmDepsHash: "sha256-yIMed7x5EzJMMhsA/O08kLpVYMujyJq1qol/KilxxTs=",
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Basic auto pairs extension for coc.nvim",
         homepage: "https://github.com/neoclide/coc-pairs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

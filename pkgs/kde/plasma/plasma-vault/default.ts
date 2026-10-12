@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gocryptfs = nix.arg($, "gocryptfs");
   const lsof = nix.arg($, "lsof");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-vault",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             gocryptfs: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), gocryptfs, "gocryptfs")),
             lsof: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lsof)),
           })))),

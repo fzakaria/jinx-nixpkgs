@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pname = "easyrpg-player";
       const version = "0.8.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "EasyRPG",
           repo: "Player",
           rev: version,
@@ -103,7 +103,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelChecking = true;
       const doCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "RPG Maker 2000/2003 and EasyRPG games interpreter",
         homepage: "https://easyrpg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "EasyRPG Player" : "easyrpg-player")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

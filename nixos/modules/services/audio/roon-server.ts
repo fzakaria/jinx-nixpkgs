@@ -32,29 +32,29 @@ export default nix.lambda((args) => (() => {
   const name = "roon-server";
   const cfg = nix.thunk(() => nix.sel(config, "services", "roon-server"));
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "roon-server": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Roon Server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "roon-server", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the server.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "roon-server",
               description: "User to run the Roon Server as.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "roon-server",
               description: "Group to run the Roon Server as.\n",
@@ -63,23 +63,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "roon-server": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               after: nix.thunk(() => ["network.target"]),
               description: "Roon Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 ROON_DATAROOT: nix.thunk(() => nix.str`/var/lib/${name}`),
                 ROON_ID_DIR: nix.thunk(() => nix.str`/var/lib/${name}`),
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}`),
                 LimitNOFILE: 8192n,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -90,13 +90,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               allowedTCPPortRanges: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$12, from: 9100n, to: 9200n })),
-                nix.thunk(() => ({ __proto__: pos$13, from: 9330n, to: 9339n })),
-                nix.thunk(() => ({ __proto__: pos$14, from: 30000n, to: 30010n })),
+                nix.thunk(() => ({ [nix.POS]: pos$12, from: 9100n, to: 9200n })),
+                nix.thunk(() => ({ [nix.POS]: pos$13, from: 9330n, to: 9339n })),
+                nix.thunk(() => ({ [nix.POS]: pos$14, from: 30000n, to: 30010n })),
               ]),
               allowedUDPPorts: nix.thunk(() => [9003n]),
               extraCommands: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(config, "networking", "nftables", "enable"))), "## IGMP / Broadcast ##\niptables -A INPUT -s 224.0.0.0/4 -j ACCEPT\niptables -A INPUT -d 224.0.0.0/4 -j ACCEPT\niptables -A INPUT -s 240.0.0.0/5 -j ACCEPT\niptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT\niptables -A INPUT -m pkttype --pkt-type broadcast -j ACCEPT\n")),
@@ -104,11 +104,11 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "roon-server")), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 isSystemUser: true,
                 description: "Roon Server user",
                 group: nix.thunk(() => nix.sel(cfg, "group")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0.1.4.2-GxB";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "canon-capt",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mounaiban",
           repo: "captdriver",
           rev: "8ecc3cde1ae9a20dcb015994bb0fea0dbefa2b83",
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       buildInputs: nix.thunk(() => [cups]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CUPS_DATADIR: nix.thunk(() => nix.str`${cups}/share/cups`) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CUPS_DATADIR: nix.thunk(() => nix.str`${cups}/share/cups`) })),
       configurePhase: "runHook preConfigure\naclocal\nautoconf\nautomake --add-missing\n./configure --prefix=$out/usr\nrunHook postConfigure\n",
       buildPhase: "runHook preBuild\nmake\nmake ppd\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/lib/cups/filter\ninstall -D -m 755 ./src/rastertocapt $out/lib/cups/filter/rastertocapt\n\nmkdir -p $out/share/cups/model/canon\ninstall -D -m 644 ./ppd/CanonLBP-2900-3000.ppd $out/share/cups/model/canon/CanonLBP-2900-3000.ppd\ninstall -D -m 644 ./ppd/CanonLBP-3010-3018-3050.ppd $out/share/cups/model/canon/CanonLBP-3010-3018-3050.ppd\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Community-driven driver for Canon CAPT-based printers",
         homepage: "https://github.com/mounaiban/captdriver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

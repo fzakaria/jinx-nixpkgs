@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "webrecorder",
           repo: "warcio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "add-offline-option.patch",
             url: "https://github.com/webrecorder/warcio/pull/135/commits/2546fe457c57ab0b391764a4ce419656458d9d07.patch",
             hash: "sha256-3izm9LvAeOFixiIUUqmd5flZIxH92+NxL7jeu35aObQ=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/test_capture_http_proxy.py"]);
       const pythonImportsCheck = nix.thunk(() => ["warcio"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Streaming WARC/ARC library for fast web archive IO",
         mainProgram: "warcio",
         homepage: "https://github.com/webrecorder/warcio",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const dontStrip = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/github/codeql-cli-binaries/releases/download/v${version}/codeql.zip`),
           hash: "sha256-JUqJ9nsCYa8UIeuj+cPw2vAep0lJry6QcaSn20cokDU=",
         }))));
@@ -62,7 +62,7 @@ ln -s ${jdk17} $out/codeql/tools/linux64/java
 ln -s $out/codeql/codeql $out/bin/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Semantic code analysis engine",
         homepage: "https://codeql.github.com",
         maintainers: nix.thunk(() => (() => {
@@ -76,7 +76,7 @@ ln -s $out/codeql/codeql $out/bin/
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         dontConfigure,

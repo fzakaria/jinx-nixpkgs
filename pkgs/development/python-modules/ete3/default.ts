@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-BqO3+o7ZAYewdqjbvlsbYqzulCAdPG6CL1X0SWAe9vI=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ete3"]);
       const dependencies = nix.thunk(() => nix.concat([six, numpy, legacy_cgi], nix.concat(nix.app(nix.sel(lib, "optional"), withTreeVisualization, pyqt5), nix.app(nix.sel(lib, "optional"), withXmlSupport, lxml))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python framework for the analysis and visualization of trees",
         mainProgram: "ete3",
         homepage: "http://etetoolkit.org/",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

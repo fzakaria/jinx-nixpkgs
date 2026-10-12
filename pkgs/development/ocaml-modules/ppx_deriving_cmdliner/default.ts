@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ppx_deriving_cmdliner",
       version: "0.6.1",
       minimalOCamlVersion: "4.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hammerlab",
           repo: "ppx_deriving_cmdliner",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://patch-diff.githubusercontent.com/raw/hammerlab/ppx_deriving_cmdliner/pull/50.patch",
             sha256: "sha256-FfUfEAsyobwZ99+s5sFAaCE6Xgx7jLr/q79OxDbGcvQ=",
           })))),
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [cmdliner, ppx_deriving, ppxlib, result]),
       doCheck: true,
       checkInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(alcotest, "override"), nix.thunk(() => ({ __proto__: pos$3, cmdliner: cmdliner })))),
+        nix.thunk(() => nix.app(nix.sel(alcotest, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cmdliner: cmdliner })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Ppx_deriving plugin for generating command line interfaces from types for OCaml",
         homepage: "https://github.com/hammerlab/ppx_deriving_cmdliner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

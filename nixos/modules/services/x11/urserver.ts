@@ -23,41 +23,41 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "urserver"));
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       services: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         urserver: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "urserver")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         networking: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           firewall: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             allowedTCPPorts: nix.thunk(() => [9510n, 9512n]),
             allowedUDPPorts: nix.thunk(() => [9511n, 9512n]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           user: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               urserver: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "Server for Unified Remote: The one-and-only remote for your computer.\n",
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),
                 partOf: nix.thunk(() => ["graphical-session.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   Type: "forking",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "urserver")}/bin/urserver --daemon
 `),

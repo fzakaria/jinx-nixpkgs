@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const smartmontools = nix.arg($, "smartmontools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "plasma-disks",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./smartctl-path.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             smartctl: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), smartmontools)),
           })))),
       ]),

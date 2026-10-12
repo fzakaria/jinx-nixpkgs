@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const coverage = nix.arg($, "coverage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hepdata-converter",
       version: "0.3.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HEPData",
           repo: "hepdata-converter",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["hepdata_converter"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library providing means of conversion between oldhepdata format and the new one, and the new one to csv / yoda / root etc",
         homepage: "https://github.com/HEPData/hepdata-converter",
         changelog: nix.thunk(() => nix.str`https://github.com/HEPData/hepdata-converter/releases/tag/${nix.sel(finalAttrs, "version")}`),

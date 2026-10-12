@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const x509 = nix.arg($, "x509");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jws",
       version: "0.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/jws/releases/download/v${nix.sel(finalAttrs, "version")}/jws-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-7qcxmuhMNkm0xyzVn2MI+mLyO7UbQe+4r0o6CX3XHD0=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [mirage_crypto_rng, ounit2, x509]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.robur.coop/robur/jws",
         description: "Implementation of JSON Web Signature/Token (RFC 7515)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

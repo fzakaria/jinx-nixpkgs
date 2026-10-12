@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "autoconf",
       version: "2.73",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/autoconf/autoconf-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-n9ZyschCX6wvpn+gR3uZCYcmi5D/NtXwFtrle+DWtS4=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export TESTSUITEFLAGS=\"-j$NIX_BUILD_CORES\"\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.gnu.org/software/autoconf/",
         description: "Part of the GNU Build System",
         longDescription: "GNU Autoconf is an extensible package of M4 macros that produce\nshell scripts to automatically configure software source code\npackages.  These scripts can adapt the packages to many kinds of\nUNIX-like systems without manual user intervention.  Autoconf\ncreates a configuration script for a package from a template\nfile that lists the operating system features that the package\ncan use, in the form of M4 macro calls.\n",

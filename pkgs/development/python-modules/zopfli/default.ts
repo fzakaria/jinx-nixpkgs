@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const zopfli = nix.arg($, "zopfli");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "zopfli",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-qO6ZKyVJ4JDNPwF4v2Bt1Bop4GE6BM31BUIkZixy3OY=",
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools<72.2.0\" \"setuptools\"\n",
       "build-system": nix.thunk(() => [setuptools_scm]),
       buildInputs: nix.thunk(() => [zopfli]),
-      env: nix.thunk(() => ({ __proto__: pos$2, USE_SYSTEM_ZOPFLI: "True" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, USE_SYSTEM_ZOPFLI: "True" })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CPython bindings for zopfli",
         homepage: "https://github.com/obp/py-zopfli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

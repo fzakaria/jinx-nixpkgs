@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const client = nix.argOr($, "client", () => true);
   const server = nix.argOr($, "server", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "assaultcube",
       version: "1.3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "assaultcube",
           repo: "AC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), server, nix.thunk(() => ["server"])), nix.app(nix.sel(lib, "optionals"), client, nix.thunk(() => ["client"]))))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "assaultcube",
             desktopName: "AssaultCube",
             comment: "A multiplayer, first-person shooter game, based on the CUBE engine. Fast, arcade gameplay.",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/games/assaultcube\n\ncp -r config packages $out/share/games/assaultcube\n\nif (test -e source/src/ac_client) then\n  cp source/src/ac_client $out/bin\n  mkdir -p $out/share/applications\n  install -Dpm644 packages/misc/icon.png $out/share/icons/hicolor/32x32/apps/assaultcube.png\n\n  makeWrapper $out/bin/ac_client $out/bin/assaultcube \\\n    --chdir \"$out/share/games/assaultcube\" --add-flags \"--home=\\$HOME/.assaultcube/v1.2next --init\"\nfi\n\nif (test -e source/src/ac_server) then\n  cp source/src/ac_server $out/bin\n  makeWrapper $out/bin/ac_server $out/bin/assaultcube-server \\\n    --chdir \"$out/share/games/assaultcube\" --add-flags \"-Cconfig/servercmdline.txt\"\nfi\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast and fun first-person-shooter based on the Cube fps",
         homepage: "https://assault.cubers.net",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

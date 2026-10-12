@@ -33,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nistTestSuite = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "mirror://sourceforge/gnucobol/newcob.val.tar.gz",
       hash: "sha256-5FE/JqmziRH3v4gv49MzmoC0XKvCyvheswVbD1zofuA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gnucobol",
       version: "3.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://gnu/gnucobol/gnucobol-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-O7SK9GztR3n6z0H9wu5g5My4bqqZ0BCzZoUxXfOcLuI=",
         })))),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: "gettextize --force\n",
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# when building with nix on darwin, configure will use GNU strip,\n# which fails due to using --strip-unneeded, which is not supported\nsubstituteInPlace configure --replace-fail '\"GNU strip\"' '\"FAKE GNU strip\"'\n")),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CFLAGS: "-std=gnu17",
         CPPFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DREAD_WRITE_NEEDS_FLUSH")),
       })),
@@ -85,11 +85,11 @@ make test --jobs=$NIX_BUILD_CORES
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           hello: nix.thunk(() => nix.app(runCommandCC, "hello-cobol", nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "bin"))]),
             })), nix.thunk(() => nix.str`cp ${nix.path(here, "./hello.cbl")} hello.cbl
 cobc -x -o hello-cobol "hello.cbl"
@@ -100,7 +100,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Free/libre COBOL compiler",
         homepage: "https://gnu.org/software/gnucobol/",
         license: nix.thunk(() => (() => {

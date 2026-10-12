@@ -21,30 +21,30 @@ export default nix.lambda((args) => (() => {
   const pytango = nix.arg($, "pytango");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "zapf",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://forge.frm2.tum.de/review/mlz/pils/zapf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-dY3pmYbLzReXrMLjN5aZ2BVoKi1EtFGB/Gs1GoP4IDE=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       dependencies: nix.thunk(() => [numpy]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        "optional-dependencies": nix.thunk(() => ({ __proto__: pos$3, tango: nix.thunk(() => [pytango]) })),
+        [nix.POS]: pos$4,
+        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, tango: nix.thunk(() => [pytango]) })),
       })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["zapf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Client library for the PILS PLC interface specification",
         homepage: "https://forge.frm2.tum.de/review/plugins/gitiles/mlz/pils/zapf",
         changelog: nix.thunk(() => nix.str`https://forge.frm2.tum.de/review/plugins/gitiles/mlz/pils/zapf/+/refs/tags/v${nix.sel(finalAttrs, "version")}`),

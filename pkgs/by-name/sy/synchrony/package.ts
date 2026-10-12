@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "synchrony",
       version: "2.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "relative",
           repo: "synchrony",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 dist/{index,cli}.js -t $out/share/synchrony\ncp -r node_modules $out/share/synchrony\nln -s $out/share/synchrony/cli.js $out/bin/synchrony\n\nrunHook postInstall\n",
       fixupPhase: "runHook preFixup\n\nsubstituteInPlace $out/share/synchrony/cli.js \\\n  --replace-fail \"require('../')\" \"require('$out/share/synchrony')\"\npatchShebangs $out/share/synchrony/cli.js\n\nrunHook postFixup\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           deobfuscate: nix.thunk(() => (() => {
             const obfuscated = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 url: "https://gist.github.com/relative/79e392bced4b9bed8fd076f834e06dee/raw/obfuscated.js",
                 hash: "sha256-AQWKVIyb6x3wWG3bMMqIJWsV26S9W5Xd+QVB26zu8LA=",
               }))));
@@ -67,7 +67,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPack
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple deobfuscator for mangled or obfuscated JavaScript files",
         homepage: "https://deobfuscate.relative.im/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

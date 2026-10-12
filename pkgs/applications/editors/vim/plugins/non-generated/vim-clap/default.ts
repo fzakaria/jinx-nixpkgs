@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.55";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "liuchengxu",
       repo: "vim-clap",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-vtIA2URex7DOBIZ9KW++/ziqhVd/GDJOKYTUULdMqGc=",
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Modern performant fuzzy picker for Vim and NeoVim",
     mainProgram: "maple",
     homepage: "https://github.com/liuchengxu/vim-clap",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
     maintainers: [],
   }));
   const maple = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "maple",
       version: version,
       src: src,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-RMDlLpPWDLHCRWLz7NAAQhp6FhKA7aNYqx9MCqR8vYM=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/liuchengxu/vim-clap/commit/b95d4a3f9371271096553df1240b3f59a2dc99ec.patch?full_index=1",
             hash: "sha256-FvGuSFHMOprPSUlR82SR/IMNDd3RaGECQm2wfPCOW4Y=",
           })))),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgit2, zlib]),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "vim-clap",
       version: version,
       src: src,
@@ -67,9 +67,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s ${maple}/bin/maple $out/bin/maple
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         maple: maple,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, attrPath: "vimPlugins.vim-clap.maple" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "vimPlugins.vim-clap.maple" })))),
       })),
     })));
 })(), formals$1);

@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const itstool = nix.arg($, "itstool");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "endeavour",
       version: "43.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Endeavour",
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# Switch to girepository-2.0\n# libpeas1 will be dropped in https://gitlab.gnome.org/World/Endeavour/-/merge_requests/153\nsubstituteInPlace src/gui/gtd-application.c \\\n  --replace-fail \"#include <girepository.h>\" \"#include <girepository/girepository.h>\" \\\n  --replace-fail \"g_irepository_get_option_group\" \"gi_repository_get_option_group\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Personal task manager for GNOME",
         mainProgram: "endeavour",
         homepage: "https://gitlab.gnome.org/World/Endeavour",

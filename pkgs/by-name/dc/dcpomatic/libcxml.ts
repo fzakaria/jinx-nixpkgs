@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxmlxx = nix.arg($, "libxmlxx");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcxml",
       version: "0.17.17",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.carlh.net/git/libcxml.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fd6KYSQnFw3aHCQOT6TTcGUvTxIWrJeRT5rmk2CgbrQ=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "libxml++ helper library",
         homepage: "https://git.carlh.net/cgit/libcxml",
         downloadPage: "https://git.carlh.net/cgit/libcxml",

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gentium-book-basic";
       const version = "1.102";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/gentium/GentiumBasic_${nix.app(nix.sel(lib, "versions", "major"), version)}${nix.app(nix.sel(lib, "versions", "minor"), version)}.zip`),
           hash: "sha256-oCmpl95MJRfCV25cg/4cf8AwQWnoymXasSss1ziOPoE=",
         }))));
@@ -28,14 +28,14 @@ install -Dm644 FONTLOG.txt GENTIUM-FAQ.txt -t $out/share/doc/${pname}-${version}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://software.sil.org/gentium/",
         description: "High-quality typeface family for Latin, Cyrillic, and Greek",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

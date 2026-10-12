@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const unidecode = nix.arg($, "unidecode");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tcia-utils",
       version: "3.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kirbyju",
           repo: "tcia_utils",
           rev: "9ff8a409df9daaa3f9bc28f0a951d7f6fcb90160",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tcia_utils"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python utilities for interacting with The Cancer Imaging Archive (TCIA)",
         homepage: "https://github.com/kirbyju/tcia_utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

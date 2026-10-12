@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pru",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["pru"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: "https://github.com/grosser/pru",
         description: "Pipeable Ruby",
         longDescription: "pru allows to use Ruby scripts as filters, working as a convenient,\nhigher-level replacement of typical text processing tools (like sed, awk,\ngrep etc.).\n",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "pru")),
       })),
     })));

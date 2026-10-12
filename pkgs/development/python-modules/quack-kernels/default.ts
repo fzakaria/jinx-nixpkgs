@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const jax = nix.arg($, "jax");
   const pandas = nix.arg($, "pandas");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "quack-kernels",
       version: "0.6.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dao-AILab",
           repo: "quack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [apache_tvm_ffi, einops, nvidia_cutlass_dsl, torch, torch_c_dlpack_ext]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         heuristics: [],
         jax: nix.thunk(() => [jax]),
         bench: nix.thunk(() => [pandas]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["quack"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Quirky Assortment of CuTe Kernels",
         homepage: "https://github.com/Dao-AILab/quack",
         changelog: nix.thunk(() => nix.str`https://github.com/Dao-AILab/quack/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -12,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix$ = nix.arg($, "nix");
   return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`nixpkgs-lib-tests-nix-${nix.sel(nix$, "version")}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../path/tests")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs })))),
+        nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../path/tests")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs })))),
       ]),
       nativeBuildInputs: nix.thunk(() => nix.concat([nix$, nix.thunk(() => nix.sel(pkgs, "gitMinimal"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(pkgs, "inotify-tools"))))),
       strictDeps: true,

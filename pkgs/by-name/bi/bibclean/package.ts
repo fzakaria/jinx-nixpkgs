@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bibclean",
       version: "3.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.math.utah.edu/pub/bibclean/bibclean-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-kZM2eC6ePCBOYPVkhf0fjdZ562IvyP0fSDNZXuEBkaY=",
         })))),
       postPatch: "substituteInPlace Makefile.in --replace man/man1 share/man/man1\n",
       preInstall: "mkdir -p $out/bin $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prettyprint and syntax check BibTeX and Scribe bibliography data base files",
         homepage: "http://ftp.math.utah.edu/pub/bibclean",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

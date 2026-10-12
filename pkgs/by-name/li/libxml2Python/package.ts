@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pythonLibxml2 = nix.thunk(() => nix.sel(python3, "pkgs", "libxml2"));
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`libxml2+py-${nix.sel(libxml2, "version")}`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(pythonLibxml2, null);
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
 cp '${nix.sel(pythonLibxml2, "dev")}/nix-support/propagated-build-inputs' "$out/nix-support/"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.sel(pythonLibxml2, "meta", "license")),
       })),
     })));

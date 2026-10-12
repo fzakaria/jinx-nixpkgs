@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const protobuf_py_ext = nix.arg($, "protobuf-py-ext");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "protobuf-py",
       version: "0.1.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "protobuf_py",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-a9CKxNjxZhllu+JoVCnXkENwTN0e5yCnqJYXMxdCJAs=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["protobuf"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Idiomatic Protocol Buffers for Python",
         homepage: "https://github.com/bufbuild/protobuf-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

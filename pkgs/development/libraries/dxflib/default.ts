@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.26.4";
       const pname = "dxflib";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://qcad.org/archives/dxflib/dxflib-${version}-src.tar.gz`),
           sha256: "0pwic33mj6bp4axai5jiyn4xqf31y0xmb1i0pcf55b2h9fav8zah",
         }))));
@@ -43,7 +43,7 @@ EOF
 `);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://qcad.org/en/90-dxflib",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -53,7 +53,7 @@ EOF
         description: "DXF file format library",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

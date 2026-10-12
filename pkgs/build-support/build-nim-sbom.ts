@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const nim = nix.arg($, "nim");
   const nimOverrides = nix.arg($, "nimOverrides");
   const fetchers = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     fetchzip: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const url = nix.arg($_1, "url");
       const sha256 = nix.arg($_1, "sha256");
-      return nix.app(fetchzip, nix.thunk(() => ({ __proto__: pos$1, name: "source", url: url, sha256: sha256 })));
+      return nix.app(fetchzip, nix.thunk(() => ({ [nix.POS]: pos$1, name: "source", url: url, sha256: sha256 })));
     })(), formals$2),
     fetchgit: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const sha256 = nix.arg($_1, "sha256");
       const url = nix.arg($_1, "url");
       return nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           fetchSubmodules: fetchSubmodules,
           leaveDotGit: leaveDotGit,
           rev: rev,
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const value = nix.arg($_1, "value");
           return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "removePrefix"), prefix, name)),
             value: value,
           };
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
         return (nix.asBool(nix.eq(srcDir, "")) ? nix.force(fod) : nix.str`${fod}/${srcDir}`);
       })(), formals$7), components));
     return nix.app(runCommand, "nim.cfg", nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         outputs: nix.thunk(() => ["out", "src"]),
         nativeBuildInputs: nix.thunk(() => [lndir]),
       })), nix.thunk(() => nix.str`cat << EOF >> $out
@@ -114,13 +114,13 @@ ${nix.app(nix.sel(lib, "strings", "concatMapStrings"), (d) => nix.str`lndir "${d
     const nimBin = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), nix.thunk(() => nix.app(nix.sel(lib, "pipe"), properties, nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (name) => (value) => nix.app(nix.sel(lib, "strings", "hasPrefix"), "nim:bin:", name))),
           nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (value) => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: nix.thunk(() => nix.app(nix.sel(lib, "strings", "removePrefix"), "nim:bin:", name)),
               value: nix.thunk(() => nix.str`${nix.selOr(properties, () => nix.selOr(properties, () => ".", "nim:srcDir"), "nim:binDir")}/${value}`),
             }))),
         ]))), nix.thunk(() => nix.selOr(passthru, () => ({}), "nimBin"))));
     return {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       strictDeps: true,
       pname: nix.thunk(() => nix.selOr(prevAttrs, () => nix.sel(sbom, "metadata", "component", "name"), "pname")),
       version: nix.thunk(() => nix.selOr(prevAttrs, () => nix.selOr(sbom, () => null, "metadata", "component", "version"), "version")),
@@ -139,11 +139,11 @@ runHook postInstall
 `, "installPhase")),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [nim])),
       nimCfg: nix.thunk(() => nix.selOr(prevAttrs, () => nix.app(buildNimCfg, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             backend: nix.thunk(() => nix.selOr(prevAttrs, () => nix.selOr(properties, () => "c", "nim:backend"), "nimBackend")),
             components: nix.thunk(() => nix.attr(sbom, "components")),
           }))), "nimCfg")),
-      passthru: nix.thunk(() => nix.update(passthru, { __proto__: pos$8, sbom: sbom, properties: properties, nimBin: nimBin })),
+      passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$8, sbom: sbom, properties: properties, nimBin: nimBin })),
     };
   })(), formals$8);
   const applyOverrides = (prevAttrs) => nix.builtins["foldl'"]((prevAttrs_1) => nix.lambda((args_1) => (() => {
@@ -164,7 +164,7 @@ runHook postInstall
   return (callerArg) => (sbomArg) => (() => {
     const sbom = nix.thunk(() => (nix.asBool(nix.builtins.isAttrs(sbomArg)) ? nix.force(sbomArg) : nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(sbomArg)))));
     const overrideSbom = (f) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(compose, callerArg, nix.thunk(() => nix.update(sbom, nix.app(f, sbom))))));
-    return nix.update(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(compose, callerArg, sbom))), { __proto__: pos$10, overrideSbom: overrideSbom });
+    return nix.update(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(compose, callerArg, sbom))), { [nix.POS]: pos$10, overrideSbom: overrideSbom });
   })();
 })(), formals$1);
 //# sourceMappingURL=build-nim-sbom.ts.map

@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const sparqlwrapper = nix.arg($, "sparqlwrapper");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "awswrangler",
       version: "3.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-sdk-pandas",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
         setuptools,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         sqlserver: nix.thunk(() => [pyodbc]),
         sparql: nix.thunk(() => [sparqlwrapper]),
       })),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/test_moto.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pandas on AWS",
         homepage: "https://github.com/aws/aws-sdk-pandas",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-sdk-pandas/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

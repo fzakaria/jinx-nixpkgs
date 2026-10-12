@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ __proto__: pos$1, config: config, lib: lib, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, config: config, lib: lib, pkgs: pkgs })))), null);
   const getBin = nix.thunk(() => nix.attr(lib, "getBin"));
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
@@ -65,44 +65,44 @@ export default nix.lambda((args) => (() => {
     const localCellsRegex = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\\|", nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["\\."]))), localCells));
     const sedExpr = nix.thunk(() => nix.str`:x /^>\\(${localCellsRegex}\\) / { n; :y /^>/! { n; by }; bx }; p`);
     const globalCommand = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "cellServDB"), {})) ? nix.str`sed -n -e ${nix.app(nix.sel(lib, "escapeShellArg"), sedExpr)} ${nix.sel(cfg, "globalCellServDBFile")}` : nix.str`cat ${nix.sel(cfg, "globalCellServDBFile")}`));
-    return nix.app(nix.sel(pkgs, "runCommand"), "CellServDB", nix.thunk(() => ({ __proto__: pos$2, preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "globalCellServDBFile"), null)), nix.thunk(() => nix.str`${globalCommand} > $out`))}
+    return nix.app(nix.sel(pkgs, "runCommand"), "CellServDB", nix.thunk(() => ({ [nix.POS]: pos$2, preferLocalBuild: true })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "globalCellServDBFile"), null)), nix.thunk(() => nix.str`${globalCommand} > $out`))}
 cat ${clientServDB} >> $out
 `));
   })());
-  const afsConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "afsconfig", nix.thunk(() => ({ __proto__: pos$3, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
+  const afsConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "afsconfig", nix.thunk(() => ({ [nix.POS]: pos$3, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir -p $out
 echo ${nix.sel(cfg, "cellName")} > $out/ThisCell
 cp ${cellServDB} $out/CellServDB
 echo "${nix.sel(cfg, "mountPoint")}:${nix.sel(cfg, "cache", "directory")}:${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "cache", "blocks")))}" > $out/cacheinfo
 `)));
   return {
-    __proto__: pos$41,
+    [nix.POS]: pos$41,
     options: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       services: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         openafsClient: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to enable the OpenAFS client.",
             })))),
           afsdb: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Resolve cells via AFSDB DNS records.",
             })))),
           cellName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: "",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Cell name.",
               example: "grand.central.org",
             })))),
           globalCellServDBFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               default: nix.thunk(() => nix.sel(pkgs, "openafs", "cellservdb")),
               defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.openafs.cellservdb")),
               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "pathInStore")))),
@@ -110,86 +110,86 @@ echo "${nix.sel(cfg, "mountPoint")}:${nix.sel(cfg, "cache", "directory")}:${nix.
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "./CellServDB")),
             })))),
           cellServDB: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.lookup(w, "cellServDBType"), nix.thunk(() => nix.sel(cfg, "cellName")))),
               description: "This cell's database server records, added to the global\nCellServDB. See {manpage}`CellServDB(5)` man page for syntax. Ignored when\n`afsdb` is set to `true`.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 "dns.fqdn.org": nix.thunk(() => [
-                  nix.thunk(() => ({ __proto__: pos$8, ip: "1.2.3.4", dnsname: "first.afsdb.server.dns.fqdn.org" })),
-                  nix.thunk(() => ({ __proto__: pos$9, ip: "2.3.4.5", dnsname: "second.afsdb.server.dns.fqdn.org" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$8, ip: "1.2.3.4", dnsname: "first.afsdb.server.dns.fqdn.org" })),
+                  nix.thunk(() => ({ [nix.POS]: pos$9, ip: "2.3.4.5", dnsname: "second.afsdb.server.dns.fqdn.org" })),
                 ]),
               })),
             })))),
           cache: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             blocks: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 default: 100000n,
                 type: nix.thunk(() => nix.sel(types, "int")),
                 description: "Cache size in 1KB blocks.",
               })))),
             chunksize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 default: 0n,
                 type: nix.thunk(() => nix.app(nix.sel(types, "ints", "between"), 0n, 30n)),
                 description: "Size of each cache chunk given in powers of\n2. `0` resets the chunk size to its default\nvalues (13 (8 KB) for memcache, 18-20 (256 KB to 1 MB) for\ndiskcache). Maximum value is 30. Important performance\nparameter. Set to higher values when dealing with large files.\n",
               })))),
             directory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 default: "/var/cache/openafs",
                 type: nix.thunk(() => nix.sel(types, "str")),
                 description: "Cache directory.",
               })))),
             diskless: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: false,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 description: "Use in-memory cache for diskless machines. Has no real\nperformance benefit anymore.\n",
               })))),
           })),
           crypt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to enable (weak) protocol encryption.",
             })))),
           daemons: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: 2n,
               type: nix.thunk(() => nix.sel(types, "int")),
               description: "Number of daemons to serve user requests. Numbers higher than 6\nusually do no increase performance. Default is sufficient for up\nto five concurrent users.\n",
             })))),
           fakestat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Return fake data on stat() calls. If `true`,\nalways do so. If `false`, only do so for\ncross-cell mounts (as these are potentially expensive).\n",
             })))),
           inumcalc: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               default: "compat",
               type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "compat|md5")),
               description: "Inode calculation method. `compat` is\ncomputationally less expensive, but `md5` greatly\nreduces the likelihood of inode collisions in larger scenarios\ninvolving multiple cells mounted into one AFS space.\n",
             })))),
           mountPoint: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               default: "/afs",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Mountpoint of the AFS file tree, conventionally\n`/afs`. When set to a different value, only\ncross-cells that use the same value can be accessed.\n",
             })))),
           packages: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             module: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 default: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "openafs")),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "config.boot.kernelPackages.openafs")),
                 type: nix.thunk(() => nix.sel(types, "package")),
                 description: "OpenAFS kernel module package. MUST match the userland package!",
               })))),
             programs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 default: nix.thunk(() => nix.app(getBin, nix.thunk(() => nix.sel(pkgs, "openafs")))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "getBin pkgs.openafs")),
                 type: nix.thunk(() => nix.sel(types, "package")),
@@ -197,13 +197,13 @@ echo "${nix.sel(cfg, "mountPoint")}:${nix.sel(cfg, "cache", "directory")}:${nix.
               })))),
           })),
           sparse: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Minimal cell list in /afs.",
             })))),
           startDisconnected: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Start up in disconnected mode.  You need to execute\n`fs disco online` (as root) to switch to\nconnected mode. Useful for roaming devices.\n",
@@ -212,32 +212,32 @@ echo "${nix.sel(cfg, "mountPoint")}:${nix.sel(cfg, "cache", "directory")}:${nix.
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             assertion: nix.thunk(() => (nix.asBool(nix.sel(cfg, "afsdb")) || nix.asBool(!nix.eq(nix.sel(cfg, "cellServDB"), [])))),
             message: "You should specify all cell-local database servers in config.services.openafsClient.cellServDB or set config.services.openafsClient.afsdb.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "cellName"), "")),
             message: "You must specify the local cell name in config.services.openafsClient.cellName.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "openafsBin"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             clientCellServDB: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               source: cellServDB,
               target: "openafs/CellServDB",
               mode: "0644",
             })),
             clientCell: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               text: nix.thunk(() => nix.str`${nix.sel(cfg, "cellName")}
 `),
               target: "openafs/ThisCell",
@@ -246,16 +246,16 @@ echo "${nix.sel(cfg, "mountPoint")}:${nix.sel(cfg, "cache", "directory")}:${nix.
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           services: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             afsd: nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "AFS client",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "startDisconnected"))), "network-online.target")),
               after: nix.thunk(() => nix.app(singleton, nix.thunk(() => (nix.asBool(nix.sel(cfg, "startDisconnected")) ? "network.target" : "network-online.target")))),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$36, RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$36, RemainAfterExit: true })),
               restartIfChanged: false,
               preStart: nix.thunk(() => nix.str`mkdir -p -m 0755 ${nix.sel(cfg, "mountPoint")}
 mkdir -m 0700 -p ${nix.sel(cfg, "cache", "directory")}

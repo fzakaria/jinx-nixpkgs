@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const sortedcontainers = nix.arg($, "sortedcontainers");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "asyncua",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FreeOpcUa",
           repo: "opcua-asyncio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
           "tests/test_subscriptions.py",
         ]))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OPC UA / IEC 62541 Client and Server for Python",
         homepage: "https://github.com/FreeOpcUa/opcua-asyncio",
         changelog: nix.thunk(() => nix.str`https://github.com/FreeOpcUa/opcua-asyncio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

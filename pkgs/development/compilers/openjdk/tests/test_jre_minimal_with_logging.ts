@@ -13,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const jre_minimal = nix.arg($, "jre_minimal");
   const hello_logging = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hello-logging.nix"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       jdk: jdk,
-      jre: nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({ __proto__: pos$1, modules: nix.thunk(() => ["java.base", "java.logging"]) })))),
+      jre: nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: nix.thunk(() => ["java.base", "java.logging"]) })))),
     }))));
   return nix.app(runCommand, "test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${hello_logging}/bin/hello &>/dev/stdout | grep "Hello, world!"
 touch $out

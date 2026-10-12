@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "samrewritten",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PaulCombal",
           repo: "SamRewritten",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdk_pixbuf, glib, graphene, gtk4, openssl, pango]),
       postInstall: "install -Dm644 assets/org.samrewritten.SamRewritten.gschema.xml \\\n  $out/share/glib-2.0/schemas/org.samrewritten.SamRewritten.gschema.xml\nglib-compile-schemas $out/share/glib-2.0/schemas\nsubstituteInPlace package/samrewritten.desktop \\\n  --replace-fail \"/usr/bin/samrewritten\" \"samrewritten\"\ninstall -Dm644 package/samrewritten.desktop \\\n  $out/share/applications/samrewritten.desktop\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}/lib/pkgconfig`),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern Steam achievements manager for Windows and Linux",
         mainProgram: "samrewritten",
         homepage: "https://github.com/PaulCombal/SamRewritten",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bioperl",
           repo: "bioperl-ext",
           rev: nix.thunk(() => nix.str`bioperl-ext-release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make\n";
       const checkPhase = "runHook preCheck\n\nmake test\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/bioperl/bioperl-ext",
         description: "Write Perl Subroutines in Other Programming Languages",
         longDescription: "Part of BioPerl Extensions (BioPerl-Ext) distribution, a collection of Bioperl C-compiled extensions.\n",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         outputs,

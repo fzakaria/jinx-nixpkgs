@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "2.1.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "mistricky",
       repo: "codesnap.nvim",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-lQxV0Ka/eU/226sbXa2bB/x39okyrKSNsRIBNZ/IaK4=",
     }))));
   const codesnap_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "codesnap-lib",
       version: version,
       src: src,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-b+S56yRtly25fW1XmOVx5D3AT6PEY186r/KXVPI13dM=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         OPENSSL_NO_VENDOR: 1n,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libuv, "dev")), openssl]),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "codesnap.nvim",
       version: version,
       src: src,
@@ -65,12 +65,12 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, attrPath: "vimPlugins.codesnap-nvim.codesnap-lib" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.codesnap-nvim.codesnap-lib" })))),
         "codesnap-lib": codesnap_lib,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/mistricky/codesnap.nvim/",
         changelog: nix.thunk(() => nix.str`https://github.com/mistricky/codesnap.nvim/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

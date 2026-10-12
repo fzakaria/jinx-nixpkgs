@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   const ffmpeg = ffmpeg_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "musikcube",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clangen",
           repo: "musikcube",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DDISABLE_STRIP=true"]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -add_rpath $out/share/musikcube $out/share/musikcube/musikcube\ninstall_name_tool -add_rpath $out/share/musikcube $out/share/musikcube/musikcubed\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Terminal-based music player, library, and streaming audio server",
         homepage: "https://github.com/clangen/musikcube",
         maintainers: nix.thunk(() => (() => {

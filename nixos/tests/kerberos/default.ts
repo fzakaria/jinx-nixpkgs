@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const runTest = nix.arg($, "runTest");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     mit: nix.thunk(() => nix.app(runTest, nix.path(here, "./mit.nix"))),
     heimdal: nix.thunk(() => nix.app(runTest, nix.path(here, "./heimdal.nix"))),
-    ldap: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ldap")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs, runTest: runTest })))),
+    ldap: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ldap")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, runTest: runTest })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

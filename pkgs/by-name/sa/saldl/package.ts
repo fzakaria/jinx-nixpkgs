@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "saldl",
       version: "41",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saldl",
           repo: "saldl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-waf-to-2-0-24.patch",
             url: "https://github.com/saldl/saldl/commit/360c29d6c8cee5f7e608af42237928be429c3407.patch",
             hash: "sha256-RBMnsUtd0BaZe/EXypDCK4gpUU0dgucWmOcJRn5/iTA=",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI downloader optimized for speed and early preview",
         homepage: "https://saldl.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

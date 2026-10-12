@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darrenburns",
           repo: "rich-pixels",
           tag: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, syrupy]);
       const pythonImportsCheck = nix.thunk(() => ["rich_pixels"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Rich-compatible library for writing pixel images and ASCII art to the terminal",
         homepage: "https://github.com/darrenburns/rich-pixels",
         changelog: nix.thunk(() => nix.str`https://github.com/darrenburns/rich-pixels/releases/tag/${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

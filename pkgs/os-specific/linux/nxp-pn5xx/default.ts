@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nxp-pn5xx",
       version: nix.thunk(() => nix.str`0-unstable-2026-07-16-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jr64",
           repo: "nxp-pn5xx",
           rev: "6ebc3ce2000dc0ba82bd2f47eb01e69b8ba2dbd0",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "mkdir -p $out/etc/udev/rules.d\necho 'SUBSYSTEM==\"misc\", KERNEL==\"pn544\", MODE=\"0666\", GROUP=\"dialout\"' > $out/etc/udev/rules.d/99-nxp-pn5xx.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "NXP's NFC Open Source Kernel mode driver with ACPI configuration support",
         homepage: "https://github.com/jr64/nxp-pn5xx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

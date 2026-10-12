@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const pkgs = nix.arg($, "pkgs");
   const callPackage = nix.thunk(() => nix.app(newScope, nix.thunk(() => nix.update(pkgs, plugins))));
-  const plugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ __proto__: pos$1, callPackage: callPackage }))));
+  const plugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, callPackage: callPackage }))));
   return nix.force(plugins);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

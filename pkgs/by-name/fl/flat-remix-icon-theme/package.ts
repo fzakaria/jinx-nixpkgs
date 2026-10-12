@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flat-remix-icon-theme",
       version: "20240201",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "daniruiz",
           repo: "flat-remix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       installPhase: "mkdir -p $out/share/icons\nmv Flat-Remix* $out/share/icons/\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\nsymlinkParentIconThemes\nrecordPropagatedDependencies\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flat remix is a pretty simple icon theme inspired on material design",
         homepage: "https://drasite.com/flat-remix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

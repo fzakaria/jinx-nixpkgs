@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/b.nix", [["key", 2, 17]]);
 const pos$2 = nix.positions(here + "/b.nix", [["imports", 2, 3]]);
 
 export default (args) => ({
-  __proto__: pos$2,
-  imports: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, key: "explicit-key" }))]),
+  [nix.POS]: pos$2,
+  imports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, key: "explicit-key" }))]),
 });
 //# sourceMappingURL=b.ts.map

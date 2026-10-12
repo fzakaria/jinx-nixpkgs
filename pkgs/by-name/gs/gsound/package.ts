@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gsound";
       const version = "1.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gsound/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gsound-${version}.tar.xz`),
           sha256: "06l80xgykj7x1kqkjvcq06pwj2rmca458zvs053qc55x3sg06bfa",
         }))));
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, meson, ninja, gobject_introspection, libtool, vala]);
       const buildInputs = nix.thunk(() => [glib, libcanberra]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gitlab.gnome.org/GNOME/gsound",
         description: "Small library for playing system sounds",
         mainProgram: "gsound-play",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

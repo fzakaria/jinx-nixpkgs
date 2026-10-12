@@ -21,20 +21,20 @@ export default nix.lambda((args) => (() => {
     const version = "1.5.1";
     const rev = version;
     const hash = "sha256-M8vASxhaJPgkiTrAckxz7gk/QHkrFlNz7fFbnLEBT+M=";
-    return { __proto__: pos$1, version, rev, hash };
+    return { [nix.POS]: pos$1, version, rev, hash };
   })() : {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     version: "1.5.1-unstable-2023-11-03",
     rev: "b763a757bb2bef2ab63620611ddd8006d5e9e4a2",
     hash: "sha256-11WajEDtisiJsKQjZMSd5sDog3DuuBzf1PcgSY+uuXY=",
   }));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "asn1crypto",
       pyproject: true,
       version: nix.thunk(() => nix.attr(provenance, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "wbond",
           repo: "asn1crypto",
           rev: nix.thunk(() => nix.attr(provenance, "rev")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast ASN.1 parser and serializer with definitions for private keys, public keys, certificates, CRL, OCSP, CMS, PKCS#3, PKCS#7, PKCS#8, PKCS#12, PKCS#5, X.509 and TSP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/wbond/asn1crypto",

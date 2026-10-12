@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "check_ssl_cert";
       const version = "2.103.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matteocorti",
           repo: "check_ssl_cert",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([bc, bind, coreutils, curl, file, netcat_gnu, nmap, openssl, python3, which], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), iproute2))))}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/matteocorti/check_ssl_cert/releases/tag/v${version}`),
         description: "Nagios plugin to check the CA and validity of an X.509 certificate",
         homepage: "https://github.com/matteocorti/check_ssl_cert",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

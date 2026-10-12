@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const moltenvk = nix.arg($, "moltenvk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flycast",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "flyinghead",
           repo: "flycast",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\nmv \"$out/bin/Flycast.app\" \"$out/Applications/\"\nrm -rf \"$out/include\" \"$out/lib\" \"$out/bin\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/flyinghead/flycast",
         changelog: nix.thunk(() => nix.str`https://github.com/flyinghead/flycast/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Multi-platform Sega Dreamcast, Naomi and Atomiswave emulator",

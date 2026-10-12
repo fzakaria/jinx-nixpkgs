@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vvvvvv";
       const version = "2.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "TerryCavanagh",
           repo: "VVVVVV",
           rev: version,
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         }))));
       const dataZip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://thelettervsixtim.es/makeandplay/data.zip",
           name: "data.zip",
           hash: "sha256-x2eAlZT2Ry2p9WE252ZX44ZA1YQWSkYRIlCsYpPswOo=",
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         }))));
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => nix.concat(["-DBUNDLE_DEPENDENCIES=OFF"], nix.app(nix.sel(lib, "optional"), makeAndPlay, "-DMAKEANDPLAY=ON")));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: "Application",
             name: "VVVVVV",
             desktopName: "VVVVVV",
@@ -80,7 +80,7 @@ wrapProgram $out/bin/vvvvvv \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: nix.thunk(() => nix.add("A retro-styled platform game", nix.app(nix.sel(lib, "optionalString"), makeAndPlay, " (redistributable, without original levels)"))),
         longDescription: nix.thunk(() => nix.add("VVVVVV is a platform game all about exploring one simple mechanical\nidea - what if you reversed gravity instead of jumping?\n", nix.app(nix.sel(lib, "optionalString"), makeAndPlay, "(Redistributable version, doesn't include the original levels.)\n"))),
         homepage: "https://thelettervsixtim.es",
@@ -90,7 +90,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

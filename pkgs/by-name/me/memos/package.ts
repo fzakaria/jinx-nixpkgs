@@ -24,23 +24,23 @@ export default nix.lambda((args) => (() => {
   const pnpm_11 = nix.arg($, "pnpm_11");
   const pnpm = pnpm_11;
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "memos",
       version: "0.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "usememos",
           repo: "memos",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-O6r+M+T6zDr9getunGgNSXJlmt3ZsSwTCYoSpVgDcM4=",
         })))),
       "memos-web": nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalWebAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: "memos-web",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.attr(finalWebAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalWebAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalWebAttrs, "src")),
@@ -72,11 +72,11 @@ cp -r ${nix.sel(finalAttrs, "memos-web")} server/frontend/dist
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "memos-web"]) })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "memos-web"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://usememos.com",
         description: "Lightweight, self-hosted memo hub",
         changelog: nix.thunk(() => nix.str`https://github.com/usememos/memos/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

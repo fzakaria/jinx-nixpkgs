@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const libseccomp = nix.arg($, "libseccomp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "isolate",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ioi",
           repo: "isolate",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./take-config-file-from-env.patch")]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./isolate $out/bin/isolate\ninstall -Dm755 ./isolate-cg-keeper $out/bin/isolate-cg-keeper\ninstall -Dm755 ./isolate-check-environment $out/bin/isolate-check-environment\ninstallManPage isolate.1\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, isolate: nix.thunk(() => nix.sel(nixosTests, "isolate")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, isolate: nix.thunk(() => nix.sel(nixosTests, "isolate")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sandbox for securely executing untrusted programs",
         mainProgram: "isolate",
         homepage: "https://github.com/ioi/isolate",

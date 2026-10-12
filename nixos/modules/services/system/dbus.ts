@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "dbus"));
   const configDir = nix.thunk(() => nix.app(nix.sel(pkgs, "makeDBusConf", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       apparmor: nix.thunk(() => nix.attr(cfg, "apparmor")),
       dbus: nix.thunk(() => nix.sel(cfg, "dbusPackage")),
       suidHelper: nix.thunk(() => nix.str`${nix.sel(config, "security", "wrapperDir")}/dbus-daemon-launch-helper`),
@@ -95,28 +95,28 @@ export default nix.lambda((args) => (() => {
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$72,
+    [nix.POS]: pos$72,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       boot: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         initrd: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             dbus: nix.thunk(() => ({
-              __proto__: pos$3,
-              enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "dbus in stage 1"), { __proto__: pos$2, default: true })),
+              [nix.POS]: pos$3,
+              enable: nix.thunk(() => nix.update(nix.app(mkEnableOption, "dbus in stage 1"), { [nix.POS]: pos$2, default: true })),
             })),
           })),
         })),
       })),
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         dbus: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               internal: true,
@@ -125,19 +125,19 @@ export default nix.lambda((args) => (() => {
           dbusPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dbus", nix.thunk(() => ({})))),
           brokerPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dbus-broker", nix.thunk(() => ({})))),
           implementation: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["dbus", "broker"]))),
               default: "broker",
               description: "The implementation to use for the message bus defined by the D-Bus specification.\nCan be either the classic dbus daemon or dbus-broker, which aims to provide high\nperformance and reliability, while keeping compatibility to the D-Bus\nreference implementation.\n",
             })))),
           packages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               default: [],
               description: "Packages whose D-Bus configuration files should be included in\nthe configuration of the D-Bus system-wide or session-wide\nmessage bus.  Specifically, files in the following directories\nwill be included into their respective DBus configuration paths:\n{file}`«pkg»/etc/dbus-1/system.d`\n{file}`«pkg»/share/dbus-1/system.d`\n{file}`«pkg»/share/dbus-1/system-services`\n{file}`«pkg»/etc/dbus-1/session.d`\n{file}`«pkg»/share/dbus-1/session.d`\n{file}`«pkg»/share/dbus-1/services`\n",
             })))),
           apparmor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["enabled", "disabled", "required"]))),
               description: "AppArmor mode for dbus.\n\n`enabled` enables mediation when it's\nsupported in the kernel, `disabled`\nalways disables AppArmor even with kernel support, and\n`required` fails when AppArmor was not found\nin the kernel.\n",
               default: "disabled",
@@ -147,32 +147,32 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             system: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               switch: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 inhibitors: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   "dbus-implementation": nix.thunk(() => nix.sel(cfg, "implementation")),
                 })),
               })),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               etc: nix.thunk(() => ({
-                __proto__: pos$18,
-                "dbus-1": nix.thunk(() => ({ __proto__: pos$17, source: configDir })),
+                [nix.POS]: pos$18,
+                "dbus-1": nix.thunk(() => ({ [nix.POS]: pos$17, source: configDir })),
               })),
               pathsToLink: nix.thunk(() => ["/etc/dbus-1", "/share/dbus-1"]),
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dbusPackage"))]),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               users: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 messagebus: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   uid: nix.thunk(() => nix.sel(config, "ids", "uids", "messagebus")),
                   description: "D-Bus system message bus daemon user",
                   home: "/run/dbus",
@@ -181,28 +181,28 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               groups: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 messagebus: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   gid: nix.thunk(() => nix.sel(config, "ids", "gids", "messagebus")),
                 })),
               })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dbusPackage"))]),
               user: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 sockets: nix.thunk(() => ({
-                  __proto__: pos$26,
-                  dbus: nix.thunk(() => ({ __proto__: pos$25, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+                  [nix.POS]: pos$26,
+                  dbus: nix.thunk(() => ({ [nix.POS]: pos$25, wantedBy: nix.thunk(() => ["sockets.target"]) })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               dbus: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 packages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(cfg, "dbusPackage")),
                   nix.thunk(() => nix.sel(config, "system", "path")),
@@ -211,21 +211,21 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "boot", "initrd", "systemd", "dbus", "enable")), nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               boot: nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 initrd: nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   systemd: nix.thunk(() => ({
-                    __proto__: pos$45,
-                    users: nix.thunk(() => ({ __proto__: pos$32, messagebus: nix.thunk(() => ({})) })),
-                    groups: nix.thunk(() => ({ __proto__: pos$33, messagebus: nix.thunk(() => ({})) })),
+                    [nix.POS]: pos$45,
+                    users: nix.thunk(() => ({ [nix.POS]: pos$32, messagebus: nix.thunk(() => ({})) })),
+                    groups: nix.thunk(() => ({ [nix.POS]: pos$33, messagebus: nix.thunk(() => ({})) })),
                     contents: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       "/etc/dbus-1": nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         source: nix.thunk(() => nix.app(nix.sel(pkgs, "makeDBusConf", "override"), nix.thunk(() => ({
-                            __proto__: pos$34,
+                            [nix.POS]: pos$34,
                             apparmor: nix.thunk(() => nix.attr(cfg, "apparmor")),
                             dbus: nix.thunk(() => nix.sel(cfg, "dbusPackage")),
                             suidHelper: "/bin/false",
@@ -243,21 +243,21 @@ export default nix.lambda((args) => (() => {
                       nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package")}/share/dbus-1/system.d`),
                     ]),
                     targets: nix.thunk(() => ({
-                      __proto__: pos$38,
-                      sockets: nix.thunk(() => ({ __proto__: pos$37, wants: nix.thunk(() => ["dbus.socket"]) })),
+                      [nix.POS]: pos$38,
+                      sockets: nix.thunk(() => ({ [nix.POS]: pos$37, wants: nix.thunk(() => ["dbus.socket"]) })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$41,
+                      [nix.POS]: pos$41,
                       dbus: nix.thunk(() => ({
-                        __proto__: pos$40,
-                        unitConfig: nix.thunk(() => ({ __proto__: pos$39, DefaultDependencies: false })),
+                        [nix.POS]: pos$40,
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$39, DefaultDependencies: false })),
                       })),
                     })),
                     sockets: nix.thunk(() => ({
-                      __proto__: pos$44,
+                      [nix.POS]: pos$44,
                       dbus: nix.thunk(() => ({
-                        __proto__: pos$43,
-                        unitConfig: nix.thunk(() => ({ __proto__: pos$42, DefaultDependencies: false })),
+                        [nix.POS]: pos$43,
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$42, DefaultDependencies: false })),
                       })),
                     })),
                   })),
@@ -265,13 +265,13 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "implementation"), "dbus")), nix.thunk(() => ({
-              __proto__: pos$59,
+              [nix.POS]: pos$59,
               security: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 wrappers: nix.thunk(() => ({
-                  __proto__: pos$50,
+                  [nix.POS]: pos$50,
                   "dbus-daemon-launch-helper": nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     source: nix.thunk(() => nix.str`${nix.sel(cfg, "dbusPackage")}/libexec/dbus-daemon-launch-helper`),
                     owner: "root",
                     group: "messagebus",
@@ -282,26 +282,26 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 services: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   dbus: nix.thunk(() => ({
-                    __proto__: pos$53,
+                    [nix.POS]: pos$53,
                     aliases: nix.thunk(() => ["dbus-broker.service"]),
                     reloadIfChanged: true,
                     restartTriggers: nix.thunk(() => [configDir]),
                     environment: nix.thunk(() => ({
-                      __proto__: pos$52,
+                      [nix.POS]: pos$52,
                       LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
                     })),
                   })),
                 })),
                 user: nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   services: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     dbus: nix.thunk(() => ({
-                      __proto__: pos$55,
+                      [nix.POS]: pos$55,
                       aliases: nix.thunk(() => ["dbus-broker.service"]),
                       reloadIfChanged: true,
                       restartTriggers: nix.thunk(() => [configDir]),
@@ -311,36 +311,36 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "implementation"), "broker")), nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               environment: nix.thunk(() => ({
-                __proto__: pos$60,
+                [nix.POS]: pos$60,
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "brokerPackage"))]),
               })),
               systemd: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "brokerPackage"))]),
                 services: nix.thunk(() => ({
-                  __proto__: pos$65,
-                  dbus: nix.thunk(() => ({ __proto__: pos$61, reloadIfChanged: true })),
+                  [nix.POS]: pos$65,
+                  dbus: nix.thunk(() => ({ [nix.POS]: pos$61, reloadIfChanged: true })),
                   "dbus-broker": nix.thunk(() => ({
-                    __proto__: pos$64,
+                    [nix.POS]: pos$64,
                     aliases: nix.thunk(() => ["dbus.service"]),
-                    unitConfig: nix.thunk(() => ({ __proto__: pos$62, RequiresMountsFor: nix.thunk(() => ["/tmp"]) })),
+                    unitConfig: nix.thunk(() => ({ [nix.POS]: pos$62, RequiresMountsFor: nix.thunk(() => ["/tmp"]) })),
                     reloadIfChanged: true,
                     restartTriggers: nix.thunk(() => [configDir]),
                     environment: nix.thunk(() => ({
-                      __proto__: pos$63,
+                      [nix.POS]: pos$63,
                       LD_LIBRARY_PATH: nix.thunk(() => nix.sel(config, "system", "nssModules", "path")),
                     })),
                   })),
                 })),
                 user: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   services: nix.thunk(() => ({
-                    __proto__: pos$68,
-                    dbus: nix.thunk(() => ({ __proto__: pos$66, reloadIfChanged: true })),
+                    [nix.POS]: pos$68,
+                    dbus: nix.thunk(() => ({ [nix.POS]: pos$66, reloadIfChanged: true })),
                     "dbus-broker": nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       aliases: nix.thunk(() => ["dbus.service"]),
                       reloadIfChanged: true,
                       restartTriggers: nix.thunk(() => [configDir]),

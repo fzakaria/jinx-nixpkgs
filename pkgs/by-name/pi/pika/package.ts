@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pika";
       const version = "0.0.12";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/superhighfives/${pname}/releases/download/${version}/Pika-${version}.dmg`),
           sha256: "sha256-hcP2bETEx9RQW43I9nvdRPi9lbWwKW6mhRx5H6RxhjM=",
         }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = "Pika.app";
       const installPhase = "mkdir -p \"$out/Applications/Pika.app\"\ncp -R . \"$out/Applications/Pika.app\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://superhighfives.com/pika",
         description: "Open-source colour picker app for macOS",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "3a55207bcfed53ddd5c5bae174524062935efed17792e9de2ad0205ce9ad63f7",
@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   "ctypes.util.find_library('c')" "'${nix.sel(stdenv, "cc", "libc")}/lib/libc.so'"
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Implementation of time.monotonic() for Python 2 & < 3.3",
         homepage: "https://github.com/atdt/monotonic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

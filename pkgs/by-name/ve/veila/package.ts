@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "veila",
       version: "0.4.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "naurissteins",
           repo: "Veila",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       postInstall: "pushd assets\nfor assetDir in fonts icons systemd themes; do\n  find \"$assetDir\" -type d -exec install -d \"$out/share/veila/{}\" ';'\n  find \"$assetDir\" -type f -exec install -Dm644 \"{}\" \"$out/share/veila/{}\" ';'\ndone\npopd\n\nwrapProgram \"$out/bin/veila\" \\\n  --set VEILA_ASSET_DIR \"$out/share/veila\"\n\nwrapProgram \"$out/bin/veila-curtain\" \\\n  --set VEILA_ASSET_DIR \"$out/share/veila\"\n\nwrapProgram \"$out/bin/veilad\" \\\n  --set VEILA_ASSET_DIR \"$out/share/veila\" \\\n  --set VEILA_CURTAIN_BIN \"$out/bin/veila-curtain\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Screen locker for Wayland compositors",
         homepage: "https://naurissteins.com/veila",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

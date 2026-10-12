@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       "http://cache.nixos.org/",
     ]));
   const desktopItem = nix.thunk(() => nix.app(nix.sel(pkgs, "makeDesktopItem"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "captive-browser",
       desktopName: "Captive Portal Browser",
       exec: "captive-browser",
@@ -73,40 +73,40 @@ ${nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "bindInterface")), nix.th
 exec ${nix.sel(cfg, "package")}/bin/captive-browser
 `)));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       programs: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         "captive-browser": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(mkEnableOption, "captive browser, a dedicated Chrome instance to log into captive portals without messing with DNS settings")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "captive-browser", nix.thunk(() => ({})))),
           interface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "your public network interface (wlp3s0, wlan0, eth0, ...)",
             })))),
           browser: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.app(browserDefault, nix.thunk(() => nix.sel(pkgs, "chromium")))),
               defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.app(browserDefault, "${pkgs.chromium}")))),
               description: "The shell (/bin/sh) command executed once the proxy starts.\nWhen browser exits, the proxy exits. An extra env var PROXY is available.\n\nHere, we use a separate Chrome instance in Incognito mode, so that\nit can run (and be waited for) alongside the default one, and that\nit maintains no state across runs. To configure this browser open a\nnormal window in it, settings will be preserved.\n\n@volth: chromium is to open a plain HTTP (not HTTPS nor redirect to HTTPS!) website.\n        upstream uses http://example.com but I have seen captive portals whose DNS server resolves \"example.com\" to 127.0.0.1\n",
             })))),
           "dhcp-dns": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "The shell (/bin/sh) command executed to obtain the DHCP\nDNS server address. The first match of an IPv4 regex is used.\nIPv4 only, because let's be real, it's a captive portal.\n",
             })))),
           "socks5-addr": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "localhost:1666",
               description: "the listen address for the SOCKS5 proxy server",
             })))),
           bindInterface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               default: true,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Binds `captive-browser` to the network interface declared in\n`cfg.interface`. This can be used to avoid collisions\nwith private subnets.\n",
@@ -115,9 +115,9 @@ exec ${nix.sel(cfg, "package")}/bin/captive-browser
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         environment: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "captive-browser-desktop-item", nix.thunk(() => ({})), nix.thunk(() => nix.str`install -Dm444 -t $out/share/applications ${desktopItem}/share/applications/*.desktop
 `))),
@@ -125,9 +125,9 @@ exec ${nix.sel(cfg, "package")}/bin/captive-browser
           ]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           "captive-browser": nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "dhcp-dns": nix.thunk(() => (() => {
               const iface = (prefixes) => nix.app(optionalString, nix.thunk(() => nix.sel(cfg, "bindInterface")), nix.thunk(() => nix.app(escapeShellArgs, nix.thunk(() => nix.concat(prefixes, [nix.thunk(() => nix.sel(cfg, "interface"))])))));
               return nix.app(mkOptionDefault, nix.thunk(() => (nix.asBool(nix.sel(config, "networking", "networkmanager", "enable")) ? nix.str`${nix.sel(pkgs, "networkmanager")}/bin/nmcli dev show ${nix.app(iface, [])} | ${nix.sel(pkgs, "gnugrep")}/bin/fgrep IP4.DNS` : (nix.asBool(nix.sel(config, "networking", "dhcpcd", "enable")) ? nix.str`${nix.sel(pkgs, "dhcpcd")}/bin/dhcpcd ${nix.app(iface, nix.thunk(() => ["-U"]))} | ${nix.sel(pkgs, "gnugrep")}/bin/fgrep domain_name_servers` : (nix.asBool(nix.sel(config, "networking", "useNetworkd")) ? nix.str`${nix.sel(cfg, "package")}/bin/systemd-networkd-dns ${nix.app(iface, [])}` : nix.builtins.throw("programs.captive-browser.dhcp-dns must be set"))))));

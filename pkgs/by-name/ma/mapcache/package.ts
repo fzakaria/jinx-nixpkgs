@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mapcache",
       version: "1.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MapServer",
           repo: "mapcache",
           tag: nix.thunk(() => nix.str`rel-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -73,12 +73,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "APACHE_MODULE_DIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/modules`))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-std=c99")),
       })),
       prePatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"include_directories(\\${TIFF_INCLUDE_DIR})\" \"\" \\\n  --replace-fail \"target_link_libraries(mapcache \\${TIFF_LIBRARY})\" \"target_link_libraries(mapcache TIFF::TIFF)\"\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Server that implements tile caching to speed up access to WMS layers",
         homepage: "https://mapserver.org/mapcache/",
         changelog: "https://www.mapserver.org/development/changelog/mapcache/",

@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const avro_cpp = nix.arg($, "avro-cpp");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libserdes",
       version: "8.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "confluentinc",
           repo: "libserdes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
       preInstall: "installFlagsArray+=(\"pkgconfigdir=${!outputDev}/lib/pkgconfig\")\n",
       postInstall: "chmod -x ${!outputInclude}/include/libserdes/*.h\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Schema-based serializer/deserializer C/C++ library with support for Avro and the Confluent Platform Schema Registry",
         homepage: "https://github.com/confluentinc/libserdes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "1.8.0",
       pname: "hitch",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hitch-tls.org/source/hitch-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-38mUhLx//qJ6MWnoTWwheYjtpHsgirLlUk3Cpd0Vj04=",
         })))),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [docutils, libev, openssl]),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, hitch: nix.thunk(() => nix.sel(nixosTests, "hitch")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, hitch: nix.thunk(() => nix.sel(nixosTests, "hitch")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Libev-based high performance SSL/TLS proxy by Varnish Software",
         homepage: "https://hitch-tls.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

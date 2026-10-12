@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const makeWrapper = nix.arg($, "makeWrapper");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const profiles = nix.argOr($, "profiles", () => ({ __proto__: pos$1, path: "~" }));
+  const profiles = nix.argOr($, "profiles", () => ({ [nix.POS]: pos$1, path: "~" }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "windterm",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/kingToolbox/WindTerm/releases/download/${nix.sel(finalAttrs, "version")}/WindTerm_${nix.sel(finalAttrs, "version")}_Linux_Portable_x86_64.zip`),
           hash: "sha256-d5dpfutgI5AgUS4rVJaVpgw5s/0B/n67BH/VCiiJEDw=",
         })))),
@@ -89,7 +89,7 @@ runHook postInstall
       dontWrapQtApps: true,
       postFixup: "mkdir $out/bin\nmakeWrapper $out/app/windterm/WindTerm $out/bin/windterm \\\n  --prefix QT_PLUGIN_PATH : $out/app/windterm/lib \\\n  ${qtWrapperArgs[@]}\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Professional cross-platform SSH/Sftp/Shell/Telnet/Serial terminal",
         homepage: "https://github.com/kingToolbox/WindTerm",
         mainProgram: "windterm",

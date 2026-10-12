@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_django = nix.arg($, "pytest-django");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-classy-tags",
       version: "4.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-cms",
           repo: "django-classy-tags",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django]),
-      env: nix.thunk(() => ({ __proto__: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_django]),
       pythonImportsCheck: nix.thunk(() => ["classytags"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Class based template tags for Django",
         downloadPage: "https://github.com/django-cms/django-classy-tags",
         homepage: "https://django-classy-tags.readthedocs.io",

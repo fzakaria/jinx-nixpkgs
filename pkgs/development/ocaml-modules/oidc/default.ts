@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const uri = nix.arg($, "uri");
   const junit_alcotest = nix.arg($, "junit_alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "oidc",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ulrikstrid/ocaml-oidc/releases/download/v${nix.sel(finalAttrs, "version")}/oidc-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-NE/OW5BesVWhYfTmh3jP+A0TGML7m/Nw+tnafjMCIFo=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [junit_alcotest]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OpenID Connect implementation in OCaml",
         homepage: "https://github.com/ulrikstrid/ocaml-oidc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

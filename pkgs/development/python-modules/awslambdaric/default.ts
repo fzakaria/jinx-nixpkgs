@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-lambda-python-runtime-interface-client",
           tag: version,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [parameterized, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["awslambdaric", "runtime_client"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "AWS Lambda Runtime Interface Client for Python",
         homepage: "https://github.com/aws/aws-lambda-python-runtime-interface-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

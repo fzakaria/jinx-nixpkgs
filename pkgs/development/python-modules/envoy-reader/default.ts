@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jesserizzo",
           repo: "envoy_reader",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py \\\n  --replace-fail \"pytest-runner>=5.2\" \"\"\n";
       const pythonImportsCheck = nix.thunk(() => ["envoy_reader"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to read from Enphase Envoy units",
         homepage: "https://github.com/jesserizzo/envoy_reader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

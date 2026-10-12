@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gnugrep = nix.arg($, "gnugrep");
   const pythonPkgs = nix.thunk(() => nix.sel(pythonOnBuildForHost, "pkgs"));
-  const customize = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$1, some_modification: true })));
+  const customize = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, some_modification: true })));
   const pyprojectToml = (pname) => nix.builtins.toFile("pyproject.toml", nix.thunk(() => nix.str`[project]
 name = "${pname}"
 version = "1.0.0"
@@ -39,7 +39,7 @@ cp ${nix.app(pyprojectToml, pname)} $out/pyproject.toml
 touch $out/src/__init__.py
 `));
   const generatePythonPackage = (args_1) => nix.app(nix.sel(pythonPkgs, "buildPythonPackage"), nix.thunk(() => nix.update({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "1.0.0",
       src: nix.thunk(() => nix.app(runCommand, "my-project-source", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/src
 cp ${nix.app(pyprojectToml, nix.thunk(() => nix.sel(args_1, "pname")))} $out/pyproject.toml
@@ -50,7 +50,7 @@ touch $out/src/__init__.py
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pythonPkgs, "setuptools"))]),
     }, args_1)));
   const expectFailure = (build) => (errorMsg) => nix.app(nix.sel(lib, "overrideDerivation"), build, (old) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       builder: nix.thunk(() => nix.app(writeShellScript, "test-for-failure", nix.thunk(() => nix.str`export PATH=${coreutils}/bin:${gnugrep}/bin:$PATH
 ${nix.sel(old, "builder")} "$@" > ./log 2>&1
 status=$?
@@ -65,9 +65,9 @@ fi
 `))),
     }));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     "ignores-build-time-deps": nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "ignores-build-time-deps",
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pythonPkgs, "build")),
@@ -82,7 +82,7 @@ fi
         ]),
       })))),
     "cyclic-dependencies": nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "cyclic-dependencies",
         preFixup: "appendToVar propagatedBuildInputs \"$out\"\n",
       })))),
@@ -99,7 +99,7 @@ fi
             nix.thunk(() => nix.app(customize, nix.thunk(() => nix.sel(pythonPkgs, "packaging")))),
           ]);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname,
             version,
             src,
@@ -113,45 +113,45 @@ fi
     })()),
     "catches-transitive-conflict": nix.thunk(() => (() => {
       const toplevel = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           pname: "catches-transitive-conflict",
           propagatedBuildInputs: nix.thunk(() => [dep1, dep2]),
         }))));
       const dep1 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname: "dependency1",
           propagatedBuildInputs: nix.thunk(() => [leaf]),
         }))));
       const dep2 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           pname: "dependency2",
           propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(customize, leaf))]),
         }))));
-      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ __proto__: pos$10, pname: "leaf" }))));
+      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ [nix.POS]: pos$10, pname: "leaf" }))));
       return nix.app(expectFailure, toplevel, "Found duplicated packages in closure for dependency 'leaf'");
     })()),
     "catches-conflict-multiple-chains": nix.thunk(() => (() => {
       const toplevel = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           pname: "catches-conflict-multiple-chains",
           propagatedBuildInputs: nix.thunk(() => [dep1, dep2, dep3]),
         }))));
       const dep1 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           pname: "dependency1",
           propagatedBuildInputs: nix.thunk(() => [leaf]),
         }))));
       const dep2 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           pname: "dependency2",
           propagatedBuildInputs: nix.thunk(() => [leaf]),
         }))));
       const dep3 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           pname: "dependency3",
           propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(customize, leaf))]),
         }))));
-      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ __proto__: pos$15, pname: "leaf" }))));
+      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ [nix.POS]: pos$15, pname: "leaf" }))));
       return nix.app(expectFailure, toplevel, "Found duplicated packages in closure for dependency 'leaf'");
     })()),
   };

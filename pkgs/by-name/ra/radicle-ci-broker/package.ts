@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "radicle-ci-broker",
       version: "0.32.1",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           seed: "seed.radicle.dev",
           repo: "zwTxygwuz5LDGBq255RA2CbNGrz8",
           node: "z6MkgEMYod7Hxfy9qCvDv5hYHkZ4ciWmLFgfvm3Wn1b2w2FV",
@@ -47,15 +47,15 @@ rad auth --alias alice --stdin </dev/null
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "radicle-ci-broker": nix.thunk(() => nix.attr(nixosTests, "radicle-ci-broker")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Radicle CI broker",
         homepage: "https://radicle.network/nodes/seed.radicle.dev/rad:zwTxygwuz5LDGBq255RA2CbNGrz8",
         changelog: "https://radicle.network/nodes/seed.radicle.dev/rad:zwTxygwuz5LDGBq255RA2CbNGrz8/tree/NEWS.md",

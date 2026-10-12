@@ -20,43 +20,43 @@ const pos$14 = nix.positions(here + "/login-nosuid.nix", [["machine", 9, 9]]);
 const pos$15 = nix.positions(here + "/login-nosuid.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 9, 3], ["testScript", 42, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$15,
+  [nix.POS]: pos$15,
   name: "login-nosuid",
-  meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
   nodes: nix.thunk(() => ({
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         security: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enableWrappers: false,
           "account-utils": nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             pwaccessd: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
-                ExpiredCheck: nix.thunk(() => ({ __proto__: pos$2, SpMin: true })),
+                [nix.POS]: pos$3,
+                ExpiredCheck: nix.thunk(() => ({ [nix.POS]: pos$2, SpMin: true })),
               })),
             })),
             extraArgs: nix.thunk(() => ["-v", "--debug"]),
           })),
-          loginDefs: nix.thunk(() => ({ __proto__: pos$6, chfnRestrict: "f" })),
+          loginDefs: nix.thunk(() => ({ [nix.POS]: pos$6, chfnRestrict: "f" })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           settings: nix.thunk(() => ({
-            __proto__: pos$9,
-            Manager: nix.thunk(() => ({ __proto__: pos$8, NoNewPrivileges: true })),
+            [nix.POS]: pos$9,
+            Manager: nix.thunk(() => ({ [nix.POS]: pos$8, NoNewPrivileges: true })),
           })),
         })),
-        users: nix.thunk(() => ({ __proto__: pos$11, mutableUsers: true })),
+        users: nix.thunk(() => ({ [nix.POS]: pos$11, mutableUsers: true })),
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "which")),
             nix.thunk(() => nix.sel(pkgs, "fish")),

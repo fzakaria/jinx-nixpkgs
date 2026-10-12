@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rbdoom-3-bfg",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RobertBeckebans",
           repo: "rbdoom-3-bfg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall RBDoom3BFG $out/bin/RBDoom3BFG\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/RobertBeckebans/RBDOOM-3-BFG",
         description: "Doom 3 BFG Edition with modern engine features",
         mainProgram: "RBDoom3BFG",

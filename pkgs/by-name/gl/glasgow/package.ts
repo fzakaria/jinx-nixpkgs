@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const nextpnr = nix.arg($, "nextpnr");
   const sdcc_4_5 = nix.arg($, "sdcc_4_5");
   const yosys = nix.arg($, "yosys");
-  const fx2 = nix.thunk(() => nix.app(nix.sel(python3Packages, "fx2", "override"), nix.thunk(() => ({ __proto__: pos$1, sdcc: sdcc_4_5 }))));
+  const fx2 = nix.thunk(() => nix.app(nix.sel(python3Packages, "fx2", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, sdcc: sdcc_4_5 }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "glasgow";
       const version = "0-unstable-2025-07-25";
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const firmwareGitRev = "12b5cfb3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "GlasgowEmbedded",
           repo: "glasgow",
           rev: "c424688ff0d7faee49198bbdb2a34b1026534350",
@@ -93,7 +93,7 @@ export PDM_BUILD_SCM_VERSION="${pdmVersion}"
         nix.thunk(() => nix.str`${nextpnr}/bin/nextpnr-ice40`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Software for Glasgow, a digital interface multitool",
         homepage: "https://github.com/GlasgowEmbedded/Glasgow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
@@ -107,7 +107,7 @@ export PDM_BUILD_SCM_VERSION="${pdmVersion}"
         mainProgram: "glasgow",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pdmVersion,

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`20210523-${nix.app(nix.sel(lib, "strings", "substring"), 0n, 7n, rev)}`);
       const rev = "259b9fc6155f40758e5fa480683467c35df746e7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redcode-labs",
           repo: "Sammler",
           rev: rev,
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-0ZBPLONUZyazZ22oLO097hdX5xuHx2G6rZCAsCwqq4s=";
       const subPackages = nix.thunk(() => ["."]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to extract useful data from documents",
         mainProgram: "sammler",
         homepage: "https://github.com/redcode-labs/Sammler",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fab"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, rev, src, vendorHash, subPackages, meta };
+      return { [nix.POS]: pos$3, pname, version, rev, src, vendorHash, subPackages, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

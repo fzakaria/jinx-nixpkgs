@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chrome-token-signing";
       const version = "1.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-eid",
           repo: "chrome-token-signing",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ substituteInPlace host-shared/PKCS11Path.cpp \\
 `);
       const installPhase = "install -D -t $out/bin host-linux/chrome-token-signing\n# TODO: wire these up\ninstall -D -t $out/etc/chromium/native-messaging-hosts host-linux/ee.ria.esteid.json\ninstall -D -t $out/lib/mozilla/native-messaging-hosts host-linux/ff/ee.ria.esteid.json\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chrome and Firefox extension for signing with your eID on the web",
         mainProgram: "chrome-token-signing",
         homepage: "https://github.com/open-eid/chrome-token-signing/wiki",
@@ -45,7 +45,7 @@ substituteInPlace host-shared/PKCS11Path.cpp \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

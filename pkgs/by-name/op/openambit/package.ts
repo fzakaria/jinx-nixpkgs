@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openambit";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openambitproject",
           repo: "openambit",
           rev: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fno-common.patch",
             url: "https://github.com/openambitproject/openambit/commit/b6d97eab417977b6dbe355e0b071d0a56cc3df6b.patch",
             sha256: "1p0dg902mlcfjvs01dxl9wv2b50ayp4330p38d14q87mn0c2xl5d",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = "runHook preInstallCheck\n\n$out/bin/openambit --version\n\nrunHook postInstallCheck\n";
       const postInstall = "install -m755 -D $src/tools/openambit2gpx.py $out/bin/openambit2gpx\n\nmv -v $out/lib/udev/rules.d/libambit.rules \\\n      $out/lib/udev/rules.d/20-libambit.rules\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Helps fetch data from Suunto Ambit GPS watches",
         homepage: "https://github.com/openambitproject/openambit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

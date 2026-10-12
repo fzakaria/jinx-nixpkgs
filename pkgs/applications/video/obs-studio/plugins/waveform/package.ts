@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "waveform";
       const version = "1.8.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fetchSubmodules: true,
           owner: "phandasm",
           repo: "waveform",
@@ -36,7 +36,7 @@ rm -rf $out/${pname}
 `);
       const buildInputs = nix.thunk(() => [obs_studio, fftwFloat]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Audio spectral analysis plugin for OBS",
         homepage: "https://github.com/phandasm/waveform",
         maintainers: nix.thunk(() => (() => {
@@ -47,7 +47,7 @@ rm -rf $out/${pname}
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

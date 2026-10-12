@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libqb",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ClusterLabs",
           repo: "libqb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ sed -i '/m4_esyscmd(\\[build-aux\\/git-version-gen/ , /\\]),/ d' $out/configure.
       buildInputs: nix.thunk(() => [libxml2]),
       postPatch: "sed -i '/# --enable-new-dtags:/,/esac/ d' configure.ac\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/clusterlabs/libqb",
         description: "Library providing high performance logging, tracing, ipc, and poll",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

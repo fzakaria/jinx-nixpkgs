@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shaarli",
       version: "0.16.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/shaarli/Shaarli/releases/download/v${nix.sel(finalAttrs, "version")}/shaarli-v${nix.sel(finalAttrs, "version")}-full.zip`),
           sha256: "sha256-ADnP/wcyDMUh9lsXeffNZCku27LyKjdCwdrJ8+K1zI4=",
         })))),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace index.php \\\n  --replace \"new ConfigManager();\" \"new ConfigManager(getenv('SHAARLI_CONFIG'));\"\n",
       installPhase: "rm -r {cache,pagecache,tmp,data}/\nmkdir -p $doc/share/doc\nmv doc/ $doc/share/doc/shaarli\nmkdir $out/\ncp -R ./* $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Personal, minimalist, super-fast, database free, bookmarking service",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://github.com/shaarli/Shaarli",

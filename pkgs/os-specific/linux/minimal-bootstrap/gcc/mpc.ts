@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const pname = "mpc";
   const version = "1.3.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`mirror://gnu/mpc/mpc-${version}.tar.gz`),
       hash: "sha256-q2QkkvXPiCt0qgy3MM1BCoHtzb7IlRg86TDnBsHHWbg=",
     }))));
   return nix.app(nix.sel(bash, "runCommand"), nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         xz,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.str`GNU Multiple Precision Complex Library, version ${version}`),
         homepage: "https://www.multiprecision.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

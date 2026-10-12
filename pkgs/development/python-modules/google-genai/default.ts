@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googleapis",
           repo: "python-genai",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,12 +54,12 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         websockets,
       ], nix.sel(google_auth, "optional-dependencies", "requests")));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, aiohttp: nix.thunk(() => [aiohttp]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp]) }));
       const pythonImportsCheck = nix.thunk(() => ["google.genai"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-genai/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Google Generative AI Python SDK",
         homepage: "https://github.com/googleapis/python-genai",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

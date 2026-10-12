@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "speedcrunch",
       version: "0.12-unstable-2024-12-02",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "heldercorreia",
           repo: "speedcrunch",
           rev: "3c1b4c18ccb275eb2891f9d8ff36a9205c0f566b",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt6, "qtbase", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://speedcrunch.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "High-precision scientific calculator",

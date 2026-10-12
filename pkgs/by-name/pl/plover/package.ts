@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const plover_4 = nix.arg($, "plover_4");
   return nix.update(nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.sel(python3Packages, "plover"))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "allowAliases")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2605n))))), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       dev: nix.thunk(() => nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2511n)), "plover.dev was renamed. Use plover, plover_5, or plover_4 instead.", plover_4)),
       stable: nix.thunk(() => nix.builtins.throw("plover.stable was renamed. Use plover instead.")),
     }))));

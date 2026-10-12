@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const berryVersion = nix.arg($, "berryVersion");
   const berryCacheVersion = nix.arg($, "berryCacheVersion");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`yarn-berry-${nix.builtins.toString(berryVersion)}-fetcher`),
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "cyberchaos.dev",
           owner: "yuka",
           repo: "yarn-berry-fetcher",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-l8zTzr2y8i2ENb8iadIBz59YLmNwfDZcrbUqIUibFqg=",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         YARN_ZIP_SUPPORTED_CACHE_VERSION: berryCacheVersion,
         LIBZIP_SYS_USE_PKG_CONFIG: 1n,
       })),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), pkg_config]),
       buildInputs: nix.thunk(() => [libzip, openssl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://cyberchaos.dev/yuka/yarn-berry-fetcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "yarn-berry-fetcher",

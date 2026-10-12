@@ -80,9 +80,9 @@ export default nix.thunk(() => (() => {
     const validVariants = nix.thunk(() => ["latte", "frappe", "macchiato", "mocha"]);
     const selectedSources = nix.thunk(() => nix.builtins.map((themeName) => nix.builtins.getAttr(themeName, sources), themeList));
     const sources = nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       alacritty: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "alacritty",
           owner: "catppuccin",
           repo: "alacritty",
@@ -90,7 +90,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-H8bouVCS46h0DgQ+oYY8JitahQDj0V9p2cOoD4cQX+Q=",
         })))),
       bat: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           name: "bat",
           owner: "catppuccin",
           repo: "bat",
@@ -98,7 +98,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-lJapSgRVENTrbmpVyn+UQabC9fpV1G1e+CdlJ090uvg=",
         })))),
       bottom: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           name: "bottom",
           owner: "catppuccin",
           repo: "bottom",
@@ -106,7 +106,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-dfukdk70ug1lRGADKBnvMhkl+3tsY7F+UAwTS2Qyapk=",
         })))),
       btop: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: "btop",
           owner: "catppuccin",
           repo: "btop",
@@ -114,7 +114,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-mEGZwScVPWGu+Vbtddc/sJ+mNdD2kKienGZVUcTSl+c=",
         })))),
       delta: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: "delta",
           owner: "catppuccin",
           repo: "delta",
@@ -122,7 +122,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-lztkxX9O41YossvRzpR7tqxMhDNT1Efy2JvkCwtsiXQ=",
         })))),
       element: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           name: "element",
           owner: "catppuccin",
           repo: "element",
@@ -130,7 +130,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-iUSPlmEvwL9akbPobkbDWPr6TTHA/LdCK2Nty7Zslls=",
         })))),
       grub: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           name: "grub",
           owner: "catppuccin",
           repo: "grub",
@@ -138,7 +138,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-jgM22pvCQvb0bjQQXoiqGMgScR9AgCK3OfDF5Ud+/mk=",
         })))),
       hyprland: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           name: "hyprland",
           owner: "catppuccin",
           repo: "hyprland",
@@ -146,7 +146,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-xSa/z0Pu+ioZ0gFH9qSo9P94NPkEMovstm1avJ7rvzM=",
         })))),
       k9s: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           name: "k9s",
           owner: "catppuccin",
           repo: "k9s",
@@ -154,7 +154,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-9h+jyEO4w0OnzeEKQXJbg9dvvWGZYQAO4MbgDn6QRzM=",
         })))),
       kvantum: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           name: "kvantum",
           owner: "catppuccin",
           repo: "Kvantum",
@@ -162,7 +162,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-gcvCVZjVbj5fRZWaM+mZTwH/g158MH36JmMuMgCBuqQ=",
         })))),
       lazygit: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: "lazygit",
           owner: "catppuccin",
           repo: "lazygit",
@@ -170,7 +170,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-4eJEOEfwLBc4EoQ32TpuhXS3QDvQ8FtT7EgpotEKV7o=",
         })))),
       lxqt: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           name: "lxqt",
           owner: "catppuccin",
           repo: "lxqt",
@@ -178,7 +178,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-3TuUkOwk6BSc7BnLnTowGAkSlNTOtGTRlEcjJ6MNJ5g=",
         })))),
       palette: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           name: "palette",
           owner: "catppuccin",
           repo: "palette",
@@ -186,7 +186,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-hsy+GhuM4MSjnwGq1YJSLBFIbVm67SSdPRgObP00mxw=",
         })))),
       plymouth: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           name: "plymouth",
           owner: "catppuccin",
           repo: "plymouth",
@@ -194,7 +194,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-3JK4lX2ZmxysITDEEkhBLkyINUeCzvu5nUgrpvWZ+ZE=",
         })))),
       qt5ct: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           name: "qt5ct",
           owner: "catppuccin",
           repo: "qt5ct",
@@ -202,7 +202,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-wDj6kQ2LQyMuEvTQP6NifYFdsDLT+fMCe3Fxr8S783w=",
         })))),
       refind: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           name: "refind",
           owner: "catppuccin",
           repo: "refind",
@@ -210,7 +210,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-34+MkvWEp3xq6Di1uWKR4ieaG4t2rufnRRN1/V0WRfw=",
         })))),
       rofi: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: "rofi",
           owner: "catppuccin",
           repo: "rofi",
@@ -218,7 +218,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-81eeFjwM/haPjIEWkZPp1JSDwhWbWDAuKtWiCg7P9Q0=",
         })))),
       starship: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           name: "starship",
           owner: "catppuccin",
           repo: "starship",
@@ -226,7 +226,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-FLHjbClpTqaK4n2qmepCPkb8rocaAo3qeV4Zp1hia0g=",
         })))),
       thunderbird: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           name: "thunderbird",
           owner: "catppuccin",
           repo: "thunderbird",
@@ -234,7 +234,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-07gT37m1+OhRTbUk51l0Nhx+I+tl1il5ayx2ow23APY=",
         })))),
       waybar: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           name: "waybar",
           owner: "catppuccin",
           repo: "waybar",
@@ -242,7 +242,7 @@ export default nix.thunk(() => (() => {
           hash: "sha256-za0y6hcN2rvN6Xjf31xLRe4PP0YyHu2i454ZPjr+lWA=",
         })))),
       whoogle: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           name: "whoogle",
           owner: "catppuccin",
           repo: "whoogle",
@@ -251,7 +251,7 @@ export default nix.thunk(() => (() => {
         })))),
     }));
     return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: variant`), validVariants, nix.thunk(() => [variant]), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: accent`), validAccents, nix.thunk(() => [accent]), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: themes`), validThemes, themeList, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         pname: pname,
         version: "0-unstable-2026-03-24",
         srcs: selectedSources,
@@ -330,7 +330,7 @@ cp "${nix.sel(sources, "whoogle")}/css/${variant}.css" "$out/whoogle"
 
 `))), "runHook postInstall\n")),
         meta: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           description: "Soothing pastel themes",
           homepage: "https://catppuccin.com",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

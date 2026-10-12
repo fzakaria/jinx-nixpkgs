@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const groff = nix.arg($, "groff");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       path: "usr.bin/stat",
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, netbsdSetupHook, makeMinimal, install, mandoc, groff]),
     })));

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bind_exporter";
       const version = "0.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: nix.thunk(() => nix.str`v${version}`),
           owner: "prometheus-community",
           repo: "bind_exporter",
@@ -27,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-/fPj5LOe3QdnVPdtYdaqtnGMJ7/SZ458mpvjwO8TxEI=";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, bind: nix.thunk(() => nix.attr(from, "bind")) };
+          return { [nix.POS]: pos$2, bind: nix.thunk(() => nix.attr(from, "bind")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for bind9 server",
         mainProgram: "bind_exporter",
         homepage: "https://github.com/digitalocean/bind_exporter",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "rtreffer"))];
         })()),
       }));
-      return { __proto__: pos$5, pname, version, src, vendorHash, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

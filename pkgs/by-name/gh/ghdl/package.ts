@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const backendIsLLVMJit = nix.thunk(() => nix.eq(backend, "llvm-jit"));
   const backendIsGCC = nix.thunk(() => nix.eq(backend, "gcc"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: nix.thunk(() => nix.str`ghdl-${backend}`),
       version: "6.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ghdl",
           repo: "ghdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         LIBRARY_PATH: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "libc")}/lib`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([gnat], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(backendIsLLVM) || nix.asBool(backendIsGCC))), nix.thunk(() => [makeWrapper])), nix.app(nix.sel(lib, "optionals"), backendIsGCC, nix.thunk(() => [texinfo]))))),
@@ -88,14 +88,14 @@ make -j $NIX_BUILD_CORES ghdllib
       hardeningDisable: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), backendIsGCC, nix.thunk(() => ["format"])))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple.nix"), nix.thunk(() => ({ __proto__: pos$3, backend: backend })))),
+          [nix.POS]: pos$4,
+          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, backend: backend })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://github.com/ghdl/ghdl",
         description: "VHDL 2008/93/87 simulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

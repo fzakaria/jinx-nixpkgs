@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const colorama = nix.arg($, "colorama");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cutie",
       version: "0.3.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kamik423",
           repo: "cutie",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["cutie"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line User Tools for Input Easification",
         homepage: "https://github.com/kamik423/cutie",
         changelog: nix.thunk(() => nix.str`https://github.com/kamik423/cutie/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

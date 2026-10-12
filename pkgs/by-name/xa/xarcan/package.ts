@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xarcan";
       const version = "0.7.1";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letoram",
           repo: "xarcan",
           tag: version,
@@ -113,11 +113,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-xkb-path=${xkeyboard_config}/share/X11/xkb`),
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://codeberg.org/letoram/xarcan",
         description: "Patched Xserver that bridges connections to Arcan",
         mainProgram: "Xarcan",
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -12,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const libcava = nix.arg($, "libcava");
   const fftw = nix.arg($, "fftw");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "cava",
       buildInputs: nix.thunk(() => [libcava, fftw]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Astal module for audio visualization using cava",
       })),
     })));

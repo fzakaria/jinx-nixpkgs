@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "prowler",
       version: "5.44.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prowler-cloud",
           repo: "prowler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -141,11 +141,11 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["prowler"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Security tool to perform Cloud Security best practices assessments",
         homepage: "https://github.com/prowler-cloud/prowler",
         changelog: nix.thunk(() => nix.str`https://github.com/prowler-cloud/prowler/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

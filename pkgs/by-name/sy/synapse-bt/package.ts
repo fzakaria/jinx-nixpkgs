@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "synapse-bt",
       version: "1.0-unstable-2023-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Luminarys",
           repo: "synapse",
           rev: "2165fe22589d7255e497d196c1d42b4c2ace1408",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       cargoBuildFlags: nix.thunk(() => ["--all"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flexible and fast BitTorrent daemon",
         homepage: "https://synapse-bt.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

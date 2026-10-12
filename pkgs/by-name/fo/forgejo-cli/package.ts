@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "forgejo-cli",
       version: "0.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "forgejo-contrib",
           repo: "forgejo-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-+7WiOmYBjTMEsIGaqnMVTIHhzTpm8ObnljNXFnDazhI=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles, writableTmpDirAsHomeHook]),
       buildInputs: nix.thunk(() => [libgit2, oniguruma, openssl, zlib]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true, BUILD_TYPE: "nixpkgs" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true, BUILD_TYPE: "nixpkgs" })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd fj \\\n  --bash <($out/bin/fj completion bash) \\\n  --fish <($out/bin/fj completion fish) \\\n  --zsh <($out/bin/fj completion zsh)\n")),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI application for interacting with Forgejo",
         homepage: "https://codeberg.org/forgejo-contrib/forgejo-cli",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/forgejo-contrib/forgejo-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

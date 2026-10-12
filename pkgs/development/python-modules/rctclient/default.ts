@@ -17,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rctclient",
       version: "0.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "svalouch",
           repo: "python-rctclient",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-r8PUzAtFT8L7RteKpfnacmeIbG15brO8G6cPcvIo178=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, cli: nix.thunk(() => [click]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) })),
       pythonImportsCheck: nix.thunk(() => ["rctclient"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python implementation of the RCT Power GmbH Serial Communication Protocol",
         homepage: "https://github.com/svalouch/python-rctclient",
         changelog: nix.thunk(() => nix.str`https://github.com/svalouch/python-rctclient/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

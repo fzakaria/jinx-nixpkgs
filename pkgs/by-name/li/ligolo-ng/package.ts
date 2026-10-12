@@ -19,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const pkgsCross = nix.argOr($, "pkgsCross", () => ({}));
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "ligolo-ng",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicocha30",
           repo: "ligolo-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-y7q4XhZpmzxQM/fKd3ReRxjMGtda9GUJPsT5az6G784=",
         })))),
       vendorHash: "sha256-trHlhuVT76Q13WvOgVQo5VmD4ouUR5BQRY7JF1wiY+U=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/agent", "cmd/proxy"]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -43,9 +43,9 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/ligolo-agent`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           win: nix.thunk(() => nix.selOr(pkgsCross, () => null, "mingwW64", "ligolo-ng")),
           linux64: nix.thunk(() => nix.selOr(pkgsCross, () => null, "gnu64", "ligolo-ng")),
         })),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Advanced TUN-based tunneling/pivoting tool",
         homepage: "https://github.com/nicocha30/ligolo-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/nicocha30/ligolo-ng/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

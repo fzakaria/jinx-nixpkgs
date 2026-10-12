@@ -115,7 +115,7 @@ export default nix.lambda((args) => (() => {
   const useSqlite = nix.thunk(() => nix.eq(nix.sel(cfg, "database", "type"), "sqlite3"));
   const secrets = nix.thunk(() => (() => {
     const mkSecret = (section) => (values) => nix.app(nix.sel(lib, "mapAttrsToList"), (key) => (value) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         env: nix.thunk(() => nix.app(envEscape, nix.thunk(() => nix.str`FORGEJO__${section}__${key}__FILE`))),
         path: value,
       }), values);
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$95,
+    [nix.POS]: pos$95,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "forgejo", "appName"]), nix.thunk(() => ["services", "forgejo", "settings", "DEFAULT", "APP_NAME"]))),
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "forgejo", "extraConfig"]), "services.forgejo.extraConfig has been removed. Please use the freeform services.forgejo.settings option instead")),
@@ -157,27 +157,27 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(mkRemovedOptionModule, nix.thunk(() => ["services", "forgejo", "ssh", "enable"]), "services.forgejo.ssh.enable has been migrated into freeform setting services.forgejo.settings.server.DISABLE_SSH. Keep in mind that the setting is inverted")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$48,
+      [nix.POS]: pos$48,
       services: nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         forgejo: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Forgejo, a software forge")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "forgejo-lts", nix.thunk(() => ({})))),
           useWizard: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: false,
               type: nix.thunk(() => nix.sel(types, "bool")),
               description: "Whether to use the built-in installation wizard instead of\ndeclaratively managing the {file}`app.ini` config file in nix.\n",
             })))),
           stateDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "/var/lib/forgejo",
               type: nix.thunk(() => nix.sel(types, "str")),
               description: "Forgejo data directory.",
             })))),
           customDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/custom`),
               defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/custom"`))),
               type: nix.thunk(() => nix.sel(types, "str")),
@@ -188,34 +188,34 @@ hold secrets and the resulting {file}\`app.ini\` config at runtime.
 `),
             })))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "forgejo",
               description: "User account under which Forgejo runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: "forgejo",
               description: "Group under which Forgejo runs.",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["sqlite3", "mysql", "postgres"]))),
                 example: "mysql",
                 default: "sqlite3",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "127.0.0.1",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: nix.thunk(() => (nix.asBool(usePostgresql) ? nix.sel(pg, "settings", "port") : 3306n)),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`if config.${nix.sel(opt, "database", "type")} != "postgresql"
@@ -225,19 +225,19 @@ else 5432
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "forgejo",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "forgejo",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/keys/forgejo-dbpassword",
@@ -246,7 +246,7 @@ else 5432
 `),
               })))),
             socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(usePostgresql))) ? "/run/postgresql" : (nix.asBool((nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(useMysql))) ? "/run/mysqld/mysqld.sock" : null))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, "null")),
@@ -254,38 +254,38 @@ else 5432
                 description: "Path to the unix socket file to use for authentication.",
               })))),
             path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/data/forgejo.db`),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/data/forgejo.db"`))),
                 description: "Path to the sqlite3 database file.",
               })))),
             createDatabase: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to create a local database automatically.",
               })))),
           })),
           dump: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             enable: nix.thunk(() => nix.app(mkEnableOption, "periodic dumps via the [built-in {command}`dump` command](https://forgejo.org/docs/latest/admin/command-line/#dump)")),
             interval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "04:31",
                 example: "hourly",
                 description: "Run a Forgejo dump at this interval. Runs by default at 04:31 every day.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
               })))),
             backupDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/dump`),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/dump"`))),
                 description: "Path to the directory where the dump archives will be stored.",
               })))),
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [
                     "zip",
                     "tar",
@@ -301,14 +301,14 @@ else 5432
                 description: "Archive format used to store the dump file.",
               })))),
             file: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "Filename to be used for the dump. If `null` a default name is chosen by forgejo.",
                 example: "forgejo-dump",
               })))),
             age: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "4w",
                 example: "5d",
@@ -316,15 +316,15 @@ else 5432
               })))),
           })),
           lfs: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: false,
                 description: "Enables git-lfs support.",
               })))),
             contentDir: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/data/lfs`),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/data/lfs"`))),
@@ -332,74 +332,74 @@ else 5432
               })))),
           })),
           repositoryRoot: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               type: nix.thunk(() => nix.sel(types, "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/repositories`),
               defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/repositories"`))),
               description: "Path to the git repositories.",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               default: nix.thunk(() => ({})),
               description: "Free-form settings written directly to the `app.ini` configfile file.\nRefer to <https://forgejo.org/docs/latest/admin/config-cheat-sheet/> for supported values.\n",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  DEFAULT = {\n    RUN_MODE = \"dev\";\n  };\n  \"cron.sync_external_users\" = {\n    RUN_AT_START = true;\n    SCHEDULE = \"@every 24h\";\n    UPDATE_EXISTING = true;\n  };\n  mailer = {\n    ENABLED = true;\n    PROTOCOL = \"sendmail\";\n    FROM = \"do-not-reply@example.org\";\n    SENDMAIL_PATH = \"${pkgs.system-sendmail}/bin/sendmail\";\n  };\n  other = {\n    SHOW_FOOTER_VERSION = false;\n  };\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     log: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       ROOT_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$27,
+                          [nix.POS]: pos$27,
                           default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/log`),
                           defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/log"`))),
                           type: nix.thunk(() => nix.sel(types, "str")),
                           description: "Root path for log files.",
                         })))),
                       LEVEL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           default: "Info",
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["Trace", "Debug", "Info", "Warn", "Error", "Critical"]))),
                           description: "General log level.",
                         })))),
                     })),
                     server: nix.thunk(() => ({
-                      __proto__: pos$38,
+                      [nix.POS]: pos$38,
                       PROTOCOL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$30,
+                          [nix.POS]: pos$30,
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["http", "https", "fcgi", "http+unix", "fcgi+unix"]))),
                           default: "http",
                           description: "Listen protocol. `+unix` means \"over unix\", not \"in addition to.\"",
                         })))),
                       HTTP_ADDR: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "path")))),
                           default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "+unix", nix.thunk(() => nix.sel(cfg, "settings", "server", "PROTOCOL")))) ? "/run/forgejo/forgejo.sock" : "0.0.0.0")),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "if lib.hasSuffix \"+unix\" cfg.settings.server.PROTOCOL then \"/run/forgejo/forgejo.sock\" else \"0.0.0.0\"")),
                           description: "Listen address. Must be a path when using a unix socket.",
                         })))),
                       HTTP_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$32,
+                          [nix.POS]: pos$32,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 3000n,
                           description: "Listen port. Ignored when using a unix socket.",
                         })))),
                       DOMAIN: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$33,
+                          [nix.POS]: pos$33,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: "localhost",
                           description: "Domain name of your server.",
                         })))),
                       ROOT_URL: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$34,
+                          [nix.POS]: pos$34,
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "server", "DOMAIN")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "server", "HTTP_PORT")))}/`),
                           defaultText: nix.thunk(() => nix.app(literalExpression, "\"http://${config.services.forgejo.settings.server.DOMAIN}:${toString config.services.forgejo.settings.server.HTTP_PORT}/\"")),
                           description: "Full public URL of Forgejo server.",
                         })))),
                       STATIC_ROOT_PATH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "str")), nix.thunk(() => nix.sel(types, "path")))),
                           default: nix.thunk(() => nix.sel(cfg, "package", "data")),
                           defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`config.${nix.sel(opt, "package")}.data`))),
@@ -407,13 +407,13 @@ else 5432
                           description: "Upper level of template and static files path.",
                         })))),
                       DISABLE_SSH: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$36,
+                          [nix.POS]: pos$36,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Disable external SSH feature.",
                         })))),
                       SSH_PORT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$37,
+                          [nix.POS]: pos$37,
                           type: nix.thunk(() => nix.sel(types, "port")),
                           default: 22n,
                           example: 2222n,
@@ -421,9 +421,9 @@ else 5432
                         })))),
                     })),
                     session: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       COOKIE_SECURE: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$39,
+                          [nix.POS]: pos$39,
                           type: nix.thunk(() => nix.sel(types, "bool")),
                           default: false,
                           description: "Marks session cookies as \"secure\" as a hint for browsers to only send\nthem via HTTPS. This option is recommend, if Forgejo is being served over HTTPS.\n",
@@ -433,12 +433,12 @@ else 5432
                 })))),
             })))),
           secrets: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               default: nix.thunk(() => ({})),
               description: "This is a small wrapper over systemd's `LoadCredential`.\n\nIt takes the same sections and keys as {option}`services.forgejo.settings`,\nbut the value of each key is a path instead of a string or bool.\n\nThe path is then loaded as credential, exported as environment variable\nand then feed through\n<https://codeberg.org/forgejo/forgejo/src/branch/forgejo/contrib/environment-to-ini/environment-to-ini.go>.\n\nIt does the required environment variable escaping for you.\n\n::: {.note}\nKeys specified here take priority over the ones in {option}`services.forgejo.settings`!\n:::\n",
               example: nix.thunk(() => nix.app(literalExpression, "{\n  metrics = {\n    TOKEN = \"/run/keys/forgejo-metrics-token\";\n  };\n  camo = {\n    HMAC_KEY = \"/run/keys/forgejo-camo-hmac\";\n  };\n  service = {\n    HCAPTCHA_SECRET = \"/run/keys/forgejo-hcaptcha-secret\";\n    HCAPTCHA_SITEKEY = \"/run/keys/forgejo-hcaptcha-sitekey\";\n  };\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(types, null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "path")))));
@@ -450,112 +450,112 @@ else 5432
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$93,
+        [nix.POS]: pos$93,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createDatabase")) || nix.asBool((nix.asBool(useSqlite) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))))))),
             message: "services.forgejo.database.user must match services.forgejo.user if the database is to be automatically provisioned",
           })),
           nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(usePostgresql))) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))),
             message: "When creating a database via NixOS, the db user and db name must be equal!\nIf you already have an existing DB+user and this assertion is new, you can safely set\n`services.forgejo.createDatabase` to `false` because removal of `ensureUsers`\nand `ensureDatabases` doesn't have any effect.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$74,
+          [nix.POS]: pos$74,
           forgejo: nix.thunk(() => ({
-            __proto__: pos$67,
+            [nix.POS]: pos$67,
             settings: nix.thunk(() => ({
-              __proto__: pos$61,
+              [nix.POS]: pos$61,
               DEFAULT: nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 RUN_MODE: nix.thunk(() => nix.app(mkDefault, "prod")),
                 RUN_USER: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "user")))),
                 WORK_PATH: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(cfg, "stateDir")))),
               })),
               database: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     DB_TYPE: nix.thunk(() => nix.sel(cfg, "database", "type")),
                   })),
                   nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(useMysql) || nix.asBool(usePostgresql))), nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       HOST: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)) ? nix.sel(cfg, "database", "socket") : nix.add(nix.add(nix.sel(cfg, "database", "host"), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))))),
                       NAME: nix.thunk(() => nix.sel(cfg, "database", "name")),
                       USER: nix.thunk(() => nix.sel(cfg, "database", "user")),
                     })))),
-                  nix.thunk(() => nix.app(mkIf, useSqlite, nix.thunk(() => ({ __proto__: pos$54, PATH: nix.thunk(() => nix.sel(cfg, "database", "path")) })))),
-                  nix.thunk(() => nix.app(mkIf, usePostgresql, nix.thunk(() => ({ __proto__: pos$55, SSL_MODE: "disable" })))),
+                  nix.thunk(() => nix.app(mkIf, useSqlite, nix.thunk(() => ({ [nix.POS]: pos$54, PATH: nix.thunk(() => nix.sel(cfg, "database", "path")) })))),
+                  nix.thunk(() => nix.app(mkIf, usePostgresql, nix.thunk(() => ({ [nix.POS]: pos$55, SSL_MODE: "disable" })))),
                 ]))),
-              repository: nix.thunk(() => ({ __proto__: pos$56, ROOT: nix.thunk(() => nix.sel(cfg, "repositoryRoot")) })),
-              server: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ __proto__: pos$57, LFS_START_SERVER: true })))),
+              repository: nix.thunk(() => ({ [nix.POS]: pos$56, ROOT: nix.thunk(() => nix.sel(cfg, "repositoryRoot")) })),
+              server: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ [nix.POS]: pos$57, LFS_START_SERVER: true })))),
               session: nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 COOKIE_NAME: nix.thunk(() => nix.app(mkDefault, "session")),
               })),
-              security: nix.thunk(() => ({ __proto__: pos$59, INSTALL_LOCK: true })),
-              lfs: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ __proto__: pos$60, PATH: nix.thunk(() => nix.sel(cfg, "lfs", "contentDir")) })))),
+              security: nix.thunk(() => ({ [nix.POS]: pos$59, INSTALL_LOCK: true })),
+              lfs: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ [nix.POS]: pos$60, PATH: nix.thunk(() => nix.sel(cfg, "lfs", "contentDir")) })))),
             })),
             secrets: nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               security: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 SECRET_KEY: nix.thunk(() => nix.str`${nix.sel(cfg, "customDir")}/conf/secret_key`),
                 INTERNAL_TOKEN: nix.thunk(() => nix.str`${nix.sel(cfg, "customDir")}/conf/internal_token`),
               })),
               oauth2: nix.thunk(() => ({
-                __proto__: pos$63,
+                [nix.POS]: pos$63,
                 JWT_SECRET: nix.thunk(() => nix.str`${nix.sel(cfg, "customDir")}/conf/oauth2_jwt_secret`),
               })),
               database: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                  __proto__: pos$64,
+                  [nix.POS]: pos$64,
                   PASSWD: nix.thunk(() => nix.sel(cfg, "database", "passwordFile")),
                 })))),
               server: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({
-                  __proto__: pos$65,
+                  [nix.POS]: pos$65,
                   LFS_JWT_SECRET: nix.thunk(() => nix.str`${nix.sel(cfg, "customDir")}/conf/lfs_jwt_secret`),
                 })))),
             })),
           })),
           postgresql: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(usePostgresql) && nix.asBool(nix.sel(cfg, "database", "createDatabase")))), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$68,
+                  [nix.POS]: pos$68,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           mysql: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(useMysql) && nix.asBool(nix.sel(cfg, "database", "createDatabase")))), nix.thunk(() => ({
-              __proto__: pos$71,
+              [nix.POS]: pos$71,
               enable: nix.thunk(() => nix.app(mkDefault, true)),
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$70,
+                  [nix.POS]: pos$70,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           openssh: nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             settings: nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               AcceptEnv: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.selOr(cfg, () => false, "settings", "server", "START_SSH_SERVER"))), nix.thunk(() => ["GIT_PROTOCOL"]))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$88,
+          [nix.POS]: pos$88,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$75,
+            [nix.POS]: pos$75,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dump", "backupDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} ${nix.sel(cfg, "dump", "age")} -`),
               nix.thunk(() => nix.str`z '${nix.sel(cfg, "dump", "backupDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -581,9 +581,9 @@ else 5432
               ])))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$84,
+            [nix.POS]: pos$84,
             "forgejo-secrets": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "useWizard"))), nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 description: "Forgejo secret bootstrap helper",
                 script: nix.thunk(() => nix.str`if [ ! -s '${nix.sel(cfg, "secrets", "security", "SECRET_KEY")}' ]; then
     ${exe} generate secret SECRET_KEY > '${nix.sel(cfg, "secrets", "security", "SECRET_KEY")}'
@@ -603,7 +603,7 @@ if [ ! -s '${nix.sel(cfg, "secrets", "security", "INTERNAL_TOKEN")}' ]; then
 fi
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$76,
+                  [nix.POS]: pos$76,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
@@ -613,7 +613,7 @@ fi
                 })),
               })))),
             forgejo: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               description: "Forgejo (Beyond coding. We forge.)",
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(optionals, usePostgresql, nix.thunk(() => ["postgresql.target"])), nix.concat(nix.app(optionals, useMysql, nix.thunk(() => ["mysql.service"])), nix.app(optionals, nix.thunk(() => !nix.asBool(nix.sel(cfg, "useWizard"))), nix.thunk(() => ["forgejo-secrets.service"])))))),
               requires: nix.thunk(() => nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(usePostgresql))), nix.thunk(() => ["postgresql.target"])), nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(useMysql))), nix.thunk(() => ["mysql.service"])), nix.app(optionals, nix.thunk(() => !nix.asBool(nix.sel(cfg, "useWizard"))), nix.thunk(() => ["forgejo-secrets.service"]))))),
@@ -647,7 +647,7 @@ then
 fi
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 Type: "notify",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -695,7 +695,7 @@ fi
                 LoadCredential: nix.thunk(() => nix.builtins.map((e) => nix.str`${nix.sel(e, "env")}:${nix.sel(e, "path")}`, secrets)),
               })),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 USER: nix.thunk(() => nix.sel(cfg, "user")),
                 HOME: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 FORGEJO_WORK_DIR: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -703,19 +703,19 @@ fi
               }, nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((e) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(e, "env")), nix.thunk(() => nix.str`%d/${nix.sel(e, "env")}`)), secrets))))),
             })),
             "forgejo-dump": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "dump", "enable")), nix.thunk(() => ({
-                __proto__: pos$83,
+                [nix.POS]: pos$83,
                 description: "forgejo dump",
                 after: nix.thunk(() => ["forgejo.service"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$81,
+                  [nix.POS]: pos$81,
                   USER: nix.thunk(() => nix.sel(cfg, "user")),
                   HOME: nix.thunk(() => nix.sel(cfg, "stateDir")),
                   FORGEJO_WORK_DIR: nix.thunk(() => nix.sel(cfg, "stateDir")),
                   FORGEJO_CUSTOM: nix.thunk(() => nix.sel(cfg, "customDir")),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$82,
+                  [nix.POS]: pos$82,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   ExecStart: nix.thunk(() => nix.add(nix.str`${exe} dump --type ${nix.sel(cfg, "dump", "type")}`, nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(cfg, "dump", "file"), null)), nix.thunk(() => nix.str` --file ${nix.sel(cfg, "dump", "file")}`)))),
@@ -724,36 +724,36 @@ fi
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$87,
+            [nix.POS]: pos$87,
             "forgejo-dump": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "dump", "enable")), nix.thunk(() => ({
-                __proto__: pos$86,
+                [nix.POS]: pos$86,
                 description: "Forgejo dump timer",
                 partOf: nix.thunk(() => ["forgejo-dump.service"]),
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$85,
+                  [nix.POS]: pos$85,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "dump", "interval")),
                 })),
               })))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "forgejo")), nix.thunk(() => ({
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               forgejo: nix.thunk(() => ({
-                __proto__: pos$89,
+                [nix.POS]: pos$89,
                 home: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 useDefaultShell: true,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "forgejo")), nix.thunk(() => ({ __proto__: pos$91, forgejo: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "forgejo")), nix.thunk(() => ({ [nix.POS]: pos$91, forgejo: nix.thunk(() => ({})) })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$94,
+      [nix.POS]: pos$94,
       doc: nix.path(here, "./forgejo.md"),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "forgejo"))]),
     })),

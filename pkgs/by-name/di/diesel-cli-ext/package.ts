@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "diesel-cli-ext",
       version: "0.3.17",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "diesel_cli_ext",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RkRnkr0xwe1ruQwGa1105CIgQl0cbRCvsJrCW/pWXDE=",
         })))),
       cargoHash: "sha256-l1nptYgDlMXmyhH3OC8D5ViuOG+ePSkxNOtcwuXBQIM=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Provides different tools for projects using the diesel_cli",
         homepage: "https://crates.io/crates/diesel_cli_ext",
         license: nix.thunk(() => (() => {

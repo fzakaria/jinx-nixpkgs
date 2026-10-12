@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.13";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "robinelfrink",
           repo: "gs1200-exporter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-R8is2TM2npCY1eOTRsL1spTJWf/KiBqHpjr4EjraLeU=";
       const postPatch = "substituteInPlace go.mod --replace-fail \"go 1.26.4\" \"go 1.26.3\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "gs1200-exporter": nix.thunk(() => nix.attr(nixosTests, "gs1200-exporter")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus exporter for Zyxel GS1200 switches",
         homepage: "https://github.com/robinelfrink/gs1200-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gs1200-exporter",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         __structuredAttrs,

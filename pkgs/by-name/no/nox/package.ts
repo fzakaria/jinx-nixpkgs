@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nox",
       version: "0.0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://pypi/n/nix-nox/nix-nox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1qcbhdnhdhhv7q6cqdgv0q55ic8fk18526zn2yb12x9r1s0lfp9z",
         })))),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["nox"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/madjar/nox",
         description: "Tools to make nix nicer to use",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "madjar"))]),

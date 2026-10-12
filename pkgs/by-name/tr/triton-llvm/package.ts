@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
     })()) : nix.sel(python3Packages, "python")));
   const isNative = nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "triton-llvm",
       version: "23.0.0-unstable-2026-06-16",
       __structuredAttrs: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"])), nix.app(nix.sel(lib, "optionals"), buildMan, nix.thunk(() => ["man"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "llvm",
           repo: "llvm-project",
           rev: "1f126a6dea50d185c0781743a667390037ae88bd",
@@ -119,7 +119,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "check-all",
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of modular and reusable compiler and toolchain technologies",
         homepage: "https://github.com/llvm/llvm-project",
         changelog: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/releases/tag/llvmorg-${nix.sel(finalAttrs, "version")}`),

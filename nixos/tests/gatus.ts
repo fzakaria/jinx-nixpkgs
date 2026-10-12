@@ -18,33 +18,33 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "gatus",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pizzapim"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             gatus: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$4,
-                web: nix.thunk(() => ({ __proto__: pos$2, port: 8080n })),
+                [nix.POS]: pos$4,
+                web: nix.thunk(() => ({ [nix.POS]: pos$2, port: 8080n })),
                 metrics: true,
                 endpoints: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     name: "metrics",
                     url: "http://localhost:8080/metrics",
                     interval: "1s",

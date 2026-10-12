@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ionic-cli",
       version: "7.2.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@ionic/cli/-/cli-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-nrZMMyzoiO7ZJbNrPSRA1sOEy3OpgEXdyNS0JzAaTjY=",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-XI9+c4ECkmowA3Lz3S47m9wRcOKTmr51/wWr1lBy7Lo=",
       dontNpmBuild: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Your go-to tool for developing Ionic apps",
         homepage: "https://ionicframework.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

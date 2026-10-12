@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wally-cli",
       version: "2.0.1",
       subPackages: nix.thunk(() => ["."]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsa",
           repo: "wally-cli",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-osx`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-m2QuNd0/cfAdFdVzctG+E7t/OsslcufXyh6HX2i1KKg=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to flash firmware to mechanical keyboards",
         mainProgram: "wally-cli",
         homepage: "https://ergodox-ez.com/pages/wally-planck",

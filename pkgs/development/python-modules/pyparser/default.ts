@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://keep.imfreedom.org/grim/pyparser",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "0aplb4zdpgbpmaw9qj0vr7qip9q5w7sl1m1lp1nc9jmjfij9i0hf",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i 's/parse==/parse>=/' requirements.txt";
       const propagatedBuildInputs = nix.thunk(() => [parse]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple library that makes it easier to parse files",
         homepage: "https://keep.imfreedom.org/grim/pyparser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nico202"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

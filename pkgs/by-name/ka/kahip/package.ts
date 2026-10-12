@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => false);
   const isILP64 = nix.argOr($, "isILP64", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kahip",
       version: "3.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "KaHIP",
           repo: "KaHIP",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.sel(python3Packages, "python"))))),
       buildInputs: nix.thunk(() => nix.concat([mpi, metis], nix.concat(nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.sel(python3Packages, "pybind11"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp")))))),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.app(nix.sel(python3Packages, "mkPythonMetaPackage"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -52,7 +52,7 @@ echo "__version__= '${nix.sel(finalAttrs, "version")}'" > $out/${nix.sel(python3
       nativeInstallCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pythonImportsCheckHook"))]))),
       pythonImportsCheck: nix.thunk(() => ["kahip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://kahip.github.io/",
         downloadPage: "https://github.com/KaHIP/KaHIP/",
         changelog: nix.thunk(() => nix.str`https://github.com/KaHIP/KaHIP/releases/tag/v${nix.sel(finalAttrs, "version")}`),

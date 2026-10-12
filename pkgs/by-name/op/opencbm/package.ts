@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "opencbm",
       version: "0.4.99.104",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenCBM",
           repo: "OpenCBM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1, ncurses]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kernel driver and development library to control serial CBM devices",
         longDescription: "Win 7/8/10, and Linux/i386/AMD64 kernel driver and development library to\ncontrol serial CBM devices, such as the Commodore 1541 disk drive,\nconnected to the PC's parallel port via a XM1541 or XA1541 cable. Fast\ndisk copier included. Successor of cbm4linux. Also supports the XU1541\nand the XUM1541 devices (a.k.a. \"ZoomFloppy\").\n",
         homepage: "https://spiro.trikaliotis.net/opencbm",

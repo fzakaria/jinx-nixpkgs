@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "python-hyper",
           repo: "brotlicffi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["test/"]);
       const pythonImportsCheck = nix.thunk(() => ["brotlicffi"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/python-hyper/brotlicffi/blob/${nix.sel(src, "tag")}/HISTORY.rst`),
         description: "Python CFFI bindings to the Brotli library",
         homepage: "https://github.com/python-hyper/brotlicffi",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

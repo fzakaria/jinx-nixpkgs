@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.74";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Graphify-Labs",
           repo: "graphify",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           anthropic: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "anthropic"))]),
           bedrock: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "boto3"))]),
           chinese: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "jieba"))]),
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["graphify"]);
       const dontCheckPythonMetadata = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "AI coding assistant skill. Turn any folder of code, docs, papers, images, or videos into a queryable knowledge graph.",
         homepage: "https://github.com/Graphify-Labs/graphify",
         changelog: nix.thunk(() => nix.str`https://github.com/Graphify-Labs/graphify/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "graphify",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         __structuredAttrs,
         pname,
         version,

@@ -37,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-allauth-async",
       version: "65.16.1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "glitchtip",
           repo: "django-allauth-async",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} -m django compilemessages
 `),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         headless: nix.thunk(() => nix.concat([pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
         "headless-spec": nix.thunk(() => [pyyaml]),
         "idp-oidc": nix.thunk(() => nix.concat([oauthlib, pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       disabledTests: nix.thunk(() => ["test_login"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native-asyncio twin of allauth's authentication flows for ASGI applications",
         downloadPage: "https://gitlab.com/glitchtip/django-allauth-async/",
         homepage: "https://allauth.org",

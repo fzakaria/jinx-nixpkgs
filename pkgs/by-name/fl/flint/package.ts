@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withGc = nix.argOr($, "withGc", () => false);
   nix.assert_((!nix.asBool(withBlas) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(openblas, null)) && nix.asBool(nix.eq(nix.sel(blas, "implementation"), "openblas")))) && nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "openblas"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fl/flint/package.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "flint",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://flintlib.org/download/flint-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uV4sd5L17qShyNLULECYQ0dWgy5XoJSyletd/cm0w2s=",
         })))),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast Library for Number Theory",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: nix.thunk(() => [

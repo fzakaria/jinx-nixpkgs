@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const pname = "quba";
   const version = "1.5.1";
   const passthru = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     updateScript: nix.thunk(() => nix.app(writeShellScript, "update-quiet", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} --system=x86_64-linux quba
 hash=$(nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url $(nix eval --raw --file . quba.src.url --system aarch64-darwin)))
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} quba $(nix eval --raw --file . quba.version) $hash --system=aarch64-darwin --ignore-same-version
 `))),
   }));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Viewer for electronic invoices",
     homepage: "https://github.com/ZUGFeRD/quba-viewer",
     downloadPage: "https://github.com/ZUGFeRD/quba-viewer/releases",
@@ -47,13 +47,13 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
     platforms: nix.thunk(() => nix.concat(["x86_64-linux"], nix.sel(lib, "platforms", "darwin"))),
   }));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/ZUGFeRD/quba-viewer/releases/download/v${version}/Quba-${version}.AppImage`),
       hash: "sha256-MjVsHFt/e2epN+lpYPTpbayT2Pq24mb5Pmf3HWLMqOU=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$4, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, src: src }))));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -66,13 +66,13 @@ cp -r ${appimageContents}/usr/share/icons $out/share
 `),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       passthru: passthru,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: nix.thunk(() => nix.str`https://github.com/ZUGFeRD/quba-viewer/releases/download/v${version}/Quba-${version}-universal.dmg`),
           hash: "sha256-dVi4PAOEfIcqgP5ljqvN4X2y4fAuq1p5xDFBUI/YW6I=",
         })))),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stb = nix.arg($, "stb");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sm64tools",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "queueRAM",
           repo: "sm64tools",
           tag: nix.thunk(() => nix.str`sm64extendv${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [capstone, libpng, libyaml, stb, zlib]),
       installPhase: "runHook preInstall\n\ninstallBin {f3d,f3d2obj,mio0,mipsdisasm,n64cksum,n64graphics,n64split,sm64compress,sm64extend,sm64geo,sm64walk}\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools for Super Mario 64 ROM hacking",
         homepage: "https://github.com/queueRAM/sm64tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

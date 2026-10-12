@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "15five",
           repo: "django-scim2",
           tag: version,
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/15five/django-scim2/commit/df3bd25d477928ceecdd02410babf9b59e67c595.patch",
             hash: "sha256-BkBBbxImCKfSBDY7hTmKX6z/+l7H2MRmIJ4VHKxFtnM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/15five/django-scim2/commit/be4e67f158b50fd216d723024d975d8b15f4031a.patch",
             hash: "sha256-IE8yg7qdv5UWla5T1erAM3KK7TAb3qYBqjNJdV4+8C0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/15five/django-scim2/commit/131ec58a94c66f2f1b205a96e9405c76828de7db.patch",
             hash: "sha256-KafF2I6CFCVz96NVHBoGmJLB6ejdLJaWBx2F0EoEwrI=",
           })))),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["django_scim"]);
       const nativeCheckInputs = nix.thunk(() => [mock, pytest_django, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/15five/django-scim2/blob/${nix.sel(src, "tag")}/CHANGES.txt`),
         description: "SCIM 2.0 Service Provider Implementation (for Django)",
         homepage: "https://github.com/15five/django-scim2",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

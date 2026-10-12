@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tcptrack",
       version: "1.4.3-unstable-2017-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bchretien",
           repo: "tcptrack",
           rev: "2b096ac103af2884bbd7648cff8adcbadbda9394",
@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ncurses-6.3.patch",
             url: "https://github.com/bchretien/tcptrack/commit/409007afbce8ec5a81312a2a4123dd83b62b4494.patch",
             sha256: "00641jyr52ksww5bbzvxlprmbb36jnvzg2w1aj1jgnm75jiajcfc",
           })))),
       ]),
       buildInputs: nix.thunk(() => [ncurses, libpcap]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=cpp" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=cpp" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "libpcap based program for live TCP connection monitoring",
         mainProgram: "tcptrack",

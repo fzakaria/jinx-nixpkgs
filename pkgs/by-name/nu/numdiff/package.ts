@@ -16,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "numdiff",
       version: "5.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://savannah/numdiff/numdiff-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vzmjh8mhwwysn4x4m2vif7q2k8i19x8azq7pzmkwwj4g48lla47",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "numdiff",
             version: "5.9.0",
             debianRevision: "2",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libintl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "A little program that can be used to compare putatively similar files\nline by line and field by field, ignoring small numeric differences\nor/and different numeric formats\n",
         homepage: "https://www.nongnu.org/numdiff/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emilua-qt6";
       const version = "1.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emilua",
           repo: "qt6",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -70,12 +70,12 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           basic: nix.thunk(() => nix.app(runCommand, "test-basic-qt6", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               buildInputs: nix.thunk(() => [
                 emilua,
                 qt6,
@@ -94,7 +94,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Qt6 bindings for Emilua",
         homepage: "https://emilua.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -108,7 +108,7 @@ touch $out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

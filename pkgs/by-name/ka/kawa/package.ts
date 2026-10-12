@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ant = nix.arg($, "ant");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kawa",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnu/kawa/kawa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jJpQzWsQAVTJAb0ZCzrNL7g1PzNiLEos6Po5Kn8J4Bk=",
         })))),
@@ -47,7 +47,7 @@ makeWrapper ${jdk11}/bin/java $out/bin/kawa \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Scheme implementation running on the Java platform",
         longDescription: "Kawa is a general-purpose programming language that runs on the Java platform.\nIt aims to combine the benefits of dynamic scripting languages (less boiler-plate\ncode, fast and easy start-up, a REPL, no required compilation step) with the\nbenefits of traditional compiled languages (fast execution, static error detection,\nmodularity, zero-overhead Java platform integration).\n",
         homepage: "https://www.gnu.org/software/kawa",

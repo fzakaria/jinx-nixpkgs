@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       format: "setuptools",
       pname: "capstone",
       version: nix.thunk(() => nix.attr(capstone_4, "version")),
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(capstone_4, "src", "name")}/bindings/python`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "drop-distutils-in-python-binding.patch",
             url: "https://github.com/capstone-engine/capstone/commit/d63211e3acb64fceb8b1c4a0d804b4b027f4ef71.patch",
             hash: "sha256-zUGeFmm3xH5dzfPJE8nnHwqwFBrsZ7w8LBJAy20/3RI=",
@@ -39,7 +39,7 @@ substituteInPlace setup.py --replace manylinux1 manylinux2014
       propagatedBuildInputs: nix.thunk(() => [setuptools]),
       checkPhase: "mv capstone capstone.hidden\npatchShebangs test_*\nmake check\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.capstone-engine.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         description: "Python bindings for Capstone disassembly engine",

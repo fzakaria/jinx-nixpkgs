@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writeTextFile = nix.arg($, "writeTextFile");
   const mkModule = (n) => nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`module-${n}`),
       destination: "/Init.py",
       text: nix.thunk(() => nix.str`import sys
@@ -27,8 +27,8 @@ f.close()
     })));
   const module_1 = nix.thunk(() => nix.app(mkModule, "1"));
   const module_2 = nix.thunk(() => nix.app(mkModule, "2"));
-  const freecad_customized = nix.thunk(() => nix.app(nix.sel(freecad, "customize"), nix.thunk(() => ({ __proto__: pos$2, modules: nix.thunk(() => [module_1, module_2]) }))));
-  return nix.app(runCommand, "freecad-test-modules", nix.thunk(() => ({ __proto__: pos$3, nativeBuildInputs: nix.thunk(() => [freecad_customized]) })), nix.thunk(() => nix.str`mkdir $out
+  const freecad_customized = nix.thunk(() => nix.app(nix.sel(freecad, "customize"), nix.thunk(() => ({ [nix.POS]: pos$2, modules: nix.thunk(() => [module_1, module_2]) }))));
+  return nix.app(runCommand, "freecad-test-modules", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [freecad_customized]) })), nix.thunk(() => nix.str`mkdir $out
 HOME="$(mktemp -d)" FreeCADCmd --log-file $out/freecad.log -c "sys.exit(0)" </dev/null
 test -f $out/module-1.touch
 test -f $out/module-2.touch

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "certipy",
       version: "0.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TocB5qLygeehVMLzaM/07fN0AJCE0peIy+jDg4iXeE8=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [flask, pytestCheckHook, requests]),
       pythonImportsCheck: nix.thunk(() => ["certipy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to create and sign CAs and certificates",
         homepage: "https://github.com/LLNL/certipy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

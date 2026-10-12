@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wails3",
       version: "3.0.0-beta.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wailsapp",
           repo: "wails",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook4]),
       depsTargetTargetPropagated: nix.thunk(() => [webkitgtk_6_0]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Build desktop applications using Go & Web Technologies, v3 alpha",
         homepage: "https://wails.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

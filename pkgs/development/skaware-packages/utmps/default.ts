@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const skawarePackages = nix.arg($, "skawarePackages");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "utmps",
       version: "0.1.3.4",
       sha256: "sha256-EtzBAq1qyB+BrsxJUHM9uU81CBlHBUubFHPKxckIELw=",
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Secure utmpx and wtmp implementation" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Secure utmpx and wtmp implementation" })),
       buildInputs: nix.thunk(() => [skalibs]),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--libdir=${nix.builtins.placeholder("lib")}/lib`),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const laszip = nix.arg($, "laszip");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "laszip",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tmontaigu",
           repo: "laszip-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["laszip"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial bindings between Python and LASzip made using pybind11",
         homepage: "https://github.com/tmontaigu/laszip-python",
         changelog: nix.thunk(() => nix.str`https://github.com/tmontaigu/laszip-python/blob/${nix.sel(finalAttrs, "src", "tag")}/Changelog.md`),

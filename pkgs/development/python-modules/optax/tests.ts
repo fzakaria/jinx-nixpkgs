@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const flax = nix.arg($, "flax");
   const optax = nix.arg($, "optax");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       format: "setuptools",
       pname: "optax-tests",
       version: nix.thunk(() => nix.attr(optax, "version")),

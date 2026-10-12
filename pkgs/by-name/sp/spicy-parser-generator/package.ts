@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spicy",
       version: "1.16.1",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zeek",
           repo: "spicy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/zeek/spicy",
         description: "C++ parser generator for dissecting protocols & files",
         longDescription: "Spicy is a parser generator that makes it easy to create robust C++\nparsers for network protocols, file formats, and more. Spicy is a bit\nlike a \"yacc for protocols\", but it's much more than that: It's an\nall-in-one system enabling developers to write attributed grammars that\ndescribe both syntax and semantics of an input format using a single,\nunified language. Think of Spicy as a domain-specific scripting language\nfor all your parsing needs.\n",

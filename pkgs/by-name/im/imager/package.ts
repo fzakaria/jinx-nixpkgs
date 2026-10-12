@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.5-01",
       pname: "imager",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://cloud.univ-grenoble-alpes.fr/s/J6yEqA6yZ8tX9da/download?path=%2F&files=imager-may25.tar.gz",
           hash: "sha256-E3JjdVGEQ0I/ogYj0G1OZxfQ3hA+sRgA4LAfHK52Sec=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./numpy-header.patch"),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-std=gnu17"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-unused-command-line-argument"])))))),
         GAG_CPP: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`${nix.sel(gfortran, "outPath")}/bin/cpp` : "cpp")),
       })),
@@ -68,7 +68,7 @@ makeWrapper $out/libexec/bin/imager $out/bin/imager \\
    --set LD_LIBRARY_PATH $out/libexec/lib/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Interferometric imaging package",
         longDescription: "IMAGER is an interferometric imaging package in the GILDAS software,\ntailored for usage simplicity and efficiency for multi-spectral data sets.\n\nIMAGER was developed and optimized to handle large data files.\nTherefore, IMAGER works mostly on internal buffers and avoids as much as possible\nsaving data to intermediate files.\nFile saving is done ultimately once the data analysis process is complete,\nwhich offers an optimum use of the disk bandwidth.\n",
         homepage: "https://imager.oasu.u-bordeaux.fr",

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-yUO1vnOt2NPyldPjFMn0jbhVX8zHcKsJ2IFVugYBZa4=",
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const preBuild = "cd ..";
       const pythonImportsCheck = nix.thunk(() => ["fast_colorthief"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Selection of most dominant colors in image using Modified Median Cut Quantization",
         homepage: "https://github.com/bedapisl/fast-colorthief",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -40,6 +40,6 @@ cmake = 'cmake'
     const mesonFlags = nix.argOr($_1, "mesonFlags", () => []);
     return nix.concat(crossFlags, mesonFlags);
   })(), formals$2);
-  return { __proto__: pos$1, makeMesonFlags: makeMesonFlags };
+  return { [nix.POS]: pos$1, makeMesonFlags: makeMesonFlags };
 })(), formals$1);
 //# sourceMappingURL=meson.ts.map

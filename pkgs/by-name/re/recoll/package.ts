@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(nix.lookup(w, "buildPlatform"), "canExecute"), nix.thunk(() => nix.lookup(w, "hostPlatform")));
   })());
   const filters = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     awk: gawk,
     antiword: antiword,
     catppt: catdoc,
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
       const pname = "recoll";
       const version = "1.43.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://www.recoll.org/${pname}-${version}.tar.gz`),
           hash: "sha256-irloDtMO9CBvtI+oEicUOy2myrGskieWoqNk5eapzU8=",
         }))));
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dfile-command=${file}/bin/file`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withPython)), nix.thunk(() => ["-Dpython-module=false", "-Dpython-chm=false"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withGui)), nix.thunk(() => ["-Dqtgui=false", "-Dx11mon=false"])), [nix.thunk(() => nix.str`-Dinotify=${useInotify}`)]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       }));
       const patches = nix.thunk(() => [nix.path(here, "./0001-no-qtgui-darwin-bundle.patch")]);
@@ -133,7 +133,7 @@ wrapProgram $out/share/recoll/filters/rclimg \\
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(withGui))), "ln -s ../Applications/recoll.app/Contents/MacOS/recoll $out/bin/recoll\n"));
       const enableParallelBuilding = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Full-text search tool",
         longDescription: "Recoll is an Xapian frontend that can search through files, archive\nmembers, email attachments.\n",
         homepage: "https://www.recoll.org",
@@ -147,7 +147,7 @@ wrapProgram $out/share/recoll/filters/rclimg \\
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(withPython) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

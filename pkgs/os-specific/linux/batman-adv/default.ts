@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "batman-adv";
       const version = nix.thunk(() => nix.str`${nix.sel(cfg, "version")}-${nix.sel(kernel, "version")}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.open-mesh.org/batman/releases/${pname}-${nix.sel(cfg, "version")}/${pname}-${nix.sel(cfg, "version")}.tar.gz`),
           sha256: nix.thunk(() => nix.sel(cfg, "sha256", nix.key(pname))),
         }))));
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const preBuild = "sed -i -e \"s,INSTALL_MOD_DIR=,INSTALL_MOD_PATH=$out INSTALL_MOD_DIR=,\" \\\n  -e /depmod/d Makefile\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "systemd-networkd-batadv": nix.thunk(() => nix.sel(nixosTests, "systemd-networkd-batadv")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.open-mesh.org/projects/batman-adv/wiki/Wiki",
         description: "B.A.T.M.A.N. routing protocol in a linux kernel module for layer 2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), nix.thunk(() => nix.sel(cfg, "minKernelVersion")))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

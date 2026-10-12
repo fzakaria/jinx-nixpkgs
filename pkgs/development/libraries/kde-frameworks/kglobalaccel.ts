@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const qtx11extras = nix.arg($, "qtx11extras");
   const libxdmcp = nix.arg($, "libxdmcp");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kglobalaccel",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [

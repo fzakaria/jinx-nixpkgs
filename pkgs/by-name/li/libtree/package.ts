@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const dieHook = nix.arg($, "dieHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libtree",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haampie",
           repo: "libtree",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,17 +35,17 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: libtree,
               command: "libtree --version",
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             })))),
           checkCoreUtils: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ls-test`), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), dieHook]),
             })), nix.thunk(() => nix.str`libtree ${coreutils}/bin/ls > $out || die "libtree failed to show dependencies."
 [ -s $out ]
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tree ldd with an option to bundle dependencies into a single folder",
         mainProgram: "libtree",
         homepage: "https://github.com/haampie/libtree",

@@ -18,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     name: "xinetd",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "h7x4"))]),
     })),
     containers: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       machine: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "netcat"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           xinetd: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: true,
             services: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 name: "ping-pong-tcp",
                 protocol: "tcp",
                 port: 8765n,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
                 })()),
               })),
               nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: "ping-pong-udp",
                 protocol: "udp",
                 port: 8766n,

@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const kopia = nix.arg($, "kopia");
   const version = "0.23.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "kopia",
       repo: "kopia",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-yjeLV7N/U88oVdP4iJYgSM/QJLAMREaB/2jBcbTDWkA=",
     }))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "kopia-ui",
       version: version,
       src: src,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-yj5+qiLfy6CjAOXIzT9OMu860Pefwn+HuJNoBAizb/0=",
       makeCacheWritable: true,
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
-      env: nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       patches: nix.thunk(() => [nix.path(here, "./fix-paths.patch")]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace public/utils.js --replace-fail KOPIA ${nix.app(nix.sel(lib, "getExe"), kopia)}
 `),
@@ -65,7 +65,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "kopia-ui",
             type: "Application",
             desktopName: "KopiaUI",
@@ -76,11 +76,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication",
         mainProgram: "kopia-ui",
         homepage: "https://kopia.io",

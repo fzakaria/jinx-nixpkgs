@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mkdocs",
           repo: "mkdocs",
           tag: version,
@@ -60,12 +60,12 @@ export default nix.lambda((args) => (() => {
         pyyaml_env_tag,
         watchdog,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, i18n: nix.thunk(() => [babel]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, i18n: nix.thunk(() => [babel]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([unittestCheckHook, mock], nix.sel(optional_dependencies, "i18n")));
       const unittestFlagsArray = nix.thunk(() => ["-v", "-p", "'*tests.py'", "mkdocs"]);
       const pythonImportsCheck = nix.thunk(() => ["mkdocs"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocs/mkdocs/releases/tag/${version}`),
         description: "Project documentation with Markdown / static website generator",
         mainProgram: "mkdocs",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

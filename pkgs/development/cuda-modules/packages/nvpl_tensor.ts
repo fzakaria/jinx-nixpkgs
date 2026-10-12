@@ -11,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const nvpl_blas = nix.arg($, "nvpl_blas");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "nvpl",
       pname: "nvpl_tensor",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       buildInputs: nix.thunk(() => [nvpl_blas]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Part of NVIDIA Performance Libraries that provides tensor primitives",
         homepage: "https://developer.nvidia.com/nvpl",
         changelog: "https://docs.nvidia.com/nvpl/latest/tensor/release_notes.html",

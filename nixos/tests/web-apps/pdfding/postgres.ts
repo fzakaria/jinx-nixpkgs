@@ -41,58 +41,58 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     name: "PdfDing postgres",
     nodes: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pdfding: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               secretKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretKeyFile", "test123")),
-              database: nix.thunk(() => ({ __proto__: pos$1, createLocally: true, type: "postgres" })),
-              consume: nix.thunk(() => ({ __proto__: pos$2, enable: true, schedule: "*/1 * * * *" })),
+              database: nix.thunk(() => ({ [nix.POS]: pos$1, createLocally: true, type: "postgres" })),
+              consume: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, schedule: "*/1 * * * *" })),
               installTestHelpers: true,
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             services: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pdfding: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])))),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   TimeoutStartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), "900")),
                 })),
               })),
               "pdfding-background": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])))),
               })),
             })),
             settings: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               Manager: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 DefaultDeviceTimeoutSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1800n)),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "postgresql", "finalPackage"))]),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$14,
-            initrd: nix.thunk(() => ({ __proto__: pos$13, kernelModules: nix.thunk(() => ["virtio_console"]) })),
+            [nix.POS]: pos$14,
+            initrd: nix.thunk(() => ({ [nix.POS]: pos$13, kernelModules: nix.thunk(() => ["virtio_console"]) })),
           })),
         };
       })(), formals$2),
@@ -138,44 +138,44 @@ machine.succeed("sudo -u pdfding psql -tAc 'SELECT COUNT(*) FROM pdf_pdf' | grep
 `;
     })(), formals$3),
     interactive: nix.thunk(() => ({
-      __proto__: pos$27,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+      [nix.POS]: pos$27,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
       nodes: nix.thunk(() => ({
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           const from = nix.thunk(() => nix.sel(config, "services", "pdfding"));
           const port = nix.thunk(() => nix.attr(from, "port"));
           return {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               memorySize: 4096n,
               forwardPorts: nix.thunk(() => nix.builtins.map((port_1) => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   from: "host",
-                  host: nix.thunk(() => ({ __proto__: pos$18, port: port_1 })),
-                  guest: nix.thunk(() => ({ __proto__: pos$19, port: port_1 })),
+                  host: nix.thunk(() => ({ [nix.POS]: pos$18, port: port_1 })),
+                  guest: nix.thunk(() => ({ [nix.POS]: pos$19, port: port_1 })),
                 }), nix.thunk(() => [port]))),
             })),
             environment: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "htop"))];
               })()),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$24,
-              firewall: nix.thunk(() => ({ __proto__: pos$23, allowedTCPPorts: nix.thunk(() => [port]) })),
+              [nix.POS]: pos$24,
+              firewall: nix.thunk(() => ({ [nix.POS]: pos$23, allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
           };
         })(), formals$4),
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

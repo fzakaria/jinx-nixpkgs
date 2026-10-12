@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const mpmath = nix.arg($, "mpmath");
   const sage = nix.arg($, "sage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gmpy2",
       version: "2.2.2",
       pyproject: true,
       disabled: isPyPy,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aleaxit",
           repo: "gmpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,9 +42,9 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm gmpy2 -r\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, hypothesis, cython, mpmath]),
       pythonImportsCheck: nix.thunk(() => ["gmpy2"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, sage: sage })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/aleaxit/gmpy/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/history.rst`),
         description: "Interface to GMP, MPFR, and MPC for Python 3.7+",
         homepage: "https://github.com/aleaxit/gmpy/",

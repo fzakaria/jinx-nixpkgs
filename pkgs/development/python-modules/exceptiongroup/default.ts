@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agronholm",
           repo: "exceptiongroup",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "match-repr-fix.patch",
             url: "https://github.com/agronholm/exceptiongroup/commit/0c6cfbf677f6b50df17311cfdad01e9ff17310aa.patch",
             hash: "sha256-EeYu1/JKYRDwdq8+n38RrdogipNzX0ate1trDs1Z3c0=",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_deep_split", "test_deep_subgroup"])));
       const pythonImportsCheck = nix.thunk(() => ["exceptiongroup"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Backport of PEP 654 (exception groups)",
         homepage: "https://github.com/agronholm/exceptiongroup",
         changelog: nix.thunk(() => nix.str`https://github.com/agronholm/exceptiongroup/blob/${version}/CHANGES.rst`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

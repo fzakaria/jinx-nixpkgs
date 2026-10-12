@@ -26,24 +26,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "birdwatcher"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         birdwatcher: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "birdwatcher", nix.thunk(() => ({})))),
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Birdwatcher")),
           flags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => ["-worker-pool-size 16", "-6"]),
               description: "Flags to append to the program call\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: nix.thunk(() => ({})),
               description: "birdwatcher configuration, for configuration options see the example on [github](https://github.com/alice-lg/birdwatcher/blob/master/etc/birdwatcher/birdwatcher.conf)\n",
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const flagsStr = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "flags"))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           environment: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             etc: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "birdwatcher/birdwatcher.conf": nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     name: "birdwatcher.conf",
                     text: nix.thunk(() => nix.sel(cfg, "settings")),
                   })))),
@@ -71,17 +71,17 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             services: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               birdwatcher: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 wants: nix.thunk(() => ["network.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 description: "Birdwatcher",
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   Type: "simple",
                   Restart: "on-failure",
                   RestartSec: 15n,

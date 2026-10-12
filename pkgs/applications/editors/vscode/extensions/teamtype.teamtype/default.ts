@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         publisher: "teamtype",
         name: "teamtype",
         version: "0.8.2",
         hash: "sha256-qVZf+fOrdnDJzRUVA3GhTUDLhdJrH2tPRgvYW+ymVGw=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for real-time co-editing of local text files",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=teamtype.teamtype",
         homepage: "https://github.com/teamtype/teamtype/tree/main/vscode-plugin",

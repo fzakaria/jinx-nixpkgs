@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "awsiotsdk",
       version: "1.30.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "aws-iot-device-sdk-python-v2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["servicetests/"]),
       pythonImportsCheck: nix.thunk(() => ["awsiot"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Next generation AWS IoT Client SDK for Python using the AWS Common Runtime",
         homepage: "https://github.com/aws/aws-iot-device-sdk-python-v2",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-iot-device-sdk-python-v2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

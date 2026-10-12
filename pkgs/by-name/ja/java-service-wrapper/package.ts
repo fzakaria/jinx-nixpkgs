@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const cunit = nix.arg($, "cunit");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "java-service-wrapper",
       version: "3.6.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://wrapper.tanukisoftware.com/download/${nix.sel(finalAttrs, "version")}/wrapper_${nix.sel(finalAttrs, "version")}_src.tar.gz`),
           hash: "sha256-4TaO/3Gffh41jVo8tHSXWcvb3EVVFe6/Ra3mRr4fgsA=",
         })))),
@@ -42,7 +42,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\ncp bin/wrapper $out/bin/wrapper\ncp lib/wrapper.jar $out/lib/wrapper.jar\ncp lib/libwrapper.so $out/lib/libwrapper.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Enables a Java Application to be run as a Windows Service or Unix Daemon",
         homepage: "https://wrapper.tanukisoftware.com/",
         changelog: nix.thunk(() => nix.str`https://wrapper.tanukisoftware.com/doc/english/release-notes.html#${nix.sel(finalAttrs, "version")}`),

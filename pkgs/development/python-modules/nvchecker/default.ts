@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const tornado = nix.arg($, "tornado");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "nvchecker",
       version: "2.22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lilydjwg",
           repo: "nvchecker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [docutils, installShellFiles]),
       dependencies: nix.thunk(() => [structlog, platformdirs, tornado, pycurl]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         awesomeversion: nix.thunk(() => [awesomeversion]),
         pypi: nix.thunk(() => [packaging]),
         htmlparser: nix.thunk(() => [lxml]),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
         git_dulwich: nix.thunk(() => [dulwich]),
       })),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(finalAttrs, "doInstallCheck")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         })))),
       nativeCheckInputs: nix.thunk(() => nix.concat([flaky, pytest_asyncio, pytest_httpbin, pytest_rerunfailures, pytestCheckHook], nix.builtins.concatLists(nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -73,11 +73,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nvchecker"]),
       disabledTestMarks: nix.thunk(() => ["needs_net"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "New version checker for software",
         homepage: "https://github.com/lilydjwg/nvchecker",
         changelog: nix.thunk(() => nix.str`https://github.com/lilydjwg/nvchecker/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

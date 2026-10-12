@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
     const mkPathSafeName = nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["@", ":", "\\", "[", "]"]), nix.thunk(() => ["-", "-", "-", "", ""])));
     const unitNameType = nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "[a-zA-Z0-9@%:_.\\\\-]+[.](service|socket|device|mount|automount|swap|target|path|timer|scope|slice)"));
     const makeUnit = (name) => (unit) => (nix.asBool(nix.sel(unit, "enable")) ? nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`unit-${nix.app(mkPathSafeName, name)}`), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         preferLocalBuild: true,
         allowSubstitutes: false,
         text: nix.thunk(() => nix.selOr(unit, () => "", "text")),
@@ -135,7 +135,7 @@ export default nix.lambda((args) => (() => {
       })), nix.thunk(() => nix.str`name=${nix.app(shellEscape, name)}
 mkdir -p "$out/$(dirname -- "$name")"
 printf "%s" "$text" > "$out/$name"
-`)) : nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`unit-${nix.app(mkPathSafeName, name)}-disabled`), nix.thunk(() => ({ __proto__: pos$2, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`name=${nix.app(shellEscape, name)}
+`)) : nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`unit-${nix.app(mkPathSafeName, name)}-disabled`), nix.thunk(() => ({ [nix.POS]: pos$2, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`name=${nix.app(shellEscape, name)}
 mkdir -p "$out/$(dirname "$name")"
 ln -s /dev/null "$out/$name"
 `)));
@@ -204,7 +204,7 @@ ln -s /dev/null "$out/$name"
       return (nix.asBool(nix.eq(errors, [])) ? true : nix.app(trace, nix.thunk(() => nix.app(concatStringsSep, "\n", errors)), false));
     })();
     const checkUnitConfigWithLegacyKey = (legacyKey) => (group) => (checks) => (attrs) => (() => {
-      const dump = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "generators", "withRecursion"), nix.thunk(() => ({ __proto__: pos$3, depthLimit: 2n, throwOnDepthLimit: false })), attrs))));
+      const dump = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(lib, "generators", "withRecursion"), nix.thunk(() => ({ [nix.POS]: pos$3, depthLimit: 2n, throwOnDepthLimit: false })), attrs))));
       const attrs$ = nix.thunk(() => (nix.asBool(nix.eq(legacyKey, null)) ? nix.force(attrs) : (nix.asBool(!nix.asBool(nix.has(attrs, nix.key(nix.force(legacyKey))))) ? nix.force(attrs) : (nix.asBool(nix.eq(nix.builtins.removeAttrs(attrs, nix.thunk(() => [legacyKey])), {})) ? nix.sel(attrs, nix.key(nix.force(legacyKey))) : nix.builtins.throw(nix.thunk(() => nix.str`The declaration
 
 ${dump}
@@ -232,13 +232,13 @@ ${nix.app(attrsToSection, section_attrs)}
       const packages = nix.argOr($_1, "packages", () => nix.sel(cfg, "packages"));
       const package$ = nix.argOr($_1, "package", () => nix.sel(cfg, "package"));
       const typeDir = nix.thunk(() => nix.sel({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         system: "system",
         initrd: "system",
         user: "user",
         nspawn: "nspawn",
       }, nix.key(nix.force(type))));
-      return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${type}-units`), nix.thunk(() => ({ __proto__: pos$5, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`mkdir -p $out
+      return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${type}-units`), nix.thunk(() => ({ [nix.POS]: pos$5, preferLocalBuild: true, allowSubstitutes: false })), nix.thunk(() => nix.str`mkdir -p $out
 
 # Copy the upstream systemd units we're interested in.
 for i in ${nix.builtins.toString(upstreamUnits)}; do
@@ -352,7 +352,7 @@ ln -s ../remote-fs.target $out/multi-user.target.wants/
       const out = nix.thunk(() => nix.app(nix.sel((nix.asBool(!nix.asBool(enableStrictShellChecks)) ? nix.app(nix.sel(pkgs, "writeShellScriptBin"), scriptName, nix.thunk(() => nix.str`set -e
 
 ${text}
-`)) : nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ __proto__: pos$6, name: scriptName, text: text })))), "overrideAttrs"), (_) => ({ __proto__: pos$7, name: nix.thunk(() => nix.str`unit-script-${scriptName}`) })));
+`)) : nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$6, name: scriptName, text: text })))), "overrideAttrs"), (_) => ({ [nix.POS]: pos$7, name: nix.thunk(() => nix.str`unit-script-${scriptName}`) })));
       return nix.app(nix.sel(lib, "getExe"), out);
     })(), formals$3);
     const unitConfig = nix.lambda((args_1) => (() => {
@@ -361,9 +361,9 @@ ${text}
       const name = nix.arg($_1, "name");
       const options = nix.arg($_1, "options");
       return {
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         config: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           unitConfig: nix.thunk(() => nix.update(nix.attrsDyn({}, [
             [(nix.asBool(!nix.eq(nix.sel(config_1, "requires"), [])) ? "Requires" : null), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(config_1, "requires"))))],
             [(nix.asBool(!nix.eq(nix.sel(config_1, "wants"), [])) ? "Wants" : null), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(config_1, "wants"))))],
@@ -381,14 +381,14 @@ ${text}
             [(nix.asBool(nix.sel(options, "startLimitIntervalSec", "isDefined")) ? "StartLimitIntervalSec" : null), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(config_1, "startLimitIntervalSec"))))],
             [(nix.asBool(nix.sel(options, "startLimitBurst", "isDefined")) ? "StartLimitBurst" : null), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(config_1, "startLimitBurst"))))],
           ]), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(nix.has(config_1, "restartTriggers")) && nix.asBool(!nix.eq(nix.sel(config_1, "restartTriggers"), [])))), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               "X-Restart-Triggers": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`X-Restart-Triggers-${name}`), nix.thunk(() => nix.app(pipe, nix.thunk(() => nix.sel(config_1, "restartTriggers")), nix.thunk(() => [
                     flatten,
                     nix.thunk(() => nix.app(nix.builtins.map, (x) => (nix.asBool(nix.app(isPath, x)) ? nix.str`${x}` : nix.force(x)))),
                     nix.builtins.toString,
                   ]))))}`),
             }))), nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(nix.has(config_1, "reloadTriggers")) && nix.asBool(!nix.eq(nix.sel(config_1, "reloadTriggers"), [])))), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "X-Reload-Triggers": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`X-Reload-Triggers-${name}`), nix.thunk(() => nix.app(pipe, nix.thunk(() => nix.sel(config_1, "reloadTriggers")), nix.thunk(() => [
                     flatten,
                     nix.thunk(() => nix.app(nix.builtins.map, (x) => (nix.asBool(nix.app(isPath, x)) ? nix.str`${x}` : nix.force(x)))),
@@ -406,12 +406,12 @@ ${text}
         const lib_1 = nix.arg($_1, "lib");
         const config_1 = nix.arg($_1, "config");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           config: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             name: nix.thunk(() => nix.str`${name}.service`),
             environment: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               PATH: nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(config_1, "path"), [])), nix.thunk(() => nix.str`${nix.app(makeBinPath, nix.thunk(() => nix.sel(config_1, "path")))}:${nix.app(makeSearchPathOutput, "bin", "sbin", nix.thunk(() => nix.sel(config_1, "path")))}`))),
             })),
             enableStrictShellChecks: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOptionDefault"), nix.thunk(() => nix.sel(nixosConfig, "systemd", "enableStrictShellChecks")))),
@@ -424,8 +424,8 @@ ${text}
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$16,
-        config: nix.thunk(() => ({ __proto__: pos$15, name: nix.thunk(() => nix.str`${name}.path`) })),
+        [nix.POS]: pos$16,
+        config: nix.thunk(() => ({ [nix.POS]: pos$15, name: nix.thunk(() => nix.str`${name}.path`) })),
       };
     })(), formals$6);
     const socketConfig = nix.lambda((args_1) => (() => {
@@ -433,8 +433,8 @@ ${text}
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$18,
-        config: nix.thunk(() => ({ __proto__: pos$17, name: nix.thunk(() => nix.str`${name}.socket`) })),
+        [nix.POS]: pos$18,
+        config: nix.thunk(() => ({ [nix.POS]: pos$17, name: nix.thunk(() => nix.str`${name}.socket`) })),
       };
     })(), formals$7);
     const sliceConfig = nix.lambda((args_1) => (() => {
@@ -442,8 +442,8 @@ ${text}
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$20,
-        config: nix.thunk(() => ({ __proto__: pos$19, name: nix.thunk(() => nix.str`${name}.slice`) })),
+        [nix.POS]: pos$20,
+        config: nix.thunk(() => ({ [nix.POS]: pos$19, name: nix.thunk(() => nix.str`${name}.slice`) })),
       };
     })(), formals$8);
     const targetConfig = nix.lambda((args_1) => (() => {
@@ -451,8 +451,8 @@ ${text}
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$22,
-        config: nix.thunk(() => ({ __proto__: pos$21, name: nix.thunk(() => nix.str`${name}.target`) })),
+        [nix.POS]: pos$22,
+        config: nix.thunk(() => ({ [nix.POS]: pos$21, name: nix.thunk(() => nix.str`${name}.target`) })),
       };
     })(), formals$9);
     const timerConfig = nix.lambda((args_1) => (() => {
@@ -460,18 +460,18 @@ ${text}
       const name = nix.arg($_1, "name");
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$24,
-        config: nix.thunk(() => ({ __proto__: pos$23, name: nix.thunk(() => nix.str`${name}.timer`) })),
+        [nix.POS]: pos$24,
+        config: nix.thunk(() => ({ [nix.POS]: pos$23, name: nix.thunk(() => nix.str`${name}.timer`) })),
       };
     })(), formals$10);
     const stage2ServiceConfig = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$11);
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$26,
+        [nix.POS]: pos$26,
         imports: nix.thunk(() => [serviceConfig]),
         config: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           path: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config_1, "enableDefaultPath")), nix.thunk(() => nix.app(mkAfter, nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "coreutils")),
                 nix.thunk(() => nix.sel(pkgs, "findutils")),
@@ -487,15 +487,15 @@ ${text}
       const $_1 = nix.formals(args_1, formals$12);
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         config: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           name: nix.thunk(() => nix.str`${nix.app(nix.sel(utils, "escapeSystemdPath"), nix.thunk(() => nix.sel(config_1, "where")))}.mount`),
           mountConfig: nix.thunk(() => nix.update({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             What: nix.thunk(() => nix.sel(config_1, "what")),
             Where: nix.thunk(() => nix.sel(config_1, "where")),
-          }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(config_1, "type"), "")), nix.thunk(() => ({ __proto__: pos$28, Type: nix.thunk(() => nix.sel(config_1, "type")) }))), nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(config_1, "options"), "")), nix.thunk(() => ({ __proto__: pos$29, Options: nix.thunk(() => nix.sel(config_1, "options")) })))))),
+          }, nix.update(nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(config_1, "type"), "")), nix.thunk(() => ({ [nix.POS]: pos$28, Type: nix.thunk(() => nix.sel(config_1, "type")) }))), nix.app(optionalAttrs, nix.thunk(() => !nix.eq(nix.sel(config_1, "options"), "")), nix.thunk(() => ({ [nix.POS]: pos$29, Options: nix.thunk(() => nix.sel(config_1, "options")) })))))),
         })),
       };
     })(), formals$12);
@@ -503,20 +503,20 @@ ${text}
       const $_1 = nix.formals(args_1, formals$13);
       const config_1 = nix.arg($_1, "config");
       return {
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         config: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           name: nix.thunk(() => nix.str`${nix.app(nix.sel(utils, "escapeSystemdPath"), nix.thunk(() => nix.sel(config_1, "where")))}.automount`),
-          automountConfig: nix.thunk(() => ({ __proto__: pos$32, Where: nix.thunk(() => nix.sel(config_1, "where")) })),
+          automountConfig: nix.thunk(() => ({ [nix.POS]: pos$32, Where: nix.thunk(() => nix.sel(config_1, "where")) })),
         })),
       };
     })(), formals$13);
-    const commonUnitText = (def) => (lines) => nix.add(nix.add(nix.app(settingsToSections, nix.thunk(() => ({ __proto__: pos$35, Unit: nix.thunk(() => nix.sel(def, "unitConfig")) }))), lines), nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(def, "wantedBy"), [])), nix.thunk(() => nix.str`
+    const commonUnitText = (def) => (lines) => nix.add(nix.add(nix.app(settingsToSections, nix.thunk(() => ({ [nix.POS]: pos$35, Unit: nix.thunk(() => nix.sel(def, "unitConfig")) }))), lines), nix.app(optionalString, nix.thunk(() => !nix.eq(nix.sel(def, "wantedBy"), [])), nix.thunk(() => nix.str`
 [Install]
 WantedBy=${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(def, "wantedBy")))}
 `)));
     const targetToUnit = (def) => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -524,10 +524,10 @@ WantedBy=${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(def, "wantedBy
       upheldBy: nix.thunk(() => nix.attr(def, "upheldBy")),
       enable: nix.thunk(() => nix.attr(def, "enable")),
       overrideStrategy: nix.thunk(() => nix.attr(def, "overrideStrategy")),
-      text: nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ __proto__: pos$36, Unit: nix.thunk(() => nix.sel(def, "unitConfig")) })))),
+      text: nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ [nix.POS]: pos$36, Unit: nix.thunk(() => nix.sel(def, "unitConfig")) })))),
     });
     const serviceToUnit = (def) => ({
-      __proto__: pos$38,
+      [nix.POS]: pos$38,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -545,7 +545,7 @@ WantedBy=${nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(def, "wantedBy
         })()), (nix.asBool((nix.asBool(nix.has(def, "reloadIfChanged")) && nix.asBool(nix.sel(def, "reloadIfChanged")))) ? "X-ReloadIfChanged=true\n" : (nix.asBool((nix.asBool(nix.has(def, "restartIfChanged")) && nix.asBool(!nix.asBool(nix.sel(def, "restartIfChanged"))))) ? "X-RestartIfChanged=false\n" : ""))), nix.app(optionalString, nix.thunk(() => (nix.asBool(nix.has(def, "stopIfChanged")) && nix.asBool(!nix.asBool(nix.sel(def, "stopIfChanged"))))), "X-StopIfChanged=false\n")), nix.app(optionalString, nix.thunk(() => (nix.asBool(nix.has(def, "notSocketActivated")) && nix.asBool(nix.sel(def, "notSocketActivated")))), "X-NotSocketActivated=true\n")), nix.app(attrsToSection, nix.thunk(() => nix.sel(def, "serviceConfig"))))))),
     });
     const socketToUnit = (def) => ({
-      __proto__: pos$39,
+      [nix.POS]: pos$39,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -560,7 +560,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((s) => nix.st
 `))),
     });
     const timerToUnit = (def) => ({
-      __proto__: pos$41,
+      [nix.POS]: pos$41,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -568,10 +568,10 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((s) => nix.st
       upheldBy: nix.thunk(() => nix.attr(def, "upheldBy")),
       enable: nix.thunk(() => nix.attr(def, "enable")),
       overrideStrategy: nix.thunk(() => nix.attr(def, "overrideStrategy")),
-      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ __proto__: pos$40, Timer: nix.thunk(() => nix.sel(def, "timerConfig")) })))))),
+      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ [nix.POS]: pos$40, Timer: nix.thunk(() => nix.sel(def, "timerConfig")) })))))),
     });
     const pathToUnit = (def) => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -579,10 +579,10 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((s) => nix.st
       upheldBy: nix.thunk(() => nix.attr(def, "upheldBy")),
       enable: nix.thunk(() => nix.attr(def, "enable")),
       overrideStrategy: nix.thunk(() => nix.attr(def, "overrideStrategy")),
-      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ __proto__: pos$42, Path: nix.thunk(() => nix.sel(def, "pathConfig")) })))))),
+      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ [nix.POS]: pos$42, Path: nix.thunk(() => nix.sel(def, "pathConfig")) })))))),
     });
     const mountToUnit = (def) => ({
-      __proto__: pos$45,
+      [nix.POS]: pos$45,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -590,10 +590,10 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((s) => nix.st
       upheldBy: nix.thunk(() => nix.attr(def, "upheldBy")),
       enable: nix.thunk(() => nix.attr(def, "enable")),
       overrideStrategy: nix.thunk(() => nix.attr(def, "overrideStrategy")),
-      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ __proto__: pos$44, Mount: nix.thunk(() => nix.sel(def, "mountConfig")) })))))),
+      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ [nix.POS]: pos$44, Mount: nix.thunk(() => nix.sel(def, "mountConfig")) })))))),
     });
     const automountToUnit = (def) => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -602,12 +602,12 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((s) => nix.st
       enable: nix.thunk(() => nix.attr(def, "enable")),
       overrideStrategy: nix.thunk(() => nix.attr(def, "overrideStrategy")),
       text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             Automount: nix.thunk(() => nix.sel(def, "automountConfig")),
           })))))),
     });
     const sliceToUnit = (def) => ({
-      __proto__: pos$49,
+      [nix.POS]: pos$49,
       name: nix.thunk(() => nix.attr(def, "name")),
       aliases: nix.thunk(() => nix.attr(def, "aliases")),
       wantedBy: nix.thunk(() => nix.attr(def, "wantedBy")),
@@ -615,7 +615,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((s) => nix.st
       upheldBy: nix.thunk(() => nix.attr(def, "upheldBy")),
       enable: nix.thunk(() => nix.attr(def, "enable")),
       overrideStrategy: nix.thunk(() => nix.attr(def, "overrideStrategy")),
-      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ __proto__: pos$48, Slice: nix.thunk(() => nix.sel(def, "sliceConfig")) })))))),
+      text: nix.thunk(() => nix.app(commonUnitText, def, nix.thunk(() => nix.app(settingsToSections, nix.thunk(() => ({ [nix.POS]: pos$48, Slice: nix.thunk(() => nix.sel(def, "sliceConfig")) })))))),
     });
     const definitions = (directoryName) => (format) => (definitionAttrs) => (() => {
       const listOfDefinitions = nix.thunk(() => nix.app(mapAttrsToList, (name) => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`${name}.conf`)), definitionAttrs));
@@ -625,7 +625,7 @@ ${nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((pkg) => nix.
     })();
     const GPTMaxLabelLength = 36n;
     return {
-      __proto__: pos$50,
+      [nix.POS]: pos$50,
       shellEscape,
       mkPathSafeName,
       unitNameType,

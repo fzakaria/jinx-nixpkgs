@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const domain = "polaris";
       const version = "1.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samoswall",
           repo: "polaris-mqtt",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-bSKxfBBWfIZnMD0Srm7NmeBpeGz3F9dyUCCNpEmLD7Q=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Polaris IQ Home devices integration to Home Assistant",
         homepage: "https://github.com/samoswall/polaris-mqtt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "k900"))]),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

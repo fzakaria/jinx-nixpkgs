@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libpostalWithData = nix.arg($, "libpostalWithData");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "amass",
       version: "5.1.1",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpostalWithData]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "owasp-amass",
           repo: "Amass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3MpE61ixMps4IRIZkqjzG225zk4fsERkssoNoItUXbQ=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "In-Depth DNS Enumeration and Network Mapping",
         longDescription: "The OWASP Amass tool suite obtains subdomain names by scraping data\nsources, recursive brute forcing, crawling web archives,\npermuting/altering names and reverse DNS sweeping. Additionally, Amass\nuses the IP addresses obtained during resolution to discover associated\nnetblocks and ASNs. All the information is then used to build maps of the\ntarget networks.\n",
         homepage: "https://owasp.org/www-project-amass/",

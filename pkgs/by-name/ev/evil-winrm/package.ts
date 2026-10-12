@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const krb5 = nix.arg($, "krb5");
   const sslLegacyProvider = nix.argOr($, "sslLegacyProvider", () => false);
   const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "evil-winrm",
       gemfile: nix.path(here, "./Gemfile"),
       lockfile: nix.path(here, "./Gemfile.lock"),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const openssl_conf = nix.thunk(() => nix.app(writeText, "openssl.conf", "openssl_conf = openssl_init\n\n[openssl_init]\nproviders = provider_sect\n\n[provider_sect]\ndefault = default_sect\nlegacy = legacy_sect\n\n[default_sect]\nactivate = 1\n\n[legacy_sect]\nactivate = 1\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "evil-winrm",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "Hackplayers",
           repo: "evil-winrm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,13 +48,13 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : ${nix.sel(krb5, "lib")}/lib
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "evil-winrm")),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "WinRM shell for hacking/pentesting",
         mainProgram: "evil-winrm",
         homepage: "https://github.com/Hackplayers/evil-winrm",

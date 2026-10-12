@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "Twiggy",
           version: version,
           sha256: "7938840275972f6ce89994a5bdfb0b84f0386301a043a960af6364952e78ffe4",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://twiggy.wearpants.org",
         description: "Twiggy is the first totally new design for a logger since log4j",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

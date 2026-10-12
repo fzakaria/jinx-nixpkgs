@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "speakeasy-cli",
       version: "1.800.1",
       sourceRoot: ".",
@@ -31,21 +31,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip, installShellFiles]),
       installPhase: "runHook preInstall\ninstall -Dm 755 ./speakeasy $out/bin/speakeasy\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/download/v${nix.sel(finalAttrs, "version")}/speakeasy_linux_amd64.zip`),
               hash: "sha256-0hcr8AE6Mce5hOpzk+6B4+G0dFceYXwKV1w/UneIfHs=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/download/v${nix.sel(finalAttrs, "version")}/speakeasy_darwin_arm64.zip`),
               hash: "sha256-rmuEmLhJetZbJRTus041Uv78f7UxZuxyiHqZaEp3aQ0=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/download/v${nix.sel(finalAttrs, "version")}/speakeasy_linux_arm64.zip`),
               hash: "sha256-kWSnp1YvtJUEdC55yM7fIyNunOqBjL7R0NEdZ7J0DRs=",
             })))),
@@ -63,7 +63,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CLI tool for Speakeasy",
         homepage: "https://www.speakeasyapi.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/speakeasy-api/speakeasy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

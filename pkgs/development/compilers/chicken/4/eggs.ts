@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
     const eggDerivation = nix.thunk(() => nix.attr(pkgs, "eggDerivation"));
     const fetchegg = nix.thunk(() => nix.attr(pkgs, "fetchegg"));
     const base64 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: "base64",
         version: "3.3.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "base64",
             version: "3.3.1",
             sha256: "0wmldiwwg1jpcn07wb906nc53si5j7sa83wgyq643xzqcx4v4x1d",
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const defstruct = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: "defstruct",
         version: "1.7",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "defstruct",
             version: "1.7",
             sha256: "1rkqk9jxd6vnlvkwzqg8mc7bsw050fgmxfj84y66lf0a14n5r5dg",
@@ -55,11 +55,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const http_client = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "http-client",
         version: "0.18",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             name: "http-client",
             version: "0.18",
             sha256: "1b9x66kfcglld4xhm06vba00gw37vr07c859kj7lmwnk9nwhcplg",
@@ -67,11 +67,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [intarweb, uri_common, simple_md5, sendfile]),
       }))));
     const intarweb = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname: "intarweb",
         version: "1.7.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "intarweb",
             version: "1.7.1",
             sha256: "0pqgwgy4jynlsr3l52qsiwm75qgs7n86kwssaawzp9y34y80awpg",
@@ -79,11 +79,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [defstruct, uri_common, base64]),
       }))));
     const matchable = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pname: "matchable",
         version: "3.7",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             name: "matchable",
             version: "3.7",
             sha256: "1vc9rpb44fhn0n91hzglin986dw9zj87fikvfrd7j308z22a41yh",
@@ -91,11 +91,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const sendfile = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         pname: "sendfile",
         version: "1.11",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             name: "sendfile",
             version: "1.11",
             sha256: "15gm380asvj87f3bqb7rz4mz6znnk6r00rdy3njx9ay0qkxi3q9y",
@@ -103,11 +103,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const simple_md5 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         pname: "simple-md5",
         version: "0.0.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             name: "simple-md5",
             version: "0.0.1",
             sha256: "1h0b51p9wl1dl3pzs39hdq3hk2qnjgn8n750bgmh0651g4lzmq3i",
@@ -115,11 +115,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const uri_common = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: "uri-common",
         version: "1.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             name: "uri-common",
             version: "1.4",
             sha256: "01ds1gixcn4rz657x3hr4rhw2496hsjff42ninw0k39l8i1cbh7c",
@@ -127,11 +127,11 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [uri_generic, defstruct, matchable]),
       }))));
     const uri_generic = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         pname: "uri-generic",
         version: "2.46",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             name: "uri-generic",
             version: "2.46",
             sha256: "10ivf4xlmr6jcm00l2phq1y73hjv6g3qgr38ycc8rw56wv6sbm4g",
@@ -139,7 +139,7 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable]),
       }))));
     return {
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       eggDerivation,
       fetchegg,
       base64,

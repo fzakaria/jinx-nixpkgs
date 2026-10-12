@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.19.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-fv/pWzYCQbbVbvaCGQN6kK0PVnI2FNtUu+V9MwWEAvQ=",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [elastic_transport, python_dateutil, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         async: nix.thunk(() => [aiohttp]),
         requests: nix.thunk(() => [requests]),
         orjson: nix.thunk(() => [orjson]),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["elasticsearch8"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Official low-level client for Elasticsearch",
         homepage: "https://github.com/elasticsearch/elasticsearch-py",
         changelog: nix.thunk(() => nix.str`https://github.com/elastic/elasticsearch-py/releases/tag/v${version}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const sdl2 = nix.arg($, "sdl2");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pacman",
       version: "2017-11-10",
       idrisDeps: nix.thunk(() => [contrib, sdl2]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jdublu10",
           repo: "pacman",
           rev: "263ae58aeb5147e2af9cc76411970ccd90fa9121",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "mv source/src/board.idr source/src/Board.idr\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Proof that Idris is pacman complete",
         homepage: "https://github.com/jdublu10/pacman",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

@@ -13,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redis-dump",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["redis-dump", "redis-load"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "redis-dump")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Backup and restore your Redis data to and from JSON",
         homepage: "https://delanotes.com/redis-dump/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

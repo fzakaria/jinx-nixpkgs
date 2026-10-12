@@ -162,12 +162,12 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "manimgl",
       pyproject: true,
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "3b1b",
           repo: "manim",
           rev: "0c69ab6a32d4193f03ba9a604278eb3ce9699518",
@@ -213,7 +213,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Animation engine for explanatory math videos",
         longDescription: "Manim is an engine for precise programmatic animations, designed for creating\nexplanatory math videos, as seen in the videos of 3Blue1Brown on Youtube.\nThis is the original version that is maintained by Grant Sanderson which is\nbased on OpenGL.\n",
         changelog: "https://3b1b.github.io/manim/development/changelog.html",

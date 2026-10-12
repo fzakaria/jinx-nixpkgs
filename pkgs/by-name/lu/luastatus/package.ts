@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const libxcb_wm = nix.arg($, "libxcb-wm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "luastatus",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shdown",
           repo: "luastatus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 3.1.3)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "wrapProgram $out/bin/luastatus-stdout-wrapper \\\n  --prefix LUASTATUS : $out/bin/luastatus\n\nwrapProgram $out/bin/luastatus-i3-wrapper \\\n  --prefix LUASTATUS : $out/bin/luastatus\n\nwrapProgram $out/bin/luastatus-lemonbar-launcher \\\n  --prefix LUASTATUS : $out/bin/luastatus\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Universal status bar content generator",
         homepage: "https://github.com/shdown/luastatus",
         changelog: nix.thunk(() => nix.str`https://github.com/shdown/luastatus/releases/tag/v${nix.sel(finalAttrs, "version")}`),

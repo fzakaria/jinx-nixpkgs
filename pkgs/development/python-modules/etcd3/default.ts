@@ -24,26 +24,26 @@ export default nix.lambda((args) => (() => {
   const tenacity = nix.arg($, "tenacity");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "etcd3",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kragniz",
           repo: "python-etcd3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YM72+fkCDYXl6DORJa/O0sqXqHDWQcFLv2ifQ9kEHBo=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       dependencies: nix.thunk(() => [grpcio, protobuf, six, tenacity]),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [etcd, hypothesis, mock, pifpaf, pytestCheckHook]),
       preCheck: "pifpaf -e PYTHON run etcd --cluster\n",
       pythonImportsCheck: nix.thunk(() => ["etcd3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python client for the etcd API v3",
         homepage: "https://github.com/kragniz/python-etcd3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

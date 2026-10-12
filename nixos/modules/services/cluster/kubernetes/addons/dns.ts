@@ -92,30 +92,30 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "kubernetes", "addons", "dns"));
-  const ports = nix.thunk(() => ({ __proto__: pos$1, dns: 10053n, health: 10054n, metrics: 10055n }));
+  const ports = nix.thunk(() => ({ [nix.POS]: pos$1, dns: 10053n, health: 10054n, metrics: 10055n }));
   return {
-    __proto__: pos$81,
+    [nix.POS]: pos$81,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           sinceRelease: 2605n,
           from: nix.thunk(() => ["services", "kubernetes", "addons", "dns", "coredns"]),
           to: nix.thunk(() => ["services", "kubernetes", "addons", "dns", "corednsImage"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         kubernetes: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           addons: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             dns: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "kubernetes dns addon")),
               clusterIp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   description: "Dns addon clusterIP",
                   default: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "take"), 3n, nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", nix.thunk(() => nix.sel(config, "services", "kubernetes", "apiserver", "serviceClusterIpRange"))))))), ".254")),
                   defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), nix.thunk(() => nix.str`The \`x.y.z.254\` IP of
@@ -124,38 +124,38 @@ export default nix.lambda((args) => (() => {
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 })))),
               clusterDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   description: "Dns cluster domain",
                   default: "cluster.local",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 })))),
               replicas: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   description: "Number of DNS pod replicas to deploy in the cluster.",
                   default: 2n,
                   type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 })))),
               reconcileMode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   description: "Controls the addon manager reconciliation mode for the DNS addon.\n\nSetting reconcile mode to EnsureExists makes it possible to tailor DNS behavior by editing the coredns ConfigMap.\n\nSee: <https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/addon-manager/README.md>.\n",
                   default: "Reconcile",
                   type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["Reconcile", "EnsureExists"]))),
                 })))),
               corednsImage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   description: "Docker image to seed for the CoreDNS container.",
                   type: nix.thunk(() => nix.sel(lib, "types", "package")),
                   default: nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       name: "coredns",
                       config: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         Entrypoint: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "coredns")}/bin/coredns`)]),
                       })),
                     })))),
                 })))),
               corefile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   description: "Custom coredns corefile configuration.\n\nSee: <https://coredns.io/manual/toc/#configuration>.\n",
                   type: nix.thunk(() => nix.sel(lib, "types", "str")),
                   default: nix.thunk(() => nix.str`.:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "dns")))} {
@@ -196,28 +196,28 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$79,
+        [nix.POS]: pos$79,
         services: nix.thunk(() => ({
-          __proto__: pos$78,
+          [nix.POS]: pos$78,
           kubernetes: nix.thunk(() => ({
-            __proto__: pos$77,
+            [nix.POS]: pos$77,
             kubelet: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               seedDockerImages: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.sel(cfg, "corednsImage")))),
               clusterDns: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "clusterIp"))]))),
             })),
             addonManager: nix.thunk(() => ({
-              __proto__: pos$76,
+              [nix.POS]: pos$76,
               bootstrapAddons: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 "coredns-cr": nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   apiVersion: "rbac.authorization.k8s.io/v1",
                   kind: "ClusterRole",
                   metadata: nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     labels: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       "addonmanager.kubernetes.io/mode": "Reconcile",
                       "k8s-app": "kube-dns",
                       "kubernetes.io/cluster-service": "true",
@@ -227,19 +227,19 @@ export default nix.lambda((args) => (() => {
                   })),
                   rules: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       apiGroups: nix.thunk(() => [""]),
                       resources: nix.thunk(() => ["endpoints", "services", "pods", "namespaces"]),
                       verbs: nix.thunk(() => ["list", "watch"]),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       apiGroups: nix.thunk(() => [""]),
                       resources: nix.thunk(() => ["nodes"]),
                       verbs: nix.thunk(() => ["get"]),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$21,
+                      [nix.POS]: pos$21,
                       apiGroups: nix.thunk(() => ["discovery.k8s.io"]),
                       resources: nix.thunk(() => ["endpointslices"]),
                       verbs: nix.thunk(() => ["list", "watch"]),
@@ -247,14 +247,14 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })),
                 "coredns-crb": nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   apiVersion: "rbac.authorization.k8s.io/v1",
                   kind: "ClusterRoleBinding",
                   metadata: nix.thunk(() => ({
-                    __proto__: pos$25,
-                    annotations: nix.thunk(() => ({ __proto__: pos$23, "rbac.authorization.kubernetes.io/autoupdate": "true" })),
+                    [nix.POS]: pos$25,
+                    annotations: nix.thunk(() => ({ [nix.POS]: pos$23, "rbac.authorization.kubernetes.io/autoupdate": "true" })),
                     labels: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       "addonmanager.kubernetes.io/mode": "Reconcile",
                       "k8s-app": "kube-dns",
                       "kubernetes.io/cluster-service": "true",
@@ -263,14 +263,14 @@ export default nix.lambda((args) => (() => {
                     name: "system:coredns",
                   })),
                   roleRef: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     apiGroup: "rbac.authorization.k8s.io",
                     kind: "ClusterRole",
                     name: "system:coredns",
                   })),
                   subjects: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       kind: "ServiceAccount",
                       name: "coredns",
                       namespace: "kube-system",
@@ -279,15 +279,15 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               addons: nix.thunk(() => ({
-                __proto__: pos$75,
+                [nix.POS]: pos$75,
                 "coredns-sa": nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   apiVersion: "v1",
                   kind: "ServiceAccount",
                   metadata: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     labels: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       "addonmanager.kubernetes.io/mode": "Reconcile",
                       "k8s-app": "kube-dns",
                       "kubernetes.io/cluster-service": "true",
@@ -297,13 +297,13 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "coredns-cm": nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   apiVersion: "v1",
                   kind: "ConfigMap",
                   metadata: nix.thunk(() => ({
-                    __proto__: pos$34,
+                    [nix.POS]: pos$34,
                     labels: nix.thunk(() => ({
-                      __proto__: pos$33,
+                      [nix.POS]: pos$33,
                       "addonmanager.kubernetes.io/mode": nix.thunk(() => nix.sel(cfg, "reconcileMode")),
                       "k8s-app": "kube-dns",
                       "kubernetes.io/cluster-service": "true",
@@ -311,16 +311,16 @@ export default nix.lambda((args) => (() => {
                     name: "coredns",
                     namespace: "kube-system",
                   })),
-                  data: nix.thunk(() => ({ __proto__: pos$35, Corefile: nix.thunk(() => nix.sel(cfg, "corefile")) })),
+                  data: nix.thunk(() => ({ [nix.POS]: pos$35, Corefile: nix.thunk(() => nix.sel(cfg, "corefile")) })),
                 })),
                 "coredns-deploy": nix.thunk(() => ({
-                  __proto__: pos$66,
+                  [nix.POS]: pos$66,
                   apiVersion: "apps/v1",
                   kind: "Deployment",
                   metadata: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     labels: nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       "addonmanager.kubernetes.io/mode": nix.thunk(() => nix.sel(cfg, "reconcileMode")),
                       "k8s-app": "kube-dns",
                       "kubernetes.io/cluster-service": "true",
@@ -330,28 +330,28 @@ export default nix.lambda((args) => (() => {
                     namespace: "kube-system",
                   })),
                   spec: nix.thunk(() => ({
-                    __proto__: pos$65,
+                    [nix.POS]: pos$65,
                     replicas: nix.thunk(() => nix.sel(cfg, "replicas")),
                     selector: nix.thunk(() => ({
-                      __proto__: pos$40,
-                      matchLabels: nix.thunk(() => ({ __proto__: pos$39, "k8s-app": "kube-dns" })),
+                      [nix.POS]: pos$40,
+                      matchLabels: nix.thunk(() => ({ [nix.POS]: pos$39, "k8s-app": "kube-dns" })),
                     })),
                     strategy: nix.thunk(() => ({
-                      __proto__: pos$42,
-                      rollingUpdate: nix.thunk(() => ({ __proto__: pos$41, maxUnavailable: 1n })),
+                      [nix.POS]: pos$42,
+                      rollingUpdate: nix.thunk(() => ({ [nix.POS]: pos$41, maxUnavailable: 1n })),
                       type: "RollingUpdate",
                     })),
                     template: nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       metadata: nix.thunk(() => ({
-                        __proto__: pos$44,
-                        labels: nix.thunk(() => ({ __proto__: pos$43, "k8s-app": "kube-dns" })),
+                        [nix.POS]: pos$44,
+                        labels: nix.thunk(() => ({ [nix.POS]: pos$43, "k8s-app": "kube-dns" })),
                       })),
                       spec: nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         containers: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$56,
+                            [nix.POS]: pos$56,
                             args: nix.thunk(() => ["-conf", "/etc/coredns/Corefile"]),
                             image: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "corednsImage")), null);
@@ -359,10 +359,10 @@ export default nix.lambda((args) => (() => {
                             })()),
                             imagePullPolicy: "Never",
                             livenessProbe: nix.thunk(() => ({
-                              __proto__: pos$46,
+                              [nix.POS]: pos$46,
                               failureThreshold: 5n,
                               httpGet: nix.thunk(() => ({
-                                __proto__: pos$45,
+                                [nix.POS]: pos$45,
                                 path: "/health",
                                 port: nix.thunk(() => nix.sel(ports, "health")),
                                 scheme: "HTTP",
@@ -374,34 +374,34 @@ export default nix.lambda((args) => (() => {
                             name: "coredns",
                             ports: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$47,
+                                [nix.POS]: pos$47,
                                 containerPort: nix.thunk(() => nix.sel(ports, "dns")),
                                 name: "dns",
                                 protocol: "UDP",
                               })),
                               nix.thunk(() => ({
-                                __proto__: pos$48,
+                                [nix.POS]: pos$48,
                                 containerPort: nix.thunk(() => nix.sel(ports, "dns")),
                                 name: "dns-tcp",
                                 protocol: "TCP",
                               })),
                               nix.thunk(() => ({
-                                __proto__: pos$49,
+                                [nix.POS]: pos$49,
                                 containerPort: nix.thunk(() => nix.sel(ports, "metrics")),
                                 name: "metrics",
                                 protocol: "TCP",
                               })),
                             ]),
                             resources: nix.thunk(() => ({
-                              __proto__: pos$52,
-                              limits: nix.thunk(() => ({ __proto__: pos$50, memory: "170Mi" })),
-                              requests: nix.thunk(() => ({ __proto__: pos$51, cpu: "100m", memory: "70Mi" })),
+                              [nix.POS]: pos$52,
+                              limits: nix.thunk(() => ({ [nix.POS]: pos$50, memory: "170Mi" })),
+                              requests: nix.thunk(() => ({ [nix.POS]: pos$51, cpu: "100m", memory: "70Mi" })),
                             })),
                             securityContext: nix.thunk(() => ({
-                              __proto__: pos$54,
+                              [nix.POS]: pos$54,
                               allowPrivilegeEscalation: false,
                               capabilities: nix.thunk(() => ({
-                                __proto__: pos$53,
+                                [nix.POS]: pos$53,
                                 add: nix.thunk(() => ["NET_BIND_SERVICE"]),
                                 drop: nix.thunk(() => ["all"]),
                               })),
@@ -409,7 +409,7 @@ export default nix.lambda((args) => (() => {
                             })),
                             volumeMounts: nix.thunk(() => [
                               nix.thunk(() => ({
-                                __proto__: pos$55,
+                                [nix.POS]: pos$55,
                                 mountPath: "/etc/coredns",
                                 name: "config-volume",
                                 readOnly: true,
@@ -418,22 +418,22 @@ export default nix.lambda((args) => (() => {
                           })),
                         ]),
                         dnsPolicy: "Default",
-                        nodeSelector: nix.thunk(() => ({ __proto__: pos$57, "beta.kubernetes.io/os": "linux" })),
+                        nodeSelector: nix.thunk(() => ({ [nix.POS]: pos$57, "beta.kubernetes.io/os": "linux" })),
                         serviceAccountName: "coredns",
                         tolerations: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$58,
+                            [nix.POS]: pos$58,
                             effect: "NoSchedule",
                             key: "node-role.kubernetes.io/master",
                           })),
-                          nix.thunk(() => ({ __proto__: pos$59, key: "CriticalAddonsOnly", operator: "Exists" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$59, key: "CriticalAddonsOnly", operator: "Exists" })),
                         ]),
                         volumes: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$62,
+                            [nix.POS]: pos$62,
                             configMap: nix.thunk(() => ({
-                              __proto__: pos$61,
-                              items: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$60, key: "Corefile", path: "Corefile" }))]),
+                              [nix.POS]: pos$61,
+                              items: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$60, key: "Corefile", path: "Corefile" }))]),
                               name: "coredns",
                             })),
                             name: "config-volume",
@@ -444,18 +444,18 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "coredns-svc": nix.thunk(() => ({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   apiVersion: "v1",
                   kind: "Service",
                   metadata: nix.thunk(() => ({
-                    __proto__: pos$69,
+                    [nix.POS]: pos$69,
                     annotations: nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       "prometheus.io/port": nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(ports, "metrics")))),
                       "prometheus.io/scrape": "true",
                     })),
                     labels: nix.thunk(() => ({
-                      __proto__: pos$68,
+                      [nix.POS]: pos$68,
                       "addonmanager.kubernetes.io/mode": "Reconcile",
                       "k8s-app": "kube-dns",
                       "kubernetes.io/cluster-service": "true",
@@ -465,25 +465,25 @@ export default nix.lambda((args) => (() => {
                     namespace: "kube-system",
                   })),
                   spec: nix.thunk(() => ({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     clusterIP: nix.thunk(() => nix.sel(cfg, "clusterIp")),
                     ports: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$70,
+                        [nix.POS]: pos$70,
                         name: "dns",
                         port: 53n,
                         targetPort: nix.thunk(() => nix.sel(ports, "dns")),
                         protocol: "UDP",
                       })),
                       nix.thunk(() => ({
-                        __proto__: pos$71,
+                        [nix.POS]: pos$71,
                         name: "dns-tcp",
                         port: 53n,
                         targetPort: nix.thunk(() => nix.sel(ports, "dns")),
                         protocol: "TCP",
                       })),
                     ]),
-                    selector: nix.thunk(() => ({ __proto__: pos$72, "k8s-app": "kube-dns" })),
+                    selector: nix.thunk(() => ({ [nix.POS]: pos$72, "k8s-app": "kube-dns" })),
                   })),
                 })),
               })),
@@ -491,7 +491,7 @@ export default nix.lambda((args) => (() => {
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$80, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$80, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=dns.ts.map

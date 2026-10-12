@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libsigc++",
       version: "3.8.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libsigcplusplus",
           repo: "libsigcplusplus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             packageName: "libsigc++",
             attrPath: "libsigcxx_3_0",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://libsigcplusplus.github.io/libsigcplusplus/",
         changelog: nix.thunk(() => nix.str`https://github.com/libsigcplusplus/libsigcplusplus/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Typesafe callback system for standard C++",

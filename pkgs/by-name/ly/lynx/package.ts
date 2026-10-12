@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lynx",
       version: "2.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-island.net/archives/lynx/tarballs/lynx${nix.sel(finalAttrs, "version")}.tar.bz2`),
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/lynx/tarballs/lynx${nix.sel(finalAttrs, "version")}.tar.bz2`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([ncurses, gzip], nix.app(nix.sel(lib, "optional"), sslSupport, openssl))),
       postConfigure: "make cfg_defs.h\nnuke-refs cfg_defs.h\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://lynx.invisible-island.net/lynx${nix.sel(finalAttrs, "version")}/CHANGES.html`),
         description: "Text-mode web browser",
         homepage: "https://lynx.invisible-island.net/",

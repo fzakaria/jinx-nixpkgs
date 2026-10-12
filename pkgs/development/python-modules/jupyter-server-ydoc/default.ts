@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pycrdt_websocket = nix.arg($, "pycrdt-websocket");
   const jupyter_collaboration = nix.arg($, "jupyter-collaboration");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "jupyter-server-ydoc",
       version: "3.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "jupyter_server_ydoc",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8ATHnGxKzgPt/5F2u4aV+WmWYJzToCxNAZeQWikyM4c=",
@@ -46,9 +46,9 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["jupyter_server_ydoc"]),
       doCheck: false,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, tests: jupyter_collaboration })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: jupyter_collaboration })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Jupyter-server extension integrating collaborative shared models",
         homepage: "https://github.com/jupyterlab/jupyter-collaboration/tree/main/projects/jupyter-server-ydoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

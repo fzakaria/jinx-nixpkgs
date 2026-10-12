@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyannoteai-sdk",
       version: "0.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pyannoteai_sdk",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+9reButUNHN0rPEGmLjJwLzbWS+DOckMWhb6RB6oz50=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyannoteai.sdk"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Official pyannoteAI Python SDK",
         homepage: "https://pypi.org/project/pyannoteai-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

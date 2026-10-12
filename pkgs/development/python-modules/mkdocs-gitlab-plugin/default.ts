@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const mkdocs = nix.arg($, "mkdocs");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mkdocs-gitlab-plugin",
       version: "0.1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://gitlab.inria.fr/vidjil/mkdocs-gitlab-plugin/-/archive/fb87fbfd404839e661a799c540664b1103096a5f/mkdocs-gitlab-plugin-fb87fbfd404839e661a799c540664b1103096a5f.tar.gz",
           hash: "sha256-z+U0PRwymDDXVNM7a2Yl4pNNVBxpx/BhJnlx6kgyvww=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mkdocs_gitlab_plugin"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MkDocs plugin to transform strings into links to a Gitlab repository",
         longDescription: "Transform handles such as #1234, %56, !789, &12 or $34 into links to a gitlab repository,\ngiven by the gitlab_url configuration option.\nBefore the #/%/!/&/$ is needed either a space, a '(', or a '['.\n",
         homepage: "https://gitlab.inria.fr/vidjil/mkdocs-gitlab-plugin",

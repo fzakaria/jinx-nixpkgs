@@ -34,45 +34,45 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "openiscsi"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         openiscsi: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "the openiscsi iscsi daemon")),
             enableAutoLoginOut: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "automatic login and logout of all automatic targets.\nYou probably do not want this\n")),
             discoverPortal: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
                 default: null,
                 description: "Portal to discover targets on",
               })))),
             discoverType: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 description: "Target discovery type.\nChange this if you want to discover your targes via an iSNS server\nor use the targets provided via firmware settings.\nSee {manpage}`iscsiadm(8)`.\n",
                 default: "sendtargets",
                 example: "sendtargets",
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "enum"), nix.thunk(() => ["st", "sendtargets", "isns", "fw"]))),
               })))),
             name: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 description: "Name of this iscsi initiator",
                 example: "iqn.2020-08.org.linux-iscsi.initiatorhost:example",
               })))),
             package: nix.thunk(() => nix.app(nix.lookup(w_1, "mkPackageOption"), pkgs, "openiscsi", nix.thunk(() => ({})))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.lookup(w_1, "str")),
                 default: "",
                 description: "Lines to append to default iscsid.conf",
               })))),
             extraConfigFile: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 description: "Append an additional file's contents to /etc/iscsid.conf. Use a non-store path\nand store passwords in this file.\n",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
@@ -82,13 +82,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           etc: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "iscsi/iscsid.conf.fragment": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "iscsid.conf", nix.thunk(() => ({})), nix.thunk(() => nix.str`cat "${nix.sel(cfg, "package")}/etc/iscsi/iscsid.conf" > $out
 cat << 'EOF' >> $out
 ${nix.sel(cfg, "extraConfig")}
@@ -97,19 +97,19 @@ EOF
 `))),
             })),
             "iscsi/initiatorname.iscsi": nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               text: nix.thunk(() => nix.str`InitiatorName=${nix.sel(cfg, "name")}`),
             })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             iscsid: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               preStart: nix.thunk(() => (() => {
                 const extraCfgDumper = nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfigFile"), null)), nix.thunk(() => nix.str`if [ -f "${nix.sel(cfg, "extraConfigFile")}" ]; then
@@ -127,20 +127,20 @@ fi
               })()),
             })),
             iscsi: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableAutoLoginOut")), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 wantedBy: nix.thunk(() => ["remote-fs.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   ExecStartPre: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "discoverPortal"), null)), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/iscsiadm --mode discoverydb --type ${nix.sel(cfg, "discoverType")} --portal ${nix.app(nix.lookup(w, "escapeShellArg"), nix.thunk(() => nix.sel(cfg, "discoverPortal")))} --discover`))),
                 })),
               })))),
           })),
           sockets: nix.thunk(() => ({
-            __proto__: pos$18,
-            iscsid: nix.thunk(() => ({ __proto__: pos$17, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            [nix.POS]: pos$18,
+            iscsid: nix.thunk(() => ({ [nix.POS]: pos$17, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
         })),
-        boot: nix.thunk(() => ({ __proto__: pos$20, kernelModules: nix.thunk(() => ["iscsi_tcp"]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: pos$20, kernelModules: nix.thunk(() => ["iscsi_tcp"]) })),
       })))),
   };
 })(), formals$1);

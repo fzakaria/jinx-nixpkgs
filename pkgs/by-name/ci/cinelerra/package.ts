@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cinelerra-cv",
       version: "2.3-unstable-2025-01-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cinelerra-cv-team",
           repo: "cinelerra-cv",
           rev: "fb6eb391fe907d0f3b48b90f87e7a416408054f3",
@@ -105,7 +105,7 @@ sed -i -e "s@/usr/bin/file@${file}/bin/file@" ./configure
         fontconfig,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Professional video editing and compositing environment (community version)",
         homepage: "http://cinelerra-cv.wikidot.com/",
         mainProgram: "cinelerracv",

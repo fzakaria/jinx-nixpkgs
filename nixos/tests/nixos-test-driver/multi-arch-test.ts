@@ -27,53 +27,53 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     name: "multi-arch-test",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tfc"))];
       })()),
     })),
-    node: nix.thunk(() => ({ __proto__: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       vmIntel: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         nixpkgs: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           buildPlatform: "x86_64-linux",
           hostPlatform: "x86_64-linux",
         })),
       })),
       vmArm: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         nixpkgs: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           buildPlatform: "aarch64-linux",
           hostPlatform: "aarch64-linux",
         })),
       })),
     })),
     defaults: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         qemu: nix.thunk(() => ({
-          __proto__: pos$9,
-          guestAgent: nix.thunk(() => ({ __proto__: pos$8, enable: false })),
+          [nix.POS]: pos$9,
+          guestAgent: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
         })),
       })),
       networking: nix.thunk(() => ({
-        __proto__: pos$12,
-        dhcpcd: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+        [nix.POS]: pos$12,
+        dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         network: nix.thunk(() => ({
-          __proto__: pos$14,
-          "wait-online": nix.thunk(() => ({ __proto__: pos$13, enable: true, anyInterface: true })),
+          [nix.POS]: pos$14,
+          "wait-online": nix.thunk(() => ({ [nix.POS]: pos$13, enable: true, anyInterface: true })),
         })),
       })),
     })),

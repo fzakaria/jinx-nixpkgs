@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sqlcl",
       version: "26.2.1.222.1617",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-/4EJVJk5J4NrMEnrfGQE09py61ObKj9yVQT3KXNnL6M=",
         })))),
@@ -34,7 +34,7 @@ makeWrapper $out/libexec/bin/sql $out/bin/sqlcl \\
   --chdir "$out/libexec/bin"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Oracle's Oracle DB CLI client",
         longDescription: "Oracle SQL Developer Command Line (SQLcl) is a free command line\ninterface for Oracle Database. It allows you to interactively or batch\nexecute SQL and PL/SQL. SQLcl provides in-line editing, statement\ncompletion, and command recall for a feature-rich experience, all while\nalso supporting your previously written SQL*Plus scripts.\n",
         homepage: "https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/",

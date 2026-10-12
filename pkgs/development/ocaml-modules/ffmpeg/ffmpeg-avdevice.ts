@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_av = nix.arg($, "ffmpeg-av");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ffmpeg-avdevice",
       minimalOCamlVersion: "4.12",
       version: nix.thunk(() => nix.attr(ffmpeg_base, "version")),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ffmpeg_av, nix.thunk(() => nix.sel(ffmpeg, "dev"))]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { __proto__: pos$1, description: "Bindings for the ffmpeg avdevice library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: pos$1, description: "Bindings for the ffmpeg avdevice library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ffmpeg-avdevice.ts.map

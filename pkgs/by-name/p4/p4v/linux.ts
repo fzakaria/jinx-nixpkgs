@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: src,
@@ -92,7 +92,7 @@ ln -s "${qtbase}/${nix.sel(qtbase, "qtPluginPrefix")}" $out/lib/plugins
         preFixup: "patchelf --clear-symbol-version close $out/bin/p4{v,admin}.bin\n",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: version,
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin

@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/all-tarballs.nix", [["scrubJobs", 13, 3], ["supportedSystems", 15, 3], ["bootstrapConfigs", 16, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/top-level/release.nix")), nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     scrubJobs: false,
     supportedSystems: nix.thunk(() => ["x86_64-linux"]),
     bootstrapConfigs: [],

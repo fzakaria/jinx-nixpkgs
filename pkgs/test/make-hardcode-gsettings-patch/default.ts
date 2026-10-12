@@ -31,8 +31,8 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const patches = nix.argOr($_1, "patches", () => []);
     const args_2 = nix.arg($_1, "args");
-    const patch = nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => nix.update(args_2, { __proto__: pos$1, src: src, patches: patches }))));
-    return nix.app(runCommandLocal, nix.thunk(() => nix.str`makeHardcodeGsettingsPatch-tests-${name}`), nix.thunk(() => ({ __proto__: pos$2, nativeBuildInputs: nix.thunk(() => [git, clang_tools]) })), nix.thunk(() => nix.str`cp -r --no-preserve=all "${src}" src
+    const patch = nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, src: src, patches: patches }))));
+    return nix.app(runCommandLocal, nix.thunk(() => nix.str`makeHardcodeGsettingsPatch-tests-${name}`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [git, clang_tools]) })), nix.thunk(() => nix.str`cp -r --no-preserve=all "${src}" src
 cp -r --no-preserve=all "${expected}" src-expected
 
 pushd src
@@ -51,15 +51,15 @@ touch "$out"
 `));
   })(), formals$2);
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     basic: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "basic",
         src: nix.path(here, "./fixtures/example-project"),
         args: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           schemaIdToVariableMapping: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "org.gnome.evolution-data-server.addressbook": "EDS",
             "org.gnome.evolution.calendar": "EVO",
             "org.gnome.seahorse.nautilus.window": "SEANAUT",
@@ -68,26 +68,26 @@ touch "$out"
         expected: nix.path(here, "./fixtures/example-project-patched"),
       })))),
     patches: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "patches",
         src: nix.path(here, "./fixtures/example-project-wrapped-settings-constructor"),
         patches: nix.thunk(() => [
           nix.path(here, "./fixtures/example-project-wrapped-settings-constructor-resolve.patch"),
         ]),
         args: nix.thunk(() => ({
-          __proto__: pos$7,
-          schemaIdToVariableMapping: nix.thunk(() => ({ __proto__: pos$6, "org.gnome.evolution-data-server.addressbook": "EDS" })),
+          [nix.POS]: pos$7,
+          schemaIdToVariableMapping: nix.thunk(() => ({ [nix.POS]: pos$6, "org.gnome.evolution-data-server.addressbook": "EDS" })),
         })),
         expected: nix.path(here, "./fixtures/example-project-wrapped-settings-constructor-patched"),
       })))),
     existsFn: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "exists-fn",
         src: nix.path(here, "./fixtures/example-project"),
         args: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           schemaIdToVariableMapping: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             "org.gnome.evolution-data-server.addressbook": "EDS",
             "org.gnome.evolution.calendar": "EVO",
             "org.gnome.seahorse.nautilus.window": "SEANAUT",

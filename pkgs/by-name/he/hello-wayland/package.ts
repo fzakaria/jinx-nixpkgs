@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hello-wayland",
       version: "0-unstable-2026-04-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "emersion",
           repo: "hello-wayland",
           rev: "14231ae0a7f12e0041e81f749ae509d07e88fbe5",
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayland, wayland_protocols]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall hello-wayland $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Hello world Wayland client",
         homepage: "https://github.com/emersion/hello-wayland",
         maintainers: nix.thunk(() => (() => {

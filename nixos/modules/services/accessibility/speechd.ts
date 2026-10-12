@@ -41,17 +41,17 @@ export default nix.lambda((args) => (() => {
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         speechd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "speech-dispatcher speech synthesizer daemon")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "speechd", nix.thunk(() => ({})))),
           config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "lines")));
@@ -61,34 +61,34 @@ export default nix.lambda((args) => (() => {
               example: "AddModule \"module_name\" \"module_binary\" \"module_config\"\n",
             })))),
           modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "lines")))),
                   })));
               })()),
               default: nix.thunk(() => ({})),
               description: "Configuration files of output modules.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "generic-epos": "AddVoice        \"cs\"  \"male1\"   \"kadlec\"\nAddVoice        \"sk\"  \"male1\"   \"bob\"\n",
               })),
             })))),
           clients: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     freeformType: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "lines")))),
                   })));
               })()),
               default: nix.thunk(() => ({})),
               description: "Client specific configuration.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 emacs: "BeginClient \"emacs:*\"\n# Example:\n#   DefaultPunctuationMode \"some\"\nEndClient\n",
               })),
             })))),
@@ -96,37 +96,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "config"), null)) ? {
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "speech-dispatcher": nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/speech-dispatcher`),
             })),
           } : nix.update({
-            __proto__: pos$14,
-            "speech-dispatcher/speechd.conf": nix.thunk(() => ({ __proto__: pos$13, text: nix.thunk(() => nix.sel(cfg, "config")) })),
+            [nix.POS]: pos$14,
+            "speech-dispatcher/speechd.conf": nix.thunk(() => ({ [nix.POS]: pos$13, text: nix.thunk(() => nix.sel(cfg, "config")) })),
           }, nix.update(nix.app(mapAttrs$, (name) => (value) => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               name: nix.thunk(() => nix.str`speech-dispatcher/modules/${name}.conf`),
-              value: nix.thunk(() => ({ __proto__: pos$15, text: value })),
+              value: nix.thunk(() => ({ [nix.POS]: pos$15, text: value })),
             }), nix.thunk(() => nix.sel(cfg, "modules"))), nix.app(mapAttrs$, (name) => (value) => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: nix.thunk(() => nix.str`speech-dispatcher/clients/${name}.conf`),
-              value: nix.thunk(() => ({ __proto__: pos$17, text: value })),
+              value: nix.thunk(() => ({ [nix.POS]: pos$17, text: value })),
             }), nix.thunk(() => nix.sel(cfg, "clients"))))))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             sockets: nix.thunk(() => ({
-              __proto__: pos$21,
-              "speech-dispatcher": nix.thunk(() => ({ __proto__: pos$20, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+              [nix.POS]: pos$21,
+              "speech-dispatcher": nix.thunk(() => ({ [nix.POS]: pos$20, wantedBy: nix.thunk(() => ["sockets.target"]) })),
             })),
           })),
         })),

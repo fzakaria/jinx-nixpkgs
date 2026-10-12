@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const oniguruma = nix.arg($, "oniguruma");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "boxxy",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "queer",
           repo: "boxxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-L6EL8iP8FnV2WDe4bkHG/P5Zz4S9TAiw3V+XQSTABrQ=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [oniguruma]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Puts bad Linux applications in a box with only their files",
         homepage: "https://github.com/queer/boxxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

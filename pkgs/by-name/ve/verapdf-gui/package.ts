@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/package.nix", [["withCli", 3, 3], ["withGui
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const verapdf = nix.arg($, "verapdf");
-  return nix.app(nix.sel(verapdf, "override"), nix.thunk(() => ({ __proto__: pos$1, withCli: false, withGui: true })));
+  return nix.app(nix.sel(verapdf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCli: false, withGui: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

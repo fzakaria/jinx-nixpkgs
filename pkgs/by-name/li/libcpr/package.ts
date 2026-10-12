@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const staticOnly = nix.argOr($, "staticOnly", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const version = "1.14.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libcpr",
       version: version,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libcpr",
           repo: "cpr",
           rev: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Linking with stdc++fs is no longer necessary.\nsed -i '/stdc++fs/d' include/CMakeLists.txt\n",
       postInstall: "substituteInPlace \"$out/lib/cmake/cpr/cprTargets.cmake\" \\\n  --replace-fail \"_IMPORT_PREFIX \\\"$out\\\"\" \\\n                 \"_IMPORT_PREFIX \\\"$dev\\\"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ wrapper around libcurl",
         homepage: "https://docs.libcpr.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

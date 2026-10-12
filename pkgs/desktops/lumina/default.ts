@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const packages = (self) => (() => {
     const w = nix.withScope(self, null);
     return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       lumina: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lumina"), nix.thunk(() => ({})))),
       "lumina-calculator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lumina-calculator"), nix.thunk(() => ({})))),
       "lumina-pdf": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lumina-pdf"), nix.thunk(() => ({})))),

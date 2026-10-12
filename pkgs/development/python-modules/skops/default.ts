@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const streamlit = nix.arg($, "streamlit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "skops",
       version: "0.14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skops-dev",
           repo: "skops",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [numpy, packaging, prettytable, scikit_learn, tabulate]),
       nativeCheckInputs: nix.thunk(() => [matplotlib, pandas, pytest_cov_stub, pytestCheckHook, pyyaml, streamlit]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, rich: nix.thunk(() => [rich]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, rich: nix.thunk(() => [rich]) })),
       enabledTestPaths: nix.thunk(() => ["skops"]),
       pytestFlags: nix.thunk(() => ["-Wignore::FutureWarning", "-Wignore::DeprecationWarning"]),
       disabledTests: nix.thunk(() => nix.concat(["test_no_overflow", "TestAddFairlearnMetricFrame"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["skops"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for saving/loading, sharing, and deploying scikit-learn based models",
         homepage: "https://skops.readthedocs.io/en/stable",
         changelog: nix.thunk(() => nix.str`https://github.com/skops-dev/skops/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

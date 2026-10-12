@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fritzbox-exporter",
       version: "unstable-2021-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           rev: "fd36539bd7db191b3734e17934b5f1e78e4e9829",
           owner: "mxschmitt",
           repo: "fritzbox_exporter",
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-VhQAEVxRJjIzFP67LUKhfGxdUbTQB7UCK8/JKwpoy0w=",
       subPackages: nix.thunk(() => ["cmd/exporter"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, fritzbox: nix.thunk(() => nix.attr(from, "fritzbox")) };
+          return { [nix.POS]: pos$2, fritzbox: nix.thunk(() => nix.attr(from, "fritzbox")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus Exporter for FRITZ!Box (TR64 and UPnP)",
         mainProgram: "exporter",
         homepage: "https://github.com/mxschmitt/fritzbox_exporter",

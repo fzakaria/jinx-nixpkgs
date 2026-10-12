@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sord = nix.arg($, "sord");
   const sratom = nix.arg($, "sratom");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lv2bm",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mod-audio",
           repo: "lv2bm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libsndfile, lilv, lv2, serd, sord, sratom]),
       installPhase: "make install PREFIX=$out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/portalmod/lv2bm",
         description: "Benchmark tool for LV2 plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

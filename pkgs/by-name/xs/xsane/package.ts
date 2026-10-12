@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$24,
+      [nix.POS]: pos$24,
       pname: "xsane",
       version: "0.999",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frontend",
           group: "sane-project",
           repo: "xsane",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: name,
               hash: hash,
               url: nix.thunk(() => nix.str`https://src.fedoraproject.org/rpms/xsane/raw/67c7f6591398ab46f71ba4f0eb33cb0539e56a4b/f/${name}`),
@@ -71,97 +71,97 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return nix.builtins.map(fetchFedoraPatch, nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "0001-Follow-new-convention-for-registering-gimp-plugin.patch",
               hash: "sha256-yOY7URyc8HEHHynvdcZAV1Pri31N/rJ0ddPavOF5zLw=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "0001-replace-gtk_timeout-with-g_timeout.patch",
               hash: "sha256-OMeukfbpagK05HI2R/2Gxrvk2nfrDK8ZmLmw0a6o10k=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "xsane-0.995-close-fds.patch",
               hash: "sha256-qE7larHpBEikz6OaOQmmi9jl6iQxy/QM7iDg9QrVV1o=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: "xsane-0.995-xdg-open.patch",
               hash: "sha256-/kHwwuDC2naGEp4NALfaJ0pJe+9kYhV4TX1eGeARvq8=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               name: "xsane-0.996-no-eula.patch",
               hash: "sha256-CYmp1zFg11PUPz9um2W7XF6pzCzafKSEn2nvPiUSxNo=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               name: "xsane-0.997-ipv6.patch",
               hash: "sha256-D3xH++DHxyTKMxgatU+PNCVN1u5ajPc3gQxvzhMYIdM=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               name: "xsane-0.997-off-root-build.patch",
               hash: "sha256-2LXQfMbvqP+TAhAmxRe6pBqNlSX4tVjhDkBHIfX9HcA=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               name: "xsane-0.998-desktop-file.patch",
               hash: "sha256-3xEj6IaOk/FS8pv+/yaNjZpIoB+0Oei0QB9mD4/owkM=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               name: "xsane-0.998-libpng.patch",
               hash: "sha256-0z292+Waa2g0PCQpUebdWprl9VDyBOY0XgqMJaIcRb8=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               name: "xsane-0.998-preview-selection.patch",
               hash: "sha256-TZ8vRA+0qPY2Rqz0VNHjgkj3YPob/BW+zBoVqxnUhb8=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               name: "xsane-0.998-wmclass.patch",
               hash: "sha256-RubFOs+hsZS+GdxF0yvLSy4v+Fi6vb9G6zfwWZcUlkY=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               name: "xsane-0.999-lcms2.patch",
               hash: "sha256-eiAxa1lhFrinqBvlIhH+NP7WBKk0Plf2S+OVTcpxXac=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               name: "xsane-0.999-man-page.patch",
               hash: "sha256-4g0w4x9boAIOA6s5eTzKMh2mkkRKtF1TZ9KgHNTDaAg=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               name: "xsane-0.999-no-file-selected.patch",
               hash: "sha256-e/QKtvsIwU5yy0SJKAEAmhmCoxWqV6FHmAW41SbW/eI=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               name: "xsane-0.999-pdf-no-high-bpp.patch",
               hash: "sha256-o3LmOvgERuB9CQ8RL2Nd40h1ePuuuGMSK1GN68QlJ6s=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               name: "xsane-0.999-signal-handling.patch",
               hash: "sha256-JU9BJ6UIDa1FsuPaQKsxcjxvsJkwgmuopIqCVWY3LQ0=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               name: "xsane-0.999-snprintf-update.patch",
               hash: "sha256-bSTeoIOLeJ4PEsBHR+ZUQLPmrc0D6aQzyJGlLVhXt8o=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               name: "xsane-configure-c99.patch",
               hash: "sha256-ukaNGgzCGiQwbOzSguAqBIKOUzXofSC3lct812U/8gY=",
             })),
             nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               name: "xsane-gcc15-c23.patch",
               hash: "sha256-a1ZkVufpbwqL/bCFE2w44PoR42chl8aoRqeOP6L74Uw=",
             })),
@@ -171,11 +171,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libpng, libusb_compat_0_1, sane_backends, sane_frontends, libx11, gtk2], nix.app(nix.sel(lib, "optional"), gimpSupport, gimp))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         homepage: "http://www.sane-project.org/",
         description: "Graphical scanning frontend for sane",
         mainProgram: "xsane",

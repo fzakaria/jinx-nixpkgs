@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.14.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agronholm",
           repo: "anyio",
           tag: version,
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => nix.concat([idna], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [typing_extensions]))));
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, trio: nix.thunk(() => [trio]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, trio: nix.thunk(() => [trio]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         exceptiongroup,
         hypothesis,
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["anyio"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, starlette: starlette })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, starlette: starlette })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/agronholm/anyio/blob/${nix.sel(src, "tag")}/docs/versionhistory.rst`),
         description: "High level compatibility layer for multiple asynchronous event loop implementations on Python",
         homepage: "https://github.com/agronholm/anyio",
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

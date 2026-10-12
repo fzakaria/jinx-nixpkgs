@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Bluetooth-Devices",
           repo: "bluetooth-sensor-state-data",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["bluetooth_sensor_state_data"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Models for storing and converting Bluetooth Sensor State Data",
         homepage: "https://github.com/bluetooth-devices/bluetooth-sensor-state-data",
         changelog: nix.thunk(() => nix.str`https://github.com/Bluetooth-Devices/bluetooth-sensor-state-data/releases/tag/${nix.sel(src, "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

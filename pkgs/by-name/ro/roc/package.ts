@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = llvmPackages_18;
   const rocVersion = "alpha4";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "roc",
       version: nix.thunk(() => nix.str`0-${rocVersion}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "roc-lang",
           repo: "roc",
           rev: "d73ea109cc21442da01387c1e5e911607c74692d",
@@ -70,7 +70,7 @@ NIX_GLIBC_PATH=${nix.sel(glibc, "out")}/lib NIX_LIBGCC_S_PATH=${nix.sel(stdenv, 
 runHook postCheck
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), "runHook preCheck\ncargo test --release --workspace --exclude test_mono --exclude uitest -- --skip=glue_cli_tests --skip=test_snapshots\nrunHook postCheck\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fast, friendly, functional programming language",
         mainProgram: "roc",
         homepage: "https://www.roc-lang.org/",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const powerline = nix.arg($, "powerline");
   const version = nix.thunk(() => nix.attr(powerline, "version"));
   return nix.app(runCommand, nix.thunk(() => nix.str`powerline-symbols-${version}`), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(powerline, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         license: nix.thunk(() => nix.attr(from, "license")),
         priority: nix.thunk(() => nix.add(nix.selOr(powerline, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         maintainers: nix.thunk(() => (() => {

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libapparmor = nix.arg($, "libapparmor");
   const apparmor_parser = nix.arg($, "apparmor-parser");
   return nix.app(runCommand, "logprof_conf", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       header: nix.thunk(() => nix.str`[settings]
   # /etc/apparmor.d/ is read-only on NixOS
   profiledir = /var/cache/apparmor/logprof

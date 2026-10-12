@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(from_1, "str"));
   const attrsOf = nix.thunk(() => nix.attr(from_1, "attrsOf"));
   return {
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const args_2 = args_1;
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const listToValue = nix.argOr($_1, "listToValue", () => null);
       nix.assert_((!nix.asBool(listsAsDuplicateKeys) || nix.asBool(nix.eq(listToValue, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/pkgs-lib/formats/key-value/default.nix:38:5");
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         type: nix.thunk(() => (() => {
-          const singleAtom = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [bool, int, float, str])))), { __proto__: pos$1, description: "atom (null, bool, int, float or string)" }));
+          const singleAtom = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [bool, int, float, str])))), { [nix.POS]: pos$1, description: "atom (null, bool, int, float or string)" }));
           const atom = nix.thunk(() => (nix.asBool(listsAsDuplicateKeys) ? nix.update(nix.app(coercedTo, singleAtom, singleton, nix.thunk(() => nix.app(listOf, singleAtom))), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             description: nix.thunk(() => nix.add(nix.sel(singleAtom, "description"), " or a list of them for duplicate keys")),
           }) : (nix.asBool(!nix.eq(listToValue, null)) ? nix.update(nix.app(coercedTo, singleAtom, singleton, nix.thunk(() => nix.app(nonEmptyListOf, singleAtom))), {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             description: nix.thunk(() => nix.add(nix.sel(singleAtom, "description"), " or a non-empty list of them")),
           }) : nix.force(singleAtom))));
           return nix.app(attrsOf, atom);

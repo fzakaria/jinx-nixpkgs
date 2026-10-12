@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const limboPage = nix.argOr($, "limboPage", () => true);
   const doFixBugs = nix.argOr($, "doFixBugs", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pvz-portable-unwrapped",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wszqkzqk",
           repo: "PvZ-Portable",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 pvz-portable $out/bin/pvz-portable\n\ncd .. # exit cmake build dir\n\ninstall -Dm755 scripts/pvzp-v4-converter.py $out/bin/pvzp-v4-converter\ninstall -Dm644 LICENSE $out/share/licenses/pvz-portable/LICENSE\ninstall -Dm644 COPYING $out/share/licenses/pvz-portable/COPYING\n\ninstall -Dm664 archlinux/io.github.wszqkzqk.pvz-portable.desktop $out/share/applications/io.github.wszqkzqk.pvz-portable.desktop\nsubstituteInPlace $out/share/applications/io.github.wszqkzqk.pvz-portable.desktop --replace-fail /usr/bin/ \"\"\ninstall -Dm644 icon.png $out/share/icons/hicolor/512x512/apps/io.github.wszqkzqk.pvz-portable.png\nfor size in 16 32 48 64 128 256; do\n  mkdir -p $out/share/icons/hicolor/${size}x$size/apps\n  magick icon.png -resize ${size}x$size $out/share/icons/hicolor/${size}x$size/apps/io.github.wszqkzqk.pvz-portable.png\ndone\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cross-platform community-driven reimplementation of Plants vs. Zombies GOTY",
         homepage: "https://github.com/wszqkzqk/PvZ-Portable",
         changelog: "https://github.com/wszqkzqk/PvZ-Portable/releases",

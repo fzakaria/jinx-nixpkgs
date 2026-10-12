@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "fcitx5-tokyonight",
       version: "0-unstable-2024-01-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ch4xer",
           repo: "fcitx5-Tokyonight",
           rev: "f7454ab387d6b071ee12ff7ee819f0c7030fdf2c",
@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm644 Tokyonight-Day/{arrow.png,panel.png,radio.png} -t $out/share/fcitx5-tokyonight/\nfor _variant in Tokyonight-Day Tokyonight-Storm; do\n  mkdir -p $out/share/fcitx5/themes/$_variant/\n  ln -s $out/share/fcitx5-tokyonight/arrow.png $out/share/fcitx5/themes/$_variant/arrow.png\n  ln -s $out/share/fcitx5-tokyonight/radio.png $out/share/fcitx5/themes/$_variant/radio.png\n  install -Dm644 $_variant/theme.conf $out/share/fcitx5/themes/$_variant/theme.conf\ndone\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fcitx5 theme based on Tokyo Night color",
         homepage: "https://github.com/ch4xer/fcitx5-Tokyonight",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

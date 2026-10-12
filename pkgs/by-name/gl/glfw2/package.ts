@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glfw",
       version: "2.7.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/glfw/glfw-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "17c2msdcb7pn3p8f83805h1c216bmdqnbn9hgzr1j8wnwjcpxx6i",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "make x11\n",
       installPhase: "mkdir -p $out\nmake x11-dist-install PREFIX=$out\nmv $out/lib/libglfw.so $out/lib/libglfw.so.2\nln -s libglfw.so.2 $out/lib/libglfw.so\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multi-platform library for creating OpenGL contexts and managing input, including keyboard, mouse, joystick and time",
         homepage: "https://glfw.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

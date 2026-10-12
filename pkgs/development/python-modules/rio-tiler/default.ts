@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rio-tiler",
       version: "9.4.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cogeotiff",
           repo: "rio-tiler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         s3: nix.thunk(() => [boto3]),
         xarray: nix.thunk(() => [rioxarray]),
         zarr: nix.thunk(() => [obstore, zarr]),
@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
         "test_geoxarray_reader",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "User friendly Rasterio plugin to read raster datasets",
         homepage: "https://cogeotiff.github.io/rio-tiler/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

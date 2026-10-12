@@ -26,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tenacity = nix.arg($, "tenacity");
   const html5lib_tests = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "html5lib",
       repo: "html5lib-tests",
       rev: "9fb614afaa42ce8787840f057b32084308e76549",
       hash: "sha256-I9Sp8wCO0oXRzdmIsR889fSlzM8GXUoDc7tFUuDBmKk=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "turbohtml",
       version: "1.13.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tox-dev",
           repo: "turbohtml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +68,7 @@ patchShebangs tools
         "tests/url/test_idna.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/tox-dev/turbohtml/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),
         description: "Fast, fully typed HTML toolkit for Python, powered by a C-accelerated core",
         homepage: "https://github.com/tox-dev/turbohtml",

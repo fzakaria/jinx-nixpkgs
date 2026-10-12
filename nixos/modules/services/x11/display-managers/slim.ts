@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "xserver", "displayManager", "slim"]), "The SLIM project is abandoned and their last release was in 2013.\nBecause of this it poses a security risk to your system.\nOther issues include it not fully supporting systemd and logind sessions.\nPlease use a different display manager such as LightDM, SDDM, or GDM.\nYou can also use the startx module which uses Xinitrc.\n")),
     ]),

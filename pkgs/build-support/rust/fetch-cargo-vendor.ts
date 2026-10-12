@@ -25,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const nix_prefetch_git = nix.arg($, "nix-prefetch-git");
   const cacert = nix.arg($, "cacert");
   const python3Packages = nix.thunk(() => nix.update(nix.sel(python3, "pkgs"), {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     requests: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "requests", "override"), nix.thunk(() => ({
-        __proto__: pos$2,
-        "charset-normalizer": nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "charset-normalizer", "override"), nix.thunk(() => ({ __proto__: pos$1, withMypyc: false })))),
+        [nix.POS]: pos$2,
+        "charset-normalizer": nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "charset-normalizer", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withMypyc: false })))),
       })))),
   }));
   const replaceWorkspaceValues = nix.thunk(() => nix.app(nix.sel(writers, "writePython3Bin"), "replace-workspace-values", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       libraries: nix.thunk(() => (() => {
         const w = nix.withScope(python3Packages, null);
         return [
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
       })()),
       flakeIgnore: nix.thunk(() => ["E501", "W503"]),
     })), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./replace-workspace-values.py")))));
-  const nix_prefetch_git$ = nix.thunk(() => nix.app(nix.sel(nix_prefetch_git, "override"), nix.thunk(() => ({ __proto__: pos$5, git: gitMinimal, "git-lfs": null }))));
+  const nix_prefetch_git$ = nix.thunk(() => nix.app(nix.sel(nix_prefetch_git, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, git: gitMinimal, "git-lfs": null }))));
   const removedArgs = nix.thunk(() => ["name", "pname", "version", "nativeBuildInputs", "hash"]);
   const fetchCargoVendorUtil = nix.thunk(() => nix.app(nix.sel(writers, "writePython3Bin"), "fetch-cargo-vendor-util", nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       libraries: nix.thunk(() => (() => {
         const w = nix.withScope(python3Packages, null);
         return nix.concat([
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
     const hash = nix.argOr($_1, "hash", () => nix.builtins.throw(nix.thunk(() => nix.str`fetchCargoVendor requires a \`hash\` value to be set for ${name}`)));
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const vendorStaging = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: nix.thunk(() => nix.str`${name}-vendor-staging`),
         impureEnvVars: nix.thunk(() => nix.sel(lib, "fetchers", "proxyImpureEnvVars")),
         nativeBuildInputs: nix.thunk(() => nix.concat([fetchCargoVendorUtil, cacert, nix_prefetch_git$], nativeBuildInputs)),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         __structuredAttrs: true,
       }, nix.builtins.removeAttrs(args_2, removedArgs)))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${name}-vendor`), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         vendorStaging: vendorStaging,
         nativeBuildInputs: nix.thunk(() => [fetchCargoVendorUtil, cargo, replaceWorkspaceValues]),
         strictDeps: true,

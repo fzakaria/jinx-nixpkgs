@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "sphinx_thebe",
           hash: "sha256-V2BH9FVg6C9kql8VIAsesJTc/hxbj1MaimW9II4lpJM=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_thebe"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Integrate interactive code blocks into your documentation with Thebe and Binder",
         homepage: "https://github.com/executablebooks/sphinx-thebe",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/sphinx-thebe/releases/tag/v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

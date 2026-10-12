@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "0nv5amfs337m0gbxpjb0585s20rndqfc3mfrzq1iwgnds5gxcrlw",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [pymongo]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MongoDB-backed Python dict-like interface",
         homepage: "https://github.com/turicas/mongodict/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

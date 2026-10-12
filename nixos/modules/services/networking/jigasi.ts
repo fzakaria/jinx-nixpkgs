@@ -48,73 +48,73 @@ export default nix.lambda((args) => (() => {
   const sipCommunicatorPropertiesFile = nix.thunk(() => nix.str`${stateDir}/${homeDirName}/sip-communicator.properties`);
   const sipCommunicatorPropertiesFileUnsubstituted = nix.thunk(() => nix.str`${nix.sel(pkgs, "jigasi")}/etc/jitsi/jigasi/sip-communicator.properties`);
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         jigasi: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Jitsi Gateway to SIP - component of Jitsi Meet")),
             xmppHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 example: "localhost",
                 description: "Hostname of the XMPP server to connect to.\n",
               })))),
             xmppDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")))),
                 example: "meet.example.org",
                 description: "Domain name of the XMMP server to which to connect as a component.\n\nIf null, <option>xmppHost</option> is used.\n",
               })))),
             componentPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 example: "/run/keys/jigasi-component",
                 description: "Path to file containing component secret.\n",
               })))),
             userName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "callcontrol",
                 description: "User part of the JID for XMPP user connection.\n",
               })))),
             userDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 example: "internal.meet.example.org",
                 description: "Domain part of the JID for XMPP user connection.\n",
               })))),
             userPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 example: "/run/keys/jigasi-user",
                 description: "Path to file containing password for XMPP user connection.\n",
               })))),
             bridgeMuc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 example: "jigasibrewery@internal.meet.example.org",
                 description: "JID of the internal MUC used to communicate with Videobridges.\n",
               })))),
             defaultJvbRoomName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.lookup(w, "str")),
                 default: "",
                 example: "siptest",
                 description: "Name of the default JVB room that will be joined if no special header is included in SIP invite.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "File containing environment variables to be passed to the jigasi service,\nin which secret tokens can be specified securely by defining values for\n<literal>JIGASI_SIPUSER</literal>,\n<literal>JIGASI_SIPPWD</literal>,\n<literal>JIGASI_SIPSERVER</literal> and\n<literal>JIGASI_SIPPORT</literal>.\n",
               })))),
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"org.jitsi.jigasi.auth.URL\" = \"XMPP:jitsi-meet.example.com\";\n}\n")),
@@ -125,41 +125,41 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           jicofo: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             config: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "org.jitsi.jicofo.jigasi.BREWERY": nix.thunk(() => nix.str`${nix.sel(cfg, "bridgeMuc")}`),
             })),
           })),
           jigasi: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             config: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(nix.sel(lib, "mkDefault"), v), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 "org.jitsi.jigasi.BRIDGE_MUC": nix.thunk(() => nix.sel(cfg, "bridgeMuc")),
               })))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
-          groups: nix.thunk(() => ({ __proto__: pos$19, "jitsi-meet": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$20,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$19, "jitsi-meet": nix.thunk(() => ({})) })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           services: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             jigasi: nix.thunk(() => (() => {
               const jigasiProps = nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 "-Dnet.java.sip.communicator.SC_HOME_DIR_LOCATION": nix.thunk(() => nix.str`${stateDir}`),
                 "-Dnet.java.sip.communicator.SC_HOME_DIR_NAME": nix.thunk(() => nix.str`${homeDirName}`),
                 "-Djava.util.logging.config.file": nix.thunk(() => nix.str`${nix.sel(pkgs, "jigasi")}/etc/jitsi/jigasi/logging.properties`),
               }));
               return {
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "Jitsi Gateway to SIP",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -218,7 +218,7 @@ sed -i \\
                   nix.thunk(() => nix.sel(config, "environment", "etc", "jitsi/jigasi/sip-communicator.properties", "source")),
                 ]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   JAVA_SYS_PROPS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k}=${nix.builtins.toString(v)}`, jigasiProps)))),
                 })),
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs, "jigasi")}/bin/jigasi \\
@@ -232,7 +232,7 @@ sed -i \\
   --configdirname="${homeDirName}"
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   Type: "exec",
                   DynamicUser: true,
                   User: "jigasi",
@@ -260,22 +260,22 @@ sed -i \\
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           etc: nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             "jitsi/jigasi/sip-communicator.properties": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               source: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${sipCommunicatorPropertiesFile}`))),
             })),
             "jitsi/jigasi/logging.properties": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               source: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${stateDir}/logging.properties-journal`))),
             })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jitsi"))]),
     })),
   };

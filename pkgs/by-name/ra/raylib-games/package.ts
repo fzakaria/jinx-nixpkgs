@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const raylib = nix.arg($, "raylib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "raylib-games",
       version: "2026-05-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "raysan5",
           repo: "raylib-games",
           rev: "2175f1fe857aa91a749b66482359545f28cc596f",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(raylib, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of games made with raylib",
         homepage: "https://www.raylib.com/games.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

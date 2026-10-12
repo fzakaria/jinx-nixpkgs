@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const menhir = nix.arg($, "menhir");
   const menhirLib = nix.arg($, "menhirLib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drom",
       version: "0.9.3",
       minimalOCamlVersion: "4.14",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OCamlPro",
           repo: "drom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       dunePackages: nix.thunk(() => ["drom", "drom_lib", "drom_toml"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Drom is a wrapper over opam/dune in an attempt to provide a cargo-like user experience",
         homepage: "https://ocamlpro.github.io/drom/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")), nix.thunk(() => nix.sel(lib, "licenses", "ocamlLgplLinkingException")))),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Qbus-iot",
           repo: "qbusmqttapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +35,7 @@ substituteInPlace pyproject.toml \\
       const pythonImportsCheck = nix.thunk(() => ["qbusmqttapi"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MQTT API for Qbus Home Automation",
         homepage: "https://github.com/Qbus-iot/qbusmqttapi",
         changelog: nix.thunk(() => nix.str`https://github.com/Qbus-iot/qbusmqttapi/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

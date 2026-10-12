@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildDotnetModule = nix.arg($, "buildDotnetModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "liborbispkg-pkgtool",
       version: "0.3-unstable-2025-11-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenOrbis",
           repo: "LibOrbisPkg",
           rev: "c1caa3ba25097fe602c0d842a0357bf7037b0838",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       projectFile: "PkgTool.Core/PkgTool.Core.csproj",
       postFixup: "mv $out/bin/PkgTool.Core $out/bin/pkgtool\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI for creating, inspecting, and modifying PS4 PKG, SFO, PFS, and related filetypes",
         homepage: "https://github.com/OpenOrbis/LibOrbisPkg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

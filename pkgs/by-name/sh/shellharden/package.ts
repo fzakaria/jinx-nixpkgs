@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shellharden",
       version: "4.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anordal",
           repo: "shellharden",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-RE1k9G3xKTJ0F79bKrhgS+5O30eqVnA3iLCc+CHfS2Y=",
       postPatch: "patchShebangs moduletests/run",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Corrective bash syntax highlighter",
         mainProgram: "shellharden",
         longDescription: "Shellharden is a syntax highlighter and a tool to semi-automate the\nrewriting of scripts to ShellCheck conformance, mainly focused on quoting.\n",

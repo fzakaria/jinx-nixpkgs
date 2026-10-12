@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "02lijkq6v379r8zkqg9q2srin3i80m4wvwik3hcbih0s14v0ng0i",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Patched mailcap module that conforms to RFC 1524",
         homepage: "https://github.com/michael-lazar/mailcap_fix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
       }));
-      return { __proto__: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

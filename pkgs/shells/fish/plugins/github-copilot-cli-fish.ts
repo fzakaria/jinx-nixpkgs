@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "github-copilot-cli.fish";
       const version = "0.1.33.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "z11i",
           repo: "github-copilot-cli.fish",
           tag: version,
           hash: "sha256-CFXbeO0euC/UtvQV0KCz4WQfdJgsuXKPM6M9oaw7hvg=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GitHub Copilot CLI aliases for Fish Shell",
         homepage: "https://github.com/z11i/github-copilot-cli.fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "malo"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=github-copilot-cli-fish.ts.map

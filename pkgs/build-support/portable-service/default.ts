@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
     const envFileGenerator = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({}))));
     const rootFsScaffold = nix.thunk(() => (() => {
       const os_release_params = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PORTABLE_ID: pname,
         PORTABLE_PRETTY_NAME: description,
         HOME_URL: homepage,
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       }));
       const os_release = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "os-release", nix.thunk(() => nix.app(envFileGenerator, nix.thunk(() => nix.app(filterNull, os_release_params))))));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: "root-fs-scaffold",
           version: version,
           buildCommand: nix.thunk(() => nix.add(nix.add(nix.str`# scaffold a file system layout
@@ -65,12 +65,12 @@ ln -s ${object} $out/${symlink};
     })());
     nix.assert_((nix.asBool(nix.app(nix.sel(lib, "all"), (u) => nix.app(nix.sel(lib, "hasPrefix"), pname, nix.thunk(() => nix.sel(u, "name"))), units)) || nix.asBool(nix.builtins.throw("Unit names must be prefixed with the service name"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/portable-service/default.nix:90:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: nix.thunk(() => nix.str`${pname}-img`),
         version: version,
         nativeBuildInputs: nix.thunk(() => [squashfsTools]),
         closureInfo: nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rootPaths: nix.thunk(() => nix.concat([rootFsScaffold], contents)),
           })))),
         buildCommand: nix.thunk(() => nix.str`mkdir -p nix/store

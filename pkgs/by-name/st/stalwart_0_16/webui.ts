@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "webui",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stalwartlabs",
           repo: "webui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-qe9cSrvs6kWwgbOO0xL7MBaJvICOvyuLFVi9R0dgnXQ=",
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         VITE_API_BASE_URL: "",
         VITE_OAUTH_CLIENT_ID: "stalwart-webui",
       })),
@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nnpm run test\nrunHook postCheck\n",
       installPhase: "runHook preInstall\nmkdir -p $out\ncd dist\nzip -r $out/webui.zip *\ncd ..\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stalwart_0_16, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Stalwart WebUI",
         longDescription: "Stalwart WebUI is schema-driven single-page application for administering Stalwart.\n\nAfter authentication the panel fetches a JSON schema from the server and dynamically\ngenerates all forms, lists, navigation, and layouts from that schema. Nothing is hardcoded.\n",
         homepage: "https://github.com/stalwartlabs/webui",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [
             nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               fullName: "Stalwart Enterprise License 2.0 (SELv2) Agreement",
               url: "https://github.com/stalwartlabs/webui/blob/main/LICENSES/LicenseRef-SEL.txt",
               free: false,

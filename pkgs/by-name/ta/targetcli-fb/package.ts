@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "targetcli-fb",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "open-iscsi",
           repo: "targetcli-fb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,14 +49,14 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "install -D targetcli.8 -t $out/share/man/man8/\ninstall -D targetclid.8 -t $out/share/man/man8/\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "iscsi-root": nix.thunk(() => nix.attr(nixosTests, "iscsi-root")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command shell for managing the Linux LIO kernel target",
         homepage: "https://github.com/open-iscsi/targetcli-fb",
         changelog: nix.thunk(() => nix.str`https://github.com/open-iscsi/targetcli-fb/releases/tag/v${nix.sel(finalAttrs, "version")}`),

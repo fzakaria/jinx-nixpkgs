@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const perl = nix.arg($, "perl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "syntax-highlighting",
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),
       extraNativeBuildInputs: nix.thunk(() => [qttools, perl]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mainProgram: "ksyntaxhighlighter6",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.concat(nix.sel(lib, "platforms", "freebsd"), nix.sel(lib, "platforms", "darwin")))),
       })),

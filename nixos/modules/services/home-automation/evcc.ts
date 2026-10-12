@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "evcc.yml", nix.thunk(() => nix.sel(cfg, "settings"))));
   const package$ = nix.thunk(() => nix.sel(pkgs, "evcc"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hexa"))];
@@ -44,30 +44,30 @@ export default nix.lambda((args) => (() => {
       buildDocsInSandbox: false,
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         evcc: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             enable: nix.thunk(() => nix.app(mkEnableOption, "EVCC, the extensible EV Charge Controller and Home Energy Management System")),
             package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "evcc", nix.thunk(() => ({})))),
             extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")))),
                 default: [],
                 description: "Extra arguments to pass to the `evcc` executable.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")))),
                 default: null,
                 example: "/run/keys/evcc",
                 description: "File with environment variables to pass into the runtime environment.\n\nUseful to pass secrets into the configuration, that get applied using `envsubst`.\n",
               })))),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(format, "type")),
                 description: nix.thunk(() => nix.str`evcc configuration as a Nix attribute set. Supports substitution of secrets using \`envsubst\` from the \`environmentFile\`.
 
@@ -79,23 +79,23 @@ Check for possible options in the sample [evcc.dist.yaml](https://github.com/and
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         systemd: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             evcc: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               wants: nix.thunk(() => ["network-online.target"]),
               after: nix.thunk(() => ["network-online.target", "mosquitto.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$8, HOME: "/var/lib/evcc" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$8, HOME: "/var/lib/evcc" })),
               path: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "getent"))];
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]))),
                 ExecStartPre: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [
                     nix.thunk(() => nix.app(getExe, nix.thunk(() => nix.sel(pkgs, "envsubst")))),

@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "serge-sans-paille",
           repo: "pythran",
           tag: version,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-hardcode-path-to-libgomp.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gomp: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? nix.force(openmp) : nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc"))))}/lib/libgomp${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]);
@@ -56,7 +56,7 @@ ln -s '${nix.app(nix.sel(lib, "getDev"), xsimd)}'/include/xsimd pythran/
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/serge-sans-paille/pythran/blob/${nix.sel(src, "tag")}/Changelog`),
         description: "Ahead of Time compiler for numeric kernels",
         homepage: "https://github.com/serge-sans-paille/pythran",
@@ -67,7 +67,7 @@ ln -s '${nix.app(nix.sel(lib, "getDev"), xsimd)}'/include/xsimd pythran/
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

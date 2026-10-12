@@ -22,24 +22,24 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gnome", "tracker-miners", "enable"]), nix.thunk(() => ["services", "gnome", "localsearch", "enable"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gnome: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           localsearch: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to enable LocalSearch, indexing services for TinySPARQL\nsearch engine and metadata storage system.\n",
@@ -49,20 +49,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "gnome", "localsearch", "enable")), nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "localsearch"))]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           dbus: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "localsearch"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "localsearch"))]),
         })),
       })))),

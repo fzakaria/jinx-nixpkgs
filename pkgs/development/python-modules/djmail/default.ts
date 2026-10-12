@@ -22,23 +22,23 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const format = "setuptools";
       const meta = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Simple, powerful and nonobstructive django email middleware",
         homepage: "https://github.com/bameda/djmail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           sha256: "cf3ce7626305d218a8bf2b6a219266ef8061aceeefc1c70a54170f4105465202",
         }))));
       const nativeBuildInputs = nix.thunk(() => [glibcLocales]);
-      const env = nix.thunk(() => ({ __proto__: pos$3, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" }));
       const propagatedBuildInputs = nix.thunk(() => [celery, django, psycopg2]);
       const doCheck = false;
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         format,

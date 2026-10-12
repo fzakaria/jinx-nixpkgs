@@ -29,38 +29,38 @@ export default nix.lambda((args) => (() => {
   const repo = "metarocq";
   const owner = "MetaRocq";
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
         nix.thunk(() => nix.app(case$, "9.1", "1.5.1-9.1")),
         nix.thunk(() => nix.app(case$, "9.0", "1.4-9.0.1")),
       ]), null);
   })());
   const release = nix.thunk(() => ({
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     "1.4-9.0": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       hash: "sha256-5QecDAMkvgfDPZ7/jDfnOgcE+Eb1LTAozP7nz6nkuxg=",
     })),
     "1.4-9.0.1": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hash: "sha256-zMUd2A6EG0LYK3L9ABQvS/Et4MDpSmf3Pxd9+IPNYkI=",
     })),
     "1.4-9.1": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       hash: "sha256-v6jFvUavIzyb/e6ytAaZjxQLFM9uW9TDUB77yRO74eE=",
     })),
     "1.4.1-9.1": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       hash: "sha256-tzoAWX74lg7pArGVP11QBvDRKMvmGxXvrf3+1E3Y4DI=",
     })),
     "1.5.1-9.1": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       hash: "sha256-0iFnSzfbufn2XhJ8EPyWu3KIiHYwxfMVQa2KT6GSR7s=",
     })),
   }));
   const releaseRev = (v) => nix.str`v${v}`;
   const packages = nix.thunk(() => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     utils: [],
     common: nix.thunk(() => ["utils"]),
     "template-rocq": nix.thunk(() => ["common"]),
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
     const pname = nix.thunk(() => (nix.asBool(nix.eq(package$, "all")) ? "metarocq" : nix.str`metarocq-${package$}`));
     const pkgallMake = "mkdir all\necho \"all:\" > all/Makefile\necho \"install:\" >> all/Makefile\n";
     const derivation = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => nix.update({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         version: version,
         pname: pname,
         defaultVersion: defaultVersion,
@@ -111,7 +111,7 @@ export default nix.lambda((args) => (() => {
         preBuild: nix.thunk(() => nix.str`cd ${pkgpath}
 `),
         meta: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           homepage: "https://metarocq.github.io/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -120,7 +120,7 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(package$, "single")), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           passthru: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (package$_1) => (deps) => nix.app(metarocq_, package$_1), packages)),
         })))))));
     return nix.force(derivation);

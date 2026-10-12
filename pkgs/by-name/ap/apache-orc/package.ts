@@ -26,26 +26,26 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   const protobuf$ = nix.thunk(() => nix.app(nix.sel(protobuf, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ __proto__: pos$1, cxxStandard: "17" })))),
+      [nix.POS]: pos$2,
+      "abseil-cpp": nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cxxStandard: "17" })))),
     }))));
   const orc_format = nix.thunk(() => (() => {
     const version = "1.1.1";
     const name = nix.thunk(() => nix.str`orc-format-${version}`);
     const archiveName = nix.thunk(() => nix.str`${name}.tar.gz`);
     return nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: archiveName,
         url: nix.thunk(() => nix.str`https://www.apache.org/dyn/closer.lua/orc/${name}/${archiveName}?action=download`),
         hash: "sha256-WE3+KkIClGF4/Y/H0SOb54BbntRZarIELe5znniAmSs=",
       })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "apache-orc",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "apache",
           repo: "orc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_FLAGS", "-Wno-unused-parameter")),
         ])))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         GTEST_HOME: nix.thunk(() => nix.sel(gtest, "dev")),
         LZ4_HOME: lz4,
         ORC_FORMAT_URL: orc_format,
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         ZSTD_HOME: nix.thunk(() => nix.sel(zstd, "dev")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/apache/orc/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Smallest, fastest columnar storage for Hadoop workloads",
         homepage: "https://github.com/apache/orc/",

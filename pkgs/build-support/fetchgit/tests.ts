@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const closureInfo = nix.arg($, "closureInfo");
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "simple-nix-source",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
         sha256: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
       })))),
     "collect-rev": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: "collect-rev-nix-source",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
         postCheckout: "git -C \"$out\" rev-parse HEAD | tee \"$out/revision.txt\"\n",
       })))),
     "simple-tag": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "simple-tag-nix-source",
         url: "https://github.com/NixOS/nix",
         tag: "2.3.15",
         hash: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
       })))),
     "describe-tag": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: "describe-tag-nix-source",
         url: "https://github.com/NixOS/nix",
         tag: "2.3.15",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         postCheckout: "{ git -C \"$out\" describe || echo \"git describe failed\"; } | tee \"$out\"/describe-output.txt\n",
       })))),
     sparseCheckout: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: "sparse-checkout-nix-source",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-g1PHGTWgAcd/+sXHo1o6AjVWCvC6HiocOfMbMh873LQ=",
       })))),
     sparseCheckoutNonConeMode: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: "sparse-checkout-non-cone-nix-source",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-FknO6C/PSnMPfhUqObD4vsW4PhkwdmPa9blNzcNvJQ4=",
       })))),
     "leave-git": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: "leave-git-nix-source",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         leaveDotGit: true,
       })))),
     "submodule-simple": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         name: "submodule-simple-source",
         url: "https://github.com/pineapplehunter/nix-test-repo-with-submodule",
         rev: "26473335b84ead88ee0a3b649b1c7fa4a91cfd4a",
@@ -107,7 +107,7 @@ export default nix.lambda((args) => (() => {
         fetchSubmodules: true,
       })))),
     "submodule-leave-git": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         name: "submodule-leave-git-source",
         url: "https://github.com/pineapplehunter/nix-test-repo-with-submodule",
         rev: "26473335b84ead88ee0a3b649b1c7fa4a91cfd4a",
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
         fetchSubmodules: true,
       })))),
     "submodule-deep": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         name: "submodule-deep-source",
         url: "https://github.com/pineapplehunter/nix-test-repo-with-submodule",
         rev: "26473335b84ead88ee0a3b649b1c7fa4a91cfd4a",
@@ -126,7 +126,7 @@ export default nix.lambda((args) => (() => {
         postFetch: "rm -r $out/.git",
       })))),
     "submodule-revision-count": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         name: "submodule-revision-count-source",
         url: "https://github.com/pineapplehunter/nix-test-repo-with-submodule",
         rev: "26473335b84ead88ee0a3b649b1c7fa4a91cfd4a",
@@ -137,7 +137,7 @@ export default nix.lambda((args) => (() => {
         postCheckout: "{ git -C \"$out\" rev-list --count HEAD || echo \"git rev-list failed\"; } | tee \"$out/revision_count.txt\"\n{ git -C \"$out/nix-test-repo-submodule\" rev-list --count HEAD || echo \"git rev-list failed\"; } | tee \"$out/nix-test-repo-submodule/revision_count.txt\"\n",
       })))),
     "submodule-leave-git-deep": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         name: "submodule-leave-git-deep-source",
         url: "https://github.com/pineapplehunter/nix-test-repo-with-submodule",
         rev: "26473335b84ead88ee0a3b649b1c7fa4a91cfd4a",
@@ -147,14 +147,14 @@ export default nix.lambda((args) => (() => {
         fetchSubmodules: true,
       })))),
     "dumb-http-signed-tag": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         name: "dumb-http-signed-tag-source",
         url: "https://git.scottworley.com/pub/git/pinch",
         rev: "v3.0.14",
         sha256: "sha256-bd0Lx75Gd1pcBJtwz5WGki7XoYSpqhinCT3a77wpY2c=",
       })))),
     fetchTags: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         name: "fetchgit-fetch-tags-test",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
@@ -164,7 +164,7 @@ export default nix.lambda((args) => (() => {
         postFetch: "cd $out && git describe --tags --always > describe-output.txt 2>&1 || echo \"git describe failed\" > describe-output.txt\n# See https://github.com/NixOS/nixpkgs/issues/412967#issuecomment-2927452118\nrm -rf .git\n",
       })))),
     rootDir: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         name: "fetchgit-with-rootdir",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
@@ -176,12 +176,12 @@ export default nix.lambda((args) => (() => {
       const url = "https://github.com/NixOS/nix";
       const rev = "9d9dbe6ed05854e03811c361a3380e09183f4f4a";
       const sha256 = "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=";
-      const fetched = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({ __proto__: pos$16, name: name, url: url, rev: rev, sha256: sha256 }))));
+      const fetched = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({ [nix.POS]: pos$16, name: name, url: url, rev: rev, sha256: sha256 }))));
       return nix.app(runCommand, "cached-prefetch-avoids-fetch", nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           nativeBuildInputs: nix.thunk(() => [nix_prefetch_git, nix$]),
         })), nix.thunk(() => nix.str`export NIX_REMOTE=local?root=$(mktemp -d)
-nix-store --load-db < ${nix.app(closureInfo, nix.thunk(() => ({ __proto__: pos$18, rootPaths: fetched })))}/registration
+nix-store --load-db < ${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$18, rootPaths: fetched })))}/registration
 nix-prefetch-git --name "${name}" "${url}" "${rev}" "${sha256}" > $out
 `));
     })()),
@@ -192,7 +192,7 @@ nix-prefetch-git --name "${name}" "${url}" "${rev}" "${sha256}" > $out
         const rev = nix.arg($_1, "rev");
         const hash = nix.arg($_1, "hash");
         return nix.app(runCommand, name, nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             buildInputs: nix.thunk(() => [nix_prefetch_git, nix$, cacert, jq]),
             outputHashMode: "recursive",
             outputHashAlgo: null,
@@ -201,23 +201,23 @@ nix-prefetch-git --name "${name}" "${url}" "${rev}" "${sha256}" > $out
             rev: rev,
           })), "store_root=\"$(mktemp -d)\"\nprefetch() { NIX_REMOTE=\"local?root=$store_root\" nix-prefetch-git $@ \"$url\" --rev \"$rev\" | jq -r .path; }\npath=\"$(prefetch --no-add-path)\"\nif test -e \"$store_root/$path\"; then\n  echo \"$path exists in $NIX_REMOTE when it shouldn't\" >&2\n  exit 1\nfi\npath_added=\"$(prefetch)\"\nif ! test -e \"$store_root/$path\"; then\n  echo \"$path_added doesn't exist in NIX_REMOTE when it should\" >&2\n  exit 1\nfi\nif test \"$path\" != \"$path_added\"; then\n  echo \"Paths are different with and without --no-add-path: $path != $path_added\" >&2\n  exit 1\nfi\ncp -r \"$store_root/$path_added\" \"$out\"\n");
       })(), formals$2), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         name: "nix-prefetch-git-no-add-path",
         url: "https://github.com/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
         hash: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
       })))),
     withGitConfig: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: "fetchgit-with-config",
         url: "https://doesntexist.forsure/NixOS/nix",
         rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
         sha256: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
         gitConfigFile: nix.thunk(() => nix.app(nix.sel(lib, "toFile"), "gitconfig", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toGitINI"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               url: nix.thunk(() => ({
-                __proto__: pos$22,
-                "https://github.com": nix.thunk(() => ({ __proto__: pos$21, insteadOf: "https://doesntexist.forsure" })),
+                [nix.POS]: pos$22,
+                "https://github.com": nix.thunk(() => ({ [nix.POS]: pos$21, insteadOf: "https://doesntexist.forsure" })),
               })),
             })))))),
       })))),

@@ -21,32 +21,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "mod_perl",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "sgo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             httpd: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: true,
               adminAddr: "admin@localhost",
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 modperl: nix.thunk(() => (() => {
                   const inc = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextDir"), "ModPerlTest.pm", "package ModPerlTest;\nuse strict;\nuse Apache2::RequestRec ();\nuse Apache2::RequestIO ();\nuse Apache2::Const -compile => qw(OK);\nsub handler {\n  my $r = shift;\n  $r->content_type('text/plain');\n  print \"Hello mod_perl!\\n\";\n  return Apache2::Const::OK;\n}\n1;\n"));
                   const startup = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScript"), "startup.pl", nix.thunk(() => nix.str`use lib "${inc}",
@@ -57,13 +57,13 @@ export default nix.lambda((args) => (() => {
 1;
 `)));
                   return {
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     extraConfig: nix.thunk(() => nix.str`PerlRequire ${startup}
 `),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       "/modperl": nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         extraConfig: "SetHandler perl-script\nPerlResponseHandler ModPerlTest\n",
                       })),
                     })),

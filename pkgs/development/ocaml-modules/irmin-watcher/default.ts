@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "irmin-watcher",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/irmin-watcher/releases/download/${nix.sel(finalAttrs, "version")}/irmin-watcher-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-vq4kwaz4QUG9x0fGEbQMAuDGjlT3/6lm8xiXTUqJmZM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [astring, fmt, logs, lwt]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mirage/irmin-watcher",
         description: "Portable Irmin watch backends using FSevents or Inotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

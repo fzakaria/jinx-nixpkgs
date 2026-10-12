@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const betamax_matchers = nix.arg($, "betamax-matchers");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "github3-py",
       version: "4.0.1-unstable-2026-04-22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sigmavirus24",
           repo: "github3.py",
           rev: "9eeac0ddb241bf3099a6c904411e3aa23b62fd0d",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["github3"]),
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook, betamax, betamax_matchers]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github3py.readthedocs.org/en/master/",
         description: "Wrapper for the GitHub API written in python",
         changelog: nix.thunk(() => nix.str`https://github.com/sigmavirus24/github3.py/blob/${nix.sel(finalAttrs, "version")}/docs/source/release-notes/${nix.sel(finalAttrs, "version")}.rst`),

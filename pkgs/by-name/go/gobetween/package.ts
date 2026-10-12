@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gobetween",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "yyyar",
           repo: "gobetween",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-xmyqDi2q7J909cWMec9z2u0DJVJjzv86vjYkSfw/3o8=",
         })))),
       vendorHash: "sha256-3jv0dSsJg90J64Ay7USkUOi8cF1Sj+A7v/snJEdJPFU=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 make -e build${nix.app(nix.sel(lib, "optionalString"), enableStatic, "-static")}
@@ -36,7 +36,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp bin/gobetween $out/bin\ncp -r share $out/share\ncp -r config $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern & minimalistic load balancer for the Cloud era",
         homepage: "https://gobetween.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

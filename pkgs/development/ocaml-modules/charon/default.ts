@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "charon",
       version: "2026.08.15",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AeneasVerif",
           repo: "charon",
           tag: nix.thunk(() => nix.str`nightly-${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [easy_logging, name_matcher_parser, ppx_deriving, unionFind, visitors, yojson]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Analyze Rust crates without touching compiler internals",
         homepage: "https://github.com/AeneasVerif/charon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

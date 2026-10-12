@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0rc2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tiran",
           repo: "defusedxml",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["defusedxml"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/tiran/defusedxml/blob/v${version}/CHANGES.txt`),
         description: "Python module to defuse XML issues",
         homepage: "https://github.com/tiran/defusedxml",
@@ -45,7 +45,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nodejs_22 = nix.arg($, "nodejs_22");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jellystat",
       version: "1.1.12",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CyferShepard",
           repo: "Jellystat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nodejs: nodejs_22,
       npmPackFlags: nix.thunk(() => ["--ignore-scripts"]),
       npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
       postPatch: "substituteInPlace backend/server.js \\\n  --replace-fail \"const PORT = 3000;\" \"const PORT = Number(process.env.JS_PORT || 3000);\"\n",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -51,13 +51,13 @@ makeWrapper ${nodejs_22}/bin/node $out/bin/jellystat \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Jellystat is a free and open source Statistics App for Jellyfin",
           homepage: "https://github.com/CyferShepard/Jellystat",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mit")),

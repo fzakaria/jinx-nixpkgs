@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const cython = nix.argOr($, "cython", () => null);
   const numpy = nix.argOr($, "numpy", () => null);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "purepng",
       version: "0.2.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Scondo",
           repo: "purepng",
           rev: "449aa00e97a8d7b8a200eb9048056d4da600a345",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-py37-stopiteration-in-generators.patch",
             url: "https://github.com/Scondo/purepng/pull/28/commits/62d71dfc2be9ffdc4b3e5f642af0281a8ce8f946.patch",
             sha256: "1ag0pji3p012hmj8kadcd0vydv9702188c0isizsi964qcl4va6m",
@@ -49,7 +49,7 @@ ${nix.sel(python, "interpreter")} code/test_png.py
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pure Python library for PNG image encoding/decoding",
         homepage: "https://github.com/scondo/purepng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

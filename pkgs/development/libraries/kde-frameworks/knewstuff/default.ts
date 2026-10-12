@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const kirigami2 = nix.arg($, "kirigami2");
   const syndication = nix.arg($, "syndication");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "knewstuff",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const yasnippet = nix.arg($, "yasnippet");
   const el_patch = nix.arg($, "el-patch");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "voicemacs",
       version: "0-unstable-2024-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jcaw",
           repo: "voicemacs",
           rev: "fb6133f59d3062a0cb2396353d9a1edd2af4750a",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         el_patch,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jcaw/voicemacs/",
         description: "Set of utilities for controlling Emacs by voice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

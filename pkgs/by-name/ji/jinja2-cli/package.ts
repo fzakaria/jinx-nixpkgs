@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattrobenolt",
           repo: "jinja2-cli",
           rev: version,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hjson: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "hjson"))]),
           json5: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "json5"))]),
           toml: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "toml"))]),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "CLI for Jinja2",
         homepage: "https://github.com/mattrobenolt/jinja2-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jinja2",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

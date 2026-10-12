@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const avx2Support = nix.argOr($, "avx2Support", () => nix.sel(clangStdenv, "hostPlatform", "avx2Support"));
   const stdenv = clangStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cctag",
       version: "1.0.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alicevision",
           repo: "CCTag",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost186, eigen, nix.thunk(() => nix.sel(opencv, "cxxdev"))]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Detection of CCTag markers made up of concentric circles",
         homepage: "https://cctag.readthedocs.io",
         downloadPage: "https://github.com/alicevision/CCTag",

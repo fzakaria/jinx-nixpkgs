@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdk11 = nix.arg($, "jdk11");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "janusgraph",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/JanusGraph/janusgraph/releases/download/v${nix.sel(finalAttrs, "version")}/janusgraph-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-gEtiY/FXNCtpVlohcTTuZ1V/EHr/trqYQKYUKy9wN4U=",
         })))),
@@ -48,7 +48,7 @@ makeWrapper ${jdk11}/bin/java $out/bin/janusgraph-server \\
 cd "$TMPDIR"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source, distributed graph database",
         homepage: "https://janusgraph.org/",
         mainProgram: "janusgraph-server",

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "polonium",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zeroxoneafour",
           repo: "polonium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "kwin", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Auto-tiler that uses KWin 6.0+ tiling functionality",
         homepage: "https://polonium.vaughanm.xyz/",
         downloadPage: "https://github.com/zeroxoneafour/polonium/releases",

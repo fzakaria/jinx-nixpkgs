@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gnumake = nix.arg($, "gnumake");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drip",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "drip",
           owner: "ninjudd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Launcher for the Java Virtual Machine intended to be a drop-in replacement for the java command, only faster",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
         homepage: "https://github.com/ninjudd/drip",

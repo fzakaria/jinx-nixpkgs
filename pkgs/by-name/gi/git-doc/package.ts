@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const gitFull = nix.arg($, "gitFull");
   const lib = nix.arg($, "lib");
   return (nix.asBool(nix.has(gitFull, "doc")) ? nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "Additional documentation for Git",
       longDescription: "This package contains additional documentation (HTML and text files) that\nare referenced in the man pages of Git.\n",
     })), nix.thunk(() => nix.sel(gitFull, "doc"))) : nix.builtins.throw("'git-doc' can't be evaluated as 'gitFull doesn't expose a 'doc' attribute"));

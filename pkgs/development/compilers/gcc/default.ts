@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
   const libucontext = nix.argOr($, "libucontext", () => null);
   const gnat_bootstrap = nix.argOr($, "gnat-bootstrap", () => null);
   const _systemInfo = nix.argOr($, "_systemInfo", () => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     buildIsHost: nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
     hostIsTarget: nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(stdenv, "targetPlatform")))),
   }));
@@ -108,7 +108,7 @@ export default nix.lambda((args) => (() => {
   const crossNameAddon = nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.asBool(hostIsTarget)), nix.thunk(() => nix.str`${nix.sel(targetPlatform, "config")}${stageNameAddon}-`)));
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(hostIsTarget)), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   const callFile = nix.thunk(() => nix.app(callPackageWith, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       majorVersion: majorVersion,
       isSnapshot: isSnapshot,
       version: version,
@@ -186,12 +186,12 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.app(callFile, nix.path(here, "./common/dependencies.nix"), nix.thunk(() => ({}))));
         const from_1 = nix.thunk(() => nix.app(callFile, nix.path(here, "./common/strip-attributes.nix"), nix.thunk(() => ({}))));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: nix.thunk(() => nix.str`${crossNameAddon}${name}`),
         name: nix.thunk(() => nix.str`${crossNameAddon}${name}-${version}`),
         version: baseVersion,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.attrsDyn({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: nix.thunk(() => (nix.asBool(isSnapshot) ? nix.str`mirror://gcc/snapshots/${majorVersion}-${snapDate}/gcc-${majorVersion}-${snapDate}.tar.xz` : nix.str`mirror://gcc/releases/gcc-${version}/gcc-${version}.tar.xz`)),
           }, [
             [(nix.asBool(is13) ? "hash" : "sha256"), nix.thunk(() => nix.app(nix.sel(gccVersions, "srcHashForVersion"), version))],
@@ -244,7 +244,7 @@ do
 `)),
         dontDisableStatic: true,
         configurePlatforms: nix.thunk(() => ["build", "host", "target"]),
-        configureFlags: nix.thunk(() => nix.app(callFile, nix.path(here, "./common/configure-flags.nix"), nix.thunk(() => ({ __proto__: pos$4, targetPrefix: targetPrefix })))),
+        configureFlags: nix.thunk(() => nix.app(callFile, nix.path(here, "./common/configure-flags.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, targetPrefix: targetPrefix })))),
         targetConfig: targetConfig,
         buildFlags: nix.thunk(() => (() => {
           nix.assert_((!nix.asBool(profiledCompiler) || nix.asBool(!nix.asBool(disableBootstrap))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/gcc/default.nix:343:9");
@@ -258,7 +258,7 @@ do
         env: nix.thunk(() => nix.app(mapAttrs, (_) => (v) => nix.builtins.toString(v), nix.thunk(() => (() => {
             const from_2 = nix.thunk(() => nix.app(callFile, nix.path(here, "./common/extra-target-flags.nix"), nix.thunk(() => ({}))));
             return nix.attrsDyn({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             NIX_NO_SELF_RPATH: true,
             CPATH: nix.thunk(() => nix.app(optionals, hostIsTarget, nix.thunk(() => nix.app(makeSearchPathOutput, "dev", "include", nix.thunk(() => nix.concat([], nix.app(optional, nix.thunk(() => !nix.eq(zlib, null)), zlib))))))),
             LIBRARY_PATH: nix.thunk(() => nix.app(optionals, hostIsTarget, nix.thunk(() => nix.app(makeLibraryPath, nix.thunk(() => nix.app(optional, nix.thunk(() => !nix.eq(zlib, null)), zlib)))))),
@@ -271,7 +271,7 @@ do
           ]);
           })()))),
         passthru: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           langC: langC,
           langCC: langCC,
           langObjC: langObjC,
@@ -287,9 +287,9 @@ do
         enableShared: enableShared,
         enableMultilib: enableMultilib,
         meta: nix.thunk(() => (() => {
-          const from_2 = nix.thunk(() => nix.app(callFile, nix.path(here, "./common/meta.nix"), nix.thunk(() => ({ __proto__: pos$7, targetPrefix: targetPrefix }))));
+          const from_2 = nix.thunk(() => nix.app(callFile, nix.path(here, "./common/meta.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, targetPrefix: targetPrefix }))));
           return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           homepage: nix.thunk(() => nix.attr(from_2, "homepage")),
           license: nix.thunk(() => nix.attr(from_2, "license")),
           description: nix.thunk(() => nix.attr(from_2, "description")),
@@ -301,9 +301,9 @@ do
         };
         })()),
       };
-      })(), nix.app(optionalAttrs, enableMultilib, nix.thunk(() => ({ __proto__: pos$10, dontMoveLib64: true }))))))), nix.thunk(() => [
+      })(), nix.app(optionalAttrs, enableMultilib, nix.thunk(() => ({ [nix.POS]: pos$10, dontMoveLib64: true }))))))), nix.thunk(() => [
       nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/libgcc.nix"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           version: version,
           langC: langC,
           langCC: langCC,
@@ -316,7 +316,7 @@ do
           libcCross: libcCross,
         })))),
       nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/checksum.nix"), nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           langC: langC,
           langCC: langCC,
           buildIsHost: buildIsHost,

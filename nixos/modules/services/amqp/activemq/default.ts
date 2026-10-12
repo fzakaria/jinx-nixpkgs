@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "activemq"));
   const activemqBroker = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "activemq-broker", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jdk"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out/lib
 source ${nix.sel(pkgs, "activemq")}/lib/classpath.env
@@ -44,45 +44,45 @@ ln -s "${nix.path(here, "./ActiveMQBroker.java")}" ActiveMQBroker.java
 javac -d $out/lib ActiveMQBroker.java
 `)));
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         activemq: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the Apache ActiveMQ message broker service.\n",
             })))),
           configurationDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "activemq")}/conf`),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "\"${pkgs.activemq}/conf\"")),
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The base directory for ActiveMQ's configuration.\nBy default, this directory is searched for a file named activemq.xml,\nwhich should contain the configuration for the broker service.\n",
             })))),
           configurationURI: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "xbean:activemq.xml",
               description: "The URI that is passed along to the BrokerFactory to\nset up the configuration of the ActiveMQ broker service.\nYou should not need to change this. For custom configuration,\nset the `configurationDir` instead, and create\nan activemq.xml configuration file in it.\n",
             })))),
           baseDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/activemq",
               description: "The base directory where ActiveMQ stores its persistent data and logs.\nThis will be overridden if you set \"activemq.base\" and \"activemq.data\"\nin the `javaProperties` option. You can also override\nthis in activemq.xml.\n",
             })))),
           javaProperties: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "attrs")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"java.net.preferIPv4Stack\" = \"true\";\n}\n")),
               apply: (attrs) => nix.update({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 "activemq.base": nix.thunk(() => nix.str`${nix.sel(cfg, "baseDir")}`),
                 "activemq.data": nix.thunk(() => nix.str`${nix.sel(cfg, "baseDir")}/data`),
                 "activemq.conf": nix.thunk(() => nix.str`${nix.sel(cfg, "configurationDir")}`),
@@ -91,7 +91,7 @@ javac -d $out/lib ActiveMQBroker.java
               description: "Specifies Java properties that are sent to the ActiveMQ\nbroker service with the \"-D\" option. You can set properties\nhere to change the behaviour and configuration of the broker.\nAll essential properties that are not set here are automatically\ngiven reasonable defaults.\n",
             })))),
           extraJavaOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "separatedString"), " ")),
               default: "",
               example: "-Xmx2G -Xms2G -XX:MaxPermSize=512M",
@@ -101,46 +101,46 @@ javac -d $out/lib ActiveMQBroker.java
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         users: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             activemq: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "ActiveMQ server user",
               group: "activemq",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "activemq")),
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             activemq: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "activemq")),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           services: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             activemq_init: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               wantedBy: nix.thunk(() => ["activemq.service"]),
               partOf: nix.thunk(() => ["activemq.service"]),
               before: nix.thunk(() => ["activemq.service"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$17, Type: "oneshot" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Type: "oneshot" })),
               script: nix.thunk(() => nix.str`mkdir -p "${nix.sel(cfg, "javaProperties", "activemq.data")}"
 chown -R activemq "${nix.sel(cfg, "javaProperties", "activemq.data")}"
 `),
             })),
             activemq: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jre"))]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$19, User: "activemq" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$19, User: "activemq" })),
               script: nix.thunk(() => nix.str`source ${nix.sel(pkgs, "activemq")}/lib/classpath.env
 export CLASSPATH=${activemqBroker}/lib:${nix.sel(cfg, "configurationDir")}:$CLASSPATH
 exec java \\

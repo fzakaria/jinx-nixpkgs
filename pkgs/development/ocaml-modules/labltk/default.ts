@@ -31,73 +31,73 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   const params = nix.thunk(() => ({
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     "4.09": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       version: "8.06.7",
       sha256: "1cqnxjv2dvw9csiz4iqqyx6rck04jgylpglk8f69kgybf7k7xk2h",
       stdenv: gcc13Stdenv,
     })),
     "4.10": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "8.06.8",
       sha256: "0lfjc7lscq81ibqb3fcybdzs2r1i2xl7rsgi7linq46a0pcpkinw",
       stdenv: gcc13Stdenv,
     })),
     "4.11": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "8.06.9",
       sha256: "1k42k3bjkf22gk39lwwzqzfhgjyhxnclslldrzpg5qy1829pbnc0",
       stdenv: gcc13Stdenv,
     })),
     "4.12": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "8.06.10",
       sha256: "06cck7wijq4zdshzhxm6jyl8k3j0zglj2axsyfk6q1sq754zyf4a",
     })),
     "4.13": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       version: "8.06.11",
       sha256: "1zjpg9jvs6i9jvbgn6zgispwqiv8rxvaszxcx9ha9fax3wzhv9qy",
     })),
     "4.14": nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       version: "8.06.12",
       sha256: "sha256:17fmb13l18isgwr38hg9r5a0nayf2hhw6acj5153cy1sygsdg3b5",
     })),
     "5.0": nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: "8.06.13",
       sha256: "sha256-Vpf13g3DEWlUI5aypiowGp2fkQPK0cOGv2XiRUY/Ip4=",
     })),
     "5.2": nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       version: "8.06.14",
       sha256: "sha256-eVSQetk+i3KObjHfsvnD615cIsq3aZ7IxycX42cuPIU=",
     })),
     "5.3": nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       version: "8.06.15",
       sha256: "sha256-I/y5qr5sasCtlrwxL/Lex79rg0o4tzDMBmQY7MdpU2w=",
     })),
     "5.4": nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       version: "8.06.16",
       sha256: "sha256-T+5x6nfxrJh4NEMCPFY/9AMug2oqxNl4CGw1lRy9ne4=",
     })),
   }));
   const param = nix.thunk(() => nix.update({
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     stdenv: stdenv,
     version: "",
     sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")),
   }, nix.selOr(params, () => ({}), nix.key(nix.str`${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version")))}`))));
   return nix.app(nix.sel(param, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       version: nix.thunk(() => nix.attr(param, "version")),
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-labltk`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           url: nix.thunk(() => nix.str`https://github.com/garrigue/labltk/archive/${nix.sel(param, "version")}.tar.gz`),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         })))),
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "OCaml interface to Tcl/Tk, including OCaml library explorer OCamlBrowser",
         homepage: "http://labltk.forge.ocamlcore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

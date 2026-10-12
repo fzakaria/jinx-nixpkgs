@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const w = nix.withScope(lib, null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "CertiRocq",
       owner: "CertiRocq",
       repo: "certirocq",
@@ -30,16 +30,16 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mr) => (out) => ({ __proto__: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
+        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
             nix.thunk(() => nix.sel(metarocq_erasure_plugin, "version")),
           ]), nix.thunk(() => [nix.thunk(() => nix.app(case$, "9.1", "1.5.1-9.1", "0.9.1+9.1"))]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "0.9.1+9.1": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           hash: "sha256-YsweBaoq8+QG63e7Llp/4bHldAFnSQSyMumJkb+Bsp0=",
         })),
       })),
@@ -67,7 +67,7 @@ COQLIBINSTALL=$OUTDIR COQPLUGININSTALL=$OCAMLFIND_DESTDIR make -C cplugin instal
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CertiRocq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);

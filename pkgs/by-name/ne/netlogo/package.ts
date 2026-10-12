@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopicon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "netlogo.png",
       url: "https://netlogoweb.org/assets/images/desktopicon.png",
       hash: "sha256-KCsXt1dnBNUEBKvusp5JpKOSH7u9gSwaUvvTMDKkg8Q=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "netlogo",
       version: "6.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://ccl.northwestern.edu/netlogo/${nix.sel(finalAttrs, "version")}/NetLogo-${nix.sel(finalAttrs, "version")}-64.tgz`),
           hash: "sha256-hkciO0KC4L4+YtycRSB/gkELpj3SiSsIrylAy6pq0d4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "netlogo",
             exec: "netlogo",
             icon: "netlogo",
@@ -58,7 +58,7 @@ install -Dm644 ${desktopicon} $out/share/icons/hicolor/256x256/apps/netlogo.png
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Multi-agent programmable modeling environment",
         mainProgram: "netlogo",
         longDescription: "NetLogo is a multi-agent programmable modeling environment. It is used by\nmany tens of thousands of students, teachers and researchers worldwide.\n",

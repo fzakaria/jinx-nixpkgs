@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const astring = nix.arg($, "astring");
   const ounit = nix.arg($, "ounit");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "parse-argv",
       version: "0.2.0",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/parse-argv/releases/download/v${nix.sel(finalAttrs, "version")}/parse-argv-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "06dl04fcmwpkydzni2fzwrhk0bqypd55mgxfax9v82x65xrgj5gw",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [ounit]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Process strings into sets of command-line arguments",
         homepage: "https://github.com/mirage/parse-argv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

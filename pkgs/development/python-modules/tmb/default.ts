@@ -16,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tmb",
       version: "0.1.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alemuro",
           repo: "tmb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-XuRhRmeTXAplb14UwISyzaqEIrFeg8/aCdMxUccMUos=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ __proto__: pos$2, VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
       dependencies: nix.thunk(() => [requests]),
       pythonImportsCheck: nix.thunk(() => ["tmb"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library that interacts with TMB API",
         homepage: "https://github.com/alemuro/tmb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

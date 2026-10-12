@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "signalkraft",
       domain: "mypyllant",
       version: "0.9.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "signalkraft",
           repo: "mypyllant-component",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial Home Assistant integration for interacting with myVAILLANT",
         changelog: nix.thunk(() => nix.str`https://github.com/signalkraft/mypyllant-component/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/signalkraft/mypyllant-component",

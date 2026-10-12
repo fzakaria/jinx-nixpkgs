@@ -46,58 +46,58 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "karakeep"));
   const karakeepEnv = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-      nix.thunk(() => ({ __proto__: pos$1, DATA_DIR: "/var/lib/karakeep" })),
+      nix.thunk(() => ({ [nix.POS]: pos$1, DATA_DIR: "/var/lib/karakeep" })),
       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           MEILI_ADDR: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "meilisearch", "listenPort")))}`),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "browser", "enable")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           BROWSER_WEB_URL: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "browser", "port")))}`),
         })))),
       nix.thunk(() => nix.sel(cfg, "extraEnvironment")),
     ])));
   const environmentFiles = nix.thunk(() => nix.concat(["/var/lib/karakeep/settings.env"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         karakeep: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable the Karakeep service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "karakeep", nix.thunk(() => ({})))),
           extraEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "Environment variables to pass to Karakaeep. This is how most settings\ncan be configured. Changing DATA_DIR is possible but not supported.\n\nSee <https://docs.karakeep.app/configuration/environment-variables>\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  PORT = \"1234\";\n  DISABLE_SIGNUPS = \"true\";\n  DISABLE_NEW_RELEASE_CHECK = \"true\";\n}\n")),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               description: "An optional path to an environment file that will be used in the web and workers\nservices. This is useful for loading private keys.\n",
               example: "/var/lib/karakeep/secrets.env",
             })))),
           browser: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 description: "Enable the karakeep-browser service that runs a chromium instance in\nthe background with debugging ports exposed. This is necessary for\ncertain features like screenshots.\n",
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 description: "The port the browser should run on.",
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 9222n,
               })))),
             exe: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "The browser executable (must be Chrome-like).",
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(pkgs, "chromium")}/bin/chromium`),
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           meilisearch: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Enable Meilisearch and configure Karakeep to use it. Meilisearch is\nrequired for text search.\n",
@@ -118,32 +118,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
-          groups: nix.thunk(() => ({ __proto__: pos$16, karakeep: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$19,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$16, karakeep: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$18,
-            karakeep: nix.thunk(() => ({ __proto__: pos$17, isSystemUser: true, group: "karakeep" })),
+            [nix.POS]: pos$18,
+            karakeep: nix.thunk(() => ({ [nix.POS]: pos$17, isSystemUser: true, group: "karakeep" })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           meilisearch: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             enable: nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "karakeep-init": nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Initialize Karakeep Data",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -163,7 +163,7 @@ export DATA_DIR="$STATE_DIRECTORY"
 exec "${nix.sel(cfg, "package")}/lib/karakeep/migrate"
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: "karakeep",
@@ -173,7 +173,7 @@ exec "${nix.sel(cfg, "package")}/lib/karakeep/migrate"
               })),
             })),
             "karakeep-workers": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               description: "Karakeep Workers",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "karakeep-init.service"]),
@@ -184,7 +184,7 @@ exec "${nix.sel(cfg, "package")}/lib/karakeep/migrate"
               ]),
               environment: karakeepEnv,
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 User: "karakeep",
                 Group: "karakeep",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/karakeep/start-workers`),
@@ -194,14 +194,14 @@ exec "${nix.sel(cfg, "package")}/lib/karakeep/migrate"
               })),
             })),
             "karakeep-web": nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Karakeep Web",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target", "karakeep-init.service", "karakeep-workers.service"]),
               partOf: nix.thunk(() => ["karakeep.service"]),
-              environment: nix.thunk(() => nix.update({ __proto__: pos$26, NEXT_CACHE_DIR: "%C/karakeep" }, karakeepEnv)),
+              environment: nix.thunk(() => nix.update({ [nix.POS]: pos$26, NEXT_CACHE_DIR: "%C/karakeep" }, karakeepEnv)),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/karakeep/start-web`),
                 User: "karakeep",
                 Group: "karakeep",
@@ -212,7 +212,7 @@ exec "${nix.sel(cfg, "package")}/lib/karakeep/migrate"
               })),
             })),
             "karakeep-browser": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "browser", "enable")), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 partOf: nix.thunk(() => ["karakeep.service"]),
@@ -225,7 +225,7 @@ exec ${nix.sel(cfg, "browser", "exe")} \\
   --user-data-dir="$STATE_DIRECTORY"
 `),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$29,
+                  [nix.POS]: pos$29,
                   Type: "simple",
                   Restart: "on-failure",
                   CacheDirectory: "karakeep-browser",
@@ -252,7 +252,7 @@ exec ${nix.sel(cfg, "browser", "exe")} \\
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "three"))]),
     })),
   };

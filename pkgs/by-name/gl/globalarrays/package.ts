@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "globalarrays",
       version: "5.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GlobalArrays",
           repo: "ga",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gfortran, mpi, openssh]),
       buildInputs: nix.thunk(() => [mpi, blas]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, isILP64: nix.thunk(() => nix.attr(blas, "isILP64")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, isILP64: nix.thunk(() => nix.attr(blas, "isILP64")) })),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       strictDeps: true,
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--with-mpi", "--with-mpi3", "--enable-eispack", "--enable-underscoring"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(blas, "isILP64")), nix.thunk(() => ["--enable-i8", "--with-blas8=-lblas"])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Global Arrays Programming Models",
         homepage: "http://hpc.pnl.gov/globalarrays/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),

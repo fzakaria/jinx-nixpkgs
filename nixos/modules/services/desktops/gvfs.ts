@@ -26,50 +26,50 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "gvfs"));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         gvfs: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GVfs, a userspace virtual filesystem")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["gnome", "gvfs"]), nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           sessionVariables: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             GIO_EXTRA_MODULES: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/lib/gio/modules`)]),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$8,
-          fuse: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+          [nix.POS]: pos$8,
+          fuse: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           dbus: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           })),
           udev: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libmtp", "out"))]),
           })),
-          udisks2: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+          udisks2: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),

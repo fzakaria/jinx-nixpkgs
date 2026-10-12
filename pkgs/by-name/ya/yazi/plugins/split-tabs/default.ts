@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "split-tabs.yazi",
       version: "0-unstable-2026-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terrakok",
           repo: "split-tabs.yazi",
           rev: "d0531f49503003d669b98ebd468f5dddb90391ba",
           hash: "sha256-25PnsplMhF9satXHA1Ow0bZSksoLwH2zpuqrEZ2aFjQ=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin that provides a dual-pane view by splitting the screen between two tabs",
         homepage: "https://github.com/terrakok/split-tabs.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

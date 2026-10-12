@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mono = nix.arg($, "mono");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "convchain",
       version: "0.0pre20160901",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mxgmn",
           repo: "ConvChain",
           rev: "8abb1e88a496fcae4c0ae31acd4eea55957dab68",
@@ -42,7 +42,7 @@ chmod a+x "$out/bin/convchainfast"
 `),
       buildInputs: nix.thunk(() => [mono]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bitmap generation from a single example with convolutions and MCMC",
         homepage: "https://github.com/mxgmn/ConvChain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

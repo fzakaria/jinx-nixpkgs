@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "avbroot";
       const version = "3.34.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chenxiaolong",
           repo: "avbroot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, protobuf]);
       const buildInputs = nix.thunk(() => [bzip2]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sign (and root) Android A/B OTAs with custom keys while preserving Android Verified Boot",
         homepage: "https://github.com/chenxiaolong/avbroot",
         changelog: nix.thunk(() => nix.str`https://github.com/chenxiaolong/avbroot/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "avbroot",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

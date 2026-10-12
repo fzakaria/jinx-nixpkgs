@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pname: pname,
             version: version_1,
             hash: "sha256-A5r20Y8mgxhOhaKMpd5MJN5ubzPbkodAO0Tr0RN1SRA=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
 `);
         const pythonImportsCheck = nix.thunk(() => ["u_boot_pylib"]);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname,
           version: version_1,
           pyproject,
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             pname: pname,
             version: version_1,
             hash: "sha256-NA96CznIxjqpw2Ik8AJpJkJ/ei+kQTCUExwFgssV+CM=",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })(), [u_boot_pylib]));
         const pythonImportsCheck = nix.thunk(() => ["dtoc"]);
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pname,
           version: version_1,
           pyproject,
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
           const version_1 = version;
           const pyproject = true;
           const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               pname: pname,
               version: version_1,
               hash: "sha256-llEBBhUoW5jTEQeoaTCjZN8y6Kj+PGNUSB3cKpgD06w=",
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
           const preFixup = nix.thunk(() => nix.str`wrapProgram "$out/bin/binman" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), btools)}"
 `);
           return {
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             pname,
             version: version_1,
             pyproject,
@@ -155,7 +155,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             pname: pname,
             version: version_1,
             hash: "sha256-zD9e87fpWKynpUcfxobbdk6wbM6Ja3f8hEVHS7DGIKQ=",
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
           ];
         })(), [u_boot_pylib]));
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname,
           version: version_1,
           pyproject,
@@ -181,7 +181,7 @@ export default nix.lambda((args) => (() => {
           dependencies,
         };
       })())));
-    return { __proto__: pos$9, u_boot_pylib, dtoc, binman, patman };
+    return { [nix.POS]: pos$9, u_boot_pylib, dtoc, binman, patman };
   })();
 })(), formals$1);
 //# sourceMappingURL=python.ts.map

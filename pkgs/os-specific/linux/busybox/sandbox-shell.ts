@@ -13,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const busybox = nix.arg($, "busybox");
   const musl = nix.arg($, "musl");
   return nix.app(nix.sel(busybox, "override"), nix.thunk(() => nix.update({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       enableStatic: true,
       enableMinimal: true,
       extraConfig: "CONFIG_FEATURE_FANCY_ECHO y\nCONFIG_FEATURE_SH_MATH y\nCONFIG_FEATURE_SH_MATH_64 y\nCONFIG_FEATURE_TEST_64 y\n\nCONFIG_ASH y\nCONFIG_ASH_OPTIMIZE_FOR_SIZE y\n\nCONFIG_ASH_ALIAS y\nCONFIG_ASH_BASH_COMPAT y\nCONFIG_ASH_CMDCMD y\nCONFIG_ASH_ECHO y\nCONFIG_ASH_GETOPTS y\nCONFIG_ASH_INTERNAL_GLOB y\nCONFIG_ASH_JOB_CONTROL y\nCONFIG_ASH_PRINTF y\nCONFIG_ASH_TEST y\n",
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu")) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), musl)))), nix.thunk(() => ({ __proto__: pos$2, useMusl: true }))))));
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu")) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), musl)))), nix.thunk(() => ({ [nix.POS]: pos$2, useMusl: true }))))));
 })(), formals$1);
 //# sourceMappingURL=sandbox-shell.ts.map

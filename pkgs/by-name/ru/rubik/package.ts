@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rubik",
       version: "2.200",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "rubik",
           rev: "054aa9d546cd6308f8ff7139b332490e0967aebe",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       preInstall: "rm -r old/",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fonts.google.com/specimen/Rubik",
         description: "Rubik Font - is a 5 weight Roman + Italic family",
         longDescription: "The Rubik Fonts project was initiated as part of the Chrome CubeLab\nproject.\n\nRubik is a 5 weight Roman + Italic family.\n\nRubik supports the Latin, Cyrillic and Hebrew scripts. The Latin and Cyrillic\nwere designed by Philipp Hubert and Sebastian Fischer at Hubert Fischer.\n\nThe Hebrew was initially designed by Philipp and Sebastian, and then revised by\ntype designer and Hebrew native reader Meir Sadan to adjust proportions,\nspacing and other design details.\n\nCyrillic was initially designed by Philipp and Sebastian, and then revised and\nexpanded by Cyreal Fonts Team (Alexei Vanyashin and Nikita Kanarev). Existing\nglyphs were improved, and glyph set was expanded to GF Cyrillic Plus.\n",

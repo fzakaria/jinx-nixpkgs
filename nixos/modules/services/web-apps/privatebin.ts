@@ -50,9 +50,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "privatebin"));
   const customToINI = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           mkValueString: (v) => (nix.asBool(nix.eq(v, true)) ? "true" : (nix.asBool(nix.eq(v, false)) ? "false" : (nix.asBool(nix.builtins.isInt(v)) ? nix.str`${nix.builtins.toString(v)}` : (nix.asBool(nix.builtins.isPath(v)) ? nix.str`"${nix.builtins.toString(v)}"` : (nix.asBool(nix.builtins.isString(v)) ? nix.str`"${v}"` : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v)))))),
         })), "=")),
     }))));
@@ -62,48 +62,48 @@ export default nix.lambda((args) => (() => {
   const defaultUser = "privatebin";
   const defaultGroup = "privatebin";
   return {
-    __proto__: pos$39,
+    [nix.POS]: pos$39,
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         privatebin: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Privatebin: A minimalist, open source online\n      pastebin where the server has zero knowledge of pasted data.")),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: defaultUser,
               description: "User account under which privatebin runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNginx")) ? "nginx" : defaultGroup)),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.services.privatebin.enableNginx then "nginx" else "${defaultGroup}"`))),
               description: "Group under which privatebin runs. It is best to set this to the group\nof whatever webserver is being used as the frontend.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/privatebin",
               description: "The place where privatebin stores its state.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "privatebin", nix.thunk(() => ({})))),
           enableNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable nginx or not. If enabled, an nginx virtual host will\nbe created for access to privatebin. If not enabled, then you may use\n`${config.services.privatebin.package}` as your document root in\nwhichever webserver you wish to setup.\n",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "The hostname at which you wish privatebin to be served. If you have\nenabled nginx using `services.privatebin.enableNginx` then this will\nbe used.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
@@ -114,12 +114,12 @@ export default nix.lambda((args) => (() => {
               description: "Options for the PrivateBin PHP pool. See the documentation on <literal>php-fpm.conf</literal>\nfor details on configuration directives.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               default: nix.thunk(() => ({})),
               description: "Options for privatebin configuration. Refer to\n<https://github.com/PrivateBin/PrivateBin/wiki/Configuration> for\ndetails on supported values.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  main = {\n    name = \"NixOS Based Privatebin\";\n    discussion = false;\n    defaultformatter = \"plalib.types.intext\";\n    qrcode = true\n  };\n  model.class = \"Filesystem\";\n  model_options.dir = \"/var/lib/privatebin/data\";\n}\n")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
                 })))),
             })))),
@@ -127,45 +127,45 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$38,
+        [nix.POS]: pos$38,
         services: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           privatebin: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             settings: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               main: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({})))),
               model: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 class: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "Filesystem")),
               })),
               model_options: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/data`))),
               })),
               purge: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/purge`))),
               })),
               traffic: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 dir: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/traffic`))),
                 header: "X_FORWARDED_FOR",
               })),
             })),
           })),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             pools: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               privatebin: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 user: user,
                 group: group,
                 phpPackage: nix.thunk(() => nix.sel(pkgs, "php83")),
                 phpOptions: "log_errors = on\n",
                 settings: nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "listen.mode": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "0660")),
                   "listen.owner": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), user)),
                   "listen.group": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), group)),
@@ -177,32 +177,32 @@ export default nix.lambda((args) => (() => {
                   "pm.max_requests": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 500n)),
                 })),
                 phpEnv: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   CONFIG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "strings", "removeSuffix"), "/conf.php", nix.thunk(() => nix.builtins.toString(privatebinSettings)))),
                 })),
               })),
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               enable: true,
               recommendedTlsSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedOptimisation: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               recommendedGzipSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}`),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$27,
+                    [nix.POS]: pos$27,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       tryFiles: "$uri $uri/ /index.php?$query_string",
                       index: "index.php",
                       extraConfig: "sendfile off;\n",
                     })),
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$26,
+                      [nix.POS]: pos$26,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params ;
 fastcgi_param SCRIPT_FILENAME $request_filename;
 fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice
@@ -215,27 +215,27 @@ fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "privatebin",
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             settings: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               "10-privatebin": nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "genAttrs"), nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/data`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/traffic`),
                   nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/purge`),
                 ]), (n) => ({
-                  __proto__: pos$32,
-                  d: nix.thunk(() => ({ __proto__: pos$31, group: group, mode: "0750", user: user })),
+                  [nix.POS]: pos$32,
+                  d: nix.thunk(() => ({ [nix.POS]: pos$31, group: group, mode: "0750", user: user })),
                 }))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(user, defaultUser)), nix.thunk(() => nix.attrsDyn({}, [
               [defaultUser, nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 description: "Privatebin service user",
                 group: group,
                 isSystemUser: true,

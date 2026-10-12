@@ -30,20 +30,20 @@ export default nix.lambda((args) => (() => {
       const pname = "pinchflat";
       const version = "2025.9.26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kieraneglin",
           repo: "pinchflat",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-45lw/48WTlfwTMWsCryNY3g3W9Ff31vMvw0W9znAJGk=",
         }))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         EXQLITE_USE_SYSTEM: "1",
         EXQLITE_SYSTEM_CFLAGS: nix.thunk(() => nix.str`-I${nix.sel(sqlite, "dev")}/include`),
         EXQLITE_SYSTEM_LDFLAGS: nix.thunk(() => nix.str`-L${nix.sel(sqlite, "out")}/lib -lsqlite3`),
       }));
       const mixFodDeps = nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`mix-deps-${pname}`),
           src: src,
           version: version,
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const removeCookie = false;
       const yarnOfflineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yarnLock: nix.thunk(() => nix.str`${src}/assets/yarn.lock`),
           sha256: "sha256-xJL+qcohtu+OmZ31E1QU9uqBWAFGejKIO3XRd+R6z/4=",
         }))));
@@ -79,11 +79,11 @@ mix do deps.loadpaths --no-deps-check, tailwind default --minify + esbuild defau
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/pinchflat --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [apprise, yt_dlp]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Your next YouTube media manager",
         homepage: "https://github.com/kieraneglin/pinchflat",
         changelog: nix.thunk(() => nix.str`https://github.com/kieraneglin/pinchflat/releases/tag/v${version}`),
@@ -96,7 +96,7 @@ mix do deps.loadpaths --no-deps-check, tailwind default --minify + esbuild defau
         mainProgram: "pinchflat",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

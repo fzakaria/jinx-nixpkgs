@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const statHook = nix.arg($, "statHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libutil",
       libcMinimal: true,
       outputs: nix.thunk(() => ["out", "man"]),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         statHook,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
     })));

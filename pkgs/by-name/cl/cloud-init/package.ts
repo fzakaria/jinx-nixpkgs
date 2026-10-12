@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const busybox = nix.arg($, "busybox");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cloud-init",
       version: "25.2",
       pyproject: true,
       namePrefix: "",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "canonical",
           repo: "cloud-init",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,16 +121,16 @@ done
       preCheck: "# TestTempUtils.test_mkdtemp_default_non_root does not like TMPDIR=/build\nexport TMPDIR=/tmp\n",
       pythonImportsCheck: nix.thunk(() => ["cloudinit"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "cloud-init": nix.thunk(() => nix.attr(nixosTests, "cloud-init")),
           "cloud-init-hostname": nix.thunk(() => nix.attr(nixosTests, "cloud-init-hostname")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, ignoredVersions: ".ubuntu.*" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, ignoredVersions: ".ubuntu.*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/canonical/cloud-init",
         description: "Provides configuration and customization of cloud instance",
         changelog: nix.thunk(() => nix.str`https://github.com/canonical/cloud-init/raw/${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const numpy = nix.arg($, "numpy");
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "xtensor-python",
         version: "0.29.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "xtensor-stack",
             repo: "xtensor-python",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         propagatedBuildInputs: nix.thunk(() => [xtensor, numpy]),
         checkTarget: "xtest",
         meta: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/xtensor-stack/xtensor-python",
           description: "Python bindings for the xtensor C++ multi-dimensional array library",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

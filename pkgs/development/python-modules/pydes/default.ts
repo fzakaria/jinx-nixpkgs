@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pydes",
       version: "unstable-2019-01-08",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "twhiteman",
           repo: "pyDes",
           rev: "e988a5ffc9abb8010fc75dba54904d1c5dbe83db",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["pyDes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure python module which implements the DES and Triple-DES encryption algorithms",
         homepage: "https://github.com/twhiteman/pyDes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

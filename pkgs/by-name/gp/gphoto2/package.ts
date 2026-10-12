@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const popt = nix.arg($, "popt");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gphoto2",
       version: "2.5.32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gphoto",
           repo: "gphoto2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, gettext, libtool]),
       buildInputs: nix.thunk(() => [libexif, libgphoto2, libjpeg, popt, readline]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ready to use set of digital camera software applications",
         longDescription: "\nA set of command line utilities for manipulating over 1400 different\ndigital cameras. Through libgphoto2, it supports PTP, MTP, and much more..\n\n",
         homepage: "http://www.gphoto.org/",

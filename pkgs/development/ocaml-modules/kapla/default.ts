@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const csexp = nix.arg($, "csexp");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kapla",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eris",
           repo: "kapla",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,12 +71,12 @@ export default nix.lambda((args) => (() => {
         csexp,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, kapla: nix.thunk(() => nix.attr(nixosTests, "kapla")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, kapla: nix.thunk(() => nix.attr(nixosTests, "kapla")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "ERIS block storage and transport",
         homepage: "https://codeberg.org/eris/kapla",
         mainProgram: "kapla",

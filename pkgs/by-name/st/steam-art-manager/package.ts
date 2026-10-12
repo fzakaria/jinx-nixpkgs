@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "steam-art-manager";
   const version = "3.19.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/Tormak9970/Steam-Art-Manager/releases/download/v${version}/steam-art-manager.AppImage`),
       hash: "sha256-b5zUx16FSUNPfZxOGoGzd5mUSc6RbK7hLcfewsPx/vQ=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +33,7 @@ substituteInPlace $out/share/applications/steam-art-manager.desktop \\
   --replace 'Icon=Steam Art Manager' 'Icon=steam-art-manager'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "A tool to manage and change Steam library artwork",
         homepage: "https://github.com/Tormak9970/Steam-Art-Manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

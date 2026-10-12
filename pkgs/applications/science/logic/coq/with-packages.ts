@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const ocamlPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`/lib/ocaml/${nix.sel(coq, "ocamlPackages", "ocaml", "version")}/site-lib`), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(coq, "ocamlPackages", "findlib"))], allPackages))));
     const pathEnvVar = nix.thunk(() => (nix.asBool(isRocq) ? "ROCQPATH" : "COQPATH"));
     return nix.app(buildEnv, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: nix.thunk(() => nix.str`${nix.sel(coq, "pname")}-with-packages-${nix.sel(coq, "version")}`),
         paths: nix.thunk(() => nix.concat([coq], allPackages)),
         nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
@@ -41,7 +41,7 @@ for binary in $out/bin-orig/*; do
   fi
 done
 `),
-        passthru: nix.thunk(() => nix.update(nix.sel(coq, "passthru"), { __proto__: pos$1, unwrapped: coq, packages: allPackages })),
+        passthru: nix.thunk(() => nix.update(nix.sel(coq, "passthru"), { [nix.POS]: pos$1, unwrapped: coq, packages: allPackages })),
         meta: nix.thunk(() => nix.sel(coq, "meta")),
       })));
   })();

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "libnop",
       version: "0-unstable-2022-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luxonis",
           repo: "libnop",
           rev: "ab842f51dc2eb13916dc98417c2186b78320ed10",
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [gtest]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O1", "-std=c++17"]))),
       })),
       installPhase: "runHook preInstall\nmake INSTALL_PREFIX=$out install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast, header-only C++ serialization library",
         homepage: "https://github.com/google/libnop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

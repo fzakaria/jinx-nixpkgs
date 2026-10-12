@@ -8,6 +8,6 @@ const pos$1 = nix.positions(here + "/test-structured-attrs-empty.nix", [["__stru
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
-  return nix.app(nix.sel(pkgs, "runCommand"), "nix-required-mounts-structured-attrs-no-features", nix.thunk(() => ({ __proto__: pos$1, __structuredAttrs: true })), "touch $out\n");
+  return nix.app(nix.sel(pkgs, "runCommand"), "nix-required-mounts-structured-attrs-no-features", nix.thunk(() => ({ [nix.POS]: pos$1, __structuredAttrs: true })), "touch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test-structured-attrs-empty.ts.map

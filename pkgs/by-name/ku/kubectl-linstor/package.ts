@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kubectl-linstor",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "piraeusdatastore",
           repo: "kubectl-linstor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-3PnXB8AfZtgmYEPJuh0fwvG38dtngoS/lxyx3H+rvFs=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Plugin to control a LINSTOR cluster using kubectl",
         homepage: "https://github.com/piraeusdatastore/kubectl-linstor",
         changelog: nix.thunk(() => nix.str`https://github.com/piraeusdatastore/kubectl-linstor/releases/tag/v${nix.sel(finalAttrs, "version")}`),

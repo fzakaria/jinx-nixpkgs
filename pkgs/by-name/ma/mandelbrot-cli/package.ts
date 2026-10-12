@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mandelbrot-cli",
       version: "0-unstable-2025-07-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IronstoneInnovation",
           repo: "mandelbrot_cli",
           rev: "36a43d4feace4ac346c6da78262278d4deb6bb94",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-nOhg3nDWGA+0g499EnsX5TNwnZM2NcpqHiyQujOM3OI=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A CLI for generating images of the Mandelbrot Set",
         homepage: "https://github.com/IronstoneInnovation/mandelbrot_cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qtlocation = nix.arg($, "qtlocation");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "maplibre-native-qt",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "maplibre",
           repo: "maplibre-native-qt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/maplibre/maplibre-native/commit/dde3fdd398a5f7b49300b1a761057bdd3286ae24.patch",
             hash: "sha256-UQ4Y2aoBsHQHEqlrwn4OUzICeT3MNVZlHFK/KphvV/c=",
             stripLen: 1n,
@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(qtlocation, "version")), "6.10")), "# fix build with Qt 6.10\n# included in https://github.com/maplibre/maplibre-native-qt/pull/216\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail 'find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Location REQUIRED)' \\\n                 'find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Location LocationPrivate REQUIRED)'\n")),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DQT_NO_USE_NODISCARD_FILE_OPEN"]))),
       })),
       buildInputs: nix.thunk(() => [qtlocation]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native-qt/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "MapLibre Native Qt Bindings and Qt Location Plugin",
         homepage: "https://github.com/maplibre/maplibre-native-qt",

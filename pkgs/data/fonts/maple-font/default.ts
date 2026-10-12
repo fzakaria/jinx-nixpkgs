@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         const pname_1 = pname;
         const version = "7.9";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/subframe7536/Maple-font/releases/download/v${version}/${pname_1}.zip`),
             hash: hash,
           }))));
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => [installFonts, unzip]);
         const webfont = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(suffix, "Woff2")), nix.thunk(() => nix.builtins.placeholder("out"))));
         const meta = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           homepage: "https://github.com/subframe7536/Maple-font",
           description: nix.thunk(() => nix.str`Open source ${desc} font with round corner and ligatures for IDE and command line
 `),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: pname_1,
           version,
           src,
@@ -76,30 +76,30 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   const typeVariants = nix.thunk(() => ({
-    __proto__: pos$15,
-    truetype: nix.thunk(() => ({ __proto__: pos$4, suffix: "TTF", desc: "monospace TrueType" })),
-    "truetype-autohint": nix.thunk(() => ({ __proto__: pos$5, suffix: "TTF-AutoHint", desc: "monospace ttf autohint" })),
-    variable: nix.thunk(() => ({ __proto__: pos$6, suffix: "Variable", desc: "monospace variable" })),
-    woff2: nix.thunk(() => ({ __proto__: pos$7, suffix: "Woff2", desc: "WOFF2.0" })),
-    opentype: nix.thunk(() => ({ __proto__: pos$8, suffix: "OTF", desc: "OpenType" })),
-    NF: nix.thunk(() => ({ __proto__: pos$9, suffix: "NF", desc: "Nerd Font" })),
-    "NF-unhinted": nix.thunk(() => ({ __proto__: pos$10, suffix: "NF-unhinted", desc: "Nerd Font unhinted" })),
-    CN: nix.thunk(() => ({ __proto__: pos$11, suffix: "CN", desc: "monospace CN" })),
-    "CN-unhinted": nix.thunk(() => ({ __proto__: pos$12, suffix: "CN-unhinted", desc: "monospace CN unhinted" })),
-    "NF-CN": nix.thunk(() => ({ __proto__: pos$13, suffix: "NF-CN", desc: "Nerd Font CN" })),
-    "NF-CN-unhinted": nix.thunk(() => ({ __proto__: pos$14, suffix: "NF-CN-unhinted", desc: "Nerd Font CN unhinted" })),
+    [nix.POS]: pos$15,
+    truetype: nix.thunk(() => ({ [nix.POS]: pos$4, suffix: "TTF", desc: "monospace TrueType" })),
+    "truetype-autohint": nix.thunk(() => ({ [nix.POS]: pos$5, suffix: "TTF-AutoHint", desc: "monospace ttf autohint" })),
+    variable: nix.thunk(() => ({ [nix.POS]: pos$6, suffix: "Variable", desc: "monospace variable" })),
+    woff2: nix.thunk(() => ({ [nix.POS]: pos$7, suffix: "Woff2", desc: "WOFF2.0" })),
+    opentype: nix.thunk(() => ({ [nix.POS]: pos$8, suffix: "OTF", desc: "OpenType" })),
+    NF: nix.thunk(() => ({ [nix.POS]: pos$9, suffix: "NF", desc: "Nerd Font" })),
+    "NF-unhinted": nix.thunk(() => ({ [nix.POS]: pos$10, suffix: "NF-unhinted", desc: "Nerd Font unhinted" })),
+    CN: nix.thunk(() => ({ [nix.POS]: pos$11, suffix: "CN", desc: "monospace CN" })),
+    "CN-unhinted": nix.thunk(() => ({ [nix.POS]: pos$12, suffix: "CN-unhinted", desc: "monospace CN unhinted" })),
+    "NF-CN": nix.thunk(() => ({ [nix.POS]: pos$13, suffix: "NF-CN", desc: "Nerd Font CN" })),
+    "NF-CN-unhinted": nix.thunk(() => ({ [nix.POS]: pos$14, suffix: "NF-CN-unhinted", desc: "Nerd Font CN unhinted" })),
   }));
   const ligatureVariants = nix.thunk(() => ({
-    __proto__: pos$19,
-    "No-Ligature": nix.thunk(() => ({ __proto__: pos$16, suffix: "NL", desc: "No Ligature" })),
-    "Normal-Ligature": nix.thunk(() => ({ __proto__: pos$17, suffix: "Normal", desc: "Normal Ligature" })),
-    "Normal-No-Ligature": nix.thunk(() => ({ __proto__: pos$18, suffix: "NormalNL", desc: "Normal No Ligature" })),
+    [nix.POS]: pos$19,
+    "No-Ligature": nix.thunk(() => ({ [nix.POS]: pos$16, suffix: "NL", desc: "No Ligature" })),
+    "Normal-Ligature": nix.thunk(() => ({ [nix.POS]: pos$17, suffix: "Normal", desc: "Normal Ligature" })),
+    "Normal-No-Ligature": nix.thunk(() => ({ [nix.POS]: pos$18, suffix: "NormalNL", desc: "Normal No Ligature" })),
   }));
   const combinedFonts = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "concatMapAttrs"), (ligName) => (ligVariant) => nix.app(nix.sel(lib, "concatMapAttrs"), (typeName) => (typeVariant) => (() => {
         const pname = nix.thunk(() => nix.str`MapleMono${nix.sel(ligVariant, "suffix")}-${nix.sel(typeVariant, "suffix")}`);
         return nix.attrsDyn({}, [
           [nix.str`${nix.sel(ligVariant, "suffix")}-${nix.sel(typeVariant, "suffix")}`, nix.thunk(() => nix.app(maple_font, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               pname: pname,
               desc: nix.thunk(() => nix.str`${nix.sel(ligVariant, "desc")} ${nix.sel(typeVariant, "desc")}`),
               hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(pname)))),
@@ -109,7 +109,7 @@ export default nix.lambda((args) => (() => {
       })(), typeVariants), ligatureVariants), nix.app(nix.sel(lib, "mapAttrs"), (_) => (value) => (() => {
       const pname = nix.thunk(() => nix.str`MapleMono-${nix.sel(value, "suffix")}`);
       return nix.app(maple_font, nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           pname: pname,
           desc: nix.thunk(() => nix.attr(value, "desc")),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(pname)))),

@@ -11,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const lib = nix.arg($, "lib");
   return nix.app(runCommand, "openbsd-compat", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       include: nix.path(here, "./include"),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Header-only library for running OpenBSD software on Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {

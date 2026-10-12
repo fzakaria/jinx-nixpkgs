@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "meson",
       version: "1.12.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mesonbuild",
           repo: "meson",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./000-nixpkgs-cmake-prefix-path.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001-fix-rpath.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
           })))),
         nix.path(here, "./002-clear-old-rpath.patch"),
@@ -65,7 +65,7 @@ chmod +x "test cases"/*/*/*.py "test cases"/*/*/*/*.py
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ninja: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "ninja"))]),
         progress: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "tqdm"))]),
         typing: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "mypy"))]),
@@ -114,13 +114,13 @@ substituteInPlace "$out/share/bash-completion/completions/meson" \\
 `),
       setupHook: nix.path(here, "./setup-hook.sh"),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         hostPlatform: nix.thunk(() => nix.sel(stdenv, "targetPlatform", "system")),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://mesonbuild.com",
         description: "Open source, fast and friendly build system made in Python",
         mainProgram: "meson",

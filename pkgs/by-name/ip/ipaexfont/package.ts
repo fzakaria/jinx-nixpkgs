@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ipaexfont",
       version: "004.01",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://moji.or.jp/wp-content/ipafont/IPAexfont/IPAexfont00401.zip",
           hash: "sha256-/87qJIb+v4qrtDy+ApfXxh59reOk+6RhGqFN98mc+8Q=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Japanese font package with Mincho and Gothic fonts",
         longDescription: "IPAex font is a Japanese font developed by the Information-technology\nPromotion Agency of Japan. It provides both Mincho and Gothic fonts,\nsuitable for both display and printing.\n\nThis is the successor to the IPA fonts.\n",
         homepage: "https://moji.or.jp/ipafont/",

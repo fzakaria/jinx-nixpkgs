@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "domarm-comat",
           repo: "pglive",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyqtgraph, numpy]);
       const pythonRelaxDeps = nix.thunk(() => ["numpy", "pyqtgraph"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "optional-dependencies": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pyqt5: nix.thunk(() => [pyqt5]),
           pyqt6: nix.thunk(() => [pyqt6]),
           pyside6: nix.thunk(() => [pyside6]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["pglive"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/domarm-comat/pglive/releases/tag/${nix.sel(src, "tag")}`),
         description: "Live plot for PyqtGraph",
         homepage: "https://github.com/domarm-comat/pglive",
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

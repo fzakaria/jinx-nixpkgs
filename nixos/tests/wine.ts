@@ -26,29 +26,29 @@ export default nix.lambda((args) => (() => {
   const makeWineTest = (packageSet) => (exes) => (variant) => (() => {
     const name = nix.thunk(() => nix.str`${packageSet}-${variant}`);
     const value = nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         name: name,
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "chkno"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               environment: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs_1, nix.key(nix.str`${packageSet}`), nix.key(nix.str`${variant}`))),
                 ]),
               })),
-              virtualisation: nix.thunk(() => ({ __proto__: pos$3, diskSize: 800n })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, diskSize: 800n })),
             };
           })(), formals$2),
         })),
@@ -60,7 +60,7 @@ assert 'Hello, world!' in greeting
 `, nix.app(optionalString, nix.thunk(() => nix.eq(variant, "full")), "machine.fail(\n    \"fgrep 'Could not find Wine Gecko. HTML rendering will be disabled.' wine-stderr\"\n)\n")), exes)}
 `),
       }))));
-    return { __proto__: pos$7, name, value };
+    return { [nix.POS]: pos$7, name, value };
   })();
   const variants = nix.thunk(() => ["base", "full", "minimal", "staging", "unstable", "wayland"]);
   return nix.app(listToAttrs, nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(makeWineTest, "winePackages", nix.thunk(() => [hello32]))), variants), nix.app(optionals, nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "is64bit")), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(makeWineTest, "wineWow64Packages", nix.thunk(() => [hello32, hello64]))), nix.thunk(() => nix.app(nix.sel(lib, "remove"), "wayland", variants))))))));

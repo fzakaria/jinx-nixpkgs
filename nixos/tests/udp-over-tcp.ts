@@ -23,27 +23,27 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     name: "udp-over-tcp",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "timschumi"))]),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       sender: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "udp-over-tcp": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               udp2tcp: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 "0.0.0.0:51821": nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   forward: nix.thunk(() => nix.str`${nix.sel(nodes, "receiver", "networking", "primaryIPAddress")}:444`),
                   openFirewall: true,
                   recvBufferSize: 16384n,
@@ -61,15 +61,15 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "udp-over-tcp": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               tcp2udp: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 "0.0.0.0:444": nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   forward: "127.0.0.1:51821",
                   openFirewall: true,
                   threads: 2n,

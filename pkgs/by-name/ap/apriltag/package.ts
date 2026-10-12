@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const opencv4WithGtk = nix.thunk(() => nix.app(nix.sel(python3Packages, "opencv4", "override"), nix.thunk(() => ({ __proto__: pos$1, enableGtk3: true }))));
+  const opencv4WithGtk = nix.thunk(() => nix.app(nix.sel(python3Packages, "opencv4", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGtk3: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apriltags",
       version: "3.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "AprilRobotics",
           repo: "apriltag",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_EXAMPLES", true))]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Visual fiducial system popular for robotics research",
         homepage: "https://april.eecs.umich.edu/software/apriltag",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

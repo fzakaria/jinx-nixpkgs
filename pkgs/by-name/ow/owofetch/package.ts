@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "owofetch";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "netthier",
           repo: "owofetch-rs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-0ON1h8+ruLOvBR7Q/hOIW6j+BjfPAAuYA2wrUYj59Ow=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alternative to *fetch, uwuifies all stats",
         homepage: "https://github.com/netthier/owofetch-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "owofetch",
       }));
-      return { __proto__: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

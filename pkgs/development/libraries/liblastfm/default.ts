@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libsamplerate = nix.arg($, "libsamplerate");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "liblastfm-unstable",
       version: "2019-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lastfm",
           repo: "liblastfm",
           rev: "2ce2bfe1879227af8ffafddb82b218faff813db9",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/lastfm/liblastfm/commit/9c5d072b55f2863310e40291677e6397e9cbc3c2.patch",
             name: "0001-Remove-deprecated-staging-server-and-fix-test-for-QT5-at-Ubuntu-19.10.patch",
             sha256: "04r14prydxshjgfws3pjajjmp2msszhjjs1mjh8s66yg29vq620l",
@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, which, cmake]),
       buildInputs: nix.thunk(() => [fftwSinglePrec, libsamplerate, qtbase]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "11")))), "-std=c++11"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-dynamic-exception-spec"))),
       })),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/lastfm/liblastfm",
         description: "Official LastFM library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

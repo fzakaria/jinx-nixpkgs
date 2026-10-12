@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "openct",
       version: "0.6.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenSC",
           repo: "openct",
           rev: nix.thunk(() => nix.str`openct-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace etc/Makefile.am \\\n  --replace-fail \"DESTDIR\" \"out\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       configureFlags: nix.thunk(() => [
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preInstall: "mkdir -p $out/etc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/OpenSC/openct/",
         description: "Drivers for several smart card readers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const removedArgs = nix.thunk(() => ["name", "pname", "version", "nativeBuildInputs", "hash"]);
     const vendorStaging = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${name}-vendor-staging`),
         impureEnvVars: nix.thunk(() => nix.sel(lib, "fetchers", "proxyImpureEnvVars")),
         strictDeps: true,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         __structuredAttrs: true,
       }, nix.builtins.removeAttrs(args_2, removedArgs)))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${name}-vendor`), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         vendorStaging: vendorStaging,
         nativeBuildInputs: nix.thunk(() => [jq]),
       })), "mkdir -p \"$out\"\n\n# SwiftPM uses workspace-state.json to determine whether it needs to fetch dependencies.\n# Generate it to prevent that from happening.\njq --compact-output --sort-keys '\n    {\n        \"object\": {\n            \"artifacts\": [ ],\n            \"dependencies\": [ .pins[] |\n                {\n                    \"basedOn\": {\n                        \"basedOn\": null,\n                        \"packageRef\": {\n                            \"identity\": .identity,\n                            \"kind\": .kind,\n                            \"location\": .location,\n                            \"name\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                        },\n                        \"state\": {\n                            \"checkoutState\": .state,\n                            \"name\": \"sourceControlCheckout\"\n                        },\n                        \"subpath\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                    },\n                    \"packageRef\": {\n                        \"identity\": .identity,\n                        \"kind\": .kind,\n                        \"location\": .location,\n                        \"name\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                    },\n                    \"state\": {\n                        \"name\": \"edited\",\n                        \"path\": null\n                    },\n                    \"subpath\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                }\n            ],\n            \"prebuilts\": [ ]\n        },\n        \"version\": 7\n    }\n' < \"$vendorStaging/Package.resolved\" > \"$out/workspace-state.json\"\n\n# Symlink the packages from the staging area. There’s no reason to waste space copying them.\nln -s \"$vendorStaging/Packages\" \"$out/Packages\"\n");

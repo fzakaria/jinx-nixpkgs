@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const mpfr = nix.arg($, "mpfr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cgal",
       version: "5.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/CGAL/cgal/releases/download/v${nix.sel(finalAttrs, "version")}/CGAL-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-FcdDyzldGghVuQYlJfOuDNQEhkiaz+fOFFfDcQqzQRE=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./cgal_path.patch")]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Computational Geometry Algorithms Library",
         homepage: "http://cgal.org",
         license: nix.thunk(() => (() => {

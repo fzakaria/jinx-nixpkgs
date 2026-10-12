@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gtkdatabox",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/gtkdatabox/gtkdatabox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1qykm551bx8j8pfgxs60l2vhpi8lv4r8va69zvn2594lchh71vlb",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [gtk3, pango, cairo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GTK widget for displaying large amounts of numerical data",
         homepage: "https://gtkdatabox.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

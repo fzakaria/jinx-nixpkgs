@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const llhttp = nix.arg($, "llhttp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "ausweisapp",
       version: "2.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Governikus",
           repo: "AusweisApp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,13 +46,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtwayland")),
         nix.thunk(() => nix.sel(qt6, "qtwebsockets")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`QT_QPA_PLATFORM=offscreen ${nix.sel(finalAttrs, "meta", "mainProgram")} --version`),
             })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Official authentication app for German ID card and residence permit",
         downloadPage: "https://github.com/Governikus/AusweisApp/releases",
         homepage: "https://www.ausweisapp.bund.de/open-source-software",

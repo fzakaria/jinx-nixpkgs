@@ -18,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const withSqlite = nix.argOr($, "withSqlite", () => false);
   const sqlite = nix.arg($, "sqlite");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ledger_web",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["ledger_web"]),
       ruby: ruby_3_4,
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withPostgresql, libpq), nix.app(nix.sel(lib, "optional"), withSqlite, sqlite))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "ledger-web")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Web frontend to the Ledger CLI tool",
         homepage: "https://github.com/peterkeen/ledger-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

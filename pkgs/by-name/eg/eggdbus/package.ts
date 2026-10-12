@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const dbus_glib = nix.arg($, "dbus-glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eggdbus",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://hal.freedesktop.org/releases/eggdbus-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "118hj63ac65zlg71kydv4607qcg1qpdlql4kvhnwnnhar421jnq4",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib, dbus, dbus_glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://hal.freedesktop.org/releases/",
         description: "D-Bus bindings for GObject",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

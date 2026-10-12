@@ -25,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const older = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
   const atLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     "sample-data": nix.thunk(() => (() => {
       const sample_data_10_14_1 = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://github.com/NVIDIA/TensorRT/releases/download/v10.14/tensorrt_sample_data_20260128.zip",
         hash: "sha256-KSUKJsBaOSRHJKDp5SUzmfHNWlcEP1TwTgXja3nhVKI=",
       }));
       const sample_data_11_0_0 = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: "https://github.com/NVIDIA/TensorRT/releases/download/v11.0/tensorrt_sample_data_20260602.zip",
         hash: "sha256-4SFzdg1fQS/ot1AtF5VsECjgxCGrV9E62S1B7/1g5c4=",
         stripRoot: false,
       }));
       return nix.app(fetchzip, nix.thunk(() => (nix.asBool(nix.app(older, "10.14.1")) ? nix.force(sample_data_10_14_1) : nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "10.14.1": sample_data_10_14_1,
             "10.16.1": sample_data_10_14_1,
             "11.0.0": sample_data_11_0_0,
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
           }))))));
     })()),
     mkTester: (name) => (cmdArgs) => nix.app(writeShellApplication, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.add(nix.add(nix.sel(finalAttrs, "name"), "-tester-"), name)),
         runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
         text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "toShellVar"), "cmdArgs", cmdArgs)}
@@ -60,7 +60,7 @@ echo "running \${cmdArgs[*]@Q}"
       const mkTesters = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.import, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           mkTester: nix.thunk(() => nix.attr(from, "mkTester")),
           "sample-data": nix.thunk(() => nix.attr(from, "sample-data")),
           atLeast: atLeast,
@@ -73,13 +73,13 @@ echo "running \${cmdArgs[*]@Q}"
         };
         })())));
       return nix.app(nix.sel(lib, "filterAttrs"), (_) => (attrs) => !nix.eq(attrs, {}), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             callPackage: (path) => (_) => nix.app(mkTesters, path),
             directory: nix.path(here, "./testers"),
           })))));
     })()),
     tests: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursiveCond"), (as) => !nix.asBool(nix.app(nix.sel(lib, "isDerivation"), as)), (path) => (drv) => nix.app(runCommand, nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), "-tester-", "-test-", nix.thunk(() => nix.sel(drv, "name")))), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           nativeBuildInputs: nix.thunk(() => [drv]),
           requiredSystemFeatures: nix.thunk(() => ["cuda"]),
         })), nix.thunk(() => nix.str`set -euo pipefail

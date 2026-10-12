@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pydantic = nix.arg($, "pydantic");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-ocsf-models",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prowler-cloud",
           repo: "py-ocsf-models",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["py_ocsf_models"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCSF models in Python using Pydantic",
         homepage: "https://github.com/prowler-cloud/py-ocsf-models",
         changelog: nix.thunk(() => nix.str`https://github.com/prowler-cloud/py-ocsf-models/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

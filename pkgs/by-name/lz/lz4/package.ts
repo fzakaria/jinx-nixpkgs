@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const valgrind = nix.arg($, "valgrind");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "lz4",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "lz4",
           owner: "lz4",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "CVE-2025-62813.patch",
             url: "https://github.com/lz4/lz4/commit/f64efec011c058bd70348576438abac222fe6c82.patch",
             hash: "sha256-qOvK0A3MGX14WdhThV7m4G6s+ZMP6eA/07A2BY5nesY=",
@@ -49,23 +49,23 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkTarget: "test",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["liblz4"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Extremely fast compression algorithm",
         longDescription: "Very fast lossless compression algorithm, providing compression speed\nat 400 MB/s per core, with near-linear scalability for multi-threaded\napplications. It also features an extremely fast decoder, with speed in\nmultiple GB/s per core, typically reaching RAM speed limits on\nmulti-core systems.\n",
         homepage: "https://lz4.github.io/lz4/",
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lz4",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "tobim"))]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "lz4_project", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

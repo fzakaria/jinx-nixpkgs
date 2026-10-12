@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "isabelle-linter";
       const version = "2025-1-1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "isabelle-prover",
           repo: "isabelle-linter",
           rev: "Isabelle2025-1-v1.0.0",
@@ -30,7 +30,7 @@ mkdir -p $dir
 cp -r * $dir/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linter component for Isabelle",
         homepage: "https://github.com/isabelle-prover/isabelle-linter",
         maintainers: nix.thunk(() => (() => {
@@ -41,7 +41,7 @@ cp -r * $dir/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

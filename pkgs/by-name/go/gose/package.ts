@@ -20,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "0.11.10";
   const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       repo: "gose",
       owner: "stv0g",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-IlDPUM+n5B2v0K7vIsWZuoLt+PdAzGM+aV6uLri7NxQ=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "gose-frontend",
       version: version,
       src: nix.thunk(() => nix.str`${src}/frontend`),
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nfind ./dist\nmkdir $out\ncp -r dist/* $out/\nrunHook postInstall\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gose",
       version: version,
       src: src,
       vendorHash: "sha256-GgkHdeZUIaQH0dyVqgoBZ80qpL4zfg7paivOw/2Uw7Y=",
-      env: nix.thunk(() => ({ __proto__: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
       postInstall: "mv $out/bin/cmd $out/bin/gose\n",
       tags: nix.thunk(() => ["embed"]),
       ldflags: nix.thunk(() => [
@@ -56,11 +56,11 @@ export default nix.lambda((args) => (() => {
       prePatch: nix.thunk(() => nix.str`cp -r ${frontend} frontend/dist
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Modern and scalable file-uploader focusing on scalability and simplicity",
         homepage: "https://codeberg.org/stv0g/gose",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "blackjax",
       version: "1.7.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blackjax-devs",
           repo: "blackjax",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [jax, jaxlib, numpy, optax, scipy, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, progress: nix.thunk(() => [jax_tap, tqdm]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, progress: nix.thunk(() => [jax_tap, tqdm]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([chex, pytestCheckHook, pytest_xdist], nix.sel(finalAttrs, "passthru", "optional-dependencies", "progress"))),
       disabledTestPaths: nix.thunk(() => ["tests/test_benchmarks.py", "tests/mcmc/test_integrators.py"]),
       disabledTests: nix.thunk(() => nix.concat([
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["blackjax"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://blackjax-devs.github.io/blackjax",
         description: "Sampling library designed for ease of use, speed and modularity",
         changelog: nix.thunk(() => nix.str`https://github.com/blackjax-devs/blackjax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

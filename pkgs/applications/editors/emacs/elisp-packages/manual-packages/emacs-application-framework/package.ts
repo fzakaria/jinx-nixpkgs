@@ -42,16 +42,16 @@ export default nix.lambda((args) => (() => {
   const wmctrlExe = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), wmctrl));
   const xdotoolExe = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), xdotool)), nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xdotool))));
   const appsDrv = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "emacs-application-framework-apps",
       paths: enabledApps,
     }))));
   return nix.app(melpaBuild, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "eaf",
       version: "0-unstable-2025-08-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "emacs-eaf",
           repo: "emacs-application-framework",
           rev: "ada92215ad864c2d142feb6ad6e1127e90bce668",
@@ -93,11 +93,11 @@ if [ -d $APPNATDIR ]; then
 fi
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Extensible framework of Emacs",
         homepage: "https://github.com/emacs-eaf/emacs-application-framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

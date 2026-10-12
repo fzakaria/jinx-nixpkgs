@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "glib-networking",
       version: "2.80.1",
       outputs: nix.thunk(() => ["out", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/glib-networking/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/glib-networking-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uA4odBV81VBx8bZxD6C5EdWsXeEGqe4qTJx77mF4L44=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gsettings.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gds_gsettings_path: nix.thunk(() => nix.app(nix.sel(glib, "getSchemaPath"), gsettings_desktop_schemas)),
           })))),
         nix.path(here, "./installed-tests-path.patch"),
@@ -57,19 +57,19 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "find \"$installedTests/libexec\" \"$out/libexec\" -type f -executable -print0 \\\n  | while IFS= read -r -d \"\" file; do\n  echo \"Wrapping program '$file'\"\n  wrapProgram \"$file\" --prefix GIO_EXTRA_MODULES : \"$out/lib/gio/modules\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             packageName: "glib-networking",
             versionPolicy: "odd-unstable",
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "glib-networking")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Network-related giomodules for glib",
         homepage: "https://gitlab.gnome.org/GNOME/glib-networking",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

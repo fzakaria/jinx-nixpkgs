@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const glfw = nix.arg($, "glfw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcpelauncher-ui-qt",
       version: nix.thunk(() => nix.attr(mcpelauncher_client, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "minecraft-linux",
           repo: "mcpelauncher-ui-manifest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => nix.update(nix.sel(mcpelauncher_client, "meta"), {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Unofficial Minecraft Bedrock Edition launcher with GUI",
         mainProgram: "mcpelauncher-ui-qt",
       })),

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "neothesia",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PolyMeilex",
           repo: "Neothesia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/PolyMeilex/Neothesia/commit/c450689134e5e767293ae9a4878a0396e585259b.patch",
             hash: "sha256-A7GuaEHIfSFrvS1SCBWGCuh3rvb2gaaw8dQ970f6u2Y=",
           })))),
@@ -58,7 +58,7 @@ install -Dm 644 flatpak/com.github.polymeilex.neothesia.png $out/share/icons/hic
 install -Dm 644 default.sf2 $out/share/neothesia/default.sf2
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flashy Synthesia Like Software For Linux, Windows and macOS",
         homepage: "https://github.com/PolyMeilex/Neothesia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

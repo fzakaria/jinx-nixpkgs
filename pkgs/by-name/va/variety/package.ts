@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "variety",
       version: "0.9.0-b1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "varietywalls",
           repo: "variety",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +79,7 @@ substituteInPlace data/variety-autostart.desktop.template \\
       postInstall: "mkdir -p $out/share/applications\nintltool-merge --desktop-style po variety.desktop.in $out/share/applications/variety.desktop\n\nmkdir -p $out/share/icons/hicolor/scalable/apps\ncp variety/data/icons/scalable/apps/variety.svg $out/share/icons/hicolor/scalable/apps/variety.svg\n",
       pythonImportsCheck: nix.thunk(() => ["variety"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/varietywalls/variety",
         description: "Wallpaper manager for Linux systems",
         mainProgram: "variety",

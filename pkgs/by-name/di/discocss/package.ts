@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "discocss";
       const version = "0.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlvzk",
           repo: "discocss",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +34,7 @@ mkdir -p $out/share
 ln -s ${discord}/share/* $out/share
 `))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tiny Discord css-injector",
         changelog: nix.thunk(() => nix.str`https://github.com/mlvzk/discocss/releases/tag/v${version}`),
         homepage: "https://github.com/mlvzk/discocss",
@@ -47,7 +47,7 @@ ln -s ${discord}/share/* $out/share
         mainProgram: "discocss",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

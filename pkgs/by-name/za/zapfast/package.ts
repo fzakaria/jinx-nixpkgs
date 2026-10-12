@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.0";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "crmne",
           repo: "zapfast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([pkg_config, cmake, perl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [makeWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [rcodesign, icnsify])))));
       const buildInputs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libGL, libx11])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15]))));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ZAPFAST_TEST_RTL_FONT: nix.thunk(() => nix.str`${liberation_ttf}/share/fonts/truetype/LiberationSans-Regular.ttf`),
       }));
       const cargoTestFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--lib", "--bin", "zapfast"])));
@@ -63,12 +63,12 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
   --replace-fail __VERSION__ "${version}"
 `))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast native WhatsApp client",
         homepage: "https://zapfast.rocks",
         changelog: nix.thunk(() => nix.str`https://github.com/crmne/zapfast/releases/tag/v${version}`),
@@ -81,7 +81,7 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         __structuredAttrs,

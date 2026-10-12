@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "postiats-utilities",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hibou57",
           repo: "PostiATS-Utilities",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-QeBbv5lwqL2ARjB+RGyBHeuibaxugffBLhC9lYs+5tE=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Hibou57/PostiATS-Utilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

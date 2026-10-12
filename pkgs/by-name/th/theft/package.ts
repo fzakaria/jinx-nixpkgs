@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.4.5",
       pname: "theft",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "silentbicycle",
           repo: "theft",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postInstall: "install -m644 vendor/greatest.h $out/include/\n\nsubstituteInPlace $out/lib/pkgconfig/libtheft.pc \\\n  --replace \"/usr/local\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library for property-based testing",
         homepage: "https://github.com/silentbicycle/theft/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

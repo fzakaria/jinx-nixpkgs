@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const primesieve = nix.arg($, "primesieve");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "primecount",
       version: "8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kimwalisch",
           repo: "primecount",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +41,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", true)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$2, primesieve: primesieve })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, primesieve: primesieve })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(primesieve, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/kimwalisch/primecount",
         description: "Fast prime counting function implementations",
         longDescription: "primecount is a command-line program and C/C++ library that counts the\nprimes below an integer x ≤ 10^31 using highly optimized implementations\nof the combinatorial prime counting algorithms.\n\nprimecount includes implementations of all important combinatorial prime\ncounting algorithms known up to this date all of which have been\nparallelized using OpenMP. primecount contains the first ever open source\nimplementations of the Deleglise-Rivat algorithm and Xavier Gourdon's\nalgorithm (that works). primecount also features a novel load balancer\nthat is shared amongst all implementations and that scales up to hundreds\nof CPU cores. primecount has already been used to compute several prime\ncounting function world records.\n",

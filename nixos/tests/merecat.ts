@@ -16,30 +16,30 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "merecat",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fgaz"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             merecat: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 hostname: "localhost",
                 "virtual-host": true,
                 directory: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "merecat-webdir", nix.thunk(() => ({})), "mkdir -p $out/foo.localhost $out/bar.localhost\necho '<h1>Hello foo</h1>' > $out/foo.localhost/index.html\necho '<h1>Hello bar</h1>' > $out/bar.localhost/index.html\n")))),

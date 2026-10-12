@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emuflight-configurator";
       const version = "0.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/emuflight/EmuConfigurator/releases/download/${version}/emuflight-configurator_${version}_linux64.zip`),
           sha256: "sha256-7NcN1wF3BUClJBVm13VnV80N/+a2jAEIRqB/x9+GDEg=",
         }))));
@@ -39,7 +39,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname} --add-flags $out/share/${pname}
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: pname,
             exec: pname,
             icon: pname,
@@ -49,7 +49,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname} --add-flags $out/share/${pname}
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Emuflight flight control system configuration tool",
         mainProgram: "emuflight-configurator",
         longDescription: "A crossplatform configuration tool for the Emuflight flight control system.\nVarious types of aircraft are supported by the tool and by Emuflight, e.g.\nquadcopters, hexacopters, octocopters and fixed-wing aircraft.\nThe application allows you to configure the Emuflight software running on any supported Emuflight target.\n",
@@ -62,7 +62,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname} --add-flags $out/share/${pname}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const yubikey_manager = nix.arg($, "yubikey-manager");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gen-oath-safe",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~mcepl",
           repo: "gen-oath-safe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ wrapProgram $out/bin/gen-oath-safe \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~mcepl/gen-oath-safe",
         description: "Script for generating HOTP/TOTP keys (and QR code)",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

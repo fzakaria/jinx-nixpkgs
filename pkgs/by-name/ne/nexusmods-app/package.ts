@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pname = nix.argOr($, "pname", () => "nexusmods-app");
   const constants = nix.thunk(() => ["INSTALLATION_METHOD_PACKAGE_MANAGER", "NEXUSMODS_APP_USE_SYSTEM_EXTRACTOR"]);
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: pname,
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nexus-Mods",
           repo: "NexusMods.App",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "f
       postInstall: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "strings", "toShellVars"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
           INSTALL_EXEC: "${INSTALL_EXEC}",
           INSTALL_TRYEXEC: "${INSTALL_TRYEXEC}",
@@ -122,20 +122,20 @@ done
       nativeInstallCheckInputs: nix.thunk(() => [desktop_file_utils]),
       installCheckPhase: "runHook preInstallCheck\n\necho 'Checking for issues in $out/share/applications/com.nexusmods.app.desktop'\n(\n  cd $out/share/applications\n  desktop-file-validate com.nexusmods.app.desktop\n  if grep '\\$' com.nexusmods.app.desktop \\\n    --with-filename --line-number\n  then\n    echo 'error: unexpected \"$\"'\n    exit 1\n  fi\n) &>/dev/stderr\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           app: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-tested`),
               doCheck: true,
-              passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({})) })),
+              passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({})) })),
             })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mainProgram: "NexusMods.App",
         homepage: "https://github.com/Nexus-Mods/NexusMods.App",
         changelog: nix.thunk(() => nix.str`https://github.com/Nexus-Mods/NexusMods.App/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

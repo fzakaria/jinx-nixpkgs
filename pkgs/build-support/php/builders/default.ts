@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const callPackages = nix.arg($, "callPackages");
   return {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     v1: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildComposerProject: nix.thunk(() => nix.app(callPackage, nix.path(here, "./v1/build-composer-project.nix"), nix.thunk(() => ({})))),
       buildComposerWithPlugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./v1/build-composer-with-plugin.nix"), nix.thunk(() => ({})))),
       mkComposerRepository: nix.thunk(() => nix.app(callPackage, nix.path(here, "./v1/build-composer-repository.nix"), nix.thunk(() => ({})))),
       composerHooks: nix.thunk(() => nix.app(callPackages, nix.path(here, "./v1/hooks"), nix.thunk(() => ({})))),
     })),
     v2: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       buildComposerProject: nix.thunk(() => nix.app(callPackage, nix.path(here, "./v2/build-composer-project.nix"), nix.thunk(() => ({})))),
       mkComposerVendor: nix.thunk(() => nix.app(callPackage, nix.path(here, "./v2/build-composer-vendor.nix"), nix.thunk(() => ({})))),
       composerHooks: nix.thunk(() => nix.app(callPackages, nix.path(here, "./v2/hooks"), nix.thunk(() => ({})))),

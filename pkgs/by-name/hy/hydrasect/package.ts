@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hydrasect",
       version: "0.1.0-unstable-2025-08-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blitz",
           repo: "hydrasect",
           rev: "88161c6d8dce16bf832599cf8ab544bbe5857c00",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-muqG74Ze6aUURPutuKlXvq5ayglJ7TGAzeji89lsoLk=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that makes bisecting nixpkgs pleasant",
         homepage: "https://github.com/blitz/hydrasect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

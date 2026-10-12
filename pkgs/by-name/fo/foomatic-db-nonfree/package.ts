@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "foomatic-db-nonfree",
       version: "0-unstable-2015-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenPrinting",
           repo: "foomatic-db-nonfree",
           rev: "6ddae02ac89240c019f8b5026cfe70e30fd2b3db",
@@ -51,7 +51,7 @@ find -H "${nix.builtins.placeholder("out")}/share/cups/model/foomatic-db-nonfree
   | xargs -0r -n 64 -P "$NIX_BUILD_CORES" gzip -9n
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/OpenPrinting/foomatic-db-nonfree/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "OpenPrinting printer support database (unfree content)",
         downloadPage: "https://www.openprinting.org/download/foomatic/",

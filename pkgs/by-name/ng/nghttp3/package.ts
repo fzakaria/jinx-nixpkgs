@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "nghttp3",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ngtcp2/nghttp3/releases/download/v${nix.sel(finalAttrs, "version")}/nghttp3-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-KobUa0Kx37XGLk/sO/5ugO5JVxXhiAqEaFdyiBDJgm0=",
         })))),
@@ -33,10 +33,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_STATIC_LIB", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")))),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), "-DENABLE_LIB_ONLY=1"))),
       doCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, curl: curl })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, curl: curl })) })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/ngtcp2/nghttp3",
         changelog: nix.thunk(() => nix.str`https://github.com/ngtcp2/nghttp3/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Implementation of HTTP/3 mapping over QUIC and QPACK in C",

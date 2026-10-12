@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const withCExtensions = nix.argOr($, "withCExtensions", () => true);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cbor2",
       version: "6.1.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "agronholm",
           repo: "cbor2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cargo, rustc, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm, setuptools_rust]),
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytest_cov_stub, pytestCheckHook]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withCExtensions)), nix.thunk(() => ({ __proto__: pos$3, CBOR2_BUILD_C_EXTENSION: "0" })))),
-      passthru: nix.thunk(() => ({ __proto__: pos$4, withCExtensions: withCExtensions })),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withCExtensions)), nix.thunk(() => ({ [nix.POS]: pos$3, CBOR2_BUILD_C_EXTENSION: "0" })))),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, withCExtensions: withCExtensions })),
       pythonImportsCheck: nix.thunk(() => ["cbor2"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Python CBOR (de)serializer with extensive tag support",
         changelog: nix.thunk(() => nix.str`https://github.com/agronholm/cbor2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/agronholm/cbor2",

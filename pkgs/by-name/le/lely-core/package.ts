@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "lely-core",
       version: "2.3.5",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lely_industries",
           repo: "lely-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.com/lely_industries/lely-core/-/commit/6ed995fa86d828957b636a11470f150830d877ec.patch",
             hash: "sha256-Q4Sza0hs0EE4EZ0nbYAs+/qO2uWKGveZ0+Tgx8xvmEs=",
           })))),
       ]),
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "High Performance I/O and sensor/actuator control for robotics and IoT applications",
         homepage: "https://opensource.lely.com/canopen/",
         changelog: nix.thunk(() => nix.str`https://opensource.lely.com/canopen/release/v${nix.sel(finalAttrs, "version")}/`),

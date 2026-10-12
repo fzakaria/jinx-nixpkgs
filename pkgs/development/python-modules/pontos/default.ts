@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const tomlkit = nix.arg($, "tomlkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pontos",
       version: "26.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greenbone",
           repo: "pontos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pontos"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of Python utilities, tools, classes and functions",
         homepage: "https://github.com/greenbone/pontos",
         changelog: nix.thunk(() => nix.str`https://github.com/greenbone/pontos/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

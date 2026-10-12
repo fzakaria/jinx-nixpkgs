@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const libx11 = nix.arg($, "libx11");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     jester: (lockAttrs) => nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [openssl])),
       };
     })(), formals$2),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [htslib])),
       };
     })(), formals$3),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [pkg_config])),
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [getdns])),
       };
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$5);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [raylib])),
       };
     })(), formals$5),
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$6);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [libsass])),
       };
     })(), formals$6),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$7);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [SDL2])),
       };
     })(), formals$7),
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [pkg_config])),
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [tkrzw])),
       };
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$9);
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, [libx11, libxft, libxinerama])),
       };
     })(), formals$9),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$10);
       const nimFlags = nix.argOr($_1, "nimFlags", () => []);
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         nimFlags: nix.thunk(() => nix.concat(nimFlags, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ["--passC:-msse4.1", "--passC:-mpclmul"])))),
       };
     })(), formals$10),

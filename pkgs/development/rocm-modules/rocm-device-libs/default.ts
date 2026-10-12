@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(llvm, "llvm"));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "rocm-device-libs",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.sel(llvm, "llvm", "monorepoSrc")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DLLVM_TARGETS_TO_BUILD=AMDGPU;${llvmNativeTarget}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Set of AMD-specific device-side language runtime libraries",
         homepage: "https://github.com/ROCm/ROCm-Device-Libs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

@@ -36,16 +36,16 @@ export default nix.lambda((args) => (() => {
   const apacheHttpd = nix.thunk(() => nix.attr(apacheHttpdPackages, "apacheHttpd"));
   const mod_dnssd = nix.thunk(() => nix.attr(apacheHttpdPackages, "mod_dnssd"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "gnome-user-share",
       version: "48.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-user-share/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-user-share-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-oE1IP0mz92naj/Xi0/y/++rztsa3HYLSoqYju0seDdQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`gnome-user-share-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tQoP0yBOCesj2kwgBUoqmcVtFttwML2N+wfSULtfC4w=",
@@ -84,17 +84,17 @@ export default nix.lambda((args) => (() => {
   --replace-fail "'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@'," "'cp', 'src' / '${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}' / rust_target / meson.project_name(), '@OUTPUT@',"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       doCheck: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$4, packageName: "gnome-user-share" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "gnome-user-share" }))));
           const updateLockfile = nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -108,7 +108,7 @@ update-source-version gnome-user-share --ignore-same-version --source-key=cargoD
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://gitlab.gnome.org/GNOME/gnome-user-share",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-user-share/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Service that exports the contents of the Public folder in your home directory on the local network",

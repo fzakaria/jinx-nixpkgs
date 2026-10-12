@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "comfyui"));
   const isDefaultDataDir = nix.thunk(() => nix.eq(nix.sel(cfg, "dataDir"), "/var/lib/comfyui"));
   const modelDrvs = nix.thunk(() => nix.builtins.map((m) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       m: m,
       drv: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => (nix.asBool((nix.asBool(nix.eq(n, "name")) || nix.asBool(nix.eq(n, "url")))) || nix.asBool(nix.eq(n, "hash"))), m)))),
     }), nix.thunk(() => nix.sel(cfg, "models"))));
@@ -52,24 +52,24 @@ export default nix.lambda((args) => (() => {
 ln -sn ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.sel(x, "drv")}`))} ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/models/${p}/${nix.sel(x, "m", "name")}`))}
 `, nix.thunk(() => nix.sel(x, "m", "installPaths"))), modelDrvs));
   return {
-    __proto__: pos$32,
+    [nix.POS]: pos$32,
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       services: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         comfyui: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ComfyUI")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "comfyui", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/comfyui",
               example: "/srv/comfyui",
               description: "Directory holding ComfyUI's state: models, custom nodes, inputs, outputs and the database.\n\nDefaults to the unit's `StateDirectory`.\nAny other directory is created with systemd-tmpfiles and bind-mounted into the service.\n\nExisting state is not migrated, you need to move it yourself.\n",
             })))),
           listen: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -79,14 +79,14 @@ ln -sn ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.s
               description: "The host addresses on which ComfyUI should listen.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8188n,
               example: 1234n,
               description: "The port on that ComfyUI will listen.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -96,29 +96,29 @@ ln -sn ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.s
               description: "Extra arguments to pass to the server. See `comfyui --help` for available args.\n\nFlags set by the module are prepended with `lib.mkBefore`, so any user supplied flag wins over that.\n",
             })))),
           models: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     options: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "The model file name, used as the link name in `models/<installPath>/<name>`.\nIt must be unique within the same `<installPath>`, to avoid conflicts.\n",
                         })))),
                       url: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$7,
+                          [nix.POS]: pos$7,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           description: "The download URL of the model file.\nPinned-resolve URLs (e.g. HuggingFace's `/resolve/<commit>/<file>`) are recommended to have a stable hash.\n",
                         })))),
                       hash: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$8,
+                          [nix.POS]: pos$8,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           example: nix.thunk(() => nix.sel(lib, "fakeHash")),
                           description: "The SRI hash of the model file. Generate it with `nix-prefetch-url <url>`,\nor set this to `lib.fakeHash`, build once and copy the hash from the error message.\n",
                         })))),
                       installPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$9,
+                          [nix.POS]: pos$9,
                           type: nix.thunk(() => (() => {
                             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                             return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "[A-Za-z0-9_-]+")), nix.thunk(() => nix.sel(lib, "singleton")), nix.thunk(() => nix.app(nix.lookup(w, "nonEmptyListOf"), nix.thunk(() => nix.app(nix.lookup(w, "strMatching"), "[A-Za-z0-9_-]+")))));
@@ -136,11 +136,11 @@ ln -sn ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.s
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         services: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           comfyui: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [
                 nix.thunk(() => nix.str`--base-directory=${nix.sel(cfg, "dataDir")}`),
                 nix.thunk(() => nix.str`--database-url=sqlite:///${nix.sel(cfg, "dataDir")}/user/comfyui.db`),
@@ -150,16 +150,16 @@ ln -sn ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.s
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isDefaultDataDir)), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 "10-comfyui": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "dataDir"), nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     d: nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       user: nix.thunk(() => nix.sel(config, "systemd", "services", "comfyui", "serviceConfig", "User")),
                       group: nix.thunk(() => nix.sel(config, "systemd", "services", "comfyui", "serviceConfig", "Group")),
                       mode: "0700",
@@ -169,9 +169,9 @@ ln -sn ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.s
               })))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             comfyui: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               description: "Powerful and modular diffusion model GUI, api and backend",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -193,7 +193,7 @@ done
 ${modelSymlinks}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))}`),
                 Group: "comfyui",
                 Restart: "always",
@@ -234,12 +234,12 @@ ${modelSymlinks}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$29,
-          groups: nix.thunk(() => ({ __proto__: pos$26, comfyui: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$29,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$26, comfyui: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             comfyui: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               group: "comfyui",
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
               isSystemUser: true,
@@ -248,7 +248,7 @@ ${modelSymlinks}
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       maintainers: nix.thunk(() => nix.sel(pkgs, "comfyui", "meta", "maintainers")),
     })),
   };

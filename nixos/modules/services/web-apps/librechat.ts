@@ -73,53 +73,53 @@ export default nix.lambda((args) => (() => {
   const exportAllCredentials = (vars) => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), exportCredentials, vars)));
   const getLoadCredentialList = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n}_FILE:${v}`, nix.thunk(() => nix.sel(cfg, "credentials"))));
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$30,
+      [nix.POS]: pos$30,
       services: nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         librechat: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the LibreChat server")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "librechat", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the port in the firewall.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/librechat",
               example: "/persist/librechat",
               description: "Absolute path for where the LibreChat server will use as its data directory to store logs, user uploads, and generated images.",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "librechat",
               example: "alice",
               description: "The user to run the service as.",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "librechat",
               example: "users",
               description: "The group to run the service as.",
             })))),
           credentials: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$5, CREDS_KEY: "/run/secrets/creds_key" })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$5, CREDS_KEY: "/run/secrets/creds_key" })),
               description: "Environment variables which are loaded from the contents of files at a file paths, mainly used for secrets.\nSee [LibreChat environment variables](https://www.librechat.ai/docs/configuration/dotenv).\nAlternatively you can use `services.librechat.credentialsFile` to define all the variables in a single file.\n",
             })))),
           env: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -132,10 +132,10 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$10,
-                    CONFIG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$7, default: configFile, internal: true, readOnly: true })))),
+                    [nix.POS]: pos$10,
+                    CONFIG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, default: configFile, internal: true, readOnly: true })))),
                     PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "coercedTo"), nix.thunk(() => nix.lookup(w_1, "port")), nix.builtins.toString, nix.thunk(() => nix.lookup(w_1, "str")));
@@ -145,7 +145,7 @@ export default nix.lambda((args) => (() => {
                         description: "The value that will be passed to the PORT environment variable, telling LibreChat what to listen on.",
                       })))),
                     LIBRECHAT_LOG_DIR: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/logs`),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "/var/lib/librechat/logs")),
@@ -154,7 +154,7 @@ export default nix.lambda((args) => (() => {
                   })),
                 })))),
               example: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ALLOW_REGISTRATION: true,
                 HOST: "0.0.0.0",
                 PORT: 2309n,
@@ -163,38 +163,38 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables that will be set for the service.\nSee [LibreChat environment variables](https://www.librechat.ai/docs/configuration/dotenv).\n",
             })))),
           credentialsFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               description: "Path to a file that contains environment variables.\nSee [LibreChat environment variables](https://www.librechat.ai/docs/configuration/dotenv).\n\nExample content of the file:\n```\nCREDS_KEY=6d6deb03cdfb27ea454f6b9ddd42494bdce4af25d50d8aee454ddce583690cc5\n```\n\nAlternatively you can use `services.librechat.credentials` to define the value of each variable in a separate file.\n",
               default: "/dev/null",
               example: "/run/secrets/librechat",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$15, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
-              default: nix.thunk(() => ({ __proto__: pos$16, version: "1.2.1" })),
+              [nix.POS]: pos$23,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$15, freeformType: nix.thunk(() => nix.sel(format, "type")) })))),
+              default: nix.thunk(() => ({ [nix.POS]: pos$16, version: "1.2.1" })),
               example: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 version: "1.2.1",
                 cache: true,
                 interface: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   privacyPolicy: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     externalUrl: "https://librechat.ai/privacy-policy",
                     openNewTab: true,
                   })),
                 })),
                 endpoints: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   custom: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$20,
+                      [nix.POS]: pos$20,
                       name: "OpenRouter",
                       apiKey: "${OPENROUTER_KEY}",
                       baseURL: "https://openrouter.ai/api/v1",
                       models: nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         default: nix.thunk(() => ["meta-llama/llama-3-70b-instruct"]),
                         fetch: true,
                       })),
@@ -210,13 +210,13 @@ export default nix.lambda((args) => (() => {
             })))),
           enableLocalDB: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "a local mongodb instance")),
           meilisearch: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   options: nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$24,
+                        [nix.POS]: pos$24,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         example: true,
@@ -231,42 +231,42 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             assertion: nix.thunk(() => (nix.asBool(nix.has(nix.sel(cfg, "env"), "MONGO_URI")) || nix.asBool(nix.has(nix.sel(cfg, "credentials"), "MONGO_URI")))),
             message: "MongoDB is not configured, either set `services.librechat.enableLocalDB = true` or provide your own MongoDB instance by setting `services.librechat.env.MONGO_URI` or `services.credentials.MONGO_URI`.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "credentialsFile"), "/dev/null")) || nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "env"), "CREDS_KEY")) || nix.asBool(nix.has(nix.sel(cfg, "credentials"), "CREDS_KEY")))) && nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "env"), "CREDS_IV")) || nix.asBool(nix.has(nix.sel(cfg, "credentials"), "CREDS_IV")))))) && nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "env"), "JWT_SECRET")) || nix.asBool(nix.has(nix.sel(cfg, "credentials"), "JWT_SECRET")))))) && nix.asBool((nix.asBool(nix.has(nix.sel(cfg, "env"), "JWT_REFRESH_SECRET")) || nix.asBool(nix.has(nix.sel(cfg, "credentials"), "JWT_REFRESH_SECRET")))))))),
             message: "CREDS_KEY, CREDS_IV, JWT_SECRET, and JWT_REFRESH_SECRET must be defined in `services.librechat.credentials` and point to locations of files on the host or in a file that `services.credentialsFile` is pointing to.\nAlternatively it can be defined in `services.librechat.env` with literal values but they will be saved within the world-readable nix store.;\nYou can use https://www.librechat.ai/toolkit/creds_generator to generate these.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "meilisearch", "enable")) || nix.asBool(!nix.eq(nix.sel(meiliCfg, "masterKeyFile"), null)))),
             message: "LibreChat's Meilisearch integration requires `services.meilisearch.masterKeyFile` to be set.\n",
           })),
         ]),
         networking: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           firewall: nix.thunk(() => ({
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.sel(cfg, "env", "PORT")))))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             settings: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               "10-librechat": nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "dataDir")}`, nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   d: nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     mode: "0755",
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
@@ -276,9 +276,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             librechat: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["tmpfiles.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")), "meilisearch.service"))),
               wants: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")), "meilisearch.service")),
@@ -289,7 +289,7 @@ cd ${nix.sel(cfg, "dataDir")}
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -322,11 +322,11 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$47,
+          [nix.POS]: pos$47,
           users: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             librechat: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "librechat")), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 name: "librechat",
                 isSystemUser: true,
                 group: "librechat",
@@ -334,37 +334,37 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))}
               })))),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             librechat: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "librechat")), nix.thunk(() => ({})))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           librechat: nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             env: nix.thunk(() => ({
-              __proto__: pos$48,
+              [nix.POS]: pos$48,
               MONGO_URI: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableLocalDB")), "mongodb://localhost:27017")),
               SEARCH: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")), true)),
               MEILI_HOST: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")), nix.thunk(() => nix.str`http://${nix.sel(meiliCfg, "settings", "http_addr")}`))),
             })),
             credentials: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               MEILI_MASTER_KEY: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")), nix.thunk(() => nix.sel(meiliCfg, "masterKeyFile")))),
             })),
           })),
           mongodb: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableLocalDB")), true)),
           })),
           meilisearch: nix.thunk(() => ({
-            __proto__: pos$52,
+            [nix.POS]: pos$52,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "meilisearch", "enable")), true)),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$55,
+      [nix.POS]: pos$55,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

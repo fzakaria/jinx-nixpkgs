@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_43 = nix.arg($, "docbook_xml_dtd_43");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libfprint",
       version: "1.94.100",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           owner: "libfprint",
           repo: "libfprint",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nninjaCheckPhase\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fprint.freedesktop.org/",
         description: "Library designed to make it easy to add support for consumer fingerprint readers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

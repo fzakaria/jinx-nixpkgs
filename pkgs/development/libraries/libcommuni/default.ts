@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libcommuni";
       const version = "3.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "communi",
           repo: "libcommuni",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +38,14 @@ export default nix.lambda((args) => (() => {
       const installCheckTarget = "check";
       const preFixup = "rm -rf lib";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform IRC framework written with Qt",
         homepage: "https://communi.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "sampo",
       version: "0.21.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bruits",
           repo: "sampo",
           tag: nix.thunk(() => nix.str`cargo-sampo-v${nix.sel(finalAttrs, "version")}`),
@@ -37,18 +37,18 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       cargoBuildFlags: nix.thunk(() => ["-p", "sampo"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--version-regex=cargo-sampo-v([0-9\\.]*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Automate changelogs, versioning, and publishing—even for monorepos across multiple package registries",
         homepage: "https://github.com/bruits/sampo",
         changelog: nix.thunk(() => nix.str`https://github.com/bruits/sampo/blob/${nix.sel(finalAttrs, "src", "tag")}/crates/sampo/CHANGELOG.md`),

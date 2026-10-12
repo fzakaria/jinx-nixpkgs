@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         return [
           nix.thunk(() => nix.lookup(w_1, "gstreamer")),
           nix.thunk(() => nix.lookup(w_1, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "gst-plugins-good"), "override"), nix.thunk(() => ({ __proto__: pos$1, qt5Support: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, qt5Support: true })))),
           nix.thunk(() => nix.lookup(w_1, "gst-plugins-bad")),
           nix.thunk(() => nix.lookup(w_1, "gst-libav")),
           wayland,
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\ncd ..\n\nmkdir -p $out/share/applications\nsed 's/Exec=.*$/Exec=QGroundControl/g' --in-place deploy/qgroundcontrol.desktop\ncp -v deploy/qgroundcontrol.desktop $out/share/applications\n\nmkdir -p $out/bin\ncp -v build/staging/QGroundControl \"$out/bin/\"\n\nmkdir -p $out/share/qgroundcontrol\ncp -rv resources/ $out/share/qgroundcontrol\n\ninstall -D resources/icons/qgroundcontrol.png -t $out/share/icons/hicolor/128x128/apps\n\nrunHook postInstall\n";
       const postInstall = "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "mavlink",
           repo: "qgroundcontrol",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./disable-bad-message.patch")]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Provides full ground station support and configuration for the PX4 and APM Flight Stacks",
         homepage: "https://qgroundcontrol.com/",
         changelog: "https://github.com/mavlink/qgroundcontrol/blob/master/CHANGELOG.md",
@@ -96,7 +96,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "QGroundControl",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         propagatedBuildInputs,

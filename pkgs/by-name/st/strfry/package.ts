@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const zlib_ng = nix.arg($, "zlib-ng");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "strfry",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hoytech",
           repo: "strfry",
           tag: "1.0.4",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake -j$NIX_BUILD_CORES\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp ./strfry $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nostr relay implementation in C++",
         homepage: "https://github.com/hoytech/strfry",
         mainProgram: "strfry",

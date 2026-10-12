@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "e2b-code-interpreter",
       version: "2.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "e2b-dev",
           repo: "code-interpreter",
           tag: nix.thunk(() => nix.str`@e2b/code-interpreter-python@${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/test_sandbox_url.py"]),
       preCheck: "rm -r e2b_code_interpreter\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Stateful code execution in cloud sandboxes",
         homepage: "https://github.com/e2b-dev/code-interpreter/tree/main/python",
         changelog: nix.thunk(() => nix.str`https://github.com/e2b-dev/code-interpreter/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

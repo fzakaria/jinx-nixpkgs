@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "steamvr-linux-fixes",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BnuuySolutions",
           repo: "SteamVRLinuxFixes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,19 +33,19 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [vulkan_headers, vulkan_loader]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_LINK: "-Wl,-z,noexecstack" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-Wl,-z,noexecstack" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_DISTORM", nix.thunk(() => nix.str`${nix.sel(python3Packages, "distorm3", "src")}`))),
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 libsteamvr_linux_fixes.so -t $out/lib\n\nlayerJson=\"$out/share/vulkan/implicit_layer.d/VkLayer_steamvr_linux_fixes.json\"\n\ninstall -Dm644 \"$src/VkLayer_steamvr_linux_fixes.json\" \"$layerJson\"\n\nsubstituteInPlace \"$layerJson\" \\\n  --replace-fail \\\n    '\"library_path\": \"./libsteamvr_linux_fixes.so\"' \\\n    '\"library_path\": \"'\"$out\"'/lib/libsteamvr_linux_fixes.so\"'\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Vulkan layer that patches SteamVR vrcompositor for wired HMDs",
         longDescription: "A Vulkan layer that patches SteamVR's vrcompositor to address issues for\nwired headsets (Vive, Index, Beyond, PSVR2, etc), applying fixes such as correct\nrefresh rate support, frame presentation latency via VK_KHR_present_wait,\nFIFO_LATEST_READY on NVIDIA, swapchain usage flags for Mesa, and a crash\non zero-sized texture allocation.\n\nAdd to programs.steam.extraPackages to use with Steam on NixOS. The layer\nactivates automatically via the Vulkan implicit layer mechanism and can be\ndisabled at runtime by setting DISABLE_STEAMVR_LINUX_FIXES=1.\n",
         homepage: "https://github.com/BnuuySolutions/SteamVRLinuxFixes",

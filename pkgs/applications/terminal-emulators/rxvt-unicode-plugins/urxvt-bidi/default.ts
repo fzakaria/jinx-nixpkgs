@@ -19,16 +19,16 @@ export default nix.lambda((args) => (() => {
       const pname = "urxvt-bidi";
       const version = "2.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/K/KA/KAMENSKY/Text-Bidi-${version}.tar.gz`),
           sha256: "1w65xbi4mw5acsrpv3phyzv82ghb29kpbb3b1b1gcinlfxl6f61m",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(perlPackages, "ExtUtilsPkgConfig"))]);
       const buildInputs = nix.thunk(() => [fribidi]);
       const postInstall = "install -Dm555 misc/bidi \"$out/lib/urxvt/perl/bidi\"\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, perlPackages: nix.thunk(() => ["self"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, perlPackages: nix.thunk(() => ["self"]) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Text::Bidi Perl package using fribidi, providing a urxvt plugin",
         homepage: "https://github.com/mkamensky/Text-Bidi",
         maintainers: nix.thunk(() => (() => {
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(perlPackages, "perl", "meta", "license")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
     xorgproto,
   ]);
   const hover = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Build tool to run Flutter applications on desktop",
         homepage: "https://github.com/go-flutter-desktop/hover",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["."]),
       vendorHash: "sha256-LDVF1vt1kTm7G/zqWHcjtGK+BsydgmJUET61+sILiE0=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           tag: nix.thunk(() => nix.str`v${version}`),
           owner: "go-flutter-desktop",
           repo: "hover",
@@ -79,7 +79,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "addDriverRunpath $out/bin/hover\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => nix.concat([binutils, dejavu_fonts, flutter, gcc, go, hover, pkg_config, roboto], libs),

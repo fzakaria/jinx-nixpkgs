@@ -30,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "langchain-aws",
       version: "1.7.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langchain-aws",
           tag: nix.thunk(() => nix.str`langchain-aws==${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [boto3, langchain_core, numpy, pydantic]),
       pythonRelaxDeps: nix.thunk(() => ["boto3"]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         anthropic: nix.thunk(() => nix.concat(nix.sel(anthropic, "optional-dependencies", "bedrock"), [langchain_anthropic])),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
@@ -69,16 +69,16 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["langchain_aws"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             "rev-prefix": "langchain-aws==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain-aws/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Build LangChain application on AWS",
         homepage: "https://github.com/langchain-ai/langchain-aws/",

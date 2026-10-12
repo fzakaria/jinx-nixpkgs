@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const aria2 = nix.arg($, "aria2");
   const generated = nix.thunk(() => nix.app(nix.sel(swiftpm2nix, "helpers"), nix.path(here, "./generated")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xcodes",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "XcodesOrg",
           repo: "xcodes",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ wrapProgram $out/bin/xcodes \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/XcodesOrg/xcodes/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Command-line tool to install and switch between multiple versions of Xcode",
         homepage: "https://github.com/XcodesOrg/xcodes",

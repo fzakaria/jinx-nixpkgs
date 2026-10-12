@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const binlore = nix.arg($, "binlore");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hred",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "danburzo",
           repo: "hred",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,21 +32,21 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-kNNvSxZqN6cDZIG+lvqxgjAVCJUJrCvZThxrur5kozU=",
       dontNpmBuild: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           simple: nix.thunk(() => nix.app(runCommand, "hred-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -e -o pipefail
 echo '<i id="foo">bar</i>' | ${nix.sel(finalAttrs, "finalPackage")}/bin/hred 'i#foo { @id => id, @.textContent => text }' -c | ${jq}/bin/jq -c > $out
 [ "$(cat $out)" = '{"id":"foo","text":"bar"}' ]
 `))),
         })),
         binlore: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), "execer cannot bin/hred")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command-line tool to extract data from HTML",
         mainProgram: "hred",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

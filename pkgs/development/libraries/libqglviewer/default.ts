@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libqglviewer",
       version: "2.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GillesDebunne",
           repo: "libQGLViewer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace QGLViewer/QGLViewer.pro \\\n  --replace-fail \\\n    \"LIB_DIR_ = /Library/Frameworks\" \\\n    \"LIB_DIR_ = \\$\\$\"\"{PREFIX_}/lib\" \\\n  --replace-fail \\\n    \"!staticlib: CONFIG *= lib_bundle\" \\\n    \"\"\n")),
       preConfigure: "cd QGLViewer\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ library based on Qt that eases the creation of OpenGL 3D viewers",
         homepage: "https://github.com/GillesDebunne/libQGLViewer",
         license: nix.thunk(() => (() => {

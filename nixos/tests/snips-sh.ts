@@ -15,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     name: "snips-sh",
     nodes: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       machine: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "snips-sh": nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               SNIPS_HTTP_INTERNAL: "http://0.0.0.0:8080",
               SNIPS_SSH_INTERNAL: "ssh://0.0.0.0:2222",
             })),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "start_all()\n\nmachine.wait_for_unit(\"snips-sh.service\")\nmachine.wait_for_open_port(8080)\nmachine.succeed(\"curl --fail http://localhost:8080\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

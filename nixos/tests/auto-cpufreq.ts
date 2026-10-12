@@ -11,20 +11,20 @@ const pos$6 = nix.positions(here + "/auto-cpufreq.nix", [["machine", 5, 5]]);
 const pos$7 = nix.positions(here + "/auto-cpufreq.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 22, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$7,
+  [nix.POS]: pos$7,
   name: "auto-cpufreq-server",
   nodes: nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     machine: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         "auto-cpufreq": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: true,
           settings: nix.thunk(() => ({
-            __proto__: pos$2,
-            charger: nix.thunk(() => ({ __proto__: pos$1, turbo: "auto" })),
+            [nix.POS]: pos$2,
+            charger: nix.thunk(() => ({ [nix.POS]: pos$1, turbo: "auto" })),
           })),
         })),
       })),

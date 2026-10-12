@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kde-gtk-config",
       patches: nix.thunk(() => [
         nix.path(here, "./0001-gsettings-schemas-path.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             pgrep: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), procps, "pgrep")),
             xsettingsd: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xsettingsd)),
           })))),

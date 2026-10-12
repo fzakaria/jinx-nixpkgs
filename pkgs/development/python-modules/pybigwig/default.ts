@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.26";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deeptools",
           repo: "pyBigWig",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["pyBigWigTest/test*.py"]);
       const disabledTests = nix.thunk(() => ["testAll", "testBigBed", "testFoo", "testNumpyValues"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "File access to bigBed files, and read and write access to bigWig files",
         longDescription: "A Python extension, written in C, for quick access to bigBed files\nand access to and creation of bigWig files. This extension uses\nlibBigWig for local and remote file access.\n",
         homepage: "https://github.com/deeptools/pyBigWig",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

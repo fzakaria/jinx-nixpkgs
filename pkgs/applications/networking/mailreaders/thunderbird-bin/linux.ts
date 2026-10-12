@@ -21,10 +21,10 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const patchelfUnstable = nix.arg($, "patchelfUnstable");
   const alsa_lib = nix.arg($, "alsa-lib");
-  const policies = nix.thunk(() => nix.update({ __proto__: pos$1, DisableAppUpdate: true }, nix.selOr(config, () => ({}), "thunderbird", "policies")));
-  const policiesJson = nix.thunk(() => nix.app(writeText, "thunderbird-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$2, policies: policies }))))));
+  const policies = nix.thunk(() => nix.update({ [nix.POS]: pos$1, DisableAppUpdate: true }, nix.selOr(config, () => ({}), "thunderbird", "policies")));
+  const policiesJson = nix.thunk(() => nix.app(writeText, "thunderbird-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$2, policies: policies }))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,

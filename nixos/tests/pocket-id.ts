@@ -31,10 +31,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ENCRYPTION_KEY = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pocket-id-encryption-key", "SUeAyRRFZ1uf03ClOE+o++BVENSE/Ptb9YFRF2Sk+zM="));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "pocket-id",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -44,18 +44,18 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       machineSqlite: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             "pocket-id": nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
-              settings: nix.thunk(() => ({ __proto__: pos$2, PORT: 10001n })),
-              credentials: nix.thunk(() => ({ __proto__: pos$3, ENCRYPTION_KEY: ENCRYPTION_KEY })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$2, PORT: 10001n })),
+              credentials: nix.thunk(() => ({ [nix.POS]: pos$3, ENCRYPTION_KEY: ENCRYPTION_KEY })),
             })),
           })),
         };
@@ -65,25 +65,25 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const username = nix.thunk(() => nix.sel(config, "services", "pocket-id", "user"));
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             "pocket-id": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               settings: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 PORT: 10001n,
                 DB_CONNECTION_STRING: nix.thunk(() => nix.str`postgresql:///${username}?host=/run/postgresql`),
               })),
-              credentials: nix.thunk(() => ({ __proto__: pos$8, ENCRYPTION_KEY: ENCRYPTION_KEY })),
+              credentials: nix.thunk(() => ({ [nix.POS]: pos$8, ENCRYPTION_KEY: ENCRYPTION_KEY })),
             })),
             postgresql: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   name: nix.thunk(() => nix.str`${username}`),
                   ensureDBOwnership: true,
                 })),
@@ -92,11 +92,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             services: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "pocket-id": nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 after: nix.thunk(() => ["postgresql.target"]),
                 requires: nix.thunk(() => ["postgresql.target"]),
               })),

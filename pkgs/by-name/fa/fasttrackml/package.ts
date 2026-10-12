@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fasttrackml",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "G-Research",
           repo: "fasttrackml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "# we don't need this binary and it messes with our real python\nrm $out/bin/python\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "API for logging parameters and metrics when running machine learning code",
         homepage: "https://github.com/G-Research/fasttrackml",
         changelog: nix.thunk(() => nix.str`https://github.com/G-Research/fasttrackml/releases/tag/v${nix.sel(finalAttrs, "version")}`),

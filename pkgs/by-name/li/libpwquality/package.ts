@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.5";
       const outputs = nix.thunk(() => nix.concat(["out", "dev", "lib", "man"], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => ["py"]))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libpwquality",
           repo: "libpwquality",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -37,20 +37,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enablePython)), nix.thunk(() => [nix.path(here, "./python-binding-prefix.patch")])), nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "musl.patch",
             url: "https://github.com/libpwquality/libpwquality/commit/b0fcd96954be89e8c318e5328dd27c40b401de96.patch",
             hash: "sha256-ykN1hcRKyX3QAqWTH54kUjOxN6+IwRpqQVsujTd9XWs=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "pr-74-use-setuptools-instead-of-distutils.patch",
               url: "https://github.com/libpwquality/libpwquality/commit/509b0a744adf533b524daaa65f25dda144a6ff40.patch",
               hash: "sha256-AxiynPVxv/gONujyj8y6b1XlsNkKszzW5TT9oINR/oo=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "pr-80-respect-pythonsitedir.patch",
               url: "https://github.com/libpwquality/libpwquality/commit/f92351b3998542e33d2b243fc446a4dd852dc972.patch",
               hash: "sha256-1lmigZX/UiEFe9b0JXmlfw/371UYT4PF7Ev2Hv66v74=",
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-pythonsitedir="${nix.sel(python3, "sitePackages")}"`),
       ] : ["--disable-python-bindings"]));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/libpwquality/libpwquality",
         description: "Password quality checking and random password generation library",
         longDescription: "The libpwquality library purpose is to provide common functions for\npassword quality checking and also scoring them based on their apparent\nrandomness. The library also provides a function for generating random\npasswords with good pronounceability. The library supports reading and\nparsing of a configuration file.\n\nIn the package there are also very simple utilities that use the library\nfunction and PAM module that can be used instead of pam_cracklib. The\nmodule supports all the options of pam_cracklib.\n",
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

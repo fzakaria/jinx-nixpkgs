@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "implot-demos",
       version: "unstable-2023-08-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "epezent",
           repo: "implot_demos",
           rev: "f33219d3ade192a2333d4a32e749842010952a29",
@@ -40,17 +40,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/epezent/implot_demos/commit/85a59612c102f8da97d6ead04f528f4c88f4ef9a.patch",
             hash: "sha256-HRhfC3TUwz9Mv+1ODabaDxTWUaj4Nx1iH7C6vjUPo2s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/epezent/implot_demos/commit/4add0433a46ed5e2099e1af1a77e8055e49230d0.patch",
             hash: "sha256-jYdM8NuwbZk7INKo2wqMAbjLMTPdrAdM4Kr3xmtquIY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/epezent/implot_demos/commit/6742e4202858eb85bd0d67ca5fa15a7a07e6b618.patch",
             hash: "sha256-h4EJ9u1iHLYkGHgxSynskkuCGmY6mmvKdZSRwHJKerY=",
           })))),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "FETCHCONTENT_FULLY_DISCONNECTED", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.5")),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$5, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-fpermissive" })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([curl, fmt, iir1, imgui, imnodes, implot, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [gtk3])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Standalone ImPlot Demos",
         homepage: "https://github.com/epezent/implot_demos",
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),

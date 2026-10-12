@@ -18,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const rev = "7e93dee44df1a7e8f551a2e408a600b2e90a0974";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mmh",
       version: "0.4-unstable-2023-09-24",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://git.marmaro.de/?p=mmh;a=snapshot;h=${rev};sf=tgz`),
           name: nix.thunk(() => nix.str`mmh-${rev}.tgz`),
           hash: "sha256-t2Qnwtkli+/MDk6uaikS2SIP9LucK64os8kGcn2ytRU=",
@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, flex]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Set of electronic mail handling programs",
         homepage: "http://marmaro.de/prog/mmh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

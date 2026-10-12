@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sourcemapper",
       version: "0-unstable-2024-03-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "denandz",
           repo: "sourcemapper",
           rev: "467916e59f9f28f2df3c2fb209db32dabd057c92",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extract JavaScript source trees from Sourcemap files",
         homepage: "https://github.com/denandz/sourcemapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

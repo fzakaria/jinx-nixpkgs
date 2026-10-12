@@ -21,34 +21,34 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       xdg: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         autostart: nix.thunk(() => ({
-          __proto__: pos$4,
-          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "auto-starting of desktop applications according to the [XDG Autostart specification](https://specifications.freedesktop.org/autostart-spec/latest)."), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$2, default: true }))))),
-          install: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "install desktop files following the [XDG Autostart specification](https://specifications.freedesktop.org/autostart-spec/latest) into `/etc/xdg/autostart/`.\n\nThese are handled by your desktop environment or [`systemd-xdg-autostart-generator`](https://www.freedesktop.org/software/systemd/man/latest/systemd-xdg-autostart-generator.html).\n"), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$3, default: true }))))),
+          [nix.POS]: pos$4,
+          enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "auto-starting of desktop applications according to the [XDG Autostart specification](https://specifications.freedesktop.org/autostart-spec/latest)."), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, default: true }))))),
+          install: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "install desktop files following the [XDG Autostart specification](https://specifications.freedesktop.org/autostart-spec/latest) into `/etc/xdg/autostart/`.\n\nThese are handled by your desktop environment or [`systemd-xdg-autostart-generator`](https://www.freedesktop.org/software/systemd/man/latest/systemd-xdg-autostart-generator.html).\n"), nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$3, default: true }))))),
         })),
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       environment: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pathsToLink: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "xdg", "autostart", "install")), nix.thunk(() => ["/etc/xdg/autostart"]))),
       })),
       systemd: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         user: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           generators: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             "systemd-xdg-autostart-generator": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "xdg", "autostart", "enable"))), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/dev/null")))),
           })),
         })),

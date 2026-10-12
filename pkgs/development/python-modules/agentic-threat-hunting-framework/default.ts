@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "agentic-threat-hunting-framework",
       version: "0.23.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nebulock-Inc",
           repo: "agentic-threat-hunting-framework",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [click, jinja2, python_dotenv, pyyaml, rich]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, similarity: nix.thunk(() => [scikit_learn]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, similarity: nix.thunk(() => [scikit_learn]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook, requests]),
       pythonImportsCheck: nix.thunk(() => ["athf"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Framework for agentic threat hunting",
         homepage: "https://github.com/Nebulock-Inc/agentic-threat-hunting-framework",
         changelog: nix.thunk(() => nix.str`https://github.com/Nebulock-Inc/agentic-threat-hunting-framework/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

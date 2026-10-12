@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const mobile_broadband_provider_info = nix.arg($, "mobile-broadband-provider-info");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ofono",
       version: "2.19",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/network/ofono/ofono.git/snapshot/ofono-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-OFoEl4Ve5DCNYsDfQpO26tZQTUz1192v0oECsXvHTG8=",
         })))),
@@ -50,14 +50,14 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Infrastructure for building mobile telephony (GSM/UMTS) applications",
         homepage: "https://git.kernel.org/pub/scm/network/ofono/ofono.git",
         changelog: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/network/ofono/ofono.git/plain/ChangeLog?h=${nix.sel(finalAttrs, "version")}`),

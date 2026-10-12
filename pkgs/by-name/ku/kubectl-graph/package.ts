@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kubectl-graph",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "steveteuber",
           repo: "kubectl-graph",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-fvn+CoOyMRjsIemMRXitMjTlbbhjrlDIHu398b4/ZZ0=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Kubectl plugin to visualize Kubernetes resources and relationships",
         homepage: "https://github.com/steveteuber/kubectl-graph",
         changelog: nix.thunk(() => nix.str`https://github.com/steveteuber/kubectl-graph/releases/tag/v${nix.sel(finalAttrs, "version")}`),

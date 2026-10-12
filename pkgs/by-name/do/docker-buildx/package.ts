@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "docker-buildx";
       const version = "0.35.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docker",
           repo: "buildx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\ninstall -D $GOPATH/bin/buildx $out/libexec/docker/cli-plugins/docker-buildx\n\nmkdir -p $out/bin\nln -s $out/libexec/docker/cli-plugins/docker-buildx $out/bin/docker-buildx\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Docker CLI plugin for extended build capabilities with BuildKit",
         mainProgram: "docker-buildx",
         homepage: "https://github.com/docker/buildx",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

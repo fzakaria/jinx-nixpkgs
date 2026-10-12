@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "honeycomb-refinery",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "honeycombio",
           repo: "refinery",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fip02kKy+LLySFVBI/cKMEZdQRus+4dXBUfm0yGlBlc=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NO_REDIS_TEST: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NO_REDIS_TEST: true })),
       patches: nix.thunk(() => [
         nix.path(here, "./0001-add-NO_REDIS_TEST-env-var-that-disables-Redis-requir.patch"),
       ]),
@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/honeycombio/refinery",
         description: "Tail-sampling proxy for OpenTelemetry",
         mainProgram: "refinery",

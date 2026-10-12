@@ -41,76 +41,76 @@ export default nix.lambda((args) => (() => {
   const updatedSysuserInitialHashedPassword = "$y$j9T$kUBVhgOdSjymSfwfRVja70$eqCwWzVsz0fI0Uc6JsdD2CYMCpfJcErqnIqva2JCi1D";
   const newNormaloHashedPassword = "$y$j9T$UFBMWbGjjVola0YE9YCcV/$jRSi5S6lzkcifbuqjMcyXLTwgOGm9BTQk/G/jYaxroC";
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     name: "userborn",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       machine: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$3,
-          userborn: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+          [nix.POS]: pos$3,
+          userborn: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           etc: nix.thunk(() => ({
-            __proto__: pos$5,
-            "rootpw.secret": nix.thunk(() => ({ __proto__: pos$4, text: rootHashedPasswordFile })),
+            [nix.POS]: pos$5,
+            "rootpw.secret": nix.thunk(() => ({ [nix.POS]: pos$4, text: rootHashedPasswordFile })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             root: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/etc/rootpw.secret")),
             })),
-            normalo: nix.thunk(() => ({ __proto__: pos$8, isNormalUser: true, password: normaloPassword })),
+            normalo: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true, password: normaloPassword })),
             sysuser: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               isSystemUser: true,
               group: "sysusers",
               initialHashedPassword: sysuserInitialHashedPassword,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$11, sysusers: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$11, sysusers: nix.thunk(() => ({})) })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           "new-generation": nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             configuration: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               users: nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 users: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   root: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 9n, null)),
                     hashedPassword: updatedRootHashedPassword,
                   })),
-                  normalo: nix.thunk(() => ({ __proto__: pos$14, hashedPassword: updatedNormaloHashedPassword })),
+                  normalo: nix.thunk(() => ({ [nix.POS]: pos$14, hashedPassword: updatedNormaloHashedPassword })),
                   sysuser: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     initialHashedPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), updatedSysuserInitialHashedPassword)),
                   })),
                   "new-normalo": nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     isNormalUser: true,
                     hashedPassword: newNormaloHashedPassword,
                   })),
-                  "normalo-disabled": nix.thunk(() => ({ __proto__: pos$17, enable: false, isNormalUser: true })),
+                  "normalo-disabled": nix.thunk(() => ({ [nix.POS]: pos$17, enable: false, isNormalUser: true })),
                 })),
-                groups: nix.thunk(() => ({ __proto__: pos$19, "new-group": nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: pos$19, "new-group": nix.thunk(() => ({})) })),
               })),
             })),
           })),

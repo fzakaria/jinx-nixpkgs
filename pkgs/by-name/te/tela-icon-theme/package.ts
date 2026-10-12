@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tela-icon-theme";
       const version = "2026-07-07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinceliuice",
           repo: "tela-icon-theme",
           rev: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const dontCheckForBrokenSymlinks = true;
       const installPhase = "runHook preInstall\n\npatchShebangs install.sh\nmkdir -p $out/share/icons\n./install.sh -a -d $out/share/icons\njdupes -l -r $out/share/icons\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flat colorful Design icon theme",
         homepage: "https://github.com/vinceliuice/tela-icon-theme",
         changelog: nix.thunk(() => nix.str`https://github.com/vinceliuice/Tela-icon-theme/releases/tag/${nix.sel(src, "rev")}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "novalkun"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

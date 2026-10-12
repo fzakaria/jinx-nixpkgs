@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gnuplot = nix.arg($, "gnuplot");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "maelstrom",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/jepsen-io/maelstrom/releases/download/v${nix.sel(finalAttrs, "version")}/maelstrom.tar.bz2`),
           hash: "sha256-MB7HHWsSrw12XttBP1z1qhBGtWCb1OMTdqC1SVSOV5k=",
         })))),
@@ -43,7 +43,7 @@ runHook postInstall
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       runtimeDependencies: nix.thunk(() => [git, coreutils, jdk, gnuplot, graphviz]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Workbench for writing toy implementations of distributed systems",
         homepage: "https://github.com/jepsen-io/maelstrom",
         changelog: nix.thunk(() => nix.str`https://github.com/jepsen-io/maelstrom/releases/tag/v${nix.sel(finalAttrs, "version")}`),

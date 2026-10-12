@@ -28,56 +28,56 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     name: "openresty-lua",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bbigras"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           networking: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraHosts: "127.0.0.1 default.test\n127.0.0.1 sandbox.test\n",
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             nginx: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "openresty")),
               lua: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 enable: true,
                 extraPackages: (p) => [nix.thunk(() => nix.sel(p, "markdown"))],
               })),
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 "default.test": nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   default: true,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       extraConfig: "default_type text/html;\naccess_by_lua '\n  local markdown = require \"markdown\"\n  markdown(\"source\")\n';\n",
                     })),
                   })),
                 })),
                 "sandbox.test": nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     "/test1-write": nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       extraConfig: nix.thunk(() => nix.str`content_by_lua_block {
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/mkdir /tmp/test1-read')
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/touch /tmp/test1-read/foo.txt')
@@ -85,9 +85,9 @@ export default nix.lambda((args) => (() => {
 }
 `),
                     })),
-                    "/test1-read": nix.thunk(() => ({ __proto__: pos$8, root: "/tmp" })),
+                    "/test1-read": nix.thunk(() => ({ [nix.POS]: pos$8, root: "/tmp" })),
                     "/test2-write": nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       extraConfig: nix.thunk(() => nix.str`content_by_lua_block {
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/mkdir /var/web/test2-read')
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/touch /var/web/test2-read/bar.txt')
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
 }
 `),
                     })),
-                    "/test2-read": nix.thunk(() => ({ __proto__: pos$10, root: "/var/web" })),
+                    "/test2-read": nix.thunk(() => ({ [nix.POS]: pos$10, root: "/var/web" })),
                   })),
                 })),
               })),

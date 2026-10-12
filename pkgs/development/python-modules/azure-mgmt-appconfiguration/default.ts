@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0b1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_appconfiguration",
           version: version,
           hash: "sha256-zBaEyScWadchaKV5fhg1EmVWa/oSPre/gY3h1vNa5d4=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonNamespaces = nix.thunk(() => ["azure.mgmt"]);
       const pythonImportsCheck = nix.thunk(() => ["azure.common", "azure.mgmt.appconfiguration"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure App Configuration Management Client Library for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/appconfiguration/azure-mgmt-appconfiguration",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/tree/azure-mgmt-appconfiguration_${version}/sdk/appconfiguration/azure-mgmt-appconfiguration/CHANGELOG.md`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

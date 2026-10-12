@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const fzf = nix.arg($, "fzf");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dra-cla",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CoolnsX",
           repo: "dra-cla",
           rev: "68e9868354bd9fefa72dbe1e7991bc1f6d184aa2",
@@ -43,7 +43,7 @@ wrapProgram $out/bin/dra-cla \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/CoolnsX/dra-cla",
         description: "Cli tool to browse and play korean drama, chinese drama",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

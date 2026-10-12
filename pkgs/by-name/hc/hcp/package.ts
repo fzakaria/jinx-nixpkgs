@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hcp";
       const version = "0.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "hcp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-oRutfFkFgjF19WEfwjNDbBu5mhFGh1tsgKeTsP5rA3M=";
       const preCheck = "export HOME=$TMPDIR\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HashiCorp Cloud Platform CLI",
         homepage: "https://github.com/hashicorp/hcp",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/hcp/releases/tag/v${version}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "dbreyfogle"))];
         })()),
       }));
-      return { __proto__: pos$4, pname, version, src, vendorHash, preCheck, passthru, meta };
+      return { [nix.POS]: pos$4, pname, version, src, vendorHash, preCheck, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

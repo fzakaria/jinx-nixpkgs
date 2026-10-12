@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "szyszka",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "qarmin",
           repo: "szyszka",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, cairo, pango, atk, gdk_pixbuf, gtk4]),
       postInstall: "install -m 444 \\\n    -D data/com.github.qarmin.szyszka.desktop \\\n    -t $out/share/applications\ninstall -m 444 \\\n    -D data/com.github.qarmin.szyszka.metainfo.xml \\\n    -t $out/share/metainfo\ninstall -m 444 \\\n    -D data/icons/com.github.qarmin.szyszka.svg \\\n    -t $out/share/icons/hicolor/scalable/apps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple but powerful and fast bulk file renamer",
         homepage: "https://github.com/qarmin/szyszka",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

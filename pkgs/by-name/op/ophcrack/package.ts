@@ -21,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const enableGui = nix.argOr($, "enableGui", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ophcrack",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/ophcrack/${nix.sel(finalAttrs, "version")}/ophcrack-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-BIpt9XmDo6WjGsfE7BLfFqpJ5lKilnbZPU75WdUK7uA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://salsa.debian.org/pkg-security-team/ophcrack/-/raw/c60118b40802e1162dcebfe5f881cf973b2334d3/debian/patches/fix_spelling_error.diff",
             hash: "sha256-Fc044hTU4Mtdym+HukGAwGzaLm7aVzV9KpvHvFUG2Sc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://salsa.debian.org/pkg-security-team/ophcrack/-/raw/e19d993a7dbf131d13128366e2aac270a685befc/debian/patches/qmake_crossbuild.diff",
             hash: "sha256-sOKXOBpAYGLacU6IxjRzy3HCnGm4DFowDL2qP+DzG8M=",
           })))),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--with-libssl"], (nix.asBool(enableGui) ? ["--enable-gui", "--with-qt5charts"] : ["--disable-gui"]))),
       installPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(enableGui))), "mkdir -p $out/Applications\ncp -R src/ophcrack.app $out/Applications/ophcrack.app\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free Windows password cracker based on rainbow tables",
         homepage: "https://ophcrack.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

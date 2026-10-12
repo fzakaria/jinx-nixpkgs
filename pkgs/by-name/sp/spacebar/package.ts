@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spacebar";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cmacrae",
           repo: "spacebar",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p $out/bin\nmkdir -p $out/share/man/man1/\ncp ./bin/spacebar $out/bin/spacebar\ncp ./doc/spacebar.1 $out/share/man/man1/spacebar.1\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal status bar for macOS",
         homepage: "https://github.com/cmacrae/spacebar",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cmacrae"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

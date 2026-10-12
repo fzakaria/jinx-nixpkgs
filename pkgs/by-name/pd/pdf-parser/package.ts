@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pdf-parser",
       version: "0.7.14",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://didierstevens.com/files/software/pdf-parser_V${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-oAmTzkBxwrXXSSimaN1Uo4wP+7ySrmyJNb9jD2uWglA=",
         })))),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   --replace-fail '/usr/bin/python' '${nix.sel(python3Packages, "python")}/bin/python'
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-pdf-parser", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl pcre2\n\nset -eu -o pipefail\n\nversion=\"$(curl -s https://blog.didierstevens.com/programs/pdf-tools/ |\n  pcre2grep -O '$1.$2.$3' '\\bpdf-parser_V(\\d+)_(\\d+)_(\\d+)\\.zip\\b.*')\"\n\nupdate-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Parse a PDF document",
         longDescription: "This tool will parse a PDF document to identify the fundamental elements used in the analyzed file.\nIt will not render a PDF document.\n",
         homepage: "https://blog.didierstevens.com/programs/pdf-tools/",

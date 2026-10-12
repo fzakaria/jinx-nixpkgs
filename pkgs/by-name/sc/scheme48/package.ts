@@ -14,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scheme48",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://s48.org/${nix.sel(finalAttrs, "version")}/scheme48-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "bvWp8/yhQRCw+DG0WAHRH5vftnmdl2qhLk+ICdrzkEw=",
         })))),
       postPatch: "substituteInPlace build/build-usual-image --replace '\"(made by $USER on $date)\"' '\"\"'\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=implicit-int"]))),
         })))),
       buildPhase: "runHook preBuild\nmake vm image libscheme48 script-interpreter go\nrunHook postBuild\n",
       installTargets: "install-no-doc",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://s48.org/",
         description: "Scheme 48 interpreter for R5RS",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

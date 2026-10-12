@@ -12,12 +12,12 @@ export default (f) => nix.lambda((args) => (() => {
   const args_1 = args;
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       system: system,
       config: nix.thunk(() => ({})),
       overlays: [],
     }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
-  return nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(pkgs, "lib", "isFunction"), f)) ? nix.app(f, nix.thunk(() => nix.update(args_1, { __proto__: pos$3, pkgs: pkgs, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))) : nix.force(f))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  return nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(pkgs, "lib", "isFunction"), f)) ? nix.app(f, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$3, pkgs: pkgs, lib: nix.thunk(() => nix.attr(pkgs, "lib")) }))) : nix.force(f))));
 })(), formals$1);
 //# sourceMappingURL=make-test-python.ts.map

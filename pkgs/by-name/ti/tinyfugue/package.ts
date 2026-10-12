@@ -32,24 +32,24 @@ export default nix.lambda((args) => (() => {
       const version = "50b8";
       const verUrl = "5.0%20beta%208";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/tinyfugue/tinyfugue/${verUrl}/tf-${version}.tar.gz`),
           sha256: "12fra2fdwqj6ilv9wdkc33rkj343rdcf5jyff4yiwywlrwaa2l1p",
         }))));
       const patches = nix.thunk(() => [
         nix.path(here, "./fix-build.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://src.fedoraproject.org/rpms/tinyfugue/raw/ce016e8fb60a51de7c9d0c45dad109b3809de048/f/tinyfigue-configure-c99.patch",
             hash: "sha256-Ge6545PCgcvnSgtDChqUQgf6b3BMjNveBAxQ8fAy8f4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://src.fedoraproject.org/rpms/tinyfugue/raw/ce016e8fb60a51de7c9d0c45dad109b3809de048/f/tf-50b8.pcre.patch",
             hash: "sha256-T0XiadrviyuvtZZKYG/kXHQSC7RZkLKQGHOMrnfyLVg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://src.fedoraproject.org/rpms/tinyfugue/raw/ce016e8fb60a51de7c9d0c45dad109b3809de048/f/tf-50b8-pcre2.patch",
             hash: "sha256-pTtCUwMBk+t4lK0Z1fKPKaQemdpEdVPe2NScpD8QBS8=",
           })))),
@@ -58,11 +58,11 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.app(optional, nix.thunk(() => !nix.asBool(sslSupport)), "--disable-ssl"));
       const buildInputs = nix.thunk(() => nix.concat([ncurses, pcre2, zlib], nix.app(optional, sslSupport, openssl)));
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         NIX_CFLAGS_COMPILE: "-fcommon -Wno-incompatible-pointer-types -Wno-return-mismatch",
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         homepage: "https://tinyfugue.sourceforge.net/",
         description: "Terminal UI, screen-oriented MUD client",
         mainProgram: "tf",
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "KibaFox"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         verUrl,

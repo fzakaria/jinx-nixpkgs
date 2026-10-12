@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "controller-topology-project";
       const version = "1.0.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kodi-game",
           repo: "controller-topology-project",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,13 +31,13 @@ cp -r addons/* $out${addonDir}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kodi-game/controller-topology-project",
         description: "Models how controllers connect to and map to each other for all gaming history",
         license: nix.thunk(() => nix.sel(lib, "licenses", "odbl")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$3, pname, version, src, postPatch, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, postPatch, installPhase, meta };
     })())));
   return nix.app(toKodiAddon, drv);
 })(), formals$1);

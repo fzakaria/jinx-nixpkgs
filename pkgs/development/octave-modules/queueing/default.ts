@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "queueing";
       const version = "1.2.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mmarzolla/queueing/releases/download/${version}/${pname}-${version}.tar.gz`),
           sha256: "sha256-kJGURTYig+aImnjXu8ldyqFAJDqV+fpUzR+h6OdvwzM=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/queueing/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         description: "Provides functions for queueing networks and Markov chains analysis",
         longDescription: "The queueing package provides functions for queueing networks and Markov\nchains analysis. This package can be used to compute steady-state\nperformance measures for open, closed and mixed networks with single or\nmultiple job classes. Mean Value Analysis (MVA), convolution, and various\nbounding techniques are implemented. Furthermore, several transient and\nsteady-state performance measures for Markov chains can be computed, such\nas state occupancy probabilities, mean time to absorption, time-averaged\nsojourn times and so forth. Discrete- and continuous-time Markov chains\nare supported.\n",
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

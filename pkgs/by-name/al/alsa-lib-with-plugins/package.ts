@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const lndir = nix.arg($, "lndir");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const runCommand = nix.arg($, "runCommand");
-  const merged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ __proto__: pos$1, name: "alsa-plugins-merged", paths: plugins }))));
+  const merged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "alsa-plugins-merged", paths: plugins }))));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(alsa_lib, "pname")}-${nix.sel(alsa_lib, "version")}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: nix.thunk(() => nix.attr(alsa_lib, "pname")),
       version: nix.thunk(() => nix.attr(alsa_lib, "version")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wrapper to ease access to ALSA plugins",
         mainProgram: "aserver",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const curl = nix.arg($, "curl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "uploadserver",
       version: "6.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Densaugeo",
           repo: "uploadserver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, urllib3, requests, curl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, VERBOSE: 0n, PROTOCOL: "HTTP" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, VERBOSE: 0n, PROTOCOL: "HTTP" })),
       enabledTestPaths: nix.thunk(() => ["test.py"]),
       pythonImportsCheck: nix.thunk(() => ["uploadserver"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python's http.server extended to include a file upload page",
         homepage: "https://github.com/Densaugeo/uploadserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

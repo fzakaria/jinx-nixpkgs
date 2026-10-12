@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "yapesdl",
       version: "0.81.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "calmopyrin",
           repo: "yapesdl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\ninstall -Dm755 yapesdl -t ${!outputBin}/bin/\ninstall -Dm755 README.SDL -t ${!outputDoc}/share/doc/yapesdl/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://yape.plus4.net/",
         description: "Multiplatform Commodore 64 and 264 family emulator",
         changelog: nix.thunk(() => nix.str`https://github.com/calmopyrin/yapesdl/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "structurizr-cli",
       version: "2025.05.28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "structurizr",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,33 +43,33 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => (() => {
         const commits = nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             rev: "eb1657c2be62fb493adde954330a70eebd72026a",
             hash: "sha256-B1vqQNHHSOgiRysc5ZkcBB/8YZ1dMjJuFu5uwGRQKWs=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             rev: "24be5eeec893df5261100913c4e51ca0bd100689",
             hash: "sha256-tj7fNOqKLPvgTYKCRIJlGg1OGyGOmmx0Pj4H8oDPVdU=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             rev: "2cb1d86c59f210ce32211395570e8dccf138df16",
             hash: "sha256-wswvXJujyPpbvXvL2SOFC4zZLnfskYFdHvzry66vukQ=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             rev: "3260d8622a9cf6197d6ab5d9440087dcaac3fbb9",
             hash: "sha256-0zUmg+smxQLZm9wWu3JL1pIXQJcQ1uyQ433C1pDLatQ=",
           })),
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             rev: "1a11940d089a8d70d6e298660c6f5db638cc8d00",
             hash: "sha256-Myj3s7Kc+bQS3iJIZoEyc39pn3DkBOHFu/B9UUPKXf8=",
           })),
         ]);
         return nix.builtins.map((entry) => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               url: nix.thunk(() => nix.str`https://github.com/structurizr/cli/commit/${nix.sel(entry, "rev")}.patch`),
               hash: nix.thunk(() => nix.sel(entry, "hash")),
             }))), commits);
@@ -80,7 +80,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [gradle, makeBinaryWrapper, gitMinimal]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -100,7 +100,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Structurizr CLI for publishing C4 architecture diagrams and models",
         homepage: "https://github.com/structurizr/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

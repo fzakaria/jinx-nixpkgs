@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kwin-effect-geometry-change",
       version: "1.5",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peterfajdiga",
           repo: "kwin4_effect_geometry_change",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       installPhase: "runHook preInstall\n\nkpackagetool6 --type=KWin/Effect --install=./package --packageroot=$out/share/kwin/effects\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "KWin animation for windows moved or resized by programs or scripts",
         homepage: "https://github.com/peterfajdiga/kwin4_effect_geometry_change",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

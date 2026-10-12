@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vapoursynth-bestsource",
       version: "13",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           fetchSubmodules: true,
           owner: "vapoursynth",
           repo: "bestsource",
@@ -38,16 +38,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [
         vapoursynth,
-        nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ __proto__: pos$2, withLcms2: true })))),
+        nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withLcms2: true })))),
         xxhash,
       ]),
       postPatch: "substituteInPlace meson.build \\\n  --replace-fail \"vapoursynth_dep.get_variable(pkgconfig: 'libdir')\" \"get_option('libdir')\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$3, "rev-prefix": "R", ignoredVersions: "*-RC*" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "R", ignoredVersions: "*-RC*" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Wrapper library around FFmpeg that ensures sample and frame accurate access to audio and video",
         homepage: "https://github.com/vapoursynth/bestsource",
         license: nix.thunk(() => (() => {

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0b3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "azure_mgmt_mysqlflexibleservers",
           version: version,
           hash: "sha256-15uNv6MKuHxuXxeQYWbpmWQVhmkmzCYjeGkSIamGWAM=",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [azure_common, azure_mgmt_core, isodate, msrest, typing_extensions]);
       const pythonImportsCheck = nix.thunk(() => ["azure.mgmt.mysqlflexibleservers"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Azure Mysqlflexibleservers Management Client Library for Python",
         homepage: "https://pypi.org/project/azure-mgmt-mysqlflexibleservers/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

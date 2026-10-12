@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ipazc",
           repo: "mtcnn",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [keras, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_detect_no_faces"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "MTCNN face detection implementation for TensorFlow",
         homepage: "https://github.com/ipazc/mtcnn",
         changelog: nix.thunk(() => nix.str`https://github.com/ipazc/mtcnn/releases/tag/v${version}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

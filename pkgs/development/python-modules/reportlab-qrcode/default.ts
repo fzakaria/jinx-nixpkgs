@@ -25,17 +25,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-m/oeuA797MEBOJBIG157VIa7TbEbRRVK/O8Arz/oO/o=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [qrcode, reportlab]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, testing: nix.thunk(() => [pillow, pytest, pyzbar]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, testing: nix.thunk(() => [pillow, pytest, pyzbar]) }));
       const pythonImportsCheck = nix.thunk(() => ["reportlab_qrcode"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Allows to create QR codes for use with the ReportLab PDF library",
         homepage: "https://pypi.org/project/reportlab-qrcode/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -138,7 +138,7 @@ fi
 `, script);
   const webroots = nix.thunk(() => nix.app(nix.sel(lib, "remove"), null, nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.builtins.map((certAttrs) => nix.sel(certAttrs, "webroot"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(config, "security", "acme", "certs"))))))))));
   const commonServiceConfig = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     Type: "oneshot",
     User: user,
     Group: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "acme")),
@@ -184,7 +184,7 @@ chown -R ${user} .lego/accounts
 done
 `, certConfigs)))))));
   const setupService = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "Set up the ACME certificate renewal infrastructure",
     path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minica"))]),
     script: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "defaults", "enableDebugLogs")), "set -x")}
@@ -195,7 +195,7 @@ test -e ca/key.pem || minica \\
   --domains selfsigned.local
 `))),
     serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       ExecStartPre: nix.thunk(() => nix.str`+${nix.app(nix.sel(lib, "getExe"), privilegedSetupScript)}`),
       RemainAfterExit: true,
       StateDirectory: nix.thunk(() => ["acme", "acme/.lego", "acme/.lego/accounts", "acme/.minica"]),
@@ -232,17 +232,17 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(data, "ocspMustStaple")))} ${nix
     const renewOpts = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(["run"], nix.concat(commonOpts, nix.concat(["--no-random-sleep"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(data, "csr"), null)), nix.thunk(() => ["--force-cert-domains"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(data, "ocspMustStaple")), nix.thunk(() => ["--must-staple"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(data, "profile"), null)), nix.thunk(() => [nix.thunk(() => nix.str`--profile=${nix.sel(data, "profile")}`)])), nix.sel(data, "extraLegoRenewFlags"))))))))));
     const certificateKey = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(data, "csrKey"), null)) ? nix.str`${nix.sel(data, "csrKey")}` : nix.str`certificates/${keyName}.key`));
     return {
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       accountHash: accountHash,
       cert: cert,
       group: nix.thunk(() => nix.sel(data, "group")),
       renewTimer: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: nix.thunk(() => nix.str`Renew ACME Certificate for ${cert}`),
         wantedBy: nix.thunk(() => ["timers.target"]),
-        unitConfig: nix.thunk(() => ({ __proto__: pos$4, "X-OnlyManualStart": true })),
+        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$4, "X-OnlyManualStart": true })),
         timerConfig: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           OnCalendar: nix.thunk(() => nix.sel(data, "renewInterval")),
           Unit: nix.thunk(() => nix.str`acme-order-renew-${cert}.service`),
           Persistent: "yes",
@@ -252,7 +252,7 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(data, "ocspMustStaple")))} ${nix
         })),
       })),
       baseService: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         description: nix.thunk(() => nix.str`Ensure certificate for ${cert}`),
         wantedBy: nix.thunk(() => ["multi-user.target"]),
         after: nix.thunk(() => ["acme-setup.service"]),
@@ -265,9 +265,9 @@ ${nix.builtins.toString(nix.thunk(() => nix.sel(data, "ocspMustStaple")))} ${nix
           nix.thunk(() => nix.sel(config, "systemd", "services", nix.key(nix.str`acme-order-renew-${cert}`), "script")),
         ]),
         path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minica"))]),
-        unitConfig: nix.thunk(() => ({ __proto__: pos$7, StartLimitIntervalSec: 0n })),
+        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, StartLimitIntervalSec: 0n })),
         serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           Group: nix.thunk(() => nix.sel(data, "group")),
           UMask: "0027",
           RemainAfterExit: true,
@@ -286,7 +286,7 @@ if [ -e out/acme-success ]; then
 fi
 
 minica ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               "ca-key": "ca/key.pem",
               "ca-cert": "ca/cert.pem",
               domains: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.app(nix.sel(lib, "filter"), isDomainName, nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(data, "domain"))], extraDomains)))))),
@@ -315,7 +315,7 @@ done
 `))),
       })),
       orderRenewService: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: nix.thunk(() => nix.str`Order (and renew) ACME certificate for ${cert}`),
         after: nix.thunk(() => [
           "network.target",
@@ -339,7 +339,7 @@ done
           ];
         })()),
         serviceConfig: nix.thunk(() => nix.update(commonServiceConfig, nix.update({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           Group: nix.thunk(() => nix.sel(data, "group")),
           RestartSec: nix.thunk(() => nix.sel(data, "renewIntervalFailed")),
           Restart: "on-failure",
@@ -365,7 +365,7 @@ if [ -e renewed ]; then
 fi
 `)))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(data, "listenHTTP"), null)) && nix.asBool(nix.lt(nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(data, "listenHTTP"))))))), 1024n)))), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
             AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
           })))))),
@@ -475,16 +475,16 @@ chmod -R u=rwX,g=,o= accounts/.
     const $_1 = nix.formals(args_1, formals$2);
     const config_1 = nix.arg($_1, "config");
     const defaultAndText = (name) => (default$) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       default: nix.thunk(() => (nix.asBool((nix.asBool(isDefaults) || nix.asBool(!nix.asBool(nix.sel(config_1, "inheritDefaults"))))) ? nix.force(default$) : nix.sel(cfg, "defaults", nix.key(nix.force(name))))),
       defaultText: nix.thunk(() => (nix.asBool(isDefaults) ? nix.force(default$) : nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.security.acme.defaults.${name}`)))),
     });
     return {
-      __proto__: pos$40,
+      [nix.POS]: pos$40,
       options: nix.thunk(() => ({
-        __proto__: pos$39,
+        [nix.POS]: pos$39,
         validMinDays: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "int")))),
             default: null,
             description: "Minimum remaining validity before renewal in days.\n\nIf unset, the renewal time is calculated dynamically:\n- for regular certificates, renewal occurs when less than one-third of the lifetime remains\n- for short-lived certificates, renewal occurs when less than half of the lifetime remains\n",
@@ -492,7 +492,7 @@ chmod -R u=rwX,g=,o= accounts/.
         renewInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "renewInterval", "daily"));
             return {
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -502,7 +502,7 @@ chmod -R u=rwX,g=,o= accounts/.
         renewIntervalFailed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "renewIntervalFailed", nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.mul(60n, 15n)))}`)));
             return {
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -512,7 +512,7 @@ chmod -R u=rwX,g=,o= accounts/.
         renewJitter: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "renewJitter", "24h"));
             return {
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -522,7 +522,7 @@ chmod -R u=rwX,g=,o= accounts/.
         enableDebugLogs: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "debug logging for this certificate"), (() => {
           const from = nix.thunk(() => nix.app(defaultAndText, "enableDebugLogs", true));
           return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           default: nix.thunk(() => nix.attr(from, "default")),
           defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
         };
@@ -530,7 +530,7 @@ chmod -R u=rwX,g=,o= accounts/.
         webroot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "webroot", null));
             return {
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -541,7 +541,7 @@ chmod -R u=rwX,g=,o= accounts/.
         server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "server", "https://acme-v02.api.letsencrypt.org/directory"));
             return {
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -552,7 +552,7 @@ chmod -R u=rwX,g=,o= accounts/.
         email: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "email", null));
             return {
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -562,7 +562,7 @@ chmod -R u=rwX,g=,o= accounts/.
         group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "group", "acme"));
             return {
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -572,7 +572,7 @@ chmod -R u=rwX,g=,o= accounts/.
         reloadServices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "reloadServices", []));
             return {
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -582,7 +582,7 @@ chmod -R u=rwX,g=,o= accounts/.
         postRun: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "postRun", ""));
             return {
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             type: nix.thunk(() => nix.sel(lib, "types", "lines")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -593,7 +593,7 @@ chmod -R u=rwX,g=,o= accounts/.
         keyType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "keyType", "ec256"));
             return {
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -603,7 +603,7 @@ chmod -R u=rwX,g=,o= accounts/.
         listenHTTP: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "listenHTTP", null));
             return {
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -614,7 +614,7 @@ chmod -R u=rwX,g=,o= accounts/.
         dnsProvider: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "dnsProvider", null));
             return {
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -625,7 +625,7 @@ chmod -R u=rwX,g=,o= accounts/.
         dnsResolver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "dnsResolver", null));
             return {
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -636,7 +636,7 @@ chmod -R u=rwX,g=,o= accounts/.
         environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "environmentFile", null));
             return {
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -647,7 +647,7 @@ chmod -R u=rwX,g=,o= accounts/.
         credentialFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "credentialFiles", nix.thunk(() => ({}))));
             return {
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -658,7 +658,7 @@ chmod -R u=rwX,g=,o= accounts/.
         dnsPropagationCheck: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "dnsPropagationCheck", true));
             return {
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -668,7 +668,7 @@ chmod -R u=rwX,g=,o= accounts/.
         ocspMustStaple: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "ocspMustStaple", false));
             return {
-            __proto__: pos$34,
+            [nix.POS]: pos$34,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -678,7 +678,7 @@ chmod -R u=rwX,g=,o= accounts/.
         profile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "profile", null));
             return {
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -688,7 +688,7 @@ chmod -R u=rwX,g=,o= accounts/.
         extraLegoFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "extraLegoFlags", []));
             return {
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -698,7 +698,7 @@ chmod -R u=rwX,g=,o= accounts/.
         extraLegoRenewFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "extraLegoRenewFlags", []));
             return {
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -708,7 +708,7 @@ chmod -R u=rwX,g=,o= accounts/.
         extraLegoRunFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.app(defaultAndText, "extraLegoRunFlags", []));
             return {
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: nix.thunk(() => nix.attr(from, "default")),
             defaultText: nix.thunk(() => nix.attr(from, "defaultText")),
@@ -723,53 +723,53 @@ chmod -R u=rwX,g=,o= accounts/.
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       options: nix.thunk(() => ({
-        __proto__: pos$51,
-        user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$41, visible: false, default: "_mkRemovedOptionModule" })))),
-        allowKeysForGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$42, visible: false, default: "_mkRemovedOptionModule" })))),
-        extraDomains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$43, visible: false, default: "_mkMergedOptionModule" })))),
+        [nix.POS]: pos$51,
+        user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$41, visible: false, default: "_mkRemovedOptionModule" })))),
+        allowKeysForGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$42, visible: false, default: "_mkRemovedOptionModule" })))),
+        extraDomains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$43, visible: false, default: "_mkMergedOptionModule" })))),
         directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             readOnly: true,
             default: nix.thunk(() => nix.str`/var/lib/acme/${name}`),
             description: "Directory where certificate and other state is stored.",
           })))),
         domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: name,
             description: "Domain to fetch certificate for (defaults to the entry name).",
           })))),
         csr: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$46,
+            [nix.POS]: pos$46,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             description: "Path to a certificate signing request to apply when fetching the certificate.",
           })))),
         csrKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             description: "Path to the private key to the matching certificate signing request.",
           })))),
         extraDomainNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: [],
             example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  \"example.org\"\n  \"mydomain.org\"\n]\n")),
             description: "A list of extra domain names, which are included in the one certificate to be issued.\n",
           })))),
         s3Bucket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             default: null,
             example: "acme",
             description: "S3 bucket name to use for HTTP-01 based challenges. Challenges will be written to the S3 bucket.\n",
           })))),
         inheritDefaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$50,
+            [nix.POS]: pos$50,
             default: true,
             example: true,
             description: "Whether to inherit values set in `security.acme.defaults` or not.",
@@ -779,32 +779,32 @@ chmod -R u=rwX,g=,o= accounts/.
     };
   })(), formals$3);
   return {
-    __proto__: pos$83,
+    [nix.POS]: pos$83,
     options: nix.thunk(() => ({
-      __proto__: pos$60,
+      [nix.POS]: pos$60,
       security: nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         acme: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           acceptTerms: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Accept the CA's terms of service. The default provider is Let's Encrypt,\nyou can find their ToS at <https://letsencrypt.org/repository/>.\n",
             })))),
           useRoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$54,
+              [nix.POS]: pos$54,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to use the root user when generating certs. This is not recommended\nfor security + compatibility reasons. If a service requires root owned certificates\nconsider following the guide on \"Using ACME with services demanding root\nowned certificates\" in the NixOS manual, and only using this as a fallback\nor for testing.\n",
             })))),
           defaults: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$55,
+              [nix.POS]: pos$55,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => nix.app(inheritableModule, true)))),
               description: "Default values inheritable by all configured certs. You can\nuse this to define options shared by all your certs. These defaults\ncan also be ignored on a per-cert basis using the\n{option}`security.acme.certs.${cert}.inheritDefaults` option.\n",
             })))),
           certs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -814,7 +814,7 @@ chmod -R u=rwX,g=,o= accounts/.
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"example.com\" = {\n    webroot = \"/var/lib/acme/acme-challenge/\";\n    email = \"foo@example.com\";\n    extraDomainNames = [ \"www.example.com\" \"foo.example.com\" ];\n  };\n  \"bar.example.com\" = {\n    webroot = \"/var/lib/acme/acme-challenge/\";\n    email = \"bar@example.com\";\n  };\n}\n")),
             })))),
           maxConcurrentRenewals: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               default: 5n,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               description: "Maximum number of concurrent certificate generation or renewal jobs. All other\njobs will queue and wait running jobs to finish. Reduces the system load of\ncertificate generation.\n\nSet to `0` to allow unlimited number of concurrent job runs.\"\n",
@@ -837,7 +837,7 @@ chmod -R u=rwX,g=,o= accounts/.
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "certs"), {})), nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             warnings: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (w_1) => !nix.eq(w_1, ""), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (cert) => (data) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(data, "extraDomains"), "_mkMergedOptionModule")), nix.thunk(() => nix.str`The option definition \`security.acme.certs.${cert}.extraDomains\` has changed
 to \`security.acme.certs.${cert}.extraDomainNames\` and is now a list of strings.
 Setting a custom webroot for extra domains is not possible, instead use separate certs.
@@ -846,13 +846,13 @@ Setting a custom webroot for extra domains is not possible, instead use separate
               const certs = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(cfg, "certs"))));
               return nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$61,
+                  [nix.POS]: pos$61,
                   assertion: nix.thunk(() => nix.sel(cfg, "acceptTerms")),
                   message: "You must accept the CA's terms of service before using\nthe ACME module by setting `security.acme.acceptTerms`\nto `true`. For Let's Encrypt's ToS see https://letsencrypt.org/repository/\n",
                 })),
               ], nix.builtins.concatLists(nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (cert) => (data) => [
                     nix.thunk(() => ({
-                      __proto__: pos$62,
+                      [nix.POS]: pos$62,
                       assertion: nix.thunk(() => nix.eq(nix.sel(data, "user"), "_mkRemovedOptionModule")),
                       message: nix.thunk(() => nix.str`The option definition \`security.acme.certs.${cert}.user' no longer has any effect; Please remove it.
 Certificate user is now hard coded to the "acme" user. If you would
@@ -861,7 +861,7 @@ like another user to have access, consider adding them to the
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$63,
+                      [nix.POS]: pos$63,
                       assertion: nix.thunk(() => nix.eq(nix.sel(data, "allowKeysForGroup"), "_mkRemovedOptionModule")),
                       message: nix.thunk(() => nix.str`The option definition \`security.acme.certs.${cert}.allowKeysForGroup' no longer has any effect; Please remove it.
 All certs are readable by the configured group. If this is undesired,
@@ -869,7 +869,7 @@ consider changing security.acme.certs.${cert}.group to an unused group.
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$64,
+                      [nix.POS]: pos$64,
                       assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "*", cert))),
                       message: nix.thunk(() => nix.str`The cert option path \`security.acme.certs.${cert}.dnsProvider\`
 cannot contain a * character.
@@ -879,14 +879,14 @@ and remove the wildcard from the path.
                     })),
                     nix.thunk(() => (() => {
                       const exclusiveAttrs = nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         dnsProvider: nix.thunk(() => nix.attr(data, "dnsProvider")),
                         webroot: nix.thunk(() => nix.attr(data, "webroot")),
                         listenHTTP: nix.thunk(() => nix.attr(data, "listenHTTP")),
                         s3Bucket: nix.thunk(() => nix.attr(data, "s3Bucket")),
                       }));
                       return {
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         assertion: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "length"), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(x, null), nix.thunk(() => nix.builtins.attrValues(exclusiveAttrs))))), 1n)),
                         message: nix.thunk(() => nix.str`Exactly one of the options
 \`security.acme.certs.${cert}.dnsProvider\`,
@@ -899,14 +899,14 @@ Current values: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() =
                       };
                     })()),
                     nix.thunk(() => ({
-                      __proto__: pos$67,
+                      [nix.POS]: pos$67,
                       assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (n) => (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "_FILE", n)) || nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "_PATH", n))), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(data, "credentialFiles")))))),
                       message: nix.thunk(() => nix.str`Option \`security.acme.certs.${cert}.credentialFiles\` can only be
 used for variables suffixed by "_FILE" or "_PATH".
 `),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$68,
+                      [nix.POS]: pos$68,
                       assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), (certOpts_1) => (nix.asBool((nix.asBool(nix.eq(nix.sel(certOpts_1, "csr"), null)) && nix.asBool(nix.eq(nix.sel(certOpts_1, "csrKey"), null)))) || nix.asBool((nix.asBool(!nix.eq(nix.sel(certOpts_1, "csr"), null)) && nix.asBool(!nix.eq(nix.sel(certOpts_1, "csrKey"), null))))), certs)),
                       message: nix.thunk(() => nix.str`When passing a certificate signing request both \`security.acme.certs.${cert}.csr\` and \`security.acme.certs.${cert}.csrKey\` need to be set.
 `),
@@ -914,25 +914,25 @@ used for variables suffixed by "_FILE" or "_PATH".
                   ], nix.thunk(() => nix.sel(cfg, "certs"))))));
             })()),
             users: nix.thunk(() => ({
-              __proto__: pos$72,
+              [nix.POS]: pos$72,
               users: nix.thunk(() => ({
-                __proto__: pos$70,
+                [nix.POS]: pos$70,
                 acme: nix.thunk(() => ({
-                  __proto__: pos$69,
+                  [nix.POS]: pos$69,
                   home: "/var/lib/acme",
                   homeMode: "755",
                   group: "acme",
                   isSystemUser: true,
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$71, acme: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$71, acme: nix.thunk(() => ({})) })),
             })),
             systemd: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               services: nix.thunk(() => (() => {
                 const orderRenewServices = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (cert) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`acme-order-renew-${cert}`), nix.thunk(() => nix.sel(conf, "orderRenewService"))), certConfigs));
                 const baseServices = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (cert) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`acme-${cert}`), nix.thunk(() => nix.sel(conf, "baseService"))), certConfigs));
-                return nix.update({ __proto__: pos$73, "acme-setup": setupService }, nix.update(baseServices, orderRenewServices));
+                return nix.update({ [nix.POS]: pos$73, "acme-setup": setupService }, nix.update(baseServices, orderRenewServices));
               })()),
               timers: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (cert) => (conf) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`acme-renew-${cert}`), nix.thunk(() => nix.sel(conf, "renewTimer"))), certConfigs)),
               targets: nix.thunk(() => (() => {
@@ -942,27 +942,27 @@ used for variables suffixed by "_FILE" or "_PATH".
                     const leader = nix.thunk(() => nix.str`acme-order-renew-${nix.sel(leaderConf, "cert")}.service`);
                     const followers = nix.thunk(() => nix.builtins.map((conf) => nix.str`acme-order-renew-${nix.sel(conf, "cert")}.service`, nix.thunk(() => nix.builtins.filter((conf) => !nix.eq(conf, leaderConf), confs))));
                     return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`acme-account-${hash}`), nix.thunk(() => ({
-                        __proto__: pos$75,
+                        [nix.POS]: pos$75,
                         requiredBy: followers,
                         before: followers,
                         requires: nix.thunk(() => [leader]),
                         after: nix.thunk(() => [leader]),
-                        unitConfig: nix.thunk(() => ({ __proto__: pos$74, RefuseManualStart: true })),
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$74, RefuseManualStart: true })),
                       })));
                   })(), nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (conf) => nix.sel(conf, "accountHash"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), certConfigs))))));
                 return nix.force(accountTargets);
               })()),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$79,
+                [nix.POS]: pos$79,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$78,
+                  [nix.POS]: pos$78,
                   "10-acme": nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (dir) => [
                         dir,
                         nix.thunk(() => nix.add(dir, "/.well-known")),
                         nix.thunk(() => nix.add(dir, "/.well-known/acme-challenge")),
                       ], webroots)), (dir) => ({
-                      __proto__: pos$77,
-                      d: nix.thunk(() => ({ __proto__: pos$76, user: user, group: "acme", mode: "0755" })),
+                      [nix.POS]: pos$77,
+                      d: nix.thunk(() => ({ [nix.POS]: pos$76, user: user, group: "acme", mode: "0755" })),
                     }))),
                 })),
               })),
@@ -970,7 +970,7 @@ used for variables suffixed by "_FILE" or "_PATH".
           })))),
       ]))),
     meta: nix.thunk(() => ({
-      __proto__: pos$82,
+      [nix.POS]: pos$82,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "acme"))]),
       doc: nix.path(here, "./default.md"),
     })),

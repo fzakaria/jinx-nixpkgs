@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pygpoabuse",
       version: "0-unstable-2025-11-09",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Hackndo",
           repo: "pyGPOAbuse",
           rev: "324a3c3075a7a6a5364b3cb8b3d2e0b755be9c76",
@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "mv $out/bin/pygpoabuse{.py,}\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Partial python implementation of SharpGPOAbuse",
         homepage: "https://github.com/Hackndo/pyGPOAbuse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

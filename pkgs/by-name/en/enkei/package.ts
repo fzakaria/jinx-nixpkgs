@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "enkei",
       version: "0.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "fia0",
           repo: "enkei",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayland, libGL, glib, cairo]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wallpaper daemon and control tool for Wayland",
         longDescription: "Created to allow displaying dynamic wallpapers based on the specification format used for example in the `Gnome` desktop environment.\nIt is designed to offer a _smooth_ transition between wallpapers and gradual change over long and short periods of time.\nFor a fast handling `enkei` uses `OpenGL` to render images and blending them for transitions.\n",
         homepage: "https://github.com/jwuensche/enkei",

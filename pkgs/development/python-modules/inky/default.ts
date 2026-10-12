@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const spidev = nix.arg($, "spidev");
   const gpiodevice = nix.arg($, "gpiodevice");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inky",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pimoroni",
           repo: "inky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ mv "$out/${nix.sel(python, "sitePackages")}/README.md" $out/share/doc/${nix.sel(
 mv "$out/${nix.sel(python, "sitePackages")}/CHANGELOG.md" $out/share/doc/${nix.sel(finalAttrs, "pname")}/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library for Inky pHAT, Inky wHAT and Inky Impression e-paper displays for Raspberry Pi.",
         homepage: "https://github.com/pimoroni/inky",
         changelog: nix.thunk(() => nix.str`https://github.com/pimoroni/inky/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

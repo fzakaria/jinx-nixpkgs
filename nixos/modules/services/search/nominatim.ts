@@ -61,43 +61,43 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "nominatim"));
   const localDb = nix.thunk(() => nix.eq(nix.sel(cfg, "database", "host"), "localhost"));
   const uiPackage = nix.thunk(() => nix.app(nix.sel(cfg, "ui", "package", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       customConfig: nix.thunk(() => nix.sel(cfg, "ui", "config")),
     }))));
   return {
-    __proto__: pos$49,
+    [nix.POS]: pos$49,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         nominatim: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable nominatim.\n\nAlso enables nginx virtual host management. Further nginx configuration\ncan be done by adapting `services.nginx.virtualHosts.<name>`.\nSee [](#opt-services.nginx.virtualHosts).\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), nix.thunk(() => nix.sel(pkgs, "python3Packages")), "nominatim-api", nix.thunk(() => ({})))),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "Hostname to use for the nginx vhost.",
               example: "nominatim.example.com",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  NOMINATIM_REPLICATION_URL = \"https://planet.openstreetmap.org/replication/minute\";\n  NOMINATIM_REPLICATION_MAX_DIFF = \"100\";\n}\n")),
               description: "Nominatim configuration settings.\nFor the list of available configuration options see\n<https://nominatim.org/release-docs/latest/customize/Settings>.\n",
             })))),
           ui: nix.thunk(() => ({
-            __proto__: pos$7,
-            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Nominatim UI"), { __proto__: pos$5, default: true })),
+            [nix.POS]: pos$7,
+            enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "Nominatim UI"), { [nix.POS]: pos$5, default: true })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "nominatim-ui", nix.thunk(() => ({})))),
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Nominatim UI configuration placed to theme/config.theme.js file.\n\nFor the list of available configuration options see\n<https://github.com/osm-search/nominatim-ui/blob/master/dist/config.defaults.js>.\n",
@@ -105,45 +105,45 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           database: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             host: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Host of the postgresql server. If not set to `localhost`, Nominatim\ndatabase and postgresql superuser with appropriate permissions must\nexist on target host.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "port")),
                 default: 5432n,
                 description: "Port of the postgresql database.",
               })))),
             dbname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "nominatim",
                 description: "Name of the postgresql database.",
               })))),
             superUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "nominatim",
                 description: "Postgresql database superuser used to create Nominatim database and\nimport data. If `database.host` is set to `localhost`, a unix user and\ngroup of the same name will be automatically created.\n",
               })))),
             apiUser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "nominatim-api",
                 description: "Postgresql database user with read-only permissions used for Nominatim\nweb API service.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 description: "Password file used for Nominatim database connection.\nMust be readable only for the Nominatim web API user.\n\nThe file must be a valid `.pgpass` file as described in:\n<https://www.postgresql.org/docs/current/libpq-pgpass.html>\n\nIn most cases, the following will be enough:\n```\n*:*:*:*:<password>\n```\n",
               })))),
             extraConnectionParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Extra Nominatim database connection parameters.\n\nFormat:\n<param1>=<value1>;<param2>=<value2>\n\nSee <https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS>.\n",
@@ -156,22 +156,22 @@ export default nix.lambda((args) => (() => {
       const nominatimSuperUserDsn = nix.thunk(() => nix.add(nix.add(nix.str`pgsql:dbname=${nix.sel(cfg, "database", "dbname")};`, nix.str`user=${nix.sel(cfg, "database", "superUser")}`), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "extraConnectionParams"), null)), nix.thunk(() => nix.add(";", nix.sel(cfg, "database", "extraConnectionParams"))))));
       const nominatimApiDsn = nix.thunk(() => nix.add(nix.add(nix.str`pgsql:dbname=${nix.sel(cfg, "database", "dbname")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(localDb)), nix.thunk(() => nix.add(nix.add(nix.str`;host=${nix.sel(cfg, "database", "host")};`, nix.str`port=${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "database", "port")))};`), nix.str`user=${nix.sel(cfg, "database", "apiUser")}`)))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "extraConnectionParams"), null)), nix.thunk(() => nix.add(";", nix.sel(cfg, "database", "extraConnectionParams"))))));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$48,
+          [nix.POS]: pos$48,
           environment: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nominatim"))]),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(cfg, "database", "superUser"), nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDb, nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   group: nix.thunk(() => nix.sel(cfg, "database", "superUser")),
                   isSystemUser: true,
                   createHome: false,
                 }))))],
               [nix.sel(cfg, "database", "apiUser"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 group: nix.thunk(() => nix.sel(cfg, "database", "apiUser")),
                 isSystemUser: true,
                 createHome: false,
@@ -183,9 +183,9 @@ export default nix.lambda((args) => (() => {
             ])),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDb, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 enable: true,
                 extensions: (ps) => (() => {
                   const w = nix.withScope(ps, null);
@@ -193,60 +193,60 @@ export default nix.lambda((args) => (() => {
                 })(),
                 ensureUsers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     name: nix.thunk(() => nix.sel(cfg, "database", "superUser")),
-                    ensureClauses: nix.thunk(() => ({ __proto__: pos$23, superuser: true })),
+                    ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$23, superuser: true })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     name: nix.thunk(() => nix.sel(cfg, "database", "apiUser")),
                   })),
                 ]),
               })))),
             nginx: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               enable: true,
               appendHttpConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), "map $args $format {\n    default                  default;\n    ~(^|&)format=html(&|$)   html;\n}\n\nmap $uri/$format $forward_to_ui {\n    default               0;   # No forwarding by default.\n\n    # Redirect to HTML UI if explicitly requested.\n    ~/reverse.*/html      1;\n    ~/search.*/html       1;\n    ~/lookup.*/html       1;\n    ~/details.*/html      1;\n}\n")),
               upstreams: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 nominatim: nix.thunk(() => ({
-                  __proto__: pos$28,
-                  servers: nix.thunk(() => ({ __proto__: pos$27, "unix:/run/nominatim.sock": nix.thunk(() => ({})) })),
+                  [nix.POS]: pos$28,
+                  servers: nix.thunk(() => ({ [nix.POS]: pos$27, "unix:/run/nominatim.sock": nix.thunk(() => ({})) })),
                 })),
               })),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "hostName"), nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   forceSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$33,
+                    [nix.POS]: pos$33,
                     "= /": nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), "return 301 $scheme://$http_host/ui/search.html;\n")),
                     })),
                     "/": nix.thunk(() => ({
-                      __proto__: pos$31,
+                      [nix.POS]: pos$31,
                       proxyPass: "http://nominatim",
                       extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), "if ($forward_to_ui) {\n    rewrite ^(/[^/.]*) /ui$1.html redirect;\n}\n")),
                     })),
-                    "/ui/": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), nix.thunk(() => ({ __proto__: pos$32, alias: nix.thunk(() => nix.str`${uiPackage}/`) })))),
+                    "/ui/": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "ui", "enable")), nix.thunk(() => ({ [nix.POS]: pos$32, alias: nix.thunk(() => nix.str`${uiPackage}/`) })))),
                   })),
                 }))],
               ])),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$47,
+            [nix.POS]: pos$47,
             services: nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               "nominatim-init": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), localDb, nix.thunk(() => ({
-                  __proto__: pos$39,
+                  [nix.POS]: pos$39,
                   after: nix.thunk(() => ["postgresql-setup.service"]),
                   requires: nix.thunk(() => ["postgresql-setup.service"]),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     Type: "oneshot",
                     User: nix.thunk(() => nix.sel(cfg, "database", "superUser")),
                     RemainAfterExit: true,
@@ -263,20 +263,20 @@ fi
 `),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "postgresql"))]),
                   environment: nix.thunk(() => nix.update({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     NOMINATIM_DATABASE_DSN: nominatimSuperUserDsn,
                     NOMINATIM_DATABASE_WEBUSER: nix.thunk(() => nix.sel(cfg, "database", "apiUser")),
                   }, nix.sel(cfg, "settings"))),
                 })))),
               nominatim: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.sel(lib, "optionals"), localDb, nix.thunk(() => ["nominatim-init.service"])))),
                 requires: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), localDb, nix.thunk(() => ["nominatim-init.service"]))),
                 bindsTo: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), localDb, nix.thunk(() => ["postgresql.service"]))),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 wants: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$40,
+                  [nix.POS]: pos$40,
                   Type: "simple",
                   User: nix.thunk(() => nix.sel(cfg, "database", "apiUser")),
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "python3Packages", "gunicorn")}/bin/gunicorn \\
@@ -290,7 +290,7 @@ fi
                   TimeoutStopSec: 5n,
                 })),
                 environment: nix.thunk(() => nix.update({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   PYTHONPATH: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
                     return nix.app(nix.sel(pkgs, "python3Packages", "makePythonPath"), nix.thunk(() => [
@@ -306,13 +306,13 @@ fi
               })),
             })),
             sockets: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               nominatim: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 before: nix.thunk(() => ["nominatim.service"]),
                 wantedBy: nix.thunk(() => ["sockets.target"]),
                 socketConfig: nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   ListenStream: "/run/nominatim.sock",
                   SocketUser: nix.thunk(() => nix.sel(cfg, "database", "apiUser")),
                   SocketGroup: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),

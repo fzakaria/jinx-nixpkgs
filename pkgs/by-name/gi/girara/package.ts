@@ -29,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const zathura = nix.arg($, "zathura");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "girara",
       version: "2026.07.18",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pwmt",
           repo: "girara",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,12 +52,12 @@ xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
   meson test --print-errorlogs
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, zathura: zathura })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, zathura: zathura })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://pwmt.org/projects/girara",
         description: "User interface library",
         longDescription: "girara is a library that implements a GTK based VIM-like user interface\nthat focuses on simplicity and minimalism.\n",

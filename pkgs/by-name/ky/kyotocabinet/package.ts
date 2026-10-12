@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kyotocabinet",
       version: "1.2.80",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dbmx.net/kyotocabinet/pkg/kyotocabinet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-TIXXNmaNgpIL/b25KsPWa32xEI8JWBp2ndkWCgLe80k=",
         })))),
       prePatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace kccommon.h \\\n  --replace tr1/unordered_map unordered_map \\\n  --replace tr1/unordered_set unordered_set \\\n  --replace tr1::hash std::hash \\\n  --replace tr1::unordered_map std::unordered_map \\\n  --replace tr1::unordered_set std::unordered_set\n\nsubstituteInPlace lab/kcdict/Makefile --replace stdc++ c++\nsubstituteInPlace configure \\\n    --replace /usr/local/bin:/usr/local/sbin: \"\" \\\n    --replace /usr/bin:/usr/sbin: \"\" \\\n    --replace /bin:/sbin: \"\" \\\n    --replace stdc++ c++\n")),
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://dbmx.net/kyotocabinet",
         description: "Library of routines for managing a database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

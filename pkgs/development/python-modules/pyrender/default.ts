@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.45";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mmatl",
           repo: "pyrender",
           tag: version,
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "relax-pyopengl.patch",
             url: "https://github.com/mmatl/pyrender/commit/7c613e8aed7142df9ff40767a8f10b7a19b6255c.patch",
             hash: "sha256-SXRV9RC3PfQGjjIQ+n97HZrSDPae3rAHnTBiHXSFLaY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-numpy2.patch",
             url: "https://github.com/mmatl/pyrender/commit/5408c7b45261473511d2399ab625efe11f0b6991.patch",
             hash: "sha256-RIv6lMpxMmops5Tb1itzYdT7GkhPScVWslBXITR3IBM=",
@@ -69,12 +69,12 @@ export default nix.lambda((args) => (() => {
         six,
         trimesh,
       ]);
-      const env = nix.thunk(() => ({ __proto__: pos$4, PYOPENGL_PLATFORM: "egl" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, PYOPENGL_PLATFORM: "egl" }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => [nix.thunk(() => nix.sel(mesa, "llvmpipeHook"))]))));
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(mesa, "llvmpipeHook"))))), nix.thunk(() => ["tests/unit/test_offscreen.py"])));
       const pythonImportsCheck = nix.thunk(() => ["pyrender"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://pyrender.readthedocs.io/en/latest/",
         description: "Easy-to-use glTF 2.0-compliant OpenGL renderer for visualization of 3D scenes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

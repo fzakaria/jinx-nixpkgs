@@ -10,11 +10,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDprintPlugin = nix.arg($, "mkDprintPlugin");
   return nix.app(mkDprintPlugin, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       description: "YAML formatter",
       hash: "sha256-QKL92nBAMX6xsjUg86AHaaVXHu2wScTKkXXBue66Aa4=",
       initConfig: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         configExcludes: [],
         configKey: "yaml",
         fileExtensions: nix.thunk(() => ["yaml", "yml"]),

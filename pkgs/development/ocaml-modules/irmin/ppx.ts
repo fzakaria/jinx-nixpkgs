@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const ppx_repr = nix.arg($, "ppx_repr");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ppx_irmin",
       version: "3.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/irmin/releases/download/${nix.sel(finalAttrs, "version")}/irmin-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CZlvvMLEPhF6m9jpAoxjXoHMyyZNXgLUJauLBrus29s=",
         })))),
       minimalOCamlVersion: "4.10",
       propagatedBuildInputs: nix.thunk(() => [ppx_repr, ppxlib, logs]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://irmin.org/",
         description: "PPX deriver for Irmin generics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const wpa_supplicant = nix.arg($, "wpa_supplicant");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "wpa_gui",
       version: nix.thunk(() => nix.attr(wpa_supplicant, "version")),
       src: nix.thunk(() => nix.attr(wpa_supplicant, "src")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make -C icons\n",
       postInstall: "mkdir -pv $out/{bin,share/applications,share/icons}\ncp -v wpa_gui $out/bin\ncp -v wpa_gui.desktop $out/share/applications\ncp -av icons/hicolor $out/share/icons\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Qt-based GUI for wpa_supplicant",
         mainProgram: "wpa_gui",
         homepage: "https://hostap.epitest.fi/wpa_supplicant/",

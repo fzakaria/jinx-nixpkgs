@@ -22,30 +22,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const exampleText = "Lorem ipsum dolor sit amet";
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "lomiri-docviewer-app-standalone",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            __proto__: pos$3,
-            xserver: nix.thunk(() => ({ __proto__: pos$2, enable: true })),
+            [nix.POS]: pos$3,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             etc: nix.thunk(() => ({
-              __proto__: pos$5,
-              "docviewer-sampletext.txt": nix.thunk(() => ({ __proto__: pos$4, text: exampleText })),
+              [nix.POS]: pos$5,
+              "docviewer-sampletext.txt": nix.thunk(() => ({ [nix.POS]: pos$4, text: exampleText })),
             })),
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
@@ -57,11 +57,11 @@ export default nix.lambda((args) => (() => {
                 ];
               })());
             })()),
-            variables: nix.thunk(() => ({ __proto__: pos$6, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$6, UITK_ICON_THEME: "suru" })),
           })),
-          i18n: nix.thunk(() => ({ __proto__: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];

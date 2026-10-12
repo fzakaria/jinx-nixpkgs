@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.24.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xonsh",
           repo: "xonsh",
           tag: version,
@@ -112,15 +112,15 @@ done
 patchShebangs .
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         python: python,
         shellPath: "/bin/xonsh",
         wrapper: nix.thunk(() => nix.builtins.throw("The top-level xonsh package is now wrapped. Use it directly.")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        xontribs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./xontribs")), nix.thunk(() => ({ __proto__: pos$2, callPackage: callPackage })))),
+        xontribs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./xontribs")), nix.thunk(() => ({ [nix.POS]: pos$2, callPackage: callPackage })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://xon.sh/",
         description: "Python-powered shell",
         changelog: nix.thunk(() => nix.str`https://github.com/xonsh/xonsh/blob/${version}/CHANGELOG.md`),
@@ -135,7 +135,7 @@ patchShebangs .
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

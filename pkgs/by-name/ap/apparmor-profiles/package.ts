@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const apparmor_parser = nix.arg($, "apparmor-parser");
   const apparmor_utils = nix.arg($, "apparmor-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "apparmor-profiles",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -36,7 +36,7 @@ substituteInPlace ../parser/tst/test_profile.py \\
       doCheck: true,
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Mandatory access control system - profiles",
         mainProgram: "apparmor_parser",
       })),

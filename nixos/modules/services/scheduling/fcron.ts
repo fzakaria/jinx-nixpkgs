@@ -51,52 +51,52 @@ NIX_CONF_DIR=/etc/nix
 ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.builtins.map, (job) => nix.add(job, "\n"), nix.thunk(() => nix.sel(config, "services", "cron", "systemCronJobs")))))}
 `);
   const allowdeny = (target) => (users) => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`fcron.${target}`), nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), "\n", users)))),
     target: nix.thunk(() => nix.str`fcron.${target}`),
     mode: "644",
     gid: nix.thunk(() => nix.sel(config, "ids", "gids", "fcron")),
   });
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         fcron: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to enable the {command}`fcron` daemon.",
             })))),
           allow: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: nix.thunk(() => ["all"]),
               description: "Users allowed to use fcrontab and fcrondyn (one name per\nline, `all` for everyone).\n",
             })))),
           deny: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               description: "Users forbidden from using fcron.",
             })))),
           maxSerialJobs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")),
               default: 1n,
               description: "Maximum number of serial jobs which can run simultaneously.",
             })))),
           queuelen: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
               default: null,
               description: "Number of jobs the serial queue and the lavg queue can contain.",
             })))),
           systab: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "The \"system\" crontab contents.",
@@ -105,18 +105,18 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.builtins.ma
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
-          fcron: nix.thunk(() => ({ __proto__: pos$11, systab: systemCronJobs })),
+          [nix.POS]: pos$12,
+          fcron: nix.thunk(() => ({ [nix.POS]: pos$11, systab: systemCronJobs })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$15,
-          etc: nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (x) => ({ __proto__: pos$13, name: nix.thunk(() => nix.sel(x, "target")), value: x }), nix.thunk(() => [
+          [nix.POS]: pos$15,
+          etc: nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (x) => ({ [nix.POS]: pos$13, name: nix.thunk(() => nix.sel(x, "target")), value: x }), nix.thunk(() => [
                 nix.thunk(() => nix.app(allowdeny, "allow", nix.thunk(() => nix.sel(cfg, "allow")))),
                 nix.thunk(() => nix.app(allowdeny, "deny", nix.thunk(() => nix.sel(cfg, "deny")))),
                 nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   source: nix.thunk(() => (() => {
                     const isSendmailWrapped = nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "sendmail", nix.thunk(() => nix.sel(config, "security", "wrappers"))));
                     const sendmailPath = nix.thunk(() => (nix.asBool(isSendmailWrapped) ? "/run/wrappers/bin/sendmail" : nix.str`${nix.sel(config, "system", "path")}/bin/sendmail`));
@@ -138,30 +138,30 @@ editor      =       ${nix.sel(pkgs, "vim")}/bin/vim
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fcron"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             fcron: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "fcron")),
               home: "/var/spool/fcron",
               group: "fcron",
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             fcron: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "fcron")),
             })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             fcrontab: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "fcron")}/bin/fcrontab`),
               owner: "fcron",
               group: "fcron",
@@ -169,7 +169,7 @@ editor      =       ${nix.sel(pkgs, "vim")}/bin/vim
               setuid: true,
             })),
             fcrondyn: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "fcron")}/bin/fcrondyn`),
               owner: "fcron",
               group: "fcron",
@@ -177,7 +177,7 @@ editor      =       ${nix.sel(pkgs, "vim")}/bin/vim
               setuid: false,
             })),
             fcronsighup: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               source: nix.thunk(() => nix.str`${nix.sel(pkgs, "fcron")}/bin/fcronsighup`),
               owner: "root",
               group: "fcron",
@@ -186,11 +186,11 @@ editor      =       ${nix.sel(pkgs, "vim")}/bin/vim
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             fcron: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "fcron daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fcron"))]),
@@ -203,7 +203,7 @@ editor      =       ${nix.sel(pkgs, "vim")}/bin/vim
 /run/wrappers/bin/fcrontab -u systab - < ${nix.app(nix.sel(pkgs, "writeText"), "systab", nix.thunk(() => nix.sel(cfg, "systab")))}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "fcron")}/sbin/fcron -m ${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "maxSerialJobs")))} ${queuelen}`),
               })),

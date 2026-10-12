@@ -57,12 +57,12 @@ export default nix.lambda((args) => (() => {
     const patches = nix.argOr($_1, "patches", () => []);
     const postPatch = nix.argOr($_1, "postPatch", () => "");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname: "wlroots",
         version: version,
         enableXWayland: enableXWayland,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             domain: "gitlab.freedesktop.org",
             owner: "wlroots",
             repo: "wlroots",
@@ -99,12 +99,12 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "allocators", "gbm"))])))),
         postFixup: "# Install ALL example programs to $examples:\n# screencopy dmabuf-capture input-inhibitor layer-shell idle-inhibit idle\n# screenshot output-layout multi-pointer rotation tablet touch pointer\n# simple\nmkdir -p $examples/bin\ncd ./examples\nfor binary in $(find . -executable -type f -printf '%P\\n' | grep -vE '\\.so'); do\n  cp \"$binary\" \"$examples/bin/wlroots-$binary\"\ndone\n",
         passthru: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           tests: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             tinywl: nix.thunk(() => nix.sel(nixosTests, "tinywl")),
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
@@ -112,7 +112,7 @@ export default nix.lambda((args) => (() => {
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
           return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "Modular Wayland compositor library",
           longDescription: "Pluggable, composable, unopinionated modules for building a Wayland\ncompositor; or about 50,000 lines of code you were going to write anyway.\n",
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
@@ -134,14 +134,14 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     wlroots_0_19: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         version: "0.19.3",
         hash: "sha256-J+wSVUtuizaCyCn523chFbE8VtbPjyu5XYv5eLT+GM0=",
       })))),
     wlroots_0_20: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         version: "0.20.2",
         hash: "sha256-VdYymvzYp6/R255AK20j4xTd+JbCZgNiRfgeRJD+UZY=",
       })))),

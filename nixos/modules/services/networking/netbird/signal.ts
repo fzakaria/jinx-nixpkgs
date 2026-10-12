@@ -45,45 +45,45 @@ export default nix.lambda((args) => (() => {
   const escapeSystemdExecArgs = nix.thunk(() => nix.attr(utils, "escapeSystemdExecArgs"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "netbird", "server", "signal"));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         netbird: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           server: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             signal: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               enable: nix.thunk(() => nix.app(mkEnableOption, "Netbird's Signal Service")),
               package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "netbird-signal", nix.thunk(() => ({})))),
               enableNginx: nix.thunk(() => nix.app(mkEnableOption, "Nginx reverse-proxy for the netbird signal service")),
               domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: str,
                   description: "The domain name for the signal service.",
                 })))),
               port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   type: port,
                   default: 8012n,
                   description: "Internal port of the signal server.",
                 })))),
               metricsPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   type: port,
                   default: 9091n,
                   description: "Internal port of the metrics server.",
                 })))),
               extraOptions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   type: nix.thunk(() => nix.app(listOf, str)),
                   default: [],
                   description: "Additional options given to netbird-signal as commandline arguments.\n",
                 })))),
               logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["ERROR", "WARN", "INFO", "DEBUG"]))),
                   default: "INFO",
                   description: "Log level of the netbird signal service.",
@@ -94,24 +94,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "port"), nix.sel(cfg, "metricsPort"))),
             message: "The primary listen port cannot be the same as the listen port for the metrics endpoint",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "netbird-signal": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ExecStart: nix.thunk(() => nix.app(escapeSystemdExecArgs, nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.app(getExe$, nix.thunk(() => nix.sel(cfg, "package")), "netbird-signal")),
                     "run",
@@ -151,17 +151,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           nginx: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableNginx")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     "/signalexchange.SignalExchange/": nix.thunk(() => ({
-                      __proto__: pos$16,
+                      [nix.POS]: pos$16,
                       extraConfig: nix.thunk(() => nix.str`# This is necessary so that grpc connections do not get closed early
 # see https://stackoverflow.com/a/67805465
 client_body_timeout 1d;

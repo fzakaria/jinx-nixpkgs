@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const melange = nix.arg($, "melange");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "melange-json",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "melange-community",
           repo: "melange-json",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [melange]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compositional JSON encode/decode library and PPX for Melange and OCaml",
         homepage: "https://github.com/melange-community/melange-json",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

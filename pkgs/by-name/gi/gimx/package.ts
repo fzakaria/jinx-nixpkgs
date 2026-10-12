@@ -24,25 +24,25 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libx11 = nix.arg($, "libx11");
   const gimx_config = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "matlo",
       repo: "GIMX-configurations",
       rev: "c20300f24d32651d369e2b27614b62f4b856e4a0",
       hash: "sha256-t/Ttlvc9LCRW624oSsFaP8EmswJ3OAn86QgF1dCUjAs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gimx",
       version: "8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "matlo",
           repo: "GIMX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
           hash: "sha256-BcFLdQgEAi6Sxyb5/P9YAIkmeXNZXrKcOa/6g817xQg=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       patches: nix.thunk(() => [nix.path(here, "./conf.patch")]),
       makeFlags: nix.thunk(() => ["build-core"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -64,7 +64,7 @@ makeWrapper $out/bin/gimx $out/bin/gimx-ds4 \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/matlo/GIMX",
         description: "Game Input Multiplexer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

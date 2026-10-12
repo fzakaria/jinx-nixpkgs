@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const s2n_tls = nix.arg($, "s2n-tls");
   const nix$ = nix.arg($, "nix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "aws-crt-cpp",
       version: "0.34.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "awslabs",
           repo: "aws-crt-cpp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,9 +56,9 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_DEPS=OFF", "-DBUILD_SHARED_LIBS=ON"]),
       postInstall: "# Prevent dependency cycle.\nmoveToOutput lib/aws-crt-cpp/cmake \"$dev\"\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, nix: nix$ })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, nix: nix$ })) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ wrapper around the aws-c-* libraries",
         homepage: "https://github.com/awslabs/aws-crt-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const raspa = nix.arg($, "raspa");
   const raspa_data = nix.arg($, "raspa-data");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "raspa",
       version: "2.0.47",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "iRASPA",
           repo: "RASPA2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, makeWrapper]),
       buildInputs: nix.thunk(() => [fftw, lapack, openblas]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CFLAGS: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu17" })),
       strictDeps: true,
       enableParallelBuilding: true,
       preAutoreconf: "mkdir \"m4\"\n",
@@ -44,9 +44,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "wrapProgram \"$out/bin/simulate\" \\\n  --set RASPA_DIR \"$out\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "run-an-example": nix.thunk(() => nix.app(runCommandLocal, "raspa-test-run-an-example", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -eu -o pipefail
 exampleDir="${raspa_data}/share/raspa/examples/Basic/1_MC_Methane_in_Box"
 exampleDirWritable="$(basename "$exampleDir")"
@@ -59,7 +59,7 @@ touch "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "General purpose classical molecular simulation package",
         homepage: "https://iraspa.org/raspa/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

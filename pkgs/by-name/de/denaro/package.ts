@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "denaro";
       const version = "2024.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NickvisionApps",
           repo: "Denaro",
           rev: version,
@@ -48,9 +48,9 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk4, libadwaita]);
       const postInstall = "substituteInPlace NickvisionMoney.Shared/Linux/org.nickvision.money.desktop.in --replace '@EXEC@' \"NickvisionMoney.GNOME\"\ninstall -Dm444 NickvisionMoney.Shared/Resources/org.nickvision.money.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm444 NickvisionMoney.Shared/Resources/org.nickvision.money-symbolic.svg -t $out/share/icons/hicolor/symbolic/apps/\ninstall -Dm444 NickvisionMoney.Shared/Linux/org.nickvision.money.desktop.in -T $out/share/applications/org.nickvision.money.desktop\n";
       const runtimeDeps = nix.thunk(() => [gtk4, libadwaita, glib, gdk_pixbuf]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Personal finance manager for GNOME",
         homepage: "https://github.com/nlogozzo/NickvisionMoney",
         mainProgram: "NickvisionMoney.GNOME",
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

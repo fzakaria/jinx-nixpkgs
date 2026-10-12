@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.09",
       pname: "epstool",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://ftp.de.debian.org/debian/pool/main/e/epstool/epstool_${nix.sel(finalAttrs, "version")}.orig.tar.xz`),
           hash: "sha256-HoUknRpE+UGLH5Wjrr2LB4TauOSd62QXrJuZbKCPYBE=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "make EPSTOOL_ROOT=$out install\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility to create or extract preview images in EPS files, fix bounding boxes and convert to bitmaps",
         homepage: "http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

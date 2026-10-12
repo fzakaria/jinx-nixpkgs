@@ -15,24 +15,24 @@ const pos$8 = nix.positions(here + "/meta.nix", [["imports", 11, 3], ["options",
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const docFile = nix.thunk(() => nix.update(nix.sel(lib, "types", "path"), { __proto__: pos$1, merge: (loc) => (defs) => nix.force(defs) }));
+  const docFile = nix.thunk(() => nix.update(nix.sel(lib, "types", "path"), { [nix.POS]: pos$1, merge: (loc) => (defs) => nix.force(defs) }));
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     imports: nix.thunk(() => [nix.path(here, "../../../modules/generic/meta-maintainers.nix")]),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         doc: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: docFile,
             internal: true,
             example: "./meta.chapter.md",
             description: "Documentation prologue for the set of options of each module.  This\noption should be defined at most once per module.\n",
           })))),
         buildDocsInSandbox: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
-            type: nix.thunk(() => nix.update(nix.sel(lib, "types", "bool"), { __proto__: pos$3, merge: (loc) => (defs) => nix.force(defs) })),
+            [nix.POS]: pos$4,
+            type: nix.thunk(() => nix.update(nix.sel(lib, "types", "bool"), { [nix.POS]: pos$3, merge: (loc) => (defs) => nix.force(defs) })),
             internal: true,
             default: true,
             description: "Whether to include this module in the split options doc build.\nDisable if the module references `config`, `pkgs` or other module\narguments that cannot be evaluated as constants.\n\nThis option should be defined at most once per module.\n",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

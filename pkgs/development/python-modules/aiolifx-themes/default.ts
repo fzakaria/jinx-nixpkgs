@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonOlder = nix.arg($, "pythonOlder");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiolifx-themes",
       version: "1.0.4",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Djelibeybi",
           repo: "aiolifx-themes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [async_timeout, pytestCheckHook, pytest_asyncio, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["aiolifx_themes"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Color themes for LIFX lights running on aiolifx",
         homepage: "https://github.com/Djelibeybi/aiolifx-themes",
         changelog: nix.thunk(() => nix.str`https://github.com/Djelibeybi/aiolifx-themes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

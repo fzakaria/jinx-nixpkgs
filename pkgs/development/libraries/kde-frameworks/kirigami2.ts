@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const qtgraphicaleffects = nix.arg($, "qtgraphicaleffects");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "kirigami2",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, qttools]),
       buildInputs: nix.thunk(() => [qtbase, qtquickcontrols2, qtgraphicaleffects]),

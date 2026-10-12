@@ -12,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libcMinimal = nix.arg($, "libcMinimal");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/librt",
       libcMinimal: true,
       outputs: nix.thunk(() => ["out", "man"]),
       extraPaths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(libcMinimal, "path"))], nix.sel(libcMinimal, "extraPaths"))),
       postPatch: nix.thunk(() => nix.attr(libcMinimal, "postPatch")),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

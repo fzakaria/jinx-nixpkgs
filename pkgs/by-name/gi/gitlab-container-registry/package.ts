@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.41.0";
       const rev = nix.thunk(() => nix.str`v${version}-gitlab`);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitlab-org",
           repo: "container-registry",
           rev: rev,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })());
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GitLab Docker toolset to pack, ship, store, and deliver content",
         homepage: "https://gitlab.com/gitlab-org/container-registry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "registry",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         rev,

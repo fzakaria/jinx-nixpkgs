@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.3.2";
       const minimalOCamlVersion = "5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "darrenldl",
           repo: "docfd",
           rev: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./nottui-unix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/darrenldl/docfd/commit/439ff57e80778f684cf8526b3b33c745a02da2a7.patch",
             includes: nix.thunk(() => ["*.ml"]),
             hash: "sha256-bB+zta2VcrDd42FUD9ExBui787LmtN3PMyb/MJQO7u0=",
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/docfd --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pandoc, poppler_utils]))}"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: docfd })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: docfd })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "TUI multiline fuzzy document finder",
         longDescription: "Think interactive grep for text and other document files.\nWord/token based instead of regex and line based, so you\ncan search across lines easily. Aims to provide good UX via\nintegration with common text editors and other file viewers.\n",
         homepage: "https://github.com/darrenldl/docfd",
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "docfd",
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         minimalOCamlVersion,

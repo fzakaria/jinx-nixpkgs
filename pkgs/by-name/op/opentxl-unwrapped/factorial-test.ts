@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const opentxl = nix.arg($, "opentxl");
   return nix.app(runCommand, "opentxl-test", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [opentxl]),
       src: nix.thunk(() => nix.app(nix.sel(lib, "sources", "sourceByRegex"), nix.path(here, "./."), nix.thunk(() => [".*.txl"]))),
     })), "printf '10' > factorial.in\nresult=$(txl factorial.in $src/factorial.txl)\n[[ \"$result\" -eq '3628800' ]] && touch $out\n");

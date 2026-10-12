@@ -19,24 +19,24 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const mpfr = nix.arg($, "mpfr");
   const satlib_bmc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/BMC/bmc.tar.gz",
       stripRoot: false,
       sha256: "sha256-F1Jfrj4iMMf/3LFCShIDMs4JfLkJ51Z4wkL1FDT9b/A=",
     }))));
   const mpreal = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "advanpix",
       repo: "mpreal",
       rev: "mpfrc++-3.6.9",
       sha256: "sha256-l61SKEx4pBocADrEGPVacQ6F2ep9IuvNZ8W08dKeZKg=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sharpsat-td",
       version: "0-unstable-2021-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Laakeri",
           repo: "sharpsat-td",
           rev: "b9bb015305ea5d4e1ac7141691d0fe55ca983d31",
@@ -71,7 +71,7 @@ $out/bin/sharpSAT-td -decot 1 -decow 100 -cs 3500 -tmpdir "$TMPDIR" \\
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast solver for the #SAT model counting problem",
         homepage: "https://github.com/Laakeri/sharpsat-td",
         license: nix.thunk(() => (() => {

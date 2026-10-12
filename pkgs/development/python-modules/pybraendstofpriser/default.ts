@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pyprojectVersionPatchHook = nix.arg($, "pyprojectVersionPatchHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pybraendstofpriser",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "MTrab",
           repo: "pybraendstofpriser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pybraendstofpriser"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for fetching fuel prices from Fuelprices.dk API",
         homepage: "https://github.com/MTrab/pybraendstofpriser",
         changelog: nix.thunk(() => nix.str`https://github.com/MTrab/pybraendstofpriser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

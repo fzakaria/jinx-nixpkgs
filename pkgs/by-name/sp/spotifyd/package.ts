@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const withPortAudio = nix.argOr($, "withPortAudio", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   const withPulseAudio = nix.argOr($, "withPulseAudio", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "pulseaudio"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "spotifyd",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Spotifyd",
           repo: "spotifyd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,18 +51,18 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withALSA, "alsa_backend"), nix.concat(nix.app(nix.sel(lib, "optional"), withJack, "rodiojack_backend"), nix.concat(nix.app(nix.sel(lib, "optional"), withMpris, "dbus_mpris"), nix.concat(nix.app(nix.sel(lib, "optional"), withPortAudio, "portaudio_backend"), nix.app(nix.sel(lib, "optional"), withPulseAudio, "pulseaudio_backend")))))),
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=utils::tests::test_ffi_discovery"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Open source Spotify client running as a UNIX daemon",
         homepage: "https://spotifyd.rs/",
         changelog: nix.thunk(() => nix.str`https://github.com/Spotifyd/spotifyd/releases/tag/${nix.builtins.toString(nix.thunk(() => nix.sel(finalAttrs, "src", "tag")))}`),

@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const withShellColor = nix.argOr($, "withShellColor", () => false);
   const version = "2.4.2";
   const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "routerkit",
       repo: "ifstate",
       tag: version,
       hash: "sha256-CcqIVdqyPdTVdhyCpKpbmjYeutidpnYCVtDoZkuq4c4=",
     }))));
   const docs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "ifstate-docs",
       version: version,
       src: src,
@@ -80,10 +80,10 @@ substituteInPlace libifstate/link/base.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["libifstate", "ifstate"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => nix.sel(nixosTests, "ifstate")),
         features: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           withBpf: withBpf,
           withConfigValidation: withConfigValidation,
           withShellColor: withShellColor,
@@ -92,7 +92,7 @@ substituteInPlace libifstate/link/base.py \\
         docs: docs,
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Manage host interface settings in a declarative manner",
         homepage: "https://ifstate.net",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/liske/ifstate/src/tag/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -105,7 +105,7 @@ substituteInPlace libifstate/link/base.py \\
         mainProgram: "ifstatecli",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version: version_1,
         src: src_1,

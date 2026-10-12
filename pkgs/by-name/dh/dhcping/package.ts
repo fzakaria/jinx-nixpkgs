@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dhcping",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sha256: "0sk4sg3hn88n44dxikipf3ggfj3ixrp22asb7nry9p0bkfaqdvrj",
           url: nix.thunk(() => nix.str`https://www.mavetju.org/download/dhcping-${nix.sel(finalAttrs, "version")}.tar.gz`),
         })))),
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Send DHCP request to find out if a DHCP server is running",
         longDescription: "dhcping sends either a DHCPREQUEST or DHCPINFORM packet to the server\nand waits for an answer. Then, if a DHCPREQUEST was send, it will send\na DHCPRELEASE back to the server.\n\nThis program should be installed setuid root or ran by root only, as it\nrequires the privileges to bind itself to port 68 (bootpc). Root\nprivileges are dropped as soon as the program has bound itself to that\nport.\n",
         homepage: "http://www.mavetju.org/unix/general.php",

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "redlist",
       version: "0-unstable-2026-01-30",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Laharah",
           repo: "redlist",
           rev: "3d465a12d79331eefde52351b441d8e0875f93e3",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail '\"pytest-runner\"' \"\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert Spotify playlists to local m3u's and fill the gaps",
         mainProgram: "redlist",
         homepage: "https://github.com/Laharah/redlist",

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "immich-public-proxy";
       const version = "3.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alangrainger",
           repo: "immich-public-proxy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,9 +31,9 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-ca6TSION7l++NWbUheXQM/5kgVU3xA/gu4ZmXZCW8WA=";
       const postPatch = "substituteInPlace src/index.ts --replace-fail \\\n  \"const app = express()\" \\\n  \"const app = express()\n// Set the views path to the nix output\napp.set('views', '$out/lib/node_modules/immich-public-proxy/views')\" \\\n--replace-fail \\\n  \"static('public'\" \\\n  \"static('$out/lib/node_modules/immich-public-proxy/public'\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "immich-public-proxy": nix.thunk(() => nix.attr(nixosTests, "immich-public-proxy")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/alangrainger/immich-public-proxy/releases/tag/${nix.sel(src, "tag")}`),
         description: "Share your Immich photos and albums in a safe way without exposing your Immich instance to the public",
         homepage: "https://github.com/alangrainger/immich-public-proxy",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

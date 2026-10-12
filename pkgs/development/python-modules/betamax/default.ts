@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "betamax",
       version: "0.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gjFuFnm8aHnjyDMY0Ba1S3ySJf8IxEYt5IE+IgONX5Q=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "tests/regression/test_requests_2_11_body_matcher.py",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VCR imitation for requests",
         homepage: "https://betamax.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/betamaxpy/betamax/blob/${nix.sel(finalAttrs, "version")}/HISTORY.rst`),

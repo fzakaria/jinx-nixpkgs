@@ -22,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "oci"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     imports: nix.thunk(() => [nix.path(here, "../profiles/qemu-guest.nix")]),
     boot: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       kernelParams: nix.thunk(() => [
         "nvme.shutdown_timeout=10",
         "nvme_core.shutdown_timeout=10",
@@ -37,10 +37,10 @@ export default nix.lambda((args) => (() => {
       ]),
       growPartition: true,
       loader: nix.thunk(() => ({
-        __proto__: pos$3,
-        efi: nix.thunk(() => ({ __proto__: pos$1, canTouchEfiVariables: false })),
+        [nix.POS]: pos$3,
+        efi: nix.thunk(() => ({ [nix.POS]: pos$1, canTouchEfiVariables: false })),
         grub: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           device: nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) ? "nodev" : "/dev/sda")),
           splashImage: null,
           extraConfig: "serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1\nterminal_input --append serial\nterminal_output --append serial\n",
@@ -50,23 +50,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     fileSystems: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       "/": nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         device: "/dev/disk/by-label/nixos",
         fsType: "ext4",
         autoResize: true,
       })),
-      "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efi")), nix.thunk(() => ({ __proto__: pos$6, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+      "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efi")), nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
     })),
     networking: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       timeServers: nix.thunk(() => ["169.254.169.254"]),
       useNetworkd: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
     })),
     services: nix.thunk(() => ({
-      __proto__: pos$10,
-      openssh: nix.thunk(() => ({ __proto__: pos$9, enable: true })),
+      [nix.POS]: pos$10,
+      openssh: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
     })),
   };
 })(), formals$1);

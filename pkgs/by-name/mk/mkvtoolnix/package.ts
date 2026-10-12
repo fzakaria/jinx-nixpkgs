@@ -51,20 +51,20 @@ rake ${args_1}
 runHook post${name}
 `;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mkvtoolnix",
       version: "102.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mbunkus",
           repo: "mkvtoolnix",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YsenzSOMwh+jDOgdYHQhiicdHEHIGzd3UqPyecdgJaI=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=release-(.*)"]),
           })))),
       })),
@@ -108,7 +108,7 @@ runHook post${name}
       dontWrapQtApps: true,
       postFixup: nix.thunk(() => nix.app(optionalString, withGUI, "wrapQtApp $out/bin/mkvtoolnix-gui\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cross-platform tools for Matroska",
         homepage: "https://mkvtoolnix.download/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

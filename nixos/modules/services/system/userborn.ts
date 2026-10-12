@@ -51,15 +51,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "userborn"));
   const userCfg = nix.thunk(() => nix.sel(config, "users"));
   const userbornConfig = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     groups: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (username) => (opts) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.attr(opts, "name")),
         gid: nix.thunk(() => nix.attr(opts, "gid")),
         members: nix.thunk(() => nix.attr(opts, "members")),
       }), nix.thunk(() => nix.sel(config, "users", "groups")))),
     users: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (username) => (opts) => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         name: nix.thunk(() => nix.attr(opts, "name")),
         uid: nix.thunk(() => nix.attr(opts, "uid")),
         group: nix.thunk(() => nix.attr(opts, "group")),
@@ -74,12 +74,12 @@ export default nix.lambda((args) => (() => {
         shell: nix.thunk(() => nix.app(nix.sel(utils, "toShellPath"), nix.thunk(() => nix.sel(opts, "shell")))),
         autoSubIdRange: nix.thunk(() => nix.sel(opts, "autoSubUidGidRange")),
         subUidRanges: nix.thunk(() => nix.builtins.map((r) => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             start: nix.thunk(() => nix.sel(r, "startUid")),
             count: nix.thunk(() => nix.attr(r, "count")),
           }), nix.thunk(() => nix.sel(opts, "subUidRanges")))),
         subGidRanges: nix.thunk(() => nix.builtins.map((r) => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             start: nix.thunk(() => nix.sel(r, "startGid")),
             count: nix.thunk(() => nix.attr(r, "count")),
           }), nix.thunk(() => nix.sel(opts, "subGidRanges")))),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
   }));
   const userbornConfigJson = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "userborn.json", nix.thunk(() => nix.builtins.toJSON(userbornConfig))));
   const userbornStaticFiles = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "static-userborn", nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out
 userborn ${userbornConfigJson} $out
@@ -98,30 +98,30 @@ userborn ${userbornConfigJson} $out
   const passwordFiles = nix.thunk(() => ["group", "passwd", "shadow"]);
   const subIdFiles = nix.thunk(() => ["subuid", "subgid"]);
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         userborn: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "userborn")),
           static: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to generate the password files at build time and store them directly\nin the system closure, without requiring any services at boot time.\n\nThis is STRICTLY intended for embedded appliance images that only have system\nusers with manually managed static user IDs, and CANNOT be used with generation\nupdates.\n\nWARNING: In this mode, you MUST statically manage user IDs yourself, carefully.\nBeware, UID reuse is a serious security issue and it's your responsibility\nto avoid it over the entire lifetime of the system.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "userborn", nix.thunk(() => ({})))),
           passwordFilesLocation: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => (nix.asBool((nix.asBool(immutableEtc) && nix.asBool(!nix.asBool(nix.sel(cfg, "static"))))) ? "/var/lib/nixos" : "/etc")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if immutableEtc && !config.services.userborn.static then \"/var/lib/nixos\" else \"/etc\"")),
               description: "The location of the original password files.\n\nIf this is not `/etc`, the files are symlinked from this location to `/etc`.\n\nThe primary motivation for this is an immutable `/etc`, where we cannot\nwrite the files directly to `/etc`.\n\nHowever this can also serve other use cases, e.g. when `/etc` is on a `tmpfs`.\n\nThe subid files are an exception: `newuidmap` rejects symlinks, so\nthey are bind-mounted into `/etc` instead of being symlinked.\n",
             })))),
           importLegacyState: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => !nix.asBool(nix.sel(cfg, "static"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "!config.services.userborn.static")),
@@ -131,39 +131,39 @@ userborn ${userbornConfigJson} $out
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$36,
+        [nix.POS]: pos$36,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(config, "systemd", "sysusers", "enable")) && nix.asBool(nix.sel(cfg, "enable"))))),
             message: "You cannot use systemd-sysusers and Userborn at the same time",
           })),
           nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             assertion: nix.thunk(() => nix.eq(nix.sel(config, "system", "activationScripts", "users"), "")),
             message: "system.activationScripts.users has to be empty to use userborn",
           })),
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(immutableEtc) && nix.asBool(!nix.asBool(nix.sel(cfg, "static"))))) || nix.asBool(!nix.eq(nix.sel(cfg, "passwordFilesLocation"), "/etc")))),
             message: "When `system.etc.overlay.mutable = false` and `services.userborn.static = false`, `services.userborn.passwordFilesLocation` cannot be set to `/etc`",
           })),
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "static")) && nix.asBool(nix.sel(config, "system", "switch", "enable"))))),
             message: "You cannot use `services.userborn.static = true` with switchable configurations, it is ONLY indended for appliance images with fully static user IDs",
           })),
         ]),
         systemd: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               "home-directories": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (username) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(opts, "home")))), nix.thunk(() => ({
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     d: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       mode: nix.thunk(() => nix.sel(opts, "homeMode")),
                       user: nix.thunk(() => nix.sel(opts, "name")),
                       group: nix.thunk(() => nix.attr(opts, "group")),
@@ -172,29 +172,29 @@ userborn ${userbornConfigJson} $out
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "userborn-import-legacy": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "importLegacyState")), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 wantedBy: nix.thunk(() => ["sysinit.target"]),
                 requiredBy: nix.thunk(() => ["userborn.service"]),
                 before: nix.thunk(() => ["userborn.service", "shutdown.target"]),
                 after: nix.thunk(() => ["systemd-remount-fs.service"]),
                 conflicts: nix.thunk(() => ["shutdown.target"]),
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   Description: "Import legacy update-users-groups.pl state for userborn",
                   DefaultDependencies: false,
                   ConditionPathExists: nix.thunk(() => ["/var/lib/nixos/uid-map", "!/var/lib/userborn"]),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "userborn-import-legacy")))} --nogroup-gid ${nix.builtins.toString(nix.thunk(() => nix.sel(config, "ids", "gids", "nogroup")))} ${nix.sel(cfg, "passwordFilesLocation")}`),
                 })),
               })))),
             userborn: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "static"))), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 wantedBy: nix.thunk(() => ["sysinit.target"]),
                 requiredBy: nix.thunk(() => ["sysinit-reactivation.target"]),
                 after: nix.thunk(() => ["systemd-remount-fs.service", "systemd-tmpfiles-setup-dev-early.service"]),
@@ -208,17 +208,17 @@ userborn ${userbornConfigJson} $out
                 restartTriggers: nix.thunk(() => [userbornConfigJson, nix.thunk(() => nix.sel(cfg, "passwordFilesLocation"))]),
                 aliases: nix.thunk(() => ["systemd-sysusers.service"]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   USERBORN_MUTABLE_USERS: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(userCfg, "mutableUsers")))),
                   USERBORN_PREVIOUS_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(userCfg, "mutableUsers")), previousConfigPath)),
                 })),
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   Description: "Manage Users and Groups",
                   DefaultDependencies: false,
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   Type: "oneshot",
                   RemainAfterExit: true,
                   TimeoutSec: "90s",
@@ -237,7 +237,7 @@ userborn ${userbornConfigJson} $out
               })))),
           })),
           mounts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), filesOutsideEtc, nix.thunk(() => nix.builtins.map((file) => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 what: nix.thunk(() => nix.str`${nix.sel(cfg, "passwordFilesLocation")}/${file}`),
                 where: nix.thunk(() => nix.str`/etc/${file}`),
                 type: "none",
@@ -249,28 +249,28 @@ userborn ${userbornConfigJson} $out
                 before: nix.thunk(() => ["sysinit.target", "sysinit-reactivation.target", "shutdown.target"]),
                 conflicts: nix.thunk(() => ["shutdown.target"]),
                 restartTriggers: nix.thunk(() => [userbornConfigJson]),
-                unitConfig: nix.thunk(() => ({ __proto__: pos$29, DefaultDependencies: false })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$29, DefaultDependencies: false })),
               }), subIdFiles)))),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "static")), nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (file) => nix.app(nix.sel(lib, "nameValuePair"), file, nix.thunk(() => ({
-                        __proto__: pos$32,
+                        [nix.POS]: pos$32,
                         source: nix.thunk(() => nix.str`${userbornStaticFiles}/${file}`),
                         mode: nix.thunk(() => (nix.asBool(nix.eq(file, "shadow")) ? "0000" : "0644")),
                       }))), nix.thunk(() => nix.concat(passwordFiles, subIdFiles)))))))),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), filesOutsideEtc, nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (file) => nix.app(nix.sel(lib, "nameValuePair"), file, nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         source: nix.thunk(() => nix.str`${nix.sel(cfg, "passwordFilesLocation")}/${file}`),
                         mode: "direct-symlink",
                       }))), passwordFiles)))))),
-              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), filesOutsideEtc, nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (file) => nix.app(nix.sel(lib, "nameValuePair"), file, nix.thunk(() => ({ __proto__: pos$34, text: "", mode: "0644" }))), subIdFiles)))))),
+              nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), filesOutsideEtc, nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (file) => nix.app(nix.sel(lib, "nameValuePair"), file, nix.thunk(() => ({ [nix.POS]: pos$34, text: "", mode: "0644" }))), subIdFiles)))))),
             ]))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];

@@ -41,25 +41,25 @@ export default nix.lambda((args) => (() => {
     return nix.str`${nix.app(nix.lookup(w, "major"), version)}${nix.app(nix.lookup(w, "minor"), version)}${nix.app(nix.lookup(w, "patch"), version)}`;
   })());
   const srcs = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://signalyst.com/bins/${latestDebianCodename}/hqplayer${majorVersion}desktop_${version}_arm64.deb`),
         hash: "sha256-remml9wtBrJXiSA96rBjf0tbVJquskq2o+kmeAxI84M=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://signalyst.com/bins/${latestUbuntuCodename}/hqplayer${majorVersion}desktop_${version}_amd64.deb`),
         hash: "sha256-Lx0E7lM7lLl44s7+T17JJmjKzdKmXJbD5iXDBJelT24=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         url: nix.thunk(() => nix.str`https://signalyst.com/bins/HQPlayer${majorVersion}Desktop-arm64-${compactVersion}.dmg`),
         hash: "sha256-H2F75NltbzfxC/zrVwMKALvx2ar+S0is0Nk8lsRx+Fc=",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "hqplayer-desktop",
       version: version,
       src: nix.thunk(() => (() => {
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         return nix.selOr(srcs, () => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`Unsupported system: ${nix.lookup(w_1, "system")}`)), nix.key(nix.force(nix.lookup(w_1, "system"))));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.signalyst.com",
         description: "High-end upsampling multichannel software HD-audio player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -85,13 +85,13 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
     }, (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? {
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       nativeBuildInputs: nix.thunk(() => [undmg]),
       setSourceRoot: nix.thunk(() => nix.str`sourceRoot=HQPlayer${majorVersion}Desktop.app
 `),
       installPhase: "runHook preInstall\n\nmkdir --parents \"$out\"/Applications\ncp --recursive . \"$_\"/\"$sourceRoot\"\n\nrunHook postInstall\n",
     } : {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       nativeBuildInputs: nix.thunk(() => [
         autoPatchelfHook,
         dpkg,

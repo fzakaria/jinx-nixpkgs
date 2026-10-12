@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pwnat",
       version: "2023-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samyk",
           repo: "pwnat",
           rev: "8ec62cdae53a2d573c9f9c906133ca45bbd3360a",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "mkdir obj\n",
       installPhase: "runHook preInstall\n\ninstall -D pwnat $out/bin/pwnat\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://samy.pl/pwnat/",
         description: "ICMP NAT to NAT client-server communication",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

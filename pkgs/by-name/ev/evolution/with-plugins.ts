@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const evolution_ews = nix.arg($, "evolution-ews");
   const plugins = nix.argOr($, "plugins", () => [evolution, evolution_ews]);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "evolution-with-plugins",
       paths: nix.thunk(() => nix.concat([evolution_data_server], plugins)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

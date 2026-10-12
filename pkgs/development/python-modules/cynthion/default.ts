@@ -38,15 +38,15 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const version = "0.2.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "greatscottgadgets",
       repo: "cynthion",
       tag: version,
       hash: "sha256-Ju01eqBVZ7CD0pw4nIFML4LcCPXzC78dLpQru3a+5bU=",
     }))));
-  const moondancer = nix.thunk(() => nix.app(callPackage, nix.path(here, "./moondancer.nix"), nix.thunk(() => ({ __proto__: pos$2, src: src, version: version }))));
+  const moondancer = nix.thunk(() => nix.app(callPackage, nix.path(here, "./moondancer.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cynthion",
       version: version,
       src: src,
@@ -95,9 +95,9 @@ install -Dm444 \\
   build/lib/cynthion/assets/54-cynthion.rules
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, moondancer: moondancer })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, moondancer: moondancer })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python package and utilities for the Great Scott Gadgets Cynthion USB Test Instrument",
         homepage: "https://github.com/greatscottgadgets/cynthion",
         changelog: nix.thunk(() => nix.str`https://github.com/greatscottgadgets/cynthion/releases/tag/${nix.sel(src, "tag")}`),

@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "clipster";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mrichar1",
           repo: "clipster",
           rev: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pythonEnv, gtk3, libwnck, wrapGAppsHook3]);
       const installPhase = "sed -i 's/python/python3/g' clipster\nmkdir -p $out/bin/\ncp clipster $out/bin/\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lightweight python clipboard manager",
         longDescription: "Clipster was designed to try to add a good selection of useful features, while avoiding bad design decisions or becoming excessively large.\nIts feature list includes:\n- Event driven, rather than polling. More efficient, helps with power management.\n- Control over when it write to disk, for similar reasons.\n- Command-line options/config for everything.\n- No global keybindings - that's the job of a Window Manager\n- Sensible handling of unusual clipboard events. Some apps (Chrome, Emacs) trigger a clipboard 'update event' for every character you select, rather than just one event when you stop selecting.\n- Preserves the last item in clipboard after an application closes. (Many apps clear the clipboard on exit).\n- Minimal dependencies, no complicated build/install requirements.\n- utf-8 support\n- Proper handling of embedded newlines and control codes.\n- Smart matching of urls, emails, regexes. (extract_*)\n- Option to synchronise the SELECTION and CLIPBOARD clipboards. (sync_selections)\n- Option to track one or both clipboards. (active_selections)\n- Option to ignore clipboard updates form certain applications. (filter_classes)\n- Ability to delete items in clipboard history.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "clipster",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

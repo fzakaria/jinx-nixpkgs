@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       redistName: "cuda",
       pname: "cuda_culibos",
       outputs: nix.thunk(() => ["out"]),

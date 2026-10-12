@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "numix-icon-theme",
       version: "25.10.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numixproject",
           repo: "numix-icon-theme",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       installPhase: "runHook preInstall\n\nsubstituteInPlace Numix/index.theme --replace Breeze breeze\n\nmkdir -p $out/share/icons\ncp -a Numix{,-Light} $out/share/icons/\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Numix icon theme",
         homepage: "https://numixproject.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

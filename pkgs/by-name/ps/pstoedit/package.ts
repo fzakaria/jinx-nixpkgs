@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pstoedit",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "woglu",
           repo: "pstoedit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config, autoreconfHook]),
-      env: nix.thunk(() => ({ __proto__: pos$2, LANG: "C" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C" })),
       preConfigure: "touch doc/pstoedit.1 doc/pstoedit.pdf doc/pstoedit.htm\n",
       appendConfigureFlags: nix.thunk(() => ["--disable-check_for_gs", "--enable-docs=no"]),
       buildInputs: nix.thunk(() => nix.concat([zlib, ghostscript, imagemagick, plotutils, gd, libjpeg, libwebp], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
@@ -47,7 +47,7 @@ wrapProgram $out/bin/pstoedit \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Translates PostScript and PDF graphics into other vector formats",
         homepage: "https://github.com/woglu/pstoedit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

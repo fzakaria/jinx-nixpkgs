@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const wayfire = nix.arg($, "wayfire");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mate-wayland-session",
       version: "1.28.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mate-desktop",
           repo: "mate-wayland-session",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,12 +43,12 @@ substituteInPlace session/mate-wayland.sh \\
   --replace-fail "/usr/share/doc/wayfire/examples/wayfire.ini" "${nix.sel(wayfire, "src")}/wayfire.ini"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         providedSessions: nix.thunk(() => ["MATE"]),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v", "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Wayland session using Wayfire for the MATE desktop",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

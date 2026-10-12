@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vacuum-tube";
       const version = "1.8.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shy1132",
           repo: "VacuumTube",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-Wtyft343sSs018v5bagCvvta5z+yzU9IgkJ4LH+HQzs=";
       const makeCacheWritable = true;
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true }));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, writableTmpDirAsHomeHook]);
       const buildPhase = nix.thunk(() => nix.str`runHook preBuild
 
@@ -61,7 +61,7 @@ makeWrapper "${electron}/bin/electron" "$out/bin/VacuumTube" \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "YouTube Leanback on the desktop, with enhancements",
         homepage: "https://github.com/shy1132/VacuumTube",
         mainProgram: "VacuumTube",
@@ -73,7 +73,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

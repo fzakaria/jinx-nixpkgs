@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const lwt_dllist = nix.arg($, "lwt-dllist");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "mirage-net-xen",
       src: nix.thunk(() => nix.attr(netchannel, "src")),
       version: nix.thunk(() => nix.attr(netchannel, "version")),

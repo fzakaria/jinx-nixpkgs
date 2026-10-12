@@ -33,9 +33,9 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "howdy"));
   const settingsType = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   const default_config = nix.thunk(() => ({
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     core: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       detection_notice: false,
       timeout_notice: true,
       no_confirmation: false,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       workaround: "off",
     })),
     video: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       certainty: 3.5,
       timeout: 4n,
       device_path: "/dev/video2",
@@ -63,40 +63,40 @@ export default nix.lambda((args) => (() => {
       device_fps: nix.thunk(() => nix.neg(1n)),
       rotate: 0n,
     })),
-    snapshots: nix.thunk(() => ({ __proto__: pos$3, save_failed: false, save_successful: false })),
+    snapshots: nix.thunk(() => ({ [nix.POS]: pos$3, save_failed: false, save_successful: false })),
     rubberstamps: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       enabled: false,
       stamp_rules: "nod\t\t5s\t\tfailsafe     min_distance=12",
     })),
     debug: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       end_report: false,
       verbose_stamps: false,
       gtk_stdout: false,
     })),
   }));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         howdy: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), ""), {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             description: "Whether to enable Howdy and its PAM module for face recognition. See\n`services.linux-enable-ir-emitter` for enabling the IR emitter support.\n\n::: {.caution}\nHowdy is not a safe alternative to unlocking with your password. It\ncan be fooled using a well-printed photo.\n\nDo **not** use it as the sole authentication method for your system.\n:::\n\n::: {.note}\nBy default, the {option}`config.services.howdy.control` option is set\nto `\"required\"`, meaning it will act as a second-factor authentication\nin most services. To change this, set the option to `\"sufficient\"`.\n:::\n",
           })),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "howdy", nix.thunk(() => ({})))),
           control: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "required",
               description: "PAM control flag to use for Howdy.\n\nSets the {option}`security.pam.howdy.control` option.\n\nRefer to {manpage}`pam.conf(5)` for options.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.attr(settingsType, "type")),
               default: default_config,
               description: "Howdy configuration file. Refer to\n<https://github.com/boltgolt/howdy/blob/d3ab99382f88f043d15f15c1450ab69433892a1c/howdy/src/config.ini>\nfor options.\n",
@@ -106,32 +106,32 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             environment: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
               etc: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 "howdy/config.ini": nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   source: nix.thunk(() => nix.app(nix.sel(settingsType, "generate"), "howdy-config.ini", nix.thunk(() => nix.sel(cfg, "settings")))),
                 })),
               })),
             })),
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 assertion: nix.thunk(() => !nix.asBool(nix.builtins.elem("v4l2loopback", nix.thunk(() => nix.sel(config, "boot", "kernelModules"))))),
                 message: "Adding 'v4l2loopback' to `boot.kernelModules` causes Howdy to no longer work. Consider adding 'v4l2loopback' to `boot.extraModulePackages` instead.",
               })),
             ]),
           })))),
         nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             howdy: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (name) => nix.sel(lib, "mkDefault"), default_config)),
             })),
           })),

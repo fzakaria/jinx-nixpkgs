@@ -34,23 +34,23 @@ export default nix.lambda((args) => (() => {
       const version = "0.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xflr6",
           repo: "graphviz",
           tag: version,
           hash: "sha256-o6woY+UhbsJtUqIzYGXlC0Pw3su7WG4xlAKSslSADwI=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({ __proto__: pos$2, graphviz: graphviz_nox, xdgutils: xdg_utils })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, graphviz: graphviz_nox, xdgutils: xdg_utils })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/xflr6/graphviz/commit/7e0fae6d28792a628a25cadd4ec1582c7351a7a3.patch",
             hash: "sha256-cZhNsQFi30uFpPXbEJHQ9eol7g6pdv6w8kp1GxLTBD4=",
           })))),
       ]);
       const env = nix.thunk(() => ({
-        __proto__: pos$5,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ __proto__: pos$4, fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
+        [nix.POS]: pos$5,
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$4, fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
       }));
       const build_system = nix.thunk(() => [setuptools]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simple Python interface for Graphviz",
         homepage: "https://github.com/xflr6/graphviz",
         changelog: nix.thunk(() => nix.str`https://github.com/xflr6/graphviz/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

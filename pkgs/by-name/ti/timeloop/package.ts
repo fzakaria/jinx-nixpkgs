@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const enableISL = nix.argOr($, "enableISL", () => false);
   const accelergy = nix.arg($, "accelergy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "timeloop",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "NVlabs",
           repo: "timeloop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ substituteInPlace ./src/SConscript --replace ", 'gpm'" ""
       sconsFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--static"), nix.concat(nix.app(nix.sel(lib, "optional"), enableAccelergy, "--accelergy"), nix.app(nix.sel(lib, "optional"), enableISL, "--with-isl")))),
       installPhase: "cp -r ./bin ./lib $out\nmkdir -p $out/share\ncp -r ./doc $out/share\nmkdir -p $out/data\ncp -r ./problem-shapes ./configs $out/data\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Chip modeling/mapping benchmarking framework",
         homepage: "https://timeloop.csail.mit.edu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

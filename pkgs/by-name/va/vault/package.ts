@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const glibc = nix.arg($, "glibc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "vault",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "vault",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, glibc]))}
 `)))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           vault: nix.thunk(() => nix.attr(nixosTests, "vault")),
           "vault-postgresql": nix.thunk(() => nix.attr(nixosTests, "vault-postgresql")),
           "vault-dev": nix.thunk(() => nix.attr(nixosTests, "vault-dev")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://developer.hashicorp.com/vault",
         description: "Tool for managing secrets",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/vault/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

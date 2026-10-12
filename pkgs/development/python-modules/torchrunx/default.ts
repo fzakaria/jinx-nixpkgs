@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const submitit = nix.arg($, "submitit");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torchrunx",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apoorvkh",
           repo: "torchrunx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_launch", "test_submitit", "test_distributed_train"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_error", "test_logging", "test_simple_localhost"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Easily run PyTorch on multiple GPUs & machines",
         homepage: "https://github.com/apoorvkh/torchrunx",
         changelog: nix.thunk(() => nix.str`https://github.com/apoorvkh/torchrunx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

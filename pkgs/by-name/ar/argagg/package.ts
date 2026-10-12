@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "argagg",
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vietjtnguyen",
           repo: "argagg",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,9 +27,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required( VERSION 2.8 )\" \"cmake_minimum_required(VERSION 3.10)\"\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/vietjtnguyen/argagg",
         description: "Argument Aggregator",
         longDescription: "argagg is yet another C++ command line argument/option parser. It was\nwritten as a simple and idiomatic alternative to other frameworks like\ngetopt, Boost program options, TCLAP, and others. The goal is to achieve\nthe majority of argument parsing needs in a simple manner with an easy to\nuse API. It operates as a single pass over all arguments, recognizing\nflags prefixed by - (short) or -- (long) and aggregating them into easy to\naccess structures with lots of convenience functions. It defers processing\ntypes until you access them, so the result structures end up just being\npointers into the original command line argument C-strings.\n",

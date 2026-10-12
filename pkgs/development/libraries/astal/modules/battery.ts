@@ -11,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const json_glib = nix.arg($, "json-glib");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "battery",
       buildInputs: nix.thunk(() => [json_glib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Astal module for upowerd devices (DBus proxy)",
       })),
     })));

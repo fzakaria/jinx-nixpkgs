@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CMA-ES",
           repo: "pycma",
           tag: nix.thunk(() => nix.str`r${version}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   transformations.py
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for Covariance Matrix Adaptation Evolution Strategy for non-linear numerical optimization",
         homepage: "https://github.com/CMA-ES/pycma",
         changelog: nix.thunk(() => nix.str`https://github.com/CMA-ES/pycma/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

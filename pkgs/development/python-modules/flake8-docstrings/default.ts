@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "PyCQA",
           repo: "flake8-docstrings",
           tag: version,
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["flake8_docstrings"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Extension for flake8 which uses pydocstyle to check docstrings",
         homepage: "https://github.com/pycqa/flake8-docstrings",
         changelog: nix.thunk(() => nix.str`https://github.com/PyCQA/flake8-docstrings/blob/${version}/HISTORY.rst`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

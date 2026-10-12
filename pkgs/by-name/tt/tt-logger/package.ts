@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const fmt_11 = nix.arg($, "fmt_11");
   const spdlog = nix.arg($, "spdlog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tt-logger",
       version: "1.1.9",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tenstorrent",
           repo: "tt-logger",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Vd/FwjcNZWh/FnP5CwXO4UQtKTq/6GhRSppCYJMj9d4=",
         })))),
       cpm: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake",
           hash: "sha256-yM3DLAOBZTjOInge1ylk3IZLKjSjENO3EEgSpcotg10=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "TT_LOGGER_INSTALL", true)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Flexible and performant C++ logging library for Tenstorrent projects",
         homepage: "https://github.com/tenstorrent/tt-logger",
         maintainers: nix.thunk(() => (() => {

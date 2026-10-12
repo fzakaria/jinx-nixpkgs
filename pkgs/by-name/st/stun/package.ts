@@ -14,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "stun",
       version: "0.97",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/stun/stund-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1mxirnnqfqdwb9x8hfjjsscp6lx3468ph6ddx32l94ir46fbzqc3",
         })))),
       srcManpages: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "mirror://ubuntu/pool/universe/s/stun/stun_0.97~dfsg-2.debian.tar.xz",
           name: "stun-debian.tar.xz",
           sha256: "1pr6zrdhia0aafsvywl1hrhlgl00vahp63bw1z2mzvdxri7q88f0",
@@ -35,7 +35,7 @@ gzip -9n debian/manpages/stund.8
 `),
       installPhase: "mkdir -p $out/bin $server/bin $out/man/man1 $server/man/man8\ncp -v client $out/bin/stun\ncp -v server $server/bin/stund\ncp -v debian/manpages/stun.1.gz  $out/man/man1\ncp -v debian/manpages/stund.8.gz $server/man/man8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Stun server and test client",
         homepage: "https://sourceforge.net/projects/stun/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "vsl10")),

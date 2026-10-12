@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const wayland = nix.arg($, "wayland");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-sct",
       version: "1.0-unstable-2022-01-31",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "d4l3k",
           repo: "go-sct",
           rev: "4ae88a6bf50e0b917541ddbcec1ff10ab77a0b15",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxrandr, nix.thunk(() => nix.sel(wayland, "dev"))]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Color temperature setting library and CLI that operates in a similar way to f.lux and Redshift",
         homepage: "https://github.com/d4l3k/go-sct",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

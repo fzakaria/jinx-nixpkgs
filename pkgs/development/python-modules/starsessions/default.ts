@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alex-oleshkevich",
           repo: "starsessions",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [itsdangerous, starlette]);
       const pythonImportsCheck = nix.thunk(() => ["starsessions"]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, redis: nix.thunk(() => [redis]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, redis: nix.thunk(() => [redis]) }));
       const nativeCheckInputs = nix.thunk(() => [httpx, pytestCheckHook, pytest_asyncio, pytest_cov_stub]);
       const disabledTestPaths = nix.thunk(() => ["tests/backends/test_redis.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Advanced sessions for Starlette and FastAPI frameworks",
         homepage: "https://github.com/alex-oleshkevich/starsessions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

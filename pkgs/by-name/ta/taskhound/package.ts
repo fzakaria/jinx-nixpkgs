@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taskhound",
       version: "1.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "1r0BIT",
           repo: "TaskHound",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_rate_limit_accuracy", "test_parallel_mode"]),
       pythonImportsCheck: nix.thunk(() => ["taskhound"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to enumerate privileged Scheduled Tasks on Remote Systems",
         homepage: "https://github.com/1r0BIT/TaskHound",
         changelog: nix.thunk(() => nix.str`https://github.com/1r0BIT/TaskHound/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

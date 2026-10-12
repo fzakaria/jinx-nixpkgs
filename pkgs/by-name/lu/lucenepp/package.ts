@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lucene++";
       const version = "3.0.9-unstable-2026-01-25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "luceneplusplus",
           repo: "LucenePlusPlus",
           rev: "f11e0895cf1dd7d6a68a0a736f13414f1e37ef7a",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const checkPhase = "runHook preCheck\nLD_LIBRARY_PATH=$PWD/src/contrib:$PWD/src/core \\\n        src/test/lucene++-tester\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C++ port of the popular Java Lucene search engine",
         homepage: "https://github.com/luceneplusplus/LucenePlusPlus",
         license: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const mpv = nix.arg($, "mpv");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cplay-ng",
       version: "5.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xi",
           repo: "cplay-ng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mpv, pulseaudio]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xi/cplay-ng",
         description: "Simple curses audio player",
         mainProgram: "cplay-ng",

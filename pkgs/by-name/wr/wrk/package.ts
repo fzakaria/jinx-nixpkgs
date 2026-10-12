@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "wrk",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wg",
           repo: "wrk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +34,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`VER=${nix.sel(finalAttrs, "version")}`),
       ]),
       preBuild: "for f in src/*.h; do\n  substituteInPlace $f \\\n    --replace \"#include <luajit-2.0/\" \"#include <\"\ndone\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" })),
       installPhase: "mkdir -p $out/bin\ncp wrk $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "HTTP benchmarking tool",
         homepage: "https://github.com/wg/wrk",
         longDescription: "wrk is a modern HTTP benchmarking tool capable of generating\nsignificant load when run on a single multi-core CPU. It\ncombines a multithreaded design with scalable event notification\nsystems such as epoll and kqueue.\n",

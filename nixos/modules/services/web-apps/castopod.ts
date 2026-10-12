@@ -75,9 +75,9 @@ export default nix.lambda((args) => (() => {
       ], enabled);
     })(), formals$2)));
   return {
-    __proto__: pos$47,
+    [nix.POS]: pos$47,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       doc: nix.path(here, "./castopod.md"),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -85,47 +85,47 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       services: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         castopod: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Castopod, a hosting platform for podcasters")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "castopod", nix.thunk(() => ({})))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/castopod",
               description: "The path where castopod stores all data. This path must be in sync\nwith the castopod package (where it is hardcoded during the build in\naccordance with its own `dataDir` argument).\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Create the database and database user locally.\n",
               })))),
             hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "localhost",
                 description: "Database hostname.",
               })))),
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "castopod",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: user,
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                 default: null,
                 example: "/run/keys/castopod-dbpassword",
@@ -133,7 +133,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -144,7 +144,7 @@ export default nix.lambda((args) => (() => {
               })()),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 "email.protocol": "smtp",
                 "email.SMTPHost": "localhost",
                 "email.SMTPUser": "myuser",
@@ -153,26 +153,26 @@ export default nix.lambda((args) => (() => {
               description: "Environment variables used for Castopod.\nSee [](https://code.castopod.org/adaures/castopod/-/blob/main/.env.example)\nfor available environment variables.\n",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/keys/castopod-env",
               description: "Environment file to inject e.g. secrets into the configuration.\nSee [](https://code.castopod.org/adaures/castopod/-/blob/main/.env.example)\nfor available environment variables.\n\nThis file is loaded using systemd LoadCredentials.\n",
             })))),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Configure nginx as a reverse proxy for CastoPod.",
             })))),
           localDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "castopod.example.org",
               description: "The domain serving your CastoPod instance.",
             })))),
           poolSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -182,7 +182,7 @@ export default nix.lambda((args) => (() => {
                     ]))));
               })()),
               default: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 pm: "dynamic",
                 "pm.max_children": "32",
                 "pm.start_servers": "2",
@@ -193,7 +193,7 @@ export default nix.lambda((args) => (() => {
               description: "Options for Castopod's PHP pool. See the documentation on `php-fpm.conf` for details on configuration directives.\n",
             })))),
           maxUploadSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "512M",
               description: "Maximum supported size for a file upload in. Maximum HTTP body\nsize is set to this value for nginx and PHP (because castopod doesn't\nsupport chunked uploads yet:\nhttps://code.castopod.org/adaures/castopod/-/issues/330).\n\nNote, that practical upload size limit is smaller. For example, with\n512 MiB setting - around 500 MiB is possible.\n",
@@ -202,11 +202,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         services: nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           castopod: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             settings: nix.thunk(() => (() => {
               const sslEnabled = nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(config, "services", "nginx", "virtualHosts", nix.key(nix.sel(cfg, "localDomain")))), null);
@@ -214,7 +214,7 @@ export default nix.lambda((args) => (() => {
               })());
               const baseURL = nix.thunk(() => nix.str`http${nix.app(nix.sel(lib, "optionalString"), sslEnabled, "s")}://${nix.sel(cfg, "localDomain")}`);
               return nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   "app.forceGlobalSecureRequests": sslEnabled,
                   "app.baseURL": baseURL,
                   "media.baseURL": baseURL,
@@ -231,11 +231,11 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             pools: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               castopod: nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 user: user,
                 group: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                 phpPackage: phpPackage,
@@ -248,7 +248,7 @@ max_execution_time = 300
 max_input_time = 300
 `),
                 settings: nix.thunk(() => nix.update({
-                  __proto__: pos$22,
+                  [nix.POS]: pos$22,
                   "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                   "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                 }, nix.sel(cfg, "poolSettings"))),
@@ -256,34 +256,34 @@ max_input_time = 300
             })),
           })),
           mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "database", "createLocally")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
               ]),
             })))),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(cfg, "localDomain")}`, nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/castopod/public`))),
                   extraConfig: nix.thunk(() => nix.str`try_files $uri $uri/ /index.php?$args;
 index index.php index.html;
 client_max_body_size ${nix.sel(cfg, "maxUploadSize")};
 `),
                   locations: nix.thunk(() => nix.attrsDyn({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     "~ \\.php$": nix.thunk(() => ({
-                      __proto__: pos$29,
-                      fastcgiParams: nix.thunk(() => ({ __proto__: pos$28, SERVER_NAME: "$host" })),
+                      [nix.POS]: pos$29,
+                      fastcgiParams: nix.thunk(() => ({ [nix.POS]: pos$28, SERVER_NAME: "$host" })),
                       extraConfig: nix.thunk(() => nix.str`fastcgi_intercept_errors on;
 fastcgi_index index.php;
 fastcgi_pass unix:${nix.sel(fpm, "socket")};
@@ -294,7 +294,7 @@ fastcgi_send_timeout 3600;
                     })),
                   }, [
                     [nix.str`^~ /${nix.sel(cfg, "settings", "media.root")}/`, nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       root: nix.thunk(() => nix.sel(cfg, "settings", "media.storage")),
                       extraConfig: "add_header Access-Control-Allow-Origin \"*\";\nexpires max;\naccess_log off;\n",
                     }))],
@@ -304,11 +304,11 @@ fastcgi_send_timeout 3600;
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             "castopod-setup": nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "mysql", "enable")), "mysql.service")),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "mysql", "enable")), "mysql.service")),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -343,7 +343,7 @@ php ${nix.sel(cfg, "package")}/share/castopod/spark castopod:database-update
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 StateDirectory: "castopod",
                 LoadCredential: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.str`envfile:${nix.sel(cfg, "environmentFile")}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => nix.str`dbpasswordfile:${nix.sel(cfg, "database", "passwordFile")}`)))),
                 WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/castopod`),
@@ -355,14 +355,14 @@ php ${nix.sel(cfg, "package")}/share/castopod/spark castopod:database-update
               })),
             })),
             "castopod-scheduled": nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               after: nix.thunk(() => ["castopod-setup.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [phpPackage]),
               script: nix.thunk(() => nix.str`php ${nix.sel(cfg, "package")}/share/castopod/spark tasks:run
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 StateDirectory: "castopod",
                 WorkingDirectory: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/castopod`),
                 Type: "oneshot",
@@ -374,12 +374,12 @@ php ${nix.sel(cfg, "package")}/share/castopod/spark castopod:database-update
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             "castopod-scheduled": nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               wantedBy: nix.thunk(() => ["timers.target"]),
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 OnCalendar: "*-*-* *:*:00",
                 Unit: "castopod-scheduled.service",
               })),
@@ -387,10 +387,10 @@ php ${nix.sel(cfg, "package")}/share/castopod/spark castopod:database-update
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 description: "Castopod user",
                 isSystemUser: true,
                 group: nix.thunk(() => nix.sel(config, "services", "nginx", "group")),

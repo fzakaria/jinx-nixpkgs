@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "essh",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "matthart1983",
           repo: "essh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
           "--skip=a_closed_port_is_named_as_refused_not_as_a_timeout",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "SSH client to manage connections, keys and sessions",
         homepage: "https://github.com/matthart1983/essh",
         changelog: nix.thunk(() => nix.str`https://github.com/matthart1983/essh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

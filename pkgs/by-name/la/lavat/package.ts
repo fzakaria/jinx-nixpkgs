@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "3.0.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lavat",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AngelJumbo",
           repo: "lavat",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp lavat $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lava lamp simulation in the terminal",
         longDescription: "Lavat puts ascii metaballs in your terminal to make it look a bit like a\nlava lamp.\n\nLavat contains various options, including those to change the color and\nspeed of the metaballs. For a full list, run `lavat -h`\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "minion3665"))]),

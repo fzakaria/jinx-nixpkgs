@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const ironcalc = nix.arg($, "ironcalc");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ironcalc",
       src: nix.thunk(() => nix.attr(ironcalc, "src")),
       version: nix.thunk(() => nix.attr(ironcalc, "version")),
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd bindings/python\n",
       __structuredAttrs: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: nix.thunk(() => nix.attr(ironcalc, "src")),
           hash: nix.thunk(() => nix.sel(ironcalc, "cargoHash")),
         })))),
       cargoRoot: "../..",
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PYO3_PYTHON: nix.thunk(() => nix.str`${python}/bin/python3`),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["ironcalc"]),
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { __proto__: pos$3, description: "Python bindings for IronCalc" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$3, description: "Python bindings for IronCalc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=python.ts.map

@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dbt-semantic-interfaces",
       version: "0.10.5",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dbt-labs",
           repo: "dbt-semantic-interfaces",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, hypothesis]),
       pythonImportsCheck: nix.thunk(() => ["dbt_semantic_interfaces"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shared interfaces used by dbt-core and MetricFlow projects",
         homepage: "https://github.com/dbt-labs/dbt-semantic-interfaces",
         changelog: nix.thunk(() => nix.str`https://github.com/dbt-labs/dbt-semantic-interfaces/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

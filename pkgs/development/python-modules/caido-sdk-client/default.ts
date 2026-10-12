@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "caido-sdk-client",
       version: "0.3.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "caido_sdk_client",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-lOeCi/FzvtoHFYBDs3mFgGwghY7pBFh72o/wy8pigIA=",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["caido_sdk_client"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Client SDK for interacting with a Caido instance",
         homepage: "https://pypi.org/project/caido-sdk-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

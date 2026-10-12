@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "batctl";
       const version = nix.thunk(() => nix.attr(cfg, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.open-mesh.org/batman/releases/batman-adv-${version}/${pname}-${version}.tar.gz`),
           sha256: nix.thunk(() => nix.sel(cfg, "sha256", nix.key(pname))),
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libnl]);
       const preBuild = "makeFlags=\"PREFIX=$out\"\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.open-mesh.org/projects/batman-adv/wiki/Wiki",
         description: "B.A.T.M.A.N. routing protocol in a linux kernel module for layer 2, control tool",
         mainProgram: "batctl",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

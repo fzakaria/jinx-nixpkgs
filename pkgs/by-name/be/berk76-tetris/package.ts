@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "berk76-tetris",
       version: "1.1.0-unstable-2024-11-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "oldcompcz",
           repo: "tetris",
           rev: "31d441a840dff7ad3839087b9a5a594250841342",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmake -f Makefile.con\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 Tetris $out/bin/tetris\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "ASCII Art Tetris",
         homepage: "https://github.com/oldcompcz/tetris",
         mainProgram: "tetris",

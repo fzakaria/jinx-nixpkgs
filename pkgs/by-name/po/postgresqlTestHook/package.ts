@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const lib = nix.arg($, "lib");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       name: "postgresql-test-hook",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

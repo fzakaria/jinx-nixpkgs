@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const version = "3.7.1-4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "percona",
       repo: "percona-toolkit",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
       leaveDotGit: true,
     }))));
   const goDeps = nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "Percona-Toolkit go-bindings",
       src: src,
       version: version,
       vendorHash: "sha256-LdUWZdoKVsYcL6DO0U18pHMmF4D+5PwMdlJf416H4hA=",
     }))), "goModules"));
   return nix.app(buildPerlPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "Percona-Toolkit",
       src: src,
       version: version,
@@ -51,7 +51,7 @@ substituteInPlace src/go/Makefile \\
 `),
       preBuild: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Collection of advanced command-line tools to perform a variety of MySQL and system tasks",
         homepage: "https://www.percona.com/software/database-tools/percona-toolkit",
         changelog: "https://docs.percona.com/percona-toolkit/release_notes.html",

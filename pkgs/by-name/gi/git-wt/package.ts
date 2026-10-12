@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const git = nix.arg($, "git");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-wt",
       version: "0.30.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "k1LoW",
           repo: "git-wt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/k1LoW/git-wt/version.Version=v${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Git subcommand that makes git worktree simple",
         homepage: "https://github.com/k1LoW/git-wt",
         changelog: nix.thunk(() => nix.str`https://github.com/k1LoW/git-wt/releases/tag/v${nix.sel(finalAttrs, "version")}`),

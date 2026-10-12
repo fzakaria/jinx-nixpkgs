@@ -193,7 +193,7 @@ export default nix.lambda((args) => (() => {
   const fpm = nix.thunk(() => nix.sel(config, "services", "phpfpm", "pools", "nextcloud"));
   const jsonFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const defaultPHPSettings = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     output_buffering: "0",
     short_open_tag: "Off",
     expose_php: "Off",
@@ -208,22 +208,22 @@ export default nix.lambda((args) => (() => {
     catch_workers_output: "yes",
   }));
   const appStores = nix.thunk(() => ({
-    __proto__: pos$6,
-    apps: nix.thunk(() => ({ __proto__: pos$2, enabled: true, writable: false })),
+    [nix.POS]: pos$6,
+    apps: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true, writable: false })),
     "nix-apps": nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       enabled: nix.thunk(() => !nix.eq(nix.sel(cfg, "extraApps"), {})),
-      linkTarget: nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "nix-apps", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => ({ __proto__: pos$3, name: name, path: path }), nix.thunk(() => nix.sel(cfg, "extraApps")))))),
+      linkTarget: nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "nix-apps", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => ({ [nix.POS]: pos$3, name: name, path: path }), nix.thunk(() => nix.sel(cfg, "extraApps")))))),
       writable: false,
     })),
     "store-apps": nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       enabled: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "appstoreEnable"), null)) || nix.asBool(nix.sel(cfg, "appstoreEnable")))),
       linkTarget: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}/store-apps`),
       writable: true,
     })),
   }));
-  const webroot = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${nix.selOr(cfg, () => "nextcloud", "package", "name")}-with-apps`), nix.thunk(() => ({ __proto__: pos$7, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
+  const webroot = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${nix.selOr(cfg, () => "nextcloud", "package", "name")}-with-apps`), nix.thunk(() => ({ [nix.POS]: pos$7, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
 ln -sfv "${nix.sel(cfg, "package")}"/* "$out"
 ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (store) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(store, "enabled")) && nix.asBool(nix.has(store, "linkTarget")))), nix.thunk(() => nix.str`if [ -e "$out"/${name} ]; then
   echo "Didn't expect ${name} already in $out!"
@@ -234,7 +234,7 @@ ln -sfTv ${nix.sel(store, "linkTarget")} "$out"/${name}
 `)));
   const datadir = nix.thunk(() => nix.attr(cfg, "datadir"));
   const phpPackage = nix.thunk(() => nix.app(nix.sel(cfg, "phpPackage", "buildEnv"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       extensions: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const enabled = nix.arg($_1, "enabled");
@@ -251,7 +251,7 @@ ln -sfTv ${nix.sel(store, "linkTarget")} "$out"/${name}
       extraConfig: nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => nix.sel(cfg, "phpOptions")))),
     }))));
   const toKeyValue = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({})), " = ")),
     }))));
   const phpCli = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), phpPackage)}`)], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "cli", "memoryLimit"), null)), nix.thunk(() => [
@@ -260,7 +260,7 @@ ln -sfTv ${nix.sel(store, "linkTarget")} "$out"/${name}
   const runtimeSystemdCredentials = nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config", "dbpassFile"), null)), nix.thunk(() => nix.str`dbpass:${nix.sel(cfg, "config", "dbpassFile")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "config", "objectstore", "s3", "enable")), nix.thunk(() => nix.str`s3_secret:${nix.sel(cfg, "config", "objectstore", "s3", "secretFile")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config", "objectstore", "s3", "sseCKeyFile"), null)), nix.thunk(() => nix.str`s3_sse_c_key:${nix.sel(cfg, "config", "objectstore", "s3", "sseCKeyFile")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "secretFile"), null)), nix.thunk(() => nix.str`secret_file:${nix.sel(cfg, "secretFile")}`)), nix.app(nix.sel(lib, "mapAttrsToList"), (credential) => (file) => nix.str`${credential}:${file}`, nix.thunk(() => nix.sel(cfg, "secrets")))))))));
   const requiresRuntimeSystemdCredentials = nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "length"), runtimeSystemdCredentials), 0n));
   const occ = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       name: "nextcloud-occ",
       text: nix.thunk(() => (() => {
         const command = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "env")} \\
@@ -399,7 +399,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
 `));
   })());
   return {
-    __proto__: pos$177,
+    [nix.POS]: pos$177,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "nextcloud", "cron", "memoryLimit"]), nix.thunk(() => ["services", "nextcloud", "cli", "memoryLimit"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "nextcloud", "enableBrokenCiphersForSSE"]), "This option has no effect since there's no supported Nextcloud version packaged here\nusing OpenSSL for RC4 SSE.\n")),
@@ -424,25 +424,25 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
         ]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$100,
+      [nix.POS]: pos$100,
       services: nix.thunk(() => ({
-        __proto__: pos$99,
+        [nix.POS]: pos$99,
         nextcloud: nix.thunk(() => ({
-          __proto__: pos$98,
+          [nix.POS]: pos$98,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nextcloud")),
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "FQDN for the nextcloud instance.",
             })))),
           home: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/nextcloud",
               description: "Storage path of nextcloud.",
             })))),
           datadir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: nix.thunk(() => nix.sel(config, "services", "nextcloud", "home")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.nextcloud.home")),
@@ -450,65 +450,65 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               example: "/mnt/nextcloud-file",
             })))),
           secrets: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "pathWith"), nix.thunk(() => ({ __proto__: pos$14, inStore: false, absolute: true })))))),
+              [nix.POS]: pos$15,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "pathWith"), nix.thunk(() => ({ [nix.POS]: pos$14, inStore: false, absolute: true })))))),
               default: nix.thunk(() => ({})),
               description: "Secret files to read into entries in `config.php`.\nThis uses `nix_read_secret` and LoadCredential to read the contents of the file into the entry in `config.php`.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  oidc_login_client_secret = \"/run/secrets/nextcloud_oidc_secret\";\n}\n")),
             })))),
           extraApps: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => ({})),
               description: "Extra apps to install. Should be an attrSet of appid to packages generated by fetchNextcloudApp.\nThe appid must be identical to the \"id\" value in the apps appinfo/info.xml.\nUsing this will disable the appstore to prevent Nextcloud from updating these apps (see [](#opt-services.nextcloud.appstoreEnable)).\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  inherit (pkgs.nextcloud31Packages.apps) mail calendar contacts;\n  phonetrack = pkgs.fetchNextcloudApp {\n    appName = \"phonetrack\";\n    appVersion = \"0.8.2\";\n    license = \"agpl3Plus\";\n    sha512 = \"f67902d1b48def9a244383a39d7bec95bb4215054963a9751f99dae9bd2f2740c02d2ef97b3b76d69a36fa95f8a9374dd049440b195f4dad2f0c4bca645de228\";\n    url = \"https://github.com/julien-nc/phonetrack/releases/download/v0.8.2/phonetrack-0.8.2.tar.gz\";\n  };\n}\n")),
             })))),
           extraAppsEnable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Automatically enable the apps in [](#opt-services.nextcloud.extraApps) every time Nextcloud starts.\nIf set to false, apps need to be enabled in the Nextcloud web user interface or with `nextcloud-occ app:enable`.\n",
             })))),
           appstoreEnable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "bool")))),
               default: null,
               example: true,
               description: "Allow the installation and updating of apps from the Nextcloud appstore.\nEnabled by default unless there are packages in [](#opt-services.nextcloud.extraApps).\nSet this to true to force enable the store even if [](#opt-services.nextcloud.extraApps) is used.\nSet this to false to disable the installation of apps from the global appstore. App management is always enabled regardless of this setting.\n",
             })))),
           https: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Use HTTPS for generated links.\n\nBe aware that this also enables HTTP Strict Transport Security (HSTS) headers.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "Which package to use for the Nextcloud instance.",
               relatedPackages: nix.thunk(() => ["nextcloud33", "nextcloud34", "nextcloud35"]),
             })))),
-          phpPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "php", nix.thunk(() => ({ __proto__: pos$21, default: nix.thunk(() => ["php84"]), example: "php82" })))),
+          phpPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "php", nix.thunk(() => ({ [nix.POS]: pos$21, default: nix.thunk(() => ["php84"]), example: "php82" })))),
           finalPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               readOnly: true,
               description: "Package to the finalized Nextcloud package, including all installed apps.\nThis is automatically set by the module.\n",
             })))),
           maxUploadSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: "512M",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The upload limit for files. This changes the relevant options\nin php.ini and nginx if enabled.\n",
             })))),
           webfinger: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable this option if you plan on using the webfinger plugin.\nThe appropriate nginx rewrite rules will be added to your configuration.\n",
             })))),
           phpExtraExtensions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "functionTo"), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))))),
               default: (all) => [],
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "all: []")),
@@ -516,26 +516,26 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "all: [ all.pdlib all.bz2 ]\n")),
             })))),
           phpOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
                   ]))))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.update(defaultPHPSettings, {
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     "openssl.cafile": nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.security.pki.caBundle")),
                   })))))),
               description: "Options for PHP's php.ini file for nextcloud.\n\nPlease note that this option is _additive_ on purpose while the\nattribute values inside the default are option defaults: that means that\n\n```nix\n{\n  services.nextcloud.phpOptions.\"opcache.interned_strings_buffer\" = \"23\";\n}\n```\n\nwill override the `php.ini` option `opcache.interned_strings_buffer` without\ndiscarding the rest of the defaults.\n\nOverriding all of `phpOptions` (including `upload_max_filesize`, `post_max_size`\nand `memory_limit` which all point to [](#opt-services.nextcloud.maxUploadSize)\nby default) can be done like this:\n\n```nix\n{\n  services.nextcloud.phpOptions = lib.mkForce {\n    /* ... */\n  };\n}\n```\n",
             })))),
           poolSettings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(lib, "types", "str")),
                     nix.thunk(() => nix.sel(lib, "types", "int")),
                     nix.thunk(() => nix.sel(lib, "types", "bool")),
                   ]))))),
               default: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 pm: "dynamic",
                 "pm.max_children": "120",
                 "pm.start_servers": "12",
@@ -547,54 +547,54 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               description: "Options for nextcloud's PHP pool. See the documentation on `php-fpm.conf` for details on\nconfiguration directives. The above are recommended for a server with 4GiB of RAM.\n\nIt's advisable to read the [section about PHPFPM tuning in the upstream manual](https://docs.nextcloud.com/server/latest/admin_manual/installation/server_tuning.html#tune-php-fpm)\nand consider customizing the values.\n",
             })))),
           poolConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "lines")))),
               default: null,
               description: "Options for Nextcloud's PHP pool. See the documentation on `php-fpm.conf` for details on configuration directives.\n",
             })))),
           fastcgiTimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 120n,
               description: "FastCGI timeout for database connection in seconds.\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to create the database and database user locally.\n",
               })))),
           })),
           config: nix.thunk(() => ({
-            __proto__: pos$54,
+            [nix.POS]: pos$54,
             dbtype: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "pgsql", "mysql"]))))),
                 default: null,
                 description: "Database type.",
               })))),
             dbname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$35,
+                [nix.POS]: pos$35,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "nextcloud",
                 description: "Database name.",
               })))),
             dbuser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "nextcloud",
                 description: "Database user.",
               })))),
             dbpassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "The full path to a file that contains the database password.\n",
               })))),
             dbhost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: nix.thunk(() => (nix.asBool(pgsqlLocal) ? "/run/postgresql" : (nix.asBool(mysqlLocal) ? "localhost:/run/mysqld/mysqld.sock" : "localhost"))),
                 defaultText: "localhost",
@@ -602,85 +602,85 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                 description: "Database host (+port) or socket path.\nIf [](#opt-services.nextcloud.database.createLocally) is true and\n[](#opt-services.nextcloud.config.dbtype) is either `pgsql` or `mysql`,\ndefaults to the correct Unix socket instead.\n",
               })))),
             dbtableprefix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 description: "Table prefix in Nextcloud's database.\n\n__Note:__ since Nextcloud 20 it's not an option anymore to create a database\nschema with a custom table prefix. This option only exists for backwards compatibility\nwith installations that were originally provisioned with Nextcloud <20.\n",
               })))),
             adminuser: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: "root",
                 description: "Username for the admin account. The username is only set during the\ninitial setup of Nextcloud! Since the username also acts as unique\nID internally, it cannot be changed later!\n",
               })))),
             adminpassFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 description: "The full path to a file that contains the admin's password. The password is\nset only in the initial setup of Nextcloud by the systemd service `nextcloud-setup.service`.\n",
               })))),
             objectstore: nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               s3: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "S3 object storage as primary storage.\n\nThis mounts a bucket on an Amazon S3 object storage or compatible\nimplementation into the virtual filesystem.\n\nFurther details about this feature can be found in the\n[upstream documentation](https://docs.nextcloud.com/server/22/admin_manual/configuration_files/primary_storage.html)\n")),
                 bucket: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$42,
+                    [nix.POS]: pos$42,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     example: "nextcloud",
                     description: "The name of the S3 bucket.\n",
                   })))),
                 verify_bucket_exists: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     default: true,
                     description: "Create the objectstore bucket if it does not exist.\n",
                   })))),
                 key: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     example: "EJ39ITYZEUH5BGWDRUFY",
                     description: "The access key for the S3 bucket.\n",
                   })))),
                 secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$45,
+                    [nix.POS]: pos$45,
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     example: "/var/nextcloud-objectstore-s3-secret",
                     description: "The full path to a file that contains the access secret.\n",
                   })))),
                 hostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     default: null,
                     example: "example.com",
                     description: "Required for some non-Amazon implementations.\n",
                   })))),
                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "port")))),
                     default: null,
                     description: "Required for some non-Amazon implementations.\n",
                   })))),
                 useSsl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     default: true,
                     description: "Use SSL for objectstore access.\n",
                   })))),
                 region: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$49,
+                    [nix.POS]: pos$49,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                     default: null,
                     example: "REGION",
                     description: "Required for some non-Amazon implementations.\n",
                   })))),
                 usePathStyle: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     default: false,
                     description: "Required for some non-Amazon S3 implementations.\n\nOrdinarily, requests will be made with\n`http://bucket.hostname.domain/`, but with path style\nenabled requests are made with\n`http://hostname.domain/bucket` instead.\n",
                   })))),
                 sseCKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$51,
+                    [nix.POS]: pos$51,
                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
                     default: null,
                     example: "/var/nextcloud-objectstore-s3-sse-c-key",
@@ -689,44 +689,44 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               })),
             })),
           })),
-          enableImagemagick: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the ImageMagick module for PHP.\nThis is used by the theming app and for generating previews of certain images (e.g. SVG and HEIF).\nYou may want to disable it for increased security. In that case, previews will still be available\nfor some images (e.g. JPEG and PNG).\nSee <https://github.com/nextcloud/server/issues/13099>\n"), { __proto__: pos$55, default: true })),
+          enableImagemagick: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "the ImageMagick module for PHP.\nThis is used by the theming app and for generating previews of certain images (e.g. SVG and HEIF).\nYou may want to disable it for increased security. In that case, previews will still be available\nfor some images (e.g. JPEG and PNG).\nSee <https://github.com/nextcloud/server/issues/13099>\n"), { [nix.POS]: pos$55, default: true })),
           configureRedis: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to configure Nextcloud to use the recommended Redis settings for small instances.\n\n::: {.note}\nThe Nextcloud system check recommends to configure either Redis or Memcache for file lock caching.\n:::\n\n::: {.note}\nThe `notify_push` app requires Redis to be configured. If this option is turned off, this must be configured manually.\n:::\n",
             })))),
           caching: nix.thunk(() => ({
-            __proto__: pos$60,
+            [nix.POS]: pos$60,
             apcu: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$57,
+                [nix.POS]: pos$57,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to load the APCu module into PHP.\n",
               })))),
             redis: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to load the Redis module into PHP.\nYou still need to enable Redis in your config.php.\nSee <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html>\n",
               })))),
             memcached: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$59,
+                [nix.POS]: pos$59,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to load the Memcached module into PHP.\nYou still need to enable Memcached in your config.php.\nSee <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html>\n",
               })))),
           })),
           autoUpdateApps: nix.thunk(() => ({
-            __proto__: pos$63,
+            [nix.POS]: pos$63,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Run a regular auto-update of all apps installed from the Nextcloud app store.\n",
               })))),
             startAt: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "str")), nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))))),
                 default: "05:00:00",
                 example: "Sun 14:00:00",
@@ -734,69 +734,69 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               })))),
           })),
           occ: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: occ,
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalMD"), "generated script")),
               description: "The nextcloud-occ program preconfigured to target this Nextcloud instance.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$90,
+              [nix.POS]: pos$90,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$89,
+                  [nix.POS]: pos$89,
                   freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$88,
+                    [nix.POS]: pos$88,
                     loglevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 4n)),
                         default: 2n,
                         description: "Log level value between 0 (DEBUG) and 4 (FATAL).\n\n- 0 (debug): Log all activity.\n\n- 1 (info): Log activity such as user logins and file activities, plus warnings, errors, and fatal errors.\n\n- 2 (warn): Log successful operations, as well as warnings of potential problems, errors and fatal errors.\n\n- 3 (error): Log failed operations and fatal errors.\n\n- 4 (fatal): Log only fatal errors that cause the server to stop.\n",
                       })))),
                     log_type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["errorlog", "file", "syslog", "systemd"]))),
                         default: "syslog",
                         description: "Logging backend to use.\nsystemd automatically adds the php-systemd extensions to services.nextcloud.phpExtraExtensions.\nSee the [nextcloud documentation](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/logging_configuration.html) for details.\n",
                       })))),
                     skeletondirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$67,
+                        [nix.POS]: pos$67,
                         default: "",
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         description: "The directory where the skeleton files are located. These files will be\ncopied to the data directory of new users. Leave empty to not copy any\nskeleton files.\n",
                       })))),
                     trusted_domains: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "Trusted domains, from which the nextcloud installation will be\naccessible. You don't need to add\n`services.nextcloud.hostname` here.\n",
                       })))),
                     trusted_proxies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: [],
                         description: "Trusted proxies, to provide if the nextcloud installation is being\nproxied to secure against e.g. spoofing.\n",
                       })))),
                     overwriteprotocol: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$70,
+                        [nix.POS]: pos$70,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["", "http", "https"]))),
                         default: "",
                         example: "https",
                         description: "Force Nextcloud to always use HTTP or HTTPS i.e. for link generation.\nNextcloud uses the currently used protocol by default, but when\nbehind a reverse-proxy, it may use `http` for everything although\nNextcloud may be served via HTTPS.\n",
                       })))),
                     default_phone_region: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$71,
+                        [nix.POS]: pos$71,
                         default: "",
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         example: "DE",
                         description: "An [ISO 3166-1](https://www.iso.org/iso-3166-country-codes.html)\ncountry code which replaces automatic phone-number detection\nwithout a country code.\n\nAs an example, with `DE` set as the default phone region,\nthe `+49` prefix can be omitted for phone numbers.\n",
                       })))),
                     "profile.enabled": nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "global profiles"), {
-                      __proto__: pos$72,
+                      [nix.POS]: pos$72,
                       description: "Makes user-profiles globally available under `nextcloud.tld/u/user.name`.\nEven though it's enabled by default in Nextcloud, it must be explicitly enabled\nhere because it has the side-effect that personal information is even accessible to\nunauthenticated users by default.\nBy default, the following properties are set to “Show to everyone”\nif this flag is enabled:\n- About\n- Full name\n- Headline\n- Organisation\n- Profile picture\n- Role\n- Twitter\n- Website\nOnly has an effect in Nextcloud 23 and later.\n",
                     })),
                     enabledPreviewProviders: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$73,
+                        [nix.POS]: pos$73,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: nix.thunk(() => [
                           "OC\\Preview\\PNG",
@@ -813,85 +813,85 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
                         description: "The preview providers that should be explicitly enabled.\n",
                       })))),
                     mail_domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$74,
+                        [nix.POS]: pos$74,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "The return address that you want to appear on emails sent by the Nextcloud server, for example `nc-admin@example.com`, substituting your own domain, of course.\n",
                       })))),
                     mail_from_address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$75,
+                        [nix.POS]: pos$75,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         description: "FROM address that overrides the built-in `sharing-noreply` and `lostpassword-noreply` FROM addresses.\nDefaults to different FROM addresses depending on the feature.\n",
                       })))),
                     mail_smtpdebug: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$76,
+                        [nix.POS]: pos$76,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Enable SMTP class debugging.\n`loglevel` will likely need to be adjusted too.\n[See docs](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/email_configuration.html#enabling-debug-mode).\n",
                       })))),
                     mail_smtpmode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$77,
+                        [nix.POS]: pos$77,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sendmail", "smtp", "qmail", "null"]))),
                         default: "smtp",
                         description: "Which mode to use for sending mail.\nIf you are using local or remote SMTP, set this to `smtp`.\nFor the `sendmail` option, you need an installed and working email system on the server, with your local `sendmail` installation.\nFor `qmail`, the binary is /var/qmail/bin/sendmail, and it must be installed on your Unix system.\nUse the string null to send no mails (disable mail delivery). This can be useful if mails should be sent via APIs and rendering messages is not necessary.\n",
                       })))),
                     mail_smtphost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$78,
+                        [nix.POS]: pos$78,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "127.0.0.1",
                         description: "This depends on `mail_smtpmode`. Specify the IP address of your mail server host. This may contain multiple hosts separated by a semicolon. If you need to specify the port number, append it to the IP address separated by a colon, like this: `127.0.0.1:24`.\n",
                       })))),
                     mail_smtpport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$79,
+                        [nix.POS]: pos$79,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 25n,
                         description: "This depends on `mail_smtpmode`. Specify the port for sending mail.\n",
                       })))),
                     mail_smtptimeout: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$80,
+                        [nix.POS]: pos$80,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 10n,
                         description: "This depends on `mail_smtpmode`. This sets the SMTP server timeout, in seconds. You may need to increase this if you are running an anti-malware or spam scanner.\n",
                       })))),
                     mail_smtpsecure: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$81,
+                        [nix.POS]: pos$81,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["", "ssl"]))),
                         default: "",
                         description: "This depends on `mail_smtpmode`. Specify `ssl` when you are using SSL/TLS. Any other value will be ignored.\nIf the server advertises STARTTLS capabilities, they might be used, but they cannot be enforced by this config option.\n",
                       })))),
                     mail_smtpauth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$82,
+                        [nix.POS]: pos$82,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "This depends on `mail_smtpmode`. Change this to `true` if your mail server requires authentication.\n",
                       })))),
                     mail_smtpname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$83,
+                        [nix.POS]: pos$83,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "",
                         description: "This depends on `mail_smtpauth`. Specify the username for authenticating to the SMTP server.\n",
                       })))),
                     mail_template_class: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$84,
+                        [nix.POS]: pos$84,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "\\OC\\Mail\\EMailTemplate",
                         description: "Replaces the default mail template layout. This can be utilized if the options to modify the mail texts with the theming app are not enough.\nThe class must extend `\\OC\\Mail\\EMailTemplate`\n",
                       })))),
                     mail_send_plaintext_only: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$85,
+                        [nix.POS]: pos$85,
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                         description: "Email will be sent by default with an HTML and a plain text body. This option allows sending only plain text emails.\n",
                       })))),
                     mail_smtpstreamoptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$86,
+                        [nix.POS]: pos$86,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))))),
                         default: nix.thunk(() => ({})),
                         description: "This depends on `mail_smtpmode`. Array of additional streams options that will be passed to underlying Swift mailer implementation.\n",
                       })))),
                     mail_sendmailmode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$87,
+                        [nix.POS]: pos$87,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["smtp", "pipe"]))),
                         default: "smtp",
                         description: "For `smtp`, the sendmail binary is started with the parameter `-bs`: Use the SMTP protocol on standard input and output.\nFor `pipe`, the binary is started with the parameters `-t`: Read message from STDIN and extract recipients.\n",
@@ -903,30 +903,30 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  redis = {\n    host = \"/run/redis/redis.sock\";\n    port = 0;\n    dbindex = 0;\n    password = \"secret\";\n    timeout = 1.5;\n  };\n}\n")),
             })))),
           secretFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$91,
+              [nix.POS]: pos$91,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "Secret options which will be appended to Nextcloud's config.php file (written as JSON, in the same\nform as the [](#opt-services.nextcloud.settings) option), for example\n`{\"redis\":{\"password\":\"secret\"}}`.\n",
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$94,
+            [nix.POS]: pos$94,
             hstsMaxAge: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$92,
+                [nix.POS]: pos$92,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 15552000n,
                 description: "Value for the `max-age` directive of the HTTP\n`Strict-Transport-Security` header.\n\nSee section 6.1.1 of IETF RFC 6797 for detailed information on this\ndirective and header.\n",
               })))),
             enableFastcgiRequestBuffering: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$93,
+                [nix.POS]: pos$93,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Whether to buffer requests against fastcgi requests. This is a workaround\nfor `PUT` requests with the `Transfer-Encoding: chunked` header set and\nan unspecified `Content-Length`. Without request buffering for these requests,\nNextcloud will create files with zero bytes length as described in\n[nextcloud/server#7995](https://github.com/nextcloud/server/issues/7995).\n\n::: {.note}\nPlease keep in mind that upstream suggests to not enable this as it might\nlead to timeouts on large files being uploaded as described in the\n[administrator manual](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/big_file_upload_configuration.html#nginx).\n:::\n",
               })))),
           })),
           cli: nix.thunk(() => ({
-            __proto__: pos$96,
+            [nix.POS]: pos$96,
             memoryLimit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: null,
                 example: "1G",
@@ -934,7 +934,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
               })))),
           })),
           imaginary: nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Imaginary")),
           })),
         })),
@@ -942,7 +942,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$105,
+            [nix.POS]: pos$105,
             warnings: nix.thunk(() => (() => {
               const latest = 35n;
               const upgradeWarning = (major) => (nixos) => nix.str`A legacy Nextcloud install (from before NixOS ${nixos}) may be installed.
@@ -959,70 +959,70 @@ The package can be upgraded by explicitly declaring the service-option
               return nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "poolConfig"), null)), "Using config.services.nextcloud.poolConfig is deprecated and will become unsupported in a future release.\nPlease migrate your configuration to config.services.nextcloud.poolSettings.\n"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config", "dbtableprefix"), null)), "Using `services.nextcloud.config.dbtableprefix` is deprecated. Fresh installations with this\noption set are not allowed anymore since v20.\n\nIf you have an existing installation with a custom table prefix, make sure it is\nset correctly in `config.php` and remove the option from your NixOS config.\n"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "26")), nix.thunk(() => nix.app(upgradeWarning, 25n, "23.05"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "27")), nix.thunk(() => nix.app(upgradeWarning, 26n, "23.11"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "28")), nix.thunk(() => nix.app(upgradeWarning, 27n, "24.05"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "29")), nix.thunk(() => nix.app(upgradeWarning, 28n, "24.11"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "30")), nix.thunk(() => nix.app(upgradeWarning, 29n, "24.11"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "31")), nix.thunk(() => nix.app(upgradeWarning, 30n, "25.05"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "32")), nix.thunk(() => nix.app(upgradeWarning, 31n, "25.11"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "33")), nix.thunk(() => nix.app(upgradeWarning, 32n, "26.05"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "34")), nix.thunk(() => nix.app(upgradeWarning, 33n, "26.11"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cfg, "package", "version")), "35")), nix.thunk(() => nix.app(upgradeWarning, 34n, "26.11"))))))))))))));
             })()),
             services: nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               nextcloud: nix.thunk(() => ({
-                __proto__: pos$103,
+                [nix.POS]: pos$103,
                 package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => (nix.asBool(nix.has(pkgs, "nextcloud")) ? nix.builtins.throw("The `pkgs.nextcloud`-attribute has been removed. If it's supposed to be the default\nnextcloud defined in an overlay, please set `services.nextcloud.package` to\n`pkgs.nextcloud`.\n") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), stateVersion, "25.11")) ? nix.sel(pkgs, "nextcloud31") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), stateVersion, "26.05")) ? nix.sel(pkgs, "nextcloud32") : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), stateVersion, "26.11")) ? nix.sel(pkgs, "nextcloud33") : nix.sel(pkgs, "nextcloud35")))))))),
                 phpOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.sel(lib, "mkOptionDefault")))), defaultPHPSettings)),
                     nix.thunk(() => ({
-                      __proto__: pos$101,
+                      [nix.POS]: pos$101,
                       upload_max_filesize: nix.thunk(() => nix.sel(cfg, "maxUploadSize")),
                       post_max_size: nix.thunk(() => nix.sel(cfg, "maxUploadSize")),
                       memory_limit: nix.thunk(() => nix.sel(cfg, "maxUploadSize")),
                     })),
-                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "caching", "apcu")), nix.thunk(() => ({ __proto__: pos$102, "apc.enable_cli": "1" })))),
+                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "caching", "apcu")), nix.thunk(() => ({ [nix.POS]: pos$102, "apc.enable_cli": "1" })))),
                   ]))),
               })),
             })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$112,
+            [nix.POS]: pos$112,
             assertions: nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$106,
+                [nix.POS]: pos$106,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "config", "dbpassFile"), null)))),
                 message: "Using `services.nextcloud.database.createLocally` with database\npassword authentication is no longer supported.\n\nIf you use an external database (or want to use password auth for any\nother reason), set `services.nextcloud.database.createLocally` to\n`false`. The database won't be managed for you (use `services.mysql`\nif you want to set it up).\n\nIf you want this module to manage your nextcloud database for you,\nunset `services.nextcloud.config.dbpassFile` and\n`services.nextcloud.config.dbhost` to use socket authentication\ninstead of password.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$107,
+                [nix.POS]: pos$107,
                 assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "config", "dbtype"), null)),
                 message: "`services.nextcloud.config.dbtype` must be set explicitly (pgsql, mysql, or sqlite)\n\nBefore 25.05, it used to default to sqlite but that is not recommended by upstream.\nEither set it to sqlite as it used to be, or convert to another type as described\nin the official db conversion page:\nhttps://docs.nextcloud.com/server/latest/admin_manual/configuration_database/db_conversion.html\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$108,
+                [nix.POS]: pos$108,
                 assertion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cfg, "package", "version")), "32.0.0")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "config", "adminuser"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "config", "adminpassFile"), null)))))),
                 message: "Disabling initial admin user creation is only available on Nextcloud >= 32.0.0.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$109,
+                [nix.POS]: pos$109,
                 assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "config", "adminuser"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "config", "adminpassFile"), null)))),
                 message: "If `services.nextcloud.config.adminuser` is null, `services.nextcloud.config.adminpassFile` must be null as well in order to disable initial admin user creation.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$110,
+                [nix.POS]: pos$110,
                 assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(cfg, "config", "adminpassFile"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "config", "adminuser"), null)))),
                 message: "If `services.nextcloud.config.adminpassFile` is null, `services.nextcloud.config.adminuser` must be null as well in order to disable initial admin user creation.\n",
               })),
               nix.thunk(() => ({
-                __proto__: pos$111,
+                [nix.POS]: pos$111,
                 assertion: nix.thunk(() => !nix.asBool(nix.has(nix.sel(cfg, "settings"), "mail_smtppassword"))),
                 message: "The option `services.nextcloud.settings.mail_smtppassword` must not be used, as it puts the password into the world-readable nix store.\nUse `services.nextcloud.secrets.mail_smtppassword` instead and set it to a file containing the password.\n",
               })),
             ]),
           })),
           nix.thunk(() => ({
-            __proto__: pos$175,
+            [nix.POS]: pos$175,
             systemd: nix.thunk(() => ({
-              __proto__: pos$134,
+              [nix.POS]: pos$134,
               timers: nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 "nextcloud-cron": nix.thunk(() => ({
-                  __proto__: pos$114,
+                  [nix.POS]: pos$114,
                   wantedBy: nix.thunk(() => ["timers.target"]),
                   after: nix.thunk(() => ["nextcloud-setup.service"]),
                   timerConfig: nix.thunk(() => ({
-                    __proto__: pos$113,
+                    [nix.POS]: pos$113,
                     OnBootSec: "5m",
                     OnUnitActiveSec: "5m",
                     Unit: "nextcloud-cron.service",
@@ -1030,7 +1030,7 @@ The package can be upgraded by explicitly declaring the service-option
                 })),
               })),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$116,
+                [nix.POS]: pos$116,
                 rules: nix.thunk(() => nix.concat(nix.builtins.map((dir) => nix.str`d ${dir} 0750 nextcloud nextcloud - -`, nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(cfg, "home")}`),
                     nix.thunk(() => nix.str`${datadir}/config`),
@@ -1041,7 +1041,7 @@ The package can be upgraded by explicitly declaring the service-option
                 ])),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$133,
+                [nix.POS]: pos$133,
                 "nextcloud-setup": nix.thunk(() => (() => {
                   const c = nix.thunk(() => nix.sel(cfg, "config"));
                   const occInstallCmd = nix.thunk(() => (() => {
@@ -1054,17 +1054,17 @@ export ${arg};
 `;
                     })(), formals$4);
                     const dbpass = nix.thunk(() => ({
-                      __proto__: pos$117,
+                      [nix.POS]: pos$117,
                       arg: "DBPASS",
                       value: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(c, "dbpassFile"), null)) ? "\"$(<\"$CREDENTIALS_DIRECTORY/dbpass\")\"" : "\"\"")),
                     }));
                     const adminpass = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(c, "adminpassFile"), null)) ? {
-                      __proto__: pos$118,
+                      [nix.POS]: pos$118,
                       arg: "ADMINPASS",
                       value: "\"$(<\"$CREDENTIALS_DIRECTORY/adminpass\")\"",
                     } : null));
                     const installFlags = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " \\\n    ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.str`${k} ${nix.builtins.toString(v)}`, nix.thunk(() => nix.attrsDyn({
-                          __proto__: pos$119,
+                          [nix.POS]: pos$119,
                           "--database": nix.thunk(() => nix.str`"${nix.sel(c, "dbtype")}"`),
                           "--database-pass": nix.thunk(() => nix.str`"$${nix.sel(dbpass, "arg")}"`),
                           "--data-dir": nix.thunk(() => nix.str`"${datadir}/data"`),
@@ -1086,7 +1086,7 @@ ${nix.app(nix.sel(lib, "getExe"), occ)} maintenance:install \\
   ${nix.builtins.toString(i)} --value="${nix.builtins.toString(v)}"
 `, nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "hostName"))], nix.sel(cfg, "settings", "trusted_domains")))))))));
                   return {
-                    __proto__: pos$122,
+                    [nix.POS]: pos$122,
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     wants: nix.thunk(() => ["nextcloud-update-db.service"]),
                     before: nix.thunk(() => ["phpfpm-nextcloud.service"]),
@@ -1138,23 +1138,23 @@ $OCC_BIN app:enable ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk((
 ${occSetTrustedDomainsCmd}
 `),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$120,
+                      [nix.POS]: pos$120,
                       Type: "oneshot",
                       User: "nextcloud",
                       LoadCredential: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "config", "adminpassFile"), null)), nix.thunk(() => nix.str`adminpass:${nix.sel(cfg, "config", "adminpassFile")}`)), runtimeSystemdCredentials)),
                     })),
-                    environment: nix.thunk(() => ({ __proto__: pos$121, NC_setup_create_db_user: "false" })),
+                    environment: nix.thunk(() => ({ [nix.POS]: pos$121, NC_setup_create_db_user: "false" })),
                   };
                 })()),
                 "nextcloud-cron": nix.thunk(() => ({
-                  __proto__: pos$125,
+                  [nix.POS]: pos$125,
                   after: nix.thunk(() => ["nextcloud-setup.service"]),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$123,
+                    [nix.POS]: pos$123,
                     NEXTCLOUD_CONFIG_DIR: nix.thunk(() => nix.str`${datadir}/config`),
                   })),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$124,
+                    [nix.POS]: pos$124,
                     Type: "exec",
                     User: "nextcloud",
                     KillMode: "process",
@@ -1164,10 +1164,10 @@ ${occSetTrustedDomainsCmd}
                   })),
                 })),
                 "nextcloud-update-plugins": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "autoUpdateApps", "enable")), nix.thunk(() => ({
-                    __proto__: pos$127,
+                    [nix.POS]: pos$127,
                     after: nix.thunk(() => ["nextcloud-setup.service"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$126,
+                      [nix.POS]: pos$126,
                       Type: "oneshot",
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), occ)} app:update --all`),
                       User: "nextcloud",
@@ -1176,14 +1176,14 @@ ${occSetTrustedDomainsCmd}
                     startAt: nix.thunk(() => nix.sel(cfg, "autoUpdateApps", "startAt")),
                   })))),
                 "nextcloud-update-db": nix.thunk(() => ({
-                  __proto__: pos$129,
+                  [nix.POS]: pos$129,
                   after: nix.thunk(() => ["nextcloud-setup.service"]),
                   script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-columns
 ${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-indices
 ${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-primary-keys
 `),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$128,
+                    [nix.POS]: pos$128,
                     Type: "exec",
                     User: "nextcloud",
                     LoadCredential: runtimeSystemdCredentials,
@@ -1191,12 +1191,12 @@ ${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-primary-keys
                   })),
                 })),
                 "phpfpm-nextcloud": nix.thunk(() => nix.update({
-                  __proto__: pos$130,
+                  [nix.POS]: pos$130,
                   restartTriggers: nix.thunk(() => [webroot, overrideConfig]),
                 }, nix.app(nix.sel(lib, "optionalAttrs"), requiresRuntimeSystemdCredentials, nix.thunk(() => ({
-                    __proto__: pos$132,
+                    [nix.POS]: pos$132,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$131,
+                      [nix.POS]: pos$131,
                       LoadCredential: runtimeSystemdCredentials,
                       RuntimeDirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "phpfpm phpfpm-nextcloud")),
                     })),
@@ -1205,17 +1205,17 @@ ${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-primary-keys
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$168,
+              [nix.POS]: pos$168,
               nextcloud: nix.thunk(() => ({
-                __proto__: pos$140,
+                [nix.POS]: pos$140,
                 finalPackage: webroot,
                 caching: nix.thunk(() => ({
-                  __proto__: pos$135,
+                  [nix.POS]: pos$135,
                   redis: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureRedis")), true)),
                 })),
                 settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$136,
+                      [nix.POS]: pos$136,
                       datadirectory: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${datadir}/data`))),
                       trusted_domains: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "hostName"))]),
                       "upgrade.disable-web": true,
@@ -1223,17 +1223,17 @@ ${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-primary-keys
                       default_certificates_bundle_path: nix.thunk(() => nix.sel(config, "security", "pki", "caBundle")),
                     })),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureRedis")), nix.thunk(() => ({
-                        __proto__: pos$138,
+                        [nix.POS]: pos$138,
                         "memcache.distributed": "\\OC\\Memcache\\Redis",
                         "memcache.locking": "\\OC\\Memcache\\Redis",
                         redis: nix.thunk(() => ({
-                          __proto__: pos$137,
+                          [nix.POS]: pos$137,
                           host: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "nextcloud", "unixSocket")),
                           port: 0n,
                         })),
                       })))),
                     nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "imaginary", "enable")), nix.thunk(() => ({
-                        __proto__: pos$139,
+                        [nix.POS]: pos$139,
                         preview_imaginary_url: nix.thunk(() => nix.str`http://${nix.sel(config, "services", "imaginary", "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "imaginary", "port")))}`),
                         enabledPreviewProviders: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => [
                             "OC\\Preview\\Imaginary",
@@ -1247,22 +1247,22 @@ ${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-primary-keys
                   ]))),
               })),
               phpfpm: nix.thunk(() => ({
-                __proto__: pos$145,
+                [nix.POS]: pos$145,
                 pools: nix.thunk(() => ({
-                  __proto__: pos$144,
+                  [nix.POS]: pos$144,
                   nextcloud: nix.thunk(() => ({
-                    __proto__: pos$143,
+                    [nix.POS]: pos$143,
                     user: "nextcloud",
                     group: "nextcloud",
                     phpPackage: phpPackage,
                     phpEnv: nix.thunk(() => ({
-                      __proto__: pos$141,
+                      [nix.POS]: pos$141,
                       CREDENTIALS_DIRECTORY: "/run/phpfpm-nextcloud/credentials/",
                       NEXTCLOUD_CONFIG_DIR: nix.thunk(() => nix.str`${datadir}/config`),
                       PATH: "/run/wrappers/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/bin:/bin",
                     })),
                     settings: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                        __proto__: pos$142,
+                        [nix.POS]: pos$142,
                         "listen.owner": nix.thunk(() => nix.sel(config, "services", "nginx", "user")),
                         "listen.group": nix.thunk(() => nix.sel(config, "services", "nginx", "group")),
                       }))), nix.sel(cfg, "poolSettings"))),
@@ -1271,65 +1271,65 @@ ${nix.app(nix.sel(lib, "getExe"), occ)} db:add-missing-primary-keys
                 })),
               })),
               mysql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), mysqlLocal, nix.thunk(() => ({
-                  __proto__: pos$147,
+                  [nix.POS]: pos$147,
                   enable: true,
                   package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
                   ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "config", "dbname"))]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$146,
+                      [nix.POS]: pos$146,
                       name: nix.thunk(() => nix.sel(cfg, "config", "dbuser")),
                       ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "config", "dbname")}.*`, "ALL PRIVILEGES"]])),
                     })),
                   ]),
                 })))),
               postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), pgsqlLocal, nix.thunk(() => ({
-                  __proto__: pos$149,
+                  [nix.POS]: pos$149,
                   enable: true,
                   ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "config", "dbname"))]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$148,
+                      [nix.POS]: pos$148,
                       name: nix.thunk(() => nix.sel(cfg, "config", "dbuser")),
                       ensureDBOwnership: true,
                     })),
                   ]),
                 })))),
               redis: nix.thunk(() => ({
-                __proto__: pos$152,
+                [nix.POS]: pos$152,
                 servers: nix.thunk(() => ({
-                  __proto__: pos$151,
-                  nextcloud: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureRedis")), nix.thunk(() => ({ __proto__: pos$150, enable: true, user: "nextcloud" })))),
+                  [nix.POS]: pos$151,
+                  nextcloud: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureRedis")), nix.thunk(() => ({ [nix.POS]: pos$150, enable: true, user: "nextcloud" })))),
                 })),
               })),
               nginx: nix.thunk(() => ({
-                __proto__: pos$165,
+                [nix.POS]: pos$165,
                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "hostName"), nix.thunk(() => ({
-                    __proto__: pos$164,
+                    [nix.POS]: pos$164,
                     root: webroot,
                     locations: nix.thunk(() => ({
-                      __proto__: pos$163,
+                      [nix.POS]: pos$163,
                       "= /robots.txt": nix.thunk(() => ({
-                        __proto__: pos$153,
+                        [nix.POS]: pos$153,
                         priority: 100n,
                         extraConfig: "allow all;\naccess_log off;\n",
                       })),
                       "= /": nix.thunk(() => ({
-                        __proto__: pos$154,
+                        [nix.POS]: pos$154,
                         priority: 100n,
                         extraConfig: "if ( $http_user_agent ~ ^DavClnt ) {\n  return 302 /remote.php/webdav/$is_args$args;\n}\n",
                       })),
                       "^~ /.well-known": nix.thunk(() => ({
-                        __proto__: pos$155,
+                        [nix.POS]: pos$155,
                         priority: 210n,
                         extraConfig: "absolute_redirect off;\nlocation = /.well-known/carddav {\n  return 301 /remote.php/dav/;\n}\nlocation = /.well-known/caldav {\n  return 301 /remote.php/dav/;\n}\nlocation ~ ^/\\.well-known/(?!acme-challenge|pki-validation) {\n  return 301 /index.php$request_uri;\n}\ntry_files $uri $uri/ =404;\n",
                       })),
-                      "~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)": nix.thunk(() => ({ __proto__: pos$156, priority: 450n, extraConfig: "return 404;\n" })),
-                      "~ ^/(?:\\.|autotest|occ|issue|indie|db_|console)": nix.thunk(() => ({ __proto__: pos$157, priority: 450n, extraConfig: "return 404;\n" })),
+                      "~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)": nix.thunk(() => ({ [nix.POS]: pos$156, priority: 450n, extraConfig: "return 404;\n" })),
+                      "~ ^/(?:\\.|autotest|occ|issue|indie|db_|console)": nix.thunk(() => ({ [nix.POS]: pos$157, priority: 450n, extraConfig: "return 404;\n" })),
                       "~ \\.php(?:$|/)": nix.thunk(() => ({
-                        __proto__: pos$158,
+                        [nix.POS]: pos$158,
                         priority: 500n,
                         extraConfig: nix.thunk(() => nix.str`# legacy support (i.e. static files and directories in cfg.package)
 rewrite ^/(?!index|remote|public|cron|core\\/ajax\\/update|status|ocs\\/v[12]|updater\\/.+|ocs-provider\\/.+|.+\\/richdocumentscode(_arm64)?\\/proxy) /index.php$request_uri;
@@ -1349,17 +1349,17 @@ fastcgi_read_timeout ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "fastc
 `),
                       })),
                       "~ \\.(?:css|js|mjs|svg|gif|ico|jpg|jpeg|png|webp|wasm|tflite|map|html|ttf|bcmap|mp4|webm|ogg|flac)$": nix.thunk(() => ({
-                        __proto__: pos$159,
+                        [nix.POS]: pos$159,
                         extraConfig: "try_files $uri /index.php$request_uri;\nexpires 6M;\naccess_log off;\nlocation ~ \\.mjs$ {\n  default_type text/javascript;\n}\nlocation ~ \\.wasm$ {\n  default_type application/wasm;\n}\n",
                       })),
-                      "~ ^\\/(?:updater|ocs-provider)(?:$|\\/)": nix.thunk(() => ({ __proto__: pos$160, extraConfig: "try_files $uri/ =404;\nindex index.php;\n" })),
+                      "~ ^\\/(?:updater|ocs-provider)(?:$|\\/)": nix.thunk(() => ({ [nix.POS]: pos$160, extraConfig: "try_files $uri/ =404;\nindex index.php;\n" })),
                       "/remote": nix.thunk(() => ({
-                        __proto__: pos$161,
+                        [nix.POS]: pos$161,
                         priority: 1500n,
                         extraConfig: "return 301 /remote.php$request_uri;\n",
                       })),
                       "/": nix.thunk(() => ({
-                        __proto__: pos$162,
+                        [nix.POS]: pos$162,
                         priority: 1600n,
                         extraConfig: "try_files $uri $uri/ /index.php$request_uri;\n",
                       })),
@@ -1394,35 +1394,35 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "webfinge
                 ])),
               })),
               imaginary: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "imaginary", "enable")), nix.thunk(() => ({
-                  __proto__: pos$167,
+                  [nix.POS]: pos$167,
                   enable: true,
-                  settings: nix.thunk(() => ({ __proto__: pos$166, "return-size": true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: pos$166, "return-size": true })),
                 })))),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$173,
+              [nix.POS]: pos$173,
               users: nix.thunk(() => ({
-                __proto__: pos$170,
+                [nix.POS]: pos$170,
                 nextcloud: nix.thunk(() => ({
-                  __proto__: pos$169,
+                  [nix.POS]: pos$169,
                   home: nix.thunk(() => nix.str`${nix.sel(cfg, "home")}`),
                   group: "nextcloud",
                   isSystemUser: true,
                 })),
               })),
               groups: nix.thunk(() => ({
-                __proto__: pos$172,
+                [nix.POS]: pos$172,
                 nextcloud: nix.thunk(() => ({
-                  __proto__: pos$171,
+                  [nix.POS]: pos$171,
                   members: nix.thunk(() => ["nextcloud", nix.thunk(() => nix.sel(config, "services", "nginx", "user"))]),
                 })),
               })),
             })),
-            environment: nix.thunk(() => ({ __proto__: pos$174, systemPackages: nix.thunk(() => [occ]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: pos$174, systemPackages: nix.thunk(() => [occ]) })),
           })),
         ]))))),
     meta: nix.thunk(() => ({
-      __proto__: pos$176,
+      [nix.POS]: pos$176,
       doc: nix.path(here, "./nextcloud.md"),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "nextcloud"))]),
     })),

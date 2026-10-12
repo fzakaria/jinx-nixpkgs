@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const duneVersion = "3";
       const minimalOCamlVersion = "4.03";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inhabitedtype",
           repo: "ocaml-webmachine",
           rev: version,
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [ounit]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/inhabitedtype/ocaml-webmachine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "REST toolkit for OCaml",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         duneVersion,

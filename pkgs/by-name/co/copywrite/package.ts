@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const commitHash = "b3e6599f43beff698f471c6f46888045453fa030";
   const shortCommitHash = nix.thunk(() => nix.builtins.substring(0n, 7n, commitHash));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "copywrite",
       version: "0.25.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hashicorp",
           repo: "copywrite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/hashicorp/copywrite/cmd.version=${nix.sel(finalAttrs, "version")}`),
         nix.thunk(() => nix.str`-X github.com/hashicorp/copywrite/cmd.commit=${shortCommitHash}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       checkFlags: nix.thunk(() => [
         "-skip=Test_FormatCopyrightYears_AutoDetect|Test_FormatCopyrightYearsForNewHeaders_AutoDetect",
       ]),
@@ -47,11 +47,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-copywrite", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq nix-update\n\nset -eu -o pipefail\n\ngh_metadata=\"$(curl -sS https://api.github.com/repos/hashicorp/copywrite/tags)\"\nversion=\"$(echo \"$gh_metadata\" | jq -r '.[] | .name' | sort --version-sort | tail -1)\"\ncommit_hash=\"$(echo \"$gh_metadata\" | jq -r --arg ver \"$version\" '.[] | select(.name == $ver).commit.sha')\"\n\nfilename=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" copywrite).file\" | tr -d '\"')\"\nsed -i \"s/commitHash = \\\"[^\\\"]*\\\"/commitHash = \\\"$commit_hash\\\"/\" $filename\n\nnix-update copywrite\n")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Automate copyright headers and license files at scale",
         mainProgram: "copywrite",
         homepage: "https://github.com/hashicorp/copywrite",

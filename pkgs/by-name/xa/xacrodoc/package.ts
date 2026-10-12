@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const xacro = nix.arg($, "xacro");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xacrodoc",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adamheins",
           repo: "xacrodoc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "hatchling"))]),
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "rospkg")), xacro]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mujoco: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "mujoco"))]),
       })),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]),
       pythonImportsCheck: nix.thunk(() => ["xacrodoc"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Compile xacro files to plain URDF or MJCF from Python or the command line (no ROS required)",
         homepage: "https://github.com/adamheins/xacrodoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

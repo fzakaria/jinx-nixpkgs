@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const cmake = nix.arg($, "cmake");
   const libopenrazer = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libopenrazer",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "z3ntu",
           repo: "libopenrazer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/z3ntu/libopenrazer",
         description: "Qt wrapper around the D-Bus API from OpenRazer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "razergenie",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "z3ntu",
           repo: "RazerGenie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         libopenrazer,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/z3ntu/RazerGenie",
         description: "Qt application for configuring your Razer devices under GNU/Linux",
         mainProgram: "razergenie",

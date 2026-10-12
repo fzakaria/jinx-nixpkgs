@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const expectedArch = nix.argOr($, "expectedArch", () => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
   return nix.app(runCommand, "make-binary-wrapper-test-cross", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, binutils]),
       expectedArch: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), expectedArch)),
     })), "touch prog\nchmod +x prog\nmakeWrapper prog $out\nread -r _ arch < <($READELF --file-header $out | grep Machine:)\nif [[ ${arch,,} != *\"${expectedArch,,}\"* ]]; then\n  echo \"expected $expectedArch, got $arch\"\n  exit 1\nfi\n");

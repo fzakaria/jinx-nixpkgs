@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const clang = nix.arg($, "clang");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tracexec",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kxxt",
           repo: "tracexec",
           rev: "c3f95dcf7714dc731f494683ef7f74e399a22515",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
       preCheck: "export TRACEXEC_DATA=\"$TMPDIR\"\n",
       postInstall: "# Remove test binaries (e.g. `empty-argv`, `corrupted-envp`) and only retain `tracexec`\nfind \"$out/bin\" -type f \\! -name tracexec -print0 | xargs -0 rm -v\n\ninstall -Dm644 LICENSE -t \"$out/share/licenses/tracexec/\"\ninstall -Dm644 THIRD_PARTY_LICENSES.HTML -t \"$out/share/licenses/tracexec/\"\ninstall -Dm644 themes/*.toml -t \"$out/share/tracexec/themes/\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/kxxt/tracexec/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Small utility for tracing execve{,at} and pre-exec behavior",
         homepage: "https://github.com/kxxt/tracexec",

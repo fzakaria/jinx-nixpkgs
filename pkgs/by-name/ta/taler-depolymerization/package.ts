@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "taler-depolymerization",
       version: "0-unstable-2024-06-17",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git-www.taler.net/depolymerization.git",
           rev: "a0d27ac3bba22d4934ca9f7b244b0d9e45bb484f",
           hash: "sha256-HmQ/DPq/O6aODWms/bSsCVgBF7z246xxfYxiHrAkgYw=",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# fix missing expression in test docs\nsubstituteInPlace common/src/status.rs \\\n  --replace-fail '          -> Requested' '()        -> Requested'\n",
       postInstall: "mkdir -p $doc/share/doc $out/share/examples\n\ncp -R docs $doc/share/doc/taler-depolymerization\ncp docs/*.conf $out/share/examples\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Wire gateway for Bitcoin/Ethereum",
         homepage: "https://git-www.taler.net/depolymerization.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

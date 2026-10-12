@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-archive-all",
       version: "1.23.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Kentzo",
           repo: "git-archive-all",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["pycodestyle"]),
       preCheck: "export HOME=\"$(mktemp -d)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Archive a repository with all its submodules",
         longDescription: "A python script wrapper for git-archive that archives a git superproject\nand its submodules, if it has any. Takes into account .gitattributes\n",
         homepage: "https://github.com/Kentzo/git-archive-all",

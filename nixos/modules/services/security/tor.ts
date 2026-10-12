@@ -197,7 +197,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(cfg, "settings", "TransPort")),
       ])))));
   const optionBool = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "bool")));
@@ -206,7 +206,7 @@ export default nix.lambda((args) => (() => {
       description: nix.thunk(() => nix.app(descriptionGeneric, optionName)),
     })));
   const optionInt = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")));
@@ -215,7 +215,7 @@ export default nix.lambda((args) => (() => {
       description: nix.thunk(() => nix.app(descriptionGeneric, optionName)),
     })));
   const optionString = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -224,7 +224,7 @@ export default nix.lambda((args) => (() => {
       description: nix.thunk(() => nix.app(descriptionGeneric, optionName)),
     })));
   const optionStrings = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -233,7 +233,7 @@ export default nix.lambda((args) => (() => {
       description: nix.thunk(() => nix.app(descriptionGeneric, optionName)),
     })));
   const optionAddress = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -243,7 +243,7 @@ export default nix.lambda((args) => (() => {
       description: "IPv4 or IPv6 (if between brackets) address.\n",
     }))));
   const optionUnix = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "path")));
@@ -252,7 +252,7 @@ export default nix.lambda((args) => (() => {
       description: "Unix domain socket path to use.\n",
     }))));
   const optionPort = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -263,7 +263,7 @@ export default nix.lambda((args) => (() => {
       default: null,
     }))));
   const optionPorts = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       type: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "port")));
@@ -280,24 +280,24 @@ export default nix.lambda((args) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config_1 = nix.arg($_1, "config");
             return {
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               options: nix.thunk(() => nix.update({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 addr: optionAddress,
                 port: optionPort,
                 flags: optionFlags,
                 SessionGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     type: nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "int")))),
                     default: null,
                   })))),
               }, nix.app(nix.sel(lib, "genAttrs"), isolateFlags, (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$11,
+                    [nix.POS]: pos$11,
                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                     default: false,
                   })))))),
               config: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 flags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "filter"), (name) => nix.eq(nix.sel(config_1, nix.key(nix.force(name))), true), isolateFlags), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(config_1, "SessionGroup"), null)), nix.thunk(() => nix.str`SessionGroup=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config_1, "SessionGroup")))}`)))),
               })),
             };
@@ -305,7 +305,7 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   const optionIsolablePorts = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       default: [],
       type: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -347,25 +347,25 @@ export default nix.lambda((args) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const config_1 = nix.arg($_1, "config");
             return {
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               options: nix.thunk(() => nix.update({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 unix: optionUnix,
                 addr: optionAddress,
                 port: optionPort,
                 flags: optionFlags,
                 SessionGroup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "int")))),
                     default: null,
                   })))),
               }, nix.app(nix.sel(lib, "genAttrs"), flags, (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                     default: false,
                   })))))),
               config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), doConfig, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   flags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "filter"), (name) => nix.eq(nix.sel(config_1, nix.key(nix.force(name))), true), flags), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(config_1, "SessionGroup"), null)), nix.thunk(() => nix.str`SessionGroup=${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config_1, "SessionGroup")))}`)))),
                 })))),
             };
@@ -373,7 +373,7 @@ export default nix.lambda((args) => (() => {
       ]));
   })();
   const optionFlags = nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       type: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -381,7 +381,7 @@ export default nix.lambda((args) => (() => {
       default: [],
     }))));
   const optionORPort = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       default: [],
       example: 443n,
       type: nix.thunk(() => (() => {
@@ -397,14 +397,14 @@ export default nix.lambda((args) => (() => {
                       const config_1 = nix.arg($_1, "config");
                       const flags = nix.thunk(() => ["IPv4Only", "IPv6Only", "NoAdvertise", "NoListen"]);
                       return {
-                        __proto__: pos$24,
-                        options: nix.thunk(() => nix.update({ __proto__: pos$21, addr: optionAddress, port: optionPort, flags: optionFlags }, nix.app(nix.sel(lib, "genAttrs"), flags, (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$22,
+                        [nix.POS]: pos$24,
+                        options: nix.thunk(() => nix.update({ [nix.POS]: pos$21, addr: optionAddress, port: optionPort, flags: optionFlags }, nix.app(nix.sel(lib, "genAttrs"), flags, (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
+                              [nix.POS]: pos$22,
                               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                               default: false,
                             })))))),
                         config: nix.thunk(() => ({
-                          __proto__: pos$23,
+                          [nix.POS]: pos$23,
                           flags: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (name) => nix.eq(nix.sel(config_1, nix.key(nix.force(name))), true), flags)),
                         })),
                       };
@@ -415,7 +415,7 @@ export default nix.lambda((args) => (() => {
       description: nix.thunk(() => nix.app(descriptionGeneric, optionName)),
     })));
   const optionBandwidth = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       type: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "either"), nix.thunk(() => nix.lookup(w_1, "int")), nix.thunk(() => nix.lookup(w_1, "str")))));
@@ -424,7 +424,7 @@ export default nix.lambda((args) => (() => {
       description: nix.thunk(() => nix.app(descriptionGeneric, optionName)),
     })));
   const optionPath = (optionName) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       type: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
         return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -434,14 +434,14 @@ export default nix.lambda((args) => (() => {
     })));
   const mkValueString = (k) => (v) => (nix.asBool(nix.eq(v, null)) ? "" : (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? (nix.asBool(v) ? "1" : "0") : (nix.asBool((nix.asBool(nix.has(v, "unix")) && nix.asBool(!nix.eq(nix.sel(v, "unix"), null)))) ? nix.add(nix.add("unix:", nix.sel(v, "unix")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(v, "flags")), nix.thunk(() => nix.add(" ", nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(v, "flags"))))))) : (nix.asBool((nix.asBool(nix.has(v, "port")) && nix.asBool(!nix.eq(nix.sel(v, "port"), null)))) ? nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.has(v, "addr")) && nix.asBool(!nix.eq(nix.sel(v, "addr"), null)))), nix.thunk(() => nix.str`${nix.sel(v, "addr")}:`)), nix.builtins.toString(nix.thunk(() => nix.sel(v, "port")))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(v, "flags")), nix.thunk(() => nix.add(" ", nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(v, "flags"))))))) : (nix.asBool(nix.eq(k, "ServerTransportPlugin")) ? nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(v, "transports"), [])), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(v, "transports")))} exec ${nix.sel(v, "exec")}`)) : (nix.asBool(nix.eq(k, "HidServAuth")) ? nix.add(nix.add(nix.sel(v, "onion"), " "), nix.sel(v, "auth")) : nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})), v)))))));
   const genTorrc = (settings) => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       listsAsDuplicateKeys: true,
-      mkKeyValue: (k) => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ __proto__: pos$28, mkValueString: nix.thunk(() => nix.app(mkValueString, k)) })), " ", k),
+      mkKeyValue: (k) => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$28, mkValueString: nix.thunk(() => nix.app(mkValueString, k)) })), " ", k),
     })), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "elem"), k, nix.thunk(() => ["AutomapHostsSuffixes", "DirPolicy", "ExitPolicy", "SocksPolicy"]))) && nix.asBool(!nix.eq(v, [])))) ? nix.app(nix.sel(lib, "concatStringsSep"), ",", v) : nix.force(v)), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (k) => (v) => !nix.asBool((nix.asBool(nix.eq(v, null)) || nix.asBool(nix.eq(v, "")))), settings)))));
   const torrc = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "torrc", nix.thunk(() => nix.add(nix.app(genTorrc, nix.thunk(() => nix.sel(cfg, "settings"))), nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (onion) => nix.add(nix.str`HiddenServiceDir ${nix.sel(onion, "path")}
 `, nix.app(genTorrc, nix.thunk(() => nix.sel(onion, "settings")))), nix.thunk(() => nix.sel(cfg, "relay", "onionServices")))))))));
   return {
-    __proto__: pos$153,
+    [nix.POS]: pos$153,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "tor", "client", "dns", "automapHostsSuffixes"]), nix.thunk(() => ["services", "tor", "settings", "AutomapHostsSuffixes"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "tor", "client", "dns", "isolationOptions"]), "Use services.tor.settings.DNSPort instead.")),
@@ -470,58 +470,58 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "tor", "relay", "portSpec"]), nix.thunk(() => ["services", "tor", "settings", "ORPort"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$120,
+      [nix.POS]: pos$120,
       services: nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         tor: nix.thunk(() => ({
-          __proto__: pos$118,
+          [nix.POS]: pos$118,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Tor daemon.\n        By default, the daemon is run without\n        relay, exit, bridge or client connectivity")),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "opening of the relay port(s) in the firewall")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "tor", nix.thunk(() => ({})))),
           obfs4Package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "obfs4", nix.thunk(() => ({})))),
-          enableGeoIP: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "use of GeoIP databases.\n        Disabling this will disable by-country statistics for bridges and relays\n        and some client and third-party software functionality"), { __proto__: pos$30, default: true })),
+          enableGeoIP: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "use of GeoIP databases.\n        Disabling this will disable by-country statistics for bridges and relays\n        and some client and third-party software functionality"), { [nix.POS]: pos$30, default: true })),
           controlSocket: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), nix.thunk(() => nix.str`control socket,
         created in \`${runDir}/control\``))),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the routing of application connections.\n          You might want to disable this if you plan running a dedicated Tor relay")),
             transparentProxy: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "transparent proxy")),
             })),
             dns: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "DNS resolver")),
             })),
             socksListenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 type: nix.thunk(() => nix.app(optionSOCKSPort, false)),
-                default: nix.thunk(() => ({ __proto__: pos$34, addr: "127.0.0.1", port: 9050n, IsolateDestAddr: true })),
-                example: nix.thunk(() => ({ __proto__: pos$35, addr: "192.168.0.1", port: 9090n, IsolateDestAddr: true })),
+                default: nix.thunk(() => ({ [nix.POS]: pos$34, addr: "127.0.0.1", port: 9050n, IsolateDestAddr: true })),
+                example: nix.thunk(() => ({ [nix.POS]: pos$35, addr: "192.168.0.1", port: 9090n, IsolateDestAddr: true })),
                 description: "Bind to this address to listen for connections from\nSocks-speaking applications.\n",
               })))),
             onionServices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 description: nix.thunk(() => nix.app(descriptionGeneric, "HiddenServiceDir")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     clientAuthorizations: nix.thunk(() => ["/run/keys/tor/alice.prv.x25519"]),
                   })),
                 })),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                       const $_1 = nix.formals(args_1, formals$5);
                       return {
-                        __proto__: pos$41,
+                        [nix.POS]: pos$41,
                         options: nix.thunk(() => ({
-                          __proto__: pos$40,
+                          [nix.POS]: pos$40,
                           clientAuthorizations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$39,
+                              [nix.POS]: pos$39,
                               description: nix.thunk(() => nix.str`Clients' authorizations for a v3 onion service,
 as a list of files containing each one private key, in the format:
 \`\`\`
@@ -542,24 +542,24 @@ ${nix.app(descriptionGeneric, "_client_authorization")}
               })))),
           })),
           relay: nix.thunk(() => ({
-            __proto__: pos$78,
+            [nix.POS]: pos$78,
             enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "tor relaying"), {
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "Whether to enable relaying of Tor traffic for others.\n\nSee <https://www.torproject.org/docs/tor-doc-relay>\nfor details.\n\nSetting this to true requires setting\n{option}`services.tor.relay.role`\nand\n{option}`services.tor.settings.ORPort`\noptions.\n",
             })),
             role: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["exit", "relay", "bridge", "private-bridge"]))),
                 description: "Your role in Tor network. There're several options:\n\n- `exit`:\n  An exit relay. This allows Tor users to access regular\n  Internet services through your public IP.\n\n  You can specify which services Tor users may access via\n  your exit relay using {option}`settings.ExitPolicy` option.\n\n- `relay`:\n  Regular relay. This allows Tor users to relay onion\n  traffic to other Tor nodes, but not to public\n  Internet.\n\n  See\n  <https://www.torproject.org/docs/tor-doc-relay.html.en>\n  for more info.\n\n- `bridge`:\n  Regular bridge. Works like a regular relay, but\n  doesn't list you in the public relay directory and\n  hides your Tor node behind obfs4proxy.\n\n  Using this option will make Tor advertise your bridge\n  to users through various mechanisms like\n  <https://bridges.torproject.org/>, though.\n\n  See <https://www.torproject.org/docs/bridges.html.en>\n  for more info.\n\n- `private-bridge`:\n  Private bridge. Works like regular bridge, but does\n  not advertise your node in any way.\n\n  Using this role means that you won't contribute to Tor\n  network in any way unless you advertise your node\n  yourself in some way.\n\n  Use this if you want to run a private bridge, for\n  example because you'll give out your bridge addr\n  manually to your friends.\n\n  Switching to this role after measurable time in\n  \"bridge\" role is pretty useless as some Tor users\n  would have learned about your node already. In the\n  latter case you can still change\n  {option}`port` option.\n\n  See <https://www.torproject.org/docs/bridges.html.en>\n  for more info.\n\n::: {.important}\nRunning an exit relay may expose you to abuse\ncomplaints. See\n<https://www.torproject.org/faq.html.en#ExitPolicies>\nfor more info.\n:::\n\n::: {.important}\nNote that some misconfigured and/or disrespectful\ntowards privacy sites will block you even if your\nrelay is not an exit relay. That is, just being listed\nin a public relay directory can have unwanted\nconsequences.\n\nWhich means you might not want to use\nthis role if you browse public Internet from the same\nnetwork as your relay, unless you want to write\ne-mails to those sites (you should!).\n:::\n\n::: {.important}\nWARNING: THE FOLLOWING PARAGRAPH IS NOT LEGAL ADVICE.\nConsult with your lawyer when in doubt.\n\nThe `bridge` role should be safe to use in most situations\n(unless the act of forwarding traffic for others is\na punishable offence under your local laws, which\nwould be pretty insane as it would make ISP illegal).\n:::\n",
               })))),
             onionServices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$77,
+                [nix.POS]: pos$77,
                 description: nix.thunk(() => nix.add(nix.app(descriptionGeneric, "HiddenServiceDir"), ":::{.warning}\nBecause `tor.service` runs in its own `RootDirectory=`,\nwhen using a onion service to reverse-proxy to a Unix socket,\nyou need to make that Unix socket available\nwithin the mount namespace of `tor.service`.\n\nWhen you can configure your service to create its socket in `/tmp`,\nthis can be done with:\n```nix\nsystemd.services.${your-service} = {\n  unitConfig.JoinsNamespaceOf = [ \"tor.service\" ];`\n  serviceConfig.PrivateTmp = true;\n};\n```\nOtherwise, you can use:\n```nix\nsystemd.services.tor.serviceConfig.BindPaths = [ \"/path/to/your-service/socket/directory\" ];\n```\nbut you have to be sure that `/path/to/socket/directory`\nexists before `tor.service` is started\nand is not deleted and recreated between restarts of `your-service`,\nor you'll need to restart `tor.service` to refresh the `BindPaths=`.\n:::\n")),
                 default: nix.thunk(() => ({})),
                 example: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   "example.org/www": nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     map: nix.thunk(() => [80n]),
                     authorizedClients: nix.thunk(() => ["descriptor:x25519:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"]),
                   })),
@@ -569,11 +569,11 @@ ${nix.app(descriptionGeneric, "_client_authorization")}
                       const name = nix.arg($_1, "name");
                       const config_1 = nix.arg($_1, "config");
                       return {
-                        __proto__: pos$76,
+                        [nix.POS]: pos$76,
                         options: nix.thunk(() => ({
-                          __proto__: pos$73,
+                          [nix.POS]: pos$73,
                           path: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$48,
+                              [nix.POS]: pos$48,
                               type: nix.thunk(() => nix.sel(lib, "types", "path")),
                               description: nix.thunk(() => nix.str`Path where to store the data files of the hidden service.
 If the {option}\`secretKey\` is null
@@ -582,7 +582,7 @@ otherwise to \`${runDir}/onion/$onion\`.
 `),
                             })))),
                           secretKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$49,
+                              [nix.POS]: pos$49,
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -592,22 +592,22 @@ otherwise to \`${runDir}/onion/$onion\`.
                               description: "Secret key of the onion service.\nIf null, Tor reuses any preexisting secret key (in {option}`path`)\nor generates a new one.\nThe associated public key and hostname are deterministically regenerated\nfrom this file if they do not exist.\n",
                             })))),
                           authorizeClient: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$54,
+                              [nix.POS]: pos$54,
                               description: nix.thunk(() => nix.app(descriptionGeneric, "HiddenServiceAuthorizeClient")),
                               default: null,
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_2) => (() => {
                                     const $_2 = nix.formals(args_2, formals$7);
                                     return {
-                                      __proto__: pos$53,
+                                      [nix.POS]: pos$53,
                                       options: nix.thunk(() => ({
-                                        __proto__: pos$52,
+                                        [nix.POS]: pos$52,
                                         authType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$50,
+                                            [nix.POS]: pos$50,
                                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["basic", "stealth"]))),
                                             description: "Either `\"basic\"` for a general-purpose authorization protocol\nor `\"stealth\"` for a less scalable protocol\nthat also hides service activity from unauthorized clients.\n",
                                           })))),
                                         clientNames: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                            __proto__: pos$51,
+                                            [nix.POS]: pos$51,
                                             type: nix.thunk(() => (() => {
                                               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                               return nix.app(nix.lookup(w_1, "nonEmptyListOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "strMatching"), "[A-Za-z0-9+-_]+")));
@@ -623,7 +623,7 @@ Clients need to put this authorization data in their configuration file using
                                   })(), formals$7))))),
                             })))),
                           authorizedClients: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$55,
+                              [nix.POS]: pos$55,
                               description: nix.thunk(() => nix.str`Authorized clients for a v3 onion service,
 as a list of public key, in the format:
 \`\`\`
@@ -639,7 +639,7 @@ ${nix.app(descriptionGeneric, "_client_authorization")}
                               example: nix.thunk(() => ["descriptor:x25519:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"]),
                             })))),
                           map: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$64,
+                              [nix.POS]: pos$64,
                               description: nix.thunk(() => nix.app(descriptionGeneric, "HiddenServicePort")),
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -648,18 +648,18 @@ ${nix.app(descriptionGeneric, "_client_authorization")}
                                       nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.lambda((args_2) => (() => {
                                           const $_2 = nix.formals(args_2, formals$8);
                                           return {
-                                            __proto__: pos$60,
+                                            [nix.POS]: pos$60,
                                             options: nix.thunk(() => ({
-                                              __proto__: pos$59,
+                                              [nix.POS]: pos$59,
                                               port: optionPort,
                                               target: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                  __proto__: pos$58,
+                                                  [nix.POS]: pos$58,
                                                   default: null,
                                                   type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.lambda((args_3) => (() => {
                                                         const $_3 = nix.formals(args_3, formals$9);
                                                         return {
-                                                          __proto__: pos$57,
-                                                          options: nix.thunk(() => ({ __proto__: pos$56, unix: optionUnix, addr: optionAddress, port: optionPort })),
+                                                          [nix.POS]: pos$57,
+                                                          options: nix.thunk(() => ({ [nix.POS]: pos$56, unix: optionUnix, addr: optionAddress, port: optionPort })),
                                                         };
                                                       })(), formals$9))))),
                                                 })))),
@@ -670,15 +670,15 @@ ${nix.app(descriptionGeneric, "_client_authorization")}
                               })()),
                               example: nix.thunk(() => [
                                 nix.thunk(() => ({
-                                  __proto__: pos$62,
+                                  [nix.POS]: pos$62,
                                   port: 9000n,
-                                  target: nix.thunk(() => ({ __proto__: pos$61, addr: "127.0.0.1", port: 9123n })),
+                                  target: nix.thunk(() => ({ [nix.POS]: pos$61, addr: "127.0.0.1", port: 9123n })),
                                 })),
                               ]),
-                              apply: nix.thunk(() => nix.app(nix.builtins.map, (v) => (nix.asBool(nix.app(nix.sel(lib, "isInt"), v)) ? { __proto__: pos$63, port: v, target: null } : nix.force(v)))),
+                              apply: nix.thunk(() => nix.app(nix.builtins.map, (v) => (nix.asBool(nix.app(nix.sel(lib, "isInt"), v)) ? { [nix.POS]: pos$63, port: v, target: null } : nix.force(v)))),
                             })))),
                           version: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$65,
+                              [nix.POS]: pos$65,
                               description: nix.thunk(() => nix.app(descriptionGeneric, "HiddenServiceVersion")),
                               type: nix.thunk(() => (() => {
                                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -687,13 +687,13 @@ ${nix.app(descriptionGeneric, "_client_authorization")}
                               default: null,
                             })))),
                           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                              __proto__: pos$72,
+                              [nix.POS]: pos$72,
                               description: nix.thunk(() => nix.str`Settings of the onion service.
 ${nix.app(descriptionGeneric, "_hidden_service_options")}
 `),
                               default: nix.thunk(() => ({})),
                               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                  __proto__: pos$71,
+                                  [nix.POS]: pos$71,
                                   freeformType: nix.thunk(() => (() => {
                                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                                     return nix.update(nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -701,14 +701,14 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                                             nix.thunk(() => nix.lookup(w_1, "int")),
                                             nix.thunk(() => nix.lookup(w_1, "bool")),
                                             nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
-                                          ])))))), { __proto__: pos$66, description: "settings option" });
+                                          ])))))), { [nix.POS]: pos$66, description: "settings option" });
                                   })()),
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$70,
+                                    [nix.POS]: pos$70,
                                     HiddenServiceAllowUnknownPorts: nix.thunk(() => nix.app(optionBool, "HiddenServiceAllowUnknownPorts")),
                                     HiddenServiceDirGroupReadable: nix.thunk(() => nix.app(optionBool, "HiddenServiceDirGroupReadable")),
                                     HiddenServiceExportCircuitID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$67,
+                                        [nix.POS]: pos$67,
                                         description: nix.thunk(() => nix.app(descriptionGeneric, "HiddenServiceExportCircuitID")),
                                         type: nix.thunk(() => (() => {
                                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -717,7 +717,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                                         default: null,
                                       })))),
                                     HiddenServiceMaxStreams: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$68,
+                                        [nix.POS]: pos$68,
                                         description: nix.thunk(() => nix.app(descriptionGeneric, "HiddenServiceMaxStreams")),
                                         type: nix.thunk(() => (() => {
                                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -727,7 +727,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                                       })))),
                                     HiddenServiceMaxStreamsCloseCircuit: nix.thunk(() => nix.app(optionBool, "HiddenServiceMaxStreamsCloseCircuit")),
                                     HiddenServiceNumIntroductionPoints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$69,
+                                        [nix.POS]: pos$69,
                                         description: nix.thunk(() => nix.app(descriptionGeneric, "HiddenServiceNumIntroductionPoints")),
                                         type: nix.thunk(() => (() => {
                                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -742,10 +742,10 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                             })))),
                         })),
                         config: nix.thunk(() => ({
-                          __proto__: pos$75,
+                          [nix.POS]: pos$75,
                           path: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.add((nix.asBool(nix.eq(nix.sel(config_1, "secretKey"), null)) ? stateDir : runDir), nix.str`/onion/${name}`)))),
                           settings: nix.thunk(() => ({
-                            __proto__: pos$74,
+                            [nix.POS]: pos$74,
                             HiddenServiceVersion: nix.thunk(() => nix.sel(config_1, "version")),
                             HiddenServiceAuthorizeClient: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config_1, "authorizeClient"), null)) ? nix.add(nix.add(nix.sel(config_1, "authorizeClient", "authType"), " "), nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.sel(config_1, "authorizeClient", "clientNames")))) : null)),
                             HiddenServicePort: nix.thunk(() => nix.builtins.map((p) => nix.add(nix.add(nix.app(mkValueString, "", nix.thunk(() => nix.sel(p, "port"))), " "), nix.app(mkValueString, "", nix.thunk(() => nix.sel(p, "target")))), nix.thunk(() => nix.sel(config_1, "map")))),
@@ -756,11 +756,11 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$117,
+              [nix.POS]: pos$117,
               description: "See [torrc manual](https://2019.www.torproject.org/docs/tor-manual.html.en)\nfor documentation.\n",
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$116,
+                  [nix.POS]: pos$116,
                   freeformType: nix.thunk(() => (() => {
                     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.update(nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -768,10 +768,10 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                             nix.thunk(() => nix.lookup(w_1, "int")),
                             nix.thunk(() => nix.lookup(w_1, "bool")),
                             nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")))),
-                          ])))))), { __proto__: pos$79, description: "settings option" });
+                          ])))))), { [nix.POS]: pos$79, description: "settings option" });
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$115,
+                    [nix.POS]: pos$115,
                     Address: nix.thunk(() => nix.app(optionString, "Address")),
                     AssumeReachable: nix.thunk(() => nix.app(optionBool, "AssumeReachable")),
                     AccountingMax: nix.thunk(() => nix.app(optionBandwidth, "AccountingMax")),
@@ -784,7 +784,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     AuthoritativeDirectory: nix.thunk(() => nix.app(optionBool, "AuthoritativeDirectory")),
                     AutomapHostsOnResolve: nix.thunk(() => nix.app(optionBool, "AutomapHostsOnResolve")),
                     AutomapHostsSuffixes: nix.thunk(() => nix.update(nix.app(optionStrings, "AutomapHostsSuffixes"), {
-                      __proto__: pos$80,
+                      [nix.POS]: pos$80,
                       default: nix.thunk(() => [".onion", ".exit"]),
                       example: nix.thunk(() => [".onion"]),
                     })),
@@ -792,14 +792,14 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     BandwidthRate: nix.thunk(() => nix.app(optionBandwidth, "BandwidthRate")),
                     BridgeAuthoritativeDir: nix.thunk(() => nix.app(optionBool, "BridgeAuthoritativeDir")),
                     BridgeRecordUsageByCountry: nix.thunk(() => nix.app(optionBool, "BridgeRecordUsageByCountry")),
-                    BridgeRelay: nix.thunk(() => nix.update(nix.app(optionBool, "BridgeRelay"), { __proto__: pos$81, default: false })),
+                    BridgeRelay: nix.thunk(() => nix.update(nix.app(optionBool, "BridgeRelay"), { [nix.POS]: pos$81, default: false })),
                     CacheDirectory: nix.thunk(() => nix.app(optionPath, "CacheDirectory")),
                     CacheDirectoryGroupReadable: nix.thunk(() => nix.app(optionBool, "CacheDirectoryGroupReadable")),
                     CellStatistics: nix.thunk(() => nix.app(optionBool, "CellStatistics")),
                     ClientAutoIPv6ORPort: nix.thunk(() => nix.app(optionBool, "ClientAutoIPv6ORPort")),
                     ClientDNSRejectInternalAddresses: nix.thunk(() => nix.app(optionBool, "ClientDNSRejectInternalAddresses")),
                     ClientOnionAuthDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$82,
+                        [nix.POS]: pos$82,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "ClientOnionAuthDir")),
                         default: null,
                         type: nix.thunk(() => (() => {
@@ -816,10 +816,10 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     ConstrainedSockets: nix.thunk(() => nix.app(optionBool, "ConstrainedSockets")),
                     ContactInfo: nix.thunk(() => nix.app(optionString, "ContactInfo")),
                     ControlPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$88,
+                        [nix.POS]: pos$88,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "ControlPort")),
                         default: [],
-                        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$83, port: 9051n }))]),
+                        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$83, port: 9051n }))]),
                         type: nix.thunk(() => (() => {
                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
@@ -833,20 +833,20 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                                         const config_1 = nix.arg($_1, "config");
                                         const flags = nix.thunk(() => ["GroupWritable", "RelaxDirModeCheck", "WorldWritable"]);
                                         return {
-                                          __proto__: pos$87,
+                                          [nix.POS]: pos$87,
                                           options: nix.thunk(() => nix.update({
-                                            __proto__: pos$84,
+                                            [nix.POS]: pos$84,
                                             unix: optionUnix,
                                             flags: optionFlags,
                                             addr: optionAddress,
                                             port: optionPort,
                                           }, nix.app(nix.sel(lib, "genAttrs"), flags, (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                __proto__: pos$85,
+                                                [nix.POS]: pos$85,
                                                 type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "bool")),
                                                 default: false,
                                               })))))),
                                           config: nix.thunk(() => ({
-                                            __proto__: pos$86,
+                                            [nix.POS]: pos$86,
                                             flags: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (name) => nix.eq(nix.sel(config_1, nix.key(nix.force(name))), true), flags)),
                                           })),
                                         };
@@ -862,7 +862,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     CookieAuthFile: nix.thunk(() => nix.app(optionPath, "CookieAuthFile")),
                     CookieAuthFileGroupReadable: nix.thunk(() => nix.app(optionBool, "CookieAuthFileGroupReadable")),
                     CookieAuthentication: nix.thunk(() => nix.app(optionBool, "CookieAuthentication")),
-                    DataDirectory: nix.thunk(() => nix.update(nix.app(optionPath, "DataDirectory"), { __proto__: pos$89, default: stateDir })),
+                    DataDirectory: nix.thunk(() => nix.update(nix.app(optionPath, "DataDirectory"), { [nix.POS]: pos$89, default: stateDir })),
                     DataDirectoryGroupReadable: nix.thunk(() => nix.app(optionBool, "DataDirectoryGroupReadable")),
                     DirPortFrontPage: nix.thunk(() => nix.app(optionPath, "DirPortFrontPage")),
                     DirAllowPrivateAddresses: nix.thunk(() => nix.app(optionBool, "DirAllowPrivateAddresses")),
@@ -871,7 +871,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     DormantTimeoutDisabledByIdleStreams: nix.thunk(() => nix.app(optionBool, "DormantTimeoutDisabledByIdleStreams")),
                     DirCache: nix.thunk(() => nix.app(optionBool, "DirCache")),
                     DirPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$90,
+                        [nix.POS]: pos$90,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "DirPolicy")),
                         type: nix.thunk(() => (() => {
                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -894,7 +894,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     EnforceDistinctSubnets: nix.thunk(() => nix.app(optionBool, "EnforceDistinctSubnets")),
                     EntryStatistics: nix.thunk(() => nix.app(optionBool, "EntryStatistics")),
                     ExitPolicy: nix.thunk(() => nix.update(nix.app(optionStrings, "ExitPolicy"), {
-                      __proto__: pos$91,
+                      [nix.POS]: pos$91,
                       default: nix.thunk(() => ["reject *:*"]),
                       example: nix.thunk(() => ["accept *:*"]),
                     })),
@@ -903,7 +903,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     ExitPortStatistics: nix.thunk(() => nix.app(optionBool, "ExitPortStatistics")),
                     ExitRelay: nix.thunk(() => nix.app(optionBool, "ExitRelay")),
                     ExtORPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$95,
+                        [nix.POS]: pos$95,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "ExtORPort")),
                         default: null,
                         type: nix.thunk(() => (() => {
@@ -914,13 +914,13 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                                 nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.lambda((args_1) => (() => {
                                     const $_1 = nix.formals(args_1, formals$11);
                                     return {
-                                      __proto__: pos$93,
-                                      options: nix.thunk(() => ({ __proto__: pos$92, addr: optionAddress, port: optionPort })),
+                                      [nix.POS]: pos$93,
+                                      options: nix.thunk(() => ({ [nix.POS]: pos$92, addr: optionAddress, port: optionPort })),
                                     };
                                   })(), formals$11))),
                               ]))));
                         })()),
-                        apply: (p) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isInt"), p)) || nix.asBool(nix.app(nix.sel(lib, "isString"), p)))) ? { __proto__: pos$94, port: p } : nix.force(p)),
+                        apply: (p) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isInt"), p)) || nix.asBool(nix.app(nix.sel(lib, "isString"), p)))) ? { [nix.POS]: pos$94, port: p } : nix.force(p)),
                       })))),
                     ExtORPortCookieAuthFile: nix.thunk(() => nix.app(optionPath, "ExtORPortCookieAuthFile")),
                     ExtORPortCookieAuthFileGroupReadable: nix.thunk(() => nix.app(optionBool, "ExtORPortCookieAuthFileGroupReadable")),
@@ -939,24 +939,24 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     GeoIPv6File: nix.thunk(() => nix.app(optionPath, "GeoIPv6File")),
                     GuardfractionFile: nix.thunk(() => nix.app(optionPath, "GuardfractionFile")),
                     HidServAuth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$101,
+                        [nix.POS]: pos$101,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "HidServAuth")),
                         default: [],
                         type: nix.thunk(() => (() => {
                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
                                 nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.thunk(() => ({
-                                    __proto__: pos$99,
+                                    [nix.POS]: pos$99,
                                     options: nix.thunk(() => ({
-                                      __proto__: pos$98,
+                                      [nix.POS]: pos$98,
                                       onion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                          __proto__: pos$96,
+                                          [nix.POS]: pos$96,
                                           type: nix.thunk(() => nix.app(nix.lookup(w_2, "strMatching"), "[a-z2-7]{16}\\.onion")),
                                           description: "Onion address.",
                                           example: "xxxxxxxxxxxxxxxx.onion",
                                         })))),
                                       auth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                          __proto__: pos$97,
+                                          [nix.POS]: pos$97,
                                           type: nix.thunk(() => nix.app(nix.lookup(w_2, "strMatching"), "[A-Za-z0-9+/]{22}")),
                                           description: "Authentication cookie.",
                                         })))),
@@ -966,7 +966,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                         })()),
                         example: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$100,
+                            [nix.POS]: pos$100,
                             onion: "xxxxxxxxxxxxxxxx.onion",
                             auth: "xxxxxxxxxxxxxxxxxxxxxx",
                           })),
@@ -989,7 +989,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     NATDPort: nix.thunk(() => nix.app(optionIsolablePorts, "NATDPort")),
                     NewCircuitPeriod: nix.thunk(() => nix.app(optionInt, "NewCircuitPeriod")),
                     Nickname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$102,
+                        [nix.POS]: pos$102,
                         type: nix.thunk(() => (() => {
                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "strMatching"), "^[a-zA-Z0-9]{1,19}$")));
@@ -1007,7 +1007,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     ProtocolWarnings: nix.thunk(() => nix.app(optionBool, "ProtocolWarnings")),
                     PublishHidServDescriptors: nix.thunk(() => nix.app(optionBool, "PublishHidServDescriptors")),
                     PublishServerDescriptor: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$103,
+                        [nix.POS]: pos$103,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "PublishServerDescriptor")),
                         type: nix.thunk(() => (() => {
                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -1028,7 +1028,7 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                     ServerDNSResolvConfFile: nix.thunk(() => nix.app(optionPath, "ServerDNSResolvConfFile")),
                     ServerDNSSearchDomains: nix.thunk(() => nix.app(optionBool, "ServerDNSSearchDomains")),
                     ServerTransportPlugin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$108,
+                        [nix.POS]: pos$108,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "ServerTransportPlugin")),
                         default: null,
                         type: nix.thunk(() => (() => {
@@ -1036,17 +1036,17 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                           return nix.app(nix.lookup(w_2, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_2, "submodule"), nix.lambda((args_1) => (() => {
                                 const $_1 = nix.formals(args_1, formals$12);
                                 return {
-                                  __proto__: pos$107,
+                                  [nix.POS]: pos$107,
                                   options: nix.thunk(() => ({
-                                    __proto__: pos$106,
+                                    [nix.POS]: pos$106,
                                     transports: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$104,
+                                        [nix.POS]: pos$104,
                                         description: "List of pluggable transports.",
                                         type: nix.thunk(() => nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.lookup(w_2, "str")))),
                                         example: nix.thunk(() => ["obfs2", "obfs3", "obfs4", "scramblesuit"]),
                                       })))),
                                     exec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                        __proto__: pos$105,
+                                        [nix.POS]: pos$105,
                                         type: nix.thunk(() => nix.sel(nix.lookup(w_2, "types"), "str")),
                                         description: "Command of pluggable transport.",
                                       })))),
@@ -1056,27 +1056,27 @@ ${nix.app(descriptionGeneric, "_hidden_service_options")}
                         })()),
                       })))),
                     ShutdownWaitLength: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$109,
+                        [nix.POS]: pos$109,
                         type: nix.thunk(() => nix.sel(lib, "types", "int")),
                         default: 30n,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "ShutdownWaitLength")),
                       })))),
-                    SocksPolicy: nix.thunk(() => nix.update(nix.app(optionStrings, "SocksPolicy"), { __proto__: pos$110, example: nix.thunk(() => ["accept *:*"]) })),
+                    SocksPolicy: nix.thunk(() => nix.update(nix.app(optionStrings, "SocksPolicy"), { [nix.POS]: pos$110, example: nix.thunk(() => ["accept *:*"]) })),
                     SOCKSPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$113,
+                        [nix.POS]: pos$113,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "SOCKSPort")),
-                        default: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "settings", "HiddenServiceNonAnonymousMode")), nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$111, port: 0n }))]))),
+                        default: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "settings", "HiddenServiceNonAnonymousMode")), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$111, port: 0n }))]))),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "settings")}.HiddenServiceNonAnonymousMode == true
 then [ { port = 0; } ]
 else [ ]
 `))),
-                        example: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$112, port: 9090n }))]),
+                        example: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$112, port: 9090n }))]),
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(optionSOCKSPort, true)))),
                       })))),
                     TestingTorNetwork: nix.thunk(() => nix.app(optionBool, "TestingTorNetwork")),
                     TransPort: nix.thunk(() => nix.app(optionIsolablePorts, "TransPort")),
                     TransProxyType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$114,
+                        [nix.POS]: pos$114,
                         description: nix.thunk(() => nix.app(descriptionGeneric, "TransProxyType")),
                         type: nix.thunk(() => (() => {
                           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -1100,7 +1100,7 @@ else [ ]
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$151,
+        [nix.POS]: pos$151,
         warnings: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "BridgeRelay")) && nix.asBool(!nix.eq(nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (o) => nix.sel(o, "map"), nix.thunk(() => nix.sel(cfg, "relay", "onionServices"))))), [])))), "Running Tor hidden services on a public relay makes the\npresence of hidden services visible through simple statistical\nanalysis of publicly available data.\nSee https://trac.torproject.org/projects/tor/ticket/8742\n\nYou can safely ignore this warning if you don't intend to\nactually hide your hidden services. In either case, you can\nalways create a container/VM with a separate Tor daemon instance.\n"), nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (o) => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(o, "settings", "HiddenServiceVersion"), 2n)), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(o, "settings", "HiddenServiceExportCircuitID"), null)), nix.thunk(() => nix.str`HiddenServiceExportCircuitID is used in the HiddenService: ${n}
 but this option is only for v3 hidden services.
@@ -1114,18 +1114,18 @@ but this option is only for v2 hidden services.
 `))),
               ]))), nix.thunk(() => nix.sel(cfg, "relay", "onionServices"))))))),
         users: nix.thunk(() => ({
-          __proto__: pos$125,
+          [nix.POS]: pos$125,
           groups: nix.thunk(() => ({
-            __proto__: pos$122,
+            [nix.POS]: pos$122,
             tor: nix.thunk(() => ({
-              __proto__: pos$121,
+              [nix.POS]: pos$121,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "tor")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$124,
+            [nix.POS]: pos$124,
             tor: nix.thunk(() => ({
-              __proto__: pos$123,
+              [nix.POS]: pos$123,
               description: "Tor Daemon User",
               createHome: true,
               home: stateDir,
@@ -1135,20 +1135,20 @@ but this option is only for v2 hidden services.
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$143,
+          [nix.POS]: pos$143,
           tor: nix.thunk(() => ({
-            __proto__: pos$142,
+            [nix.POS]: pos$142,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableGeoIP")), nix.thunk(() => ({
-                    __proto__: pos$126,
+                    [nix.POS]: pos$126,
                     GeoIPFile: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "geoip")}/share/tor/geoip`),
                     GeoIPv6File: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "geoip")}/share/tor/geoip6`),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "controlSocket", "enable")), nix.thunk(() => ({
-                    __proto__: pos$128,
+                    [nix.POS]: pos$128,
                     ControlPort: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$127,
+                        [nix.POS]: pos$127,
                         unix: nix.thunk(() => nix.add(runDir, "/control")),
                         GroupWritable: true,
                         RelaxDirModeCheck: true,
@@ -1156,56 +1156,56 @@ but this option is only for v2 hidden services.
                     ]),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "relay", "enable")), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "relay", "role"), "exit")), nix.thunk(() => ({
-                      __proto__: pos$129,
+                      [nix.POS]: pos$129,
                       ExitPolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["reject *:*"]))),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(cfg, "relay", "role")), nix.thunk(() => ["bridge", "private-bridge"]))), nix.thunk(() => ({
-                      __proto__: pos$132,
+                      [nix.POS]: pos$132,
                       BridgeRelay: true,
                       ExtORPort: nix.thunk(() => ({
-                        __proto__: pos$130,
+                        [nix.POS]: pos$130,
                         port: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "auto")),
                       })),
                       ServerTransportPlugin: nix.thunk(() => ({
-                        __proto__: pos$131,
+                        [nix.POS]: pos$131,
                         transports: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["obfs4"]))),
                         exec: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "obfs4Package")))} managed`))),
                       })),
                     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(cfg, "relay", "role"), "private-bridge")), nix.thunk(() => ({
-                      __proto__: pos$133,
+                      [nix.POS]: pos$133,
                       ExtraInfoStatistics: false,
                       PublishServerDescriptor: false,
                     })))))))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "relay", "enable"))), nix.thunk(() => ({
-                    __proto__: pos$134,
+                    [nix.POS]: pos$134,
                     DirPort: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     ORPort: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     PublishServerDescriptor: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "client", "enable"))), nix.thunk(() => ({
-                    __proto__: pos$135,
+                    [nix.POS]: pos$135,
                     SOCKSPort: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [0n]))),
                   })))),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => nix.update({
-                    __proto__: pos$136,
+                    [nix.POS]: pos$136,
                     SOCKSPort: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "client", "socksListenAddress"))]),
                   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "client", "transparentProxy", "enable")), nix.thunk(() => ({
-                      __proto__: pos$138,
-                      TransPort: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$137, addr: "127.0.0.1", port: 9040n }))]),
+                      [nix.POS]: pos$138,
+                      TransPort: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$137, addr: "127.0.0.1", port: 9040n }))]),
                     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "client", "dns", "enable")), nix.thunk(() => ({
-                      __proto__: pos$140,
-                      DNSPort: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$139, addr: "127.0.0.1", port: 9053n }))]),
+                      [nix.POS]: pos$140,
+                      DNSPort: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$139, addr: "127.0.0.1", port: 9053n }))]),
                       AutomapHostsOnResolve: true,
                     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (o) => nix.sel(o, "clientAuthorizations"), nix.thunk(() => nix.sel(cfg, "client", "onionServices"))))), [])), nix.thunk(() => ({
-                      __proto__: pos$141,
+                      [nix.POS]: pos$141,
                       ClientOnionAuthDir: nix.thunk(() => nix.add(runDir, "/ClientOnionAuthDir")),
                     }))))))))),
               ]))),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$145,
+          [nix.POS]: pos$145,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$144,
+              [nix.POS]: pos$144,
               allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (o) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isInt"), o)) && nix.asBool(nix.gt(o, 0n)))) ? [o] : nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(nix.has(o, "port")) && nix.asBool(nix.app(nix.sel(lib, "isInt"), nix.thunk(() => nix.sel(o, "port")))))) && nix.asBool(nix.gt(nix.sel(o, "port"), 0n)))), nix.thunk(() => [nix.thunk(() => nix.sel(o, "port"))]))), nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => [
                     nix.thunk(() => nix.sel(cfg, "settings", "ORPort")),
                     nix.thunk(() => nix.sel(cfg, "settings", "DirPort")),
@@ -1213,11 +1213,11 @@ but this option is only for v2 hidden services.
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$149,
+          [nix.POS]: pos$149,
           services: nix.thunk(() => ({
-            __proto__: pos$148,
+            [nix.POS]: pos$148,
             tor: nix.thunk(() => ({
-              __proto__: pos$147,
+              [nix.POS]: pos$147,
               description: "Tor Daemon",
               documentation: nix.thunk(() => ["man:tor(8)"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
@@ -1225,7 +1225,7 @@ but this option is only for v2 hidden services.
               after: nix.thunk(() => ["network.target"]),
               restartTriggers: nix.thunk(() => [torrc]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$146,
+                [nix.POS]: pos$146,
                 Type: "simple",
                 User: "tor",
                 Group: "tor",
@@ -1306,12 +1306,12 @@ install -o tor -g tor -m 0700 /dev/stdin \\
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$150,
+          [nix.POS]: pos$150,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$152,
+      [nix.POS]: pos$152,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w_1, "julm"))];

@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         const description_1 = description;
         const exec = nix.thunk(() => nix.app(sweetExec, module_1));
         const editorItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             exec: exec,
             desktopName: desktopName,
             name: pname_1,
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => [makeWrapper, stripJavaArchivesHook]);
         const buildInputs = nix.thunk(() => [ant, jdk, gtk3, gsettings_desktop_schemas]);
         const env = nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           ANT_ARGS: "-DappletClassSource=8 -DappletClassTarget=8 -DclassSource=8 -DclassTarget=8",
         }));
         const postPatch = nix.thunk(() => nix.str`sed -i -e 's,../SweetHome3D,${nix.sel(sweethome3dApp, "src")},g' build.xml
@@ -80,7 +80,7 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
 `);
         const dontStrip = true;
         const meta = nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           homepage: "http://www.sweethome3d.com/index.jsp",
           description: description_1,
           license: license,
@@ -89,7 +89,7 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
           mainProgram: exec,
         }));
         return {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           application,
           pname: pname_1,
           module: module_1,
@@ -111,7 +111,7 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
   })(), formals$2);
   const d2u = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"])));
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     "textures-editor": nix.thunk(() => nix.app(mkEditorProject, nix.thunk(() => (() => {
         const version = "1.7";
         const module = "TexturesLibraryEditor";
@@ -119,13 +119,13 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
         const description = "Easily create SH3T files and edit the properties of the texture images it contain";
         const license = nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus"));
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             url: nix.thunk(() => nix.str`mirror://sourceforge/sweethome3d/${module}-${version}-src.zip`),
             hash: "sha256-v8hMEUujTgWvFnBTF8Dnd1iWgoIXBzGMUxBgmjdxx+g=",
           }))));
         const desktopName = "Sweet Home 3D - Textures Library Editor";
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           version,
           module,
           pname,
@@ -142,13 +142,13 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
         const description = "Quickly create SH3F files and edit the properties of the 3D models it contain";
         const license = nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus"));
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             url: nix.thunk(() => nix.str`mirror://sourceforge/sweethome3d/${module}-${version}-src.zip`),
             hash: "sha256-pqsSxQPzsyx4PS98fgU6UFhPWhpQoepGm0uJtkvV46c=",
           }))));
         const desktopName = "Sweet Home 3D - Furniture Library Editor";
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version,
           module,
           pname,

@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
   const configurationDirectory = nix.thunk(() => nix.str`/etc/${configurationDirectoryName}`);
   const stateDirectory = nix.thunk(() => nix.str`/var/lib/${configurationPrefix}containers`);
   const nixos_container = nix.thunk(() => nix.app(nix.sel(pkgs, "nixos-container", "override"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       stateDirectory: stateDirectory,
       configurationDirectory: configurationDirectory,
     }))));
@@ -361,7 +361,7 @@ ${nix.app(nix.lookup(w, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.l
 `;
   })();
   const serviceDirectives = (cfg) => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     ExecReload: nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "reload-container", nix.thunk(() => nix.str`#! ${nix.sel(pkgs, "runtimeShell")} -e
 ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
   bash --login -c "\${SYSTEM_PATH:-/nix/var/nix/profiles/system}/bin/switch-to-configuration test"
@@ -386,31 +386,31 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         mountPoint: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             example: "/mnt/usb",
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Mount point on the container file system.",
           })))),
         hostPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             default: null,
             example: "/home/alice",
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             description: "Location of the host path to be mounted.",
           })))),
         isReadOnly: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             default: true,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             description: "Determine whether the mounted path will be accessed in read-only mode.",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         mountPoint: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), name)),
       })),
     };
@@ -418,17 +418,17 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
   const allowedDeviceOpts = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     return {
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       options: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         node: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             example: "/dev/net/tun",
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Path to device node",
           })))),
         modifier: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             example: "rw",
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             description: "Device node access modifier. Takes a combination\n`r` (read), `w` (write), and\n`m` (mknod). See the\n{manpage}`systemd.resource-control(5)` man page for more\ninformation.",
@@ -443,33 +443,33 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
   })();
   const mkBindFlags = (bs) => nix.app(nix.lookup(w, "concatMapStrings"), mkBindFlag, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), bs)));
   const networkOptions = nix.thunk(() => ({
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     hostBridge: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
         default: null,
         example: "br0",
         description: "Put the host-side of the veth-pair into the named bridge.\nOnly one of hostAddress* or hostBridge can be given.\n",
       })))),
     forwardPorts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               options: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 protocol: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                     default: "tcp",
                     description: "The protocol specifier for port forwarding between host and container",
                   })))),
                 hostPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                     description: "Source port of the external interface on host",
                   })))),
                 containerPort: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")))),
                     default: null,
                     description: "Target port of container",
@@ -478,40 +478,40 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
             })))))),
         default: [],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ __proto__: pos$19, protocol: "tcp", hostPort: 8080n, containerPort: 80n })),
+          nix.thunk(() => ({ [nix.POS]: pos$19, protocol: "tcp", hostPort: 8080n, containerPort: 80n })),
         ]),
         description: "List of forwarded ports from host to container. Each forwarded port\nis specified by protocol, hostPort and containerPort. By default,\nprotocol is tcp and hostPort and containerPort are assumed to be\nthe same if containerPort is not explicitly given.\n",
       })))),
     hostAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
         default: null,
         example: "10.231.136.1",
         description: "The IPv4 address assigned to the host interface.\n(Not used when hostBridge is set.)\n",
       })))),
     hostAddress6: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
         default: null,
         example: "fc00::1",
         description: "The IPv6 address assigned to the host interface.\n(Not used when hostBridge is set.)\n",
       })))),
     localAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
         default: null,
         example: "10.231.136.2",
         description: "The IPv4 address assigned to the interface in the container.\nIf a hostBridge is used, this should be given with netmask to access\nthe whole network. Otherwise the default netmask is /32 and routing is\nset up from localAddress to hostAddress and back.\n",
       })))),
     localAddress6: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
         default: null,
         example: "fc00::2",
         description: "The IPv6 address assigned to the interface in the container.\nIf a hostBridge is used, this should be given with netmask to access\nthe whole network. Otherwise the default netmask is /128 and routing is\nset up from localAddress6 to hostAddress6 and back.\n",
       })))),
     localMacAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(lib, "types", "strMatching"), "([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}")))),
         default: null,
         example: "de:b7:73:01:10:90",
@@ -519,7 +519,7 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
       })))),
   }));
   const dummyConfig = nix.thunk(() => ({
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     extraVeths: nix.thunk(() => ({})),
     additionalCapabilities: [],
     ephemeral: false,
@@ -537,32 +537,32 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
     const prefix = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), segments, 1n));
     const hasPrefix = nix.thunk(() => nix.eq(nix.app(nix.sel(nix.builtins, "length"), segments), 2n));
     return {
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       address: nix.thunk(() => nix.app(nix.sel(lib, "head"), segments)),
       prefixLength: nix.thunk(() => (nix.asBool(hasPrefix) ? nix.app(nix.sel(nix.builtins, "fromJSON"), prefix) : nix.force(defaultPrefix))),
     };
   })();
   return {
-    __proto__: pos$105,
+    [nix.POS]: pos$105,
     options: nix.thunk(() => ({
-      __proto__: pos$77,
+      [nix.POS]: pos$77,
       boot: nix.thunk(() => ({
-        __proto__: pos$32,
+        [nix.POS]: pos$32,
         isContainer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: nix.thunk(() => nix.sel(config, "boot", "isNspawnContainer")),
             defaultText: "config.boot.isNspawnContainer",
             description: "Whether this NixOS machine is a lightweight container running\nin another NixOS system.\n",
           })))),
         isNspawnContainer: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: false,
             description: "Whether the machine is running in an nspawn container. This\noption is added because [](#opt-boot.isContainer) is heavily used\nfor non-nspawn environments as well, hence nspawn-specific settings\nare guarded by this option.\n",
           })))),
         enableContainers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: nix.thunk(() => !nix.eq(nix.sel(config, "containers"), {})),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.containers != { }")),
@@ -570,54 +570,54 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
           })))),
       })),
       containers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$76,
+          [nix.POS]: pos$76,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$4);
                 const config_1 = nix.arg($_1, "config");
                 const options_1 = nix.arg($_1, "options");
                 const name = nix.arg($_1, "name");
                 return {
-                  __proto__: pos$75,
+                  [nix.POS]: pos$75,
                   options: nix.thunk(() => nix.update({
-                    __proto__: pos$73,
+                    [nix.POS]: pos$73,
                     config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         description: "A specification of the desired configuration of this\ncontainer, as a NixOS module.\n",
                         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-                            __proto__: pos$48,
+                            [nix.POS]: pos$48,
                             name: "Toplevel NixOS config",
                             merge: (loc) => (defs) => nix.sel(nix.app(nix.builtins.import, nix.thunk(() => nix.str`${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(config_1, "nixpkgs")))}/nixos/lib/eval-config.nix`), nix.thunk(() => ({
-                                __proto__: pos$47,
+                                [nix.POS]: pos$47,
                                 modules: nix.thunk(() => (() => {
                                   const extraConfig = nix.lambda((args_2) => (() => {
                                     const $_2 = nix.formals(args_2, formals$5);
                                     const options_2 = nix.arg($_2, "options");
                                     return {
-                                      __proto__: pos$46,
+                                      [nix.POS]: pos$46,
                                       config: nix.thunk(() => ({
-                                        __proto__: pos$45,
+                                        [nix.POS]: pos$45,
                                         nixpkgs: nix.thunk(() => (nix.asBool(nix.has(nix.sel(options_2, "nixpkgs"), "hostPlatform")) ? (() => {
                                           const from = nix.thunk(() => nix.sel(host, "pkgs", "stdenv"));
                                           return {
-                                          __proto__: pos$33,
+                                          [nix.POS]: pos$33,
                                           hostPlatform: nix.thunk(() => nix.attr(from, "hostPlatform")),
                                         };
                                         })() : {
-                                          __proto__: pos$34,
+                                          [nix.POS]: pos$34,
                                           localSystem: nix.thunk(() => nix.sel(host, "pkgs", "stdenv", "hostPlatform")),
                                         })),
-                                        boot: nix.thunk(() => ({ __proto__: pos$35, isNspawnContainer: true })),
+                                        boot: nix.thunk(() => ({ [nix.POS]: pos$35, isNspawnContainer: true })),
                                         networking: nix.thunk(() => ({
-                                          __proto__: pos$42,
+                                          [nix.POS]: pos$42,
                                           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), name)),
                                           useDHCP: false,
                                           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config_1, "privateNetwork")), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                                                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "localAddress"), null)), nix.thunk(() => ({
-                                                    __proto__: pos$38,
+                                                    [nix.POS]: pos$38,
                                                     eth0: nix.thunk(() => ({
-                                                      __proto__: pos$37,
+                                                      [nix.POS]: pos$37,
                                                       ipv4: nix.thunk(() => ({
-                                                        __proto__: pos$36,
+                                                        [nix.POS]: pos$36,
                                                         addresses: nix.thunk(() => [
                                                           nix.thunk(() => nix.app(ipFromString, nix.thunk(() => nix.sel(config_1, "localAddress")), 32n)),
                                                         ]),
@@ -625,11 +625,11 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
                                                     })),
                                                   })))),
                                                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "localAddress6"), null)), nix.thunk(() => ({
-                                                    __proto__: pos$41,
+                                                    [nix.POS]: pos$41,
                                                     eth0: nix.thunk(() => ({
-                                                      __proto__: pos$40,
+                                                      [nix.POS]: pos$40,
                                                       ipv6: nix.thunk(() => ({
-                                                        __proto__: pos$39,
+                                                        [nix.POS]: pos$39,
                                                         addresses: nix.thunk(() => [
                                                           nix.thunk(() => nix.app(ipFromString, nix.thunk(() => nix.sel(config_1, "localAddress6")), 128n)),
                                                         ]),
@@ -640,7 +640,7 @@ ${nixos_container}/bin/nixos-container run "$INSTANCE" -- \\
                                         })),
                                         assertions: nix.thunk(() => [
                                           nix.thunk(() => ({
-                                            __proto__: pos$43,
+                                            [nix.POS]: pos$43,
                                             assertion: nix.thunk(() => (!nix.asBool(nix.le(nix.app(nix.sel(nix.builtins, "compareVersions"), kernelVersion, "5.8"), 0n)) || nix.asBool((!nix.asBool(nix.sel(config_1, "privateNetwork")) || nix.asBool(nix.le(nix.app(nix.lookup(w, "stringLength"), name), 11n)))))),
                                             message: nix.thunk(() => nix.str`Container name \`${name}\` is too long: When \`privateNetwork\` is enabled, container names can
 not be longer than 11 characters, because the container's interface name is derived from it.
@@ -650,7 +650,7 @@ for details).
 `),
                                           })),
                                           nix.thunk(() => ({
-                                            __proto__: pos$44,
+                                            [nix.POS]: pos$44,
                                             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "strings", "hasInfix"), "_", name))),
                                             message: nix.thunk(() => nix.str`Names containing underscores are not allowed in nixos-containers. Please rename the container '${name}'
 `),
@@ -668,104 +668,104 @@ for details).
                           })))),
                       })))),
                     path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                         example: "/nix/var/nix/profiles/per-container/webserver",
                         description: "As an alternative to specifying\n{option}`config`, you can specify the path to\nthe evaluated NixOS system configuration, typically a\nsymlink to a system profile.\n",
                       })))),
                     additionalCapabilities: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$51,
+                        [nix.POS]: pos$51,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: [],
                         example: nix.thunk(() => ["CAP_NET_ADMIN", "CAP_MKNOD"]),
                         description: "Grant additional capabilities to the container.  See the\n{manpage}`capabilities(7)` and {manpage}`systemd-nspawn(1)` man pages for more\ninformation.\n",
                       })))),
                     nixpkgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$52,
+                        [nix.POS]: pos$52,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                         default: nix.thunk(() => nix.sel(pkgs, "path")),
                         defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "pkgs.path")),
                         description: "A path to the nixpkgs that provide the modules, pkgs and lib for evaluating the container.\n\nTo only change the `pkgs` argument used inside the container modules,\nset the `nixpkgs.*` options in the container {option}`config`.\nSetting `config.nixpkgs.pkgs = pkgs` speeds up the container evaluation\nby reusing the system pkgs, but the `nixpkgs.config` option in the\ncontainer config is ignored in this case.\n",
                       })))),
                     specialArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$53,
+                        [nix.POS]: pos$53,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "attrsOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "unspecified")))),
                         default: nix.thunk(() => ({})),
                         description: "A set of special arguments to be passed to NixOS modules.\nThis will be merged into the `specialArgs` used to evaluate\nthe NixOS configurations.\n",
                       })))),
                     ephemeral: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$54,
+                        [nix.POS]: pos$54,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Runs container in ephemeral mode with the empty root filesystem at boot.\nThis way container will be bootstrapped from scratch on each boot\nand will be cleaned up on shutdown leaving no traces behind.\nUseful for completely stateless, reproducible containers.\n\nNote that this option might require to do some adjustments to the container configuration,\ne.g. you might want to set\n{var}`systemd.network.networks.$interface.dhcpV4Config.ClientIdentifier` to \"mac\"\nif you use {var}`macvlans` option.\nThis way dhcp client identifier will be stable between the container restarts.\n\nNote that the container journal will not be linked to the host if this option is enabled.\n",
                       })))),
                     enableTun: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$55,
+                        [nix.POS]: pos$55,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Allows the container to create and setup tunnel interfaces\nby granting the `NET_ADMIN` capability and\nenabling access to `/dev/net/tun`.\n",
                       })))),
                     privateNetwork: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Whether to give the container its own private virtual\nEthernet interface.  The interface is called\n`eth0`, and is hooked up to the interface\n`ve-«container-name»`\non the host.  If this option is not set, then the\ncontainer shares the network interfaces of the host,\nand can bind to any port on any interface.\n",
                       })))),
                     networkNamespace: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$57,
+                        [nix.POS]: pos$57,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                         default: null,
                         description: "Takes the path to a file representing a kernel network namespace that the container\nshall run in. The specified path should refer to a (possibly bind-mounted) network\nnamespace file, as exposed by the kernel below /proc/<PID>/ns/net. This makes the\ncontainer enter the given network namespace. One of the typical use cases is to give\na network namespace under /run/netns created by {manpage}`ip-netns(8)`.\nNote that this option cannot be used together with other network-related options,\nsuch as --private-network or --network-interface=.\n",
                       })))),
                     privateUsers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$58,
+                        [nix.POS]: pos$58,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "ints", "u32")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["no", "identity", "pick"]))))),
                         default: "no",
                         description: "Whether to give the container its own private UIDs/GIDs space (user namespacing).\nDisabled by default (`no`).\n\nIf set to a number (usually above host's UID/GID range: 65536),\nuser namespacing is enabled and the container UID/GIDs will start at that number.\n\nIf set to `identity`, mostly equivalent to `0`, this will only provide\nprocess capability isolation (no UID/GID isolation, as they are the same as host).\n\nIf set to `pick`, user namespacing is enabled and the UID/GID range is automatically chosen,\nso that no overlapping UID/GID ranges are assigned to multiple containers.\nThis is the recommanded option as it enhances container security massively and operates fully automatically in most cases.\n\nSee <https://www.freedesktop.org/software/systemd/man/latest/systemd-nspawn.html#--private-users=> for details.\n",
                       })))),
                     interfaces: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$59,
+                        [nix.POS]: pos$59,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: [],
                         example: nix.thunk(() => ["eth1", "eth2"]),
                         description: "The list of interfaces to be moved into the container.\n",
                       })))),
                     macvlans: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: [],
                         example: nix.thunk(() => ["eth1", "eth2"]),
                         description: "The list of host interfaces from which macvlans will be\ncreated. For each interface specified, a macvlan interface\nwill be created and moved to the container.\n",
                       })))),
                     extraVeths: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$62,
+                        [nix.POS]: pos$62,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
-                          return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({ __proto__: pos$61, options: networkOptions })))));
+                          return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$61, options: networkOptions })))));
                         })()),
                         default: nix.thunk(() => ({})),
                         description: "Extra veth-pairs to be created for the container.\n",
                       })))),
                     autoStart: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$63,
+                        [nix.POS]: pos$63,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: false,
                         description: "Whether the container is automatically started at boot-time.\n",
                       })))),
                     restartIfChanged: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$64,
+                        [nix.POS]: pos$64,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                         default: true,
                         description: "Whether the container should be restarted during a NixOS\nconfiguration switch if its definition has changed.\n",
                       })))),
                     timeoutStartSec: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$65,
+                        [nix.POS]: pos$65,
                         type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                         default: "1min",
                         description: "Time for the container to start. In case of a timeout,\nthe container processes get killed.\nSee {manpage}`systemd.time(7)`\nfor more information about the format.\n",
                       })))),
                     bindMounts: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$66,
+                        [nix.POS]: pos$66,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                           return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), bindMountOpts)));
@@ -775,39 +775,39 @@ for details).
                         description: "An extra list of directories that is bound to the container.\n",
                       })))),
                     allowedDevices: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$68,
+                        [nix.POS]: pos$68,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), allowedDeviceOpts)));
                         })()),
                         default: [],
                         example: nix.thunk(() => [
-                          nix.thunk(() => ({ __proto__: pos$67, node: "/dev/net/tun", modifier: "rwm" })),
+                          nix.thunk(() => ({ [nix.POS]: pos$67, node: "/dev/net/tun", modifier: "rwm" })),
                         ]),
                         description: "A list of device nodes to which the containers has access to.\n",
                       })))),
                     tmpfs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$69,
+                        [nix.POS]: pos$69,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: [],
                         example: nix.thunk(() => ["/var"]),
                         description: "Mounts a set of tmpfs file systems into the container.\nMultiple paths can be specified.\nValid items must conform to the --tmpfs argument\nof systemd-nspawn. See {manpage}`systemd-nspawn(1)` for details.\n",
                       })))),
                     extraFlags: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$70,
+                        [nix.POS]: pos$70,
                         type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                         default: [],
                         example: nix.thunk(() => ["--drop-capability=CAP_SYS_CHROOT"]),
                         description: "Extra flags passed to the systemd-nspawn command.\nSee {manpage}`systemd-nspawn(1)` for details.\n",
                       })))),
                     flake: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$71,
+                        [nix.POS]: pos$71,
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                         default: null,
                         example: "github:NixOS/nixpkgs/master",
                         description: "The Flake URI of the NixOS configuration to use for the container.\nReplaces the option {option}`containers.<name>.path`.\n",
                       })))),
-                    pkgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({ __proto__: pos$72, visible: false })))),
+                    pkgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$72, visible: false })))),
                   }, networkOptions)),
                   config: nix.thunk(() => (() => {
                     const optionPath = nix.thunk(() => nix.str`containers.${name}.pkgs`);
@@ -824,7 +824,7 @@ Alternatively, you can use the following options:
 `)) : (nix.asBool((nix.asBool(nix.sel(options_1, "config", "isDefined")) && nix.asBool(!nix.eq(nix.sel(options_1, "flake", "value"), null)))) ? nix.app(nix.builtins.throw, nix.thunk(() => nix.str`The options 'containers.${name}.path' and 'containers.${name}.flake' cannot both be set.
 `)) : null)));
                     return {
-                      __proto__: pos$74,
+                      [nix.POS]: pos$74,
                       path: nix.thunk(() => nix.app(nix.sel(nix.builtins, "seq"), checkAssertion, nix.thunk(() => nix.lookup(w, "mkMerge")), nix.thunk(() => [
                           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(options_1, "config", "isDefined")), nix.thunk(() => nix.sel(config_1, "config", "system", "build", "toplevel")))),
                           nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "flake"), null)), nix.thunk(() => nix.str`/nix/var/nix/profiles/per-container/${name}`))),
@@ -853,7 +853,7 @@ Alternatively, you can use the following options:
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$80,
+          [nix.POS]: pos$80,
           warnings: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(config, "boot", "enableContainers"))) && nix.asBool(!nix.eq(nix.sel(config, "containers"), {})))), "containers.<name> is used, but boot.enableContainers is false. To use containers.<name>, set boot.enableContainers to true.")),
           assertions: nix.thunk(() => (() => {
             const from = nix.thunk(() => (() => {
@@ -864,7 +864,7 @@ Alternatively, you can use the following options:
               const hostNixSocketEnabled_1 = nix.thunk(() => nix.eq(disabledOpts, []));
               const hostNixSocketIsDisabled_1 = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "length"), disabledOpts), 1n)) ? nix.str`host option ${nix.app(nix.sel(lib, "head"), disabledOpts)} is disabled` : nix.str`host options ${nix.app(nix.sel(lib, "concatStringsSep"), " and ", disabledOpts)} are disabled`));
               return {
-                __proto__: pos$78,
+                [nix.POS]: pos$78,
                 disabledOpts,
                 hostNixSocketEnabled: hostNixSocketEnabled_1,
                 hostNixSocketIsDisabled: hostNixSocketIsDisabled_1,
@@ -878,15 +878,15 @@ Alternatively, you can use the following options:
               const opt = nix.arg($_1, "opt");
               return nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "networkNamespace"), null)) && nix.asBool((nix.asBool(nix.sel(cfg, "privateNetwork")) || nix.asBool(!nix.eq(nix.sel(cfg, "interfaces"), [])))))), nix.thunk(() => nix.str`containers.${name}.networkNamespace is mutally exclusive to containers.${name}.privateNetwork and containers.${name}.interfaces.`)), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "flake"), null)) && nix.asBool(!nix.asBool(nix.sel(config, "nix", "enable"))))), nix.thunk(() => nix.str`${nix.sel(options, "containers")}.${nix.app(nix.sel(nix.lookup(w, "strings"), "escapeNixIdentifier"), name)}.flake is defined, so the container is built with nix on the host, but ${nix.sel(options, "nix", "enable")} is disabled`)), nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(!nix.asBool(hostNixSocketEnabled)) && nix.asBool(nix.sel(opt, "config", "isDefined")))) && nix.asBool(nix.sel(cfg, "config", "nix", "enable")))) && nix.asBool(nix.sel(cfg, "config", "nix", "daemon", "enable")))), nix.thunk(() => nix.str`${nix.sel(options, "containers")}.${nix.app(nix.sel(nix.lookup(w, "strings"), "escapeNixIdentifier"), name)} has nix.daemon.enable = true, but the host does not provide a nix daemon socket, as ${hostNixSocketIsDisabled}. Disable nix.daemon.enable in the container, or enable the daemon on the host.`))));
             })(), formals$6);
-            return nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(nix.builtins.map, (msg) => ({ __proto__: pos$79, assertion: false, message: msg }))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapAttrsOfSubmodule"), mapper, nix.thunk(() => nix.sel(options, "containers")))))));
+            return nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(nix.builtins.map, (msg) => ({ [nix.POS]: pos$79, assertion: false, message: msg }))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "modules", "mapAttrsOfSubmodule"), mapper, nix.thunk(() => nix.sel(options, "containers")))))));
           })()),
         })),
         nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(config, "boot", "enableContainers")), nix.thunk(() => (() => {
             const unit = nix.thunk(() => ({
-              __proto__: pos$83,
+              [nix.POS]: pos$83,
               description: "Container '%i'",
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$81,
+                [nix.POS]: pos$81,
                 RequiresMountsFor: nix.thunk(() => nix.str`${stateDirectory}/%i`),
               })),
               path: nix.thunk(() => [
@@ -895,7 +895,7 @@ Alternatively, you can use the following options:
               ]),
               enableStrictShellChecks: true,
               environment: nix.thunk(() => ({
-                __proto__: pos$82,
+                [nix.POS]: pos$82,
                 root: nix.thunk(() => nix.str`${stateDirectory}/%i`),
                 INSTANCE: "%i",
               })),
@@ -906,43 +906,43 @@ Alternatively, you can use the following options:
               serviceConfig: nix.thunk(() => nix.app(serviceDirectives, dummyConfig)),
             }));
             return {
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               warnings: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.sel(config, "virtualisation", "containers", "enable")) && nix.asBool(nix.app(nix.lookup(w, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "22.05")))), "Enabling both boot.enableContainers & virtualisation.containers on system.stateVersion < 22.05 is unsupported.\n")),
               systemd: nix.thunk(() => ({
-                __proto__: pos$95,
+                [nix.POS]: pos$95,
                 targets: nix.thunk(() => ({
-                  __proto__: pos$85,
-                  "multi-user": nix.thunk(() => ({ __proto__: pos$84, wants: nix.thunk(() => ["machines.target"]) })),
+                  [nix.POS]: pos$85,
+                  "multi-user": nix.thunk(() => ({ [nix.POS]: pos$84, wants: nix.thunk(() => ["machines.target"]) })),
                 })),
-                services: nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => !nix.eq(nix.sel(x, "value"), null), nix.thunk(() => nix.concat([nix.thunk(() => ({ __proto__: pos$86, name: "container@", value: unit }))], nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (cfg) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`container@${name}`), nix.thunk(() => (() => {
+                services: nix.thunk(() => nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.lookup(w, "filter"), (x) => !nix.eq(nix.sel(x, "value"), null), nix.thunk(() => nix.concat([nix.thunk(() => ({ [nix.POS]: pos$86, name: "container@", value: unit }))], nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (cfg) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`container@${name}`), nix.thunk(() => (() => {
                           const containerConfig = nix.thunk(() => nix.update(cfg, nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(cfg, "enableTun")), nix.thunk(() => ({
-                              __proto__: pos$88,
+                              [nix.POS]: pos$88,
                               allowedDevices: nix.thunk(() => nix.concat(nix.sel(cfg, "allowedDevices"), [
-                                nix.thunk(() => ({ __proto__: pos$87, node: "/dev/net/tun", modifier: "rwm" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$87, node: "/dev/net/tun", modifier: "rwm" })),
                               ])),
                               additionalCapabilities: nix.thunk(() => nix.concat(nix.sel(cfg, "additionalCapabilities"), ["CAP_NET_ADMIN"])),
                             }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfg, "enableTun"))) && nix.asBool(nix.sel(cfg, "privateNetwork")))) && nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "privateUsers"), "pick")) || nix.asBool((nix.asBool(nix.app(nix.sel(nix.builtins, "isInt"), nix.thunk(() => nix.sel(cfg, "privateUsers")))) && nix.asBool(nix.gt(nix.sel(cfg, "privateUsers"), 0n)))))))), nix.thunk(() => ({
-                              __proto__: pos$90,
+                              [nix.POS]: pos$90,
                               allowedDevices: nix.thunk(() => nix.concat(nix.sel(cfg, "allowedDevices"), [
-                                nix.thunk(() => ({ __proto__: pos$89, node: "/dev/net/tun", modifier: "rwm" })),
+                                nix.thunk(() => ({ [nix.POS]: pos$89, node: "/dev/net/tun", modifier: "rwm" })),
                               ])),
                             }))))));
                           return nix.update(nix.app(nix.lookup(w, "recursiveUpdate"), unit, nix.thunk(() => ({
-                              __proto__: pos$93,
+                              [nix.POS]: pos$93,
                               preStart: nix.thunk(() => nix.app(preStartScript, containerConfig)),
                               script: nix.thunk(() => nix.app(startScript, containerConfig)),
                               postStart: nix.thunk(() => nix.app(postStartScript, containerConfig)),
                               serviceConfig: nix.thunk(() => nix.app(serviceDirectives, containerConfig)),
                               unitConfig: nix.thunk(() => ({
-                                __proto__: pos$91,
+                                [nix.POS]: pos$91,
                                 RequiresMountsFor: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(containerConfig, "ephemeral"))), nix.thunk(() => nix.str`${stateDirectory}/%i`)), nix.app(nix.builtins.map, (d) => (nix.asBool(!nix.eq(nix.sel(d, "hostPath"), null)) ? nix.sel(d, "hostPath") : nix.sel(d, "mountPoint")), nix.thunk(() => nix.app(nix.sel(nix.builtins, "attrValues"), nix.thunk(() => nix.sel(cfg, "bindMounts"))))))),
                               })),
                               environment: nix.thunk(() => ({
-                                __proto__: pos$92,
+                                [nix.POS]: pos$92,
                                 root: nix.thunk(() => (nix.asBool(nix.sel(containerConfig, "ephemeral")) ? "/run/nixos-containers/%i" : nix.str`${stateDirectory}/%i`)),
                               })),
                             }))), nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(containerConfig, "autoStart")), nix.thunk(() => ({
-                              __proto__: pos$94,
+                              [nix.POS]: pos$94,
                               wantedBy: nix.thunk(() => ["machines.target"]),
                               wants: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.builtins.map, (i) => nix.str`sys-subsystem-net-devices-${nix.app(nix.sel(utils, "escapeSystemdPath"), i)}.device`, nix.thunk(() => nix.sel(cfg, "interfaces"))))),
                               after: nix.thunk(() => nix.concat(["network.target"], nix.app(nix.builtins.map, (i) => nix.str`sys-subsystem-net-devices-${nix.app(nix.sel(utils, "escapeSystemdPath"), i)}.device`, nix.thunk(() => nix.sel(cfg, "interfaces"))))),
@@ -955,11 +955,11 @@ Alternatively, you can use the following options:
                         })())), nix.thunk(() => nix.sel(config, "containers"))))))))),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$97,
+                [nix.POS]: pos$97,
                 etc: nix.thunk(() => (() => {
                   const mkPortStr = (p) => nix.add(nix.add(nix.add(nix.add(nix.sel(p, "protocol"), ":"), nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(p, "hostPort")))), ":"), (nix.asBool(nix.eq(nix.sel(p, "containerPort"), null)) ? nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(p, "hostPort"))) : nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(p, "containerPort")))));
                   return nix.app(nix.lookup(w, "mapAttrs'"), (name) => (cfg) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`${configurationDirectoryName}/${name}.conf`), nix.thunk(() => ({
-                        __proto__: pos$96,
+                        [nix.POS]: pos$96,
                         text: nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.eq(nix.sel(cfg, "flake"), null)), nix.thunk(() => nix.str`SYSTEM_PATH=${nix.sel(cfg, "path")}
 `))}
 ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "flake"), null)), nix.thunk(() => nix.str`FLAKE=${nix.sel(cfg, "flake")}
@@ -993,26 +993,26 @@ EXTRA_NSPAWN_FLAGS="${nix.add(nix.app(mkBindFlags, nix.thunk(() => nix.sel(cfg, 
                 systemPackages: nix.thunk(() => [nixos_container]),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$99,
+                [nix.POS]: pos$99,
                 extraHosts: nix.thunk(() => nix.app(nix.lookup(w, "concatStrings"), nix.thunk(() => nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (cfg) => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "localAddress"), null)), nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "head"), nix.thunk(() => nix.app(nix.lookup(w, "splitString"), "/", nix.thunk(() => nix.sel(cfg, "localAddress")))))} ${name}.containers
 `)), nix.thunk(() => nix.sel(config, "containers")))))),
-                dhcpcd: nix.thunk(() => ({ __proto__: pos$98, denyInterfaces: nix.thunk(() => ["ve-*", "vb-*"]) })),
+                dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$98, denyInterfaces: nix.thunk(() => ["ve-*", "vb-*"]) })),
               })),
               services: nix.thunk(() => ({
-                __proto__: pos$101,
+                [nix.POS]: pos$101,
                 udev: nix.thunk(() => ({
-                  __proto__: pos$100,
+                  [nix.POS]: pos$100,
                   extraRules: nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable")), "# Don't manage interfaces created by nixos-container.\nENV{INTERFACE}==\"v[eb]-*\", ENV{NM_UNMANAGED}=\"1\"\n")),
                 })),
               })),
               boot: nix.thunk(() => ({
-                __proto__: pos$102,
+                [nix.POS]: pos$102,
                 kernelModules: nix.thunk(() => ["bridge", "macvlan", "tap", "tun"]),
               })),
             };
           })()))),
       ]))),
-    meta: nix.thunk(() => ({ __proto__: pos$104, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$104, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=nixos-containers.ts.map

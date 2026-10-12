@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const yaml_cpp = nix.arg($, "yaml-cpp");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openxcom",
       version: "1.0.0-unstable-2025-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenXcom",
           repo: "OpenXcom",
           rev: "0f262a10ff447d09571375cef6e646f70868dae2",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open source clone of UFO: Enemy Unknown",
         mainProgram: "openxcom",
         homepage: "https://openxcom.org",

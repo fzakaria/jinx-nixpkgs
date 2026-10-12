@@ -24,22 +24,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "boot", "kexec"));
   return {
-    __proto__: pos$13,
+    [nix.POS]: pos$13,
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "kexec-tools", "meta"));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       boot: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         kexec: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "kexec"), {
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), nix.thunk(() => nix.sel(pkgs, "kexec-tools")))),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "lib.meta.availableOn pkgs.stdenv.hostPlatform pkgs.kexec-tools")),
           })),
@@ -47,22 +47,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         environment: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kexec-tools"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "prepare-kexec": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Preparation for kexec",
               wantedBy: nix.thunk(() => ["kexec.target"]),
               before: nix.thunk(() => ["systemd-kexec.service"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$7, DefaultDependencies: false })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$8, Type: "oneshot" })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, DefaultDependencies: false })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Type: "oneshot" })),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "kexec-tools"))]),
               script: "# Don't load the current system profile if we already have a kernel loaded\nif [[ 1 = \"$(</sys/kernel/kexec_loaded)\" ]] ; then\n  echo \"kexec kernel has already been loaded, prepare-kexec skipped\"\n  exit 0\nfi\n\np=$(readlink -f /nix/var/nix/profiles/system)\nif ! [[ -d $p ]]; then\n  echo \"Could not find system profile for prepare-kexec\"\n  exit 1\nfi\necho \"Loading NixOS system via kexec.\"\nexec kexec --load \"$p/kernel\" --initrd=\"$p/initrd\" --append=\"$(cat \"$p/kernel-params\") init=$p/init\"\n",
             })),

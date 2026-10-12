@@ -34,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "bluez",
       version: nix.thunk(() => nix.attr(bluez_headers, "version")),
       src: nix.thunk(() => nix.attr(bluez_headers, "src")),
       patches: nix.thunk(() => [
         nix.path(here, "./lreadline.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "fix-uuid-discovery-segfault",
             url: "https://git.kernel.org/pub/scm/bluetooth/bluez.git/patch/?id=82af2beafc39510e2c4a439bf44faea711d6503f",
             hash: "sha256-Zf5J4USdfwKe7DVfivyj2q15LPy2GkUqVUq2tE1bG6M=",
@@ -127,13 +127,13 @@ wrapPythonProgramsIn $test/test "$test/test ${nix.builtins.toString(pythonPath)}
       })()),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, url: "https://git.kernel.org/pub/scm/bluetooth/bluez.git" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://git.kernel.org/pub/scm/bluetooth/bluez.git" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bluez_headers, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "btinfo",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),

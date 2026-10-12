@@ -34,23 +34,23 @@ export default nix.lambda((args) => (() => {
     const args_2 = nix.arg($_1, "args");
     const paths = nix.arg($_1, "paths");
     return (arg) => (nix.asBool(nix.builtins.isPath(arg)) ? {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       args: nix.thunk(() => nix.concat(args_2, [
         nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           __rawShell: nix.thunk(() => nix.str`"$${nix.builtins.toString(maxArgIndex)}"`),
         })),
       ])),
       maxArgIndex: nix.thunk(() => nix.add(maxArgIndex, 1n)),
       paths: nix.thunk(() => nix.concat(paths, [arg])),
     } : {
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       args: nix.thunk(() => nix.concat(args_2, [arg])),
       maxArgIndex: maxArgIndex,
       paths: paths,
     });
   })(), formals$2);
-  const extractPaths = (maxArgIndex) => (command) => nix.builtins["foldl'"](processArg, nix.thunk(() => ({ __proto__: pos$4, maxArgIndex: maxArgIndex, args: [], paths: [] })), command);
+  const extractPaths = (maxArgIndex) => (command) => nix.builtins["foldl'"](processArg, nix.thunk(() => ({ [nix.POS]: pos$4, maxArgIndex: maxArgIndex, args: [], paths: [] })), command);
   const processCommand = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const maxArgIndex = nix.arg($_1, "maxArgIndex");
@@ -59,14 +59,14 @@ export default nix.lambda((args) => (() => {
     return (command) => (() => {
       const new$ = nix.thunk(() => nix.app(extractPaths, maxArgIndex, command));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         commands: nix.thunk(() => nix.concat(commands, [nix.thunk(() => nix.sel(new$, "args"))])),
         paths: nix.thunk(() => nix.concat(paths, nix.sel(new$, "paths"))),
         maxArgIndex: nix.thunk(() => nix.sel(new$, "maxArgIndex")),
       };
     })();
   })(), formals$3);
-  const extractCommands = (maxArgIndex) => (commands) => nix.builtins["foldl'"](processCommand, nix.thunk(() => ({ __proto__: pos$6, maxArgIndex: maxArgIndex, commands: [], paths: [] })), commands);
+  const extractCommands = (maxArgIndex) => (commands) => nix.builtins["foldl'"](processCommand, nix.thunk(() => ({ [nix.POS]: pos$6, maxArgIndex: maxArgIndex, commands: [], paths: [] })), commands);
   const commandsToShellInvocation = (commands) => (() => {
     const extracted = nix.thunk(() => nix.app(extractCommands, 0n, commands));
     return nix.concat([
@@ -77,11 +77,11 @@ export default nix.lambda((args) => (() => {
   })();
   return (() => {
     const normalize = (updateScript) => nix.update({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       command: nix.thunk(() => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.selOr(updateScript, () => nix.force(updateScript), "command")))),
       supportedFeatures: nix.thunk(() => nix.selOr(updateScript, () => [], "supportedFeatures")),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(updateScript, "attrPath")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         attrPath: nix.thunk(() => nix.attr(updateScript, "attrPath")),
       }))));
     const sequence = (scripts) => (() => {
@@ -117,7 +117,7 @@ export default nix.lambda((args) => (() => {
                   return nix.force(attrPath);
                 })(), formals$9), scripts_1))))))), 1n)), "Combining update scripts with different attr paths is currently unsupported."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/common-updater/combinators.nix:173:5");
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         command: nix.thunk(() => nix.app(commandsToShellInvocation, nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$10);
               const command = nix.arg($_1, "command");
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
       };
     })();
     const copyAttrOutputToFile = (attr) => (path) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       command: nix.thunk(() => [
         "sh",
         "-c",
@@ -136,7 +136,7 @@ export default nix.lambda((args) => (() => {
       ]),
       supportedFeatures: nix.thunk(() => ["silent"]),
     });
-    return { __proto__: pos$11, normalize, sequence, copyAttrOutputToFile };
+    return { [nix.POS]: pos$11, normalize, sequence, copyAttrOutputToFile };
   })();
 })(), formals$1);
 //# sourceMappingURL=combinators.ts.map

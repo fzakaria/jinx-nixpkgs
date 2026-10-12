@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "chemacs2",
       version: "0-unstable-2023-01-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "plexus",
           repo: "chemacs2",
           rev: "c2d700b784c793cc82131ef86323801b8d6e67bb",
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -t $out/share/site-lisp/chemacs2/ -Dm644 init.el early-init.el chemacs.el\ninstall -t $doc/share/doc/chemacs2/ -Dm644 README.org CHANGELOG.md\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/plexus/chemacs2",
         description: "Emacs version switcher, improved",
         longDescription: "Chemacs 2 is an Emacs profile switcher, it makes it easy to run multiple\nEmacs configurations side by side.\n\nThink of it as a bootloader for Emacs.\n",

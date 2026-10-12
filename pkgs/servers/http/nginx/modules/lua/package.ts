@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lua",
       version: "0.10.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openresty",
           repo: "lua-nginx-module",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +32,14 @@ export default nix.lambda((args) => (() => {
 export LUAJIT_INC="$(realpath ${luajit_openresty}/include/luajit-*)"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "nginx-lua": nix.thunk(() => nix.attr(nixosTests, "nginx-lua")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Embed the Power of Lua",
         homepage: "https://github.com/openresty/lua-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       __structuredAttrs: true,
       pname: "netbox-security",
       version: "1.6.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "andy-shady-org",
           repo: "netbox-security",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_security"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_security" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_security" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin covering various security and NAT related models",
         homepage: "https://github.com/andy-shady-org/netbox-security",
         changelog: nix.thunk(() => nix.str`https://github.com/andy-shady-org/netbox-security/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

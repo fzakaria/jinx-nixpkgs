@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fantasque-sans-mono",
       version: "1.8.0",
       outputs: nix.thunk(() => ["out", "webfont", "doc"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/belluzj/fantasque-sans/releases/download/v${nix.sel(finalAttrs, "version")}/FantasqueSansMono-Normal.zip`),
           stripRoot: false,
           hash: "sha256-MNXZoDPi24xXHXGVADH16a3vZmFhwX0Htz02+46hWFc=",
@@ -32,7 +32,7 @@ install -m644 -Dt $doc/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(final
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/belluzj/fantasque-sans",
         description: "Font family with a great monospaced variant for programmers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

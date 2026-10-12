@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pycryptodome = nix.arg($, "pycryptodome");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pywerview",
       version: "0.7.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "the-useless-one",
           repo: "pywerview",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,13 +35,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [beautifulsoup4, impacket, ldap3_bleeding_edge, lxml, pycryptodome, pyasn1]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         kerberos: nix.thunk(() => nix.concat([ldap3_bleeding_edge], nix.sel(ldap3_bleeding_edge, "optional-dependencies", "kerberos"))),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pywerview"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module for PowerSploit's PowerView support",
         homepage: "https://github.com/the-useless-one/pywerview",
         changelog: nix.thunk(() => nix.str`https://github.com/the-useless-one/pywerview/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

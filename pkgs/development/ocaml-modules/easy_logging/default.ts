@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const calendar = nix.arg($, "calendar");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "easy_logging",
       version: "0.8.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sapristi",
           repo: "easy_logging",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\ndune runtest easy_logging ${enableParallelBuilding:+-j $NIX_BUILD_CORES}\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Logging module for OCaml",
         homepage: "https://github.com/sapristi/easy_logging",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

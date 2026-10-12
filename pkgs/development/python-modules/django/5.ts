@@ -44,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const tblib = nix.arg($, "tblib");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "django",
       version: "5.2.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django",
           repo: "django",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./5.2/zoneinfo.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             zoneinfo: nix.thunk(() => nix.add(tzdata, "/share/zoneinfo")),
           })))),
         nix.path(here, "./5.2/pythonpath.patch"),
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./6.0/skip-flaky-tests.patch"),
       ], nix.app(nix.sel(lib, "optionals"), withGdal, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./5.2/gdal.patch"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               geos: geos,
               gdal: gdal,
               extension: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [asgiref, sqlparse]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         argon2: nix.thunk(() => [argon2_cffi]),
         bcrypt: nix.thunk(() => [bcrypt]),
       })),
@@ -119,21 +119,21 @@ runHook postCheck
 `),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://docs.djangoproject.com/en/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/releases/${nix.sel(finalAttrs, "version")}/`),
         description: "High-level Python Web framework that encourages rapid development and clean, pragmatic design",
         homepage: "https://www.djangoproject.com",
         identifiers: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           cpeParts: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             product: "django",
             update: "*",
             vendor: "djangoproject",
           })),
           purlParts: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             type: "pypi",
             spec: nix.thunk(() => nix.str`django@${nix.sel(finalAttrs, "version")}`),
           })),

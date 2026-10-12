@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "goxel",
       version: "0.15.1-unstable-2024-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "guillaumechereau",
           repo: "goxel",
           rev: "60ec064a144295b17dfece85bb778dad19eaa8dc",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       buildFlags: nix.thunk(() => ["release"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open Source 3D voxel editor",
         mainProgram: "goxel",
         homepage: "https://guillaumechereau.github.io/goxel/",

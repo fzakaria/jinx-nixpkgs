@@ -61,34 +61,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$48,
+    [nix.POS]: pos$48,
     name: "3proxy",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "misuzu"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$47,
+      [nix.POS]: pos$47,
       peer0: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           networking: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               eth1: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$2, address: "192.168.0.1", prefixLength: 24n })),
-                    nix.thunk(() => ({ __proto__: pos$3, address: "216.58.211.111", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.0.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$3, address: "216.58.211.111", prefixLength: 24n })),
                   ]),
                 })),
               })),
@@ -100,40 +100,40 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           networking: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               eth1: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$9, address: "192.168.0.2", prefixLength: 24n })),
-                    nix.thunk(() => ({ __proto__: pos$10, address: "216.58.211.112", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$9, address: "192.168.0.2", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$10, address: "216.58.211.112", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
             enableIPv6: false,
-            firewall: nix.thunk(() => ({ __proto__: pos$14, allowedTCPPorts: nix.thunk(() => [3128n, 9999n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [3128n, 9999n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             _3proxy: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               enable: true,
               services: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   type: "admin",
                   bindPort: 9999n,
                   auth: nix.thunk(() => ["none"]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   type: "proxy",
                   bindPort: 3128n,
                   auth: nix.thunk(() => ["none"]),
@@ -147,43 +147,43 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           networking: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               eth1: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$21, address: "192.168.0.3", prefixLength: 24n })),
-                    nix.thunk(() => ({ __proto__: pos$22, address: "216.58.211.113", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$21, address: "192.168.0.3", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$22, address: "216.58.211.113", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$26, allowedTCPPorts: nix.thunk(() => [3128n, 9999n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$26, allowedTCPPorts: nix.thunk(() => [3128n, 9999n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             _3proxy: nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               enable: true,
               services: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   type: "admin",
                   bindPort: 9999n,
                   auth: nix.thunk(() => ["none"]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   type: "proxy",
                   bindPort: 3128n,
                   auth: nix.thunk(() => ["iponly"]),
-                  acl: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$29, rule: "allow" }))]),
+                  acl: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$29, rule: "allow" }))]),
                 })),
               ]),
             })),
@@ -195,44 +195,44 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           networking: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               eth1: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ __proto__: pos$34, address: "192.168.0.4", prefixLength: 24n })),
-                    nix.thunk(() => ({ __proto__: pos$35, address: "216.58.211.114", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$34, address: "192.168.0.4", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: pos$35, address: "216.58.211.114", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ __proto__: pos$39, allowedTCPPorts: nix.thunk(() => [3128n, 9999n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$39, allowedTCPPorts: nix.thunk(() => [3128n, 9999n]) })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             _3proxy: nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               enable: true,
               usersFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "3proxy.passwd", "admin:CR:$1$.GUV4Wvk$WnEVQtaqutD9.beO5ar1W/\n")),
               services: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   type: "admin",
                   bindPort: 9999n,
                   auth: nix.thunk(() => ["none"]),
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   type: "proxy",
                   bindPort: 3128n,
                   auth: nix.thunk(() => ["strong"]),
-                  acl: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$42, rule: "allow" }))]),
+                  acl: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$42, rule: "allow" }))]),
                 })),
               ]),
             })),

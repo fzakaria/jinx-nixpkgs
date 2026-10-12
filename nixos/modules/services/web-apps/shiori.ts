@@ -28,43 +28,43 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "shiori"));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         shiori: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Shiori simple bookmarks manager")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "shiori", nix.thunk(() => ({})))),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "",
               description: "The IP address on which Shiori will listen.\nIf empty, listens on all interfaces.\n",
             })))),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               default: 8080n,
               description: "The port of the Shiori web application",
             })))),
           webRoot: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/",
               example: "/shiori",
               description: "The root of the Shiori web application",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/path/to/environmentFile",
               description: "Path to file containing environment variables.\nUseful for passing down secrets.\n<https://github.com/go-shiori/shiori/blob/master/docs/Configuration.md#overall-configuration>\n",
             })))),
           databaseUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               example: "postgres:///shiori?host=/run/postgresql",
@@ -74,22 +74,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             shiori: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               description: "Shiori simple bookmarks manager",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["postgresql.target", "mysql.service"]),
-              environment: nix.thunk(() => nix.update({ __proto__: pos$9, SHIORI_DIR: "/var/lib/shiori" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "databaseUrl"), null)), nix.thunk(() => ({
-                  __proto__: pos$10,
+              environment: nix.thunk(() => nix.update({ [nix.POS]: pos$9, SHIORI_DIR: "/var/lib/shiori" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "databaseUrl"), null)), nix.thunk(() => ({
+                  [nix.POS]: pos$10,
                   SHIORI_DATABASE_URL: nix.thunk(() => nix.sel(cfg, "databaseUrl")),
                 }))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/shiori server --address '${nix.sel(cfg, "address")}' --port '${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}' --webroot '${nix.sel(cfg, "webRoot")}'`),
                 DynamicUser: true,
                 StateDirectory: "shiori",
@@ -132,7 +132,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

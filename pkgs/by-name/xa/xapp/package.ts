@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const libdbusmenu_gtk3 = nix.arg($, "libdbusmenu-gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "xapp",
       version: "3.2.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "linuxmint",
           repo: "xapp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,12 +86,12 @@ substituteInPlace scripts/xfce4-set-wallpaper \\
   --replace-fail "file --mime-type" "${file}/bin/file --mime-type"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         PKG_CONFIG_GTK__3_0_LIBDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
       })),
       preFixup: "wrapGApp $out/lib/xapps/xapp-sn-watcher\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/linuxmint/xapp",
         description: "Cross-desktop libraries and common resources",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

@@ -31,22 +31,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gnome: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "evolution-data-server": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Evolution Data Server, a collection of services for storing addressbooks and calendars")),
             plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 description: "Plugins for Evolution Data Server.",
@@ -55,12 +55,12 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       programs: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         evolution: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Evolution, a Personal information management application that provides integrated mail, calendaring and address book functionality")),
           plugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.evolution-ews ]")),
@@ -72,30 +72,30 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const bundle = nix.thunk(() => nix.app(nix.sel(pkgs, "evolutionWithPlugins", "override"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(config, "services", "gnome", "evolution-data-server"));
-          return { __proto__: pos$10, plugins: nix.thunk(() => nix.attr(from, "plugins")) };
+          return { [nix.POS]: pos$10, plugins: nix.thunk(() => nix.attr(from, "plugins")) };
         })())));
       return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "gnome", "evolution-data-server", "enable")), nix.thunk(() => ({
-              __proto__: pos$15,
-              environment: nix.thunk(() => ({ __proto__: pos$11, systemPackages: nix.thunk(() => [bundle]) })),
+              [nix.POS]: pos$15,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$11, systemPackages: nix.thunk(() => [bundle]) })),
               services: nix.thunk(() => ({
-                __proto__: pos$13,
-                dbus: nix.thunk(() => ({ __proto__: pos$12, packages: nix.thunk(() => [bundle]) })),
+                [nix.POS]: pos$13,
+                dbus: nix.thunk(() => ({ [nix.POS]: pos$12, packages: nix.thunk(() => [bundle]) })),
               })),
-              systemd: nix.thunk(() => ({ __proto__: pos$14, packages: nix.thunk(() => [bundle]) })),
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$14, packages: nix.thunk(() => [bundle]) })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "programs", "evolution", "enable")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               services: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 gnome: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   "evolution-data-server": nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     enable: true,
                     plugins: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "evolution"))], nix.sel(config, "programs", "evolution", "plugins"))),
                   })),
-                  "gnome-keyring": nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+                  "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
                 })),
               })),
             })))),

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.243";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-k7DFVrqkHzPLjZMdWyLdfawyOSw+L7Bi4oRdeJo6lxw=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf libuuu\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python wrapper for libuuu",
         homepage: "https://github.com/nxp-imx/mfgtools/tree/master/wrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

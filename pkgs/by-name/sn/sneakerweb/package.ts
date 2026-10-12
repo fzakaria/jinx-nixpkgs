@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sneakerweb",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "worm-blossom",
           repo: "sneakerweb",
           rev: "5b26074b7db7bd5c5200b2ad5263cd79b29134e6",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A parallel web transported by physical media",
         homepage: "https://sneakerweb.org/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "OR"), nix.thunk(() => [

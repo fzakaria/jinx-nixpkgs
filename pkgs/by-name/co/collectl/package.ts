@@ -48,17 +48,17 @@ export default nix.lambda((args) => (() => {
         "cd",
         "stty",
       ])), nix.update(nix.app(mkTools, util_linux, nix.thunk(() => ["renice"])), nix.update(nix.app(mkTools, gnugrep, nix.thunk(() => ["grep", "egrep"])), nix.update(nix.app(mkTools, inetutils, nix.thunk(() => ["hostname", "ping"])), nix.update(nix.app(mkTools, procps, nix.thunk(() => ["ps"])), nix.update(nix.app(mkTools, pciutils, nix.thunk(() => ["lspci"])), nix.update(nix.app(mkTools, xterm, nix.thunk(() => ["resize"])), nix.update(nix.app(mkTools, dmidecode, nix.thunk(() => ["dmidecode"])), nix.update(nix.app(mkTools, rpm, nix.thunk(() => ["rpm"])), {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       ssh: nix.thunk(() => nix.app(getExe, openssh)),
       ipmitool: nix.thunk(() => nix.app(getExe, ipmitool)),
     })))))))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "collectl",
       version: "4.3.20.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "sharkcz",
           repo: "collectl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,14 +73,14 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nbash ./INSTALL\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Performance monitoring tool for Linux systems",
         longDescription: "Collectl is a light-weight performance monitoring tool capable of reporting\ninteractively as well as logging to disk. It reports statistics on cpu, disk,\ninfiniband, lustre, memory, network, nfs, process, quadrics, slabs and more\nin easy to read format.\n\nThe `--config` option allows specifying a custom configuration file path,\noverriding the default configuration file in the package's etc directory.\n",
         homepage: "https://github.com/sharkcz/collectl",

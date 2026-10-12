@@ -24,47 +24,47 @@ const pos$16 = nix.positions(here + "/nginx-pubhtml.nix", [["name", 3, 3], ["nod
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "nginx-pubhtml",
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           systemd: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             services: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nginx: nix.thunk(() => ({
-                __proto__: pos$2,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$1, ProtectHome: "read-only" })),
+                [nix.POS]: pos$2,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$1, ProtectHome: "read-only" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             nginx: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 localhost: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$6,
-                    "~ ^/\\~([a-z0-9_]+)(/.*)?$": nix.thunk(() => ({ __proto__: pos$5, alias: "/home/$1/public_html$2" })),
+                    [nix.POS]: pos$6,
+                    "~ ^/\\~([a-z0-9_]+)(/.*)?$": nix.thunk(() => ({ [nix.POS]: pos$5, alias: "/home/$1/public_html$2" })),
                   })),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             users: nix.thunk(() => ({
-              __proto__: pos$12,
-              foo: nix.thunk(() => ({ __proto__: pos$11, isNormalUser: true })),
+              [nix.POS]: pos$12,
+              foo: nix.thunk(() => ({ [nix.POS]: pos$11, isNormalUser: true })),
             })),
           })),
         };

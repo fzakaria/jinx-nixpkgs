@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "revpfw3",
       version: "0.5.0",
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://git.tudbut.de/tudbut/revpfw3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-oqBzRpfL5sMxE29HwVXW4rdnf5cfNCn2pUqZiYDhHDk=",
         })))),
       cargoHash: "sha256-F9ngyKWAdm3GyN6cSErtHoMN/u6A3ML7OMFP1QIaH9c=",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Reverse proxy to bypass the need for port forwarding",
         homepage: "https://git.tudbut.de/tudbut/revpfw3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

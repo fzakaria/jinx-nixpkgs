@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pymupdf_fonts",
           version: version,
           hash: "sha256-rBLj7Er/o16aCsopE170HCO9vldYwzVdrCNphjCea8Y=",
@@ -26,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonImportsCheck = nix.thunk(() => ["pymupdf_fonts"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of optional fonts for PyMuPDF",
         homepage: "https://github.com/pymupdf/pymupdf-fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

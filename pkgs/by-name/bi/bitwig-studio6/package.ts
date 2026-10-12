@@ -45,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const xcb_imdkit = nix.arg($, "xcb-imdkit");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bitwig-studio6",
       version: "6.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`bitwig-studio-${nix.sel(finalAttrs, "version")}.deb`),
           url: nix.thunk(() => nix.str`https://www.bitwig.com/dl/Bitwig%20Studio/${nix.sel(finalAttrs, "version")}/installer_linux`),
           hash: "sha256-PqsolH15g6wiv7hnYK6XcaSBFQ/axElYEGvgl5qToJk=",
@@ -101,7 +101,7 @@ wrapProgram "$out"/bin/bitwig-studio \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital audio workstation",
         longDescription: "Bitwig Studio is a multi-platform music-creation system for\nproduction, performance and DJing, with a focus on flexible\nediting tools and a super-fast workflow.\n",
         homepage: "https://www.bitwig.com/",

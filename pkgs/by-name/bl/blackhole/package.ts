@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const channel = nix.argOr($, "channel", () => "256ch");
   const numChannels = nix.thunk(() => nix.app(nix.sel(lib, "toIntBase10"), nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "ch", channel))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "blackhole",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "existentialaudio",
           repo: "BlackHole",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +48,11 @@ mv Products/Release/BlackHole.driver $out/Library/Audio/Plug-Ins/HAL/BlackHole${
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Virtual audio driver for macOS",
         homepage: "https://existential.audio/blackhole",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

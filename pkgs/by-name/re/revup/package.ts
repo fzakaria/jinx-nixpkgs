@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const testers = nix.arg($, "testers");
   const self = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "revup",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(self, "pname")),
           version: nix.thunk(() => nix.attr(self, "version")),
           hash: "sha256-LrSRcnWc4AvWbpSrOLprs+rVM0sR1joLat3g9og6BwE=",
@@ -55,15 +55,15 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_2, "pytest"))];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$2, package: self })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: self })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/Skydio/revup",
         description: "Efficient git workflow and code review toolkit",
         longDescription: "Revup provides command-line tools that allow developers to iterate\nfaster on parallel changes and reduce the overhead of creating and\nmaintaining code reviews.\n\nFeatures:\n\n- Revup creates multiple independent chains of branches for you in the\n  background and without touching your working tree. It then creates and\n  manages github pull requests for all those branches.\n- Pull requests target the actual base branch and can be merged manually\n  or by continuous integration\n- Rebase detection saves time and continuous integration cost by not\n  re-pushing if the patch hasn't changed\n- Adds reviewers, labels, and creates drafts all from the commit text\n- Adds auto-updating \"review graph\" and \"patchsets\" elements to make\n  pull requests easier to navigate\n- revup amend and revup restack save time by replacing slow rebases\n",

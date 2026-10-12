@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const libzint = nix.arg($, "libzint");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "passes",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pablo-s",
           repo: "passes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ substituteInPlace ./src/meson.build \\
       ]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libzint]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital pass manager",
         mainProgram: "passes",
         homepage: "https://github.com/pablo-s/passes",

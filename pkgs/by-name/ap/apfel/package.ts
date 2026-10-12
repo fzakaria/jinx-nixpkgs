@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const swig = nix.arg($, "swig");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "apfel",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scarrazza",
           repo: "apfel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(lhapdf, "pdf_sets", "NNPDF31_nnlo_as_0118")),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DAPFEL_VERSION=${nix.sel(finalAttrs, "version")}`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "PDF Evolution Library",
         homepage: "https://apfel.mi.infn.it/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

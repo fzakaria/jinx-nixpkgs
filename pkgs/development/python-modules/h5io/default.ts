@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "h5io",
           repo: "h5io",
           tag: nix.thunk(() => nix.str`h5io-${version}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_state_with_pathlib"]);
       const pythonImportsCheck = nix.thunk(() => ["h5io"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Read and write simple Python objects using HDF5",
         homepage: "https://github.com/h5io/h5io",
         changelog: nix.thunk(() => nix.str`https://github.com/h5io/h5io/releases/tag/h5io-${version}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

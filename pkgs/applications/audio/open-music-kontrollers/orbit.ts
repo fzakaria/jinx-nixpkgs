@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const additionalBuildInputs = nix.thunk(() => [zlib]);
       const description = "LV2 time event manipulation plugin bundle";
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pname,
         version,
         url,

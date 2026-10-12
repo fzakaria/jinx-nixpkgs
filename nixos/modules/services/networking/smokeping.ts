@@ -97,26 +97,26 @@ ${nix.sel(cfg, "extraConfig")}
 ${nix.sel(cfg, "package")}/bin/smokeping_cgi /etc/smokeping.conf
 `)));
   return {
-    __proto__: pos$53,
+    [nix.POS]: pos$53,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "smokeping", "port"]), "The smokeping web service is now served by nginx.\nIn order to change the port, you need to change the nginx configuration under `services.nginx.virtualHosts.smokeping.listen.*.port`.\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         smokeping: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "smokeping service")),
           alertConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "to = root@localhost\nfrom = smokeping@localhost\n",
               example: "to = alertee@address.somewhere\nfrom = smokealert@company.xy\n\n+someloss\ntype = loss\n# in percent\npattern = >0%,*12*,>0%,*12*,>0%\ncomment = loss 3 times  in a row;\n",
               description: "Configuration for alerts.",
             })))),
           cgiUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`http://${nix.sel(cfg, "hostName")}/smokeping.cgi`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"http://${hostName}/smokeping.cgi\"")),
@@ -124,26 +124,26 @@ ${nix.sel(cfg, "package")}/bin/smokeping_cgi /etc/smokeping.conf
               description: "URL to the smokeping cgi.",
             })))),
           config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")))),
               default: null,
               description: "Full smokeping config supplied by the user. Overrides\nand replaces any other configuration supplied.\n",
             })))),
           databaseConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "step     = 300\npings    = 20\n# consfn mrhb steps total\nAVERAGE  0.5   1  1008\nAVERAGE  0.5  12  4320\n    MIN  0.5  12  4320\n    MAX  0.5  12  4320\nAVERAGE  0.5 144   720\n    MAX  0.5 144   720\n    MIN  0.5 144   720\n\n",
               example: "# near constant pings.\nstep     = 30\npings    = 20\n# consfn mrhb steps total\nAVERAGE  0.5   1  10080\nAVERAGE  0.5  12  43200\n    MIN  0.5  12  43200\n    MAX  0.5  12  43200\nAVERAGE  0.5 144   7200\n    MAX  0.5 144   7200\n    MIN  0.5 144   7200\n",
               description: "Configure the ping frequency and retention of the rrd files.\nOnce set, changing the interval will require deletion or migration of all\nthe collected data.",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Any additional customization not already included.",
             })))),
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.sel(config, "networking", "fqdn")),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "config.networking.fqdn")),
@@ -151,7 +151,7 @@ ${nix.sel(cfg, "package")}/bin/smokeping_cgi /etc/smokeping.conf
               description: "DNS name for the urls generated in the cgi.",
             })))),
           imgUrl: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "cache",
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"cache\"")),
@@ -159,28 +159,28 @@ ${nix.sel(cfg, "package")}/bin/smokeping_cgi /etc/smokeping.conf
               description: "Base url for images generated in the cgi.\n\nThe default is a relative URL to ensure it works also when e.g. forwarding\nthe GUI port via SSH.\n",
             })))),
           linkStyle: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["original", "absolute", "relative"]))),
               default: "relative",
               example: "absolute",
               description: "DNS name for the urls generated in the cgi.",
             })))),
           mailHost: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "",
               example: "localhost",
               description: "Use this SMTP server to send alerts",
             })))),
           owner: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "nobody",
               example: "Bob Foobawr",
               description: "Real name of the owner of the instance",
             })))),
           ownerEmail: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`no-reply@${nix.sel(cfg, "hostName")}`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"no-reply@${hostName}\"")),
@@ -189,27 +189,27 @@ ${nix.sel(cfg, "package")}/bin/smokeping_cgi /etc/smokeping.conf
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "smokeping", nix.thunk(() => ({})))),
           host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: "localhost",
               example: "192.0.2.1",
               description: "Host/IP to bind to for the web server.\n\nSetting it to `null` skips passing the -h option to thttpd,\nwhich makes it bind to all interfaces.\n",
             })))),
           presentationConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "+ charts\nmenu = Charts\ntitle = The most interesting destinations\n++ stddev\nsorter = StdDev(entries=>4)\ntitle = Top Standard Deviation\nmenu = Std Deviation\nformat = Standard Deviation %f\n++ max\nsorter = Max(entries=>5)\ntitle = Top Max Roundtrip Time\nmenu = by Max\nformat = Max Roundtrip Time %f seconds\n++ loss\nsorter = Loss(entries=>5)\ntitle = Top Packet Loss\nmenu = Loss\nformat = Packets Lost %f\n++ median\nsorter = Median(entries=>5)\ntitle = Top Median Roundtrip Time\nmenu = by Median\nformat = Median RTT %f seconds\n+ overview\nwidth = 600\nheight = 50\nrange = 10h\n+ detail\nwidth = 600\nheight = 200\nunison_tolerance = 2\n\"Last 3 Hours\"    3h\n\"Last 30 Hours\"   30h\n\"Last 10 Days\"    10d\n\"Last 360 Days\"   360d\n",
               description: "presentation graph style",
             })))),
           presentationTemplate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`${nix.sel(pkgs, "smokeping")}/etc/basepage.html.dist`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${pkgs.smokeping}/etc/basepage.html.dist\"")),
               description: "Default page layout for the web UI.",
             })))),
           probeConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: nix.thunk(() => nix.str`+ FPing
 binary = ${nix.sel(config, "security", "wrapperDir")}/fping
@@ -218,33 +218,33 @@ binary = ${nix.sel(config, "security", "wrapperDir")}/fping
               description: "Probe configuration",
             })))),
           sendmail: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               default: null,
               example: "/run/wrappers/bin/sendmail",
               description: "Use this sendmail compatible script to deliver alerts",
             })))),
           smokeMailTemplate: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/smokemail.dist`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "\"${package}/etc/smokemail.dist\"")),
               description: "Specify the smokemail template for alerts.",
             })))),
           targetConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "probe = FPing\nmenu = Top\ntitle = Network Latency Grapher\nremark = Welcome to the SmokePing website of xxx Company. \\\n         Here you will learn all about the latency of our network.\n+ Local\nmenu = Local\ntitle = Local Network\n++ LocalMachine\nmenu = Local Machine\ntitle = This host\nhost = localhost\n",
               description: "Target configuration",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "smokeping",
               description: "User that runs smokeping and (optionally) thttpd. A group of the same name will be created as well.",
             })))),
           webService: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               description: "Enable a smokeping web interface",
@@ -253,20 +253,20 @@ binary = ${nix.sel(config, "security", "wrapperDir")}/fping
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "sendmail"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "mailHost"), ""))))),
             message: "services.smokeping: sendmail and Mailhost cannot both be enabled.",
           })),
         ]),
         security: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             fping: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               setuid: true,
               owner: "root",
               group: "root",
@@ -275,18 +275,18 @@ binary = ${nix.sel(config, "security", "wrapperDir")}/fping
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           etc: nix.thunk(() => ({
-            __proto__: pos$29,
-            "smokeping.conf": nix.thunk(() => ({ __proto__: pos$28, source: configPath })),
+            [nix.POS]: pos$29,
+            "smokeping.conf": nix.thunk(() => ({ [nix.POS]: pos$28, source: configPath })),
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fping"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$31,
+              [nix.POS]: pos$31,
               isNormalUser: false,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "user")),
@@ -294,22 +294,22 @@ binary = ${nix.sel(config, "security", "wrapperDir")}/fping
               home: smokepingHome,
             }))],
             [nix.sel(config, "services", "nginx", "user"), nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "webService")), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "user"))]),
               }))))],
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "user"), nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             smokeping: nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               reloadTriggers: nix.thunk(() => [configPath]),
               requiredBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$34,
+                [nix.POS]: pos$34,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Restart: "on-failure",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/smokeping --config=/etc/smokeping.conf --nodaemon`),
@@ -320,7 +320,7 @@ ${nix.sel(cfg, "package")}/bin/smokeping --static --config=${configPath}
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             rules: nix.thunk(() => [
               nix.thunk(() => nix.str`d ${smokepingHome}/cache 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "user")}`),
               nix.thunk(() => nix.str`d ${smokepingHome}/data 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "user")}`),
@@ -332,22 +332,22 @@ ${nix.sel(cfg, "package")}/bin/smokeping --static --config=${configPath}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           fcgiwrap: nix.thunk(() => ({
-            __proto__: pos$43,
+            [nix.POS]: pos$43,
             instances: nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               smokeping: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "webService")), nix.thunk(() => ({
-                  __proto__: pos$41,
+                  [nix.POS]: pos$41,
                   process: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     user: nix.thunk(() => nix.sel(cfg, "user")),
                     group: nix.thunk(() => nix.sel(cfg, "user")),
                   })),
                   socket: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config, "services", "nginx"));
                     return {
-                    __proto__: pos$40,
+                    [nix.POS]: pos$40,
                     user: nix.thunk(() => nix.attr(from, "user")),
                     group: nix.thunk(() => nix.attr(from, "group")),
                   };
@@ -356,18 +356,18 @@ ${nix.sel(cfg, "package")}/bin/smokeping --static --config=${configPath}
             })),
           })),
           nginx: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "webService")), nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 smokeping: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   serverName: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(cfg, "host")))),
                   locations: nix.thunk(() => ({
-                    __proto__: pos$46,
-                    "/": nix.thunk(() => ({ __proto__: pos$44, root: smokepingHome, index: "smokeping.fcgi" })),
+                    [nix.POS]: pos$46,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$44, root: smokepingHome, index: "smokeping.fcgi" })),
                     "/smokeping.fcgi": nix.thunk(() => ({
-                      __proto__: pos$45,
+                      [nix.POS]: pos$45,
                       extraConfig: nix.thunk(() => nix.str`include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 fastcgi_pass unix:${nix.sel(config, "services", "fcgiwrap", "instances", "smokeping", "socket", "address")};
 fastcgi_param SCRIPT_FILENAME ${smokepingHome}/smokeping.fcgi;
@@ -381,7 +381,7 @@ fastcgi_param DOCUMENT_ROOT ${smokepingHome};
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "nh2"))];

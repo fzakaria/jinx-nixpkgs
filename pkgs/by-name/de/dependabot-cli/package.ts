@@ -31,21 +31,21 @@ export default nix.lambda((args) => (() => {
   const version = "1.93.0";
   const tag = nix.thunk(() => nix.str`nixpkgs-dependabot-cli-${version}`);
   const updateJobProxy = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     imageDigest: "sha256:56d8f53a1ea2da7ddd61cc4c36e68cdd0c3ae8dfcc64bdc20979d28be6dbbf92",
     hash: "sha256-wqeihcbVo+x/SXGqvjtccjrFu9seOAoY1zMLiTeVhxw=",
   }));
   const updaterGitHubActions = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     imageDigest: "sha256:75f4843d57695da308d73940c9d885cc57ed8f1fbaf96affdee38b260812dcad",
     hash: "sha256-jL38pYoGFV6cpkzTVQn0UZ39gJvOBfQrI6ywefCNwMU=",
   }));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "dependabot",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -64,16 +64,16 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/dependabot --help\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         updateScript: nix.path(here, "./update.sh"),
         withDockerImages: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "dependabot-cli-with-docker-images",
             paths: nix.thunk(() => [dependabot_cli]),
             buildInputs: nix.thunk(() => [makeWrapper]),
             postBuild: nix.thunk(() => (() => {
               const updateJobProxyImage = nix.thunk(() => nix.app(nix.sel(dockerTools, "pullImage"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   imageName: "ghcr.io/dependabot/proxy",
                   finalImageName: "dependabot-update-job-proxy",
                   finalImageTag: tag,
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
                   hash: nix.thunk(() => nix.attr(updateJobProxy, "hash")),
                 }))));
               const updaterGitHubActionsImage = nix.thunk(() => nix.app(nix.sel(dockerTools, "pullImage"), nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   imageName: "ghcr.io/dependabot/dependabot-updater-github-actions",
                   finalImageName: "dependabot-updater-github-actions",
                   finalImageTag: tag,
@@ -98,9 +98,9 @@ wrapProgram $out/bin/dependabot \\
             })()),
           })))),
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               package: dependabot_cli,
               command: "dependabot --version",
               version: nix.thunk(() => nix.str`v${version}`),
@@ -108,7 +108,7 @@ wrapProgram $out/bin/dependabot \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         changelog: nix.thunk(() => nix.str`https://github.com/dependabot/cli/releases/tag/v${version}`),
         description: "Tool for testing and debugging Dependabot update jobs",
         mainProgram: "dependabot",

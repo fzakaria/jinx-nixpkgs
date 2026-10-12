@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const blas = nix.arg($, "blas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iml",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.cs.uwaterloo.ca/~astorjoh/iml-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0akwhhz9b40bz6lrfxpamp7r7wkk48p455qbn04mfnl9a1l6db8x",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         "--with-cblas=-lblas",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Algorithms for computing exact solutions to dense systems of linear equations over the integers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

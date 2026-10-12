@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "v2ray-rules-dat",
       version: "202610042206",
       __structuredAttrs: true,
@@ -30,21 +30,21 @@ install -Dm444 ${nix.sel(finalAttrs, "passthru", "geositeDat")} $out/share/v2ray
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         geoipDat: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${nix.sel(finalAttrs, "version")}/geoip.dat`),
             hash: "sha256-ORtSI2HFKATkhqmLU9l/PZwdPk5CF7s0lUd0oLRWuf0=",
           })))),
         geositeDat: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${nix.sel(finalAttrs, "version")}/geosite.dat`),
             hash: "sha256-1OGXFHwQFxKakGp/FVBQzN4LKRzzdveHBxrz6AXMfSw=",
           })))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Enhanced edition of V2Ray rules dat files",
         homepage: "https://github.com/Loyalsoldier/v2ray-rules-dat",
         changelog: nix.thunk(() => nix.str`https://github.com/Loyalsoldier/v2ray-rules-dat/releases/tag/${nix.sel(finalAttrs, "version")}`),

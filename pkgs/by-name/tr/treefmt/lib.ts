@@ -22,26 +22,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const treefmt = nix.arg($, "treefmt");
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     evalConfig: (module) => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         class: "treefmtConfig",
-        specialArgs: nix.thunk(() => ({ __proto__: pos$1, modulesPath: nix.path(here, "./modules") })),
+        specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, modulesPath: nix.path(here, "./modules") })),
         modules: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             _file: "treefmt.evalConfig",
             _module: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               args: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 pkgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), pkgs)),
               })),
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), treefmt)),
           })),
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             _file: "<treefmt.evalConfig args>",
             imports: nix.thunk(() => nix.app(nix.sel(lib, "toList"), module)),
           })),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       }))),
     withConfig: (module) => (() => {
       const configuration = nix.thunk(() => nix.app(nix.sel(treefmt, "evalConfig"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           _file: "<treefmt.withConfig args>",
           imports: nix.thunk(() => nix.app(nix.sel(lib, "toList"), module)),
         }))));
@@ -58,19 +58,19 @@ export default nix.lambda((args) => (() => {
     })(),
     buildConfig: (module) => (() => {
       const configuration = nix.thunk(() => nix.app(nix.sel(treefmt, "evalConfig"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           _file: "<treefmt.buildConfig args>",
           settings: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             imports: nix.thunk(() => nix.app(nix.sel(lib, "toList"), module)),
           })),
         }))));
       return nix.app(nix.sel(configuration, "config", "configFile", "overrideAttrs"), nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           passthru: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(configuration, "config"));
             return {
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             settings: nix.thunk(() => nix.attr(from, "settings")),
             options: nix.thunk(() => nix.app((opt) => nix.app(nix.sel(opt, "type", "getSubOptions"), nix.thunk(() => nix.sel(opt, "loc"))), nix.thunk(() => nix.sel(configuration, "options", "settings")))),
           };

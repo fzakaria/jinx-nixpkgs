@@ -20,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   const version = nix.argOr($, "version", () => "3.0.1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cadical",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "arminbiere",
           repo: "cadical",
           rev: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
           hash: nix.thunk(() => nix.sel({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             "3.0.1": "sha256-oHebG9VBtEnxmBpfP6A/f/UNIx2AXbLPs0NHPoNlZfY=",
             "3.0.0": "sha256-pymbSC6bwQQ0YCtJd3xWZiC22UEkFiKSLObSOnoQj9I=",
             "2.2.1": "sha256-dYRaw9DI63Nqz0IJkfQYU4y00KSfq1Xv0xZuL1G15CY=",
@@ -44,18 +44,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(makePkgconfigItem, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             return {
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "cadical",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cflags: nix.thunk(() => ["-I${includedir}"]),
             libs: nix.thunk(() => ["-L${libdir}", "-lcadical"]),
-            variables: nix.thunk(() => ({ __proto__: pos$3, includedir: "@includedir@", libdir: "@libdir@" })),
+            variables: nix.thunk(() => ({ [nix.POS]: pos$3, includedir: "@includedir@", libdir: "@libdir@" })),
             description: nix.thunk(() => nix.attr(from, "description")),
           };
           })()))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
         libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/lib`),
       })),
@@ -77,7 +77,7 @@ install -Dm0755 {LICEN?E,README*,VERSION} "$out/share/doc/${nix.sel(finalAttrs, 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Simplified Satisfiability Solver",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

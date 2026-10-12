@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [cmake, ninja, pybind11, scikit_build_core]);
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(libmamba, "override"), nix.thunk(() => ({ __proto__: pos$1, python3: python })))),
+        nix.thunk(() => nix.app(nix.sel(libmamba, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python })))),
         bzip2,
         curl,
         fmt,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["libmambapy", "libmambapy.bindings"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/mamba-org/mamba/blob/${nix.sel(src, "tag")}/libmambapy/CHANGELOG.md`),
         description: "Python library for the fast Cross-Platform Package Manager",
         homepage: "https://github.com/mamba-org/mamba",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ericthemagician"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         pyproject,
         version,

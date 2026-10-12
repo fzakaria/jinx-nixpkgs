@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bpython",
           repo: "bpython",
           tag: nix.thunk(() => nix.str`${version}-release`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bpython/bpython/commit/870e81cb5a6860f1ba15744c81b97f71467eedf9.patch",
             hash: "sha256-z55EkLT51ulz/V3XgjP1cbQza9ztb5YHu1UlXlbaWTQ=",
           })))),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [curtsies, cwcwidth, greenlet, pygments, pyxdg, requests]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         clipboard: nix.thunk(() => [pyperclip]),
         jedi: nix.thunk(() => [jedi]),
         urwid: nix.thunk(() => [urwid]),
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["bpython"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$4, "rev-suffix": "-release" })))),
+        [nix.POS]: pos$5,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-suffix": "-release" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/bpython/bpython/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Fancy curses interface to the Python interactive interpreter",
         homepage: "https://bpython-interpreter.org/",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

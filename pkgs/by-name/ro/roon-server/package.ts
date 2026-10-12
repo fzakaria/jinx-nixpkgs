@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const version = "2.73.1696";
   const urlVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["0"]), version));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "roon-server",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.roonlabs.com/updates/production/RoonServer_linuxx64_${urlVersion}.tar.bz2`),
           hash: "sha256-BD8qBJCsmpx24k003t5QXC658p3ofOSZtQCZHKOypvg=",
         })))),
@@ -80,9 +80,9 @@ makeWrapper "$out/Server/RoonServer" "$out/bin/RoonServer" --chdir "$out"
 runHook postInstall
 `;
       })()),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Music player for music lovers",
         changelog: "https://community.roonlabs.com/c/roon/software-release-notes/18",
         homepage: "https://roonlabs.com",

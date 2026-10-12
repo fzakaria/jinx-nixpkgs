@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "rtmp",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arut",
           repo: "nginx-rtmp-module",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,20 +28,20 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-unused-variables-ngx-rtmp-handler.patch",
             url: "https://github.com/arut/nginx-rtmp-module/commit/6c7719d0ba32e00b563ec70bd43dad11960fa9c4.patch",
             hash: "sha256-c2hSp4CamBYMwkU9EOUSnfXvCYVOIxm1WzMR/M7Ojcc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "remove-unused-variables-ngx-rtmp-eval.patch",
             url: "https://github.com/arut/nginx-rtmp-module/commit/c56fd73def3eb407155ecebc28af84ea83dc99e5.patch",
             hash: "sha256-APXdEsRp3SSUKM9ud8tbZEPsfOe/055TRD7FFHE2k9w=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Media Streaming Server",
         homepage: "https://github.com/arut/nginx-rtmp-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

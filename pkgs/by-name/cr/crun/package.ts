@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const withWasmer = nix.argOr($, "withWasmer", () => false);
   const withWasmtime = nix.argOr($, "withWasmtime", () => false);
   const wamrShared = nix.thunk(() => nix.app(nix.sel(wamr, "overrideAttrs"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DBUILD_SHARED_LIBS=ON"])),
     })));
   const disabledTests = nix.thunk(() => [
@@ -64,11 +64,11 @@ export default nix.lambda((args) => (() => {
     "tests_libcrun_utils",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "crun",
       version: "1.30.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "containers",
           repo: "crun",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +86,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_LDFLAGS: nix.thunk(() => nix.add("-lcriu", nix.app(nix.sel(lib, "optionalString"), withWamr, " -liwasm"))),
       })),
       postPatch: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`echo ${nix.sel(finalAttrs, "version")} > .tarball-version
@@ -108,14 +108,14 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (e) => nix.str`substituteIn
 `)))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
-        tests: nix.thunk(() => ({ __proto__: pos$4, podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
+        [nix.POS]: pos$5,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$4, podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
       })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         changelog: nix.thunk(() => nix.str`https://github.com/containers/crun/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Fast and lightweight fully featured OCI runtime and C library for running containers",
         homepage: "https://github.com/containers/crun",

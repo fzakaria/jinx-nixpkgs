@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qbs";
       const version = "3.3.1";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://code.qt.io/qbs/qbs.git",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-1W7+CZt1mtx8RdcZxhEhgi6+4/SPQAjic8yYXckBuJg=",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qt5compat")),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool that helps simplify the build process for developing projects across multiple platforms",
         homepage: "https://wiki.qt.io/Qbs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

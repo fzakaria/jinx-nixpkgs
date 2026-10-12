@@ -37,31 +37,31 @@ export default nix.lambda((args) => (() => {
   const harfbuzz = nix.arg($, "harfbuzz");
   const fontconfig = nix.arg($, "fontconfig");
   const fribidi = nix.arg($, "fribidi");
-  const arch = nix.thunk(() => nix.selOr({ __proto__: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => "", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "amd64" }, () => "", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const version = "0.37.0";
   const linux = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     url: nix.thunk(() => nix.str`https://github.com/wang-bin/mdk-sdk/releases/download/v${version}/mdk-sdk-linux.tar.xz`),
     hash: "sha256-bBneSsNHfMH2MoDddT1cOtnyWjRNYHo0UTqnjrLpk4Q=",
   }));
   const darwin = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     url: nix.thunk(() => nix.str`https://github.com/wang-bin/mdk-sdk/releases/download/v${version}/mdk-sdk-apple.tar.xz`),
     hash: "sha256-KGKzwy/unzkCUoh/dGjk0BVEUgDdMx5jy1Qt5C357DQ=",
   }));
   const sources = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-linux": linux,
     "x86_64-linux": linux,
     "aarch64-darwin": darwin,
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "mdk-sdk",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           url: nix.thunk(() => nix.attr(source, "url")),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
@@ -99,7 +99,7 @@ ln -s . $out/lib/${arch}
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Multimedia development kit",
         homepage: "https://github.com/wang-bin/mdk-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

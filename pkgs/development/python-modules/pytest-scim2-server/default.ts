@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "pytest_scim2_server",
           version: version,
           hash: "sha256-Diu8TPPELQG30NZvafI/t7IR+HzkI0sPsjcUFxwVPLw=",
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [portpicker, pytest, scim2_server]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, scim2_client], nix.sel(scim2_client, "optional-dependencies", "httpx")));
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["pytest_scim2_server"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://pypi.org/project/pytest-scim2-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

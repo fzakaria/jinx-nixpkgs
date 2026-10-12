@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const jsoncpp = nix.arg($, "jsoncpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "svxlink",
       version: "26.05.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sm0svx",
           repo: "svxlink",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapQtApp $out/bin/qtel\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Advanced repeater controller and EchoLink software",
         longDescription: "Advanced repeater controller and EchoLink software for Linux including a\nGUI, Qtel - The Qt EchoLink client\n",
         homepage: "https://www.svxlink.org/",

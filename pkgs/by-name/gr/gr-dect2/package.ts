@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const gmpxx = nix.arg($, "gmpxx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gr-dect2",
       version: "0-unstable-2025-03-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pavelyazev",
           repo: "gr-dect2",
           rev: "0d973fe433eebfe3eee6e7f2eeb1322f8976ab42",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "numpy")),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Gnuradio module for real-time decoding of unencrypted DECT voice chnanels",
         homepage: "https://github.com/pavelyazev/gr-dect2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

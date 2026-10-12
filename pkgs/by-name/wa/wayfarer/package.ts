@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wayfarer",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stronnag",
           repo: "wayfarer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         pipewire,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screen recorder for GNOME / Wayland / pipewire",
         homepage: "https://codeberg.org/stronnag/wayfarer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

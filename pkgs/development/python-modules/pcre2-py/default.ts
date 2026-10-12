@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grtetrault",
           repo: "pcre2.py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +57,7 @@ substituteInPlace src/pcre2/CMakeLists.txt \\
       const pythonImportsCheck = nix.thunk(() => ["pcre2"]);
       const postCheck = "cd $out\nrm -rf *.t* *.py requirements Makefile LICENSE *.md\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python bindings for the PCRE2 library created by Philip Hazel",
         homepage: "https://github.com/grtetrault/pcre2.py",
         changelog: nix.thunk(() => nix.str`https://github.com/grtetrault/pcre2.py/releases/tag/${nix.sel(src, "tag")}`),
@@ -68,7 +68,7 @@ substituteInPlace src/pcre2/CMakeLists.txt \\
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

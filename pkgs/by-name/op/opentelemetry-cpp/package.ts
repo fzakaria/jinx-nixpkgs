@@ -34,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const enableZipkin = nix.argOr($, "enableZipkin", () => false);
   const opentelemetry_cpp = nix.arg($, "opentelemetry-cpp");
   const opentelemetry_proto = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "open-telemetry",
       repo: "opentelemetry-proto",
       rev: "v1.11.0",
       hash: "sha256-1s94AS5+bPD0/UKbI/Ox+nSZe4PGLkinUcItITVgEiQ=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "opentelemetry-cpp",
       version: "1.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "open-telemetry",
           repo: "opentelemetry-cpp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./0001-Disable-tests-requiring-network-access.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/open-telemetry/opentelemetry-cpp/commit/e62f627ccb220e9c72eaebf32b246ec0bf98d60f.patch?full_index=1",
             hash: "sha256-YCg0kHP8QW9FFivNWYqJvwKLVUvY+grTsev5nJY6xjY=",
           })))),
@@ -81,13 +81,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       postInstall: "substituteInPlace $out/lib/cmake/opentelemetry-cpp/opentelemetry-cpp*-target.cmake \\\n  --replace-quiet \"\\${_IMPORT_PREFIX}/include\" \"$dev/include\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         "opentelemetry-proto": opentelemetry_proto,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           full: nix.thunk(() => nix.app(nix.sel(opentelemetry_cpp, "override"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enableHttp: true,
               enableGrpc: true,
               enablePrometheus: true,
@@ -97,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "OpenTelemetry C++ Client Library",
         homepage: "https://github.com/open-telemetry/opentelemetry-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

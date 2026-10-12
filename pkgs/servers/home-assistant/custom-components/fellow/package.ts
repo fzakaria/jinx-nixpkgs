@@ -21,26 +21,26 @@ export default nix.lambda((args) => (() => {
       const domain = "fellow";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kristofferR",
           repo: "FellowAiden-HomeAssistant",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-DiVEHIPyMzbifydNarOAo4aMoMxoOW5AWRx7tvviPQA=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const dependencies = nix.thunk(() => [requests, pydantic]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/kristofferR/FellowAiden-HomeAssistant/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant integration for Fellow Aiden coffee brewer",
         homepage: "https://github.com/kristofferR/FellowAiden-HomeAssistant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
-      return { __proto__: pos$4, owner, domain, version, src, passthru, dependencies, meta };
+      return { [nix.POS]: pos$4, owner, domain, version, src, passthru, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

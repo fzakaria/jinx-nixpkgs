@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prelude",
       version: "0.5",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.zapashcanon.fr/zapashcanon/prelude/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lti+q1U/eEasAXo0O5YEu4iw7947V9bdvSHA0IEMS8M=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to enforce good stdlib practices",
         homepage: "https://ocaml.org/p/prelude/",
         downloadPage: "https://git.zapashcanon.fr/zapashcanon/prelude",

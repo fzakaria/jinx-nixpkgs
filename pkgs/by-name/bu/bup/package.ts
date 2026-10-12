@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
       ])));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bup",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "bup",
           owner: "bup",
           tag: version,
@@ -59,7 +59,7 @@ substituteInPlace configure \\
         "LIBDIR=$(out)/lib/bup",
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         BUP_PYTHON_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), python3)), "python-config")),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=implicit-function-declaration -Wno-error=implicit-int")),
       })),
@@ -68,7 +68,7 @@ substituteInPlace configure \\
   --prefix NIX_PYTHONPATH : ${nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", nix.thunk(() => nix.sel(python3, "sitePackages")), pythonDeps)}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/bup/bup",
         description: "Efficient file backup system based on the git packfile format",
         mainProgram: "bup",

@@ -28,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const discord_development = nix.arg($, "discord-development");
   const buildWebExtension = nix.argOr($, "buildWebExtension", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "equicord",
       version: "2026-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Equicord",
           repo: "Equicord",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Bu1226PDuCmY8w7RKTMZJzsLQiF0URuABZGxgo78H7k=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [git, nodejs, pnpmConfigHook, pnpm_10]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         EQUICORD_REMOTE: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "owner")}/${nix.sel(finalAttrs, "src", "repo")}`),
         EQUICORD_HASH: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "tag")}`),
       })),
@@ -67,15 +67,15 @@ cp -r dist/${nix.app(nix.sel(lib, "optionalString"), buildWebExtension, "chromiu
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d{4}-\\d{2}-\\d{2})$"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [discord, discord_ptb, discord_canary, discord_development]), (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(p, "pname")), nix.thunk(() => nix.sel(p, "tests", "withEquicord"))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Other cutest Discord client mod",
         homepage: "https://github.com/Equicord/Equicord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

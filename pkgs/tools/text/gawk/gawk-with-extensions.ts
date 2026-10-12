@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const extensions = nix.arg($, "extensions");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(runCommand, "gawk-with-extensions", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([gawk], extensions)),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin

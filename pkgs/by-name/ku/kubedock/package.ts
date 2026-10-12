@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "kubedock",
       version: "0.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joyrex2001",
           repo: "kubedock",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,9 +30,9 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X github.com/joyrex2001/kubedock/internal/config.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Minimal implementation of the Docker API that will orchestrate containers on a Kubernetes cluster",
         homepage: "https://github.com/joyrex2001/kubedock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

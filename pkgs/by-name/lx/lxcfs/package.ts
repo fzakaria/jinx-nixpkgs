@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "lxcfs",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lxc",
           repo: "lxcfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,15 +55,15 @@ wrapProgram "$out/share/lxcfs/lxc.reboot.hook" --prefix PATH : ${nix.app(nix.sel
 `),
       postFixup: "# liblxcfs.so is reloaded with dlopen()\npatchelf --set-rpath \"$(patchelf --print-rpath \"$out/bin/lxcfs\"):$out/lib\" \"$out/bin/lxcfs\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "incus-lts": nix.thunk(() => nix.sel(nixosTests, "incus-lts", "container")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "FUSE filesystem for LXC",
         mainProgram: "lxcfs",
         homepage: "https://linuxcontainers.org/lxcfs",

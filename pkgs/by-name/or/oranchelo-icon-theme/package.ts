@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oranchelo-icon-theme";
       const version = "0.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OrancheloTeam",
           repo: "oranchelo-icon-theme",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "# space in icon name causes gtk-update-icon-cache to fail\nmv \"$out/share/icons/Oranchelo/apps/scalable/ grsync.svg\" \"$out/share/icons/Oranchelo/apps/scalable/grsync.svg\"\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache \"$theme\"\ndone\n";
       const dontCheckForBrokenSymlinks = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Oranchelo icon theme",
         homepage: "https://github.com/OrancheloTeam/oranchelo-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

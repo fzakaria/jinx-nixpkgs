@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const hyprland = nix.arg($, "hyprland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hyprviz",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timasoft",
           repo: "hyprviz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, glib, pango]),
       postInstall: "install -Dm644 assets/hyprviz.desktop -t $out/share/applications\ninstall -Dm644 assets/hyprviz.svg -t $out/share/icons/hicolor/scalable/apps\ninstall -Dm644 assets/hyprviz.png -t $out/share/icons/hicolor/256x256/apps\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "GUI for configuring Hyprland",
         homepage: "https://github.com/timasoft/hyprviz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

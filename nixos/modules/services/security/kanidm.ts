@@ -201,7 +201,7 @@ export default nix.lambda((args) => (() => {
   const clientConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "kanidm-config.toml", nix.thunk(() => nix.app(filterConfig, nix.thunk(() => nix.sel(cfg, "client", "settings"))))));
   const unixConfigFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "kanidm-unixd.toml", nix.thunk(() => nix.app(filterConfig, nix.thunk(() => nix.sel(cfg, "unix", "settings"))))));
   const entryManagementDir = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "kanidm-entry-management", nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: nix.thunk(() => nix.str`${name}.json`),
         path: nix.thunk(() => nix.app(nix.sel(jsonFormat, "generate"), nix.thunk(() => nix.str`${name}.json`), value)),
       }), nix.thunk(() => nix.sel(cfg, "server", "entryManagement", "migrations"))))));
@@ -226,7 +226,7 @@ export default nix.lambda((args) => (() => {
       return nix.concat(filteredPaths, filteredNew);
     })(), []));
   const defaultServiceConfig = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     Type: "notify",
     BindReadOnlyPaths: nix.thunk(() => [
       "/nix/store",
@@ -263,7 +263,7 @@ export default nix.lambda((args) => (() => {
     SystemCallFilter: nix.thunk(() => ["@system-service", "~@privileged @resources @setuid @keyring"]),
   }));
   const mkPresentOption = (what) => nix.app(mkOption, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       description: nix.thunk(() => nix.str`Whether to ensure that this ${what} is present or absent.`),
       type: nix.thunk(() => nix.sel(types, "bool")),
       default: true,
@@ -272,7 +272,7 @@ export default nix.lambda((args) => (() => {
   const provisionStateJson = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "provision-state.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cfg, "provision"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         groups: nix.thunk(() => nix.attr(from, "groups")),
         persons: nix.thunk(() => nix.attr(from, "persons")),
         systems: nix.thunk(() => nix.attr(from, "systems")),
@@ -351,7 +351,7 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
   })());
   const addKaniSshKeys = nix.thunk(() => (nix.asBool(nix.sel(cfg, "unix", "enable")) && nix.asBool(nix.sel(cfg, "unix", "sshIntegration"))));
   return {
-    __proto__: pos$149,
+    [nix.POS]: pos$149,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "kanidm", "enableServer"]), nix.thunk(() => ["services", "kanidm", "server", "enable"]))),
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "kanidm", "serverSettings"]), nix.thunk(() => ["services", "kanidm", "server", "settings"]))),
@@ -361,34 +361,34 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
       nix.thunk(() => nix.app(mkRenamedOptionModule, nix.thunk(() => ["services", "kanidm", "unixSettings"]), nix.thunk(() => ["services", "kanidm", "unix", "settings"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$84,
+      [nix.POS]: pos$84,
       services: nix.thunk(() => ({
-        __proto__: pos$83,
+        [nix.POS]: pos$83,
         kanidm: nix.thunk(() => ({
-          __proto__: pos$82,
+          [nix.POS]: pos$82,
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "kanidm", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               example: "kanidm_1_8",
               extraDescription: "Must be set to an explicit version.",
             })))),
           server: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Kanidm server")),
             entryManagement: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               migrations: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   description: "Entry management (migrations) to apply to the Kanidm database.\nThese are JSON formatted person and group records that are imported to the server on startup.\nKeys of this attribute set should follow the pattern `xx-name` (e.g. `00-base`, `99-accounts`),\nand values are the JSON representation of the migration.\nSee [the documentation](https://kanidm.github.io/kanidm/stable/entry_management.html)\nfor details on the record syntax.\n",
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(jsonFormat, "type")))),
                   example: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     "00-base": nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       id: "a2b58e97-0aaf-4b04-a4e4-7984616fe1df",
                       assertions: nix.thunk(() => [
                         nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           state: "present",
                           id: "0ee875bd-408d-4ff9-85ca-c162f262493d",
                           class: nix.thunk(() => ["person", "account"]),
@@ -401,84 +401,84 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
                 })))),
             })),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$25,
+                    [nix.POS]: pos$25,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$24,
+                      [nix.POS]: pos$24,
                       bindaddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$11,
+                          [nix.POS]: pos$11,
                           description: "Address/port combination the webserver binds to.",
                           example: "[::1]:8443",
                           default: "127.0.0.1:8443",
                           type: nix.thunk(() => nix.sel(types, "str")),
                         })))),
                       ldapbindaddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           description: "Address and port the LDAP server is bound to. Setting this to `null` disables the LDAP interface.\n",
                           example: "[::1]:636",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         })))),
                       origin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$13,
+                          [nix.POS]: pos$13,
                           description: "The origin of your Kanidm instance. Must have https as protocol.",
                           example: "https://idm.example.org",
                           type: nix.thunk(() => nix.app(nix.sel(types, "strMatching"), "^https://.*")),
                         })))),
                       domain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           description: "The `domain` that Kanidm manages. Must be below or equal to the domain\nspecified in `server.settings.origin`.\nThis can be left at `null`, only if your instance has the role `ReadOnlyReplica`.\nWhile it is possible to change the domain later on, it requires extra steps!\nPlease consider the warnings and execute the steps described\n[in the documentation](https://kanidm.github.io/kanidm/stable/domain_rename.html).\n",
                           example: "example.org",
                           default: null,
                           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         })))),
                       db_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$15,
+                          [nix.POS]: pos$15,
                           description: "Path to Kanidm database.",
                           default: "/var/lib/kanidm/kanidm.db",
                           readOnly: true,
                           type: nix.thunk(() => nix.sel(types, "path")),
                         })))),
                       tls_chain: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$16,
+                          [nix.POS]: pos$16,
                           description: "TLS chain in pem format.",
                           type: nix.thunk(() => nix.sel(types, "path")),
                         })))),
                       tls_key: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$17,
+                          [nix.POS]: pos$17,
                           description: "TLS key in pem format.",
                           type: nix.thunk(() => nix.sel(types, "path")),
                         })))),
                       log_level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$18,
+                          [nix.POS]: pos$18,
                           description: "Log level of the server.",
                           default: "info",
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["info", "debug", "trace"]))),
                         })))),
                       role: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$19,
+                          [nix.POS]: pos$19,
                           description: "The role of this server. This affects the replication relationship and thereby available features.",
                           default: "WriteReplica",
                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["WriteReplica", "WriteReplicaNoUI", "ReadOnlyReplica"]))),
                         })))),
                       online_backup: nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$20,
+                            [nix.POS]: pos$20,
                             description: "Path to the output directory for backups.",
                             type: nix.thunk(() => nix.sel(types, "path")),
                             default: "/var/lib/kanidm/backups",
                           })))),
                         schedule: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$21,
+                            [nix.POS]: pos$21,
                             description: "The schedule for backups in cron format.",
                             type: nix.thunk(() => nix.sel(types, "str")),
                             default: "00 22 * * *",
                           })))),
                         versions: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$22,
+                            [nix.POS]: pos$22,
                             description: "Number of backups to keep.\n\nThe default is set to `0`, in order to disable backups by default.\n",
                             type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
                             default: 0n,
@@ -492,17 +492,17 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
               })))),
           })),
           client: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Kanidm client")),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$29,
+                      [nix.POS]: pos$29,
                       uri: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$28,
+                          [nix.POS]: pos$28,
                           description: "Address of the Kanidm server.",
                           example: "http://127.0.0.1:8080",
                           type: nix.thunk(() => nix.sel(types, "str")),
@@ -513,27 +513,27 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
               })))),
           })),
           unix: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             enable: nix.thunk(() => nix.app(mkEnableOption, "the Kanidm PAM and NSS integration")),
             sshIntegration: nix.thunk(() => nix.app(mkEnableOption, "Kanidm SSH keys login")),
             settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                    __proto__: pos$37,
+                    [nix.POS]: pos$37,
                     freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$36,
+                      [nix.POS]: pos$36,
                       kanidm: nix.thunk(() => ({
-                        __proto__: pos$34,
+                        [nix.POS]: pos$34,
                         pam_allowed_login_groups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$33,
+                            [nix.POS]: pos$33,
                             description: "Kanidm groups that are allowed to login using PAM.",
                             example: "my_pam_group",
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                           })))),
                       })),
                       hsm_pin_path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          __proto__: pos$35,
+                          [nix.POS]: pos$35,
                           description: "Path to a HSM pin.",
                           default: "/var/cache/kanidm-unixd/hsm-pin",
                           type: nix.thunk(() => nix.sel(types, "path")),
@@ -544,108 +544,108 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
               })))),
           })),
           provision: nix.thunk(() => ({
-            __proto__: pos$81,
+            [nix.POS]: pos$81,
             enable: nix.thunk(() => nix.app(mkEnableOption, "provisioning of groups, users and oauth2 resource servers")),
             instanceUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 description: "The instance url to which the provisioning tool should connect.",
                 default: nix.thunk(() => nix.str`https://localhost:${serverPort}`),
                 defaultText: "https://localhost:<port from server.settings.bindaddress>",
                 type: nix.thunk(() => nix.sel(types, "str")),
               })))),
             acceptInvalidCerts: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$41,
+                [nix.POS]: pos$41,
                 description: "Whether to allow invalid certificates when provisioning the target instance.\nBy default this is only allowed when the instanceUrl is localhost. This is\ndangerous when used with an external URL.\n",
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: nix.thunk(() => nix.app(hasPrefix, "https://localhost:", nix.thunk(() => nix.sel(cfg, "provision", "instanceUrl")))),
                 defaultText: "hasPrefix \"https://localhost:\" cfg.provision.instanceUrl",
               })))),
             adminPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 description: "Path to a file containing the admin password for kanidm. Do NOT use a file from the nix store here!",
                 example: "/run/secrets/kanidm-admin-password",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               })))),
             idmAdminPasswordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 description: "Path to a file containing the idm admin password for kanidm. Do NOT use a file from the nix store here!\nIf this is not given but provisioning is enabled, the idm_admin password will be reset on each restart.\n",
                 example: "/run/secrets/kanidm-idm-admin-password",
                 default: null,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
               })))),
             autoRemove: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$44,
+                [nix.POS]: pos$44,
                 description: "Determines whether deleting an entity in this provisioning config should automatically\ncause them to be removed from kanidm, too. This works because the provisioning tool tracks\nall entities it has ever created. If this is set to false, you need to explicitly specify\n`present = false` to delete an entity.\n",
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
               })))),
             extraJsonFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 description: "A JSON file for provisioning persons, groups & systems.\nOptions set in this file take precedence over values set using the other options.\nThe files get deeply merged, and deduplicated.\nThe accepted JSON schema can be found at <https://github.com/oddlama/kanidm-provision#json-schema>.\n",
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
               })))),
             groups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$51,
+                [nix.POS]: pos$51,
                 description: "Provisioning of kanidm groups",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), (groupSubmod) => ({
-                      __proto__: pos$50,
+                      [nix.POS]: pos$50,
                       options: nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         present: nix.thunk(() => nix.app(mkPresentOption, "group")),
                         members: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             description: "List of kanidm entities (persons, groups, ...) which are part of this group.",
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             apply: unique,
                             default: [],
                           })))),
                         overwriteMembers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             description: "Whether the member list should be overwritten each time (true) or appended\n(false). Append mode allows interactive group management in addition to the\ndeclared members. Also, future member removals cannot be reflected\nautomatically in append mode.\n",
                             type: nix.thunk(() => nix.sel(types, "bool")),
                             default: true,
                           })))),
                       })),
                       config: nix.thunk(() => ({
-                        __proto__: pos$49,
+                        [nix.POS]: pos$49,
                         members: nix.thunk(() => nix.app(concatLists, nix.thunk(() => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.sel(cfg, "provision", "persons")), (person) => (personCfg) => nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(personCfg, "present")) && nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(groupSubmod, "config", "_module", "args", "name")), nix.thunk(() => nix.sel(personCfg, "groups")))))), person))))),
                       })),
                     }))))),
               })))),
             persons: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$58,
+                [nix.POS]: pos$58,
                 description: "Provisioning of kanidm persons",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$57,
+                      [nix.POS]: pos$57,
                       options: nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         present: nix.thunk(() => nix.app(mkPresentOption, "person")),
                         displayName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$52,
+                            [nix.POS]: pos$52,
                             description: "Display name",
                             type: nix.thunk(() => nix.sel(types, "str")),
                             example: "My User",
                           })))),
                         legalName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$53,
+                            [nix.POS]: pos$53,
                             description: "Full legal name",
                             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                             example: "Jane Doe",
                             default: null,
                           })))),
                         mailAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$54,
+                            [nix.POS]: pos$54,
                             description: "Mail addresses. First given address is considered the primary address.",
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             example: nix.thunk(() => ["jane.doe@example.com"]),
                             default: [],
                           })))),
                         groups: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                            __proto__: pos$55,
+                            [nix.POS]: pos$55,
                             description: "List of groups this person should belong to.",
                             type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                             apply: unique,
@@ -655,30 +655,30 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
                     })))))),
               })))),
             systems: nix.thunk(() => ({
-              __proto__: pos$80,
+              [nix.POS]: pos$80,
               oauth2: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  __proto__: pos$79,
+                  [nix.POS]: pos$79,
                   description: "Provisioning of oauth2 resource servers",
                   default: nix.thunk(() => ({})),
                   type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                        __proto__: pos$78,
+                        [nix.POS]: pos$78,
                         options: nix.thunk(() => ({
-                          __proto__: pos$77,
+                          [nix.POS]: pos$77,
                           present: nix.thunk(() => nix.app(mkPresentOption, "oauth2 resource server")),
                           public: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$59,
+                              [nix.POS]: pos$59,
                               description: "Whether this is a public client (enforces PKCE, doesn't use a basic secret)",
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: false,
                             })))),
                           displayName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$60,
+                              [nix.POS]: pos$60,
                               description: "Display name",
                               type: nix.thunk(() => nix.sel(types, "str")),
                               example: "Some Service",
                             })))),
                           originUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$61,
+                              [nix.POS]: pos$61,
                               description: "The redirect URL of the service. These need to exactly match the OAuth2 redirect target",
                               type: nix.thunk(() => (() => {
                                 const originStrType = nix.thunk(() => nix.app(nix.sel(types, "strMatching"), ".*://?.*$"));
@@ -687,82 +687,82 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
                               example: "https://someservice.example.com/auth/login",
                             })))),
                           originLanding: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$62,
+                              [nix.POS]: pos$62,
                               description: "When redirecting from the Kanidm Apps Listing page, some linked applications may need to land on a specific page to trigger oauth2/oidc interactions.",
                               type: nix.thunk(() => nix.sel(types, "str")),
                               example: "https://someservice.example.com/home",
                             })))),
                           basicSecretFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$63,
+                              [nix.POS]: pos$63,
                               description: "The basic secret to use for this service. If null, the random secret generated\nby kanidm will not be touched. Do NOT use a path from the nix store here!\n",
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                               example: "/run/secrets/some-oauth2-basic-secret",
                               default: null,
                             })))),
                           imageFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$64,
+                              [nix.POS]: pos$64,
                               description: "Application image to display in the WebUI.\nKanidm supports \"image/jpeg\", \"image/png\", \"image/gif\", \"image/svg+xml\", and \"image/webp\".\nThe image will be uploaded each time kanidm-provision is run.\n",
                               type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                               default: null,
                             })))),
                           enableLocalhostRedirects: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$65,
+                              [nix.POS]: pos$65,
                               description: "Allow localhost redirects. Only for public clients.",
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: false,
                             })))),
                           enableLegacyCrypto: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$66,
+                              [nix.POS]: pos$66,
                               description: "Enable legacy crypto on this client. Allows JWT signing algorthms like RS256.",
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: false,
                             })))),
                           allowInsecureClientDisablePkce: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$67,
+                              [nix.POS]: pos$67,
                               description: "Disable PKCE on this oauth2 resource server to work around insecure clients\nthat may not support it. You should request the client to enable PKCE!\nOnly for non-public clients.\n",
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: false,
                             })))),
                           preferShortUsername: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$68,
+                              [nix.POS]: pos$68,
                               description: "Use 'name' instead of 'spn' in the preferred_username claim",
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: false,
                             })))),
                           scopeMaps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$69,
+                              [nix.POS]: pos$69,
                               description: "Maps kanidm groups to returned oauth scopes.\nSee [Scope Relations](https://kanidm.github.io/kanidm/stable/integrations/oauth2.html#scope-relationships) for more information.\n",
                               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                               default: nix.thunk(() => ({})),
                             })))),
                           supplementaryScopeMaps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$70,
+                              [nix.POS]: pos$70,
                               description: "Maps kanidm groups to additionally returned oauth scopes.\nSee [Scope Relations](https://kanidm.github.io/kanidm/stable/integrations/oauth2.html#scope-relationships) for more information.\n",
                               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
                               default: nix.thunk(() => ({})),
                             })))),
                           removeOrphanedClaimMaps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$71,
+                              [nix.POS]: pos$71,
                               description: "Whether claim maps not specified here but present in kanidm should be removed from kanidm.",
                               type: nix.thunk(() => nix.sel(types, "bool")),
                               default: true,
                             })))),
                           claimMaps: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                              __proto__: pos$76,
+                              [nix.POS]: pos$76,
                               description: "Adds additional claims (and values) based on which kanidm groups an authenticating party belongs to.\nSee [Claim Maps](https://kanidm.github.io/kanidm/master/integrations/oauth2.html#custom-claim-maps) for more information.\n",
                               default: nix.thunk(() => ({})),
                               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                                    __proto__: pos$75,
+                                    [nix.POS]: pos$75,
                                     options: nix.thunk(() => ({
-                                      __proto__: pos$74,
+                                      [nix.POS]: pos$74,
                                       joinType: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                          __proto__: pos$72,
+                                          [nix.POS]: pos$72,
                                           description: "Determines how multiple values are joined to create the claim value.\nSee [Claim Maps](https://kanidm.github.io/kanidm/master/integrations/oauth2.html#custom-claim-maps) for more information.\n",
                                           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["array", "csv", "ssv"]))),
                                           default: "array",
                                         })))),
                                       valuesByGroup: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                          __proto__: pos$73,
+                                          [nix.POS]: pos$73,
                                           description: "Maps kanidm groups to values for the claim.",
                                           default: nix.thunk(() => ({})),
                                           type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))))),
@@ -779,32 +779,32 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "client", "enable")) || nix.asBool(nix.sel(cfg, "server", "enable")))) || nix.asBool(nix.sel(cfg, "unix", "enable")))), nix.thunk(() => ({
-        __proto__: pos$147,
+        [nix.POS]: pos$147,
         warnings: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "package", "eolMessage"), "")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package", "eolMessage"))]))),
         services: nix.thunk(() => ({
-          __proto__: pos$92,
+          [nix.POS]: pos$92,
           kanidm: nix.thunk(() => ({
-            __proto__: pos$89,
+            [nix.POS]: pos$89,
             unix: nix.thunk(() => ({
-              __proto__: pos$86,
-              settings: nix.thunk(() => ({ __proto__: pos$85, version: "2" })),
+              [nix.POS]: pos$86,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$85, version: "2" })),
             })),
             server: nix.thunk(() => ({
-              __proto__: pos$88,
-              settings: nix.thunk(() => ({ __proto__: pos$87, version: "2", migration_path: entryManagementDir })),
+              [nix.POS]: pos$88,
+              settings: nix.thunk(() => ({ [nix.POS]: pos$87, version: "2", migration_path: entryManagementDir })),
             })),
           })),
           openssh: nix.thunk(() => ({
-            __proto__: pos$91,
+            [nix.POS]: pos$91,
             settings: nix.thunk(() => nix.app(mkIf, addKaniSshKeys, nix.thunk(() => ({
-                __proto__: pos$90,
+                [nix.POS]: pos$90,
                 AuthorizedKeysCommand: nix.thunk(() => nix.str`${nix.sel(config, "security", "wrapperDir")}/kanidm_ssh_authorizedkeys %u`),
                 AuthorizedKeysCommandUser: "kanidm-authorized-keys",
               })))),
           })),
         })),
         assertions: nix.thunk(() => (() => {
-          const entityList = (type) => (attrs) => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.app(filterPresent, attrs)), (name) => (_) => ({ __proto__: pos$93, type: type, name: name }));
+          const entityList = (type) => (attrs) => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.app(filterPresent, attrs)), (name) => (_) => ({ [nix.POS]: pos$93, type: type, name: name }));
           const entities = nix.thunk(() => nix.concat(nix.app(entityList, "group", nix.thunk(() => nix.sel(cfg, "provision", "groups"))), nix.concat(nix.app(entityList, "person", nix.thunk(() => nix.sel(cfg, "provision", "persons"))), nix.app(entityList, "oauth2", nix.thunk(() => nix.sel(cfg, "provision", "systems", "oauth2"))))));
           const entitiesByName = nix.thunk(() => nix.app(foldl$, (acc) => nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
@@ -818,7 +818,7 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
             const knownGroups = nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.app(filterPresent, nix.thunk(() => nix.sel(cfg, "provision", "groups"))))));
             const unknownGroups = nix.thunk(() => nix.app(subtractLists, knownGroups, groups));
             return {
-              __proto__: pos$94,
+              [nix.POS]: pos$94,
               assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "server", "enable")) && nix.asBool(nix.sel(cfg, "provision", "enable")))) || nix.asBool(nix.eq(unknownGroups, [])))),
               message: nix.thunk(() => nix.str`${opt} refers to unknown groups: ${nix.builtins.toString(unknownGroups)}`),
             };
@@ -826,7 +826,7 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
           const assertEntitiesKnown = (opt) => (entities_1) => (() => {
             const unknownEntities = nix.thunk(() => nix.app(subtractLists, nix.thunk(() => nix.app(attrNames, entitiesByName)), entities_1));
             return {
-              __proto__: pos$95,
+              [nix.POS]: pos$95,
               assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "server", "enable")) && nix.asBool(nix.sel(cfg, "provision", "enable")))) || nix.asBool(nix.eq(unknownEntities, [])))),
               message: nix.thunk(() => nix.str`${opt} refers to unknown entities: ${nix.builtins.toString(unknownEntities)}`),
             };
@@ -834,47 +834,47 @@ KANIDM_PROVISION_IDM_ADMIN_TOKEN=$KANIDM_IDM_ADMIN_PASSWORD \\
           const invalidEntryManagementNames = nix.thunk(() => nix.app(filter, (name) => nix.eq(nix.builtins.match("[0-9]{2}-.+", name), null), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(cfg, "server", "entryManagement", "migrations"))))));
           return nix.concat([
             nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "unix", "enable")) || nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "unix", "settings"), "pam_allowed_login_groups"))))),
               message: "<option>services.kanidm.unix.settings.pam_allowed_login_groups</option> has been renamed\nto <option>services.kanidm.unix.settings.kanidm.pam_allowed_login_groups</option>.\nPlease change your usage.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$97,
+              [nix.POS]: pos$97,
               assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfg, "server", "enable"))) || nix.asBool(nix.eq(nix.selOr(cfg, () => null, "server", "settings", "tls_chain"), null)))) || nix.asBool(!nix.asBool(nix.app(isStorePath, nix.thunk(() => nix.sel(cfg, "server", "settings", "tls_chain"))))))),
               message: "<option>services.kanidm.server.settings.tls_chain</option> points to\na file in the Nix store. You should use a quoted absolute path to\nprevent this.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$98,
+              [nix.POS]: pos$98,
               assertion: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(cfg, "server", "enable"))) || nix.asBool(nix.eq(nix.selOr(cfg, () => null, "server", "settings", "tls_key"), null)))) || nix.asBool(!nix.asBool(nix.app(isStorePath, nix.thunk(() => nix.sel(cfg, "server", "settings", "tls_key"))))))),
               message: "<option>services.kanidm.server.settings.tls_key</option> points to\na file in the Nix store. You should use a quoted absolute path to\nprevent this.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "client", "enable"))) || nix.asBool(nix.sel(options, "services", "kanidm", "client", "settings", "isDefined")))),
               message: "<option>services.kanidm.client.settings</option> needs to be configured\nif the client is enabled.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$100,
+              [nix.POS]: pos$100,
               assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "unix", "enable"))) || nix.asBool(nix.sel(options, "services", "kanidm", "client", "settings", "isDefined")))),
               message: "<option>services.kanidm.client.settings</option> needs to be configured\nfor the PAM daemon to connect to the Kanidm server.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "server", "enable"))) || nix.asBool((!nix.asBool(nix.eq(nix.sel(cfg, "server", "settings", "domain"), null)) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "server", "settings", "role"), "WriteReplica")) || nix.asBool(nix.eq(nix.sel(cfg, "server", "settings", "role"), "WriteReplicaNoUI")))))))),
               message: "<option>services.kanidm.server.settings.domain</option> can only be set if this instance\nis not a ReadOnlyReplica. Otherwise the db would inherit it from\nthe instance it follows.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$102,
+              [nix.POS]: pos$102,
               assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "provision", "enable")) || nix.asBool(nix.sel(cfg, "server", "enable")))),
               message: "<option>services.kanidm.provision</option> requires <option>services.kanidm.server.enable</option> to be true",
             })),
             nix.thunk(() => ({
-              __proto__: pos$103,
+              [nix.POS]: pos$103,
               assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "provision", "enable")) && nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "provision", "adminPasswordFile"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "provision", "idmAdminPasswordFile"), null)))) || nix.asBool(nix.app(any, (x) => !nix.eq(nix.sel(x, "basicSecretFile"), null), nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.app(filterPresent, nix.thunk(() => nix.sel(cfg, "provision", "systems", "oauth2")))))))))))) || nix.asBool(nix.sel(cfg, "package", "enableSecretProvisioning")))),
               message: "Specifying an admin account password or oauth2 basicSecretFile requires kanidm to be built with the secret provisioning patches.\nYou may want to set `services.kanidm.package = pkgs.kanidm.withSecretProvisioning;`.\n",
             })),
             nix.thunk(() => ({
-              __proto__: pos$104,
+              [nix.POS]: pos$104,
               assertion: nix.thunk(() => nix.eq(invalidEntryManagementNames, [])),
               message: nix.thunk(() => nix.str`The keys in <option>services.kanidm.server.entryManagement.migrations</option> must follow the pattern \`XX-<name>\` where \`XX\` is a two-digit number (e.g., "00-base", "99-accounts").
 Invalid keys found: ${nix.builtins.toString(invalidEntryManagementNames)}
@@ -883,7 +883,7 @@ Invalid keys found: ${nix.builtins.toString(invalidEntryManagementNames)}
             nix.thunk(() => (() => {
               const duplicateNames = nix.thunk(() => nix.app(filterAttrs, (_) => (v) => nix.gt(nix.builtins.length(v), 1n), entitiesByName));
               return {
-                __proto__: pos$105,
+                [nix.POS]: pos$105,
                 assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "provision", "enable")) || nix.asBool(nix.eq(duplicateNames, {})))),
                 message: nix.thunk(() => nix.str`services.kanidm.provision requires all entity names (group, person, oauth2, ...) to be unique!
 ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) => nix.str`  - '${name}' used as:${nix.builtins.toString(xs)}`, duplicateNames)))}`),
@@ -892,73 +892,73 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
           ], nix.concat(nix.app(optionals, nix.thunk(() => nix.eq(nix.sel(cfg, "provision", "extraJsonFile"), null)), nix.thunk(() => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.app(filterPresent, nix.thunk(() => nix.sel(cfg, "provision", "persons")))), (person) => (personCfg) => nix.app(assertGroupsKnown, nix.thunk(() => nix.str`services.kanidm.provision.persons.${person}.groups`), nix.thunk(() => nix.sel(personCfg, "groups")))))), nix.concat(nix.app(optionals, nix.thunk(() => nix.eq(nix.sel(cfg, "provision", "extraJsonFile"), null)), nix.thunk(() => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.app(filterPresent, nix.thunk(() => nix.sel(cfg, "provision", "groups")))), (group) => (groupCfg) => nix.app(assertEntitiesKnown, nix.thunk(() => nix.str`services.kanidm.provision.groups.${group}.members`), nix.thunk(() => nix.sel(groupCfg, "members")))))), nix.app(concatLists, nix.thunk(() => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.app(filterPresent, nix.thunk(() => nix.sel(cfg, "provision", "systems", "oauth2")))), (oauth2) => (oauth2Cfg) => nix.concat(nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "provision", "extraJsonFile"), null)), nix.thunk(() => nix.app(assertGroupsKnown, nix.thunk(() => nix.str`services.kanidm.provision.systems.oauth2.${oauth2}.scopeMaps`), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(oauth2Cfg, "scopeMaps"))))))), nix.concat(nix.app(optional, nix.thunk(() => nix.eq(nix.sel(cfg, "provision", "extraJsonFile"), null)), nix.thunk(() => nix.app(assertGroupsKnown, nix.thunk(() => nix.str`services.kanidm.provision.systems.oauth2.${oauth2}.supplementaryScopeMaps`), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(oauth2Cfg, "supplementaryScopeMaps"))))))), nix.app(concatLists, nix.thunk(() => nix.app(flip, mapAttrsToList, nix.thunk(() => nix.sel(oauth2Cfg, "claimMaps")), (claim) => (claimCfg) => [
                     nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "provision", "extraJsonFile"), null)), nix.thunk(() => nix.app(assertGroupsKnown, nix.thunk(() => nix.str`services.kanidm.provision.systems.oauth2.${oauth2}.claimMaps.${claim}.valuesByGroup`), nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.sel(claimCfg, "valuesByGroup")))))))),
                     nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "provision", "extraJsonFile"), null)), nix.thunk(() => ({
-                        __proto__: pos$106,
+                        [nix.POS]: pos$106,
                         assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "provision", "enable")) && nix.asBool(nix.sel(cfg, "server", "enable")))) || nix.asBool(nix.app(any, (xs) => !nix.eq(xs, []), nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(claimCfg, "valuesByGroup")))))))),
                         message: nix.thunk(() => nix.str`services.kanidm.provision.systems.oauth2.${oauth2}.claimMaps.${claim} does not specify any values for any group`),
                       })))),
                     nix.thunk(() => ({
-                      __proto__: pos$107,
+                      [nix.POS]: pos$107,
                       assertion: nix.thunk(() => (!nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "provision", "enable")) && nix.asBool(nix.sel(cfg, "server", "enable")))) && nix.asBool(nix.sel(oauth2Cfg, "public")))) || nix.asBool(nix.eq(nix.sel(oauth2Cfg, "basicSecretFile"), null)))),
                       message: nix.thunk(() => nix.str`services.kanidm.provision.systems.oauth2.${oauth2} is a public client and thus cannot specify a basic secret`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$108,
+                      [nix.POS]: pos$108,
                       assertion: nix.thunk(() => (!nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "provision", "enable")) && nix.asBool(nix.sel(cfg, "server", "enable")))) && nix.asBool(nix.sel(oauth2Cfg, "public")))) || nix.asBool(!nix.asBool(nix.sel(oauth2Cfg, "allowInsecureClientDisablePkce"))))),
                       message: nix.thunk(() => nix.str`services.kanidm.provision.systems.oauth2.${oauth2} is a public client and thus cannot disable PKCE`),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$109,
+                      [nix.POS]: pos$109,
                       assertion: nix.thunk(() => (!nix.asBool((nix.asBool((nix.asBool(nix.sel(cfg, "provision", "enable")) && nix.asBool(nix.sel(cfg, "server", "enable")))) && nix.asBool(!nix.asBool(nix.sel(oauth2Cfg, "public"))))) || nix.asBool(!nix.asBool(nix.sel(oauth2Cfg, "enableLocalhostRedirects"))))),
                       message: nix.thunk(() => nix.str`services.kanidm.provision.systems.oauth2.${oauth2} is a non-public client and thus cannot enable localhost redirects`),
                     })),
                   ])))))))))));
         })()),
         environment: nix.thunk(() => ({
-          __proto__: pos$116,
+          [nix.POS]: pos$116,
           systemPackages: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "client", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
           etc: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-                  __proto__: pos$111,
-                  "kanidm/server.toml": nix.thunk(() => ({ __proto__: pos$110, source: serverConfigFile })),
+                  [nix.POS]: pos$111,
+                  "kanidm/server.toml": nix.thunk(() => ({ [nix.POS]: pos$110, source: serverConfigFile })),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(options, "services", "kanidm", "client", "settings", "isDefined")), nix.thunk(() => ({
-                  __proto__: pos$113,
-                  "kanidm/config": nix.thunk(() => ({ __proto__: pos$112, source: clientConfigFile })),
+                  [nix.POS]: pos$113,
+                  "kanidm/config": nix.thunk(() => ({ [nix.POS]: pos$112, source: clientConfigFile })),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "unix", "enable")), nix.thunk(() => ({
-                  __proto__: pos$115,
-                  "kanidm/unixd": nix.thunk(() => ({ __proto__: pos$114, source: unixConfigFile })),
+                  [nix.POS]: pos$115,
+                  "kanidm/unixd": nix.thunk(() => ({ [nix.POS]: pos$114, source: unixConfigFile })),
                 })))),
             ]))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$131,
+          [nix.POS]: pos$131,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$120,
+            [nix.POS]: pos$120,
             settings: nix.thunk(() => ({
-              __proto__: pos$119,
+              [nix.POS]: pos$119,
               "10-kanidm": nix.thunk(() => nix.app(mkIf, enableServerBackup, nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "server", "settings", "online_backup", "path"), nix.thunk(() => ({
-                    __proto__: pos$118,
-                    d: nix.thunk(() => ({ __proto__: pos$117, mode: "0700", user: "kanidm", group: "kanidm" })),
+                    [nix.POS]: pos$118,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$117, mode: "0700", user: "kanidm", group: "kanidm" })),
                   }))],
                 ])))),
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$130,
+            [nix.POS]: pos$130,
             kanidm: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-                __proto__: pos$123,
+                [nix.POS]: pos$123,
                 description: "kanidm identity management daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
                 serviceConfig: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     nix.thunk(() => nix.update(defaultServiceConfig, {
-                      __proto__: pos$121,
+                      [nix.POS]: pos$121,
                       BindReadOnlyPaths: nix.thunk(() => nix.app(mergePaths, nix.thunk(() => nix.concat(nix.sel(defaultServiceConfig, "BindReadOnlyPaths"), nix.concat(secretPaths, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "provision", "enable")) && nix.asBool(!nix.asBool(nix.sel(cfg, "provision", "acceptInvalidCerts"))))), nix.thunk(() => ["-/etc/ssl", "-/etc/static/ssl"]))))))),
                     })),
                     nix.thunk(() => ({
-                      __proto__: pos$122,
+                      [nix.POS]: pos$122,
                       StateDirectory: "kanidm",
                       StateDirectoryMode: "0700",
                       RuntimeDirectory: "kanidmd",
@@ -977,7 +977,7 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
                   ]))),
               })))),
             "kanidm-unixd": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "unix", "enable")), nix.thunk(() => ({
-                __proto__: pos$126,
+                [nix.POS]: pos$126,
                 description: "Kanidm PAM daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target"]),
@@ -985,7 +985,7 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
                 serviceConfig: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                     defaultServiceConfig,
                     nix.thunk(() => ({
-                      __proto__: pos$124,
+                      [nix.POS]: pos$124,
                       CacheDirectory: "kanidm-unixd",
                       CacheDirectoryMode: "0700",
                       RuntimeDirectory: "kanidm-unixd",
@@ -1005,17 +1005,17 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
                       RestrictAddressFamilies: nix.thunk(() => ["AF_INET", "AF_INET6", "AF_UNIX"]),
                     })),
                   ]))),
-                environment: nix.thunk(() => ({ __proto__: pos$125, RUST_LOG: "info" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$125, RUST_LOG: "info" })),
               })))),
             "kanidm-unixd-tasks": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "unix", "enable")), nix.thunk(() => ({
-                __proto__: pos$129,
+                [nix.POS]: pos$129,
                 description: "Kanidm PAM home management daemon",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target", "kanidm-unixd.service"]),
                 partOf: nix.thunk(() => ["kanidm-unixd.service"]),
                 restartTriggers: nix.thunk(() => [unixConfigFile, clientConfigFile]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$127,
+                  [nix.POS]: pos$127,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/kanidm_unixd_tasks`),
                   BindReadOnlyPaths: nix.thunk(() => [
                     "/nix/store",
@@ -1037,31 +1037,31 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
                   RestrictAddressFamilies: nix.thunk(() => ["AF_UNIX"]),
                   Restart: "on-failure",
                 })),
-                environment: nix.thunk(() => ({ __proto__: pos$128, RUST_LOG: "info" })),
+                environment: nix.thunk(() => ({ [nix.POS]: pos$128, RUST_LOG: "info" })),
               })))),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$133,
+          [nix.POS]: pos$133,
           nssModules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "unix", "enable")), nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]))),
           nssDatabases: nix.thunk(() => ({
-            __proto__: pos$132,
+            [nix.POS]: pos$132,
             group: nix.thunk(() => nix.app(mkOrder, 490n, nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(cfg, "unix", "enable")), "kanidm")))),
             passwd: nix.thunk(() => nix.app(mkOrder, 490n, nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(cfg, "unix", "enable")), "kanidm")))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$143,
+          [nix.POS]: pos$143,
           groups: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
-              nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({ __proto__: pos$134, kanidm: nix.thunk(() => ({})) })))),
-              nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "unix", "enable")), nix.thunk(() => ({ __proto__: pos$135, "kanidm-unixd": nix.thunk(() => ({})) })))),
-              nix.thunk(() => nix.app(mkIf, addKaniSshKeys, nix.thunk(() => ({ __proto__: pos$136, "kanidm-authorized-keys": nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({ [nix.POS]: pos$134, kanidm: nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "unix", "enable")), nix.thunk(() => ({ [nix.POS]: pos$135, "kanidm-unixd": nix.thunk(() => ({})) })))),
+              nix.thunk(() => nix.app(mkIf, addKaniSshKeys, nix.thunk(() => ({ [nix.POS]: pos$136, "kanidm-authorized-keys": nix.thunk(() => ({})) })))),
             ]))),
           users: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "server", "enable")), nix.thunk(() => ({
-                  __proto__: pos$138,
+                  [nix.POS]: pos$138,
                   kanidm: nix.thunk(() => ({
-                    __proto__: pos$137,
+                    [nix.POS]: pos$137,
                     description: "Kanidm server",
                     isSystemUser: true,
                     group: "kanidm",
@@ -1069,18 +1069,18 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
                   })),
                 })))),
               nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "unix", "enable")), nix.thunk(() => ({
-                  __proto__: pos$140,
+                  [nix.POS]: pos$140,
                   "kanidm-unixd": nix.thunk(() => ({
-                    __proto__: pos$139,
+                    [nix.POS]: pos$139,
                     description: "Kanidm PAM daemon",
                     isSystemUser: true,
                     group: "kanidm-unixd",
                   })),
                 })))),
               nix.thunk(() => nix.app(mkIf, addKaniSshKeys, nix.thunk(() => ({
-                  __proto__: pos$142,
+                  [nix.POS]: pos$142,
                   "kanidm-authorized-keys": nix.thunk(() => ({
-                    __proto__: pos$141,
+                    [nix.POS]: pos$141,
                     description: "Kanidm authorized keys delegate",
                     isSystemUser: true,
                     group: "kanidm-authorized-keys",
@@ -1089,11 +1089,11 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
             ]))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$146,
+          [nix.POS]: pos$146,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$145,
+            [nix.POS]: pos$145,
             kanidm_ssh_authorizedkeys: nix.thunk(() => nix.app(mkIf, addKaniSshKeys, nix.thunk(() => ({
-                __proto__: pos$144,
+                [nix.POS]: pos$144,
                 owner: "root",
                 group: "root",
                 permissions: "a+rx",
@@ -1103,7 +1103,7 @@ ${nix.app(concatLines, nix.thunk(() => nix.app(mapAttrsToList, (name) => (xs) =>
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$148,
+      [nix.POS]: pos$148,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

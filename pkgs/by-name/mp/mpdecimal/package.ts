@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mpdecimal",
       version: "4.0.1",
       outputs: nix.thunk(() => ["out", "cxx", "doc", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.bytereef.org/software/mpdecimal/releases/mpdecimal-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ltM6u0uwBwx74P7UJGzThBYYgyX4IEaCFEcZOFRbGsg=",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $cxx/lib\nmv $out/lib/*c++* $cxx/lib\n\nmkdir -p $dev/nix-support\necho -n $cxx >> $dev/nix-support/propagated-build-inputs\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for arbitrary precision decimal floating point arithmetic",
         longDescription: "libmpdec is a fast C/C++ library for correctly-rounded arbitrary\nprecision decimal floating point arithmetic.  It is a complete\nimplementation of Mike Cowlishaw/IBM's General Decimal Arithmetic\nSpecification. The full specification is available here:\n\nhttp://speleotrove.com/decimal/\n\nlibmpdec will - with minor restrictions - also conform to the IEEE\n754-2008 Standard for Floating-Point Arithmetic, provided that the\nappropriate context parameters are set.\n\nlibmpdec++ is a complete implementation of the General Decimal Arithmetic\nSpecification.  libmpdec++ is mostly a header library around libmpdec's C\nfunctions.\n",
         homepage: "https://www.bytereef.org/mpdecimal/index.html",

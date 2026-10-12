@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "regex2json",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tozd",
           repo: "regex2json",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-myMUs9urHjYaOQ/UaPYlLZstvClOuvF5xJao4lTP5bY=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Convert text to JSON using only regular expressions",
         homepage: "https://gitlab.com/tozd/regex2json",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tozd/regex2json/-/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

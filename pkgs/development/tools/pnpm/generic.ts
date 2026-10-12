@@ -35,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
   const nodejs_slim$ = nix.thunk(() => (nix.asBool(nix.eq(nodejs, null)) ? nix.force(nodejs_slim) : nix.app(nix.sel(lib, "warn"), "pnpm: Override nodejs-slim instead of nodejs", nodejs)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "pnpm",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/pnpm/-/pnpm-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: hash,
         })))),
@@ -64,24 +64,24 @@ runHook postInstall
       passthru: nix.thunk(() => (() => {
         const pnpm$ = nix.thunk(() => nix.sel(buildPackages, nix.key(nix.str`pnpm_${nix.app(nix.sel(lib, "versions", "major"), version)}`)));
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           fetchDeps: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "pnpm.fetchDeps: The package attribute is deprecated. Use the top-level fetchPnpmDeps attribute instead", nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const args_2 = args_1;
-              return nix.app(fetchPnpmDeps, nix.thunk(() => nix.update(args_2, { __proto__: pos$2, pnpm: pnpm$ })));
+              return nix.app(fetchPnpmDeps, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$2, pnpm: pnpm$ })));
             })(), formals$2))),
           configHook: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "pnpm.configHook: The package attribute is deprecated. Use the top-level pnpmConfigHook attribute instead", nix.thunk(() => nix.app(nix.sel(pnpmConfigHook, "overrideAttrs"), (prevAttrs) => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "propagatedBuildInputs"), [pnpm$])),
               }))))),
           "nodejs-slim": nodejs_slim$,
           nodejs: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "pnpm.nodejs: Use pnpm.nodejs-slim instead of pnpm.nodejs", nodejs_slim$)),
           majorVersion: majorVersion,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             pnpm: nix.thunk(() => nix.attr(tests, "pnpm")),
             version: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withNode, nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 })))))),
           })),
@@ -116,7 +116,7 @@ update-source-version pnpm_${majorVersion} "$latestVersion" --file=./pkgs/develo
       dontBuild: true,
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Fast, disk space efficient package manager for JavaScript",
         homepage: "https://pnpm.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pnpm/pnpm/releases/tag/v${nix.sel(finalAttrs, "version")}`),

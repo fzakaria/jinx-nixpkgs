@@ -28,25 +28,25 @@ export default nix.lambda((args) => (() => {
       const pname = "fish-fillets-ng";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fillets/fillets-ng-${version}.tar.gz`),
           sha256: "1nljp75aqqb35qq3x7abhs2kp69vjcj0h1vxcpdyn2yn2nalv6ij",
         }))));
       const data = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`mirror://sourceforge/fillets/fillets-ng-data-${version}.tar.gz`),
           sha256: "169p0yqh2gxvhdilvjc2ld8aap7lv2nhkhkg4i1hlmgc6pxpkjgh",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, copyDesktopItems, imagemagick]);
       const buildInputs = nix.thunk(() => [SDL, lua5_1, SDL_mixer, SDL_image, SDL_ttf]);
       const env = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL)), "sdl-config")),
       }));
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "fish-fillets-ng",
             exec: "fillets",
             icon: "fish-fillets-ng",
@@ -61,7 +61,7 @@ mkdir -p $out/share/icons/hicolor/32x32/apps
 magick ${nix.path(here, "./icon.xpm")} $out/share/icons/hicolor/32x32/apps/fish-fillets-ng.png
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Puzzle game",
         mainProgram: "fillets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -73,7 +73,7 @@ magick ${nix.path(here, "./icon.xpm")} $out/share/icons/hicolor/32x32/apps/fish-
         homepage: "https://fillets.sourceforge.net/",
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

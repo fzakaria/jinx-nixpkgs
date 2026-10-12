@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const mkDiscoursePlugin = nix.arg($, "mkDiscoursePlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDiscoursePlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "discourse-bbcode-color",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "discourse",
           repo: "discourse-bbcode-color",
           rev: "b68e1c3bfbfe2468f70af47045276e4463568fe3",
           sha256: "sha256-AM3AMZFaTTf9Q6ulr9qoTZafykPFBTkXvtkmU+TAPew=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/discourse/discourse-bbcode-color",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

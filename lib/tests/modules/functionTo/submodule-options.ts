@@ -31,21 +31,21 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           options: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             fun: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       options: nix.thunk(() => ({
-                        __proto__: pos$2,
-                        a: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, default: "a" })))),
+                        [nix.POS]: pos$2,
+                        a: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, default: "a" })))),
                       })),
                     })))))),
               })))),
@@ -55,16 +55,16 @@ export default nix.lambda((args) => (() => {
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           options: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             fun: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       options: nix.thunk(() => ({
-                        __proto__: pos$8,
-                        b: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$7, default: "b" })))),
+                        [nix.POS]: pos$8,
+                        b: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, default: "b" })))),
                       })),
                     })))))),
               })))),
@@ -73,14 +73,14 @@ export default nix.lambda((args) => (() => {
       })(), formals$3),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(config, "fun"), nix.thunk(() => nix.builtins.throw("shouldn't use input param")))))))),
         })))),
       optionsResult: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => (nix.asBool(nix.eq(k, "_module")) ? [] : [
                   nix.thunk(() => nix.app(nix.sel(lib, "showOption"), nix.thunk(() => nix.sel(v, "loc")))),
@@ -88,8 +88,8 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
-      fun: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [(input) => ({ __proto__: pos$16, b: "bee" })]))),
+      [nix.POS]: pos$17,
+      fun: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [(input) => ({ [nix.POS]: pos$16, b: "bee" })]))),
     })),
   };
 })(), formals$1);

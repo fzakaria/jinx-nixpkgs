@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const libmysqlclient = nix.arg($, "libmysqlclient");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libnss-mysql",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "saknopper",
           repo: "libnss-mysql",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["sysconfdir=$(out)/etc"]),
       postInstall: "rm -r $out/etc\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "auth-mysql": nix.thunk(() => nix.attr(nixosTests, "auth-mysql")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "MySQL module for the Solaris Nameservice Switch (NSS)",
         homepage: "https://github.com/saknopper/libnss-mysql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

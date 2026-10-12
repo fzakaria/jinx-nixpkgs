@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "jackett",
       version: "0.24.2793",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jackett",
           repo: "jackett",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,12 +45,12 @@ export default nix.lambda((args) => (() => {
       testProjectFile: "src/Jackett.Test/Jackett.Test.csproj",
       postFixup: "# For compatibility\nln -s $out/bin/jackett $out/bin/Jackett || :\nln -s $out/bin/Jackett $out/bin/jackett || :\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ __proto__: pos$2, jackett: nix.thunk(() => nix.attr(nixosTests, "jackett")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jackett: nix.thunk(() => nix.attr(nixosTests, "jackett")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "API Support for your favorite torrent trackers",
         mainProgram: "jackett",
         homepage: "https://github.com/Jackett/Jackett/",

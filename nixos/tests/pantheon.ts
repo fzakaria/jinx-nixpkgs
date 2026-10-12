@@ -26,46 +26,46 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     name: "pantheon",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "pantheon", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const videosAutostart = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "autostart-elementary-videos",
             destination: "/etc/xdg/autostart/io.elementary.videos.desktop",
             text: "[Desktop Entry]\nVersion=1.0\nName=Videos\nType=Application\nTerminal=false\nExec=io.elementary.videos %U\n",
           }))));
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$3, memorySize: 2047n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2047n })),
           services: nix.thunk(() => ({
-            __proto__: pos$8,
-            xserver: nix.thunk(() => ({ __proto__: pos$4, enable: true })),
+            [nix.POS]: pos$8,
+            xserver: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
             desktopManager: nix.thunk(() => ({
-              __proto__: pos$6,
-              pantheon: nix.thunk(() => ({ __proto__: pos$5, enable: true })),
+              [nix.POS]: pos$6,
+              pantheon: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
             })),
-            flatpak: nix.thunk(() => ({ __proto__: pos$7, enable: true })),
+            flatpak: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             systemPackages: nix.thunk(() => [videosAutostart]),
             pantheon: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-text-editor"))]),
             })),
           })),
           programs: nix.thunk(() => ({
-            __proto__: pos$12,
-            ydotool: nix.thunk(() => ({ __proto__: pos$11, enable: true })),
+            [nix.POS]: pos$12,
+            ydotool: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
           })),
         };
       })(), formals$2),

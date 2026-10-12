@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "github-webhook",
       version: "1.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "b2444dbfd03deda35792bd00ebd1692597c2605c61445da79da6322afaca7a8d",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [flask, six]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Framework for writing webhooks for GitHub",
         homepage: "https://github.com/bloomberg/python-github-webhook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

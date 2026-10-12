@@ -48,104 +48,104 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$38,
+    [nix.POS]: pos$38,
     name: "containers-reloadable",
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$37,
+      [nix.POS]: pos$37,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           containers: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             test1: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               autoStart: true,
               config: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$3,
-                    check: nix.thunk(() => ({ __proto__: pos$2, text: "client_base" })),
+                    [nix.POS]: pos$3,
+                    check: nix.thunk(() => ({ [nix.POS]: pos$2, text: "client_base" })),
                   })),
                 })),
-                nix: nix.thunk(() => ({ __proto__: pos$5, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             interfaces: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               eth1: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 ipv4: nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, [])),
                 })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$35,
+            [nix.POS]: pos$35,
             c1: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               configuration: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 containers: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   test1: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     config: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       environment: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         etc: nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           check: nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             text: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "client_c1")),
                           })),
                         })),
                       })),
                       services: nix.thunk(() => ({
-                        __proto__: pos$17,
-                        httpd: nix.thunk(() => ({ __proto__: pos$16, enable: true, adminAddr: "nixos@example.com" })),
+                        [nix.POS]: pos$17,
+                        httpd: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, adminAddr: "nixos@example.com" })),
                       })),
-                      nix: nix.thunk(() => ({ __proto__: pos$18, enable: false })),
+                      nix: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
                     })),
                   })),
                 })),
               })),
             })),
             c2: nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               configuration: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 containers: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   test1: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     config: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       environment: nix.thunk(() => ({
-                        __proto__: pos$26,
+                        [nix.POS]: pos$26,
                         etc: nix.thunk(() => ({
-                          __proto__: pos$25,
+                          [nix.POS]: pos$25,
                           check: nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             text: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "client_c2")),
                           })),
                         })),
                       })),
                       services: nix.thunk(() => ({
-                        __proto__: pos$28,
-                        nginx: nix.thunk(() => ({ __proto__: pos$27, enable: true })),
+                        [nix.POS]: pos$28,
+                        nginx: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
                       })),
-                      nix: nix.thunk(() => ({ __proto__: pos$29, enable: false })),
+                      nix: nix.thunk(() => ({ [nix.POS]: pos$29, enable: false })),
                     })),
                   })),
                 })),

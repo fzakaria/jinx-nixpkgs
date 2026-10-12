@@ -14,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.18.15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "fossasia",
       repo: "badgemagic-app",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-zQ7ajVHueyCJP2n81dogM5YytxOoJ/hJt/qYbmw64e0=",
     }))));
   return nix.app(nix.sel(flutter338, "buildFlutterApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "badgemagic-app",
       version: version,
       src: src,
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Badge Magic with LEDs - mobile and desktop app",
         homepage: "https://github.com/fossasia/badgemagic-app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

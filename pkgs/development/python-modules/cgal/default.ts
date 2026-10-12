@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withLAS = nix.argOr($, "withLAS", () => false);
   const cgal_6_0_1 = nix.thunk(() => nix.app(nix.sel(cgal, "overrideAttrs"), (oldAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://github.com/CGAL/cgal/releases/download/v6.0.1/CGAL-6.0.1.tar.xz",
           hash: "sha256-Cs378xfFVmMN1SbzJTeA8ptuyXE+6SkD6Btck8D1m38=",
         })))),
@@ -45,13 +45,13 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.1.post202410241521";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "CGAL",
           repo: "cgal-swig-bindings",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-MnUsl4ozMamKcQ13TV6mtoG7VKq8BuiDSIVq1RPn2rs=",
         }))));
-      const env = nix.thunk(() => ({ __proto__: pos$4, CGAL_PYTHON_MODULE_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$4, CGAL_PYTHON_MODULE_VERSION: version }));
       const dontUseCmakeConfigure = true;
       const build_system = nix.thunk(() => [setuptools, cmake, swig]);
       const buildInputs = nix.thunk(() => nix.concat([cgal_6_0_1, gmp, mpfr, boost, zlib, onetbb, eigen], nix.app(nix.sel(lib, "optionals"), withLAS, nix.thunk(() => [lastools]))));
@@ -65,7 +65,7 @@ done
       const preCheck = "# CGAL_Alpha_wrap_3.alpha_wrap_3(...) fails with a segmentation fault\n# https://github.com/CGAL/cgal-swig-bindings/issues/306\nrm examples/python/test_aw3.py\n";
       const checkPhase = "runHook preCheck\n(cd examples/python/\n  bash ./test.sh\n  cat error.txt\n  if grep -qi ' run error$' <error.txt; then\n    false\n  fi\n)\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "CGAL bindings using SWIG",
         homepage: "https://github.com/CGAL/cgal-swig-bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -75,7 +75,7 @@ done
         })()),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

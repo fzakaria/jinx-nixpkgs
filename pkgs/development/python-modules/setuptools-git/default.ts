@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "msabramo",
           repo: "setuptools-git",
           tag: version,
@@ -29,20 +29,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-git-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             git: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gitMinimal)),
           })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Setuptools revision control system plugin for Git",
         homepage: "https://github.com/msabramo/setuptools-git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

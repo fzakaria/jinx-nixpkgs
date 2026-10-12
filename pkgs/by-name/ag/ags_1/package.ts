@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const linux_pam = nix.arg($, "linux-pam");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ags",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aylur",
           repo: "ags",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./ts59.patch"), nix.path(here, "./ts7.patch")]),
       postPatch: "chmod u+x ./post_install.sh && patchShebangs ./post_install.sh\n\n# JS ERROR: TypeError: Repository.prepend_search_path is not a function\nsubstituteInPlace src/com.github.Aylur.ags.js.in \\\n  --replace-fail \"Repository.prepend\" \"Repository.dup_default().prepend\"\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Aylur/ags",
         description: "EWW-inspired widget system as a GJS library",
         changelog: nix.thunk(() => nix.str`https://github.com/Aylur/ags/releases/tag/v${nix.sel(finalAttrs, "version")}`),

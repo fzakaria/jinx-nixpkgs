@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const smartmontools = nix.arg($, "smartmontools");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "smartctl_exporter",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prometheus-community",
           repo: "smartctl_exporter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/prometheus/common/version.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, smartctl: nix.thunk(() => nix.attr(from, "smartctl")) };
+          return { [nix.POS]: pos$2, smartctl: nix.thunk(() => nix.attr(from, "smartctl")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/prometheus-community/smartctl_exporter/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Export smartctl statistics for Prometheus",
         mainProgram: "smartctl_exporter",

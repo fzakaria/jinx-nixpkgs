@@ -13,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   const ocl_icd = nix.arg($, "ocl-icd");
   return nix.app(nix.sel(mpv, "override"), nix.thunk(() => ({
-      __proto__: pos$2,
-      "mpv-unwrapped": nix.thunk(() => nix.app(nix.sel(mpv_unwrapped, "override"), nix.thunk(() => ({ __proto__: pos$1, vapoursynthSupport: true })))),
+      [nix.POS]: pos$2,
+      "mpv-unwrapped": nix.thunk(() => nix.app(nix.sel(mpv_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, vapoursynthSupport: true })))),
       extraMakeWrapperArgs: nix.thunk(() => [
         "--prefix",
         "LD_LIBRARY_PATH",

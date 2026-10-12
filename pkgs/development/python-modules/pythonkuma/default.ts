@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const mashumaro = nix.arg($, "mashumaro");
   const prometheus_client = nix.arg($, "prometheus-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pythonkuma",
       version: "0.5.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tr4nt0r",
           repo: "pythonkuma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pythonkuma"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple Python wrapper for Uptime Kuma",
         homepage: "https://github.com/tr4nt0r/pythonkuma",
         changelog: nix.thunk(() => nix.str`https://github.com/tr4nt0r/pythonkuma/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

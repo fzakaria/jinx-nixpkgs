@@ -9,7 +9,7 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const evalConfig = nix.argOr($, "evalConfig", () => nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs/nixos/lib/eval-config.nix")));
   return nix.app(evalConfig, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [
         nix.path(here, "./configuration.nix"),
         nix.thunk(() => nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs/nixos/modules/testing/test-instrumentation.nix"))),

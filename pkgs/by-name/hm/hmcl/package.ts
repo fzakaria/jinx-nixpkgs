@@ -28,9 +28,9 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const jdk = nix.arg($, "jdk");
   const jdk25 = nix.arg($, "jdk25");
-  const hmclJdk = nix.argOr($, "hmclJdk", () => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ __proto__: pos$1, enableJavaFX: true }))));
+  const hmclJdk = nix.argOr($, "hmclJdk", () => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
   const buildPackages = nix.arg($, "buildPackages");
-  const hmclJdkBuild = nix.argOr($, "hmclJdkBuild", () => nix.app(nix.sel(buildPackages, "jdk", "override"), nix.thunk(() => ({ __proto__: pos$2, enableJavaFX: true }))));
+  const hmclJdkBuild = nix.argOr($, "hmclJdkBuild", () => nix.app(nix.sel(buildPackages, "jdk", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableJavaFX: true }))));
   const minecraftJdks = nix.argOr($, "minecraftJdks", () => [hmclJdk, jdk25]);
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const libxtst = nix.arg($, "libxtst");
@@ -55,22 +55,22 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const glfw3$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(glfw3_minecraft) : nix.force(glfw3)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "hmcl",
       version: "3.16.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/HMCL-dev/HMCL/releases/download/v${nix.sel(finalAttrs, "version")}/HMCL-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-mPASPzjoamBqpYP3TSGudBKGeekh6n7AxDqyYwN2fp4=",
         })))),
       terracottaBundleJava: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.str`hmcl-terracotta-bundle-java-${nix.sel(finalAttrs, "version")}`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/HMCL-dev/HMCL/v${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "terracottaBundleJavaPath")}`),
           hash: "sha256-dZHRim/7VNW0/nA6I8r3t5zGfzIMxG2lzdZ//dzv2Gs=",
         })))),
       macOSProviderJava: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           name: nix.thunk(() => nix.str`hmcl-macos-provider-java-${nix.sel(finalAttrs, "version")}`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/HMCL-dev/HMCL/v${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "macOSProviderJavaPath")}`),
           hash: "sha256-7vI2U8vx3GYwlshoHJF/J8n2RS6TZ/cvoAivqYtW23Q=",
@@ -81,7 +81,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "install -Dm644 $terracottaBundleJava $terracottaBundleJavaPath\ninstall -Dm644 $macOSProviderJava $macOSProviderJavaPath\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-nix-use-terracotta-from-nix.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             TERRACOTTA_BIN: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), terracotta)),
           })))),
         nix.path(here, "./0002-nix-skip-terracotta-existence-check-on-darwin.patch"),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "HMCL",
             exec: "hmcl",
             icon: "hmcl",
@@ -129,13 +129,13 @@ export default nix.lambda((args) => (() => {
   \${gappsWrapperArgs[@]}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hmclJdk, "meta"));
         return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         homepage: "https://hmcl.huangyuhui.net",
         description: "Minecraft Launcher which is multi-functional, cross-platform and popular",
         changelog: "https://docs.hmcl.net/changelog/stable.html",

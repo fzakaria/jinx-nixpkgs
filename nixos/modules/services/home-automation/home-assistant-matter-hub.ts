@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "home-assistant-matter-hub.json", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -44,40 +44,40 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         "home-assistant-matter-hub": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "home-assistant-matter-hub, a Matter bridge for Home Assistant")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "home-assistant-matter-hub", nix.thunk(() => ({})))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to open the Matter commissioning ports (UDP/TCP 5540) in the\nfirewall.\n",
             })))),
           accessTokenFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "externalPath")),
               example: "/run/secrets/home-assistant-matter-hub-token",
               description: "Path to a file containing a Home Assistant long-lived access token.\nThe file is loaded as a systemd credential and read into\n`HAMH_HOME_ASSISTANT_ACCESS_TOKEN` at service start.\n",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     homeAssistantUrl: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.services.home-assistant.config.homeassistant.internal_url")),
                         description: "HTTP URL of the Home Assistant instance to bridge.",
                       })))),
                     httpPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 8482n,
                         description: "Port the web interface listens on.",
@@ -92,21 +92,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         networking: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               allowedTCPPorts: nix.thunk(() => [5540n]),
               allowedUDPPorts: nix.thunk(() => [5540n]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             "home-assistant-matter-hub": nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Home Assistant Matter Hub",
               documentation: nix.thunk(() => ["https://riddix.github.io/home-assistant-matter-hub/"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -116,7 +116,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))
 `),
               scriptArgs: "%S/home-assistant-matter-hub",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 LoadCredential: nix.thunk(() => [
                   nix.thunk(() => nix.str`HAMH_HOME_ASSISTANT_ACCESS_TOKEN:${nix.sel(cfg, "accessTokenFile")}`),
                 ]),

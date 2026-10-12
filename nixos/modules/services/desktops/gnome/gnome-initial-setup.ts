@@ -51,60 +51,60 @@ OnlyShowIn=GNOME;
 AutostartCondition=unless-exists gnome-initial-setup-done
 X-GNOME-Autostart-Phase=EarlyInitialization
 `);
-      return { __proto__: pos$1, name, destination, text };
+      return { [nix.POS]: pos$1, name, destination, text };
     })())));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         gnome: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "gnome-initial-setup": nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "GNOME Initial Setup, a Simple, easy, and safe way to prepare a new system")),
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(config, "services", "gnome", "gnome-initial-setup", "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(pkgs, "gnome-initial-setup"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(config, "system", "stateVersion")), "20.03")), createGisStampFilesAutostart))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-initial-setup"))]),
           user: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             targets: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               "gnome-session": nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 wants: nix.thunk(() => ["gnome-initial-setup-first-login.service"]),
               })),
               "graphical-session-pre": nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 wants: nix.thunk(() => ["gnome-initial-setup-copy-worker.service"]),
               })),
-              "gnome-session@gnome-initial-setup": nix.thunk(() => ({ __proto__: pos$10, wants: nix.thunk(() => ["gnome-initial-setup.service"]) })),
+              "gnome-session@gnome-initial-setup": nix.thunk(() => ({ [nix.POS]: pos$10, wants: nix.thunk(() => ["gnome-initial-setup.service"]) })),
             })),
           })),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           dconf: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             profiles: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               "gnome-initial-setup": nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 databases: nix.thunk(() => [
                   nix.thunk(() => nix.str`${nix.sel(pkgs, "gnome-initial-setup")}/share/gnome-initial-setup/initial-setup-dconf-defaults`),
                 ]),
@@ -113,8 +113,8 @@ X-GNOME-Autostart-Phase=EarlyInitialization
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
-          groups: nix.thunk(() => ({ __proto__: pos$18, "gnome-initial-setup": nix.thunk(() => ({})) })),
+          [nix.POS]: pos$19,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$18, "gnome-initial-setup": nix.thunk(() => ({})) })),
         })),
       })))),
   };

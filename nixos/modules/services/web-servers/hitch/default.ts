@@ -51,61 +51,61 @@ export default nix.lambda((args) => (() => {
   })());
   const w_1 = nix.withScope(lib, null);
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       services: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         hitch: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.lookup(w_1, "mkEnableOption"), "Hitch Server")),
           backend: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
               description: "The host and port Hitch connects to when receiving\na connection in the form [HOST]:PORT\n",
             })))),
           ciphers: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
               default: "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH",
               description: "The list of ciphers to use",
             })))),
           frontend: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))))),
               default: "[127.0.0.1]:443",
               description: "The port and interface of the listen endpoint in the\nform [HOST]:PORT[+CERT].\n",
               apply: nix.thunk(() => nix.lookup(w_1, "toList")),
             })))),
           "pem-files": nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "path")))),
               default: [],
               description: "PEM files to use",
             })))),
           "ocsp-stapling": nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             enabled: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")),
                 default: true,
                 description: "Whether to enable OCSP Stapling",
               })))),
           })),
           user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
               default: "hitch",
               description: "The user to run as",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")),
               default: "hitch",
               description: "The group to run as",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "lines")),
               default: "",
               description: "Additional configuration lines",
@@ -114,13 +114,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             hitch: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Hitch",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
 chown -R hitch:hitch ${ocspDir}
 `)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 Type: "forking",
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hitch")}/sbin/hitch --daemon --config ${hitchConfig}`),
                 ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
@@ -141,16 +141,16 @@ chown -R hitch:hitch ${ocspDir}
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hitch"))]),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => ({
-            __proto__: pos$19,
-            hitch: nix.thunk(() => ({ __proto__: pos$18, group: "hitch", isSystemUser: true })),
+            [nix.POS]: pos$19,
+            hitch: nix.thunk(() => ({ [nix.POS]: pos$18, group: "hitch", isSystemUser: true })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$20, hitch: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$20, hitch: nix.thunk(() => ({})) })),
         })),
       })))),
   };

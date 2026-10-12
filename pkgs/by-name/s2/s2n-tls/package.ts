@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nix$ = nix.arg($, "nix");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "s2n-tls",
       version: "1.7.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aws",
           repo: "s2n-tls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_SHARED_LIBS=ON", "-DUNSAFE_TREAT_WARNINGS_AS_ERRORS=OFF"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMips64")), nix.thunk(() => ["-DS2N_NO_PQ=ON"])))),
       propagatedBuildInputs: nix.thunk(() => [openssl]),
       postInstall: "# Glob for 'shared' or 'static' subdir\nfor f in $out/lib/s2n/cmake/*/s2n-targets.cmake; do\n  substituteInPlace \"$f\" \\\n    --replace-fail 'INTERFACE_INCLUDE_DIRECTORIES \"${_IMPORT_PREFIX}/include\"' 'INTERFACE_INCLUDE_DIRECTORIES \"\"'\ndone\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, nix: nix$ })) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, nix: nix$ })) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C99 implementation of the TLS/SSL protocols",
         homepage: "https://github.com/aws/s2n-tls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

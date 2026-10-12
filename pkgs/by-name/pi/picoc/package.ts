@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "picoc",
       version: "2.1-unstable-2018-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "zsaleeba",
           repo: "picoc",
           rev: "dc85a51e9211cfb644f0a85ea9546e15dc1141c3",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./gcc15-fixes.patch")]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       enableParallelBuilding: true,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       installPhase: "runHook preInstall\n\ninstall -Dm755 picoc $out/bin/picoc\n\nmkdir -p $out/include\ninstall -m644 *.h $out/include\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Very small C interpreter for scripting",
         mainProgram: "picoc",
         longDescription: "PicoC is a very small C interpreter for scripting. It was originally\nwritten as a script language for a UAV's on-board flight system. It's\nalso very suitable for other robotic, embedded and non-embedded\napplications. The core C source code is around 3500 lines of code. It's\nnot intended to be a complete implementation of ISO C but it has all the\nessentials. When compiled it only takes a few k of code space and is also\nvery sparing of data space. This means it can work well in small embedded\ndevices.\n",

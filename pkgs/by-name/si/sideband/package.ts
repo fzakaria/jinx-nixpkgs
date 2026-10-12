@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python313Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sideband",
       version: "2.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "markqvist",
           repo: "Sideband",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +67,7 @@ substituteInPlace sbapp/main.py \\
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: nix.thunk(() => ["--version"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/markqvist/Sideband/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "LXMF client allowing you to communicate with people or LXMF-compatible systems over Reticulum networks",
         homepage: "https://github.com/markqvist/Sideband",

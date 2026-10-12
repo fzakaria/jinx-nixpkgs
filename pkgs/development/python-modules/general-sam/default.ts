@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ModelTC",
           repo: "general-sam-py",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-/hfq14oFNPhPrhjlIDCyjMfdCuhMdKZ5DBc/nlEQKno=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -42,10 +42,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
         rustc,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$3, test: nix.thunk(() => [pytest]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, test: nix.thunk(() => [pytest]) }));
       const pythonImportsCheck = nix.thunk(() => ["general_sam"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "General suffix automaton implementation",
         homepage: "https://github.com/ModelTC/general-sam-py",
         license: nix.thunk(() => (() => {
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

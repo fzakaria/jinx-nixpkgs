@@ -28,40 +28,40 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const boolToString = nix.thunk(() => nix.attr(lib, "boolToString"));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     port: 9191n,
     extraOpts: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           description: "The host that the fail2ban exporter should listen on",
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "127.0.0.1",
           example: "0.0.0.0",
         })))),
       fail2banSocket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           description: "Path to the fail2ban server socket. Permissions will be set automatically if fail2ban runs on this system.",
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.sel(config, "services", "fail2ban", "daemonSettings", "Definition", "socket")),
           defaultText: "config.services.fail2ban.daemonSettings.Definition.socket",
         })))),
       exitOnError: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "When set to true the exporter will immediately exit on a fail2ban socket connection error",
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: true,
           example: false,
         })))),
       username: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: "Username to protect endpoints with HTTP basic authentication",
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
           example: "admin",
         })))),
       passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           description: "File that contains the password to protect endpoints with HTTP basic authentication",
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
           default: null,
@@ -70,15 +70,15 @@ export default nix.lambda((args) => (() => {
     })),
     assertions: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "username"), null)) || nix.asBool(!nix.eq(nix.sel(cfg, "passwordFile"), null)))),
         message: "Setting an http basic auth username requires the password to be non-null",
       })),
     ]),
     serviceOpts: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       serviceConfig: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         SupplementaryGroups: nix.thunk(() => [
           nix.thunk(() => nix.sel(config, "systemd", "sockets", "fail2ban", "socketConfig", "SocketGroup")),
         ]),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       environment: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         F2B_COLLECTOR_SOCKET: nix.thunk(() => nix.sel(cfg, "fail2banSocket")),
         F2B_EXIT_ON_SOCKET_CONN_ERROR: nix.thunk(() => nix.app(boolToString, nix.thunk(() => nix.sel(cfg, "exitOnError")))),
         F2B_WEB_LISTEN_ADDRESS: nix.thunk(() => nix.str`${nix.sel(cfg, "host")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const patches = nix.argOr($, "patches", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
       patches: patches,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$1, CFLAGS: "-D_DARWIN_C_SOURCE" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, CFLAGS: "-D_DARWIN_C_SOURCE" })))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(customConfig, null)), nix.thunk(() => nix.str`cp ${nix.builtins.toFile("config.h", customConfig)} ./config.h
 `))),
       nativeBuildInputs: nix.thunk(() => [ncurses]),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Dynamic virtual terminal manager",
         homepage: "http://www.brain-dump.org/projects/dvtm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

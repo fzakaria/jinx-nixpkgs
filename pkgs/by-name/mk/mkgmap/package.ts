@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const doCheck = nix.argOr($, "doCheck", () => true);
   const withExamples = nix.argOr($, "withExamples", () => false);
-  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ __proto__: pos$1, fetchurl: fetchurl }))));
-  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ __proto__: pos$2, fetchurl: fetchurl }))));
+  const deps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
+  const testInputs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./testinputs.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, fetchurl: fetchurl }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mkgmap",
       version: "4924",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://svn.mkgmap.org.uk/mkgmap/mkgmap/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-4DGGAWgyIvK5pcopwlO4YDGDc73lOsL0Ljy/kFUY2As=",
@@ -80,7 +80,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withExamples, "mkdir -p $out/share/mkg
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         deps: deps,
         updateScript: nix.thunk(() => [
           nix.path(here, "./update.sh"),
@@ -89,7 +89,7 @@ runHook postInstall
         ]),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Create maps for Garmin GPS devices from OpenStreetMap (OSM) data",
         downloadPage: "https://www.mkgmap.org.uk/download/mkgmap.html",
         homepage: "https://www.mkgmap.org.uk/",

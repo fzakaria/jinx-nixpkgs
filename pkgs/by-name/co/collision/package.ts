@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Collision";
       const version = "3.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GeopJr",
           repo: "Collision",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,12 +59,12 @@ export default nix.lambda((args) => (() => {
       const installTargets = nix.thunk(() => ["desktop", "install"]);
       const postInstall = "install -Dm555 ./nautilus-extension/collision-extension.py -t $out/share/nautilus-python/extensions\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
             nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "collision.shardLock", "./shard.lock")),
             nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-lock", nix.thunk(() => nix.str`cd $1; ${nix.app(nix.sel(lib, "getExe"), crystal2nix)}`))),
                 nix.path(here, "./."),
@@ -72,14 +72,14 @@ export default nix.lambda((args) => (() => {
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
             nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               command: nix.thunk(() => ["rm", "./shard.lock"]),
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Check hashes for your files",
         homepage: "https://github.com/GeopJr/Collision",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome-circle"))]),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

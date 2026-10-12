@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const qtscxml = nix.arg($, "qtscxml");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kalzium",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, ocaml]),
       extraBuildInputs: nix.thunk(() => [eigen, openbabel, qtsvg, qtscxml]),
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "kalzium" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kalzium" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

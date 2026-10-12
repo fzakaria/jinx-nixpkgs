@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nebula-de-esser",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "subhankardas15071992-cloud",
           repo: "Nebula-De-Esser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +64,7 @@ cp -r "target/bundled/Nebula De-Esser.vst3" "$vst3Dir/"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Nebula De-Esser - Rust de-esser plugin for CLAP and VST3",
         homepage: "https://github.com/subhankardas15071992-cloud/Nebula-De-Esser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

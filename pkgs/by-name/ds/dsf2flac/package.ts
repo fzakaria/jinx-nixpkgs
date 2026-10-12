@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dsf2flac",
       version: "0-unstable-2025-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hank",
           repo: "dsf2flac",
           rev: "39d43901ce27d0cc53b5a4eb277a65082e9906f0",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export LIBS=\"$LIBS -lz -lboost_timer\"\n",
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-boost-libdir=${nix.sel(boost, "out")}/lib`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "DSD to FLAC transcoding tool",
         homepage: "https://github.com/hank/dsf2flac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

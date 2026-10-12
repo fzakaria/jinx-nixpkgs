@@ -55,42 +55,42 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "foldlAttrs"), (acc) => (name) => (instance) => nix.add(acc, nix.sel(instance, "testScript")), "")),
     ])));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     name: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "name")}-${nix.sel(cfg, "name")}`),
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lxc", "members")),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$34,
+      [nix.POS]: pos$34,
       server: nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         virtualisation: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           cores: 2n,
           memorySize: 4096n,
           diskSize: nix.thunk(() => nix.mul(20n, 1024n)),
           emptyDiskImages: nix.thunk(() => [2048n, 2048n]),
           incus: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             enable: true,
             package: nix.thunk(() => nix.sel(cfg, "package")),
             preseed: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               networks: nix.thunk(() => nix.concat([
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   name: "incusbr0",
                   type: "bridge",
-                  config: nix.thunk(() => ({ __proto__: pos$2, "ipv4.address": "10.0.10.1/24", "ipv4.nat": "true" })),
+                  config: nix.thunk(() => ({ [nix.POS]: pos$2, "ipv4.address": "10.0.10.1/24", "ipv4.nat": "true" })),
                 })),
               ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "network", "ovs")), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$5,
+                    [nix.POS]: pos$5,
                     name: "ovsbr0",
                     type: "bridge",
                     config: nix.thunk(() => ({
-                      __proto__: pos$4,
+                      [nix.POS]: pos$4,
                       "bridge.driver": "openvswitch",
                       "ipv4.address": "10.0.20.1/24",
                       "ipv4.nat": "true",
@@ -99,63 +99,63 @@ export default nix.lambda((args) => (() => {
                 ])))),
               profiles: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   name: "default",
                   devices: nix.thunk(() => ({
-                    __proto__: pos$8,
-                    eth0: nix.thunk(() => ({ __proto__: pos$6, name: "eth0", network: "incusbr0", type: "nic" })),
-                    root: nix.thunk(() => ({ __proto__: pos$7, path: "/", pool: "default", size: "35GiB", type: "disk" })),
+                    [nix.POS]: pos$8,
+                    eth0: nix.thunk(() => ({ [nix.POS]: pos$6, name: "eth0", network: "incusbr0", type: "nic" })),
+                    root: nix.thunk(() => ({ [nix.POS]: pos$7, path: "/", pool: "default", size: "35GiB", type: "disk" })),
                   })),
                 })),
               ]),
-              storage_pools: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$10, name: "default", driver: "dir" }))]),
+              storage_pools: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, name: "default", driver: "dir" }))]),
             })),
           })),
-          vswitch: nix.thunk(() => ({ __proto__: pos$13, enable: nix.thunk(() => nix.sel(cfg, "network", "ovs")) })),
+          vswitch: nix.thunk(() => ({ [nix.POS]: pos$13, enable: nix.thunk(() => nix.sel(cfg, "network", "ovs")) })),
         })),
         boot: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           supportedFilesystems: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(cfg, "storage"));
-            return { __proto__: pos$15, zfs: nix.thunk(() => nix.attr(from, "zfs")) };
+            return { [nix.POS]: pos$15, zfs: nix.thunk(() => nix.attr(from, "zfs")) };
           })()),
-          zfs: nix.thunk(() => ({ __proto__: pos$16, forceImportRoot: false })),
+          zfs: nix.thunk(() => ({ [nix.POS]: pos$16, forceImportRoot: false })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "parted"))]),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           hostId: "01234567",
-          firewall: nix.thunk(() => ({ __proto__: pos$19, trustedInterfaces: nix.thunk(() => ["incusbr0"]) })),
-          nftables: nix.thunk(() => ({ __proto__: pos$20, enable: true })),
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$19, trustedInterfaces: nix.thunk(() => ["incusbr0"]) })),
+          nftables: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$23,
-          apparmor: nix.thunk(() => ({ __proto__: pos$22, enable: nix.thunk(() => nix.sel(cfg, "appArmor")) })),
+          [nix.POS]: pos$23,
+          apparmor: nix.thunk(() => ({ [nix.POS]: pos$22, enable: nix.thunk(() => nix.sel(cfg, "appArmor")) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           dbus: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             apparmor: nix.thunk(() => (nix.asBool(nix.sel(cfg, "appArmor")) ? "enabled" : "disabled")),
           })),
           lvm: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             boot: nix.thunk(() => ({
-              __proto__: pos$26,
-              thin: nix.thunk(() => ({ __proto__: pos$25, enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
+              [nix.POS]: pos$26,
+              thin: nix.thunk(() => ({ [nix.POS]: pos$25, enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
             })),
-            dmeventd: nix.thunk(() => ({ __proto__: pos$27, enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
+            dmeventd: nix.thunk(() => ({ [nix.POS]: pos$27, enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           users: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             testuser: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               isNormalUser: true,
               shell: nix.thunk(() => nix.sel(pkgs, "bashInteractive")),
               group: "incus",

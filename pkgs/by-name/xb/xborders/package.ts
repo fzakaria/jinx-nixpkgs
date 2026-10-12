@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "deter0",
           repo: "xborder",
           rev: "e74ae532b9555c59d195537934fa355b3fea73c5",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postPatch = nix.thunk(() => (() => {
         const setup = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.py"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             desc: nix.thunk(() => nix.sel(meta, "description")),
             pname: pname,
             version: version,
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Active window border replacement for window managers",
         homepage: "https://github.com/deter0/xborder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xborders",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

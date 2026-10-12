@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const boost = boost188;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libixion",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ixion",
           repo: "ixion",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, mdds, python3]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-boost=${nix.sel(boost, "dev")}`)]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "General purpose formula parser, interpreter, formula cell dependency tracker and spreadsheet document model backend all in one package",
         homepage: "https://gitlab.com/ixion/ixion",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ixion/ixion/-/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const cimg = nix.arg($, "cimg");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "imgcat",
       version: "2.6.0",
       buildInputs: nix.thunk(() => [ncurses, cimg]),
@@ -24,15 +24,15 @@ export default nix.lambda((args) => (() => {
 `),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eddieantonio",
           repo: "imgcat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-miFjlahTI0GDpgsjnA/K1R4R5654M8AoK78CycoLTqA=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "It's like cat, but for images",
         homepage: "https://github.com/eddieantonio/imgcat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

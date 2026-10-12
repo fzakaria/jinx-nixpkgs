@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pyauth",
           repo: "requests-http-signature",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_readme_example"]);
       const pythonImportsCheck = nix.thunk(() => ["requests_http_signature"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Requests authentication module for HTTP Signature",
         homepage: "https://github.com/kislyuk/requests-http-signature",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

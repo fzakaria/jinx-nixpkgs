@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libkate",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.xiph.org",
           owner: "xiph",
           repo: "kate",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libogg, libpng]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library for encoding and decoding Kate streams",
         longDescription: "This is libkate, the reference implementation of a codec for the Kate\nbitstream format. Kate is a karaoke and text codec meant for encapsulation\nin an Ogg container. It can carry Unicode text, images, and animate\nthem.",
         homepage: "https://wiki.xiph.org/index.php/OggKate",

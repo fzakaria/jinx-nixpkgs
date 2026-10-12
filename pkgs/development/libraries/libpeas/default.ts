@@ -33,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.38.1";
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libpeas/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libpeas-${version}.tar.xz`),
           sha256: "sha256-6C/TKK3KwaujS2QTa9/Lus8rMliovE5fSApyUCphGuk=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pythonPaths: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (pkg) => nix.str`'${pkg}/${nix.sel(python3, "sitePackages")}'`, nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3"))]))),
           })))),
       ]);
@@ -64,16 +64,16 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.thunk(() => ["-Dgtk_doc=true"]);
       const postFixup = "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             packageName: "libpeas",
             versionPolicy: "odd-unstable",
             freeze: true,
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GObject-based plugins engine",
         mainProgram: "peas-demo",
         homepage: "https://gitlab.gnome.org/GNOME/libpeas",
@@ -82,7 +82,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         outputs,

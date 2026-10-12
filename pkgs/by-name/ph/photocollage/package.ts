@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "photocollage",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adrienverge",
           repo: "PhotoCollage",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Based on the debian package's list of files. Link:\n# https://packages.debian.org/bookworm/all/photocollage/filelist\ninstall -Dm0644 ./data/photocollage.desktop $out/share/applications/photocollage.desktop\ninstall -Dm0644 ./data/photocollage.appdata.xml $out/share/appdata/photocollage.appdata.xml\ncp -r ./data/icons $out/share/icons\n",
       pythonImportsCheck: nix.thunk(() => ["photocollage"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graphical tool to make photo collage posters",
         homepage: "https://github.com/adrienverge/PhotoCollage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

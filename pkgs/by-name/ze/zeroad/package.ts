@@ -14,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const zeroad_data = nix.arg($, "zeroad-data");
   nix.assert_(nix.eq(nix.sel(zeroad_unwrapped, "version"), nix.sel(zeroad_data, "version")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ze/zeroad/package.nix:8:1");
   return nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "zeroad",
       version: nix.thunk(() => nix.attr(zeroad_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => [zeroad_unwrapped, zeroad_data]),
       pathsToLink: nix.thunk(() => ["/", "/bin"]),
       postBuild: "for i in $out/bin/*; do\n  wrapProgram \"$i\" \\\n    --set ZEROAD_ROOTDIR \"$out/share/0ad\"\ndone\n",
-      meta: nix.thunk(() => nix.update(nix.sel(zeroad_unwrapped, "meta"), { __proto__: pos$1, hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(zeroad_unwrapped, "meta"), { [nix.POS]: pos$1, hydraPlatforms: [] })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

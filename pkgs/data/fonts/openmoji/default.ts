@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const fontFormats = nix.argOr($, "fontFormats", () => ["glyf", "cbdt", "glyf_colr_0", "glyf_colr_1"]);
   const buildMaximumColorFonts = nix.argOr($, "buildMaximumColorFonts", () => "bitmap");
   const methods = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     black: nix.thunk(() => ["glyf"]),
     color: nix.thunk(() => ["cbdt", "glyf_colr_0", "glyf_colr_1", "sbix", "picosvgz", "untouchedsvgz"]),
   }));
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openmoji";
       const version = "17.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "hfg-gmuend",
           repo: "openmoji",
           rev: version,
@@ -56,7 +56,7 @@ runHook postBuild
 `);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype $out/share/fonts/woff2\ncp build/fonts/*/*.ttf $out/share/fonts/truetype/\ncp build/fonts/*/*.woff2 $out/share/fonts/woff2/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -71,7 +71,7 @@ runHook postBuild
         description: "Open-source emojis for designers, developers and everyone else",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

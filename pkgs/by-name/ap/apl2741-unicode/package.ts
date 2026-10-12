@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apl2741-unicode",
       version: "0-unstable-2022-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "abrudz",
           repo: "APL2741",
           rev: "1e11efae38e5095bfe49a786b111d563e83dad03",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "APL font based on Adrian Smith's IBM Selectric APL2741 golf-ball font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         homepage: "https://abrudz.github.io/APL2741/",

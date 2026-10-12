@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "databricks",
           repo: "databricks-sql-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const pythonImportsCheck = nix.thunk(() => ["databricks"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Databricks SQL Connector for Python",
         homepage: "https://docs.databricks.com/dev-tools/python-sql-connector.html",
         changelog: nix.thunk(() => nix.str`https://github.com/databricks/databricks-sql-python/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

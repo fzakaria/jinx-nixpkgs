@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libfilezilla",
       version: "0.57.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://sources.archlinux.org/other/libfilezilla/libfilezilla-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-OmElE1etdSLnO41zSDVuhwkqHNfDPTbwRfvqRzC4/ws=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gettext, gnutls, nettle, libxcrypt], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://lib.filezilla-project.org/",
         description: "Modern C++ library, offering some basic functionality to build high-performing, platform-independent programs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

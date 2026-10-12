@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const six = nix.arg($, "six");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "configobj",
       version: "5.0.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DiffSK",
           repo: "configobj",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [mock]),
       pythonImportsCheck: nix.thunk(() => ["configobj"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Config file reading, writing and validation",
         homepage: "https://github.com/DiffSK/configobj",
         changelog: nix.thunk(() => nix.str`https://github.com/DiffSK/configobj/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

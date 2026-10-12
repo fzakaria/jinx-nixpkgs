@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "python-homewizard-energy",
       version: "10.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DCSBL",
           repo: "python-homewizard-energy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy]),
       pythonImportsCheck: nix.thunk(() => ["homewizard_energy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to communicate with HomeWizard Energy devices",
         homepage: "https://github.com/homewizard/python-homewizard-energy",
         changelog: nix.thunk(() => nix.str`https://github.com/homewizard/python-homewizard-energy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

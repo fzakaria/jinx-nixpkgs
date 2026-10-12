@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const threadModel = nix.thunk(() => nix.selOr(threads, () => nix.selOr(libc, () => "single", "threadModel"), "threadModel"));
   nix.assert_((!nix.asBool(enableShared) || nix.asBool(__defaultEnableShared)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/gcc/ng/common/libgcc/default.nix:100:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: nix.thunk(() => nix.add("libgcc", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(libc, null)), "-no-libc"))),
       version: version,
       src: monorepoSrc,
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./darwin-fix-reexport.patch"),
           nix.thunk(() => nix.app(getVersionFile, "libgcc/darwin-detection.patch")),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               name: "darwin-aarch64-support.patch",
               url: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "16")) ? "https://raw.githubusercontent.com/Homebrew/homebrew-core/70e2a9e1d072fa3bc34cf41d97f4b65bede2b01e/Patches/gcc/gcc-16.1.0.diff" : "https://raw.githubusercontent.com/Homebrew/homebrew-core/70e2a9e1d072fa3bc34cf41d97f4b65bede2b01e/Patches/gcc/gcc-15.3.0.diff")),
               includes: nix.thunk(() => ["libgcc/*"]),
@@ -60,20 +60,20 @@ export default nix.lambda((args) => (() => {
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "16")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "delete-MACHMODE_H.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/493aae4b034d62054d5e7e54dc06cd9a8be54e29.diff",
               hash: "sha256-oEk0lnI96RlpALWpb7J+GnrtgQsFVqDO57I/zjiqqTk=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "custom-threading-model.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/e5d853bbe9b05d6a00d98ad236f01937303e40c4.diff",
               hash: "sha256-92LIttIXdh12/lRhivb2JTPpqUmGBRn+uKmR5pzuveo=",
               includes: nix.thunk(() => ["config/*", "libgcc/configure.ac"]),
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               name: "no-pie-cflags.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/77144dd3b6736e0166156bb509590d924375a4f1.diff",
               hash: "sha256-QlxlTkWAK1dB7JiU5wz2iOW24gj3bFaeBpwb90oWwns=",
@@ -85,14 +85,14 @@ export default nix.lambda((args) => (() => {
               ]),
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               name: "no-target-system-root.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/9947930b7ae923010c5061fd8fa6b1ec4f22f161.diff",
               hash: "sha256-BZmpHpJuuyDmQMwpQhSgCZO0Rg7kXt8rTiJAT+e0sUw=",
             })))),
         ])), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "regular-libdir-includedir.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20250717174911.1536129-1-git@JohnEricson.me/raw",
             hash: "sha256-Cn7rvg1FI7H/26GzSe4pv5VW/gvwbwGqivAqEeawkwk=",
@@ -219,8 +219,8 @@ NIX_CFLAGS_COMPILE+=' -isystem ${nix.sel(stdenv, "cc", "cc")}/lib/gcc/${nix.sel(
       makeFlags: nix.thunk(() => ["MULTIBUILDTOP:=../"]),
       postInstall: "install -c -m 644 gthr-default.h \"$dev/include\"\n",
       doCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$7, isGNU: true, threadModel: threadModel })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { __proto__: pos$8, homepage: "https://gcc.gnu.org/" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, isGNU: true, threadModel: threadModel })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$8, homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

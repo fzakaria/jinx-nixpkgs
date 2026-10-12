@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const lapackSupport = nix.argOr($, "lapackSupport", () => true);
   const kluSupport = nix.argOr($, "kluSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sundials",
       version: "7.6.0",
       outputs: nix.thunk(() => ["out", "examples"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LLNL",
           repo: "sundials",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +54,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkTarget: "test",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Suite of nonlinear differential/algebraic equation solvers",
         homepage: "https://computing.llnl.gov/projects/sundials",
         downloadPage: "https://github.com/LLNL/sundials",

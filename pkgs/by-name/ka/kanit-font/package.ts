@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "kanit",
       version: "0-unstable-2020-06-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cadsondemak",
           repo: "kanit",
           rev: "467dfe842185681d8042cd608b8291199dd37cda",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/doc/kanit/css/ $out/share/fonts/{opentype,truetype}\n\ncp $src/OFL.txt $src/documentation/{BRIEF.md,features.html} $out/share/doc/kanit\ncp $src/documentation/css/fonts.css $out/share/doc/kanit/css\ncp $src/fonts/otf/*.otf $out/share/fonts/opentype\ncp $src/fonts/ttf/*.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://cadsondemak.github.io/kanit/",
         description: "Loopless Thai and sans serif Latin typeface for contemporary and futuristic uses",
         longDescription: "Kanit means mathematics in Thai, and the Kanit typeface family is a formal\nLoopless Thai and Sans Latin design. It is a combination of concepts,\nmixing a Humanist Sans Serif motif with the curves of Capsulated Geometric\nstyles that makes it suitable for various uses, contemporary and\nfuturistic. A notable detail is that the stroke terminals have flat angles,\nwhich allows the design to enjoy decreased spacing between letters while\npreserving readability and legibility at smaller point sizes.\n",

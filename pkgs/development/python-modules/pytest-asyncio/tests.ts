@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pytest_trio = nix.arg($, "pytest-trio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "pytest-asyncio-tests",
       version: nix.thunk(() => nix.attr(pytest_asyncio, "version")),
       pyproject: false,

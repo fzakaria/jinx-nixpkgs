@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pname = "nbping";
   const version = "0.7.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hanshuaikang",
           repo: "NBping",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-H0FG3BE/iP3knosnUVzJtNXt8hQ9E8Jh/2MTmviNhfA=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Ping Tool in Rust with Real-Time Data and Visualizations",
         homepage: "https://github.com/hanshuaikang/NBping",
         changelog: "https://github.com/hanshuaikang/NBping/releases/",

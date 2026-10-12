@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pname = "logstash-contrib";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.elasticsearch.org/logstash/logstash/logstash-contrib-${version}.tar.gz`),
           sha256: "1yj8sf3b526gixh3c6zhgkfpg4f0c72p1lzhfhdx8b3lw7zjkj0k",
         }))));
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontPatchShebangs = true;
       const installPhase = "runHook preInstall\nmkdir -p $out/logstash\ncp -r lib/* $out\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Community-maintained logstash plugins",
         homepage: "https://github.com/elasticsearch/logstash-contrib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version,
         pname,
         src,

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const xcbuildHook = nix.arg($, "xcbuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "caffeine",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "IntelliScape",
           repo: "caffeine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       xcbuildFlags: nix.thunk(() => ["-target Caffeine", "-configuration Release"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r Products/Release/Caffeine.app $out/Applications\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Don't let your Mac fall asleep",
         homepage: "https://intelliscapesolutions.com/apps/caffeine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

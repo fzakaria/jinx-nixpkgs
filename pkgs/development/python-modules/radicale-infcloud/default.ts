@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const radicale = nix.arg($, "radicale");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "radicale-infcloud",
       version: "unstable-2022-04-18",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Unrud",
           repo: "RadicaleInfCloud",
           rev: "53d3a95af5b58cfa3242cef645f8d40c731a7d95",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Unrud/RadicaleInfCloud/commit/c7487d34a544a499b751fdc92b01196edef599c6.patch",
             sha256: "sha256-H5cSKFYQhC7+zpdbi0ojU8UlRJnldXtxv6d8gJ8D39w=",
           })))),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["radicale"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Unrud/RadicaleInfCloud/",
         description: "Integrate InfCloud into Radicale's web interface",
         license: nix.thunk(() => (() => {

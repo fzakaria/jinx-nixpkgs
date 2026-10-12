@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yaup",
       version: "0-unstable-2026-03-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Holarse-Linuxgaming",
           repo: "yaup",
           rev: "7135987a17208dab1b980ba5de55114abe217b63",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, miniupnpc]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "yaup",
             desktopName: "Yaup",
             genericName: "UPnP Portmapper",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm644 src/yaup-dark.png $out/share/icons/hicolor/512x512/apps/yaup.png\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/Holarse-Linuxgaming/yaup",
         description: "Yet Another UPnP Portmapper",
         longDescription: "Portmapping made easy.\nPortforward your incoming traffic to a specified local ip.\nMostly used for IPv4.\n",

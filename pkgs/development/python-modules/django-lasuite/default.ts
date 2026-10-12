@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.29";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "suitenumerique",
           repo: "django-lasuite",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +54,7 @@ export default nix.lambda((args) => (() => {
         requests_toolbelt,
       ]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           all: nix.thunk(() => (() => {
             const w = nix.withScope(self, null);
             return nix.concat(nix.lookup(w, "configuration"), nix.lookup(w, "malware_detection"));
@@ -67,15 +67,15 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PYTHONPATH=tests:$PYTHONPATH\nexport DJANGO_SETTINGS_MODULE=test_project.settings\n";
       const pythonImportsCheck = nix.thunk(() => ["lasuite"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "lasuite-docs": nix.thunk(() => nix.attr(nixosTests, "lasuite-docs")),
           "lasuite-meet": nix.thunk(() => nix.attr(nixosTests, "lasuite-meet")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Common library for La Suite Django projects and Proconnected Django projects",
         homepage: "https://github.com/suitenumerique/django-lasuite",
         changelog: nix.thunk(() => nix.str`https://github.com/suitenumerique/django-lasuite/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         pyproject,

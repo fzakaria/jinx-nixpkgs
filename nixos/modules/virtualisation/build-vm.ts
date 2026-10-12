@@ -31,20 +31,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const vmVariant = nix.thunk(() => nix.app(extendModules, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       modules: nix.thunk(() => [nix.path(here, "./qemu-vm.nix")]),
     }))));
   const vmVariantWithBootLoader = nix.thunk(() => nix.app(nix.sel(vmVariant, "extendModules"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       modules: nix.thunk(() => [
         nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config_1 = nix.arg($_1, "config");
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             _file: "nixos/default.nix##vmWithBootLoader",
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               useBootLoader: true,
               useEFIBoot: nix.thunk(() => (nix.asBool(nix.sel(config_1, "boot", "loader", "systemd-boot", "enable")) || nix.asBool(nix.sel(config_1, "boot", "loader", "efi", "canTouchEfiVariables")))),
             })),
@@ -53,20 +53,20 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         vmVariant: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             description: "Machine configuration to be added for the vm script produced by `nixos-rebuild build-vm`.\n",
             type: nix.thunk(() => nix.attr(vmVariant, "type")),
             default: nix.thunk(() => ({})),
             visible: "shallow",
           })))),
         vmVariantWithBootLoader: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             description: "Machine configuration to be added for the vm script produced by `nixos-rebuild build-vm-with-bootloader`.\n",
             type: nix.thunk(() => nix.attr(vmVariantWithBootLoader, "type")),
             default: nix.thunk(() => ({})),
@@ -75,29 +75,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       system: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         build: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           vm: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "virtualisation", "vmVariant", "system", "build", "vm")))),
           vmWithBootLoader: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(config, "virtualisation", "vmVariantWithBootLoader", "system", "build", "vm")))),
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         vmVariant: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           options: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             virtualisation: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               vmVariant: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   apply: (_) => nix.builtins.throw("virtualisation.vmVariant*.virtualisation.vmVariant is not supported"),
                 })))),
               vmVariantWithBootLoader: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   apply: (_) => nix.builtins.throw("virtualisation.vmVariant*.virtualisation.vmVariantWithBootloader is not supported"),
                 })))),
             })),
@@ -105,7 +105,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
     })),
-    meta: nix.thunk(() => ({ __proto__: pos$18, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$18, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=build-vm.ts.map

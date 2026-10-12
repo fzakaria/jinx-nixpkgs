@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Arfey",
           repo: "django-async-backend",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ substituteInPlace tests/db/backends/postgresql/test_async_backend.py \\
       const dependencies = nix.thunk(() => [django, psycopg]);
       const pythonImportsCheck = nix.thunk(() => ["django_async_backend"]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         DJANGO_SETTINGS_MODULE: "settings",
         PGDATABASE: "postgres",
         PGUSER: "postgres",
@@ -49,7 +49,7 @@ substituteInPlace tests/db/backends/postgresql/test_async_backend.py \\
       const checkPhase = "runHook preCheck\n\ncd tests/\npython manage.py test\n\nrunHook postCheck\n";
       const nativeCheckInputs = nix.thunk(() => [django, libcst, postgresql, postgresqlTestHook, psycopg_pool]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "True async Django ORM and PostgreSQL backend with connection pooling and async transactions",
         homepage: "https://github.com/Arfey/django-async-backend",
         changelog: nix.thunk(() => nix.str`https://github.com/Arfey/django-async-backend/releases/tag/${nix.sel(src, "tag")}`),
@@ -61,7 +61,7 @@ substituteInPlace tests/db/backends/postgresql/test_async_backend.py \\
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(django, "version")))), "6")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

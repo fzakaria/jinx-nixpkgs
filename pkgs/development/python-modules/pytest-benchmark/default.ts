@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ionelmc",
           repo: "pytest-benchmark",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const dependencies = nix.thunk(() => [py_cpuinfo]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         aspect: nix.thunk(() => [aspectlib]),
         histogram: nix.thunk(() => [pygal, setuptools]),
         elasticsearch: nix.thunk(() => [elasticsearch]),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           "test_rendering",
         ])));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/ionelmc/pytest-benchmark/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Pytest fixture for benchmarking code",
         homepage: "https://github.com/ionelmc/pytest-benchmark",
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

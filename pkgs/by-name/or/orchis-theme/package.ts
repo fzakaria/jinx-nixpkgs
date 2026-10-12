@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2026-07-07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "Orchis-theme",
           owner: "vinceliuice",
           rev: version,
@@ -56,7 +56,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withWallpapers, "mkdir -p $out/share/b
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Material Design theme for GNOME/GTK based desktop environments",
         homepage: "https://github.com/vinceliuice/Orchis-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -64,7 +64,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ncfavier"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: pname_1,
         version,
         src,

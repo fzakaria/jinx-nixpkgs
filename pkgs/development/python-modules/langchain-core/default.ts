@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "langchain-core",
       version: "1.6.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain-core==${nix.sel(finalAttrs, "version")}`),
@@ -81,14 +81,14 @@ export default nix.lambda((args) => (() => {
       ]),
       enabledTestPaths: nix.thunk(() => ["tests/unit_tests"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(langchain_core, "overridePythonAttrs"), (_) => ({ __proto__: pos$2, doCheck: true }))),
+          [nix.POS]: pos$3,
+          pytest: nix.thunk(() => nix.app(nix.sel(langchain_core, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
         })),
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             "rev-prefix": "langchain-core==",
             ignoredVersions: "a|b|dev|rc",
           })))),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       disabledTestPaths: nix.thunk(() => ["tests/unit_tests/runnables/test_runnable_events_v2.py"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Building applications with LLMs through composability",
         homepage: "https://github.com/langchain-ai/langchain/tree/master/libs/core",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

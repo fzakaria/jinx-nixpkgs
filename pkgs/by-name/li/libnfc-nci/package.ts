@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const debug = nix.argOr($, "debug", () => nix.selOr(config, () => false, "libnfc-nci", "debug"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libnfc-nci",
       version: "2.4.1-unstable-2026-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "StarGate01",
           repo: "linux_libnfc-nci",
           rev: "1ed3cced60d3c7c5bb08486d54db322ac099a3dd",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: debug,
       postInstall: "rm -rf $out/etc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Linux NFC stack for NCI based NXP NFC Controllers",
         homepage: "https://github.com/NXPNFCLinux/linux_libnfc-nci",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

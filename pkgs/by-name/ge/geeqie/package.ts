@@ -49,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const openexr = nix.arg($, "openexr");
   const cfitsio = nix.arg($, "cfitsio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "geeqie",
       version: "2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BestImageViewer",
           repo: "geeqie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,11 +111,11 @@ sed -i $out/lib/geeqie/geeqie-export-jpeg \\
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight GTK based image viewer",
         mainProgram: "geeqie",
         longDescription: "Geeqie is a lightweight GTK based image viewer for Unix like\noperating systems.  It features: EXIF, IPTC and XMP metadata\nbrowsing and editing interoperability; easy integration with other\nsoftware; geeqie works on files and directories, there is no need to\nimport images; fast preview for many raw image formats; tools for\nimage comparison, sorting and managing photo collection.  Geeqie was\ninitially based on GQview.\n",

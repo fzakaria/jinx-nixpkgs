@@ -68,10 +68,10 @@ substituteInPlace $out/share/applications/chromium-browser.desktop \\
   --replace-fail "@@extra_desktop_entries" ""
 
 `, "if grep -F '@@' $out/share/applications/chromium-browser.desktop ; then\n  echo \"error: chromium-browser.desktop contains unsubstituted placeholders\" >&2\n  exit 1\nfi\n"));
-      const passthru = nix.thunk(() => ({ __proto__: pos$1, sandboxExecutableName: sandboxExecutableName }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, sandboxExecutableName: sandboxExecutableName }));
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: nix.thunk(() => nix.add("Open source web browser from Google", nix.app(nix.sel(lib, "optionalString"), ungoogled, ", with dependencies on Google web services removed"))),
         longDescription: "Chromium is an open source web browser from Google that aims to build a\nsafer, faster, and more stable way for all Internet users to experience\nthe web. It has a minimalist user interface and provides the vast majority\nof source code for Google Chrome (which has some additional features).\n",
         homepage: nix.thunk(() => (nix.asBool(ungoogled) ? "https://github.com/ungoogled-software/ungoogled-chromium" : "https://www.chromium.org/")),
@@ -92,7 +92,7 @@ substituteInPlace $out/share/applications/chromium-browser.desktop \\
         timeout: 172800n,
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name,
         packageName,
         buildTargets,

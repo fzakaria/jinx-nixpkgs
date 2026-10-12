@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libvlc = nix.arg($, "libvlc");
   const libvlcpp = nix.arg($, "libvlcpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mfaomp",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Neurofibromin",
           repo: "mfaomp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_FETCHED_LIBVLCPP", false)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Multiple Files At Once Media Player",
         homepage: "https://github.com/Neurofibromin/mfaomp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

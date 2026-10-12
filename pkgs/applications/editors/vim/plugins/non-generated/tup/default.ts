@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const tup = nix.arg($, "tup");
   const ftdetect = nix.thunk(() => nix.builtins.toFile("tup.vim", "au BufNewFile,BufRead Tupfile,*.tup setf tup\n"));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: nix.thunk(() => nix.attr(tup, "pname")),
       version: nix.thunk(() => nix.attr(tup, "version")),
       src: nix.thunk(() => nix.attr(tup, "src")),
@@ -25,7 +25,7 @@ cd vim-plugin
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tup, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.attr(from, "description")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),

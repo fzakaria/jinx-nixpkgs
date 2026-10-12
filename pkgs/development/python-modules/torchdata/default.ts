@@ -26,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "torchdata",
       version: "0.11.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meta-pytorch",
           repo: "data",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [datasets, expecttest, parameterized, pytest_xdist, pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_get_worker_info"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_set_affinity_in_worker_init", "test_ind_worker_queue"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_ind_worker_queue"]))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Iterative enhancement to the PyTorch torch.utils.data.DataLoader and torch.utils.data.Dataset/IterableDataset",
         homepage: "https://github.com/meta-pytorch/data",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/data/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

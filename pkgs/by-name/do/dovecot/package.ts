@@ -5,7 +5,7 @@ const here = nix.here(import.meta.url);
 const pos$1 = nix.positions(here + "/package.nix", [["version", 2, 3], ["hash", 3, 3], ["patches", 4, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     version: "2.4.5",
     hash: "sha256-oZ9wmfsKSr54DB9NebRl+atuDrCL3johkskY6M1Hxmg=",
     patches: (_) => [nix.path(here, "./load-extended-modules.patch")],

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ttl",
       version: "0.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "lance0",
           repo: "ttl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       postInstall: "installShellCompletion --cmd ttl \\\n  --bash <($out/bin/ttl --completions bash) \\\n  --fish <($out/bin/ttl --completions fish) \\\n  --zsh <($out/bin/ttl --completions zsh)\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern traceroute/mtr-style TUI",
         longDescription: "ttl provides a live traceroute interface that can trace multiple targets,\ndetect ECMP paths, run PMTUD, export JSON/CSV reports, and optionally\nenrich hop data with DNS, ASN, geolocation, and PeeringDB information.\n",
         mainProgram: "ttl",

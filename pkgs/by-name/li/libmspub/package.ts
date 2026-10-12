@@ -23,32 +23,32 @@ export default nix.lambda((args) => (() => {
   const librevenge = nix.arg($, "librevenge");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libmspub",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libmspub/libmspub-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-1At2aFAdPeoDKcsrv1hpZ1Eig0//tc3jaRpg1qn14xI=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [boost, doxygen, icu, librevenge, zlib]),
       configureFlags: nix.thunk(() => ["--with-docs"]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CXXFLAGS: "-std=gnu++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++17" })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libmspub/-/raw/8721a52e09e14f905311abd3d5f2ad9bb3fe78a2/buildfix.diff",
             hash: "sha256-evxEoQ0a6YHoymR+SEJwqfr7rkWp3JnsWOD1tfYfZOw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libmspub/-/raw/9d565015753364fa458da19e5dd4ce8224cf9246/includes.patch",
             hash: "sha256-oHXEWSOSod9VnOrFtdMQcHYm7EdKkG+S7Q9rfM0DaTg=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://git.libreoffice.org/libmspub/+/refs/tags/libmspub-${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Microsoft Publisher import library",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libmspub",

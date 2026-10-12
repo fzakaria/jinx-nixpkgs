@@ -69,7 +69,7 @@ export default nix.thunk(() => (() => {
         const userPassword = "also_super_secret_ZJWpBKZi668QGt";
         const storedPassword = "seeeecret";
         const testRunner = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-runner", nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "selenium"))]),
             flakeIgnore: nix.thunk(() => ["E501"]),
           })), nix.thunk(() => nix.str`import shutil
@@ -146,10 +146,10 @@ driver.find_element(By.XPATH, '//input[@formcontrolname="password"]').send_keys(
 driver.find_element(By.XPATH, "//button[contains(., 'Save')]").click()
 `)));
         return {
-          __proto__: pos$44,
+          [nix.POS]: pos$44,
           name: name,
           meta: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
               return [
@@ -159,19 +159,19 @@ driver.find_element(By.XPATH, "//button[contains(., 'Save')]").click()
             })()),
           })),
           nodes: nix.thunk(() => nix.update({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             server: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const pkgs_1 = nix.arg($_2, "pkgs");
               return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     mysql: nix.thunk(() => ({
-                      __proto__: pos$10,
+                      [nix.POS]: pos$10,
                       services: nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         mysql: nix.thunk(() => ({
-                          __proto__: pos$3,
+                          [nix.POS]: pos$3,
                           enable: true,
                           initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "mysql-init.sql", nix.thunk(() => nix.str`CREATE DATABASE bitwarden;
 CREATE USER 'bitwardenuser'@'localhost' IDENTIFIED BY '${dbPassword}';
@@ -181,99 +181,99 @@ FLUSH PRIVILEGES;
                           package: nix.thunk(() => nix.sel(pkgs_1, "mariadb")),
                         })),
                         vaultwarden: nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           config: nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             databaseUrl: nix.thunk(() => nix.str`mysql://bitwardenuser:${dbPassword}@localhost/bitwarden`),
                           })),
                         })),
                       })),
                       systemd: nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         services: nix.thunk(() => ({
-                          __proto__: pos$8,
-                          vaultwarden: nix.thunk(() => ({ __proto__: pos$7, after: nix.thunk(() => ["mysql.service"]) })),
+                          [nix.POS]: pos$8,
+                          vaultwarden: nix.thunk(() => ({ [nix.POS]: pos$7, after: nix.thunk(() => ["mysql.service"]) })),
                         })),
                       })),
                     })),
                     postgresql: nix.thunk(() => ({
-                      __proto__: pos$19,
+                      [nix.POS]: pos$19,
                       services: nix.thunk(() => ({
-                        __proto__: pos$15,
+                        [nix.POS]: pos$15,
                         postgresql: nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           enable: true,
                           ensureDatabases: nix.thunk(() => ["vaultwarden"]),
                           ensureUsers: nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$11, name: "vaultwarden", ensureDBOwnership: true })),
+                            nix.thunk(() => ({ [nix.POS]: pos$11, name: "vaultwarden", ensureDBOwnership: true })),
                           ]),
                         })),
                         vaultwarden: nix.thunk(() => ({
-                          __proto__: pos$14,
+                          [nix.POS]: pos$14,
                           config: nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             databaseUrl: "postgresql:///vaultwarden?host=/run/postgresql",
                           })),
                         })),
                       })),
                       systemd: nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         services: nix.thunk(() => ({
-                          __proto__: pos$17,
-                          vaultwarden: nix.thunk(() => ({ __proto__: pos$16, after: nix.thunk(() => ["postgresql.target"]) })),
+                          [nix.POS]: pos$17,
+                          vaultwarden: nix.thunk(() => ({ [nix.POS]: pos$16, after: nix.thunk(() => ["postgresql.target"]) })),
                         })),
                       })),
                     })),
                     sqlite: nix.thunk(() => ({
-                      __proto__: pos$23,
+                      [nix.POS]: pos$23,
                       services: nix.thunk(() => ({
-                        __proto__: pos$21,
-                        vaultwarden: nix.thunk(() => ({ __proto__: pos$20, backupDir: "/srv/backups/vaultwarden" })),
+                        [nix.POS]: pos$21,
+                        vaultwarden: nix.thunk(() => ({ [nix.POS]: pos$20, backupDir: "/srv/backups/vaultwarden" })),
                       })),
                       environment: nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "sqlite"))]),
                       })),
                     })),
                   }, nix.key(nix.force(backend)))),
                   nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     networking: nix.thunk(() => ({
-                      __proto__: pos$27,
+                      [nix.POS]: pos$27,
                       hosts: nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         "::1": nix.thunk(() => [nix.thunk(() => nix.sel(certs, "domain"))]),
                       })),
-                      firewall: nix.thunk(() => ({ __proto__: pos$26, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+                      firewall: nix.thunk(() => ({ [nix.POS]: pos$26, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
                     })),
                     services: nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       vaultwarden: nix.thunk(() => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         enable: true,
                         dbBackend: backend,
-                        config: nix.thunk(() => ({ __proto__: pos$28, rocketAddress: "::", rocketPort: 8080n })),
+                        config: nix.thunk(() => ({ [nix.POS]: pos$28, rocketAddress: "::", rocketPort: 8080n })),
                       })),
                       nginx: nix.thunk(() => ({
-                        __proto__: pos$33,
+                        [nix.POS]: pos$33,
                         enable: true,
                         virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                           [nix.str`${nix.sel(certs, "domain")}`, nix.thunk(() => ({
-                            __proto__: pos$32,
+                            [nix.POS]: pos$32,
                             sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.sel(certs, "domain")), "cert")),
                             sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.sel(certs, "domain")), "key")),
                             enableACME: false,
                             forceSSL: true,
                             locations: nix.thunk(() => ({
-                              __proto__: pos$31,
-                              "/": nix.thunk(() => ({ __proto__: pos$30, proxyPass: "http://[::1]:8080" })),
+                              [nix.POS]: pos$31,
+                              "/": nix.thunk(() => ({ [nix.POS]: pos$30, proxyPass: "http://[::1]:8080" })),
                             })),
                           }))],
                         ])),
                       })),
                     })),
                     environment: nix.thunk(() => ({
-                      __proto__: pos$35,
+                      [nix.POS]: pos$35,
                       systemPackages: nix.thunk(() => [
                         nix.thunk(() => nix.sel(pkgs_1, "firefox-unwrapped")),
                         nix.thunk(() => nix.sel(pkgs_1, "geckodriver")),
@@ -284,27 +284,27 @@ FLUSH PRIVILEGES;
                 ]));
             })(), formals$3),
           }, nix.app(nix.sel(lib, "optionalAttrs"), withClient, nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               client: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 const nodes = nix.arg($_2, "nodes");
                 const pkgs_1 = nix.arg($_2, "pkgs");
                 return {
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   networking: nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     hosts: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")}`, nix.thunk(() => [nix.thunk(() => nix.sel(certs, "domain"))])],
                     ])),
                   })),
                   environment: nix.thunk(() => ({
-                    __proto__: pos$39,
+                    [nix.POS]: pos$39,
                     systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "bitwarden-cli"))]),
                   })),
                   security: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     pki: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
                     })),
                   })),
@@ -347,12 +347,12 @@ with subtest("use the web interface to sign up, log in, and save a password"):
       })(), formals$2));
   })(), formals$1);
   return nix.builtins.mapAttrs((k) => (v) => nix.app(makeVaultwardenTest, k, v), nix.thunk(() => ({
-      __proto__: pos$46,
+      [nix.POS]: pos$46,
       mysql: nix.thunk(() => ({})),
       postgresql: nix.thunk(() => ({})),
       sqlite: nix.thunk(() => ({})),
       "sqlite-backup": nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         backend: "sqlite",
         withClient: false,
         testScript: "start_all()\nserver.wait_for_unit(\"vaultwarden.service\")\nserver.wait_for_open_port(443)\n\nwith subtest(\"Set up vaultwarden\"):\n    server.succeed(\"PYTHONUNBUFFERED=1 test-runner | systemd-cat -t test-runner\")\n\nwith subtest(\"Run the backup script\"):\n    server.start_job(\"backup-vaultwarden.service\")\n\nwith subtest(\"Check that backup exists\"):\n    server.succeed('[ -d \"/srv/backups/vaultwarden\" ]')\n    server.succeed('[ -f \"/srv/backups/vaultwarden/db.sqlite3\" ]')\n    server.succeed('[ -f \"/srv/backups/vaultwarden/rsa_key.pem\" ]')\n    # Ensure only the db backed up with the backup command exists and not the other db files.\n    server.succeed('[ ! -f \"/srv/backups/vaultwarden/db.sqlite3-shm\" ]')\n",

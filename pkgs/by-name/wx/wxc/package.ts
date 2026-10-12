@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wxc",
       version: "1.0.0.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wxHaskell",
           repo: "wxHaskell",
           rev: nix.thunk(() => nix.str`wxc-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libGL]),
       preConfigure: "bash generate-version-header.sh\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C language binding for wxWidgets",
         homepage: "https://wiki.haskell.org/WxHaskell",
         license: nix.thunk(() => (() => {

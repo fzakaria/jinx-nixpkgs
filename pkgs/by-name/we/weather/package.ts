@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "2.5.0",
       pname: "weather",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fungi.yuggoth.org/weather/src/weather-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-wn3cpgfrlqntMIiVFh4317DrbGgQ4YRnFz3KHXacTw4=",
         })))),
@@ -44,7 +44,7 @@ wrapPythonPrograms
 installManPage weather.1 weatherrc.5
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://fungi.yuggoth.org/weather",
         description: "Quick access to current weather conditions and forecasts",
         mainProgram: "weather",

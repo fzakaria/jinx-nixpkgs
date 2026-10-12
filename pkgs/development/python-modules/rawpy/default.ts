@@ -22,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scikit_image = nix.arg($, "scikit-image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rawpy",
       version: "0.27.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "letmaik",
           repo: "rawpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libraw]),
       dependencies: nix.thunk(() => [numpy]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RAWPY_USE_SYSTEM_LIBRAW: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RAWPY_USE_SYSTEM_LIBRAW: 1n })),
       pythonImportsCheck: nix.thunk(() => ["rawpy", "rawpy._rawpy"]),
       preCheck: "rm -rf rawpy\n",
       nativeCheckInputs: nix.thunk(() => [imageio, pytestCheckHook, scikit_image]),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         "testThumbExtractBitmap",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "RAW image processing for Python, a wrapper for libraw",
         homepage: "https://github.com/letmaik/rawpy",
         changelog: nix.thunk(() => nix.str`https://github.com/letmaik/rawpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

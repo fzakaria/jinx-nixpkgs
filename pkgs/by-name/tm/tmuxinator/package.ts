@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "tmuxinator";
       const version = "3.4.1";
       const source = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         sha256: "sha256-2BZgu3vybhpoScScq42yr80DYI343vqlQVQv2AOG48I=",
       }));
       const erubi = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => (() => {
@@ -34,11 +34,11 @@ export default nix.lambda((args) => (() => {
           const gemName_1 = "erubi";
           const version_1 = "1.13.0";
           const source_1 = nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             sha256: "fca61b47daefd865d0fb50d168634f27ad40181867445badf6427c459c33cd62",
           }));
           return {
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             ruby: ruby_2,
             name: name_1,
             gemName: gemName_1,
@@ -52,11 +52,11 @@ export default nix.lambda((args) => (() => {
           const gemName_1 = "thor";
           const version_1 = "1.4.0";
           const source_1 = nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             sha256: "sha256-h2PoIsyw8de+6IzeExsZplYGZXuEfMe3tLgudyvNij0=",
           }));
           return {
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             ruby: ruby_2,
             name: name_1,
             gemName: gemName_1,
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
           const gemName_1 = "xdg";
           const version_1 = "2.2.5";
           const source_1 = nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             sha256: "04xr4cavnzxlk926pkji7b5yiqy4qsd3gdvv8mg6jliq6sczg9gk",
           }));
           return {
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             ruby: ruby_2,
             name: name_1,
             gemName: gemName_1,
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`installShellCompletion $GEM_HOME/gems/${gemName}-${version}/completion/tmuxinator.{bash,zsh,fish}
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Manage complex tmux sessions easily",
         homepage: "https://github.com/tmuxinator/tmuxinator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tmuxinator",
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         ruby: ruby_1,
         name,
         gemName,

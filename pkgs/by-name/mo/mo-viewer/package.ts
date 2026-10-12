@@ -27,24 +27,24 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "mo-viewer",
       version: "1.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "k1LoW",
           repo: "mo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BXGMjybhKZzw+yae478EP2j3cKw/ZbJMrW342W8ZCmY=",
         })))),
       frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalFrontendAttrs) => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpmRoot: "internal/frontend",
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               pname: nix.thunk(() => nix.attr(finalFrontendAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalFrontendAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalFrontendAttrs, "src")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-v1EfsHryyLfv9/ZzVazSMFySio62upqsB33eLV6LZZU=",
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "frontend")} internal/static/dist
 `),
-      env: nix.thunk(() => ({ __proto__: pos$4, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -75,11 +75,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         homepage: "https://github.com/k1LoW/mo",
         description: "Markdown viewer that opens .md files in a browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fuse3 = nix.arg($, "fuse3");
   const mbedtls = nix.arg($, "mbedtls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dislocker",
       version: "0.7.3-unstable-2025-09-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Aorimn",
           repo: "dislocker",
           rev: "4ff070f0ea9e56948ab316fb76b91f54dd6727aa",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [fuse3, mbedtls]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         CFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DFUSE_DARWIN_ENABLE_EXTENSIONS=0")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Read BitLocker encrypted partitions in Linux",
         homepage: "https://github.com/Aorimn/dislocker",
         changelog: nix.thunk(() => nix.str`https://github.com/Aorimn/dislocker/raw/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

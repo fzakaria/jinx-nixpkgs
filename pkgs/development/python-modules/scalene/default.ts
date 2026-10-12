@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   const heap_layers_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "emeryberger",
       repo: "heap-layers",
       name: "Heap-Layers",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-p+8aUC124Digv3c9fZ7lLHg6H8FXoAcAQxlYzf9TYbM=",
     }))));
   const printf_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "mpaland",
       repo: "printf",
       name: "printf",
@@ -47,12 +47,12 @@ export default nix.lambda((args) => (() => {
     }))));
   const pythonPath = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scalene",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "plasma-umass",
           repo: "scalene",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,7 +89,7 @@ substituteInPlace tests/test_{multiprocessing_pool_spawn,on_off_windows}.py \\
       preCheck: "rm -rf scalene\n",
       pythonImportsCheck: nix.thunk(() => ["scalene"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "High-resolution, low-overhead CPU, GPU, and memory profiler for Python with AI-powered optimization suggestions",
         homepage: "https://github.com/plasma-umass/scalene",
         changelog: nix.thunk(() => nix.str`https://github.com/plasma-umass/scalene/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

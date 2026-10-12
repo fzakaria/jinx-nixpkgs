@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "patchcil";
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GGG-KILLER",
           repo: "patchcil",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +53,11 @@ export default nix.lambda((args) => (() => {
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), aot, "# Remove debug symbols as they shouldn't have anything in them.\nrm $out/lib/patchcil/patchcil.dbg\n"));
       const executables = nix.thunk(() => ["patchcil"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Small utility to modify the library paths from PInvoke in .NET assemblies",
         homepage: "https://github.com/GGG-KILLER/patchcil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

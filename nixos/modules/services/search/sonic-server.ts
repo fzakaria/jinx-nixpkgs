@@ -39,37 +39,37 @@ export default nix.lambda((args) => (() => {
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "sonic-server-config.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         "sonic-server": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Sonic Search Index")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "sonic-server", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })))),
               default: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 store: nix.thunk(() => ({
-                  __proto__: pos$5,
-                  kv: nix.thunk(() => ({ __proto__: pos$3, path: "/var/lib/sonic/kv" })),
-                  fst: nix.thunk(() => ({ __proto__: pos$4, path: "/var/lib/sonic/fst" })),
+                  [nix.POS]: pos$5,
+                  kv: nix.thunk(() => ({ [nix.POS]: pos$3, path: "/var/lib/sonic/kv" })),
+                  fst: nix.thunk(() => ({ [nix.POS]: pos$4, path: "/var/lib/sonic/fst" })),
                 })),
               })),
               example: nix.thunk(() => ({
-                __proto__: pos$9,
-                server: nix.thunk(() => ({ __proto__: pos$7, log_level: "debug" })),
-                channel: nix.thunk(() => ({ __proto__: pos$8, inet: "[::1]:1491" })),
+                [nix.POS]: pos$9,
+                server: nix.thunk(() => ({ [nix.POS]: pos$7, log_level: "debug" })),
+                channel: nix.thunk(() => ({ [nix.POS]: pos$8, inet: "[::1]:1491" })),
               })),
               description: "Sonic Server configuration options.\n\nRefer to\n<https://github.com/valeriansaliou/sonic/blob/master/CONFIGURATION.md>\nfor a full list of available options.\n",
             })))),
@@ -77,25 +77,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         services: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           "sonic-server": nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 server: nix.thunk(() => ({})),
-                channel: nix.thunk(() => ({ __proto__: pos$14, search: nix.thunk(() => ({})) })),
+                channel: nix.thunk(() => ({ [nix.POS]: pos$14, search: nix.thunk(() => ({})) })),
                 store: nix.thunk(() => ({
-                  __proto__: pos$17,
+                  [nix.POS]: pos$17,
                   kv: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     path: "/var/lib/sonic/kv",
                     database: nix.thunk(() => ({})),
                     pool: nix.thunk(() => ({})),
                   })),
                   fst: nix.thunk(() => ({
-                    __proto__: pos$16,
+                    [nix.POS]: pos$16,
                     path: "/var/lib/sonic/fst",
                     graph: nix.thunk(() => ({})),
                     pool: nix.thunk(() => ({})),
@@ -105,16 +105,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           services: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             "sonic-server": nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               description: "Sonic Search Index",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 Type: "simple",
                 ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} -c ${configFile}`),
                 DynamicUser: true,

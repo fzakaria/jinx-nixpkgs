@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const abiVersion = nix.argOr($_1, "abiVersion", () => "x86");
     const systemImageType = nix.argOr($_1, "systemImageType", () => "default");
     const enableGPU = nix.argOr($_1, "enableGPU", () => false);
-    const configOptions = nix.argOr($_1, "configOptions", () => nix.app(nix.sel(lib, "optionalAttrs"), enableGPU, nix.thunk(() => nix.app(nix.sel(lib, "warn"), "enableGPU argument is deprecated and will be removed; use configOptions instead", nix.thunk(() => ({ __proto__: pos$1, "hw.gpu.enabled": "yes" }))))));
+    const configOptions = nix.argOr($_1, "configOptions", () => nix.app(nix.sel(lib, "optionalAttrs"), enableGPU, nix.thunk(() => nix.app(nix.sel(lib, "warn"), "enableGPU argument is deprecated and will be removed; use configOptions instead", nix.thunk(() => ({ [nix.POS]: pos$1, "hw.gpu.enabled": "yes" }))))));
     const extraAVDFiles = nix.argOr($_1, "extraAVDFiles", () => []);
     const package$ = nix.argOr($_1, "package", () => null);
     const activity = nix.argOr($_1, "activity", () => null);
@@ -36,8 +36,8 @@ export default nix.lambda((args) => (() => {
     const sdkExtraArgs = nix.argOr($_1, "sdkExtraArgs", () => ({}));
     const androidAvdFlags = nix.argOr($_1, "androidAvdFlags", () => null);
     const androidEmulatorFlags = nix.argOr($_1, "androidEmulatorFlags", () => null);
-    const sdkArgs = nix.thunk(() => nix.update({ __proto__: pos$2, includeEmulator: true, includeSystemImages: true }, nix.update(sdkExtraArgs, {
-      __proto__: pos$3,
+    const sdkArgs = nix.thunk(() => nix.update({ [nix.POS]: pos$2, includeEmulator: true, includeSystemImages: true }, nix.update(sdkExtraArgs, {
+      [nix.POS]: pos$3,
       cmdLineToolsVersion: "8.0",
       platformVersions: nix.thunk(() => [platformVersion]),
       systemImageTypes: nix.thunk(() => [systemImageType]),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
     })));
     const sdk = nix.thunk(() => nix.sel(nix.app(composeAndroidPackages, sdkArgs), "androidsdk"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         name: name,
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
 
@@ -167,7 +167,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(pa
 EOF
 chmod +x $out/bin/run-test-emulator
 `),
-        meta: nix.thunk(() => nix.update(meta, { __proto__: pos$4, mainProgram: "run-test-emulator" })),
+        meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, mainProgram: "run-test-emulator" })),
       })));
   })(), formals$2);
 })(), formals$1);

@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const jax = nix.arg($, "jax");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "jax-test-cuda", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       libraries: nix.thunk(() => nix.concat([jax], nix.sel(jax, "optional-dependencies", "cuda"))),
     })), "import jax\nimport jax.numpy as jnp\nfrom jax import random\nfrom jax.experimental import sparse\n\nassert jax.devices()[0].platform == \"gpu\"  # libcuda.so\n\nrng = random.key(0)  # libcudart.so, libcudnn.so\nx = random.normal(rng, (100, 100))\nx @ x  # libcublas.so\njnp.fft.fft(x)  # libcufft.so\njnp.linalg.inv(x)  # libcusolver.so\nsparse.CSR.fromdense(x) @ x  # libcusparse.so\n\nprint(\"success!\")\n");
 })(), formals$1);

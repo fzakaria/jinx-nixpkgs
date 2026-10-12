@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const yarl = nix.arg($, "yarl");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aioshelly",
       version: "13.34.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "aioshelly",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [aioresponses, pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["aioshelly"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python library to control Shelly",
         homepage: "https://github.com/home-assistant-libs/aioshelly",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/aioshelly/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

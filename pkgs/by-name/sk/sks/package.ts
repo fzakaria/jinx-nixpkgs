@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const cryptokit = nix.thunk(() => nix.attr(from, "cryptokit"));
   const num = nix.thunk(() => nix.attr(from, "num"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sks",
       version: "unstable-2021-02-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SKS-Keyserver",
           repo: "sks-keyserver",
           rev: "c3ba6d5abb525dcb84745245631c410c11c07ec1",
@@ -50,13 +50,13 @@ export default nix.lambda((args) => (() => {
       checkPhase: "./sks unit_test",
       postInstall: "cp -R sampleWeb $webSamples",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "sks")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "sks")) })),
       })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Easily deployable & decentralized OpenPGP keyserver",
         longDescription: "SKS is an OpenPGP keyserver whose goal is to provide easy to deploy,\ndecentralized, and highly reliable synchronization. That means that a key\nsubmitted to one SKS server will quickly be distributed to all key\nservers, and even wildly out-of-date servers, or servers that experience\nspotty connectivity, can fully synchronize with rest of the system.\n",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

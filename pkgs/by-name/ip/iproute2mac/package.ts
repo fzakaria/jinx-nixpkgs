@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "iproute2mac",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brona",
           repo: "iproute2mac",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/libexec\ninstall -D -m 755 src/iproute2mac.py $out/libexec/iproute2mac.py\ninstall -D -m 755 src/ip.py $out/libexec/ip\ninstall -D -m 755 src/bridge.py $out/libexec/bridge\ninstall -D -m 755 src/ss.py $out/libexec/ss\nmakeWrapper $out/libexec/ip $out/bin/ip\nmakeWrapper $out/libexec/bridge $out/bin/bridge\nmakeWrapper $out/libexec/ss $out/bin/ss\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/brona/iproute2mac",
         description: "CLI wrapper for basic network utilities on Mac OS X inspired with iproute2 on Linux systems - ip command",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

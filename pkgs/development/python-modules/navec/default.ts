@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-TyNHSxwnmvbGBfhOeHPofEfKWLDFOKP50w2QxgnJ/SE=",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_gensim"]);
       const pythonImportsCheck = nix.thunk(() => ["navec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Compact high quality word embeddings for Russian language",
         mainProgram: "navec-train",
         homepage: "https://github.com/natasha/navec",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

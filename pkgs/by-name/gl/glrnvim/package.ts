@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "glrnvim",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beeender",
           repo: "glrnvim",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-8sKY5uqWap01klJlZ3CnLAqRFeRSbt7K7jRL8XPDBQ4=",
       postInstall: "install -Dm644 glrnvim.desktop -t $out/share/applications\ninstall -Dm644 glrnvim.svg $out/share/icons/hicolor/scalable/apps/glrnvim.svg\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Really fast & stable neovim GUI which could be accelerated by GPU",
         homepage: "https://github.com/beeender/glrnvim",
         mainProgram: "glrnvim",

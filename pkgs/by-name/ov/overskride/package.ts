@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "overskride",
       version: "0.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kaii-lb",
           repo: "overskride",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`glib-compile-schemas $out/share/gsettings-schemas/overskride-${nix.sel(finalAttrs, "version")}/glib-2.0/schemas
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Bluetooth and Obex client that is straight to the point, DE/WM agnostic, and beautiful",
         homepage: "https://github.com/kaii-lb/overskride",
         changelog: nix.thunk(() => nix.str`https://github.com/kaii-lb/overskride/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

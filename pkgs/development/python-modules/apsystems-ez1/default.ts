@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SonnenladenGmbH",
           repo: "APsystems-EZ1-API",
           tag: version,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["APsystemsEZ1"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/SonnenladenGmbH/APsystems-EZ1-API/releases/tag/${nix.sel(src, "tag")}`),
         description: "Streamlined interface for interacting with the local API of APsystems EZ1 Microinverters",
         homepage: "https://github.com/SonnenladenGmbH/APsystems-EZ1-API",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

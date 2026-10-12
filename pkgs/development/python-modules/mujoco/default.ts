@@ -28,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "mujoco",
       version: nix.thunk(() => nix.attr(mujoco, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JqgL8mwxzFkiGrIHT5NkmnvuDbh/hkYgKZXcIGWiHn4=",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [absl_py, etils, glfw, numpy, pyopengl, typing_extensions, websockets]),
       pythonImportsCheck: nix.thunk(() => ["mujoco"]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MUJOCO_PATH: nix.thunk(() => nix.str`${mujoco}`),
         MUJOCO_PLUGIN_PATH: nix.thunk(() => nix.str`${mujoco}/lib`),
         MUJOCO_CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
@@ -78,7 +78,7 @@ ln -s ${nix.sel(mujoco, "pin", "abseil-cpp")} $build/_deps/abseil-cpp-src
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mujoco, "meta"));
         return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python bindings for MuJoCo: a general purpose physics simulator",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

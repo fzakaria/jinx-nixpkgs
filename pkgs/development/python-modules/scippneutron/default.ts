@@ -41,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "scippneutron",
       version: "26.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "scipp",
           repo: "scippneutron",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,11 +80,11 @@ export default nix.lambda((args) => (() => {
         sciline,
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SCIPPNEUTRON_DATA_DIR: nix.thunk(() => (() => {
           const _version = "5";
           return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: "plopp-test-data",
               dontUnpack: true,
               strictDeps: true,
@@ -135,7 +135,7 @@ mkdir -p $out/${_version}
       preCheck: "rm tests/masking_tool_test.py\n",
       pythonImportsCheck: nix.thunk(() => ["scippneutron"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Neutron scattering toolkit built using scipp for Data Reduction. Not facility or instrument specific",
         homepage: "https://scipp.github.io/scippneutron",
         changelog: nix.thunk(() => nix.str`https://github.com/scipp/scippneutron/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const vault_ssh_plus = nix.arg($, "vault-ssh-plus");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vault-ssh-plus",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "isometry",
           repo: "vault-ssh-plus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +41,11 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/vssh --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))};
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: vault_ssh_plus,
               command: "vssh --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ wrapProgram $out/bin/vssh --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://github.com/isometry/vault-ssh-plus",
         changelog: nix.thunk(() => nix.str`https://github.com/isometry/vault-ssh-plus/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Automatically use HashiCorp Vault SSH Client Key Signing with ssh(1)",

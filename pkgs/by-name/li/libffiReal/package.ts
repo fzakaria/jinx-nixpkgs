@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libffi",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`https://github.com/libffi/libffi/releases/download/v${nix.lookup(w, "version")}/${nix.lookup(w, "pname")}-${nix.lookup(w, "version")}.tar.gz`;
@@ -42,19 +42,19 @@ export default nix.lambda((args) => (() => {
       doCheck: doCheck,
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Foreign function call interface library",
         longDescription: "The libffi library provides a portable, high level programming\ninterface to various calling conventions.  This allows a\nprogrammer to call any function specified by a call interface\ndescription at run-time.\n\nFFI stands for Foreign Function Interface.  A foreign function\ninterface is the popular name for the interface that allows code\nwritten in one language to call code written in another\nlanguage.  The libffi library really only provides the lowest,\nmachine dependent layer of a fully featured foreign function\ninterface.  A layer must exist above libffi that handles type\nconversions for values passed between the two languages.\n",
         homepage: "http://sourceware.org/libffi/",

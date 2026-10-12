@@ -13,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mcp-searxng",
       version: "2.5.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ihor-sokoliuk",
           repo: "mcp-searxng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-QhUqB/+R3BGwx8gH0MDn+PiMEtira3vZdosJj8oMsaI=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Private web search for AI assistants via SearXNG — supports Claude, Cursor, and any MCP client",
         homepage: "https://github.com/ihor-sokoliuk/mcp-searxng",
         changelog: nix.thunk(() => nix.str`https://github.com/ihor-sokoliuk/mcp-searxng/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

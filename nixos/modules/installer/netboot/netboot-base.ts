@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     imports: nix.thunk(() => [
       nix.path(here, "./netboot.nix"),
       nix.path(here, "../../profiles/base.nix"),
       nix.path(here, "../../profiles/installation-device.nix"),
     ]),
-    hardware: nix.thunk(() => ({ __proto__: pos$1, enableAllHardware: true })),
+    hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableAllHardware: true })),
   };
 })(), formals$1);
 //# sourceMappingURL=netboot-base.ts.map

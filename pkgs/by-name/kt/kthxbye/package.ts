@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kthxbye";
       const version = "0.16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "prymitive",
           repo: "kthxbye",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make -j$NIX_BUILD_CORES\n";
       const installPhase = "install -Dm755 ./kthxbye -t $out/bin\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, kthxbye: nix.thunk(() => nix.sel(nixosTests, "kthxbye")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, kthxbye: nix.thunk(() => nix.sel(nixosTests, "kthxbye")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Prometheus Alertmanager alert acknowledgement management daemon",
         mainProgram: "kthxbye",
         homepage: "https://github.com/prymitive/kthxbye",
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

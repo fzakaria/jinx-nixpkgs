@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const tcpip = nix.arg($, "tcpip");
   const tls_mirage = nix.arg($, "tls-mirage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "dns-client-mirage",
       src: nix.thunk(() => nix.attr(dns, "src")),
       version: nix.thunk(() => nix.attr(dns, "version")),

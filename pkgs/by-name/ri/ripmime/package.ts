@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ripmime",
       version: "1.4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "inflex",
           repo: "ripMIME",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-D05cz10NTkgc+d3BzUvEkrmMGV/iw4r6m6tizc5TmaI=",
         })))),
       preInstall: "sed -i Makefile -e \"s@LOCATION=.*@LOCATION=$out@\" -e \"s@man/man1@share/&@\"\nmkdir -p \"$out/bin\" \"$out/share/man/man1\"\n",
-      env: nix.thunk(() => nix.update({ __proto__: pos$2, NIX_CFLAGS_COMPILE: " -Wno-error " }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ __proto__: pos$3, NIX_LDFLAGS: "-liconv" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: " -Wno-error " }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-liconv" }))))),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Attachment extractor for MIME messages",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

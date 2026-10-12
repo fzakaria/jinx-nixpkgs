@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const model_url = nix.thunk(() => (nix.asBool(nix.eq(modelUrl, "")) ? nix.str`https://media.xiph.org/rnnoise/models/rnnoise_data-${default_model_version}.tar.gz` : nix.force(modelUrl)));
   const model_hash = nix.thunk(() => (nix.asBool(nix.eq(modelHash, "")) ? nix.sel(modelVersionJSON, "hash") : nix.force(modelHash)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rnnoise",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://gitlab.xiph.org/xiph/rnnoise/-/archive/v${nix.sel(finalAttrs, "version")}/rnnoise-v${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://github.com/xiph/rnnoise/archive/v${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -39,18 +39,18 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/xiph/rnnoise/commit/372f7b4b76cde4ca1ec4605353dd17898a99de38.patch",
             hash: "sha256-Dzikb59hjVxd1XIEj/Je4evxtGORkaNcqE+zxOJMSvs=",
           })))),
       ]),
-      model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ __proto__: pos$3, url: model_url, hash: model_hash })))),
+      model: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: model_url, hash: model_hash })))),
       postPatch: nix.thunk(() => nix.str`tar xvomf ${nix.sel(finalAttrs, "model")}
 `),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       postInstall: "install -Dt $out/bin examples/.libs/rnnoise_demo\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-rnnoise.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts nix nix-prefetch findutils moreutils
 
@@ -77,7 +77,7 @@ jq --arg version "$model_version" \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Recurrent neural network for audio noise reduction",
         homepage: "https://people.xiph.org/~jm/demo/rnnoise/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

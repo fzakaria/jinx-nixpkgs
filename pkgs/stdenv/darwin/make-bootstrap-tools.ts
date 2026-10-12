@@ -18,41 +18,41 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgspath = nix.argOr($, "pkgspath", () => nix.path(here, "../../.."));
   const test_pkgspath = nix.argOr($, "test-pkgspath", () => nix.force(pkgspath));
-  const localSystem = nix.argOr($, "localSystem", () => ({ __proto__: pos$1, system: nix.thunk(() => nix.builtins.currentSystem) }));
+  const localSystem = nix.argOr($, "localSystem", () => ({ [nix.POS]: pos$1, system: nix.thunk(() => nix.builtins.currentSystem) }));
   const crossSystem = nix.argOr($, "crossSystem", () => null);
   const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => null);
-  const cross = nix.thunk(() => (nix.asBool(!nix.eq(crossSystem, null)) ? { __proto__: pos$2, crossSystem: crossSystem } : {}));
+  const cross = nix.thunk(() => (nix.asBool(!nix.eq(crossSystem, null)) ? { [nix.POS]: pos$2, crossSystem: crossSystem } : {}));
   const custom_bootstrap = nix.thunk(() => (nix.asBool(!nix.eq(bootstrapFiles, null)) ? {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     stdenvStages: (args_1) => (() => {
-      const args$ = nix.thunk(() => nix.update(args_1, { __proto__: pos$3, bootstrapFiles: bootstrapFiles }));
+      const args$ = nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$3, bootstrapFiles: bootstrapFiles }));
       return nix.app(nix.builtins.import(nix.thunk(() => nix.str`${pkgspath}/pkgs/stdenv/darwin`)), args$);
     })(),
   } : {}));
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgspath), nix.thunk(() => nix.update({ __proto__: pos$5, localSystem: localSystem }, nix.update(cross, custom_bootstrap)))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgspath), nix.thunk(() => nix.update({ [nix.POS]: pos$5, localSystem: localSystem }, nix.update(cross, custom_bootstrap)))));
   const build = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./stdenv-bootstrap-tools.nix"), nix.thunk(() => ({}))));
   const bootstrapTools = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./bootstrap-tools.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(build, "bootstrapFiles"));
       return {
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       bootstrapTools: nix.thunk(() => nix.attr(from, "bootstrapTools")),
       unpack: nix.thunk(() => nix.attr(from, "unpack")),
     };
     })())));
-  const test = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-bootstrap-tools.nix"), nix.thunk(() => ({ __proto__: pos$7, bootstrapTools: bootstrapTools }))));
+  const test = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-bootstrap-tools.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, bootstrapTools: bootstrapTools }))));
   const test_pkgs = nix.thunk(() => nix.app(nix.builtins.import(test_pkgspath), nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       localSystem: nix.thunk(() => (nix.asBool(!nix.eq(crossSystem, null)) ? nix.force(crossSystem) : nix.force(localSystem))),
       stdenvStages: (args_1) => (() => {
         const args$ = nix.thunk(() => nix.update(args_1, {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           bootstrapFiles: nix.thunk(() => nix.attr(build, "bootstrapFiles")),
         }));
         return nix.app(nix.builtins.import(nix.thunk(() => nix.add(test_pkgspath, "/pkgs/stdenv/darwin"))), args$);
       })(),
     }))));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     build: build,
     bootstrapTools: bootstrapTools,
     test: test,

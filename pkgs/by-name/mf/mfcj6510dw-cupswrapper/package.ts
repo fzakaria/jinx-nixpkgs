@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj6510dw-cupswrapper";
       const version = "3.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006814/mfcj6510dw_cupswrapper_GPL_source_${version}.tar.gz`),
           sha256: "0y5iffybxjin8injrdmc9n9hl4s6b8n6ck76m1z78bzi88vwmhai",
         }))));
@@ -60,7 +60,7 @@ ln -s ${mfcj6510dwlpr}/lib/cups/filter/brother_lpdwrapper_mfcj6510dw $out/lib/cu
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother MFC-J6510DW CUPS wrapper driver",
         license: nix.thunk(() => (() => {
@@ -78,7 +78,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

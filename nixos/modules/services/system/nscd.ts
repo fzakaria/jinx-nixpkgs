@@ -33,45 +33,45 @@ export default nix.lambda((args) => (() => {
   const nssModulesPath = nix.thunk(() => nix.sel(config, "system", "nssModules", "path"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "nscd"));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         nscd: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to enable the Name Service Cache Daemon.\nDisabling this is strongly discouraged, as this effectively disables NSS Lookups\nfrom all non-glibc NSS modules, including the ones provided by systemd.\n",
             })))),
           enableNsncd: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to use nsncd instead of nscd from glibc.\nThis is a nscd-compatible daemon, that proxies lookups, without any caching.\nUsing nscd from glibc is discouraged.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nscd",
               description: "User account under which nscd runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "nscd",
               description: "User group under which nscd runs.\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./nscd.conf"))),
               description: "Configuration to use for Name Service Cache Daemon.\nOnly used in case glibc-nscd is used.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(pkgs, "stdenv", "hostPlatform", "libc"), "glibc")) ? nix.sel(pkgs, "stdenv", "cc", "libc", "bin") : nix.sel(pkgs, "glibc", "bin"))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "if pkgs.stdenv.hostPlatform.libc == \"glibc\"\n  then pkgs.stdenv.cc.libc.bin\n  else pkgs.glibc.bin;\n")),
@@ -81,19 +81,19 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           etc: nix.thunk(() => ({
-            __proto__: pos$11,
-            "nscd.conf": nix.thunk(() => ({ __proto__: pos$10, text: nix.thunk(() => nix.sel(cfg, "config")) })),
+            [nix.POS]: pos$11,
+            "nscd.conf": nix.thunk(() => ({ [nix.POS]: pos$10, text: nix.thunk(() => nix.sel(cfg, "config")) })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               isSystemUser: true,
               group: nix.thunk(() => nix.sel(cfg, "group")),
             }))],
@@ -101,17 +101,17 @@ export default nix.lambda((args) => (() => {
           groups: nix.thunk(() => nix.attrsDyn({}, [[nix.sel(cfg, "group"), nix.thunk(() => ({}))]])),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           services: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             nscd: nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               description: nix.thunk(() => nix.add("Name Service Cache Daemon", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableNsncd")), " (nsncd)"))),
               before: nix.thunk(() => ["nss-lookup.target", "nss-user-lookup.target"]),
               wants: nix.thunk(() => ["nss-lookup.target", "nss-user-lookup.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               requiredBy: nix.thunk(() => ["nss-lookup.target", "nss-user-lookup.target"]),
-              environment: nix.thunk(() => ({ __proto__: pos$15, LD_LIBRARY_PATH: nssModulesPath })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$15, LD_LIBRARY_PATH: nssModulesPath })),
               restartTriggers: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "enableNsncd"))), nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.sel(config, "environment", "etc", "hosts", "source")),
                   nix.thunk(() => nix.sel(config, "environment", "etc", "nsswitch.conf", "source")),
@@ -121,7 +121,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.sel(config, "environment", "etc", "libnss-mysql-root.cfg", "source")),
                   ])))))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 ExecStart: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNsncd")) ? nix.str`${nix.sel(pkgs, "nsncd")}/bin/nsncd` : nix.str`!@${nix.sel(cfg, "package")}/bin/nscd nscd`)),
                 Type: nix.thunk(() => (nix.asBool(nix.sel(cfg, "enableNsncd")) ? "notify" : "forking")),
                 User: nix.thunk(() => nix.sel(cfg, "user")),

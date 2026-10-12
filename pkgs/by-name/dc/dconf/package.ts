@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   const withDocs = nix.argOr($, "withDocs", () => nix.force(withIntrospection));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "dconf",
       version: "0.49.0",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "man"], nix.app(nix.sel(lib, "optional"), withDocs, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/dconf/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/dconf-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "FqR+SaWBVtu5ZXjhcIMlKZ5MGe6pvhKNW9Ev0JY9bDY=",
         })))),
@@ -67,12 +67,12 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       postPatch: "chmod +x tests/test-dconf.py tests/shellcheck.sh\npatchShebangs tests/test-dconf.py tests/shellcheck.sh\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "dconf" })))),
-        tests: nix.thunk(() => ({ __proto__: pos$3, dconf: nix.thunk(() => nix.attr(nixosTests, "dconf")) })),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "dconf" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, dconf: nix.thunk(() => nix.attr(nixosTests, "dconf")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://gitlab.gnome.org/GNOME/dconf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

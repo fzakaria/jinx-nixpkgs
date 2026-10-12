@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const boto3 = nix.arg($, "boto3");
   const botocore = nix.arg($, "botocore");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "infisicalsdk",
       version: "1.0.17",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Infisical",
           repo: "python-sdk-official",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["infisical_sdk"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Infisical/python-sdk-official",
         description: "Infisical Python SDK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "ytmdesktop",
       version: "2.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "ytmdesktop",
           repo: "ytmdesktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +45,7 @@ find -name .git -print0 | xargs -0 rm -rf
 # Remove after upstream updates to Yarn 4.14
 # https://github.com/ytmdesktop/ytmdesktop/blob/v2.0.11/package.json#L77
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -60,7 +60,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace viteconfig/main.ts\n\n# workaround for https://github.com/electron/electron/issues/31121\nsubstituteInPlace src/main/index.ts \\\n  --replace-fail \"process.resourcesPath\" \"'$out/share/ytmdesktop/resources'\"\n")),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -74,7 +74,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         nix.thunk(() => nix.sel(yarn_berry, "yarnBerryConfigHook")),
         zip,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$4, YARN_ENABLE_SCRIPTS: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, YARN_ENABLE_SCRIPTS: "0" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -117,7 +117,7 @@ makeWrapper "$out"/Applications/"YouTube Music Desktop App".app/Contents/MacOS/y
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             desktopName: "YouTube Music Desktop App",
             exec: "ytmdesktop",
             icon: "ytmdesktop",
@@ -130,13 +130,13 @@ makeWrapper "$out"/Applications/"YouTube Music Desktop App".app/Contents/MacOS/y
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         changelog: nix.thunk(() => nix.str`https://github.com/ytmdesktop/ytmdesktop/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Desktop App for YouTube Music",
         downloadPage: "https://github.com/ytmdesktop/ytmdesktop/releases",

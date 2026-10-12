@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "../data.json")));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitlab-workhorse",
       version: "19.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: nix.thunk(() => nix.sel(data, "owner")),
           repo: nix.thunk(() => nix.sel(data, "repo")),
           rev: nix.thunk(() => nix.sel(data, "rev")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       prodyVendor: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.gitlab.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gitlab"))]),

@@ -6,10 +6,10 @@ const pos$1 = nix.positions(here + "/node-name.nix", [["ok", 4, 5], ["one_two", 
 const pos$2 = nix.positions(here + "/node-name.nix", [["name", 2, 3], ["nodes", 3, 3], ["testScript", 19, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   name: "nixos-test-driver.node-name",
   nodes: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     ok: nix.thunk(() => ({})),
     one_two: nix.thunk(() => ({})),
     "a-b": nix.thunk(() => ({})),

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "atomicparsley",
       version: "20240608.083822.1ed9031",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wez",
           repo: "atomicparsley",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs tests/test.sh\n",
       checkPhase: "(\ncp AtomicParsley ../tests\ncd ../tests\nmkdir tests\nmv *.mp4 tests\n./test.sh\n)\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI program for reading, parsing and setting metadata into MPEG-4 files",
         homepage: "https://github.com/wez/atomicparsley",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

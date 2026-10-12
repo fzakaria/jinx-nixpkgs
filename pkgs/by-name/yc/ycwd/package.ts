@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ycwd",
       version: "0-unstable-2026-05-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "blinry",
           repo: "ycwd",
           rev: "6e8b14be2ee1bf6194f69f9e127d21113656c345",
@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-gZpLBsS6b7l5EkPvn5CHqlwfZvKKLIZFMEC51T9GQFU=",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Helps replace xcwd on Wayland compositors",
         homepage: "https://github.com/blinry/ycwd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

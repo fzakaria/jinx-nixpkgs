@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-sPxdSXWRh6qnUKmP9g/AghOX5Ydrxv2Le2iadefQDws=",
@@ -36,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const propagatedBuildInputs = nix.thunk(() => [demes, matplotlib, numpy, scipy]);
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_cov_stub, pytest_xdist, mpmath]);
       const pythonImportsCheck = nix.thunk(() => ["demesdraw"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Drawing functions for Demes demographic models",
         mainProgram: "demesdraw",
         homepage: "https://github.com/grahamgower/demesdraw",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

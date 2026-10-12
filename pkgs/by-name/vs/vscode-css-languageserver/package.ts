@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const typescript_7 = nix.arg($, "typescript_7");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vscode-css-languageserver",
       version: "1.139.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "vscode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
 ln -s $out/bin/vscode-css-languageserver $out/bin/vscode-css-language-server
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CSS language server",
         homepage: nix.thunk(() => nix.str`https://github.com/microsoft/vscode/tree/${nix.sel(finalAttrs, "src", "tag")}/extensions/css-language-features/server`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "phetch",
       version: "1.2.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xvxx",
           repo: "phetch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "make manual\ninstallManPage doc/phetch.1\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Quick lil gopher client for your terminal, written in rust",
         mainProgram: "phetch",
         longDescription: "phetch is a terminal client designed to help you quickly navigate the gophersphere.\n- <1MB executable for Linux, Mac, and NetBSD\n- Technicolor design (based on GILD)\n- No-nonsense keyboard navigation\n- Supports Gopher searches, text and menu pages, and downloads\n- Save your favorite Gopher sites with bookmarks\n- Opt-in history tracking\n- Secure Gopher support (TLS)\n- Tor support\n",

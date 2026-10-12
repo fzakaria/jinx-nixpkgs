@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "v2ray-exporter";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wi1dcard",
           repo: "v2ray-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -24,14 +24,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-+jrD+QatTrMaAdbxy5mpCm8lF37XDIy1GFyEiUibA2k=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Prometheus exporter for V2Ray daemon",
         mainProgram: "v2ray-exporter",
         homepage: "https://github.com/wi1dcard/v2ray-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

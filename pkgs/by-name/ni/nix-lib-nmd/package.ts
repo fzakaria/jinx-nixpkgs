@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const version = "0.5.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nix-lib-nmd",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~rycee",
           repo: "nmd",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-7BQmDJBo7rzv0rgfRiUAR3HvKkUHQ6x0umhBRhAAyzM=",
       installPhase: "mkdir -v \"$out\"\ncp -rv * \"$out\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://git.sr.ht/~rycee/nmd",
         description: "Documentation framework for projects based on NixOS modules",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

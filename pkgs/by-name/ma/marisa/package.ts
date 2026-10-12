@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "marisa",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "s-yata",
           repo: "marisa-trie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-binding-build.patch",
             url: "https://github.com/s-yata/marisa-trie/commit/cf4602f08df49861d987d122bd85bfdb456fe7a0.patch",
             hash: "sha256-h6+ixT63cHSpg3fhiLwJlxU296bD5YgfEaGqAHpm6+g=",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/s-yata/marisa-trie",
         changelog: nix.thunk(() => nix.str`https://github.com/s-yata/marisa-trie/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Static and space-efficient trie data structure library",

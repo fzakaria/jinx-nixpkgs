@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const alsa_ucm_conf = nix.arg($, "alsa-ucm-conf");
   const alsa_ucm_conf_asahi = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "alsa-ucm-conf-asahi",
       version: "10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AsahiLinux",
           repo: "alsa-ucm-conf-asahi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nfind ucm2/conf.d -type f -exec install -Dm644 \"{}\" \"$out/share/alsa/{}\" \\;\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "ALSA Use Case Manager configuration (and topologies) for Apple silicon devices",
         homepage: "https://github.com/AsahiLinux/alsa-ucm-conf-asahi",
         changelog: nix.thunk(() => nix.str`https://github.com/AsahiLinux/alsa-ucm-conf-asahi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.attr(alsa_ucm_conf_asahi, "pname")),
       version: nix.thunk(() => nix.attr(alsa_ucm_conf_asahi, "version")),
       src: nix.thunk(() => nix.attr(alsa_ucm_conf_asahi, "src")),

@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const numpydoc = nix.arg($, "numpydoc");
   const polars = nix.arg($, "polars");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "nilearn",
       version: "0.14.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nilearn",
           repo: "nilearn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_timeout, pytest_rerunfailures, numpydoc, polars]),
       enabledTestPaths: nix.thunk(() => ["nilearn/connectome/tests"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Module for statistical learning on neuroimaging data",
         homepage: "https://nilearn.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/nilearn/nilearn/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

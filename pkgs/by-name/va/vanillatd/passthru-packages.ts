@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const appName = nix.arg($, "appName");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.builtins.mapAttrs((name) => (buildCommand) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         name: name,
         buildCommand: buildCommand,
         nativeBuildInputs: nix.thunk(() => [unar]),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
             return [nix.thunk(() => nix.lookup(w, "binaryBytecode"))];
@@ -38,12 +38,12 @@ export default nix.lambda((args) => (() => {
         })),
       }))), nix.thunk(() => (nix.asBool(nix.eq(appName, "vanillatd")) ? (() => {
       const CCDEMO1_ZIP = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://archive.org/download/CommandConquerDemo/cc1demo1.zip",
           hash: "sha256-KdM4SctFCocmJCbMWbJbql4DO5TC40leyU+BPzvAn4c=",
         }))));
       const CCDEMO2_ZIP = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           url: "https://archive.org/download/CommandConquerDemo/cc1demo2.zip",
           hash: "sha256-pCgEuE5AFcJur3qUOTmP3GCb/Wp7p7JyVn8Yeq17PEg=",
         }))));
@@ -56,10 +56,10 @@ mv SOUNDS.MIX $out/sounds.mix
 mv SPEECH.MIX $out/speech.mix
 mv DEMOM.MIX $out/demom.mix
 `);
-      return { __proto__: pos$5, demo: demo };
+      return { [nix.POS]: pos$5, demo: demo };
     })() : (nix.asBool(nix.eq(appName, "vanillara")) ? (() => {
       const RA95DEMO_ZIP = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           url: "https://archive.org/download/CommandConquerRedAlert_1020/ra95demo.zip",
           hash: "sha256-jEi9tTUj6k01OnkU2SNM5OPm9YMu60eztrAFhT6HSNI=",
         }))));
@@ -68,12 +68,12 @@ install -D ra95demo/INSTALL/REDALERT.MIX $out/redalert.mix
 install -D ra95demo/INSTALL/MAIN.MIX $out/main.mix
 `);
       const REDALERT_ALLIED_ISO = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           url: "https://archive.org/download/cnc-red-alert/redalert_allied.iso",
           hash: "sha256-Npx6hSTJetFlcb/Fi3UQEGuP0iLk9LIrRmAI7WgEtdw=",
         }))));
       const REDALERT_SOVIETS_ISO = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           url: "https://archive.org/download/cnc-red-alert/redalert_soviets.iso",
           hash: "sha256-aJGr+w1BaGaLwX/pU0lMmu6Cgn9pZ2D/aVafBdtds2Q=",
         }))));
@@ -95,7 +95,7 @@ mv allied/MAIN.MIX $out/allied/main.mix
 mv soviet/MAIN.MIX $out/soviet/main.mix
 `);
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         demo: demo,
         "retail-allied": retail_allied,
         "retail-soviet": retail_soviet,

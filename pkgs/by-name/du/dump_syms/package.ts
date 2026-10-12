@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const firefox_unwrapped = nix.arg($, "firefox-unwrapped");
   const thunderbird_unwrapped = nix.arg($, "thunderbird-unwrapped");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dump_syms",
       version: "2.3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla",
           repo: "dump_syms",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,9 +39,9 @@ export default nix.lambda((args) => (() => {
         "--skip=windows::pdb::tests::test_oleaut32",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "firefox-esr-unwrapped": firefox_esr_unwrapped,
           "firefox-unwrapped": firefox_unwrapped,
           "thunderbird-unwrapped": thunderbird_unwrapped,
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla/dump_syms/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Command-line utility for parsing the debugging information the compiler provides in ELF or stand-alone PDB files",
         mainProgram: "dump_syms",

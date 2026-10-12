@@ -18,33 +18,33 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => nix.path(here, "../../../../.."));
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         checkMeta: true,
         handleEvalIssue: (reason) => (errormsg) => nix.builtins.trace(nix.thunk(() => nix.str`reason: ${reason}, errormsg: ${errormsg}`), true),
         problems: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           matchers: nix.thunk(() => [
-            nix.thunk(() => ({ __proto__: pos$1, kind: "deprecated", handler: "error" })),
-            nix.thunk(() => ({ __proto__: pos$2, kind: "removal", handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$1, kind: "deprecated", handler: "error" })),
+            nix.thunk(() => ({ [nix.POS]: pos$2, kind: "removal", handler: "error" })),
           ]),
         })),
       })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Some package",
         problems: nix.thunk(() => ({
-          __proto__: pos$8,
-          removal: nix.thunk(() => ({ __proto__: pos$6, message: "To be removed." })),
-          deprecated: nix.thunk(() => ({ __proto__: pos$7, message: "To be deprecated." })),
+          [nix.POS]: pos$8,
+          removal: nix.thunk(() => ({ [nix.POS]: pos$6, message: "To be removed." })),
+          deprecated: nix.thunk(() => ({ [nix.POS]: pos$7, message: "To be deprecated." })),
         })),
       })),
     })));

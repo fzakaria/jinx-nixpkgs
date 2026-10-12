@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "goimports-reviser",
       version: "3.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "incu6us",
           repo: "goimports-reviser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iM3qyBrNKeWY9HXW9q0V3d+eKgS+p74BlOcBAr85uDk=",
         })))),
       vendorHash: "sha256-aTPzvqIwjZzEq9LHFdebIgbKMwsBOqLbpEWB7rN7cYY=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip=TestSourceFile_Fix_WithAliasForVersionSuffix/success_with_set_alias"]),
       preCheck: "# unset to run all tests\nunset subPackages\n# unset as some tests require cgo\nunset CGO_ENABLED\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Right imports sorting & code formatting tool (goimports alternative)",
         mainProgram: "goimports-reviser",
         homepage: "https://github.com/incu6us/goimports-reviser",

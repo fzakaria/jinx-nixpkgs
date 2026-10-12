@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "Blosc",
             repo: "python-blosc2",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-z5g3OXSKKR/2yQ5n1hb+br009xaX8C7HxbDDLVfSYNw=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "miniexpr",
             owner: "Blosc",
             repo: "miniexpr",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-3YLdAZFYEtmENuQgDiitU3kw8JmW+V03zFSGXV3FwqE=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "sleef",
             owner: "shibatch",
             repo: "sleef",
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-a0OB2gQI8RlR7liXdlOZo4xDl3f2p9thrCm8CwD2jRM=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "tinycc",
             owner: "Blosc",
             repo: "minicc",
@@ -116,9 +116,9 @@ fi
         "tests/ndarray/test_lazyexpr_fields.py",
         "tests/ndarray/test_reductions.py",
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$5, "c-blosc2": c_blosc2 }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, "c-blosc2": c_blosc2 }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Python wrapper for the extremely fast Blosc2 compression library",
         homepage: "https://github.com/Blosc/python-blosc2",
         changelog: nix.thunk(() => nix.str`https://github.com/Blosc/python-blosc2/releases/tag/${nix.sel(nix.builtins.head(srcs), "name")}`),
@@ -129,7 +129,7 @@ fi
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

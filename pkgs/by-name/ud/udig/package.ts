@@ -22,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const pname = "udig";
   const version = "2.0.0";
   const srcs = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`http://udig.refractions.net/files/downloads/udig-${version}.linux.gtk.x86_64.zip`),
         hash: "sha256-ijuSWq1jSsB8K653bjcUdNwVGZscDaTuegBr01oNEg4=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     description: "User-friendly Desktop Internet GIS",
     homepage: "http://udig.refractions.net/",
     sourceProvenance: nix.thunk(() => (() => {
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
     mainProgram: "udig",
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -68,7 +68,7 @@ makeWrapper $out/opt/udig/udig.sh $out/bin/udig \\
       postFixup: "patchelf \\\n  --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) \\\n  $out/opt/udig/udig_internal\n",
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,

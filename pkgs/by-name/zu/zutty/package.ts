@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const ucs_fonts = nix.arg($, "ucs-fonts");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zutty",
       version: "0.16-unstable-2024-08-18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.hq.sig7.se/zutty.git",
           rev: "04b2ca3b3aaa070c41583247f8112c31b6003886",
           hash: "sha256-izUbn2B3RqIIOW9tuL7DFLqJdektCftxnpQssJMYxC8=",
@@ -44,14 +44,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wafHook, python3]),
       buildInputs: nix.thunk(() => [freetype, libxmu, glew]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             default: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "zutty")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://tomscii.sig7.se/zutty/",
         description: "X terminal emulator rendering through OpenGL ES Compute Shaders",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

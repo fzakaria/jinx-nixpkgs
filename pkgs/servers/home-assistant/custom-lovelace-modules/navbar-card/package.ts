@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "navbar-card",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "joseluis9595",
           repo: "lovelace-navbar-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-i8kVS09HAZwzhZKjfCGnuva0W8XedZ9M4kmGRHc1bFk=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,15 +54,15 @@ runHook postConfigure
       buildPhase: "runHook preBuild\n\n# Build the project using bun\nNODE_ENV=production bun build src/navbar-card.ts --outfile=dist/navbar-card.js --target=browser\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp ./dist/navbar-card.js $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         entrypoint: "navbar-card.js",
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Navbar Card for Home Assistant's Lovelace UI - easily navigate through dashboards",
         homepage: "https://github.com/joseluis9595/lovelace-navbar-card",
         changelog: nix.thunk(() => nix.str`https://github.com/joseluis9595/lovelace-navbar-card/releases/tag/v${nix.sel(finalAttrs, "version")}`),

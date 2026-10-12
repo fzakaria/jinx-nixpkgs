@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "swaylock",
       version: "1.8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "swaywm",
           repo: "swaylock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Screen locker for Wayland",
         longDescription: "swaylock is a screen locking utility for Wayland compositors.\nImportant note: If you don't use the Sway module (programs.sway.enable)\nyou need to set \"security.pam.services.swaylock = {};\" manually.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

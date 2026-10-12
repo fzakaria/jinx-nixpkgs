@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spglib";
       const version = "2.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spglib",
           repo: "spglib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DSPGLIB_WITH_Fortran=On"]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "C library for finding and handling crystal symmetries",
         homepage: "https://spglib.github.io/spglib/",
         changelog: nix.thunk(() => nix.str`https://github.com/spglib/spglib/raw/v${version}/ChangeLog`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

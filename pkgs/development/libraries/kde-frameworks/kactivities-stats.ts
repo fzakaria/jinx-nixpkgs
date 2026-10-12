@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const kconfig = nix.arg($, "kconfig");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "kactivities-stats",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [boost, kactivities, kconfig]),
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
       })),
     })));

@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const extraInputs = nix.argOr($, "extraInputs", () => []);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "salt",
       version: "3008.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-S/qZXs3hSRkWvJ/Qq+vzjTnqyiTB6Z4pxQRrl7h1TzA=",
@@ -60,10 +60,10 @@ substituteInPlace "tools/pkg/salt_build_backend.py" \\
           nix.thunk(() => nix.lookup(w, "tornado")),
         ], extraInputs);
       })()),
-      env: nix.thunk(() => ({ __proto__: pos$2, USE_STATIC_REQUIREMENTS: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, USE_STATIC_REQUIREMENTS: "0" })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://saltproject.io/",
         changelog: nix.thunk(() => nix.str`https://docs.saltproject.io/en/latest/topics/releases/${nix.sel(finalAttrs, "version")}.html`),
         description: "Portable, distributed, remote execution and configuration management system",

@@ -21,24 +21,24 @@ export default nix.lambda((args) => (() => {
   const pname = "sleek-todo";
   const version = "2.0.28";
   const suffixMap = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "aarch64-darwin": "mac-arm64.dmg",
     "aarch64-linux": "linux-arm64.AppImage",
     "x86_64-linux": "linux-x86_64.AppImage",
   }));
   const suffix = nix.thunk(() => nix.selOr(suffixMap, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/ransome1/sleek/releases/download/v${version}/sleek-${version}-${suffix}`),
       sha256: nix.thunk(() => nix.selOr({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "aarch64-darwin": "sha256-+xqn/Ffm5p4NbWmvrCp2ViG/CGtRRXcw0gE8Cs19N2Y=",
         "aarch64-linux": "sha256-ujeXAJlB1sElk7bRlZ7dbTurKzD3IGRpHxsVNmUU5Ro=",
         "x86_64-linux": "sha256-VzZwONKFl/7l6HXn387UfTllrU+x14X9vK6FN3buimU=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "Todo manager based on todo.txt syntax",
     homepage: "https://github.com/ransome1/sleek",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       version: version,
       src: src,
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\ncp -r *.app $out/Applications/\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttr) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,

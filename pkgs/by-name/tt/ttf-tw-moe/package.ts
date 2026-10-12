@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "ttf-tw-moe";
       const version = "2026-05-11";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Jiehong/TW-fonts/archive/${version}.zip`),
           hash: "sha256-IlAYR0/wxL+tOI7X4t5eypTMqxMCLpTp9jCM7512SNk=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/truetype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.moe.gov.tw/",
         description: "Set of KAI and SONG fonts from the Ministry of Education of Taiwan",
         version: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jiehong"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

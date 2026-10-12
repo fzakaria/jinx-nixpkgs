@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adafruit",
           repo: "Adafruit_Board_Toolkit",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["adafruit_board_toolkit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CircuitPython board identification and information",
         homepage: "https://github.com/adafruit/Adafruit_Board_Toolkit",
         changelog: nix.thunk(() => nix.str`https://github.com/adafruit/Adafruit_Board_Toolkit/releases/tag/${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

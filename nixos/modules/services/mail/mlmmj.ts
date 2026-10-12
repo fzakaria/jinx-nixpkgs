@@ -81,45 +81,45 @@ echo ${nix.app(listAddress, d, l)} > '${ctlDir}/listaddress'
 `;
   })();
   return {
-    __proto__: pos$34,
+    [nix.POS]: pos$34,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       services: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         mlmmj: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable mlmmj",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mlmmj",
               description: "mailinglist local user",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "mlmmj",
               description: "mailinglist local group",
             })))),
           listDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "localhost",
               description: "Set the mailing list domain",
             })))),
           mailLists: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "The collection of hosted maillists",
             })))),
           maintInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "20min",
               description: "Time interval between mlmmj-maintd runs, see\n{manpage}`systemd.time(7)` for format information.\n",
@@ -128,12 +128,12 @@ echo ${nix.app(listAddress, d, l)} > '${ctlDir}/listaddress'
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$33,
+        [nix.POS]: pos$33,
         users: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               description: "mlmmj user",
               home: stateDir,
               createHome: true,
@@ -144,27 +144,27 @@ echo ${nix.app(listAddress, d, l)} > '${ctlDir}/listaddress'
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "group"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "mlmmj")),
             }))],
           ])),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           postfix: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             enable: true,
             settings: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               main: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 recipient_delimiter: "+",
                 propagate_unmatched_extensions: "virtual",
               })),
               master: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 mlmmj: nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   type: "unix",
                   private: true,
                   privileged: true,
@@ -188,22 +188,22 @@ echo ${nix.app(listAddress, d, l)} > '${ctlDir}/listaddress'
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mlmmj"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             settings: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               "10-mlmmj": nix.thunk(() => nix.attrsDyn({}, [
-                [stateDir, nix.thunk(() => ({ __proto__: pos$20, d: nix.thunk(() => ({})) }))],
-                [nix.str`${spoolDir}/${nix.sel(cfg, "listDomain")}`, nix.thunk(() => ({ __proto__: pos$21, d: nix.thunk(() => ({})) }))],
+                [stateDir, nix.thunk(() => ({ [nix.POS]: pos$20, d: nix.thunk(() => ({})) }))],
+                [nix.str`${spoolDir}/${nix.sel(cfg, "listDomain")}`, nix.thunk(() => ({ [nix.POS]: pos$21, d: nix.thunk(() => ({})) }))],
                 [spoolDir, nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   Z: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     user: nix.thunk(() => nix.attr(cfg, "user")),
                     group: nix.thunk(() => nix.attr(cfg, "group")),
                   })),
@@ -212,12 +212,12 @@ echo ${nix.app(listAddress, d, l)} > '${ctlDir}/listaddress'
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "mlmmj-maintd": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               description: "mlmmj maintenance daemon",
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "mlmmj")}/bin/mlmmj-maintd -F -d ${spoolDir}/${nix.sel(cfg, "listDomain")}`),
@@ -229,12 +229,12 @@ ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "services", "
             })),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "mlmmj-maintd": nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "mlmmj maintenance timer",
               timerConfig: nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 OnUnitActiveSec: nix.thunk(() => nix.sel(cfg, "maintInterval")),
               })),
               wantedBy: nix.thunk(() => ["timers.target"]),

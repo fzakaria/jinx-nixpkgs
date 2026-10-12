@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const mkfontdir = nix.arg($, "mkfontdir");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libdockapp",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxext, libxpm, font_util, mkfontdir]),
       configureFlags: nix.thunk(() => ["--with-examples=no", "--with-font=no"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Library providing a framework for dockapps",
         homepage: "https://www.dockapps.net/libdockapp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const qtile = nix.arg($, "qtile");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "qtile-bonsai",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aravinda0",
           repo: "qtile-bonsai",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [
         pyside6,
         pyvirtualdisplay,
-        nix.thunk(() => nix.app(nix.sel(cairocffi, "override"), nix.thunk(() => ({ __proto__: pos$2, withXcffib: true })))),
+        nix.thunk(() => nix.app(nix.sel(cairocffi, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withXcffib: true })))),
         cffi,
         xcffib,
         qtile,
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/integration/test_layout.py", "tests/integration/test_widget.py"]),
       pythonImportsCheck: nix.thunk(() => ["qtile_bonsai"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/aravinda0/qtile-bonsai/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/aravinda0/qtile-bonsai",
         description: "Flexible layout for the qtile tiling window manager",

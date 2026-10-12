@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "numtide",
           repo: "deploykit",
           rev: version,
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-s"]);
       const pythonImportsCheck = nix.thunk(() => ["deploykit"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Execute commands remote via ssh and locally in parallel with python",
         homepage: "https://github.com/numtide/deploykit",
         changelog: nix.thunk(() => nix.str`https://github.com/numtide/deploykit/releases/tag/${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

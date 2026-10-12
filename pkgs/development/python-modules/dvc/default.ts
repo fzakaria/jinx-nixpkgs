@@ -72,12 +72,12 @@ export default nix.lambda((args) => (() => {
   const enableAzure = nix.argOr($, "enableAzure", () => false);
   const enableSSH = nix.argOr($, "enableSSH", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dvc",
       version: "3.67.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "treeverse",
           repo: "dvc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -131,7 +131,7 @@ export default nix.lambda((args) => (() => {
         zc_lockfile,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableGoogle, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "gs"))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableAWS, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "s3"))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableAzure, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "azure"))), nix.app(nix.sel(lib, "optionals"), enableSSH, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "ssh")))))))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         azure: nix.thunk(() => [dvc_azure]),
         gdrive: nix.thunk(() => [dvc_gdrive]),
         gs: nix.thunk(() => [dvc_gs]),
@@ -147,7 +147,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dvc", "dvc.api"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Version Control System for Machine Learning Projects",
         homepage: "https://dvc.org",
         changelog: nix.thunk(() => nix.str`https://github.com/treeverse/dvc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

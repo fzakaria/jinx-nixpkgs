@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mopidy",
       version: "3.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mopidy",
           repo: "mopidy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,11 +62,11 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, mopidy: nix.thunk(() => nix.attr(nixosTests, "mopidy")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mopidy: nix.thunk(() => nix.attr(nixosTests, "mopidy")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.mopidy.com/",
         description: "Extensible music server that plays music from local disk, Spotify, SoundCloud, and more",
         mainProgram: "mopidy",

@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lanraragi";
       const version = "0.9.81";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Difegue",
           repo: "LANraragi",
           tag: nix.thunk(() => nix.str`v.${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./lower-version-reqs.patch"),
         nix.path(here, "./fix-paths.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./vips-lib-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             vips_lib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), vips)}/lib`),
           })))),
         nix.path(here, "./expose-password-hashing.patch"),
@@ -124,11 +124,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), perl)} $out/bin/helpers/lrr-make-p
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
-        tests: nix.thunk(() => ({ __proto__: pos$3, module: nix.thunk(() => nix.sel(nixosTests, "lanraragi")) })),
+        [nix.POS]: pos$4,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$3, module: nix.thunk(() => nix.sel(nixosTests, "lanraragi")) })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://github.com/Difegue/LANraragi/releases/tag/${nix.sel(src, "tag")}`),
         description: "Web application for archival and reading of manga/doujinshi",
         homepage: "https://github.com/Difegue/LANraragi",
@@ -141,7 +141,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

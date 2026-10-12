@@ -49,25 +49,25 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "socalabs-sid",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FigBug",
           repo: "SID",
           rev: "bb826fdea39da0804c53d81d35bea29aeff4436d",
           hash: "sha256-6IStysItOS7EltTCqdyo9vrsnSA1YYoN4y8Bjv1fhNk=",
           fetchSubmodules: true,
         }))), "overrideAttrs"), (_) => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           GIT_CONFIG_COUNT: 1n,
           GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
           GIT_CONFIG_VALUE_0: "git@github.com:",
         }))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: "Application",
             name: "socalabs-sid",
             desktopName: "Socalabs SID",
@@ -139,7 +139,7 @@ magick $src/plugin/Resources/icon.png -resize 256x256 $out/share/icons/hicolor/2
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -152,7 +152,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Socalabs Commodore 64 SID Emulation Plugin",
         homepage: "https://socalabs.com/synths/commodore-64-sid/",
         mainProgram: "SID",

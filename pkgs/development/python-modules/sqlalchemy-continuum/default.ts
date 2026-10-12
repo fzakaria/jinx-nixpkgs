@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "sqlalchemy_continuum",
           version: version,
           hash: "sha256-+O0k2+YI352j//YwcKtk4heWmBhujHparqkQWqer9a4=",
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [sqlalchemy]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         flask: nix.thunk(() => [flask]),
         "flask-login": nix.thunk(() => [flask_login]),
         "flask-sqlalchemy": nix.thunk(() => [flask_sqlalchemy]),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# Indicate tests that we don't have a database server at hand\nexport DB=sqlite\n";
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_continuum"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Versioning and auditing extension for SQLAlchemy",
         homepage: "https://github.com/kvesteri/sqlalchemy-continuum/",
         changelog: nix.thunk(() => nix.str`https://github.com/kvesteri/sqlalchemy-continuum/blob/${version}/CHANGES.rst`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytest_cov = nix.arg($, "pytest-cov");
   const withRootSupport = nix.argOr($, "withRootSupport", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hepdata_lib",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HEPData",
           repo: "hepdata_lib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([numpy, pyyaml, hist, scipy, hepdata_validator], nix.app(nix.sel(lib, "optionals"), withRootSupport, nix.thunk(() => [root])))),
       nativeCheckInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ __proto__: pos$2, ghostscriptSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, ghostscriptSupport: true })))),
         pytest_cov,
         pytestCheckHook,
       ]),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_notebooks.py"]),
       pythonImportsCheck: nix.thunk(() => ["hepdata_lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for getting your data into HEPData",
         homepage: "https://github.com/HEPData/hepdata_lib",
         changelog: nix.thunk(() => nix.str`https://github.com/HEPData/hepdata_lib/releases/tag/v${nix.sel(finalAttrs, "version")}`),

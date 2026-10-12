@@ -43,110 +43,110 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const options = nix.arg($, "options");
   return {
-    __proto__: pos$33,
+    [nix.POS]: pos$33,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), "nexus")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         libeufin: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           nexus: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 description: "Configuration options for the libeufin nexus config file.\n\nFor a list of all possible options, please see the man page [`libeufin-nexus.conf(5)`](https://docs.taler.net/manpages/libeufin-nexus.conf.5.html)\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(options, "services", "libeufin", "settings", "type", "nestedTypes"));
                     return {
-                    __proto__: pos$18,
+                    [nix.POS]: pos$18,
                     freeformType: nix.thunk(() => nix.attr(from, "freeformType")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       "nexus-ebics": nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         CURRENCY: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$1,
+                            [nix.POS]: pos$1,
                             description: "Name of the fiat currency.",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "CHF",
                           })))),
                         HOST_BASE_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             description: "URL of the EBICS server.",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "https://ebics.postfinance.ch/ebics/ebics.aspx",
                           })))),
                         BANK_DIALECT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             description: "Name of the following combination: EBICS version and ISO20022\nrecommendations that Nexus would honor in the communication with the\nbank.\n\nCurrently only the \"postfinance\" or \"gls\" value is supported.\n",
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["postfinance", "gls"]))),
                             example: "postfinance",
                           })))),
                         HOST_ID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             description: "Name of the EBICS host.",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "PFEBICS",
                           })))),
                         USER_ID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             description: "User ID of the EBICS subscriber.\n\nThis value must be assigned by the bank after having activated a new EBICS subscriber.\n",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "PFC00563",
                           })))),
                         PARTNER_ID: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             description: "Partner ID of the EBICS subscriber.\n\nThis value must be assigned by the bank after having activated a new EBICS subscriber.\n",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "PFC00563",
                           })))),
                         IBAN: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$7,
+                            [nix.POS]: pos$7,
                             description: "IBAN of the bank account that is associated with the EBICS subscriber.",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "CH7789144474425692816",
                           })))),
                         BIC: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$8,
+                            [nix.POS]: pos$8,
                             description: "BIC of the bank account that is associated with the EBICS subscriber.",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "POFICHBEXXX",
                           })))),
                         NAME: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$9,
+                            [nix.POS]: pos$9,
                             description: "Legal entity that is associated with the EBICS subscriber.",
                             type: nix.thunk(() => nix.sel(lib, "types", "nonEmptyStr")),
                             example: "John Smith S.A.",
                           })))),
                         BANK_PUBLIC_KEYS_FILE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$10,
+                            [nix.POS]: pos$10,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             default: "/var/lib/libeufin-nexus/bank-ebics-keys.json",
                             description: "Filesystem location where Nexus should store the bank public keys.\n",
                           })))),
                         CLIENT_PRIVATE_KEYS_FILE: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$11,
+                            [nix.POS]: pos$11,
                             type: nix.thunk(() => nix.sel(lib, "types", "path")),
                             default: "/var/lib/libeufin-nexus/client-ebics-keys.json",
                             description: "Filesystem location where Nexus should store the subscriber private keys.\n",
                           })))),
                       })),
                       "nexus-httpd": nix.thunk(() => ({
-                        __proto__: pos$14,
+                        [nix.POS]: pos$14,
                         PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$13,
+                            [nix.POS]: pos$13,
                             type: nix.thunk(() => nix.sel(lib, "types", "port")),
                             default: 8084n,
                             description: "The port on which libeufin-bank should listen.\n",
                           })))),
                       })),
                       "libeufin-nexusdb-postgres": nix.thunk(() => ({
-                        __proto__: pos$16,
+                        [nix.POS]: pos$16,
                         CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$15,
+                            [nix.POS]: pos$15,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "The database connection string for the libeufin-nexus database.\n",
                           })))),
@@ -163,17 +163,17 @@ export default nix.lambda((args) => (() => {
       const cfgMain = nix.thunk(() => nix.sel(config, "services", "libeufin"));
       const cfg = nix.thunk(() => nix.sel(config, "services", "libeufin", "nexus"));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             libeufin: nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               nexus: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   "libeufin-nexusdb-postgres": nix.thunk(() => ({
-                    __proto__: pos$24,
+                    [nix.POS]: pos$24,
                     CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfgMain, "bank", "enable")) && nix.asBool(nix.sel(cfgMain, "bank", "createLocalDatabase")))), "postgresql:///libeufin-bank")),
                   })),
                 })),
@@ -181,10 +181,10 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             services: nix.thunk(() => ({
-              __proto__: pos$30,
-              "libeufin-nexus": nix.thunk(() => ({ __proto__: pos$29, documentation: nix.thunk(() => ["man:libeufin-nexus(1)"]) })),
+              [nix.POS]: pos$30,
+              "libeufin-nexus": nix.thunk(() => ({ [nix.POS]: pos$29, documentation: nix.thunk(() => ["man:libeufin-nexus(1)"]) })),
             })),
           })),
         })));

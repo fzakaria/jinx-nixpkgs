@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "clutter-gtk";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/clutter-gtk/${nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)}/clutter-gtk-${version_1}.tar.xz`),
           sha256: "01ibniy4ich0fgpam53q252idm7f4fn5xg5qvizcfww90gn9652j",
         }))));
@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# ld: malformed 32-bit x.y.z version number: =1\nsubstituteInPlace meson.build \\\n  --replace \"host_system == 'darwin'\" \"false\"\n";
       const postBuild = "rm -rf $out/share/gtk-doc";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Clutter-GTK",
         homepage: "http://www.clutter-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version: version_1,
         src,

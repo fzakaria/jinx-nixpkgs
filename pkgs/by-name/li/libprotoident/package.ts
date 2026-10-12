@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libflowmanager = nix.arg($, "libflowmanager");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libprotoident",
       version: "2.0.15-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibtraceTeam",
           repo: "libprotoident",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,14 +36,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, bison, flex]),
       buildInputs: nix.thunk(() => [libtrace, libflowmanager]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9.-]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Network traffic classification library that requires minimal application payload",
         homepage: "https://github.com/LibtraceTeam/libprotoident",
         changelog: nix.thunk(() => nix.str`https://github.com/LibtraceTeam/libprotoident/releases/tag/${nix.sel(finalAttrs, "version")}`),

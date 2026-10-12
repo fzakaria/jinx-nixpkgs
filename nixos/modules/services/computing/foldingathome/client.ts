@@ -29,40 +29,40 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "team")))}`),
   ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "user"), null)), nix.thunk(() => ["--user", nix.thunk(() => nix.sel(cfg, "user"))])), nix.sel(cfg, "extraArgs"))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "foldingAtHome"]), nix.thunk(() => ["services", "foldingathome"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "foldingathome", "nickname"]), nix.thunk(() => ["services", "foldingathome", "user"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "foldingathome", "config"]), "Use <literal>services.foldingathome.extraArgs instead<literal>\n")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         foldingathome: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Folding@home client")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fahclient", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: null,
               description: "The user associated with the reported computation results. This will\nbe used in the ranking statistics.\n",
             })))),
           team: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "int")),
               default: 236565n,
               description: "The team ID associated with the reported computation results. This\nwill be used in the ranking statistics.\n\nBy default, use the NixOS folding@home team ID is being used.\n",
             })))),
           daemonNiceLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), nix.thunk(() => nix.neg(20n)), 19n)),
               default: 0n,
               description: "Daemon process priority for FAHClient.\n0 is the default Unix process priority, 19 is the lowest.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "Extra startup options for the FAHClient. Run\n`fah-client --help` to find all the available options.\n",
@@ -71,20 +71,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         systemd: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             foldingathome: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "Folding@home client",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               script: nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} ${nix.app(nix.sel(lib, "escapeShellArgs"), args_1)}
 `),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 DynamicUser: true,
                 StateDirectory: "foldingathome",
                 Nice: nix.thunk(() => nix.sel(cfg, "daemonNiceLevel")),
@@ -95,7 +95,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "zimbatm"))];

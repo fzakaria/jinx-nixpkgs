@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const pulseaudio = nix.arg($, "pulseaudio");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "lyrebird",
       exec: "lyrebird",
       icon: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/lyrebird/icon.png`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "lyrebird-voice-changer",
           repo: "lyrebird",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +62,7 @@ cp -at $out/share/applications/ ${desktopItem}
 install -Dm755 app.py $out/bin/lyrebird
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Simple and powerful voice changer for Linux, written in GTK 3",
         mainProgram: "lyrebird",
         homepage: "https://github.com/lyrebird-voice-changer/lyrebird",
@@ -74,7 +74,7 @@ install -Dm755 app.py $out/bin/lyrebird
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "muparserx",
       version: "4.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "beltoforion",
           repo: "muparserx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/beltoforion/muparserx/commit/d671af0882d4ba09a4bba810877b796f1877d41e.patch?full_index=1",
             hash: "sha256-4pJrPTMVpTLZWu+PpTtgmtzryObw6vY/kjgsrPDqljw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/beltoforion/muparserx/commit/c605872591d542e1630e3fcc4b292d8a0702acd2.patch?full_index=1",
             hash: "sha256-CZPh/+vBhuUXGGEE1fPQiaojpInWhGmFk1HG9pGuAPw=",
           })))),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "echo \"***Muparserx self-test***\"\necho \"quit\" | ./example > test_result.log\ncat test_result.log\nif grep -Fqi \"failed\" test_result.log; then\n  echo \">=1 muparserx tests failed\"\n  exit 1\nelse\n  echo -e \"\\nmuparserx tests succeeded\"\nfi\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "C++ Library for Parsing Expressions with Strings, Complex Numbers, Vectors, Matrices and more",
         homepage: "https://beltoforion.de/en/muparserx/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

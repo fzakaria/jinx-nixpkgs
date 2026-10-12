@@ -21,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const withPostgreSQL = nix.argOr($, "withPostgreSQL", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(withPostgreSQL) || nix.asBool(withMariaDB))), "At least one Flyspray database driver required"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fl/flyspray/package.nix:11:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "flyspray",
       version: "1.0-rc11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/flyspray/flyspray/releases/download/v${nix.sel(finalAttrs, "version")}/flyspray-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-VNukYtHqf1OqWoyR+GXxgoX2GjTD4RfJ0SaGoDyHLJ4=",
         })))),
       php: nix.thunk(() => nix.update(nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           extensions: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const all = nix.arg($_1, "all");
@@ -48,10 +48,10 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(all, "pdo_mysql")),
               ])))));
           })(), formals$2),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ __proto__: pos$3, extraConfig: phpCfg }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ [nix.POS]: pos$3, extraConfig: phpCfg }))))),
       postInstall: "DIR=\"$out/share/php/flyspray\"\nmkdir -p \"$DIR\"\ncp -Tr \"$src\" \"$DIR\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Lightweight, web-based bug tracking system written in PHP for assisting with software development and project managements",
         homepage: "https://www.flyspray.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [flet, fastapi, uvicorn]);
       const pythonImportsCheck = nix.thunk(() => ["flet_web"]);
-      const web = nix.thunk(() => nix.app(nix.sel(flet_client_flutter, "override"), nix.thunk(() => ({ __proto__: pos$1, fletTarget: "web" }))));
+      const web = nix.thunk(() => nix.app(nix.sel(flet_client_flutter, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, fletTarget: "web" }))));
       const postInstall = nix.thunk(() => nix.str`ln -s $web $out/${nix.sel(python, "sitePackages")}/flet_web/web
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Flet web client in Flutter",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

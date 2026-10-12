@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "fraunces";
       const version = "1.000";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/undercasetype/Fraunces/releases/download/${version}/UnderCaseType_Fraunces_${version}.zip`),
           hash: "sha256-hu2G4Fs2I3TMEy/EBFnc88Pv3c8Mpc5rm3OwVvol7gQ=",
         }))));
       const installPhase = "runHook preInstall\n\ninstall -Dm644 */static/otf/*.otf -t $out/share/fonts/opentype\ninstall -Dm644 */static/ttf/*.ttf */*.ttf -t $out/share/fonts/truetype\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Display, “Old Style” soft-serif typeface inspired by early 20th century typefaces",
         homepage: "https://github.com/undercasetype/Fraunces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

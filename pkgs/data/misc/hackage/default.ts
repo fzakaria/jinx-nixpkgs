@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pin = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   return nix.app(fetchurl, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.attr(pin, "url")),
       sha256: nix.thunk(() => nix.attr(pin, "sha256")),
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
       pname: "all-cabal-hashes",
       version: nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 7n, nix.thunk(() => nix.sel(pin, "commit")))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         updateScript: nix.path(here, "../../../../maintainers/scripts/haskell/update-hackage.sh"),
       })),
-      meta: nix.thunk(() => ({ __proto__: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

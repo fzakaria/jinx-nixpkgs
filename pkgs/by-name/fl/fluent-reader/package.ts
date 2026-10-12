@@ -16,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "fluent-reader";
   const version = "1.2.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/yang991178/fluent-reader/releases/download/v${version}/Fluent.Reader.${version}.AppImage`),
       hash: "sha256-AJxE1X6X/KJg/6xWZQJyvgHj9TabFBk2TQdotDs4iWQ=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +35,7 @@ substituteInPlace $out/share/applications/${pname}.desktop \\
   --replace 'Exec=AppRun' 'Exec=${pname}'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Modern desktop RSS reader built with Electron, React, and Fluent UI",
         mainProgram: "fluent-reader",
         homepage: "https://hyliu.me/fluent-reader",

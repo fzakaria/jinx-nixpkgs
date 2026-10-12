@@ -49,47 +49,47 @@ export default nix.lambda((args) => (() => {
   const int = nix.thunk(() => nix.attr(from, "int"));
   const package$ = nix.thunk(() => nix.attr(from, "package"));
   const cfg = nix.thunk(() => nix.sel(config, "services", "ersatztv"));
-  const defaultEnv = nix.thunk(() => ({ __proto__: pos$1, ETV_UI_PORT: 8409n, ETV_BASE_URL: "/" }));
+  const defaultEnv = nix.thunk(() => ({ [nix.POS]: pos$1, ETV_UI_PORT: 8409n, ETV_BASE_URL: "/" }));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       services: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         ersatztv: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           enable: nix.thunk(() => nix.app(mkEnableOption, "ErsatzTV")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "ersatztv", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: str,
               default: "ersatztv",
               description: "User account under which ErsatzTV runs.",
             })))),
           group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: str,
               default: "ersatztv",
               description: "Group under which ErsatzTV runs.",
             })))),
           environment: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [str, int, float, bool, path, package$]))));
               })()),
               default: defaultEnv,
-              example: nix.thunk(() => ({ __proto__: pos$4, ETV_UI_PORT: 8000n, ETV_STREAMING_PORT: 8001n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$4, ETV_UI_PORT: 8000n, ETV_STREAMING_PORT: 8001n })),
               description: "Environment variables to set for the ErsatzTV service.",
             })))),
           baseUrl: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: str,
               default: "/",
               description: "Base URL to support reverse proxies that use paths (e.g. `/ersatztv`)\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: bool,
               default: false,
               description: "Open the default ports in the firewall for the server.\n",
@@ -98,26 +98,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         services: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           ersatztv: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.sel(lib, "mkDefault"), defaultEnv)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           services: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ersatztv: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "ErsatzTV",
               after: nix.thunk(() => ["network-online.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
                 Restart: "on-failure",
               })),
               environment: nix.thunk(() => nix.update({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 ETV_CONFIG_FOLDER: "/var/lib/ersatztv/config",
                 ETV_TRANSCODE_FOLDER: "/var/lib/ersatztv/transcode",
               }, nix.app(nix.sel(lib, "mapAttrs"), (_) => (s) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), s)) ? nix.app(nix.sel(lib, "boolToString"), s) : nix.builtins.toString(s)), nix.thunk(() => nix.sel(cfg, "environment"))))),
@@ -137,27 +137,27 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           users: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "ersatztv")), nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               ersatztv: nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 group: nix.thunk(() => nix.attr(cfg, "group")),
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ersatztv")), nix.thunk(() => ({ __proto__: pos$20, ersatztv: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "ersatztv")), nix.thunk(() => ({ [nix.POS]: pos$20, ersatztv: nix.thunk(() => ({})) })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environment", "ETV_UI_PORT"))]),
             })))),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(maintainers, null);
         return [nix.thunk(() => nix.lookup(w, "allout58"))];

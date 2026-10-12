@@ -48,12 +48,12 @@ export default nix.lambda((args) => (() => {
   const isAarch64 = nix.thunk(() => nix.attr(from, "isAarch64"));
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libretranslate",
       version: "1.9.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibreTranslate",
           repo: "LibreTranslate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,9 +93,9 @@ ln -s $out/${nix.sel(python, "sitePackages")}/libretranslate/static $out/share/l
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(isAarch64Linux)), "libretranslate")),
       doCheck: nix.thunk(() => !nix.asBool(isAarch64Linux)),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "static-compressed": nix.thunk(() => nix.app(runCommand, "libretranslate-data-compressed", nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "brotli")), lndir]),
           })), nix.thunk(() => nix.str`mkdir -p $out/share/libretranslate/static
 lndir ${libretranslate}/share/libretranslate/static $out/share/libretranslate/static
@@ -107,7 +107,7 @@ find -L $out -type f -regextype posix-extended -iregex '.*\\.(css|ico|js|svg|ttf
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Free and Open Source Machine Translation API. Self-hosted, no limits, no ties to proprietary services",
         homepage: "https://libretranslate.com",
         changelog: nix.thunk(() => nix.str`https://github.com/LibreTranslate/LibreTranslate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

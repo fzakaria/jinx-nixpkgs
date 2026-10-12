@@ -95,41 +95,41 @@ export default nix.lambda((args) => (() => {
     const options_1 = nix.arg($_1, "options");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       options: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             example: "localhost:11333",
             description: "Socket for this worker to listen on in a format acceptable by rspamd.\n",
           })))),
         mode: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: "0644",
             description: "Mode to set on unix socket",
           })))),
         owner: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "user")}`),
             description: "Owner to set on unix socket",
           })))),
         group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             default: nix.thunk(() => nix.str`${nix.sel(cfg, "group")}`),
             description: "Group to set on unix socket",
           })))),
         rawEntry: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
             internal: true,
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         rawEntry: nix.thunk(() => (() => {
           const maybeOption = (option) => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(options_1, nix.key(nix.force(option)), "isDefined")), nix.thunk(() => nix.str` ${option}=${nix.sel(config_1, nix.key(nix.force(option)))}`));
           return (nix.asBool(!nix.asBool(nix.app(nix.lookup(w, "hasPrefix"), "/", nix.thunk(() => nix.sel(config_1, "socket"))))) ? nix.str`${nix.sel(config_1, "socket")}` : nix.str`${nix.sel(config_1, "socket")}${nix.app(maybeOption, "mode")}${nix.app(maybeOption, "owner")}${nix.app(maybeOption, "group")}`);
@@ -143,23 +143,23 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const options_1 = nix.arg($_1, "options");
     return {
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       options: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")))),
             default: null,
             description: "Whether to run the rspamd worker.",
           })))),
         name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: name,
             description: "Name of the worker",
           })))),
         type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["normal", "controller", "fuzzy", "rspamd_proxy", "lua", "proxy"]))))),
             description: "The type of this worker. The type `proxy` is\ndeprecated and only kept for backwards compatibility and should be\nreplaced with `rspamd_proxy`.\n",
             apply: nix.thunk(() => (() => {
@@ -170,51 +170,51 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         bindSockets: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "submodule"), bindSocketOpts)))))),
             default: [],
             description: "List of sockets to listen, in format acceptable by rspamd\n",
             example: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$12, socket: "/run/rspamd.sock", mode: "0666", owner: "rspamd" })),
+              nix.thunk(() => ({ [nix.POS]: pos$12, socket: "/run/rspamd.sock", mode: "0666", owner: "rspamd" })),
               "*:11333",
             ]),
             apply: (value) => nix.app(nix.builtins.map, (each) => (nix.asBool(nix.app(nix.lookup(w, "isString"), each)) ? (nix.asBool(nix.app(isUnixSocket, each)) ? {
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 socket: each,
                 owner: nix.thunk(() => nix.sel(cfg, "user")),
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 mode: "0644",
                 rawEntry: nix.thunk(() => nix.str`${each}`),
-              } : { __proto__: pos$14, socket: each, rawEntry: nix.thunk(() => nix.str`${each}`) }) : nix.force(each)), value),
+              } : { [nix.POS]: pos$14, socket: each, rawEntry: nix.thunk(() => nix.str`${each}`) }) : nix.force(each)), value),
           })))),
         count: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "int")))),
             default: null,
             description: "Number of worker instances to run\n",
           })))),
         includes: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
             default: [],
             description: "List of files to include in configuration\n",
           })))),
         extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
             default: "",
             description: "Additional entries to put verbatim into worker section of rspamd config file.",
           })))),
       })),
       config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.eq(name, "normal")) || nix.asBool(nix.eq(name, "controller")))) || nix.asBool(nix.eq(name, "fuzzy")))) || nix.asBool(nix.eq(name, "rspamd_proxy")))), nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           type: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), name)),
           includes: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => [
               nix.thunk(() => nix.str`$CONFDIR/worker-${(nix.asBool(nix.eq(name, "rspamd_proxy")) ? "proxy" : nix.force(name))}.inc`),
             ]))),
           bindSockets: nix.thunk(() => (() => {
             const unixSocket = (name_1) => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               mode: "0660",
               socket: nix.thunk(() => nix.str`/run/rspamd/${name_1}.sock`),
               owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -262,30 +262,30 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
 `)));
   const filterFiles = (files) => nix.app(nix.lookup(w, "filterAttrs"), (n) => (v) => nix.sel(v, "enable"), files);
   const rspamdDir = nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "etc-rspamd-dir", nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (file) => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         name: nix.thunk(() => nix.str`local.d/${name}`),
         path: nix.thunk(() => nix.sel(file, "source")),
       }), nix.thunk(() => nix.app(filterFiles, nix.thunk(() => nix.sel(cfg, "locals"))))), nix.concat(nix.app(nix.lookup(w, "mapAttrsToList"), (name) => (file) => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         name: nix.thunk(() => nix.str`override.d/${name}`),
         path: nix.thunk(() => nix.sel(file, "source")),
       }), nix.thunk(() => nix.app(filterFiles, nix.thunk(() => nix.sel(cfg, "overrides"))))), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "localLuaRules"), null)), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         name: "rspamd.local.lua",
         path: nix.thunk(() => nix.sel(cfg, "localLuaRules")),
       }))), [
-      nix.thunk(() => ({ __proto__: pos$26, name: "rspamd.conf", path: rspamdConfFile })),
+      nix.thunk(() => ({ [nix.POS]: pos$26, name: "rspamd.conf", path: rspamdConfFile })),
     ]))))));
   const configFileModule = (prefix) => nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
     const name = nix.arg($_1, "name");
     const config_1 = nix.arg($_1, "config");
     return {
-      __proto__: pos$32,
+      [nix.POS]: pos$32,
       options: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
             default: true,
             description: nix.thunk(() => nix.str`Whether this file ${prefix} should be generated.  This
@@ -293,19 +293,19 @@ option allows specific ${prefix} files to be disabled.
 `),
           })))),
         text: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             default: null,
             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")))),
             description: "Text of the file.",
           })))),
         source: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$29,
+            [nix.POS]: pos$29,
             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
             description: "Path of the source file.",
           })))),
       })),
       config: nix.thunk(() => ({
-        __proto__: pos$31,
+        [nix.POS]: pos$31,
         source: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config_1, "text"), null)), nix.thunk(() => (() => {
             const name$ = nix.thunk(() => nix.add(nix.str`rspamd-${prefix}-`, nix.app(nix.builtins.baseNameOf, name)));
             return nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), name$, nix.thunk(() => nix.sel(config_1, "text")))));
@@ -313,28 +313,28 @@ option allows specific ${prefix} files to be disabled.
       })),
     };
   })(), formals$4);
-  const configOverrides = nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mapAttrs'"), (n) => (v) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`worker-${(nix.asBool(nix.eq(n, "rspamd_proxy")) ? "proxy" : nix.force(n))}.inc`), nix.thunk(() => ({ __proto__: pos$33, text: nix.thunk(() => nix.sel(v, "extraConfig")) }))), nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (n) => (v) => !nix.eq(nix.sel(v, "extraConfig"), ""), nix.thunk(() => nix.sel(cfg, "workers"))))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), "")), nix.thunk(() => ({
-      __proto__: pos$35,
-      "extra-config.inc": nix.thunk(() => ({ __proto__: pos$34, text: nix.thunk(() => nix.sel(cfg, "extraConfig")) })),
+  const configOverrides = nix.thunk(() => nix.update(nix.app(nix.lookup(w, "mapAttrs'"), (n) => (v) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`worker-${(nix.asBool(nix.eq(n, "rspamd_proxy")) ? "proxy" : nix.force(n))}.inc`), nix.thunk(() => ({ [nix.POS]: pos$33, text: nix.thunk(() => nix.sel(v, "extraConfig")) }))), nix.thunk(() => nix.app(nix.lookup(w, "filterAttrs"), (n) => (v) => !nix.eq(nix.sel(v, "extraConfig"), ""), nix.thunk(() => nix.sel(cfg, "workers"))))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), "")), nix.thunk(() => ({
+      [nix.POS]: pos$35,
+      "extra-config.inc": nix.thunk(() => ({ [nix.POS]: pos$34, text: nix.thunk(() => nix.sel(cfg, "extraConfig")) })),
     })))));
   return {
-    __proto__: pos$73,
+    [nix.POS]: pos$73,
     options: nix.thunk(() => ({
-      __proto__: pos$52,
+      [nix.POS]: pos$52,
       services: nix.thunk(() => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         rspamd: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "rspamd, the Rapid spam filtering system")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "rspamd", nix.thunk(() => ({})))),
           debug: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: false,
               description: "Whether to run the rspamd daemon in debug mode.",
             })))),
           locals: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => nix.app(configFileModule, "locals")))));
@@ -344,7 +344,7 @@ option allows specific ${prefix} files to be disabled.
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ \"redis.conf\".source = \"/nix/store/.../etc/dir/redis.conf\";\n  \"arc.conf\".text = \"allow_envfrom_empty = true;\";\n}\n")),
             })))),
           overrides: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => nix.app(configFileModule, "overrides")))));
@@ -354,20 +354,20 @@ option allows specific ${prefix} files to be disabled.
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{ \"redis.conf\".source = \"/nix/store/.../etc/dir/redis.conf\";\n  \"arc.conf\".text = \"allow_envfrom_empty = true;\";\n}\n")),
             })))),
           localLuaRules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
               description: "Path of file to link to {file}`/etc/rspamd/rspamd.local.lua` for local\nrules written in Lua\n",
             })))),
           workers: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), workerOpts)));
               })()),
               description: "Attribute set of workers to start.\n",
               default: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 normal: nix.thunk(() => ({})),
                 controller: nix.thunk(() => ({})),
               })),
@@ -389,40 +389,40 @@ option allows specific ${prefix} files to be disabled.
 `))),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$42,
+              [nix.POS]: pos$42,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "Extra configuration to add at the end of the rspamd configuration\nfile.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$43,
+              [nix.POS]: pos$43,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: [],
               example: nix.thunk(() => ["--var=RBL_API_KEY=${RBL_API_KEY}"]),
               description: "A list of extra command line arguments to pass to rspamd.\nCheck `rspamd --help` for possible arguments.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "rspamd",
               description: "User to use when no root privileges are required.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "rspamd",
               description: "Group to use when no root privileges are required.\n",
             })))),
           postfix: nix.thunk(() => ({
-            __proto__: pos$49,
+            [nix.POS]: pos$49,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Add rspamd milter to postfix main.conf",
               })))),
             config: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$48,
+                [nix.POS]: pos$48,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -433,7 +433,7 @@ option allows specific ${prefix} files to be disabled.
                 })()),
                 description: "Addon to postfix configuration\n",
                 default: nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   smtpd_milters: nix.thunk(() => ["unix:/run/rspamd/rspamd-milter.sock"]),
                   non_smtpd_milters: nix.thunk(() => ["unix:/run/rspamd/rspamd-milter.sock"]),
                 })),
@@ -443,20 +443,20 @@ option allows specific ${prefix} files to be disabled.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$72,
+        [nix.POS]: pos$72,
         services: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           rspamd: nix.thunk(() => ({
-            __proto__: pos$56,
+            [nix.POS]: pos$56,
             overrides: configOverrides,
             workers: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "postfix", "enable")), nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 controller: nix.thunk(() => ({})),
                 rspamd_proxy: nix.thunk(() => ({
-                  __proto__: pos$54,
+                  [nix.POS]: pos$54,
                   bindSockets: nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$53,
+                      [nix.POS]: pos$53,
                       mode: "0660",
                       socket: "/run/rspamd/rspamd-milter.sock",
                       owner: nix.thunk(() => nix.sel(cfg, "user")),
@@ -468,32 +468,32 @@ option allows specific ${prefix} files to be disabled.
               })))),
           })),
           postfix: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             settings: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               main: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "postfix", "enable")), nix.thunk(() => nix.sel(cfg, "postfix", "config")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           services: nix.thunk(() => ({
-            __proto__: pos$64,
+            [nix.POS]: pos$64,
             postfix: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "postfix", "enable")), nix.thunk(() => ({
-                __proto__: pos$61,
+                [nix.POS]: pos$61,
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$60,
+                  [nix.POS]: pos$60,
                   SupplementaryGroups: nix.thunk(() => [nix.thunk(() => nix.sel(postfixCfg, "group"))]),
                 })),
               })))),
             rspamd: nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               description: "Rspamd Service",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               restartTriggers: nix.thunk(() => [rspamdDir]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$62,
+                [nix.POS]: pos$62,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/rspamd ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "debug")), "-d")} ${nix.app(nix.lookup(w, "escapeShellArgs"), nix.thunk(() => nix.sel(cfg, "extraArgs")))} -c /etc/rspamd/rspamd.conf -f`),
                 Restart: "always",
                 User: nix.thunk(() => nix.str`${nix.sel(cfg, "user")}`),
@@ -534,18 +534,18 @@ option allows specific ${prefix} files to be disabled.
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$68,
+          [nix.POS]: pos$68,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$67,
-            rspamd: nix.thunk(() => ({ __proto__: pos$66, source: rspamdDir })),
+            [nix.POS]: pos$67,
+            rspamd: nix.thunk(() => ({ [nix.POS]: pos$66, source: rspamdDir })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$71,
+          [nix.POS]: pos$71,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "user"), nix.thunk(() => ({
-              __proto__: pos$69,
+              [nix.POS]: pos$69,
               description: "rspamd daemon",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "rspamd")),
               group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -553,7 +553,7 @@ option allows specific ${prefix} files to be disabled.
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [nix.sel(cfg, "group"), nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "rspamd")),
             }))],
           ])),

@@ -37,45 +37,45 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "systemSc
 `)));
   const configFile = nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "homeDir")))}/flexget.yml`);
   return {
-    __proto__: pos$20,
+    [nix.POS]: pos$20,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         flexget: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "FlexGet daemon")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "flexget", nix.thunk(() => ({})))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: "deluge",
               example: "some_user",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "The user under which to run flexget.",
             })))),
           homeDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "/var/lib/deluge",
               example: "/home/flexget",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               description: "Where files live.",
             })))),
           interval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "10m",
               example: "1h",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "When to perform a {command}`flexget` run. See {command}`man 7 systemd.time` for the format.",
             })))),
           systemScheduler: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               default: true,
               example: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "When true, execute the runs via the flexget-runner.timer. If false, you have to specify the settings yourself in the YML file.",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               default: "",
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               description: "The YAML configuration for FlexGet.",
@@ -84,18 +84,18 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "systemSc
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$19,
-        environment: nix.thunk(() => ({ __proto__: pos$9, systemPackages: nix.thunk(() => [pkg]) })),
+        [nix.POS]: pos$19,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$9, systemPackages: nix.thunk(() => [pkg]) })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             flexget: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               description: "FlexGet Daemon",
               path: nix.thunk(() => [pkg]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/install -m644 ${ymlFile} ${configFile}`),
                 ExecStart: nix.thunk(() => nix.str`${pkg}/bin/flexget -c ${configFile} daemon start`),
@@ -108,12 +108,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "systemSc
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "flexget-runner": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "systemScheduler")), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: "FlexGet Runner",
                 after: nix.thunk(() => ["flexget.service"]),
                 wants: nix.thunk(() => ["flexget.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   ExecStart: nix.thunk(() => nix.str`${pkg}/bin/flexget -c ${configFile} execute`),
                   PrivateTmp: true,
@@ -122,13 +122,13 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "systemSc
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "flexget-runner": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "systemScheduler")), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 description: nix.thunk(() => nix.str`Run FlexGet every ${nix.sel(cfg, "interval")}`),
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   OnBootSec: "5m",
                   OnUnitInactiveSec: nix.thunk(() => nix.sel(cfg, "interval")),
                   Unit: "flexget-runner.service",

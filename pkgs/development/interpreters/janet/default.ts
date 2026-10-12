@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "janet",
       version: "1.41.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "janet-lang",
           repo: "janet",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,18 +40,18 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/janet -e '(+ 1 2 3)'\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           run: nix.thunk(() => nix.app(runCommand, "janet-test-run", nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "echo \"(+ 1 2 3)\" | janet | tail -n 1 > arithmeticTest.txt;\ndiff -U3 --color=auto <(cat arithmeticTest.txt) <(echo \"6\");\n\necho \"(print \\\"Hello, World!\\\")\" | janet | tail -n 2 > ioTest.txt;\ndiff -U3 --color=auto <(cat ioTest.txt) <(echo -e \"Hello, World!\\nnil\");\n\ntouch $out;\n")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Janet programming language",
         mainProgram: "janet",
         homepage: "https://janet-lang.org/",

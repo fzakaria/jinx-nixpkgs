@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "radicle-native-ci",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           seed: "seed.radicle.dev",
           repo: "z3qg5TKmN83afz2fj9z3fQjU8vaYE",
           node: "z6MkgEMYod7Hxfy9qCvDv5hYHkZ4ciWmLFgfvm3Wn1b2w2FV",
@@ -34,9 +34,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, radicle_node, gitMinimal]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ __proto__: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Radicle CI adapter for native CI",
         homepage: "https://radicle.network/nodes/seed.radicle.dev/rad:z3qg5TKmN83afz2fj9z3fQjU8vaYE",
         changelog: "https://radicle.network/nodes/seed.radicle.dev/rad:z3qg5TKmN83afz2fj9z3fQjU8vaYE/tree/NEWS.md",

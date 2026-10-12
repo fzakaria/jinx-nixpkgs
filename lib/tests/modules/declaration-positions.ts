@@ -31,27 +31,27 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   const discardPositions = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => nix.force(v)));
-  nix.assert_(!nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => ({ __proto__: pos$1, a: true }))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:6:1");
-  nix.assert_(nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => nix.app(discardPositions, nix.thunk(() => ({ __proto__: pos$2, a: true }))))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:7:1");
+  nix.assert_(!nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => ({ [nix.POS]: pos$1, a: true }))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:6:1");
+  nix.assert_(nix.eq(nix.builtins.unsafeGetAttrPos("a", nix.thunk(() => nix.app(discardPositions, nix.thunk(() => ({ [nix.POS]: pos$2, a: true }))))), null), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/declaration-positions.nix:7:1");
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         options: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           imported: nix.thunk(() => ({
-            __proto__: pos$4,
-            line14: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$3, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+            [nix.POS]: pos$4,
+            line14: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
           })),
           generated: nix.thunk(() => nix.app(discardPositions, nix.thunk(() => ({
-              __proto__: pos$6,
-              line22: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$5, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+              [nix.POS]: pos$6,
+              line22: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
             })))),
           submoduleLine38: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             extraOptLine27: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 default: 1n,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
               })))),
@@ -60,30 +60,30 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       nested: nix.thunk(() => ({
-        __proto__: pos$12,
-        nestedLine34: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$11, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+        [nix.POS]: pos$12,
+        nestedLine34: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$11, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
       })),
       submoduleLine38: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           default: nix.thunk(() => ({})),
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               modules: nix.thunk(() => [
                 nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const options_1 = nix.arg($_1, "options");
                   return {
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       submodDeclLine45: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
                     })),
                   };
                 })(), formals$2),
                 nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "uniq"), nix.thunk(() => nix.lookup(w, "unspecified")))));
@@ -94,9 +94,9 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       submoduleLine38: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         submodDeclLine45: nix.thunk(() => nix.sel(nix.app(nix.sel(options, "submoduleLine38", "type", "getSubOptions"), []), "submodDeclLine45", "declarationPositions")),
       })),
     })),

@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pycryptodome = nix.arg($, "pycryptodome");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "py-evm",
       version: "0.12.1-beta.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ethereum",
           repo: "py-evm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/json-fixtures"]),
       pythonImportsCheck: nix.thunk(() => ["eth"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python implementation of the Ethereum Virtual Machine",
         homepage: "https://github.com/ethereum/py-evm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

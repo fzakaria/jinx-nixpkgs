@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withAlsa = nix.argOr($, "withAlsa", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "libcanberra",
       version: "0.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://0pointer.de/lennart/projects/libcanberra/libcanberra-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0wps39h8rx2b00vyvkia5j40fkak3dpipp1kzilqla0cgvk73dn2",
         })))),
@@ -52,13 +52,13 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-gtk-Don-t-assume-all-GdkDisplays-are-GdkX11Displays-.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/macports/macports-ports/raw/5a7965dfea7727d1ceedee46c7b0ccee9cb23468/audio/libcanberra/files/patch-configure.diff",
               sha256: "sha256-pEJy1krciUEg5BFIS8FJ4BubjfS/nt9aqi6BLnS1+4M=",
               extraPrefix: "",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: "https://github.com/macports/macports-ports/raw/5a7965dfea7727d1ceedee46c7b0ccee9cb23468/audio/libcanberra/files/dynamic_lookup-11.patch",
               sha256: "sha256-nUjha2pKh5VZl0ZZzcr9NTo1TVuMqF4OcLiztxW+ofQ=",
               extraPrefix: "",
@@ -70,11 +70,11 @@ done
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(gtkSupport, null)), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           gtkModule: nix.thunk(() => (nix.asBool(nix.eq(gtkSupport, "gtk2")) ? "/lib/gtk-2.0" : "/lib/gtk-3.0/")),
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Implementation of the XDG Sound Theme and Name Specifications",
         mainProgram: "canberra-gtk-play",
         longDescription: "libcanberra is an implementation of the XDG Sound Theme and Name\nSpecifications, for generating event sounds on free desktops\nsuch as GNOME.  It comes with several backends (ALSA,\nPulseAudio, OSS, GStreamer, null) and is designed to be\nportable.\n",

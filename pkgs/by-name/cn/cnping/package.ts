@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cnping",
       version: "1.0.0-unstable-2024-02-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cntools",
           repo: "cnping",
           rev: "2498fa4df1b4eff0df1f75b5f393e620bafd6997",
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libglvnd, libxinerama, libxext, libx11]),
       installPhase: "mkdir -p $out/{bin,share/man/man1}\ncp cnping $out/bin/cnping\ncp cnping.1 $out/share/man/man1/cnping.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Minimal Graphical IPV4 Ping Tool",
         homepage: "https://github.com/cntools/cnping",
         license: nix.thunk(() => (() => {

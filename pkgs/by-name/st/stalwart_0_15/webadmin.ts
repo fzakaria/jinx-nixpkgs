@@ -31,30 +31,30 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const wasmBindgenCliPatched = nix.thunk(() => (() => {
     const wasmBindgenCliDedupExportsPatch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: "https://github.com/wasm-bindgen/wasm-bindgen/commit/b375e974cf30a203f1ea7f6320ad32759c5cb9e6.patch",
         relative: "crates/cli-support",
         hash: "sha256-pejDKqNbtlpLLqNcdpwgxDSxsGxyv5V8/QeK+OCY3qw=",
       }))));
     return nix.app(nix.sel(wasm_bindgen_cli_0_2_93, "overrideAttrs"), (old) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`patch -p1 -d "$cargoDepsCopy"/*/wasm-bindgen-cli-support-* < ${wasmBindgenCliDedupExportsPatch}
 `)),
       }));
   })());
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "webadmin",
       version: "0.1.37",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "stalwartlabs",
           repo: "webadmin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-82QvuLkp6j6nJs7jX4NRcnxZ+KNv9RREpM+x8dicfGo=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           hash: "sha256-na1HEueX8w7kuDp8LEtJ0nD1Yv39cyk6sEMpS1zix2s=",
         })))),
@@ -71,17 +71,17 @@ export default nix.lambda((args) => (() => {
         wasmBindgenCliPatched,
         zip,
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$5, NODE_PATH: "$npmDeps" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, NODE_PATH: "$npmDeps" })),
       buildPhase: "trunk build --offline --frozen --release\n",
       installPhase: "cd dist\nmkdir -p $out\nzip -r $out/webadmin.zip *\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stalwart_0_15, "meta"));
         return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Web administration module for the Stalwart server",
         homepage: "https://github.com/stalwartlabs/webadmin",
         changelog: nix.thunk(() => nix.str`https://github.com/stalwartlabs/webadmin/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

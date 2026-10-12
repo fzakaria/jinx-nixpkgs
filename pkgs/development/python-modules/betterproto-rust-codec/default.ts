@@ -21,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "124C41p",
           repo: "betterproto-rust-codec",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Q8oCk/VVe4Dcw6Z5PBFJBKRlsHgi6Jn+FWDqLH8BgYc=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cargo, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")), rustc]);
       const pythonImportsCheck = nix.thunk(() => ["betterproto_rust_codec"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Converter between betterproto messages and the Protobuf wire format",
         homepage: nix.thunk(() => nix.str`https://github.com/124C41p/betterproto-rust-codec/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

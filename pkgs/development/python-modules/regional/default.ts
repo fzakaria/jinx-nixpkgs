@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "regional",
       version: "1.1.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "freeman-lab",
           repo: "regional",
           rev: "e3a29c58982e5cd3d5700131ac96e5e0b84fb981",
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["regional"]),
       disabledTests: nix.thunk(() => ["test_dilate", "test_outline", "test_mask"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple manipulation and display of spatial regions",
         homepage: "https://github.com/freeman-lab/regional",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -16,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "sampradaya";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/deepestblue/sampradaya/releases/download/v${version}/Sampradaya.ttf`),
           hash: "sha256-ygKMNzHvbLR2A5HHrfY2C9ZUg0yng+JL3cyg6sBKqeQ=",
         }))));
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\ninstall -Dm644 $src $out/share/fonts/truetype/Sampradaya.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/deepestblue/sampradaya",
         description: "Unicode-compliant Grantha font",
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

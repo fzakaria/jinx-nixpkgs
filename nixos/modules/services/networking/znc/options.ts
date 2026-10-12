@@ -46,55 +46,55 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "znc"));
   const networkOpts = nix.thunk(() => ({
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       server: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           example: "irc.libera.chat",
           description: "IRC server address.\n",
         })))),
       port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
           default: 6697n,
           description: "IRC server port.\n",
         })))),
       password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
           default: "",
           description: "IRC server password, such as for a Slack gateway.\n",
         })))),
       useSSL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: true,
           description: "Whether to use SSL to connect to the IRC server.\n",
         })))),
       modules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
           default: nix.thunk(() => ["simple_away"]),
           example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"simple_away\" \"sasl\" ]")),
           description: "ZNC network modules to load.\n",
         })))),
       channels: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
           default: [],
           example: nix.thunk(() => ["nixos"]),
           description: "IRC channels to join.\n",
         })))),
       hasBitlbeeControlChannel: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
           default: false,
           description: "Whether to add the special Bitlbee operations channel.\n",
         })))),
       extraConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           default: "",
           type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
           example: "Encoding = ^UTF-8\nFloodBurst = 4\nFloodRate = 1.00\nIRCConnectEnabled = true\nIdent = johntron\nJoinDelay = 0\nNick = johntron\n",
@@ -103,44 +103,44 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    __proto__: pos$35,
+    [nix.POS]: pos$35,
     options: nix.thunk(() => ({
-      __proto__: pos$25,
+      [nix.POS]: pos$25,
       services: nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         znc: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           useLegacyConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               default: true,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Whether to propagate the legacy options under\n{option}`services.znc.confOptions.*` to the znc config. If this\nis turned on, the znc config will contain a user with the default name\n\"znc\", global modules \"webadmin\" and \"adminlog\" will be enabled by\ndefault, and more, all controlled through the\n{option}`services.znc.confOptions.*` options.\nYou can use {command}`nix-instantiate --eval --strict '<nixpkgs/nixos>' -A config.services.znc.config`\nto view the current value of the config.\n\nIn any case, if you need more flexibility,\n{option}`services.znc.config` can be used to override/add to\nall of the legacy options.\n",
             })))),
           confOptions: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             modules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ["webadmin", "adminlog"]),
                 example: nix.thunk(() => ["partyline", "webadmin", "adminlog", "log"]),
                 description: "A list of modules to include in the {file}`znc.conf` file.\n",
               })))),
             userModules: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: nix.thunk(() => ["chansaver", "controlpanel"]),
                 example: nix.thunk(() => ["chansaver", "controlpanel", "fish", "push"]),
                 description: "A list of user modules to include in the {file}`znc.conf` file.\n",
               })))),
             userName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 default: "znc",
                 example: "johntron",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The user name used to log in to the ZNC web admin interface.\n",
               })))),
             networks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
@@ -150,39 +150,39 @@ export default nix.lambda((args) => (() => {
                 example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"libera\" = {\n    server = \"irc.libera.chat\";\n    port = 6697;\n    useSSL = true;\n    modules = [ \"simple_away\" ];\n  };\n};\n")),
               })))),
             nick: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 default: "znc-user",
                 example: "john",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "The IRC nick.\n",
               })))),
             passBlock: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 example: "&lt;Pass password&gt;\n   Method = sha256\n   Hash = e2ce303c7ea75c571d80d8540a8699b46535be6a085be3414947d638e48d9e93\n   Salt = l5Xryew4g*!oa(ECfX2o\n&lt;/Pass&gt;\n",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 description: "Generate with {command}`nix-shell -p znc --command \"znc --makepass\"`.\nThis is the password used to log in to the ZNC web admin interface.\nYou can also set this through\n{option}`services.znc.config.User.<username>.Pass.Method`\nand co.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 default: 5000n,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 description: "Specifies the port on which to listen.\n",
               })))),
             useSSL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 default: true,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 description: "Indicates whether the ZNC server should use SSL when listening on\nthe specified port. A self-signed certificate will be generated.\n",
               })))),
             uriPrefix: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 example: "/znc/",
                 description: "An optional URI prefix for the ZNC web interface. Can be\nused to make ZNC available behind a reverse proxy.\n",
               })))),
             extraZncConf: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 default: "",
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                 description: "Extra config to {file}`znc.conf` file.\n",
@@ -192,21 +192,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "useLegacyConfig")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           znc: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             config: nix.thunk(() => (() => {
               const c = nix.thunk(() => nix.sel(cfg, "confOptions"));
               const mkDefault = nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 900n));
               return {
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 LoadModule: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(c, "modules")))),
                 Listener: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   l: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     Port: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(c, "port")))),
                     IPv4: nix.thunk(() => nix.app(mkDefault, true)),
                     IPv6: nix.thunk(() => nix.app(mkDefault, true)),
@@ -216,7 +216,7 @@ export default nix.lambda((args) => (() => {
                 })),
                 User: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(c, "userName"), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     Admin: nix.thunk(() => nix.app(mkDefault, true)),
                     Nick: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(c, "nick")))),
                     AltNick: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`${nix.sel(c, "nick")}_`))),
@@ -224,11 +224,11 @@ export default nix.lambda((args) => (() => {
                     RealName: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(c, "nick")))),
                     LoadModule: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(c, "userModules")))),
                     Network: nix.thunk(() => nix.app(nix.lookup(w, "mapAttrs"), (name) => (net) => ({
-                        __proto__: pos$29,
+                        [nix.POS]: pos$29,
                         LoadModule: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(net, "modules")))),
                         Server: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.str`${nix.sel(net, "server")} ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(net, "useSSL")), "+")}${nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(net, "port")))} ${nix.sel(net, "password")}`))),
                         Chan: nix.thunk(() => nix.update(nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => nix.sel(net, "hasBitlbeeControlChannel")), nix.thunk(() => ({
-                            __proto__: pos$28,
+                            [nix.POS]: pos$28,
                             "&bitlbee": nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({})))),
                           }))), nix.app(nix.lookup(w, "listToAttrs"), nix.thunk(() => nix.app(nix.builtins.map, (n) => nix.app(nix.lookup(w, "nameValuePair"), nix.thunk(() => nix.str`#${n}`), nix.thunk(() => nix.app(mkDefault, nix.thunk(() => ({}))))), nix.thunk(() => nix.sel(net, "channels"))))))),
                         extraConfig: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(net, "extraConf"), "")) ? nix.app(mkDefault, null) : nix.sel(net, "extraConf"))),

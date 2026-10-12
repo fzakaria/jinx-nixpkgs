@@ -35,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$24,
+    [nix.POS]: pos$24,
     name: testName,
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "aciceri")),
           nix.thunk(() => nix.lookup(w, "kalbasit")),
@@ -48,47 +48,47 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       harmonia: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           harmonia: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: true,
             signKeyPaths: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cache-key", "cache.example.com-1:9FhO0w+7HjZrhvmzT1VlAZw4OSAlFGTgC24Seg3tmPl4gZBdwZClzTTHr9cVzJpwsRSYLTu7hEAQe3ljy92CWg==")),
             ]),
-            settings: nix.thunk(() => ({ __proto__: pos$2, priority: 35n })),
+            settings: nix.thunk(() => ({ [nix.POS]: pos$2, priority: 35n })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$6,
-          firewall: nix.thunk(() => ({ __proto__: pos$5, allowedTCPPorts: nix.thunk(() => [5000n]) })),
+          [nix.POS]: pos$6,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [5000n]) })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "emptyFile"))]),
         })),
-        nix: nix.thunk(() => ({ __proto__: pos$8, enable: true })),
+        nix: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
       })),
       ncps: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         services: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           ncps: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: true,
             analytics: nix.thunk(() => ({
-              __proto__: pos$11,
-              reporting: nix.thunk(() => ({ __proto__: pos$10, enable: false })),
+              [nix.POS]: pos$11,
+              reporting: nix.thunk(() => ({ [nix.POS]: pos$10, enable: false })),
             })),
             cache: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               hostName: "ncps",
               secretKeyPath: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ncps-cache-key", "ncps:dcrGsrku0KvltFhrR5lVIMqyloAdo0y8vYZOeIFUSLJS2IToL7dPHSSCk/fi+PJf8EorpBn8PU7MNhfvZoI8mA==")))),
               upstream: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 urls: nix.thunk(() => ["http://harmonia:5000"]),
                 publicKeys: nix.thunk(() => ["cache.example.com-1:eIGQXcGQpc00x6/XFcyacLEUmC07u4RAEHt5Y8vdglo="]),
               })),
@@ -96,17 +96,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$17,
-          firewall: nix.thunk(() => ({ __proto__: pos$16, allowedTCPPorts: nix.thunk(() => [8501n]) })),
+          [nix.POS]: pos$17,
+          firewall: nix.thunk(() => ({ [nix.POS]: pos$16, allowedTCPPorts: nix.thunk(() => [8501n]) })),
         })),
-        nix: nix.thunk(() => ({ __proto__: pos$18, enable: true })),
+        nix: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
       })),
       client: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         nix: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           settings: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["http://ncps:8501"]))),
             "trusted-public-keys": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["ncps:UtiE6C+3Tx0kgpP34vjyX/BKK6QZ/D1OzDYX72aCPJg="]))),
           })),

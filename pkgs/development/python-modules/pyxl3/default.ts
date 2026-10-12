@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyxl3",
       version: "1.4",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gvanrossum",
           repo: "pyxl3",
           rev: "e6588c12caee49c43faf6aa260f04d7e971f6aa8",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python 3 port of pyxl for writing structured and reusable inline HTML",
         homepage: "https://github.com/gvanrossum/pyxl3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

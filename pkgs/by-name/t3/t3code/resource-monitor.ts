@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const t3code_unwrapped = nix.arg($, "t3code-unwrapped");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "t3code-resource-monitor",
       version: nix.thunk(() => nix.attr(t3code_unwrapped, "version")),
       src: nix.thunk(() => nix.attr(t3code_unwrapped, "src")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(t3code_unwrapped, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Native resource diagnostics sidecar for T3 Code",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

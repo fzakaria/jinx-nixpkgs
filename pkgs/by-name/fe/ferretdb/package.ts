@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ferretdb",
       version: "1.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FerretDB",
           repo: "FerretDB",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +31,14 @@ export default nix.lambda((args) => (() => {
 echo nixpkgs     > build/version/package.txt
 `),
       vendorHash: "sha256-GT6e9yd6LF6GFlGBWVAmcM6ysB/6cIGLbnM0hxfX5TE=",
-      env: nix.thunk(() => ({ __proto__: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/ferretdb"]),
       doCheck: false,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "ferretdb")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "ferretdb")) })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Truly Open Source MongoDB alternative",
         mainProgram: "ferretdb",
         changelog: nix.thunk(() => nix.str`https://github.com/FerretDB/FerretDB/releases/tag/v${nix.sel(finalAttrs, "version")}`),

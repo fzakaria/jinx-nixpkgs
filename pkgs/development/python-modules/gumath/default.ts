@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libxnd = nix.arg($, "libxnd");
   const libgumath = nix.arg($, "libgumath");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gumath",
       format: "setuptools",
       src: nix.thunk(() => nix.attr(libgumath, "src")),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => nix.attr(libgumath, "meta")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: "remove-np-warnings-call.patch",
             url: "https://github.com/xnd-project/gumath/commit/83ab3aa3b07d55654b4e6e75e5ec6be8190fca97.patch",
             hash: "sha256-7lUXNVH5M+Go1iEu0bud03XI8cyGbdLNdLraMZplDaM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remove-np-1.25-bartlett-test-assertion.patch",
             url: "https://github.com/xnd-project/gumath/commit/8741e31f2967ded08c96a7f0631e1e38fe813870.patch",
             hash: "sha256-flltk3RNPHalbcIV0BrkxWuhqqJBrycos7Fyv3P3mWg=",

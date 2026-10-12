@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libcdio = nix.arg($, "libcdio");
   const libcdio_paranoia = nix.arg($, "libcdio-paranoia");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "audex",
       extraBuildInputs: nix.thunk(() => [libcdio, libcdio_paranoia]),
     })));

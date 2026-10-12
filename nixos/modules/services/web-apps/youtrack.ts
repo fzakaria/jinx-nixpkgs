@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "youtrack"));
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "youtrack", "baseUrl"]), nix.thunk(() => ["services", "youtrack", "environmentalParameters", "base-url"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "youtrack", "port"]), nix.thunk(() => ["services", "youtrack", "environmentalParameters", "listen-port"]))),
@@ -57,39 +57,39 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "youtrack", "jvmOpts"]), "Please migrate to `services.youtrack.generalParameters`.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$13,
+      [nix.POS]: pos$13,
       services: nix.thunk(() => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         youtrack: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "YouTrack service")),
           address: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "The interface youtrack will listen on.\n",
               default: "127.0.0.1",
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "youtrack", nix.thunk(() => ({})))),
           statePath: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               description: "Path were the YouTrack state is stored.\nTo this path the base version (e.g. 2023_1) of the used package will be appended.\n",
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               default: "/var/lib/youtrack",
             })))),
           virtualHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               description: "Name of the nginx virtual host to use and setup.\nIf null, do not setup anything.\n",
               default: null,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
             })))),
           autoUpgrade: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether YouTrack should auto upgrade it without showing the upgrade dialog.",
             })))),
           generalParameters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -99,9 +99,9 @@ export default nix.lambda((args) => (() => {
               default: [],
             })))),
           environmentalParameters: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -111,15 +111,15 @@ export default nix.lambda((args) => (() => {
                         ]))));
                   })()),
                   options: nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     "listen-address": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "0.0.0.0",
                         description: "The interface YouTrack will listen on.",
                       })))),
                     "listen-port": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 8080n,
                         description: "The port YouTrack will listen on.",
@@ -134,21 +134,21 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$34,
+        [nix.POS]: pos$34,
         services: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           youtrack: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             generalParameters: nix.thunk(() => [
               nix.thunk(() => nix.str`-Ddisable.configuration.wizard.on.upgrade=${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.sel(cfg, "autoUpgrade")))}`),
             ]),
           })),
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "virtualHost"), null)), nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               upstreams: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 youtrack: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   servers: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${nix.sel(cfg, "address")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "environmentalParameters", "listen-port")))}`, nix.thunk(() => ({}))],
                   ])),
@@ -156,16 +156,16 @@ export default nix.lambda((args) => (() => {
               })),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "virtualHost"), nix.thunk(() => ({
-                  __proto__: pos$20,
+                  [nix.POS]: pos$20,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     "/": nix.thunk(() => ({
-                      __proto__: pos$17,
+                      [nix.POS]: pos$17,
                       proxyPass: "http://youtrack",
                       extraConfig: "client_max_body_size 10m;\nproxy_http_version 1.1;\nproxy_set_header X-Forwarded-Host $http_host;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\nproxy_set_header X-Forwarded-Proto $scheme;\n",
                     })),
                     "/api/eventSourceBus": nix.thunk(() => ({
-                      __proto__: pos$18,
+                      [nix.POS]: pos$18,
                       proxyPass: "http://youtrack",
                       extraConfig: "proxy_cache off;\nproxy_buffering off;\nproxy_read_timeout 86400s;\nproxy_send_timeout 86400s;\nproxy_set_header Connection \"\";\nchunked_transfer_encoding off;\nclient_max_body_size 10m;\nproxy_http_version 1.1;\nproxy_set_header X-Forwarded-Host $http_host;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\nproxy_set_header X-Forwarded-Proto $scheme;\n",
                     })),
@@ -175,18 +175,18 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             youtrack: nix.thunk(() => (() => {
               const jvmoptions = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   name: "youtrack.jvmoptions",
                   text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.sel(cfg, "generalParameters")))),
                 }))));
-              const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$24, statePath: nix.thunk(() => nix.sel(cfg, "statePath")) }))));
+              const package$ = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$24, statePath: nix.thunk(() => nix.sel(cfg, "statePath")) }))));
               return {
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 path: nix.thunk(() => (() => {
@@ -207,25 +207,25 @@ ${package$}/bin/youtrack configure ${nix.app(nix.sel(lib, "concatStringsSep"), "
 `),
                 serviceConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       Type: "simple",
                       User: "youtrack",
                       Group: "youtrack",
                       Restart: "on-failure",
                       ExecStart: nix.thunk(() => nix.str`${package$}/bin/youtrack run`),
                     })),
-                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "statePath"), "/var/lib/youtrack")), nix.thunk(() => ({ __proto__: pos$26, StateDirectory: "youtrack" })))),
+                    nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "statePath"), "/var/lib/youtrack")), nix.thunk(() => ({ [nix.POS]: pos$26, StateDirectory: "youtrack" })))),
                   ]))),
               };
             })()),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           users: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             youtrack: nix.thunk(() => ({
-              __proto__: pos$30,
+              [nix.POS]: pos$30,
               description: "Youtrack service user",
               isSystemUser: true,
               home: nix.thunk(() => nix.sel(cfg, "statePath")),
@@ -233,11 +233,11 @@ ${package$}/bin/youtrack configure ${nix.app(nix.sel(lib, "concatStringsSep"), "
               group: "youtrack",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$32, youtrack: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$32, youtrack: nix.thunk(() => ({})) })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       doc: nix.path(here, "./youtrack.md"),
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "leona"))]),
     })),

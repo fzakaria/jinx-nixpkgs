@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clog-cli",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "clog-tool",
           repo: "clog-cli",
           rev: "7066cba2bcbaea0f62ea22c320d48dac20f36a38",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-b8/n3y6fTqP5+rZySEDEb8Z5DPHQ2jUasp5SvaJJlGo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generate changelogs from local git metadata",
         homepage: "https://github.com/clog-tool/clog-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

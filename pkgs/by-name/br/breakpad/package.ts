@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const zlib = nix.arg($, "zlib");
   const lss = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://chromium.googlesource.com/linux-syscall-support",
       rev: "v2022.10.12",
       hash: "sha256-rF10v5oH4u9i9vnmFCVVl2Ew3h+QTiOsW64HeB0nRQU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "breakpad",
       version: "2024.02.16",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://chromium.googlesource.com/breakpad/breakpad",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-yk+TSzjmAr9QMTYduKVe/Aizph/NNmSS385pvGJckiQ=",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postUnpack: nix.thunk(() => nix.str`ln -s ${lss} $sourceRoot/src/third_party/lss
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source multi-platform crash reporting system",
         homepage: "https://chromium.googlesource.com/breakpad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const opencascade_occt = opencascade_occt_7_6;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dune3d",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dune3d",
           repo: "dune3d",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,9 +64,9 @@ export default nix.lambda((args) => (() => {
         opencascade_occt,
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pp) => [nix.thunk(() => nix.sel(pp, "pygobject3"))])),
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, CASROOT: opencascade_occt })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, CASROOT: opencascade_occt })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "3D CAD application",
         homepage: "https://dune3d.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

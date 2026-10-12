@@ -26,25 +26,25 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://download.jetbrains.com/rustrover/RustRover-2026.2.3.tar.gz",
       hash: "sha256-+sDVAwcwHs22mZj+6zOPEoepbpwC0gUWXsTh2MDtQKY=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: "https://download.jetbrains.com/rustrover/RustRover-2026.2.3-aarch64.tar.gz",
       hash: "sha256-ki+LKA8VBo6rvNcx5/IFmYDYJ1MPfvC0TvwKWRG/Yjg=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: "https://download.jetbrains.com/rustrover/RustRover-2026.2.3-aarch64.dmg",
       hash: "sha256-f1yhrXV4YGwYJnG5hxYO/YCITDvptV6f63axFQ2AKd0=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "rust-rover",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(jetbrains, "sharedLibsHook"))]))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcrypt_legacy, openssl, python3])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")))), nix.thunk(() => [expat, libxml2, xz])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://www.jetbrains.com/rust/",
         description: "Rust IDE from JetBrains",
         longDescription: "Rust IDE from JetBrains",

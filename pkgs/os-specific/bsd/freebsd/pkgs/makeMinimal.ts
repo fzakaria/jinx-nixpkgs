@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const bsdSetupHook = nix.arg($, "bsdSetupHook");
   const freebsdSetupHook = nix.arg($, "freebsdSetupHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: nix.thunk(() => nix.attr(make, "path")),
       buildInputs: [],
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, freebsdSetupHook]),
@@ -30,7 +30,7 @@ ${nix.sel(make, "postPatch")}
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))), "boot_mk=\"$BSDSRCDIR/tools/build/mk\"\ncp \"$boot_mk\"/Makefile.boot* \"$out/share/mk\"\nreplaced_mk=\"$out/share/mk.orig\"\nmkdir \"$replaced_mk\"\nmv \"$out\"/share/mk/bsd.{lib,prog}.mk \"$replaced_mk\"\nfor m in bsd.{lib,prog}.mk; do\n  cp \"$boot_mk/$m\" \"$out/share/mk\"\n  substituteInPlace \"$out/share/mk/$m\" --replace '../../../share/mk' '../mk.orig'\ndone\n")),
       extraPaths: nix.thunk(() => nix.sel(make, "extraPaths")),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

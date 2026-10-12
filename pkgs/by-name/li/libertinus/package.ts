@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libertinus",
       version: "7.051",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/alerque/libertinus/releases/download/v${nix.sel(finalAttrs, "version")}/Libertinus-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-JQZ3ySnTd1owkTZDWUN5ryZKwu8oAQNaody+MLm+I6Y=",
         })))),
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts, zstd]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Libertinus font family",
         longDescription: "The Libertinus font project began as a fork of the Linux Libertine and\nLinux Biolinum fonts. The original impetus was to add an OpenType math\ncompanion to the Libertine font families. Over time it grew into to a\nfull-fledged fork addressing many of the bugs in the Libertine fonts.\n",
         homepage: "https://github.com/alerque/libertinus",

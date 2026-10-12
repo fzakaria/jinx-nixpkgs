@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hexyl",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sharkdp",
           repo: "hexyl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, installShellFiles, pandoc]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.add("installManPage --name hexyl.1 <(pandoc -s -f markdown -t man -o - doc/hexyl.1.md)\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd hexyl \\\n  --bash <($out/bin/hexyl --completion bash) \\\n  --fish <($out/bin/hexyl --completion fish) \\\n  --zsh <($out/bin/hexyl --completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Command-line hex viewer",
         longDescription: "`hexyl` is a simple hex viewer for the terminal. It uses a colored\noutput to distinguish different categories of bytes (NULL bytes,\nprintable ASCII characters, ASCII whitespace characters, other ASCII\ncharacters and non-ASCII).\n",
         homepage: "https://github.com/sharkdp/hexyl",

@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.33";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mettta",
           repo: "html2pdf4doc_python",
           tag: version,
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [versionCheckHook]);
       const versionCheckProgramArg = "-v";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Print HTML to PDF in the Browser – Python Package for HTML2PDF.js",
         homepage: "https://github.com/mettta/html2pdf4doc_python",
         changelog: nix.thunk(() => nix.str`https://github.com/mettta/html2pdf4doc_python/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

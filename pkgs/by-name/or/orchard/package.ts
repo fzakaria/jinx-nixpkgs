@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "orchard";
       const version = "0.56.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "openai",
           repo: "orchard",
           rev: version,
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const subPackages = nix.thunk(() => ["cmd/orchard"]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export HOME=\"$(mktemp -d)\"\ninstallShellCompletion --cmd orchard \\\n  --bash <($out/bin/orchard completion bash) \\\n  --zsh <($out/bin/orchard completion zsh) \\\n  --fish <($out/bin/orchard completion fish)\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         mainProgram: "orchard",
         description: "Orchestrator for running Tart Virtual Machines on a cluster of Apple Silicon devices",
         homepage: "https://github.com/openai/orchard",
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

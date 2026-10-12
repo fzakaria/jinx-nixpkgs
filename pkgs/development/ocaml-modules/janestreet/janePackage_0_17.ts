@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
     const doCheck = nix.argOr($_1, "doCheck", () => true);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return nix.app(buildDunePackage, nix.thunk(() => nix.update(args_2, {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         version: version,
         buildInputs: buildInputs,
         minimalOCamlVersion: minimalOCamlVersion,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "janestreet",
             repo: pname,
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
           })))),
         doCheck: doCheck,
         meta: nix.thunk(() => nix.update({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           homepage: nix.thunk(() => nix.str`https://github.com/janestreet/${pname}`),
         }, nix.sel(args_2, "meta"))),

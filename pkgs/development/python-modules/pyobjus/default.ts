@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const clang = nix.arg($, "clang");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pyobjus",
       version: "1.2.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kivy",
           repo: "pyobjus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ mv objc_classes/test $out/${nix.sel(python, "sitePackages")}/objc_classes
       nativeCheckInputs: nix.thunk(() => [clang, pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_multiple_delegates"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/kivy/pyobjus/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Access Objective-C classes from Python",
         homepage: "https://github.com/kivy/pyobjus",

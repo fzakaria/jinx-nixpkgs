@@ -28,51 +28,51 @@ export default nix.lambda((args) => (() => {
   const userStoragePath = "/var/lib/foobar";
   const pluginPath = nix.thunk(() => nix.str`${userStoragePath}/node_modules`);
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     name: "homebridge",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fmoda3"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       homebridge: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             homebridge: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               userStoragePath: userStoragePath,
               pluginPath: pluginPath,
               settings: nix.thunk(() => ({
-                __proto__: pos$3,
-                bridge: nix.thunk(() => ({ __proto__: pos$2, name: "Homebridge", port: 51826n })),
+                [nix.POS]: pos$3,
+                bridge: nix.thunk(() => ({ [nix.POS]: pos$2, name: "Homebridge", port: 51826n })),
               })),
-              uiSettings: nix.thunk(() => ({ __proto__: pos$4, port: 8581n })),
+              uiSettings: nix.thunk(() => ({ [nix.POS]: pos$4, port: 8581n })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             differentName: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 services: nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   homebridge: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     settings: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       bridge: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "Test Home")),
                       })),
                     })),

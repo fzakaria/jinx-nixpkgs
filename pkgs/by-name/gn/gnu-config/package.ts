@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const rev = "948ae97ca5703224bd3eada06b7a69f40dd15a02";
   const configGuess = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: nix.thunk(() => nix.str`config.guess-${nix.builtins.substring(0n, 7n, rev)}`),
       url: nix.thunk(() => nix.str`https://git.savannah.gnu.org/cgit/config.git/plain/config.guess?id=${rev}`),
       hash: "sha256-ZByuPAx0xJNU0+3gCfP+vYD+vhUBp3wdn6yNQsxFtss=",
     }))));
   const configSub = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: nix.thunk(() => nix.str`config.sub-${nix.builtins.substring(0n, 7n, rev)}`),
       url: nix.thunk(() => nix.str`https://git.savannah.gnu.org/cgit/config.git/plain/config.sub?id=${rev}`),
       hash: "sha256-/jovMvuv9XhIcyVJ9I2YP9ZSYCTsLw9ancdcL0NZo6Y=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gnu-config",
       version: "2024-01-01",
       unpackPhase: nix.thunk(() => nix.str`runHook preUnpack
@@ -53,7 +53,7 @@ runHook postFixup
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Attempt to guess a canonical system name",
         homepage: "https://savannah.gnu.org/projects/config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

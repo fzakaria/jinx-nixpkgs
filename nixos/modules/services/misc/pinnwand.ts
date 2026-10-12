@@ -32,53 +32,53 @@ export default nix.lambda((args) => (() => {
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   const configFile = nix.thunk(() => nix.app(nix.sel(format, "generate"), "pinnwand.toml", nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$19,
+    [nix.POS]: pos$19,
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         pinnwand: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Pinnwand, a pastebin")),
           port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "port")),
               description: "The port to listen on.",
               default: 8000n,
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               default: nix.thunk(() => ({})),
               description: nix.thunk(() => nix.str`Your {file}\`pinnwand.toml\` as a Nix attribute set. Look up
 possible options in the [documentation](https://pinnwand.readthedocs.io/en/v${nix.sel(pkgs, "pinnwand", "version")}/configuration.html).
 `),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   freeformType: nix.thunk(() => nix.sel(format, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$6,
+                    [nix.POS]: pos$6,
                     database_uri: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "sqlite:////var/lib/pinnwand/pinnwand.db",
                         example: "sqlite:///:memory",
                         description: "Database URI compatible with [SQLAlchemy](https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls).\n\nAdditional packages may need to be introduced into the environment for certain databases.\n",
                       })))),
                     paste_size: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                         default: 262144n,
                         example: 524288n,
                         description: "Maximum size of a paste in bytes.\n",
                       })))),
                     paste_help: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "<p>Welcome to pinnwand, this site is a pastebin. It allows you to share code with others. If you write code in the text area below and press the paste button you will be given a link you can share with others so they can view your code as well.</p><p>People with the link can view your pasted code, only you can remove your paste and it expires automatically. Note that anyone could guess the URI to your paste so don't rely on it being private.</p>\n",
                         description: "Raw HTML help text shown in the header area.\n",
                       })))),
                     footer: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "View <a href=\"//github.com/supakeen/pinnwand\" target=\"_BLANK\">source code</a>, the <a href=\"/removal\">removal</a> or <a href=\"/expiry\">expiry</a> stories, or read the <a href=\"/about\">about</a> page.\n",
                         description: "The footer in raw HTML.\n",
@@ -90,22 +90,22 @@ possible options in the [documentation](https://pinnwand.readthedocs.io/en/v${ni
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             pinnwand: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Pinnwannd HTTP Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Documentation: "https://pinnwand.readthedocs.io/en/latest/",
               })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "pinnwand")}/bin/pinnwand --configuration-path ${configFile} http --port ${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))}`),
                 User: "pinnwand",
                 DynamicUser: true,
@@ -138,7 +138,7 @@ possible options in the [documentation](https://pinnwand.readthedocs.io/en/v${ni
           })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$18, buildDocsInSandbox: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$18, buildDocsInSandbox: false })),
   };
 })(), formals$1);
 //# sourceMappingURL=pinnwand.ts.map

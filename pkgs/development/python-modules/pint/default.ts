@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "hgrecco",
           repo: "pint",
           tag: version,
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, matplotlib, writableTmpDirAsHomeHook]);
       const disabledTestPaths = nix.thunk(() => ["pint/testsuite/benchmarks"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/hgrecco/pint/blob/${version}/CHANGES`),
         description: "Physical quantities module",
         mainProgram: "pint-convert",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

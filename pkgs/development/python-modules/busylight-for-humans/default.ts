@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const webcolors = nix.arg($, "webcolors");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "busylight-for-humans",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "JnyJny",
           repo: "busylight",
           tag: nix.thunk(() => nix.str`busylight-cli/v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [busylight_core, hidapi, loguru, pyserial, typer, webcolors]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         web: nix.thunk(() => [fastapi]),
         webapi: nix.thunk(() => [fastapi, uvicorn]),
       })),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["busylight"]),
       postInstall: "mkdir -p $out/lib/udev/rules.d\n$out/bin/busylight udev-rules -o $out/lib/udev/rules.d/99-busylight.rules\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Control USB connected presence lights from multiple vendors via the command-line or web API",
         homepage: "https://github.com/JnyJny/busylight",
         changelog: nix.thunk(() => nix.str`https://github.com/JnyJny/busylight/blob/${nix.sel(finalAttrs, "src", "tag")}/${nix.sel(finalAttrs, "src", "rootDir")}/CHANGELOG.md`),

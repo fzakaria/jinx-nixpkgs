@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const vst3sdk = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "steinbergmedia",
       repo: "vst3sdk",
       rev: "v3.8.0_build_66",
@@ -43,27 +43,27 @@ export default nix.lambda((args) => (() => {
       postFetch: "rm -rf $out/doc\n",
     }))));
   const rtaudio_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "thestk",
       repo: "rtaudio",
       rev: "6.0.1",
       hash: "sha256-Acsxbnl+V+Y4mKC1gD11n0m03E96HMK+oEY/YV7rlIY=",
     }))));
   const rtmidi_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "thestk",
       repo: "rtmidi",
       rev: "6.0.0",
       hash: "sha256-QuUeFx8rPpe0+exB3chT6dUceDa/7ygVy+cQYykq7e0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "six-sines",
       version: "1.2.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "baconpaul",
           repo: "six-sines",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -117,11 +117,11 @@ EOF
       buildPhase: "runHook preBuild\ncmake --build . --config Release --parallel \"$NIX_BUILD_CORES\" --target six-sines_all\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -d $out/lib/clap $out/lib/vst3 $out/bin\n\n# The clap-wrapper assets dir is flat on Linux — the CLAP/ and VST3/\n# subdirectories only get created on Windows (the relevant branches in\n# make_clapfirst.cmake and wrap_vst3.cmake are gated on WIN32). On\n# Linux and macOS everything lands directly in ${CMAKE_BINARY_DIR}/\n# six-sines_assets/.\ncp -r 'six-sines_assets/Six Sines.clap' \"$out/lib/clap/\"\ncp -r 'six-sines_assets/Six Sines.vst3' \"$out/lib/vst3/\"\n\n# Rename the standalone to a Unix-friendly $out/bin name.\ninstall -m755 'six-sines_assets/Six Sines' \"$out/bin/six-sines\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Small synthesizer exploring audio-rate inter-modulation of sine waves (FM/PM/AM)",
         longDescription: "Six Sines is a six-operator phase-/amplitude-/ring-modulation synthesizer\nby Paul Walker (baconpaul). It ships as a CLAP plug-in, a VST3 plug-in,\nand a standalone application backed by RtAudio (ALSA / JACK / PulseAudio).\n",
         homepage: "https://github.com/baconpaul/six-sines",

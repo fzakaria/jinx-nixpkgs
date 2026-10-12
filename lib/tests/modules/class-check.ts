@@ -31,53 +31,53 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$23,
+    [nix.POS]: pos$23,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       sub: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         nixosOk: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 class: "nixos",
                 modules: nix.thunk(() => [nix.path(here, "./assert-module-class-is-nixos.nix")]),
               })))),
           })))),
         nixosFail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$4,
-            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ __proto__: pos$3, class: "nixos", modules: [] })))),
+            [nix.POS]: pos$4,
+            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$3, class: "nixos", modules: [] })))),
           })))),
         mergeFail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            __proto__: pos$6,
-            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ __proto__: pos$5, class: "nixos", modules: [] })))),
+            [nix.POS]: pos$6,
+            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$5, class: "nixos", modules: [] })))),
             default: nix.thunk(() => ({})),
           })))),
       })),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         options: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           sub: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             mergeFail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ __proto__: pos$9, class: "darwin", modules: [] })))),
+                [nix.POS]: pos$10,
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$9, class: "darwin", modules: [] })))),
               })))),
           })),
         })),
       })),
     ]),
     config: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       _module: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         freeformType: nix.thunk(() => nix.sel(lib, "types", "anything")),
       })),
       ok: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           class: "nixos",
           modules: nix.thunk(() => [
             nix.path(here, "./module-class-is-nixos.nix"),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       fail: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           class: "nixos",
           modules: nix.thunk(() => [
             nix.path(here, "./module-class-is-nixos.nix"),
@@ -93,12 +93,12 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       "fail-anon": nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           class: "nixos",
           modules: nix.thunk(() => [
             nix.path(here, "./module-class-is-nixos.nix"),
             nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               _file: "foo.nix#darwinModules.default",
               _class: "darwin",
               config: nix.thunk(() => ({})),
@@ -107,10 +107,10 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       sub: nix.thunk(() => ({
-        __proto__: pos$21,
-        nixosOk: nix.thunk(() => ({ __proto__: pos$19, _class: "nixos" })),
+        [nix.POS]: pos$21,
+        nixosOk: nix.thunk(() => ({ [nix.POS]: pos$19, _class: "nixos" })),
         nixosFail: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           imports: nix.thunk(() => [nix.path(here, "./module-class-is-darwin.nix")]),
         })),
       })),

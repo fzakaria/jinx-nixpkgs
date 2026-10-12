@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vmpk",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/vmpk/${nix.sel(finalAttrs, "version")}/vmpk-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-FUVI6Ioe4zmQa84pqGlw/my2Rw8fpMcZi9bZu/gzIGA=",
         })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(qt6Packages, "drumstick")}/share/drumstick $out/share/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Virtual MIDI Piano Keyboard",
         mainProgram: "vmpk",
         homepage: "http://vmpk.sourceforge.net/",

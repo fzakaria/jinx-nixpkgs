@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   const self = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "setconf",
       version: "0.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xyproto",
           repo: "setconf",
           rev: nix.thunk(() => nix.sel(self, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pyproject: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/xyproto/setconf",
         description: "Small utility for changing settings in configuration textfiles",
         changelog: nix.thunk(() => nix.str`https://github.com/xyproto/setconf/releases/tag/${nix.sel(self, "src", "rev")}`),

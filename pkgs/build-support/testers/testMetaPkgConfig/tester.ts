@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const testers = nix.arg($, "testers");
   return (package$) => nix.app(runCommand, nix.thunk(() => nix.str`check-meta-pkg-config-modules-for-${nix.sel(package$, "name")}`), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: nix.thunk(() => nix.str`Test whether ${nix.sel(package$, "name")} exposes all pkg-config modules ${nix.builtins.toString(nix.thunk(() => nix.sel(package$, "meta", "pkgConfigModules")))}`),
       })),
-      dependsOn: nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ __proto__: pos$2, package: package$ })))),
+      dependsOn: nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$2, package: package$ })))),
     })), nix.thunk(() => nix.str`echo "found all of ${nix.builtins.toString(nix.thunk(() => nix.sel(package$, "meta", "pkgConfigModules")))}" > "$out"
 `));
 })(), formals$1);

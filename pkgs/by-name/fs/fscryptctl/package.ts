@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fscryptctl",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "fscryptctl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Small C tool for Linux filesystem encryption",
         mainProgram: "fscryptctl",
         longDescription: "fscryptctl is a low-level tool written in C that handles raw keys and\nmanages policies for Linux filesystem encryption, specifically the\n\"fscrypt\" kernel interface which is supported by the ext4, f2fs, and\nUBIFS filesystems.\nfscryptctl is mainly intended for embedded systems which can't use the\nfull-featured fscrypt tool, or for testing or experimenting with the\nkernel interface to Linux filesystem encryption. fscryptctl does not\nhandle key generation, key stretching, key wrapping, or PAM integration.\nMost users should use the fscrypt tool instead, which supports these\nfeatures and generally is much easier to use.\nAs fscryptctl is intended for advanced users, you should read the kernel\ndocumentation for filesystem encryption before using fscryptctl.\n",

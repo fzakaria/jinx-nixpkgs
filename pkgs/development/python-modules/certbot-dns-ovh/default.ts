@@ -24,9 +24,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [acme, certbot, dns_lexicon]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pytestFlags = nix.thunk(() => ["-pno:cacheprovider", "-Wignore::DeprecationWarning"]);
-      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { __proto__: pos$1, description: "OVH DNS Authenticator plugin for Certbot" }));
+      const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), { [nix.POS]: pos$1, description: "OVH DNS Authenticator plugin for Certbot" }));
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         pyproject,
         src,

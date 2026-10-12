@@ -18,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const pname = "nrfconnect-bluetooth-low-energy";
   const version = "4.0.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/NordicPlayground/pc-nrfconnect-ble-standalone/releases/download/v${version}/nrfconnect-bluetooth-low-energy-${version}-x86_64.AppImage`),
       hash: "sha256-mL8ky/cYjNgfUJgE7W5LFK/w7Ky9Xx6E84UT668HRAk=",
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ __proto__: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: pname,
       version: version,
       src: src,
@@ -37,7 +37,7 @@ substituteInPlace $out/share/applications/nrfconnect-bluetooth-low-energy.deskto
   --replace-fail 'Exec=AppRun' 'Exec=nrfconnect-bluetooth-low-energy'
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nordic Semiconductor Bluetooth low energy app for nRF Connect for Desktop",
         homepage: "https://docs.nordicsemi.com/bundle/nrf-connect-ble/page/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

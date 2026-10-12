@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const sanic = nix.arg($, "sanic");
   const sanic_testing = nix.arg($, "sanic-testing");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cloudevents",
       version: "1.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "cloudevents",
           repo: "sdk-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python SDK for CloudEvents",
         homepage: "https://github.com/cloudevents/sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudevents/sdk-python/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const react = nix.arg($, "react");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "reactiveData",
       version: "0.3.1",
       duneVersion: "3",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ocsigen",
           repo: "reactiveData",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [react]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml module for functional reactive programming (FRP) based on React",
         homepage: "https://github.com/ocsigen/reactiveData",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

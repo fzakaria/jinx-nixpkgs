@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "slipstream";
       const version = "1.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vhati",
           repo: "Slipstream-Mod-Manager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ makeWrapper ${jdk}/bin/java $out/bin/${pname} \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Mod manager for FTL: Faster Than Light",
         homepage: "https://github.com/Vhati/Slipstream-Mod-Manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -60,7 +60,7 @@ runHook postInstall
         mainProgram: "slipstream",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "1zvf6zs5hzrc03p9nfs4p16vhilqikycvv1yk0pxn8s07fdhvzji",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://pypi.org/project/progressbar33/",
         description: "Text progressbar library for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "twey"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, format, src, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, format, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -22,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => nix.str`incus${nix.app(nix.sel(lib, "optionalString"), lts, "-lts")}-client`);
   const evaluatedPatches = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), patches)) ? nix.app(patches, fetchpatch2) : nix.force(patches)));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       src: src,
       vendorHash: vendorHash,
       version: version,
-      env: nix.thunk(() => ({ __proto__: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: nix.thunk(() => ["cmd/incus"]),
       patches: evaluatedPatches,
       postInstall: "# Needed for builds on systems with auto-allocate-uids to pass.\n# Incus tries to read ~/.config/incus while generating completions\n# to resolve user aliases.\nexport HOME=\"$(mktemp -d)\"\nmkdir -p \"$HOME/.config/incus\"\n\ninstallShellCompletion --cmd incus \\\n  --bash <($out/bin/incus completion bash) \\\n  --fish <($out/bin/incus completion fish) \\\n  --zsh <($out/bin/incus completion zsh)\n",
       doCheck: false,
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       })),
     })));

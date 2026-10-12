@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
     const meta = nix.argOr($_1, "meta", () => ({}));
     const patches = nix.argOr($_1, "patches", () => []);
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool((nix.asBool(nix.has(attrs, "elixir")) || nix.asBool(nix.has(attrs, "hex"))))), "fetchMixDeps no longer takes `elixir` or `hex`. Build with the package set that has the versions you need, e.g. `beam27Packages.fetchMixDeps`, or derive one with `beamPackages.overrideScope (final: prev: { elixir = prev.elixir_1_18; })`."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/beam-modules/fetch-mix-deps.nix:26:1");
-    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { __proto__: pos$1, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { __proto__: pos$2, outputHashAlgo: "sha256", outputHash: sha256 } : {
-      __proto__: pos$3,
+    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$1, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: pos$2, outputHashAlgo: "sha256", outputHash: sha256 } : {
+      [nix.POS]: pos$3,
       outputHashAlgo: "sha256",
       outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")),
     })));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(attrs, nix.update({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         nativeBuildInputs: nix.thunk(() => [elixir, hex, cacert, git]),
         env: nix.thunk(() => nix.update({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           MIX_ENV: mixEnv,
           MIX_TARGET: mixTarget,
           MIX_DEBUG: nix.thunk(() => (nix.asBool(debug) ? 1n : 0n)),

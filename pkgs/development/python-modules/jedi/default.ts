@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const attrs = nix.arg($, "attrs");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jedi",
       version: "0.20.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "davidhalter",
           repo: "jedi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
           "test_dict_completion",
         ])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/davidhalter/jedi/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),
         description: "Autocompletion tool for Python that can be used for text editors",
         homepage: "https://github.com/davidhalter/jedi",

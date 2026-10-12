@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const bits = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? "x64" : "ia32"));
   const version = "0.114.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "nwjs-ffmpeg-prebuilt",
       version: version,
       src: nix.thunk(() => (() => {
         const hashes = nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           x64: "sha256-pjQonrh+UVBIL464FpeFonng6lsHdbqozy2Ye3YLfWM=",
           ia32: "sha256-pjQonrh+UVBIL464FpeFonng6lsHdbqozy2Ye3YLfWM=",
         }));
         return nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: nix.thunk(() => nix.str`https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/${version}/${version}-linux-${bits}.zip`),
             hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(bits)))),
           })));
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp -R libffmpeg.so $out/lib/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "App runtime based on Chromium and node.js",
         homepage: "https://nwjs.io/",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),

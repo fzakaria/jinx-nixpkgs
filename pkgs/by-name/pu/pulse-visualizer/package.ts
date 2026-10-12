@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libebur128 = nix.arg($, "libebur128");
   const clang = nix.arg($, "clang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pulse-visualizer",
       version: "1.3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Audio-Solutions",
           repo: "pulse-visualizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \" -march=native\" \"\" \\\n  --replace-fail \" -mtune=native\" \"\" \\\n  --replace-fail \"-Wl,-s\" \"\" \\\n  --replace-fail \" -s\" \"\" \\\n  --replace-fail 'set(CMAKE_INSTALL_PREFIX \"/usr\" CACHE PATH \"Installation prefix\" FORCE)' \"\"\n",
       cmakeFlags: nix.thunk(() => ["-G Ninja", "-DCMAKE_CXX_COMPILER=clang++", "-DCMAKE_C_COMPILER=clang"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Real-time audio visualizer inspired by MiniMeters",
         homepage: "https://github.com/Audio-Solutions/pulse-visualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

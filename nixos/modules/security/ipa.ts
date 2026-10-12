@@ -72,78 +72,78 @@ BASE ${nix.sel(cfg, "basedn")}
 TLS_CACERT /etc/ipa/ca.crt
 `)));
   const nssDb = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "ipa-nssdb", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nss", "tools"))]),
     })), nix.thunk(() => nix.str`mkdir -p $out
 certutil -d $out -N --empty-password
 certutil -d $out -A --empty-password -n "${nix.sel(cfg, "realm")} IPA CA" -t CT,C,C -i ${nix.sel(cfg, "certificate")}
 `)));
   return {
-    __proto__: pos$54,
+    [nix.POS]: pos$54,
     options: nix.thunk(() => ({
-      __proto__: pos$20,
+      [nix.POS]: pos$20,
       security: nix.thunk(() => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         ipa: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "FreeIPA domain integration")),
           certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "package")),
               description: "IPA server CA certificate.\n\nUse `nix-prefetch-url http://$server/ipa/config/ca.crt` to\nobtain the file and the hash.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.fetchurl {\n  url = \"http://ipa.example.com/ipa/config/ca.crt\";\n  hash = lib.fakeHash;\n};\n")),
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "example.com",
               description: "Domain of the IPA server.",
             })))),
           realm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "EXAMPLE.COM",
               description: "Kerberos realm.",
             })))),
           server: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "ipa.example.com",
               description: "IPA Server hostname.",
             })))),
           backupServers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               example: nix.thunk(() => ["ipa-backup.example.com"]),
               description: "A list of backup servers for SSSD to resolve against in case\n`security.ipa.server` is unavailable.\n",
             })))),
           basedn: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "dc=example,dc=com",
               description: "Base DN to use when performing LDAP operations.",
             })))),
           offlinePasswords: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to store offline passwords when the server is down.",
             })))),
           cacheCredentials: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to cache credentials.",
             })))),
           useAsTimeserver: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to add the IPA server to the timeserver.",
             })))),
           ipaHostname: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               example: "myworkstation.example.com",
               default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "networking", "domain"), null)) ? nix.sel(config, "networking", "fqdn") : nix.str`${nix.sel(config, "networking", "hostName")}.${nix.sel(cfg, "domain")}`)),
@@ -151,21 +151,21 @@ certutil -d $out -A --empty-password -n "${nix.sel(cfg, "realm")} IPA CA" -t CT,
               description: "Fully-qualified hostname used to identify this host in the IPA domain.",
             })))),
           ifpAllowedUids: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["root"]),
               description: "A list of users allowed to access the ifp dbus interface.",
             })))),
           dyndns: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Whether to enable FreeIPA automatic hostname updates.",
               })))),
             interface: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 example: "eth0",
                 default: "*",
@@ -173,13 +173,13 @@ certutil -d $out -A --empty-password -n "${nix.sel(cfg, "realm")} IPA CA" -t CT,
               })))),
           })),
           chromiumSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Whether to whitelist the FreeIPA domain in Chromium.",
             })))),
           shells: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -195,21 +195,21 @@ certutil -d $out -A --empty-password -n "${nix.sel(cfg, "realm")} IPA CA" -t CT,
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$53,
+        [nix.POS]: pos$53,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "security", "krb5", "enable"))),
             message: "krb5 must be disabled through `security.krb5.enable` for FreeIPA integration to work.",
           })),
           nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "users", "ldap", "enable"))),
             message: "ldap must be disabled through `users.ldap.enable` for FreeIPA integration to work.",
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -218,13 +218,13 @@ certutil -d $out -A --empty-password -n "${nix.sel(cfg, "realm")} IPA CA" -t CT,
             ];
           })()),
           etc: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             "ipa/default.conf": nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   global: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     basedn: nix.thunk(() => nix.attr(cfg, "basedn")),
                     realm: nix.thunk(() => nix.attr(cfg, "realm")),
                     domain: nix.thunk(() => nix.attr(cfg, "domain")),
@@ -235,9 +235,9 @@ certutil -d $out -A --empty-password -n "${nix.sel(cfg, "realm")} IPA CA" -t CT,
                   })),
                 })))),
             })),
-            "ipa/nssdb": nix.thunk(() => ({ __proto__: pos$26, source: nssDb })),
+            "ipa/nssdb": nix.thunk(() => ({ [nix.POS]: pos$26, source: nssDb })),
             "krb5.conf": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               text: nix.thunk(() => nix.str`[libdefaults]
  default_realm = ${nix.sel(cfg, "realm")}
  dns_lookup_realm = false
@@ -268,27 +268,27 @@ certutil -d $out -A --empty-password -n "${nix.sel(cfg, "realm")} IPA CA" -t CT,
   }
 `),
             })),
-            "ldap.conf": nix.thunk(() => ({ __proto__: pos$28, source: ldapConf })),
+            "ldap.conf": nix.thunk(() => ({ [nix.POS]: pos$28, source: ldapConf })),
             "chromium/policies/managed/freeipa.json": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "chromiumSupport")), nix.thunk(() => ({
-                __proto__: pos$30,
+                [nix.POS]: pos$30,
                 text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     AuthServerWhitelist: nix.thunk(() => nix.str`*.${nix.sel(cfg, "domain")}`),
                   })))),
               })))),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           services: nix.thunk(() => ({
-            __proto__: pos$36,
+            [nix.POS]: pos$36,
             "ipa-activation": nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               wantedBy: nix.thunk(() => ["sysinit.target"]),
               before: nix.thunk(() => ["sysinit.target", "shutdown.target"]),
               conflicts: nix.thunk(() => ["shutdown.target"]),
-              unitConfig: nix.thunk(() => ({ __proto__: pos$33, DefaultDependencies: false })),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$34, Type: "oneshot", RemainAfterExit: true })),
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$33, DefaultDependencies: false })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$34, Type: "oneshot", RemainAfterExit: true })),
               script: nix.thunk(() => nix.str`# libcurl requires a hard copy of the certificate
 if ! ${nix.sel(pkgs, "diffutils")}/bin/diff ${nix.sel(cfg, "certificate")} /etc/ipa/ca.crt > /dev/null 2>&1; then
   rm -f /etc/ipa/ca.crt
@@ -312,14 +312,14 @@ fi
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             settings: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               "10-ipa-shells": nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), (acc) => (pkg) => nix.update(acc, nix.attrsDyn({}, [
                   [nix.sel(pkg, "shellPath"), nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     "L+": nix.thunk(() => ({
-                      __proto__: pos$37,
+                      [nix.POS]: pos$37,
                       argument: nix.thunk(() => nix.str`${pkg}${nix.sel(pkg, "shellPath")}`),
                     })),
                   }))],
@@ -328,31 +328,31 @@ fi
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           sssd: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             enable: true,
             settings: nix.thunk(() => nix.attrsDyn({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               sssd: nix.thunk(() => ({
-                __proto__: pos$42,
+                [nix.POS]: pos$42,
                 services: "nss, sudo, pam, ssh, ifp",
                 domains: nix.thunk(() => nix.sel(cfg, "domain")),
               })),
-              nss: nix.thunk(() => ({ __proto__: pos$43, homedir_substring: "/home" })),
-              pam: nix.thunk(() => ({ __proto__: pos$44, pam_pwd_expiration_warning: 3n, pam_verbosity: 3n })),
+              nss: nix.thunk(() => ({ [nix.POS]: pos$43, homedir_substring: "/home" })),
+              pam: nix.thunk(() => ({ [nix.POS]: pos$44, pam_pwd_expiration_warning: 3n, pam_verbosity: 3n })),
               sudo: nix.thunk(() => ({})),
               autofs: nix.thunk(() => ({})),
               ssh: nix.thunk(() => ({})),
               pac: nix.thunk(() => ({})),
               ifp: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 user_attributes: "+mail, +telephoneNumber, +givenname, +sn, +lock",
                 allowed_uids: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.sel(cfg, "ifpAllowedUids")))),
               })),
             }, [
               [nix.str`domain/${nix.sel(cfg, "domain")}`, nix.thunk(() => ({
-                __proto__: pos$46,
+                [nix.POS]: pos$46,
                 id_provider: "ipa",
                 auth_provider: "ipa",
                 access_provider: "ipa",
@@ -374,13 +374,13 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$50,
+          [nix.POS]: pos$50,
           timeServers: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "useAsTimeserver")), nix.thunk(() => nix.sel(cfg, "server")))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$52,
+          [nix.POS]: pos$52,
           pki: nix.thunk(() => ({
-            __proto__: pos$51,
+            [nix.POS]: pos$51,
             certificateFiles: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.sel(cfg, "certificate")))),
           })),
         })),

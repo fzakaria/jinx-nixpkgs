@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gguf",
       version: "10798",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ggml-org",
           repo: "llama.cpp",
           tag: nix.thunk(() => nix.str`b${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +40,15 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       dependencies: nix.thunk(() => [numpy, pyyaml, requests, tqdm]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, gui: nix.thunk(() => [pyside6]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, gui: nix.thunk(() => [pyside6]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["gguf"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "b(.*)"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "b(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Module for writing binary files in the GGUF format",
         homepage: "https://ggml.ai/",
         downloadPage: "https://github.com/ggml-org/llama.cpp/releases",

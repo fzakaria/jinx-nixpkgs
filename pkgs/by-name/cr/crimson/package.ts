@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "crimson";
       const version = "2014.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "skosch",
           repo: "Crimson",
           rev: "fonts-october2014",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`install -m444 -Dt $out/share/doc/${pname}-${version} README.md
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/skosch/Crimson",
         description: "Font family inspired by beautiful oldstyle typefaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

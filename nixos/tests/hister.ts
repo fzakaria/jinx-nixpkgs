@@ -41,35 +41,35 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const configPathConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hister-config.yml", "app:\n  title: NixOS Hister Config Path\n  search_url: https://config.example.invalid/?q={query}\nhotkeys:\n  web:\n    alt+c: open_query_in_search_engine\n"));
   return {
-    __proto__: pos$30,
+    [nix.POS]: pos$30,
     name: "hister",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_4evy"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$29,
+      [nix.POS]: pos$29,
       machine: nix.thunk(() => ({
-        __proto__: pos$28,
+        [nix.POS]: pos$28,
         environment: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             settings: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               "10-hister-env": nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 "/run/hister.env": nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   f: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     mode: "0600",
                     user: "root",
                     group: "root",
@@ -81,30 +81,30 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         specialisation: nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           inline_settings: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             configuration: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               services: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 hister: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   enable: true,
                   port: 4433n,
                   environmentFile: "/run/hister.env",
                   settings: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     app: nix.thunk(() => ({
-                      __proto__: pos$9,
+                      [nix.POS]: pos$9,
                       log_level: "debug",
                       title: "NixOS Hister",
                       search_url: "https://search.example.invalid/?q={query}",
                       open_results_on_new_tab: true,
                     })),
                     hotkeys: nix.thunk(() => ({
-                      __proto__: pos$11,
-                      web: nix.thunk(() => ({ __proto__: pos$10, "alt+n": "open_query_in_search_engine" })),
+                      [nix.POS]: pos$11,
+                      web: nix.thunk(() => ({ [nix.POS]: pos$10, "alt+n": "open_query_in_search_engine" })),
                     })),
                   })),
                 })),
@@ -112,29 +112,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           config_file: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             configuration: nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               services: nix.thunk(() => ({
-                __proto__: pos$18,
-                hister: nix.thunk(() => ({ __proto__: pos$17, enable: true, port: 4434n, configPath: configPathConfig })),
+                [nix.POS]: pos$18,
+                hister: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, port: 4434n, configPath: configPathConfig })),
               })),
             })),
           })),
           custom_data_dir: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             configuration: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               services: nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 hister: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   enable: true,
                   port: 4435n,
                   dataDir: "/srv/hister-data",
                   settings: nix.thunk(() => ({
-                    __proto__: pos$22,
-                    app: nix.thunk(() => ({ __proto__: pos$21, title: "NixOS Hister Custom Data" })),
+                    [nix.POS]: pos$22,
+                    app: nix.thunk(() => ({ [nix.POS]: pos$21, title: "NixOS Hister Custom Data" })),
                   })),
                 })),
               })),

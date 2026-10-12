@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const namespace = "resource.font.robotocjksc";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jurialmunkey",
           repo: namespace,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-s/h/KKlGYGMvf7RdI9ONk4S+NCzlaDX5w3CdNfbC2KE=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/jurialmunkey/resource.font.robotocjksc",
         description: "Roboto CJKSC fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$3, pname, namespace, version, src, meta };
+      return { [nix.POS]: pos$3, pname, namespace, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

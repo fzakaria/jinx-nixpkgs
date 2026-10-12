@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "takluyver",
           repo: "jeepney",
           tag: version,
@@ -49,7 +49,7 @@ runHook postCheck
         "jeepney.io.trio",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/takluyver/jeepney/-/blob/${nix.sel(src, "tag")}/docs/release-notes.rst`),
         homepage: "https://gitlab.com/takluyver/jeepney",
         description: "Pure Python DBus interface",
@@ -60,7 +60,7 @@ runHook postCheck
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

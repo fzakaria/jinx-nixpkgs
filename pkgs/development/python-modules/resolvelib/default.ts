@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sarugaku",
           repo: "resolvelib",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "fix-with-packaging-26.patch",
             url: "https://github.com/sarugaku/resolvelib/commit/017d3a7a9ecdd01f5349d263e31d196f4f27e483.patch",
             hash: "sha256-sEH5R/U8APC1Lti47ZXHLruVwUbwfGp2HAp7nj+l1KM=",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [commentjson, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["resolvelib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Resolve abstract dependencies into concrete ones",
         homepage: "https://github.com/sarugaku/resolvelib",
         changelog: nix.thunk(() => nix.str`https://github.com/sarugaku/resolvelib/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

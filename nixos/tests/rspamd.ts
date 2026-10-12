@@ -69,8 +69,8 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const initMachine = "start_all()\nmachine.wait_for_unit(\"rspamd.service\")\nmachine.succeed(\"id rspamd >/dev/null\")\n";
   const checkSocket = (socket) => (user) => (group) => (mode) => nix.str`machine.succeed(
@@ -81,17 +81,17 @@ export default nix.lambda((args) => (() => {
 )
 `;
   const simple = (name) => (enableIPv6) => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: nix.thunk(() => nix.str`rspamd-${name}`),
       nodes: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         machine: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           services: nix.thunk(() => ({
-            __proto__: pos$4,
-            rspamd: nix.thunk(() => ({ __proto__: pos$3, enable: true })),
+            [nix.POS]: pos$4,
+            rspamd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
           })),
-          networking: nix.thunk(() => ({ __proto__: pos$5, enableIPv6: enableIPv6 })),
+          networking: nix.thunk(() => ({ [nix.POS]: pos$5, enableIPv6: enableIPv6 })),
         })),
       })),
       testScript: nix.thunk(() => nix.str`start_all()
@@ -114,28 +114,28 @@ ${nix.app(nix.lookup(w_1, "optionalString"), enableIPv6, "machine.log(machine.su
 `),
     })));
   return {
-    __proto__: pos$61,
+    [nix.POS]: pos$61,
     simple: nix.thunk(() => nix.app(simple, "simple", true)),
     ipv4only: nix.thunk(() => nix.app(simple, "ipv4only", false)),
     deprecated: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         name: "rspamd-deprecated",
         nodes: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           machine: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             services: nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               rspamd: nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 enable: true,
                 workers: nix.thunk(() => ({
-                  __proto__: pos$13,
+                  [nix.POS]: pos$13,
                   normal: nix.thunk(() => ({
-                    __proto__: pos$10,
+                    [nix.POS]: pos$10,
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         socket: "/run/rspamd/rspamd.sock",
                         mode: "0600",
                         owner: "rspamd",
@@ -144,10 +144,10 @@ ${nix.app(nix.lookup(w_1, "optionalString"), enableIPv6, "machine.log(machine.su
                     ]),
                   })),
                   controller: nix.thunk(() => ({
-                    __proto__: pos$12,
+                    [nix.POS]: pos$12,
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         socket: "/run/rspamd/rspamd-worker.sock",
                         mode: "0666",
                         owner: "rspamd",
@@ -178,24 +178,24 @@ machine.log(
 `),
       })))),
     bindports: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$29,
+        [nix.POS]: pos$29,
         name: "rspamd-bindports",
         nodes: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           machine: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             services: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               rspamd: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 enable: true,
                 workers: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   normal: nix.thunk(() => ({
-                    __proto__: pos$20,
+                    [nix.POS]: pos$20,
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         socket: "/run/rspamd/rspamd.sock",
                         mode: "0600",
                         owner: "rspamd",
@@ -204,10 +204,10 @@ machine.log(
                     ]),
                   })),
                   controller: nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     bindSockets: nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$21,
+                        [nix.POS]: pos$21,
                         socket: "/run/rspamd/rspamd-worker.sock",
                         mode: "0666",
                         owner: "rspamd",
@@ -216,7 +216,7 @@ machine.log(
                     ]),
                   })),
                   controller2: nix.thunk(() => ({
-                    __proto__: pos$23,
+                    [nix.POS]: pos$23,
                     type: "controller",
                     bindSockets: nix.thunk(() => ["0.0.0.0:11335"]),
                     extraConfig: "static_dir = \"${WWWDIR}\";\nsecure_ip = null;\npassword = \"verysecretpassword\";\n",
@@ -258,40 +258,40 @@ machine.log(machine.succeed("curl http://localhost:11335/ping"))
 `),
       })))),
     customLuaRules: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         name: "rspamd-custom-lua-rules",
         nodes: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           machine: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             environment: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               etc: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 "tests/no-muh.eml": nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   text: "From: Sheep1<bah@example.com>\nTo: Sheep2<mah@example.com>\nSubject: Evil cows\n\nI find cows to be evil don't you?\n",
                 })),
                 "tests/muh.eml": nix.thunk(() => ({
-                  __proto__: pos$31,
+                  [nix.POS]: pos$31,
                   text: "From: Cow<cow@example.com>\nTo: Sheep2<mah@example.com>\nSubject: Evil cows\n\nCows are majestic creatures don't Muh agree?\n",
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               rspamd: nix.thunk(() => ({
-                __proto__: pos$38,
+                [nix.POS]: pos$38,
                 enable: true,
                 locals: nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   "antivirus.conf": nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), false, nix.thunk(() => ({
-                      __proto__: pos$34,
+                      [nix.POS]: pos$34,
                       text: "clamav {\n  action = \"reject\";\n  symbol = \"CLAM_VIRUS\";\n  type = \"clamav\";\n  log_clean = true;\n  servers = \"/run/clamav/clamd.ctl\";\n}\n",
                     })))),
-                  "redis.conf": nix.thunk(() => ({ __proto__: pos$35, enable: false, text: "servers = \"127.0.0.1\";\n" })),
+                  "redis.conf": nix.thunk(() => ({ [nix.POS]: pos$35, enable: false, text: "servers = \"127.0.0.1\";\n" })),
                   "groups.conf": nix.thunk(() => ({
-                    __proto__: pos$36,
+                    [nix.POS]: pos$36,
                     text: "group \"cows\" {\n  symbol {\n    NO_MUH = {\n      weight = 1.0;\n      description = \"Mails should not muh\";\n    }\n  }\n}\n",
                   })),
                 })),
@@ -332,54 +332,54 @@ machine.log(
 `),
       })))),
     postfixIntegration: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        __proto__: pos$60,
+        [nix.POS]: pos$60,
         name: "rspamd-postfix-integration",
         nodes: nix.thunk(() => ({
-          __proto__: pos$59,
+          [nix.POS]: pos$59,
           machine: nix.thunk(() => ({
-            __proto__: pos$58,
+            [nix.POS]: pos$58,
             environment: nix.thunk(() => ({
-              __proto__: pos$46,
+              [nix.POS]: pos$46,
               systemPackages: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(pkgs, w_1);
                 return [nix.thunk(() => nix.lookup(w_2, "msmtp"))];
               })()),
               etc: nix.thunk(() => ({
-                __proto__: pos$45,
+                [nix.POS]: pos$45,
                 "tests/gtube.eml": nix.thunk(() => ({
-                  __proto__: pos$43,
+                  [nix.POS]: pos$43,
                   text: "From: Sheep1<bah@example.com>\nTo: Sheep2<tester@example.com>\nSubject: Evil cows\n\nI find cows to be evil don't you?\n\nXJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X\n",
                 })),
                 "tests/example.eml": nix.thunk(() => ({
-                  __proto__: pos$44,
+                  [nix.POS]: pos$44,
                   text: "From: Sheep1<bah@example.com>\nTo: Sheep2<tester@example.com>\nSubject: Evil cows\n\nI find cows to be evil don't you?\n",
                 })),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$49,
+              [nix.POS]: pos$49,
               users: nix.thunk(() => ({
-                __proto__: pos$48,
-                tester: nix.thunk(() => ({ __proto__: pos$47, isNormalUser: true, password: "test" })),
+                [nix.POS]: pos$48,
+                tester: nix.thunk(() => ({ [nix.POS]: pos$47, isNormalUser: true, password: "test" })),
               })),
             })),
             services: nix.thunk(() => ({
-              __proto__: pos$57,
+              [nix.POS]: pos$57,
               postfix: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 enable: true,
                 settings: nix.thunk(() => ({
-                  __proto__: pos$51,
-                  main: nix.thunk(() => ({ __proto__: pos$50, mydestination: nix.thunk(() => ["example.com"]) })),
+                  [nix.POS]: pos$51,
+                  main: nix.thunk(() => ({ [nix.POS]: pos$50, mydestination: nix.thunk(() => ["example.com"]) })),
                 })),
               })),
               rspamd: nix.thunk(() => ({
-                __proto__: pos$56,
+                [nix.POS]: pos$56,
                 enable: true,
-                postfix: nix.thunk(() => ({ __proto__: pos$53, enable: true })),
+                postfix: nix.thunk(() => ({ [nix.POS]: pos$53, enable: true })),
                 workers: nix.thunk(() => ({
-                  __proto__: pos$55,
-                  rspamd_proxy: nix.thunk(() => ({ __proto__: pos$54, type: "rspamd_proxy" })),
+                  [nix.POS]: pos$55,
+                  rspamd_proxy: nix.thunk(() => ({ [nix.POS]: pos$54, type: "rspamd_proxy" })),
                 })),
               })),
             })),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const minimalOCamlVersion = "4.08";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/${pname}/releases/download/${version}/${pname}-${version}.tbz`),
           sha256: "pIzYhGNZfflELEuqaczAYJHKd7px5DjTYJ+64PO4Hd0=",
         }))));
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, mdx]);
       const nativeCheckInputs = nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/ocaml-${pname}`),
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/ocaml-${pname}/raw/${version}/CHANGES.md`),
         description: "Lock-free thread-safe integer keyed hash table",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         minimalOCamlVersion,

@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dirdiff",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://samba/paulus/dirdiff-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yzc2VNV4gCeAQ1XjVd8GlYYsO/wfaj/GAUcisxVqklI=",
         })))),
@@ -40,7 +40,7 @@ done
 sed -i "1i #include <unistd.h>" filecmp.c
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-DUSE_INTERP_RESULT",
         NIX_LDFLAGS: "-ltcl",
       })),
@@ -51,7 +51,7 @@ sed -i "1i #include <unistd.h>" filecmp.c
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "dirdiff",
             exec: "dirdiff",
             desktopName: "Dirdiff",
@@ -61,7 +61,7 @@ sed -i "1i #include <unistd.h>" filecmp.c
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Graphical directory tree diff and merge tool",
         mainProgram: "dirdiff",
         longDescription: "Dirdiff is a graphical tool for displaying the differences between\ndirectory trees and for merging changes from one tree into another.\n",

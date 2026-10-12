@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const enableTermcap = nix.argOr($, "enableTermcap", () => false);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(enableTermcap) || nix.asBool(!nix.eq(ncurses, null)))), "`ncurses` must be provided when `enableTermcap` is enabled"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ed/editline/package.nix:13:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "editline",
       version: "1.17.1-unstable-2025-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "troglobit",
           repo: "editline",
           rev: "f735e4d1d566cac3caa4a5e248179d07f0babefd",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isPE")), nix.thunk(() => ["LDFLAGS=-no-undefined"]))),
       outputs: nix.thunk(() => ["out", "dev", "man", "doc"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://troglobit.com/projects/editline/",
         description: "Readline() replacement for UNIX without termcap (ncurses)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

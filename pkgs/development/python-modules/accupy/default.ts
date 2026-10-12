@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nschloe",
           repo: "accupy",
           rev: version,
@@ -44,21 +44,21 @@ export default nix.lambda((args) => (() => {
 `);
       const preBuild = "export HOME=$(mktemp -d)\n";
       const env = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       }));
       const preCheck = "for f in test/test*.py ; do\n  substituteInPlace $f --replace-quiet 'import perfplot' \"\"\ndone\n";
       const disabledTests = nix.thunk(() => ["test_speed_comparison1", "test_speed_comparison2"]);
       const pythonImportsCheck = nix.thunk(() => ["accupy"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Accurate sums and dot products for Python",
         homepage: "https://github.com/nschloe/accupy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

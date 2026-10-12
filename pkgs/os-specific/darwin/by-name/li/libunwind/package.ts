@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const apple_sdk = nix.arg($, "apple-sdk");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "libunwind",
       version: nix.thunk(() => nix.attr(apple_sdk, "version")),
       buildCommand: nix.thunk(() => nix.str`mkdir -p "$out/lib/pkgconfig"
@@ -23,7 +23,7 @@ Version: ${nix.sel(finalAttrs, "version")}
 EOF
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Compatibility package for libunwind on Darwin",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "darwin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),

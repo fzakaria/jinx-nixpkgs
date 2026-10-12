@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ical2orgpy",
       version: "0.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ical2org-py",
           repo: "ical2org.py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["ical2orgpy"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/ical2org-py/ical2org.py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),
         description: "Converting ICAL file into org-mode format",
         homepage: "https://github.com/ical2org-py/ical2org.py",

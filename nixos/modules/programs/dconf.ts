@@ -42,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "dconf"));
   const compileDconfDb = (dir) => nix.app(nix.sel(pkgs, "runCommand"), "dconf-db", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "dconf")))),
       ]),
     })), nix.thunk(() => nix.str`dconf compile $out ${dir}`));
   const checkDconfKeyfiles = (dir) => nix.app(nix.sel(pkgs, "runCommand"), "check-dconf-keyfiles", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "dconf")))),
       ]),
@@ -65,7 +65,7 @@ cp -R ${dir} $out
 `));
   const mkAllLocks = (settings) => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (k) => (v) => nix.app(nix.sel(lib, "mapAttrsToList"), (k$) => (_) => nix.str`/${k}/${k$}`, v), settings)));
   const mkDconfDb = (val) => nix.app(compileDconfDb, nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: "nixos-generated-dconf-keyfiles",
         paths: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "nixos-generated-dconf-keyfiles", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toDconfINI"), nix.thunk(() => nix.sel(val, "settings")))))),
@@ -73,7 +73,7 @@ cp -R ${dir} $out
         ], nix.builtins.map(checkDconfKeyfiles, nix.thunk(() => nix.sel(val, "keyfiles"))))),
       })))));
   const checkDconfDb = (file) => nix.app(nix.sel(pkgs, "runCommand"), "check-dconf-db", nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "dconf")))),
       ]),
@@ -106,11 +106,11 @@ cp ${value} $out/etc/dconf/profile/${name}
   const dconfDatabase = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         options: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           keyfiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
                     nix.thunk(() => nix.lookup(w, "path")),
                     nix.thunk(() => nix.lookup(w, "package")),
@@ -119,14 +119,14 @@ cp ${value} $out/etc/dconf/profile/${name}
               description: "A list of dconf keyfile directories.",
             })))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.lookup(w, "attrs")),
               default: nix.thunk(() => ({})),
               description: "An attrset used to generate dconf keyfile.",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "with lib.gvariant;\n{\n  \"com/raggesilver/BlackBox\" = {\n    scrollback-lines = mkUint32 10000;\n    theme-dark = \"Tomorrow Night\";\n  };\n}\n")),
             })))),
           locks: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                 return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -136,7 +136,7 @@ cp ${value} $out/etc/dconf/profile/${name}
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "[ \"/org/gnome/desktop/background/picture-uri\" ]\n")),
             })))),
           lockAll: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Lockdown all dconf keys in `settings`.",
@@ -147,17 +147,17 @@ cp ${value} $out/etc/dconf/profile/${name}
   const dconfProfile = nix.thunk(() => (() => {
     const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
     return nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         options: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           enableUserDb: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => nix.lookup(w_1, "bool")),
               default: true,
               description: "Add `user-db:user` at the beginning of the profile.",
             })))),
           databases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w_1);
                 return nix.app(nix.lookup(w_2, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
@@ -173,16 +173,16 @@ cp ${value} $out/etc/dconf/profile/${name}
       })));
   })());
   return {
-    __proto__: pos$31,
+    [nix.POS]: pos$31,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       programs: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         dconf: nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dconf")),
           profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => (() => {
                 const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w_2, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_2, "oneOf"), nix.thunk(() => [
@@ -196,7 +196,7 @@ cp ${value} $out/etc/dconf/profile/${name}
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  # A \"user\" profile with a database\n  user.databases = [\n    {\n      settings = { };\n    }\n  ];\n  # A \"bar\" profile from a package\n  bar = pkgs.bar-dconf-profile;\n  # A \"foo\" profile from a path\n  foo = ${./foo}\n};\n")),
             })))),
           packages: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
               default: [],
               description: "A list of packages which provide dconf profiles and databases in {file}`/etc/dconf`.",
@@ -205,22 +205,22 @@ cp ${value} $out/etc/dconf/profile/${name}
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "profiles"), {})) || nix.asBool(nix.sel(cfg, "enable")))), nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         programs: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           dconf: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             packages: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), mkDconfProfile, nix.thunk(() => nix.sel(cfg, "profiles")))),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           etc: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             dconf: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "packages"), [])), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-                    __proto__: pos$22,
+                    [nix.POS]: pos$22,
                     name: "dconf-system-config",
                     paths: nix.thunk(() => nix.builtins.map((x) => nix.str`${x}/etc/dconf`, nix.thunk(() => nix.sel(cfg, "packages")))),
                     nativeBuildInputs: nix.thunk(() => [
@@ -232,19 +232,19 @@ cp ${value} $out/etc/dconf/profile/${name}
           })),
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dconf"))]),
           sessionVariables: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               GIO_EXTRA_MODULES: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "dconf", "lib")}/lib/gio/modules`)]),
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           dbus: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dconf"))]),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dconf"))]),
         })),
       })))),

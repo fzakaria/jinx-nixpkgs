@@ -39,23 +39,23 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "schroot"));
   const iniFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$26,
+    [nix.POS]: pos$26,
     options: nix.thunk(() => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       programs: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         schroot: nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "schroot, a lightweight virtualisation tool")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "schroot", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(iniFmt, "type")),
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 noble: nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   type: "directory",
                   description: "Ubuntu 24.04 Noble",
                   directory: "/srv/chroot/noble",
@@ -70,25 +70,25 @@ export default nix.lambda((args) => (() => {
               description: "Schroot configuration settings.\nFor more details, see {manpage}`schroot.conf(5)`.\n",
             })))),
           profiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$8,
+                    [nix.POS]: pos$8,
                     options: nix.thunk(() => ({
-                      __proto__: pos$7,
+                      [nix.POS]: pos$7,
                       copyfiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$4,
+                          [nix.POS]: pos$4,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           example: nix.thunk(() => ["/etc/resolv.conf"]),
                           description: "A list of files to copy into the chroot from the host system.",
                         })))),
                       fstab: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$5,
+                          [nix.POS]: pos$5,
                           type: nix.thunk(() => nix.sel(lib, "types", "path")),
                           example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "pkgs.writeText \"my-schroot-fstab\" ''\n  /proc           /proc           none    rw,bind         0       0\n  /sys            /sys            none    rw,bind         0       0\n  /dev            /dev            none    rw,bind         0       0\n  /dev/pts        /dev/pts        none    rw,bind         0       0\n  /home           /home           none    rw,rbind        0       0\n  /tmp            /tmp            none    rw,bind         0       0\n  /dev/shm        /dev/shm        none    rw,bind         0       0\n  /nix            /nix            none    ro,bind         0       0\n  /run/current-system /run/current-system none rw,bind    0       0\n  /run/wrappers   /run/wrappers   none    rw,bind         0       0\n''\n")),
                           description: "A file in the format described in {manpage}`fstab(5)`, used to mount filesystems inside the chroot.\nThe mount location is relative to the root of the chroot.\n",
                         })))),
                       nssdatabases: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$6,
+                          [nix.POS]: pos$6,
                           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                           example: nix.thunk(() => [
                             "passwd",
@@ -111,15 +111,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => nix.update({
-            __proto__: pos$15,
-            "schroot/chroot.d/.keep": nix.thunk(() => ({ __proto__: pos$13, text: "" })),
+            [nix.POS]: pos$15,
+            "schroot/chroot.d/.keep": nix.thunk(() => ({ [nix.POS]: pos$13, text: "" })),
             "schroot/schroot.conf": nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               source: nix.thunk(() => nix.app(nix.sel(iniFmt, "generate"), "schroot.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           }, nix.app(nix.sel(lib, "attrsets", "concatMapAttrs"), (name) => nix.lambda((args_1) => (() => {
@@ -129,23 +129,23 @@ export default nix.lambda((args) => (() => {
               const nssdatabases = nix.arg($_1, "nssdatabases");
               return nix.attrsDyn({}, [
                 [nix.str`schroot/${name}/copyfiles`, nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "strings", "concatStringsSep"), "\n", copyfiles), "\n")),
                 }))],
-                [nix.str`schroot/${name}/fstab`, nix.thunk(() => ({ __proto__: pos$17, source: fstab }))],
+                [nix.str`schroot/${name}/fstab`, nix.thunk(() => ({ [nix.POS]: pos$17, source: fstab }))],
                 [nix.str`schroot/${name}/nssdatabases`, nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   text: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "strings", "concatStringsSep"), "\n", nssdatabases), "\n")),
                 }))],
               ]);
             })(), formals$2), nix.thunk(() => nix.sel(cfg, "profiles"))))),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$21,
+            [nix.POS]: pos$21,
             schroot: nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/schroot`),
               owner: "root",
               group: "root",
@@ -154,9 +154,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             rules: nix.thunk(() => [
               "d /var/lib/schroot/session - root root - -",
               "d /var/lib/schroot/unpack - root root - -",

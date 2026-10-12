@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "minimacy",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ambermind",
           repo: "minimacy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       buildInputs: nix.thunk(() => nix.concat([libGL, libGLU], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libx11, libxext])))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-unused-result" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-unused-result" })),
       preBuild: nix.thunk(() => nix.str`pushd ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos/cmdline" : "unix")}
 `),
       buildFlags: nix.thunk(() => nix.concat((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["nox"] : ["all"]), [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)])),
@@ -48,7 +48,7 @@ runHook postCheck
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/minimacy\ncp -r {README.md,LICENSE,system,rom,topLevel.mcy} $out/lib/minimacy\ninstall bin/minimacy* -Dt $out/bin\n\nrunHook postInstall\n",
       postFixup: "for prog in $out/bin/minimacy*;\n  do wrapProgram $prog \\\n    --set MINIMACY $out/lib/minimacy\n  done\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open-source minimalist computing technology",
         longDescription: "Minimacy is an open-source minimalist computation system based on the principle \"Less is more\".\nIt is designed and programmed by Sylvain Huet.\n",
         maintainers: nix.thunk(() => (() => {

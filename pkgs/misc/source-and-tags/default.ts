@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const hasktags = nix.arg($, "hasktags");
   const ctags = nix.arg($, "ctags");
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     annotatedWithSourceAndTagInfo: (x) => (nix.asBool((nix.asBool(nix.has(x, "passthru")) && nix.asBool(nix.has(nix.sel(x, "passthru"), "sourceWithTags")))) || nix.asBool((nix.asBool(nix.has(x, "meta")) && nix.asBool(nix.has(nix.sel(x, "meta"), "sourceWithTags"))))),
     sourceWithTagsFromDerivation: (x) => (nix.asBool((nix.asBool(nix.has(x, "passthru")) && nix.asBool(nix.has(nix.sel(x, "passthru"), "sourceWithTags")))) ? nix.sel(x, "passthru", "sourceWithTags") : (nix.asBool((nix.asBool(nix.has(x, "meta")) && nix.asBool(nix.has(nix.sel(x, "meta"), "sourceWithTags")))) ? nix.sel(x, "meta", "sourceWithTags") : null)),
     sourceWithTagsDerivation: nix.lambda((args_1) => (() => {
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const tagSuffix = nix.argOr($_1, "tagSuffix", () => "_tags");
       const createTagFiles = nix.argOr($_1, "createTagFiles", () => []);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           src: src,
           srcDir: srcDir,
           tagSuffix: tagSuffix,
@@ -61,17 +61,17 @@ echo "TAG_FILES=\\"\\$TAG_FILES\\\${TAG_FILES:+:}$TAG_FILES\\"" >> $out/nix-supp
         })));
     })(), formals$2),
     addHasktagsTaggingInfo: (deriv) => nix.update(deriv, {
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         sourceWithTags: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           src: nix.thunk(() => nix.attr(deriv, "src")),
           srcDir: nix.thunk(() => (nix.asBool(nix.has(deriv, "srcDir")) ? nix.sel(deriv, "srcDir") : ".")),
           name: nix.thunk(() => nix.sel(deriv, "name")),
           createTagFiles: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`${nix.sel(deriv, "name")}_haskell`),
               tagCmd: nix.thunk(() => nix.str`
                    srcs="\`find . -type f -name "*.*hs"; find . -type f -name "*.*hs*";\`"
@@ -90,16 +90,16 @@ echo "TAG_FILES=\\"\\$TAG_FILES\\\${TAG_FILES:+:}$TAG_FILES\\"" >> $out/nix-supp
       })),
     }),
     addCTaggingInfo: (deriv) => nix.update(deriv, {
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         sourceWithTags: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           src: nix.thunk(() => nix.attr(deriv, "src")),
           name: nix.thunk(() => nix.str`${nix.sel(deriv, "name")}-source-ctags`),
           createTagFiles: nix.thunk(() => [
             nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               name: nix.thunk(() => nix.attr(deriv, "name")),
               tagCmd: nix.thunk(() => nix.str`${nix.builtins.toString(ctags)}/bin/ctags --sort=yes -o $TAG_FILE -R .`),
             })),

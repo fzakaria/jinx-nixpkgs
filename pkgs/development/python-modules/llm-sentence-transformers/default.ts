@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "llm-sentence-transformers",
       version: "0.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "simonw",
           repo: "llm-sentence-transformers",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_run_embedding", "test_embed_multi_with_generator"]),
       pythonImportsCheck: nix.thunk(() => ["llm_sentence_transformers"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tests: nix.thunk(() => nix.app(nix.sel(llm, "mkPluginTest"), llm_sentence_transformers)),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "LLM plugin for embeddings using sentence-transformers",
         homepage: "https://github.com/simonw/llm-sentence-transformers",
         changelog: nix.thunk(() => nix.str`https://github.com/simonw/llm-sentence-transformers/releases/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

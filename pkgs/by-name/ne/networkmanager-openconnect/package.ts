@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
       const pname = "NetworkManager-openconnect";
       const version = "1.2.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/NetworkManager-openconnect/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/NetworkManager-openconnect-${version}.tar.xz`),
           sha256: "hEtr9k7K25e0pox3bbiapebuflm9JLAYAihAaGMTZGQ=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ __proto__: pos$2, kmod: kmod, openconnect: openconnect })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, kmod: kmod, openconnect: openconnect })))),
       ]);
       const buildInputs = nix.thunk(() => nix.concat([libxml2, openconnect, networkmanager, webkitgtk_4_1], nix.app(nix.sel(lib, "optionals"), withGnome, nix.thunk(() => [gtk3, libnma, libnma_gtk4, gtk4, gcr_3, libsecret]))));
       const nativeBuildInputs = nix.thunk(() => [glib, intltool, pkg_config, file]);
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
         "--enable-absolute-paths",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             packageName: pname,
             attrPath: "networkmanager-openconnect",
             versionPolicy: "odd-unstable",
@@ -65,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "NetworkManager’s OpenConnect plugin",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         teams: nix.thunk(() => nix.attr(from, "teams")),
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         src,

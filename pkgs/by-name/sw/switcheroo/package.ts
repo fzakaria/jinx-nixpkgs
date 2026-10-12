@@ -30,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "switcheroo",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "adhami3310",
           repo: "Switcheroo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-yJiydJoMiDCVql1bhmh+TQi25tAy/NueHvvG4zWTTeY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`switcheroo-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fvsR27jmL61NjvJWm7SQhiU1DMeB6OYyWQn1u+5HujM=",
@@ -63,15 +63,15 @@ export default nix.lambda((args) => (() => {
 )
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "16")))), "-Wno-error=incompatible-function-pointer-types")),
       })),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         changelog: nix.thunk(() => nix.str`https://gitlab.com/adhami3310/Switcheroo/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "App for converting images between different formats",
         homepage: "https://apps.gnome.org/Converter/",

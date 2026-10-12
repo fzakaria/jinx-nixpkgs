@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libagar",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://stable.hypertriton.com/agar/agar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0euZTIJizXDfHU2UYsVFMInbXcgV0BtXZ1CMKSOlllw=",
         })))),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         fontconfig,
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Cross-platform GUI toolkit",
         homepage: "http://libagar.org/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

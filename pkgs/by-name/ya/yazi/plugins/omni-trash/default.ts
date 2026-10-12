@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkYaziPlugin = nix.arg($, "mkYaziPlugin");
   return nix.app(mkYaziPlugin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "omni-trash.yazi",
       version: "0-unstable-2026-06-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goon",
           repo: "omni-trash.yazi",
           rev: "3c2a9923673e0552a093afc4122473df1d427a93",
           hash: "sha256-heqqEWzJCoNt3CIJAEaWfqUX4J9BfVEw3OsU7Xjc17M=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yazi plugin to manage your trash across all drives from a single, unified interface, powered by trash-cli",
         homepage: "https://github.com/goon/omni-trash.yazi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

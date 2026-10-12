@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "kafka-minion",
       version: "2.2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "redpanda-data",
           repo: "kminion",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +35,15 @@ export default nix.lambda((args) => (() => {
         "-X main.builtAt=unknown",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, kafka: nix.thunk(() => nix.attr(from, "kafka")) };
+          return { [nix.POS]: pos$2, kafka: nix.thunk(() => nix.attr(from, "kafka")) };
         })()),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Feature-rich Prometheus exporter for Apache Kafka written in Go",
         homepage: "https://github.com/redpanda-data/kminion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

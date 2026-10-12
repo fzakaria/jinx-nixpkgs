@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "4d-minesweeper",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Alzager",
           repo: "4D-Minesweeper-Archived",
           rev: "db176d8aa5981a597bbae6a1a74aeebf0f376df4",
@@ -80,7 +80,7 @@ runHook postBuild
       dontFixup: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/Alzager/4D-Minesweeper-Archived",
         description: "4D Minesweeper game written in Godot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

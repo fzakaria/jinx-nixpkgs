@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const nautilus_python = nix.arg($, "nautilus-python");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "insync-nautilus",
       version: "3.9.5.60024",
       pyproject: true,
@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`https://web.archive.org/web/20250502162242/${nix.builtins.elemAt(urls, 0n)}`),
           ]);
           const hash = "sha256-yfPZ58xWZknpCqE8cJ7e7fR4+nzsCdprgBFRL0U0LvM=";
-          return { __proto__: pos$1, urls, hash };
+          return { [nix.POS]: pos$1, urls, hash };
         })()))),
       nativeBuildInputs: nix.thunk(() => [dpkg]),
       buildInputs: nix.thunk(() => [nautilus_python]),
       installPhase: "runHook preInstall\n\ncp -r usr $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => ["x86_64-linux"]),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

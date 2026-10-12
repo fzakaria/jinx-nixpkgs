@@ -29,9 +29,9 @@ export default (pkgs) => (lib) => (buildPackages) => (self) => (super$) => (() =
   const mkHome = nix.thunk(() => nix.attr(from, "mkHome"));
   const mkHomeIfOlder = nix.thunk(() => nix.attr(from, "mkHomeIfOlder"));
   return {
-    __proto__: pos$16,
+    [nix.POS]: pos$16,
     "ada-mode": nix.thunk(() => nix.app(nix.sel(super$, "ada-mode", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         dontUnpack: false,
         srcs: nix.thunk(() => [
           nix.thunk(() => nix.sel(super$, "ada-mode", "src")),
@@ -48,7 +48,7 @@ export default (pkgs) => (lib) => (buildPackages) => (self) => (super$) => (() =
         buildPhase: "runHook preBuild\n./build.sh -j$NIX_BUILD_CORES\nrunHook postBuild\n",
         postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(previousAttrs, () => "", "postInstall"), "\n"), "./install.sh \"$out\"\n")),
         meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
           broken: true,
         })),
@@ -67,17 +67,17 @@ export default (pkgs) => (lib) => (buildPackages) => (self) => (super$) => (() =
     "cpio-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "cpio-mode")))),
     "dbus-codegen": nix.thunk(() => nix.app(ignoreCompilationErrorIfOlder, nix.thunk(() => nix.sel(super$, "dbus-codegen")), "0.1.0.20201127.221326")),
     debbugs: nix.thunk(() => nix.app(nix.sel(super$, "debbugs", "overrideAttrs"), (old) => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         preInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "preInstall"), "\n"), "tmp_src_dir=$(mktemp -d)\ntar --extract --verbose --file $src --directory $tmp_src_dir --strip-components 1\nEMACSLOADPATH=$tmp_src_dir/test:$EMACSLOADPATH\n")),
       }))),
     ebdb: nix.thunk(() => nix.app(nix.sel(super$, "ebdb", "overrideAttrs"), (finalAttrs) => (previousAttrs) => (() => {
         const applyOrgRoamMissingPatch = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "0.8.22.0.20240205.070828"));
         return {
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           dontUnpack: nix.thunk(() => !nix.asBool(applyOrgRoamMissingPatch)),
           patches: nix.thunk(() => (nix.asBool(applyOrgRoamMissingPatch) ? nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
             nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: "fix-comilation-error-about-missing-org-roam.patch",
                 url: "https://github.com/girzel/ebdb/commit/058f30a996eb9074feac8f94db4eb49e85ae08f1.patch",
                 hash: "sha256-UI72N3lCgro6bG75sWnbw9truREToQHEzZ1TeQAIMjo=",
@@ -87,11 +87,11 @@ export default (pkgs) => (lib) => (buildPackages) => (self) => (super$) => (() =
         };
       })())),
     eglot: nix.thunk(() => nix.app(nix.sel(super$, "eglot", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         postInstall: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postInstall"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), "1.17.0.20240829.5352", nix.thunk(() => nix.sel(finalAttrs, "version")))), "local info_file=eglot.info\npushd $out/share/emacs/site-lisp/elpa/eglot-*\n# specify output info file to override the one defined in eglot.texi\nmakeinfo --output=$info_file eglot.texi\ninstall-info $info_file dir\npopd\n"))),
       }))),
     jinx: nix.thunk(() => nix.app(nix.sel(super$, "jinx", "overrideAttrs"), (old) => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         dontUnpack: false,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "pkg-config"))])),
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "enchant_2"))])),
@@ -103,12 +103,12 @@ install -m444 -t $outd jinx-mod${libExt}
 rm $outd/jinx-mod.c $outd/emacs-module.h
 `)),
         meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "DamienCassou"))]),
         })),
       }))),
     "notes-mode": nix.thunk(() => nix.app(nix.sel(nix.app(mkHome, nix.thunk(() => nix.sel(super$, "notes-mode"))), "overrideAttrs"), (old) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         dontUnpack: false,
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "perl"))])),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "perl"))])),
@@ -116,7 +116,7 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
         postFixup: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postFixup"), "\n"), "patchShebangs --host --update $out/share/emacs/site-lisp/elpa/$ename-$version/mkconfig\n")),
       }))),
     plz: nix.thunk(() => nix.app(nix.sel(super$, "plz", "overrideAttrs"), (old) => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         dontUnpack: false,
         postPatch: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postPatch"), "\n"), nix.str`substituteInPlace plz.el \\
   --replace-fail 'plz-curl-program "curl"' 'plz-curl-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))}"'
@@ -125,7 +125,7 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
       }))),
     poke: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "poke")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "poke-mode"))]))),
     pq: nix.thunk(() => nix.app(nix.sel(super$, "pq", "overrideAttrs"), (old) => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "libpq"))])),
       }))),
     "preview-auto": nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "preview-auto")))),
@@ -133,13 +133,13 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
     psgml: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "psgml")))),
     relint: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "relint")))),
     seq: nix.thunk(() => nix.app(nix.sel(super$, "seq", "overrideAttrs"), (old) => ({
-        __proto__: pos$12,
+        [nix.POS]: pos$12,
         dontUnpack: false,
         postUnpack: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postUnpack"), "\n"), "local content_directory=$(echo seq-*)\nrm --verbose $content_directory/tests/seq-tests.el\nsrc=$PWD/$content_directory.tar\ntar --create --verbose --file=$src $content_directory\n")),
       }))),
     "shen-mode": nix.thunk(() => nix.app(ignoreCompilationErrorIfOlder, nix.thunk(() => nix.sel(super$, "shen-mode")), "0.1.0.20221221.82050")),
     taxy: nix.thunk(() => nix.app(nix.sel(super$, "taxy", "overrideAttrs"), (old) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         dontUnpack: false,
         postUnpack: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postUnpack"), "\n"), "local content_directory=$ename-$version\nrm --verbose --recursive $content_directory/examples\nsrc=$PWD/$content_directory.tar\ntar --create --verbose --file=$src $content_directory\n")),
       }))),
@@ -147,14 +147,14 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
     timerfunctions: nix.thunk(() => nix.app(ignoreCompilationErrorIfOlder, nix.thunk(() => nix.sel(super$, "timerfunctions")), "1.4.2.0.20201129.225252")),
     tle: null,
     tramp: nix.thunk(() => nix.app(nix.sel(super$, "tramp", "overrideAttrs"), (old) => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         dontUnpack: false,
         postUnpack: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postUnpack"), "\n"), "local content_directory=$(echo tramp-*)\nrm --verbose --recursive $content_directory/test\nsrc=$PWD/$content_directory.tar\ntar --create --verbose --file=$src $content_directory\nrm --verbose --recursive $content_directory/*\n")),
       }))),
     triples: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "triples")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "kv"))]))),
     "wisitoken-grammar-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "wisitoken-grammar-mode")))),
     xeft: nix.thunk(() => nix.app(nix.sel(super$, "xeft", "overrideAttrs"), (old) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         dontUnpack: false,
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "xapian"))])),
         buildPhase: nix.thunk(() => nix.add(nix.selOr(old, () => "", "buildPhase"), nix.str`$CXX -shared -o xapian-lite${libExt} xapian-lite.cc -lxapian

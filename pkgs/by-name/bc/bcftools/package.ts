@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bcftools",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "samtools",
           repo: "bcftools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +48,7 @@ sed -i -e 's|/bin/bash|${bash}/bin/bash|' test/test.pl
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tools for manipulating BCF2/VCF/gVCF format, SNP and short indel sequence variants",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "http://www.htslib.org/",

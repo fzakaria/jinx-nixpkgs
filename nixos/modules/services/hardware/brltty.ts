@@ -39,15 +39,15 @@ export default nix.lambda((args) => (() => {
 fi
 `)));
   return {
-    __proto__: pos$21,
+    [nix.POS]: pos$21,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         brltty: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable the BRLTTY daemon.",
@@ -56,53 +56,53 @@ fi
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         users: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             brltty: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               description: "BRLTTY daemon user",
               group: "brltty",
               isSystemUser: true,
             })),
           })),
           groups: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             brltty: nix.thunk(() => ({})),
             brlapi: nix.thunk(() => ({})),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             "brltty@": nix.thunk(() => ({
-              __proto__: pos$10,
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$9, ExecStartPre: nix.thunk(() => nix.str`!${genApiKey}`) })),
+              [nix.POS]: pos$10,
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$9, ExecStartPre: nix.thunk(() => nix.str`!${genApiKey}`) })),
             })),
           })),
           packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "brltty"))]),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "brltty"))]),
           })),
           paths: nix.thunk(() => ({
-            __proto__: pos$15,
-            brltty: nix.thunk(() => ({ __proto__: pos$13, wantedBy: targets })),
-            "brltty@": nix.thunk(() => ({ __proto__: pos$14, wantedBy: targets })),
+            [nix.POS]: pos$15,
+            brltty: nix.thunk(() => ({ [nix.POS]: pos$13, wantedBy: targets })),
+            "brltty@": nix.thunk(() => ({ [nix.POS]: pos$14, wantedBy: targets })),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           udev: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "brltty"))]),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "brltty"))]),
         })),
       })))),

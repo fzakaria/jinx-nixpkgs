@@ -26,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const uproot = nix.arg($, "uproot");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dask-awkward",
       version: "2026.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dask-contrib",
           repo: "dask-awkward",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [awkward, cachetools, dask, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, io: nix.thunk(() => [pyarrow]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, io: nix.thunk(() => [pyarrow]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([distributed, hist, pandas, pytestCheckHook, uproot], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["dask_awkward"]),
       disabledTests: nix.thunk(() => [
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Native Dask collection for awkward arrays, and the library to use it",
         homepage: "https://github.com/dask-contrib/dask-awkward",
         changelog: nix.thunk(() => nix.str`https://github.com/dask-contrib/dask-awkward/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

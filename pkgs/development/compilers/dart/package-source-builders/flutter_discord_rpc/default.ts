@@ -21,30 +21,30 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "flutter_discord_rpc-rs",
         version: version,
         src: src,
         buildAndTestSubdir: "rust",
         cargoHash: nix.thunk(() => nix.selOr({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           _1_0_0: "sha256-C9WDE9+6V59yNCNVeMUY5lRpMJ+8XWpHpxzdTmz+/Yw=",
           _1_1_0: "sha256-Kztnt30EcqjXUNEAJW65P6yLjdnyW4Q+lHe6qlCe3xM=",
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported version of pub 'flutter_discord_rpc': '${version}'
 Please add cargoHash here. If the cargoHash
 is the same with existing versions, add an alias here.
 `)), nix.key(nix.add("_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))))),
-        passthru: nix.thunk(() => ({ __proto__: pos$2, libraryPath: "lib/libflutter_discord_rpc.so" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, libraryPath: "lib/libflutter_discord_rpc.so" })),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "flutter_discord_rpc",
         version: version,
         src: src,
         passthru: nix.thunk(() => nix.attr(src, "passthru")),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./cargokit.patch"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               output_lib: nix.thunk(() => nix.str`${rustDep}/${nix.sel(rustDep, "passthru", "libraryPath")}`),
             })))),
         ]),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const isVer33 = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "3.3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "mariadb-connector-c",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mariadb-corporation",
           repo: "mariadb-connector-c",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,12 +37,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "3.4")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: "https://github.com/mariadb-corporation/mariadb-connector-c/commit/e8448137f3365568090d5c0d4051039ddc1cdb6f.patch",
               hash: "sha256-aDbaaJA8DxGG5RrOa+CHhk4wuzlBy5tWyS+f/zVYU0c=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               name: "mariadb-connector-c-fix-cmake-4.patch",
               url: "https://github.com/mariadb-corporation/mariadb-connector-c/commit/598dc3d2d7a63e5d250421dd0ea88be55ea8511f.patch",
               hash: "sha256-HojNRobguBmtpEdr2lVi/MpcoDAsZnb3+tw/pt376es=",
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput bin/mariadb_config \"$dev\"\n",
       postFixup: "ln -sv mariadb_config $dev/bin/mysql_config\nln -sv mariadb $out/lib/mysql\nln -sv mariadb $dev/include/mysql\nln -sv mariadb_version.h $dev/include/mariadb/mysql_version.h\nln -sv libmariadb.pc $dev/lib/pkgconfig/mysqlclient.pc\ninstall -Dm644 include/ma_config.h $dev/include/mariadb/my_config.h\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Client library that can be used to connect to MySQL or MariaDB",
         homepage: "https://github.com/mariadb-corporation/mariadb-connector-c",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

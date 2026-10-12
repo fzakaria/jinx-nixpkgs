@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const doctest = nix.arg($, "doctest");
   const rocmPackages = nix.arg($, "rocmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "frugally-deep",
       version: "0.15.24-p0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Dobiasd",
           repo: "frugally-deep",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-minimum-cmake4-huntergate.patch",
             url: "https://github.com/Dobiasd/frugally-deep/commit/30a4ce4c932ca810a5a77c4ab943a520bb1048fe.patch",
             hash: "sha256-J5z+jQis8N2mzWu2Qm7J0fPkrplpjgDCOAJT7binz04=",
@@ -53,18 +53,18 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [functionalplus, eigen, nlohmann_json]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DFDEEP_BUILD_UNITTEST=ON"]))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "miopen-can-load-models": nix.thunk(() => nix.app(nix.sel(rocmPackages, "miopen", "passthru", "tests", "can-load-models", "override"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               "frugally-deep": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: gitUpdater,
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Header-only library for using Keras (TensorFlow) models in C++",
         homepage: "https://github.com/Dobiasd/frugally-deep",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

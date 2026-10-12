@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kmod";
       const version = "31";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git/snapshot/kmod-${version}.tar.gz`),
           hash: "sha256-FNR015/AoYBbi7Eb1M2TXH3yxUuddKICCu+ot10CdeQ=",
         }))));
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => nix.concat([
         nix.path(here, "./module-dir.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "musl.patch",
             url: "https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git/patch/?id=11eb9bc67c319900ab00523997323a97d2d08ad2",
             hash: "sha256-CYG615elMWces6QGQRg2H/NL7W4XsG9Zvz5H+xsdFFo=",
@@ -77,15 +77,15 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), withStatic, nix.path(here, "./enable-static.patch"))));
       const postInstall = "for prog in rmmod insmod lsmod modinfo modprobe depmod; do\n  ln -sv $out/bin/kmod $out/bin/$prog\ndone\n\n# Backwards compatibility\nln -s bin $out/sbin\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git",
             "rev-prefix": "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tools for loading and managing Linux kernel modules",
         longDescription: "kmod is a set of tools to handle common tasks with Linux kernel modules\nlike insert, remove, list, check properties, resolve dependencies and\naliases. These tools are designed on top of libkmod, a library that is\nshipped with kmod.\n",
         homepage: "https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git/",
@@ -105,12 +105,12 @@ export default nix.lambda((args) => (() => {
         })()),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "security-review"))]),
         identifiers: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "kernel", version)),
         })),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         src,

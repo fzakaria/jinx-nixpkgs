@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "easycrop",
       version: "0-unstable-2018-01-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aidanholm",
           repo: "mpv-easycrop",
           rev: "b8a67bb9039e19dec54d92ea57076c0c98e981aa",
@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       scriptPath: "easycrop.lua",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Manually crop videos during playback in mpv",
         longDescription: "A simple mpv script for manually cropping videos with ease.\n\n- Works during video playback\n- No need to re-encode or modify video files\n\nPress \"c\" to begin cropping. Click at one corner of the desired\ncropping rectangle, and click a second time at the opposite\ncorner; the video will be cropped immediately. Pressing \"c\" again\nwill undo the current crop.\n\nIf you wish to use a key other than \"c\" to crop, the keybind\n`easy_crop` can be changed.\n",
         homepage: "https://github.com/aidanholm/mpv-easycrop",

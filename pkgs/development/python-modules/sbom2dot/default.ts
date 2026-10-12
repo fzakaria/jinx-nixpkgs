@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "anthonyharrison",
           repo: "sbom2dot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [lib4sbom]);
       const pythonImportsCheck = nix.thunk(() => ["sbom2dot"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/anthonyharrison/sbom2dot/releases/tag/${nix.sel(src, "tag")}`),
         description: "Create a dependency graph of the components within a SBOM",
         homepage: "https://github.com/anthonyharrison/sbom2dot",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

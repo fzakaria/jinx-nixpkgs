@@ -16,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "unicorn-angr",
       version: "2.0.1.post1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unicorn-engine",
           repo: "unicorn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Jz5C35rwnDz0CXcfcvWjkwScGNQO1uijF7JrtZhM7mI=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-latomic" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-latomic" })))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["-DCMAKE_CTEST_ARGUMENTS=--exclude-regex;test_x86"]))),
       doCheck: true,
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Lightweight multi-platform CPU emulator library",
         homepage: "https://www.unicorn-engine.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

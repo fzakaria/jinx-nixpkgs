@@ -41,79 +41,79 @@ export default nix.lambda((args) => (() => {
   const configFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "fw-fanctrl"));
   return {
-    __proto__: pos$29,
+    [nix.POS]: pos$29,
     options: nix.thunk(() => ({
-      __proto__: pos$19,
+      [nix.POS]: pos$19,
       hardware: nix.thunk(() => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         "fw-fanctrl": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the fw-fanctrl systemd service and install the needed packages")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fw-fanctrl", nix.thunk(() => ({})))),
           ectoolPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "fw-ectool", nix.thunk(() => ({})))),
           disableBatteryTempCheck: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Disable checking battery temperature sensor\n",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               default: nix.thunk(() => ({})),
               description: "Additional config entries for the fw-fanctrl service (documentation: <https://github.com/TamtamHero/fw-fanctrl/blob/main/doc/configuration.md>)\n",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(configFormat, "type")))),
                   options: nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     defaultStrategy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "lazy",
                         description: "Default strategy to use",
                       })))),
                     strategyOnDischarging: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.sel(lib, "types", "str")),
                         default: "",
                         description: "Default strategy on discharging",
                       })))),
                     strategies: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$13,
+                        [nix.POS]: pos$13,
                         default: nix.thunk(() => ({})),
                         description: "Additional strategies which can be used by fw-fanctrl\n",
                         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                              __proto__: pos$12,
+                              [nix.POS]: pos$12,
                               options: nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 fanSpeedUpdateFrequency: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$4,
+                                    [nix.POS]: pos$4,
                                     type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                                     default: 5n,
                                     description: "How often the fan speed should be updated in seconds",
                                   })))),
                                 movingAverageInterval: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$5,
+                                    [nix.POS]: pos$5,
                                     type: nix.thunk(() => nix.sel(lib, "types", "ints", "unsigned")),
                                     default: 25n,
                                     description: "Interval (seconds) of the last temperatures to use to calculate the average temperature",
                                   })))),
                                 speedCurve: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                    __proto__: pos$10,
+                                    [nix.POS]: pos$10,
                                     default: [],
                                     description: "How should the speed curve look like",
                                     type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                                          __proto__: pos$9,
+                                          [nix.POS]: pos$9,
                                           options: nix.thunk(() => ({
-                                            __proto__: pos$8,
+                                            [nix.POS]: pos$8,
                                             temp: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                __proto__: pos$6,
+                                                [nix.POS]: pos$6,
                                                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                                                 default: 0n,
                                                 description: "Temperature in °C at which the fan speed should be changed",
                                               })))),
                                             speed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                                                __proto__: pos$7,
+                                                [nix.POS]: pos$7,
                                                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "ints", "between"), 0n, 100n)),
                                                 default: 0n,
                                                 description: "Percent how fast the fan should run at",
@@ -135,31 +135,31 @@ export default nix.lambda((args) => (() => {
       const finalConfig = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), defaultConfig, nix.thunk(() => nix.sel(cfg, "config"))));
       const configFile = nix.thunk(() => nix.app(nix.sel(configFormat, "generate"), "custom.json", finalConfig));
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           environment: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(cfg, "package")),
               nix.thunk(() => nix.sel(cfg, "ectoolPackage")),
             ]),
             etc: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "systemd/system-sleep/fw-fanctrl-suspend.sh": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 source: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/share/fw-fanctrl/fw-fanctrl-suspend`),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               "fw-fanctrl": nix.thunk(() => ({
-                __proto__: pos$24,
+                [nix.POS]: pos$24,
                 description: "Framework Fan Controller",
                 after: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   Type: "simple",
                   Restart: "always",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(cfg, "package")))} --output-format JSON run --config ${configFile} --silent ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "disableBatteryTempCheck")), "--no-battery-sensors")}`),
@@ -172,7 +172,7 @@ export default nix.lambda((args) => (() => {
         })));
     })()),
     meta: nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Svenum"))]),
     })),
   };

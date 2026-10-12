@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "spsdk_pyocd",
           version: version,
           hash: "sha256-jvzXu6z9oo2oGoiDgCWWcU3yX/PuWm56MJzIcMWCgTM=",
@@ -36,22 +36,22 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonRelaxDeps = nix.thunk(() => ["pyocd"]);
       const dependencies = nix.thunk(() => [pyocd]);
-      const optional_dependencies = nix.thunk(() => ({ __proto__: pos$2, pemicro: nix.thunk(() => [pyocd_pemicro]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pemicro: nix.thunk(() => [pyocd_pemicro]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, spsdk, writableTmpDirAsHomeHook]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           pytest: nix.thunk(() => nix.app(nix.sel(spsdk_pyocd, "overridePythonAttrs"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               pythonImportsCheck: nix.thunk(() => ["spsdk_pyocd"]),
               doCheck: true,
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Debugger probe plugin for SPSDK",
         homepage: "https://pypi.org/project/spsdk-pyocd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname,
         version,
         pyproject,

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const useBoost = nix.argOr($, "useBoost", () => ({}));
   const defaultVersion = "4.4.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "boost-build",
       version: nix.thunk(() => (nix.asBool(nix.has(useBoost, "version")) ? nix.str`boost-${nix.sel(useBoost, "version")}` : defaultVersion)),
       src: nix.thunk(() => nix.selOr(useBoost, () => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "boostorg",
             repo: "build",
             tag: defaultVersion,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
           }))), "src")),
       postUnpack: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(useBoost, "src")), "sourceRoot=\"$sourceRoot/tools/build\"\n")),
       patches: nix.thunk(() => nix.concat(nix.selOr(useBoost, () => [], "boostBuildPatches"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.has(useBoost, "version")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(useBoost, "version")), "1.91")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(useBoost, "version")), "1.92")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/boostorg/build/commit/708353cdeb6006757e7c6971283efb53f718ae25.patch",
             hash: "sha256-9WWgQPyiKrvQY1ox6sdWoeksgNPDIy0DAbDOfQKJ5y0=",
           }))))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool((nix.asBool(nix.has(useBoost, "version")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(useBoost, "version")), "1.81")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(useBoost, "version")), "1.88")))), nix.path(here, "./fix-clang-target.patch"))))),
@@ -50,7 +50,7 @@ runHook postInstall
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.boost.org/build/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

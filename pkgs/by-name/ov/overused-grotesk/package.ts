@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "overused-grotesk",
       version: "0.5-alpha.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/RandomMaerks/Overused-Grotesk/releases/download/v${nix.sel(finalAttrs, "version")}/OverusedGrotesk-v${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-XNylWbD9ZjEAcIUNCQECEy4ATlTlrzXrKP4Fb5YSCUw=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ttf`),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://randommaerks.github.io/overused-grotesk",
         changelog: "https://github.com/RandomMaerks/Overused-Grotesk/releases",
         description: "A variable sans serif typeface inspired by the classic neo-grotesk Swiss design",

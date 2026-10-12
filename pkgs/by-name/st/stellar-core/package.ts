@@ -40,28 +40,28 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const cxxbridge_cmd = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "cxxbridge-cmd",
       version: "1.0.97",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dtolnay",
           repo: "cxx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Zvu+OYCfBZVQZCNoOG2bDFsz48NnbVH0q4q+CPth+0E=",
         })))),
-      cargoLock: nix.thunk(() => ({ __proto__: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       cargoBuildFlags: nix.thunk(() => ["--package", "cxxbridge-cmd"]),
-      meta: nix.thunk(() => ({ __proto__: pos$3, mainProgram: "cxxbridge" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "cxxbridge" })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       pname: "stellar-core",
       version: "28.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           owner: "stellar",
           repo: "stellar-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoDeps: nix.thunk(() => (() => {
         const sorobanProtocolHashes = nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           p21: "sha256-cUhi2YennW+tukwf0woP69bqf1ZMsQ4JDeNqpk0jYjg=",
           p22: "sha256-5mNAblS3TYXu5a1ThmIdbKC9hUg/3F8vUPvFex3G58U=",
           p23: "sha256-l1nqc4qrqWV8aKOd9NFUaOLw1Mags2znjbQixU5H3+Y=",
@@ -81,12 +81,12 @@ export default nix.lambda((args) => (() => {
           p28: "sha256-SGA69mE0VZSumZKOBcZqvzYtZRkFVSIMHFI5R9xcTWE=",
         }));
         const mainCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-7gU7vtYMOXX4qf3PkqriAxANhV3vraF71WMj/sS83ak=",
           }))));
         const sorobanCargoDeps = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (protocol) => (hash) => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               pname: nix.thunk(() => nix.str`stellar-core-${protocol}`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
               hash: hash,
             }))), sorobanProtocolHashes));
         return nix.app(symlinkJoin, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             name: nix.thunk(() => nix.str`stellar-core-${nix.sel(finalAttrs, "version")}-cargo-vendor-dir`),
             paths: nix.thunk(() => nix.concat([mainCargoDeps], nix.app(nix.sel(lib, "attrValues"), sorobanCargoDeps))),
             passthru: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               sorobanProtocolHashes: sorobanProtocolHashes,
               mainCargoDeps: mainCargoDeps,
               sorobanCargoDeps: sorobanCargoDeps,
@@ -123,7 +123,7 @@ substituteInPlace src/util/DebugMetaUtils.h \\
 shopt -s nullglob
 for crate in "$cargoDepsCopy"/source-registry-*/ethnum-1.5.0; do
   patch -p1 -d "$crate" < ${nix.app(fetchpatch2, nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           name: "ethnum-1.5.0-rustc-1.97.patch",
           url: "https://github.com/nlordell/ethnum-rs/commit/87e3457c095c98fcac554548ee80f56e0cfb80ae.patch?full_index=1",
           hash: "sha256-xG3RQg2vF+XW9IiYWaNyOF39WipSeoZGrygsOJ3XgIs=",
@@ -183,9 +183,9 @@ git add .
 ./autogen.sh
 `),
       checkPhase: "runHook preCheck\n\n# The full upstream test suite is too heavy for a default package check.\n# Keep this focused on a basic consensus smoke test.\n./src/stellar-core test --ll fatal -w NoTests -a -r simple --disable-dots \"standalone\"\n\nrunHook postCheck\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$12, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$12, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         description: "Reference peer-to-peer agent that manages the Stellar network",
         longDescription: "Stellar-core is a replicated state machine that maintains a local copy of\nthe Stellar cryptographic ledger and processes transactions against it in\nconsensus with a set of peers. It implements the Stellar Consensus\nProtocol, a federated consensus protocol.\n",
         homepage: "https://www.stellar.org/",

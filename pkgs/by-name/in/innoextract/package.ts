@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const unar = nix.argOr($, "unar", () => null);
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "innoextract",
       version: "1.9-unstable-2025-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dscharrer",
           repo: "innoextract",
           rev: "6e9e34ed0876014fdb46e684103ef8c3605e382e",
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [unar]))}
 `))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to unpack installers created by Inno Setup",
         homepage: "https://constexpr.org/innoextract/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

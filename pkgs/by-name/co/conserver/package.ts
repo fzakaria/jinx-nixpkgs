@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const trustUdsCredSupport = nix.argOr($, "trustUdsCredSupport", () => false);
   const udsSupport = nix.argOr($, "udsSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "conserver",
       version: "8.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bstansell",
           repo: "conserver",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/bstansell/conserver/commit/84fc79a459e00dbc87b8cfc943c5045bfcc7aeeb.patch",
             sha256: "sha256:1dy8r9z7rv8512fl0rk5gi1vl02hnh7x0i6flvpcc13h6r6fhxyc",
           })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: "# install -s calls the wrong strip program when cross compiling\nsubstituteInPlace \\\n  console/Makefile.in conserver/Makefile.in autologin/Makefile.in contrib/chat/Makefile.in \\\n  --replace-fail \"@INSTALL_PROGRAM@ -s\" \"@INSTALL_PROGRAM@\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.conserver.com/",
         description: "Application that allows multiple users to watch a serial console at the same time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -17,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bliss",
       version: "0.77",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://users.aalto.fi/~tjunttil/bliss/downloads/bliss-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-rMi5gDTzD60kyJfzZavYZsE9nxuyB+OY0MrxNodZcqQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sagemath/sage/raw/0fc563cc566ac4e9d0b713195d0a4fb138abca06/build/pkgs/bliss/patches/bliss-0.77-install.patch",
             hash: "sha256-x2xTfR98eipLxskqHEwFBT9xciwFOFpeJWfg4IcepKQ=",
           })))),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "doxygen ../Doxyfile\n",
       postInstall: "mkdir -p $out/share/doc/bliss\nmv html/* ../COPYING* $out/share/doc/bliss\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Open source tool for computing automorphism groups and canonical forms of graphs",
         mainProgram: "bliss",
         homepage: "https://users.aalto.fi/~tjunttil/bliss/",

@@ -21,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(netbox, "plugins"));
   const netbox_routing = nix.thunk(() => nix.attr(from, "netbox-routing"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "netbox-peering-manager",
       version: "0.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jsenecal",
           repo: "netbox-peering-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,9 +41,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_peering_manager"]),
-      passthru: nix.thunk(() => ({ __proto__: pos$2, pluginName: "netbox_peering_manager" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_peering_manager" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "NetBox plugin for BGP Peering and related objects documentation",
         homepage: "https://jsenecal.github.io/netbox-peering-manager/",
         changelog: nix.thunk(() => nix.str`https://github.com/jsenecal/netbox-peering-manager/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cups-brother-dcpt310",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103618/dcpt310pdrv-${nix.sel(finalAttrs, "version")}-0.i386.deb`),
           sha256: "0g9hylmpgmzd6k9lxjy32c7pxbzj6gr9sfaahxj3xzqyar05amdx",
         })))),
@@ -82,7 +82,7 @@ substituteInPlace $out/bin/brprintconf_dcpt310 \\
   --replace \\"\\$"@"\\" \\"\\$"@\\" | LD_PRELOAD= ${gnused}/bin/sed -E '/^(function list :|resource file :).*/{s#/opt#$out/opt#}'"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Brother DCP-T310 printer driver",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

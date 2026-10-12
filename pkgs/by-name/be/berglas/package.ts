@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const berglas = nix.arg($, "berglas");
   const skipTests = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     access: "Access",
     create: "Create",
     delete: "Delete",
@@ -39,11 +39,11 @@ substituteInPlace pkg/berglas/${goFileName}_test.go \\
 `;
     })(), "", nix.thunk(() => nix.builtins.attrNames(skipTests))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "berglas",
       version: "2.0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "GoogleCloudPlatform",
           repo: "berglas",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,14 +57,14 @@ substituteInPlace pkg/berglas/${goFileName}_test.go \\
       ]),
       postPatch: skipTestsCommand,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: berglas })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: berglas })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Tool for managing secrets on Google Cloud",
         homepage: "https://github.com/GoogleCloudPlatform/berglas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

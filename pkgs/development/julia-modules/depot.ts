@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const registry = nix.arg($, "registry");
   const setJuliaSslCaRootsPath = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) ? "export JULIA_SSL_CA_ROOTS_PATH=\"\"" : nix.str`export JULIA_SSL_CA_ROOTS_PATH="${cacert}/etc/ssl/certs/ca-bundle.crt"`));
   return nix.app(runCommand, "julia-depot", nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       nativeBuildInputs: nix.thunk(() => nix.concat([
         curl,
         git,

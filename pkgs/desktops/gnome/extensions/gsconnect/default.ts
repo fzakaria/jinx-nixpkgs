@@ -33,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gnome-shell-extension-gsconnect",
       version: "72",
       outputs: nix.thunk(() => ["out", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GSConnect",
           repo: "gnome-shell-extension-gsconnect",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             gapplication: nix.thunk(() => nix.str`${nix.sel(glib, "bin")}/bin/gapplication`),
             gjs: nix.thunk(() => nix.str`${gjs}/bin/gjs`),
             typelibPath: null,
@@ -86,16 +86,16 @@ substituteInPlace data/config.js.in \\
 `),
       postFixup: "# Let’s wrap the daemons\nfor file in $out/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/service/{daemon,nativeMessagingHost}.js; do\n  echo \"Wrapping program $file\"\n  wrapGApp \"$file\"\ndone\n\n# Wrap jasmine runner for tests\nfor file in $installedTests/libexec/installed-tests/gsconnect/minijasmine; do\n  echo \"Wrapping program $file\"\n  wrapGApp \"$file\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         extensionUuid: "gsconnect@andyholmes.github.io",
         extensionPortalSlug: "gsconnect",
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "gsconnect")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "KDE Connect implementation for Gnome Shell",
         homepage: "https://github.com/GSConnect/gnome-shell-extension-gsconnect/wiki",
         changelog: nix.thunk(() => nix.str`https://github.com/GSConnect/gnome-shell-extension-gsconnect/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

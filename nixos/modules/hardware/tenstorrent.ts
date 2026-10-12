@@ -25,30 +25,30 @@ export default nix.lambda((args) => (() => {
   const tt_kmd = nix.thunk(() => nix.attr(from, "tt-kmd"));
   const cfg = nix.thunk(() => nix.sel(config, "hardware", "tenstorrent"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       hardware: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         tenstorrent: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(mkEnableOption, "Tenstorrent driver & utilities")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         boot: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           extraModulePackages: nix.thunk(() => [tt_kmd]),
           kernelModules: nix.thunk(() => ["tenstorrent"]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$6,
-          udev: nix.thunk(() => ({ __proto__: pos$5, packages: nix.thunk(() => [tt_kmd]) })),
+          [nix.POS]: pos$6,
+          udev: nix.thunk(() => ({ [nix.POS]: pos$5, packages: nix.thunk(() => [tt_kmd]) })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "RossComputerGuy"))];

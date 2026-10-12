@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libitl = nix.arg($, "libitl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "itools",
       version: "1.1",
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [libitl, perl]),
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arabeyes-org",
           repo: "itools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm config.h.in\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Islamic command-line tools for prayer times and hijri dates",
         longDescription: "The itools package is a set of user friendly applications utilizing Arabeyes' ITL library.\n\nThe package addresses two main areas - hijri date and prayertime calculation. The package\nis envisioned to mimic the development of the underlying ITL library and is meant to\nalways give the end-user a simple means to access its functions.\n",
         homepage: "https://www.arabeyes.org/ITL",

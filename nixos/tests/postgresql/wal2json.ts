@@ -22,23 +22,23 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         name: nix.thunk(() => nix.str`wal2json-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "euank"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           machine: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             services: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               postgresql: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 package: package$,
                 enable: true,
                 extensions: nix.thunk(() => (() => {
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
                   return [nix.thunk(() => nix.lookup(w, "wal2json"))];
                 })()),
                 settings: nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   wal_level: "logical",
                   max_replication_slots: "10",
                   max_wal_senders: "10",
@@ -73,7 +73,7 @@ machine.succeed(
       };
     })(), formals$2));
   return nix.app(genTests, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       makeTestFor: makeTestFor,
       filter: (_) => (p) => !nix.asBool(nix.sel(p, "pkgs", "wal2json", "meta", "broken")),
     })));

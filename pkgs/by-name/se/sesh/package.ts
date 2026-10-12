@@ -18,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "sesh",
       version: "2.32.0",
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(go_mockery, "override"), nix.thunk(() => ({ __proto__: pos$1, buildGoModule: buildGo127Module })))),
+        nix.thunk(() => nix.app(nix.sel(go_mockery, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, buildGoModule: buildGo127Module })))),
         writableTmpDirAsHomeHook,
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "joshmedeski",
           repo: "sesh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pHsRKndjE2U+Gl0oKW5d+rRST0jDEp61sXm+tRTiD3w=",
         })))),
-      overrideModAttrs: (_) => ({ __proto__: pos$3, preBuild: "" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: pos$3, preBuild: "" }),
       preBuild: "mockery\n",
       vendorHash: "sha256-7wfg53djcty9R8WGo1H4C2VkGDraTu/n1w5c/62/YTc=",
       ldflags: nix.thunk(() => [
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Smart session manager for the terminal",
         homepage: "https://github.com/joshmedeski/sesh",
         changelog: nix.thunk(() => nix.str`https://github.com/joshmedeski/sesh/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.arg($, "cudaPackages");
   const expectSelectedOutput = nix.argOr($, "expectSelectedOutput", () => false);
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
-  const local = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ __proto__: pos$1, cudaPackages: cudaPackages }))));
+  const local = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaPackages: cudaPackages }))));
   const expected = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "xla-cuda-configure-expected.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cudaPackages, "flags"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         realArches: nix.thunk(() => nix.attr(from, "realArches")),
         virtualArches: nix.thunk(() => nix.attr(from, "virtualArches")),
         cudaForwardCompat: nix.thunk(() => nix.attr(from, "cudaForwardCompat")),
       };
       })())))));
   return nix.app(nix.sel(xla, "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: nix.thunk(() => nix.str`${nix.sel(xla, "name")}-cuda-configure`),
       buildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);

@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writeClosure = nix.arg($, "writeClosure");
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     buildContainer: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const args_2 = nix.arg($_1, "args");
@@ -39,58 +39,58 @@ export default nix.lambda((args) => (() => {
       const arch = nix.argOr($_1, "arch", () => "x86_64");
       const readonly = nix.argOr($_1, "readonly", () => false);
       const sysMounts = nix.thunk(() => ({
-        __proto__: pos$8,
-        "/proc": nix.thunk(() => ({ __proto__: pos$1, type: "proc", source: "proc" })),
+        [nix.POS]: pos$8,
+        "/proc": nix.thunk(() => ({ [nix.POS]: pos$1, type: "proc", source: "proc" })),
         "/dev": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: "tmpfs",
           source: "tmpfs",
           options: nix.thunk(() => ["nosuid", "strictatime", "mode=755", "size=65536k"]),
         })),
         "/dev/pts": nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: "devpts",
           source: "devpts",
           options: nix.thunk(() => ["nosuid", "noexec", "newinstance", "ptmxmode=0666", "mode=755", "gid=5"]),
         })),
         "/dev/shm": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: "tmpfs",
           source: "shm",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev", "mode=1777", "size=65536k"]),
         })),
         "/dev/mqueue": nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: "mqueue",
           source: "mqueue",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev"]),
         })),
         "/sys": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: "sysfs",
           source: "sysfs",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev", "ro"]),
         })),
         "/sys/fs/cgroup": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: "cgroup",
           source: "cgroup",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev", "relatime", "ro"]),
         })),
       }));
       const config = nix.thunk(() => nix.app(writeText, "config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             ociVersion: "1.0.0",
-            platform: nix.thunk(() => ({ __proto__: pos$9, os: os, arch: arch })),
+            platform: nix.thunk(() => ({ [nix.POS]: pos$9, os: os, arch: arch })),
             linux: nix.thunk(() => ({
-              __proto__: pos$11,
-              namespaces: nix.thunk(() => nix.builtins.map((type) => ({ __proto__: pos$10, type: type }), nix.thunk(() => ["pid", "network", "mount", "ipc", "uts"]))),
+              [nix.POS]: pos$11,
+              namespaces: nix.thunk(() => nix.builtins.map((type) => ({ [nix.POS]: pos$10, type: type }), nix.thunk(() => ["pid", "network", "mount", "ipc", "uts"]))),
             })),
-            root: nix.thunk(() => ({ __proto__: pos$12, path: "rootfs", readonly: readonly })),
+            root: nix.thunk(() => ({ [nix.POS]: pos$12, path: "rootfs", readonly: readonly })),
             process: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               args: args_2,
-              user: nix.thunk(() => ({ __proto__: pos$13, uid: 0n, gid: 0n })),
+              user: nix.thunk(() => ({ [nix.POS]: pos$13, uid: 0n, gid: 0n })),
               cwd: "/",
             })),
             mounts: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (destination) => nix.lambda((args_3) => (() => {
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
                 const source = nix.arg($_2, "source");
                 const options = nix.argOr($_2, "options", () => null);
                 return {
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   destination: destination,
                   type: type,
                   source: source,

@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const qtVersion = nix.argOr($, "qtVersion", () => 6n);
   const qt$ = nix.thunk(() => (nix.asBool(nix.eq(qtVersion, 5n)) ? nix.force(libsForQt5) : nix.force(qt6Packages)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "mediaelch",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Komet",
           repo: "MediaElch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +39,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/Komet/MediaElch/commit/dbea12fbf2c1fe603819392aa2a181cffa168548.patch",
             hash: "sha256-Lv6rvjKbRNr5XrdZhPyw4S4RRCOnfAGhWgcSLo0gqS8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fix-tmdb-duplicate-include-adult.patch",
             url: "https://github.com/Komet/MediaElch/commit/f68419e746455d3c7eb6d95a4a1da7a6f7a5c505.patch",
             hash: "sha256-u+ScJDFX2IIpjXV58MCp1uJGx9QU+7cbq+e1qZPMWns=",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${libmediainfo}/lib`)]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         HOME: "/tmp",
         LANG: "C.UTF-8",
         QT_QPA_PLATFORM: "offscreen",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkTarget: "unit_test",
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         homepage: "https://mediaelch.de/mediaelch/",
         description: "Media Manager for Kodi",
         mainProgram: "MediaElch",

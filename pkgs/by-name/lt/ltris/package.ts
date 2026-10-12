@@ -20,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "ltris",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/lgames/ltris2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SCFQSV+dh7sTnVrxq+xwMDg8N/2z51pF6brWfq15jto=",
         })))),
       buildInputs: nix.thunk(() => [sdl2_compat, SDL2_mixer, SDL2_image, SDL2_ttf]),
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             pname: "ltris2",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             url: "https://lgames.sourceforge.io/LTris/",
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://lgames.sourceforge.io/LTris/",
         description: "Tetris clone from the LGames series",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

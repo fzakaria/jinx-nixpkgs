@@ -43,21 +43,21 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "programs", "zoxide"));
   const cfgFlags = nix.thunk(() => nix.app(concatStringsSep, " ", nix.thunk(() => nix.sel(cfg, "flags"))));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       programs: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         zoxide: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(mkEnableOption, "zoxide, a smarter cd command that learns your habits")),
           package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "zoxide", nix.thunk(() => ({})))),
-          enableBashIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Bash integration"), { __proto__: pos$1, default: true })),
-          enableZshIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Zsh integration"), { __proto__: pos$2, default: true })),
-          enableFishIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Fish integration"), { __proto__: pos$3, default: true })),
-          enableXonshIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Xonsh integration"), { __proto__: pos$4, default: true })),
+          enableBashIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Bash integration"), { [nix.POS]: pos$1, default: true })),
+          enableZshIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Zsh integration"), { [nix.POS]: pos$2, default: true })),
+          enableFishIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Fish integration"), { [nix.POS]: pos$3, default: true })),
+          enableXonshIntegration: nix.thunk(() => nix.update(nix.app(mkEnableOption, "Xonsh integration"), { [nix.POS]: pos$4, default: true })),
           flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(listOf, str)),
               default: [],
               example: nix.thunk(() => ["--no-cmd", "--cmd j"]),
@@ -67,37 +67,37 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           zsh: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             interactiveShellInit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableZshIntegration")), nix.thunk(() => nix.app(mkAfter, nix.thunk(() => nix.str`eval "$(${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} init zsh ${cfgFlags} )"
 `))))),
           })),
           bash: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             interactiveShellInit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableBashIntegration")), nix.thunk(() => nix.app(mkAfter, nix.thunk(() => nix.str`eval "$(${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} init bash ${cfgFlags} )"
 `))))),
           })),
           fish: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             interactiveShellInit: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enableFishIntegration")), nix.thunk(() => nix.app(mkAfter, nix.thunk(() => nix.str`${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} init fish ${cfgFlags} | source
 `))))),
           })),
           xonsh: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             config: nix.thunk(() => nix.str`execx($(${nix.app(getExe, nix.thunk(() => nix.sel(cfg, "package")))} init xonsh ${cfgFlags}), 'exec', __xonsh__.ctx, filename='zoxide')
 `),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "heisfer"))];

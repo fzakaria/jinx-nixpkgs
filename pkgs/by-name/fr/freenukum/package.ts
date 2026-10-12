@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pname = "freenukum";
   const description = "Clone of the original Duke Nukum 1 Jump'n Run game";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       desktopName: pname,
       name: pname,
       exec: pname,
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           domain: "salsa.debian.org",
           owner: "silwol",
           repo: "freenukum",
@@ -57,7 +57,7 @@ installManPage doc/freenukum.6
 install -Dm644 "${desktopItem}/share/applications/"* -t $out/share/applications/
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Clone of the original Duke Nukum 1 Jump'n Run game",
         homepage: "https://salsa.debian.org/silwol/freenukum",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/silwol/freenukum/-/blob/v${version}/CHANGELOG.md`),
@@ -69,7 +69,7 @@ install -Dm644 "${desktopItem}/share/applications/"* -t $out/share/applications/
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname_1,
         version,
         src,

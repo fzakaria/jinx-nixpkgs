@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     name: "kbd-update-search-paths-patch",
     nodes: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const options = nix.arg($_1, "options");
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           console: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             packages: nix.thunk(() => nix.concat(nix.sel(options, "console", "packages", "default"), [nix.thunk(() => nix.sel(pkgs_1, "terminus_font"))])),
           })),
         };

@@ -78,10 +78,10 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const makePackageSet = nix.thunk(() => nix.builtins.import(nix.path(here, "../make-package-set.nix")));
     const overrideCabal = (f) => (drv) => nix.update(nix.app(nix.sel(drv, "override"), (args_1) => nix.update(args_1, {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         mkDerivation: (drv_1) => nix.app(nix.sel(nix.app(nix.sel(args_1, "mkDerivation"), drv_1), "override"), f),
       })), {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       overrideScope: (scope) => nix.app(overrideCabal, f, nix.thunk(() => nix.app(nix.sel(drv, "overrideScope"), scope))),
     });
     const packageSourceOverrides = (overrides) => (self) => (super$) => nix.app(nix.sel(pkgs, "lib", "mapAttrs"), (name) => (src) => (() => {
@@ -89,110 +89,110 @@ export default nix.lambda((args) => (() => {
         const generateExprs = nix.thunk(() => (nix.asBool(nix.app(isPath, src)) ? nix.sel(self, "callCabal2nix") : nix.sel(self, "callHackage")));
         return nix.app(generateExprs, name, src, nix.thunk(() => ({})));
       })(), overrides);
-    const doCoverage = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$3, doCoverage: true })));
-    const dontCoverage = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$4, doCoverage: false })));
-    const doHaddock = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$5, doHaddock: true })));
-    const dontHaddock = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$6, doHaddock: false })));
-    const doJailbreak = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$7, jailbreak: true })));
-    const dontJailbreak = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$8, jailbreak: false })));
-    const doCheck = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$9, doCheck: true })));
-    const dontCheck = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$10, doCheck: false })));
+    const doCoverage = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$3, doCoverage: true })));
+    const dontCoverage = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$4, doCoverage: false })));
+    const doHaddock = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$5, doHaddock: true })));
+    const dontHaddock = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$6, doHaddock: false })));
+    const doJailbreak = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$7, jailbreak: true })));
+    const dontJailbreak = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$8, jailbreak: false })));
+    const doCheck = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$9, doCheck: true })));
+    const dontCheck = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$10, doCheck: false })));
     const dontCheckIf = (condition) => (nix.asBool(condition) ? nix.force(dontCheck) : nix.sel(lib, "id"));
-    const doBenchmark = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$11, doBenchmark: true })));
-    const dontBenchmark = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$12, doBenchmark: false })));
+    const doBenchmark = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$11, doBenchmark: true })));
+    const dontBenchmark = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$12, doBenchmark: false })));
     const doDistribute = nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         hydraPlatforms: nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.selOr(drv, () => [], "badPlatforms")), nix.thunk(() => nix.selOr(drv, () => nix.sel(lib, "platforms", "all"), "platforms")))),
       })));
-    const dontDistribute = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$14, hydraPlatforms: [] })));
+    const dontDistribute = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$14, hydraPlatforms: [] })));
     const appendConfigureFlag = (x) => nix.app(appendConfigureFlags, nix.thunk(() => [x]));
     const appendConfigureFlags = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         configureFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "configureFlags"), xs)),
       }));
     const appendBuildFlag = (x) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         buildFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildFlags"), [x])),
       }));
     const appendBuildFlags = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         buildFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildFlags"), xs)),
       }));
     const removeConfigureFlag = (x) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$18,
+        [nix.POS]: pos$18,
         configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "remove"), x, nix.thunk(() => nix.selOr(drv, () => [], "configureFlags")))),
       }));
     const addBuildTool = (x) => nix.app(addBuildTools, nix.thunk(() => [x]));
     const addBuildTools = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$19,
+        [nix.POS]: pos$19,
         buildTools: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildTools"), xs)),
       }));
     const addExtraLibrary = (x) => nix.app(addExtraLibraries, nix.thunk(() => [x]));
     const addExtraLibraries = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         extraLibraries: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "extraLibraries"), xs)),
       }));
     const addBuildDepend = (x) => nix.app(addBuildDepends, nix.thunk(() => [x]));
     const addBuildDepends = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         buildDepends: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "buildDepends"), xs)),
       }));
     const addTestToolDepend = (x) => nix.app(addTestToolDepends, nix.thunk(() => [x]));
     const addTestToolDepends = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         testToolDepends: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "testToolDepends"), xs)),
       }));
     const addPkgconfigDepend = (x) => nix.app(addPkgconfigDepends, nix.thunk(() => [x]));
     const addPkgconfigDepends = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$23,
+        [nix.POS]: pos$23,
         "pkg-configDepends": nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "pkg-configDepends"), xs)),
       }));
     const addSetupDepend = (x) => nix.app(addSetupDepends, nix.thunk(() => [x]));
     const addSetupDepends = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         setupHaskellDepends: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "setupHaskellDepends"), xs)),
       }));
     const enableCabalFlag = (x) => (drv) => nix.app(appendConfigureFlag, nix.thunk(() => nix.str`-f${x}`), nix.thunk(() => nix.app(removeConfigureFlag, nix.thunk(() => nix.str`-f-${x}`), drv)));
     const disableCabalFlag = (x) => (drv) => nix.app(appendConfigureFlag, nix.thunk(() => nix.str`-f-${x}`), nix.thunk(() => nix.app(removeConfigureFlag, nix.thunk(() => nix.str`-f${x}`), drv)));
-    const markBroken = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$25, broken: true, hydraPlatforms: [] })));
-    const unmarkBroken = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$26, broken: false })));
+    const markBroken = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$25, broken: true, hydraPlatforms: [] })));
+    const unmarkBroken = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$26, broken: false })));
     const markBrokenVersion = (version) => (drv) => (() => {
       nix.assert_(nix.eq(nix.sel(drv, "version"), version), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/haskell-modules/lib/compose.nix:278:5");
       return nix.app(markBroken, drv);
     })();
-    const markUnbroken = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$27, broken: false })));
-    const disableParallelBuilding = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$28, enableParallelBuilding: false })));
-    const enableLibraryProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$29, enableLibraryProfiling: true })));
-    const disableLibraryProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$30, enableLibraryProfiling: false })));
-    const enableExecutableProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$31, enableExecutableProfiling: true })));
-    const disableExecutableProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$32, enableExecutableProfiling: false })));
-    const enableSharedExecutables = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$33, enableSharedExecutables: true })));
-    const disableSharedExecutables = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$34, enableSharedExecutables: false })));
-    const enableSharedLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$35, enableSharedLibraries: true })));
-    const disableSharedLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$36, enableSharedLibraries: false })));
-    const enableDeadCodeElimination = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$37, enableDeadCodeElimination: true })));
-    const disableDeadCodeElimination = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$38, enableDeadCodeElimination: false })));
-    const enableStaticLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$39, enableStaticLibraries: true })));
-    const disableStaticLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$40, enableStaticLibraries: false })));
-    const enableSeparateBinOutput = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$41, enableSeparateBinOutput: true })));
+    const markUnbroken = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$27, broken: false })));
+    const disableParallelBuilding = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$28, enableParallelBuilding: false })));
+    const enableLibraryProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$29, enableLibraryProfiling: true })));
+    const disableLibraryProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$30, enableLibraryProfiling: false })));
+    const enableExecutableProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$31, enableExecutableProfiling: true })));
+    const disableExecutableProfiling = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$32, enableExecutableProfiling: false })));
+    const enableSharedExecutables = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$33, enableSharedExecutables: true })));
+    const disableSharedExecutables = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$34, enableSharedExecutables: false })));
+    const enableSharedLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$35, enableSharedLibraries: true })));
+    const disableSharedLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$36, enableSharedLibraries: false })));
+    const enableDeadCodeElimination = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$37, enableDeadCodeElimination: true })));
+    const disableDeadCodeElimination = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$38, enableDeadCodeElimination: false })));
+    const enableStaticLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$39, enableStaticLibraries: true })));
+    const disableStaticLibraries = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$40, enableStaticLibraries: false })));
+    const enableSeparateBinOutput = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$41, enableSeparateBinOutput: true })));
     const appendPatch = (x) => nix.app(appendPatches, nix.thunk(() => [x]));
     const appendPatches = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         patches: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "patches"), xs)),
       }));
     const setBuildTargets = (xs) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$43,
+        [nix.POS]: pos$43,
         buildTarget: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", xs)),
       }));
     const setBuildTarget = (x) => nix.app(setBuildTargets, nix.thunk(() => [x]));
-    const doHyperlinkSource = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$44, hyperlinkSource: true })));
-    const dontHyperlinkSource = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$45, hyperlinkSource: false })));
-    const disableHardening = (flags) => nix.app(overrideCabal, (drv) => ({ __proto__: pos$46, hardeningDisable: flags }));
-    const doStrip = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$47, dontStrip: false })));
-    const dontStrip = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$48, dontStrip: true })));
+    const doHyperlinkSource = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$44, hyperlinkSource: true })));
+    const dontHyperlinkSource = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$45, hyperlinkSource: false })));
+    const disableHardening = (flags) => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$46, hardeningDisable: flags }));
+    const doStrip = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$47, dontStrip: false })));
+    const dontStrip = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$48, dontStrip: true })));
     const enableDWARFDebugging = (drv) => nix.app(appendConfigureFlag, "--ghc-options=-g --disable-executable-stripping --disable-library-stripping", nix.thunk(() => nix.app(dontStrip, drv)));
     const sdistTarball = (pkg) => nix.app(nix.sel(lib, "overrideDerivation"), pkg, (drv) => ({
-        __proto__: pos$49,
+        [nix.POS]: pos$49,
         name: nix.thunk(() => nix.str`${nix.sel(drv, "pname")}-source-${nix.sel(drv, "version")}`),
         outputs: nix.thunk(() => ["out"]),
         buildPhase: "./Setup sdist",
@@ -202,7 +202,7 @@ export default nix.lambda((args) => (() => {
         fixupPhase: ":",
       }));
     const documentationTarball = (pkg) => nix.app(nix.sel(pkgs, "lib", "overrideDerivation"), pkg, (drv) => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         name: nix.thunk(() => nix.str`${nix.sel(drv, "name")}-docs`),
         outputs: nix.thunk(() => ["out"]),
         buildPhase: "runHook preHaddock\n./Setup haddock --for-hackage\nrunHook postHaddock\n",
@@ -218,7 +218,7 @@ runHook postInstall
       }));
     const linkWithGold = nix.thunk(() => nix.app(appendConfigureFlag, "--ghc-option=-optl-fuse-ld=gold --ld-option=-fuse-ld=gold --with-ld=ld.gold"));
     const justStaticExecutables = nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$51,
+        [nix.POS]: pos$51,
         enableSharedExecutables: false,
         enableLibraryProfiling: nix.thunk(() => nix.selOr(drv, () => false, "enableExecutableProfiling")),
         isLibrary: false,
@@ -227,7 +227,7 @@ runHook postInstall
         disallowGhcReference: true,
       })));
     const buildFromSdist = (pkg) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$52,
+        [nix.POS]: pos$52,
         src: nix.thunk(() => nix.str`${nix.app(sdistTarball, pkg)}/${nix.sel(pkg, "pname")}-${nix.sel(pkg, "version")}.tar.gz`),
         revision: null,
         editedCabalFile: null,
@@ -243,7 +243,7 @@ runHook postInstall
       const ignoreMainModule = nix.argOr($_1, "ignoreMainModule", () => false);
       const ignorePackages = nix.argOr($_1, "ignorePackages", () => []);
       return (drv) => nix.app(overrideCabal, (_drv) => ({
-          __proto__: pos$53,
+          [nix.POS]: pos$53,
           postBuild: nix.thunk(() => (() => {
             const args_2 = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), ignoreEmptyImports, "--ignore-empty-imports"), nix.concat(nix.app(nix.sel(lib, "optional"), ignoreMainModule, "--ignore-main-module"), nix.builtins.map((pkg) => nix.str`--ignore-package ${pkg}`, ignorePackages))))));
             return nix.add(nix.str`${nix.sel(pkgs, "haskellPackages", "packunused")}/bin/packunused`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(args_2, "")), nix.thunk(() => nix.str` ${args_2}`)));
@@ -252,7 +252,7 @@ runHook postInstall
     })(), formals$2);
     const buildStackProject = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../generic-stack-builder.nix"), nix.thunk(() => ({}))));
     const triggerRebuild = (i) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$54,
+        [nix.POS]: pos$54,
         postUnpack: nix.thunk(() => nix.add(nix.selOr(drv, () => "", "postUnpack"), nix.str`
 # trigger rebuild ${nix.builtins.toString(i)}
 `)),
@@ -262,7 +262,7 @@ runHook postInstall
       const src = nix.arg($_1, "src");
       const version = nix.argOr($_1, "version", () => null);
       return (drv) => nix.app(overrideCabal, (_) => ({
-          __proto__: pos$55,
+          [nix.POS]: pos$55,
           src: src,
           version: nix.thunk(() => (nix.asBool(nix.eq(version, null)) ? nix.sel(drv, "version") : nix.force(version))),
           editedCabalFile: null,
@@ -277,7 +277,7 @@ runHook postInstall
       return (self) => (super$) => (() => {
         const haskellPaths = nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(nix.sel(lib, "hasSuffix"), ".nix")), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.readDir(directory))))));
         const toKeyVal = (file) => ({
-          __proto__: pos$56,
+          [nix.POS]: pos$56,
           name: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => [".nix"]), nix.thunk(() => [""]), file)),
           value: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.add(directory, nix.str`/${file}`)), nix.thunk(() => ({})))),
         });
@@ -285,7 +285,7 @@ runHook postInstall
       })();
     })(), formals$4);
     const __generateOptparseApplicativeCompletion = (exeName) => nix.app(overrideCabal, (drv) => ({
-        __proto__: pos$57,
+        [nix.POS]: pos$57,
         postInstall: nix.thunk(() => nix.add(nix.selOr(drv, () => "", "postInstall"), nix.str`bashCompDir="\${!outputBin}/share/bash-completion/completions"
 zshCompDir="\${!outputBin}/share/zsh/vendor-completions"
 fishCompDir="\${!outputBin}/share/fish/vendor_completions.d"
@@ -303,21 +303,21 @@ grep -F ${exeName} <$bashCompDir/${exeName} >/dev/null || {
       }));
     const generateOptparseApplicativeCompletions = (commands) => (pkg) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2211n)), nix.thunk(() => nix.str`haskellLib.generateOptparseApplicativeCompletions is deprecated in favor of haskellPackages.generateOptparseApplicativeCompletions. Please change ${nix.sel(pkg, "name")} to use the latter and make sure it uses its matching haskell.packages set!`), nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "foldr"), __generateOptparseApplicativeCompletion, pkg, commands)));
     const generateOptparseApplicativeCompletion = (command) => (pkg) => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2211n)), nix.thunk(() => nix.str`haskellLib.generateOptparseApplicativeCompletion is deprecated in favor of haskellPackages.generateOptparseApplicativeCompletions (plural!). Please change ${nix.sel(pkg, "name")} to use the latter and make sure it uses its matching haskell.packages set!`), nix.thunk(() => nix.app(__generateOptparseApplicativeCompletion, command, pkg)));
-    const allowInconsistentDependencies = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ __proto__: pos$58, allowInconsistentDependencies: true })));
+    const allowInconsistentDependencies = nix.thunk(() => nix.app(overrideCabal, (drv) => ({ [nix.POS]: pos$58, allowInconsistentDependencies: true })));
     const __CabalEagerPkgConfigWorkaround = nix.thunk(() => (() => {
       const propagatedPlainBuildInputs = (drvs) => nix.builtins.map((i) => nix.sel(i, "val"), nix.thunk(() => nix.builtins.genericClosure(nix.thunk(() => ({
-            __proto__: pos$61,
-            startSet: nix.thunk(() => nix.builtins.map((drv) => ({ __proto__: pos$59, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv }), drvs)),
+            [nix.POS]: pos$61,
+            startSet: nix.thunk(() => nix.builtins.map((drv) => ({ [nix.POS]: pos$59, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv }), drvs)),
             operator: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$5);
               const val = nix.arg($_1, "val");
               return (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), val))) ? [] : nix.builtins.concatMap((drv) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), drv))) ? [] : [
-                  nix.thunk(() => ({ __proto__: pos$60, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv })),
+                  nix.thunk(() => ({ [nix.POS]: pos$60, key: nix.thunk(() => nix.sel(drv, "outPath")), val: drv })),
                 ]), nix.thunk(() => nix.concat(nix.selOr(val, () => [], "buildInputs"), nix.selOr(val, () => [], "propagatedBuildInputs")))));
             })(), formals$5),
           })))));
       return nix.app(overrideCabal, (old) => ({
-          __proto__: pos$62,
+          [nix.POS]: pos$62,
           benchmarkPkgconfigDepends: nix.thunk(() => nix.app(propagatedPlainBuildInputs, nix.thunk(() => nix.selOr(old, () => [], "benchmarkPkgconfigDepends")))),
           executablePkgconfigDepends: nix.thunk(() => nix.app(propagatedPlainBuildInputs, nix.thunk(() => nix.selOr(old, () => [], "executablePkgconfigDepends")))),
           libraryPkgconfigDepends: nix.thunk(() => nix.app(propagatedPlainBuildInputs, nix.thunk(() => nix.selOr(old, () => [], "libraryPkgconfigDepends")))),
@@ -325,7 +325,7 @@ grep -F ${exeName} <$bashCompDir/${exeName} >/dev/null || {
         }));
     })());
     return {
-      __proto__: pos$63,
+      [nix.POS]: pos$63,
       makePackageSet,
       overrideCabal,
       packageSourceOverrides,

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
       const pname = "baudline";
       const version = "1.08";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20230130224632/https://www.baudline.com/baudline_${version}_linux_x86_64.tar.gz`),
           hash: "sha256-RG8QPSXHo2qfOEn6eWWTh0ilg44tI1KyjXFm+SYnKKM=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20230130224632/https://www.baudline.com/baudline_${version}_linux_i686.tar.gz`),
           hash: "sha256-2A13FyUl4NNWzRConw6gGjBaHxCXYlwtgxbz0ARgI28=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`baudline isn't supported (yet?) on ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
@@ -50,7 +50,7 @@ for prog in "$out"/bin/*; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Scientific signal analysis application",
         longDescription: "Baudline is a time-frequency browser designed for scientific\nvisualization of the spectral domain.  Signal analysis is performed by\nFourier, correlation, and raster transforms that create colorful\nspectrograms with vibrant detail.  Conduct test and measurement\nexperiments with the built in function generator, or play back audio\nfiles with a multitude of effects and filters.  The baudline signal\nanalyzer combines fast digital signal processing, versatile high speed\ndisplays, and continuous capture tools for hunting down and studying\nelusive signal characteristics.\n",
         homepage: "http://www.baudline.com/",
@@ -63,7 +63,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

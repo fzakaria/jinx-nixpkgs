@@ -18,21 +18,21 @@ export default nix.lambda((args) => (() => {
       const pname = "arphic-uming";
       const version = "0.2.20080216.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://ubuntu/pool/main/f/fonts-arphic-uming/fonts-arphic-uming_${version}.orig.tar.bz2`),
           hash: "sha256-48GeBOp6VltKz/bx5CSAhNLhB1LjBb991sdugIYNwds=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [mkfontscale, mkfontdir]);
       const installPhase = "runHook preInstall\n\ninstall -D -v uming.ttc $out/share/fonts/truetype/arphic-uming.ttc\ncd $out/share/fonts\nmkfontdir\nmkfontscale\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CJK Unicode font Ming style",
         homepage: "https://www.freedesktop.org/wiki/Software/CJKUnifonts/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "arphicpl")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "changlinli"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

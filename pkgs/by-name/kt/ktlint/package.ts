@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ktlint",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/pinterest/ktlint/releases/download/${nix.sel(finalAttrs, "version")}/ktlint`),
           sha256: "sha256-o/1iAgfVxA2myniblef4I8VOhUt/ref2E+kQlqNwbXU=",
         })))),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/ktlint --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre_headless, gnused]))}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Anti-bikeshedding Kotlin linter with built-in formatter",
         homepage: "https://ktlint.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

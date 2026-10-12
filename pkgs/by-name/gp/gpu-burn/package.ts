@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const gencodeString = nix.thunk(() => nix.attr(from_2, "gencodeString"));
   const isJetsonBuild = nix.thunk(() => nix.attr(from_2, "isJetsonBuild"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gpu-burn",
       version: "0-unstable-2026-05-27",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "wilicc",
           repo: "gpu-burn",
           rev: "dfc30426a45613a36b5da53ef901a1e29d3db374",
@@ -59,14 +59,14 @@ substituteInPlace Makefile \\
         nix.thunk(() => nix.str`IS_JETSON=${nix.app(boolToString, isJetsonBuild)}`),
         "COMPUTE=",
       ]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NVCCFLAGS: gencodeString })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NVCCFLAGS: gencodeString })),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,share}\ninstall -Dm755 gpu_burn $out/bin/\ninstall -Dm644 compare.fatbin $out/share/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         badPlatforms: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.asBool(cudaSupport)), nix.thunk(() => nix.sel(lib, "platforms", "all")))),
         broken: nix.thunk(() => !nix.asBool(cudaSupport)),
         description: "Multi-GPU CUDA stress test",

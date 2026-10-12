@@ -14,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "alibabacloud-darabonba-time",
       version: "0.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "alibabacloud_darabonba_time",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-CtnHsGllcNGj9AEGzHd391X9krqg0dyrW333jd5bki0=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_darabonba_time"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Alibaba Cloud Darabonba Time SDK Library for Python",
         homepage: "https://github.com/aliyun/darabonba-time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

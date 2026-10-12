@@ -15,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const hareHook = nix.arg($, "hareHook");
   const hareThirdParty = nix.arg($, "hareThirdParty");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "hare-lsp",
       version: "0.2.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~whynothugo",
           repo: "hare-lsp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [hareHook, nix.thunk(() => nix.sel(hareThirdParty, "hare-json"))]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language server implementation for Hare",
         homepage: "https://git.sr.ht/~whynothugo/hare-lsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

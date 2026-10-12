@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, dev_only_shellcheck]);
       const spath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fzf, coreutils, libxml2, libxslt, jing_trang, findutils, gnugrep, gnused])));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grahamc",
           repo: "xmloscopy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +46,7 @@ wrapProgram $out/bin/xmloscopy \\
   --set PATH "${spath}"
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XML debugger",
         mainProgram: "xmloscopy",
         homepage: "https://github.com/grahamc/xmloscopy",
@@ -54,7 +54,7 @@ wrapProgram $out/bin/xmloscopy \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         nativeBuildInputs,

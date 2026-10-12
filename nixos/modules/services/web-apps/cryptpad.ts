@@ -65,68 +65,68 @@ export default nix.lambda((args) => (() => {
   const mainDomain = nix.thunk(() => nix.app(nix.sel(strings, "removePrefix"), "https://", nix.thunk(() => nix.sel(cfg, "settings", "httpUnsafeOrigin"))));
   const sandboxDomain = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "httpSafeOrigin"), null)) ? nix.force(mainDomain) : nix.app(nix.sel(strings, "removePrefix"), "https://", nix.thunk(() => nix.sel(cfg, "settings", "httpSafeOrigin")))));
   return {
-    __proto__: pos$45,
+    [nix.POS]: pos$45,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         cryptpad: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "cryptpad")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "cryptpad", nix.thunk(() => ({})))),
           configureNginx: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               description: "Configure Nginx as a reverse proxy for Cryptpad.\nNote that this makes some assumptions on your setup, and sets settings that will\naffect other virtualHosts running on your Nginx instance, if any.\nAlternatively you can configure a reverse-proxy of your choice.\n",
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               description: "Cryptpad configuration settings.\nSee <https://github.com/cryptpad/cryptpad/blob/main/config/config.example.js> for a more extensive\nreference documentation.\nTest your deployed instance through `https://<domain>/checkup/`.\n",
               type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  __proto__: pos$14,
+                  [nix.POS]: pos$14,
                   freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$13,
+                    [nix.POS]: pos$13,
                     httpUnsafeOrigin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$2,
+                        [nix.POS]: pos$2,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         example: "https://cryptpad.example.com",
                         default: "",
                         description: "This is the URL that users will enter to load your instance",
                       })))),
                     httpSafeOrigin: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$3,
+                        [nix.POS]: pos$3,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                         example: "https://cryptpad-ui.example.com. Apparently optional but recommended.",
                         description: "Cryptpad sandbox URL",
                       })))),
                     httpAddress: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$4,
+                        [nix.POS]: pos$4,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "127.0.0.1",
                         description: "Address on which the Node.js server should listen",
                       })))),
                     httpPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$5,
+                        [nix.POS]: pos$5,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 3000n,
                         description: "Port on which the Node.js server should listen",
                       })))),
                     websocketPort: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$6,
+                        [nix.POS]: pos$6,
                         type: nix.thunk(() => nix.sel(types, "port")),
                         default: 3003n,
                         description: "Port for the websocket that needs to be separate",
                       })))),
                     maxWorkers: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "int")))),
                         default: null,
                         description: "Number of child processes, defaults to number of cores available",
                       })))),
                     adminKeys: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$8,
+                        [nix.POS]: pos$8,
                         type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                         default: [],
                         description: "List of public signing keys of users that can access the admin panel",
@@ -135,25 +135,25 @@ export default nix.lambda((args) => (() => {
                         ]),
                       })))),
                     logToStdout: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$9,
+                        [nix.POS]: pos$9,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         description: "Controls whether log output should go to stdout of the systemd service",
                       })))),
                     logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$10,
+                        [nix.POS]: pos$10,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "info",
                         description: "Controls log level",
                       })))),
                     blockDailyCheck: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$11,
+                        [nix.POS]: pos$11,
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         description: "Disable telemetry. This setting is only effective if the 'Disable server telemetry'\nsetting in the admin menu has been untouched, and will be ignored by cryptpad once\nthat option is set either way.\nNote that due to the service confinement, just enabling the option in the admin\nmenu will not be able to resolve DNS and fail; this setting must be set as well.\n",
                       })))),
                     installMethod: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "nixos",
                         description: "Install method is listed in telemetry if you agree to it through the consentToContact\nsetting in the admin panel.\n",
@@ -166,18 +166,18 @@ export default nix.lambda((args) => (() => {
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             systemd: nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               services: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 cryptpad: nix.thunk(() => ({
-                  __proto__: pos$21,
+                  [nix.POS]: pos$21,
                   description: "Cryptpad service",
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   after: nix.thunk(() => ["network.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$19,
+                    [nix.POS]: pos$19,
                     BindReadOnlyPaths: nix.thunk(() => [cryptpadConfigFile, "/proc", "/dev/urandom"]),
                     DynamicUser: true,
                     Environment: nix.thunk(() => [
@@ -231,21 +231,21 @@ export default nix.lambda((args) => (() => {
                     ]),
                     UMask: "0077",
                   })),
-                  confinement: nix.thunk(() => ({ __proto__: pos$20, enable: true, binSh: null, mode: "chroot-only" })),
+                  confinement: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true, binSh: null, mode: "chroot-only" })),
                 })),
               })),
             })),
           })),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "settings", "blockDailyCheck")) && nix.asBool(nix.builtins.elem(nix.thunk(() => nix.sel(cfg, "settings", "httpAddress")), nix.thunk(() => ["127.0.0.1", "::1"]))))), nix.thunk(() => ({
-              __proto__: pos$29,
+              [nix.POS]: pos$29,
               systemd: nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 services: nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   cryptpad: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$25,
+                      [nix.POS]: pos$25,
                       IPAddressAllow: nix.thunk(() => ["localhost"]),
                       IPAddressDeny: nix.thunk(() => ["any"]),
                     })),
@@ -254,15 +254,15 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "settings", "blockDailyCheck"))), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               systemd: nix.thunk(() => ({
-                __proto__: pos$33,
+                [nix.POS]: pos$33,
                 services: nix.thunk(() => ({
-                  __proto__: pos$32,
+                  [nix.POS]: pos$32,
                   cryptpad: nix.thunk(() => ({
-                    __proto__: pos$31,
+                    [nix.POS]: pos$31,
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$30,
+                      [nix.POS]: pos$30,
                       BindReadOnlyPaths: nix.thunk(() => [
                         "-/etc/resolv.conf",
                         "-/run/systemd",
@@ -275,28 +275,28 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               assertions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "httpUnsafeOrigin"), "")),
                   message: "services.cryptpad.settings.httpUnsafeOrigin is required",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$36,
+                  [nix.POS]: pos$36,
                   assertion: nix.thunk(() => nix.app(nix.sel(strings, "hasPrefix"), "https://", nix.thunk(() => nix.sel(cfg, "settings", "httpUnsafeOrigin")))),
                   message: "services.cryptpad.settings.httpUnsafeOrigin must start with https://",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$37,
+                  [nix.POS]: pos$37,
                   assertion: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "settings", "httpSafeOrigin"), null)) || nix.asBool(nix.app(nix.sel(strings, "hasPrefix"), "https://", nix.thunk(() => nix.sel(cfg, "settings", "httpSafeOrigin")))))),
                   message: "services.cryptpad.settings.httpSafeOrigin must start with https:// (or be unset)",
                 })),
               ]),
               services: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 nginx: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   enable: true,
                   recommendedTlsSettings: true,
                   recommendedProxySettings: true,
@@ -305,19 +305,19 @@ export default nix.lambda((args) => (() => {
                   virtualHosts: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                       nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`${mainDomain}`, nix.thunk(() => ({
-                          __proto__: pos$41,
+                          [nix.POS]: pos$41,
                           serverAliases: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "httpSafeOrigin"), null)), nix.thunk(() => [sandboxDomain]))),
                           enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                           forceSSL: true,
                           locations: nix.thunk(() => ({
-                            __proto__: pos$40,
+                            [nix.POS]: pos$40,
                             "/": nix.thunk(() => ({
-                              __proto__: pos$38,
+                              [nix.POS]: pos$38,
                               proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "httpAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "httpPort")))}`),
                               extraConfig: "client_max_body_size 150m;\n",
                             })),
                             "/cryptpad_websocket": nix.thunk(() => ({
-                              __proto__: pos$39,
+                              [nix.POS]: pos$39,
                               proxyPass: nix.thunk(() => nix.str`http://${nix.sel(cfg, "settings", "httpAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "settings", "websocketPort")))}`),
                               proxyWebsockets: true,
                             })),

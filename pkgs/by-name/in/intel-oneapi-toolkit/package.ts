@@ -78,7 +78,7 @@ export default nix.lambda((args) => (() => {
     const downloadPage = nix.arg($_1, "downloadPage");
     const file = nix.arg($_1, "file");
     return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: "update-intel-oneapi",
           runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts]),
           text: nix.thunk(() => nix.str`download_page=${nix.app(nix.sel(lib, "escapeShellArg"), downloadPage)}
@@ -203,7 +203,7 @@ sed -i "s|hash = \\".*\\";|hash = \\"$hash\\";|" "$file"
     const tbb = [];
     const mkl = nix.thunk(() => nix.concat(mpi, pti));
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       "dpcpp-cpp-compiler": dpcpp_cpp_compiler,
       dpcpp_dbg,
       "dpcpp-ct": dpcpp_ct,
@@ -216,7 +216,7 @@ sed -i "s|hash = \\".*\\";|hash = \\"$hash\\";|" "$file"
     };
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "intel-oneapi-toolkit",
       versionYear: "2026",
       versionMajor: "0",
@@ -226,7 +226,7 @@ sed -i "s|hash = \\".*\\";|hash = \\"$hash\\";|" "$file"
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: "https://registrationcenter-download.intel.com/akdlm/IRC_NAS/c9c3d3e3-ddb4-490e-bb41-6e9041ba32a7/intel-oneapi-toolkit-2026.0.1.27_offline.sh",
           hash: "sha256-MCMdAN4BCIkuptUOeFCRtAy4eQuwBryl5PXmRzWjPPo=",
         })))),
@@ -293,18 +293,18 @@ runHook postInstall
         "liboutputgenerator.so",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(mkUpdateScript, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             file: "package.nix",
             downloadPage: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit-download.html",
           })))),
-        stdenv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv.nix"), nix.thunk(() => ({ __proto__: pos$5, kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$6, kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        stdenv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Intel oneAPI Toolkit",
         homepage: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit.html",
         license: nix.thunk(() => (() => {

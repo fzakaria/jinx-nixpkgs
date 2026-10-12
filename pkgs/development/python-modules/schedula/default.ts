@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.78";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "vinci1it2000",
           repo: "schedula",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +45,7 @@ export default nix.lambda((args) => (() => {
         const plot = nix.thunk(() => [requests, graphviz, regex, flask]);
         const sphinx_1 = nix.thunk(() => nix.concat([sphinx_1, sphinx_click], plot));
         const web = nix.thunk(() => [requests, regex, flask]);
-        return { __proto__: pos$2, io, parallel, plot, sphinx: sphinx_1, web };
+        return { [nix.POS]: pos$2, io, parallel, plot, sphinx: sphinx_1, web };
       })());
       const nativeCheckInputs = nix.thunk(() => nix.concat([cryptography, ddt, sphinx, pytestCheckHook], nix.concat(nix.sel(schedula, "optional-dependencies", "io"), nix.concat(nix.sel(schedula, "optional-dependencies", "parallel"), nix.sel(schedula, "optional-dependencies", "plot")))));
       const disabledTests = nix.thunk(() => ["test_long_description"]);
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const pythonImportsCheck = nix.thunk(() => ["schedula"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Smart function scheduler for dynamic flow-based programming",
         homepage: "https://github.com/vinci1it2000/schedula",
         changelog: nix.thunk(() => nix.str`https://github.com/vinci1it2000/schedula/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

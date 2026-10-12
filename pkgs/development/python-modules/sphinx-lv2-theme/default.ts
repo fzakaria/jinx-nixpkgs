@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LV2",
           repo: "sphinx_lv2_theme",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [sphinx]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_lv2_theme"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx theme in the style of the LV2 plugin",
         homepage: "https://gitlab.com/lv2/sphinx_lv2_theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

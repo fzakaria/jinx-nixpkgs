@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const flint = nix.argOr($, "flint", () => null);
   nix.assert_((!nix.asBool(withFlint) || nix.asBool(!nix.eq(flint, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ec/eclib/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "eclib",
       version: "20250627",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/JohnCremona/eclib/releases/download/${nix.sel(finalAttrs, "version")}/eclib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-uI1LUmEuSRxUFZRtnjXyBiyhAV7n+74LYfFY+nTLS8k=",
         })))),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Elliptic curve tools",
         homepage: "https://github.com/JohnCremona/eclib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

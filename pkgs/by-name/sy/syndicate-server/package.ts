@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "syndicate-server",
       version: "0.50.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.syndicate-lang.org",
           owner: "syndicate-lang",
           repo: "syndicate-rs",
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-lR36UAMedPdfvX613adxxRzJe+Ri09hiZYanyu7xbLU=",
       nativeBuildInputs: nix.thunk(() => [pkg_config, versionCheckHook]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
       doCheck: false,
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Syndicate broker server",
         homepage: "https://synit.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.8.3";
   const webext = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/browsh-org/browsh/releases/download/v${version}/browsh-${version}.xpi`),
       hash: "sha256-wLctfGHDCgy3nMG/nc882qNjHOAp8VeOZcEWJD7QThY=",
     }))));
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "browsh";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/interfacer`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "browsh-org",
           repo: "browsh",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fully-modern text-based browser, rendering to TTY and browsers",
         mainProgram: "browsh",
         homepage: "https://www.brow.sh/",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version: version_1,
         pname,
         sourceRoot,

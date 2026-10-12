@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-kQiYHcF01kAKftSRfPSvkdrz64NXjUVwwHJrksKjLno=",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [beautifulsoup4, html5lib, lxml, markdown, pyyaml, soupsieve, wcmatch]);
       const pythonImportsCheck = nix.thunk(() => ["pyspelling"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/facelessuser/pyspelling/blob/${version}/docs/src/markdown/about/changelog.md`),
         description: "Spell checker",
         homepage: "https://pypi.org/project/pyspelling",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

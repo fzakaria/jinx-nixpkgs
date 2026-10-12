@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "zsh-autoenv",
       version: "0-unstable-2017-12-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Tarrasch",
           repo: "zsh-autoenv",
           rev: "2c8cfbcea8e7286649840d7ec98d7e9d5e1d45a0",
@@ -37,7 +37,7 @@ SCRIPT
 chmod +x $out/bin/zsh-autoenv-share
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Automatically sources whitelisted .autoenv.zsh files",
         longDescription: "zsh-autoenv automatically sources (known/whitelisted)\n.autoenv.zsh files, typically used in project root directories.\nIt handles \"enter\" and \"leave\" events, nesting, and stashing of\nvariables (overwriting and restoring).\n",
         homepage: "https://github.com/Tarrasch/zsh-autoenv",

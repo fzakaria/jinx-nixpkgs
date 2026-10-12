@@ -15,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const isPy3k = nix.arg($, "isPy3k");
   const buildbot = nix.arg($, "buildbot");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "buildbot_pkg",
       src: nix.thunk(() => nix.attr(buildbot, "src")),
       version: nix.thunk(() => nix.attr(buildbot, "version")),
       pyproject: true,
       postPatch: "cd pkg\n# Their listdir function filters out `node_modules` folders.\n# Do we have to care about that with Nix...?\nsubstituteInPlace buildbot_pkg.py --replace \"os.listdir = listdir\" \"\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         BUILDBOT_VERSION: nix.thunk(() => nix.sel(buildbot, "version")),
       })),
       "build-system": nix.thunk(() => [setuptools]),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["buildbot_pkg"]),
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://buildbot.net/",
         description: "Buildbot Packaging Helper",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),

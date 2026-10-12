@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const apacheHttpd = nix.arg($, "apacheHttpd");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mod_mbtiles",
       version: "0-unstable-2022-05-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "systemed",
           repo: "mod_mbtiles",
           rev: "f9d12a9581820630dd923c3c90aa8dcdcf65cb87",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "apxs -lsqlite3 -ca mod_mbtiles.c\n",
       installPhase: "runHook preInstall\ninstall -D .libs/mod_mbtiles.so -t $out/modules\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/systemed/mod_mbtiles",
         description: "Serve tiles with Apache directly from an .mbtiles file",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

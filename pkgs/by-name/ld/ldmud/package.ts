@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => false);
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ldmud",
       version: "3.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ldmud",
           repo: "ldmud",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,11 +68,11 @@ export default nix.lambda((args) => (() => {
 export LDFLAGS="-L${libmysqlclient}/lib/mysql"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export LDFLAGS="$LDFLAGS -L${libiconv}/lib -liconv"
 `)))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
       installTargets: nix.thunk(() => ["install-driver", "install-utils", "install-headers"]),
       postInstall: "mkdir -p \"$out/share/\"\ncp -v ../COPYRIGHT $out/share/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Gamedriver for LPMuds including a LPC compiler, interpreter and runtime",
         homepage: "https://github.com/ldmud/ldmud",
         changelog: nix.thunk(() => nix.str`https://github.com/ldmud/ldmud/blob/${nix.sel(finalAttrs, "version")}/HISTORY`),

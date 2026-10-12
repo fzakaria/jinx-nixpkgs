@@ -62,7 +62,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const elpi_version = nix.argOr($, "elpi-version", () => null);
   const default_elpi_version = nix.thunk(() => (nix.asBool(!nix.eq(elpi_version, null)) ? nix.force(elpi_version) : (() => {
-    const case$ = (case$_1) => (out) => ({ __proto__: pos$1, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
         nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.20", "8.20")), "2.0.7")),
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(case$, "8.11", "1.11.4")),
       ]), nix.thunk(() => nix.sel(coq, "ocamlPackages", "elpi", "version")));
   })()));
-  const elpi = nix.thunk(() => nix.app(nix.sel(coq, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ __proto__: pos$2, version: default_elpi_version }))));
+  const elpi = nix.thunk(() => nix.app(nix.sel(coq, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, version: default_elpi_version }))));
   const propagatedBuildInputs_wo_elpi = nix.thunk(() => [nix.thunk(() => nix.sel(coq, "ocamlPackages", "findlib"))]);
   const derivation = nix.thunk(() => nix.app(nix.sel(mkRocqDerivation, "override"), nix.thunk(() => ({
-      __proto__: pos$4,
-      dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ __proto__: pos$3, version: "3.21.1" })))),
+      [nix.POS]: pos$4,
+      dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, version: "3.21.1" })))),
     })), nix.thunk(() => ({
-      __proto__: pos$42,
+      [nix.POS]: pos$42,
       useCoq: true,
       namePrefix: nix.thunk(() => ["coq"]),
       pname: "elpi",
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       owner: "LPCIC",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ __proto__: pos$5, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$5, case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.20", "8.20")), "2.6.0")),
@@ -105,147 +105,147 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        __proto__: pos$40,
+        [nix.POS]: pos$40,
         "2.6.0": nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           hash: "sha256-23BHq1NFUkI3ayXnGUwiGFySLyY3EuH4RyMgAhQqI4g=",
         })),
         "2.5.2": nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           hash: "sha256-lLzjPrbVB3rrqox528YiheUb0u89R84Xmrgkn0oplOs=",
         })),
         "2.5.0": nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           hash: "sha256-Z5xjO83X/ZoTQlWnVupGXPH3HuJefr57Kv128I0dltg=",
         })),
         "2.4.0": nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           hash: "sha256-W2+vVGExLLux8e0nSZESSoMVvrLxhL6dmXkb+JuKiqc=",
         })),
         "2.3.0": nix.thunk(() => ({
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           hash: "sha256-XVOI+s8Qpa7f17+Xq0y7IGPLFeJqo+cDcd3zfMuO7UU=",
         })),
         "2.2.0": nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           hash: "sha256-rADEoqTXM7/TyYkUKsmCFfj6fjpWdnZEOK++5oLfC/I=",
         })),
         "2.0.1": nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           hash: "sha256-cuoPsEJ+JRLVc9Golt2rJj4P7lKltTrrmQijjoViooc=",
         })),
         "2.0.0": nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           hash: "sha256-A/cH324M21k3SZ7+YWXtaYEbu6dZQq3K0cb1RMKjbsM=",
         })),
         "1.19.0": nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           hash: "sha256-kGoo61nJxeG/BqV+iQaV3iinwPStND+7+fYMxFkiKrQ=",
         })),
         "1.18.0": nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           hash: "sha256-2fCOlhqi4YkiL5n8SYHuc3pLH+DArf9zuMH7IhpBc2Y=",
         })),
         "1.17.0": nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           hash: "sha256-J8GatRKFU0ekNCG3V5dBI+FXypeHcLgC5QJYGYzFiEM=",
         })),
         "1.15.6": nix.thunk(() => ({
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           hash: "sha256-qc0q01tW8NVm83801HHOBHe/7H1/F2WGDbKO6nCXfno=",
         })),
         "1.15.1": nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           hash: "sha256-NT2RlcIsFB9AvBhMxil4ZZIgx+KusMqDflj2HgQxsZg=",
         })),
         "1.14.0": nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           hash: "sha256:1v2p5dlpviwzky2i14cj7gcgf8cr0j54bdm9fl5iz1ckx60j6nvp",
         })),
         "1.13.0": nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           hash: "sha256:1j7s7dlnjbw222gnbrsjgmjck1yrx7h6hwm8zikcyxi0zys17w7n",
         })),
         "1.12.1": nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           hash: "sha256-4mO6/co7NcIQSGIQJyoO8lNWXr6dqz+bIYPO/G0cPkY=",
         })),
         "1.11.2": nix.thunk(() => ({
-          __proto__: pos$22,
+          [nix.POS]: pos$22,
           hash: "sha256:0qk5cfh15y2zrja7267629dybd3irvxk1raz7z8qfir25a81ckd4",
         })),
         "1.11.1": nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           hash: "sha256:10j076vc2hdcbm15m6s7b6xdzibgfcbzlkgjnlkr2vv9k13qf8kc",
         })),
         "1.10.1": nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           hash: "sha256:1zsyx26dvj7pznfd2msl2w7zbw51q1nsdw0bdvdha6dga7ijf7xk",
         })),
         "1.9.7": nix.thunk(() => ({
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           hash: "sha256:0rvn12h9dpk9s4pxy32p8j0a1h7ib7kg98iv1cbrdg25y5vs85n1",
         })),
         "1.9.5": nix.thunk(() => ({
-          __proto__: pos$26,
+          [nix.POS]: pos$26,
           hash: "sha256:0gjdwmb6bvb5gh0a6ra48bz5fb3pr5kpxijb7a8mfydvar5i9qr6",
         })),
         "1.9.4": nix.thunk(() => ({
-          __proto__: pos$27,
+          [nix.POS]: pos$27,
           hash: "sha256:0nii7238mya74f9g6147qmpg6gv6ic9b54x5v85nb6q60d9jh0jq",
         })),
         "1.9.3": nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           hash: "sha256:198irm800fx3n8n56vx1c6f626cizp1d7jfkrc6ba4iqhb62ma0z",
         })),
         "1.9.2": nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           hash: "sha256:1rr2fr8vjkc0is7vh1461aidz2iwkigdkp6bqss4hhv0c3ijnn07",
         })),
         "1.8.3_8.12": nix.thunk(() => ({
-          __proto__: pos$30,
+          [nix.POS]: pos$30,
           hash: "sha256:15z2l4zy0qpw0ws7bvsmpmyv543aqghrfnl48nlwzn9q0v89p557",
           version: "1.8.3",
         })),
         "1.8.2_8.12": nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           hash: "sha256:1n6jwcdazvjgj8vsv2r9zgwpw5yqr5a1ndc2pwhmhqfl04b5dk4y",
           version: "1.8.2",
         })),
         "1.8.1": nix.thunk(() => ({
-          __proto__: pos$32,
+          [nix.POS]: pos$32,
           hash: "sha256:1fbbdccdmr8g4wwpihzp4r2xacynjznf817lhijw6kqfav75zd0r",
         })),
         "1.8.0": nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           hash: "sha256:13ywjg94zkbki22hx7s4gfm9rr87r4ghsgan23xyl3l9z8q0idd1",
         })),
         "1.7.0": nix.thunk(() => ({
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           hash: "sha256:1ws5cqr0xawv69prgygbl3q6dgglbaw0vc397h9flh90kxaqgyh8",
         })),
         "1.6.3_8.11": nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           hash: "sha256:1j340cr2bv95clzzkkfmsjkklham1mj84cmiyprzwv20q89zr1hp",
           version: "1.6.3",
         })),
         "1.6.2_8.11": nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           hash: "sha256:06xrx0ljilwp63ik2sxxr7h617dgbch042xfcnfpy5x96br147rn",
           version: "1.6.2",
         })),
         "1.6.1_8.11": nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           hash: "sha256:0yyyh35i1nb3pg4hw7cak15kj4y6y9l84nwar9k1ifdsagh5zq53",
           version: "1.6.1",
         })),
         "1.6.0_8.11": nix.thunk(() => ({
-          __proto__: pos$38,
+          [nix.POS]: pos$38,
           hash: "sha256:0ahxjnzmd7kl3gl38kyjqzkfgllncr2ybnw8bvgrc6iddgga7bpq",
           version: "1.6.0",
         })),
         "1.6.0": nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           hash: "sha256:0kf99i43mlf750fr7fric764mm495a53mg5kahnbp6zcjcxxrm0b",
         })),
       })),
@@ -256,28 +256,28 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => nix.concat(propagatedBuildInputs_wo_elpi, [elpi])),
       preConfigure: "make elpi/dune || true\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$41,
+        [nix.POS]: pos$41,
         description: "Coq plugin embedding ELPI",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "cohencyril"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
       })),
     }))));
   const patched_derivation1 = nix.thunk(() => nix.app(nix.sel(derivation, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(o, "elpi-version")), nix.thunk(() => ({
-        __proto__: pos$44,
+        [nix.POS]: pos$44,
         propagatedBuildInputs: nix.thunk(() => nix.concat(propagatedBuildInputs_wo_elpi, [
-          nix.thunk(() => nix.app(nix.sel(coq, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ __proto__: pos$43, version: nix.thunk(() => nix.sel(o, "elpi-version")) })))),
+          nix.thunk(() => nix.app(nix.sel(coq, "ocamlPackages", "elpi", "override"), nix.thunk(() => ({ [nix.POS]: pos$43, version: nix.thunk(() => nix.sel(o, "elpi-version")) })))),
         ])),
       })))));
   const patched_derivation2 = nix.thunk(() => nix.app(nix.sel(patched_derivation1, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(o, "version"), null)) && nix.asBool((nix.asBool(nix.eq(nix.sel(o, "version"), "dev")) || nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "2.2.0", nix.thunk(() => nix.sel(o, "version")))))))), nix.thunk(() => ({
-        __proto__: pos$45,
+        [nix.POS]: pos$45,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(coq, "ocamlPackages", "ppx_optcomp"))])),
       })))));
   const patched_derivation3 = nix.thunk(() => nix.app(nix.sel(patched_derivation2, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(o, "version"), null)) && nix.asBool(nix.eq(nix.sel(o, "version"), "2.4.0")))), nix.thunk(() => ({
-        __proto__: pos$46,
+        [nix.POS]: pos$46,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), [stdlib])),
       })))));
   return nix.app(nix.sel(patched_derivation3, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(o, "version"), null)) && nix.asBool((nix.asBool(nix.eq(nix.sel(o, "version"), "dev")) || nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "2.5.0", nix.thunk(() => nix.sel(o, "version")))))))), nix.thunk(() => ({
-        __proto__: pos$47,
+        [nix.POS]: pos$47,
         configurePhase: "make dune-files || true\n",
         buildPhase: "dune build -p rocq-elpi @install ${enableParallelBuilding:+-j $NIX_BUILD_CORES}\n",
         installPhase: nix.thunk(() => nix.str`dune install --root . rocq-elpi --prefix=$out --libdir $OCAMLFIND_DESTDIR

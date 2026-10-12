@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const suitesparseVersion = "7.12.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mongoose",
       version: "3.3.6",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DrTimothyAldenDavis",
           repo: "SuiteSparse",
           tag: nix.thunk(() => nix.str`v${suitesparseVersion}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nfor f in SuiteSparse_config Mongoose; do\n  (cd $f && cmakeConfigurePhase && make -j$NIX_BUILD_CORES)\ndone\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nfor f in SuiteSparse_config Mongoose; do\n  (cd $f/build && make install -j$NIX_BUILD_CORES)\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Graph Coarsening and Partitioning Library",
         mainProgram: "suitesparse_mongoose",
         homepage: "https://github.com/DrTimothyAldenDavis/SuiteSparse/tree/dev/Mongoose",

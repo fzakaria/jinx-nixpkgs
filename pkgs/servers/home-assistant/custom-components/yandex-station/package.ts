@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const domain = "yandex_station";
       const version = "3.21.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "AlexxIT",
           repo: "YandexStation",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [zeroconf]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([home_assistant, pytestCheckHook], nix.app(nix.sel(home_assistant, "getPackages"), "stream", nix.thunk(() => nix.sel(home_assistant, "python3Packages")))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/AlexxIT/YandexStation/releases/tag/${nix.sel(src, "tag")}`),
         description: "Controlling Yandex.Station and other smart home devices with Alice from Home Assistant",
         homepage: "https://github.com/AlexxIT/YandexStation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

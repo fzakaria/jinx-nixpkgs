@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const expat = nix.arg($, "expat");
   const meta = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     maintainers: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return [
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
     const rev = nix.argOr($_1, "rev", () => nix.str`v${version}`);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: pname,
         version: version,
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ __proto__: pos$2, owner: "c-util", repo: pname, hash: hash, rev: rev })))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$2, owner: "c-util", repo: pname, hash: hash, rev: rev })))),
         nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
         buildInputs: buildInputs,
         meta: nix.thunk(() => nix.update(meta, {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           description: "C-Util Project is a collection of utility libraries for the C11 language",
           homepage: "https://c-util.github.io/",
           license: nix.thunk(() => [
@@ -74,58 +74,58 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const c_dvar = nix.thunk(() => nix.app(dep, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "c-dvar",
       version: "1.2.0",
       hash: "sha256-OlV6yR1tNWFN+rxPPGmbfbh7WyB6FwORyZR1V553iYE=",
       buildInputs: nix.thunk(() => [c_stdaux, c_utf8]),
     }))));
   const c_ini = nix.thunk(() => nix.app(dep, nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "c-ini",
       version: "1.1.0",
       hash: "sha256-wa7aNl20hkb/83c4AkQ/0YFDdmBs4XGW+WLUtBWIC98=",
       buildInputs: nix.thunk(() => [c_list, c_rbtree, c_stdaux, c_utf8]),
     }))));
   const c_list = nix.thunk(() => nix.app(dep, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "c-list",
       version: "3.1.0",
       hash: "sha256-fp3EAqcbFCLaT2EstLSzwP2X13pi2EFpFAullhoCtpw=",
     }))));
   const c_rbtree = nix.thunk(() => nix.app(dep, nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "c-rbtree",
       version: "3.2.0",
       hash: "sha256-dTMeawhPLRtHvMXfXCrT5iCdoh7qS3v+raC6c+t+X38=",
       buildInputs: nix.thunk(() => [c_stdaux]),
     }))));
   const c_shquote = nix.thunk(() => nix.app(dep, nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "c-shquote",
       version: "1.1.0",
       hash: "sha256-z6hpQ/kpCYAngMNfxLkfsxaGtvP4yBMigX1lGpIIzMQ=",
       buildInputs: nix.thunk(() => [c_stdaux]),
     }))));
   const c_stdaux = nix.thunk(() => nix.app(dep, nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "c-stdaux",
       version: "1.6.0",
       hash: "sha256-/15lop+WUkTW9v9h7BBdwRSpJgcBXaJNtMM7LXgcQE4=",
     }))));
   const c_utf8 = nix.thunk(() => nix.app(dep, nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       pname: "c-utf8",
       version: "1.1.0",
       hash: "sha256-9vBYylbt1ypJwIAQJd/oiAueh+4VYcn/KzofQuhUea0=",
       buildInputs: nix.thunk(() => [c_stdaux]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       pname: "dbus-broker",
       version: "37",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           owner: "bus1",
           repo: "dbus-broker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -135,19 +135,19 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./paths.patch"),
         nix.path(here, "./disable-test.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             name: "backport-test-sockopt-6.16-fix.patch",
             url: "https://github.com/bus1/dbus-broker/commit/fd5c6e191bffcf5b3e6c9abb8b0b03479accc04b.patch",
             hash: "sha256-+QgZzm/qRnVSr0wDNw9Np3LRreRKl6CQXJextLPy6fc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             name: "CVE-2026-16730-1.patch",
             url: "https://github.com/bus1/dbus-broker/commit/c4a3c886366f7bd566ec9a55b3855ade8290fa17.patch",
             hash: "sha256-8O4YX83NI6ztS5oR2JY1++QrWLVCCSCNTpwcp2bu9LE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             name: "CVE-2026-16730-2.patch",
             url: "https://github.com/bus1/dbus-broker/commit/aaa9fd6bbc2d5d7bfeca039f9c457b7f88a50dde.patch",
             hash: "sha256-f0p5oDw/6Wxe26fcqfKua766ylMg5NydywFM3MZYV8I=",
@@ -169,7 +169,7 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonFlags: nix.thunk(() => ["-D=linux-4-17=true", "-D=system-console-users=gdm,sddm,lightdm"]),
       env: nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
         PKG_CONFIG_SYSTEMD_CATALOGDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/catalog`),
@@ -181,7 +181,7 @@ sed -i $out/lib/systemd/{system,user}/dbus-broker.service \\
 `),
       doCheck: true,
       meta: nix.thunk(() => nix.update(meta, {
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         description: "Linux D-Bus Message Broker",
         homepage: "https://github.com/bus1/dbus-broker/wiki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

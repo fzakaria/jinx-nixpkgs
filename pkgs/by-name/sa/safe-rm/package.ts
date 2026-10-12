@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "safe-rm",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.launchpad.net/safe-rm",
           tag: nix.thunk(() => nix.str`safe-rm-${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-7+4XwsjzLBCQmHDYNwhlN4Yg3eL43GUEbq8ROtuP2Kw=",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "installManPage safe-rm.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool intended to prevent the accidental deletion of important files",
         homepage: "https://launchpad.net/safe-rm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

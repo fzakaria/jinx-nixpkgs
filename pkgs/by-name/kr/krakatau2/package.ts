@@ -15,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "Storyyeller",
       repo: "Krakatau",
       rev: "6da0abc20603fecaaa0e3300ebd97e04f07c2fb6",
       hash: "sha256-4ROx/XAWRzP8NWDYndDMBUXPw+nAu4nH4ukkyzS8eZ8=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       src: src,
       pname: "krakatau2",
       version: "0-unstable-2025-02-01",
       cargoLock: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "zip-0.6.4": "sha256-x56JHdFdoLNhT/TC9sQQD4Ouu2LZ+D5CrS1mMyFVJBg=",
         })),
       })),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Java decompiler, assembler, and disassembler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

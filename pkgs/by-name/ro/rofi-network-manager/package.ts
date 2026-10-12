@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const wrapperPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, libnotify, gnused, gawk, networkmanager])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rofi-network-manager",
       version: "0-unstable-2024-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "meowrch",
           repo: "rofi-network-manager",
           rev: "90302dd1c0ea2d460a3455a208c10dff524469cd",
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${wrapperPath}"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Manage wifi and ethernet with rofi",
         homepage: "https://github.com/meowrch/rofi-network-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

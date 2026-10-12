@@ -17,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "lxgw-wenkai";
       const version = "1.522";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/lxgw/LxgwWenKai/releases/download/v${version}/lxgw-wenkai-v${version}.tar.gz`),
           hash: "sha256-aBp31dACF146nhrw/G+iIBZMya1sFPHoQqU5h4584aQ=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://lxgw.github.io/",
         description: "Open-source Chinese font derived from Fontworks' Klee One",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ryanccn"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

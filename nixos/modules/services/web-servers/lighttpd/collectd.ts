@@ -27,25 +27,25 @@ export default nix.lambda((args) => (() => {
 libdir: "${nix.sel(config, "services", "collectd", "package")}/lib/collectd"
 `)));
   const defaultCollectionCgi = nix.thunk(() => nix.app(nix.sel(config, "services", "collectd", "package", "overrideDerivation"), (old) => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "collection.cgi",
       dontConfigure: true,
       buildPhase: "true",
       installPhase: "substituteInPlace contrib/collection.cgi --replace '\"/etc/collection.conf\"' '$ENV{COLLECTION_CONF}'\ncp contrib/collection.cgi $out\n",
     })));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         lighttpd: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           collectd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "collectd subservice accessible at http://yourserver/collectd")),
             collectionCgi: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 default: defaultCollectionCgi,
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalMD"), nix.thunk(() => nix.str`\`config.${nix.sel(options, "services", "collectd", "package")}\` configured for lighttpd
@@ -57,11 +57,11 @@ libdir: "${nix.sel(config, "services", "collectd", "package")}/lib/collectd"
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         services: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           lighttpd: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             enableModules: nix.thunk(() => ["mod_cgi", "mod_alias", "mod_setenv"]),
             extraConfig: nix.thunk(() => nix.str`$HTTP["url"] =~ "^/collectd" {
   cgi.assign = (

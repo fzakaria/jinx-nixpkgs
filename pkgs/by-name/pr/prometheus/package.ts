@@ -54,20 +54,20 @@ export default nix.lambda((args) => (() => {
   const version = "3.15.0";
   const pname = "prometheus";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "prometheus",
       repo: "prometheus",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-H0VkirdEVWoFxg86g8utf6EuCSH3pHD8iuHg6y0xOZE=",
     }))));
   const assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAssetsAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: nix.thunk(() => nix.str`${src}/web/ui`),
       patches: nix.thunk(() => [nix.path(here, "./disable-react-app.diff")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAssetsAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAssetsAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAssetsAttrs, "src")),
@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-iSnP2zImIBklU/Ejq2NiuAYAo0SCuWtYbsAyTFHuD7Q=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
-      env: nix.thunk(() => ({ __proto__: pos$3, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: true })),
       __darwinAllowLocalNetworking: true,
       doCheck: true,
       checkPhase: "runHook preCheck\n\npnpm test\n\nrunHook postCheck\n",
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/static\ncp -r static/* $out/static\nfind $out/static -type f -exec gzip -f9 {} \\;\n\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       src: src,
@@ -154,16 +154,16 @@ ${nix.app(nix.sel(lib, "optionalString"), enableZookeeper, "echo - github.com/pr
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         assets: assets,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           prometheus: nix.thunk(() => nix.attr(nixosTests, "prometheus")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "assets"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "assets"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Service monitoring system and time series database",
         homepage: "https://prometheus.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

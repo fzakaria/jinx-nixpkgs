@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gradle = nix.arg($, "gradle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "rhino",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mozilla",
           repo: "rhino",
           tag: "Rhino1_8_0_Release",
@@ -27,13 +27,13 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       installPhase: "mkdir -p \"$out/share/java\"\ncp -v rhino-all/build/libs/rhino-all-*.jar \"$out/share/java/js-$pkgver.jar\"\nln -s \"js-$pkgver.jar\" \"$out/share/java/js.jar\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Implementation of JavaScript written in Java",
         longDescription: "Rhino is an open-source implementation of JavaScript written\nentirely in Java.  It is typically embedded into Java applications\nto provide scripting to end users.\n",
         homepage: "https://rhino.github.io/",

@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
     const libiconv = nix.arg($_1, "libiconv");
     const apple_sdk = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "140")) ? nix.force(apple_sdk_15) : nix.force(apple_sdk_14)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "spidermonkey",
         version: version,
         outputs: nix.thunk(() => ["out", "dev"]),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`mirror://mozilla/firefox/releases/${version}esr/source/firefox-${version}esr.source.tar.xz`),
             hash: hash,
           })))),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./allow-system-s-nspr-and-icu-on-bootstrapped-sysroot-128.patch"),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), nix.thunk(() => [nix.path(here, "./fix-float-i686.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "140")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 url: "https://src.fedoraproject.org/rpms/mozjs140/raw/49492baa47bc1d7b7d5bc738c4c81b4661302f27/f/9aa8b4b051dd539e0fbd5e08040870b3c712a846.patch",
                 hash: "sha256-SsyO5g7wlrxE7y2+VTHfmUDamofeZVqge8fv2y0ZhuU=",
               })))),
@@ -120,27 +120,27 @@ mkdir obj
 cd obj/
 configureScript=../js/src/configure
 `)),
-        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "140")), nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wformat" })))),
+        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "140")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wformat" })))),
         preFixup: nix.thunk(() => nix.str`moveToOutput bin/js${nix.app(nix.sel(lib, "versions", "major"), version)}-config "$dev"
 rm $out/lib/libjs_static.ajs
 ln -s $out/bin/js${nix.app(nix.sel(lib, "versions", "major"), version)} $out/bin/js
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           tests: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 spidermonkey: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
           updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 version: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version)),
               })))))),
         })),
         meta: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           changelog: nix.thunk(() => nix.str`https://www.firefox.com/en-US/firefox/${version}/releasenotes/`),
           description: "Mozilla's JavaScript engine written in C/C++",
           homepage: "https://spidermonkey.dev/",

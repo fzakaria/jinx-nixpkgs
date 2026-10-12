@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-wz5IkGQHqz0O25bMWrKlmb2l3QRwTrzZs+Du3OcxDgo=",
@@ -30,14 +30,14 @@ ${nix.sel(python, "interpreter")} -c 'import bitarray; bitarray.test()'
 `);
       const pythonImportsCheck = nix.thunk(() => ["bitarray"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Efficient arrays of booleans",
         homepage: "https://github.com/ilanschnell/bitarray",
         changelog: nix.thunk(() => nix.str`https://github.com/ilanschnell/bitarray/raw/${version}/CHANGE_LOG`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "psfl")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

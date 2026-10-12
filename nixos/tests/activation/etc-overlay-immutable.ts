@@ -45,87 +45,87 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "activation-etc-overlay-immutable",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           system: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             etc: nix.thunk(() => ({
-              __proto__: pos$3,
-              overlay: nix.thunk(() => ({ __proto__: pos$2, enable: true, mutable: false })),
+              [nix.POS]: pos$3,
+              overlay: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, mutable: false })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             etc: nix.thunk(() => ({
-              __proto__: pos$12,
-              modetest: nix.thunk(() => ({ __proto__: pos$5, text: "foo", mode: "300" })),
-              modetest2: nix.thunk(() => ({ __proto__: pos$6, text: "foo", mode: "0300" })),
-              inlinetest: nix.thunk(() => ({ __proto__: pos$7, text: "inline-content\n", mode: "0640" })),
-              emptytest: nix.thunk(() => ({ __proto__: pos$8, text: "", mode: "0644" })),
+              [nix.POS]: pos$12,
+              modetest: nix.thunk(() => ({ [nix.POS]: pos$5, text: "foo", mode: "300" })),
+              modetest2: nix.thunk(() => ({ [nix.POS]: pos$6, text: "foo", mode: "0300" })),
+              inlinetest: nix.thunk(() => ({ [nix.POS]: pos$7, text: "inline-content\n", mode: "0640" })),
+              emptytest: nix.thunk(() => ({ [nix.POS]: pos$8, text: "", mode: "0644" })),
               bigfile: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 text: nix.thunk(() => nix.app(nix.sel(lib, "strings", "replicate"), 5000n, "a")),
                 mode: "0644",
               })),
-              "mountpoint/.keep": nix.thunk(() => ({ __proto__: pos$10, text: "keep" })),
-              filemount: nix.thunk(() => ({ __proto__: pos$11, text: "keep" })),
+              "mountpoint/.keep": nix.thunk(() => ({ [nix.POS]: pos$10, text: "keep" })),
+              filemount: nix.thunk(() => ({ [nix.POS]: pos$11, text: "keep" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$15,
-            sysusers: nix.thunk(() => ({ __proto__: pos$14, enable: true })),
+            [nix.POS]: pos$15,
+            sysusers: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
           })),
-          users: nix.thunk(() => ({ __proto__: pos$16, mutableUsers: false })),
+          users: nix.thunk(() => ({ [nix.POS]: pos$16, mutableUsers: false })),
           boot: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             initrd: nix.thunk(() => ({
-              __proto__: pos$18,
-              systemd: nix.thunk(() => ({ __proto__: pos$17, enable: true })),
+              [nix.POS]: pos$18,
+              systemd: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
             })),
           })),
-          time: nix.thunk(() => ({ __proto__: pos$20, timeZone: "Utc" })),
+          time: nix.thunk(() => ({ [nix.POS]: pos$20, timeZone: "Utc" })),
           services: nix.thunk(() => ({
-            __proto__: pos$22,
-            resolved: nix.thunk(() => ({ __proto__: pos$21, enable: true })),
+            [nix.POS]: pos$22,
+            resolved: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             "new-generation": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               configuration: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$25,
+                  [nix.POS]: pos$25,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$24,
-                    newgen: nix.thunk(() => ({ __proto__: pos$23, text: "newgen" })),
+                    [nix.POS]: pos$24,
+                    newgen: nix.thunk(() => ({ [nix.POS]: pos$23, text: "newgen" })),
                   })),
                 })),
               })),
             })),
             "newer-generation": nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               configuration: nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 environment: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   etc: nix.thunk(() => ({
-                    __proto__: pos$29,
-                    newergen: nix.thunk(() => ({ __proto__: pos$28, text: "newergen" })),
+                    [nix.POS]: pos$29,
+                    newergen: nix.thunk(() => ({ [nix.POS]: pos$28, text: "newergen" })),
                   })),
                 })),
               })),

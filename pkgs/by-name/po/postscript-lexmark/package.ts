@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rpmextract = nix.arg($, "rpmextract");
   const version = "20160218";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "postscript-lexmark",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.openprinting.org/download/printdriver/components/lsb3.2/main/RPMS/noarch/openprinting-ppds-postscript-lexmark-${version}-1lsb3.2.noarch.rpm`),
           sha256: "0wbhvypdr96a5ddg6kj41dn9sbl49n7pfi2vs762ij82hm2gvwcm",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "rpmextract $src\nfor ppd in opt/OpenPrinting-Lexmark/ppds/Lexmark/*; do\n  gzip -d $ppd\ndone\n",
       installPhase: "mkdir -p $out/share/cups/model/postscript-lexmark\ncp opt/OpenPrinting-Lexmark/ppds/Lexmark/*.ppd $out/share/cups/model/postscript-lexmark/\ncp -r opt/OpenPrinting-Lexmark/doc $out/doc\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://www.openprinting.org/driver/Postscript-Lexmark/",
         description: "Lexmark Postscript Drivers",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

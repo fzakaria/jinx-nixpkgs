@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       core: "vbam",
       version: "0-unstable-2026-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libretro",
           repo: "vbam-libretro",
           rev: "115defb3a318258ab84746d45258a1aec19d0b4b",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       preBuild: "cd src/libretro",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "VBA-M libretro port",
         homepage: "https://github.com/libretro/vbam-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

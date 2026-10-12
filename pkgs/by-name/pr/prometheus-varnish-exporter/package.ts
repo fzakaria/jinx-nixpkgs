@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "prometheus_varnish_exporter";
       const version = "1.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jonnenauha",
           repo: "prometheus_varnish_exporter",
           rev: version,
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${varnish}/bin"
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, varnish: nix.thunk(() => nix.attr(from, "varnish")) };
+          return { [nix.POS]: pos$2, varnish: nix.thunk(() => nix.attr(from, "varnish")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/jonnenauha/prometheus_varnish_exporter",
         description: "Varnish exporter for Prometheus",
         mainProgram: "prometheus_varnish_exporter",
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

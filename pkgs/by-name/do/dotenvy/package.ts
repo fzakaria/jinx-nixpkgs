@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dotenvy",
       version: "0.15.7",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-virK/TpYBmwTf5UCQCqC/df8iKYAzPBfsQ1nQkFKF2Y=",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--bin=dotenvy", "--features=cli"]),
       cargoTestFlags: nix.thunk(() => ["--lib"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Loads environment variables from a .env file",
         homepage: "https://github.com/allan2/dotenvy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

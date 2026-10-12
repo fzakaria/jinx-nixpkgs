@@ -90,11 +90,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.add("gdal", nix.app(nix.sel(lib, "optionalString"), useMinimalFeatures, "-minimal"))),
       version: "3.13.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OSGeo",
           repo: "gdal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -222,12 +222,12 @@ export CI=1
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))), nix.thunk(() => ["test_jp2openjpeg_22"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_rda_download_queue", "test_ogr_gpkg_arrow_stream_huge_array"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(proj, "version")), "8")), nix.thunk(() => ["test_ogr_parquet_write_crs_without_id_in_datum_ensemble_members"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(usePoppler)), nix.thunk(() => ["test_pdf_jpx_compression"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(useNetCDF)), nix.thunk(() => ["test_zarr_read_simple_sharding"])))))))),
       postCheck: "popd # autotest\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ __proto__: pos$2, gdal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, gdal: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/OSGeo/gdal/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),
         description: "Translator library for raster geospatial data formats",
         homepage: "https://www.gdal.org/",

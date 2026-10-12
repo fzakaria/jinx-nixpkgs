@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mephisto",
       version: "0.18.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "open-music-kontrollers.ch",
           owner: "~hp",
           repo: "mephisto.lv2",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, fontconfig, cmake]),
       buildInputs: nix.thunk(() => [faust, libvterm_neovim, lv2, sord, libx11, libxext, glew, lv2lint]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Just-in-time FAUST embedded in an LV2 plugin",
         homepage: "https://git.open-music-kontrollers.ch/~hp/mephisto.lv2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

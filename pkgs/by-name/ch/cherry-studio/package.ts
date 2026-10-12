@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_40;
   const pnpm = pnpm_10_29_2;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "cherry-studio",
       version: "1.9.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CherryHQ",
           repo: "cherry-studio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace src/main/services/ConfigManager.ts \\\n  --replace-fail \"ConfigKeys.AutoUpdate, true\" \"ConfigKeys.AutoUpdate, false\" \\\n  --replace-fail \"ConfigKeys.AutoUpdate, value\" \"ConfigKeys.AutoUpdate, false\"\nsubstituteInPlace src/main/services/AppUpdater.ts \\\n  --replace-fail \" = isActive\" \" = false\"\nsubstituteInPlace src/renderer/src/hooks/useSettings.ts \\\n  --replace-fail \"isAutoUpdate)\" \"false)\"\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libc.musl-*.so.*"]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libevdev)}/include/libevdev-1.0`))),
       })),
@@ -105,7 +105,7 @@ runHook postBuild
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "cherry-studio",
             desktopName: "Cherry Studio",
             comment: "A powerful AI assistant for producer.",
@@ -129,11 +129,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/cherry-studio 
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), commandLineArgs)}
 `))), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Desktop client that supports for multiple LLM providers",
         homepage: "https://github.com/CherryHQ/cherry-studio",
         changelog: nix.thunk(() => nix.str`https://github.com/CherryHQ/cherry-studio/releases/tag/v${nix.sel(finalAttrs, "version")}`),

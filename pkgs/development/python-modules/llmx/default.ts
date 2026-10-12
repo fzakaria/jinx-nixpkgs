@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.21a0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-OEo6wIaDTktzAsP0rOmhxjFSHygTR/EpcRI6AXsu+6M=",
@@ -40,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [pydantic, openai, tiktoken, diskcache, cohere, google_auth, typer, pyyaml]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         web: nix.thunk(() => [fastapi, uvicorn]),
         transformers: nix.thunk(() => nix.concat([accelerate, transformers], nix.sel(transformers, "optional-dependencies", "torch"))),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["llmx"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library for LLM Text Generation",
         homepage: "https://github.com/victordibia/llmx",
         mainProgram: "llmx",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

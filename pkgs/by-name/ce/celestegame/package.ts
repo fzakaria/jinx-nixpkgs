@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const gameDir$ = nix.thunk(() => nix.app(nix.sel(lib, "toList"), gameDir));
   const everestLogFilename = "everest-log.txt";
   const celeste = nix.thunk(() => nix.app(callPackage, nix.path(here, "./celeste.nix"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       executableName: executableName,
       everest: everest,
       withEverest: withEverest,
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const celesteHomeRelative = "lib/Celeste";
   const celesteHome = nix.thunk(() => nix.str`${celeste}/${celesteHomeRelative}`);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "Celeste",
       desktopName: "Celeste",
       genericName: "Celeste",
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: pname,
       executableName: executableName,
       version: nix.thunk(() => nix.add(nix.sel(celeste, "version"), nix.app(nix.sel(lib, "optionalString"), withEverest, nix.thunk(() => nix.str`+everest.${nix.sel(everest, "version")}`)))),
@@ -162,11 +162,11 @@ fi
 `, gameDir$)))), nix.str`cd /${celesteHomeRelative}
 exec ./Celeste-unwrapped "$@"
 `)))),
-      passthru: nix.thunk(() => ({ __proto__: pos$3, "celeste-unwrapped": celeste })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, "celeste-unwrapped": celeste })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(celeste, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),
         description: nix.thunk(() => nix.attr(from, "description")),

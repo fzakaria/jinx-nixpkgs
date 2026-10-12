@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           version: version,
           pname: "sphinxcontrib_svg2pdfconverter",
           hash: "sha256-q5yPEIA5HiMYEtIKvyZXpp7jVXRWOxAUQU+VOWSpX6M=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withCairosvg, "sphinxcontrib.cairosvgconverter"), nix.concat(nix.app(nix.sel(lib, "optional"), withInkscape, "sphinxcontrib.inkscapeconverter"), nix.app(nix.sel(lib, "optional"), withLibrsvg, "sphinxcontrib.rsvgconverter"))));
       const pythonNamespaces = nix.thunk(() => ["sphinxcontrib"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Sphinx SVG to PDF converter extension",
         homepage: "https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

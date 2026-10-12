@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guile-sqlite3",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "notabug.org",
           owner: "guile-sqlite3",
           repo: "guile-sqlite3",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(guile, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://notabug.org/guile-sqlite3/guile-sqlite3",
         description: "Guile bindings for the SQLite3 database engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

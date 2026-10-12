@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "tuist",
       version: "4.202.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/tuist/tuist/releases/download/${nix.sel(finalAttrs, "version")}/tuist.zip`),
           hash: "sha256-J/xlwRRW3zLr03jA6Xpa5frlRQGHa/nmzzlj35/30tw=",
         })))),
@@ -39,14 +39,14 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME", "XDG_CACHE_HOME", "XDG_CONFIG_HOME", "XDG_STATE_HOME"]),
       preVersionCheck: "export HOME=$(mktemp -d)\nexport XDG_CACHE_HOME=$HOME/.cache\nexport XDG_CONFIG_HOME=$HOME/.config\nexport XDG_STATE_HOME=$HOME/.local/state\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Command line tool that helps you generate, maintain and interact with Xcode projects",
         homepage: "https://tuist.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/tuist/tuist/blob/${nix.sel(finalAttrs, "version")}/cli/CHANGELOG.md`),

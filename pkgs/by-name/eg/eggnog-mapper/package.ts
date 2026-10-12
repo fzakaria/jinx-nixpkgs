@@ -18,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "eggnog-mapper",
       version: "2.1.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "eggnogdb",
           repo: "eggnog-mapper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-distutils.patch",
             url: "https://github.com/eggnogdb/eggnog-mapper/commit/998129d3766e060ff450e8f950b5361c6318b0a2.patch?full_index=1",
             hash: "sha256-xYNd9p5BhGpvFXCWXRSEkZf+Lt4hCRGYeV9Oe4mDz3I=",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["biopython", "psutil", "xlsxwriter"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast genome-wide functional annotation through orthology assignment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         homepage: "https://github.com/eggnogdb/eggnog-mapper/wiki",

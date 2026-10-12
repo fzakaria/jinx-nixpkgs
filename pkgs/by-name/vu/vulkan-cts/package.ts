@@ -45,24 +45,24 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const zlib = nix.arg($, "zlib");
   const renderdoc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/baldurk/renderdoc/v1.1/renderdoc/api/app/renderdoc_app.h",
       hash: "sha256-57XwqlsbDq3GOhxiTAyn9a8TOqhX1qQnGw7z0L22ho4=",
     }))));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ __proto__: pos$2, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   const shaderc_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       owner: "google",
       repo: "shaderc",
       tag: "v2024.4",
       hash: "sha256-DIpgHiYAZlCIQ/uCZ3qSucPUZ1j3tKg0VgZVun+1UnI=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "vulkan-cts",
       version: "1.4.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "KhronosGroup",
           repo: "VK-GL-CTS",
           rev: nix.thunk(() => nix.str`vulkan-cts-${nix.sel(finalAttrs, "version")}`),
@@ -110,12 +110,12 @@ wrapProgram $out/bin/deqp-vk \\
   --add-flags "--deqp-archive-dir=$out/archive-dir"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           lavapipe: nix.thunk(() => nix.app(runCommand, "vulkan-cts-tests-lavapipe", nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 nix.thunk(() => nix.sel(mesa, "llvmpipeHook")),
@@ -124,7 +124,7 @@ wrapProgram $out/bin/deqp-vk \\
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Khronos Vulkan Conformance Tests",
         homepage: "https://github.com/KhronosGroup/VK-GL-CTS/blob/main/external/vulkancts/README.md",
         changelog: nix.thunk(() => nix.str`https://github.com/KhronosGroup/VK-GL-CTS/releases/tag/vulkan-cts-${nix.sel(finalAttrs, "version")}`),

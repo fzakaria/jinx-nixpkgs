@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ghcSrc = nix.arg($, "ghcSrc");
   const ghcVersion = nix.arg($, "ghcVersion");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "ghc-platform",
       version: ghcVersion,
       src: ghcSrc,

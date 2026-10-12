@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "0.2",
       pname: "sselp",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/sselp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "08mqp00lrh1chdrbs18qr0xv63h866lkmfj87kfscwdm1vn9a3yd",
         })))),
@@ -28,7 +28,7 @@ sed -i "s@/usr/X11R6/include@${libx11}/include@g" config.mk
 sed -i "s@/usr/X11R6/lib@${libx11}/lib@g" config.mk
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://tools.suckless.org/sselp",
         description: "Prints the X selection to stdout, useful in scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

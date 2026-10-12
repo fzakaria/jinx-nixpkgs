@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "pyusb")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fusee-interfacee-tk",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nh-server",
           repo: "fusee-interfacee-tk",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +44,7 @@ cp *.py $out/bin/
 cp intermezzo.bin $out/bin/intermezzo.bin
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/nh-server/fusee-interfacee-tk",
         description: "Tool to send .bin files to a Nintendo Switch in RCM mode",
         mainProgram: "fusee-interfacee-tk",

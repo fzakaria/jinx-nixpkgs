@@ -13,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const bundlerApp = nix.arg($, "bundlerApp");
   const self = nix.thunk(() => nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "iruby",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["iruby"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         definition: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           displayName: "IRuby",
           argv: nix.thunk(() => [nix.thunk(() => nix.str`${self}/bin/iruby`), "kernel", "{connection_file}"]),
           language: "ruby",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Ruby kernel for Jupyter",
         homepage: "https://github.com/SciRuby/iruby",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -11,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const kamailio = nix.arg($, "kamailio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "kamailio-bin-test",
-      meta: nix.thunk(() => ({ __proto__: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
       dontUnpack: true,
       dontInstall: true,
       buildPhase: nix.thunk(() => nix.str`mkdir $out

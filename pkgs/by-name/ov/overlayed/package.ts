@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "overlayed",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "overlayeddev",
           repo: "overlayed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "apps/desktop/src-tauri",
       cargoHash: "sha256-6wN4nZQWrY0J5E+auj17B3iJ/84hzBXYA/bJsX/N5pk=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         pnpm_10,
       ]),
       buildInputs: nix.thunk(() => [libayatana_appindicator, libsoup_3, openssl, webkitgtk_4_1]),
-      env: nix.thunk(() => ({ __proto__: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace $cargoDepsCopy/*/libappindicator-sys-*/src/lib.rs \\
   --replace-fail "libayatana-appindicator3.so.1" "${libayatana_appindicator}/lib/libayatana-appindicator3.so.1"
 
@@ -68,7 +68,7 @@ jq '.plugins.updater.endpoints = [ ] | .bundle.createUpdaterArtifacts = false' \
   apps/desktop/src-tauri/tauri.conf.json | sponge apps/desktop/src-tauri/tauri.conf.json
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Modern discord voice chat overlay",
         homepage: "https://github.com/overlayeddev/overlayed",
         changelog: nix.thunk(() => nix.str`https://github.com/overlayeddev/overlayed/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ida-domain",
       version: "0.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HexRaysSA",
           repo: "ida-domain",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [graphviz, pytest_cov_stub, pytestCheckHook, writableTmpDirAsHomeHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python interface for IDA Pro reverse engineering platform",
         homepage: "https://github.com/HexRaysSA/ida-domain",
         changelog: nix.thunk(() => nix.str`https://github.com/HexRaysSA/ida-domain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

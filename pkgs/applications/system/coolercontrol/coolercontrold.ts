@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "coolercontrold",
         version: version,
         src: src,
@@ -68,17 +68,17 @@ wrapProgram "$out/bin/coolercontrold" \\
   --prefix PYTHONPATH : $program_PYTHONPATH
 `),
         passthru: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           tests: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 package: nix.thunk(() => nix.sel(coolercontrol, "coolercontrold")),
               })))),
           })),
         })),
         meta: nix.thunk(() => nix.update(meta, {
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           description: nix.thunk(() => nix.str`${nix.sel(meta, "description")} (Main Daemon)`),
           mainProgram: "coolercontrold",
         })),

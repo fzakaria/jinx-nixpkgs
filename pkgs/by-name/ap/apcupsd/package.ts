@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   nix.assert_((!nix.asBool(enableCgiScripts) || nix.asBool(!nix.eq(gd, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ap/apcupsd/package.nix:18:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "apcupsd",
       version: "3.14.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/apcupsd/apcupsd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0rwqiyzlg9p0szf3x6q1ppvrw6f6dbpn2rc5z623fk3bkdalhxyv",
         })))),
@@ -74,11 +74,11 @@ done
 rm -f "$out/bin/apcupsd-uninstall"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, smoke: nix.thunk(() => nix.sel(nixosTests, "apcupsd")) })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, smoke: nix.thunk(() => nix.sel(nixosTests, "apcupsd")) })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Daemon for controlling APC UPSes",
         homepage: "http://www.apcupsd.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

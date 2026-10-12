@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rxvt-unicode-vtwheel",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://aur.archlinux.org/urxvt-vtwheel.git",
           rev: "36d3e861664aeae36a45f96100f10f8fe2218035",
           sha256: "1h3vrsbli5q9kr84j5ijbivlhpwlh3l8cv233pg362v2zz4ja8i7",
@@ -28,7 +28,7 @@ mkdir -p $out/lib/urxvt/perl
 cp vtwheel $out/lib/urxvt/perl
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pass mouse wheel commands to secondary screens (screen, less, nano, etc)",
         homepage: "https://aur.archlinux.org/packages/urxvt-vtwheel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

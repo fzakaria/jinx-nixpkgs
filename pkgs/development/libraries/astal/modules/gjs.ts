@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(nix.app(buildAstalModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "gjs",
       sourceRoot: "lang/gjs",
-      meta: nix.thunk(() => ({ __proto__: pos$1, description: "Astal module for GJS" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for GJS" })),
     }))), "overrideAttrs"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [astal3, io]),
       propagatedBuildInputs: [],

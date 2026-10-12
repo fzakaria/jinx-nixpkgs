@@ -14,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const stdlib_shims = nix.arg($, "stdlib-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ptset",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/backtracking/ptset/releases/download/${nix.sel(finalAttrs, "version")}/ptset-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-RJARnuDrQPmxSLA0MobuKjNmltja8YBbHYmKMF8FKN8=",
         })))),
       doCheck: true,
       propagatedBuildInputs: nix.thunk(() => [stdlib_shims]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Integer set implementation using Patricia trees",
         homepage: "https://github.com/backtracking/ptset",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

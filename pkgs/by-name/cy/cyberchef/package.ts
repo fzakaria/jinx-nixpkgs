@@ -17,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: "https://raw.githubusercontent.com/gchq/CyberChef/c57556f49f723863b9be15668fd240672cd15b09/src/web/static/images/cyberchef-512x512.png",
       hash: "sha256-Lg9JbVHhdILdrRtxYFWSv9HNJUx98JOaTbs+IbS1eO0=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       name: "cyberchef",
       desktopName: "Cyberchef",
       exec: "cyberchef",
@@ -33,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const version = "11.2.0";
   const commit = "d358d82cbcb269d764a2deb598a37043bd054f45";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "cyberchef",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/gchq/CyberChef/releases/download/v${version}/CyberChef_${commit}.zip`),
           hash: "sha256-3DXIrxCefiEYqZOPs8pO5jWdHFj7cPGgrwZcwE4ESPg=",
           stripRoot: false,
@@ -61,7 +61,7 @@ mkdir -p $out/share/applications/
 cp ${desktopItem}/share/applications/*.desktop $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Cyber Swiss Army Knife for encryption, encoding, compression and data analysis",
         homepage: "https://gchq.github.io/CyberChef",
         changelog: nix.thunk(() => nix.str`https://github.com/gchq/CyberChef/blob/v${version}/CHANGELOG.md`),

@@ -30,20 +30,20 @@ export default nix.lambda((args) => (() => {
   const xcodeselectWrapper = nix.thunk(() => nix.app(writeShellScriptBin, "xcode-select", nix.thunk(() => nix.str`echo "${sdkRoot}"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "zmx",
       version: "0.8.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "neurosnap",
           repo: "zmx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-0gxaoup7boFMm4NQCQ8mHusX1oS8h/MacFxhSPLi2XM=",
         })))),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -67,11 +67,11 @@ chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/neurosnap/zmx",
         description: "Session persistence for terminal processes",
         longDescription: "zmx provides session persistence for terminal shell sessions (pty processes).\nFeatures include ability to attach and detach from shell sessions without killing them,\nnative terminal scrollback, multiple client connections to the same session,\nand restoration of previous terminal state and output when re-attaching.\n",

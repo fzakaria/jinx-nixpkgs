@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yamnet_classification_v1",
       version: "0-unstable",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://www.kaggle.com/api/v1/models/google/yamnet/tfLite/classification-tflite/1/download",
           extension: "tar.gz",
           hash: "sha256-FRL0lpbjgAV7HlaZIR1Hf/hr1bcfSMSeYdeGzMYpDf0=",
@@ -26,11 +26,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir $out\nmv 1.tflite $out/yamnet_classification_v1.tflite\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         model: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/${nix.sel(finalAttrs, "pname")}.tflite`),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.kaggle.com/models/google/yamnet/tfLite/classification-tflite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),

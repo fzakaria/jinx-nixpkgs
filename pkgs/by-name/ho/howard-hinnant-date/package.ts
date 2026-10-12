@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "howard-hinnant-date",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "HowardHinnant",
           repo: "date",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "output-date-pc-for-pkg-config.patch",
             url: "https://git.alpinelinux.org/aports/plain/community/date/538-output-date-pc-for-pkg-config.patch?id=11f6b4d4206b0648182e7b41cd57dcc9ccea0728",
             sha256: "1ma0586jsd89jgwbmd2qlvlc8pshs1pc4zk5drgxi3qvp8ai1154",
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./make-zoneinfo-available.diff"), nix.thunk(() => ({ __proto__: pos$3, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./make-zoneinfo-available.diff"), nix.thunk(() => ({ [nix.POS]: pos$3, tzdata: tzdata })))),
       ]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace date.pc.in \\
   --replace '@CMAKE_INSTALL_LIB@' '@CMAKE_INSTALL_FULL_LIBDIR@' \\
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), "mkdir $dev/lib\nmv $out/CMake $dev/lib/cmake\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Date and time library based on the C++11/14/17 <chrono> header",
         homepage: "https://github.com/HowardHinnant/date",

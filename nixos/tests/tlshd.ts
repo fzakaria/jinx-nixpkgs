@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const runWithOpenSSL = (name) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), cmd);
   const caKey = nix.thunk(() => nix.app(runWithOpenSSL, "ca.key", "openssl ecparam -name prime256v1 -genkey -noout -out $out"));
@@ -56,29 +56,29 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
   -CAcreateserial -out $out -days 36500 -sha256
 `)));
   return {
-    __proto__: pos$28,
+    [nix.POS]: pos$28,
     _class: "nixosTest",
     name: "tlshd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           system: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             services: nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               tlshd: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "ktls-utils", "services", "default"))]),
                 tlshd: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     "authenticate.server": nix.thunk(() => ({
-                      __proto__: pos$2,
+                      [nix.POS]: pos$2,
                       "x509.certificate": nix.thunk(() => nix.builtins.toString(serverCert)),
                       "x509.private_key": nix.thunk(() => nix.builtins.toString(serverKey)),
                       "x509.truststore": nix.thunk(() => nix.builtins.toString(caCert)),
@@ -89,11 +89,11 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             nfs: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               server: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 enable: true,
                 exports: "/export 192.168.1.0/24(rw,no_root_squash,no_subtree_check,xprtsec=mtls)\n",
                 createMountPoints: true,
@@ -101,8 +101,8 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$12,
-            firewall: nix.thunk(() => ({ __proto__: pos$11, enable: false })),
+            [nix.POS]: pos$12,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
           })),
         };
       })(), formals$2),
@@ -110,20 +110,20 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$25,
+          [nix.POS]: pos$25,
           system: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             services: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               tlshd: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "ktls-utils", "services", "default"))]),
                 tlshd: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   settings: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     "authenticate.client": nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       "x509.certificate": nix.thunk(() => nix.builtins.toString(clientCert)),
                       "x509.private_key": nix.thunk(() => nix.builtins.toString(clientKey)),
                       "x509.truststore": nix.thunk(() => nix.builtins.toString(caCert)),
@@ -134,11 +134,11 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             fileSystems: nix.thunk(() => ({
-              __proto__: pos$21,
+              [nix.POS]: pos$21,
               "/mnt/nfs": nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 device: "server:/export",
                 fsType: "nfs",
                 options: nix.thunk(() => ["xprtsec=mtls"]),
@@ -146,15 +146,15 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
             })),
           })),
           networking: nix.thunk(() => ({
-            __proto__: pos$24,
-            firewall: nix.thunk(() => ({ __proto__: pos$23, enable: false })),
+            [nix.POS]: pos$24,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$23, enable: false })),
           })),
         };
       })(), formals$3),
     })),
     testScript: "start_all()\nserver.wait_for_unit(\"nfs-server.service\")\nserver.wait_for_unit(\"tlshd.service\")\nclient.wait_for_unit(\"tlshd.service\")\nclient.wait_for_unit(\"mnt-nfs.mount\")\nclient.wait_until_succeeds(\"echo 'hello from client' > /mnt/nfs/test.txt\")\nserver.wait_until_succeeds(\"grep 'hello from client' /export/test.txt\")\n",
     meta: nix.thunk(() => ({
-      __proto__: pos$27,
+      [nix.POS]: pos$27,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tomfitzhenry"))];

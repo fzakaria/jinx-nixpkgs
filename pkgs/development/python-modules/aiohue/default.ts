@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "aiohue",
       version: "4.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "aiohue",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aiohue", "aiohue.discovery"]),
       disabledTestPaths: nix.thunk(() => ["examples/"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python package to talk to Philips Hue",
         homepage: "https://github.com/home-assistant-libs/aiohue",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/aiohue/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

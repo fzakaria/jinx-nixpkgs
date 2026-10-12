@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "spnavcfg",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "FreeSpacenav",
           repo: "spnavcfg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--qt-tooldir=${nix.sel(qt6, "qtbase")}/libexec`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://spacenav.sourceforge.net/",
         description: "Interactive configuration GUI for space navigator input devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

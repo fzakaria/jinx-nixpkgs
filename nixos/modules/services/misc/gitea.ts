@@ -154,7 +154,7 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
   const mailer = nix.thunk(() => nix.attr(from, "mailer"));
   const useSendmail = nix.thunk(() => (nix.asBool(nix.sel(mailer, "ENABLED")) && nix.asBool(nix.eq(nix.sel(mailer, "PROTOCOL"), "sendmail"))));
   return {
-    __proto__: pos$121,
+    [nix.POS]: pos$121,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gitea", "cookieSecure"]), nix.thunk(() => ["services", "gitea", "settings", "session", "COOKIE_SECURE"]))),
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "gitea", "disableRegistration"]), nix.thunk(() => ["services", "gitea", "settings", "service", "DISABLE_REGISTRATION"]))),
@@ -170,60 +170,60 @@ ${nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, 
       nix.thunk(() => nix.app(nix.lookup(w, "mkRemovedOptionModule"), nix.thunk(() => ["services", "gitea", "useWizard"]), "Has been removed because it was broken and lacked automated testing.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$67,
+      [nix.POS]: pos$67,
       services: nix.thunk(() => ({
-        __proto__: pos$66,
+        [nix.POS]: pos$66,
         gitea: nix.thunk(() => ({
-          __proto__: pos$65,
+          [nix.POS]: pos$65,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               default: false,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               description: "Enable Gitea Service.",
             })))),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "gitea", nix.thunk(() => ({})))),
           stateDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: "/var/lib/gitea",
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Gitea data directory.",
             })))),
           customDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/custom`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/custom"`))),
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "Gitea custom directory. Used for config, custom templates and other options.",
             })))),
           user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "gitea",
               description: "User account under which gitea runs.",
             })))),
           group: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "gitea",
               description: "Group under which gitea runs.",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["sqlite3", "mysql", "postgres"]))),
                 example: "mysql",
                 default: "sqlite3",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "127.0.0.1",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: nix.thunk(() => (nix.asBool(usePostgresql) ? nix.sel(pg, "settings", "port") : 3306n)),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(opt, "database", "type")} != "postgresql"
@@ -233,32 +233,32 @@ else 5432
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "gitea",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "gitea",
                 description: "Database user.",
               })))),
             password: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "",
                 description: "The password corresponding to {option}`database.user`.\nWarning: this is stored in cleartext in the Nix store!\nUse {option}`database.passwordFile` instead.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: null,
                 example: "/run/keys/gitea-dbpassword",
                 description: "A file containing the password corresponding to\n{option}`database.user`.\n",
               })))),
             socket: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                 default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(usePostgresql))) ? "/run/postgresql" : (nix.asBool((nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(useMysql))) ? "/run/mysqld/mysqld.sock" : null))),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "null")),
@@ -266,64 +266,64 @@ else 5432
                 description: "Path to the unix socket file to use for authentication.",
               })))),
             path: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/data/gitea.db`),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/data/gitea.db"`))),
                 description: "Path to the sqlite3 database file.",
               })))),
             createDatabase: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Whether to create a local database automatically.",
               })))),
           })),
           captcha: nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enables Gitea to display a CAPTCHA challenge on registration.\n",
               })))),
             secretFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 example: "/var/lib/secrets/gitea/captcha_secret",
                 description: "Path to a file containing the CAPTCHA secret key.",
               })))),
             siteKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 example: "my_site_key",
                 description: "CAPTCHA site key to use for Gitea.",
               })))),
             url: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$20,
+                [nix.POS]: pos$20,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 example: "https://google.com/recaptcha",
                 description: "CAPTCHA url to use for Gitea. Only relevant for `recaptcha` and `mcaptcha`.",
               })))),
             type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["image", "recaptcha", "hcaptcha", "mcaptcha", "cfturnstile"]))),
                 default: "image",
                 example: "recaptcha",
                 description: "The type of CAPTCHA to use for Gitea.",
               })))),
             requireForLogin: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 example: true,
                 description: "Displays a CAPTCHA challenge whenever a user logs in.",
               })))),
             requireForExternalRegistration: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$23,
+                [nix.POS]: pos$23,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 example: true,
@@ -331,29 +331,29 @@ else 5432
               })))),
           })),
           dump: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable a timer that runs gitea dump to generate backup-files of the\ncurrent gitea database and repositories.\n",
               })))),
             interval: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "04:31",
                 example: "hourly",
                 description: "Run a gitea dump at this interval. Runs by default at 04:31 every day.\n\nThe format is described in\n{manpage}`systemd.time(7)`.\n",
               })))),
             backupDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$27,
+                [nix.POS]: pos$27,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/dump`),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/dump"`))),
                 description: "Path to the dump files.",
               })))),
             type: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$28,
+                [nix.POS]: pos$28,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                     "zip",
                     "rar",
@@ -370,7 +370,7 @@ else 5432
                 description: "Archive format used to store the dump file.",
               })))),
             file: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$29,
+                [nix.POS]: pos$29,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                 default: null,
                 description: "Filename to be used for the dump. If `null` a default name is chosen by gitea.",
@@ -378,15 +378,15 @@ else 5432
               })))),
           })),
           lfs: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enables git-lfs support.",
               })))),
             contentDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/data/lfs`),
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/data/lfs"`))),
@@ -394,62 +394,62 @@ else 5432
               })))),
           })),
           appName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "gitea: Gitea Service",
               description: "Application name.",
             })))),
           repositoryRoot: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$35,
+              [nix.POS]: pos$35,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/repositories`),
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/repositories"`))),
               description: "Path to the git repositories.",
             })))),
           camoHmacKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/var/lib/secrets/gitea/camoHmacKey",
               description: "Path to a file containing the camo HMAC key.",
             })))),
           mailerPasswordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/var/lib/secrets/gitea/mailpw",
               description: "Path to a file containing the SMTP password.",
             })))),
           incomingMailPasswordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/var/lib/secrets/gitea/incomingmailpw",
               description: "Path to a file containing the IMAP password.",
             })))),
           metricsTokenFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$39,
+              [nix.POS]: pos$39,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/var/lib/secrets/gitea/metrics_token",
               description: "Path to a file containing the metrics authentication token.",
             })))),
           minioAccessKeyId: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/var/lib/secrets/gitea/minio_access_key_id",
               description: "Path to a file containing the Minio access key id.",
             })))),
           minioSecretAccessKey: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
               default: null,
               example: "/var/lib/secrets/gitea/minio_secret_access_key",
               description: "Path to a file containing the Minio secret access key.",
             })))),
           settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$63,
+              [nix.POS]: pos$63,
               default: nix.thunk(() => ({})),
               description: "Gitea configuration. Refer to <https://docs.gitea.io/en-us/config-cheat-sheet/>\nfor details on supported values.\n",
               example: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "{\n  \"cron.sync_external_users\" = {\n    RUN_AT_START = true;\n    SCHEDULE = \"@every 24h\";\n    UPDATE_EXISTING = true;\n  };\n  mailer = {\n    ENABLED = true;\n    PROTOCOL = \"smtp+starttls\";\n    SMTP_ADDR = \"smtp.example.org\";\n    SMTP_PORT = \"587\";\n    FROM = \"Gitea Service <do-not-reply@example.org>\";\n    USER = \"do-not-reply@example.org\";\n  };\n  other = {\n    SHOW_FOOTER_VERSION = false;\n  };\n}\n")),
@@ -458,42 +458,42 @@ else 5432
                   const config_1 = nix.arg($_1, "config");
                   const options_1 = nix.arg($_1, "options");
                   return {
-                    __proto__: pos$62,
+                    [nix.POS]: pos$62,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$61,
+                      [nix.POS]: pos$61,
                       log: nix.thunk(() => ({
-                        __proto__: pos$44,
+                        [nix.POS]: pos$44,
                         ROOT_PATH: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$42,
+                            [nix.POS]: pos$42,
                             default: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/log`),
                             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`"\${config.${nix.sel(opt, "stateDir")}}/log"`))),
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                             description: "Root path for log files.",
                           })))),
                         LEVEL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$43,
+                            [nix.POS]: pos$43,
                             default: "Info",
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["Trace", "Debug", "Info", "Warn", "Error", "Critical"]))),
                             description: "General log level.",
                           })))),
                       })),
                       mailer: nix.thunk(() => ({
-                        __proto__: pos$48,
+                        [nix.POS]: pos$48,
                         ENABLED: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$45,
+                            [nix.POS]: pos$45,
                             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                             default: false,
                             description: "Whether to use an email service to send notifications.",
                           })))),
                         PROTOCOL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$46,
+                            [nix.POS]: pos$46,
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => [null, "smtp", "smtps", "smtp+starttls", "smtp+unix", "sendmail", "dummy"]))),
                             default: null,
                             description: "Which mail server protocol to use.",
                           })))),
                         SENDMAIL_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$47,
+                            [nix.POS]: pos$47,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(config_1, "mailer", "ENABLED")) && nix.asBool(nix.eq(nix.sel(config_1, "mailer", "PROTOCOL"), "sendmail")))) ? "/run/wrappers/bin/sendmail" : "sendmail")),
                             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`if config.${nix.sel(options_1, "mailer", "ENABLED")} && config.${nix.sel(options_1, "mailer", "PROTOCOL")} == "sendmail" then "/run/wrappers/bin/sendmail" else "sendmail"`))),
@@ -501,34 +501,34 @@ else 5432
                           })))),
                       })),
                       server: nix.thunk(() => ({
-                        __proto__: pos$56,
+                        [nix.POS]: pos$56,
                         PROTOCOL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$49,
+                            [nix.POS]: pos$49,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => ["http", "https", "fcgi", "http+unix", "fcgi+unix"]))),
                             default: "http",
                             description: "Listen protocol. `+unix` means \"over unix\", not \"in addition to.\"",
                           })))),
                         HTTP_ADDR: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$50,
+                            [nix.POS]: pos$50,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                             default: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "+unix", nix.thunk(() => nix.sel(cfg, "settings", "server", "PROTOCOL")))) ? "/run/gitea/gitea.sock" : "0.0.0.0")),
                             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "if lib.hasSuffix \"+unix\" cfg.settings.server.PROTOCOL then \"/run/gitea/gitea.sock\" else \"0.0.0.0\"")),
                             description: "Listen address. Must be a path when using a unix socket.",
                           })))),
                         HTTP_PORT: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$51,
+                            [nix.POS]: pos$51,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                             default: 3000n,
                             description: "Listen port. Ignored when using a unix socket.",
                           })))),
                         ROOT_URL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$52,
+                            [nix.POS]: pos$52,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))),
                             default: null,
                             description: "Full public URL of gitea server.",
                           })))),
                         STATIC_ROOT_PATH: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$53,
+                            [nix.POS]: pos$53,
                             type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")))),
                             default: nix.thunk(() => nix.sel(cfg, "package", "data")),
                             defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "package")}.data`))),
@@ -536,13 +536,13 @@ else 5432
                             description: "Upper level of template and static files path.",
                           })))),
                         DISABLE_SSH: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$54,
+                            [nix.POS]: pos$54,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: false,
                             description: "Disable external SSH feature.",
                           })))),
                         SSH_PORT: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$55,
+                            [nix.POS]: pos$55,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                             default: 22n,
                             example: 2222n,
@@ -550,18 +550,18 @@ else 5432
                           })))),
                       })),
                       service: nix.thunk(() => ({
-                        __proto__: pos$58,
+                        [nix.POS]: pos$58,
                         DISABLE_REGISTRATION: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$57,
+                            [nix.POS]: pos$57,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: true,
                             description: "By default registration is disabled. It can be enabled by setting this option to `false`.\n\n::: {.note}\nThis option is required to be set to `false` for the initial installation and the first registered user will be admin.\n:::\n",
                           })))),
                       })),
                       session: nix.thunk(() => ({
-                        __proto__: pos$60,
+                        [nix.POS]: pos$60,
                         COOKIE_SECURE: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$59,
+                            [nix.POS]: pos$59,
                             type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                             default: false,
                             description: "Marks session cookies as \"secure\" as a hint for browsers to only send\nthem via HTTPS. This option is recommend, if gitea is being served over HTTPS.\n",
@@ -572,7 +572,7 @@ else 5432
                 })(), formals$2))),
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               type: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                 return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -584,46 +584,46 @@ else 5432
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$119,
+        [nix.POS]: pos$119,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$68,
+            [nix.POS]: pos$68,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings", "server", "ROOT_URL"), null)),
             message: "services.gitea.settings.server.ROOT_URL must be set to the full public URL of the gitea server (e.g. \"http://gitea.example.com/\").\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$69,
+            [nix.POS]: pos$69,
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings"), "server"))) || nix.asBool(!nix.asBool(nix.has(nix.sel(cfg, "settings", "server"), "DOMAIN"))))),
             message: "`services.gitea.settings.server.DOMAIN` was removed upstream and replaced by `services.gitea.settings.server.ROOT_URL`.\nRemove the DOMAIN setting and set ROOT_URL to the full public URL (e.g. \"http://gitea.example.com/\").\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$70,
+            [nix.POS]: pos$70,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createDatabase")) || nix.asBool((nix.asBool(useSqlite) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "user"))))))),
             message: "services.gitea.database.user must match services.gitea.user if the database is to be automatically provisioned",
           })),
           nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(usePostgresql))) || nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))),
             message: "When creating a database via NixOS, the db user and db name must be equal!\nIf you already have an existing DB+user and this assertion is new, you can safely set\n`services.gitea.createDatabase` to `false` because removal of `ensureUsers`\nand `ensureDatabases` doesn't have any effect.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$72,
+            [nix.POS]: pos$72,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "captcha", "enable")) || nix.asBool((!nix.asBool(!nix.eq(nix.sel(cfg, "captcha", "type"), "image")) || nix.asBool((nix.asBool(!nix.eq(nix.sel(cfg, "captcha", "secretFile"), null)) && nix.asBool(!nix.eq(nix.sel(cfg, "captcha", "siteKey"), null)))))))),
             message: "Using a CAPTCHA service that is not `image` requires providing a CAPTCHA secret through\nthe `captcha.secretFile` option and a CAPTCHA site key through the `captcha.siteKey` option.\n",
           })),
           nix.thunk(() => ({
-            __proto__: pos$73,
+            [nix.POS]: pos$73,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "captcha", "url"), null)) || nix.asBool(nix.app(nix.sel(nix.builtins, "elem"), nix.thunk(() => nix.sel(cfg, "captcha", "type")), nix.thunk(() => ["mcaptcha", "recaptcha"]))))),
             message: "`captcha.url` is only relevant when `captcha.type` is `mcaptcha` or `recaptcha`.\n",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$102,
+          [nix.POS]: pos$102,
           gitea: nix.thunk(() => ({
-            __proto__: pos$97,
+            [nix.POS]: pos$97,
             settings: nix.thunk(() => (() => {
               const captchaPrefix = nix.thunk(() => nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(cfg, "captcha", "enable")), nix.thunk(() => nix.sel({
-                  __proto__: pos$74,
+                  [nix.POS]: pos$74,
                   image: "IMAGE",
                   recaptcha: "RECAPTCHA",
                   hcaptcha: "HCAPTCHA",
@@ -631,42 +631,42 @@ else 5432
                   cfturnstile: "CF_TURNSTILE",
                 }, nix.key(nix.str`${nix.sel(cfg, "captcha", "type")}`)))));
               return {
-                __proto__: pos$94,
+                [nix.POS]: pos$94,
                 "cron.update_checker": nix.thunk(() => ({
-                  __proto__: pos$75,
+                  [nix.POS]: pos$75,
                   ENABLED: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
                 })),
                 database: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => ({
-                      __proto__: pos$76,
+                      [nix.POS]: pos$76,
                       DB_TYPE: nix.thunk(() => nix.sel(cfg, "database", "type")),
                     })),
                     nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => (nix.asBool(useMysql) || nix.asBool(usePostgresql))), nix.thunk(() => ({
-                        __proto__: pos$77,
+                        [nix.POS]: pos$77,
                         HOST: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)) ? nix.sel(cfg, "database", "socket") : nix.add(nix.add(nix.sel(cfg, "database", "host"), ":"), nix.app(nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "database", "port")))))),
                         NAME: nix.thunk(() => nix.sel(cfg, "database", "name")),
                         USER: nix.thunk(() => nix.sel(cfg, "database", "user")),
                         PASSWD: "#dbpass#",
                       })))),
-                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), useSqlite, nix.thunk(() => ({ __proto__: pos$78, PATH: nix.thunk(() => nix.sel(cfg, "database", "path")) })))),
-                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), usePostgresql, nix.thunk(() => ({ __proto__: pos$79, SSL_MODE: "disable" })))),
+                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), useSqlite, nix.thunk(() => ({ [nix.POS]: pos$78, PATH: nix.thunk(() => nix.sel(cfg, "database", "path")) })))),
+                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), usePostgresql, nix.thunk(() => ({ [nix.POS]: pos$79, SSL_MODE: "disable" })))),
                   ]))),
-                repository: nix.thunk(() => ({ __proto__: pos$80, ROOT: nix.thunk(() => nix.sel(cfg, "repositoryRoot")) })),
-                server: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ __proto__: pos$81, LFS_START_SERVER: true, LFS_JWT_SECRET: "#lfsjwtsecret#" })))),
-                camo: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "camoHmacKeyFile"), null)), nix.thunk(() => ({ __proto__: pos$82, HMAC_KEY: "#hmackey#" })))),
+                repository: nix.thunk(() => ({ [nix.POS]: pos$80, ROOT: nix.thunk(() => nix.sel(cfg, "repositoryRoot")) })),
+                server: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ [nix.POS]: pos$81, LFS_START_SERVER: true, LFS_JWT_SECRET: "#lfsjwtsecret#" })))),
+                camo: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "camoHmacKeyFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$82, HMAC_KEY: "#hmackey#" })))),
                 session: nix.thunk(() => ({
-                  __proto__: pos$83,
+                  [nix.POS]: pos$83,
                   COOKIE_NAME: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "session")),
                 })),
                 security: nix.thunk(() => ({
-                  __proto__: pos$84,
+                  [nix.POS]: pos$84,
                   SECRET_KEY: "#secretkey#",
                   INTERNAL_TOKEN: "#internaltoken#",
                   INSTALL_LOCK: true,
                 })),
                 service: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "captcha", "enable")), nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$85,
+                        [nix.POS]: pos$85,
                         ENABLE_CAPTCHA: true,
                         CAPTCHA_TYPE: nix.thunk(() => nix.sel(cfg, "captcha", "type")),
                         REQUIRE_CAPTCHA_FOR_LOGIN: nix.thunk(() => nix.sel(cfg, "captcha", "requireForLogin")),
@@ -680,50 +680,50 @@ else 5432
                           [nix.str`${captchaPrefix}_URL`, nix.thunk(() => nix.sel(cfg, "captcha", "url"))],
                         ])))),
                     ]))))),
-                mailer: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "mailerPasswordFile"), null)), nix.thunk(() => ({ __proto__: pos$86, PASSWD: "#mailerpass#" })))),
-                "email.incoming": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "incomingMailPasswordFile"), null)), nix.thunk(() => ({ __proto__: pos$87, PASSWORD: "#incomingmailpass#" })))),
-                metrics: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "metricsTokenFile"), null)), nix.thunk(() => ({ __proto__: pos$88, TOKEN: "#metricstoken#" })))),
-                oauth2: nix.thunk(() => ({ __proto__: pos$89, JWT_SECRET: "#oauth2jwtsecret#" })),
-                lfs: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ __proto__: pos$90, PATH: nix.thunk(() => nix.sel(cfg, "lfs", "contentDir")) })))),
+                mailer: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "mailerPasswordFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$86, PASSWD: "#mailerpass#" })))),
+                "email.incoming": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "incomingMailPasswordFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$87, PASSWORD: "#incomingmailpass#" })))),
+                metrics: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "metricsTokenFile"), null)), nix.thunk(() => ({ [nix.POS]: pos$88, TOKEN: "#metricstoken#" })))),
+                oauth2: nix.thunk(() => ({ [nix.POS]: pos$89, JWT_SECRET: "#oauth2jwtsecret#" })),
+                lfs: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "lfs", "enable")), nix.thunk(() => ({ [nix.POS]: pos$90, PATH: nix.thunk(() => nix.sel(cfg, "lfs", "contentDir")) })))),
                 packages: nix.thunk(() => ({
-                  __proto__: pos$91,
+                  [nix.POS]: pos$91,
                   CHUNKED_UPLOAD_PATH: nix.thunk(() => nix.str`${nix.sel(cfg, "stateDir")}/tmp/package-upload`),
                 })),
                 storage: nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
-                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "minioAccessKeyId"), null)), nix.thunk(() => ({ __proto__: pos$92, MINIO_ACCESS_KEY_ID: "#minioaccesskeyid#" })))),
-                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "minioSecretAccessKey"), null)), nix.thunk(() => ({ __proto__: pos$93, MINIO_SECRET_ACCESS_KEY: "#miniosecretaccesskey#" })))),
+                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "minioAccessKeyId"), null)), nix.thunk(() => ({ [nix.POS]: pos$92, MINIO_ACCESS_KEY_ID: "#minioaccesskeyid#" })))),
+                    nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "minioSecretAccessKey"), null)), nix.thunk(() => ({ [nix.POS]: pos$93, MINIO_SECRET_ACCESS_KEY: "#miniosecretaccesskey#" })))),
                   ]))),
               };
             })()),
             database: nix.thunk(() => ({
-              __proto__: pos$96,
+              [nix.POS]: pos$96,
               passwordFile: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.app(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                      __proto__: pos$95,
+                      [nix.POS]: pos$95,
                       name: "gitea-database-password",
                       text: nix.thunk(() => nix.sel(cfg, "database", "password")),
                     })))))))),
             })),
           })),
           postgresql: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => (nix.asBool(usePostgresql) && nix.asBool(nix.sel(cfg, "database", "createDatabase")))), nix.thunk(() => ({
-              __proto__: pos$99,
+              [nix.POS]: pos$99,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$98,
+                  [nix.POS]: pos$98,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
               ]),
             })))),
           mysql: nix.thunk(() => nix.app(nix.lookup(w, "optionalAttrs"), nix.thunk(() => (nix.asBool(useMysql) && nix.asBool(nix.sel(cfg, "database", "createDatabase")))), nix.thunk(() => ({
-              __proto__: pos$101,
+              [nix.POS]: pos$101,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               package: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$100,
+                  [nix.POS]: pos$100,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensurePermissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${nix.sel(cfg, "database", "name")}.*`, "ALL PRIVILEGES"]])),
                 })),
@@ -731,9 +731,9 @@ else 5432
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$114,
+          [nix.POS]: pos$114,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$103,
+            [nix.POS]: pos$103,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d '${nix.sel(cfg, "dump", "backupDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
               nix.thunk(() => nix.str`z '${nix.sel(cfg, "dump", "backupDir")}' 0750 ${nix.sel(cfg, "user")} ${nix.sel(cfg, "group")} - -`),
@@ -759,9 +759,9 @@ else 5432
               ])))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$110,
+            [nix.POS]: pos$110,
             gitea: nix.thunk(() => ({
-              __proto__: pos$106,
+              [nix.POS]: pos$106,
               description: "gitea",
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.lookup(w, "optional"), usePostgresql, "postgresql.target"), nix.app(nix.lookup(w, "optional"), useMysql, "mysql.service")))),
               requires: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(usePostgresql))), "postgresql.target"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createDatabase")) && nix.asBool(useMysql))), "mysql.service"))),
@@ -851,7 +851,7 @@ fi
 `;
               })()),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$104,
+                [nix.POS]: pos$104,
                 Type: "notify",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -897,7 +897,7 @@ fi
                 SystemCallFilter: nix.thunk(() => nix.concat(["~@cpu-emulation @debug @keyring @mount @obsolete @setuid", "setrlimit"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(useSendmail)), nix.thunk(() => ["~@privileged"])))),
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$105,
+                [nix.POS]: pos$105,
                 USER: nix.thunk(() => nix.sel(cfg, "user")),
                 HOME: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 GITEA_WORK_DIR: nix.thunk(() => nix.sel(cfg, "stateDir")),
@@ -905,19 +905,19 @@ fi
               })),
             })),
             "gitea-dump": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "dump", "enable")), nix.thunk(() => ({
-                __proto__: pos$109,
+                [nix.POS]: pos$109,
                 description: "gitea dump",
                 after: nix.thunk(() => ["gitea.service"]),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
                 environment: nix.thunk(() => ({
-                  __proto__: pos$107,
+                  [nix.POS]: pos$107,
                   USER: nix.thunk(() => nix.sel(cfg, "user")),
                   HOME: nix.thunk(() => nix.sel(cfg, "stateDir")),
                   GITEA_WORK_DIR: nix.thunk(() => nix.sel(cfg, "stateDir")),
                   GITEA_CUSTOM: nix.thunk(() => nix.sel(cfg, "customDir")),
                 })),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$108,
+                  [nix.POS]: pos$108,
                   Type: "oneshot",
                   User: nix.thunk(() => nix.sel(cfg, "user")),
                   ExecStart: nix.thunk(() => nix.add(nix.str`${exe} dump --type ${nix.sel(cfg, "dump", "type")}`, nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(cfg, "dump", "file"), null)), nix.thunk(() => nix.str` --file ${nix.sel(cfg, "dump", "file")}`)))),
@@ -926,25 +926,25 @@ fi
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$113,
+            [nix.POS]: pos$113,
             "gitea-dump": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "dump", "enable")), nix.thunk(() => ({
-                __proto__: pos$112,
+                [nix.POS]: pos$112,
                 description: "Update timer for gitea-dump",
                 partOf: nix.thunk(() => ["gitea-dump.service"]),
                 wantedBy: nix.thunk(() => ["timers.target"]),
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$111,
+                  [nix.POS]: pos$111,
                   OnCalendar: nix.thunk(() => nix.sel(cfg, "dump", "interval")),
                 })),
               })))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$118,
+          [nix.POS]: pos$118,
           users: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "gitea")), nix.thunk(() => ({
-              __proto__: pos$116,
+              [nix.POS]: pos$116,
               gitea: nix.thunk(() => ({
-                __proto__: pos$115,
+                [nix.POS]: pos$115,
                 description: "Gitea Service",
                 home: nix.thunk(() => nix.sel(cfg, "stateDir")),
                 useDefaultShell: true,
@@ -952,12 +952,12 @@ fi
                 isSystemUser: true,
               })),
             })))),
-          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "gitea")), nix.thunk(() => ({ __proto__: pos$117, gitea: nix.thunk(() => ({})) })))),
+          groups: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "gitea")), nix.thunk(() => ({ [nix.POS]: pos$117, gitea: nix.thunk(() => ({})) })))),
         })),
         warnings: nix.thunk(() => nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "password"), "")), "config.services.gitea.database.password will be stored as plaintext in the Nix store. Use database.passwordFile instead."), nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "extraConfig"), null)), "services.gitea.`extraConfig` is deprecated, please use services.gitea.`settings`.\n"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(cfg, "package"))), "forgejo")), "Running forgejo via services.gitea.package is no longer supported.\nPlease use services.forgejo instead.\nSee https://nixos.org/manual/nixos/unstable/#module-forgejo for migration instructions.\n")))),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$120,
+      [nix.POS]: pos$120,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
         return [

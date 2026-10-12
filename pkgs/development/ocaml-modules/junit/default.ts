@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const tyxml = nix.arg($, "tyxml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "junit",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/Khady/ocaml-junit/releases/download/${nix.sel(finalAttrs, "version")}/junit-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-j+4lfuQEWq8z8ik/zfA5phWqv8km+tGEzqG/63cbhTM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ptime, tyxml]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "OCaml package for the creation of JUnit XML reports, proving a typed API to produce valid reports acceptable to Jenkins, comes with packages supporting OUnit and Alcotest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: [],

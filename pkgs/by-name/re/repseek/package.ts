@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "repseek",
       version: "9Sep2014",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://bioinfo.mnhn.fr/abi/public/RepSeek/RepSeek.${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1jiknji3ivrv7zmrfbf2mccfpdwhin3lfxfsciaqwf69b3sda8nf",
         })))),
       preConfigure: nix.thunk(() => nix.add("mkdir -p $out/bin\nsubstituteInPlace Makefile \\\n  --replace \"INSTALLDIR = \\$\\$HOME/bin\" \"INSTALLDIR = $out/bin/\" \\\n  --replace \"CC= gcc\" \"CC = $CC\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "substituteInPlace Makefile --replace \"MACHINE = MACOSX\" \"MACHINE = LINUX\"\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to retrieve approximate repeats from large DNA sequences",
         mainProgram: "repseek",
         homepage: "https://bioinfo.mnhn.fr/abi/public/RepSeek",

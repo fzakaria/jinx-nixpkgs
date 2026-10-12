@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const hsc3 = nix.thunk(() => nix.attr(haskellPackages, "hsc3"));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "hsc3-mode",
       ename: "hsc3",
       src: nix.thunk(() => nix.attr(hsc3, "src")),
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hsc3, "meta"));
         return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Emacs mode for hsc3",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const ty = nix.arg($, "ty");
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "run-nspawn",
       version: "1.0",
       pyproject: true,
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [ruff, ty]),
       checkPhase: "echo -e \"\\x1b[32m## run ty\\x1b[0m\"\nty check --error-on-warning run_nspawn\necho -e \"\\x1b[32m## run ruff check\\x1b[0m\"\nruff check .\necho -e \"\\x1b[32m## run ruff format\\x1b[0m\"\nruff format --check --diff .\n",
-      meta: nix.thunk(() => ({ __proto__: pos$1, mainProgram: "run-nspawn" })),
+      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "run-nspawn" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

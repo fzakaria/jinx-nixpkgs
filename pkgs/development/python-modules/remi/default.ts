@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2022.7.27";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rawpython",
           repo: "remi",
           rev: version,
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "remote-pkg_resources-dependency.patch",
             url: "https://github.com/rawpython/remi/commit/54b253ccd9d7e9626d8236ec4a8a32631ff2fca2.patch",
             hash: "sha256-VyTc5jFmNRWnAQqEupBB87Xw86+e7VgMoQeUrBcY+mg=",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, python_snap7, opencv4, matplotlib]);
       const pythonImportsCheck = nix.thunk(() => ["remi", "editor", "editor.widgets"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Pythonic, lightweight and websocket-based webui library",
         homepage: "https://github.com/rawpython/remi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

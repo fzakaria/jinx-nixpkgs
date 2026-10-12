@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const dhall_nix = nix.arg($, "dhall-nix");
   return (dhallPackage) => (() => {
     const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "dhall-compiled-package.nix",
         buildCommand: nix.thunk(() => nix.str`# Dhall requires that the cache is writable, even if it is never written to.
 # We copy the cache from the input package to the current directory and

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const virtualenv = nix.arg($, "virtualenv");
   const wheel = nix.arg($, "wheel");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "pbr",
       version: nix.thunk(() => nix.attr(pbr, "version")),
       src: nix.thunk(() => nix.attr(pbr, "src")),

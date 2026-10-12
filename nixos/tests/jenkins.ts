@@ -48,67 +48,67 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$36,
+    [nix.POS]: pos$36,
     name: "jenkins",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bjornfor"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      __proto__: pos$35,
+      [nix.POS]: pos$35,
       master: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           services: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             jenkins: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               enable: true,
               jobBuilder: nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 enable: true,
                 nixJobs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$4,
+                    [nix.POS]: pos$4,
                     job: nix.thunk(() => ({
-                      __proto__: pos$3,
+                      [nix.POS]: pos$3,
                       name: "job-1",
-                      builders: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$2, shell: "echo \"Running job-1\"\n" }))]),
+                      builders: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$2, shell: "echo \"Running job-1\"\n" }))]),
                     })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$6,
-                    job: nix.thunk(() => ({ __proto__: pos$5, name: "folder-1", "project-type": "folder" })),
+                    [nix.POS]: pos$6,
+                    job: nix.thunk(() => ({ [nix.POS]: pos$5, name: "folder-1", "project-type": "folder" })),
                   })),
                   nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     job: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       name: "folder-1/job-2",
-                      builders: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$7, shell: "echo \"Running job-2\"\n" }))]),
+                      builders: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$7, shell: "echo \"Running job-2\"\n" }))]),
                     })),
                   })),
                 ]),
               })),
             })),
-            jenkinsSlave: nix.thunk(() => ({ __proto__: pos$12, enable: true })),
+            jenkinsSlave: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             noJenkinsJobs: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               configuration: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 services: nix.thunk(() => ({
-                  __proto__: pos$16,
+                  [nix.POS]: pos$16,
                   jenkins: nix.thunk(() => ({
-                    __proto__: pos$15,
+                    [nix.POS]: pos$15,
                     jobBuilder: nix.thunk(() => ({
-                      __proto__: pos$14,
+                      [nix.POS]: pos$14,
                       nixJobs: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     })),
                   })),
@@ -117,38 +117,38 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$22,
+            [nix.POS]: pos$22,
             users: nix.thunk(() => ({
-              __proto__: pos$21,
-              jenkins: nix.thunk(() => ({ __proto__: pos$20, extraGroups: nix.thunk(() => ["users"]) })),
+              [nix.POS]: pos$21,
+              jenkins: nix.thunk(() => ({ [nix.POS]: pos$20, extraGroups: nix.thunk(() => ["users"]) })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$26,
+            [nix.POS]: pos$26,
             services: nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               jenkins: nix.thunk(() => ({
-                __proto__: pos$24,
-                serviceConfig: nix.thunk(() => ({ __proto__: pos$23, TimeoutStartSec: "6min" })),
+                [nix.POS]: pos$24,
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, TimeoutStartSec: "6min" })),
               })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ __proto__: pos$27, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$27, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
         };
       })(), formals$2),
       slave: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          __proto__: pos$34,
+          [nix.POS]: pos$34,
           services: nix.thunk(() => ({
-            __proto__: pos$30,
-            jenkinsSlave: nix.thunk(() => ({ __proto__: pos$29, enable: true })),
+            [nix.POS]: pos$30,
+            jenkinsSlave: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             users: nix.thunk(() => ({
-              __proto__: pos$32,
-              jenkins: nix.thunk(() => ({ __proto__: pos$31, extraGroups: nix.thunk(() => ["users"]) })),
+              [nix.POS]: pos$32,
+              jenkins: nix.thunk(() => ({ [nix.POS]: pos$31, extraGroups: nix.thunk(() => ["users"]) })),
             })),
           })),
         };

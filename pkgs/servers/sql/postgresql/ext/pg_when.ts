@@ -25,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_18_0,
       pname: "pg_when",
       version: "0.1.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "frectonz",
           repo: "pg-when",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,30 +40,30 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-pHY71+egTX9AU8nNeDHCymmaFsz+2JYmRGqKq4uT7w4=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
-              env: nix.thunk(() => ({ __proto__: pos$2, TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`) })),
+              env: nix.thunk(() => ({ [nix.POS]: pos$2, TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`) })),
               sql: "CREATE EXTENSION pg_when;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   query: "when_is('December 31, 2026 at evening in Asia/Tokyo')",
                   expected: "TIMESTAMPTZ '2026-12-31 18:00:00+09'",
                   description: "exact date with a time keyword and a named timezone resolves correctly",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   query: "seconds_at('January 1, 2000 at midnight in UTC+3')",
                   expected: "946674000",
                   description: "UNIX timestamp accounts for the UTC offset",
                 })),
                 nix.thunk(() => ({
-                  __proto__: pos$5,
+                  [nix.POS]: pos$5,
                   query: "millis_at('1970-01-01 at midnight')",
                   expected: "0",
                   description: "UNIX epoch is zero milliseconds",
@@ -73,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "PostgreSQL extension for creating time values with natural language",
         homepage: "https://github.com/frectonz/pg-when",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

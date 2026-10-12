@@ -78,35 +78,35 @@ export default nix.lambda((args) => (() => {
     const configEnv_1 = nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (value) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => nix.attrsDyn({}, [
           [nix.app(nameToEnvVar, name), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : nix.builtins.toString(value)))],
         ]))), nix.thunk(() => nix.sel(cfg, "config"))));
-    return nix.update({ __proto__: pos$1, DATA_FOLDER: dataDir }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.has(configEnv_1, "WEB_VAULT_ENABLED"))) || nix.asBool(nix.eq(nix.sel(configEnv_1, "WEB_VAULT_ENABLED"), "true")))), nix.thunk(() => ({
-        __proto__: pos$2,
+    return nix.update({ [nix.POS]: pos$1, DATA_FOLDER: dataDir }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.has(configEnv_1, "WEB_VAULT_ENABLED"))) || nix.asBool(nix.eq(nix.sel(configEnv_1, "WEB_VAULT_ENABLED"), "true")))), nix.thunk(() => ({
+        [nix.POS]: pos$2,
         WEB_VAULT_FOLDER: nix.thunk(() => nix.str`${nix.sel(cfg, "webVaultPackage")}/share/vaultwarden/vault`),
       }))), configEnv_1));
   })());
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "vaultwarden.env", nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`${name}=${value}
 `, configEnv))))));
-  const vaultwarden = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ __proto__: pos$3, dbBackend: nix.thunk(() => nix.attr(cfg, "dbBackend")) }))));
+  const vaultwarden = nix.thunk(() => nix.app(nix.sel(cfg, "package", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, dbBackend: nix.thunk(() => nix.attr(cfg, "dbBackend")) }))));
   const useSendmail = nix.thunk(() => nix.eq(nix.selOr(configEnv, () => null, "USE_SENDMAIL"), "true"));
   return {
-    __proto__: pos$52,
+    [nix.POS]: pos$52,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "bitwarden_rs"]), nix.thunk(() => ["services", "vaultwarden"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         vaultwarden: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "vaultwarden")),
           dbBackend: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["sqlite", "mysql", "postgresql"]))),
               default: "sqlite",
               description: "Which database backend vaultwarden will be using.\n",
             })))),
           backupDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -116,7 +116,7 @@ export default nix.lambda((args) => (() => {
               example: "/var/backup/vaultwarden",
             })))),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -125,7 +125,7 @@ export default nix.lambda((args) => (() => {
                         nix.thunk(() => nix.lookup(w, "str")),
                       ]))))));
               })()),
-              default: nix.thunk(() => ({ __proto__: pos$6, ROCKET_ADDRESS: "::1", ROCKET_PORT: 8222n })),
+              default: nix.thunk(() => ({ [nix.POS]: pos$6, ROCKET_ADDRESS: "::1", ROCKET_PORT: 8222n })),
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  DOMAIN = \"https://bitwarden.example.com\";\n  SIGNUPS_ALLOWED = false;\n\n  # Vaultwarden recommends running behind a reverse proxy, the configureNginx option can be used for that.\n  ROCKET_ADDRESS = \"127.0.0.1\";\n  ROCKET_PORT = 8222;\n\n  ROCKET_LOG = \"critical\";\n\n  # This example assumes a mailserver running on localhost,\n  # thus without transport encryption.\n  # If you use an external mail server, follow:\n  #   https://github.com/dani-garcia/vaultwarden/wiki/SMTP-configuration\n  SMTP_HOST = \"127.0.0.1\";\n  SMTP_PORT = 25;\n  SMTP_SSL = false;\n\n  SMTP_FROM = \"admin@bitwarden.example.com\";\n  SMTP_FROM_NAME = \"example.com Bitwarden server\";\n}\n")),
               description: nix.thunk(() => nix.str`The configuration of vaultwarden is done through environment variables,
 therefore it is recommended to use upper snake case (e.g. {env}\`DISABLE_2FA_REMEMBER\`).
@@ -150,19 +150,19 @@ to set up access to the Admin UI to invite initial users.
 `),
             })))),
           configureNginx: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to configure nginx to serve VaultWarden.",
             })))),
           configurePostgres: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to configure a local PostgreSQL server.",
             })))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -172,7 +172,7 @@ to set up access to the Admin UI to invite initial users.
               description: "The domain under which VaultWarden will be reachable.",
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                 return nix.app(nix.lookup(w, "coercedTo"), nix.thunk(() => nix.lookup(w, "path")), nix.thunk(() => nix.sel(lib, "singleton")), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")))));
@@ -187,33 +187,33 @@ to set up access to the Admin UI to invite initial users.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "backupDir"), null)) || nix.asBool(nix.eq(nix.sel(cfg, "dbBackend"), "sqlite")))),
             message: "Backups for database backends other than sqlite will need customization",
           })),
           nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             assertion: nix.thunk(() => (!nix.asBool(!nix.eq(nix.sel(cfg, "backupDir"), null)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), dataDir, nix.thunk(() => nix.sel(cfg, "backupDir"))))))),
             message: nix.thunk(() => nix.str`Backup directory can not be in ${dataDir}`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "configureNginx")) || nix.asBool(!nix.eq(nix.sel(cfg, "domain"), null)))),
             message: "Setting services.vaultwarden.configureNginx to true requires configuring services.vaultwarden.domain!",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           nginx: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               enable: true,
               upstreams: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 vaultwarden: nix.thunk(() => ({
-                  __proto__: pos$18,
+                  [nix.POS]: pos$18,
                   servers: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "config", "ROCKET_PORT")))}`, nix.thunk(() => ({}))],
                   ])),
@@ -221,35 +221,35 @@ to set up access to the Admin UI to invite initial users.
               })),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.sel(cfg, "domain"), nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   forceSSL: true,
                   locations: nix.thunk(() => ({
-                    __proto__: pos$23,
-                    "/": nix.thunk(() => ({ __proto__: pos$20, proxyPass: "http://vaultwarden" })),
-                    "= /notifications/anonymous-hub": nix.thunk(() => ({ __proto__: pos$21, proxyPass: "http://vaultwarden", proxyWebsockets: true })),
-                    "= /notifications/hub": nix.thunk(() => ({ __proto__: pos$22, proxyPass: "http://vaultwarden", proxyWebsockets: true })),
+                    [nix.POS]: pos$23,
+                    "/": nix.thunk(() => ({ [nix.POS]: pos$20, proxyPass: "http://vaultwarden" })),
+                    "= /notifications/anonymous-hub": nix.thunk(() => ({ [nix.POS]: pos$21, proxyPass: "http://vaultwarden", proxyWebsockets: true })),
+                    "= /notifications/hub": nix.thunk(() => ({ [nix.POS]: pos$22, proxyPass: "http://vaultwarden", proxyWebsockets: true })),
                   })),
                 }))],
               ])),
             })))),
           postgresql: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configurePostgres")), nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               enable: true,
               ensureDatabases: nix.thunk(() => ["vaultwarden"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$26, name: "vaultwarden", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: pos$26, name: "vaultwarden", ensureDBOwnership: true })),
               ]),
             })))),
           vaultwarden: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$28,
+                  [nix.POS]: pos$28,
                   DATABASE_URL: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configurePostgres")), "postgresql:///vaultwarden?host=/run/postgresql")),
                   DOMAIN: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "domain"), null)), nix.thunk(() => nix.str`https://${nix.sel(cfg, "domain")}`))),
                 })),
                 nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configureNginx")), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     ENABLE_WEBSOCKET: true,
                     ROCKET_ADDRESS: "127.0.0.1",
                     ROCKET_PORT: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 8222n)),
@@ -258,17 +258,17 @@ to set up access to the Admin UI to invite initial users.
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$45,
+          [nix.POS]: pos$45,
           services: nix.thunk(() => ({
-            __proto__: pos$37,
+            [nix.POS]: pos$37,
             vaultwarden: nix.thunk(() => ({
-              __proto__: pos$33,
+              [nix.POS]: pos$33,
               after: nix.thunk(() => nix.concat(["network-online.target"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(cfg, "configurePostgres")), "postgresql.target"))),
               requires: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "configurePostgres")), nix.thunk(() => ["postgresql.target"]))),
               wants: nix.thunk(() => ["network-online.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 User: user,
                 Group: group,
                 EnvironmentFile: nix.thunk(() => nix.concat([configFile], nix.sel(cfg, "environmentFile"))),
@@ -308,17 +308,17 @@ to set up access to the Admin UI to invite initial users.
               wantedBy: nix.thunk(() => ["multi-user.target"]),
             })),
             "backup-vaultwarden": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "backupDir"), null)), nix.thunk(() => ({
-                __proto__: pos$36,
+                [nix.POS]: pos$36,
                 description: "Backup vaultwarden",
                 environment: nix.thunk(() => ({
-                  __proto__: pos$34,
+                  [nix.POS]: pos$34,
                   DATA_FOLDER: nix.thunk(() => nix.sel(configEnv, "DATA_FOLDER")),
                   BACKUP_FOLDER: nix.thunk(() => nix.sel(cfg, "backupDir")),
                 })),
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sqlite"))]),
                 before: nix.thunk(() => ["vaultwarden.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$35,
+                  [nix.POS]: pos$35,
                   SyslogIdentifier: "backup-vaultwarden",
                   Type: "oneshot",
                   User: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), user)),
@@ -329,12 +329,12 @@ to set up access to the Admin UI to invite initial users.
               })))),
           })),
           timers: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             "backup-vaultwarden": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "backupDir"), null)), nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 description: "Backup vaultwarden on time",
                 timerConfig: nix.thunk(() => ({
-                  __proto__: pos$38,
+                  [nix.POS]: pos$38,
                   OnCalendar: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "23:00")),
                   Persistent: "true",
                   Unit: "backup-vaultwarden.service",
@@ -343,29 +343,29 @@ to set up access to the Admin UI to invite initial users.
               })))),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "backupDir"), null)), nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 "10-vaultwarden": nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(cfg, "backupDir"), nix.thunk(() => ({
-                    __proto__: pos$42,
-                    d: nix.thunk(() => ({ __proto__: pos$41, user: user, group: group, mode: "0770" })),
+                    [nix.POS]: pos$42,
+                    d: nix.thunk(() => ({ [nix.POS]: pos$41, user: user, group: group, mode: "0770" })),
                   }))],
                 ])),
               })))),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$49,
-          groups: nix.thunk(() => ({ __proto__: pos$46, vaultwarden: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$49,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$46, vaultwarden: nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            __proto__: pos$48,
-            vaultwarden: nix.thunk(() => ({ __proto__: pos$47, group: group, isSystemUser: true })),
+            [nix.POS]: pos$48,
+            vaultwarden: nix.thunk(() => ({ [nix.POS]: pos$47, group: group, isSystemUser: true })),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$51,
+      [nix.POS]: pos$51,
       buildDocsInSandbox: false,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

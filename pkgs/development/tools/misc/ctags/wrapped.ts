@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ctagsWrapped, "rubyLang")),
     ])));
   return nix.app(writeTextFile, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: name,
       executable: true,
       destination: nix.thunk(() => nix.str`/bin/${name}`),
@@ -32,10 +32,10 @@ export default nix.lambda((args) => (() => {
 exec ${ctags}/bin/ctags ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "escapeShellArg")), args_1)))} "$@"
 `),
       derivationArgs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         meta: nix.thunk(() => nix.attr(ctags, "meta")),
         passthru: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           ctagsWrapped: ctagsWrapped,
           defaultArgs: nix.thunk(() => [
             "--exclude=.svn",

@@ -13,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "freqle",
       version: "0.1.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1LL1C9jYPjboGgz0z7AdWeMZR7DApCDlQ8Cj7I+iADY=",
         })))),
       cargoHash: "sha256-VeI2jyq7EXpjIT4e6nuTXj8z5ANoZyfxd27k/4ZaY7k=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Simple CLI frecency history",
         homepage: "https://github.com/jonascarpay/freqle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

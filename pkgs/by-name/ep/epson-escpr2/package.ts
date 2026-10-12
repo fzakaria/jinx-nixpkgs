@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "epson-inkjet-printer-escpr2",
       version: "1.2.42",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           curlOpts: "--user-agent ''",
           url: "https://download-center.epson.com/f/module/4d70b84a-1686-4134-8ce0-4ac8a838f31c/epson-inkjet-printer-escpr2-1.2.42-1.tar.gz",
           hash: "sha256-/gj4K6VPouXwS6p0Bc7dgF/j9Vl6YRVqH8pym1E/Tf4=",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://aur.archlinux.org/cgit/aur.git/plain/bug_x86_64.patch?h=epson-inkjet-printer-escpr2&id=8fbca325d6d39fa3ffe001f90a432380bdeacc2f",
             sha256: "sha256-V8ejK33qyHPX4x8EOgR+XWW44KR8DQwHx2w+O71gQwo=",
           })))),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-cupsppddir=${nix.builtins.placeholder("out")}/share/cups/model`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://download.ebz.epson.net/dsc/search/01/search/",
         description: "ESC/P-R 2 Driver (generic driver)",
         longDescription: "Epson Inkjet Printer Driver 2 (ESC/P-R 2) for Linux and the\ncorresponding PPD files.\n\nRefer to the description of epson-escpr for usage.\n",

@@ -21,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "django-money",
       version: "3.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "django-money",
           repo: "django-money",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,12 +34,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django, py_moneyed]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, exchange: nix.thunk(() => [certifi]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, exchange: nix.thunk(() => [certifi]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_django, pytest_cov_stub], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["djmoney"]),
       disabledTests: nix.thunk(() => ["test_mixer_blend"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Money fields for Django forms and models",
         homepage: "https://github.com/django-money/django-money",
         changelog: nix.thunk(() => nix.str`https://github.com/django-money/django-money/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (final) => (() => {
       const callPackage = nix.thunk(() => nix.attr(final, "callPackage"));
       return {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         makeGaugePlugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-gauge-plugin.nix"), nix.thunk(() => ({})))),
         testGaugePlugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-gauge-plugins.nix"), nix.thunk(() => ({})))),
         dotnet: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dotnet"), nix.thunk(() => ({})))),

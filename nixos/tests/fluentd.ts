@@ -16,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$6,
+    [nix.POS]: pos$6,
     name: "fluentd",
     nodes: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           services: nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             fluentd: nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               enable: true,
               config: "<source>\n  @type http\n  port 9880\n</source>\n\n<match **>\n  type copy\n  <store>\n    @type file\n    format json\n    path /tmp/fluentd\n    symlink_path /tmp/current-log\n  </store>\n  <store>\n    @type stdout\n  </store>\n</match>\n",
             })),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const testMessage = "an example log message";
-      const payload = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test-message.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ __proto__: pos$5, testMessage: testMessage }))))));
+      const payload = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test-message.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$5, testMessage: testMessage }))))));
       return nix.str`machine.start()
 machine.wait_for_unit("fluentd.service")
 machine.wait_for_open_port(9880)

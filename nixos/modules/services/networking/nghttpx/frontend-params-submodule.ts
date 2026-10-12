@@ -15,35 +15,35 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$7,
+    [nix.POS]: pos$7,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       tls: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["tls", "no-tls"]))),
           default: "tls",
           description: "Enable or disable TLS. If true (enabled) the key and\ncertificate must be configured for nghttpx.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-f>\nfor more detail.\n",
         })))),
       "sni-fwd": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "When performing a match to select a backend server, SNI host\nname received from the client is used instead of the request\nhost. See --backend option about the pattern match.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-f>\nfor more detail.\n",
         })))),
       api: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Enable API access for this frontend. This enables you to\ndynamically modify nghttpx at run-time therefore this feature\nis disabled by default and should be turned on with care.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-f>\nfor more detail.\n",
         })))),
       healthmon: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Make this frontend a health monitor endpoint. Any request\nreceived on this frontend is responded to with a 200 OK.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-f>\nfor more detail.\n",
         })))),
       proxyproto: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
           default: false,
           description: "Accept PROXY protocol version 1 on frontend connection.\n\nPlease see <https://nghttp2.org/documentation/nghttpx.1.html#cmdoption-nghttpx-f>\nfor more detail.\n",

@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "go-bindata-assetfs",
       version: "1.0.1-unstable-2022-04-12",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "elazarl",
           repo: "go-bindata-assetfs",
           rev: "de3be3ce9537d87338bf26ac211d02d4fa568bb8",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Serve embedded files from jteeuwen/go-bindata",
         homepage: "https://github.com/elazarl/go-bindata-assetfs",
         mainProgram: "go-bindata-assetfs",

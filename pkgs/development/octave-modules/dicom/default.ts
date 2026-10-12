@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dicom";
       const version = "0.7.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gnu-octave",
           repo: "octave-dicom",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const preAutoreconf = "pushd src\n# Removed these so autoreconf actually fires for our environment.\nrm config.*\n";
       const postAutoreconf = "popd\n";
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=release-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://gnu-octave.github.io/packages/dicom/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         description: "Digital communications in medicine (DICOM) file io",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

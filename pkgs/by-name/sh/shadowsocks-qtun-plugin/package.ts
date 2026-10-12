@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "shadowsocks-qtun-plugin",
       version: "0.3.0-unstable-2026-02-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "shadowsocks",
           repo: "qtun",
           rev: "ab58110075488f8411b0eafd3d9412be2ace3c61",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-iIqN25t9GxQ4jC5NtpOuDztdS+mCnEh7oDJXm9PivOo=",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Yet another SIP003 plugin based on IETF-QUIC",
         homepage: "https://github.com/shadowsocks/qtun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

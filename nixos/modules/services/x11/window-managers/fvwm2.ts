@@ -25,25 +25,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "xserver", "windowManager", "fvwm2"));
-  const fvwm2 = nix.thunk(() => nix.app(nix.sel(pkgs, "fvwm2", "override"), nix.thunk(() => ({ __proto__: pos$1, enableGestures: nix.thunk(() => nix.sel(cfg, "gestures")) }))));
+  const fvwm2 = nix.thunk(() => nix.app(nix.sel(pkgs, "fvwm2", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGestures: nix.thunk(() => nix.sel(cfg, "gestures")) }))));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["services", "xserver", "windowManager", "fvwm"]), nix.thunk(() => ["services", "xserver", "windowManager", "fvwm2"]))),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       services: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         xserver: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           windowManager: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             fvwm2: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "Fvwm2 window manager")),
               gestures: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$2,
+                  [nix.POS]: pos$2,
                   default: false,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Whether or not to enable libstroke for gesture support",
@@ -54,15 +54,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           xserver: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             windowManager: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               session: nix.thunk(() => nix.app(nix.lookup(w, "singleton"), nix.thunk(() => ({
-                  __proto__: pos$8,
+                  [nix.POS]: pos$8,
                   name: "fvwm2",
                   start: nix.thunk(() => nix.str`${fvwm2}/bin/fvwm &
 waitPID=$!
@@ -71,7 +71,7 @@ waitPID=$!
             })),
           })),
         })),
-        environment: nix.thunk(() => ({ __proto__: pos$12, systemPackages: nix.thunk(() => [fvwm2]) })),
+        environment: nix.thunk(() => ({ [nix.POS]: pos$12, systemPackages: nix.thunk(() => [fvwm2]) })),
       })))),
   };
 })(), formals$1);

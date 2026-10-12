@@ -36,82 +36,82 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cfg = nix.thunk(() => nix.sel(config, "services", "plex"));
   return {
-    __proto__: pos$25,
+    [nix.POS]: pos$25,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "plex", "managePlugins"]), "Please omit or define the option: `services.plex.extraPlugins' instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       services: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         plex: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Plex Media Server")),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/plex",
               description: "The directory where Plex stores its data files.\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the media server.\n",
             })))),
           user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "plex",
               description: "User account under which Plex runs.\n",
             })))),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "plex",
               description: "Group under which Plex runs.\n",
             })))),
           extraPlugins: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "A list of paths to extra plugin bundles to install in Plex's plugin\ndirectory. Every time the systemd unit for Plex starts up, all of the\nsymlinks in Plex's plugin directory will be cleared and this module\nwill symlink all of the paths specified here to that directory.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (builtins.path {\n    name = \"Audnexus.bundle\";\n    path = pkgs.fetchFromGitHub {\n      owner = \"djdembeck\";\n      repo = \"Audnexus.bundle\";\n      rev = \"v0.2.8\";\n      sha256 = \"sha256-IWOSz3vYL7zhdHan468xNc6C/eQ2C2BukQlaJNLXh7E=\";\n    };\n  })\n]\n")),
             })))),
           extraScanners: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: [],
               description: "A list of paths to extra scanners to install in Plex's scanners\ndirectory.\n\nEvery time the systemd unit for Plex starts up, all of the symlinks\nin Plex's scanners directory will be cleared and this module will\nsymlink all of the paths specified here to that directory.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[\n  (fetchFromGitHub {\n    owner = \"ZeroQI\";\n    repo = \"Absolute-Series-Scanner\";\n    rev = \"773a39f502a1204b0b0255903cee4ed02c46fde0\";\n    sha256 = \"4l+vpiDdC8L/EeJowUgYyB3JPNTZ1sauN8liFAcK+PY=\";\n  })\n]\n")),
             })))),
           accelerationDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: nix.thunk(() => ["*"]),
               example: nix.thunk(() => ["/dev/dri/renderD128"]),
               description: "A list of device paths to hardware acceleration devices that Plex should\nhave access to. This is useful when transcoding media files.\nThe special value `\"*\"` will allow all devices.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "plex", nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               extraDescription: "Plex subscribers may wish to use their own package here,\npointing to subscriber-only server versions.\n",
             })))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$24,
+        [nix.POS]: pos$24,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           services: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             plex: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               description: "Plex Media Server",
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 Type: "simple",
                 User: nix.thunk(() => nix.sel(cfg, "user")),
                 Group: nix.thunk(() => nix.sel(cfg, "group")),
@@ -146,7 +146,7 @@ fi
                 LockPersonality: true,
               })),
               environment: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 PLEX_DATADIR: nix.thunk(() => nix.sel(cfg, "dataDir")),
                 PLEX_PLUGINS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ":", nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraPlugins")))),
                 PLEX_SCANNERS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ":", nix.builtins.toString, nix.thunk(() => nix.sel(cfg, "extraScanners")))),
@@ -161,27 +161,27 @@ fi
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               allowedTCPPorts: nix.thunk(() => [32400n, 3005n, 8324n, 32469n]),
               allowedUDPPorts: nix.thunk(() => [1900n, 5353n, 32410n, 32412n, 32413n, 32414n]),
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$23,
+          [nix.POS]: pos$23,
           users: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "user"), "plex")), nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               plex: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 group: nix.thunk(() => nix.sel(cfg, "group")),
                 uid: nix.thunk(() => nix.sel(config, "ids", "uids", "plex")),
               })),
             })))),
           groups: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.eq(nix.sel(cfg, "group"), "plex")), nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               plex: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 gid: nix.thunk(() => nix.sel(config, "ids", "gids", "plex")),
               })),
             })))),

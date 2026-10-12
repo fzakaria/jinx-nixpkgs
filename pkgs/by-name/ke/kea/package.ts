@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kea = nix.arg($, "kea");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "kea",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://ftp.isc.org/isc/kea/${nix.sel(finalAttrs, "version")}/kea-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-FL9pXTe2W5sb9VD+pdCtr5gGxQ5UGe8qF2pLjpqt498=",
         })))),
@@ -70,15 +70,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([boost, log4cplus, openssl, python3], nix.concat(nix.app(nix.sel(lib, "optionals"), withMysql, nix.thunk(() => [libmysqlclient])), nix.concat(nix.app(nix.sel(lib, "optionals"), withPostgresql, nix.thunk(() => [libpq])), nix.app(nix.sel(lib, "optionals"), withKrb5, nix.thunk(() => [krb5])))))),
       postBuild: "ninja doc\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           kea: nix.thunk(() => nix.sel(nixosTests, "kea")),
           "prefix-delegation": nix.thunk(() => nix.sel(nixosTests, "systemd-networkd-ipv6-prefix-delegation")),
           "networking-scripted": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(nixosTests, "networking", "scripted"));
               return {
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               dhcpDefault: nix.thunk(() => nix.attr(from, "dhcpDefault")),
               dhcpSimple: nix.thunk(() => nix.attr(from, "dhcpSimple")),
               dhcpOneIf: nix.thunk(() => nix.attr(from, "dhcpOneIf")),
@@ -87,14 +87,14 @@ export default nix.lambda((args) => (() => {
           "networking-networkd": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(nixosTests, "networking", "networkd"));
               return {
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               dhcpDefault: nix.thunk(() => nix.attr(from, "dhcpDefault")),
               dhcpSimple: nix.thunk(() => nix.attr(from, "dhcpSimple")),
               dhcpOneIf: nix.thunk(() => nix.attr(from, "dhcpOneIf")),
             };
             })()))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: kea,
               command: "kea-shell -v",
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -102,7 +102,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://gitlab.isc.org/isc-projects/kea/-/wikis/Release-Notes/release-notes-${nix.sel(finalAttrs, "version")}`),
         homepage: "https://kea.isc.org/",

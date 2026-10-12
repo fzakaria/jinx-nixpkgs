@@ -12,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       variant: "4.4",
       version: "2020-04-04",
       branch: "bash44",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bashup",
           repo: "events",
           rev: "e97654f5602fc4e31083b27afa18dcc89b3e8296",
           hash: "sha256-51OSIod3mEg3MKs4rrMgRcOimDGC+3UIr4Bl/cTRyGM=",
         })))),
       keep: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         eval: nix.thunk(() => ["e", "bashup_ev", "n"]),
         $f: true,
         $n: true,

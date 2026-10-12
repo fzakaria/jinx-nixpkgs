@@ -13,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "crossfire-maps",
       version: "2025-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.code.sf.net/p/crossfire/crossfire-maps",
           rev: "ec57d473064ed1732adb1897415b56f96fbd9382",
           hash: "sha256-hJOMa8c80T4/NC37NKM270LDHNqWK6NZfKvKnFno9TE=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp -a . \"$out/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Map data for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

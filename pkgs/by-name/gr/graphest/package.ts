@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const darwin = nix.arg($, "darwin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "graphest",
       version: "1.8.2-unstable-2026-01-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "unageek",
           repo: "graphest",
           rev: "2bcb478acd40a1174606e51f4affeca56446c9f6",
@@ -54,13 +54,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "npm-files",
             url: "https://github.com/unageek/graphest/commit/1d1b8ee610a55bf9465a630499c6b0f6e9a66689.patch",
             hash: "sha256-5PU9iPy6gfesl40piRTw9+QMNf4GSGASYs8ZTLedS7o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "open-file",
             url: "https://github.com/unageek/graphest/commit/05f2e486a5cdd79d5135057d67c398256dc5019c.patch",
             hash: "sha256-GkssYkHVps8PeHMX/Fj5uj6r+MLrZcETXtQq4mZcOrQ=",
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
         nodejs,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-krpJflsoUPIzhdtyQu3WmapM4C63adwOq2Q6inUa3Xk=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       preBuild: "# do not set this in env because it must not be present in the configure phase\nexport NODE_ENV=production\n",
       yarnBuildScript: "build:app",
       checkPhase: "runHook preCheck\n\nyarn test\n\nrunHook postCheck\n",
@@ -97,13 +97,13 @@ install -Dm444 ${nix.path(here, "./mime.xml")} $out/share/mime/packages/graphest
 ln -s $out/bin/Graphest $out/Applications/Graphest.app/Contents/MacOS/Graphest
 install -Dm444 build/icon.icns $out/Applications/Graphest.app/Contents/Resources/icon.icns
 install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             version: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.builtins.match("([^\\-]+).*", nix.thunk(() => nix.sel(finalAttrs, "version")))), 0n)),
           })))} $out/Applications/Graphest.app/Contents/Info.plist
 `)))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             name: "graphest",
             desktopName: "Graphest",
             exec: "Graphest %u",
@@ -114,18 +114,18 @@ install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         fftwFloatStatic: nix.thunk(() => nix.sel(pkgsStatic, "fftwFloat")),
-        flintStatic: nix.thunk(() => nix.app(nix.sel(pkgsStatic, "flint", "override"), nix.thunk(() => ({ __proto__: pos$8, withBlas: true })))),
+        flintStatic: nix.thunk(() => nix.app(nix.sel(pkgsStatic, "flint", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withBlas: true })))),
         graph: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             pname: "graphest-graph",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependencies.patch"), nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   fftwLib: nix.thunk(() => nix.sel(finalAttrs, "passthru", "fftwFloatStatic", "out")),
                   fftwDev: nix.thunk(() => nix.sel(finalAttrs, "passthru", "fftwFloatStatic", "dev")),
                   flint: nix.thunk(() => nix.sel(finalAttrs, "passthru", "flintStatic", "out")),
@@ -135,7 +135,7 @@ install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(
             buildInputs: nix.thunk(() => [blas]),
             cargoHash: "sha256-GC0BHLWRKw6ThQiIfFQoOcGq9Xm0I9rt8uhwyalCa2I=",
             env: nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               RUSTC_BOOTSTRAP: 1n,
               RUSTFLAGS: nix.thunk(() => nix.add("-lblas", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86")), " -Ctarget-cpu=haswell"))),
             })),
@@ -151,14 +151,14 @@ ln -s ../${nix.sel(stdenv, "targetPlatform", "rust", "rustcTargetSpec")}/release
               "--skip=graph_tests::implicit::t_84a2738be35745da97a9b120c563b4b3",
             ]),
             meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMsvc")),
               mainProgram: "graph",
             })),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         description: "Graphing calculator that can faithfully plot arbitrary mathematical relations",
         homepage: "https://github.com/unageek/graphest",
         changelog: "https://github.com/unageek/graphest/releases",

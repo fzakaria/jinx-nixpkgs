@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_prh = nix.arg($, "textlint-rule-prh");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "textlint-rule-prh",
       version: "6.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "textlint-rule",
           repo: "textlint-rule-prh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace package.json \\\n  --replace-fail \"git config --local core.hooksPath .githooks\" \"\"\n",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-tZMMadWue85L+5c7swKgFqUsLSARjS4EK0Cwi1FjX88=",
         })))),
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
         yarnConfigHook,
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "textlint-rule-prh-test": nix.thunk(() => nix.app(runCommand, "textlint-rule-prh-test", nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(textlint, "withPackages"), nix.thunk(() => [textlint_rule_prh]))),
               ]),
@@ -64,7 +64,7 @@ grep prh <(textlint ${nix.path(here, "./test.md")}) > $out
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Textlint rule for prh",
         homepage: "https://github.com/textlint-rule/textlint-rule-prh",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-rule/textlint-rule-prh/releases/tag/v${nix.sel(finalAttrs, "version")}`),

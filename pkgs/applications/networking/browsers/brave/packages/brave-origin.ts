@@ -13,23 +13,23 @@ export default nix.thunk(() => (() => {
   const version = "1.97.56";
   const flavor = "origin";
   const archives = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     "aarch64-linux": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/brave-origin_${version}_arm64.deb`),
       sha256: "0449b8173589785d2a6d930b805c8a75d9e45882e371069743680ea259ee4c71",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/brave-origin_${version}_amd64.deb`),
       sha256: "46486959d38ded584564b212fd9c21caa50e61dfca302c4cab6bd77ee606351c",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/Brave-Origin-arm64.dmg`),
       sha256: "f4739e6a4879c683eec0f04810e68b2fe9259f1e3e89f431258eccb1a58eb739",
     })),
   }));
-  return { __proto__: pos$5, pname, version, flavor, archives };
+  return { [nix.POS]: pos$5, pname, version, flavor, archives };
 })());
 //# sourceMappingURL=brave-origin.ts.map

@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ __proto__: pos$1, system: system, config: config }))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ __proto__: pos$2, system: system, pkgs: pkgs }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   const testCombinations = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "cartesianProduct"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       predictable: nix.thunk(() => [true, false]),
       withNetworkd: nix.thunk(() => [true, false]),
       systemdStage1: nix.thunk(() => [true, false]),
@@ -42,14 +42,14 @@ export default nix.lambda((args) => (() => {
         const withNetworkd = nix.arg($_1, "withNetworkd");
         const systemdStage1 = nix.arg($_1, "systemdStage1");
         return {
-          __proto__: pos$17,
+          [nix.POS]: pos$17,
           name: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(pkgs, "lib", "optionalString"), nix.thunk(() => !nix.asBool(predictable)), "un"), "predictable"), nix.app(nix.sel(pkgs, "lib", "optionalString"), withNetworkd, "Networkd")), nix.app(nix.sel(pkgs, "lib", "optionalString"), systemdStage1, "SystemdStage1"))),
           value: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               name: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(pkgs, "lib", "optionalString"), nix.thunk(() => !nix.asBool(predictable)), "un"), "predictableInterfaceNames"), nix.app(nix.sel(pkgs, "lib", "optionalString"), withNetworkd, "-with-networkd")), nix.app(nix.sel(pkgs, "lib", "optionalString"), systemdStage1, "-systemd-stage-1"))),
               meta: nix.thunk(() => ({})),
               nodes: nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 machine: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   const config_1 = nix.arg($_2, "config");
@@ -64,32 +64,32 @@ else
 fi
 `);
                   return {
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     networking: nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       usePredictableInterfaceNames: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), predictable)),
                       useNetworkd: withNetworkd,
-                      dhcpcd: nix.thunk(() => ({ __proto__: pos$4, enable: nix.thunk(() => !nix.asBool(withNetworkd)) })),
+                      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: nix.thunk(() => !nix.asBool(withNetworkd)) })),
                       useDHCP: nix.thunk(() => !nix.asBool(withNetworkd)),
                     })),
                     boot: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       initrd: nix.thunk(() => ({
-                        __proto__: pos$12,
+                        [nix.POS]: pos$12,
                         postDeviceCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(systemdStage1)), script)),
                         systemd: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                            nix.thunk(() => ({ __proto__: pos$6, enable: systemdStage1 })),
+                            nix.thunk(() => ({ [nix.POS]: pos$6, enable: systemdStage1 })),
                             nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), systemdStage1, nix.thunk(() => ({
-                                __proto__: pos$11,
+                                [nix.POS]: pos$11,
                                 initrdBin: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "iproute2"))]),
                                 services: nix.thunk(() => ({
-                                  __proto__: pos$10,
-                                  "systemd-udev-settle": nix.thunk(() => ({ __proto__: pos$7, wantedBy: nix.thunk(() => ["initrd.target"]) })),
+                                  [nix.POS]: pos$10,
+                                  "systemd-udev-settle": nix.thunk(() => ({ [nix.POS]: pos$7, wantedBy: nix.thunk(() => ["initrd.target"]) })),
                                   "check-interfaces": nix.thunk(() => ({
-                                    __proto__: pos$9,
+                                    [nix.POS]: pos$9,
                                     requiredBy: nix.thunk(() => ["initrd.target"]),
                                     after: nix.thunk(() => ["systemd-udev-settle.service"]),
-                                    serviceConfig: nix.thunk(() => ({ __proto__: pos$8, Type: "oneshot" })),
+                                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Type: "oneshot" })),
                                     path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "iproute2"))]),
                                     script: script,
                                   })),

@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const bstr = nix.arg($, "bstr");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "decompress",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/mirage/decompress/releases/download/v${nix.sel(finalAttrs, "version")}/decompress-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-yYmMvJhTXV3R1NdUkuwnwRBbj2zOX3naXTQFP9pAxYU=",
         })))),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, fmt, camlzip, base64, crowbar, bstr]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Pure OCaml implementation of Zlib",
         homepage: "https://github.com/mirage/decompress",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

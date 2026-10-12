@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "circumflex",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bensadeh",
           repo: "circumflex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["gen-completions"]),
       postInstall: "installManPage share/man/clx.1\n\ninstallShellCompletion --bash share/completions/clx.bash\ninstallShellCompletion --fish share/completions/clx.fish\ninstallShellCompletion --zsh share/completions/_clx\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Command line tool for browsing Hacker News in your terminal",
         homepage: "https://github.com/bensadeh/circumflex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

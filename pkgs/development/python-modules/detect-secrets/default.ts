@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Yelp",
           repo: "detect-secrets",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([pyyaml, requests], nix.concat(nix.app(nix.sel(lib, "optionals"), withGibberish, nix.thunk(() => nix.sel(optional_dependencies, "gibberish"))), nix.app(nix.sel(lib, "optionals"), withWordList, nix.thunk(() => nix.sel(optional_dependencies, "word_list"))))));
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         gibberish: nix.thunk(() => [gibberish_detector]),
         word_list: nix.thunk(() => [pyahocorasick]),
       }));
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withGibberish)), nix.thunk(() => ["tests/filters/gibberish_filter_test.py"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withWordList)), nix.thunk(() => ["tests/filters/wordlist_filter_test.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["detect_secrets"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Enterprise friendly way of detecting and preventing secrets in code",
         homepage: "https://github.com/Yelp/detect-secrets",
         changelog: nix.thunk(() => nix.str`https://github.com/Yelp/detect-secrets/releases/tag/${nix.sel(src, "tag")}`),
@@ -72,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

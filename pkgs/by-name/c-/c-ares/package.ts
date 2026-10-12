@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/c-ares/c-ares/releases/download/v${version}/c-ares-${version}.tar.gz`),
           hash: "sha256-wiK21oEJb5RE0sSGPSwRdAGeJ8rMoKSlwRTTbdfXv3g=",
         }))));
@@ -35,16 +35,16 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["-DCARES_SHARED=OFF", "-DCARES_STATIC=ON"]))));
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           grpc: grpc,
-          curl: nix.thunk(() => nix.sel(nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ __proto__: pos$2, "c-aresSupport": true }))), "tests", "withCheck")),
+          curl: nix.thunk(() => nix.sel(nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "c-aresSupport": true }))), "tests", "withCheck")),
         })),
       }));
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withCMake, "substituteInPlace $out/lib/pkgconfig/libcares.pc --replace-fail \\${prefix}/ \"\"\n"));
       const meta = nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "C library for asynchronous DNS requests",
         homepage: "https://c-ares.haxx.se",
         changelog: nix.thunk(() => nix.str`https://c-ares.org/changelog.html#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         pname,
         version,
         strictDeps,

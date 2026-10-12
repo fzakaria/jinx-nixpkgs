@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const c99StaticAssert = nix.arg($, "c99StaticAssert");
   const noStaticAssert = nix.arg($, "noStaticAssert");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$15,
+      [nix.POS]: pos$15,
       pname: "nanopb-runtime",
       src: src,
       version: version,
@@ -52,32 +52,32 @@ export default nix.lambda((args) => (() => {
         const compile_definitions = (target) => nix.str`target_compile_definitions(${target}
   PUBLIC
   ${nix.app(nix.sel(lib, "concatStringsSep"), "\n\t", nix.thunk(() => nix.builtins.map((x) => nix.str`PB_${nix.sel(x, "flag")}`, nix.thunk(() => nix.builtins.filter((x) => nix.sel(x, "cond"), nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$1, cond: enableMalloc, flag: "ENABLE_MALLOC=1" })),
-                nix.thunk(() => ({ __proto__: pos$2, cond: noPackedStructs, flag: "NO_PACKED_STRUCTS=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$1, cond: enableMalloc, flag: "ENABLE_MALLOC=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$2, cond: noPackedStructs, flag: "NO_PACKED_STRUCTS=1" })),
                 nix.thunk(() => ({
-                  __proto__: pos$3,
+                  [nix.POS]: pos$3,
                   cond: nix.thunk(() => !nix.eq(maxRequiredFields, null)),
                   flag: nix.thunk(() => nix.str`MAX_REQUIRED_FIELDS=${maxRequiredFields}`),
                 })),
-                nix.thunk(() => ({ __proto__: pos$4, cond: field32bit, flag: "FIELD_32BIT=1" })),
-                nix.thunk(() => ({ __proto__: pos$5, cond: noErrmsg, flag: "NO_ERRMSG=1" })),
-                nix.thunk(() => ({ __proto__: pos$6, cond: bufferOnly, flag: "BUFFER_ONLY=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$4, cond: field32bit, flag: "FIELD_32BIT=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$5, cond: noErrmsg, flag: "NO_ERRMSG=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$6, cond: bufferOnly, flag: "BUFFER_ONLY=1" })),
                 nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   cond: nix.thunk(() => !nix.eq(systemHeader, null)),
                   flag: nix.thunk(() => nix.str`SYSTEM_HEADER=${systemHeader}`),
                 })),
-                nix.thunk(() => ({ __proto__: pos$8, cond: without64bit, flag: "WITHOUT_64BIT=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$8, cond: without64bit, flag: "WITHOUT_64BIT=1" })),
                 nix.thunk(() => ({
-                  __proto__: pos$9,
+                  [nix.POS]: pos$9,
                   cond: encodeArraysUnpacked,
                   flag: "ENCODE_ARRAYS_UNPACKED=1",
                 })),
-                nix.thunk(() => ({ __proto__: pos$10, cond: convertDoubleFloat, flag: "CONVERT_DOUBLE_FLOAT=1" })),
-                nix.thunk(() => ({ __proto__: pos$11, cond: validateUtf8, flag: "VALIDATE_UTF8=1" })),
-                nix.thunk(() => ({ __proto__: pos$12, cond: littleEndian8bit, flag: "LITTLE_ENDIAN_8BIT=1" })),
-                nix.thunk(() => ({ __proto__: pos$13, cond: c99StaticAssert, flag: "C99_STATIC_ASSERT=1" })),
-                nix.thunk(() => ({ __proto__: pos$14, cond: noStaticAssert, flag: "NO_STATIC_ASSERT=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$10, cond: convertDoubleFloat, flag: "CONVERT_DOUBLE_FLOAT=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$11, cond: validateUtf8, flag: "VALIDATE_UTF8=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$12, cond: littleEndian8bit, flag: "LITTLE_ENDIAN_8BIT=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$13, cond: c99StaticAssert, flag: "C99_STATIC_ASSERT=1" })),
+                nix.thunk(() => ({ [nix.POS]: pos$14, cond: noStaticAssert, flag: "NO_STATIC_ASSERT=1" })),
               ]))))))}
 )
 `;

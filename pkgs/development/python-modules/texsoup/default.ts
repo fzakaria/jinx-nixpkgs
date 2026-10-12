@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "texsoup",
       version: "0.3.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alvinwan",
           repo: "TexSoup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["TexSoup"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_cov_stub]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Fault-tolerant Python3 package for searching, navigating, and modifying LaTeX documents",
         homepage: "https://github.com/alvinwan/TexSoup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

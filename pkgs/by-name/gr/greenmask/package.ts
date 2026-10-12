@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "greenmask",
       version: "0.2.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GreenmaskIO",
           repo: "greenmask",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +42,7 @@ substituteInPlace tests/integration/storages/main_test.go \\
   --replace-fail "TestS3Storage" "SkipTestS3Storage"
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "PostgreSQL database anonymization tool",
         homepage: "https://github.com/GreenmaskIO/greenmask",
         changelog: nix.thunk(() => nix.str`https://github.com/GreenmaskIO/greenmask/releases/tag/v${nix.sel(finalAttrs, "version")}`),

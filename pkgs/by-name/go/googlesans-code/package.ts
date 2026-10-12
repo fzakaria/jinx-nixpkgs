@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fontc = nix.arg($, "fontc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "googlesans-code",
       version: "7.001",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "googlefonts",
           repo: "googlesans-code",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p fonts/variable\nfontc sources/GoogleSansCode.glyphspackage --flatten-components --decompose-transformed-components --output-file \"fonts/variable/GoogleSansCode[wght].ttf\"\nfontc sources/GoogleSansCode-Italic.glyphspackage --flatten-components --decompose-transformed-components --output-file \"fonts/variable/GoogleSansCode-Italic[wght].ttf\"\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/googlesans-code\ncp fonts/variable/* $out/share/fonts/googlesans-code/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Google Sans Code font family",
         homepage: "https://github.com/googlefonts/googlesans-code",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/googlesans-code/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

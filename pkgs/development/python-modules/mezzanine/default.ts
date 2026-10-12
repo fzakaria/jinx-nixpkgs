@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stephenmcd",
           repo: "mezzanine",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(bleach, "optional-dependencies", "css")));
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytest_cov_stub, pytestCheckHook, requirements_parser]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "5")),
         description: "Content management platform built using the Django framework",
         mainProgram: "mezzanine-project",
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         format,

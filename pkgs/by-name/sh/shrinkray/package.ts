@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.4.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DRMacIver",
           repo: "shrinkray",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -87,7 +87,7 @@ substituteInPlace src/shrinkray/subprocess/client.py \\
         "tests/test_validation.py::test_validation_output_streams_immediately",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Modern multi-format test-case reducer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/DRMacIver/shrinkray",
@@ -95,7 +95,7 @@ substituteInPlace src/shrinkray/subprocess/client.py \\
         mainProgram: "shrinkray",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

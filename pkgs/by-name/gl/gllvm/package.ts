@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const getconf = nix.arg($, "getconf");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gllvm",
       version: "1.3.1-unstable-2024-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SRI-CSL",
           repo: "gllvm",
           rev: "154531bdd9c05cd9d01742bc1b35bdf200a487d3",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(nix.lookup(w, "stdenv"), "hostPlatform", "isDarwin")), nix.thunk(() => [getconf])));
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/SRI-CSL/gllvm",
         description: "Whole Program LLVM: wllvm ported to go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

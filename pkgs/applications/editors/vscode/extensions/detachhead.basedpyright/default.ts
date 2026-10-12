@@ -12,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       mktplcRef: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         name: "basedpyright",
         publisher: "detachhead",
         version: "1.40.2",
         hash: "sha256-nIewuZJxTKL5KYy36YvaYhYS8O6WEhqOd+5/zMzi81E=",
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: "https://github.com/detachhead/basedpyright/releases",
         description: "VS Code static type checking for Python (but based)",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=detachhead.basedpyright",

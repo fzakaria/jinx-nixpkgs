@@ -39,87 +39,87 @@ ${nix.sel(pkgs, "lsof")}/bin/lsof | ${nix.sel(pkgs, "gnugrep")}/bin/grep $MNTPT 
 `)));
   const anyPamMount = nix.thunk(() => nix.app(nix.sel(lib, "any"), (svc) => (nix.asBool(nix.sel(svc, "enable")) && nix.asBool(nix.sel(svc, "pamMount"))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(config, "security", "pam", "services"))))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$16,
+      [nix.POS]: pos$16,
       security: nix.thunk(() => ({
-        __proto__: pos$15,
+        [nix.POS]: pos$15,
         pam: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           mount: nix.thunk(() => ({
-            __proto__: pos$13,
+            [nix.POS]: pos$13,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Enable PAM mount system to mount filesystems on user login.\n",
               })))),
             extraVolumes: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 description: "List of volume definitions for pam_mount.\nFor more information, visit <https://pam-mount.sourceforge.net/pam_mount.conf.5.html>.\n",
               })))),
             additionalSearchPaths: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "package")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ pkgs.bindfs ]")),
                 description: "Additional programs to include in the search path of pam_mount.\nUseful for example if you want to use some FUSE filesystems like bindfs.\n",
               })))),
             cryptMountOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"allow_discard\" ]\n")),
                 description: "Global mount options that apply to every crypt volume.\nYou can define volume-specific options in the volume definitions.\n",
               })))),
             fuseMountOptions: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
                 default: [],
                 example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "[ \"nodev\" \"nosuid\" \"force-user=%(USER)\" \"gid=%(USERGID)\" \"perms=0700\" \"chmod-deny\" \"chown-deny\" \"chgrp-deny\" ]\n")),
                 description: "Global mount options that apply to every FUSE volume.\nYou can define volume-specific options in the volume definitions.\n",
               })))),
             debugLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 0n,
                 example: 1n,
                 description: "Sets the Debug-Level. 0 disables debugging, 1 enables pam_mount tracing,\nand 2 additionally enables tracing in mount.crypt. The default is 0.\nFor more information, visit <https://pam-mount.sourceforge.net/pam_mount.conf.5.html>.\n",
               })))),
             logoutWait: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(lib, "types", "int")),
                 default: 0n,
                 description: "Amount of microseconds to wait until killing remaining processes after\nfinal logout.\nFor more information, visit <https://pam-mount.sourceforge.net/pam_mount.conf.5.html>.\n",
               })))),
             logoutHup: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Kill remaining processes after logout by sending a SIGHUP.\n",
               })))),
             logoutTerm: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Kill remaining processes after logout by sending a SIGTERM.\n",
               })))),
             logoutKill: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "Kill remaining processes after logout by sending a SIGKILL.\n",
               })))),
             createMountPoints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Create mountpoints for volumes if they do not exist.\n",
               })))),
             removeCreatedMountPoints: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Remove mountpoints created by pam_mount after logout. This\nonly affects mountpoints that have been created by pam_mount\nin the same session.\n",
@@ -129,20 +129,20 @@ ${nix.sel(pkgs, "lsof")}/bin/lsof | ${nix.sel(pkgs, "gnugrep")}/bin/grep $MNTPT 
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(nix.sel(cfg, "enable")) || nix.asBool(anyPamMount))), nix.thunk(() => ({
-        __proto__: pos$21,
+        [nix.POS]: pos$21,
         environment: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pam_mount"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "security/pam_mount.conf.xml": nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               source: nix.thunk(() => (() => {
                 const extraUserVolumes = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (u) => (nix.asBool(!nix.eq(nix.sel(u, "cryptHomeLuks"), null)) || nix.asBool(!nix.eq(nix.sel(u, "pamMount"), {}))), nix.thunk(() => nix.sel(config, "users", "users"))));
                 const mkAttr = (k) => (v) => nix.str`${k}="${v}"`;
                 const userVolumeEntry = (user) => (() => {
                   const attrs = nix.thunk(() => nix.update({
-                    __proto__: pos$17,
+                    [nix.POS]: pos$17,
                     user: nix.thunk(() => nix.sel(user, "name")),
                     path: nix.thunk(() => nix.sel(user, "cryptHomeLuks")),
                     mountpoint: nix.thunk(() => nix.sel(user, "home")),

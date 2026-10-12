@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "mako")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "clightning",
       version: "26.04.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/ElementsProject/lightning/releases/download/v${nix.sel(finalAttrs, "version")}/clightning-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-MEsZ5GPCY6q/SNO+xcktfGiCZUVgl4p7pdMOiqIqFJM=",
         })))),
@@ -63,11 +63,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`VERSION=v${nix.sel(finalAttrs, "version")}`)]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "-Wno-error=gnu-folding-constant")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bitcoin Lightning Network implementation in C",
         longDescription: "c-lightning is a standard compliant implementation of the Lightning\nNetwork protocol. The Lightning Network is a scalability solution for\nBitcoin, enabling secure and instant transfer of funds between any two\nparties for any amount.\n",
         homepage: "https://github.com/ElementsProject/lightning",

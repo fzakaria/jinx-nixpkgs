@@ -36,18 +36,18 @@ export default nix.lambda((args) => (() => {
   const getMountDeps = (settings) => nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.builtins.catAttrs("Path", nix.thunk(() => nix.builtins.attrValues(settings)))));
   const mountPaths = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "settings"))));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       services: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         autotierfs: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the autotier passthrough tiering filesystem")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "autotier", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ __proto__: pos$1, freeformType: format })))),
+              [nix.POS]: pos$2,
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$1, freeformType: format })))),
               default: nix.thunk(() => ({})),
               description: "The contents of the configuration file for autotier.\nSee the [autotier repo](https://github.com/45Drives/autotier#configuration) for supported values.\n",
               example: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "{\n  \"/mnt/autotier\" = {\n    Global = {\n      \"Log Level\" = 1;\n      \"Tier Period\" = 1000;\n      \"Copy Buffer Size\" = \"1 MiB\";\n    };\n    \"Tier 1\" = {\n      Path = \"/mnt/tier1\";\n      Quota = \"30GiB\";\n    };\n    \"Tier 2\" = {\n      Path = \"/mnt/tier2\";\n      Quota = \"200GiB\";\n    };\n  };\n}\n")),
@@ -56,38 +56,38 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => !nix.eq(nix.sel(cfg, "settings"), {})),
             message: "`services.autotierfs.settings` must be configured.",
           })),
         ]),
         system: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$9,
-          etc: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.str`autotier/${nix.app(generateConfigName, name)}.conf`), nix.thunk(() => ({ __proto__: pos$8, source: value }))), configFiles)),
+          [nix.POS]: pos$9,
+          etc: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (name) => (value) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.str`autotier/${nix.app(generateConfigName, name)}.conf`), nix.thunk(() => ({ [nix.POS]: pos$8, source: value }))), configFiles)),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$14,
+          [nix.POS]: pos$14,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             rules: nix.thunk(() => nix.concat(nix.builtins.map((path) => nix.str`d ${path} 0770 - autotier - -`, mountPaths), [nix.thunk(() => nix.str`d ${stateDir} 0774 - autotier - -`)])),
           })),
           services: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrs'"), (path) => (values) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.app(generateConfigName, path)), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 description: nix.thunk(() => nix.str`Mount autotierfs virtual path ${path}`),
                 unitConfig: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   RequiresMountsFor: nix.thunk(() => nix.app(getMountDeps, values)),
                 })),
                 wantedBy: nix.thunk(() => ["local-fs.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   Type: "forking",
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(cfg, "package")), "autotierfs")} -c /etc/autotier/${nix.app(generateConfigName, path)}.conf ${path} -o allow_other,default_permissions`),
                   ExecStop: nix.thunk(() => nix.str`umount ${path}`),
@@ -95,8 +95,8 @@ export default nix.lambda((args) => (() => {
               }))), nix.thunk(() => nix.sel(cfg, "settings")))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$16,
-          groups: nix.thunk(() => ({ __proto__: pos$15, autotier: nix.thunk(() => ({})) })),
+          [nix.POS]: pos$16,
+          groups: nix.thunk(() => ({ [nix.POS]: pos$15, autotier: nix.thunk(() => ({})) })),
         })),
       })))),
   };

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const version = "unstable-2025-12-03";
   const rev = "cb41cbfe717e4c00d7bb70035cda5ee5f0ff9341";
   const tarball = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://repo.or.cz/tinycc.git/snapshot/${rev}.tar.gz`),
       hash: "sha256-MRuqq3TKcfIahtUWdhAcYhqDiGPkAjS8UTMsDE+/jGU=",
     }))));
@@ -39,7 +39,7 @@ replace --file i386-asm.c --output i386-asm.c --match-on "switch(size)" --replac
 replace --file tccgen.c --output tccgen.c --match-on "vpush_type_size(pointed_type(&vtop[-1].type), &align);" --replace-with "vpush_type_size(pointed_type(&vtop[-1].type), &align); if (!(vtop[-1].type.t & VT_UNSIGNED)) gen_cast_s(VT_PTRDIFF_T);"
 `)), nix.str`/tinycc-${nix.builtins.substring(0n, 7n, rev)}`));
   const meta = nix.thunk(() => ({
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     description: "Small, fast, and embeddable C compiler and interpreter",
     homepage: "https://repo.or.cz/w/tinycc.git",
     license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -57,7 +57,7 @@ ${nix.sel(tinycc_bootstrappable, "compiler")}/bin/tcc \\
 catm \${out}/tccdefs_.h tccdefs_.h ${config_h}
 `)));
   const tinycc_mes_boot = nix.thunk(() => nix.app(buildTinyccMes, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tinycc-mes-boot",
       src: src,
       version: version,
@@ -86,7 +86,7 @@ catm \${out}/tccdefs_.h tccdefs_.h ${config_h}
       ]),
     }))));
   return nix.app(buildTinyccMes, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "tinycc-mes",
       src: src,
       version: version,

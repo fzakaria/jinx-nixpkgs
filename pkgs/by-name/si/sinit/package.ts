@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rcshutdown = nix.argOr($, "rcshutdown", () => "/etc/rc.d/rc.shutdown");
   const rcreboot = nix.argOr($, "rcreboot", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "sinit",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://git.suckless.org/sinit/",
           hash: "sha256-VtXkgixgElKKOT26uKN9feXDVjjtSgTWvcgk5o5MLmw=",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       preConfigure: nix.thunk(() => nix.add(nix.add(nix.add("", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rcinit, null)), nix.thunk(() => nix.str`sed -re 's@(rcinitcmd[^"]*")[^"]*"@\\1${rcinit}"@' -i config.def.h; `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rcshutdown, null)), nix.thunk(() => nix.str`sed -re 's@(rc(reboot|poweroff)cmd[^"]*")[^"]*"@\\1${rcshutdown}"@' -i config.def.h; `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rcreboot, null)), nix.thunk(() => nix.str`sed -re 's@(rc(reboot)cmd[^"]*")[^"]*"@\\1${rcreboot}"@' -i config.def.h; `)))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very minimal Linux init implementation from suckless.org",
         mainProgram: "sinit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

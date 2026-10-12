@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const mew = nix.arg($, "mew");
   const react = nix.arg($, "react");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "mew_vi",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kandu",
           repo: "mew_vi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [mew, react]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/kandu/mew_vi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Modal Editing Witch, VI interpreter",

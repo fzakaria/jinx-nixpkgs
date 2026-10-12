@@ -21,34 +21,34 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "dublin-traceroute"));
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => nix.sel(pkgs, "dublin-traceroute", "meta", "maintainers")),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       programs: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         "dublin-traceroute": nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "dublin-traceroute (including setcap wrapper)")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "dublin-traceroute", nix.thunk(() => ({})))),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         environment: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             "dublin-traceroute": nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               owner: "root",
               group: "root",
               capabilities: "cap_net_raw+p",

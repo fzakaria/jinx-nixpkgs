@@ -28,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const postBuild = nix.thunk(() => nix.str`wrapProgram $out/bin/r10k --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, gnutar, gzip]))}
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), r10k)} version`),
               package: r10k,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "r10k", "version")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Puppet environment and module deployment",
         homepage: "https://github.com/puppetlabs/r10k",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "r10k",
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         gemdir,
         exes,

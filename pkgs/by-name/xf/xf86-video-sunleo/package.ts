@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "xf86-video-sunleo",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -37,14 +37,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, util_macros, xorg_server]),
       buildInputs: nix.thunk(() => [xorg_server, xorgproto]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             extraArgs: nix.thunk(() => ["--version-regex=xf86-video-sunleo-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Sun Leo video driver for the Xorg X server",
         longDescription: "This is an Xorg driver for Sun Leo (ZX) video cards.\nAlso known as the ZX or T(urbo)ZX, Leo is a 24 bit accelerated 3D graphics card. Both cards\nare double-width, but the TZX also requires extra cooling in the form of an additional\ndouble-width fan card, so effectively takes up 4 SBus slots.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-video-sunleo",

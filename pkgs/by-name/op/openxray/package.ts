@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv = gccStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "openxray",
       version: "2921-january-2025-rc1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "OpenXRay",
           repo: "xray-16",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,16 +52,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "wrapProgram $out/bin/xr_3da \\\n  --run 'export LC_ALL=C'\n")),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         mainProgram: "xr_3da",
         description: "Improved version of the X-Ray Engine, the game engine used in the world-famous S.T.A.L.K.E.R. game series by GSC Game World",
         homepage: "https://github.com/OpenXRay/xray-16/",
         license: nix.thunk(() => nix.update(nix.sel(lib, "licenses", "unfree"), {
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           url: nix.thunk(() => nix.str`https://github.com/OpenXRay/xray-16/blob/${nix.sel(finalAttrs, "version")}/License.txt`),
         })),
         maintainers: nix.thunk(() => (() => {

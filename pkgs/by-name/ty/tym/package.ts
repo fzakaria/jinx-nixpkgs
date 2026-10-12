@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lua5_3 = nix.arg($, "lua5_3");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "tym",
       version: "3.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "endaaman",
           repo: "tym",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [gtk3, vte, lua5_3, pcre2]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lua-configurable terminal emulator",
         homepage: "https://github.com/endaaman/tym",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

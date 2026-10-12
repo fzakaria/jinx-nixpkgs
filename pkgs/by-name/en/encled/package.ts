@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "encled",
       version: "0-unstable-2022-07-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "amarao",
           repo: "sdled",
           rev: "60fd6c728112f2f1feb317355bdb1faf9d2f76da",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm0755 -t $out/bin/ encled\ninstall -Dm0644 -t $out/share/man/man8 encled.8\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Control fault/locate indicators in disk slots in enclosures",
         mainProgram: "encled",
         homepage: "https://github.com/amarao/sdled",

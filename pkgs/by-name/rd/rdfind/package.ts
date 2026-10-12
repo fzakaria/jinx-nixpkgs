@@ -15,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nettle = nix.arg($, "nettle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rdfind",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://rdfind.pauldreik.se/rdfind-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Ci0NMgAswtwBNO57ZJvMgR7PsvjZ9nKqR2qFEVLnrzU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [nettle]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://rdfind.pauldreik.se/",
         description: "Removes or hardlinks duplicate files very swiftly",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

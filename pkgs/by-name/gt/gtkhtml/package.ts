@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const isocodes = nix.arg($, "isocodes");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "gtkhtml",
       version: "4.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtkhtml/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtkhtml-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yjtkJPssesXZy4/a+2kxj6LoJcnPbtF9HjjZsp5WBsM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "enchant-2.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/enchant-2.patch?h=gtkhtml4&id=0218303a63d64c04d6483a6fe9bb55063fcfaa43",
             hash: "sha256-f0OToWGHZwxvqf+0qosfA9FfwJ/IXfjIPP5/WrcvArI=",
@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./typecast.diff"),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$3, packageName: "gtkhtml" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gtkhtml" })))),
       })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, intltool]),
       buildInputs: nix.thunk(() => [gtk3, adwaita_icon_theme, gsettings_desktop_schemas]),
       propagatedBuildInputs: nix.thunk(() => [enchant, isocodes]),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: [],
       })),

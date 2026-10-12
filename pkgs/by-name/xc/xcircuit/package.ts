@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       version: "3.10.42",
       pname: "xcircuit",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "RTimothyEdwards",
           repo: "XCircuit",
           rev: "8a0429250abbd2b70c4d3fbfe2e2c20b4c43be81",
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cairo, ghostscript, libsm, libxt, libice, libx11, libxpm, tcl, tk, zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic drawing program tailored to circuit diagrams",
         mainProgram: "xcircuit",
         homepage: "http://opencircuitdesign.com/xcircuit",

@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const osv_detector = nix.arg($, "osv-detector");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "osv-detector",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "G-Rath",
           repo: "osv-detector",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: osv_detector,
               command: "osv-detector -version",
               version: nix.thunk(() => nix.str`osv-detector ${nix.sel(finalAttrs, "version")} (unknown, commit none)`),
@@ -63,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Auditing tool for detecting vulnerabilities",
         mainProgram: "osv-detector",
         homepage: "https://github.com/G-Rath/osv-detector",

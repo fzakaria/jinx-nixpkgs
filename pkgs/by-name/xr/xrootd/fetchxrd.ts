@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.argOr($_1, "url", () => (nix.asBool(nix.eq(urls, [])) ? nix.builtins.abort("Expect either non-empty `urls` or `url`") : nix.builtins.head(urls)));
     const hash = nix.argOr($_1, "hash", () => nix.sel(lib, "fakeHash"));
     return nix.app(nix.sel(nix.app(runCommandLocal, name, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         nativeBuildInputs: nix.thunk(() => [xrootd]),
         outputHashAlgo: null,
         outputHashMode: "flat",
@@ -30,12 +30,12 @@ export default nix.lambda((args) => (() => {
         url: url,
         urls: nix.thunk(() => (nix.asBool(nix.eq(urls, [])) ? nix.app(nix.sel(lib, "singleton"), url) : nix.force(urls))),
       })), "for u in $urls; do\n  xrdcp --verbose --force \"$u\" \"$out\"\n  ret=$?\n  (( ret != 0 )) || break\ndone\nif (( ret )); then\n  echo \"xrdcp failed trying to download any of the urls\" >&2\n  exit $ret\nfi\n"), "overrideAttrs"), (finalAttrs) => (nix.asBool((nix.asBool(!nix.eq(pname, "")) && nix.asBool(!nix.eq(version, "")))) ? {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: pname,
         version: version,
         name: nix.thunk(() => nix.str`${pname}-${version}`),
       } : {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: nix.thunk(() => (nix.asBool(!nix.eq(name, "")) ? nix.force(name) : nix.builtins.baseNameOf(nix.thunk(() => nix.sel(finalAttrs, "url"))))),
       }));
   })(), formals$2);

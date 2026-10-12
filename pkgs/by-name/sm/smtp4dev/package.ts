@@ -20,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "smtp4dev",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rnwood",
           repo: "smtp4dev",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       npmRoot: "Rnwood.Smtp4dev/ClientApp",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           hash: "sha256-lJyjoTTgum67j1qPtkLFGYO2sTpvN7ug0Q1jJw/Se/c=",
@@ -54,9 +54,9 @@ export default nix.lambda((args) => (() => {
       postFixup: "mv $out/bin/Rnwood.Smtp4dev $out/bin/smtp4dev\n",
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/smtp4dev --help > /dev/null\n\nrunHook postInstallCheck\n",
-      passthru: nix.thunk(() => ({ __proto__: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fake smtp email server for development and testing",
         homepage: "https://github.com/rnwood/smtp4dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

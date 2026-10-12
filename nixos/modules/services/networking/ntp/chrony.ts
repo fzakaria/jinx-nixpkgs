@@ -89,116 +89,116 @@ patchShebangs $out
 `));
     })(), formals$2), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         chrony: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to synchronise your machine's time using chrony.\nMake sure you disable NTP if you enable this service.\n",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "chrony", nix.thunk(() => ({})))),
           servers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               default: nix.thunk(() => nix.sel(config, "networking", "timeServers")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.timeServers")),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               description: "The set of NTP servers from which to synchronise.\n",
             })))),
           serverOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               default: "iburst",
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["iburst", "offline"]))),
               description: "Set option for server directives.\n\nUse \"iburst\" to rapidly poll on startup. Recommended if your machine\nis consistently online.\n\nUse \"offline\" to prevent polling on startup. Recommended if your\nmachine boots offline or is otherwise frequently offline.\n",
             })))),
           enableMemoryLocking: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(config, "environment", "memoryAllocator", "provider"), "graphene-hardened")) && nix.asBool(!nix.eq(nix.sel(config, "environment", "memoryAllocator", "provider"), "graphene-hardened-light")))),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.environment.memoryAllocator.provider != \"graphene-hardened\" && config.environment.memoryAllocator.provider != \"graphene-hardened-light\"")),
               description: "Whether to add the `-m` flag to lock memory.\n",
             })))),
           enableRTCTrimming: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Enable tracking of the RTC offset to the system clock and automatic trimming.\nSee also [](#opt-services.chrony.autotrimThreshold)\n\n::: {.note}\nThis is not compatible with the `rtcsync` directive, which naively syncs the RTC time every 11 minutes.\n\nTracking the RTC drift will allow more precise timekeeping,\nespecially on intermittently running devices, where the RTC is very relevant.\n:::\n",
             })))),
           autotrimThreshold: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
               default: 30n,
               example: 10n,
               description: "Maximum estimated error threshold for the `rtcautotrim` command.\nWhen reached, the RTC will be trimmed.\nOnly used when [](#opt-services.chrony.enableRTCTrimming) is enabled.\n",
             })))),
           enableNTS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to enable Network Time Security authentication.\nMake sure it is supported by your selected NTP server(s).\n",
             })))),
           initstepslew: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             enabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: false,
                 description: "DEPRECATED. Consider using `services.chrony.makestep` instead.\nAllow chronyd to make a rapid measurement of the system clock error\nat boot time, and to correct the system clock by stepping before\nnormal operation begins.\n",
               })))),
             threshold: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "float")), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 default: 1000n,
                 description: "The threshold of system clock error (in seconds) above which the\nclock will be stepped. If the correction required is less than the\nthreshold, a slew is used instead.\n",
               })))),
           })),
           makestep: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                 default: true,
                 description: "Allow chronyd to step the system clock if the error is larger than\nthe specified threshold.\n",
               })))),
             threshold: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "either"), nix.thunk(() => nix.sel(lib, "types", "float")), nix.thunk(() => nix.sel(lib, "types", "int")))),
                 default: 0.1,
                 description: "The threshold of system clock error (in seconds) above which the\nclock will be stepped. If the correction required is less than the\nthreshold, a slew is used instead.\n",
               })))),
             limit: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                 default: 3n,
                 description: "The maximum number of times the system clock will be stepped.\n",
               })))),
           })),
           directory: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/chrony",
               description: "Directory where chrony state is stored.",
             })))),
           dispatcherScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "networking", "networkmanager", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.networking.networkmanager.enable")),
               description: "Whether to install the chrony NetworkManager dispatcher script\nto handle connectivity changes.\n",
             })))),
           extraConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               type: nix.thunk(() => nix.sel(lib, "types", "lines")),
               default: "",
               description: "Extra configuration directives that should be added to\n{file}`chrony.conf`\n",
             })))),
           extraFlags: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               default: [],
               example: nix.thunk(() => ["-s"]),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
@@ -208,7 +208,7 @@ patchShebangs $out
       })),
     })),
     meta: nix.thunk(() => ({
-      __proto__: pos$22,
+      [nix.POS]: pos$22,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -218,21 +218,21 @@ patchShebangs $out
       })()),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$43,
-        environment: nix.thunk(() => ({ __proto__: pos$23, systemPackages: nix.thunk(() => [chronyPkg]) })),
+        [nix.POS]: pos$43,
+        environment: nix.thunk(() => ({ [nix.POS]: pos$23, systemPackages: nix.thunk(() => [chronyPkg]) })),
         users: nix.thunk(() => ({
-          __proto__: pos$28,
+          [nix.POS]: pos$28,
           groups: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             chrony: nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "chrony")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             chrony: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "chrony")),
               group: "chrony",
               description: "chrony daemon user",
@@ -241,31 +241,31 @@ patchShebangs $out
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$31,
+          [nix.POS]: pos$31,
           networkmanager: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             dispatcherScripts: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "dispatcherScript")), nix.thunk(() => [
-                nix.thunk(() => ({ __proto__: pos$29, type: "basic", source: dispatcherScriptFile })),
+                nix.thunk(() => ({ [nix.POS]: pos$29, type: "basic", source: dispatcherScriptFile })),
               ]))),
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           timesyncd: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           services: nix.thunk(() => ({
-            __proto__: pos$39,
+            [nix.POS]: pos$39,
             "systemd-timedated": nix.thunk(() => ({
-              __proto__: pos$35,
-              environment: nix.thunk(() => ({ __proto__: pos$34, SYSTEMD_TIMEDATED_NTP_SERVICES: "chronyd.service" })),
+              [nix.POS]: pos$35,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$34, SYSTEMD_TIMEDATED_NTP_SERVICES: "chronyd.service" })),
             })),
             chronyd: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               description: "chrony NTP daemon",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["time-sync.target"]),
@@ -273,9 +273,9 @@ patchShebangs $out
               after: nix.thunk(() => ["network.target", "nss-lookup.target"]),
               conflicts: nix.thunk(() => ["ntpd.service", "systemd-timesyncd.service"]),
               path: nix.thunk(() => [chronyPkg]),
-              unitConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "elem"), "-x", nix.thunk(() => nix.sel(cfg, "extraFlags"))))) && nix.asBool(!nix.asBool(nix.sel(cfg, "enableRTCTrimming"))))), nix.thunk(() => ({ __proto__: pos$36, ConditionCapability: "CAP_SYS_TIME" })))),
+              unitConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "elem"), "-x", nix.thunk(() => nix.sel(cfg, "extraFlags"))))) && nix.asBool(!nix.asBool(nix.sel(cfg, "enableRTCTrimming"))))), nix.thunk(() => ({ [nix.POS]: pos$36, ConditionCapability: "CAP_SYS_TIME" })))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$37,
+                [nix.POS]: pos$37,
                 Type: "notify",
                 ExecStart: nix.thunk(() => nix.str`${chronyPkg}/bin/chronyd ${nix.builtins.toString(chronyFlags)}`),
                 Restart: "on-failure",
@@ -326,7 +326,7 @@ patchShebangs $out
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             rules: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`d ${stateDir} 0750 chrony chrony - -`),
               nix.thunk(() => nix.str`f ${driftFile} 0640 chrony chrony - -`),
@@ -336,7 +336,7 @@ patchShebangs $out
         })),
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             assertion: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(cfg, "enableRTCTrimming")) && nix.asBool(nix.builtins.any((line) => !nix.eq(nix.builtins.match("^ *rtcsync", line), null), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "\n", nix.thunk(() => nix.sel(cfg, "extraConfig"))))))))),
             message: "The chrony module now configures `rtcfile` and `rtcautotrim` for you.\nThese options conflict with `rtcsync` and cause chrony to crash.\nUnless you are very sure the former isn't what you want, please remove\n`rtcsync` from `services.chrony.extraConfig`.\nAlternatively, disable this behaviour by `services.chrony.enableRTCTrimming = false;`\n",
           })),

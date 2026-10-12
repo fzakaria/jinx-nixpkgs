@@ -11,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "imex",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       buildInputs: nix.thunk(() => [zlib]),
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Service which supports GPU memory export and import (NVLink P2P) and shared memory operations across OS domains in an NVLink multi-node deployment",
         homepage: "https://docs.nvidia.com/multi-node-nvlink-systems/imex-guide",
       })),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lwc",
       version: "0.4.5-unstable-2022-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "timdp",
           repo: "lwc",
           rev: "3330928c9d82200837350f85335f5e6c09f0658b",
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=main.version=${nix.sel(finalAttrs, "src", "rev")}`),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Live-updating version of the UNIX wc command",
         homepage: "https://github.com/timdp/lwc",
         maintainers: nix.thunk(() => (() => {

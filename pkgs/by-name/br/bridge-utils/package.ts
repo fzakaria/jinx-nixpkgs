@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "bridge-utils",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://kernel.org/pub/linux/utils/net/bridge-utils/bridge-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-ph2L5PGhQFxgyO841UTwwYwFszubB+W0sxAzU2Fl5g4=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./autoconf-ar.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "musl-includes.patch",
             url: "https://git.alpinelinux.org/aports/plain/main/bridge-utils/fix-PATH_MAX-on-ppc64le.patch?id=12c9046eee3a0a35665dc4e280c1f5ae2af5845d",
             sha256: "sha256-uY1tgJhcm1DFctg9scmC8e+mgowgz4f/oF0+k+x+jqw=",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Userspace tool to configure linux bridges (deprecated in favour or iproute2)",
         mainProgram: "brctl",
         homepage: "https://wiki.linuxfoundation.org/networking/bridge",

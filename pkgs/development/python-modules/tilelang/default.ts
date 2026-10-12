@@ -45,14 +45,14 @@ export default nix.lambda((args) => (() => {
   const einops = nix.arg($, "einops");
   const flash_linear_attention = nix.arg($, "flash-linear-attention");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ __proto__: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      __proto__: pos$10,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: pos$10,
       pname: "tilelang",
       version: "0.1.13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "tile-ai",
           repo: "tilelang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +71,7 @@ export default nix.lambda((args) => (() => {
 `)))),
       nativeBuildInputs: nix.thunk(() => nix.concat([writableTmpDirAsHomeHook], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))]))))),
       "build-system": nix.thunk(() => [cmake, cython, ninja, scikit_build_core]),
-      env: nix.thunk(() => ({ __proto__: pos$3, NO_GIT_VERSION: true, USE_CUDA: cudaSupport })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$3, NO_GIT_VERSION: true, USE_CUDA: cudaSupport })),
       dontUseCmakeConfigure: true,
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "Z3_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.sel(z3_solver, "dev")}/include`))),
@@ -91,7 +91,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         z3_solver,
       ], nix.concat(nix.sel(z3_solver, "requiredPythonModules"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => [torch_c_dlpack_ext]))))),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$4, vis: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$4, vis: nix.thunk(() => [matplotlib]) })),
       preFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.add(nix.str`addAutoPatchelfSearchPath "${nix.sel(finalAttrs, "passthru", "apache-tvm-ffi")}/${nix.sel(python, "sitePackages")}/tvm_ffi/lib"
 `, nix.str`addAutoPatchelfSearchPath "${nix.sel(z3_solver, "lib")}/lib"
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -add_rpath "${nix.sel(z3_solver, "lib")}/lib" \\
@@ -106,19 +106,19 @@ export default nix.lambda((args) => (() => {
         "maint/scripts/test_perf_regression.py",
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(tilelang, "overridePythonAttrs"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
         "apache-tvm-ffi": nix.thunk(() => nix.app(nix.sel(apache_tvm_ffi, "overrideAttrs"), (previousAttrs) => (() => {
             const version = "0.1.12";
             return {
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               version: version,
               src: nix.thunk(() => nix.app(nix.sel(previousAttrs, "src", "override"), nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   tag: nix.thunk(() => nix.str`v${version}`),
                   hash: "sha256-ZFi7MKFiHK2lNoVkQbPhOc7NpIf24PLLP8SqGQiQ9Lw=",
                 })))),
@@ -127,7 +127,7 @@ export default nix.lambda((args) => (() => {
           })())),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Tile level programming language to generate high performance code",
         homepage: "https://tilelang.com/",
         downloadPage: "https://github.com/tile-ai/tilelang/releases",

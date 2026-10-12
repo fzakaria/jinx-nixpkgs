@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const openssl = nix.arg($, "openssl");
   const eMailSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "deanproxy",
       repo: "eMail",
       rev: "7d23c8f508a52bd8809e2af4290417829b6bb5ae",
@@ -26,27 +26,27 @@ export default nix.lambda((args) => (() => {
     }))));
   const srcRoot = nix.thunk(() => nix.sel(eMailSrc, "name"));
   const dlibSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "deanproxy",
       repo: "dlib",
       rev: "f62f29e918748b7cea476220f7492672be81c9de",
       sha256: "0h34cikch98sb7nsqjnb9wl384c8ndln3m6yb1172l4y89qjg9rr",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "email-git",
       version: "unstable-2016-01-31",
       src: eMailSrc,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "fno-common.patch",
             url: "https://github.com/deanproxy/eMail/commit/c3c1e52132832be0e51daa6e0037d5bb79a17751.patch",
             sha256: "17ndrb65g0v4y521333h4244419s8nncm0yx2jwv12sf0dl6gy8i",
           })))),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17"]))),
       })),
       buildInputs: nix.thunk(() => [openssl]),
@@ -55,7 +55,7 @@ cp -Rp ${dlibSrc}/* ${srcRoot}/dlib;
 chmod -R +w ${srcRoot}/dlib;
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Command line SMTP client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://deanproxy.com/code",

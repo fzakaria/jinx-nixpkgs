@@ -20,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "obs-tuna",
       version: "1.9.11",
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [obs_studio, nix.thunk(() => nix.sel(qt6, "qtbase")), zlib, curl, dbus]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "univrsal",
           repo: "tuna",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Song information plugin for obs-studio",
         homepage: "https://github.com/univrsal/tuna",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

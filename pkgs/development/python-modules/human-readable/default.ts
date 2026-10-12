@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const hatch_vcs = nix.arg($, "hatch-vcs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "human-readable",
       version: "2.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "human_readable",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-P4Ef1W7oZpVyyy7J+FK1PuBwB0jlPDaVcx/9mrT8Uks=",
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       pythonImportsCheck: nix.thunk(() => ["human_readable"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Library to make data intended for machines, readable to humans",
         homepage: "https://github.com/staticdev/human-readable",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

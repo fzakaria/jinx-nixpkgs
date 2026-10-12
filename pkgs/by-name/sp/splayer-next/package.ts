@@ -43,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_11;
   const shareDir = "$out/share/SPlayer-Next";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       pname: "splayer-next",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "SPlayer-Dev",
           repo: "SPlayer-Next",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "cd \"$out\"\ngit rev-parse HEAD > $out/COMMIT\ngit log -1 --format=%cI > $out/SOURCE_DATE_EPOCH\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,7 +66,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Ll+nfLfKQapsBc/vGabmd4xuSvYg/XnyLBg9w9hYlhY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -87,7 +87,7 @@ export default nix.lambda((args) => (() => {
         removeReferencesTo,
       ]),
       buildInputs: nix.thunk(() => [openssl, ffmpeg_headless, alsa_lib, libpulseaudio, pipewire]),
-      env: nix.thunk(() => ({ __proto__: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", FFMPEG_MODE: "system" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", FFMPEG_MODE: "system" })),
       strictDeps: true,
       __structuredAttrs: true,
       prePatch: "rm .npmrc\n",
@@ -157,7 +157,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             name: "top.imsyy.splayer_next",
             desktopName: "SPlayer-Next",
             exec: "SPlayer-Next %U",
@@ -168,15 +168,15 @@ runHook postInstall
             comment: "Cross-platform desktop music player with rich lyric support and wide audio format compatibility",
             categories: nix.thunk(() => ["AudioVideo", "Audio", "Music"]),
             mimeTypes: nix.thunk(() => ["x-scheme-handler/orpheus"]),
-            extraConfig: nix.thunk(() => ({ __proto__: pos$5, "X-KDE-Protocols": "orpheus" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$5, "X-KDE-Protocols": "orpheus" })),
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$7, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: pos$8,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         description: "Cross-platform desktop music player with rich lyric support and wide audio format compatibility",
         homepage: "https://github.com/SPlayer-Dev/SPlayer-Next",
         changelog: nix.thunk(() => nix.str`https://github.com/SPlayer-Dev/SPlayer-Next/releases/tag/v${nix.sel(finalAttrs, "version")}`),

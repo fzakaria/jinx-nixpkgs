@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ironwail",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/andrei-drexler/ironwail/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-rt+u0oY2W7UzsIUs5Tvd3IcBXsM2Z0UEfXNVLejc06U=",
         })))),
@@ -77,7 +77,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "ironwail",
             exec: "ironwail",
             desktopName: "Ironwail",
@@ -85,7 +85,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fork of the QuakeSpasm engine for iD software's Quake",
         homepage: "https://github.com/andrei-drexler/ironwail",
         longDescription: "Ironwail is a fork of QuakeSpasm with focus on high performance instead of\ncompatibility.\nIt features the ability to play the 2021 re-release content with no setup\nrequired, a mods menu for quick access to installation of mods, and ease of\nswitching to installed mods.\nIt also include various visual features as well as improved limits for playing\nlarger levels with less performance impacts.\n",

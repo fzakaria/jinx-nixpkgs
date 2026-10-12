@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
     const dependencies = nix.argOr($_1, "dependencies", () => []);
     const enableGtk4 = nix.argOr($_1, "enableGtk4", () => false);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update(attrs, {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [
-          nix.thunk(() => nix.app(nix.sel(ags, "override"), nix.thunk(() => ({ __proto__: pos$1, extraPackages: dependencies })))),
+          nix.thunk(() => nix.app(nix.sel(ags, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraPackages: dependencies })))),
           gnused,
           gobject_introspection,
           nix.thunk(() => (nix.asBool(enableGtk4) ? nix.force(wrapGAppsHook4) : nix.force(wrapGAppsHook3))),

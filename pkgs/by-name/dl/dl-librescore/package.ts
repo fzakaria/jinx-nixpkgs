@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const python3Minimal = nix.arg($, "python3Minimal");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "dl-librescore",
       version: "0.35.40",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LibreScore",
           repo: "dl-librescore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([python3Minimal], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "update-pdfkit.patch",
             url: "https://github.com/LibreScore/dl-librescore/commit/3694697d2d3f3f59ca32ee962999b3dd22c81de7.patch",
             hash: "sha256-ikEJNwKMDWpWBQnS3ur76vZqF+zRI6D5d0AyLDdreJY=",
@@ -46,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "for file in src/i18n/*.json; do\n  substituteInPlace \"$file\" --replace-quiet \\\n    'Run npm i -g dl-librescore@{{latest}} to update' \"\"\ndone\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         description: "Download sheet music",
         homepage: "https://github.com/LibreScore/dl-librescore",

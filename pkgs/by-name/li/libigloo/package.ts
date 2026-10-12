@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rhash = nix.arg($, "rhash");
   const icecast = nix.arg($, "icecast");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libigloo",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/igloo/libigloo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6iLpEZ96IYiBD5kQDFFVxnYtRZWuITuawp5ptPC4cok=",
         })))),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(icecast, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Generic C framework used and developed by the Icecast project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

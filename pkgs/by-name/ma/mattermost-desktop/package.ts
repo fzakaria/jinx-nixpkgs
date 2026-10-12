@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mattermost-desktop";
       const version = "6.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattermost",
           repo: "desktop",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, autoPatchelfHook]);
       const autoPatchelfIgnoreMissingDeps = nix.thunk(() => ["libc.musl-x86_64.so.1"]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]);
-      const env = nix.thunk(() => ({ __proto__: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const postPatch = "substituteInPlace webpack.config.base.js \\\n  --replace-fail \\\n    \"const VERSION = childProcess.execSync('git rev-parse --short HEAD', {cwd: __dirname}).toString();\" \\\n    \"const VERSION = process.env.version;\"\nsubstituteInPlace src/common/config/buildConfig.ts \\\n  --replace-fail 'enableUpdateNotifications: true,' 'enableUpdateNotifications: false,'\n";
       const postBuild = nix.thunk(() => nix.str`# electronDist needs to be writable
 cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -81,22 +81,22 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' $out/bin/${pname} \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: mattermost_desktop,
               command: nix.thunk(() => nix.str`env HOME=/tmp ${nix.sel(meta, "mainProgram")} --version`),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Mattermost Desktop client",
         mainProgram: "mattermost-desktop",
         homepage: "https://about.mattermost.com/",
@@ -121,7 +121,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         pname,
         version,
         src,

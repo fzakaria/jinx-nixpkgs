@@ -66,11 +66,11 @@ export default nix.lambda((args) => (() => {
     const tiling_wm = nix.argOr($_1, "tiling_wm", () => false);
     const filename = nix.thunk(() => nix.str`asfp-${versionPrefix}-${version}-linux.deb`);
     const androidStudioForPlatform = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             url: nix.thunk(() => nix.str`https://dl.google.com/android/asfp/${filename}`),
             sha256: sha256Hash,
           })))),
@@ -117,7 +117,7 @@ wrapProgram $out/bin/studio.sh \\
 `),
       }))));
     const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         name: pname,
         exec: pname,
         icon: pname,
@@ -128,14 +128,14 @@ wrapProgram $out/bin/studio.sh \\
         startupWMClass: "jetbrains-studio",
       }))));
     const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname: nix.thunk(() => nix.str`${pname}-fhs-env`),
         version: version,
         multiPkgs: (pkgs) => [zlib, ncurses5, nix.thunk(() => nix.sel(ncurses5, "dev"))],
         profile: "export ALLOW_NINJA_ENV=true\nexport LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib32\n",
       }))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: pname,
         version: version,
         startScript: nix.thunk(() => nix.str`#!${bash}/bin/bash
@@ -143,9 +143,9 @@ ${nix.app(nix.sel(lib, "getExe"), fhsEnv)} ${androidStudioForPlatform}/bin/studi
 `),
         preferLocalBuild: true,
         allowSubstitutes: false,
-        passthru: nix.thunk(() => ({ __proto__: pos$5, unwrapped: androidStudioForPlatform })),
+        passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: androidStudioForPlatform })),
         meta: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           description: "Official IDE for Android platform development",
           longDescription: "Android Studio for Platform (ASfP) is the version of the Android Studio IDE\nfor Android Open Source Project (AOSP) platform developers who build with the Soong build system.\n",
           homepage: "https://developer.android.com/studio/platform.html",

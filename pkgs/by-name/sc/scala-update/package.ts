@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const coursier = nix.arg($, "coursier");
   const buildGraalvmNativeImage = nix.arg($, "buildGraalvmNativeImage");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "scala-update",
       version: "0.2.2",
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "deps"))]),
@@ -34,9 +34,9 @@ $out/bin/scala-update --version | grep -q "${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         deps: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             name: nix.thunk(() => nix.str`scala-update-deps-${nix.sel(finalAttrs, "version")}`),
             buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${nix.app(nix.sel(lib, "getExe"), coursier)} fetch io.github.kitlangton:scala-update_2.13:${nix.sel(finalAttrs, "version")} > deps
@@ -49,7 +49,7 @@ cp $(< deps) $out/share/java/
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Update your Scala dependencies interactively",
         homepage: "https://github.com/kitlangton/scala-update",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

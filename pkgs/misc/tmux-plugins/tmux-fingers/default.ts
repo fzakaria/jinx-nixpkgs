@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.1";
       const pname = "fingers";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Morantron",
           repo: "tmux-fingers",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -30,15 +30,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const shardsFile = nix.path(here, "./shards.nix");
       const crystalBinaries = nix.thunk(() => ({
-        __proto__: pos$3,
-        "tmux-fingers": nix.thunk(() => ({ __proto__: pos$2, src: "src/fingers.cr" })),
+        [nix.POS]: pos$3,
+        "tmux-fingers": nix.thunk(() => ({ [nix.POS]: pos$2, src: "src/fingers.cr" })),
       }));
       const postInstall = "shopt -s dotglob extglob\nrm -rv !(\"tmux-fingers.tmux\"|\"bin\")\nshopt -u dotglob extglob\n";
       const doCheck = false;
       const doInstallCheck = false;
-      const meta = nix.thunk(() => ({ __proto__: pos$4, homepage: "https://github.com/Morantron/tmux-fingers" }));
+      const meta = nix.thunk(() => ({ [nix.POS]: pos$4, homepage: "https://github.com/Morantron/tmux-fingers" }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         format,
         version,
         pname,
@@ -52,14 +52,14 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(mkTmuxPlugin, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       version: nix.thunk(() => nix.attr(fingers, "version")),
       src: nix.thunk(() => nix.attr(fingers, "src")),
       meta: nix.thunk(() => nix.attr(fingers, "meta")),
       pluginName: nix.thunk(() => nix.sel(fingers, "src", "repo")),
       rtpFilePath: "tmux-fingers.tmux",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ __proto__: pos$6, tmuxFingersDir: nix.thunk(() => nix.str`${fingers}/bin`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, tmuxFingersDir: nix.thunk(() => nix.str`${fingers}/bin`) })))),
       ]),
     })));
 })(), formals$1);

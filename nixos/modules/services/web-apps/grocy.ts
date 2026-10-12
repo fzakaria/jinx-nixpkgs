@@ -56,33 +56,33 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const cfg = nix.thunk(() => nix.sel(config, "services", "grocy"));
   return {
-    __proto__: pos$44,
+    [nix.POS]: pos$44,
     options: nix.thunk(() => ({
-      __proto__: pos$18,
+      [nix.POS]: pos$18,
       services: nix.thunk(() => ({
-        __proto__: pos$17,
+        [nix.POS]: pos$17,
         grocy: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkEnableOption"), "grocy")),
           package: nix.thunk(() => nix.app(nix.lookup(w, "mkPackageOption"), pkgs, "grocy", nix.thunk(() => ({})))),
           hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               description: "FQDN for the grocy instance.\n",
             })))),
           nginx: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             enableSSL: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$2,
+                [nix.POS]: pos$2,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Whether or not to enable SSL (with ACME and let's encrypt)\nfor the grocy vhost.\n",
               })))),
           })),
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             settings: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "oneOf"), nix.thunk(() => [
@@ -92,7 +92,7 @@ export default nix.lambda((args) => (() => {
                       ]))));
                 })()),
                 default: nix.thunk(() => ({
-                  __proto__: pos$4,
+                  [nix.POS]: pos$4,
                   pm: "dynamic",
                   "php_admin_value[error_log]": "stderr",
                   "php_admin_flag[log_errors]": true,
@@ -109,22 +109,22 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           dataDir: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               default: "/var/lib/grocy",
               description: "Home directory of the `grocy` user which contains\nthe application's state.\n",
             })))),
           settings: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             currency: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "USD",
                 example: "EUR",
                 description: "ISO 4217 code for the currency to display.\n",
               })))),
             culture: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                     "bg_BG",
                     "ca",
@@ -164,22 +164,22 @@ export default nix.lambda((args) => (() => {
                 description: "Display language of the frontend.\n",
               })))),
             calendar: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               showWeekNumber: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   default: true,
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                   description: "Show the number of the weeks in the calendar views.\n",
                 })))),
               firstDayOfWeek: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   default: null,
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => nix.app(nix.lookup(w, "range"), 0n, 6n)))))),
                   description: "Which day of the week (0=Sunday, 1=Monday etc.) should be the\nfirst day.\n",
                 })))),
             })),
             entryPage: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "enum"), nix.thunk(() => [
                     "stock",
                     "shoppinglist",
@@ -196,7 +196,7 @@ export default nix.lambda((args) => (() => {
               })))),
           })),
           extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$15,
+              [nix.POS]: pos$15,
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
               default: "",
               description: "These lines go at the end of config.php verbatim.\n",
@@ -206,13 +206,13 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$42,
+        [nix.POS]: pos$42,
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           etc: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "grocy/config.php": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               text: nix.thunk(() => nix.str`<?php
 Setting('CULTURE', '${nix.sel(cfg, "settings", "culture")}');
 Setting('CURRENCY', '${nix.sel(cfg, "settings", "currency")}');
@@ -225,11 +225,11 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           users: nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             grocy: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               isSystemUser: true,
               createHome: true,
               home: nix.thunk(() => nix.sel(cfg, "dataDir")),
@@ -238,19 +238,19 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             rules: nix.thunk(() => nix.app(nix.builtins.map, (dirName) => nix.str`d '${nix.sel(cfg, "dataDir")}/${dirName}' - grocy nginx - -`, nix.thunk(() => ["viewcache", "plugins", "settingoverrides", "storage"]))),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$28,
+            [nix.POS]: pos$28,
             "grocy-setup": nix.thunk(() => ({
-              __proto__: pos$27,
+              [nix.POS]: pos$27,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               before: nix.thunk(() => ["phpfpm-grocy.service"]),
               unitConfig: nix.thunk(() => ({
-                __proto__: pos$26,
+                [nix.POS]: pos$26,
                 RequiresMountsFor: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "dataDir"))]),
               })),
               script: nix.thunk(() => nix.str`rm -rf ${nix.sel(cfg, "dataDir")}/viewcache/*
@@ -259,22 +259,22 @@ ${nix.sel(cfg, "extraConfig")}
           })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$41,
+          [nix.POS]: pos$41,
           phpfpm: nix.thunk(() => ({
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             pools: nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               grocy: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(cfg, "phpfpm"));
                 const from_1 = nix.thunk(() => nix.sel(cfg, "package", "passthru"));
                 return {
-                __proto__: pos$31,
+                [nix.POS]: pos$31,
                 user: "grocy",
                 group: "nginx",
                 settings: nix.thunk(() => nix.attr(from, "settings")),
                 phpPackage: nix.thunk(() => nix.attr(from_1, "phpPackage")),
                 phpEnv: nix.thunk(() => ({
-                  __proto__: pos$30,
+                  [nix.POS]: pos$30,
                   GROCY_CONFIG_FILE: "/etc/grocy/config.php",
                   GROCY_DB_FILE: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/grocy.db`),
                   GROCY_STORAGE_DIR: nix.thunk(() => nix.str`${nix.sel(cfg, "dataDir")}/storage`),
@@ -286,18 +286,18 @@ ${nix.sel(cfg, "extraConfig")}
             })),
           })),
           nginx: nix.thunk(() => ({
-            __proto__: pos$40,
+            [nix.POS]: pos$40,
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(cfg, "hostName")}`, nix.thunk(() => nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$38,
+                    [nix.POS]: pos$38,
                     root: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/public`),
                     locations: nix.thunk(() => ({
-                      __proto__: pos$37,
-                      "/": nix.thunk(() => ({ __proto__: pos$34, extraConfig: "rewrite ^ /index.php;\n" })),
+                      [nix.POS]: pos$37,
+                      "/": nix.thunk(() => ({ [nix.POS]: pos$34, extraConfig: "rewrite ^ /index.php;\n" })),
                       "~ \\.php$": nix.thunk(() => ({
-                        __proto__: pos$35,
+                        [nix.POS]: pos$35,
                         extraConfig: nix.thunk(() => nix.str`fastcgi_split_path_info ^(.+\\.php)(/.+)$;
 fastcgi_pass unix:${nix.sel(config, "services", "phpfpm", "pools", "grocy", "socket")};
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi.conf;
@@ -305,20 +305,20 @@ include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
 `),
                       })),
                       "~ \\.(js|css|ttf|woff2?|png|jpe?g|svg)$": nix.thunk(() => ({
-                        __proto__: pos$36,
+                        [nix.POS]: pos$36,
                         extraConfig: "add_header Cache-Control \"public, max-age=15778463\";\nadd_header X-Content-Type-Options nosniff;\nadd_header X-Robots-Tag none;\nadd_header X-Download-Options noopen;\nadd_header X-Permitted-Cross-Domain-Policies none;\nadd_header Referrer-Policy no-referrer;\naccess_log off;\n",
                       })),
                     })),
                     extraConfig: "try_files $uri /index.php;\n",
                   })),
-                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enableSSL")), nix.thunk(() => ({ __proto__: pos$39, enableACME: true, forceSSL: true })))),
+                  nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "nginx", "enableSSL")), nix.thunk(() => ({ [nix.POS]: pos$39, enableACME: true, forceSSL: true })))),
                 ])))],
             ])),
           })),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$43,
+      [nix.POS]: pos$43,
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [nix.thunk(() => nix.lookup(w_1, "diogotcorreia"))];

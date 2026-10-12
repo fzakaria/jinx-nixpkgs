@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const enableVCVRack = nix.argOr($, "enableVCVRack", () => false);
   const clapJuceExtensions = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "free-audio",
       repo: "clap-juce-extensions",
       rev: "645ed2fd0949d36639e3d63333f26136df6df769",
@@ -61,11 +61,11 @@ export default nix.lambda((args) => (() => {
   const pname = "airwin2rack";
   const version = "2.13.0-unstable-2026-01-19";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "baconpaul",
           repo: "airwin2rack",
           rev: "ed3700c223be0fd5eddf6d57b66216fff8389c2c",
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             type: "Application",
             name: "Airwin2rack",
             desktopName: "Airwindows Consolidated",
@@ -157,7 +157,7 @@ install -Dm755 "${pname}-${version}-lin-x64.vcvplugin" $out/usr/lib/vcvrack/plug
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -169,7 +169,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "JUCE Plugin Version of Airwindows Consolidated",
         homepage: "https://github.com/baconpaul/airwin2rack",
         platforms: nix.thunk(() => ["x86_64-linux"]),

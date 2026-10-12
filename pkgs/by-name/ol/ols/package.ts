@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const odin = nix.arg($, "odin");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "ols",
       version: "dev-2026-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "DanielGavin",
           repo: "ols",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +42,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(odin, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Language server for the Odin programming language",
         homepage: "https://github.com/DanielGavin/ols",

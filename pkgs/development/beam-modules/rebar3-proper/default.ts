@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
       const name = "rebar3_proper";
       const version = "0.12.1";
       const src = nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pkg: name,
           version: version,
           sha256: "1f174fb6h2071wr7qbw9aqqvnglzsjlylmyi8215fhrmi38w94b6",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "rebar3 proper plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/ferd/rebar3_proper",
       }));
-      return { __proto__: pos$3, name, version, src, meta };
+      return { [nix.POS]: pos$3, name, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

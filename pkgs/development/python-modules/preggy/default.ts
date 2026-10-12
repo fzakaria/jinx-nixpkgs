@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           sha256: "25ba803afde4f35ef543a60915ced2e634926235064df717c3cb3e4e3eb4670c",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [six, unidecode]);
       const nativeCheckInputs = nix.thunk(() => [pytest8_3CheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Assertion library for Python",
         homepage: "http://heynemann.github.io/preggy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

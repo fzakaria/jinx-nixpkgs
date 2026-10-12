@@ -79,42 +79,42 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkPackageOption = nix.thunk(() => nix.attr(lib, "mkPackageOption"));
   const druidServiceOption = (serviceName) => ({
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     enable: nix.thunk(() => nix.app(mkEnableOption, serviceName)),
     restartIfChanged: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         type: nix.thunk(() => nix.sel(types, "bool")),
         description: "Automatically restart the service on config change.\nThis can be set to false to defer restarts on clusters running critical applications.\nPlease consider the security implications of inadvertently running an older version,\nand the possibility of unexpected behavior caused by inconsistent versions across a cluster when disabling this option.\n",
         default: false,
       })))),
     config: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         default: nix.thunk(() => ({})),
         type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "anything")))),
         description: nix.thunk(() => nix.str`(key=value) Configuration to be written to runtime.properties of the druid ${serviceName}
 <https://druid.apache.org/docs/latest/configuration/index.html>
 `),
         example: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "druid.plainTextPort": "8082",
           "druid.service": "servicename",
         })),
       })))),
-    jdk: nix.thunk(() => nix.app(mkPackageOption, pkgs, "JDK", nix.thunk(() => ({ __proto__: pos$4, default: nix.thunk(() => ["jdk17_headless"]) })))),
+    jdk: nix.thunk(() => nix.app(mkPackageOption, pkgs, "JDK", nix.thunk(() => ({ [nix.POS]: pos$4, default: nix.thunk(() => ["jdk17_headless"]) })))),
     jvmArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         type: nix.thunk(() => nix.sel(types, "str")),
         default: "",
         description: "Arguments to pass to the JVM",
       })))),
     openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         type: nix.thunk(() => nix.sel(types, "bool")),
         default: false,
         description: nix.thunk(() => nix.str`Open firewall ports for ${serviceName}.`),
       })))),
     internalConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         default: nix.thunk(() => ({})),
         type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "anything")))),
         internal: true,
@@ -130,12 +130,12 @@ export default nix.lambda((args) => (() => {
     const extraConfig = nix.argOr($_1, "extraConfig", () => ({}));
     return nix.app(mkIf, nix.thunk(() => nix.sel(serviceOptions, "enable")), nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             systemd: nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               services: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`druid-${name}`, nix.thunk(() => ({
-                  __proto__: pos$10,
+                  [nix.POS]: pos$10,
                   after: nix.thunk(() => ["network.target"]),
                   description: nix.thunk(() => nix.str`Druid ${name}`),
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -159,7 +159,7 @@ export default nix.lambda((args) => (() => {
 `;
                   })()),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     User: "druid",
                     SyslogIdentifier: nix.thunk(() => nix.str`druid-${name}`),
                     Restart: "always",
@@ -167,50 +167,50 @@ export default nix.lambda((args) => (() => {
                 }))],
               ])),
               tmpfiles: nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 rules: nix.thunk(() => nix.app(concatMap, (x) => [nix.thunk(() => nix.str`d ${x} 0755 druid druid`)], nix.thunk(() => nix.concat(nix.sel(cfg, "commonTmpDirs"), tmpDirs)))),
               })),
             })),
             networking: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               firewall: nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 allowedTCPPorts: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["openFirewall"]), false, serviceOptions)), allowedTCPPorts)),
               })),
             })),
             users: nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               users: nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 druid: nix.thunk(() => ({
-                  __proto__: pos$15,
+                  [nix.POS]: pos$15,
                   description: "Druid user",
                   group: "druid",
                   isNormalUser: true,
                 })),
               })),
-              groups: nix.thunk(() => ({ __proto__: pos$17, druid: nix.thunk(() => ({})) })),
+              groups: nix.thunk(() => ({ [nix.POS]: pos$17, druid: nix.thunk(() => ({})) })),
             })),
           })),
           extraConfig,
         ]))));
   })(), formals$2);
   return {
-    __proto__: pos$56,
+    [nix.POS]: pos$56,
     options: nix.thunk(() => ({
-      __proto__: pos$36,
+      [nix.POS]: pos$36,
       services: nix.thunk(() => ({
-        __proto__: pos$35,
+        [nix.POS]: pos$35,
         druid: nix.thunk(() => ({
-          __proto__: pos$34,
-          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "apache-druid", nix.thunk(() => ({ __proto__: pos$20, default: nix.thunk(() => ["druid"]) })))),
+          [nix.POS]: pos$34,
+          package: nix.thunk(() => nix.app(mkPackageOption, pkgs, "apache-druid", nix.thunk(() => ({ [nix.POS]: pos$20, default: nix.thunk(() => ["druid"]) })))),
           commonConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               default: nix.thunk(() => ({})),
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "anything")))),
               description: "(key=value) Configuration to be written to common.runtime.properties",
               example: nix.thunk(() => ({
-                __proto__: pos$21,
+                [nix.POS]: pos$21,
                 "druid.zk.service.host": "localhost:2181",
                 "druid.metadata.storage.type": "mysql",
                 "druid.metadata.storage.connector.connectURI": "jdbc:mysql://localhost:3306/druid",
@@ -218,24 +218,24 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           commonTmpDirs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$23,
+              [nix.POS]: pos$23,
               default: nix.thunk(() => ["/var/log/druid/requests"]),
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               description: "Common List of directories used by druid processes",
             })))),
           log4j: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$24,
+              [nix.POS]: pos$24,
               type: nix.thunk(() => nix.sel(types, "path")),
               description: "Log4j Configuration for the druid process",
             })))),
           extraClassPaths: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$25,
+              [nix.POS]: pos$25,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               description: "Extra classpath to include in the jvm",
             })))),
           extraConfDirs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               default: [],
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "path")))),
               description: "Extra Conf Dirs to include in the jvm",
@@ -244,29 +244,29 @@ export default nix.lambda((args) => (() => {
           coordinator: nix.thunk(() => nix.app(druidServiceOption, "Druid Coordinator")),
           broker: nix.thunk(() => nix.app(druidServiceOption, "Druid Broker")),
           historical: nix.thunk(() => nix.update(nix.app(druidServiceOption, "Druid Historical"), {
-            __proto__: pos$33,
+            [nix.POS]: pos$33,
             segmentLocations: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$32,
+                [nix.POS]: pos$32,
                 default: null,
                 description: "Locations where the historical will store its data.",
                 type: nix.thunk(() => (() => {
                   const w = nix.withScope(types, null);
                   return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                          __proto__: pos$31,
+                          [nix.POS]: pos$31,
                           options: nix.thunk(() => ({
-                            __proto__: pos$30,
+                            [nix.POS]: pos$30,
                             path: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$27,
+                                [nix.POS]: pos$27,
                                 type: nix.thunk(() => nix.lookup(w, "path")),
                                 description: "the path to store the segments",
                               })))),
                             maxSize: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$28,
+                                [nix.POS]: pos$28,
                                 type: nix.thunk(() => nix.lookup(w, "str")),
                                 description: "Max size the druid historical can occupy",
                               })))),
                             freeSpacePercent: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                __proto__: pos$29,
+                                [nix.POS]: pos$29,
                                 type: nix.thunk(() => nix.lookup(w, "float")),
                                 default: 1.0,
                                 description: "Druid Historical will fail to write if it exceeds this value",
@@ -287,14 +287,14 @@ export default nix.lambda((args) => (() => {
             const allowedTCPPorts = nix.thunk(() => [
               nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.plaintextPort"]), 8090n, nix.thunk(() => nix.sel(cfg, nix.key(nix.str`${name}`), "config")))),
             ]);
-            return { __proto__: pos$37, name, allowedTCPPorts };
+            return { [nix.POS]: pos$37, name, allowedTCPPorts };
           })()))),
         nix.thunk(() => nix.app(druidServiceConfig, nix.thunk(() => (() => {
             const name = "coordinator";
             const allowedTCPPorts = nix.thunk(() => [
               nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.plaintextPort"]), 8081n, nix.thunk(() => nix.sel(cfg, nix.key(nix.str`${name}`), "config")))),
             ]);
-            return { __proto__: pos$38, name, allowedTCPPorts };
+            return { [nix.POS]: pos$38, name, allowedTCPPorts };
           })()))),
         nix.thunk(() => nix.app(druidServiceConfig, nix.thunk(() => (() => {
             const name = "broker";
@@ -304,7 +304,7 @@ export default nix.lambda((args) => (() => {
             const allowedTCPPorts = nix.thunk(() => [
               nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.plaintextPort"]), 8082n, nix.thunk(() => nix.sel(cfg, nix.key(nix.str`${name}`), "config")))),
             ]);
-            return { __proto__: pos$39, name, tmpDirs, allowedTCPPorts };
+            return { [nix.POS]: pos$39, name, tmpDirs, allowedTCPPorts };
           })()))),
         nix.thunk(() => nix.app(druidServiceConfig, nix.thunk(() => (() => {
             const name = "historical";
@@ -315,22 +315,22 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.plaintextPort"]), 8083n, nix.thunk(() => nix.sel(cfg, nix.key(nix.str`${name}`), "config")))),
             ]);
             const extraConfig = nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               services: nix.thunk(() => ({
-                __proto__: pos$43,
+                [nix.POS]: pos$43,
                 druid: nix.thunk(() => ({
-                  __proto__: pos$42,
+                  [nix.POS]: pos$42,
                   historical: nix.thunk(() => ({
-                    __proto__: pos$41,
+                    [nix.POS]: pos$41,
                     internalConfig: nix.thunk(() => ({
-                      __proto__: pos$40,
+                      [nix.POS]: pos$40,
                       "druid.segmentCache.locations": nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.sel(cfg, "historical", "segmentLocations")))),
                     })),
                   })),
                 })),
               })),
             }));
-            return { __proto__: pos$45, name, tmpDirs, allowedTCPPorts, extraConfig };
+            return { [nix.POS]: pos$45, name, tmpDirs, allowedTCPPorts, extraConfig };
           })()))),
         nix.thunk(() => nix.app(druidServiceConfig, nix.thunk(() => (() => {
             const name = "middleManager";
@@ -341,15 +341,15 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.plaintextPort"]), 8091n, nix.thunk(() => nix.sel(cfg, nix.key(nix.str`${name}`), "config")))),
             ]);
             const extraConfig = nix.thunk(() => ({
-              __proto__: pos$53,
+              [nix.POS]: pos$53,
               services: nix.thunk(() => ({
-                __proto__: pos$49,
+                [nix.POS]: pos$49,
                 druid: nix.thunk(() => ({
-                  __proto__: pos$48,
+                  [nix.POS]: pos$48,
                   middleManager: nix.thunk(() => ({
-                    __proto__: pos$47,
+                    [nix.POS]: pos$47,
                     internalConfig: nix.thunk(() => ({
-                      __proto__: pos$46,
+                      [nix.POS]: pos$46,
                       "druid.indexer.runner.javaCommand": nix.thunk(() => nix.str`${nix.sel(cfg, "middleManager", "jdk")}/bin/java`),
                       "druid.indexer.runner.javaOpts": nix.thunk(() => nix.add(nix.app(attrByPath, nix.thunk(() => ["druid.indexer.runner.javaOpts"]), "", nix.thunk(() => nix.sel(cfg, "middleManager", "config"))), nix.str` -Dlog4j.configurationFile=file:${nix.sel(cfg, "log4j")}`)),
                     })),
@@ -357,12 +357,12 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               networking: nix.thunk(() => ({
-                __proto__: pos$52,
+                [nix.POS]: pos$52,
                 firewall: nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   allowedTCPPortRanges: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "middleManager", "openFirewall")), nix.thunk(() => [
                       nix.thunk(() => ({
-                        __proto__: pos$50,
+                        [nix.POS]: pos$50,
                         from: nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.indexer.runner.startPort"]), 8100n, nix.thunk(() => nix.sel(cfg, "middleManager", "config")))),
                         to: nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.indexer.runner.endPort"]), 65535n, nix.thunk(() => nix.sel(cfg, "middleManager", "config")))),
                       })),
@@ -370,14 +370,14 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
             }));
-            return { __proto__: pos$54, name, tmpDirs, allowedTCPPorts, extraConfig };
+            return { [nix.POS]: pos$54, name, tmpDirs, allowedTCPPorts, extraConfig };
           })()))),
         nix.thunk(() => nix.app(druidServiceConfig, nix.thunk(() => (() => {
             const name = "router";
             const allowedTCPPorts = nix.thunk(() => [
               nix.thunk(() => nix.app(attrByPath, nix.thunk(() => ["druid.plaintextPort"]), 8888n, nix.thunk(() => nix.sel(cfg, nix.key(nix.str`${name}`), "config")))),
             ]);
-            return { __proto__: pos$55, name, allowedTCPPorts };
+            return { [nix.POS]: pos$55, name, allowedTCPPorts };
           })()))),
       ]))),
   };

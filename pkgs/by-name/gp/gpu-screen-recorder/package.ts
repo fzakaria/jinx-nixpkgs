@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "gpu-screen-recorder",
       version: "6.1.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://repo.dec05eba.com/gpu-screen-recorder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-1bWCfwX28uzGZoxJDriKpUxPo6PAAO0gq3JU+Xc0N0k=",
@@ -88,11 +88,11 @@ substituteInPlace $out/lib/systemd/user/gpu-screen-recorder.service \\
   --replace-fail "ExecStart=gpu-screen-recorder" "ExecStart=$out/bin/gpu-screen-recorder"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Screen recorder that has minimal impact on system performance by recording a window using the GPU only",
         homepage: "https://git.dec05eba.com/gpu-screen-recorder/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

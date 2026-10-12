@@ -62,75 +62,75 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
   const passwordFilesLocation = nix.thunk(() => (nix.asBool(immutableEtc) ? immutablePasswordFilesLocation : "/etc"));
   const passwordFiles = nix.thunk(() => ["passwd", "group", "shadow", "gshadow"]);
   return {
-    __proto__: pos$27,
+    [nix.POS]: pos$27,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       systemd: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         sysusers: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mkEnableOption"), "systemd-sysusers"), {
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             description: "If enabled, users are created with systemd-sysusers instead of with\nthe custom `update-users-groups.pl` script.\n\nNote: This is experimental.\n",
           })),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$25,
+        [nix.POS]: pos$25,
         assertions: nix.thunk(() => nix.concat([
           nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => nix.eq(nix.sel(config, "system", "activationScripts", "users"), "")),
             message: "system.activationScripts.users has to be empty to use systemd-sysusers",
           })),
         ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (username) => (opts) => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(opts, "enable")) || nix.asBool(!nix.asBool(nix.sel(opts, "isNormalUser"))))),
             message: nix.thunk(() => nix.str`${username} is a normal user. systemd-sysusers doesn't create normal users, only system users.`),
           }), nix.thunk(() => nix.sel(userCfg, "users"))), nix.app(nix.sel(lib, "mapAttrsToList"), (username) => (opts) => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             assertion: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(nix.sel(opts, "password"), nix.sel(opts, "initialPassword"))) || nix.asBool(nix.eq(nix.sel(opts, "password"), null)))) && nix.asBool((nix.asBool(nix.eq(nix.sel(opts, "hashedPassword"), nix.sel(opts, "initialHashedPassword"))) || nix.asBool(nix.eq(nix.sel(opts, "hashedPassword"), null)))))),
             message: nix.thunk(() => nix.str`user '${username}' uses password or hashedPassword. systemd-sysupdate only supports initial passwords. It'll never update your passwords.`),
           }), systemUsers)))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$20,
+          [nix.POS]: pos$20,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             settings: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "home-directories": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (username) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(opts, "home")), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     d: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       mode: nix.thunk(() => nix.sel(opts, "homeMode")),
                       user: username,
                       group: nix.thunk(() => nix.sel(opts, "group")),
                     })),
                   }))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_username) => (opts) => !nix.eq(nix.sel(opts, "home"), "/var/empty"), systemUsers)))),
               "nixos-uid": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (username) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`/var/lib/nixos/uid/${username}`), nix.thunk(() => ({
-                    __proto__: pos$11,
-                    f: nix.thunk(() => ({ __proto__: pos$10, user: username })),
+                    [nix.POS]: pos$11,
+                    f: nix.thunk(() => ({ [nix.POS]: pos$10, user: username })),
                   }))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_username) => (opts) => nix.eq(nix.sel(opts, "uid"), null), systemUsers)))),
               "nixos-gid": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (groupname) => (opts) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`/var/lib/nixos/gid/${groupname}`), nix.thunk(() => ({
-                    __proto__: pos$13,
-                    f: nix.thunk(() => ({ __proto__: pos$12, group: groupname })),
+                    [nix.POS]: pos$13,
+                    f: nix.thunk(() => ({ [nix.POS]: pos$12, group: groupname })),
                   }))), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_groupname) => (opts) => nix.eq(nix.sel(opts, "gid"), null), nix.thunk(() => nix.sel(userCfg, "groups")))))),
             })),
           })),
           additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-sysusers.service"]),
           services: nix.thunk(() => ({
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             "systemd-sysusers": nix.thunk(() => ({
-              __proto__: pos$18,
-              unitConfig: nix.thunk(() => ({ __proto__: pos$16, ConditionNeedsUpdate: nix.thunk(() => [""]) })),
+              [nix.POS]: pos$18,
+              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$16, ConditionNeedsUpdate: nix.thunk(() => [""]) })),
               requiredBy: nix.thunk(() => ["sysinit-reactivation.target"]),
               before: nix.thunk(() => ["sysinit-reactivation.target"]),
               restartTriggers: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(config, "environment", "etc", "sysusers.d", "source")}`),
               ]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), immutableEtc, nix.thunk(() => [
                     "",
                     nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/bin/systemd-sysusers --root ${nix.builtins.dirOf(immutablePasswordFilesLocation)} /etc/sysusers.d/00-nixos.conf`),
@@ -144,14 +144,14 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$24,
+          [nix.POS]: pos$24,
           etc: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => ({
-                __proto__: pos$22,
-                "sysusers.d": nix.thunk(() => ({ __proto__: pos$21, source: sysusersConfig })),
+                [nix.POS]: pos$22,
+                "sysusers.d": nix.thunk(() => ({ [nix.POS]: pos$21, source: sysusersConfig })),
               })),
               nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), immutableEtc, nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (file) => nix.app(nix.sel(lib, "nameValuePair"), file, nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         source: nix.thunk(() => nix.str`${immutablePasswordFilesLocation}/${file}`),
                         mode: "direct-symlink",
                       }))), passwordFiles)))))),
@@ -159,7 +159,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$26,
+      [nix.POS]: pos$26,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];

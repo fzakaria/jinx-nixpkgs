@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const envision = nix.arg($, "envision");
   const testers = nix.arg($, "testers");
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "envision",
       version: nix.thunk(() => nix.attr(envision_unwrapped, "version")),
       extraOutputsToInstall: nix.thunk(() => ["dev"]),
@@ -99,7 +99,7 @@ export default nix.lambda((args) => (() => {
 `),
       runScript: "envision",
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => (() => {
           const kebabToPascal = (kebab) => nix.app(nix.sel(lib, "foldl'"), (acc) => (part) => nix.add(nix.add(acc, nix.app(nix.sel(lib, "substring"), 0n, 1n, nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), part)))), nix.app(nix.sel(lib, "substring"), 1n, nix.thunk(() => nix.app(nix.sel(lib, "stringLength"), part)), part)), "", nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", kebab)));
           const pascalToCamel = (pascal) => nix.add(nix.app(nix.sel(lib, "substring"), 0n, 1n, nix.thunk(() => nix.app(nix.sel(lib, "toLower"), pascal))), nix.app(nix.sel(lib, "substring"), 1n, nix.thunk(() => nix.app(nix.sel(lib, "stringLength"), pascal)), pascal));
@@ -112,9 +112,9 @@ export default nix.lambda((args) => (() => {
             "wivrn-default",
           ]);
           return nix.update({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             allProfilesPresent: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 name: "envision-all-profiles-present-test",
                 script: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`export ALL_PROFILES=(${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(profiles, ["UUID"])))})
 export ENVISION_PROFILES=($(envision -l | grep -oP '^\\w+(?=:)'))
@@ -124,10 +124,10 @@ missing_from_array=($(grep -vf <(printf "%s\\n" "$`, "{ALL_PROFILES[@]}\") <(pri
                 nativeBuildInputs: nix.thunk(() => [envision]),
               })))),
           }, nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "map"), (profile) => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 name: nix.thunk(() => nix.str`${nix.app(kebabToCamel, profile)}DependenciesMet`),
                 value: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-                    __proto__: pos$3,
+                    [nix.POS]: pos$3,
                     name: nix.thunk(() => nix.str`envision-profile-${profile}-dependencies-met-test`),
                     script: nix.thunk(() => nix.str`envision -c ${profile}
 touch $out
@@ -138,7 +138,7 @@ touch $out
         })()),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(envision_unwrapped, "meta"), {
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: nix.thunk(() => nix.str`${nix.sel(envision_unwrapped, "meta", "description")} (with build environment)`),
       })),
     })));

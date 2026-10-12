@@ -21,17 +21,17 @@ export default nix.thunk(() => (() => {
   return nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     return {
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       name: "spacecookie",
       nodes: nix.thunk(() => nix.attrsDyn({}, [
         [gopherHost, nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemd: nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             services: nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               spacecookie: nix.thunk(() => ({
-                __proto__: pos$1,
+                [nix.POS]: pos$1,
                 preStart: nix.thunk(() => nix.str`mkdir -p ${gopherRoot}/directory
 printf "%s" "${fileContent}" > ${gopherRoot}/${fileName}
 `),
@@ -39,12 +39,12 @@ printf "%s" "${fileContent}" > ${gopherRoot}/${fileName}
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             spacecookie: nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
               openFirewall: true,
-              settings: nix.thunk(() => ({ __proto__: pos$4, root: gopherRoot, hostname: gopherHost })),
+              settings: nix.thunk(() => ({ [nix.POS]: pos$4, root: gopherRoot, hostname: gopherHost })),
             })),
           })),
         }))],

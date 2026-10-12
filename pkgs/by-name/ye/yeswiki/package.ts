@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const version = "4.6.7";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "yeswiki",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/YesWiki/yeswiki/releases/download/v${version}/yeswiki-v${version}.zip`),
           hash: "sha256-QgF08amdCh4q3E3/wat4e/KhIWMtBTkFJzT3p5m61FU=",
         })))),

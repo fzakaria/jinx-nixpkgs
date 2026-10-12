@@ -52,18 +52,18 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.thunk(() => nix.attr(libsForQt5, "qtbase"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(libsForQt5, "wrapQtAppsHook"));
   const arch = nix.thunk(() => nix.selOr({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     "x86_64-linux": "x86_64",
     "i686-linux": "i386",
     "aarch64-linux": "aarch64",
     "mipsel-linux": "mips64el",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: nix.thunk(() => nix.add(nix.add("ventoy", nix.app(optionalString, nix.thunk(() => nix.eq(defaultGuiType, "gtk3")), "-gtk3")), nix.app(optionalString, nix.thunk(() => nix.eq(defaultGuiType, "qt5")), "-qt5"))),
       version: "1.1.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: nix.thunk(() => nix.str`https://github.com/ventoy/Ventoy/releases/download/v${nix.sel(finalAttrs, "version")}/ventoy-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
           hash: "sha256-f7TtCM72prTTndGSYNjIApGnjf35r31GFXHiPLvEOAU=",
         })))),
@@ -88,7 +88,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "Ventoy",
             desktopName: "Ventoy",
             comment: "Tool to create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files",
@@ -149,7 +149,7 @@ mkdir "$out"/share/{applications,pixmaps}
 ln -s "$VENTOY_PATH"/WebUI/static/img/VentoyLogo.png "$out"/share/pixmaps/
 `))), nix.app(optionalString, nix.thunk(() => !nix.asBool(withGtk3)), "rm \"$VENTOY_PATH\"/tool/{\"$ARCH\"/Ventoy2Disk.gtk3,VentoyGTK.glade}\n")), nix.app(optionalString, nix.thunk(() => !nix.asBool(withQt5)), "rm \"$VENTOY_PATH/tool/$ARCH/Ventoy2Disk.qt5\"\n")), nix.app(optionalString, nix.thunk(() => (nix.asBool(!nix.asBool(withGtk3)) && nix.asBool(!nix.asBool(withQt5)))), "rm \"$VENTOY_PATH\"/VentoyGUI.*\n")), "\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://www.ventoy.net",
         description: nix.thunk(() => nix.add("New Bootable USB Solution", nix.app(optionalString, nix.thunk(() => !nix.eq(defaultGuiType, "")), " with GUI support"))),
         longDescription: "Ventoy is an open source tool to create bootable USB drive for\nISO/WIM/IMG/VHD(x)/EFI files.  With ventoy, you don't need to format the\ndisk over and over, you just need to copy the ISO/WIM/IMG/VHD(x)/EFI files\nto the USB drive and boot them directly. You can copy many files at a time\nand ventoy will give you a boot menu to select them. You can also browse\nISO/WIM/IMG/VHD(x)/EFI files in local disk and boot them. x86 Legacy\nBIOS, IA32 UEFI, x86_64 UEFI, ARM64 UEFI and MIPS64EL UEFI are supported\nin the same way.  Most type of OS supported\n(Windows/WinPE/Linux/ChromeOS/Unix/VMware/Xen...).  With ventoy you can\nalso browse ISO/WIM/IMG/VHD(x)/EFI files in local disk and boot them.\n800+ image files are tested.  90%+ distros in DistroWatch supported.\n",

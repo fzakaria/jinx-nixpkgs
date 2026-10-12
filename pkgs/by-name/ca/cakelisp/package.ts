@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "cakelisp",
       version: "0.3.0-unstable-2024-04-25",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://macoy.me/code/macoy/cakelisp",
           rev: "eb4427f555c3def9d65612672ccfe59e11b14059",
           hash: "sha256-wFyqAbHrBMFKqMYlBjS6flYHPn3Rxtaiqb1rRmlZrB4=",
@@ -34,14 +34,14 @@ substituteInPlace src/ModuleManager.cpp \\
     --replace '"/usr/bin/g++"' '"${gcc}/bin/g++"'
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Build.sh --replace '--export-dynamic' '-export_dynamic'\nsubstituteInPlace runtime/HotReloading.cake --replace '--export-dynamic' '-export_dynamic'\nsubstituteInPlace Bootstrap.cake --replace '--export-dynamic' '-export_dynamic'\n"))),
       buildPhase: "runHook preBuild\n./Build.sh\nrunHook postBuild\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format" })),
       installPhase: "runHook preInstall\ninstall -Dm755 bin/cakelisp -t $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ __proto__: pos$3, url: "https://macoy.me/code/macoy/cakelisp" })))),
+        [nix.POS]: pos$4,
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://macoy.me/code/macoy/cakelisp" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Performance-oriented Lisp-like language",
         mainProgram: "cakelisp",
         homepage: "https://macoy.me/code/macoy/cakelisp",

@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "imageio",
           repo: "imageio-ffmpeg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg)),
           })))),
       ]);
@@ -46,7 +46,7 @@ EOF
 `);
       const pythonImportsCheck = nix.thunk(() => ["imageio_ffmpeg"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/imageio/imageio-ffmpeg/releases/tag/${nix.sel(src, "tag")}`),
         description: "FFMPEG wrapper for Python",
         homepage: "https://github.com/imageio/imageio-ffmpeg",
@@ -54,7 +54,7 @@ EOF
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pmiddend"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

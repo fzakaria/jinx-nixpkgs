@@ -85,12 +85,12 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "mutter",
       version: "50.4",
       outputs: nix.thunk(() => ["out", "dev", "man", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/mutter/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mutter-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Jz0zyHWry0tsvqP07ARdGBVfvFEMNSH8fkeSY3ExCYg=",
         })))),
@@ -179,7 +179,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://gitlab.gnome.org/GNOME/mutter/-/commit/a1ae71798ef1ab2e0d2f753f5c98b38b1039b056.patch",
             hash: "sha256-J2eKhM3YEFEVmcpMq2SxSOsPeEWrJTv+UcBDO+gRC4M=",
             revert: true,
@@ -196,18 +196,18 @@ substituteInPlace src/frames/main.c \\
 moveToOutput "share/mutter-${nix.sel(finalAttrs, "passthru", "libmutter_api_version")}/doc" "$devdoc"
 `),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         PKG_CONFIG_UDEV_UDEVDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
       })),
       separateDebugInfo: true,
       strictDeps: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         libmutter_api_version: "18",
         libdir: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/lib/mutter-${nix.sel(finalAttrs, "passthru", "libmutter_api_version")}`),
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           libdirExists: nix.thunk(() => nix.app(runCommand, "mutter-libdir-exists", nix.thunk(() => ({})), nix.thunk(() => nix.str`if [[ ! -d ${nix.sel(finalAttrs, "finalPackage", "libdir")} ]]; then
   echo "passthru.libdir should contain a directory, “${nix.sel(finalAttrs, "finalPackage", "libdir")}” is not one."
   exit 1
@@ -215,10 +215,10 @@ fi
 touch $out
 `))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$5, packageName: "mutter" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$5, packageName: "mutter" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Window manager for GNOME",
         mainProgram: "mutter",
         homepage: "https://gitlab.gnome.org/GNOME/mutter",

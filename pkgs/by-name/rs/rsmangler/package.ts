@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "rsmangler",
       version: "1.5-unstable-2019-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "digininja",
           repo: "RSMangler",
           rev: "e85da7d4a6e6241a92389aecf376077adc7544c3",
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace rsmangler.rb \\\n  --replace-quiet ./rsmangler.rb rsmangler \\\n  --replace-quiet rsmangler.rb rsmangler\n",
       postInstall: "install -Dm555 rsmangler.rb $out/bin/rsmangler\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "rsmangler --help",
               version: nix.thunk(() => nix.str`rsmangler v ${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Perform various manipulations on the wordlists",
         homepage: "https://github.com/digininja/RSMangler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-20")),

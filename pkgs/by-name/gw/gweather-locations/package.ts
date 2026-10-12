@@ -22,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "gweather-locations",
       version: "2026.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gweather-locations/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gweather-locations-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-51cKNmHgp1KgY4eyAyWFz1iPxWdwsfnznxpV0XsoNf4=",
         })))),
@@ -45,11 +45,11 @@ wrapProgram $PWD/build-aux/gen_locations_variant.py \\
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ __proto__: pos$2, packageName: "gweather-locations" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gweather-locations" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "GWeather locations database",
         homepage: "https://gitlab.gnome.org/GNOME/gweather-locations",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

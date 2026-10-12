@@ -13,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const lib = nix.arg($, "lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "bstr",
       version: "0.1.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/bstr/releases/download/v${nix.sel(finalAttrs, "version")}/bstr-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-5lfP/aVpELFLmMdt1uA4LqS8XQFn6IORq6kxlrAW7uA=",
         })))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A simple library for bigstrings",
         homepage: "https://git.robur.coop/robur/bstr",
         license: nix.thunk(() => [

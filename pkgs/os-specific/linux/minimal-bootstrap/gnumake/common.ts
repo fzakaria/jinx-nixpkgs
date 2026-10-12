@@ -10,9 +10,9 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$2,
+    [nix.POS]: pos$2,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       description: "A tool to control the generation of non-source files from sources",
       homepage: "https://www.gnu.org/software/make",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

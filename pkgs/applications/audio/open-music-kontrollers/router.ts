@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`https://git.open-music-kontrollers.ch/lv2/${pname}.lv2/snapshot/${pname}.lv2-7d754dd64c540d40b828166401617715dc235ca3.tar.xz`);
       const sha256 = "sha256-LjaW5Xdxfjzd6IJ2ptHzmHt7fhU1HQo7ubZ4USVqRE8=";
       const description = "Atom/Audio/CV router LV2 plugin bundle";
-      return { __proto__: pos$1, pname, version, url, sha256, description };
+      return { [nix.POS]: pos$1, pname, version, url, sha256, description };
     })())));
 })(), formals$1);
 //# sourceMappingURL=router.ts.map

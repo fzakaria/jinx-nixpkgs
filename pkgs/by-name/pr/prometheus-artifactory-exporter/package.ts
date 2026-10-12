@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.1";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "peimanja",
           repo: "artifactory_exporter",
           rev: rev,
@@ -37,17 +37,17 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.BuildDate=19700101-00:00:00",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           artifactory: nix.thunk(() => nix.attr(from, "artifactory")),
         };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "JFrog Artifactory Prometheus Exporter",
         mainProgram: "artifactory_exporter",
         homepage: "https://github.com/peimanja/artifactory_exporter",
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         rev,

@@ -23,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const py2vega = nix.arg($, "py2vega");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ipydatagrid",
       version: "1.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jupyter-widgets",
           repo: "ipydatagrid",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace pyproject.toml package.json \\\n  --replace-fail 'jlpm' 'yarn'\n",
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-5KZl9mK6xNvy2XdWieH20hEZJ+h/KzvjOfpo78FlWpg=",
         })))),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_data_object_generation"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fast Datagrid widget for the Jupyter Notebook and JupyterLab",
         homepage: "https://github.com/jupyter-widgets/ipydatagrid",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-widgets/ipydatagrid/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

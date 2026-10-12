@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.1-13.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://salsa.debian.org/sramacher/python-crypto.git",
           rev: nix.thunk(() => nix.str`debian/${version}`),
           sha256: "1mahqmlgilgk0rn5hfkhza7kscfm7agdakkb6rqnif9g0qp3s52f",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const preConfigure = "sed -i 's,/usr/include,/no-such-dir,' configure\nsed -i \"s!,'/usr/include/'!!\" setup.py\n";
       return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         pname,
         version,
         format,
@@ -49,12 +49,12 @@ export default nix.lambda((args) => (() => {
         preConfigure,
       };
     })())));
-  const potr = nix.thunk(() => nix.app(nix.sel(python3Packages, "potr", "overridePythonAttrs"), (oldAttrs) => ({ __proto__: pos$3, propagatedBuildInputs: nix.thunk(() => [pycrypto]) })));
+  const potr = nix.thunk(() => nix.app(nix.sel(python3Packages, "potr", "overridePythonAttrs"), (oldAttrs) => ({ [nix.POS]: pos$3, propagatedBuildInputs: nix.thunk(() => [pycrypto]) })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "weechat-otr";
       const version = "1.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           repo: "weechat-otr",
           owner: "mmb",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -62,18 +62,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libpath.patch"), nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             env: nix.thunk(() => nix.str`${nix.app(buildEnv, nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 name: "weechat-otr-env",
                 paths: nix.thunk(() => [potr, pycrypto]),
               })))}/${nix.sel(python3Packages, "python", "sitePackages")}`),
           })))),
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$7, scripts: nix.thunk(() => ["weechat_otr.py"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$7, scripts: nix.thunk(() => ["weechat_otr.py"]) }));
       const installPhase = "mkdir -p $out/share\ncp weechat_otr.py $out/share/weechat_otr.py\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/mmb/weechat-otr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: [],
@@ -83,7 +83,7 @@ export default nix.lambda((args) => (() => {
           "Utilizes deprecated and vulnerable pycrypto library with Debian patches from 2020-04.",
         ]),
       }));
-      return { __proto__: pos$9, pname, version, src, patches, passthru, installPhase, meta };
+      return { [nix.POS]: pos$9, pname, version, src, patches, passthru, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

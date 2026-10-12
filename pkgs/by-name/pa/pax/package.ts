@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const musl_fts = nix.arg($, "musl-fts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "pax",
       version: "20240817",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://www.mirbsd.org/MirOS/dist/mir/cpio/paxmirabilis-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-6VXV06+Xrt4KP0Y6mlm4Po0Qg6rxQutvOIxUmn0YLms=",
         })))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), musl_fts)),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ __proto__: pos$2, NIX_LDFLAGS: "-lfts" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lfts" })))),
       buildPhase: "sh Build.sh -r -tpax\n",
       installPhase: "install -Dm555 pax $out/bin/pax\nln -s $out/bin/pax $out/bin/paxcpio\nln -s $out/bin/pax $out/bin/paxtar\ninstall -Dm444 mans/pax{,cpio,tar}.1 -t $out/share/man/man1/\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "POSIX standard archive tool from MirBSD",
         homepage: "https://www.mirbsd.org/pax.htm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

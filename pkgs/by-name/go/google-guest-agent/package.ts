@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const iproute2 = nix.arg($, "iproute2");
   const procps = nix.arg($, "procps");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "guest-agent",
       version: "20230821.00",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "GoogleCloudPlatform",
           repo: "guest-agent",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +41,7 @@ patch -p1 < ./fix-paths.patch
       preCheck: "rm google_guest_agent/wsfc_test.go\n",
       postInstall: "mkdir -p $out/etc/systemd/system\ncp *.service $out/etc/systemd/system\ninstall -Dm644 instance_configs.cfg $out/etc/default/instance_configs.cfg\n\nwrapProgram $out/bin/google_guest_agent \\\n  --prefix PATH \":\" \"$binPath\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Guest Agent for Google Compute Engine",
         homepage: "https://github.com/GoogleCloudPlatform/guest-agent",
         changelog: nix.thunk(() => nix.str`https://github.com/GoogleCloudPlatform/guest-agent/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -23,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const pname = "onedriver";
   const version = "0.15.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "jstaf",
       repo: "onedriver",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-DCxF52CtA9KAP+yz5Rgzc/nUAXtZwfYAVU7oHREJlRY=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: pname,
       version: version,
       src: src,
@@ -63,7 +63,7 @@ substituteInPlace $out/lib/systemd/user/onedriver@.service \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Network filesystem for Linux",
         longDescription: "onedriver is a network filesystem that gives your computer direct access to your files on Microsoft OneDrive.\nThis is not a sync client. Instead of syncing files, onedriver performs an on-demand download of files when\nyour computer attempts to use them. onedriver allows you to use files on OneDrive as if they were files on\nyour local computer.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

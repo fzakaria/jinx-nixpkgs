@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withPipewire = nix.argOr($, "withPipewire", () => true);
   const withNotmuch = nix.argOr($, "withNotmuch", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "i3status-rust",
       version: "0.36.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "greshake",
           repo: "i3status-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Very resource-friendly and feature-rich replacement for i3status",
         homepage: "https://github.com/greshake/i3status-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

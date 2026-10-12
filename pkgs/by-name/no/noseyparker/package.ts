@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "noseyparker",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "praetorian-inc",
           repo: "noseyparker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,13 +51,13 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, installShellFiles]),
       buildInputs: nix.thunk(() => [boost, vectorscan, openssl]),
-      env: nix.thunk(() => ({ __proto__: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "mkdir -p manpages\n\"$out/bin/noseyparker-cli\" generate manpages\ninstallManPage manpages/*\n\ninstallShellCompletion --cmd noseyparker-cli \\\n  --bash <(\"$out/bin/noseyparker-cli\" generate shell-completions --shell bash) \\\n  --zsh <(\"$out/bin/noseyparker-cli\" generate shell-completions --shell zsh) \\\n  --fish <(\"$out/bin/noseyparker-cli\" generate shell-completions --shell fish)\n")),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/noseyparker-cli`),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Find secrets and sensitive information in textual data",
         mainProgram: "noseyparker",
         homepage: "https://github.com/praetorian-inc/noseyparker",

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "pgpkeyserver-lite",
       version: "2017-07-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mattrude",
           repo: "pgpkeyserver-lite",
           rev: "a038cb79b927c99bf7da62f20d2c6a2f20374339",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out\ncp -R 404.html assets favicon.ico index.html robots.txt $out\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/mattrude/pgpkeyserver-lite",
         description: "Lightweight static front-end for a sks keyserver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

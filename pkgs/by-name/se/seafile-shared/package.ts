@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const libwebsockets = nix.arg($, "libwebsockets");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "seafile-shared",
       version: "9.0.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "haiwen",
           repo: "seafile",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/haiwen/seafile",
         description: "Shared components of Seafile: seafile-daemon, libseafile, libseafile python bindings, manuals, and icons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

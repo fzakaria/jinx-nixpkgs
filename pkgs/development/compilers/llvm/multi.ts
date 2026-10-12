@@ -23,9 +23,9 @@ chmod u+rw -R $out/lib
 cp -r ${nix.sel(basegcc, "libc")}/lib/* $(ls -d $out/lib/gcc/*/*)
 `));
   const gcc_multi_sysroot = nix.thunk(() => nix.app(runCommand, "gcc-multi-sysroot", nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       passthru: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         version: nix.thunk(() => nix.attr(gcc64, "version")),
         lib: gcc_multi_sysroot,
       })),
@@ -48,11 +48,11 @@ ln -s ${nix.sel(glibc_multi, "out")}/lib/ld-linux* $out/lib
 ln -s ${nix.sel(glibc_multi, "out")}/lib/32/ld-linux* $out/lib/32/
 `)));
   const clangMulti = nix.thunk(() => nix.app(nix.sel(clang, "override"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       libc: gcc_multi_sysroot,
-      bintools: nix.thunk(() => nix.app(nix.sel(clang, "bintools", "override"), nix.thunk(() => ({ __proto__: pos$3, libc: gcc_multi_sysroot })))),
+      bintools: nix.thunk(() => nix.app(nix.sel(clang, "bintools", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, libc: gcc_multi_sysroot })))),
       gccForLibs: nix.thunk(() => nix.update(gcc_multi_sysroot, {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         libgcc: nix.thunk(() => nix.attr(glibc_multi, "libgcc")),
         langCC: nix.thunk(() => (() => {
           nix.assert_((!nix.asBool(!nix.eq(nix.sel(gcc64, "cc", "langCC"), nix.sel(gcc32, "cc", "langCC"))) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`(gcc64.cc.langCC=${nix.sel(gcc64, "cc", "langCC")}) != (gcc32.cc.langCC=${nix.sel(gcc32, "cc", "langCC")})`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/llvm/multi.nix:60:9");

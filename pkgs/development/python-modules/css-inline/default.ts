@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Stranger6667",
           repo: "css-inline",
           rev: nix.thunk(() => nix.str`python-v${version}`),
@@ -36,7 +36,7 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 rm .cargo/config.toml
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           pname: pname,
           version: version,
           src: src,
@@ -54,7 +54,7 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const disabledTests = nix.thunk(() => nix.concat(["test_cache", "test_remote_stylesheet"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_invalid_href"]))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Inline CSS into style attributes",
         homepage: "https://github.com/Stranger6667/css-inline",
         changelog: nix.thunk(() => nix.str`https://github.com/Stranger6667/css-inline/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -65,7 +65,7 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

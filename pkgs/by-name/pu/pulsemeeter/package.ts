@@ -23,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "pulsemeeter",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "theRealCarneiro",
           repo: "pulsemeeter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +56,14 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       pythonImportsCheck: nix.thunk(() => ["pulsemeeter"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$3,
-          version: nix.thunk(() => nix.app(callPackage, nix.path(here, "./version-test.nix"), nix.thunk(() => ({ __proto__: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+          [nix.POS]: pos$3,
+          version: nix.thunk(() => nix.app(callPackage, nix.path(here, "./version-test.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Pulseaudio and pipewire audio mixer inspired by voicemeeter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/theRealCarneiro/pulsemeeter",

@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "colstr",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.sleeping.town",
           owner: "wonder",
           repo: "colstr",
@@ -34,11 +34,11 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm755 a.out $out/bin/colstr\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Deterministically output each input argument in a color assigned to it",
         homepage: "https://git.sleeping.town/wonder/colstr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

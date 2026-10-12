@@ -94,40 +94,40 @@ export default nix.lambda((args) => (() => {
   const pythonFmt = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "pythonVars"), nix.thunk(() => ({}))));
   const settingsFile = nix.thunk(() => nix.app(nix.sel(pythonFmt, "generate"), "peering-manager-settings.py", nix.thunk(() => nix.sel(cfg, "settings"))));
   const extraConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "peering-manager-extraConfig.py",
       text: nix.thunk(() => nix.sel(cfg, "extraConfig")),
     }))));
   const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "concatText"), "configuration.py", nix.thunk(() => [settingsFile, extraConfigFile])));
   const finalConfigFile = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(cfg, "environmentFile"), null)) ? "/var/lib/peering-manager/configuration.py" : nix.force(configFile)));
   const pkg = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "peering-manager", "overrideAttrs"), (old) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       postInstall: nix.thunk(() => nix.add(nix.str`ln -s ${finalConfigFile} $out/opt/peering-manager/peering_manager/configuration.py
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(cfg, "enableLdap")), nix.thunk(() => nix.str`ln -s ${nix.sel(cfg, "ldapConfigPath")} $out/opt/peering-manager/peering_manager/ldap_config.py
 `)))),
-    })), "override"), nix.thunk(() => ({ __proto__: pos$3, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) }))));
+    })), "override"), nix.thunk(() => ({ [nix.POS]: pos$3, plugins: nix.thunk(() => nix.attr(cfg, "plugins")) }))));
   const peeringManagerManageScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "peering-manager-manage", nix.thunk(() => nix.str`#!${nix.sel(pkgs, "stdenv", "shell")}
 export PYTHONPATH=${nix.sel(pkg, "pythonPath")}
 sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
 `)));
   return {
-    __proto__: pos$80,
+    [nix.POS]: pos$80,
     options: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       services: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         "peering-manager": nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            __proto__: pos$19,
+            [nix.POS]: pos$19,
             enable: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable Peering Manager.\n\nThis module requires a reverse proxy that serves `/static` separately.\nSee this [example](https://github.com/peering-manager/contrib/blob/main/nginx.conf) on how to configure this.\n",
               })))),
             environmentFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -137,37 +137,37 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
                 description: "Environment file as defined in {manpage}`systemd.exec(5)`.\n\nSecrets may be passed to the service without adding them to the world-readable\nNix store, by specifying placeholder variables as the option value in Nix and\nsetting these variables accordingly in the environment file.\n\n```\n  # snippet of peering-manager-related config\n  services.peering-manager.settings.SOCIAL_AUTH_OIDC_SECRET = \"$PM_OIDC_SECRET\";\n```\n\n```\n  # content of the environment file\n  PM_OIDC_SECRET=topsecret\n```\n\nNote that this file needs to be available on the host on which\n`peering-manager` is running.\n",
               })))),
             enableScheduledTasks: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: true,
                 description: "Set up [scheduled tasks](https://peering-manager.readthedocs.io/en/stable/setup/8-scheduled-tasks/)\n",
               })))),
             listenAddress: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 default: "[::1]",
                 description: "Address the server will listen on.\n",
               })))),
             port: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "port")),
                 default: 8001n,
                 description: "Port the server will listen on.\n",
               })))),
             plugins: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "package")))))),
                 default: (_) => [],
                 defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalExpression"), "python3Packages: with python3Packages; [];\n")),
                 description: "List of plugin packages to install.\n",
               })))),
             secretKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 description: "Path to a file containing the secret key.\n",
               })))),
             peeringdbApiKeyFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
                   return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "path")));
@@ -176,16 +176,16 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
                 description: "Path to a file containing the PeeringDB API key.\n",
               })))),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 description: "Configuration options to set in `configuration.py`.\nSee the [documentation](https://peering-manager.readthedocs.io/en/stable/configuration/optional-settings/) for more possible options.\n",
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$14,
+                    [nix.POS]: pos$14,
                     freeformType: nix.thunk(() => nix.sel(pythonFmt, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$13,
+                      [nix.POS]: pos$13,
                       ALLOWED_HOSTS: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$12,
+                          [nix.POS]: pos$12,
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
                             return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -197,19 +197,19 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
                   })))),
               })))),
             extraConfig: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "lines")),
                 default: "",
                 description: "Additional lines of configuration appended to the `configuration.py`.\nSee the [documentation](https://peering-manager.readthedocs.io/en/stable/configuration/optional-settings/) for more possible options.\n",
               })))),
             enableLdap: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$17,
+                [nix.POS]: pos$17,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
                 default: false,
                 description: "Enable LDAP-Authentication for Peering Manager.\n\nThis requires a configuration file being pass through `ldapConfigPath`.\n",
               })))),
             ldapConfigPath: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$18,
+                [nix.POS]: pos$18,
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
                 description: "Path to the Configuration-File for LDAP-Authentication, will be loaded as `ldap_config.py`.\nSee the [documentation](https://peering-manager.readthedocs.io/en/stable/setup/6-ldap/#configuration) for possible options.\n",
               })))),
@@ -222,28 +222,28 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "peering-manager", "oidcConfigPath"]), "The oidcConfigPath option has been removed, since peering-manager has OIDC support builtin since version >= 1.9.0.\n\nThe new config settings for OIDC are explained in the documentation:\nhttps://peering-manager.readthedocs.io/en/v1.9.3/administration/authentication/oidc/\n")),
     ]),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$78,
+        [nix.POS]: pos$78,
         services: nix.thunk(() => ({
-          __proto__: pos$33,
+          [nix.POS]: pos$33,
           "peering-manager": nix.thunk(() => ({
-            __proto__: pos$27,
+            [nix.POS]: pos$27,
             settings: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               DATABASE: nix.thunk(() => ({
-                __proto__: pos$22,
+                [nix.POS]: pos$22,
                 NAME: "peering-manager",
                 USER: "peering-manager",
                 HOST: "/run/postgresql",
               })),
               REDIS: nix.thunk(() => ({
-                __proto__: pos$25,
+                [nix.POS]: pos$25,
                 tasks: nix.thunk(() => ({
-                  __proto__: pos$23,
+                  [nix.POS]: pos$23,
                   UNIX_SOCKET_PATH: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "peering-manager", "unixSocket")),
                   DATABASE: 0n,
                 })),
                 caching: nix.thunk(() => ({
-                  __proto__: pos$24,
+                  [nix.POS]: pos$24,
                   UNIX_SOCKET_PATH: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "peering-manager", "unixSocket")),
                   DATABASE: 1n,
                 })),
@@ -257,35 +257,35 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
             plugins: (ps) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "enableLdap")), nix.thunk(() => [nix.thunk(() => nix.sel(ps, "django-auth-ldap"))])),
           })),
           redis: nix.thunk(() => ({
-            __proto__: pos$30,
+            [nix.POS]: pos$30,
             servers: nix.thunk(() => ({
-              __proto__: pos$29,
-              "peering-manager": nix.thunk(() => ({ __proto__: pos$28, enable: true })),
+              [nix.POS]: pos$29,
+              "peering-manager": nix.thunk(() => ({ [nix.POS]: pos$28, enable: true })),
             })),
           })),
           postgresql: nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             enable: true,
             ensureDatabases: nix.thunk(() => ["peering-manager"]),
             ensureUsers: nix.thunk(() => [
-              nix.thunk(() => ({ __proto__: pos$31, name: "peering-manager", ensureDBOwnership: true })),
+              nix.thunk(() => ({ [nix.POS]: pos$31, name: "peering-manager", ensureDBOwnership: true })),
             ]),
           })),
         })),
         system: nix.thunk(() => ({
-          __proto__: pos$35,
-          build: nix.thunk(() => ({ __proto__: pos$34, peeringManagerPkg: pkg })),
+          [nix.POS]: pos$35,
+          build: nix.thunk(() => ({ [nix.POS]: pos$34, peeringManagerPkg: pkg })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$36,
+          [nix.POS]: pos$36,
           systemPackages: nix.thunk(() => [peeringManagerManageScript]),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$72,
+          [nix.POS]: pos$72,
           targets: nix.thunk(() => ({
-            __proto__: pos$38,
+            [nix.POS]: pos$38,
             "peering-manager": nix.thunk(() => ({
-              __proto__: pos$37,
+              [nix.POS]: pos$37,
               description: "Target for all Peering Manager services",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               wants: nix.thunk(() => ["network-online.target"]),
@@ -294,10 +294,10 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
           })),
           services: nix.thunk(() => (() => {
             const defaults = nix.thunk(() => ({
-              __proto__: pos$41,
-              environment: nix.thunk(() => ({ __proto__: pos$39, PYTHONPATH: nix.thunk(() => nix.sel(pkg, "pythonPath")) })),
+              [nix.POS]: pos$41,
+              environment: nix.thunk(() => ({ [nix.POS]: pos$39, PYTHONPATH: nix.thunk(() => nix.sel(pkg, "pythonPath")) })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$40,
+                [nix.POS]: pos$40,
                 WorkingDirectory: "/var/lib/peering-manager",
                 User: "peering-manager",
                 Group: "peering-manager",
@@ -307,36 +307,36 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
               })),
             }));
             return {
-              __proto__: pos$60,
+              [nix.POS]: pos$60,
               "peering-manager-config": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                    __proto__: pos$43,
+                    [nix.POS]: pos$43,
                     description: "Peering Manager config file setup",
                     wantedBy: nix.thunk(() => ["peering-manager.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      __proto__: pos$42,
+                      [nix.POS]: pos$42,
                       Type: "oneshot",
                       EnvironmentFile: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "environmentFile"))]),
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "envsubst")))} -i ${configFile} -o ${finalConfigFile}`),
                     })),
                   })))))),
               "peering-manager-migration": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$45,
+                  [nix.POS]: pos$45,
                   description: "Peering Manager migrations",
                   wantedBy: nix.thunk(() => ["peering-manager.target"]),
                   after: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => ["peering-manager-config.service"]))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$44,
+                    [nix.POS]: pos$44,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/peering-manager migrate`),
                   })),
                 })))),
               "peering-manager": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$47,
+                  [nix.POS]: pos$47,
                   description: "Peering Manager WSGI Service",
                   wantedBy: nix.thunk(() => ["peering-manager.target"]),
                   after: nix.thunk(() => nix.concat(["peering-manager-migration.service"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => ["peering-manager-config.service"])))),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$46,
+                    [nix.POS]: pos$46,
                     ExecStartPre: nix.thunk(() => nix.str`${pkg}/bin/peering-manager remove_stale_contenttypes --no-input`),
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkg, "python", "pkgs", "gunicorn")}/bin/gunicorn peering_manager.wsgi \\
   --bind ${nix.sel(cfg, "listenAddress")}:${nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "port")))} \\
@@ -345,61 +345,61 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
                   })),
                 })))),
               "peering-manager-rq": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$49,
+                  [nix.POS]: pos$49,
                   description: "Peering Manager Request Queue Worker",
                   wantedBy: nix.thunk(() => ["peering-manager.target"]),
                   after: nix.thunk(() => ["peering-manager.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$48,
+                    [nix.POS]: pos$48,
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/peering-manager rqworker high default low`),
                   })),
                 })))),
               "peering-manager-housekeeping": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$51,
+                  [nix.POS]: pos$51,
                   description: "Peering Manager housekeeping job",
                   after: nix.thunk(() => ["peering-manager.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$50,
+                    [nix.POS]: pos$50,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/peering-manager housekeeping`),
                   })),
                 })))),
               "peering-manager-peeringdb-sync": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$53,
+                  [nix.POS]: pos$53,
                   description: "PeeringDB sync",
                   after: nix.thunk(() => ["peering-manager.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$52,
+                    [nix.POS]: pos$52,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/peering-manager peeringdb_sync`),
                   })),
                 })))),
               "peering-manager-prefix-fetch": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$55,
+                  [nix.POS]: pos$55,
                   description: "Fetch IRR AS-SET prefixes",
                   after: nix.thunk(() => ["peering-manager.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$54,
+                    [nix.POS]: pos$54,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/peering-manager get_irr_data`),
                   })),
                 })))),
               "peering-manager-configuration-deployment": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$57,
+                  [nix.POS]: pos$57,
                   description: "Push configuration to routers",
                   after: nix.thunk(() => ["peering-manager.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$56,
+                    [nix.POS]: pos$56,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/peering-manager configure_routers`),
                   })),
                 })))),
               "peering-manager-session-poll": nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaults, nix.thunk(() => ({
-                  __proto__: pos$59,
+                  [nix.POS]: pos$59,
                   description: "Poll peering sessions from routers",
                   after: nix.thunk(() => ["peering-manager.service"]),
                   serviceConfig: nix.thunk(() => ({
-                    __proto__: pos$58,
+                    [nix.POS]: pos$58,
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${pkg}/bin/peering-manager poll_bgp_sessions`),
                   })),
@@ -407,61 +407,61 @@ sudo -u peering-manager ${pkg}/bin/peering-manager "$@"
             };
           })()),
           timers: nix.thunk(() => ({
-            __proto__: pos$71,
+            [nix.POS]: pos$71,
             "peering-manager-housekeeping": nix.thunk(() => ({
-              __proto__: pos$62,
+              [nix.POS]: pos$62,
               description: "Run Peering Manager housekeeping job",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$61, OnCalendar: "daily" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$61, OnCalendar: "daily" })),
             })),
             "peering-manager-peeringdb-sync": nix.thunk(() => ({
-              __proto__: pos$64,
+              [nix.POS]: pos$64,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "enableScheduledTasks")))),
               description: "Sync PeeringDB at 2:30",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$63, OnCalendar: "02:30:00" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$63, OnCalendar: "02:30:00" })),
             })),
             "peering-manager-prefix-fetch": nix.thunk(() => ({
-              __proto__: pos$66,
+              [nix.POS]: pos$66,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "enableScheduledTasks")))),
               description: "Fetch IRR AS-SET prefixes at 4:30",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$65, OnCalendar: "04:30:00" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$65, OnCalendar: "04:30:00" })),
             })),
             "peering-manager-configuration-deployment": nix.thunk(() => ({
-              __proto__: pos$68,
+              [nix.POS]: pos$68,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "enableScheduledTasks")))),
               description: "Push router configuration every hour 5 minutes before full hour",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$67, OnCalendar: "*:55:00" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$67, OnCalendar: "*:55:00" })),
             })),
             "peering-manager-session-poll": nix.thunk(() => ({
-              __proto__: pos$70,
+              [nix.POS]: pos$70,
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "enableScheduledTasks")))),
               description: "Poll peering sessions from routers every hour",
               wantedBy: nix.thunk(() => ["timers.target"]),
-              timerConfig: nix.thunk(() => ({ __proto__: pos$69, OnCalendar: "*:00:00" })),
+              timerConfig: nix.thunk(() => ({ [nix.POS]: pos$69, OnCalendar: "*:00:00" })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$77,
+          [nix.POS]: pos$77,
           users: nix.thunk(() => ({
-            __proto__: pos$74,
+            [nix.POS]: pos$74,
             "peering-manager": nix.thunk(() => ({
-              __proto__: pos$73,
+              [nix.POS]: pos$73,
               home: "/var/lib/peering-manager",
               isSystemUser: true,
               group: "peering-manager",
             })),
           })),
-          groups: nix.thunk(() => nix.attrsDyn({ __proto__: pos$76, "peering-manager": nix.thunk(() => ({})) }, [
-            [nix.str`${nix.sel(config, "services", "redis", "servers", "peering-manager", "user")}`, nix.thunk(() => ({ __proto__: pos$75, members: nix.thunk(() => ["peering-manager"]) }))],
+          groups: nix.thunk(() => nix.attrsDyn({ [nix.POS]: pos$76, "peering-manager": nix.thunk(() => ({})) }, [
+            [nix.str`${nix.sel(config, "services", "redis", "servers", "peering-manager", "user")}`, nix.thunk(() => ({ [nix.POS]: pos$75, members: nix.thunk(() => ["peering-manager"]) }))],
           ])),
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$79,
+      [nix.POS]: pos$79,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yureka-wdz"))];

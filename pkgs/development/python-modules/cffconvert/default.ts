@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0-unstable-2024-04-19";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "citation-file-format",
           repo: "cffconvert",
           rev: "b6045d78aac9e02b039703b030588d54d53262ac",
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/cli/test_rawify_url.py"]);
       const pythonImportsCheck = nix.thunk(() => ["cffconvert"]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         changelog: nix.thunk(() => nix.str`https://github.com/citation-file-format/cffconvert/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Command line program to validate and convert CITATION.cff files",
         homepage: "https://github.com/citation-file-format/cffconvert",
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

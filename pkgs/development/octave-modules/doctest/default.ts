@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "doctest";
       const version = "0.8.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-dmZpgnz2vNd1AmDKhpNTZW1UEvBNUUv+rRn3VsnSeuk=",
         }))));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://gnu-octave.github.io/packages/doctest/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         description: "Find and run example code within documentation",
         longDescription: "Find and run example code within documentation. Formatted blocks\nof example code are extracted from documentation files and executed\nto confirm their output is correct. This can be part of a testing\nframework or simply to ensure that documentation stays up-to-date\nduring software development.\n",
       }));
-      return { __proto__: pos$3, pname, version, src, meta };
+      return { [nix.POS]: pos$3, pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

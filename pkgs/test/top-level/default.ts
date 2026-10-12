@@ -39,39 +39,39 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const nixpkgsFun = nix.thunk(() => nix.builtins.import(nix.path(here, "../../top-level")));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      __proto__: pos$28,
+      [nix.POS]: pos$28,
       platformEquality: nix.thunk(() => (() => {
         const configsLocal = nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$2,
-            localSystem: nix.thunk(() => ({ __proto__: pos$1, system: "x86_64-linux" })),
+            [nix.POS]: pos$2,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$1, system: "x86_64-linux" })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$4,
-            localSystem: nix.thunk(() => ({ __proto__: pos$3, system: "aarch64-linux" })),
+            [nix.POS]: pos$4,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$3, system: "aarch64-linux" })),
             crossSystem: null,
           })),
           nix.thunk(() => ({
-            __proto__: pos$7,
-            localSystem: nix.thunk(() => ({ __proto__: pos$5, system: "x86_64-linux" })),
-            crossSystem: nix.thunk(() => ({ __proto__: pos$6, system: "x86_64-linux" })),
+            [nix.POS]: pos$7,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$5, system: "x86_64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$6, system: "x86_64-linux" })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$10,
-            localSystem: nix.thunk(() => ({ __proto__: pos$8, system: "aarch64-linux" })),
-            crossSystem: nix.thunk(() => ({ __proto__: pos$9, config: "aarch64-unknown-linux-gnu" })),
+            [nix.POS]: pos$10,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$8, system: "aarch64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$9, config: "aarch64-unknown-linux-gnu" })),
           })),
         ]);
         const configsCross = nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$13,
-            localSystem: nix.thunk(() => ({ __proto__: pos$11, system: "aarch64-linux" })),
-            crossSystem: nix.thunk(() => ({ __proto__: pos$12, config: "aarch64-unknown-linux-musl" })),
+            [nix.POS]: pos$13,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$11, system: "aarch64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$12, config: "aarch64-unknown-linux-musl" })),
           })),
           nix.thunk(() => ({
-            __proto__: pos$16,
-            localSystem: nix.thunk(() => ({ __proto__: pos$14, system: "aarch64-linux" })),
-            crossSystem: nix.thunk(() => ({ __proto__: pos$15, system: "x86_64-unknown-linux-gnu" })),
+            [nix.POS]: pos$16,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$14, system: "aarch64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$15, system: "x86_64-unknown-linux-gnu" })),
           })),
         ]);
         const pkgsLocal = nix.thunk(() => nix.builtins.map(nixpkgsFun, configsLocal));
@@ -82,9 +82,9 @@ export default nix.lambda((args) => (() => {
       })()),
       appendOverlaysPreservesSplicing: nix.thunk(() => (() => {
         const cross = nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-            __proto__: pos$19,
-            localSystem: nix.thunk(() => ({ __proto__: pos$17, system: "x86_64-linux" })),
-            crossSystem: nix.thunk(() => ({ __proto__: pos$18, system: "aarch64-linux" })),
+            [nix.POS]: pos$19,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$17, system: "x86_64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$18, system: "aarch64-linux" })),
           }))));
         const appended = nix.thunk(() => nix.app(nix.sel(cross, "appendOverlays"), []));
         nix.assert_(nix.has(nix.sel(cross, "makeWrapper"), "__spliced"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/top-level/default.nix:82:5");
@@ -93,18 +93,18 @@ export default nix.lambda((args) => (() => {
       })()),
       replaceStdenv: nix.thunk(() => (() => {
         const replacedPkgs = nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-            __proto__: pos$23,
+            [nix.POS]: pos$23,
             localSystem: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "stdenv", "buildPlatform"));
-              return { __proto__: pos$20, system: nix.thunk(() => nix.attr(from, "system")) };
+              return { [nix.POS]: pos$20, system: nix.thunk(() => nix.attr(from, "system")) };
             })()),
             config: nix.thunk(() => ({
-              __proto__: pos$22,
+              [nix.POS]: pos$22,
               replaceStdenv: nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
                 const pkgs_1 = nix.arg($_1, "pkgs");
                 nix.assert_(!nix.asBool(nix.has(nix.sel(pkgs_1, "config"), "replaceStdenv")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/top-level/default.nix:94:11");
-                return nix.update(nix.sel(pkgs_1, "stdenv"), { __proto__: pos$21, wasReplaced: true });
+                return nix.update(nix.sel(pkgs_1, "stdenv"), { [nix.POS]: pos$21, wasReplaced: true });
               })(), formals$2),
             })),
           }))));
@@ -113,11 +113,11 @@ export default nix.lambda((args) => (() => {
       })()),
       replaceStdenvIgnoredForCross: nix.thunk(() => (() => {
         const crossPkgs = nix.thunk(() => nix.app(nixpkgsFun, nix.thunk(() => ({
-            __proto__: pos$27,
-            localSystem: nix.thunk(() => ({ __proto__: pos$24, system: "x86_64-linux" })),
-            crossSystem: nix.thunk(() => ({ __proto__: pos$25, system: "aarch64-linux" })),
+            [nix.POS]: pos$27,
+            localSystem: nix.thunk(() => ({ [nix.POS]: pos$24, system: "x86_64-linux" })),
+            crossSystem: nix.thunk(() => ({ [nix.POS]: pos$25, system: "aarch64-linux" })),
             config: nix.thunk(() => ({
-              __proto__: pos$26,
+              [nix.POS]: pos$26,
               replaceStdenv: (_) => nix.builtins.throw("replaceStdenv must be ignored when cross compiling"),
             })),
           }))));

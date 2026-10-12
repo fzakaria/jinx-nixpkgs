@@ -62,13 +62,13 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const rocmSupport = nix.argOr($, "rocmSupport", () => nix.sel(config, "rocmSupport"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$12,
+      [nix.POS]: pos$12,
       pname: "tinygrad",
       version: "0.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tinygrad",
           repo: "tinygrad",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,21 +78,21 @@ export default nix.lambda((args) => (() => {
         const libExtension = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
         return nix.concat([
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-deps-paths.patch"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               libllvm: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "llvm")))}/lib/libLLVM${libExtension}`),
               libclang: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib/libclang${libExtension}`),
               clang: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped")))),
             })))),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-cuda-paths.patch"), nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
                 cuda_nvrtc: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvrtc")))),
                 cuda_cudart: nix.thunk(() => nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
               })))),
           ])), nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-rocm-paths.patch"), nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 comgr: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(rocmPackages, "rocm-comgr")))),
                 clr: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(rocmPackages, "clr")))),
                 "rocm-llvm-objdump": nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(rocmPackages, "llvm", "llvm")), "llvm-objdump")),
@@ -118,7 +118,7 @@ substituteInPlace tinygrad/runtime/autogen/libc.py \\
       __propagatedImpureHostDeps: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "/usr/lib/libc.dylib")),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           testing_minimal: nix.thunk(() => [hypothesis, numpy, pytest_xdist, torch, z3_solver]),
           testing_unit: nix.thunk(() => nix.concat(nix.sel(self, "testing_minimal"), [capstone, gguf, openai, safetensors, tabulate, tqdm])),
           testing: nix.thunk(() => nix.concat(nix.sel(self, "testing_unit"), [
@@ -222,14 +222,14 @@ substituteInPlace tinygrad/runtime/autogen/libc.py \\
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test/models/test_onnx.py"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test/models/test_whisper.py"]))))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         tests: nix.thunk(() => ({
-          __proto__: pos$8,
-          withCuda: nix.thunk(() => nix.app(nix.sel(tinygrad, "override"), nix.thunk(() => ({ __proto__: pos$6, cudaSupport: true })))),
-          withRocm: nix.thunk(() => nix.app(nix.sel(tinygrad, "override"), nix.thunk(() => ({ __proto__: pos$7, rocmSupport: true })))),
+          [nix.POS]: pos$8,
+          withCuda: nix.thunk(() => nix.app(nix.sel(tinygrad, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, cudaSupport: true })))),
+          withRocm: nix.thunk(() => nix.app(nix.sel(tinygrad, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, rocmSupport: true })))),
         })),
         gpuCheck: nix.thunk(() => nix.app(nix.sel(tinygrad, "overridePythonAttrs"), (old) => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             disabledTests: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "disabledTests"), [
               "TestWhisper",
@@ -242,7 +242,7 @@ substituteInPlace tinygrad/runtime/autogen/libc.py \\
           }))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         description: "Simple and powerful neural network framework",
         homepage: "https://github.com/tinygrad/tinygrad",
         changelog: nix.thunk(() => nix.str`https://github.com/tinygrad/tinygrad/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

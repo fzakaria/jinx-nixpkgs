@@ -31,39 +31,39 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ __proto__: pos$1, pkgs: pkgs }))));
+  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     name: "systemd-sysupdate",
     meta: nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$21,
+      [nix.POS]: pos$21,
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           networking: nix.thunk(() => ({
-            __proto__: pos$4,
-            firewall: nix.thunk(() => ({ __proto__: pos$3, enable: false })),
+            [nix.POS]: pos$4,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             nginx: nix.thunk(() => ({
-              __proto__: pos$8,
+              [nix.POS]: pos$8,
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 server: nix.thunk(() => ({
-                  __proto__: pos$6,
+                  [nix.POS]: pos$6,
                   root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "sysupdate-artifacts", nix.thunk(() => ({
-                      __proto__: pos$5,
+                      [nix.POS]: pos$5,
                       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "gnupg"))]),
                     })), nix.thunk(() => nix.str`mkdir -p $out
 cd $out
@@ -83,24 +83,24 @@ gpg --batch --sign --detach-sign --output SHA256SUMS.gpg SHA256SUMS
         };
       })(), formals$2),
       target: nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         systemd: nix.thunk(() => ({
-          __proto__: pos$16,
+          [nix.POS]: pos$16,
           sysupdate: nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             enable: true,
             transfers: nix.thunk(() => ({
-              __proto__: pos$14,
+              [nix.POS]: pos$14,
               "text-file": nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 Source: nix.thunk(() => ({
-                  __proto__: pos$11,
+                  [nix.POS]: pos$11,
                   Type: "url-file",
                   Path: "http://server/",
                   MatchPattern: "nixos_@v.txt",
                 })),
                 Target: nix.thunk(() => ({
-                  __proto__: pos$12,
+                  [nix.POS]: pos$12,
                   Path: "/",
                   MatchPattern: nix.thunk(() => ["nixos_@v.txt"]),
                 })),
@@ -109,11 +109,11 @@ gpg --batch --sign --detach-sign --output SHA256SUMS.gpg SHA256SUMS
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           etc: nix.thunk(() => ({
-            __proto__: pos$18,
+            [nix.POS]: pos$18,
             "systemd/import-pubring.gpg": nix.thunk(() => ({
-              __proto__: pos$17,
+              [nix.POS]: pos$17,
               source: nix.thunk(() => nix.str`${gpgKeyring}/pubkey.gpg`),
             })),
           })),

@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const withWhatsApp = nix.argOr($, "withWhatsApp", () => true);
   const version = "5.19.18";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       owner: "d99kris",
       repo: "nchat",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-wEdFMR9I7W80MHWg9knzPKKpVIrjWgvWIsMnXcArSEA=",
     }))));
   const libcgowm = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "nchat-wmchat-libcgowm",
       version: version,
       src: src,
@@ -46,12 +46,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p $out/\ngo build -o $out/ -buildmode=c-archive\nmv $out/go.a $out/libcgowm.a\nln -s $out/libcgowm.a $out/libref-cgowm.a\nmv $out/go.h $out/libcgowm.h\n\nrunHook postBuild\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "nchat",
       version: version,
       src: src,
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./go-libs-build.patch"), nix.thunk(() => ({ __proto__: pos$3, libcgowm: libcgowm })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./go-libs-build.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, libcgowm: libcgowm })))),
         nix.path(here, "./fix-darwin.patch"),
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, gperf, libcgowm]),
@@ -61,12 +61,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "HAS_WHATSAPP", withWhatsApp)),
       ]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         libcgowm: libcgowm,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "libcgowm"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "libcgowm"]) })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Terminal-based chat client with support for Telegram and WhatsApp",
         changelog: nix.thunk(() => nix.str`https://github.com/d99kris/nchat/releases/tag/v${version}`),
         homepage: "https://github.com/d99kris/nchat",

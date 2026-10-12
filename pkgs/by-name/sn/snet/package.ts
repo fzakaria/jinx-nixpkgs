@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "snet",
       version: "unstable-2021-11-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "monsterxx03",
           repo: "snet",
           rev: "89089b55277ce3e21e2ed79a9d307f2ecc62c6db",
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-dubmCLeD8Fwe1msfLN+5WzdbFkfTRnZDU3F49gjWTS4=",
       checkFlags: nix.thunk(() => ["-skip=TestBloomfilter"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Transparent proxy works on linux desktop, MacOS, router",
         homepage: "https://github.com/monsterxx03/snet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

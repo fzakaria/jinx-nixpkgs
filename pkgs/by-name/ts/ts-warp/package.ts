@@ -15,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "ts-warp",
       version: "1.5.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mezantrop",
           repo: "ts-warp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-izSQ7VsI+zuX9t2GMjyb5JaXnfkXIGPSf1QUHwaiHvY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [which]),
-      env: nix.thunk(() => ({ __proto__: pos$2, PREFIX: "$(out)" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: "$(out)" })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Transparent proxy server and traffic wrapper",
         homepage: "https://github.com/mezantrop/ts-warp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

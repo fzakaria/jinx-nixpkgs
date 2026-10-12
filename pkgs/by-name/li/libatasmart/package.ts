@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "libatasmart",
       version: "0.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://0pointer.de/public/libatasmart-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "138gvgdwk6h4ljrjsr09pxk1nrki4b155hqdzyr8mlk3bwsfmw31",
         })))),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [udev]),
       outputs: nix.thunk(() => ["out", "dev", "bin", "doc"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://0pointer.de/blog/projects/being-smart.html",
         description: "Library for querying ATA SMART status",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

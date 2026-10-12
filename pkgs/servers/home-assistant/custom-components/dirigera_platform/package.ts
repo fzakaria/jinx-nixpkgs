@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "dirigera_platform";
       const version = "2.7.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sanjoyg",
           repo: "dirigera_platform",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [dirigera]);
       const ignoreVersionRequirement = nix.thunk(() => ["dirigera"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Home-assistant integration for IKEA Dirigera hub",
         homepage: "https://github.com/sanjoyg/dirigera_platform",
         maintainers: nix.thunk(() => (() => {
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

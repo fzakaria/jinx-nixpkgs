@@ -29,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "onscripter",
       version: "20230825",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ogapee",
           repo: "onscripter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +73,7 @@ ln -s ${nix.app(nix.sel(lib, "escapeShellArgs"), commands)} $out/bin
       makefile: nix.thunk(() => (nix.asBool(isDarwin) ? "Makefile.MacOSX" : "Makefile.Linux")),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://ogapee.github.io/www/onscripter_en.html",
         description: "Japanese visual novel scripting engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const gbenchmark = nix.arg($, "gbenchmark");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "dartsim",
       version: "6.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dartsim",
           repo: "dart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,17 +61,17 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./disable-failing-tests.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/dartsim/dart/commit/c18c48a1b0beff6660b9923e8a6f8f09a86a6039.patch",
             hash: "sha256-i8Ga0FGVQ3OMprEoGEwVy0j139wjnmR6ABxr/3syhzw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/dartsim/dart/commit/940c425c19e50a9ded2629422db54785802143af.patch",
             hash: "sha256-T3992uD0Z36tTxlcFaikVaLt08N9EP4gOHP0Y2AFBzQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             url: "https://github.com/dartsim/dart/commit/6f3d6086780a311ef6e1928697f56a4d845ae028.patch",
             hash: "sha256-sfbTm9C74fl7lVnGPZ1h3cvKXILHhkeNYxd/BpSQvg8=",
           })))),
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
         flann,
         fmt,
         libglut,
-        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ __proto__: pos$5, IMGUI_BUILD_OPENGL2_BINDING: true })))),
+        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, IMGUI_BUILD_OPENGL2_BINDING: true })))),
         ipopt,
         lapack,
         libGL,
@@ -114,7 +114,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3Packages, "pythonImportsCheckHook")),
         ]))),
       env: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=deprecated-literal-operator")),
       })),
       doCheck: true,
@@ -128,7 +128,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DART_USE_SYSTEM_PYBIND11", true)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "DART: Dynamic Animation and Robotics Toolkit",
         homepage: "https://github.com/dartsim/dart",
         changelog: nix.thunk(() => nix.str`https://github.com/dartsim/dart/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

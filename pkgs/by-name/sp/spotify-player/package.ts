@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       "gstreamer",
     ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sp/spotify-player/package.nix:38:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "spotify-player",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aome510",
           repo: "spotify-player",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,11 +84,11 @@ export default nix.lambda((args) => (() => {
 `)), nix.app(optionalString, nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd spotify_player \\\n  --bash <($out/bin/spotify_player generate bash) \\\n  --fish <($out/bin/spotify_player generate fish) \\\n   --zsh <($out/bin/spotify_player generate zsh)\n"));
       })()),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Terminal spotify player that has feature parity with the official client",
         homepage: "https://github.com/aome510/spotify-player",
         changelog: nix.thunk(() => nix.str`https://github.com/aome510/spotify-player/releases/tag/v${nix.sel(finalAttrs, "version")}`),

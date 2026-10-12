@@ -86,36 +86,36 @@ export default nix.lambda((args) => (() => {
   const stateDir = "/var/lib/zabbix";
   const passwordFile = nix.thunk(() => nix.str`${runtimeDir}/zabbix-dbpassword.conf`);
   const moduleEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: "zabbix-server-module-env",
       paths: nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.sel(cfg, "modules")))),
     }))));
-  const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zabbix_server.conf", nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => ({ __proto__: pos$2, listsAsDuplicateKeys: true })), nix.thunk(() => nix.sel(cfg, "settings"))))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "zabbix_server.conf", nix.thunk(() => nix.app(toKeyValue, nix.thunk(() => ({ [nix.POS]: pos$2, listsAsDuplicateKeys: true })), nix.thunk(() => nix.sel(cfg, "settings"))))));
   const mysqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql"))));
   const pgsqlLocal = nix.thunk(() => (nix.asBool(nix.sel(cfg, "database", "createLocally")) && nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "pgsql"))));
   return {
-    __proto__: pos$51,
+    [nix.POS]: pos$51,
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => ["services", "zabbixServer", "dbServer"]), nix.thunk(() => ["services", "zabbixServer", "database", "host"]))),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "zabbixServer", "dbPassword"]), "Use services.zabbixServer.database.passwordFile instead.")),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => ["services", "zabbixServer", "extraConfig"]), "Use services.zabbixServer.settings instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$23,
+      [nix.POS]: pos$23,
       services: nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         zabbixServer: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           enable: nix.thunk(() => nix.app(mkEnableOption, "the Zabbix Server")),
           package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(types, "package")),
               default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) ? nix.sel(pkgs, "zabbix", "server-mysql") : nix.sel(pkgs, "zabbix", "server-pgsql"))),
               defaultText: nix.thunk(() => nix.app(literalExpression, "pkgs.zabbix.server-pgsql")),
               description: "The Zabbix package to use.",
             })))),
           extraPackages: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "package")))),
               default: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -129,29 +129,29 @@ export default nix.lambda((args) => (() => {
               description: "Packages to be added to the Zabbix {env}`PATH`.\nTypically used to add executables for scripts, but can be anything.\n",
             })))),
           modules: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "package")))),
               description: "A set of modules to load.",
               default: nix.thunk(() => ({})),
               example: nix.thunk(() => nix.app(literalExpression, "{\n  \"dummy.so\" = pkgs.stdenv.mkDerivation {\n    name = \"zabbix-dummy-module-${cfg.package.version}\";\n    src = cfg.package.src;\n    buildInputs = [ cfg.package ];\n    sourceRoot = \"zabbix-${cfg.package.version}/src/modules/dummy\";\n    installPhase = ''\n      mkdir -p $out/lib\n      cp dummy.so $out/lib/\n    '';\n  };\n}\n")),
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["mysql", "pgsql"]))),
                 example: "mysql",
                 default: "pgsql",
                 description: "Database engine to use.",
               })))),
             host: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$7,
+                [nix.POS]: pos$7,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "localhost",
                 description: "Database host address.",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "database", "type"), "mysql")) ? nix.sel(mysql, "port") : nix.sel(pgsql, "settings", "port"))),
                 defaultText: nix.thunk(() => nix.app(literalExpression, nix.thunk(() => nix.str`if config.${nix.sel(opt, "database", "type")} == "mysql"
@@ -161,61 +161,61 @@ else config.services.postgresql.settings.port
                 description: "Database host port.",
               })))),
             name: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "zabbix",
                 description: "Database name.",
               })))),
             user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "zabbix",
                 description: "Database user.",
               })))),
             passwordFile: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$11,
+                [nix.POS]: pos$11,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/keys/zabbix-dbpassword",
                 description: "A file containing the password corresponding to\n{option}`database.user`.\n",
               })))),
             socket: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "path")))),
                 default: null,
                 example: "/run/postgresql",
                 description: "Path to the unix socket file to use for authentication.",
               })))),
             createLocally: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$13,
+                [nix.POS]: pos$13,
                 type: nix.thunk(() => nix.sel(types, "bool")),
                 default: true,
                 description: "Whether to create a local database automatically.",
               })))),
           })),
           listen: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "0.0.0.0",
                 description: "List of comma delimited IP addresses that the trapper should listen on.\nTrapper will listen on all network interfaces if this parameter is missing.\n",
               })))),
             port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                __proto__: pos$16,
+                [nix.POS]: pos$16,
                 type: nix.thunk(() => nix.sel(types, "port")),
                 default: 10051n,
                 description: "Listen port for trapper.\n",
               })))),
           })),
           openFirewall: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$18,
+              [nix.POS]: pos$18,
               type: nix.thunk(() => nix.sel(types, "bool")),
               default: false,
               description: "Open ports in the firewall for the Zabbix Server.\n",
             })))),
           settings: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              __proto__: pos$20,
+              [nix.POS]: pos$20,
               type: nix.thunk(() => (() => {
                 const w = nix.withScope(types, null);
                 return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -227,7 +227,7 @@ else config.services.postgresql.settings.port
               default: nix.thunk(() => ({})),
               description: "Zabbix Server configuration. Refer to\n<https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_server>\nfor details on supported values.\n",
               example: nix.thunk(() => ({
-                __proto__: pos$19,
+                [nix.POS]: pos$19,
                 CacheSize: "1G",
                 SSHKeyLocation: "/var/lib/zabbix/.ssh",
                 StartPingers: 32n,
@@ -237,26 +237,26 @@ else config.services.postgresql.settings.port
       })),
     })),
     config: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$50,
+        [nix.POS]: pos$50,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$24,
+            [nix.POS]: pos$24,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool((nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), user)) && nix.asBool(nix.eq(nix.sel(cfg, "database", "user"), nix.sel(cfg, "database", "name"))))))),
             message: nix.thunk(() => nix.str`services.zabbixServer.database.user must be set to ${user} if services.zabbixServer.database.createLocally is set true`),
           })),
           nix.thunk(() => ({
-            __proto__: pos$25,
+            [nix.POS]: pos$25,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "database", "createLocally")) || nix.asBool(nix.eq(nix.sel(cfg, "database", "passwordFile"), null)))),
             message: "a password cannot be specified if services.zabbixServer.database.createLocally is set to true",
           })),
         ]),
         services: nix.thunk(() => ({
-          __proto__: pos$35,
+          [nix.POS]: pos$35,
           zabbixServer: nix.thunk(() => ({
-            __proto__: pos$31,
+            [nix.POS]: pos$31,
             settings: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$26,
+                  [nix.POS]: pos$26,
                   LogType: "console",
                   ListenIP: nix.thunk(() => nix.sel(cfg, "listen", "ip")),
                   ListenPort: nix.thunk(() => nix.sel(cfg, "listen", "port")),
@@ -268,33 +268,33 @@ else config.services.postgresql.settings.port
                   FpingLocation: "/run/wrappers/bin/fping",
                   LoadModule: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(cfg, "modules")))),
                 })),
-                nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "createLocally"), true)), nix.thunk(() => ({ __proto__: pos$27, DBPort: nix.thunk(() => nix.sel(cfg, "database", "port")) })))),
+                nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "createLocally"), true)), nix.thunk(() => ({ [nix.POS]: pos$27, DBPort: nix.thunk(() => nix.sel(cfg, "database", "port")) })))),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "database", "passwordFile"), null)), nix.thunk(() => ({
-                    __proto__: pos$28,
+                    [nix.POS]: pos$28,
                     Include: nix.thunk(() => [nix.thunk(() => nix.str`${passwordFile}`)]),
                   })))),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(mysqlLocal) && nix.asBool(!nix.eq(nix.sel(cfg, "database", "socket"), null)))), nix.thunk(() => ({
-                    __proto__: pos$29,
+                    [nix.POS]: pos$29,
                     DBSocket: nix.thunk(() => nix.sel(cfg, "database", "socket")),
                   })))),
                 nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.eq(nix.sel(cfg, "modules"), {})), nix.thunk(() => ({
-                    __proto__: pos$30,
+                    [nix.POS]: pos$30,
                     LoadModulePath: nix.thunk(() => nix.str`${moduleEnv}/lib`),
                   })))),
               ]))),
           })),
           mysql: nix.thunk(() => nix.app(optionalAttrs, mysqlLocal, nix.thunk(() => ({
-              __proto__: pos$32,
+              [nix.POS]: pos$32,
               enable: true,
               package: nix.thunk(() => nix.app(mkDefault, nix.thunk(() => nix.sel(pkgs, "mariadb")))),
             })))),
           postgresql: nix.thunk(() => nix.app(optionalAttrs, pgsqlLocal, nix.thunk(() => ({
-              __proto__: pos$34,
+              [nix.POS]: pos$34,
               enable: true,
               ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  __proto__: pos$33,
+                  [nix.POS]: pos$33,
                   name: nix.thunk(() => nix.sel(cfg, "database", "user")),
                   ensureDBOwnership: true,
                 })),
@@ -302,18 +302,18 @@ else config.services.postgresql.settings.port
             })))),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           firewall: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$36,
+              [nix.POS]: pos$36,
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "listen", "port"))]),
             })))),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           services: nix.thunk(() => ({
-            __proto__: pos$42,
+            [nix.POS]: pos$42,
             mysql: nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               postStart: nix.thunk(() => nix.app(mkAfter, nix.thunk(() => nix.app(optionalString, mysqlLocal, nix.thunk(() => nix.str`( echo "CREATE DATABASE IF NOT EXISTS \\\`${nix.sel(cfg, "database", "name")}\\\` CHARACTER SET utf8 COLLATE utf8_bin;"
   echo "CREATE USER IF NOT EXISTS '${nix.sel(cfg, "database", "user")}'@'localhost' IDENTIFIED WITH ${(nix.asBool(nix.eq(nix.app(getName, nix.thunk(() => nix.sel(config, "services", "mysql", "package"))), nix.app(getName, nix.thunk(() => nix.sel(pkgs, "mariadb"))))) ? "unix_socket" : "auth_socket")};"
   echo "GRANT ALL PRIVILEGES ON \\\`${nix.sel(cfg, "database", "name")}\\\`.* TO '${nix.sel(cfg, "database", "user")}'@'localhost';"
@@ -321,7 +321,7 @@ else config.services.postgresql.settings.port
 `))))),
             })),
             "zabbix-server": nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "Zabbix Server",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(nix.app(optional, mysqlLocal, "mysql.service"), nix.app(optional, pgsqlLocal, "postgresql.target"))),
@@ -346,7 +346,7 @@ fi
 install -m 0600 <(echo "DBPassword = $(cat ${nix.sel(cfg, "database", "passwordFile")})") ${passwordFile}
 `)))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$39,
+                [nix.POS]: pos$39,
                 ExecStart: nix.thunk(() => nix.str`@${nix.sel(cfg, "package")}/sbin/zabbix_server zabbix_server -f --config ${configFile}`),
                 Restart: "always",
                 RestartSec: 2n,
@@ -358,16 +358,16 @@ install -m 0600 <(echo "DBPassword = $(cat ${nix.sel(cfg, "database", "passwordF
               })),
             })),
             httpd: nix.thunk(() => ({
-              __proto__: pos$41,
+              [nix.POS]: pos$41,
               after: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(config, "services", "zabbixWeb", "enable")) && nix.asBool(mysqlLocal))), "mysql.service"), nix.app(optional, nix.thunk(() => (nix.asBool(nix.sel(config, "services", "zabbixWeb", "enable")) && nix.asBool(pgsqlLocal))), "postgresql.target"))),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$46,
+          [nix.POS]: pos$46,
           users: nix.thunk(() => nix.attrsDyn({}, [
             [user, nix.thunk(() => ({
-              __proto__: pos$44,
+              [nix.POS]: pos$44,
               description: "Zabbix daemon user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "zabbix")),
               group: group,
@@ -375,17 +375,17 @@ install -m 0600 <(echo "DBPassword = $(cat ${nix.sel(cfg, "database", "passwordF
           ])),
           groups: nix.thunk(() => nix.attrsDyn({}, [
             [group, nix.thunk(() => ({
-              __proto__: pos$45,
+              [nix.POS]: pos$45,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "zabbix")),
             }))],
           ])),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           wrappers: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             fping: nix.thunk(() => ({
-              __proto__: pos$47,
+              [nix.POS]: pos$47,
               setuid: true,
               owner: "root",
               group: "root",

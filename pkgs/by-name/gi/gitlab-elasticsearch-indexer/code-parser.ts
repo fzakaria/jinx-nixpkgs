@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const clang = nix.arg($, "clang");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "gitlab-code-parser",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "gitlab-org",
           repo: "rust/gitlab-code-parser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(openssl, "dev"))]),
       preInstall: "mkdir -p $out/include\ncp crates/parser-c-bindings/target/include/parser-c-bindings.h $out/include\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "A single, efficient and extensible static code‑analysis library",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/gitlab-org/rust/gitlab-code-parser/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md?ref_type=tags`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qca";
       const version = "2.3.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://kde/stable/qca/${version}/qca-${version}.tar.xz`),
           sha256: "sha256-HFtyLak9VZNlcZImuxIccm7DwNxMZ96jTx5Q5ODRSgI=",
         }))));
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "-Dqca_CERTSTORE=/etc/ssl/certs/ca-certificates.crt",
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Qt Cryptographic Architecture",
         homepage: "https://invent.kde.org/libraries/qca",
         maintainers: [],
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

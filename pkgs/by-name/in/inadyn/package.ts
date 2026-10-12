@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libite = nix.arg($, "libite");
   const libconfuse = nix.arg($, "libconfuse");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "inadyn",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "troglobit",
           repo: "inadyn",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc", "--localstatedir=/var"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://troglobit.com/projects/inadyn/",
         description: "Free dynamic DNS client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

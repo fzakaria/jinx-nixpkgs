@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Danielhiversen",
           repo: "pyMillLocal",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["mill_local"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python module to communicate locally with Mill heaters",
         homepage: "https://github.com/Danielhiversen/pyMillLocal",
         changelog: nix.thunk(() => nix.str`https://github.com/Danielhiversen/pyMillLocal/releases/tag/${nix.sel(src, "tag")}`),
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

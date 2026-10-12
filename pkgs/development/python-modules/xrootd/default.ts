@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
 echo -n "${nix.sel(xrootd, "version")}" > VERSION
 `);
       const env = nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "toString"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "XRootD_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), xrootd)}/include/xrootd;${src}/src`))),
           ]))),
@@ -35,7 +35,7 @@ echo -n "${nix.sel(xrootd, "version")}" > VERSION
       const pythonImportsCheck = nix.thunk(() => ["XRootD"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "XRootD central repository",
         homepage: "https://github.com/xrootd/xrootd",
         changelog: nix.thunk(() => nix.str`https://github.com/xrootd/xrootd/releases/tag/v${version}`),
@@ -46,7 +46,7 @@ echo -n "${nix.sel(xrootd, "version")}" > VERSION
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         pyproject,
         version,

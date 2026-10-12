@@ -22,29 +22,29 @@ export default nix.lambda((args) => (() => {
   const initScript = nix.thunk(() => nix.str`eval $(${nix.sel(pkgs, "bash-my-aws")}/bin/bma-init)
 `);
   return {
-    __proto__: pos$8,
+    [nix.POS]: pos$8,
     options: nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       programs: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         "bash-my-aws": nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "bash-my-aws")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         environment: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "bash-my-aws"))];
           })()),
         })),
         programs: nix.thunk(() => ({
-          __proto__: pos$6,
-          bash: nix.thunk(() => ({ __proto__: pos$5, interactiveShellInit: initScript })),
+          [nix.POS]: pos$6,
+          bash: nix.thunk(() => ({ [nix.POS]: pos$5, interactiveShellInit: initScript })),
         })),
       })))),
   };

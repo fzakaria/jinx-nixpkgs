@@ -21,59 +21,59 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       script: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           type: nix.thunk(() => nix.lookup(w_1, "str")),
           example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"${pkgs.curl} -f http://localhost:80\"")),
           description: "(Path of) Script command to execute followed by args, i.e. cmd [args]...",
         })))),
       interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 1n,
           description: "Seconds between script invocations.",
         })))),
       timeout: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 5n,
           description: "Seconds after which script is considered to have failed.",
         })))),
       weight: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 0n,
           description: "Following a failure, adjust the priority by this weight.",
         })))),
       rise: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 5n,
           description: "Required number of successes for OK transition.",
         })))),
       fall: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 3n,
           description: "Required number of failures for KO transition.",
         })))),
       user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           type: nix.thunk(() => nix.lookup(w_1, "str")),
           default: "keepalived_script",
           description: "Name of user to run the script under.",
         })))),
       group: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
           default: null,
           description: "Name of group to run the script under. Defaults to user group.",
         })))),
       extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           type: nix.thunk(() => nix.lookup(w_1, "lines")),
           default: "",
           description: "Extra lines to be added verbatim to the vrrp_script section.",

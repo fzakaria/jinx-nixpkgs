@@ -17,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "you-get",
       version: "0.4.1700",
       pyproject: true,
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XNIUkgEqRGrBtSxvfkSUSqxltZ6ZdkWoTc9kz4BD6Zw=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-path.patch"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             ffmpeg: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), ffmpeg)}/bin/ffmpeg`),
             ffprobe: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), ffmpeg)}/bin/ffmpeg`),
             version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ffmpeg)),
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd you-get \\\n  --zsh contrib/completion/_you-get \\\n  --fish contrib/completion/you-get.fish \\\n  --bash contrib/completion/you-get-completion.bash\n",
       pythonImportsCheck: nix.thunk(() => ["you_get"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tiny command line utility to download media contents from the web",
         homepage: "https://you-get.org",
         changelog: nix.thunk(() => nix.str`https://github.com/soimort/you-get/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

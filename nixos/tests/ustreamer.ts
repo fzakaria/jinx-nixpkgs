@@ -23,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const test_output_filename = "snapshot.jpeg";
   return {
-    __proto__: pos$12,
+    [nix.POS]: pos$12,
     name: "ustreamer-vmtest",
     nodes: nix.thunk(() => ({
-      __proto__: pos$11,
+      [nix.POS]: pos$11,
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           environment: nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         const configFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "akvcam-configFile", "[Cameras]\ncameras/size = 2\n\ncameras/1/type = output\ncameras/1/mode = mmap, userptr, rw\ncameras/1/description = Virtual Camera (output device)\ncameras/1/formats = 2\ncameras/1/videonr = 7\n\ncameras/2/type = capture\ncameras/2/mode = mmap, rw\ncameras/2/description = Virtual Camera\ncameras/2/formats = 1, 2\ncameras/2/videonr = 9\n\n[Connections]\nconnections/size = 1\nconnections/1/connection = 1:2\n\n[Formats]\nformats/size = 2\n\nformats/1/format = YUY2\nformats/1/width = 640\nformats/1/height = 480\nformats/1/fps = 30\n\nformats/2/format = RGB24, YUY2\nformats/2/width = 640\nformats/2/height = 480\nformats/2/fps = 20/1, 15/2\n"));
         const test_stream_name = "test_stream.jpeg";
         const test_ustreamer_python = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-ustreamer-python", nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "ustreamer"))]),
           })), nix.thunk(() => nix.str`import ustreamer
 
@@ -53,23 +53,23 @@ with open("${test_output_filename}", "wb") as file:
     file.write(frame["data"])
 `)));
         return {
-          __proto__: pos$10,
+          [nix.POS]: pos$10,
           services: nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             ustreamer: nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               enable: true,
               device: "/dev/video9",
               extraArgs: nix.thunk(() => ["--device-timeout=8", nix.thunk(() => nix.str`--sink=${test_stream_name}`)]),
             })),
           })),
-          environment: nix.thunk(() => ({ __proto__: pos$6, systemPackages: nix.thunk(() => [test_ustreamer_python]) })),
+          environment: nix.thunk(() => ({ [nix.POS]: pos$6, systemPackages: nix.thunk(() => [test_ustreamer_python]) })),
           networking: nix.thunk(() => ({
-            __proto__: pos$8,
-            firewall: nix.thunk(() => ({ __proto__: pos$7, allowedTCPPorts: nix.thunk(() => [8080n]) })),
+            [nix.POS]: pos$8,
+            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [8080n]) })),
           })),
           boot: nix.thunk(() => ({
-            __proto__: pos$9,
+            [nix.POS]: pos$9,
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "akvcam"))]),
             kernelModules: nix.thunk(() => ["akvcam"]),
             extraModprobeConfig: nix.thunk(() => nix.str`options akvcam config_file=${configFile}

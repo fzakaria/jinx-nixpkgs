@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "firecracker",
       version: "1.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "firecracker-microvm",
           repo: "firecracker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hr3fYejqtEl+ZcWbrkQNv9f9fw+S7DyAlpqaV0dTBa0=",
         })))),
       cargoHash: "sha256-txBUI+vZrymKVw4hxmRiUKLKUt42p8bUXPl3FIv3CYc=",
-      env: nix.thunk(() => ({ __proto__: pos$2, AWS_LC_SYS_EXTERNAL_BINDGEN: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, AWS_LC_SYS_EXTERNAL_BINDGEN: "true" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace $cargoDepsCopy/*/aws-lc-sys-*/aws-lc/crypto/asn1/a_bitstr.c \\
   --replace-warn '(len > INT_MAX - 1)' '(len < 0 || len > INT_MAX - 1)'
 
@@ -78,7 +78,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Secure, fast, minimal micro-container virtualization",
         homepage: "http://firecracker-microvm.io",
         changelog: nix.thunk(() => nix.str`https://github.com/firecracker-microvm/firecracker/releases/tag/v${nix.sel(finalAttrs, "version")}`),

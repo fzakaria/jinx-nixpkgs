@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const launcher = nix.thunk(() => nix.app(writeShellScript, "fallout2-ce", "set -eu\nassetDir=\"${XDG_DATA_HOME:-$HOME/.local/share}/fallout2-ce\"\n[ -d \"$assetDir\" ] || mkdir -p \"$assetDir\"\ncd \"$assetDir\"\n\nnotice=0 fault=0\nrequiredFiles=(master.dat critter.dat)\nfor f in \"${requiredFiles[@]}\"; do\n  if [ ! -f \"$f\" ]; then\n    echo \"Required file $f not found in $PWD, note the files are case-sensitive\"\n    notice=1 fault=1\n  fi\ndone\n\nif [ ! -d \"data/sound/music\" ] && [ ! -d \"sound/music\" ]; then\n  echo \"data/sound/music directory not found in $PWD. This may prevent in-game music from functioning.\"\n  notice=1\nfi\n\nif [ $notice -ne 0 ]; then\n  echo \"Please reference the installation instructions at https://github.com/alexbatalov/fallout2-ce\"\nfi\n\nif [ $fault -ne 0 ]; then\n  exit $fault;\nfi\n\nexec @out@/libexec/fallout2-ce \"$@\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "fallout2-ce",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexbatalov",
           repo: "fallout2-ce",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/alexbatalov/fallout2-ce/commit/e770e64a48cd4d0a58a07f8db72839e4747e4c1e.patch?full_index=1",
             sha256: "sha256-49N6uXwOBL/sE+f+W4nX6Gpwwpmbgvy38B1NjECiia0=",
           })))),
@@ -56,11 +56,11 @@ substituteInPlace $out/bin/fallout2-ce --subst-var out
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fallout 2 for modern operating systems",
         longDescription: "Fully working re-implementation of Fallout 2, with the same original gameplay, engine bugfixes, and some quality of life improvements.\nYou must own the game and copy the files to the specified folder to play.\n",
         homepage: "https://github.com/alexbatalov/fallout2-ce",

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const enableLibcxx = nix.argOr($, "enableLibcxx", () => false);
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "clang-uml",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bkryza",
           repo: "clang-uml",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +61,7 @@ installShellCompletion --cmd clang-uml \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Customizable automatic UML diagram generator for C++ based on Clang",
         longDescription: "clang-uml is an automatic C++ to UML class, sequence, package and include diagram generator, driven by YAML configuration files.\nThe main idea behind the project is to easily maintain up-to-date diagrams within a code-base or document legacy code.\nThe configuration file or files for clang-uml define the types and contents of each generated diagram.\nThe diagrams can be generated in PlantUML, MermaidJS and JSON formats.\n",
         maintainers: nix.thunk(() => (() => {

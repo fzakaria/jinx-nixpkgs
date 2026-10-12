@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const wasmcert = nix.arg($, "wasmcert");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "wasmcert-interpreter-test",
       src: nix.thunk(() => nix.attr(wasmcert, "src")),
       version: nix.thunk(() => nix.attr(wasmcert, "version")),

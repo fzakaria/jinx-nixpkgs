@@ -17,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       ruby: ruby,
       pname: "schleuder",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["schleuder", "schleuder-api-daemon"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "schleuder")),
         tests: nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           schleuder: nix.thunk(() => nix.attr(nixosTests, "schleuder")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Encrypting mailing list manager with remailing-capabilities",
         longDescription: "Schleuder is a group's email-gateway: subscribers can exchange\nencrypted emails among themselves, receive emails from\nnon-subscribers and send emails to non-subscribers via the list.\n",

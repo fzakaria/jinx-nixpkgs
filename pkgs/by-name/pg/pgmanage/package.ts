@@ -18,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "pgmanage",
       version: "unstable-2022-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pgManage",
           repo: "pgManage",
           rev: "a028604416be382d6d310bc68b4e7c3cd16020fb",
@@ -33,14 +33,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpq, openssl]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libpq, "pg_config"))]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "sign-in": nix.thunk(() => nix.sel(nixosTests, "pgmanage")),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Fast replacement for PGAdmin",
         longDescription: "At the heart of pgManage is a modern, fast, event-based C-binary, built in\nthe style of NGINX and Node.js. This heart makes pgManage as fast as any\nPostgreSQL interface can hope to be. (Note: pgManage replaces Postage,\nwhich is no longer maintained.)\n",
         homepage: "https://github.com/pgManage/pgManage",

@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "l-smash";
       const version = "2.14.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "l-smash",
           repo: "l-smash",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--cross-prefix=${nix.sel(stdenv, "cc", "targetPrefix")}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://l-smash.github.io/l-smash/",
         description: "MP4 container utilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

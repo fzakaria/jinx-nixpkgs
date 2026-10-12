@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mynewt-newt";
       const version = "1.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "apache",
           repo: "mynewt-newt",
           rev: nix.thunk(() => nix.str`mynewt_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}_tag`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-xv2z22YFbeQeek6IQkhGp+3AqYjmbKDszVHqvEGD9XY=";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://mynewt.apache.org/",
         description: "Build and package management tool for embedded development",
         longDescription: "Apache Newt is a smart build and package management tool,\ndesigned for C and C++ applications in embedded contexts. Newt\nwas developed as a part of the Apache Mynewt Operating System.\n",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pjones"))];
         })()),
       }));
-      return { __proto__: pos$3, pname, version, src, vendorHash, doCheck, meta };
+      return { [nix.POS]: pos$3, pname, version, src, vendorHash, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

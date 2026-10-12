@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "proton-pass-cli",
       version: "2.4.2",
       __structuredAttrs: true,
@@ -40,21 +40,21 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         sources: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               url: nix.thunk(() => nix.str`https://proton.me/download/pass-cli/${nix.sel(finalAttrs, "version")}/pass-cli-macos-aarch64`),
               hash: "sha256-mehiCU/SpPgniMkAC6WpIkbnc5+Gw1qEZVudfirfcic=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               url: nix.thunk(() => nix.str`https://proton.me/download/pass-cli/${nix.sel(finalAttrs, "version")}/pass-cli-linux-aarch64`),
               hash: "sha256-7uOPxFSaXfy7eUqvy21RfJ4M0Nw8U7uymX/YFC7Wgcc=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               url: nix.thunk(() => nix.str`https://proton.me/download/pass-cli/${nix.sel(finalAttrs, "version")}/pass-cli-linux-x86_64`),
               hash: "sha256-QIm99ZgRQKxb7mXS15v5h2dTf1TTMZe3nl+GxjBxSEI=",
             })))),
@@ -72,7 +72,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Command-line interface for managing your Proton Pass vaults, items, and secrets",
         homepage: "https://github.com/protonpass/pass-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

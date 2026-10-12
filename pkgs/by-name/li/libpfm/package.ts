@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const windows = nix.arg($, "windows");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       version: "4.13.0",
       pname: "libpfm",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/perfmon2/libpfm4/libpfm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0YuXdkx1VSjBBR03bjNUXQ62DG6/hWgENoE/pbBMw9E=",
         })))),
@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`SYS=${nix.sel(stdenv, "hostPlatform", "uname", "system")}`),
       ]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: "-Wno-error",
         CONFIG_PFMLIB_SHARED: nix.thunk(() => (nix.asBool(enableShared) ? "y" : "n")),
       })),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Helper library to program the performance monitoring events",
         longDescription: "This package provides a library, called libpfm4 which is used to\ndevelop monitoring tools exploiting the performance monitoring\nevents such as those provided by the Performance Monitoring Unit\n(PMU) of modern processors.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

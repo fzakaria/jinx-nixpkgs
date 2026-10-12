@@ -31,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const jasp_version = nix.arg($, "jasp-version");
   const buildRPackage = nix.thunk(() => nix.attr(rPackages, "buildRPackage"));
   const customRPackages = nix.thunk(() => nix.update(rPackages, nix.update(jaspModules, {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     jaspGraphs: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => (() => {
         const pname = "jaspGraphs";
         const version = "0.96.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$1,
+            [nix.POS]: pos$1,
             owner: "jasp-stats",
             repo: "jaspGraphs",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,10 +59,10 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "viridisLite")),
           ];
         })());
-        return { __proto__: pos$2, pname, version, src, propagatedBuildInputs };
+        return { [nix.POS]: pos$2, pname, version, src, propagatedBuildInputs };
       })()))),
     jaspBase: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname: "jaspBase",
         version: jasp_version,
         src: jasp_src,
@@ -98,11 +98,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     stanova: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname: "stanova",
         version: "0.3-unstable-2021-06-06",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             owner: "bayesstuff",
             repo: "stanova",
             rev: "988ad8e07cda1674b881570a85502be7795fbd4e",
@@ -120,11 +120,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     bstats: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         pname: "bstats",
         version: "0.0.0.9004-unstable-2023-09-08",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             owner: "AlexanderLyNL",
             repo: "bstats",
             rev: "42d34c18df08d233825bae34fdc0dfa0cd70ce8c",
@@ -140,11 +140,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     flexplot: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname: "flexplot",
         version: "0.26.3",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             owner: "dustinfife",
             repo: "flexplot",
             rev: "cae36ba45502ce1794ad35cfeaf0155275db3056",
@@ -174,11 +174,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     conting: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        __proto__: pos$11,
+        [nix.POS]: pos$11,
         pname: "conting",
         version: "1.7.9999",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             owner: "vandenman",
             repo: "conting",
             rev: "03a4eb9a687e015d602022a01d4e638324c110c8",
@@ -195,11 +195,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     DistributionS7: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         pname: "DistributionS7",
         version: "0.1.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             owner: "Kucharssim",
             repo: "DistributionS7",
             rev: "8c5a709c120abc0f26697c6009769e4c2d889b9b",
@@ -228,11 +228,11 @@ export default nix.lambda((args) => (() => {
   })));
   const moduleInfo = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./module-info.json")));
   const jaspModules = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (info) => nix.app(buildRPackage, nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         pname: nix.thunk(() => nix.attr(info, "pname")),
         version: nix.thunk(() => nix.attr(info, "version")),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            __proto__: pos$15,
+            [nix.POS]: pos$15,
             name: nix.thunk(() => nix.str`${nix.sel(info, "pname")}-${nix.sel(info, "version")}-source`),
             owner: "jasp-stats-modules",
             repo: nix.thunk(() => nix.sel(info, "pname")),
@@ -245,7 +245,7 @@ export default nix.lambda((args) => (() => {
   const moduleDeps = nix.thunk(() => (() => {
     const w = nix.withScope(customRPackages, null);
     return {
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       jaspAcceptanceSampling: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "abtest")),
         nix.thunk(() => nix.lookup(w, "BayesFactor")),
@@ -737,7 +737,7 @@ export default nix.lambda((args) => (() => {
   })());
   nix.assert_(nix.eq(nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), jaspModules))), nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), moduleInfo)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ja/jasp-desktop/modules.nix:719:1");
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     customRPackages: customRPackages,
     jaspModules: jaspModules,
   };

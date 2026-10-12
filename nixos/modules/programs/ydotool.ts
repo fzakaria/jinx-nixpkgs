@@ -25,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "programs", "ydotool"));
   return {
-    __proto__: pos$14,
+    [nix.POS]: pos$14,
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "quantenzitrone"))];
       })()),
     })),
     options: nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       programs: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ydotool: nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "ydotoold system service and {command}`ydotool` for members of\n{option}`programs.ydotool.group`.\n")),
           group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "ydotool",
               description: "Group which users must be in to use {command}`ydotool`.\n",
@@ -52,24 +52,24 @@ export default nix.lambda((args) => (() => {
     config: nix.thunk(() => (() => {
       const runtimeDirectory = "ydotoold";
       return nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           users: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             groups: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(config, "programs", "ydotool", "group")}`, nix.thunk(() => ({}))],
             ])),
           })),
           systemd: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             services: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               ydotoold: nix.thunk(() => ({
-                __proto__: pos$8,
+                [nix.POS]: pos$8,
                 description: "ydotoold - backend for ydotool",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 partOf: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  __proto__: pos$7,
+                  [nix.POS]: pos$7,
                   Group: nix.thunk(() => nix.sel(config, "programs", "ydotool", "group")),
                   RuntimeDirectory: runtimeDirectory,
                   RuntimeDirectoryMode: "0750",
@@ -106,9 +106,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$12,
+            [nix.POS]: pos$12,
             variables: nix.thunk(() => ({
-              __proto__: pos$11,
+              [nix.POS]: pos$11,
               YDOTOOL_SOCKET: nix.thunk(() => nix.str`/run/${runtimeDirectory}/socket`),
             })),
             systemPackages: nix.thunk(() => (() => {

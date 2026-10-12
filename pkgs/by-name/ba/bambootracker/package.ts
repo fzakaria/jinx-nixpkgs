@@ -27,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withQt6 = nix.argOr($, "withQt6", () => false);
   const qtPackages = nix.thunk(() => (nix.asBool(withQt6) ? nix.force(qt6Packages) : nix.force(libsForQt5)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: nix.thunk(() => nix.add("bambootracker", nix.app(nix.sel(lib, "optionalString"), withQt6, "-qt6"))),
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "BambooTracker",
           repo: "BambooTracker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,19 +40,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "0001-bambootracker-Fix-compiler-warnings.patch",
             url: "https://github.com/BambooTracker/BambooTracker/commit/d670cf8b6113318cd938cf19be76b6b14d3635f1.patch",
             hash: "sha256-yyOMaOYKSc1hbbCL7wjFNPDmX2oMYo10J4hjZJss2zs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "0002-bambootracker-Fix-GCC15-compat.patch",
             url: "https://github.com/BambooTracker/BambooTracker/commit/92c0a7d1cfb05d1c6ae9482181c5c378082b772c.patch",
             hash: "sha256-6K0RZD0LevggxFr92LaNmq+eMgOFJgFX60IgAw7tYdM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             name: "0003-bambootracker-Drop-unused-property.patch",
             url: "https://github.com/BambooTracker/BambooTracker/commit/de4459f0315f099d3e0a2d20b938ec76285f2d46.patch",
             hash: "sha256-zTh6i+hgQZ3kEid0IzQaR/PsrYlnhplccdlaS5g8FeA=",
@@ -76,11 +76,11 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/{bin,Applications}/BambooTracker.app\nln -s $out/{Applications/BambooTracker.app/Contents/MacOS,bin}/BambooTracker\nwrapQtApp $out/Applications/BambooTracker.app/Contents/MacOS/BambooTracker\n")),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$5, "rev-prefix": "v" })))),
+        [nix.POS]: pos$6,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Tracker for YM2608 (OPNA) which was used in NEC PC-8801/9801 series computers",
         mainProgram: "BambooTracker",
         homepage: "https://bambootracker.github.io/BambooTracker/",

@@ -24,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const libva = nix.arg($, "libva");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
-  const ipu_camera_hal = nix.thunk(() => nix.sel({ __proto__: pos$1, ipu6: ipu6_camera_hal, ipu7: ipu7x_camera_hal }, nix.key(nix.force(ipuVariant))));
+  const ipu_camera_hal = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, ipu6: ipu6_camera_hal, ipu7: ipu7x_camera_hal }, nix.key(nix.force(ipuVariant))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: nix.thunk(() => nix.str`icamerasrc-${nix.sel(ipu_camera_hal, "ipuVersion")}`),
       version: "20251226_1140_191_PTL_PV_IoT",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "intel",
           repo: "icamerasrc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         libva,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_gstreamer])))),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error",
             nix.thunk(() => nix.str`-I${nix.sel(gst_all_1, "gst-plugins-base", "dev")}/include/gstreamer-1.0`),
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         ipuVersion: nix.thunk(() => nix.attr(ipu_camera_hal, "ipuVersion")),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "GStreamer Plugin for MIPI camera support through the IPU6/IPU7 on Intel platforms",
         homepage: "https://github.com/intel/icamerasrc/tree/icamerasrc_slim_api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

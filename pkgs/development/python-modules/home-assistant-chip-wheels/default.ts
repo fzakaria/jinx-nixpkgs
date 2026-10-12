@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "home-assistant-chip-wheels";
       const version = "2025.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "home-assistant-libs",
           repo: "chip-wheels",
           tag: version,
@@ -85,7 +85,7 @@ rm -rf .git/
       const propagatedBuildInputs = nix.thunk(() => [openssl, glib, libnl]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "pw_protobuf_compiler-Create-a-new-includes.txt-for-each-toolchain.patch",
             url: "https://pigweed.googlesource.com/pigweed/pigweed/+/b66729b90fcb9df2ee4818f6d4fff59385cdbc80^!?format=TEXT",
             decode: "base64 -d",
@@ -94,7 +94,7 @@ rm -rf .git/
             hash: "sha256-6ss3j8j69w7EMio9mFP/EL2oPqQ2sLh67eWsJjHdDa8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://github.com/project-chip/connectedhomeip/commit/78c6a7e15658f66658eb9f780e1a0c0c176a67d7.patch",
             stripLen: 1n,
             extraPrefix: "connectedhomeip/",
@@ -134,13 +134,13 @@ substituteInPlace scripts/tests/requirements.txt \\
   --replace-fail '-e \${PW_PROJECT_ROOT}/scripts/py_matter_yamltests' ""
 `);
       const env = nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         PIP_NO_INDEX: "1",
         PIP_FIND_LINKS: nix.thunk(() => (() => {
           const dependencies = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "pkgs"));
               return {
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               aiohttp: nix.thunk(() => nix.attr(from, "aiohttp")),
               "alive-progress": nix.thunk(() => nix.attr(from, "alive-progress")),
               "ast-serialize": nix.thunk(() => nix.attr(from, "ast-serialize")),
@@ -190,9 +190,9 @@ substituteInPlace scripts/tests/requirements.txt \\
             };
             })())));
           const filterNull = (list) => nix.app(nix.sel(lib, "filter"), (dep) => !nix.eq(dep, null), list);
-          const toItem = (dep) => ({ __proto__: pos$5, dep: dep, key: nix.thunk(() => nix.sel(dep, "name")) });
+          const toItem = (dep) => ({ [nix.POS]: pos$5, dep: dep, key: nix.thunk(() => nix.sel(dep, "name")) });
           const saturatedDependencies = nix.thunk(() => nix.app(nix.sel(lib, "genericClosure"), nix.thunk(() => ({
-              __proto__: pos$6,
+              [nix.POS]: pos$6,
               startSet: nix.thunk(() => nix.builtins.map(toItem, nix.thunk(() => nix.app(filterNull, dependencies)))),
               operator: (item) => nix.builtins.map(toItem, nix.thunk(() => nix.app(filterNull, nix.thunk(() => nix.selOr(nix.sel(item, "dep"), () => [], "propagatedBuildInputs"))))),
             }))));
@@ -221,7 +221,7 @@ substituteInPlace scripts/tests/requirements.txt \\
       const ninjaFlags = nix.thunk(() => ["chip-repl"]);
       const installPhase = "runHook preInstall\n\ncp -r controller/python $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Python wheels for APIs and tools related to CHIP",
         homepage: "https://github.com/home-assistant-libs/chip-wheels",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/chip-wheels/releases/tag/${nix.sel(src, "tag")}`),
@@ -229,7 +229,7 @@ substituteInPlace scripts/tests/requirements.txt \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        __proto__: pos$9,
+        [nix.POS]: pos$9,
         pname,
         version,
         src,

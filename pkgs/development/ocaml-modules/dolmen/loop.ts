@@ -18,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const pp_loc = nix.arg($, "pp_loc");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "dolmen_loop",
       src: nix.thunk(() => nix.attr(dolmen, "src")),
       version: nix.thunk(() => nix.attr(dolmen, "version")),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ __proto__: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       propagatedBuildInputs: nix.thunk(() => [dolmen, dolmen_type, gen, pp_loc]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       checkInputs: nix.thunk(() => [mdx]),
-      meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), { __proto__: pos$2, description: "Tool library for automated deduction tools" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), { [nix.POS]: pos$2, description: "Tool library for automated deduction tools" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=loop.ts.map

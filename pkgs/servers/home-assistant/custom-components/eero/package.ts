@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const owner = "schmittx";
       const domain = "eero";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "schmittx",
           repo: "home-assistant-eero",
           tag: version,
@@ -31,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const ignoreVersionRequirement = nix.thunk(() => ["pypng", "pyqrcode"]);
       const dependencies = nix.thunk(() => [pypng, pyqrcode]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Custom component to allow control of Eero networks in Home Assistant",
         homepage: "https://github.com/schmittx/home-assistant-eero",
         changelog: nix.thunk(() => nix.str`https://github.com/schmittx/home-assistant-eero/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         owner,
         domain,

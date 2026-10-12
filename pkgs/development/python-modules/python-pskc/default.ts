@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4-unstable-2026-07-18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "arthurdejong",
           repo: "python-pskc",
           rev: "6bcd0274db24467f7c9c410b31461228f70d6620",
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [cryptography, python_dateutil]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         defuse: nix.thunk(() => [defusedxml]),
         lxml: nix.thunk(() => [lxml]),
         signature: nix.thunk(() => [signxml]),
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const pythonImportsCheck = nix.thunk(() => ["pskc"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/arthurdejong/python-pskc/releases/tag/${version}`),
         description: "Python module for handling PSKC files",
         homepage: "https://github.com/arthurdejong/python-pskc",
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

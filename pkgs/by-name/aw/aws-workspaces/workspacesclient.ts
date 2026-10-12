@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const dcv_path = "lib/x86_64-linux-gnu/workspacesclient";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "workspacesclient",
       version: "2026.0.5677-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://d3nt0h4h6pmmc4.cloudfront.net/ubuntu/dists/noble/main/binary-amd64/workspacesclient_${nix.sel(finalAttrs, "version")}_amd64.ubuntu2404.deb`),
           ]),
@@ -51,7 +51,7 @@ wrapProgram $out/${dcv_path}/workspacesclientdcv \\
 find $out/${dcv_path} -name lib\\* ! -name libdcv\\* ! -name libgioopenssl\\* | xargs rm
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client for Amazon WorkSpaces, a managed, secure Desktop-as-a-Service (DaaS) solution",
         homepage: "https://clients.amazonworkspaces.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

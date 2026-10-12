@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildLakePackage = nix.arg($, "buildLakePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "lean4-LeanSearchClient",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "LeanSearchClient",
           rev: "ddf04cf3949fa556442341e87d47f9f6e6074707",
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       leanPackageName: "LeanSearchClient",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Lean 4 client for LeanSearch and Moogle proof search",
         homepage: "https://github.com/leanprover-community/LeanSearchClient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

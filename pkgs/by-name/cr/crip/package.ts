@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "crip";
       const version = "3.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`http://bach.dynet.com/crip/src/crip-${version}.tar.gz`),
           sha256: "0pk9152wll6fmkj1pki3fz3ijlf06jyk32v31yarwvdkwrk7s9xz",
         }))));
@@ -63,7 +63,7 @@ for script in ${nix.app(nix.sel(lib, "escapeShellArgs"), scripts)}; do
 done
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://bach.dynet.com/crip/",
         description: "Terminal-based ripper/encoder/tagger tool for creating Ogg Vorbis/FLAC files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl1Only")),
@@ -71,7 +71,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "endgame"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

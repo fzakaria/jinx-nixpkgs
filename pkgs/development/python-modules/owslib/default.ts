@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.36.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "geopython",
           repo: "OWSLib",
           tag: version,
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["online"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_ogcapi_connectedsystems_osh.py"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Client for Open Geospatial Consortium web service interface standards",
         homepage: "https://www.osgeo.org/projects/owslib/",
         changelog: nix.thunk(() => nix.str`https://github.com/geopython/OWSLib/releases/tag/${nix.sel(src, "tag")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

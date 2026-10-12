@@ -37,11 +37,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(waylandSupport) || nix.asBool(!nix.eq(wayland, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vi/vintagestory/package.nix:26:1");
   nix.assert_((!nix.asBool(waylandSupport) || nix.asBool(!nix.eq(libxkbcommon, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vi/vintagestory/package.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "vintagestory",
       version: "1.22.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SDzGgnpQwIxcQczQJixvEiPBBOVMpxNcRmBSeNifXeE=",
         })))),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems, installFonts]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "vintagestory",
             desktopName: "Vintage Story",
             exec: "vintagestory",
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Game"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             name: "vsmodinstall-handler",
             desktopName: "Vintage Story 1-click Mod Install Handler",
             comment: "Handler for vintagestorymodinstall:// URI scheme",
@@ -89,12 +89,12 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), dotnet_runtime_10)} $out/bin/vinta
       doInstallCheck: true,
       installCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.path(here, "./update.sh"),
         runtimeLibs: nix.thunk(() => nix.concat([cairo, libGLU, libglvnd, pipewire, libpulseaudio], nix.concat(nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libx11, libxi, libxcursor])), nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland, libxkbcommon]))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "In-development indie sandbox game about innovation and exploration",
         homepage: "https://www.vintagestory.at/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

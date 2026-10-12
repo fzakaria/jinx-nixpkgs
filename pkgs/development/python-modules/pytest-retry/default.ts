@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "str0zzapreti",
           repo: "pytest-retry",
           tag: version,
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pytest_retry"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plugin for retrying flaky tests in CI environments",
         longDescription: "This plugin adds a decorator to mark tests as flaky: `@pytest.mark.flaky(retries=3, delay=1)`.\n",
         homepage: "https://github.com/str0zzapreti/pytest-retry",
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "trdl-client",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "werf",
           repo: "trdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/trdl`),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Universal solution for delivering your software updates",
         longDescription: "trdl is an Open Source solution providing a secure channel for delivering\nupdates from the Git repository to the end user.\n\nThe project team releases new versions of the software and switches them\nin the release channels. Git acts as the single source of truth while\nVault is used as a tool to verify operations as well as populate and\nmaintain the TUF repository.\n\nThe user selects a release channel, continuously receives the latest\nsoftware version from the TUF repository, and uses it.\n",
         homepage: "https://trdl.dev",

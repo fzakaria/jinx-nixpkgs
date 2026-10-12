@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const font_alias = nix.arg($_1, "font-alias");
       const mkfontscale = nix.arg($_1, "mkfontscale");
       return nix.app(runCommand, "X11-fonts", nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           preferLocalBuild: true,
           nativeBuildInputs: nix.thunk(() => [gzip, mkfontscale]),
         })), nix.thunk(() => nix.str`mkdir -p "$out/share/X11/fonts"
@@ -44,21 +44,21 @@ cat $(find ${nix.sel(pkgs, "font-alias")}/ -name fonts.alias) >fonts.alias
 `));
     })(), formals$2), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       fonts: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         fontDir: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Whether to create a directory with links to all fonts in\n{file}`/run/current-system/sw/share/X11/fonts`.\n",
             })))),
           decompressFonts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: nix.thunk(() => nix.sel(config, "programs", "xwayland", "enable")),
               defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.programs.xwayland.enable")),
@@ -68,16 +68,16 @@ cat $(find ${nix.sel(pkgs, "font-alias")}/ -name fonts.alias) >fonts.alias
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$10,
+        [nix.POS]: pos$10,
         environment: nix.thunk(() => ({
-          __proto__: pos$7,
+          [nix.POS]: pos$7,
           systemPackages: nix.thunk(() => [x11Fonts]),
           pathsToLink: nix.thunk(() => ["/share/X11/fonts"]),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$9,
+          [nix.POS]: pos$9,
           xserver: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             filesSection: nix.thunk(() => nix.str`FontPath "${x11Fonts}/share/X11/fonts"
 `),
           })),

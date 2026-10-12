@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "goodhosts";
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "goodhosts",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mv $out/bin/cli $out/bin/goodhosts\n";
       const vendorHash = "sha256-FsjCpwvehmRm67Tqwld+0vn4IFO6E46SJnLwRjKVAiw=";
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "CLI tool for managing hostfiles",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/goodhosts/cli/tree/main",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "goodhosts",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

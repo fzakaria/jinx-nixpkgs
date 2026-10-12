@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "dps8m",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dps8m",
           repo: "dps8m",
           rev: nix.thunk(() => nix.str`R${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         ENV: nix.thunk(() => nix.str`${coreutils_full}/bin/env`),
         GREP: nix.thunk(() => nix.str`${gnugrep}/bin/grep`),
         SED: nix.thunk(() => nix.str`${gnused}/bin/sed`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [coreutils_full, pkg_config]),
       buildInputs: nix.thunk(() => [libuv]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "GE / Honeywell / Bull DPS-8/M mainframe simulator",
         homepage: "https://gitlab.com/dps8m/dps8m",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dps8m/dps8m/-/wikis/DPS8M-${nix.sel(finalAttrs, "src", "rev")}-Release-Notes`),

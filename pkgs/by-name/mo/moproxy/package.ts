@@ -15,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "moproxy",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sorz",
           repo: "moproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-SJHsXck2f9xJZ4GmOkISjdfqxlF4LCAH9WYjqSqFFkE=",
       preBuild: nix.thunk(() => (() => {
         const webBundle = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/sorz/moproxy-web/releases/download/v0.1.8/build.zip",
             hash: "sha256-bLC76LnTWR2/xnDcZtX/t0OUmP7vdI/o3TCRzG9eH/g=",
           }))));
@@ -37,7 +37,7 @@ sed -i '15s/.*/let zip_path = PathBuf::from("${nix.app(nix.sel(lib, "escape"), n
 `;
       })()),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/sorz/moproxy",
         description: "Transparent TCP to SOCKSv5/HTTP proxy on Linux written in Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

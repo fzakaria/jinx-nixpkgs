@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "faustlsp",
       version: "0-unstable-2025-10-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "grame-cncm",
           repo: "faustlsp",
           rev: "017e28bbf03cf632118a0a7e0d5dbe0c6a6ea52e",
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Language Server Protocol (LSP) implementation for the Faust programming language",
         homepage: "https://github.com/grame-cncm/faustlsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -19,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const cryptography = nix.arg($, "cryptography");
   const simplejson = nix.arg($, "simplejson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "apksigtool",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "obfusk",
           repo: "apksigtool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["apksigtool"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool to parse/verify/clean/sign android apk",
         homepage: "https://github.com/obfusk/apksigtool",
         changelog: nix.thunk(() => nix.str`https://github.com/obfusk/apksigtool/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

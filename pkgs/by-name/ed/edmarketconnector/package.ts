@@ -17,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const makeWrapper = nix.arg($, "makeWrapper");
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       extraLibs: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return [
           nix.thunk(() => nix.lookup(w, "tkinter")),
           nix.thunk(() => nix.lookup(w, "requests")),
           nix.thunk(() => nix.lookup(w, "pillow")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "watchdog"), "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$1, disabledTests: nix.thunk(() => ["test_select_fd"]) })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "watchdog"), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, disabledTests: nix.thunk(() => ["test_select_fd"]) })))),
           nix.thunk(() => nix.lookup(w, "semantic-version")),
           nix.thunk(() => nix.lookup(w, "psutil")),
           nix.thunk(() => nix.lookup(w, "tomli-w")),
@@ -32,11 +32,11 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "edmarketconnector",
       version: "6.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "EDCD",
           repo: "EDMarketConnector",
           tag: nix.thunk(() => nix.str`Release/${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +57,7 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/edmarketconnector \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/EDCD/EDMarketConnector",
         description: "Uploads Elite: Dangerous market data to popular trading tools",
         longDescription: "Downloads commodity market and other station data from the game Elite: Dangerous for use with all popular online and offline trading tools.",

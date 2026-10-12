@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "smbprotocol",
       version: "1.17.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jborean93",
           repo: "smbprotocol",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       pythonImportsCheck: nix.thunk(() => ["smbprotocol"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python SMBv2 and v3 Client",
         homepage: "https://github.com/jborean93/smbprotocol",
         changelog: nix.thunk(() => nix.str`https://github.com/jborean93/smbprotocol/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const domain = "hochwasserportal";
       const version = "1.0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "stephan192",
           repo: "hochwasserportal",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [lhpapi]);
       const nativeCheckInputs = nix.thunk(() => [pytest_homeassistant_custom_component]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         changelog: nix.thunk(() => nix.str`https://github.com/stephan192/hochwasserportal/releases/tag/${version}`),
         description: "Home Assistant integration for Länderübergreifendes Hochwasser Portal",
         homepage: "https://github.com/stephan192/hochwasserportal",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         owner,
         domain,
         version,

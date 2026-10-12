@@ -14,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fltk = nix.arg($, "fltk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xdiskusage",
       version: "1.60",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://xdiskusage.sourceforge.net/xdiskusage-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-e1NtxvG9xtm+x8KblDXCPZ0yv/ig6+4muZZrJz3J9n4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [fltk]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Program to show you what is using up all your disk space",
         homepage: "https://xdiskusage.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

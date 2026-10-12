@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "openseachest",
       version: "26.03.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Seagate",
           repo: "openSeaChest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["release"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,share}\ncp -r Make/gcc/openseachest_exes/. $out/bin\ncp -r docs/man $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of command line diagnostic tools for storage devices",
         homepage: "https://github.com/Seagate/openSeaChest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

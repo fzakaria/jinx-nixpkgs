@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.22";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Fatal1ty",
           repo: "mashumaro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         orjson: nix.thunk(() => [orjson]),
         msgpack: nix.thunk(() => [msgpack]),
         yaml: nix.thunk(() => [pyyaml]),
@@ -46,14 +46,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([ciso8601, pendulum, pytest_mock, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["mashumaro"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Serialization library on top of dataclasses",
         homepage: "https://github.com/Fatal1ty/mashumaro",
         changelog: nix.thunk(() => nix.str`https://github.com/Fatal1ty/mashumaro/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

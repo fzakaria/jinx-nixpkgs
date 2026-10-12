@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "t3l3machus",
           repo: "Villain",
           tag: nix.thunk(() => nix.str`V${version}`),
@@ -46,7 +46,7 @@ makeWrapper ${python3}/bin/python $out/bin/villain \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High level stage 0/1 C2 framework that can handle multiple TCP socket & HoaxShell-based reverse shells",
         homepage: "https://github.com/t3l3machus/Villain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-nd-40")),
@@ -55,7 +55,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

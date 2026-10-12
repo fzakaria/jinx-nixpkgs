@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const browserpass = nix.arg($, "browserpass");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "browserpass",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "browserpass",
           repo: "browserpass-native",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +37,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-CjuH4ANP2bJDeA+o+1j+obbtk5/NVLet/OFS3Rms4r0=",
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       postPatch: "# Because this Makefile will be installed to be used by the user, patch\n# variables to be valid by default\nsubstituteInPlace Makefile \\\n  --replace \"PREFIX ?= /usr\" \"\"\nsed -i -e 's/SED =.*/SED = sed/' Makefile\nsed -i -e 's/INSTALL =.*/INSTALL = install/' Makefile\n",
-      env: nix.thunk(() => ({ __proto__: pos$2, DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
       postConfigure: "make configure\n",
       buildPhase: "make browserpass\n",
       checkTarget: "test",
@@ -52,14 +52,14 @@ mkdir -p $out/lib/mozilla/native-messaging-hosts
 cp $out/lib/browserpass/hosts/firefox/*.json $out/lib/mozilla/native-messaging-hosts/
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ __proto__: pos$3, package: browserpass, command: "browserpass --version" })))),
+          [nix.POS]: pos$4,
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: browserpass, command: "browserpass --version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Browserpass native client app",
         mainProgram: "browserpass",
         homepage: "https://github.com/browserpass/browserpass-native",

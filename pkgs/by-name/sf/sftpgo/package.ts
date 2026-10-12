@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sftpgo";
       const version = "2.7.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "drakkan",
           repo: "sftpgo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,9 +36,9 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const subPackages = nix.thunk(() => ["."]);
       const postInstall = "$out/bin/sftpgo gen man\ninstallManPage man/*.1\n\ninstallShellCompletion --cmd sftpgo \\\n  --bash <($out/bin/sftpgo gen completion bash) \\\n  --zsh <($out/bin/sftpgo gen completion zsh) \\\n  --fish <($out/bin/sftpgo gen completion fish)\n\nshareDirectory=\"$out/share/sftpgo\"\nmkdir -p \"$shareDirectory\"\ncp -r ./{openapi,static,templates} \"$shareDirectory\"\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "sftpgo")) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "sftpgo")) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/drakkan/sftpgo",
         changelog: nix.thunk(() => nix.str`https://github.com/drakkan/sftpgo/releases/tag/v${version}`),
         description: "Fully featured and highly configurable SFTP server",
@@ -60,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sftpgo",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -20,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const lapack = nix.arg($, "lapack");
   nix.assert_((nix.asBool((nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(lapack, "isILP64"))) && nix.asBool(nix.eq(nix.sel(blas, "isILP64"), nix.sel(arpack, "isILP64"))))) && nix.asBool(!nix.asBool(nix.sel(blas, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/calculix-ccx/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "calculix-ccx",
       version: "2.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.dhondt.de/ccx_${nix.sel(finalAttrs, "version")}.src.tar.bz2`),
           hash: "sha256-nIg4XBD7BPXcbE6YAnpRvr3YruOSDgUZDWwd0INX1uc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gfortran]),
       buildInputs: nix.thunk(() => [arpack, spooles, blas, lapack]),
       env: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${spooles}/include/spooles`),
             "-std=legacy",
@@ -47,7 +47,7 @@ install -Dm0755 ccx_${nix.sel(finalAttrs, "version")} $out/bin/ccx
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://www.calculix.de",
         description: "Three-dimensional structural finite element program",
         mainProgram: "ccx",

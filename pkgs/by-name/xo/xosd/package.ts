@@ -17,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "xosd",
       version: "2.2.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/libxosd/xosd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "025m7ha89q29swkc7s38knnbn8ysl24g2h5s7imfxflm91psj7sg",
         })))),
       buildInputs: nix.thunk(() => [libx11, libxext, libxt, xorgproto]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Displays text on your screen",
         homepage: "https://sourceforge.net/projects/libxosd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

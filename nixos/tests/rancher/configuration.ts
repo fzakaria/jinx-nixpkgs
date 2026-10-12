@@ -33,20 +33,20 @@ export default nix.lambda((args) => (() => {
   const memoryThrottlingFactor = 0.69;
   const containerLogMaxSize = "5Mi";
   return {
-    __proto__: pos$11,
+    [nix.POS]: pos$11,
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-configuration`),
     interactive: nix.thunk(() => ({
-      __proto__: pos$2,
-      sshBackdoor: nix.thunk(() => ({ __proto__: pos$1, enable: true })),
+      [nix.POS]: pos$2,
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           environment: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -55,14 +55,14 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               enable: true,
               package: rancherPackage,
               disable: disabledComponents,
@@ -74,13 +74,13 @@ export default nix.lambda((args) => (() => {
 # MAGIC COMMENT
 `),
               gracefulNodeShutdown: nix.thunk(() => ({
-                __proto__: pos$5,
+                [nix.POS]: pos$5,
                 enable: true,
                 shutdownGracePeriod: shutdownGracePeriod,
                 shutdownGracePeriodCriticalPods: shutdownGracePeriodCriticalPods,
               })),
               extraKubeletConfig: nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 podsPerCore: podsPerCore,
                 memoryThrottlingFactor: memoryThrottlingFactor,
                 containerLogMaxSize: containerLogMaxSize,
@@ -119,7 +119,7 @@ with subtest("Kubelet config values are set correctly"):
   t.assertEqual(kubelet_config["containerLogMaxSize"],"${containerLogMaxSize}")
 `),
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "vectorscan",
       version: "5.4.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "VectorCamp",
           repo: "vectorscan",
           rev: nix.thunk(() => nix.str`vectorscan/${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +60,7 @@ substituteInPlace cmake/build_wrapper.sh \\
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./bin/unit-hyperscan\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Portable fork of the high-performance regular expression matching library",
         longDescription: "A fork of Intel's Hyperscan, modified to run on more platforms. Currently\nARM NEON/ASIMD is 100% functional, and Power VSX are in development.\nARM SVE2 will be implemented when hardware becomes accessible to the\ndevelopers. More platforms will follow in the future, on demand/request.\n\nVectorscan will follow Intel's API and internal algorithms where possible,\nbut will not hesitate to make code changes where it is thought of giving\nbetter performance or better portability. In addition, the code will be\ngradually simplified and made more uniform and all architecture specific\ncode will be abstracted away.\n",
         homepage: "https://www.vectorcamp.gr/vectorscan/",

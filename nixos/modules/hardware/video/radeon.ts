@@ -6,7 +6,7 @@ const pos$1 = nix.positions(here + "/radeon.nix", [["enableRedistributableFirmwa
 const pos$2 = nix.positions(here + "/radeon.nix", [["hardware", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
-  hardware: nix.thunk(() => ({ __proto__: pos$1, enableRedistributableFirmware: true })),
+  [nix.POS]: pos$2,
+  hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableRedistributableFirmware: true })),
 }));
 //# sourceMappingURL=radeon.ts.map

@@ -18,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "x2vnc",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://fredrik.hubbe.net/x2vnc/x2vnc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "00bh9j3m6snyd2fgnzhj5vlkj9ibh69gfny9bfzlxbnivb06s1yw",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       buildInputs: nix.thunk(() => [libx11, xorgproto, libxext, libxrandr]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "http://fredrik.hubbe.net/x2vnc.html",
         description: "Program to control a remote VNC server",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

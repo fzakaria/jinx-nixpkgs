@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "material-you-utilities";
       const version = "2.1.26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Nerwyn",
           repo: "material-you-utilities",
           tag: version,
@@ -25,9 +25,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-iP98VOALbjfEaGB82IR2ZRys69nGhQ2CPmM0MWEitOI=";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp dist/material-you-utilities.min.js $out/\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, entrypoint: "material-you-utilities.min.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "material-you-utilities.min.js" }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Material Design 3 color theme generation and Home Assistant component modification",
         homepage: "https://github.com/Nerwyn/material-you-utilities",
         changelog: nix.thunk(() => nix.str`https://github.com/Nerwyn/material-you-utilities/releases/tag/${version}`),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

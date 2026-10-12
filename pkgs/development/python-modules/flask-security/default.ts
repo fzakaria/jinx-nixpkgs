@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "pallets-eco",
           repo: "flask-security",
           tag: version,
@@ -69,7 +69,7 @@ export default nix.lambda((args) => (() => {
         wtforms,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         babel: nix.thunk(() => [babel, flask_babel]),
         common: nix.thunk(() => [argon2_cffi, bcrypt, bleach, flask_mail]),
         fsqla: nix.thunk(() => [flask_sqlalchemy, sqlalchemy]),
@@ -90,7 +90,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_login_email_whatever"]);
       const pythonImportsCheck = nix.thunk(() => ["flask_security"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         changelog: nix.thunk(() => nix.str`https://github.com/pallets-eco/flask-security/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         homepage: "https://github.com/pallets-eco/flask-security",
         description: "Quickly add security features to your Flask application",
@@ -101,7 +101,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

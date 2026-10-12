@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lineselect";
       const version = "0.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "chfritz",
           repo: "lineselect",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --add-flags $out/lib/node_modules/lineselect/dist/cli.js
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Shell utility to interactively select lines from stdin",
         homepage: "https://github.com/chfritz/lineselect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lineselect",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

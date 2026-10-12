@@ -15,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "manuskript",
       version: "0.17.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "manuskript",
           owner: "olivierkes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "wrapQtApp $out/bin/manuskript\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Open-source tool for writers",
         homepage: "https://www.theologeek.ch/manuskript",
         longDescription: "Manuskript is a tool for those writer who like to organize and\nplan everything before writing.  The snowflake method can help you\ngrow your idea into a book, by leading you step by step and asking\nyou questions to go deeper. While writing, keep track of notes\nabout every characters, plot, event, place in your story.\n\nDevelop complex characters and keep track of all useful infos.\nCreate intricate plots, linked to your characters, and use them to\noutline your story. Organize your ideas about the world your\ncharacters live in.\n",

@@ -25,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const extraLibs = nix.argOr($, "extraLibs", () => nix.selOr(config, () => [], "slstatus", "extraLibs"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "slstatus",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/slstatus-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MRDovZpQsvnLEvsbJNBzprkzQQ4nIs1T9BLT+tSGta8=",
         })))),
@@ -44,11 +44,11 @@ makeFlagsArray+=(LDLIBS="-lX11 -lxcb -lXau -lXdmcp" CC=$CC)
       buildInputs: nix.thunk(() => nix.concat([libx11, libxcb, libxau, libxdmcp], extraLibs)),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://tools.suckless.org/slstatus/",
         description: "Status monitor for window managers that use WM_NAME like dwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "git-jump",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mykolaharmash",
           repo: "git-jump",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-9f3Ws2V6li+u6qVMD3J6IHSNvG5TGvj0XfAZArgIi1w=",
       postInstall: "installManPage git-jump.1\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Improved navigation between Git branches",
         homepage: "https://github.com/mykolaharmash/git-jump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

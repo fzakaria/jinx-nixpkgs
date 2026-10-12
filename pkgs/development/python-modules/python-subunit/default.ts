@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const testscenarios = nix.arg($, "testscenarios");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "python-subunit",
       version: nix.thunk(() => nix.attr(subunit, "version")),
       src: nix.thunk(() => nix.attr(subunit, "src")),

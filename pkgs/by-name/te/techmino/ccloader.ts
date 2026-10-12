@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ccloader";
       const version = "11.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "26F-Studio",
           repo: "cold_clear_ai_love2d_wrapper",
           rev: version,
@@ -40,7 +40,7 @@ mv CCLoader.so $out/lib/lua/${nix.sel(luajit, "luaversion")}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Luajit wrapper for Cold Clear, a Tetris AI",
         homepage: "https://github.com/26F-Studio/cold_clear_ai_love2d_wrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -50,7 +50,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

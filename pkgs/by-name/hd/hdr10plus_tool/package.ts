@@ -23,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const tomlq = nix.arg($, "tomlq");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "hdr10plus_tool",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "quietvoid",
           repo: "hdr10plus_tool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,9 +40,9 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export FONTCONFIG_FILE="${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf";
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               name: nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`),
               runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(nixVersions, "latest")), nix_update, tomlq]),
               text: nix.thunk(() => nix.str`nix-update ${nix.sel(finalAttrs, "pname")}
@@ -53,7 +53,7 @@ nix-update ${nix.sel(hdr10plus, "pname")} --version "$libver"
             })))))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "CLI utility to work with HDR10+ in HEVC files",
         homepage: "https://github.com/quietvoid/hdr10plus_tool",
         changelog: nix.thunk(() => nix.str`https://github.com/quietvoid/hdr10plus_tool/releases/tag/${nix.sel(finalAttrs, "version")}`),

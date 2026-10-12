@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "VASSAL";
       const version = "3.7.28";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://github.com/vassalengine/vassal/releases/download/${version}/${pname}-${version}-linux.tar.bz2`),
           sha256: "sha256-K2gsrmbLoRXrm1QqJNFim3sbqJ5YIS6qeohW+g7eZfc=",
         }))));
@@ -48,7 +48,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "VASSAL",
             exec: "vassal",
             icon: "VASSAL",
@@ -63,7 +63,7 @@ runHook postInstall
       const doInstallCheck = true;
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/vassal`);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free, open-source boardgame engine",
         homepage: "https://vassalengine.org/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -82,7 +82,7 @@ runHook postInstall
         mainProgram: "vassal",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

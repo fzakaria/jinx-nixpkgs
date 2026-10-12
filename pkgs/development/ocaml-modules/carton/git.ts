@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const decompress = nix.arg($, "decompress");
   const astring = nix.arg($, "astring");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "carton-git",
       version: nix.thunk(() => nix.attr(carton, "version")),
       src: nix.thunk(() => nix.attr(carton, "src")),

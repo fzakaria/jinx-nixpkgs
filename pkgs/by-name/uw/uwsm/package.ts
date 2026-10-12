@@ -38,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "pyxdg")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "uwsm",
       version: "0.27.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Vladimir-csp",
           repo: "uwsm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,14 +51,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, meson, ninja, pkg_config, scdoc]),
       buildInputs: nix.thunk(() => nix.concat([util_linux, newt, libnotify, bash, systemd, python], nix.app(nix.sel(lib, "optionals"), uuctlSupport, nix.thunk(() => [dmenu])))),
       mesonFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--prefix=${nix.builtins.placeholder("out")}`)], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           "uwsm-app": uwsmAppSupport,
           fumon: fumonSupport,
           uuctl: uuctlSupport,
           "man-pages": true,
           "canonicalize-bins": true,
         }))), nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonOption")), nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           "python-bin": nix.thunk(() => nix.sel(python, "interpreter")),
         })))))),
       postInstall: nix.thunk(() => (() => {
@@ -70,11 +70,11 @@ export default nix.lambda((args) => (() => {
       })()),
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Universal wayland session manager",
         homepage: "https://github.com/Vladimir-csp/uwsm",
         changelog: nix.thunk(() => nix.str`https://github.com/Vladimir-csp/uwsm/releases/tag/v${nix.sel(finalAttrs, "version")}`),

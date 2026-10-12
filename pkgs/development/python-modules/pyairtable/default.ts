@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-apF01DgAlmZgVH4H0Ac2s6D973W1CHt27oug6AnAQu4=",
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest, pytest_cov_stub, mock, requests_mock, tox]);
       const pythonImportsCheck = nix.thunk(() => ["pyairtable"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python API Client for Airtable",
         homepage: "https://pyairtable.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://pyairtable.readthedocs.io/en/${version}/changelog.html`),
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

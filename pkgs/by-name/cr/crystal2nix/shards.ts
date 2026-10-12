@@ -6,9 +6,9 @@ const pos$1 = nix.positions(here + "/shards.nix", [["url", 3, 5], ["rev", 4, 5],
 const pos$2 = nix.positions(here + "/shards.nix", [["spectator", 2, 3]]);
 
 export default nix.thunk(() => ({
-  __proto__: pos$2,
+  [nix.POS]: pos$2,
   spectator: nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     url: "https://gitlab.com/arctic-fox/spectator.git",
     rev: "v0.10.5",
     sha256: "1fgjz5vg59h4m25v4fjklimcdn62ngqbchm00kw1160ggjpgpzw2",

@@ -16,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "git-review",
       version: "2.5.0",
       pyproject: true,
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           url: "https://opendev.org/opendev/git-review",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RE5XAUS46Y/jtI0/csR59B9l1gYpHuwGQkbWqoTfxPk=",
@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["git_review"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Tool to submit code to Gerrit",
         homepage: "https://opendev.org/opendev/git-review",
         changelog: nix.thunk(() => nix.str`https://docs.opendev.org/opendev/git-review/latest/releasenotes.html#relnotes-${nix.sel(finalAttrs, "version")}`),

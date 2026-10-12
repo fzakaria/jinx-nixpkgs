@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "freebayes",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`freebayes-${nix.sel(finalAttrs, "version")}-src`),
           owner: "freebayes",
           repo: "freebayes",
@@ -30,10 +30,10 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       buildInputs: nix.thunk(() => [zlib, bzip2, xz]),
-      env: nix.thunk(() => ({ __proto__: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
       installPhase: "install -vD bin/freebayes bin/bamleftalign scripts/* -t $out/bin\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Bayesian haplotype-based polymorphism discovery and genotyping",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/freebayes/freebayes",

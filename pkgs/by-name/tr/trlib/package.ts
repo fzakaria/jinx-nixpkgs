@@ -19,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "trlib",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "felixlen",
           repo: "trlib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "python312-support.patch",
             url: "https://github.com/felixlen/trlib/pull/26/commits/6b72f3b2afebee4ae179bc760f93b16c60fd72d8.patch",
             hash: "sha256-+6iiALFhMSiE44kpkDrhwrYt4miHlPkiffRZAgsM1Jo=",
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "TRLIB_BUILD_PYTHON3", pythonSupport)),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Trust Region Subproblem Solver Library",
         homepage: "https://github.com/felixlen/trlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

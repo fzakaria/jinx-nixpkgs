@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const why3 = nix.arg($, "why3");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "why3find",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           domain: "git.frama-c.com",
           owner: "pub",
           repo: "why3find",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(alt_ergo, "bin")), why3]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Why3 Package Manager",
         homepage: "https://git.frama-c.com/pub/why3find",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

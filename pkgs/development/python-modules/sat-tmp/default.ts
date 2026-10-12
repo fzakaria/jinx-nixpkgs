@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://repos.goffi.org/sat_tmp",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-CEy0/eaPK0nHzsiJq3m7edNyxzAhfwBaNhFhLS0azOw=",
@@ -29,9 +29,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [wokkel]);
       const pythonImportsCheck = nix.thunk(() => ["sat_tmp.wokkel.pubsub", "sat_tmp.wokkel.rsm", "sat_tmp.wokkel.mam"]);
       const doCheck = false;
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, updateScript: null }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: null }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Libervia temporary third party patches",
         longDescription: "This module is used by Libervia project (formerly “Salut à Toi”) project to patch third party modules\nwhen the patches are not yet available upstream. Patches are removed from this module once merged upstream.\n",
         homepage: "https://libervia.org",
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

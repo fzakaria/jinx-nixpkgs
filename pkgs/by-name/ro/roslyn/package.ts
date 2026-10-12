@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "roslyn";
       const version = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dotnet",
           repo: "roslyn",
           tag: "NET-SDK-9.0.304",
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "sdk_8_0")),
             ])));
           return {
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           packages: nix.thunk(() => nix.attr(from, "packages")),
           targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
         };
@@ -77,7 +77,7 @@ makeWrapper ${mono}/bin/mono $out/bin/vbc \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: ".NET C# and Visual Basic compiler",
         homepage: "https://github.com/dotnet/roslyn",
         mainProgram: "csc",
@@ -88,7 +88,7 @@ runHook postInstall
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

@@ -27,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const extraPackages = nix.argOr($, "extraPackages", () => null);
   nix.assert_((nix.asBool(nix.eq(extraPackages, null)) || nix.asBool(nix.app(nix.sel(lib, "warn"), "Overriding television with the 'extraPackages' attribute is deprecated. Please use `television.withPackages (p: [ p.fd ...])` instead."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/te/television/package.nix:15:1");
   const television = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "television",
       version: "0.15.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "alexpasmantier",
           repo: "television",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,29 +44,29 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add(nix.str`installManPage target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/assets/tv.1
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "mkdir -p $out/share/television\nfor shell in bash zsh fish; do\n  \"$out/bin/tv\" init $shell > completion.$shell\n\n  # split shell completion and shell integration\n  awk -v C=completion_pure.$shell -v D=$out/share/television/completion.$shell '\n    NR==FNR { key=$0; nextfile }\n    {\n      if (!found && index($0, key)) found=1\n      print > (found ? D : C)\n    }\n  ' television/utils/shell/completion.$shell completion.$shell\n\n  installShellCompletion --cmd tv completion_pure.$shell\ndone\n\n# nushell doesn't contain regular completion for now\n\"$out/bin/tv\" init nu > $out/share/television/completion.nu\n"))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         withPackages: (f) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             television: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             extraPackages: nix.thunk(() => nix.app(f, targetPackages)),
           }))),
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "XDG_DATA_HOME=$TMPDIR tv --version",
             })))),
           wrapper: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withPackages"), (pkgs) => [nix.thunk(() => nix.sel(pkgs, "fd")), nix.thunk(() => nix.sel(pkgs, "git"))])),
               command: "XDG_DATA_HOME=$TMPDIR tv --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Blazingly fast general purpose fuzzy finder TUI",
         longDescription: "Television is a fast and versatile fuzzy finder TUI.\nIt lets you quickly search through any kind of data source (files, git\nrepositories, environment variables, docker images, you name it) using a\nfuzzy matching algorithm and is designed to be easily extensible.\n",
         homepage: "https://github.com/alexpasmantier/television",

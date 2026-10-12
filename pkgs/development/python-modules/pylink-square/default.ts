@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "square",
           repo: "pylink",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
         "test_set_log_file_success",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
-        tests: nix.thunk(() => ({ __proto__: pos$2, pyocd: pyocd })),
+        [nix.POS]: pos$3,
+        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pyocd: pyocd })),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Python interface for the SEGGER J-Link",
         homepage: "https://github.com/square/pylink",
         changelog: nix.thunk(() => nix.str`https://github.com/square/pylink/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         pyproject,

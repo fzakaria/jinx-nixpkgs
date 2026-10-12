@@ -85,10 +85,10 @@ export default nix.lambda((args) => (() => {
   const libcava = nix.thunk(() => (() => {
     const version = "0.10.7-beta";
     return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "LukashonakV",
           repo: "cava",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -97,11 +97,11 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "waybar",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "Alexays",
           repo: "Waybar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -126,7 +126,7 @@ popd
       nativeCheckInputs: nix.thunk(() => [catch2_3]),
       doCheck: runTests,
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           cava: nix.thunk(() => (nix.asBool(cavaSupport) && nix.asBool(nix.app(nix.sel(lib, "asserts", "assertMsg"), sndioSupport, "Sndio support is required for Cava")))),
           "dbusmenu-gtk": traySupport,
           gps: gpsSupport,
@@ -146,9 +146,9 @@ popd
           tests: runTests,
           upower_glib: upowerSupport,
           wireplumber: wireplumberSupport,
-        }))), nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ __proto__: pos$5, experimental: experimentalPatches, niri: niriSupport }))))),
+        }))), nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ [nix.POS]: pos$5, experimental: experimentalPatches, niri: niriSupport }))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), systemdSupport, nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
         })))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace include/util/command.hpp \\
@@ -162,11 +162,11 @@ wrapProgram $out/bin/waybar-mediaplayer.py \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         homepage: "https://github.com/alexays/waybar",
         description: "Highly customizable Wayland bar for Sway and Wlroots based compositors",
         changelog: nix.thunk(() => nix.str`https://github.com/alexays/waybar/releases/tag/${nix.sel(finalAttrs, "version")}`),

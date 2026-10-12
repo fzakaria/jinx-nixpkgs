@@ -23,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const pname = "osu-lazer-bin";
   const version = "2026.1005.0";
   const src = nix.thunk(() => nix.selOr({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "aarch64-darwin": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         url: nix.thunk(() => nix.str`https://github.com/ppy/osu/releases/download/${version}-lazer/osu.app.Apple.Silicon.zip`),
         hash: "sha256-ZxiW0ghB1ayNjRo9FqAfeBjT5dMM+j74TGDkWHCcdk8=",
         stripRoot: false,
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         url: nix.thunk(() => nix.str`https://github.com/ppy/osu/releases/download/${version}-lazer/osu.AppImage`),
         hash: "sha256-KEEI5lNzqDOb7spA4sFLFSjBd71s4eshQHY5+OUI2i4=",
       })))),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`osu-lazer-bin: ${nix.sel(stdenvNoCC, "system")} is unsupported.`)), nix.key(nix.sel(stdenvNoCC, "system"))));
   const meta = nix.thunk(() => ({
-    __proto__: pos$4,
+    [nix.POS]: pos$4,
     description: "Rhythm is just a *click* away (AppImage version for score submission and multiplayer, and binary distribution for Darwin systems)",
     homepage: "https://osu.ppy.sh",
     changelog: nix.thunk(() => nix.str`https://osu.ppy.sh/home/changelog/lazer/${version}`),
@@ -64,9 +64,9 @@ export default nix.lambda((args) => (() => {
     mainProgram: "osu!",
     platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
   }));
-  const passthru = nix.thunk(() => ({ __proto__: pos$5, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
   return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
@@ -75,7 +75,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\nOSU_WRAPPER=\"$out/Applications/osu!.app/Contents\"\nOSU_CONTENTS=\"osu!.app/Contents\"\nmkdir -p \"$OSU_WRAPPER/MacOS\"\ncp -r \"$OSU_CONTENTS/Info.plist\" \"$OSU_CONTENTS/Resources\" \"$OSU_WRAPPER\"\ncp -r \"osu!.app\" \"$OSU_WRAPPER/Resources/osu-wrapped.app\"\nmakeWrapper \"$OSU_WRAPPER/Resources/osu-wrapped.app/Contents/MacOS/osu!\" \"$OSU_WRAPPER/MacOS/osu!\" --set OSU_EXTERNAL_UPDATE_PROVIDER 1\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,

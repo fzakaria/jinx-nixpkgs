@@ -17,36 +17,36 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    __proto__: pos$9,
+    [nix.POS]: pos$9,
     options: nix.thunk(() => ({
-      __proto__: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ __proto__: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      [nix.POS]: pos$2,
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           value: nix.thunk(() => ({
-            __proto__: pos$4,
+            [nix.POS]: pos$4,
             int: 0n,
             bool: false,
             string: "",
             path: nix.path(here, "./."),
             null: null,
             float: 0.1,
-            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ __proto__: pos$3, x: null }))]),
+            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ [nix.POS]: pos$3, x: null }))]),
           })),
         })),
         nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           value: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             int: 0n,
             bool: false,
             string: "",
             path: nix.path(here, "./."),
             null: null,
             float: 0.1,
-            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ __proto__: pos$6, x: null }))]),
+            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ [nix.POS]: pos$6, x: null }))]),
           })),
         })),
       ]))),

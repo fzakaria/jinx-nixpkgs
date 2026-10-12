@@ -16,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       pname: "libloragw-sx1301",
       version: "5.0.1r4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "brocaar",
           repo: "lora_gateway",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YxnFWJhH5iUR+6zA0Pf7a+VxFwYkw84CeoQmd01efqU=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ __proto__: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: pos$3,
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
       })),
       makeFlags: nix.thunk(() => ["-e", "-C", "libloragw"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{lib,include/libloragw-sx1301}\ncp libloragw/libloragw.a $out/lib/libloragw-sx1301.a\ncp libloragw/inc/* $out/include/libloragw-sx1301\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Driver/HAL to build a gateway using a concentrator board based on Semtech SX1301 multi-channel modem and SX1257/SX1255 RF transceivers",
         homepage: "https://github.com/brocaar/lora_gateway",
         license: nix.thunk(() => [

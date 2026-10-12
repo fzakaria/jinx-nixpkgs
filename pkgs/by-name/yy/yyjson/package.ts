@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "yyjson",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ibireme",
           repo: "yyjson",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,13 +29,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             url: "https://github.com/ibireme/yyjson/commit/bef00cb5fe1929944cc13dec13f0f23fa4ad568b.patch",
             hash: "sha256-oRFN95sgLqiwCzxvC3G4CFsD6sJtI5NeBWp4/WeaKCc=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Fastest JSON library in C",
         homepage: "https://github.com/ibireme/yyjson",
         changelog: nix.thunk(() => nix.str`https://github.com/ibireme/yyjson/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

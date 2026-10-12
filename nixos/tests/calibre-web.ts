@@ -22,37 +22,37 @@ export default nix.lambda((args) => (() => {
   const defaultPort = 8083n;
   const libraryPath = "/var/lib/test-books";
   return {
-    __proto__: pos$10,
+    [nix.POS]: pos$10,
     name: "calibre-web",
     meta: nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pborzenkov"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       customized: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           services: nix.thunk(() => ({
-            __proto__: pos$6,
+            [nix.POS]: pos$6,
             "calibre-web": nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               enable: true,
-              listen: nix.thunk(() => ({ __proto__: pos$2, port: port })),
+              listen: nix.thunk(() => ({ [nix.POS]: pos$2, port: port })),
               options: nix.thunk(() => ({
-                __proto__: pos$4,
+                [nix.POS]: pos$4,
                 calibreLibrary: libraryPath,
-                reverseProxyAuth: nix.thunk(() => ({ __proto__: pos$3, enable: true, header: "X-User" })),
+                reverseProxyAuth: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, header: "X-User" })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            __proto__: pos$7,
+            [nix.POS]: pos$7,
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "calibre"))]),
           })),
         };

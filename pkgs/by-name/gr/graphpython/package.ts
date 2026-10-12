@@ -13,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "graphpython",
       version: "1.0-unstable-2024-07-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mlcsec",
           repo: "Graphpython",
           rev: "ee7dbda7fe881a9a207ca8661d42c505b8491ea3",
@@ -44,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["Graphpython"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Microsoft Graph API (Entra, o365, and Intune) enumeration and exploitation toolkit",
         homepage: "https://github.com/mlcsec/Graphpython",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

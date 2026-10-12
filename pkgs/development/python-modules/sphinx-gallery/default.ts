@@ -40,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const memory_profiler = nix.arg($, "memory-profiler");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "sphinx-gallery",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "sphinx-gallery",
           repo: "sphinx-gallery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [pillow, sphinx]),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         animations: [],
         dev: nix.thunk(() => [
           absl_py,
@@ -89,7 +89,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_dummy_image", "test_embed_code_links_get_data"]),
       pythonImportsCheck: nix.thunk(() => ["sphinx_gallery"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Sphinx extension for automatic generation of an example gallery",
         homepage: "https://github.com/sphinx-gallery/sphinx-gallery",
         changelog: nix.thunk(() => nix.str`https://github.com/sphinx-gallery/sphinx-gallery/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.rst`),

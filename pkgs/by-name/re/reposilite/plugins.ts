@@ -18,10 +18,10 @@ export default nix.lambda((args) => (() => {
   const makeScopeWithSplicing$ = nix.arg($, "makeScopeWithSplicing'");
   const pluginHashes = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./plugins.json")));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      __proto__: pos$5,
+      [nix.POS]: pos$5,
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "reposilitePlugins")),
       f: (self) => nix.update({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         fetchPlugin: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib_1 = nix.arg($_1, "lib");
@@ -38,7 +38,7 @@ export default nix.lambda((args) => (() => {
                     nix.thunk(() => nix.builtins.substring(1n, nix.thunk(() => nix.sub(nix.builtins.stringLength(name), 1n)), name)),
                   ])));
                 return nix.app(fetchurl, nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     url: nix.thunk(() => nix.str`https://maven.reposilite.com/releases/com/reposilite/plugin/${name}-plugin/${version}/${name}-plugin-${version}-all.jar`),
                     pname: pname,
                     version: version,
@@ -46,7 +46,7 @@ export default nix.lambda((args) => (() => {
                     meta: nix.thunk(() => (() => {
                       const from = nix.thunk(() => nix.sel(reposilite, "meta"));
                       return {
-                      __proto__: pos$1,
+                      [nix.POS]: pos$1,
                       description: nix.thunk(() => nix.str`${fancyName} plugin for Reposilite.`),
                       homepage: "https://github.com/dzikoysk/reposilite",
                       sourceProvenance: nix.thunk(() => (() => {
@@ -64,7 +64,7 @@ export default nix.lambda((args) => (() => {
                   })));
               })(), formals$3));
           })(), formals$2), nix.thunk(() => ({})))),
-      }, nix.builtins.mapAttrs((name) => (hash) => nix.app(nix.sel(self, "fetchPlugin"), nix.thunk(() => ({ __proto__: pos$4, name: name, hash: hash }))), pluginHashes)),
+      }, nix.builtins.mapAttrs((name) => (hash) => nix.app(nix.sel(self, "fetchPlugin"), nix.thunk(() => ({ [nix.POS]: pos$4, name: name, hash: hash }))), pluginHashes)),
     })));
 })(), formals$1);
 //# sourceMappingURL=plugins.ts.map

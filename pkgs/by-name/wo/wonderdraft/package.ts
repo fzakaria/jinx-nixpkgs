@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wonderdraft";
       const version = "1.1.8.2b";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           name: nix.thunk(() => nix.str`Wonderdraft-${version}-Linux64.deb`),
           url: "https://wonderdraft.net/",
           hash: "sha256-3eYnEH6P94z9axFsrkJA4QMcHyg/gNRczqL3h5Sc2Tg=",
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://wonderdraft.net/",
         description: "Mapmaking tool for Tabletop Roleplaying Games, designed for city, region, or world scale",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -67,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

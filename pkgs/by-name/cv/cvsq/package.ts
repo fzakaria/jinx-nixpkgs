@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const diffutils = nix.arg($, "diffutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "cvsq",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://www.linta.de/~aehlig/cvsq/cvsq-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0491k4skk3jyyd6plp2kcihmxxav9rsch7vd1yi697m2fqckp5ws",
         })))),
@@ -41,7 +41,7 @@ wrapProgram $out/bin/cvsq-switch --prefix PATH : ${nix.app(nix.sel(lib, "makeBin
 wrapProgram $out/bin/lcvs --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cvs, net_tools, findutils, rsync, coreutils, diffutils]))}
 `),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Collection of tools to work locally with CVS",
         longDescription: "cvsq is a collection of tools to work locally with CVS.\n\ncvsq queues commits and other cvs commands in a queue to be executed later,\nwhen the machine is online again. In case of a commit (the default action)\nan actual copy of the working directory is made, so that you can continue\nediting without affecting the scheduled commit. You can even schedule\nseveral successive commits to the same file and they will be correctly\ncommitted as successive commits at the time of upload. This is different\nfrom an earlier script also named cvsq that you might have seen elsewhere.\n\nlcvs uses rsync to maintain a local copy of a cvs repository. It also\ngives a convenient interface to call cvs in such a way that it believes the\ncurrent working directory refers to the local copy rather than to the actual\nrepository. This is useful for commands like log, diff, etc; however it cannot\nbe used for commits (that's what cvsq is for).\n",
         homepage: "https://www.linta.de/~aehlig/cvsq/",

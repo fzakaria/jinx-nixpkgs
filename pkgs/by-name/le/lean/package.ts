@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lean";
       const version = "3.51.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "leanprover-community",
           repo: "lean",
           rev: "9fc1dee97a72a3e34d658aefb4b8a95ecd3d477c",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "gcc-13.patch",
             url: "https://github.com/leanprover-community/lean/commit/21d264a66d53b0a910178ae7d9529cb5886a39b6.patch",
             hash: "sha256-hBm2QNFS1jdoR6LUQHLReKxMKv7kbkrkrTGJ43YnvfA=",
@@ -52,12 +52,12 @@ substituteInPlace library/init/version.lean.in \\
 `;
       })());
       const postPatch = "patchShebangs .\n\nsed -e '1i #include <cstdint>' -i src/util/hash.{cpp,h}\n";
-      const env = nix.thunk(() => ({ __proto__: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=template-body" }));
+      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=template-body" }));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`substituteInPlace $out/bin/leanpkg \\
   --replace "greadlink" "${coreutils}/bin/readlink"
 `)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Automatic and interactive theorem prover",
         homepage: "https://leanprover.github.io/",
@@ -70,7 +70,7 @@ substituteInPlace library/init/version.lean.in \\
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         pname,
         version,
         src,

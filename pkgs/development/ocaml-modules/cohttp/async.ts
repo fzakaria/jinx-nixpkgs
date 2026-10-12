@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const core = nix.arg($, "core");
   const digestif = nix.arg($, "digestif");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "cohttp-async",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => nix.concat([ounit, core, digestif], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cohttp, "version")), "6.0.0")), nix.thunk(() => [mirage_crypto])))),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "CoHTTP implementation for the Async concurrency library",
       })),
     })));

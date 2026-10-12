@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       path: "lib/libedit",
       buildInputs: nix.thunk(() => [libterminfo, libcurses]),
       propagatedBuildInputs: compatIfNeeded,
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(defaultMakeFlags, [nix.thunk(() => nix.str`LIBDO.terminfo=${libterminfo}/lib`)])),
       postPatch: "sed -i '1i #undef bool_t' $COMPONENT_PATH/el.h\nsubstituteInPlace $COMPONENT_PATH/config.h \\\n  --replace \"#define HAVE_STRUCT_DIRENT_D_NAMLEN 1\" \"\"\nsubstituteInPlace $COMPONENT_PATH/readline/Makefile --replace /usr/include \"$out/include\"\n",
       env: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D__noinline=", "-D__scanflike(a,b)=", "-D__va_list=va_list"]))),
       })),
     })));

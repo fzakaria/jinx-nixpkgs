@@ -13,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "traderepublic-portfolio-downloader",
       version: "0.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "dhojayev",
           repo: "traderepublic-portfolio-downloader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-MapulF+ppRW3ClI9RlVV5TEp/nNQz3LD5WdwN5AL8sw=",
       postInstall: "mv $out/bin/public $out/bin/traderepublic-portfolio-downloader\nrm $out/bin/dev\nrm $out/bin/example-generator\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Downloads trade republic portfolio data",
         homepage: "https://github.com/dhojayev/traderepublic-portfolio-downloader",
         changelog: nix.thunk(() => nix.str`https://github.com/dhojayev/traderepublic-portfolio-downloader/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nicolargo",
           repo: "batinfo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,9 +35,9 @@ export default nix.lambda((args) => (() => {
         "test_batinfo_charge_now",
         "test_batinfo_name_default",
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Module to retrieve battery information",
         homepage: "https://github.com/nicolargo/batinfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

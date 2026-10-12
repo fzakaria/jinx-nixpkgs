@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const core = "mrboom";
       const version = "0-unstable-2026-03-31";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Javanaise",
           repo: "mrboom-libretro",
           rev: "96f89550a3518dffe2e7561c971119a39d90de97",
@@ -28,12 +28,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`GIT_VERSION=${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`),
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Port of Mr.Boom to libretro",
         homepage: "https://github.com/Javanaise/mrboom-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { __proto__: pos$3, core, version, src, makefile, makeFlags, meta };
+      return { [nix.POS]: pos$3, core, version, src, makefile, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=mrboom.ts.map

@@ -21,23 +21,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.kodi-six";
       const version = "0.1.3.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-nWz5CPoE0uVsZvWjI4q6y4ZKUnraTjTXLSJ1mK4YopI=",
         }))));
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pythonPath: "libs",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ __proto__: pos$2, attrPath: "kodi.packages.kodi-six" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.kodi-six" })))),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         homepage: "https://github.com/romanvm/kodi.six",
         description: "Wrappers around Kodi Python API for seamless Python 2/3 compatibility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { __proto__: pos$5, pname, namespace, version, src, passthru, meta };
+      return { [nix.POS]: pos$5, pname, namespace, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

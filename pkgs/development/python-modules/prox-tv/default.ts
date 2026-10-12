@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "prox-tv",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "albarji",
           repo: "proxTV",
           rev: "e621585d5aaa7983fbee68583f7deae995d3bafb",
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_tvp_1d"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_tv2_1d"])))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://github.com/albarji/proxTV",
         description: "Toolbox for fast Total Variation proximity operators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

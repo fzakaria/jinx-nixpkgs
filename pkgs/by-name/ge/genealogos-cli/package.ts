@@ -17,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const crate = nix.argOr($, "crate", () => "cli");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: nix.thunk(() => nix.str`genealogos-${crate}`),
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "tweag",
           repo: "genealogos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Nix sbom generator",
         homepage: "https://github.com/tweag/genealogos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +43,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "erin"))];
         })()),
         changelog: nix.thunk(() => nix.str`https://github.com/tweag/genealogos/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
-        mainProgram: nix.thunk(() => nix.sel({ __proto__: pos$2, api: "genealogos-api", cli: "genealogos" }, nix.key(nix.force(crate)))),
+        mainProgram: nix.thunk(() => nix.sel({ [nix.POS]: pos$2, api: "genealogos-api", cli: "genealogos" }, nix.key(nix.force(crate)))),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }));

@@ -76,7 +76,7 @@ export default nix.lambda((args) => (() => {
   const username = nix.thunk(() => nix.sel(config, "users", "users", "epgstation", "name"));
   const groupname = nix.thunk(() => nix.sel(config, "users", "users", "epgstation", "group"));
   const mirakurun = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     sock: nix.thunk(() => nix.sel(config, "services", "mirakurun", "unixSocket")),
     option: nix.thunk(() => nix.sel(options, "services", "mirakurun", "unixSocket")),
   }));
@@ -111,25 +111,25 @@ fi
 `)));
   const streamingConfig = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./streaming.json")));
   const logConfig = nix.thunk(() => nix.app(nix.sel(yaml, "generate"), "logConfig.yml", nix.thunk(() => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       appenders: nix.thunk(() => ({
-        __proto__: pos$3,
-        stdout: nix.thunk(() => ({ __proto__: pos$2, type: "stdout" })),
+        [nix.POS]: pos$3,
+        stdout: nix.thunk(() => ({ [nix.POS]: pos$2, type: "stdout" })),
       })),
       categories: nix.thunk(() => ({
-        __proto__: pos$8,
-        default: nix.thunk(() => ({ __proto__: pos$4, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
-        system: nix.thunk(() => ({ __proto__: pos$5, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
-        access: nix.thunk(() => ({ __proto__: pos$6, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
-        stream: nix.thunk(() => ({ __proto__: pos$7, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
+        [nix.POS]: pos$8,
+        default: nix.thunk(() => ({ [nix.POS]: pos$4, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
+        system: nix.thunk(() => ({ [nix.POS]: pos$5, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
+        access: nix.thunk(() => ({ [nix.POS]: pos$6, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
+        stream: nix.thunk(() => ({ [nix.POS]: pos$7, appenders: nix.thunk(() => ["stdout"]), level: "info" })),
       })),
     }))));
   const deprecateTopLevelOption = (config_1) => nix.app(nix.sel(lib, "mkRenamedOptionModule"), nix.thunk(() => nix.concat(["services", "epgstation"], config_1)), nix.thunk(() => nix.concat(["services", "epgstation", "settings"], config_1)));
   const removeOption = (config_1) => (instruction) => nix.app(nix.sel(lib, "mkRemovedOptionModule"), nix.thunk(() => nix.concat(["services", "epgstation"], config_1)), instruction);
   return {
-    __proto__: pos$60,
+    [nix.POS]: pos$60,
     meta: nix.thunk(() => ({
-      __proto__: pos$10,
+      [nix.POS]: pos$10,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "midchildan"))];
@@ -142,59 +142,59 @@ fi
       nix.thunk(() => nix.app(removeOption, nix.thunk(() => ["basicAuth"]), "Use a TLS-terminated reverse proxy with authentication instead.")),
     ]),
     options: nix.thunk(() => ({
-      __proto__: pos$31,
+      [nix.POS]: pos$31,
       services: nix.thunk(() => ({
-        __proto__: pos$30,
+        [nix.POS]: pos$30,
         epgstation: nix.thunk(() => ({
-          __proto__: pos$29,
+          [nix.POS]: pos$29,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), description)),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "epgstation", nix.thunk(() => ({})))),
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ffmpeg", nix.thunk(() => ({ __proto__: pos$11, default: "ffmpeg-headless", example: "ffmpeg-full" })))),
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "ffmpeg", nix.thunk(() => ({ [nix.POS]: pos$11, default: "ffmpeg-headless", example: "ffmpeg-full" })))),
           usePreconfiguredStreaming: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: true,
               description: "Use preconfigured default streaming options.\n\nUpstream defaults:\n<https://github.com/l3tnun/EPGStation/blob/master/config/config.yml.template>\n",
             })))),
           openFirewall: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Open ports in the firewall for the EPGStation web interface.\n\n::: {.warning}\nExposing EPGStation to the open internet is generally advised\nagainst. Only use it inside a trusted local network, or consider\nputting it behind a VPN if you want remote access.\n:::\n",
             })))),
           database: nix.thunk(() => ({
-            __proto__: pos$16,
+            [nix.POS]: pos$16,
             name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$14,
+                [nix.POS]: pos$14,
                 type: nix.thunk(() => nix.sel(lib, "types", "str")),
                 default: "epgstation",
                 description: "Name of the MySQL database that holds EPGStation's data.\n",
               })))),
             passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$15,
+                [nix.POS]: pos$15,
                 type: nix.thunk(() => nix.sel(lib, "types", "path")),
                 example: "/run/keys/epgstation-db-password",
                 description: "A file containing the password for the database named\n{option}`database.name`.\n",
               })))),
           })),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$28,
+              [nix.POS]: pos$28,
               description: "Options to add to config.yml.\n\nDocumentation:\n<https://github.com/l3tnun/EPGStation/blob/master/doc/conf-manual.md>\n",
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$17, recPriority: 20n, conflictPriority: 10n })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$17, recPriority: 20n, conflictPriority: 10n })),
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$27,
+                  [nix.POS]: pos$27,
                   freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                   options: nix.thunk(() => ({
-                    __proto__: pos$26,
+                    [nix.POS]: pos$26,
                     port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$18,
+                        [nix.POS]: pos$18,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: 20772n,
                         description: "HTTP port for EPGStation to listen on.\n",
                       })))),
                     socketioPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$19,
+                        [nix.POS]: pos$19,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: nix.thunk(() => nix.add(nix.sel(cfg, "settings", "port"), 1n)),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "settings")}.port + 1`))),
@@ -203,7 +203,7 @@ ports with {option}\`${nix.sel(opt, "settings")}.port\`.
 `),
                       })))),
                     clientSocketioPort: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$20,
+                        [nix.POS]: pos$20,
                         type: nix.thunk(() => nix.sel(lib, "types", "port")),
                         default: nix.thunk(() => nix.sel(cfg, "settings", "socketioPort")),
                         defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`config.${nix.sel(opt, "settings")}.socketioPort`))),
@@ -215,7 +215,7 @@ EPGStation is hidden behind a reverse proxy.
                     mirakurunPath: nix.thunk(() => (() => {
                       const w = nix.withScope(mirakurun, null);
                       return nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          __proto__: pos$21,
+                          [nix.POS]: pos$21,
                           type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           default: nix.thunk(() => nix.str`http+unix://${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["/"]), nix.thunk(() => ["%2F"]), nix.thunk(() => nix.lookup(w, "sock")))}`),
                           defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), nix.thunk(() => nix.str`"http+unix://\${lib.replaceStrings ["/"] ["%2F"] config.${nix.lookup(w, "option")}}"
@@ -225,19 +225,19 @@ EPGStation is hidden behind a reverse proxy.
                         })));
                     })()),
                     encodeProcessNum: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$22,
+                        [nix.POS]: pos$22,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                         default: 4n,
                         description: "The maximum number of processes that EPGStation would allow to run\nat the same time for encoding or streaming videos.\n",
                       })))),
                     concurrentEncodeNum: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$23,
+                        [nix.POS]: pos$23,
                         type: nix.thunk(() => nix.sel(lib, "types", "ints", "positive")),
                         default: 1n,
                         description: "The maximum number of encoding jobs that EPGStation would run at the\nsame time.\n",
                       })))),
                     encode: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        __proto__: pos$25,
+                        [nix.POS]: pos$25,
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                           return nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.lookup(w_1, "attrs")));
@@ -245,7 +245,7 @@ EPGStation is hidden behind a reverse proxy.
                         description: "Encoding presets for recorded videos.",
                         default: nix.thunk(() => [
                           nix.thunk(() => ({
-                            __proto__: pos$24,
+                            [nix.POS]: pos$24,
                             name: "H.264",
                             cmd: nix.thunk(() => nix.str`%NODE% ${nix.sel(cfg, "package")}/libexec/enc.js`),
                             suffix: ".mp4",
@@ -267,10 +267,10 @@ EPGStation is hidden behind a reverse proxy.
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$59,
+        [nix.POS]: pos$59,
         assertions: nix.thunk(() => [
           nix.thunk(() => ({
-            __proto__: pos$32,
+            [nix.POS]: pos$32,
             assertion: nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "readOnlyOnce", nix.thunk(() => nix.sel(cfg, "settings"))))),
             message: nix.thunk(() => nix.str`The option config.${nix.sel(opt, "settings")}.readOnlyOnce can no longer be used
 since it's been removed. No replacements are available.
@@ -278,18 +278,18 @@ since it's been removed. No replacements are available.
           })),
         ]),
         environment: nix.thunk(() => ({
-          __proto__: pos$37,
+          [nix.POS]: pos$37,
           etc: nix.thunk(() => ({
-            __proto__: pos$36,
-            "epgstation/epgUpdaterLogConfig.yml": nix.thunk(() => ({ __proto__: pos$33, source: logConfig })),
-            "epgstation/operatorLogConfig.yml": nix.thunk(() => ({ __proto__: pos$34, source: logConfig })),
-            "epgstation/serviceLogConfig.yml": nix.thunk(() => ({ __proto__: pos$35, source: logConfig })),
+            [nix.POS]: pos$36,
+            "epgstation/epgUpdaterLogConfig.yml": nix.thunk(() => ({ [nix.POS]: pos$33, source: logConfig })),
+            "epgstation/operatorLogConfig.yml": nix.thunk(() => ({ [nix.POS]: pos$34, source: logConfig })),
+            "epgstation/serviceLogConfig.yml": nix.thunk(() => ({ [nix.POS]: pos$35, source: logConfig })),
           })),
         })),
         networking: nix.thunk(() => ({
-          __proto__: pos$39,
+          [nix.POS]: pos$39,
           firewall: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "openFirewall")), nix.thunk(() => ({
-              __proto__: pos$38,
+              [nix.POS]: pos$38,
               allowedTCPPorts: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(cfg, "settings")), null);
                 return [
@@ -300,39 +300,39 @@ since it's been removed. No replacements are available.
             })))),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$43,
+          [nix.POS]: pos$43,
           users: nix.thunk(() => ({
-            __proto__: pos$41,
+            [nix.POS]: pos$41,
             epgstation: nix.thunk(() => ({
-              __proto__: pos$40,
+              [nix.POS]: pos$40,
               description: "EPGStation user",
               group: nix.thunk(() => nix.sel(config, "users", "groups", "epgstation", "name")),
               isSystemUser: true,
               home: "/var/cache/epgstation",
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$42, epgstation: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$42, epgstation: nix.thunk(() => ({})) })),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$49,
+          [nix.POS]: pos$49,
           mirakurun: nix.thunk(() => ({
-            __proto__: pos$44,
+            [nix.POS]: pos$44,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
           mysql: nix.thunk(() => ({
-            __proto__: pos$45,
+            [nix.POS]: pos$45,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(pkgs, "mariadb")))),
             ensureDatabases: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "database", "name"))]),
           })),
           epgstation: nix.thunk(() => ({
-            __proto__: pos$48,
+            [nix.POS]: pos$48,
             settings: nix.thunk(() => (() => {
               const defaultSettings = nix.thunk(() => ({
-                __proto__: pos$47,
+                [nix.POS]: pos$47,
                 dbtype: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "mysql")),
                 mysql: nix.thunk(() => ({
-                  __proto__: pos$46,
+                  [nix.POS]: pos$46,
                   socketPath: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "/run/mysqld/mysqld.sock")),
                   user: username,
                   password: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "@dbPassword@")),
@@ -350,14 +350,14 @@ since it's been removed. No replacements are available.
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$58,
+          [nix.POS]: pos$58,
           tmpfiles: nix.thunk(() => ({
-            __proto__: pos$53,
+            [nix.POS]: pos$53,
             settings: nix.thunk(() => ({
-              __proto__: pos$52,
+              [nix.POS]: pos$52,
               "10-epgstation": nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((dir) => nix.app(nix.sel(lib, "nameValuePair"), dir, nix.thunk(() => ({
-                      __proto__: pos$51,
-                      d: nix.thunk(() => ({ __proto__: pos$50, user: username, group: groupname })),
+                      [nix.POS]: pos$51,
+                      d: nix.thunk(() => ({ [nix.POS]: pos$50, user: username, group: groupname })),
                     }))), nix.thunk(() => [
                     "/var/lib/epgstation/key",
                     "/var/lib/epgstation/streamfiles",
@@ -372,15 +372,15 @@ since it's been removed. No replacements are available.
             })),
           })),
           services: nix.thunk(() => ({
-            __proto__: pos$57,
+            [nix.POS]: pos$57,
             epgstation: nix.thunk(() => ({
-              __proto__: pos$56,
+              [nix.POS]: pos$56,
               description: description,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => nix.concat(["network.target"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "mirakurun", "enable")), "mirakurun.service"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(config, "services", "mysql", "enable")), "mysql.service")))),
-              environment: nix.thunk(() => ({ __proto__: pos$54, NODE_ENV: "production" })),
+              environment: nix.thunk(() => ({ [nix.POS]: pos$54, NODE_ENV: "production" })),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$55,
+                [nix.POS]: pos$55,
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/epgstation start`),
                 ExecStartPre: nix.thunk(() => nix.str`+${preStartScript}`),
                 User: username,

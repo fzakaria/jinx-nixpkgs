@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           repo: "python-client",
           owner: "core-api",
           tag: version,
@@ -35,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [django, coreschema, itypes, uritemplate, requests, standard_cgi]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Python client library for Core API",
         homepage: "https://github.com/core-api/python-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

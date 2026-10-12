@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const buildEnv = nix.arg($, "buildEnv");
   const qtbase = nix.arg($, "qtbase");
   return (name) => (paths) => nix.app(buildEnv, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       name: name,
       paths: nix.thunk(() => nix.concat([qtbase], paths)),
       pathsToLink: nix.thunk(() => ["/bin", "/mkspecs", "/include", "/lib", "/share"]),

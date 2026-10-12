@@ -16,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "docker-compose",
       version: "5.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "docker",
           repo: "compose",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +40,11 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["relay"]),
       installPhase: "runHook preInstall\ninstall -D $GOPATH/bin/cmd $out/libexec/docker/cli-plugins/docker-compose\n\nmkdir -p $out/bin\nln -s $out/libexec/docker/cli-plugins/docker-compose $out/bin/docker-compose\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Docker CLI plugin to define and run multi-container applications with Docker",
         mainProgram: "docker-compose",
         homepage: "https://github.com/docker/compose",

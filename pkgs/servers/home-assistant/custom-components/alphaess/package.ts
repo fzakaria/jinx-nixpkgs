@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const domain = "alphaess";
       const version = "0.8.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "CharlesGillanders",
           repo: "homeassistant-alphaESS",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [alphaessopenapi]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Monitor your energy generation, storage, and usage data using the official API from Alpha ESS",
         homepage: "https://github.com/CharlesGillanders/homeassistant-alphaESS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "benediktbroich"))];
         })()),
       }));
-      return { __proto__: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

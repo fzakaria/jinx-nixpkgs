@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [dpkg, makeWrapper, autoPatchelfHook]);
       const buildInputs = nix.thunk(() => [perl]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103535//hll2375dwpdrv-${version}.i386.deb`),
           hash: "sha256-N5VCBZLFrfw29QjjzlSvQ12urvyaf7ez/RJ08UwqHdk=",
         }))));
@@ -71,7 +71,7 @@ ln -s \\
 runHook postInstall
 `));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "http://www.brother.com/",
         description: "Brother HLL2375DW printer driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -79,7 +79,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gador"))]),
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         nativeBuildInputs,

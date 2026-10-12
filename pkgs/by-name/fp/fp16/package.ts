@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "fp16",
       version: "0-unstable-2024-20-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Maratyszcza",
           repo: "FP16",
           rev: "98b0a46bce017382a6351a19577ec43a715b6835",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Header-only library for conversion to/from half-precision floating point formats",
         homepage: "https://github.com/Maratyszcza/FP16",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

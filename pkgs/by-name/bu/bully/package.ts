@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bully";
       const version = "1.4-00";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "kimocoder",
           repo: "bully",
           tag: version,
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
 install -Dm444 -t $out/share/doc/${pname} ../*.md
 `);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Retrieve WPA/WPA2 passphrase from a WPS enabled access point",
         homepage: "https://github.com/kimocoder/bully",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -42,7 +42,7 @@ install -Dm444 -t $out/share/doc/${pname} ../*.md
         mainProgram: "bully",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

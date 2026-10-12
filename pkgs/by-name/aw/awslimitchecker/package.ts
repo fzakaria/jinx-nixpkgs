@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "awslimitchecker",
       version: "12.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jantman",
           repo: "awslimitchecker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +47,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_2, "onetimepass")),
           nix.thunk(() => nix.lookup(w_2, "pyotp")),
           nix.thunk(() => nix.lookup(w_2, "mock")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "pytestCheckHook"), "override"), nix.thunk(() => ({ __proto__: pos$2, pytest: nix.thunk(() => nix.lookup(w_2, "pytest_7")) })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_2, "pytestCheckHook"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, pytest: nix.thunk(() => nix.lookup(w_2, "pytest_7")) })))),
           nix.thunk(() => nix.lookup(w_2, "testfixtures")),
         ];
       })()),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["awslimitchecker.checker"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Script and python package to check your AWS service limits and usage via boto3",
         homepage: "http://awslimitchecker.readthedocs.org",
         changelog: nix.thunk(() => nix.str`https://github.com/jantman/awslimitchecker/blob/${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

@@ -26,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "userdbd"));
   const highSystemUsers = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (user) => (nix.asBool((nix.asBool((nix.asBool(nix.sel(user, "enable")) && nix.asBool(nix.sel(user, "isSystemUser")))) && nix.asBool(nix.ge(nix.app(nix.sel(lib, "defaultTo"), 0n, nix.thunk(() => nix.sel(user, "uid"))), 1000n)))) && nix.asBool(!nix.eq(nix.sel(user, "uid"), 65534n))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(config, "users", "users"))))));
   return {
-    __proto__: pos$15,
+    [nix.POS]: pos$15,
     options: nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       services: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         userdbd: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "the systemd JSON user/group record lookup service\n")),
           enableSSHSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "exposing OpenSSH public keys defined in userdb. Be aware that this\nenables modifying public keys at runtime, either by users managed by\n{option}`services.homed`, or globally via drop-in files\n")),
           silenceHighSystemUsers: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               example: true,
@@ -47,9 +47,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$14,
+        [nix.POS]: pos$14,
         assertions: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             assertion: nix.thunk(() => (!nix.asBool(nix.sel(cfg, "enableSSHSupport")) || nix.asBool(nix.sel(config, "security", "enableWrappers")))),
             message: "OpenSSH userdb integration requires security wrappers.",
           })))),
@@ -74,19 +74,19 @@ Alternatively, to acknowledge and silence this warning, set
 \`services.userdbd.silenceHighSystemUsers\` to true.
 `))),
         systemd: nix.thunk(() => ({
-          __proto__: pos$8,
+          [nix.POS]: pos$8,
           additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-userdbd.socket", "systemd-userdbd.service"]),
           sockets: nix.thunk(() => ({
-            __proto__: pos$7,
-            "systemd-userdbd": nix.thunk(() => ({ __proto__: pos$6, wantedBy: nix.thunk(() => ["sockets.target"]) })),
+            [nix.POS]: pos$7,
+            "systemd-userdbd": nix.thunk(() => ({ [nix.POS]: pos$6, wantedBy: nix.thunk(() => ["sockets.target"]) })),
           })),
         })),
         security: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           wrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableSSHSupport")), nix.thunk(() => ({
-              __proto__: pos$10,
+              [nix.POS]: pos$10,
               userdbctl: nix.thunk(() => ({
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 owner: "root",
                 group: "root",
                 source: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "systemd", "package")), "userdbctl")),
@@ -94,9 +94,9 @@ Alternatively, to acknowledge and silence this warning, set
             })))),
         })),
         services: nix.thunk(() => ({
-          __proto__: pos$13,
+          [nix.POS]: pos$13,
           openssh: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableSSHSupport")), nix.thunk(() => ({
-              __proto__: pos$12,
+              [nix.POS]: pos$12,
               authorizedKeysCommand: "/run/wrappers/bin/userdbctl ssh-authorized-keys %u",
               authorizedKeysCommandUser: "root",
             })))),

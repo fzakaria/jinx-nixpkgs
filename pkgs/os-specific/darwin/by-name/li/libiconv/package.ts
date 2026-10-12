@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   return nix.app(mkAppleDerivation, (finalAttrs) => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       releaseName: "libiconv",
       outputs: nix.thunk(() => ["out", "dev"]),
       xcodeHash: "sha256-fg5N+TcpyRnAf2ZKFEL0iJRy+QGs++Jmt6M3SV3oyfU=",
@@ -50,7 +50,7 @@ cp ${nix.path(here, "./nixpkgs_test.c")} tests/libiconv/nixpkgs_test.c
       doInstallCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), hostPlatform)),
       installCheckPhase: "runHook preInstallCheck\nmeson test --no-rebuild --print-errorlogs --timeout-multiplier=0\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Iconv(3) implementation",
         license: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

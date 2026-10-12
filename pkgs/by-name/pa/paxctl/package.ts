@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const elf_header = nix.arg($, "elf-header");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "paxctl",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`https://pax.grsecurity.net/paxctl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0biw882fp1lmgs6kpxznp1v6758r7dg9x8iv5a06k0b82bcdsc53",
         })))),
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "sed -i Makefile \\\n  -e 's|--owner 0 --group 0||g' \\\n  -e '/CC:=gcc/d'\n",
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "MANDIR=share/man/man1"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Tool for controlling PaX flags on a per binary basis",
         mainProgram: "paxctl",
         homepage: "https://pax.grsecurity.net",

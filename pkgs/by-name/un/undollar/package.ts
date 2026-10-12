@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "undollar",
       version: "1.0.0-unstable-2018-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "xtyrrell",
           repo: "undollar",
           rev: "27e5f0f87ddc4c9b58fe02a68e83a601078ebb43",
@@ -34,7 +34,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Eat the dollar sign in the command you just pasted into your terminal",
         mainProgram: "$",
         homepage: "https://github.com/xtyrrell/undollar",

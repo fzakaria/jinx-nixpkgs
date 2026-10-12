@@ -26,28 +26,28 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_mock = nix.arg($, "pytest-mock");
   const lib_deps = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       name: "hyperscan-static-deps",
       paths: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(pkgs, "hyperscan", "override"), nix.thunk(() => ({ __proto__: pos$1, withStatic: true })))),
-        nix.thunk(() => nix.sel(nix.app(nix.sel(pcre, "overrideAttrs"), nix.thunk(() => ({ __proto__: pos$2, dontDisableStatic: 0n }))), "out")),
+        nix.thunk(() => nix.app(nix.sel(pkgs, "hyperscan", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withStatic: true })))),
+        nix.thunk(() => nix.sel(nix.app(nix.sel(pcre, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, dontDisableStatic: 0n }))), "out")),
       ]),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "hyperscan",
       version: "0.8.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           owner: "darvid",
           repo: "python-hyperscan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jIDUfl6ReWvypfWecM8hReux6YxzXSsLCFU3AO97xUY=",
         })))),
       env: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "toString"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "HS_SRC_ROOT", nix.thunk(() => nix.sel(pkgs, "hyperscan", "src", "outPath")))),
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "HS_BUILD_LIB_ROOT", nix.thunk(() => nix.str`${lib_deps}/lib`))),
@@ -59,7 +59,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_mock]),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "CPython extension for the Hyperscan regular expression matching library",
         homepage: "https://github.com/darvid/python-hyperscan",
         changelog: nix.thunk(() => nix.str`https://github.com/darvid/python-hyperscan/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

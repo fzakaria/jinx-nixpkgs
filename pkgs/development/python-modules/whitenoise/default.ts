@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "whitenoise",
       version: "6.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evansd",
           repo: "whitenoise",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,12 +32,12 @@ export default nix.lambda((args) => (() => {
         })))),
       __darwinAllowLocalNetworking: true,
       "build-system": nix.thunk(() => [setuptools]),
-      "optional-dependencies": nix.thunk(() => ({ __proto__: pos$2, brotli: nix.thunk(() => [brotli]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, brotli: nix.thunk(() => [brotli]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([django, pytestCheckHook, requests], nix.sel(finalAttrs, "passthru", "optional-dependencies", "brotli"))),
       disabledTests: nix.thunk(() => ["test_modified"]),
       pythonImportsCheck: nix.thunk(() => ["whitenoise"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Library to serve static file for WSGI applications",
         homepage: "https://whitenoise.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/evansd/whitenoise/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),

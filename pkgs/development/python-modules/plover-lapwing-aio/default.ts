@@ -19,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const plover_python_dictionary = nix.arg($, "plover-python-dictionary");
   const plover_stitching = nix.arg($, "plover-stitching");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "plover-lapwing-aio",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "aerickt",
           repo: "plover-lapwing-aio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["plover_lapwing"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Plover plugin to automatically install Lapwing dictionaries, dependent plugins, extra dictionaries, and fix the number key behaviour",
         homepage: "https://github.com/aerickt/plover-lapwing-aio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

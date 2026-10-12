@@ -25,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "aioboto3",
       version: "15.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "terricain",
           repo: "aioboto3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => nix.concat([aiobotocore, aiofiles], nix.sel(aiobotocore, "optional-dependencies", "boto3"))),
       "optional-dependencies": nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         chalice: nix.thunk(() => [chalice]),
         s3cse: nix.thunk(() => [cryptography]),
       })),
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]))),
       pythonImportsCheck: nix.thunk(() => ["aioboto3"]),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Wrapper to use boto3 resources with the aiobotocore async backend",
         homepage: "https://github.com/terricain/aioboto3",
         changelog: nix.thunk(() => nix.str`https://github.com/terricain/aioboto3/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

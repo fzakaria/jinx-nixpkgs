@@ -33,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const amazon_ssm_agent = nix.arg($, "amazon-ssm-agent");
   const fake_lsb_release = nix.thunk(() => nix.app(writeShellScriptBin, "lsb_release", ". /etc/os-release || true\n\ncase \"$1\" in\n  -i) echo \"${NAME:-unknown}\";;\n  -r) echo \"${VERSION:-unknown}\";;\nesac\n"));
   const binaries = nix.thunk(() => ({
-    __proto__: pos$1,
+    [nix.POS]: pos$1,
     core: "amazon-ssm-agent",
     agent: "ssm-agent-worker",
     "cli-main": "ssm-cli",
@@ -42,11 +42,11 @@ export default nix.lambda((args) => (() => {
     sessionworker: "ssm-session-worker",
   }));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       pname: "amazon-ssm-agent",
       version: "3.3.5226.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           owner: "aws",
           repo: "amazon-ssm-agent",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-Disable-NIC-tests-that-fail-in-the-Nix-sandbox.patch"),
         nix.path(here, "./0002-version-gen-don-t-use-unnecessary-constants.patch"),
         nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             src: nix.path(here, "./0001-makefile-don-t-use-tool-to-generate-version-file.patch"),
             substitutions: nix.thunk(() => ["--subst-var-by", "VERSION", nix.thunk(() => nix.sel(finalAttrs, "version"))]),
           })))),
@@ -117,12 +117,12 @@ runHook postInstall
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bashInteractive]))}"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         tests: nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           "amazon-ssm-agent": nix.thunk(() => nix.attr(nixosTests, "amazon-ssm-agent")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               package: amazon_ssm_agent,
               command: "amazon-ssm-agent --version",
             })))),
@@ -131,7 +131,7 @@ runHook postInstall
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         description: "Agent to enable remote management of your Amazon EC2 instance configuration",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/amazon-ssm-agent/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/aws/amazon-ssm-agent",

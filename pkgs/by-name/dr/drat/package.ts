@@ -14,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const argp_standalone = nix.arg($, "argp-standalone");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "drat",
       version: "0.1.3-unstable-2024-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jivanpal",
           repo: "drat",
           rev: "af573b9e067e8b6cbcc4825946e7e636b30c748f",
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall drat $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Utility for performing data recovery and analysis of APFS partitions/containers",
         homepage: "https://github.com/jivanpal/drat",
         changelog: "https://github.com/jivanpal/drat/blob/main/CHANGELOG.md",

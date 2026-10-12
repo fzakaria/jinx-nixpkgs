@@ -28,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const pname = "keymapp";
   const version = "1.3.7";
   const sources = nix.thunk(() => ({
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     "aarch64-darwin": nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       url: nix.thunk(() => nix.str`https://oryx.nyc3.cdn.digitaloceanspaces.com/keymapp/keymapp-${version}.dmg`),
       hash: "sha256-H6xRau7pWuSF5Aa6lblwi/Lg5KxC+HM3rtUMjX+hEE8=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       url: nix.thunk(() => nix.str`https://oryx.nyc3.cdn.digitaloceanspaces.com/keymapp/keymapp-${version}.tar.gz`),
       hash: "sha256-qHvHCDzWRhuhDg2kuU8kmikQDXElQtVEmPAelHz4aPo=",
     })),
@@ -43,13 +43,13 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
       return {
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
     })())));
   const meta = nix.thunk(() => ({
-    __proto__: pos$5,
+    [nix.POS]: pos$5,
     homepage: "https://www.zsa.io/flash/",
     description: "Application for ZSA keyboards",
     maintainers: nix.thunk(() => (() => {
@@ -65,14 +65,14 @@ export default nix.lambda((args) => (() => {
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       undmg: undmg,
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: pname,
       version: version,
       src: src,

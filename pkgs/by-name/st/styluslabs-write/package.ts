@@ -21,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const roboto = nix.arg($, "roboto");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "styluslabs-write",
       version: "2024-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "styluslabs",
           repo: "Write",
           rev: "b13572e2dd6a87af35cd3edde92c9144a6dd8a2b",
@@ -62,7 +62,7 @@ substituteInPlace $out/share/applications/Write.desktop \\
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://styluslabs.com/",
         description: "Cross-platform (Windows, Mac, Linux, iOS, Android) application for handwritten notes",
         license: nix.thunk(() => (() => {

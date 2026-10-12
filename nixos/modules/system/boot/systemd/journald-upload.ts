@@ -35,36 +35,36 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "journald", "upload"));
   const format = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "systemd"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$23,
-    meta: nix.thunk(() => ({ __proto__: pos$1, maintainers: [] })),
+    [nix.POS]: pos$23,
+    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
     options: nix.thunk(() => ({
-      __proto__: pos$14,
+      [nix.POS]: pos$14,
       services: nix.thunk(() => ({
-        __proto__: pos$13,
+        [nix.POS]: pos$13,
         journald: nix.thunk(() => ({
-          __proto__: pos$12,
+          [nix.POS]: pos$12,
           upload: nix.thunk(() => ({
-            __proto__: pos$11,
+            [nix.POS]: pos$11,
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "uploading the systemd journal to a remote server")),
             settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                __proto__: pos$10,
+                [nix.POS]: pos$10,
                 default: nix.thunk(() => ({})),
                 description: "Configuration for journal-upload. See {manpage}`journal-upload.conf(5)`\nfor available options.\n",
                 type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    __proto__: pos$9,
+                    [nix.POS]: pos$9,
                     freeformType: nix.thunk(() => nix.sel(format, "type")),
                     options: nix.thunk(() => ({
-                      __proto__: pos$8,
+                      [nix.POS]: pos$8,
                       Upload: nix.thunk(() => ({
-                        __proto__: pos$7,
+                        [nix.POS]: pos$7,
                         URL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$2,
+                            [nix.POS]: pos$2,
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             example: "https://192.168.1.1",
                             description: "The URL to upload the journal entries to.\n\nSee the description of `--url=` option in\n{manpage}`systemd-journal-upload(8)` for the description of\npossible values.\n",
                           })))),
                         ServerKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$3,
+                            [nix.POS]: pos$3,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -74,7 +74,7 @@ export default nix.lambda((args) => (() => {
                             default: null,
                           })))),
                         ServerCertificateFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$4,
+                            [nix.POS]: pos$4,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -84,7 +84,7 @@ export default nix.lambda((args) => (() => {
                             default: null,
                           })))),
                         TrustedCertificateFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$5,
+                            [nix.POS]: pos$5,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -94,7 +94,7 @@ export default nix.lambda((args) => (() => {
                             default: null,
                           })))),
                         NetworkTimeoutSec: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            __proto__: pos$6,
+                            [nix.POS]: pos$6,
                             type: nix.thunk(() => (() => {
                               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                               return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.lookup(w, "str")));
@@ -112,25 +112,25 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$22,
+        [nix.POS]: pos$22,
         systemd: nix.thunk(() => ({
-          __proto__: pos$18,
+          [nix.POS]: pos$18,
           additionalUpstreamSystemUnits: nix.thunk(() => ["systemd-journal-upload.service"]),
           services: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             "systemd-journal-upload": nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
-              serviceConfig: nix.thunk(() => ({ __proto__: pos$15, Restart: "always", RestartSec: "3sec" })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Restart: "always", RestartSec: "3sec" })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          __proto__: pos$21,
+          [nix.POS]: pos$21,
           etc: nix.thunk(() => ({
-            __proto__: pos$20,
+            [nix.POS]: pos$20,
             "systemd/journal-upload.conf": nix.thunk(() => ({
-              __proto__: pos$19,
+              [nix.POS]: pos$19,
               source: nix.thunk(() => nix.app(nix.sel(format, "generate"), "journal-upload.conf", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),

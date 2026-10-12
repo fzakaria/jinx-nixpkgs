@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const enableJPGCodec = nix.argOr($, "enableJPGCodec", () => true);
   const enableOpenGL = nix.argOr($, "enableOpenGL", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "jasper",
       version: "4.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "jasper-software",
           repo: "jasper",
           rev: nix.thunk(() => nix.str`version-${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +48,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "cmakeFlagsArray+=(-DJAS_STDC_VERSION=\"$(echo __STDC_VERSION__ | $CXX -E -P -)\")\n")),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://jasper-software.github.io/jasper/",
         description: "Image processing/coding toolkit",
         longDescription: "JasPer is a software toolkit for the handling of image data. The software\nprovides a means for representing images, and facilitates the manipulation\nof image data, as well as the import/export of such data in numerous\nformats (e.g., JPEG-2000 JP2, JPEG, PNM, BMP, Sun Rasterfile, and\nPGX). The import functionality supports the auto-detection (i.e.,\nautomatic determination) of the image format, eliminating the need to\nexplicitly identify the format of coded input data. A simple color\nmanagement engine is also provided in order to allow the accurate\nrepresentation of color. Partial support is included for the ICC color\nprofile file format, an industry standard for specifying color.\n\nThe JasPer software consists of a library and several application\nprograms. The code is written in the C programming language. This language\nwas chosen primarily due to the availability of C development environments\nfor most computing platforms when JasPer was first developed, circa 1999.\n",

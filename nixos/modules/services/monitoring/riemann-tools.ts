@@ -32,27 +32,27 @@ export default nix.lambda((args) => (() => {
 exec ${nix.sel(pkgs, "riemann-tools")}/bin/riemann-health ${nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.sel(cfg, "extraArgs")))} --host ${riemannHost}
 `)));
   return {
-    __proto__: pos$17,
+    [nix.POS]: pos$17,
     options: nix.thunk(() => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       services: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         "riemann-tools": nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           enableHealth: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$1,
+              [nix.POS]: pos$1,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
               description: "Enable the riemann-health daemon.\n",
             })))),
           riemannHost: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$2,
+              [nix.POS]: pos$2,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "127.0.0.1",
               description: "Address of the host riemann node. Defaults to localhost.\n",
             })))),
           extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
               default: [],
               description: "A list of commandline-switches forwarded to a riemann-tool.\nSee for example `riemann-health --help` for available options.\n",
@@ -62,20 +62,20 @@ exec ${nix.sel(pkgs, "riemann-tools")}/bin/riemann-health ${nix.builtins.concatS
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enableHealth")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         users: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           groups: nix.thunk(() => ({
-            __proto__: pos$8,
+            [nix.POS]: pos$8,
             riemanntools: nix.thunk(() => ({
-              __proto__: pos$7,
+              [nix.POS]: pos$7,
               gid: nix.thunk(() => nix.sel(config, "ids", "gids", "riemanntools")),
             })),
           })),
           users: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             riemanntools: nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               description: "riemann-tools daemon user",
               uid: nix.thunk(() => nix.sel(config, "ids", "uids", "riemanntools")),
               group: "riemanntools",
@@ -83,15 +83,15 @@ exec ${nix.sel(pkgs, "riemann-tools")}/bin/riemann-health ${nix.builtins.concatS
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             "riemann-health": nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "procps"))]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 User: "riemanntools",
                 ExecStart: nix.thunk(() => nix.str`${healthLauncher}/bin/riemann-health`),
               })),

@@ -20,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "hebi-py",
       version: "2.7.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: "hebi-py",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-7B0oxG1CVDTUVDFTJpuYvaCj+HnCL/2zmsD33W4nTLs=",
@@ -40,11 +40,11 @@ done
 `),
       pythonImportsCheck: nix.thunk(() => ["hebi"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python library for the Hebi Robotics API",
         homepage: "https://docs.hebi.us/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

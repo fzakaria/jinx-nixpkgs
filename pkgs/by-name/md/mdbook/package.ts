@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pname = "mdbook";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rust-lang",
           repo: "mdBook",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -32,9 +32,9 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-OmlcPZuQ1RbyFrF5tuztucgtCA544UHJxEaXh/mfSHQ=";
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd mdbook \\\n  --bash <($out/bin/mdbook completions bash) \\\n  --fish <($out/bin/mdbook completions fish) \\\n  --zsh  <($out/bin/mdbook completions zsh )\n"));
-      const passthru = nix.thunk(() => ({ __proto__: pos$3, tests: nix.thunk(() => ({ __proto__: pos$2, nix: nix$ })) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, nix: nix$ })) }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         description: "Create books from MarkDown",
         mainProgram: "mdbook",
         homepage: "https://github.com/rust-lang/mdBook",
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         version: version_1,
         pname,
         src,

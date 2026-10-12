@@ -24,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "amdgpu_top",
       version: "0.11.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "Umio-Yasuno",
           repo: "amdgpu_top",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +50,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`patchelf --set-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}" $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Tool to display AMDGPU usage",
         homepage: "https://github.com/Umio-Yasuno/amdgpu_top",
         changelog: "https://github.com/Umio-Yasuno/amdgpu_top/releases",

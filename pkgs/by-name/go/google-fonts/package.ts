@@ -14,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fonts = nix.argOr($, "fonts", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "google-fonts",
       version: "0-unstable-2026-03-13",
       outputs: nix.thunk(() => ["out", "adobeBlank"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "google",
           repo: "fonts",
           rev: "5174b3333331c966c38f4355d50b03ca1c1df2f9",
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
       fonts: nix.thunk(() => nix.builtins.map((font) => nix.builtins.replaceStrings(nix.thunk(() => [" "]), nix.thunk(() => [""]), font), fonts)),
       installPhase: nix.thunk(() => nix.add("adobeBlankDest=$adobeBlank/share/fonts/truetype\ninstall -m 444 -Dt $adobeBlankDest ofl/adobeblank/AdobeBlank-Regular.ttf\nrm -r ofl/adobeblank\ndest=$out/share/fonts/truetype\n", (nix.asBool(nix.eq(fonts, [])) ? "find . -name '*.ttf' -exec install -m 444 -Dt $dest '{}' +\n" : "for font in $fonts; do\n  find . \\( -name \"$font-*.ttf\" -o -name \"$font[*.ttf\" -o -name \"$font.ttf\" \\) -exec install -m 444 -Dt $dest '{}' +\ndone\n"))),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         homepage: "https://fonts.google.com",
         description: "Font files available from Google Fonts",
         license: nix.thunk(() => (() => {

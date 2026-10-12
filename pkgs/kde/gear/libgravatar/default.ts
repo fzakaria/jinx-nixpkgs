@@ -10,7 +10,7 @@ export default nix.lambda((args) => (() => {
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const pimcommon = nix.arg($, "pimcommon");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "libgravatar",
       extraBuildInputs: nix.thunk(() => [pimcommon]),
     })));

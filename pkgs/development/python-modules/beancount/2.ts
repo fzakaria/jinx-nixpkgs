@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "beancount";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           pname: pname,
           version: version,
           hash: "sha256-gB+Tvta1fS4iQ2aIxInVob8fduIQ887RhoB1fmDTR1o=",
@@ -52,9 +52,9 @@ export default nix.lambda((args) => (() => {
         requests,
         pytest,
       ]);
-      const passthru = nix.thunk(() => ({ __proto__: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         homepage: "https://github.com/beancount/beancount",
         description: "Double-entry bookkeeping computer language",
         longDescription: "A double-entry bookkeeping computer language that lets you define\nfinancial transaction records in a text file, read them in memory,\ngenerate a variety of reports from them, and provides a web interface.\n",
@@ -68,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         version,
         format,
         pname,

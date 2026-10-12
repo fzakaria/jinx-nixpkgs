@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "swim";
       const version = "0.20.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "spade-lang",
           repo: "swim",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +39,11 @@ export default nix.lambda((args) => (() => {
         "--skip=plugin::test::deny_changes_to_plugins::restores_work",
       ]);
       const passthru = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.attr(spade, "updateScript")),
       }));
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Build tool for spade",
         homepage: "https://codeberg.com/spade-lang/swim",
         changelog: "https://codeberg.org/spade-lang/swim/src/branch/main/CHANGELOG.md",
@@ -55,7 +55,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "swim",
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         src,

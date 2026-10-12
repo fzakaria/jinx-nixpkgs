@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.24";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "ispysoftware",
           repo: "agent-py",
           tag: nix.thunk(() => nix.str`agent-py.${version}`),
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            __proto__: pos$2,
+            [nix.POS]: pos$2,
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/ispysoftware/agent-py/commit/2d7bcf46dce9bc733ce243858f0e91ced512c72d.patch",
             hash: "sha256-G/C/e/F+xtUH+2a7mNhhKONqVjYvLHt5/I75WGafl0w=",
@@ -42,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["agent"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Python wrapper around the Agent REST API",
         homepage: "https://github.com/ispysoftware/agent-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -52,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         pname,
         version,
         pyproject,

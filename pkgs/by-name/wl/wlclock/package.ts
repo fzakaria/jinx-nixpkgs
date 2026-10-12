@@ -22,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "wlclock",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "~leon_plickat",
           repo: "wlclock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, cmake, pkg_config, scdoc, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland_protocols, wayland, cairo]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Digital analog clock for Wayland desktops",
         homepage: "https://git.sr.ht/~leon_plickat/wlclock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

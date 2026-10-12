@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "microsoft",
           repo: "sarif-tools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_version"]);
       const pythonImportsCheck = nix.thunk(() => ["sarif"]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Set of command line tools and Python library for working with SARIF files",
         homepage: "https://github.com/microsoft/sarif-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/sarif-tools/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sarif",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         pyproject,

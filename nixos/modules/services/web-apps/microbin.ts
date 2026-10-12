@@ -29,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "services", "microbin"));
   return {
-    __proto__: pos$18,
+    [nix.POS]: pos$18,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         microbin: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "MicroBin is a super tiny, feature rich, configurable paste bin web application")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "microbin", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                  __proto__: pos$1,
+                  [nix.POS]: pos$1,
                   freeformType: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                     return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "oneOf"), nix.thunk(() => [
@@ -52,17 +52,17 @@ export default nix.lambda((args) => (() => {
                   })()),
                 })))),
               default: nix.thunk(() => ({})),
-              example: nix.thunk(() => ({ __proto__: pos$2, MICROBIN_PORT: 8080n, MICROBIN_HIDE_LOGO: false })),
+              example: nix.thunk(() => ({ [nix.POS]: pos$2, MICROBIN_PORT: 8080n, MICROBIN_HIDE_LOGO: false })),
               description: "Additional configuration for MicroBin, see\n<https://microbin.eu/docs/installation-and-configuration/configuration/>\nfor supported values.\n\nFor secrets use passwordFile option instead.\n",
             })))),
           dataDir: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               default: "/var/lib/microbin",
               description: "Default data folder for MicroBin.",
             })))),
           passwordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/microbin.env",
@@ -72,15 +72,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$16,
+        [nix.POS]: pos$16,
         services: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           microbin: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             settings: nix.thunk(() => (() => {
               const w = nix.withScope(lib, null);
               return {
-                __proto__: pos$9,
+                [nix.POS]: pos$9,
                 MICROBIN_BIND: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "0.0.0.0")),
                 MICROBIN_DISABLE_TELEMETRY: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 MICROBIN_LIST_SERVER: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
@@ -90,16 +90,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             microbin: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               after: nix.thunk(() => ["network.target"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), v)) ? nix.app(nix.sel(lib, "boolToString"), v) : nix.builtins.toString(v)), nix.thunk(() => nix.sel(cfg, "settings")))),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 DevicePolicy: "closed",
                 DynamicUser: true,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(cfg, "passwordFile"), null)), nix.thunk(() => nix.sel(cfg, "passwordFile")))),
@@ -129,7 +129,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     meta: nix.thunk(() => ({
-      __proto__: pos$17,
+      [nix.POS]: pos$17,
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "surfaceflinger"))];

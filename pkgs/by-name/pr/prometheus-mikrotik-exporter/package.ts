@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mikrotik-exporter-unstable";
       const version = "2021-08-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "nshttpd",
           repo: "mikrotik-exporter",
           rev: "4bfa7adfef500ff621a677adfab1f7010af920d1",
@@ -29,16 +29,16 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-rRIQo+367nHdtgfisBka0Yn6f4P75Mm3Ead4CscnRCw=";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { __proto__: pos$2, mikrotik: nix.thunk(() => nix.attr(from, "mikrotik")) };
+          return { [nix.POS]: pos$2, mikrotik: nix.thunk(() => nix.attr(from, "mikrotik")) };
         })()),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Prometheus MikroTik device(s) exporter",
@@ -50,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       };
       })());
-      return { __proto__: pos$5, pname, version, src, vendorHash, doCheck, passthru, meta };
+      return { [nix.POS]: pos$5, pname, version, src, vendorHash, doCheck, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

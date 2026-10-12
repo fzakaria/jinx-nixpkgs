@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const elpaBuild = nix.arg($, "elpaBuild");
   const mu = nix.arg($, "mu");
   return nix.app(elpaBuild, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       pname: "mu4e",
       version: nix.thunk(() => nix.sel(mu, "mu4e", "version")),
       src: nix.thunk(() => nix.sel(mu, "mu4e")),
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: false,
       postBuild: "local content_directory=$pname-$version\nmkdir $content_directory\ncp --verbose share/emacs/site-lisp/mu4e/*.el $content_directory/\nrm --verbose --force $content_directory/mu4e-autoloads.el\ncp --verbose share/info/* $content_directory/\nsrc=$PWD/$content_directory.tar\ntar --create --verbose --file=$src $content_directory\n",
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(mu, "meta")), nix.thunk(() => ["mainProgram"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "Full-featured e-mail client",
         maintainers: nix.thunk(() => nix.concat(nix.sel(mu, "meta", "maintainers"), (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

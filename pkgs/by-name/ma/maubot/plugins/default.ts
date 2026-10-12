@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
     const pname = nix.arg($_1, "pname");
     const base_config = nix.argOr($_1, "base_config", () => null);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["base_config"])), {
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         pluginName: nix.thunk(() => nix.str`${pname}-v${version}.mbp`),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [ensureNewerSourcesForZipFilesHook, maubot])),
         buildPhase: "runHook preBuild\n\nmbc build\n\nrunHook postBuild\n",
@@ -40,7 +40,7 @@ cp "${(nix.asBool((nix.asBool(nix.builtins.isPath(base_config)) || nix.asBool(ni
       })));
   })(), formals$2);
   const generated = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generated.nix")), nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       lib: lib,
       fetchgit: fetchgit,
       fetchFromGitHub: fetchFromGitHub,
@@ -51,7 +51,7 @@ cp "${(nix.asBool((nix.asBool(nix.builtins.isPath(base_config)) || nix.asBool(ni
       buildMaubotPlugin: buildMaubotPlugin,
     }))));
   return nix.update(generated, {
-    __proto__: pos$3,
+    [nix.POS]: pos$3,
     buildMaubotPlugin: buildMaubotPlugin,
     allOfficialPlugins: nix.thunk(() => nix.builtins.filter((x) => (nix.asBool(nix.sel(x, "isOfficial")) && nix.asBool(!nix.asBool(nix.sel(x, "meta", "broken")))), nix.thunk(() => nix.builtins.attrValues(generated)))),
     allPlugins: nix.thunk(() => nix.builtins.filter((x) => !nix.asBool(nix.sel(x, "meta", "broken")), nix.thunk(() => nix.builtins.attrValues(generated)))),

@@ -16,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       pname: "rustscan",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "bee-san",
           repo: "RustScan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +39,7 @@ patchShebangs fixtures/.rustscan_scripts/*
         "--skip=resolver_default_cloudflare",
       ]),
       meta: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Faster Nmap Scanning with Rust",
         homepage: "https://github.com/bee-san/RustScan",
         changelog: nix.thunk(() => nix.str`https://github.com/bee-san/RustScan/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -10,13 +10,13 @@ export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       redistName: "cuda",
       pname: "nvidia_fs",
       outputs: nix.thunk(() => ["out"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$1,
+        [nix.POS]: pos$1,
         description: "GPUDirect Storage kernel driver to read/write data from supported storage using cufile APIs",
         longDescription: "GPUDirect Storage kernel driver nvidia-fs.ko is a kernel module to orchestrate IO directly from DMA/RDMA\ncapable storage to user allocated GPU memory on NVIDIA Graphics cards.\n",
         homepage: "https://github.com/NVIDIA/gds-nvidia-fs",

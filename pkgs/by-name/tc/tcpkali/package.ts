@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tcpkali";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "machinezone",
           repo: "tcpkali",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -31,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "High performance TCP and WebSocket load generator and sink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version: version_1,
         src,

@@ -16,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "martian-mono",
       version: "1.1.0",
       outputs: nix.thunk(() => ["out", "webfont"]),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "evilmartians",
           repo: "mono",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qm1Ljz344BTesQXIjKwuE4XwXwskZQlNkCgaVyst54o=",
         })))),
-      env: nix.thunk(() => ({ __proto__: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(python3Packages, "gftools")),
         nix.thunk(() => nix.sel(python3Packages, "fontmake")),
@@ -39,7 +39,7 @@ export default nix.lambda((args) => (() => {
       dontUseNinjaBuild: true,
       dontUseNinjaInstall: true,
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Free and open-source monospaced font from Evil Martians",
         homepage: "https://github.com/evilmartians/mono",
         changelog: nix.thunk(() => nix.str`https://github.com/evilmartians/mono/raw/${nix.sel(finalAttrs, "src", "tag")}/Changelog.md`),

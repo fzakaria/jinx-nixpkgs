@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const async$ = nix.arg($, "async");
   const core = nix.arg($, "core");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       pname: "cstruct-async",
       src: nix.thunk(() => nix.attr(cstruct, "src")),
       version: nix.thunk(() => nix.attr(cstruct, "version")),

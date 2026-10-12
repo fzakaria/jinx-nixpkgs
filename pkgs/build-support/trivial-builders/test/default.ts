@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const recurseIntoAttrs = nix.thunk(() => nix.attr(lib, "recurseIntoAttrs"));
   const references = nix.thunk(() => nix.app(callPackage, nix.path(here, "./references"), nix.thunk(() => ({}))));
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      __proto__: pos$3,
+      [nix.POS]: pos$3,
       concat: nix.thunk(() => nix.app(callPackage, nix.path(here, "./concat-test.nix"), nix.thunk(() => ({})))),
       linkFarm: nix.thunk(() => nix.app(callPackage, nix.path(here, "./link-farm.nix"), nix.thunk(() => ({})))),
       symlinkJoin: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./symlink-join.nix"), nix.thunk(() => ({})))))),
@@ -24,12 +24,12 @@ export default nix.lambda((args) => (() => {
       requireFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./requireFile.nix"), nix.thunk(() => ({})))),
       runCommand: nix.thunk(() => nix.app(callPackage, nix.path(here, "./runCommand.nix"), nix.thunk(() => ({})))),
       writeCBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeCBin.nix"), nix.thunk(() => ({})))),
-      "writeClosure-union": nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeClosure-union.nix"), nix.thunk(() => ({ __proto__: pos$1, samples: nix.thunk(() => nix.attr(references, "samples")) })))),
+      "writeClosure-union": nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeClosure-union.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, samples: nix.thunk(() => nix.attr(references, "samples")) })))),
       writeShellApplication: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeShellApplication.nix"), nix.thunk(() => ({})))),
       writeScriptBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeScriptBin.nix"), nix.thunk(() => ({})))),
       writeShellScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./write-shell-script.nix"), nix.thunk(() => ({})))),
       writeShellScriptBin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeShellScriptBin.nix"), nix.thunk(() => ({})))),
-      writeStringReferencesToFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeStringReferencesToFile.nix"), nix.thunk(() => ({ __proto__: pos$2, samples: nix.thunk(() => nix.attr(references, "samples")) })))),
+      writeStringReferencesToFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./writeStringReferencesToFile.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, samples: nix.thunk(() => nix.attr(references, "samples")) })))),
       writeTextFile: nix.thunk(() => nix.app(callPackage, nix.path(here, "./write-text-file.nix"), nix.thunk(() => ({})))),
     })));
 })(), formals$1);

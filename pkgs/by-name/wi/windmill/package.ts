@@ -41,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const librusty_v8 = nix.argOr($, "librusty_v8", () => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchers.nix"), nix.thunk(() => ({}))));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fetchLibrustyV8: nix.thunk(() => nix.attr(from, "fetchLibrustyV8")),
     };
     })())));
@@ -64,20 +64,20 @@ export default nix.lambda((args) => (() => {
   const pname = "windmill";
   const version = "1.601.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       owner: "windmill-labs",
       repo: "windmill",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3Djrk8gHW3NjNzSy4A38LmTfl18LKDKgFeNMBPKlhfM=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: pname,
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/backend`),
       env: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         SQLX_OFFLINE: "true",
         FRONTEND_BUILD_DIR: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "passthru", "web-ui")}/share/windmill-frontend`),
         RUSTY_V8_ARCHIVE: librusty_v8,
@@ -162,15 +162,15 @@ export default nix.lambda((args) => (() => {
   --set CARGO_PATH "${cargo}/bin/cargo"
 `),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         "web-ui": nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            __proto__: pos$5,
+            [nix.POS]: pos$5,
             version: version,
             src: src,
             pname: "windmill-ui",
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
             npmDepsHash: "sha256-eVN7q8hRH7NYjZiE5dLRMUKlyrtnAPGPdYV6/S4Sc+4=",
-            env: nix.thunk(() => ({ __proto__: pos$4, NODE_OPTIONS: "--max-old-space-size=8192" })),
+            env: nix.thunk(() => ({ [nix.POS]: pos$4, NODE_OPTIONS: "--max-old-space-size=8192" })),
             postUnpack: nix.thunk(() => nix.str`cp ${src}/openflow.openapi.yaml .
 `),
             npmFlags: nix.thunk(() => ["--ignore-scripts"]),
@@ -185,14 +185,14 @@ ln -s ${ui_builder} $out/share/windmill-frontend/static/ui_builder
 `),
           })))),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ __proto__: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "web-ui"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "web-ui"]) })))),
             nix.path(here, "./update-librusty.sh"),
             nix.path(here, "./update-ui_builder.sh"),
           ]))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(nixosTests, "windmill")))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         changelog: nix.thunk(() => nix.str`https://github.com/windmill-labs/windmill/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Open-source developer platform to turn scripts into workflows and UIs",
         homepage: "https://windmill.dev",

@@ -16,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      __proto__: pos$4,
+      [nix.POS]: pos$4,
       pname: "video-cutter",
       version: "0-unstable-2023-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "rushmj",
           repo: "mpv-video-cutter",
           rev: "01a0396c075d5f8bbd1de5b571e6231f8899ab65",
           sha256: "sha256-veoRFzUCRH8TrvR7x+WWoycpDyxqrJZ/bnp61dVc0pE=",
         })))),
       passthru: nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         scriptName: "cutter.lua",
       })),
@@ -44,7 +44,7 @@ substituteInPlace cutter.lua \\
       extraScriptsToCopy: nix.thunk(() => ["c_concat.sh"]),
       postInstall: "wrapProgram $out/share/mpv/scripts/c_concat.sh \\\n  --run \"mkdir -p ~/.config/mpv/cutter/\"\n",
       meta: nix.thunk(() => ({
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         description: "Cut videos and concat them automatically",
         homepage: "https://github.com/rushmj/mpv-video-cutter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -30,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const librusty_v8 = nix.argOr($, "librusty_v8", () => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchers.nix"), nix.thunk(() => ({}))));
       return {
-      __proto__: pos$1,
+      [nix.POS]: pos$1,
       fetchLibrustyV8: nix.thunk(() => nix.attr(from, "fetchLibrustyV8")),
     };
     })())));
   const librusty_v8_src_binding = nix.argOr($, "librusty_v8_src_binding", () => nix.app(callPackage, nix.path(here, "./librusty_v8_src_binding.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchers.nix"), nix.thunk(() => ({}))));
       return {
-      __proto__: pos$2,
+      [nix.POS]: pos$2,
       fetchLibrustyV8SrcBinding: nix.thunk(() => nix.attr(from, "fetchLibrustyV8SrcBinding")),
     };
     })())));
@@ -51,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const installShellCompletions = nix.argOr($, "installShellCompletions", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      __proto__: pos$9,
+      [nix.POS]: pos$9,
       pname: "codex",
       version: "0.162.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$3,
+          [nix.POS]: pos$3,
           owner: "openai",
           repo: "codex",
           tag: nix.thunk(() => nix.str`rust-v${nix.sel(finalAttrs, "version")}`),
@@ -71,13 +71,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [clang, cmake, gitMinimal, installShellFiles, makeBinaryWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libclang, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libcap])))),
       env: nix.thunk(() => nix.update({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libclang)}/lib`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=stringop-overflow"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=character-conversion"])))))),
         RUSTY_V8_ARCHIVE: librusty_v8,
         RUSTY_V8_SRC_BINDING_PATH: librusty_v8_src_binding,
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          __proto__: pos$5,
+          [nix.POS]: pos$5,
           NIX_CFLAGS_LINK: nix.thunk(() => nix.str`-fuse-ld=${nix.app(nix.sel(lib, "getExe'"), lld, "ld64.lld")}`),
         }))))),
       doCheck: false,
@@ -87,17 +87,17 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                __proto__: pos$6,
+                [nix.POS]: pos$6,
                 extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex", "^rust-v(\\d+\\.\\d+\\.\\d+)$"]),
               })))),
             nix.path(here, "./update-librusty.sh"),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$8,
+        [nix.POS]: pos$8,
         description: "Lightweight coding agent that runs in your terminal",
         homepage: "https://github.com/openai/codex",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/openai/codex/refs/tags/rust-v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

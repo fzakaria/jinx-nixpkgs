@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "keylight-controller-mschneider82";
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "mschneider82",
           repo: "keylight-control",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +49,7 @@ export default nix.lambda((args) => (() => {
         xinput,
       ]);
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Desktop application to control Elgato Keylights",
         longDescription: "Requires having:\n* Elgato's Keylight paired to local wifi network.\n* Service avahi with nssmdns4 enabled.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -58,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "keylight-control",
       }));
       return {
-        __proto__: pos$3,
+        [nix.POS]: pos$3,
         pname,
         version,
         src,

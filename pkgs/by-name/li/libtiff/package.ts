@@ -36,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const openimageio = nix.arg($, "openimageio");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$7,
+      [nix.POS]: pos$7,
       pname: "libtiff",
       version: "4.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           owner: "libtiff",
           repo: "libtiff",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,16 +57,16 @@ export default nix.lambda((args) => (() => {
         zstd,
         libdeflate,
         xz,
-        nix.thunk(() => nix.app(nix.sel(libwebp, "override"), nix.thunk(() => ({ __proto__: pos$2, tiffSupport: false })))),
+        nix.thunk(() => nix.app(nix.sel(libwebp, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, tiffSupport: false })))),
       ], nix.app(nix.sel(lib, "optionals"), withLerc, nix.thunk(() => [lerc])))),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON"]),
       enableParallelBuilding: true,
       doCheck: true,
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         tests: nix.thunk(() => ({
-          __proto__: pos$4,
+          [nix.POS]: pos$4,
           libgeotiff: libgeotiff,
           imagemagick: imagemagick,
           graphicsmagick: graphicsmagick,
@@ -75,14 +75,14 @@ export default nix.lambda((args) => (() => {
           pillow: nix.thunk(() => nix.attr(python3Packages, "pillow")),
           imread: nix.thunk(() => nix.attr(python3Packages, "imread")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              __proto__: pos$3,
+              [nix.POS]: pos$3,
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$6,
+        [nix.POS]: pos$6,
         description: "Library and utilities for working with the TIFF image file format",
         homepage: "https://libtiff.gitlab.io/libtiff",
         changelog: nix.thunk(() => nix.str`https://libtiff.gitlab.io/libtiff/releases/v${nix.sel(finalAttrs, "version")}.html`),

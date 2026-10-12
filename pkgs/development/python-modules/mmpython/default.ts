@@ -19,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "mmpython";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: "https://sourceforge.net/projects/mmpython/files/latest/download",
           sha256: "1b7qfad3shgakj37gcj1b9h78j1hxlz6wp9k7h76pb4sq4bfyihy",
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
         }))));
       const disabled = nix.thunk(() => (nix.asBool(isPyPy) || nix.asBool(isPy3k)));
       const meta = nix.thunk(() => ({
-        __proto__: pos$2,
+        [nix.POS]: pos$2,
         description: "Media Meta Data retrieval framework",
         homepage: "https://sourceforge.net/projects/mmpython/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { __proto__: pos$3, version, format, pname, src, disabled, meta };
+      return { [nix.POS]: pos$3, version, format, pname, src, disabled, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

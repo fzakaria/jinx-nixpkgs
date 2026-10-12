@@ -48,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      __proto__: pos$6,
+      [nix.POS]: pos$6,
       pname: "imlib2",
       version: "1.12.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          __proto__: pos$1,
+          [nix.POS]: pos$1,
           url: nix.thunk(() => nix.str`mirror://sourceforge/enlightenment/imlib2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-JQ+XUvadxSLlKagaqpOVcF9/wxL/JFPl3lmsK6HyhY8=",
         })))),
@@ -62,9 +62,9 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--enable-amd64=no"), nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(svgSupport)), "--without-svg"), nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(heifSupport)), "--without-heif"), nix.app(optional, nix.thunk(() => !nix.asBool(x11Support)), "--without-x"))))),
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       passthru: nix.thunk(() => ({
-        __proto__: pos$4,
+        [nix.POS]: pos$4,
         tests: nix.thunk(() => ({
-          __proto__: pos$2,
+          [nix.POS]: pos$2,
           libcaca: libcaca,
           diffoscopeMinimal: diffoscopeMinimal,
           feh: feh,
@@ -75,13 +75,13 @@ export default nix.lambda((args) => (() => {
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            __proto__: pos$3,
+            [nix.POS]: pos$3,
             url: "https://git.enlightenment.org/old/legacy-imlib2.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        __proto__: pos$5,
+        [nix.POS]: pos$5,
         description: "Image manipulation library",
         longDescription: "This is the Imlib 2 library - a library that does image file loading and\nsaving as well as rendering, manipulation, arbitrary polygon support, etc.\nIt does ALL of these operations FAST. Imlib2 also tries to be highly\nintelligent about doing them, so writing naive programs can be done\neasily, without sacrificing speed.\n",
         homepage: "https://docs.enlightenment.org/api/imlib2/html",

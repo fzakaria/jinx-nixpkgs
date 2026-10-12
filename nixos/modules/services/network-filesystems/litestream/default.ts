@@ -34,32 +34,32 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "litestream"));
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "yaml"), nix.thunk(() => ({}))));
   return {
-    __proto__: pos$22,
+    [nix.POS]: pos$22,
     options: nix.thunk(() => ({
-      __proto__: pos$8,
+      [nix.POS]: pos$8,
       services: nix.thunk(() => ({
-        __proto__: pos$7,
+        [nix.POS]: pos$7,
         litestream: nix.thunk(() => ({
-          __proto__: pos$6,
+          [nix.POS]: pos$6,
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "litestream")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "litestream", nix.thunk(() => ({})))),
           settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$4,
+              [nix.POS]: pos$4,
               description: "See the [documentation](https://litestream.io/reference/config/).\n",
               type: nix.thunk(() => nix.sel(settingsFormat, "type")),
               example: nix.thunk(() => ({
-                __proto__: pos$3,
+                [nix.POS]: pos$3,
                 dbs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    __proto__: pos$2,
+                    [nix.POS]: pos$2,
                     path: "/var/lib/db1",
-                    replicas: nix.thunk(() => [nix.thunk(() => ({ __proto__: pos$1, url: "s3://mybkt.litestream.io/db1" }))]),
+                    replicas: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, url: "s3://mybkt.litestream.io/db1" }))]),
                   })),
                 ]),
               })),
             })))),
           environmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              __proto__: pos$5,
+              [nix.POS]: pos$5,
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "path")))),
               default: null,
               example: "/run/secrets/litestream",
@@ -69,29 +69,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        __proto__: pos$20,
+        [nix.POS]: pos$20,
         environment: nix.thunk(() => ({
-          __proto__: pos$11,
+          [nix.POS]: pos$11,
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "package"))]),
           etc: nix.thunk(() => ({
-            __proto__: pos$10,
+            [nix.POS]: pos$10,
             "litestream.yml": nix.thunk(() => ({
-              __proto__: pos$9,
+              [nix.POS]: pos$9,
               source: nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "litestream-config.yaml", nix.thunk(() => nix.sel(cfg, "settings")))),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          __proto__: pos$15,
+          [nix.POS]: pos$15,
           services: nix.thunk(() => ({
-            __proto__: pos$14,
+            [nix.POS]: pos$14,
             litestream: nix.thunk(() => ({
-              __proto__: pos$13,
+              [nix.POS]: pos$13,
               description: "Litestream",
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               after: nix.thunk(() => ["network.target"]),
               serviceConfig: nix.thunk(() => ({
-                __proto__: pos$12,
+                [nix.POS]: pos$12,
                 EnvironmentFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(cfg, "environmentFile"), null)), nix.thunk(() => nix.sel(cfg, "environmentFile")))),
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/litestream replicate`),
                 Restart: "always",
@@ -102,20 +102,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          __proto__: pos$19,
+          [nix.POS]: pos$19,
           users: nix.thunk(() => ({
-            __proto__: pos$17,
+            [nix.POS]: pos$17,
             litestream: nix.thunk(() => ({
-              __proto__: pos$16,
+              [nix.POS]: pos$16,
               description: "Litestream user",
               group: "litestream",
               isSystemUser: true,
             })),
           })),
-          groups: nix.thunk(() => ({ __proto__: pos$18, litestream: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: pos$18, litestream: nix.thunk(() => ({})) })),
         })),
       })))),
-    meta: nix.thunk(() => ({ __proto__: pos$21, doc: nix.path(here, "./default.md") })),
+    meta: nix.thunk(() => ({ [nix.POS]: pos$21, doc: nix.path(here, "./default.md") })),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map
